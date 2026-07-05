@@ -60,8 +60,12 @@ Host: launch the shortcut, then **Multiplayer → Start Game → HaZardModding C
 - **Aim-down-sights** on right mouse, individually tuned for 24 weapons
 - **Sprint & stamina** — weapon lowers, gear rattles, stamina drains and recovers; walk quietly on ALT
 - Weapon **bash** on its own key, plus lean
-- Deployable **ammo box** and **sandbag cover** anyone on the team can use
+- **Medkits** — carry self-heal charges, pick up dropped health, and get patched up by the paradrop AI medic
+- Deployable **ammo box** (team resupply) and **sandbag cover** anyone on the team can use
 - **MG42 overheat** on mounted guns
+- **Supersonic bullet cracks and zings** — rounds that nearly hit you snap past your head and feed the suppression system
+- **Smoke whips** — lingering muzzle and impact smoke; shell casings and per-surface impact sounds
+- **Weapon weight** — view weapons carry momentum and lag naturally with movement
 - **Corpse impact physics** — explosions actually throw bodies
 - **Blood trails** from wounded enemies you can follow
 - **Suppression**: near misses desaturate and tighten your view
@@ -77,8 +81,13 @@ Host: launch the shortcut, then **Multiplayer → Start Game → HaZardModding C
 - **HRTF** 3D audio for headphone users
 - **Distance layering**: distant gunfire gets true far-field tails instead of the same close-up bark
 - Full in-game **audio mixer**: Master, Music, SFX, Ambience, and Dialogue sliders, plus an **output-device picker**
+- **Footstep overhaul** — new stone/dirt/foliage/metal/sand/snow/water steps, and enemies you can actually hear coming
+- Radio squelch framing on officer calls, gear rattle while sprinting, and hundreds of new battlefield one-shots (artillery rumbles, thunder, glass, debris)
 - Per-map ambience beds and dynamic weather you can hear roll in
 - Battle-aware ducking so big scripted moments read clearly over the noise
+- Engine-level sound fixes: 2x the vanilla sound limit, output limiter against clipping, audio follows your Windows default device
+
+> Early-alpha note: the audio stack is new — some SFX and advanced sound settings may still be buggy. Reports welcome.
 
 ### Visuals
 
@@ -87,16 +96,34 @@ Host: launch the shortcut, then **Multiplayer → Start Game → HaZardModding C
 - Decal **shadows** under characters
 - Overhead **teammate icons** so you stop shooting your friends
 - **Dynamic weather** — rolling rainstorms driven through the engine's native weather system
-- Full-detail models at all distances
+- Full-detail models at all distances, HD-upscaled menus and UI art
+- Experimental **3D grass** (off by default — toggle in Video options)
 
 ### Quality of life
 
 - One-click installer, side-by-side with your GOG install — nothing in the game folder is ever modified
 - **Automatic updates** at launch, usually only a few MB
-- In-game coop settings hub plus rebuilt audio/video options
-- Bindable coop commands (drop ammo box, objectives, coop actions)
+- In-game **coop settings hub** (find the desk telephone) plus rebuilt **advanced audio and video options** — mixer, output device, speaker/HRTF setup, post-FX and grass toggles
+- Bindable coop commands (deployables, objectives recap, third-person toggle, coop actions)
+- Corpse persistence control — keep the battlefield littered or tidy
 - Objectives recap toggle on a key
 - **Report a Problem** tool in the Start menu
+
+## Per-map fixes & polish
+
+Beyond the systems above, a long tail of mission-specific work keeps the campaigns actually finishable in coop. Highlights:
+
+- **Trilogy-wide objective failsafes** — plant-to-destroy objectives (nebelwerfers, flak guns, AA batteries, cannons) now count *however* you destroy them: airstrike, grenades, tank shells. No more missions stalling because you got creative
+- **Objective-tool protection** — guns the mission *needs* you to use (the Ardennes nebelwerfer, the t1l3 flak cannon, the t1l1 AA gun, the escape tank) can no longer be accidentally destroyed early and soft-lock the map
+- **t2l1 Ardennes** — full officer/reinforcement integration, late-map respawn point, restored missing battle-sound gates (sirens included)
+- **t2l2** — the halftrack/truck convoy ride rebuilt for coop: solid riders, locked cameras, everyone arrives together
+- **m1l3a / m1l3b** — jeep rides with proper coop seating and respawns; **m1l1** — restored truck sequence
+- **m1l2a** — SAS escort fixed; **m2l1** — Grillo escort + officer staging; **m2l2 / m2l3** — U-boat pens and train-station finales staged for coop
+- **m3l1a Omaha** — landing-craft audio pacing and beach ambience; **m3l2** — HOLD-line battalions and defend waves
+- **t1l3** — the colonel can no longer be killed by your own bombing run mid-cutscene (script-breaker fixed)
+- **e3l4** — five separate crash fixes; the map no longer takes the server down
+- **AI polish everywhere** — paradrop/airborne death animations, pain-handler fixes, smoke grenades no longer eat your frags, corpse-stuck AI fixed
+- All Spearhead and Breakthrough missions run under a **single unified launch profile** — no juggling separate game modes
 
 ## Roadmap
 
