@@ -11,6 +11,7 @@
 #define Dev "C:\mohaa-coop-dev"
 #define Bin Dev + "\openmohaa-hzm\.cmake"
 #define Gog "G:\GOG\Medal of Honor - Allied Assault War Chest"
+#define Mod Dev + "\hzm-mohaa-coop-mod"
 #define Crt "C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\VC\Redist\MSVC\14.51.36231\x64\Microsoft.VC145.CRT"
 
 [Setup]
@@ -49,6 +50,9 @@ Source: "{#Crt}\vcruntime140_1.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#Crt}\msvcp140.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#Dev}\installer\mohcoop.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#Dev}\installer\report_problem.ps1"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#Dev}\updater\updater.ps1"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#Dev}\updater\launch_coop.vbs"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#Dev}\installer\installed_manifest_seed.json"; DestDir: "{app}"; DestName: "installed_manifest.json"; Flags: ignoreversion
 ; --- mod + HD content -> our private homepath ---
 Source: "{#Gog}\maintt\zzzzz-AA_HD_Project_Pak1.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
 Source: "{#Gog}\maintt\zzzzz-AA_HD_Project_Pak2.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
@@ -62,7 +66,9 @@ Source: "{#Gog}\maintt\zzzzzz-HRRTM_Pak2_Models_misc.pk3"; DestDir: "{app}\home\
 Source: "{#Gog}\maintt\zzzzzz-HRRTM_Pak3_Textures.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
 Source: "{#Gog}\maintt\zzzzzz-HRRTM_Pak4_Weapons.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
 Source: "{#Gog}\maintt\zzzzzz-HRRTM_Pak4c_WeaponTGA.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
-Source: "{#Gog}\maintt\zzzzzz_co-op_hzm_mod_mohaa.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
+Source: "{#Mod}\zzzzzz_co-op_hzm_mod_assets_snd.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
+Source: "{#Mod}\zzzzzz_co-op_hzm_mod_assets_tex.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
+Source: "{#Mod}\zzzzzz_co-op_hzm_mod_code.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
 Source: "{#Gog}\maintt\zzzzzz_hd_charskins.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
 Source: "{#Gog}\maintt\zzzzzz_hd_fx.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
 Source: "{#Gog}\maintt\zzzzzz_hd_skybox.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
@@ -80,13 +86,14 @@ Type: files; Name: "{autodesktop}\MOH Coop Trilogy.lnk"
 Type: files; Name: "{autoprograms}\MOH Coop Trilogy.lnk"
 Type: files; Name: "{autoprograms}\MOH Coop Trilogy (Spearhead maps).lnk"
 Type: files; Name: "{autoprograms}\MOH Trilogy Coop (Spearhead maps).lnk"
+Type: files; Name: "{app}\home\maintt\zzzzzz_co-op_hzm_mod_mohaa.pk3"
 
 [Icons]
-Name: "{autodesktop}\MOH Trilogy Coop"; Filename: "{app}\openmohaa.exe"; \
-  Parameters: "+set fs_basepath ""{code:GetGogPath}"" +set fs_homepath ""{app}\home"" +set com_target_game 2"; \
+Name: "{autodesktop}\MOH Trilogy Coop"; Filename: "{sys}\wscript.exe"; \
+  Parameters: """{app}\launch_coop.vbs"""; \
   WorkingDir: "{app}"; IconFilename: "{app}\mohcoop.ico"
-Name: "{autoprograms}\MOH Trilogy Coop"; Filename: "{app}\openmohaa.exe"; \
-  Parameters: "+set fs_basepath ""{code:GetGogPath}"" +set fs_homepath ""{app}\home"" +set com_target_game 2"; \
+Name: "{autoprograms}\MOH Trilogy Coop"; Filename: "{sys}\wscript.exe"; \
+  Parameters: """{app}\launch_coop.vbs"""; \
   WorkingDir: "{app}"; IconFilename: "{app}\mohcoop.ico"
 Name: "{autoprograms}\MOH Trilogy Coop - Report a Problem"; Filename: "powershell.exe"; Parameters: "-NoProfile -ExecutionPolicy Bypass -File ""{app}\report_problem.ps1"""; WorkingDir: "{app}"; IconFilename: "{app}\mohcoop.ico"
 
@@ -149,8 +156,17 @@ end;
 procedure CurStepChanged(CurStep: TSetupStep);
 begin
   if CurStep = ssPostInstall then
+  begin
     SaveStringToFile(ExpandConstant('{app}') + '\install_info.txt',
       'Version=' + '{#AppVer}' + #13#10 +
       'GogPath=' + GetGogPath('') + #13#10 +
       'InstalledOn=' + GetDateTimeString('yyyy/mm/dd hh:nn', '-', ':') + #13#10, False);
+    { updater config: launch args live here (not in the shortcut) so updates can adjust them }
+    SaveStringToFile(ExpandConstant('{app}') + '\updater.ini',
+      'Version=' + '{#AppVer}' + #13#10 +
+      'GogPath=' + GetGogPath('') + #13#10 +
+      'ManifestUrl=https://github.com/MOHCoopTrilogy/releases/releases/latest/download/manifest.json' + #13#10 +
+      'ManifestUrlFallback=https://raw.githubusercontent.com/MOHCoopTrilogy/releases/main/manifests/latest.json' + #13#10 +
+      'LaunchArgs=+set fs_basepath "' + GetGogPath('') + '" +set fs_homepath "' + ExpandConstant('{app}') + '\home" +set com_target_game 2' + #13#10, False);
+  end;
 end;

@@ -1,65 +1,92 @@
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
-$srcDir  = "C:\mohaa-coop-dev\hzm-mohaa-coop-mod"
-$pk3Name = "zzzzzz_co-op_hzm_mod_mohaa.pk3"
-$pk3Out  = Join-Path $srcDir $pk3Name
-$deployDir    = "G:\GOG\Medal of Honor - Allied Assault War Chest\maintt"
-$pk3Dest      = Join-Path $deployDir $pk3Name
-$cfgSrc       = Join-Path $srcDir "autoexec.cfg"
-$cfgDest      = Join-Path $deployDir "autoexec.cfg"
-$appDataDir   = "$env:APPDATA\openmohaa\maintt"
-$pk3AppData   = Join-Path $appDataDir $pk3Name
-$cfgAppData   = Join-Path $appDataDir "autoexec.cfg"
-# cgame.dll is loaded from the GOG ROOT install dir (NOT maintt) - confirmed in qconsole.log
-$gogRoot      = "G:\GOG\Medal of Honor - Allied Assault War Chest"
-$cgameSrc     = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\client\cgame\Release\cgame.dll"
-$cgameDest    = Join-Path $gogRoot "cgame.dll"
+$srcDir     = "C:\mohaa-coop-dev\hzm-mohaa-coop-mod"
+$deployDir  = "G:\GOG\Medal of Honor - Allied Assault War Chest\maintt"
+$appDataDir = "$env:APPDATA\openmohaa\maintt"
+$gogRoot    = "G:\GOG\Medal of Honor - Allied Assault War Chest"
+$cfgSrc     = Join-Path $srcDir "autoexec.cfg"
 
-# --- Pack ---
-Write-Host "Packing $srcDir ..."
-$stream  = [System.IO.File]::Open($pk3Out, [System.IO.FileMode]::Create)
-$archive = New-Object System.IO.Compression.ZipArchive($stream, [System.IO.Compression.ZipArchiveMode]::Create)
+# --- 3-way pk3 split (auto-update research, _research/auto_update.md section 5) ---
+# Load order preserved: assets_snd < assets_tex < code (ASCII), all in the monolith's old
+# alphabetical slot between zzzzzz-HRRTM_* and zzzzzz_hd_*. Code overrides assets.
+$oldMonolith = "zzzzzz_co-op_hzm_mod_mohaa.pk3"
+$paks = @(
+    @{ Name = "zzzzzz_co-op_hzm_mod_assets_snd.pk3"; Dirs = @("sound") },
+    @{ Name = "zzzzzz_co-op_hzm_mod_assets_tex.pk3"; Dirs = @("textures","models","gfx","env") },
+    @{ Name = "zzzzzz_co-op_hzm_mod_code.pk3";       Dirs = @() }   # everything else (catch-all)
+)
+$assetDirs = @("sound","textures","models","gfx","env")
+$excludeTop = @("_notes")   # dev notes never ship
 
-$files = Get-ChildItem -Path $srcDir -Recurse -File | Where-Object { $_.Name -ne $pk3Name -and $_.Extension -ne '.bak' }
-foreach ($file in $files) {
-    $entryName = $file.FullName.Substring($srcDir.Length + 1).Replace('\', '/')
-    $entry = $archive.CreateEntry($entryName, [System.IO.Compression.CompressionLevel]::Optimal)
-    $es = $entry.Open()
-    $fs = [System.IO.File]::OpenRead($file.FullName)
-    $fs.CopyTo($es)
-    $fs.Dispose()
-    $es.Dispose()
+function Get-TopDir($relPath) {
+    $i = $relPath.IndexOf('/')
+    if ($i -lt 0) { return "" }
+    return $relPath.Substring(0, $i)
 }
-$archive.Dispose()
-$stream.Dispose()
 
-$sizeMB = [math]::Round((Get-Item $pk3Out).Length / 1MB, 2)
-Write-Host "  Packed $($files.Count) files -> $pk3Name ($sizeMB MB)"
+Write-Host "Packing $srcDir (3-way split)..."
+$allFiles = Get-ChildItem -Path $srcDir -Recurse -File | Where-Object {
+    $_.Extension -ne '.bak' -and $_.Extension -ne '.pk3' -and
+    $_.FullName -notmatch '\\\.git(\\|$)'
+}
 
-# --- Deploy pk3 ---
-Copy-Item -Path $pk3Out -Destination $pk3Dest -Force
-Write-Host "  Deployed pk3 -> $pk3Dest"
+# bucket files
+$buckets = @{}
+foreach ($p in $paks) { $buckets[$p.Name] = New-Object System.Collections.ArrayList }
+foreach ($file in $allFiles) {
+    $rel = $file.FullName.Substring($srcDir.Length + 1).Replace('\', '/')
+    $top = Get-TopDir $rel
+    if ($excludeTop -contains $top) { continue }
+    if ($top -eq "sound") { [void]$buckets[$paks[0].Name].Add(@($rel, $file.FullName)) }
+    elseif ($assetDirs -contains $top) { [void]$buckets[$paks[1].Name].Add(@($rel, $file.FullName)) }
+    else { [void]$buckets[$paks[2].Name].Add(@($rel, $file.FullName)) }
+}
 
-# --- Deploy pk3 to AppData (homepath â€” takes priority over GOG basepath) ---
-Copy-Item -Path $pk3Out -Destination $pk3AppData -Force
-Write-Host "  Deployed pk3 -> $pk3AppData"
+foreach ($p in $paks) {
+    $outPath = Join-Path $srcDir $p.Name
+    $stream  = [System.IO.File]::Open($outPath, [System.IO.FileMode]::Create)
+    $archive = New-Object System.IO.Compression.ZipArchive($stream, [System.IO.Compression.ZipArchiveMode]::Create)
+    foreach ($pair in $buckets[$p.Name]) {
+        $entry = $archive.CreateEntry($pair[0], [System.IO.Compression.CompressionLevel]::Optimal)
+        $es = $entry.Open()
+        $fs = [System.IO.File]::OpenRead($pair[1])
+        $fs.CopyTo($es)
+        $fs.Dispose()
+        $es.Dispose()
+    }
+    $archive.Dispose()
+    $stream.Dispose()
+    $sizeMB = [math]::Round((Get-Item $outPath).Length / 1MB, 2)
+    Write-Host ("  Packed {0} files -> {1} ({2} MB)" -f $buckets[$p.Name].Count, $p.Name, $sizeMB)
+}
+
+# --- Deploy pk3s to both targets; retire the old monolith ---
+foreach ($destDir in @($deployDir, $appDataDir)) {
+    foreach ($p in $paks) {
+        Copy-Item -Path (Join-Path $srcDir $p.Name) -Destination (Join-Path $destDir $p.Name) -Force
+    }
+    $mono = Join-Path $destDir $oldMonolith
+    if (Test-Path $mono) {
+        Remove-Item $mono -Force -Confirm:$false
+        Write-Host "  Retired old monolith -> $mono"
+    }
+    Write-Host "  Deployed 3 pk3s -> $destDir"
+}
 
 # --- Deploy autoexec.cfg ---
-Copy-Item -Path $cfgSrc -Destination $cfgDest -Force
-Write-Host "  Deployed cfg -> $cfgDest"
-
-# --- Deploy autoexec.cfg to AppData homepath (dedicated server reads it here) ---
-Copy-Item -Path $cfgSrc -Destination $cfgAppData -Force
-Write-Host "  Deployed cfg -> $cfgAppData"
+Copy-Item -Path $cfgSrc -Destination (Join-Path $deployDir "autoexec.cfg") -Force
+Copy-Item -Path $cfgSrc -Destination (Join-Path $appDataDir "autoexec.cfg") -Force
+Write-Host "  Deployed autoexec.cfg -> both targets"
 
 # --- Deploy cgame.dll to GOG root (the path the engine actually loads from) ---
+$cgameSrc = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\client\cgame\Release\cgame.dll"
 if (Test-Path $cgameSrc) {
     try {
-        Copy-Item -Path $cgameSrc -Destination $cgameDest -Force -ErrorAction Stop
-        Write-Host "  Deployed cgame.dll -> $cgameDest"
+        Copy-Item -Path $cgameSrc -Destination (Join-Path $gogRoot "cgame.dll") -Force -ErrorAction Stop
+        Write-Host "  Deployed cgame.dll -> $gogRoot"
     } catch {
-        Write-Host "  WARNING: could not deploy cgame.dll (game running?) -> $cgameDest"
+        Write-Host "  WARNING: could not deploy cgame.dll (game running?)"
     }
 }
 
@@ -71,9 +98,6 @@ if (Test-Path $rendSrc) {
         Copy-Item -Path $rendSrc -Destination (Join-Path $gogRoot "renderer_opengl1.dll") -Force -ErrorAction Stop
         Write-Host "  Deployed renderer_opengl1.dll -> $gogRoot"
     } catch { Write-Host "  WARNING: could not deploy renderer_opengl1.dll (game running?)" }
-} else {
-    Write-Host "  (cgame.dll build output not found, skipping DLL deploy)"
 }
 
 Write-Host "Done."
-

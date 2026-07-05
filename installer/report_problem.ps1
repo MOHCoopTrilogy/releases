@@ -19,7 +19,8 @@ $grab = @(
     @("qconsole.log",         "qconsole.log"),
     @("configs\omconfig.cfg", "omconfig.cfg"),
     @("omconfig.cfg",         "omconfig_root.cfg"),
-    @("autoexec.cfg",         "autoexec.cfg")
+    @("autoexec.cfg",         "autoexec.cfg"),
+    @("..\..\updater.log",   "updater.log")
 )
 foreach ($pair in $grab) {
     $p = Join-Path $home_ ("maintt\" + $pair[0])
@@ -121,3 +122,4 @@ if ($sent) {
 }
 Write-Host ""
 Read-Host "Press Enter to close"
+
