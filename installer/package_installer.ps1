@@ -84,6 +84,13 @@ $seed = [pscustomobject]@{
 $seed | ConvertTo-Json -Depth 5 | Set-Content "$dev\installer\installed_manifest_seed.json" -Encoding utf8
 Write-Host "  seed manifest: $($files.Count) entries"
 
-& $iscc "/DAppVer=$AppVersion" $iss
-if ($LASTEXITCODE -ne 0) { throw "ISCC failed ($LASTEXITCODE)" }
+try {
+    & $iscc "/DAppVer=$AppVersion" $iss
+    if ($LASTEXITCODE -ne 0) { throw "ISCC failed ($LASTEXITCODE)" }
+} finally {
+    # NEVER leave a real webhook in the working tree (public repo!) - restore the placeholder
+    $rpText = Get-Content $rp -Raw
+    $rpText = $rpText -replace '\$Webhook = ".*"', '$Webhook = "__REPORT_WEBHOOK__"'
+    Set-Content $rp $rpText -Encoding utf8
+}
 Get-ChildItem "$dev\installer\dist" | Sort-Object LastWriteTime | Select-Object -Last 1 Name, @{n="MB";e={[math]::Round($_.Length/1MB)}}
