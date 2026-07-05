@@ -10,3 +10,4 @@ installer/report_problem_SEND_TO_FRIEND.ps1
 !/updater/
 !/publish_release.ps1
 !/manifests/
+!/docs/
