@@ -1,0 +1,184 @@
+﻿{
+    "manifestVersion":  1,
+    "version":  "1.1.0",
+    "created":  "2026-07-05T02:35:17Z",
+    "files":  [
+                  {
+                      "path":  "openmohaa.exe",
+                      "size":  1680896,
+                      "sha256":  "7f67e0ca390f0c1a8d853ac74b79aff145e71de619226f7e208c86d4fa4bc833",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/openmohaa.exe"
+                  },
+                  {
+                      "path":  "cgame.dll",
+                      "size":  602112,
+                      "sha256":  "048f6c1d7de155fdf8c5c01918a74341c0d0d4d855aeeab3466f72c071868cfc",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/cgame.dll"
+                  },
+                  {
+                      "path":  "game.dll",
+                      "size":  3044864,
+                      "sha256":  "282dea12a5e84c752f114a94851dab9084fd070cd6aa180708d188f8ac6c0b18",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/game.dll"
+                  },
+                  {
+                      "path":  "renderer_opengl1.dll",
+                      "size":  820224,
+                      "sha256":  "e806545c9bf031e238e2cfac3ebe9a99cd1d9d20ecc88af547c77919cf9fa0f6",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/renderer_opengl1.dll"
+                  },
+                  {
+                      "path":  "renderer_opengl2.dll",
+                      "size":  939520,
+                      "sha256":  "cdadf6cd9835f5d0ff0d268d2d9ea1d76e980e6e63086472a43462648ab0057b",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/renderer_opengl2.dll"
+                  },
+                  {
+                      "path":  "updater.ps1",
+                      "size":  8854,
+                      "sha256":  "ab82e81fec468cb4b1ec6ee63888e3e0e8642d81c0aead8c3585e3e6ee790e03",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/updater.ps1"
+                  },
+                  {
+                      "path":  "launch_coop.vbs",
+                      "size":  434,
+                      "sha256":  "bab839f4e8fa43271ddc2c559afc902b0f8849cf341dbe20d1209e184963d57a",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/launch_coop.vbs"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzzz_co-op_hzm_mod_assets_snd.pk3",
+                      "size":  498246266,
+                      "sha256":  "9c88db120b8953f397471136419d5ce7858ecdbef3e4dbe4315488232fc59ed6",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzzz_co-op_hzm_mod_assets_snd.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzzz_co-op_hzm_mod_assets_tex.pk3",
+                      "size":  382431706,
+                      "sha256":  "5877ff0c64fbf6a054b6ad120a237b43ffdb177776b1f94b16749c737621e61a",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzzz_co-op_hzm_mod_code.pk3",
+                      "size":  2073200,
+                      "sha256":  "1f5f373bf363aef17647b6c98251b716ccde539c639690f12b2e30d1bb138de0",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzzz_co-op_hzm_mod_code.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/autoexec.cfg",
+                      "size":  50153,
+                      "sha256":  "6426c1a54328e4a96a7b3c7a9759c066b857d1cf1eb0a4ba54c59b240d6a4503",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/autoexec.cfg"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzz-AA_HD_Project_Pak1.pk3",
+                      "size":  253684976,
+                      "sha256":  "d02a1f404a3d7394d879a98d4f6a05508def25b2736634ff1d9eccfc85b26a5f",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzz-AA_HD_Project_Pak1.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzz-AA_HD_Project_Pak2.pk3",
+                      "size":  953925272,
+                      "sha256":  "a1efa9bf593fd5634afae184648dae7d037b6f8e54f848640b2f31c20c54dd37",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzz-AA_HD_Project_Pak2.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzz-AA_HD_Project_Pak3.pk3",
+                      "size":  883297889,
+                      "sha256":  "9444f56cb0ad0234e4a9045f7da4defd77ea0b65ab28322d48dde4eddcbed135",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzz-AA_HD_Project_Pak3.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzz-AA_HD_Project_Pak4.pk3",
+                      "size":  718992626,
+                      "sha256":  "021fece8516cfea0a094bdd7fdf540724bf0dc3c902abd9c3d1548184ebe7873",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzz-AA_HD_Project_Pak4.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzz-hd_gunsounds.pk3",
+                      "size":  31516855,
+                      "sha256":  "b13465f55c655907176def186e62436b86c86eea9a3563ef0c55d8ff1821fae8",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzz-hd_gunsounds.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzz_geared_soldiers.pk3",
+                      "size":  15934749,
+                      "sha256":  "9b32fc04e38ef15bc6b04d06f51eff98dfbb59883dd5de4459faaca004aff3c4",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzz_geared_soldiers.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzz_hd_foliage.pk3",
+                      "size":  193853941,
+                      "sha256":  "8c7b5906b726d21e5b04714b885f65dfc980090119aab7c8f59052154261d78d",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzz_hd_foliage.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzzz-HRRTM_Pak1_Models.pk3",
+                      "size":  2363331,
+                      "sha256":  "9615c0d72d1031aa30ac48224fe213f47ef167ba1248706873e4515e51cdbd40",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzzz-HRRTM_Pak1_Models.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzzz-HRRTM_Pak2_Models_misc.pk3",
+                      "size":  136669473,
+                      "sha256":  "3b1138061b8c0e462fac25c38b90ac2de729f83f2ffd3fbed03d553e64ba2d61",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzzz-HRRTM_Pak2_Models_misc.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzzz-HRRTM_Pak3_Textures.pk3",
+                      "size":  369290396,
+                      "sha256":  "246c3ba5e56e3a77022553b3f9cbba823b15f678714975b07f53c1eb20efc54b",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzzz-HRRTM_Pak3_Textures.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzzz-HRRTM_Pak4_Weapons.pk3",
+                      "size":  40984889,
+                      "sha256":  "31655b3e6ea7ebe1435d1e6bfd28a458d8ae05779c310fd717558a698fda0533",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzzz-HRRTM_Pak4_Weapons.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzzz-HRRTM_Pak4c_WeaponTGA.pk3",
+                      "size":  42982552,
+                      "sha256":  "022347ca613c11fd5fda17518306162041e9dc936ca0008d56006a1fd752e4f8",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzzz-HRRTM_Pak4c_WeaponTGA.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzzz_hd_charskins.pk3",
+                      "size":  92196525,
+                      "sha256":  "d12bf6f4301ec4402ebd2560b09427b5a1f337b6de9931749445d29277c0a80d",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzzz_hd_charskins.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzzz_hd_fx.pk3",
+                      "size":  17516216,
+                      "sha256":  "d6fecb3dfc787a3bbe27d97f882168a4d66532f93626ee3837759a1397c19396",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzzz_hd_fx.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzzz_hd_skybox.pk3",
+                      "size":  16464965,
+                      "sha256":  "ced436404db679dc747ae3b653da34afb9d11493ee98c817dbe66892de470aaa",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzzz_hd_skybox.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzzz_hd_world.pk3",
+                      "size":  378145214,
+                      "sha256":  "296ca87ffb681f56489ca54f3254f8d85aa5a47b9f1d06fd7d0e5e0078cfd4e6",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzzz_hd_world.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzzzz-HRRTM_Blood_effects_Addon.pk3",
+                      "size":  3265,
+                      "sha256":  "f833363090bde32731a296bf24ec10157c64f0d622cdb3c9899d6951ccde18d7",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzzzz-HRRTM_Blood_effects_Addon.pk3"
+                  },
+                  {
+                      "path":  "home/maintt/zzzzzzz_dds_override.pk3",
+                      "size":  508209650,
+                      "sha256":  "c6e3102661b14c7608dd7b7a169e35b68731a3409d042734744ed78b18fb10fb",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.1.0/zzzzzzz_dds_override.pk3"
+                  }
+              ],
+    "delete":  [
+                   "home/maintt/zzzzzz_co-op_hzm_mod_mohaa.pk3"
+               ]
+}
