@@ -85,7 +85,8 @@ $seed | ConvertTo-Json -Depth 5 | Set-Content "$dev\installer\installed_manifest
 Write-Host "  seed manifest: $($files.Count) entries"
 
 try {
-    & $iscc "/DAppVer=$AppVersion" $iss
+    $whArg = if ($ReportWebhook) { "/DReportWebhook=$ReportWebhook" } else { "/DReportWebhook=" }
+    & $iscc "/DAppVer=$AppVersion" $whArg $iss
     if ($LASTEXITCODE -ne 0) { throw "ISCC failed ($LASTEXITCODE)" }
 } finally {
     # NEVER leave a real webhook in the working tree (public repo!) - restore the placeholder

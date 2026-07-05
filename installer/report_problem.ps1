@@ -7,6 +7,47 @@ $ErrorActionPreference = "SilentlyContinue"
 $Webhook = "__REPORT_WEBHOOK__"
 
 $app  = Split-Path -Parent $MyInvocation.MyCommand.Path
+
+# prefer the webhook from updater.ini (kept off the public repos); baked value is the fallback
+try {
+    $iniPath = Join-Path $app "updater.ini"
+    if (Test-Path $iniPath) {
+        $m = Select-String -Path $iniPath -Pattern "^ReportWebhook=(.+)$"
+        if ($m) { $Webhook = $m.Matches[0].Groups[1].Value.Trim() }
+    }
+} catch {}
+
+# ask the tester what happened - this context is the most valuable part of the report
+$UserDescription = ""
+try {
+    Add-Type -AssemblyName System.Windows.Forms
+    Add-Type -AssemblyName System.Drawing
+    $f = New-Object System.Windows.Forms.Form
+    $f.Text = "MOH Coop Trilogy - Report a Problem"
+    $f.Size = New-Object System.Drawing.Size(520, 320)
+    $f.StartPosition = "CenterScreen"; $f.FormBorderStyle = "FixedDialog"; $f.MaximizeBox = $false
+    $lbl = New-Object System.Windows.Forms.Label
+    $lbl.Location = New-Object System.Drawing.Point(12, 12)
+    $lbl.Size = New-Object System.Drawing.Size(480, 40)
+    $lbl.Text = "What happened? What were you doing when it broke? (map, weapon, what you expected...)`r`nThe more detail, the faster it gets fixed."
+    $tb = New-Object System.Windows.Forms.TextBox
+    $tb.Multiline = $true; $tb.ScrollBars = "Vertical"
+    $tb.Location = New-Object System.Drawing.Point(12, 58)
+    $tb.Size = New-Object System.Drawing.Size(480, 160)
+    $ok = New-Object System.Windows.Forms.Button
+    $ok.Text = "Send Report"; $ok.Location = New-Object System.Drawing.Point(290, 236)
+    $ok.Size = New-Object System.Drawing.Size(100, 30)
+    $ok.DialogResult = [System.Windows.Forms.DialogResult]::OK
+    $skip = New-Object System.Windows.Forms.Button
+    $skip.Text = "Skip"; $skip.Location = New-Object System.Drawing.Point(396, 236)
+    $skip.Size = New-Object System.Drawing.Size(96, 30)
+    $skip.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
+    $f.Controls.AddRange(@($lbl, $tb, $ok, $skip))
+    $f.AcceptButton = $ok
+    if ($f.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) { $UserDescription = $tb.Text }
+} catch {
+    $UserDescription = Read-Host "Describe the problem (or press Enter to skip)"
+}
 $home_ = Join-Path $app "home"
 $stamp = Get-Date -Format "yyyyMMdd-HHmmss"
 $work = Join-Path $env:TEMP "mohcoop-report-$stamp"
@@ -88,6 +129,7 @@ $cpu = Get-CimInstance Win32_Processor | Select-Object -First 1
 $info += "CPU: $($cpu.Name)"
 $info += "RAM: {0:N0} MB" -f ($os.TotalVisibleMemorySize/1KB)
 $info | Set-Content (Join-Path $work "report_info.txt") -Encoding utf8
+if ($UserDescription.Trim()) { $UserDescription | Set-Content (Join-Path $work "user_description.txt") -Encoding utf8 }
 
 # zip it
 $zipName = "MOHCoop-Report-$stamp.zip"
@@ -99,13 +141,16 @@ $sent = $false
 if ($Webhook -and $Webhook -notlike "__REPORT_*") {
     Write-Host "Sending report to the mod team..." -ForegroundColor Cyan
     try {
-        $form = @{ file1 = Get-Item $zipDesk; content = "MOH Coop report from $env:COMPUTERNAME ($stamp)" }
+        $desc = if ($UserDescription.Trim()) { $UserDescription.Trim() } else { "(no description given)" }
+        if ($desc.Length -gt 1700) { $desc = $desc.Substring(0, 1700) + "..." }
+        $msg = "**MOH Coop report** from $env:COMPUTERNAME ($stamp)`n>>> $desc"
+        $form = @{ file1 = Get-Item $zipDesk; content = $msg }
         Invoke-RestMethod -Uri $Webhook -Method Post -Form $form | Out-Null
         $sent = $true
     } catch {
         # PowerShell 5.1 has no -Form; fall back to curl.exe (ships with Win10+)
         try {
-            & curl.exe -s -F "content=MOH Coop report from $env:COMPUTERNAME ($stamp)" -F "file1=@$zipDesk" $Webhook | Out-Null
+            & curl.exe -s -F "content=$msg" -F "file1=@$zipDesk" $Webhook | Out-Null
             $sent = ($LASTEXITCODE -eq 0)
         } catch {}
     }
@@ -122,4 +167,6 @@ if ($sent) {
 }
 Write-Host ""
 Read-Host "Press Enter to close"
+
+
 
