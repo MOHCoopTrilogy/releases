@@ -32,11 +32,7 @@ $must = @(
 )
 foreach ($m in $must) { if (-not (Test-Path $m)) { throw "missing payload: $m" } }
 
-# bake the report webhook into the shipped reporter (placeholder = desktop-zip fallback)
-$rp = "$dev\installer\report_problem.ps1"
-$rpText = Get-Content $rp -Raw
-$rpText = $rpText -replace '\$Webhook = ".*"', ('$Webhook = "' + $(if ($ReportWebhook) { $ReportWebhook } else { "__REPORT_WEBHOOK__" }) + '"')
-Set-Content $rp $rpText -Encoding utf8
+# reporter ships secret-free; the webhook reaches machines via updater.ini (ISCC define below)
 
 # --- seed installed_manifest.json: hashes of EXACTLY what this installer ships, so the
 # --- first post-install launch diffs clean and never bootstrap-hashes 5 GB.
@@ -49,6 +45,7 @@ $stage["renderer_opengl1.dll"] = "$bin\code\renderercommon\renderergl1\Release\r
 $stage["renderer_opengl2.dll"] = "$bin\code\renderercommon\renderergl2\Release\renderer_opengl2.dll"
 $stage["updater.ps1"]          = "$dev\updater\updater.ps1"
 $stage["launch_coop.vbs"]      = "$dev\updater\launch_coop.vbs"
+$stage["report_problem.ps1"]   = "$dev\installer\report_problem.ps1"
 foreach ($p in @("zzzzzz_co-op_hzm_mod_assets_snd.pk3","zzzzzz_co-op_hzm_mod_assets_tex.pk3","zzzzzz_co-op_hzm_mod_code.pk3")) {
     $stage["home/maintt/$p"] = "$mod\$p"
 }
@@ -84,14 +81,7 @@ $seed = [pscustomobject]@{
 $seed | ConvertTo-Json -Depth 5 | Set-Content "$dev\installer\installed_manifest_seed.json" -Encoding utf8
 Write-Host "  seed manifest: $($files.Count) entries"
 
-try {
-    $whArg = if ($ReportWebhook) { "/DReportWebhook=$ReportWebhook" } else { "/DReportWebhook=" }
-    & $iscc "/DAppVer=$AppVersion" $whArg $iss
-    if ($LASTEXITCODE -ne 0) { throw "ISCC failed ($LASTEXITCODE)" }
-} finally {
-    # NEVER leave a real webhook in the working tree (public repo!) - restore the placeholder
-    $rpText = Get-Content $rp -Raw
-    $rpText = $rpText -replace '\$Webhook = ".*"', '$Webhook = "__REPORT_WEBHOOK__"'
-    Set-Content $rp $rpText -Encoding utf8
-}
+$whArg = if ($ReportWebhook) { "/DReportWebhook=$ReportWebhook" } else { "/DReportWebhook=" }
+& $iscc "/DAppVer=$AppVersion" $whArg $iss
+if ($LASTEXITCODE -ne 0) { throw "ISCC failed ($LASTEXITCODE)" }
 Get-ChildItem "$dev\installer\dist" | Sort-Object LastWriteTime | Select-Object -Last 1 Name, @{n="MB";e={[math]::Round($_.Length/1MB)}}

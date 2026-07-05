@@ -52,6 +52,24 @@ function LaunchGame {
     exit
 }
 
+# one-time migration: older patches baked the report webhook into report_problem.ps1;
+# newer reporters read it from updater.ini. If the ini lacks the key, harvest it from the
+# local legacy file BEFORE any update replaces that file with the secret-free version.
+try {
+    if (-not $ini["ReportWebhook"]) {
+        $rp = Join-Path $app "report_problem.ps1"
+        if (Test-Path $rp) {
+            $m = Select-String -Path $rp -Pattern 'Webhook = "(https://discord[^"]+)"'
+            if ($m) {
+                $wh = $m.Matches[0].Groups[1].Value
+                Add-Content -Path (Join-Path $app "updater.ini") -Value "ReportWebhook=$wh"
+                $ini["ReportWebhook"] = $wh
+                Log "migrated report webhook into updater.ini"
+            }
+        }
+    }
+} catch {}
+
 # safety net: any unexpected terminating error still launches the game (functions above are defined)
 trap { Log "UNEXPECTED: $_"; LaunchGame }
 

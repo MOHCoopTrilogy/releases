@@ -53,6 +53,7 @@ $stage["renderer_opengl2.dll"] = "$bin\code\renderercommon\renderergl2\Release\r
 # updater self-update
 $stage["updater.ps1"]     = "$dev\updater\updater.ps1"
 $stage["launch_coop.vbs"] = "$dev\updater\launch_coop.vbs"
+$stage["report_problem.ps1"] = "$dev\installer\report_problem.ps1"   # secret-free: webhook comes from updater.ini
 # mod pk3s (freshly built by build.ps1)
 foreach ($p in @("zzzzzz_co-op_hzm_mod_assets_snd.pk3","zzzzzz_co-op_hzm_mod_assets_tex.pk3","zzzzzz_co-op_hzm_mod_code.pk3")) {
     $stage["home/maintt/$p"] = "$mod\$p"
