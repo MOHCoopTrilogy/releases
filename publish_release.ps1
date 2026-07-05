@@ -83,7 +83,12 @@ if (Test-Path $prevPath) {
     try { $prevManifest = Get-Content $prevPath -Raw | ConvertFrom-Json } catch {}
 }
 $prevMap = @{}
-if ($prevManifest -and $prevManifest.version -eq $Version) { $prevManifest = $null }  # same-version leftovers (e.g. dry-run) must not suppress uploads
+if ($prevManifest -and $prevManifest.version -eq $Version) {
+    # latest.json must always describe the last LIVE release. Same version here means an
+    # aborted publish left its manifest behind - continuing would silently re-upload
+    # everything (no reuse baseline). Fail loudly instead of wasting 5 GB.
+    throw "manifests/latest.json is already $Version (leftover from an aborted publish). Restore it: Copy-Item manifests/manifest-<lastLiveVersion>.json manifests/latest.json"
+}
 if ($prevManifest) { foreach ($f in $prevManifest.files) { $prevMap[$f.path] = $f } }
 
 $files = @()
@@ -124,10 +129,10 @@ if ($DryRun) {
     return
 }
 
-New-Item -ItemType Directory -Path "$dev\manifests" -Force | Out-Null
-$manifestPath = "$dev\manifests\manifest-$Version.json"
+# manifest goes to TEMP for the asset upload; manifests/ in the repo is only written AFTER
+# the release is live (an aborted publish must never poison the next run's reuse baseline)
+$manifestPath = Join-Path $env:TEMP "manifest-$Version.json"
 $manifest | ConvertTo-Json -Depth 5 | Set-Content $manifestPath -Encoding utf8
-Copy-Item $manifestPath "$dev\manifests\latest.json" -Force
 
 # --- 5. publish (Continue mode: gh/git write progress to stderr; rely on exit codes) ---
 $ErrorActionPreference = "Continue"
@@ -153,10 +158,16 @@ $asset = $relJson.assets | Where-Object { $_.name -eq "manifest-$Version.json" }
 if ($asset) { & $gh api -X PATCH "repos/$repoSlug/releases/assets/$($asset.id)" -f name=manifest.json | Out-Null; Write-Host "manifest.json published" }
 
 # --- 6. record manifests in the repo (raw.githubusercontent fallback + audit trail) ---
+# release is LIVE at this point, so NOW the local baseline may advance
+New-Item -ItemType Directory -Path "$dev\manifests" -Force | Out-Null
+Copy-Item $manifestPath "$dev\manifests\manifest-$Version.json" -Force
+Copy-Item $manifestPath "$dev\manifests\latest.json" -Force
 Set-Location $dev
 git add manifests/ 2>$null
 git commit -m "manifest $Version" 2>$null | Out-Null
+if ($LASTEXITCODE -ne 0) { Write-Host "WARNING: manifest commit failed - fallback URL will be stale!" -ForegroundColor Red }
 git push origin main 2>$null | Out-Null
-Write-Host "manifests committed + pushed"
+if ($LASTEXITCODE -ne 0) { Write-Host "WARNING: manifest push failed - fallback URL is STALE until you push manifests/ manually" -ForegroundColor Red }
+else { Write-Host "manifests committed + pushed" }
 Write-Host ""
 Write-Host "Done. Testers on the updater get v$Version on next launch."

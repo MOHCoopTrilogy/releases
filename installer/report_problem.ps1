@@ -1,4 +1,4 @@
-# MOH Coop Trilogy - problem reporter
+﻿# MOH Coop Trilogy - problem reporter
 # Gathers logs + config + system/dll info into a zip. If a webhook is configured it posts
 # the report directly to the mod team's Discord channel; otherwise it lands on the desktop.
 $ErrorActionPreference = "SilentlyContinue"
@@ -84,6 +84,11 @@ $info = @()
 $info += "=== MOH Coop Trilogy report $stamp ==="
 $infoFile = Join-Path $app "install_info.txt"
 if (Test-Path $infoFile) { $info += Get-Content $infoFile }
+# install_info.txt is frozen at install time; the live version comes from the updater state
+try {
+    $imv = (Get-Content (Join-Path $app "installed_manifest.json") -Raw | ConvertFrom-Json).version
+    if ($imv) { $info += "CurrentBuild=$imv" }
+} catch {}
 $info += ""
 $info += "=== install dir ($app) ==="
 $info += Get-ChildItem $app -File | ForEach-Object { "{0,12:N0}  {1}  {2}" -f $_.Length, $_.LastWriteTime.ToString("yyyy-MM-dd HH:mm"), $_.Name }
@@ -167,6 +172,8 @@ if ($sent) {
 }
 Write-Host ""
 Read-Host "Press Enter to close"
+
+
 
 
 

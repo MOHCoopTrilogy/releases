@@ -22,6 +22,14 @@ try {
     }
 } catch {}
 
+# single instance: a second double-click must not fight the first - two concurrent
+# downloads writing the same .tmp corrupt it (seen in the field 2026-07-05). The first
+# instance owns the update AND the game launch; extras just leave.
+$updMutex = New-Object System.Threading.Mutex($false, "Local\MOHCoopTrilogyUpdater")
+$gotMutex = $false
+try { $gotMutex = $updMutex.WaitOne(0) } catch { $gotMutex = $true }  # abandoned = holder died; take over
+if (-not $gotMutex) { Log "another updater instance is already running - exiting"; exit }
+
 # --- read updater.ini (written by the installer) ---
 $ini = @{}
 try {
@@ -33,6 +41,8 @@ try {
 
 function LaunchGame {
     try {
+        # never start a second copy (a game launched mid-update, or by another shortcut)
+        if (Get-Process openmohaa -ErrorAction SilentlyContinue) { exit }
         $exe = Join-Path $app "openmohaa.exe"
         $args = $ini["LaunchArgs"]
         if (-not $args) {
@@ -124,7 +134,8 @@ if ($work.Count -eq 0 -and $deletes.Count -eq 0) {
     LaunchGame
 }
 
-$totalMB = [math]::Round(($work | Measure-Object -Property size -Sum).Sum / 1MB, 1)
+$totalBytes = ($work | Measure-Object -Property size -Sum).Sum
+$totalMB = [math]::Round($totalBytes / 1MB, 1)
 Log "update to v$($remote.version): $($work.Count) file(s), $totalMB MB, $($deletes.Count) delete(s)"
 
 # 3. preflight disk space (download volume + 200MB slack)
@@ -134,37 +145,47 @@ try {
     if ($freeMB -lt ($totalMB + 200)) { Log "disk space low ($freeMB MB free) - skipping update"; LaunchGame }
 } catch {}
 
-# progress UI (visible only when there is work)
+# progress UI (visible only when there is work). TopMost so it cannot open buried behind
+# other windows, and the download loop pumps messages so it never ghosts to "Not Responding".
 $ui = $null
 try {
     Add-Type -AssemblyName System.Windows.Forms
     Add-Type -AssemblyName System.Drawing
     $form = New-Object System.Windows.Forms.Form
     $form.Text = "MOH Coop Trilogy - updating to v$($remote.version)"
-    $form.Size = New-Object System.Drawing.Size(480, 130)
+    $form.Size = New-Object System.Drawing.Size(480, 140)
     $form.StartPosition = "CenterScreen"
     $form.FormBorderStyle = "FixedDialog"
     $form.MaximizeBox = $false
+    $form.TopMost = $true
+    $form.ControlBox = $false   # no X: closing would not stop the update anyway
     $label = New-Object System.Windows.Forms.Label
     $label.Location = New-Object System.Drawing.Point(12, 15)
-    $label.Size = New-Object System.Drawing.Size(440, 20)
-    $label.Text = "Preparing... ($totalMB MB)"
+    $label.Size = New-Object System.Drawing.Size(440, 34)
+    $label.Text = "Preparing... ($totalMB MB). The game starts by itself when this is done."
     $bar = New-Object System.Windows.Forms.ProgressBar
-    $bar.Location = New-Object System.Drawing.Point(12, 45)
+    $bar.Location = New-Object System.Drawing.Point(12, 58)
     $bar.Size = New-Object System.Drawing.Size(440, 24)
-    $bar.Maximum = [math]::Max($work.Count, 1)
+    $bar.Maximum = [int][math]::Max([math]::Ceiling($totalBytes / 1KB), 1)
     $form.Controls.Add($label); $form.Controls.Add($bar)
     $form.Show(); $form.Refresh()
+    [System.Windows.Forms.Application]::DoEvents()
     $ui = @{ form = $form; label = $label; bar = $bar }
 } catch { $ui = $null }
 
-function Set-Progress($i, $text) {
+function Set-Progress($doneKB, $text) {
     if ($ui) {
-        try { $ui.bar.Value = [math]::Min($i, $ui.bar.Maximum); $ui.label.Text = $text; $ui.form.Refresh(); [System.Windows.Forms.Application]::DoEvents() } catch {}
+        try {
+            $ui.bar.Value = [math]::Min([int]$doneKB, $ui.bar.Maximum)
+            $ui.label.Text = $text
+            [System.Windows.Forms.Application]::DoEvents()
+        } catch {}
     }
 }
 
-# 4. download everything to .tmp first, verify each
+# 4. download everything to .tmp first, verify each. curl runs as a child process while
+# this loop keeps the window painted and shows real byte progress.
+$doneBytes = 0
 $idx = 0
 foreach ($f in $work) {
     $idx++
@@ -173,15 +194,37 @@ foreach ($f in $work) {
     $dir = Split-Path -Parent $diskPath
     if (-not (Test-Path $dir)) { New-Item -ItemType Directory -Path $dir -Force | Out-Null }
     $name = Split-Path -Leaf $f.path
-    Set-Progress $idx "Downloading $name ($([math]::Round($f.size/1MB,1)) MB) [$idx/$($work.Count)]"
-    Log "downloading $($f.path) from $($f.url)"
+    $fileMB = [math]::Round($f.size / 1MB, 1)
 
     $ok = $false
     foreach ($attempt in 1..2) {
-        & $curl -fL --retry 3 --retry-delay 2 -C - -o $tmpPath $f.url 2>$null
-        if ($LASTEXITCODE -ne 0) { continue }
-        $hash = (Get-FileHash -Path $tmpPath -Algorithm SHA256).Hash.ToLower()
-        if ($hash -eq $f.sha256.ToLower()) { $ok = $true; break }
+        # a complete .tmp from an earlier interrupted run needs no download - just verification
+        # (also avoids curl failing a resume of an already-complete file with HTTP 416)
+        $have = 0
+        if (Test-Path $tmpPath) { $have = (Get-Item $tmpPath).Length }
+        if ($have -lt $f.size) {
+            Log "downloading $($f.path) from $($f.url)"
+            $curlArgs = "-fsL --retry 3 --retry-delay 2 -C - -o `"$tmpPath`" `"$($f.url)`""
+            $p = Start-Process -FilePath $curl -ArgumentList $curlArgs -WindowStyle Hidden -PassThru
+            while (-not $p.HasExited) {
+                $cur = 0
+                try { $cur = (Get-Item $tmpPath -ErrorAction SilentlyContinue).Length } catch {}
+                $overall = $doneBytes + $cur
+                Set-Progress ($overall / 1KB) ("Downloading $name  ($fileMB MB)  [file $idx of $($work.Count)]`n" +
+                    "$([math]::Round($overall/1MB)) / $([math]::Round($totalBytes/1MB)) MB total")
+                Start-Sleep -Milliseconds 250
+            }
+            if ($p.ExitCode -ne 0) {
+                # resume of an already-complete file reports an error - let the hash decide then
+                $have = 0
+                if (Test-Path $tmpPath) { $have = (Get-Item $tmpPath).Length }
+                if ($have -lt $f.size) { Log "curl exit $($p.ExitCode) on $($f.path) (attempt $attempt)"; continue }
+            }
+        } else {
+            Log "reusing complete download for $($f.path)"
+        }
+        $fh = Get-FileHash -Path $tmpPath -Algorithm SHA256 -ErrorAction SilentlyContinue
+        if ($fh -and $fh.Hash.ToLower() -eq $f.sha256.ToLower()) { $ok = $true; break }
         Log "hash mismatch on $($f.path) (attempt $attempt) - re-downloading from scratch"
         Remove-Item $tmpPath -Force -ErrorAction SilentlyContinue
     }
@@ -190,10 +233,20 @@ foreach ($f in $work) {
         if ($ui) { try { $ui.form.Close() } catch {} }
         LaunchGame
     }
+    $doneBytes += $f.size
+    Set-Progress ($doneBytes / 1KB) "Verified $name  [$idx/$($work.Count)]"
+}
+
+# if the game was started while we downloaded, do not swap files under it; the verified
+# .tmp files stay put and the next launch applies them without re-downloading.
+if (Get-Process openmohaa -ErrorAction SilentlyContinue) {
+    Log "game started during download - update will apply on next launch"
+    if ($ui) { try { $ui.form.Close() } catch {} }
+    exit
 }
 
 # 5. swap: content first, engine binary group last (all verified, game not running)
-Set-Progress $work.Count "Applying update..."
+Set-Progress ($totalBytes / 1KB) "Applying update..."
 $engineFirst = @("openmohaa.exe", "cgame.dll", "game.dll", "renderer_opengl1.dll", "renderer_opengl2.dll")
 $ordered = @($work | Where-Object { $engineFirst -notcontains $_.path }) + @($work | Where-Object { $engineFirst -contains $_.path })
 foreach ($f in $ordered) {
