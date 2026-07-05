@@ -61,7 +61,8 @@ $grab = @(
     @("configs\omconfig.cfg", "omconfig.cfg"),
     @("omconfig.cfg",         "omconfig_root.cfg"),
     @("autoexec.cfg",         "autoexec.cfg"),
-    @("..\..\updater.log",   "updater.log")
+    @("..\..\updater.log",   "updater.log"),
+    @("..\..\hzm_fatal.log", "hzm_fatal.log")
 )
 foreach ($pair in $grab) {
     $p = Join-Path $home_ ("maintt\" + $pair[0])
@@ -77,6 +78,26 @@ foreach ($pair in $grab) {
     }
 }
 
+# crash dump: Windows Error Reporting saves openmohaa.exe.<pid>.dmp to %LOCALAPPDATA%\CrashDumps
+# on a hard crash. Grab the newest one if it is recent (within ~2h of this report) - it is the
+# single most useful artifact for diagnosing a crash. Compressed dumps are mostly zeros so the
+# zip shrinks them a lot; if the result is too big for the webhook it still lands on the desktop.
+try {
+    $dumpDir = Join-Path $env:LOCALAPPDATA "CrashDumps"
+    if (Test-Path $dumpDir) {
+        $dump = Get-ChildItem $dumpDir -Filter "openmohaa.exe.*.dmp" -File -ErrorAction SilentlyContinue |
+                Sort-Object LastWriteTime -Descending | Select-Object -First 1
+        if ($dump -and $dump.LastWriteTime -gt (Get-Date).AddHours(-2)) {
+            Copy-Item $dump.FullName (Join-Path $work $dump.Name) -ErrorAction SilentlyContinue
+            $dumpNote = "included crash dump: $($dump.Name) ($([math]::Round($dump.Length/1MB,1)) MB, $($dump.LastWriteTime))"
+        } else {
+            $dumpNote = "no recent crash dump found in $dumpDir"
+        }
+    } else {
+        $dumpNote = "no CrashDumps folder (Windows Error Reporting local dumps not enabled)"
+    }
+} catch { $dumpNote = "crash-dump grab failed: $_" }
+
 # install + game info: versions, and the full inventory of the install dir INCLUDING the
 # home content (missing pk3s are a failure mode), plus the game dir dll/pk3 inventory
 # (a stray vanilla OpenMOHAA in the game folder is a known failure mode)
@@ -89,6 +110,7 @@ try {
     $imv = (Get-Content (Join-Path $app "installed_manifest.json") -Raw | ConvertFrom-Json).version
     if ($imv) { $info += "CurrentBuild=$imv" }
 } catch {}
+if ($dumpNote) { $info += $dumpNote }
 $info += ""
 $info += "=== install dir ($app) ==="
 $info += Get-ChildItem $app -File | ForEach-Object { "{0,12:N0}  {1}  {2}" -f $_.Length, $_.LastWriteTime.ToString("yyyy-MM-dd HH:mm"), $_.Name }

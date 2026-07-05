@@ -60,6 +60,10 @@ foreach ($p in @("zzzzzz_co-op_hzm_mod_assets_snd.pk3","zzzzzz_co-op_hzm_mod_ass
 }
 # autoexec (ours; users edit omconfig, not this)
 $stage["home/maintt/autoexec.cfg"] = "$mod\autoexec.cfg"
+# What's New card trigger seed (constant content = constant hash = downloaded once ever).
+# Lives in installer/ (NOT the mod tree) so build.ps1 never packs it into a pk3 - a pk3 copy
+# could shadow the loose file the updater blanks, re-showing the card forever.
+$stage["home/maintt/whatsnew_pending.cfg"] = "$dev\installer\whatsnew_seed.cfg"
 # HD companion pk3s (rarely change; canonical deployed copies)
 $hdPaks = @(
     "zzzzz-AA_HD_Project_Pak1.pk3","zzzzz-AA_HD_Project_Pak2.pk3","zzzzz-AA_HD_Project_Pak3.pk3",

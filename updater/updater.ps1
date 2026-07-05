@@ -22,6 +22,18 @@ try {
     }
 } catch {}
 
+# ensure Windows saves a crash dump if openmohaa.exe hard-crashes, so Report-a-Problem can attach it.
+# Per-user (HKCU) registry, no admin needed; DumpType 1 = minidump (small, has the call stack).
+try {
+    $wer = "HKCU:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\openmohaa.exe"
+    if (-not (Test-Path $wer)) { New-Item -Path $wer -Force | Out-Null }
+    $dumps = Join-Path $env:LOCALAPPDATA "CrashDumps"
+    if (-not (Test-Path $dumps)) { New-Item -ItemType Directory -Path $dumps -Force | Out-Null }
+    New-ItemProperty -Path $wer -Name "DumpFolder" -Value $dumps -PropertyType ExpandString -Force | Out-Null
+    New-ItemProperty -Path $wer -Name "DumpType"   -Value 1 -PropertyType DWord -Force | Out-Null
+    New-ItemProperty -Path $wer -Name "DumpCount"  -Value 5 -PropertyType DWord -Force | Out-Null
+} catch { Log "crash-dump registry setup skipped: $_" }
+
 # single instance: a second double-click must not fight the first - two concurrent
 # downloads writing the same .tmp corrupt it (seen in the field 2026-07-05). The first
 # instance owns the update AND the game launch; extras just leave.
@@ -93,16 +105,46 @@ if (-not $manifestUrl) { Log "no ManifestUrl configured"; LaunchGame }
 $curl = "$env:SystemRoot\System32\curl.exe"
 if (-not (Test-Path $curl)) { $curl = "curl.exe" }
 
-# 1. fetch remote manifest (small; hard timeouts; fallback URL)
+# 1. fetch remote manifest. Fetch BOTH the primary (GitHub CDN latest/download) and the fallback
+# (raw.githubusercontent, git-backed = instant) and use whichever advertises the NEWER version.
+# The CDN caches the "latest" redirect per-region and can serve a stale pointer for many minutes
+# after a publish; without this a user's updater would see the old version and never update.
+$tmpPrimary  = Join-Path $env:TEMP "mohcoop_manifest_p.json"
+$tmpFallback = Join-Path $env:TEMP "mohcoop_manifest_f.json"
 $tmpManifest = Join-Path $env:TEMP "mohcoop_manifest.json"
-Remove-Item $tmpManifest -Force -ErrorAction SilentlyContinue
-& $curl -fsSL --connect-timeout 4 --max-time 20 $manifestUrl -o $tmpManifest 2>$null
-if ($LASTEXITCODE -ne 0 -and $fallbackUrl) {
-    & $curl -fsSL --connect-timeout 4 --max-time 20 $fallbackUrl -o $tmpManifest 2>$null
-}
-if ($LASTEXITCODE -ne 0 -or -not (Test-Path $tmpManifest)) { Log "manifest fetch failed (offline?)"; LaunchGame }
+Remove-Item $tmpPrimary, $tmpFallback, $tmpManifest -Force -ErrorAction SilentlyContinue
 
-try { $remote = Get-Content $tmpManifest -Raw | ConvertFrom-Json } catch { Log "manifest parse failed"; LaunchGame }
+function TryFetch($url, $out) {
+    if (-not $url) { return $null }
+    & $curl -fsSL --connect-timeout 4 --max-time 20 $url -o $out 2>$null
+    if ($LASTEXITCODE -ne 0 -or -not (Test-Path $out)) { return $null }
+    try { return Get-Content $out -Raw | ConvertFrom-Json } catch { return $null }
+}
+function VerKey($v) {
+    # "1.1.32" -> comparable [version]; tolerates missing/odd values
+    try { return [version]("$($v.version)".Trim()) } catch { return [version]"0.0.0" }
+}
+function SafeRelPath($p) {
+    # the updater must never write outside its own install dir: reject absolute/rooted
+    # paths and any '..' traversal. This protects the user's GOG install (including a
+    # separately installed vanilla OpenMOHAA) from a malformed or tampered manifest.
+    if (-not $p) { return $false }
+    if ("$p" -match '\.\.') { return $false }
+    if ("$p" -match '^[A-Za-z]:' -or "$p".StartsWith('\') -or "$p".StartsWith('/')) { return $false }
+    return $true
+}
+
+$mp = TryFetch $manifestUrl  $tmpPrimary
+$mf = TryFetch $fallbackUrl  $tmpFallback
+if (-not $mp -and -not $mf) { Log "manifest fetch failed (offline?)"; LaunchGame }
+
+$remote = $mp
+Copy-Item $tmpPrimary $tmpManifest -Force -ErrorAction SilentlyContinue
+if (-not $mp -or ($mf -and (VerKey $mf) -gt (VerKey $mp))) {
+    $remote = $mf
+    Copy-Item $tmpFallback $tmpManifest -Force
+    if ($mp) { Log "fallback manifest ($($mf.version)) newer than CDN ($($mp.version)) - using fallback" }
+}
 if (-not $remote -or $remote.manifestVersion -gt 1) { Log "manifest version unsupported"; LaunchGame }
 
 # 2. diff against the installed manifest (never full-disk hashing)
@@ -117,6 +159,7 @@ if (Test-Path $installedPath) {
 
 $work = @()
 foreach ($f in $remote.files) {
+    if (-not (SafeRelPath $f.path)) { Log "unsafe manifest path skipped: $($f.path)"; continue }
     $diskPath = Join-Path $app ($f.path -replace "/", "\")
     $disk = Get-Item $diskPath -ErrorAction SilentlyContinue
     $known = $installedMap[$f.path]
@@ -126,10 +169,13 @@ foreach ($f in $remote.files) {
     if ($f.path -notlike "*.cfg" -and $disk.Length -ne $f.size) { $work += $f }
 }
 $deletes = @()
-if ($remote.delete) { $deletes = @($remote.delete | Where-Object { Test-Path (Join-Path $app ($_ -replace "/", "\")) }) }
+if ($remote.delete) { $deletes = @($remote.delete | Where-Object { (SafeRelPath $_) -and (Test-Path (Join-Path $app ($_ -replace "/", "\"))) }) }
 
 if ($work.Count -eq 0 -and $deletes.Count -eq 0) {
     Copy-Item $tmpManifest $installedPath -Force -ErrorAction SilentlyContinue
+    # clear the one-shot What's New trigger: the card shows on the first launch after an
+    # update and stays hidden from then on (autoexec.cfg execs this file every launch)
+    try { Set-Content -Path (Join-Path $app "home\maintt\whatsnew_pending.cfg") -Value "// up to date - no announcement" -Encoding ascii } catch {}
     Log "up to date (v$($remote.version))"
     LaunchGame
 }
@@ -266,6 +312,22 @@ foreach ($d in $deletes) {
 
 # 6. persist state, then play
 Copy-Item $tmpManifest $installedPath -Force
+# arm the in-game What's New card (ui/coop_whatsnew.urc, changelog baked into the pk3 we just
+# installed): autoexec.cfg execs this cfg every launch; the wait defers the pushmenu until the
+# main menu is up. The next up-to-date launch rewrites this file empty = shown once per update.
+try {
+    Set-Content -Path (Join-Path $app "home\maintt\whatsnew_pending.cfg") -Value @"
+// one-shot post-update announcement (cleared by the next up-to-date launch)
+wait 300
+pushmenu coop_whatsnew
+"@ -Encoding ascii
+} catch {}
 Log "updated to v$($remote.version) OK"
 if ($ui) { try { $ui.form.Close() } catch {} }
+# always confirm a completed update with the version received - shown even when the
+# progress-bar UI could not open. Auto-dismisses after 15s so it can never block play.
+try {
+    $pop = New-Object -ComObject WScript.Shell
+    [void]$pop.Popup("MOH Coop Trilogy updated to v$($remote.version).`n`nThe game will now start.", 15, "MOH Coop Trilogy - Update Complete", 64)
+} catch {}
 LaunchGame
