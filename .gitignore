@@ -11,3 +11,4 @@ installer/report_problem_SEND_TO_FRIEND.ps1
 !/publish_release.ps1
 !/manifests/
 !/docs/
+!/resume_publish.ps1
