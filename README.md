@@ -6,6 +6,13 @@ Play **Medal of Honor: Allied Assault War Chest** cooperatively — the complete
 
 Built on the [HaZardModding Coop Mod](https://github.com/HaZardModding/hzm-mohaa-coop-mod) by chrissstrahl and a custom fork of the [OpenMOHAA](https://github.com/openmoh/openmohaa) engine, then heavily extended: modern movement and gunplay, a full audio overhaul, HD visuals with post-processing on the classic renderer, and dozens of coop-specific systems. One installer, automatic updates at every launch, and your original game folder is never touched.
 
+> [!WARNING]
+> **Early alpha.** This project is under heavy active development: expect bugs, rough edges, and
+> frequent updates. When something breaks, please report it — either through the built-in
+> **Start menu -> "MOH Trilogy Coop - Report a Problem"** tool (one click, sends your logs straight
+> to the dev team) or by [opening an issue](https://github.com/MOHCoopTrilogy/releases/issues).
+> Bug reports are the single most helpful thing you can do for the project right now.
+
 **[Download the latest release →](https://github.com/MOHCoopTrilogy/releases/releases/latest)**
 
 | Repo | What it holds |
