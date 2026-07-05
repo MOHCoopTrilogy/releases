@@ -143,13 +143,14 @@ foreach ($n in $uploads.Keys) {
 }
 & $gh release upload $tag --repo $repoSlug $manifestPath
 if ($LASTEXITCODE -ne 0) { throw "manifest upload failed" }
-# the manifest asset must be named manifest.json for releases/latest/download/manifest.json
-$assetId = & $gh api "repos/$repoSlug/releases/tags/$tag" --jq ".assets[] | select(.name==\"manifest-$Version.json\") | .id"
-if ($assetId) { & $gh api -X PATCH "repos/$repoSlug/releases/assets/$assetId" -f name=manifest.json *> $null }
-
 & $gh release edit $tag --repo $repoSlug --draft=false
 if ($LASTEXITCODE -ne 0) { throw "undraft failed" }
 Write-Host "release $tag is LIVE"
+
+# rename manifest asset to manifest.json (must be post-undraft: the tag does not resolve while draft)
+$relJson = & $gh api "repos/$repoSlug/releases/tags/$tag" | ConvertFrom-Json
+$asset = $relJson.assets | Where-Object { $_.name -eq "manifest-$Version.json" }
+if ($asset) { & $gh api -X PATCH "repos/$repoSlug/releases/assets/$($asset.id)" -f name=manifest.json | Out-Null; Write-Host "manifest.json published" }
 
 # --- 6. record manifests in the repo (raw.githubusercontent fallback + audit trail) ---
 Set-Location $dev
