@@ -1,0 +1,9 @@
+# allowlist repo: only the release pipeline lives here
+/*
+!.gitignore
+!README.md
+!build.ps1
+!installer/
+installer/dist/
+installer/*.zip
+installer/report_problem_SEND_TO_FRIEND.ps1
