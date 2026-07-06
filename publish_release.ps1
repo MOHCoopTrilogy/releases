@@ -150,7 +150,18 @@ if ($LASTEXITCODE -ne 0) { throw "gh release create failed" }
 
 foreach ($n in $uploads.Keys) {
     Write-Host "uploading $n ..."
-    & $gh release upload $tag --repo $repoSlug $uploads[$n]
+    # gh names the asset after the SOURCE file. When the manifest asset name differs from the
+    # source filename (e.g. whatsnew_seed.cfg -> whatsnew_pending.cfg), upload a temp copy
+    # named correctly - a mismatch 404s every updater and silently blocks the whole update
+    # (bug: v1.1.34 rollout stalled on this for hours).
+    $srcLeaf = Split-Path -Leaf $uploads[$n]
+    if ($srcLeaf -ne $n) {
+        $tmpNamed = Join-Path $env:TEMP $n
+        Copy-Item $uploads[$n] $tmpNamed -Force
+        & $gh release upload $tag --repo $repoSlug $tmpNamed
+    } else {
+        & $gh release upload $tag --repo $repoSlug $uploads[$n]
+    }
     if ($LASTEXITCODE -ne 0) { throw "upload failed: $n" }
 }
 & $gh release upload $tag --repo $repoSlug $manifestPath
