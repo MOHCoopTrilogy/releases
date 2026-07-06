@@ -74,6 +74,9 @@ $hdPaks = @(
     "zzzzzzz-HRRTM_Blood_effects_Addon.pk3","zzzzzzz_dds_override.pk3"
 )
 foreach ($p in $hdPaks) { $stage["home/maintt/$p"] = "$gog\maintt\$p" }
+# v1.1.34 DXT memory pack: dds siblings for every HD texture lacking one - engine loads
+# .dds first and DXT stays compressed in RAM (the m1l2a-era OOM pressure fix)
+$stage["home/maintt/zzzzzzz_dds_hdmem.pk3"] = "$gog\maintt\zzzzzzz_dds_hdmem.pk3"
 # NOTE: omconfig default is deliberately NOT in the update manifest - the installer seeds it
 # once; auto-updates never stomp player settings.
 

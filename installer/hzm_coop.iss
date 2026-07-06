@@ -78,6 +78,7 @@ Source: "{#Gog}\maintt\zzzzzz_hd_skybox.pk3"; DestDir: "{app}\home\maintt"; Flag
 Source: "{#Gog}\maintt\zzzzzz_hd_world.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
 Source: "{#Gog}\maintt\zzzzzzz-HRRTM_Blood_effects_Addon.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
 Source: "{#Gog}\maintt\zzzzzzz_dds_override.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
+Source: "{#Gog}\maintt\zzzzzzz_dds_hdmem.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
 Source: "{#Dev}\hzm-mohaa-coop-mod\autoexec.cfg"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
 ; ship the tuned default settings (dev config, sanitized: 1080p, no personal name/device)
 Source: "{#Dev}\installer\omconfig_default.cfg"; DestDir: "{app}\home\maintt\configs"; DestName: "omconfig.cfg"; Flags: ignoreversion
