@@ -52,17 +52,33 @@ Host: launch the shortcut, then **Multiplayer → Start Game → HaZardModding C
 - Optional **Last Man Standing** mode with a shared pool of lives
 - AI difficulty and enemy counts scale with how many players are in — more players means more Germans, within sane caps
 - **Officer boss encounters**: named officers with reinforcement waves, death battalions, German voice lines, and heal-and-retreat behavior
+- **Officer forces scale with your squad**: reinforcement health, accuracy, and unit sizes grow with player count — and scale *down* below the two-player baseline, so solo runs get smaller bodyguard details, squads, and battalions
 - **Reward items** from officer kills: binoculars that call in airstrikes, and signal smoke that summons a C-47 supply paradrop — including an AI medic who can get downed players back up
 - Server-tunable rules via cvars: player health, DBNO on/off, LMS lives, corpse persistence, and more
+
+### XP, ranks & insignia
+
+- **Persistent XP** earned per player and saved across sessions — 13 authentic US Army WW2 ranks with metallic insignia, shown on the scoreboard next to your name
+- XP for everything: kills (bonuses for headshots, melee, long range), **assists**, **valor** (saving a teammate under fire, fighting while downed, guarding the fallen), officer bounties, denied officer heals, airstrike/paradrop support calls, paratroopers you keep alive, objectives, mission completion, and deathless runs — plus **blindfire** and **fighting-from-cover** kill bonuses
+- A tiny **"+2 Kill" popup by the crosshair** per kill (toggleable in Coop Settings), with the brass progress bar appearing at every 100-XP milestone instead of spamming
+- **Promotion ceremony**: your new insignia front and center, scored with a cinematic M1 Garand ping (reverb tail, then reversed)
+- **Animated end-of-match debrief**: the bar fills from where you started to where you ended — rolling through every rank you gained with a ping and insignia swap — while your per-category totals click in one at a time
+- Rank thresholds are locked: they double as the spine for the planned skill trees
 
 ### Combat & movement
 
 - **Aim-down-sights** on right mouse, individually tuned for 24 weapons
+- **Over-the-shoulder third-person aiming**: hold aim in third person for a true shoulder camera — the gun stays raised and level while you move in any direction, middle-mouse swaps shoulders, mouse-wheel-up hands off into first-person irons
+- **Three view modes on one bind**: first person → third person → third person **free cam** (mouse-orbits the camera freely, WASD moves without turning it, crosshair projects your true aim)
+- **Take Cover** *(beta — actively being polished)*: face a wall or low obstacle and hit your cover bind — auto third-person, blind-fire around corners or over the top exactly where your crosshair points, hold aim to peek out (you rise over low cover to actually shoot), release to tuck back in
+- **Mounted-gun third person** *(experimental)*: man the jeep .30cal in third person with a proper standing gunner stance
 - **Sprint & stamina** — weapon lowers, gear rattles, stamina drains and recovers; walk quietly on ALT
 - Weapon **bash** on its own key, plus lean
+- **Player emotes**: salute, at-ease, and stretch on bindable keys
+- **8-second spawn protection** so reinforcements aren't farmed
 - **Medkits** — carry self-heal charges, pick up dropped health, and get patched up by the paradrop AI medic
 - Deployable **ammo box** (team resupply) and **sandbag cover** anyone on the team can use
-- **MG42 overheat** on mounted guns
+- **MG42 overheat** on mounted guns — for you *and* for German gunners
 - **Supersonic bullet cracks and zings** — rounds that nearly hit you snap past your head and feed the suppression system
 - **Smoke whips** — lingering muzzle and impact smoke; shell casings and per-surface impact sounds
 - **Weapon weight** — view weapons carry momentum and lag naturally with movement
@@ -102,12 +118,25 @@ Host: launch the shortcut, then **Multiplayer → Start Game → HaZardModding C
 ### Quality of life
 
 - One-click installer, side-by-side with your GOG install — nothing in the game folder is ever modified
-- **Automatic updates** at launch, usually only a few MB
+- **Automatic updates** at launch, usually only a few MB — followed by a one-time declassified **field report** in the menu telling you what's new
 - In-game **coop settings hub** (find the desk telephone) plus rebuilt **advanced audio and video options** — mixer, output device, speaker/HRTF setup, post-FX and grass toggles
-- Bindable coop commands (deployables, objectives recap, third-person toggle, coop actions)
+- **FOV slider that actually works** — applies in first person and persists across restarts (as do your view-mode preferences)
+- **Console copy/paste** — Ctrl+V or Shift+Insert pastes into the in-game console
+- Bindable coop commands (deployables, objectives recap, view-mode cycle, emotes, coop actions)
 - Corpse persistence control — keep the battlefield littered or tidy
 - Objectives recap toggle on a key
 - **Report a Problem** tool in the Start menu
+
+### Known rough edges (help us test!)
+
+Honesty corner — these shipped recently and are still settling:
+
+- **Take Cover** — pose detection on odd geometry, peek transitions, and blindfire aim are under active tuning; expect occasional weirdness
+- **Jeep .30cal third person** — the gunner stance and camera are new; firing effects and pose alignment were just reworked
+- **Free cam** — recently rebuilt (mouse-only rotation, projected crosshair); report any camera locks or snaps
+- **Shoulder-aim movement animations** — the legs still use standard run/strafe cycles while aiming; dedicated aimed-locomotion animations are in the works
+- **Audio stack** — some SFX and advanced sound settings may still misbehave (see above)
+- **XP debrief and popups** — brand-new presentation; layout oddities on unusual resolutions are possible (ultrawide is tested)
 
 ## Per-map fixes & polish
 
@@ -129,8 +158,11 @@ Beyond the systems above, a long tail of mission-specific work keeps the campaig
 
 In design and research — being built in the open, no dates promised:
 
-- **XP & skill trees** — persistent per-player XP earned across the campaign, spent in three trees: **Ranger** (assault), **Corpsman** (medic/support — reviving teammates is planned as a Corpsman unlock), and **Pathfinder** (recon/officer hunting)
+- **Play online without port forwarding** — a tiny rendezvous service + UDP hole-punching so a friend can join with a memorable code instead of router surgery *(in active development)*
+- **Skill trees** — the shipped XP ranks become spendable in three trees: **Ranger** (assault), **Corpsman** (medic/support — reviving teammates is planned as a Corpsman unlock), and **Pathfinder** (recon/officer hunting)
 - **Carryable machine guns** — the portable MG42 (carry it, deploy it on its bipod/tripod, pack it back up) as an equippable loadout option, later as map pickups and enemy MG teams; a .30 cal variant to follow
+- **New player animations** — proper aimed-movement, sprint, mantling, and richer death/pain variety, re-authored in-house on the game's own skeleton
+- **Between-mission lobby** — a staging area with a ready-up system between maps
 - **In-game update notifications** — an "update available" notice in the menu when a release lands while you're playing
 
 ## Credits
