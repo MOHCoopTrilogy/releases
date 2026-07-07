@@ -187,5 +187,29 @@ if ($LASTEXITCODE -ne 0) { Write-Host "WARNING: manifest commit failed - fallbac
 git push origin main 2>$null | Out-Null
 if ($LASTEXITCODE -ne 0) { Write-Host "WARNING: manifest push failed - fallback URL is STALE until you push manifests/ manually" -ForegroundColor Red }
 else { Write-Host "manifests committed + pushed" }
+# --- 7. Discord announcement (optional). The webhook lives in publish_secrets.ini next to this
+# script - NEVER in the repo (allowlist .gitignore keeps it untracked, same policy as the crash
+# ReportWebhook). Missing file/key = skip silently; a failed post never fails the publish.
+$hook = $null
+$secretsPath = "$dev\publish_secrets.ini"
+if (Test-Path $secretsPath) {
+    $m = Select-String -Path $secretsPath -Pattern '^\s*AnnounceWebhook\s*=\s*(\S+)' | Select-Object -First 1
+    if ($m) { $hook = $m.Matches[0].Groups[1].Value }
+}
+if ($hook) {
+    $notesTrim = $Notes
+    if ($notesTrim.Length -gt 1500) { $notesTrim = $notesTrim.Substring(0, 1500) + "`n..." }
+    $msg = ":flag_us: :rocket: **MOH Coop Trilogy v$Version is live!**`n`n$notesTrim`n`nUpdates automatically on your next launch ({0:N0} MB download). Full notes: https://github.com/$repoSlug/releases/tag/$tag" -f $totalUploadMB
+    $payload = @{ content = $msg } | ConvertTo-Json -Depth 3
+    try {
+        Invoke-RestMethod -Uri $hook -Method Post -ContentType 'application/json' -Body $payload | Out-Null
+        Write-Host "Discord announcement posted"
+    } catch {
+        Write-Host "WARNING: Discord announcement failed: $($_.Exception.Message)" -ForegroundColor Yellow
+    }
+} else {
+    Write-Host "(no AnnounceWebhook in publish_secrets.ini - Discord announcement skipped)"
+}
+
 Write-Host ""
 Write-Host "Done. Testers on the updater get v$Version on next launch."

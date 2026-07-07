@@ -33,6 +33,15 @@ function Get-TopDir($relPath) {
     return $relPath.Substring(0, $i)
 }
 
+# NEVER deploy under a running game: the engine memory-maps the pk3s at launch, and
+# overwriting them mid-session makes it read garbage at stale offsets (bug-241: phantom
+# 'label does not exist' errors and a watchdog server crash mid-playtest).
+$clientRunning = Get-CimInstance Win32_Process -Filter "Name='openmohaa.exe'" | Where-Object { $_.CommandLine -notlike '*dedicated 1*' }
+if ($clientRunning) {
+    Write-Host 'ABORTED: openmohaa.exe is running - close the game before deploying.' -ForegroundColor Red
+    exit 1
+}
+
 Write-Host "Packing $srcDir (3-way split, deterministic)..."
 if (-not (Test-Path $cacheDir)) { New-Item -ItemType Directory -Path $cacheDir -Force | Out-Null }
 $allFiles = Get-ChildItem -Path $srcDir -Recurse -File | Where-Object {
