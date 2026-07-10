@@ -2,7 +2,9 @@
 
 ![MOH Coop Trilogy](docs/badge.png)
 
-Play **Medal of Honor: Allied Assault War Chest** cooperatively — the complete *Allied Assault*, *Spearhead*, and *Breakthrough* campaigns, mission by mission, with up to 8 players.
+> *The MOH Trilogy Coop Mod is a love letter to the early Medal of Honor franchise.*
+
+Play **Medal of Honor: Allied Assault War Chest** cooperatively — the complete *Allied Assault*, *Spearhead*, and *Breakthrough* campaigns, mission by mission, with up to 16 players (4 players for the true experience).
 
 Built on the [HaZardModding Coop Mod](https://github.com/HaZardModding/hzm-mohaa-coop-mod) by chrissstrahl and a custom fork of the [OpenMOHAA](https://github.com/openmoh/openmohaa) engine, then heavily extended: modern movement and gunplay, a full audio overhaul, HD visuals with post-processing on the classic renderer, and dozens of coop-specific systems. One installer, automatic updates at every launch, and your original game folder is never touched.
 
