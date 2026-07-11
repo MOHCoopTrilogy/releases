@@ -77,6 +77,9 @@ foreach ($p in $hdPaks) { $stage["home/maintt/$p"] = "$gog\maintt\$p" }
 # v1.1.34 DXT memory pack: dds siblings for every HD texture lacking one - engine loads
 # .dds first and DXT stays compressed in RAM (the m1l2a-era OOM pressure fix)
 $stage["home/maintt/zzzzzzz_dds_hdmem.pk3"] = "$gog\maintt\zzzzzzz_dds_hdmem.pk3"
+# v1.1.43 imported WW2 weapons (S93 pack, cleaned) - standalone pk3, NOT part of the coop 3-way split
+$stage["home/maintt/zzzzz_xw_weapons.pk3"] = "$gog\maintt\zzzzz_xw_weapons.pk3"
+$stage["home/maintt/zzzzz_kun_weapons.pk3"] = "$gog\maintt\zzzzz_kun_weapons.pk3"   # Surgical Ops KUN HD iteration guns
 # NOTE: omconfig default is deliberately NOT in the update manifest - the installer seeds it
 # once; auto-updates never stomp player settings.
 
