@@ -79,7 +79,7 @@ foreach ($p in $hdPaks) { $stage["home/maintt/$p"] = "$gog\maintt\$p" }
 $stage["home/maintt/zzzzzzz_dds_hdmem.pk3"] = "$gog\maintt\zzzzzzz_dds_hdmem.pk3"
 # v1.1.43 imported WW2 weapons (S93 pack, cleaned) - standalone pk3, NOT part of the coop 3-way split
 $stage["home/maintt/zzzzz_xw_weapons.pk3"] = "$gog\maintt\zzzzz_xw_weapons.pk3"
-$stage["home/maintt/zzzzz_kun_weapons.pk3"] = "$gog\maintt\zzzzz_kun_weapons.pk3"   # Surgical Ops KUN HD iteration guns
+# KUN weapons pack (Surgical Ops KUN HD guns) removed per design - no longer built or shipped.
 # NOTE: omconfig default is deliberately NOT in the update manifest - the installer seeds it
 # once; auto-updates never stomp player settings.
 
