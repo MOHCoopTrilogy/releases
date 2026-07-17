@@ -202,7 +202,10 @@ if (Test-Path $secretsPath) {
 if ($hook) {
     $notesTrim = $Notes
     if ($notesTrim.Length -gt 1500) { $notesTrim = $notesTrim.Substring(0, 1500) + "`n..." }
-    $msg = ":flag_us: :rocket: **MOH Coop Trilogy v$Version is live!**`n`n$notesTrim`n`nUpdates automatically on your next launch ({0:N0} MB download). Full notes: https://github.com/$repoSlug/releases/tag/$tag" -f $totalUploadMB
+    # format the MB in isolation first - do NOT run -f over the notes, whose text may contain { } (e.g. a
+    # bugfix note describing a brace typo) which would break the format operator and skip the announcement
+    $mb = "{0:N0}" -f $totalUploadMB
+    $msg = ":flag_us: :rocket: **MOH Coop Trilogy v$Version is live!**`n`n$notesTrim`n`nUpdates automatically on your next launch ($mb MB download). Full notes: https://github.com/$repoSlug/releases/tag/$tag"
     $payload = @{ content = $msg } | ConvertTo-Json -Depth 3
     try {
         Invoke-RestMethod -Uri $hook -Method Post -ContentType 'application/json' -Body $payload | Out-Null
