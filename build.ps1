@@ -120,6 +120,15 @@ Copy-Item -Path $cfgSrc -Destination (Join-Path $deployDir "autoexec.cfg") -Forc
 Copy-Item -Path $cfgSrc -Destination (Join-Path $appDataDir "autoexec.cfg") -Force
 Write-Host "  Deployed autoexec.cfg -> both targets"
 
+# --- Deploy coop_defaults.cfg LOOSE (the engine execs it before the saved config so option changes
+#     persist; deployed loose like autoexec to guarantee it's found at Com_Init, not just in the pk3) ---
+$defSrc = Join-Path $srcDir "coop_defaults.cfg"
+if (Test-Path $defSrc) {
+    Copy-Item -Path $defSrc -Destination (Join-Path $deployDir "coop_defaults.cfg") -Force
+    Copy-Item -Path $defSrc -Destination (Join-Path $appDataDir "coop_defaults.cfg") -Force
+    Write-Host "  Deployed coop_defaults.cfg -> both targets"
+}
+
 # --- Deploy cgame.dll to GOG root (the path the engine actually loads from) ---
 $cgameSrc = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\client\cgame\Release\cgame.dll"
 if (Test-Path $cgameSrc) {
