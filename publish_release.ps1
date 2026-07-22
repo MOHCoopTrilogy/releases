@@ -44,12 +44,15 @@ if (-not $SkipBuild) {
 
 # --- 3. stage: the complete shippable file set (manifest path -> source file) ---
 $stage = [ordered]@{}
-# engine binaries (root of {app}); grouped last by the updater on swap
-$stage["openmohaa.exe"]        = "$bin\Release\openmohaa.exe"
-$stage["cgame.dll"]            = "$bin\code\client\cgame\Release\cgame.dll"
-$stage["game.dll"]             = "$bin\code\server\fgame\Release\game.dll"
-$stage["renderer_opengl1.dll"] = "$bin\code\renderercommon\renderergl1\Release\renderer_opengl1.dll"
-$stage["renderer_opengl2.dll"] = "$bin\code\renderercommon\renderergl2\Release\renderer_opengl2.dll"
+# engine binaries (root of {app}); grouped last by the updater on swap.
+# [07-21 v1.1.51] staged from the DEPLOYED GOG root, not the build tree: a --clean-first
+# rebuild left .cmake with stale/missing client outputs while the deployed set is the
+# exact binaries play-tested all day (same canonical-deployed policy as the HD paks below).
+$stage["openmohaa.exe"]        = "$gog\openmohaa.exe"
+$stage["cgame.dll"]            = "$gog\cgame.dll"
+$stage["game.dll"]             = "$gog\game.dll"
+$stage["renderer_opengl1.dll"] = "$gog\renderer_opengl1.dll"
+$stage["renderer_opengl2.dll"] = "$gog\renderer_opengl2.dll"
 # updater self-update
 $stage["updater.ps1"]     = "$dev\updater\updater.ps1"
 $stage["launch_coop.vbs"] = "$dev\updater\launch_coop.vbs"
