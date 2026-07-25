@@ -1,0 +1,38 @@
+# gl2 A/B sweep - map list (one map name per line; '#' comments and blank lines ignored)
+# Edit this to match the exact map names in YOUR trilogy build. Starter set below uses the
+# Allied Assault m<mission>l<level> naming visible in omconfig_default.cfg (g_m1l1 .. g_m6l3).
+# Fill in the Spearhead / Breakthrough level names for full trilogy coverage.
+
+# --- Allied Assault ---
+m1l1
+m1l2
+m1l3
+m2l1
+m2l2
+m2l3
+m3l1
+m3l2
+m3l3
+m4l1
+m4l2
+m4l3
+m5l1
+m5l2
+m5l3
+m6l1
+m6l2
+m6l3
+
+# --- Spearhead (t-series per g_t2l1 / g_t3l1 in the config - confirm exact names) ---
+# t1l1
+# t1l2
+# t1l3
+# t2l1
+# t2l2
+# t2l3
+# t3l1
+# t3l2
+# t3l3
+
+# --- Breakthrough (add exact level names) ---
+# (fill in)

@@ -12,6 +12,7 @@ installer/report_problem_SEND_TO_FRIEND.ps1
 !/manifests/
 !/docs/
 !/resume_publish.ps1
+!/tools/
 installer/patch_1.1.0/
 installer/MOHCoop-Upgrade-*.zip
 installer/installed_manifest_seed.json
