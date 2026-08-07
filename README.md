@@ -57,6 +57,7 @@ Host: launch the shortcut, then **Multiplayer → Start Game → HaZardModding C
 - **Officer forces scale with your squad**: reinforcement health, accuracy, and unit sizes grow with player count — and scale *down* below the two-player baseline, so solo runs get smaller bodyguard details, squads, and battalions
 - **Reward items** from officer kills: binoculars that call in airstrikes, and signal smoke that summons a C-47 supply paradrop — including an AI medic who can get downed players back up
 - Server-tunable rules via cvars: player health, DBNO on/off, LMS lives, corpse persistence, and more
+- Fixed a silent map-restart race that could strand a 4-player server mid-map when everyone joined around the same moment
 
 ### XP, ranks & insignia
 
@@ -66,6 +67,13 @@ Host: launch the shortcut, then **Multiplayer → Start Game → HaZardModding C
 - **Promotion ceremony**: your new insignia front and center, scored with a cinematic M1 Garand ping (reverb tail, then reversed)
 - **Animated end-of-match debrief**: the bar fills from where you started to where you ended — rolling through every rank you gained with a ping and insignia swap — while your per-category totals click in one at a time
 - Rank thresholds are locked: they double as the spine for the planned skill trees
+
+### Challenges & Service Record
+
+- **280+ challenges** across campaign, weapon-mastery, stealth, vehicle, and Axis-forces categories — browsable from the **Service Record** screen (Join Game menu, and available fully disconnected from the main menu)
+- Live progress bars per challenge (kill counts, objective feats, survival runs), with per-player persistence
+- **Pin up to 5 challenges** to track — they show up live, with progress, in the in-game Mission Objectives HUD, and pinning works whether you're connected to a server or sitting at the disconnected main menu
+- A rotating cast of campaign feats tied to real mission moments — escort survivals, clean-run bonuses, stealth completions, vehicle defenses, and a few just for fun (see: **Wuss.pk3**, awarded for registering enough distinct sounds in one marathon session to nearly fill the engine's sound table)
 
 ### Combat & movement
 
@@ -98,14 +106,15 @@ Host: launch the shortcut, then **Multiplayer → Start Game → HaZardModding C
 - **Sound occlusion** — fights on the other side of a wall sound like they're on the other side of a wall
 - **HRTF** 3D audio for headphone users
 - **Distance layering**: distant gunfire gets true far-field tails instead of the same close-up bark
-- Full in-game **audio mixer**: Master, Music, SFX, Ambience, and Dialogue sliders, plus an **output-device picker**
+- Full in-game **audio mixer**: Master, Music, SFX, Ambience, and Dialogue sliders — each one now actually does what it says, including from the disconnected main menu — plus an **output-device picker**
+- Cinematic music/ambience ducks (big scripted moments swelling the score) now fade back to **your own volume settings** afterward instead of resetting to a default
 - **Footstep overhaul** — new stone/dirt/foliage/metal/sand/snow/water steps, and enemies you can actually hear coming
 - Radio squelch framing on officer calls, gear rattle while sprinting, and hundreds of new battlefield one-shots (artillery rumbles, thunder, glass, debris)
 - Per-map ambience beds and dynamic weather you can hear roll in
 - Battle-aware ducking so big scripted moments read clearly over the noise
 - Engine-level sound fixes: 2x the vanilla sound limit, output limiter against clipping, audio follows your Windows default device
 
-> Early-alpha note: the audio stack is new — some SFX and advanced sound settings may still be buggy. Reports welcome.
+> Early-alpha note: the audio stack is new — the mixer sliders and cinematic ducking are now solid, but some SFX may still be missing or misrouted on individual maps. Reports welcome.
 
 ### Visuals
 
@@ -137,7 +146,7 @@ Honesty corner — these shipped recently and are still settling:
 - **Jeep .30cal third person** — the gunner stance and camera are new; firing effects and pose alignment were just reworked
 - **Free cam** — recently rebuilt (mouse-only rotation, projected crosshair); report any camera locks or snaps
 - **Shoulder-aim movement animations** — the legs still use standard run/strafe cycles while aiming; dedicated aimed-locomotion animations are in the works
-- **Audio stack** — some SFX and advanced sound settings may still misbehave (see above)
+- **Audio stack** — the mixer and cinematic ducking are now fixed, but some individual maps may still have missing or misrouted one-off sounds (see above)
 - **XP debrief and popups** — brand-new presentation; layout oddities on unusual resolutions are possible (ultrawide is tested)
 
 ## Per-map fixes & polish
@@ -153,7 +162,9 @@ Beyond the systems above, a long tail of mission-specific work keeps the campaig
 - **m3l1a Omaha** — landing-craft audio pacing and beach ambience; **m3l2** — HOLD-line battalions and defend waves
 - **t1l3** — the colonel can no longer be killed by your own bombing run mid-cutscene (script-breaker fixed)
 - **e3l4** — five separate crash fixes; the map no longer takes the server down
-- **AI polish everywhere** — paradrop/airborne death animations, pain-handler fixes, smoke grenades no longer eat your frags, corpse-stuck AI fixed
+- **e2l3 finale** — the "Secure the Village" and "Assist 82nd Airborne" objectives no longer un-complete each other; manned-turret aim (the mortar emplacement) now matches the crosshair at long range instead of drifting off-target
+- **AI polish everywhere** — paradrop/airborne death animations, pain-handler fixes, smoke grenades no longer eat your frags, corpse-stuck AI fixed, dog companions animate correctly instead of using human locomotion
+- **~3,100 missing vehicle-collision sounds restored** trilogy-wide (tanks, jeeps, halftracks all went suspiciously quiet on impact before this) — plus a full 54-map, 4-player coverage sweep to catch the rest
 - All Spearhead and Breakthrough missions run under a **single unified launch profile** — no juggling separate game modes
 
 ## Roadmap
