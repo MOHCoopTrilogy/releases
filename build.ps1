@@ -2,6 +2,11 @@ Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 $srcDir     = "C:\mohaa-coop-dev\hzm-mohaa-coop-mod"
+
+# [user 2026-08-05] PARSE-KILLER GATE (detector rank 1, static half): a single BOM/em-dash/odd
+# quote silently kills a whole .scr - the map then runs with no script. Never ship one again.
+python "C:\mohaa-coop-dev\docs\tools\scrlint.py" $srcDir
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by scrlint" -ForegroundColor Red; exit 1 }
 $deployDir  = "G:\GOG\Medal of Honor - Allied Assault War Chest\maintt"
 $appDataDir = "$env:APPDATA\openmohaa\maintt"
 $gogRoot    = "G:\GOG\Medal of Honor - Allied Assault War Chest"
@@ -24,7 +29,7 @@ $paks = @(
     @{ Name = "zzzzzz_co-op_hzm_mod_code.pk3";       Dirs = @() }   # everything else (catch-all)
 )
 $assetDirs = @("sound","textures","models","gfx","env")
-$excludeTop = @("_notes")   # dev notes never ship
+$excludeTop = @("_notes", "_research")   # dev notes + research (pipelines, retail extracts) never ship
 $excludeNames = @(".gitignore", ".gitattributes", "README.md")   # repo housekeeping never ships
 
 function Get-TopDir($relPath) {
@@ -115,39 +120,50 @@ foreach ($destDir in @($deployDir, $appDataDir)) {
     Write-Host "  Deployed 3 pk3s -> $destDir"
 }
 
-# --- Deploy autoexec.cfg ---
-Copy-Item -Path $cfgSrc -Destination (Join-Path $deployDir "autoexec.cfg") -Force
-Copy-Item -Path $cfgSrc -Destination (Join-Path $appDataDir "autoexec.cfg") -Force
-Write-Host "  Deployed autoexec.cfg -> both targets"
+# --- Deploy cfgs. THREE targets: the live launch profile uses fs_homepath G:\mohaa-gl2\home, and a
+#     homepath cfg SHADOWS the basepath copy - stale cfgs there silently ate deployed changes (bug-1633). ---
+$gl2HomeDir = "G:\mohaa-gl2\home\maintt"
+$cfgTargets = @($deployDir, $appDataDir)
+if (Test-Path $gl2HomeDir) { $cfgTargets += $gl2HomeDir }
+foreach ($destDir in $cfgTargets) {
+    Copy-Item -Path $cfgSrc -Destination (Join-Path $destDir "autoexec.cfg") -Force
+}
+Write-Host "  Deployed autoexec.cfg -> $($cfgTargets.Count) targets"
 
 # --- Deploy coop_defaults.cfg LOOSE (the engine execs it before the saved config so option changes
 #     persist; deployed loose like autoexec to guarantee it's found at Com_Init, not just in the pk3) ---
 $defSrc = Join-Path $srcDir "coop_defaults.cfg"
 if (Test-Path $defSrc) {
-    Copy-Item -Path $defSrc -Destination (Join-Path $deployDir "coop_defaults.cfg") -Force
-    Copy-Item -Path $defSrc -Destination (Join-Path $appDataDir "coop_defaults.cfg") -Force
-    Write-Host "  Deployed coop_defaults.cfg -> both targets"
-}
-
-# --- Deploy cgame.dll to GOG root (the path the engine actually loads from) ---
-$cgameSrc = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\client\cgame\Release\cgame.dll"
-if (Test-Path $cgameSrc) {
-    try {
-        Copy-Item -Path $cgameSrc -Destination (Join-Path $gogRoot "cgame.dll") -Force -ErrorAction Stop
-        Write-Host "  Deployed cgame.dll -> $gogRoot"
-    } catch {
-        Write-Host "  WARNING: could not deploy cgame.dll (game running?)"
+    foreach ($destDir in $cfgTargets) {
+        Copy-Item -Path $defSrc -Destination (Join-Path $destDir "coop_defaults.cfg") -Force
     }
+    Write-Host "  Deployed coop_defaults.cfg -> $($cfgTargets.Count) targets"
 }
 
-# renderer modules are separate DLLs (USE_RENDERER_DLOPEN=ON) loaded from the GOG root like
-# cgame.dll - deploy them too or renderer changes (post-FX etc.) silently never go live
-$rendSrc = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\renderercommon\renderergl1\Release\renderer_opengl1.dll"
-if (Test-Path $rendSrc) {
-    try {
-        Copy-Item -Path $rendSrc -Destination (Join-Path $gogRoot "renderer_opengl1.dll") -Force -ErrorAction Stop
-        Write-Host "  Deployed renderer_opengl1.dll -> $gogRoot"
-    } catch { Write-Host "  WARNING: could not deploy renderer_opengl1.dll (game running?)" }
+# --- Deploy engine DLLs. TWO roots (bug-1634): the LIVE install the user launches is
+#     G:\mohaa-gl2\openmohaa.exe, which loads game.dll/cgame.dll/renderer from G:\mohaa-gl2\.
+#     The GOG root is kept in sync for release-packaging parity, but deploying ONLY there
+#     meant a full day of engine builds (auto-cover included) never actually loaded. ---
+$gl2Root = "G:\mohaa-gl2"
+$binRoots = @($gogRoot)
+if (Test-Path (Join-Path $gl2Root "openmohaa.exe")) { $binRoots += $gl2Root }
+
+$binaries = @(
+    @{ Name = "cgame.dll";            Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\client\cgame\Release\cgame.dll" },
+    @{ Name = "game.dll";             Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\server\fgame\Release\game.dll" },
+    @{ Name = "game.pdb";             Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\server\fgame\Release\game.pdb" },
+    @{ Name = "renderer_opengl1.dll"; Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\renderercommon\renderergl1\Release\renderer_opengl1.dll" }
+)
+foreach ($bin in $binaries) {
+    if (-not (Test-Path $bin.Src)) { continue }
+    foreach ($root in $binRoots) {
+        try {
+            Copy-Item -Path $bin.Src -Destination (Join-Path $root $bin.Name) -Force -ErrorAction Stop
+            Write-Host "  Deployed $($bin.Name) -> $root"
+        } catch {
+            Write-Host "  WARNING: could not deploy $($bin.Name) to $root (game running?)"
+        }
+    }
 }
 
 Write-Host "Done."

@@ -1,0 +1,872 @@
+===================================================================================================
+(30/04/26) - Release 1.1.0
+===================================================================================================
+
+//****************************************
+//	General Changes:
+//****************************************
+
+	- Updated map precache files.
+	- Briefing, interrogation and german announcer subtitles are now cached only on maps where they're used (Allied Assault).
+	- Fixed some music not starting to play in some cases (again..).
+	- Fixed uninstall batch proceeding if game executable is not found or when nothing is typed in.
+	- Added a bonus folder with HZM Coop options.
+
+//****************************************
+//	Menu fixes and improvements:
+//****************************************
+
+	- Added reconnect button to the first "Join game" menu.
+	- Added password entry fields to LAN and Internet server browser menus.
+	- Loading bar now pulsates (OpenMoHAA pak).
+
+//****************************************
+//	HUD fixes and improvements:
+//****************************************
+
+	- Added weapon name display for MG42 (Expansions).
+	- Added HUD ammo item for TigerCannon (fix for OpenMoH Allied Assault).
+
+//****************************************
+//	Gameplay/Weapon changes:
+//****************************************
+
+	- Weapon reloads can now be canceled by holstering (same as switching to another weapon).
+	- Enabled weapons switch during papers raise (Breakthrough).
+	- Fixed actors missing Beretta animations outside of e1l4 (Breakthrough).
+	- Fixed actors not rechambering Enfield and Mosin Nagant after shots.
+	- Increased view kick of G43, SVT and Enfield snipers. Increased view kick of KAR98 Sniper (Expansions).
+	- Slightly reduced fire rate of G43 and SVT snipers.
+
+//****************************************
+//	Model/Texture changes:
+//****************************************
+
+	- Added a new model for Field Surgeon Kit, including a new pickup sound.
+	- Added radio and headphones gear for the British radio paratrooper.
+	- Added locked safe animation (Spearhead - t3l1).
+	- German Panzer Schutze soldiers now have their caps instead of helmets.
+	- Fixed M1 Garand clip being visible on empty fire after reload cancelling.
+	- Fixed Tank Commander's hat not falling off when shot.
+	- Fixed missing body impact effects during actor's death behind wall cover (Allied Assault).
+
+//****************************************
+//	Allied Assault - Map Script Changes:
+//****************************************
+
+	- Replaced resistance driver's head in m4l2 and m4l3.
+
+	training:
+		- Ladder dialog now waits until stand up dialog is finished.
+		- Removed some more test messages.
+	m1l1:
+		- (Hopefully) Fixed ambush panzerschreck guy missing the target in rare cases.
+		- Fixed fire rate of the enemy mounted MG42.
+		- Re-implemented the MG42 objective completion check method.
+	m1l2a:
+		- Forced player to always begin on the first starting location (in case leftover one is used for any reason).
+		- Grillo now takes a second medkit if player picks his during the sequence.
+		- Restored Grillo's warning line when blowing the gate.
+	m2l2a:
+		- Disabled hearing of two mechanics until the prototype is destroyed. Might (or might not) help prevent alerting everyone else.
+	m2l2b:
+		- Silenced pistol is removed and Springfield sniper is drawn on level completion.
+	m2l3:
+		- Fixed first german group skipping their dialog (fix for OpenMoHAA).
+		- Added idle checks for vent dialogs.
+		- Two officers are no longer removed after leaving the vents.
+		- Replaced german outside on top of a building with a sniper.
+		- Changed time when train sounds the horn before leaving - 60s remaining on Easy, 30s on Medium and Hard.
+	m3l1a:
+		- Chance for extended dialogs in the water to happen increased from 1/2 to 2/3.
+		- Changed medic's heal canteen sound on hard difficulty.
+		- Medic will now wait until player is close enough before triggering the heal sequence.
+	m3l1b:
+		- Fixes for table kicking script.
+		- Updated method for radio dialog script.
+	m3l2:
+		- Removed binoculars from starting loadout and placed them near the radio.
+	m4l2:
+		- Adjusted post guard's angle.
+		- Post guard now walks back to his post after inspection.
+	m4l3:
+		- Fixed enemies not patrolling their defined path.
+		- Enabled "baby steps" script (easy difficulty only). Compass follows more accurate path to the objective.
+	m5l3:
+		- Increased sight, hearing and notice speed of reinforcement allies.
+
+//****************************************
+//	Spearhead - Map Script Changes:
+//****************************************
+
+	t1l1:
+		- Some of plane paratroopers' models were swapped to match their voice.
+		- British Captain and Wilson can now also be seen in the plane.
+	t1l2:
+		- Updated squadmates' death check. Messages now accurately tell who was killed.
+		- Added alternate captain lines. His scripted dialogs will change depending on which squadmate is alive.
+	t1l3:
+		- Alive squadmate from the previous level is transfered.
+	t2l3:
+		- Right flank allies are now disabled/enabled depending on which flank player goes to (instead of getting hidden and remaining solid after defending left flank).
+	t2l4:
+		- Added ambience sound for fireplace in the hotel.
+	t3l2:
+		- Crossing bridge before destroying the far bridge is now considered treason.
+
+//****************************************
+//	Breakthrough - Map Script Changes:
+//****************************************
+
+	e1l1:
+		- Fixed script continuing to check if player is able to drive the tank after it's destroyed.
+		- Fixed player able to enter the tank by releasing use after it's destroyed.
+		- Fixed canyon blocking Tiger not attacking the player after shooting once.
+		- Fixed Flak 88s' storm attaching script continuing to run after its' death, breaking the alive Flak 88's attaching script.
+	e1l3:
+		- Fixed Klaus's animation when truck starts driving (oops).
+		- Player view now follows truck's angles (same as e1l4).
+	e1l4:
+		- Silenced pistol is now removed during player's blackout.
+		- Delayed control regain by a second.
+	e2l3:
+		- Vickers and glider Breda are now swappable.
+	e3l3:
+		- K5 explosives throb now won't show until the cannon is shut down and lowered.
+		- Fixed ending Panzerwerfer being early killed and removed.
+	e3l4:
+		- Fixed supply truck being destroyable before it's visible.
+		- Fixed missing dirt effects from Jeep tires.
+		- Shotgun now replaces the Bazooka on pickup.
+		- BAR and tunnel StG44 are now swappable.
+		- Restored radio sounds during and after its' fixing.
+		- Added a delay before radio guy starts running away.
+		- Fixed Tiger tanks not targeting the player after airstrike confirmation.
+		- Restored the escape sequence after calling in airstrike objective.
+		- Fixed and edited some cleanup scripts.
+
+//****************************************
+//	Misc. changes:
+//****************************************
+
+	anim/disguise_deny.scr::
+		- Removed centered message from printing (fix for OpenMoHAA).
+	anim/disguise_papers.scr::
+		- Removed console message from printing when suspicious aim wait starts.
+	anim/killed.scr::
+		- Removed console message "Forward velocity:" from printing when actor dies while running.
+	anim/reload.scr::
+		- Added a temp animation used for shotgun reloading.
+	global/ambience.scr::
+		- Added a check if script is already running (outside of Breakthrough).
+		- "Already run" message now only prints in console.
+	global/autotank.scr::
+		- Replaced dprintln messages with println.
+	global/autotruck.scr::
+		- Replaced dprintln messages with println.
+	global/bomber.scr::
+		- Replaced dprintln messages with println (Breakthrough).
+
+
+
+
+
+===================================================================================================
+(06/04/26) - Patch 1.0.2
+===================================================================================================
+
+//****************************************
+//	General Changes:
+//****************************************
+
+	- Fixed some music tracks not starting to play on some maps (OpenMoHAA).
+	- Updated some checks in the sniper glint script.
+	- Sniper glints on hard difficulty are now only visible during the lightnings and a short period after.
+	- Removed more test messages.
+
+//****************************************
+//	Allied Assault - Map Script Changes:
+//****************************************
+
+	m1l1:
+		- Reverted the change on MG42 mounting objective (fix for OpenMoHAA).
+
+
+
+
+
+===================================================================================================
+(05/04/26) - Patch 1.0.1
+===================================================================================================
+
+//****************************************
+//	General Changes:
+//****************************************
+
+	- Added missing sound used for german subtitles, some which cause console spam.
+	- Fixed stats not being saved on mission completion.
+
+//****************************************
+//	Allied Assault - Map Script Changes:
+//****************************************
+
+	m2l1:
+		- Removed test messages.
+	m3l2:
+		- Fixed Private Cobb's "Flash!" not being heard from the outside.
+	m3l3:
+		- Fixed Halftrack bombing thread.
+		- Added a subtitle for Captain's final line.
+
+
+
+
+
+===================================================================================================
+(05/04/26) - Release 1.0
+===================================================================================================
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//	NOTE: Full changelog could be incomplete due to inconsistent development times and multiple halts.
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Below is the (almost) full changelog for the release version. Some minor changes/fixes could be left unmentioned.
+
+//****************************************
+//	General Changes:
+//****************************************
+
+	- Added subtitles for Training mission and translated more German dialogue (Base game).
+	- Added subtitles for all mission Briefings (Base game and Expansions).
+	- Updated "config.csv" to generate a "newconfig.cfg" with default highest settings.
+	- Updated default configuration files.
+	- Fixed missing sounds on specific singleplayer and multiplayer maps.
+
+//****************************************
+//	Menu fixes and improvements:
+//****************************************
+
+	- Options menu changes:
+		- Controls:
+			- Added more keybinds.
+			- Added "Recommended" binds button.
+			- Added "Mouse input" pulldown option.
+		- Audio:
+			- Added dialog volume slider.
+			- Moved "Subtitles" checkbox from Advanced menu.
+		- Advanced:
+			- Simplified pulldown options to 4 levels - Low, Mediumm High and Max.
+			- Moved "Wall Decals" and "Weather Effects" checkboxes from Video menu.
+			- Added "Entity LODs" checkbox.
+			- Added "Overall Quality" pulldown option. Applies all graphic settings to selected value.
+		- Video:
+			- Added more resolution presets.
+			- Added "Custom Defined" resolution option.
+			- Added "Native Resolution" option (OpenMoHAA).
+			- Added "Fullscreen" checkbox.
+			- Added "Borderless" checkbox (OpenMoHAA).
+			- Added "Vertical Sync" checkbox
+			- Added "Frame Rate" pulldown option - limited because of the way engine handles FPS limiting.
+			- Added "Monitor Calibration" menu for Allied Assault.
+		- Added entry fields for:
+			- Mouse sensitivity slider.
+			- Master, Music and Dialogue volume sliders.
+			- Custom resolution width and height.
+			- Monitor Calibration slider.
+		- Multiplayer:
+			- Added reconnect button in Join internet game menu and after disconnected/failed to join a server.
+			- Added disconnect button in Load/Save menu while in a multiplayer game.
+			- Added buttons in Multiplayer Options which change the angle of display playermodels.
+
+	- Added Field of View slider in Video options.
+		^ With OpenMoHAA patch, slider is linked to "cg_fov" cvar instead.
+	- Added a warning when selecting Hard difficulty if player hasn't finished the campaign on any difficulty once.
+		^ You can disable this using the checkbox when warned.
+		^ You can also manually toggle it by changing "nohardfeelings" cvar.
+	- Added total statistics menu. It shows total number and overal percentage of your stats.
+		^ Imperfect because stats can be built up by loading a save and re-triggering the map's end, intentional or not.
+		^ Also doesn't have prefered weapon stat (yet(maybe)).
+	- Added a button to reset medals, mission unlocks and total statistics.
+	- Added musics missing from mission success screens (Breakthrought).
+	- Added Churchill's speeches for mission success poems (Breakthrough).
+	- Fixed alignment of some menu elements on higher resolutions.
+	- Fixed medals and mission unlocks disappearing after re-launching Spearhead.
+	- Updated Multiplayer pause menu (Allied Assault).
+	- Updated loading finish screen. Click anywhere or enter to continue.
+	- Changed loading bar texture (Spearhead).
+	- Removed "Launch GameSpy" and "Use GameSpy" Multiplayer options.
+
+//****************************************
+//	HUD fixes and improvements:
+//****************************************
+
+	- Added icons for items that didn't have them (german uniforms, battle plans, King Tiger manual).
+	- Rocket launcher ammo shows rocket loaded instead of total ammo.
+	- Stopwatch can now show minutes.
+	- Fixed widescreen compass scaling (Expansions).
+	- Fixed missing ammo separators (Breakthrough).
+	- (Kind of?) Fixed widescreen objective background (Spearhead.)
+	- Replaced objectives list font.
+
+//****************************************
+//	Gameplay/Weapon changes:
+//****************************************
+
+	- Player FOV is now automatically updated and can be controlled with a slider in "Video" options or "cg_fov" cvar.
+		^ Game FOV is updated when standing after moving, when toggling crouch or falling.
+		^ Doesn't affect Cutscene FOV (vehicles, stationary weapons). Check "FOV and Resolution" bonus folder for a solution.
+		^ This system is not used outside of stock game versions (OpenMoHAA).
+	- Restored secondary attack for primary weapons in Allied Assault using animations introduced in Expansions.
+	- Restored ladder sliding. Hold crouch to descend faster.
+	- Added grenade kick. Get close enough to one and press USE to kick it away.
+		^ Cannot kick a grenade if out of sight (behind a solid wall) or grenade is moving too fast.
+	- Restored player's scream after falling for a long time.
+	- Reverted the jumping behaviour in Expansions.
+	- Fixed a delay when switching weapons before draw animation is finished (rifles most noticeable).
+	- Restored Allied friendly fire and kill confirm responses (Base game).
+	- Restored Allied reloading lines (Expansions).
+	- (Partially) Fixed NPC's behaviour with Expansion weapons.
+	- Fixed NPCs cutting off their grenade throw sentence with grenade spotted sentence.
+	- Reduced NPCs accuracy while blind firing.
+	- Adjusted starting ammo for all maps.
+	- Rebalanced weapons. Highlights:
+		- Pistols: Increased fire rate and accuracy.
+		- Hi-Standard: Damage reduced, firerate increased a bit.
+		- Beretta: Magazine size decreased from 15 to 8, decreased accuracy and bash damage.
+		- DeLisle: Damage reduced.
+		- KAR98 Sniper: Rate of fire increased to match KAR98 (singleplayer only).
+		- G43, SVT (Spearhead): Recoil reduced, rate of fire increased.
+		- PPSH: Fire rate and spread increased. Magazine size increased to 70 in Spearhead.
+			^ Higher fire rate impossible because of required server FPS.
+		- Shotgun: Accuracy and range greatly increased. Projectile count decreased, but damage increased to compensate for it.
+	- Bomba A Mano now explodes on impact and can't be cooked.
+		^ You can still hold attack and throw the bomb farther, or become the impact bomb.
+	- Player now gets lower difficulty medals if game is completed on a higher difficulty.
+
+
+//****************************************
+//	Model/Texture changes:
+//****************************************
+
+	- Restored unused Afrika Korps grenadier's tunic texture.
+	- Restored Manon's gear.
+	- Restored Pilot's cap.
+	- Restored Kriegsmarine soldier's helmet.
+	- Restored hats for German snipers and workers.
+	- Restored cut salute animations.
+	- Restored weapons and helmets reflections.
+	- Restored resolution of weapon, viewsleeve and other textures in Expansions.
+	- Restored parts of the King Tiger model.
+	- Restored map holder for German officers.
+	- Added more flyoff helmet model variants.
+	- Added gear to player models.
+	- Added german uniform item variants.
+	- Added more fitting models for the British (Breakthrough).
+	- Added more texture variants for US soldiers (for modders use).
+	- Updated gear of 1st Ranger soldiers.
+	- Updated M2 grenade texture.
+	- Updated Bomba Mano and Bomba Breda models.
+	- Updated viewmodels of some player models.
+	- Changed German Winter Type 2 soldier to use metal helmet. Also fixed helmet's texture.
+	- Fixed missing texture on green Opel truck's wheels. Also fixed wheels rotating speed.
+	- Fixed Panzerschreck's projectile model.
+	- Fixed missing weapon gear for some American and German soldiers and officers.
+	- Fixed some soldiers only using one head type (Expansions).
+	- Fixed wrong textures being used for Parachute hands (Spearhead - t1l1).
+	- Fixed some of player animations in third person.
+	- Fixed missing and misaligned shell ejecting on some weapons.
+	- Fixed M1 Garand ping delay.
+	- Fixed DeLisle reload sound.
+	- Fixed Bomba Mano pin pull sound.
+	- Removed distant trees LOD.
+	- Removed british variant of the Italian - you know the one.
+
+//************************************************************
+//	More detailed changes sorted by game.
+//	Some of misc. changes were left out.
+//************************************************************
+//	Allied Assault - Shared Changes:
+//************************************************************
+
+	- Cached all weapon sounds for singleplayer maps. Fixed other missing sounds on some maps.
+	- HUD is now hidden during some level intros.
+	- Updated keybind hints to show your actual binds. Also updated some of info messages.
+	- Player keeps the uniform on after his cover is blown.
+	- Player also acquires P38 along with the uniform as a secondary pistol.
+	- Changed player model to winter uniform on Missions 2 and 6.
+	- Some hints won't repeat/appear on higher difficulties. Spamming alarm hint will only show once.
+	- Fixed incorrect weapons given when loading a map using maplist.
+	- Fixed truck passengers not dying to vehicle explosion.
+	- Reduced player's spawn height on some maps.
+	- Removed some of leftover developer messages.
+	- Fixed some of german soldiers' conversations continuing while alerted or partner is dead.
+	- Snipers in the Sniper Town levels now have a scope glint. Glint will not show if player's distance between the enemy is too close.
+	- Fixed player being able to suicide during the ending and credits.
+
+
+//****************************************
+//	Allied Assault - Map Script Changes:
+//****************************************
+
+	training:
+		- Removed forced enabling of "Wall Decals" option when starting the map.
+		- Fixed crouch dialog not triggering if player jumps over the wall too quickly.
+		- Fixed ladder dialog trigger being avoidable. Also fixed it being cut by explosives dialog.
+		- Added hint for ladder sliding.
+		- Fixed infinite explosive pickup.
+		- Fixed first dialogue subtitles not showing when loading each autosave.
+		- Restored unused hint message for throwing a grenade farther.
+	m1l1:
+		- Removed "sv_fps" changing. Smoother ride and prevents lower value from staying in other maps if map is left early.
+		- Replaced music with one in higher quality.
+		- Delayed the starting assault music for better timing.
+		- Player now won't take enemy damage (apart from Panzerschreck) until gaining movement control.
+		- Increased health of Private Allen.
+		- Restored unused autosave before the ambush.
+		- Fixed double ally reaction to the ambush.
+		- Fixed Captain not telling the player to use the machine gun.
+		- Fixed player completing the objective without using the MG42.
+		- Fixed Allen surviving the ending.
+		- Opening the ending door now won't immediately finish the level.
+	m1l2a:
+		- Added subtitles for the truck prisoners and interrogation scenes.
+		- Fixed MP40 near Grillo's cell. If player got Thompson in the previous level, only ammo will be given.
+		- Restored unused hint for objective on different height.
+		- Fixed Grillo saying something but saying nothing.
+		- Restored unused save after freeing Grillo.
+		- Fixed autosave names order.
+		- Changes description of second objective (revealed while lockpicking the gate).
+		- Fixed Grillo not staying in the interrogation room until POW is rescued.
+		- Fixed floating explosives.
+		- Explosive pulse at the large gate is now shown after player gets the explosives.
+		- Fixed large gate being interractible after blowing it open.
+		- Fixed player stopwatch being triggered when Grillo plants his explosives.
+	m1l2b:
+		- SMG ammo from the munitions cache can now be picked up.
+	m1l3a:
+		- Added a new autosave after clearing the barricades.
+	m1l3b:
+		- Added 2 objectives:
+			1. Destroy the fuel dump. (optional)
+			2. Destroy the flying Stuka. (mandatory)
+		- Grillo will stay longer at the first stop if barrels aren't shot.
+		- Added a new autosave after entering the airfield.
+		- Stuka can now be critically damaged before it takes off. If done, stuka will crash on the first fly by.
+		- Stuka now has a chance to hit you.
+		- Jeep should now speed up after killing the flying Stuka.
+	m1l3c:
+		- Restored sleepy guard at the entrance.
+		- Restored unused conversation in the radio room. Replaces re-used dream dialog.
+		- Fixed double objective completed sounds.
+		- Updated toilet guard's script.
+		- Fixed elevator germans clipping through and getting stuck in the elevator gate before it is done moving.
+		- Fixed player getting stuck in the elevator gate when elevator switch is used.
+		- Added a new autosave in the elevator.
+		- Added a new autosave on the seawall.
+		- Increased health of the Germans' truck.
+		- Horn.
+	m2l1:
+		- Fixed gate remaining glued to Grillo while shooting at him.
+		- Restored an alternative way to steal the documents.
+		- Fixed compass always pointing at the furthest document.
+	m2l2a:
+		- Fixed hint not showing after loading the starting save.
+		- Added a new hint for secondary pistol now obtained with the uniform.
+		- Hint for using papers will now show before reaching the first sentry.
+		- Added subtitles for intercom announcements.
+		- Added a radio inside card german' room.
+		- Fixed conversative scientist's table location.
+		- Updated conversative scientist's dialogue.
+		- Restored unused dialogue between chalkboard scientists.
+		- Fixed scaling and position of destroyed Naxos prototype's model.
+		- Hint for level 2 papers will not appear if second sentry is dead or alarmed.
+		- Fixed welder workers not staying alert if player holsters the weapon before cancel sequence is done.
+		- Finishing the level now forces player to holster their weapon.
+	m2l2b:
+		- Player keeps level 2 papers if obtained in previous level.
+		- Added more German dialogue after planing the bombs.
+		- Fixed planting bombs objective being completed twice.
+		- Updated escape objective location on the compass.
+	m2l2c:
+		- Starting position and angles are carried over from the previous level.
+		- Replaced the music.
+	m2l3:
+		- Player crouches sooner at the start.
+		- Alarm speakers now play the correct unused sound while in the vents.
+		- Roach update.
+		- Allies should now stop calling after player reaches the train cart.
+		- Allies now react if player delays the escape.
+		- Train will sound the horn when 60 seconds to escape are left.
+		- Fixed train's starting position when leaving. Player also gets a few more seconds to look at it roll away.
+	m3l1a:
+		- Restored captain's dialogs with player near the shore and at the shingle.
+		- Restored one of soldier's lines on one of the sides before reaching the shore.
+		- Fixed incorrect autosave name when healed by shingle medic.
+		- Restored allies reaction if player takes too long to return with bangalores.
+	m3l1b:
+		- Fixed two germans in the back not responding until one of two germans in the front are killed.
+		- Updated sequence of german kicking the table.
+		- Fixed sequence of german kick opening the hatch.
+		- Germans on middle floor will stay idle until interrupted by player. Don't rush in and you can now hear the whole conversation.
+	m3l2:
+		- Fixed Ramsey using the wrong model.
+		- Restored allies' reaction to the sniper shot.
+		- Restored Ramsey's line after the jeep is blown up.
+		- Restored unused radio voice line.
+		- Added safe spots allies will run to after explosives on the AA gun are planted.
+	m3l3:
+		- Fixed Ramsey having a wrong head.
+		- Ramsey won't keep talking if air support is already called in.
+		- Added smoke to indicate when the Tiger is hit.
+		- Fixed softlock if the Tiger is destroyed before wall is blown open.
+		- Reduced Nebelwerfer explosion radius.
+		- Fixed stopwatch delay.
+	m4l1:
+		- Fixed dialogue of two germans at the downed plane.
+		- Restored Pilot's unused voice line when spotting the hideout.
+		- Reduced delay between altar button's attempts.
+		- Added a sound for altar button's moving.
+		- Tunnel entrance now closes after starting the final dialogue.
+		- Restored unused Manon sequence.
+	m4l2:
+		- Added autosave after entering the tank park. If player is on the truck, save is triggered after it stops moving.
+		- Added autosave when near the train depot.
+		- Escape truck now remains solid after boarding it and should protect the player when crouched.
+	m4l3:
+		- Restored starting truck inspection sequence.
+		- Changed alarm sound to unused one.
+		- Added a german uniform. Can be found in one of the tents. Ignore.
+		- Restored unused autosave after infiltrating the perimeter.
+	m5l1a:
+		- Restored unused line in first dialogue.
+		- Fixed ally not continuing their first dialogue after being interrupted.
+		- Restored Finn and Hill's sniper warning.
+		- If "Thunder! Flash!" scenario is triggered and Finn and Hill are alive when regrouped, dialogue will vary depending on who is alive.
+		- Lootenant.
+		- Fixed bazooka objective not being completed if picked up from distance.
+		- Escape gate will open quicker when shot with a bazooka.
+		- Don't poke the gate.
+		- Added a failsafe if allies get stuck while heading towards the end.
+		- Added fire touch sound.
+	m5l1b:
+		- Fixed one-time game crash after loading with allies from the previous level.
+		- Fixed allies from previous level not keeping their appearance.
+		- Fixed one of engineers not saying their line at the start.
+		- Fixed door missing opening sounds.
+		- Restored tank warning dialog.
+		- Engineers now take cover in the building until tank is destroyed.
+		- Added screen shake after killing the tank.
+		- Restored unused dialogue from engineers when spotting the City Hall.
+		- Fixed music not being triggered when entering the City Hall. Replaced track looked for with unused one.
+	m5l3:
+		- Fixed autosave not triggering if player has done the secret in Sniper Town levels.
+		- Updated river water texture.
+		- Added Waffen german as a possible plunger runner variant.
+		- Fixed missing bomber planes' flying by sound.
+		- Fixed some radio lines being cut off by other radio lines.
+		- Updated death check of allied King Tiger.
+		- Allied King Tiger will stop driving if not too close in the event of bridge destruction.
+		- (Hopefully) Fixed Allied King Tiger's turret getting stuck if target tank is destroyed before turret is done aiming at it.
+		- Added hint for using binoculars on easier difficulties (if objective description isn't enough).
+		- Restored another bombing target. Watch where you click.
+		- Objective 3 will remain incomplete until all Tiger I tanks are destroyed.
+		- Objective 4 is activated upon King Tiger's arrival and completed when destroyed specifically. Objective 3 will be re-focused if still incomplete after.
+		- Restored ending reinforcements scene. Triggers after completing the last objective - only if player is upstairs inside the short building (to avoid long walks).
+	m6l1c:
+		- Changed music used when infiltrating the base.
+		- Player keeps the uniform after planting explosives.
+		- Picking up StG 44 while alarm is active automatically switches to it.
+		- Fixed alarm switches being usable by player after planting explosives.
+		- Action music now starts after blowing up the storage room.
+		- Moved final autosave to the bunker exit and removed its health requirement.
+	m6l2a:
+		- Player keeps the uniform and P38 in the following maps if picked up in the previous level. You're not fooling the germans though.
+		- Restored radio operators inside stations at the command post.
+		- Radio explosives timer tweaked to match the music.
+	m6l2b:
+		- Music now starts after reaching the train tracks.
+		- Restored electric fence sound.
+	m6l3a:
+		- Changed model of Rangers outside.
+		- Fixed outside speaker alarm not playing.
+		- Restored final announcement line.
+		- Changed Ranger with pistol near the plunger to Sergeant, as suggested by old voice lines.
+		- Changed weapon of Ranger private to a shotgun. Also increased his accuracy.
+	m6l3c:
+		- Changed the music.
+		- Fixed starting elevator movement.
+		- Fixed falling elevator scientists.
+	m6l3d:
+		- Fixed wrong breathing sound used for health feedback.
+		- Added chance for each soldier to wear a gas mask. Stupid germans are not included.
+		- Germans wearing a gas mask will survive the gas leak.
+		- Restored unused scientist line warning you to stop shooting.
+	m6l3e:
+		- Changed model of Rangers in the train cart.
+
+//****************************************
+//	Spearhead - Shared Changes:
+//****************************************
+
+	- Updated all names of maps to better differentiate between the same missions level names.
+	- Updated all maps that used Spearhead's explosives counter to use the new script.
+	- Added option to skip some level intros (available after unlocking the mission's medal).
+	- Changed player model to a paratrooper uniform through Mission 1 levels.
+	- Fixed player not using the correct model through Mission 2 levels. Also updated player model texture.
+	- Soviets now speak.
+
+//****************************************
+//	Spearhead - Map Script Changes:
+//****************************************
+
+	t1l1:
+		- Restored one of British paratrooper's happy response.
+		- Fixed large frame drops when jumping out of plane with higher graphic settings.
+		- Fixed fake AA tracers not showing during the plane jump.
+		- Added music while parachuting.
+		- Added autosave after crashing through the roof.
+		- Added music after activating the first objective.
+		- Replaced windmill hanging paratrooper's model to the British one.
+	t1l2:
+		- Restored windmill sniper warning.
+		- Fixed missing train light.
+		- Fixed missing line from Wilson when ambushed before the Flak.
+	t1l3:
+		- Fixed German Colonel's model - inconsistent head and face while riding motorcycle and after balcony fall.
+		- Added music after cargo plane is activated.
+	t2l1:
+		- Added a new autosave after intro dialogue.
+		- Fixed Halftrack passengers not dying to vehicle explosion.
+		- Fixed Tank compass tracking.
+	t2l2:
+		- Panzer Tank from behind will not appear if player has destroyed additional tank stored inside the depot.
+	t2l3:
+		- Adjusted the time player has to react before Captain dies.
+		- Replaced Captain's babysitter's model.
+		- Fixed Medic and injured soldier animations if player approaches them before Medic objective is activated.
+		- Approaching Medic before the objective is active now triggers a fail. (temp temp for sure. Could make Sarge's talk skippable in the next update instead.)
+		- It is now possible to save Webbers from his scripted death.
+		- Fixed Captain using old animation after defending the first wave.
+		- Flare is now shot up when the final wave starts.
+	t2l4:
+		- Fixed player not starting crouched.
+		- Added a new autosave right after the intro.
+		- Captain now uses the MP40 instead of Thompson.
+		- Fixed Captain's smoke grenade not bouncing. Also fixed it disappearing shortly after landing.
+		- Fixed player being able to get a sniper rifle without killing the sniper first.
+		- KAR98 Sniper now replaces KAR98 when picked up.
+		- "Find the captain" objective is now activated after clearing the church. Meeting captain at the hotel updates the objective to "Clear the hotel".
+		- Fixed lack of shotgun ammo and Shotgun not replacing Panzerschreck when picked up from distance (pressing use).
+		- If player avoids the final setup trigger at hotel's entrance, it will now be triggered upon starting the finale.
+		- Added autosave at the cleared hotel's entrance. If player avoids the final setup, save will activate upon starting the finale.
+	t3l1:
+		- Restored background soviets' conversation.
+		- Fixed destroyed truck being destroyable (you read that right).
+		- Fixed parent sticky bombs remaining triggerable after one is placed on the object.
+		- Replaced finale music.
+		- Player can now pick up safe combination document before locating the safe. Also fixed it's infinite pickup.
+		- Added an alternate way to open the safe.
+		- Removed delay before Tank and Germans spawn.
+		- Fixed talking Tank Germans not reacting to player. Also fixed dialogue behaviour.
+		- Light pole now falls correctly when T-34 arrives.
+	t3l2:
+		- Added a sound for tank health pickups.
+		- Fixed crashed stuka being visible early if the building is destroyed by player's tank.
+		- Moved regroup objective trigger a bit further from soviets.
+		- Soviets should now use correct weapons.
+
+//****************************************
+//	Breakthrough - Shared Changes:
+//****************************************
+
+	- Fixed enemies not dropping weapons and health on some maps.
+		^ There are some enemies who still won't drop weapons, but you will have enough ammo.
+	- Added option to skip some level intros (available after unlocking the mission's medal).
+	- Changed player model used in Mission 1 levels.
+	- Changed player model to paratrooper uniform in Mission 2 levels.
+
+//****************************************
+//	Breakthrough - Map Script Changes:
+//****************************************
+
+	e1l1:
+		- Restored some of unused lines in the intro cutscene and right after leaving jeep.
+		- Restored explosion impact flashes.
+		- Restored fires on destroyed trucks.
+		- Fixed machine guns not stopping to fire after related trench guys are spawned.
+		- Fixed fortified gate playing wooden door sound when opened (you're welcome, you can't unhear it now).
+	e1l2:
+		- Delayed starting music.
+		- Fixed jeep driver using the wrong model.
+		- Replaced allied infantry's models.
+		- Shermans should now shoot at incoming cliff germans.
+		- Fixed first MG42 nest guys sometimes not spawning. Also added their spawn limit.
+		- Updated Jeep following script.
+	e1l3:
+		- Restored starting Colt pistol. Player can later choose to replace it with a Beretta.
+			^ If picked up, player will keep Beretta in the next level.
+		- Restored rower's dialogue if player delays getting in the boat.
+		- Restored unused dialogue in the rowboat scene (random chance).
+		- Added ammo boxes near Beretta and MP40 on their tables.
+			^ Initially added before enemy ammo drops were fixed, but remained for better visibility.
+		- Added objective to regroup with british POW after clearing the fortress.
+		- Delayed the music before meeting Klaus.
+		- Restored unused autosave when sneaking through alleys with Klaus.
+		- Klaus now climbs the ladder faster.
+		- Klaus remembers how many seconds are in 30 seconds (alternate line).
+		- Restored unused Klaus's line while picking the lock.
+		- Changed papers to a correct model.
+		- Updated model of Klaus's uniform item.
+		- Removed grenades obtained with disguise.
+		- Fixed final trucks being destructible.
+	e1l4:
+		- Adjusted player's starting view angle.
+		- Camera now only shakes while truck is moving.
+		- (Hopefully) Fixed some men speaking, greeting and attacking where they shouldn't.
+		- Restored harbor entrance guard's unused sentence.
+		- Updated harbor entrance papers fail script.
+		- Restored drunk guy.
+		- Restored dialogue in the map room. Don't interrupt them.
+		- Germans in the map room will react when player's cover is blown.
+		- Added short music before scripted alarm sequence is done.
+		- Fixed german running for the alarm behaviour if blocked. He can also now be killed, but the alarm will still go off.
+		- Ship's exit door is now forced shut after collecting documents.
+		- Restored German lines about your location through deck floors (some are random).
+		- Restored busted alarm ringing after explosives are activated and before player gets struck.
+		- After regaining control, player will hear Germans or Italians calling out (random).
+		- Changed music used after reaching ship's exit.
+		- Fixed compass tracking on ship's exit.
+		- Compass now properly tracks Klaus's position.
+		- Klaus is now killable after regrouping dialog.
+		- Added short delay between each smoke grenade throw from the enemies.
+		- Klaus now won't be ignored by enemies in the second half of escape.
+	e2l1:
+		- Added fade out and fade in during glider crash.
+		- Removed M1 Garand from starting weapons. Replaced starting Colt with Beretta.
+		- Restored hanging paratrooper's dialog.
+		- Re-added music fading out before meeting Phillips (why was it removed?).
+		- Replaced Phillips's weapon with M1 Garand.
+	e2l2:
+		- Fixed player movement during the briefing scene.
+		- Replaced starting M1 Garand with Carcano.
+		- Phillips now won't attack first (stealth not possible, but he keeps up with his words now).
+		- Fixed delayed destroyed model on tower crash.
+		- Restored dust effect on tower crash.
+		- Restored Phillips's reaction if player is slow.
+		- Replaced jeep ride music.
+		- Fixed truck passengers not dying to vehicle's explosion (again).
+		- Reduced sight and increased hearing of sleeping germans.
+		- Replaced music after sounding the alarm.
+	e2l3:
+		- Player can now save the jeep and sit back if Tank is destroyed quick enough.
+		- Removed starting loadout grenades, make sure to check out the ammo drop.
+		- Added Breda machine gun at the supply drop. Can only be used if player didn't pick up Vickers in the previous level.
+		- Replaced starting music after killing the tank.
+		- Changed airborne soldiers to models using 82nd uniform.
+		- Added a new autosave after meeting house paratroopers.
+		- Restored ally death messages.
+		- Fixed missing plane sound.
+		- Fixed house paratrooper leader responding late or early to arrival of town paratroopers.
+		- One of town paratroopers will react if any of house paratroopers survive and are with the player.
+		- Ditched squad mechanic. Town paratroopers will now follow their leader the old way.
+			^ Not perfect, but should better than the mechanic used once in the entire game. Will look more into these paratroopers in the future update.
+		- Fixed town paratroopers' AI being disabled during the first part of town assault.
+		- Changed town music.
+		- Changed mortar defense music.
+	e3l1:
+		- Delayed intro autosave.
+		- Picking up Thompson will swap Sten and vice versa. Weapon of choice remains in next level.
+		- Fixed objectives.
+		- Listed more objectives.
+		- Fixed infinite panzerschreck train.
+		- Added delay before .30 Cal can be re-mounted after first time leaving the Jeep.
+		- Fixed first sniper's fall check.
+		- Fixed Tiger Tank stun duration.
+		- Fixed Tiger Tank not continuing to fire after recovering from the stun.
+		- Fixed PIAT building being destroyable by player after Tiger Tank is destroyed.
+		- Fixed some of cleanup scripts not being used.
+	e3l2:
+		- Medic now keeps his look from the previous level.
+		- Fixed softlock if first tank is killed before the wall is blown open.
+		- Tower sniper now uses a sniper rifle.
+		- Fixed truck POW being visible after disappearing (seen when hovering over him using crosshair).
+		- The same POW and truck will move from the original position when starting the final rescue.
+		- Added autosave before starting the final rescue.
+		- POWs will now wait for your signal before running for the truck.
+			^ Press E when near them to do so. Throbbing text will show when this action is ready.
+		- Added new reactions when other 2 POWs make a run for it.
+	e3l3:
+		- Restored unused radio lines in the intro dialogue. If you noticed a sudden cut in one of the lines before, this was it.
+		- Fixed missing weapons bar.
+		- Restored german truck drivers dialog.
+		- Restored german dialog when approaching the first K5 Gun.
+		- Changed 2nd autosave name to avoid overwriting existing older save.
+		- Fixed player not being assigned to the main turret initially when mounting the AB41.
+		- While driving AB41, player will only take non-explosive damage while controlling the main turret.
+	e3l4:
+		- Delayed starting music.
+		- Added more needed autosaves.
+		- Jeep passenger now heals the player before boarding the jeep.
+		- Stuka can now be shot before it bombs the bridge.
+		- Altered Baker bunker reinforcement's spawn location.
+		- Replaced tunnels music.
+		- StG 44 replaces BAR when picked up.
+		- Closed ranger now carries a shotgun.
+		- Replaced final defense music.
+		- Fixed Radio guy not being heard if not in sight.
+		- Fixed Radio guy not running away when the airstrike is confirmed.
+
+//****************************************
+//	Misc. changes:
+//****************************************
+
+	ambience.scr::
+		- Restored missing ambience for original multiplayer maps in Expansions.
+	alarmer.scr::
+		- If level.alarm_soundname is set in map script, sound defined will be used when alarm is switched on.
+		- Alarm hint will not show if level.alarm_always_on != 0.
+	autoplane.scr::
+		- Fixed infinite check in strafing threads.
+		- After animation is triggered, if bombing plane has .abortbaby set before bomb is dropped, bombing thread will be canceled.
+	breathe.scr::
+		- Added a start check. If entity already ran this script, previous one will end and new one is started.
+	cardgame.scr::
+		- Speaking animations will not play if level.peopletalking == 1 (used in m2l2a - waiting for first dialog to finish).
+		- Fixed actor animations if card game is interrupted while actors remain idle.
+		- Fixed chair remaining solid if game is interrupted and actor is alive.
+		- Chair model will not change to card table one upon death. More chair models can now be used.
+	door_locked.scr::
+		- Fixed thread checking for the door after being removed.
+	exploder.scr::
+		- Removed dprint messages in Breakthrough.
+		- Added a check in explodechunk thread. If multiple entities error happens, problematic chunk is removed (examples: e1l1 first bridge, e3l3 last barricade).
+	items.scr::
+		- Added item counter script (Inspired by Spearhead's explosives counter).
+			^ Usage: waitthread global/items.scr::count_item [string item_name] [integer item_count]
+			^ Draws a number on top of said item in player's inventory that fades out after a few seconds.
+			^ Like in Spearhead, the limit of numbers is 0-9. If item_count is greater than 9, it will be shown as "9+".
+		- Added uniform variants (uniform_weh;uniform_dak).
+		- If player already has item in inventory, duplicate item icon won't be drawn.
+		- Added option to skip pickup sound when adding item.
+			^ Usage: waitthread global/items.scr::add_item [string item_name] [string/int showmessage] [string/int playsound]
+		- Added option to keep the uniform model when removing its inventory item.
+			^ Usage: waitthread global/items.scr::remove_item [string item_name] [string/int keepuniform]
+	missioncomplete.scr::
+		- Fixed script still being executed after player's death.
+	SayManager.scr::
+		- Fixed entity.silent always being set to 0.
+	spotlight.scr::
+		- Restored spotlight catching on fire upon death. Has a random chance of happening.
+	turret.scr::
+		- "gunner_think" thread now checks if the entity is an Actor. If not, don't continue spamming console (t2l2).
+	weather.scr::
+		- Thunder script will now remember and restore player's value of "r_fastsky" cvar.
+		- Script will not try to play rain sound if sound entity is removed (ahem, Breakthrough, ahem).
+
+	- Added bratwurst.scr.
+		^ Usage: thread global/bratwurst.scr::setyummy [string name] [vector origin] [vector angles] [int plate] [int plate_angle]
+		^ Spawns a sausage which heals the player when consumed. If defined, also spawns a plate. Current options are: 1 - white plate; 2 - frying pan.
+	- Added sniperglint.scr
+		^ Usage: local.ent exec global/sniperglint.scr
+		^ Spawns a glow acting as sniper glint, which is glued to defined entity. Shows only when entity is alert and can shoot the player.
+		^ Made mainly for the Sniper Town levels.

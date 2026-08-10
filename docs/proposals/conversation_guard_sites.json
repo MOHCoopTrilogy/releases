@@ -1,0 +1,2186 @@
+[
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 384,
+  "actors": [
+   "$talker1",
+   "$talker2"
+  ],
+  "problem": "1+2 unguarded say_wait, speaker may be dead/alerted/removed",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $talker1 $talker2 ){ end }",
+  "risk": "safe",
+  "note": "germantalkers radio-room ambient chatter; fired by BSP trigger setthread germantalkers (_research/cov_manifests.json:3894); label is a dead end, nothing waits on it"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 385,
+  "actors": [
+   "$talker1"
+  ],
+  "problem": "3 waittill saydone strands the thread if the speaker dies mid-line",
+  "recommended": "if( $talker1 == NULL || !isalive $talker1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "covered by the same convOk guard placed above the say"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 390,
+  "actors": [
+   "$talker1",
+   "$talker2"
+  ],
+  "problem": "1+2 unguarded say_wait, speaker may be dead/alerted/removed",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $talker1 $talker2 ){ end }",
+  "risk": "safe",
+  "note": "germantalkers radio-room ambient chatter; fired by BSP trigger setthread germantalkers (_research/cov_manifests.json:3894); label is a dead end, nothing waits on it"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 391,
+  "actors": [
+   "$talker2"
+  ],
+  "problem": "3 waittill saydone strands the thread if the speaker dies mid-line",
+  "recommended": "if( $talker2 == NULL || !isalive $talker2 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "covered by the same convOk guard placed above the say"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 396,
+  "actors": [
+   "$talker1",
+   "$talker2"
+  ],
+  "problem": "1+2 unguarded say_wait, speaker may be dead/alerted/removed",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $talker1 $talker2 ){ end }",
+  "risk": "safe",
+  "note": "germantalkers radio-room ambient chatter; fired by BSP trigger setthread germantalkers (_research/cov_manifests.json:3894); label is a dead end, nothing waits on it"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 397,
+  "actors": [
+   "$talker1"
+  ],
+  "problem": "3 waittill saydone strands the thread if the speaker dies mid-line",
+  "recommended": "if( $talker1 == NULL || !isalive $talker1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "covered by the same convOk guard placed above the say"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 402,
+  "actors": [
+   "$talker1",
+   "$talker2"
+  ],
+  "problem": "1+2 unguarded say_wait, speaker may be dead/alerted/removed",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $talker1 $talker2 ){ end }",
+  "risk": "safe",
+  "note": "germantalkers radio-room ambient chatter; fired by BSP trigger setthread germantalkers (_research/cov_manifests.json:3894); label is a dead end, nothing waits on it"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 403,
+  "actors": [
+   "$talker2"
+  ],
+  "problem": "3 waittill saydone strands the thread if the speaker dies mid-line",
+  "recommended": "if( $talker2 == NULL || !isalive $talker2 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "covered by the same convOk guard placed above the say"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 408,
+  "actors": [
+   "$talker1",
+   "$talker2"
+  ],
+  "problem": "1+2 unguarded say_wait, speaker may be dead/alerted/removed",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $talker1 $talker2 ){ end }",
+  "risk": "safe",
+  "note": "germantalkers radio-room ambient chatter; fired by BSP trigger setthread germantalkers (_research/cov_manifests.json:3894); label is a dead end, nothing waits on it"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 409,
+  "actors": [
+   "$talker1"
+  ],
+  "problem": "3 waittill saydone strands the thread if the speaker dies mid-line",
+  "recommended": "if( $talker1 == NULL || !isalive $talker1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "covered by the same convOk guard placed above the say"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 414,
+  "actors": [
+   "$talker1",
+   "$talker2"
+  ],
+  "problem": "1+2 unguarded say_wait, speaker may be dead/alerted/removed",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $talker1 $talker2 ){ end }",
+  "risk": "safe",
+  "note": "germantalkers radio-room ambient chatter; fired by BSP trigger setthread germantalkers (_research/cov_manifests.json:3894); label is a dead end, nothing waits on it"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 415,
+  "actors": [
+   "$talker2"
+  ],
+  "problem": "3 waittill saydone strands the thread if the speaker dies mid-line",
+  "recommended": "if( $talker2 == NULL || !isalive $talker2 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "covered by the same convOk guard placed above the say"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 420,
+  "actors": [
+   "$talker1",
+   "$talker2"
+  ],
+  "problem": "1+2 unguarded say_wait, speaker may be dead/alerted/removed",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $talker1 $talker2 ){ end }",
+  "risk": "safe",
+  "note": "germantalkers radio-room ambient chatter; fired by BSP trigger setthread germantalkers (_research/cov_manifests.json:3894); label is a dead end, nothing waits on it"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 421,
+  "actors": [
+   "$talker1"
+  ],
+  "problem": "3 waittill saydone strands the thread if the speaker dies mid-line",
+  "recommended": "if( $talker1 == NULL || !isalive $talker1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "covered by the same convOk guard placed above the say"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 426,
+  "actors": [
+   "$talker1",
+   "$talker2"
+  ],
+  "problem": "1+2 unguarded say_wait, speaker may be dead/alerted/removed",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $talker1 $talker2 ){ end }",
+  "risk": "safe",
+  "note": "germantalkers radio-room ambient chatter; fired by BSP trigger setthread germantalkers (_research/cov_manifests.json:3894); label is a dead end, nothing waits on it"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 427,
+  "actors": [
+   "$talker2"
+  ],
+  "problem": "3 waittill saydone strands the thread if the speaker dies mid-line",
+  "recommended": "if( $talker2 == NULL || !isalive $talker2 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "covered by the same convOk guard placed above the say"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 432,
+  "actors": [
+   "$talker1",
+   "$talker2"
+  ],
+  "problem": "1+2 unguarded say_wait, speaker may be dead/alerted/removed",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $talker1 $talker2 ){ end }",
+  "risk": "safe",
+  "note": "germantalkers radio-room ambient chatter; fired by BSP trigger setthread germantalkers (_research/cov_manifests.json:3894); label is a dead end, nothing waits on it"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 433,
+  "actors": [
+   "$talker1"
+  ],
+  "problem": "3 waittill saydone strands the thread if the speaker dies mid-line",
+  "recommended": "if( $talker1 == NULL || !isalive $talker1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "covered by the same convOk guard placed above the say"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 438,
+  "actors": [
+   "$talker1",
+   "$talker2"
+  ],
+  "problem": "1+2 unguarded say_wait, speaker may be dead/alerted/removed",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $talker1 $talker2 ){ end }",
+  "risk": "safe",
+  "note": "germantalkers radio-room ambient chatter; fired by BSP trigger setthread germantalkers (_research/cov_manifests.json:3894); label is a dead end, nothing waits on it"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 439,
+  "actors": [
+   "$talker1"
+  ],
+  "problem": "3 waittill saydone strands the thread if the speaker dies mid-line",
+  "recommended": "if( $talker1 == NULL || !isalive $talker1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "covered by the same convOk guard placed above the say"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 444,
+  "actors": [
+   "$talker1",
+   "$talker2"
+  ],
+  "problem": "1+2 unguarded say_wait, speaker may be dead/alerted/removed",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $talker1 $talker2 ){ end }",
+  "risk": "safe",
+  "note": "germantalkers radio-room ambient chatter; fired by BSP trigger setthread germantalkers (_research/cov_manifests.json:3894); label is a dead end, nothing waits on it"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 445,
+  "actors": [
+   "$talker1"
+  ],
+  "problem": "3 waittill saydone strands the thread if the speaker dies mid-line",
+  "recommended": "if( $talker1 == NULL || !isalive $talker1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "covered by the same convOk guard placed above the say"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 450,
+  "actors": [
+   "$talker1",
+   "$talker2"
+  ],
+  "problem": "1+2 unguarded say_wait, speaker may be dead/alerted/removed",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $talker1 $talker2 ){ end }",
+  "risk": "safe",
+  "note": "germantalkers radio-room ambient chatter; fired by BSP trigger setthread germantalkers (_research/cov_manifests.json:3894); label is a dead end, nothing waits on it"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 451,
+  "actors": [
+   "$talker1"
+  ],
+  "problem": "3 waittill saydone strands the thread if the speaker dies mid-line",
+  "recommended": "if( $talker1 == NULL || !isalive $talker1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "covered by the same convOk guard placed above the say"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 456,
+  "actors": [
+   "$talker1",
+   "$talker2"
+  ],
+  "problem": "1+2 unguarded say_wait, speaker may be dead/alerted/removed",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $talker1 $talker2 ){ end }",
+  "risk": "safe",
+  "note": "germantalkers radio-room ambient chatter; fired by BSP trigger setthread germantalkers (_research/cov_manifests.json:3894); label is a dead end, nothing waits on it"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 457,
+  "actors": [
+   "$talker1"
+  ],
+  "problem": "3 waittill saydone strands the thread if the speaker dies mid-line",
+  "recommended": "if( $talker1 == NULL || !isalive $talker1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "covered by the same convOk guard placed above the say"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 462,
+  "actors": [
+   "$talker1",
+   "$talker2"
+  ],
+  "problem": "1+2 unguarded say_wait, speaker may be dead/alerted/removed",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $talker1 $talker2 ){ end }",
+  "risk": "safe",
+  "note": "germantalkers radio-room ambient chatter; fired by BSP trigger setthread germantalkers (_research/cov_manifests.json:3894); label is a dead end, nothing waits on it"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 463,
+  "actors": [
+   "$talker1"
+  ],
+  "problem": "3 waittill saydone strands the thread if the speaker dies mid-line",
+  "recommended": "if( $talker1 == NULL || !isalive $talker1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "covered by the same convOk guard placed above the say"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 468,
+  "actors": [
+   "$talker1",
+   "$talker2"
+  ],
+  "problem": "1+2 unguarded say_wait, speaker may be dead/alerted/removed",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $talker1 $talker2 ){ end }",
+  "risk": "safe",
+  "note": "germantalkers radio-room ambient chatter; fired by BSP trigger setthread germantalkers (_research/cov_manifests.json:3894); label is a dead end, nothing waits on it"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 469,
+  "actors": [
+   "$talker1"
+  ],
+  "problem": "3 waittill saydone strands the thread if the speaker dies mid-line",
+  "recommended": "if( $talker1 == NULL || !isalive $talker1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "covered by the same convOk guard placed above the say"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 474,
+  "actors": [
+   "$talker1",
+   "$talker2"
+  ],
+  "problem": "1+2 unguarded say_wait, speaker may be dead/alerted/removed",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $talker1 $talker2 ){ end }",
+  "risk": "safe",
+  "note": "germantalkers radio-room ambient chatter; fired by BSP trigger setthread germantalkers (_research/cov_manifests.json:3894); label is a dead end, nothing waits on it"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M1L3c.scr",
+  "line": 475,
+  "actors": [
+   "$talker1"
+  ],
+  "problem": "3 waittill saydone strands the thread if the speaker dies mid-line",
+  "recommended": "if( $talker1 == NULL || !isalive $talker1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "covered by the same convOk guard placed above the say"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m6l1c.scr",
+  "line": 520,
+  "actors": [
+   "local.talker",
+   "local.talker2"
+  ],
+  "problem": "2 isalive+thinkstate only, no NULL check; guard string-compares \"attack\" so any other alerted state still talks",
+  "recommended": "if((local.talker == NULL) || (local.talker2 == NULL)){ end }\n\tif(!isalive local.talker || local.talker.thinkstate != idle){ end }\n\tif(!isalive local.talker2 || local.talker2.thinkstate != idle){ end }",
+  "risk": "safe",
+  "note": "sciencesayto - one helper covers 11 lines at m6l1c.scr:483-511"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m6l1c.scr",
+  "line": 529,
+  "actors": [
+   "local.talker"
+  ],
+  "problem": "3 `local.talker waittill animdone` sits OUTSIDE the guard - when the actor is dead or attacking no anim was ever started, so this waits forever",
+  "recommended": "if(local.talker == NULL || !isalive local.talker){ end }\n\tlocal.talker waittill animdone",
+  "risk": "safe",
+  "note": "guaranteed strander; the single worst line in m6l1c"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m6l1c.scr",
+  "line": 493,
+  "actors": [
+   "level.soldier4"
+  ],
+  "problem": "2 .thinkstate read without a NULL check",
+  "recommended": "if(level.soldier4 != NULL && isalive level.soldier4 && level.soldier4.thinkstate != attack){",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m6l1c.scr",
+  "line": 498,
+  "actors": [
+   "level.scientist1"
+  ],
+  "problem": "2 .thinkstate read without a NULL check",
+  "recommended": "if(level.scientist1 != NULL && isalive level.scientist1 && level.scientist1.thinkstate != attack){",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m6l1c.scr",
+  "line": 502,
+  "actors": [
+   "level.soldier4"
+  ],
+  "problem": "2+3 .thinkstate read without NULL check, then waittill animdone",
+  "recommended": "if(level.soldier4 != NULL && isalive level.soldier4 && level.soldier4.thinkstate != attack){",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m6l1c.scr",
+  "line": 568,
+  "actors": [
+   "local.talker"
+  ],
+  "problem": "2 isalive + thinkstate != \"attack\" only; no NULL check and alerted-but-not-attacking still talks",
+  "recommended": "if(local.talker == NULL || !isalive local.talker || local.talker.thinkstate != idle){\n\t\tif(local.listener != NULL && isalive local.listener){ local.listener exec global/walkto.scr local.spot }\n\t\tend\n\t}",
+  "risk": "safe",
+  "note": "soldiersayto - one helper covers 16 lines at m6l1c.scr:542-557"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m6l1c.scr",
+  "line": 573,
+  "actors": [
+   "local.listener"
+  ],
+  "problem": "2 `if(local.listener)` is a truthiness test, not an isalive test",
+  "recommended": "if(local.listener != NULL && isalive local.listener){",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 493,
+  "actors": [
+   "$guy2"
+  ],
+  "problem": "1 unguarded say while $guy3's own lines at 483-492 ARE guarded (partial guard)",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $guy2 ){ end }",
+  "risk": "safe",
+  "note": "guytalk; $guy1/$guy2 are told to attackplayer at m2l2a.scr:465-466, so players are actively shooting them here"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 494,
+  "actors": [
+   "$guy2"
+  ],
+  "problem": "3 waittill saydone strands if $guy2 is killed",
+  "recommended": "if( $guy2 == NULL || !isalive $guy2 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 495,
+  "actors": [
+   "$guy1"
+  ],
+  "problem": "1 unguarded say",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $guy1 ){ end }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 496,
+  "actors": [
+   "$guy1"
+  ],
+  "problem": "3 waittill saydone strands if $guy1 is killed",
+  "recommended": "if( $guy1 == NULL || !isalive $guy1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 497,
+  "actors": [
+   "$guy2"
+  ],
+  "problem": "1 unguarded say",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $guy2 ){ end }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 498,
+  "actors": [
+   "$guy2"
+  ],
+  "problem": "3 waittill saydone strands if $guy2 is killed",
+  "recommended": "if( $guy2 == NULL || !isalive $guy2 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 738,
+  "actors": [
+   "level.stupid",
+   "level.jokey"
+  ],
+  "problem": "1+3 isalive is checked ONCE at m2l2a.scr:730/732 before the whole 10-line volley; each individual say and its waittill saydone is unguarded",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.stupid level.jokey ){ end }",
+  "risk": "safe",
+  "note": "norgirls; corridor scene players walk straight into - highest interruption probability in m2l2a"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 740,
+  "actors": [
+   "level.stupid",
+   "level.jokey"
+  ],
+  "problem": "1+3 isalive is checked ONCE at m2l2a.scr:730/732 before the whole 10-line volley; each individual say and its waittill saydone is unguarded",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.stupid level.jokey ){ end }",
+  "risk": "safe",
+  "note": "norgirls; corridor scene players walk straight into - highest interruption probability in m2l2a"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 742,
+  "actors": [
+   "level.stupid",
+   "level.jokey"
+  ],
+  "problem": "1+3 isalive is checked ONCE at m2l2a.scr:730/732 before the whole 10-line volley; each individual say and its waittill saydone is unguarded",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.stupid level.jokey ){ end }",
+  "risk": "safe",
+  "note": "norgirls; corridor scene players walk straight into - highest interruption probability in m2l2a"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 744,
+  "actors": [
+   "level.stupid",
+   "level.jokey"
+  ],
+  "problem": "1+3 isalive is checked ONCE at m2l2a.scr:730/732 before the whole 10-line volley; each individual say and its waittill saydone is unguarded",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.stupid level.jokey ){ end }",
+  "risk": "safe",
+  "note": "norgirls; corridor scene players walk straight into - highest interruption probability in m2l2a"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 746,
+  "actors": [
+   "level.stupid",
+   "level.jokey"
+  ],
+  "problem": "1+3 isalive is checked ONCE at m2l2a.scr:730/732 before the whole 10-line volley; each individual say and its waittill saydone is unguarded",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.stupid level.jokey ){ end }",
+  "risk": "safe",
+  "note": "norgirls; corridor scene players walk straight into - highest interruption probability in m2l2a"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 748,
+  "actors": [
+   "level.stupid",
+   "level.jokey"
+  ],
+  "problem": "1+3 isalive is checked ONCE at m2l2a.scr:730/732 before the whole 10-line volley; each individual say and its waittill saydone is unguarded",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.stupid level.jokey ){ end }",
+  "risk": "safe",
+  "note": "norgirls; corridor scene players walk straight into - highest interruption probability in m2l2a"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 750,
+  "actors": [
+   "level.stupid",
+   "level.jokey"
+  ],
+  "problem": "1+3 isalive is checked ONCE at m2l2a.scr:730/732 before the whole 10-line volley; each individual say and its waittill saydone is unguarded",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.stupid level.jokey ){ end }",
+  "risk": "safe",
+  "note": "norgirls; corridor scene players walk straight into - highest interruption probability in m2l2a"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 752,
+  "actors": [
+   "level.stupid",
+   "level.jokey"
+  ],
+  "problem": "1+3 isalive is checked ONCE at m2l2a.scr:730/732 before the whole 10-line volley; each individual say and its waittill saydone is unguarded",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.stupid level.jokey ){ end }",
+  "risk": "safe",
+  "note": "norgirls; corridor scene players walk straight into - highest interruption probability in m2l2a"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 754,
+  "actors": [
+   "level.stupid",
+   "level.jokey"
+  ],
+  "problem": "1+3 isalive is checked ONCE at m2l2a.scr:730/732 before the whole 10-line volley; each individual say and its waittill saydone is unguarded",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.stupid level.jokey ){ end }",
+  "risk": "safe",
+  "note": "norgirls; corridor scene players walk straight into - highest interruption probability in m2l2a"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 756,
+  "actors": [
+   "level.stupid",
+   "level.jokey"
+  ],
+  "problem": "1+3 isalive is checked ONCE at m2l2a.scr:730/732 before the whole 10-line volley; each individual say and its waittill saydone is unguarded",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.stupid level.jokey ){ end }",
+  "risk": "safe",
+  "note": "norgirls; corridor scene players walk straight into - highest interruption probability in m2l2a"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 819,
+  "actors": [
+   "local.talker",
+   "local.listener"
+  ],
+  "problem": "2 isalive only, no thinkstate - alerted guards keep chatting",
+  "recommended": "if(local.talker == NULL || !isalive local.talker || local.talker.thinkstate != idle){ end }\n\tif(local.listener == NULL || !isalive local.listener || local.listener.thinkstate != idle){ end }",
+  "risk": "safe",
+  "note": "whatsuptalk helper covers 6 lines at m2l2a.scr:793-798"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 813,
+  "actors": [
+   "level.whatsthesub"
+  ],
+  "problem": "2 TYPO: `isalive level.whatsthesube` (trailing e) - that variable is never assigned, so the salute at 814 never fires",
+  "recommended": "if(isalive level.whatsthesub)",
+  "risk": "safe",
+  "note": "latent retail/port bug, unrelated to the guard but found in the same block"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 853,
+  "actors": [
+   "$guy3 (self)"
+  ],
+  "problem": "1 no isalive self; only an alarm test at m2l2a.scr:841 and a level.scienceinterupt bail between lines",
+  "recommended": "if(self == NULL || !isalive self || self.thinkstate != idle){ end }",
+  "risk": "safe",
+  "note": "sciencetalk"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 857,
+  "actors": [
+   "$guy3 (self)"
+  ],
+  "problem": "1 no isalive self; only an alarm test at m2l2a.scr:841 and a level.scienceinterupt bail between lines",
+  "recommended": "if(self == NULL || !isalive self || self.thinkstate != idle){ end }",
+  "risk": "safe",
+  "note": "sciencetalk"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 861,
+  "actors": [
+   "$guy3 (self)"
+  ],
+  "problem": "1 no isalive self; only an alarm test at m2l2a.scr:841 and a level.scienceinterupt bail between lines",
+  "recommended": "if(self == NULL || !isalive self || self.thinkstate != idle){ end }",
+  "risk": "safe",
+  "note": "sciencetalk"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 865,
+  "actors": [
+   "$guy3 (self)"
+  ],
+  "problem": "1 no isalive self; only an alarm test at m2l2a.scr:841 and a level.scienceinterupt bail between lines",
+  "recommended": "if(self == NULL || !isalive self || self.thinkstate != idle){ end }",
+  "risk": "safe",
+  "note": "sciencetalk"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 869,
+  "actors": [
+   "$guy3 (self)"
+  ],
+  "problem": "1 no isalive self; only an alarm test at m2l2a.scr:841 and a level.scienceinterupt bail between lines",
+  "recommended": "if(self == NULL || !isalive self || self.thinkstate != idle){ end }",
+  "risk": "safe",
+  "note": "sciencetalk"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 680,
+  "actors": [
+   "local.talker"
+  ],
+  "problem": "2 isalive + thinkstate idle present, NULL check missing",
+  "recommended": "if(local.talker != NULL && isAlive local.talker && local.talker.thinkstate == \"idle\")",
+  "risk": "safe",
+  "note": "likeynorwaytalk - already the best-guarded helper in the mod, only needs the NULL leg"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 406,
+  "actors": [
+   "$germansoldier4"
+  ],
+  "problem": "1 unguarded say_wait",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $germansoldier4 ){ end }",
+  "risk": "safe",
+  "note": "sequence1 'there is an intruder'; five Germans in a room players enter"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 407,
+  "actors": [
+   "$germansoldier4"
+  ],
+  "problem": "3 waittill saydone strands; a strand here leaves level.talking stuck at 1 and skips level.guyshavespoke=1 at m2l3.scr:438",
+  "recommended": "if( $germansoldier4 == NULL || !isalive $germansoldier4 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 409,
+  "actors": [
+   "$germanofficer1"
+  ],
+  "problem": "1 unguarded say_wait",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $germanofficer1 ){ end }",
+  "risk": "safe",
+  "note": "sequence1 'there is an intruder'; five Germans in a room players enter"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 410,
+  "actors": [
+   "$germanofficer1"
+  ],
+  "problem": "3 waittill saydone strands; a strand here leaves level.talking stuck at 1 and skips level.guyshavespoke=1 at m2l3.scr:438",
+  "recommended": "if( $germanofficer1 == NULL || !isalive $germanofficer1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 412,
+  "actors": [
+   "$germansoldier2"
+  ],
+  "problem": "1 unguarded say_wait",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $germansoldier2 ){ end }",
+  "risk": "safe",
+  "note": "sequence1 'there is an intruder'; five Germans in a room players enter"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 413,
+  "actors": [
+   "$germansoldier2"
+  ],
+  "problem": "3 waittill saydone strands; a strand here leaves level.talking stuck at 1 and skips level.guyshavespoke=1 at m2l3.scr:438",
+  "recommended": "if( $germansoldier2 == NULL || !isalive $germansoldier2 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 415,
+  "actors": [
+   "$germansoldier1"
+  ],
+  "problem": "1 unguarded say_wait",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $germansoldier1 ){ end }",
+  "risk": "safe",
+  "note": "sequence1 'there is an intruder'; five Germans in a room players enter"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 416,
+  "actors": [
+   "$germansoldier1"
+  ],
+  "problem": "3 waittill saydone strands; a strand here leaves level.talking stuck at 1 and skips level.guyshavespoke=1 at m2l3.scr:438",
+  "recommended": "if( $germansoldier1 == NULL || !isalive $germansoldier1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 418,
+  "actors": [
+   "$germansoldier3"
+  ],
+  "problem": "1 unguarded say_wait",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $germansoldier3 ){ end }",
+  "risk": "safe",
+  "note": "sequence1 'there is an intruder'; five Germans in a room players enter"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 419,
+  "actors": [
+   "$germansoldier3"
+  ],
+  "problem": "3 waittill saydone strands; a strand here leaves level.talking stuck at 1 and skips level.guyshavespoke=1 at m2l3.scr:438",
+  "recommended": "if( $germansoldier3 == NULL || !isalive $germansoldier3 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 421,
+  "actors": [
+   "$germansoldier2"
+  ],
+  "problem": "1 unguarded say_wait",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $germansoldier2 ){ end }",
+  "risk": "safe",
+  "note": "sequence1 'there is an intruder'; five Germans in a room players enter"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 422,
+  "actors": [
+   "$germansoldier2"
+  ],
+  "problem": "3 waittill saydone strands; a strand here leaves level.talking stuck at 1 and skips level.guyshavespoke=1 at m2l3.scr:438",
+  "recommended": "if( $germansoldier2 == NULL || !isalive $germansoldier2 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 424,
+  "actors": [
+   "$germansoldier1"
+  ],
+  "problem": "1 unguarded say_wait",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $germansoldier1 ){ end }",
+  "risk": "safe",
+  "note": "sequence1 'there is an intruder'; five Germans in a room players enter"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 425,
+  "actors": [
+   "$germansoldier1"
+  ],
+  "problem": "3 waittill saydone strands; a strand here leaves level.talking stuck at 1 and skips level.guyshavespoke=1 at m2l3.scr:438",
+  "recommended": "if( $germansoldier1 == NULL || !isalive $germansoldier1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 427,
+  "actors": [
+   "$germansoldier1"
+  ],
+  "problem": "1 unguarded say_wait",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $germansoldier1 ){ end }",
+  "risk": "safe",
+  "note": "sequence1 'there is an intruder'; five Germans in a room players enter"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 428,
+  "actors": [
+   "$germansoldier1"
+  ],
+  "problem": "3 waittill saydone strands; a strand here leaves level.talking stuck at 1 and skips level.guyshavespoke=1 at m2l3.scr:438",
+  "recommended": "if( $germansoldier1 == NULL || !isalive $germansoldier1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 430,
+  "actors": [
+   "$germansoldier2"
+  ],
+  "problem": "1 unguarded say_wait",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $germansoldier2 ){ end }",
+  "risk": "safe",
+  "note": "sequence1 'there is an intruder'; five Germans in a room players enter"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 498,
+  "actors": [
+   "$germansoldier3"
+  ],
+  "problem": "1 unguarded while $germansoldier2's line at 493-495 IS guarded (partial guard)",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $germansoldier3 ){ end }",
+  "risk": "safe",
+  "note": "sequence2 'still looking'"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 499,
+  "actors": [
+   "$germansoldier3"
+  ],
+  "problem": "3 waittill saydone strands, skipping level.talking=0 at m2l3.scr:507",
+  "recommended": "if( $germansoldier3 == NULL || !isalive $germansoldier3 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 501,
+  "actors": [
+   "$germansoldier3"
+  ],
+  "problem": "1 unguarded while $germansoldier2's line at 493-495 IS guarded (partial guard)",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $germansoldier3 ){ end }",
+  "risk": "safe",
+  "note": "sequence2 'still looking'"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 502,
+  "actors": [
+   "$germansoldier3"
+  ],
+  "problem": "3 waittill saydone strands, skipping level.talking=0 at m2l3.scr:507",
+  "recommended": "if( $germansoldier3 == NULL || !isalive $germansoldier3 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 504,
+  "actors": [
+   "$germansoldier1"
+  ],
+  "problem": "1 unguarded while $germansoldier2's line at 493-495 IS guarded (partial guard)",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $germansoldier1 ){ end }",
+  "risk": "safe",
+  "note": "sequence2 'still looking'"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 505,
+  "actors": [
+   "$germansoldier1"
+  ],
+  "problem": "3 waittill saydone strands, skipping level.talking=0 at m2l3.scr:507",
+  "recommended": "if( $germansoldier1 == NULL || !isalive $germansoldier1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 667,
+  "actors": [
+   "$trainguy1"
+  ],
+  "problem": "3 waittill saydone strands and freezes level.getoverheresounding / level.holdupsounding at 1, permanently muting the line; in procedecheck it also skips `thread playerthreatenstuff` and `level.procede = 0`, stalling the chain-spawn gate",
+  "recommended": "if( $trainguy1 == NULL || !isalive $trainguy1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "GUARD THE WAIT, NOT THE SAY - keep the say so the scene reads normally, only skip the wait when the speaker is gone"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 679,
+  "actors": [
+   "$trainguy1"
+  ],
+  "problem": "3 waittill saydone strands and freezes level.getoverheresounding / level.holdupsounding at 1, permanently muting the line; in procedecheck it also skips `thread playerthreatenstuff` and `level.procede = 0`, stalling the chain-spawn gate",
+  "recommended": "if( $trainguy1 == NULL || !isalive $trainguy1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "GUARD THE WAIT, NOT THE SAY - keep the say so the scene reads normally, only skip the wait when the speaker is gone"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 686,
+  "actors": [
+   "$trainguy1"
+  ],
+  "problem": "3 waittill saydone strands and freezes level.getoverheresounding / level.holdupsounding at 1, permanently muting the line; in procedecheck it also skips `thread playerthreatenstuff` and `level.procede = 0`, stalling the chain-spawn gate",
+  "recommended": "if( $trainguy1 == NULL || !isalive $trainguy1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "GUARD THE WAIT, NOT THE SAY - keep the say so the scene reads normally, only skip the wait when the speaker is gone"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 960,
+  "actors": [
+   "$trainguy1"
+  ],
+  "problem": "3 waittill saydone strands and freezes level.getoverheresounding / level.holdupsounding at 1, permanently muting the line; in procedecheck it also skips `thread playerthreatenstuff` and `level.procede = 0`, stalling the chain-spawn gate",
+  "recommended": "if( $trainguy1 == NULL || !isalive $trainguy1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "GUARD THE WAIT, NOT THE SAY - keep the say so the scene reads normally, only skip the wait when the speaker is gone"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 972,
+  "actors": [
+   "$trainguy1"
+  ],
+  "problem": "3 waittill saydone strands and freezes level.getoverheresounding / level.holdupsounding at 1, permanently muting the line; in procedecheck it also skips `thread playerthreatenstuff` and `level.procede = 0`, stalling the chain-spawn gate",
+  "recommended": "if( $trainguy1 == NULL || !isalive $trainguy1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "GUARD THE WAIT, NOT THE SAY - keep the say so the scene reads normally, only skip the wait when the speaker is gone"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 1006,
+  "actors": [
+   "$trainguy1"
+  ],
+  "problem": "3 waittill saydone strands and freezes level.getoverheresounding / level.holdupsounding at 1, permanently muting the line; in procedecheck it also skips `thread playerthreatenstuff` and `level.procede = 0`, stalling the chain-spawn gate",
+  "recommended": "if( $trainguy1 == NULL || !isalive $trainguy1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "GUARD THE WAIT, NOT THE SAY - keep the say so the scene reads normally, only skip the wait when the speaker is gone"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l3.scr",
+  "line": 1018,
+  "actors": [
+   "$trainguy1"
+  ],
+  "problem": "3 waittill saydone strands and freezes level.getoverheresounding / level.holdupsounding at 1, permanently muting the line; in procedecheck it also skips `thread playerthreatenstuff` and `level.procede = 0`, stalling the chain-spawn gate",
+  "recommended": "if( $trainguy1 == NULL || !isalive $trainguy1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "GUARD THE WAIT, NOT THE SAY - keep the say so the scene reads normally, only skip the wait when the speaker is gone"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m4l2.scr",
+  "line": 748,
+  "actors": [
+   "$guard01"
+  ],
+  "problem": "1 unguarded say while $camptruck_driver IS guarded with isalive at 745/752/759 (partial guard)",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $guard01 ){ end }",
+  "risk": "safe",
+  "note": "visa checkpoint; a parallel `camptruck_waitfordone` wait 19 provides a timeout fallback"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m4l2.scr",
+  "line": 749,
+  "actors": [
+   "$guard01"
+  ],
+  "problem": "3 waittill saydone strands, skipping `$guard01 turnto NULL` and the driver anim",
+  "recommended": "if( $guard01 == NULL || !isalive $guard01 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m4l2.scr",
+  "line": 755,
+  "actors": [
+   "$guard01"
+  ],
+  "problem": "1 unguarded say while $camptruck_driver IS guarded with isalive at 745/752/759 (partial guard)",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $guard01 ){ end }",
+  "risk": "safe",
+  "note": "visa checkpoint; a parallel `camptruck_waitfordone` wait 19 provides a timeout fallback"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m4l2.scr",
+  "line": 756,
+  "actors": [
+   "$guard01"
+  ],
+  "problem": "3 waittill saydone strands, skipping `$guard01 turnto NULL` and the driver anim",
+  "recommended": "if( $guard01 == NULL || !isalive $guard01 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m4l2.scr",
+  "line": 762,
+  "actors": [
+   "$guard01"
+  ],
+  "problem": "1 unguarded say while $camptruck_driver IS guarded with isalive at 745/752/759 (partial guard)",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk $guard01 ){ end }",
+  "risk": "safe",
+  "note": "visa checkpoint; a parallel `camptruck_waitfordone` wait 19 provides a timeout fallback"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m4l2.scr",
+  "line": 763,
+  "actors": [
+   "$guard01"
+  ],
+  "problem": "3 waittill saydone strands, skipping `$guard01 turnto NULL` and the driver anim",
+  "recommended": "if( $guard01 == NULL || !isalive $guard01 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M3L3.scr",
+  "line": 897,
+  "actors": [
+   "level.ramsey"
+  ],
+  "problem": "1 guarded on `isAlive $halftrack` but not on the speaker",
+  "recommended": "if(isAlive $halftrack && level.ramsey != NULL && isalive level.ramsey){",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M3L3.scr",
+  "line": 898,
+  "actors": [
+   "level.ramsey"
+  ],
+  "problem": "3 waittill saydone strands",
+  "recommended": "if( level.ramsey == NULL || !isalive level.ramsey ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M3L3.scr",
+  "line": 913,
+  "actors": [
+   "level.ramsey"
+  ],
+  "problem": "1 unguarded hint bark inside `while (isAlive $halftrack)`",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.ramsey ){ end }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M3L3.scr",
+  "line": 914,
+  "actors": [
+   "level.ramsey"
+  ],
+  "problem": "3 waittill saydone strands the loop, so `thread scene1_captain_leavecover` at M3L3.scr:920 never runs and the captain stays tethered behind the wreck for the rest of the map",
+  "recommended": "if( level.ramsey == NULL || !isalive level.ramsey ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": "highest-consequence strand outside tier 1"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M3L3.scr",
+  "line": 520,
+  "actors": [
+   "level.ramsey"
+  ],
+  "problem": "1 unguarded ambient follow chatter",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.ramsey ){ end }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/M3L3.scr",
+  "line": 522,
+  "actors": [
+   "level.ramsey"
+  ],
+  "problem": "1 unguarded ambient follow chatter",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.ramsey ){ end }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 884,
+  "actors": [
+   "level.friendly1 (self)"
+  ],
+  "problem": "1 the while-loop above already requires thinkstate idle, but nothing checks dead/removed",
+  "recommended": "if(self == NULL || !isalive self){ end }",
+  "risk": "safe",
+  "note": "SAS agent escort ambient chatter"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 898,
+  "actors": [
+   "level.friendly1 (self)"
+  ],
+  "problem": "1 the while-loop above already requires thinkstate idle, but nothing checks dead/removed",
+  "recommended": "if(self == NULL || !isalive self){ end }",
+  "risk": "safe",
+  "note": "SAS agent escort ambient chatter"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 885,
+  "actors": [
+   "self"
+  ],
+  "problem": "3 waittill saydone strands",
+  "recommended": "if( self == NULL || !isalive self ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 899,
+  "actors": [
+   "self"
+  ],
+  "problem": "3 waittill saydone strands",
+  "recommended": "if( self == NULL || !isalive self ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1376,
+  "actors": [
+   "level.friendly1 (self)"
+  ],
+  "problem": "1 unguarded spotlight bark; the sibling at m1l2a.scr:1512 sits behind an isalive check (partial guard)",
+  "recommended": "if(self != NULL && isalive self){ self say dfr_m1l2_add04 }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1388,
+  "actors": [
+   "level.friendly1 (self)"
+  ],
+  "problem": "1 unguarded spotlight bark; the sibling at m1l2a.scr:1512 sits behind an isalive check (partial guard)",
+  "recommended": "if(self != NULL && isalive self){ self say dfr_m1l2_add04 }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1400,
+  "actors": [
+   "level.friendly1 (self)"
+  ],
+  "problem": "1 unguarded spotlight bark; the sibling at m1l2a.scr:1512 sits behind an isalive check (partial guard)",
+  "recommended": "if(self != NULL && isalive self){ self say dfr_m1l2_add04 }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1437,
+  "actors": [
+   "level.friendly1 (self)"
+  ],
+  "problem": "1 unguarded spotlight bark; the sibling at m1l2a.scr:1512 sits behind an isalive check (partial guard)",
+  "recommended": "if(self != NULL && isalive self){ self say dfr_m1l2_add04 }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1453,
+  "actors": [
+   "level.friendly1 (self)"
+  ],
+  "problem": "1 unguarded spotlight bark; the sibling at m1l2a.scr:1512 sits behind an isalive check (partial guard)",
+  "recommended": "if(self != NULL && isalive self){ self say dfr_m1l2_add04 }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1478,
+  "actors": [
+   "level.friendly1 (self)"
+  ],
+  "problem": "1 unguarded spotlight bark; the sibling at m1l2a.scr:1512 sits behind an isalive check (partial guard)",
+  "recommended": "if(self != NULL && isalive self){ self say dfr_m1l2_add04 }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1529,
+  "actors": [
+   "level.friendly1 (self)"
+  ],
+  "problem": "1 unguarded spotlight bark; the sibling at m1l2a.scr:1512 sits behind an isalive check (partial guard)",
+  "recommended": "if(self != NULL && isalive self){ self say dfr_m1l2_add04 }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 3818,
+  "actors": [
+   "level.friendly3"
+  ],
+  "problem": "1 unguarded",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.friendly3 ){ end }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 3819,
+  "actors": [
+   "level.friendly3"
+  ],
+  "problem": "3 waittill saydone strands",
+  "recommended": "if( level.friendly3 == NULL || !isalive level.friendly3 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 3032,
+  "actors": [
+   "level.friendly1"
+  ],
+  "problem": "1 unguarded (debug-gated, level.debug == 2)",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.friendly1 ){ end }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 3193,
+  "actors": [
+   "level.friendly3"
+  ],
+  "problem": "1 inside `while (isalive level.friendly3)` so alive is covered, thinkstate is not",
+  "recommended": "if(level.friendly3.thinkstate == idle){ level.friendly3 say dfr_m1l2_cover }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 2236,
+  "actors": [
+   "level.friendly1"
+  ],
+  "problem": "1 unguarded",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.friendly1 ){ end }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 2157,
+  "actors": [
+   "level.friendly1"
+  ],
+  "problem": "1 unguarded",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.friendly1 ){ end }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 932,
+  "actors": [
+   "level.actor1"
+  ],
+  "problem": "1 unguarded",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.actor1 ){ end }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 2501,
+  "actors": [
+   "level.friendly1/2/3 (self)"
+  ],
+  "problem": "1 unguarded ambient bark",
+  "recommended": "if(self != NULL && isalive self){ ... }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 2504,
+  "actors": [
+   "level.friendly1/2/3 (self)"
+  ],
+  "problem": "1 unguarded ambient bark",
+  "recommended": "if(self != NULL && isalive self){ ... }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 2507,
+  "actors": [
+   "level.friendly1/2/3 (self)"
+  ],
+  "problem": "1 unguarded ambient bark",
+  "recommended": "if(self != NULL && isalive self){ ... }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 2704,
+  "actors": [
+   "level.friendly1/2/3 (self)"
+  ],
+  "problem": "1 unguarded ambient bark",
+  "recommended": "if(self != NULL && isalive self){ ... }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 2707,
+  "actors": [
+   "level.friendly1/2/3 (self)"
+  ],
+  "problem": "1 unguarded ambient bark",
+  "recommended": "if(self != NULL && isalive self){ ... }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 2710,
+  "actors": [
+   "level.friendly1/2/3 (self)"
+  ],
+  "problem": "1 unguarded ambient bark",
+  "recommended": "if(self != NULL && isalive self){ ... }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1591,
+  "actors": [
+   "self"
+  ],
+  "problem": "1 unguarded",
+  "recommended": "if(self != NULL && isalive self){ ... }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1596,
+  "actors": [
+   "self"
+  ],
+  "problem": "1 unguarded",
+  "recommended": "if(self != NULL && isalive self){ ... }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/t1l2.scr",
+  "line": 994,
+  "actors": [
+   "level.friendly2 / level.cappy"
+  ],
+  "problem": "1 unguarded while the sibling at t1l2.scr:992 IS guarded (partial guard)",
+  "recommended": "if(level.cappy != NULL && isalive level.cappy){ ... }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/t1l2.scr",
+  "line": 998,
+  "actors": [
+   "level.friendly2 / level.cappy"
+  ],
+  "problem": "1 unguarded while the sibling at t1l2.scr:992 IS guarded (partial guard)",
+  "recommended": "if(level.cappy != NULL && isalive level.cappy){ ... }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/t1l2.scr",
+  "line": 1015,
+  "actors": [
+   "level.friendly2 / level.cappy"
+  ],
+  "problem": "1 unguarded while the sibling at t1l2.scr:992 IS guarded (partial guard)",
+  "recommended": "if(level.cappy != NULL && isalive level.cappy){ ... }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/t1l2.scr",
+  "line": 1024,
+  "actors": [
+   "level.friendly2 / level.cappy"
+  ],
+  "problem": "1 unguarded while the sibling at t1l2.scr:992 IS guarded (partial guard)",
+  "recommended": "if(level.cappy != NULL && isalive level.cappy){ ... }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/t1l3.scr",
+  "line": 436,
+  "actors": [
+   "level.captain"
+  ],
+  "problem": "1 unguarded while t1l3.scr:429 IS guarded (partial guard)",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.captain ){ end }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/t1l3.scr",
+  "line": 635,
+  "actors": [
+   "level.captain"
+  ],
+  "problem": "1 unguarded while t1l3.scr:429 IS guarded (partial guard)",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.captain ){ end }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1b.scr",
+  "line": 208,
+  "actors": [
+   "level.friendly1"
+  ],
+  "problem": "1 unguarded",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk level.friendly1 ){ end }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1b.scr",
+  "line": 209,
+  "actors": [
+   "level.friendly1"
+  ],
+  "problem": "3 waittill saydone strands",
+  "recommended": "if( level.friendly1 == NULL || !isalive level.friendly1 ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1b.scr",
+  "line": 421,
+  "actors": [
+   "self"
+  ],
+  "problem": "1 unguarded follow bark",
+  "recommended": "if(self != NULL && isalive self){ ... }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1b.scr",
+  "line": 423,
+  "actors": [
+   "self"
+  ],
+  "problem": "1 unguarded follow bark",
+  "recommended": "if(self != NULL && isalive self){ ... }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1b.scr",
+  "line": 425,
+  "actors": [
+   "self"
+  ],
+  "problem": "1 unguarded follow bark",
+  "recommended": "if(self != NULL && isalive self){ ... }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1b.scr",
+  "line": 457,
+  "actors": [
+   "self"
+  ],
+  "problem": "1 unguarded follow bark",
+  "recommended": "if(self != NULL && isalive self){ ... }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1b.scr",
+  "line": 459,
+  "actors": [
+   "self"
+  ],
+  "problem": "1 unguarded follow bark",
+  "recommended": "if(self != NULL && isalive self){ ... }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1a.scr",
+  "line": 837,
+  "actors": [
+   "local.friend"
+  ],
+  "problem": "1 unguarded while siblings at 855/913/939 ARE guarded (partial guard)",
+  "recommended": "if( !waitthread coop_mod/replace.scr::convOk local.friend ){ end }",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1a.scr",
+  "line": 838,
+  "actors": [
+   "local.friend"
+  ],
+  "problem": "3 waittill saydone strands",
+  "recommended": "if( local.friend == NULL || !isalive local.friend ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/global/say_to.scr",
+  "line": 62,
+  "actors": [
+   "self"
+  ],
+  "problem": "2 NULL is checked at say_to.scr:6 but isalive and thinkstate are not; a dead speaker still runs the whole runto/turnto/say routine",
+  "recommended": "if(!isalive self){ end }   // add after the existing NULL check at say_to.scr:6",
+  "risk": "safe",
+  "note": "shared helper, but only m3l2.scr calls it (8 sites)"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/global/say_to.scr",
+  "line": 63,
+  "actors": [
+   "self"
+  ],
+  "problem": "3 waittill saydone strands",
+  "recommended": "if( self == NULL || !isalive self ){ end }   // before the waittill saydone",
+  "risk": "safe",
+  "note": ""
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m3l1a.scr",
+  "line": 5248,
+  "actors": [
+   "$shingle_ranger1"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "D-Day beach captain; the say lines are interleaved with global/objectives.scr::add_objectives / current_objectives, thread follow_captain and ai_add_todo sequence advance (see m3l1a.scr:5256-5262). Silencing breaks the only cue the squad has for the bunker push"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m3l1a.scr",
+  "line": 5276,
+  "actors": [
+   "$shingle_ranger1"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "D-Day beach captain; the say lines are interleaved with global/objectives.scr::add_objectives / current_objectives, thread follow_captain and ai_add_todo sequence advance (see m3l1a.scr:5256-5262). Silencing breaks the only cue the squad has for the bunker push"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m3l1a.scr",
+  "line": 5367,
+  "actors": [
+   "$shingle_ranger1"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "D-Day beach captain; the say lines are interleaved with global/objectives.scr::add_objectives / current_objectives, thread follow_captain and ai_add_todo sequence advance (see m3l1a.scr:5256-5262). Silencing breaks the only cue the squad has for the bunker push"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m3l1a.scr",
+  "line": 5381,
+  "actors": [
+   "$shingle_ranger1"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "D-Day beach captain; the say lines are interleaved with global/objectives.scr::add_objectives / current_objectives, thread follow_captain and ai_add_todo sequence advance (see m3l1a.scr:5256-5262). Silencing breaks the only cue the squad has for the bunker push"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m3l1a.scr",
+  "line": 5399,
+  "actors": [
+   "$shingle_ranger1"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "D-Day beach captain; the say lines are interleaved with global/objectives.scr::add_objectives / current_objectives, thread follow_captain and ai_add_todo sequence advance (see m3l1a.scr:5256-5262). Silencing breaks the only cue the squad has for the bunker push"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m3l1a.scr",
+  "line": 5406,
+  "actors": [
+   "$shingle_ranger1"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "D-Day beach captain; the say lines are interleaved with global/objectives.scr::add_objectives / current_objectives, thread follow_captain and ai_add_todo sequence advance (see m3l1a.scr:5256-5262). Silencing breaks the only cue the squad has for the bunker push"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m3l1a.scr",
+  "line": 5430,
+  "actors": [
+   "$shingle_ranger1"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "D-Day beach captain; the say lines are interleaved with global/objectives.scr::add_objectives / current_objectives, thread follow_captain and ai_add_todo sequence advance (see m3l1a.scr:5256-5262). Silencing breaks the only cue the squad has for the bunker push"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m3l1a.scr",
+  "line": 5440,
+  "actors": [
+   "$shingle_ranger1"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "D-Day beach captain; the say lines are interleaved with global/objectives.scr::add_objectives / current_objectives, thread follow_captain and ai_add_todo sequence advance (see m3l1a.scr:5256-5262). Silencing breaks the only cue the squad has for the bunker push"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m3l1a.scr",
+  "line": 5446,
+  "actors": [
+   "$shingle_ranger1"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "D-Day beach captain; the say lines are interleaved with global/objectives.scr::add_objectives / current_objectives, thread follow_captain and ai_add_todo sequence advance (see m3l1a.scr:5256-5262). Silencing breaks the only cue the squad has for the bunker push"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m3l1a.scr",
+  "line": 5498,
+  "actors": [
+   "$shingle_ranger1"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "D-Day beach captain; the say lines are interleaved with global/objectives.scr::add_objectives / current_objectives, thread follow_captain and ai_add_todo sequence advance (see m3l1a.scr:5256-5262). Silencing breaks the only cue the squad has for the bunker push"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m3l1a.scr",
+  "line": 5518,
+  "actors": [
+   "$shingle_ranger1"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "D-Day beach captain; the say lines are interleaved with global/objectives.scr::add_objectives / current_objectives, thread follow_captain and ai_add_todo sequence advance (see m3l1a.scr:5256-5262). Silencing breaks the only cue the squad has for the bunker push"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m3l1a.scr",
+  "line": 5528,
+  "actors": [
+   "$shingle_ranger1"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "D-Day beach captain; the say lines are interleaved with global/objectives.scr::add_objectives / current_objectives, thread follow_captain and ai_add_todo sequence advance (see m3l1a.scr:5256-5262). Silencing breaks the only cue the squad has for the bunker push"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m3l1a.scr",
+  "line": 5543,
+  "actors": [
+   "$shingle_ranger1"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "D-Day beach captain; the say lines are interleaved with global/objectives.scr::add_objectives / current_objectives, thread follow_captain and ai_add_todo sequence advance (see m3l1a.scr:5256-5262). Silencing breaks the only cue the squad has for the bunker push"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1760,
+  "actors": [
+   "level.friendly1 (SAS agent, self)"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "objective dialogue; `waitthread global/objectives.scr::add_objectives` and `thread newobjective` sit between these lines (m1l2a.scr:1774-1776, 2333-2337)"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1766,
+  "actors": [
+   "level.friendly1 (SAS agent, self)"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "objective dialogue; `waitthread global/objectives.scr::add_objectives` and `thread newobjective` sit between these lines (m1l2a.scr:1774-1776, 2333-2337)"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 2318,
+  "actors": [
+   "level.friendly1 (SAS agent, self)"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "objective dialogue; `waitthread global/objectives.scr::add_objectives` and `thread newobjective` sit between these lines (m1l2a.scr:1774-1776, 2333-2337)"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 2325,
+  "actors": [
+   "level.friendly1 (SAS agent, self)"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "objective dialogue; `waitthread global/objectives.scr::add_objectives` and `thread newobjective` sit between these lines (m1l2a.scr:1774-1776, 2333-2337)"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 2338,
+  "actors": [
+   "level.friendly1 (SAS agent, self)"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "objective dialogue; `waitthread global/objectives.scr::add_objectives` and `thread newobjective` sit between these lines (m1l2a.scr:1774-1776, 2333-2337)"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 3898,
+  "actors": [
+   "level.friendly1"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "exfil sequence; m1l2a.scr:3925 adds objective 6 'Meet Grillo by the gate and exfiltrate'"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 3909,
+  "actors": [
+   "level.friendly1"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "exfil sequence; m1l2a.scr:3925 adds objective 6 'Meet Grillo by the gate and exfiltrate'"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 3920,
+  "actors": [
+   "level.friendly1"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "exfil sequence; m1l2a.scr:3925 adds objective 6 'Meet Grillo by the gate and exfiltrate'"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1414,
+  "actors": [
+   "self"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "scripted SAS-agent sequence beats; verify the surrounding block before touching"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1566,
+  "actors": [
+   "self"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "scripted SAS-agent sequence beats; verify the surrounding block before touching"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1817,
+  "actors": [
+   "self"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "scripted SAS-agent sequence beats; verify the surrounding block before touching"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1824,
+  "actors": [
+   "self"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "scripted SAS-agent sequence beats; verify the surrounding block before touching"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1869,
+  "actors": [
+   "self"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "scripted SAS-agent sequence beats; verify the surrounding block before touching"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1877,
+  "actors": [
+   "self"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "scripted SAS-agent sequence beats; verify the surrounding block before touching"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m1l2a.scr",
+  "line": 1956,
+  "actors": [
+   "self"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "scripted SAS-agent sequence beats; verify the surrounding block before touching"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m3l2.scr",
+  "line": 377,
+  "actors": [
+   "level.ramsey"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "dfr_directive_* / dfr_cover_* are the captain's battalion HOLD directives - these are the mission's instructions to the squad"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m3l2.scr",
+  "line": 393,
+  "actors": [
+   "level.ramsey"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "dfr_directive_* / dfr_cover_* are the captain's battalion HOLD directives - these are the mission's instructions to the squad"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m3l2.scr",
+  "line": 404,
+  "actors": [
+   "level.ramsey"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "dfr_directive_* / dfr_cover_* are the captain's battalion HOLD directives - these are the mission's instructions to the squad"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m3l2.scr",
+  "line": 414,
+  "actors": [
+   "level.ramsey"
+  ],
+  "problem": "1 unguarded, but intentionally so",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "dfr_directive_* / dfr_cover_* are the captain's battalion HOLD directives - these are the mission's instructions to the squad"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1a.scr",
+  "line": 1005,
+  "actors": [
+   "level.friendly1/4/5"
+  ],
+  "problem": "1 partially guarded, but do not silence",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "dfr_scripted_M5L3_* scripted mission sequence"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1a.scr",
+  "line": 1017,
+  "actors": [
+   "level.friendly1/4/5"
+  ],
+  "problem": "1 partially guarded, but do not silence",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "dfr_scripted_M5L3_* scripted mission sequence"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1a.scr",
+  "line": 1051,
+  "actors": [
+   "level.friendly1/4/5"
+  ],
+  "problem": "1 partially guarded, but do not silence",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "dfr_scripted_M5L3_* scripted mission sequence"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1a.scr",
+  "line": 1056,
+  "actors": [
+   "level.friendly1/4/5"
+  ],
+  "problem": "1 partially guarded, but do not silence",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "dfr_scripted_M5L3_* scripted mission sequence"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1a.scr",
+  "line": 1063,
+  "actors": [
+   "level.friendly1/4/5"
+  ],
+  "problem": "1 partially guarded, but do not silence",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "dfr_scripted_M5L3_* scripted mission sequence"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1a.scr",
+  "line": 1076,
+  "actors": [
+   "level.friendly1/4/5"
+  ],
+  "problem": "1 partially guarded, but do not silence",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "dfr_scripted_M5L3_* scripted mission sequence"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1a.scr",
+  "line": 1116,
+  "actors": [
+   "level.friendly1/4/5"
+  ],
+  "problem": "1 partially guarded, but do not silence",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "dfr_scripted_M5L3_* scripted mission sequence"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1a.scr",
+  "line": 1127,
+  "actors": [
+   "level.friendly1/4/5"
+  ],
+  "problem": "1 partially guarded, but do not silence",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "dfr_scripted_M5L3_* scripted mission sequence"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1a.scr",
+  "line": 1152,
+  "actors": [
+   "level.friendly1/4/5"
+  ],
+  "problem": "1 partially guarded, but do not silence",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "dfr_scripted_M5L3_* scripted mission sequence"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m5l1a.scr",
+  "line": 1165,
+  "actors": [
+   "level.friendly1/4/5"
+  ],
+  "problem": "1 partially guarded, but do not silence",
+  "recommended": "leave the `say` alone; if you touch anything, guard ONLY the waittill saydone with a NULL/isalive test so a dead speaker cannot strand the thread",
+  "risk": "do-not-guard",
+  "note": "dfr_scripted_M5L3_* scripted mission sequence"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 531,
+  "actors": [
+   "PA / intercom (no speaker entity)"
+  ],
+  "problem": "3 prop emitter with no thinkstate - broadcasts to an empty room by design",
+  "recommended": "leave as is - a public-address system is supposed to broadcast whether or not anyone is alive to hear it",
+  "risk": "do-not-guard",
+  "note": "playalarmsound"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 535,
+  "actors": [
+   "$alarm_sound[] speakers"
+  ],
+  "problem": "3 prop emitter with no thinkstate",
+  "recommended": "leave as is - PA system",
+  "risk": "do-not-guard",
+  "note": "playalarmsound"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 549,
+  "actors": [
+   "$alarm_sound[] speakers"
+  ],
+  "problem": "3 prop emitter with no thinkstate",
+  "recommended": "leave as is - PA system",
+  "risk": "do-not-guard",
+  "note": "intercomsoundoff, called from intercomsoundcycle at 559-599"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m2l2a.scr",
+  "line": 890,
+  "actors": [
+   "level.goatsbutt"
+  ],
+  "problem": "1 already isalive-guarded; do not add a thinkstate test",
+  "recommended": "leave as is",
+  "risk": "do-not-guard",
+  "note": "sentry1alarm - this IS the alarm being raised, and it is immediately followed by `level.goatsbutt attackplayer`. A thinkstate==idle guard would break alarm raising"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m6l1c.scr",
+  "line": 783,
+  "actors": [
+   "level.alarmsentry1guy / level.alarmsentry2guy"
+  ],
+  "problem": "1 alarm-raise line",
+  "recommended": "leave as is",
+  "risk": "do-not-guard",
+  "note": "den_alarm_01c is the alarm cue, not chatter; a thinkstate guard would suppress the alarm"
+ },
+ {
+  "file": "hzm-mohaa-coop-mod/maps/m6l1c.scr",
+  "line": 806,
+  "actors": [
+   "level.alarmsentry1guy / level.alarmsentry2guy"
+  ],
+  "problem": "1 alarm-raise line",
+  "recommended": "leave as is",
+  "risk": "do-not-guard",
+  "note": "den_alarm_01c is the alarm cue, not chatter; a thinkstate guard would suppress the alarm"
+ }
+]
