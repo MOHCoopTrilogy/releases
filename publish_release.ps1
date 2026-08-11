@@ -36,6 +36,24 @@ $tagExists = ($LASTEXITCODE -eq 0)
 $ErrorActionPreference = $eap
 if ($tagExists) { throw "release $tag already exists - never overwrite a published tag; bump the version" }
 
+# [2026-08-11] WHAT'S NEW CARD GATE. v1.2.6 shipped with the card still titled v1.2.5-era content,
+# and the stealth route was flipped ON minutes after publishing - so the next release could have
+# gone out announcing the wrong thing entirely. A note in a doc would not have caught that; an
+# assertion does. Same discipline as the packer's count/balance asserts (TRAPS T2): make the
+# generator fail loudly rather than trusting the releaser to remember.
+# The card is baked into the code pk3 and is the FIRST thing a player sees after updating, so a
+# stale one is not cosmetic - it describes a build that is not the one they just downloaded.
+$cardPath = "$mod\ui\coop_whatsnew.urc"
+if (Test-Path $cardPath) {
+    $cardTitle = Select-String -Path $cardPath -Pattern 'title\s+"UPDATE v([0-9.]+)' | Select-Object -First 1
+    if (-not $cardTitle) { throw "What's New card has no 'UPDATE vX.Y.Z' title line: $cardPath" }
+    $cardVer = $cardTitle.Matches[0].Groups[1].Value
+    if ($cardVer -ne $Version) {
+        throw "What's New card still says v$cardVer but you are publishing v$Version. Update the title AND the six FIX:/NEW: lines in $cardPath to describe THIS release, then re-run."
+    }
+    Write-Host "What's New card matches v$Version"
+}
+
 # --- 2. build ---
 if (-not $SkipBuild) {
     Write-Host "== build.ps1 (3-way pk3 split) =="

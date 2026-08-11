@@ -13,27 +13,25 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `a0f6a33 2026-08-11 manifest 1.2.6` |
-| commits | 65 |
+| HEAD | `4df7811 2026-08-11 Ship the m2l2a stealth route + Phase C contain ON by default` |
+| commits | 66 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **1 modified, 0 untracked** |
-| unstaged diff | 1 file changed, 5 insertions(+), 1 deletion(-) |
-
-> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 11 |
+| 2026-08 | 12 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (65)
+### Commits since 2026-01-01 (66)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `4df7811` | 2026-08-11 | joncurry94-tech | Ship the m2l2a stealth route + Phase C contain ON by default |
 | `a0f6a33` | 2026-08-11 | joncurry94-tech | manifest 1.2.6 |
 | `2d1df98` | 2026-08-10 | joncurry94-tech | Phase C: player-initiated contain on m2l2a, plus the fixes it uncovered |
 | `42ad7cd` | 2026-08-10 | joncurry94-tech | docs: add the OpenWolf authored + generated doc set |
