@@ -12,28 +12,30 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | | |
 |---|---|
-| branch | `docs/openwolf-doc-set` |
-| HEAD | `42ad7cd 2026-08-10 docs: add the OpenWolf authored + generated doc set` |
-| commits | 63 |
+| branch | `main` |
+| HEAD | `a0f6a33 2026-08-11 manifest 1.2.6` |
+| commits | 65 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **10 modified, 5 untracked** |
-| unstaged diff | 20 files changed, 930 insertions(+), 503 deletions(-) |
+| **uncommitted** | **1 modified, 0 untracked** |
+| unstaged diff | 1 file changed, 5 insertions(+), 1 deletion(-) |
 
-> Working tree is dirty. Everything in those 15 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 9 |
+| 2026-08 | 11 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (63)
+### Commits since 2026-01-01 (65)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `a0f6a33` | 2026-08-11 | joncurry94-tech | manifest 1.2.6 |
+| `2d1df98` | 2026-08-10 | joncurry94-tech | Phase C: player-initiated contain on m2l2a, plus the fixes it uncovered |
 | `42ad7cd` | 2026-08-10 | joncurry94-tech | docs: add the OpenWolf authored + generated doc set |
 | `0be41cf` | 2026-08-10 | joncurry94-tech | manifest 1.2.5 |
 | `a5c37b6` | 2026-08-09 | joncurry94-tech | manifest 1.2.4 |
@@ -106,10 +108,10 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | HEAD | `c21a0dd 2026-08-10 coop: fix reliable-command overflow, blueprint pickup, HUD-fade class, Naxos` |
 | commits | 1,397 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **20 modified, 3 untracked** |
-| unstaged diff | 20 files changed, 1897 insertions(+), 1348 deletions(-) |
+| **uncommitted** | **23 modified, 3 untracked** |
+| unstaged diff | 23 files changed, 1941 insertions(+), 1363 deletions(-) |
 
-> Working tree is dirty. Everything in those 23 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 26 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 

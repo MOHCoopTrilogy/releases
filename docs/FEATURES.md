@@ -1110,7 +1110,11 @@ map, runtime-confirmed dead aliases, labels run). Static layer 1 results:
 
 ## m2l2a Phase C - the player-initiated CONTAIN (2026-08-10) - SHIPPED, partly verified
 
-`coop_mod/bust.scr` + `itemhandler.scr`. Gated on `coop_stealthStart 1`. Full design and the
+`coop_mod/bust.scr` + `itemhandler.scr`. Gated on `coop_stealthStart`, which **ships ON from
+the next release** (bug-1698) - it was 0 in 1.2.6, so no player has reached Phase C yet.
+⚠ That gate is wider than its name: it also makes m2l2a open UNARMED, papers-only. The contain
+cannot be decoupled from it - a player holding a Weapon reads as undisguised, so guards never
+challenge them and the contain can never fire. Full design and the
 nine defects the playtest found: `docs/proposals/m2l2a_coop_stealth_master_plan_v2.md`
 ("PHASE C AS PLAYED"), bugs 1682-1691.
 
