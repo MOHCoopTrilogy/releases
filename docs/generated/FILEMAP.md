@@ -32,7 +32,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `UBER-MODS-v8.00-MOHAA` | 2,614 | 115.5 MB | no - reference | third-party mod, reference only |
 | `moh-modelviewer` | 1,270 | 565.8 MB | no - reference | Node model preview tool (rarely touched) |
 | `original-scripts` | 915 | 1173.7 MB | no - reference | vanilla MOHAA script/asset extraction (reference) |
-| `player1_home` | 293 | 2.7 MB | no - reference | test client profile dir |
+| `player1_home` | 293 | 2.3 MB | no - reference | test client profile dir |
 | `_research` | 171 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
 | `<root>` | 124 | 3409.4 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `docs` | 99 | 3.2 MB | **yes** | this documentation set (authored + generated) |
@@ -43,8 +43,8 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `manifests` | 38 | 0.5 MB | **yes** | release manifests consumed by the auto-updater |
 | `_tools` | 37 | 69.0 MB | no - reference | downloaded third-party binaries |
 | `installer` | 18 | 15873.3 MB | no - reference | Inno Setup output + payload staging |
-| `server_home` | 17 | 0.6 MB | **yes** |  |
-| `player2_home` | 14 | 1.3 MB | no - reference | test client profile dir |
+| `server_home` | 17 | 0.3 MB | **yes** |  |
+| `player2_home` | 14 | 0.9 MB | no - reference | test client profile dir |
 | `vanilla_audio_ref` | 13 | 15.0 MB | no - reference | vanilla audio reference |
 | `_blender_kit` | 12 | 1.1 MB | no - reference | Blender pipeline scratch |
 | `tools` | 12 | 0.3 MB | **yes** | misc build/debug tooling |
@@ -749,7 +749,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/misc/linux` | 4 | 0.00 MB | .in×3, .xml×1 |
 | `openmohaa-hzm/misc/setup/windows/app` | 4 | 0.01 MB | .wxs×2, .wixproj×1, .wxl×1 |
 | `scratchpad` | 1 | 0.00 MB | .py×1 |
-| `server_home/maintt` | 5 | 0.55 MB | .cfg×3, .pid×1, .log×1 |
+| `server_home/maintt` | 5 | 0.32 MB | .cfg×3, .pid×1, .log×1 |
 | `server_home/maintt/coop_mod/save` | 12 | 0.00 MB | .dat×12 |
 | `server_home_probe/maintt` | 5 | 0.30 MB | .cfg×3, .pid×1, .log×1 |
 | `tools` | 4 | 0.17 MB | .bat×1, .c×1, .exe×1, .obj×1 |
@@ -1099,7 +1099,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `buildmode_catalog.scr` | 2,290 | 155.3 KB | HZM Coop - BUILD MODE model catalog (DATA ONLY). Generated from main/mainta/maintt Pak*.pk3 |
 | `buildmode_sounds.scr` | 369 | 18.5 KB | HZM Coop - BUILD MODE : placeable SOUND EMITTERS (catalog + SOUND-mode control bus). |
 | `bunker.scr` | 808 | 38.3 KB | HZM coop - COMPOSED STRUCTURES v2 (build-mode geometry construction kit) |
-| `bust.scr` | 1,075 | 54.4 KB | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
+| `bust.scr` | 1,076 | 54.4 KB | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
 | `butler.scr` | 498 | 18.9 KB | created by chrissstrahl on 2019.09.12 |
 | `cannonThink.scr` | 147 | 4.8 KB | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
 | `challenges.scr` | 3,245 | 198.1 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
@@ -1135,7 +1135,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `helmet.scr` | 1,730 | 109.9 KB | [305] HZM coop - LIVE HELMET SWITCHER |
 | `helmtest.scr` | 96 | 3.7 KB | HZM dev probe (TEMPORARY): verify the retail sethelmet/pophelmet mechanic end to end. |
 | `holdout.scr` | 759 | 30.9 KB | HOLDOUT - checkpoint wave-defence gametype [user 2026-08-04] |
-| `itemhandler.scr` | 3,419 | 172.3 KB | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
+| `itemhandler.scr` | 3,419 | 172.4 KB | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
 | `keyitems.scr` | 161 | 8.3 KB | [306] HZM coop - KEY MISSION ITEMS can never be permanently lost |
 | `ladder.scr` | 231 | 11.6 KB | HZM coop - PLACEABLE CLIMBABLE LADDERS [user 2026-08-05] bug-1415 |
 | `ladder_state.scr` | 24 | 1.2 KB | HZM coop - LADDER STATE HOOK [user 2026-08-05] bug-1415 |
@@ -1145,7 +1145,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `lobby.scr` | 1,166 | 52.7 KB | HZM Coop - Pre-Mission Lobby module. Full spec: _research/coop_lobby1_build.md |
 | `lobbyui.scr` | 265 | 10.6 KB | [304] CLICKABLE LOBBY UI - a mouse cursor + button framework for the live |
 | `m4l3_precache.scr` | 157 | 6.0 KB |  |
-| `main.scr` | 2,096 | 99.9 KB | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
+| `main.scr` | 2,119 | 101.6 KB | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
 | `maplist.scr` | 119 | 3.9 KB | [201] Smithy - used to populate the coop_mapsList array to check for next/previous map (and any other future… |
 | `maptest.scr` | 268 | 11.8 KB | HZM Coop - Map Rotation Auto-Tester |
 | `maptest_m5l3.scr` | 284 | 10.4 KB | HZM Coop - m5l3 Scene-Walk Tester |
@@ -1401,7 +1401,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `m1l3c_precache.scr` | 104 | 3.7 KB |  |
 | `m2l1.scr` | 654 | 21.1 KB | M2L1 level script |
 | `m2l1_precache.scr` | 119 | 4.2 KB | once the game starts |
-| `m2l2a.scr` | 1,912 | 66.2 KB | chrissstrahl fix these |
+| `m2l2a.scr` | 1,918 | 66.7 KB | chrissstrahl fix these |
 | `m2l2a_precache.scr` | 123 | 4.3 KB |  |
 | `m2l2b.scr` | 1,459 | 55.3 KB | chrissstrahl - fix |
 | `m2l2b_precache.scr` | 122 | 4.2 KB | cache models/static/cranebanner.tik |
@@ -1435,7 +1435,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `m6l1a.scr` | 163 | 6.1 KB | SNOWY FOREST |
 | `m6l1a_precache.scr` | 98 | 3.4 KB |  |
 | `m6l1b_precache.scr` | 101 | 3.5 KB |  |
-| `m6l1c.scr` | 994 | 37.7 KB | MP44 FACILITY |
+| `m6l1c.scr` | 1,013 | 39.1 KB | MP44 FACILITY |
 | `m6l1c_precache.scr` | 115 | 4.1 KB |  |
 | `m6l2a.scr` | 892 | 35.2 KB | LEVEL: M6L2A |
 | `m6l2a_precache.scr` | 142 | 5.2 KB |  |
@@ -6815,7 +6815,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | file | lines | size | summary |
 |---|---:|---:|---|
 | `autoexec.cfg` | 1,208 | 87.9 KB | HZM Extended Coop Mod |
-| `coop_defaults.cfg` | 267 | 15.8 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
+| `coop_defaults.cfg` | 278 | 16.9 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
 | `dedicated_start.cfg` | 67 | 4.0 KB | generated by launch_dedicated_2player.ps1 - do not hand-edit |
 
 ### `server_home_probe/maintt/` — 3 source files

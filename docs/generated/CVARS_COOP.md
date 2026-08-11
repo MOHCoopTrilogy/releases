@@ -272,15 +272,15 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_buildmap` |  |  |  |  | `coop_mod/main.scr:93` (+1) |  |
 | `coop_bulletCrack` | `1` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:971` | FORCED `1` @ `autoexec.cfg:863` |  |  |
 | `coop_bulletCrackDist` | `60` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:972` | FORCED `60` @ `autoexec.cfg:864` |  |  |
-| `coop_bustBashDamage` |  |  |  | DEFAULT `15` @ `coop_defaults.cfg:247` | `coop_mod/bust.scr:842` |  |
-| `coop_bustBashFloor` |  |  |  | DEFAULT `40` @ `coop_defaults.cfg:248` | `coop_mod/bust.scr:1026` |  |
+| `coop_bustBashDamage` |  |  |  | DEFAULT `15` @ `coop_defaults.cfg:247` | `coop_mod/bust.scr:843` |  |
+| `coop_bustBashFloor` |  |  |  | DEFAULT `40` @ `coop_defaults.cfg:248` | `coop_mod/bust.scr:1027` |  |
 | `coop_bustBodyGrace` |  |  |  | DEFAULT `15` @ `coop_defaults.cfg:254` | `coop_mod/bust.scr:327` |  |
 | `coop_bustBodyLife` |  |  |  | DEFAULT `0` @ `coop_defaults.cfg:257` | `coop_mod/bust.scr:332` |  |
 | `coop_bustBodyRadius` |  |  |  | DEFAULT `320` @ `coop_defaults.cfg:253` | `coop_mod/bust.scr:325` |  |
 | `coop_bustClearTime` |  |  |  | DEFAULT `10` @ `coop_defaults.cfg:250` | `coop_mod/bust.scr:265` |  |
 | `coop_bustHintRange` |  |  |  | DEFAULT `400` @ `coop_defaults.cfg:237` | `coop_mod/itemhandler.scr:1246` |  |
 | `coop_bustHintTime` |  |  |  | DEFAULT `6` @ `coop_defaults.cfg:241` |  |  |
-| `coop_bustStagger` |  |  |  | DEFAULT `4.5` @ `coop_defaults.cfg:243` | `coop_mod/bust.scr:792` (+3) |  |
+| `coop_bustStagger` |  |  |  | DEFAULT `4.5` @ `coop_defaults.cfg:243` | `coop_mod/bust.scr:793` (+3) |  |
 | `coop_bustTest` |  |  |  |  | `coop_mod/bust.scr:701` (+1) |  |
 | `coop_bustUseRange` |  |  |  | DEFAULT `112` @ `coop_defaults.cfg:235` | `coop_mod/itemhandler.scr:2755` |  |
 | `coop_callvote` |  |  |  |  | `coop_mod/server.scr:261` (+1) |  |
@@ -485,7 +485,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_limpSpeedMult` | `0.60` | `CVAR_ARCHIVE` | `fgame/player.cpp:4692` (+1) |  |  |  |
 | `coop_limpStart` | `0.30` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:288` (+2) |  | `coop_mod/player.scr:1787` |  |
 | `coop_limpView` | `0` | `0` | `cgame/cg_view.c:837` |  |  |  |
-| `coop_lmsLives` |  |  |  | other `0` @ `coop_mod/cfg/dedicated_example.cfg:44` | `coop_mod/main.scr:1619` (+2) | `ui/coop_start.urc` |
+| `coop_lmsLives` |  |  |  | other `0` @ `coop_mod/cfg/dedicated_example.cfg:44` | `coop_mod/main.scr:1642` (+2) | `ui/coop_start.urc` |
 | `coop_lo1` |  |  |  | other `(empty)` @ `ui/loadout/clrP1.cfg:2`<br>other `(empty)` @ `ui/loadout/clrk1.cfg:2`<br>other `(empty)` @ `ui/loadout/reset.cfg:2`<br>(+47 more) |  |  |
 | `coop_lo2` |  |  |  | other `(empty)` @ `ui/loadout/clrP2.cfg:2`<br>other `(empty)` @ `ui/loadout/clrk2.cfg:2`<br>other `(empty)` @ `ui/loadout/reset.cfg:6`<br>(+47 more) |  |  |
 | `coop_lo3` |  |  |  | other `(empty)` @ `ui/loadout/clr3.cfg:2`<br>other `(empty)` @ `ui/loadout/clrk3.cfg:2`<br>other `(empty)` @ `ui/loadout/reset.cfg:10`<br>(+16 more) |  |  |
@@ -696,8 +696,8 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_musicFiller` |  |  |  |  | `coop_mod/flmusic.scr:88` (+1) |  |
 | `coop_muzzleLight` | `160` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:592` | FORCED `160` @ `autoexec.cfg:776` |  |  |
 | `coop_navRecSpacing` | `96` | `CVAR_ARCHIVE` | `fgame/player.cpp:13538` |  |  |  |
-| `coop_naxosHold` |  |  |  | DEFAULT `2.5` @ `coop_defaults.cfg:262` | `maps/m2l2a.scr:557` |  |
-| `coop_naxosRoomRadius` |  |  |  | DEFAULT `512` @ `coop_defaults.cfg:263` | `maps/m2l2a.scr:563` |  |
+| `coop_naxosHold` |  |  |  | DEFAULT `2.5` @ `coop_defaults.cfg:262` | `maps/m2l2a.scr:563` |  |
+| `coop_naxosRoomRadius` |  |  |  | DEFAULT `512` @ `coop_defaults.cfg:263` | `maps/m2l2a.scr:569` |  |
 | `coop_noPlayerClip` | `0` | `0` | `fgame/player.cpp:3980` | FORCED `0` @ `autoexec.cfg:368` |  |  |
 | `coop_nullclosest` |  |  |  |  | `coop_mod/coop_selftest_scaling.scr:82` |  |
 | `coop_o1` |  |  |  | other `;` @ `ui/coop_objectives/obj_1hidden.cfg:4`<br>other `Empty";` @ `ui/coop_objectives/obj_setup.cfg:3`<br>other `Empty";` @ `ui/coop_objectives/obj_showall.cfg:4` |  | `ui/coop_objectives.urc` |
@@ -898,9 +898,9 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_st_weapons_smoke` |  |  |  |  | `coop_mod/coop_selftest_weapons.scr:44` |  |
 | `coop_st_xp` |  |  |  |  | `coop_mod/main.scr:251` |  |
 | `coop_st_xp_mode` |  |  |  |  | `coop_mod/coop_selftest_xp.scr:113` |  |
-| `coop_stealthNoAggro` |  |  |  | FORCED `0` @ `autoexec.cfg:1185`<br>DEFAULT `0` @ `coop_defaults.cfg:222` | `maps/m2l2a.scr:526` (+1) |  |
+| `coop_stealthNoAggro` |  |  |  | FORCED `0` @ `autoexec.cfg:1185`<br>DEFAULT `0` @ `coop_defaults.cfg:222` | `maps/m2l2a.scr:532` (+1) |  |
 | `coop_stealthRecoverAlarm` |  |  |  | FORCED `1` @ `autoexec.cfg:1197`<br>DEFAULT `1` @ `coop_defaults.cfg:226` |  |  |
-| `coop_stealthStart` |  |  |  | FORCED `1` @ `autoexec.cfg:1184`<br>DEFAULT `1` @ `coop_defaults.cfg:218` | `coop_mod/bust.scr:780` (+5) |  |
+| `coop_stealthStart` |  |  |  | FORCED `1` @ `autoexec.cfg:1184`<br>DEFAULT `1` @ `coop_defaults.cfg:218` | `coop_mod/bust.scr:781` (+5) |  |
 | `coop_stingers` |  |  |  |  | `coop_mod/flmusic.scr:23` |  |
 | `coop_subBlizzard` |  |  |  |  | `maps/m2l2b.scr:777` |  |
 | `coop_subCruise` |  |  |  |  | `maps/m2l2b.scr:553` |  |
