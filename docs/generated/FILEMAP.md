@@ -10,9 +10,9 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 35,578 |
+| files in the workspace | 35,579 |
 | bytes | 39.8 GB |
-| files in project scope (indexed per-file) | 10,212 |
+| files in project scope (indexed per-file) | 10,213 |
 | source files (per-file rows with line counts) | 4,825 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
@@ -35,16 +35,16 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `player1_home` | 293 | 2.7 MB | no - reference | test client profile dir |
 | `_research` | 171 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
 | `<root>` | 124 | 3409.4 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
+| `docs` | 99 | 3.2 MB | **yes** | this documentation set (authored + generated) |
 | `extracted-scripts` | 99 | 2.6 MB | **yes** | extracted vanilla scripts kept for diffing |
-| `docs` | 98 | 3.2 MB | **yes** | this documentation set (authored + generated) |
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
 | `_menu_pilot` | 81 | 90.7 MB | no - reference | Photoshop menu round-trip staging |
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
 | `manifests` | 38 | 0.5 MB | **yes** | release manifests consumed by the auto-updater |
 | `_tools` | 37 | 69.0 MB | no - reference | downloaded third-party binaries |
 | `installer` | 18 | 15873.3 MB | no - reference | Inno Setup output + payload staging |
-| `server_home` | 17 | 0.3 MB | **yes** |  |
-| `player2_home` | 14 | 0.9 MB | no - reference | test client profile dir |
+| `server_home` | 17 | 0.6 MB | **yes** |  |
+| `player2_home` | 14 | 1.3 MB | no - reference | test client profile dir |
 | `vanilla_audio_ref` | 13 | 15.0 MB | no - reference | vanilla audio reference |
 | `_blender_kit` | 12 | 1.1 MB | no - reference | Blender pipeline scratch |
 | `tools` | 12 | 0.3 MB | **yes** | misc build/debug tooling |
@@ -86,7 +86,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.ogg` | 376 |
 | `.skc` | 328 |
 | `.skd` | 319 |
-| `.md` | 288 |
+| `.md` | 289 |
 | `.shader` | 190 |
 | `.urc` | 169 |
 | `.bsp` | 129 |
@@ -154,7 +154,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `autotest_results` | 2 | 0.32 MB | .tsv×1, .log×1 |
 | `docs` | 30 | 1.50 MB | .md×29, .png×1 |
 | `docs/archive` | 7 | 0.02 MB | .md×7 |
-| `docs/proposals` | 22 | 0.85 MB | .md×21, .json×1 |
+| `docs/proposals` | 23 | 0.85 MB | .md×22, .json×1 |
 | `docs/proposals/cover_attach` | 2 | 0.04 MB | .md×2 |
 | `docs/proposals/m2l2a_phaseA` | 1 | 0.00 MB | .md×1 |
 | `docs/proposals/m2l2a_v2_research` | 9 | 0.23 MB | .json×9 |
@@ -749,7 +749,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/misc/linux` | 4 | 0.00 MB | .in×3, .xml×1 |
 | `openmohaa-hzm/misc/setup/windows/app` | 4 | 0.01 MB | .wxs×2, .wixproj×1, .wxl×1 |
 | `scratchpad` | 1 | 0.00 MB | .py×1 |
-| `server_home/maintt` | 5 | 0.32 MB | .cfg×3, .pid×1, .log×1 |
+| `server_home/maintt` | 5 | 0.55 MB | .cfg×3, .pid×1, .log×1 |
 | `server_home/maintt/coop_mod/save` | 12 | 0.00 MB | .dat×12 |
 | `server_home_probe/maintt` | 5 | 0.30 MB | .cfg×3, .pid×1, .log×1 |
 | `tools` | 4 | 0.17 MB | .bat×1, .c×1, .exe×1, .obj×1 |
@@ -984,7 +984,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `autoexec.cfg` | 1,208 | 87.9 KB | HZM Extended Coop Mod |
 | `coop.cfg` | 3 | 0.1 KB | DEVELOPER CONFIG FILE |
-| `coop_defaults.cfg` | 267 | 15.8 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
+| `coop_defaults.cfg` | 278 | 16.9 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
 | `net_cl.cfg` | 18 | 1.2 KB | HZM Coop recommended CLIENT settings. |
 | `net_sv.cfg` | 21 | 1.2 KB | HZM Coop recommended SERVER settings. |
 

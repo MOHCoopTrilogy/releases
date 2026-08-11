@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1067** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1068** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 404 |
+| 2026-08 | 405 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1084,6 +1084,7 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1696` | 2026-08-10 | `hzm-mohaa-coop-mod/coop_mod/bust.scr` | - | user: 'They walked right past the body this time' then 'They both walked past officers dead body' - body detection stopped after the first finder | The sweep always runs again, so newcomers still react; `local.found` now only keeps the AREA hot (forcing seers >= 1) so the loiter timer survives th… |
 | `bug-1697` | 2026-08-10 | `hzm-mohaa-coop-mod/ubersound/coop_audio.scr` | - | Unknown parameter for coop_alarm_yell alias - the new German alarm shout was rejected outright by the alias parser | Dropped `forcesubtitle` and its string. The SHOUT is the requirement and the caption was not, so the caption goes rather than risk the alias never re… |
 | `bug-1698` | 2026-08-11 | `hzm-mohaa-coop-mod/autoexec.cfg` | R | user: 'lets make sure the coop contain situation ships on next time not off' - the m2l2a stealth route + Phase C contain shipped disabled in 1.2.6 | Set to 1 in BOTH files. THE AUTOEXEC LINE IS THE ONE THAT MATTERS and changing only coop_defaults.cfg would have looked correct and done nothing: coo… |
+| `bug-1699` | 2026-08-11 | `hzm-mohaa-coop-mod/coop_defaults.cfg` | RP | user: 'Since we turned off depth of field the weird texture bug from yesterday had disappeared but its also disappointing because I want DOF to work' | Two parts. (1) coop_defaults.cfg r_ppDoF 0 -> 1 with the rationale and the revert instruction recorded inline; r_ppDoFFocus stays 0 with an explicit… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

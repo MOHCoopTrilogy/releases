@@ -303,6 +303,7 @@ docs/proposals/research_m2l2a/design_script-first.md	29118	.md	387	docs
 docs/proposals/research_m2l2a/design_vanilla-fidelity.md	44898	.md	615	docs
 docs/proposals/server_topology_and_limits.md	66875	.md	570	docs
 docs/proposals/skin_batch.md	18501	.md	241	docs
+docs/proposals/stealth_carryover_plan.md	8701	.md	166	docs
 docs/proposals/stealth_disguise_research.md	7051	.md	128	docs
 docs/proposals/surgical_operation_hd_analysis.md	20843	.md	313	docs
 docs/proposals/surgical_operation_v10_analysis.md	32194	.md	454	docs
@@ -1261,7 +1262,7 @@ hzm-mohaa-coop-mod/autoexec.cfg	90014	.cfg	1208	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/cmpatch/e1l2.txt	472	.txt	7	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coolness 2.jpg	149265	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop.cfg	122	.cfg	3	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_defaults.cfg	16206	.cfg	267	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_defaults.cfg	17316	.cfg	278	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/admin.scr	3507	.scr	87	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/ads.scr	1722	.scr	39	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/ads_dbg.scr	518	.scr	11	hzm-mohaa-coop-mod
@@ -7323,7 +7324,7 @@ hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	540887487	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	780556061	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23026730	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23027261	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm_coop_framework_guide.md	27594	.md	382	<root>
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -10158,7 +10159,7 @@ server_home/maintt/coop_mod/save/unlocks_D6B7BCD046A8B845C52F9093ABFB46A5.dat	19
 server_home/maintt/coop_mod/save/xp_89AA62A71BEF42BA7FA4B2DE9E15F03A.dat	4	.dat	0	server_home
 server_home/maintt/coop_mod/save/xp_D6B7BCD046A8B845C52F9093ABFB46A5.dat	4	.dat	0	server_home
 server_home/maintt/dedicated_start.cfg	4127	.cfg	67	server_home
-server_home/maintt/qconsole.log	205196	.log	0	server_home
+server_home/maintt/qconsole.log	444060	.log	0	server_home
 server_home_probe/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home_probe
 server_home_probe/maintt/autoexec.cfg	89444	.cfg	1202	server_home_probe
 server_home_probe/maintt/coop_defaults.cfg	12385	.cfg	217	server_home_probe

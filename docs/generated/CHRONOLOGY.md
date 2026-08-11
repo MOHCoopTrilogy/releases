@@ -13,24 +13,27 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `ea80cec 2026-08-11 publish: gate the release on the What's New card matching the version` |
-| commits | 67 |
+| HEAD | `6a79f94 2026-08-11 postfx: re-enable DoF - the bug-1629 fix had never reached the live install` |
+| commits | 68 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **0 modified, 1 untracked** |
+
+> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 13 |
+| 2026-08 | 14 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (67)
+### Commits since 2026-01-01 (68)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `6a79f94` | 2026-08-11 | joncurry94-tech | postfx: re-enable DoF - the bug-1629 fix had never reached the live install |
 | `ea80cec` | 2026-08-11 | joncurry94-tech | publish: gate the release on the What's New card matching the version |
 | `4df7811` | 2026-08-11 | joncurry94-tech | Ship the m2l2a stealth route + Phase C contain ON by default |
 | `a0f6a33` | 2026-08-11 | joncurry94-tech | manifest 1.2.6 |
@@ -108,7 +111,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | commits | 1,397 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **23 modified, 3 untracked** |
-| unstaged diff | 23 files changed, 1941 insertions(+), 1363 deletions(-) |
+| unstaged diff | 23 files changed, 1954 insertions(+), 1365 deletions(-) |
 
 > Working tree is dirty. Everything in those 26 files exists only here - a `git checkout` destroys it with no restore point.
 
