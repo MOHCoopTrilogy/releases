@@ -181,14 +181,44 @@ rocket-artillery vehicle fail to resolve → unmanned nests, missing vehicle. Ma
 coop-ready, so **degraded, not dead** — which is why the read-through missed it. The fix field reads
 literally "OPEN - needs investigation." See [TRAPS.md § T14](TRAPS.md#t14).
 
-### ~~`global/vehicle_warning.scr`: `$player` array-casts~~ — FIXED 2026-08-06
-`FIXED` · *bug-1473; `gags/t3l1_enemyspawn.scr`* — was the **largest single defect in the trilogy**:
-12,690 errors, 48% of all 26,230 script errors the 4-player sweep recorded. Fixed in the CALLER rather
-than by extracting the retail global: all six bare-`$player` sites in `TankLookForPlayer` /
-`TruckLookForPlayer` now resolve one real player via `replace.scr::player_closestTo self` and guard
-NULL **and** NIL. Consequence removed: enemy tanks and trucks never detected a player and never
-stopped. Deployed and hash-verified in the pk3. *Left open:* a previous sweep found this and even
-prescribed the fix, and it still sat `OPEN` — findings need an owner, not just an entry.
+### Phase C stealth contain (m2l2a) — shipped, mostly unverified
+
+The contain loop itself IS play-verified end to end (bash -> stun -> pistol -> kill -> 10s clean ->
+"Situation Contained" -> papers restored; user: *"Situation contained worked"*). Everything built
+around it on 2026-08-10 is deployed and **not** confirmed in play:
+
+- the **15s loiter -> cover blown** outcome (the investigator itself IS verified: bug-1695/1696)
+- escalation firing the real alarm via `trigger $waittrigger_alarm_master`
+- "seeing the stun animation" as an escalation route
+- the Naxos room/hold prompts and the sabotage progress bar
+- the squad-wide papers free-pass CODE (bug-1693) - the observed behaviour comes from the engine
+  demoting an accepting sentry to a saluter, so the new path has never run
+
+RESOLVED since: the contain loop, the escalation loadout (bug-1692) and the bust-time aggro
+exemption (bug-1686) are confirmed in play.
+
+### `coop_stealthArmOnHurt` is dead code — and something else may be covering for it
+
+Defined at `itemhandler.scr:1423`, **threaded by nothing anywhere** (bug-1688). It is the watchdog
+that arms an unarmed player who is being shot. Deliberately not enabled mid-playtest. **Open
+question:** with it dead, what arms a player shot while unarmed? `maps/m2l2a.scr::coop_blownOnDamage`
+polls player health and threads `coop_armOnBlown`, so m2l2a may be covered *by the map* — which would
+mean every other `coop_noWeapon` map has no such safety net at all. Worth one grep before enabling.
+
+### A hand-rolled distance returned a wrong value once and could not be reproduced
+
+bug-1690. `sqrt( (dx*dx) + (dy*dy) )` gave 265.965 for points 2013u apart, twice, then computed
+correctly at a different position. **Mechanism unexplained; no trap entry claims one.** All affected
+sites now use `vector_length` on flattened points. `coop_mod/aimaneuver.scr:129` uses the same inline
+form and has never been checked.
+
+### objectives.scr's NEW OBJECTIVE toast collides with two live features
+
+bug-1680. It owns 135-142 (header 135, lines **computed** `136 + local.line`), overlapping the DBNO
+team-revive channel (135-140) and the XP micro popup (142-144). All three are mission-time and can
+co-display. Not fixed: rewriting a widget that currently works is a blind bet with no oracle
+(TRAPS T3 UI corollary). Moving the toast into the menu-only 216-249 range would fix it and return
+eight fade-exempt slots — **the ≥100 band is now completely full.**
 
 ### Second vehicle-crew spawn path on t2l2 / t3l2 still unguarded
 `OPEN` · *`_research/coop_2player_sweep.md` residual list* — the `vehicles_thinkers.scr` NIL-crew guard
@@ -239,19 +269,7 @@ later 5-round resolution via the shader-isolation recipe is attributed to bug-92
 never marked resolved.** Cannot determine from the record alone whether the airborne pouch is
 currently correct. **Needs one look.**
 
-### m3l3 ground seam — fixed, never shipped, never re-examined
-`OPEN` · *`_session_handoff.md`; `zzzzzzzz_hd_groundfix.pk3` built 2026-07-27 18:02; not in `manifests/latest.json`*
-Not a wrap seam (which is why an earlier 275-texture pass found nothing) and not a scale mismatch —
-it is a cart road with dark grass verges **baked into the top/bottom edges**, so tiling repeats the
-verges as hard parallel stripes. Row-band measurement: vanilla 512 spread 59.2/σ15.0, HD world 1024
-spread 72.1/σ20.0 (**the HD upscale amplified the verge ~22%**), groundfix 1024 spread 59.7/σ14.9.
-⭐ **Critical timing detail: the groundfix pak was built 19 minutes AFTER the screenshot later cited as
-"seamfix didn't resolve it" — so no post-fix look exists.** Confirmed gl1, i.e. content not a gl2
-defect. **Next action is one fresh look at that courtyard** before any further texture or UV work.
 
----
-
-<a name="gl2"></a>
 ## gl2 open items
 
 ### Non-depth-writing surfaces cannot be fogged at all — the screen-space fog's structural gap

@@ -22,3 +22,35 @@ all.** Still unconfirmed: whether a human holding fire during the black-screen l
 two maps - the one successful live join observed was on t2l4, which has no `physicsOff` lock.
 Test: relaunch at t2l1 or t2l3 and hold fire the instant the screen goes black.
 
+
+
+---
+
+<!-- moved out of docs/OPEN.md 2026-08-10 to stay under the size ceiling -->
+
+### ~~`global/vehicle_warning.scr`: `$player` array-casts~~ — FIXED 2026-08-06
+`FIXED` · *bug-1473; `gags/t3l1_enemyspawn.scr`* — was the **largest single defect in the trilogy**:
+12,690 errors, 48% of all 26,230 script errors the 4-player sweep recorded. Fixed in the CALLER rather
+than by extracting the retail global: all six bare-`$player` sites in `TankLookForPlayer` /
+`TruckLookForPlayer` now resolve one real player via `replace.scr::player_closestTo self` and guard
+NULL **and** NIL. Consequence removed: enemy tanks and trucks never detected a player and never
+stopped. Deployed and hash-verified in the pk3. *Left open:* a previous sweep found this and even
+prescribed the fix, and it still sat `OPEN` — findings need an owner, not just an entry.
+
+
+
+<!-- moved out of docs/OPEN.md 2026-08-10 -->
+
+### m3l3 ground seam — fixed, never shipped, never re-examined
+`OPEN` · *`_session_handoff.md`; `zzzzzzzz_hd_groundfix.pk3` built 2026-07-27 18:02; not in `manifests/latest.json`*
+Not a wrap seam (which is why an earlier 275-texture pass found nothing) and not a scale mismatch —
+it is a cart road with dark grass verges **baked into the top/bottom edges**, so tiling repeats the
+verges as hard parallel stripes. Row-band measurement: vanilla 512 spread 59.2/σ15.0, HD world 1024
+spread 72.1/σ20.0 (**the HD upscale amplified the verge ~22%**), groundfix 1024 spread 59.7/σ14.9.
+⭐ **Critical timing detail: the groundfix pak was built 19 minutes AFTER the screenshot later cited as
+"seamfix didn't resolve it" — so no post-fix look exists.** Confirmed gl1, i.e. content not a gl2
+defect. **Next action is one fresh look at that courtyard** before any further texture or UV work.
+
+---
+
+<a name="gl2"></a>

@@ -1561,3 +1561,241 @@ Two further sub-claims were refuted **inside** otherwise-confirmed findings:
 3. **T5 depends on B3.** The re-derived predicate keys on a `forceattackplayer` getter that E5 ships. If B3 is rolled back, T5 is inert and expectation 4 rests on T1, T3, T4 and T7. T4 still catches a bust once the player is actually shot, so the mission stays winnable; the loss is the systematic backstop, not the mission.
 4. **Step 2 changes behaviour on maps with no disguise.** Dropping the `cansee` term is not a no-op on `m1l2a`, `m5l3`, `m6l3a` and `M3L3`. TP-R's third axis exists to catch it, but it is a single solo pass on one or two of those maps, not a sweep.
 5. **`^~^~^ E5 cleared=<n>` and the 30-second TP-10 bound are new and unvalidated.** They make the D1 contract measurable for the first time; the number itself is a starting estimate, not a measured one.
+
+---
+
+## PHASE C - THE BUST LOOP (user spec, verbatim intent, 2026-08-10)
+
+> "if a guard does catch me (likely an officer), I should be given my loadout PLUS SILENCED PISTOL,
+> which should be the first weapon that comes out (not the weapon start kit), not lose my
+> papers/uniform, be able to kill him quickly, and if no one saw his death, it will say Situation
+> Contained on the screen where our DBNO text is and then auto go back to just having the uniforms
+> and paper."
+
+This supersedes the earlier reading of bug-1652 as a simple escalate/do-not-escalate switch. A bust
+is **local and recoverable by default**. Being caught is not failure - it is a fight you can win
+quietly. Loud is what happens when you lose the race or someone else sees it.
+
+### The six required behaviours
+
+| # | behaviour | notes for implementation |
+|---|---|---|
+| 1 | On being caught, the player is armed: full loadout **plus a silenced pistol** | additive - the pistol is granted on top, not instead of |
+| 2 | The **silenced pistol is the weapon in hand**, not the start kit's primary | must force active weapon after the give; the respawn-loadout switch in loadout.scr picks a primary by default and will fight this |
+| 3 | Papers and uniform are **retained** | do NOT call takeAllDisguises here - that is the loud path. This is the key difference from the current bust |
+| 4 | The player can kill the guard quickly | silenced pistol + the guard is already committed; no extra tuning implied |
+| 5 | If **nobody saw the death**, show "Situation Contained" in the DBNO text position | HUD slot must be >= 100 (fade-exempt) - see docs/TRAPS.md and _research/hud_slot_map.md; the DBNO channel is 135-140, so pick from the same fade-exempt band |
+| 6 | Then **auto-revert** to the unarmed uniform+papers state | mirrors the earlier "no player spotted for 30 seconds -> Situation Contained" rule; the two should share one implementation |
+
+### What this settles about bug-1652
+
+The open tension was that a genuine bust escalated nothing, while the naive fix (escalate on
+halt->attack) would false-fire on the 13 `ai_alarm` actors that legitimately use that path.
+This spec dissolves it: the correct response to a committed checker is **not** a global alarm at all.
+It is (a) arm the caught player locally, and (b) escalate globally ONLY if the kill is witnessed or
+the guard survives to raise it. `coop_isProtectedActor` (officer.scr:1681) already identifies the
+alarm/scene actors and is the natural discriminator for "who counts as a witness".
+
+### Open questions to resolve before coding
+
+1. **What counts as "saw his death"?** Candidate: any live german with `cansee` on the corpse or on
+   the player at the moment of death, within its own fov/sight - the same test the quiet Naxos
+   sabotage already uses for the scientists (`maps/m2l2a.scr` coop_naxosSabotage).
+2. **Does the pistol persist after containment?** Spec says revert to "just having the uniforms and
+   paper", which reads as: the pistol is taken back. Confirm.
+3. **Multiplayer scope:** if one player is busted and contains it, does the other player's state
+   change at all? Expectation 1 says the unarmed rule is squad-wide, so probably not - but the
+   busted player is individually armed for the duration.
+4. **What if the guard is not killed?** Presumably he raises the alarm and it goes loud - i.e. the
+   existing escalation path, which is what bug-1652 says is currently missing.
+
+---
+
+## PHASE C REDESIGN - PLAYER-INITIATED CONTAIN (user, 2026-08-10)
+
+**This supersedes the reactive bust loop above.** Verbatim:
+
+> "On an officer that stops you, can we have a prompt come up using DBNO Text that says Press
+> Whatever Use Key is to Contain The Situation. This should appear when you are near him to show
+> papers and it can happen before you even show papers, but when you hit Use, somehow make the officer
+> get bashed by the silence pistol immediately... it should be a guaranteed bash as long as they are
+> within range to hit Use, make the officer take a bit to recover from it (possibly an animation), we
+> kill the officer with a shot, and as long as no one sees his body, we get situation contained, go
+> back to papers. 'Situation Escalated. Leave the Area Immediately.' Should be the message."
+
+### Why this is the better design
+
+The reactive loop lost a RACE it could never win. `coop_stealthArmOnHurt` arms everyone the instant an
+unarmed player takes damage, and the officer shoots immediately on rejection - user: "he fires a shot
+everytime before I even get my equipment... not enough time to escalate the situation". Even after the
+watchdog was taught to defer to a bust, the arming still did not land before he was "already running
+and shooting". Player-initiated removes the race by construction: nothing has to beat the officer,
+because the player moves first.
+
+### Required behaviour
+
+| # | behaviour | notes |
+|---|---|---|
+| 1 | Prompt in the DBNO text position: "Press [USE] to Contain The Situation" | HUD slot MUST be >= 100 or the fade hides it while standing still. Reuse the same slot/style as the cover + ammo prompts |
+| 2 | Shows whenever you are in USE range of a stopping officer | explicitly BEFORE papers are shown - it is an alternative to the papers check, not a consequence of failing it |
+| 3 | USE = immediate pistol bash on the officer | GUARANTEED while in range - no accuracy roll, no trace test beyond the range check |
+| 4 | The officer is staggered and takes a beat to recover | animation if one fits; check the major_pain family, which is where the DBNO chain came from |
+| 5 | The player kills him with a shot during that window | so the pistol must be in hand as part of the bash, or drawn by it |
+| 6 | Nobody sees the body -> "Situation Contained", revert to papers-only | as already built: coop_bustWitnessed + coop_bustContained + coop_bustDisarm |
+| 7 | Somebody sees it -> **"Situation Escalated. Leave the Area Immediately."** | NEW message, replaces the silent go-loud |
+
+### What already exists and should be reused
+
+- `coop_bustArm` / `coop_bustDisarm` (itemhandler.scr) - arm with the silenced pistol drawn, keep
+  papers/uniform, take it back on containment. The pistol-first draw is CONFIRMED working.
+- `coop_bustWitnessed` / `coop_bustContained` / `coop_bustGoLoud` (bust.scr) - the witness sweep and
+  both outcomes. Only the message text needs adding for (7).
+- The papers-prompt suppression and the hurt-watchdog deferral are both still needed, since the player
+  will be armed and adjacent to a hostile officer.
+
+### What to DELETE from the reactive design
+
+The `coop_bustFromChecker` trigger in `anim/disguise_deny.scr`. It has now been placed three ways (on
+the deny, inside the attack commit, and on the deny with a role gate) and every one was wrong for a
+different reason. Player-initiated makes it unnecessary - there is no need to detect the officer's
+intent at all.
+
+### RESOLVED - the bash is SCRIPTED, not engine melee (2026-08-10)
+
+There is no script-callable bash. `Weapon::MeleeAttack` (`fgame/weapon.cpp:2151`) is invoked from the
+weapon's own fire path when the fire MODE is melee; nothing exposes it to script, and `MOD_BASH`
+(`player.cpp:3227`) is only a means-of-death tag.
+
+**Do not add an engine event for it.** A real melee does a trace and can MISS, which directly
+contradicts the spec ("it should be a guaranteed bash as long as they are within range to hit Use").
+The prompt only appears when the officer is already in USE range, so the range test has ALREADY been
+done - a scripted effect is both simpler and strictly more correct:
+
+1. play the impact sound on the officer (world channel, so both players hear it - see bug on
+   coop_medkit_cloth being LOCAL and therefore inaudible to anyone else)
+2. stagger him: force a pain/recover state for a beat. The major_pain family is the place to look -
+   it is where the DBNO get-up chain came from, and riflep_kneeshit / *_pain_standtoknees are the
+   obvious candidates for "took a hit and is recovering"
+3. `coop_bustArm` the player (pistol drawn - CONFIRMED working) so the follow-up shot is possible
+4. from there the existing loop runs unchanged: witness sweep -> contained or escalated
+
+### BUILT 2026-08-10 (bug-1676) - deployed? NO. Play-verified? NO.
+
+| # | behaviour | where it lives |
+|---|---|---|
+| 1 | "Press [USE] to Contain The Situation" in the DBNO text position | `itemhandler.scr::enableClickablePapers`, **HUD slot 250** |
+| 2 | shows whenever in USE range of a stopping officer, before papers | same loop; `coop_bustUseRange` 112u; officers only (`type_disguise`) |
+| 3 | USE = guaranteed scripted bash | `bust.scr::coop_bustBash` |
+| 4 | staggered for a beat | `disable_ai` + `<weapongroup>_pain_standtoknees`, `coop_bustStagger` 3.0s |
+| 5 | pistol in hand for the finishing shot | `coop_bustArm` (unchanged, confirmed working) |
+| 6 | nobody sees it -> **"Situation Contained. Leave the Area Immediately."** | `coop_bustContained`, slot 149, after a `coop_bustClearTime` 10s watch |
+| 7 | somebody does -> **"Situation Escalated. Leave the Area Immediately."** | `coop_bustGoLoud`, slot 149, squad-wide |
+
+**Decisions taken while building, each with its reason:**
+
+- **The prompt is hosted in the existing challenge loop, not a new watcher.** That loop already
+  models "an officer has stopped this player" and ends when he accepts, denies, dies, or the player
+  dies. A second watcher would have to re-derive all four and could then drift out of step with it.
+- **The `if(!coop_hasPapers){ end }` early-exit had to move.** Being stopped *without* papers is
+  when the contain matters most; the papers half is now gated separately from the contain half.
+- **The witness check became a 10-SECOND WATCH, not a single sweep** (user: "If after 10 seconds no
+  one sees the body, you're clear"). One sweep at the instant he falls misses a patrol that rounds
+  the corner two seconds later. Polls at 2Hz - `cansee` is a per-actor engine trace run over the
+  whole german array, so a per-frame sweep costs 40x for no extra fidelity against walking AI.
+- **The bash sound is a retail asset, found by reading the shipped ubersound rather than invented:**
+  `punch1/2/3` -> `sound/weapons/foley/PistolHit1..3.wav`, channel `weapon`, map spec
+  `"m dm moh obj train"` (m2l2a matches `m`). Played ON THE OFFICER so it is a world sound with 3D
+  falloff that the other player hears - `coop_medkit_cloth` is LOCAL channel and is the mistake this
+  avoids.
+- **`coop_bustFromChecker` and its `anim/disguise_deny.scr` call are DELETED**, as specified.
+- **Entities cross the itemhandler->bust boundary as NUMBERS** (`level.coop_bustEnt`, keyed by
+  entnum), per TRAPS T6 - an entity passed as a thread parameter has arrived NIL three times in this
+  project (bugs 1624, 1632, 1665).
+- **HUD slot 250, not 145.** The slot map offered 141-149 as a free reserve; a measured sweep of
+  every `ihuddraw` call in the tree said only 149 was left, and 145-147 had been the cover prompt
+  since the fade fix. 250/254/255 are the only genuinely unused slots in the fade-exempt band. See
+  bug-1680 - the map is now swept by `docs/tools/hudslots.py` instead of hand-maintained.
+
+**Still unproven, in order of risk:**
+
+1. ~~Whether `<weapongroup>_pain_standtoknees` exists.~~ **RESOLVED before the playtest** by
+   sweeping the retail paks: the alias is defined for all TEN weapongroups
+   (`models/human/animation/human_<group>.tik` in main/Pak0.pk3 and mainta/pak1.pk3) - `pistol`,
+   `rifle`, `mp40`, `mp44`, `bar`, `sten`, `thompson`, `vickers`, `grenade`, `unarmed` - so it
+   resolves for any officer regardless of what he is carrying. What remains unproven is only
+   whether it LOOKS like a stagger on a `disable_ai`'d actor. Deliberately no `waittill animdone`
+   anywhere near it (TRAPS T16); recovery is a plain timer, so even a dropped anim cannot hang
+   anything - he would simply freeze for the window.
+2. Whether one per-frame `useheld` sample reliably catches a normal press. `cover.scr` and
+   `ammobox.scr` both take exactly one per-frame sample for a one-shot action and both ship working,
+   so the risk is low - but dbno.scr measured `useheld` as bursty (11 hits in 200 samples at 10Hz)
+   during a sustained hold, which is why its 5s CHANNEL needs a grace window.
+3. **It has never been deployed.** The 2-player dedicated rig was live with both clients connected
+   while this was written, and `build.ps1` must not run under a running game (bug-241).
+
+---
+
+## PHASE C AS PLAYED - the 2026-08-10 live iteration
+
+Everything above is the design. This is what survived contact, in the order the playtest broke it.
+Nine defects, each with the measurement that found it; full detail in bug-1682..1691.
+
+### The contain loop is CONFIRMED WORKING end to end
+
+    22:07:03  BUST bash e1 -> ai_alarm
+    22:07:04  BUSTSTUN think=pain          <- staggered
+    22:07:05  BUST armed e1 pistol-first   <- pistol up and it stayed
+              ...player kills him...
+    22:07:15  BUST contained e1 disarmed, papers restored
+
+User: *"Situation contained worked"*. Bash -> stun -> pistol -> kill -> 10s clean watch -> contained
+-> papers-only. **Everything else in this section is deployed but NOT play-verified.**
+
+### What the playtest actually broke
+
+| # | symptom | real cause | bug |
+|---|---|---|---|
+| 1 | *"he started just walking away from me"* | `global/disable_ai.scr` is, in full, `self.enableEnemy = 0`. It never stunned him. **Damage is the only lever script has** on an actor's think - `Actor::EventPain` sets `THINKSTATE_PAIN` at `THINKLEVEL_PAIN`, and `thinkstate` is getter-only | 1682 |
+| 2 | *"couldn't shoot it"* | bare `give` grants the weapon, not the rounds; a stealth map stocks no pistol ammo | 1683 |
+| 3 | *"it takes my handgun before hes killed"* | a RAISE RACE, not a stripper - the loadout arrives as async pickups and the engine auto-raises each one over the pistol | 1684 |
+| 4 | *"he just doesn't shoot"* | `coop_papersAnytime`, a THIRD papers path, equipped papers in the unarmed gaps and swallowed the trigger for 2s | 1685 |
+| 5 | *"the second I shoot... others just instantly react"* | drawing any Weapon clears `m_bIsDisguised`, so the aggro funnel opened. **The mechanic was unwinnable by construction** | 1686 |
+| 6 | *"two guys walking right past the dead officer"* | `coop_isProtectedActor` is true for the entire m2l2a cast; reused as "may notice a corpse", it vetoed everybody | 1687 |
+| 7 | the officer advisory never appeared | its host, `coop_stealthArmOnHurt`, **has no caller anywhere and has never run** | 1688 |
+| 8 | messages firing through floors | every proximity test was a 3D **sphere**; "near" in a building is horizontal + same-storey | 1689 |
+| 9 | Naxos text at spawn | a hand-rolled distance returned 265.965 for points 2013u apart - **mechanism unexplained**, sidestepped via `vector_length` | 1690 |
+
+### Final behaviour
+
+- **First contact** (400u, same floor, once per player, retired after any contain):
+  *"Avoid the Officer. Contain him only when alone."*
+- **In USE range**: *"Press [USE] to Contain The Situation"* - same line, so they cannot stack.
+- **USE**: retail `punch1/2/3` foley on the officer + a non-lethal hit that drops him into
+  `THINKSTATE_PAIN` for `coop_bustStagger` (4.5s), pistol force-drawn **with ammo** and **held**
+  against the incoming loadout for the window.
+- **Seen mid-stun** -> escalate. **Not killed in time** -> he recovers and runs for the alarm.
+- **Killed unseen** -> papers back *immediately* + *"Leave the Area Immediately."*; at +10s clean,
+  *"Situation Contained. Proceed with Caution."* and the squad gets *"\<name\> Contained the Situation."*
+- **Escalation** -> *"Situation Escalated - Weapons Free"* + the **real** alarm via
+  `trigger $waittrigger_alarm_master` (guarded: that master loop is a TOGGLE).
+- **Afterwards** the corpse stays findable for 120s. Anyone who can see it reacts; the first actor
+  safe to interrupt walks over and kneels (`coop_bustCanKneel` - never a scene actor or a papers
+  checker). Loiter within 320u on the same floor for 15s and cover is blown; the timer **resets**
+  when you leave, so walking away always works.
+
+### Cvars (all seeded in `coop_defaults.cfg`)
+
+`coop_bustUseRange 112` · `coop_bustHintRange 400` · `coop_bustHintTime 6` ·
+`coop_bustStagger 4.5` · `coop_bustBashDamage 15` · `coop_bustBashFloor 40` ·
+`coop_bustClearTime 10` · `coop_bustBodyRadius 320` · `coop_bustBodyGrace 15` ·
+`coop_bustBodyLife 120` · `coop_naxosHold 2.5` · `coop_naxosRoomRadius 512`
+
+### The three lessons worth carrying off this map
+
+1. **A guard written for one question is wrong for the neighbouring one.** `coop_isProtectedActor`
+   was correct for "leave this actor alone" and catastrophic for "would this actor notice a body".
+   Same shape as the `$naxos nottriggerable` incident (bug-1671) one section up.
+2. **Gating one entry point is not gating the feature.** Papers had three writers; two were gated
+   and the third took a playtest to find.
+3. **Probe, then fix.** Every one of these fell to a print, and the two I tried to reason out
+   instead - the rcon "firewall" and the arithmetic "trap" - were both wrong and had to be retracted.

@@ -1,4 +1,4 @@
-# HZM MOH Coop Trilogy - installer packaging
+﻿# HZM MOH Coop Trilogy - installer packaging
 # Usage:  .\build.ps1 ; .\installer\package_installer.ps1 [-AppVersion "1.1.0"] [-ReportWebhook "<discord url>"]
 # Sources are referenced in-place (freshly built pk3s in the mod tree, HD pk3s in the GOG maintt,
 # fresh .cmake binaries), so ALWAYS run build.ps1 (and any engine builds) first.
@@ -43,6 +43,13 @@ $stage["cgame.dll"]            = "$bin\code\client\cgame\Release\cgame.dll"
 $stage["game.dll"]             = "$bin\code\server\fgame\Release\game.dll"
 $stage["renderer_opengl1.dll"] = "$bin\code\renderercommon\renderergl1\Release\renderer_opengl1.dll"
 $stage["renderer_opengl2.dll"] = "$bin\code\renderercommon\renderergl2\Release\renderer_opengl2.dll"
+# [user 2026-08-10] Ship the DEDICATED server with a fresh install too. Without it a new user who
+# wants to host has to run the updater once first (the updater WOULD fetch it - it queues anything
+# missing from disk - but a fresh install should just be complete). This entry and the matching
+# Source line in hzm_coop.iss must stay in lockstep: this list seeds installed_manifest.json, which
+# is the updater's idea of what is on disk, so shipping one without the other makes the seed lie.
+$stage["omohaaded.exe"]        = "$bin\Release\omohaaded.exe"
+$stage["home/maintt/dedicated_example.cfg"] = "$mod\coop_mod\cfg\dedicated_example.cfg"
 $stage["updater.ps1"]          = "$dev\updater\updater.ps1"
 $stage["launch_coop.vbs"]      = "$dev\updater\launch_coop.vbs"
 $stage["report_problem.ps1"]   = "$dev\installer\report_problem.ps1"

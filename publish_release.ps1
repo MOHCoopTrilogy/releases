@@ -1,4 +1,4 @@
-# MOH Coop Trilogy - one-command release publisher
+﻿# MOH Coop Trilogy - one-command release publisher
 # Design: _research/auto_update.md section 6.
 # Usage:  .\publish_release.ps1 -Version 1.1.0 [-Notes "..."] [-DryRun]
 # Flow: preflight -> build -> stage -> manifest w/ asset reuse -> gh release (draft->publish)
@@ -53,6 +53,17 @@ $stage["cgame.dll"]            = "$gog\cgame.dll"
 $stage["game.dll"]             = "$gog\game.dll"
 $stage["renderer_opengl1.dll"] = "$gog\renderer_opengl1.dll"
 $stage["renderer_opengl2.dll"] = "$gog\renderer_opengl2.dll"
+# [user 2026-08-10] SHIP THE DEDICATED SERVER. Without this a downloader cannot host a working
+# dedicated server at all: the binary they already have predates bug-1664 (Cbuf_Execute could not
+# retire a `wait N`, so the command buffer stalled forever and the server booted to silence, loading
+# no map) and bug-1667 (timeBeginPeriod sat inside #ifndef DEDICATED, so every 25ms frame quantised
+# to ~31.2ms and the "slow server" icon stayed lit). game.dll already shipped, so the server-side
+# game fixes reached hosts - the executable meant to run them did not.
+$stage["omohaaded.exe"]        = "$gog\omohaaded.exe"
+# A worked example of how to actually start one. coop_mod/start_server.cfg cannot be reused as-is:
+# it ends in `ui_startdmmap 2`, a CLIENT-only UI command that does not exist on a dedicated server,
+# so a host copying it gets a server that loads nothing.
+$stage["home/maintt/dedicated_example.cfg"] = "$mod\coop_mod\cfg\dedicated_example.cfg"
 # updater self-update
 $stage["updater.ps1"]     = "$dev\updater\updater.ps1"
 $stage["launch_coop.vbs"] = "$dev\updater\launch_coop.vbs"

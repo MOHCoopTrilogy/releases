@@ -12,28 +12,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | | |
 |---|---|
-| branch | `main` |
-| HEAD | `0be41cf 2026-08-10 manifest 1.2.5` |
-| commits | 62 |
+| branch | `docs/openwolf-doc-set` |
+| HEAD | `42ad7cd 2026-08-10 docs: add the OpenWolf authored + generated doc set` |
+| commits | 63 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **1 modified, 33 untracked** |
-| unstaged diff | 1 file changed, 42 insertions(+), 26 deletions(-) |
+| **uncommitted** | **10 modified, 5 untracked** |
+| unstaged diff | 20 files changed, 930 insertions(+), 503 deletions(-) |
 
-> Working tree is dirty. Everything in those 34 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 15 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 8 |
+| 2026-08 | 9 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (62)
+### Commits since 2026-01-01 (63)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `42ad7cd` | 2026-08-10 | joncurry94-tech | docs: add the OpenWolf authored + generated doc set |
 | `0be41cf` | 2026-08-10 | joncurry94-tech | manifest 1.2.5 |
 | `a5c37b6` | 2026-08-09 | joncurry94-tech | manifest 1.2.4 |
 | `3b9ac62` | 2026-08-08 | joncurry94-tech | manifest 1.2.3 |
@@ -102,19 +103,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `f694b31 2026-08-07 v1.2.201: m3l1b coop pass, flak/bomb fixes, audio + console cleanup` |
-| commits | 1,396 |
+| HEAD | `c21a0dd 2026-08-10 coop: fix reliable-command overflow, blueprint pickup, HUD-fade class, Naxos` |
+| commits | 1,397 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **103 modified, 99 untracked** |
-| unstaged diff | 103 files changed, 10794 insertions(+), 4693 deletions(-) |
+| **uncommitted** | **20 modified, 3 untracked** |
+| unstaged diff | 20 files changed, 1897 insertions(+), 1348 deletions(-) |
 
-> Working tree is dirty. Everything in those 202 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 23 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 3 |
+| 2026-08 | 4 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -154,10 +155,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (47)
+### Commits since 2026-01-01 (48)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `c21a0dd` | 2026-08-10 | joncurry94 | coop: fix reliable-command overflow, blueprint pickup, HUD-fade class, Naxos |
 | `f694b31` | 2026-08-07 | joncurry94 | v1.2.201: m3l1b coop pass, flak/bomb fixes, audio + console cleanup |
 | `3266244` | 2026-08-07 | joncurry94 | v1.2.2 snapshot: Service Record reorganization + Medals & Badges + helmet/skin unlocks |
 | `7410b61` | 2026-08-06 | joncurry94 | v1.2.1 snapshot: audit fixes + audio mixer overhaul + Service Record pinning + 6 new challenges |
@@ -211,19 +213,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `a5f9c198 2026-08-06 engine source checkpoint for v1.2.1 release` |
-| commits | 4,982 |
+| HEAD | `5ea47c36 2026-08-10 engine: dedicated server boots + runs clean; restore engine cvar defaults` |
+| commits | 4,983 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **38 modified, 0 untracked** |
-| unstaged diff | 38 files changed, 1520 insertions(+), 168 deletions(-) |
+| **uncommitted** | **4 modified, 0 untracked** |
+| unstaged diff | 4 files changed, 100 insertions(+), 1 deletion(-) |
 
-> Working tree is dirty. Everything in those 38 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 4 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 2 |
+| 2026-08 | 3 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -284,10 +286,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (17)
+### Commits since 2026-01-01 (18)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `5ea47c36` | 2026-08-10 | joncurry94 | engine: dedicated server boots + runs clean; restore engine cvar defaults |
 | `a5f9c198` | 2026-08-06 | joncurry94 | engine source checkpoint for v1.2.1 release |
 | `06e36f7d` | 2026-08-03 | joncurry94 | engine source checkpoint for v1.2.0 release |
 | `819a6e93` | 2026-07-23 | joncurry94 | coop: default 3 dev-debug cvars OFF (server crash + spam fix) |

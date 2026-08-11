@@ -1,4 +1,4 @@
-; HZM MOH Coop Trilogy installer
+﻿; HZM MOH Coop Trilogy installer
 ; Fully self-contained side-by-side install: NEVER writes to the user's GOG game or
 ; their own OpenMOHAA. Our engine exe + dlls live in {app} (engine finds cgame/game.dll
 ; and the renderer modules beside the exe - Sys_LoadDll searches the binary dir before
@@ -44,6 +44,8 @@ Source: "{#Bin}\code\server\fgame\Release\game.dll"; DestDir: "{app}"; Flags: ig
 ; renderer modules (USE_RENDERER_DLOPEN=ON - the engine dlopens these from beside the exe)
 Source: "{#Bin}\code\renderercommon\renderergl1\Release\renderer_opengl1.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#Bin}\code\renderercommon\renderergl2\Release\renderer_opengl2.dll"; DestDir: "{app}"; Flags: ignoreversion
+; [user 2026-08-10] dedicated server binary - keep in lockstep with package_installer.ps1
+Source: "{#Bin}\Release\omohaaded.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#Gog}\SDL2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#Gog}\OpenAL64.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#Gog}\libcurl.dll"; DestDir: "{app}"; Flags: ignoreversion

@@ -1,4 +1,4 @@
-Add-Type -AssemblyName System.IO.Compression
+﻿Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 $srcDir     = "C:\mohaa-coop-dev\hzm-mohaa-coop-mod"
@@ -152,7 +152,13 @@ $binaries = @(
     @{ Name = "cgame.dll";            Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\client\cgame\Release\cgame.dll" },
     @{ Name = "game.dll";             Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\server\fgame\Release\game.dll" },
     @{ Name = "game.pdb";             Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\server\fgame\Release\game.pdb" },
-    @{ Name = "renderer_opengl1.dll"; Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\renderercommon\renderergl1\Release\renderer_opengl1.dll" }
+    @{ Name = "renderer_opengl1.dll"; Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\renderercommon\renderergl1\Release\renderer_opengl1.dll" },
+    # [user 2026-08-10] The DEDICATED server binary. It was never deployed here, so every engine
+    # build silently left omohaaded.exe stale - and it is what a self-hosting player runs. It also
+    # carries two fixes without which a dedicated server does not work AT ALL: bug-1664 (the command
+    # buffer never ran, so it booted to silence and loaded no map) and bug-1667 (the Windows timer
+    # was never raised, pinning the "slow server" icon on). publish_release.ps1 ships it too.
+    @{ Name = "omohaaded.exe";        Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\Release\omohaaded.exe" }
 )
 foreach ($bin in $binaries) {
     if (-not (Test-Path $bin.Src)) { continue }

@@ -1108,6 +1108,38 @@ map, runtime-confirmed dead aliases, labels run). Static layer 1 results:
 `scratchpad dead_aliases_confirmed.json` - 170 dead alias refs on 43 maps, families
 (bombtick/plantbomb/pickup_papers/door_locked) look retail-dead = restorable content.
 
+## m2l2a Phase C - the player-initiated CONTAIN (2026-08-10) - SHIPPED, partly verified
+
+`coop_mod/bust.scr` + `itemhandler.scr`. Gated on `coop_stealthStart 1`. Full design and the
+nine defects the playtest found: `docs/proposals/m2l2a_coop_stealth_master_plan_v2.md`
+("PHASE C AS PLAYED"), bugs 1682-1691.
+
+An officer stopping you is no longer a fail state - it is a fight you can win quietly, and the
+player moves FIRST. Approach an officer and you are told *"Avoid the Officer. Contain him only when
+alone."*; inside 112u, *"Press [USE] to Contain The Situation"*. USE plays the retail `punch1/2/3`
+pistol foley on him and lands a small non-lethal hit, which is the ONLY lever script has on an
+actor's think (`thinkstate` is getter-only; `Actor::EventPain` sets `THINKSTATE_PAIN` at
+`THINKLEVEL_PAIN`). He drops to his knees for 4.5s while the silenced pistol is force-drawn, given
+ammo, and HELD against the loadout arriving behind it.
+
+- **Killed unseen** -> papers back at once + *"Leave the Area Immediately."*; at +10s clean,
+  *"Situation Contained. Proceed with Caution."* and the squad is told who did it.
+- **Seen** (the stun OR the body) -> *"Situation Escalated - Weapons Free"* and the map's REAL alarm
+  via `trigger $waittrigger_alarm_master`.
+- **Not killed in time** -> he recovers and runs for the alarm, as normal.
+- **Afterwards** the corpse stays findable for the rest of the mission. Anyone who can see it reacts;
+  the first actor safe to interrupt kneels over it. Loiter within 320u on the same floor for 15s and
+  cover is blown - the timer resets when you leave.
+
+**VERIFIED in play:** the contain loop end to end; the escalation path handing over the FULL loadout;
+the bust-time aggro exemption ("solid timing"); and the body investigation - a guard walks to the
+corpse and stays with it ("hes staying near the body so I call that a win").
+**STILL UNVERIFIED:** the 15s loiter -> cover-blown escalation, the stun-witness route, and the
+Naxos room/hold prompts and sabotage bar.
+
+Status: `SHIPPED-VERIFIED` for the contain loop, escalation loadout and body investigation;
+`SHIPPED-UNVERIFIED` for the rest.
+
 ## m2l2a stealth foundations (v1.2.5, 2026-08-10) - SHIPPED, verified in play
 
 Not the stealth *feature* (that is Phase C, still on paper) - the layer underneath it, which was broken:
