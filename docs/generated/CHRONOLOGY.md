@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `4df7811 2026-08-11 Ship the m2l2a stealth route + Phase C contain ON by default` |
-| commits | 66 |
+| HEAD | `ea80cec 2026-08-11 publish: gate the release on the What's New card matching the version` |
+| commits | 67 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 12 |
+| 2026-08 | 13 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (66)
+### Commits since 2026-01-01 (67)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `ea80cec` | 2026-08-11 | joncurry94-tech | publish: gate the release on the What's New card matching the version |
 | `4df7811` | 2026-08-11 | joncurry94-tech | Ship the m2l2a stealth route + Phase C contain ON by default |
 | `a0f6a33` | 2026-08-11 | joncurry94-tech | manifest 1.2.6 |
 | `2d1df98` | 2026-08-10 | joncurry94-tech | Phase C: player-initiated contain on m2l2a, plus the fixes it uncovered |

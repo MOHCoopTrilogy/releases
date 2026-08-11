@@ -32,7 +32,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `UBER-MODS-v8.00-MOHAA` | 2,614 | 115.5 MB | no - reference | third-party mod, reference only |
 | `moh-modelviewer` | 1,270 | 565.8 MB | no - reference | Node model preview tool (rarely touched) |
 | `original-scripts` | 915 | 1173.7 MB | no - reference | vanilla MOHAA script/asset extraction (reference) |
-| `player1_home` | 293 | 2.3 MB | no - reference | test client profile dir |
+| `player1_home` | 293 | 2.7 MB | no - reference | test client profile dir |
 | `_research` | 171 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
 | `<root>` | 124 | 3409.4 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `extracted-scripts` | 99 | 2.6 MB | **yes** | extracted vanilla scripts kept for diffing |
@@ -772,7 +772,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `maptest_monitor.ps1` | 22 | 0.9 KB |  |
 | `maptest_watchdog.ps1` | 314 | 12.1 KB | Launches the game via launch_openmohaa_breakthrough.exe. |
 | `new_generic_human_extracted.tik` | 2,241 | 73.9 KB |  |
-| `publish_release.ps1` | 235 | 12.9 KB | Design: _research/auto_update.md section 6. |
+| `publish_release.ps1` | 253 | 14.1 KB | Design: _research/auto_update.md section 6. |
 | `resume_publish.ps1` | 92 | 4.4 KB | MOH Coop Trilogy - resume an interrupted publish (draft release with partial assets) |
 | `spawn_clicker.ps1` | 163 | 7.1 KB | Watches qconsole.log for ^~^~^ MAPTEST_LOADED, then left-clicks the center of |
 | `spawn_clicker_2player.ps1` | 283 | 11.6 KB | spawn_clicker_2player.ps1 |
