@@ -854,7 +854,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `docs.cmd` | 13 | 0.5 KB |  |
 | `docs.ps1` | 49 | 1.5 KB |  |
 | `gen_public_pages.py` | 540 | 21.2 KB | !/usr/bin/env python3 |
-| `gen_service_record.py` | 900 | 56.6 KB | [user 08-07] friendly display name for a challenge's reward field (chal_def's 7th arg) |
+| `gen_service_record.py` | 923 | 58.0 KB | [user 08-07] friendly display name for a challenge's reward field (chal_def's 7th arg) |
 | `hudslots.py` | 98 | 4.0 KB | !/usr/bin/env python3 |
 | `linecheck.py` | 127 | 5.8 KB | a continuation line may not START with one of these |
 | `quotecheck.py` | 79 | 2.8 KB |  |
@@ -1170,7 +1170,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `objective_positions.scr` | 89 | 3.6 KB | objective_positions.scr |
 | `objectives.scr` | 693 | 29.9 KB | Coop Side Objectives (optional / secondary) |
 | `officer.scr` | 4,643 | 202.6 KB | Officer Boss + Radio Station |
-| `officer_positions.scr` | 601 | 32.4 KB | coop_officer_positions.scr |
+| `officer_positions.scr` | 610 | 33.1 KB | coop_officer_positions.scr |
 | `paradrop.scr` | 724 | 29.5 KB | Allied Paradrop System |
 | `player.scr` | 1,822 | 90.8 KB | started by chrissstrahl on 2020.10.16 ([202]) |
 | `player.st` | 18 | 0.4 KB |  |

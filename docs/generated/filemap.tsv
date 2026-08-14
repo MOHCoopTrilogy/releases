@@ -340,7 +340,7 @@ docs/tools/docgen.py	62972	.py	1464	docs
 docs/tools/docs.cmd	467	.cmd	13	docs
 docs/tools/docs.ps1	1526	.ps1	49	docs
 docs/tools/gen_public_pages.py	21733	.py	540	docs
-docs/tools/gen_service_record.py	57962	.py	900	docs
+docs/tools/gen_service_record.py	59384	.py	923	docs
 docs/tools/hudslots.py	4069	.py	98	docs
 docs/tools/linecheck.py	5953	.py	127	docs
 docs/tools/quotecheck.py	2833	.py	79	docs
@@ -1412,7 +1412,7 @@ hzm-mohaa-coop-mod/coop_mod/objective_drop.scr	7236	.scr	165	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objective_positions.scr	3691	.scr	89	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objectives.scr	30583	.scr	693	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/officer.scr	207429	.scr	4643	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/officer_positions.scr	33169	.scr	601	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/officer_positions.scr	33908	.scr	610	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/paradrop.scr	30241	.scr	724	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/player.scr	92947	.scr	1822	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/player.st	398	.st	18	hzm-mohaa-coop-mod

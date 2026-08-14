@@ -161,13 +161,20 @@ def blueprint_supply():
     collection has no visible end. Remove some and it becomes unreachable, which is the state
     it shipped in (60 wanted, 31 existed, and found-blueprints persist so replaying never
     helped). Counted here so either direction is caught the day it happens.
+
+    COMMENTS ARE NOT PLACEMENTS. A plain count of the string reported 36 for 35 real calls,
+    because a comment in m4l2.scr explains what coop_bp_place does and the word counted. Each
+    line is stripped at '//' before matching, and only a real call is counted.
     """
     n = 0
     for path in glob.glob(os.path.join(MOD, "maps", "**", "*.scr"), recursive=True):
         try:
-            n += io.open(path, encoding="latin-1").read().count("coop_bp_place")
+            body = io.open(path, encoding="latin-1").read()
         except Exception:
-            pass
+            continue
+        for line in body.split("\n"):
+            code = line.split("//", 1)[0]
+            n += len(re.findall(r"coop_bp_place\s*\(", code))
     return n
 
 
