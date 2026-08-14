@@ -312,11 +312,11 @@ docs/proposals/surgical_operation_hd_analysis.md	20843	.md	313	docs
 docs/proposals/surgical_operation_v10_analysis.md	32194	.md	454	docs
 docs/proposals/surgical_operation_version_hunt.md	13923	.md	222	docs
 docs/public/BUGFIXES.md	1172	.md	25	docs
-docs/public/CHALLENGES.md	26180	.md	423	docs
+docs/public/CHALLENGES.md	26173	.md	423	docs
 docs/public/FEATURES.md	17991	.md	257	docs
 docs/public/MAPS.md	2734	.md	99	docs
 docs/public/ROADMAP.md	3284	.md	70	docs
-docs/public/UNLOCKABLES.md	20848	.md	258	docs
+docs/public/UNLOCKABLES.md	20837	.md	258	docs
 docs/public/fixes/ai-enemy-behaviour.md	177299	.md	354	docs
 docs/public/fixes/audio.md	18053	.md	41	docs
 docs/public/fixes/build-deploy-tooling.md	9182	.md	26	docs
@@ -1342,7 +1342,7 @@ hzm-mohaa-coop-mod/coop_mod/cfg/objdiag.cfg	490	.cfg	11	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/posetest.cfg	659	.cfg	11	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/wallgun.cfg	2304	.cfg	49	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/wallgun_off.cfg	936	.cfg	27	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/challenges.scr	217615	.scr	3514	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/challenges.scr	217617	.scr	3514	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/collectible.scr	18948	.scr	373	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/coop_placements.scr	32871	.scr	1021	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/coop_selftest.scr	13524	.scr	320	hzm-mohaa-coop-mod

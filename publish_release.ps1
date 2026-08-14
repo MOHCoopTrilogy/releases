@@ -248,9 +248,15 @@ if ($hook) {
     # bugfix note describing a brace typo) which would break the format operator and skip the announcement
     $mb = "{0:N0}" -f $totalUploadMB
     $msg = ":flag_us: :rocket: **MOH Coop Trilogy v$Version is live!**`n`n$notesTrim`n`nUpdates automatically on your next launch ($mb MB download). Full notes: https://github.com/$repoSlug/releases/tag/$tag"
+    # [2026-08-14] SEND THE BODY AS UTF-8 BYTES, not as a string. PowerShell 5.1 encodes a string
+    # body as ISO-8859-1, so any non-ASCII character in the notes - an em-dash, a curly quote, an
+    # accented name like Fallschirmjaeger - reaches Discord as mojibake inside otherwise-valid JSON
+    # and the webhook answers 400. That failure is caught below and only warns, so the announcement
+    # would be skipped SILENTLY while the publish reported success. Observed on the v1.2.8 post.
     $payload = @{ content = $msg } | ConvertTo-Json -Depth 3
+    $payloadBytes = [System.Text.Encoding]::UTF8.GetBytes($payload)
     try {
-        Invoke-RestMethod -Uri $hook -Method Post -ContentType 'application/json' -Body $payload | Out-Null
+        Invoke-RestMethod -Uri $hook -Method Post -ContentType 'application/json; charset=utf-8' -Body $payloadBytes | Out-Null
         Write-Host "Discord announcement posted"
     } catch {
         Write-Host "WARNING: Discord announcement failed: $($_.Exception.Message)" -ForegroundColor Yellow

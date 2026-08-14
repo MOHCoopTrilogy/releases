@@ -13,25 +13,25 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `952e830 2026-08-13 docs: unlockables chart, and be honest about state and debug tools` |
-| commits | 76 |
+| HEAD | `2e11a4d 2026-08-14 docs: regenerate challenge pages after retune` |
+| commits | 77 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
-| unstaged diff | 5 files changed, 26 insertions(+), 27 deletions(-) |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 22 |
+| 2026-08 | 23 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (76)
+### Commits since 2026-01-01 (77)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `2e11a4d` | 2026-08-14 | joncurry94-tech | docs: regenerate challenge pages after retune |
 | `952e830` | 2026-08-13 | joncurry94-tech | docs: unlockables chart, and be honest about state and debug tools |
 | `d6825bd` | 2026-08-13 | joncurry94-tech | publish: repair the updater fallback and the tooling that broke it |
 | `704cf13` | 2026-08-13 | joncurry94-tech | manifest 1.2.8 |
@@ -114,19 +114,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `29272f9 2026-08-13 v1.2.8: capture-safe borderless, audio device fix, Service Record repair` |
-| commits | 1,399 |
+| HEAD | `6a91c88 2026-08-14 challenges: make unreachable targets reachable (audit of all 344)` |
+| commits | 1,400 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **1 modified, 0 untracked** |
-| unstaged diff | 1 file changed, 2 insertions(+), 2 deletions(-) |
-
-> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 6 |
+| 2026-08 | 7 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -166,10 +163,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (50)
+### Commits since 2026-01-01 (51)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `6a91c88` | 2026-08-14 | joncurry94 | challenges: make unreachable targets reachable (audit of all 344) |
 | `29272f9` | 2026-08-13 | joncurry94 | v1.2.8: capture-safe borderless, audio device fix, Service Record repair |
 | `69a7ed9` | 2026-08-13 | joncurry94 | v1.2.7: m6l2a stealth route, level-2 checkpoint, and the bust fixes it found |
 | `c21a0dd` | 2026-08-10 | joncurry94 | coop: fix reliable-command overflow, blueprint pickup, HUD-fade class, Naxos |
