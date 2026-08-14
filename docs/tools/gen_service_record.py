@@ -10,6 +10,8 @@ def sans(sz,b=False):
     except: return ImageFont.load_default()
 
 TW=TH=2048; RX,RY,RW,RH=80,8,480,462
+SCALE=TW/640.0        # texture px per .urc unit - the two coordinate spaces this file juggles
+BP_LABEL_RECT=None    # set by page_bg once the blueprint caption is laid out and verified
 def sx(tx): return RX + tx*RW/TW
 def sy(ty): return RY + ty*RH/TH
 ROW0=362
@@ -428,7 +430,44 @@ def page_bg(header, items, isWeapon, rowh):
     for y in range(ny0,ny1): d.line([(240,y),(TW-240,y)],fill=lerp((0xE2,0xC0,0x72),(0x88,0x60,0x20),(y-ny0)/(ny1-ny0)))
     d.rectangle([236,ny0-5,TW-236,ny1+3],outline=(0x48,0x33,0x12),width=5)
     f=serif(130); t="SERVICE RECORD"; tb=d.textbbox((0,0),t,font=f)
-    d.text(((TW-(tb[2]-tb[0]))//2-tb[0],(ny0+ny1)//2-(tb[3]-tb[1])//2-tb[1]),t,font=f,fill=(0x33,0x22,0x0c))
+    # [user 2026-08-14] The title is nudged LEFT to make room for the blueprint counter on the
+    # right of the banner. Dead-centre leaves only 48 urc each side and the counter needs ~70;
+    # shifting 26 urc opens the right side to ~74 while staying visually centred to the eye,
+    # since the banner's own left margin absorbs it. The assert below is what proves it fits.
+    _titleX=(TW-(tb[2]-tb[0]))//2-tb[0]-int(26*SCALE)
+    d.text((_titleX,(ny0+ny1)//2-(tb[3]-tb[1])//2-tb[1]),t,font=f,fill=(0x33,0x22,0x0c))
+
+    # [user 2026-08-14] "BLUEPRINTS n/31" in the TITLE BANNER, right of the title.
+    #
+    # It is here because nowhere else has room. The category header row was measured and is
+    # full: the gap between the longest category name (SUPPORT WEAPONS) and the PINNED caption
+    # is 37 urc, the caption alone needs 60, and the widgets right of it (pinSummary, clearPins
+    # and the three pager parts) leave ~22 urc of total slack between them. A first attempt put
+    # the caption on top of CLEAR PINS and the count on top of the pager.
+    #
+    # Font 24 rather than the header's 30: at 30 the caption plus its count needs 82 urc against
+    # 74 free inside the banner, so it would not have fitted either.
+    #
+    # The ASSERTS below are the real fix. Coordinate arithmetic alone already shipped one
+    # overlapping layout; now a bad layout stops the build instead of reaching a screenshot.
+    # STACKED, not side by side. The title is 396 urc wide and the banner 492, so each side has
+    # only 48 urc - the caption plus its count needs 70 on one line and the first attempt at this
+    # tripped the assert below. The banner is 40 urc TALL though, so the caption sits above its
+    # number and both fit in 48x40. Measured, not estimated: the assert is what caught it.
+    global BP_LABEL_RECT
+    _bf=sans(20,True); _bc="BLUEPRINTS"
+    _bcb=d.textbbox((0,0),_bc,font=_bf)
+    _bcw=_bcb[2]-_bcb[0]
+    _right=(TW-236)-int(6*SCALE)             # inside the banner's right edge, small margin
+    _capX=_right-_bcw
+    _titleRight=_titleX+(tb[2]-tb[0])
+    assert _capX > _titleRight+int(6*SCALE), (
+        "BLUEPRINTS caption would collide with the SERVICE RECORD title "
+        "(caption starts %d, title ends %d)"%(_capX,_titleRight))
+    assert _right <= TW-236, "BLUEPRINTS block would overflow the banner"
+    d.text((_capX, ny0+int(6*SCALE)), _bc, font=_bf, fill=(0x33,0x22,0x0c))
+    # the count Label sits directly under the caption, still inside the banner
+    BP_LABEL_RECT=(int(_capX/SCALE), int((ny0+int(20*SCALE))/SCALE), int(_bcw/SCALE), 12)
     d.rectangle([120,272,TW-120,344], fill=(0x3a,0x2b,0x14)); d.rectangle([120,272,132,344],fill=(0xC9,0xA2,0x4b))
     d.text((160,286), header, font=sans(52,True), fill=(0xE8,0xCb,0x86))
     # [user 08-07] "PINNED" caption baked onto the header bar, with the live count Label
@@ -438,14 +477,6 @@ def page_bg(header, items, isWeapon, rowh):
     _pf=sans(30,True); _pt="PINNED"
     _ptb=d.textbbox((0,0),_pt,font=_pf)
     d.text((930-(_ptb[2]-_ptb[0]),300), _pt, font=_pf, fill=(0xC9,0xA2,0x4b))
-    # [user 2026-08-14] "BLUEPRINTS n/31" caption, same trick as PINNED and for the same reason -
-    # the word is baked into the texture because an unquoted stufftext value stops at the first
-    # space, so the cvar it sits next to has to stay a single token. The lifetime total already
-    # existed, but only as the progress number on one challenge row buried among 50-odd others;
-    # nothing told a player that row doubled as their blueprint counter.
-    _bt="BLUEPRINTS"
-    _btb=d.textbbox((0,0),_bt,font=_pf)
-    d.text((1500-(_btb[2]-_btb[0]),300), _bt, font=_pf, fill=(0xC9,0xA2,0x4b))
     # fonts scale with the row height so dense pages stay legible & non-overlapping
     tf=max(28,min(44,int(rowh*0.52))); df=max(19,min(30,int(rowh*0.34))); doff=tf+3
     ft=sans(tf,True); fdc=sans(df); fcnt=sans(46,True)
@@ -815,18 +846,22 @@ L+=["resource","Label","{",'name "pinSummary"',"rect 302 74 60 14",
     "fgcolor 0.98 0.84 0.36 1.00","bgcolor 0.00 0.00 0.00 0.00","borderstyle \"NONE\"",
     "font \"verdana-12\"","textalign left","dontlocalize",'linkcvar "coop_pinCount"',"}",""]
 
-# [user 2026-08-14] BLUEPRINT TOTAL in the header. It binds to the SAME per-row cvar the top
-# blueprint challenge already publishes (coop_uiN<gi>, holding a ready-made "17/31"), so there is
-# no second counter to drift out of step with the first - if the row is right, the header is right.
-# The index is resolved HERE, at generation time, because a global catalog index moves whenever
-# challenges are added or reordered; hard-coding it in the .urc would silently point at some other
-# challenge the next time the list changed.
+# [user 2026-08-14] BLUEPRINT TOTAL, under its caption in the title banner. Binds to the SAME
+# cvar the top blueprint challenge row already publishes (coop_uiN<gi>, a ready-made "17/31"),
+# so there is no second counter that can drift from the first. The index is resolved HERE at
+# generation time from the generator's own cid->index map, because a global catalog index moves
+# whenever challenges are added or reordered - a hard-coded one would silently come to point at
+# some other challenge. The rect comes from page_bg, which is where the caption was actually
+# laid out and asserted, so the Label cannot drift away from the word it belongs to.
 if "bp_60" not in idx:
     raise SystemExit("gen_service_record: bp_60 not found - the blueprint header has nothing to bind to")
-_bpgi=idx["bp_60"]   # idx is cid -> global export index, built from file order at :352
-L+=["resource","Label","{",'name "bpSummary"',"rect 492 74 60 14",
-    "fgcolor 0.98 0.84 0.36 1.00","bgcolor 0.00 0.00 0.00 0.00","borderstyle \"NONE\"",
-    "font \"verdana-12\"","textalign left","dontlocalize",'linkcvar "coop_uiN%d"'%_bpgi,"}",""]
+if BP_LABEL_RECT is None:
+    raise SystemExit("gen_service_record: page_bg never laid out the blueprint caption")
+_bx,_by,_bw,_bh=BP_LABEL_RECT
+L+=["resource","Label","{",'name "bpSummary"',"rect %d %d %d %d"%(_bx,_by,_bw,_bh),
+    "fgcolor 0.20 0.13 0.05 1.00","bgcolor 0.00 0.00 0.00 0.00","borderstyle \"NONE\"",
+    "font \"verdana-12\"","textalign center","dontlocalize",'linkcvar "coop_uiN%d"'%idx["bp_60"],"}",""]
+
 
 L+=["end.",""]
 

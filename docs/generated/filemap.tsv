@@ -334,13 +334,13 @@ docs/reference/harness_and_reproduction.md	4740	.md	33	docs
 docs/reference/tiki_and_sound_aliases.md	4875	.md	60	docs
 docs/reference/warchestrestored_v1.1.0_changelog.txt	45915	.txt	872	docs
 docs/tools/README.md	5123	.md	91	docs
-docs/tools/check_challenges.py	11859	.py	282	docs
+docs/tools/check_challenges.py	13141	.py	309	docs
 docs/tools/depthscan2.py	2359	.py	76	docs
 docs/tools/docgen.py	62972	.py	1464	docs
 docs/tools/docs.cmd	467	.cmd	13	docs
 docs/tools/docs.ps1	1526	.ps1	49	docs
 docs/tools/gen_public_pages.py	21733	.py	540	docs
-docs/tools/gen_service_record.py	54931	.py	844	docs
+docs/tools/gen_service_record.py	54088	.py	845	docs
 docs/tools/hudslots.py	4069	.py	98	docs
 docs/tools/linecheck.py	5953	.py	127	docs
 docs/tools/quotecheck.py	2833	.py	79	docs
@@ -7390,8 +7390,8 @@ hzm-mohaa-coop-mod/ui/options_main.urc	5510	.urc	253	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	541870468	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	791275283	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23137739	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	791318139	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23137755	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm_coop_framework_guide.md	27594	.md	382	<root>
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -10212,7 +10212,7 @@ relnotes_1.2.1.md	1025	.md	15	<root>
 resume_publish.ps1	8738	.ps1	157	<root>
 rollout_implementation_log.md	13772	.md	194	<root>
 scratchpad/rcon.py	926	.py	27	scratchpad
-server_home/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home
+server_home/maintt/OpenMoHAA_server.pid	4	.pid	0	server_home
 server_home/maintt/autoexec.cfg	90014	.cfg	1208	server_home
 server_home/maintt/coop_defaults.cfg	17316	.cfg	278	server_home
 server_home/maintt/coop_mod/save/bpfound_89AA62A71BEF42BA7FA4B2DE9E15F03A.dat	16	.dat	0	server_home
