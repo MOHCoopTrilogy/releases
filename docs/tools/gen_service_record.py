@@ -465,9 +465,32 @@ def page_bg(header, items, isWeapon, rowh):
         "BLUEPRINTS caption would collide with the SERVICE RECORD title "
         "(caption starts %d, title ends %d)"%(_capX,_titleRight))
     assert _right <= TW-236, "BLUEPRINTS block would overflow the banner"
-    d.text((_capX, ny0+int(6*SCALE)), _bc, font=_bf, fill=(0x33,0x22,0x0c))
-    # the count Label sits directly under the caption, still inside the banner
-    BP_LABEL_RECT=(int(_capX/SCALE), int((ny0+int(20*SCALE))/SCALE), int(_bcw/SCALE), 12)
+    _capY=ny0+int(6*SCALE)
+    d.text((_capX, _capY), _bc, font=_bf, fill=(0x33,0x22,0x0c))
+
+    # The count Label sits directly UNDER the caption, centred on it.
+    #
+    # TEXTURE -> WIDGET COORDINATES. These are two different spaces and conflating them is what
+    # put the count outside the banner, on the dark backing, in dark-on-dark text. The page
+    # background is drawn into rect RX RY RW RH (80 8 480 462), so a texture pixel maps to:
+    #     widget_x = RX + tex_x * RW/TW        widget_y = RY + tex_y * RH/TH
+    # NOT tex/3.2, which is what the first version used - that has no origin offset and the
+    # wrong scale on both axes. Checked against a known widget rather than assumed: pinSummary
+    # sits at widget x 302, which back-maps to texture 947, and the baked PINNED caption ends at
+    # texture 930. The two agree; the /3.2 version does not.
+    def _t2ux(x): return RX + x*float(RW)/TW
+    def _t2uy(y): return RY + y*float(RH)/TH
+    _lx=_t2ux(_capX); _lw=_bcw*float(RW)/TW
+    # +9 urc, not +26: the caption is a 20px font in texture space, so it occupies barely 20
+    # texture pixels and the count only has to clear that. A 26-urc drop put the label's bottom
+    # below the banner (the assert below reported 52.7-63.7 against a banner ending at 58.5).
+    _ly=_t2uy(_capY+int(9*SCALE))
+    _bTop,_bBot=_t2uy(ny0),_t2uy(ny1)
+    assert _ly >= _bTop and _ly+11 <= _bBot, (
+        "blueprint count would fall outside the banner (label y %.1f-%.1f, banner %.1f-%.1f)"
+        %(_ly,_ly+11,_bTop,_bBot))
+    assert _t2ux(_right) <= RX+RW, "blueprint block would overflow the panel"
+    BP_LABEL_RECT=(int(_lx), int(_ly), int(_lw), 11)
     d.rectangle([120,272,TW-120,344], fill=(0x3a,0x2b,0x14)); d.rectangle([120,272,132,344],fill=(0xC9,0xA2,0x4b))
     d.text((160,286), header, font=sans(52,True), fill=(0xE8,0xCb,0x86))
     # [user 08-07] "PINNED" caption baked onto the header bar, with the live count Label

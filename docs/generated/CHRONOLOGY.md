@@ -13,27 +13,25 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `38e6482 2026-08-14 tooling: check blueprint supply against the bp_* ladder` |
-| commits | 85 |
+| HEAD | `c6620b4 2026-08-14 tooling: assert the service-record header layout instead of trusting arithmetic` |
+| commits | 86 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **1 modified, 0 untracked** |
-| unstaged diff | 6 files changed, 27 insertions(+), 46 deletions(-) |
-
-> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 31 |
+| 2026-08 | 32 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (85)
+### Commits since 2026-01-01 (86)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `c6620b4` | 2026-08-14 | joncurry94-tech | tooling: assert the service-record header layout instead of trusting arithmetic |
 | `38e6482` | 2026-08-14 | joncurry94-tech | tooling: check blueprint supply against the bp_* ladder |
 | `940517b` | 2026-08-14 | joncurry94-tech | docs: regenerate; correct bug-1801 (ours, not pre-existing, now fixed) |
 | `408a0f7` | 2026-08-14 | joncurry94-tech | docs: regenerate challenge pages; log t2l1 nebelwerfer script errors (bug-1801) |
@@ -125,19 +123,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `138bc64 2026-08-14 service record: dedicated BLUEPRINTS n/31 counter in the header` |
-| commits | 1,411 |
+| HEAD | `ec0d1b1 2026-08-14 service record: BLUEPRINTS counter in the title banner, with layout asserts` |
+| commits | 1,412 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **1 modified, 0 untracked** |
-| unstaged diff | 1 file changed, 14 deletions(-) |
-
-> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 18 |
+| 2026-08 | 19 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -177,10 +172,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (62)
+### Commits since 2026-01-01 (63)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `ec0d1b1` | 2026-08-14 | joncurry94 | service record: BLUEPRINTS counter in the title banner, with layout asserts |
 | `138bc64` | 2026-08-14 | joncurry94 | service record: dedicated BLUEPRINTS n/31 counter in the header |
 | `e3d723a` | 2026-08-14 | joncurry94 | cosmetics: gate the eight Elite rewards, free the two nobody could ever get |
 | `844a668` | 2026-08-14 | joncurry94 | challenges: all 344 now earnable; fix the launcher sweep that caused the t2l1 errors |

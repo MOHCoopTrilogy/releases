@@ -340,7 +340,7 @@ docs/tools/docgen.py	62972	.py	1464	docs
 docs/tools/docs.cmd	467	.cmd	13	docs
 docs/tools/docs.ps1	1526	.ps1	49	docs
 docs/tools/gen_public_pages.py	21733	.py	540	docs
-docs/tools/gen_service_record.py	54088	.py	845	docs
+docs/tools/gen_service_record.py	57962	.py	900	docs
 docs/tools/hudslots.py	4069	.py	98	docs
 docs/tools/linecheck.py	5953	.py	127	docs
 docs/tools/quotecheck.py	2833	.py	79	docs
@@ -6747,7 +6747,7 @@ hzm-mohaa-coop-mod/ui/coop_postfx2.urc	8063	.urc	390	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_postfx3.urc	5733	.urc	259	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_report.urc	2822	.urc	152	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_settings.urc	7706	.urc	369	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ui/coop_sr.urc	552984	.urc	30725	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/coop_sr.urc	553199	.urc	30739	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_sr_pinclear.cfg	6952	.cfg	369	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_sr_pinreset.cfg	6620	.cfg	351	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_start.urc	10684	.urc	421	hzm-mohaa-coop-mod
@@ -7390,8 +7390,8 @@ hzm-mohaa-coop-mod/ui/options_main.urc	5510	.urc	253	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	541870468	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	791318139	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23137755	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	791320221	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23137780	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm_coop_framework_guide.md	27594	.md	382	<root>
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -10212,7 +10212,7 @@ relnotes_1.2.1.md	1025	.md	15	<root>
 resume_publish.ps1	8738	.ps1	157	<root>
 rollout_implementation_log.md	13772	.md	194	<root>
 scratchpad/rcon.py	926	.py	27	scratchpad
-server_home/maintt/OpenMoHAA_server.pid	4	.pid	0	server_home
+server_home/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home
 server_home/maintt/autoexec.cfg	90014	.cfg	1208	server_home
 server_home/maintt/coop_defaults.cfg	17316	.cfg	278	server_home
 server_home/maintt/coop_mod/save/bpfound_89AA62A71BEF42BA7FA4B2DE9E15F03A.dat	16	.dat	0	server_home
@@ -10238,7 +10238,7 @@ server_home/maintt/prev/qconsole-20260813-194907.log	352996	.log	0	server_home
 server_home/maintt/prev/qconsole-20260813-195042.log	254479	.log	0	server_home
 server_home/maintt/prev/qconsole-20260813-195345.log	324031	.log	0	server_home
 server_home/maintt/prev/qconsole-20260813-211030.log	731864	.log	0	server_home
-server_home/maintt/qconsole.log	218018	.log	0	server_home
+server_home/maintt/qconsole.log	218020	.log	0	server_home
 server_home_probe/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home_probe
 server_home_probe/maintt/autoexec.cfg	89444	.cfg	1202	server_home_probe
 server_home_probe/maintt/coop_defaults.cfg	12385	.cfg	217	server_home_probe
