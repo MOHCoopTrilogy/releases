@@ -13,27 +13,26 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `d6825bd 2026-08-13 publish: repair the updater fallback and the tooling that broke it` |
-| commits | 75 |
+| HEAD | `952e830 2026-08-13 docs: unlockables chart, and be honest about state and debug tools` |
+| commits | 76 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **2 modified, 0 untracked** |
-| unstaged diff | 10 files changed, 220 insertions(+), 174 deletions(-) |
-
-> Working tree is dirty. Everything in those 2 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
+| unstaged diff | 5 files changed, 26 insertions(+), 27 deletions(-) |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 21 |
+| 2026-08 | 22 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (75)
+### Commits since 2026-01-01 (76)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `952e830` | 2026-08-13 | joncurry94-tech | docs: unlockables chart, and be honest about state and debug tools |
 | `d6825bd` | 2026-08-13 | joncurry94-tech | publish: repair the updater fallback and the tooling that broke it |
 | `704cf13` | 2026-08-13 | joncurry94-tech | manifest 1.2.8 |
 | `4acd1e0` | 2026-08-13 | joncurry94-tech | docs: generate the public documentation set |
@@ -118,7 +117,10 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | HEAD | `29272f9 2026-08-13 v1.2.8: capture-safe borderless, audio device fix, Service Record repair` |
 | commits | 1,399 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **1 modified, 0 untracked** |
+| unstaged diff | 1 file changed, 2 insertions(+), 2 deletions(-) |
+
+> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 

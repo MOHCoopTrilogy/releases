@@ -24,7 +24,7 @@ Usable weapons added to your loadout options.
 | **Arisaka Sniper** | Palm Nest | Get 100 kills with the Arisaka |
 | **BAR** | Iron Curtain Smasher | Eliminate 250 Wehrmacht infantry |
 | **Beretta Silenced** | Bella Silenziosa | Get 50 kills with the Beretta |
-| **Breda** | Apennine Breakthrough | Eliminate 150 Italian infantry |
+| **Breda** | Apennine Breakthrough | Eliminate 110 Italian infantry |
 | **Carcano Sniper** | Cecchino | Get 100 kills with the Carcano |
 | **Colt Silenced** | Old Slabsides | Get 50 kills with the Colt .45 |
 | **Enfield Sniper** | His Majesty's Marksman | Get 25 kills with the L42A1 |
@@ -44,7 +44,7 @@ Usable weapons added to your loadout options.
 | **Nagant Sniper Silenced** | Zaitsev's Trade | Get 30 kills with the Mosin Sniper |
 | **P38 Silenced** | Officer's Whisper | Get 50 kills with the Walther P38 |
 | **Ppsh43 Silenced** | Silent Papasha | Get 100 kills with the PPSh-41 |
-| **Shotgun** | Shadow Hunter | Eliminate 20 Gestapo and SS police |
+| **Shotgun** | Shadow Hunter | Eliminate 12 Gestapo officers |
 | **Springfield** | Kopfschuss | Get 25 headshot kills |
 | **Thompson50** | More Dakka | Get 100 kills with the Thompson |
 | **Tt33 Silenced** | Soviet Silencer | Get 50 kills with the TT-33 |
@@ -102,7 +102,7 @@ Headgear for your soldier, picked in the Helmet selector.
 | **Coop Helmet Ger Beret** | Quad-Twenty | Destroy the 20mm Flaks in the frozen forest |
 | **Coop Helmet Ger Covered** | Silence in the Pens | Reach the second U-boat without raising the alarm |
 | **Coop Helmet Ger Creasecap** | Hoist by His Own Petard | Make an officer blow himself up with one of his own reinforcements |
-| **Coop Helmet Ger Crusher** | High-Value Target | Eliminate 15 high-ranking commanders |
+| **Coop Helmet Ger Crusher** | High-Value Target | Eliminate 8 high-ranking commanders |
 | **Coop Helmet Ger Hat** | Nothing Quiet About It | Clear the church and hotel at Stavelot |
 | **Coop Helmet Ger Helmet** | Wire It Quiet | Wire the radio command post undetected |
 | **Coop Helmet Ger Helmet Sh** | Papers, Please | Infiltrate the ship in disguise without blowing your cover |
@@ -121,7 +121,7 @@ Headgear for your soldier, picked in the Helmet selector.
 | **Coop Helmet Sergeant** | Roman Roscoe | Get 90 kills with the Beretta (Elite) |
 | **Coop Helmet Soviet Hat** | Somme Survivor | Get 90 kills with the Vickers (Elite) |
 | **Coop Helmet Ss Mutze** | Chain of Command Broken | Eliminate 50 German field officers |
-| **Coop Helmet Ss Officerhat** | Total De-Nazification | Eliminate 60 Gestapo and SS police |
+| **Coop Helmet Ss Officerhat** | Total De-Nazification | Eliminate 20 Gestapo officers |
 | **Coop Helmet Ssncocap** | Hell Let Loose | Wipe out an officer, his bodyguards and the battalion without going down |
 | **Coop Helmet Uk Helmet** | Crossing the Waal | Destroy both Flak 88s guarding the bridge town |
 | **Coop Helmet Us Gasmask** | Not Today, Fritz | Survive a Stuka dive and an artillery barrage on the same map without going down |

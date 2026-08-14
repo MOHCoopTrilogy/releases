@@ -356,9 +356,9 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **The Way it Was** | Destroy the U-boat the way it was intended to be |
 | **Mit den Fischen schlafen** | Scuttle the U-boat without killing a single man yourself - let the sea take them |
 | **Paper Trail** | Recover 5 hidden blueprints |
-| **Draughtsman** | Recover 15 hidden blueprints |
-| **Archivist** | Recover 30 hidden blueprints |
-| **The Whole Portfolio** | Recover 60 hidden blueprints |
+| **Draughtsman** | Recover 12 hidden blueprints |
+| **Archivist** | Recover 20 hidden blueprints |
+| **The Whole Portfolio** | Recover all 31 hidden blueprints |
 | **Eyes Open** | Clear Sniper Town without ever using a scope or the aim camera |
 | **The Long Way** | Hold the bocage house without ever firing a mounted machinegun |
 | **Weathered** | Complete a mission in each of the five weather themes |
@@ -400,24 +400,24 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Frontline Sweeper** | Eliminate 50 Wehrmacht infantry |
 | **Iron Curtain Smasher** | Eliminate 250 Wehrmacht infantry |
 | **The Scourge of Berlin** | Eliminate 1000 Wehrmacht infantry |
-| **Submarine Saboteur** | Eliminate 25 Kriegsmarine sailors |
-| **U-Boat Threat Neutralized** | Eliminate 75 Kriegsmarine sailors |
+| **Submarine Saboteur** | Eliminate 15 Kriegsmarine sailors |
+| **U-Boat Threat Neutralized** | Eliminate 35 Kriegsmarine sailors |
 | **Desert Fox Hunter** | Eliminate 50 Afrika Korps soldiers |
 | **Sands of Victory** | Eliminate 150 Afrika Korps soldiers |
 | **Grounded** | Eliminate 30 Fallschirmjaeger troops |
 | **Airborne Annihilator** | Eliminate 100 Fallschirmjaeger troops |
-| **Shadow Hunter** | Eliminate 20 Gestapo and SS police |
-| **Total De-Nazification** | Eliminate 60 Gestapo and SS police |
+| **Shadow Hunter** | Eliminate 12 Gestapo officers |
+| **Total De-Nazification** | Eliminate 20 Gestapo officers |
 | **Anzio Advance** | Eliminate 40 Italian infantry |
-| **Apennine Breakthrough** | Eliminate 150 Italian infantry |
+| **Apennine Breakthrough** | Eliminate 110 Italian infantry |
 | **Plucked Feathers** | Eliminate 25 Italian paratroopers |
 | **Speed Limit Enforced** | Eliminate 75 Italian paratroopers |
-| **Town Marshal** | Eliminate 20 Italian militia volunteers |
-| **The New Order** | Eliminate 50 Italian militia volunteers |
+| **Town Marshal** | Eliminate 10 Italian militia volunteers |
+| **The New Order** | Eliminate 20 Italian militia volunteers |
 | **Silencing the Comm-Link** | Eliminate 15 German field officers |
 | **Chain of Command Broken** | Eliminate 50 German field officers |
-| **Bunker Buster** | Eliminate 5 high-ranking commanders |
-| **High-Value Target** | Eliminate 15 high-ranking commanders |
+| **Bunker Buster** | Eliminate 4 high-ranking commanders |
+| **High-Value Target** | Eliminate 8 high-ranking commanders |
 | **Counter-Sniper** | Eliminate 15 enemy snipers |
 | **Ghost in the Fog** | Eliminate 45 enemy snipers |
 

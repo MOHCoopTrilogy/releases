@@ -10,9 +10,9 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 35,654 |
+| files in the workspace | 35,655 |
 | bytes | 39.8 GB |
-| files in project scope (indexed per-file) | 10,283 |
+| files in project scope (indexed per-file) | 10,284 |
 | source files (per-file rows with line counts) | 4,829 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
@@ -35,7 +35,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `player1_home` | 296 | 3.0 MB | no - reference | test client profile dir |
 | `_research` | 171 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
 | `<root>` | 124 | 3409.4 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
-| `docs` | 119 | 3.9 MB | **yes** | this documentation set (authored + generated) |
+| `docs` | 120 | 4.0 MB | **yes** | this documentation set (authored + generated) |
 | `extracted-scripts` | 99 | 2.6 MB | **yes** | extracted vanilla scripts kept for diffing |
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
 | `_menu_pilot` | 81 | 90.7 MB | no - reference | Photoshop menu round-trip staging |
@@ -86,7 +86,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.ogg` | 376 |
 | `.skc` | 328 |
 | `.skd` | 319 |
-| `.md` | 309 |
+| `.md` | 310 |
 | `.shader` | 191 |
 | `.urc` | 169 |
 | `.bsp` | 129 |
@@ -161,10 +161,10 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/proposals/objective_audit` | 2 | 0.02 MB | .md×2 |
 | `docs/proposals/postfx_ghost` | 3 | 0.06 MB | .md×3 |
 | `docs/proposals/research_m2l2a` | 8 | 0.25 MB | .md×8 |
-| `docs/public` | 5 | 0.05 MB | .md×5 |
+| `docs/public` | 6 | 0.07 MB | .md×6 |
 | `docs/public/fixes` | 11 | 0.66 MB | .md×11 |
 | `docs/reference` | 4 | 0.06 MB | .md×3, .txt×1 |
-| `docs/tools` | 11 | 0.16 MB | .py×8, .md×1, .cmd×1, .ps1×1 |
+| `docs/tools` | 11 | 0.17 MB | .py×8, .md×1, .cmd×1, .ps1×1 |
 | `extracted-scripts` | 5 | 0.06 MB | .scr×5 |
 | `extracted-scripts/main_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
@@ -852,7 +852,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `docgen.py` | 1,464 | 61.5 KB | !/usr/bin/env python3 |
 | `docs.cmd` | 13 | 0.5 KB |  |
 | `docs.ps1` | 49 | 1.5 KB |  |
-| `gen_public_pages.py` | 440 | 17.0 KB | !/usr/bin/env python3 |
+| `gen_public_pages.py` | 540 | 21.2 KB | !/usr/bin/env python3 |
 | `gen_service_record.py` | 844 | 53.6 KB | [user 08-07] friendly display name for a challenge's reward field (chal_def's 7th arg) |
 | `hudslots.py` | 98 | 4.0 KB | !/usr/bin/env python3 |
 | `linecheck.py` | 127 | 5.8 KB | a continuation line may not START with one of these |
