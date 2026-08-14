@@ -93,8 +93,8 @@ Headgear for your soldier, picked in the Helmet selector.
 | **Coop Helmet Avglasses** | Get the Flyboy Home | Escort the downed pilot to the Maquis hideout alive |
 | **Coop Helmet Brit Beret** | Welded Steel and Storms | Acquire the StG44 blueprints |
 | **Coop Helmet Brit Cmdhat** | Blind and Deaf | Destroy every piece of enemy communications equipment |
-| **Coop Helmet Brit Mk2** | Every Man Out | Break the British prisoners out of the Bizerte jail without losing one |
-| **Coop Helmet Brit Offcap2** | Able, Baker, Charlie | Hold all three bunkers below the castle without abandoning one |
+| **Coop Helmet Brit Mk2** | Every Man Out | Break out of the Bizerte jail with nobody going down |
+| **Coop Helmet Brit Offcap2** | Able, Baker, Charlie | Hold the bunkers below the castle without going down |
 | **Coop Helmet Brit Offhat** | Earn This. | Beat the bridge mission (The Bridge) without healing or dying |
 | **Coop Helmet Brit Paramask** | All Present and Accounted For | Reach the train-station rendezvous with the whole squad up |
 | **Coop Helmet Brit Paramask** | Held the Line | Hold Bastogne with no breach AND the whole squad still alive |
@@ -133,7 +133,7 @@ Headgear for your soldier, picked in the Helmet selector.
 | **Coop Helmet Uk Helmet** | Crossing the Waal | Destroy both Flak 88s guarding the bridge town |
 | **Coop Helmet Us Gasmask** | Not Today, Fritz | Survive a Stuka dive and an artillery barrage on the same map without going down |
 | **Coop Helmet Us Tankhat** | Panzerknacker | Destroy 10 enemy vehicles in the campaign |
-| **Coop Helmet Woolcap** | Three Came Back | Get all three of your squad out of the Ardennes alive |
+| **Coop Helmet Woolcap** | Three Came Back | Finish the Ardennes with nobody going down |
 
 ## Uniforms & skins
 
@@ -145,7 +145,7 @@ Player appearances, picked in the Armory.
 | **Allied 101st Infantry** | To Hell and Back | Get 2500 total kills |
 | **Allied 101st Scout** | A Thousand Yards | Get 75 long-range kills |
 | **Allied 17thairb Soldierbloody** | Rode It In | Reach the tank park aboard the German truck without ever being spotted |
-| **Allied 1st Manon** | Medic Over | Trigger the hidden fifth objective and bring the reinforcements all the way through Sniper Town |
+| **Allied 1st Manon** | House Call | Finish Sniper Town with nobody going down |
 | **Allied 1st Sniper** | The Bridge Still Stands | Finish The Bridge without the bridge going down, theirs or yours |
 | **Allied 332nd Fighter Pilot** | Four Charges, One Bridge | Set every charge on the bridge and be back with the Captain before they blow |
 | **Allied 501st Pir Scout** | The Guns Fall Silent | Complete 30 missions (full campaign) |
@@ -180,14 +180,14 @@ Player appearances, picked in the Armory.
 | **Allied Camo 108thmgst** | Shabbadoo | Nobody knows what it means. Trip it anyway |
 | **Allied Capt Recon** | Trench Sweeper | Get 90 kills with the Shotgun (Elite) |
 | **Allied Commanding Officer** | No Bells at Nordwind | Take the blueprints, the rifle and the stockpile without ever tripping the alarm |
-| **Allied Infantry** | You Fools, Look the Gas! | Be there when the scientist's warning stops being a warning |
+| **Allied Infantry** | Gas Discipline | Finish the gas mission with nobody going down |
 | **Allied Manon** | Eyes of the Milice | Complete the Paper Chase without tripping the alarm |
 | **Allied Medic** | Sneakers | Cross the Bizerte patrol ground without ever being seen |
 | **Allied Norwegian Resistance** | Light the Beacon | Light the lighthouse beacon and signal the fleet |
 | **Allied Pilot** | Steel Rain | Call in 20 air strikes |
 | **Allied Russian Corporal** | For the Motherland | Get 120 kills with the Mosin-Nagant (Elite) |
 | **Allied Russian Crazy Boris** | Red Army Semi | Get 90 kills with the SVT-40 (Elite) |
-| **Allied Russian Pvt** | Not a Blister | Escape the collapsing fort without any player taking a single point of fire damage |
+| **Allied Russian Pvt** | Ahead of the Flames | Escape Fort Schmerzen in under six minutes |
 | **Allied Russian Recon Scout** | The Chancellery Job | Crack the Chancellery safe and steal a T-34 |
 | **Allied Russian Recon Soldier** | Stalingrad Rifle-Only Server | Beat a campaign level using only a bolt-action rifle |
 | **Allied Russian Seaman** | Blue Fox, This Is White Rook | Infiltrate the sub pen and finish the mission for Grillo |

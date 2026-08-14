@@ -11,15 +11,15 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | Category | Challenges |
 |---|---:|
 | [RIFLES](#rifles) | 27 |
-| [MARKSMAN](#marksman) | 17 |
+| [MARKSMAN](#marksman) | 18 |
 | [SUBMACHINE GUNS](#submachine-guns) | 18 |
 | [SIDEARMS](#sidearms) | 27 |
 | [SUPPORT WEAPONS](#support-weapons) | 18 |
 | [COMBAT](#combat) | 28 |
 | [FIRETEAM](#fireteam) | 21 |
-| [ARMOR & VEHICLES](#armor--vehicles) | 19 |
+| [ARMOR & VEHICLES](#armor--vehicles) | 17 |
 | [CAMPAIGN](#campaign) | 93 |
-| [STEALTH & FEATS](#stealth--feats) | 53 |
+| [STEALTH & FEATS](#stealth--feats) | 54 |
 | [AXIS FORCES](#axis-forces) | 23 |
 
 ## RIFLES
@@ -75,6 +75,7 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **The Silent Carbine** | Get 25 kills with the De Lisle |
 | **Whisper of Death** | Get 75 kills with the De Lisle (Elite) |
 | **Every Window a Rifle** | Get 10 sniper-rifle kills in Sniper Town |
+| **Bolt Action Only** | Finish Stavelot with nothing but a bolt-action rifle |
 
 ## SUBMACHINE GUNS
 
@@ -227,15 +228,13 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **The Chancellery Job** | Crack the Chancellery safe and steal a T-34 |
 | **Chasing the Fox** | Win the Panzer duel on the Tunisian front |
 | **Autoblinda Down** | Destroy the Italian AB-41 with the Flak cannon |
-| **Five Shells** | Finish the Panzer at the crossroads with a Panzerschreck rocket |
 | **Two More for the Scrapheap** | Find and bomb both hidden King Tigers in the Gestapo motor pool |
 | **Pole Position** | Flatten all three telephone poles with the King Tiger |
 | **Turnabout** | Destroy the halftrack blocking the Ardennes road |
-| **Running on Fumes** | Hold the last bridge without the T-34 ever touching a repair barrel |
+| **Not One Step Back** | Hold the last bridge without going down |
 | **Save the Crab** | Bring the minesweeper tank through Bizerte alive |
-| **Nine Tanks, No Ground** | Repel the whole tank assault without one of them crossing the line |
-| **Crunchy Goodness** | Kill the tank with the PIAT, the objective they cut but never removed |
-| **Nothing Gets Through** | Destroy the munitions convoy with not one truck escaping |
+| **Nine Tanks, No Ground** | Repel the tank assault with nobody going down |
+| **Nothing Gets Through** | Destroy the munitions convoy without ever raising the alarm |
 
 ## CAMPAIGN
 
@@ -324,15 +323,15 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Not a Scratch on Him** | Deliver the downed pilot to the Maquis hideout without him taking a single hit |
 | **The Bridge Still Stands** | Finish The Bridge without the bridge going down, theirs or yours |
 | **Not One Ranger** | Clear the boxcar sniper duel at Fort Schmerzen without losing a single man |
-| **Not a Blister** | Escape the collapsing fort without any player taking a single point of fire damage |
+| **Ahead of the Flames** | Escape Fort Schmerzen in under six minutes |
 | **Both Boys Home** | Take the Flak 88 town with neither of your riflemen lost |
 | **Four Charges, One Bridge** | Set every charge on the bridge and be back with the Captain before they blow |
-| **Three Came Back** | Get all three of your squad out of the Ardennes alive |
+| **Three Came Back** | Finish the Ardennes with nobody going down |
 | **Both Guns Turned** | Seize both Flak 88 batteries above Kasserine Pass |
-| **Every Man Out** | Break the British prisoners out of the Bizerte jail without losing one |
+| **Every Man Out** | Break out of the Bizerte jail with nobody going down |
 | **All Six Home** | Finish Crete with Hudson, McMartin, Phillips, Johnson, Gobs and Michaels all alive |
 | **All Seven Home** | Cover the prisoners' escape from Monte Battaglia without losing one |
-| **Able, Baker, Charlie** | Hold all three bunkers below the castle without abandoning one |
+| **Able, Baker, Charlie** | Hold the bunkers below the castle without going down |
 | **Spotless Record** | Complete 5 missions with every primary objective done and nobody going down |
 
 ## STEALTH & FEATS
@@ -379,9 +378,9 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **The Manifest** | Find the Enigma manifest hidden aboard the U-boat |
 | **Ghost in the Ductwork** | Reach the train station without the base ever escalating past its first alert |
 | **Rode It In** | Reach the tank park aboard the German truck without ever being spotted |
-| **Medic Over** | Trigger the hidden fifth objective and bring the reinforcements all the way through Sniper Town |
+| **House Call** | Finish Sniper Town with nobody going down |
 | **No Bells at Nordwind** | Take the blueprints, the rifle and the stockpile without ever tripping the alarm |
-| **You Fools, Look the Gas!** | Be there when the scientist's warning stops being a warning |
+| **Gas Discipline** | Finish the gas mission with nobody going down |
 | **Shabbadoo** | Nobody knows what it means. Trip it anyway |
 | **Kalimba Says** | Click the thing you were never meant to find |
 | **Six Flushes** | Flush the outhouse six times and see what comes out |
@@ -390,7 +389,8 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **They Never Saw Us** | Let the Italian search party finish all four lines at the wrecked glider before you fire |
 | **Let Them Sleep** | Sabotage all four fighters without waking a single sleeping guard |
 | **Back of the Class** | Find the lesson nobody was supposed to interrupt |
-| **Seconds to Spare** | Get clear of the castle with under thirty seconds on the airstrike clock |
+| **Quiet Professionals** | Finish the coastal battery mission without ever raising the alarm |
+| **Seconds to Spare** | Get clear of the castle in under eight minutes |
 | **The Quiet Type** | Complete five missions without ever raising the alarm |
 
 ## AXIS FORCES

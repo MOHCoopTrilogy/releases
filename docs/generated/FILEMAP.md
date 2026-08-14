@@ -752,7 +752,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/misc/linux` | 4 | 0.00 MB | .in×3, .xml×1 |
 | `openmohaa-hzm/misc/setup/windows/app` | 4 | 0.01 MB | .wxs×2, .wixproj×1, .wxl×1 |
 | `scratchpad` | 1 | 0.00 MB | .py×1 |
-| `server_home/maintt` | 5 | 0.31 MB | .cfg×3, .pid×1, .log×1 |
+| `server_home/maintt` | 5 | 0.29 MB | .cfg×3, .pid×1, .log×1 |
 | `server_home/maintt/coop_mod/save` | 12 | 0.01 MB | .dat×12 |
 | `server_home/maintt/prev` | 10 | 3.28 MB | .log×10 |
 | `server_home_probe/maintt` | 5 | 0.30 MB | .cfg×3, .pid×1, .log×1 |
@@ -1820,7 +1820,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `enemySet400.scr` | 49 | 0.7 KB | enemySet400.scr |
 | `enemySet809.scr` | 256 | 7.1 KB | enemySet809.scr |
 | `enemyset350.scr` | 46 | 1.1 KB | enemySet350.scr |
-| `gliderride.scr` | 1,738 | 64.5 KB | gliderride.scr |
+| `gliderride.scr` | 1,747 | 65.1 KB | gliderride.scr |
 | `gliders.scr` | 305 | 9.5 KB | dprintln "startfirstflyby" |
 | `hacks.scr` | 13 | 0.6 KB |  |
 | `light_e2l1.scr` | 74 | 3.0 KB | Extracted from pak1.pk3 and patched for coop [user 2026-08-02] bug-1294. |
@@ -1837,8 +1837,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `cinematic.scr` | 698 | 20.8 KB | Script created by James Gaczkowski |
 | `class_gag.scr` | 78 | 2.3 KB | class_gag.scr |
 | `guardPost.scr` | 483 | 14.4 KB | guardPost.scr |
-| `objectives.scr` | 124 | 5.2 KB | objectives.scr |
-| `planeGags.scr` | 519 | 15.1 KB | PlaneGags.scr |
+| `objectives.scr` | 131 | 5.7 KB | objectives.scr |
+| `planeGags.scr` | 527 | 15.6 KB | PlaneGags.scr |
 | `radioTower.scr` | 116 | 3.6 KB | radioTower |
 | `saves.scr` | 31 | 0.6 KB | E2L2 auto-saves |
 | `truck_damage.scr` | 73 | 2.4 KB | gags/t2l2_supply_truck_damage.scr |
@@ -1893,7 +1893,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `e3l2_hacks.scr` | 13 | 0.5 KB | e3l2_hacks.scr |
 | `effectVisibility.scr` | 32 | 1.1 KB | effectVisibility.scr |
 | `final_section.scr` | 74 | 2.3 KB | final_section.scr |
-| `final_section_pows.scr` | 706 | 18.8 KB | final_section_pows.scr |
+| `final_section_pows.scr` | 716 | 19.5 KB | final_section_pows.scr |
 | `light_e3l2.scr` | 80 | 1.8 KB | setup light styles |
 | `medic_think.scr` | 775 | 19.6 KB | Medic thinkerton |
 | `objectives.scr` | 212 | 9.5 KB | E3L2 Objectives |

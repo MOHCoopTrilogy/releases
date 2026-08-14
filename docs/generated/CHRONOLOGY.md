@@ -13,25 +13,26 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `0c202c9 2026-08-14 tooling: teach the checker about the chal_quiet_feat wrapper` |
-| commits | 81 |
+| HEAD | `871049a 2026-08-14 docs: regenerate public challenge pages after the wiring pass` |
+| commits | 82 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
-| unstaged diff | 7 files changed, 33 insertions(+), 34 deletions(-) |
+| unstaged diff | 5 files changed, 27 insertions(+), 25 deletions(-) |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 27 |
+| 2026-08 | 28 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (81)
+### Commits since 2026-01-01 (82)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `871049a` | 2026-08-14 | joncurry94-tech | docs: regenerate public challenge pages after the wiring pass |
 | `0c202c9` | 2026-08-14 | joncurry94-tech | tooling: teach the checker about the chal_quiet_feat wrapper |
 | `65aa813` | 2026-08-14 | joncurry94-tech | tooling: check derived faction supply instead of exempting it |
 | `136a6f8` | 2026-08-14 | joncurry94-tech | tooling: prove at build time that every challenge can be earned |
@@ -119,8 +120,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `6763b7b 2026-08-14 challenges: wire three more feats (Omaha bunker, the Bocage house, the POW)` |
-| commits | 1,405 |
+| HEAD | `f4a6efe 2026-08-14 challenges: wire "All Seven Home" (e3l2) and "They Never Saw Us" (e2l1)` |
+| commits | 1,407 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -128,7 +129,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 12 |
+| 2026-08 | 14 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -168,10 +169,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (56)
+### Commits since 2026-01-01 (58)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `f4a6efe` | 2026-08-14 | joncurry94 | challenges: wire "All Seven Home" (e3l2) and "They Never Saw Us" (e2l1) |
+| `bd9aee8` | 2026-08-14 | joncurry94 | challenges: wire "Let Them Sleep" on e2l2 with a real wake signal |
 | `6763b7b` | 2026-08-14 | joncurry94 | challenges: wire three more feats (Omaha bunker, the Bocage house, the POW) |
 | `fd924d8` | 2026-08-14 | joncurry94 | challenges: wire the three AA alarm-gated feats through the objective dispatcher |
 | `caffb76` | 2026-08-14 | joncurry94 | challenges: wire The Quiet Type, and the shared plumbing the rest of the group needs |

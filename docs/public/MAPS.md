@@ -52,7 +52,7 @@ Every mission in the trilogy that has a coop script, what state it is in, and ho
 | `t1l1` | yes | 477 | 1 |
 | `t1l2` | yes | 1039 | 5 |
 | `t1l3` | yes | 1250 | 9 |
-| `t2l1` | yes | 2372 | 7 |
+| `t2l1` | yes | 2372 | 8 |
 | `t2l2` | yes | 1525 | 22 |
 | `t2l3` | yes | 3481 | 4 |
 | `t2l4` | yes | 1226 | 2 |
@@ -94,6 +94,6 @@ Fix counts are a rough proxy for how much a map fought back. A high count usuall
 | `t1l3` | 9 |
 | `e2l2` | 8 |
 | `e2l3` | 8 |
+| `t2l1` | 8 |
 | `m2l1` | 7 |
-| `m2l2b` | 7 |
 

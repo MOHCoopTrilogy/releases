@@ -6,7 +6,7 @@
 
 Every defect this project has found and fixed, from the day the log was started. This is the raw engineering record rather than a changelog: it gives the cause as well as the symptom, because the cause is usually the useful part.
 
-**1163 fixes logged.**
+**1164 fixes logged.**
 
 | Area | Fixes |
 |---|---:|
@@ -18,7 +18,7 @@ Every defect this project has found and fixed, from the day the log was started.
 | [UI, HUD & menus](fixes/ui-hud-menus.md) | 158 |
 | [Vehicles & rides](fixes/vehicles-rides.md) | 41 |
 | [Multiplayer & networking](fixes/multiplayer-networking.md) | 39 |
-| [Maps & missions](fixes/maps-missions.md) | 68 |
+| [Maps & missions](fixes/maps-missions.md) | 69 |
 | [Build, deploy & tooling](fixes/build-deploy-tooling.md) | 14 |
 | [Other](fixes/other.md) | 101 |
 

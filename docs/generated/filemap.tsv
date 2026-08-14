@@ -312,11 +312,11 @@ docs/proposals/surgical_operation_hd_analysis.md	20843	.md	313	docs
 docs/proposals/surgical_operation_v10_analysis.md	32194	.md	454	docs
 docs/proposals/surgical_operation_version_hunt.md	13923	.md	222	docs
 docs/public/BUGFIXES.md	1172	.md	25	docs
-docs/public/CHALLENGES.md	26214	.md	423	docs
+docs/public/CHALLENGES.md	26204	.md	423	docs
 docs/public/FEATURES.md	17991	.md	257	docs
 docs/public/MAPS.md	2734	.md	99	docs
 docs/public/ROADMAP.md	3284	.md	70	docs
-docs/public/UNLOCKABLES.md	21315	.md	265	docs
+docs/public/UNLOCKABLES.md	21305	.md	265	docs
 docs/public/fixes/ai-enemy-behaviour.md	177299	.md	354	docs
 docs/public/fixes/audio.md	18053	.md	41	docs
 docs/public/fixes/build-deploy-tooling.md	9182	.md	26	docs
@@ -1927,7 +1927,7 @@ hzm-mohaa-coop-mod/maps/e2l1/enemySet325.scr	5192	.scr	172	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e2l1/enemySet400.scr	761	.scr	49	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e2l1/enemySet809.scr	7287	.scr	256	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e2l1/enemyset350.scr	1132	.scr	46	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/e2l1/gliderride.scr	66036	.scr	1738	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/e2l1/gliderride.scr	66634	.scr	1747	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e2l1/gliders.scr	9686	.scr	305	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e2l1/hacks.scr	626	.scr	13	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e2l1/light_e2l1.scr	3089	.scr	74	hzm-mohaa-coop-mod
@@ -1941,8 +1941,8 @@ hzm-mohaa-coop-mod/maps/e2l2/briefing.scr	4152	.scr	151	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e2l2/cinematic.scr	21324	.scr	698	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e2l2/class_gag.scr	2328	.scr	78	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e2l2/guardPost.scr	14741	.scr	483	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/e2l2/objectives.scr	5357	.scr	124	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/e2l2/planeGags.scr	15443	.scr	519	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/e2l2/objectives.scr	5845	.scr	131	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/e2l2/planeGags.scr	15988	.scr	527	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e2l2/radioTower.scr	3648	.scr	116	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e2l2/saves.scr	656	.scr	31	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e2l2/truck_damage.scr	2421	.scr	73	hzm-mohaa-coop-mod
@@ -1988,7 +1988,7 @@ hzm-mohaa-coop-mod/maps/e3l2/cannons.scr	14348	.scr	419	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e3l2/e3l2_hacks.scr	489	.scr	13	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e3l2/effectVisibility.scr	1107	.scr	32	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e3l2/final_section.scr	2377	.scr	74	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/e3l2/final_section_pows.scr	19278	.scr	706	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/e3l2/final_section_pows.scr	19974	.scr	716	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e3l2/light_e3l2.scr	1874	.scr	80	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e3l2/medic_think.scr	20106	.scr	775	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e3l2/objectives.scr	9677	.scr	212	hzm-mohaa-coop-mod
@@ -7390,8 +7390,8 @@ hzm-mohaa-coop-mod/ui/options_main.urc	5510	.urc	253	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	541870468	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	791349015	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23134743	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	791348371	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23135897	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm_coop_framework_guide.md	27594	.md	382	<root>
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -10212,7 +10212,7 @@ relnotes_1.2.1.md	1025	.md	15	<root>
 resume_publish.ps1	8738	.ps1	157	<root>
 rollout_implementation_log.md	13772	.md	194	<root>
 scratchpad/rcon.py	926	.py	27	scratchpad
-server_home/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home
+server_home/maintt/OpenMoHAA_server.pid	4	.pid	0	server_home
 server_home/maintt/autoexec.cfg	90014	.cfg	1208	server_home
 server_home/maintt/coop_defaults.cfg	17316	.cfg	278	server_home
 server_home/maintt/coop_mod/save/bpfound_89AA62A71BEF42BA7FA4B2DE9E15F03A.dat	16	.dat	0	server_home
@@ -10238,7 +10238,7 @@ server_home/maintt/prev/qconsole-20260813-194907.log	352996	.log	0	server_home
 server_home/maintt/prev/qconsole-20260813-195042.log	254479	.log	0	server_home
 server_home/maintt/prev/qconsole-20260813-195345.log	324031	.log	0	server_home
 server_home/maintt/prev/qconsole-20260813-211030.log	731864	.log	0	server_home
-server_home/maintt/qconsole.log	195496	.log	0	server_home
+server_home/maintt/qconsole.log	175787	.log	0	server_home
 server_home_probe/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home_probe
 server_home_probe/maintt/autoexec.cfg	89444	.cfg	1202	server_home_probe
 server_home_probe/maintt/coop_defaults.cfg	12385	.cfg	217	server_home_probe
