@@ -170,7 +170,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
-| `hzm-mohaa-coop-mod` | 38 | 1423.32 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
+| `hzm-mohaa-coop-mod` | 38 | 1423.25 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -485,7 +485,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/mohmenu/Slideshow/Berlin` | 14 | 7.76 MB | .jpg×14 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/Slideshow/Normandy` | 18 | 8.19 MB | .jpg×18 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/coop` | 3 | 2.22 MB | .tga×3 |
-| `hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward` | 277 | 33.91 MB | .tga×277 |
+| `hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward` | 277 | 34.04 MB | .tga×277 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/dmloading` | 71 | 49.97 MB | .jpg×68, .tga×3 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/dmloading/briefing` | 6 | 2.13 MB | .jpg×6 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/levelbriefing` | 50 | 471.86 MB | .tga×50 |
@@ -752,7 +752,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/misc/linux` | 4 | 0.00 MB | .in×3, .xml×1 |
 | `openmohaa-hzm/misc/setup/windows/app` | 4 | 0.01 MB | .wxs×2, .wixproj×1, .wxl×1 |
 | `scratchpad` | 1 | 0.00 MB | .py×1 |
-| `server_home/maintt` | 5 | 0.29 MB | .cfg×3, .pid×1, .log×1 |
+| `server_home/maintt` | 5 | 0.33 MB | .cfg×3, .pid×1, .log×1 |
 | `server_home/maintt/coop_mod/save` | 12 | 0.01 MB | .dat×12 |
 | `server_home/maintt/prev` | 10 | 3.28 MB | .log×10 |
 | `server_home_probe/maintt` | 5 | 0.30 MB | .cfg×3, .pid×1, .log×1 |
@@ -1108,7 +1108,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `bust.scr` | 1,553 | 84.7 KB | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
 | `butler.scr` | 498 | 18.9 KB | created by chrissstrahl on 2019.09.12 |
 | `cannonThink.scr` | 147 | 4.8 KB | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
-| `challenges.scr` | 3,664 | 222.0 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
+| `challenges.scr` | 3,677 | 222.8 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
 | `collectible.scr` | 373 | 18.5 KB | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
 | `coop_placements.scr` | 1,021 | 32.1 KB | HZM coop - BAKED BUILD-MODE PLACEMENTS (generated from build_<map>.dat). |
 | `coop_selftest.scr` | 320 | 13.2 KB | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
@@ -1139,7 +1139,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `flmusic.scr` | 200 | 9.3 KB | [311] HZM coop - FRONTLINE SCORE LAYER (Phase 1: stingers + war-ambience beds). |
 | `fogmode.scr` | 473 | 23.5 KB | HZM coop - FOG / DARKNESS MODE [user 08-02] |
 | `gurgle.scr` | 140 | 7.1 KB | HZM coop - subtle WET BLEED-OUT GURGLE near a fresh corpse. |
-| `helmet.scr` | 1,730 | 109.9 KB | [305] HZM coop - LIVE HELMET SWITCHER |
+| `helmet.scr` | 1,746 | 109.5 KB | [305] HZM coop - LIVE HELMET SWITCHER |
 | `helmtest.scr` | 96 | 3.7 KB | HZM dev probe (TEMPORARY): verify the retail sethelmet/pophelmet mechanic end to end. |
 | `holdout.scr` | 759 | 30.9 KB | HOLDOUT - checkpoint wave-defence gametype [user 2026-08-04] |
 | `itemhandler.scr` | 3,680 | 190.9 KB | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
@@ -1152,7 +1152,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `lobby.scr` | 1,166 | 52.7 KB | HZM Coop - Pre-Mission Lobby module. Full spec: _research/coop_lobby1_build.md |
 | `lobbyui.scr` | 265 | 10.6 KB | [304] CLICKABLE LOBBY UI - a mouse cursor + button framework for the live |
 | `m4l3_precache.scr` | 157 | 6.0 KB |  |
-| `main.scr` | 2,168 | 105.0 KB | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
+| `main.scr` | 2,180 | 106.0 KB | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
 | `maplist.scr` | 119 | 3.9 KB | [201] Smithy - used to populate the coop_mapsList array to check for next/previous map (and any other future… |
 | `maptest.scr` | 268 | 11.8 KB | HZM Coop - Map Rotation Auto-Tester |
 | `maptest_m5l3.scr` | 284 | 10.4 KB | HZM Coop - m5l3 Scene-Walk Tester |

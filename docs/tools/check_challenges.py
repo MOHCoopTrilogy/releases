@@ -153,6 +153,24 @@ DERIVED_SUPPLY = {
 }
 
 
+def blueprint_supply():
+    """How many blueprints are actually placed across all map scripts.
+
+    The bp_* ladder is pinned to this number - the top tier literally reads "Recover all N".
+    Place more and the ladder is understated; the top tier stops meaning "all" and the
+    collection has no visible end. Remove some and it becomes unreachable, which is the state
+    it shipped in (60 wanted, 31 existed, and found-blueprints persist so replaying never
+    helped). Counted here so either direction is caught the day it happens.
+    """
+    n = 0
+    for path in glob.glob(os.path.join(MOD, "maps", "**", "*.scr"), recursive=True):
+        try:
+            n += io.open(path, encoding="latin-1").read().count("coop_bp_place")
+        except Exception:
+            pass
+    return n
+
+
 def faction_supply():
     """Count ONE actor per entity block. A block carries both a classname and a model;
     counting both double-counts and inflates every faction by roughly 2x."""
@@ -200,6 +218,7 @@ def main():
     chals, src = load_challenges()
     writers = load_writers()
     supply = faction_supply()
+    bp_have = blueprint_supply()
     have = asset_index()
 
     # self-test: if challenges.scr grows a faction rule this file does not know about, the
@@ -233,6 +252,14 @@ def main():
                 hav = supply.get(stat, 0)
             if c["target"] > hav:
                 short.append((c, hav))
+
+        # SHORT - blueprints have a countable supply too, and the top tier claims to be "all"
+        if stat == "blueprint":
+            if c["target"] > bp_have:
+                short.append((c, bp_have))
+            elif c["cid"] == "bp_60" and c["target"] != bp_have:
+                notes.append("top blueprint tier is %d but %d are placed - it no longer means "
+                             "\"all\"; retune the bp_* ladder" % (c["target"], bp_have))
 
         # MISSING - reward asset must resolve in a pak
         rew = c["reward"]

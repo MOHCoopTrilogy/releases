@@ -13,24 +13,26 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `408a0f7 2026-08-14 docs: regenerate challenge pages; log t2l1 nebelwerfer script errors (bug-1801)` |
-| commits | 83 |
+| HEAD | `940517b 2026-08-14 docs: regenerate; correct bug-1801 (ours, not pre-existing, now fixed)` |
+| commits | 84 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
+| unstaged diff | 9 files changed, 64 insertions(+), 63 deletions(-) |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 29 |
+| 2026-08 | 30 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (83)
+### Commits since 2026-01-01 (84)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `940517b` | 2026-08-14 | joncurry94-tech | docs: regenerate; correct bug-1801 (ours, not pre-existing, now fixed) |
 | `408a0f7` | 2026-08-14 | joncurry94-tech | docs: regenerate challenge pages; log t2l1 nebelwerfer script errors (bug-1801) |
 | `871049a` | 2026-08-14 | joncurry94-tech | docs: regenerate public challenge pages after the wiring pass |
 | `0c202c9` | 2026-08-14 | joncurry94-tech | tooling: teach the checker about the chal_quiet_feat wrapper |
@@ -120,8 +122,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `45cc8eb 2026-08-14 challenges: replace the last 12 unmeasurable conditions with trackable ones` |
-| commits | 1,408 |
+| HEAD | `e3d723a 2026-08-14 cosmetics: gate the eight Elite rewards, free the two nobody could ever get` |
+| commits | 1,410 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -129,7 +131,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 15 |
+| 2026-08 | 17 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -169,10 +171,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (59)
+### Commits since 2026-01-01 (61)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `e3d723a` | 2026-08-14 | joncurry94 | cosmetics: gate the eight Elite rewards, free the two nobody could ever get |
+| `844a668` | 2026-08-14 | joncurry94 | challenges: all 344 now earnable; fix the launcher sweep that caused the t2l1 errors |
 | `45cc8eb` | 2026-08-14 | joncurry94 | challenges: replace the last 12 unmeasurable conditions with trackable ones |
 | `f4a6efe` | 2026-08-14 | joncurry94 | challenges: wire "All Seven Home" (e3l2) and "They Never Saw Us" (e2l1) |
 | `bd9aee8` | 2026-08-14 | joncurry94 | challenges: wire "Let Them Sleep" on e2l2 with a real wake signal |

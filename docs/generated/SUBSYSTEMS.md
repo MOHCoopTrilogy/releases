@@ -9,7 +9,7 @@
 | metric | value |
 |---|---:|
 | `coop_mod/*.scr` files | 113 |
-| total lines in `coop_mod/` | 69,484 |
+| total lines in `coop_mod/` | 69,525 |
 | top-level `maps/*.scr` | 121 |
 | of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
 
@@ -106,7 +106,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `butler.scr` | 498 | 12 | created by chrissstrahl on 2019.09.12 |
 | `common.scr` | 120 | 0 |  |
 | `cannonThink.scr` | 147 | 1 | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
-| `challenges.scr` | 3,664 | 27 | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
+| `challenges.scr` | 3,677 | 27 | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
 | `collectible.scr` | 373 | 2 | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
 | `coop_placements.scr` | 1,021 | 3 | HZM coop - BAKED BUILD-MODE PLACEMENTS (generated from build_<map>.dat). |
 | `coop_selftest.scr` | 320 | 6 | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
@@ -137,7 +137,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `flmusic.scr` | 200 | 5 | [311] HZM coop - FRONTLINE SCORE LAYER (Phase 1: stingers + war-ambience beds). |
 | `fogmode.scr` | 473 | 11 | HZM coop - FOG / DARKNESS MODE [user 08-02] |
 | `gurgle.scr` | 140 | 0 | HZM coop - subtle WET BLEED-OUT GURGLE near a fresh corpse. |
-| `helmet.scr` | 1,730 | 4 | [305] HZM coop - LIVE HELMET SWITCHER |
+| `helmet.scr` | 1,746 | 4 | [305] HZM coop - LIVE HELMET SWITCHER |
 | `helmtest.scr` | 96 | 1 | HZM dev probe (TEMPORARY): verify the retail sethelmet/pophelmet mechanic end to end. |
 | `holdout.scr` | 759 | 16 | HOLDOUT - checkpoint wave-defence gametype [user 2026-08-04] |
 | `itemhandler.scr` | 3,680 | 36 | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
@@ -150,7 +150,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `lobby.scr` | 1,166 | 20 | HZM Coop - Pre-Mission Lobby module. Full spec: _research/coop_lobby1_build.md |
 | `lobbyui.scr` | 265 | 3 | [304] CLICKABLE LOBBY UI - a mouse cursor + button framework for the live |
 | `m4l3_precache.scr` | 157 | 0 |  |
-| `main.scr` | 2,168 | 21 | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
+| `main.scr` | 2,180 | 21 | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
 | `maplist.scr` | 119 | 2 | [201] Smithy - used to populate the coop_mapsList array to check for next/previous map (and any other future… |
 | `maptest.scr` | 268 | 2 | HZM Coop - Map Rotation Auto-Tester |
 | `maptest_m5l3.scr` | 284 | 1 | HZM Coop - m5l3 Scene-Walk Tester |

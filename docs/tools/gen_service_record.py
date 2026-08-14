@@ -438,6 +438,14 @@ def page_bg(header, items, isWeapon, rowh):
     _pf=sans(30,True); _pt="PINNED"
     _ptb=d.textbbox((0,0),_pt,font=_pf)
     d.text((930-(_ptb[2]-_ptb[0]),300), _pt, font=_pf, fill=(0xC9,0xA2,0x4b))
+    # [user 2026-08-14] "BLUEPRINTS n/31" caption, same trick as PINNED and for the same reason -
+    # the word is baked into the texture because an unquoted stufftext value stops at the first
+    # space, so the cvar it sits next to has to stay a single token. The lifetime total already
+    # existed, but only as the progress number on one challenge row buried among 50-odd others;
+    # nothing told a player that row doubled as their blueprint counter.
+    _bt="BLUEPRINTS"
+    _btb=d.textbbox((0,0),_bt,font=_pf)
+    d.text((1500-(_btb[2]-_btb[0]),300), _bt, font=_pf, fill=(0xC9,0xA2,0x4b))
     # fonts scale with the row height so dense pages stay legible & non-overlapping
     tf=max(28,min(44,int(rowh*0.52))); df=max(19,min(30,int(rowh*0.34))); doff=tf+3
     ft=sans(tf,True); fdc=sans(df); fcnt=sans(46,True)
@@ -806,6 +814,19 @@ for i,(mid,cat,name,desc) in enumerate(medals):
 L+=["resource","Label","{",'name "pinSummary"',"rect 302 74 60 14",
     "fgcolor 0.98 0.84 0.36 1.00","bgcolor 0.00 0.00 0.00 0.00","borderstyle \"NONE\"",
     "font \"verdana-12\"","textalign left","dontlocalize",'linkcvar "coop_pinCount"',"}",""]
+
+# [user 2026-08-14] BLUEPRINT TOTAL in the header. It binds to the SAME per-row cvar the top
+# blueprint challenge already publishes (coop_uiN<gi>, holding a ready-made "17/31"), so there is
+# no second counter to drift out of step with the first - if the row is right, the header is right.
+# The index is resolved HERE, at generation time, because a global catalog index moves whenever
+# challenges are added or reordered; hard-coding it in the .urc would silently point at some other
+# challenge the next time the list changed.
+if "bp_60" not in idx:
+    raise SystemExit("gen_service_record: bp_60 not found - the blueprint header has nothing to bind to")
+_bpgi=idx["bp_60"]   # idx is cid -> global export index, built from file order at :352
+L+=["resource","Label","{",'name "bpSummary"',"rect 492 74 60 14",
+    "fgcolor 0.98 0.84 0.36 1.00","bgcolor 0.00 0.00 0.00 0.00","borderstyle \"NONE\"",
+    "font \"verdana-12\"","textalign left","dontlocalize",'linkcvar "coop_uiN%d"'%_bpgi,"}",""]
 
 L+=["end.",""]
 

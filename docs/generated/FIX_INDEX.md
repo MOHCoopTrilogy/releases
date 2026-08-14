@@ -8,7 +8,7 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-911 distinct file paths, 2,871 distinct tags.
+911 distinct file paths, 2,870 distinct tags.
 
 ## Files with the most history
 
@@ -1926,7 +1926,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `fitter` | 1 | `bug-1003` |
 | `five-fixes` | 1 | `bug-1467` |
 | `fix-exposed-by-fix` | 1 | `bug-1573` |
-| `fixed` | 47 | `bug-1028` `bug-1473` `bug-1474` `bug-1479` `bug-1480` `bug-1481` `bug-1482` `bug-1484` `bug-1485` `bug-1486` `bug-1488` `bug-1489` `bug-1490` `bug-1491` `bug-1492` `bug-1493` `bug-1494` `bug-1498` `bug-1499` `bug-1500` `bug-1501` `bug-1502` `bug-1503` `bug-1504` `bug-1508` `bug-1664` `bug-1667` `bug-1669` `bug-1670` `bug-1671` `bug-1672` `bug-1673` `bug-1675` `bug-1681` `bug-1682` `bug-1683` `bu… |
+| `fixed` | 48 | `bug-1028` `bug-1473` `bug-1474` `bug-1479` `bug-1480` `bug-1481` `bug-1482` `bug-1484` `bug-1485` `bug-1486` `bug-1488` `bug-1489` `bug-1490` `bug-1491` `bug-1492` `bug-1493` `bug-1494` `bug-1498` `bug-1499` `bug-1500` `bug-1501` `bug-1502` `bug-1503` `bug-1504` `bug-1508` `bug-1664` `bug-1667` `bug-1669` `bug-1670` `bug-1671` `bug-1672` `bug-1673` `bug-1675` `bug-1681` `bug-1682` `bug-1683` `bu… |
 | `fixedturret` | 2 | `bug-1581` `bug-942` |
 | `fixrendercommandlist` | 2 | `bug-1136` `bug-1139` |
 | `fl_immobile` | 1 | `bug-379` |
@@ -2282,6 +2282,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `lattice` | 1 | `bug-1766` |
 | `launch` | 1 | `bug-502` |
 | `launcher` | 1 | `bug-1337` |
+| `launcher-respawn` | 1 | `bug-1801` |
 | `layout` | 5 | `bug-1003` `bug-1160` `bug-1510` `bug-459` `bug-460` |
 | `lazy-load` | 1 | `bug-1595` |
 | `ldr` | 1 | `bug-1159` |
@@ -2502,6 +2503,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `modal-dialog` | 1 | `bug-1441` |
 | `model` | 1 | `bug-1716` |
 | `model-handle` | 1 | `bug-1135` |
+| `model-only-match` | 1 | `bug-1801` |
 | `model-path` | 1 | `bug-1791` |
 | `model-pool` | 1 | `bug-1137` |
 | `model-reset` | 1 | `bug-1360` |
@@ -2565,7 +2567,6 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `needs-boot-test` | 1 | `bug-gl2-decal-red-dds` |
 | `needs-boot-trace` | 1 | `bug-gl2-viewmodel-over-menu` |
 | `needs-full-sequence-audit` | 1 | `bug-1483` |
-| `needs-playtest` | 1 | `bug-1801` |
 | `needs-regression-test` | 1 | `bug-1700` |
 | `needs-user-decision` | 1 | `bug-1733` |
 | `nest` | 2 | `bug-1572` `bug-1573` |
@@ -2816,7 +2817,6 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `pot` | 1 | `bug-312` |
 | `pow` | 1 | `bug-1278` |
 | `powershell` | 4 | `bug-1619` `bug-1800` `bug-425` `bug-ps-home-var` |
-| `pre-existing` | 1 | `bug-1801` |
 | `pre-pass` | 1 | `bug-gl2-invisible-live-enemies-prepass-pose` |
 | `pre-player-add` | 2 | `bug-1625` `bug-1627` |
 | `pre-release` | 2 | `bug-786` `bug-787` |
@@ -3140,7 +3140,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `self-delete` | 1 | `bug-822` |
 | `self-heal` | 3 | `bug-1728` `bug-801` `bug-803` |
 | `self-healing-sweep` | 1 | `bug-1212` |
-| `self-inflicted` | 32 | `bug-1172` `bug-1178` `bug-1179` `bug-1181` `bug-1183` `bug-1262` `bug-1269` `bug-1273` `bug-1274` `bug-1281` `bug-1292` `bug-1494` `bug-1499` `bug-1500` `bug-1558` `bug-1575` `bug-1598` `bug-1600` `bug-1603` `bug-1604` `bug-1606` `bug-1608` `bug-1671` `bug-1681` `bug-1696` `bug-1713` `bug-1749` `bug-1751` `bug-1756` `bug-1768` `bug-1781` `bug-1785` |
+| `self-inflicted` | 33 | `bug-1172` `bug-1178` `bug-1179` `bug-1181` `bug-1183` `bug-1262` `bug-1269` `bug-1273` `bug-1274` `bug-1281` `bug-1292` `bug-1494` `bug-1499` `bug-1500` `bug-1558` `bug-1575` `bug-1598` `bug-1600` `bug-1603` `bug-1604` `bug-1606` `bug-1608` `bug-1671` `bug-1681` `bug-1696` `bug-1713` `bug-1749` `bug-1751` `bug-1756` `bug-1768` `bug-1781` `bug-1785` `bug-1801` |
 | `self-is-null` | 1 | `bug-1580` |
 | `self-regression` | 1 | `bug-1128` |
 | `self-review` | 8 | `bug-070` `bug-713` `bug-714` `bug-715` `bug-716` `bug-717` `bug-718` `bug-719` |
@@ -3621,7 +3621,6 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `undo` | 3 | `bug-1419` `bug-1421` `bug-1580` |
 | `unearnable` | 1 | `bug-1596` |
 | `unexplained` | 1 | `bug-1690` |
-| `unfixed` | 1 | `bug-1801` |
 | `unicode` | 1 | `bug-1227` |
 | `uniform` | 1 | `bug-1148` |
 | `uniform_hzmparams` | 1 | `bug-1151` |
