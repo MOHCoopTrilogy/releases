@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1157** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1161** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 494 |
+| 2026-08 | 498 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1174,6 +1174,10 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1792` | 2026-08-13 | `hzm-mohaa-coop-mod/coop_mod/bust.scr` | - | Body being investigated text doesnt seem to leave if I kill the guy investigating the body by containg him too | Gated the draw on local.seen==1 so draw and near answer the same question, added an else that clears slot 254 when not seen, and made the stand-down… |
 | `bug-1793` | 2026-08-13 | `hzm-mohaa-coop-mod/maps/m6l2a.scr` | - | I walked thru the level 2 area and it still did not trigger. He did not react at all to me going through. | Removed the terminal break and replaced it with a 3s settle so a single crossing cannot re-task the checker every frame. The while condition (level.c… |
 | `bug-1794` | 2026-08-13 | `hzm-mohaa-coop-mod/coop_mod/aihandler.scr` | P | These random guards really do not see to care to investigate bodies after they have been contained, they still just walk by them / it might be the du… | Made registration exactly-once via self.flags[coop_inActorArray] (guards addActorToArray against double entry too), added coop_ensureInArray as an id… |
+| `bug-1795` | 2026-08-13 | `openmohaa-hzm/code/sdl/sdl_glimp.c` | V | Screen capture records the game black. SignalRGB matches colors on the main menu and loading screens, then the lighting turns off as soon as gameplay… | Added GLimp_MakeCaptureSafe(): after window creation, when fullscreen AND r_desktopfullscreen, fetch the HWND via SDL_GetWindowWMInfo and apply WS_EX… |
+| `bug-1796` | 2026-08-13 | `build.ps1` | - | Renderer-side engine changes never reached the running game | Added renderer_opengl2.dll to the build.ps1 binaries list, and registered r_desktopfullscreen in renderergl2/tr_init.c to match gl1 exactly. |
+| `bug-1797` | 2026-08-13 | `openmohaa-hzm/code/client/snd_openal_new.cpp` | V | when I change my audio device in the audio settings and hit Apply it doesnt update | s_setdevice now accepts a device NAME as well as an index - a pure integer still means an index (back-compat), anything else is matched case-insensit… |
+| `bug-1798` | 2026-08-13 | `build.ps1` | - | Client-side engine changes never reached the deployed game | Added openmohaa.exe to the build.ps1 binaries list so it deploys to both the GOG root and the live gl2 install alongside cgame/game/renderers. |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

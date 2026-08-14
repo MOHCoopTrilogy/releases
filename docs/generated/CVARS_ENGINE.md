@@ -7,14 +7,14 @@
      ============================================================ -->
 # Engine cvar inventory (generated)
 Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name is a string literal. Anchors are `path:line` relative to that directory. Defaults and flags are verbatim from source.
-- **1601** distinct cvars across **2096** registration sites in **119** translation units.
+- **1602** distinct cvars across **2098** registration sites in **119** translation units.
 - **31** call sites use a computed name (a variable or `va()`) and cannot be listed here. That number is reported rather than hidden - if it grows, something is registering cvars this inventory cannot see.
 - **56** cvars are registered with **different defaults** in different files. Those are real (usually renderergl1 vs renderergl2), not transcription errors.
 
 ## Registrations by prefix
 | prefix | distinct cvars |
 |---|---:|
-| `r_` | 386 |
+| `r_` | 387 |
 | `cg_` | 222 |
 | `g_` | 194 |
 | `coop_` | 187 |
@@ -60,7 +60,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `cg_crosshair_friend` | `textures/hud/crosshair` | `CVAR_ARCHIVE` | `cgame/cg_main.c:205` |
 | `cg_shadows` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:181` |
 | `cg_shadows` | `1` | `0` | `renderergl1/tr_init.c:1630` |
-| `cg_shadows` | `1` | `0` | `renderergl2/tr_init.c:1973` |
+| `cg_shadows` | `1` | `0` | `renderergl2/tr_init.c:1980` |
 | `cheats` | `0` | `CVAR_USERINFO \| CVAR_SERVERINFO \| CVAR_LATCH` | `cgame/cg_main.c:244` |
 | `cheats` | `0` | `CVAR_USERINFO \| CVAR_SERVERINFO \| CVAR_LATCH` | `fgame/gamecvars.cpp:374` |
 | `cheats` | `1` | `CVAR_LATCH \| CVAR_SYSTEMINFO` | `qcommon/cvar.c:1778` |
@@ -88,7 +88,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `developer` | `0` | `0` | `fgame/gamecvars.cpp:309` |
 | `developer` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1770` |
 | `developer` |  | `0` | `renderergl1/tr_init.c:1706` |
-| `developer` |  | `0` | `renderergl2/tr_init.c:2139` |
+| `developer` |  | `0` | `renderergl2/tr_init.c:2146` |
 | `fraglimit` | `0` | `CVAR_SERVERINFO` | `fgame/dm_manager.cpp:1069` |
 | `fraglimit` | `0` | `0` | `fgame/dm_manager.cpp:1173` |
 | `fraglimit` | `0` | `CVAR_SERVERINFO` | `fgame/gamecvars.cpp:330` |
@@ -110,13 +110,13 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `g_TOW_winstate` | `0` | `0` | `fgame/gamecvars.cpp:638` |
 | `lod_pitch_val` |  | `0` | `fgame/lodthing.cpp:219` |
 | `lod_pitch_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1540` |
-| `lod_pitch_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2125` |
+| `lod_pitch_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2132` |
 | `lod_position` |  | `0` | `fgame/lodthing.cpp:232` |
 | `lod_position` | `0 0 0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1548` |
-| `lod_position` | `0 0 0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2133` |
+| `lod_position` | `0 0 0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2140` |
 | `lod_zee_val` |  | `0` | `fgame/lodthing.cpp:235` |
 | `lod_zee_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1541` |
-| `lod_zee_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2126` |
+| `lod_zee_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2133` |
 | `m_filter` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4067` |
 | `m_filter` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4069` |
 | `mapname` | `unknown` | `0` | `fgame/actor.cpp:12871` |
@@ -143,13 +143,13 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `r_ext_texture_env_add` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1419` |
 | `r_inGameVideo` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4052` |
 | `r_inGameVideo` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4054` |
-| `r_inGameVideo` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1895` |
+| `r_inGameVideo` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1902` |
 | `r_largemap` | `0` | `0` | `cgame/cg_main.c:304` |
 | `r_largemap` | `0` | `0` | `client/cl_main.cpp:199` |
 | `r_largemap` | `1` | `0` | `renderergl1/tr_init.c:1388` |
 | `r_largemap` | `0` | `0` | `renderergl1/tr_init.c:1390` |
 | `r_mapOverBrightBits` | `1` | `CVAR_LATCH` | `renderergl1/tr_init.c:1438` |
-| `r_mapOverBrightBits` | `2` | `CVAR_LATCH` | `renderergl2/tr_init.c:1879` |
+| `r_mapOverBrightBits` | `2` | `CVAR_LATCH` | `renderergl2/tr_init.c:1886` |
 | `r_overBrightBits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1406` |
 | `r_overBrightBits` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1443` |
 | `r_ppContrast` | `1.0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1470` |
@@ -166,7 +166,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `r_ppSaturation` | `1.0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1471` |
 | `r_ppSaturation` | `1.031519` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:100` |
 | `r_ppSSAO` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1459` |
-| `r_ppSSAO` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1508` |
+| `r_ppSSAO` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1515` |
 | `r_ppSuppressAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2237` |
 | `r_ppSuppressAmount` | `1.0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1482` |
 | `r_ppSuppressAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1100` |
@@ -174,10 +174,10 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `r_stencilbits` | `8` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1403` |
 | `r_stencilbits` | `8` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1439` |
 | `r_swapInterval` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1500` |
-| `r_swapInterval` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1904` |
-| `r_swapInterval` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1907` |
+| `r_swapInterval` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1911` |
+| `r_swapInterval` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1914` |
 | `r_textureMode` | `GL_LINEAR_MIPMAP_NEAREST` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1499` |
-| `r_textureMode` | `GL_LINEAR_MIPMAP_LINEAR` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1900` |
+| `r_textureMode` | `GL_LINEAR_MIPMAP_LINEAR` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1907` |
 | `rate` | `25000` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4120` |
 | `rate` | `5000` | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_uiserverlist.cpp:667` |
 | `s_alAvailableDevices` | `devicenames` | `CVAR_ROM \| CVAR_NORESTART` | `client/snd_openal.c:2594` |
@@ -368,7 +368,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `cg_shadowdebug` | `0` | `0` | `cgame/cg_main.c:183` |
 | `cg_shadows` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:181` |
 | `cg_shadows` | `1` | `0` | `renderergl1/tr_init.c:1630` |
-| `cg_shadows` | `1` | `0` | `renderergl2/tr_init.c:1973` |
+| `cg_shadows` | `1` | `0` | `renderergl2/tr_init.c:1980` |
 | `cg_shadowscount` | `8` | `0` | `cgame/cg_main.c:182` |
 | `cg_showemitters` | `0` | `0` | `cgame/cg_commands.cpp:5495` |
 | `cg_showmiss` | `0` | `0` | `cgame/cg_main.c:157` |
@@ -711,11 +711,11 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_goreSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2362` |
 | `coop_goreSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2686` |
 | `coop_goreSkinSnap` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1577` |
-| `coop_goreSkinSnap` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2030` |
+| `coop_goreSkinSnap` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2037` |
 | `coop_goreSkinSnapDist` | `26` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1581` |
-| `coop_goreSkinSnapDist` | `26` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2034` |
+| `coop_goreSkinSnapDist` | `26` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2041` |
 | `coop_goreSkinWoundScale` | `1.4` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1571` |
-| `coop_goreSkinWoundScale` | `1.4` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2024` |
+| `coop_goreSkinWoundScale` | `1.4` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2031` |
 | `coop_goreTier1Dmg` | `35` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2365` |
 | `coop_goreTier1Frac` | `0.22` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2363` |
 | `coop_goreTier2Dmg` | `90` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2366` |
@@ -906,7 +906,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `developer` | `0` | `0` | `fgame/gamecvars.cpp:309` |
 | `developer` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1770` |
 | `developer` |  | `0` | `renderergl1/tr_init.c:1706` |
-| `developer` |  | `0` | `renderergl2/tr_init.c:2139` |
+| `developer` |  | `0` | `renderergl2/tr_init.c:2146` |
 | `dlg_badsave` | `This save game is invalid` | `0` | `client/cl_ui.cpp:5507` |
 | `dm_filter_empty` | `0` | `CVAR_ARCHIVE` | `client/cl_uiserverlist.cpp:538` |
 | `dm_filter_empty` | `0` | `CVAR_ARCHIVE` | `client/cl_uiserverlist.cpp:1006` |
@@ -945,7 +945,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `fov` | `80` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4128` |
 | `fps` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1914` |
 | `fps` | `0` | `0` | `renderergl1/tr_init.c:1675` |
-| `fps` | `0` | `0` | `renderergl2/tr_init.c:2138` |
+| `fps` | `0` | `0` | `renderergl2/tr_init.c:2145` |
 | `fraglimit` | `0` | `CVAR_SERVERINFO` | `fgame/dm_manager.cpp:1069` |
 | `fraglimit` | `0` | `0` | `fgame/dm_manager.cpp:1173` |
 | `fraglimit` | `0` | `CVAR_SERVERINFO` | `fgame/gamecvars.cpp:330` |
@@ -1089,7 +1089,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `g_numdebuglinedelays` | `0` | `0` | `fgame/gamecvars.cpp:422` |
 | `g_numdebuglines` | `4096` | `CVAR_LATCH` | `fgame/gamecvars.cpp:421` |
 | `g_numdebuglines` | `4096` | `CVAR_LATCH` | `renderergl1/tr_init.c:1440` |
-| `g_numdebuglines` | `4096` | `CVAR_LATCH` | `renderergl2/tr_init.c:2038` |
+| `g_numdebuglines` | `4096` | `CVAR_LATCH` | `renderergl2/tr_init.c:2045` |
 | `g_numdebugstrings` | `256` | `CVAR_LATCH` | `fgame/gamecvars.cpp:423` |
 | `g_obituarylocation` | `0` | `0` | `fgame/gamecvars.cpp:659` |
 | `g_obituarylocation` | `1` | `0` | `fgame/gamecvars.cpp:662` |
@@ -1211,66 +1211,66 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `journal` | `0` | `CVAR_INIT` | `qcommon/common.c:1015` |
 | `joy_threshold` | `0.15` | `CVAR_ARCHIVE` | `sdl/sdl_input.c:1281` |
 | `lod_curve_0_slider` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1535` |
-| `lod_curve_0_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2120` |
+| `lod_curve_0_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2127` |
 | `lod_curve_0_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1530` |
-| `lod_curve_0_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2115` |
+| `lod_curve_0_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2122` |
 | `lod_curve_1_slider` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1536` |
-| `lod_curve_1_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2121` |
+| `lod_curve_1_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2128` |
 | `lod_curve_1_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1531` |
-| `lod_curve_1_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2116` |
+| `lod_curve_1_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2123` |
 | `lod_curve_2_slider` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1537` |
-| `lod_curve_2_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2122` |
+| `lod_curve_2_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2129` |
 | `lod_curve_2_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1532` |
-| `lod_curve_2_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2117` |
+| `lod_curve_2_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2124` |
 | `lod_curve_3_slider` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1538` |
-| `lod_curve_3_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2123` |
+| `lod_curve_3_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2130` |
 | `lod_curve_3_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1533` |
-| `lod_curve_3_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2118` |
+| `lod_curve_3_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2125` |
 | `lod_curve_4_slider` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1539` |
-| `lod_curve_4_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2124` |
+| `lod_curve_4_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2131` |
 | `lod_curve_4_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1534` |
-| `lod_curve_4_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2119` |
+| `lod_curve_4_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2126` |
 | `lod_edit_0` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1525` |
-| `lod_edit_0` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2110` |
+| `lod_edit_0` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2117` |
 | `lod_edit_1` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1526` |
-| `lod_edit_1` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2111` |
+| `lod_edit_1` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2118` |
 | `lod_edit_2` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1527` |
-| `lod_edit_2` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2112` |
+| `lod_edit_2` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2119` |
 | `lod_edit_3` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1528` |
-| `lod_edit_3` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2113` |
+| `lod_edit_3` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2120` |
 | `lod_edit_4` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1529` |
-| `lod_edit_4` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2114` |
+| `lod_edit_4` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2121` |
 | `lod_LOD` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1521` |
-| `lod_LOD` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2106` |
+| `lod_LOD` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2113` |
 | `lod_LOD_slider` | `0.5` | `CVAR_TEMP` | `renderergl1/tr_init.c:1524` |
-| `lod_LOD_slider` | `0.5` | `CVAR_TEMP` | `renderergl2/tr_init.c:2109` |
+| `lod_LOD_slider` | `0.5` | `CVAR_TEMP` | `renderergl2/tr_init.c:2116` |
 | `lod_maxLOD` | `0.3` | `CVAR_TEMP` | `renderergl1/tr_init.c:1523` |
-| `lod_maxLOD` | `0.3` | `CVAR_TEMP` | `renderergl2/tr_init.c:2108` |
+| `lod_maxLOD` | `0.3` | `CVAR_TEMP` | `renderergl2/tr_init.c:2115` |
 | `lod_mesh` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1542` |
-| `lod_mesh` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2127` |
+| `lod_mesh` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2134` |
 | `lod_meshname` |  | `CVAR_TEMP` | `renderergl1/tr_init.c:1543` |
-| `lod_meshname` |  | `CVAR_TEMP` | `renderergl2/tr_init.c:2128` |
+| `lod_meshname` |  | `CVAR_TEMP` | `renderergl2/tr_init.c:2135` |
 | `lod_metric` | `0.0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1545` |
-| `lod_metric` | `0.0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2130` |
+| `lod_metric` | `0.0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2137` |
 | `lod_minLOD` | `1.0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1522` |
-| `lod_minLOD` | `1.0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2107` |
+| `lod_minLOD` | `1.0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2114` |
 | `lod_pitch_val` |  | `0` | `fgame/lodthing.cpp:219` |
 | `lod_pitch_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1540` |
-| `lod_pitch_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2125` |
+| `lod_pitch_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2132` |
 | `lod_position` |  | `0` | `fgame/lodthing.cpp:232` |
 | `lod_position` | `0 0 0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1548` |
-| `lod_position` | `0 0 0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2133` |
+| `lod_position` | `0 0 0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2140` |
 | `lod_save` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1547` |
-| `lod_save` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2132` |
+| `lod_save` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2139` |
 | `lod_tikiname` |  | `CVAR_TEMP` | `renderergl1/tr_init.c:1544` |
-| `lod_tikiname` |  | `CVAR_TEMP` | `renderergl2/tr_init.c:2129` |
+| `lod_tikiname` |  | `CVAR_TEMP` | `renderergl2/tr_init.c:2136` |
 | `lod_tool` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1549` |
-| `lod_tool` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2134` |
+| `lod_tool` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2141` |
 | `lod_tris` |  | `CVAR_TEMP` | `renderergl1/tr_init.c:1546` |
-| `lod_tris` |  | `CVAR_TEMP` | `renderergl2/tr_init.c:2131` |
+| `lod_tris` |  | `CVAR_TEMP` | `renderergl2/tr_init.c:2138` |
 | `lod_zee_val` |  | `0` | `fgame/lodthing.cpp:235` |
 | `lod_zee_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1541` |
-| `lod_zee_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2126` |
+| `lod_zee_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2133` |
 | `logfile` | `0` | `CVAR_TEMP` | `qcommon/common.c:1920` |
 | `logfile_timestamps` | `1` | `CVAR_TEMP` | `qcommon/common.c:1921` |
 | `low_anim_memory` | `0` | `0` | `qcommon/common.c:1906` |
@@ -1327,42 +1327,43 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `protocol` | `va( "%i", PROTOCOL_VERSION )` | `CVAR_SERVERINFO \| CVAR_ROM` | `server/sv_init.c:1071` |
 | `r_allowExtensions` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1364` |
 | `r_allowExtensions` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1415` |
-| `r_allowResize` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `sdl/sdl_glimp.c:1149` |
-| `r_allowSoftwareGL` | `0` | `CVAR_LATCH` | `sdl/sdl_glimp.c:1147` |
+| `r_allowResize` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `sdl/sdl_glimp.c:1227` |
+| `r_allowSoftwareGL` | `0` | `CVAR_LATCH` | `sdl/sdl_glimp.c:1225` |
 | `r_alpha_foliage1` | `0.75` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1671` |
 | `r_alpha_foliage2` | `0.75` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1672` |
 | `r_ambientScale` | `0.6` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1509` |
-| `r_ambientScale` | `0.6` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1917` |
+| `r_ambientScale` | `0.6` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1924` |
 | `r_anaglyphMode` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1512` |
-| `r_anaglyphMode` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1920` |
+| `r_anaglyphMode` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1927` |
 | `r_arb_seamless_cube_map` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1424` |
 | `r_arb_vertex_array_object` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1425` |
-| `r_autoExposure` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1471` |
-| `r_availableModes` |  | `CVAR_ROM` | `sdl/sdl_glimp.c:1236` |
+| `r_autoExposure` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1478` |
+| `r_availableModes` |  | `CVAR_ROM` | `sdl/sdl_glimp.c:1319` |
 | `r_aviMotionJpegQuality` | `90` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1708` |
-| `r_aviMotionJpegQuality` | `90` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1979` |
-| `r_baseGloss` | `0.3` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1543` |
-| `r_baseNormalX` | `1.0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1535` |
-| `r_baseNormalY` | `1.0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1536` |
-| `r_baseParallax` | `0.05` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1537` |
-| `r_baseSpecular` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1542` |
+| `r_aviMotionJpegQuality` | `90` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1986` |
+| `r_baseGloss` | `0.3` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1550` |
+| `r_baseNormalX` | `1.0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1542` |
+| `r_baseNormalY` | `1.0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1543` |
+| `r_baseParallax` | `0.05` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1544` |
+| `r_baseSpecular` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1549` |
 | `r_blendbushes` | `0` | `CVAR_LATCH` | `renderergl1/tr_init.c:1674` |
 | `r_blendtrees` | `0` | `CVAR_LATCH` | `renderergl1/tr_init.c:1673` |
-| `r_cameraExposure` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1476` |
-| `r_centerWindow` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `sdl/sdl_glimp.c:1150` |
-| `r_charLightDebug` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1799` |
-| `r_charLighting` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1773` |
-| `r_charLightShadow` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1795` |
-| `r_charLightWrap` | `0.35` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1780` |
-| `r_charShadowBiasFactor` | `2` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1696` |
-| `r_charShadowBiasUnits` | `2` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1697` |
-| `r_charShadowBlob` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1700` |
-| `r_charShadowCascade` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1684` |
-| `r_charShadowDist` | `512` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1687` |
-| `r_charShadowLod` | `0.25` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1691` |
-| `r_charShadows` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1675` |
+| `r_cameraExposure` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1483` |
+| `r_captureSafe` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `sdl/sdl_glimp.c:1234` |
+| `r_centerWindow` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `sdl/sdl_glimp.c:1228` |
+| `r_charLightDebug` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1806` |
+| `r_charLighting` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1780` |
+| `r_charLightShadow` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1802` |
+| `r_charLightWrap` | `0.35` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1787` |
+| `r_charShadowBiasFactor` | `2` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1703` |
+| `r_charShadowBiasUnits` | `2` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1704` |
+| `r_charShadowBlob` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1707` |
+| `r_charShadowCascade` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1691` |
+| `r_charShadowDist` | `512` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1694` |
+| `r_charShadowLod` | `0.25` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1698` |
+| `r_charShadows` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1682` |
 | `r_clear` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1608` |
-| `r_clear` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1959` |
+| `r_clear` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1966` |
 | `r_colorbits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1398` |
 | `r_colorbits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1438` |
 | `r_colorMipLevels` | `0` | `CVAR_LATCH` | `renderergl1/tr_init.c:1394` |
@@ -1370,80 +1371,81 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `r_coopRealShadows` | `0` | `0` | `cgame/cg_modelanim.c:704` |
 | `r_coopSunAz` | `45` | `0` | `cgame/cg_modelanim.c:724` |
 | `r_coopSunEl` | `45` | `0` | `cgame/cg_modelanim.c:725` |
-| `r_coopSunPublish` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1743` |
+| `r_coopSunPublish` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1750` |
 | `r_coopSunValid` | `0` | `0` | `cgame/cg_modelanim.c:726` |
-| `r_cubemapAuto` | `16` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1531` |
-| `r_cubemapAutoRadius` | `1200` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1532` |
-| `r_cubeMapping` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1518` |
-| `r_cubemapSize` | `128` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1519` |
+| `r_cubemapAuto` | `16` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1538` |
+| `r_cubemapAutoRadius` | `1200` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1539` |
+| `r_cubeMapping` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1525` |
+| `r_cubemapSize` | `128` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1526` |
 | `r_customaspect` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1426` |
 | `r_customheight` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1425` |
-| `r_customheight` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1449` |
-| `r_customPixelAspect` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1450` |
+| `r_customheight` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1456` |
+| `r_customPixelAspect` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1457` |
 | `r_customwidth` | `1600` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1424` |
-| `r_customwidth` | `1600` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1448` |
-| `r_debuglight` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:1927` |
+| `r_customwidth` | `1600` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1455` |
+| `r_debuglight` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:1934` |
 | `r_debuglines_depthmask` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1655` |
-| `r_debuglines_depthmask` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2036` |
+| `r_debuglines_depthmask` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2043` |
 | `r_debugSort` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1551` |
-| `r_debugSort` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1928` |
+| `r_debugSort` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1935` |
 | `r_debugSurface` | `0` | `0` | `qcommon/cm_patch.c:1583` |
 | `r_debugSurface` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1601` |
-| `r_debugSurface` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1954` |
+| `r_debugSurface` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1961` |
 | `r_debugSurfaceUpdate` | `1` | `0` | `qcommon/cm_patch.c:1325` |
 | `r_debugSurfaceUpdate` | `1` | `0` | `qcommon/cm_patch.c:1464` |
-| `r_deluxeMapping` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1514` |
-| `r_deluxeSpecular` | `0.3` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1533` |
+| `r_deluxeMapping` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1521` |
+| `r_deluxeSpecular` | `0.3` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1540` |
 | `r_depthbits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1405` |
 | `r_depthbits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1440` |
-| `r_depthPrepass` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1478` |
+| `r_depthPrepass` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1485` |
 | `r_desktopfullscreen` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1683` |
+| `r_desktopfullscreen` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1454` |
 | `r_detailtextures` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1436` |
 | `r_directedScale` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1510` |
-| `r_directedScale` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1918` |
+| `r_directedScale` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1925` |
 | `r_displayRefresh` | `0` | `CVAR_LATCH` | `renderergl1/tr_init.c:1435` |
-| `r_displayRefresh` | `0` | `CVAR_LATCH` | `renderergl2/tr_init.c:1876` |
+| `r_displayRefresh` | `0` | `CVAR_LATCH` | `renderergl2/tr_init.c:1883` |
 | `r_dlightBacks` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1497` |
-| `r_dlightBacks` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1898` |
-| `r_dlightMode` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1545` |
+| `r_dlightBacks` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1905` |
+| `r_dlightMode` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1552` |
 | `r_dofBlur` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1490` |
 | `r_dofRadius` | `3` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1491` |
 | `r_drawbrushes` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1584` |
 | `r_drawbrushmodels` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1585` |
 | `r_drawBuffer` | `GL_BACK` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1611` |
-| `r_drawBuffer` | `GL_BACK` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1970` |
+| `r_drawBuffer` | `GL_BACK` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1977` |
 | `r_drawentities` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1566` |
-| `r_drawentities` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1946` |
+| `r_drawentities` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1953` |
 | `r_drawentitypoly` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1567` |
-| `r_drawentitypoly` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2007` |
+| `r_drawentitypoly` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2014` |
 | `r_drawspherelights` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1588` |
-| `r_drawspherelights` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2013` |
+| `r_drawspherelights` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2020` |
 | `r_drawsprites` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1587` |
-| `r_drawsprites` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2012` |
+| `r_drawsprites` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2019` |
 | `r_drawstaticdecals` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1505` |
-| `r_drawstaticdecals` | `0` | `0` | `renderergl2/tr_init.c:2010` |
+| `r_drawstaticdecals` | `0` | `0` | `renderergl2/tr_init.c:2017` |
 | `r_drawstaticmodelpoly` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1583` |
-| `r_drawstaticmodelpoly` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2009` |
+| `r_drawstaticmodelpoly` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2016` |
 | `r_drawstaticmodels` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1582` |
-| `r_drawstaticmodels` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2008` |
+| `r_drawstaticmodels` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2015` |
 | `r_drawSun` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1496` |
-| `r_drawSun` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1896` |
-| `r_drawSunRays` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1645` |
+| `r_drawSun` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1903` |
+| `r_drawSunRays` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1652` |
 | `r_drawterrain` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1586` |
-| `r_drawterrain` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2011` |
+| `r_drawterrain` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2018` |
 | `r_drawworld` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1555` |
-| `r_drawworld` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1933` |
-| `r_dynamiclight` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1897` |
+| `r_drawworld` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1940` |
+| `r_dynamiclight` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1904` |
 | `r_entlight_cubefraction` | `0.5` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1628` |
-| `r_entlight_cubefraction` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2095` |
+| `r_entlight_cubefraction` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2102` |
 | `r_entlight_cubelevel` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1627` |
-| `r_entlight_cubelevel` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2094` |
+| `r_entlight_cubelevel` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2101` |
 | `r_entlight_errbound` | `6` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1626` |
-| `r_entlight_errbound` | `6` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2093` |
+| `r_entlight_errbound` | `6` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2100` |
 | `r_entlight_maxcalc` | `2` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1629` |
-| `r_entlight_maxcalc` | `2` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2096` |
+| `r_entlight_maxcalc` | `2` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2103` |
 | `r_entlight_scale` | `1.3` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1620` |
-| `r_entlight_scale` | `1.3` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2092` |
+| `r_entlight_scale` | `1.3` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2099` |
 | `r_entlight_tikiScale` | `2.2` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1625` |
 | `r_entlightmap` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1614` |
 | `r_ext_aniso_filter` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1375` |
@@ -1468,116 +1470,116 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `r_ext_texture_filter_anisotropic` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1684` |
 | `r_ext_texture_filter_anisotropic` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1428` |
 | `r_ext_texture_float` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1422` |
-| `r_externalGLSL` | `0` | `CVAR_LATCH` | `renderergl2/tr_init.c:1459` |
+| `r_externalGLSL` | `0` | `CVAR_LATCH` | `renderergl2/tr_init.c:1466` |
 | `r_facePlaneCull` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1502` |
-| `r_facePlaneCull` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1911` |
+| `r_facePlaneCull` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1918` |
 | `r_farclip` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1650` |
-| `r_farclip` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2055` |
+| `r_farclip` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2062` |
 | `r_farplane` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1644` |
-| `r_farplane` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2049` |
+| `r_farplane` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2056` |
 | `r_farplane_bias` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1645` |
-| `r_farplane_bias` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2050` |
+| `r_farplane_bias` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2057` |
 | `r_farplane_color` | `.5 .5 .5` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1646` |
-| `r_farplane_color` | `.5 .5 .5` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2051` |
+| `r_farplane_color` | `.5 .5 .5` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2058` |
 | `r_farplane_nocull` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1647` |
-| `r_farplane_nocull` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2052` |
+| `r_farplane_nocull` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2059` |
 | `r_farplane_nofog` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1648` |
-| `r_farplane_nofog` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2053` |
+| `r_farplane_nofog` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2060` |
 | `r_fastdlights` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1495` |
 | `r_fastentlight` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1615` |
-| `r_fastentlight` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2017` |
+| `r_fastentlight` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2024` |
 | `r_fastsky` | `0` | `0` | `renderergl1/tr_init.c:1494` |
-| `r_fastsky` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1894` |
+| `r_fastsky` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1901` |
 | `r_finish` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1498` |
-| `r_finish` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1899` |
-| `r_flareCoeff` | `FLARE_STDCOEFF` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1939` |
+| `r_finish` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1906` |
+| `r_flareCoeff` | `FLARE_STDCOEFF` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1946` |
 | `r_flareFade` | `7` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1560` |
-| `r_flareFade` | `7` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1938` |
+| `r_flareFade` | `7` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1945` |
 | `r_flares` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1448` |
-| `r_flares` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1888` |
+| `r_flares` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1895` |
 | `r_flareSize` | `40` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1559` |
-| `r_flareSize` | `40` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1937` |
-| `r_floatLightmap` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1462` |
-| `r_forceAutoExposure` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1472` |
-| `r_forceAutoExposureMax` | `2.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1474` |
-| `r_forceAutoExposureMin` | `-2.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1473` |
+| `r_flareSize` | `40` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1944` |
+| `r_floatLightmap` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1469` |
+| `r_forceAutoExposure` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1479` |
+| `r_forceAutoExposureMax` | `2.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1481` |
+| `r_forceAutoExposureMin` | `-2.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1480` |
 | `r_forceClampToEdge` | `0` | `CVAR_ROM` | `renderergl1/tr_init.c:1377` |
-| `r_forceSun` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1642` |
-| `r_forceSunAmbientScale` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1644` |
-| `r_forceSunLightScale` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1643` |
-| `r_forceToneMap` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1466` |
-| `r_forceToneMapAvg` | `-2.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1468` |
-| `r_forceToneMapMax` | `0.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1469` |
-| `r_forceToneMapMin` | `-8.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1467` |
+| `r_forceSun` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1649` |
+| `r_forceSunAmbientScale` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1651` |
+| `r_forceSunLightScale` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1650` |
+| `r_forceToneMap` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1473` |
+| `r_forceToneMapAvg` | `-2.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1475` |
+| `r_forceToneMapMax` | `0.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1476` |
+| `r_forceToneMapMin` | `-8.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1474` |
 | `r_fullbright` | `0` | `CVAR_LATCH\|CVAR_CHEAT` | `renderergl1/tr_init.c:1437` |
-| `r_fullbright` | `0` | `CVAR_LATCH\|CVAR_CHEAT` | `renderergl2/tr_init.c:1878` |
+| `r_fullbright` | `0` | `CVAR_LATCH\|CVAR_CHEAT` | `renderergl2/tr_init.c:1885` |
 | `r_fullscreen` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4059` |
 | `r_fullscreen` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1423` |
 | `r_fullscreen` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1446` |
 | `r_gamma` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1501` |
-| `r_gamma` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1910` |
+| `r_gamma` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1917` |
 | `r_geForce3WorkAround` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1378` |
-| `r_genNormalMaps` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1553` |
+| `r_genNormalMaps` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1560` |
 | `r_glDriver` | `OPENGL_DRIVER_NAME` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1363` |
-| `r_globalFog` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2059` |
-| `r_globalFogDebug` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2071` |
-| `r_globalFogEndScale` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2062` |
-| `r_globalFogForward` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2082` |
-| `r_globalFogIdentityLight` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2065` |
+| `r_globalFog` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2066` |
+| `r_globalFogDebug` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2078` |
+| `r_globalFogEndScale` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2069` |
+| `r_globalFogForward` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2089` |
+| `r_globalFogIdentityLight` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2072` |
 | `r_globalFogPreTone` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_backend.c:2185` |
-| `r_globalFogRadial` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2064` |
-| `r_globalFogScale` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2060` |
-| `r_globalFogSky` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2063` |
-| `r_globalFogStartScale` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2061` |
-| `r_glossType` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1544` |
+| `r_globalFogRadial` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2071` |
+| `r_globalFogScale` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2067` |
+| `r_globalFogSky` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2070` |
+| `r_globalFogStartScale` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2068` |
+| `r_glossType` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1551` |
 | `r_goreDebug` | `0` | `0` | `renderergl1/tr_init.c:1569` |
-| `r_goreDebug` | `0` | `0` | `renderergl2/tr_init.c:2022` |
+| `r_goreDebug` | `0` | `0` | `renderergl2/tr_init.c:2029` |
 | `r_goreUV` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1568` |
-| `r_goreUV` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2021` |
+| `r_goreUV` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2028` |
 | `r_grass` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_grass_gl1.c:40` |
 | `r_grassDensity` | `0.004` | `CVAR_ARCHIVE` | `renderergl1/tr_grass_gl1.c:42` |
 | `r_grassHeight` | `16` | `CVAR_ARCHIVE` | `renderergl1/tr_grass_gl1.c:43` |
 | `r_grassMaxDraw` | `16000` | `CVAR_ARCHIVE` | `renderergl1/tr_grass_gl1.c:45` |
 | `r_grassRadius` | `1280` | `CVAR_ARCHIVE` | `renderergl1/tr_grass_gl1.c:41` |
 | `r_grassWind` | `2.5` | `CVAR_ARCHIVE` | `renderergl1/tr_grass_gl1.c:44` |
-| `r_greyscale` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1456` |
-| `r_hdr` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1461` |
-| `r_hzmAlphaGenCoord` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1525` |
-| `r_hzmDlightShadowCasters` | `3` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1854` |
-| `r_hzmDlightShadowChars` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1862` |
-| `r_hzmDlightShadowDebug` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1868` |
-| `r_hzmDlightShadowDist` | `1400` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1843` |
-| `r_hzmDlightShadowLights` | `2` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1834` |
-| `r_hzmDlightShadowMax` | `4` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1839` |
-| `r_hzmDlightShadowMinRadius` | `120` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1850` |
-| `r_hzmDlightShadows` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1828` |
-| `r_hzmFlapDeform` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1526` |
-| `r_hzmGenNormalBlur` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1598` |
-| `r_hzmGenNormalBrighten` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1604` |
-| `r_hzmGenNormalDebug` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1613` |
-| `r_hzmGenNormalExclude` |  | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1611` |
-| `r_hzmGenNormalInclude` | `textures/` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1610` |
-| `r_hzmGenNormalMaxSize` | `512` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1594` |
-| `r_hzmGenNormals` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1579` |
-| `r_hzmGenNormalStrength` | `0.6` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1586` |
-| `r_hzmSpecular` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1631` |
-| `r_hzmSpecularGloss` | `0.3` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1635` |
+| `r_greyscale` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1463` |
+| `r_hdr` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1468` |
+| `r_hzmAlphaGenCoord` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1532` |
+| `r_hzmDlightShadowCasters` | `3` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1861` |
+| `r_hzmDlightShadowChars` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1869` |
+| `r_hzmDlightShadowDebug` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1875` |
+| `r_hzmDlightShadowDist` | `1400` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1850` |
+| `r_hzmDlightShadowLights` | `2` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1841` |
+| `r_hzmDlightShadowMax` | `4` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1846` |
+| `r_hzmDlightShadowMinRadius` | `120` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1857` |
+| `r_hzmDlightShadows` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1835` |
+| `r_hzmFlapDeform` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1533` |
+| `r_hzmGenNormalBlur` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1605` |
+| `r_hzmGenNormalBrighten` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1611` |
+| `r_hzmGenNormalDebug` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1620` |
+| `r_hzmGenNormalExclude` |  | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1618` |
+| `r_hzmGenNormalInclude` | `textures/` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1617` |
+| `r_hzmGenNormalMaxSize` | `512` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1601` |
+| `r_hzmGenNormals` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1586` |
+| `r_hzmGenNormalStrength` | `0.6` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1593` |
+| `r_hzmSpecular` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1638` |
+| `r_hzmSpecularGloss` | `0.3` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1642` |
 | `r_ignore` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1593` |
-| `r_ignore` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1947` |
-| `r_ignoreDstAlpha` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1871` |
+| `r_ignore` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1954` |
+| `r_ignoreDstAlpha` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1878` |
 | `r_ignoreFastPath` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1428` |
 | `r_ignoreGLErrors` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1493` |
-| `r_ignoreGLErrors` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1893` |
+| `r_ignoreGLErrors` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1900` |
 | `r_ignorehwgamma` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1407` |
 | `r_ignorehwgamma` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1444` |
-| `r_imageUpsample` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1550` |
-| `r_imageUpsampleMaxSize` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1551` |
-| `r_imageUpsampleType` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1552` |
+| `r_imageUpsample` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1557` |
+| `r_imageUpsampleMaxSize` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1558` |
+| `r_imageUpsampleType` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1559` |
 | `r_inGameVideo` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4052` |
 | `r_inGameVideo` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4054` |
-| `r_inGameVideo` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1895` |
+| `r_inGameVideo` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1902` |
 | `r_intensity` | `1` | `CVAR_LATCH` | `renderergl1/tr_init.c:1439` |
-| `r_intensity` | `1` | `CVAR_LATCH` | `renderergl2/tr_init.c:1880` |
+| `r_intensity` | `1` | `CVAR_LATCH` | `renderergl2/tr_init.c:1887` |
 | `r_largemap` | `0` | `0` | `cgame/cg_main.c:304` |
 | `r_largemap` | `0` | `0` | `client/cl_main.cpp:199` |
 | `r_largemap` | `1` | `0` | `renderergl1/tr_init.c:1388` |
@@ -1585,82 +1587,82 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `r_lerpmodels` | `1` | `0` | `cgame/cg_main.c:164` |
 | `r_lerpmodels` | `1` | `0` | `renderergl1/tr_init.c:1446` |
 | `r_light_int_scale` | `0.05` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1639` |
-| `r_light_int_scale` | `0.05` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2089` |
+| `r_light_int_scale` | `0.05` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2096` |
 | `r_light_lines` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1637` |
-| `r_light_lines` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2087` |
+| `r_light_lines` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2094` |
 | `r_light_nolight` | `0` | `CVAR_CHEAT \| CVAR_ARCHIVE` | `renderergl1/tr_init.c:1640` |
-| `r_light_nolight` | `0` | `CVAR_CHEAT \| CVAR_ARCHIVE` | `renderergl2/tr_init.c:2090` |
+| `r_light_nolight` | `0` | `CVAR_CHEAT \| CVAR_ARCHIVE` | `renderergl2/tr_init.c:2097` |
 | `r_light_showgrid` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1641` |
-| `r_light_showgrid` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2091` |
+| `r_light_showgrid` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2098` |
 | `r_light_sun_line` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1638` |
-| `r_light_sun_line` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2088` |
+| `r_light_sun_line` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2095` |
 | `r_lightcoronasize` | `.1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1653` |
-| `r_lightcoronasize` | `.1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2086` |
+| `r_lightcoronasize` | `.1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2093` |
 | `r_lightmap` | `0` | `0` | `renderergl1/tr_init.c:1556` |
-| `r_lightmap` | `0` | `0` | `renderergl2/tr_init.c:1934` |
+| `r_lightmap` | `0` | `0` | `renderergl2/tr_init.c:1941` |
 | `r_loadftx` | `0` | `CVAR_LATCH` | `renderergl1/tr_init.c:1677` |
 | `r_loadjpg` | `1` | `CVAR_LATCH` | `renderergl1/tr_init.c:1676` |
 | `r_lockpvs` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1612` |
-| `r_lockpvs` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1971` |
-| `r_lodbias` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1887` |
+| `r_lockpvs` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1978` |
+| `r_lodbias` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1894` |
 | `r_lodcap` | `0.35` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1591` |
-| `r_lodcap` | `0.35` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2102` |
+| `r_lodcap` | `0.35` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2109` |
 | `r_lodCurveError` | `250` | `CVAR_ARCHIVE\|CVAR_CHEAT` | `renderergl1/tr_init.c:1447` |
-| `r_lodCurveError` | `250` | `CVAR_ARCHIVE\|CVAR_CHEAT` | `renderergl2/tr_init.c:1886` |
+| `r_lodCurveError` | `250` | `CVAR_ARCHIVE\|CVAR_CHEAT` | `renderergl2/tr_init.c:1893` |
 | `r_lodscale` | `5` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1590` |
-| `r_lodscale` | `5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1944` |
-| `r_lodscale` | `5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2101` |
+| `r_lodscale` | `5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1951` |
+| `r_lodscale` | `5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2108` |
 | `r_lodviewmodelcap` | `0.25` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1592` |
-| `r_lodviewmodelcap` | `0.25` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2103` |
+| `r_lodviewmodelcap` | `0.25` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2110` |
 | `r_logFile` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1600` |
-| `r_logFile` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1953` |
+| `r_logFile` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1960` |
 | `r_mapOverBrightBits` | `1` | `CVAR_LATCH` | `renderergl1/tr_init.c:1438` |
-| `r_mapOverBrightBits` | `2` | `CVAR_LATCH` | `renderergl2/tr_init.c:1879` |
-| `r_marksOnTriangleMeshes` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1975` |
+| `r_mapOverBrightBits` | `2` | `CVAR_LATCH` | `renderergl2/tr_init.c:1886` |
+| `r_marksOnTriangleMeshes` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1982` |
 | `r_maxmode` | `6` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1408` |
 | `r_maxpolys` | `va("%d", MAX_POLYS)` | `0` | `renderergl1/tr_init.c:1632` |
-| `r_maxpolys` | `va("%d", MAX_POLYS)` | `0` | `renderergl2/tr_init.c:1982` |
+| `r_maxpolys` | `va("%d", MAX_POLYS)` | `0` | `renderergl2/tr_init.c:1989` |
 | `r_maxpolyverts` | `va("%d", MAX_POLYVERTS)` | `0` | `renderergl1/tr_init.c:1633` |
-| `r_maxpolyverts` | `va("%d", MAX_POLYVERTS)` | `0` | `renderergl2/tr_init.c:1983` |
+| `r_maxpolyverts` | `va("%d", MAX_POLYVERTS)` | `0` | `renderergl2/tr_init.c:1990` |
 | `r_maxtermarks` | `va("%d", MAX_TERMARKS)` | `0` | `renderergl1/tr_init.c:1634` |
-| `r_maxtermarks` | `va("%d", MAX_TERMARKS)` | `0` | `renderergl2/tr_init.c:2040` |
+| `r_maxtermarks` | `va("%d", MAX_TERMARKS)` | `0` | `renderergl2/tr_init.c:2047` |
 | `r_measureOverdraw` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1564` |
-| `r_measureOverdraw` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1943` |
-| `r_mergeLightmaps` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1549` |
+| `r_measureOverdraw` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1950` |
+| `r_mergeLightmaps` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1556` |
 | `r_mode` | `-2` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1411` |
 | `r_mode` | `-2` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1445` |
 | `r_nobind` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1602` |
-| `r_nobind` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1955` |
+| `r_nobind` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1962` |
 | `r_noborder` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1680` |
 | `r_noborder` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1447` |
 | `r_nocull` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1594` |
-| `r_nocull` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1948` |
+| `r_nocull` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1955` |
 | `r_nocurves` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1554` |
-| `r_nocurves` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1932` |
+| `r_nocurves` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1939` |
 | `r_noportals` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1613` |
-| `r_noportals` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1972` |
+| `r_noportals` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1979` |
 | `r_norefresh` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1565` |
-| `r_norefresh` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1945` |
-| `r_normalMapping` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1481` |
+| `r_norefresh` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1952` |
+| `r_normalMapping` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1488` |
 | `r_novis` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1596` |
-| `r_novis` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1949` |
+| `r_novis` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1956` |
 | `r_offsetfactor` | `-1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1609` |
-| `r_offsetfactor` | `-1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1960` |
+| `r_offsetfactor` | `-1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1967` |
 | `r_offsetunits` | `-2` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1610` |
-| `r_offsetunits` | `-2` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1961` |
+| `r_offsetunits` | `-2` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1968` |
 | `r_overBrightBits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1406` |
 | `r_overBrightBits` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1443` |
-| `r_parallaxMapOffset` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1516` |
-| `r_parallaxMapping` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1515` |
-| `r_parallaxMapShadows` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1517` |
-| `r_pbr` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1534` |
+| `r_parallaxMapOffset` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1523` |
+| `r_parallaxMapping` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1522` |
+| `r_parallaxMapShadows` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1524` |
+| `r_pbr` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1541` |
 | `r_picmip` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1381` |
 | `r_picmip` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1432` |
 | `r_picmip_cap` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1382` |
 | `r_portalOnly` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1557` |
-| `r_portalOnly` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1935` |
+| `r_portalOnly` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1942` |
 | `r_postProcess` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1454` |
-| `r_postProcess` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1463` |
+| `r_postProcess` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1470` |
 | `r_ppBloom` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1456` |
 | `r_ppBloom` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:698` |
 | `r_ppBloomIntensity` | `1.3` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1458` |
@@ -1681,7 +1683,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `r_ppDizzyStart` | `0.8` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:768` |
 | `r_ppDizzyStart` | `0.8` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1050` |
 | `r_ppDoF` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1464` |
-| `r_ppDoF` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1493` |
+| `r_ppDoF` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1500` |
 | `r_ppDoFFocus` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1465` |
 | `r_ppDoFFocus` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1348` |
 | `r_ppDoFIntensity` | `0.5` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1467` |
@@ -1748,15 +1750,15 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `r_ppSharpenAmount` | `0.35` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1474` |
 | `r_ppSharpenAmount` | `0.35` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:807` |
 | `r_ppSSAO` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1459` |
-| `r_ppSSAO` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1508` |
+| `r_ppSSAO` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1515` |
 | `r_ppSSAOBias` | `0.5` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1462` |
-| `r_ppSSAOBias` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1511` |
+| `r_ppSSAOBias` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1518` |
 | `r_ppSSAODepthAware` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1463` |
-| `r_ppSSAODepthAware` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1512` |
+| `r_ppSSAODepthAware` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1519` |
 | `r_ppSSAOIntensity` | `1.0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1461` |
-| `r_ppSSAOIntensity` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1510` |
+| `r_ppSSAOIntensity` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1517` |
 | `r_ppSSAORadius` | `16` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1460` |
-| `r_ppSSAORadius` | `16` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1509` |
+| `r_ppSSAORadius` | `16` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1516` |
 | `r_ppSunShaftDecay` | `0.95` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1488` |
 | `r_ppSunShaftIntensity` | `0.5` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1487` |
 | `r_ppSunShafts` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1486` |
@@ -1776,76 +1778,76 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `r_ppUnderwater` | `0` | `0` | `renderergl2/tr_postprocess.c:1428` |
 | `r_ppUnderwaterFx` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1427` |
 | `r_precacheimages` | `0` | `0` | `renderergl1/tr_init.c:1668` |
-| `r_preferOpenGLES` | `-1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `sdl/sdl_glimp.c:1151` |
+| `r_preferOpenGLES` | `-1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `sdl/sdl_glimp.c:1229` |
 | `r_primitives` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1507` |
 | `r_printShaders` | `0` | `0` | `renderergl1/tr_init.c:1552` |
-| `r_printShaders` | `0` | `0` | `renderergl2/tr_init.c:1929` |
-| `r_pshadowDist` | `128` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1546` |
-| `r_railCoreWidth` | `6` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1914` |
-| `r_railSegmentLength` | `32` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1915` |
-| `r_railWidth` | `16` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1913` |
-| `r_resAutoDetected` | `0` | `CVAR_ARCHIVE` | `sdl/sdl_glimp.c:494` |
+| `r_printShaders` | `0` | `0` | `renderergl2/tr_init.c:1936` |
+| `r_pshadowDist` | `128` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1553` |
+| `r_railCoreWidth` | `6` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1921` |
+| `r_railSegmentLength` | `32` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1922` |
+| `r_railWidth` | `16` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1920` |
+| `r_resAutoDetected` | `0` | `CVAR_ARCHIVE` | `sdl/sdl_glimp.c:562` |
 | `r_reset_tc_array` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1379` |
 | `r_roundImagesDown` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1393` |
 | `r_roundImagesDown` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1433` |
-| `r_saveFontData` | `0` | `0` | `renderergl2/tr_init.c:1930` |
+| `r_saveFontData` | `0` | `0` | `renderergl2/tr_init.c:1937` |
 | `r_screenshotJpegQuality` | `90` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1709` |
-| `r_screenshotJpegQuality` | `90` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1980` |
-| `r_sdlDriver` |  | `CVAR_ROM` | `sdl/sdl_glimp.c:1148` |
-| `r_shadowBlur` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1650` |
-| `r_shadowCascadeZBias` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1654` |
-| `r_shadowCascadeZFar` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1653` |
-| `r_shadowCascadeZNear` | `8` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1652` |
-| `r_shadowCastFoliage` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1704` |
-| `r_shadowDebug` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1737` |
-| `r_shadowFilter` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1649` |
-| `r_shadowMapBiasFactor` | `4` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1968` |
-| `r_shadowMapBiasUnits` | `4` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1969` |
-| `r_shadowMapSize` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1651` |
+| `r_screenshotJpegQuality` | `90` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1987` |
+| `r_sdlDriver` |  | `CVAR_ROM` | `sdl/sdl_glimp.c:1226` |
+| `r_shadowBlur` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1657` |
+| `r_shadowCascadeZBias` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1661` |
+| `r_shadowCascadeZFar` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1660` |
+| `r_shadowCascadeZNear` | `8` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1659` |
+| `r_shadowCastFoliage` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1711` |
+| `r_shadowDebug` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1744` |
+| `r_shadowFilter` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1656` |
+| `r_shadowMapBiasFactor` | `4` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1975` |
+| `r_shadowMapBiasUnits` | `4` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1976` |
+| `r_shadowMapSize` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1658` |
 | `r_showcluster` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1597` |
-| `r_showcluster` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1950` |
+| `r_showcluster` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1957` |
 | `r_showcull` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1595` |
-| `r_showcull` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2141` |
+| `r_showcull` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2148` |
 | `r_showhbox` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1606` |
 | `r_showImages` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1517` |
-| `r_showImages` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:1925` |
+| `r_showImages` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:1932` |
 | `r_showlod` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1518` |
-| `r_showlod` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2142` |
+| `r_showlod` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2149` |
 | `r_shownormals` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1605` |
-| `r_shownormals` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1958` |
+| `r_shownormals` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1965` |
 | `r_showportal` | `0` | `0` | `renderergl1/tr_init.c:1657` |
-| `r_showportal` | `0` | `0` | `renderergl2/tr_init.c:2144` |
+| `r_showportal` | `0` | `0` | `renderergl2/tr_init.c:2151` |
 | `r_showSkeleton` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1707` |
 | `r_showsky` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1604` |
-| `r_showsky` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1957` |
+| `r_showsky` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1964` |
 | `r_showstaticbboxes` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1607` |
-| `r_showstaticbboxes` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2140` |
+| `r_showstaticbboxes` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2147` |
 | `r_showstaticlod` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1519` |
-| `r_showstaticlod` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2143` |
+| `r_showstaticlod` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2150` |
 | `r_showtris` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1603` |
-| `r_showtris` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1956` |
-| `r_simpleMipMaps` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1451` |
+| `r_showtris` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1963` |
+| `r_simpleMipMaps` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1458` |
 | `r_singleShader` | `0` | `CVAR_CHEAT \| CVAR_LATCH` | `renderergl1/tr_init.c:1441` |
-| `r_singleShader` | `0` | `CVAR_CHEAT \| CVAR_LATCH` | `renderergl2/tr_init.c:1881` |
+| `r_singleShader` | `0` | `CVAR_CHEAT \| CVAR_LATCH` | `renderergl2/tr_init.c:1888` |
 | `r_skeldiag` | `0` | `CVAR_TEMP` | `renderergl2/tr_model.cpp:68` |
 | `r_skeldiag` | `0` | `CVAR_TEMP` | `renderergl2/tr_model.cpp:224` |
 | `r_skeldiag` | `0` | `0` | `renderergl2/tr_shade.c:2586` |
 | `r_skeldiag` | `0` | `0` | `renderergl2/tr_shade.c:2758` |
 | `r_skipBackEnd` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1562` |
-| `r_skipBackEnd` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1941` |
+| `r_skipBackEnd` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1948` |
 | `r_skybox_farplane` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1649` |
-| `r_skybox_farplane` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2054` |
+| `r_skybox_farplane` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2061` |
 | `r_skyportal` | `0` | `0` | `renderergl1/tr_init.c:1642` |
 | `r_skyportal` | `0` | `0` | `renderergl1/tr_init.c:1651` |
-| `r_skyportal` | `0` | `0` | `renderergl2/tr_init.c:2042` |
+| `r_skyportal` | `0` | `0` | `renderergl2/tr_init.c:2049` |
 | `r_skyportal_origin` | `0 0 0` | `0` | `renderergl1/tr_init.c:1643` |
 | `r_skyportal_origin` | `0 0 0` | `0` | `renderergl1/tr_init.c:1652` |
-| `r_skyportal_origin` | `0 0 0` | `0` | `renderergl2/tr_init.c:2043` |
-| `r_specularMapping` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1488` |
+| `r_skyportal_origin` | `0 0 0` | `0` | `renderergl2/tr_init.c:2050` |
+| `r_specularMapping` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1495` |
 | `r_speeds` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1598` |
-| `r_speeds` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1951` |
-| `r_sphereCacheScope` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1733` |
-| `r_ssao` | `0` | `CVAR_LATCH \| CVAR_ARCHIVE` | `renderergl2/tr_init.c:1479` |
+| `r_speeds` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1958` |
+| `r_sphereCacheScope` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1740` |
+| `r_ssao` | `0` | `CVAR_LATCH \| CVAR_ARCHIVE` | `renderergl2/tr_init.c:1486` |
 | `r_sse` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1659` |
 | `r_static_shaderdata0` | `0` | `CVAR_SYSTEMINFO` | `renderergl1/tr_init.c:1660` |
 | `r_static_shaderdata1` | `0` | `CVAR_SYSTEMINFO` | `renderergl1/tr_init.c:1661` |
@@ -1856,23 +1858,23 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `r_static_shadermultiplier2` | `1` | `CVAR_SYSTEMINFO` | `renderergl1/tr_init.c:1666` |
 | `r_static_shadermultiplier3` | `1` | `CVAR_SYSTEMINFO` | `renderergl1/tr_init.c:1667` |
 | `r_staticlod` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1589` |
-| `r_staticlod` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2100` |
+| `r_staticlod` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2107` |
 | `r_stencilbits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1401` |
 | `r_stencilbits` | `8` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1403` |
 | `r_stencilbits` | `8` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1439` |
 | `r_stereo` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1399` |
 | `r_stereoEnabled` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1686` |
-| `r_stereoEnabled` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1455` |
-| `r_stereoSeparation` | `64` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1892` |
+| `r_stereoEnabled` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1462` |
+| `r_stereoSeparation` | `64` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1899` |
 | `r_stipplelines` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1636` |
-| `r_stipplelines` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2037` |
+| `r_stipplelines` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2044` |
 | `r_subdivisions` | `4` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1429` |
-| `r_subdivisions` | `4` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1454` |
-| `r_sunlightMode` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1646` |
-| `r_sunShadows` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1648` |
+| `r_subdivisions` | `4` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1461` |
+| `r_sunlightMode` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1653` |
+| `r_sunShadows` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1655` |
 | `r_swapInterval` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1500` |
-| `r_swapInterval` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1904` |
-| `r_swapInterval` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1907` |
+| `r_swapInterval` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1911` |
+| `r_swapInterval` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1914` |
 | `r_test_forcelod0` | `0` | `0` | `renderergl2/tr_model.cpp:118` |
 | `r_test_forcepose` | `1` | `0` | `renderergl2/tr_model.cpp:117` |
 | `r_test_maskrfx` | `0` | `0` | `renderergl2/tr_model.cpp:119` |
@@ -1883,32 +1885,32 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `r_texturebits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1437` |
 | `r_textureDetails` | `1` | `33` | `renderergl1/tr_init.c:1396` |
 | `r_textureMode` | `GL_LINEAR_MIPMAP_NEAREST` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1499` |
-| `r_textureMode` | `GL_LINEAR_MIPMAP_LINEAR` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1900` |
-| `r_toneMap` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1465` |
+| `r_textureMode` | `GL_LINEAR_MIPMAP_LINEAR` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1907` |
+| `r_toneMap` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1472` |
 | `r_tonemapMode` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:97` |
 | `r_uiFrameClear` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_backend.c:1826` |
-| `r_uifullscreen` | `0` | `0` | `renderergl2/tr_init.c:1453` |
+| `r_uifullscreen` | `0` | `0` | `renderergl2/tr_init.c:1460` |
 | `r_useglfog` | `1` | `64` | `renderergl1/tr_init.c:1654` |
 | `r_uselod` | `1` | `CVAR_TEMP` | `renderergl1/tr_init.c:1520` |
-| `r_uselod` | `1` | `CVAR_TEMP` | `renderergl2/tr_init.c:2105` |
-| `r_vaoCache` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1977` |
+| `r_uselod` | `1` | `CVAR_TEMP` | `renderergl2/tr_init.c:2112` |
+| `r_vaoCache` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1984` |
 | `r_verbose` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1599` |
-| `r_verbose` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1952` |
+| `r_verbose` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1959` |
 | `r_vertexLight` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1427` |
-| `r_vertexLight` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1452` |
+| `r_vertexLight` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1459` |
 | `r_vidmode1024` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1409` |
 | `r_vidmodemax` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1410` |
 | `r_weaponfovx` | `0` | `0` | `renderergl1/tr_init.c:1450` |
-| `r_weaponfovx` | `0` | `0` | `renderergl2/tr_init.c:2045` |
+| `r_weaponfovx` | `0` | `0` | `renderergl2/tr_init.c:2052` |
 | `r_weaponshiftx` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1453` |
-| `r_weaponshiftx` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2048` |
+| `r_weaponshiftx` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2055` |
 | `r_weaponshifty` | `-0.05` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1452` |
-| `r_weaponshifty` | `-0.05` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2047` |
+| `r_weaponshifty` | `-0.05` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2054` |
 | `r_weaponznear` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1451` |
-| `r_weaponznear` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2046` |
+| `r_weaponznear` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2053` |
 | `r_znear` | `4` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1449` |
-| `r_znear` | `4` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1889` |
-| `r_zproj` | `64` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1891` |
+| `r_znear` | `4` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1896` |
+| `r_zproj` | `64` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1898` |
 | `rate` | `25000` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4120` |
 | `rate` | `5000` | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_uiserverlist.cpp:667` |
 | `rconAddress` |  | `0` | `client/cl_main.cpp:3973` |
@@ -1938,19 +1940,19 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `s_ambientvolume` | `0.6` | `0` | `cgame/cg_view.c:2742` |
 | `s_ambientvolume` | `0.6` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:107` |
 | `s_backend` |  | `CVAR_ROM` | `client/snd_main.c:483` |
-| `s_cueDuck` | `2` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:3540` |
-| `s_cueGain` | `1` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:3558` |
-| `s_cueGain2` | `1` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:3559` |
+| `s_cueDuck` | `2` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:3592` |
+| `s_cueGain` | `1` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:3610` |
+| `s_cueGain2` | `1` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:3611` |
 | `s_debugmusic` | `0` | `0` | `fgame/gamecvars.cpp:512` |
 | `s_dialogscale` | `1` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:115` |
 | `s_doppler` | `1` | `CVAR_ARCHIVE` | `client/snd_main.c:482` |
 | `s_initsound` | `1` | `0` | `client/snd_dma_new.cpp:119` |
 | `s_initsound` | `1` | `0` | `client/snd_main.c:487` |
-| `s_initsound` | `1` | `0` | `client/snd_openal_new.cpp:995` |
-| `s_initsound` | `1` | `0` | `client/snd_openal_new.cpp:1218` |
+| `s_initsound` | `1` | `0` | `client/snd_openal_new.cpp:1047` |
+| `s_initsound` | `1` | `0` | `client/snd_openal_new.cpp:1270` |
 | `s_khz` | `44` | `CVAR_ARCHIVE \| CVAR_SOUND_LATCH` | `client/snd_dma_new.cpp:110` |
 | `s_loadas8bit` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/snd_dma_new.cpp:111` |
-| `s_milesdriver` | `auto` | `CVAR_SOUND_LATCH \| CVAR_ARCHIVE` | `client/snd_openal_new.cpp:957` |
+| `s_milesdriver` | `auto` | `CVAR_SOUND_LATCH \| CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1009` |
 | `s_mixahead` | `0.2` | `CVAR_ARCHIVE` | `client/snd_dma.c:1589` |
 | `s_mixPreStep` | `0.05` | `CVAR_ARCHIVE` | `client/snd_dma.c:1590` |
 | `s_mixPreStep` | `0.05` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:112` |
@@ -1962,13 +1964,13 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `s_muted` | `0` | `CVAR_ROM` | `client/snd_main.c:481` |
 | `s_muteWhenMinimized` | `0` | `CVAR_ARCHIVE` | `client/snd_main.c:484` |
 | `s_muteWhenUnfocused` | `0` | `CVAR_ARCHIVE` | `client/snd_main.c:485` |
-| `s_obstruction_cal_time` | `500` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:982` |
-| `s_occlusion` | `1` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:975` |
-| `s_occlusionStrength` | `1.0` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:976` |
-| `s_openaldevice` |  | `CVAR_SOUND_LATCH` | `client/snd_openal_new.cpp:958` |
-| `s_openaldriver` | `ALDRIVER_DEFAULT` | `CVAR_LATCH \| CVAR_PROTECTED` | `client/snd_openal_new.cpp:986` |
-| `s_reverb` | `1` | `CVAR_SOUND_LATCH \| CVAR_ARCHIVE` | `client/snd_openal_new.cpp:974` |
-| `s_reverbGain` | `3.0` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:977` |
+| `s_obstruction_cal_time` | `500` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1034` |
+| `s_occlusion` | `1` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1027` |
+| `s_occlusionStrength` | `1.0` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1028` |
+| `s_openaldevice` |  | `CVAR_SOUND_LATCH` | `client/snd_openal_new.cpp:1010` |
+| `s_openaldriver` | `ALDRIVER_DEFAULT` | `CVAR_LATCH \| CVAR_PROTECTED` | `client/snd_openal_new.cpp:1038` |
+| `s_reverb` | `1` | `CVAR_SOUND_LATCH \| CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1026` |
+| `s_reverbGain` | `3.0` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1029` |
 | `s_sdlBits` | `16` | `CVAR_ARCHIVE` | `sdl/sdl_snd.c:196` |
 | `s_sdlCapture` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `sdl/sdl_snd.c:283` |
 | `s_sdlChannels` | `2` | `CVAR_ARCHIVE` | `sdl/sdl_snd.c:198` |
@@ -1981,10 +1983,10 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `s_sfxvolume` | `1` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:116` |
 | `s_show` | `0` | `CVAR_CHEAT` | `client/snd_dma.c:1591` |
 | `s_show` | `0` | `CVAR_CHEAT` | `client/snd_dma_new.cpp:113` |
-| `s_show_cpu` | `0` | `0` | `client/snd_openal_new.cpp:978` |
-| `s_show_num_active_sounds` | `0` | `0` | `client/snd_openal_new.cpp:979` |
-| `s_show_sounds` | `0` | `0` | `client/snd_openal_new.cpp:980` |
-| `s_speaker_type` | `0` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:981` |
+| `s_show_cpu` | `0` | `0` | `client/snd_openal_new.cpp:1030` |
+| `s_show_num_active_sounds` | `0` | `0` | `client/snd_openal_new.cpp:1031` |
+| `s_show_sounds` | `0` | `0` | `client/snd_openal_new.cpp:1032` |
+| `s_speaker_type` | `0` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1033` |
 | `s_testsound` | `0` | `CVAR_CHEAT` | `client/snd_dma.c:1592` |
 | `s_testsound` | `0` | `CVAR_CHEAT` | `client/snd_dma_new.cpp:114` |
 | `s_useOpenAL` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/snd_main.c:501` |

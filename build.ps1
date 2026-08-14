@@ -149,10 +149,22 @@ $binRoots = @($gogRoot)
 if (Test-Path (Join-Path $gl2Root "openmohaa.exe")) { $binRoots += $gl2Root }
 
 $binaries = @(
+    # [user 2026-08-13, bug-1798] The CLIENT executable. Same gap as bug-1796 (gl2) and bug-1634 (GOG
+    # root only): omohaaded.exe was deployed but openmohaa.exe never was, so any change in code/client
+    # - the sound system, the UI bridge, input - built cleanly and then simply did not reach the game
+    # the player launches. publish_release.ps1 stages it FROM the GOG root, so nothing downstream
+    # noticed either. Deployed with the rest now.
+    @{ Name = "openmohaa.exe";        Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\Release\openmohaa.exe" },
     @{ Name = "cgame.dll";            Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\client\cgame\Release\cgame.dll" },
     @{ Name = "game.dll";             Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\server\fgame\Release\game.dll" },
     @{ Name = "game.pdb";             Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\server\fgame\Release\game.pdb" },
     @{ Name = "renderer_opengl1.dll"; Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\renderercommon\renderergl1\Release\renderer_opengl1.dll" },
+    # [user 2026-08-13, bug-1796] THE GL2 RENDERER WAS NEVER DEPLOYED. Only gl1 was listed here, but
+    # the live install runs gl2 (cl_renderer "opengl2", and G:\mohaa-gl2\PLAY-GL2.bat force-sets it),
+    # so every renderer-side engine change silently failed to reach the running game - the same shape
+    # as bug-1634, where deploying to the GOG root alone never reached the live install. Both renderers
+    # ship now, so a renderer fix lands whichever one the player is on.
+    @{ Name = "renderer_opengl2.dll"; Src = "C:\mohaa-coop-dev\openmohaa-hzm\.cmake\code\renderercommon\renderergl2\Release\renderer_opengl2.dll" },
     # [user 2026-08-10] The DEDICATED server binary. It was never deployed here, so every engine
     # build silently left omohaaded.exe stale - and it is what a self-hosting player runs. It also
     # carries two fixes without which a dedicated server does not work AT ALL: bug-1664 (the command

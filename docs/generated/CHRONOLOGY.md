@@ -13,27 +13,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `e5e437c 2026-08-11 stealth: per-map gate, m6l1c opt-in, and papers for late joiners` |
-| commits | 70 |
+| HEAD | `aaa9876 2026-08-13 manifest 1.2.7` |
+| commits | 72 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **4 modified, 3 untracked** |
-| unstaged diff | 14 files changed, 1009 insertions(+), 583 deletions(-) |
+| **uncommitted** | **1 modified, 0 untracked** |
+| unstaged diff | 1 file changed, 12 insertions(+) |
 
-> Working tree is dirty. Everything in those 7 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 16 |
+| 2026-08 | 18 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (70)
+### Commits since 2026-01-01 (72)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `aaa9876` | 2026-08-13 | joncurry94-tech | manifest 1.2.7 |
+| `bd69d65` | 2026-08-13 | joncurry94-tech | docs: m6l2a stealth session - traps, open items, and the generated sweep |
 | `e5e437c` | 2026-08-11 | joncurry94-tech | stealth: per-map gate, m6l1c opt-in, and papers for late joiners |
 | `91b337d` | 2026-08-11 | joncurry94-tech | docs: plan for carrying the m2l2a stealth layer to the other disguise maps |
 | `6a79f94` | 2026-08-11 | joncurry94-tech | postfx: re-enable DoF - the bug-1629 fix had never reached the live install |
@@ -110,19 +112,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `c21a0dd 2026-08-10 coop: fix reliable-command overflow, blueprint pickup, HUD-fade class, Naxos` |
-| commits | 1,397 |
+| HEAD | `69a7ed9 2026-08-13 v1.2.7: m6l2a stealth route, level-2 checkpoint, and the bust fixes it found` |
+| commits | 1,398 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **55 modified, 7 untracked** |
-| unstaged diff | 55 files changed, 6907 insertions(+), 1470 deletions(-) |
+| **uncommitted** | **5 modified, 0 untracked** |
+| unstaged diff | 5 files changed, 7736 insertions(+), 3937 deletions(-) |
 
-> Working tree is dirty. Everything in those 62 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 5 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 4 |
+| 2026-08 | 5 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -162,10 +164,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (48)
+### Commits since 2026-01-01 (49)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `69a7ed9` | 2026-08-13 | joncurry94 | v1.2.7: m6l2a stealth route, level-2 checkpoint, and the bust fixes it found |
 | `c21a0dd` | 2026-08-10 | joncurry94 | coop: fix reliable-command overflow, blueprint pickup, HUD-fade class, Naxos |
 | `f694b31` | 2026-08-07 | joncurry94 | v1.2.201: m3l1b coop pass, flak/bomb fixes, audio + console cleanup |
 | `3266244` | 2026-08-07 | joncurry94 | v1.2.2 snapshot: Service Record reorganization + Medals & Badges + helmet/skin unlocks |
@@ -223,10 +226,10 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | HEAD | `5ea47c36 2026-08-10 engine: dedicated server boots + runs clean; restore engine cvar defaults` |
 | commits | 4,983 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **9 modified, 0 untracked** |
-| unstaged diff | 9 files changed, 279 insertions(+), 3 deletions(-) |
+| **uncommitted** | **12 modified, 0 untracked** |
+| unstaged diff | 12 files changed, 422 insertions(+), 4 deletions(-) |
 
-> Working tree is dirty. Everything in those 9 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 12 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 

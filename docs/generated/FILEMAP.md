@@ -10,9 +10,9 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 35,605 |
+| files in the workspace | 35,635 |
 | bytes | 39.8 GB |
-| files in project scope (indexed per-file) | 10,234 |
+| files in project scope (indexed per-file) | 10,264 |
 | source files (per-file rows with line counts) | 4,828 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
@@ -26,13 +26,13 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 |---|---:|---:|---|---|
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
-| `hzm-mohaa-coop-mod` | 6,882 | 5318.5 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 6,911 | 5362.2 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
 | `openmohaa-hzm` | 2,656 | 86.2 MB | **yes** | **the engine** - HZM fork of OpenMOHAA (C/C++) |
 | `UBER-MODS-v8.00-MOHAA` | 2,614 | 115.5 MB | no - reference | third-party mod, reference only |
 | `moh-modelviewer` | 1,270 | 565.8 MB | no - reference | Node model preview tool (rarely touched) |
 | `original-scripts` | 915 | 1173.7 MB | no - reference | vanilla MOHAA script/asset extraction (reference) |
-| `player1_home` | 296 | 2.6 MB | no - reference | test client profile dir |
+| `player1_home` | 296 | 3.0 MB | no - reference | test client profile dir |
 | `_research` | 171 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
 | `<root>` | 124 | 3409.4 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `docs` | 102 | 3.2 MB | **yes** | this documentation set (authored + generated) |
@@ -40,11 +40,11 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
 | `_menu_pilot` | 81 | 90.7 MB | no - reference | Photoshop menu round-trip staging |
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
-| `manifests` | 38 | 0.5 MB | **yes** | release manifests consumed by the auto-updater |
+| `manifests` | 39 | 0.5 MB | **yes** | release manifests consumed by the auto-updater |
 | `_tools` | 37 | 69.0 MB | no - reference | downloaded third-party binaries |
-| `server_home` | 27 | 4.3 MB | **yes** |  |
+| `server_home` | 27 | 4.4 MB | **yes** |  |
 | `installer` | 18 | 15873.3 MB | no - reference | Inno Setup output + payload staging |
-| `player2_home` | 16 | 1.2 MB | no - reference | test client profile dir |
+| `player2_home` | 16 | 1.7 MB | no - reference | test client profile dir |
 | `vanilla_audio_ref` | 13 | 15.0 MB | no - reference | vanilla audio reference |
 | `_blender_kit` | 12 | 1.1 MB | no - reference | Blender pipeline scratch |
 | `tools` | 12 | 0.3 MB | **yes** | misc build/debug tooling |
@@ -71,7 +71,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.wav` | 14,197 |
 | `.dds` | 3,557 |
 | `.scr` | 2,505 |
-| `.tga` | 1,653 |
+| `.tga` | 1,682 |
 | `.png` | 1,369 |
 | `.cfg` | 1,353 |
 | `.obj` | 1,224 |
@@ -90,7 +90,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.shader` | 191 |
 | `.urc` | 169 |
 | `.bsp` | 129 |
-| `.json` | 125 |
+| `.json` | 126 |
 | `.min` | 100 |
 | `.py` | 73 |
 | `.class` | 64 |
@@ -168,7 +168,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
-| `hzm-mohaa-coop-mod` | 38 | 1412.52 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
+| `hzm-mohaa-coop-mod` | 38 | 1419.58 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -477,13 +477,13 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/models/vehicles/zis5` | 2 | 1.31 MB | .tga×2 |
 | `hzm-mohaa-coop-mod/textures/models/weapons/maxim` | 2 | 0.19 MB | .jpg×2 |
 | `hzm-mohaa-coop-mod/textures/models/weapons/springfield` | 1 | 0.77 MB | .tga×1 |
-| `hzm-mohaa-coop-mod/textures/mohmenu` | 335 | 1002.39 MB | .tga×270, .jpg×65 |
+| `hzm-mohaa-coop-mod/textures/mohmenu` | 337 | 1035.94 MB | .tga×272, .jpg×65 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/Slideshow` | 1 | 0.00 MB | .jpg×1 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/Slideshow/Bastogne` | 13 | 5.78 MB | .jpg×13 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/Slideshow/Berlin` | 14 | 7.76 MB | .jpg×14 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/Slideshow/Normandy` | 18 | 8.19 MB | .jpg×18 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/coop` | 3 | 2.22 MB | .tga×3 |
-| `hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward` | 243 | 30.29 MB | .tga×243 |
+| `hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward` | 270 | 33.25 MB | .tga×270 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/dmloading` | 71 | 49.97 MB | .jpg×68, .tga×3 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/dmloading/briefing` | 6 | 2.13 MB | .jpg×6 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/levelbriefing` | 50 | 471.86 MB | .tga×50 |
@@ -494,7 +494,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/sprites` | 5 | 0.14 MB | .tga×5 |
 | `hzm-mohaa-coop-mod/textures/wilderness` | 2 | 3.72 MB | .jpg×2 |
 | `hzm-mohaa-coop-mod/ubersound` | 11 | 6.93 MB | .scr×11 |
-| `hzm-mohaa-coop-mod/ui` | 111 | 0.83 MB | .urc×104, .cfg×3, .inc×2, .scr×1 |
+| `hzm-mohaa-coop-mod/ui` | 111 | 0.90 MB | .urc×104, .cfg×3, .inc×2, .scr×1 |
 | `hzm-mohaa-coop-mod/ui/coop_fov` | 33 | 0.01 MB | .cfg×31, .bat×2 |
 | `hzm-mohaa-coop-mod/ui/coop_objectives` | 46 | 0.02 MB | .cfg×46 |
 | `hzm-mohaa-coop-mod/ui/coop_start` | 14 | 0.03 MB | .cfg×14 |
@@ -502,7 +502,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/loadout` | 347 | 0.12 MB | .cfg×347 |
 | `hzm-mohaa-coop-mod/ui/loadout/helm` | 48 | 0.03 MB | .cfg×48 |
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 135 | 0.13 MB | .cfg×135 |
-| `manifests` | 38 | 0.48 MB | .json×38 |
+| `manifests` | 39 | 0.49 MB | .json×39 |
 | `map_entities` | 92 | 10.22 MB | .txt×88, .md×4 |
 | `openmohaa-hzm` | 8 | 0.04 MB | (none)×2, .txt×2, .md×2, .ps1×1 |
 | `openmohaa-hzm/.github/ISSUE_TEMPLATE` | 1 | 0.00 MB | .md×1 |
@@ -611,7 +611,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/code/renderergl2` | 54 | 2.06 MB | .c×35, .cpp×10, .h×8, .txt×1 |
 | `openmohaa-hzm/code/renderergl2/glsl` | 47 | 0.12 MB | .glsl×46, .cmake×1 |
 | `openmohaa-hzm/code/script` | 12 | 0.24 MB | .cpp×6, .h×6 |
-| `openmohaa-hzm/code/sdl` | 7 | 0.10 MB | .c×5, .txt×1, .h×1 |
+| `openmohaa-hzm/code/sdl` | 7 | 0.11 MB | .c×5, .txt×1, .h×1 |
 | `openmohaa-hzm/code/server` | 11 | 0.35 MB | .c×9, .txt×1, .h×1 |
 | `openmohaa-hzm/code/skeletor` | 20 | 0.19 MB | .h×11, .cpp×8, .txt×1 |
 | `openmohaa-hzm/code/sys` | 22 | 0.15 MB | .c×9, .h×6, .cpp×3, .txt×1 |
@@ -750,7 +750,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/misc/linux` | 4 | 0.00 MB | .in×3, .xml×1 |
 | `openmohaa-hzm/misc/setup/windows/app` | 4 | 0.01 MB | .wxs×2, .wixproj×1, .wxl×1 |
 | `scratchpad` | 1 | 0.00 MB | .py×1 |
-| `server_home/maintt` | 5 | 0.77 MB | .cfg×3, .pid×1, .log×1 |
+| `server_home/maintt` | 5 | 0.84 MB | .cfg×3, .pid×1, .log×1 |
 | `server_home/maintt/coop_mod/save` | 12 | 0.01 MB | .dat×12 |
 | `server_home/maintt/prev` | 10 | 3.53 MB | .log×10 |
 | `server_home_probe/maintt` | 5 | 0.30 MB | .cfg×3, .pid×1, .log×1 |
@@ -767,7 +767,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | file | lines | size | summary |
 |---|---:|---:|---|
 | `autotest_rcon.py` | 79 | 2.6 KB | !/usr/bin/env python3 |
-| `build.ps1` | 175 | 9.2 KB | [user 2026-08-05] PARSE-KILLER GATE (detector rank 1, static half): a single BOM/em-dash/odd |
+| `build.ps1` | 187 | 10.4 KB | [user 2026-08-05] PARSE-KILLER GATE (detector rank 1, static half): a single BOM/em-dash/odd |
 | `launch_2player_m2l2a.ps1` | 216 | 11.1 KB | MOH Coop Trilogy - 2-player STEALTH test launcher (m2l2a) |
 | `launch_2player_test.ps1` | 78 | 3.7 KB | MOH Coop Trilogy - 2-player local test launcher |
 | `launch_dedicated_2player.ps1` | 236 | 11.3 KB | Replaces the listen-server harness for testing. Why it matters, measured 2026-08-10: |
@@ -3077,7 +3077,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `BIND.SCR` | 123 | 4.7 KB |  |
 | `advanced_graphics.urc` | 543 | 11.7 KB |  |
 | `advancedoptions.urc` | 603 | 13.5 KB |  |
-| `audio options.urc` | 676 | 8.9 KB |  |
+| `audio options.urc` | 676 | 9.0 KB |  |
 | `briefing1a.urc` | 210 | 3.5 KB |  |
 | `briefing1b.urc` | 211 | 3.5 KB |  |
 | `briefing1c.urc` | 212 | 3.5 KB |  |
@@ -3100,12 +3100,12 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_postfx3.urc` | 259 | 5.6 KB |  |
 | `coop_report.urc` | 152 | 2.8 KB |  |
 | `coop_settings.urc` | 369 | 7.5 KB |  |
-| `coop_sr.urc` | 27,003 | 472.1 KB |  |
-| `coop_sr_pinclear.cfg` | 327 | 6.0 KB | GENERATED by docs/tools/gen_service_record.py - clears every pinned-row marker + medal lock state. |
-| `coop_sr_pinreset.cfg` | 309 | 5.7 KB | GENERATED by docs/tools/gen_service_record.py - CLEAR PINS (builtins only). |
+| `coop_sr.urc` | 30,718 | 539.6 KB |  |
+| `coop_sr_pinclear.cfg` | 369 | 6.8 KB | GENERATED by docs/tools/gen_service_record.py - clears every pinned-row marker + medal lock state. |
+| `coop_sr_pinreset.cfg` | 351 | 6.5 KB | GENERATED by docs/tools/gen_service_record.py - CLEAR PINS (builtins only). |
 | `coop_start.urc` | 421 | 10.4 KB |  |
 | `coop_weaponselect_suppress.urc` | 78 | 3.0 KB |  |
-| `coop_whatsnew.urc` | 132 | 3.1 KB |  |
+| `coop_whatsnew.urc` | 132 | 3.0 KB |  |
 | `hd_texel_scale.cfg` | 56 | 2.0 KB | HZM coop - per-material HD upscale factors for tileshader UI widgets (uiwidget.cpp UI_HDTexelScale) |
 | `hud_ammo_15cmC36.urc` | 5 | 0.3 KB |  |
 | `hud_ammo_AbTurretMain.urc` | 5 | 0.3 KB |  |
@@ -4078,7 +4078,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `snd_miles_new.h` | 28 | 1.1 KB | This file exists in the original source code. |
 | `snd_mix.c` | 627 | 15.5 KB | snd_mix.c -- portable code to mix sounds for snd_dma.c |
 | `snd_openal.c` | 2,734 | 64.9 KB |  |
-| `snd_openal_new.cpp` | 5,763 | 170.4 KB |  |
+| `snd_openal_new.cpp` | 5,815 | 172.9 KB |  |
 | `snd_openal_new.h` | 238 | 6.2 KB |  |
 | `snd_public.h` | 186 | 6.2 KB |  |
 | `snd_wavelet.c` | 252 | 6.1 KB |  |
@@ -5433,7 +5433,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `tr_gore.c` | 1,854 | 73.9 KB |  |
 | `tr_image.c` | 4,125 | 104.7 KB | tr_image.c |
 | `tr_image_dds.c` | 498 | 13.8 KB |  |
-| `tr_init.c` | 2,654 | 99.1 KB | tr_init.c -- functions that are not called every frame |
+| `tr_init.c` | 2,661 | 99.7 KB | tr_init.c -- functions that are not called every frame |
 | `tr_light.c` | 1,324 | 38.1 KB | tr_light.c |
 | `tr_local.h` | 3,894 | 117.1 KB |  |
 | `tr_main.c` | 4,093 | 121.7 KB | tr_main.c -- main control flow for each frame |
@@ -5539,7 +5539,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | file | lines | size | summary |
 |---|---:|---:|---|
 | `sdl_gamma.c` | 96 | 2.6 KB |  |
-| `sdl_glimp.c` | 1,304 | 37.2 KB |  |
+| `sdl_glimp.c` | 1,387 | 40.9 KB |  |
 | `sdl_icon.h` | 132 | 9.4 KB |  |
 | `sdl_input.c` | 1,326 | 36.3 KB |  |
 | `sdl_mouse.c` | 70 | 2.1 KB |  |
