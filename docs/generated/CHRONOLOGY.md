@@ -13,25 +13,25 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `871049a 2026-08-14 docs: regenerate public challenge pages after the wiring pass` |
-| commits | 82 |
+| HEAD | `408a0f7 2026-08-14 docs: regenerate challenge pages; log t2l1 nebelwerfer script errors (bug-1801)` |
+| commits | 83 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
-| unstaged diff | 5 files changed, 27 insertions(+), 25 deletions(-) |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 28 |
+| 2026-08 | 29 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (82)
+### Commits since 2026-01-01 (83)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `408a0f7` | 2026-08-14 | joncurry94-tech | docs: regenerate challenge pages; log t2l1 nebelwerfer script errors (bug-1801) |
 | `871049a` | 2026-08-14 | joncurry94-tech | docs: regenerate public challenge pages after the wiring pass |
 | `0c202c9` | 2026-08-14 | joncurry94-tech | tooling: teach the checker about the chal_quiet_feat wrapper |
 | `65aa813` | 2026-08-14 | joncurry94-tech | tooling: check derived faction supply instead of exempting it |
@@ -120,8 +120,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `f4a6efe 2026-08-14 challenges: wire "All Seven Home" (e3l2) and "They Never Saw Us" (e2l1)` |
-| commits | 1,407 |
+| HEAD | `45cc8eb 2026-08-14 challenges: replace the last 12 unmeasurable conditions with trackable ones` |
+| commits | 1,408 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -129,7 +129,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 14 |
+| 2026-08 | 15 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -169,10 +169,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (58)
+### Commits since 2026-01-01 (59)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `45cc8eb` | 2026-08-14 | joncurry94 | challenges: replace the last 12 unmeasurable conditions with trackable ones |
 | `f4a6efe` | 2026-08-14 | joncurry94 | challenges: wire "All Seven Home" (e3l2) and "They Never Saw Us" (e2l1) |
 | `bd9aee8` | 2026-08-14 | joncurry94 | challenges: wire "Let Them Sleep" on e2l2 with a real wake signal |
 | `6763b7b` | 2026-08-14 | joncurry94 | challenges: wire three more feats (Omaha bunker, the Bocage house, the POW) |

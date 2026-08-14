@@ -6,11 +6,10 @@
 
 [<- back to all fixes](../BUGFIXES.md)
 
-**69 fixes**, newest first.
+**68 fixes**, newest first.
 
 | ID | Problem | Cause | Fix |
 |---|---|---|---|
-| `bug-1801` | t2l1: 20 x Script Error : Failed execution of command 'set_respawn' / 'set_respawn_time' for class 'ProjectileGenerator_Heavy' Targetname 'nebelwerfer1-4' | PRE-EXISTING, not introduced by the challenge work - that batch edited only coop_mod/challenges.scr and no map script. OpenMOHAA ProjectileGenerator_Heavy does not implement set_respawn/set_respawn_time, which retail t2l1 calls on all four  | NOT FIXED - logged only. Effect unknown without play: the nebelwerfers may simply never respawn, which on this map is plausibly harmless since the objective is to destroy them. Needs a playtest to decide whether it matters. |
 | `bug-1780` | text audit: ~22 one-shot DEV: prints reachable in normal play, plus a dead block tagged removeme | 26 iprintlnbold_noloc('DEV: ...') sites across e1l2/e1l3/e1l4/e2l1/m1l2a/M1L3a/m3l1a/m4l2/m5l1b/m6l1c/developer.scr/old_friendly.scr. _noloc means no self prefix, i.e. broadcast to every player. Two carried informal/profane wording ('DEV: s | 22 converted to println. The 4-line dead block at m1l2a.scr:1683-1686 was DELETED instead - the papersthread label ends on the line above it, grep finds no caller, and the site was already tagged 'test - removeme'. All 14 touched files pass |
 | `bug-1778` | text audit: the level-2 papers pickup is announced twice, by two systems, back to back | global/items.scr::add_item takes a second parameter that suppresses its own message. m6l2a passed only one argument, so nomessage was NIL, items.scr printed 'You have acquired level 2 papers!' (iprintln) and the map then printed 'Level 2 pa | Pass nomessage, the idiom already used by 10 other callers in this tree. The map keeps its single bold line. |
 | `bug-1776` | the explosive charge models all need to disappear after the explosion (already the case with the 2 vanilla charges) | The two retail charges vanish because exploder.scr::explode owns them. The four exterior charge markers are script_models this map spawned, so nothing cleaned them up - a planted charge sat on the wreck for the rest of the mission. | coop_m6l2aClearCharges removes all four coop_m6SabMark entities from the detonation. |

@@ -8,7 +8,7 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-910 distinct file paths, 2,867 distinct tags.
+911 distinct file paths, 2,871 distinct tags.
 
 ## Files with the most history
 
@@ -463,6 +463,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/maps/m6l2a.scr` | 47 | `bug-1715` `bug-1716` `bug-1717` `bug-1718` `bug-1719` `bug-1721` `bug-1740` `bug-1741` `bug-1742` `bug-1744` `bug-1746` `bug-1747` `bug-1748` `bug-1749` `bug-1750` `bug-1751` `bug-1752` `bug-1753` `bug-1754` `bug-1755` `bug-1756` `bug-1757` `bug-1758` `bug-1759` `bug-1760` `bug-1761` `bug-1762` `bug-1763` `bug-1764` `bug-1765` `bug-1766` `bug-1767` `bug-1768` `bug-1769` `bug-1770` `bug-1774` `bug-1775` `bug-1776` `bug-1778` `bug-1781` `bug-1782` `bug-1784` `bug-1785` `bug-1786` `bug-1787` `bug-1791` `bug-1793` |
 | `hzm-mohaa-coop-mod/maps/m6l2a_precache.scr` | 1 | `bug-1745` |
 | `hzm-mohaa-coop-mod/maps/t1l2.scr` | 2 | `bug-023` `bug-024` |
+| `hzm-mohaa-coop-mod/maps/t2l1.scr` | 1 | `bug-1801` |
 | `hzm-mohaa-coop-mod/maps/t2l2.scr` | 14 | `bug-034` `bug-041` `bug-044` `bug-045` `bug-046` `bug-048` `bug-049` `bug-050` `bug-051` `bug-052` `bug-053` `bug-054` `bug-056` `bug-062` |
 | `hzm-mohaa-coop-mod/maps/t2l2.scr + global/vehicles_thinkers.scr` | 1 | `bug-057` |
 | `hzm-mohaa-coop-mod/maps/t2l2.scr + openmohaa-hzm/code/fgame/player_conditionals.cpp` | 1 | `bug-055` |
@@ -2564,6 +2565,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `needs-boot-test` | 1 | `bug-gl2-decal-red-dds` |
 | `needs-boot-trace` | 1 | `bug-gl2-viewmodel-over-menu` |
 | `needs-full-sequence-audit` | 1 | `bug-1483` |
+| `needs-playtest` | 1 | `bug-1801` |
 | `needs-regression-test` | 1 | `bug-1700` |
 | `needs-user-decision` | 1 | `bug-1733` |
 | `nest` | 2 | `bug-1572` `bug-1573` |
@@ -2814,6 +2816,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `pot` | 1 | `bug-312` |
 | `pow` | 1 | `bug-1278` |
 | `powershell` | 4 | `bug-1619` `bug-1800` `bug-425` `bug-ps-home-var` |
+| `pre-existing` | 1 | `bug-1801` |
 | `pre-pass` | 1 | `bug-gl2-invisible-live-enemies-prepass-pose` |
 | `pre-player-add` | 2 | `bug-1625` `bug-1627` |
 | `pre-release` | 2 | `bug-786` `bug-787` |
@@ -2841,6 +2844,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `progress-bar` | 2 | `bug-462` `bug-501` |
 | `progression-blocker` | 1 | `bug-624` |
 | `projectile` | 1 | `bug-617` |
+| `projectilegenerator` | 1 | `bug-1801` |
 | `promotion` | 1 | `bug-1264` |
 | `prompt` | 1 | `bug-1758` |
 | `prone` | 2 | `bug-1103` `bug-1648` |
@@ -3096,7 +3100,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `scr-runtime` | 1 | `bug-302` |
 | `screenshot-measurement` | 1 | `bug-957` |
 | `script` | 11 | `bug-1218` `bug-1220` `bug-1308` `bug-1562` `bug-1567` `bug-1571` `bug-1572` `bug-1573` `bug-1574` `bug-1575` `bug-166` |
-| `script-error` | 14 | `bug-1372` `bug-1373` `bug-1495` `bug-1553` `bug-1583` `bug-1584` `bug-1612` `bug-1613` `bug-1659` `bug-1694` `bug-1702` `bug-1717` `bug-552` `bug-t2l2-flak` |
+| `script-error` | 15 | `bug-1372` `bug-1373` `bug-1495` `bug-1553` `bug-1583` `bug-1584` `bug-1612` `bug-1613` `bug-1659` `bug-1694` `bug-1702` `bug-1717` `bug-1801` `bug-552` `bug-t2l2-flak` |
 | `script-error-skips` | 1 | `bug-1580` |
 | `script-load` | 1 | `bug-1027` |
 | `script-only` | 1 | `bug-231` |
@@ -3444,7 +3448,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `t1l3` | 8 | `bug-1023` `bug-121` `bug-122` `bug-123` `bug-1251` `bug-133` `bug-1626` `bug-227` |
 | `t2` | 1 | `bug-1600` |
 | `t20` | 6 | `bug-1732` `bug-1735` `bug-1736` `bug-1738` `bug-1739` `bug-1743` |
-| `t2l1` | 5 | `bug-1251` `bug-1487` `bug-1584` `bug-gl2-foliage` `bug-gl2-texmods-null` |
+| `t2l1` | 6 | `bug-1251` `bug-1487` `bug-1584` `bug-1801` `bug-gl2-foliage` `bug-gl2-texmods-null` |
 | `t2l2` | 11 | `bug-052` `bug-054` `bug-055` `bug-056` `bug-057` `bug-071` `bug-1026` `bug-1472` `bug-1481` `bug-t2l2-f5bind` `bug-t2l2-onfoot` |
 | `t2l3` | 4 | `bug-1022` `bug-1023` `bug-1493` `bug-1588` |
 | `t2l4` | 2 | `bug-1023` `bug-1049` |
@@ -3617,6 +3621,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `undo` | 3 | `bug-1419` `bug-1421` `bug-1580` |
 | `unearnable` | 1 | `bug-1596` |
 | `unexplained` | 1 | `bug-1690` |
+| `unfixed` | 1 | `bug-1801` |
 | `unicode` | 1 | `bug-1227` |
 | `uniform` | 1 | `bug-1148` |
 | `uniform_hzmparams` | 1 | `bug-1151` |

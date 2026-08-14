@@ -17,8 +17,8 @@ Every defect this project has found and fixed, from the day the log was started.
 | [Audio](fixes/audio.md) | 29 |
 | [UI, HUD & menus](fixes/ui-hud-menus.md) | 158 |
 | [Vehicles & rides](fixes/vehicles-rides.md) | 41 |
-| [Multiplayer & networking](fixes/multiplayer-networking.md) | 39 |
-| [Maps & missions](fixes/maps-missions.md) | 69 |
+| [Multiplayer & networking](fixes/multiplayer-networking.md) | 40 |
+| [Maps & missions](fixes/maps-missions.md) | 68 |
 | [Build, deploy & tooling](fixes/build-deploy-tooling.md) | 14 |
 | [Other](fixes/other.md) | 101 |
 

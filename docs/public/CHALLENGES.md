@@ -15,11 +15,11 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | [SUBMACHINE GUNS](#submachine-guns) | 18 |
 | [SIDEARMS](#sidearms) | 27 |
 | [SUPPORT WEAPONS](#support-weapons) | 18 |
-| [COMBAT](#combat) | 28 |
+| [COMBAT](#combat) | 29 |
 | [FIRETEAM](#fireteam) | 21 |
-| [ARMOR & VEHICLES](#armor--vehicles) | 17 |
-| [CAMPAIGN](#campaign) | 93 |
-| [STEALTH & FEATS](#stealth--feats) | 54 |
+| [ARMOR & VEHICLES](#armor--vehicles) | 16 |
+| [CAMPAIGN](#campaign) | 94 |
+| [STEALTH & FEATS](#stealth--feats) | 53 |
 | [AXIS FORCES](#axis-forces) | 23 |
 
 ## RIFLES
@@ -185,6 +185,7 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Fire and Movement** | Get 100 kills from a cover pose or deployed cover (Elite) |
 | **Dug In** | Get 10 kills from behind cover you deployed yourself |
 | **Hoist by His Own Petard** | Make an officer blow himself up with one of his own reinforcements |
+| **Turnabout** | Finish the mission having killed with nothing but a sidearm |
 | **The Full Deck** | Face down all eight kinds of reinforcement the Officer can call |
 | **Not Today, Fritz** | Survive a Stuka dive and an artillery barrage on the same map without going down |
 
@@ -230,7 +231,6 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Autoblinda Down** | Destroy the Italian AB-41 with the Flak cannon |
 | **Two More for the Scrapheap** | Find and bomb both hidden King Tigers in the Gestapo motor pool |
 | **Pole Position** | Flatten all three telephone poles with the King Tiger |
-| **Turnabout** | Destroy the halftrack blocking the Ardennes road |
 | **Not One Step Back** | Hold the last bridge without going down |
 | **Save the Crab** | Bring the minesweeper tank through Bizerte alive |
 | **Nine Tanks, No Ground** | Repel the tank assault with nobody going down |
@@ -330,6 +330,7 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Both Guns Turned** | Seize both Flak 88 batteries above Kasserine Pass |
 | **Every Man Out** | Break out of the Bizerte jail with nobody going down |
 | **All Six Home** | Finish Crete with Hudson, McMartin, Phillips, Johnson, Gobs and Michaels all alive |
+| **Top of the Class** | Finish the Spearhead opening without a single man going down |
 | **All Seven Home** | Cover the prisoners' escape from Monte Battaglia without losing one |
 | **Able, Baker, Charlie** | Hold the bunkers below the castle without going down |
 | **Spotless Record** | Complete 5 missions with every primary objective done and nobody going down |
@@ -388,7 +389,6 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Not a Single Bell** | Scuttle the freighter and get clear without the ship alarm ever sounding |
 | **They Never Saw Us** | Let the Italian search party finish all four lines at the wrecked glider before you fire |
 | **Let Them Sleep** | Sabotage all four fighters without waking a single sleeping guard |
-| **Back of the Class** | Find the lesson nobody was supposed to interrupt |
 | **Quiet Professionals** | Finish the coastal battery mission without ever raising the alarm |
 | **Seconds to Spare** | Get clear of the castle in under eight minutes |
 | **The Quiet Type** | Complete five missions without ever raising the alarm |
