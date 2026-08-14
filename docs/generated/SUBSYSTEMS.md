@@ -9,7 +9,7 @@
 | metric | value |
 |---|---:|
 | `coop_mod/*.scr` files | 113 |
-| total lines in `coop_mod/` | 69,304 |
+| total lines in `coop_mod/` | 69,345 |
 | top-level `maps/*.scr` | 121 |
 | of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
 
@@ -106,7 +106,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `butler.scr` | 498 | 12 | created by chrissstrahl on 2019.09.12 |
 | `common.scr` | 120 | 0 |  |
 | `cannonThink.scr` | 147 | 1 | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
-| `challenges.scr` | 3,514 | 26 | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
+| `challenges.scr` | 3,525 | 26 | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
 | `collectible.scr` | 373 | 2 | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
 | `coop_placements.scr` | 1,021 | 3 | HZM coop - BAKED BUILD-MODE PLACEMENTS (generated from build_<map>.dat). |
 | `coop_selftest.scr` | 320 | 6 | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
@@ -167,7 +167,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `objective_drop.scr` | 165 | 1 | Objective Bonus Drop |
 | `objective_positions.scr` | 89 | 1 | objective_positions.scr |
 | `objectives.scr` | 693 | 7 | Coop Side Objectives (optional / secondary) |
-| `officer.scr` | 4,613 | 27 | Officer Boss + Radio Station |
+| `officer.scr` | 4,643 | 27 | Officer Boss + Radio Station |
 | `officer_positions.scr` | 601 | 1 | coop_officer_positions.scr |
 | `paradrop.scr` | 724 | 1 | Allied Paradrop System |
 | `player.scr` | 1,822 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |

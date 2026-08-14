@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 35,655 |
+| files in the workspace | 35,663 |
 | bytes | 39.8 GB |
-| files in project scope (indexed per-file) | 10,284 |
-| source files (per-file rows with line counts) | 4,829 |
+| files in project scope (indexed per-file) | 10,292 |
+| source files (per-file rows with line counts) | 4,830 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -26,7 +26,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 |---|---:|---:|---|---|
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
-| `hzm-mohaa-coop-mod` | 6,912 | 5382.6 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 6,919 | 5383.5 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
 | `openmohaa-hzm` | 2,656 | 86.2 MB | **yes** | **the engine** - HZM fork of OpenMOHAA (C/C++) |
 | `UBER-MODS-v8.00-MOHAA` | 2,614 | 115.5 MB | no - reference | third-party mod, reference only |
@@ -35,7 +35,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `player1_home` | 296 | 3.0 MB | no - reference | test client profile dir |
 | `_research` | 171 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
 | `<root>` | 124 | 3409.4 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
-| `docs` | 120 | 4.0 MB | **yes** | this documentation set (authored + generated) |
+| `docs` | 121 | 4.0 MB | **yes** | this documentation set (authored + generated) |
 | `extracted-scripts` | 99 | 2.6 MB | **yes** | extracted vanilla scripts kept for diffing |
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
 | `_menu_pilot` | 81 | 90.7 MB | no - reference | Photoshop menu round-trip staging |
@@ -71,7 +71,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.wav` | 14,197 |
 | `.dds` | 3,557 |
 | `.scr` | 2,505 |
-| `.tga` | 1,683 |
+| `.tga` | 1,690 |
 | `.png` | 1,369 |
 | `.cfg` | 1,353 |
 | `.obj` | 1,224 |
@@ -92,7 +92,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.bsp` | 129 |
 | `.json` | 127 |
 | `.min` | 100 |
-| `.py` | 74 |
+| `.py` | 75 |
 | `.class` | 64 |
 | `(none)` | 60 |
 | `.pth` | 55 |
@@ -164,13 +164,13 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/public` | 6 | 0.07 MB | .md×6 |
 | `docs/public/fixes` | 11 | 0.66 MB | .md×11 |
 | `docs/reference` | 4 | 0.06 MB | .md×3, .txt×1 |
-| `docs/tools` | 11 | 0.17 MB | .py×8, .md×1, .cmd×1, .ps1×1 |
+| `docs/tools` | 12 | 0.18 MB | .py×9, .md×1, .cmd×1, .ps1×1 |
 | `extracted-scripts` | 5 | 0.06 MB | .scr×5 |
 | `extracted-scripts/main_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
-| `hzm-mohaa-coop-mod` | 38 | 1423.29 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
+| `hzm-mohaa-coop-mod` | 38 | 1423.31 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -485,7 +485,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/mohmenu/Slideshow/Berlin` | 14 | 7.76 MB | .jpg×14 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/Slideshow/Normandy` | 18 | 8.19 MB | .jpg×18 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/coop` | 3 | 2.22 MB | .tga×3 |
-| `hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward` | 270 | 33.18 MB | .tga×270 |
+| `hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward` | 277 | 34.03 MB | .tga×277 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/dmloading` | 71 | 49.97 MB | .jpg×68, .tga×3 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/dmloading/briefing` | 6 | 2.13 MB | .jpg×6 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/levelbriefing` | 50 | 471.86 MB | .tga×50 |
@@ -769,14 +769,14 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | file | lines | size | summary |
 |---|---:|---:|---|
 | `autotest_rcon.py` | 79 | 2.6 KB | !/usr/bin/env python3 |
-| `build.ps1` | 187 | 10.4 KB | [user 2026-08-05] PARSE-KILLER GATE (detector rank 1, static half): a single BOM/em-dash/odd |
+| `build.ps1` | 200 | 11.2 KB | [user 2026-08-05] PARSE-KILLER GATE (detector rank 1, static half): a single BOM/em-dash/odd |
 | `launch_2player_m2l2a.ps1` | 216 | 11.1 KB | MOH Coop Trilogy - 2-player STEALTH test launcher (m2l2a) |
 | `launch_2player_test.ps1` | 78 | 3.7 KB | MOH Coop Trilogy - 2-player local test launcher |
 | `launch_dedicated_2player.ps1` | 236 | 11.3 KB | Replaces the listen-server harness for testing. Why it matters, measured 2026-08-10: |
 | `maptest_monitor.ps1` | 22 | 0.9 KB |  |
 | `maptest_watchdog.ps1` | 314 | 12.1 KB | Launches the game via launch_openmohaa_breakthrough.exe. |
 | `new_generic_human_extracted.tik` | 2,241 | 73.9 KB |  |
-| `publish_release.ps1` | 263 | 14.9 KB | Design: _research/auto_update.md section 6. |
+| `publish_release.ps1` | 269 | 15.5 KB | Design: _research/auto_update.md section 6. |
 | `resume_publish.ps1` | 157 | 8.5 KB | MOH Coop Trilogy - resume an interrupted publish (draft release with partial assets) |
 | `spawn_clicker.ps1` | 163 | 7.1 KB | Watches qconsole.log for ^~^~^ MAPTEST_LOADED, then left-clicks the center of |
 | `spawn_clicker_2player.ps1` | 283 | 11.6 KB | spawn_clicker_2player.ps1 |
@@ -844,10 +844,11 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `omconfig.cfg` | 2,488 | 68.4 KB | generated by openmohaa |
 
-### `docs/tools/` — 10 source files
+### `docs/tools/` — 11 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
+| `check_challenges.py` | 266 | 10.8 KB | !/usr/bin/env python3 |
 | `depthscan2.py` | 76 | 2.3 KB |  |
 | `docgen.py` | 1,464 | 61.5 KB | !/usr/bin/env python3 |
 | `docs.cmd` | 13 | 0.5 KB |  |
@@ -1107,7 +1108,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `bust.scr` | 1,553 | 84.7 KB | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
 | `butler.scr` | 498 | 18.9 KB | created by chrissstrahl on 2019.09.12 |
 | `cannonThink.scr` | 147 | 4.8 KB | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
-| `challenges.scr` | 3,514 | 212.5 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
+| `challenges.scr` | 3,525 | 213.4 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
 | `collectible.scr` | 373 | 18.5 KB | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
 | `coop_placements.scr` | 1,021 | 32.1 KB | HZM coop - BAKED BUILD-MODE PLACEMENTS (generated from build_<map>.dat). |
 | `coop_selftest.scr` | 320 | 13.2 KB | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
@@ -1168,7 +1169,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `objective_drop.scr` | 165 | 7.1 KB | Objective Bonus Drop |
 | `objective_positions.scr` | 89 | 3.6 KB | objective_positions.scr |
 | `objectives.scr` | 693 | 29.9 KB | Coop Side Objectives (optional / secondary) |
-| `officer.scr` | 4,613 | 200.8 KB | Officer Boss + Radio Station |
+| `officer.scr` | 4,643 | 202.6 KB | Officer Boss + Radio Station |
 | `officer_positions.scr` | 601 | 32.4 KB | coop_officer_positions.scr |
 | `paradrop.scr` | 724 | 29.5 KB | Allied Paradrop System |
 | `player.scr` | 1,822 | 90.8 KB | started by chrissstrahl on 2020.10.16 ([202]) |
@@ -3103,7 +3104,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_postfx3.urc` | 259 | 5.6 KB |  |
 | `coop_report.urc` | 152 | 2.8 KB |  |
 | `coop_settings.urc` | 369 | 7.5 KB |  |
-| `coop_sr.urc` | 30,823 | 543.9 KB |  |
+| `coop_sr.urc` | 30,830 | 544.3 KB |  |
 | `coop_sr_pinclear.cfg` | 369 | 6.8 KB | GENERATED by docs/tools/gen_service_record.py - clears every pinned-row marker + medal lock state. |
 | `coop_sr_pinreset.cfg` | 351 | 6.5 KB | GENERATED by docs/tools/gen_service_record.py - CLEAR PINS (builtins only). |
 | `coop_start.urc` | 421 | 10.4 KB |  |

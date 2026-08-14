@@ -208,7 +208,7 @@ autotest_home/qkey	2048		0	autotest_home
 autotest_rcon.py	2696	.py	79	<root>
 autotest_results/SUMMARY.tsv	515	.tsv	0	autotest_results
 autotest_results/run001_SETUP-FAIL.log	314796	.log	0	autotest_results
-build.ps1	10615	.ps1	187	<root>
+build.ps1	11455	.ps1	200	<root>
 campaign_audit.tsv	53966	.tsv	0	<root>
 campaign_audit_prevrun_20260624_185016.tsv	34752	.tsv	0	<root>
 command.ln	512	.ln	0	<root>
@@ -312,11 +312,11 @@ docs/proposals/surgical_operation_hd_analysis.md	20843	.md	313	docs
 docs/proposals/surgical_operation_v10_analysis.md	32194	.md	454	docs
 docs/proposals/surgical_operation_version_hunt.md	13923	.md	222	docs
 docs/public/BUGFIXES.md	1172	.md	25	docs
-docs/public/CHALLENGES.md	26173	.md	423	docs
+docs/public/CHALLENGES.md	26208	.md	423	docs
 docs/public/FEATURES.md	17991	.md	257	docs
 docs/public/MAPS.md	2734	.md	99	docs
 docs/public/ROADMAP.md	3284	.md	70	docs
-docs/public/UNLOCKABLES.md	20837	.md	258	docs
+docs/public/UNLOCKABLES.md	21315	.md	265	docs
 docs/public/fixes/ai-enemy-behaviour.md	177299	.md	354	docs
 docs/public/fixes/audio.md	18053	.md	41	docs
 docs/public/fixes/build-deploy-tooling.md	9182	.md	26	docs
@@ -334,6 +334,7 @@ docs/reference/harness_and_reproduction.md	4740	.md	33	docs
 docs/reference/tiki_and_sound_aliases.md	4875	.md	60	docs
 docs/reference/warchestrestored_v1.1.0_changelog.txt	45915	.txt	872	docs
 docs/tools/README.md	5123	.md	91	docs
+docs/tools/check_challenges.py	11018	.py	266	docs
 docs/tools/depthscan2.py	2359	.py	76	docs
 docs/tools/docgen.py	62972	.py	1464	docs
 docs/tools/docs.cmd	467	.cmd	13	docs
@@ -1342,7 +1343,7 @@ hzm-mohaa-coop-mod/coop_mod/cfg/objdiag.cfg	490	.cfg	11	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/posetest.cfg	659	.cfg	11	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/wallgun.cfg	2304	.cfg	49	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/wallgun_off.cfg	936	.cfg	27	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/challenges.scr	217617	.scr	3514	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/challenges.scr	218489	.scr	3525	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/collectible.scr	18948	.scr	373	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/coop_placements.scr	32871	.scr	1021	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/coop_selftest.scr	13524	.scr	320	hzm-mohaa-coop-mod
@@ -1410,7 +1411,7 @@ hzm-mohaa-coop-mod/coop_mod/morale.scr	4758	.scr	94	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objective_drop.scr	7236	.scr	165	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objective_positions.scr	3691	.scr	89	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objectives.scr	30583	.scr	693	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/officer.scr	205645	.scr	4613	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/officer.scr	207429	.scr	4643	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/officer_positions.scr	33169	.scr	601	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/paradrop.scr	30241	.scr	724	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/player.scr	92947	.scr	1822	hzm-mohaa-coop-mod
@@ -6052,6 +6053,7 @@ hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r315.tga	127052	.tga	0	hzm-mo
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r316.tga	119996	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r318.tga	119996	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r319.tga	127052	.tga	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r32.tga	127052	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r320.tga	127052	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r321.tga	127052	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r322.tga	119996	.tga	0	hzm-mohaa-coop-mod
@@ -6066,6 +6068,7 @@ hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r342.tga	134108	.tga	0	hzm-mo
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r343.tga	127052	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r35.tga	119996	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r37.tga	119996	.tga	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r38.tga	119996	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r39.tga	119996	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r41.tga	119996	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r43.tga	119996	.tga	0	hzm-mohaa-coop-mod
@@ -6086,13 +6089,18 @@ hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r67.tga	134108	.tga	0	hzm-moh
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r69.tga	134108	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r7.tga	119996	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r71.tga	119996	.tga	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r72.tga	119996	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r73.tga	119996	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r75.tga	119996	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r77.tga	119996	.tga	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r78.tga	119996	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r79.tga	119996	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r81.tga	119996	.tga	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r82.tga	119996	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r83.tga	119996	.tga	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r84.tga	119996	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r85.tga	119996	.tga	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r86.tga	119996	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r87.tga	119996	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r88.tga	119996	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward/r89.tga	119996	.tga	0	hzm-mohaa-coop-mod
@@ -6739,7 +6747,7 @@ hzm-mohaa-coop-mod/ui/coop_postfx2.urc	8063	.urc	390	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_postfx3.urc	5733	.urc	259	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_report.urc	2822	.urc	152	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_settings.urc	7706	.urc	369	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ui/coop_sr.urc	556951	.urc	30823	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/coop_sr.urc	557336	.urc	30830	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_sr_pinclear.cfg	6952	.cfg	369	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_sr_pinreset.cfg	6620	.cfg	351	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_start.urc	10684	.urc	421	hzm-mohaa-coop-mod
@@ -7382,8 +7390,8 @@ hzm-mohaa-coop-mod/ui/options_main.urc	5510	.urc	253	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	541870468	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	791328092	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23131543	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	791348723	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23132509	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm_coop_framework_guide.md	27594	.md	382	<root>
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -10197,7 +10205,7 @@ overhead_3d_marker_research.md	16029	.md	300	<root>
 overhead_icon_mp_replication.md	18831	.md	377	<root>
 parse_test.log	0	.log	0	<root>
 per_map_test_tracker.md	3237	.md	86	<root>
-publish_release.ps1	15281	.ps1	263	<root>
+publish_release.ps1	15868	.ps1	269	<root>
 publish_secrets.ini	277	.ini	0	<root>
 radio_model_search.md	7821	.md	94	<root>
 relnotes_1.2.1.md	1025	.md	15	<root>

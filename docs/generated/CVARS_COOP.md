@@ -34,7 +34,7 @@ These literals are concatenated with a variable at the call site (`getcvar("coop
 - `coop_lo*` — `coop_mod/loadoutpick.scr:354`
 - `coop_medals_*` — `coop_mod/medals.scr:75` (+1 more)
 - `coop_pend_*` — `coop_mod/challenges.scr:745` (+2 more)
-- `coop_pins_*` — `coop_mod/challenges.scr:3055` (+1 more)
+- `coop_pins_*` — `coop_mod/challenges.scr:3066` (+1 more)
 - `coop_unlocks_*` — `coop_mod/challenges.scr:731` (+1 more)
 - `coop_xp_*` — `coop_mod/xp.scr:347` (+2 more)
 
@@ -250,7 +250,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_arenaUnlockDoors` |  |  |  |  | `maps/e3l4_arena.scr:494` |  |
 | `coop_autoReverb` | `1` | `CVAR_ARCHIVE` | `cgame/cg_snapshot.c:194` (+2) | FORCED `1` @ `autoexec.cfg:851` |  |  |
 | `coop_barrelSmoke` | `0.25` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:554` | FORCED `0.1` @ `autoexec.cfg:642` |  |  |
-| `coop_binoc_skyCheck` |  |  |  |  | `coop_mod/officer.scr:3946` |  |
+| `coop_binoc_skyCheck` |  |  |  |  | `coop_mod/officer.scr:3976` |  |
 | `coop_blindfireOut` | `20` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:1982` |  |  |  |
 | `coop_blindfireRaise` | `26` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:1508` (+1) |  |  |  |
 | `coop_blindfireSpread` | `3.0` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:1941` |  |  |  |
@@ -300,9 +300,9 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_callvote` |  |  |  |  | `coop_mod/server.scr:261` (+1) |  |
 | `coop_campaign` |  |  |  | other `1` @ `coop_mod/cfg/campaign_start.cfg:19`<br>other `0` @ `coop_mod/start_server.cfg:36` | `global/missioncomplete.scr:39` |  |
 | `coop_censusdone` |  |  |  |  | `coop_mod/covwalk.scr:131` (+1) |  |
-| `coop_chal_pin` |  |  |  |  | `coop_mod/challenges.scr:2896` (+2) |  |
+| `coop_chal_pin` |  |  |  |  | `coop_mod/challenges.scr:2907` (+2) |  |
 | `coop_challenges` |  |  |  |  | `coop_mod/challenges.scr:30` (+2) |  |
-| `coop_chalPopup` |  |  |  | DEFAULT `1` @ `coop_defaults.cfg:22` | `coop_mod/challenges.scr:1761` | `ui/coop_settings.urc` |
+| `coop_chalPopup` |  |  |  | DEFAULT `1` @ `coop_defaults.cfg:22` | `coop_mod/challenges.scr:1772` | `ui/coop_settings.urc` |
 | `coop_check` |  |  |  | other `0` @ `coop_mod/server.cfg:35`<br>other `0` @ `coop_mod/start_server.cfg:35` |  |  |
 | `coop_churn_cycle` |  |  |  |  | `coop_mod/coop_selftest_scaling.scr:210` |  |
 | `coop_churntest` |  |  |  |  | `coop_mod/coop_selftest_scaling.scr:79` |  |
@@ -355,7 +355,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_ddaDebug` |  |  |  | FORCED `0` @ `autoexec.cfg:384` | `coop_mod/coop_selftest_officer.scr:262` (+2) |  |
 | `coop_ddaEnabled` |  |  |  | FORCED `1` @ `autoexec.cfg:381` | `coop_mod/director.scr:68` |  |
 | `coop_ddaSkill` |  |  |  | FORCED `0.5` @ `autoexec.cfg:382` | `coop_mod/coop_selftest_officer.scr:278` (+3) |  |
-| `coop_deathReact` |  |  |  |  | `coop_mod/officer.scr:3283` |  |
+| `coop_deathReact` |  |  |  |  | `coop_mod/officer.scr:3313` |  |
 | `coop_deathvox_farRange` |  |  |  |  | `coop_mod/coop_selftest_xp.scr:587` (+3) |  |
 | `coop_deathvox_range` |  |  |  | FORCED `1500` @ `autoexec.cfg:568` | `coop_mod/coop_selftest_xp.scr:585` (+3) |  |
 | `coop_dev` |  |  |  | other `1` @ `coop_mod/cfg/buildmode.cfg:66`<br>other `0` @ `coop_mod/server.cfg:34`<br>other `0` @ `coop_mod/start_server.cfg:34` | `coop_mod/buildmode.scr:57` (+4) |  |
@@ -780,12 +780,12 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_objPanel` |  |  |  | FORCED `0` @ `autoexec.cfg:950` | `coop_mod/coop_selftest_objectives.scr:27` (+6) |  |
 | `coop_objToast` |  |  |  |  | `coop_mod/objectives.scr:69` |  |
 | `coop_objToastTime` |  |  |  |  | `coop_mod/objectives.scr:83` |  |
-| `coop_officerAccPct` |  |  |  |  | `coop_mod/officer.scr:1613` |  |
-| `coop_officerBasePc` |  |  |  |  | `coop_mod/officer.scr:1558` (+1) |  |
+| `coop_officerAccPct` |  |  |  |  | `coop_mod/officer.scr:1643` |  |
+| `coop_officerBasePc` |  |  |  |  | `coop_mod/officer.scr:1588` (+1) |  |
 | `coop_officerBattalionPer` |  |  |  |  | `coop_mod/director.scr:198` (+1) |  |
-| `coop_officerHealthPct` |  |  |  |  | `coop_mod/officer.scr:1602` |  |
-| `coop_officerMaxHeals` |  |  |  |  | `coop_mod/officer.scr:879` |  |
-| `coop_officerScale` |  |  |  |  | `coop_mod/officer.scr:1556` (+1) |  |
+| `coop_officerHealthPct` |  |  |  |  | `coop_mod/officer.scr:1632` |  |
+| `coop_officerMaxHeals` |  |  |  |  | `coop_mod/officer.scr:890` |  |
+| `coop_officerScale` |  |  |  |  | `coop_mod/officer.scr:1586` (+1) |  |
 | `coop_officerSquadPer` |  |  |  |  | `coop_mod/director.scr:196` (+1) |  |
 | `coop_officerWaveCooldown` |  |  |  |  | `coop_mod/coop_selftest_officer.scr:279` (+7) |  |
 | `coop_ownerdrop` |  |  |  |  | `coop_mod/coop_selftest_scaling.scr:76` |  |

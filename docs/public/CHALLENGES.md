@@ -410,8 +410,8 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Total De-Nazification** | Eliminate 20 Gestapo officers |
 | **Anzio Advance** | Eliminate 40 Italian infantry |
 | **Apennine Breakthrough** | Eliminate 110 Italian infantry |
-| **Plucked Feathers** | Eliminate 25 Italian paratroopers |
-| **Speed Limit Enforced** | Eliminate 75 Italian paratroopers |
+| **Avanti!** | Eliminate 40 Italian soldiers of any unit |
+| **Armistice Enforced** | Eliminate 120 Italian soldiers of any unit |
 | **Town Marshal** | Eliminate 10 Italian militia volunteers |
 | **The New Order** | Eliminate 20 Italian militia volunteers |
 | **Silencing the Comm-Link** | Eliminate 15 German field officers |

@@ -139,6 +139,14 @@ RUNTIME_SOURCED = {
     "fac_variety",
 }
 
+# Stats that ARE bounded by placement, but by the placements of several other factions rather
+# than their own. Kept checkable this way instead of exempted, so a target that outgrows the
+# real supply is still caught - exempting would have quietly switched the guard off.
+DERIVED_SUPPLY = {
+    # counts Italians of any unit: Regio Esercito plus the militia volunteers
+    "fac_italy": ["fac_regio", "fac_carab"],
+}
+
 
 def faction_supply():
     """Count ONE actor per entity block. A block carries both a classname and a model;
@@ -214,7 +222,10 @@ def main():
         # faction fed by a runtime spawner has no fixed ceiling and would be reported short
         # forever. Each exemption below names its verified source - do not add one without.
         if stat.startswith("fac_") and stat not in RUNTIME_SOURCED:
-            hav = supply.get(stat, 0)
+            if stat in DERIVED_SUPPLY:
+                hav = sum(supply.get(s, 0) for s in DERIVED_SUPPLY[stat])
+            else:
+                hav = supply.get(stat, 0)
             if c["target"] > hav:
                 short.append((c, hav))
 

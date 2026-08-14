@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `2e11a4d 2026-08-14 docs: regenerate challenge pages after retune` |
-| commits | 77 |
+| HEAD | `136a6f8 2026-08-14 tooling: prove at build time that every challenge can be earned` |
+| commits | 79 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,17 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 23 |
+| 2026-08 | 25 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (77)
+### Commits since 2026-01-01 (79)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `136a6f8` | 2026-08-14 | joncurry94-tech | tooling: prove at build time that every challenge can be earned |
+| `afea0c2` | 2026-08-14 | joncurry94-tech | publish: send the Discord body as UTF-8 bytes |
 | `2e11a4d` | 2026-08-14 | joncurry94-tech | docs: regenerate challenge pages after retune |
 | `952e830` | 2026-08-13 | joncurry94-tech | docs: unlockables chart, and be honest about state and debug tools |
 | `d6825bd` | 2026-08-13 | joncurry94-tech | publish: repair the updater fallback and the tooling that broke it |
@@ -114,8 +116,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `6a91c88 2026-08-14 challenges: make unreachable targets reachable (audit of all 344)` |
-| commits | 1,400 |
+| HEAD | `e9be16a 2026-08-14 challenges: unlock the padlocked guns, make snipers real, replace the dead FJ pair` |
+| commits | 1,401 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -123,7 +125,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 7 |
+| 2026-08 | 8 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -163,10 +165,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (51)
+### Commits since 2026-01-01 (52)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `e9be16a` | 2026-08-14 | joncurry94 | challenges: unlock the padlocked guns, make snipers real, replace the dead FJ pair |
 | `6a91c88` | 2026-08-14 | joncurry94 | challenges: make unreachable targets reachable (audit of all 344) |
 | `29272f9` | 2026-08-13 | joncurry94 | v1.2.8: capture-safe borderless, audio device fix, Service Record repair |
 | `69a7ed9` | 2026-08-13 | joncurry94 | v1.2.7: m6l2a stealth route, level-2 checkpoint, and the bust fixes it found |
