@@ -13,25 +13,28 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `91b337d 2026-08-11 docs: plan for carrying the m2l2a stealth layer to the other disguise maps` |
-| commits | 69 |
+| HEAD | `e5e437c 2026-08-11 stealth: per-map gate, m6l1c opt-in, and papers for late joiners` |
+| commits | 70 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
-| unstaged diff | 3 files changed, 10 insertions(+), 11 deletions(-) |
+| **uncommitted** | **4 modified, 3 untracked** |
+| unstaged diff | 14 files changed, 1009 insertions(+), 583 deletions(-) |
+
+> Working tree is dirty. Everything in those 7 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 15 |
+| 2026-08 | 16 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (69)
+### Commits since 2026-01-01 (70)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `e5e437c` | 2026-08-11 | joncurry94-tech | stealth: per-map gate, m6l1c opt-in, and papers for late joiners |
 | `91b337d` | 2026-08-11 | joncurry94-tech | docs: plan for carrying the m2l2a stealth layer to the other disguise maps |
 | `6a79f94` | 2026-08-11 | joncurry94-tech | postfx: re-enable DoF - the bug-1629 fix had never reached the live install |
 | `ea80cec` | 2026-08-11 | joncurry94-tech | publish: gate the release on the What's New card matching the version |
@@ -110,10 +113,10 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | HEAD | `c21a0dd 2026-08-10 coop: fix reliable-command overflow, blueprint pickup, HUD-fade class, Naxos` |
 | commits | 1,397 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **24 modified, 3 untracked** |
-| unstaged diff | 24 files changed, 2005 insertions(+), 1368 deletions(-) |
+| **uncommitted** | **55 modified, 7 untracked** |
+| unstaged diff | 55 files changed, 6907 insertions(+), 1470 deletions(-) |
 
-> Working tree is dirty. Everything in those 27 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 62 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
@@ -220,10 +223,10 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | HEAD | `5ea47c36 2026-08-10 engine: dedicated server boots + runs clean; restore engine cvar defaults` |
 | commits | 4,983 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **4 modified, 0 untracked** |
-| unstaged diff | 4 files changed, 100 insertions(+), 1 deletion(-) |
+| **uncommitted** | **9 modified, 0 untracked** |
+| unstaged diff | 9 files changed, 279 insertions(+), 3 deletions(-) |
 
-> Working tree is dirty. Everything in those 4 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 9 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 

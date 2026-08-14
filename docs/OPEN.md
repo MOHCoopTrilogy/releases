@@ -23,34 +23,25 @@ spec, the unresponsive truck "statue", and the P40 final-tank explosion chain) a
 ## P0 — infrastructure, fix before feature work
 
 ### The deployed engine binaries do not match each other
-`OPEN` · *Anchor: GOG-root mtimes; `q_shared.h` mtime 2026-07-28 21:25; `.cmake/Release/openmohaa.exe` 2026-07-28 21:46*
+`OPEN` · *Re-measured 2026-08-12 from GOG-root mtimes. The 2026-07-29 table here was stale in every
+row and its central claim was wrong — see the deploy-gap note below.*
 
-| Binary | Deployed | Size |
-|---|---|---|
-| `openmohaa.exe` | 2026-07-21 17:15 | 1,708,544 |
-| `game.dll` | 2026-07-24 09:33 | 3,999,744 |
-| `cgame.dll` | 2026-07-28 22:57 | 617,984 |
-| `renderer_opengl1.dll` | 2026-07-28 22:57 | 844,288 |
-| `renderer_opengl2.dll` | 2026-07-03 14:23 | 939,520 |
-
-The exe predates `MAX_CONFIGSTRINGS 4096→8192` and `GENTITYNUM_BITS 10→11`; the cgame postdates them.
+Still a **5-day spread**, so the protocol-coupling risk stands: `renderer_opengl2.dll` 08-07,
+`cgame.dll` 08-08, `openmohaa.exe` / `omohaaded.exe` / `renderer_opengl1.dll` 08-10, `game.dll` 08-12.
 `gameState_t` is sized by `MAX_CONFIGSTRINGS` and `memcpy`'d **whole** across the exe↔cgame boundary
-with no version guard — a 2× struct-size disagreement across a DLL boundary. `GENTITYNUM_BITS`
-10-vs-11 also changes entity wire encoding.
+with no version guard; `GENTITYNUM_BITS` also changes entity wire encoding. Ship the set, not one file.
 
-Corroborated independently: **bug-1219 (2026-07-29) still reports `SV_FindIndex overflow (max=1280)`
-×243 from a LIVE m3l2 log**, while `q_shared.h:1742` says 1600.
+**The deploy gap is now much smaller than this entry used to claim.** `build.ps1` *does* deploy
+`cgame.dll`, `game.dll` (+`game.pdb`) and `omohaaded.exe`, to the GOG root **and** `G:\mohaa-gl2`
+(`build.ps1:149-161`). Only **`openmohaa.exe` and `renderer_opengl2.dll` are still hand-copied** —
+so the old "no exe deploy block / copy game.dll by hand" fix text no longer applies.
 
-**This is a deploy gap, not a build gap.** A current exe already exists at
-`.cmake/Release/openmohaa.exe`, built 21 minutes *after* the header edit (and byte-size-identical to
-the gl2 sandbox exe, which was copied there at 22:22). `build.ps1` simply has **no exe deploy block**.
+Corroborated independently: **bug-1219 still reports `SV_FindIndex overflow (max=1280)` ×243** from a
+live m3l2 log while `q_shared.h:1742` says 1600 — re-run it once the client exe is refreshed.
 
-**Fix:** copy `openmohaa.exe`, `game.dll` (and decide on `renderer_opengl2.dll`) from `.cmake` to the
-GOG root as a set, backing each up as `<name>_pre_<feature>_bak.<ext>` first. Then re-run bug-1219 to
-confirm the 1280 message is gone.
-
-**Caveat that must be respected:** mtime proves when a file was written, not what it was compiled
-from. Confirm rather than assume.
+**Caveat:** mtime proves when a file was written, not what it was compiled from. Confirm, don't assume.
+And since `.cmake`, `G:\mohaa-gl2` and the GOG root can each hold a different build of the same
+module, **no "verified" claim means anything unless it names the install AND the timestamp.**
 
 ### Six days of engine work and v1.1.55 mod content exist only in the working tree
 `OPEN` · *Anchor: engine HEAD `819a6e93` + 119 dirty files / ~10,750 insertions / 20 untracked; mod HEAD `f10ac19` + 65 dirty files*
@@ -62,20 +53,6 @@ widening, **all** gl2 work, the font pipeline and `coop_unsponge`. Untracked (no
 
 **There is no restore point for any of it.** Same hazard class as a doc/code disagreement: the record
 (git) does not describe the artefact (the tree).
-
-### Three distinct binary states are live simultaneously
-`OPEN` · *Anchor: `.cmake` vs `G:\mohaa-gl2` vs `G:\GOG` timestamps 2026-07-29*
-
-| Location | State |
-|---|---|
-| `.cmake/Release/` | Newest — gl2 is 8,704 B ahead of the sandbox |
-| `G:\mohaa-gl2` | Uniform, all 2026-07-28 22:22 |
-| `G:\GOG\...` | **Mixed**, 2026-07-03 → 07-28 |
-
-The GOG-root `renderer_opengl1.dll` (844,288 B) matches **neither** the sandbox (845,312) nor
-`.cmake` (845,824) — three different gl1 builds. **Consequence: no "verified" claim is meaningful
-unless it names the install AND the timestamp.** A claim verified in the sandbox on 07-28 evening is
-already behind the sandbox's own next build.
 
 ### `renderer_opengl2.dll` has zero rollback points
 `OPEN` · *Anchor: 157 `.bak` files in the GOG root — `game.dll` 75, `openmohaa.exe` 37, `cgame.dll` 25, `renderer_opengl1.dll` 19, `renderer_opengl2.dll` **0***
@@ -194,8 +171,59 @@ around it on 2026-08-10 is deployed and **not** confirmed in play:
 - the squad-wide papers free-pass CODE (bug-1693) - the observed behaviour comes from the engine
   demoting an accepting sentry to a saluter, so the new path has never run
 
-RESOLVED since: the contain loop, the escalation loadout (bug-1692) and the bust-time aggro
-exemption (bug-1686) are confirmed in play.
+Since confirmed in play: the contain loop, the escalation loadout (1692), the bust-time aggro
+exemption (1686).
+
+### m6l2a contain — bugs 1732-1737, deployed 2026-08-12
+
+1732 / 1734 / 1735 / 1736 are **closed** — each exposed the next, verified in a three-contain run
+(kill / let-survive / kill). Causes in buglog. Still open:
+
+**1739 unverified — the stun's re-assertion has never once fired.** The re-hit that pulls a guard back
+into pain is gated on `curHp > minHp`, `minHp` = 40% of health. That floor predates bug-1731's drop to
+`coop_bustVulnHealth` 25: 40% of 25 is **10**, exactly where the bash's own 15 damage lands him — false
+from the first tick, and `BUSTSTUN` prints a flat `hp=10.000` in *every* contain, including the ones
+that looked right. The stun rode on one pain animation, holding only when the guard faced away
+(`EnemyIsDisguised` = `hasDisguise && (isDisguised || !CanSeeEnemy)`). 1737 is intact and still needed:
+it makes pain *start*, not *hold*. Absolute floor of 2 while dropped. Verify: hp **decreases**
+(10→7→4→1) instead of sitting flat.
+
+**1738 unverified.** One latch both kept the corpse rediscoverable *and* pinned `seers` at 1 forever,
+so the loiter timer ran on with every witness dead — cover blew 6 s after the player contained the
+investigator himself. Now a live per-tick count. Verify: silence the investigator, stay by the body,
+expect `BUSTBODY nobody has eyes on the body any more` and no escalation.
+
+**1733 partial.** `PAINDETACH` still fires on a same-frame double hit — gap **exactly 3.0** both times
+regardless of real damage (400, 15): the stun's `hurt 3` racing a round, which `actorPainHandler`'s
+exact-equality test can't tolerate. Bashed guards only; 1734 covers both paths, so it degrades.
+
+**Bullet sponges no longer reproduce** — a full Thompson run, none seen, and no damage value was
+changed. Probably fixed by 1733, not confirmed.
+
+### ⚠️ m2l2a REGRESSION RISK — the attackplayer latch removal (bug-1700)
+
+**User-requested review item.** m2l2a is signed off as very playable; bug-1700 changes the aggro
+funnel *every* map uses, to make loud→quiet missions possible on m6l1c.
+
+`sentientIsSeen` now supplies `local.sentient` when the caller's target is NULL, so `attackPlayer`
+takes its `attackentity` branch instead of the latching `attackplayer`. Unmeasured consequences on
+m2l2a:
+
+- **`attackentity` is advisory, `attackplayer` was forcing.** A guard that used to commit may now
+  decline — that would make cover-blown escalation *weaker*, not stronger.
+- **The latch was also masking the disguise on m2l2a.** Without it, a guard who engaged you can be
+  fooled again by the uniform. On the papers route that is effectively a difficulty change.
+- **Phase C sits downstream** — the contain path reaches `sentientIsSeen` through
+  `anim/disguise_deny.scr` / `disguise_accept.scr`.
+- **Latch split CLOSED 2026-08-11** (bugs 1707/1708) - see `docs/archive/open-resolved-2026-08-10.md`.
+
+**Acceptance test — PASSED 2026-08-11.** Full m2l2a stealth run by the user against the whole
+day's global changes (bug-1707 engine threat gate, four attackplayer latch sites, two disguise
+retry-loop fixes, spawn-click fire lock). Log evidence: quiet Naxos sabotage, two officer
+contains offered (`canContain=1`), two body investigations armed, sentries correctly refused
+(`canContain=0`), and **zero** Script Errors, parse failures, salute-guard flips (SALATK) or
+latch restores — against 1789 restores in the broken run that started the investigation.
+The user's verdict: "m2l2a ran fine with what you asked".
 
 ### `coop_stealthArmOnHurt` is dead code — and something else may be covering for it
 
@@ -225,14 +253,6 @@ eight fade-exempt slots — **the ≥100 band is now completely full.**
 fixed the jeep maps but a **different function** spawns the halftrack and T-34 crews (t2l2 25 casts,
 t3l2 8). Named in the audit's own residual list; no follow-up found in the buglog.
 
-### Dropped AI weapons float and spin in mid-air forever
-`OPEN` · *bug-923* — live evidence: a pistol hovering and spinning next to a rock face on e1l2, at the
-height where the AI died on the slope above. Cause: drop origin is the world position of the attach
-tag at the instant of death (hand, or the `Bip01 Spine2`/`Pelvis` **holster** tags from the
-weapons-on-back system), and the item physics box is 24×24×14 (`weapon.cpp:2532`); if that box
-overlaps a wall the toss physics never settles. Marked "NOT YET FIXED — investigation only", **with an
-exact patch already proposed**: a `Weapon::Drop` spawn-point sweep-clamp from owner origin+(0,0,40) to
-the intended drop origin using the item's own clipmask.
 
 ### Dedicated server segfaults on bare DM maps
 `OPEN` · *bug-330* — `game.dll` crashes loading `obj`/`obj_team1` under a dedicated server. Baseline
@@ -241,17 +261,7 @@ coop hook assuming coop init ran. Fix: "none yet." ⭐ Also recorded: `omohaaded
 quirks (stalls **with** `fs_homepath`, dies **without** it); the working dedicated recipe is the
 **CLIENT exe with `+set dedicated 1`** from the GOG dir.
 
-### Build-mode blueprints render as featureless squares
-`OPEN` · *bug-1001* — user: *"casemate is a square box with a texture and thats it"*, *"all of the
-items in the blueprints are small squares"*. Session log showed **zero `BUILD_BP_PLACE` lines**,
-suggesting the placement code path never ran — a wiring defect rather than a content defect.
-Consistent with `blueprint.scr:5-7`'s stale `INERT UNTIL WIRED` header (it has **22** call sites: 18
-in `buildmode.scr`, 4 in `bunker.scr`). Directly contradicts the v1.2.0 release-note claim of a
-"40-category object library."
 
-### DBNO crawl animation plays opposite to movement
-`OPEN` · *bug-431 (2026-07-09)* — W crawls backward. No follow-up in 19 days. Low severity, trivially
-reproducible.
 
 ### AI prone/crouch postures are disabled because enabling them crashes the server
 `OPEN` (by design) · *`anim/attack.scr:48-62`; `fgame/actor.cpp:8274-8350`* —

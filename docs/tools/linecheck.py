@@ -20,6 +20,7 @@ import re
 import sys
 
 # a continuation line may not START with one of these
+
 LEADING_OP = re.compile(r'^\s*(\+\+|--)?\s*(\+|\|\||&&|==|!=|>=|<=)(?!=)')
 # ...but `+=`, `++`, a negative literal, and a lone `-` unary are fine, so keep the set tight
 
@@ -37,6 +38,19 @@ def strip_comment(line):
     return "".join(out)
 
 
+# First words a real statement can start with. Only used to spare the prose rule below;
+# prose beginning with one of these is vanishingly unlikely, and a false FAIL blocks a good build.
+NUMBER = re.compile(r"^-?(\d+\.?\d*|\.\d+)$")
+
+STATEMENT_WORDS = {
+    "if", "else", "while", "for", "switch", "case", "default", "break", "continue", "end",
+    "goto", "return", "thread", "waitthread", "exec", "waitexec", "wait", "waitframe",
+    "waittill", "spawn", "trigger", "remove", "delete", "hide", "show", "println", "print",
+    "iprint", "iprintln", "iprintlnbold", "iprintlnbold_noloc", "setcvar", "getcvar",
+    "radiusdamage", "playsound", "loopsound", "stoploopsound", "anim", "anim_scripted",
+    "walkto", "runto", "moveto", "forceactivate", "takeall", "give", "ammo", "use", "damage",
+}
+
 def check(path, quiet=False):
     bad = []
     try:
@@ -45,7 +59,48 @@ def check(path, quiet=False):
         print("  !! %s" % e)
         return False
 
+    prev_was_comment = False
+    in_block = False                      # inside /* ... */
     for n, raw in enumerate(src, 1):
+        stripped = raw.strip()
+        # block comments are prose by definition - track and skip them
+        if in_block:
+            if "*/" in stripped:
+                in_block = False
+            continue
+        if stripped.startswith("/*"):
+            if "*/" not in stripped:
+                in_block = True
+            continue
+        # [2026-08-12] A COMMENT LINE THAT LOST ITS SLASHES - bug-1715, twice in one night.
+        # Raw prose in code position is 'syntax error, unexpected TOKEN_COMMA' and the engine
+        # refuses to compile the WHOLE file, so the map runs with no script at all. Braces,
+        # quotes and operators all balance happily in prose, so no other scanner sees it.
+        # Deliberately narrow: only fires when the PREVIOUS line was a comment, and only when the
+        # line carries no argument-shaped token. A broad 'looks like English' rule flagged real
+        # commands such as `radiusdamage local.gnd 600 900`, and a scanner that cries wolf is worse
+        # than no scanner. This costs a missed case where prose starts a block; it never blocks a
+        # good build.
+        if prev_was_comment and stripped and not stripped.startswith(("//", "/*", "*")):
+            bare = strip_comment(raw).strip()      # a trailing // is not prose
+            first = bare.split()[0].lower() if bare.split() else ""
+            rest = bare.split()[1:]
+            # `fadeout 0.1 0 0 0 1` is a command with numeric args, not prose. Any line whose
+            # arguments are ALL numbers is a call, whatever the verb is.
+            all_numeric = bool(rest) and all(NUMBER.match(t) for t in rest)
+            if (len(bare.split()) >= 4
+                    and not all_numeric
+                    and first not in STATEMENT_WORDS
+                    and "_" not in first          # huddraw_align etc - commands have underscores,
+                                                  # English words in a comment do not
+                    and not any(t in bare for t in
+                                ("local.", "level.", "game.", "self", "parm.", "group.",
+                                 "$", '"', "=", "{", "}"))):
+                bad.append((n, "prose directly under a comment - did you drop the // ? "
+                               "(this silently kills the whole file)", bare))
+        if stripped:
+            prev_was_comment = stripped.startswith("//")
+
         code = strip_comment(raw)
         if not code.strip():
             continue
@@ -54,7 +109,6 @@ def check(path, quiet=False):
         if LEADING_OP.match(code):
             bad.append((n, "line STARTS with a binary operator - move it to the end of the "
                            "previous line", raw.strip()))
-
     if bad:
         print("FAIL %s" % path)
         for n, why, txt in bad:

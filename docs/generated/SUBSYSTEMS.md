@@ -8,8 +8,8 @@
 # Coop subsystem inventory (generated)
 | metric | value |
 |---|---:|
-| `coop_mod/*.scr` files | 112 |
-| total lines in `coop_mod/` | 67,771 |
+| `coop_mod/*.scr` files | 113 |
+| total lines in `coop_mod/` | 69,304 |
 | top-level `maps/*.scr` | 121 |
 | of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
 
@@ -75,7 +75,9 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | 55 | 297 | `thread` | `coop_mod/aibehav.scr::main` |
 | 56 | 302 | `thread` | `coop_mod/aicombat.scr::main` |
 | 57 | 308 | `thread` | `coop_mod/sndcache.scr::main` |
-| 58 | 317 | `thread` | `coop_mod/eventsystem.scr::doEvent` |
+| 58 | 311 | `thread` | `coop_mod/devprobe.scr::main` |
+| 59 | 313 | `thread` | `coop_mod/devprobe.scr::stuckWatch` |
+| 60 | 322 | `thread` | `coop_mod/eventsystem.scr::doEvent` |
 
 ## `coop_mod/` scripts
 | file | lines | labels | summary |
@@ -85,26 +87,26 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `ads_dbg.scr` | 11 | 1 | HZM coop - ADS diagnostic. Called from the AIM state's entrycommands in |
 | `aibehav.scr` | 120 | 1 | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
 | `aicombat.scr` | 119 | 1 | aicombat.scr - HZM coop AUTOMATED COMBAT DRIVER (2026-07-23) |
-| `aihandler.scr` | 1,397 | 21 | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
+| `aihandler.scr` | 1,558 | 22 | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
 | `aimaneuver.scr` | 158 | 1 | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
-| `aisquad.scr` | 188 | 1 | aisquad.scr - HZM coop SQUAD BRAIN (2026-07-24) |
+| `aisquad.scr` | 198 | 1 | aisquad.scr - HZM coop SQUAD BRAIN (2026-07-24) |
 | `aivoice.scr` | 398 | 4 | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
 | `m3l2.scr` | 81 | 0 |  |
 | `allysquad.scr` | 382 | 4 | [user 08-08] ALLIED SQUAD SURVIVABILITY |
 | `ambience.scr` | 326 | 5 | HZM coop - AMBIENCE BEDS + COMBAT MIXING (script-only; modeled on weather.scr::coop_weather_sound). |
-| `ammobox.scr` | 264 | 0 | HZM coop - player-deployable AMMO BOX. |
+| `ammobox.scr` | 273 | 0 | HZM coop - player-deployable AMMO BOX. |
 | `blueprint.scr` | 567 | 1 | HZM coop - BLUEPRINT / PLAYER STRUCTURES (build-mode extension) |
 | `bt_playerTank.scr` | 36 | 0 | chrissstrahl - Exit Tank Script for BT-Coop |
-| `buildmode.scr` | 1,015 | 4 | HZM Coop - BUILD MODE (dev tool). Full docs: _research/build_mode.md |
+| `buildmode.scr` | 1,035 | 4 | HZM Coop - BUILD MODE (dev tool). Full docs: _research/build_mode.md |
 | `buildmode_actors.scr` | 411 | 1 | HZM Coop - BUILD MODE : ALLIED ACTORS + ANIMATION catalog (DATA + ghost animator). |
 | `buildmode_catalog.scr` | 2,290 | 1 | HZM Coop - BUILD MODE model catalog (DATA ONLY). Generated from main/mainta/maintt Pak*.pk3 |
 | `buildmode_sounds.scr` | 369 | 5 | HZM Coop - BUILD MODE : placeable SOUND EMITTERS (catalog + SOUND-mode control bus). |
 | `bunker.scr` | 808 | 2 | HZM coop - COMPOSED STRUCTURES v2 (build-mode geometry construction kit) |
-| `bust.scr` | 1,076 | 4 | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
+| `bust.scr` | 1,553 | 5 | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
 | `butler.scr` | 498 | 12 | created by chrissstrahl on 2019.09.12 |
 | `common.scr` | 120 | 0 |  |
 | `cannonThink.scr` | 147 | 1 | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
-| `challenges.scr` | 3,245 | 13 | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
+| `challenges.scr` | 3,514 | 26 | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
 | `collectible.scr` | 373 | 2 | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
 | `coop_placements.scr` | 1,021 | 3 | HZM coop - BAKED BUILD-MODE PLACEMENTS (generated from build_<map>.dat). |
 | `coop_selftest.scr` | 320 | 6 | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
@@ -119,13 +121,14 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `coop_selftest_weapons.scr` | 594 | 11 | coop_selftest_weapons.scr - HZM dev automated self-tests: WEAPONS |
 | `coop_selftest_xp.scr` | 696 | 14 | coop_selftest_xp.scr - HZM dev automated self-tests: XP / CHALLENGES |
 | `corpse.scr` | 32 | 0 | [208] HZM coop - CORPSE DESPAWN. Dead AI bodies fade out and are removed after coop_corpseLife seconds |
-| `cover.scr` | 327 | 0 | Placement reach: trace along the view ray; if the ray lands on valid floor, place there. |
+| `cover.scr` | 336 | 0 | [user 2026-08-11] NO DEPLOYABLES WHILE DISGUISED. Building a sandbag nest or dropping an |
 | `covwalk.scr` | 282 | 1 | COVERAGE WALK - trilogy sweep layer 3. [user 2026-08-05] |
 | `custom_items.scr` | 37 | 0 | [200] Smithy - used for spawning any script built custom items we want |
-| `dbno.scr` | 1,317 | 3 | safety-net: make sure the cgame "downed" view flag is cleared on (re)spawn, so a player who died while |
+| `dbno.scr` | 1,392 | 4 | safety-net: make sure the cgame "downed" view flag is cleared on (re)spawn, so a player who died while |
 | `dbno_test.scr` | 3 | 1 |  |
 | `deathvox.scr` | 81 | 0 | HZM coop - varied DEATH VOICES (+ native-VO mute for AI). |
 | `developer.scr` | 1,578 | 28 | chrissstrahl - since the game refuses to let me use cheats in multiplayer |
+| `devprobe.scr` | 147 | 2 | DEV PROBE - "who is that actor, right now?" |
 | `director.scr` | 227 | 2 | [user 2026-07-17] REACTIVE DIFFICULTY DIRECTOR - Phase 1 (plan: _research/director_dda_plan.md). |
 | `e1l4alarm.scr` | 76 | 4 | coop_mod/e1l4alarm.scr |
 | `events.scr` | 57 | 3 | [200] Smithy - 'built-in' events used for coop |
@@ -137,7 +140,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `helmet.scr` | 1,730 | 4 | [305] HZM coop - LIVE HELMET SWITCHER |
 | `helmtest.scr` | 96 | 1 | HZM dev probe (TEMPORARY): verify the retail sethelmet/pophelmet mechanic end to end. |
 | `holdout.scr` | 759 | 16 | HOLDOUT - checkpoint wave-defence gametype [user 2026-08-04] |
-| `itemhandler.scr` | 3,419 | 35 | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
+| `itemhandler.scr` | 3,680 | 36 | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
 | `keyitems.scr` | 161 | 1 | [306] HZM coop - KEY MISSION ITEMS can never be permanently lost |
 | `ladder.scr` | 231 | 1 | HZM coop - PLACEABLE CLIMBABLE LADDERS [user 2026-08-05] bug-1415 |
 | `ladder_state.scr` | 24 | 0 | HZM coop - LADDER STATE HOOK [user 2026-08-05] bug-1415 |
@@ -147,7 +150,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `lobby.scr` | 1,166 | 20 | HZM Coop - Pre-Mission Lobby module. Full spec: _research/coop_lobby1_build.md |
 | `lobbyui.scr` | 265 | 3 | [304] CLICKABLE LOBBY UI - a mouse cursor + button framework for the live |
 | `m4l3_precache.scr` | 157 | 0 |  |
-| `main.scr` | 2,119 | 21 | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
+| `main.scr` | 2,168 | 21 | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
 | `maplist.scr` | 119 | 2 | [201] Smithy - used to populate the coop_mapsList array to check for next/previous map (and any other future… |
 | `maptest.scr` | 268 | 2 | HZM Coop - Map Rotation Auto-Tester |
 | `maptest_m5l3.scr` | 284 | 1 | HZM Coop - m5l3 Scene-Walk Tester |
@@ -155,19 +158,19 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `maptest_vehicle.scr` | 474 | 1 | HZM Coop - Vehicle Scene Tester (Phase 2 sibling) |
 | `maptest_waypoints.scr` | 4,171 | 0 | HZM Coop - Phase 2 Map Tester: Pre-Extracted Waypoints |
 | `medals.scr` | 208 | 1 | [401] HZM MEDALS & BADGES - campaign-wide meta-achievements, one per Service Record category plus |
-| `medkit.scr` | 572 | 1 |  |
+| `medkit.scr` | 584 | 1 |  |
 | `mg42_hack.scr` | 24 | 0 | chrissstrahl - scale health to players |
 | `missioncomplete.scr` | 87 | 0 | [200] chrissstrahl - 2020.06.14 |
 | `mom_actions.scr` | 173 | 17 | Created by chrissstrahl on 2018.07.02 - based on Multi Option Menu from Star Trek Elite Force II from 2009 fo… |
 | `mom_login.scr` | 167 | 17 | Created by chrissstrahl on 2018.07.02 - based on Multi Option Menu from Star Trek Elite Force II from 2009 fo… |
-| `morale.scr` | 85 | 1 | morale.scr - HZM coop SQUAD MORALE (ME1, coop_moraleEnable, default off) |
+| `morale.scr` | 94 | 1 | morale.scr - HZM coop SQUAD MORALE (ME1, coop_moraleEnable, default off) |
 | `objective_drop.scr` | 165 | 1 | Objective Bonus Drop |
 | `objective_positions.scr` | 89 | 1 | objective_positions.scr |
-| `objectives.scr` | 692 | 7 | Coop Side Objectives (optional / secondary) |
-| `officer.scr` | 4,591 | 27 | Officer Boss + Radio Station |
+| `objectives.scr` | 693 | 7 | Coop Side Objectives (optional / secondary) |
+| `officer.scr` | 4,613 | 27 | Officer Boss + Radio Station |
 | `officer_positions.scr` | 601 | 1 | coop_officer_positions.scr |
 | `paradrop.scr` | 724 | 1 | Allied Paradrop System |
-| `player.scr` | 1,820 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |
+| `player.scr` | 1,822 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |
 | `precache.scr` | 186 | 0 |  |
 | `probe.scr` | 74 | 1 | probe.scr |
 | `profile.scr` | 71 | 0 | HZM COOP - PER-PLAYER PROFILE MIRROR (user decision 2026-08-10) |

@@ -16,7 +16,12 @@ Status: **!** = open now, **~** = recurring, blank = fixed/known pattern.
 <a name="t1"></a>
 ## T1 — Morpheus parse killers: one bad token silently kills the WHOLE `.scr`
 
-**Recurred under 15+ bug ids:** 089, 298, 331, 348, 402, 533, 739/750, 910, 962, 1067, 1069, 1105, 1205, 1283, 1285.
+**Recurred under 15+ bug ids:** 089, 298, 331, 348, 402, 533, 739/750, 910, 962, 1067, 1069, 1105, 1205, 1283, 1285, 1751.
+
+> **All three scanners pass a file that cannot compile** — they check brace depth, line shape and
+> string termination, not *expression* syntax. `println "a" + x + "b"` without parens is
+> `unexpected TOKEN_PLUS`, kills the whole file, and scans clean (1751). **Not verified until a
+> server has loaded the map and the log shows no `parse error`.**
 
 **Check before you ship** — the three scanners catch disjoint classes, so run all three:
 
@@ -139,24 +144,10 @@ engine mounts both, so absence from paks proves nothing.
 **Tell:** "we built X and it does nothing / has no effect / can't be felt." Before tuning X, **prove
 X executes.**
 
-**Confirmed instances:**
+**Confirmed instances:** eleven plus three more, tabulated in
+[`docs/archive/traps-t3-instances.md`](archive/traps-t3-instances.md). The rules below are the part
+you need up front.
 
-| Feature | Why it never ran | Bug |
-|---|---|---|
-| **All AI grenades** | `GrenadeWillHurtTeamAt` compared `.length() < 65536` — i.e. any squadmate within 65,536 **units** (the whole map) vetoes the throw. Actors auto-squad-merge at first shots → ~100% of offensive grenades AND the kick/return chain suppressed. Fixed to `.lengthSquared()` (256u blast radius). | actor_anim_audit |
-| **Officer Stuka + binoc airstrike** | An up-trace to detect a ceiling **hits the skybox brush** (sky brushes are `CONTENTS_SOLID`), so low-skybox maps read as "indoors" and silently disabled both. Fixed by testing `SURF_SKY` (0x4) — via int div/mod, since MOHAA has no bitwise AND. | sky_trace |
-| **`s_sfxduck` (two attempts)** | Server-stuffed SETs of `CVAR_ARCHIVE` cvars are **dropped** by `CG_IsSetVariableAllowed` unless whitelisted. Two earlier attempts silently did nothing. | sfx_duck |
-| **AI tactical retreat** | The engaged-check required `self.enemy`, a formal target lock that **scripted damage never sets**, so it never committed. | 1104 |
-| **`MAX_SNAPSHOT_ENTITIES`** | A file-local `#define` stayed at 1024 for 8 days while everything downstream was raised to 2048. Entity 1025+ dropped by a bare `if (full) return;` whose own comment read *"silently discard entities"* — **no `Com_Printf`, zero evidence in any log.** | 1186 |
-| **`cg_dbnoEyeDrop`** (3 placements) | Ran, but its write was **discarded downstream** twice (eye rebuilt from the model tag; view-height smoothing hard-assigns `origin[2]`). v1 silently moved the THIRD-person pivot instead. See "the write is overwritten" below. | 1238 |
-| **The `SHIPPED-CODE-DISABLED` class** | Squad brain, morale, tactical retreat and the whole `coop_aiDynamic` layer are wired into `main.scr` behind gates testing `== "1"` on cvars **seeded in no shipped cfg**. They have never run for a player. | see [OPEN.md](OPEN.md#never-ran) |
-| **A label with NO CALLER AT ALL** | `coop_stealthArmOnHurt` — the watchdog that arms an unarmed player being shot — is defined at `itemhandler.scr:1423` and **threaded by nothing**, anywhere. Found only because a new feature hosted inside it never appeared. Worse than dormant: bug-1674 diagnosed a race *through* it and bug-1676 shipped a fix *into* it, both reasoning about code that has never executed. **A grep for the label name, not for its cvar, is the only check that finds this class.** | 1688 |
-| **m3l1b's FLAK 88s** | `startFiring` on `$88mm_weapon1/2` never fired: they are class **`Animate`**, not `TurretGun`, so the whole turret API silently fails. A follow-up `setAimTarget` fix was wrong the same way — correct `TurretGun::Think` analysis applied to an entity that was never a TurretGun. **Check the entity's CLASS before reasoning about its API.** | 1553 |
-| **Service Record `coop_srsync`** | A client console command wired to a UI `stuffcommand`, which **never executes** from the disconnected menu - so five successive rewrites living inside `CL_SyncSR_f` could not take effect and the symptom was byte-identical every time. Work that must run on the main menu belongs in `CL_Init` (proven to run) or in `exec`+`seta` builtins. | 1544, 1546 |
-| **47 shipped challenges** | v1.2.1 added ~50 `chal_def` rows and none of the hooks meant to feed them. `chal_bump` early-exits when `level.coop_chal_statN[stat]` is NIL, so an unbumped stat is a **no-op, not an error** — the rows show in the Service Record and can never be completed, and every static check passes. Corollary that cost two duplicate challenges: **absence of a hook is not absence of a feature** — check `chal_def` by title and feat, never by whether a producer exists. | 1596–1598 |
-| **A whole map's lighting + effects (e2l1)** | A bare `level waittill spawn` in a retail sub-script. In coop that event has already fired, and a failed `waittill` **does not wait** - so the script ran before the map's entities existed. See the shape note below. | 1294 |
-
-**Three further instances** (gl2 colour grade, the AI maneuver mover, `coop_weather_init`) are in
 `docs/archive/traps-t3-archived-rows.md` — each one's *shape* is already taught above or in T1, so
 only the evidence moved, not a lesson.
 
@@ -735,10 +726,69 @@ officer. Give an advisory its own, wider range.
 
 ---
 
+## T20 — One flag, two states; and one-way latches
+
+Both shapes cost most of 2026-08-11 on the m6l1c stealth route, because in both the symptom
+pointed away from the cause.
+
+**A flag that answers two questions gets tested for the wrong one.** `is_disguised` is the
+engine's live opinion, recomputed per frame (`player.cpp:5519-5545`): has a disguise, no alarm,
+nothing real in hand, *and* nobody attacking you with real threat. `has_disguise` is the fact the
+mod's own grant sets. They agree most of the time, which is what makes this expensive. Testing
+`is_disguised` where `has_disguise` was meant read "someone is shooting at you" as "the grant
+failed" in two places (bugs 1701, 1701b, 1703) — each re-running the whole disguise grant from a
+loop at frame rate, flipping gametype twice per pass and resetting every AI think state
+(measured: 13-14/sec sustained). The tell was **the player's own viewmodel and HUD stuttering** —
+AI churn alone does not stutter a client.
+> Before testing a state flag in a retry, ask how many different things can make it false. If
+> more than one, you are not testing what you think — prefer the flag your own code sets. And
+> **bound every self-re-threading retry**: a predicate that stays true burns a core until map end.
+
+**Bare `attackplayer` is permanent, and lives in more files than you grepped.** It is
+`Actor::ForceAttackPlayer`, setting `m_bForceAttackPlayer`, cleared **only in the Actor
+constructor** (`actor.cpp:3092`); while set, `EnemyIsDisguised()` returns false unconditionally,
+so one call blinds that actor to every disguise for the rest of the map. `attackentity <ent>` is
+the advisory, reversible form. Four sites took **three sweeps** because the first two only
+grepped `aihandler.scr`: `sentientIsSeen` (1700), `setEnemyAttackStates` (1704), `aisquad`
+go-loud and `morale` berserk (1708). Every one already had a usable target a line or two above.
+> Sweep the whole tree for a one-way primitive, not the file you found it in. Comment legitimate
+> no-target fallbacks so the next sweep can tell them apart.
+
+**An absorbing state hides everything downstream.** `EnemyIsDisguised()` also returned false for
+any actor in `THINKSTATE_ATTACK`, so an actor that entered attack for any reason could never be
+fooled again. With the veto above it ratchets: each hostile actor shoots you, that blanks your
+disguise for a frame, that frame flips more actors. Fixed by requiring real threat (bug-1707) —
+the same treatment `player.cpp:5541` already had. Blocked-aggro across one run: **1051 → 0**.
+**A flag two systems both own is a race, and it comes back.** `coop_clickablePapersEnabled` is set
+by `enableClickablePapers` on entry and cleared by `coop_bustArm` as the handshake that ends the
+papers loop when a bash starts. Anything that re-arms it mid-bash restarts that loop, whose
+force-equip branch puts papers into the hand already holding the drawn pistol — the gun alternates
+with `(none)` and **the player cannot shoot**. Three unrelated causes, one symptom: a 0.5 s re-check
+(1709), a squad-wide clear on papers ACCEPT and the re-offer answering it, and per-target threading
+that stacked loops so a single clear stopped only the newest (1726).
+> One writer per player at a time. Before threading a loop that sets a shared flag, clear it and
+> yield a frame so any live loop exits; never re-arm while the other owner's state (`coop_busted`)
+> says it is mid-operation. `clickPapers=1` during a bust means a second loop is alive.
+
+Deduping the loops was **not** sufficient (1732): *one* loop still steals the gun, since its guard
+`coop_activeWeapon == NULL` means both "hand is empty" **and** "no raise ever finished", and in a
+bust the second is true — each papers equip stomps the pistol's `RAISE_WEAPON` notify. Holding fire
+*was* what disarmed you. Then `coop_busted` became the overloaded one, twice within the hour:
+`coop_bustArm`'s own `if(coop_busted==1){end}` idempotence guard became an unconditional `end` once
+`bust.scr` set that flag *earlier* — killing the pistol give, while contains still *appeared* to work
+whenever the player already owned a pistol (1735); and the flag cleared only on the **success** path,
+so a surviving guard left the player flagged for the mission — no contain, no papers (1736).
+> **Split the latch from the state, and clear it on every exit, not just the happy one.** Moving a
+> flag's assignment earlier silently rewrites every guard that reads it — grep them all first.
+
 ## Cross-cutting: the four questions to ask before "it doesn't work"
 
 1. **Did it compile?** (T1 — `developer 1`, running-depth scan)
 2. **Did it run?** (T3 — prove execution before tuning; check the gate cvar is actually seeded)
+   — and when a constant becomes a cvar, **update every reader in the same pass**. `coop_aiBuffer`
+   converted the unsponge detectors but not `actorPainHandler`, still testing the literal 5000 while
+   actors buffered to the unseeded fallback 1000: the AI pain handler detached on **every actor's
+   first hit**, silently (1733), and fixing it exposed a reader right only by accident (1734).
 3. **Is the binary I'm testing the one I built?** (T10 — three binary states are live right now)
 4. **Am I reading the record or the code?** (T11 — the code wins; read the record to the END)
 
@@ -751,26 +801,6 @@ Moved to **`docs/reference/tiki_and_sound_aliases.md`** (frame-command lines ins
 `server{}`/`client{}`, aliases without a `maps` spec never loading, per-map `includes` blocks,
 cut-but-shipped content, and never leaving a backup inside the mod tree). Read it before
 touching a `.tik` or adding a sound alias.
-
-## Entities at health <= 0 that never died are UNKILLABLE (bug-1323)
-`Entity::DamageEvent` early-outs on `health <= 0` (entity.cpp:2705) and script `hurt` routes
-through it. An entity that crosses zero without its death completing visibly is entombed - no
-shot, blast or scripted `hurt` will ever land again, and every `waittill death` waiter blocks
-forever. A script failsafe MUST reset `self.health = 1` (script setter bypasses DamageEvent)
-BEFORE the `hurt`. Vehicles are auto-rescued engine-side (Vehicle::CoopZombieRescue, `^~^~^
-VEHZOMBIE` log line); other classes are not.
-
-## ui_startdmmap silently re-pushes g_* server cvars from the archived menu values (bug-1326)
-`UI_StartDMMap_f` (cl_ui.cpp:3422-3480) appends `set g_inactivespectate/g_inactivekick/
-g_gametype/g_teamdamage/fraglimit/timelimit/sv_maxclients/sv_maplist/sv_hostname/cheats 0` from
-the `ui_*` archived cvars to the command buffer AFTER any cfg that ran before it. Any `set g_<X>`
-in start_server.cfg for those keys is stomped unless the `ui_<X>` twin is seeded alongside it.
-
-## Scripted `surface head ...` silently hits the wrong LOD (bug-1332)
-head1.skd (and likely other heads) contains TWO surfaces both named "head". An exact-name
-surface command flips only the FIRST (Surface_NameToNum first-match); the rendered LOD stays
-unchanged - no error, no warning. Use the retail prefix form `surface "head*" ...` which
-applies to every match (entity.cpp:4237). Engine gore tiers are immune (they loop by index).
 
 ## ⭐ A `Script Error` does NOT kill the thread — it SKIPS the statement (verified 2026-08-06)
 **This corrects a premise that shaped many earlier diagnoses, including several in this file.**
@@ -789,14 +819,14 @@ consequences are different and often worse:
   (bugs 1458-1469): they were fixing a real defect, just not the one the note claimed.
 - A cast error inside a `while` body removes the *statement*, not the loop — which is exactly how
   t2l3 span 4,347 times with no yield and killed the server.
-
-## Values parsed out of a .dat file are STRINGS - coerce before comparing (bug-1352)
-The character-walking splitters (fogmode, blueprint, save files generally) return strings. Any
-later `if( x > 0 )` against one throws "binary '>' applied to incompatible types 'string' and
-'int'"; that statement is skipped (see above), so the assignment it guarded never happens while
-the caller happily prints its success message. Wrap every parsed numeric in `float()` / `int()`
-at load. Symptom shape: a feature works when set live in an editor but never when loaded from
-its own saved file.
+- **Values parsed out of a `.dat` file are STRINGS** (bug-1352). The character-walking splitters
+  (fogmode, blueprint, save files) return strings, so a later `if( x > 0 )` throws and *that
+  assignment never happens* while the caller prints its success message. Coerce with
+  `float()`/`int()` at load. Tell: works when set live, never when loaded from its own save.
+- **A probe that throws prints nothing** while filling the log with errors — so it is silently
+  useless on exactly the cases worth watching. Sanitise every field before concatenating:
+  an unset var reads `none`, and `"str" + none` throws (bugs 1702, and the SPAWNDISG probe
+  before it, both the same day).
 
 ## A scripted conversation strands when a `waittill` outranges its guard (bug-1579)
 

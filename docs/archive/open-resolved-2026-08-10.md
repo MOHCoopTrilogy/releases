@@ -54,3 +54,52 @@ defect. **Next action is one fresh look at that courtyard** before any further t
 ---
 
 <a name="gl2"></a>
+
+<!-- moved out of docs/OPEN.md 2026-08-11 to stay under the size ceiling -->
+
+### Dropped AI weapons float and spin in mid-air forever
+`OPEN` · *bug-923* — live evidence: a pistol hovering and spinning next to a rock face on e1l2, at the
+height where the AI died on the slope above. Cause: drop origin is the world position of the attach
+tag at the instant of death (hand, or the `Bip01 Spine2`/`Pelvis` **holster** tags from the
+weapons-on-back system), and the item physics box is 24×24×14 (`weapon.cpp:2532`); if that box
+overlaps a wall the toss physics never settles. Marked "NOT YET FIXED — investigation only", **with an
+exact patch already proposed**: a `Weapon::Drop` spawn-point sweep-clamp from owner origin+(0,0,40) to
+the intended drop origin using the item's own clipmask.
+
+
+<!-- moved out of docs/OPEN.md 2026-08-11 -->
+
+### Build-mode blueprints render as featureless squares
+`OPEN` · *bug-1001* — user: *"casemate is a square box with a texture and thats it"*, *"all of the
+items in the blueprints are small squares"*. Session log showed **zero `BUILD_BP_PLACE` lines**,
+suggesting the placement code path never ran — a wiring defect rather than a content defect.
+Consistent with `blueprint.scr:5-7`'s stale `INERT UNTIL WIRED` header (it has **22** call sites: 18
+in `buildmode.scr`, 4 in `bunker.scr`). Directly contradicts the v1.2.0 release-note claim of a
+"40-category object library."
+
+
+<!-- moved out of docs/OPEN.md 2026-08-11 -->
+
+### DBNO crawl animation plays opposite to movement
+`OPEN` · *bug-431 (2026-07-09)* — W crawls backward. No follow-up in 19 days. Low severity, trivially
+reproducible.
+
+## attackplayer latch split + absorbing attack state - CLOSED 2026-08-11
+
+Moved out of OPEN.md. The bug-1700 split was closed the same day, and the sweep found two more
+sites the original grep missed by only covering `aihandler.scr`: `aisquad.scr` go-loud and
+`morale.scr` berserk (bug-1708). Both were firing in live logs (`AGGRO BLOCKED aisquad-goloud`
+and `morale-berserk`), so both were reachable. All four now hand `attackPlayer` a real target;
+the remaining bare `attackplayer` calls are documented no-target fallbacks, the replica-clone
+spawn, the officer boss waves, and `holdout.scr`.
+
+Separately, `EnemyIsDisguised()` returned false for ANY actor in `THINKSTATE_ATTACK`, making
+attack an absorbing state - an actor that entered it for any reason could never be fooled
+again. It now requires real threat (bug-1707), the same treatment `player.cpp:5541` already
+had.
+
+Measured on m6l1c: blocked-aggro attempts across one run went **1051 -> 0**, and a full stealth
+run logged **zero** unexplained salute-guard flips against four the run before.
+
+The m2l2a acceptance test remains OPEN in OPEN.md - these changes are global and m2l2a is the
+signed-off map.
