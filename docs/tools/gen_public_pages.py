@@ -73,12 +73,111 @@ def load_challenges():
         labels[m.group(1)] = m.group(2)
 
     rows = []
-    pat = r'waitthread\s+chal_def\s+"([^"]+)"\s+"([^"]+)"\s+"([^"]*)"\s+"([^"]*)"'
+    # Capture the reward (7th arg) too - it is what UNLOCKABLES.md is built from. The trailing
+    # group is optional so a challenge that grants nothing still parses.
+    pat = (r'chal_def\s+"([^"]+)"\s+"([^"]+)"\s+"([^"]*)"\s+"([^"]*)"'
+           r'(?:\s+"([^"]*)"\s+(\S+)\s+"([^"]*)")?')
     for m in re.finditer(pat, src):
-        rows.append(
-            {"cid": m.group(1), "cat": m.group(2), "name": m.group(3), "desc": m.group(4)}
-        )
+        rows.append({
+            "cid": m.group(1), "cat": m.group(2), "name": m.group(3), "desc": m.group(4),
+            "reward": (m.group(7) or ""),
+        })
     return order, labels, rows
+
+
+# A challenge's 7th chal_def argument is its reward - empty for most, an asset path or a perk
+# token for the 213 that unlock something. That field IS the unlock table; there is no separate
+# list to fall out of step with it.
+UNLOCK_KINDS = [
+    ("models/weapons", "Weapons", "Usable weapons added to your loadout options."),
+    ("perk", "Perks", "Passive squad abilities and extra equipment."),
+    ("models/coop_helmets", "Helmets", "Headgear for your soldier, picked in the Helmet selector."),
+    ("models/player", "Uniforms & skins", "Player appearances, picked in the Armory."),
+]
+
+
+def pretty_asset(path):
+    """Readable name for an unlock, derived from its asset - never hand-written."""
+    if not path.startswith("models/"):
+        name = path.split("_", 1)[-1] if path.startswith("perk_") else path
+    else:
+        name = path.rsplit("/", 1)[-1]
+        if name.endswith(".tik"):
+            name = name[:-4]
+    for pre in ("uk_w_", "it_w_", "us_w_", "ger_w_", "w_"):
+        if name.startswith(pre):
+            name = name[len(pre):]
+    name = name.replace("_", " ").replace("-", " ").strip()
+
+    # Asset names run words together ("arisakasniper", "berettasilenced"). Split the known
+    # trailing variants back out so the chart reads like the menus do. Longest first, so
+    # "snipersilenced" is not eaten by "sniper".
+    for suf in ("snipersilenced", "silencedsniper", "silenced", "sniper", "nohelm", "noheadgear"):
+        if len(name) > len(suf) + 2 and name.endswith(suf) and not name.endswith(" " + suf):
+            name = name[: -len(suf)].rstrip() + " " + suf
+            break
+
+    # Presentation only, and stable because asset names do not change: a handful of real
+    # acronyms that would otherwise read as ordinary words ("Bar" for the BAR).
+    ACRONYMS = {"bar", "mp40", "mp44", "stg44", "fg42", "bren", "piat", "kar98", "m1", "l42a1"}
+    parts = []
+    for w in name.split():
+        if w.isupper():
+            parts.append(w)
+        elif w.lower() in ACRONYMS:
+            parts.append(w.upper())
+        else:
+            parts.append(w.capitalize())
+    return " ".join(parts)
+
+
+def kind_of(reward):
+    for prefix, title, _ in UNLOCK_KINDS:
+        if reward.startswith(prefix):
+            return title
+    return "Other"
+
+
+def page_unlockables(rows_full):
+    unlocks = [r for r in rows_full if r["reward"].strip()]
+
+    out = [BANNER, "# Unlockables\n\n"]
+    out.append(
+        "Everything you can earn, and exactly what earns it. Nothing here is bought or random - "
+        "every unlock is attached to a specific challenge, and completing that challenge grants it.\n\n"
+    )
+    out.append(
+        "**%d unlocks** across %d kinds. Unlock names are derived from the game assets themselves, "
+        "so they match what you see in the menus.\n\n" % (len(unlocks), len(UNLOCK_KINDS))
+    )
+
+    out.append("| Kind | Unlocks | What they are |\n|---|---:|---|\n")
+    for _, title, blurb in UNLOCK_KINDS:
+        n = sum(1 for u in unlocks if kind_of(u["reward"]) == title)
+        if n:
+            out.append("| **%s** | %d | %s |\n" % (title, n, blurb))
+    out.append("\n")
+
+    for _, title, blurb in UNLOCK_KINDS:
+        items = [u for u in unlocks if kind_of(u["reward"]) == title]
+        if not items:
+            continue
+        items.sort(key=lambda u: pretty_asset(u["reward"]).lower())
+        out.append("## %s\n\n%s\n\n" % (title, blurb))
+        out.append("| Unlock | Earned by | How to earn it |\n|---|---|---|\n")
+        for u in items:
+            out.append("| **%s** | %s | %s |\n" % (
+                esc(pretty_asset(u["reward"])), esc(u["name"]), esc(u["desc"])))
+        out.append("\n")
+
+    other = [u for u in unlocks if kind_of(u["reward"]) == "Other"]
+    if other:
+        out.append("## Other\n\n| Unlock | Earned by | How to earn it |\n|---|---|---|\n")
+        for u in other:
+            out.append("| **%s** | %s | %s |\n" % (
+                esc(pretty_asset(u["reward"])), esc(u["name"]), esc(u["desc"])))
+        out.append("\n")
+    return "".join(out)
 
 
 def page_challenges(order, labels, rows):
@@ -399,6 +498,7 @@ def build():
     maps = load_maps(bugs)
     pages = {
         "CHALLENGES.md": page_challenges(order, labels, chal),
+        "UNLOCKABLES.md": page_unlockables(chal),
         "MAPS.md": page_maps(maps),
         "FEATURES.md": page_features(),
         "ROADMAP.md": page_roadmap(),

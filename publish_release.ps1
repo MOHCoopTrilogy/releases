@@ -78,6 +78,16 @@ $stage["renderer_opengl2.dll"] = "$gog\renderer_opengl2.dll"
 # to ~31.2ms and the "slow server" icon stayed lit). game.dll already shipped, so the server-side
 # game fixes reached hosts - the executable meant to run them did not.
 $stage["omohaaded.exe"]        = "$gog\omohaaded.exe"
+# [2026-08-13] THE GAME'S SUPPORT DLLs. The installer ships these but nothing tracked them, so
+# once installed they could never be updated - if the engine is ever rebuilt against a newer SDL
+# or OpenAL, every existing install keeps the old DLL forever and there is no mechanism that would
+# even notice. Tracked now so a future engine bump reaches players who already installed.
+# The VC runtimes (vcruntime140*.dll, msvcp140.dll) are deliberately NOT here: they are stable,
+# install-time concerns, and having the updater rewrite CRT DLLs underneath a running PowerShell
+# updater is a risk with no payoff. A new CRT is a reason to ship a new installer, not a patch.
+$stage["SDL2.dll"]             = "$gog\SDL2.dll"
+$stage["OpenAL64.dll"]         = "$gog\OpenAL64.dll"
+$stage["libcurl.dll"]          = "$gog\libcurl.dll"
 # A worked example of how to actually start one. coop_mod/start_server.cfg cannot be reused as-is:
 # it ends in `ui_startdmmap 2`, a CLIENT-only UI command that does not exist on a dedicated server,
 # so a host copying it gets a server that loads nothing.

@@ -15,11 +15,11 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | [SUBMACHINE GUNS](#submachine-guns) | 18 |
 | [SIDEARMS](#sidearms) | 27 |
 | [SUPPORT WEAPONS](#support-weapons) | 18 |
-| [COMBAT](#combat) | 30 |
-| [FIRETEAM](#fireteam) | 20 |
-| [ARMOR & VEHICLES](#armor--vehicles) | 18 |
-| [CAMPAIGN](#campaign) | 104 |
-| [STEALTH & FEATS](#stealth--feats) | 42 |
+| [COMBAT](#combat) | 28 |
+| [FIRETEAM](#fireteam) | 21 |
+| [ARMOR & VEHICLES](#armor--vehicles) | 19 |
+| [CAMPAIGN](#campaign) | 93 |
+| [STEALTH & FEATS](#stealth--feats) | 53 |
 | [AXIS FORCES](#axis-forces) | 23 |
 
 ## RIFLES
@@ -74,7 +74,7 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Enfield Enforcer** | Get 75 kills with the L42A1 (Elite) |
 | **The Silent Carbine** | Get 25 kills with the De Lisle |
 | **Whisper of Death** | Get 75 kills with the De Lisle (Elite) |
-| **Eyes Open** | Clear Sniper Town without ever using a scope or the aim camera |
+| **Every Window a Rifle** | Get 10 sniper-rifle kills in Sniper Town |
 
 ## SUBMACHINE GUNS
 
@@ -180,11 +180,9 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **A Persistent One...** | Eliminate your first High-Ranking Officer |
 | **Herr Kommandant** | Kill 5 enemy officers |
 | **Enjoy the Walk** | Kill 20 enemy officers |
-| **Every Window a Rifle** | Get 10 sniper-rifle kills in Sniper Town |
 | **Behind the Sandbags** | Get 25 kills from a cover pose or deployed cover |
 | **Fire and Movement** | Get 100 kills from a cover pose or deployed cover (Elite) |
 | **Dug In** | Get 10 kills from behind cover you deployed yourself |
-| **Quartermaster** | Resupply teammates 25 times from ammo boxes you placed |
 | **Hoist by His Own Petard** | Make an officer blow himself up with one of his own reinforcements |
 | **The Full Deck** | Face down all eight kinds of reinforcement the Officer can call |
 | **Not Today, Fritz** | Survive a Stuka dive and an artillery barrage on the same map without going down |
@@ -203,8 +201,8 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Anywhere on The Map** | Call in your first paratrooper drop |
 | **Stand in the Door** | Call in 5 paradrops |
 | **Currahee** | Call in 15 paradrops |
-| **Dead Air** | Complete 10 side objectives |
 | **Freeze-Tag Only** | Revive teammates three times in a single level |
+| **Quartermaster** | Resupply teammates 25 times from ammo boxes you placed |
 | **All Present and Correct** | Finish a mission with four players alive and nobody ever downed |
 | **Field Promotion** | Revive the same teammate three times in one mission |
 | **Simultaneous Salvation** | Two teammates revived within ten seconds of each other |
@@ -213,6 +211,7 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Corpsman, Forward** | Revive 10 downed allied soldiers |
 | **Nobody Bled Out** | Finish a mission where every ally who went down was picked back up |
 | **Field Hospital** | Revive an ally while you are taking fire yourself |
+| **Matching Set** | Finish a mission with the whole squad wearing the same helmet |
 
 ## ARMOR & VEHICLES
 
@@ -220,8 +219,8 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 |---|---|
 | **Panzerknacker** | Destroy 10 enemy vehicles in the campaign |
 | **Panzer Graveyard** | Destroy 30 enemy vehicles in the campaign |
+| **Not One Stone** | Destroy the tank before it lands a single hit on the farmhouse |
 | **Day of the Tiger** | Defend The Bridge keeping the King Tiger at 85% health or above |
-| **Beutepanzer** | Steal the King Tiger with the tank crew still alive |
 | **Tiger by the Tail** | Knock out the enemy King Tiger at the bridge |
 | **Sticky End** | Kill a Tiger tank with a sticky bomb |
 | **Red Ball Express** | Get the supply truck to the Allied line intact |
@@ -236,6 +235,7 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Save the Crab** | Bring the minesweeper tank through Bizerte alive |
 | **Nine Tanks, No Ground** | Repel the whole tank assault without one of them crossing the line |
 | **Crunchy Goodness** | Kill the tank with the PIAT, the objective they cut but never removed |
+| **Nothing Gets Through** | Destroy the munitions convoy with not one truck escaping |
 
 ## CAMPAIGN
 
@@ -243,6 +243,7 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 |---|---|
 | **The Business We're In** | Complete 15 primary objectives |
 | **Conspicuous Gallantry** | Complete 50 primary objectives |
+| **Dead Air** | Complete 10 side objectives |
 | **Easy Red** | Complete the Omaha Beach landing |
 | **Beyond the Seawall** | Complete the D-Day breakout |
 | **Iron Coffin** | Complete the U-boat pens |
@@ -256,7 +257,6 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **The Road to Berlin** | Complete 15 missions |
 | **The Guns Fall Silent** | Complete 30 missions (full campaign) |
 | **Hell Let Loose** | Wipe out an officer, his bodyguards and the battalion without going down |
-| **Earn This.** | Beat the bridge mission (The Bridge) without healing or dying |
 | **Blue Fox, This Is White Rook** | Infiltrate the sub pen and finish the mission for Grillo |
 | **On Her Majesty's Secret Service** | Help Major Grillo steal the German identification papers |
 | **Gamespy** | Recover either set of stolen papers on the Naxos mission |
@@ -277,7 +277,6 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Doc at the Wheel** | Finish the Italy jeep run with Whittaker still alive |
 | **Welded Steel and Storms** | Acquire the StG44 blueprints |
 | **That One Map No One Played** | Board the train on The Schmerzen Express |
-| **Not One Stone** | Destroy the tank before it lands a single hit on the farmhouse |
 | **Bring the Bocage Boy Home** | Keep Lyndon alive through the farmhouse tank assault |
 | **Bring the Boys Back Home** | Keep Johnson and Hudson alive through the end of the mission |
 | **A Boy to do a Man's Job** | Hold off the tanks with no one dying |
@@ -294,11 +293,11 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Blind the Wolfpack** | Destroy the Naxos radar prototype |
 | **All Present and Accounted For** | Reach the train-station rendezvous with the whole squad up |
 | **Get the Flyboy Home** | Escort the downed pilot to the Maquis hideout alive |
+| **Beutepanzer** | Steal the King Tiger with the tank crew still alive |
 | **Drive It Like You Stole It** | Break out of Sniper Town with the squad |
 | **Static Line Savior** | Save the trooper hanging from the power pole on Crete |
 | **Not One Yard Back** | Hold the line at Bastogne without a single breach |
 | **Held the Line** | Hold Bastogne with no breach AND the whole squad still alive |
-| **The Long Way** | Hold the bocage house without ever firing a mounted machinegun |
 | **Every Position Searched** | Search every crew position in Sniper Town before the bazooka appears |
 | **Crew Intact to City Hall** | Reach city hall with the whole tank crew still alive |
 | **Valve by Valve** | Shut down both valves in the Fort Schmerzen gas works |
@@ -314,17 +313,8 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Ground the Luftwaffe** | Sabotage the enemy airfield |
 | **Anzio Annie** | Destroy the K5 railway guns |
 | **The Stranded Whale** | Call in the Anzio airstrike and finish the campaign |
-| **Shadow over U-529** | Infiltrate U-529 without an alarm ever being raised |
 | **Alarm! Alarm!** | Board U-529 with the base on full alert |
-| **Pattern Disrupt** | Successfully contain a situation |
-| **Dead Men Tell Tales** | Have a body investigation blow your cover |
-| **Dead Static** | Destroy the Naxos without alerting a scientist |
-| **OSS Efficiency** | Contain a situation and sabotage the Naxos within 30 seconds, unseen |
 | **All Hands on Deck** | Clear the deck of U-529 from aboard her, with nobody going down |
-| **Thunder / Flash** | Clear the house in the Bocage within 30 seconds |
-| **Bad Reception** | Distract an officer with a radio, then contain him |
-| **The Storm Rises** | Infiltrate the compound unseen, then leave it in ruins |
-| **A Brief Respite** | Take a moment to appreciate what was |
 | **The Final Broadcast** | Use the call sign to divert enemy reinforcements before the blackout |
 | **Stealing the Show** | Go loud after detonating the command post and fight your way out |
 | **The Whole Section** | Finish Lighting the Torch with Richards, Wilson, Thomas and Allen all still on their feet |
@@ -342,7 +332,6 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Every Man Out** | Break the British prisoners out of the Bizerte jail without losing one |
 | **All Six Home** | Finish Crete with Hudson, McMartin, Phillips, Johnson, Gobs and Michaels all alive |
 | **All Seven Home** | Cover the prisoners' escape from Monte Battaglia without losing one |
-| **Nothing Gets Through** | Destroy the munitions convoy with not one truck escaping |
 | **Able, Baker, Charlie** | Hold all three bunkers below the castle without abandoning one |
 | **Spotless Record** | Complete 5 missions with every primary objective done and nobody going down |
 
@@ -354,6 +343,7 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **I've Seen French Schoolgirls Shoot Better!** | Finish a level without ADS, a scope, or the over-shoulder aim camera |
 | **Stalingrad Rifle-Only Server** | Beat a campaign level using only a bolt-action rifle |
 | **Kings Push** | Reach the train station on Diverting the Enemy in under five minutes |
+| **Earn This.** | Beat the bridge mission (The Bridge) without healing or dying |
 | **Wuss.pk3** | Register 700+ distinct sounds in one session - your sound table is nearly full |
 | **POOPHEAD ENDING** | Finish a mission the way the developers meant to end it, not the way they shipped it |
 | **BreakTheGame.SCR** | Complete all 13 missions where the devs had arguments |
@@ -369,11 +359,21 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Draughtsman** | Recover 15 hidden blueprints |
 | **Archivist** | Recover 30 hidden blueprints |
 | **The Whole Portfolio** | Recover 60 hidden blueprints |
+| **Eyes Open** | Clear Sniper Town without ever using a scope or the aim camera |
+| **The Long Way** | Hold the bocage house without ever firing a mounted machinegun |
 | **Weathered** | Complete a mission in each of the five weather themes |
-| **Matching Set** | Finish a mission with the whole squad wearing the same helmet |
 | **Cut the Hand Short** | End the card game in the U-boat pens the hard way |
 | **Wire It Quiet** | Wire the radio command post undetected |
 | **Papers, Please** | Infiltrate the ship in disguise without blowing your cover |
+| **Shadow over U-529** | Infiltrate U-529 without an alarm ever being raised |
+| **Pattern Disrupt** | Successfully contain a situation |
+| **Dead Men Tell Tales** | Have a body investigation blow your cover |
+| **Dead Static** | Destroy the Naxos without alerting a scientist |
+| **OSS Efficiency** | Contain a situation and sabotage the Naxos within 30 seconds, unseen |
+| **Thunder / Flash** | Clear the house in the Bocage within 30 seconds |
+| **Bad Reception** | Distract an officer with a radio, then contain him |
+| **The Storm Rises** | Infiltrate the compound unseen, then leave it in ruins |
+| **A Brief Respite** | Take a moment to appreciate what was |
 | **Monkey Business** | Destroy Stuka number seven, the one the developers hand-wired |
 | **Close Encounters of the Turd Kind** | Catch the one German who never made it off the latrine |
 | **The Manifest** | Find the Enigma manifest hidden aboard the U-boat |

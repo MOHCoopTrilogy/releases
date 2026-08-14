@@ -17,13 +17,13 @@ Union of four sources, all swept fresh:
 
 | metric | count |
 |---|---:|
-| distinct `coop_*` cvars | 1908 |
+| distinct `coop_*` cvars | 1909 |
 | registered with a default by the engine | 187 |
 | seeded by a shipped cfg | 920 |
-| seeded nowhere at all | 917 |
+| seeded nowhere at all | 918 |
 | **&nbsp;&nbsp;of those, read by a script** | **201** |
-| &nbsp;&nbsp;of those, menu-only (set at runtime by the UI) | 716 |
-| menu-wired (`.urc`) | 1303 |
+| &nbsp;&nbsp;of those, menu-only (set at runtime by the UI) | 717 |
+| menu-wired (`.urc`) | 1304 |
 | menu-wired but FORCED by autoexec.cfg (cannot persist) | 15 |
 | runtime-built name prefixes (not cvars) | 7 |
 
@@ -82,93 +82,93 @@ Menu-internal state (`enabledcvar` / `linkcvar` targets) written at runtime by t
 - `coop_gate_active`, `coop_gate_p1`, `coop_gate_p1c`, `coop_gate_p1on`, `coop_gate_p1r`, `coop_gate_p2`, `coop_gate_p2c`, `coop_gate_p2on`
 - `coop_gate_p2r`, `coop_gate_p3`, `coop_gate_p3c`, `coop_gate_p3on`, `coop_gate_p3r`, `coop_gate_p4`, `coop_gate_p4c`, `coop_gate_p4on`
 - `coop_gate_p4r`, `coop_gate_tally`, `coop_skill`, `coop_srMedals`, `coop_srP15`, `coop_srP16`, `coop_srP17`, `coop_srP18`
-- `coop_srP19`, `coop_srP20`, `coop_srP21`, `coop_srP22`, `coop_uiB0`, `coop_uiB1`, `coop_uiB10`, `coop_uiB100`
-- `coop_uiB101`, `coop_uiB102`, `coop_uiB103`, `coop_uiB104`, `coop_uiB105`, `coop_uiB106`, `coop_uiB107`, `coop_uiB108`
-- `coop_uiB109`, `coop_uiB11`, `coop_uiB110`, `coop_uiB111`, `coop_uiB112`, `coop_uiB113`, `coop_uiB114`, `coop_uiB115`
-- `coop_uiB116`, `coop_uiB117`, `coop_uiB118`, `coop_uiB119`, `coop_uiB12`, `coop_uiB120`, `coop_uiB121`, `coop_uiB122`
-- `coop_uiB123`, `coop_uiB124`, `coop_uiB125`, `coop_uiB126`, `coop_uiB127`, `coop_uiB128`, `coop_uiB129`, `coop_uiB13`
-- `coop_uiB130`, `coop_uiB131`, `coop_uiB132`, `coop_uiB133`, `coop_uiB134`, `coop_uiB135`, `coop_uiB136`, `coop_uiB137`
-- `coop_uiB138`, `coop_uiB139`, `coop_uiB14`, `coop_uiB140`, `coop_uiB141`, `coop_uiB142`, `coop_uiB143`, `coop_uiB144`
-- `coop_uiB145`, `coop_uiB146`, `coop_uiB147`, `coop_uiB148`, `coop_uiB149`, `coop_uiB15`, `coop_uiB150`, `coop_uiB151`
-- `coop_uiB152`, `coop_uiB153`, `coop_uiB154`, `coop_uiB155`, `coop_uiB156`, `coop_uiB157`, `coop_uiB158`, `coop_uiB159`
-- `coop_uiB16`, `coop_uiB160`, `coop_uiB161`, `coop_uiB162`, `coop_uiB163`, `coop_uiB164`, `coop_uiB165`, `coop_uiB166`
-- `coop_uiB167`, `coop_uiB168`, `coop_uiB169`, `coop_uiB17`, `coop_uiB170`, `coop_uiB171`, `coop_uiB172`, `coop_uiB173`
-- `coop_uiB174`, `coop_uiB175`, `coop_uiB176`, `coop_uiB177`, `coop_uiB178`, `coop_uiB179`, `coop_uiB18`, `coop_uiB180`
-- `coop_uiB181`, `coop_uiB182`, `coop_uiB183`, `coop_uiB184`, `coop_uiB185`, `coop_uiB186`, `coop_uiB187`, `coop_uiB188`
-- `coop_uiB189`, `coop_uiB19`, `coop_uiB190`, `coop_uiB191`, `coop_uiB192`, `coop_uiB193`, `coop_uiB194`, `coop_uiB195`
-- `coop_uiB196`, `coop_uiB197`, `coop_uiB198`, `coop_uiB199`, `coop_uiB2`, `coop_uiB20`, `coop_uiB200`, `coop_uiB201`
-- `coop_uiB202`, `coop_uiB203`, `coop_uiB204`, `coop_uiB205`, `coop_uiB206`, `coop_uiB207`, `coop_uiB208`, `coop_uiB209`
-- `coop_uiB21`, `coop_uiB210`, `coop_uiB211`, `coop_uiB212`, `coop_uiB213`, `coop_uiB214`, `coop_uiB215`, `coop_uiB216`
-- `coop_uiB217`, `coop_uiB218`, `coop_uiB219`, `coop_uiB22`, `coop_uiB220`, `coop_uiB221`, `coop_uiB222`, `coop_uiB223`
-- `coop_uiB224`, `coop_uiB225`, `coop_uiB226`, `coop_uiB227`, `coop_uiB228`, `coop_uiB229`, `coop_uiB23`, `coop_uiB230`
-- `coop_uiB231`, `coop_uiB232`, `coop_uiB233`, `coop_uiB234`, `coop_uiB235`, `coop_uiB236`, `coop_uiB237`, `coop_uiB238`
-- `coop_uiB239`, `coop_uiB24`, `coop_uiB240`, `coop_uiB241`, `coop_uiB242`, `coop_uiB243`, `coop_uiB244`, `coop_uiB245`
-- `coop_uiB246`, `coop_uiB247`, `coop_uiB248`, `coop_uiB249`, `coop_uiB25`, `coop_uiB250`, `coop_uiB251`, `coop_uiB252`
-- `coop_uiB253`, `coop_uiB254`, `coop_uiB255`, `coop_uiB256`, `coop_uiB257`, `coop_uiB258`, `coop_uiB259`, `coop_uiB26`
-- `coop_uiB260`, `coop_uiB261`, `coop_uiB262`, `coop_uiB263`, `coop_uiB264`, `coop_uiB265`, `coop_uiB266`, `coop_uiB267`
-- `coop_uiB268`, `coop_uiB269`, `coop_uiB27`, `coop_uiB270`, `coop_uiB271`, `coop_uiB272`, `coop_uiB273`, `coop_uiB274`
-- `coop_uiB275`, `coop_uiB276`, `coop_uiB277`, `coop_uiB278`, `coop_uiB279`, `coop_uiB28`, `coop_uiB280`, `coop_uiB281`
-- `coop_uiB282`, `coop_uiB283`, `coop_uiB284`, `coop_uiB285`, `coop_uiB286`, `coop_uiB287`, `coop_uiB288`, `coop_uiB289`
-- `coop_uiB29`, `coop_uiB290`, `coop_uiB291`, `coop_uiB292`, `coop_uiB293`, `coop_uiB294`, `coop_uiB295`, `coop_uiB296`
-- `coop_uiB297`, `coop_uiB298`, `coop_uiB299`, `coop_uiB3`, `coop_uiB30`, `coop_uiB300`, `coop_uiB301`, `coop_uiB302`
-- `coop_uiB303`, `coop_uiB304`, `coop_uiB305`, `coop_uiB306`, `coop_uiB307`, `coop_uiB308`, `coop_uiB309`, `coop_uiB31`
-- `coop_uiB310`, `coop_uiB311`, `coop_uiB312`, `coop_uiB313`, `coop_uiB314`, `coop_uiB315`, `coop_uiB316`, `coop_uiB317`
-- `coop_uiB318`, `coop_uiB319`, `coop_uiB32`, `coop_uiB320`, `coop_uiB321`, `coop_uiB322`, `coop_uiB323`, `coop_uiB324`
-- `coop_uiB325`, `coop_uiB326`, `coop_uiB327`, `coop_uiB328`, `coop_uiB329`, `coop_uiB33`, `coop_uiB330`, `coop_uiB331`
-- `coop_uiB332`, `coop_uiB333`, `coop_uiB334`, `coop_uiB335`, `coop_uiB336`, `coop_uiB337`, `coop_uiB338`, `coop_uiB339`
-- `coop_uiB34`, `coop_uiB340`, `coop_uiB341`, `coop_uiB342`, `coop_uiB343`, `coop_uiB35`, `coop_uiB36`, `coop_uiB37`
-- `coop_uiB38`, `coop_uiB39`, `coop_uiB4`, `coop_uiB40`, `coop_uiB41`, `coop_uiB42`, `coop_uiB43`, `coop_uiB44`
-- `coop_uiB45`, `coop_uiB46`, `coop_uiB47`, `coop_uiB48`, `coop_uiB49`, `coop_uiB5`, `coop_uiB50`, `coop_uiB51`
-- `coop_uiB52`, `coop_uiB53`, `coop_uiB54`, `coop_uiB55`, `coop_uiB56`, `coop_uiB57`, `coop_uiB58`, `coop_uiB59`
-- `coop_uiB6`, `coop_uiB60`, `coop_uiB61`, `coop_uiB62`, `coop_uiB63`, `coop_uiB64`, `coop_uiB65`, `coop_uiB66`
-- `coop_uiB67`, `coop_uiB68`, `coop_uiB69`, `coop_uiB7`, `coop_uiB70`, `coop_uiB71`, `coop_uiB72`, `coop_uiB73`
-- `coop_uiB74`, `coop_uiB75`, `coop_uiB76`, `coop_uiB77`, `coop_uiB78`, `coop_uiB79`, `coop_uiB8`, `coop_uiB80`
-- `coop_uiB81`, `coop_uiB82`, `coop_uiB83`, `coop_uiB84`, `coop_uiB85`, `coop_uiB86`, `coop_uiB87`, `coop_uiB88`
-- `coop_uiB89`, `coop_uiB9`, `coop_uiB90`, `coop_uiB91`, `coop_uiB92`, `coop_uiB93`, `coop_uiB94`, `coop_uiB95`
-- `coop_uiB96`, `coop_uiB97`, `coop_uiB98`, `coop_uiB99`, `coop_uiN0`, `coop_uiN1`, `coop_uiN10`, `coop_uiN100`
-- `coop_uiN101`, `coop_uiN102`, `coop_uiN103`, `coop_uiN104`, `coop_uiN105`, `coop_uiN106`, `coop_uiN107`, `coop_uiN108`
-- `coop_uiN109`, `coop_uiN11`, `coop_uiN110`, `coop_uiN111`, `coop_uiN112`, `coop_uiN113`, `coop_uiN114`, `coop_uiN115`
-- `coop_uiN116`, `coop_uiN117`, `coop_uiN118`, `coop_uiN119`, `coop_uiN12`, `coop_uiN120`, `coop_uiN121`, `coop_uiN122`
-- `coop_uiN123`, `coop_uiN124`, `coop_uiN125`, `coop_uiN126`, `coop_uiN127`, `coop_uiN128`, `coop_uiN129`, `coop_uiN13`
-- `coop_uiN130`, `coop_uiN131`, `coop_uiN132`, `coop_uiN133`, `coop_uiN134`, `coop_uiN135`, `coop_uiN136`, `coop_uiN137`
-- `coop_uiN138`, `coop_uiN139`, `coop_uiN14`, `coop_uiN140`, `coop_uiN141`, `coop_uiN142`, `coop_uiN143`, `coop_uiN144`
-- `coop_uiN145`, `coop_uiN146`, `coop_uiN147`, `coop_uiN148`, `coop_uiN149`, `coop_uiN15`, `coop_uiN150`, `coop_uiN151`
-- `coop_uiN152`, `coop_uiN153`, `coop_uiN154`, `coop_uiN155`, `coop_uiN156`, `coop_uiN157`, `coop_uiN158`, `coop_uiN159`
-- `coop_uiN16`, `coop_uiN160`, `coop_uiN161`, `coop_uiN162`, `coop_uiN163`, `coop_uiN164`, `coop_uiN165`, `coop_uiN166`
-- `coop_uiN167`, `coop_uiN168`, `coop_uiN169`, `coop_uiN17`, `coop_uiN170`, `coop_uiN171`, `coop_uiN172`, `coop_uiN173`
-- `coop_uiN174`, `coop_uiN175`, `coop_uiN176`, `coop_uiN177`, `coop_uiN178`, `coop_uiN179`, `coop_uiN18`, `coop_uiN180`
-- `coop_uiN181`, `coop_uiN182`, `coop_uiN183`, `coop_uiN184`, `coop_uiN185`, `coop_uiN186`, `coop_uiN187`, `coop_uiN188`
-- `coop_uiN189`, `coop_uiN19`, `coop_uiN190`, `coop_uiN191`, `coop_uiN192`, `coop_uiN193`, `coop_uiN194`, `coop_uiN195`
-- `coop_uiN196`, `coop_uiN197`, `coop_uiN198`, `coop_uiN199`, `coop_uiN2`, `coop_uiN20`, `coop_uiN200`, `coop_uiN201`
-- `coop_uiN202`, `coop_uiN203`, `coop_uiN204`, `coop_uiN205`, `coop_uiN206`, `coop_uiN207`, `coop_uiN208`, `coop_uiN209`
-- `coop_uiN21`, `coop_uiN210`, `coop_uiN211`, `coop_uiN212`, `coop_uiN213`, `coop_uiN214`, `coop_uiN215`, `coop_uiN216`
-- `coop_uiN217`, `coop_uiN218`, `coop_uiN219`, `coop_uiN22`, `coop_uiN220`, `coop_uiN221`, `coop_uiN222`, `coop_uiN223`
-- `coop_uiN224`, `coop_uiN225`, `coop_uiN226`, `coop_uiN227`, `coop_uiN228`, `coop_uiN229`, `coop_uiN23`, `coop_uiN230`
-- `coop_uiN231`, `coop_uiN232`, `coop_uiN233`, `coop_uiN234`, `coop_uiN235`, `coop_uiN236`, `coop_uiN237`, `coop_uiN238`
-- `coop_uiN239`, `coop_uiN24`, `coop_uiN240`, `coop_uiN241`, `coop_uiN242`, `coop_uiN243`, `coop_uiN244`, `coop_uiN245`
-- `coop_uiN246`, `coop_uiN247`, `coop_uiN248`, `coop_uiN249`, `coop_uiN25`, `coop_uiN250`, `coop_uiN251`, `coop_uiN252`
-- `coop_uiN253`, `coop_uiN254`, `coop_uiN255`, `coop_uiN256`, `coop_uiN257`, `coop_uiN258`, `coop_uiN259`, `coop_uiN26`
-- `coop_uiN260`, `coop_uiN261`, `coop_uiN262`, `coop_uiN263`, `coop_uiN264`, `coop_uiN265`, `coop_uiN266`, `coop_uiN267`
-- `coop_uiN268`, `coop_uiN269`, `coop_uiN27`, `coop_uiN270`, `coop_uiN271`, `coop_uiN272`, `coop_uiN273`, `coop_uiN274`
-- `coop_uiN275`, `coop_uiN276`, `coop_uiN277`, `coop_uiN278`, `coop_uiN279`, `coop_uiN28`, `coop_uiN280`, `coop_uiN281`
-- `coop_uiN282`, `coop_uiN283`, `coop_uiN284`, `coop_uiN285`, `coop_uiN286`, `coop_uiN287`, `coop_uiN288`, `coop_uiN289`
-- `coop_uiN29`, `coop_uiN290`, `coop_uiN291`, `coop_uiN292`, `coop_uiN293`, `coop_uiN294`, `coop_uiN295`, `coop_uiN296`
-- `coop_uiN297`, `coop_uiN298`, `coop_uiN299`, `coop_uiN3`, `coop_uiN30`, `coop_uiN300`, `coop_uiN301`, `coop_uiN302`
-- `coop_uiN303`, `coop_uiN304`, `coop_uiN305`, `coop_uiN306`, `coop_uiN307`, `coop_uiN308`, `coop_uiN309`, `coop_uiN31`
-- `coop_uiN310`, `coop_uiN311`, `coop_uiN312`, `coop_uiN313`, `coop_uiN314`, `coop_uiN315`, `coop_uiN316`, `coop_uiN317`
-- `coop_uiN318`, `coop_uiN319`, `coop_uiN32`, `coop_uiN320`, `coop_uiN321`, `coop_uiN322`, `coop_uiN323`, `coop_uiN324`
-- `coop_uiN325`, `coop_uiN326`, `coop_uiN327`, `coop_uiN328`, `coop_uiN329`, `coop_uiN33`, `coop_uiN330`, `coop_uiN331`
-- `coop_uiN332`, `coop_uiN333`, `coop_uiN334`, `coop_uiN335`, `coop_uiN336`, `coop_uiN337`, `coop_uiN338`, `coop_uiN339`
-- `coop_uiN34`, `coop_uiN340`, `coop_uiN341`, `coop_uiN342`, `coop_uiN343`, `coop_uiN35`, `coop_uiN36`, `coop_uiN37`
-- `coop_uiN38`, `coop_uiN39`, `coop_uiN4`, `coop_uiN40`, `coop_uiN41`, `coop_uiN42`, `coop_uiN43`, `coop_uiN44`
-- `coop_uiN45`, `coop_uiN46`, `coop_uiN47`, `coop_uiN48`, `coop_uiN49`, `coop_uiN5`, `coop_uiN50`, `coop_uiN51`
-- `coop_uiN52`, `coop_uiN53`, `coop_uiN54`, `coop_uiN55`, `coop_uiN56`, `coop_uiN57`, `coop_uiN58`, `coop_uiN59`
-- `coop_uiN6`, `coop_uiN60`, `coop_uiN61`, `coop_uiN62`, `coop_uiN63`, `coop_uiN64`, `coop_uiN65`, `coop_uiN66`
-- `coop_uiN67`, `coop_uiN68`, `coop_uiN69`, `coop_uiN7`, `coop_uiN70`, `coop_uiN71`, `coop_uiN72`, `coop_uiN73`
-- `coop_uiN74`, `coop_uiN75`, `coop_uiN76`, `coop_uiN77`, `coop_uiN78`, `coop_uiN79`, `coop_uiN8`, `coop_uiN80`
-- `coop_uiN81`, `coop_uiN82`, `coop_uiN83`, `coop_uiN84`, `coop_uiN85`, `coop_uiN86`, `coop_uiN87`, `coop_uiN88`
-- `coop_uiN89`, `coop_uiN9`, `coop_uiN90`, `coop_uiN91`, `coop_uiN92`, `coop_uiN93`, `coop_uiN94`, `coop_uiN95`
-- `coop_uiN96`, `coop_uiN97`, `coop_uiN98`, `coop_uiN99`
+- `coop_srP19`, `coop_srP20`, `coop_srP21`, `coop_srP22`, `coop_srP23`, `coop_uiB0`, `coop_uiB1`, `coop_uiB10`
+- `coop_uiB100`, `coop_uiB101`, `coop_uiB102`, `coop_uiB103`, `coop_uiB104`, `coop_uiB105`, `coop_uiB106`, `coop_uiB107`
+- `coop_uiB108`, `coop_uiB109`, `coop_uiB11`, `coop_uiB110`, `coop_uiB111`, `coop_uiB112`, `coop_uiB113`, `coop_uiB114`
+- `coop_uiB115`, `coop_uiB116`, `coop_uiB117`, `coop_uiB118`, `coop_uiB119`, `coop_uiB12`, `coop_uiB120`, `coop_uiB121`
+- `coop_uiB122`, `coop_uiB123`, `coop_uiB124`, `coop_uiB125`, `coop_uiB126`, `coop_uiB127`, `coop_uiB128`, `coop_uiB129`
+- `coop_uiB13`, `coop_uiB130`, `coop_uiB131`, `coop_uiB132`, `coop_uiB133`, `coop_uiB134`, `coop_uiB135`, `coop_uiB136`
+- `coop_uiB137`, `coop_uiB138`, `coop_uiB139`, `coop_uiB14`, `coop_uiB140`, `coop_uiB141`, `coop_uiB142`, `coop_uiB143`
+- `coop_uiB144`, `coop_uiB145`, `coop_uiB146`, `coop_uiB147`, `coop_uiB148`, `coop_uiB149`, `coop_uiB15`, `coop_uiB150`
+- `coop_uiB151`, `coop_uiB152`, `coop_uiB153`, `coop_uiB154`, `coop_uiB155`, `coop_uiB156`, `coop_uiB157`, `coop_uiB158`
+- `coop_uiB159`, `coop_uiB16`, `coop_uiB160`, `coop_uiB161`, `coop_uiB162`, `coop_uiB163`, `coop_uiB164`, `coop_uiB165`
+- `coop_uiB166`, `coop_uiB167`, `coop_uiB168`, `coop_uiB169`, `coop_uiB17`, `coop_uiB170`, `coop_uiB171`, `coop_uiB172`
+- `coop_uiB173`, `coop_uiB174`, `coop_uiB175`, `coop_uiB176`, `coop_uiB177`, `coop_uiB178`, `coop_uiB179`, `coop_uiB18`
+- `coop_uiB180`, `coop_uiB181`, `coop_uiB182`, `coop_uiB183`, `coop_uiB184`, `coop_uiB185`, `coop_uiB186`, `coop_uiB187`
+- `coop_uiB188`, `coop_uiB189`, `coop_uiB19`, `coop_uiB190`, `coop_uiB191`, `coop_uiB192`, `coop_uiB193`, `coop_uiB194`
+- `coop_uiB195`, `coop_uiB196`, `coop_uiB197`, `coop_uiB198`, `coop_uiB199`, `coop_uiB2`, `coop_uiB20`, `coop_uiB200`
+- `coop_uiB201`, `coop_uiB202`, `coop_uiB203`, `coop_uiB204`, `coop_uiB205`, `coop_uiB206`, `coop_uiB207`, `coop_uiB208`
+- `coop_uiB209`, `coop_uiB21`, `coop_uiB210`, `coop_uiB211`, `coop_uiB212`, `coop_uiB213`, `coop_uiB214`, `coop_uiB215`
+- `coop_uiB216`, `coop_uiB217`, `coop_uiB218`, `coop_uiB219`, `coop_uiB22`, `coop_uiB220`, `coop_uiB221`, `coop_uiB222`
+- `coop_uiB223`, `coop_uiB224`, `coop_uiB225`, `coop_uiB226`, `coop_uiB227`, `coop_uiB228`, `coop_uiB229`, `coop_uiB23`
+- `coop_uiB230`, `coop_uiB231`, `coop_uiB232`, `coop_uiB233`, `coop_uiB234`, `coop_uiB235`, `coop_uiB236`, `coop_uiB237`
+- `coop_uiB238`, `coop_uiB239`, `coop_uiB24`, `coop_uiB240`, `coop_uiB241`, `coop_uiB242`, `coop_uiB243`, `coop_uiB244`
+- `coop_uiB245`, `coop_uiB246`, `coop_uiB247`, `coop_uiB248`, `coop_uiB249`, `coop_uiB25`, `coop_uiB250`, `coop_uiB251`
+- `coop_uiB252`, `coop_uiB253`, `coop_uiB254`, `coop_uiB255`, `coop_uiB256`, `coop_uiB257`, `coop_uiB258`, `coop_uiB259`
+- `coop_uiB26`, `coop_uiB260`, `coop_uiB261`, `coop_uiB262`, `coop_uiB263`, `coop_uiB264`, `coop_uiB265`, `coop_uiB266`
+- `coop_uiB267`, `coop_uiB268`, `coop_uiB269`, `coop_uiB27`, `coop_uiB270`, `coop_uiB271`, `coop_uiB272`, `coop_uiB273`
+- `coop_uiB274`, `coop_uiB275`, `coop_uiB276`, `coop_uiB277`, `coop_uiB278`, `coop_uiB279`, `coop_uiB28`, `coop_uiB280`
+- `coop_uiB281`, `coop_uiB282`, `coop_uiB283`, `coop_uiB284`, `coop_uiB285`, `coop_uiB286`, `coop_uiB287`, `coop_uiB288`
+- `coop_uiB289`, `coop_uiB29`, `coop_uiB290`, `coop_uiB291`, `coop_uiB292`, `coop_uiB293`, `coop_uiB294`, `coop_uiB295`
+- `coop_uiB296`, `coop_uiB297`, `coop_uiB298`, `coop_uiB299`, `coop_uiB3`, `coop_uiB30`, `coop_uiB300`, `coop_uiB301`
+- `coop_uiB302`, `coop_uiB303`, `coop_uiB304`, `coop_uiB305`, `coop_uiB306`, `coop_uiB307`, `coop_uiB308`, `coop_uiB309`
+- `coop_uiB31`, `coop_uiB310`, `coop_uiB311`, `coop_uiB312`, `coop_uiB313`, `coop_uiB314`, `coop_uiB315`, `coop_uiB316`
+- `coop_uiB317`, `coop_uiB318`, `coop_uiB319`, `coop_uiB32`, `coop_uiB320`, `coop_uiB321`, `coop_uiB322`, `coop_uiB323`
+- `coop_uiB324`, `coop_uiB325`, `coop_uiB326`, `coop_uiB327`, `coop_uiB328`, `coop_uiB329`, `coop_uiB33`, `coop_uiB330`
+- `coop_uiB331`, `coop_uiB332`, `coop_uiB333`, `coop_uiB334`, `coop_uiB335`, `coop_uiB336`, `coop_uiB337`, `coop_uiB338`
+- `coop_uiB339`, `coop_uiB34`, `coop_uiB340`, `coop_uiB341`, `coop_uiB342`, `coop_uiB343`, `coop_uiB35`, `coop_uiB36`
+- `coop_uiB37`, `coop_uiB38`, `coop_uiB39`, `coop_uiB4`, `coop_uiB40`, `coop_uiB41`, `coop_uiB42`, `coop_uiB43`
+- `coop_uiB44`, `coop_uiB45`, `coop_uiB46`, `coop_uiB47`, `coop_uiB48`, `coop_uiB49`, `coop_uiB5`, `coop_uiB50`
+- `coop_uiB51`, `coop_uiB52`, `coop_uiB53`, `coop_uiB54`, `coop_uiB55`, `coop_uiB56`, `coop_uiB57`, `coop_uiB58`
+- `coop_uiB59`, `coop_uiB6`, `coop_uiB60`, `coop_uiB61`, `coop_uiB62`, `coop_uiB63`, `coop_uiB64`, `coop_uiB65`
+- `coop_uiB66`, `coop_uiB67`, `coop_uiB68`, `coop_uiB69`, `coop_uiB7`, `coop_uiB70`, `coop_uiB71`, `coop_uiB72`
+- `coop_uiB73`, `coop_uiB74`, `coop_uiB75`, `coop_uiB76`, `coop_uiB77`, `coop_uiB78`, `coop_uiB79`, `coop_uiB8`
+- `coop_uiB80`, `coop_uiB81`, `coop_uiB82`, `coop_uiB83`, `coop_uiB84`, `coop_uiB85`, `coop_uiB86`, `coop_uiB87`
+- `coop_uiB88`, `coop_uiB89`, `coop_uiB9`, `coop_uiB90`, `coop_uiB91`, `coop_uiB92`, `coop_uiB93`, `coop_uiB94`
+- `coop_uiB95`, `coop_uiB96`, `coop_uiB97`, `coop_uiB98`, `coop_uiB99`, `coop_uiN0`, `coop_uiN1`, `coop_uiN10`
+- `coop_uiN100`, `coop_uiN101`, `coop_uiN102`, `coop_uiN103`, `coop_uiN104`, `coop_uiN105`, `coop_uiN106`, `coop_uiN107`
+- `coop_uiN108`, `coop_uiN109`, `coop_uiN11`, `coop_uiN110`, `coop_uiN111`, `coop_uiN112`, `coop_uiN113`, `coop_uiN114`
+- `coop_uiN115`, `coop_uiN116`, `coop_uiN117`, `coop_uiN118`, `coop_uiN119`, `coop_uiN12`, `coop_uiN120`, `coop_uiN121`
+- `coop_uiN122`, `coop_uiN123`, `coop_uiN124`, `coop_uiN125`, `coop_uiN126`, `coop_uiN127`, `coop_uiN128`, `coop_uiN129`
+- `coop_uiN13`, `coop_uiN130`, `coop_uiN131`, `coop_uiN132`, `coop_uiN133`, `coop_uiN134`, `coop_uiN135`, `coop_uiN136`
+- `coop_uiN137`, `coop_uiN138`, `coop_uiN139`, `coop_uiN14`, `coop_uiN140`, `coop_uiN141`, `coop_uiN142`, `coop_uiN143`
+- `coop_uiN144`, `coop_uiN145`, `coop_uiN146`, `coop_uiN147`, `coop_uiN148`, `coop_uiN149`, `coop_uiN15`, `coop_uiN150`
+- `coop_uiN151`, `coop_uiN152`, `coop_uiN153`, `coop_uiN154`, `coop_uiN155`, `coop_uiN156`, `coop_uiN157`, `coop_uiN158`
+- `coop_uiN159`, `coop_uiN16`, `coop_uiN160`, `coop_uiN161`, `coop_uiN162`, `coop_uiN163`, `coop_uiN164`, `coop_uiN165`
+- `coop_uiN166`, `coop_uiN167`, `coop_uiN168`, `coop_uiN169`, `coop_uiN17`, `coop_uiN170`, `coop_uiN171`, `coop_uiN172`
+- `coop_uiN173`, `coop_uiN174`, `coop_uiN175`, `coop_uiN176`, `coop_uiN177`, `coop_uiN178`, `coop_uiN179`, `coop_uiN18`
+- `coop_uiN180`, `coop_uiN181`, `coop_uiN182`, `coop_uiN183`, `coop_uiN184`, `coop_uiN185`, `coop_uiN186`, `coop_uiN187`
+- `coop_uiN188`, `coop_uiN189`, `coop_uiN19`, `coop_uiN190`, `coop_uiN191`, `coop_uiN192`, `coop_uiN193`, `coop_uiN194`
+- `coop_uiN195`, `coop_uiN196`, `coop_uiN197`, `coop_uiN198`, `coop_uiN199`, `coop_uiN2`, `coop_uiN20`, `coop_uiN200`
+- `coop_uiN201`, `coop_uiN202`, `coop_uiN203`, `coop_uiN204`, `coop_uiN205`, `coop_uiN206`, `coop_uiN207`, `coop_uiN208`
+- `coop_uiN209`, `coop_uiN21`, `coop_uiN210`, `coop_uiN211`, `coop_uiN212`, `coop_uiN213`, `coop_uiN214`, `coop_uiN215`
+- `coop_uiN216`, `coop_uiN217`, `coop_uiN218`, `coop_uiN219`, `coop_uiN22`, `coop_uiN220`, `coop_uiN221`, `coop_uiN222`
+- `coop_uiN223`, `coop_uiN224`, `coop_uiN225`, `coop_uiN226`, `coop_uiN227`, `coop_uiN228`, `coop_uiN229`, `coop_uiN23`
+- `coop_uiN230`, `coop_uiN231`, `coop_uiN232`, `coop_uiN233`, `coop_uiN234`, `coop_uiN235`, `coop_uiN236`, `coop_uiN237`
+- `coop_uiN238`, `coop_uiN239`, `coop_uiN24`, `coop_uiN240`, `coop_uiN241`, `coop_uiN242`, `coop_uiN243`, `coop_uiN244`
+- `coop_uiN245`, `coop_uiN246`, `coop_uiN247`, `coop_uiN248`, `coop_uiN249`, `coop_uiN25`, `coop_uiN250`, `coop_uiN251`
+- `coop_uiN252`, `coop_uiN253`, `coop_uiN254`, `coop_uiN255`, `coop_uiN256`, `coop_uiN257`, `coop_uiN258`, `coop_uiN259`
+- `coop_uiN26`, `coop_uiN260`, `coop_uiN261`, `coop_uiN262`, `coop_uiN263`, `coop_uiN264`, `coop_uiN265`, `coop_uiN266`
+- `coop_uiN267`, `coop_uiN268`, `coop_uiN269`, `coop_uiN27`, `coop_uiN270`, `coop_uiN271`, `coop_uiN272`, `coop_uiN273`
+- `coop_uiN274`, `coop_uiN275`, `coop_uiN276`, `coop_uiN277`, `coop_uiN278`, `coop_uiN279`, `coop_uiN28`, `coop_uiN280`
+- `coop_uiN281`, `coop_uiN282`, `coop_uiN283`, `coop_uiN284`, `coop_uiN285`, `coop_uiN286`, `coop_uiN287`, `coop_uiN288`
+- `coop_uiN289`, `coop_uiN29`, `coop_uiN290`, `coop_uiN291`, `coop_uiN292`, `coop_uiN293`, `coop_uiN294`, `coop_uiN295`
+- `coop_uiN296`, `coop_uiN297`, `coop_uiN298`, `coop_uiN299`, `coop_uiN3`, `coop_uiN30`, `coop_uiN300`, `coop_uiN301`
+- `coop_uiN302`, `coop_uiN303`, `coop_uiN304`, `coop_uiN305`, `coop_uiN306`, `coop_uiN307`, `coop_uiN308`, `coop_uiN309`
+- `coop_uiN31`, `coop_uiN310`, `coop_uiN311`, `coop_uiN312`, `coop_uiN313`, `coop_uiN314`, `coop_uiN315`, `coop_uiN316`
+- `coop_uiN317`, `coop_uiN318`, `coop_uiN319`, `coop_uiN32`, `coop_uiN320`, `coop_uiN321`, `coop_uiN322`, `coop_uiN323`
+- `coop_uiN324`, `coop_uiN325`, `coop_uiN326`, `coop_uiN327`, `coop_uiN328`, `coop_uiN329`, `coop_uiN33`, `coop_uiN330`
+- `coop_uiN331`, `coop_uiN332`, `coop_uiN333`, `coop_uiN334`, `coop_uiN335`, `coop_uiN336`, `coop_uiN337`, `coop_uiN338`
+- `coop_uiN339`, `coop_uiN34`, `coop_uiN340`, `coop_uiN341`, `coop_uiN342`, `coop_uiN343`, `coop_uiN35`, `coop_uiN36`
+- `coop_uiN37`, `coop_uiN38`, `coop_uiN39`, `coop_uiN4`, `coop_uiN40`, `coop_uiN41`, `coop_uiN42`, `coop_uiN43`
+- `coop_uiN44`, `coop_uiN45`, `coop_uiN46`, `coop_uiN47`, `coop_uiN48`, `coop_uiN49`, `coop_uiN5`, `coop_uiN50`
+- `coop_uiN51`, `coop_uiN52`, `coop_uiN53`, `coop_uiN54`, `coop_uiN55`, `coop_uiN56`, `coop_uiN57`, `coop_uiN58`
+- `coop_uiN59`, `coop_uiN6`, `coop_uiN60`, `coop_uiN61`, `coop_uiN62`, `coop_uiN63`, `coop_uiN64`, `coop_uiN65`
+- `coop_uiN66`, `coop_uiN67`, `coop_uiN68`, `coop_uiN69`, `coop_uiN7`, `coop_uiN70`, `coop_uiN71`, `coop_uiN72`
+- `coop_uiN73`, `coop_uiN74`, `coop_uiN75`, `coop_uiN76`, `coop_uiN77`, `coop_uiN78`, `coop_uiN79`, `coop_uiN8`
+- `coop_uiN80`, `coop_uiN81`, `coop_uiN82`, `coop_uiN83`, `coop_uiN84`, `coop_uiN85`, `coop_uiN86`, `coop_uiN87`
+- `coop_uiN88`, `coop_uiN89`, `coop_uiN9`, `coop_uiN90`, `coop_uiN91`, `coop_uiN92`, `coop_uiN93`, `coop_uiN94`
+- `coop_uiN95`, `coop_uiN96`, `coop_uiN97`, `coop_uiN98`, `coop_uiN99`
 
 ## Menu-wired but forced by `autoexec.cfg`
 These have a menu control, but `autoexec.cfg` re-applies the shipped value after the saved config loads, so the player's choice never survives a restart. Move the seed to `coop_defaults.cfg` to fix.
@@ -885,6 +885,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_srP20` |  |  |  |  |  | `ui/coop_sr.urc` |
 | `coop_srP21` |  |  |  |  |  | `ui/coop_sr.urc` |
 | `coop_srP22` |  |  |  |  |  | `ui/coop_sr.urc` |
+| `coop_srP23` |  |  |  |  |  | `ui/coop_sr.urc` |
 | `coop_srP3` |  |  |  | FORCED `0` @ `autoexec.cfg:550` |  | `ui/coop_sr.urc` |
 | `coop_srP4` |  |  |  | FORCED `0` @ `autoexec.cfg:551` |  | `ui/coop_sr.urc` |
 | `coop_srP5` |  |  |  | FORCED `0` @ `autoexec.cfg:552` |  | `ui/coop_sr.urc` |

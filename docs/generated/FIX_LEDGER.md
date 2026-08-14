@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1161** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1163** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 498 |
+| 2026-08 | 500 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1178,6 +1178,8 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1796` | 2026-08-13 | `build.ps1` | - | Renderer-side engine changes never reached the running game | Added renderer_opengl2.dll to the build.ps1 binaries list, and registered r_desktopfullscreen in renderergl2/tr_init.c to match gl1 exactly. |
 | `bug-1797` | 2026-08-13 | `openmohaa-hzm/code/client/snd_openal_new.cpp` | V | when I change my audio device in the audio settings and hit Apply it doesnt update | s_setdevice now accepts a device NAME as well as an index - a pure integer still means an index (back-compat), anything else is matched case-insensit… |
 | `bug-1798` | 2026-08-13 | `build.ps1` | - | Client-side engine changes never reached the deployed game | Added openmohaa.exe to the build.ps1 binaries list so it deploys to both the GOG root and the live gl2 install alongside cgame/game/renderers. |
+| `bug-1799` | 2026-08-13 | `installer/report_problem.ps1` | - | user: 'I saw it, I wouldn't have it post someone's PC name though' - the Report a Problem tool posted the reporter's Windows machine name into the pu… | Replaced the machine name with a 6-hex-char salted SHA256 of COMPUTERNAME+USERNAME, which still lets repeat reports from one person be grouped during… |
+| `bug-1800` | 2026-08-13 | `resume_publish.ps1` | - | resume_publish.ps1 could not resume an interrupted publish - three separate failures in a row | Manifest lookup falls back to the %TEMP% staging copy; draft lookup uses ConvertFrom-Json with per_page=100 instead of a piped --jq; source map mirro… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

@@ -13,27 +13,30 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `aaa9876 2026-08-13 manifest 1.2.7` |
-| commits | 72 |
+| HEAD | `d6825bd 2026-08-13 publish: repair the updater fallback and the tooling that broke it` |
+| commits | 75 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **1 modified, 0 untracked** |
-| unstaged diff | 1 file changed, 12 insertions(+) |
+| **uncommitted** | **2 modified, 0 untracked** |
+| unstaged diff | 10 files changed, 220 insertions(+), 174 deletions(-) |
 
-> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 2 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 18 |
+| 2026-08 | 21 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (72)
+### Commits since 2026-01-01 (75)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `d6825bd` | 2026-08-13 | joncurry94-tech | publish: repair the updater fallback and the tooling that broke it |
+| `704cf13` | 2026-08-13 | joncurry94-tech | manifest 1.2.8 |
+| `4acd1e0` | 2026-08-13 | joncurry94-tech | docs: generate the public documentation set |
 | `aaa9876` | 2026-08-13 | joncurry94-tech | manifest 1.2.7 |
 | `bd69d65` | 2026-08-13 | joncurry94-tech | docs: m6l2a stealth session - traps, open items, and the generated sweep |
 | `e5e437c` | 2026-08-11 | joncurry94-tech | stealth: per-map gate, m6l1c opt-in, and papers for late joiners |
@@ -112,19 +115,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `69a7ed9 2026-08-13 v1.2.7: m6l2a stealth route, level-2 checkpoint, and the bust fixes it found` |
-| commits | 1,398 |
+| HEAD | `29272f9 2026-08-13 v1.2.8: capture-safe borderless, audio device fix, Service Record repair` |
+| commits | 1,399 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **5 modified, 0 untracked** |
-| unstaged diff | 5 files changed, 7736 insertions(+), 3937 deletions(-) |
-
-> Working tree is dirty. Everything in those 5 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 5 |
+| 2026-08 | 6 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -164,10 +164,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (49)
+### Commits since 2026-01-01 (50)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `29272f9` | 2026-08-13 | joncurry94 | v1.2.8: capture-safe borderless, audio device fix, Service Record repair |
 | `69a7ed9` | 2026-08-13 | joncurry94 | v1.2.7: m6l2a stealth route, level-2 checkpoint, and the bust fixes it found |
 | `c21a0dd` | 2026-08-10 | joncurry94 | coop: fix reliable-command overflow, blueprint pickup, HUD-fade class, Naxos |
 | `f694b31` | 2026-08-07 | joncurry94 | v1.2.201: m3l1b coop pass, flak/bomb fixes, audio + console cleanup |

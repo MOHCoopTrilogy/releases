@@ -6,10 +6,11 @@
 
 [<- back to all fixes](../BUGFIXES.md)
 
-**100 fixes**, newest first.
+**101 fixes**, newest first.
 
 | ID | Problem | Cause | Fix |
 |---|---|---|---|
+| `bug-1799` | user: 'I saw it, I wouldn't have it post someone's PC name though' - the Report a Problem tool posted the reporter's Windows machine name into the public Discord report channel on every report | The Discord message was built as "**MOH Coop report** from $env:COMPUTERNAME ($stamp)". Present in both report_problem.ps1 and report_problem_SEND_TO_FRIEND.ps1. The zip bundle itself was already clean - OS/GPU/CPU/RAM only, no machine or u | Replaced the machine name with a 6-hex-char salted SHA256 of COMPUTERNAME+USERNAME, which still lets repeat reports from one person be grouped during triage but publishes nothing identifying. Both scripts patched and syntax-checked with the |
 | `bug-1705` | you get +5 XP twice for destroying searchlights | spotdamage is threaded from two places (:129 setup loop and :459), so one light ran two copies of the loop and both awarded. The adjacent spotnervous increment has always been guarded by checkdeath for exactly this reason; the XP hook added | Moved the XP award inside the existing if (self.checkdeath != 1) guard so both effects share one latch. |
 | `bug-1665` | blueprint pickup never fires - 'BP OWNER-MISS' 90/90 samples, 'BP OWNER ok' never once printed (9th attempt) | MEASURED at last, after eight attempts that reasoned instead of instrumenting. The resolver probe sampled 90 consecutive failures and every single one said the same thing: `waitthread coop_mod/replace.scr::player_closestTo local.ent` return | Resolve the owner INLINE in collectible.scr with the exact loop shape the probe proved works, and drop 'closest player' as the semantic entirely - each player has their own private copy, so the only player who may take copy N is its owner.  |
 | `bug-1642` | no AI can ring the alarm again for the rest of the map after the alerted stack is externally zeroed | ai_alarm_alerted_bumpstack:464 decrements level.ai_alerted_index with no floor; a negative index wedges ai_gofor_alarm in a permanent wait-3 loop | floor the decrement inside the label (planned in Step 22a) - NOT YET IMPLEMENTED (found by master-plan vetting round 3, not by a playtest) |

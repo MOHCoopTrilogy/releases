@@ -53,6 +53,9 @@ function Get-Source($path) {
         "renderer_opengl1.dll" { return "$gog\renderer_opengl1.dll" }
         "renderer_opengl2.dll" { return "$gog\renderer_opengl2.dll" }
         "omohaaded.exe"        { return "$gog\omohaaded.exe" }
+        "SDL2.dll"             { return "$gog\SDL2.dll" }
+        "OpenAL64.dll"         { return "$gog\OpenAL64.dll" }
+        "libcurl.dll"          { return "$gog\libcurl.dll" }
         "updater.ps1"          { return "$dev\updater\updater.ps1" }
         "launch_coop.vbs"      { return "$dev\updater\launch_coop.vbs" }
         "report_problem.ps1"   { return "$dev\installer\report_problem.ps1" }
