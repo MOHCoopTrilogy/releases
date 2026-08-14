@@ -170,7 +170,16 @@ if ($Webhook -and $Webhook -notlike "__REPORT_*") {
     try {
         $desc = if ($UserDescription.Trim()) { $UserDescription.Trim() } else { "(no description given)" }
         if ($desc.Length -gt 1700) { $desc = $desc.Substring(0, 1700) + "..." }
-        $msg = "**MOH Coop report** from $env:COMPUTERNAME ($stamp)`n>>> $desc"
+        # [user 2026-08-13, bug-1799] NEVER post the machine name. This line put a player's PC name
+        # into a public Discord channel on every single report. A short salted hash keeps the one
+        # thing the name was actually useful for - recognising several reports from the same person
+        # - without publishing anything identifying. Six hex chars is plenty to group by and far too
+        # short to be worth attacking even if the salt were known.
+        $idSrc = "MOHCoopReporter|$env:COMPUTERNAME|$env:USERNAME"
+        $sha256 = [System.Security.Cryptography.SHA256]::Create()
+        $tag = ([BitConverter]::ToString($sha256.ComputeHash([Text.Encoding]::UTF8.GetBytes($idSrc))) -replace '-','').Substring(0,6)
+        $sha256.Dispose()
+        $msg = "**MOH Coop report** #$tag ($stamp)`n>>> $desc"
         $form = @{ file1 = Get-Item $zipDesk; content = $msg }
         Invoke-RestMethod -Uri $Webhook -Method Post -Form $form | Out-Null
         $sent = $true

@@ -1,13 +1,13 @@
 ﻿{
     "manifestVersion":  1,
-    "version":  "1.2.7",
-    "created":  "2026-08-14T02:14:50Z",
+    "version":  "1.2.8",
+    "created":  "2026-08-14T03:26:41Z",
     "files":  [
                   {
                       "path":  "openmohaa.exe",
-                      "size":  1717760,
-                      "sha256":  "09fa5860d06b2d36b67fe3c993511dc971a5db8e7f0c9f86094b73f2347bf8cd",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.6/openmohaa.exe"
+                      "size":  1718272,
+                      "sha256":  "a483dd4c093af8a94df99f51477a73ff73425df94371105b9e6d22857810a311",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.8/openmohaa.exe"
                   },
                   {
                       "path":  "cgame.dll",
@@ -23,21 +23,21 @@
                   },
                   {
                       "path":  "renderer_opengl1.dll",
-                      "size":  845824,
-                      "sha256":  "2cf474c88ae037ce8785a95f2cce8b8d441ddd12480fe445cd69ccedf066e335",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.6/renderer_opengl1.dll"
+                      "size":  846336,
+                      "sha256":  "c7597ed5ab0d052ccff8ef7c86c73097a9a0dd7170fc46d0e995e789ab0355ea",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.8/renderer_opengl1.dll"
                   },
                   {
                       "path":  "renderer_opengl2.dll",
-                      "size":  1105920,
-                      "sha256":  "ea85a31c693caa3f679f1a2b8209955f0b9e8a75abb9f79fe84f70b635f8a243",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.2/renderer_opengl2.dll"
+                      "size":  1106432,
+                      "sha256":  "67063d4671b02ab0dc45cb0aad2601f78dc3e92973395e1b7a54986563d509ab",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.8/renderer_opengl2.dll"
                   },
                   {
                       "path":  "omohaaded.exe",
                       "size":  632320,
-                      "sha256":  "3d70d86cf1e279fc3da82395733292aaf110e5b90d046e0cf3dbb38373d4c87c",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.6/omohaaded.exe"
+                      "sha256":  "26eebd86a8cd0ff95036a851d708ba4f2fba8fc18f276d09e975a4cb0ae94a50",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.8/omohaaded.exe"
                   },
                   {
                       "path":  "home/maintt/dedicated_example.cfg",
@@ -71,15 +71,15 @@
                   },
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_assets_tex.pk3",
-                      "size":  780557621,
-                      "sha256":  "6a35834dd910aeacf175a76c7b2a2f384859d2032a351a7ffab54423fcad9fce",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.7/zzzzzz_co-op_hzm_mod_assets_tex.pk3"
+                      "size":  791328092,
+                      "sha256":  "b1179a85cb3bd24045b13ee47649c411eb4423328783a8399252062989214d59",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.8/zzzzzz_co-op_hzm_mod_assets_tex.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_code.pk3",
-                      "size":  23128255,
-                      "sha256":  "7b805889f361bd2969956c228d42fb0c5c3698e11341de6e72739c89a56405c3",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.7/zzzzzz_co-op_hzm_mod_code.pk3"
+                      "size":  23131543,
+                      "sha256":  "a2f72e9f6783a0fcf0dc1d171a0f0ced0672d1f463f4ddb82484b02b0727c3e3",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.8/zzzzzz_co-op_hzm_mod_code.pk3"
                   },
                   {
                       "path":  "home/maintt/autoexec.cfg",

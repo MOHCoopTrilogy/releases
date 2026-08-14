@@ -32,6 +32,15 @@ That's the whole list. The engine, renderer, runtimes, and all mod content are b
 
 ## Install
 
+> [!NOTE]
+> **It will not touch your existing game.** The mod installs into its own folder
+> (`%LOCALAPPDATA%\MOH Coop Trilogy`) and runs from there. Your GOG *Medal of Honor: Allied
+> Assault War Chest* install and any vanilla OpenMOHAA install are left exactly as they are —
+> nothing is overwritten, patched, or moved. The installer *reads* three support DLLs from your
+> GOG folder and copies them across; it never writes anything back to it, and it asks for no
+> administrator rights, so it could not modify a protected location even if it tried. Uninstalling
+> removes its own folder and nothing else. You can keep playing the original campaign normally.
+
 1. Go to [Releases](https://github.com/MOHCoopTrilogy/releases/releases/latest) and download the latest `MOHCoopTrilogy-Setup-<version>.exe` **together with all of its `.bin` parts** (the payload is split into ~2 GB slices — the exe needs them next to it).
 2. Keep the exe and the `.bin` files in the same folder and run the exe.
 3. Launch the game through the **MOH Trilogy Coop** shortcut (desktop or Start menu). Every launch quietly checks for updates and downloads only what changed — typically a few megabytes. If the check fails for any reason, the game simply starts with what you have; updates never block play.
