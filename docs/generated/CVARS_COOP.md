@@ -30,12 +30,12 @@ Union of four sources, all swept fresh:
 ## Runtime-built names
 These literals are concatenated with a variable at the call site (`getcvar("coop_chal_" + local.id)`), so the real cvar name only exists at runtime. They are **not** cvars and are excluded from the table below - listed here so the omission is visible rather than silent.
 
-- `coop_chal_*` — `coop_mod/challenges.scr:722` (+1 more)
+- `coop_chal_*` — `coop_mod/challenges.scr:732` (+1 more)
 - `coop_lo*` — `coop_mod/loadoutpick.scr:354`
 - `coop_medals_*` — `coop_mod/medals.scr:75` (+1 more)
-- `coop_pend_*` — `coop_mod/challenges.scr:745` (+2 more)
-- `coop_pins_*` — `coop_mod/challenges.scr:3066` (+1 more)
-- `coop_unlocks_*` — `coop_mod/challenges.scr:731` (+1 more)
+- `coop_pend_*` — `coop_mod/challenges.scr:755` (+2 more)
+- `coop_pins_*` — `coop_mod/challenges.scr:3098` (+1 more)
+- `coop_unlocks_*` — `coop_mod/challenges.scr:741` (+1 more)
 - `coop_xp_*` — `coop_mod/xp.scr:347` (+2 more)
 
 ## Seeded nowhere, but a script reads it
@@ -300,9 +300,9 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_callvote` |  |  |  |  | `coop_mod/server.scr:261` (+1) |  |
 | `coop_campaign` |  |  |  | other `1` @ `coop_mod/cfg/campaign_start.cfg:19`<br>other `0` @ `coop_mod/start_server.cfg:36` | `global/missioncomplete.scr:39` |  |
 | `coop_censusdone` |  |  |  |  | `coop_mod/covwalk.scr:131` (+1) |  |
-| `coop_chal_pin` |  |  |  |  | `coop_mod/challenges.scr:2907` (+2) |  |
-| `coop_challenges` |  |  |  |  | `coop_mod/challenges.scr:30` (+2) |  |
-| `coop_chalPopup` |  |  |  | DEFAULT `1` @ `coop_defaults.cfg:22` | `coop_mod/challenges.scr:1772` | `ui/coop_settings.urc` |
+| `coop_chal_pin` |  |  |  |  | `coop_mod/challenges.scr:2939` (+2) |  |
+| `coop_challenges` |  |  |  |  | `coop_mod/challenges.scr:40` (+2) |  |
+| `coop_chalPopup` |  |  |  | DEFAULT `1` @ `coop_defaults.cfg:22` | `coop_mod/challenges.scr:1790` | `ui/coop_settings.urc` |
 | `coop_check` |  |  |  | other `0` @ `coop_mod/server.cfg:35`<br>other `0` @ `coop_mod/start_server.cfg:35` |  |  |
 | `coop_churn_cycle` |  |  |  |  | `coop_mod/coop_selftest_scaling.scr:210` |  |
 | `coop_churntest` |  |  |  |  | `coop_mod/coop_selftest_scaling.scr:79` |  |

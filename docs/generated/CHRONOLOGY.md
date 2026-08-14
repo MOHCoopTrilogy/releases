@@ -13,24 +13,28 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `136a6f8 2026-08-14 tooling: prove at build time that every challenge can be earned` |
-| commits | 79 |
+| HEAD | `65aa813 2026-08-14 tooling: check derived faction supply instead of exempting it` |
+| commits | 80 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **1 modified, 0 untracked** |
+| unstaged diff | 8 files changed, 32 insertions(+), 27 deletions(-) |
+
+> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 25 |
+| 2026-08 | 26 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (79)
+### Commits since 2026-01-01 (80)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `65aa813` | 2026-08-14 | joncurry94-tech | tooling: check derived faction supply instead of exempting it |
 | `136a6f8` | 2026-08-14 | joncurry94-tech | tooling: prove at build time that every challenge can be earned |
 | `afea0c2` | 2026-08-14 | joncurry94-tech | publish: send the Discord body as UTF-8 bytes |
 | `2e11a4d` | 2026-08-14 | joncurry94-tech | docs: regenerate challenge pages after retune |
@@ -116,8 +120,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `e9be16a 2026-08-14 challenges: unlock the padlocked guns, make snipers real, replace the dead FJ pair` |
-| commits | 1,401 |
+| HEAD | `caffb76 2026-08-14 challenges: wire The Quiet Type, and the shared plumbing the rest of the group needs` |
+| commits | 1,403 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -125,7 +129,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 8 |
+| 2026-08 | 10 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -165,10 +169,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (52)
+### Commits since 2026-01-01 (54)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `caffb76` | 2026-08-14 | joncurry94 | challenges: wire The Quiet Type, and the shared plumbing the rest of the group needs |
+| `a8a439c` | 2026-08-14 | joncurry94 | challenges: replace the Bersaglieri pair with a combined-Italian ladder |
 | `e9be16a` | 2026-08-14 | joncurry94 | challenges: unlock the padlocked guns, make snipers real, replace the dead FJ pair |
 | `6a91c88` | 2026-08-14 | joncurry94 | challenges: make unreachable targets reachable (audit of all 344) |
 | `29272f9` | 2026-08-13 | joncurry94 | v1.2.8: capture-safe borderless, audio device fix, Service Record repair |

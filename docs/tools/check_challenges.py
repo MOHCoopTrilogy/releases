@@ -81,7 +81,12 @@ def load_challenges():
 # challenge as dead. A false positive here is as damaging as a false negative: it sends
 # someone to fix something that already works, and it erodes trust in the whole check.
 # Stopping at ';' keeps a multi-statement line from bleeding into the next call.
-WRITER_RE = re.compile(r'(?:chal_bump|chal_team_bump|cc_award_clean)[^";\n]*"([^"]+)"')
+#
+# chal_quiet_feat is a WRAPPER: it takes the stat as a parameter and calls chal_team_bump with
+# a variable, so a scan for literal bumps cannot see through it. Any future helper of that shape
+# has to be added here too, or the challenges it wires will read as dead.
+WRITER_RE = re.compile(
+    r'(?:chal_bump|chal_team_bump|cc_award_clean|chal_quiet_feat)[^";\n]*"([^"]+)"')
 
 
 def load_writers():
