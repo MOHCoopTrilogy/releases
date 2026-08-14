@@ -169,7 +169,7 @@ Player appearances, picked in the Armory.
 | **Allied British 6th Airborne Paratrooper** | Expect Close Contact | In the Bocage house, keep an airborne soldier alive through both ambushes |
 | **Allied British Cmd** | Stick Close to Me | Get the SAS agent out of the fortress alive |
 | **Allied British General** | Both Guns Turned | Seize both Flak 88 batteries above Kasserine Pass |
-| **Allied British Officer** | The Quiet Type | Complete five different missions without ever raising the alarm |
+| **Allied British Officer** | The Quiet Type | Complete five missions without ever raising the alarm |
 | **Allied British Paratroops** | Hitler's Zipper | Get 120 kills with the MG42 (Elite) |
 | **Allied British Paratroops Helmet** | Cut Him Down | Free the interrogation-chair prisoner without him taking a single hit |
 | **Allied British Paratroops Officer** | Monkey Business | Destroy Stuka number seven, the one the developers hand-wired |

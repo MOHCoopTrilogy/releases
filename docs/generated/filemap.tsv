@@ -334,7 +334,7 @@ docs/reference/harness_and_reproduction.md	4740	.md	33	docs
 docs/reference/tiki_and_sound_aliases.md	4875	.md	60	docs
 docs/reference/warchestrestored_v1.1.0_changelog.txt	45915	.txt	872	docs
 docs/tools/README.md	5123	.md	91	docs
-docs/tools/check_challenges.py	11570	.py	277	docs
+docs/tools/check_challenges.py	11859	.py	282	docs
 docs/tools/depthscan2.py	2359	.py	76	docs
 docs/tools/docgen.py	62972	.py	1464	docs
 docs/tools/docs.cmd	467	.cmd	13	docs
@@ -1343,7 +1343,7 @@ hzm-mohaa-coop-mod/coop_mod/cfg/objdiag.cfg	490	.cfg	11	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/posetest.cfg	659	.cfg	11	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/wallgun.cfg	2304	.cfg	49	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/wallgun_off.cfg	936	.cfg	27	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/challenges.scr	222435	.scr	3593	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/challenges.scr	224266	.scr	3617	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/collectible.scr	18948	.scr	373	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/coop_placements.scr	32871	.scr	1021	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/coop_selftest.scr	13524	.scr	320	hzm-mohaa-coop-mod
@@ -2024,7 +2024,7 @@ hzm-mohaa-coop-mod/maps/e3l4_arena_precache.scr	401	.scr	5	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/e3l4_precache.scr	6149	.scr	164	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m1l1.scr	90577	.scr	3025	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m1l1_precache.scr	4197	.scr	113	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/m1l2a.scr	144217	.scr	4595	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/m1l2a.scr	144702	.scr	4600	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m1l2a_precache.scr	4358	.scr	119	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m1l2b.scr	37539	.scr	1093	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m1l2b_precache.scr	4562	.scr	121	hzm-mohaa-coop-mod
@@ -7391,7 +7391,7 @@ hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	541870468	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	791349015	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23133877	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23134743	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm_coop_framework_guide.md	27594	.md	382	<root>
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -10238,7 +10238,7 @@ server_home/maintt/prev/qconsole-20260813-194907.log	352996	.log	0	server_home
 server_home/maintt/prev/qconsole-20260813-195042.log	254479	.log	0	server_home
 server_home/maintt/prev/qconsole-20260813-195345.log	324031	.log	0	server_home
 server_home/maintt/prev/qconsole-20260813-211030.log	731864	.log	0	server_home
-server_home/maintt/qconsole.log	225914	.log	0	server_home
+server_home/maintt/qconsole.log	195496	.log	0	server_home
 server_home_probe/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home_probe
 server_home_probe/maintt/autoexec.cfg	89444	.cfg	1202	server_home_probe
 server_home_probe/maintt/coop_defaults.cfg	12385	.cfg	217	server_home_probe

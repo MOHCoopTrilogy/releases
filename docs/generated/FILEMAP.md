@@ -32,7 +32,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `UBER-MODS-v8.00-MOHAA` | 2,614 | 115.5 MB | no - reference | third-party mod, reference only |
 | `moh-modelviewer` | 1,270 | 565.8 MB | no - reference | Node model preview tool (rarely touched) |
 | `original-scripts` | 915 | 1173.7 MB | no - reference | vanilla MOHAA script/asset extraction (reference) |
-| `player1_home` | 296 | 2.6 MB | no - reference | test client profile dir |
+| `player1_home` | 296 | 3.0 MB | no - reference | test client profile dir |
 | `_research` | 171 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
 | `<root>` | 124 | 3409.4 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `docs` | 121 | 4.0 MB | **yes** | this documentation set (authored + generated) |
@@ -44,7 +44,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `_tools` | 37 | 69.0 MB | no - reference | downloaded third-party binaries |
 | `server_home` | 27 | 3.6 MB | **yes** |  |
 | `installer` | 18 | 15873.3 MB | no - reference | Inno Setup output + payload staging |
-| `player2_home` | 16 | 1.2 MB | no - reference | test client profile dir |
+| `player2_home` | 16 | 1.6 MB | no - reference | test client profile dir |
 | `vanilla_audio_ref` | 13 | 15.0 MB | no - reference | vanilla audio reference |
 | `_blender_kit` | 12 | 1.1 MB | no - reference | Blender pipeline scratch |
 | `tools` | 12 | 0.3 MB | **yes** | misc build/debug tooling |
@@ -752,7 +752,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/misc/linux` | 4 | 0.00 MB | .in×3, .xml×1 |
 | `openmohaa-hzm/misc/setup/windows/app` | 4 | 0.01 MB | .wxs×2, .wixproj×1, .wxl×1 |
 | `scratchpad` | 1 | 0.00 MB | .py×1 |
-| `server_home/maintt` | 5 | 0.34 MB | .cfg×3, .pid×1, .log×1 |
+| `server_home/maintt` | 5 | 0.31 MB | .cfg×3, .pid×1, .log×1 |
 | `server_home/maintt/coop_mod/save` | 12 | 0.01 MB | .dat×12 |
 | `server_home/maintt/prev` | 10 | 3.28 MB | .log×10 |
 | `server_home_probe/maintt` | 5 | 0.30 MB | .cfg×3, .pid×1, .log×1 |
@@ -848,7 +848,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `check_challenges.py` | 277 | 11.3 KB | !/usr/bin/env python3 |
+| `check_challenges.py` | 282 | 11.6 KB | !/usr/bin/env python3 |
 | `depthscan2.py` | 76 | 2.3 KB |  |
 | `docgen.py` | 1,464 | 61.5 KB | !/usr/bin/env python3 |
 | `docs.cmd` | 13 | 0.5 KB |  |
@@ -1108,7 +1108,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `bust.scr` | 1,553 | 84.7 KB | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
 | `butler.scr` | 498 | 18.9 KB | created by chrissstrahl on 2019.09.12 |
 | `cannonThink.scr` | 147 | 4.8 KB | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
-| `challenges.scr` | 3,593 | 217.2 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
+| `challenges.scr` | 3,617 | 219.0 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
 | `collectible.scr` | 373 | 18.5 KB | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
 | `coop_placements.scr` | 1,021 | 32.1 KB | HZM coop - BAKED BUILD-MODE PLACEMENTS (generated from build_<map>.dat). |
 | `coop_selftest.scr` | 320 | 13.2 KB | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
@@ -1398,7 +1398,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `e3l4_precache.scr` | 164 | 6.0 KB | Stripped 117 global-duplicate cache lines (2026-06-23) |
 | `m1l1.scr` | 3,025 | 88.5 KB | chrissstrahl - modified for coop |
 | `m1l1_precache.scr` | 113 | 4.1 KB |  |
-| `m1l2a.scr` | 4,595 | 140.8 KB | $oldtruckclip notsolid |
+| `m1l2a.scr` | 4,600 | 141.3 KB | $oldtruckclip notsolid |
 | `m1l2a_precache.scr` | 119 | 4.3 KB |  |
 | `m1l2b.scr` | 1,093 | 36.7 KB | WORLD/PLAYER SETUP |
 | `m1l2b_precache.scr` | 121 | 4.5 KB |  |

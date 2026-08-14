@@ -13,7 +13,7 @@ Every mission in the trilogy that has a coop script, what state it is in, and ho
 | Map | Coop | Script lines | Logged fixes |
 |---|---|---:|---:|
 | `m1l1` | yes | 3026 | 10 |
-| `m1l2a` | yes | 4596 | 5 |
+| `m1l2a` | yes | 4601 | 5 |
 | `m1l2b` | yes | 1094 | 3 |
 | `m1l3a` | yes | 891 | 2 |
 | `m1l3b` | yes | 1445 | 2 |

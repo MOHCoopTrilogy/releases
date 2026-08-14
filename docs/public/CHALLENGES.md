@@ -391,7 +391,7 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Let Them Sleep** | Sabotage all four fighters without waking a single sleeping guard |
 | **Back of the Class** | Find the lesson nobody was supposed to interrupt |
 | **Seconds to Spare** | Get clear of the castle with under thirty seconds on the airstrike clock |
-| **The Quiet Type** | Complete five different missions without ever raising the alarm |
+| **The Quiet Type** | Complete five missions without ever raising the alarm |
 
 ## AXIS FORCES
 
