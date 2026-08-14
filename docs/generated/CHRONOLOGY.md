@@ -13,25 +13,26 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `9a4c269 2026-08-14 tooling: correct the texture->widget transform in the service-record generator` |
-| commits | 87 |
+| HEAD | `f0d2fac 2026-08-14 tooling: do not count commented mentions as blueprint placements` |
+| commits | 88 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
-| unstaged diff | 5 files changed, 18 insertions(+), 16 deletions(-) |
+| unstaged diff | 6 files changed, 30 insertions(+), 26 deletions(-) |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 33 |
+| 2026-08 | 34 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (87)
+### Commits since 2026-01-01 (88)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `f0d2fac` | 2026-08-14 | joncurry94-tech | tooling: do not count commented mentions as blueprint placements |
 | `9a4c269` | 2026-08-14 | joncurry94-tech | tooling: correct the texture->widget transform in the service-record generator |
 | `c6620b4` | 2026-08-14 | joncurry94-tech | tooling: assert the service-record header layout instead of trusting arithmetic |
 | `38e6482` | 2026-08-14 | joncurry94-tech | tooling: check blueprint supply against the bp_* ladder |
@@ -125,8 +126,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `aedfea4 2026-08-14 officer: re-site the m4l2 anchor and reinforcement zone from in-game readings` |
-| commits | 1,414 |
+| HEAD | `a1c9ee0 2026-08-14 m5l1a: bake the two placed blueprints, ladder to 42` |
+| commits | 1,418 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -134,7 +135,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 21 |
+| 2026-08 | 25 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -174,10 +175,14 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (65)
+### Commits since 2026-01-01 (69)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `a1c9ee0` | 2026-08-14 | joncurry94 | m5l1a: bake the two placed blueprints, ladder to 42 |
+| `25bd05a` | 2026-08-14 | joncurry94 | officer: re-site the m4l3 anchor and reinforcement zone from in-game readings |
+| `62cb2b7` | 2026-08-14 | joncurry94 | m4l3: bake the five placed blueprints, ladder to 40 |
+| `1614494` | 2026-08-14 | joncurry94 | m4l2: bake the four placed blueprints, and retune the ladder to 35 |
 | `aedfea4` | 2026-08-14 | joncurry94 | officer: re-site the m4l2 anchor and reinforcement zone from in-game readings |
 | `0eb3867` | 2026-08-14 | joncurry94 | service record: put the blueprint count under its caption, inside the banner |
 | `ec0d1b1` | 2026-08-14 | joncurry94 | service record: BLUEPRINTS counter in the title banner, with layout asserts |

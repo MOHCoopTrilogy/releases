@@ -334,7 +334,7 @@ docs/reference/harness_and_reproduction.md	4740	.md	33	docs
 docs/reference/tiki_and_sound_aliases.md	4875	.md	60	docs
 docs/reference/warchestrestored_v1.1.0_changelog.txt	45915	.txt	872	docs
 docs/tools/README.md	5123	.md	91	docs
-docs/tools/check_challenges.py	13141	.py	309	docs
+docs/tools/check_challenges.py	13532	.py	316	docs
 docs/tools/depthscan2.py	2359	.py	76	docs
 docs/tools/docgen.py	62972	.py	1464	docs
 docs/tools/docs.cmd	467	.cmd	13	docs
@@ -1412,7 +1412,7 @@ hzm-mohaa-coop-mod/coop_mod/objective_drop.scr	7236	.scr	165	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objective_positions.scr	3691	.scr	89	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objectives.scr	30583	.scr	693	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/officer.scr	207429	.scr	4643	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/officer_positions.scr	33908	.scr	610	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/officer_positions.scr	34541	.scr	618	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/paradrop.scr	30241	.scr	724	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/player.scr	92947	.scr	1822	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/player.st	398	.st	18	hzm-mohaa-coop-mod
@@ -2055,11 +2055,11 @@ hzm-mohaa-coop-mod/maps/m3l3_precache.scr	5802	.scr	154	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m4l0.scr	19138	.scr	499	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m4l1.scr	24787	.scr	734	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m4l1_precache.scr	3912	.scr	105	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/m4l2.scr	47615	.scr	1450	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/m4l2.scr	49151	.scr	1472	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m4l2_precache.scr	4889	.scr	128	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/m4l3.scr	52991	.scr	1595	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/m4l3.scr	54436	.scr	1616	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m4l3_precache.scr	5944	.scr	157	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/m5l1a.scr	56065	.scr	1722	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/m5l1a.scr	56936	.scr	1736	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m5l1a_precache.scr	3690	.scr	103	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m5l1b.scr	49615	.scr	1669	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m5l1b_precache.scr	4181	.scr	117	hzm-mohaa-coop-mod

@@ -848,7 +848,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `check_challenges.py` | 309 | 12.8 KB | !/usr/bin/env python3 |
+| `check_challenges.py` | 316 | 13.2 KB | !/usr/bin/env python3 |
 | `depthscan2.py` | 76 | 2.3 KB |  |
 | `docgen.py` | 1,464 | 61.5 KB | !/usr/bin/env python3 |
 | `docs.cmd` | 13 | 0.5 KB |  |
@@ -1170,7 +1170,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `objective_positions.scr` | 89 | 3.6 KB | objective_positions.scr |
 | `objectives.scr` | 693 | 29.9 KB | Coop Side Objectives (optional / secondary) |
 | `officer.scr` | 4,643 | 202.6 KB | Officer Boss + Radio Station |
-| `officer_positions.scr` | 610 | 33.1 KB | coop_officer_positions.scr |
+| `officer_positions.scr` | 618 | 33.7 KB | coop_officer_positions.scr |
 | `paradrop.scr` | 724 | 29.5 KB | Allied Paradrop System |
 | `player.scr` | 1,822 | 90.8 KB | started by chrissstrahl on 2020.10.16 ([202]) |
 | `player.st` | 18 | 0.4 KB |  |
@@ -1426,11 +1426,11 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `m4l0.scr` | 499 | 18.7 KB | FARM HOUSE |
 | `m4l1.scr` | 734 | 24.2 KB |  |
 | `m4l1_precache.scr` | 105 | 3.8 KB |  |
-| `m4l2.scr` | 1,450 | 46.5 KB | WORLD/PLAYER SETUP |
+| `m4l2.scr` | 1,472 | 48.0 KB | WORLD/PLAYER SETUP |
 | `m4l2_precache.scr` | 128 | 4.8 KB |  |
-| `m4l3.scr` | 1,595 | 51.7 KB | LEVEL: M4L3 |
+| `m4l3.scr` | 1,616 | 53.2 KB | LEVEL: M4L3 |
 | `m4l3_precache.scr` | 157 | 5.8 KB |  |
-| `m5l1a.scr` | 1,722 | 54.8 KB | Mackey crossed this path as well |
+| `m5l1a.scr` | 1,736 | 55.6 KB | Mackey crossed this path as well |
 | `m5l1a_precache.scr` | 103 | 3.6 KB |  |
 | `m5l1b.scr` | 1,669 | 48.5 KB | Mackey was seen in this locale. |
 | `m5l1b_precache.scr` | 117 | 4.1 KB |  |
