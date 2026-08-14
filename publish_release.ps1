@@ -6,6 +6,13 @@
 param(
     [Parameter(Mandatory = $true)][string]$Version,
     [string]$Notes = "",
+    # [2026-08-14] PREFER -NotesFile OVER -Notes for anything containing non-ASCII. v1.2.9 published
+    # with a BOM and every em-dash mangled to "a-circumflex-euro" in BOTH the GitHub notes and the
+    # Discord post. The send paths were innocent: the caller did `Get-Content -Raw` with no
+    # -Encoding, and PowerShell 5.1 defaults that to ANSI, so $Notes was ALREADY mojibake in memory
+    # and both channels transmitted the corruption faithfully. -NotesFile hands the path straight to
+    # `gh --notes-file` with no PowerShell string round-trip, so there is nothing to mis-decode.
+    [string]$NotesFile = "",
     [switch]$DryRun,
     [switch]$SkipBuild
 )
@@ -188,8 +195,19 @@ $manifest | ConvertTo-Json -Depth 5 | Set-Content $manifestPath -Encoding utf8
 
 # --- 5. publish (Continue mode: gh/git write progress to stderr; rely on exit codes) ---
 $ErrorActionPreference = "Continue"
-$notesFile = Join-Path $env:TEMP "mohcoop_relnotes.md"
-if ($Notes) { $Notes | Set-Content $notesFile -Encoding utf8 } else { "MOH Coop Trilogy $Version" | Set-Content $notesFile -Encoding utf8 }
+if ($NotesFile) {
+    # straight through to gh - no PowerShell string round-trip, so nothing can mis-decode it
+    if (-not (Test-Path $NotesFile)) { throw "-NotesFile not found: $NotesFile" }
+    $notesFile = $NotesFile
+    # decode properly for the Discord body further down (utf8 handles a BOM if one is present)
+    $Notes = [System.IO.File]::ReadAllText($notesFile, [System.Text.Encoding]::UTF8).TrimStart([char]0xFEFF)
+} else {
+    $notesFile = Join-Path $env:TEMP "mohcoop_relnotes.md"
+    $body = if ($Notes) { $Notes } else { "MOH Coop Trilogy $Version" }
+    # NOT Set-Content -Encoding utf8: in PowerShell 5.1 that writes a BOM, and the BOM then shows up
+    # as a stray glyph at the top of the rendered GitHub release notes (observed on v1.2.9).
+    [System.IO.File]::WriteAllText($notesFile, $body, (New-Object System.Text.UTF8Encoding($false)))
+}
 & $gh release create $tag --repo $repoSlug --draft --title "MOH Coop Trilogy $Version" --notes-file $notesFile
 if ($LASTEXITCODE -ne 0) { throw "gh release create failed" }
 
