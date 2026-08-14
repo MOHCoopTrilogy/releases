@@ -231,7 +231,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/gfx/fonts` | 25 | 69.21 MB | .tga×25 |
 | `hzm-mohaa-coop-mod/global` | 70 | 1.03 MB | .scr×68, .txt×2 |
 | `hzm-mohaa-coop-mod/maintt` | 1 | 0.00 MB | .cfg×1 |
-| `hzm-mohaa-coop-mod/maps` | 130 | 88.93 MB | .scr×121, .bsp×8, .pth×1 |
+| `hzm-mohaa-coop-mod/maps` | 130 | 88.94 MB | .scr×121, .bsp×8, .pth×1 |
 | `hzm-mohaa-coop-mod/maps/briefing` | 12 | 0.06 MB | .scr×12 |
 | `hzm-mohaa-coop-mod/maps/cov` | 220 | 0.97 MB | .scr×220 |
 | `hzm-mohaa-coop-mod/maps/dm` | 9 | 0.01 MB | .scr×9 |
@@ -1432,7 +1432,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `m4l3_precache.scr` | 157 | 5.8 KB |  |
 | `m5l1a.scr` | 1,736 | 55.6 KB | Mackey crossed this path as well |
 | `m5l1a_precache.scr` | 103 | 3.6 KB |  |
-| `m5l1b.scr` | 1,669 | 48.5 KB | Mackey was seen in this locale. |
+| `m5l1b.scr` | 1,703 | 51.0 KB | Mackey was seen in this locale. |
 | `m5l1b_precache.scr` | 117 | 4.1 KB |  |
 | `m5l2a_precache.scr` | 117 | 3.9 KB | once the game starts |
 | `m5l2b.scr` | 743 | 30.2 KB | TANK DRIVE 2 |

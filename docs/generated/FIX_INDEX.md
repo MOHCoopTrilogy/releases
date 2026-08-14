@@ -8,7 +8,7 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-911 distinct file paths, 2,870 distinct tags.
+912 distinct file paths, 2,875 distinct tags.
 
 ## Files with the most history
 
@@ -457,6 +457,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/maps/m3l2.scr` | 1 | `bug-1218` |
 | `hzm-mohaa-coop-mod/maps/m4l1.scr` | 1 | `bug-842` |
 | `hzm-mohaa-coop-mod/maps/m4l3.scr` | 1 | `bug-842` |
+| `hzm-mohaa-coop-mod/maps/m5l1b.scr` | 1 | `bug-1802` |
 | `hzm-mohaa-coop-mod/maps/M5L2A.scr` | 1 | `bug-1625` |
 | `hzm-mohaa-coop-mod/maps/m6l1c.scr` | 3 | `bug-1710` `bug-1709` `bug-1713` |
 | `hzm-mohaa-coop-mod/maps/m6l1c.scr (sciencesayto` | 1 | `bug-1579` |
@@ -2005,6 +2006,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `gags` | 3 | `bug-1023` `bug-1257` `bug-1584` |
 | `gain-clamp` | 1 | `bug-099` |
 | `game-dll` | 1 | `bug-1551` |
+| `game-vars` | 1 | `bug-1802` |
 | `game.dll` | 15 | `bug-055` `bug-1062` `bug-1378` `bug-1622` `bug-1634` `bug-1635` `bug-379` `bug-380` `bug-463` `bug-719` `bug-724` `bug-846` `bug-861` `bug-866` `bug-892` |
 | `gameplay-critical` | 3 | `bug-gl2-forcepose-skips-composite-ally` `bug-gl2-invisible-live-char-depthprepass` `bug-gl2-invisible-live-enemies-prepass-pose` |
 | `gamescript` | 1 | `bug-533` |
@@ -2378,7 +2380,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `m4l0` | 1 | `bug-1626` |
 | `m4l1` | 1 | `bug-842` |
 | `m4l3` | 1 | `bug-842` |
-| `m5l1b` | 2 | `bug-1597` `bug-541` |
+| `m5l1b` | 3 | `bug-1597` `bug-1802` `bug-541` |
 | `m5l2a` | 1 | `bug-1625` |
 | `m6l1c` | 12 | `bug-1579` `bug-1700` `bug-1701` `bug-1701b` `bug-1703` `bug-1704` `bug-1706` `bug-1709` `bug-1710` `bug-1711` `bug-1713` `bug-1720` |
 | `m6l2a` | 69 | `bug-1714` `bug-1715` `bug-1716` `bug-1717` `bug-1718` `bug-1719` `bug-1720` `bug-1721` `bug-1722` `bug-1723` `bug-1726` `bug-1727` `bug-1728` `bug-1729` `bug-1730` `bug-1731` `bug-1732` `bug-1734` `bug-1735` `bug-1736` `bug-1737` `bug-1738` `bug-1739` `bug-1740` `bug-1741` `bug-1742` `bug-1743` `bug-1744` `bug-1745` `bug-1746` `bug-1747` `bug-1748` `bug-1749` `bug-1750` `bug-1751` `bug-1752` `bu… |
@@ -2410,6 +2412,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `map-load` | 1 | `bug-931b` |
 | `map-scope` | 2 | `bug-1188` `bug-1783` |
 | `map-spec` | 1 | `bug-1711` |
+| `map-transition` | 1 | `bug-1802` |
 | `maps` | 1 | `bug-1614` |
 | `maps-gate` | 1 | `bug-116` |
 | `maps-spec` | 1 | `bug-1548` |
@@ -2591,6 +2594,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `nil-guard` | 4 | `bug-1051` `bug-1065` `bug-1483` `bug-1493` |
 | `nil-throw` | 1 | `bug-1542` |
 | `nil-vs-null` | 2 | `bug-1583` `bug-1603` |
+| `no-archive` | 1 | `bug-1802` |
 | `no-body-gore` | 1 | `bug-797` |
 | `no-defect-found` | 1 | `bug-1487` |
 | `no-op-change` | 1 | `bug-1182` |
@@ -3305,6 +3309,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `soviet-exemption` | 1 | `bug-1287` |
 | `sp-kit` | 1 | `bug-1279` |
 | `sp-only-gate` | 1 | `bug-1747` |
+| `sp-only-path` | 1 | `bug-1802` |
 | `sp-parity` | 2 | `bug-1280` `bug-1282` |
 | `sp-to-mp` | 1 | `bug-899` |
 | `spam` | 3 | `bug-1153` `bug-1777` `bug-gl2-maxpolys` |
@@ -3387,6 +3392,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `stingers` | 1 | `bug-933b` |
 | `stopanimating` | 1 | `bug-1749` |
 | `stopwatch` | 4 | `bug-1753` `bug-1759` `bug-1760` `bug-1767` |
+| `storm` | 1 | `bug-1802` |
 | `story-actor` | 3 | `bug-837` `bug-839` `bug-842` |
 | `story-actors` | 1 | `bug-725` |
 | `straggler` | 1 | `bug-873` |
@@ -3775,7 +3781,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `weaponstate` | 4 | `bug-1606` `bug-1617` `bug-1694` `bug-350` |
 | `weapturret` | 3 | `bug-091` `bug-1552` `bug-229` |
 | `weaputils` | 1 | `bug-846` |
-| `weather` | 14 | `bug-022` `bug-1051` `bug-1052` `bug-1053` `bug-1133` `bug-1206` `bug-1280` `bug-1281` `bug-134` `bug-1345` `bug-1383` `bug-1547` `bug-231` `bug-430` |
+| `weather` | 15 | `bug-022` `bug-1051` `bug-1052` `bug-1053` `bug-1133` `bug-1206` `bug-1280` `bug-1281` `bug-134` `bug-1345` `bug-1383` `bug-1547` `bug-1802` `bug-231` `bug-430` |
 | `weather.scr` | 1 | `bug-231` |
 | `weatherpattern` | 1 | `bug-1280` |
 | `wedge` | 1 | `bug-1642` |

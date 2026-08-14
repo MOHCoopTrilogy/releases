@@ -13,25 +13,25 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `f0d2fac 2026-08-14 tooling: do not count commented mentions as blueprint placements` |
-| commits | 88 |
+| HEAD | `cd55bd8 2026-08-14 docs: log bug-1802 (m5l1b weather inherited via an SP-only path)` |
+| commits | 89 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
-| unstaged diff | 6 files changed, 30 insertions(+), 26 deletions(-) |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 34 |
+| 2026-08 | 35 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (88)
+### Commits since 2026-01-01 (89)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `cd55bd8` | 2026-08-14 | joncurry94-tech | docs: log bug-1802 (m5l1b weather inherited via an SP-only path) |
 | `f0d2fac` | 2026-08-14 | joncurry94-tech | tooling: do not count commented mentions as blueprint placements |
 | `9a4c269` | 2026-08-14 | joncurry94-tech | tooling: correct the texture->widget transform in the service-record generator |
 | `c6620b4` | 2026-08-14 | joncurry94-tech | tooling: assert the service-record header layout instead of trusting arithmetic |
@@ -126,8 +126,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `a1c9ee0 2026-08-14 m5l1a: bake the two placed blueprints, ladder to 42` |
-| commits | 1,418 |
+| HEAD | `aacf09d 2026-08-14 m5l1b: six blueprints, and make the map storm again` |
+| commits | 1,419 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -135,7 +135,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 25 |
+| 2026-08 | 26 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -175,10 +175,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (69)
+### Commits since 2026-01-01 (70)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `aacf09d` | 2026-08-14 | joncurry94 | m5l1b: six blueprints, and make the map storm again |
 | `a1c9ee0` | 2026-08-14 | joncurry94 | m5l1a: bake the two placed blueprints, ladder to 42 |
 | `25bd05a` | 2026-08-14 | joncurry94 | officer: re-site the m4l3 anchor and reinforcement zone from in-game readings |
 | `62cb2b7` | 2026-08-14 | joncurry94 | m4l3: bake the five placed blueprints, ladder to 40 |

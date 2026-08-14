@@ -469,3 +469,24 @@ shape is a periodically REBUILT cache (bounded staleness), not the existing one.
 **The general lesson:** the topology plan was strong on engine facts and repeatedly wrong about mod
 script intent. Verify a script claim against the script before acting on it - three of its items
 (these two plus the buildmode diff-gate, which was already implemented) needed no work at all.
+
+## Blueprints are not placed on vehicle maps (user, 2026-08-14)
+
+Collectible blueprints are being placed map by map across the trilogy. **Driving/riding maps are
+deliberately skipped** — starting with the m5l2a/m5l2b King Tiger pair, and the same reasoning
+covers the jeep maps (m1l3a, m1l3b) and any other on-rails stretch.
+
+The reason is that a blueprint is a *search* collectible: you wander, look behind things, and
+find it. On a map where the player is driving or riding a vehicle they cannot stop, dismount or
+backtrack, a hidden pickup is not a discovery — it is a thing that slides past the window. Worse,
+`collectible.scr` persists the found-set per player and a found blueprint never respawns, so a
+missed one on a vehicle map is missed *permanently*, with no way to go back for it.
+
+**So an empty vehicle map is correct, not an oversight.** Do not "complete the set" by adding
+blueprints to them later — check this entry first. The trilogy total is therefore always lower
+than "every coop map × N", and `check_challenges.py` counts what is actually placed rather than
+assuming full coverage, so the bp_* ladder stays honest either way.
+
+Rejected alternative: place them at the vehicle's start/end points so they are grabbable while
+stationary. That puts the collectible somewhere the player is already funnelled through, which
+makes it free rather than hidden — the opposite of what the collectible is for.
