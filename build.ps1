@@ -210,4 +210,15 @@ if (Test-Path $skel) {
     foreach ($line in $out) { Write-Host "  $line" -ForegroundColor DarkGray }
 }
 
+# [2026-08-14] The README names the exact installer files a new player must download, with pinned
+# URLs. It used to say "go to /releases/latest" instead, which quietly became impossible to follow
+# the first time a release shipped without an installer (the full package is ~6.8 GB and is only
+# published periodically). Nothing failed and nothing warned - the front door was simply broken.
+# Five range-GETs on every build is a cheap price for knowing the install instructions still work.
+$dl = "C:\mohaa-coop-dev\docs\tools\check_download_links.py"
+if (Test-Path $dl) {
+    $out = & python $dl 2>&1
+    foreach ($line in $out) { Write-Host "  $line" -ForegroundColor DarkGray }
+}
+
 Write-Host "Done."

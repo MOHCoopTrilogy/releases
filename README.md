@@ -31,7 +31,7 @@ Built on the [HaZardModding Coop Mod](https://github.com/HaZardModding/hzm-mohaa
 > to the dev team) or by [opening an issue](https://github.com/MOHCoopTrilogy/releases/issues).
 > Bug reports are the single most helpful thing you can do for the project right now.
 
-**[Download the latest release →](https://github.com/MOHCoopTrilogy/releases/releases/latest)**  |  **[Join our Discord →](https://discord.gg/Br9FDB3KU)** — release announcements, find people to play with, report bugs, follow development
+**[⬇ Download & install (exactly which files) →](#what-to-download)**  |  **[Latest release notes →](https://github.com/MOHCoopTrilogy/releases/releases/latest)**  |  **[Join our Discord →](https://discord.gg/Br9FDB3KU)** — release announcements, find people to play with, report bugs, follow development
 
 | Repo | What it holds |
 |---|---|
@@ -57,9 +57,32 @@ That's the whole list. The engine, renderer, runtimes, and all mod content are b
 > administrator rights, so it could not modify a protected location even if it tried. Uninstalling
 > removes its own folder and nothing else. You can keep playing the original campaign normally.
 
-1. Go to [Releases](https://github.com/MOHCoopTrilogy/releases/releases/latest) and download the latest `MOHCoopTrilogy-Setup-<version>.exe` **together with all of its `.bin` parts** (the payload is split into ~2 GB slices — the exe needs them next to it).
-2. Keep the exe and the `.bin` files in the same folder and run the exe.
-3. Launch the game through the **MOH Trilogy Coop** shortcut (desktop or Start menu). Every launch quietly checks for updates and downloads only what changed — typically a few megabytes. If the check fails for any reason, the game simply starts with what you have; updates never block play.
+### What to download
+
+The installer is **one `.exe` plus four `.bin` payload parts**. The exe is only a couple of
+megabytes — it is a stub, and it cannot install anything without the `.bin` files sitting next to
+it. **Download all five into the same folder.**
+
+| # | File | Size |
+|---|---|---|
+| 1 | **[MOHCoopTrilogy-Setup-1.2.8.exe](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.8/MOHCoopTrilogy-Setup-1.2.8.exe)** — run this one | 2 MB |
+| 2 | [MOHCoopTrilogy-Setup-1.2.8-1.bin](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.8/MOHCoopTrilogy-Setup-1.2.8-1.bin) | 2.1 GB |
+| 3 | [MOHCoopTrilogy-Setup-1.2.8-2.bin](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.8/MOHCoopTrilogy-Setup-1.2.8-2.bin) | 2.1 GB |
+| 4 | [MOHCoopTrilogy-Setup-1.2.8-3.bin](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.8/MOHCoopTrilogy-Setup-1.2.8-3.bin) | 2.1 GB |
+| 5 | [MOHCoopTrilogy-Setup-1.2.8-4.bin](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.8/MOHCoopTrilogy-Setup-1.2.8-4.bin) | 0.5 GB |
+|   | **Total** | **~6.8 GB** |
+
+> [!IMPORTANT]
+> **The installer says 1.2.8 and that is correct — do not go looking for a newer one.** The full
+> installer is published every so often, not with every release, because it is ~6.8 GB while a
+> normal update is a few megabytes. Install 1.2.8 and it brings itself up to the current version
+> the first time you launch it. The newest *release* on this page is always the newest *game*; the
+> newest *installer* is just the most recent full package.
+
+### Then
+
+1. Put the exe and all four `.bin` files in the same folder and run the exe.
+2. Launch the game through the **MOH Trilogy Coop** shortcut (desktop or Start menu). Every launch quietly checks for updates and downloads only what changed — typically a few megabytes. If the check fails for any reason, the game simply starts with what you have; updates never block play.
 
 **Already on a 1.0.x test build?** Grab the small `MOHCoop-Upgrade` zip from Releases instead of the full setup — after that one patch, the auto-updater keeps you current.
 
