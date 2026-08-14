@@ -184,4 +184,17 @@ foreach ($bin in $binaries) {
     }
 }
 
+# [user 2026-08-14] CHALLENGE REACHABILITY. A challenge that can never complete is
+# indistinguishable from one nobody has finished yet, which is how 32 unearnable challenges
+# reached players and sat there until somebody audited all 344 by hand. Run the check on every
+# build so the count is in front of you, and a new one is noticed the day it is introduced
+# rather than months later. --warn deliberately: there is a known backlog of unwired stats, and
+# failing the build on it would just train everyone to ignore the failure.
+$chk = "C:\mohaa-coop-dev\docs\tools\check_challenges.py"
+if (Test-Path $chk) {
+    $out = & python $chk --warn 2>&1
+    $summary = $out | Select-String -Pattern "^challenges:|cannot be completed|^OK - every"
+    foreach ($line in $summary) { Write-Host "  $line" -ForegroundColor DarkGray }
+}
+
 Write-Host "Done."

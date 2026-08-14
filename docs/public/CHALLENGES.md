@@ -404,8 +404,8 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **U-Boat Threat Neutralized** | Eliminate 35 Kriegsmarine sailors |
 | **Desert Fox Hunter** | Eliminate 50 Afrika Korps soldiers |
 | **Sands of Victory** | Eliminate 150 Afrika Korps soldiers |
-| **Grounded** | Eliminate 30 Fallschirmjaeger troops |
-| **Airborne Annihilator** | Eliminate 100 Fallschirmjaeger troops |
+| **Know Your Enemy** | Kill at least one soldier from 5 different Axis units |
+| **Order of Battle** | Kill at least one soldier from 8 different Axis units |
 | **Shadow Hunter** | Eliminate 12 Gestapo officers |
 | **Total De-Nazification** | Eliminate 20 Gestapo officers |
 | **Anzio Advance** | Eliminate 40 Italian infantry |

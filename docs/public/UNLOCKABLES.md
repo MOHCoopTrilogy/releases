@@ -6,11 +6,11 @@
 
 Everything you can earn, and exactly what earns it. Nothing here is bought or random - every unlock is attached to a specific challenge, and completing that challenge grants it.
 
-**213 unlocks** across 4 kinds. Unlock names are derived from the game assets themselves, so they match what you see in the menus.
+**220 unlocks** across 4 kinds. Unlock names are derived from the game assets themselves, so they match what you see in the menus.
 
 | Kind | Unlocks | What they are |
 |---|---:|---|
-| **Weapons** | 29 | Usable weapons added to your loadout options. |
+| **Weapons** | 36 | Usable weapons added to your loadout options. |
 | **Perks** | 15 | Passive squad abilities and extra equipment. |
 | **Helmets** | 48 | Headgear for your soldier, picked in the Helmet selector. |
 | **Uniforms & skins** | 121 | Player appearances, picked in the Armory. |
@@ -21,12 +21,15 @@ Usable weapons added to your loadout options.
 
 | Unlock | Earned by | How to earn it |
 |---|---|---|
+| **30calportable** | Belt-Fed Fury | Get 40 kills with the .30 Cal |
 | **Arisaka Sniper** | Palm Nest | Get 100 kills with the Arisaka |
 | **BAR** | Iron Curtain Smasher | Eliminate 250 Wehrmacht infantry |
+| **Bazooka** | Bob Burns' Horn | Get 15 kills with the Bazooka |
 | **Beretta Silenced** | Bella Silenziosa | Get 50 kills with the Beretta |
 | **Breda** | Apennine Breakthrough | Eliminate 110 Italian infantry |
 | **Carcano Sniper** | Cecchino | Get 100 kills with the Carcano |
 | **Colt Silenced** | Old Slabsides | Get 50 kills with the Colt .45 |
+| **Delisle** | The Silent Carbine | Get 25 kills with the De Lisle |
 | **Enfield Sniper** | His Majesty's Marksman | Get 25 kills with the L42A1 |
 | **G43 Sniper** | Walther's Finest | Get 100 kills with the Gewehr 43 |
 | **Garand Scoped** | Sniper's Eye | Get 100 kills with the M1 Garand |
@@ -36,13 +39,17 @@ Usable weapons added to your loadout options.
 | **KAR98 Snipersilenced** | Their Own Scope | Get 40 kills with the Kar98 Sniper |
 | **L42A1** | Sniper's Enfield | Get 100 kills with the Lee-Enfield |
 | **Lugerp08 Silenced** | Toggle Silencer | Get 50 kills with the Luger P08 |
+| **Mg42portable** | Bonesaw | Get 40 kills with the MG42 |
+| **MP40** | Not a Schmeisser | Get 50 kills with the MP40 |
 | **MP40 Silenced** | Hush Puppy | Get 100 kills with the MP40 |
 | **MP44** | First of Its Kind | Enter the armory and steal an StG44 |
-| **MP44** | Airborne Annihilator | Eliminate 100 Fallschirmjaeger troops |
+| **MP44** | Order of Battle | Kill at least one soldier from 8 different Axis units |
 | **Mp44scoped** | Sturm Scope | Get 100 kills with the StG44 |
 | **Nagant Sniper** | Rodina's Rifle | Get 100 kills with the Mosin-Nagant |
 | **Nagant Sniper Silenced** | Zaitsev's Trade | Get 30 kills with the Mosin Sniper |
 | **P38 Silenced** | Officer's Whisper | Get 50 kills with the Walther P38 |
+| **Panzerschreck** | Tank Terror | Get 15 kills with the Panzerschreck |
+| **PIAT** | Spring-Loaded Suicide | Get 15 kills with the PIAT |
 | **Ppsh43 Silenced** | Silent Papasha | Get 100 kills with the PPSh-41 |
 | **Shotgun** | Shadow Hunter | Eliminate 12 Gestapo officers |
 | **Springfield** | Kopfschuss | Get 25 headshot kills |
