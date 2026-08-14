@@ -220,17 +220,16 @@ instant.** This is why the fix pass is instrumented first and repaired second - 
 
 ## T4 — A capacity family has more members than you think
 
-**Bugs:** 891, 892, 914-935, 1186, 1214, 1582; the whole entity-pool saga.
+**Bugs:** 891, 892, 914-935, 1186, 1214, 1582, 1803; the whole entity-pool saga.
 
-**Tell:** things vanish, alias to each other, or corrupt at high entity/model/sound counts. Often
-**no log line at all**, because the overflow branch discards silently.
+**Tell:** things vanish, alias, or corrupt at high entity/model/sound counts. Often **no log line
+at all** — the overflow branch discards silently.
 
-**The archetype — `maxentities 2048`:** `coop_mod/server.cfg` shipped `set maxentities 2048` for
-*years* while `GENTITYNUM_BITS` was 10 — a hard wire cap of 1024 with slots 1022/1023 reserved as
-`ENTITYNUM_WORLD`/`NONE`. The setting **added no entities; it disabled `AllocEdict`'s overflow
-guard**, so the allocator handed out the world slot. That one lie produced a weekend of
-use-after-free minidumps (`Sentient::FindItem`, `Entity::updateOrigin`, `Player::UpdateStats`,
-`Sentient::NextWeapon`) — and, we now believe, the AI glitching that got decapitation reverted.
+**The archetype — `maxentities 2048`:** shipped in `coop_mod/server.cfg` for *years* while
+`GENTITYNUM_BITS` was 10 — a hard wire cap of 1024, slots 1022/1023 reserved as
+`ENTITYNUM_WORLD`/`NONE`. It **added no entities; it disabled `AllocEdict`'s overflow guard**, so
+the allocator handed out the world slot: a weekend of use-after-free minidumps, and probably the
+AI glitching that got decapitation reverted.
 
 **Sub-lessons, each bought with a crash:**
 
@@ -246,20 +245,24 @@ use-after-free minidumps (`Sentient::FindItem`, `Entity::updateOrigin`, `Player:
   now paid out **three separate times** for the invisible-actor symptom alone (bug-932 gl1,
   `renderergl2/tr_local.h:2339` gl2, bug-1135 `R_AllocModel`).
 - **Map the whole producer→consumer chain in one pass** (bug-1186's `MAX_SNAPSHOT_ENTITIES`).
+- **A capacity never reset is a per-SESSION budget, and it kills an INNOCENT map** (bug-1803).
+  `MAX_SKELETOR_CHANNELS` fills two process-global statics zeroed only at construction. After ~28
+  maps e2l2 merely held the 2,560th channel — blameless, fine from a fresh boot. **Ask of every
+  limit: what frees an entry?** If nothing does, size it against everything the game can load: a
+  measured 4,589 whole-game proves 2,560 always had to fall over. Resetting is NOT safe:
+  `skelChannelList_c` stores *global* indices in every cached model.
 - **A protocol raise ships four binaries** — see [ENGINE.md](ENGINE.md#protocol-coupling).
-- **One capacity grows while nobody touches the code: `MAX_CVARS`** (bug-1582). It is consumed by
-  *archived* content: `omconfig.cfg` reached **3019** cvars (Service Record ~1500 over ~303 rows,
-  armory locks ~500) and opening the SR binds **942** at once, crossing 4096 a month after bug-598
-  raised it 2048->4096. Doubling is headroom, not a cure. Now 8192 + an 80% warning; **exe-only**.
+- **One capacity grows while nobody touches the code: `MAX_CVARS`** (bug-1582). *Archived* content
+  consumes it: `omconfig.cfg` hit **3019** cvars (Service Record ~1500, armory locks ~500), crossing
+  4096 a month after bug-598 doubled it. Doubling is headroom, not a cure. Now 8192 + 80% warning.
 
 **The best worked example in the codebase - `MAX_SOUNDS`.** Read
-`openmohaa-hzm/code/qcommon/q_shared.h:1690-1755` **in full** before touching any capacity constant;
-that comment is the canonical copy and is not reproduced here. It enumerates the four binding
-constraints **in the order they bite** - configstring layout (`CS_AXIS = MAX_SOUNDS + 2393`, broke at
-2000, bug-1179), reliable commands (`MAX_RELIABLE_COMMANDS`, must stay a power of two, bug-1183 twice),
-the 11-bit `sound_index` wire field that **silently truncates**, and `MAX_GAMESTATE_CHARS` - tags each
-with the bug that found it *including the two failed attempts*, and backs it with a compile-time
-`#error` so the rule fails at BUILD time instead of silently.
+`openmohaa-hzm/code/qcommon/q_shared.h:1690-1755` **in full** before touching any capacity constant -
+that comment is canonical and is not reproduced here. It lists the four binding constraints **in the
+order they bite** (configstring layout `CS_AXIS = MAX_SOUNDS + 2393`, bug-1179; `MAX_RELIABLE_COMMANDS`,
+must stay a power of two, bug-1183 twice; the 11-bit `sound_index` that **silently truncates**;
+`MAX_GAMESTATE_CHARS`), tags each with the bug that found it *including the two failed attempts*, and
+backs it with a compile-time `#error` so the rule fails at BUILD time.
 
 **Do this for every capacity constant: turn the rule from a comment into a build break.**
 
@@ -854,9 +857,8 @@ Sites: `docs/proposals/conversation_guard_sites.json` - 196, of which **48 are d
 
 ## Archived dev-switch cvars latch across restarts (bug-1427)
 
-A `seta`-archived mode switch (`coop_buildmap`) set once for an authoring session rides
-omconfig.cfg forever and silently re-fires its branch on every later load - it broke campaign e3l4
-twice in one evening, and editing omconfig.cfg from outside loses the race because the engine
-rewrites it with the in-memory value at shutdown. **Any cvar that flips a map into a special mode
-must be consumed one-shot at map init**: copy it into a level var in `main.scr::main`, `setcvar`
-it back to 0 immediately, and make every reader use the level var - never a live `getcvar`.
+A `seta`-archived mode switch (`coop_buildmap`) rides omconfig.cfg forever and silently re-fires on
+every later load - it broke e3l4 twice in one evening. Editing omconfig.cfg externally loses the
+race: the engine rewrites it from memory at shutdown. **Consume any mode-flipping cvar one-shot at
+map init**: copy to a level var in `main.scr::main`, `setcvar` it back to 0, read only the level
+var - never a live `getcvar`.

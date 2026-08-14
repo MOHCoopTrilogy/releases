@@ -197,4 +197,17 @@ if (Test-Path $chk) {
     foreach ($line in $summary) { Write-Host "  $line" -ForegroundColor DarkGray }
 }
 
+# bug-1803: the skeletor channel name table is a process-global static that is NEVER reset between
+# maps, so its ceiling has to cover every model the whole game can load, not one session's worth.
+# Overflow strands the player on a loading screen of an innocent map late in a long session - the
+# most expensive possible symptom to diagnose. Re-measure the real asset requirement on every
+# build (cached on pk3 fingerprint, so it costs nothing unless assets changed) and say so out loud
+# while there is still headroom. This is T4's rule: turn the capacity rule into a build-time check
+# instead of a comment nobody re-reads after adding a model pack.
+$skel = "C:\mohaa-coop-dev\docs\tools\count_skel_channels.py"
+if (Test-Path $skel) {
+    $out = & python $skel --check 2>&1
+    foreach ($line in $out) { Write-Host "  $line" -ForegroundColor DarkGray }
+}
+
 Write-Host "Done."
