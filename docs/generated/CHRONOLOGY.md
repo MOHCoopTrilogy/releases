@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `684371f 2026-08-17 manifest 1.3.1` |
-| commits | 99 |
+| HEAD | `04ecc1a 2026-08-17 docs: regenerate after the v1.3.1 release` |
+| commits | 100 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 45 |
+| 2026-08 | 46 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (99)
+### Commits since 2026-01-01 (100)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `04ecc1a` | 2026-08-17 | joncurry94-tech | docs: regenerate after the v1.3.1 release |
 | `684371f` | 2026-08-17 | joncurry94-tech | manifest 1.3.1 |
 | `34eb9e0` | 2026-08-17 | joncurry94-tech | docs: two weapon auditors, and the traps they made testable |
 | `acf1323` | 2026-08-16 | joncurry94-tech | docs: regenerate after the v1.3.0 source commits |
