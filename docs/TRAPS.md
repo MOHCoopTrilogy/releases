@@ -8,7 +8,7 @@
 
 Status: **!** = open now, **~** = recurring, blank = fixed/known pattern.
 
-[T1](#t1)~ Morpheus parse killers · [T2](#t2) Generators corrupt the files they write · [T3](#t3)~ Silent-veto bugs · [T4](#t4)~ A capacity family has more members than you think · [T5](#t5) `$player` is an array; NIL ≠ NULL; storms are sequential · [T6](#t6)~ What you shipped is not what loads (pak / shader / extension order) · [T7](#t7) Cvar registration, flags, and exec order · [T8](#t8) Server→client stufftext is a lossy, filtered channel · [T9](#t9) Same-frame spawn → model → solid race · [T10](#t10)~ Deploy gaps · [T11](#t11)! Trusting the record over the code · [T12](#t12)! Name collisions between two identically-named trees · [T13](#t13) Guessing at a mechanism in a high-blast-radius subsystem · [T14](#t14)! Static audits pass while a live boot throws hundreds of errors · [T15](#t15)~ Harness and reproduction gotchas · [T18](#t18)! The HUD: a slot that fades, one already taken, a prompt nobody clears · [T19](#t19) A radius is a SPHERE; hand-rolled distance is not trustworthy
+[T1](#t1)~ Morpheus parse killers · [T2](#t2) Generators corrupt the files they write · [T3](#t3)~ Silent-veto bugs · [T4](#t4)~ A capacity family has more members than you think · [T5](#t5) `$player` is an array; NIL ≠ NULL; storms are sequential · [T6](#t6)~ What you shipped is not what loads (pak / shader / extension order) · [T7](#t7) Cvar registration, flags, and exec order · [T8](#t8) Server→client stufftext is a lossy, filtered channel · [T9](#t9) Same-frame spawn → model → solid race · [T10](#t10)~ Deploy gaps · [T11](#t11)! Trusting the record over the code · [T12](#t12)! Name collisions between two identically-named trees · [T13](#t13) Guessing at a mechanism in a high-blast-radius subsystem · [T14](#t14)! Your verification lied: audits and harnesses · [T15](#t15)~ Harness and reproduction gotchas · [T18](#t18)! The HUD: a slot that fades, one already taken, a prompt nobody clears · [T19](#t19) A radius is a SPHERE; hand-rolled distance is not trustworthy
 
 
 ---
@@ -31,8 +31,8 @@ Status: **!** = open now, **~** = recurring, blank = fixed/known pattern.
 | `docs/tools/linecheck.py` | a line **starting** with a binary operator | everything below |
 | odd-quote scan (comment- and string-aware, per line) | unterminated / multi-line string literals | the rest of T1 |
 
-The log names only the **first** offending line, never all of them: bug-1283 had two multi-line strings in
-one file, and fixing just the reported one would have left the file equally dead. Fix the class, not the line.
+The log names only the **first** offending line: bug-1283 had two multi-line strings in one file, and
+fixing the reported one would have left it equally dead. Fix the class, not the line.
 
 **Tell:** a feature silently does nothing. **Never an error at the failure site.** Every `::` call
 into the file logs `Script was not properly loaded`. If a whole subsystem went dead at once
@@ -47,20 +47,18 @@ then runs with no script at all — raw team menu, unstartable.
 |---|---|
 | Command syntax on an `EV_GETTER` property (`local.e getmins`) — must use property syntax | 910 |
 | A script command that does not exist because a sub-agent invented it (`userinfo`, `getcurrentdmweapontype`) | 298, 1067 |
-| A function call inside a vector literal | 348 |
-| A function call **and** a vector literal in one expression | 402 |
-| Parenthesised arithmetic / a bare negative `(-1)` | 1069 |
+| A function call inside a vector literal, or with one in the same expression | 348, 402 |
+| Negatives/arithmetic: parenthesised `(-1)`, or in a COMMAND ARG slot — `$ent coopammo 0 - 1` (unparenthesised). Compute to a local. **But** negative *vector components* are fine: `( 4016 0 - 967 0 - 328 )` == `( 4016 -967 -328 )` — don't "fix" them. | 1069, 1826, 1830 |
 | An empty-array literal `[]` — morlang has none | 1105 |
 | An unquoted `+`/`-` directive argument: `surface X -nodraw`, `surface X "+skin1"`. Valid TIKI frame-command syntax, fatal in script (`unexpected TOKEN_PLUS`) - **quote it**. The depth scan cannot catch this class; braces still balance. | 533, 1308 |
 | A leading `&&` or `\|\|` on a continuation line | 739/750 |
 | A real newline inside a string literal — from a generator, or hand-typed as a multi-line banner | 331, 962, 1283, 1285 |
 | A backslash in a script path (resolved to `coop_modhelmet.scr`) | 1205 |
-| Em-dash, UTF-8 BOM, any non-ASCII | (CLAUDE.md, longstanding) |
-| Duplicate label; label/brace mismatch | (CLAUDE.md, longstanding) |
+| Em-dash, UTF-8 BOM, any non-ASCII; duplicate label; label/brace mismatch | (CLAUDE.md) |
 
-**Also NOT a parse killer, contrary to an older note:** `spawn <class>` **with** inline keyvalues is
-fine — 192 working occurrences including `main.scr`. `KNOWN_WORKING_STATE.md` still forbids this;
-it is wrong. See [90-folklore.md](90-folklore.md).
+**NOT a parse killer, contrary to an older note:** `spawn <class>` **with** inline keyvalues is fine
+— 192 working occurrences including `main.scr`. `KNOWN_WORKING_STATE.md` still forbids it; it is
+wrong. See [90-folklore.md](90-folklore.md).
 
 **Fix / check:**
 1. **`developer 1` is mandatory** — compile errors are developer-gated at three call sites
@@ -73,8 +71,8 @@ it is wrong. See [90-folklore.md](90-folklore.md).
    plus `scrlint.py`) and run clean on the current tree.
 4. Verify any claimed script command against engine source **before** it lands.
 
-**Live status:** clean (re-scans 2026-07-29, 2026-08-08) - but bug-1027 has exactly this
-signature: `maps/e3l4/outro.scr` "was not properly loaded" + a 251x cascade.
+**Live status:** clean (re-scans 2026-07-29, 2026-08-08). bug-1027 (`e3l4/outro.scr`) has this
+exact signature.
 
 ---
 
@@ -225,11 +223,9 @@ instant.** This is why the fix pass is instrumented first and repaired second - 
 **Tell:** things vanish, alias, or corrupt at high entity/model/sound counts. Often **no log line
 at all** — the overflow branch discards silently.
 
-**The archetype — `maxentities 2048`:** shipped in `coop_mod/server.cfg` for *years* while
-`GENTITYNUM_BITS` was 10 — a hard wire cap of 1024, slots 1022/1023 reserved as
-`ENTITYNUM_WORLD`/`NONE`. It **added no entities; it disabled `AllocEdict`'s overflow guard**, so
-the allocator handed out the world slot: a weekend of use-after-free minidumps, and probably the
-AI glitching that got decapitation reverted.
+**The archetype — `maxentities 2048`:** shipped for *years* while `GENTITYNUM_BITS` was 10 (a hard
+cap of 1024). It **added no entities; it disabled `AllocEdict`'s overflow guard**, so the allocator
+handed out the world slot: a weekend of use-after-free minidumps.
 
 **Sub-lessons, each bought with a crash:**
 
@@ -589,45 +585,48 @@ owner.**
 ---
 
 <a name="t13"></a>
-## T14 — Static audits pass while a live boot throws hundreds of errors
+## T14 — Your verification lied: audits that pass, harnesses that measure nothing
 
-**Bugs:** 1026, 1027, 1218, 1219, 1220, 1473–1490.
+**Bugs:** 1026, 1027, 1218-1220, 1473-1490, 1812-1813.
 
-**Tell:** a map is graded clean by a read-through audit and then storms on boot. t2l2 was graded
-**A−** statically and throws 265 errors on coop boot; it still reaches coop-ready, so it is
-*degraded, not dead* — precisely why a read-through missed it. **A live boot is the only real test.**
+**Tell:** a map graded clean by a read-through then storms on boot. t2l2 graded **A−** statically
+and throws 265 errors on coop boot — *degraded, not dead*, which is exactly why a read-through
+missed it. **A live boot is the only real test.**
 
 **Absence does not log.** A parse error screams; a VO line that never plays, a trigger nobody walks
-into, an alias resolving to nothing are all silent. Error-driven testing cannot find them by
-construction — you need an **expectation manifest** (what *should* fire, extracted from the BSP
-entity lump) diffed against **engine instrumentation** (what *did* fire). That is what the coverage
-sweep is, and it is the reason all of the below was invisible until 2026-08-06.
+into, an alias resolving to nothing are silent — error-driven testing cannot find them by
+construction. You need an **expectation manifest** (what *should* fire, from the BSP entity lump)
+diffed against **engine instrumentation** (what *did*). That is the coverage sweep.
 
-**Settled 2026-08-06 by the 4-player coverage sweep.** 49 walker-valid maps produced **26,230 script
-errors across 548 source sites**, none of which any static audit reported. They are not spread
-evenly — they concentrate in **shared** files, so a few fixes repair many maps: `vehicle_warning.scr`
-12,690 (48%), `gags/t2l3_friendly.scr` 8,694 (33%), `gags/t3l1_enemyspawn.scr` 972,
-`global/spotlight.scr` 798, `coop_mod/officer.scr:1754` 666 (the mod's **own** code, all 48 maps).
+**Settled 2026-08-06 by the 4-player coverage sweep.** 49 walker-valid maps threw **26,230 script
+errors across 548 sites**, none reported by any static audit — and they concentrate in **shared**
+files, so few fixes repair many maps: `vehicle_warning.scr` 12,690 (48%), `gags/t2l3_friendly.scr`
+8,694 (33%), `gags/t3l1_enemyspawn.scr` 972, `global/spotlight.scr` 798, `coop_mod/officer.scr:1754`
+666 (the mod's **own** code, all 48 maps).
 
 **The dominant cause is `$player`-as-array** (see [T5](#t5)) reaching a retail SP script that
-dereferences `.origin`. It is invisible in SP *and* in 1-player coop: `OP_UN_TARGETNAME` yields a
-plain listener at exactly one match and a container only at 2+. **This class needs two connected
-players to reproduce at all** — which is why years of solo testing never saw the largest error source
-in the trilogy.
+dereferences `.origin`. Invisible in SP *and* in 1-player coop: `OP_UN_TARGETNAME` yields a plain
+listener at one match, a container only at 2+. **It needs two connected players to reproduce at
+all** — which is why years of solo testing never saw the trilogy's largest error source.
+
+**A MEASUREMENT HARNESS FAILS SILENTLY TOO — a broken one does not error, it reports.** Four AI A/B
+runs (2026-08-15) were each invalidated a different invisible way, all four looking clean: parked
+players, stochastic exposure, no players connected, and a log that truncates on server start so
+offset-slicing reads the wrong arm. **Refuse to report unless preconditions held, and prove the
+guard fires.** Full table and the six rules:
+[reference/harness_and_reproduction.md](reference/harness_and_reproduction.md).
 
 **A declaration with no producer is the same silence** (bugs 1596-1598, T3 row). Cross-reference
-declarations against producers **mechanically, walking the whole tree** - a `maps/*.scr` glob misses
-`maps/<map>/*.scr` and miscounted three wired challenges as dead.
+mechanically, walking the WHOLE tree — a `maps/*.scr` glob misses `maps/<map>/*.scr` and miscounted
+three wired challenges as dead.
 
 ---
 
 <a name="t15"></a>
 ## T15 - Harness and reproduction gotchas
 
-Moved to **`docs/reference/harness_and_reproduction.md`**. See also the remote-client test rig in
-`docs/proposals/server_topology_and_limits.md` section 12: a second PC on the LAN plus
-`sv_lanForceRate 0` and `sv_packetdelay 60`. A VPN is not a substitute - home VPNs hand out RFC1918
-addresses that `Sys_IsLANAddress` still reports as LAN.
+All of it, including the remote-client rig and the four ways a measurement harness lied, lives in
+**[reference/harness_and_reproduction.md](reference/harness_and_reproduction.md)**.
 
 ## T17 — Script VALUE types: 'none', keyvalue strings, and who owns an event
 

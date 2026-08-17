@@ -31,3 +31,40 @@ Each of these cost at least one session.
 | **The engine TRUNCATES `qconsole.log` on every launch** | A driver that relaunches to make progress destroys the results it is collecting. Rotate the log per launch **and** have the reader scan `qconsole*.log` as a set — doing only one of the two silently loses runs (the observed symptom was a completion count going *down*, 34 → 32). |
 
 ---
+
+
+## Measuring AI behaviour: four ways a harness lied (2026-08-15)
+
+Four A/B runs comparing the dynamic-AI layer were each invalidated a different invisible way. Every
+one produced a clean-looking number, which is the whole problem: a broken harness does not error, it
+reports.
+
+| What went wrong | What it looked like | Why it was wrong |
+|---|---|---|
+| Players parked at spawn | baseline `repositioned=0` — "the AI are turrets" | with players in real contact the SAME baseline moved 4,248u. The stand-and-shoot premise the layer was built to fix may itself have been this artefact |
+| Stochastic exposure | one arm `engaging=15.4`, other `1.9` | maptest phase-2 teleports to semi-arbitrary points; that measures where the patrol landed, not the treatment |
+| No players connected | a confident `engaging=0` over 280s | clients reached `CS_PRIMED` and never `CS_ACTIVE`; the map was empty the whole run |
+| Log truncation | one arm's data silently gone | `qconsole.log` is TRUNCATED on every server start, so line-offset slicing across runs reads the wrong arm. Arm B's "start" offset came out LOWER than arm A's |
+
+**Rules that came out of it**
+
+1. **Refuse to measure until preconditions hold.** `ai_ab_test.ps1` polls for `to CS_ACTIVE` and
+   aborts rather than measuring an empty map.
+2. **Snapshot per arm.** Never slice one growing log by offset across server restarts.
+3. **Print exposure before results, and decline to conclude when arms differ.**
+   `ai_ab_report.py` refuses at >1.5x and on zero contact.
+4. **Prove the guard fires.** Both guards were run against data that must fail — the mismatch case
+   would otherwise have reported "ON repositions 5x more".
+5. **The treatment can BE the exposure.** With `coop_aiSquad` on, more enemies engaging is the
+   feature working, not a confound. Normalise per engaged actor (`moving/engaged`,
+   `dist/engagedMoved`) instead of comparing raw totals.
+6. **A proxy metric has a ceiling.** `totalDist` cannot tell "parked in good cover, trading fire"
+   from "parked in the open doing nothing". Past that point it needs eyes, not another run.
+
+
+## Remote-client test rig
+
+See `docs/proposals/server_topology_and_limits.md` section 12: a second PC on the LAN plus
+`sv_lanForceRate 0` and `sv_packetdelay 60`. **A VPN is not a substitute** — home VPNs hand out
+RFC1918 addresses that `Sys_IsLANAddress` still reports as LAN, so you get LAN rates and never
+reproduce the condition you are testing for.

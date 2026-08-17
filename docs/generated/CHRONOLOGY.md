@@ -13,24 +13,32 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `cd55bd8 2026-08-14 docs: log bug-1802 (m5l1b weather inherited via an SP-only path)` |
-| commits | 89 |
+| HEAD | `8bd3e8b 2026-08-14 readme: name the exact installer files, and test the links on every build` |
+| commits | 94 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **3 modified, 3 untracked** |
+| unstaged diff | 13 files changed, 1121 insertions(+), 848 deletions(-) |
+
+> Working tree is dirty. Everything in those 6 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 35 |
+| 2026-08 | 40 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (89)
+### Commits since 2026-01-01 (94)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `8bd3e8b` | 2026-08-14 | joncurry94-tech | readme: name the exact installer files, and test the links on every build |
+| `5ba6c59` | 2026-08-14 | joncurry94-tech | publish: stop mangling release notes, and drop the BOM |
+| `310e947` | 2026-08-14 | joncurry94-tech | manifest 1.2.9 |
+| `df90048` | 2026-08-14 | joncurry94-tech | skeletor: size the channel table for a whole playthrough, and fail soft |
+| `9507fac` | 2026-08-14 | joncurry94-tech | docs: record that vehicle maps are deliberately skipped for blueprints |
 | `cd55bd8` | 2026-08-14 | joncurry94-tech | docs: log bug-1802 (m5l1b weather inherited via an SP-only path) |
 | `f0d2fac` | 2026-08-14 | joncurry94-tech | tooling: do not count commented mentions as blueprint placements |
 | `9a4c269` | 2026-08-14 | joncurry94-tech | tooling: correct the texture->widget transform in the service-record generator |
@@ -126,16 +134,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `aacf09d 2026-08-14 m5l1b: six blueprints, and make the map storm again` |
-| commits | 1,419 |
+| HEAD | `7c97ab3 2026-08-14 e2l2 + e2l3: bake eight blueprints, ladder to 112` |
+| commits | 1,434 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **18 modified, 2 untracked** |
+| unstaged diff | 18 files changed, 4722 insertions(+), 1603 deletions(-) |
+
+> Working tree is dirty. Everything in those 20 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 26 |
+| 2026-08 | 41 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -175,10 +186,25 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (70)
+### Commits since 2026-01-01 (85)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `7c97ab3` | 2026-08-14 | joncurry94 | e2l2 + e2l3: bake eight blueprints, ladder to 112 |
+| `43e9b8d` | 2026-08-14 | joncurry94 | m6l1b + e2l1: bake nine blueprints, ladder to 104 |
+| `a83f0d3` | 2026-08-14 | joncurry94 | e1l4: bake the four placed blueprints, ladder to 95 |
+| `655ae71` | 2026-08-14 | joncurry94 | e1l4: enable Phase C contain |
+| `6c8e687` | 2026-08-14 | joncurry94 | e1l3: bake the five placed blueprints, ladder to 91 |
+| `508ddb7` | 2026-08-14 | joncurry94 | e1l2: bake the four placed blueprints, ladder to 86 |
+| `461c583` | 2026-08-14 | joncurry94 | e1l1: bake the two placed blueprints, ladder to 82 - Breakthrough begins |
+| `8d8ba86` | 2026-08-14 | joncurry94 | m6l3d: make the gas mask visible in coop |
+| `4dcac85` | 2026-08-14 | joncurry94 | m6l3b + m6l3d: bake the placed blueprints, ladder to 80 - Allied Assault complete |
+| `2350558` | 2026-08-14 | joncurry94 | m6l3a: bake the three placed blueprints, ladder to 76 |
+| `4a469c9` | 2026-08-14 | joncurry94 | m6l2b: bake the four placed blueprints, ladder to 73 |
+| `837ccc9` | 2026-08-14 | joncurry94 | m6l2a: five blueprints, filtered numerically out of a 77-placement save |
+| `c180f42` | 2026-08-14 | joncurry94 | m6l1c: five blueprints (not twelve), and split the truck brief onto two rows |
+| `94a784b` | 2026-08-14 | joncurry94 | m6l1a: bake the seven placed blueprints, ladder to 59 |
+| `2089898` | 2026-08-14 | joncurry94 | m5l3: bake the four placed blueprints, ladder to 52 |
 | `aacf09d` | 2026-08-14 | joncurry94 | m5l1b: six blueprints, and make the map storm again |
 | `a1c9ee0` | 2026-08-14 | joncurry94 | m5l1a: bake the two placed blueprints, ladder to 42 |
 | `25bd05a` | 2026-08-14 | joncurry94 | officer: re-site the m4l3 anchor and reinforcement zone from in-game readings |
@@ -258,10 +284,10 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | HEAD | `5ea47c36 2026-08-10 engine: dedicated server boots + runs clean; restore engine cvar defaults` |
 | commits | 4,983 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **12 modified, 0 untracked** |
-| unstaged diff | 12 files changed, 422 insertions(+), 4 deletions(-) |
+| **uncommitted** | **23 modified, 0 untracked** |
+| unstaged diff | 23 files changed, 991 insertions(+), 28 deletions(-) |
 
-> Working tree is dirty. Everything in those 12 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 23 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
