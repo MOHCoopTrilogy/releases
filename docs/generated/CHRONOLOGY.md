@@ -13,27 +13,25 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `e185298 2026-08-17 docs: regenerate after the v1.3.1 release` |
-| commits | 101 |
+| HEAD | `985236c 2026-08-17 open: close the stale e3l4 outro entry, verified against a running engine` |
+| commits | 102 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **1 modified, 0 untracked** |
-| unstaged diff | 1 file changed, 6 deletions(-) |
-
-> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 47 |
+| 2026-08 | 48 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (101)
+### Commits since 2026-01-01 (102)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `985236c` | 2026-08-17 | joncurry94-tech | open: close the stale e3l4 outro entry, verified against a running engine |
 | `e185298` | 2026-08-17 | joncurry94-tech | docs: regenerate after the v1.3.1 release |
 | `04ecc1a` | 2026-08-17 | joncurry94-tech | docs: regenerate after the v1.3.1 release |
 | `684371f` | 2026-08-17 | joncurry94-tech | manifest 1.3.1 |

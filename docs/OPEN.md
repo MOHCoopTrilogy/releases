@@ -106,12 +106,6 @@ and the lobby cursor's click is `BUTTON_ATTACKLEFT` (`player.cpp:13559`) so reus
 weapon and swing aim. Needs a `game.dll` change. Disconnected pins queue in the player's name and
 apply on next connect, one at a time. bug-1362/1364.
 
-### m3l2: missing script label — code-confirmed
-`OPEN` · *bug-1218 · `maps/m3l2.scr:2854`*
-`$level_end_trigger remove` is the **only** occurrence of the token in the file; no `level_end_trigger:`
-label is defined. `m4l0.scr:431`, `m6l1a.scr:57`, `M6L1b.scr:52`, `m6l3b`, `m6l3d` all define it.
-**Fix: add the label or drop the `setthread`.** Detected by the regression harness 2026-07-29.
-
 ### m3l2: `SV_FindIndex overflow (max=1280)` ×243
 `OPEN` · *bug-1219* — explained entirely by the P0 deploy gap above. **Will resolve when the current
 exe is deployed.** Do not "fix" it in source; source already says 1600.
