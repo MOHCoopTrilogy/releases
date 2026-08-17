@@ -249,7 +249,7 @@ docs/DECISIONS.md	34751	.md	492	docs
 docs/ENGINE.md	26462	.md	322	docs
 docs/FEATURES.md	88656	.md	1164	docs
 docs/HISTORY.md	29926	.md	249	docs
-docs/OPEN.md	46266	.md	665	docs
+docs/OPEN.md	45795	.md	659	docs
 docs/PROPOSED_CLAUDE.md	11428	.md	182	docs
 docs/README.md	6634	.md	109	docs
 docs/SESSION_HANDOFF.md	7032	.md	126	docs
@@ -10250,7 +10250,7 @@ relnotes_1.2.1.md	1025	.md	15	<root>
 resume_publish.ps1	8738	.ps1	157	<root>
 rollout_implementation_log.md	13772	.md	194	<root>
 scratchpad/rcon.py	926	.py	27	scratchpad
-server_home/maintt/OpenMoHAA_server.pid	4	.pid	0	server_home
+server_home/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home
 server_home/maintt/autoexec.cfg	90014	.cfg	1208	server_home
 server_home/maintt/coop_defaults.cfg	17316	.cfg	278	server_home
 server_home/maintt/coop_mod/save/bpfound_89AA62A71BEF42BA7FA4B2DE9E15F03A.dat	16	.dat	0	server_home
@@ -10276,7 +10276,8 @@ server_home/maintt/prev/qconsole-20260815-112103.log	282324	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-112454.log	317859	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-113246.log	320900	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-114100.log	292931	.log	0	server_home
-server_home/maintt/qconsole.log	302778	.log	0	server_home
+server_home/maintt/qconsole.log	178983	.log	0	server_home
+server_home/maintt/qconsole.log.pre_e3l4	302778	.pre_e3l4	0	server_home
 server_home_probe/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home_probe
 server_home_probe/maintt/autoexec.cfg	89444	.cfg	1202	server_home_probe
 server_home_probe/maintt/coop_defaults.cfg	12385	.cfg	217	server_home_probe

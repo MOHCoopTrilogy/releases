@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1245** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1247** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 582 |
+| 2026-08 | 584 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -497,7 +497,7 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1023` | 2026-07-22 | `hzm-mohaa-coop-mod/gags/*.scr` | - | COOP-CONVERSION AUDIT: unconverted gag scripts use raw single-entity $player, throw with 2+ players. CONFIRMED: t2l3_medic.scr:475/504/448, t1l3_flak… | PROPOSED: replace raw $player single-use with coop_mod/replace.scr::player_closestTo <ref>. Full list in report. |
 | `bug-1002` | 2026-07-22 | `hzm-mohaa-coop-mod/models/coop_build/shapes/*.skd (+.skc regenerated)` | P | c0000005 AV in openmohaa.exe (engine frame, from game!Entity::setModel <- ScriptModel::SetModelEvent) on first shape-kit tik load; qconsole last line… | Regenerated, converter output UNMODIFIED: (a) gen_md5.py v2 authors the md5 root joint AT the tool's hardcoded -90deg-X-roll convention (joint quat (… |
 | `bug-1026` | 2026-07-22 | `maps/t2l2.scr + addon MG42/vehicle spawns` | - | LIVE-BOOT AUDIT: t2l2 (audit-graded A- clean) throws 265 script errors on coop boot: 36x Couldn't load models/nil.tik, missing models/vehicles/panzer… | OPEN - needs investigation. Map is degraded not dead. |
-| `bug-1027` | 2026-07-22 | `maps/e3l4/outro.scr` | - | LIVE-BOOT AUDIT: e3l4 coop boot: 'Script maps/e3l4/outro.scr was not properly loaded' + 251x binary-op-on-none cascade. BT campaign ending/credits br… | OPEN - needs the outro.scr parse failure found + fixed. |
+| `bug-1027` | 2026-07-22 | `maps/e3l4/outro.scr` | V | LIVE-BOOT AUDIT: e3l4 coop boot: 'Script maps/e3l4/outro.scr was not properly loaded' + 251x binary-op-on-none cascade. BT campaign ending/credits br… | VERIFIED CLEAN 2026-08-17 by dedicated boot with developer 1 (compile errors are gated behind it). A playerless dedicated boot does NOT reach the scr… |
 | `bug-1028` | 2026-07-22 | `coop_mod/spawnlocations.scr` | V | LIVE-BOOT AUDIT: 5 non-HZM maps (t1l2/t1l3/t2l3/t2l4/t3l2) print harmless 'label <map> does not exist in coop_mod/spawnlocations.scr' each boot - no… | FIXED 07-22: added 5 empty labels mirroring t2l2's silencing pattern. No behavior change. |
 | `bug-1049` | 2026-07-22 | `hzm-mohaa-coop-mod/gags/t2l4_captain.scr` | - | Cannot cast 'array' to listener at gags/t2l4_captain.scr 815/227/228 (3x) during 4-player t2l4 trigger-sweep | Line-precise transform (scratchpad/fix_t2l4_captain.py): orient/proximity/run-to now use nearest player via 'exec coop_mod/replace.scr::player_closes… |
 | `bug-1050` | 2026-07-22 | `hzm-mohaa-coop-mod/global/vehicle_warning.scr` | - | vehicle_warning.scr reported 'fixed:0' in $player batch despite 4270-hit attribution - suspected miss | No change to vehicle_warning.scr. Confirmed both callers fixed. Lesson: array-cast error line != root cause line; trace to the caller. |
@@ -1260,6 +1260,8 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1886` | 2026-08-17 | `hzm-mohaa-coop-mod/ubersound/ubersound.scr` | - | Eight bolt-action rifles reference kar98_snd_reload_end and kar98_snd_reload_single; neither alias exists anywhere | Defined both aliases against the same wav kar98_snd_reload already uses, with trilogy-wide map coverage. |
 | `bug-1887` | 2026-08-17 | `hzm-mohaa-coop-mod/models/weapons/tt33.tik` | - | TT-33, Silenced TT-33 and Welrod: the magazine never disappears during reload, and each reload logs TIKI_FixFrameNum: illegal frame number | Shipped mod-side overrides for tt33.tik, tt33silenced.tik and welrod.tik: frames rescaled to 2/5 for the 7-frame animation, dropped entirely for the… |
 | `bug-1888` | 2026-08-17 | `openmohaa-hzm/code/cgame/cg_viewmodelanim.c` | RV | user: 'make sure we didn't miss anything that came with these weapon mods too for these guns to be fully functional' - Type 100 was using Sten hands… | Appended WPREFIX_TYPE100 to animPrefix_e and "type100" to AnimPrefixList - appended rather than inserted so no existing prefix index shifts, and veri… |
+| `bug-1889` | 2026-08-17 | `docs/OPEN.md` | V | user: 'go ahead and fix the breakthrough ending and helmet' - both were already fixed; the records said otherwise | Verified both against the code and the running engine rather than the record, closed bug-1027 with its verification method, and removed the OPEN.md e… |
+| `bug-1890` | 2026-08-17 | `openmohaa-hzm/code/fgame/sentient.cpp` | - | Sentient::EventPopHelmet indexes edict->s.surfaces with an unchecked Surface_NameToNum result for helmet surface 1 | DEFERRED, deliberately - v1.3.1 shipped hours ago and an engine rebuild now would make the released binaries differ from source for a defect that can… |
 | `bug-1851` | 2026-08-17 | `openmohaa-hzm/code/fgame/weapturret.cpp` | - | user: 'these cats are way too accurate' - MG42 gunners hit with no miss margin at all | Added coop_mg42AiAimOff (default 100 after the user tuned it in play): a random offset on the aim point, re-rolled every 0.7-1.6s so a burst walks ac… |
 | `bug-1852` | 2026-08-17 | `hzm-mohaa-coop-mod/coop_mod/officer.scr` | V | user: 'I have yet to see enemy axis lay down (prone) and shoot even though this is in vanilla' | No repair needed to the mechanism. Added coop_aiProneChance (percent, default 12, 0 disables) so the share can be raised until it is actually observa… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |

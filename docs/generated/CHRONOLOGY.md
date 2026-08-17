@@ -13,24 +13,28 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `04ecc1a 2026-08-17 docs: regenerate after the v1.3.1 release` |
-| commits | 100 |
+| HEAD | `e185298 2026-08-17 docs: regenerate after the v1.3.1 release` |
+| commits | 101 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **1 modified, 0 untracked** |
+| unstaged diff | 1 file changed, 6 deletions(-) |
+
+> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 46 |
+| 2026-08 | 47 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (100)
+### Commits since 2026-01-01 (101)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `e185298` | 2026-08-17 | joncurry94-tech | docs: regenerate after the v1.3.1 release |
 | `04ecc1a` | 2026-08-17 | joncurry94-tech | docs: regenerate after the v1.3.1 release |
 | `684371f` | 2026-08-17 | joncurry94-tech | manifest 1.3.1 |
 | `34eb9e0` | 2026-08-17 | joncurry94-tech | docs: two weapon auditors, and the traps they made testable |

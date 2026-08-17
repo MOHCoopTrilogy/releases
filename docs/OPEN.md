@@ -121,12 +121,6 @@ exe is deployed.** Do not "fix" it in source; source already says 1600.
 `notdroppable`. The known cure is [TRAPS.md § T5](TRAPS.md#t5): guard the entity refs with **BOTH**
 `NIL` and `NULL`, because they are different and coop hits both. Detected 2026-07-29.
 
-### e3l4: `outro.scr` fails to load — BT campaign ending broken
-`OPEN` · *bug-1027* — `Script maps/e3l4/outro.scr was not properly loaded` plus a **251× binary-op-
-on-none cascade** on coop boot. Signature matches [T1](TRAPS.md#t1) exactly. End-of-campaign
-credits/outro run with uninitialised data. **Should be cheap:** `developer 1` boot and read the first
-parse error. ⚠️ The sanctioned depth-scan tool is gone — see [Tooling lost](#tooling-lost).
-
 ### t2l2: 265 script errors on coop boot despite an A− static audit grade
 `OPEN` · *bug-1026* — 36× `Couldn't load models/nil.tik`, missing `models/vehicles/panzerwerfer42.tik`
 ×4, plus "must specify explicit classname". Addon MG42 nest gunner AI and the panzerwerfer
