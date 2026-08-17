@@ -10,9 +10,9 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 35,677 |
+| files in the workspace | 35,678 |
 | bytes | 39.8 GB |
-| files in project scope (indexed per-file) | 10,306 |
+| files in project scope (indexed per-file) | 10,307 |
 | source files (per-file rows with line counts) | 4,836 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
@@ -40,7 +40,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
 | `_menu_pilot` | 81 | 90.7 MB | no - reference | Photoshop menu round-trip staging |
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
-| `manifests` | 41 | 0.5 MB | **yes** | release manifests consumed by the auto-updater |
+| `manifests` | 42 | 0.5 MB | **yes** | release manifests consumed by the auto-updater |
 | `_tools` | 37 | 69.0 MB | no - reference | downloaded third-party binaries |
 | `server_home` | 27 | 4.2 MB | **yes** |  |
 | `installer` | 18 | 15873.3 MB | no - reference | Inno Setup output + payload staging |
@@ -90,8 +90,8 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.md` | 312 |
 | `.shader` | 191 |
 | `.urc` | 169 |
+| `.json` | 129 |
 | `.bsp` | 129 |
-| `.json` | 128 |
 | `.min` | 100 |
 | `.py` | 78 |
 | `.class` | 64 |
@@ -506,7 +506,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/loadout` | 347 | 0.12 MB | .cfg×347 |
 | `hzm-mohaa-coop-mod/ui/loadout/helm` | 48 | 0.03 MB | .cfg×48 |
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 135 | 0.13 MB | .cfg×135 |
-| `manifests` | 41 | 0.52 MB | .json×41 |
+| `manifests` | 42 | 0.53 MB | .json×42 |
 | `map_entities` | 92 | 10.22 MB | .txt×88, .md×4 |
 | `openmohaa-hzm` | 8 | 0.04 MB | (none)×2, .txt×2, .md×2, .ps1×1 |
 | `openmohaa-hzm/.github/ISSUE_TEMPLATE` | 1 | 0.00 MB | .md×1 |

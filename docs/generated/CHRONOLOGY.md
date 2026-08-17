@@ -13,27 +13,26 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `8bd3e8b 2026-08-14 readme: name the exact installer files, and test the links on every build` |
-| commits | 94 |
+| HEAD | `84daa23 2026-08-16 docs: record the v1.3.0 session - objective chain, AI accuracy, and three self-inflicted regressions` |
+| commits | 96 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **3 modified, 3 untracked** |
-| unstaged diff | 13 files changed, 1121 insertions(+), 848 deletions(-) |
-
-> Working tree is dirty. Everything in those 6 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 40 |
+| 2026-08 | 42 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (94)
+### Commits since 2026-01-01 (96)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `84daa23` | 2026-08-16 | joncurry94-tech | docs: record the v1.3.0 session - objective chain, AI accuracy, and three self-inflicted regressions |
+| `e5fe7c3` | 2026-08-16 | joncurry94-tech | manifest 1.3.0 |
 | `8bd3e8b` | 2026-08-14 | joncurry94-tech | readme: name the exact installer files, and test the links on every build |
 | `5ba6c59` | 2026-08-14 | joncurry94-tech | publish: stop mangling release notes, and drop the BOM |
 | `310e947` | 2026-08-14 | joncurry94-tech | manifest 1.2.9 |
