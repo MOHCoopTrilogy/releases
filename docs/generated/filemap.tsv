@@ -7426,7 +7426,7 @@ hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	541870468	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	791638642	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23205400	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23205407	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm_coop_framework_guide.md	27594	.md	382	<root>
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -7477,6 +7477,7 @@ manifests/manifest-1.2.7.json	13487	.json	220	manifests
 manifests/manifest-1.2.8.json	13487	.json	220	manifests
 manifests/manifest-1.2.9.json	14519	.json	238	manifests
 manifests/manifest-1.3.0.json	14519	.json	238	manifests
+manifests/manifest-1.3.1.json	14519	.json	238	manifests
 map_entities/OFFICER_SPAWN_TABLE.md	9905	.md	109	map_entities
 map_entities/OFFICER_SPAWN_TABLE_FINAL.md	17394	.md	257	map_entities
 map_entities/SUMMARY.md	19894	.md	332	map_entities
@@ -8854,7 +8855,7 @@ openmohaa-hzm/code/qcommon/net_rendezvous.h	954	.h	30	openmohaa-hzm
 openmohaa-hzm/code/qcommon/q_math.c	112941	.c	4347	openmohaa-hzm
 openmohaa-hzm/code/qcommon/q_platform.h	12817	.h	542	openmohaa-hzm
 openmohaa-hzm/code/qcommon/q_shared.c	38659	.c	2184	openmohaa-hzm
-openmohaa-hzm/code/qcommon/q_shared.h	85939	.h	2458	openmohaa-hzm
+openmohaa-hzm/code/qcommon/q_shared.h	88397	.h	2458	openmohaa-hzm
 openmohaa-hzm/code/qcommon/q_version.cmake	2180	.cmake	68	openmohaa-hzm
 openmohaa-hzm/code/qcommon/q_version.generated.h.in	1416	.in	31	openmohaa-hzm
 openmohaa-hzm/code/qcommon/q_version.h	3268	.h	106	openmohaa-hzm

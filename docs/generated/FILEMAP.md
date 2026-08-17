@@ -10,9 +10,9 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 35,700 |
+| files in the workspace | 35,701 |
 | bytes | 39.8 GB |
-| files in project scope (indexed per-file) | 10,329 |
+| files in project scope (indexed per-file) | 10,330 |
 | source files (per-file rows with line counts) | 4,846 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
@@ -40,7 +40,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
 | `_menu_pilot` | 81 | 90.7 MB | no - reference | Photoshop menu round-trip staging |
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
-| `manifests` | 42 | 0.5 MB | **yes** | release manifests consumed by the auto-updater |
+| `manifests` | 43 | 0.5 MB | **yes** | release manifests consumed by the auto-updater |
 | `_tools` | 37 | 69.0 MB | no - reference | downloaded third-party binaries |
 | `server_home` | 27 | 4.2 MB | **yes** |  |
 | `installer` | 18 | 15873.3 MB | no - reference | Inno Setup output + payload staging |
@@ -90,7 +90,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.md` | 313 |
 | `.shader` | 194 |
 | `.urc` | 169 |
-| `.json` | 129 |
+| `.json` | 130 |
 | `.bsp` | 129 |
 | `.min` | 100 |
 | `.py` | 80 |
@@ -511,7 +511,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/loadout` | 347 | 0.12 MB | .cfg×347 |
 | `hzm-mohaa-coop-mod/ui/loadout/helm` | 48 | 0.03 MB | .cfg×48 |
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 135 | 0.13 MB | .cfg×135 |
-| `manifests` | 42 | 0.53 MB | .json×42 |
+| `manifests` | 43 | 0.55 MB | .json×43 |
 | `map_entities` | 92 | 10.22 MB | .txt×88, .md×4 |
 | `openmohaa-hzm` | 8 | 0.04 MB | (none)×2, .txt×2, .md×2, .ps1×1 |
 | `openmohaa-hzm/.github/ISSUE_TEMPLATE` | 1 | 0.00 MB | .md×1 |
@@ -5336,7 +5336,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `q_math.c` | 4,347 | 110.3 KB | q_math.c -- stateless support routines that are included in each code module |
 | `q_platform.h` | 542 | 12.5 KB |  |
 | `q_shared.c` | 2,184 | 37.8 KB | q_shared.c -- stateless support routines that are included in each code dll |
-| `q_shared.h` | 2,458 | 83.9 KB | q_shared.h -- included first by ALL program modules. |
+| `q_shared.h` | 2,458 | 86.3 KB | q_shared.h -- included first by ALL program modules. |
 | `q_version.cmake` | 68 | 2.1 KB | Current branch |
 | `q_version.h` | 106 | 3.2 KB | q_version.h -- file versioning |
 | `qcommon.h` | 1,581 | 50.8 KB | qcommon.h -- definitions common between client and server, but not game.or ref modules |
