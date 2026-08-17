@@ -9,7 +9,7 @@
 | metric | value |
 |---|---:|
 | `coop_mod/*.scr` files | 113 |
-| total lines in `coop_mod/` | 69,965 |
+| total lines in `coop_mod/` | 70,568 |
 | top-level `maps/*.scr` | 121 |
 | of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
 
@@ -87,7 +87,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `ads_dbg.scr` | 11 | 1 | HZM coop - ADS diagnostic. Called from the AIM state's entrycommands in |
 | `aibehav.scr` | 120 | 1 | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
 | `aicombat.scr` | 119 | 1 | aicombat.scr - HZM coop AUTOMATED COMBAT DRIVER (2026-07-23) |
-| `aihandler.scr` | 1,607 | 22 | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
+| `aihandler.scr` | 1,621 | 22 | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
 | `aimaneuver.scr` | 261 | 1 | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
 | `aisquad.scr` | 245 | 1 | aisquad.scr - HZM coop SQUAD BRAIN (2026-07-24) |
 | `aivoice.scr` | 398 | 4 | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
@@ -102,12 +102,12 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `buildmode_catalog.scr` | 2,294 | 1 | HZM Coop - BUILD MODE model catalog (DATA ONLY). Generated from main/mainta/maintt Pak*.pk3 |
 | `buildmode_sounds.scr` | 369 | 5 | HZM Coop - BUILD MODE : placeable SOUND EMITTERS (catalog + SOUND-mode control bus). |
 | `bunker.scr` | 808 | 2 | HZM coop - COMPOSED STRUCTURES v2 (build-mode geometry construction kit) |
-| `bust.scr` | 1,572 | 5 | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
+| `bust.scr` | 1,574 | 5 | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
 | `butler.scr` | 498 | 12 | created by chrissstrahl on 2019.09.12 |
 | `common.scr` | 120 | 0 |  |
 | `cannonThink.scr` | 147 | 1 | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
 | `challenges.scr` | 3,677 | 27 | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
-| `collectible.scr` | 373 | 2 | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
+| `collectible.scr` | 375 | 2 | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
 | `coop_placements.scr` | 1,021 | 3 | HZM coop - BAKED BUILD-MODE PLACEMENTS (generated from build_<map>.dat). |
 | `coop_selftest.scr` | 320 | 6 | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
 | `coop_selftest_dbno.scr` | 424 | 8 | coop_selftest_dbno.scr - HZM dev automated DBNO-subsystem probes |
@@ -124,7 +124,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `cover.scr` | 336 | 0 | [user 2026-08-11] NO DEPLOYABLES WHILE DISGUISED. Building a sandbag nest or dropping an |
 | `covwalk.scr` | 282 | 1 | COVERAGE WALK - trilogy sweep layer 3. [user 2026-08-05] |
 | `custom_items.scr` | 37 | 0 | [200] Smithy - used for spawning any script built custom items we want |
-| `dbno.scr` | 1,392 | 4 | safety-net: make sure the cgame "downed" view flag is cleared on (re)spawn, so a player who died while |
+| `dbno.scr` | 1,396 | 4 | safety-net: make sure the cgame "downed" view flag is cleared on (re)spawn, so a player who died while |
 | `dbno_test.scr` | 3 | 1 |  |
 | `deathvox.scr` | 81 | 0 | HZM coop - varied DEATH VOICES (+ native-VO mute for AI). |
 | `developer.scr` | 1,578 | 28 | chrissstrahl - since the game refuses to let me use cheats in multiplayer |
@@ -140,7 +140,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `helmet.scr` | 1,746 | 4 | [305] HZM coop - LIVE HELMET SWITCHER |
 | `helmtest.scr` | 96 | 1 | HZM dev probe (TEMPORARY): verify the retail sethelmet/pophelmet mechanic end to end. |
 | `holdout.scr` | 759 | 16 | HOLDOUT - checkpoint wave-defence gametype [user 2026-08-04] |
-| `itemhandler.scr` | 3,680 | 36 | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
+| `itemhandler.scr` | 3,690 | 36 | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
 | `keyitems.scr` | 161 | 1 | [306] HZM coop - KEY MISSION ITEMS can never be permanently lost |
 | `ladder.scr` | 295 | 1 | HZM coop - PLACEABLE CLIMBABLE LADDERS [user 2026-08-05] bug-1415 |
 | `ladder_state.scr` | 24 | 0 | HZM coop - LADDER STATE HOOK [user 2026-08-05] bug-1415 |
@@ -158,7 +158,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `maptest_vehicle.scr` | 474 | 1 | HZM Coop - Vehicle Scene Tester (Phase 2 sibling) |
 | `maptest_waypoints.scr` | 4,171 | 0 | HZM Coop - Phase 2 Map Tester: Pre-Extracted Waypoints |
 | `medals.scr` | 208 | 1 | [401] HZM MEDALS & BADGES - campaign-wide meta-achievements, one per Service Record category plus |
-| `medkit.scr` | 584 | 1 |  |
+| `medkit.scr` | 777 | 1 |  |
 | `mg42_hack.scr` | 24 | 0 | chrissstrahl - scale health to players |
 | `missioncomplete.scr` | 87 | 0 | [200] chrissstrahl - 2020.06.14 |
 | `mom_actions.scr` | 173 | 17 | Created by chrissstrahl on 2018.07.02 - based on Multi Option Menu from Star Trek Elite Force II from 2009 fo… |
@@ -167,10 +167,10 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `objective_drop.scr` | 165 | 1 | Objective Bonus Drop |
 | `objective_positions.scr` | 89 | 1 | objective_positions.scr |
 | `objectives.scr` | 693 | 7 | Coop Side Objectives (optional / secondary) |
-| `officer.scr` | 4,719 | 27 | Officer Boss + Radio Station |
-| `officer_positions.scr` | 618 | 1 | coop_officer_positions.scr |
+| `officer.scr` | 4,723 | 27 | Officer Boss + Radio Station |
+| `officer_positions.scr` | 624 | 1 | coop_officer_positions.scr |
 | `paradrop.scr` | 774 | 1 | Allied Paradrop System |
-| `player.scr` | 1,822 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |
+| `player.scr` | 1,830 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |
 | `precache.scr` | 186 | 0 |  |
 | `probe.scr` | 74 | 1 | probe.scr |
 | `profile.scr` | 71 | 0 | HZM COOP - PER-PLAYER PROFILE MIRROR (user decision 2026-08-10) |
@@ -180,7 +180,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `server.scr` | 313 | 10 | started by chrissstrahl on 2020.10.16 ([202]) |
 | `sndcache.scr` | 111 | 1 | [user 2026-08-10] 633 cache lines REMOVED - deathvox (484), flvo (135), gurgle (13) and headshot |
 | `sound.scr` | 63 | 4 | [203] Smithy - we can use this for sound related code |
-| `spawnlocations.scr` | 3,603 | 180 | [200] chrissstrahl - fixed using unfiltred mapname (using now level.coop_mapname) |
+| `spawnlocations.scr` | 3,617 | 181 | [200] chrissstrahl - fixed using unfiltred mapname (using now level.coop_mapname) |
 | `strings.scr` | 1,301 | 6 | [200] Smithy - this is taken from xnull. Not mine, but is used by many. Will be useful to us. |
 | `subsink.scr` | 618 | 4 | HZM coop - STAGED U-BOAT DEATH |
 | `takecover.scr` | 47 | 0 | [214] HZM coop - TAKE COVER v1 (player cover system). |
@@ -192,9 +192,9 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `voidguard.scr` | 56 | 1 | coop_mod/voidguard.scr - universal out-of-bounds safety net (all maps) |
 | `wallgun.scr` | 555 | 6 | HZM coop - INVISIBLE BARRIER TOOL [user 2026-08-04] bug-1378 |
 | `weaponstate.scr` | 125 | 0 | [200] Smithy |
-| `weather.scr` | 344 | 8 | HZM coop - WEATHER (v2): coop now drives the NATIVE SP trilogy weather system (global/weather.scr) so |
+| `weather.scr` | 360 | 8 | HZM coop - WEATHER (v2): coop now drives the NATIVE SP trilogy weather system (global/weather.scr) so |
 | `wounded.scr` | 513 | 1 | [user 2026-07-17] WOUNDED GERMAN LIMP-AWAY. |
-| `xp.scr` | 1,623 | 6 | [302] HZM XP SYSTEM - Phase 1 (tracking + persistence + end-of-map debrief + own-rank HUD) |
+| `xp.scr` | 1,953 | 14 | [302] HZM XP SYSTEM - Phase 1 (tracking + persistence + end-of-map debrief + own-rank HUD) |
 
 ## Coop-integrated map scripts
 | map | theatre flag |

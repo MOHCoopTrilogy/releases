@@ -1136,7 +1136,14 @@ def gen_chronology() -> str:
         porcelain = git_porcelain(repo)
         modified = sum(1 for l in porcelain if not l.startswith("??"))
         untracked = sum(1 for l in porcelain if l.startswith("??"))
-        shortstat = run_git(repo, ["diff", "--shortstat"]).strip()
+        # Exclude the generator's own output, exactly as git_porcelain() does. Without this
+        # the stat counts the lines `build` just wrote into docs/generated, so every build
+        # changes the number CHRONOLOGY reports about itself and `check` can NEVER pass:
+        # build wrote "291 insertions", check regenerates and computes "298", flags CHRONOLOGY
+        # stale, and manifest.json cascades because it stores CHRONOLOGY's sha256. SELF_EXCLUDE
+        # was already applied to the porcelain FILE LIST but this second site was missed.
+        shortstat = run_git(repo, ["diff", "--shortstat", "--",
+                                   ".", f":(exclude){SELF_EXCLUDE}"]).strip()
         allc = run_git(repo, ["log", "--pretty=%ad", "--date=short"]).split("\n")
         allc = [c for c in allc if c.strip()]
 

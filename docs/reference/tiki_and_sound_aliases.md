@@ -30,6 +30,88 @@ The **narrow** spec is the same trap and easier to miss: `flak_snd_fire1..4` lis
 the working e2l1 dialogue aliases all end `maps "e2l1 "`. Un-commenting a retail alias is not enough
 if the retail line lacked the spec. Symptom is silence with no PlaySound error.
 
+This class is now testable instead of playable. **`python docs/tools/audit_weapons.py`** checks
+every player weapon for exactly the five ways the FG42 was broken at once, and it has since found
+the same defects on other guns: 14 alias lines across 7 weapons still scoped `maps "dm lib obj"`
+(silent on every campaign map, bug-1885), and `kar98_snd_reload_end` / `_single` referenced by
+**eight** bolt-action rifles and defined nowhere, not even in retail (bug-1886). Note the variant
+rule does not rescue a suffix: `foo` is satisfied by `foo1`/`foo2`, never by `foo_end`.
+
+### Judge an animation by its frame count, never its file size (bug-1887)
+
+A `.skc` states its length outright when it is version 13: `numFrames` sits at byte offset 44, after
+`ident/version/flags/nBytesUsed/frameTime/totalDelta[3]/totalAngleDelta/numChannels/ofsChannelNames`.
+Version 14 is pre-processed and does not expose it - report those as unknown rather than guessing.
+
+Size is a bad proxy in both directions, and both directions bit us in one session. A short animation
+is usually **fine**: most retail world weapons hold a 1-2 frame pose because first-person motion
+comes from the viewmodel hands in `fps_anims_*.txt`, not from the weapon `.tik` - mp44's idle is two
+frames. The real defect is a **frame command that points past the end of its own animation**: it
+never runs, and it logs `TIKI_FixFrameNum: illegal frame number N (total: M)`. TT-33, Silenced TT-33
+and Welrod all carried `18 surface clip +nodraw` / `39 ... -nodraw` copied from the retail pistol
+template (LugerP08 uses that pair legitimately over 73 frames) onto animations of 7 and 1 frames -
+so the magazine never disappeared during reload. The surface name was wrong too (`p38clip` and
+`clip1`, not `clip`), which is why brace/size checks would never have caught it.
+
+### A weapon pack can ship assets that nothing references (bug-1888)
+
+The engine never complains about an asset no one asks for. The xw pack ships five distinct
+first-person animations for the Type 100 - including a 76-frame reload - and `cg_viewmodelanim.c`
+mapped `"Type 100 SMG"` to `WPREFIX_STEN`, so the engine asked for `sten_*` aliases and those five
+files sat unused. Identical in shape to the FG42's `WPREFIX_MP44` mapping. `audit_weapons.py` now
+reports this class, and distinguishes it from harmless dead weight (the same pack ships `ak47`
+hands with no AK-47 weapon). **Verify by hash, not size** - four of the five Type 100 files share a
+byte count by coincidence and look like duplicates.
+
+⚠ **Never resolve a prefix finding by renaming a weapon.** The hand-dialled per-gun ADS table
+(`s_adsGunTune` in `cgame/cg_modelanim.c`) is keyed on the weapon's exact `name "..."` string via
+`Q_stricmp`; a rename silently drops its sight tuning with no error. Fix it in
+`cg_viewmodelanim.c` by adding the existing name. Appending to `animPrefix_e` **and**
+`AnimPrefixList` is safe - the index is client-local, never networked - but the two must stay the
+same length; append rather than insert so no existing index shifts.
+
+### Retail MOHAA forces a custom gun to borrow a stock gun's hands. Our fork does not.
+
+Soares93 states the rule on his pack's ModDB page: the game will not load a custom weapon unless
+you tell it it is one of the stock weapons, and it then **must share that stock weapon's
+first-person animations**. This is why almost every MOHAA weapon mod ships as a *replacement* and
+why "includes animations" on a mod page usually means re-timed stock anims, not an independent set.
+It is the upstream cause of the defect we chased twice in one day - the FG42 wearing StG 44 hands,
+and the Type 100 wearing Sten hands.
+
+**We are not bound by it, because we own the engine.** `CG_GetVMAnimPrefixIndex` in
+`cgame/cg_viewmodelanim.c` is just a name-to-prefix lookup; adding an entry to `animPrefix_e` **and**
+the index-aligned `AnimPrefixList`, then returning it for the weapon's own name, gives an imported
+gun a genuinely independent first-person set. Proven twice on 2026-08-17: `WPREFIX_FG42` (bug-1878)
+and `WPREFIX_TYPE100` (bug-1888). Append, never insert - the index is client-local and never
+networked, but the two lists must stay the same length. **Never** achieve a match by editing the
+weapon's `name "..."`; see the ADS warning above.
+
+So when judging a candidate weapon mod, "does it ship first-person animations" is the question that
+matters, and a mod that ships them but hard-points them at a stock gun is still worth taking - the
+re-pointing is a few lines on our side.
+
+### Researching moh-db.com programmatically
+
+`moh-db.com` is a Nuxt SPA; listing pages render empty to a plain fetcher. Two entry points work:
+`https://www.moh-db.com/sitemap_index.xml` -> `/__sitemap__/en.xml` enumerates every mod and map
+URL, and `https://api.moh-db.com/api/v1/mods?size=500&page=N` returns the full catalogue as JSON
+(Spring Page format) including the complete readme text, creator, file name/size, download count and
+screenshot URLs. Single mod: `/api/v1/mods/<vid>`, where `vid` is the number in `/mods/<vid>`.
+Surveyed 2026-08-17: 1,671 mods, 288 in the weapon category, of which only about four are new
+period-plausible WW2 weapons - the rest are modern-weapon conversions, joke skins and stock
+recolours. A regex sweep of all 1,671 found **zero** MOHAA mods for MG34, Panzerfaust, Bren,
+Gewehr 41, DP-28 or a player flamethrower, so those do not exist to be downloaded.
+
+### A shader file is all-or-nothing, and brace-balance cannot prove it well-formed
+
+One bad token makes the engine print `WARNING: Ignoring shader file <name>` and discard **every**
+shader in it, which is how a single orphan name in `soviet_weapons.shader` turned the Nagant
+sniper, silenced PPSh-43 and both TT-33s invisible at once. An orphan leaves braces perfectly
+balanced, so the test that works is structural: at top level every token must be a name
+**immediately** followed by a `{ }` body. **`python docs/tools/audit_shaders.py`** checks all 393
+shader files the game can see, and also lists the third-party files our pak overrides.
+
 ### Per-map `includes <mapname...>` blocks gate anim registration (bug-1621, 2026-08-09)
 
 Anim `$include`s inside `includes <map tokens>` blocks in `new_generic_human.tik` resolve at TIKI

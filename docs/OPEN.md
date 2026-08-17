@@ -657,3 +657,9 @@ late-join disguise lockout (Phase C covers it).
 
 **Next:** verify the blueprint fix in play, then Phase C (unarmed route + Situation Contained), which
 is gated on resolving bug-1652 first.
+
+### Scripted-conversation guard sweep (TRAPS: waittill outranges its guard)
+
+`docs/proposals/conversation_guard_sites.json` lists **196** sites, of which **48 are do-not-guard**
+(alarm cues - silencing those soft-locks a mission). Helper `replace.scr::convOk`.
+**m6l1c done; 189 remain.** The failure shapes and the rule live in `docs/TRAPS.md`.

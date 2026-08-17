@@ -13,24 +13,28 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `84daa23 2026-08-16 docs: record the v1.3.0 session - objective chain, AI accuracy, and three self-inflicted regressions` |
-| commits | 96 |
+| HEAD | `acf1323 2026-08-16 docs: regenerate after the v1.3.0 source commits` |
+| commits | 97 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **5 modified, 3 untracked** |
+| unstaged diff | 5 files changed, 268 insertions(+), 206 deletions(-) |
+
+> Working tree is dirty. Everything in those 8 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 42 |
+| 2026-08 | 43 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (96)
+### Commits since 2026-01-01 (97)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `acf1323` | 2026-08-16 | joncurry94-tech | docs: regenerate after the v1.3.0 source commits |
 | `84daa23` | 2026-08-16 | joncurry94-tech | docs: record the v1.3.0 session - objective chain, AI accuracy, and three self-inflicted regressions |
 | `e5fe7c3` | 2026-08-16 | joncurry94-tech | manifest 1.3.0 |
 | `8bd3e8b` | 2026-08-14 | joncurry94-tech | readme: name the exact installer files, and test the links on every build |
@@ -133,19 +137,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `7c97ab3 2026-08-14 e2l2 + e2l3: bake eight blueprints, ladder to 112` |
-| commits | 1,434 |
+| HEAD | `c48737f 2026-08-16 m3l3: full objective chain, church hold, and the AI accuracy pass shipped as v1.3.0` |
+| commits | 1,435 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **18 modified, 2 untracked** |
-| unstaged diff | 18 files changed, 4722 insertions(+), 1603 deletions(-) |
+| **uncommitted** | **23 modified, 7 untracked** |
+| unstaged diff | 23 files changed, 1291 insertions(+), 283 deletions(-) |
 
-> Working tree is dirty. Everything in those 20 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 30 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 41 |
+| 2026-08 | 42 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -185,10 +189,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (85)
+### Commits since 2026-01-01 (86)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `c48737f` | 2026-08-16 | joncurry94 | m3l3: full objective chain, church hold, and the AI accuracy pass shipped as v1.3.0 |
 | `7c97ab3` | 2026-08-14 | joncurry94 | e2l2 + e2l3: bake eight blueprints, ladder to 112 |
 | `43e9b8d` | 2026-08-14 | joncurry94 | m6l1b + e2l1: bake nine blueprints, ladder to 104 |
 | `a83f0d3` | 2026-08-14 | joncurry94 | e1l4: bake the four placed blueprints, ladder to 95 |
@@ -280,19 +285,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `5ea47c36 2026-08-10 engine: dedicated server boots + runs clean; restore engine cvar defaults` |
-| commits | 4,983 |
+| HEAD | `135aecec 2026-08-16 engine: AI turret aim error, sporadic burst fire, r_novis for stale PVS, and the skeletor ceiling` |
+| commits | 4,984 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **23 modified, 0 untracked** |
-| unstaged diff | 23 files changed, 991 insertions(+), 28 deletions(-) |
+| **uncommitted** | **13 modified, 0 untracked** |
+| unstaged diff | 13 files changed, 3472 insertions(+), 2460 deletions(-) |
 
-> Working tree is dirty. Everything in those 23 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 13 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 3 |
+| 2026-08 | 4 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -353,10 +358,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (18)
+### Commits since 2026-01-01 (19)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `135aecec` | 2026-08-16 | joncurry94 | engine: AI turret aim error, sporadic burst fire, r_novis for stale PVS, and the skeletor ceiling |
 | `5ea47c36` | 2026-08-10 | joncurry94 | engine: dedicated server boots + runs clean; restore engine cvar defaults |
 | `a5f9c198` | 2026-08-06 | joncurry94 | engine source checkpoint for v1.2.1 release |
 | `06e36f7d` | 2026-08-03 | joncurry94 | engine source checkpoint for v1.2.0 release |

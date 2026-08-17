@@ -12,32 +12,11 @@ lineage, not record.
 
 ---
 
-## Pre-history — 2020-01 to 2026-02
+## Before the buglog (2020-01 -> 2026-06-20)
 
-| When | What |
-|---|---|
-| 2020-01-08 | First commit `527e0d0` — chrissstrahl / Smithy. The `[200]`/`[201]`/`[202]` comment tags throughout `coop_mod` are theirs. |
-| 2020 | Heavy development on the original HZM Coop Mod. `hzm_changelog.txt` runs back to 2019-03-13, ending at VERSION 2.05. |
-| 2021–2025 | Near-dormant: 1–8 commits/year. **A single commit in all of 2025.** |
-
-*Design intent from this era is unrecoverable from this workspace — it exists only as inherited code
-and that changelog.*
-
----
-
-## Current era begins — 2026-03 to 2026-06-20
-
-| When | What |
-|---|---|
-| 2026-03 | Project picked up by the current author. The 2026 era alone is 1,382 files changed, +156,001/−21,080 across just **44 commits**. |
-| 2026-06-19 → 06-25 | The SP→coop conversion campaign. ~55 root-level `.md` files date from here (`COOP_CONVERSION_MASTER.md`, five `convert_*_report.md`, nine `fix_*.md`, objective audits). |
-| — | **Scope correction that still holds:** all e3/t-series targets already had `coop_mod/main.scr::main` — they were **partially** converted; the work was per-element 16-player scaling + bug fixes, not initial hookup. |
-| 2026-06-21 | `V` Officer boss spawn player-confirmed working on re-test. |
-| 2026-06-22 | `V` Signal smoke no longer strips German grenades — it was a world `Weapon` entity hitting `PickupWeapon`'s MP grenade branch, not a TIK problem. |
-| 2026-06-25 | `V` `MAX_SOUNDS` 512→1024; the 6 hardcoded configstrings made computed; `sound_index` widened 9→10 bits. |
-| 2026-06-21 | `KNOWN_WORKING_STATE.md` last updated — **it has been stale ever since**, and asserts a rule CLAUDE.md now says is wrong. |
-
----
+Moved to **[archive/history-pre-2026-06-26.md](archive/history-pre-2026-06-26.md)** on
+2026-08-17 to keep this file under budget: pre-history, the current era's opening, and the
+pre-buglog months.
 
 ## 2026-06-26 → 06-30 — the buglog begins
 
@@ -266,3 +245,5 @@ runtime log — not static audit — found nearly all of it.
 - **2026-08-10** **v1.2.5 released** (github + discord + baked field report). Phase A + B0 + B1 of the m2l2a plan: papers-checker freeze, six always-true disguise gates, latch-free aggro, scene-actor protection, MG42 per-map anim gating, engine null-deref crash fix, collision latch judged against the real bumper. Also the first release where auto-cover actually ships with its engine half (v1.2.4 shipped the toggle alone, bug-1635). Pre-publish gate added: staged game.dll sha256-matched against the built and live copies, and string-checked for the features it claims.
 - **2026-08-10** - Player limping restored (bug-1669). Script `getcvar` is `Cvar_Get(name,"",0)`, so the first script read of an unregistered cvar CREATES it empty and permanently defeats the engine's own default; `coop_limpWarn` did exactly that to `coop_limp` at player setup. Fixed by pre-registering the engine-owned `coop_*` cvars in `G_InitGame`. Same fix silently restored `coop_tinnitusBlast` and `coop_goreDripCorpseTime`.
 - **2026-08-10** - **Phase C: the player-initiated contain on m2l2a** (bugs 1682-1691). Nine defects in one session, each found by a probe not a hypothesis: `disable_ai` is only `enableEnemy = 0`, so the stagger never stunned anyone (damage is the only lever on an actor's think); the bust pistol had no ammo; it lost a RAISE RACE to the loadout's own pickups; a THIRD papers path ate the trigger; drawing any weapon clears `m_bIsDisguised`, so the room aggroed and the mechanic was unwinnable by construction; `coop_isProtectedActor` is true for the whole m2l2a cast, so reusing it for 'who notices a corpse' vetoed everybody; **`coop_stealthArmOnHurt` has no caller anywhere and has never run** - two earlier bugs reasoned about it as live; every proximity test was a 3D sphere reaching through floors. Two of my own diagnoses were wrong and were retracted in place rather than left as folklore.
+
+- 2026-08-17 - TRAPS T11: the bug-1173/1184 commissioning example retired to here. bug-1173 recorded a `+180` roll correction on `maps/m1l1.scr` as applied; bug-1184, hours later, reverted it. Both entries correct, both present - but the record only agreed with the code if read to the END, and a later session read bug-1173 and stopped. `docs/generated/FIX_INDEX.md` now exists and both protocol files mandate it, so the rule survives in T11 without the story.
