@@ -22,7 +22,18 @@ T20 One flag two states; one-way latches
 <a name="t1"></a>
 ## T1 — Morpheus parse killers: one bad token silently kills the WHOLE `.scr`
 
-**Recurred under 15+ bug ids:** 089, 298, 331, 348, 402, 533, 739/750, 910, 962, 1067, 1069, 1105, 1205, 1283, 1285, 1751.
+**Recurred under 15+ bug ids:** 089, 298, 331, 348, 402, 533, 739/750, 910, 962, 1067, 1069, 1105, 1205, 1283, 1285, 1751, 1908.
+
+> **An assignment with no value is a parse killer, and the error points at the WRONG line**
+> (1908). `level.coop_loRosterTab[69] = ` with nothing after the `=` makes the parser read
+> the *next* statement as the missing value, then die on **that** statement's `=` -
+> `syntax error, unexpected TOKEN_ASSIGNMENT` reported against a line that is perfectly
+> correct. Note the rule is **not** "the line ends with `=`": a bare trailing `=` is a legal
+> line continuation and retail `global/MountGunOrPlantCharge.scr` relies on it. It is only
+> fatal when the following code line is itself an assignment. `docs/tools/check_empty_rhs.py`
+> now runs on every build. This one shipped from a **generator** rendering an empty column,
+> which is the lesson: a generated file needs its inputs validated, because the generator
+> will faithfully emit whatever the table says - including nothing.
 
 > **All three scanners pass a file that cannot compile** — they check brace depth, line shape and
 > string termination, not *expression* syntax. `println "a" + x + "b"` without parens is

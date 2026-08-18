@@ -130,6 +130,17 @@ def roster(rows):
          "\tif( level.coop_loRosterN != NIL ){ end }",
          "\tlevel.coop_loRosterN = %d" % len(rows)]
     for i, w in enumerate(rows):
+        # An empty column renders "level.coop_loRosterTab[N] = " with nothing after the "=". That
+        # is a parse killer and it takes ALL of loadoutroster.scr with it: the parser reads the
+        # NEXT statement as the missing value and then dies on that statement's own "=", so the
+        # error is reported against a line that is perfectly correct (bug-1908). In game the only
+        # symptoms were a NIL loadout, default weapons and no padlocks. Fail loudly here instead.
+        for col in ("id", "tab"):
+            if str(w.get(col, "")).strip() == "":
+                raise SystemExit(
+                    "gen_loadout: weapon %s has an empty '%s' column - that would emit an "
+                    "assignment with no value and kill the whole script"
+                    % (w.get("name") or w.get("id"), col))
         L += ['\tlevel.coop_loRosterId[%d] = "%s"' % (i, w["id"]),
               '\tlevel.coop_loRosterGive[%d] = "%s"' % (i, w["give"] or w["tik"]),
               "\tlevel.coop_loRosterTab[%d] = %s" % (i, w["tab"])]

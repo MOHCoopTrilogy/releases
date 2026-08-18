@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `9652599 2026-08-17 docs: regenerate; armory table gains give and tab columns` |
-| commits | 113 |
+| HEAD | `3e0f7be 2026-08-17 docs: regenerate` |
+| commits | 114 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 59 |
+| 2026-08 | 60 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (113)
+### Commits since 2026-01-01 (114)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `3e0f7be` | 2026-08-17 | joncurry94-tech | docs: regenerate |
 | `9652599` | 2026-08-17 | joncurry94-tech | docs: regenerate; armory table gains give and tab columns |
 | `e052d2c` | 2026-08-17 | joncurry94-tech | docs: two traps from this session - pitch 0 is silence, ordernumber is not draw order |
 | `8fb513b` | 2026-08-17 | joncurry94-tech | docs: armory table complete at 75 weapons |
@@ -150,8 +151,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `10bfb72 2026-08-17 m3l3: new challenge "The Hunt" - hold the church without it ever being contested` |
-| commits | 1,447 |
+| HEAD | `aa14303 2026-08-17 weapons: a TIKI animations block cannot take a full path - fix three that did` |
+| commits | 1,448 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -159,7 +160,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 54 |
+| 2026-08 | 55 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -199,10 +200,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (98)
+### Commits since 2026-01-01 (99)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `aa14303` | 2026-08-17 | joncurry94 | weapons: a TIKI animations block cannot take a full path - fix three that did |
 | `10bfb72` | 2026-08-17 | joncurry94 | m3l3: new challenge "The Hunt" - hold the church without it ever being contested |
 | `fde072f` | 2026-08-17 | joncurry94 | armory: put the new weapons in the unlock roster - without it they draw but do nothing |
 | `a2a32a3` | 2026-08-17 | joncurry94 | armory: add the S&W M10, completing the six imported weapons |
@@ -307,8 +309,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `f7a6b107 2026-08-17 gore: severed heads land, and unregistered helmets come off` |
-| commits | 4,990 |
+| HEAD | `dd7aa74a 2026-08-17 gore: stop scheduling the head settle think - it froze the head above the corpse` |
+| commits | 4,991 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -316,7 +318,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 10 |
+| 2026-08 | 11 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -377,10 +379,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (25)
+### Commits since 2026-01-01 (26)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `dd7aa74a` | 2026-08-17 | joncurry94 | gore: stop scheduling the head settle think - it froze the head above the corpse |
 | `f7a6b107` | 2026-08-17 | joncurry94 | gore: severed heads land, and unregistered helmets come off |
 | `848f58ae` | 2026-08-17 | joncurry94 | cgame: a skin variant must inherit its base gun's sight tuning and hands |
 | `f417fce8` | 2026-08-17 | joncurry94 | cgame: WPREFIX_M10, and the Panzerfaust on its real rig |

@@ -8,7 +8,7 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-947 distinct file paths, 3,100 distinct tags.
+948 distinct file paths, 3,102 distinct tags.
 
 ## Files with the most history
 
@@ -352,7 +352,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/coop_mod/loadout.scr` | 3 | `bug-132` `bug-133` `bug-1252` |
 | `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | 4 | `bug-666` `bug-1205` `bug-1675` `bug-1678` |
 | `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr + player.scr + itemhandler.scr` | 2 | `bug-800` `bug-802` |
-| `hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr` | 1 | `bug-1902` |
+| `hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr` | 2 | `bug-1902` `bug-1906` |
 | `hzm-mohaa-coop-mod/coop_mod/lobby.scr` | 18 | `bug-348` `bug-349` `bug-350` `bug-355` `bug-356` `bug-363` `bug-366` `bug-367` `bug-368` `bug-369` `bug-370` `bug-362` `bug-364` `bug-365` `bug-378` `bug-400` `bug-401` `bug-402` |
 | `hzm-mohaa-coop-mod/coop_mod/lobbyui.scr` | 1 | `bug-588` |
 | `hzm-mohaa-coop-mod/coop_mod/main.scr` | 8 | `bug-359` `bug-358` `bug-898` `bug-871` `bug-893` `bug-940` `bug-1251` `bug-1337` |
@@ -512,6 +512,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/models/weapons/dp28.tik` | 1 | `bug-1899` |
 | `hzm-mohaa-coop-mod/models/weapons/g43sniper.tik` | 1 | `bug-648` |
 | `hzm-mohaa-coop-mod/models/weapons/It_W_Carcano.tik` | 1 | `bug-494` |
+| `hzm-mohaa-coop-mod/models/weapons/m10_revolver.tik` | 1 | `bug-1905` |
 | `hzm-mohaa-coop-mod/models/weapons/m1_garand.tik` | 1 | `bug-095` |
 | `hzm-mohaa-coop-mod/models/weapons/mauser_c96.tik` | 2 | `bug-1894` `bug-1897` |
 | `hzm-mohaa-coop-mod/models/weapons/panzerfaust.tik` | 1 | `bug-1900` |
@@ -1142,7 +1143,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `anim-scripts` | 1 | `bug-1646` |
 | `animate` | 1 | `bug-1553` |
 | `animated-pose` | 1 | `bug-905` |
-| `animation` | 16 | `bug-1187` `bug-1291` `bug-1476` `bug-1485` `bug-1487` `bug-1489` `bug-1490` `bug-1749` `bug-1754` `bug-1818` `bug-1887` `bug-1888` `bug-257` `bug-417` `bug-431` `bug-554` |
+| `animation` | 17 | `bug-1187` `bug-1291` `bug-1476` `bug-1485` `bug-1487` `bug-1489` `bug-1490` `bug-1749` `bug-1754` `bug-1818` `bug-1887` `bug-1888` `bug-1905` `bug-257` `bug-417` `bug-431` `bug-554` |
 | `animation-alias` | 1 | `bug-381` |
 | `animations` | 2 | `bug-482` `bug-483` |
 | `animdone` | 1 | `bug-1579` |
@@ -1188,7 +1189,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `audio` | 26 | `bug-1138` `bug-1264` `bug-1324` `bug-1325` `bug-1501` `bug-1502` `bug-1509` `bug-1516` `bug-1517` `bug-153` `bug-1556` `bug-156` `bug-1797` `bug-1808` `bug-1857` `bug-1894` `bug-1899` `bug-599` `bug-600` `bug-601` `bug-717` `bug-725` `bug-836` `bug-846` `bug-849` `bug-933b` |
 | `audit` | 11 | `bug-1288` `bug-1290` `bug-1399` `bug-1885` `bug-1886` `bug-1888` `bug-721` `bug-722` `bug-723` `bug-724` `bug-874` |
 | `audit-caught` | 1 | `bug-1900` |
-| `audit-gap` | 2 | `bug-1009` `bug-1898` |
+| `audit-gap` | 3 | `bug-1009` `bug-1898` `bug-1905` |
 | `audit-methodology` | 1 | `bug-1523` |
 | `audit-scaffolding` | 1 | `bug-1550` |
 | `audited` | 1 | `bug-1180` |
@@ -1353,7 +1354,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `c0000005` | 1 | `bug-1002` |
 | `c4133` | 1 | `bug-1253` |
 | `c47` | 1 | `bug-1848` |
-| `c96` | 2 | `bug-1894` `bug-1897` |
+| `c96` | 3 | `bug-1894` `bug-1897` `bug-1905` |
 | `cache-scope` | 2 | `bug-1229` `bug-1230` |
 | `cadence` | 2 | `bug-1843` `bug-1856` |
 | `callback` | 3 | `bug-1429` `bug-1430` `bug-1434` |
@@ -1715,7 +1716,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `debugging` | 1 | `bug-911` |
 | `decal` | 6 | `bug-230` `bug-776` `bug-828` `bug-gl2-01` `bug-gl2-decal-red-dds` `bug-gl2-nextbundle2` |
 | `decals` | 2 | `bug-gl2-maxpolys` `bug-gl2-reddecals` |
-| `decap` | 2 | `bug-1889` `bug-1903` |
+| `decap` | 3 | `bug-1889` `bug-1903` `bug-1906` |
 | `decap-absent-bug-892` | 1 | `bug-1142` |
 | `decap-revert` | 1 | `bug-892` |
 | `decapitation` | 5 | `bug-1875` `bug-1880` `bug-1883` `bug-861` `bug-866` |
@@ -2199,7 +2200,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `gmbox` | 2 | `bug-261` `bug-font-bleed` |
 | `godrays` | 1 | `bug-1154` |
 | `gog-repack` | 1 | `bug-854` |
-| `gore` | 35 | `bug-1142` `bug-1167` `bug-1216` `bug-1241` `bug-1320` `bug-1321` `bug-1327` `bug-1332` `bug-1518` `bug-1539` `bug-1586` `bug-1873` `bug-1874` `bug-1875` `bug-1876` `bug-1880` `bug-1883` `bug-1903` `bug-731` `bug-734` `bug-747` `bug-776` `bug-780` `bug-795` `bug-796` `bug-797` `bug-817` `bug-828` `bug-849` `bug-861` `bug-866` `bug-868` `bug-905` `bug-936b` `bug-gl2-gore` |
+| `gore` | 36 | `bug-1142` `bug-1167` `bug-1216` `bug-1241` `bug-1320` `bug-1321` `bug-1327` `bug-1332` `bug-1518` `bug-1539` `bug-1586` `bug-1873` `bug-1874` `bug-1875` `bug-1876` `bug-1880` `bug-1883` `bug-1903` `bug-1906` `bug-731` `bug-734` `bug-747` `bug-776` `bug-780` `bug-795` `bug-796` `bug-797` `bug-817` `bug-828` `bug-849` `bug-861` `bug-866` `bug-868` `bug-905` `bug-936b` `bug-gl2-gore` |
 | `gore-entnum` | 1 | `bug-930` |
 | `gore-tiers` | 1 | `bug-1228` |
 | `gore_hot` | 1 | `bug-828` |
@@ -2380,7 +2381,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `jeep-passengers` | 1 | `bug-1460` |
 | `jeep-sequence` | 1 | `bug-1513` |
 | `jeepanim` | 1 | `bug-1366` |
-| `johnson` | 2 | `bug-1894` `bug-1897` |
+| `johnson` | 3 | `bug-1894` `bug-1897` `bug-1905` |
 | `jq` | 2 | `bug-1800` `bug-425` |
 | `jump` | 1 | `bug-367` |
 | `key-conflict` | 1 | `bug-dbno-medkit-letgo-same-key` |
@@ -2461,7 +2462,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `load-in` | 1 | `bug-1401` |
 | `load_scale` | 1 | `bug-1228` |
 | `loaddds` | 1 | `bug-m3l2-ground-seams` |
-| `loadout` | 32 | `bug-1204` `bug-1252` `bug-1279` `bug-133` `bug-1675` `bug-1677` `bug-1678` `bug-1692` `bug-1729` `bug-1896` `bug-1902` `bug-586` `bug-587` `bug-588` `bug-589` `bug-591` `bug-592` `bug-595` `bug-618` `bug-620` `bug-626` `bug-627` `bug-666` `bug-682` `bug-683` `bug-707` `bug-716` `bug-758` `bug-800` `bug-802` `bug-871` `bug-897` |
+| `loadout` | 33 | `bug-1204` `bug-1252` `bug-1279` `bug-133` `bug-1675` `bug-1677` `bug-1678` `bug-1692` `bug-1729` `bug-1896` `bug-1902` `bug-1906` `bug-586` `bug-587` `bug-588` `bug-589` `bug-591` `bug-592` `bug-595` `bug-618` `bug-620` `bug-626` `bug-627` `bug-666` `bug-682` `bug-683` `bug-707` `bug-716` `bug-758` `bug-800` `bug-802` `bug-871` `bug-897` |
 | `loadout-ui` | 2 | `bug-1358` `bug-armory-roster76` |
 | `loadoutpick` | 1 | `bug-1205` |
 | `loadtga` | 1 | `bug-059` |
@@ -2499,7 +2500,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `lru-steal` | 1 | `bug-780` |
 | `lt-pato` | 1 | `bug-1899` |
 | `m1-garand` | 1 | `bug-133` |
-| `m10` | 1 | `bug-1900` |
+| `m10` | 2 | `bug-1900` `bug-1905` |
 | `m1l1` | 9 | `bug-1161` `bug-1162` `bug-1173` `bug-1174` `bug-1175` `bug-1184` `bug-1213` `bug-1228` `bug-1476` |
 | `m1l1-walkers` | 1 | `bug-822` |
 | `m1l2a` | 4 | `bug-1248` `bug-1484` `bug-1485` `bug-842` |
@@ -2891,6 +2892,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `pass3-confirmed` | 1 | `bug-1498` |
 | `paste` | 1 | `bug-334` |
 | `patch-anchor` | 1 | `bug-1421` |
+| `path` | 1 | `bug-1905` |
 | `pathfinding` | 6 | `bug-122` `bug-1649` `bug-1656` `bug-1710` `bug-1812` `bug-1861` |
 | `pathing` | 2 | `bug-1319` `bug-1879` |
 | `pathnode` | 5 | `bug-1560` `bug-1561` `bug-1563` `bug-1565` `bug-1568` |
@@ -3242,6 +3244,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `root-cause` | 12 | `bug-1275` `bug-1637` `bug-1638` `bug-1640` `bug-1658` `bug-593` `bug-597` `bug-927` `bug-gl2-forcepose-skips-composite-ally` `bug-gl2-invisible-friendly-actor-root` `bug-gl2-invisible-live-char-depthprepass` `bug-gl2-invisible-live-enemies-prepass-pose` |
 | `root-caused` | 1 | `bug-1759` |
 | `roster` | 5 | `bug-1450` `bug-1452` `bug-1902` `bug-401` `bug-armory-roster76` |
+| `roster_get` | 1 | `bug-1906` |
 | `round-5` | 1 | `bug-922` |
 | `route-bypass` | 1 | `bug-1842` |
 | `rowboat` | 1 | `bug-121` |
@@ -3345,7 +3348,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `self-heal` | 3 | `bug-1728` `bug-801` `bug-803` |
 | `self-healing` | 1 | `bug-1879` |
 | `self-healing-sweep` | 1 | `bug-1212` |
-| `self-inflicted` | 41 | `bug-1172` `bug-1178` `bug-1179` `bug-1181` `bug-1183` `bug-1262` `bug-1269` `bug-1273` `bug-1274` `bug-1281` `bug-1292` `bug-1494` `bug-1499` `bug-1500` `bug-1558` `bug-1575` `bug-1598` `bug-1600` `bug-1603` `bug-1604` `bug-1606` `bug-1608` `bug-1671` `bug-1681` `bug-1696` `bug-1713` `bug-1749` `bug-1751` `bug-1756` `bug-1768` `bug-1781` `bug-1785` `bug-1801` `bug-1850` `bug-1864` `bug-1869` `bu… |
+| `self-inflicted` | 42 | `bug-1172` `bug-1178` `bug-1179` `bug-1181` `bug-1183` `bug-1262` `bug-1269` `bug-1273` `bug-1274` `bug-1281` `bug-1292` `bug-1494` `bug-1499` `bug-1500` `bug-1558` `bug-1575` `bug-1598` `bug-1600` `bug-1603` `bug-1604` `bug-1606` `bug-1608` `bug-1671` `bug-1681` `bug-1696` `bug-1713` `bug-1749` `bug-1751` `bug-1756` `bug-1768` `bug-1781` `bug-1785` `bug-1801` `bug-1850` `bug-1864` `bug-1869` `bu… |
 | `self-is-null` | 1 | `bug-1580` |
 | `self-referential` | 1 | `bug-1860` |
 | `self-regression` | 1 | `bug-1128` |
@@ -3525,7 +3528,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `sp-parity` | 2 | `bug-1280` `bug-1282` |
 | `sp-to-mp` | 1 | `bug-899` |
 | `spam` | 3 | `bug-1153` `bug-1777` `bug-gl2-maxpolys` |
-| `spawn` | 19 | `bug-1026` `bug-1231` `bug-1309` `bug-1319` `bug-1328` `bug-1328b` `bug-1328c` `bug-1624` `bug-1712` `bug-1716` `bug-1784` `bug-1785` `bug-1859` `bug-355` `bug-359` `bug-369` `bug-800` `bug-802` `bug-t2l2-onfoot` |
+| `spawn` | 20 | `bug-1026` `bug-1231` `bug-1309` `bug-1319` `bug-1328` `bug-1328b` `bug-1328c` `bug-1624` `bug-1712` `bug-1716` `bug-1784` `bug-1785` `bug-1859` `bug-1906` `bug-355` `bug-359` `bug-369` `bug-800` `bug-802` `bug-t2l2-onfoot` |
 | `spawn-callback` | 1 | `bug-349` |
 | `spawn-click` | 1 | `bug-1619` |
 | `spawn-flags` | 1 | `bug-1438` |
@@ -3756,7 +3759,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `tik-data-disabled` | 1 | `bug-616` |
 | `tik-parsing` | 1 | `bug-586` |
 | `tik-setsize` | 1 | `bug-942` |
-| `tiki` | 31 | `bug-020` `bug-072` `bug-1190` `bug-1203` `bug-1216` `bug-1228` `bug-1244` `bug-1301` `bug-1302` `bug-1303` `bug-1332` `bug-1338` `bug-1369` `bug-1408` `bug-1476` `bug-1485` `bug-1487` `bug-1489` `bug-1540` `bug-1545` `bug-1621` `bug-1818` `bug-1880` `bug-1887` `bug-1891` `bug-1892` `bug-259` `bug-260` `bug-306` `bug-731` `bug-854` |
+| `tiki` | 32 | `bug-020` `bug-072` `bug-1190` `bug-1203` `bug-1216` `bug-1228` `bug-1244` `bug-1301` `bug-1302` `bug-1303` `bug-1332` `bug-1338` `bug-1369` `bug-1408` `bug-1476` `bug-1485` `bug-1487` `bug-1489` `bug-1540` `bug-1545` `bug-1621` `bug-1818` `bug-1880` `bug-1887` `bug-1891` `bug-1892` `bug-1905` `bug-259` `bug-260` `bug-306` `bug-731` `bug-854` |
 | `tiki-frame-event` | 1 | `bug-1199` |
 | `tiki-models` | 1 | `bug-gl2-modellight` |
 | `tiki_sortlod` | 1 | `bug-1002` |
@@ -3912,7 +3915,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `user-expectation` | 1 | `bug-1554` |
 | `user-question` | 1 | `bug-1770` |
 | `user-report` | 15 | `bug-1650` `bug-1651` `bug-1652` `bug-1654` `bug-1656` `bug-1744` `bug-1754` `bug-1755` `bug-1757` `bug-1764` `bug-1776` `bug-1786` `bug-1799` `bug-gl2-introhud` `bug-taunt-intro` |
-| `user-reported` | 4 | `bug-1892` `bug-1898` `bug-1902` `bug-1903` |
+| `user-reported` | 6 | `bug-1892` `bug-1898` `bug-1902` `bug-1903` `bug-1905` `bug-1906` |
 | `user-request` | 2 | `bug-1287` `bug-1289` |
 | `user-requested` | 1 | `bug-1904` |
 | `user-spec` | 16 | `bug-1731` `bug-1738` `bug-1740` `bug-1741` `bug-1742` `bug-1746` `bug-1748` `bug-1750` `bug-1758` `bug-1762` `bug-1763` `bug-1765` `bug-1769` `bug-1773` `bug-1774` `bug-1775` |
@@ -4029,7 +4032,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `weapon-select` | 2 | `bug-1897` `bug-494` |
 | `weaponclip` | 1 | `bug-938` |
 | `weapongroup` | 1 | `bug-1103` |
-| `weapons` | 17 | `bug-1885` `bug-1886` `bug-1887` `bug-1888` `bug-1894` `bug-1897` `bug-1899` `bug-1900` `bug-464` `bug-481` `bug-482` `bug-483` `bug-484` `bug-494` `bug-495` `bug-500` `bug-863` |
+| `weapons` | 18 | `bug-1885` `bug-1886` `bug-1887` `bug-1888` `bug-1894` `bug-1897` `bug-1899` `bug-1900` `bug-1905` `bug-464` `bug-481` `bug-482` `bug-483` `bug-484` `bug-494` `bug-495` `bug-500` `bug-863` |
 | `weapons-on-back` | 5 | `bug-1891` `bug-616` `bug-619` `bug-623` `bug-923` |
 | `weaponshift` | 2 | `bug-105` `bug-108` |
 | `weaponsout` | 1 | `bug-378` |

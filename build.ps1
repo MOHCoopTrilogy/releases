@@ -6,6 +6,12 @@ $srcDir     = "C:\mohaa-coop-dev\hzm-mohaa-coop-mod"
 # [user 2026-08-05] PARSE-KILLER GATE (detector rank 1, static half): a single BOM/em-dash/odd
 # quote silently kills a whole .scr - the map then runs with no script. Never ship one again.
 python "C:\mohaa-coop-dev\docs\tools\scrlint.py" $srcDir
+if ($LASTEXITCODE -ne 0) { exit 1 }
+# An assignment with no value parses as 'take the next statement as the value' and then
+# dies on that statement's own '=', killing the WHOLE file (bug-1908). scrlint cannot see
+# it: the braces balance and there is no BOM.
+python "C:\mohaa-coop-dev\docs\tools\check_empty_rhs.py" $srcDir
+if ($LASTEXITCODE -ne 0) { exit 1 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by scrlint" -ForegroundColor Red; exit 1 }
 $deployDir  = "G:\GOG\Medal of Honor - Allied Assault War Chest\maintt"
 $appDataDir = "$env:APPDATA\openmohaa\maintt"

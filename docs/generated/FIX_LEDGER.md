@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1261** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1263** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 598 |
+| 2026-08 | 600 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1276,6 +1276,8 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1902` | 2026-08-17 | `hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr` | V | user: 'selecting any of the new weapons doesnt put them into your loadout slots. Also if these are locked by challenges or ranks they arent appearing… | gen_loadout.py now generates the roster too, so both halves come from one table and cannot drift apart again; `check` reports 'unlock roster OUT OF S… |
 | `bug-1903` | 2026-08-17 | `openmohaa-hzm/code/fgame/object.cpp` | - | user: 'Last i tested severed heads didnt land on the ground and helmets didnt come off' | Heads: SOLID_BBOX + MOVETYPE_GIB, which is the engine's OWN gib recipe from gibs.cpp:64-65 - falls, lands, does not block players. Copying the workin… |
 | `bug-1904` | 2026-08-17 | `hzm-mohaa-coop-mod/maps/M3L3.scr` | V | user: 'New challenge "The Hunt" - Successfully defend the Church without it being contested once.' | level.coop_chContested latches on any tick where coop_chG > 0, read AFTER coop_churchRate since that is what refreshes coop_chG. coop_churchHuntAward… |
+| `bug-1905` | 2026-08-17 | `hzm-mohaa-coop-mod/models/weapons/m10_revolver.tik` | - | user: 'm10 doesnt seem like it really shoots, no gunshot until the last round before it reloads, no shooting sounds either when I press fire' | Copied each borrowed retail animation into the weapon's own directory and referenced it BARE, which is what every other tik does. Three weapons affec… |
+| `bug-1906` | 2026-08-17 | `hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr` | - | user: 'I didnt get my loadout either when I got in game, it says NIL on the left text where it usually tells me my weapons' / 'head just floats in th… | Six roster_get cases added, values copied from each gun's closest sibling. The settle think is no longer scheduled: it only ever existed to stop the… |
 | `bug-1851` | 2026-08-17 | `openmohaa-hzm/code/fgame/weapturret.cpp` | - | user: 'these cats are way too accurate' - MG42 gunners hit with no miss margin at all | Added coop_mg42AiAimOff (default 100 after the user tuned it in play): a random offset on the aim point, re-rolled every 0.7-1.6s so a burst walks ac… |
 | `bug-1852` | 2026-08-17 | `hzm-mohaa-coop-mod/coop_mod/officer.scr` | V | user: 'I have yet to see enemy axis lay down (prone) and shoot even though this is in vanilla' | No repair needed to the mechanism. Added coop_aiProneChance (percent, default 12, 0 disables) so the share can be raised until it is actually observa… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
