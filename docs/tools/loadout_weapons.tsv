@@ -87,3 +87,4 @@ id	tik	xfm	charanim	cls	name	cd	b0	b1	b2	b3	clip	clipn	recoil	slots	req1	req2
 72	models/weapons/dp28.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	DP-28	7.62x54R / FULL-AUTO / 47 RD	3	7	8	6	50	47	bar	12	UNLOCK: 200 reinforcement	kills
 73	models/weapons/panzerfaust.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	PANZERFAUST	ROCKET / ANTI-TANK / 1 RD	10	1	6	3	1	1	panzerschreck	12	UNLOCK: destroy 40	vehicles
 74	models/weapons/mauser_c96.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		MAUSER C96	7.63MM / SEMI-AUTO / 10 RD	3	5	9	9	10	10	p38	3	UNLOCK: 150 headshots	
+75	models/weapons/m10_revolver.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		S&W M10 .38	.38 SPECIAL / REVOLVER / 6 RD	3	5	8	9	6	6	nagant_revolver	3	UNLOCK: 250 headshots	

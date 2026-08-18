@@ -414,7 +414,7 @@ docs/tools/gen_service_record.py	59384	.py	923	docs
 docs/tools/gen_weapon_skins.py	8538	.py	189	docs
 docs/tools/hudslots.py	4069	.py	98	docs
 docs/tools/linecheck.py	5953	.py	127	docs
-docs/tools/loadout_weapons.tsv	12949	.tsv	0	docs
+docs/tools/loadout_weapons.tsv	13117	.tsv	0	docs
 docs/tools/quotecheck.py	2833	.py	79	docs
 docs/tools/scrlint.py	3338	.py	82	docs
 dog_crash.txt	10160	.txt	133	<root>
@@ -6871,7 +6871,7 @@ hzm-mohaa-coop-mod/ui/coop_fov/98.cfg	140	.cfg	1	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_fov/generateFovCfgFiles.bat	521	.bat	16	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_fov/generateFovMenuCode.bat	359	.bat	14	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_jeepEnter.urc	507	.urc	31	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ui/coop_loadout.urc	71535	.urc	3646	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/coop_loadout.urc	72482	.urc	3682	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_login.urc	5262	.urc	280	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_maps.inc	2579	.inc	159	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_mom.urc	5601	.urc	287	hzm-mohaa-coop-mod
@@ -7088,12 +7088,12 @@ hzm-mohaa-coop-mod/ui/loadout/helm/h46.cfg	534	.cfg	13	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/helm/h47.cfg	538	.cfg	13	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/helm/hclear.cfg	361	.cfg	5	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/init.cfg	2312	.cfg	74	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ui/loadout/lktab0.cfg	1916	.cfg	98	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ui/loadout/lktab1.cfg	1936	.cfg	99	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ui/loadout/lktab2.cfg	1951	.cfg	100	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ui/loadout/lktab3.cfg	1971	.cfg	101	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ui/loadout/lktab4.cfg	2102	.cfg	108	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ui/loadout/lktab5.cfg	1713	.cfg	87	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/loadout/lktab0.cfg	1935	.cfg	99	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/loadout/lktab1.cfg	1955	.cfg	100	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/loadout/lktab2.cfg	1970	.cfg	101	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/loadout/lktab3.cfg	1990	.cfg	102	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/loadout/lktab4.cfg	2139	.cfg	110	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/loadout/lktab5.cfg	1732	.cfg	88	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/open.cfg	142	.cfg	4	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/p01.cfg	764	.cfg	24	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/p02.cfg	760	.cfg	24	hzm-mohaa-coop-mod
@@ -7169,6 +7169,7 @@ hzm-mohaa-coop-mod/ui/loadout/p71.cfg	769	.cfg	24	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/p72.cfg	753	.cfg	24	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/p73.cfg	772	.cfg	24	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/p74.cfg	753	.cfg	24	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/loadout/p75.cfg	769	.cfg	24	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/req02.cfg	69	.cfg	2	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/req03.cfg	59	.cfg	2	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/req04.cfg	59	.cfg	2	hzm-mohaa-coop-mod
@@ -7239,6 +7240,7 @@ hzm-mohaa-coop-mod/ui/loadout/req71.cfg	62	.cfg	2	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/req72.cfg	67	.cfg	2	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/req73.cfg	63	.cfg	2	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/req74.cfg	58	.cfg	2	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/loadout/req75.cfg	58	.cfg	2	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/reqclear.cfg	37	.cfg	2	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/reset.cfg	400	.cfg	19	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/s1sel.cfg	268	.cfg	13	hzm-mohaa-coop-mod
@@ -7454,6 +7456,7 @@ hzm-mohaa-coop-mod/ui/loadout/t71.cfg	135	.cfg	3	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/t72.cfg	135	.cfg	3	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/t73.cfg	135	.cfg	3	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/t74.cfg	135	.cfg	3	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/loadout/t75.cfg	135	.cfg	3	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/unreg_heavy.cfg	89	.cfg	2	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/unreg_rifle.cfg	89	.cfg	2	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/unreg_smg.cfg	85	.cfg	2	hzm-mohaa-coop-mod
@@ -7583,6 +7586,7 @@ hzm-mohaa-coop-mod/ui/loadout/w72_s2.cfg	318	.cfg	10	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/w73_s1.cfg	381	.cfg	11	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/w73_s2.cfg	331	.cfg	10	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/loadout/w74_s3.cfg	183	.cfg	6	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/loadout/w75_s3.cfg	186	.cfg	6	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/main.urc	9001	.urc	421	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/missionbriefingback.inc	1686	.inc	98	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/morocco1.urc	338	.urc	22	hzm-mohaa-coop-mod
@@ -7596,7 +7600,7 @@ hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	542436872	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	794914142	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23219593	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23220879	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm_coop_framework_guide.md	27594	.md	382	<root>
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -10420,7 +10424,7 @@ relnotes_1.2.1.md	1025	.md	15	<root>
 resume_publish.ps1	8738	.ps1	157	<root>
 rollout_implementation_log.md	13772	.md	194	<root>
 scratchpad/rcon.py	926	.py	27	scratchpad
-server_home/boot_m3l2.log	194081	.log	0	server_home
+server_home/boot_m3l2.log	194083	.log	0	server_home
 server_home/boot_t2l2.log	172217	.log	0	server_home
 server_home/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home
 server_home/maintt/autoexec.cfg	90014	.cfg	1208	server_home
@@ -10448,7 +10452,7 @@ server_home/maintt/prev/qconsole-20260815-112103.log	282324	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-112454.log	317859	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-113246.log	320900	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-114100.log	292931	.log	0	server_home
-server_home/maintt/qconsole.log	194081	.log	0	server_home
+server_home/maintt/qconsole.log	194083	.log	0	server_home
 server_home/maintt/qconsole.log.pre_e3l4	302778	.pre_e3l4	0	server_home
 server_home_probe/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home_probe
 server_home_probe/maintt/autoexec.cfg	89444	.cfg	1202	server_home_probe

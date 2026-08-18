@@ -13,11 +13,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `cf133e5 2026-08-17 tools: reconstruct the lost armory generator, proved by exact reproduction` |
-| commits | 109 |
+| HEAD | `398891f 2026-08-17 docs: armory table now carries the five added weapons` |
+| commits | 110 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **1 modified, 0 untracked** |
-| unstaged diff | 1 file changed, 5 insertions(+) |
+| unstaged diff | 1 file changed, 1 insertion(+) |
 
 > Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
 
@@ -25,15 +25,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 55 |
+| 2026-08 | 56 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (109)
+### Commits since 2026-01-01 (110)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `398891f` | 2026-08-17 | joncurry94-tech | docs: armory table now carries the five added weapons |
 | `cf133e5` | 2026-08-17 | joncurry94-tech | tools: reconstruct the lost armory generator, proved by exact reproduction |
 | `45ad569` | 2026-08-17 | joncurry94-tech | docs: the weapon-skin generator, and regenerate |
 | `087ba24` | 2026-08-17 | joncurry94-tech | docs: regenerate after the Panzerfaust and M10 imports |
@@ -149,8 +150,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `a7c0b77 2026-08-17 armory: add five imported weapons to the picker, without renumbering anything` |
-| commits | 1,444 |
+| HEAD | `a2a32a3 2026-08-17 armory: add the S&W M10, completing the six imported weapons` |
+| commits | 1,445 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -158,7 +159,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 51 |
+| 2026-08 | 52 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -198,10 +199,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (95)
+### Commits since 2026-01-01 (96)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `a2a32a3` | 2026-08-17 | joncurry94 | armory: add the S&W M10, completing the six imported weapons |
 | `a7c0b77` | 2026-08-17 | joncurry94 | armory: add five imported weapons to the picker, without renumbering anything |
 | `3917a9f` | 2026-08-17 | joncurry94 | skins: weapon finish variants, with Thompson (Gold) wired end to end |
 | `b44ec73` | 2026-08-17 | joncurry94 | weapons: add East's Panzerfaust and S&W M10 .38 as additions |

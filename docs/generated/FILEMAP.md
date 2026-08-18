@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 35,874 |
+| files in the workspace | 35,878 |
 | bytes | 39.9 GB |
-| files in project scope (indexed per-file) | 10,503 |
-| source files (per-file rows with line counts) | 4,884 |
+| files in project scope (indexed per-file) | 10,507 |
+| source files (per-file rows with line counts) | 4,888 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -26,7 +26,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 |---|---:|---:|---|---|
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
-| `hzm-mohaa-coop-mod` | 7,052 | 5396.0 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 7,056 | 5396.0 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
 | `openmohaa-hzm` | 2,656 | 86.2 MB | **yes** | **the engine** - HZM fork of OpenMOHAA (C/C++) |
 | `UBER-MODS-v8.00-MOHAA` | 2,614 | 115.5 MB | no - reference | third-party mod, reference only |
@@ -78,7 +78,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.dds` | 3,557 |
 | `.scr` | 2,505 |
 | `.tga` | 1,718 |
-| `.cfg` | 1,377 |
+| `.cfg` | 1,381 |
 | `.png` | 1,370 |
 | `.jpg` | 1,235 |
 | `.tik` | 1,224 |
@@ -538,7 +538,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/coop_objectives` | 46 | 0.02 MB | .cfg×46 |
 | `hzm-mohaa-coop-mod/ui/coop_start` | 14 | 0.03 MB | .cfg×14 |
 | `hzm-mohaa-coop-mod/ui/coop_tiles` | 14 | 0.79 MB | .jpg×14 |
-| `hzm-mohaa-coop-mod/ui/loadout` | 371 | 0.13 MB | .cfg×371 |
+| `hzm-mohaa-coop-mod/ui/loadout` | 375 | 0.13 MB | .cfg×375 |
 | `hzm-mohaa-coop-mod/ui/loadout/helm` | 48 | 0.03 MB | .cfg×48 |
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 135 | 0.13 MB | .cfg×135 |
 | `manifests` | 43 | 0.55 MB | .json×43 |
@@ -3168,7 +3168,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coopDev.urc` | 276 | 5.6 KB |  |
 | `coopMomMenuExample.urc` | 276 | 5.4 KB |  |
 | `coop_jeepEnter.urc` | 31 | 0.5 KB |  |
-| `coop_loadout.urc` | 3,646 | 69.9 KB |  |
+| `coop_loadout.urc` | 3,682 | 70.8 KB |  |
 | `coop_login.urc` | 280 | 5.1 KB |  |
 | `coop_mom.urc` | 287 | 5.5 KB |  |
 | `coop_objectives.urc` | 1,343 | 23.3 KB |  |
@@ -3368,7 +3368,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `t2.cfg` | 58 | 3.0 KB | HZM coop - sets the SH (Spearhead) mission 2 maps on the menu (Phase 3 rollout) |
 | `t3.cfg` | 55 | 2.6 KB | HZM coop - sets the SH (Spearhead) mission 3 maps on the menu (Phase 3 rollout) |
 
-### `hzm-mohaa-coop-mod/ui/loadout/` — 371 source files
+### `hzm-mohaa-coop-mod/ui/loadout/` — 375 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -3383,12 +3383,12 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `fitbinds.cfg` | 16 | 0.4 KB | GENERATED - FIT-TUNE fast-nudge key binds (client-local; cleared by fitunbind.cfg). |
 | `fitunbind.cfg` | 16 | 0.2 KB | GENERATED - clear the FIT-TUNE fast-nudge key binds. |
 | `init.cfg` | 74 | 2.3 KB | GENERATED - armory view-state init (slot 1 active, RIFLES page, nothing inspected). |
-| `lktab0.cfg` | 98 | 1.9 KB | GENERATED - client-side padlock recompute for tab 0 (RIFLE). Fail-LOCKED default. |
-| `lktab1.cfg` | 99 | 1.9 KB | GENERATED - client-side padlock recompute for tab 1 (SNIPER). Fail-LOCKED default. |
-| `lktab2.cfg` | 100 | 1.9 KB | GENERATED - client-side padlock recompute for tab 2 (SMG). Fail-LOCKED default. |
-| `lktab3.cfg` | 101 | 1.9 KB | GENERATED - client-side padlock recompute for tab 3 (HEAVY). Fail-LOCKED default. |
-| `lktab4.cfg` | 108 | 2.1 KB | GENERATED - client-side padlock recompute for tab 4 (PISTOL). Fail-LOCKED default. |
-| `lktab5.cfg` | 87 | 1.7 KB | GENERATED - client-side padlock recompute for tab 5 (NADES). Fail-LOCKED default. |
+| `lktab0.cfg` | 99 | 1.9 KB | GENERATED - client-side padlock recompute for tab 0 (RIFLE). Fail-LOCKED default. |
+| `lktab1.cfg` | 100 | 1.9 KB | GENERATED - client-side padlock recompute for tab 1 (SNIPER). Fail-LOCKED default. |
+| `lktab2.cfg` | 101 | 1.9 KB | GENERATED - client-side padlock recompute for tab 2 (SMG). Fail-LOCKED default. |
+| `lktab3.cfg` | 102 | 1.9 KB | GENERATED - client-side padlock recompute for tab 3 (HEAVY). Fail-LOCKED default. |
+| `lktab4.cfg` | 110 | 2.1 KB | GENERATED - client-side padlock recompute for tab 4 (PISTOL). Fail-LOCKED default. |
+| `lktab5.cfg` | 88 | 1.7 KB | GENERATED - client-side padlock recompute for tab 5 (NADES). Fail-LOCKED default. |
 | `open.cfg` | 4 | 0.1 KB | GENERATED - open the armory: seed view state, push the menu, ping the bus. |
 | `p01.cfg` | 24 | 0.7 KB |  |
 | `p02.cfg` | 24 | 0.7 KB |  |
@@ -3464,6 +3464,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `p72.cfg` | 24 | 0.7 KB |  |
 | `p73.cfg` | 24 | 0.8 KB |  |
 | `p74.cfg` | 24 | 0.7 KB |  |
+| `p75.cfg` | 24 | 0.8 KB |  |
 | `req02.cfg` | 2 | 0.1 KB |  |
 | `req03.cfg` | 2 | 0.1 KB |  |
 | `req04.cfg` | 2 | 0.1 KB |  |
@@ -3534,6 +3535,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `req72.cfg` | 2 | 0.1 KB |  |
 | `req73.cfg` | 2 | 0.1 KB |  |
 | `req74.cfg` | 2 | 0.1 KB |  |
+| `req75.cfg` | 2 | 0.1 KB |  |
 | `reqclear.cfg` | 2 | 0.0 KB |  |
 | `reset.cfg` | 19 | 0.4 KB | GENERATED - clear all armory picks (client cvars + tell the server). |
 | `s1sel.cfg` | 13 | 0.3 KB | GENERATED - activate loadout slot 1 |
@@ -3614,6 +3616,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `t72.cfg` | 3 | 0.1 KB | GENERATED - inspect + LOCK-GATED equip-into-active-slot (coop_loCmt<id> = commit or deny) |
 | `t73.cfg` | 3 | 0.1 KB | GENERATED - inspect + LOCK-GATED equip-into-active-slot (coop_loCmt<id> = commit or deny) |
 | `t74.cfg` | 3 | 0.1 KB | GENERATED - inspect + LOCK-GATED equip-into-active-slot (coop_loCmt<id> = commit or deny) |
+| `t75.cfg` | 3 | 0.1 KB | GENERATED - inspect + LOCK-GATED equip-into-active-slot (coop_loCmt<id> = commit or deny) |
 | `unreg_heavy.cfg` | 2 | 0.1 KB | GENERATED - unregister heavy from the one-per-class registry |
 | `unreg_rifle.cfg` | 2 | 0.1 KB | GENERATED - unregister rifle from the one-per-class registry |
 | `unreg_smg.cfg` | 2 | 0.1 KB | GENERATED - unregister smg from the one-per-class registry |
@@ -3743,6 +3746,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `w73_s1.cfg` | 11 | 0.4 KB |  |
 | `w73_s2.cfg` | 10 | 0.3 KB |  |
 | `w74_s3.cfg` | 6 | 0.2 KB |  |
+| `w75_s3.cfg` | 6 | 0.2 KB |  |
 
 ### `hzm-mohaa-coop-mod/ui/loadout/helm/` — 48 source files
 
