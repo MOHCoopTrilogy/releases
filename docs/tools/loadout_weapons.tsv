@@ -12,79 +12,79 @@
 # recoil   rec_<id> recoil curve texture
 # slots    which inventory slots accept it: 1,2 primary  3 pistol  4 heavy
 # req1/2   hover unlock text, split over two lines. Empty = unlocked from the start.
-id	tik	xfm	charanim	cls	name	cd	b0	b1	b2	b3	clip	clipn	recoil	slots	req1	req2
-01	models/weapons/m1_garand.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	M1 GARAND	.30-06 / SEMI-AUTO / 8 RD	5	4	8	10	8	8	m1_garand	12		
-02	models/weapons/carbine.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	M1 CARBINE	.30 CARBINE / SEMI-AUTO	4	5	8	8	15	15	carbine	12	UNLOCK: Rank: Private	First Class
-03	models/weapons/kar98.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	KAR98K	7.92MM / BOLT-ACTION	10	1	8	10	5	5	kar98	12	UNLOCK: Rank: Corporal	
-04	models/weapons/g43.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	GEWEHR 43	7.92MM / SEMI-AUTO	5	4	0	5	10	10	g43	12	UNLOCK: Rank: Sergeant	
-05	models/weapons/enfield.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	LEE-ENFIELD NO.4	.303 / BOLT-ACTION	9	1	8	10	10	10	enfield	12	UNLOCK: Rank: Staff	Sergeant
-06	models/weapons/springfield_unscoped.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	SPRINGFIELD M1903	.30-06 / BOLT-ACTION	8	1	8	8	5	5	springfield_unscoped	12	UNLOCK: Rank: First	Sergeant
-07	models/weapons/it_w_carcano.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	CARCANO M91/38	6.5MM / BOLT-ACTION	9	1	9	10	6	6	it_w_carcano	12	UNLOCK: Rank: Master	Sergeant
-08	models/weapons/svt_rifle.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	SVT-40	7.62MM / SEMI-AUTO	5	1	0	5	10	10	svt_rifle	12	UNLOCK: Rank: First	Lieutenant
-09	models/weapons/mosin_nagant_rifle.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	MOSIN-NAGANT	7.62MM / BOLT-ACTION	9	1	8	10	5	5	mosin_nagant_rifle	12	UNLOCK: Rank: Captain	
-10	models/weapons/arisaka.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	ARISAKA TYPE 99	7.7MM / BOLT-ACTION	8	1	8	8	5	5	arisaka	12	UNLOCK: Rank: Lt. Colonel	
-11	models/weapons/garand_silenced.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	M1 GARAND SILENCED	.30-06 / SEMI-AUTO / SU..	4	2	8	8	8	8	garand_silenced	12	UNLOCK: 175 kills w/ M1	Garand
-12	models/weapons/springfield.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	SPRINGFIELD SNIPER	.30-06 / SCOPED BOLT	9	0	9	7	5	5	springfield	12	UNLOCK: Kopfschuss (25	headshots)
-13	models/weapons/kar98sniper.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	KAR98K SNIPER	7.92MM / SCOPED BOLT	9	0	9	5	5	5	kar98sniper	12	UNLOCK: 100 kills w/	Kar98k
-14	models/weapons/uk_w_l42a1.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	ENFIELD L42A1	.303 / SCOPED BOLT	9	1	9	8	10	10	uk_w_l42a1	12	UNLOCK: 100 kills w/	Lee-Enfield
-15	models/weapons/garand_scoped.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	M1 GARAND SCOPED	.30-06 / SCOPED SEMI-AUTO	4	2	9	8	8	8	garand_scoped	12	UNLOCK: 100 kills w/ M1	Garand
-16	models/weapons/g43sniper.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	G43 SNIPER	7.92MM / SCOPED SEMI-AUTO	4	4	9	7	10	10	g43sniper	12	UNLOCK: 100 kills w/	Gewehr 43
-17	models/weapons/enfieldsniper.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	LEE-ENFIELD SNIPER	.303 / SCOPED BOLT	8	1	9	5	10	10	enfieldsniper	12	UNLOCK: kills w/ Enfield	L42A1
-18	models/weapons/carcanosniper.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	CARCANO SNIPER	6.5MM / SCOPED BOLT	8	1	9	5	6	6	carcanosniper	12	UNLOCK: 100 kills w/	Carcano
-19	models/weapons/arisakasniper.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	ARISAKA SNIPER	7.7MM / SCOPED BOLT	8	1	9	8	5	5	arisakasniper	12	UNLOCK: 100 kills w/	Mosin-Nagant
-20	models/weapons/nagant_sniper.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	MOSIN SNIPER	7.62MM / SCOPED BOLT	8	1	9	5	5	5	nagant_sniper	12	UNLOCK: kills w/ Mosin	Sniper
-21	models/weapons/nagant_snipersilenced.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	MOSIN SNIPER SILENCED	7.62MM / SUPPRESSED SCOPE	8	1	9	5	5	5	nagant_snipersilenced	12	UNLOCK: 100 kills w/	Arisaka
-22	models/weapons/kar98snipersilenced.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	KAR98K SNIPER SILENCED	7.92MM / SUPPRESSED SCOPE	8	1	9	5	5	5	kar98snipersilenced	12	UNLOCK: kills w/ Kar98	Sniper
-23	models/weapons/delisle.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	DE LISLE CARBINE	.45 / SUPPRESSED BOLT	6	1	9	10	7	7	delisle	12	UNLOCK: Silent Night	(no-alarm)
-24	models/weapons/thompsonsmg.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	THOMPSON M1	.45 ACP / FULL-AUTO	2	9	8	8	30	30	thompsonsmg	12		
-25	models/weapons/thompson50.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	THOMPSON DRUM	.45 ACP / 50 RD DRUM	2	9	9	8	50	50	thompson50	12	UNLOCK: 100 kills w/	Thompson
-26	models/weapons/mp40.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	MP40	9MM / FULL-AUTO	2	10	8	8	32	32	mp40	12	UNLOCK: Locked	
-27	models/weapons/mp40silenced.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	MP40 SILENCED	9MM / SUPPRESSED AUTO	3	7	9	8	32	32	mp40silenced	12	UNLOCK: 100 kills w/ MP40	
-28	models/weapons/sten.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	STEN MK II	9MM / FULL-AUTO	2	10	8	8	30	30	sten	12	UNLOCK: Rank: Technician	4th
-29	models/weapons/ppsh_smg.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	PPSH-41	7.62MM / FULL-AUTO	2	9	8	8	70	70	ppsh_smg	12	UNLOCK: Rank: Technician	3rd
-30	models/weapons/ppsh43silenced.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	PPS-43 SILENCED	7.62MM / SUPPRESSED AUTO	2	9	9	8	35	35	ppsh43silenced	12	UNLOCK: 100 kills w/	PPSh-41
-31	models/weapons/greasegun.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	M3 GREASE GUN	.45 ACP / FULL-AUTO	2	7	9	8	30	30	greasegun	12	UNLOCK: Rank: Technical	Sergeant
-32	models/weapons/greasegun_silenced.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	M3 GREASE SILENCED	.45 ACP / SUPPRESSED AUTO	2	7	9	8	30	30	greasegun_silenced	12	UNLOCK: 100 kills w/	Grease Gun
-33	models/weapons/it_w_moschetto.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	MOSCHETTO M38	9MM / FULL-AUTO	2	10	8	8	40	40	it_w_moschetto	12	UNLOCK: Rank: Major	
-34	models/weapons/moschetto.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	BERETTA M38A	9MM / FULL-AUTO	2	9	9	8	40	40	moschetto	12	UNLOCK: Rank: Lt. Colonel	
-35	models/weapons/type100smg.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	TYPE 100 SMG	8MM / FULL-AUTO	2	8	9	9	30	30	type100smg	12	UNLOCK: Rank: Brigadier	General
-36	models/weapons/bar.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	BAR M1918	.30-06 / AUTOMATIC RIFLE	3	7	8	6	20	20	bar	12	UNLOCK: Rank: Second	Lieutenant
-37	models/weapons/mp44.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	STG 44	7.92MM KURZ / ASSAULT R..	3	7	8	6	30	30	mp44	12	UNLOCK: Rank: Major	General
-38	models/weapons/mp44scoped.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	STG 44 SCOPED	7.92MM KURZ / SCOPED AS..	2	7	9	7	30	30	mp44scoped	12	UNLOCK: 100 kills w/	StG44
-39	models/weapons/fg42.tik	0 0 0 0.80 0 90 180	coop_hold_rifle	heavy	FG 42	7.92MM / AUTOMATIC RIFLE	10	9	0	5	20	20	fg42	12	UNLOCK: Rank: Lt. General	
-40	models/weapons/uk_w_vickers.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	VICKERS-BERTHIER	.303 / LIGHT MG	3	6	8	5	30	30	uk_w_vickers	12	UNLOCK: Rank: General	
-41	models/weapons/it_w_breda.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	BREDA M30	6.5MM / LIGHT MG	3	7	8	5	20	20	it_w_breda	12	UNLOCK: Rank: General of	the Army
-42	models/weapons/30calportable.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	M1919 .30 CAL	.30-06 / PORTABLE MG	8	9	9	1	120	120	30calportable	12	UNLOCK: Skill Tree	(coming soon)
-43	models/weapons/mg42portable.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	MG42	7.92MM / PORTABLE MG	10	10	9	1	120	120	mg42portable	12	UNLOCK: Skill Tree	(coming soon)
-44	models/weapons/shotgun.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	TRENCH GUN	12 GAUGE / PUMP-ACTION	10	1	8	9	5	5	shotgun	12	UNLOCK: Rank: Colonel	
-45	models/weapons/bazooka.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	M1A1 BAZOOKA	ROCKET / ANTI-TANK	10	1	6	3	1	1	bazooka	12	UNLOCK: Skill Tree	(coming soon)
-46	models/weapons/panzerschreck.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	PANZERSCHRECK	ROCKET / ANTI-TANK	10	1	6	3	1	1	panzerschreck	12	UNLOCK: Skill Tree	(coming soon)
-47	models/weapons/uk_w_piat.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	PIAT	BOMB / ANTI-TANK	10	1	5	3	1	1	uk_w_piat	12	UNLOCK: Skill Tree	(coming soon)
-48	models/weapons/colt45.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		COLT M1911	.45 ACP / SEMI-AUTO	3	6	8	9	7	7	colt45	3		
-49	models/weapons/colt_silenced.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		COLT M1911 SILENCED	.45 ACP / SUPPRESSED	3	3	7	9	7	7	colt_silenced	3	UNLOCK: 50 kills w/ Colt	.45
-50	models/weapons/p38.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		WALTHER P38	9MM / SEMI-AUTO	3	5	9	9	8	8	p38	3	UNLOCK: Rank: Private	First Class
-51	models/weapons/p38silenced.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		WALTHER P38 SILENCED	9MM / SUPPRESSED	3	3	8	9	8	8	p38silenced	3	UNLOCK: 50 kills w/	Walther P38
-52	models/weapons/silencedpistol.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		HI-STANDARD HDM	.22 / SUPPRESSED	5	1	6	9	8	8	silencedpistol	3	UNLOCK: Rank: Corporal	
-53	models/weapons/webley_revolver.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		WEBLEY MK VI	.455 / REVOLVER	4	7	8	9	6	6	webley_revolver	3	UNLOCK: Rank: Technician	3rd
-54	models/weapons/nagant_revolver.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		NAGANT M1895	7.62MM / REVOLVER	3	5	8	9	7	7	nagant_revolver	3	UNLOCK: Rank: Technical	Sergeant
-55	models/weapons/it_w_beretta.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		BERETTA M1934	9MM CORTO / SEMI-AUTO	3	5	8	9	15	15	it_w_beretta	3	UNLOCK: Rank: Master	Sergeant
-56	models/weapons/berettasilenced.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		BERETTA SILENCED	9MM CORTO / SUPPRESSED	3	3	7	9	8	8	berettasilenced	3	UNLOCK: 50 kills w/	Beretta
-57	models/weapons/lugerp08.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		LUGER P08	9MM / SEMI-AUTO	3	3	7	9	8	8	lugerp08	3	UNLOCK: Rank: Technician	4th
-58	models/weapons/lugerp08silenced.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		LUGER P08 SILENCED	9MM / SUPPRESSED	3	3	7	9	8	8	lugerp08silenced	3	UNLOCK: 50 kills w/ Luger	P08
-59	models/weapons/ppk.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		WALTHER PPK	7.65MM / SEMI-AUTO	3	3	6	9	8	8	ppk	3	UNLOCK: Rank: Second	Lieutenant
-60	models/weapons/tt33.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		TOKAREV TT-33	7.62MM / SEMI-AUTO	3	3	8	9	8	8	tt33	3	UNLOCK: Rank: First	Lieutenant
-61	models/weapons/tt33silenced.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		TT-33 SILENCED	7.62MM / SUPPRESSED	3	3	8	9	8	8	tt33silenced	3	UNLOCK: 50 kills w/ TT-33	
-62	models/weapons/nambu.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		NAMBU TYPE 14	8MM / SEMI-AUTO	3	3	7	9	8	8	nambu	3	UNLOCK: Rank: Staff	Sergeant
-63	models/weapons/welrod.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		WELROD MK II	9MM / INTEGRALLY SUPPRE..	4	1	7	9	6	6	welrod	3	UNLOCK: Cold Steel line	(20 melee)
-64	models/weapons/m2frag_grenade.tik	0 0 0 2.00 0 90 180	coop_hold_pistol		M2 FRAG	US FRAGMENTATION GRENADE	9	2	5	10	0		m2frag	4		
-65	models/weapons/steilhandgranate.tik	0 0 0 2.00 0 90 180	coop_hold_pistol		STIELHANDGRANATE	GERMAN STICK GRENADE	9	2	6	10	0		steilhandgranate	4	UNLOCK: Rank: Corporal	
-66	models/weapons/mills_grenade.tik	0 0 0 2.00 0 90 180	coop_hold_pistol		MILLS BOMB	BRITISH FRAGMENTATION	9	2	5	10	0		mills	4	UNLOCK: Rank: Corporal	
-67	models/weapons/it_w_bomba.tik	0 0 0 2.00 0 90 180	coop_hold_pistol		BREDA MOD.35	ITALIAN FRAGMENTATION	8	3	5	10	0		bomba	4	UNLOCK: Rank: Captain	
-68	models/weapons/m18_smoke_grenade.tik	0 0 0 2.00 0 90 180	coop_hold_pistol		M18 SMOKE	SMOKE SCREEN GRENADE	0	2	5	10	0		m18smoke	4	UNLOCK: Rank: Sergeant	
-69	models/weapons/nebelhandgranate.tik	0 0 0 2.00 0 90 180	coop_hold_pistol		NEBELHANDGRANATE	GERMAN SMOKE GRENADE	0	2	5	10	0		nebel	4	UNLOCK: Rank: First	Sergeant
-70	models/weapons/johnson_m1941.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	JOHNSON M1941	.30-06 / SEMI-AUTO / 10 RD	5	4	8	10	10	10	m1_garand	12	UNLOCK: 120 long-range	kills
-71	models/weapons/thompson_gold.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	THOMPSON (GOLD)	.45 ACP / FULL-AUTO	2	9	8	8	30	30	thompsonsmg	12	UNLOCK: 250 Thompson	kills
-72	models/weapons/dp28.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	DP-28	7.62x54R / FULL-AUTO / 47 RD	3	7	8	6	50	47	bar	12	UNLOCK: 200 reinforcement	kills
-73	models/weapons/panzerfaust.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	PANZERFAUST	ROCKET / ANTI-TANK / 1 RD	10	1	6	3	1	1	panzerschreck	12	UNLOCK: destroy 40	vehicles
-74	models/weapons/mauser_c96.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		MAUSER C96	7.63MM / SEMI-AUTO / 10 RD	3	5	9	9	10	10	p38	3	UNLOCK: 150 headshots	
-75	models/weapons/m10_revolver.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		S&W M10 .38	.38 SPECIAL / REVOLVER / 6 RD	3	5	8	9	6	6	nagant_revolver	3	UNLOCK: 250 headshots	
+id	tik	give	xfm	charanim	cls	tab	name	cd	b0	b1	b2	b3	clip	clipn	recoil	slots	req1	req2
+01	models/weapons/m1_garand.tik	models/weapons/m1_garand.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	M1 GARAND	.30-06 / SEMI-AUTO / 8 RD	5	4	8	10	8	8	m1_garand	12		
+02	models/weapons/carbine.tik	models/weapons/carbine.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	M1 CARBINE	.30 CARBINE / SEMI-AUTO	4	5	8	8	15	15	carbine	12	UNLOCK: Rank: Private	First Class
+03	models/weapons/kar98.tik	models/weapons/kar98.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	KAR98K	7.92MM / BOLT-ACTION	10	1	8	10	5	5	kar98	12	UNLOCK: Rank: Corporal	
+04	models/weapons/g43.tik	models/weapons/g43.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	GEWEHR 43	7.92MM / SEMI-AUTO	5	4	0	5	10	10	g43	12	UNLOCK: Rank: Sergeant	
+05	models/weapons/enfield.tik	models/weapons/enfield.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	LEE-ENFIELD NO.4	.303 / BOLT-ACTION	9	1	8	10	10	10	enfield	12	UNLOCK: Rank: Staff	Sergeant
+06	models/weapons/springfield_unscoped.tik	models/weapons/springfield_unscoped.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	SPRINGFIELD M1903	.30-06 / BOLT-ACTION	8	1	8	8	5	5	springfield_unscoped	12	UNLOCK: Rank: First	Sergeant
+07	models/weapons/it_w_carcano.tik	models/weapons/it_w_carcano.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	CARCANO M91/38	6.5MM / BOLT-ACTION	9	1	9	10	6	6	it_w_carcano	12	UNLOCK: Rank: Master	Sergeant
+08	models/weapons/svt_rifle.tik	models/weapons/svt_rifle.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	SVT-40	7.62MM / SEMI-AUTO	5	1	0	5	10	10	svt_rifle	12	UNLOCK: Rank: First	Lieutenant
+09	models/weapons/mosin_nagant_rifle.tik	models/weapons/mosin_nagant_rifle.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	MOSIN-NAGANT	7.62MM / BOLT-ACTION	9	1	8	10	5	5	mosin_nagant_rifle	12	UNLOCK: Rank: Captain	
+10	models/weapons/arisaka.tik	models/weapons/arisaka.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	ARISAKA TYPE 99	7.7MM / BOLT-ACTION	8	1	8	8	5	5	arisaka	12	UNLOCK: Rank: Lt. Colonel	
+11	models/weapons/garand_silenced.tik	models/weapons/garand_silenced.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	M1 GARAND SILENCED	.30-06 / SEMI-AUTO / SU..	4	2	8	8	8	8	garand_silenced	12	UNLOCK: 175 kills w/ M1	Garand
+12	models/weapons/springfield.tik	models/weapons/springfield.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	1	SPRINGFIELD SNIPER	.30-06 / SCOPED BOLT	9	0	9	7	5	5	springfield	12	UNLOCK: Kopfschuss (25	headshots)
+13	models/weapons/kar98sniper.tik	models/weapons/kar98sniper.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	1	KAR98K SNIPER	7.92MM / SCOPED BOLT	9	0	9	5	5	5	kar98sniper	12	UNLOCK: 100 kills w/	Kar98k
+14	models/weapons/uk_w_l42a1.tik	models/weapons/uk_w_l42a1.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	1	ENFIELD L42A1	.303 / SCOPED BOLT	9	1	9	8	10	10	uk_w_l42a1	12	UNLOCK: 100 kills w/	Lee-Enfield
+15	models/weapons/garand_scoped.tik	models/weapons/garand_scoped.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	1	M1 GARAND SCOPED	.30-06 / SCOPED SEMI-AUTO	4	2	9	8	8	8	garand_scoped	12	UNLOCK: 100 kills w/ M1	Garand
+16	models/weapons/g43sniper.tik	models/weapons/g43sniper.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	1	G43 SNIPER	7.92MM / SCOPED SEMI-AUTO	4	4	9	7	10	10	g43sniper	12	UNLOCK: 100 kills w/	Gewehr 43
+17	models/weapons/enfieldsniper.tik	models/weapons/enfieldsniper.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	1	LEE-ENFIELD SNIPER	.303 / SCOPED BOLT	8	1	9	5	10	10	enfieldsniper	12	UNLOCK: kills w/ Enfield	L42A1
+18	models/weapons/carcanosniper.tik	models/weapons/carcanosniper.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	1	CARCANO SNIPER	6.5MM / SCOPED BOLT	8	1	9	5	6	6	carcanosniper	12	UNLOCK: 100 kills w/	Carcano
+19	models/weapons/arisakasniper.tik	models/weapons/arisakasniper.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	1	ARISAKA SNIPER	7.7MM / SCOPED BOLT	8	1	9	8	5	5	arisakasniper	12	UNLOCK: 100 kills w/	Mosin-Nagant
+20	models/weapons/nagant_sniper.tik	models/weapons/nagant_sniper.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	1	MOSIN SNIPER	7.62MM / SCOPED BOLT	8	1	9	5	5	5	nagant_sniper	12	UNLOCK: kills w/ Mosin	Sniper
+21	models/weapons/nagant_snipersilenced.tik	models/weapons/nagant_snipersilenced.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	1	MOSIN SNIPER SILENCED	7.62MM / SUPPRESSED SCOPE	8	1	9	5	5	5	nagant_snipersilenced	12	UNLOCK: 100 kills w/	Arisaka
+22	models/weapons/kar98snipersilenced.tik	models/weapons/kar98snipersilenced.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	1	KAR98K SNIPER SILENCED	7.92MM / SUPPRESSED SCOPE	8	1	9	5	5	5	kar98snipersilenced	12	UNLOCK: kills w/ Kar98	Sniper
+23	models/weapons/delisle.tik	models/weapons/delisle.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	sniper	1	DE LISLE CARBINE	.45 / SUPPRESSED BOLT	6	1	9	10	7	7	delisle	12	UNLOCK: Silent Night	(no-alarm)
+24	models/weapons/thompsonsmg.tik	models/weapons/thompsonsmg.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	2	THOMPSON M1	.45 ACP / FULL-AUTO	2	9	8	8	30	30	thompsonsmg	12		
+25	models/weapons/thompson50.tik	models/weapons/thompson50.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	2	THOMPSON DRUM	.45 ACP / 50 RD DRUM	2	9	9	8	50	50	thompson50	12	UNLOCK: 100 kills w/	Thompson
+26	models/weapons/mp40.tik	models/weapons/mp40.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	2	MP40	9MM / FULL-AUTO	2	10	8	8	32	32	mp40	12	UNLOCK: Locked	
+27	models/weapons/mp40silenced.tik	models/weapons/mp40silenced.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	2	MP40 SILENCED	9MM / SUPPRESSED AUTO	3	7	9	8	32	32	mp40silenced	12	UNLOCK: 100 kills w/ MP40	
+28	models/weapons/sten.tik	models/weapons/sten.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	2	STEN MK II	9MM / FULL-AUTO	2	10	8	8	30	30	sten	12	UNLOCK: Rank: Technician	4th
+29	models/weapons/ppsh_smg.tik	models/weapons/ppsh_smg.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	2	PPSH-41	7.62MM / FULL-AUTO	2	9	8	8	70	70	ppsh_smg	12	UNLOCK: Rank: Technician	3rd
+30	models/weapons/ppsh43silenced.tik	models/weapons/ppsh43silenced.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	2	PPS-43 SILENCED	7.62MM / SUPPRESSED AUTO	2	9	9	8	35	35	ppsh43silenced	12	UNLOCK: 100 kills w/	PPSh-41
+31	models/weapons/greasegun.tik	models/weapons/greasegun.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	2	M3 GREASE GUN	.45 ACP / FULL-AUTO	2	7	9	8	30	30	greasegun	12	UNLOCK: Rank: Technical	Sergeant
+32	models/weapons/greasegun_silenced.tik	models/weapons/greasegun_silenced.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	2	M3 GREASE SILENCED	.45 ACP / SUPPRESSED AUTO	2	7	9	8	30	30	greasegun_silenced	12	UNLOCK: 100 kills w/	Grease Gun
+33	models/weapons/it_w_moschetto.tik	models/weapons/it_w_moschetto.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	2	MOSCHETTO M38	9MM / FULL-AUTO	2	10	8	8	40	40	it_w_moschetto	12	UNLOCK: Rank: Major	
+34	models/weapons/moschetto.tik	models/weapons/moschetto.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	2	BERETTA M38A	9MM / FULL-AUTO	2	9	9	8	40	40	moschetto	12	UNLOCK: Rank: Lt. Colonel	
+35	models/weapons/type100smg.tik	models/weapons/type100smg.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	2	TYPE 100 SMG	8MM / FULL-AUTO	2	8	9	9	30	30	type100smg	12	UNLOCK: Rank: Brigadier	General
+36	models/weapons/bar.tik	models/weapons/bar.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	3	BAR M1918	.30-06 / AUTOMATIC RIFLE	3	7	8	6	20	20	bar	12	UNLOCK: Rank: Second	Lieutenant
+37	models/weapons/mp44.tik	models/weapons/mp44.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	3	STG 44	7.92MM KURZ / ASSAULT R..	3	7	8	6	30	30	mp44	12	UNLOCK: Rank: Major	General
+38	models/weapons/mp44scoped.tik	models/weapons/mp44scoped.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	3	STG 44 SCOPED	7.92MM KURZ / SCOPED AS..	2	7	9	7	30	30	mp44scoped	12	UNLOCK: 100 kills w/	StG44
+39	models/weapons/fg42.tik	models/weapons/fg42.tik	0 0 0 0.80 0 90 180	coop_hold_rifle	heavy	3	FG 42	7.92MM / AUTOMATIC RIFLE	10	9	0	5	20	20	fg42	12	UNLOCK: Rank: Lt. General	
+40	models/weapons/uk_w_vickers.tik	models/weapons/uk_w_vickers.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	3	VICKERS-BERTHIER	.303 / LIGHT MG	3	6	8	5	30	30	uk_w_vickers	12	UNLOCK: Rank: General	
+41	models/weapons/it_w_breda.tik	models/weapons/it_w_breda.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	3	BREDA M30	6.5MM / LIGHT MG	3	7	8	5	20	20	it_w_breda	12	UNLOCK: Rank: General of	the Army
+42	models/weapons/30calportable.tik	models/weapons/30calportable.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	3	M1919 .30 CAL	.30-06 / PORTABLE MG	8	9	9	1	120	120	30calportable	12	UNLOCK: Skill Tree	(coming soon)
+43	models/weapons/mg42portable.tik	models/weapons/mg42portable.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	3	MG42	7.92MM / PORTABLE MG	10	10	9	1	120	120	mg42portable	12	UNLOCK: Skill Tree	(coming soon)
+44	models/weapons/shotgun.tik	models/weapons/shotgun.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	3	TRENCH GUN	12 GAUGE / PUMP-ACTION	10	1	8	9	5	5	shotgun	12	UNLOCK: Rank: Colonel	
+45	models/weapons/bazooka.tik	models/weapons/bazooka.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	3	M1A1 BAZOOKA	ROCKET / ANTI-TANK	10	1	6	3	1	1	bazooka	12	UNLOCK: Skill Tree	(coming soon)
+46	models/weapons/panzerschreck.tik	models/weapons/panzerschreck.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	3	PANZERSCHRECK	ROCKET / ANTI-TANK	10	1	6	3	1	1	panzerschreck	12	UNLOCK: Skill Tree	(coming soon)
+47	models/weapons/uk_w_piat.tik	models/weapons/uk_w_piat.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	3	PIAT	BOMB / ANTI-TANK	10	1	5	3	1	1	uk_w_piat	12	UNLOCK: Skill Tree	(coming soon)
+48	models/weapons/colt45.tik	models/weapons/colt45.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		4	COLT M1911	.45 ACP / SEMI-AUTO	3	6	8	9	7	7	colt45	3		
+49	models/weapons/colt_silenced.tik	models/weapons/colt_silenced.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		4	COLT M1911 SILENCED	.45 ACP / SUPPRESSED	3	3	7	9	7	7	colt_silenced	3	UNLOCK: 50 kills w/ Colt	.45
+50	models/weapons/p38.tik	models/weapons/p38.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		4	WALTHER P38	9MM / SEMI-AUTO	3	5	9	9	8	8	p38	3	UNLOCK: Rank: Private	First Class
+51	models/weapons/p38silenced.tik	models/weapons/p38silenced.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		4	WALTHER P38 SILENCED	9MM / SUPPRESSED	3	3	8	9	8	8	p38silenced	3	UNLOCK: 50 kills w/	Walther P38
+52	models/weapons/silencedpistol.tik	models/weapons/silencedpistol.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		4	HI-STANDARD HDM	.22 / SUPPRESSED	5	1	6	9	8	8	silencedpistol	3	UNLOCK: Rank: Corporal	
+53	models/weapons/webley_revolver.tik	models/weapons/webley_revolver.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		4	WEBLEY MK VI	.455 / REVOLVER	4	7	8	9	6	6	webley_revolver	3	UNLOCK: Rank: Technician	3rd
+54	models/weapons/nagant_revolver.tik	models/weapons/nagant_revolver.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		4	NAGANT M1895	7.62MM / REVOLVER	3	5	8	9	7	7	nagant_revolver	3	UNLOCK: Rank: Technical	Sergeant
+55	models/weapons/it_w_beretta.tik	models/weapons/it_w_beretta.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		4	BERETTA M1934	9MM CORTO / SEMI-AUTO	3	5	8	9	15	15	it_w_beretta	3	UNLOCK: Rank: Master	Sergeant
+56	models/weapons/berettasilenced.tik	models/weapons/berettasilenced.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		4	BERETTA SILENCED	9MM CORTO / SUPPRESSED	3	3	7	9	8	8	berettasilenced	3	UNLOCK: 50 kills w/	Beretta
+57	models/weapons/lugerp08.tik	models/weapons/lugerp08.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		4	LUGER P08	9MM / SEMI-AUTO	3	3	7	9	8	8	lugerp08	3	UNLOCK: Rank: Technician	4th
+58	models/weapons/lugerp08silenced.tik	models/weapons/lugerp08silenced.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		4	LUGER P08 SILENCED	9MM / SUPPRESSED	3	3	7	9	8	8	lugerp08silenced	3	UNLOCK: 50 kills w/ Luger	P08
+59	models/weapons/ppk.tik	models/weapons/ppk.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		4	WALTHER PPK	7.65MM / SEMI-AUTO	3	3	6	9	8	8	ppk	3	UNLOCK: Rank: Second	Lieutenant
+60	models/weapons/tt33.tik	models/weapons/tt33.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		4	TOKAREV TT-33	7.62MM / SEMI-AUTO	3	3	8	9	8	8	tt33	3	UNLOCK: Rank: First	Lieutenant
+61	models/weapons/tt33silenced.tik	models/weapons/tt33silenced.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		4	TT-33 SILENCED	7.62MM / SUPPRESSED	3	3	8	9	8	8	tt33silenced	3	UNLOCK: 50 kills w/ TT-33	
+62	models/weapons/nambu.tik	models/weapons/nambu.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		4	NAMBU TYPE 14	8MM / SEMI-AUTO	3	3	7	9	8	8	nambu	3	UNLOCK: Rank: Staff	Sergeant
+63	models/weapons/welrod.tik	models/weapons/welrod.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		4	WELROD MK II	9MM / INTEGRALLY SUPPRE..	4	1	7	9	6	6	welrod	3	UNLOCK: Cold Steel line	(20 melee)
+64	models/weapons/m2frag_grenade.tik	models/weapons/m2frag_grenade_sp_start.tik	0 0 0 2.00 0 90 180	coop_hold_pistol		5	M2 FRAG	US FRAGMENTATION GRENADE	9	2	5	10	0		m2frag	4		
+65	models/weapons/steilhandgranate.tik	models/weapons/steilhandgranate_start.tik	0 0 0 2.00 0 90 180	coop_hold_pistol		5	STIELHANDGRANATE	GERMAN STICK GRENADE	9	2	6	10	0		steilhandgranate	4	UNLOCK: Rank: Corporal	
+66	models/weapons/mills_grenade.tik	models/weapons/mills_grenade_sp_start.tik	0 0 0 2.00 0 90 180	coop_hold_pistol		5	MILLS BOMB	BRITISH FRAGMENTATION	9	2	5	10	0		mills	4	UNLOCK: Rank: Corporal	
+67	models/weapons/it_w_bomba.tik	models/weapons/it_w_bomba_sp_start.tik	0 0 0 2.00 0 90 180	coop_hold_pistol		5	BREDA MOD.35	ITALIAN FRAGMENTATION	8	3	5	10	0		bomba	4	UNLOCK: Rank: Captain	
+68	models/weapons/m18_smoke_grenade.tik	models/weapons/m18_smoke_grenade_start.tik	0 0 0 2.00 0 90 180	coop_hold_pistol		5	M18 SMOKE	SMOKE SCREEN GRENADE	0	2	5	10	0		m18smoke	4	UNLOCK: Rank: Sergeant	
+69	models/weapons/nebelhandgranate.tik	models/weapons/nebelhandgranate_start.tik	0 0 0 2.00 0 90 180	coop_hold_pistol		5	NEBELHANDGRANATE	GERMAN SMOKE GRENADE	0	2	5	10	0		nebel	4	UNLOCK: Rank: First	Sergeant
+70	models/weapons/johnson_m1941.tik		0 0 0 1.00 0 90 180	coop_hold_rifle	rifle		JOHNSON M1941	.30-06 / SEMI-AUTO / 10 RD	5	4	8	10	10	10	m1_garand	12	UNLOCK: 120 long-range	kills
+71	models/weapons/thompson_gold.tik		0 0 0 1.00 0 90 180	coop_hold_smg	smg		THOMPSON (GOLD)	.45 ACP / FULL-AUTO	2	9	8	8	30	30	thompsonsmg	12	UNLOCK: 250 Thompson	kills
+72	models/weapons/dp28.tik		0 0 0 1.00 0 90 180	coop_hold_rifle	heavy		DP-28	7.62x54R / FULL-AUTO / 47 RD	3	7	8	6	50	47	bar	12	UNLOCK: 200 reinforcement	kills
+73	models/weapons/panzerfaust.tik		0 0 0 1.00 0 90 180	coop_hold_rifle	heavy		PANZERFAUST	ROCKET / ANTI-TANK / 1 RD	10	1	6	3	1	1	panzerschreck	12	UNLOCK: destroy 40	vehicles
+74	models/weapons/mauser_c96.tik		0 0 0 1.60 0 90 180	coop_hold_pistol			MAUSER C96	7.63MM / SEMI-AUTO / 10 RD	3	5	9	9	10	10	p38	3	UNLOCK: 150 headshots	
+75	models/weapons/m10_revolver.tik		0 0 0 1.60 0 90 180	coop_hold_pistol			S&W M10 .38	.38 SPECIAL / REVOLVER / 6 RD	3	5	8	9	6	6	nagant_revolver	3	UNLOCK: 250 headshots	

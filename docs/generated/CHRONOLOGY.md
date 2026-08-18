@@ -13,27 +13,28 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `8fb513b 2026-08-17 docs: armory table complete at 75 weapons` |
-| commits | 111 |
+| HEAD | `e052d2c 2026-08-17 docs: two traps from this session - pitch 0 is silence, ordernumber is not draw order` |
+| commits | 112 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **1 modified, 0 untracked** |
-| unstaged diff | 1 file changed, 37 insertions(+) |
+| **uncommitted** | **2 modified, 0 untracked** |
+| unstaged diff | 2 files changed, 126 insertions(+), 81 deletions(-) |
 
-> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 2 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 57 |
+| 2026-08 | 58 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (111)
+### Commits since 2026-01-01 (112)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `e052d2c` | 2026-08-17 | joncurry94-tech | docs: two traps from this session - pitch 0 is silence, ordernumber is not draw order |
 | `8fb513b` | 2026-08-17 | joncurry94-tech | docs: armory table complete at 75 weapons |
 | `398891f` | 2026-08-17 | joncurry94-tech | docs: armory table now carries the five added weapons |
 | `cf133e5` | 2026-08-17 | joncurry94-tech | tools: reconstruct the lost armory generator, proved by exact reproduction |
@@ -151,8 +152,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `a2a32a3 2026-08-17 armory: add the S&W M10, completing the six imported weapons` |
-| commits | 1,445 |
+| HEAD | `fde072f 2026-08-17 armory: put the new weapons in the unlock roster - without it they draw but do nothing` |
+| commits | 1,446 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -160,7 +161,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 52 |
+| 2026-08 | 53 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -200,10 +201,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (96)
+### Commits since 2026-01-01 (97)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `fde072f` | 2026-08-17 | joncurry94 | armory: put the new weapons in the unlock roster - without it they draw but do nothing |
 | `a2a32a3` | 2026-08-17 | joncurry94 | armory: add the S&W M10, completing the six imported weapons |
 | `a7c0b77` | 2026-08-17 | joncurry94 | armory: add five imported weapons to the picker, without renumbering anything |
 | `3917a9f` | 2026-08-17 | joncurry94 | skins: weapon finish variants, with Thompson (Gold) wired end to end |

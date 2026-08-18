@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1258** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1259** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 595 |
+| 2026-08 | 596 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1273,6 +1273,7 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1899` | 2026-08-17 | `hzm-mohaa-coop-mod/models/weapons/dp28.tik` | V | user: 'Did you get the DP added too?' - Lt. Pato's DP-28 imported | None of those three taken. Mesh under coop_dp28/, shaders prefixed coop_dp28_*, textures under textures/coop_dp28/. Tik derived from our bar.tik so i… |
 | `bug-1900` | 2026-08-17 | `hzm-mohaa-coop-mod/models/weapons/panzerfaust.tik` | V | user: 'Ill take the panzerfaust and m10 .38 revolver' - imported from ds-servers | Both as additions. Panzerfaust got a shader written FOR it over private textures, with the sight left pointing at the existing thompsite so no Thomps… |
 | `bug-1901` | 2026-08-17 | `openmohaa-hzm/code/cgame/cg_modelanim.c` | V | user: 'Could we create our own skin varients of weapons (Gold, Bloody, Chrome, Camo?)' then 'generate them and show me the textures' - skin variant p… | CoopStripSkinSuffix (cg_modelanim.c, declared in cg_local.h) resolves '<Base Gun> (<Finish>)' to the base gun, used by BOTH lookups. Exact match stil… |
+| `bug-1902` | 2026-08-17 | `hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr` | V | user: 'selecting any of the new weapons doesnt put them into your loadout slots. Also if these are locked by challenges or ranks they arent appearing… | gen_loadout.py now generates the roster too, so both halves come from one table and cannot drift apart again; `check` reports 'unlock roster OUT OF S… |
 | `bug-1851` | 2026-08-17 | `openmohaa-hzm/code/fgame/weapturret.cpp` | - | user: 'these cats are way too accurate' - MG42 gunners hit with no miss margin at all | Added coop_mg42AiAimOff (default 100 after the user tuned it in play): a random offset on the aim point, re-rolled every 0.7-1.6s so a burst walks ac… |
 | `bug-1852` | 2026-08-17 | `hzm-mohaa-coop-mod/coop_mod/officer.scr` | V | user: 'I have yet to see enemy axis lay down (prone) and shoot even though this is in vanilla' | No repair needed to the mechanism. Added coop_aiProneChance (percent, default 12, 0 disables) so the share can be raised until it is actually observa… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |

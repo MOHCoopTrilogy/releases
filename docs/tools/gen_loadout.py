@@ -30,8 +30,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 UI = os.path.join(ROOT, "hzm-mohaa-coop-mod", "ui", "loadout")
 TSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "loadout_weapons.tsv")
 
-COLS = ["id", "tik", "xfm", "charanim", "cls", "name", "cd", "b0", "b1", "b2", "b3",
+COLS = ["id", "tik", "give", "xfm", "charanim", "cls", "tab", "name", "cd", "b0", "b1", "b2", "b3",
         "clip", "clipn", "recoil", "slots", "req1", "req2"]
+
+# The server-side unlock roster. Absent from it, a weapon draws in the grid and does nothing
+# when clicked - no commit command, no padlock, no unlock text.
+ROSTER = os.path.join(ROOT, "hzm-mohaa-coop-mod", "coop_mod", "loadoutroster.scr")
 
 # The class token in the wNN_sN "unreg" / "who" lines is INDEPENDENT of the hold pose, which the
 # first reconstruction got wrong: weapon 12 uses coop_hold_rifle but belongs to the sniper class,
@@ -120,6 +124,27 @@ def req(w):
             'set coop_loReq2 "%s"\n' % (w["req1"], w["req2"]))
 
 
+def roster(rows):
+    """The body of loadoutroster.scr::roster_ids - what the server iterates to push unlocks."""
+    L = ["roster_ids:{",
+         "\tif( level.coop_loRosterN != NIL ){ end }",
+         "\tlevel.coop_loRosterN = %d" % len(rows)]
+    for i, w in enumerate(rows):
+        L += ['\tlevel.coop_loRosterId[%d] = "%s"' % (i, w["id"]),
+              '\tlevel.coop_loRosterGive[%d] = "%s"' % (i, w["give"] or w["tik"]),
+              "\tlevel.coop_loRosterTab[%d] = %s" % (i, w["tab"])]
+    L.append("}end")
+    return "\n".join(L)
+
+
+def splice_roster(rows, text):
+    """Replace only the roster_ids label, leaving the rest of the file untouched."""
+    m = re.search(r"(?ms)^roster_ids:\{.*?^\}end", text)
+    assert m, "roster_ids label not found"
+    nl = "\r\n" if "\r\n" in text else "\n"
+    return text[:m.start()] + roster(rows).replace("\n", nl) + text[m.end():]
+
+
 def render_all(rows):
     out = {}
     for w in rows:
@@ -160,6 +185,16 @@ def extract():
                     cls = cm.group(1)
                     break
 
+        rt_ = _read(ROSTER)
+        tm = re.search(r'coop_loRosterId\[(\d+)\] = "%s"' % wid, rt_)
+        tab = ""
+        give = ""
+        if tm:
+            tb = re.search(r"coop_loRosterTab\[%s\] = (\d+)" % tm.group(1), rt_)
+            tab = tb.group(1) if tb else ""
+            gv = re.search(r'coop_loRosterGive\[%s\] = "([^"]+)"' % tm.group(1), rt_)
+            give = gv.group(1) if gv else ""
+
         rq = os.path.join(UI, "req%s.cfg" % wid)
         r1 = r2 = ""
         if os.path.exists(rq):
@@ -168,8 +203,8 @@ def extract():
             m2 = re.search(r'(?m)^set coop_loReq2\s+"([^"]*)"', rt)
             r1, r2 = (m1.group(1) if m1 else ""), (m2.group(1) if m2 else "")
         rows.append({
-            "id": wid, "tik": g("coop_loPrev"), "xfm": g("coop_loXfmW"),
-            "charanim": g("coop_loCharAnim"), "cls": cls,
+            "id": wid, "tik": g("coop_loPrev"), "give": give, "xfm": g("coop_loXfmW"),
+            "charanim": g("coop_loCharAnim"), "cls": cls, "tab": tab,
             "name": g("coop_loNm"), "cd": g("coop_loCd"),
             "b0": g("coop_loB0").rsplit("coop_bf", 1)[-1],
             "b1": g("coop_loB1").rsplit("coop_bf", 1)[-1],
@@ -224,7 +259,13 @@ def main():
     if mode == "build":
         for name, text in sorted(files.items()):
             io.open(os.path.join(UI, name), "w", encoding="latin-1", newline="").write(text)
-        print("wrote %d files for %d weapons" % (len(files), len(rows)))
+        # Compute BEFORE opening for write. open(..., "w") truncates immediately, and the
+        # argument is evaluated after - so reading the file inside the write call reads the empty
+        # file it just destroyed, and any failure leaves nothing behind. That emptied
+        # loadoutroster.scr once already.
+        new_roster = splice_roster(rows, _read(ROSTER))
+        io.open(ROSTER, "w", encoding="latin-1", newline="").write(new_roster)
+        print("wrote %d files + the unlock roster, for %d weapons" % (len(files), len(rows)))
         return 0
 
     bad, missing = [], []
@@ -234,6 +275,9 @@ def main():
             missing.append(name)
         elif _read(p) != text:
             bad.append(name)
+    rtext = _read(ROSTER)
+    roster_ok = splice_roster(rows, rtext) == rtext
+
     orphan = [f for f in os.listdir(UI)
               if re.match(r"(p|t|req)\d+\.cfg$|w\d+_s\d\.cfg$", f) and f not in files]
     print("%d weapons -> %d generated files" % (len(rows), len(files)))
@@ -244,7 +288,8 @@ def main():
         print("  MISSING        : %d  %s" % (len(missing), missing[:8]))
     if orphan:
         print("  on disk only   : %d  %s" % (len(orphan), orphan[:8]))
-    ok = not bad and not missing and not orphan
+    print("  unlock roster  : %s" % ("in sync" if roster_ok else "OUT OF SYNC - weapons will not equip"))
+    ok = not bad and not missing and not orphan and roster_ok
     print("  -> %s" % ("EXACT REPRODUCTION" if ok else "MISMATCH - format not fully understood"))
     return 0 if ok else 1
 
