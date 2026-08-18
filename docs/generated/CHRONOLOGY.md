@@ -13,27 +13,25 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `ff53624 2026-08-17 skins: generate weapon finish variants - one tik and shader set per gun per finish` |
-| commits | 116 |
+| HEAD | `2435d34 2026-08-17 docs: record the skin-variant architecture and what is awaiting a playtest` |
+| commits | 117 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **2 modified, 0 untracked** |
-| unstaged diff | 2 files changed, 48 insertions(+) |
-
-> Working tree is dirty. Everything in those 2 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 62 |
+| 2026-08 | 63 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (116)
+### Commits since 2026-01-01 (117)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `2435d34` | 2026-08-17 | joncurry94-tech | docs: record the skin-variant architecture and what is awaiting a playtest |
 | `ff53624` | 2026-08-17 | joncurry94-tech | skins: generate weapon finish variants - one tik and shader set per gun per finish |
 | `fa6db7f` | 2026-08-17 | joncurry94-tech | loadout: the roster script was not compiling at all - an assignment with no value |
 | `3e0f7be` | 2026-08-17 | joncurry94-tech | docs: regenerate |

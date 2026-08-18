@@ -12,6 +12,11 @@ if ($LASTEXITCODE -ne 0) { exit 1 }
 # it: the braces balance and there is no BOM.
 python "C:\mohaa-coop-dev\docs\tools\check_empty_rhs.py" $srcDir
 if ($LASTEXITCODE -ne 0) { exit 1 }
+# A tik naming a surface its mesh does not have leaves that surface untextured AND kills
+# every frame command targeting it - which is how the Panzerfaust lost its fire animation
+# commands for a whole session while the engine printed the reason on every load (bug-1912).
+python "C:\mohaa-coop-dev\docs\tools\check_tik_surfaces.py" $srcDir
+if ($LASTEXITCODE -ne 0) { exit 1 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by scrlint" -ForegroundColor Red; exit 1 }
 $deployDir  = "G:\GOG\Medal of Honor - Allied Assault War Chest\maintt"
 $appDataDir = "$env:APPDATA\openmohaa\maintt"

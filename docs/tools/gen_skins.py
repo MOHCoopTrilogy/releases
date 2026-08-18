@@ -161,10 +161,10 @@ def shader_block(name, base_tex, kind, params):
         # multiply the diffuse already in the framebuffer by a flat colour: src is $whiteimage
         # scaled by rgbGen const, dst is the base, and GL_DST_COLOR/GL_ZERO gives src*dst.
         L += ["\t{", "\t\tmap $whiteimage", "\t\tblendFunc GL_DST_COLOR GL_ZERO",
-              "\t\trgbGen const ( %.2f %.2f %.2f )" % (r, g, b), "\t}"]
+              "\t\trgbGen const %.2f %.2f %.2f" % (r, g, b), "\t}"]
         er, eg, eb = params["env"]
         L += ["\t{", "\t\tmap %s" % ENVMAP, "\t\tblendFunc add", "\t\ttcGen environment",
-              "\t\trgbGen const ( %.2f %.2f %.2f )" % (er, eg, eb), "\t}"]
+              "\t\trgbGen const %.2f %.2f %.2f" % (er, eg, eb), "\t}"]
     L.append("}")
     return "\n".join(L)
 
