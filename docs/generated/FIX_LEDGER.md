@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1263** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1267** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 600 |
+| 2026-08 | 604 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1278,6 +1278,10 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1904` | 2026-08-17 | `hzm-mohaa-coop-mod/maps/M3L3.scr` | V | user: 'New challenge "The Hunt" - Successfully defend the Church without it being contested once.' | level.coop_chContested latches on any tick where coop_chG > 0, read AFTER coop_churchRate since that is what refreshes coop_chG. coop_churchHuntAward… |
 | `bug-1905` | 2026-08-17 | `hzm-mohaa-coop-mod/models/weapons/m10_revolver.tik` | - | user: 'm10 doesnt seem like it really shoots, no gunshot until the last round before it reloads, no shooting sounds either when I press fire' | Copied each borrowed retail animation into the weapon's own directory and referenced it BARE, which is what every other tik does. Three weapons affec… |
 | `bug-1906` | 2026-08-17 | `hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr` | - | user: 'I didnt get my loadout either when I got in game, it says NIL on the left text where it usually tells me my weapons' / 'head just floats in th… | Six roster_get cases added, values copied from each gun's closest sibling. The settle think is no longer scheduled: it only ever existed to stop the… |
+| `bug-1907` | 2026-08-17 | `hzm-mohaa-coop-mod/models/weapons/panzerfaust.tik` | VP | user: 'Panzerfaust just doesnt shoot at all' - STILL OPEN, cause not found | NOT FIXED. Ruled out, each verified directly: - projectile/startammo present: they use the SPACED prefix form (`dm projectile`), which is legitimate… |
+| `bug-1908` | 2026-08-17 | `docs/tools/gen_loadout.py` | - | user: 'Still seeing NIL when I spawn into the map and I think I have the default - there are script errors in console'. Log: "Script 'coop_mod/loadou… | Filled the tab column (rifle=0 sniper=1 smg=2 heavy=3 pistol=4 grenade=5, derived from the weapons that already worked) and regenerated; the diff is… |
+| `bug-1909` | 2026-08-17 | `openmohaa-hzm/.cmake` | - | user: 'heads still float btw' - after the fix had supposedly been deployed | Rebuilt with --target fgame; object.cpp compiled and game.dll relinked, then deployed. Check timestamps rather than trusting exit 0: if the dll is no… |
+| `bug-1910` | 2026-08-17 | `openmohaa-hzm/code/fgame/object.cpp` | - | user: 'Heads do still float when they get shot off and then eventually disappear' - persisting after the SOLID_BBOX/MOVETYPE_GIB fix was genuinely co… | edict->clipmask = MASK_SOLID, which is what the engine's own Gib effectively uses - gibs.cpp sets no clipmask at all and so inherits Entity's default… |
 | `bug-1851` | 2026-08-17 | `openmohaa-hzm/code/fgame/weapturret.cpp` | - | user: 'these cats are way too accurate' - MG42 gunners hit with no miss margin at all | Added coop_mg42AiAimOff (default 100 after the user tuned it in play): a random offset on the aim point, re-rolled every 0.7-1.6s so a burst walks ac… |
 | `bug-1852` | 2026-08-17 | `hzm-mohaa-coop-mod/coop_mod/officer.scr` | V | user: 'I have yet to see enemy axis lay down (prone) and shoot even though this is in vanilla' | No repair needed to the mechanism. Added coop_aiProneChance (percent, default 12, 0 disables) so the share can be raised until it is actually observa… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |

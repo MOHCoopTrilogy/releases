@@ -383,7 +383,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_decapBudget` | `3` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2954` | DEFAULT `3` @ `coop_defaults.cfg:315` |  |  |
 | `coop_decapChance` | `30` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2953` | DEFAULT `30` @ `coop_defaults.cfg:314` |  |  |
 | `coop_decapGoreProps` | `3` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3283` |  |  |  |
-| `coop_decapLife` | `0` | `CVAR_ARCHIVE` | `fgame/object.cpp:531` | DEFAULT `0` @ `coop_defaults.cfg:316` |  |  |
+| `coop_decapLife` | `0` | `CVAR_ARCHIVE` | `fgame/object.cpp:540` | DEFAULT `0` @ `coop_defaults.cfg:316` |  |  |
 | `coop_decapMax` | `16` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2868` | DEFAULT `16` @ `coop_defaults.cfg:317` |  |  |
 | `coop_dev` |  |  |  | other `1` @ `coop_mod/cfg/buildmode.cfg:66`<br>other `0` @ `coop_mod/server.cfg:34`<br>other `0` @ `coop_mod/start_server.cfg:34` | `coop_mod/buildmode.scr:57` (+4) |  |
 | `coop_devKeys` |  |  |  |  | `coop_mod/developer.scr:86` (+6) |  |

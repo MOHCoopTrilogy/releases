@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `3e0f7be 2026-08-17 docs: regenerate` |
-| commits | 114 |
+| HEAD | `fa6db7f 2026-08-17 loadout: the roster script was not compiling at all - an assignment with no value` |
+| commits | 115 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 60 |
+| 2026-08 | 61 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (114)
+### Commits since 2026-01-01 (115)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `fa6db7f` | 2026-08-17 | joncurry94-tech | loadout: the roster script was not compiling at all - an assignment with no value |
 | `3e0f7be` | 2026-08-17 | joncurry94-tech | docs: regenerate |
 | `9652599` | 2026-08-17 | joncurry94-tech | docs: regenerate; armory table gains give and tab columns |
 | `e052d2c` | 2026-08-17 | joncurry94-tech | docs: two traps from this session - pitch 0 is silence, ordernumber is not draw order |
@@ -151,8 +152,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `aa14303 2026-08-17 weapons: a TIKI animations block cannot take a full path - fix three that did` |
-| commits | 1,448 |
+| HEAD | `fc915e6 2026-08-17 loadout: fill the tab column so the roster script compiles again` |
+| commits | 1,449 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -160,7 +161,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 55 |
+| 2026-08 | 56 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -200,10 +201,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (99)
+### Commits since 2026-01-01 (100)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `fc915e6` | 2026-08-17 | joncurry94 | loadout: fill the tab column so the roster script compiles again |
 | `aa14303` | 2026-08-17 | joncurry94 | weapons: a TIKI animations block cannot take a full path - fix three that did |
 | `10bfb72` | 2026-08-17 | joncurry94 | m3l3: new challenge "The Hunt" - hold the church without it ever being contested |
 | `fde072f` | 2026-08-17 | joncurry94 | armory: put the new weapons in the unlock roster - without it they draw but do nothing |
@@ -309,8 +311,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `dd7aa74a 2026-08-17 gore: stop scheduling the head settle think - it froze the head above the corpse` |
-| commits | 4,991 |
+| HEAD | `1e21fbd8 2026-08-17 gore: the severed head was stopping on trigger brushes, not falling` |
+| commits | 4,992 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -318,7 +320,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 11 |
+| 2026-08 | 12 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -379,10 +381,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (26)
+### Commits since 2026-01-01 (27)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `1e21fbd8` | 2026-08-17 | joncurry94 | gore: the severed head was stopping on trigger brushes, not falling |
 | `dd7aa74a` | 2026-08-17 | joncurry94 | gore: stop scheduling the head settle think - it froze the head above the corpse |
 | `f7a6b107` | 2026-08-17 | joncurry94 | gore: severed heads land, and unregistered helmets come off |
 | `848f58ae` | 2026-08-17 | joncurry94 | cgame: a skin variant must inherit its base gun's sight tuning and hands |
