@@ -13,24 +13,28 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `66ae10a 2026-08-17 docs: regenerate after the DP-28 import` |
-| commits | 106 |
+| HEAD | `087ba24 2026-08-17 docs: regenerate after the Panzerfaust and M10 imports` |
+| commits | 107 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **1 modified, 1 untracked** |
+| unstaged diff | 1 file changed, 4 insertions(+), 1 deletion(-) |
+
+> Working tree is dirty. Everything in those 2 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 52 |
+| 2026-08 | 53 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (106)
+### Commits since 2026-01-01 (107)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `087ba24` | 2026-08-17 | joncurry94-tech | docs: regenerate after the Panzerfaust and M10 imports |
 | `66ae10a` | 2026-08-17 | joncurry94-tech | docs: regenerate after the DP-28 import |
 | `087511f` | 2026-08-17 | joncurry94-tech | audit: catch sound aliases that resolve and still make no noise |
 | `15140c3` | 2026-08-17 | joncurry94-tech | open: record the armory gap, and the publish entry for the bullet-impact pack |
@@ -143,8 +147,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `b44ec73 2026-08-17 weapons: add East's Panzerfaust and S&W M10 .38 as additions` |
-| commits | 1,442 |
+| HEAD | `3917a9f 2026-08-17 skins: weapon finish variants, with Thompson (Gold) wired end to end` |
+| commits | 1,443 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -152,7 +156,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 49 |
+| 2026-08 | 50 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -192,10 +196,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (93)
+### Commits since 2026-01-01 (94)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `3917a9f` | 2026-08-17 | joncurry94 | skins: weapon finish variants, with Thompson (Gold) wired end to end |
 | `b44ec73` | 2026-08-17 | joncurry94 | weapons: add East's Panzerfaust and S&W M10 .38 as additions |
 | `688a8fc` | 2026-08-17 | joncurry94 | weapons: add Lt. Pato's DP-28 as an addition, not a BAR replacement |
 | `daa343a` | 2026-08-17 | joncurry94 | weapons: unique ranks for the C96 and Johnson, and un-mute two guns defined at pitch zero |
@@ -295,8 +300,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `f417fce8 2026-08-17 cgame: WPREFIX_M10, and the Panzerfaust on its real rig` |
-| commits | 4,988 |
+| HEAD | `848f58ae 2026-08-17 cgame: a skin variant must inherit its base gun's sight tuning and hands` |
+| commits | 4,989 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -304,7 +309,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 8 |
+| 2026-08 | 9 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -365,10 +370,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (23)
+### Commits since 2026-01-01 (24)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `848f58ae` | 2026-08-17 | joncurry94 | cgame: a skin variant must inherit its base gun's sight tuning and hands |
 | `f417fce8` | 2026-08-17 | joncurry94 | cgame: WPREFIX_M10, and the Panzerfaust on its real rig |
 | `9880c6f8` | 2026-08-17 | joncurry94 | cgame: WPREFIX_DP28 for Lt. Pato's first-person DP-28 animations |
 | `8b4b2bc5` | 2026-08-17 | joncurry94 | cgame: first-person hands for the Mauser C96 and Johnson M1941 |

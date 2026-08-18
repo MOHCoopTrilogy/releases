@@ -307,7 +307,10 @@ def main():
                         '%-28s %-24s maps "%s"' % (gun, s, " ".join(sorted(toks))))
 
         # ---- first-person prefix: does the engine know this weapon by name? ------
-        if cg and wname != "?":
+        # A skin variant is named "<Base Gun> (<Finish>)" and CoopStripSkinSuffix resolves it to
+        # the base gun in BOTH the prefix lookup and the ADS tune table, so it is expected not to
+        # appear here by its own name - flagging it would be a false positive on every future skin.
+        if cg and wname != "?" and " (" not in wname:
             if ('"%s"' % wname) not in cg:
                 findings["no first-person prefix mapping"].append(
                     "%-28s name %-22s not in cg_viewmodelanim.c - borrows another gun's hands"

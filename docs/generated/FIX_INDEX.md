@@ -8,7 +8,7 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-946 distinct file paths, 3,092 distinct tags.
+946 distinct file paths, 3,094 distinct tags.
 
 ## Files with the most history
 
@@ -34,11 +34,11 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `coop_mod/challenges.scr` | 11 | `bug-495` `bug-713` `bug-714` `bug-718` `bug-721` `bug-722` `bug-739` `bug-750` `bug-1523` `bug-1528` `bug-537` |
 | `hzm-mohaa-coop-mod/maps/m3l1b.scr` | 10 | `bug-532` `bug-1549` `bug-1552` `bug-1553` `bug-1555` `bug-1557` `bug-1558` `bug-1568` `bug-1574` `bug-1575` |
 | `hzm-mohaa-coop-mod/coop_mod/xp.scr` | 9 | `bug-553` `bug-848` `bug-806` `bug-819` `bug-1264` `bug-1514` `bug-1520` `bug-1870` `bug-1872` |
+| `openmohaa-hzm/code/cgame/cg_modelanim.c` | 9 | `bug-093` `bug-094` `bug-042` `bug-301` `bug-315` `bug-332` `bug-863` `bug-1209` `bug-1901` |
 | `tr_backend.c` | 9 | `bug-159` `bug-gl2-modellight` `bug-gl2-e2l2-fog-verified-correct` `bug-1132` `bug-1149` `bug-1150` `bug-1158` `bug-1177` `bug-1209` |
 | `hzm-mohaa-coop-mod/coop_mod/main.scr` | 8 | `bug-359` `bug-358` `bug-898` `bug-871` `bug-893` `bug-940` `bug-1251` `bug-1337` |
 | `hzm-mohaa-coop-mod/coop_mod/weather.scr` | 8 | `bug-231` `bug-001` `bug-003` `bug-004` `bug-430` `bug-1280` `bug-1281` `bug-1857` |
 | `hzm-mohaa-coop-mod/ubersound/ubersound.scr` | 8 | `bug-116` `bug-1161` `bug-1188` `bug-1272` `bug-1548` `bug-1885` `bug-1886` `bug-1898` |
-| `openmohaa-hzm/code/cgame/cg_modelanim.c` | 8 | `bug-093` `bug-094` `bug-042` `bug-301` `bug-315` `bug-332` `bug-863` `bug-1209` |
 | `openmohaa-hzm/code/client/cl_main.cpp` | 8 | `bug-317` `bug-527` `bug-1180` `bug-1503` `bug-1523` `bug-1537` `bug-1541` `bug-1546` |
 | `tr_glsl.c` | 8 | `bug-gl2-texgen` `bug-gl2-nextbundle2` `bug-1149` `bug-1150` `bug-1151` `bug-1158` `bug-1239` `bug-1249` |
 | `hzm-mohaa-coop-mod/coop_mod/fogmode.scr` | 7 | `bug-1343` `bug-1345` `bug-1349` `bug-1352` `bug-1353` `bug-1538` `bug-1542` |
@@ -648,7 +648,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `openmohaa-hzm/code/cgame/cg_consolecmds.c` | 1 | `bug-104` |
 | `openmohaa-hzm/code/cgame/cg_drawtools.cpp` | 5 | `bug-139` `bug-gl2-dbnofx` `bug-gl2-suppressfx` `bug-1663` `bug-1878` |
 | `openmohaa-hzm/code/cgame/cg_main.c` | 2 | `bug-074` `bug-1508` |
-| `openmohaa-hzm/code/cgame/cg_modelanim.c` | 8 | `bug-093` `bug-094` `bug-042` `bug-301` `bug-315` `bug-332` `bug-863` `bug-1209` |
+| `openmohaa-hzm/code/cgame/cg_modelanim.c` | 9 | `bug-093` `bug-094` `bug-042` `bug-301` `bug-315` `bug-332` `bug-863` `bug-1209` `bug-1901` |
 | `openmohaa-hzm/code/cgame/cg_modelanim.c (2 fixes)` | 1 | `bug-1217` |
 | `openmohaa-hzm/code/cgame/cg_modelanim.c + cg_commands.cpp` | 1 | `bug-324` |
 | `openmohaa-hzm/code/cgame/cg_modelanim.c:1655-1656 (attached-model nodraw block)` | 1 | `bug-1208` |
@@ -1059,7 +1059,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `addon` | 3 | `bug-1022` `bug-1026` `bug-295` |
 | `addon-class` | 1 | `bug-240` |
 | `addon-entity` | 1 | `bug-942` |
-| `ads` | 13 | `bug-072` `bug-073` `bug-074` `bug-089` `bug-105` `bug-106` `bug-107` `bug-108` `bug-110` `bug-1292` `bug-1881` `bug-863` `bug-lean-ads-wrong-branch` |
+| `ads` | 14 | `bug-072` `bug-073` `bug-074` `bug-089` `bug-105` `bug-106` `bug-107` `bug-108` `bug-110` `bug-1292` `bug-1881` `bug-1901` `bug-863` `bug-lean-ads-wrong-branch` |
 | `ads-safe` | 1 | `bug-1887` |
 | `adssave` | 1 | `bug-863` |
 | `advanced-graphics` | 2 | `bug-1149` `bug-1151` |
@@ -1397,7 +1397,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `cg_nature` | 1 | `bug-1383` |
 | `cg_predict` | 1 | `bug-316` |
 | `cg_view` | 4 | `bug-1158` `bug-1290` `bug-168` `bug-229` |
-| `cgame` | 42 | `bug-022` `bug-071` `bug-074` `bug-105` `bug-110` `bug-1200` `bug-1206` `bug-1208` `bug-1217` `bug-1238` `bug-1250` `bug-1291` `bug-1305` `bug-1306` `bug-134` `bug-139` `bug-1408` `bug-1417` `bug-1449` `bug-1496` `bug-1547` `bug-159` `bug-165` `bug-168` `bug-1878` `bug-1888` `bug-256` `bug-296` `bug-301` `bug-303` `bug-308` `bug-315` `bug-316` `bug-324` `bug-329` `bug-332` `bug-597` `bug-950` `bu… |
+| `cgame` | 43 | `bug-022` `bug-071` `bug-074` `bug-105` `bug-110` `bug-1200` `bug-1206` `bug-1208` `bug-1217` `bug-1238` `bug-1250` `bug-1291` `bug-1305` `bug-1306` `bug-134` `bug-139` `bug-1408` `bug-1417` `bug-1449` `bug-1496` `bug-1547` `bug-159` `bug-165` `bug-168` `bug-1878` `bug-1888` `bug-1901` `bug-256` `bug-296` `bug-301` `bug-303` `bug-308` `bug-315` `bug-316` `bug-324` `bug-329` `bug-332` `bug-597` `b… |
 | `cgame-pdb` | 1 | `bug-932b` |
 | `cgame-symbols` | 1 | `bug-934` |
 | `cgame.dll` | 1 | `bug-892` |
@@ -1611,7 +1611,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `corrupt` | 1 | `bug-1577` |
 | `cosmetic` | 6 | `bug-1028` `bug-1621` `bug-1656` `bug-1867` `bug-801` `bug-803` |
 | `cosmetic-but-misleading` | 1 | `bug-1453` |
-| `cosmetics` | 7 | `bug-1236` `bug-1356` `bug-1524` `bug-1540` `bug-1543` `bug-1578` `bug-1595` |
+| `cosmetics` | 8 | `bug-1236` `bug-1356` `bug-1524` `bug-1540` `bug-1543` `bug-1578` `bug-1595` `bug-1901` |
 | `count-scaling` | 4 | `bug-1618` `bug-1794` `bug-1809` `bug-891` |
 | `countdown` | 1 | `bug-773` |
 | `counter` | 2 | `bug-1195` `bug-1557` |
@@ -1755,7 +1755,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `depthscan` | 1 | `bug-1559` |
 | `derived-state` | 1 | `bug-1546` |
 | `description-mismatch` | 1 | `bug-1597` |
-| `design` | 5 | `bug-1422` `bug-1762` `bug-1820` `bug-1837` `bug-311` |
+| `design` | 6 | `bug-1422` `bug-1762` `bug-1820` `bug-1837` `bug-1901` `bug-311` |
 | `design-call` | 1 | `bug-1738` |
 | `design-error` | 2 | `bug-1721` `bug-1829` |
 | `design-reversal` | 1 | `bug-787` |
@@ -3020,6 +3020,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `promotion` | 1 | `bug-1264` |
 | `prompt` | 1 | `bug-1758` |
 | `prone` | 3 | `bug-1103` `bug-1648` `bug-1852` |
+| `proof` | 1 | `bug-1901` |
 | `prop` | 2 | `bug-1744` `bug-1749` |
 | `property` | 1 | `bug-1717` |
 | `property-name` | 1 | `bug-1584` |
@@ -3472,7 +3473,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `skin-snap` | 1 | `bug-905` |
 | `skin-tier` | 1 | `bug-1874` |
 | `skin9` | 1 | `bug-809` |
-| `skins` | 10 | `bug-1356` `bug-1357` `bug-1358` `bug-1359` `bug-1360` `bug-1521` `bug-1523` `bug-1545` `bug-731` `bug-armory-roster76` |
+| `skins` | 11 | `bug-1356` `bug-1357` `bug-1358` `bug-1359` `bug-1360` `bug-1521` `bug-1523` `bug-1545` `bug-1901` `bug-731` `bug-armory-roster76` |
 | `skip` | 1 | `bug-788` |
 | `skip-locked` | 2 | `bug-759` `bug-772` |
 | `skipteamandweaponselect` | 1 | `bug-369` |
@@ -3719,6 +3720,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `texture` | 6 | `bug-1129` `bug-1327` `bug-481` `bug-gl2-01` `bug-m3l2-ground-seams` `bug-menu-shader-label-invisible` |
 | `texture-closure` | 1 | `bug-853` |
 | `texture-compression` | 1 | `bug-1295` |
+| `texture-generation` | 1 | `bug-1901` |
 | `textures` | 5 | `bug-1016` `bug-1245` `bug-1247` `bug-157` `bug-622` |
 | `tga` | 4 | `bug-092` `bug-1130` `bug-144` `bug-312` |
 | `theatre` | 1 | `bug-1770` |
@@ -3962,7 +3964,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `view-bob` | 1 | `bug-071` |
 | `view-origin` | 1 | `bug-1238` |
 | `viewangles` | 1 | `bug-1106` |
-| `viewmodel` | 12 | `bug-105` `bug-106` `bug-107` `bug-1140` `bug-1144` `bug-168` `bug-1888` `bug-294` `bug-301` `bug-315` `bug-324` `bug-gl2-viewmodel-over-menu` |
+| `viewmodel` | 13 | `bug-105` `bug-106` `bug-107` `bug-1140` `bug-1144` `bug-168` `bug-1888` `bug-1901` `bug-294` `bug-301` `bug-315` `bug-324` `bug-gl2-viewmodel-over-menu` |
 | `viewmodel-desync` | 1 | `bug-1706` |
 | `viewmodelanim` | 2 | `bug-072` `bug-074` |
 | `viewpos` | 6 | `bug-1710` `bug-1752` `bug-1784` `bug-1787` `bug-1859` `bug-895` |

@@ -218,6 +218,35 @@ _research/weather_themes.md	8173	.md	162	_research
 _research/xp_skilltrees.md	33217	.md	241	_research
 _research/xp_system.md	36404	.md	538	_research
 _session_handoff.md	15464	.md	206	<root>
+_skins/bar_bloody.jpg	74454	.jpg	0	_skins
+_skins/bar_blued.jpg	79234	.jpg	0	_skins
+_skins/bar_camo_desert.jpg	123065	.jpg	0	_skins
+_skins/bar_camo_winter.jpg	115642	.jpg	0	_skins
+_skins/bar_camo_woodland.jpg	119404	.jpg	0	_skins
+_skins/bar_chrome.jpg	117860	.jpg	0	_skins
+_skins/bar_gold.jpg	126540	.jpg	0	_skins
+_skins/contact_sheet.png	2177273	.png	0	_skins
+_skins/m1_garand_bloody.jpg	47890	.jpg	0	_skins
+_skins/m1_garand_blued.jpg	48864	.jpg	0	_skins
+_skins/m1_garand_camo_desert.jpg	64560	.jpg	0	_skins
+_skins/m1_garand_camo_winter.jpg	61392	.jpg	0	_skins
+_skins/m1_garand_camo_woodland.jpg	62681	.jpg	0	_skins
+_skins/m1_garand_chrome.jpg	60652	.jpg	0	_skins
+_skins/m1_garand_gold.jpg	66764	.jpg	0	_skins
+_skins/mp40_bloody.jpg	25023	.jpg	0	_skins
+_skins/mp40_blued.jpg	24883	.jpg	0	_skins
+_skins/mp40_camo_desert.jpg	34042	.jpg	0	_skins
+_skins/mp40_camo_winter.jpg	31078	.jpg	0	_skins
+_skins/mp40_camo_woodland.jpg	33355	.jpg	0	_skins
+_skins/mp40_chrome.jpg	31793	.jpg	0	_skins
+_skins/mp40_gold.jpg	36282	.jpg	0	_skins
+_skins/thompson_bloody.jpg	91156	.jpg	0	_skins
+_skins/thompson_blued.jpg	91887	.jpg	0	_skins
+_skins/thompson_camo_desert.jpg	133524	.jpg	0	_skins
+_skins/thompson_camo_winter.jpg	126487	.jpg	0	_skins
+_skins/thompson_camo_woodland.jpg	131178	.jpg	0	_skins
+_skins/thompson_chrome.jpg	126501	.jpg	0	_skins
+_skins/thompson_gold.jpg	139256	.jpg	0	_skins
 _swastika_preview.png	4333	.png	0	<root>
 ai_ab_out/arm_OFF.log	282324	.log	0	ai_ab_out
 ai_ab_out/arm_ON.log	317859	.log	0	ai_ab_out
@@ -371,7 +400,7 @@ docs/reference/warchestrestored_v1.1.0_changelog.txt	45915	.txt	872	docs
 docs/tools/README.md	5123	.md	91	docs
 docs/tools/ai_ab_report.py	5608	.py	121	docs
 docs/tools/audit_shaders.py	4905	.py	129	docs
-docs/tools/audit_weapons.py	15794	.py	358	docs
+docs/tools/audit_weapons.py	16111	.py	361	docs
 docs/tools/check_challenges.py	13532	.py	316	docs
 docs/tools/check_download_links.py	3081	.py	78	docs
 docs/tools/count_skel_channels.py	7342	.py	180	docs
@@ -381,6 +410,7 @@ docs/tools/docs.cmd	467	.cmd	13	docs
 docs/tools/docs.ps1	1526	.ps1	49	docs
 docs/tools/gen_public_pages.py	21733	.py	540	docs
 docs/tools/gen_service_record.py	59384	.py	923	docs
+docs/tools/gen_weapon_skins.py	8538	.py	189	docs
 docs/tools/hudslots.py	4069	.py	98	docs
 docs/tools/linecheck.py	5953	.py	127	docs
 docs/tools/quotecheck.py	2833	.py	79	docs
@@ -1383,7 +1413,7 @@ hzm-mohaa-coop-mod/coop_mod/cfg/objdiag.cfg	490	.cfg	11	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/posetest.cfg	659	.cfg	11	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/wallgun.cfg	2304	.cfg	49	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/wallgun_off.cfg	936	.cfg	27	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/challenges.scr	232033	.scr	3711	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/challenges.scr	232529	.scr	3716	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/collectible.scr	19091	.scr	375	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/coop_placements.scr	32871	.scr	1021	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/coop_selftest.scr	13524	.scr	320	hzm-mohaa-coop-mod
@@ -1589,7 +1619,7 @@ hzm-mohaa-coop-mod/global/credits_hazardmodding.scr	14117	.scr	249	hzm-mohaa-coo
 hzm-mohaa-coop-mod/global/entsound.scr	531	.scr	15	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/exploder.scr	20500	.scr	744	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/friendly.scr	90711	.scr	2895	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/global/giveall.scr	5585	.scr	130	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/global/giveall.scr	5822	.scr	134	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/headaim.scr	1300	.scr	37	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/hoveringplane.scr	8051	.scr	250	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/items.scr	13880	.scr	567	hzm-mohaa-coop-mod
@@ -3598,6 +3628,7 @@ hzm-mohaa-coop-mod/models/weapons/steilhandgranate_base.txt	3156	.txt	154	hzm-mo
 hzm-mohaa-coop-mod/models/weapons/steilhandgranate_start.tik	258	.tik	17	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/sten.tik	17581	.tik	693	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/svt_rifle.tik	7181	.tik	271	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/weapons/thompson_gold.tik	9045	.tik	336	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/thompsonsmg.tik	8636	.tik	332	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/tt33.tik	6819	.tik	239	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/tt33silenced.tik	7154	.tik	241	hzm-mohaa-coop-mod
@@ -3660,6 +3691,7 @@ hzm-mohaa-coop-mod/scripts/coop_mohaaru_props.shader	38845	.shader	2177	hzm-moha
 hzm-mohaa-coop-mod/scripts/coop_oilslick.shader	530	.shader	15	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/coop_panzerfaust.shader	1026	.shader	33	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/coop_sandstorm.shader	1046	.shader	67	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/scripts/coop_skins.shader	594	.shader	14	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/coop_static_vehicles.shader	2820	.shader	99	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/coop_water_overrides.shader	2924	.shader	96	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/coop_weather.shader	674	.shader	21	hzm-mohaa-coop-mod
@@ -4912,6 +4944,7 @@ hzm-mohaa-coop-mod/textures/coop_panzerfaust/panzerrim.tga	32812	.tga	0	hzm-moha
 hzm-mohaa-coop-mod/textures/coop_panzerfaust/pschreck.tga	731464	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/coop_panzerfaust/pzrshell.tga	49196	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/coop_rain.tga	16428	.tga	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/textures/coop_skins/thompson_gold.jpg	161447	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/coop_skyflash.tga	16428	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/coop_snow.tga	4140	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/coop_static_map.tga	236	.tga	0	hzm-mohaa-coop-mod
@@ -7536,8 +7569,8 @@ hzm-mohaa-coop-mod/ui/options_main.urc	5510	.urc	253	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	542436872	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	794749658	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23211611	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	794914142	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23212340	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm_coop_framework_guide.md	27594	.md	382	<root>
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -7814,10 +7847,10 @@ openmohaa-hzm/code/cgame/cg_drawtools.cpp	79324	.cpp	2326	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_ents.c	21991	.c	724	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_event.c	1225	.c	36	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_lightstyles.cpp	17153	.cpp	585	openmohaa-hzm
-openmohaa-hzm/code/cgame/cg_local.h	36834	.h	1017	openmohaa-hzm
+openmohaa-hzm/code/cgame/cg_local.h	36059	.h	1021	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_main.c	42122	.c	1084	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_marks.c	66881	.c	2074	openmohaa-hzm
-openmohaa-hzm/code/cgame/cg_modelanim.c	79300	.c	2025	openmohaa-hzm
+openmohaa-hzm/code/cgame/cg_modelanim.c	80706	.c	2070	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_nature.cpp	15038	.cpp	389	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_parsemsg.cpp	85940	.cpp	2386	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_parsemsg.h	1225	.h	38	openmohaa-hzm
@@ -7841,7 +7874,7 @@ openmohaa-hzm/code/cgame/cg_testemitter.cpp	87160	.cpp	2096	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_ui.cpp	7988	.cpp	286	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_vehicle.cpp	1239	.cpp	39	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_view.c	147019	.c	3019	openmohaa-hzm
-openmohaa-hzm/code/cgame/cg_viewmodelanim.c	27328	.c	743	openmohaa-hzm
+openmohaa-hzm/code/cgame/cg_viewmodelanim.c	27972	.c	756	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_volumetricsmoke.cpp	45486	.cpp	1370	openmohaa-hzm
 openmohaa-hzm/code/cgame/memarchiver.cpp	5651	.cpp	241	openmohaa-hzm
 openmohaa-hzm/code/cgame/memarchiver.h	2328	.h	73	openmohaa-hzm
@@ -10363,7 +10396,7 @@ rollout_implementation_log.md	13772	.md	194	<root>
 scratchpad/rcon.py	926	.py	27	scratchpad
 server_home/boot_m3l2.log	194081	.log	0	server_home
 server_home/boot_t2l2.log	172217	.log	0	server_home
-server_home/maintt/OpenMoHAA_server.pid	4	.pid	0	server_home
+server_home/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home
 server_home/maintt/autoexec.cfg	90014	.cfg	1208	server_home
 server_home/maintt/coop_defaults.cfg	17316	.cfg	278	server_home
 server_home/maintt/coop_mod/save/bpfound_89AA62A71BEF42BA7FA4B2DE9E15F03A.dat	16	.dat	0	server_home
