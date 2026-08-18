@@ -1,0 +1,253 @@
+#!/usr/bin/env python
+"""Generate the armory picker's per-weapon pages under hzm-mohaa-coop-mod/ui/loadout/.
+
+WHY THIS EXISTS
+The original generator (gen_loadout3.py) was lost - it is one of the entries under "Tooling lost"
+in docs/OPEN.md - which left 349 hand-unmaintainable files and made adding a weapon to the armory
+impossible. Every gun imported since (C96, Johnson M1941, DP-28, Panzerfaust, S&W M10) is missing
+from the picker for that reason alone.
+
+This is a reconstruction, and it is only trustworthy because of `check`: it regenerates every file
+in memory and byte-compares against what is on disk. Reproducing all 69 existing weapons exactly
+is the evidence that the format is understood well enough to extend it.
+
+    python docs/tools/gen_loadout.py extract   # re-derive the table from the live files
+    python docs/tools/gen_loadout.py check     # regenerate in memory + byte-compare (exit 1 = drift)
+    python docs/tools/gen_loadout.py build     # write the files
+
+THE DATA
+docs/tools/loadout_weapons.tsv is the source of truth. Adding a weapon to the armory is one row.
+Columns are described in its header. The preview transform (xfm) is hand-dialled per gun the same
+way the ADS table is - `extract` preserves whatever is there, and a new row starts from a sane
+default that the user then tunes in-game.
+"""
+import io
+import os
+import re
+import sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+UI = os.path.join(ROOT, "hzm-mohaa-coop-mod", "ui", "loadout")
+TSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "loadout_weapons.tsv")
+
+COLS = ["id", "tik", "xfm", "charanim", "cls", "name", "cd", "b0", "b1", "b2", "b3",
+        "clip", "clipn", "recoil", "slots", "req1", "req2"]
+
+# The class token in the wNN_sN "unreg" / "who" lines is INDEPENDENT of the hold pose, which the
+# first reconstruction got wrong: weapon 12 uses coop_hold_rifle but belongs to the sniper class,
+# so a sniper holds a rifle pose and still gates on unreg_sniper.cfg. It is its own column.
+
+
+def _read(p):
+    return io.open(p, "r", encoding="latin-1", newline="").read()
+
+
+# ---------------------------------------------------------------- render ---------------------
+def preview(w):
+    """pNN.cfg - the inspect page. 24 set lines, fixed order."""
+    slots = w["slots"]
+    cmds = []
+    for s in "1234":
+        cmds.append('"exec ui/loadout/w%s_s%s.cfg"' % (w["id"], s) if s in slots
+                    else '"vstr coop_loDeny"')
+    L = [
+        'set coop_loPrev "%s"' % w["tik"],
+        'set coop_loXfmW "%s"' % w["xfm"],
+        'set coop_loPrevId "%s"' % w["id"],
+        'set coop_loCharAnim "%s"' % w["charanim"],
+    ]
+    L += ["set coop_loPvC%d 0" % i for i in range(6)]
+    L += [
+        "set coop_loPvG39 0",
+        'set coop_loNm "%s"' % w["name"],
+        'set coop_loCd "%s"' % w["cd"],
+        'set coop_loB0 "textures/hud/coop_bf%s"' % w["b0"],
+        'set coop_loB1 "textures/hud/coop_bf%s"' % w["b1"],
+        'set coop_loB2 "textures/hud/coop_bf%s"' % w["b2"],
+        'set coop_loB3 "textures/hud/coop_bf%s"' % w["b3"],
+        'set coop_loClip "textures/hud/clip/clip_%s"' % w["clip"],
+        'set coop_loClipN "%s"' % w["clipn"],
+        'set coop_loRecoil "textures/hud/recoil/rec_%s"' % w["recoil"],
+        "set coop_loC1 %s" % cmds[0],
+        "set coop_loC2 %s" % cmds[1],
+        "set coop_loC3 %s" % cmds[2],
+        "set coop_loC4 %s" % cmds[3],
+    ]
+    return "\n".join(L) + "\n"
+
+
+def slotfile(w, s):
+    """wNN_sN.cfg - assign this weapon into slot N."""
+    # Slots 1 and 2 are the class-REGISTERED primary slots and carry the unreg/who gating pair.
+    # Slots 3 (sidearm) and 4 (heavy) carry none of it - they are not class-gated, so those four
+    # lines are absent entirely rather than present-and-empty.
+    cls = w["cls"]
+    gated = s in ("1", "2") and cls
+    L = []
+    if gated:
+        L += ["vstr coop_loUnregP%s" % s, "vstr coop_loWho_%s" % cls]
+    L += [
+        'seta coop_lo%s "%s"' % (s, w["id"]),
+        'seta coop_loN%s "%s"' % (s, w["name"]),
+        'seta coop_loS%s "%s"' % (s, w["tik"]),
+        'seta coop_loA%s "append name ,w%s%s"' % (s, s, w["id"]),
+        'set coop_loXfmT%s "%s"' % (s, w["xfm"]),
+        "vstr coop_loA%s" % s,
+    ]
+    if s == "1":
+        L.append('seta coop_loOpenInspect "exec ui/loadout/p%s.cfg"' % w["id"])
+    if gated:
+        L += [
+            'seta coop_loUnregP%s "exec ui/loadout/unreg_%s.cfg"' % (s, cls),
+            'seta coop_loWho_%s "exec ui/loadout/clrP%s.cfg"' % (cls, s),
+        ]
+    return "\n".join(L) + "\n"
+
+
+def tile(w):
+    """tNN.cfg - what the grid tile runs when clicked."""
+    return ("// GENERATED - inspect + LOCK-GATED equip-into-active-slot "
+            "(coop_loCmt<id> = commit or deny)\n"
+            "exec ui/loadout/p%s.cfg\n"
+            "vstr coop_loCmt%s\n" % (w["id"], w["id"]))
+
+
+def req(w):
+    """reqNN.cfg - the hover unlock line. Absent entirely for weapons unlocked from the start."""
+    if not w["req1"]:
+        return None
+    return ('set coop_loReq "%s"\n'
+            'set coop_loReq2 "%s"\n' % (w["req1"], w["req2"]))
+
+
+def render_all(rows):
+    out = {}
+    for w in rows:
+        out["p%s.cfg" % w["id"]] = preview(w)
+        out["t%s.cfg" % w["id"]] = tile(w)
+        for s in w["slots"]:
+            out["w%s_s%s.cfg" % (w["id"], s)] = slotfile(w, s)
+        r = req(w)
+        if r is not None:
+            out["req%s.cfg" % w["id"]] = r
+    return out
+
+
+# ---------------------------------------------------------------- extract --------------------
+def extract():
+    rows = []
+    for fn in sorted(os.listdir(UI)):
+        m = re.match(r"p(\d+)\.cfg$", fn)
+        if not m:
+            continue
+        wid = m.group(1)
+        t = _read(os.path.join(UI, fn))
+
+        def g(key, pat=r'"([^"]*)"'):
+            mm = re.search(r"(?m)^set %s\s+%s" % (re.escape(key), pat), t)
+            return mm.group(1) if mm else ""
+
+        slots = ""
+        for s in "1234":
+            if ("w%s_s%s.cfg" % (wid, s)) in t:
+                slots += s
+        cls = ""
+        for s in "1234":
+            sp = os.path.join(UI, "w%s_s%s.cfg" % (wid, s))
+            if os.path.exists(sp):
+                cm = re.search(r"(?m)^vstr coop_loWho_(\w+)", _read(sp))
+                if cm:
+                    cls = cm.group(1)
+                    break
+
+        rq = os.path.join(UI, "req%s.cfg" % wid)
+        r1 = r2 = ""
+        if os.path.exists(rq):
+            rt = _read(rq)
+            m1 = re.search(r'(?m)^set coop_loReq\s+"([^"]*)"', rt)
+            m2 = re.search(r'(?m)^set coop_loReq2\s+"([^"]*)"', rt)
+            r1, r2 = (m1.group(1) if m1 else ""), (m2.group(1) if m2 else "")
+        rows.append({
+            "id": wid, "tik": g("coop_loPrev"), "xfm": g("coop_loXfmW"),
+            "charanim": g("coop_loCharAnim"), "cls": cls,
+            "name": g("coop_loNm"), "cd": g("coop_loCd"),
+            "b0": g("coop_loB0").rsplit("coop_bf", 1)[-1],
+            "b1": g("coop_loB1").rsplit("coop_bf", 1)[-1],
+            "b2": g("coop_loB2").rsplit("coop_bf", 1)[-1],
+            "b3": g("coop_loB3").rsplit("coop_bf", 1)[-1],
+            "clip": g("coop_loClip").rsplit("clip_", 1)[-1],
+            "clipn": g("coop_loClipN"),
+            "recoil": g("coop_loRecoil").rsplit("rec_", 1)[-1],
+            "slots": slots, "req1": r1, "req2": r2,
+        })
+    hdr = ("# Armory weapon table - the source of truth for ui/loadout/. One row = one weapon in\n"
+           "# the picker. Regenerate the pages with: python docs/tools/gen_loadout.py build\n"
+           "#\n"
+           "# id       two-digit page id, also the tile number in ui/coop_loadout.urc\n"
+           "# tik      weapon model handed to the preview and to the slot\n"
+           "# xfm      preview transform, HAND-DIALLED per gun (x y z scale pitch yaw roll)\n"
+           "# charanim coop_hold_* pose used by the preview\n"
+           "# name     grid + slot label, upper case\n"
+           "# cd       caliber / action / capacity line\n"
+           "# b0..b3   the four stat bars, as the coop_bfN texture number\n"
+           "# clip     clip_<n> texture; clipn the printed round count\n"
+           "# recoil   rec_<id> recoil curve texture\n"
+           "# slots    which inventory slots accept it: 1,2 primary  3 pistol  4 heavy\n"
+           "# req1/2   hover unlock text, split over two lines. Empty = unlocked from the start.\n"
+           + "\t".join(COLS) + "\n")
+    body = "".join("\t".join(w[c] for c in COLS) + "\n" for w in rows)
+    io.open(TSV, "w", encoding="utf-8", newline="\n").write(hdr + body)
+    return rows
+
+
+def load():
+    rows = []
+    for line in io.open(TSV, encoding="utf-8"):
+        if line.startswith("#") or line.startswith("id\t") or not line.strip():
+            continue
+        v = line.rstrip("\n").split("\t")
+        rows.append(dict(zip(COLS, v + [""] * (len(COLS) - len(v)))))
+    return rows
+
+
+# ---------------------------------------------------------------- modes ----------------------
+def main():
+    mode = sys.argv[1] if len(sys.argv) > 1 else "check"
+    if mode == "extract":
+        rows = extract()
+        print("extracted %d weapons -> %s" % (len(rows), os.path.relpath(TSV, ROOT)))
+        return 0
+
+    rows = load()
+    files = render_all(rows)
+
+    if mode == "build":
+        for name, text in sorted(files.items()):
+            io.open(os.path.join(UI, name), "w", encoding="latin-1", newline="").write(text)
+        print("wrote %d files for %d weapons" % (len(files), len(rows)))
+        return 0
+
+    bad, missing = [], []
+    for name, text in sorted(files.items()):
+        p = os.path.join(UI, name)
+        if not os.path.exists(p):
+            missing.append(name)
+        elif _read(p) != text:
+            bad.append(name)
+    orphan = [f for f in os.listdir(UI)
+              if re.match(r"(p|t|req)\d+\.cfg$|w\d+_s\d\.cfg$", f) and f not in files]
+    print("%d weapons -> %d generated files" % (len(rows), len(files)))
+    print("  byte-identical : %d" % (len(files) - len(bad) - len(missing)))
+    if bad:
+        print("  DIFFERENT      : %d  %s" % (len(bad), bad[:8]))
+    if missing:
+        print("  MISSING        : %d  %s" % (len(missing), missing[:8]))
+    if orphan:
+        print("  on disk only   : %d  %s" % (len(orphan), orphan[:8]))
+    ok = not bad and not missing and not orphan
+    print("  -> %s" % ("EXACT REPRODUCTION" if ok else "MISMATCH - format not fully understood"))
+    return 0 if ok else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

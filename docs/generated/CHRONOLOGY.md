@@ -13,27 +13,25 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `087ba24 2026-08-17 docs: regenerate after the Panzerfaust and M10 imports` |
-| commits | 107 |
+| HEAD | `45ad569 2026-08-17 docs: the weapon-skin generator, and regenerate` |
+| commits | 108 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **1 modified, 1 untracked** |
-| unstaged diff | 1 file changed, 4 insertions(+), 1 deletion(-) |
-
-> Working tree is dirty. Everything in those 2 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 53 |
+| 2026-08 | 54 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (107)
+### Commits since 2026-01-01 (108)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `45ad569` | 2026-08-17 | joncurry94-tech | docs: the weapon-skin generator, and regenerate |
 | `087ba24` | 2026-08-17 | joncurry94-tech | docs: regenerate after the Panzerfaust and M10 imports |
 | `66ae10a` | 2026-08-17 | joncurry94-tech | docs: regenerate after the DP-28 import |
 | `087511f` | 2026-08-17 | joncurry94-tech | audit: catch sound aliases that resolve and still make no noise |
