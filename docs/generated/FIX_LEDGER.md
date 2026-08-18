@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1267** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1268** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 604 |
+| 2026-08 | 605 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1282,6 +1282,7 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1908` | 2026-08-17 | `docs/tools/gen_loadout.py` | - | user: 'Still seeing NIL when I spawn into the map and I think I have the default - there are script errors in console'. Log: "Script 'coop_mod/loadou… | Filled the tab column (rifle=0 sniper=1 smg=2 heavy=3 pistol=4 grenade=5, derived from the weapons that already worked) and regenerated; the diff is… |
 | `bug-1909` | 2026-08-17 | `openmohaa-hzm/.cmake` | - | user: 'heads still float btw' - after the fix had supposedly been deployed | Rebuilt with --target fgame; object.cpp compiled and game.dll relinked, then deployed. Check timestamps rather than trusting exit 0: if the dll is no… |
 | `bug-1910` | 2026-08-17 | `openmohaa-hzm/code/fgame/object.cpp` | - | user: 'Heads do still float when they get shot off and then eventually disappear' - persisting after the SOLID_BBOX/MOVETYPE_GIB fix was genuinely co… | edict->clipmask = MASK_SOLID, which is what the engine's own Gib effectively uses - gibs.cpp sets no clipmask at all and so inherits Entity's default… |
+| `bug-1911` | 2026-08-17 | `hzm-mohaa-coop-mod/models/weapons/johnson_m1941.tik` | - | Two imported weapons referenced shader names that nothing defines, so those surfaces drew untextured. Found by a base-texture resolver written for th… | Johnson material4/5 point back at the retail m1clip, which is what East intended and is the same precedent as our sights pointing at the retail thomp… |
 | `bug-1851` | 2026-08-17 | `openmohaa-hzm/code/fgame/weapturret.cpp` | - | user: 'these cats are way too accurate' - MG42 gunners hit with no miss margin at all | Added coop_mg42AiAimOff (default 100 after the user tuned it in play): a random offset on the aim point, re-rolled every 0.7-1.6s so a burst walks ac… |
 | `bug-1852` | 2026-08-17 | `hzm-mohaa-coop-mod/coop_mod/officer.scr` | V | user: 'I have yet to see enemy axis lay down (prone) and shoot even though this is in vanilla' | No repair needed to the mechanism. Added coop_aiProneChance (percent, default 12, 0 disables) so the share can be raised until it is actually observa… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |

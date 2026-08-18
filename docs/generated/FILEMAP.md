@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 35,884 |
+| files in the workspace | 35,898 |
 | bytes | 39.9 GB |
-| files in project scope (indexed per-file) | 10,513 |
-| source files (per-file rows with line counts) | 4,889 |
+| files in project scope (indexed per-file) | 10,527 |
+| source files (per-file rows with line counts) | 4,898 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -26,7 +26,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 |---|---:|---:|---|---|
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
-| `hzm-mohaa-coop-mod` | 7,060 | 5396.1 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 7,070 | 5396.8 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
 | `openmohaa-hzm` | 2,656 | 86.2 MB | **yes** | **the engine** - HZM fork of OpenMOHAA (C/C++) |
 | `UBER-MODS-v8.00-MOHAA` | 2,614 | 115.5 MB | no - reference | third-party mod, reference only |
@@ -34,7 +34,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `original-scripts` | 915 | 1173.7 MB | no - reference | vanilla MOHAA script/asset extraction (reference) |
 | `player1_home` | 296 | 3.0 MB | no - reference | test client profile dir |
 | `_research` | 171 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
-| `docs` | 133 | 4.1 MB | **yes** | this documentation set (authored + generated) |
+| `docs` | 136 | 4.1 MB | **yes** | this documentation set (authored + generated) |
 | `<root>` | 125 | 3409.4 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `extracted-scripts` | 99 | 2.6 MB | **yes** | extracted vanilla scripts kept for diffing |
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
@@ -42,7 +42,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
 | `manifests` | 43 | 0.5 MB | **yes** | release manifests consumed by the auto-updater |
 | `_tools` | 37 | 69.0 MB | no - reference | downloaded third-party binaries |
-| `server_home` | 31 | 5.0 MB | **yes** |  |
+| `server_home` | 32 | 5.2 MB | **yes** |  |
 | `_skins` | 29 | 4.4 MB | **yes** |  |
 | `installer` | 18 | 15873.3 MB | no - reference | Inno Setup output + payload staging |
 | `player2_home` | 16 | 1.6 MB | no - reference | test client profile dir |
@@ -77,11 +77,11 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.wav` | 14,221 |
 | `.dds` | 3,557 |
 | `.scr` | 2,505 |
-| `.tga` | 1,718 |
+| `.tga` | 1,719 |
 | `.cfg` | 1,381 |
 | `.png` | 1,370 |
-| `.jpg` | 1,235 |
-| `.tik` | 1,224 |
+| `.jpg` | 1,238 |
+| `.tik` | 1,230 |
 | `.obj` | 1,224 |
 | `.h` | 955 |
 | `.mp3` | 922 |
@@ -98,14 +98,14 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.json` | 130 |
 | `.bsp` | 129 |
 | `.min` | 100 |
-| `.py` | 83 |
+| `.py` | 86 |
 | `.class` | 64 |
 | `(none)` | 60 |
 | `.pth` | 55 |
 | `.dat` | 54 |
 | `.st` | 53 |
 | `.dcl` | 49 |
-| `.log` | 47 |
+| `.log` | 48 |
 | `.glsl` | 46 |
 | `.pk3` | 44 |
 | `.lod` | 37 |
@@ -181,13 +181,13 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/public` | 6 | 0.07 MB | .md×6 |
 | `docs/public/fixes` | 11 | 0.66 MB | .md×11 |
 | `docs/reference` | 4 | 0.07 MB | .md×3, .txt×1 |
-| `docs/tools` | 21 | 0.26 MB | .py×17, .md×1, .cmd×1, .ps1×1 |
+| `docs/tools` | 24 | 0.28 MB | .py×20, .md×1, .cmd×1, .ps1×1 |
 | `extracted-scripts` | 5 | 0.06 MB | .scr×5 |
 | `extracted-scripts/main_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
-| `hzm-mohaa-coop-mod` | 38 | 1427.55 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
+| `hzm-mohaa-coop-mod` | 38 | 1427.89 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -363,7 +363,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/models/vehicles/shermantank` | 2 | 0.70 MB | .skd×1, .skb×1 |
 | `hzm-mohaa-coop-mod/models/vehicles/t26` | 11 | 0.33 MB | .skc×9, .skd×2 |
 | `hzm-mohaa-coop-mod/models/vehicles/t26_d` | 2 | 0.26 MB | .skc×1, .skd×1 |
-| `hzm-mohaa-coop-mod/models/weapons` | 67 | 0.49 MB | .tik×56, .txt×11 |
+| `hzm-mohaa-coop-mod/models/weapons` | 73 | 0.55 MB | .tik×62, .txt×11 |
 | `hzm-mohaa-coop-mod/models/weapons/carbine` | 1 | 0.00 MB | .skc×1 |
 | `hzm-mohaa-coop-mod/models/weapons/coop_c96` | 3 | 0.21 MB | .skc×2, .skd×1 |
 | `hzm-mohaa-coop-mod/models/weapons/coop_dp28` | 4 | 0.15 MB | .skc×3, .skd×1 |
@@ -414,7 +414,8 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/coop_johnson` | 16 | 0.11 MB | .jpg×16 |
 | `hzm-mohaa-coop-mod/textures/coop_m10` | 13 | 1.95 MB | .tga×13 |
 | `hzm-mohaa-coop-mod/textures/coop_panzerfaust` | 3 | 0.81 MB | .tga×3 |
-| `hzm-mohaa-coop-mod/textures/coop_skins` | 1 | 0.16 MB | .jpg×1 |
+| `hzm-mohaa-coop-mod/textures/coop_skins` | 1 | 0.05 MB | .tga×1 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/thompsonsmg` | 4 | 0.48 MB | .jpg×4 |
 | `hzm-mohaa-coop-mod/textures/fg42` | 1 | 0.19 MB | .jpg×1 |
 | `hzm-mohaa-coop-mod/textures/gametext` | 37 | 77.60 MB | .tga×37 |
 | `hzm-mohaa-coop-mod/textures/hipout01` | 7 | 2.81 MB | .tga×7 |
@@ -789,8 +790,8 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/misc/linux` | 4 | 0.00 MB | .in×3, .xml×1 |
 | `openmohaa-hzm/misc/setup/windows/app` | 4 | 0.01 MB | .wxs×2, .wixproj×1, .wxl×1 |
 | `scratchpad` | 1 | 0.00 MB | .py×1 |
-| `server_home` | 3 | 0.57 MB | .log×3 |
-| `server_home/maintt` | 6 | 0.61 MB | .cfg×3, .pid×1, .log×1, .pre_e3l4×1 |
+| `server_home` | 4 | 0.78 MB | .log×4 |
+| `server_home/maintt` | 6 | 0.63 MB | .cfg×3, .pid×1, .log×1, .pre_e3l4×1 |
 | `server_home/maintt/coop_mod/save` | 12 | 0.01 MB | .dat×12 |
 | `server_home/maintt/prev` | 10 | 3.83 MB | .log×10 |
 | `server_home_probe/maintt` | 5 | 0.30 MB | .cfg×3, .pid×1, .log×1 |
@@ -883,13 +884,14 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `omconfig.cfg` | 2,488 | 68.4 KB | generated by openmohaa |
 
-### `docs/tools/` — 19 source files
+### `docs/tools/` — 22 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
 | `ai_ab_report.py` | 121 | 5.5 KB |  |
 | `audit_shaders.py` | 129 | 4.8 KB | !/usr/bin/env python |
 | `audit_weapons.py` | 361 | 15.7 KB | !/usr/bin/env python |
+| `bake_skins.py` | 92 | 4.1 KB |  |
 | `check_challenges.py` | 316 | 13.2 KB | !/usr/bin/env python3 |
 | `check_download_links.py` | 78 | 3.0 KB |  |
 | `check_empty_rhs.py` | 95 | 3.8 KB |  |
@@ -901,10 +903,12 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `gen_loadout.py` | 309 | 13.6 KB | !/usr/bin/env python |
 | `gen_public_pages.py` | 540 | 21.2 KB | !/usr/bin/env python3 |
 | `gen_service_record.py` | 923 | 58.0 KB | [user 08-07] friendly display name for a challenge's reward field (chal_def's 7th arg) |
+| `gen_skins.py` | 271 | 11.7 KB |  |
 | `gen_weapon_skins.py` | 189 | 8.3 KB |  |
 | `hudslots.py` | 98 | 4.0 KB | !/usr/bin/env python3 |
 | `linecheck.py` | 127 | 5.8 KB | a continuation line may not START with one of these |
 | `quotecheck.py` | 79 | 2.8 KB |  |
+| `resolve_basetex.py` | 135 | 4.9 KB |  |
 | `scrlint.py` | 82 | 3.3 KB |  |
 
 ### `extracted-scripts/` — 5 source files
@@ -1155,7 +1159,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `bust.scr` | 1,574 | 86.0 KB | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
 | `butler.scr` | 498 | 18.9 KB | created by chrissstrahl on 2019.09.12 |
 | `cannonThink.scr` | 147 | 4.8 KB | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
-| `challenges.scr` | 3,717 | 227.3 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
+| `challenges.scr` | 3,716 | 227.2 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
 | `collectible.scr` | 375 | 18.6 KB | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
 | `coop_placements.scr` | 1,021 | 32.1 KB | HZM coop - BAKED BUILD-MODE PLACEMENTS (generated from build_<map>.dat). |
 | `coop_selftest.scr` | 320 | 13.2 KB | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
@@ -1360,7 +1364,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `entsound.scr` | 15 | 0.5 KB | local.ent playsound local.sound wait //[202][hotfix] |
 | `exploder.scr` | 744 | 20.0 KB | Exploding chunk system created by Mackey McCandlish. |
 | `friendly.scr` | 2,895 | 88.6 KB | [202] chrissstrahl |
-| `giveall.scr` | 134 | 5.7 KB | HZM coop - "give all" weapon list (read by the engine GiveCheat when a player runs "give all"). |
+| `giveall.scr` | 140 | 5.9 KB | HZM coop - "give all" weapon list (read by the engine GiveCheat when a player runs "give all"). |
 | `headaim.scr` | 37 | 1.3 KB | chrissstrahl - made compatible to coop |
 | `hoveringplane.scr` | 250 | 7.9 KB | HZM coop [user 07-22 bug-1031] override of retail global/hoveringplane.scr: the ambient |
 | `items.scr` | 567 | 13.6 KB | MoH: Allied Assault Script File |
@@ -3002,7 +3006,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `t26r_d.tik` | 125 | 2.6 KB |  |
 | `t26r_tank.tik` | 76 | 2.2 KB |  |
 
-### `hzm-mohaa-coop-mod/models/weapons/` — 56 source files
+### `hzm-mohaa-coop-mod/models/weapons/` — 62 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -3034,11 +3038,11 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `enfield.tik` | 342 | 8.0 KB |  |
 | `enfield_lite.tik` | 329 | 7.6 KB |  |
 | `g43sniper.tik` | 274 | 7.5 KB |  |
-| `johnson_m1941.tik` | 332 | 9.9 KB |  |
+| `johnson_m1941.tik` | 337 | 10.3 KB |  |
 | `kar98.tik` | 365 | 8.7 KB |  |
 | `kar98_lite.tik` | 354 | 8.4 KB |  |
 | `kar98_mortar.tik` | 433 | 10.2 KB |  |
-| `m10_revolver.tik` | 538 | 16.7 KB |  |
+| `m10_revolver.tik` | 541 | 17.0 KB |  |
 | `m1_garand.tik` | 411 | 10.1 KB |  |
 | `m1_garand_lite.tik` | 402 | 9.8 KB |  |
 | `m2frag_grenade_sp.tik` | 19 | 0.5 KB |  |
@@ -3057,8 +3061,14 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `steilhandgranate_start.tik` | 17 | 0.3 KB |  |
 | `sten.tik` | 693 | 17.2 KB |  |
 | `svt_rifle.tik` | 271 | 7.0 KB |  |
-| `thompson_gold.tik` | 336 | 8.8 KB |  |
 | `thompsonsmg.tik` | 332 | 8.4 KB |  |
+| `thompsonsmg_bloody.tik` | 332 | 8.8 KB |  |
+| `thompsonsmg_blued.tik` | 332 | 8.8 KB |  |
+| `thompsonsmg_camo_desert.tik` | 332 | 8.8 KB |  |
+| `thompsonsmg_camo_winter.tik` | 332 | 8.8 KB |  |
+| `thompsonsmg_camo_woodland.tik` | 332 | 8.8 KB |  |
+| `thompsonsmg_chrome.tik` | 332 | 8.8 KB |  |
+| `thompsonsmg_gold.tik` | 332 | 8.8 KB |  |
 | `tt33.tik` | 239 | 6.7 KB |  |
 | `tt33silenced.tik` | 241 | 7.0 KB |  |
 | `welrod.tik` | 254 | 7.2 KB |  |
@@ -3114,7 +3124,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_oilslick.shader` | 15 | 0.5 KB |  |
 | `coop_panzerfaust.shader` | 33 | 1.0 KB |  |
 | `coop_sandstorm.shader` | 67 | 1.0 KB |  |
-| `coop_skins.shader` | 14 | 0.6 KB |  |
+| `coop_skins.shader` | 101 | 2.5 KB |  |
 | `coop_static_vehicles.shader` | 99 | 2.8 KB |  |
 | `coop_water_overrides.shader` | 96 | 2.9 KB |  |
 | `coop_weather.shader` | 21 | 0.7 KB |  |

@@ -257,6 +257,37 @@ reachable (bug-494, found in play). **Any future import must get a unique order.
 ---
 
 <a name="build"></a>
+### Weapon finish variants: hybrid art, mastery-gated, picked by cvar (2026-08-17)
+
+A finish is a whole weapon definition, because a live weapon's shader cannot be swapped at runtime.
+That constraint drove all three decisions.
+
+**Art - hybrid.** Blood and camo are BAKED, because they need detail placed against the real UVs.
+Gold, chrome and blued are SHADER STAGES over the gun's existing diffuse (a multiply tint plus one
+shared envmap). *Rejected:* baking everything - 128 distinct base textures x 7 finishes is ~80 MB
+on an already 758 MB texture pak, and every new gun needs its whole set regenerated. *Rejected:*
+stages for everything - fixed-function can tint but cannot desaturate or place detail, so camo and
+blood come out as a uniform wash. Chrome is the marginal case and may yet move to baked.
+
+**Unlock - finish challenge x gun mastery.** Seven thematic challenges unlock each finish
+account-wide; a gun accepts finishes once its existing per-weapon kill challenge is done. 68 guns
+already have one. *Rejected:* a kill threshold per gun per finish - 476 challenges, an unreadable
+service record, and most of them grinds nobody finishes. *Rejected:* finish challenges only, with
+no per-gun gate - then a finish stops meaning anything about the weapon wearing it.
+
+**Picker - a per-slot cvar, never a tile.** Eight fixed widgets (Standard + 7) write a finish cvar
+that is resolved against the base gun at spawn. *Rejected:* one armory tile per variant. Tile ids
+are baked into every pNN/tNN/wNN filename and every coop_loLkVNN cvar, and renumbering them is the
+whole of bugs 755/759/772/787/803. The cvar approach costs 8 widgets no matter how many guns or
+finishes ever exist.
+
+**Two invariants the generator enforces.** A variant is named `<Base> (<Finish>)` so
+CoopStripSkinSuffix resolves it to the base gun and it inherits the base's first-person hands and
+hand-dialled ADS tuning - a skin must never change how a gun aims. And rank must be unique: a
+shared rank hides a gun on the weapon wheel, which is what made the imported guns unreachable.
+A useful accident falls out of the `<basestem>_<finish>` filename - variant kills already match the
+base gun's token in the challenge stat resolver, so they count toward that gun's mastery for free.
+
 ## Build & release
 
 ### Three paks, not one, and a deterministic packer

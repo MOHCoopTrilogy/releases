@@ -13,24 +13,28 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `fa6db7f 2026-08-17 loadout: the roster script was not compiling at all - an assignment with no value` |
-| commits | 115 |
+| HEAD | `ff53624 2026-08-17 skins: generate weapon finish variants - one tik and shader set per gun per finish` |
+| commits | 116 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **2 modified, 0 untracked** |
+| unstaged diff | 2 files changed, 48 insertions(+) |
+
+> Working tree is dirty. Everything in those 2 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 61 |
+| 2026-08 | 62 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (115)
+### Commits since 2026-01-01 (116)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `ff53624` | 2026-08-17 | joncurry94-tech | skins: generate weapon finish variants - one tik and shader set per gun per finish |
 | `fa6db7f` | 2026-08-17 | joncurry94-tech | loadout: the roster script was not compiling at all - an assignment with no value |
 | `3e0f7be` | 2026-08-17 | joncurry94-tech | docs: regenerate |
 | `9652599` | 2026-08-17 | joncurry94-tech | docs: regenerate; armory table gains give and tab columns |
@@ -152,8 +156,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `fc915e6 2026-08-17 loadout: fill the tab column so the roster script compiles again` |
-| commits | 1,449 |
+| HEAD | `42ed071 2026-08-17 skins: Thompson finish variants, generated` |
+| commits | 1,451 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -161,7 +165,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 56 |
+| 2026-08 | 58 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -201,10 +205,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (100)
+### Commits since 2026-01-01 (102)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `42ed071` | 2026-08-17 | joncurry94 | skins: Thompson finish variants, generated |
+| `8cbc124` | 2026-08-17 | joncurry94 | weapons: two imported guns referenced shader names nothing defines |
 | `fc915e6` | 2026-08-17 | joncurry94 | loadout: fill the tab column so the roster script compiles again |
 | `aa14303` | 2026-08-17 | joncurry94 | weapons: a TIKI animations block cannot take a full path - fix three that did |
 | `10bfb72` | 2026-08-17 | joncurry94 | m3l3: new challenge "The Hunt" - hold the church without it ever being contested |

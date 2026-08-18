@@ -8,7 +8,7 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-950 distinct file paths, 3,109 distinct tags.
+951 distinct file paths, 3,110 distinct tags.
 
 ## Files with the most history
 
@@ -513,6 +513,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/models/weapons/dp28.tik` | 1 | `bug-1899` |
 | `hzm-mohaa-coop-mod/models/weapons/g43sniper.tik` | 1 | `bug-648` |
 | `hzm-mohaa-coop-mod/models/weapons/It_W_Carcano.tik` | 1 | `bug-494` |
+| `hzm-mohaa-coop-mod/models/weapons/johnson_m1941.tik` | 1 | `bug-1911` |
 | `hzm-mohaa-coop-mod/models/weapons/m10_revolver.tik` | 1 | `bug-1905` |
 | `hzm-mohaa-coop-mod/models/weapons/m1_garand.tik` | 1 | `bug-095` |
 | `hzm-mohaa-coop-mod/models/weapons/mauser_c96.tik` | 2 | `bug-1894` `bug-1897` |
@@ -1191,7 +1192,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `audio` | 26 | `bug-1138` `bug-1264` `bug-1324` `bug-1325` `bug-1501` `bug-1502` `bug-1509` `bug-1516` `bug-1517` `bug-153` `bug-1556` `bug-156` `bug-1797` `bug-1808` `bug-1857` `bug-1894` `bug-1899` `bug-599` `bug-600` `bug-601` `bug-717` `bug-725` `bug-836` `bug-846` `bug-849` `bug-933b` |
 | `audit` | 11 | `bug-1288` `bug-1290` `bug-1399` `bug-1885` `bug-1886` `bug-1888` `bug-721` `bug-722` `bug-723` `bug-724` `bug-874` |
 | `audit-caught` | 1 | `bug-1900` |
-| `audit-gap` | 3 | `bug-1009` `bug-1898` `bug-1905` |
+| `audit-gap` | 4 | `bug-1009` `bug-1898` `bug-1905` `bug-1911` |
 | `audit-methodology` | 1 | `bug-1523` |
 | `audit-scaffolding` | 1 | `bug-1550` |
 | `audited` | 1 | `bug-1180` |
@@ -2312,7 +2313,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `immune-falling` | 1 | `bug-940` |
 | `immunity` | 2 | `bug-1307` `bug-941` |
 | `impact` | 1 | `bug-1176` |
-| `import` | 10 | `bug-1357` `bug-1894` `bug-1899` `bug-1900` `bug-295` `bug-482` `bug-483` `bug-494` `bug-500` `bug-853` |
+| `import` | 11 | `bug-1357` `bug-1894` `bug-1899` `bug-1900` `bug-1911` `bug-295` `bug-482` `bug-483` `bug-494` `bug-500` `bug-853` |
 | `import-normals` | 1 | `bug-921` |
 | `includes` | 1 | `bug-1487` |
 | `incomplete-fix` | 2 | `bug-1570` `bug-1892` |
@@ -2388,7 +2389,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `jeep-passengers` | 1 | `bug-1460` |
 | `jeep-sequence` | 1 | `bug-1513` |
 | `jeepanim` | 1 | `bug-1366` |
-| `johnson` | 3 | `bug-1894` `bug-1897` `bug-1905` |
+| `johnson` | 4 | `bug-1894` `bug-1897` `bug-1905` `bug-1911` |
 | `jq` | 2 | `bug-1800` `bug-425` |
 | `jump` | 1 | `bug-367` |
 | `key-conflict` | 1 | `bug-dbno-medkit-letgo-same-key` |
@@ -2507,7 +2508,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `lru-steal` | 1 | `bug-780` |
 | `lt-pato` | 1 | `bug-1899` |
 | `m1-garand` | 1 | `bug-133` |
-| `m10` | 2 | `bug-1900` `bug-1905` |
+| `m10` | 3 | `bug-1900` `bug-1905` `bug-1911` |
 | `m1l1` | 9 | `bug-1161` `bug-1162` `bug-1173` `bug-1174` `bug-1175` `bug-1184` `bug-1213` `bug-1228` `bug-1476` |
 | `m1l1-walkers` | 1 | `bug-822` |
 | `m1l2a` | 4 | `bug-1248` `bug-1484` `bug-1485` `bug-842` |
@@ -3126,6 +3127,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `re-add` | 1 | `bug-1875` |
 | `re-arm` | 1 | `bug-1709` |
 | `re-entrancy` | 1 | `bug-818` |
+| `re-pathing` | 1 | `bug-1911` |
 | `re-port` | 2 | `bug-gl2-gore` `bug-gl2-nextbundle2` |
 | `re_addpolytoscene2` | 1 | `bug-gl2-maxpolys` |
 | `re_beginregistration` | 1 | `bug-1254` |
@@ -3405,7 +3407,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `setup-buffer` | 1 | `bug-1244` |
 | `sfx-slider` | 1 | `bug-1556` |
 | `sfx_t` | 1 | `bug-1163` |
-| `shader` | 23 | `bug-092` `bug-095` `bug-1130` `bug-1191` `bug-1207` `bug-1242` `bug-1249` `bug-1424` `bug-143` `bug-1515` `bug-1610` `bug-1611` `bug-230` `bug-430` `bug-480` `bug-481` `bug-530` `bug-764` `bug-853` `bug-921` `bug-922` `bug-lowhealth-scene-dependent` `bug-menu-shader-label-invisible` |
+| `shader` | 24 | `bug-092` `bug-095` `bug-1130` `bug-1191` `bug-1207` `bug-1242` `bug-1249` `bug-1424` `bug-143` `bug-1515` `bug-1610` `bug-1611` `bug-1911` `bug-230` `bug-430` `bug-480` `bug-481` `bug-530` `bug-764` `bug-853` `bug-921` `bug-922` `bug-lowhealth-scene-dependent` `bug-menu-shader-label-invisible` |
 | `shader-collision` | 1 | `bug-1357` |
 | `shader-isolation` | 4 | `bug-1356` `bug-1894` `bug-1899` `bug-1900` |
 | `shader-lump` | 1 | `bug-1386` |
@@ -3768,7 +3770,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `tik-data-disabled` | 1 | `bug-616` |
 | `tik-parsing` | 1 | `bug-586` |
 | `tik-setsize` | 1 | `bug-942` |
-| `tiki` | 32 | `bug-020` `bug-072` `bug-1190` `bug-1203` `bug-1216` `bug-1228` `bug-1244` `bug-1301` `bug-1302` `bug-1303` `bug-1332` `bug-1338` `bug-1369` `bug-1408` `bug-1476` `bug-1485` `bug-1487` `bug-1489` `bug-1540` `bug-1545` `bug-1621` `bug-1818` `bug-1880` `bug-1887` `bug-1891` `bug-1892` `bug-1905` `bug-259` `bug-260` `bug-306` `bug-731` `bug-854` |
+| `tiki` | 33 | `bug-020` `bug-072` `bug-1190` `bug-1203` `bug-1216` `bug-1228` `bug-1244` `bug-1301` `bug-1302` `bug-1303` `bug-1332` `bug-1338` `bug-1369` `bug-1408` `bug-1476` `bug-1485` `bug-1487` `bug-1489` `bug-1540` `bug-1545` `bug-1621` `bug-1818` `bug-1880` `bug-1887` `bug-1891` `bug-1892` `bug-1905` `bug-1911` `bug-259` `bug-260` `bug-306` `bug-731` `bug-854` |
 | `tiki-frame-event` | 1 | `bug-1199` |
 | `tiki-models` | 1 | `bug-gl2-modellight` |
 | `tiki_sortlod` | 1 | `bug-1002` |
@@ -3902,7 +3904,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `unsponge` | 1 | `bug-1274` |
 | `unterminated-string` | 1 | `bug-1285` |
 | `untested-path` | 1 | `bug-1800` |
-| `untextured` | 1 | `bug-481` |
+| `untextured` | 2 | `bug-1911` `bug-481` |
 | `unverifiable-ui` | 1 | `bug-1546` |
 | `unverified` | 12 | `bug-1534` `bug-1618` `bug-1622` `bug-1623` `bug-1624` `bug-1665` `bug-1676` `bug-1677` `bug-1678` `bug-1679` `bug-1691` `bug-1693` |
 | `unverified-feel` | 1 | `bug-1686` |
