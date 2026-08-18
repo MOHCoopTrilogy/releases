@@ -12,6 +12,13 @@ KNOWN_WORKING_STATE.md	73560	.md	962	<root>
 README.md	26383	.md	296	<root>
 _coop_ally_icon.png	1638	.png	0	<root>
 _coop_axis_icon.png	2600	.png	0	<root>
+_dp28/pato_dp1928.zip	1591043	.zip	0	_dp28
+_dp28/snd_out/dp28_Mechanical_1.wav	96044	.wav	0	_dp28
+_dp28/snd_out/dp28_Mechanical_2.wav	96044	.wav	0	_dp28
+_dp28/snd_src/GUNAuto_LMG-DP 27 Mechanical Single_B00M_WW2FD.wav	14301790	.wav	0	_dp28
+_dp28/snd_src/GUNAuto_LMG-DP 27 Modern Single_B00M_WW2FD.wav	14529848	.wav	0	_dp28
+_dp28/snd_src/GUNAuto_LMG-DP 27 Punch Single_B00M_WW2FD.wav	15654926	.wav	0	_dp28
+_dp28/url.txt	512	.txt	1	_dp28
 _eagle_preview.png	169204	.png	0	<root>
 _east_weapons/ZZZEastsJohnsonM41.pk3	787735	.pk3	0	_east_weapons
 _east_weapons/snd_out/c96_fire1.wav	105644	.wav	0	_east_weapons
@@ -357,7 +364,7 @@ docs/reference/warchestrestored_v1.1.0_changelog.txt	45915	.txt	872	docs
 docs/tools/README.md	5123	.md	91	docs
 docs/tools/ai_ab_report.py	5608	.py	121	docs
 docs/tools/audit_shaders.py	4905	.py	129	docs
-docs/tools/audit_weapons.py	13696	.py	314	docs
+docs/tools/audit_weapons.py	15794	.py	358	docs
 docs/tools/check_challenges.py	13532	.py	316	docs
 docs/tools/check_download_links.py	3081	.py	78	docs
 docs/tools/count_skel_channels.py	7342	.py	180	docs
@@ -1369,7 +1376,7 @@ hzm-mohaa-coop-mod/coop_mod/cfg/objdiag.cfg	490	.cfg	11	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/posetest.cfg	659	.cfg	11	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/wallgun.cfg	2304	.cfg	49	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/wallgun_off.cfg	936	.cfg	27	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/challenges.scr	229975	.scr	3694	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/challenges.scr	230662	.scr	3700	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/collectible.scr	19091	.scr	375	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/coop_placements.scr	32871	.scr	1021	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/coop_selftest.scr	13524	.scr	320	hzm-mohaa-coop-mod
@@ -1575,7 +1582,7 @@ hzm-mohaa-coop-mod/global/credits_hazardmodding.scr	14117	.scr	249	hzm-mohaa-coo
 hzm-mohaa-coop-mod/global/entsound.scr	531	.scr	15	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/exploder.scr	20500	.scr	744	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/friendly.scr	90711	.scr	2895	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/global/giveall.scr	5269	.scr	124	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/global/giveall.scr	5385	.scr	126	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/headaim.scr	1300	.scr	37	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/hoveringplane.scr	8051	.scr	250	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/items.scr	13880	.scr	567	hzm-mohaa-coop-mod
@@ -1611,7 +1618,7 @@ hzm-mohaa-coop-mod/global/weather.scr	16737	.scr	622	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/welder.scr	2547	.scr	110	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/wrenching.scr	3212	.scr	117	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/hzm_changelog.txt	28405	.txt	420	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/hzm_credits.txt	1911	.txt	49	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/hzm_credits.txt	2222	.txt	53	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/hzm_cvars.txt	1676	.txt	64	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/hzm_identity.txt	2120	.txt	83	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/hzm_install.txt	4475	.txt	109	hzm-mohaa-coop-mod
@@ -2209,6 +2216,8 @@ hzm-mohaa-coop-mod/models/abs/mk2_ver2.skd	27958	.skd	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/abs/woolcap.lod	96	.lod	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/abs/woolcap.skc	5904	.skc	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/abs/woolcap.skd	9778	.skd	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/ammo/coop_dp28/clip.skc	384	.skc	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/ammo/coop_dp28/clip.skd	5968	.skd	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/ammo/fg42clip.tik	154	.tik	13	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/ammo/fg42clip/fg42clip.skc	5792	.skc	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/ammo/fg42clip/fg42clip.skd	3490	.skd	0	hzm-mohaa-coop-mod
@@ -2827,6 +2836,10 @@ hzm-mohaa-coop-mod/models/human/animation/scripted/level_t3l1.tik	6841	.tik	307	
 hzm-mohaa-coop-mod/models/human/animation/viewmodel/bar_fire00.skc	15184	.skc	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/human/animation/viewmodel/bar_stand00.skc	5664	.skc	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/human/animation/viewmodel/coltpose00.skc	5664	.skc	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/human/animation/viewmodel/coop_dp28/dp28_dummy.skc	4848	.skc	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/human/animation/viewmodel/coop_dp28/dp28_fire.skc	11376	.skc	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/human/animation/viewmodel/coop_dp28/dp28_reload.skc	161520	.skc	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/human/animation/viewmodel/coop_dp28/dp28_up.skc	11376	.skc	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/human/animation/viewmodel/coop_johnson/johnson_reload.skc	166608	.skc	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/human/animation/viewmodel/fg42/fg42_stand_fire.skc	24496	.skc	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/human/animation/viewmodel/fg42/fg42_stand_idle.skc	5616	.skc	0	hzm-mohaa-coop-mod
@@ -3195,7 +3208,7 @@ hzm-mohaa-coop-mod/models/player/american_winter_specengineer_nohat.tik	1880	.ti
 hzm-mohaa-coop-mod/models/player/base/anims_injured.txt.bak	377	.bak	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/player/base/anims_shared.txt	27993	.txt	722	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/player/base/fps_anims_bazooka.txt	1936	.txt	70	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/models/player/base/fps_anims_mg.txt	4306	.txt	162	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/player/base/fps_anims_mg.txt	5388	.txt	178	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/player/base/fps_anims_pistol.txt	5935	.txt	232	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/player/base/fps_anims_rifle.txt	12177	.txt	380	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/player/base/fps_anims_shotgun.txt	1343	.txt	41	hzm-mohaa-coop-mod
@@ -3531,17 +3544,22 @@ hzm-mohaa-coop-mod/models/weapons/colt45.tik	17582	.tik	592	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/coop_binoculars.tik	1372	.tik	73	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/coop_c96/c96.skc	1408	.skc	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/coop_c96/c96.skd	196052	.skd	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/weapons/coop_dp28/dp28.skc	672	.skc	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/weapons/coop_dp28/dp28.skd	126410	.skd	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/weapons/coop_dp28/dp28_fire.skc	1152	.skc	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/weapons/coop_dp28/dp28_reload.skc	23712	.skc	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/coop_johnson/johnson.skd	582782	.skd	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/coop_johnson/johnson_idle.skc	34752	.skc	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/coop_johnson/johnson_reload.skc	34752	.skc	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/coop_smoke_grenade.tik	2695	.tik	162	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/dbno_pistol.tik	6851	.tik	373	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/weapons/dp28.tik	9774	.tik	344	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/enfield.tik	8186	.tik	342	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/enfield_lite.tik	7768	.tik	329	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/fg42/fg42.skc	16320	.skc	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/fg42/fg42.skd	72050	.skd	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/g43sniper.tik	7706	.tik	274	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/models/weapons/johnson_m1941.tik	9867	.tik	330	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/weapons/johnson_m1941.tik	10169	.tik	332	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/kar98.tik	8950	.tik	365	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/kar98_lite.tik	8617	.tik	354	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/kar98_mortar.tik	10475	.tik	433	hzm-mohaa-coop-mod
@@ -3551,7 +3569,7 @@ hzm-mohaa-coop-mod/models/weapons/m2frag_grenade_base.txt	2583	.txt	143	hzm-moha
 hzm-mohaa-coop-mod/models/weapons/m2frag_grenade_sp.tik	510	.tik	19	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/m2frag_grenade_sp_start.tik	424	.tik	19	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/m2frag_grenade_start.tik	296	.tik	17	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/models/weapons/mauser_c96.tik	9095	.tik	287	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/weapons/mauser_c96.tik	9399	.tik	289	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/mills_grenade_base.txt	3701	.txt	178	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/mp40.tik	17487	.tik	695	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/weapons/mp44.tik	9026	.tik	351	hzm-mohaa-coop-mod
@@ -3612,6 +3630,7 @@ hzm-mohaa-coop-mod/scripts/coop_1936_imports.shader	7980	.shader	384	hzm-mohaa-c
 hzm-mohaa-coop-mod/scripts/coop_airborne_fix.shader	1588	.shader	33	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/coop_blood.shader	3867	.shader	91	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/coop_c96.shader	2135	.shader	125	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/scripts/coop_dp28.shader	650	.shader	23	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/coop_enigma.shader	2005	.shader	42	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/coop_fg42.shader	668	.shader	15	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/coop_fonts_hi3x.shader	2233	.shader	146	hzm-mohaa-coop-mod
@@ -4624,6 +4643,8 @@ hzm-mohaa-coop-mod/sound/weapons/fire/c96_snd_fire2.wav	105644	.wav	0	hzm-mohaa-
 hzm-mohaa-coop-mod/sound/weapons/fire/carcano_fire5.wav	153678	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/weapons/fire/carcano_fire6.wav	153678	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/weapons/fire/colt45fire1.wav	105678	.wav	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/sound/weapons/fire/dp28_snd_fire1.wav	96044	.wav	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/sound/weapons/fire/dp28_snd_fire2.wav	96044	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/weapons/fire/dtm_fire1.wav	124878	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/weapons/fire/dtm_fire2.wav	124878	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/weapons/fire/dtm_fire3.wav	124878	.wav	0	hzm-mohaa-coop-mod
@@ -4830,6 +4851,8 @@ hzm-mohaa-coop-mod/textures/coop_c96/hammerhit.tga	176731	.tga	0	hzm-mohaa-coop-
 hzm-mohaa-coop-mod/textures/coop_c96/switchblade.tga	154426	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/coop_c96/trigger.tga	82135	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/coop_c96/triguard.tga	82736	.tga	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/textures/coop_dp28/bipod.jpg	13465	.jpg	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/textures/coop_dp28/dp28.jpg	170021	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/coop_fx/oilslick.tga	65554	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/coop_fx/sandstreak.tga	8236	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/coop_gore/coop_bloodsplash.tga	65580	.tga	0	hzm-mohaa-coop-mod
@@ -6728,7 +6751,7 @@ hzm-mohaa-coop-mod/ubersound/coop_headshot.scr	437	.scr	4	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ubersound/coop_morocco_ubersound.scr	667	.scr	15	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ubersound/coop_taunt.scr	10814	.scr	81	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ubersound/uberdialog.scr	6168444	.scr	42175	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ubersound/ubersound.scr	605371	.scr	5395	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ubersound/ubersound.scr	606455	.scr	5407	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/BIND.SCR	4654	.scr	120	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/advanced_graphics.urc	12024	.urc	543	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/advancedoptions.urc	13827	.urc	603	hzm-mohaa-coop-mod
@@ -7478,9 +7501,9 @@ hzm-mohaa-coop-mod/ui/multiplayerstart.urc	6313	.urc	274	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/options_main.urc	5510	.urc	253	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	542153875	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	792968376	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23208649	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	542317652	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	793236204	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23209832	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm_coop_framework_guide.md	27594	.md	382	<root>
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -7784,7 +7807,7 @@ openmohaa-hzm/code/cgame/cg_testemitter.cpp	87160	.cpp	2096	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_ui.cpp	7988	.cpp	286	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_vehicle.cpp	1239	.cpp	39	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_view.c	147019	.c	3019	openmohaa-hzm
-openmohaa-hzm/code/cgame/cg_viewmodelanim.c	25896	.c	714	openmohaa-hzm
+openmohaa-hzm/code/cgame/cg_viewmodelanim.c	26451	.c	725	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_volumetricsmoke.cpp	45486	.cpp	1370	openmohaa-hzm
 openmohaa-hzm/code/cgame/memarchiver.cpp	5651	.cpp	241	openmohaa-hzm
 openmohaa-hzm/code/cgame/memarchiver.h	2328	.h	73	openmohaa-hzm
@@ -10304,7 +10327,7 @@ relnotes_1.2.1.md	1025	.md	15	<root>
 resume_publish.ps1	8738	.ps1	157	<root>
 rollout_implementation_log.md	13772	.md	194	<root>
 scratchpad/rcon.py	926	.py	27	scratchpad
-server_home/boot_m3l2.log	193357	.log	0	server_home
+server_home/boot_m3l2.log	193936	.log	0	server_home
 server_home/boot_t2l2.log	172217	.log	0	server_home
 server_home/maintt/OpenMoHAA_server.pid	4	.pid	0	server_home
 server_home/maintt/autoexec.cfg	90014	.cfg	1208	server_home
@@ -10332,7 +10355,7 @@ server_home/maintt/prev/qconsole-20260815-112103.log	282324	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-112454.log	317859	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-113246.log	320900	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-114100.log	292931	.log	0	server_home
-server_home/maintt/qconsole.log	193357	.log	0	server_home
+server_home/maintt/qconsole.log	193936	.log	0	server_home
 server_home/maintt/qconsole.log.pre_e3l4	302778	.pre_e3l4	0	server_home
 server_home_probe/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home_probe
 server_home_probe/maintt/autoexec.cfg	89444	.cfg	1202	server_home_probe
