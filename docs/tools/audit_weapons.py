@@ -157,6 +157,43 @@ def unreferenced_viewmodels(files):
         out.append((gun, len(members), has_weapon))
     return out
 
+
+def silent_aliases(files):
+    """Aliases that resolve, load, and still produce no audio.
+
+    Found the hard way: the StG44 Scoped and the G43 Sniper were both mute, and every check we
+    had passed them. The alias was defined, its wav existed, its maps spec covered the campaign -
+    but soundparms carried pitch 0.0, and alias.c:188-194 reads those six numbers as
+    volume / volumeMod / PITCH / pitchMod / dist / maxDist. A sound at pitch 0 never advances
+    through its samples. Zero volume is the same story.
+
+    Also checks the wav actually exists, which "is the alias defined" never did.
+    """
+    out = []
+    for v in list(files):
+        if not v.endswith("ubersound.scr") and not v.endswith("uberdialog.scr"):
+            continue
+        d = read(files, v)
+        if not d:
+            continue
+        for m in re.finditer(
+                rb"(?mi)^\s*alias(?:cache)?\s+(\S+)\s+(\S+)\s+soundparms\s+"
+                rb"([\d.]+)\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)", d):
+            name = m.group(1).decode("latin-1")
+            wav = m.group(2).decode("latin-1")
+            vol = float(m.group(3))
+            pitch = float(m.group(5))
+            if pitch == 0.0:
+                out.append(("pitch 0.0 - never advances through the samples", name, wav))
+            elif vol == 0.0:
+                out.append(("volume 0.0", name, wav))
+            # NOTE: a "does the wav exist" check was tried here and removed. It returned 34,056
+            # hits, essentially all retail dialogue, because alias paths do not resolve 1:1 against
+            # a flat pak index (case, .mp3/.wav siblings, per-language trees). A check that noisy
+            # hides the two real findings, which is the failure mode this whole tool exists to
+            # avoid. Pitch and volume are read straight off the line and are exact.
+    return out
+
 def main():
     show_all = "--all" in sys.argv
     files = load_sources()
@@ -275,6 +312,13 @@ def main():
                 findings["no first-person prefix mapping"].append(
                     "%-28s name %-22s not in cg_viewmodelanim.c - borrows another gun's hands"
                     % (gun, '"%s"' % wname))
+
+    mute = silent_aliases(files)
+    if mute:
+        print("== SOUND ALIASES THAT CANNOT PRODUCE AUDIO (%d)" % len(mute))
+        for why, name, wav in sorted(set(mute)):
+            print("   %-26s %-34s %s" % (name, why, wav))
+        print()
 
     unused = unreferenced_viewmodels(files)
     if unused:

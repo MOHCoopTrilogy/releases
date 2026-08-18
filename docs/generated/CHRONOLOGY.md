@@ -13,27 +13,25 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `079256e 2026-08-17 open: close the m3l2 label, and correct the t2l2 error count by measurement` |
-| commits | 103 |
+| HEAD | `15140c3 2026-08-17 open: record the armory gap, and the publish entry for the bullet-impact pack` |
+| commits | 104 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **1 modified, 0 untracked** |
-| unstaged diff | 1 file changed, 8 insertions(+) |
-
-> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 49 |
+| 2026-08 | 50 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (103)
+### Commits since 2026-01-01 (104)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `15140c3` | 2026-08-17 | joncurry94-tech | open: record the armory gap, and the publish entry for the bullet-impact pack |
 | `079256e` | 2026-08-17 | joncurry94-tech | open: close the m3l2 label, and correct the t2l2 error count by measurement |
 | `985236c` | 2026-08-17 | joncurry94-tech | open: close the stale e3l4 outro entry, verified against a running engine |
 | `e185298` | 2026-08-17 | joncurry94-tech | docs: regenerate after the v1.3.1 release |
