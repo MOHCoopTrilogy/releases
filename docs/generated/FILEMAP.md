@@ -10,9 +10,9 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 38,087 |
+| files in the workspace | 38,088 |
 | bytes | 40.6 GB |
-| files in project scope (indexed per-file) | 12,716 |
+| files in project scope (indexed per-file) | 12,717 |
 | source files (per-file rows with line counts) | 5,383 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
@@ -24,7 +24,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 9,219 | 5752.2 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 9,219 | 5752.1 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
@@ -35,7 +35,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `player1_home` | 296 | 3.0 MB | no - reference | test client profile dir |
 | `_research` | 171 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
 | `docs` | 138 | 4.1 MB | **yes** | this documentation set (authored + generated) |
-| `<root>` | 125 | 3409.4 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
+| `<root>` | 126 | 3409.4 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `extracted-scripts` | 99 | 2.6 MB | **yes** | extracted vanilla scripts kept for diffing |
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
 | `_menu_pilot` | 81 | 90.7 MB | no - reference | Photoshop menu round-trip staging |
@@ -82,7 +82,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.jpg` | 2,189 |
 | `.tik` | 1,597 |
 | `.cfg` | 1,470 |
-| `.png` | 1,370 |
+| `.png` | 1,371 |
 | `.obj` | 1,224 |
 | `.h` | 955 |
 | `.mp3` | 923 |
@@ -119,7 +119,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 ## Directories in project scope
 | directory | files | size | top extensions |
 |---|---:|---:|---|
-| `.` | 125 | 3409.39 MB | .md×64, .txt×15, .ps1×14, .png×5 |
+| `.` | 126 | 3409.42 MB | .md×64, .txt×15, .ps1×14, .png×6 |
 | `_dp28` | 5 | 1.62 MB | .txt×3, .tsv×1, .zip×1 |
 | `_dp28/snd_out` | 2 | 0.19 MB | .wav×2 |
 | `_dp28/snd_src` | 3 | 44.49 MB | .wav×3 |
@@ -193,7 +193,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
-| `hzm-mohaa-coop-mod` | 38 | 1535.78 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
+| `hzm-mohaa-coop-mod` | 38 | 1535.75 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -997,7 +997,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `docgen.py` | 1,471 | 62.1 KB | !/usr/bin/env python3 |
 | `docs.cmd` | 13 | 0.5 KB |  |
 | `docs.ps1` | 49 | 1.5 KB |  |
-| `gen_armory_bg.py` | 240 | 9.8 KB |  |
+| `gen_armory_bg.py` | 254 | 10.8 KB | plain: the pre-overhaul look (near-black, subtle panels, caption + stat labels only). |
 | `gen_loadout.py` | 320 | 14.0 KB | !/usr/bin/env python |
 | `gen_public_pages.py` | 540 | 21.2 KB | !/usr/bin/env python3 |
 | `gen_service_record.py` | 932 | 58.6 KB | [user 08-07] friendly display name for a challenge's reward field (chal_def's 7th arg) |

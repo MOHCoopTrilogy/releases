@@ -8,7 +8,7 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-953 distinct file paths, 3,120 distinct tags.
+954 distinct file paths, 3,121 distinct tags.
 
 ## Files with the most history
 
@@ -223,6 +223,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `docs/tools/check_download_links.py` | 1 | `bug-1805` |
 | `docs/tools/depthscan2.py` | 1 | `bug-1559` |
 | `docs/tools/docgen.py` | 1 | `bug-1860` |
+| `docs/tools/gen_armory_bg.py` | 1 | `bug-1917` |
 | `docs/tools/gen_loadout.py` | 1 | `bug-1908` |
 | `docs/tools/gen_service_record.py` | 15 | `bug-1503` `bug-1510` `bug-1511` `bug-1519` `bug-1521` `bug-1523` `bug-1525` `bug-1528` `bug-1529` `bug-1531` `bug-1532` `bug-1535` `bug-1537` `bug-1541` `bug-1544` |
 | `docs/tools/gen_skins.py` | 1 | `bug-1913` |
@@ -1167,7 +1168,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `arithmetic` | 3 | `bug-1690` `bug-1739` `bug-1826` |
 | `armonblown` | 1 | `bug-1630` |
 | `armordamage` | 2 | `bug-1142` `bug-861` |
-| `armory` | 55 | `bug-1204` `bug-1205` `bug-1208` `bug-1246` `bug-1279` `bug-1356` `bug-1357` `bug-1358` `bug-1359` `bug-1360` `bug-1521` `bug-1523` `bug-1524` `bug-1526` `bug-1527` `bug-1530` `bug-1533` `bug-1540` `bug-1545` `bug-1578` `bug-1675` `bug-1678` `bug-1896` `bug-1902` `bug-586` `bug-587` `bug-588` `bug-589` `bug-590` `bug-591` `bug-592` `bug-593` `bug-594` `bug-595` `bug-596` `bug-625` `bug-626` `bug-… |
+| `armory` | 56 | `bug-1204` `bug-1205` `bug-1208` `bug-1246` `bug-1279` `bug-1356` `bug-1357` `bug-1358` `bug-1359` `bug-1360` `bug-1521` `bug-1523` `bug-1524` `bug-1526` `bug-1527` `bug-1530` `bug-1533` `bug-1540` `bug-1545` `bug-1578` `bug-1675` `bug-1678` `bug-1896` `bug-1902` `bug-1917` `bug-586` `bug-587` `bug-588` `bug-589` `bug-590` `bug-591` `bug-592` `bug-593` `bug-594` `bug-595` `bug-596` `bug-625` `bug… |
 | `array` | 2 | `bug-1105` `bug-909` |
 | `array-bounds` | 1 | `bug-1214` |
 | `array-cast` | 2 | `bug-1049` `bug-1050` |
@@ -2181,7 +2182,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `gimbal-lock` | 1 | `bug-1173` |
 | `git` | 1 | `bug-425` |
 | `github` | 1 | `bug-1804` |
-| `gitignore` | 1 | `bug-1873` |
+| `gitignore` | 2 | `bug-1873` `bug-1917` |
 | `give` | 1 | `bug-098` |
 | `give-all` | 5 | `bug-1897` `bug-482` `bug-483` `bug-484` `bug-494` |
 | `giveall` | 1 | `bug-464` |
@@ -2863,6 +2864,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `overlay` | 1 | `bug-gl2-hudsegments` |
 | `override` | 2 | `bug-1280` `bug-1373` |
 | `overwrite` | 2 | `bug-1853` `bug-1873` |
+| `overwrite-without-backup` | 1 | `bug-1917` |
 | `p0` | 2 | `bug-1022` `bug-872` |
 | `p2` | 1 | `bug-873` |
 | `p_thinkactive` | 1 | `bug-229` |
@@ -3030,7 +3032,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `probe-placement` | 1 | `bug-1237` |
 | `probe-resolved` | 1 | `bug-1289` |
 | `probe-wanted` | 1 | `bug-1663` |
-| `process` | 10 | `bug-1290` `bug-1298` `bug-1363` `bug-1402` `bug-1416` `bug-1421` `bug-1590` `bug-1598` `bug-911` `bug-918` |
+| `process` | 11 | `bug-1290` `bug-1298` `bug-1363` `bug-1402` `bug-1416` `bug-1421` `bug-1590` `bug-1598` `bug-1917` `bug-911` `bug-918` |
 | `process-error` | 2 | `bug-1172` `bug-1231` |
 | `process-failure` | 1 | `bug-1544` |
 | `process-leak` | 1 | `bug-gl2-sweep-crash` |
@@ -3242,7 +3244,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `retry-loop` | 1 | `bug-1701b` |
 | `reverse-index` | 1 | `bug-1362` |
 | `reversed` | 1 | `bug-431` |
-| `revert` | 6 | `bug-1515` `bug-1544` `bug-1701` `bug-1847` `bug-861` `bug-938` |
+| `revert` | 7 | `bug-1515` `bug-1544` `bug-1701` `bug-1847` `bug-1917` `bug-861` `bug-938` |
 | `revert-on-refusal` | 1 | `bug-755` |
 | `reverted` | 3 | `bug-1182` `bug-1303` `bug-1546` |
 | `reverted-my-fix` | 1 | `bug-1184` |
@@ -3747,7 +3749,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `texgen` | 1 | `bug-gl2-texgen` |
 | `text-audit` | 4 | `bug-1777` `bug-1778` `bug-1779` `bug-1780` |
 | `text-layout` | 3 | `bug-1525` `bug-1531` `bug-1532` |
-| `texture` | 6 | `bug-1129` `bug-1327` `bug-481` `bug-gl2-01` `bug-m3l2-ground-seams` `bug-menu-shader-label-invisible` |
+| `texture` | 7 | `bug-1129` `bug-1327` `bug-1917` `bug-481` `bug-gl2-01` `bug-m3l2-ground-seams` `bug-menu-shader-label-invisible` |
 | `texture-closure` | 1 | `bug-853` |
 | `texture-compression` | 1 | `bug-1295` |
 | `texture-generation` | 1 | `bug-1901` |

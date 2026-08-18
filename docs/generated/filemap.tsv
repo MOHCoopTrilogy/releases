@@ -10,6 +10,7 @@ Extra_WW2_weapons_update2.rar	46631033	.rar	0	<root>
 Geared_Soldiers_V1.0.rar	14671093	.rar	0	<root>
 KNOWN_WORKING_STATE.md	73560	.md	962	<root>
 README.md	26383	.md	296	<root>
+_armory_bake_preview.png	30177	.png	0	<root>
 _coop_ally_icon.png	1638	.png	0	<root>
 _coop_axis_icon.png	2600	.png	0	<root>
 _dp28/ds_items.tsv	31756	.tsv	0	_dp28
@@ -449,7 +450,7 @@ docs/tools/depthscan2.py	2359	.py	76	docs
 docs/tools/docgen.py	63607	.py	1471	docs
 docs/tools/docs.cmd	467	.cmd	13	docs
 docs/tools/docs.ps1	1526	.ps1	49	docs
-docs/tools/gen_armory_bg.py	10002	.py	240	docs
+docs/tools/gen_armory_bg.py	11046	.py	254	docs
 docs/tools/gen_loadout.py	14330	.py	320	docs
 docs/tools/gen_public_pages.py	21733	.py	540	docs
 docs/tools/gen_service_record.py	60014	.py	932	docs
@@ -9806,7 +9807,7 @@ hzm-mohaa-coop-mod/ui/options_main.urc	5510	.urc	253	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	542436872	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	903074471	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	903042356	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23301728	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm_coop_framework_guide.md	27594	.md	382	<root>

@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1273** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1274** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 610 |
+| 2026-08 | 611 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1290,6 +1290,7 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1914` | 2026-08-18 | `openmohaa-hzm/code/fgame/object.cpp` | - | user: 'heads still float above where the body was before they disappear' - the FOURTH report of this, after three separate fixes that each changed no… | HeadGibStop now only zeroes avelocity and leaves movetype alone, which is what the engine's own Gib::Stop does - it never touches movetype and lets p… |
 | `bug-1915` | 2026-08-18 | `openmohaa-hzm/code/fgame/object.cpp` | - | user: 'heads still float' - the FIFTH report, after four separate fixes that each changed nothing visible | CoopHeadSettle is scheduled again and rewritten: detect the freeze the way bug-923 does (origin not moving for 3 ticks) and snap the HEAD, not the or… |
 | `bug-1916` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/loadoutskins.scr` | V | (caught pre-ship) finish strip: 14 of 51 guns' finishes would have been silently dead - table lookup missed | The emitter now keys the table on the give AS THE ROSTER SPELLS IT (case-insensitive match in Python, emit the roster's exact string). Verified 0 cas… |
+| `bug-1917` | 2026-08-18 | `docs/tools/gen_armory_bg.py` | R | user: 'Revert the armory back for now' - and the original could not be restored | gen_armory_bg.py gained --plain, which reproduces the pre-overhaul look from its documented content (near-black, subtle panels, ARMORY wordmark, capt… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

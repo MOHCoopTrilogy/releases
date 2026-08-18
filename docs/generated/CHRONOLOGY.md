@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `c67df7d 2026-08-18 tools: the Field Requisition armory bake generator - overlap-refusing by design` |
-| commits | 123 |
+| HEAD | `a9b192b 2026-08-18 tools: gen_armory_bg --plain (the revert look) + the overwrite lesson in the buglog` |
+| commits | 124 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 69 |
+| 2026-08 | 70 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (123)
+### Commits since 2026-01-01 (124)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `a9b192b` | 2026-08-18 | joncurry94-tech | tools: gen_armory_bg --plain (the revert look) + the overwrite lesson in the buglog |
 | `c67df7d` | 2026-08-18 | joncurry94-tech | tools: the Field Requisition armory bake generator - overlap-refusing by design |
 | `5ead395` | 2026-08-18 | joncurry94-tech | docs: bug-1907 closed (panzerfaust removed); OPEN.md updated |
 | `ae866c6` | 2026-08-18 | joncurry94-tech | tools: service record gains the WEAPON FINISHES page; finish-table regen preserves the variant block |
