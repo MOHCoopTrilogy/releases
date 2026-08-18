@@ -13,27 +13,25 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `ae866c6 2026-08-18 tools: service record gains the WEAPON FINISHES page; finish-table regen preserves the variant block` |
-| commits | 121 |
+| HEAD | `5ead395 2026-08-18 docs: bug-1907 closed (panzerfaust removed); OPEN.md updated` |
+| commits | 122 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **1 modified, 0 untracked** |
-| unstaged diff | 1 file changed, 4 insertions(+), 1 deletion(-) |
-
-> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 67 |
+| 2026-08 | 68 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (121)
+### Commits since 2026-01-01 (122)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `5ead395` | 2026-08-18 | joncurry94-tech | docs: bug-1907 closed (panzerfaust removed); OPEN.md updated |
 | `ae866c6` | 2026-08-18 | joncurry94-tech | tools: service record gains the WEAPON FINISHES page; finish-table regen preserves the variant block |
 | `1bfb0a2` | 2026-08-18 | joncurry94-tech | tools: gen_loadout p-pages carry the VARIANT button state; wildcard surfaces verified against the mesh; OPEN.md skin status |
 | `2820baf` | 2026-08-18 | joncurry94-tech | tools: challenge validator learns the finish_* reward class; buglog |
@@ -161,8 +159,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `2609e97 2026-08-18 service record: the server-side pin marker used "setas" - not a command in this engine` |
-| commits | 1,466 |
+| HEAD | `98362f4 2026-08-18 ai: suppression-reactive poses + MG42 crew side-steps - the two engine-gated deferrals, delivered` |
+| commits | 1,469 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -170,7 +168,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 73 |
+| 2026-08 | 76 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -210,10 +208,13 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (117)
+### Commits since 2026-01-01 (120)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `98362f4` | 2026-08-18 | joncurry94 | ai: suppression-reactive poses + MG42 crew side-steps - the two engine-gated deferrals, delivered |
+| `20e089e` | 2026-08-18 | joncurry94 | ai: the animation batch - nine buried behaviors wired in |
+| `02e02e7` | 2026-08-18 | joncurry94 | weapons: the Panzerfaust is removed - dead end by user call |
 | `2609e97` | 2026-08-18 | joncurry94 | service record: the server-side pin marker used "setas" - not a command in this engine |
 | `6bbf470` | 2026-08-18 | joncurry94 | loadout: the main-menu armory can now SHOW model variants with no server |
 | `aea6b84` | 2026-08-18 | joncurry94 | skins: bolt rifles actually cycle their bolts; three variants removed by user call |
@@ -337,8 +338,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `8aefc493 2026-08-18 gore: coop_decapMax default 16 -> 32 - heads were vanishing under the ring cap during normal play; 32 is the existing array ceiling` |
-| commits | 4,994 |
+| HEAD | `0d42d10b 2026-08-18 ai: export the suppression moment to script - self.coop_suppressedAt stamped beside m_fSuppressTime` |
+| commits | 4,995 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -346,7 +347,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 14 |
+| 2026-08 | 15 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -407,10 +408,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (29)
+### Commits since 2026-01-01 (30)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `0d42d10b` | 2026-08-18 | joncurry94 | ai: export the suppression moment to script - self.coop_suppressedAt stamped beside m_fSuppressTime |
 | `8aefc493` | 2026-08-18 | joncurry94 | gore: coop_decapMax default 16 -> 32 - heads were vanishing under the ring cap during normal play; 32 is the existing array ceili… |
 | `4d01d32b` | 2026-08-18 | joncurry94 | gore: the head was hitting the allsolid freeze our own g_phys already documents |
 | `1e21fbd8` | 2026-08-17 | joncurry94 | gore: the severed head was stopping on trigger brushes, not falling |

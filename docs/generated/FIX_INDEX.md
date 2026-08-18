@@ -8,7 +8,7 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-953 distinct file paths, 3,119 distinct tags.
+953 distinct file paths, 3,120 distinct tags.
 
 ## Files with the most history
 
@@ -1466,6 +1466,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `clipmask` | 1 | `bug-1910` |
 | `clipping` | 1 | `bug-1365` |
 | `close-commit` | 1 | `bug-773` |
+| `closed` | 1 | `bug-1907` |
 | `closer` | 1 | `bug-gl2-forcepose-skips-composite-ally` |
 | `cm_killbrush` | 1 | `bug-953` |
 | `cm_killbrush-guard` | 1 | `bug-958` |
@@ -3184,7 +3185,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `reloadcam` | 2 | `bug-165` `bug-168` |
 | `relocation` | 1 | `bug-1813` |
 | `remediated` | 5 | `bug-1172` `bug-1178` `bug-1179` `bug-1181` `bug-1183` |
-| `removed` | 1 | `bug-495` |
+| `removed` | 2 | `bug-1907` `bug-495` |
 | `removed-feature` | 1 | `bug-1547` |
 | `rend2` | 2 | `bug-1207` `bug-1237` |
 | `render` | 1 | `bug-138` |
