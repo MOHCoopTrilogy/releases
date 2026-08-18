@@ -30,12 +30,12 @@ Union of four sources, all swept fresh:
 ## Runtime-built names
 These literals are concatenated with a variable at the call site (`getcvar("coop_chal_" + local.id)`), so the real cvar name only exists at runtime. They are **not** cvars and are excluded from the table below - listed here so the omission is visible rather than silent.
 
-- `coop_chal_*` — `coop_mod/challenges.scr:761` (+1 more)
+- `coop_chal_*` — `coop_mod/challenges.scr:762` (+1 more)
 - `coop_lo*` — `coop_mod/loadoutpick.scr:354`
 - `coop_medals_*` — `coop_mod/medals.scr:75` (+1 more)
-- `coop_pend_*` — `coop_mod/challenges.scr:784` (+2 more)
-- `coop_pins_*` — `coop_mod/challenges.scr:3221` (+1 more)
-- `coop_unlocks_*` — `coop_mod/challenges.scr:770` (+1 more)
+- `coop_pend_*` — `coop_mod/challenges.scr:785` (+2 more)
+- `coop_pins_*` — `coop_mod/challenges.scr:3222` (+1 more)
+- `coop_unlocks_*` — `coop_mod/challenges.scr:771` (+1 more)
 - `coop_xp_*` — `coop_mod/xp.scr:348` (+2 more)
 
 ## Seeded nowhere, but a script reads it
@@ -261,18 +261,18 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_blindfireRaise` | `26` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:1508` (+1) |  |  |  |
 | `coop_blindfireSpread` | `3.0` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:1978` |  |  |  |
 | `coop_blindfireYaw` | `50` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2018` |  |  |  |
-| `coop_bloodDebug` | `0` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3453` (+1) | FORCED `0` @ `autoexec.cfg:423` |  |  |
+| `coop_bloodDebug` | `0` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3485` (+1) | FORCED `0` @ `autoexec.cfg:423` |  |  |
 | `coop_bloodleak` |  |  |  | FORCED `1` @ `autoexec.cfg:481` | `coop_mod/gurgle.scr:84` |  |
 | `coop_bloodleak_max` |  |  |  |  | `coop_mod/gurgle.scr:91` (+1) |  |
 | `coop_bloodleak_range` |  |  |  | FORCED `900` @ `autoexec.cfg:482` | `coop_mod/gurgle.scr:87` (+1) |  |
 | `coop_bloodPool` | `32` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2071` (+1) | FORCED `44` @ `autoexec.cfg:426` |  |  |
-| `coop_bloodSplatScale` | `1.0` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3637` |  |  |  |
-| `coop_bloodTrail` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3355` | DEFAULT `1` @ `coop_defaults.cfg:21` |  | `ui/coop_settings.urc` |
-| `coop_bloodTrailChance` | `0.8` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3430` | FORCED `0.8` @ `autoexec.cfg:415` |  |  |
-| `coop_bloodTrailDist` | `56` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3411` | FORCED `56` @ `autoexec.cfg:414` |  |  |
-| `coop_bloodTrailHealthFrac` | `0.5` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3366` | FORCED `0.5` @ `autoexec.cfg:412` |  |  |
-| `coop_bloodTrailInterval` | `0.45` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3402` | FORCED `0.45` @ `autoexec.cfg:413` |  |  |
-| `coop_bloodTrailScale` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3390` |  |  |  |
+| `coop_bloodSplatScale` | `1.0` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3669` |  |  |  |
+| `coop_bloodTrail` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3387` | DEFAULT `1` @ `coop_defaults.cfg:21` |  | `ui/coop_settings.urc` |
+| `coop_bloodTrailChance` | `0.8` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3462` | FORCED `0.8` @ `autoexec.cfg:415` |  |  |
+| `coop_bloodTrailDist` | `56` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3443` | FORCED `56` @ `autoexec.cfg:414` |  |  |
+| `coop_bloodTrailHealthFrac` | `0.5` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3398` | FORCED `0.5` @ `autoexec.cfg:412` |  |  |
+| `coop_bloodTrailInterval` | `0.45` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3434` | FORCED `0.45` @ `autoexec.cfg:413` |  |  |
+| `coop_bloodTrailScale` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3422` |  |  |  |
 | `coop_boatFogNear` |  |  |  |  | `gags/T1L3_BoatRide.Scr:80` |  |
 | `coop_botInput` | `0` | `0` | `fgame/player.cpp:5251` |  |  |  |
 | `coop_brassLife` | `45` | `CVAR_ARCHIVE` | `cgame/cg_tempmodels.cpp:1438` | FORCED `45` @ `autoexec.cfg:1104` |  |  |
@@ -311,22 +311,22 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_campaign` |  |  |  | other `1` @ `coop_mod/cfg/campaign_start.cfg:19`<br>other `0` @ `coop_mod/start_server.cfg:36` | `global/missioncomplete.scr:39` |  |
 | `coop_campaignNext` |  |  |  |  | `coop_mod/lobby.scr:697` (+2) |  |
 | `coop_censusdone` |  |  |  |  | `coop_mod/covwalk.scr:131` (+1) |  |
-| `coop_chal_pin` |  |  |  |  | `coop_mod/challenges.scr:3062` (+2) |  |
+| `coop_chal_pin` |  |  |  |  | `coop_mod/challenges.scr:3063` (+2) |  |
 | `coop_challenges` |  |  |  |  | `coop_mod/challenges.scr:40` (+2) |  |
-| `coop_chalPopup` |  |  |  | DEFAULT `1` @ `coop_defaults.cfg:22` | `coop_mod/challenges.scr:1858` | `ui/coop_settings.urc` |
-| `coop_chDebug` |  |  |  |  | `maps/M3L3.scr:6676` |  |
+| `coop_chalPopup` |  |  |  | DEFAULT `1` @ `coop_defaults.cfg:22` | `coop_mod/challenges.scr:1859` | `ui/coop_settings.urc` |
+| `coop_chDebug` |  |  |  |  | `maps/M3L3.scr:6682` |  |
 | `coop_check` |  |  |  | other `0` @ `coop_mod/server.cfg:35`<br>other `0` @ `coop_mod/start_server.cfg:35` |  |  |
-| `coop_chHold` |  |  |  |  | `maps/M3L3.scr:6660` |  |
-| `coop_chMgDmg` |  |  |  |  | `maps/M3L3.scr:7420` |  |
-| `coop_chMgSpread` |  |  |  |  | `maps/M3L3.scr:7424` |  |
-| `coop_chStart` |  |  |  |  | `maps/M3L3.scr:8060` (+1) |  |
+| `coop_chHold` |  |  |  |  | `maps/M3L3.scr:6664` |  |
+| `coop_chMgDmg` |  |  |  |  | `maps/M3L3.scr:7447` |  |
+| `coop_chMgSpread` |  |  |  |  | `maps/M3L3.scr:7451` |  |
+| `coop_chStart` |  |  |  |  | `maps/M3L3.scr:8087` (+1) |  |
 | `coop_churn_cycle` |  |  |  |  | `coop_mod/coop_selftest_scaling.scr:210` |  |
 | `coop_churntest` |  |  |  |  | `coop_mod/coop_selftest_scaling.scr:79` |  |
-| `coop_chWaveBase` |  |  |  | DEFAULT `14` @ `coop_defaults.cfg:295` | `maps/M3L3.scr:6842` |  |
-| `coop_chWaveCap` |  |  |  | DEFAULT `28` @ `coop_defaults.cfg:297` | `maps/M3L3.scr:6846` |  |
+| `coop_chWaveBase` |  |  |  | DEFAULT `14` @ `coop_defaults.cfg:295` | `maps/M3L3.scr:6869` |  |
+| `coop_chWaveCap` |  |  |  | DEFAULT `28` @ `coop_defaults.cfg:297` | `maps/M3L3.scr:6873` |  |
 | `coop_chWavePer` |  |  |  | DEFAULT `5` @ `coop_defaults.cfg:296` |  |  |
-| `coop_chWaveSend` |  |  |  | DEFAULT `8` @ `coop_defaults.cfg:298` | `maps/M3L3.scr:6852` |  |
-| `coop_chZone` |  |  |  |  | `maps/M3L3.scr:6656` |  |
+| `coop_chWaveSend` |  |  |  | DEFAULT `8` @ `coop_defaults.cfg:298` | `maps/M3L3.scr:6879` |  |
+| `coop_chZone` |  |  |  |  | `maps/M3L3.scr:6660` |  |
 | `coop_clipStripZones` |  | `0` | `cgame/cg_predict.c:601` (+1) |  | `coop_mod/server.scr:33` (+1) |  |
 | `coop_corpseLife` |  |  |  | FORCED `0` @ `autoexec.cfg:357` | `coop_mod/corpse.scr:12` |  |
 | `coop_corpseShootable` | `1` | `CVAR_ARCHIVE` | `fgame/actor.cpp:12442` |  |  |  |
@@ -382,8 +382,8 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_decap` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2952` | DEFAULT `1` @ `coop_defaults.cfg:313` |  |  |
 | `coop_decapBudget` | `3` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2954` | DEFAULT `3` @ `coop_defaults.cfg:315` |  |  |
 | `coop_decapChance` | `30` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2953` | DEFAULT `30` @ `coop_defaults.cfg:314` |  |  |
-| `coop_decapGoreProps` | `3` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3251` |  |  |  |
-| `coop_decapLife` | `0` | `CVAR_ARCHIVE` | `fgame/object.cpp:525` | DEFAULT `0` @ `coop_defaults.cfg:316` |  |  |
+| `coop_decapGoreProps` | `3` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3283` |  |  |  |
+| `coop_decapLife` | `0` | `CVAR_ARCHIVE` | `fgame/object.cpp:531` | DEFAULT `0` @ `coop_defaults.cfg:316` |  |  |
 | `coop_decapMax` | `16` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2868` | DEFAULT `16` @ `coop_defaults.cfg:317` |  |  |
 | `coop_dev` |  |  |  | other `1` @ `coop_mod/cfg/buildmode.cfg:66`<br>other `0` @ `coop_mod/server.cfg:34`<br>other `0` @ `coop_mod/start_server.cfg:34` | `coop_mod/buildmode.scr:57` (+4) |  |
 | `coop_devKeys` |  |  |  |  | `coop_mod/developer.scr:86` (+6) |  |

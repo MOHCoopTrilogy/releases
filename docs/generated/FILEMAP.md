@@ -10,9 +10,9 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 35,878 |
+| files in the workspace | 35,879 |
 | bytes | 39.9 GB |
-| files in project scope (indexed per-file) | 10,507 |
+| files in project scope (indexed per-file) | 10,508 |
 | source files (per-file rows with line counts) | 4,888 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
@@ -42,7 +42,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
 | `manifests` | 43 | 0.5 MB | **yes** | release manifests consumed by the auto-updater |
 | `_tools` | 37 | 69.0 MB | no - reference | downloaded third-party binaries |
-| `server_home` | 30 | 4.8 MB | **yes** |  |
+| `server_home` | 31 | 5.0 MB | **yes** |  |
 | `_skins` | 29 | 4.4 MB | **yes** |  |
 | `installer` | 18 | 15873.3 MB | no - reference | Inno Setup output + payload staging |
 | `player2_home` | 16 | 1.6 MB | no - reference | test client profile dir |
@@ -105,7 +105,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.dat` | 54 |
 | `.st` | 53 |
 | `.dcl` | 49 |
-| `.log` | 46 |
+| `.log` | 47 |
 | `.glsl` | 46 |
 | `.pk3` | 44 |
 | `.lod` | 37 |
@@ -789,7 +789,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/misc/linux` | 4 | 0.00 MB | .in×3, .xml×1 |
 | `openmohaa-hzm/misc/setup/windows/app` | 4 | 0.01 MB | .wxs×2, .wixproj×1, .wxl×1 |
 | `scratchpad` | 1 | 0.00 MB | .py×1 |
-| `server_home` | 2 | 0.37 MB | .log×2 |
+| `server_home` | 3 | 0.57 MB | .log×3 |
 | `server_home/maintt` | 6 | 0.61 MB | .cfg×3, .pid×1, .log×1, .pre_e3l4×1 |
 | `server_home/maintt/coop_mod/save` | 12 | 0.01 MB | .dat×12 |
 | `server_home/maintt/prev` | 10 | 3.83 MB | .log×10 |
@@ -1154,7 +1154,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `bust.scr` | 1,574 | 86.0 KB | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
 | `butler.scr` | 498 | 18.9 KB | created by chrissstrahl on 2019.09.12 |
 | `cannonThink.scr` | 147 | 4.8 KB | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
-| `challenges.scr` | 3,716 | 227.1 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
+| `challenges.scr` | 3,717 | 227.3 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
 | `collectible.scr` | 375 | 18.6 KB | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
 | `coop_placements.scr` | 1,021 | 32.1 KB | HZM coop - BAKED BUILD-MODE PLACEMENTS (generated from build_<map>.dat). |
 | `coop_selftest.scr` | 320 | 13.2 KB | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
@@ -1406,7 +1406,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `M1L3a.scr` | 890 | 29.5 KB | THE DESERT |
 | `M1L3c.scr` | 1,138 | 33.1 KB | THE SEA WALL |
-| `M3L3.scr` | 8,931 | 372.2 KB | LEVEL: M3L3 |
+| `M3L3.scr` | 8,958 | 373.6 KB | LEVEL: M3L3 |
 | `M5L2A.scr` | 850 | 33.8 KB | TANK DRIVE 1 |
 | `M6L1b.scr` | 166 | 6.2 KB | SNOWY FOREST2 |
 | `co_lobby1.scr` | 46 | 2.6 KB | LEVEL: co_lobby1.bsp (a copy of training.bsp) |
@@ -4409,7 +4409,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `navigation_recast_obstacle.h` | 109 | 3.3 KB |  |
 | `navigation_recast_path.cpp` | 574 | 17.8 KB |  |
 | `navigation_recast_path.h` | 86 | 2.8 KB |  |
-| `object.cpp` | 565 | 15.1 KB | object.cpp : Object (used by common TIKIs) |
+| `object.cpp` | 571 | 15.6 KB | object.cpp : Object (used by common TIKIs) |
 | `object.h` | 109 | 3.1 KB | object.h: Object (used by common TIKIs) |
 | `parm.cpp` | 164 | 3.4 KB | parm.cpp : Event parameters |
 | `parm.h` | 59 | 1.7 KB | parm.h: Event parameters |
@@ -4444,7 +4444,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `scriptthread.h` | 400 | 12.1 KB |  |
 | `scripttimer.cpp` | 264 | 5.3 KB | scripttimer.cpp: Scripted Timer & Fader |
 | `scripttimer.h` | 82 | 2.0 KB | ScriptTimer.cpp: Scripted Timer & Fader |
-| `sentient.cpp` | 5,111 | 165.5 KB | sentient.cpp: Base class of entity that can carry other entities, and use weapons. |
+| `sentient.cpp` | 5,143 | 167.1 KB | sentient.cpp: Base class of entity that can carry other entities, and use weapons. |
 | `sentient.h` | 417 | 19.0 KB | sentient.h: Base class of entity that can carry other entities, and use weapons. |
 | `sentient_combat.cpp` | 1,487 | 37.6 KB |  |
 | `simpleactor.cpp` | 1,350 | 34.3 KB | simpleactor.cpp: Base class for character AI |

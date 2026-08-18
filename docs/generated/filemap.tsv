@@ -1415,7 +1415,7 @@ hzm-mohaa-coop-mod/coop_mod/cfg/objdiag.cfg	490	.cfg	11	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/posetest.cfg	659	.cfg	11	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/wallgun.cfg	2304	.cfg	49	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/wallgun_off.cfg	936	.cfg	27	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/challenges.scr	232529	.scr	3716	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/challenges.scr	232765	.scr	3717	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/collectible.scr	19091	.scr	375	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/coop_placements.scr	32871	.scr	1021	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/coop_selftest.scr	13524	.scr	320	hzm-mohaa-coop-mod
@@ -1665,7 +1665,7 @@ hzm-mohaa-coop-mod/hzm_legal.txt	8961	.txt	239	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maintt/maptest_autoboot.cfg	117	.cfg	5	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/M1L3a.scr	30163	.scr	890	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/M1L3c.scr	33866	.scr	1138	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/M3L3.scr	381120	.scr	8931	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/M3L3.scr	382535	.scr	8958	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/M5L2A.scr	34587	.scr	850	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/M6L1b.scr	6395	.scr	166	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/briefing/briefing1.scr	6376	.scr	193	hzm-mohaa-coop-mod
@@ -7600,7 +7600,7 @@ hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	542436872	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	794914142	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23221020	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23221461	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm_coop_framework_guide.md	27594	.md	382	<root>
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -8204,7 +8204,7 @@ openmohaa-hzm/code/fgame/navigation_recast_obstacle.cpp	14634	.cpp	540	openmohaa
 openmohaa-hzm/code/fgame/navigation_recast_obstacle.h	3404	.h	109	openmohaa-hzm
 openmohaa-hzm/code/fgame/navigation_recast_path.cpp	18254	.cpp	574	openmohaa-hzm
 openmohaa-hzm/code/fgame/navigation_recast_path.h	2905	.h	86	openmohaa-hzm
-openmohaa-hzm/code/fgame/object.cpp	15486	.cpp	565	openmohaa-hzm
+openmohaa-hzm/code/fgame/object.cpp	15999	.cpp	571	openmohaa-hzm
 openmohaa-hzm/code/fgame/object.h	3221	.h	109	openmohaa-hzm
 openmohaa-hzm/code/fgame/parm.cpp	3461	.cpp	164	openmohaa-hzm
 openmohaa-hzm/code/fgame/parm.h	1742	.h	59	openmohaa-hzm
@@ -8241,7 +8241,7 @@ openmohaa-hzm/code/fgame/scriptthread.cpp	184132	.cpp	7748	openmohaa-hzm
 openmohaa-hzm/code/fgame/scriptthread.h	12440	.h	400	openmohaa-hzm
 openmohaa-hzm/code/fgame/scripttimer.cpp	5403	.cpp	264	openmohaa-hzm
 openmohaa-hzm/code/fgame/scripttimer.h	2040	.h	82	openmohaa-hzm
-openmohaa-hzm/code/fgame/sentient.cpp	169518	.cpp	5111	openmohaa-hzm
+openmohaa-hzm/code/fgame/sentient.cpp	171123	.cpp	5143	openmohaa-hzm
 openmohaa-hzm/code/fgame/sentient.h	19416	.h	417	openmohaa-hzm
 openmohaa-hzm/code/fgame/sentient_combat.cpp	38490	.cpp	1487	openmohaa-hzm
 openmohaa-hzm/code/fgame/simpleactor.cpp	35119	.cpp	1350	openmohaa-hzm
@@ -10425,6 +10425,7 @@ resume_publish.ps1	8738	.ps1	157	<root>
 rollout_implementation_log.md	13772	.md	194	<root>
 scratchpad/rcon.py	926	.py	27	scratchpad
 server_home/boot_m3l2.log	194083	.log	0	server_home
+server_home/boot_m3l3.log	199023	.log	0	server_home
 server_home/boot_t2l2.log	172217	.log	0	server_home
 server_home/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home
 server_home/maintt/autoexec.cfg	90014	.cfg	1208	server_home
@@ -10452,7 +10453,7 @@ server_home/maintt/prev/qconsole-20260815-112103.log	282324	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-112454.log	317859	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-113246.log	320900	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-114100.log	292931	.log	0	server_home
-server_home/maintt/qconsole.log	194083	.log	0	server_home
+server_home/maintt/qconsole.log	199023	.log	0	server_home
 server_home/maintt/qconsole.log.pre_e3l4	302778	.pre_e3l4	0	server_home
 server_home_probe/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home_probe
 server_home_probe/maintt/autoexec.cfg	89444	.cfg	1202	server_home_probe

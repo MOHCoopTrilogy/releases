@@ -13,27 +13,25 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `e052d2c 2026-08-17 docs: two traps from this session - pitch 0 is silence, ordernumber is not draw order` |
-| commits | 112 |
+| HEAD | `9652599 2026-08-17 docs: regenerate; armory table gains give and tab columns` |
+| commits | 113 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **2 modified, 0 untracked** |
-| unstaged diff | 2 files changed, 126 insertions(+), 81 deletions(-) |
-
-> Working tree is dirty. Everything in those 2 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 58 |
+| 2026-08 | 59 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (112)
+### Commits since 2026-01-01 (113)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `9652599` | 2026-08-17 | joncurry94-tech | docs: regenerate; armory table gains give and tab columns |
 | `e052d2c` | 2026-08-17 | joncurry94-tech | docs: two traps from this session - pitch 0 is silence, ordernumber is not draw order |
 | `8fb513b` | 2026-08-17 | joncurry94-tech | docs: armory table complete at 75 weapons |
 | `398891f` | 2026-08-17 | joncurry94-tech | docs: armory table now carries the five added weapons |
@@ -152,8 +150,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `fde072f 2026-08-17 armory: put the new weapons in the unlock roster - without it they draw but do nothing` |
-| commits | 1,446 |
+| HEAD | `10bfb72 2026-08-17 m3l3: new challenge "The Hunt" - hold the church without it ever being contested` |
+| commits | 1,447 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -161,7 +159,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 53 |
+| 2026-08 | 54 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -201,10 +199,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (97)
+### Commits since 2026-01-01 (98)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `10bfb72` | 2026-08-17 | joncurry94 | m3l3: new challenge "The Hunt" - hold the church without it ever being contested |
 | `fde072f` | 2026-08-17 | joncurry94 | armory: put the new weapons in the unlock roster - without it they draw but do nothing |
 | `a2a32a3` | 2026-08-17 | joncurry94 | armory: add the S&W M10, completing the six imported weapons |
 | `a7c0b77` | 2026-08-17 | joncurry94 | armory: add five imported weapons to the picker, without renumbering anything |
@@ -308,8 +307,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `848f58ae 2026-08-17 cgame: a skin variant must inherit its base gun's sight tuning and hands` |
-| commits | 4,989 |
+| HEAD | `f7a6b107 2026-08-17 gore: severed heads land, and unregistered helmets come off` |
+| commits | 4,990 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -317,7 +316,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 9 |
+| 2026-08 | 10 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -378,10 +377,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (24)
+### Commits since 2026-01-01 (25)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `f7a6b107` | 2026-08-17 | joncurry94 | gore: severed heads land, and unregistered helmets come off |
 | `848f58ae` | 2026-08-17 | joncurry94 | cgame: a skin variant must inherit its base gun's sight tuning and hands |
 | `f417fce8` | 2026-08-17 | joncurry94 | cgame: WPREFIX_M10, and the Panzerfaust on its real rig |
 | `9880c6f8` | 2026-08-17 | joncurry94 | cgame: WPREFIX_DP28 for Lt. Pato's first-person DP-28 animations |
