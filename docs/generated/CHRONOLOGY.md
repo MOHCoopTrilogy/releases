@@ -13,24 +13,28 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `985236c 2026-08-17 open: close the stale e3l4 outro entry, verified against a running engine` |
-| commits | 102 |
+| HEAD | `079256e 2026-08-17 open: close the m3l2 label, and correct the t2l2 error count by measurement` |
+| commits | 103 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **1 modified, 0 untracked** |
+| unstaged diff | 1 file changed, 8 insertions(+) |
+
+> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 48 |
+| 2026-08 | 49 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (102)
+### Commits since 2026-01-01 (103)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `079256e` | 2026-08-17 | joncurry94-tech | open: close the m3l2 label, and correct the t2l2 error count by measurement |
 | `985236c` | 2026-08-17 | joncurry94-tech | open: close the stale e3l4 outro entry, verified against a running engine |
 | `e185298` | 2026-08-17 | joncurry94-tech | docs: regenerate after the v1.3.1 release |
 | `04ecc1a` | 2026-08-17 | joncurry94-tech | docs: regenerate after the v1.3.1 release |
@@ -139,8 +143,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `f305d4a 2026-08-17 field report: v1.3.1 card - healing, breath-hold, gore, XP, FG42, silent guns` |
-| commits | 1,437 |
+| HEAD | `a522959 2026-08-17 weapons: add East's Mauser C96 and Johnson M1941 as additions, not replacements` |
+| commits | 1,439 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -148,7 +152,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 44 |
+| 2026-08 | 46 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -188,10 +192,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (88)
+### Commits since 2026-01-01 (90)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `a522959` | 2026-08-17 | joncurry94 | weapons: add East's Mauser C96 and Johnson M1941 as additions, not replacements |
+| `802a8e3` | 2026-08-17 | joncurry94 | m3l2: add the level_end_trigger label the BSP has always called; fix the airborne holster mesh |
 | `f305d4a` | 2026-08-17 | joncurry94 | field report: v1.3.1 card - healing, breath-hold, gore, XP, FG42, silent guns |
 | `65003fb` | 2026-08-17 | joncurry94 | m3l3 nebelwerfer chain, XP sources, teammate healing, and a full weapon audit |
 | `c48737f` | 2026-08-16 | joncurry94 | m3l3: full objective chain, church hold, and the AI accuracy pass shipped as v1.3.0 |
@@ -286,8 +292,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `ca299194 2026-08-17 engine: gore disfigurement and decapitation, breath-hold accuracy, corpse settling, and the gamestate ceiling` |
-| commits | 4,985 |
+| HEAD | `8b4b2bc5 2026-08-17 cgame: first-person hands for the Mauser C96 and Johnson M1941` |
+| commits | 4,986 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -295,7 +301,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 5 |
+| 2026-08 | 6 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -356,10 +362,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (20)
+### Commits since 2026-01-01 (21)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `8b4b2bc5` | 2026-08-17 | joncurry94 | cgame: first-person hands for the Mauser C96 and Johnson M1941 |
 | `ca299194` | 2026-08-17 | joncurry94 | engine: gore disfigurement and decapitation, breath-hold accuracy, corpse settling, and the gamestate ceiling |
 | `135aecec` | 2026-08-16 | joncurry94 | engine: AI turret aim error, sporadic burst fire, r_novis for stale PVS, and the skeletor ceiling |
 | `5ea47c36` | 2026-08-10 | joncurry94 | engine: dedicated server boots + runs clean; restore engine cvar defaults |

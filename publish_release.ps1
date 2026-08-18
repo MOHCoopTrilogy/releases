@@ -126,6 +126,14 @@ foreach ($p in $hdPaks) { $stage["home/maintt/$p"] = "$gog\maintt\$p" }
 # v1.1.34 DXT memory pack: dds siblings for every HD texture lacking one - engine loads
 # .dds first and DXT stays compressed in RAM (the m1l2a-era OOM pressure fix)
 $stage["home/maintt/zzzzzzz_dds_hdmem.pk3"] = "$gog\maintt\zzzzzzz_dds_hdmem.pk3"
+# [user 2026-08-17] bullet-impact FX repair (bug-1190, completed by bug-1892). This was built
+# 07-28 and never shipped, so no player has ever had it - their bullet impacts still throw the
+# oversized dirt/smoke plumes, and six of the bh_*.tik carried a stray paren that broke the
+# effect's animation entirely on wood, dirt and mud. The EIGHT z's are load-bearing: paks load
+# alphabetically and the last one wins, so this must sort after zzzzzz_hd_fx.pk3 to override it.
+# Never place a *_bak.pk3 beside it - '.' sorts before '_', so a backup outranks the real pak
+# and silently reinstates whatever it was backing up (bug-1893).
+$stage["home/maintt/zzzzzzzz_hd_fxfix.pk3"] = "$gog\maintt\zzzzzzzz_hd_fxfix.pk3"
 # v1.1.43 imported WW2 weapons (S93 pack, cleaned) - standalone pk3, NOT part of the coop 3-way split
 $stage["home/maintt/zzzzz_xw_weapons.pk3"] = "$gog\maintt\zzzzz_xw_weapons.pk3"
 # KUN weapons pack (Surgical Ops KUN HD guns) removed per design - no longer built or shipped.
