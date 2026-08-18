@@ -13,11 +13,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `398891f 2026-08-17 docs: armory table now carries the five added weapons` |
-| commits | 110 |
+| HEAD | `8fb513b 2026-08-17 docs: armory table complete at 75 weapons` |
+| commits | 111 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **1 modified, 0 untracked** |
-| unstaged diff | 1 file changed, 1 insertion(+) |
+| unstaged diff | 1 file changed, 37 insertions(+) |
 
 > Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
 
@@ -25,15 +25,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 56 |
+| 2026-08 | 57 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (110)
+### Commits since 2026-01-01 (111)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `8fb513b` | 2026-08-17 | joncurry94-tech | docs: armory table complete at 75 weapons |
 | `398891f` | 2026-08-17 | joncurry94-tech | docs: armory table now carries the five added weapons |
 | `cf133e5` | 2026-08-17 | joncurry94-tech | tools: reconstruct the lost armory generator, proved by exact reproduction |
 | `45ad569` | 2026-08-17 | joncurry94-tech | docs: the weapon-skin generator, and regenerate |

@@ -53,6 +53,43 @@ template (LugerP08 uses that pair legitimately over 73 frames) onto animations o
 so the magazine never disappeared during reload. The surface name was wrong too (`p38clip` and
 `clip1`, not `clip`), which is why brace/size checks would never have caught it.
 
+### In `soundparms`, pitch 0 is silence - and every check we had passed it (bug-1898)
+
+`alias.c:188-194` reads the six numbers as **volume / volumeMod / pitch / pitchMod / dist /
+maxDist**. A sound at pitch 0 never advances through its samples, so it makes no noise at all.
+Two guns shipped like that - the StG44 Scoped (`WAWmp43_fire`) and the G43 Sniper (`g43_fire`) -
+and the user reported both independently.
+
+What makes this worth writing down is *why* it survived: the alias was defined, its wav existed,
+and its `maps` spec covered the campaign, so both of `audit_weapons.py`'s sound checks passed a
+weapon that physically cannot make a sound. "The alias resolves" is not "the alias produces
+audio". The auditor now scans every alias for pitch 0 and volume 0.
+
+A wav-existence check was written alongside it and **deliberately removed**: it returned 34,056
+hits, essentially all retail dialogue, because alias paths do not resolve 1:1 against a flat pak
+index (case, `.mp3`/`.wav` siblings, per-language trees). A check that noisy buries the real
+findings, which is the exact failure the tool exists to prevent. Prefer no check to a loud one.
+
+### `ordernumber` in a `.urc` is focus order, NOT draw order (bug-1896)
+
+`uiwidget.cpp:444` defines it as *"the order the widget should be activated in"*, and
+`uimenu.cpp` consumes it through `SetLastActiveWidgetOrderNum` - keyboard/focus navigation.
+**Draw order follows declaration order**: a widget declared later in the file paints over one
+declared earlier. That is why `fitTitle` renders on top of `fitBg` despite having no
+`ordernumber` at all, and why a tile declared before `fitBg` is safely covered by it rather than
+poking through.
+
+Getting this backwards costs real work. It made the armory's pistol tab look full at 16 rows when
+it was not, and sent a session looking for space to relocate a five-row overlay that already
+bottoms out at y=479 of a 480-tall menu.
+
+Two more armory facts worth having: a tile's **page** comes from its `enabledcvar` and its **row**
+from its `rect`, so a tile id never has to match its category grouping - which is what allows a
+weapon to be appended without renumbering. And renumbering is the thing to avoid at all costs,
+because tile ids are baked into every `pNN`/`tNN`/`wNN` filename *and* every `coop_loLkVNN` lock
+cvar; bugs 755/759/772/787/803 are all that numbering breaking. Regenerate with
+`python docs/tools/gen_loadout.py build`, and trust it only because `check` byte-compares.
+
 ### A weapon pack can ship assets that nothing references (bug-1888)
 
 The engine never complains about an asset no one asks for. The xw pack ships five distinct

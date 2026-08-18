@@ -180,7 +180,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/proposals/research_m2l2a` | 8 | 0.25 MB | .md×8 |
 | `docs/public` | 6 | 0.07 MB | .md×6 |
 | `docs/public/fixes` | 11 | 0.66 MB | .md×11 |
-| `docs/reference` | 4 | 0.06 MB | .md×3, .txt×1 |
+| `docs/reference` | 4 | 0.07 MB | .md×3, .txt×1 |
 | `docs/tools` | 20 | 0.25 MB | .py×16, .md×1, .cmd×1, .ps1×1 |
 | `extracted-scripts` | 5 | 0.06 MB | .scr×5 |
 | `extracted-scripts/main_bomber.scr` | 1 | 0.01 MB | .scr×1 |
