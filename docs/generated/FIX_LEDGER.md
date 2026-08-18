@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1268** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1272** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 605 |
+| 2026-08 | 609 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1285,6 +1285,10 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1911` | 2026-08-17 | `hzm-mohaa-coop-mod/models/weapons/johnson_m1941.tik` | - | Two imported weapons referenced shader names that nothing defines, so those surfaces drew untextured. Found by a base-texture resolver written for th… | Johnson material4/5 point back at the retail m1clip, which is what East intended and is the same precedent as our sights pointing at the retail thomp… |
 | `bug-1851` | 2026-08-17 | `openmohaa-hzm/code/fgame/weapturret.cpp` | - | user: 'these cats are way too accurate' - MG42 gunners hit with no miss margin at all | Added coop_mg42AiAimOff (default 100 after the user tuned it in play): a random offset on the aim point, re-rolled every 0.7-1.6s so a burst walks ac… |
 | `bug-1852` | 2026-08-17 | `hzm-mohaa-coop-mod/coop_mod/officer.scr` | V | user: 'I have yet to see enemy axis lay down (prone) and shoot even though this is in vanilla' | No repair needed to the mechanism. Added coop_aiProneChance (percent, default 12, 0 disables) so the share can be raised until it is actually observa… |
+| `bug-1912` | 2026-08-18 | `hzm-mohaa-coop-mod/models/weapons/panzerfaust.tik` | - | user: 'panzerfaust still wont fire normally or ADS' (panzerschreck and bazooka both confirmed working, so the baseline was valid and this gun was uni… | Surfaces remapped to the mesh's real four, and all 7 `surface shell` frame commands point at bazookashell - the warhead, which is the thing the retai… |
+| `bug-1913` | 2026-08-18 | `docs/tools/gen_skins.py` | V | user: 'they all appear light blue' - gold, chrome and blued weapon finishes all rendered the same turquoise; the four BAKED finishes were fine | Emit `rgbGen const 1.00 0.78 0.30` with no parentheses. Verified against ParseVector rather than against Q3 documentation - I had checked that rgbGen… |
+| `bug-1914` | 2026-08-18 | `openmohaa-hzm/code/fgame/object.cpp` | - | user: 'heads still float above where the body was before they disappear' - the FOURTH report of this, after three separate fixes that each changed no… | HeadGibStop now only zeroes avelocity and leaves movetype alone, which is what the engine's own Gib::Stop does - it never touches movetype and lets p… |
+| `bug-1915` | 2026-08-18 | `openmohaa-hzm/code/fgame/object.cpp` | - | user: 'heads still float' - the FIFTH report, after four separate fixes that each changed nothing visible | CoopHeadSettle is scheduled again and rewritten: detect the freeze the way bug-923 does (origin not moving for 3 ticks) and snap the HEAD, not the or… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

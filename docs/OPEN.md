@@ -91,6 +91,21 @@ as opt-in. Right now the shipped behaviour is whatever a fallback branch happens
 ---
 
 <a name="defects"></a>
+## Requested, not yet started (2026-08-18)
+
+- **m3l3: Captain Ramsey's paratrooper conversation is sometimes delayed.** It should trigger
+  immediately after the halftrack is destroyed; sometimes it lags. Find what gates the trigger and
+  make it fire off the halftrack's death directly.
+- **m3l3: MG42 accuracy is far too high** across the whole map - "every single shot is a guaranteed
+  hit". The player should feel suppressed, not sniped. Lower it significantly; the goal is
+  volume-of-fire pressure rather than lethality.
+- **Reload magazine keeps the stock skin on a finished gun.** The gun's own `Clip` surface IS
+  reskinned (verified on the gold Thompson) and the mesh has only four surfaces, so the magazine
+  seen in hand during reload is a DIFFERENT model. `models/ammo/thompson_clip.tik` is cached by the
+  weapon tik but nothing in the content or the engine spawns it by name, and no viewmodel or
+  human_thompson animation attaches it - so its source is still unidentified. Needs a runtime
+  answer, not more static searching.
+
 ## Awaiting the next playtest (2026-08-17)
 
 - **Panzerfaust does not fire at all** (bug-1907). Cause NOT found. Its weapon definition is

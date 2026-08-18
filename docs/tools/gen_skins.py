@@ -136,9 +136,13 @@ def shared_shader_names(weapons):
     already ship - thompson_gold - leaves its `site` surface alone for exactly this reason.
     """
     seen = {}
-    for _, t, _ in weapons:
+    for p, t, _ in weapons:
+        # A gun and its own _lite twin are the SAME gun - they deliberately share a shader, and
+        # counting that as "shared" skipped the Garand, Kar98, P38 and TT33 entirely, which are
+        # exactly the guns people most want a finish on. Normalise the stem before comparing.
+        stem = re.sub(r"_lite$", "", os.path.splitext(os.path.basename(p))[0].lower())
         for _sn, sh in set(re.findall(r"(?mi)^\s*surface\s+(\S+)\s+shader\s+(\S+)", t)):
-            seen.setdefault(sh.lower(), set()).add(id(t))
+            seen.setdefault(sh.lower(), set()).add(stem)
     return {k for k, v in seen.items() if len(v) > 1}
 
 
@@ -219,7 +223,17 @@ def main():
             if tex:
                 tex_of[sh] = tex
         if not tex_of:
-            skipped.append((stem, "no private textures to reskin"))
+            # Every surface this gun has is shared with another gun - the TT33 borrows the P38's
+            # shader, for instance. Skipping the shared ones exists only to keep SIGHTS stock, and
+            # a variant gets its own private shader anyway, so reskinning a shared surface harms
+            # nobody. Better to reskin all of them than to give the gun no finishes at all, which
+            # is what silently dropped the P38 and TT33.
+            for _sn, sh in surfs:
+                tex = texture_exists(pak_files, shaders.get(sh.lower(), sh))
+                if tex:
+                    tex_of[sh] = tex
+        if not tex_of:
+            skipped.append((stem, "no resolvable textures at all"))
             continue
 
         order = sorted(set(tex_of.values()))

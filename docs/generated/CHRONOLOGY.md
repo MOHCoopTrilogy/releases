@@ -13,24 +13,28 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `2435d34 2026-08-17 docs: record the skin-variant architecture and what is awaiting a playtest` |
-| commits | 117 |
+| HEAD | `3ff2c3e 2026-08-18 three fixes the log had been reporting all along` |
+| commits | 118 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **2 modified, 0 untracked** |
+| unstaged diff | 2 files changed, 32 insertions(+), 3 deletions(-) |
+
+> Working tree is dirty. Everything in those 2 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 63 |
+| 2026-08 | 64 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (117)
+### Commits since 2026-01-01 (118)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `3ff2c3e` | 2026-08-18 | joncurry94-tech | three fixes the log had been reporting all along |
 | `2435d34` | 2026-08-17 | joncurry94-tech | docs: record the skin-variant architecture and what is awaiting a playtest |
 | `ff53624` | 2026-08-17 | joncurry94-tech | skins: generate weapon finish variants - one tik and shader set per gun per finish |
 | `fa6db7f` | 2026-08-17 | joncurry94-tech | loadout: the roster script was not compiling at all - an assignment with no value |
@@ -154,8 +158,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `42ed071 2026-08-17 skins: Thompson finish variants, generated` |
-| commits | 1,451 |
+| HEAD | `a841889 2026-08-18 plan: skin variant selector - finish strip design, unlock wiring, import grading` |
+| commits | 1,455 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -163,7 +167,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 58 |
+| 2026-08 | 62 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -203,10 +207,14 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (102)
+### Commits since 2026-01-01 (106)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `a841889` | 2026-08-18 | joncurry94 | plan: skin variant selector - finish strip design, unlock wiring, import grading |
+| `45fed1e` | 2026-08-18 | joncurry94 | skins full rollout + m3l3 MG42 suppression spread + officer heal metered over a minute |
+| `3a3f121` | 2026-08-18 | joncurry94 | cfg: seed coop_fireDebug 1 for the Panzerfaust hunt - ReadyToFire prints every value it decides on |
+| `0ce6e34` | 2026-08-18 | joncurry94 | panzerfaust: surfaces now match East's mesh; skin finishes lose their stray parens |
 | `42ed071` | 2026-08-17 | joncurry94 | skins: Thompson finish variants, generated |
 | `8cbc124` | 2026-08-17 | joncurry94 | weapons: two imported guns referenced shader names nothing defines |
 | `fc915e6` | 2026-08-17 | joncurry94 | loadout: fill the tab column so the roster script compiles again |
@@ -315,8 +323,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `1e21fbd8 2026-08-17 gore: the severed head was stopping on trigger brushes, not falling` |
-| commits | 4,992 |
+| HEAD | `8aefc493 2026-08-18 gore: coop_decapMax default 16 -> 32 - heads were vanishing under the ring cap during normal play; 32 is the existing array ceiling` |
+| commits | 4,994 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -324,7 +332,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 12 |
+| 2026-08 | 14 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -385,10 +393,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (27)
+### Commits since 2026-01-01 (29)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `8aefc493` | 2026-08-18 | joncurry94 | gore: coop_decapMax default 16 -> 32 - heads were vanishing under the ring cap during normal play; 32 is the existing array ceili… |
+| `4d01d32b` | 2026-08-18 | joncurry94 | gore: the head was hitting the allsolid freeze our own g_phys already documents |
 | `1e21fbd8` | 2026-08-17 | joncurry94 | gore: the severed head was stopping on trigger brushes, not falling |
 | `dd7aa74a` | 2026-08-17 | joncurry94 | gore: stop scheduling the head settle think - it froze the head above the corpse |
 | `f7a6b107` | 2026-08-17 | joncurry94 | gore: severed heads land, and unregistered helmets come off |

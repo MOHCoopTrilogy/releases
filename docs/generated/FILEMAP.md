@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 35,898 |
-| bytes | 39.9 GB |
-| files in project scope (indexed per-file) | 10,527 |
-| source files (per-file rows with line counts) | 4,898 |
+| files in the workspace | 36,680 |
+| bytes | 40.0 GB |
+| files in project scope (indexed per-file) | 11,309 |
+| source files (per-file rows with line counts) | 5,249 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -26,7 +26,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 |---|---:|---:|---|---|
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
-| `hzm-mohaa-coop-mod` | 7,070 | 5396.8 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 7,845 | 5447.5 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
 | `openmohaa-hzm` | 2,656 | 86.2 MB | **yes** | **the engine** - HZM fork of OpenMOHAA (C/C++) |
 | `UBER-MODS-v8.00-MOHAA` | 2,614 | 115.5 MB | no - reference | third-party mod, reference only |
@@ -34,7 +34,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `original-scripts` | 915 | 1173.7 MB | no - reference | vanilla MOHAA script/asset extraction (reference) |
 | `player1_home` | 296 | 3.0 MB | no - reference | test client profile dir |
 | `_research` | 171 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
-| `docs` | 136 | 4.1 MB | **yes** | this documentation set (authored + generated) |
+| `docs` | 137 | 4.1 MB | **yes** | this documentation set (authored + generated) |
 | `<root>` | 125 | 3409.4 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `extracted-scripts` | 99 | 2.6 MB | **yes** | extracted vanilla scripts kept for diffing |
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
@@ -55,6 +55,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `_soundcheck` | 9 | 74.0 MB | no - reference | audio comparison staging |
 | `autotest_home` | 9 | 0.2 MB | **yes** |  |
 | `trees` | 7 | 12.2 MB | no - reference | foliage asset scratch |
+| `_variant_packs` | 6 | 3.3 MB | **yes** |  |
 | `_checkpoints` | 5 | 13.1 MB | no - reference | manual working-tree checkpoints |
 | `ai_ab_out` | 5 | 1.5 MB | **yes** |  |
 | `helmtest_home` | 5 | 0.1 MB | no - reference | test client profile dir |
@@ -78,27 +79,27 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.dds` | 3,557 |
 | `.scr` | 2,505 |
 | `.tga` | 1,719 |
+| `.jpg` | 1,662 |
+| `.tik` | 1,580 |
 | `.cfg` | 1,381 |
 | `.png` | 1,370 |
-| `.jpg` | 1,238 |
-| `.tik` | 1,230 |
 | `.obj` | 1,224 |
 | `.h` | 955 |
 | `.mp3` | 922 |
 | `.c` | 717 |
-| `.txt` | 600 |
+| `.txt` | 601 |
 | `.asf` | 514 |
 | `.cpp` | 473 |
 | `.ogg` | 376 |
 | `.skc` | 353 |
 | `.skd` | 328 |
-| `.md` | 313 |
+| `.md` | 314 |
 | `.shader` | 200 |
 | `.urc` | 169 |
 | `.json` | 130 |
 | `.bsp` | 129 |
 | `.min` | 100 |
-| `.py` | 86 |
+| `.py` | 87 |
 | `.class` | 64 |
 | `(none)` | 60 |
 | `.pth` | 55 |
@@ -163,6 +164,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `_research/regression/fixtures` | 8 | 0.02 MB | .log×8 |
 | `_research/regression/hzmreg` | 9 | 0.08 MB | .py×9 |
 | `_skins` | 29 | 4.40 MB | .jpg×28, .png×1 |
+| `_variant_packs` | 6 | 3.34 MB | .zip×3, .html×2, .txt×1 |
 | `ai_ab_out` | 5 | 1.52 MB | .log×5 |
 | `autotest_home` | 1 | 0.00 MB | (none)×1 |
 | `autotest_home/maintt` | 4 | 0.10 MB | .cfg×3, .pid×1 |
@@ -181,13 +183,13 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/public` | 6 | 0.07 MB | .md×6 |
 | `docs/public/fixes` | 11 | 0.66 MB | .md×11 |
 | `docs/reference` | 4 | 0.07 MB | .md×3, .txt×1 |
-| `docs/tools` | 24 | 0.28 MB | .py×20, .md×1, .cmd×1, .ps1×1 |
+| `docs/tools` | 25 | 0.29 MB | .py×21, .md×1, .cmd×1, .ps1×1 |
 | `extracted-scripts` | 5 | 0.06 MB | .scr×5 |
 | `extracted-scripts/main_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
-| `hzm-mohaa-coop-mod` | 38 | 1427.89 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
+| `hzm-mohaa-coop-mod` | 38 | 1452.02 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -197,7 +199,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/_notes/audio_backup_20260705/fire` | 57 | 10.35 MB | .wav×57 |
 | `hzm-mohaa-coop-mod/_notes/audio_backup_20260705/tails` | 6 | 0.96 MB | .wav×6 |
 | `hzm-mohaa-coop-mod/_notes/game` | 5 | 0.01 MB | .txt×5 |
-| `hzm-mohaa-coop-mod/_research` | 38 | 1.48 MB | .md×29, .py×4, .json×3, .mid×1 |
+| `hzm-mohaa-coop-mod/_research` | 39 | 1.49 MB | .md×30, .py×4, .json×3, .mid×1 |
 | `hzm-mohaa-coop-mod/_research/fontgen` | 4 | 0.25 MB | .py×3, .png×1 |
 | `hzm-mohaa-coop-mod/_research/hdfix` | 21 | 472.56 MB | .png×15, .py×4, .pk3×2 |
 | `hzm-mohaa-coop-mod/_research/hdfix/pk3/textures/wilderness` | 2 | 1.30 MB | .dds×1, .jpg×1 |
@@ -363,7 +365,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/models/vehicles/shermantank` | 2 | 0.70 MB | .skd×1, .skb×1 |
 | `hzm-mohaa-coop-mod/models/vehicles/t26` | 11 | 0.33 MB | .skc×9, .skd×2 |
 | `hzm-mohaa-coop-mod/models/vehicles/t26_d` | 2 | 0.26 MB | .skc×1, .skd×1 |
-| `hzm-mohaa-coop-mod/models/weapons` | 73 | 0.55 MB | .tik×62, .txt×11 |
+| `hzm-mohaa-coop-mod/models/weapons` | 423 | 3.74 MB | .tik×412, .txt×11 |
 | `hzm-mohaa-coop-mod/models/weapons/carbine` | 1 | 0.00 MB | .skc×1 |
 | `hzm-mohaa-coop-mod/models/weapons/coop_c96` | 3 | 0.21 MB | .skc×2, .skd×1 |
 | `hzm-mohaa-coop-mod/models/weapons/coop_dp28` | 4 | 0.15 MB | .skc×3, .skd×1 |
@@ -372,7 +374,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/models/weapons/coop_panzerfaust` | 2 | 0.05 MB | .skc×1, .skd×1 |
 | `hzm-mohaa-coop-mod/models/weapons/fg42` | 2 | 0.09 MB | .skc×1, .skd×1 |
 | `hzm-mohaa-coop-mod/music` | 1 | 0.00 MB | .mus×1 |
-| `hzm-mohaa-coop-mod/scripts` | 65 | 0.31 MB | .shader×64, (none)×1 |
+| `hzm-mohaa-coop-mod/scripts` | 65 | 0.52 MB | .shader×64, (none)×1 |
 | `hzm-mohaa-coop-mod/sound/amb` | 3 | 2.34 MB | .wav×3 |
 | `hzm-mohaa-coop-mod/sound/amb_stereo` | 77 | 148.87 MB | .mp3×70, .wav×7 |
 | `hzm-mohaa-coop-mod/sound/characters` | 33 | 1.00 MB | .wav×33 |
@@ -415,7 +417,57 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/coop_m10` | 13 | 1.95 MB | .tga×13 |
 | `hzm-mohaa-coop-mod/textures/coop_panzerfaust` | 3 | 0.81 MB | .tga×3 |
 | `hzm-mohaa-coop-mod/textures/coop_skins` | 1 | 0.05 MB | .tga×1 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/bar` | 8 | 1.68 MB | .jpg×8 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/bazooka` | 8 | 0.42 MB | .jpg×8 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/colt45` | 4 | 0.12 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/coop_binoculars` | 4 | 0.03 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/coop_smoke_grenade` | 4 | 0.12 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/dbno_pistol` | 4 | 0.12 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/delisle` | 4 | 0.42 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/dp28` | 8 | 0.67 MB | .jpg×8 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/enfield` | 4 | 0.37 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/enfield_lite` | 4 | 0.37 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/fg42` | 4 | 0.41 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/g43` | 4 | 0.42 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/g43sniper` | 4 | 0.48 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/gr_w_minedetector` | 4 | 0.26 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/it_w_beretta` | 4 | 0.10 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/it_w_breda` | 4 | 0.55 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/it_w_carcano` | 4 | 0.50 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/it_w_carcano_lite` | 4 | 0.50 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/it_w_moschetto` | 4 | 0.51 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/johnson_m1941` | 64 | 1.54 MB | .jpg×64 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/kar98` | 8 | 0.25 MB | .jpg×8 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/kar98_lite` | 8 | 0.25 MB | .jpg×8 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/kar98_mortar` | 20 | 0.48 MB | .jpg×20 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/kar98sniper` | 4 | 0.06 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/m10_revolver` | 48 | 0.98 MB | .jpg×48 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/m1_garand` | 4 | 0.24 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/m1_garand_lite` | 4 | 0.24 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/mauser_c96` | 48 | 0.98 MB | .jpg×48 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/mosin_nagant_rifle` | 4 | 0.38 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/mosin_nagant_rifle_lite` | 4 | 0.38 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/mp40` | 4 | 0.12 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/mp44` | 8 | 0.51 MB | .jpg×8 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/nagant_revolver` | 4 | 0.12 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/p38` | 4 | 0.12 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/panzerfaust` | 12 | 0.31 MB | .jpg×12 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/panzerschreck` | 4 | 0.36 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/ppsh_smg` | 4 | 0.40 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/shotgun` | 4 | 0.40 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/silencedpistol` | 4 | 0.11 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/springfield` | 4 | 0.40 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/sten` | 4 | 0.40 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/svt_rifle` | 4 | 0.50 MB | .jpg×4 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/thompsonsmg` | 4 | 0.48 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/tt33` | 8 | 0.86 MB | .jpg×8 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/tt33silenced` | 4 | 0.48 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/uk_w_l42a1` | 4 | 0.48 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/uk_w_piat` | 8 | 0.60 MB | .jpg×8 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/uk_w_vickers` | 4 | 0.47 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/us_w_minedetector` | 4 | 0.26 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/webley_revolver` | 8 | 0.45 MB | .jpg×8 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/welrod` | 20 | 1.98 MB | .jpg×20 |
 | `hzm-mohaa-coop-mod/textures/fg42` | 1 | 0.19 MB | .jpg×1 |
 | `hzm-mohaa-coop-mod/textures/gametext` | 37 | 77.60 MB | .tga×37 |
 | `hzm-mohaa-coop-mod/textures/hipout01` | 7 | 2.81 MB | .tga×7 |
@@ -559,7 +611,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/code/client` | 87 | 1.51 MB | .cpp×37, .h×33, .c×16, .txt×1 |
 | `openmohaa-hzm/code/client/new` | 3 | 0.02 MB | .h×2, .cpp×1 |
 | `openmohaa-hzm/code/curl` | 2 | 0.00 MB | .txt×1, .h×1 |
-| `openmohaa-hzm/code/fgame` | 283 | 5.90 MB | .cpp×157, .h×122, .bak_botinput×2, .txt×1 |
+| `openmohaa-hzm/code/fgame` | 283 | 5.91 MB | .cpp×157, .h×122, .bak_botinput×2, .txt×1 |
 | `openmohaa-hzm/code/gamespy` | 23 | 0.21 MB | .h×11, .c×10, .txt×2 |
 | `openmohaa-hzm/code/gamespy/Chat` | 15 | 0.38 MB | .h×8, .c×6, .txt×1 |
 | `openmohaa-hzm/code/gamespy/Chat/chatc` | 1 | 0.02 MB | .c×1 |
@@ -791,7 +843,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/misc/setup/windows/app` | 4 | 0.01 MB | .wxs×2, .wixproj×1, .wxl×1 |
 | `scratchpad` | 1 | 0.00 MB | .py×1 |
 | `server_home` | 4 | 0.78 MB | .log×4 |
-| `server_home/maintt` | 6 | 0.63 MB | .cfg×3, .pid×1, .log×1, .pre_e3l4×1 |
+| `server_home/maintt` | 6 | 0.61 MB | .cfg×3, .pid×1, .log×1, .pre_e3l4×1 |
 | `server_home/maintt/coop_mod/save` | 12 | 0.01 MB | .dat×12 |
 | `server_home/maintt/prev` | 10 | 3.83 MB | .log×10 |
 | `server_home_probe/maintt` | 5 | 0.30 MB | .cfg×3, .pid×1, .log×1 |
@@ -809,7 +861,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `ai_ab_test.ps1` | 78 | 3.9 KB | ai_ab_test.ps1 - controlled A/B for the dynamic-AI layer. |
 | `autotest_rcon.py` | 79 | 2.6 KB | !/usr/bin/env python3 |
-| `build.ps1` | 230 | 12.8 KB | [user 2026-08-05] PARSE-KILLER GATE (detector rank 1, static half): a single BOM/em-dash/odd |
+| `build.ps1` | 235 | 13.2 KB | [user 2026-08-05] PARSE-KILLER GATE (detector rank 1, static half): a single BOM/em-dash/odd |
 | `launch_2player_m2l2a.ps1` | 216 | 11.1 KB | MOH Coop Trilogy - 2-player STEALTH test launcher (m2l2a) |
 | `launch_2player_test.ps1` | 78 | 3.7 KB | MOH Coop Trilogy - 2-player local test launcher |
 | `launch_dedicated_2player.ps1` | 236 | 11.3 KB | Replaces the listen-server harness for testing. Why it matters, measured 2026-08-10: |
@@ -884,7 +936,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `omconfig.cfg` | 2,488 | 68.4 KB | generated by openmohaa |
 
-### `docs/tools/` — 22 source files
+### `docs/tools/` — 23 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -895,6 +947,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `check_challenges.py` | 316 | 13.2 KB | !/usr/bin/env python3 |
 | `check_download_links.py` | 78 | 3.0 KB |  |
 | `check_empty_rhs.py` | 95 | 3.8 KB |  |
+| `check_tik_surfaces.py` | 80 | 3.2 KB |  |
 | `count_skel_channels.py` | 180 | 7.2 KB |  |
 | `depthscan2.py` | 76 | 2.3 KB |  |
 | `docgen.py` | 1,471 | 62.1 KB | !/usr/bin/env python3 |
@@ -903,7 +956,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `gen_loadout.py` | 309 | 13.6 KB | !/usr/bin/env python |
 | `gen_public_pages.py` | 540 | 21.2 KB | !/usr/bin/env python3 |
 | `gen_service_record.py` | 923 | 58.0 KB | [user 08-07] friendly display name for a challenge's reward field (chal_def's 7th arg) |
-| `gen_skins.py` | 271 | 11.7 KB |  |
+| `gen_skins.py` | 285 | 12.7 KB |  |
 | `gen_weapon_skins.py` | 189 | 8.3 KB |  |
 | `hudslots.py` | 98 | 4.0 KB | !/usr/bin/env python3 |
 | `linecheck.py` | 127 | 5.8 KB | a continuation line may not START with one of these |
@@ -1041,7 +1094,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `autoexec.cfg` | 1,221 | 87.7 KB | HZM Extended Coop Mod |
 | `coop.cfg` | 3 | 0.1 KB | DEVELOPER CONFIG FILE |
-| `coop_defaults.cfg` | 333 | 20.4 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
+| `coop_defaults.cfg` | 337 | 20.6 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
 | `net_cl.cfg` | 18 | 1.2 KB | HZM Coop recommended CLIENT settings. |
 | `net_sv.cfg` | 21 | 1.2 KB | HZM Coop recommended SERVER settings. |
 
@@ -1220,7 +1273,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `objective_drop.scr` | 165 | 7.1 KB | Objective Bonus Drop |
 | `objective_positions.scr` | 89 | 3.6 KB | objective_positions.scr |
 | `objectives.scr` | 693 | 29.9 KB | Coop Side Objectives (optional / secondary) |
-| `officer.scr` | 4,723 | 207.1 KB | Officer Boss + Radio Station |
+| `officer.scr` | 4,732 | 207.8 KB | Officer Boss + Radio Station |
 | `officer_positions.scr` | 624 | 34.2 KB | coop_officer_positions.scr |
 | `paradrop.scr` | 774 | 32.7 KB | Allied Paradrop System |
 | `player.scr` | 1,830 | 91.4 KB | started by chrissstrahl on 2020.10.16 ([202]) |
@@ -1411,7 +1464,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `M1L3a.scr` | 890 | 29.5 KB | THE DESERT |
 | `M1L3c.scr` | 1,138 | 33.1 KB | THE SEA WALL |
-| `M3L3.scr` | 8,958 | 373.6 KB | LEVEL: M3L3 |
+| `M3L3.scr` | 8,983 | 375.9 KB | LEVEL: M3L3 |
 | `M5L2A.scr` | 850 | 33.8 KB | TANK DRIVE 1 |
 | `M6L1b.scr` | 166 | 6.2 KB | SNOWY FOREST2 |
 | `co_lobby1.scr` | 46 | 2.6 KB | LEVEL: co_lobby1.bsp (a copy of training.bsp) |
@@ -3006,7 +3059,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `t26r_d.tik` | 125 | 2.6 KB |  |
 | `t26r_tank.tik` | 76 | 2.2 KB |  |
 
-### `hzm-mohaa-coop-mod/models/weapons/` — 62 source files
+### `hzm-mohaa-coop-mod/models/weapons/` — 412 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -3029,38 +3082,332 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `Uk_W_Vickers.tik` | 322 | 8.0 KB |  |
 | `Webley_Revolver.tik` | 275 | 7.3 KB |  |
 | `bar.tik` | 353 | 9.6 KB |  |
+| `bar_bloody.tik` | 353 | 10.0 KB |  |
+| `bar_blued.tik` | 353 | 10.0 KB |  |
+| `bar_camo_desert.tik` | 353 | 10.0 KB |  |
+| `bar_camo_winter.tik` | 353 | 10.0 KB |  |
+| `bar_camo_woodland.tik` | 353 | 10.0 KB |  |
+| `bar_chrome.tik` | 353 | 10.0 KB |  |
+| `bar_gold.tik` | 353 | 10.0 KB |  |
 | `bazooka.tik` | 299 | 7.1 KB |  |
+| `bazooka_bloody.tik` | 299 | 7.4 KB |  |
+| `bazooka_blued.tik` | 299 | 7.4 KB |  |
+| `bazooka_camo_desert.tik` | 299 | 7.4 KB |  |
+| `bazooka_camo_winter.tik` | 299 | 7.4 KB |  |
+| `bazooka_camo_woodland.tik` | 299 | 7.5 KB |  |
+| `bazooka_chrome.tik` | 299 | 7.4 KB |  |
+| `bazooka_gold.tik` | 299 | 7.4 KB |  |
 | `colt45.tik` | 592 | 17.2 KB |  |
+| `colt45_bloody.tik` | 592 | 17.8 KB |  |
+| `colt45_blued.tik` | 592 | 17.8 KB |  |
+| `colt45_camo_desert.tik` | 592 | 17.8 KB |  |
+| `colt45_camo_winter.tik` | 592 | 17.8 KB |  |
+| `colt45_camo_woodland.tik` | 592 | 17.8 KB |  |
+| `colt45_chrome.tik` | 592 | 17.8 KB |  |
+| `colt45_gold.tik` | 592 | 17.8 KB |  |
 | `coop_binoculars.tik` | 73 | 1.3 KB |  |
+| `coop_binoculars_bloody.tik` | 73 | 1.4 KB |  |
+| `coop_binoculars_blued.tik` | 73 | 1.4 KB |  |
+| `coop_binoculars_camo_desert.tik` | 73 | 1.5 KB |  |
+| `coop_binoculars_camo_winter.tik` | 73 | 1.5 KB |  |
+| `coop_binoculars_camo_woodland.tik` | 73 | 1.5 KB |  |
+| `coop_binoculars_chrome.tik` | 73 | 1.4 KB |  |
+| `coop_binoculars_gold.tik` | 73 | 1.4 KB |  |
 | `coop_smoke_grenade.tik` | 162 | 2.6 KB |  |
+| `coop_smoke_grenade_bloody.tik` | 162 | 2.8 KB |  |
+| `coop_smoke_grenade_blued.tik` | 162 | 2.8 KB |  |
+| `coop_smoke_grenade_camo_desert.tik` | 162 | 2.9 KB |  |
+| `coop_smoke_grenade_camo_winter.tik` | 162 | 2.9 KB |  |
+| `coop_smoke_grenade_camo_woodland.tik` | 162 | 2.9 KB |  |
+| `coop_smoke_grenade_chrome.tik` | 162 | 2.8 KB |  |
+| `coop_smoke_grenade_gold.tik` | 162 | 2.8 KB |  |
 | `dbno_pistol.tik` | 373 | 6.7 KB |  |
+| `dbno_pistol_bloody.tik` | 373 | 7.1 KB |  |
+| `dbno_pistol_blued.tik` | 373 | 7.1 KB |  |
+| `dbno_pistol_camo_desert.tik` | 373 | 7.1 KB |  |
+| `dbno_pistol_camo_winter.tik` | 373 | 7.1 KB |  |
+| `dbno_pistol_camo_woodland.tik` | 373 | 7.1 KB |  |
+| `dbno_pistol_chrome.tik` | 373 | 7.1 KB |  |
+| `dbno_pistol_gold.tik` | 373 | 7.1 KB |  |
+| `delisle_bloody.tik` | 292 | 7.4 KB |  |
+| `delisle_blued.tik` | 292 | 7.4 KB |  |
+| `delisle_camo_desert.tik` | 292 | 7.4 KB |  |
+| `delisle_camo_winter.tik` | 292 | 7.4 KB |  |
+| `delisle_camo_woodland.tik` | 292 | 7.4 KB |  |
+| `delisle_chrome.tik` | 292 | 7.4 KB |  |
+| `delisle_gold.tik` | 292 | 7.4 KB |  |
 | `dp28.tik` | 344 | 9.5 KB |  |
+| `dp28_bloody.tik` | 344 | 9.9 KB |  |
+| `dp28_blued.tik` | 344 | 9.9 KB |  |
+| `dp28_camo_desert.tik` | 344 | 9.9 KB |  |
+| `dp28_camo_winter.tik` | 344 | 9.9 KB |  |
+| `dp28_camo_woodland.tik` | 344 | 9.9 KB |  |
+| `dp28_chrome.tik` | 344 | 9.9 KB |  |
+| `dp28_gold.tik` | 344 | 9.9 KB |  |
 | `enfield.tik` | 342 | 8.0 KB |  |
+| `enfield_bloody.tik` | 342 | 8.4 KB |  |
+| `enfield_blued.tik` | 342 | 8.4 KB |  |
+| `enfield_camo_desert.tik` | 342 | 8.4 KB |  |
+| `enfield_camo_winter.tik` | 342 | 8.4 KB |  |
+| `enfield_camo_woodland.tik` | 342 | 8.4 KB |  |
+| `enfield_chrome.tik` | 342 | 8.4 KB |  |
+| `enfield_gold.tik` | 342 | 8.4 KB |  |
 | `enfield_lite.tik` | 329 | 7.6 KB |  |
+| `enfield_lite_bloody.tik` | 329 | 8.0 KB |  |
+| `enfield_lite_blued.tik` | 329 | 8.0 KB |  |
+| `enfield_lite_camo_desert.tik` | 329 | 8.0 KB |  |
+| `enfield_lite_camo_winter.tik` | 329 | 8.0 KB |  |
+| `enfield_lite_camo_woodland.tik` | 329 | 8.0 KB |  |
+| `enfield_lite_chrome.tik` | 329 | 8.0 KB |  |
+| `enfield_lite_gold.tik` | 329 | 8.0 KB |  |
+| `fg42_bloody.tik` | 317 | 9.6 KB |  |
+| `fg42_blued.tik` | 317 | 9.6 KB |  |
+| `fg42_camo_desert.tik` | 317 | 9.6 KB |  |
+| `fg42_camo_winter.tik` | 317 | 9.6 KB |  |
+| `fg42_camo_woodland.tik` | 317 | 9.7 KB |  |
+| `fg42_chrome.tik` | 317 | 9.6 KB |  |
+| `fg42_gold.tik` | 317 | 9.6 KB |  |
+| `g43_bloody.tik` | 276 | 7.7 KB |  |
+| `g43_blued.tik` | 276 | 7.7 KB |  |
+| `g43_camo_desert.tik` | 276 | 7.7 KB |  |
+| `g43_camo_winter.tik` | 276 | 7.7 KB |  |
+| `g43_camo_woodland.tik` | 276 | 7.7 KB |  |
+| `g43_chrome.tik` | 276 | 7.7 KB |  |
+| `g43_gold.tik` | 276 | 7.7 KB |  |
 | `g43sniper.tik` | 274 | 7.5 KB |  |
+| `g43sniper_bloody.tik` | 274 | 7.8 KB |  |
+| `g43sniper_blued.tik` | 274 | 7.8 KB |  |
+| `g43sniper_camo_desert.tik` | 274 | 7.8 KB |  |
+| `g43sniper_camo_winter.tik` | 274 | 7.8 KB |  |
+| `g43sniper_camo_woodland.tik` | 274 | 7.8 KB |  |
+| `g43sniper_chrome.tik` | 274 | 7.8 KB |  |
+| `g43sniper_gold.tik` | 274 | 7.8 KB |  |
+| `gr_w_minedetector_bloody.tik` | 136 | 2.9 KB |  |
+| `gr_w_minedetector_blued.tik` | 136 | 2.9 KB |  |
+| `gr_w_minedetector_camo_desert.tik` | 136 | 2.9 KB |  |
+| `gr_w_minedetector_camo_winter.tik` | 136 | 2.9 KB |  |
+| `gr_w_minedetector_camo_woodland.tik` | 136 | 2.9 KB |  |
+| `gr_w_minedetector_chrome.tik` | 136 | 2.9 KB |  |
+| `gr_w_minedetector_gold.tik` | 136 | 2.9 KB |  |
+| `it_w_beretta_bloody.tik` | 584 | 17.7 KB |  |
+| `it_w_beretta_blued.tik` | 584 | 17.7 KB |  |
+| `it_w_beretta_camo_desert.tik` | 584 | 17.7 KB |  |
+| `it_w_beretta_camo_winter.tik` | 584 | 17.7 KB |  |
+| `it_w_beretta_camo_woodland.tik` | 584 | 17.7 KB |  |
+| `it_w_beretta_chrome.tik` | 584 | 17.7 KB |  |
+| `it_w_beretta_gold.tik` | 584 | 17.7 KB |  |
+| `it_w_breda_bloody.tik` | 327 | 8.4 KB |  |
+| `it_w_breda_blued.tik` | 327 | 8.4 KB |  |
+| `it_w_breda_camo_desert.tik` | 327 | 8.5 KB |  |
+| `it_w_breda_camo_winter.tik` | 327 | 8.5 KB |  |
+| `it_w_breda_camo_woodland.tik` | 327 | 8.5 KB |  |
+| `it_w_breda_chrome.tik` | 327 | 8.4 KB |  |
+| `it_w_breda_gold.tik` | 327 | 8.4 KB |  |
+| `it_w_carcano_bloody.tik` | 348 | 8.6 KB |  |
+| `it_w_carcano_blued.tik` | 348 | 8.6 KB |  |
+| `it_w_carcano_camo_desert.tik` | 348 | 8.6 KB |  |
+| `it_w_carcano_camo_winter.tik` | 348 | 8.6 KB |  |
+| `it_w_carcano_camo_woodland.tik` | 348 | 8.6 KB |  |
+| `it_w_carcano_chrome.tik` | 348 | 8.6 KB |  |
+| `it_w_carcano_gold.tik` | 348 | 8.6 KB |  |
+| `it_w_carcano_lite_bloody.tik` | 340 | 8.3 KB |  |
+| `it_w_carcano_lite_blued.tik` | 340 | 8.3 KB |  |
+| `it_w_carcano_lite_camo_desert.tik` | 340 | 8.3 KB |  |
+| `it_w_carcano_lite_camo_winter.tik` | 340 | 8.3 KB |  |
+| `it_w_carcano_lite_camo_woodland.tik` | 340 | 8.3 KB |  |
+| `it_w_carcano_lite_chrome.tik` | 340 | 8.3 KB |  |
+| `it_w_carcano_lite_gold.tik` | 340 | 8.3 KB |  |
+| `it_w_moschetto_bloody.tik` | 335 | 8.8 KB |  |
+| `it_w_moschetto_blued.tik` | 335 | 8.8 KB |  |
+| `it_w_moschetto_camo_desert.tik` | 335 | 8.8 KB |  |
+| `it_w_moschetto_camo_winter.tik` | 335 | 8.8 KB |  |
+| `it_w_moschetto_camo_woodland.tik` | 335 | 8.8 KB |  |
+| `it_w_moschetto_chrome.tik` | 335 | 8.8 KB |  |
+| `it_w_moschetto_gold.tik` | 335 | 8.8 KB |  |
 | `johnson_m1941.tik` | 337 | 10.3 KB |  |
+| `johnson_m1941_bloody.tik` | 337 | 10.9 KB |  |
+| `johnson_m1941_blued.tik` | 337 | 10.9 KB |  |
+| `johnson_m1941_camo_desert.tik` | 337 | 11.0 KB |  |
+| `johnson_m1941_camo_winter.tik` | 337 | 11.0 KB |  |
+| `johnson_m1941_camo_woodland.tik` | 337 | 11.1 KB |  |
+| `johnson_m1941_chrome.tik` | 337 | 10.9 KB |  |
+| `johnson_m1941_gold.tik` | 337 | 10.9 KB |  |
 | `kar98.tik` | 365 | 8.7 KB |  |
+| `kar98_bloody.tik` | 365 | 9.2 KB |  |
+| `kar98_blued.tik` | 365 | 9.2 KB |  |
+| `kar98_camo_desert.tik` | 365 | 9.2 KB |  |
+| `kar98_camo_winter.tik` | 365 | 9.2 KB |  |
+| `kar98_camo_woodland.tik` | 365 | 9.2 KB |  |
+| `kar98_chrome.tik` | 365 | 9.2 KB |  |
+| `kar98_gold.tik` | 365 | 9.2 KB |  |
 | `kar98_lite.tik` | 354 | 8.4 KB |  |
+| `kar98_lite_bloody.tik` | 354 | 8.9 KB |  |
+| `kar98_lite_blued.tik` | 354 | 8.9 KB |  |
+| `kar98_lite_camo_desert.tik` | 354 | 8.9 KB |  |
+| `kar98_lite_camo_winter.tik` | 354 | 8.9 KB |  |
+| `kar98_lite_camo_woodland.tik` | 354 | 8.9 KB |  |
+| `kar98_lite_chrome.tik` | 354 | 8.9 KB |  |
+| `kar98_lite_gold.tik` | 354 | 8.9 KB |  |
 | `kar98_mortar.tik` | 433 | 10.2 KB |  |
+| `kar98_mortar_bloody.tik` | 433 | 10.8 KB |  |
+| `kar98_mortar_blued.tik` | 433 | 10.8 KB |  |
+| `kar98_mortar_camo_desert.tik` | 433 | 10.8 KB |  |
+| `kar98_mortar_camo_winter.tik` | 433 | 10.8 KB |  |
+| `kar98_mortar_camo_woodland.tik` | 433 | 10.8 KB |  |
+| `kar98_mortar_chrome.tik` | 433 | 10.8 KB |  |
+| `kar98_mortar_gold.tik` | 433 | 10.8 KB |  |
+| `kar98sniper_bloody.tik` | 328 | 8.4 KB |  |
+| `kar98sniper_blued.tik` | 328 | 8.4 KB |  |
+| `kar98sniper_camo_desert.tik` | 328 | 8.4 KB |  |
+| `kar98sniper_camo_winter.tik` | 328 | 8.4 KB |  |
+| `kar98sniper_camo_woodland.tik` | 328 | 8.4 KB |  |
+| `kar98sniper_chrome.tik` | 328 | 8.4 KB |  |
+| `kar98sniper_gold.tik` | 328 | 8.4 KB |  |
 | `m10_revolver.tik` | 541 | 17.0 KB |  |
+| `m10_revolver_bloody.tik` | 541 | 17.7 KB |  |
+| `m10_revolver_blued.tik` | 541 | 17.7 KB |  |
+| `m10_revolver_camo_desert.tik` | 541 | 17.7 KB |  |
+| `m10_revolver_camo_winter.tik` | 541 | 17.7 KB |  |
+| `m10_revolver_camo_woodland.tik` | 541 | 17.8 KB |  |
+| `m10_revolver_chrome.tik` | 541 | 17.7 KB |  |
+| `m10_revolver_gold.tik` | 541 | 17.7 KB |  |
 | `m1_garand.tik` | 411 | 10.1 KB |  |
+| `m1_garand_bloody.tik` | 411 | 10.6 KB |  |
+| `m1_garand_blued.tik` | 411 | 10.6 KB |  |
+| `m1_garand_camo_desert.tik` | 411 | 10.6 KB |  |
+| `m1_garand_camo_winter.tik` | 411 | 10.6 KB |  |
+| `m1_garand_camo_woodland.tik` | 411 | 10.7 KB |  |
+| `m1_garand_chrome.tik` | 411 | 10.6 KB |  |
+| `m1_garand_gold.tik` | 411 | 10.6 KB |  |
 | `m1_garand_lite.tik` | 402 | 9.8 KB |  |
+| `m1_garand_lite_bloody.tik` | 402 | 10.3 KB |  |
+| `m1_garand_lite_blued.tik` | 402 | 10.3 KB |  |
+| `m1_garand_lite_camo_desert.tik` | 402 | 10.3 KB |  |
+| `m1_garand_lite_camo_winter.tik` | 402 | 10.3 KB |  |
+| `m1_garand_lite_camo_woodland.tik` | 402 | 10.4 KB |  |
+| `m1_garand_lite_chrome.tik` | 402 | 10.3 KB |  |
+| `m1_garand_lite_gold.tik` | 402 | 10.3 KB |  |
 | `m2frag_grenade_sp.tik` | 19 | 0.5 KB |  |
 | `m2frag_grenade_sp_start.tik` | 19 | 0.4 KB |  |
 | `m2frag_grenade_start.tik` | 17 | 0.3 KB |  |
 | `mauser_c96.tik` | 289 | 9.2 KB |  |
+| `mauser_c96_bloody.tik` | 289 | 9.7 KB |  |
+| `mauser_c96_blued.tik` | 289 | 9.7 KB |  |
+| `mauser_c96_camo_desert.tik` | 289 | 9.7 KB |  |
+| `mauser_c96_camo_winter.tik` | 289 | 9.7 KB |  |
+| `mauser_c96_camo_woodland.tik` | 289 | 9.8 KB |  |
+| `mauser_c96_chrome.tik` | 289 | 9.7 KB |  |
+| `mauser_c96_gold.tik` | 289 | 9.6 KB |  |
+| `mosin_nagant_rifle_bloody.tik` | 315 | 8.0 KB |  |
+| `mosin_nagant_rifle_blued.tik` | 315 | 8.0 KB |  |
+| `mosin_nagant_rifle_camo_desert.tik` | 315 | 8.0 KB |  |
+| `mosin_nagant_rifle_camo_winter.tik` | 315 | 8.0 KB |  |
+| `mosin_nagant_rifle_camo_woodland.tik` | 315 | 8.0 KB |  |
+| `mosin_nagant_rifle_chrome.tik` | 315 | 8.0 KB |  |
+| `mosin_nagant_rifle_gold.tik` | 315 | 8.0 KB |  |
+| `mosin_nagant_rifle_lite_bloody.tik` | 306 | 7.7 KB |  |
+| `mosin_nagant_rifle_lite_blued.tik` | 306 | 7.7 KB |  |
+| `mosin_nagant_rifle_lite_camo_desert.tik` | 306 | 7.7 KB |  |
+| `mosin_nagant_rifle_lite_camo_winter.tik` | 306 | 7.7 KB |  |
+| `mosin_nagant_rifle_lite_camo_woodland.tik` | 306 | 7.7 KB |  |
+| `mosin_nagant_rifle_lite_chrome.tik` | 306 | 7.7 KB |  |
+| `mosin_nagant_rifle_lite_gold.tik` | 306 | 7.7 KB |  |
 | `mp40.tik` | 695 | 17.1 KB |  |
+| `mp40_bloody.tik` | 695 | 17.8 KB |  |
+| `mp40_blued.tik` | 695 | 17.8 KB |  |
+| `mp40_camo_desert.tik` | 695 | 17.8 KB |  |
+| `mp40_camo_winter.tik` | 695 | 17.8 KB |  |
+| `mp40_camo_woodland.tik` | 695 | 17.8 KB |  |
+| `mp40_chrome.tik` | 695 | 17.8 KB |  |
+| `mp40_gold.tik` | 695 | 17.8 KB |  |
 | `mp44.tik` | 351 | 8.8 KB |  |
+| `mp44_bloody.tik` | 351 | 9.2 KB |  |
+| `mp44_blued.tik` | 351 | 9.2 KB |  |
+| `mp44_camo_desert.tik` | 351 | 9.3 KB |  |
+| `mp44_camo_winter.tik` | 351 | 9.3 KB |  |
+| `mp44_camo_woodland.tik` | 351 | 9.3 KB |  |
+| `mp44_chrome.tik` | 351 | 9.2 KB |  |
+| `mp44_gold.tik` | 351 | 9.2 KB |  |
+| `nagant_revolver_bloody.tik` | 249 | 7.1 KB |  |
+| `nagant_revolver_blued.tik` | 249 | 7.1 KB |  |
+| `nagant_revolver_camo_desert.tik` | 249 | 7.1 KB |  |
+| `nagant_revolver_camo_winter.tik` | 249 | 7.1 KB |  |
+| `nagant_revolver_camo_woodland.tik` | 249 | 7.2 KB |  |
+| `nagant_revolver_chrome.tik` | 249 | 7.1 KB |  |
+| `nagant_revolver_gold.tik` | 249 | 7.1 KB |  |
 | `p38.tik` | 277 | 7.6 KB |  |
-| `panzerfaust.tik` | 293 | 8.0 KB |  |
+| `p38_bloody.tik` | 277 | 7.9 KB |  |
+| `p38_blued.tik` | 277 | 7.9 KB |  |
+| `p38_camo_desert.tik` | 277 | 8.0 KB |  |
+| `p38_camo_winter.tik` | 277 | 8.0 KB |  |
+| `p38_camo_woodland.tik` | 277 | 8.0 KB |  |
+| `p38_chrome.tik` | 277 | 7.9 KB |  |
+| `p38_gold.tik` | 277 | 7.9 KB |  |
+| `panzerfaust.tik` | 297 | 8.4 KB |  |
+| `panzerfaust_bloody.tik` | 297 | 8.7 KB |  |
+| `panzerfaust_blued.tik` | 297 | 8.7 KB |  |
+| `panzerfaust_camo_desert.tik` | 297 | 8.7 KB |  |
+| `panzerfaust_camo_winter.tik` | 297 | 8.7 KB |  |
+| `panzerfaust_camo_woodland.tik` | 297 | 8.7 KB |  |
+| `panzerfaust_chrome.tik` | 297 | 8.7 KB |  |
+| `panzerfaust_gold.tik` | 297 | 8.7 KB |  |
 | `panzerschreck.tik` | 275 | 6.6 KB |  |
+| `panzerschreck_bloody.tik` | 275 | 6.9 KB |  |
+| `panzerschreck_blued.tik` | 275 | 6.9 KB |  |
+| `panzerschreck_camo_desert.tik` | 275 | 6.9 KB |  |
+| `panzerschreck_camo_winter.tik` | 275 | 6.9 KB |  |
+| `panzerschreck_camo_woodland.tik` | 275 | 6.9 KB |  |
+| `panzerschreck_chrome.tik` | 275 | 6.9 KB |  |
+| `panzerschreck_gold.tik` | 275 | 6.9 KB |  |
 | `ppsh_smg.tik` | 327 | 8.2 KB |  |
+| `ppsh_smg_bloody.tik` | 327 | 8.6 KB |  |
+| `ppsh_smg_blued.tik` | 327 | 8.6 KB |  |
+| `ppsh_smg_camo_desert.tik` | 327 | 8.6 KB |  |
+| `ppsh_smg_camo_winter.tik` | 327 | 8.6 KB |  |
+| `ppsh_smg_camo_woodland.tik` | 327 | 8.6 KB |  |
+| `ppsh_smg_chrome.tik` | 327 | 8.6 KB |  |
+| `ppsh_smg_gold.tik` | 327 | 8.6 KB |  |
 | `shotgun.tik` | 341 | 8.2 KB |  |
+| `shotgun_bloody.tik` | 341 | 8.6 KB |  |
+| `shotgun_blued.tik` | 341 | 8.6 KB |  |
+| `shotgun_camo_desert.tik` | 341 | 8.6 KB |  |
+| `shotgun_camo_winter.tik` | 341 | 8.6 KB |  |
+| `shotgun_camo_woodland.tik` | 341 | 8.6 KB |  |
+| `shotgun_chrome.tik` | 341 | 8.6 KB |  |
+| `shotgun_gold.tik` | 341 | 8.6 KB |  |
 | `silencedpistol.tik` | 287 | 7.8 KB |  |
+| `silencedpistol_bloody.tik` | 287 | 8.1 KB |  |
+| `silencedpistol_blued.tik` | 287 | 8.1 KB |  |
+| `silencedpistol_camo_desert.tik` | 287 | 8.1 KB |  |
+| `silencedpistol_camo_winter.tik` | 287 | 8.1 KB |  |
+| `silencedpistol_camo_woodland.tik` | 287 | 8.1 KB |  |
+| `silencedpistol_chrome.tik` | 287 | 8.1 KB |  |
+| `silencedpistol_gold.tik` | 287 | 8.1 KB |  |
 | `springfield.tik` | 315 | 8.0 KB |  |
+| `springfield_bloody.tik` | 315 | 8.4 KB |  |
+| `springfield_blued.tik` | 315 | 8.4 KB |  |
+| `springfield_camo_desert.tik` | 315 | 8.4 KB |  |
+| `springfield_camo_winter.tik` | 315 | 8.4 KB |  |
+| `springfield_camo_woodland.tik` | 315 | 8.4 KB |  |
+| `springfield_chrome.tik` | 315 | 8.4 KB |  |
+| `springfield_gold.tik` | 315 | 8.4 KB |  |
 | `steilhandgranate_start.tik` | 17 | 0.3 KB |  |
 | `sten.tik` | 693 | 17.2 KB |  |
+| `sten_bloody.tik` | 693 | 17.9 KB |  |
+| `sten_blued.tik` | 693 | 17.9 KB |  |
+| `sten_camo_desert.tik` | 693 | 17.9 KB |  |
+| `sten_camo_winter.tik` | 693 | 17.9 KB |  |
+| `sten_camo_woodland.tik` | 693 | 17.9 KB |  |
+| `sten_chrome.tik` | 693 | 17.9 KB |  |
+| `sten_gold.tik` | 693 | 17.9 KB |  |
 | `svt_rifle.tik` | 271 | 7.0 KB |  |
+| `svt_rifle_bloody.tik` | 271 | 7.3 KB |  |
+| `svt_rifle_blued.tik` | 271 | 7.3 KB |  |
+| `svt_rifle_camo_desert.tik` | 271 | 7.3 KB |  |
+| `svt_rifle_camo_winter.tik` | 271 | 7.3 KB |  |
+| `svt_rifle_camo_woodland.tik` | 271 | 7.3 KB |  |
+| `svt_rifle_chrome.tik` | 271 | 7.3 KB |  |
+| `svt_rifle_gold.tik` | 271 | 7.3 KB |  |
 | `thompsonsmg.tik` | 332 | 8.4 KB |  |
 | `thompsonsmg_bloody.tik` | 332 | 8.8 KB |  |
 | `thompsonsmg_blued.tik` | 332 | 8.8 KB |  |
@@ -3070,8 +3417,64 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `thompsonsmg_chrome.tik` | 332 | 8.8 KB |  |
 | `thompsonsmg_gold.tik` | 332 | 8.8 KB |  |
 | `tt33.tik` | 239 | 6.7 KB |  |
+| `tt33_bloody.tik` | 239 | 7.0 KB |  |
+| `tt33_blued.tik` | 239 | 7.0 KB |  |
+| `tt33_camo_desert.tik` | 239 | 7.0 KB |  |
+| `tt33_camo_winter.tik` | 239 | 7.0 KB |  |
+| `tt33_camo_woodland.tik` | 239 | 7.0 KB |  |
+| `tt33_chrome.tik` | 239 | 7.0 KB |  |
+| `tt33_gold.tik` | 239 | 7.0 KB |  |
 | `tt33silenced.tik` | 241 | 7.0 KB |  |
+| `tt33silenced_bloody.tik` | 241 | 7.0 KB |  |
+| `tt33silenced_blued.tik` | 241 | 7.0 KB |  |
+| `tt33silenced_camo_desert.tik` | 241 | 7.0 KB |  |
+| `tt33silenced_camo_winter.tik` | 241 | 7.0 KB |  |
+| `tt33silenced_camo_woodland.tik` | 241 | 7.0 KB |  |
+| `tt33silenced_chrome.tik` | 241 | 7.0 KB |  |
+| `tt33silenced_gold.tik` | 241 | 7.0 KB |  |
+| `uk_w_l42a1_bloody.tik` | 317 | 8.1 KB |  |
+| `uk_w_l42a1_blued.tik` | 317 | 8.1 KB |  |
+| `uk_w_l42a1_camo_desert.tik` | 317 | 8.1 KB |  |
+| `uk_w_l42a1_camo_winter.tik` | 317 | 8.1 KB |  |
+| `uk_w_l42a1_camo_woodland.tik` | 317 | 8.1 KB |  |
+| `uk_w_l42a1_chrome.tik` | 317 | 8.1 KB |  |
+| `uk_w_l42a1_gold.tik` | 317 | 8.1 KB |  |
+| `uk_w_piat_bloody.tik` | 245 | 7.8 KB |  |
+| `uk_w_piat_blued.tik` | 245 | 7.8 KB |  |
+| `uk_w_piat_camo_desert.tik` | 245 | 7.8 KB |  |
+| `uk_w_piat_camo_winter.tik` | 245 | 7.8 KB |  |
+| `uk_w_piat_camo_woodland.tik` | 245 | 7.8 KB |  |
+| `uk_w_piat_chrome.tik` | 245 | 7.8 KB |  |
+| `uk_w_piat_gold.tik` | 245 | 7.8 KB |  |
+| `uk_w_vickers_bloody.tik` | 322 | 8.4 KB |  |
+| `uk_w_vickers_blued.tik` | 322 | 8.4 KB |  |
+| `uk_w_vickers_camo_desert.tik` | 322 | 8.4 KB |  |
+| `uk_w_vickers_camo_winter.tik` | 322 | 8.4 KB |  |
+| `uk_w_vickers_camo_woodland.tik` | 322 | 8.4 KB |  |
+| `uk_w_vickers_chrome.tik` | 322 | 8.4 KB |  |
+| `uk_w_vickers_gold.tik` | 322 | 8.4 KB |  |
+| `us_w_minedetector_bloody.tik` | 131 | 2.7 KB |  |
+| `us_w_minedetector_blued.tik` | 131 | 2.7 KB |  |
+| `us_w_minedetector_camo_desert.tik` | 131 | 2.8 KB |  |
+| `us_w_minedetector_camo_winter.tik` | 131 | 2.8 KB |  |
+| `us_w_minedetector_camo_woodland.tik` | 131 | 2.8 KB |  |
+| `us_w_minedetector_chrome.tik` | 131 | 2.7 KB |  |
+| `us_w_minedetector_gold.tik` | 131 | 2.7 KB |  |
+| `webley_revolver_bloody.tik` | 275 | 7.6 KB |  |
+| `webley_revolver_blued.tik` | 275 | 7.6 KB |  |
+| `webley_revolver_camo_desert.tik` | 275 | 7.7 KB |  |
+| `webley_revolver_camo_winter.tik` | 275 | 7.7 KB |  |
+| `webley_revolver_camo_woodland.tik` | 275 | 7.7 KB |  |
+| `webley_revolver_chrome.tik` | 275 | 7.6 KB |  |
+| `webley_revolver_gold.tik` | 275 | 7.6 KB |  |
 | `welrod.tik` | 254 | 7.2 KB |  |
+| `welrod_bloody.tik` | 254 | 7.5 KB |  |
+| `welrod_blued.tik` | 254 | 7.5 KB |  |
+| `welrod_camo_desert.tik` | 254 | 7.6 KB |  |
+| `welrod_camo_winter.tik` | 254 | 7.6 KB |  |
+| `welrod_camo_woodland.tik` | 254 | 7.6 KB |  |
+| `welrod_chrome.tik` | 254 | 7.5 KB |  |
+| `welrod_gold.tik` | 254 | 7.5 KB |  |
 
 ### `hzm-mohaa-coop-mod/scripts/` — 64 source files
 
@@ -3124,7 +3527,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_oilslick.shader` | 15 | 0.5 KB |  |
 | `coop_panzerfaust.shader` | 33 | 1.0 KB |  |
 | `coop_sandstorm.shader` | 67 | 1.0 KB |  |
-| `coop_skins.shader` | 101 | 2.5 KB |  |
+| `coop_skins.shader` | 10,277 | 211.5 KB |  |
 | `coop_static_vehicles.shader` | 99 | 2.8 KB |  |
 | `coop_water_overrides.shader` | 96 | 2.9 KB |  |
 | `coop_weather.shader` | 21 | 0.7 KB |  |
@@ -4420,8 +4823,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `navigation_recast_obstacle.h` | 109 | 3.3 KB |  |
 | `navigation_recast_path.cpp` | 574 | 17.8 KB |  |
 | `navigation_recast_path.h` | 86 | 2.8 KB |  |
-| `object.cpp` | 587 | 17.0 KB | object.cpp : Object (used by common TIKIs) |
-| `object.h` | 109 | 3.1 KB | object.h: Object (used by common TIKIs) |
+| `object.cpp` | 625 | 19.6 KB | object.cpp : Object (used by common TIKIs) |
+| `object.h` | 111 | 3.2 KB | object.h: Object (used by common TIKIs) |
 | `parm.cpp` | 164 | 3.4 KB | parm.cpp : Event parameters |
 | `parm.h` | 59 | 1.7 KB | parm.h: Event parameters |
 | `player.cpp` | 15,332 | 467.3 KB | player.h: Class definition of the player. |
@@ -4455,7 +4858,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `scriptthread.h` | 400 | 12.1 KB |  |
 | `scripttimer.cpp` | 264 | 5.3 KB | scripttimer.cpp: Scripted Timer & Fader |
 | `scripttimer.h` | 82 | 2.0 KB | ScriptTimer.cpp: Scripted Timer & Fader |
-| `sentient.cpp` | 5,143 | 167.1 KB | sentient.cpp: Base class of entity that can carry other entities, and use weapons. |
+| `sentient.cpp` | 5,143 | 167.3 KB | sentient.cpp: Base class of entity that can carry other entities, and use weapons. |
 | `sentient.h` | 417 | 19.0 KB | sentient.h: Base class of entity that can carry other entities, and use weapons. |
 | `sentient_combat.cpp` | 1,487 | 37.6 KB |  |
 | `simpleactor.cpp` | 1,350 | 34.3 KB | simpleactor.cpp: Base class for character AI |

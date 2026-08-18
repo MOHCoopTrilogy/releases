@@ -268,9 +268,12 @@ def main():
                 notes.append("top blueprint tier is %d but %d are placed - it no longer means "
                              "\"all\"; retune the bp_* ladder" % (c["target"], bp_have))
 
-        # MISSING - reward asset must resolve in a pak
+        # MISSING - reward asset must resolve in a pak. Two reward classes are NOT assets and are
+        # legitimate by construction: perk_* (engine-side perks) and finish_* (skin-finish unlock
+        # strings probed straight out of the pipe store by loadout_finUnlocked - the finish strip,
+        # 2026-08-18). Anything else must be a real file, or the challenge pays nothing.
         rew = c["reward"]
-        if rew and not rew.startswith("perk_") and rew.lower() not in have:
+        if rew and not rew.startswith(("perk_", "finish_")) and rew.lower() not in have:
             missing.append(c)
 
     if as_json:

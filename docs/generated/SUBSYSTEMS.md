@@ -9,7 +9,7 @@
 | metric | value |
 |---|---:|
 | `coop_mod/*.scr` files | 113 |
-| total lines in `coop_mod/` | 70,676 |
+| total lines in `coop_mod/` | 70,685 |
 | top-level `maps/*.scr` | 121 |
 | of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
 
@@ -167,7 +167,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `objective_drop.scr` | 165 | 1 | Objective Bonus Drop |
 | `objective_positions.scr` | 89 | 1 | objective_positions.scr |
 | `objectives.scr` | 693 | 7 | Coop Side Objectives (optional / secondary) |
-| `officer.scr` | 4,723 | 27 | Officer Boss + Radio Station |
+| `officer.scr` | 4,732 | 27 | Officer Boss + Radio Station |
 | `officer_positions.scr` | 624 | 1 | coop_officer_positions.scr |
 | `paradrop.scr` | 774 | 1 | Allied Paradrop System |
 | `player.scr` | 1,830 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |
