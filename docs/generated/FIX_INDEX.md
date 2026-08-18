@@ -8,7 +8,7 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-945 distinct file paths, 3,088 distinct tags.
+946 distinct file paths, 3,092 distinct tags.
 
 ## Files with the most history
 
@@ -513,6 +513,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/models/weapons/It_W_Carcano.tik` | 1 | `bug-494` |
 | `hzm-mohaa-coop-mod/models/weapons/m1_garand.tik` | 1 | `bug-095` |
 | `hzm-mohaa-coop-mod/models/weapons/mauser_c96.tik` | 2 | `bug-1894` `bug-1897` |
+| `hzm-mohaa-coop-mod/models/weapons/panzerfaust.tik` | 1 | `bug-1900` |
 | `hzm-mohaa-coop-mod/models/weapons/silencedpistol.tik` | 1 | `bug-1714` |
 | `hzm-mohaa-coop-mod/models/weapons/tt33.tik` | 1 | `bug-1887` |
 | `hzm-mohaa-coop-mod/scripts/allied_bob_pack.shader` | 1 | `bug-530` |
@@ -1185,6 +1186,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `attribution-corrected` | 2 | `bug-1473` `bug-1474` |
 | `audio` | 26 | `bug-1138` `bug-1264` `bug-1324` `bug-1325` `bug-1501` `bug-1502` `bug-1509` `bug-1516` `bug-1517` `bug-153` `bug-1556` `bug-156` `bug-1797` `bug-1808` `bug-1857` `bug-1894` `bug-1899` `bug-599` `bug-600` `bug-601` `bug-717` `bug-725` `bug-836` `bug-846` `bug-849` `bug-933b` |
 | `audit` | 11 | `bug-1288` `bug-1290` `bug-1399` `bug-1885` `bug-1886` `bug-1888` `bug-721` `bug-722` `bug-723` `bug-724` `bug-874` |
+| `audit-caught` | 1 | `bug-1900` |
 | `audit-gap` | 2 | `bug-1009` `bug-1898` |
 | `audit-methodology` | 1 | `bug-1523` |
 | `audit-scaffolding` | 1 | `bug-1550` |
@@ -1879,7 +1881,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `eala` | 1 | `bug-1468` |
 | `early-end` | 1 | `bug-1743` |
 | `early-out` | 1 | `bug-261` |
-| `east` | 1 | `bug-1894` |
+| `east` | 2 | `bug-1894` `bug-1900` |
 | `easter-egg` | 1 | `bug-1612` |
 | `edit` | 1 | `bug-450` |
 | `editor-range` | 1 | `bug-1353` |
@@ -2084,7 +2086,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `fourth-attempt` | 1 | `bug-1767` |
 | `fov` | 3 | `bug-073` `bug-074` `bug-316` |
 | `fps_anims` | 3 | `bug-072` `bug-106` `bug-107` |
-| `frame-command` | 2 | `bug-1301` `bug-1887` |
+| `frame-command` | 3 | `bug-1301` `bug-1887` `bug-1900` |
 | `frame-commands` | 2 | `bug-315` `bug-324` |
 | `frame-order` | 1 | `bug-1250` |
 | `framedefer` | 2 | `bug-865` `bug-896` |
@@ -2299,7 +2301,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `immune-falling` | 1 | `bug-940` |
 | `immunity` | 2 | `bug-1307` `bug-941` |
 | `impact` | 1 | `bug-1176` |
-| `import` | 9 | `bug-1357` `bug-1894` `bug-1899` `bug-295` `bug-482` `bug-483` `bug-494` `bug-500` `bug-853` |
+| `import` | 10 | `bug-1357` `bug-1894` `bug-1899` `bug-1900` `bug-295` `bug-482` `bug-483` `bug-494` `bug-500` `bug-853` |
 | `import-normals` | 1 | `bug-921` |
 | `includes` | 1 | `bug-1487` |
 | `incomplete-fix` | 2 | `bug-1570` `bug-1892` |
@@ -2494,6 +2496,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `lru-steal` | 1 | `bug-780` |
 | `lt-pato` | 1 | `bug-1899` |
 | `m1-garand` | 1 | `bug-133` |
+| `m10` | 1 | `bug-1900` |
 | `m1l1` | 9 | `bug-1161` `bug-1162` `bug-1173` `bug-1174` `bug-1175` `bug-1184` `bug-1213` `bug-1228` `bug-1476` |
 | `m1l1-walkers` | 1 | `bug-822` |
 | `m1l2a` | 4 | `bug-1248` `bug-1484` `bug-1485` `bug-842` |
@@ -2857,6 +2860,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `pak-priority` | 1 | `bug-m3l2-ground-seams` |
 | `paks` | 1 | `bug-1307` |
 | `panzer` | 1 | `bug-647` |
+| `panzerfaust` | 1 | `bug-1900` |
 | `papers` | 15 | `bug-1603` `bug-1604` `bug-1624` `bug-1662` `bug-1685` `bug-1693` `bug-1709` `bug-1719` `bug-1729` `bug-1732` `bug-1736` `bug-1765` `bug-1872` `bug-625` `bug-880` |
 | `papers-check` | 1 | `bug-1631` |
 | `papers-restore` | 1 | `bug-1736` |
@@ -3386,7 +3390,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `sfx_t` | 1 | `bug-1163` |
 | `shader` | 23 | `bug-092` `bug-095` `bug-1130` `bug-1191` `bug-1207` `bug-1242` `bug-1249` `bug-1424` `bug-143` `bug-1515` `bug-1610` `bug-1611` `bug-230` `bug-430` `bug-480` `bug-481` `bug-530` `bug-764` `bug-853` `bug-921` `bug-922` `bug-lowhealth-scene-dependent` `bug-menu-shader-label-invisible` |
 | `shader-collision` | 1 | `bug-1357` |
-| `shader-isolation` | 3 | `bug-1356` `bug-1894` `bug-1899` |
+| `shader-isolation` | 4 | `bug-1356` `bug-1894` `bug-1899` `bug-1900` |
 | `shader-lump` | 1 | `bug-1386` |
 | `shader-parse` | 1 | `bug-gl2-cullfront` |
 | `shader-path` | 2 | `bug-1541` `bug-809` |
@@ -3680,6 +3684,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `t6` | 1 | `bug-1893` |
 | `t7` | 1 | `bug-1884` |
 | `tabs` | 2 | `bug-450` `bug-626` |
+| `tag-eject` | 1 | `bug-1900` |
 | `tag_seat` | 1 | `bug-322` |
 | `tag_static_renderer` | 1 | `bug-1146` |
 | `tag_weapon_right` | 1 | `bug-310` |
@@ -4015,7 +4020,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `weapon-select` | 2 | `bug-1897` `bug-494` |
 | `weaponclip` | 1 | `bug-938` |
 | `weapongroup` | 1 | `bug-1103` |
-| `weapons` | 16 | `bug-1885` `bug-1886` `bug-1887` `bug-1888` `bug-1894` `bug-1897` `bug-1899` `bug-464` `bug-481` `bug-482` `bug-483` `bug-484` `bug-494` `bug-495` `bug-500` `bug-863` |
+| `weapons` | 17 | `bug-1885` `bug-1886` `bug-1887` `bug-1888` `bug-1894` `bug-1897` `bug-1899` `bug-1900` `bug-464` `bug-481` `bug-482` `bug-483` `bug-484` `bug-494` `bug-495` `bug-500` `bug-863` |
 | `weapons-on-back` | 5 | `bug-1891` `bug-616` `bug-619` `bug-623` `bug-923` |
 | `weaponshift` | 2 | `bug-105` `bug-108` |
 | `weaponsout` | 1 | `bug-378` |

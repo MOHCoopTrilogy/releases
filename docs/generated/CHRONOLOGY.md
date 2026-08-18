@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `087511f 2026-08-17 audit: catch sound aliases that resolve and still make no noise` |
-| commits | 105 |
+| HEAD | `66ae10a 2026-08-17 docs: regenerate after the DP-28 import` |
+| commits | 106 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 51 |
+| 2026-08 | 52 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (105)
+### Commits since 2026-01-01 (106)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `66ae10a` | 2026-08-17 | joncurry94-tech | docs: regenerate after the DP-28 import |
 | `087511f` | 2026-08-17 | joncurry94-tech | audit: catch sound aliases that resolve and still make no noise |
 | `15140c3` | 2026-08-17 | joncurry94-tech | open: record the armory gap, and the publish entry for the bullet-impact pack |
 | `079256e` | 2026-08-17 | joncurry94-tech | open: close the m3l2 label, and correct the t2l2 error count by measurement |
@@ -142,8 +143,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `688a8fc 2026-08-17 weapons: add Lt. Pato's DP-28 as an addition, not a BAR replacement` |
-| commits | 1,441 |
+| HEAD | `b44ec73 2026-08-17 weapons: add East's Panzerfaust and S&W M10 .38 as additions` |
+| commits | 1,442 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -151,7 +152,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 48 |
+| 2026-08 | 49 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -191,10 +192,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (92)
+### Commits since 2026-01-01 (93)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `b44ec73` | 2026-08-17 | joncurry94 | weapons: add East's Panzerfaust and S&W M10 .38 as additions |
 | `688a8fc` | 2026-08-17 | joncurry94 | weapons: add Lt. Pato's DP-28 as an addition, not a BAR replacement |
 | `daa343a` | 2026-08-17 | joncurry94 | weapons: unique ranks for the C96 and Johnson, and un-mute two guns defined at pitch zero |
 | `a522959` | 2026-08-17 | joncurry94 | weapons: add East's Mauser C96 and Johnson M1941 as additions, not replacements |
@@ -293,8 +295,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `9880c6f8 2026-08-17 cgame: WPREFIX_DP28 for Lt. Pato's first-person DP-28 animations` |
-| commits | 4,987 |
+| HEAD | `f417fce8 2026-08-17 cgame: WPREFIX_M10, and the Panzerfaust on its real rig` |
+| commits | 4,988 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -302,7 +304,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 7 |
+| 2026-08 | 8 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -363,10 +365,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (22)
+### Commits since 2026-01-01 (23)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `f417fce8` | 2026-08-17 | joncurry94 | cgame: WPREFIX_M10, and the Panzerfaust on its real rig |
 | `9880c6f8` | 2026-08-17 | joncurry94 | cgame: WPREFIX_DP28 for Lt. Pato's first-person DP-28 animations |
 | `8b4b2bc5` | 2026-08-17 | joncurry94 | cgame: first-person hands for the Mauser C96 and Johnson M1941 |
 | `ca299194` | 2026-08-17 | joncurry94 | engine: gore disfigurement and decapitation, breath-hold accuracy, corpse settling, and the gamestate ceiling |

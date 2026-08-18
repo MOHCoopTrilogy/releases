@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 35,781 |
+| files in the workspace | 35,815 |
 | bytes | 39.9 GB |
-| files in project scope (indexed per-file) | 10,410 |
-| source files (per-file rows with line counts) | 4,852 |
+| files in project scope (indexed per-file) | 10,444 |
+| source files (per-file rows with line counts) | 4,856 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -26,7 +26,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 |---|---:|---:|---|---|
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
-| `hzm-mohaa-coop-mod` | 6,998 | 5390.7 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 7,025 | 5395.7 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
 | `openmohaa-hzm` | 2,656 | 86.2 MB | **yes** | **the engine** - HZM fork of OpenMOHAA (C/C++) |
 | `UBER-MODS-v8.00-MOHAA` | 2,614 | 115.5 MB | no - reference | third-party mod, reference only |
@@ -50,15 +50,16 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `tools` | 12 | 0.3 MB | **yes** | misc build/debug tooling |
 | `watchdog` | 12 | 2.8 MB | **yes** | server watchdog scripts |
 | `_east_weapons` | 11 | 43.9 MB | **yes** |  |
+| `_dp28` | 10 | 46.3 MB | **yes** |  |
 | `_soundcheck` | 9 | 74.0 MB | no - reference | audio comparison staging |
 | `autotest_home` | 9 | 0.2 MB | **yes** |  |
-| `_dp28` | 7 | 46.3 MB | **yes** |  |
 | `trees` | 7 | 12.2 MB | no - reference | foliage asset scratch |
 | `_checkpoints` | 5 | 13.1 MB | no - reference | manual working-tree checkpoints |
 | `ai_ab_out` | 5 | 1.5 MB | **yes** |  |
 | `helmtest_home` | 5 | 0.1 MB | no - reference | test client profile dir |
 | `server_home_probe` | 5 | 0.3 MB | **yes** |  |
 | `texture-preview` | 5 | 0.1 MB | no - reference | texture preview scratch tool |
+| `_east2` | 4 | 3.8 MB | **yes** |  |
 | `_xw_weapons` | 4 | 161.4 MB | no - reference | extra WW2 weapon pack import staging |
 | `player3_home` | 4 | 0.3 MB | no - reference | test client profile dir |
 | `player4_home` | 4 | 0.3 MB | no - reference | test client profile dir |
@@ -72,26 +73,26 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 ## Extension census (whole workspace)
 | ext | files |
 |---|---:|
-| `.wav` | 14,217 |
+| `.wav` | 14,221 |
 | `.dds` | 3,557 |
 | `.scr` | 2,505 |
-| `.tga` | 1,702 |
+| `.tga` | 1,718 |
 | `.png` | 1,369 |
 | `.cfg` | 1,353 |
 | `.obj` | 1,224 |
-| `.tik` | 1,221 |
+| `.tik` | 1,223 |
 | `.jpg` | 1,206 |
 | `.h` | 955 |
 | `.mp3` | 922 |
 | `.c` | 717 |
-| `.txt` | 598 |
+| `.txt` | 600 |
 | `.asf` | 514 |
 | `.cpp` | 473 |
 | `.ogg` | 376 |
-| `.skc` | 346 |
-| `.skd` | 326 |
+| `.skc` | 349 |
+| `.skd` | 328 |
 | `.md` | 313 |
-| `.shader` | 197 |
+| `.shader` | 199 |
 | `.urc` | 169 |
 | `.json` | 130 |
 | `.bsp` | 129 |
@@ -108,7 +109,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.pk3` | 44 |
 | `.lod` | 37 |
 | `.ps1` | 35 |
-| `.tsv` | 28 |
+| `.tsv` | 29 |
 | `.skb` | 20 |
 | `.ico` | 19 |
 | `.dll` | 18 |
@@ -117,9 +118,11 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | directory | files | size | top extensions |
 |---|---:|---:|---|
 | `.` | 125 | 3409.39 MB | .md×64, .txt×15, .ps1×14, .png×5 |
-| `_dp28` | 2 | 1.59 MB | .zip×1, .txt×1 |
+| `_dp28` | 5 | 1.62 MB | .txt×3, .tsv×1, .zip×1 |
 | `_dp28/snd_out` | 2 | 0.19 MB | .wav×2 |
 | `_dp28/snd_src` | 3 | 44.49 MB | .wav×3 |
+| `_east2` | 2 | 3.60 MB | .zip×2 |
+| `_east2/snd_out` | 2 | 0.21 MB | .wav×2 |
 | `_east_weapons` | 2 | 1.82 MB | .pk3×2 |
 | `_east_weapons/snd_out` | 6 | 0.72 MB | .wav×6 |
 | `_east_weapons/snd_src` | 3 | 41.31 MB | .wav×3 |
@@ -182,7 +185,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
-| `hzm-mohaa-coop-mod` | 38 | 1425.73 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
+| `hzm-mohaa-coop-mod` | 38 | 1427.36 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -241,7 +244,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/fonts` | 13 | 0.18 MB | .ritualfont×13 |
 | `hzm-mohaa-coop-mod/gags` | 22 | 0.39 MB | .scr×22 |
 | `hzm-mohaa-coop-mod/gfx/fonts` | 25 | 69.21 MB | .tga×25 |
-| `hzm-mohaa-coop-mod/global` | 70 | 1.03 MB | .scr×68, .txt×2 |
+| `hzm-mohaa-coop-mod/global` | 70 | 1.04 MB | .scr×68, .txt×2 |
 | `hzm-mohaa-coop-mod/maintt` | 1 | 0.00 MB | .cfg×1 |
 | `hzm-mohaa-coop-mod/maps` | 130 | 89.09 MB | .scr×121, .bsp×8, .pth×1 |
 | `hzm-mohaa-coop-mod/maps/briefing` | 12 | 0.06 MB | .scr×12 |
@@ -296,6 +299,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/models/human/animation/viewmodel` | 18 | 0.28 MB | .skc×18 |
 | `hzm-mohaa-coop-mod/models/human/animation/viewmodel/coop_dp28` | 4 | 0.19 MB | .skc×4 |
 | `hzm-mohaa-coop-mod/models/human/animation/viewmodel/coop_johnson` | 1 | 0.17 MB | .skc×1 |
+| `hzm-mohaa-coop-mod/models/human/animation/viewmodel/coop_m10` | 1 | 0.14 MB | .skc×1 |
 | `hzm-mohaa-coop-mod/models/human/animation/viewmodel/fg42` | 3 | 0.17 MB | .skc×3 |
 | `hzm-mohaa-coop-mod/models/human/heads` | 7 | 0.03 MB | .tik×7 |
 | `hzm-mohaa-coop-mod/models/items` | 10 | 0.00 MB | .tik×10 |
@@ -357,14 +361,16 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/models/vehicles/shermantank` | 2 | 0.70 MB | .skd×1, .skb×1 |
 | `hzm-mohaa-coop-mod/models/vehicles/t26` | 11 | 0.33 MB | .skc×9, .skd×2 |
 | `hzm-mohaa-coop-mod/models/vehicles/t26_d` | 2 | 0.26 MB | .skc×1, .skd×1 |
-| `hzm-mohaa-coop-mod/models/weapons` | 64 | 0.46 MB | .tik×53, .txt×11 |
+| `hzm-mohaa-coop-mod/models/weapons` | 66 | 0.48 MB | .tik×55, .txt×11 |
 | `hzm-mohaa-coop-mod/models/weapons/carbine` | 1 | 0.00 MB | .skc×1 |
 | `hzm-mohaa-coop-mod/models/weapons/coop_c96` | 2 | 0.20 MB | .skc×1, .skd×1 |
 | `hzm-mohaa-coop-mod/models/weapons/coop_dp28` | 4 | 0.15 MB | .skc×3, .skd×1 |
 | `hzm-mohaa-coop-mod/models/weapons/coop_johnson` | 3 | 0.65 MB | .skc×2, .skd×1 |
+| `hzm-mohaa-coop-mod/models/weapons/coop_m10` | 2 | 0.14 MB | .skc×1, .skd×1 |
+| `hzm-mohaa-coop-mod/models/weapons/coop_panzerfaust` | 2 | 0.05 MB | .skc×1, .skd×1 |
 | `hzm-mohaa-coop-mod/models/weapons/fg42` | 2 | 0.09 MB | .skc×1, .skd×1 |
 | `hzm-mohaa-coop-mod/music` | 1 | 0.00 MB | .mus×1 |
-| `hzm-mohaa-coop-mod/scripts` | 62 | 0.30 MB | .shader×61, (none)×1 |
+| `hzm-mohaa-coop-mod/scripts` | 64 | 0.30 MB | .shader×63, (none)×1 |
 | `hzm-mohaa-coop-mod/sound/amb` | 3 | 2.34 MB | .wav×3 |
 | `hzm-mohaa-coop-mod/sound/amb_stereo` | 77 | 148.87 MB | .mp3×70, .wav×7 |
 | `hzm-mohaa-coop-mod/sound/characters` | 33 | 1.00 MB | .wav×33 |
@@ -391,7 +397,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/sound/items` | 7 | 0.11 MB | .wav×7 |
 | `hzm-mohaa-coop-mod/sound/mechanics` | 1 | 0.23 MB | .wav×1 |
 | `hzm-mohaa-coop-mod/sound/music` | 90 | 271.40 MB | .mp3×89, .bak×1 |
-| `hzm-mohaa-coop-mod/sound/weapons/fire` | 63 | 11.03 MB | .wav×63 |
+| `hzm-mohaa-coop-mod/sound/weapons/fire` | 65 | 11.24 MB | .wav×65 |
 | `hzm-mohaa-coop-mod/sound/weapons/foley` | 11 | 0.60 MB | .wav×11 |
 | `hzm-mohaa-coop-mod/sound/weapons/impact` | 54 | 3.36 MB | .wav×54 |
 | `hzm-mohaa-coop-mod/sound/weapons/zings` | 21 | 1.36 MB | .wav×21 |
@@ -404,6 +410,8 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/coop_gore` | 2 | 0.10 MB | .tga×2 |
 | `hzm-mohaa-coop-mod/textures/coop_gore3` | 3 | 17.04 MB | .tga×3 |
 | `hzm-mohaa-coop-mod/textures/coop_johnson` | 16 | 0.11 MB | .jpg×16 |
+| `hzm-mohaa-coop-mod/textures/coop_m10` | 13 | 1.95 MB | .tga×13 |
+| `hzm-mohaa-coop-mod/textures/coop_panzerfaust` | 3 | 0.81 MB | .tga×3 |
 | `hzm-mohaa-coop-mod/textures/fg42` | 1 | 0.19 MB | .jpg×1 |
 | `hzm-mohaa-coop-mod/textures/gametext` | 37 | 77.60 MB | .tga×37 |
 | `hzm-mohaa-coop-mod/textures/hipout01` | 7 | 2.81 MB | .tga×7 |
@@ -1141,7 +1149,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `bust.scr` | 1,574 | 86.0 KB | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
 | `butler.scr` | 498 | 18.9 KB | created by chrissstrahl on 2019.09.12 |
 | `cannonThink.scr` | 147 | 4.8 KB | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
-| `challenges.scr` | 3,700 | 225.3 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
+| `challenges.scr` | 3,711 | 226.6 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
 | `collectible.scr` | 375 | 18.6 KB | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
 | `coop_placements.scr` | 1,021 | 32.1 KB | HZM coop - BAKED BUILD-MODE PLACEMENTS (generated from build_<map>.dat). |
 | `coop_selftest.scr` | 320 | 13.2 KB | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
@@ -1346,7 +1354,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `entsound.scr` | 15 | 0.5 KB | local.ent playsound local.sound wait //[202][hotfix] |
 | `exploder.scr` | 744 | 20.0 KB | Exploding chunk system created by Mackey McCandlish. |
 | `friendly.scr` | 2,895 | 88.6 KB | [202] chrissstrahl |
-| `giveall.scr` | 126 | 5.3 KB | HZM coop - "give all" weapon list (read by the engine GiveCheat when a player runs "give all"). |
+| `giveall.scr` | 130 | 5.5 KB | HZM coop - "give all" weapon list (read by the engine GiveCheat when a player runs "give all"). |
 | `headaim.scr` | 37 | 1.3 KB | chrissstrahl - made compatible to coop |
 | `hoveringplane.scr` | 250 | 7.9 KB | HZM coop [user 07-22 bug-1031] override of retail global/hoveringplane.scr: the ambient |
 | `items.scr` | 567 | 13.6 KB | MoH: Allied Assault Script File |
@@ -2988,7 +2996,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `t26r_d.tik` | 125 | 2.6 KB |  |
 | `t26r_tank.tik` | 76 | 2.2 KB |  |
 
-### `hzm-mohaa-coop-mod/models/weapons/` — 53 source files
+### `hzm-mohaa-coop-mod/models/weapons/` — 55 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -3024,6 +3032,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `kar98.tik` | 365 | 8.7 KB |  |
 | `kar98_lite.tik` | 354 | 8.4 KB |  |
 | `kar98_mortar.tik` | 433 | 10.2 KB |  |
+| `m10_revolver.tik` | 538 | 16.8 KB |  |
 | `m1_garand.tik` | 411 | 10.1 KB |  |
 | `m1_garand_lite.tik` | 402 | 9.8 KB |  |
 | `m2frag_grenade_sp.tik` | 19 | 0.5 KB |  |
@@ -3033,6 +3042,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `mp40.tik` | 695 | 17.1 KB |  |
 | `mp44.tik` | 351 | 8.8 KB |  |
 | `p38.tik` | 277 | 7.6 KB |  |
+| `panzerfaust.tik` | 293 | 8.0 KB |  |
 | `panzerschreck.tik` | 275 | 6.6 KB |  |
 | `ppsh_smg.tik` | 327 | 8.2 KB |  |
 | `shotgun.tik` | 341 | 8.2 KB |  |
@@ -3046,7 +3056,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `tt33silenced.tik` | 241 | 7.0 KB |  |
 | `welrod.tik` | 254 | 7.2 KB |  |
 
-### `hzm-mohaa-coop-mod/scripts/` — 61 source files
+### `hzm-mohaa-coop-mod/scripts/` — 63 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -3091,9 +3101,11 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_hud_sprites.shader` | 98 | 2.8 KB |  |
 | `coop_johnson.shader` | 156 | 2.9 KB |  |
 | `coop_loadscreens.shader` | 16 | 0.6 KB |  |
+| `coop_m10.shader` | 132 | 2.1 KB |  |
 | `coop_mohaaru_imports.shader` | 1,212 | 26.2 KB |  |
 | `coop_mohaaru_props.shader` | 2,177 | 37.9 KB |  |
 | `coop_oilslick.shader` | 15 | 0.5 KB |  |
+| `coop_panzerfaust.shader` | 33 | 1.0 KB |  |
 | `coop_sandstorm.shader` | 67 | 1.0 KB |  |
 | `coop_static_vehicles.shader` | 99 | 2.8 KB |  |
 | `coop_water_overrides.shader` | 96 | 2.9 KB |  |
@@ -3126,7 +3138,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_morocco_ubersound.scr` | 15 | 0.7 KB | UBERSOUND FILE |
 | `coop_taunt.scr` | 81 | 10.6 KB | HZM coop - MP TAUNT wrappers so campaign AI can jeer at the players (2026-07-17, REBUILT 2026-07-18). |
 | `uberdialog.scr` | 42,175 | 6023.9 KB | UBERDIALOG |
-| `ubersound.scr` | 5,407 | 592.2 KB | start chrissstrahl - fix sound issue |
+| `ubersound.scr` | 5,415 | 593.0 KB | start chrissstrahl - fix sound issue |
 
 ### `hzm-mohaa-coop-mod/ui/` — 108 source files
 
@@ -4045,7 +4057,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `cg_ui.cpp` | 286 | 7.8 KB | DESCRIPTION: |
 | `cg_vehicle.cpp` | 39 | 1.2 KB | DESCRIPTION: |
 | `cg_view.c` | 3,019 | 143.6 KB |  |
-| `cg_viewmodelanim.c` | 725 | 25.8 KB | DESCRIPTION: |
+| `cg_viewmodelanim.c` | 743 | 26.7 KB | DESCRIPTION: |
 | `cg_volumetricsmoke.cpp` | 1,370 | 44.4 KB | DESCRIPTION: |
 | `memarchiver.cpp` | 241 | 5.5 KB |  |
 | `memarchiver.h` | 73 | 2.3 KB | DESCRIPTION: |
