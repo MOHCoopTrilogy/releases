@@ -108,12 +108,10 @@ as opt-in. Right now the shipped behaviour is whatever a fallback branch happens
 
 ## Awaiting the next playtest (2026-08-17)
 
-- **Panzerfaust does not fire at all** (bug-1907). Cause NOT found. Its weapon definition is
-  byte-identical to the working Panzerschreck apart from name and rank, and the projectile, ammo,
-  fire animation, `tag_barrel` and first-person prefix were each verified directly. The elimination
-  list is in the bug entry - read it before re-covering that ground. **The baseline is unverified:**
-  every comparison is against a Panzerschreck nobody has confirmed fires in coop, so test the
-  Panzerschreck and bazooka too. If all three are dead the cause is shared and upstream.
+- **Panzerfaust: REMOVED (2026-08-18).** Never fired despite the bug-1907 elimination
+  campaign; the user called it a dead end. Stripped from every system; armory id 73 stays a
+  permanent hole (never renumber). The WW1 flamethrower remains the candidate for a future
+  launcher-slot novelty if wanted.
 - **Skin system: built end-to-end, awaiting menu playtest (2026-08-18).** All 357 finish variants
   across 45 guns; the finish strip (8 buttons + VARIANT) in the armory; 7 finish challenges; both
   unlock gates server-side at apply AND spawn; 4 imported model variants (MP40 Reactivated,

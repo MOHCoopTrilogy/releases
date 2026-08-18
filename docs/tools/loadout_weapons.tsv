@@ -85,6 +85,5 @@ id	tik	give	xfm	charanim	cls	tab	name	cd	b0	b1	b2	b3	clip	clipn	recoil	slots	req
 70	models/weapons/johnson_m1941.tik		0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	JOHNSON M1941	.30-06 / SEMI-AUTO / 10 RD	5	4	8	10	10	10	m1_garand	12	UNLOCK: 120 long-range	kills
 71	models/weapons/thompsonsmg_gold.tik		0 0 0 1.00 0 90 180	coop_hold_smg	smg	2	THOMPSON (GOLD)	.45 ACP / FULL-AUTO	2	9	8	8	30	30	thompsonsmg	12	UNLOCK: 250 Thompson	kills
 72	models/weapons/dp28.tik		0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	3	DP-28	7.62x54R / FULL-AUTO / 47 RD	3	7	8	6	50	47	bar	12	UNLOCK: 200 reinforcement	kills
-73	models/weapons/panzerfaust.tik		0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	3	PANZERFAUST	ROCKET / ANTI-TANK / 1 RD	10	1	6	3	1	1	panzerschreck	12	UNLOCK: destroy 40	vehicles
 74	models/weapons/mauser_c96.tik		0 0 0 1.60 0 90 180	coop_hold_pistol		4	MAUSER C96	7.63MM / SEMI-AUTO / 10 RD	3	5	9	9	10	10	p38	3	UNLOCK: 150 headshots	
 75	models/weapons/m10_revolver.tik		0 0 0 1.60 0 90 180	coop_hold_pistol		4	S&W M10 .38	.38 SPECIAL / REVOLVER / 6 RD	3	5	8	9	6	6	nagant_revolver	3	UNLOCK: 250 headshots	

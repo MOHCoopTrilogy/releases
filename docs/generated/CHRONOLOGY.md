@@ -13,24 +13,28 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `1bfb0a2 2026-08-18 tools: gen_loadout p-pages carry the VARIANT button state; wildcard surfaces verified against the mesh; OPEN.md skin status` |
-| commits | 120 |
+| HEAD | `ae866c6 2026-08-18 tools: service record gains the WEAPON FINISHES page; finish-table regen preserves the variant block` |
+| commits | 121 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **1 modified, 0 untracked** |
+| unstaged diff | 1 file changed, 4 insertions(+), 1 deletion(-) |
+
+> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 66 |
+| 2026-08 | 67 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (120)
+### Commits since 2026-01-01 (121)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `ae866c6` | 2026-08-18 | joncurry94-tech | tools: service record gains the WEAPON FINISHES page; finish-table regen preserves the variant block |
 | `1bfb0a2` | 2026-08-18 | joncurry94-tech | tools: gen_loadout p-pages carry the VARIANT button state; wildcard surfaces verified against the mesh; OPEN.md skin status |
 | `2820baf` | 2026-08-18 | joncurry94-tech | tools: challenge validator learns the finish_* reward class; buglog |
 | `3ff2c3e` | 2026-08-18 | joncurry94-tech | three fixes the log had been reporting all along |
@@ -157,8 +161,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `30dda59 2026-08-18 finish strip: playtest round 1 fixes` |
-| commits | 1,458 |
+| HEAD | `2609e97 2026-08-18 service record: the server-side pin marker used "setas" - not a command in this engine` |
+| commits | 1,466 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -166,7 +170,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 65 |
+| 2026-08 | 73 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -206,10 +210,18 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (109)
+### Commits since 2026-01-01 (117)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `2609e97` | 2026-08-18 | joncurry94 | service record: the server-side pin marker used "setas" - not a command in this engine |
+| `6bbf470` | 2026-08-18 | joncurry94 | loadout: the main-menu armory can now SHOW model variants with no server |
+| `aea6b84` | 2026-08-18 | joncurry94 | skins: bolt rifles actually cycle their bolts; three variants removed by user call |
+| `1b542d5` | 2026-08-18 | joncurry94 | skins wave 2: nine authored-shader variants - the packs shipped none |
+| `c96a781` | 2026-08-18 | joncurry94 | skins: the G98 stays bolt-action - menu host and tik body decoupled |
+| `897d865` | 2026-08-18 | joncurry94 | skins: P14, M1903 and Gewehr 98 re-hosted onto the Enfield, Springfield and G43 |
+| `7128b08` | 2026-08-18 | joncurry94 | skins: 13 more model variants + the VARIANT button now cycles |
+| `ceca89d` | 2026-08-18 | joncurry94 | skins: every unlock announces through the existing challenge pipeline |
 | `30dda59` | 2026-08-18 | joncurry94 | finish strip: playtest round 1 fixes |
 | `f0e0e5d` | 2026-08-18 | joncurry94 | skins: four model variants imported and wired onto the strip's VARIANT button |
 | `9a9b442` | 2026-08-18 | joncurry94 | loadout: the finish strip - skin variants pickable in the armory, locked and validated |
