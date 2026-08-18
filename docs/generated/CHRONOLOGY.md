@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `2820baf 2026-08-18 tools: challenge validator learns the finish_* reward class; buglog` |
-| commits | 119 |
+| HEAD | `1bfb0a2 2026-08-18 tools: gen_loadout p-pages carry the VARIANT button state; wildcard surfaces verified against the mesh; OPEN.md skin status` |
+| commits | 120 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 65 |
+| 2026-08 | 66 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (119)
+### Commits since 2026-01-01 (120)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `1bfb0a2` | 2026-08-18 | joncurry94-tech | tools: gen_loadout p-pages carry the VARIANT button state; wildcard surfaces verified against the mesh; OPEN.md skin status |
 | `2820baf` | 2026-08-18 | joncurry94-tech | tools: challenge validator learns the finish_* reward class; buglog |
 | `3ff2c3e` | 2026-08-18 | joncurry94-tech | three fixes the log had been reporting all along |
 | `2435d34` | 2026-08-17 | joncurry94-tech | docs: record the skin-variant architecture and what is awaiting a playtest |
@@ -156,8 +157,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `9a9b442 2026-08-18 loadout: the finish strip - skin variants pickable in the armory, locked and validated` |
-| commits | 1,456 |
+| HEAD | `30dda59 2026-08-18 finish strip: playtest round 1 fixes` |
+| commits | 1,458 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -165,7 +166,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 63 |
+| 2026-08 | 65 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -205,10 +206,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (107)
+### Commits since 2026-01-01 (109)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `30dda59` | 2026-08-18 | joncurry94 | finish strip: playtest round 1 fixes |
+| `f0e0e5d` | 2026-08-18 | joncurry94 | skins: four model variants imported and wired onto the strip's VARIANT button |
 | `9a9b442` | 2026-08-18 | joncurry94 | loadout: the finish strip - skin variants pickable in the armory, locked and validated |
 | `a841889` | 2026-08-18 | joncurry94 | plan: skin variant selector - finish strip design, unlock wiring, import grading |
 | `45fed1e` | 2026-08-18 | joncurry94 | skins full rollout + m3l3 MG42 suppression spread + officer heal metered over a minute |

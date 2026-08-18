@@ -25,6 +25,14 @@ BARX=1300; BARW=470; BARH=44; CNTX=BARX+BARW+22
 # appears in chal_def. Falls back to the old mechanical transform ONLY for a reward value added
 # later that hasn't been curated yet, so nothing silently goes blank.
 REWARD_NAMES = {
+    # weapon finishes (the armory strip - symbolic rewards probed from the unlock store)
+    "finish_gold": "Gold Weapon Finish",
+    "finish_chrome": "Chrome Weapon Finish",
+    "finish_blued": "Blued Weapon Finish",
+    "finish_bloody": "Bloody Weapon Finish",
+    "finish_camo_woodland": "Woodland Camo Finish",
+    "finish_camo_winter": "Winter Camo Finish",
+    "finish_camo_desert": "Desert Camo Finish",
     # helmets
     "models/coop_helmets/coop_helmet_29th.tik": "29th Infantry Helmet",
     "models/coop_helmets/coop_helmet_29thnet.tik": "29th Infantry Netted Helmet",
@@ -377,7 +385,8 @@ catspec=[("rifles",          "RIFLES",           "RIFLES",   True,  "WEAPONS"),
          ("vehicles",        "ARMOR & VEHICLES", "ARMOR",    False, "ARMOR"),
          ("campaign",        "CAMPAIGN",         "CAMPAIGN", False, "CAMPAIGN"),
          ("discovery",       "STEALTH & FEATS",  "STEALTH",  False, "STEALTH"),
-         ("axis",            "AXIS FORCES",      "AXIS",     False, "AXIS")]   # [user 2026-08-04] faction kill tracking
+         ("axis",            "AXIS FORCES",      "AXIS",     False, "AXIS"),   # [user 2026-08-04] faction kill tracking
+         ("finishes",        "WEAPON FINISHES",  "STEALTH",  False, "STEALTH")]  # [user 2026-08-18] the finish strip's 7 unlock challenges - grouped under the STEALTH & FEATS tab (a 10th tab would wrap the button row)
 # [user 08-07] REDESIGN: one tab per TAB GROUP (not per sub-page, not even per catspec category
 # now that weapons share one tab) - the old scheme gave every sub-page its own tab (RIFLES /
 # RIFLES 2 / CAMPAIGN 1-5 / ...), 23 buttons crammed into two rows once Medals was added. Now

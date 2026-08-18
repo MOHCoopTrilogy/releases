@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 36,721 |
+| files in the workspace | 36,762 |
 | bytes | 40.0 GB |
-| files in project scope (indexed per-file) | 11,350 |
-| source files (per-file rows with line counts) | 5,290 |
+| files in project scope (indexed per-file) | 11,391 |
+| source files (per-file rows with line counts) | 5,307 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -26,7 +26,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 |---|---:|---:|---|---|
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
-| `hzm-mohaa-coop-mod` | 7,886 | 5447.6 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 7,927 | 5453.1 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
 | `openmohaa-hzm` | 2,656 | 86.2 MB | **yes** | **the engine** - HZM fork of OpenMOHAA (C/C++) |
 | `UBER-MODS-v8.00-MOHAA` | 2,614 | 115.5 MB | no - reference | third-party mod, reference only |
@@ -79,9 +79,9 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.dds` | 3,557 |
 | `.scr` | 2,506 |
 | `.tga` | 1,719 |
-| `.jpg` | 1,662 |
-| `.tik` | 1,580 |
-| `.cfg` | 1,421 |
+| `.jpg` | 1,668 |
+| `.tik` | 1,584 |
+| `.cfg` | 1,430 |
 | `.png` | 1,370 |
 | `.obj` | 1,224 |
 | `.h` | 955 |
@@ -91,10 +91,10 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.asf` | 514 |
 | `.cpp` | 473 |
 | `.ogg` | 376 |
-| `.skc` | 353 |
-| `.skd` | 328 |
+| `.skc` | 367 |
+| `.skd` | 332 |
 | `.md` | 314 |
-| `.shader` | 200 |
+| `.shader` | 204 |
 | `.urc` | 169 |
 | `.json` | 130 |
 | `.bsp` | 129 |
@@ -189,7 +189,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
-| `hzm-mohaa-coop-mod` | 38 | 1452.04 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
+| `hzm-mohaa-coop-mod` | 38 | 1454.41 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -234,7 +234,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/_research/release_drafts` | 6 | 0.04 MB | .md×6 |
 | `hzm-mohaa-coop-mod/anim` | 21 | 0.15 MB | .scr×21 |
 | `hzm-mohaa-coop-mod/cmpatch` | 1 | 0.00 MB | .txt×1 |
-| `hzm-mohaa-coop-mod/coop_mod` | 117 | 3.61 MB | .scr×112, .st×3, .cfg×2 |
+| `hzm-mohaa-coop-mod/coop_mod` | 117 | 3.62 MB | .scr×112, .st×3, .cfg×2 |
 | `hzm-mohaa-coop-mod/coop_mod/alias` | 2 | 0.03 MB | .cfg×1, .scr×1 |
 | `hzm-mohaa-coop-mod/coop_mod/bp` | 5 | 0.03 MB | .dat×5 |
 | `hzm-mohaa-coop-mod/coop_mod/cache` | 1 | 0.00 MB | .scr×1 |
@@ -365,16 +365,20 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/models/vehicles/shermantank` | 2 | 0.70 MB | .skd×1, .skb×1 |
 | `hzm-mohaa-coop-mod/models/vehicles/t26` | 11 | 0.33 MB | .skc×9, .skd×2 |
 | `hzm-mohaa-coop-mod/models/vehicles/t26_d` | 2 | 0.26 MB | .skc×1, .skd×1 |
-| `hzm-mohaa-coop-mod/models/weapons` | 423 | 3.74 MB | .tik×412, .txt×11 |
+| `hzm-mohaa-coop-mod/models/weapons` | 427 | 3.78 MB | .tik×416, .txt×11 |
 | `hzm-mohaa-coop-mod/models/weapons/carbine` | 1 | 0.00 MB | .skc×1 |
 | `hzm-mohaa-coop-mod/models/weapons/coop_c96` | 3 | 0.21 MB | .skc×2, .skd×1 |
 | `hzm-mohaa-coop-mod/models/weapons/coop_dp28` | 4 | 0.15 MB | .skc×3, .skd×1 |
 | `hzm-mohaa-coop-mod/models/weapons/coop_johnson` | 4 | 0.65 MB | .skc×3, .skd×1 |
 | `hzm-mohaa-coop-mod/models/weapons/coop_m10` | 4 | 0.16 MB | .skc×3, .skd×1 |
+| `hzm-mohaa-coop-mod/models/weapons/coop_mp40r2` | 5 | 0.14 MB | .skc×4, .skd×1 |
+| `hzm-mohaa-coop-mod/models/weapons/coop_pabar` | 4 | 0.33 MB | .skc×3, .skd×1 |
+| `hzm-mohaa-coop-mod/models/weapons/coop_pagarand` | 5 | 0.32 MB | .skc×4, .skd×1 |
 | `hzm-mohaa-coop-mod/models/weapons/coop_panzerfaust` | 2 | 0.05 MB | .skc×1, .skd×1 |
+| `hzm-mohaa-coop-mod/models/weapons/coop_tommy28` | 4 | 0.22 MB | .skc×3, .skd×1 |
 | `hzm-mohaa-coop-mod/models/weapons/fg42` | 2 | 0.09 MB | .skc×1, .skd×1 |
 | `hzm-mohaa-coop-mod/music` | 1 | 0.00 MB | .mus×1 |
-| `hzm-mohaa-coop-mod/scripts` | 65 | 0.52 MB | .shader×64, (none)×1 |
+| `hzm-mohaa-coop-mod/scripts` | 69 | 0.52 MB | .shader×68, (none)×1 |
 | `hzm-mohaa-coop-mod/sound/amb` | 3 | 2.34 MB | .wav×3 |
 | `hzm-mohaa-coop-mod/sound/amb_stereo` | 77 | 148.87 MB | .mp3×70, .wav×7 |
 | `hzm-mohaa-coop-mod/sound/characters` | 33 | 1.00 MB | .wav×33 |
@@ -415,6 +419,9 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/coop_gore3` | 3 | 17.04 MB | .tga×3 |
 | `hzm-mohaa-coop-mod/textures/coop_johnson` | 16 | 0.11 MB | .jpg×16 |
 | `hzm-mohaa-coop-mod/textures/coop_m10` | 13 | 1.95 MB | .tga×13 |
+| `hzm-mohaa-coop-mod/textures/coop_mp40r2` | 3 | 0.28 MB | .jpg×3 |
+| `hzm-mohaa-coop-mod/textures/coop_pabar` | 1 | 0.15 MB | .jpg×1 |
+| `hzm-mohaa-coop-mod/textures/coop_pagarand` | 1 | 0.81 MB | .jpg×1 |
 | `hzm-mohaa-coop-mod/textures/coop_panzerfaust` | 3 | 0.81 MB | .tga×3 |
 | `hzm-mohaa-coop-mod/textures/coop_skins` | 1 | 0.05 MB | .tga×1 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/bar` | 8 | 1.68 MB | .jpg×8 |
@@ -468,6 +475,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/coop_skins/us_w_minedetector` | 4 | 0.26 MB | .jpg×4 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/webley_revolver` | 8 | 0.45 MB | .jpg×8 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/welrod` | 20 | 1.98 MB | .jpg×20 |
+| `hzm-mohaa-coop-mod/textures/coop_tommy28` | 1 | 0.80 MB | .jpg×1 |
 | `hzm-mohaa-coop-mod/textures/fg42` | 1 | 0.19 MB | .jpg×1 |
 | `hzm-mohaa-coop-mod/textures/gametext` | 37 | 77.60 MB | .tga×37 |
 | `hzm-mohaa-coop-mod/textures/hipout01` | 7 | 2.81 MB | .tga×7 |
@@ -591,7 +599,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/coop_objectives` | 46 | 0.02 MB | .cfg×46 |
 | `hzm-mohaa-coop-mod/ui/coop_start` | 14 | 0.03 MB | .cfg×14 |
 | `hzm-mohaa-coop-mod/ui/coop_tiles` | 14 | 0.79 MB | .jpg×14 |
-| `hzm-mohaa-coop-mod/ui/loadout` | 415 | 0.14 MB | .cfg×415 |
+| `hzm-mohaa-coop-mod/ui/loadout` | 424 | 0.15 MB | .cfg×424 |
 | `hzm-mohaa-coop-mod/ui/loadout/helm` | 48 | 0.03 MB | .cfg×48 |
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 135 | 0.13 MB | .cfg×135 |
 | `manifests` | 43 | 0.55 MB | .json×43 |
@@ -947,13 +955,13 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `check_challenges.py` | 319 | 13.5 KB | !/usr/bin/env python3 |
 | `check_download_links.py` | 78 | 3.0 KB |  |
 | `check_empty_rhs.py` | 95 | 3.8 KB |  |
-| `check_tik_surfaces.py` | 80 | 3.2 KB |  |
+| `check_tik_surfaces.py` | 88 | 3.7 KB |  |
 | `count_skel_channels.py` | 180 | 7.2 KB |  |
 | `depthscan2.py` | 76 | 2.3 KB |  |
 | `docgen.py` | 1,471 | 62.1 KB | !/usr/bin/env python3 |
 | `docs.cmd` | 13 | 0.5 KB |  |
 | `docs.ps1` | 49 | 1.5 KB |  |
-| `gen_loadout.py` | 309 | 13.6 KB | !/usr/bin/env python |
+| `gen_loadout.py` | 317 | 13.8 KB | !/usr/bin/env python |
 | `gen_public_pages.py` | 540 | 21.2 KB | !/usr/bin/env python3 |
 | `gen_service_record.py` | 923 | 58.0 KB | [user 08-07] friendly display name for a challenge's reward field (chal_def's 7th arg) |
 | `gen_skins.py` | 285 | 12.7 KB |  |
@@ -1251,9 +1259,9 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `ladder.scr` | 295 | 15.6 KB | HZM coop - PLACEABLE CLIMBABLE LADDERS [user 2026-08-05] bug-1415 |
 | `ladder_state.scr` | 24 | 1.2 KB | HZM coop - LADDER STATE HOOK [user 2026-08-05] bug-1415 |
 | `loadout.scr` | 765 | 47.5 KB | [200] Smithy - this contains the weaponsloadout for coop |
-| `loadoutpick.scr` | 882 | 49.4 KB | [310] HZM coop ARMORY - per-player loadout picks (Phase 1). |
+| `loadoutpick.scr` | 923 | 51.5 KB | [310] HZM coop ARMORY - per-player loadout picks (Phase 1). |
 | `loadoutroster.scr` | 844 | 27.4 KB | GENERATED by scratchpad/gen_loadout3.py -- DO NOT HAND-EDIT (regenerate instead) |
-| `loadoutskins.scr` | 380 | 36.5 KB | GENERATED by build_finish_strip.py + gen_skins.py - the server-side skin variant table. |
+| `loadoutskins.scr` | 394 | 37.6 KB | GENERATED by build_finish_strip.py + gen_skins.py - the server-side skin variant table. |
 | `lobby.scr` | 1,177 | 53.4 KB | HZM Coop - Pre-Mission Lobby module. Full spec: _research/coop_lobby1_build.md |
 | `lobbyui.scr` | 265 | 10.6 KB | [304] CLICKABLE LOBBY UI - a mouse cursor + button framework for the live |
 | `m4l3_precache.scr` | 157 | 6.0 KB |  |
@@ -1418,7 +1426,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `entsound.scr` | 15 | 0.5 KB | local.ent playsound local.sound wait //[202][hotfix] |
 | `exploder.scr` | 744 | 20.0 KB | Exploding chunk system created by Mackey McCandlish. |
 | `friendly.scr` | 2,895 | 88.6 KB | [202] chrissstrahl |
-| `giveall.scr` | 140 | 5.9 KB | HZM coop - "give all" weapon list (read by the engine GiveCheat when a player runs "give all"). |
+| `giveall.scr` | 145 | 6.1 KB | HZM coop - "give all" weapon list (read by the engine GiveCheat when a player runs "give all"). |
 | `headaim.scr` | 37 | 1.3 KB | chrissstrahl - made compatible to coop |
 | `hoveringplane.scr` | 250 | 7.9 KB | HZM coop [user 07-22 bug-1031] override of retail global/hoveringplane.scr: the ambient |
 | `items.scr` | 567 | 13.6 KB | MoH: Allied Assault Script File |
@@ -3060,7 +3068,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `t26r_d.tik` | 125 | 2.6 KB |  |
 | `t26r_tank.tik` | 76 | 2.2 KB |  |
 
-### `hzm-mohaa-coop-mod/models/weapons/` — 412 source files
+### `hzm-mohaa-coop-mod/models/weapons/` — 416 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -3090,6 +3098,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `bar_camo_woodland.tik` | 353 | 10.0 KB |  |
 | `bar_chrome.tik` | 353 | 10.0 KB |  |
 | `bar_gold.tik` | 353 | 10.0 KB |  |
+| `bar_pabar.tik` | 350 | 9.3 KB |  |
 | `bazooka.tik` | 299 | 7.1 KB |  |
 | `bazooka_bloody.tik` | 299 | 7.4 KB |  |
 | `bazooka_blued.tik` | 299 | 7.4 KB |  |
@@ -3288,6 +3297,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `m1_garand_lite_camo_woodland.tik` | 402 | 10.4 KB |  |
 | `m1_garand_lite_chrome.tik` | 402 | 10.3 KB |  |
 | `m1_garand_lite_gold.tik` | 402 | 10.3 KB |  |
+| `m1_garand_pagarand.tik` | 411 | 10.4 KB |  |
 | `m2frag_grenade_sp.tik` | 19 | 0.5 KB |  |
 | `m2frag_grenade_sp_start.tik` | 19 | 0.4 KB |  |
 | `m2frag_grenade_start.tik` | 17 | 0.3 KB |  |
@@ -3321,6 +3331,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `mp40_camo_woodland.tik` | 695 | 17.8 KB |  |
 | `mp40_chrome.tik` | 695 | 17.8 KB |  |
 | `mp40_gold.tik` | 695 | 17.8 KB |  |
+| `mp40_mp40r2.tik` | 701 | 17.5 KB |  |
 | `mp44.tik` | 351 | 8.8 KB |  |
 | `mp44_bloody.tik` | 351 | 9.2 KB |  |
 | `mp44_blued.tik` | 351 | 9.2 KB |  |
@@ -3417,6 +3428,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `thompsonsmg_camo_woodland.tik` | 332 | 8.8 KB |  |
 | `thompsonsmg_chrome.tik` | 332 | 8.8 KB |  |
 | `thompsonsmg_gold.tik` | 332 | 8.8 KB |  |
+| `thompsonsmg_tommy28.tik` | 333 | 8.7 KB |  |
 | `tt33.tik` | 239 | 6.7 KB |  |
 | `tt33_bloody.tik` | 239 | 7.0 KB |  |
 | `tt33_blued.tik` | 239 | 7.0 KB |  |
@@ -3477,7 +3489,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `welrod_chrome.tik` | 254 | 7.5 KB |  |
 | `welrod_gold.tik` | 254 | 7.5 KB |  |
 
-### `hzm-mohaa-coop-mod/scripts/` — 64 source files
+### `hzm-mohaa-coop-mod/scripts/` — 68 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -3525,11 +3537,15 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_m10.shader` | 132 | 2.1 KB |  |
 | `coop_mohaaru_imports.shader` | 1,212 | 26.2 KB |  |
 | `coop_mohaaru_props.shader` | 2,177 | 37.9 KB |  |
+| `coop_mp40r2.shader` | 32 | 0.7 KB |  |
 | `coop_oilslick.shader` | 15 | 0.5 KB |  |
+| `coop_pabar.shader` | 12 | 0.4 KB |  |
+| `coop_pagarand.shader` | 12 | 0.4 KB |  |
 | `coop_panzerfaust.shader` | 33 | 1.0 KB |  |
 | `coop_sandstorm.shader` | 67 | 1.0 KB |  |
 | `coop_skins.shader` | 10,277 | 211.5 KB |  |
 | `coop_static_vehicles.shader` | 99 | 2.8 KB |  |
+| `coop_tommy28.shader` | 12 | 0.4 KB |  |
 | `coop_water_overrides.shader` | 96 | 2.9 KB |  |
 | `coop_weather.shader` | 21 | 0.7 KB |  |
 | `coop_xpbar.shader` | 53 | 2.1 KB |  |
@@ -3583,7 +3599,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coopDev.urc` | 276 | 5.6 KB |  |
 | `coopMomMenuExample.urc` | 276 | 5.4 KB |  |
 | `coop_jeepEnter.urc` | 31 | 0.5 KB |  |
-| `coop_loadout.urc` | 3,911 | 75.5 KB |  |
+| `coop_loadout.urc` | 3,941 | 76.4 KB |  |
 | `coop_login.urc` | 280 | 5.1 KB |  |
 | `coop_mom.urc` | 287 | 5.5 KB |  |
 | `coop_objectives.urc` | 1,343 | 23.3 KB |  |
@@ -3783,7 +3799,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `t2.cfg` | 58 | 3.0 KB | HZM coop - sets the SH (Spearhead) mission 2 maps on the menu (Phase 3 rollout) |
 | `t3.cfg` | 55 | 2.6 KB | HZM coop - sets the SH (Spearhead) mission 3 maps on the menu (Phase 3 rollout) |
 
-### `hzm-mohaa-coop-mod/ui/loadout/` — 415 source files
+### `hzm-mohaa-coop-mod/ui/loadout/` — 424 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -3795,41 +3811,45 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `clrk2.cfg` | 4 | 0.2 KB | GENERATED - deny revert (locked pick): blank slot 2 chips but KEEP coop_loA2 (archived resend recipe) |
 | `clrk3.cfg` | 4 | 0.2 KB | GENERATED - deny revert (locked pick): blank slot 3 chips but KEEP coop_loA3 (archived resend recipe) |
 | `clrk4.cfg` | 4 | 0.2 KB | GENERATED - deny revert (locked pick): blank slot 4 chips but KEEP coop_loA4 (archived resend recipe) |
-| `fin0_s1.cfg` | 4 | 0.2 KB | GENERATED - apply finish 0 to slot 1 (0 = back to standard). seta persists the |
-| `fin0_s2.cfg` | 4 | 0.2 KB | GENERATED - apply finish 0 to slot 2 (0 = back to standard). seta persists the |
-| `fin0_s3.cfg` | 4 | 0.2 KB | GENERATED - apply finish 0 to slot 3 (0 = back to standard). seta persists the |
-| `fin0_s4.cfg` | 4 | 0.2 KB | GENERATED - apply finish 0 to slot 4 (0 = back to standard). seta persists the |
-| `fin1_s1.cfg` | 4 | 0.2 KB | GENERATED - apply finish 1 to slot 1 (0 = back to standard). seta persists the |
-| `fin1_s2.cfg` | 4 | 0.2 KB | GENERATED - apply finish 1 to slot 2 (0 = back to standard). seta persists the |
-| `fin1_s3.cfg` | 4 | 0.2 KB | GENERATED - apply finish 1 to slot 3 (0 = back to standard). seta persists the |
-| `fin1_s4.cfg` | 4 | 0.2 KB | GENERATED - apply finish 1 to slot 4 (0 = back to standard). seta persists the |
-| `fin2_s1.cfg` | 4 | 0.2 KB | GENERATED - apply finish 2 to slot 1 (0 = back to standard). seta persists the |
-| `fin2_s2.cfg` | 4 | 0.2 KB | GENERATED - apply finish 2 to slot 2 (0 = back to standard). seta persists the |
-| `fin2_s3.cfg` | 4 | 0.2 KB | GENERATED - apply finish 2 to slot 3 (0 = back to standard). seta persists the |
-| `fin2_s4.cfg` | 4 | 0.2 KB | GENERATED - apply finish 2 to slot 4 (0 = back to standard). seta persists the |
-| `fin3_s1.cfg` | 4 | 0.2 KB | GENERATED - apply finish 3 to slot 1 (0 = back to standard). seta persists the |
-| `fin3_s2.cfg` | 4 | 0.2 KB | GENERATED - apply finish 3 to slot 2 (0 = back to standard). seta persists the |
-| `fin3_s3.cfg` | 4 | 0.2 KB | GENERATED - apply finish 3 to slot 3 (0 = back to standard). seta persists the |
-| `fin3_s4.cfg` | 4 | 0.2 KB | GENERATED - apply finish 3 to slot 4 (0 = back to standard). seta persists the |
-| `fin4_s1.cfg` | 4 | 0.2 KB | GENERATED - apply finish 4 to slot 1 (0 = back to standard). seta persists the |
-| `fin4_s2.cfg` | 4 | 0.2 KB | GENERATED - apply finish 4 to slot 2 (0 = back to standard). seta persists the |
-| `fin4_s3.cfg` | 4 | 0.2 KB | GENERATED - apply finish 4 to slot 3 (0 = back to standard). seta persists the |
-| `fin4_s4.cfg` | 4 | 0.2 KB | GENERATED - apply finish 4 to slot 4 (0 = back to standard). seta persists the |
-| `fin5_s1.cfg` | 4 | 0.2 KB | GENERATED - apply finish 5 to slot 1 (0 = back to standard). seta persists the |
-| `fin5_s2.cfg` | 4 | 0.2 KB | GENERATED - apply finish 5 to slot 2 (0 = back to standard). seta persists the |
-| `fin5_s3.cfg` | 4 | 0.2 KB | GENERATED - apply finish 5 to slot 3 (0 = back to standard). seta persists the |
-| `fin5_s4.cfg` | 4 | 0.2 KB | GENERATED - apply finish 5 to slot 4 (0 = back to standard). seta persists the |
-| `fin6_s1.cfg` | 4 | 0.2 KB | GENERATED - apply finish 6 to slot 1 (0 = back to standard). seta persists the |
-| `fin6_s2.cfg` | 4 | 0.2 KB | GENERATED - apply finish 6 to slot 2 (0 = back to standard). seta persists the |
-| `fin6_s3.cfg` | 4 | 0.2 KB | GENERATED - apply finish 6 to slot 3 (0 = back to standard). seta persists the |
-| `fin6_s4.cfg` | 4 | 0.2 KB | GENERATED - apply finish 6 to slot 4 (0 = back to standard). seta persists the |
-| `fin7_s1.cfg` | 4 | 0.2 KB | GENERATED - apply finish 7 to slot 1 (0 = back to standard). seta persists the |
-| `fin7_s2.cfg` | 4 | 0.2 KB | GENERATED - apply finish 7 to slot 2 (0 = back to standard). seta persists the |
-| `fin7_s3.cfg` | 4 | 0.2 KB | GENERATED - apply finish 7 to slot 3 (0 = back to standard). seta persists the |
-| `fin7_s4.cfg` | 4 | 0.2 KB | GENERATED - apply finish 7 to slot 4 (0 = back to standard). seta persists the |
+| `fin0_s1.cfg` | 6 | 0.3 KB | GENERATED - apply finish 0 to slot 1 (0 = standard, 8 = this gun's model variant). |
+| `fin0_s2.cfg` | 6 | 0.3 KB | GENERATED - apply finish 0 to slot 2 (0 = standard, 8 = this gun's model variant). |
+| `fin0_s3.cfg` | 6 | 0.3 KB | GENERATED - apply finish 0 to slot 3 (0 = standard, 8 = this gun's model variant). |
+| `fin0_s4.cfg` | 6 | 0.3 KB | GENERATED - apply finish 0 to slot 4 (0 = standard, 8 = this gun's model variant). |
+| `fin1_s1.cfg` | 6 | 0.3 KB | GENERATED - apply finish 1 to slot 1 (0 = standard, 8 = this gun's model variant). |
+| `fin1_s2.cfg` | 6 | 0.3 KB | GENERATED - apply finish 1 to slot 2 (0 = standard, 8 = this gun's model variant). |
+| `fin1_s3.cfg` | 6 | 0.3 KB | GENERATED - apply finish 1 to slot 3 (0 = standard, 8 = this gun's model variant). |
+| `fin1_s4.cfg` | 6 | 0.3 KB | GENERATED - apply finish 1 to slot 4 (0 = standard, 8 = this gun's model variant). |
+| `fin2_s1.cfg` | 6 | 0.3 KB | GENERATED - apply finish 2 to slot 1 (0 = standard, 8 = this gun's model variant). |
+| `fin2_s2.cfg` | 6 | 0.3 KB | GENERATED - apply finish 2 to slot 2 (0 = standard, 8 = this gun's model variant). |
+| `fin2_s3.cfg` | 6 | 0.3 KB | GENERATED - apply finish 2 to slot 3 (0 = standard, 8 = this gun's model variant). |
+| `fin2_s4.cfg` | 6 | 0.3 KB | GENERATED - apply finish 2 to slot 4 (0 = standard, 8 = this gun's model variant). |
+| `fin3_s1.cfg` | 6 | 0.3 KB | GENERATED - apply finish 3 to slot 1 (0 = standard, 8 = this gun's model variant). |
+| `fin3_s2.cfg` | 6 | 0.3 KB | GENERATED - apply finish 3 to slot 2 (0 = standard, 8 = this gun's model variant). |
+| `fin3_s3.cfg` | 6 | 0.3 KB | GENERATED - apply finish 3 to slot 3 (0 = standard, 8 = this gun's model variant). |
+| `fin3_s4.cfg` | 6 | 0.3 KB | GENERATED - apply finish 3 to slot 4 (0 = standard, 8 = this gun's model variant). |
+| `fin4_s1.cfg` | 6 | 0.3 KB | GENERATED - apply finish 4 to slot 1 (0 = standard, 8 = this gun's model variant). |
+| `fin4_s2.cfg` | 6 | 0.3 KB | GENERATED - apply finish 4 to slot 2 (0 = standard, 8 = this gun's model variant). |
+| `fin4_s3.cfg` | 6 | 0.3 KB | GENERATED - apply finish 4 to slot 3 (0 = standard, 8 = this gun's model variant). |
+| `fin4_s4.cfg` | 6 | 0.3 KB | GENERATED - apply finish 4 to slot 4 (0 = standard, 8 = this gun's model variant). |
+| `fin5_s1.cfg` | 6 | 0.3 KB | GENERATED - apply finish 5 to slot 1 (0 = standard, 8 = this gun's model variant). |
+| `fin5_s2.cfg` | 6 | 0.3 KB | GENERATED - apply finish 5 to slot 2 (0 = standard, 8 = this gun's model variant). |
+| `fin5_s3.cfg` | 6 | 0.3 KB | GENERATED - apply finish 5 to slot 3 (0 = standard, 8 = this gun's model variant). |
+| `fin5_s4.cfg` | 6 | 0.3 KB | GENERATED - apply finish 5 to slot 4 (0 = standard, 8 = this gun's model variant). |
+| `fin6_s1.cfg` | 6 | 0.3 KB | GENERATED - apply finish 6 to slot 1 (0 = standard, 8 = this gun's model variant). |
+| `fin6_s2.cfg` | 6 | 0.3 KB | GENERATED - apply finish 6 to slot 2 (0 = standard, 8 = this gun's model variant). |
+| `fin6_s3.cfg` | 6 | 0.3 KB | GENERATED - apply finish 6 to slot 3 (0 = standard, 8 = this gun's model variant). |
+| `fin6_s4.cfg` | 6 | 0.3 KB | GENERATED - apply finish 6 to slot 4 (0 = standard, 8 = this gun's model variant). |
+| `fin7_s1.cfg` | 6 | 0.3 KB | GENERATED - apply finish 7 to slot 1 (0 = standard, 8 = this gun's model variant). |
+| `fin7_s2.cfg` | 6 | 0.3 KB | GENERATED - apply finish 7 to slot 2 (0 = standard, 8 = this gun's model variant). |
+| `fin7_s3.cfg` | 6 | 0.3 KB | GENERATED - apply finish 7 to slot 3 (0 = standard, 8 = this gun's model variant). |
+| `fin7_s4.cfg` | 6 | 0.3 KB | GENERATED - apply finish 7 to slot 4 (0 = standard, 8 = this gun's model variant). |
+| `fin8_s1.cfg` | 6 | 0.3 KB | GENERATED - apply finish 8 to slot 1 (0 = standard, 8 = this gun's model variant). |
+| `fin8_s2.cfg` | 6 | 0.3 KB | GENERATED - apply finish 8 to slot 2 (0 = standard, 8 = this gun's model variant). |
+| `fin8_s3.cfg` | 6 | 0.3 KB | GENERATED - apply finish 8 to slot 3 (0 = standard, 8 = this gun's model variant). |
+| `fin8_s4.cfg` | 6 | 0.3 KB | GENERATED - apply finish 8 to slot 4 (0 = standard, 8 = this gun's model variant). |
 | `fitbinds.cfg` | 16 | 0.4 KB | GENERATED - FIT-TUNE fast-nudge key binds (client-local; cleared by fitunbind.cfg). |
 | `fitunbind.cfg` | 16 | 0.2 KB | GENERATED - clear the FIT-TUNE fast-nudge key binds. |
-| `init.cfg` | 84 | 2.6 KB | GENERATED - armory view-state init (slot 1 active, RIFLES page, nothing inspected). |
+| `init.cfg` | 102 | 3.2 KB | GENERATED - armory view-state init (slot 1 active, RIFLES page, nothing inspected). |
 | `lkfin.cfg` | 32 | 0.9 KB | GENERATED - finish-strip padlocks + commit gates. Fail-LOCKED defaults; the archived |
 | `lktab0.cfg` | 99 | 1.9 KB | GENERATED - client-side padlock recompute for tab 0 (RIFLE). Fail-LOCKED default. |
 | `lktab1.cfg` | 100 | 1.9 KB | GENERATED - client-side padlock recompute for tab 1 (SNIPER). Fail-LOCKED default. |
@@ -3838,81 +3858,81 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `lktab4.cfg` | 110 | 2.1 KB | GENERATED - client-side padlock recompute for tab 4 (PISTOL). Fail-LOCKED default. |
 | `lktab5.cfg` | 88 | 1.7 KB | GENERATED - client-side padlock recompute for tab 5 (NADES). Fail-LOCKED default. |
 | `open.cfg` | 4 | 0.1 KB | GENERATED - open the armory: seed view state, push the menu, ping the bus. |
-| `p01.cfg` | 24 | 0.7 KB |  |
-| `p02.cfg` | 24 | 0.7 KB |  |
-| `p03.cfg` | 24 | 0.7 KB |  |
-| `p04.cfg` | 24 | 0.7 KB |  |
-| `p05.cfg` | 24 | 0.7 KB |  |
-| `p06.cfg` | 24 | 0.8 KB |  |
-| `p07.cfg` | 24 | 0.8 KB |  |
-| `p08.cfg` | 24 | 0.7 KB |  |
-| `p09.cfg` | 24 | 0.8 KB |  |
-| `p10.cfg` | 24 | 0.7 KB |  |
-| `p11.cfg` | 24 | 0.8 KB |  |
-| `p12.cfg` | 24 | 0.8 KB |  |
-| `p13.cfg` | 24 | 0.7 KB |  |
-| `p14.cfg` | 24 | 0.7 KB |  |
-| `p15.cfg` | 24 | 0.8 KB |  |
-| `p16.cfg` | 24 | 0.7 KB |  |
-| `p17.cfg` | 24 | 0.8 KB |  |
-| `p18.cfg` | 24 | 0.8 KB |  |
-| `p19.cfg` | 24 | 0.8 KB |  |
-| `p20.cfg` | 24 | 0.8 KB |  |
-| `p21.cfg` | 24 | 0.8 KB |  |
-| `p22.cfg` | 24 | 0.8 KB |  |
-| `p23.cfg` | 24 | 0.7 KB |  |
-| `p24.cfg` | 24 | 0.7 KB |  |
-| `p25.cfg` | 24 | 0.7 KB |  |
-| `p26.cfg` | 24 | 0.7 KB |  |
-| `p27.cfg` | 24 | 0.8 KB |  |
-| `p28.cfg` | 24 | 0.7 KB |  |
-| `p29.cfg` | 24 | 0.7 KB |  |
-| `p30.cfg` | 24 | 0.8 KB |  |
-| `p31.cfg` | 24 | 0.7 KB |  |
-| `p32.cfg` | 24 | 0.8 KB |  |
-| `p33.cfg` | 24 | 0.8 KB |  |
-| `p34.cfg` | 24 | 0.7 KB |  |
-| `p35.cfg` | 24 | 0.7 KB |  |
-| `p36.cfg` | 24 | 0.7 KB |  |
-| `p37.cfg` | 24 | 0.7 KB |  |
-| `p38.cfg` | 24 | 0.8 KB |  |
-| `p39.cfg` | 24 | 0.7 KB |  |
-| `p40.cfg` | 24 | 0.8 KB |  |
-| `p41.cfg` | 24 | 0.7 KB |  |
-| `p42.cfg` | 24 | 0.8 KB |  |
-| `p43.cfg` | 24 | 0.7 KB |  |
-| `p44.cfg` | 24 | 0.7 KB |  |
-| `p45.cfg` | 24 | 0.7 KB |  |
-| `p46.cfg` | 24 | 0.8 KB |  |
-| `p47.cfg` | 24 | 0.7 KB |  |
-| `p48.cfg` | 24 | 0.7 KB |  |
-| `p49.cfg` | 24 | 0.7 KB |  |
-| `p50.cfg` | 24 | 0.7 KB |  |
-| `p51.cfg` | 24 | 0.7 KB |  |
-| `p52.cfg` | 24 | 0.7 KB |  |
-| `p53.cfg` | 24 | 0.7 KB |  |
-| `p54.cfg` | 24 | 0.7 KB |  |
-| `p55.cfg` | 24 | 0.7 KB |  |
-| `p56.cfg` | 24 | 0.8 KB |  |
-| `p57.cfg` | 24 | 0.7 KB |  |
-| `p58.cfg` | 24 | 0.8 KB |  |
-| `p59.cfg` | 24 | 0.7 KB |  |
-| `p60.cfg` | 24 | 0.7 KB |  |
-| `p61.cfg` | 24 | 0.7 KB |  |
-| `p62.cfg` | 24 | 0.7 KB |  |
-| `p63.cfg` | 24 | 0.7 KB |  |
-| `p64.cfg` | 24 | 0.7 KB |  |
-| `p65.cfg` | 24 | 0.8 KB |  |
-| `p66.cfg` | 24 | 0.7 KB |  |
-| `p67.cfg` | 24 | 0.7 KB |  |
-| `p68.cfg` | 24 | 0.7 KB |  |
-| `p69.cfg` | 24 | 0.7 KB |  |
-| `p70.cfg` | 24 | 0.8 KB |  |
-| `p71.cfg` | 24 | 0.8 KB |  |
-| `p72.cfg` | 24 | 0.7 KB |  |
-| `p73.cfg` | 24 | 0.8 KB |  |
-| `p74.cfg` | 24 | 0.7 KB |  |
-| `p75.cfg` | 24 | 0.8 KB |  |
+| `p01.cfg` | 26 | 0.8 KB |  |
+| `p02.cfg` | 26 | 0.8 KB |  |
+| `p03.cfg` | 26 | 0.8 KB |  |
+| `p04.cfg` | 26 | 0.8 KB |  |
+| `p05.cfg` | 26 | 0.8 KB |  |
+| `p06.cfg` | 26 | 0.8 KB |  |
+| `p07.cfg` | 26 | 0.8 KB |  |
+| `p08.cfg` | 26 | 0.8 KB |  |
+| `p09.cfg` | 26 | 0.8 KB |  |
+| `p10.cfg` | 26 | 0.8 KB |  |
+| `p11.cfg` | 26 | 0.8 KB |  |
+| `p12.cfg` | 26 | 0.8 KB |  |
+| `p13.cfg` | 26 | 0.8 KB |  |
+| `p14.cfg` | 26 | 0.8 KB |  |
+| `p15.cfg` | 26 | 0.8 KB |  |
+| `p16.cfg` | 26 | 0.8 KB |  |
+| `p17.cfg` | 26 | 0.8 KB |  |
+| `p18.cfg` | 26 | 0.8 KB |  |
+| `p19.cfg` | 26 | 0.8 KB |  |
+| `p20.cfg` | 26 | 0.8 KB |  |
+| `p21.cfg` | 26 | 0.8 KB |  |
+| `p22.cfg` | 26 | 0.8 KB |  |
+| `p23.cfg` | 26 | 0.8 KB |  |
+| `p24.cfg` | 26 | 0.8 KB |  |
+| `p25.cfg` | 26 | 0.8 KB |  |
+| `p26.cfg` | 26 | 0.8 KB |  |
+| `p27.cfg` | 26 | 0.8 KB |  |
+| `p28.cfg` | 26 | 0.8 KB |  |
+| `p29.cfg` | 26 | 0.8 KB |  |
+| `p30.cfg` | 26 | 0.8 KB |  |
+| `p31.cfg` | 26 | 0.8 KB |  |
+| `p32.cfg` | 26 | 0.8 KB |  |
+| `p33.cfg` | 26 | 0.8 KB |  |
+| `p34.cfg` | 26 | 0.8 KB |  |
+| `p35.cfg` | 26 | 0.8 KB |  |
+| `p36.cfg` | 26 | 0.8 KB |  |
+| `p37.cfg` | 26 | 0.8 KB |  |
+| `p38.cfg` | 26 | 0.8 KB |  |
+| `p39.cfg` | 26 | 0.8 KB |  |
+| `p40.cfg` | 26 | 0.8 KB |  |
+| `p41.cfg` | 26 | 0.8 KB |  |
+| `p42.cfg` | 26 | 0.8 KB |  |
+| `p43.cfg` | 26 | 0.8 KB |  |
+| `p44.cfg` | 26 | 0.8 KB |  |
+| `p45.cfg` | 26 | 0.8 KB |  |
+| `p46.cfg` | 26 | 0.8 KB |  |
+| `p47.cfg` | 26 | 0.8 KB |  |
+| `p48.cfg` | 26 | 0.8 KB |  |
+| `p49.cfg` | 26 | 0.8 KB |  |
+| `p50.cfg` | 26 | 0.8 KB |  |
+| `p51.cfg` | 26 | 0.8 KB |  |
+| `p52.cfg` | 26 | 0.8 KB |  |
+| `p53.cfg` | 26 | 0.8 KB |  |
+| `p54.cfg` | 26 | 0.8 KB |  |
+| `p55.cfg` | 26 | 0.8 KB |  |
+| `p56.cfg` | 26 | 0.8 KB |  |
+| `p57.cfg` | 26 | 0.8 KB |  |
+| `p58.cfg` | 26 | 0.8 KB |  |
+| `p59.cfg` | 26 | 0.8 KB |  |
+| `p60.cfg` | 26 | 0.8 KB |  |
+| `p61.cfg` | 26 | 0.8 KB |  |
+| `p62.cfg` | 26 | 0.8 KB |  |
+| `p63.cfg` | 26 | 0.8 KB |  |
+| `p64.cfg` | 26 | 0.8 KB |  |
+| `p65.cfg` | 26 | 0.8 KB |  |
+| `p66.cfg` | 26 | 0.8 KB |  |
+| `p67.cfg` | 26 | 0.8 KB |  |
+| `p68.cfg` | 26 | 0.8 KB |  |
+| `p69.cfg` | 26 | 0.8 KB |  |
+| `p70.cfg` | 26 | 0.8 KB |  |
+| `p71.cfg` | 26 | 0.8 KB |  |
+| `p72.cfg` | 26 | 0.8 KB |  |
+| `p73.cfg` | 26 | 0.8 KB |  |
+| `p74.cfg` | 26 | 0.8 KB |  |
+| `p75.cfg` | 26 | 0.8 KB |  |
 | `req02.cfg` | 2 | 0.1 KB |  |
 | `req03.cfg` | 2 | 0.1 KB |  |
 | `req04.cfg` | 2 | 0.1 KB |  |
@@ -3992,11 +4012,16 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `reqf5.cfg` | 2 | 0.1 KB |  |
 | `reqf6.cfg` | 2 | 0.1 KB |  |
 | `reqf7.cfg` | 2 | 0.1 KB |  |
+| `reqmv.cfg` | 1 | 0.0 KB |  |
+| `reqmv01.cfg` | 2 | 0.1 KB |  |
+| `reqmv24.cfg` | 2 | 0.1 KB |  |
+| `reqmv26.cfg` | 2 | 0.1 KB |  |
+| `reqmv36.cfg` | 2 | 0.1 KB |  |
 | `reset.cfg` | 19 | 0.4 KB | GENERATED - clear all armory picks (client cvars + tell the server). |
-| `s1sel.cfg` | 22 | 0.7 KB | GENERATED - activate loadout slot 1 |
-| `s2sel.cfg` | 22 | 0.7 KB | GENERATED - activate loadout slot 2 |
-| `s3sel.cfg` | 22 | 0.7 KB | GENERATED - activate loadout slot 3 |
-| `s4sel.cfg` | 22 | 0.7 KB | GENERATED - activate loadout slot 4 |
+| `s1sel.cfg` | 25 | 0.8 KB | GENERATED - activate loadout slot 1 |
+| `s2sel.cfg` | 25 | 0.8 KB | GENERATED - activate loadout slot 2 |
+| `s3sel.cfg` | 25 | 0.8 KB | GENERATED - activate loadout slot 3 |
+| `s4sel.cfg` | 25 | 0.8 KB | GENERATED - activate loadout slot 4 |
 | `t01.cfg` | 3 | 0.1 KB | GENERATED - inspect + LOCK-GATED equip-into-active-slot (coop_loCmt<id> = commit or deny) |
 | `t02.cfg` | 3 | 0.1 KB | GENERATED - inspect + LOCK-GATED equip-into-active-slot (coop_loCmt<id> = commit or deny) |
 | `t03.cfg` | 3 | 0.1 KB | GENERATED - inspect + LOCK-GATED equip-into-active-slot (coop_loCmt<id> = commit or deny) |
