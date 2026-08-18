@@ -17,6 +17,7 @@ Scoped to models/weapons/ in the MOD only. Retail player models genuinely ship t
 bury our own defects under content we do not own - the same reason the wav-existence check was
 deleted from audit_weapons.py.
 """
+import fnmatch
 import glob
 import io
 import os
@@ -60,6 +61,13 @@ def main():
         for s in surfs:
             if s.lower() == "all":
                 continue        # TIKI wildcard for every surface, not a name - bar.tik uses it
+            if "*" in s:
+                # glob wildcard (the MOHPA Garand textures via Skin*) - legal, but it must MATCH
+                # something on the mesh or the whole line is a silent no-op
+                if not any(fnmatch.fnmatch(h.lower(), s.lower()) for h in have):
+                    fails.append("%s: wildcard surface '%s' matches nothing on %s"
+                                 % (os.path.basename(p), s, mskel.group(1)))
+                continue
             if s not in have and s.lower() not in {h.lower() for h in have}:
                 fails.append("%s: surface '%s' is not on %s (mesh has: %s)"
                              % (os.path.basename(p), s, mskel.group(1),

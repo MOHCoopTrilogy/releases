@@ -114,14 +114,14 @@ as opt-in. Right now the shipped behaviour is whatever a fallback branch happens
   list is in the bug entry - read it before re-covering that ground. **The baseline is unverified:**
   every comparison is against a Panzerschreck nobody has confirmed fires in coop, so test the
   Panzerschreck and bazooka too. If all three are dead the cause is shared and upstream.
-- **Stage finishes need a visual verdict.** Gold, chrome and blued are shader stages, so the envmap
-  sheen only exists at runtime and cannot be judged offline. Chrome is the expected weak one -
-  fixed-function can tint but cannot desaturate the base texture, so if it reads pale blue rather
-  than metal it moves to baked. Blood and the three camos were signed off from a contact sheet.
-- **Skin system is a vertical slice only.** Thompson is wired end-to-end (7 finishes, all surfaces
-  resolving, on the all-weapons bind). Still to build: the 7 finish challenges, the eligibility
-  check against each gun's existing mastery challenge, and the 8-widget picker with its per-slot
-  cvar. Deliberately not started until the look is signed off.
+- **Skin system: built end-to-end, awaiting menu playtest (2026-08-18).** All 357 finish variants
+  across 45 guns; the finish strip (8 buttons + VARIANT) in the armory; 7 finish challenges; both
+  unlock gates server-side at apply AND spawn; 4 imported model variants (MP40 Reactivated,
+  Thompson M1928, BAR + Garand Pacific) on the strip's VARIANT button, gated on each gun's Elite
+  challenge. Stage finishes visually approved in play ("three metal finishes are good"). STILL
+  OPEN: the in-hand reload magazine keeps the stock skin (models/ammo/<gun>_clip.tik - reference
+  point unknown, needs a runtime probe; both the MP40 and Tommy packs ship replacement clip
+  models we can use once found); MOHPA porter unidentified - credits entry pending.
 
 ## Defects with evidence
 

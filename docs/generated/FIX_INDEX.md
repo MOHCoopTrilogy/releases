@@ -8,7 +8,7 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-952 distinct file paths, 3,117 distinct tags.
+953 distinct file paths, 3,119 distinct tags.
 
 ## Files with the most history
 
@@ -355,6 +355,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | 4 | `bug-666` `bug-1205` `bug-1675` `bug-1678` |
 | `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr + player.scr + itemhandler.scr` | 2 | `bug-800` `bug-802` |
 | `hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr` | 2 | `bug-1902` `bug-1906` |
+| `hzm-mohaa-coop-mod/coop_mod/loadoutskins.scr` | 1 | `bug-1916` |
 | `hzm-mohaa-coop-mod/coop_mod/lobby.scr` | 18 | `bug-348` `bug-349` `bug-350` `bug-355` `bug-356` `bug-363` `bug-366` `bug-367` `bug-368` `bug-369` `bug-370` `bug-362` `bug-364` `bug-365` `bug-378` `bug-400` `bug-401` `bug-402` |
 | `hzm-mohaa-coop-mod/coop_mod/lobbyui.scr` | 1 | `bug-588` |
 | `hzm-mohaa-coop-mod/coop_mod/main.scr` | 8 | `bug-359` `bug-358` `bug-898` `bug-871` `bug-893` `bug-940` `bug-1251` `bug-1337` |
@@ -1386,13 +1387,14 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `carry-over` | 3 | `bug-592` `bug-595` `bug-597` |
 | `cascade` | 1 | `bug-533` |
 | `cascade-shadows` | 1 | `bug-1164` |
-| `case-sensitivity` | 2 | `bug-1542` `bug-482` |
+| `case-sensitivity` | 3 | `bug-1542` `bug-1916` `bug-482` |
 | `case-weapon` | 1 | `bug-731` |
 | `casemate` | 1 | `bug-1003` |
 | `catalog` | 6 | `bug-1567` `bug-1581` `bug-417` `bug-418` `bug-853` `bug-854` |
 | `categorization` | 1 | `bug-1536` |
 | `catlabel` | 1 | `bug-718` |
 | `caught-before-shipping` | 1 | `bug-1779` |
+| `caught-pre-ship` | 1 | `bug-1916` |
 | `cbuf` | 1 | `bug-1664` |
 | `cdb` | 2 | `bug-1566` `bug-598` |
 | `census` | 2 | `bug-1445` `bug-946` |
@@ -2159,7 +2161,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `gen_service_record` | 3 | `bug-1510` `bug-1511` `bug-1519` |
 | `gen_sr4` | 1 | `bug-534` |
 | `general-rule` | 1 | `bug-1575` |
-| `generator` | 12 | `bug-1247` `bug-1416` `bug-1464` `bug-1896` `bug-1902` `bug-1908` `bug-586` `bug-666` `bug-731` `bug-796` `bug-817` `bug-armory-roster76` |
+| `generator` | 13 | `bug-1247` `bug-1416` `bug-1464` `bug-1896` `bug-1902` `bug-1908` `bug-1916` `bug-586` `bug-666` `bug-731` `bug-796` `bug-817` `bug-armory-roster76` |
 | `generator-drift` | 1 | `bug-755` |
 | `generator-misfire` | 1 | `bug-936b` |
 | `gentitynum_bits` | 3 | `bug-929` `bug-930` `bug-gl2-invisible-friendly-actor` |
@@ -2474,7 +2476,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `load-in` | 1 | `bug-1401` |
 | `load_scale` | 1 | `bug-1228` |
 | `loaddds` | 1 | `bug-m3l2-ground-seams` |
-| `loadout` | 34 | `bug-1204` `bug-1252` `bug-1279` `bug-133` `bug-1675` `bug-1677` `bug-1678` `bug-1692` `bug-1729` `bug-1896` `bug-1902` `bug-1906` `bug-1908` `bug-586` `bug-587` `bug-588` `bug-589` `bug-591` `bug-592` `bug-595` `bug-618` `bug-620` `bug-626` `bug-627` `bug-666` `bug-682` `bug-683` `bug-707` `bug-716` `bug-758` `bug-800` `bug-802` `bug-871` `bug-897` |
+| `loadout` | 35 | `bug-1204` `bug-1252` `bug-1279` `bug-133` `bug-1675` `bug-1677` `bug-1678` `bug-1692` `bug-1729` `bug-1896` `bug-1902` `bug-1906` `bug-1908` `bug-1916` `bug-586` `bug-587` `bug-588` `bug-589` `bug-591` `bug-592` `bug-595` `bug-618` `bug-620` `bug-626` `bug-627` `bug-666` `bug-682` `bug-683` `bug-707` `bug-716` `bug-758` `bug-800` `bug-802` `bug-871` `bug-897` |
 | `loadout-ui` | 2 | `bug-1358` `bug-armory-roster76` |
 | `loadoutpick` | 1 | `bug-1205` |
 | `loadtga` | 1 | `bug-059` |
@@ -3498,7 +3500,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `skin-snap` | 1 | `bug-905` |
 | `skin-tier` | 1 | `bug-1874` |
 | `skin9` | 1 | `bug-809` |
-| `skins` | 12 | `bug-1356` `bug-1357` `bug-1358` `bug-1359` `bug-1360` `bug-1521` `bug-1523` `bug-1545` `bug-1901` `bug-1913` `bug-731` `bug-armory-roster76` |
+| `skins` | 13 | `bug-1356` `bug-1357` `bug-1358` `bug-1359` `bug-1360` `bug-1521` `bug-1523` `bug-1545` `bug-1901` `bug-1913` `bug-1916` `bug-731` `bug-armory-roster76` |
 | `skip` | 1 | `bug-788` |
 | `skip-locked` | 2 | `bug-759` `bug-772` |
 | `skipteamandweaponselect` | 1 | `bug-369` |
@@ -3643,6 +3645,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `stranded-actor` | 1 | `bug-1575` |
 | `stranded-text` | 1 | `bug-1792` |
 | `string-helper` | 1 | `bug-1351` |
+| `string-keys` | 1 | `bug-1916` |
 | `string-literal` | 1 | `bug-331` |
 | `string-vs-int` | 2 | `bug-1281` `bug-1372` |
 | `stringify` | 2 | `bug-1148` `bug-1240` |

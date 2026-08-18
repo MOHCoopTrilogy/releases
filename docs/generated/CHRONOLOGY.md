@@ -13,27 +13,25 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `3ff2c3e 2026-08-18 three fixes the log had been reporting all along` |
-| commits | 118 |
+| HEAD | `2820baf 2026-08-18 tools: challenge validator learns the finish_* reward class; buglog` |
+| commits | 119 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **2 modified, 0 untracked** |
-| unstaged diff | 2 files changed, 32 insertions(+), 3 deletions(-) |
-
-> Working tree is dirty. Everything in those 2 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 64 |
+| 2026-08 | 65 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (118)
+### Commits since 2026-01-01 (119)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `2820baf` | 2026-08-18 | joncurry94-tech | tools: challenge validator learns the finish_* reward class; buglog |
 | `3ff2c3e` | 2026-08-18 | joncurry94-tech | three fixes the log had been reporting all along |
 | `2435d34` | 2026-08-17 | joncurry94-tech | docs: record the skin-variant architecture and what is awaiting a playtest |
 | `ff53624` | 2026-08-17 | joncurry94-tech | skins: generate weapon finish variants - one tik and shader set per gun per finish |
@@ -158,8 +156,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `a841889 2026-08-18 plan: skin variant selector - finish strip design, unlock wiring, import grading` |
-| commits | 1,455 |
+| HEAD | `9a9b442 2026-08-18 loadout: the finish strip - skin variants pickable in the armory, locked and validated` |
+| commits | 1,456 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -167,7 +165,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 62 |
+| 2026-08 | 63 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -207,10 +205,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (106)
+### Commits since 2026-01-01 (107)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `9a9b442` | 2026-08-18 | joncurry94 | loadout: the finish strip - skin variants pickable in the armory, locked and validated |
 | `a841889` | 2026-08-18 | joncurry94 | plan: skin variant selector - finish strip design, unlock wiring, import grading |
 | `45fed1e` | 2026-08-18 | joncurry94 | skins full rollout + m3l3 MG42 suppression spread + officer heal metered over a minute |
 | `3a3f121` | 2026-08-18 | joncurry94 | cfg: seed coop_fireDebug 1 for the Panzerfaust hunt - ReadyToFire prints every value it decides on |

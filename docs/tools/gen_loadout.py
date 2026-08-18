@@ -54,7 +54,15 @@ def preview(w):
     for s in "1234":
         cmds.append('"exec ui/loadout/w%s_s%s.cfg"' % (w["id"], s) if s in slots
                     else '"vstr coop_loDeny"')
+    # [user 2026-08-18] finish strip, fid 8: the generic VARIANT button lights up only while a
+    # gun with an imported model variant is previewed. Host tile ids are pinned here; the actual
+    # variant + its unlock live in loadoutskins.scr, keyed on the give path.
+    MV_HOSTS = ("01", "24", "26", "36")
+    mv_on = "1" if w["id"] in MV_HOSTS else "0"
+    mv_req = ("exec ui/loadout/reqmv%s.cfg" % w["id"]) if w["id"] in MV_HOSTS else "exec ui/loadout/reqclear.cfg"
     L = [
+        'set coop_loMvOn %s' % mv_on,
+        'set coop_loMvReqCur "%s"' % mv_req,
         'set coop_loPrev "%s"' % w["tik"],
         'set coop_loXfmW "%s"' % w["xfm"],
         'set coop_loPrevId "%s"' % w["id"],

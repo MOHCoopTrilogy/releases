@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 36,680 |
+| files in the workspace | 36,721 |
 | bytes | 40.0 GB |
-| files in project scope (indexed per-file) | 11,309 |
-| source files (per-file rows with line counts) | 5,249 |
+| files in project scope (indexed per-file) | 11,350 |
+| source files (per-file rows with line counts) | 5,290 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -26,7 +26,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 |---|---:|---:|---|---|
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
-| `hzm-mohaa-coop-mod` | 7,845 | 5447.5 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 7,886 | 5447.6 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
 | `openmohaa-hzm` | 2,656 | 86.2 MB | **yes** | **the engine** - HZM fork of OpenMOHAA (C/C++) |
 | `UBER-MODS-v8.00-MOHAA` | 2,614 | 115.5 MB | no - reference | third-party mod, reference only |
@@ -77,11 +77,11 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 |---|---:|
 | `.wav` | 14,221 |
 | `.dds` | 3,557 |
-| `.scr` | 2,505 |
+| `.scr` | 2,506 |
 | `.tga` | 1,719 |
 | `.jpg` | 1,662 |
 | `.tik` | 1,580 |
-| `.cfg` | 1,381 |
+| `.cfg` | 1,421 |
 | `.png` | 1,370 |
 | `.obj` | 1,224 |
 | `.h` | 955 |
@@ -189,7 +189,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
-| `hzm-mohaa-coop-mod` | 38 | 1452.02 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
+| `hzm-mohaa-coop-mod` | 38 | 1452.04 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -234,7 +234,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/_research/release_drafts` | 6 | 0.04 MB | .md×6 |
 | `hzm-mohaa-coop-mod/anim` | 21 | 0.15 MB | .scr×21 |
 | `hzm-mohaa-coop-mod/cmpatch` | 1 | 0.00 MB | .txt×1 |
-| `hzm-mohaa-coop-mod/coop_mod` | 116 | 3.56 MB | .scr×111, .st×3, .cfg×2 |
+| `hzm-mohaa-coop-mod/coop_mod` | 117 | 3.61 MB | .scr×112, .st×3, .cfg×2 |
 | `hzm-mohaa-coop-mod/coop_mod/alias` | 2 | 0.03 MB | .cfg×1, .scr×1 |
 | `hzm-mohaa-coop-mod/coop_mod/bp` | 5 | 0.03 MB | .dat×5 |
 | `hzm-mohaa-coop-mod/coop_mod/cache` | 1 | 0.00 MB | .scr×1 |
@@ -586,12 +586,12 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/sprites` | 5 | 0.14 MB | .tga×5 |
 | `hzm-mohaa-coop-mod/textures/wilderness` | 2 | 3.72 MB | .jpg×2 |
 | `hzm-mohaa-coop-mod/ubersound` | 11 | 6.93 MB | .scr×11 |
-| `hzm-mohaa-coop-mod/ui` | 111 | 0.90 MB | .urc×104, .cfg×3, .inc×2, .scr×1 |
+| `hzm-mohaa-coop-mod/ui` | 111 | 0.91 MB | .urc×104, .cfg×3, .inc×2, .scr×1 |
 | `hzm-mohaa-coop-mod/ui/coop_fov` | 33 | 0.01 MB | .cfg×31, .bat×2 |
 | `hzm-mohaa-coop-mod/ui/coop_objectives` | 46 | 0.02 MB | .cfg×46 |
 | `hzm-mohaa-coop-mod/ui/coop_start` | 14 | 0.03 MB | .cfg×14 |
 | `hzm-mohaa-coop-mod/ui/coop_tiles` | 14 | 0.79 MB | .jpg×14 |
-| `hzm-mohaa-coop-mod/ui/loadout` | 375 | 0.13 MB | .cfg×375 |
+| `hzm-mohaa-coop-mod/ui/loadout` | 415 | 0.14 MB | .cfg×415 |
 | `hzm-mohaa-coop-mod/ui/loadout/helm` | 48 | 0.03 MB | .cfg×48 |
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 135 | 0.13 MB | .cfg×135 |
 | `manifests` | 43 | 0.55 MB | .json×43 |
@@ -843,7 +843,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/misc/setup/windows/app` | 4 | 0.01 MB | .wxs×2, .wixproj×1, .wxl×1 |
 | `scratchpad` | 1 | 0.00 MB | .py×1 |
 | `server_home` | 4 | 0.78 MB | .log×4 |
-| `server_home/maintt` | 6 | 0.61 MB | .cfg×3, .pid×1, .log×1, .pre_e3l4×1 |
+| `server_home/maintt` | 6 | 0.63 MB | .cfg×3, .pid×1, .log×1, .pre_e3l4×1 |
 | `server_home/maintt/coop_mod/save` | 12 | 0.01 MB | .dat×12 |
 | `server_home/maintt/prev` | 10 | 3.83 MB | .log×10 |
 | `server_home_probe/maintt` | 5 | 0.30 MB | .cfg×3, .pid×1, .log×1 |
@@ -944,7 +944,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `audit_shaders.py` | 129 | 4.8 KB | !/usr/bin/env python |
 | `audit_weapons.py` | 361 | 15.7 KB | !/usr/bin/env python |
 | `bake_skins.py` | 92 | 4.1 KB |  |
-| `check_challenges.py` | 316 | 13.2 KB | !/usr/bin/env python3 |
+| `check_challenges.py` | 319 | 13.5 KB | !/usr/bin/env python3 |
 | `check_download_links.py` | 78 | 3.0 KB |  |
 | `check_empty_rhs.py` | 95 | 3.8 KB |  |
 | `check_tik_surfaces.py` | 80 | 3.2 KB |  |
@@ -1186,7 +1186,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `runto_inopen.scr` | 107 | 3.1 KB | HZM coop [2026-08-06] extracted from maintt/pak1.pk3 (bug-1490) to add a dog branch. Retail's own |
 | `shoot.scr` | 262 | 6.7 KB | Shoot |
 
-### `hzm-mohaa-coop-mod/coop_mod/` — 116 source files
+### `hzm-mohaa-coop-mod/coop_mod/` — 117 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -1212,7 +1212,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `bust.scr` | 1,574 | 86.0 KB | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
 | `butler.scr` | 498 | 18.9 KB | created by chrissstrahl on 2019.09.12 |
 | `cannonThink.scr` | 147 | 4.8 KB | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
-| `challenges.scr` | 3,716 | 227.2 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
+| `challenges.scr` | 3,762 | 230.6 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
 | `collectible.scr` | 375 | 18.6 KB | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
 | `coop_placements.scr` | 1,021 | 32.1 KB | HZM coop - BAKED BUILD-MODE PLACEMENTS (generated from build_<map>.dat). |
 | `coop_selftest.scr` | 320 | 13.2 KB | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
@@ -1251,8 +1251,9 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `ladder.scr` | 295 | 15.6 KB | HZM coop - PLACEABLE CLIMBABLE LADDERS [user 2026-08-05] bug-1415 |
 | `ladder_state.scr` | 24 | 1.2 KB | HZM coop - LADDER STATE HOOK [user 2026-08-05] bug-1415 |
 | `loadout.scr` | 765 | 47.5 KB | [200] Smithy - this contains the weaponsloadout for coop |
-| `loadoutpick.scr` | 730 | 41.7 KB | [310] HZM coop ARMORY - per-player loadout picks (Phase 1). |
+| `loadoutpick.scr` | 882 | 49.4 KB | [310] HZM coop ARMORY - per-player loadout picks (Phase 1). |
 | `loadoutroster.scr` | 844 | 27.4 KB | GENERATED by scratchpad/gen_loadout3.py -- DO NOT HAND-EDIT (regenerate instead) |
+| `loadoutskins.scr` | 380 | 36.5 KB | GENERATED by build_finish_strip.py + gen_skins.py - the server-side skin variant table. |
 | `lobby.scr` | 1,177 | 53.4 KB | HZM Coop - Pre-Mission Lobby module. Full spec: _research/coop_lobby1_build.md |
 | `lobbyui.scr` | 265 | 10.6 KB | [304] CLICKABLE LOBBY UI - a mouse cursor + button framework for the live |
 | `m4l3_precache.scr` | 157 | 6.0 KB |  |
@@ -1276,7 +1277,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `officer.scr` | 4,732 | 207.8 KB | Officer Boss + Radio Station |
 | `officer_positions.scr` | 624 | 34.2 KB | coop_officer_positions.scr |
 | `paradrop.scr` | 774 | 32.7 KB | Allied Paradrop System |
-| `player.scr` | 1,830 | 91.4 KB | started by chrissstrahl on 2020.10.16 ([202]) |
+| `player.scr` | 1,834 | 92.0 KB | started by chrissstrahl on 2020.10.16 ([202]) |
 | `player.st` | 18 | 0.4 KB |  |
 | `player_Torso.st` | 3,804 | 104.1 KB |  |
 | `player_legs.st` | 2,325 | 65.6 KB |  |
@@ -1298,7 +1299,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `thirdperson.scr` | 52 | 2.0 KB | HZM coop [237] - the 3rd-person bind now CYCLES three view modes (user): |
 | `tinnitus.scr` | 196 | 8.7 KB | HZM coop - TINNITUS / MUFFLED HEARING (per-player). |
 | `tracescan.scr` | 132 | 5.1 KB | coop_mod/tracescan.scr - server-side collision grid scanner (dev tool) |
-| `variables.scr` | 305 | 20.8 KB | started by chrissstrahl on 2020.10.16 ([202]) |
+| `variables.scr` | 319 | 22.2 KB | started by chrissstrahl on 2020.10.16 ([202]) |
 | `vehiclehandler.scr` | 85 | 3.4 KB |  |
 | `voidguard.scr` | 56 | 2.3 KB | coop_mod/voidguard.scr - universal out-of-bounds safety net (all maps) |
 | `wallgun.scr` | 555 | 23.4 KB | HZM coop - INVISIBLE BARRIER TOOL [user 2026-08-04] bug-1378 |
@@ -3582,7 +3583,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coopDev.urc` | 276 | 5.6 KB |  |
 | `coopMomMenuExample.urc` | 276 | 5.4 KB |  |
 | `coop_jeepEnter.urc` | 31 | 0.5 KB |  |
-| `coop_loadout.urc` | 3,682 | 70.8 KB |  |
+| `coop_loadout.urc` | 3,911 | 75.5 KB |  |
 | `coop_login.urc` | 280 | 5.1 KB |  |
 | `coop_mom.urc` | 287 | 5.5 KB |  |
 | `coop_objectives.urc` | 1,343 | 23.3 KB |  |
@@ -3782,7 +3783,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `t2.cfg` | 58 | 3.0 KB | HZM coop - sets the SH (Spearhead) mission 2 maps on the menu (Phase 3 rollout) |
 | `t3.cfg` | 55 | 2.6 KB | HZM coop - sets the SH (Spearhead) mission 3 maps on the menu (Phase 3 rollout) |
 
-### `hzm-mohaa-coop-mod/ui/loadout/` — 375 source files
+### `hzm-mohaa-coop-mod/ui/loadout/` — 415 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -3794,9 +3795,42 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `clrk2.cfg` | 4 | 0.2 KB | GENERATED - deny revert (locked pick): blank slot 2 chips but KEEP coop_loA2 (archived resend recipe) |
 | `clrk3.cfg` | 4 | 0.2 KB | GENERATED - deny revert (locked pick): blank slot 3 chips but KEEP coop_loA3 (archived resend recipe) |
 | `clrk4.cfg` | 4 | 0.2 KB | GENERATED - deny revert (locked pick): blank slot 4 chips but KEEP coop_loA4 (archived resend recipe) |
+| `fin0_s1.cfg` | 4 | 0.2 KB | GENERATED - apply finish 0 to slot 1 (0 = back to standard). seta persists the |
+| `fin0_s2.cfg` | 4 | 0.2 KB | GENERATED - apply finish 0 to slot 2 (0 = back to standard). seta persists the |
+| `fin0_s3.cfg` | 4 | 0.2 KB | GENERATED - apply finish 0 to slot 3 (0 = back to standard). seta persists the |
+| `fin0_s4.cfg` | 4 | 0.2 KB | GENERATED - apply finish 0 to slot 4 (0 = back to standard). seta persists the |
+| `fin1_s1.cfg` | 4 | 0.2 KB | GENERATED - apply finish 1 to slot 1 (0 = back to standard). seta persists the |
+| `fin1_s2.cfg` | 4 | 0.2 KB | GENERATED - apply finish 1 to slot 2 (0 = back to standard). seta persists the |
+| `fin1_s3.cfg` | 4 | 0.2 KB | GENERATED - apply finish 1 to slot 3 (0 = back to standard). seta persists the |
+| `fin1_s4.cfg` | 4 | 0.2 KB | GENERATED - apply finish 1 to slot 4 (0 = back to standard). seta persists the |
+| `fin2_s1.cfg` | 4 | 0.2 KB | GENERATED - apply finish 2 to slot 1 (0 = back to standard). seta persists the |
+| `fin2_s2.cfg` | 4 | 0.2 KB | GENERATED - apply finish 2 to slot 2 (0 = back to standard). seta persists the |
+| `fin2_s3.cfg` | 4 | 0.2 KB | GENERATED - apply finish 2 to slot 3 (0 = back to standard). seta persists the |
+| `fin2_s4.cfg` | 4 | 0.2 KB | GENERATED - apply finish 2 to slot 4 (0 = back to standard). seta persists the |
+| `fin3_s1.cfg` | 4 | 0.2 KB | GENERATED - apply finish 3 to slot 1 (0 = back to standard). seta persists the |
+| `fin3_s2.cfg` | 4 | 0.2 KB | GENERATED - apply finish 3 to slot 2 (0 = back to standard). seta persists the |
+| `fin3_s3.cfg` | 4 | 0.2 KB | GENERATED - apply finish 3 to slot 3 (0 = back to standard). seta persists the |
+| `fin3_s4.cfg` | 4 | 0.2 KB | GENERATED - apply finish 3 to slot 4 (0 = back to standard). seta persists the |
+| `fin4_s1.cfg` | 4 | 0.2 KB | GENERATED - apply finish 4 to slot 1 (0 = back to standard). seta persists the |
+| `fin4_s2.cfg` | 4 | 0.2 KB | GENERATED - apply finish 4 to slot 2 (0 = back to standard). seta persists the |
+| `fin4_s3.cfg` | 4 | 0.2 KB | GENERATED - apply finish 4 to slot 3 (0 = back to standard). seta persists the |
+| `fin4_s4.cfg` | 4 | 0.2 KB | GENERATED - apply finish 4 to slot 4 (0 = back to standard). seta persists the |
+| `fin5_s1.cfg` | 4 | 0.2 KB | GENERATED - apply finish 5 to slot 1 (0 = back to standard). seta persists the |
+| `fin5_s2.cfg` | 4 | 0.2 KB | GENERATED - apply finish 5 to slot 2 (0 = back to standard). seta persists the |
+| `fin5_s3.cfg` | 4 | 0.2 KB | GENERATED - apply finish 5 to slot 3 (0 = back to standard). seta persists the |
+| `fin5_s4.cfg` | 4 | 0.2 KB | GENERATED - apply finish 5 to slot 4 (0 = back to standard). seta persists the |
+| `fin6_s1.cfg` | 4 | 0.2 KB | GENERATED - apply finish 6 to slot 1 (0 = back to standard). seta persists the |
+| `fin6_s2.cfg` | 4 | 0.2 KB | GENERATED - apply finish 6 to slot 2 (0 = back to standard). seta persists the |
+| `fin6_s3.cfg` | 4 | 0.2 KB | GENERATED - apply finish 6 to slot 3 (0 = back to standard). seta persists the |
+| `fin6_s4.cfg` | 4 | 0.2 KB | GENERATED - apply finish 6 to slot 4 (0 = back to standard). seta persists the |
+| `fin7_s1.cfg` | 4 | 0.2 KB | GENERATED - apply finish 7 to slot 1 (0 = back to standard). seta persists the |
+| `fin7_s2.cfg` | 4 | 0.2 KB | GENERATED - apply finish 7 to slot 2 (0 = back to standard). seta persists the |
+| `fin7_s3.cfg` | 4 | 0.2 KB | GENERATED - apply finish 7 to slot 3 (0 = back to standard). seta persists the |
+| `fin7_s4.cfg` | 4 | 0.2 KB | GENERATED - apply finish 7 to slot 4 (0 = back to standard). seta persists the |
 | `fitbinds.cfg` | 16 | 0.4 KB | GENERATED - FIT-TUNE fast-nudge key binds (client-local; cleared by fitunbind.cfg). |
 | `fitunbind.cfg` | 16 | 0.2 KB | GENERATED - clear the FIT-TUNE fast-nudge key binds. |
-| `init.cfg` | 74 | 2.3 KB | GENERATED - armory view-state init (slot 1 active, RIFLES page, nothing inspected). |
+| `init.cfg` | 84 | 2.6 KB | GENERATED - armory view-state init (slot 1 active, RIFLES page, nothing inspected). |
+| `lkfin.cfg` | 32 | 0.9 KB | GENERATED - finish-strip padlocks + commit gates. Fail-LOCKED defaults; the archived |
 | `lktab0.cfg` | 99 | 1.9 KB | GENERATED - client-side padlock recompute for tab 0 (RIFLE). Fail-LOCKED default. |
 | `lktab1.cfg` | 100 | 1.9 KB | GENERATED - client-side padlock recompute for tab 1 (SNIPER). Fail-LOCKED default. |
 | `lktab2.cfg` | 101 | 1.9 KB | GENERATED - client-side padlock recompute for tab 2 (SMG). Fail-LOCKED default. |
@@ -3951,11 +3985,18 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `req74.cfg` | 2 | 0.1 KB |  |
 | `req75.cfg` | 2 | 0.1 KB |  |
 | `reqclear.cfg` | 2 | 0.0 KB |  |
+| `reqf1.cfg` | 2 | 0.1 KB |  |
+| `reqf2.cfg` | 2 | 0.1 KB |  |
+| `reqf3.cfg` | 2 | 0.1 KB |  |
+| `reqf4.cfg` | 2 | 0.1 KB |  |
+| `reqf5.cfg` | 2 | 0.1 KB |  |
+| `reqf6.cfg` | 2 | 0.1 KB |  |
+| `reqf7.cfg` | 2 | 0.1 KB |  |
 | `reset.cfg` | 19 | 0.4 KB | GENERATED - clear all armory picks (client cvars + tell the server). |
-| `s1sel.cfg` | 13 | 0.3 KB | GENERATED - activate loadout slot 1 |
-| `s2sel.cfg` | 13 | 0.3 KB | GENERATED - activate loadout slot 2 |
-| `s3sel.cfg` | 13 | 0.3 KB | GENERATED - activate loadout slot 3 |
-| `s4sel.cfg` | 13 | 0.3 KB | GENERATED - activate loadout slot 4 |
+| `s1sel.cfg` | 22 | 0.7 KB | GENERATED - activate loadout slot 1 |
+| `s2sel.cfg` | 22 | 0.7 KB | GENERATED - activate loadout slot 2 |
+| `s3sel.cfg` | 22 | 0.7 KB | GENERATED - activate loadout slot 3 |
+| `s4sel.cfg` | 22 | 0.7 KB | GENERATED - activate loadout slot 4 |
 | `t01.cfg` | 3 | 0.1 KB | GENERATED - inspect + LOCK-GATED equip-into-active-slot (coop_loCmt<id> = commit or deny) |
 | `t02.cfg` | 3 | 0.1 KB | GENERATED - inspect + LOCK-GATED equip-into-active-slot (coop_loCmt<id> = commit or deny) |
 | `t03.cfg` | 3 | 0.1 KB | GENERATED - inspect + LOCK-GATED equip-into-active-slot (coop_loCmt<id> = commit or deny) |
