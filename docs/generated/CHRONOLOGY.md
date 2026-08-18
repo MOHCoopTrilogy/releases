@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `5ead395 2026-08-18 docs: bug-1907 closed (panzerfaust removed); OPEN.md updated` |
-| commits | 122 |
+| HEAD | `c67df7d 2026-08-18 tools: the Field Requisition armory bake generator - overlap-refusing by design` |
+| commits | 123 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 68 |
+| 2026-08 | 69 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (122)
+### Commits since 2026-01-01 (123)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `c67df7d` | 2026-08-18 | joncurry94-tech | tools: the Field Requisition armory bake generator - overlap-refusing by design |
 | `5ead395` | 2026-08-18 | joncurry94-tech | docs: bug-1907 closed (panzerfaust removed); OPEN.md updated |
 | `ae866c6` | 2026-08-18 | joncurry94-tech | tools: service record gains the WEAPON FINISHES page; finish-table regen preserves the variant block |
 | `1bfb0a2` | 2026-08-18 | joncurry94-tech | tools: gen_loadout p-pages carry the VARIANT button state; wildcard surfaces verified against the mesh; OPEN.md skin status |
@@ -159,8 +160,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `98362f4 2026-08-18 ai: suppression-reactive poses + MG42 crew side-steps - the two engine-gated deferrals, delivered` |
-| commits | 1,469 |
+| HEAD | `2052332 2026-08-18 ai: retail long-range prone re-enabled - prone leg only, kill-switch guarded` |
+| commits | 1,471 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -168,7 +169,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 76 |
+| 2026-08 | 78 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -208,10 +209,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (120)
+### Commits since 2026-01-01 (122)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `2052332` | 2026-08-18 | joncurry94 | ai: retail long-range prone re-enabled - prone leg only, kill-switch guarded |
+| `1dd170e` | 2026-08-18 | joncurry94 | ai: the last soldier of a wiped squad may surrender |
 | `98362f4` | 2026-08-18 | joncurry94 | ai: suppression-reactive poses + MG42 crew side-steps - the two engine-gated deferrals, delivered |
 | `20e089e` | 2026-08-18 | joncurry94 | ai: the animation batch - nine buried behaviors wired in |
 | `02e02e7` | 2026-08-18 | joncurry94 | weapons: the Panzerfaust is removed - dead end by user call |

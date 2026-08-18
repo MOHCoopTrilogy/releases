@@ -449,6 +449,7 @@ docs/tools/depthscan2.py	2359	.py	76	docs
 docs/tools/docgen.py	63607	.py	1471	docs
 docs/tools/docs.cmd	467	.cmd	13	docs
 docs/tools/docs.ps1	1526	.ps1	49	docs
+docs/tools/gen_armory_bg.py	10002	.py	240	docs
 docs/tools/gen_loadout.py	14330	.py	320	docs
 docs/tools/gen_public_pages.py	21733	.py	540	docs
 docs/tools/gen_service_record.py	60014	.py	932	docs
@@ -1377,7 +1378,7 @@ hzm-mohaa-coop-mod/_research/stealth_native_plan.md	14387	.md	261	hzm-mohaa-coop
 hzm-mohaa-coop-mod/_research/sweep_pass1_monitor.txt	112	.txt	2	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_research/waittill_risk.md	1473	.md	35	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/aim.scr	4250	.scr	176	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/anim/attack.scr	51650	.scr	1915	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/anim/attack.scr	52320	.scr	1924	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/cornerleft.scr	8821	.scr	263	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/cornerright.scr	8871	.scr	266	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/disguise_accept.scr	3093	.scr	71	hzm-mohaa-coop-mod
@@ -1403,7 +1404,7 @@ hzm-mohaa-coop-mod/autoexec.cfg	90060	.cfg	1224	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/cmpatch/e1l2.txt	472	.txt	7	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coolness 2.jpg	149265	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop.cfg	122	.cfg	3	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_defaults.cfg	21398	.cfg	344	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_defaults.cfg	21684	.cfg	349	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/admin.scr	3507	.scr	87	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/ads.scr	1722	.scr	39	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/ads_dbg.scr	518	.scr	11	hzm-mohaa-coop-mod
@@ -1530,7 +1531,7 @@ hzm-mohaa-coop-mod/coop_mod/morale.scr	4758	.scr	94	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objective_drop.scr	7236	.scr	165	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objective_positions.scr	3691	.scr	89	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objectives.scr	30583	.scr	693	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/officer.scr	216588	.scr	4814	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/officer.scr	218992	.scr	4872	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/officer_positions.scr	35036	.scr	624	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/paradrop.scr	33463	.scr	774	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/player.scr	94253	.scr	1834	hzm-mohaa-coop-mod
@@ -8065,7 +8066,7 @@ hzm-mohaa-coop-mod/textures/mohmenu/coop_dialogue_volume_sign.tga	49196	.tga	0	h
 hzm-mohaa-coop-mod/textures/mohmenu/coop_fieldreport.tga	16777234	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_folder.jpg	14818	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_lo_bg.tga	16777260	.tga	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/textures/mohmenu/coop_lo_bg2.tga	16777260	.tga	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/textures/mohmenu/coop_lo_bg2.tga	12582956	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_lo_lock.tga	16428	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_output_device_sign.tga	49196	.tga	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/mohmenu/coop_paper.jpg	9704	.jpg	0	hzm-mohaa-coop-mod
@@ -9805,8 +9806,8 @@ hzm-mohaa-coop-mod/ui/options_main.urc	5510	.urc	253	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	542436872	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	904549048	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23300553	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	903074471	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23301728	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm_coop_framework_guide.md	27594	.md	382	<root>
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -12630,11 +12631,11 @@ relnotes_1.2.1.md	1025	.md	15	<root>
 resume_publish.ps1	8738	.ps1	157	<root>
 rollout_implementation_log.md	13772	.md	194	<root>
 scratchpad/rcon.py	926	.py	27	scratchpad
-server_home/boot_m1l1.log	216714	.log	0	server_home
+server_home/boot_m1l1.log	216712	.log	0	server_home
 server_home/boot_m3l2.log	194081	.log	0	server_home
-server_home/boot_m3l3.log	199022	.log	0	server_home
+server_home/boot_m3l3.log	198881	.log	0	server_home
 server_home/boot_t2l2.log	172217	.log	0	server_home
-server_home/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home
+server_home/maintt/OpenMoHAA_server.pid	4	.pid	0	server_home
 server_home/maintt/autoexec.cfg	90014	.cfg	1208	server_home
 server_home/maintt/coop_defaults.cfg	17316	.cfg	278	server_home
 server_home/maintt/coop_mod/save/bpfound_89AA62A71BEF42BA7FA4B2DE9E15F03A.dat	16	.dat	0	server_home
@@ -12660,7 +12661,7 @@ server_home/maintt/prev/qconsole-20260815-112103.log	282324	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-112454.log	317859	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-113246.log	320900	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-114100.log	292931	.log	0	server_home
-server_home/maintt/qconsole.log	216714	.log	0	server_home
+server_home/maintt/qconsole.log	216712	.log	0	server_home
 server_home/maintt/qconsole.log.pre_e3l4	302778	.pre_e3l4	0	server_home
 server_home_probe/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home_probe
 server_home_probe/maintt/autoexec.cfg	89444	.cfg	1202	server_home_probe

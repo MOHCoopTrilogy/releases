@@ -16,6 +16,13 @@ import os
 import re
 import sys
 
+# --plain: the pre-overhaul look (near-black, subtle panels, caption + stat labels only).
+# [user 2026-08-18] "Revert the armory back for now" - the original July bg2 had no generator and
+# the overhaul bake overwrote its only copy (a mistake: nothing irreplaceable should be
+# overwritten without a kept copy). This mode reproduces its documented content; the steel/brass
+# overhaul look stays available as the default mode when wanted again.
+PLAIN = "--plain" in sys.argv
+
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -53,7 +60,7 @@ def font(size, bold=True):
     return ImageFont.load_default()
 
 
-img = Image.new("RGB", (TW, TW), STEEL)
+img = Image.new("RGB", (TW, TW), (23, 25, 20) if PLAIN else STEEL)
 dr = ImageDraw.Draw(img, "RGBA")
 
 baked_text_boxes = []   # (x, y, w, h, label) in 640-space - fed to the overlap check
@@ -140,25 +147,29 @@ def well(x, y, w, h, brackets=True, grid=False):
 
 
 # ---------------- the world ---------------------------------------------------------------------
-# base brushed steel: vertical micro-striation
-for gx in range(0, TW, 4):
-    if (gx // 4) % 3 == 0:
-        dr.line([(gx, 0), (gx, TW)], fill=(255, 255, 255, 5))
+# base brushed steel: vertical micro-striation (overhaul only)
+if not PLAIN:
+    for gx in range(0, TW, 4):
+        if (gx // 4) % 3 == 0:
+            dr.line([(gx, 0), (gx, TW)], fill=(255, 255, 255, 5))
 
 # header band
-vgrad(0, 0, 640, 34, (44, 47, 36), (35, 38, 28))
-dr.rectangle([0, px(33), TW, px(34.6)], fill=BRASS_D + (140,))
-text(12, 3, "ARMORY", 21, (226, 213, 163), tracking=3.4, box_label="wordmark")
-text(100, 14.5, "// REQUISITION OF ORDNANCE - FORM 40-1863", 7, DIM, tracking=1.1)
-
-# panels
-plate(6, 38, 142, 438, "OPERATOR")
-plate(151, 38, 152, 350, "LOADOUT")
-plate(305, 38, 167, 380, "WEAPON RACK")
-plate(474, 38, 160, 380, "INSPECTION")
-
-# operator viewport + pager labels
-well(12, 82, 134, 312)
+if PLAIN:
+    vgrad(0, 0, 640, 34, (28, 30, 24), (21, 23, 18))
+    text(12, 4, "ARMORY", 20, (200, 192, 158), tracking=2.4, box_label="wordmark")
+    for x, y, w, h in [(6, 38, 142, 438), (151, 38, 152, 350), (305, 38, 167, 380), (474, 38, 160, 380)]:
+        rect(x, y, w, h, (30, 32, 26), outline=(18, 20, 15), ow=1)
+    well(12, 82, 134, 312, brackets=False)
+else:
+    vgrad(0, 0, 640, 34, (44, 47, 36), (35, 38, 28))
+    dr.rectangle([0, px(33), TW, px(34.6)], fill=BRASS_D + (140,))
+    text(12, 3, "ARMORY", 21, (226, 213, 163), tracking=3.4, box_label="wordmark")
+    text(100, 14.5, "// REQUISITION OF ORDNANCE - FORM 40-1863", 7, DIM, tracking=1.1)
+    plate(6, 38, 142, 438, "OPERATOR")
+    plate(151, 38, 152, 350, "LOADOUT")
+    plate(305, 38, 167, 380, "WEAPON RACK")
+    plate(474, 38, 160, 380, "INSPECTION")
+    well(12, 82, 134, 312)
 text(78, 413.2, "SKIN", 5.6, DIM, tracking=1.6)
 text(78, 443.2, "HELMET", 5.6, DIM, tracking=1.6)
 
@@ -167,7 +178,7 @@ for cy in (55, 133, 211, 289):
     rect(152, cy - 1, 150, 76, (0, 0, 0, 45))
 
 # inspect: 3D bay with blueprint grid, stat labels, ammo/recoil wells
-well(478, 44, 152, 100, grid=True)
+well(478, 44, 152, 100, grid=not PLAIN, brackets=not PLAIN)
 for label, y in (("DMG", 218), ("RPM", 234), ("ACC", 250), ("MOB", 266)):
     text(478, y, label, 7.6, (191, 178, 135), tracking=1.9, box_label="stat:" + label)
 # RDS is an ENGINE label (magRds widget) - baking one would double it
@@ -176,15 +187,18 @@ well(481, 317, 70, 58)
 well(559, 317, 68, 58)
 
 # finish tray
-vgrad(146, 420, 488, 22, (38, 41, 31), (31, 34, 25))
-dr.rectangle([px(146), px(420), px(149), px(442)], fill=BRASS_D)
+if PLAIN:
+    rect(146, 420, 488, 22, (26, 28, 22), outline=(17, 19, 14), ow=1)
+else:
+    vgrad(146, 420, 488, 22, (38, 41, 31), (31, 34, 25))
+    dr.rectangle([px(146), px(420), px(149), px(442)], fill=BRASS_D)
 # FINISH is an ENGINE label (finstrip_lbl widget) - the tray + brass tab are ours, the word is its
 # swatch underlines beneath each chip rect (chips are engine buttons at y423 h15)
 SW = [(228, ((163, 120, 42), (230, 196, 106))), (273, ((143, 151, 155), (223, 230, 234))),
       (318, ((60, 74, 99),) * 2), (363, ((126, 34, 19),) * 2),
       (408, ((78, 90, 51), (55, 65, 31))), (453, ((207, 212, 214), (154, 165, 168))),
       (498, ((194, 168, 120), (160, 135, 87)))]
-for sx, cols in SW:
+for sx, cols in (SW if not PLAIN else []):
     x0, x1 = px(sx), px(sx + 43)
     y0 = px(439.4)
     half = (x1 - x0) // 2
