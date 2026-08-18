@@ -8,7 +8,7 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-946 distinct file paths, 3,094 distinct tags.
+946 distinct file paths, 3,096 distinct tags.
 
 ## Files with the most history
 
@@ -2144,7 +2144,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `gen_service_record` | 3 | `bug-1510` `bug-1511` `bug-1519` |
 | `gen_sr4` | 1 | `bug-534` |
 | `general-rule` | 1 | `bug-1575` |
-| `generator` | 9 | `bug-1247` `bug-1416` `bug-1464` `bug-586` `bug-666` `bug-731` `bug-796` `bug-817` `bug-armory-roster76` |
+| `generator` | 10 | `bug-1247` `bug-1416` `bug-1464` `bug-1896` `bug-586` `bug-666` `bug-731` `bug-796` `bug-817` `bug-armory-roster76` |
 | `generator-drift` | 1 | `bug-755` |
 | `generator-misfire` | 1 | `bug-936b` |
 | `gentitynum_bits` | 3 | `bug-929` `bug-930` `bug-gl2-invisible-friendly-actor` |
@@ -3127,6 +3127,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `realtime` | 1 | `bug-713` |
 | `rebuilt-gamedll` | 1 | `bug-230` |
 | `reconnect` | 1 | `bug-1066` |
+| `reconstructed` | 1 | `bug-1896` |
 | `recurrence` | 1 | `bug-1582` |
 | `recurring` | 1 | `bug-postfx-intensity-clobbered` |
 | `recycled-entnum` | 2 | `bug-919` `bug-924` |
@@ -3924,6 +3925,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `v1.2.1` | 1 | `bug-1596` |
 | `v1.2.2` | 1 | `bug-1551` |
 | `v1.2.4` | 1 | `bug-1635` |
+| `validated` | 1 | `bug-1896` |
 | `validation` | 4 | `bug-591` `bug-599` `bug-600` `bug-601` |
 | `validation-blindspot` | 1 | `bug-293` |
 | `vanilla` | 1 | `bug-495` |

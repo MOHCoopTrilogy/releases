@@ -82,3 +82,8 @@ id	tik	xfm	charanim	cls	name	cd	b0	b1	b2	b3	clip	clipn	recoil	slots	req1	req2
 67	models/weapons/it_w_bomba.tik	0 0 0 2.00 0 90 180	coop_hold_pistol		BREDA MOD.35	ITALIAN FRAGMENTATION	8	3	5	10	0		bomba	4	UNLOCK: Rank: Captain	
 68	models/weapons/m18_smoke_grenade.tik	0 0 0 2.00 0 90 180	coop_hold_pistol		M18 SMOKE	SMOKE SCREEN GRENADE	0	2	5	10	0		m18smoke	4	UNLOCK: Rank: Sergeant	
 69	models/weapons/nebelhandgranate.tik	0 0 0 2.00 0 90 180	coop_hold_pistol		NEBELHANDGRANATE	GERMAN SMOKE GRENADE	0	2	5	10	0		nebel	4	UNLOCK: Rank: First	Sergeant
+70	models/weapons/johnson_m1941.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	JOHNSON M1941	.30-06 / SEMI-AUTO / 10 RD	5	4	8	10	10	10	m1_garand	12	UNLOCK: 120 long-range	kills
+71	models/weapons/thompson_gold.tik	0 0 0 1.00 0 90 180	coop_hold_smg	smg	THOMPSON (GOLD)	.45 ACP / FULL-AUTO	2	9	8	8	30	30	thompsonsmg	12	UNLOCK: 250 Thompson	kills
+72	models/weapons/dp28.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	DP-28	7.62x54R / FULL-AUTO / 47 RD	3	7	8	6	50	47	bar	12	UNLOCK: 200 reinforcement	kills
+73	models/weapons/panzerfaust.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	PANZERFAUST	ROCKET / ANTI-TANK / 1 RD	10	1	6	3	1	1	panzerschreck	12	UNLOCK: destroy 40	vehicles
+74	models/weapons/mauser_c96.tik	0 0 0 1.60 0 90 180	coop_hold_pistol		MAUSER C96	7.63MM / SEMI-AUTO / 10 RD	3	5	9	9	10	10	p38	3	UNLOCK: 150 headshots	
