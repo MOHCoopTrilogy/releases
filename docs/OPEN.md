@@ -94,6 +94,12 @@ All deployed, boot-verified 0 script errors, committed. Root causes in buglog 19
   mop-up grace, then the reveal + conversation fire directly - no more BSP-trigger or
   stuck-straggler stalls. Verify: kill the halftrack, Ramsey chats within ~15s worst case.
 
+- **Realistic vehicle explosions (engine, 2026-08-18)**: every vehicle death now layers a
+  640u camera shake, 2-4 staged fuel/ammo cook-off pops (small real damage), a burning-wreck
+  fire (45s, coop_vehicleFxTime) and a lingering smoke column - on top of coop_vehicleWrecks'
+  persistent hulls. Covers explode-flag deaths AND script-owned wrecks (m3l3 halftrack).
+  coop_vehicleFx 0 disables. VERIFY: blow a truck/tank (m1l3b jeep run, m5l3 tanks, m3l3
+  halftrack) - feel the shake, watch the cook-offs, wreck burns then smokes out.
 - **LOADOUT OVERHAUL - the vetted deep-trace fix wave (bugs 1928-1938, 2026-08-18 late)**:
   three parallel deep-traces + line-by-line cross-verification found ~15 independent defects;
   all four fix phases deployed and boot-clean. PLAYTEST CHECKLIST: (1) mid-mission finish/

@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1284** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1295** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 621 |
+| 2026-08 | 632 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1301,6 +1301,17 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1925` | 2026-08-18 | `openmohaa-hzm/code/client/cl_main.cpp` | - | pinned challenges silently repoint at DIFFERENT challenges whenever the catalogue renumbers (proved live by the panzerfaust removal shifting every la… | cid-keyed end-to-end: gen_service_record emits ui/coop_sr_cids.cfg (row->cid map + a crc32 generation stamp, `set` NOT `seta` so a stale archived map… |
 | `bug-1926` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | - | you still dont get the updated weapons or weapon variants after you hit done in loadout in game | loadout_finKick now waitthreads loadout_rebuild before stamping dirty; the 120s gate and the coop_loFinKick flag are deleted outright; m2l2a (the rea… |
 | `bug-1927` | 2026-08-18 | `hzm-mohaa-coop-mod/ui/loadout/fin1_s1.cfg` | - | the other skins (gold, etc.) are not showing in the viewer when you select them | All fin cfgs now fire their preview: fid 1-7 vstr coop_loFinP<fid>, fid 0 vstr coop_loOpenInspect (back to the standard gun). Wiring-audit note: thes… |
+| `bug-1928` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/itemhandler.scr` | P | regive kit was finally correct but hands still never changed - the raise targeted the BASE tik | All three sites resolve the target through loadout_finResolve (same authority the kit uses): post-give raise, cover-blown arm, DBNO sidearm. Commit p… |
+| `bug-1929` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/itemhandler.scr` | - | a finished primary that lost the engine second-primary pickup race was never re-issued | getAmmoType normalizes variant->base first via level.coop_skinBase - a reverse map generated from the skin table on every build (docs/tools/gen_skinb… |
+| `bug-1930` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/dbno.scr` | - | an armory apply made while dead or DBNO vanished - revive re-gave the OLD kit | The watch now QUEUES (flags coop_loRegiveQueued) instead of dying; dbno's revived-branch re-stamps dirty and re-arms the watch; a full respawn clears… |
+| `bug-1931` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | - | regiveWatch 'no picks' guard was dead code - a picks-less rebuild handed out the map default kit under an applied toast | Proven replace.scr idiom: NIL test first, only positive size means picks. Also apply-trace F10: the loadoutLocked bail now says WHY ('kits are script… |
+| `bug-1932` | 2026-08-18 | `hzm-mohaa-coop-mod/ui/loadout/init.cfg` | - | every armory open destroyed the archived finish recipes and slot-card registrations - picks visually vanished, cold-menu slot cards dead | The eight wipe lines are removed - the archives are the truth; a fresh profile just no-ops. Server echoes still correct them after every validated ap… |
+| `bug-1933` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | R | denied finishes/variants kept claiming applied in the menu forever; stale fids replayed and denied at every join | loadout_finRevert pushes the server's current fid back into both archived cvars on all six deny paths and the silent replay-miss. |
+| `bug-1934` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | - | finishes leaked across resets and gun re-picks - a new gun inherited the old gun's variant fid (model lottery) | clear NILs the fids; a new gun commit resets the slot to standard on both sides (server flag+chip echo, and the generated commit cfgs clear the archi… |
+| `bug-1935` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | - | the loadout seed push could permanently overwrite a returning player's archived picks with garand/colt | Chips-only seed cfgs (plain set - display only, no archives, no re-commit) and the slotId guard on BOTH pushes. |
+| `bug-1936` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | - | rapid armory clicking silently dropped every action after the first - one name-bus token per batch, no close-commit for weapons/finishes | loadout_closeLoadoutCommit replays all 8 archived recipes (A1-4 then FA1-4) at armory close behind token-free polls; NEW idempotent-quiet exits in lo… |
+| `bug-1937` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/main.scr` | - | one trailing space in a player's name silently killed their entire name bus | The mismatch branch re-tests the failed char as a new match start (single-char re-test is sufficient for all bus keys; strictly more matches for ever… |
+| `bug-1938` | 2026-08-18 | `hzm-mohaa-coop-mod/ui/loadout/p48.cfg` | - | variant button cross-wired into slot 1's ring from any other slot - corrupted slot 1's archived finish; slot re-entry always showed the base gun | Pages no longer touch the active pointer (owned solely by s<n>sel per slot click; gen_loadout regenerated); server arms coop_loFinPrevS<slot> at the… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

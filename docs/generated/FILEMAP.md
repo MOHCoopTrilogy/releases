@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 38,484 |
+| files in the workspace | 38,488 |
 | bytes | 40.7 GB |
-| files in project scope (indexed per-file) | 13,113 |
-| source files (per-file rows with line counts) | 5,772 |
+| files in project scope (indexed per-file) | 13,117 |
+| source files (per-file rows with line counts) | 5,776 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -24,7 +24,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 9,612 | 5777.2 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 9,615 | 5777.3 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
@@ -34,7 +34,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `original-scripts` | 915 | 1173.7 MB | no - reference | vanilla MOHAA script/asset extraction (reference) |
 | `player1_home` | 296 | 3.0 MB | no - reference | test client profile dir |
 | `_research` | 171 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
-| `docs` | 141 | 4.2 MB | **yes** | this documentation set (authored + generated) |
+| `docs` | 142 | 4.2 MB | **yes** | this documentation set (authored + generated) |
 | `<root>` | 126 | 3409.4 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `extracted-scripts` | 99 | 2.6 MB | **yes** | extracted vanilla scripts kept for diffing |
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
@@ -77,10 +77,10 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 |---|---:|
 | `.wav` | 14,222 |
 | `.dds` | 3,557 |
-| `.scr` | 2,509 |
+| `.scr` | 2,510 |
 | `.tga` | 2,360 |
 | `.jpg` | 2,189 |
-| `.cfg` | 1,855 |
+| `.cfg` | 1,857 |
 | `.tik` | 1,597 |
 | `.png` | 1,371 |
 | `.obj` | 1,224 |
@@ -99,7 +99,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.json` | 130 |
 | `.bsp` | 129 |
 | `.min` | 100 |
-| `.py` | 91 |
+| `.py` | 92 |
 | `.class` | 64 |
 | `(none)` | 60 |
 | `.pth` | 55 |
@@ -187,7 +187,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/public` | 6 | 0.07 MB | .md×6 |
 | `docs/public/fixes` | 11 | 0.66 MB | .md×11 |
 | `docs/reference` | 4 | 0.07 MB | .md×3, .txt×1 |
-| `docs/tools` | 29 | 0.32 MB | .py×25, .md×1, .cmd×1, .ps1×1 |
+| `docs/tools` | 30 | 0.32 MB | .py×26, .md×1, .cmd×1, .ps1×1 |
 | `extracted-scripts` | 5 | 0.06 MB | .scr×5 |
 | `extracted-scripts/main_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
@@ -238,7 +238,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/_research/release_drafts` | 6 | 0.04 MB | .md×6 |
 | `hzm-mohaa-coop-mod/anim` | 23 | 0.16 MB | .scr×23 |
 | `hzm-mohaa-coop-mod/cmpatch` | 1 | 0.00 MB | .txt×1 |
-| `hzm-mohaa-coop-mod/coop_mod` | 118 | 3.65 MB | .scr×113, .st×3, .cfg×2 |
+| `hzm-mohaa-coop-mod/coop_mod` | 119 | 3.69 MB | .scr×114, .st×3, .cfg×2 |
 | `hzm-mohaa-coop-mod/coop_mod/alias` | 2 | 0.03 MB | .cfg×1, .scr×1 |
 | `hzm-mohaa-coop-mod/coop_mod/bp` | 5 | 0.03 MB | .dat×5 |
 | `hzm-mohaa-coop-mod/coop_mod/cache` | 1 | 0.00 MB | .scr×1 |
@@ -635,7 +635,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/coop_objectives` | 46 | 0.02 MB | .cfg×46 |
 | `hzm-mohaa-coop-mod/ui/coop_start` | 14 | 0.03 MB | .cfg×14 |
 | `hzm-mohaa-coop-mod/ui/coop_tiles` | 14 | 0.79 MB | .jpg×14 |
-| `hzm-mohaa-coop-mod/ui/loadout` | 848 | 0.25 MB | .cfg×848 |
+| `hzm-mohaa-coop-mod/ui/loadout` | 850 | 0.26 MB | .cfg×850 |
 | `hzm-mohaa-coop-mod/ui/loadout/helm` | 48 | 0.03 MB | .cfg×48 |
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 135 | 0.13 MB | .cfg×135 |
 | `manifests` | 43 | 0.55 MB | .json×43 |
@@ -905,7 +905,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `ai_ab_test.ps1` | 78 | 3.9 KB | ai_ab_test.ps1 - controlled A/B for the dynamic-AI layer. |
 | `autotest_rcon.py` | 79 | 2.6 KB | !/usr/bin/env python3 |
-| `build.ps1` | 254 | 14.6 KB | [user 2026-08-05] PARSE-KILLER GATE (detector rank 1, static half): a single BOM/em-dash/odd |
+| `build.ps1` | 257 | 14.9 KB | [user 2026-08-05] PARSE-KILLER GATE (detector rank 1, static half): a single BOM/em-dash/odd |
 | `launch_2player_m2l2a.ps1` | 216 | 11.1 KB | MOH Coop Trilogy - 2-player STEALTH test launcher (m2l2a) |
 | `launch_2player_test.ps1` | 78 | 3.7 KB | MOH Coop Trilogy - 2-player local test launcher |
 | `launch_dedicated_2player.ps1` | 236 | 11.3 KB | Replaces the listen-server harness for testing. Why it matters, measured 2026-08-10: |
@@ -980,7 +980,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `omconfig.cfg` | 2,488 | 68.4 KB | generated by openmohaa |
 
-### `docs/tools/` — 27 source files
+### `docs/tools/` — 28 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -999,9 +999,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `docs.cmd` | 13 | 0.5 KB |  |
 | `docs.ps1` | 49 | 1.5 KB |  |
 | `gen_armory_bg.py` | 254 | 10.8 KB | plain: the pre-overhaul look (near-black, subtle panels, caption + stat labels only). |
-| `gen_loadout.py` | 356 | 16.4 KB | !/usr/bin/env python |
+| `gen_loadout.py` | 364 | 17.0 KB | !/usr/bin/env python |
 | `gen_public_pages.py` | 540 | 21.2 KB | !/usr/bin/env python3 |
 | `gen_service_record.py` | 989 | 62.6 KB | [user 08-07] friendly display name for a challenge's reward field (chal_def's 7th arg) |
+| `gen_skinbase.py` | 40 | 1.9 KB | !/usr/bin/env python |
 | `gen_skins.py` | 285 | 12.7 KB |  |
 | `gen_weapon_skins.py` | 189 | 8.3 KB |  |
 | `hudslots.py` | 98 | 4.0 KB | !/usr/bin/env python3 |
@@ -1236,7 +1237,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `runto_inopen.scr` | 114 | 3.6 KB | HZM coop [2026-08-06] extracted from maintt/pak1.pk3 (bug-1490) to add a dog branch. Retail's own |
 | `shoot.scr` | 262 | 6.7 KB | Shoot |
 
-### `hzm-mohaa-coop-mod/coop_mod/` — 118 source files
+### `hzm-mohaa-coop-mod/coop_mod/` — 119 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -1280,7 +1281,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `cover.scr` | 336 | 13.3 KB | [user 2026-08-11] NO DEPLOYABLES WHILE DISGUISED. Building a sandbag nest or dropping an |
 | `covwalk.scr` | 282 | 14.5 KB | COVERAGE WALK - trilogy sweep layer 3. [user 2026-08-05] |
 | `custom_items.scr` | 37 | 1.6 KB | [200] Smithy - used for spawning any script built custom items we want |
-| `dbno.scr` | 1,396 | 64.3 KB | safety-net: make sure the cgame "downed" view flag is cleared on (re)spawn, so a player who died while |
+| `dbno.scr` | 1,409 | 65.1 KB | safety-net: make sure the cgame "downed" view flag is cleared on (re)spawn, so a player who died while |
 | `dbno_test.scr` | 3 | 0.1 KB |  |
 | `deathvox.scr` | 81 | 4.4 KB | HZM coop - varied DEATH VOICES (+ native-VO mute for AI). |
 | `developer.scr` | 1,578 | 54.5 KB | chrissstrahl - since the game refuses to let me use cheats in multiplayer |
@@ -1297,18 +1298,19 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `helmet.scr` | 1,746 | 109.5 KB | [305] HZM coop - LIVE HELMET SWITCHER |
 | `helmtest.scr` | 96 | 3.7 KB | HZM dev probe (TEMPORARY): verify the retail sethelmet/pophelmet mechanic end to end. |
 | `holdout.scr` | 759 | 30.9 KB | HOLDOUT - checkpoint wave-defence gametype [user 2026-08-04] |
-| `itemhandler.scr` | 3,690 | 191.3 KB | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
+| `itemhandler.scr` | 3,720 | 193.0 KB | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
 | `keyitems.scr` | 161 | 8.3 KB | [306] HZM coop - KEY MISSION ITEMS can never be permanently lost |
 | `ladder.scr` | 295 | 15.6 KB | HZM coop - PLACEABLE CLIMBABLE LADDERS [user 2026-08-05] bug-1415 |
 | `ladder_state.scr` | 24 | 1.2 KB | HZM coop - LADDER STATE HOOK [user 2026-08-05] bug-1415 |
 | `loadout.scr` | 765 | 47.5 KB | [200] Smithy - this contains the weaponsloadout for coop |
-| `loadoutpick.scr` | 1,005 | 55.8 KB | [310] HZM coop ARMORY - per-player loadout picks (Phase 1). |
+| `loadoutpick.scr` | 1,148 | 64.1 KB | [310] HZM coop ARMORY - per-player loadout picks (Phase 1). |
 | `loadoutroster.scr` | 833 | 27.0 KB | GENERATED by scratchpad/gen_loadout3.py -- DO NOT HAND-EDIT (regenerate instead) |
 | `loadoutskins.scr` | 487 | 44.2 KB | GENERATED by build_finish_strip.py + gen_skins.py - the server-side skin variant table. |
+| `loadoutskins_base.scr` | 382 | 36.2 KB | GENERATED by docs/tools/gen_skinbase.py from loadoutskins.scr - DO NOT EDIT. |
 | `lobby.scr` | 1,177 | 53.4 KB | HZM Coop - Pre-Mission Lobby module. Full spec: _research/coop_lobby1_build.md |
 | `lobbyui.scr` | 265 | 10.6 KB | [304] CLICKABLE LOBBY UI - a mouse cursor + button framework for the live |
 | `m4l3_precache.scr` | 157 | 6.0 KB |  |
-| `main.scr` | 2,180 | 106.0 KB | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
+| `main.scr` | 2,193 | 106.7 KB | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
 | `maplist.scr` | 119 | 3.9 KB | [201] Smithy - used to populate the coop_mapsList array to check for next/previous map (and any other future… |
 | `maptest.scr` | 268 | 11.8 KB | HZM Coop - Map Rotation Auto-Tester |
 | `maptest_m5l3.scr` | 284 | 10.4 KB | HZM Coop - m5l3 Scene-Walk Tester |
@@ -3876,7 +3878,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `t2.cfg` | 58 | 3.0 KB | HZM coop - sets the SH (Spearhead) mission 2 maps on the menu (Phase 3 rollout) |
 | `t3.cfg` | 55 | 2.6 KB | HZM coop - sets the SH (Spearhead) mission 3 maps on the menu (Phase 3 rollout) |
 
-### `hzm-mohaa-coop-mod/ui/loadout/` — 848 source files
+### `hzm-mohaa-coop-mod/ui/loadout/` — 850 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -4199,7 +4201,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `finp75_7.cfg` | 2 | 0.1 KB |  |
 | `fitbinds.cfg` | 16 | 0.4 KB | GENERATED - FIT-TUNE fast-nudge key binds (client-local; cleared by fitunbind.cfg). |
 | `fitunbind.cfg` | 16 | 0.2 KB | GENERATED - clear the FIT-TUNE fast-nudge key binds. |
-| `init.cfg` | 122 | 3.9 KB | GENERATED - armory view-state init (slot 1 active, RIFLES page, nothing inspected). |
+| `init.cfg` | 121 | 4.3 KB | GENERATED - armory view-state init (slot 1 active, RIFLES page, nothing inspected). |
 | `lkfin.cfg` | 32 | 0.9 KB | GENERATED - finish-strip padlocks + commit gates. Fail-LOCKED defaults; the archived |
 | `lktab0.cfg` | 99 | 1.9 KB | GENERATED - client-side padlock recompute for tab 0 (RIFLE). Fail-LOCKED default. |
 | `lktab1.cfg` | 100 | 1.9 KB | GENERATED - client-side padlock recompute for tab 1 (SNIPER). Fail-LOCKED default. |
@@ -4356,80 +4358,80 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `mvp74_1_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 74, slot 3 (exact-fid archive) |
 | `mvp74_1_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 74, slot 4 (exact-fid archive) |
 | `open.cfg` | 4 | 0.1 KB | GENERATED - open the armory: seed view state, push the menu, ping the bus. |
-| `p01.cfg` | 38 | 1.4 KB |  |
-| `p02.cfg` | 38 | 1.1 KB |  |
-| `p03.cfg` | 38 | 1.2 KB |  |
-| `p04.cfg` | 38 | 1.4 KB |  |
-| `p05.cfg` | 38 | 1.4 KB |  |
-| `p06.cfg` | 38 | 1.1 KB |  |
-| `p07.cfg` | 38 | 1.3 KB |  |
-| `p08.cfg` | 38 | 1.2 KB |  |
-| `p09.cfg` | 38 | 1.3 KB |  |
-| `p10.cfg` | 38 | 1.0 KB |  |
-| `p11.cfg` | 38 | 1.1 KB |  |
-| `p12.cfg` | 38 | 1.4 KB |  |
-| `p13.cfg` | 38 | 1.4 KB |  |
-| `p14.cfg` | 38 | 1.2 KB |  |
-| `p15.cfg` | 38 | 1.1 KB |  |
-| `p16.cfg` | 38 | 1.2 KB |  |
-| `p17.cfg` | 38 | 1.1 KB |  |
-| `p18.cfg` | 38 | 1.1 KB |  |
-| `p19.cfg` | 38 | 1.1 KB |  |
-| `p20.cfg` | 38 | 1.1 KB |  |
-| `p21.cfg` | 38 | 1.1 KB |  |
-| `p22.cfg` | 38 | 1.1 KB |  |
-| `p23.cfg` | 38 | 1.2 KB |  |
-| `p24.cfg` | 38 | 1.4 KB |  |
-| `p25.cfg` | 38 | 1.1 KB |  |
-| `p26.cfg` | 38 | 1.4 KB |  |
-| `p27.cfg` | 38 | 1.1 KB |  |
-| `p28.cfg` | 38 | 1.2 KB |  |
-| `p29.cfg` | 38 | 1.2 KB |  |
-| `p30.cfg` | 38 | 1.1 KB |  |
-| `p31.cfg` | 38 | 1.1 KB |  |
-| `p32.cfg` | 38 | 1.1 KB |  |
-| `p33.cfg` | 38 | 1.2 KB |  |
-| `p34.cfg` | 38 | 1.0 KB |  |
-| `p35.cfg` | 38 | 1.0 KB |  |
-| `p36.cfg` | 38 | 1.4 KB |  |
-| `p37.cfg` | 38 | 1.4 KB |  |
-| `p38.cfg` | 38 | 1.1 KB |  |
-| `p39.cfg` | 38 | 1.2 KB |  |
-| `p40.cfg` | 38 | 1.2 KB |  |
-| `p41.cfg` | 38 | 1.2 KB |  |
-| `p42.cfg` | 38 | 1.1 KB |  |
-| `p43.cfg` | 38 | 1.1 KB |  |
-| `p44.cfg` | 38 | 1.4 KB |  |
-| `p45.cfg` | 38 | 1.2 KB |  |
-| `p46.cfg` | 38 | 1.3 KB |  |
-| `p47.cfg` | 38 | 1.2 KB |  |
-| `p48.cfg` | 38 | 1.4 KB |  |
-| `p49.cfg` | 38 | 1.1 KB |  |
-| `p50.cfg` | 38 | 1.2 KB |  |
-| `p51.cfg` | 38 | 1.1 KB |  |
-| `p52.cfg` | 38 | 1.2 KB |  |
-| `p53.cfg` | 38 | 1.2 KB |  |
-| `p54.cfg` | 38 | 1.2 KB |  |
-| `p55.cfg` | 38 | 1.2 KB |  |
-| `p56.cfg` | 38 | 1.1 KB |  |
-| `p57.cfg` | 38 | 1.0 KB |  |
-| `p58.cfg` | 38 | 1.1 KB |  |
-| `p59.cfg` | 38 | 1.0 KB |  |
-| `p60.cfg` | 38 | 1.2 KB |  |
-| `p61.cfg` | 38 | 1.2 KB |  |
-| `p62.cfg` | 38 | 1.0 KB |  |
-| `p63.cfg` | 38 | 1.2 KB |  |
-| `p64.cfg` | 38 | 1.0 KB |  |
-| `p65.cfg` | 38 | 1.1 KB |  |
-| `p66.cfg` | 38 | 1.0 KB |  |
-| `p67.cfg` | 38 | 1.0 KB |  |
-| `p68.cfg` | 38 | 1.0 KB |  |
-| `p69.cfg` | 38 | 1.0 KB |  |
-| `p70.cfg` | 38 | 1.3 KB |  |
-| `p71.cfg` | 38 | 1.1 KB |  |
-| `p72.cfg` | 38 | 1.2 KB |  |
-| `p74.cfg` | 38 | 1.4 KB |  |
-| `p75.cfg` | 38 | 1.3 KB |  |
+| `p01.cfg` | 37 | 1.3 KB |  |
+| `p02.cfg` | 37 | 1.0 KB |  |
+| `p03.cfg` | 37 | 1.2 KB |  |
+| `p04.cfg` | 37 | 1.3 KB |  |
+| `p05.cfg` | 37 | 1.3 KB |  |
+| `p06.cfg` | 37 | 1.1 KB |  |
+| `p07.cfg` | 37 | 1.2 KB |  |
+| `p08.cfg` | 37 | 1.2 KB |  |
+| `p09.cfg` | 37 | 1.2 KB |  |
+| `p10.cfg` | 37 | 1.0 KB |  |
+| `p11.cfg` | 37 | 1.1 KB |  |
+| `p12.cfg` | 37 | 1.4 KB |  |
+| `p13.cfg` | 37 | 1.3 KB |  |
+| `p14.cfg` | 37 | 1.2 KB |  |
+| `p15.cfg` | 37 | 1.0 KB |  |
+| `p16.cfg` | 37 | 1.2 KB |  |
+| `p17.cfg` | 37 | 1.0 KB |  |
+| `p18.cfg` | 37 | 1.0 KB |  |
+| `p19.cfg` | 37 | 1.0 KB |  |
+| `p20.cfg` | 37 | 1.0 KB |  |
+| `p21.cfg` | 37 | 1.1 KB |  |
+| `p22.cfg` | 37 | 1.1 KB |  |
+| `p23.cfg` | 37 | 1.2 KB |  |
+| `p24.cfg` | 37 | 1.3 KB |  |
+| `p25.cfg` | 37 | 1.0 KB |  |
+| `p26.cfg` | 37 | 1.3 KB |  |
+| `p27.cfg` | 37 | 1.0 KB |  |
+| `p28.cfg` | 37 | 1.2 KB |  |
+| `p29.cfg` | 37 | 1.2 KB |  |
+| `p30.cfg` | 37 | 1.0 KB |  |
+| `p31.cfg` | 37 | 1.0 KB |  |
+| `p32.cfg` | 37 | 1.1 KB |  |
+| `p33.cfg` | 37 | 1.2 KB |  |
+| `p34.cfg` | 37 | 1.0 KB |  |
+| `p35.cfg` | 37 | 1.0 KB |  |
+| `p36.cfg` | 37 | 1.3 KB |  |
+| `p37.cfg` | 37 | 1.3 KB |  |
+| `p38.cfg` | 37 | 1.0 KB |  |
+| `p39.cfg` | 37 | 1.2 KB |  |
+| `p40.cfg` | 37 | 1.2 KB |  |
+| `p41.cfg` | 37 | 1.2 KB |  |
+| `p42.cfg` | 37 | 1.0 KB |  |
+| `p43.cfg` | 37 | 1.0 KB |  |
+| `p44.cfg` | 37 | 1.3 KB |  |
+| `p45.cfg` | 37 | 1.2 KB |  |
+| `p46.cfg` | 37 | 1.2 KB |  |
+| `p47.cfg` | 37 | 1.2 KB |  |
+| `p48.cfg` | 37 | 1.3 KB |  |
+| `p49.cfg` | 37 | 1.0 KB |  |
+| `p50.cfg` | 37 | 1.2 KB |  |
+| `p51.cfg` | 37 | 1.0 KB |  |
+| `p52.cfg` | 37 | 1.2 KB |  |
+| `p53.cfg` | 37 | 1.2 KB |  |
+| `p54.cfg` | 37 | 1.2 KB |  |
+| `p55.cfg` | 37 | 1.2 KB |  |
+| `p56.cfg` | 37 | 1.0 KB |  |
+| `p57.cfg` | 37 | 1.0 KB |  |
+| `p58.cfg` | 37 | 1.0 KB |  |
+| `p59.cfg` | 37 | 1.0 KB |  |
+| `p60.cfg` | 37 | 1.2 KB |  |
+| `p61.cfg` | 37 | 1.2 KB |  |
+| `p62.cfg` | 37 | 1.0 KB |  |
+| `p63.cfg` | 37 | 1.2 KB |  |
+| `p64.cfg` | 37 | 1.0 KB |  |
+| `p65.cfg` | 37 | 1.0 KB |  |
+| `p66.cfg` | 37 | 1.0 KB |  |
+| `p67.cfg` | 37 | 1.0 KB |  |
+| `p68.cfg` | 37 | 1.0 KB |  |
+| `p69.cfg` | 37 | 1.0 KB |  |
+| `p70.cfg` | 37 | 1.2 KB |  |
+| `p71.cfg` | 37 | 1.0 KB |  |
+| `p72.cfg` | 37 | 1.2 KB |  |
+| `p74.cfg` | 37 | 1.3 KB |  |
+| `p75.cfg` | 37 | 1.2 KB |  |
 | `req02.cfg` | 2 | 0.1 KB |  |
 | `req03.cfg` | 2 | 0.1 KB |  |
 | `req04.cfg` | 2 | 0.1 KB |  |
@@ -4521,11 +4523,13 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `reqmv44.cfg` | 2 | 0.1 KB |  |
 | `reqmv48.cfg` | 2 | 0.2 KB |  |
 | `reqmv74.cfg` | 2 | 0.1 KB |  |
-| `reset.cfg` | 19 | 0.4 KB | GENERATED - clear all armory picks (client cvars + tell the server). |
-| `s1sel.cfg` | 29 | 1.0 KB | GENERATED - activate loadout slot 1 |
-| `s2sel.cfg` | 29 | 1.0 KB | GENERATED - activate loadout slot 2 |
-| `s3sel.cfg` | 29 | 1.0 KB | GENERATED - activate loadout slot 3 |
-| `s4sel.cfg` | 29 | 1.0 KB | GENERATED - activate loadout slot 4 |
+| `reset.cfg` | 34 | 0.9 KB | GENERATED - clear all armory picks (client cvars + tell the server). |
+| `s1sel.cfg` | 33 | 1.2 KB | GENERATED - activate loadout slot 1 |
+| `s2sel.cfg` | 33 | 1.2 KB | GENERATED - activate loadout slot 2 |
+| `s3sel.cfg` | 33 | 1.2 KB | GENERATED - activate loadout slot 3 |
+| `s4sel.cfg` | 33 | 1.2 KB | GENERATED - activate loadout slot 4 |
+| `seed_s1.cfg` | 7 | 0.4 KB | [user 2026-08-18] SEED CHIP DISPLAY ONLY (deep-trace F9): plain `set`, session-local. |
+| `seed_s3.cfg` | 7 | 0.4 KB | [user 2026-08-18] SEED CHIP DISPLAY ONLY (deep-trace F9): plain `set`, session-local. |
 | `t01.cfg` | 3 | 0.1 KB | GENERATED - inspect + LOCK-GATED equip-into-active-slot (coop_loCmt<id> = commit or deny) |
 | `t02.cfg` | 3 | 0.1 KB | GENERATED - inspect + LOCK-GATED equip-into-active-slot (coop_loCmt<id> = commit or deny) |
 | `t03.cfg` | 3 | 0.1 KB | GENERATED - inspect + LOCK-GATED equip-into-active-slot (coop_loCmt<id> = commit or deny) |
@@ -4604,130 +4608,130 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `unreg_rifle.cfg` | 2 | 0.1 KB | GENERATED - unregister rifle from the one-per-class registry |
 | `unreg_smg.cfg` | 2 | 0.1 KB | GENERATED - unregister smg from the one-per-class registry |
 | `unreg_sniper.cfg` | 2 | 0.1 KB | GENERATED - unregister sniper from the one-per-class registry |
-| `w01_s1.cfg` | 12 | 0.4 KB |  |
-| `w01_s2.cfg` | 11 | 0.4 KB |  |
-| `w02_s1.cfg` | 12 | 0.4 KB |  |
-| `w02_s2.cfg` | 11 | 0.4 KB |  |
-| `w03_s1.cfg` | 12 | 0.4 KB |  |
-| `w03_s2.cfg` | 11 | 0.4 KB |  |
-| `w04_s1.cfg` | 12 | 0.4 KB |  |
-| `w04_s2.cfg` | 11 | 0.4 KB |  |
-| `w05_s1.cfg` | 12 | 0.4 KB |  |
-| `w05_s2.cfg` | 11 | 0.4 KB |  |
-| `w06_s1.cfg` | 12 | 0.4 KB |  |
-| `w06_s2.cfg` | 11 | 0.4 KB |  |
-| `w07_s1.cfg` | 12 | 0.4 KB |  |
-| `w07_s2.cfg` | 11 | 0.4 KB |  |
-| `w08_s1.cfg` | 12 | 0.4 KB |  |
-| `w08_s2.cfg` | 11 | 0.4 KB |  |
-| `w09_s1.cfg` | 12 | 0.4 KB |  |
-| `w09_s2.cfg` | 11 | 0.4 KB |  |
-| `w10_s1.cfg` | 12 | 0.4 KB |  |
-| `w10_s2.cfg` | 11 | 0.4 KB |  |
-| `w11_s1.cfg` | 12 | 0.4 KB |  |
-| `w11_s2.cfg` | 11 | 0.4 KB |  |
-| `w12_s1.cfg` | 12 | 0.4 KB |  |
-| `w12_s2.cfg` | 11 | 0.4 KB |  |
-| `w13_s1.cfg` | 12 | 0.4 KB |  |
-| `w13_s2.cfg` | 11 | 0.4 KB |  |
-| `w14_s1.cfg` | 12 | 0.4 KB |  |
-| `w14_s2.cfg` | 11 | 0.4 KB |  |
-| `w15_s1.cfg` | 12 | 0.4 KB |  |
-| `w15_s2.cfg` | 11 | 0.4 KB |  |
-| `w16_s1.cfg` | 12 | 0.4 KB |  |
-| `w16_s2.cfg` | 11 | 0.4 KB |  |
-| `w17_s1.cfg` | 12 | 0.4 KB |  |
-| `w17_s2.cfg` | 11 | 0.4 KB |  |
-| `w18_s1.cfg` | 12 | 0.4 KB |  |
-| `w18_s2.cfg` | 11 | 0.4 KB |  |
-| `w19_s1.cfg` | 12 | 0.4 KB |  |
-| `w19_s2.cfg` | 11 | 0.4 KB |  |
-| `w20_s1.cfg` | 12 | 0.4 KB |  |
-| `w20_s2.cfg` | 11 | 0.4 KB |  |
-| `w21_s1.cfg` | 12 | 0.4 KB |  |
-| `w21_s2.cfg` | 11 | 0.4 KB |  |
-| `w22_s1.cfg` | 12 | 0.4 KB |  |
-| `w22_s2.cfg` | 11 | 0.4 KB |  |
-| `w23_s1.cfg` | 12 | 0.4 KB |  |
-| `w23_s2.cfg` | 11 | 0.4 KB |  |
-| `w24_s1.cfg` | 12 | 0.4 KB |  |
-| `w24_s2.cfg` | 11 | 0.4 KB |  |
-| `w25_s1.cfg` | 12 | 0.4 KB |  |
-| `w25_s2.cfg` | 11 | 0.4 KB |  |
-| `w26_s1.cfg` | 12 | 0.4 KB |  |
-| `w26_s2.cfg` | 11 | 0.4 KB |  |
-| `w27_s1.cfg` | 12 | 0.4 KB |  |
-| `w27_s2.cfg` | 11 | 0.4 KB |  |
-| `w28_s1.cfg` | 12 | 0.4 KB |  |
-| `w28_s2.cfg` | 11 | 0.4 KB |  |
-| `w29_s1.cfg` | 12 | 0.4 KB |  |
-| `w29_s2.cfg` | 11 | 0.4 KB |  |
-| `w30_s1.cfg` | 12 | 0.4 KB |  |
-| `w30_s2.cfg` | 11 | 0.4 KB |  |
-| `w31_s1.cfg` | 12 | 0.4 KB |  |
-| `w31_s2.cfg` | 11 | 0.4 KB |  |
-| `w32_s1.cfg` | 12 | 0.4 KB |  |
-| `w32_s2.cfg` | 11 | 0.4 KB |  |
-| `w33_s1.cfg` | 12 | 0.4 KB |  |
-| `w33_s2.cfg` | 11 | 0.4 KB |  |
-| `w34_s1.cfg` | 12 | 0.4 KB |  |
-| `w34_s2.cfg` | 11 | 0.4 KB |  |
-| `w35_s1.cfg` | 12 | 0.4 KB |  |
-| `w35_s2.cfg` | 11 | 0.4 KB |  |
-| `w36_s1.cfg` | 12 | 0.4 KB |  |
-| `w36_s2.cfg` | 11 | 0.4 KB |  |
-| `w37_s1.cfg` | 12 | 0.4 KB |  |
-| `w37_s2.cfg` | 11 | 0.4 KB |  |
-| `w38_s1.cfg` | 12 | 0.4 KB |  |
-| `w38_s2.cfg` | 11 | 0.4 KB |  |
-| `w39_s1.cfg` | 12 | 0.4 KB |  |
-| `w39_s2.cfg` | 11 | 0.4 KB |  |
-| `w40_s1.cfg` | 12 | 0.4 KB |  |
-| `w40_s2.cfg` | 11 | 0.4 KB |  |
-| `w41_s1.cfg` | 12 | 0.4 KB |  |
-| `w41_s2.cfg` | 11 | 0.4 KB |  |
-| `w42_s1.cfg` | 12 | 0.4 KB |  |
-| `w42_s2.cfg` | 11 | 0.4 KB |  |
-| `w43_s1.cfg` | 12 | 0.4 KB |  |
-| `w43_s2.cfg` | 11 | 0.4 KB |  |
-| `w44_s1.cfg` | 12 | 0.4 KB |  |
-| `w44_s2.cfg` | 11 | 0.4 KB |  |
-| `w45_s1.cfg` | 12 | 0.4 KB |  |
-| `w45_s2.cfg` | 11 | 0.4 KB |  |
-| `w46_s1.cfg` | 12 | 0.4 KB |  |
-| `w46_s2.cfg` | 11 | 0.4 KB |  |
-| `w47_s1.cfg` | 12 | 0.4 KB |  |
-| `w47_s2.cfg` | 11 | 0.4 KB |  |
-| `w48_s3.cfg` | 7 | 0.2 KB |  |
-| `w49_s3.cfg` | 7 | 0.2 KB |  |
-| `w50_s3.cfg` | 7 | 0.2 KB |  |
-| `w51_s3.cfg` | 7 | 0.2 KB |  |
-| `w52_s3.cfg` | 7 | 0.2 KB |  |
-| `w53_s3.cfg` | 7 | 0.2 KB |  |
-| `w54_s3.cfg` | 7 | 0.2 KB |  |
-| `w55_s3.cfg` | 7 | 0.2 KB |  |
-| `w56_s3.cfg` | 7 | 0.2 KB |  |
-| `w57_s3.cfg` | 7 | 0.2 KB |  |
-| `w58_s3.cfg` | 7 | 0.2 KB |  |
-| `w59_s3.cfg` | 7 | 0.2 KB |  |
-| `w60_s3.cfg` | 7 | 0.2 KB |  |
-| `w61_s3.cfg` | 7 | 0.2 KB |  |
-| `w62_s3.cfg` | 7 | 0.2 KB |  |
-| `w63_s3.cfg` | 7 | 0.2 KB |  |
-| `w64_s4.cfg` | 7 | 0.2 KB |  |
-| `w65_s4.cfg` | 7 | 0.2 KB |  |
-| `w66_s4.cfg` | 7 | 0.2 KB |  |
-| `w67_s4.cfg` | 7 | 0.2 KB |  |
-| `w68_s4.cfg` | 7 | 0.2 KB |  |
-| `w69_s4.cfg` | 7 | 0.2 KB |  |
-| `w70_s1.cfg` | 12 | 0.4 KB |  |
-| `w70_s2.cfg` | 11 | 0.4 KB |  |
-| `w71_s1.cfg` | 12 | 0.4 KB |  |
-| `w71_s2.cfg` | 11 | 0.4 KB |  |
-| `w72_s1.cfg` | 12 | 0.4 KB |  |
-| `w72_s2.cfg` | 11 | 0.4 KB |  |
-| `w74_s3.cfg` | 7 | 0.2 KB |  |
-| `w75_s3.cfg` | 7 | 0.2 KB |  |
+| `w01_s1.cfg` | 14 | 0.5 KB |  |
+| `w01_s2.cfg` | 13 | 0.4 KB |  |
+| `w02_s1.cfg` | 14 | 0.5 KB |  |
+| `w02_s2.cfg` | 13 | 0.4 KB |  |
+| `w03_s1.cfg` | 14 | 0.4 KB |  |
+| `w03_s2.cfg` | 13 | 0.4 KB |  |
+| `w04_s1.cfg` | 14 | 0.4 KB |  |
+| `w04_s2.cfg` | 13 | 0.4 KB |  |
+| `w05_s1.cfg` | 14 | 0.5 KB |  |
+| `w05_s2.cfg` | 13 | 0.4 KB |  |
+| `w06_s1.cfg` | 14 | 0.5 KB |  |
+| `w06_s2.cfg` | 13 | 0.4 KB |  |
+| `w07_s1.cfg` | 14 | 0.5 KB |  |
+| `w07_s2.cfg` | 13 | 0.4 KB |  |
+| `w08_s1.cfg` | 14 | 0.5 KB |  |
+| `w08_s2.cfg` | 13 | 0.4 KB |  |
+| `w09_s1.cfg` | 14 | 0.5 KB |  |
+| `w09_s2.cfg` | 13 | 0.4 KB |  |
+| `w10_s1.cfg` | 14 | 0.5 KB |  |
+| `w10_s2.cfg` | 13 | 0.4 KB |  |
+| `w11_s1.cfg` | 14 | 0.5 KB |  |
+| `w11_s2.cfg` | 13 | 0.4 KB |  |
+| `w12_s1.cfg` | 14 | 0.5 KB |  |
+| `w12_s2.cfg` | 13 | 0.4 KB |  |
+| `w13_s1.cfg` | 14 | 0.5 KB |  |
+| `w13_s2.cfg` | 13 | 0.4 KB |  |
+| `w14_s1.cfg` | 14 | 0.5 KB |  |
+| `w14_s2.cfg` | 13 | 0.4 KB |  |
+| `w15_s1.cfg` | 14 | 0.5 KB |  |
+| `w15_s2.cfg` | 13 | 0.4 KB |  |
+| `w16_s1.cfg` | 14 | 0.5 KB |  |
+| `w16_s2.cfg` | 13 | 0.4 KB |  |
+| `w17_s1.cfg` | 14 | 0.5 KB |  |
+| `w17_s2.cfg` | 13 | 0.4 KB |  |
+| `w18_s1.cfg` | 14 | 0.5 KB |  |
+| `w18_s2.cfg` | 13 | 0.4 KB |  |
+| `w19_s1.cfg` | 14 | 0.5 KB |  |
+| `w19_s2.cfg` | 13 | 0.4 KB |  |
+| `w20_s1.cfg` | 14 | 0.5 KB |  |
+| `w20_s2.cfg` | 13 | 0.4 KB |  |
+| `w21_s1.cfg` | 14 | 0.5 KB |  |
+| `w21_s2.cfg` | 13 | 0.4 KB |  |
+| `w22_s1.cfg` | 14 | 0.5 KB |  |
+| `w22_s2.cfg` | 13 | 0.4 KB |  |
+| `w23_s1.cfg` | 14 | 0.5 KB |  |
+| `w23_s2.cfg` | 13 | 0.4 KB |  |
+| `w24_s1.cfg` | 14 | 0.5 KB |  |
+| `w24_s2.cfg` | 13 | 0.4 KB |  |
+| `w25_s1.cfg` | 14 | 0.5 KB |  |
+| `w25_s2.cfg` | 13 | 0.4 KB |  |
+| `w26_s1.cfg` | 14 | 0.4 KB |  |
+| `w26_s2.cfg` | 13 | 0.4 KB |  |
+| `w27_s1.cfg` | 14 | 0.5 KB |  |
+| `w27_s2.cfg` | 13 | 0.4 KB |  |
+| `w28_s1.cfg` | 14 | 0.4 KB |  |
+| `w28_s2.cfg` | 13 | 0.4 KB |  |
+| `w29_s1.cfg` | 14 | 0.4 KB |  |
+| `w29_s2.cfg` | 13 | 0.4 KB |  |
+| `w30_s1.cfg` | 14 | 0.5 KB |  |
+| `w30_s2.cfg` | 13 | 0.4 KB |  |
+| `w31_s1.cfg` | 14 | 0.5 KB |  |
+| `w31_s2.cfg` | 13 | 0.4 KB |  |
+| `w32_s1.cfg` | 14 | 0.5 KB |  |
+| `w32_s2.cfg` | 13 | 0.4 KB |  |
+| `w33_s1.cfg` | 14 | 0.5 KB |  |
+| `w33_s2.cfg` | 13 | 0.4 KB |  |
+| `w34_s1.cfg` | 14 | 0.5 KB |  |
+| `w34_s2.cfg` | 13 | 0.4 KB |  |
+| `w35_s1.cfg` | 14 | 0.5 KB |  |
+| `w35_s2.cfg` | 13 | 0.4 KB |  |
+| `w36_s1.cfg` | 14 | 0.4 KB |  |
+| `w36_s2.cfg` | 13 | 0.4 KB |  |
+| `w37_s1.cfg` | 14 | 0.4 KB |  |
+| `w37_s2.cfg` | 13 | 0.4 KB |  |
+| `w38_s1.cfg` | 14 | 0.5 KB |  |
+| `w38_s2.cfg` | 13 | 0.4 KB |  |
+| `w39_s1.cfg` | 14 | 0.4 KB |  |
+| `w39_s2.cfg` | 13 | 0.4 KB |  |
+| `w40_s1.cfg` | 14 | 0.5 KB |  |
+| `w40_s2.cfg` | 13 | 0.4 KB |  |
+| `w41_s1.cfg` | 14 | 0.5 KB |  |
+| `w41_s2.cfg` | 13 | 0.4 KB |  |
+| `w42_s1.cfg` | 14 | 0.5 KB |  |
+| `w42_s2.cfg` | 13 | 0.4 KB |  |
+| `w43_s1.cfg` | 14 | 0.5 KB |  |
+| `w43_s2.cfg` | 13 | 0.4 KB |  |
+| `w44_s1.cfg` | 14 | 0.5 KB |  |
+| `w44_s2.cfg` | 13 | 0.4 KB |  |
+| `w45_s1.cfg` | 14 | 0.5 KB |  |
+| `w45_s2.cfg` | 13 | 0.4 KB |  |
+| `w46_s1.cfg` | 14 | 0.5 KB |  |
+| `w46_s2.cfg` | 13 | 0.4 KB |  |
+| `w47_s1.cfg` | 14 | 0.4 KB |  |
+| `w47_s2.cfg` | 13 | 0.4 KB |  |
+| `w48_s3.cfg` | 9 | 0.3 KB |  |
+| `w49_s3.cfg` | 9 | 0.3 KB |  |
+| `w50_s3.cfg` | 9 | 0.3 KB |  |
+| `w51_s3.cfg` | 9 | 0.3 KB |  |
+| `w52_s3.cfg` | 9 | 0.3 KB |  |
+| `w53_s3.cfg` | 9 | 0.3 KB |  |
+| `w54_s3.cfg` | 9 | 0.3 KB |  |
+| `w55_s3.cfg` | 9 | 0.3 KB |  |
+| `w56_s3.cfg` | 9 | 0.3 KB |  |
+| `w57_s3.cfg` | 9 | 0.3 KB |  |
+| `w58_s3.cfg` | 9 | 0.3 KB |  |
+| `w59_s3.cfg` | 9 | 0.3 KB |  |
+| `w60_s3.cfg` | 9 | 0.3 KB |  |
+| `w61_s3.cfg` | 9 | 0.3 KB |  |
+| `w62_s3.cfg` | 9 | 0.3 KB |  |
+| `w63_s3.cfg` | 9 | 0.3 KB |  |
+| `w64_s4.cfg` | 9 | 0.3 KB |  |
+| `w65_s4.cfg` | 9 | 0.3 KB |  |
+| `w66_s4.cfg` | 9 | 0.3 KB |  |
+| `w67_s4.cfg` | 9 | 0.3 KB |  |
+| `w68_s4.cfg` | 9 | 0.3 KB |  |
+| `w69_s4.cfg` | 9 | 0.3 KB |  |
+| `w70_s1.cfg` | 14 | 0.5 KB |  |
+| `w70_s2.cfg` | 13 | 0.4 KB |  |
+| `w71_s1.cfg` | 14 | 0.5 KB |  |
+| `w71_s2.cfg` | 13 | 0.4 KB |  |
+| `w72_s1.cfg` | 14 | 0.4 KB |  |
+| `w72_s2.cfg` | 13 | 0.4 KB |  |
+| `w74_s3.cfg` | 9 | 0.3 KB |  |
+| `w75_s3.cfg` | 9 | 0.3 KB |  |
 
 ### `hzm-mohaa-coop-mod/ui/loadout/helm/` — 48 source files
 
