@@ -90,7 +90,7 @@ as opt-in. Right now the shipped behaviour is whatever a fallback branch happens
 
 All deployed, boot-verified 0 script errors, committed. Root causes in buglog 1919-1923.
 
-- **m3l3 Ramsey conversation now keys on the halftrack's death** (bug-1925): wave stops, 12s
+- **m3l3 Ramsey conversation now keys on the halftrack's death** (bug-1924): wave stops, 12s
   mop-up grace, then the reveal + conversation fire directly - no more BSP-trigger or
   stuck-straggler stalls. Verify: kill the halftrack, Ramsey chats within ~15s worst case.
 
