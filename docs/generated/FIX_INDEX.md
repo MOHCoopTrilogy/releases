@@ -8,7 +8,7 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-959 distinct file paths, 3,187 distinct tags.
+959 distinct file paths, 3,191 distinct tags.
 
 ## Files with the most history
 
@@ -25,7 +25,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `openmohaa-hzm/code/fgame/sentient.cpp` | 17 | `bug-230` `bug-135` `bug-615` `bug-730` `bug-763` `bug-797` `bug-861` `bug-915` `bug-919` `bug-920` `bug-1320` `bug-1874` `bug-1875` `bug-1876` `bug-1880` `bug-1883` `bug-1890` |
 | `hzm-mohaa-coop-mod/coop_mod/aihandler.scr` | 16 | `bug-822` `bug-891` `bug-1199` `bug-1201` `bug-1256` `bug-1274` `bug-1514` `bug-1639` `bug-1647` `bug-1686` `bug-1700` `bug-1702` `bug-1704` `bug-1733` `bug-1794` `bug-1868` |
 | `docs/tools/gen_service_record.py` | 15 | `bug-1503` `bug-1510` `bug-1511` `bug-1519` `bug-1521` `bug-1523` `bug-1525` `bug-1528` `bug-1529` `bug-1531` `bug-1532` `bug-1535` `bug-1537` `bug-1541` `bug-1544` |
-| `hzm-mohaa-coop-mod/coop_mod/officer.scr` | 14 | `bug-officer-instant-spawn-order` `bug-070` `bug-318` `bug-789` `bug-1103` `bug-1514` `bug-1571` `bug-1648` `bug-1649` `bug-1650` `bug-1653` `bug-1720` `bug-1779` `bug-1852` |
+| `hzm-mohaa-coop-mod/coop_mod/officer.scr` | 15 | `bug-officer-instant-spawn-order` `bug-070` `bug-318` `bug-789` `bug-1103` `bug-1514` `bug-1571` `bug-1648` `bug-1649` `bug-1650` `bug-1653` `bug-1720` `bug-1779` `bug-1852` `bug-1939` |
 | `hzm-mohaa-coop-mod/maps/e2l1/gliderride.scr` | 14 | `bug-1297` `bug-1322` `bug-1328` `bug-1328b` `bug-1302` `bug-1308` `bug-1309` `bug-1328c` `bug-1332` `bug-1341` `bug-1344` `bug-1347` `bug-1348` `bug-1350` |
 | `hzm-mohaa-coop-mod/maps/t2l2.scr` | 14 | `bug-034` `bug-041` `bug-044` `bug-045` `bug-046` `bug-048` `bug-049` `bug-050` `bug-051` `bug-052` `bug-053` `bug-054` `bug-056` `bug-062` |
 | `openmohaa-hzm/code/fgame/player.cpp` | 14 | `bug-164` `bug-221` `bug-319` `bug-379` `bug-380` `bug-463` `bug-947` `bug-1291` `bug-1292` `bug-1324` `bug-1560` `bug-1565` `bug-1638` `bug-1712` |
@@ -369,7 +369,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/coop_mod/objectives.scr` | 1 | `bug-1680` |
 | `hzm-mohaa-coop-mod/coop_mod/objectives.scr (coop_obj_register` | 1 | `bug-1589` |
 | `hzm-mohaa-coop-mod/coop_mod/objectives.scr (coop_obj_toast_all` | 1 | `bug-1588` |
-| `hzm-mohaa-coop-mod/coop_mod/officer.scr` | 14 | `bug-officer-instant-spawn-order` `bug-070` `bug-318` `bug-789` `bug-1103` `bug-1514` `bug-1571` `bug-1648` `bug-1649` `bug-1650` `bug-1653` `bug-1720` `bug-1779` `bug-1852` |
+| `hzm-mohaa-coop-mod/coop_mod/officer.scr` | 15 | `bug-officer-instant-spawn-order` `bug-070` `bug-318` `bug-789` `bug-1103` `bug-1514` `bug-1571` `bug-1648` `bug-1649` `bug-1650` `bug-1653` `bug-1720` `bug-1779` `bug-1852` `bug-1939` |
 | `hzm-mohaa-coop-mod/coop_mod/officer.scr (+ coop_mod/coop_selftest_officer.scr)` | 1 | `bug-1215` |
 | `hzm-mohaa-coop-mod/coop_mod/officer.scr (coop_officer_policy)` | 1 | `bug-1590` |
 | `hzm-mohaa-coop-mod/coop_mod/officer.scr (coop_radio_init)` | 1 | `bug-1816` |
@@ -1297,6 +1297,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `bombing-run` | 2 | `bug-070` `bug-717` |
 | `bombs` | 1 | `bug-1748` |
 | `bone-chain` | 1 | `bug-1540` |
+| `boot-errors` | 1 | `bug-1939` |
 | `boot-hang` | 1 | `bug-gl2-texmods-null` |
 | `borderless` | 2 | `bug-1795` `bug-753` |
 | `boss` | 3 | `bug-1215` `bug-1422` `bug-895` |
@@ -2804,6 +2805,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `nextweapon` | 1 | `bug-925` |
 | `night-map` | 1 | `bug-1169` |
 | `nil` | 1 | `bug-300` |
+| `nil-compare` | 1 | `bug-1939` |
 | `nil-concat` | 1 | `bug-1284` |
 | `nil-guard` | 5 | `bug-1051` `bug-1065` `bug-1483` `bug-1493` `bug-1816` |
 | `nil-throw` | 1 | `bug-1542` |
@@ -3354,6 +3356,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `save-file` | 1 | `bug-1602` |
 | `say` | 1 | `bug-1807` |
 | `say-anim` | 3 | `bug-837` `bug-839` `bug-842` |
+| `saymanager` | 1 | `bug-1939` |
 | `sc_-scripted` | 1 | `bug-gl2-invisible-friendly-actor-root` |
 | `scaffolding` | 1 | `bug-1153` |
 | `scale` | 1 | `bug-829` |
@@ -3738,7 +3741,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `supersedes-1753` | 2 | `bug-1759` `bug-1760` |
 | `supersedes-1759` | 1 | `bug-1760` |
 | `supersedes-1760` | 1 | `bug-1767` |
-| `suppression` | 5 | `bug-1151` `bug-1268` `bug-1305` `bug-1322` `bug-gl2-suppressfx` |
+| `suppression` | 6 | `bug-1151` `bug-1268` `bug-1305` `bug-1322` `bug-1939` `bug-gl2-suppressfx` |
 | `surface` | 6 | `bug-095` `bug-1216` `bug-1308` `bug-1360` `bug-1912` `bug-533` |
 | `surface-command` | 1 | `bug-1332` |
 | `surface-index` | 1 | `bug-1880` |
@@ -4110,6 +4113,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `wasted-work` | 1 | `bug-1210` |
 | `watch` | 1 | `bug-363` |
 | `watchdog` | 4 | `bug-1286` `bug-1450` `bug-1452` `bug-1459` |
+| `watcher-vs-event` | 1 | `bug-1939` |
 | `water` | 5 | `bug-1242` `bug-1247` `bug-1249` `bug-1250` `bug-1515` |
 | `wave` | 1 | `bug-1846` |
 | `wave-director` | 1 | `bug-1831` |

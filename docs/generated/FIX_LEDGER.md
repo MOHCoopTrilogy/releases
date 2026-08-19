@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1295** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1296** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 632 |
+| 2026-08 | 633 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1312,6 +1312,7 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1936` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | - | rapid armory clicking silently dropped every action after the first - one name-bus token per batch, no close-commit for weapons/finishes | loadout_closeLoadoutCommit replays all 8 archived recipes (A1-4 then FA1-4) at armory close behind token-free polls; NEW idempotent-quiet exits in lo… |
 | `bug-1937` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/main.scr` | - | one trailing space in a player's name silently killed their entire name bus | The mismatch branch re-tests the failed char as a new match start (single-char re-test is sufficient for all bus keys; strictly more matches for ever… |
 | `bug-1938` | 2026-08-18 | `hzm-mohaa-coop-mod/ui/loadout/p48.cfg` | - | variant button cross-wired into slot 1's ring from any other slot - corrupted slot 1's archived finish; slot re-entry always showed the base gun | Pages no longer touch the active pointer (owned solely by s<n>sel per slot click; gen_loadout regenerated); server arms coop_loFinPrevS<slot> at the… |
+| `bug-1939` | 2026-08-19 | `hzm-mohaa-coop-mod/coop_mod/officer.scr` | - | 38 script errors per boot: binary '>' applied to incompatible types 'int' and 'none' (anim/saymanager.scr:19) | Flavor call moved inside coop_suppress_react to the point where the suppression roll actually passes; both SayManager call sites (suppress flavor + r… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

@@ -343,7 +343,7 @@ docs/DECISIONS.md	37942	.md	541	docs
 docs/ENGINE.md	26462	.md	322	docs
 docs/FEATURES.md	88656	.md	1164	docs
 docs/HISTORY.md	29926	.md	249	docs
-docs/OPEN.md	49868	.md	711	docs
+docs/OPEN.md	50683	.md	721	docs
 docs/PROPOSED_CLAUDE.md	11428	.md	182	docs
 docs/README.md	6634	.md	109	docs
 docs/SESSION_HANDOFF.md	7032	.md	126	docs
@@ -1383,7 +1383,7 @@ hzm-mohaa-coop-mod/_research/stealth_native_plan.md	14387	.md	261	hzm-mohaa-coop
 hzm-mohaa-coop-mod/_research/sweep_pass1_monitor.txt	112	.txt	2	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_research/waittill_risk.md	1473	.md	35	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/aim.scr	4360	.scr	177	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/anim/attack.scr	53528	.scr	1946	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/anim/attack.scr	55048	.scr	1985	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/cornerleft.scr	9774	.scr	288	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/cornerright.scr	9824	.scr	291	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/disguise_accept.scr	3093	.scr	71	hzm-mohaa-coop-mod
@@ -1403,19 +1403,19 @@ hzm-mohaa-coop-mod/anim/overattack.scr	4715	.scr	158	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/pain.scr	11733	.scr	528	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/reload.scr	9415	.scr	361	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/runto_casual.scr	2743	.scr	100	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/anim/runto_inopen.scr	3682	.scr	114	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/anim/runto_inopen.scr	3957	.scr	121	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/shoot.scr	6908	.scr	262	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/autoexec.cfg	90447	.cfg	1229	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/cmpatch/e1l2.txt	472	.txt	7	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coolness 2.jpg	149265	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop.cfg	122	.cfg	3	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_defaults.cfg	21742	.cfg	351	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_defaults.cfg	21830	.cfg	354	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/admin.scr	3507	.scr	87	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/ads.scr	1722	.scr	39	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/ads_dbg.scr	518	.scr	11	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/aibehav.scr	5885	.scr	120	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/aicombat.scr	5119	.scr	119	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/aihandler.scr	98524	.scr	1705	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/aihandler.scr	105577	.scr	1858	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/aimaneuver.scr	14608	.scr	261	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/aisquad.scr	12602	.scr	245	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/aivoice.scr	17957	.scr	398	hzm-mohaa-coop-mod
@@ -1538,7 +1538,7 @@ hzm-mohaa-coop-mod/coop_mod/morale.scr	4758	.scr	94	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objective_drop.scr	7236	.scr	165	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objective_positions.scr	3691	.scr	89	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objectives.scr	30583	.scr	693	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/officer.scr	218992	.scr	4872	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/officer.scr	220715	.scr	4917	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/officer_positions.scr	35036	.scr	624	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/paradrop.scr	33463	.scr	774	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/player.scr	94253	.scr	1834	hzm-mohaa-coop-mod
@@ -1570,7 +1570,7 @@ hzm-mohaa-coop-mod/coop_mod/voidguard.scr	2370	.scr	56	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/wallgun.scr	23913	.scr	555	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/weaponstate.scr	7265	.scr	125	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/weather.scr	20103	.scr	360	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/wounded.scr	30304	.scr	532	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/wounded.scr	32463	.scr	601	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/xp.scr	92042	.scr	1953	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/cosmetic_gated_block.txt	4941	.txt	64	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/docs/proposals/objective_audit/scan_e-series.md	19618	.md	308	hzm-mohaa-coop-mod
@@ -10208,7 +10208,7 @@ hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	542436872	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	906188958	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23421401	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23424292	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm_coop_framework_guide.md	27594	.md	382	<root>
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>

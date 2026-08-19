@@ -94,6 +94,13 @@ All deployed, boot-verified 0 script errors, committed. Root causes in buglog 19
   mop-up grace, then the reveal + conversation fire directly - no more BSP-trigger or
   stuck-straggler stalls. Verify: kill the halftrack, Ramsey chats within ~15s worst case.
 
+- **CUT-CONTENT DEEP SCAN complete (2026-08-19)** - three verified digs (logic/audio/assets)
+  over all 17 retail pk3s; full record in _research/cutdig_2026-08-19.md. ~40 major finds
+  awaiting a restoration-batch decision; headliners: Omaha mortar-death choreography, e2l1
+  glider flak, balcony jumpers, BT global squad-chatter layer (331 barks), suppression/reload
+  shout categories, 13 staged-but-unwired ambience beds, dormant landmine+mine-detector
+  system (engine-complete), Kar98 rifle-grenade, cut intel economy, 32 posed statues, 14
+  briefing BSPs, zonespawner library (Holdout-ready).
 - **Cut-content animation wave 2 (2026-08-19)**: locational hit reactions (92-row census
   whitelist: stand/crouch flinch by head/back/arm/leg from self.fact.location; arm hits can
   play the rifle/thompson dropgun flinch), mortal-wound crawl-to-death theater (collapse ->
