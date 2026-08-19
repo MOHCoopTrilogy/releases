@@ -33,6 +33,13 @@ def resolves(nm):
     d = donor.get(base)
     return bool(d and d in tuned)
 
+# By-design misses: scoped rifles ADS into the zoom overlay (no iron tune), items do not aim.
+# A NEW gun landing outside this list fails the build - give it a donor line or dial it.
+EXPECTED = {
+    "bombing run", "minedetector", "minensuchgerat", "signal smoke grenade",
+    "enfield l42a1", "g43 sniper", "kar98 - sniper", "springfield '03 sniper",
+}
+
 miss, ok = set(), 0
 pat = os.path.join(ROOT, "hzm-mohaa-coop-mod", "models", "weapons", "**", "*.tik")
 for p in glob.glob(pat, recursive=True):
@@ -45,8 +52,12 @@ for p in glob.glob(pat, recursive=True):
         miss.add(m.group(1).split(" (")[0])
 
 print(f"{len(tuned)} tuned rows, {len(donor)} donor aliases, {ok} tiks resolve")
-bases = sorted(miss)
-print(f"{len(bases)} base guns with NO tune (finish tiks collapse into their base):")
-for b in bases:
-    print("  " + b)
-sys.exit(1 if bases else 0)
+expected  = sorted(b for b in miss if b.lower() in EXPECTED)
+unexpected = sorted(b for b in miss if b.lower() not in EXPECTED)
+if expected:
+    print(f"{len(expected)} expected misses (scoped / no-aim): " + ", ".join(expected))
+if unexpected:
+    print(f"{len(unexpected)} UNEXPECTED - no tune from any source:")
+    for b in unexpected:
+        print("  " + b)
+sys.exit(1 if unexpected else 0)

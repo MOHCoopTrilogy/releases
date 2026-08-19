@@ -1,4 +1,4 @@
-﻿Add-Type -AssemblyName System.IO.Compression
+Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 $srcDir     = "C:\mohaa-coop-dev\hzm-mohaa-coop-mod"
@@ -17,6 +17,15 @@ if ($LASTEXITCODE -ne 0) { exit 1 }
 # commands for a whole session while the engine printed the reason on every load (bug-1912).
 python "C:\mohaa-coop-dev\docs\tools\check_tik_surfaces.py" $srcDir
 if ($LASTEXITCODE -ne 0) { exit 1 }
+
+# [user 2026-08-18] DRIFT GATES ("how can we ensure we do not miss anything like that again"):
+# every cross-source invariant gets an audit that BLOCKS the deploy. unlock_audit = every roster
+# gun has an enforced path (free/challenge/rank) and the hover text matches it (7 hovers lied for
+# weeks). ads_audit = every aimable gun resolves to a sight tune (exact/strip/donor).
+python "C:\mohaa-coop-dev\docs\tools\unlock_audit.py"
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by unlock_audit" -ForegroundColor Red; exit 1 }
+python "C:\mohaa-coop-dev\docs\tools\ads_audit.py"
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by ads_audit" -ForegroundColor Red; exit 1 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by scrlint" -ForegroundColor Red; exit 1 }
 $deployDir  = "G:\GOG\Medal of Honor - Allied Assault War Chest\maintt"
 $appDataDir = "$env:APPDATA\openmohaa\maintt"
