@@ -521,3 +521,16 @@ assuming full coverage, so the bp_* ladder stays honest either way.
 Rejected alternative: place them at the vehicle's start/end points so they are grabbable while
 stationary. That puts the collectible somewhere the player is already funnelled through, which
 makes it free rather than hidden — the opposite of what the collectible is for.
+
+## Cross-source invariants are enforced by build gates, not audits-on-request (2026-08-18)
+
+Seven armory hovers lied about their unlock path for weeks, and the collectible header promised
+an every-5 award that never existed - both are the same failure: two places state one fact and
+nothing checks they agree. The decision: whenever a system spans two sources (UI text vs
+enforcement, roster vs challenge table, tik names vs tune table), a small audit script ships
+WITH it and goes straight into build.ps1 as a deploy-blocking gate. Current gates: scrlint,
+check_empty_rhs, check_tik_surfaces, check_challenges, check_download_links, unlock_audit,
+ads_audit. REJECTED: deriving the hover text from the enforcement source instead of auditing it
+- hover lines are width-curated prose (two ~24-char lines) and mechanical derivation produced
+worse text than the curated tsv; the gate catches drift at the same point a generator would.
+
