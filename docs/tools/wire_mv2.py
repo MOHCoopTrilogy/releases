@@ -17,47 +17,61 @@ UI = MOD + "ui/loadout/"
 
 # per-gun ordered variant lists: (base stem, [(key, LABEL), ...]) -> fids 8, 9, 10...
 MV = [
-    ("thompsonsmg",  [("tommy28", "THOMPSON (M1928)"), ("tommy1928d", "THOMPSON (1928 TOMMY) (DR.DELETO)"),
+    ("thompsonsmg",  [("tommy28", "THOMPSON (M1928) (STATIC)"), ("tommy1928d", "THOMPSON (1928 TOMMY) (DR.DELETO)"),
                       ("tommy27a1", "THOMPSON (27A1 COMMANDO) (FLAKRIDER)"), ("m1a1dk", "M1A1 REMODEL (DARKANGEL)"),
-                      ("hobbstomworn", "WORN THOMPSON (HOBBS)"), ("guantommy", "THOMPSON (GUANSHIRE)")], "wpn_thompson_e"),
+                      ("hobbstomworn", "WORN THOMPSON (HOBBS)"), ("guantommy", "THOMPSON (GUANSHIRE)"),
+                      ("lv_tttommy", "TEAM TACTICS (LEON)"), ("lv_famastommy", "FAMAS THOMPSON II (LEON)")], "wpn_thompson_e"),
     ("mp40",         [("mp40r2", "MP40 (REACTIVATED)"), ("mp18", "MP18 (EAST)"),
-                      ("guanmp40", "MP40 (GUANSHIRE)"), ("guanmp40s", "SILVER MP40 (GUANSHIRE)")], "wpn_mp40_e"),
+                      ("guanmp40", "MP40 (GUANSHIRE)"), ("guanmp40s", "SILVER MP40 (GUANSHIRE)"),
+                      ("lv_mp75", "MP 75 AUSF D (LEON)")], "wpn_mp40_e"),
     ("bar",          [("pabar", "BAR (PACIFIC) (MOH:PA)"), ("bar1918", "BAR M1918 (WWI) (EAST)"),
                       ("bar1918a", "M1918 CLASSIC (STLKID)"), ("bar1918a1", "M1918A1 (STLKID)"),
                       ("bar1918a2", "M1918A2 (STLKID)")], "wpn_bar_e"),
     ("m1_garand",    [("pagarand", "M1 GARAND (PACIFIC) (ACME313)"),
-                      ("guangarand", "M1 GARAND (GUANSHIRE)")], "wpn_garand_e"),
+                      ("guangarand", "M1 GARAND (GUANSHIRE)"), ("lv_ttgarand", "TEAM TACTICS (LEON)")], "wpn_garand_e"),
     ("mp44",         [("mp44strap", "STG 44 (STRAPPED) (DARKANGEL)"),
-                      ("dhstg44ss", "SS STG 44 (DIRTYHARRY)"), ("guanmp44", "STG 44 (GUANSHIRE)")], "wpn_stg44_e"),
+                      ("dhstg44ss", "SS STG 44 (DIRTYHARRY)"), ("guanmp44", "STG 44 (GUANSHIRE)"),
+                      ("lv_ttmp44", "TEAM TACTICS (LEON)")], "wpn_stg44_e"),
     ("colt45",       [("coltpa", "COLT 45 (PACIFIC) (ACME313)"), ("colt1911w", "M1911 (WWI) (EAST)"),
                       ("covert", "M1911 COVERT"), ("drbond", "1911 CLASSIC"),
                       ("bloodyeic", "M1911 BLOODY EIC (SCHUTZE)"),
-                      ("guancolt", "COLT 1911 (GUANSHIRE)")], "wpn_colt_e"),
-    ("enfield",      [("p14", "P14 ENFIELD (EAST)"), ("hobbsenfurb", "URBAN ENFIELD (HOBBS)")], "wpn_enfield_e"),
+                      ("guancolt", "COLT 1911 (GUANSHIRE)"), ("lv_ttcolt", "TEAM TACTICS (LEON)")], "wpn_colt_e"),
+    ("enfield",      [("p14", "P14 ENFIELD (EAST)"), ("hobbsenfurb", "URBAN ENFIELD (HOBBS)"),
+                      ("lv_ttenfield", "TEAM TACTICS (LEON)")], "wpn_enfield_e"),
     # G98 is HOSTED under the G43 (family grouping, user request) but its BODY is the Kar98's -
     # "a bolt action should remain a bolt action". The explicit path points at the kar98-derived
     # tik; its name strips to "Mauser KAR 98K", so hands, bolt-cycle anims and ADS are the Kar98's.
     ("G43",          [("g98", "GEWEHR 98 (BOLT) (EAST)", "models/weapons/kar98_g98.tik"),
                       ("dhg43fleck", "FLECKTARN G43 (DIRTYHARRY)"), ("hobbsg43wood", "WOODLAND G43 (HOBBS)"),
-                      ("hobbsg43urb", "URBAN G43 (HOBBS)")], "wpn_g43_e"),
-    ("KAR98sniper",  [("g98scope", "G98 SCOPED (EAST)")], "wpn_kar98sniper_e"),
+                      ("hobbsg43urb", "URBAN G43 (HOBBS)"), ("lv_ttg43", "TEAM TACTICS (LEON)")], "wpn_g43_e"),
+    ("KAR98sniper",  [("g98scope", "G98 SCOPED (EAST)"), ("lv_ttkar98sn", "TEAM TACTICS (LEON)"),
+                      ("lv_98ks", "MAUSER 98 KS (LEON)")], "wpn_kar98sniper_e"),
     ("springfield",  [("smlescope", "SMLE SCOPED (EAST)"), ("m1903", "M1903 SPRINGFIELD (EAST)"),
                       ("dhspdesert", "DESERT CAMO '03 (DIRTYHARRY)"), ("dhspdigital", "DIGITAL CAMO '03 (DIRTYHARRY)"),
                       ("dhsptiger", "TIGER CAMO '03 (DIRTYHARRY)"), ("dhspwinter", "WINTER CAMO '03 (DIRTYHARRY)"),
                       ("guansplight", "LIGHTWOOD '03 (GUANSHIRE)"), ("guansp2", "SPRINGFIELD II (GUANSHIRE)"),
-                      ("hobbsspwood", "WOODLAND '03 (HOBBS)"), ("hobbsspurban", "URBAN '03 (HOBBS)")], "wpn_springfield_e"),
+                      ("hobbsspwood", "WOODLAND '03 (HOBBS)"), ("hobbsspurban", "URBAN '03 (HOBBS)"),
+                      ("lv_ttspring", "TEAM TACTICS (LEON)")], "wpn_springfield_e"),
     ("mauser_c96",   [("c96trench", "C96 (TRENCH) (EAST)")], "wpn_c96_e"),
     ("shotgun",      [("authwinch", "AUTHENTIC WOOD"),
                       ("dhshotblack", "BLACK TACTICAL (DIRTYHARRY)"), ("dhshotchrome", "CHROME TACTICAL (DIRTYHARRY)"),
-                      ("hobbsshotty", "RECOIL SHOTTY (HOBBS & RECOIL)"), ("guanshotty", "SHOTGUN (GUANSHIRE)")], "wpn_shotgun_e"),
+                      ("hobbsshotty", "RECOIL SHOTTY (HOBBS & RECOIL)"), ("guanshotty", "SHOTGUN (GUANSHIRE)"),
+                      ("lv_ttshotgun", "TEAM TACTICS (LEON)")], "wpn_shotgun_e"),
     # --- MV wave 3 NEW hosts (2026-08-19): Hobbs / Guanshire / DirtyHarry imports ---
     ("kar98",        [("hobbskarworn", "WORN KAR 98K (HOBBS)"),
-                      ("hobbskarwood", "WOODLAND KAR 98K (HOBBS)")], "wpn_kar98_e"),
-    ("p38",          [("guanp38", "WALTHER P38 (GUANSHIRE)")], "wpn_p38_e"),
+                      ("hobbskarwood", "WOODLAND KAR 98K (HOBBS)"), ("lv_ttkar98", "TEAM TACTICS (LEON)")], "wpn_kar98_e"),
+    ("p38",          [("guanp38", "WALTHER P38 (GUANSHIRE)"), ("lv_ttp38", "TEAM TACTICS (LEON)")], "wpn_p38_e"),
     ("bazooka",      [("guanbazooka", "REALISTIC BAZOOKA (GUANSHIRE)")], "wpn_bazooka_e"),
-    ("mosin_nagant_rifle", [("hobbsmosinur", "URBAN MOSIN (HOBBS)")], "wpn_mosin_e"),
+    ("mosin_nagant_rifle", [("hobbsmosinur", "URBAN MOSIN (HOBBS)"),
+                      ("lv_ttmosin", "TEAM TACTICS (LEON)")], "wpn_mosin_e"),
     ("svt_rifle",    [("hobbssvtwood", "WOODLAND SVT-40 (HOBBS)")], "wpn_svt_e"),
     ("uk_w_l42a1",   [("dhl42camo", "CAMO L42A1 (DIRTYHARRY)")], "wpn_l42a1_e"),
+    # --- Leon wave (2026-08-19, user: ship w/ credit + remove-on-request) ---
+    ("it_w_beretta", [("lv_ttberetta", "TEAM TACTICS (LEON)")], "wpn_beretta_e"),
+    ("it_w_carcano", [("lv_ttcarcano", "TEAM TACTICS (LEON)")], "wpn_carcano_e"),
+    ("delisle",      [("lv_ttdelisle", "TEAM TACTICS (LEON)"), ("lv_wdelisle", "WEHRMACHT DELISLE (LEON)")], "wpn_delisle_e"),
+    ("webley_revolver", [("lv_ttwebley", "TEAM TACTICS (LEON)")], "wpn_webley_e"),
+    ("panzerschreck", [("lv_ofenrohr", "OFENROHR (LEON)")], "wpn_panzerschreck_e"),
 ]
 
 
@@ -220,7 +234,8 @@ newtiks = ["mp44_mp44strap", "colt45_coltpa", "mp40_mp18", "enfield_p14", "sprin
            "springfield_smlescope", "kar98_g98", "KAR98sniper_g98scope",
            "bar_bar1918", "colt45_colt1911w", "mauser_c96_c96trench", "thompsonsmg_m1a1dk", "colt45_covert", "colt45_drbond", "colt45_bloodyeic", "shotgun_authwinch", "bar_bar1918a", "bar_bar1918a1", "bar_bar1918a2",
            "thompsonsmg_tommy1928d", "thompsonsmg_tommy27a1",
-           "springfield_dhspdesert", "springfield_dhspdigital", "springfield_dhsptiger", "springfield_dhspwinter", "springfield_guansplight", "springfield_guansp2", "springfield_hobbsspwood", "springfield_hobbsspurban", "G43_dhg43fleck", "G43_hobbsg43wood", "G43_hobbsg43urb", "mp44_dhstg44ss", "mp44_guanmp44", "kar98_hobbskarworn", "kar98_hobbskarwood", "thompsonsmg_hobbstomworn", "thompsonsmg_guantommy", "colt45_guancolt", "m1_garand_guangarand", "mp40_guanmp40", "mp40_guanmp40s", "enfield_hobbsenfurb", "shotgun_dhshotblack", "shotgun_dhshotchrome", "shotgun_hobbsshotty", "shotgun_guanshotty", "p38_guanp38", "bazooka_guanbazooka", "mosin_nagant_rifle_hobbsmosinur", "svt_rifle_hobbssvtwood", "uk_w_l42a1_dhl42camo"]
+           "springfield_dhspdesert", "springfield_dhspdigital", "springfield_dhsptiger", "springfield_dhspwinter", "springfield_guansplight", "springfield_guansp2", "springfield_hobbsspwood", "springfield_hobbsspurban", "G43_dhg43fleck", "G43_hobbsg43wood", "G43_hobbsg43urb", "mp44_dhstg44ss", "mp44_guanmp44", "kar98_hobbskarworn", "kar98_hobbskarwood", "thompsonsmg_hobbstomworn", "thompsonsmg_guantommy", "colt45_guancolt", "m1_garand_guangarand", "mp40_guanmp40", "mp40_guanmp40s", "enfield_hobbsenfurb", "shotgun_dhshotblack", "shotgun_dhshotchrome", "shotgun_hobbsshotty", "shotgun_guanshotty", "p38_guanp38", "bazooka_guanbazooka", "mosin_nagant_rifle_hobbsmosinur", "svt_rifle_hobbssvtwood", "uk_w_l42a1_dhl42camo",
+           "enfield_lv_ttenfield", "G43_lv_ttg43", "mosin_nagant_rifle_lv_ttmosin", "it_w_beretta_lv_ttberetta", "it_w_carcano_lv_ttcarcano", "colt45_lv_ttcolt", "delisle_lv_ttdelisle", "kar98_lv_ttkar98", "KAR98sniper_lv_ttkar98sn", "m1_garand_lv_ttgarand", "p38_lv_ttp38", "thompsonsmg_lv_tttommy", "mp44_lv_ttmp44", "springfield_lv_ttspring", "webley_revolver_lv_ttwebley", "shotgun_lv_ttshotgun", "panzerschreck_lv_ofenrohr", "KAR98sniper_lv_98ks", "delisle_lv_wdelisle", "thompsonsmg_lv_famastommy", "mp40_lv_mp75"]
 added = 0
 anchor = "weapon weapons/m1_garand_pagarand.tik"
 assert txt.count(anchor) == 1

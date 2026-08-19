@@ -13,27 +13,28 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `c5c0142 2026-08-19 tools: wire_mv2 wave-3 table; loadout_finish template retired (bug-1947)` |
-| commits | 152 |
+| HEAD | `3c74c45 2026-08-19 docs: MV wave 3 recorded` |
+| commits | 153 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **1 modified, 0 untracked** |
-| unstaged diff | 1 file changed, 2 insertions(+) |
+| **uncommitted** | **3 modified, 0 untracked** |
+| unstaged diff | 3 files changed, 32 insertions(+), 16 deletions(-) |
 
-> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 3 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 98 |
+| 2026-08 | 99 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (152)
+### Commits since 2026-01-01 (153)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `3c74c45` | 2026-08-19 | joncurry94-tech | docs: MV wave 3 recorded |
 | `c5c0142` | 2026-08-19 | joncurry94-tech | tools: wire_mv2 wave-3 table; loadout_finish template retired (bug-1947) |
 | `af44ada` | 2026-08-19 | joncurry94-tech | docs: mid-playtest fix wave recorded (bugs 1942-1945); TRAPS actor-getter + anim-pack rules corrected in place |
 | `f3c9304` | 2026-08-19 | joncurry94-tech | docs: variant authorship resolved (acme313 = MOHPA porter; East = WW1 arsenal; DarkAngel/Deleto/FlakRider/Schutze/stlkid per vari… |
@@ -192,18 +193,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `de25c52 2026-08-19 feat: MV wave 3 - 31 credited weapon variants (Hobbs/Guanshire/DirtyHarry)` |
-| commits | 1,506 |
+| HEAD | `43377a7 2026-08-19 feat: Leon wave shipped - 21 credited variants (Team Tactics 16-gun pack + 5 singles), textures 2x` |
+| commits | 1,508 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **0 modified, 6 untracked** |
-
-> Working tree is dirty. Everything in those 6 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 113 |
+| 2026-08 | 115 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -243,10 +242,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (157)
+### Commits since 2026-01-01 (159)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `43377a7` | 2026-08-19 | joncurry94 | feat: Leon wave shipped - 21 credited variants (Team Tactics 16-gun pack + 5 singles), textures 2x |
+| `3ee3e6b` | 2026-08-19 | joncurry94 | feat: wave-3 variant textures upscaled 2x (39/39 clean); tommy28 credited to sT@t!c |
 | `de25c52` | 2026-08-19 | joncurry94 | feat: MV wave 3 - 31 credited weapon variants (Hobbs/Guanshire/DirtyHarry) |
 | `ceb953d` | 2026-08-19 | joncurry94 | fix: shellshock chain + odometer-zero systems (bugs 1942-1945) |
 | `274bc93` | 2026-08-19 | joncurry94 | tinnitus: dizziness handoff moved inside the ping guard (bug-1941 - the unset-ping concat spammed 2283 script errors live) |

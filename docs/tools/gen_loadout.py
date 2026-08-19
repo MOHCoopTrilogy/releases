@@ -57,7 +57,7 @@ def preview(w):
     # [user 2026-08-18] finish strip, fid 8: the generic VARIANT button lights up only while a
     # gun with an imported model variant is previewed. Host tile ids are pinned here; the actual
     # variant + its unlock live in loadoutskins.scr, keyed on the give path.
-    MV_HOSTS = ("01", "03", "04", "05", "08", "09", "12", "13", "14", "24", "26", "36", "37", "44", "45", "48", "50", "74")
+    MV_HOSTS = ("01", "03", "04", "05", "07", "08", "09", "12", "13", "14", "23", "24", "26", "36", "37", "44", "45", "46", "48", "50", "53", "55", "74")
     mv_on = "1" if w["id"] in MV_HOSTS else "0"
     mv_req = ("exec ui/loadout/reqmv%s.cfg" % w["id"]) if w["id"] in MV_HOSTS else "exec ui/loadout/reqclear.cfg"
     # [user 2026-08-18] deep-trace F5(viewer): this used to hard-code the ACTIVE pointer to
