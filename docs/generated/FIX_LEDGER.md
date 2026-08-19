@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1304** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1307** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 641 |
+| 2026-08 | 644 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1321,6 +1321,9 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1945` | 2026-08-19 | `hzm-mohaa-coop-mod/models/human/new_generic_human.tik` | - | Script Error: unknown animation 'mp40_stand_alert01/02' / 'rifle_pain_floorcrawl' in german_waffenss_shutze.tik; 'scientist_surrender' unknown on weh… | Added unconditional $include of human_mp40/human_rifle/human_sten/human_vickers/human_pistol.tik + scripted/scientist.tik to our new_generic_human.ti… |
 | `bug-1946` | 2026-08-19 | `openmohaa-hzm/code/fgame/vehicleturret.cpp` | - | on the mg42's I could literally sometimes just hold the button down and it would never really overheat at all, just keeps firing doesnt get stopped (… | Grafted the same heat cycle into VehicleTurretGun::UpdateFireControl ahead of the fire state machine: 50/s build, soft overheat with 2s dead-gun floo… |
 | `bug-1947` | 2026-08-19 | `docs/tools/wire_mv2.py` | R | ui_wiring_audit BUILD BLOCKED: DEAD VSTR coop_lofinprevs1-4 never assigned <- ui/loadout/sNsel.cfg (after wire_mv2 run for MV wave 3) | git-reverted loadoutpick.scr, re-applied only the fid ceiling (13->19 for the 10-variant springfield) as a surgical edit, and RETIRED wire_mv2 sectio… |
+| `bug-1948` | 2026-08-19 | `openmohaa-hzm/code/fgame/actor.cpp` | - | ^~^~^ Reload default case for weapon Thompson - weapon type not supported (spamming, live playtest); AI reload/aim/attack anim switches defaulting fo… | Actor::EventGetWeapon strips the ' (' parenthetical before returning (variants read as their base gun to ALL script consumers). The armory/player sid… |
+| `bug-1949` | 2026-08-19 | `hzm-mohaa-coop-mod/coop_mod/aihandler.scr` | - | the airborne guy that is supposed to talk to ramsey just ran over without his rifle and didn't talk to ramsey, he has no weapon. Ramsey finished all… | coop_variantRoll now ends early when self.no_idle == 1 (the same scripted-scene guard aivoice uses). |
+| `bug-1950` | 2026-08-19 | `openmohaa-hzm/code/fgame/vehicleturret.cpp` | - | these stupid mg42s on the road are still deadly accurate, are they getting reset or something? (user, live m3l3 - after bug-1940 shipped) | De-static'd the trio (weapturret.h externs). VehicleTurretGun::GetMuzzlePosition applies the TurretGun scatter formula + spread bonus for actor gunne… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

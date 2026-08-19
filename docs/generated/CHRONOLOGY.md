@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `1fd6005 2026-08-19 docs: Leon wave + licensing decision recorded` |
-| commits | 154 |
+| HEAD | `64d0c86 2026-08-19 docs: class-split trap; bugs 1948-1950 recorded` |
+| commits | 155 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 100 |
+| 2026-08 | 101 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (154)
+### Commits since 2026-01-01 (155)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `64d0c86` | 2026-08-19 | joncurry94-tech | docs: class-split trap; bugs 1948-1950 recorded |
 | `1fd6005` | 2026-08-19 | joncurry94-tech | docs: Leon wave + licensing decision recorded |
 | `3c74c45` | 2026-08-19 | joncurry94-tech | docs: MV wave 3 recorded |
 | `c5c0142` | 2026-08-19 | joncurry94-tech | tools: wire_mv2 wave-3 table; loadout_finish template retired (bug-1947) |
@@ -191,8 +192,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `43377a7 2026-08-19 feat: Leon wave shipped - 21 credited variants (Team Tactics 16-gun pack + 5 singles), textures 2x` |
-| commits | 1,508 |
+| HEAD | `202b57d 2026-08-19 fix: tinnitus 10s package + variant scene-guard + deeper ducks (bugs 1948-1949 script side)` |
+| commits | 1,509 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -200,7 +201,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 115 |
+| 2026-08 | 116 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -240,10 +241,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (159)
+### Commits since 2026-01-01 (160)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `202b57d` | 2026-08-19 | joncurry94 | fix: tinnitus 10s package + variant scene-guard + deeper ducks (bugs 1948-1949 script side) |
 | `43377a7` | 2026-08-19 | joncurry94 | feat: Leon wave shipped - 21 credited variants (Team Tactics 16-gun pack + 5 singles), textures 2x |
 | `3ee3e6b` | 2026-08-19 | joncurry94 | feat: wave-3 variant textures upscaled 2x (39/39 clean); tommy28 credited to sT@t!c |
 | `de25c52` | 2026-08-19 | joncurry94 | feat: MV wave 3 - 31 credited weapon variants (Hobbs/Guanshire/DirtyHarry) |
@@ -409,8 +411,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `2922a724 2026-08-19 fix: vehicle-mounted MGs run the player heat cycle (bug-1946)` |
-| commits | 5,004 |
+| HEAD | `99d9392f 2026-08-19 fix: actor getter returns BASE name (bug-1948); vehicle AI gunner tuning trio (bug-1950); reload camera sway` |
+| commits | 5,005 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -418,7 +420,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 24 |
+| 2026-08 | 25 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -479,10 +481,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (39)
+### Commits since 2026-01-01 (40)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `99d9392f` | 2026-08-19 | joncurry94 | fix: actor getter returns BASE name (bug-1948); vehicle AI gunner tuning trio (bug-1950); reload camera sway |
 | `2922a724` | 2026-08-19 | joncurry94 | fix: vehicle-mounted MGs run the player heat cycle (bug-1946) |
 | `63b1ed78` | 2026-08-19 | joncurry94 | fix: actor weapon getter returns held weapon name; shellshock sway moved to final view path (bugs 1942-1943) |
 | `64e6cd71` | 2026-08-19 | joncurry94 | boom package: universal explosion shake, shell-shock dizziness, ricochet whines, muffled crew screams |

@@ -350,7 +350,7 @@ docs/SESSION_HANDOFF.md	7032	.md	126	docs
 docs/SKIN_CREDITS.md	5327	.md	83	docs
 docs/SOT_01_TIMELINE.md	15655	.md	181	docs
 docs/SOURCE_OF_TRUTH.md	29524	.md	417	docs
-docs/TRAPS.md	67160	.md	942	docs
+docs/TRAPS.md	67857	.md	952	docs
 docs/archive/e2l1_open_items.md	6053	.md	73	docs
 docs/archive/history-pre-2026-06-26.md	2006	.md	32	docs
 docs/archive/open-p0-cleared-2026-08-15.md	4513	.md	71	docs
@@ -695,6 +695,9 @@ hzm-mohaa-coop-mod/_notes/audio_backup_20260705/tails/gun_tail_mid1.wav	114738	.
 hzm-mohaa-coop-mod/_notes/audio_backup_20260705/tails/gun_tail_mid2.wav	114738	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_notes/audio_backup_20260705/tails/tail_auto.wav	172878	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_notes/audio_backup_20260705/tails/tail_rifle.wav	172878	.wav	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/_notes/colt_thump_A_deep.wav	105644	.wav	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/_notes/colt_thump_B_punchy.wav	105644	.wav	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/_notes/colt_thump_C_cannon.wav	105644	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_notes/game/cvars_client.txt	2461	.txt	95	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_notes/game/developer.txt	70	.txt	4	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_notes/game/dm_flags.txt	399	.txt	13	hzm-mohaa-coop-mod
@@ -1410,17 +1413,17 @@ hzm-mohaa-coop-mod/anim/reload.scr	9415	.scr	361	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/runto_casual.scr	2743	.scr	100	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/runto_inopen.scr	4012	.scr	122	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/shoot.scr	6908	.scr	262	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/autoexec.cfg	90447	.cfg	1229	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/autoexec.cfg	90448	.cfg	1229	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/cmpatch/e1l2.txt	472	.txt	7	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coolness 2.jpg	149265	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop.cfg	122	.cfg	3	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_defaults.cfg	22287	.cfg	363	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_defaults.cfg	22286	.cfg	363	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/admin.scr	3507	.scr	87	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/ads.scr	1722	.scr	39	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/ads_dbg.scr	518	.scr	11	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/aibehav.scr	7568	.scr	165	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/aicombat.scr	5119	.scr	119	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/aihandler.scr	106002	.scr	1864	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/aihandler.scr	106292	.scr	1868	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/aimaneuver.scr	14608	.scr	261	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/aisquad.scr	12602	.scr	245	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/aivoice.scr	20554	.scr	455	hzm-mohaa-coop-mod
@@ -5143,7 +5146,8 @@ hzm-mohaa-coop-mod/sound/coop_ric/ric_02.wav	18566	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/coop_ric/ric_03.wav	30032	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/coop_sprint/breath1.wav	181770	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/coop_sprint/breath2.wav	189268	.wav	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/sound/coop_tinnitus/ring.wav	154428	.wav	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/sound/coop_tinnitus/ring.wav	485144	.wav	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/sound/coop_tinnitus/ring.wav.pre_ext_nobuild	154428	.pre_ext_nobuild	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/coop_tinnitus/shellshock01.wav	441112	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/coop_vo/den_coop_falseorder1.wav	175596	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/coop_vo/den_coop_falseorder2.wav	178684	.wav	0	hzm-mohaa-coop-mod
@@ -12103,7 +12107,7 @@ openmohaa-hzm/code/cgame/cg_tempmodels.cpp	54277	.cpp	1637	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_testemitter.cpp	87160	.cpp	2096	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_ui.cpp	7988	.cpp	286	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_vehicle.cpp	1239	.cpp	39	openmohaa-hzm
-openmohaa-hzm/code/cgame/cg_view.c	148816	.c	3066	openmohaa-hzm
+openmohaa-hzm/code/cgame/cg_view.c	150324	.c	3097	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_viewmodelanim.c	27972	.c	756	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_volumetricsmoke.cpp	45486	.cpp	1370	openmohaa-hzm
 openmohaa-hzm/code/cgame/memarchiver.cpp	5651	.cpp	241	openmohaa-hzm
@@ -12218,7 +12222,7 @@ openmohaa-hzm/code/fgame/VehicleSoundEntity.h	1842	.h	61	openmohaa-hzm
 openmohaa-hzm/code/fgame/VehicleTank.cpp	17476	.cpp	584	openmohaa-hzm
 openmohaa-hzm/code/fgame/VehicleWheelsX2.cpp	21616	.cpp	688	openmohaa-hzm
 openmohaa-hzm/code/fgame/VehicleWheelsX4.cpp	22529	.cpp	701	openmohaa-hzm
-openmohaa-hzm/code/fgame/actor.cpp	329407	.cpp	13508	openmohaa-hzm
+openmohaa-hzm/code/fgame/actor.cpp	330037	.cpp	13519	openmohaa-hzm
 openmohaa-hzm/code/fgame/actor.h	83723	.h	2398	openmohaa-hzm
 openmohaa-hzm/code/fgame/actor_aim.cpp	1863	.cpp	65	openmohaa-hzm
 openmohaa-hzm/code/fgame/actor_alarm.cpp	3391	.cpp	131	openmohaa-hzm
@@ -12470,14 +12474,14 @@ openmohaa-hzm/code/fgame/vehicle.cpp	206644	.cpp	7454	openmohaa-hzm
 openmohaa-hzm/code/fgame/vehicle.h	26234	.h	623	openmohaa-hzm
 openmohaa-hzm/code/fgame/vehicletanktandem.cpp	2082	.cpp	61	openmohaa-hzm
 openmohaa-hzm/code/fgame/vehicletanktandem.h	1270	.h	38	openmohaa-hzm
-openmohaa-hzm/code/fgame/vehicleturret.cpp	65984	.cpp	2327	openmohaa-hzm
-openmohaa-hzm/code/fgame/vehicleturret.h	7700	.h	211	openmohaa-hzm
+openmohaa-hzm/code/fgame/vehicleturret.cpp	69044	.cpp	2376	openmohaa-hzm
+openmohaa-hzm/code/fgame/vehicleturret.h	7858	.h	214	openmohaa-hzm
 openmohaa-hzm/code/fgame/viewthing.cpp	21749	.cpp	845	openmohaa-hzm
 openmohaa-hzm/code/fgame/viewthing.h	3012	.h	106	openmohaa-hzm
 openmohaa-hzm/code/fgame/weapon.cpp	146940	.cpp	5157	openmohaa-hzm
 openmohaa-hzm/code/fgame/weapon.h	26418	.h	637	openmohaa-hzm
-openmohaa-hzm/code/fgame/weapturret.cpp	76892	.cpp	2642	openmohaa-hzm
-openmohaa-hzm/code/fgame/weapturret.h	9928	.h	258	openmohaa-hzm
+openmohaa-hzm/code/fgame/weapturret.cpp	76864	.cpp	2642	openmohaa-hzm
+openmohaa-hzm/code/fgame/weapturret.h	10218	.h	264	openmohaa-hzm
 openmohaa-hzm/code/fgame/weaputils.cpp	113084	.cpp	3638	openmohaa-hzm
 openmohaa-hzm/code/fgame/weaputils.h	9471	.h	371	openmohaa-hzm
 openmohaa-hzm/code/fgame/windows.cpp	4755	.cpp	189	openmohaa-hzm

@@ -10,9 +10,9 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 40,080 |
+| files in the workspace | 40,084 |
 | bytes | 42.0 GB |
-| files in project scope (indexed per-file) | 14,709 |
+| files in project scope (indexed per-file) | 14,713 |
 | source files (per-file rows with line counts) | 6,096 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
@@ -24,11 +24,11 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 11,205 | 7145.3 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 11,209 | 7146.1 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
-| `openmohaa-hzm` | 2,656 | 86.2 MB | **yes** | **the engine** - HZM fork of OpenMOHAA (C/C++) |
+| `openmohaa-hzm` | 2,656 | 86.3 MB | **yes** | **the engine** - HZM fork of OpenMOHAA (C/C++) |
 | `UBER-MODS-v8.00-MOHAA` | 2,614 | 115.5 MB | no - reference | third-party mod, reference only |
 | `moh-modelviewer` | 1,270 | 565.8 MB | no - reference | Node model preview tool (rarely touched) |
 | `original-scripts` | 915 | 1173.7 MB | no - reference | vanilla MOHAA script/asset extraction (reference) |
@@ -75,7 +75,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 ## Extension census (whole workspace)
 | ext | files |
 |---|---:|
-| `.wav` | 14,225 |
+| `.wav` | 14,228 |
 | `.dds` | 3,557 |
 | `.scr` | 2,512 |
 | `.tga` | 2,400 |
@@ -199,7 +199,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/textures` | 3 | 0.00 MB | .tga×2, .ds_store×1 |
 | `hzm-mohaa-coop-mod/_callvote` | 3 | 0.01 MB | .cfg×2, .txt×1 |
-| `hzm-mohaa-coop-mod/_notes` | 35 | 0.06 MB | .txt×34, .scr×1 |
+| `hzm-mohaa-coop-mod/_notes` | 38 | 0.38 MB | .txt×34, .wav×3, .scr×1 |
 | `hzm-mohaa-coop-mod/_notes/audio_backup_20260705/fire` | 57 | 10.35 MB | .wav×57 |
 | `hzm-mohaa-coop-mod/_notes/audio_backup_20260705/tails` | 6 | 0.96 MB | .wav×6 |
 | `hzm-mohaa-coop-mod/_notes/game` | 5 | 0.01 MB | .txt×5 |
@@ -416,7 +416,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/sound/coop_injury` | 1 | 0.44 MB | .wav×1 |
 | `hzm-mohaa-coop-mod/sound/coop_ric` | 3 | 0.07 MB | .wav×3 |
 | `hzm-mohaa-coop-mod/sound/coop_sprint` | 2 | 0.37 MB | .wav×2 |
-| `hzm-mohaa-coop-mod/sound/coop_tinnitus` | 2 | 0.60 MB | .wav×2 |
+| `hzm-mohaa-coop-mod/sound/coop_tinnitus` | 3 | 1.08 MB | .wav×2, .pre_ext_nobuild×1 |
 | `hzm-mohaa-coop-mod/sound/coop_vo` | 3 | 0.52 MB | .wav×3 |
 | `hzm-mohaa-coop-mod/sound/dialogue/Mission_2/Allies` | 16 | 0.31 MB | .mp3×16 |
 | `hzm-mohaa-coop-mod/sound/dialogue/Mission_2/Axis` | 4 | 0.04 MB | .mp3×4 |
@@ -705,7 +705,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/code/autoupdater` | 1 | 0.03 MB | .c×1 |
 | `openmohaa-hzm/code/autoupdater/rsa_tools` | 9 | 0.01 MB | .c×4, .sh×3, (none)×1, .h×1 |
 | `openmohaa-hzm/code/botlib` | 57 | 1.15 MB | .h×29, .c×28 |
-| `openmohaa-hzm/code/cgame` | 43 | 1.30 MB | .cpp×20, .c×12, .h×10, .txt×1 |
+| `openmohaa-hzm/code/cgame` | 43 | 1.31 MB | .cpp×20, .c×12, .h×10, .txt×1 |
 | `openmohaa-hzm/code/client` | 87 | 1.51 MB | .cpp×37, .h×33, .c×16, .txt×1 |
 | `openmohaa-hzm/code/client/new` | 3 | 0.02 MB | .h×2, .cpp×1 |
 | `openmohaa-hzm/code/curl` | 2 | 0.00 MB | .txt×1, .h×1 |
@@ -1302,7 +1302,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `ads_dbg.scr` | 11 | 0.5 KB | HZM coop - ADS diagnostic. Called from the AIM state's entrycommands in |
 | `aibehav.scr` | 165 | 7.4 KB | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
 | `aicombat.scr` | 119 | 5.0 KB | aicombat.scr - HZM coop AUTOMATED COMBAT DRIVER (2026-07-23) |
-| `aihandler.scr` | 1,864 | 103.5 KB | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
+| `aihandler.scr` | 1,868 | 103.8 KB | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
 | `aimaneuver.scr` | 261 | 14.3 KB | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
 | `aisquad.scr` | 245 | 12.3 KB | aisquad.scr - HZM coop SQUAD BRAIN (2026-07-24) |
 | `aivoice.scr` | 455 | 20.1 KB | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
@@ -5450,7 +5450,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `cg_testemitter.cpp` | 2,096 | 85.1 KB | DESCRIPTION: |
 | `cg_ui.cpp` | 286 | 7.8 KB | DESCRIPTION: |
 | `cg_vehicle.cpp` | 39 | 1.2 KB | DESCRIPTION: |
-| `cg_view.c` | 3,066 | 145.3 KB |  |
+| `cg_view.c` | 3,097 | 146.8 KB |  |
 | `cg_viewmodelanim.c` | 756 | 27.3 KB | DESCRIPTION: |
 | `cg_volumetricsmoke.cpp` | 1,370 | 44.4 KB | DESCRIPTION: |
 | `memarchiver.cpp` | 241 | 5.5 KB |  |
@@ -5582,7 +5582,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `VehicleTank.cpp` | 584 | 17.1 KB |  |
 | `VehicleWheelsX2.cpp` | 688 | 21.1 KB |  |
 | `VehicleWheelsX4.cpp` | 701 | 22.0 KB |  |
-| `actor.cpp` | 13,508 | 321.7 KB | actor.cpp: Base class for character AI. |
+| `actor.cpp` | 13,519 | 322.3 KB | actor.cpp: Base class for character AI. |
 | `actor.h` | 2,398 | 81.8 KB | actor.h: Base class for character AI. |
 | `actor_aim.cpp` | 65 | 1.8 KB | actor_aim.cpp |
 | `actor_alarm.cpp` | 131 | 3.3 KB | actor_alarm.cpp |
@@ -5832,14 +5832,14 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `vehicle.h` | 623 | 25.6 KB | vehicle.h: Script controlled vehicles. |
 | `vehicletanktandem.cpp` | 61 | 2.0 KB |  |
 | `vehicletanktandem.h` | 38 | 1.2 KB |  |
-| `vehicleturret.cpp` | 2,327 | 64.4 KB | vehicleturret.cpp: Vehicle Turret. |
-| `vehicleturret.h` | 211 | 7.5 KB | vehicleturret.h: Vehicle Turret. |
+| `vehicleturret.cpp` | 2,376 | 67.4 KB | vehicleturret.cpp: Vehicle Turret. |
+| `vehicleturret.h` | 214 | 7.7 KB | vehicleturret.h: Vehicle Turret. |
 | `viewthing.cpp` | 845 | 21.2 KB | viewthing.cpp: Actor code for the Viewthing. |
 | `viewthing.h` | 106 | 2.9 KB | viewthing.h: Actor code for the viewthing. |
 | `weapon.cpp` | 5,157 | 143.5 KB | weapon.cpp: Source file for Weapon class. The weapon class is the base class for |
 | `weapon.h` | 637 | 25.8 KB | weapon.h: Header file for Weapon class. The weapon class is the base class for |
 | `weapturret.cpp` | 2,642 | 75.1 KB | weapturret.cpp: MOH Turret. Usable by sentients and monsters. |
-| `weapturret.h` | 258 | 9.7 KB | weapturret.h: MOH Turret. Usable by sentients and monsters. |
+| `weapturret.h` | 264 | 10.0 KB | weapturret.h: MOH Turret. Usable by sentients and monsters. |
 | `weaputils.cpp` | 3,638 | 110.4 KB | weaputils.cpp: General Weapon Utility Functions |
 | `weaputils.h` | 371 | 9.2 KB | weaputils.h: |
 | `windows.cpp` | 189 | 4.6 KB | windows.cpp: Window class |
