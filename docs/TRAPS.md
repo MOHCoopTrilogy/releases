@@ -858,3 +858,29 @@ The one safe exception is a dead-end label nothing waits on (verified: `M1L3c` r
 
 Sites, counts and remaining work: **docs/OPEN.md**. Helper `replace.scr::convOk`.
 
+## AI spread is an average - 2-arg bulletspread half-applies to AI shooters
+
+`Weapon::Fire` gives a NON-client owner `(bulletspreadmax + bulletspread) / 2`. Most tiks never
+set a max, so a script `bulletspread 120 120` averages with 0 into an effective 60 and the tune
+feels dead (bug-1920, m3l3 MG42s "still hit every single shot"). Any spread tune aimed at AI
+must set all four args: `bulletspread B B M M`. Player fire uses a different formula (base/max
+lerp by spread factor), so player-facing tunes are unaffected.
+
+## Missing anim + waittill = a corpse standing at the wall
+
+`setmotionanim` with an alias the model does not have silently no-ops - and the
+`waittill flaggedanimdone` after it then hangs that handler FOREVER (bug-1921: corner cover
+users frozen upright when dead, or alive mid-grenade). Two rules: (1) never feed a
+per-weapongroup anim name to setmotionanim without a whitelist + fallback (the Cornering wall
+set is LIVE for exactly rifle/pistol/mp40/mp44/bar/thompson/sten/vickers); (2) when auditing
+what anims exist, grep the tiki TEXT for aliases - an skc FILENAME probe undercounts badly,
+because aliases point many names at shared skcs (only 2 groups have wall_death skc files; 8
+have live aliases).
+
+## Actor weapon swap is a SETTER property, not a command
+
+`EV_Actor_SetWeapon` is EV_SETTER: `self.weapon = "models/weapons/x.tik"` works,
+`self weapon models/weapons/x.tik` does not exist as a command - which is why retail's own
+attempts at post-spawn swaps sit commented out in m1l2a/m5l3. Reading `self.weapon` returns the
+tik `name` field (e.g. "Mauser KAR 98K"), and string-keyed array LOOKUPS on it are
+case-sensitive even though `==` is not (bug-1916 family).

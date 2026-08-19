@@ -17,9 +17,9 @@ Union of four sources, all swept fresh:
 
 | metric | count |
 |---|---:|
-| distinct `coop_*` cvars | 2078 |
+| distinct `coop_*` cvars | 2083 |
 | registered with a default by the engine | 203 |
-| seeded by a shipped cfg | 1022 |
+| seeded by a shipped cfg | 1027 |
 | seeded nowhere at all | 981 |
 | **&nbsp;&nbsp;of those, read by a script** | **214** |
 | &nbsp;&nbsp;of those, menu-only (set at runtime by the UI) | 767 |
@@ -31,7 +31,7 @@ Union of four sources, all swept fresh:
 These literals are concatenated with a variable at the call site (`getcvar("coop_chal_" + local.id)`), so the real cvar name only exists at runtime. They are **not** cvars and are excluded from the table below - listed here so the omission is visible rather than silent.
 
 - `coop_chal_*` — `coop_mod/challenges.scr:771` (+1 more)
-- `coop_lo*` — `coop_mod/loadoutpick.scr:368`
+- `coop_lo*` — `coop_mod/loadoutpick.scr:372`
 - `coop_medals_*` — `coop_mod/medals.scr:75` (+1 more)
 - `coop_pend_*` — `coop_mod/challenges.scr:794` (+2 more)
 - `coop_pins_*` — `coop_mod/challenges.scr:3293` (+1 more)
@@ -211,11 +211,11 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_aiAggrMove` |  |  |  |  | `coop_mod/aimaneuver.scr:110` |  |
 | `coop_aiBehav` | `0` | `0` | `fgame/actor_turret.cpp:149` (+3) | FORCED `0` @ `autoexec.cfg:615` | `coop_mod/aibehav.scr:20` (+16) |  |
 | `coop_aiBound` | `0` | `CVAR_ARCHIVE` | `fgame/actor_cover.cpp:511` (+1) |  | `coop_mod/aisquad.scr:112` |  |
-| `coop_aiBuffer` |  |  |  |  | `coop_mod/aihandler.scr:385` (+2) |  |
+| `coop_aiBuffer` |  |  |  |  | `coop_mod/aihandler.scr:391` (+2) |  |
 | `coop_aiChargeRange` | `1.0` | `0` | `fgame/actor_turret.cpp:129` |  |  |  |
 | `coop_aiCombat` |  |  |  | FORCED `0` @ `autoexec.cfg:608` | `coop_mod/aicombat.scr:62` (+3) |  |
 | `coop_aiCombatRange` |  |  |  |  | `coop_mod/aicombat.scr:85` |  |
-| `coop_aiCornerNade` |  |  |  | DEFAULT `18` @ `coop_defaults.cfg:343` | `anim/cornerleft.scr:62` (+1) |  |
+| `coop_aiCornerNade` |  |  |  | DEFAULT `18` @ `coop_defaults.cfg:343` | `anim/cornerleft.scr:84` (+1) |  |
 | `coop_aiCoverRelocateMs` | `12000` | `CVAR_ARCHIVE` | `fgame/actor_cover.cpp:501` |  |  |  |
 | `coop_aiCoverThink` | `1` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:317` |  | `coop_mod/aimaneuver.scr:145` |  |
 | `coop_aiDynamic` | `1` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:307` | FORCED `1` @ `autoexec.cfg:589` | `coop_mod/aihandler.scr:109` (+2) |  |
@@ -228,9 +228,9 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_aiRetargetMs` | `5000` | `0` | `fgame/actor_turret.cpp:120` (+3) |  | `coop_mod/main.scr:284` (+2) |  |
 | `coop_aiRunawayRange` | `1.0` | `0` | `fgame/actor_turret.cpp:126` |  |  |  |
 | `coop_aiRunfire` |  |  |  | DEFAULT `1` @ `coop_defaults.cfg:342` | `anim/runto_inopen.scr:97` |  |
-| `coop_aiScale` |  |  |  |  | `coop_mod/aihandler.scr:186` |  |
-| `coop_aiScaleChance` |  |  |  |  | `coop_mod/aihandler.scr:218` (+5) |  |
-| `coop_aiScaleTest` |  |  |  |  | `coop_mod/aihandler.scr:191` (+1) |  |
+| `coop_aiScale` |  |  |  |  | `coop_mod/aihandler.scr:192` |  |
+| `coop_aiScaleChance` |  |  |  |  | `coop_mod/aihandler.scr:224` (+5) |  |
+| `coop_aiScaleTest` |  |  |  |  | `coop_mod/aihandler.scr:197` (+1) |  |
 | `coop_aiSearch` |  |  |  | FORCED `1` @ `autoexec.cfg:602` | `coop_mod/aisquad.scr:193` |  |
 | `coop_aiSlideChance` |  |  |  | DEFAULT `35` @ `coop_defaults.cfg:341` | `coop_mod/officer.scr:1834` |  |
 | `coop_aiSquad` | `1` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:308` | FORCED `1` @ `autoexec.cfg:595` | `coop_mod/aisquad.scr:28` (+1) |  |
@@ -242,8 +242,9 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_aiSuppressReact` |  |  |  | DEFAULT `45` @ `coop_defaults.cfg:344` | `coop_mod/officer.scr:4799` |  |
 | `coop_aiSuppressTime` | `1.5` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:2332` | FORCED `1.5` @ `autoexec.cfg:802` |  |  |
 | `coop_aiSurrenderChance` |  |  |  | DEFAULT `35` @ `coop_defaults.cfg:345` | `coop_mod/officer.scr:4858` |  |
-| `coop_aiTestHp` |  |  |  |  | `coop_mod/aihandler.scr:876` |  |
-| `coop_aiVoice` |  |  |  | FORCED `1` @ `autoexec.cfg:624` | `coop_mod/aihandler.scr:492` (+4) |  |
+| `coop_aiTestHp` |  |  |  |  | `coop_mod/aihandler.scr:882` |  |
+| `coop_aiVariantChance` |  |  |  | DEFAULT `35` @ `coop_defaults.cfg:350` | `coop_mod/aihandler.scr:1663` |  |
+| `coop_aiVoice` |  |  |  | FORCED `1` @ `autoexec.cfg:624` | `coop_mod/aihandler.scr:498` (+4) |  |
 | `coop_aiVoiceDebug` |  |  |  | FORCED `0` @ `autoexec.cfg:631` | `coop_mod/aivoice.scr:236` |  |
 | `coop_aiVoiceMax` |  |  |  | FORCED `2` @ `autoexec.cfg:626` | `coop_mod/aivoice.scr:278` (+1) |  |
 | `coop_aiVoiceRange` |  |  |  | FORCED `2600` @ `autoexec.cfg:628` | `coop_mod/aivoice.scr:282` (+1) |  |
@@ -326,19 +327,19 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_chal_pin` |  |  |  |  | `coop_mod/challenges.scr:3134` (+2) |  |
 | `coop_challenges` |  |  |  |  | `coop_mod/challenges.scr:40` (+2) |  |
 | `coop_chalPopup` |  |  |  | DEFAULT `1` @ `coop_defaults.cfg:22` | `coop_mod/challenges.scr:1899` | `ui/coop_settings.urc` |
-| `coop_chDebug` |  |  |  |  | `maps/M3L3.scr:6707` |  |
+| `coop_chDebug` |  |  |  |  | `maps/M3L3.scr:6706` |  |
 | `coop_check` |  |  |  | other `0` @ `coop_mod/server.cfg:35`<br>other `0` @ `coop_mod/start_server.cfg:35` |  |  |
-| `coop_chHold` |  |  |  |  | `maps/M3L3.scr:6689` |  |
-| `coop_chMgDmg` |  |  |  |  | `maps/M3L3.scr:7472` |  |
-| `coop_chMgSpread` |  |  |  |  | `maps/M3L3.scr:7476` |  |
-| `coop_chStart` |  |  |  |  | `maps/M3L3.scr:8112` (+1) |  |
+| `coop_chHold` |  |  |  |  | `maps/M3L3.scr:6688` |  |
+| `coop_chMgDmg` |  |  |  |  | `maps/M3L3.scr:7471` |  |
+| `coop_chMgSpread` |  |  |  |  | `maps/M3L3.scr:7475` |  |
+| `coop_chStart` |  |  |  |  | `maps/M3L3.scr:8111` (+1) |  |
 | `coop_churn_cycle` |  |  |  |  | `coop_mod/coop_selftest_scaling.scr:210` |  |
 | `coop_churntest` |  |  |  |  | `coop_mod/coop_selftest_scaling.scr:79` |  |
-| `coop_chWaveBase` |  |  |  | DEFAULT `14` @ `coop_defaults.cfg:295` | `maps/M3L3.scr:6894` |  |
-| `coop_chWaveCap` |  |  |  | DEFAULT `28` @ `coop_defaults.cfg:297` | `maps/M3L3.scr:6898` |  |
+| `coop_chWaveBase` |  |  |  | DEFAULT `14` @ `coop_defaults.cfg:295` | `maps/M3L3.scr:6893` |  |
+| `coop_chWaveCap` |  |  |  | DEFAULT `28` @ `coop_defaults.cfg:297` | `maps/M3L3.scr:6897` |  |
 | `coop_chWavePer` |  |  |  | DEFAULT `5` @ `coop_defaults.cfg:296` |  |  |
-| `coop_chWaveSend` |  |  |  | DEFAULT `8` @ `coop_defaults.cfg:298` | `maps/M3L3.scr:6904` |  |
-| `coop_chZone` |  |  |  |  | `maps/M3L3.scr:6685` |  |
+| `coop_chWaveSend` |  |  |  | DEFAULT `8` @ `coop_defaults.cfg:298` | `maps/M3L3.scr:6903` |  |
+| `coop_chZone` |  |  |  |  | `maps/M3L3.scr:6684` |  |
 | `coop_clipStripZones` |  | `0` | `cgame/cg_predict.c:601` (+1) |  | `coop_mod/server.scr:33` (+1) |  |
 | `coop_corpseLife` |  |  |  | FORCED `0` @ `autoexec.cfg:357` | `coop_mod/corpse.scr:12` |  |
 | `coop_corpseShootable` | `1` | `CVAR_ARCHIVE` | `fgame/actor.cpp:12442` |  |  |  |
@@ -400,7 +401,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_dev` |  |  |  | other `1` @ `coop_mod/cfg/buildmode.cfg:66`<br>other `0` @ `coop_mod/server.cfg:34`<br>other `0` @ `coop_mod/start_server.cfg:34` | `coop_mod/buildmode.scr:57` (+4) |  |
 | `coop_devKeys` |  |  |  |  | `coop_mod/developer.scr:86` (+6) |  |
 | `coop_diag` |  |  |  |  | `coop_mod/server.scr:138` (+1) |  |
-| `coop_disgAggroParity` |  |  |  | FORCED `1` @ `autoexec.cfg:1217`<br>DEFAULT `1` @ `coop_defaults.cfg:236` | `coop_mod/aihandler.scr:1184` (+2) |  |
+| `coop_disgAggroParity` |  |  |  | FORCED `1` @ `autoexec.cfg:1217`<br>DEFAULT `1` @ `coop_defaults.cfg:236` | `coop_mod/aihandler.scr:1190` (+2) |  |
 | `coop_disRespawnWarp` |  |  |  |  | `coop_mod/server.scr:245` (+1) |  |
 | `coop_distantFire` | `1` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:607` | FORCED `1` @ `autoexec.cfg:885` |  |  |
 | `coop_distantFireDist` | `2500` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:608` | FORCED `2500` @ `autoexec.cfg:886` |  |  |
@@ -516,8 +517,8 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_holdoutRamp` |  |  |  |  | `coop_mod/holdout.scr:49` (+2) |  |
 | `coop_holdoutWaves` |  |  |  |  | `coop_mod/holdout.scr:46` (+3) |  |
 | `coop_hstest` | `0` | `0` | `fgame/weaputils.cpp:2158` |  |  |  |
-| `coop_htAimOff` |  |  |  |  | `maps/M3L3.scr:745` |  |
-| `coop_htSpread` |  |  |  |  | `maps/M3L3.scr:859` |  |
+| `coop_htAimOff` |  |  |  |  | `maps/M3L3.scr:744` |  |
+| `coop_htSpread` |  |  |  |  | `maps/M3L3.scr:858` |  |
 | `coop_hudFade` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2021` | FORCED `1` @ `autoexec.cfg:198` | `coop_mod/buildmode.scr:110` (+2) |  |
 | `coop_hudFadeDebug` | `0` | `0` | `cgame/cg_drawtools.cpp:1999` |  |  |  |
 | `coop_hudFadeTime` | `5` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2022` | FORCED `5` @ `autoexec.cfg:199` |  |  |
@@ -556,10 +557,10 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_loA4` |  |  |  | other `(empty)` @ `ui/loadout/clr4.cfg:5`<br>other `(empty)` @ `ui/loadout/reset.cfg:16`<br>other `append name ,w464` @ `ui/loadout/w64_s4.cfg:4`<br>(+5 more) |  |  |
 | `coop_loAHelm` |  |  |  | other `append name ,hn01` @ `ui/loadout/helm/h01.cfg:9`<br>other `append name ,hn02` @ `ui/loadout/helm/h02.cfg:6`<br>other `append name ,hn03` @ `ui/loadout/helm/h03.cfg:6`<br>(+44 more) |  |  |
 | `coop_loASkin` |  |  |  | other `append name ,sn01` @ `ui/loadout/skin/s01.cfg:6`<br>other `append name ,sn02` @ `ui/loadout/skin/s02.cfg:6`<br>other `append name ,sn03` @ `ui/loadout/skin/s03.cfg:6`<br>(+132 more) |  |  |
-| `coop_loB0` |  |  |  | other `textures/hud/coop_bf0` @ `ui/loadout/init.cfg:52`<br>other `textures/hud/coop_bf5` @ `ui/loadout/p01.cfg:24`<br>other `textures/hud/coop_bf4` @ `ui/loadout/p02.cfg:24`<br>(+72 more) |  | `ui/coop_loadout.urc` |
-| `coop_loB1` |  |  |  | other `textures/hud/coop_bf0` @ `ui/loadout/init.cfg:53`<br>other `textures/hud/coop_bf4` @ `ui/loadout/p01.cfg:25`<br>other `textures/hud/coop_bf5` @ `ui/loadout/p02.cfg:25`<br>(+72 more) |  | `ui/coop_loadout.urc` |
-| `coop_loB2` |  |  |  | other `textures/hud/coop_bf0` @ `ui/loadout/init.cfg:54`<br>other `textures/hud/coop_bf8` @ `ui/loadout/p01.cfg:26`<br>other `textures/hud/coop_bf8` @ `ui/loadout/p02.cfg:26`<br>(+72 more) |  | `ui/coop_loadout.urc` |
-| `coop_loB3` |  |  |  | other `textures/hud/coop_bf0` @ `ui/loadout/init.cfg:55`<br>other `textures/hud/coop_bf10` @ `ui/loadout/p01.cfg:27`<br>other `textures/hud/coop_bf8` @ `ui/loadout/p02.cfg:27`<br>(+72 more) |  | `ui/coop_loadout.urc` |
+| `coop_loB0` |  |  |  | other `textures/hud/coop_bf0` @ `ui/loadout/init.cfg:52`<br>other `textures/hud/coop_bf5` @ `ui/loadout/p01.cfg:28`<br>other `textures/hud/coop_bf4` @ `ui/loadout/p02.cfg:28`<br>(+72 more) |  | `ui/coop_loadout.urc` |
+| `coop_loB1` |  |  |  | other `textures/hud/coop_bf0` @ `ui/loadout/init.cfg:53`<br>other `textures/hud/coop_bf4` @ `ui/loadout/p01.cfg:29`<br>other `textures/hud/coop_bf5` @ `ui/loadout/p02.cfg:29`<br>(+72 more) |  | `ui/coop_loadout.urc` |
+| `coop_loB2` |  |  |  | other `textures/hud/coop_bf0` @ `ui/loadout/init.cfg:54`<br>other `textures/hud/coop_bf8` @ `ui/loadout/p01.cfg:30`<br>other `textures/hud/coop_bf8` @ `ui/loadout/p02.cfg:30`<br>(+72 more) |  | `ui/coop_loadout.urc` |
+| `coop_loB3` |  |  |  | other `textures/hud/coop_bf0` @ `ui/loadout/init.cfg:55`<br>other `textures/hud/coop_bf10` @ `ui/loadout/p01.cfg:31`<br>other `textures/hud/coop_bf8` @ `ui/loadout/p02.cfg:31`<br>(+72 more) |  | `ui/coop_loadout.urc` |
 | `coop_lobbyCamFov` | `70` | `0` | `cgame/cg_consolecmds.c:511` | other `(empty)` @ `coop_mod/cfg/lobby_camreset.cfg:10` | `coop_mod/lobby.scr:223` |  |
 | `coop_lobbyCamMode` | `0` | `CVAR_ARCHIVE` | `cgame/cg_consolecmds.c:484` | other `0` @ `coop_mod/cfg/lobby_camreset.cfg:12` |  |  |
 | `coop_lobbyCamSway` |  |  |  |  | `coop_mod/lobby.scr:273` |  |
@@ -575,21 +576,21 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_lobbyLookY` | `-427` | `0` | `cgame/cg_consolecmds.c:514` | other `(empty)` @ `coop_mod/cfg/lobby_camreset.cfg:8` | `coop_mod/lobby.scr:215` |  |
 | `coop_lobbyLookZ` | `-245` | `0` | `cgame/cg_consolecmds.c:515` | other `(empty)` @ `coop_mod/cfg/lobby_camreset.cfg:9` | `coop_mod/lobby.scr:217` |  |
 | `coop_lobbyMusic` |  |  |  |  | `coop_mod/lobby.scr:166` |  |
-| `coop_loC1` |  |  |  | other `vstr coop_loDeny` @ `ui/loadout/init.cfg:62`<br>other `exec ui/loadout/w01_s1.…` @ `ui/loadout/p01.cfg:31`<br>other `exec ui/loadout/w02_s1.…` @ `ui/loadout/p02.cfg:31`<br>(+72 more) |  |  |
-| `coop_loC2` |  |  |  | other `vstr coop_loDeny` @ `ui/loadout/init.cfg:63`<br>other `exec ui/loadout/w01_s2.…` @ `ui/loadout/p01.cfg:32`<br>other `exec ui/loadout/w02_s2.…` @ `ui/loadout/p02.cfg:32`<br>(+72 more) |  |  |
-| `coop_loC3` |  |  |  | other `vstr coop_loDeny` @ `ui/loadout/init.cfg:64`<br>other `vstr coop_loDeny` @ `ui/loadout/p01.cfg:33`<br>other `vstr coop_loDeny` @ `ui/loadout/p02.cfg:33`<br>(+72 more) |  |  |
-| `coop_loC4` |  |  |  | other `vstr coop_loDeny` @ `ui/loadout/init.cfg:65`<br>other `vstr coop_loDeny` @ `ui/loadout/p01.cfg:34`<br>other `vstr coop_loDeny` @ `ui/loadout/p02.cfg:34`<br>(+72 more) |  |  |
+| `coop_loC1` |  |  |  | other `vstr coop_loDeny` @ `ui/loadout/init.cfg:62`<br>other `exec ui/loadout/w01_s1.…` @ `ui/loadout/p01.cfg:35`<br>other `exec ui/loadout/w02_s1.…` @ `ui/loadout/p02.cfg:35`<br>(+72 more) |  |  |
+| `coop_loC2` |  |  |  | other `vstr coop_loDeny` @ `ui/loadout/init.cfg:63`<br>other `exec ui/loadout/w01_s2.…` @ `ui/loadout/p01.cfg:36`<br>other `exec ui/loadout/w02_s2.…` @ `ui/loadout/p02.cfg:36`<br>(+72 more) |  |  |
+| `coop_loC3` |  |  |  | other `vstr coop_loDeny` @ `ui/loadout/init.cfg:64`<br>other `vstr coop_loDeny` @ `ui/loadout/p01.cfg:37`<br>other `vstr coop_loDeny` @ `ui/loadout/p02.cfg:37`<br>(+72 more) |  |  |
+| `coop_loC4` |  |  |  | other `vstr coop_loDeny` @ `ui/loadout/init.cfg:65`<br>other `vstr coop_loDeny` @ `ui/loadout/p01.cfg:38`<br>other `vstr coop_loDeny` @ `ui/loadout/p02.cfg:38`<br>(+72 more) |  |  |
 | `coop_loCcur` |  |  |  | other `vstr coop_loC1` @ `ui/loadout/init.cfg:12`<br>other `vstr coop_loC1` @ `ui/loadout/s1sel.cfg:6`<br>other `vstr coop_loC2` @ `ui/loadout/s2sel.cfg:6`<br>(+2 more) |  |  |
-| `coop_loCd` |  |  |  | other `PICK A SLOT, THEN A GUN` @ `ui/loadout/init.cfg:39`<br>other `.30-06 / SEMI-AUTO / 8…` @ `ui/loadout/p01.cfg:23`<br>other `.30 CARBINE / SEMI-AUTO` @ `ui/loadout/p02.cfg:23`<br>(+72 more) |  | `ui/coop_loadout.urc` |
+| `coop_loCd` |  |  |  | other `PICK A SLOT, THEN A GUN` @ `ui/loadout/init.cfg:39`<br>other `.30-06 / SEMI-AUTO / 8…` @ `ui/loadout/p01.cfg:27`<br>other `.30 CARBINE / SEMI-AUTO` @ `ui/loadout/p02.cfg:27`<br>(+72 more) |  | `ui/coop_loadout.urc` |
 | `coop_loChar` |  |  |  | other `models/player/american_…` @ `ui/loadout/init.cfg:40`<br>other `models/player/allied_10…` @ `ui/loadout/skin/s01.cfg:2`<br>other `models/player/allied_10…` @ `ui/loadout/skin/s02.cfg:2`<br>(+133 more) |  | `ui/coop_loadout.urc` |
-| `coop_loCharAnim` |  |  |  | other `coop_hold_rifle` @ `ui/loadout/init.cfg:32`<br>other `coop_hold_rifle` @ `ui/loadout/p01.cfg:14`<br>other `coop_hold_rifle` @ `ui/loadout/p02.cfg:14`<br>(+72 more) |  | `ui/coop_loadout.urc` |
+| `coop_loCharAnim` |  |  |  | other `coop_hold_rifle` @ `ui/loadout/init.cfg:32`<br>other `coop_hold_rifle` @ `ui/loadout/p01.cfg:18`<br>other `coop_hold_rifle` @ `ui/loadout/p02.cfg:18`<br>(+72 more) |  | `ui/coop_loadout.urc` |
 | `coop_loCharN` |  |  |  | other `exec ui/loadout/skin/s3…` @ `ui/loadout/init.cfg:46`<br>other `exec ui/loadout/skin/s0…` @ `ui/loadout/skin/s01.cfg:4`<br>other `exec ui/loadout/skin/s0…` @ `ui/loadout/skin/s02.cfg:4`<br>(+133 more) |  |  |
 | `coop_loCharNm` |  |  |  | other `101st Airborne, Captain` @ `ui/loadout/skin/s01.cfg:13`<br>other `101st Airborne, Rifleman` @ `ui/loadout/skin/s02.cfg:13`<br>other `101st Airborne, Scout` @ `ui/loadout/skin/s03.cfg:13`<br>(+132 more) |  | `ui/coop_loadout.urc` |
 | `coop_loCharP` |  |  |  | other `exec ui/loadout/skin/s3…` @ `ui/loadout/init.cfg:47`<br>other `exec ui/loadout/skin/s1…` @ `ui/loadout/skin/s01.cfg:5`<br>other `exec ui/loadout/skin/s0…` @ `ui/loadout/skin/s02.cfg:5`<br>(+133 more) |  |  |
 | `coop_loCharSpin` |  |  |  | other `0` @ `ui/loadout/init.cfg:33` |  | `ui/coop_loadout.urc` |
 | `coop_lockLoadout` |  |  |  |  | `coop_mod/loadoutpick.scr:92` (+6) |  |
-| `coop_loClip` |  |  |  | other `textures/hud/clip/clip_0` @ `ui/loadout/init.cfg:56`<br>other `textures/hud/clip/clip_8` @ `ui/loadout/p01.cfg:28`<br>other `textures/hud/clip/clip_…` @ `ui/loadout/p02.cfg:28`<br>(+72 more) |  | `ui/coop_loadout.urc` |
-| `coop_loClipN` |  |  |  | other `(empty)` @ `ui/loadout/init.cfg:57`<br>other `8` @ `ui/loadout/p01.cfg:29`<br>other `15` @ `ui/loadout/p02.cfg:29`<br>(+72 more) |  | `ui/coop_loadout.urc` |
+| `coop_loClip` |  |  |  | other `textures/hud/clip/clip_0` @ `ui/loadout/init.cfg:56`<br>other `textures/hud/clip/clip_8` @ `ui/loadout/p01.cfg:32`<br>other `textures/hud/clip/clip_…` @ `ui/loadout/p02.cfg:32`<br>(+72 more) |  | `ui/coop_loadout.urc` |
+| `coop_loClipN` |  |  |  | other `(empty)` @ `ui/loadout/init.cfg:57`<br>other `8` @ `ui/loadout/p01.cfg:33`<br>other `15` @ `ui/loadout/p02.cfg:33`<br>(+72 more) |  | `ui/coop_loadout.urc` |
 | `coop_loCmt01` |  |  |  | other `vstr coop_loCcur` @ `ui/loadout/init.cfg:66` |  |  |
 | `coop_loCmt24` |  |  |  | other `vstr coop_loCcur` @ `ui/loadout/init.cfg:67` |  |  |
 | `coop_loCmt48` |  |  |  | other `vstr coop_loCcur` @ `ui/loadout/init.cfg:68` |  |  |
@@ -599,10 +600,10 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_loCosReq2` |  |  |  | other `(empty)` @ `ui/loadout/helm/h01.cfg:13`<br>other `(empty)` @ `ui/loadout/helm/h02.cfg:10`<br>other `(empty)` @ `ui/loadout/helm/h03.cfg:10`<br>(+180 more) |  | `ui/coop_loadout.urc` |
 | `coop_loCosReq3` |  |  |  | other `(empty)` @ `ui/loadout/helm/h01.cfg:14`<br>other `(empty)` @ `ui/loadout/helm/h02.cfg:11`<br>other `(empty)` @ `ui/loadout/helm/h03.cfg:11`<br>(+180 more) |  | `ui/coop_loadout.urc` |
 | `coop_loDeny` |  |  |  | other `play sound/menu/back.wav` @ `ui/loadout/init.cfg:61` |  |  |
-| `coop_loFA1` |  |  |  | other `append name ,f10` @ `ui/loadout/fin0_s1.cfg:4`<br>other `append name ,f11` @ `ui/loadout/fin1_s1.cfg:4`<br>other `append name ,f12` @ `ui/loadout/fin2_s1.cfg:4`<br>(+7 more) |  |  |
-| `coop_loFA2` |  |  |  | other `append name ,f20` @ `ui/loadout/fin0_s2.cfg:4`<br>other `append name ,f21` @ `ui/loadout/fin1_s2.cfg:4`<br>other `append name ,f22` @ `ui/loadout/fin2_s2.cfg:4`<br>(+7 more) |  |  |
-| `coop_loFA3` |  |  |  | other `append name ,f30` @ `ui/loadout/fin0_s3.cfg:4`<br>other `append name ,f31` @ `ui/loadout/fin1_s3.cfg:4`<br>other `append name ,f32` @ `ui/loadout/fin2_s3.cfg:4`<br>(+7 more) |  |  |
-| `coop_loFA4` |  |  |  | other `append name ,f40` @ `ui/loadout/fin0_s4.cfg:4`<br>other `append name ,f41` @ `ui/loadout/fin1_s4.cfg:4`<br>other `append name ,f42` @ `ui/loadout/fin2_s4.cfg:4`<br>(+7 more) |  |  |
+| `coop_loFA1` |  |  |  | other `append name ,f10` @ `ui/loadout/fin0_s1.cfg:4`<br>other `append name ,f11` @ `ui/loadout/fin1_s1.cfg:4`<br>other `append name ,f12` @ `ui/loadout/fin2_s1.cfg:4`<br>(+44 more) |  |  |
+| `coop_loFA2` |  |  |  | other `append name ,f20` @ `ui/loadout/fin0_s2.cfg:4`<br>other `append name ,f21` @ `ui/loadout/fin1_s2.cfg:4`<br>other `append name ,f22` @ `ui/loadout/fin2_s2.cfg:4`<br>(+44 more) |  |  |
+| `coop_loFA3` |  |  |  | other `append name ,f30` @ `ui/loadout/fin0_s3.cfg:4`<br>other `append name ,f31` @ `ui/loadout/fin1_s3.cfg:4`<br>other `append name ,f32` @ `ui/loadout/fin2_s3.cfg:4`<br>(+44 more) |  |  |
+| `coop_loFA4` |  |  |  | other `append name ,f40` @ `ui/loadout/fin0_s4.cfg:4`<br>other `append name ,f41` @ `ui/loadout/fin1_s4.cfg:4`<br>other `append name ,f42` @ `ui/loadout/fin2_s4.cfg:4`<br>(+44 more) |  |  |
 | `coop_loFcmt0` |  |  |  | other `vstr coop_loFgo0` @ `ui/loadout/lkfin.cfg:4` |  |  |
 | `coop_loFcmt1` |  |  |  | other `vstr coop_loDeny` @ `ui/loadout/lkfin.cfg:6` |  |  |
 | `coop_loFcmt2` |  |  |  | other `vstr coop_loDeny` @ `ui/loadout/lkfin.cfg:8` |  |  |
@@ -621,13 +622,13 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_loFgo6` |  |  |  | other `exec ui/loadout/fin6_s1…` @ `ui/loadout/init.cfg:82`<br>other `exec ui/loadout/fin6_s1…` @ `ui/loadout/init.cfg:104`<br>other `exec ui/loadout/fin6_s1…` @ `ui/loadout/s1sel.cfg:21`<br>(+3 more) |  |  |
 | `coop_loFgo7` |  |  |  | other `exec ui/loadout/fin7_s1…` @ `ui/loadout/init.cfg:83`<br>other `exec ui/loadout/fin7_s1…` @ `ui/loadout/init.cfg:105`<br>other `exec ui/loadout/fin7_s1…` @ `ui/loadout/s1sel.cfg:22`<br>(+3 more) |  |  |
 | `coop_loFgo8` |  |  |  | other `exec ui/loadout/fin8_s1…` @ `ui/loadout/init.cfg:106`<br>other `exec ui/loadout/fin8_s1…` @ `ui/loadout/s1sel.cfg:23`<br>other `exec ui/loadout/fin8_s2…` @ `ui/loadout/s2sel.cfg:23`<br>(+2 more) |  |  |
-| `coop_loFinP1` |  |  |  | other `exec ui/loadout/finp01_…` @ `ui/loadout/p01.cfg:4`<br>other `(empty)` @ `ui/loadout/p02.cfg:4`<br>other `exec ui/loadout/finp03_…` @ `ui/loadout/p03.cfg:4`<br>(+71 more) |  |  |
-| `coop_loFinP2` |  |  |  | other `exec ui/loadout/finp01_…` @ `ui/loadout/p01.cfg:5`<br>other `(empty)` @ `ui/loadout/p02.cfg:5`<br>other `exec ui/loadout/finp03_…` @ `ui/loadout/p03.cfg:5`<br>(+71 more) |  |  |
-| `coop_loFinP3` |  |  |  | other `exec ui/loadout/finp01_…` @ `ui/loadout/p01.cfg:6`<br>other `(empty)` @ `ui/loadout/p02.cfg:6`<br>other `exec ui/loadout/finp03_…` @ `ui/loadout/p03.cfg:6`<br>(+71 more) |  |  |
-| `coop_loFinP4` |  |  |  | other `exec ui/loadout/finp01_…` @ `ui/loadout/p01.cfg:7`<br>other `(empty)` @ `ui/loadout/p02.cfg:7`<br>other `exec ui/loadout/finp03_…` @ `ui/loadout/p03.cfg:7`<br>(+71 more) |  |  |
-| `coop_loFinP5` |  |  |  | other `exec ui/loadout/finp01_…` @ `ui/loadout/p01.cfg:8`<br>other `(empty)` @ `ui/loadout/p02.cfg:8`<br>other `exec ui/loadout/finp03_…` @ `ui/loadout/p03.cfg:8`<br>(+71 more) |  |  |
-| `coop_loFinP6` |  |  |  | other `exec ui/loadout/finp01_…` @ `ui/loadout/p01.cfg:9`<br>other `(empty)` @ `ui/loadout/p02.cfg:9`<br>other `exec ui/loadout/finp03_…` @ `ui/loadout/p03.cfg:9`<br>(+71 more) |  |  |
-| `coop_loFinP7` |  |  |  | other `exec ui/loadout/finp01_…` @ `ui/loadout/p01.cfg:10`<br>other `(empty)` @ `ui/loadout/p02.cfg:10`<br>other `exec ui/loadout/finp03_…` @ `ui/loadout/p03.cfg:10`<br>(+71 more) |  |  |
+| `coop_loFinP1` |  |  |  | other `exec ui/loadout/finp01_…` @ `ui/loadout/p01.cfg:8`<br>other `(empty)` @ `ui/loadout/p02.cfg:8`<br>other `exec ui/loadout/finp03_…` @ `ui/loadout/p03.cfg:8`<br>(+71 more) |  |  |
+| `coop_loFinP2` |  |  |  | other `exec ui/loadout/finp01_…` @ `ui/loadout/p01.cfg:9`<br>other `(empty)` @ `ui/loadout/p02.cfg:9`<br>other `exec ui/loadout/finp03_…` @ `ui/loadout/p03.cfg:9`<br>(+71 more) |  |  |
+| `coop_loFinP3` |  |  |  | other `exec ui/loadout/finp01_…` @ `ui/loadout/p01.cfg:10`<br>other `(empty)` @ `ui/loadout/p02.cfg:10`<br>other `exec ui/loadout/finp03_…` @ `ui/loadout/p03.cfg:10`<br>(+71 more) |  |  |
+| `coop_loFinP4` |  |  |  | other `exec ui/loadout/finp01_…` @ `ui/loadout/p01.cfg:11`<br>other `(empty)` @ `ui/loadout/p02.cfg:11`<br>other `exec ui/loadout/finp03_…` @ `ui/loadout/p03.cfg:11`<br>(+71 more) |  |  |
+| `coop_loFinP5` |  |  |  | other `exec ui/loadout/finp01_…` @ `ui/loadout/p01.cfg:12`<br>other `(empty)` @ `ui/loadout/p02.cfg:12`<br>other `exec ui/loadout/finp03_…` @ `ui/loadout/p03.cfg:12`<br>(+71 more) |  |  |
+| `coop_loFinP6` |  |  |  | other `exec ui/loadout/finp01_…` @ `ui/loadout/p01.cfg:13`<br>other `(empty)` @ `ui/loadout/p02.cfg:13`<br>other `exec ui/loadout/finp03_…` @ `ui/loadout/p03.cfg:13`<br>(+71 more) |  |  |
+| `coop_loFinP7` |  |  |  | other `exec ui/loadout/finp01_…` @ `ui/loadout/p01.cfg:14`<br>other `(empty)` @ `ui/loadout/p02.cfg:14`<br>other `exec ui/loadout/finp03_…` @ `ui/loadout/p03.cfg:14`<br>(+71 more) |  |  |
 | `coop_loFinUIOn` |  |  |  | other `0` @ `ui/loadout/init.cfg:86`<br>other `1` @ `ui/loadout/s1sel.cfg:24`<br>other `1` @ `ui/loadout/s2sel.cfg:24`<br>(+2 more) |  | `ui/coop_loadout.urc` |
 | `coop_loFitCur` |  |  |  | other `coop_loXfmW` @ `ui/loadout/init.cfg:34` |  | `ui/coop_loadout.urc` |
 | `coop_loFitUI` |  |  |  | other `0` @ `ui/loadout/init.cfg:36` |  | `ui/coop_loadout.urc` |
@@ -724,14 +725,18 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_loLkV73` |  |  |  | other `0` @ `ui/loadout/lktab0.cfg:95`<br>other `0` @ `ui/loadout/lktab1.cfg:97`<br>other `0` @ `ui/loadout/lktab2.cfg:97`<br>(+3 more) |  |  |
 | `coop_loLkV74` |  |  |  | other `0` @ `ui/loadout/lktab0.cfg:96`<br>other `0` @ `ui/loadout/lktab1.cfg:98`<br>other `0` @ `ui/loadout/lktab2.cfg:98`<br>(+3 more) |  | `ui/coop_loadout.urc` |
 | `coop_loLkV75` |  |  |  | other `0` @ `ui/loadout/lktab0.cfg:97`<br>other `0` @ `ui/loadout/lktab1.cfg:99`<br>other `0` @ `ui/loadout/lktab2.cfg:99`<br>(+3 more) |  | `ui/coop_loadout.urc` |
-| `coop_loMvOn` |  |  |  | other `0` @ `ui/loadout/init.cfg:108`<br>other `0` @ `ui/loadout/init.cfg:114`<br>other `1` @ `ui/loadout/p01.cfg:1`<br>(+73 more) |  | `ui/coop_loadout.urc` |
-| `coop_loMvPN` |  |  |  | other `(empty)` @ `ui/loadout/init.cfg:109`<br>other `(empty)` @ `ui/loadout/init.cfg:115`<br>other `exec ui/loadout/mvp01_1…` @ `ui/loadout/mvp01_0.cfg:4`<br>(+110 more) |  |  |
+| `coop_loMvOn` |  |  |  | other `0` @ `ui/loadout/init.cfg:108`<br>other `0` @ `ui/loadout/init.cfg:118`<br>other `1` @ `ui/loadout/p01.cfg:1`<br>(+73 more) |  | `ui/coop_loadout.urc` |
+| `coop_loMvPN` |  |  |  | other `vstr coop_loMvPN_s1` @ `ui/loadout/init.cfg:109`<br>other `(empty)` @ `ui/loadout/init.cfg:119`<br>other `vstr coop_loMvPN_s1` @ `ui/loadout/p01.cfg:3`<br>(+77 more) |  |  |
+| `coop_loMvPN_s1` |  |  |  | other `(empty)` @ `ui/loadout/init.cfg:110`<br>other `exec ui/loadout/mvp01_1…` @ `ui/loadout/mvp01_0_s1.cfg:6`<br>other `exec ui/loadout/mvp01_0…` @ `ui/loadout/mvp01_1_s1.cfg:6`<br>(+109 more) |  |  |
+| `coop_loMvPN_s2` |  |  |  | other `(empty)` @ `ui/loadout/init.cfg:111`<br>other `exec ui/loadout/mvp01_1…` @ `ui/loadout/mvp01_0_s2.cfg:6`<br>other `exec ui/loadout/mvp01_0…` @ `ui/loadout/mvp01_1_s2.cfg:6`<br>(+109 more) |  |  |
+| `coop_loMvPN_s3` |  |  |  | other `(empty)` @ `ui/loadout/init.cfg:112`<br>other `exec ui/loadout/mvp01_1…` @ `ui/loadout/mvp01_0_s3.cfg:6`<br>other `exec ui/loadout/mvp01_0…` @ `ui/loadout/mvp01_1_s3.cfg:6`<br>(+109 more) |  |  |
+| `coop_loMvPN_s4` |  |  |  | other `(empty)` @ `ui/loadout/init.cfg:113`<br>other `exec ui/loadout/mvp01_1…` @ `ui/loadout/mvp01_0_s4.cfg:6`<br>other `exec ui/loadout/mvp01_0…` @ `ui/loadout/mvp01_1_s4.cfg:6`<br>(+109 more) |  |  |
 | `coop_loMvReqCur` |  |  |  | other `exec ui/loadout/reqmv01…` @ `ui/loadout/p01.cfg:2`<br>other `exec ui/loadout/reqclea…` @ `ui/loadout/p02.cfg:2`<br>other `exec ui/loadout/reqclea…` @ `ui/loadout/p03.cfg:2`<br>(+71 more) |  |  |
 | `coop_loN1` |  |  |  | other `(empty)` @ `ui/loadout/clrP1.cfg:3`<br>other `(empty)` @ `ui/loadout/clrk1.cfg:3`<br>other `(empty)` @ `ui/loadout/reset.cfg:3`<br>(+50 more) |  | `ui/coop_loadout.urc` |
 | `coop_loN2` |  |  |  | other `(empty)` @ `ui/loadout/clrP2.cfg:3`<br>other `(empty)` @ `ui/loadout/clrk2.cfg:3`<br>other `(empty)` @ `ui/loadout/reset.cfg:7`<br>(+50 more) |  | `ui/coop_loadout.urc` |
 | `coop_loN3` |  |  |  | other `(empty)` @ `ui/loadout/clr3.cfg:3`<br>other `(empty)` @ `ui/loadout/clrk3.cfg:3`<br>other `(empty)` @ `ui/loadout/reset.cfg:11`<br>(+18 more) |  | `ui/coop_loadout.urc` |
 | `coop_loN4` |  |  |  | other `(empty)` @ `ui/loadout/clr4.cfg:3`<br>other `(empty)` @ `ui/loadout/clrk4.cfg:3`<br>other `(empty)` @ `ui/loadout/reset.cfg:15`<br>(+6 more) |  | `ui/coop_loadout.urc` |
-| `coop_loNm` |  |  |  | other `M1 GARAND (GOLD)` @ `ui/loadout/finp01_1.cfg:2`<br>other `M1 GARAND (CHROME)` @ `ui/loadout/finp01_2.cfg:2`<br>other `M1 GARAND (BLUED)` @ `ui/loadout/finp01_3.cfg:2`<br>(+382 more) |  | `ui/coop_loadout.urc` |
+| `coop_loNm` |  |  |  | other `M1 GARAND (GOLD)` @ `ui/loadout/finp01_1.cfg:2`<br>other `M1 GARAND (CHROME)` @ `ui/loadout/finp01_2.cfg:2`<br>other `M1 GARAND (BLUED)` @ `ui/loadout/finp01_3.cfg:2`<br>(+493 more) |  | `ui/coop_loadout.urc` |
 | `coop_loNP0` |  |  |  | other `0` @ `ui/loadout/init.cfg:2`<br>other `0` @ `ui/loadout/s1sel.cfg:7`<br>other `0` @ `ui/loadout/s2sel.cfg:7`<br>(+2 more) |  | `ui/coop_loadout.urc` |
 | `coop_loOpenHelm` |  |  |  | other `exec ui/loadout/helm/h0…` @ `ui/loadout/helm/h01.cfg:10`<br>other `exec ui/loadout/helm/h0…` @ `ui/loadout/helm/h02.cfg:7`<br>other `exec ui/loadout/helm/h0…` @ `ui/loadout/helm/h03.cfg:7`<br>(+44 more) |  |  |
 | `coop_loOpenInspect` |  |  |  | other `(empty)` @ `ui/loadout/reset.cfg:18`<br>other `vstr coop_loInspectS1` @ `ui/loadout/s1sel.cfg:27`<br>other `vstr coop_loInspectS2` @ `ui/loadout/s2sel.cfg:27`<br>(+52 more) |  |  |
@@ -741,31 +746,31 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_loP3` |  |  |  | other `0` @ `ui/loadout/init.cfg:5`<br>other `0` @ `ui/loadout/s1sel.cfg:10`<br>other `0` @ `ui/loadout/s2sel.cfg:10`<br>(+2 more) |  | `ui/coop_loadout.urc` |
 | `coop_loP4` |  |  |  | other `0` @ `ui/loadout/init.cfg:6`<br>other `0` @ `ui/loadout/s1sel.cfg:11`<br>other `0` @ `ui/loadout/s2sel.cfg:11`<br>(+2 more) |  | `ui/coop_loadout.urc` |
 | `coop_loP5` |  |  |  | other `0` @ `ui/loadout/init.cfg:7`<br>other `0` @ `ui/loadout/s1sel.cfg:12`<br>other `0` @ `ui/loadout/s2sel.cfg:12`<br>(+2 more) |  | `ui/coop_loadout.urc` |
-| `coop_loPrev` |  |  |  | other `models/weapons/m1_garan…` @ `ui/loadout/finp01_1.cfg:1`<br>other `models/weapons/m1_garan…` @ `ui/loadout/finp01_2.cfg:1`<br>other `models/weapons/m1_garan…` @ `ui/loadout/finp01_3.cfg:1`<br>(+382 more) |  | `ui/coop_loadout.urc` |
-| `coop_loPrevId` |  |  |  | other `(empty)` @ `ui/loadout/init.cfg:35`<br>other `01` @ `ui/loadout/p01.cfg:13`<br>other `02` @ `ui/loadout/p02.cfg:13`<br>(+72 more) |  |  |
-| `coop_loPvC0` |  |  |  | other `0` @ `ui/loadout/init.cfg:13`<br>other `0` @ `ui/loadout/p01.cfg:15`<br>other `0` @ `ui/loadout/p02.cfg:15`<br>(+72 more) |  | `ui/coop_loadout.urc` |
-| `coop_loPvC1` |  |  |  | other `0` @ `ui/loadout/init.cfg:14`<br>other `0` @ `ui/loadout/p01.cfg:16`<br>other `0` @ `ui/loadout/p02.cfg:16`<br>(+72 more) |  | `ui/coop_loadout.urc` |
-| `coop_loPvC2` |  |  |  | other `0` @ `ui/loadout/init.cfg:15`<br>other `0` @ `ui/loadout/p01.cfg:17`<br>other `0` @ `ui/loadout/p02.cfg:17`<br>(+72 more) |  | `ui/coop_loadout.urc` |
-| `coop_loPvC3` |  |  |  | other `0` @ `ui/loadout/init.cfg:16`<br>other `0` @ `ui/loadout/p01.cfg:18`<br>other `0` @ `ui/loadout/p02.cfg:18`<br>(+72 more) |  | `ui/coop_loadout.urc` |
-| `coop_loPvC4` |  |  |  | other `0` @ `ui/loadout/init.cfg:17`<br>other `0` @ `ui/loadout/p01.cfg:19`<br>other `0` @ `ui/loadout/p02.cfg:19`<br>(+72 more) |  | `ui/coop_loadout.urc` |
-| `coop_loPvC5` |  |  |  | other `0` @ `ui/loadout/init.cfg:18`<br>other `0` @ `ui/loadout/p01.cfg:20`<br>other `0` @ `ui/loadout/p02.cfg:20`<br>(+72 more) |  | `ui/coop_loadout.urc` |
-| `coop_loPvG39` |  |  |  | other `0` @ `ui/loadout/init.cfg:20`<br>other `0` @ `ui/loadout/p01.cfg:21`<br>other `0` @ `ui/loadout/p02.cfg:21`<br>(+72 more) |  | `ui/coop_loadout.urc` |
-| `coop_loRecoil` |  |  |  | other `textures/hud/recoil/rec…` @ `ui/loadout/init.cfg:58`<br>other `textures/hud/recoil/rec…` @ `ui/loadout/p01.cfg:30`<br>other `textures/hud/recoil/rec…` @ `ui/loadout/p02.cfg:30`<br>(+72 more) |  | `ui/coop_loadout.urc` |
+| `coop_loPrev` |  |  |  | other `models/weapons/m1_garan…` @ `ui/loadout/finp01_1.cfg:1`<br>other `models/weapons/m1_garan…` @ `ui/loadout/finp01_2.cfg:1`<br>other `models/weapons/m1_garan…` @ `ui/loadout/finp01_3.cfg:1`<br>(+493 more) |  | `ui/coop_loadout.urc` |
+| `coop_loPrevId` |  |  |  | other `(empty)` @ `ui/loadout/init.cfg:35`<br>other `01` @ `ui/loadout/p01.cfg:17`<br>other `02` @ `ui/loadout/p02.cfg:17`<br>(+72 more) |  |  |
+| `coop_loPvC0` |  |  |  | other `0` @ `ui/loadout/init.cfg:13`<br>other `0` @ `ui/loadout/p01.cfg:19`<br>other `0` @ `ui/loadout/p02.cfg:19`<br>(+72 more) |  | `ui/coop_loadout.urc` |
+| `coop_loPvC1` |  |  |  | other `0` @ `ui/loadout/init.cfg:14`<br>other `0` @ `ui/loadout/p01.cfg:20`<br>other `0` @ `ui/loadout/p02.cfg:20`<br>(+72 more) |  | `ui/coop_loadout.urc` |
+| `coop_loPvC2` |  |  |  | other `0` @ `ui/loadout/init.cfg:15`<br>other `0` @ `ui/loadout/p01.cfg:21`<br>other `0` @ `ui/loadout/p02.cfg:21`<br>(+72 more) |  | `ui/coop_loadout.urc` |
+| `coop_loPvC3` |  |  |  | other `0` @ `ui/loadout/init.cfg:16`<br>other `0` @ `ui/loadout/p01.cfg:22`<br>other `0` @ `ui/loadout/p02.cfg:22`<br>(+72 more) |  | `ui/coop_loadout.urc` |
+| `coop_loPvC4` |  |  |  | other `0` @ `ui/loadout/init.cfg:17`<br>other `0` @ `ui/loadout/p01.cfg:23`<br>other `0` @ `ui/loadout/p02.cfg:23`<br>(+72 more) |  | `ui/coop_loadout.urc` |
+| `coop_loPvC5` |  |  |  | other `0` @ `ui/loadout/init.cfg:18`<br>other `0` @ `ui/loadout/p01.cfg:24`<br>other `0` @ `ui/loadout/p02.cfg:24`<br>(+72 more) |  | `ui/coop_loadout.urc` |
+| `coop_loPvG39` |  |  |  | other `0` @ `ui/loadout/init.cfg:20`<br>other `0` @ `ui/loadout/p01.cfg:25`<br>other `0` @ `ui/loadout/p02.cfg:25`<br>(+72 more) |  | `ui/coop_loadout.urc` |
+| `coop_loRecoil` |  |  |  | other `textures/hud/recoil/rec…` @ `ui/loadout/init.cfg:58`<br>other `textures/hud/recoil/rec…` @ `ui/loadout/p01.cfg:34`<br>other `textures/hud/recoil/rec…` @ `ui/loadout/p02.cfg:34`<br>(+72 more) |  | `ui/coop_loadout.urc` |
 | `coop_loReq` |  |  |  | other `(empty)` @ `ui/loadout/init.cfg:59`<br>other `UNLOCK: Rank: Private` @ `ui/loadout/req02.cfg:1`<br>other `UNLOCK: Rank: Corporal` @ `ui/loadout/req03.cfg:1`<br>(+88 more) |  | `ui/coop_loadout.urc` |
 | `coop_loReq2` |  |  |  | other `(empty)` @ `ui/loadout/init.cfg:60`<br>other `First Class` @ `ui/loadout/req02.cfg:2`<br>other `(empty)` @ `ui/loadout/req03.cfg:2`<br>(+88 more) |  | `ui/coop_loadout.urc` |
 | `coop_loS1` |  |  |  | other `(empty)` @ `ui/loadout/clrP1.cfg:4`<br>other `(empty)` @ `ui/loadout/clrk1.cfg:4`<br>other `(empty)` @ `ui/loadout/reset.cfg:5`<br>(+50 more) |  | `ui/coop_loadout.urc` |
-| `coop_loS1F` |  |  |  | other `0` @ `ui/loadout/fin0_s1.cfg:3`<br>other `1` @ `ui/loadout/fin1_s1.cfg:3`<br>other `2` @ `ui/loadout/fin2_s1.cfg:3`<br>(+6 more) |  |  |
+| `coop_loS1F` |  |  |  | other `0` @ `ui/loadout/fin0_s1.cfg:3`<br>other `1` @ `ui/loadout/fin1_s1.cfg:3`<br>other `2` @ `ui/loadout/fin2_s1.cfg:3`<br>(+43 more) |  |  |
 | `coop_loS2` |  |  |  | other `(empty)` @ `ui/loadout/clrP2.cfg:4`<br>other `(empty)` @ `ui/loadout/clrk2.cfg:4`<br>other `(empty)` @ `ui/loadout/reset.cfg:9`<br>(+50 more) |  | `ui/coop_loadout.urc` |
-| `coop_loS2F` |  |  |  | other `0` @ `ui/loadout/fin0_s2.cfg:3`<br>other `1` @ `ui/loadout/fin1_s2.cfg:3`<br>other `2` @ `ui/loadout/fin2_s2.cfg:3`<br>(+6 more) |  |  |
+| `coop_loS2F` |  |  |  | other `0` @ `ui/loadout/fin0_s2.cfg:3`<br>other `1` @ `ui/loadout/fin1_s2.cfg:3`<br>other `2` @ `ui/loadout/fin2_s2.cfg:3`<br>(+43 more) |  |  |
 | `coop_loS3` |  |  |  | other `(empty)` @ `ui/loadout/clr3.cfg:4`<br>other `(empty)` @ `ui/loadout/clrk3.cfg:4`<br>other `(empty)` @ `ui/loadout/reset.cfg:13`<br>(+18 more) |  | `ui/coop_loadout.urc` |
-| `coop_loS3F` |  |  |  | other `0` @ `ui/loadout/fin0_s3.cfg:3`<br>other `1` @ `ui/loadout/fin1_s3.cfg:3`<br>other `2` @ `ui/loadout/fin2_s3.cfg:3`<br>(+6 more) |  |  |
+| `coop_loS3F` |  |  |  | other `0` @ `ui/loadout/fin0_s3.cfg:3`<br>other `1` @ `ui/loadout/fin1_s3.cfg:3`<br>other `2` @ `ui/loadout/fin2_s3.cfg:3`<br>(+43 more) |  |  |
 | `coop_loS4` |  |  |  | other `(empty)` @ `ui/loadout/clr4.cfg:4`<br>other `(empty)` @ `ui/loadout/clrk4.cfg:4`<br>other `(empty)` @ `ui/loadout/reset.cfg:17`<br>(+6 more) |  | `ui/coop_loadout.urc` |
-| `coop_loS4F` |  |  |  | other `0` @ `ui/loadout/fin0_s4.cfg:3`<br>other `1` @ `ui/loadout/fin1_s4.cfg:3`<br>other `2` @ `ui/loadout/fin2_s4.cfg:3`<br>(+6 more) |  |  |
+| `coop_loS4F` |  |  |  | other `0` @ `ui/loadout/fin0_s4.cfg:3`<br>other `1` @ `ui/loadout/fin1_s4.cfg:3`<br>other `2` @ `ui/loadout/fin2_s4.cfg:3`<br>(+43 more) |  |  |
 | `coop_loSel1` |  |  |  | other `1` @ `ui/loadout/init.cfg:8`<br>other `1` @ `ui/loadout/s1sel.cfg:2`<br>other `0` @ `ui/loadout/s2sel.cfg:2`<br>(+2 more) |  | `ui/coop_loadout.urc` |
 | `coop_loSel2` |  |  |  | other `0` @ `ui/loadout/init.cfg:9`<br>other `0` @ `ui/loadout/s1sel.cfg:3`<br>other `1` @ `ui/loadout/s2sel.cfg:3`<br>(+2 more) |  | `ui/coop_loadout.urc` |
 | `coop_loSel3` |  |  |  | other `0` @ `ui/loadout/init.cfg:10`<br>other `0` @ `ui/loadout/s1sel.cfg:4`<br>other `0` @ `ui/loadout/s2sel.cfg:4`<br>(+2 more) |  | `ui/coop_loadout.urc` |
 | `coop_loSel4` |  |  |  | other `0` @ `ui/loadout/init.cfg:11`<br>other `0` @ `ui/loadout/s1sel.cfg:5`<br>other `0` @ `ui/loadout/s2sel.cfg:5`<br>(+2 more) |  | `ui/coop_loadout.urc` |
-| `coop_loSkin` |  |  |  |  | `coop_mod/loadoutpick.scr:266` (+1) |  |
+| `coop_loSkin` |  |  |  |  | `coop_mod/loadoutpick.scr:270` (+1) |  |
 | `coop_loSpinSens` | `0.6` | `CVAR_ARCHIVE` | `client/cl_uistd.cpp:594` |  |  |  |
 | `coop_loStdH` |  |  |  | other `set coop_loHelm models/…` @ `ui/loadout/init.cfg:42`<br>other `set coop_loHelm models/…` @ `ui/loadout/skin/s01.cfg:17`<br>other `set coop_loHelm models/…` @ `ui/loadout/skin/s02.cfg:17`<br>(+133 more) |  |  |
 | `coop_loUnregP1` |  |  |  | other `(empty)` @ `ui/loadout/clrP1.cfg:7`<br>other `exec ui/loadout/unreg_r…` @ `ui/loadout/w01_s1.cfg:11`<br>other `exec ui/loadout/unreg_r…` @ `ui/loadout/w02_s1.cfg:11`<br>(+48 more) |  |  |
@@ -782,7 +787,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_loXfmT2` |  |  |  | other `0 0 0 1.00 0 90 180` @ `ui/loadout/init.cfg:23`<br>other `0 0 0 1.00 0 90 180` @ `ui/loadout/w01_s2.cfg:7`<br>other `0 0 0 1.00 0 90 180` @ `ui/loadout/w02_s2.cfg:7`<br>(+48 more) |  | `ui/coop_loadout.urc` |
 | `coop_loXfmT3` |  |  |  | other `0 0 0 1.60 0 90 180` @ `ui/loadout/init.cfg:24`<br>other `0 0 0 1.60 0 90 180` @ `ui/loadout/w48_s3.cfg:5`<br>other `0 0 0 1.60 0 90 180` @ `ui/loadout/w49_s3.cfg:5`<br>(+16 more) |  | `ui/coop_loadout.urc` |
 | `coop_loXfmT4` |  |  |  | other `0 0 0 2.00 0 90 180` @ `ui/loadout/init.cfg:25`<br>other `0 0 0 2.00 0 90 180` @ `ui/loadout/w64_s4.cfg:5`<br>other `0 0 0 2.00 0 90 180` @ `ui/loadout/w65_s4.cfg:5`<br>(+4 more) |  | `ui/coop_loadout.urc` |
-| `coop_loXfmW` |  |  |  | other `0 0 0 1.00 0 90 180` @ `ui/loadout/init.cfg:21`<br>other `0 0 0 1.00 0 90 180` @ `ui/loadout/p01.cfg:12`<br>other `0 0 0 1.00 0 90 180` @ `ui/loadout/p02.cfg:12`<br>(+72 more) |  | `ui/coop_loadout.urc` |
+| `coop_loXfmW` |  |  |  | other `0 0 0 1.00 0 90 180` @ `ui/loadout/init.cfg:21`<br>other `0 0 0 1.00 0 90 180` @ `ui/loadout/p01.cfg:16`<br>other `0 0 0 1.00 0 90 180` @ `ui/loadout/p02.cfg:16`<br>(+72 more) |  | `ui/coop_loadout.urc` |
 | `coop_loXfmWH` |  |  |  | other `0 0 0 1.00 0 0 0` @ `ui/loadout/init.cfg:30` |  |  |
 | `coop_m6EscapeFuse` |  |  |  |  | `maps/m6l2a.scr:2710` |  |
 | `coop_m6TowerFallYaw` |  |  |  |  | `maps/m6l2a.scr:3268` |  |
@@ -968,7 +973,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_sprintMult` | `1.3` | `CVAR_ARCHIVE` | `fgame/player.cpp:4618` | FORCED `1.9` @ `autoexec.cfg:278` |  |  |
 | `coop_sprintRegen` | `0.6` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1241` (+1) | FORCED `1.0` @ `autoexec.cfg:280` |  |  |
 | `coop_sprintStamina` | `5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1240` (+1) | FORCED `30` @ `autoexec.cfg:279` |  |  |
-| `coop_squadDensity` |  |  |  |  | `coop_mod/aihandler.scr:213` |  |
+| `coop_squadDensity` |  |  |  |  | `coop_mod/aihandler.scr:219` |  |
 | `coop_srMedals` |  |  |  |  |  | `ui/coop_sr.urc` |
 | `coop_srP0` |  |  |  | FORCED `1` @ `autoexec.cfg:553` |  | `ui/coop_sr.urc` |
 | `coop_srP1` |  |  |  | FORCED `0` @ `autoexec.cfg:554` |  | `ui/coop_sr.urc` |
@@ -2231,7 +2236,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_uiP97` |  |  |  | other `0` @ `ui/coop_sr_pinclear.cfg:99`<br>other `0` @ `ui/coop_sr_pinreset.cfg:104` |  | `ui/coop_sr.urc` |
 | `coop_uiP98` |  |  |  | other `0` @ `ui/coop_sr_pinclear.cfg:100`<br>other `0` @ `ui/coop_sr_pinreset.cfg:105` |  | `ui/coop_sr.urc` |
 | `coop_uiP99` |  |  |  | other `0` @ `ui/coop_sr_pinclear.cfg:101`<br>other `0` @ `ui/coop_sr_pinreset.cfg:106` |  | `ui/coop_sr.urc` |
-| `coop_unsponge` |  |  |  | FORCED `1` @ `autoexec.cfg:403` | `coop_mod/aihandler.scr:314` (+1) |  |
+| `coop_unsponge` |  |  |  | FORCED `1` @ `autoexec.cfg:403` | `coop_mod/aihandler.scr:320` (+1) |  |
 | `coop_vehicleWrecks` | `1` | `CVAR_ARCHIVE` | `fgame/vehicle.cpp:7218` |  |  |  |
 | `coop_vehTurretBack` | `35` | `CVAR_ARCHIVE` | `fgame/vehicleturret.cpp:962` |  |  |  |
 | `coop_vehTurretDown` | `15` | `CVAR_ARCHIVE` | `fgame/vehicleturret.cpp:965` |  |  |  |

@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 38,362 |
+| files in the workspace | 38,473 |
 | bytes | 40.7 GB |
-| files in project scope (indexed per-file) | 12,991 |
-| source files (per-file rows with line counts) | 5,656 |
+| files in project scope (indexed per-file) | 13,102 |
+| source files (per-file rows with line counts) | 5,767 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -24,7 +24,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 9,493 | 5776.2 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 9,604 | 5776.4 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
@@ -80,7 +80,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.scr` | 2,508 |
 | `.tga` | 2,354 |
 | `.jpg` | 2,189 |
-| `.cfg` | 1,743 |
+| `.cfg` | 1,854 |
 | `.tik` | 1,597 |
 | `.png` | 1,371 |
 | `.obj` | 1,224 |
@@ -175,7 +175,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `autotest_home/maintt/configs` | 1 | 0.07 MB | .cfg×1 |
 | `autotest_home/maintt/coop_mod/save` | 3 | 0.00 MB | .dat×3 |
 | `autotest_results` | 2 | 0.32 MB | .tsv×1, .log×1 |
-| `docs` | 31 | 1.52 MB | .md×30, .png×1 |
+| `docs` | 31 | 1.53 MB | .md×30, .png×1 |
 | `docs/archive` | 11 | 0.04 MB | .md×11 |
 | `docs/proposals` | 24 | 0.88 MB | .md×23, .json×1 |
 | `docs/proposals/cover_attach` | 2 | 0.04 MB | .md×2 |
@@ -193,7 +193,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
-| `hzm-mohaa-coop-mod` | 38 | 1538.83 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
+| `hzm-mohaa-coop-mod` | 38 | 1538.93 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -238,7 +238,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/_research/release_drafts` | 6 | 0.04 MB | .md×6 |
 | `hzm-mohaa-coop-mod/anim` | 23 | 0.16 MB | .scr×23 |
 | `hzm-mohaa-coop-mod/cmpatch` | 1 | 0.00 MB | .txt×1 |
-| `hzm-mohaa-coop-mod/coop_mod` | 117 | 3.63 MB | .scr×112, .st×3, .cfg×2 |
+| `hzm-mohaa-coop-mod/coop_mod` | 117 | 3.64 MB | .scr×112, .st×3, .cfg×2 |
 | `hzm-mohaa-coop-mod/coop_mod/alias` | 2 | 0.03 MB | .cfg×1, .scr×1 |
 | `hzm-mohaa-coop-mod/coop_mod/bp` | 5 | 0.03 MB | .dat×5 |
 | `hzm-mohaa-coop-mod/coop_mod/cache` | 1 | 0.00 MB | .scr×1 |
@@ -635,7 +635,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/coop_objectives` | 46 | 0.02 MB | .cfg×46 |
 | `hzm-mohaa-coop-mod/ui/coop_start` | 14 | 0.03 MB | .cfg×14 |
 | `hzm-mohaa-coop-mod/ui/coop_tiles` | 14 | 0.79 MB | .jpg×14 |
-| `hzm-mohaa-coop-mod/ui/loadout` | 737 | 0.21 MB | .cfg×737 |
+| `hzm-mohaa-coop-mod/ui/loadout` | 848 | 0.25 MB | .cfg×848 |
 | `hzm-mohaa-coop-mod/ui/loadout/helm` | 48 | 0.03 MB | .cfg×48 |
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 135 | 0.13 MB | .cfg×135 |
 | `manifests` | 43 | 0.55 MB | .json×43 |
@@ -998,7 +998,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `docs.cmd` | 13 | 0.5 KB |  |
 | `docs.ps1` | 49 | 1.5 KB |  |
 | `gen_armory_bg.py` | 254 | 10.8 KB | plain: the pre-overhaul look (near-black, subtle panels, caption + stat labels only). |
-| `gen_loadout.py` | 351 | 16.2 KB | !/usr/bin/env python |
+| `gen_loadout.py` | 356 | 16.4 KB | !/usr/bin/env python |
 | `gen_public_pages.py` | 540 | 21.2 KB | !/usr/bin/env python3 |
 | `gen_service_record.py` | 932 | 58.6 KB | [user 08-07] friendly display name for a challenge's reward field (chal_def's 7th arg) |
 | `gen_skins.py` | 285 | 12.7 KB |  |
@@ -1139,7 +1139,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `autoexec.cfg` | 1,229 | 88.3 KB | HZM Extended Coop Mod |
 | `coop.cfg` | 3 | 0.1 KB | DEVELOPER CONFIG FILE |
-| `coop_defaults.cfg` | 349 | 21.2 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
+| `coop_defaults.cfg` | 350 | 21.2 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
 | `net_cl.cfg` | 18 | 1.2 KB | HZM Coop recommended CLIENT settings. |
 | `net_sv.cfg` | 21 | 1.2 KB | HZM Coop recommended SERVER settings. |
 
@@ -1210,9 +1210,9 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | file | lines | size | summary |
 |---|---:|---:|---|
 | `aim.scr` | 176 | 4.2 KB | Aim script - causes the character to aim its current weapon. Right now it requires |
-| `attack.scr` | 1,924 | 51.1 KB | Attack |
-| `cornerleft.scr` | 263 | 8.6 KB | CornerLeft.scr |
-| `cornerright.scr` | 266 | 8.7 KB | Cornerright.scr |
+| `attack.scr` | 1,944 | 52.0 KB | Attack |
+| `cornerleft.scr` | 287 | 9.4 KB | CornerLeft.scr |
+| `cornerright.scr` | 290 | 9.5 KB | Cornerright.scr |
 | `disguise_accept.scr` | 71 | 3.0 KB | disguise_accept.scr |
 | `disguise_deny.scr` | 81 | 3.5 KB | disguise_deny.scr |
 | `disguise_enemy.scr` | 59 | 2.6 KB | disguise_enemy.scr |
@@ -1242,7 +1242,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `ads_dbg.scr` | 11 | 0.5 KB | HZM coop - ADS diagnostic. Called from the AIM state's entrycommands in |
 | `aibehav.scr` | 120 | 5.7 KB | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
 | `aicombat.scr` | 119 | 5.0 KB | aicombat.scr - HZM coop AUTOMATED COMBAT DRIVER (2026-07-23) |
-| `aihandler.scr` | 1,621 | 91.6 KB | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
+| `aihandler.scr` | 1,691 | 95.4 KB | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
 | `aimaneuver.scr` | 261 | 14.3 KB | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
 | `aisquad.scr` | 245 | 12.3 KB | aisquad.scr - HZM coop SQUAD BRAIN (2026-07-24) |
 | `aivoice.scr` | 398 | 17.5 KB | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
@@ -1298,9 +1298,9 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `ladder.scr` | 295 | 15.6 KB | HZM coop - PLACEABLE CLIMBABLE LADDERS [user 2026-08-05] bug-1415 |
 | `ladder_state.scr` | 24 | 1.2 KB | HZM coop - LADDER STATE HOOK [user 2026-08-05] bug-1415 |
 | `loadout.scr` | 765 | 47.5 KB | [200] Smithy - this contains the weaponsloadout for coop |
-| `loadoutpick.scr` | 970 | 53.8 KB | [310] HZM coop ARMORY - per-player loadout picks (Phase 1). |
+| `loadoutpick.scr` | 1,010 | 56.0 KB | [310] HZM coop ARMORY - per-player loadout picks (Phase 1). |
 | `loadoutroster.scr` | 833 | 27.0 KB | GENERATED by scratchpad/gen_loadout3.py -- DO NOT HAND-EDIT (regenerate instead) |
-| `loadoutskins.scr` | 475 | 43.5 KB | GENERATED by build_finish_strip.py + gen_skins.py - the server-side skin variant table. |
+| `loadoutskins.scr` | 487 | 44.2 KB | GENERATED by build_finish_strip.py + gen_skins.py - the server-side skin variant table. |
 | `lobby.scr` | 1,177 | 53.4 KB | HZM Coop - Pre-Mission Lobby module. Full spec: _research/coop_lobby1_build.md |
 | `lobbyui.scr` | 265 | 10.6 KB | [304] CLICKABLE LOBBY UI - a mouse cursor + button framework for the live |
 | `m4l3_precache.scr` | 157 | 6.0 KB |  |
@@ -1327,7 +1327,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `player.scr` | 1,834 | 92.0 KB | started by chrissstrahl on 2020.10.16 ([202]) |
 | `player.st` | 18 | 0.4 KB |  |
 | `player_Torso.st` | 3,804 | 104.1 KB |  |
-| `player_legs.st` | 2,325 | 65.6 KB |  |
+| `player_legs.st` | 2,331 | 66.1 KB |  |
 | `precache.scr` | 186 | 7.2 KB |  |
 | `probe.scr` | 74 | 3.2 KB | probe.scr |
 | `profile.scr` | 71 | 4.0 KB | HZM COOP - PER-PLAYER PROFILE MIRROR (user decision 2026-08-10) |
@@ -1512,7 +1512,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `M1L3a.scr` | 890 | 29.5 KB | THE DESERT |
 | `M1L3c.scr` | 1,138 | 33.1 KB | THE SEA WALL |
-| `M3L3.scr` | 8,983 | 375.9 KB | LEVEL: M3L3 |
+| `M3L3.scr` | 8,982 | 376.5 KB | LEVEL: M3L3 |
 | `M5L2A.scr` | 850 | 33.8 KB | TANK DRIVE 1 |
 | `M6L1b.scr` | 166 | 6.2 KB | SNOWY FOREST2 |
 | `co_lobby1.scr` | 46 | 2.6 KB | LEVEL: co_lobby1.bsp (a copy of training.bsp) |
@@ -3871,7 +3871,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `t2.cfg` | 58 | 3.0 KB | HZM coop - sets the SH (Spearhead) mission 2 maps on the menu (Phase 3 rollout) |
 | `t3.cfg` | 55 | 2.6 KB | HZM coop - sets the SH (Spearhead) mission 3 maps on the menu (Phase 3 rollout) |
 
-### `hzm-mohaa-coop-mod/ui/loadout/` — 737 source files
+### `hzm-mohaa-coop-mod/ui/loadout/` — 848 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -4194,7 +4194,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `finp75_7.cfg` | 2 | 0.1 KB |  |
 | `fitbinds.cfg` | 16 | 0.4 KB | GENERATED - FIT-TUNE fast-nudge key binds (client-local; cleared by fitunbind.cfg). |
 | `fitunbind.cfg` | 16 | 0.2 KB | GENERATED - clear the FIT-TUNE fast-nudge key binds. |
-| `init.cfg` | 118 | 3.8 KB | GENERATED - armory view-state init (slot 1 active, RIFLES page, nothing inspected). |
+| `init.cfg` | 122 | 3.9 KB | GENERATED - armory view-state init (slot 1 active, RIFLES page, nothing inspected). |
 | `lkfin.cfg` | 32 | 0.9 KB | GENERATED - finish-strip padlocks + commit gates. Fail-LOCKED defaults; the archived |
 | `lktab0.cfg` | 99 | 1.9 KB | GENERATED - client-side padlock recompute for tab 0 (RIFLE). Fail-LOCKED default. |
 | `lktab1.cfg` | 100 | 1.9 KB | GENERATED - client-side padlock recompute for tab 1 (SNIPER). Fail-LOCKED default. |
@@ -4202,118 +4202,229 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `lktab3.cfg` | 102 | 1.9 KB | GENERATED - client-side padlock recompute for tab 3 (HEAVY). Fail-LOCKED default. |
 | `lktab4.cfg` | 110 | 2.1 KB | GENERATED - client-side padlock recompute for tab 4 (PISTOL). Fail-LOCKED default. |
 | `lktab5.cfg` | 88 | 1.7 KB | GENERATED - client-side padlock recompute for tab 5 (NADES). Fail-LOCKED default. |
-| `mvp01_0.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 0/1 for host tile 01 |
-| `mvp01_1.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 1/1 for host tile 01 |
-| `mvp04_0.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 0/1 for host tile 04 |
-| `mvp04_1.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 1/1 for host tile 04 |
-| `mvp05_0.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 0/1 for host tile 05 |
-| `mvp05_1.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 1/1 for host tile 05 |
-| `mvp12_0.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 0/2 for host tile 12 |
-| `mvp12_1.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 1/2 for host tile 12 |
-| `mvp12_2.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 2/2 for host tile 12 |
-| `mvp13_0.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 0/1 for host tile 13 |
-| `mvp13_1.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 1/1 for host tile 13 |
-| `mvp24_0.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 0/4 for host tile 24 |
-| `mvp24_1.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 1/4 for host tile 24 |
-| `mvp24_2.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 2/4 for host tile 24 |
-| `mvp24_3.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 3/4 for host tile 24 |
-| `mvp24_4.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 4/4 for host tile 24 |
-| `mvp26_0.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 0/2 for host tile 26 |
-| `mvp26_1.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 1/2 for host tile 26 |
-| `mvp26_2.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 2/2 for host tile 26 |
-| `mvp36_0.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 0/5 for host tile 36 |
-| `mvp36_1.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 1/5 for host tile 36 |
-| `mvp36_2.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 2/5 for host tile 36 |
-| `mvp36_3.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 3/5 for host tile 36 |
-| `mvp36_4.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 4/5 for host tile 36 |
-| `mvp36_5.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 5/5 for host tile 36 |
-| `mvp37_0.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 0/1 for host tile 37 |
-| `mvp37_1.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 1/1 for host tile 37 |
-| `mvp44_0.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 0/1 for host tile 44 |
-| `mvp44_1.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 1/1 for host tile 44 |
-| `mvp48_0.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 0/5 for host tile 48 |
-| `mvp48_1.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 1/5 for host tile 48 |
-| `mvp48_2.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 2/5 for host tile 48 |
-| `mvp48_3.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 3/5 for host tile 48 |
-| `mvp48_4.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 4/5 for host tile 48 |
-| `mvp48_5.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 5/5 for host tile 48 |
-| `mvp74_0.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 0/1 for host tile 74 |
-| `mvp74_1.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 1/1 for host tile 74 |
+| `mvp01_0_s1.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/1, host 01, slot 1 (exact-fid archive) |
+| `mvp01_0_s2.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/1, host 01, slot 2 (exact-fid archive) |
+| `mvp01_0_s3.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/1, host 01, slot 3 (exact-fid archive) |
+| `mvp01_0_s4.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/1, host 01, slot 4 (exact-fid archive) |
+| `mvp01_1_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 01, slot 1 (exact-fid archive) |
+| `mvp01_1_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 01, slot 2 (exact-fid archive) |
+| `mvp01_1_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 01, slot 3 (exact-fid archive) |
+| `mvp01_1_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 01, slot 4 (exact-fid archive) |
+| `mvp04_0_s1.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/1, host 04, slot 1 (exact-fid archive) |
+| `mvp04_0_s2.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/1, host 04, slot 2 (exact-fid archive) |
+| `mvp04_0_s3.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/1, host 04, slot 3 (exact-fid archive) |
+| `mvp04_0_s4.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/1, host 04, slot 4 (exact-fid archive) |
+| `mvp04_1_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 04, slot 1 (exact-fid archive) |
+| `mvp04_1_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 04, slot 2 (exact-fid archive) |
+| `mvp04_1_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 04, slot 3 (exact-fid archive) |
+| `mvp04_1_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 04, slot 4 (exact-fid archive) |
+| `mvp05_0_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/1, host 05, slot 1 (exact-fid archive) |
+| `mvp05_0_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/1, host 05, slot 2 (exact-fid archive) |
+| `mvp05_0_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/1, host 05, slot 3 (exact-fid archive) |
+| `mvp05_0_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/1, host 05, slot 4 (exact-fid archive) |
+| `mvp05_1_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 05, slot 1 (exact-fid archive) |
+| `mvp05_1_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 05, slot 2 (exact-fid archive) |
+| `mvp05_1_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 05, slot 3 (exact-fid archive) |
+| `mvp05_1_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 05, slot 4 (exact-fid archive) |
+| `mvp12_0_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/2, host 12, slot 1 (exact-fid archive) |
+| `mvp12_0_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/2, host 12, slot 2 (exact-fid archive) |
+| `mvp12_0_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/2, host 12, slot 3 (exact-fid archive) |
+| `mvp12_0_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/2, host 12, slot 4 (exact-fid archive) |
+| `mvp12_1_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/2, host 12, slot 1 (exact-fid archive) |
+| `mvp12_1_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/2, host 12, slot 2 (exact-fid archive) |
+| `mvp12_1_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/2, host 12, slot 3 (exact-fid archive) |
+| `mvp12_1_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/2, host 12, slot 4 (exact-fid archive) |
+| `mvp12_2_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 2/2, host 12, slot 1 (exact-fid archive) |
+| `mvp12_2_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 2/2, host 12, slot 2 (exact-fid archive) |
+| `mvp12_2_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 2/2, host 12, slot 3 (exact-fid archive) |
+| `mvp12_2_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 2/2, host 12, slot 4 (exact-fid archive) |
+| `mvp13_0_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/1, host 13, slot 1 (exact-fid archive) |
+| `mvp13_0_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/1, host 13, slot 2 (exact-fid archive) |
+| `mvp13_0_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/1, host 13, slot 3 (exact-fid archive) |
+| `mvp13_0_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/1, host 13, slot 4 (exact-fid archive) |
+| `mvp13_1_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 13, slot 1 (exact-fid archive) |
+| `mvp13_1_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 13, slot 2 (exact-fid archive) |
+| `mvp13_1_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 13, slot 3 (exact-fid archive) |
+| `mvp13_1_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 13, slot 4 (exact-fid archive) |
+| `mvp24_0_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/4, host 24, slot 1 (exact-fid archive) |
+| `mvp24_0_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/4, host 24, slot 2 (exact-fid archive) |
+| `mvp24_0_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/4, host 24, slot 3 (exact-fid archive) |
+| `mvp24_0_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/4, host 24, slot 4 (exact-fid archive) |
+| `mvp24_1_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/4, host 24, slot 1 (exact-fid archive) |
+| `mvp24_1_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/4, host 24, slot 2 (exact-fid archive) |
+| `mvp24_1_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/4, host 24, slot 3 (exact-fid archive) |
+| `mvp24_1_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/4, host 24, slot 4 (exact-fid archive) |
+| `mvp24_2_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 2/4, host 24, slot 1 (exact-fid archive) |
+| `mvp24_2_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 2/4, host 24, slot 2 (exact-fid archive) |
+| `mvp24_2_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 2/4, host 24, slot 3 (exact-fid archive) |
+| `mvp24_2_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 2/4, host 24, slot 4 (exact-fid archive) |
+| `mvp24_3_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 3/4, host 24, slot 1 (exact-fid archive) |
+| `mvp24_3_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 3/4, host 24, slot 2 (exact-fid archive) |
+| `mvp24_3_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 3/4, host 24, slot 3 (exact-fid archive) |
+| `mvp24_3_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 3/4, host 24, slot 4 (exact-fid archive) |
+| `mvp24_4_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 4/4, host 24, slot 1 (exact-fid archive) |
+| `mvp24_4_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 4/4, host 24, slot 2 (exact-fid archive) |
+| `mvp24_4_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 4/4, host 24, slot 3 (exact-fid archive) |
+| `mvp24_4_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 4/4, host 24, slot 4 (exact-fid archive) |
+| `mvp26_0_s1.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/2, host 26, slot 1 (exact-fid archive) |
+| `mvp26_0_s2.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/2, host 26, slot 2 (exact-fid archive) |
+| `mvp26_0_s3.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/2, host 26, slot 3 (exact-fid archive) |
+| `mvp26_0_s4.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/2, host 26, slot 4 (exact-fid archive) |
+| `mvp26_1_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/2, host 26, slot 1 (exact-fid archive) |
+| `mvp26_1_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/2, host 26, slot 2 (exact-fid archive) |
+| `mvp26_1_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/2, host 26, slot 3 (exact-fid archive) |
+| `mvp26_1_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/2, host 26, slot 4 (exact-fid archive) |
+| `mvp26_2_s1.cfg` | 6 | 0.2 KB | GENERATED - variant chain 2/2, host 26, slot 1 (exact-fid archive) |
+| `mvp26_2_s2.cfg` | 6 | 0.2 KB | GENERATED - variant chain 2/2, host 26, slot 2 (exact-fid archive) |
+| `mvp26_2_s3.cfg` | 6 | 0.2 KB | GENERATED - variant chain 2/2, host 26, slot 3 (exact-fid archive) |
+| `mvp26_2_s4.cfg` | 6 | 0.2 KB | GENERATED - variant chain 2/2, host 26, slot 4 (exact-fid archive) |
+| `mvp36_0_s1.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/5, host 36, slot 1 (exact-fid archive) |
+| `mvp36_0_s2.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/5, host 36, slot 2 (exact-fid archive) |
+| `mvp36_0_s3.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/5, host 36, slot 3 (exact-fid archive) |
+| `mvp36_0_s4.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/5, host 36, slot 4 (exact-fid archive) |
+| `mvp36_1_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/5, host 36, slot 1 (exact-fid archive) |
+| `mvp36_1_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/5, host 36, slot 2 (exact-fid archive) |
+| `mvp36_1_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/5, host 36, slot 3 (exact-fid archive) |
+| `mvp36_1_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/5, host 36, slot 4 (exact-fid archive) |
+| `mvp36_2_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 2/5, host 36, slot 1 (exact-fid archive) |
+| `mvp36_2_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 2/5, host 36, slot 2 (exact-fid archive) |
+| `mvp36_2_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 2/5, host 36, slot 3 (exact-fid archive) |
+| `mvp36_2_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 2/5, host 36, slot 4 (exact-fid archive) |
+| `mvp36_3_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 3/5, host 36, slot 1 (exact-fid archive) |
+| `mvp36_3_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 3/5, host 36, slot 2 (exact-fid archive) |
+| `mvp36_3_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 3/5, host 36, slot 3 (exact-fid archive) |
+| `mvp36_3_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 3/5, host 36, slot 4 (exact-fid archive) |
+| `mvp36_4_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 4/5, host 36, slot 1 (exact-fid archive) |
+| `mvp36_4_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 4/5, host 36, slot 2 (exact-fid archive) |
+| `mvp36_4_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 4/5, host 36, slot 3 (exact-fid archive) |
+| `mvp36_4_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 4/5, host 36, slot 4 (exact-fid archive) |
+| `mvp36_5_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 5/5, host 36, slot 1 (exact-fid archive) |
+| `mvp36_5_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 5/5, host 36, slot 2 (exact-fid archive) |
+| `mvp36_5_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 5/5, host 36, slot 3 (exact-fid archive) |
+| `mvp36_5_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 5/5, host 36, slot 4 (exact-fid archive) |
+| `mvp37_0_s1.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/1, host 37, slot 1 (exact-fid archive) |
+| `mvp37_0_s2.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/1, host 37, slot 2 (exact-fid archive) |
+| `mvp37_0_s3.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/1, host 37, slot 3 (exact-fid archive) |
+| `mvp37_0_s4.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/1, host 37, slot 4 (exact-fid archive) |
+| `mvp37_1_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 37, slot 1 (exact-fid archive) |
+| `mvp37_1_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 37, slot 2 (exact-fid archive) |
+| `mvp37_1_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 37, slot 3 (exact-fid archive) |
+| `mvp37_1_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 37, slot 4 (exact-fid archive) |
+| `mvp44_0_s1.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/1, host 44, slot 1 (exact-fid archive) |
+| `mvp44_0_s2.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/1, host 44, slot 2 (exact-fid archive) |
+| `mvp44_0_s3.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/1, host 44, slot 3 (exact-fid archive) |
+| `mvp44_0_s4.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/1, host 44, slot 4 (exact-fid archive) |
+| `mvp44_1_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 44, slot 1 (exact-fid archive) |
+| `mvp44_1_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 44, slot 2 (exact-fid archive) |
+| `mvp44_1_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 44, slot 3 (exact-fid archive) |
+| `mvp44_1_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 44, slot 4 (exact-fid archive) |
+| `mvp48_0_s1.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/5, host 48, slot 1 (exact-fid archive) |
+| `mvp48_0_s2.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/5, host 48, slot 2 (exact-fid archive) |
+| `mvp48_0_s3.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/5, host 48, slot 3 (exact-fid archive) |
+| `mvp48_0_s4.cfg` | 6 | 0.2 KB | GENERATED - variant chain 0/5, host 48, slot 4 (exact-fid archive) |
+| `mvp48_1_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/5, host 48, slot 1 (exact-fid archive) |
+| `mvp48_1_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/5, host 48, slot 2 (exact-fid archive) |
+| `mvp48_1_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/5, host 48, slot 3 (exact-fid archive) |
+| `mvp48_1_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/5, host 48, slot 4 (exact-fid archive) |
+| `mvp48_2_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 2/5, host 48, slot 1 (exact-fid archive) |
+| `mvp48_2_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 2/5, host 48, slot 2 (exact-fid archive) |
+| `mvp48_2_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 2/5, host 48, slot 3 (exact-fid archive) |
+| `mvp48_2_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 2/5, host 48, slot 4 (exact-fid archive) |
+| `mvp48_3_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 3/5, host 48, slot 1 (exact-fid archive) |
+| `mvp48_3_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 3/5, host 48, slot 2 (exact-fid archive) |
+| `mvp48_3_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 3/5, host 48, slot 3 (exact-fid archive) |
+| `mvp48_3_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 3/5, host 48, slot 4 (exact-fid archive) |
+| `mvp48_4_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 4/5, host 48, slot 1 (exact-fid archive) |
+| `mvp48_4_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 4/5, host 48, slot 2 (exact-fid archive) |
+| `mvp48_4_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 4/5, host 48, slot 3 (exact-fid archive) |
+| `mvp48_4_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 4/5, host 48, slot 4 (exact-fid archive) |
+| `mvp48_5_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 5/5, host 48, slot 1 (exact-fid archive) |
+| `mvp48_5_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 5/5, host 48, slot 2 (exact-fid archive) |
+| `mvp48_5_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 5/5, host 48, slot 3 (exact-fid archive) |
+| `mvp48_5_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 5/5, host 48, slot 4 (exact-fid archive) |
+| `mvp74_0_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/1, host 74, slot 1 (exact-fid archive) |
+| `mvp74_0_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/1, host 74, slot 2 (exact-fid archive) |
+| `mvp74_0_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/1, host 74, slot 3 (exact-fid archive) |
+| `mvp74_0_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 0/1, host 74, slot 4 (exact-fid archive) |
+| `mvp74_1_s1.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 74, slot 1 (exact-fid archive) |
+| `mvp74_1_s2.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 74, slot 2 (exact-fid archive) |
+| `mvp74_1_s3.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 74, slot 3 (exact-fid archive) |
+| `mvp74_1_s4.cfg` | 6 | 0.3 KB | GENERATED - variant chain 1/1, host 74, slot 4 (exact-fid archive) |
 | `open.cfg` | 4 | 0.1 KB | GENERATED - open the armory: seed view state, push the menu, ping the bus. |
-| `p01.cfg` | 34 | 1.2 KB |  |
-| `p02.cfg` | 34 | 1.0 KB |  |
-| `p03.cfg` | 34 | 1.1 KB |  |
-| `p04.cfg` | 34 | 1.2 KB |  |
-| `p05.cfg` | 34 | 1.2 KB |  |
-| `p06.cfg` | 34 | 1.0 KB |  |
-| `p07.cfg` | 34 | 1.2 KB |  |
-| `p08.cfg` | 34 | 1.2 KB |  |
-| `p09.cfg` | 34 | 1.2 KB |  |
-| `p10.cfg` | 34 | 1.0 KB |  |
-| `p11.cfg` | 34 | 1.0 KB |  |
-| `p12.cfg` | 34 | 1.2 KB |  |
-| `p13.cfg` | 34 | 1.2 KB |  |
-| `p14.cfg` | 34 | 1.2 KB |  |
-| `p15.cfg` | 34 | 1.0 KB |  |
-| `p16.cfg` | 34 | 1.2 KB |  |
-| `p17.cfg` | 34 | 1.0 KB |  |
-| `p18.cfg` | 34 | 1.0 KB |  |
-| `p19.cfg` | 34 | 1.0 KB |  |
-| `p20.cfg` | 34 | 1.0 KB |  |
-| `p21.cfg` | 34 | 1.0 KB |  |
-| `p22.cfg` | 34 | 1.0 KB |  |
-| `p23.cfg` | 34 | 1.2 KB |  |
-| `p24.cfg` | 34 | 1.2 KB |  |
-| `p25.cfg` | 34 | 1.0 KB |  |
-| `p26.cfg` | 34 | 1.2 KB |  |
-| `p27.cfg` | 34 | 1.0 KB |  |
-| `p28.cfg` | 34 | 1.1 KB |  |
-| `p29.cfg` | 34 | 1.1 KB |  |
-| `p30.cfg` | 34 | 1.0 KB |  |
-| `p31.cfg` | 34 | 1.0 KB |  |
-| `p32.cfg` | 34 | 1.0 KB |  |
-| `p33.cfg` | 34 | 1.2 KB |  |
-| `p34.cfg` | 34 | 1.0 KB |  |
-| `p35.cfg` | 34 | 1.0 KB |  |
-| `p36.cfg` | 34 | 1.2 KB |  |
-| `p37.cfg` | 34 | 1.2 KB |  |
-| `p38.cfg` | 34 | 1.0 KB |  |
-| `p39.cfg` | 34 | 1.1 KB |  |
-| `p40.cfg` | 34 | 1.2 KB |  |
-| `p41.cfg` | 34 | 1.2 KB |  |
-| `p42.cfg` | 34 | 1.0 KB |  |
-| `p43.cfg` | 34 | 1.0 KB |  |
-| `p44.cfg` | 34 | 1.2 KB |  |
-| `p45.cfg` | 34 | 1.2 KB |  |
-| `p46.cfg` | 34 | 1.2 KB |  |
-| `p47.cfg` | 34 | 1.1 KB |  |
-| `p48.cfg` | 34 | 1.2 KB |  |
-| `p49.cfg` | 34 | 1.0 KB |  |
-| `p50.cfg` | 34 | 1.1 KB |  |
-| `p51.cfg` | 34 | 1.0 KB |  |
-| `p52.cfg` | 34 | 1.2 KB |  |
-| `p53.cfg` | 34 | 1.2 KB |  |
-| `p54.cfg` | 34 | 1.2 KB |  |
-| `p55.cfg` | 34 | 1.2 KB |  |
-| `p56.cfg` | 34 | 1.0 KB |  |
-| `p57.cfg` | 34 | 0.9 KB |  |
-| `p58.cfg` | 34 | 1.0 KB |  |
-| `p59.cfg` | 34 | 0.9 KB |  |
-| `p60.cfg` | 34 | 1.1 KB |  |
-| `p61.cfg` | 34 | 1.2 KB |  |
-| `p62.cfg` | 34 | 0.9 KB |  |
-| `p63.cfg` | 34 | 1.1 KB |  |
-| `p64.cfg` | 34 | 1.0 KB |  |
-| `p65.cfg` | 34 | 1.0 KB |  |
-| `p66.cfg` | 34 | 1.0 KB |  |
-| `p67.cfg` | 34 | 1.0 KB |  |
-| `p68.cfg` | 34 | 1.0 KB |  |
-| `p69.cfg` | 34 | 1.0 KB |  |
-| `p70.cfg` | 34 | 1.2 KB |  |
-| `p71.cfg` | 34 | 1.0 KB |  |
-| `p72.cfg` | 34 | 1.1 KB |  |
-| `p74.cfg` | 34 | 1.2 KB |  |
-| `p75.cfg` | 34 | 1.2 KB |  |
+| `p01.cfg` | 38 | 1.4 KB |  |
+| `p02.cfg` | 38 | 1.1 KB |  |
+| `p03.cfg` | 38 | 1.2 KB |  |
+| `p04.cfg` | 38 | 1.4 KB |  |
+| `p05.cfg` | 38 | 1.4 KB |  |
+| `p06.cfg` | 38 | 1.1 KB |  |
+| `p07.cfg` | 38 | 1.3 KB |  |
+| `p08.cfg` | 38 | 1.2 KB |  |
+| `p09.cfg` | 38 | 1.3 KB |  |
+| `p10.cfg` | 38 | 1.0 KB |  |
+| `p11.cfg` | 38 | 1.1 KB |  |
+| `p12.cfg` | 38 | 1.4 KB |  |
+| `p13.cfg` | 38 | 1.4 KB |  |
+| `p14.cfg` | 38 | 1.2 KB |  |
+| `p15.cfg` | 38 | 1.1 KB |  |
+| `p16.cfg` | 38 | 1.2 KB |  |
+| `p17.cfg` | 38 | 1.1 KB |  |
+| `p18.cfg` | 38 | 1.1 KB |  |
+| `p19.cfg` | 38 | 1.1 KB |  |
+| `p20.cfg` | 38 | 1.1 KB |  |
+| `p21.cfg` | 38 | 1.1 KB |  |
+| `p22.cfg` | 38 | 1.1 KB |  |
+| `p23.cfg` | 38 | 1.2 KB |  |
+| `p24.cfg` | 38 | 1.4 KB |  |
+| `p25.cfg` | 38 | 1.1 KB |  |
+| `p26.cfg` | 38 | 1.4 KB |  |
+| `p27.cfg` | 38 | 1.1 KB |  |
+| `p28.cfg` | 38 | 1.2 KB |  |
+| `p29.cfg` | 38 | 1.2 KB |  |
+| `p30.cfg` | 38 | 1.1 KB |  |
+| `p31.cfg` | 38 | 1.1 KB |  |
+| `p32.cfg` | 38 | 1.1 KB |  |
+| `p33.cfg` | 38 | 1.2 KB |  |
+| `p34.cfg` | 38 | 1.0 KB |  |
+| `p35.cfg` | 38 | 1.0 KB |  |
+| `p36.cfg` | 38 | 1.4 KB |  |
+| `p37.cfg` | 38 | 1.4 KB |  |
+| `p38.cfg` | 38 | 1.1 KB |  |
+| `p39.cfg` | 38 | 1.2 KB |  |
+| `p40.cfg` | 38 | 1.2 KB |  |
+| `p41.cfg` | 38 | 1.2 KB |  |
+| `p42.cfg` | 38 | 1.1 KB |  |
+| `p43.cfg` | 38 | 1.1 KB |  |
+| `p44.cfg` | 38 | 1.4 KB |  |
+| `p45.cfg` | 38 | 1.2 KB |  |
+| `p46.cfg` | 38 | 1.3 KB |  |
+| `p47.cfg` | 38 | 1.2 KB |  |
+| `p48.cfg` | 38 | 1.4 KB |  |
+| `p49.cfg` | 38 | 1.1 KB |  |
+| `p50.cfg` | 38 | 1.2 KB |  |
+| `p51.cfg` | 38 | 1.1 KB |  |
+| `p52.cfg` | 38 | 1.2 KB |  |
+| `p53.cfg` | 38 | 1.2 KB |  |
+| `p54.cfg` | 38 | 1.2 KB |  |
+| `p55.cfg` | 38 | 1.2 KB |  |
+| `p56.cfg` | 38 | 1.1 KB |  |
+| `p57.cfg` | 38 | 1.0 KB |  |
+| `p58.cfg` | 38 | 1.1 KB |  |
+| `p59.cfg` | 38 | 1.0 KB |  |
+| `p60.cfg` | 38 | 1.2 KB |  |
+| `p61.cfg` | 38 | 1.2 KB |  |
+| `p62.cfg` | 38 | 1.0 KB |  |
+| `p63.cfg` | 38 | 1.2 KB |  |
+| `p64.cfg` | 38 | 1.0 KB |  |
+| `p65.cfg` | 38 | 1.1 KB |  |
+| `p66.cfg` | 38 | 1.0 KB |  |
+| `p67.cfg` | 38 | 1.0 KB |  |
+| `p68.cfg` | 38 | 1.0 KB |  |
+| `p69.cfg` | 38 | 1.0 KB |  |
+| `p70.cfg` | 38 | 1.3 KB |  |
+| `p71.cfg` | 38 | 1.1 KB |  |
+| `p72.cfg` | 38 | 1.2 KB |  |
+| `p74.cfg` | 38 | 1.4 KB |  |
+| `p75.cfg` | 38 | 1.3 KB |  |
 | `req02.cfg` | 2 | 0.1 KB |  |
 | `req03.cfg` | 2 | 0.1 KB |  |
 | `req04.cfg` | 2 | 0.1 KB |  |
@@ -4406,10 +4517,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `reqmv48.cfg` | 2 | 0.2 KB |  |
 | `reqmv74.cfg` | 2 | 0.1 KB |  |
 | `reset.cfg` | 19 | 0.4 KB | GENERATED - clear all armory picks (client cvars + tell the server). |
-| `s1sel.cfg` | 28 | 0.9 KB | GENERATED - activate loadout slot 1 |
-| `s2sel.cfg` | 28 | 0.9 KB | GENERATED - activate loadout slot 2 |
-| `s3sel.cfg` | 28 | 0.9 KB | GENERATED - activate loadout slot 3 |
-| `s4sel.cfg` | 28 | 0.9 KB | GENERATED - activate loadout slot 4 |
+| `s1sel.cfg` | 29 | 1.0 KB | GENERATED - activate loadout slot 1 |
+| `s2sel.cfg` | 29 | 1.0 KB | GENERATED - activate loadout slot 2 |
+| `s3sel.cfg` | 29 | 1.0 KB | GENERATED - activate loadout slot 3 |
+| `s4sel.cfg` | 29 | 1.0 KB | GENERATED - activate loadout slot 4 |
 | `t01.cfg` | 3 | 0.1 KB | GENERATED - inspect + LOCK-GATED equip-into-active-slot (coop_loCmt<id> = commit or deny) |
 | `t02.cfg` | 3 | 0.1 KB | GENERATED - inspect + LOCK-GATED equip-into-active-slot (coop_loCmt<id> = commit or deny) |
 | `t03.cfg` | 3 | 0.1 KB | GENERATED - inspect + LOCK-GATED equip-into-active-slot (coop_loCmt<id> = commit or deny) |

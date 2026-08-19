@@ -32,20 +32,6 @@ to the live copies in `G:\mohaa-gl2` — `openmohaa.exe`, `cgame.dll`, `renderer
 `renderer_opengl2.dll`, `omohaaded.exe`, `SDL2.dll`, `OpenAL64.dll`, `libcurl.dll`. Only `game.dll`
 differs, because it was rebuilt after v1.2.9 shipped and has not been published yet.
 
-- **"The deployed engine binaries do not match each other"** — CLEARED. Both installs are identical
-  to each other and five of six binaries carry the same 08-14 build stamp. The spread is ~31 hours
-  (one unpublished `game.dll`), not five days. **The rule it was defending is still true and still
-  worth obeying**: `gameState_t` is `memcpy`'d whole across the exe↔cgame boundary with no version
-  guard, so a protocol constant change ships as a SET. That is now enforced in practice by
-  `build.ps1` deploying all of them together.
-- **"Six days of engine work exist only in the working tree"** — CLEARED. The anchor was HEAD
-  `819a6e93` + 119 dirty + 20 untracked. Now `hzm-coop-working` @ `5ea47c36`, **17 dirty, 0
-  untracked** — `tr_gore.c` and the 17 GLSL post-FX shaders are in git.
-- **"A v1.1.51-era gl2 DLL ships to players"** — CLEARED. The shipped `renderer_opengl2.dll` hashes
-  `a1892456…`, identical to the current build. The "decide explicitly" question was answered by
-  shipping a current one.
-- **"Shipped binaries lag source; exe/cgame frozen at v1.1.51"** — CLEARED by the hash check above.
-
 ### `renderer_opengl2.dll` has zero rollback points
 `OPEN` · *Re-counted 2026-08-15 using the real `*_bak.*` convention: `game` 80, `openmohaa` 43,
 `cgame` 25, `renderer_opengl1` 19, `omohaaded` 3, `renderer_opengl2` **0** (174 total).*
@@ -96,15 +82,33 @@ as opt-in. Right now the shipped behaviour is whatever a fallback branch happens
 - **m3l3: Captain Ramsey's paratrooper conversation is sometimes delayed.** It should trigger
   immediately after the halftrack is destroyed; sometimes it lags. Find what gates the trigger and
   make it fire off the halftrack's death directly.
-- **m3l3: MG42 accuracy is far too high** across the whole map - "every single shot is a guaranteed
-  hit". The player should feel suppressed, not sniped. Lower it significantly; the goal is
-  volume-of-fire pressure rather than lethality.
 - **Reload magazine keeps the stock skin on a finished gun.** The gun's own `Clip` surface IS
   reskinned (verified on the gold Thompson) and the mesh has only four surfaces, so the magazine
   seen in hand during reload is a DIFFERENT model. `models/ammo/thompson_clip.tik` is cached by the
   weapon tik but nothing in the content or the engine spawns it by name, and no viewmodel or
   human_thompson animation attaches it - so its source is still unidentified. Needs a runtime
   answer, not more static searching.
+
+## Awaiting the next playtest (2026-08-18 evening batch)
+
+All deployed, boot-verified 0 script errors, committed. Root causes in buglog 1919-1923.
+
+- **Armory apply loop, fully closed**: server no longer touches menu visuals (`exec` APPENDS -
+  client finp/mvp chains are sole viewer authority); every finish/variant success path kicks a
+  debounced regive marked COSMETIC so the 120s mid-mission gate lets it through. "Equipped"
+  should now mean in-hands within ~2s, no Done needed.
+- **m3l3 MG42s at effective spread 300**: AI fire uses (base+max)/2 and the tik has no max, so
+  earlier tunes half-applied. All 14 guns now set all four args. Feel check: pressure, not sniping.
+- **Corner cover deaths**: wall-anim family resolver (8 live groups, rifle fallback) ends the
+  standing-corpse / frozen-grenadier hangs on both corner scripts.
+- **AI weapon-variant randomizer** (`coop_aiVariantChance` 35): every actor chance-rolls onto a
+  model variant of his own gun; faction guard skips the British SMLE under the Springfield host.
+- **Two-handed sprint = Omaha Thompson beach charge** (pistol/grenade keep the alert dash).
+  ⚠ .st errors only surface at first PLAYER SPAWN (ERR_DROP), not dedicated boot - first join is
+  the real verification.
+- **Officer heal metered to 60s**, and the 11-behaviour AI animation program (suppression pose,
+  squad surrender, grenade martyr, corner nades, arrival slide, runfire, wounded variety, MG42
+  side-steps, long-range prone dwell) - all feel-unverified until played.
 
 ## Awaiting the next playtest (2026-08-17)
 
@@ -114,9 +118,8 @@ as opt-in. Right now the shipped behaviour is whatever a fallback branch happens
   launcher-slot novelty if wanted.
 - **Skin system: built end-to-end, awaiting menu playtest (2026-08-18).** All 357 finish variants
   across 45 guns; the finish strip (8 buttons + VARIANT) in the armory; 7 finish challenges; both
-  unlock gates server-side at apply AND spawn; 4 imported model variants (MP40 Reactivated,
-  Thompson M1928, BAR + Garand Pacific) on the strip's VARIANT button, gated on each gun's Elite
-  challenge. Stage finishes visually approved in play ("three metal finishes are good"). STILL
+  unlock gates server-side at apply AND spawn; 25 imported model variants across 12 host guns
+  on the strip's VARIANT button, gated on each gun's Elite challenge. Stage finishes visually approved in play ("three metal finishes are good"). STILL
   OPEN: the in-hand reload magazine keeps the stock skin (models/ammo/<gun>_clip.tik - reference
   point unknown, needs a runtime probe; both the MP40 and Tommy packs ship replacement clip
   models we can use once found); MOHPA porter unidentified - credits entry pending.
@@ -257,10 +260,12 @@ quirks (stalls **with** `fs_homepath`, dies **without** it); the working dedicat
 
 
 
-### AI prone/crouch postures are disabled because enabling them crashes the server
-`OPEN` (by design) · *`anim/attack.scr:48-62`; `fgame/actor.cpp:8274-8350`* —
-`AttackLongRangeCrouch`→`AttackCrouchDodge` spins into "Command overflow. Possible infinite loop."
-Repro: shoot the m1l1 barrels. Retail was prone 25% / crouch 60% at range; coop forces both to 0.
+### AI crouch posture stays disabled (crouch leg was the crasher); prone is BACK
+`PARTIAL` · *`anim/attack.scr`* — the recorded crash lived in the CROUCH leg only
+(`AttackLongRangeCrouch`→`AttackCrouchDodge` command overflow; repro: m1l1 barrels), so crouch
+stays hard-zeroed. Prone re-enabled 2026-08-18 behind `coop_aiRetailProne` honouring
+`level.aipronechance`, plus a dwell loop (bug-1922) so divers stay down 3-6 volleys instead of
+popping straight back up. Prone feel awaits playtest; crouch needs an engine fix first.
 
 ### ET3 engine jink is built and dormant
 `OPEN` · *`actor_turret.cpp State_Turret_Combat`* — `coop_aiJinkMs` default 0 because the rig caught it

@@ -13,24 +13,28 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `8852b77 2026-08-18 tools: gen_loadout emits offline finish previews` |
-| commits | 126 |
+| HEAD | `4461bf3 2026-08-18 docs: the foolproof-menus preference; gen_loadout per-slot chain arming` |
+| commits | 127 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **2 modified, 0 untracked** |
+| unstaged diff | 1 file changed, 29 insertions(+), 24 deletions(-) |
+
+> Working tree is dirty. Everything in those 2 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 72 |
+| 2026-08 | 73 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (126)
+### Commits since 2026-01-01 (127)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `4461bf3` | 2026-08-18 | joncurry94-tech | docs: the foolproof-menus preference; gen_loadout per-slot chain arming |
 | `8852b77` | 2026-08-18 | joncurry94-tech | tools: gen_loadout emits offline finish previews |
 | `069ff3f` | 2026-08-18 | joncurry94-tech | docs: bug-1917 - the original armory bg recovered byte-exact from the v1.3.1 release via ranged fetch |
 | `a9b192b` | 2026-08-18 | joncurry94-tech | tools: gen_armory_bg --plain (the revert look) + the overwrite lesson in the buglog |
@@ -163,8 +167,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `ccb6f6c 2026-08-18 loadout: finishes preview offline like variants; honest slot seeds` |
-| commits | 1,476 |
+| HEAD | `cd35597 2026-08-18 sprint: the Omaha thompson beach charge is now THE two-handed sprint - pistol/grenade keep the alert dash` |
+| commits | 1,483 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -172,7 +176,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 83 |
+| 2026-08 | 90 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -212,10 +216,17 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (127)
+### Commits since 2026-01-01 (134)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `cd35597` | 2026-08-18 | joncurry94 | sprint: the Omaha thompson beach charge is now THE two-handed sprint - pistol/grenade keep the alert dash |
+| `fa7242e` | 2026-08-18 | joncurry94 | ai variants: faction guard - the AI roll skips the British SMLE under the American Springfield host (player armory keeps it) |
+| `3a1c12e` | 2026-08-18 | joncurry94 | five fronts: mg42 spread was an average, wall-anim hangs, prone dwell, armory regive kick, AI weapon variants |
+| `32ee8c2` | 2026-08-18 | joncurry94 | loadout: cosmetic applies bypass the 120s regive gate - "equipped" now means equipped |
+| `d2e7084` | 2026-08-18 | joncurry94 | loadout: the server stops touching menu visuals - exec APPENDS, so it always lost |
+| `679d71e` | 2026-08-18 | joncurry94 | loadout: slot-card registrations self-heal - the server pushes them from slot ids on every export, so picks made before the featu… |
+| `727b0f7` | 2026-08-18 | joncurry94 | loadout: foolproof under heavy clicking - exact-fid archives, per-slot chains, server echo, regive |
 | `ccb6f6c` | 2026-08-18 | joncurry94 | loadout: finishes preview offline like variants; honest slot seeds |
 | `8968cf3` | 2026-08-18 | joncurry94 | loadout: slot cards drive the 3D soldier - clicking SIDEARM shows him holding your sidearm |
 | `62a4a3c` | 2026-08-18 | joncurry94 | loadout: variant/finish confirms no longer undo themselves - stufftext order |
