@@ -304,7 +304,22 @@ def main():
         for c in missing:
             print("  %-26s -> %s" % (c["cid"], c["reward"]))
 
-    bad = len(dead) + len(short) + len(missing)
+    # [user 2026-08-18] SR HOVER CURATION GATE: every distinct chal_def reward must have a
+    # curated entry in gen_service_record.py's REWARD_NAMES - 25 rewards silently fell back to
+    # the mechanical transform ("Thompsonsmg Gold", "Uk W Piat") and nobody noticed for weeks.
+    # The fallback stays as a safety net at RENDER time; at BUILD time it is a failure.
+    gen_src = io.open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                   "gen_service_record.py"), encoding="utf-8").read()
+    tbl_m = re.search(r"REWARD_NAMES = \{(.*?)\n\}", gen_src, re.S)
+    curated = {m.group(1) for m in re.finditer(r'"([^"]+)":', tbl_m.group(1))} if tbl_m else set()
+    uncurated = sorted({c["reward"] for c in chals if c["reward"]} - curated)
+    if uncurated:
+        print("\n%d reward(s) missing a curated SR hover name (add to REWARD_NAMES "
+              "in gen_service_record.py):" % len(uncurated))
+        for r in uncurated:
+            print("  " + r)
+
+    bad = len(dead) + len(short) + len(missing) + len(uncurated)
     if not bad:
         print("\nOK - every challenge has a writer, a reachable target and a real reward.")
         return 0
