@@ -3,7 +3,7 @@
 # provenance (MOH:PA ports, WW1 Extended); author-level pending research.
 """Model variants v2: multiple variants per gun, VARIANT button cycles.
 
-fid map: 0 = standard, 1-7 = finishes, 8-13 = this gun's model variants in list order.
+fid map: 0 = standard, 1-7 = finishes, 8-19 = this gun's model variants in list order.
 The client's VARIANT button always sends fid 8 = "cycle": the server steps to the next variant
 the gun has (wrapping to standard after the last). fids 9-13 arrive only from the join-time
 resend replay, which the server re-writes after every successful apply so a rejoin lands on the
@@ -18,25 +18,46 @@ UI = MOD + "ui/loadout/"
 # per-gun ordered variant lists: (base stem, [(key, LABEL), ...]) -> fids 8, 9, 10...
 MV = [
     ("thompsonsmg",  [("tommy28", "THOMPSON (M1928)"), ("tommy1928d", "THOMPSON (1928 TOMMY) (DR.DELETO)"),
-                      ("tommy27a1", "THOMPSON (27A1 COMMANDO) (FLAKRIDER)"), ("m1a1dk", "M1A1 REMODEL (DARKANGEL)")], "wpn_thompson_e"),
-    ("mp40",         [("mp40r2", "MP40 (REACTIVATED)"), ("mp18", "MP18 (EAST)")], "wpn_mp40_e"),
+                      ("tommy27a1", "THOMPSON (27A1 COMMANDO) (FLAKRIDER)"), ("m1a1dk", "M1A1 REMODEL (DARKANGEL)"),
+                      ("hobbstomworn", "WORN THOMPSON (HOBBS)"), ("guantommy", "THOMPSON (GUANSHIRE)")], "wpn_thompson_e"),
+    ("mp40",         [("mp40r2", "MP40 (REACTIVATED)"), ("mp18", "MP18 (EAST)"),
+                      ("guanmp40", "MP40 (GUANSHIRE)"), ("guanmp40s", "SILVER MP40 (GUANSHIRE)")], "wpn_mp40_e"),
     ("bar",          [("pabar", "BAR (PACIFIC) (MOH:PA)"), ("bar1918", "BAR M1918 (WWI) (EAST)"),
                       ("bar1918a", "M1918 CLASSIC (STLKID)"), ("bar1918a1", "M1918A1 (STLKID)"),
                       ("bar1918a2", "M1918A2 (STLKID)")], "wpn_bar_e"),
-    ("m1_garand",    [("pagarand", "M1 GARAND (PACIFIC) (ACME313)")], "wpn_garand_e"),
-    ("mp44",         [("mp44strap", "STG 44 (STRAPPED) (DARKANGEL)")], "wpn_stg44_e"),
+    ("m1_garand",    [("pagarand", "M1 GARAND (PACIFIC) (ACME313)"),
+                      ("guangarand", "M1 GARAND (GUANSHIRE)")], "wpn_garand_e"),
+    ("mp44",         [("mp44strap", "STG 44 (STRAPPED) (DARKANGEL)"),
+                      ("dhstg44ss", "SS STG 44 (DIRTYHARRY)"), ("guanmp44", "STG 44 (GUANSHIRE)")], "wpn_stg44_e"),
     ("colt45",       [("coltpa", "COLT 45 (PACIFIC) (ACME313)"), ("colt1911w", "M1911 (WWI) (EAST)"),
                       ("covert", "M1911 COVERT"), ("drbond", "1911 CLASSIC"),
-                      ("bloodyeic", "M1911 BLOODY EIC (SCHUTZE)")], "wpn_colt_e"),
-    ("enfield",      [("p14", "P14 ENFIELD (EAST)")], "wpn_enfield_e"),
+                      ("bloodyeic", "M1911 BLOODY EIC (SCHUTZE)"),
+                      ("guancolt", "COLT 1911 (GUANSHIRE)")], "wpn_colt_e"),
+    ("enfield",      [("p14", "P14 ENFIELD (EAST)"), ("hobbsenfurb", "URBAN ENFIELD (HOBBS)")], "wpn_enfield_e"),
     # G98 is HOSTED under the G43 (family grouping, user request) but its BODY is the Kar98's -
     # "a bolt action should remain a bolt action". The explicit path points at the kar98-derived
     # tik; its name strips to "Mauser KAR 98K", so hands, bolt-cycle anims and ADS are the Kar98's.
-    ("G43",          [("g98", "GEWEHR 98 (BOLT) (EAST)", "models/weapons/kar98_g98.tik")], "wpn_g43_e"),
+    ("G43",          [("g98", "GEWEHR 98 (BOLT) (EAST)", "models/weapons/kar98_g98.tik"),
+                      ("dhg43fleck", "FLECKTARN G43 (DIRTYHARRY)"), ("hobbsg43wood", "WOODLAND G43 (HOBBS)"),
+                      ("hobbsg43urb", "URBAN G43 (HOBBS)")], "wpn_g43_e"),
     ("KAR98sniper",  [("g98scope", "G98 SCOPED (EAST)")], "wpn_kar98sniper_e"),
-    ("springfield",  [("smlescope", "SMLE SCOPED (EAST)"), ("m1903", "M1903 SPRINGFIELD (EAST)")], "wpn_springfield_e"),
+    ("springfield",  [("smlescope", "SMLE SCOPED (EAST)"), ("m1903", "M1903 SPRINGFIELD (EAST)"),
+                      ("dhspdesert", "DESERT CAMO '03 (DIRTYHARRY)"), ("dhspdigital", "DIGITAL CAMO '03 (DIRTYHARRY)"),
+                      ("dhsptiger", "TIGER CAMO '03 (DIRTYHARRY)"), ("dhspwinter", "WINTER CAMO '03 (DIRTYHARRY)"),
+                      ("guansplight", "LIGHTWOOD '03 (GUANSHIRE)"), ("guansp2", "SPRINGFIELD II (GUANSHIRE)"),
+                      ("hobbsspwood", "WOODLAND '03 (HOBBS)"), ("hobbsspurban", "URBAN '03 (HOBBS)")], "wpn_springfield_e"),
     ("mauser_c96",   [("c96trench", "C96 (TRENCH) (EAST)")], "wpn_c96_e"),
-    ("shotgun",      [("authwinch", "AUTHENTIC WOOD")], "wpn_shotgun_e"),
+    ("shotgun",      [("authwinch", "AUTHENTIC WOOD"),
+                      ("dhshotblack", "BLACK TACTICAL (DIRTYHARRY)"), ("dhshotchrome", "CHROME TACTICAL (DIRTYHARRY)"),
+                      ("hobbsshotty", "RECOIL SHOTTY (HOBBS & RECOIL)"), ("guanshotty", "SHOTGUN (GUANSHIRE)")], "wpn_shotgun_e"),
+    # --- MV wave 3 NEW hosts (2026-08-19): Hobbs / Guanshire / DirtyHarry imports ---
+    ("kar98",        [("hobbskarworn", "WORN KAR 98K (HOBBS)"),
+                      ("hobbskarwood", "WOODLAND KAR 98K (HOBBS)")], "wpn_kar98_e"),
+    ("p38",          [("guanp38", "WALTHER P38 (GUANSHIRE)")], "wpn_p38_e"),
+    ("bazooka",      [("guanbazooka", "REALISTIC BAZOOKA (GUANSHIRE)")], "wpn_bazooka_e"),
+    ("mosin_nagant_rifle", [("hobbsmosinur", "URBAN MOSIN (HOBBS)")], "wpn_mosin_e"),
+    ("svt_rifle",    [("hobbssvtwood", "WOODLAND SVT-40 (HOBBS)")], "wpn_svt_e"),
+    ("uk_w_l42a1",   [("dhl42camo", "CAMO L42A1 (DIRTYHARRY)")], "wpn_l42a1_e"),
 ]
 
 
@@ -98,125 +119,11 @@ wr(p, txt)
 print("loadoutskins.scr: MV v2 block - %d guns, %d variants"
       % (len(resolved), sum(len(v[4]) for v in resolved)))
 
-# --- 2. loadout_finish v2: full-label rewrite ----------------------------------------------------
-p = MOD + "coop_mod/loadoutpick.scr"
-txt, nl = rd(p)
-m = re.search(r"(?ms)^loadout_finish local\.player local\.slot local\.fid:\{.*?^\}end", txt)
-assert m, "loadout_finish label"
-NEW = """loadout_finish local.player local.slot local.fid:{
-//=========================================================================
-if(level.cMTE_coop_loadoutpick){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread loadoutpick/loadout_finish->"+level.cMTE+"" )}
-	if(local.player == NULL){ end }
-	if(local.fid == NIL || local.fid == ""){ end }
-	local.fid = int(local.fid)
-	if(local.fid < 0 || local.fid > 13){ end }
-	waitthread coop_mod/loadoutskins.scr::skin_init
-
-	// standard = clear; always allowed
-	if(local.fid == 0){
-		local.player.flags["coop_loFin" + local.slot] = 0
-		local.player stufftext ( "seta coop_loS" + local.slot + "F 0" )
-		local.player stufftext ( "seta coop_loFA" + local.slot + " append name ,f" + local.slot + "0" )
-		local.player iprint "Standard"
-		end
-	}
-
-	local.id = local.player.flags["coop_loSlotId" + local.slot]
-	if(local.id == NIL){
-		local.player stufftext "vstr coop_loDeny"
-		local.player iprint "Pick a weapon for that slot first"
-		end
-	}
-	local.r = waitthread coop_mod/loadoutroster.scr::roster_get local.id
-	local.give = local.r["give"]
-
-	//---------------- finishes (1-7): unchanged gates -------------------------------------------
-	if(local.fid <= 7){
-		local.variant = level.coop_skinGive[local.give][local.fid]
-		if(local.variant == NIL || local.variant == ""){
-			local.player stufftext "vstr coop_loDeny"
-			local.player iprint ( "No " + level.coop_skinFinName[local.fid] + " finish for this weapon" )
-			end
-		}
-		if(!(waitthread loadout_finUnlocked local.player local.fid)){
-			local.player stufftext "vstr coop_loDeny"
-			local.player iprint ( level.coop_skinFinName[local.fid] + " is locked - see CHALLENGES" )
-			end
-		}
-		if(!(waitthread loadout_finMastered local.player local.give)){
-			local.player stufftext "vstr coop_loDeny"
-			local.player iprint "Master this weapon first (its kill challenge)"
-			end
-		}
-		local.player.flags["coop_loFin" + local.slot] = local.fid
-		local.player stufftext ( "seta coop_loS" + local.slot + "F " + local.fid )
-		local.player stufftext ( "seta coop_loFA" + local.slot + " append name ,f" + local.slot + local.fid )
-		local.player stufftext ( "set coop_loPrev " + local.variant )
-		local.player stufftext "vstr coop_loOpenInspect"
-		local.player iprint ( level.coop_skinFinName[local.fid] + " finish applied" )
-		end
-	}
-
-	//---------------- model variants (8 = cycle, 9-13 = direct from the join replay) -------------
-	local.max = level.coop_skinMvMax[local.give]
-	if(local.max == NIL){
-		local.player stufftext "vstr coop_loDeny"
-		local.player iprint "No model variants for this weapon"
-		end
-	}
-	// both gates are per-GUN, so check once whichever variant lands
-	if(!(waitthread loadout_mvUnlocked local.player local.give)){
-		local.player stufftext "vstr coop_loDeny"
-		local.player iprint "Model variants unlock at this gun's ELITE challenge"
-		end
-	}
-	if(!(waitthread loadout_finMastered local.player local.give)){
-		local.player stufftext "vstr coop_loDeny"
-		local.player iprint "Master this weapon first (its kill challenge)"
-		end
-	}
-
-	local.cur = local.player.flags["coop_loFin" + local.slot]
-	if(local.cur == NIL || local.cur < 8 || local.cur > local.max){ local.cur = 7 }
-	if(local.fid == 8){
-		// CYCLE: next existing variant after the current one; past the last -> standard
-		local.next = local.cur + 1
-		while(local.next <= local.max && (level.coop_skinGive[local.give][local.next] == NIL)){
-			local.next++
-		}
-		if(local.next > local.max){
-			// wrap to standard
-			local.player.flags["coop_loFin" + local.slot] = 0
-			local.player stufftext ( "seta coop_loS" + local.slot + "F 0" )
-			local.player stufftext ( "seta coop_loFA" + local.slot + " append name ,f" + local.slot + "0" )
-			local.player stufftext ( "set coop_loPrev " + local.give )
-			local.player stufftext "vstr coop_loOpenInspect"
-			local.player iprint "Standard model"
-			end
-		}
-		local.fid = local.next
-	}
-	local.variant = level.coop_skinGive[local.give][local.fid]
-	if(local.variant == NIL || local.variant == ""){ end }	// direct replay for a fid this gun lacks
-
-	local.player.flags["coop_loFin" + local.slot] = local.fid
-	local.player stufftext ( "seta coop_loS" + local.slot + "F " + local.fid )
-	local.player stufftext ( "seta coop_loFA" + local.slot + " append name ,f" + local.slot + local.fid )
-	local.player stufftext ( "set coop_loPrev " + local.variant )
-	local.player stufftext "vstr coop_loOpenInspect"
-	local.player iprint ( level.coop_skinMvName[local.give][local.fid] + " equipped" )
-}end"""
-txt = txt[:m.start()] + NEW.replace("\n", nl) + txt[m.end():]
-
-# finResolve: widen the fid bound comment path already handles 8; ensure lookup works for 9-13
-m2 = re.search(r"(?ms)^loadout_finResolve local\.player local\.slot local\.give:\{.*?^\}end local\.variant", txt)
-assert m2, "finResolve label"
-seg = m2.group(0)
-if "local.fid == 8){" in seg:
-    seg2 = seg.replace("\tif(local.fid == 8){", "\tif(local.fid >= 8){", 1)
-    txt = txt[:m2.start()] + seg2 + txt[m2.end():]
-wr(p, txt)
-print("loadoutpick.scr: loadout_finish v2 (cycle + direct) + finResolve bound")
+# --- 2. RETIRED (bug-1947): the wholesale loadout_finish rewrite stomped every fix made
+# in-place after its template was snapshotted (coop_loFinPrevS echoes, coop_loSetBusy
+# serialization - caught by ui_wiring_audit DEAD VSTR). loadout_finish is maintained
+# IN-PLACE in coop_mod/loadoutpick.scr now; only the fid ceiling is data here (19).
+print("loadoutpick.scr: loadout_finish maintained in-place (template retired, bug-1947)")
 
 # --- 3. p-pages: MV_HOSTS -> all 12 tile ids; reqmv per host ------------------------------------
 p = "docs/tools/gen_loadout.py"
@@ -281,7 +188,7 @@ if "coop_skinMvTile" not in t2:
 
 # gen_loadout p-pages arm the four per-slot chain starts
 g = io.open("docs/tools/gen_loadout.py", encoding="utf-8").read()
-if "coop_loMvPN_s1" not in g:
+if "coop_loMvPN_s" not in g:
     old = """    mv_pn = ("exec ui/loadout/mvp%s_1.cfg" % w["id"]) if w["id"] in MV_HOSTS else \"\""""
     old = old.replace("\\\"\\\"", '""')
     assert g.count(old) == 1, "mv_pn anchor"
@@ -312,7 +219,8 @@ txt, nl = rd(p)
 newtiks = ["mp44_mp44strap", "colt45_coltpa", "mp40_mp18", "enfield_p14", "springfield_m1903",
            "springfield_smlescope", "kar98_g98", "KAR98sniper_g98scope",
            "bar_bar1918", "colt45_colt1911w", "mauser_c96_c96trench", "thompsonsmg_m1a1dk", "colt45_covert", "colt45_drbond", "colt45_bloodyeic", "shotgun_authwinch", "bar_bar1918a", "bar_bar1918a1", "bar_bar1918a2",
-           "thompsonsmg_tommy1928d", "thompsonsmg_tommy27a1"]
+           "thompsonsmg_tommy1928d", "thompsonsmg_tommy27a1",
+           "springfield_dhspdesert", "springfield_dhspdigital", "springfield_dhsptiger", "springfield_dhspwinter", "springfield_guansplight", "springfield_guansp2", "springfield_hobbsspwood", "springfield_hobbsspurban", "G43_dhg43fleck", "G43_hobbsg43wood", "G43_hobbsg43urb", "mp44_dhstg44ss", "mp44_guanmp44", "kar98_hobbskarworn", "kar98_hobbskarwood", "thompsonsmg_hobbstomworn", "thompsonsmg_guantommy", "colt45_guancolt", "m1_garand_guangarand", "mp40_guanmp40", "mp40_guanmp40s", "enfield_hobbsenfurb", "shotgun_dhshotblack", "shotgun_dhshotchrome", "shotgun_hobbsshotty", "shotgun_guanshotty", "p38_guanp38", "bazooka_guanbazooka", "mosin_nagant_rifle_hobbsmosinur", "svt_rifle_hobbssvtwood", "uk_w_l42a1_dhl42camo"]
 added = 0
 anchor = "weapon weapons/m1_garand_pagarand.tik"
 assert txt.count(anchor) == 1
