@@ -13,27 +13,31 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `4461bf3 2026-08-18 docs: the foolproof-menus preference; gen_loadout per-slot chain arming` |
-| commits | 127 |
+| HEAD | `f76adf4 2026-08-18 docs: decision - cross-source invariants get deploy-blocking build gates` |
+| commits | 134 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **2 modified, 0 untracked** |
-| unstaged diff | 1 file changed, 29 insertions(+), 24 deletions(-) |
-
-> Working tree is dirty. Everything in those 2 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 73 |
+| 2026-08 | 80 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (127)
+### Commits since 2026-01-01 (134)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `f76adf4` | 2026-08-18 | joncurry94-tech | docs: decision - cross-source invariants get deploy-blocking build gates |
+| `0a24d83` | 2026-08-18 | joncurry94-tech | build: unlock_audit + ads_audit are deploy-blocking drift gates; ads_audit gains the expected-miss allowlist |
+| `6387687` | 2026-08-18 | joncurry94-tech | docs: unlock_audit.py cross-checks roster vs challenge/rank/free enforcement; 7 hover texts corrected to the enforced path |
+| `3bd5324` | 2026-08-18 | joncurry94-tech | docs: correct ramsey bug id 1925->1924 |
+| `4f6f2f7` | 2026-08-18 | joncurry94-tech | docs: ramsey fix moved to awaiting-playtest |
+| `bca2550` | 2026-08-18 | joncurry94-tech | docs: ads_audit.py - lists every shipped gun that resolves to no ADS tune |
+| `fb15f53` | 2026-08-18 | joncurry94-tech | docs: OPEN.md synced - 08-18 evening batch awaiting playtest, MG42 request closed, prone entry current, CLEARED P0 history pruned |
 | `4461bf3` | 2026-08-18 | joncurry94-tech | docs: the foolproof-menus preference; gen_loadout per-slot chain arming |
 | `8852b77` | 2026-08-18 | joncurry94-tech | tools: gen_loadout emits offline finish previews |
 | `069ff3f` | 2026-08-18 | joncurry94-tech | docs: bug-1917 - the original armory bg recovered byte-exact from the v1.3.1 release via ranged fetch |
@@ -167,8 +171,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `cd35597 2026-08-18 sprint: the Omaha thompson beach charge is now THE two-handed sprint - pistol/grenade keep the alert dash` |
-| commits | 1,483 |
+| HEAD | `89197d0 2026-08-18 blueprints: every 5th find flips a coin on a random unlock of any type` |
+| commits | 1,486 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -176,7 +180,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 90 |
+| 2026-08 | 93 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -216,10 +220,13 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (134)
+### Commits since 2026-01-01 (137)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `89197d0` | 2026-08-18 | joncurry94 | blueprints: every 5th find flips a coin on a random unlock of any type |
+| `20652fe` | 2026-08-18 | joncurry94 | armory: 7 unlock hovers now state the ENFORCED path - BAR/StG44/Vickers/Breda/Trench Gun are faction-challenge unlocks (hover cla… |
+| `20d00e5` | 2026-08-18 | joncurry94 | m3l3: ramsey's paratrooper chat keys on the halftrack's death, not the trigger maze |
 | `cd35597` | 2026-08-18 | joncurry94 | sprint: the Omaha thompson beach charge is now THE two-handed sprint - pistol/grenade keep the alert dash |
 | `fa7242e` | 2026-08-18 | joncurry94 | ai variants: faction guard - the AI roll skips the British SMLE under the American Springfield host (player armory keeps it) |
 | `3a1c12e` | 2026-08-18 | joncurry94 | five fronts: mg42 spread was an average, wall-anim hangs, prone dwell, armory regive kick, AI weapon variants |
@@ -360,8 +367,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `0d42d10b 2026-08-18 ai: export the suppression moment to script - self.coop_suppressedAt stamped beside m_fSuppressTime` |
-| commits | 4,995 |
+| HEAD | `4804546b 2026-08-18 ads: crouch blocks of the standing-only rows re-synced to correct family donors - silenced pistols crouch like their base gun, PPS-43 like the PPSH, Beretta M38 like the Moschetto; standing values untouched` |
+| commits | 4,997 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -369,7 +376,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 15 |
+| 2026-08 | 17 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -430,10 +437,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (30)
+### Commits since 2026-01-01 (32)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `4804546b` | 2026-08-18 | joncurry94 | ads: crouch blocks of the standing-only rows re-synced to correct family donors - silenced pistols crouch like their base gun, PP… |
+| `e1939962` | 2026-08-18 | joncurry94 | ads: donor-alias stage in CG_FindAdsTune - new guns borrow a dialled family tune by one alias line (DP-28, FG 42, G 43, SVT 40, J… |
 | `0d42d10b` | 2026-08-18 | joncurry94 | ai: export the suppression moment to script - self.coop_suppressedAt stamped beside m_fSuppressTime |
 | `8aefc493` | 2026-08-18 | joncurry94 | gore: coop_decapMax default 16 -> 32 - heads were vanishing under the ring cap during normal play; 32 is the existing array ceili… |
 | `4d01d32b` | 2026-08-18 | joncurry94 | gore: the head was hitting the allsolid freeze our own g_phys already documents |

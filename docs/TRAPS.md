@@ -884,3 +884,16 @@ have live aliases).
 attempts at post-spawn swaps sit commented out in m1l2a/m5l3. Reading `self.weapon` returns the
 tik `name` field (e.g. "Mauser KAR 98K"), and string-keyed array LOOKUPS on it are
 case-sensitive even though `==` is not (bug-1916 family).
+
+## Archived client state keyed by POSITION rots on every catalogue change
+
+`coop_pin1..5` stored catalogue row indices (CVAR_ARCHIVE) - the panzerfaust removal shifted
+every later row by 3 and silently repointed every player's pins at different challenges
+(bug-1926). Positional archived state (coop_uiN/uiD/uiP row cvars) shows the WRONG rows' data
+offline after any renumber. The rules: (1) persist IDs, never positions - the server half of the
+pin system said so in a comment while the client half did the opposite; (2) any positional cache
+that must exist gets a GENERATION STAMP (crc of the id list, emitted by the same generator as
+the pages) and is wiped on mismatch - blank beats wrong, the next join re-exports truth;
+(3) a generated lookup map must be `set`, not `seta` - an archived map satisfies the "is it
+loaded?" probe forever and the current one never loads.
+

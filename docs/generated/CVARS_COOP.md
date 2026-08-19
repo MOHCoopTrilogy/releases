@@ -327,19 +327,19 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_chal_pin` |  |  |  |  | `coop_mod/challenges.scr:3134` (+2) |  |
 | `coop_challenges` |  |  |  |  | `coop_mod/challenges.scr:40` (+2) |  |
 | `coop_chalPopup` |  |  |  | DEFAULT `1` @ `coop_defaults.cfg:22` | `coop_mod/challenges.scr:1899` | `ui/coop_settings.urc` |
-| `coop_chDebug` |  |  |  |  | `maps/M3L3.scr:6706` |  |
+| `coop_chDebug` |  |  |  |  | `maps/M3L3.scr:6740` |  |
 | `coop_check` |  |  |  | other `0` @ `coop_mod/server.cfg:35`<br>other `0` @ `coop_mod/start_server.cfg:35` |  |  |
-| `coop_chHold` |  |  |  |  | `maps/M3L3.scr:6688` |  |
-| `coop_chMgDmg` |  |  |  |  | `maps/M3L3.scr:7471` |  |
-| `coop_chMgSpread` |  |  |  |  | `maps/M3L3.scr:7475` |  |
-| `coop_chStart` |  |  |  |  | `maps/M3L3.scr:8111` (+1) |  |
+| `coop_chHold` |  |  |  |  | `maps/M3L3.scr:6722` |  |
+| `coop_chMgDmg` |  |  |  |  | `maps/M3L3.scr:7505` |  |
+| `coop_chMgSpread` |  |  |  |  | `maps/M3L3.scr:7509` |  |
+| `coop_chStart` |  |  |  |  | `maps/M3L3.scr:8145` (+1) |  |
 | `coop_churn_cycle` |  |  |  |  | `coop_mod/coop_selftest_scaling.scr:210` |  |
 | `coop_churntest` |  |  |  |  | `coop_mod/coop_selftest_scaling.scr:79` |  |
-| `coop_chWaveBase` |  |  |  | DEFAULT `14` @ `coop_defaults.cfg:295` | `maps/M3L3.scr:6893` |  |
-| `coop_chWaveCap` |  |  |  | DEFAULT `28` @ `coop_defaults.cfg:297` | `maps/M3L3.scr:6897` |  |
+| `coop_chWaveBase` |  |  |  | DEFAULT `14` @ `coop_defaults.cfg:295` | `maps/M3L3.scr:6927` |  |
+| `coop_chWaveCap` |  |  |  | DEFAULT `28` @ `coop_defaults.cfg:297` | `maps/M3L3.scr:6931` |  |
 | `coop_chWavePer` |  |  |  | DEFAULT `5` @ `coop_defaults.cfg:296` |  |  |
-| `coop_chWaveSend` |  |  |  | DEFAULT `8` @ `coop_defaults.cfg:298` | `maps/M3L3.scr:6903` |  |
-| `coop_chZone` |  |  |  |  | `maps/M3L3.scr:6684` |  |
+| `coop_chWaveSend` |  |  |  | DEFAULT `8` @ `coop_defaults.cfg:298` | `maps/M3L3.scr:6937` |  |
+| `coop_chZone` |  |  |  |  | `maps/M3L3.scr:6718` |  |
 | `coop_clipStripZones` |  | `0` | `cgame/cg_predict.c:601` (+1) |  | `coop_mod/server.scr:33` (+1) |  |
 | `coop_corpseLife` |  |  |  | FORCED `0` @ `autoexec.cfg:357` | `coop_mod/corpse.scr:12` |  |
 | `coop_corpseShootable` | `1` | `CVAR_ARCHIVE` | `fgame/actor.cpp:12442` |  |  |  |
@@ -517,8 +517,8 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_holdoutRamp` |  |  |  |  | `coop_mod/holdout.scr:49` (+2) |  |
 | `coop_holdoutWaves` |  |  |  |  | `coop_mod/holdout.scr:46` (+3) |  |
 | `coop_hstest` | `0` | `0` | `fgame/weaputils.cpp:2158` |  |  |  |
-| `coop_htAimOff` |  |  |  |  | `maps/M3L3.scr:744` |  |
-| `coop_htSpread` |  |  |  |  | `maps/M3L3.scr:858` |  |
+| `coop_htAimOff` |  |  |  |  | `maps/M3L3.scr:745` |  |
+| `coop_htSpread` |  |  |  |  | `maps/M3L3.scr:859` |  |
 | `coop_hudFade` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2021` | FORCED `1` @ `autoexec.cfg:198` | `coop_mod/buildmode.scr:110` (+2) |  |
 | `coop_hudFadeDebug` | `0` | `0` | `cgame/cg_drawtools.cpp:1999` |  |  |  |
 | `coop_hudFadeTime` | `5` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2022` | FORCED `5` @ `autoexec.cfg:199` |  |  |

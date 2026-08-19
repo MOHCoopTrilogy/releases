@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1280** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1281** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 617 |
+| 2026-08 | 618 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1297,6 +1297,7 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1921` | 2026-08-18 | `hzm-mohaa-coop-mod/anim/cornerleft.scr` | - | axis using cover get stuck standing against walls when they are dead (and some freeze alive at the wall) | coop_wallwg resolver frozen at corner entry: whitelisted groups keep their own set, everything else falls back to rifle; all 15 wall-anim sites per f… |
 | `bug-1922` | 2026-08-18 | `hzm-mohaa-coop-mod/anim/attack.scr` | - | when they dive into a prone they dont ever stay there - they dive and then get right up instantly | Dwell loop in AttackProne: 3-6 volleys, sight re-checked each pass, holds the prone aim when the enemy ducks, exits early after 2 blind passes or on… |
 | `bug-1923` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | - | it didnt actually update my gear when I hit done (finish/variant applies never reached hands even after the 120s-gate fix) | loadout_finKick helper (cosmetic mark + Dirty stamp + debounced watch spawn) called from all four SUCCESS paths of loadout_finish (standard, finish 1… |
+| `bug-1924` | 2026-08-18 | `hzm-mohaa-coop-mod/maps/M3L3.scr` | - | m3l3: captain ramsey is sometimes delayed to chat with the paratroopers after the halftrack is destroyed | coop_scene2Prompt thread (coop-gated, started with scene1): keys on the map's own death signal (level.halftrack_alive), stops wave spawning, grants a… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |
