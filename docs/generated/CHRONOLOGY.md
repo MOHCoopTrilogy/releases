@@ -13,24 +13,32 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `406284c 2026-08-19 docs: cut-VO restoration batch 1 recorded` |
-| commits | 147 |
+| HEAD | `c5c0142 2026-08-19 tools: wire_mv2 wave-3 table; loadout_finish template retired (bug-1947)` |
+| commits | 152 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **1 modified, 0 untracked** |
+| unstaged diff | 1 file changed, 2 insertions(+) |
+
+> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 93 |
+| 2026-08 | 98 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (147)
+### Commits since 2026-01-01 (152)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `c5c0142` | 2026-08-19 | joncurry94-tech | tools: wire_mv2 wave-3 table; loadout_finish template retired (bug-1947) |
+| `af44ada` | 2026-08-19 | joncurry94-tech | docs: mid-playtest fix wave recorded (bugs 1942-1945); TRAPS actor-getter + anim-pack rules corrected in place |
+| `f3c9304` | 2026-08-19 | joncurry94-tech | docs: variant authorship resolved (acme313 = MOHPA porter; East = WW1 arsenal; DarkAngel/Deleto/FlakRider/Schutze/stlkid per vari… |
+| `6cc2d20` | 2026-08-19 | joncurry94-tech | tools: wire_mv2 preserved from scratchpad with variant credits |
+| `166db7b` | 2026-08-19 | joncurry94-tech | docs: bug-1940 manned-turret spread trap + playtest probe instructions |
 | `406284c` | 2026-08-19 | joncurry94-tech | docs: cut-VO restoration batch 1 recorded |
 | `e8a9525` | 2026-08-19 | joncurry94-tech | docs: cut-content deep scan indexed in OPEN |
 | `04ad6bd` | 2026-08-19 | joncurry94-tech | docs: animation wave 2 recorded |
@@ -184,16 +192,18 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `a29f22b 2026-08-19 cut-content VO batch 1: BT global dialog + German personality + allied shout categories` |
-| commits | 1,497 |
+| HEAD | `de25c52 2026-08-19 feat: MV wave 3 - 31 credited weapon variants (Hobbs/Guanshire/DirtyHarry)` |
+| commits | 1,506 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **0 modified, 6 untracked** |
+
+> Working tree is dirty. Everything in those 6 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 104 |
+| 2026-08 | 113 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -233,10 +243,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (148)
+### Commits since 2026-01-01 (157)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `de25c52` | 2026-08-19 | joncurry94 | feat: MV wave 3 - 31 credited weapon variants (Hobbs/Guanshire/DirtyHarry) |
+| `ceb953d` | 2026-08-19 | joncurry94 | fix: shellshock chain + odometer-zero systems (bugs 1942-1945) |
+| `274bc93` | 2026-08-19 | joncurry94 | tinnitus: dizziness handoff moved inside the ping guard (bug-1941 - the unset-ping concat spammed 2283 script errors live) |
+| `50a4c5d` | 2026-08-19 | joncurry94 | variants: author-level credits in display names (ACME313, EAST, DARKANGEL, DR.DELETO, FLAKRIDER, SCHUTZE, STLKID) - 19 upgraded e… |
+| `7655385` | 2026-08-19 | joncurry94 | boom package data: synthesized ricochet whines (sound/coop_ric), aliases, tinnitus dizziness handoff, cvar seeds |
+| `7157d0a` | 2026-08-19 | joncurry94 | combat feel: prominent near-miss audio, near-impact snaps, upward blood spurts, behavior odometer |
+| `1551c6e` | 2026-08-19 | joncurry94 | ai: crouch returns (dodge crasher hard-skipped via ainocrouchdodge), prone chance cvar finally wired (was an orphan seed) and rai… |
+| `b9825cf` | 2026-08-19 | joncurry94 | variants: pack-level credits in display names - (MOH:PA) for the Pacific ports, (WW1 EXT) for the WW1 Extended set (12 entries, 5… |
+| `a86bf05` | 2026-08-19 | joncurry94 | m3l3: remove the 14 placebo bulletspread lines (bug-1940 - manned turrets never read them; their only live effect widened PLAYER… |
 | `a29f22b` | 2026-08-19 | joncurry94 | cut-content VO batch 1: BT global dialog + German personality + allied shout categories |
 | `18bada3` | 2026-08-19 | joncurry94 | research: cut-content deep scan record - 3 verified digs over all 17 retail pk3s |
 | `832f37e` | 2026-08-19 | joncurry94 | ai: cut-content animation wave 2 - locational hits, crawl-to-death, crate combat, facial moods |
@@ -391,8 +410,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `0633d074 2026-08-18 vehicles: layered realistic death fx - shake + staged cook-offs + burning wreck + smoke column` |
-| commits | 4,999 |
+| HEAD | `2922a724 2026-08-19 fix: vehicle-mounted MGs run the player heat cycle (bug-1946)` |
+| commits | 5,004 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -400,7 +419,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 19 |
+| 2026-08 | 24 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -461,10 +480,15 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (34)
+### Commits since 2026-01-01 (39)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `2922a724` | 2026-08-19 | joncurry94 | fix: vehicle-mounted MGs run the player heat cycle (bug-1946) |
+| `63b1ed78` | 2026-08-19 | joncurry94 | fix: actor weapon getter returns held weapon name; shellshock sway moved to final view path (bugs 1942-1943) |
+| `64e6cd71` | 2026-08-19 | joncurry94 | boom package: universal explosion shake, shell-shock dizziness, ricochet whines, muffled crew screams |
+| `d9bfd1ec` | 2026-08-19 | joncurry94 | cgame: near-miss audio prominence + impact snaps + upward blood spurts (combat-feel package) |
+| `7c6109be` | 2026-08-19 | joncurry94 | turrets: coop_mg42AiSpread feeds the member AI fire actually reads (bug-1940) + proof probe |
 | `0633d074` | 2026-08-18 | joncurry94 | vehicles: layered realistic death fx - shake + staged cook-offs + burning wreck + smoke column |
 | `257d0aa4` | 2026-08-18 | joncurry94 | pins: cid-keyed store with legacy migration + catalogue-generation self-heal (bug-1926) |
 | `4804546b` | 2026-08-18 | joncurry94 | ads: crouch blocks of the standing-only rows re-synced to correct family donors - silenced pistols crouch like their base gun, PP… |

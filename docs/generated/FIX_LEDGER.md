@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1296** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1304** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 633 |
+| 2026-08 | 641 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1313,6 +1313,14 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1937` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/main.scr` | - | one trailing space in a player's name silently killed their entire name bus | The mismatch branch re-tests the failed char as a new match start (single-char re-test is sufficient for all bus keys; strictly more matches for ever… |
 | `bug-1938` | 2026-08-18 | `hzm-mohaa-coop-mod/ui/loadout/p48.cfg` | - | variant button cross-wired into slot 1's ring from any other slot - corrupted slot 1's archived finish; slot re-entry always showed the base gun | Pages no longer touch the active pointer (owned solely by s<n>sel per slot click; gen_loadout regenerated); server arms coop_loFinPrevS<slot> at the… |
 | `bug-1939` | 2026-08-19 | `hzm-mohaa-coop-mod/coop_mod/officer.scr` | - | 38 script errors per boot: binary '>' applied to incompatible types 'int' and 'none' (anim/saymanager.scr:19) | Flavor call moved inside coop_suppress_react to the point where the suppression roll actually passes; both SayManager call sites (suppress flavor + r… |
+| `bug-1940` | 2026-08-19 | `openmohaa-hzm/code/fgame/weapturret.cpp` | V | m3l3 MG42s hit every single shot regardless of bulletspread tuning - fixes 120 2-arg and 300 4-arg both changed nothing | The existing coop_mg42AiSpread bonus now feeds m_vAIBulletSpread (save/restore around Fire in BOTH AI_DoFiring branches, weapturret.cpp) - the placeb… |
+| `bug-1941` | 2026-08-19 | `hzm-mohaa-coop-mod/coop_mod/tinnitus.scr` | - | seeing script errors in console - binary '+' applied to 'const string' and 'none' (tinnitus.scr:38), 2283 spams in one live session | Moved the stufftext inside the existing validated-ping branch, so dizziness and ring fire together off the same guard. LESSON (repeat of the NIL!=NUL… |
+| `bug-1942` | 2026-08-19 | `openmohaa-hzm/code/cgame/cg_view.c` | - | Grenade went off right beside me and i didn't get the tinnitus/diziness/shellshock effect (user, live playtest) | Moved the call to immediately before the FINAL AnglesToAxis(cg.refdefViewAngles, cg.refdef.viewaxis) at the function tail, which every view path (1P/… |
+| `bug-1943` | 2026-08-19 | `openmohaa-hzm/code/fgame/actor.cpp` | V | AIBEHAV3 odometer: variant=0 g43=0 across an entire live session despite dozens of eligible actors | Actor::EventGetWeapon now returns GetActiveWeapon(WEAPON_MAIN)->GetItemName() (the tik name field, matching player-getter semantics) with the m_csWea… |
+| `bug-1944` | 2026-08-19 | `hzm-mohaa-coop-mod/coop_mod/aihandler.scr` | - | AIBEHAV3 odometer: hitreact=0 dropgun=0 across an entire live session with constant player fire | Removed the guard. Corner/wall fighters need no protection here - their custom painhandler REPLACES the coop one outright, so they never route throug… |
+| `bug-1945` | 2026-08-19 | `hzm-mohaa-coop-mod/models/human/new_generic_human.tik` | - | Script Error: unknown animation 'mp40_stand_alert01/02' / 'rifle_pain_floorcrawl' in german_waffenss_shutze.tik; 'scientist_surrender' unknown on weh… | Added unconditional $include of human_mp40/human_rifle/human_sten/human_vickers/human_pistol.tik + scripted/scientist.tik to our new_generic_human.ti… |
+| `bug-1946` | 2026-08-19 | `openmohaa-hzm/code/fgame/vehicleturret.cpp` | - | on the mg42's I could literally sometimes just hold the button down and it would never really overheat at all, just keeps firing doesnt get stopped (… | Grafted the same heat cycle into VehicleTurretGun::UpdateFireControl ahead of the fire state machine: 50/s build, soft overheat with 2s dead-gun floo… |
+| `bug-1947` | 2026-08-19 | `docs/tools/wire_mv2.py` | R | ui_wiring_audit BUILD BLOCKED: DEAD VSTR coop_lofinprevs1-4 never assigned <- ui/loadout/sNsel.cfg (after wire_mv2 run for MV wave 3) | git-reverted loadoutpick.scr, re-applied only the fid ceiling (13->19 for the 10-variant springfield) as a surgical edit, and RETIRED wire_mv2 sectio… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |
