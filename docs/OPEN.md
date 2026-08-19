@@ -124,10 +124,19 @@ All deployed, boot-verified 0 script errors, committed. Root causes in buglog 19
   floor drag -> die in place, pose kept via stub deathhandler), crate-cover crouch combat
   (crate_alert for 8 groups + over-the-cover blindfire bursts for bar/thompson/vickers),
   fear facial + post-fire alert scan on suppression, anger facial on the runfire charge.
-  Cvars: coop_aiHitReact 55, coop_aiCrateFight 35, coop_aiCrawlDeathChance 30. ALL
-  feel-unverified until played. Skipped deliberately: curious01/02 idles (no clean generic
-  hook - investigation is engine/stealth-owned) and directional walk sets (engine motion
-  domain).
+  Cvars: coop_aiHitReact 55, coop_aiCrateFight 35, coop_aiCrawlDeathChance 30. Skipped
+  deliberately: curious01/02 idles (no clean generic hook) and directional walk sets.
+  **First live session 2026-08-19 (odometer + error census): hitreact/dropgun/variant/g43
+  all ZERO and alert/floorcrawl/surrender threw unknown-animation** - four stacked roots,
+  all fixed + redeployed same day (buglog 1942-1945): always-true painhandler guard,
+  actor weapon getter returning raw loadout string, anim packs (human_mp40/rifle/sten/
+  vickers/pistol + scientist) not unconditionally included, and the shellshock cgame hook
+  spliced into the dead PMF_CAMERA_VIEW branch. Re-verify NEXT session via AIBEHAV3
+  (expect hitreact/variant/g43 > 0), `^~^~^ SHELLSHOCK` on any near blast, zero
+  unknown-animation lines, and the m1l1 truck ride as the anim-budget canary. MG42
+  "sometimes they don't fully overheat" (user) = designed per-gunner heat ceiling 55..95 +
+  random resume, NOT a defect. TURSPREAD probe still needs `coop_fireDebug 1` set via rcon
+  while a session is live.
 - **Realistic vehicle explosions (engine, 2026-08-18)**: every vehicle death now layers a
   640u camera shake, 2-4 staged fuel/ammo cook-off pops (small real damage), a burning-wreck
   fire (45s, coop_vehicleFxTime) and a lingering smoke column - on top of coop_vehicleWrecks'

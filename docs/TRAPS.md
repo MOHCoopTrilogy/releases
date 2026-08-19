@@ -870,20 +870,29 @@ lerp by spread factor), so player-facing tunes are unaffected.
 
 `setmotionanim` with an alias the model does not have silently no-ops - and the
 `waittill flaggedanimdone` after it then hangs that handler FOREVER (bug-1921: corner cover
-users frozen upright when dead, or alive mid-grenade). Two rules: (1) never feed a
+users frozen upright when dead, or alive mid-grenade). Three rules: (1) never feed a
 per-weapongroup anim name to setmotionanim without a whitelist + fallback (the Cornering wall
 set is LIVE for exactly rifle/pistol/mp40/mp44/bar/thompson/sten/vickers); (2) when auditing
 what anims exist, grep the tiki TEXT for aliases - an skc FILENAME probe undercounts badly,
 because aliases point many names at shared skcs (only 2 groups have wall_death skc files; 8
-have live aliases).
+have live aliases); (3) an alias existing in `models/human/animation/human_<wg>.tik` is NOT
+resolvable at runtime unless that pack is `$include`d by the model - vanilla gates the packs
+inside per-map "includes" blocks, so a coop feature must add the pack unconditionally to our
+`new_generic_human.tik` override (bug-1945: alert scan / floorcrawl / dropgun / surrender all
+erred "unknown animation" on every model until human_mp40/rifle/sten/vickers/pistol +
+scripted/scientist joined the MP44/BAR/MG42 unconditional set).
 
 ## Actor weapon swap is a SETTER property, not a command
 
 `EV_Actor_SetWeapon` is EV_SETTER: `self.weapon = "models/weapons/x.tik"` works,
 `self weapon models/weapons/x.tik` does not exist as a command - which is why retail's own
-attempts at post-spawn swaps sit commented out in m1l2a/m5l3. Reading `self.weapon` returns the
-tik `name` field (e.g. "Mauser KAR 98K"), and string-keyed array LOOKUPS on it are
-case-sensitive even though `==` is not (bug-1916 family).
+attempts at post-spawn swaps sit commented out in m1l2a/m5l3. Reading `self.weapon` on an
+ACTOR returned raw `m_csWeapon` - the loadout string exactly as some script/tik wrote it
+("mp40", a full path, any case, or EMPTY for tik-armed actors) - NOT the tik `name` field the
+PLAYER getter returns; a display-name-keyed lookup on it missed 100% (bug-1943, caught by the
+behavior odometer's variant=0). Since 2026-08-19 the engine getter returns the HELD weapon's
+name field ("Mauser KAR 98K") with the raw fallback when unarmed. String-keyed array LOOKUPS
+on it are still case-sensitive even though `==` is not (bug-1916 family).
 
 ## Archived client state keyed by POSITION rots on every catalogue change
 
