@@ -13,27 +13,25 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `3c74c45 2026-08-19 docs: MV wave 3 recorded` |
-| commits | 153 |
+| HEAD | `1fd6005 2026-08-19 docs: Leon wave + licensing decision recorded` |
+| commits | 154 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **3 modified, 0 untracked** |
-| unstaged diff | 3 files changed, 32 insertions(+), 16 deletions(-) |
-
-> Working tree is dirty. Everything in those 3 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 99 |
+| 2026-08 | 100 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (153)
+### Commits since 2026-01-01 (154)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `1fd6005` | 2026-08-19 | joncurry94-tech | docs: Leon wave + licensing decision recorded |
 | `3c74c45` | 2026-08-19 | joncurry94-tech | docs: MV wave 3 recorded |
 | `c5c0142` | 2026-08-19 | joncurry94-tech | tools: wire_mv2 wave-3 table; loadout_finish template retired (bug-1947) |
 | `af44ada` | 2026-08-19 | joncurry94-tech | docs: mid-playtest fix wave recorded (bugs 1942-1945); TRAPS actor-getter + anim-pack rules corrected in place |

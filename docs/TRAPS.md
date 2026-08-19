@@ -866,6 +866,16 @@ feels dead (bug-1920, m3l3 MG42s "still hit every single shot"). Any spread tune
 must set all four args: `bulletspread B B M M`. Player fire uses a different formula (base/max
 lerp by spread factor), so player-facing tunes are unaffected.
 
+## TurretGun fixes NEVER reach VehicleTurretGun
+
+`VehicleTurretGun` overrides `Think()`, `UpdateFireControl()` and `GetMuzzlePosition()` - so
+anything tuned in TurretGun's paths silently skips every vehicle-mounted gun (halftrack, tank
+hull MG, jeep). THREE separate user reports traced to this one split on 2026-08-19: player MG
+heat never cycling (bug-1946), and AI road gunners laser-accurate at full damage because the
+whole coop tuning trio - damage scale, spread bonus, wandering aim error - was TurretGun-only
+(bug-1950). Rule: any turret-behavior change ships BOTH class paths, or states in a comment why
+the vehicle side is exempt. The trio is extern'd in weapturret.h for exactly this.
+
 ## Missing anim + waittill = a corpse standing at the wall
 
 `setmotionanim` with an alias the model does not have silently no-ops - and the
