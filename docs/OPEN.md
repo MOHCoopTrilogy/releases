@@ -94,6 +94,13 @@ All deployed, boot-verified 0 script errors, committed. Root causes in buglog 19
   mop-up grace, then the reveal + conversation fire directly - no more BSP-trigger or
   stuck-straggler stalls. Verify: kill the halftrack, Ramsey chats within ~15s worst case.
 
+- **MG42 accuracy ROOT-CAUSED AND FIXED (bug-1940, 2026-08-19)**: manned turrets never read
+  bulletspread - all three prior tunes were placebos; the real knob (m_vAIBulletSpread /
+  `aibulletspread`) is now fed by coop_mg42AiSpread (seeded 300, retail band 300-450),
+  trilogy-wide. VERIFY on m3l3: guns should spray suppressive near-misses (+-37u at 500u per
+  shot). PROOF PROBE: `set coop_fireDebug 1` in console -> every AI turret shot logs
+  `^~^~^ TURSPREAD ... vSpread=(0.0 0.0) aiSpread=(300.0 300.0)` - zero proves the old bug,
+  300 proves the fix. Tune live with coop_mg42AiSpread if 300 feels too loose/tight.
 - **Cut-VO restoration batch 1 SHIPPED (2026-08-19)**: 1,389 never-played retail takes folded
   into the aivoice driver via generated pools (gen_chatter_pools.py -> ubersound/
   coop_chatter.scr, retail map-gates stripped): BT Global Dialog classified by its own meaning

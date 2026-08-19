@@ -243,12 +243,12 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_aiSuppressChance` | `15` | `0` | `fgame/actor_turret.cpp:443` |  |  |  |
 | `coop_aiSuppressCover` | `1` | `CVAR_ARCHIVE` | `fgame/actor.cpp:11170` | FORCED `1` @ `autoexec.cfg:808` |  |  |
 | `coop_aiSuppressRadius` | `150` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:2331` | FORCED `150` @ `autoexec.cfg:801` |  |  |
-| `coop_aiSuppressReact` |  |  |  | DEFAULT `45` @ `coop_defaults.cfg:344` | `coop_mod/officer.scr:4840` |  |
+| `coop_aiSuppressReact` |  |  |  | DEFAULT `45` @ `coop_defaults.cfg:344` | `coop_mod/officer.scr:4843` |  |
 | `coop_aiSuppressTime` | `1.5` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:2332` | FORCED `1.5` @ `autoexec.cfg:802` |  |  |
-| `coop_aiSurrenderChance` |  |  |  | DEFAULT `35` @ `coop_defaults.cfg:345` | `coop_mod/officer.scr:4903` |  |
+| `coop_aiSurrenderChance` |  |  |  | DEFAULT `35` @ `coop_defaults.cfg:345` | `coop_mod/officer.scr:4906` |  |
 | `coop_aiTestHp` |  |  |  |  | `coop_mod/aihandler.scr:882` |  |
 | `coop_aiVariantChance` |  |  |  | DEFAULT `35` @ `coop_defaults.cfg:350` | `coop_mod/aihandler.scr:1685` |  |
-| `coop_aiVoice` |  |  |  | FORCED `1` @ `autoexec.cfg:624` | `coop_mod/aihandler.scr:498` (+4) |  |
+| `coop_aiVoice` |  |  |  | FORCED `1` @ `autoexec.cfg:624` | `coop_mod/aihandler.scr:498` (+5) |  |
 | `coop_aiVoiceDebug` |  |  |  | FORCED `0` @ `autoexec.cfg:631` | `coop_mod/aivoice.scr:236` |  |
 | `coop_aiVoiceMax` |  |  |  | FORCED `2` @ `autoexec.cfg:626` | `coop_mod/aivoice.scr:278` (+1) |  |
 | `coop_aiVoiceRange` |  |  |  | FORCED `2600` @ `autoexec.cfg:628` | `coop_mod/aivoice.scr:282` (+1) |  |
@@ -309,18 +309,18 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_buildmap` |  |  |  |  | `coop_mod/main.scr:93` (+1) |  |
 | `coop_bulletCrack` | `1` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:971` | FORCED `1` @ `autoexec.cfg:879` |  |  |
 | `coop_bulletCrackDist` | `60` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:972` | FORCED `60` @ `autoexec.cfg:880` |  |  |
-| `coop_bustBashDamage` |  |  |  | DEFAULT `15` @ `coop_defaults.cfg:260` | `coop_mod/bust.scr:1051` |  |
-| `coop_bustBashFloor` |  |  |  | DEFAULT `40` @ `coop_defaults.cfg:261` | `coop_mod/bust.scr:1263` |  |
+| `coop_bustBashDamage` |  |  |  | DEFAULT `15` @ `coop_defaults.cfg:260` | `coop_mod/bust.scr:1053` |  |
+| `coop_bustBashFloor` |  |  |  | DEFAULT `40` @ `coop_defaults.cfg:261` | `coop_mod/bust.scr:1265` |  |
 | `coop_bustBodyGrace` |  |  |  | DEFAULT `15` @ `coop_defaults.cfg:267` | `coop_mod/bust.scr:378` |  |
 | `coop_bustBodyLife` |  |  |  | DEFAULT `0` @ `coop_defaults.cfg:270` | `coop_mod/bust.scr:383` |  |
 | `coop_bustBodyRadius` |  |  |  | DEFAULT `320` @ `coop_defaults.cfg:266` | `coop_mod/bust.scr:376` |  |
 | `coop_bustClearTime` |  |  |  | DEFAULT `10` @ `coop_defaults.cfg:263` | `coop_mod/bust.scr:316` |  |
 | `coop_bustHintRange` |  |  |  | DEFAULT `400` @ `coop_defaults.cfg:250` | `coop_mod/itemhandler.scr:1342` |  |
 | `coop_bustHintTime` |  |  |  | DEFAULT `6` @ `coop_defaults.cfg:254` |  |  |
-| `coop_bustStagger` |  |  |  | DEFAULT `4.5` @ `coop_defaults.cfg:256` | `coop_mod/bust.scr:1001` (+3) |  |
+| `coop_bustStagger` |  |  |  | DEFAULT `4.5` @ `coop_defaults.cfg:256` | `coop_mod/bust.scr:1003` (+3) |  |
 | `coop_bustTest` |  |  |  |  | `coop_mod/bust.scr:896` (+1) |  |
-| `coop_bustUseRange` |  |  |  | DEFAULT `112` @ `coop_defaults.cfg:248` | `coop_mod/bust.scr:1459` (+1) |  |
-| `coop_bustVulnHealth` |  |  |  |  | `coop_mod/bust.scr:1277` |  |
+| `coop_bustUseRange` |  |  |  | DEFAULT `112` @ `coop_defaults.cfg:248` | `coop_mod/bust.scr:1461` (+1) |  |
+| `coop_bustVulnHealth` |  |  |  |  | `coop_mod/bust.scr:1279` |  |
 | `coop_c47Alt` |  |  |  |  | `coop_mod/paradrop.scr:70` |  |
 | `coop_c47Out` |  |  |  |  | `coop_mod/paradrop.scr:74` |  |
 | `coop_c47Speed` |  |  |  |  | `coop_mod/paradrop.scr:78` |  |

@@ -9,7 +9,7 @@
 | metric | value |
 |---|---:|
 | `coop_mod/*.scr` files | 116 |
-| total lines in `coop_mod/` | 72,722 |
+| total lines in `coop_mod/` | 72,786 |
 | top-level `maps/*.scr` | 121 |
 | of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
 
@@ -90,7 +90,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `aihandler.scr` | 1,858 | 26 | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
 | `aimaneuver.scr` | 261 | 1 | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
 | `aisquad.scr` | 245 | 1 | aisquad.scr - HZM coop SQUAD BRAIN (2026-07-24) |
-| `aivoice.scr` | 398 | 4 | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
+| `aivoice.scr` | 455 | 4 | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
 | `m3l2.scr` | 81 | 0 |  |
 | `allysquad.scr` | 382 | 4 | [user 08-08] ALLIED SQUAD SURVIVABILITY |
 | `ambience.scr` | 326 | 5 | HZM coop - AMBIENCE BEDS + COMBAT MIXING (script-only; modeled on weather.scr::coop_weather_sound). |
@@ -102,7 +102,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `buildmode_catalog.scr` | 2,294 | 1 | HZM Coop - BUILD MODE model catalog (DATA ONLY). Generated from main/mainta/maintt Pak*.pk3 |
 | `buildmode_sounds.scr` | 369 | 5 | HZM Coop - BUILD MODE : placeable SOUND EMITTERS (catalog + SOUND-mode control bus). |
 | `bunker.scr` | 808 | 2 | HZM coop - COMPOSED STRUCTURES v2 (build-mode geometry construction kit) |
-| `bust.scr` | 1,574 | 5 | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
+| `bust.scr` | 1,576 | 5 | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
 | `butler.scr` | 498 | 12 | created by chrissstrahl on 2019.09.12 |
 | `common.scr` | 120 | 0 |  |
 | `cannonThink.scr` | 147 | 1 | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
@@ -141,7 +141,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `helmet.scr` | 1,746 | 4 | [305] HZM coop - LIVE HELMET SWITCHER |
 | `helmtest.scr` | 96 | 1 | HZM dev probe (TEMPORARY): verify the retail sethelmet/pophelmet mechanic end to end. |
 | `holdout.scr` | 759 | 16 | HOLDOUT - checkpoint wave-defence gametype [user 2026-08-04] |
-| `itemhandler.scr` | 3,720 | 36 | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
+| `itemhandler.scr` | 3,722 | 36 | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
 | `keyitems.scr` | 161 | 1 | [306] HZM coop - KEY MISSION ITEMS can never be permanently lost |
 | `ladder.scr` | 295 | 1 | HZM coop - PLACEABLE CLIMBABLE LADDERS [user 2026-08-05] bug-1415 |
 | `ladder_state.scr` | 24 | 0 | HZM coop - LADDER STATE HOOK [user 2026-08-05] bug-1415 |
@@ -170,7 +170,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `objective_drop.scr` | 165 | 1 | Objective Bonus Drop |
 | `objective_positions.scr` | 89 | 1 | objective_positions.scr |
 | `objectives.scr` | 693 | 7 | Coop Side Objectives (optional / secondary) |
-| `officer.scr` | 4,917 | 27 | Officer Boss + Radio Station |
+| `officer.scr` | 4,920 | 27 | Officer Boss + Radio Station |
 | `officer_positions.scr` | 624 | 1 | coop_officer_positions.scr |
 | `paradrop.scr` | 774 | 1 | Allied Paradrop System |
 | `player.scr` | 1,834 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |

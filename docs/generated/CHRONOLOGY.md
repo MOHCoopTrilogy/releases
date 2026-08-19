@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `e8a9525 2026-08-19 docs: cut-content deep scan indexed in OPEN` |
-| commits | 146 |
+| HEAD | `406284c 2026-08-19 docs: cut-VO restoration batch 1 recorded` |
+| commits | 147 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 92 |
+| 2026-08 | 93 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (146)
+### Commits since 2026-01-01 (147)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `406284c` | 2026-08-19 | joncurry94-tech | docs: cut-VO restoration batch 1 recorded |
 | `e8a9525` | 2026-08-19 | joncurry94-tech | docs: cut-content deep scan indexed in OPEN |
 | `04ad6bd` | 2026-08-19 | joncurry94-tech | docs: animation wave 2 recorded |
 | `70dfe57` | 2026-08-18 | joncurry94-tech | docs: vehicle death fx awaiting playtest |
@@ -183,8 +184,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `18bada3 2026-08-19 research: cut-content deep scan record - 3 verified digs over all 17 retail pk3s` |
-| commits | 1,496 |
+| HEAD | `a29f22b 2026-08-19 cut-content VO batch 1: BT global dialog + German personality + allied shout categories` |
+| commits | 1,497 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -192,7 +193,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 103 |
+| 2026-08 | 104 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -232,10 +233,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (147)
+### Commits since 2026-01-01 (148)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `a29f22b` | 2026-08-19 | joncurry94 | cut-content VO batch 1: BT global dialog + German personality + allied shout categories |
 | `18bada3` | 2026-08-19 | joncurry94 | research: cut-content deep scan record - 3 verified digs over all 17 retail pk3s |
 | `832f37e` | 2026-08-19 | joncurry94 | ai: cut-content animation wave 2 - locational hits, crawl-to-death, crate combat, facial moods |
 | `aa14f86` | 2026-08-18 | joncurry94 | ai: the G98 variant cycles its bolt - its tik name joins every kar98 bolt-anim branch (aim/attack/corner scripts) |

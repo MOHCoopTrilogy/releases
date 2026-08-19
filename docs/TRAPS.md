@@ -919,3 +919,15 @@ order, not click order (skin 31 > helmet 35 > weapons 42-45 > menu 46 > pins 47 
 commit replays for exactly this (bug-773); weapons/finishes have none. Any new bus feature
 must either tolerate drops (archived-seta + join replay) or add a close-commit.
 
+## A MANNED turret never reads bulletspread - the AI knob is `aibulletspread`
+
+Three separate "fixes" tuned `bulletspread` on m3l3's MG42s and every one was a placebo
+(bug-1940): weapon.cpp's FT_BULLET assigns vSpread only for owner->client (players); the
+(max+base)/2 fallback is for owner==NULL - unmanned guns, which do not fire. An actor-manned
+turret fires with vSpread=(0,0,0); its ONLY dispersion is m_vAIBulletSpread, applied at the
+muzzle and set solely by the `aibulletspread` script event (retail SH/BT use 300-450; the
+OpenMOHAA handler ignores arg 2). Gunner `accuracy` keys also do nothing for turrets (only
+Actor::GunTarget consults accuracy, and turret aiming never calls it). coop_mg42AiSpread now
+feeds the real member. Rule: before tuning a value, prove the failing PATH actually reads it -
+grep the consumer, not the setter.
+

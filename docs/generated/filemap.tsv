@@ -343,7 +343,7 @@ docs/DECISIONS.md	37942	.md	541	docs
 docs/ENGINE.md	26462	.md	322	docs
 docs/FEATURES.md	88656	.md	1164	docs
 docs/HISTORY.md	29926	.md	249	docs
-docs/OPEN.md	51282	.md	728	docs
+docs/OPEN.md	52175	.md	738	docs
 docs/PROPOSED_CLAUDE.md	11428	.md	182	docs
 docs/README.md	6634	.md	109	docs
 docs/SESSION_HANDOFF.md	7032	.md	126	docs
@@ -452,6 +452,7 @@ docs/tools/docgen.py	63607	.py	1471	docs
 docs/tools/docs.cmd	467	.cmd	13	docs
 docs/tools/docs.ps1	1526	.ps1	49	docs
 docs/tools/gen_armory_bg.py	11046	.py	254	docs
+docs/tools/gen_chatter_pools.py	6227	.py	126	docs
 docs/tools/gen_loadout.py	17361	.py	364	docs
 docs/tools/gen_public_pages.py	21733	.py	540	docs
 docs/tools/gen_service_record.py	64057	.py	989	docs
@@ -1419,7 +1420,7 @@ hzm-mohaa-coop-mod/coop_mod/aicombat.scr	5119	.scr	119	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/aihandler.scr	105577	.scr	1858	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/aimaneuver.scr	14608	.scr	261	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/aisquad.scr	12602	.scr	245	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/aivoice.scr	17957	.scr	398	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/aivoice.scr	20554	.scr	455	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/alias/m3l2.cfg	12718	.cfg	81	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/alias/m3l2.scr	12718	.scr	81	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/allysquad.scr	17535	.scr	382	hzm-mohaa-coop-mod
@@ -1437,7 +1438,7 @@ hzm-mohaa-coop-mod/coop_mod/buildmode_actors.scr	22310	.scr	411	hzm-mohaa-coop-m
 hzm-mohaa-coop-mod/coop_mod/buildmode_catalog.scr	159397	.scr	2294	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/buildmode_sounds.scr	18954	.scr	369	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/bunker.scr	39203	.scr	808	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/bust.scr	88070	.scr	1574	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/bust.scr	88220	.scr	1576	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/butler.scr	19305	.scr	498	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cache/common.scr	4310	.scr	120	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cannonThink.scr	4874	.scr	147	hzm-mohaa-coop-mod
@@ -1510,7 +1511,7 @@ hzm-mohaa-coop-mod/coop_mod/holdout_backup/build_e3l4.dat	27189	.dat	0	hzm-mohaa
 hzm-mohaa-coop-mod/coop_mod/holdout_backup/holdout_e3l4.dat	230	.dat	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/holdout_backup/props_e3l4.dat	8707	.dat	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/holdout_backup/walls_e3l4.dat	6671	.dat	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/itemhandler.scr	197659	.scr	3720	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/itemhandler.scr	197809	.scr	3722	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/keyitems.scr	8467	.scr	161	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/ladder.scr	15976	.scr	295	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/ladder_state.scr	1195	.scr	24	hzm-mohaa-coop-mod
@@ -1539,7 +1540,7 @@ hzm-mohaa-coop-mod/coop_mod/morale.scr	4758	.scr	94	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objective_drop.scr	7236	.scr	165	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objective_positions.scr	3691	.scr	89	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objectives.scr	30583	.scr	693	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/officer.scr	220715	.scr	4917	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/officer.scr	220942	.scr	4920	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/officer_positions.scr	35036	.scr	624	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/paradrop.scr	33463	.scr	774	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/player.scr	94253	.scr	1834	hzm-mohaa-coop-mod
@@ -8946,6 +8947,7 @@ hzm-mohaa-coop-mod/textures/wilderness/m3l3grass_set2rad.jpg	2424082	.jpg	0	hzm-
 hzm-mohaa-coop-mod/ubersound/coop_aivoice.scr	35064	.scr	318	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ubersound/coop_audio.scr	14582	.scr	150	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ubersound/coop_buildsounds.scr	7172	.scr	68	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ubersound/coop_chatter.scr	180106	.scr	1424	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ubersound/coop_deathvox.scr	68069	.scr	512	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ubersound/coop_flvo.scr	17864	.scr	140	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ubersound/coop_gurgle.scr	3296	.scr	31	hzm-mohaa-coop-mod
@@ -10209,7 +10211,7 @@ hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	542436872	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	906188958	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23424292	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23431789	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm_coop_framework_guide.md	27594	.md	382	<root>
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -13033,7 +13035,7 @@ relnotes_1.2.1.md	1025	.md	15	<root>
 resume_publish.ps1	8738	.ps1	157	<root>
 rollout_implementation_log.md	13772	.md	194	<root>
 scratchpad/rcon.py	926	.py	27	scratchpad
-server_home/boot_m1l1.log	216793	.log	0	server_home
+server_home/boot_m1l1.log	516829	.log	0	server_home
 server_home/boot_m3l2.log	194081	.log	0	server_home
 server_home/boot_m3l3.log	198879	.log	0	server_home
 server_home/boot_t2l2.log	172217	.log	0	server_home
@@ -13063,7 +13065,7 @@ server_home/maintt/prev/qconsole-20260815-112103.log	282324	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-112454.log	317859	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-113246.log	320900	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-114100.log	292931	.log	0	server_home
-server_home/maintt/qconsole.log	216793	.log	0	server_home
+server_home/maintt/qconsole.log	516829	.log	0	server_home
 server_home/maintt/qconsole.log.pre_e3l4	302778	.pre_e3l4	0	server_home
 server_home_probe/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home_probe
 server_home_probe/maintt/autoexec.cfg	89444	.cfg	1202	server_home_probe
