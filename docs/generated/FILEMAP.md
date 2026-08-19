@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 38,089 |
+| files in the workspace | 38,362 |
 | bytes | 40.7 GB |
-| files in project scope (indexed per-file) | 12,718 |
-| source files (per-file rows with line counts) | 5,383 |
+| files in project scope (indexed per-file) | 12,991 |
+| source files (per-file rows with line counts) | 5,656 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -24,7 +24,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 9,220 | 5776.2 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 9,493 | 5776.2 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
@@ -80,8 +80,8 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.scr` | 2,508 |
 | `.tga` | 2,354 |
 | `.jpg` | 2,189 |
+| `.cfg` | 1,743 |
 | `.tik` | 1,597 |
-| `.cfg` | 1,470 |
 | `.png` | 1,371 |
 | `.obj` | 1,224 |
 | `.h` | 955 |
@@ -635,7 +635,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/coop_objectives` | 46 | 0.02 MB | .cfg×46 |
 | `hzm-mohaa-coop-mod/ui/coop_start` | 14 | 0.03 MB | .cfg×14 |
 | `hzm-mohaa-coop-mod/ui/coop_tiles` | 14 | 0.79 MB | .jpg×14 |
-| `hzm-mohaa-coop-mod/ui/loadout` | 464 | 0.16 MB | .cfg×464 |
+| `hzm-mohaa-coop-mod/ui/loadout` | 737 | 0.21 MB | .cfg×737 |
 | `hzm-mohaa-coop-mod/ui/loadout/helm` | 48 | 0.03 MB | .cfg×48 |
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 135 | 0.13 MB | .cfg×135 |
 | `manifests` | 43 | 0.55 MB | .json×43 |
@@ -998,7 +998,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `docs.cmd` | 13 | 0.5 KB |  |
 | `docs.ps1` | 49 | 1.5 KB |  |
 | `gen_armory_bg.py` | 254 | 10.8 KB | plain: the pre-overhaul look (near-black, subtle panels, caption + stat labels only). |
-| `gen_loadout.py` | 324 | 14.4 KB | !/usr/bin/env python |
+| `gen_loadout.py` | 351 | 16.2 KB | !/usr/bin/env python |
 | `gen_public_pages.py` | 540 | 21.2 KB | !/usr/bin/env python3 |
 | `gen_service_record.py` | 932 | 58.6 KB | [user 08-07] friendly display name for a challenge's reward field (chal_def's 7th arg) |
 | `gen_skins.py` | 285 | 12.7 KB |  |
@@ -3871,7 +3871,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `t2.cfg` | 58 | 3.0 KB | HZM coop - sets the SH (Spearhead) mission 2 maps on the menu (Phase 3 rollout) |
 | `t3.cfg` | 55 | 2.6 KB | HZM coop - sets the SH (Spearhead) mission 3 maps on the menu (Phase 3 rollout) |
 
-### `hzm-mohaa-coop-mod/ui/loadout/` — 464 source files
+### `hzm-mohaa-coop-mod/ui/loadout/` — 737 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -3919,6 +3919,279 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `fin8_s2.cfg` | 7 | 0.3 KB | GENERATED - apply finish 8 to slot 2 (0 = standard, 8 = this gun's model variant). |
 | `fin8_s3.cfg` | 7 | 0.3 KB | GENERATED - apply finish 8 to slot 3 (0 = standard, 8 = this gun's model variant). |
 | `fin8_s4.cfg` | 7 | 0.3 KB | GENERATED - apply finish 8 to slot 4 (0 = standard, 8 = this gun's model variant). |
+| `finp01_1.cfg` | 2 | 0.1 KB |  |
+| `finp01_2.cfg` | 2 | 0.1 KB |  |
+| `finp01_3.cfg` | 2 | 0.1 KB |  |
+| `finp01_4.cfg` | 2 | 0.1 KB |  |
+| `finp01_5.cfg` | 2 | 0.1 KB |  |
+| `finp01_6.cfg` | 2 | 0.1 KB |  |
+| `finp01_7.cfg` | 2 | 0.1 KB |  |
+| `finp03_1.cfg` | 2 | 0.1 KB |  |
+| `finp03_2.cfg` | 2 | 0.1 KB |  |
+| `finp03_3.cfg` | 2 | 0.1 KB |  |
+| `finp03_4.cfg` | 2 | 0.1 KB |  |
+| `finp03_5.cfg` | 2 | 0.1 KB |  |
+| `finp03_6.cfg` | 2 | 0.1 KB |  |
+| `finp03_7.cfg` | 2 | 0.1 KB |  |
+| `finp04_1.cfg` | 2 | 0.1 KB |  |
+| `finp04_2.cfg` | 2 | 0.1 KB |  |
+| `finp04_3.cfg` | 2 | 0.1 KB |  |
+| `finp04_4.cfg` | 2 | 0.1 KB |  |
+| `finp04_5.cfg` | 2 | 0.1 KB |  |
+| `finp04_6.cfg` | 2 | 0.1 KB |  |
+| `finp04_7.cfg` | 2 | 0.1 KB |  |
+| `finp05_1.cfg` | 2 | 0.1 KB |  |
+| `finp05_2.cfg` | 2 | 0.1 KB |  |
+| `finp05_3.cfg` | 2 | 0.1 KB |  |
+| `finp05_4.cfg` | 2 | 0.1 KB |  |
+| `finp05_5.cfg` | 2 | 0.1 KB |  |
+| `finp05_6.cfg` | 2 | 0.1 KB |  |
+| `finp05_7.cfg` | 2 | 0.1 KB |  |
+| `finp07_1.cfg` | 2 | 0.1 KB |  |
+| `finp07_2.cfg` | 2 | 0.1 KB |  |
+| `finp07_3.cfg` | 2 | 0.1 KB |  |
+| `finp07_4.cfg` | 2 | 0.1 KB |  |
+| `finp07_5.cfg` | 2 | 0.1 KB |  |
+| `finp07_6.cfg` | 2 | 0.1 KB |  |
+| `finp07_7.cfg` | 2 | 0.1 KB |  |
+| `finp08_1.cfg` | 2 | 0.1 KB |  |
+| `finp08_2.cfg` | 2 | 0.1 KB |  |
+| `finp08_3.cfg` | 2 | 0.1 KB |  |
+| `finp08_4.cfg` | 2 | 0.1 KB |  |
+| `finp08_5.cfg` | 2 | 0.1 KB |  |
+| `finp08_6.cfg` | 2 | 0.1 KB |  |
+| `finp08_7.cfg` | 2 | 0.1 KB |  |
+| `finp09_1.cfg` | 2 | 0.1 KB |  |
+| `finp09_2.cfg` | 2 | 0.1 KB |  |
+| `finp09_3.cfg` | 2 | 0.1 KB |  |
+| `finp09_4.cfg` | 2 | 0.1 KB |  |
+| `finp09_5.cfg` | 2 | 0.1 KB |  |
+| `finp09_6.cfg` | 2 | 0.1 KB |  |
+| `finp09_7.cfg` | 2 | 0.1 KB |  |
+| `finp12_1.cfg` | 2 | 0.1 KB |  |
+| `finp12_2.cfg` | 2 | 0.1 KB |  |
+| `finp12_3.cfg` | 2 | 0.1 KB |  |
+| `finp12_4.cfg` | 2 | 0.1 KB |  |
+| `finp12_5.cfg` | 2 | 0.1 KB |  |
+| `finp12_6.cfg` | 2 | 0.1 KB |  |
+| `finp12_7.cfg` | 2 | 0.1 KB |  |
+| `finp13_1.cfg` | 2 | 0.1 KB |  |
+| `finp13_2.cfg` | 2 | 0.1 KB |  |
+| `finp13_3.cfg` | 2 | 0.1 KB |  |
+| `finp13_4.cfg` | 2 | 0.1 KB |  |
+| `finp13_5.cfg` | 2 | 0.1 KB |  |
+| `finp13_6.cfg` | 2 | 0.1 KB |  |
+| `finp13_7.cfg` | 2 | 0.1 KB |  |
+| `finp14_1.cfg` | 2 | 0.1 KB |  |
+| `finp14_2.cfg` | 2 | 0.1 KB |  |
+| `finp14_3.cfg` | 2 | 0.1 KB |  |
+| `finp14_4.cfg` | 2 | 0.1 KB |  |
+| `finp14_5.cfg` | 2 | 0.1 KB |  |
+| `finp14_6.cfg` | 2 | 0.1 KB |  |
+| `finp14_7.cfg` | 2 | 0.1 KB |  |
+| `finp16_1.cfg` | 2 | 0.1 KB |  |
+| `finp16_2.cfg` | 2 | 0.1 KB |  |
+| `finp16_3.cfg` | 2 | 0.1 KB |  |
+| `finp16_4.cfg` | 2 | 0.1 KB |  |
+| `finp16_5.cfg` | 2 | 0.1 KB |  |
+| `finp16_6.cfg` | 2 | 0.1 KB |  |
+| `finp16_7.cfg` | 2 | 0.1 KB |  |
+| `finp23_1.cfg` | 2 | 0.1 KB |  |
+| `finp23_2.cfg` | 2 | 0.1 KB |  |
+| `finp23_3.cfg` | 2 | 0.1 KB |  |
+| `finp23_4.cfg` | 2 | 0.1 KB |  |
+| `finp23_5.cfg` | 2 | 0.1 KB |  |
+| `finp23_6.cfg` | 2 | 0.1 KB |  |
+| `finp23_7.cfg` | 2 | 0.1 KB |  |
+| `finp24_1.cfg` | 2 | 0.1 KB |  |
+| `finp24_2.cfg` | 2 | 0.1 KB |  |
+| `finp24_3.cfg` | 2 | 0.1 KB |  |
+| `finp24_4.cfg` | 2 | 0.1 KB |  |
+| `finp24_5.cfg` | 2 | 0.1 KB |  |
+| `finp24_6.cfg` | 2 | 0.1 KB |  |
+| `finp24_7.cfg` | 2 | 0.1 KB |  |
+| `finp26_1.cfg` | 2 | 0.1 KB |  |
+| `finp26_2.cfg` | 2 | 0.1 KB |  |
+| `finp26_3.cfg` | 2 | 0.1 KB |  |
+| `finp26_4.cfg` | 2 | 0.1 KB |  |
+| `finp26_5.cfg` | 2 | 0.1 KB |  |
+| `finp26_6.cfg` | 2 | 0.1 KB |  |
+| `finp26_7.cfg` | 2 | 0.1 KB |  |
+| `finp28_1.cfg` | 2 | 0.1 KB |  |
+| `finp28_2.cfg` | 2 | 0.1 KB |  |
+| `finp28_3.cfg` | 2 | 0.1 KB |  |
+| `finp28_4.cfg` | 2 | 0.1 KB |  |
+| `finp28_5.cfg` | 2 | 0.1 KB |  |
+| `finp28_6.cfg` | 2 | 0.1 KB |  |
+| `finp28_7.cfg` | 2 | 0.1 KB |  |
+| `finp29_1.cfg` | 2 | 0.1 KB |  |
+| `finp29_2.cfg` | 2 | 0.1 KB |  |
+| `finp29_3.cfg` | 2 | 0.1 KB |  |
+| `finp29_4.cfg` | 2 | 0.1 KB |  |
+| `finp29_5.cfg` | 2 | 0.1 KB |  |
+| `finp29_6.cfg` | 2 | 0.1 KB |  |
+| `finp29_7.cfg` | 2 | 0.1 KB |  |
+| `finp33_1.cfg` | 2 | 0.1 KB |  |
+| `finp33_2.cfg` | 2 | 0.1 KB |  |
+| `finp33_3.cfg` | 2 | 0.1 KB |  |
+| `finp33_4.cfg` | 2 | 0.1 KB |  |
+| `finp33_5.cfg` | 2 | 0.1 KB |  |
+| `finp33_6.cfg` | 2 | 0.1 KB |  |
+| `finp33_7.cfg` | 2 | 0.1 KB |  |
+| `finp36_1.cfg` | 2 | 0.1 KB |  |
+| `finp36_2.cfg` | 2 | 0.1 KB |  |
+| `finp36_3.cfg` | 2 | 0.1 KB |  |
+| `finp36_4.cfg` | 2 | 0.1 KB |  |
+| `finp36_5.cfg` | 2 | 0.1 KB |  |
+| `finp36_6.cfg` | 2 | 0.1 KB |  |
+| `finp36_7.cfg` | 2 | 0.1 KB |  |
+| `finp37_1.cfg` | 2 | 0.1 KB |  |
+| `finp37_2.cfg` | 2 | 0.1 KB |  |
+| `finp37_3.cfg` | 2 | 0.1 KB |  |
+| `finp37_4.cfg` | 2 | 0.1 KB |  |
+| `finp37_5.cfg` | 2 | 0.1 KB |  |
+| `finp37_6.cfg` | 2 | 0.1 KB |  |
+| `finp37_7.cfg` | 2 | 0.1 KB |  |
+| `finp39_1.cfg` | 2 | 0.1 KB |  |
+| `finp39_2.cfg` | 2 | 0.1 KB |  |
+| `finp39_3.cfg` | 2 | 0.1 KB |  |
+| `finp39_4.cfg` | 2 | 0.1 KB |  |
+| `finp39_5.cfg` | 2 | 0.1 KB |  |
+| `finp39_6.cfg` | 2 | 0.1 KB |  |
+| `finp39_7.cfg` | 2 | 0.1 KB |  |
+| `finp40_1.cfg` | 2 | 0.1 KB |  |
+| `finp40_2.cfg` | 2 | 0.1 KB |  |
+| `finp40_3.cfg` | 2 | 0.1 KB |  |
+| `finp40_4.cfg` | 2 | 0.1 KB |  |
+| `finp40_5.cfg` | 2 | 0.1 KB |  |
+| `finp40_6.cfg` | 2 | 0.1 KB |  |
+| `finp40_7.cfg` | 2 | 0.1 KB |  |
+| `finp41_1.cfg` | 2 | 0.1 KB |  |
+| `finp41_2.cfg` | 2 | 0.1 KB |  |
+| `finp41_3.cfg` | 2 | 0.1 KB |  |
+| `finp41_4.cfg` | 2 | 0.1 KB |  |
+| `finp41_5.cfg` | 2 | 0.1 KB |  |
+| `finp41_6.cfg` | 2 | 0.1 KB |  |
+| `finp41_7.cfg` | 2 | 0.1 KB |  |
+| `finp44_1.cfg` | 2 | 0.1 KB |  |
+| `finp44_2.cfg` | 2 | 0.1 KB |  |
+| `finp44_3.cfg` | 2 | 0.1 KB |  |
+| `finp44_4.cfg` | 2 | 0.1 KB |  |
+| `finp44_5.cfg` | 2 | 0.1 KB |  |
+| `finp44_6.cfg` | 2 | 0.1 KB |  |
+| `finp44_7.cfg` | 2 | 0.1 KB |  |
+| `finp45_1.cfg` | 2 | 0.1 KB |  |
+| `finp45_2.cfg` | 2 | 0.1 KB |  |
+| `finp45_3.cfg` | 2 | 0.1 KB |  |
+| `finp45_4.cfg` | 2 | 0.1 KB |  |
+| `finp45_5.cfg` | 2 | 0.1 KB |  |
+| `finp45_6.cfg` | 2 | 0.1 KB |  |
+| `finp45_7.cfg` | 2 | 0.1 KB |  |
+| `finp46_1.cfg` | 2 | 0.1 KB |  |
+| `finp46_2.cfg` | 2 | 0.1 KB |  |
+| `finp46_3.cfg` | 2 | 0.1 KB |  |
+| `finp46_4.cfg` | 2 | 0.1 KB |  |
+| `finp46_5.cfg` | 2 | 0.1 KB |  |
+| `finp46_6.cfg` | 2 | 0.1 KB |  |
+| `finp46_7.cfg` | 2 | 0.1 KB |  |
+| `finp47_1.cfg` | 2 | 0.1 KB |  |
+| `finp47_2.cfg` | 2 | 0.1 KB |  |
+| `finp47_3.cfg` | 2 | 0.1 KB |  |
+| `finp47_4.cfg` | 2 | 0.1 KB |  |
+| `finp47_5.cfg` | 2 | 0.1 KB |  |
+| `finp47_6.cfg` | 2 | 0.1 KB |  |
+| `finp47_7.cfg` | 2 | 0.1 KB |  |
+| `finp48_1.cfg` | 2 | 0.1 KB |  |
+| `finp48_2.cfg` | 2 | 0.1 KB |  |
+| `finp48_3.cfg` | 2 | 0.1 KB |  |
+| `finp48_4.cfg` | 2 | 0.1 KB |  |
+| `finp48_5.cfg` | 2 | 0.1 KB |  |
+| `finp48_6.cfg` | 2 | 0.1 KB |  |
+| `finp48_7.cfg` | 2 | 0.1 KB |  |
+| `finp50_1.cfg` | 2 | 0.1 KB |  |
+| `finp50_2.cfg` | 2 | 0.1 KB |  |
+| `finp50_3.cfg` | 2 | 0.1 KB |  |
+| `finp50_4.cfg` | 2 | 0.1 KB |  |
+| `finp50_5.cfg` | 2 | 0.1 KB |  |
+| `finp50_6.cfg` | 2 | 0.1 KB |  |
+| `finp50_7.cfg` | 2 | 0.1 KB |  |
+| `finp52_1.cfg` | 2 | 0.1 KB |  |
+| `finp52_2.cfg` | 2 | 0.1 KB |  |
+| `finp52_3.cfg` | 2 | 0.1 KB |  |
+| `finp52_4.cfg` | 2 | 0.1 KB |  |
+| `finp52_5.cfg` | 2 | 0.1 KB |  |
+| `finp52_6.cfg` | 2 | 0.1 KB |  |
+| `finp52_7.cfg` | 2 | 0.1 KB |  |
+| `finp53_1.cfg` | 2 | 0.1 KB |  |
+| `finp53_2.cfg` | 2 | 0.1 KB |  |
+| `finp53_3.cfg` | 2 | 0.1 KB |  |
+| `finp53_4.cfg` | 2 | 0.1 KB |  |
+| `finp53_5.cfg` | 2 | 0.1 KB |  |
+| `finp53_6.cfg` | 2 | 0.1 KB |  |
+| `finp53_7.cfg` | 2 | 0.1 KB |  |
+| `finp54_1.cfg` | 2 | 0.1 KB |  |
+| `finp54_2.cfg` | 2 | 0.1 KB |  |
+| `finp54_3.cfg` | 2 | 0.1 KB |  |
+| `finp54_4.cfg` | 2 | 0.1 KB |  |
+| `finp54_5.cfg` | 2 | 0.1 KB |  |
+| `finp54_6.cfg` | 2 | 0.1 KB |  |
+| `finp54_7.cfg` | 2 | 0.1 KB |  |
+| `finp55_1.cfg` | 2 | 0.1 KB |  |
+| `finp55_2.cfg` | 2 | 0.1 KB |  |
+| `finp55_3.cfg` | 2 | 0.1 KB |  |
+| `finp55_4.cfg` | 2 | 0.1 KB |  |
+| `finp55_5.cfg` | 2 | 0.1 KB |  |
+| `finp55_6.cfg` | 2 | 0.1 KB |  |
+| `finp55_7.cfg` | 2 | 0.1 KB |  |
+| `finp60_1.cfg` | 2 | 0.1 KB |  |
+| `finp60_2.cfg` | 2 | 0.1 KB |  |
+| `finp60_3.cfg` | 2 | 0.1 KB |  |
+| `finp60_4.cfg` | 2 | 0.1 KB |  |
+| `finp60_5.cfg` | 2 | 0.1 KB |  |
+| `finp60_6.cfg` | 2 | 0.1 KB |  |
+| `finp60_7.cfg` | 2 | 0.1 KB |  |
+| `finp61_1.cfg` | 2 | 0.1 KB |  |
+| `finp61_2.cfg` | 2 | 0.1 KB |  |
+| `finp61_3.cfg` | 2 | 0.1 KB |  |
+| `finp61_4.cfg` | 2 | 0.1 KB |  |
+| `finp61_5.cfg` | 2 | 0.1 KB |  |
+| `finp61_6.cfg` | 2 | 0.1 KB |  |
+| `finp61_7.cfg` | 2 | 0.1 KB |  |
+| `finp63_1.cfg` | 2 | 0.1 KB |  |
+| `finp63_2.cfg` | 2 | 0.1 KB |  |
+| `finp63_3.cfg` | 2 | 0.1 KB |  |
+| `finp63_4.cfg` | 2 | 0.1 KB |  |
+| `finp63_5.cfg` | 2 | 0.1 KB |  |
+| `finp63_6.cfg` | 2 | 0.1 KB |  |
+| `finp63_7.cfg` | 2 | 0.1 KB |  |
+| `finp70_1.cfg` | 2 | 0.1 KB |  |
+| `finp70_2.cfg` | 2 | 0.1 KB |  |
+| `finp70_3.cfg` | 2 | 0.1 KB |  |
+| `finp70_4.cfg` | 2 | 0.1 KB |  |
+| `finp70_5.cfg` | 2 | 0.1 KB |  |
+| `finp70_6.cfg` | 2 | 0.1 KB |  |
+| `finp70_7.cfg` | 2 | 0.1 KB |  |
+| `finp72_1.cfg` | 2 | 0.1 KB |  |
+| `finp72_2.cfg` | 2 | 0.1 KB |  |
+| `finp72_3.cfg` | 2 | 0.1 KB |  |
+| `finp72_4.cfg` | 2 | 0.1 KB |  |
+| `finp72_5.cfg` | 2 | 0.1 KB |  |
+| `finp72_6.cfg` | 2 | 0.1 KB |  |
+| `finp72_7.cfg` | 2 | 0.1 KB |  |
+| `finp74_1.cfg` | 2 | 0.1 KB |  |
+| `finp74_2.cfg` | 2 | 0.1 KB |  |
+| `finp74_3.cfg` | 2 | 0.1 KB |  |
+| `finp74_4.cfg` | 2 | 0.1 KB |  |
+| `finp74_5.cfg` | 2 | 0.1 KB |  |
+| `finp74_6.cfg` | 2 | 0.1 KB |  |
+| `finp74_7.cfg` | 2 | 0.1 KB |  |
+| `finp75_1.cfg` | 2 | 0.1 KB |  |
+| `finp75_2.cfg` | 2 | 0.1 KB |  |
+| `finp75_3.cfg` | 2 | 0.1 KB |  |
+| `finp75_4.cfg` | 2 | 0.1 KB |  |
+| `finp75_5.cfg` | 2 | 0.1 KB |  |
+| `finp75_6.cfg` | 2 | 0.1 KB |  |
+| `finp75_7.cfg` | 2 | 0.1 KB |  |
 | `fitbinds.cfg` | 16 | 0.4 KB | GENERATED - FIT-TUNE fast-nudge key binds (client-local; cleared by fitunbind.cfg). |
 | `fitunbind.cfg` | 16 | 0.2 KB | GENERATED - clear the FIT-TUNE fast-nudge key binds. |
 | `init.cfg` | 118 | 3.8 KB | GENERATED - armory view-state init (slot 1 active, RIFLES page, nothing inspected). |
@@ -3967,80 +4240,80 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `mvp74_0.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 0/1 for host tile 74 |
 | `mvp74_1.cfg` | 4 | 0.2 KB | GENERATED - offline variant preview 1/1 for host tile 74 |
 | `open.cfg` | 4 | 0.1 KB | GENERATED - open the armory: seed view state, push the menu, ping the bus. |
-| `p01.cfg` | 27 | 0.9 KB |  |
-| `p02.cfg` | 27 | 0.8 KB |  |
-| `p03.cfg` | 27 | 0.8 KB |  |
-| `p04.cfg` | 27 | 0.8 KB |  |
-| `p05.cfg` | 27 | 0.9 KB |  |
-| `p06.cfg` | 27 | 0.9 KB |  |
-| `p07.cfg` | 27 | 0.8 KB |  |
-| `p08.cfg` | 27 | 0.8 KB |  |
-| `p09.cfg` | 27 | 0.8 KB |  |
-| `p10.cfg` | 27 | 0.8 KB |  |
-| `p11.cfg` | 27 | 0.9 KB |  |
-| `p12.cfg` | 27 | 0.9 KB |  |
-| `p13.cfg` | 27 | 0.9 KB |  |
-| `p14.cfg` | 27 | 0.8 KB |  |
-| `p15.cfg` | 27 | 0.8 KB |  |
-| `p16.cfg` | 27 | 0.8 KB |  |
-| `p17.cfg` | 27 | 0.8 KB |  |
-| `p18.cfg` | 27 | 0.8 KB |  |
-| `p19.cfg` | 27 | 0.8 KB |  |
-| `p20.cfg` | 27 | 0.8 KB |  |
-| `p21.cfg` | 27 | 0.9 KB |  |
-| `p22.cfg` | 27 | 0.9 KB |  |
-| `p23.cfg` | 27 | 0.8 KB |  |
-| `p24.cfg` | 27 | 0.9 KB |  |
-| `p25.cfg` | 27 | 0.8 KB |  |
-| `p26.cfg` | 27 | 0.8 KB |  |
-| `p27.cfg` | 27 | 0.8 KB |  |
-| `p28.cfg` | 27 | 0.8 KB |  |
-| `p29.cfg` | 27 | 0.8 KB |  |
-| `p30.cfg` | 27 | 0.8 KB |  |
-| `p31.cfg` | 27 | 0.8 KB |  |
-| `p32.cfg` | 27 | 0.9 KB |  |
-| `p33.cfg` | 27 | 0.8 KB |  |
-| `p34.cfg` | 27 | 0.8 KB |  |
-| `p35.cfg` | 27 | 0.8 KB |  |
-| `p36.cfg` | 27 | 0.8 KB |  |
-| `p37.cfg` | 27 | 0.8 KB |  |
-| `p38.cfg` | 27 | 0.8 KB |  |
-| `p39.cfg` | 27 | 0.8 KB |  |
-| `p40.cfg` | 27 | 0.8 KB |  |
-| `p41.cfg` | 27 | 0.8 KB |  |
-| `p42.cfg` | 27 | 0.8 KB |  |
-| `p43.cfg` | 27 | 0.8 KB |  |
-| `p44.cfg` | 27 | 0.9 KB |  |
-| `p45.cfg` | 27 | 0.8 KB |  |
-| `p46.cfg` | 27 | 0.8 KB |  |
-| `p47.cfg` | 27 | 0.8 KB |  |
-| `p48.cfg` | 27 | 0.8 KB |  |
-| `p49.cfg` | 27 | 0.8 KB |  |
-| `p50.cfg` | 27 | 0.8 KB |  |
-| `p51.cfg` | 27 | 0.8 KB |  |
-| `p52.cfg` | 27 | 0.8 KB |  |
-| `p53.cfg` | 27 | 0.8 KB |  |
-| `p54.cfg` | 27 | 0.8 KB |  |
-| `p55.cfg` | 27 | 0.8 KB |  |
-| `p56.cfg` | 27 | 0.8 KB |  |
-| `p57.cfg` | 27 | 0.8 KB |  |
-| `p58.cfg` | 27 | 0.8 KB |  |
-| `p59.cfg` | 27 | 0.8 KB |  |
-| `p60.cfg` | 27 | 0.8 KB |  |
-| `p61.cfg` | 27 | 0.8 KB |  |
-| `p62.cfg` | 27 | 0.8 KB |  |
-| `p63.cfg` | 27 | 0.8 KB |  |
-| `p64.cfg` | 27 | 0.8 KB |  |
-| `p65.cfg` | 27 | 0.8 KB |  |
-| `p66.cfg` | 27 | 0.8 KB |  |
-| `p67.cfg` | 27 | 0.8 KB |  |
-| `p68.cfg` | 27 | 0.8 KB |  |
-| `p69.cfg` | 27 | 0.8 KB |  |
-| `p70.cfg` | 27 | 0.8 KB |  |
-| `p71.cfg` | 27 | 0.8 KB |  |
-| `p72.cfg` | 27 | 0.8 KB |  |
-| `p74.cfg` | 27 | 0.8 KB |  |
-| `p75.cfg` | 27 | 0.8 KB |  |
+| `p01.cfg` | 34 | 1.2 KB |  |
+| `p02.cfg` | 34 | 1.0 KB |  |
+| `p03.cfg` | 34 | 1.1 KB |  |
+| `p04.cfg` | 34 | 1.2 KB |  |
+| `p05.cfg` | 34 | 1.2 KB |  |
+| `p06.cfg` | 34 | 1.0 KB |  |
+| `p07.cfg` | 34 | 1.2 KB |  |
+| `p08.cfg` | 34 | 1.2 KB |  |
+| `p09.cfg` | 34 | 1.2 KB |  |
+| `p10.cfg` | 34 | 1.0 KB |  |
+| `p11.cfg` | 34 | 1.0 KB |  |
+| `p12.cfg` | 34 | 1.2 KB |  |
+| `p13.cfg` | 34 | 1.2 KB |  |
+| `p14.cfg` | 34 | 1.2 KB |  |
+| `p15.cfg` | 34 | 1.0 KB |  |
+| `p16.cfg` | 34 | 1.2 KB |  |
+| `p17.cfg` | 34 | 1.0 KB |  |
+| `p18.cfg` | 34 | 1.0 KB |  |
+| `p19.cfg` | 34 | 1.0 KB |  |
+| `p20.cfg` | 34 | 1.0 KB |  |
+| `p21.cfg` | 34 | 1.0 KB |  |
+| `p22.cfg` | 34 | 1.0 KB |  |
+| `p23.cfg` | 34 | 1.2 KB |  |
+| `p24.cfg` | 34 | 1.2 KB |  |
+| `p25.cfg` | 34 | 1.0 KB |  |
+| `p26.cfg` | 34 | 1.2 KB |  |
+| `p27.cfg` | 34 | 1.0 KB |  |
+| `p28.cfg` | 34 | 1.1 KB |  |
+| `p29.cfg` | 34 | 1.1 KB |  |
+| `p30.cfg` | 34 | 1.0 KB |  |
+| `p31.cfg` | 34 | 1.0 KB |  |
+| `p32.cfg` | 34 | 1.0 KB |  |
+| `p33.cfg` | 34 | 1.2 KB |  |
+| `p34.cfg` | 34 | 1.0 KB |  |
+| `p35.cfg` | 34 | 1.0 KB |  |
+| `p36.cfg` | 34 | 1.2 KB |  |
+| `p37.cfg` | 34 | 1.2 KB |  |
+| `p38.cfg` | 34 | 1.0 KB |  |
+| `p39.cfg` | 34 | 1.1 KB |  |
+| `p40.cfg` | 34 | 1.2 KB |  |
+| `p41.cfg` | 34 | 1.2 KB |  |
+| `p42.cfg` | 34 | 1.0 KB |  |
+| `p43.cfg` | 34 | 1.0 KB |  |
+| `p44.cfg` | 34 | 1.2 KB |  |
+| `p45.cfg` | 34 | 1.2 KB |  |
+| `p46.cfg` | 34 | 1.2 KB |  |
+| `p47.cfg` | 34 | 1.1 KB |  |
+| `p48.cfg` | 34 | 1.2 KB |  |
+| `p49.cfg` | 34 | 1.0 KB |  |
+| `p50.cfg` | 34 | 1.1 KB |  |
+| `p51.cfg` | 34 | 1.0 KB |  |
+| `p52.cfg` | 34 | 1.2 KB |  |
+| `p53.cfg` | 34 | 1.2 KB |  |
+| `p54.cfg` | 34 | 1.2 KB |  |
+| `p55.cfg` | 34 | 1.2 KB |  |
+| `p56.cfg` | 34 | 1.0 KB |  |
+| `p57.cfg` | 34 | 0.9 KB |  |
+| `p58.cfg` | 34 | 1.0 KB |  |
+| `p59.cfg` | 34 | 0.9 KB |  |
+| `p60.cfg` | 34 | 1.1 KB |  |
+| `p61.cfg` | 34 | 1.2 KB |  |
+| `p62.cfg` | 34 | 0.9 KB |  |
+| `p63.cfg` | 34 | 1.1 KB |  |
+| `p64.cfg` | 34 | 1.0 KB |  |
+| `p65.cfg` | 34 | 1.0 KB |  |
+| `p66.cfg` | 34 | 1.0 KB |  |
+| `p67.cfg` | 34 | 1.0 KB |  |
+| `p68.cfg` | 34 | 1.0 KB |  |
+| `p69.cfg` | 34 | 1.0 KB |  |
+| `p70.cfg` | 34 | 1.2 KB |  |
+| `p71.cfg` | 34 | 1.0 KB |  |
+| `p72.cfg` | 34 | 1.1 KB |  |
+| `p74.cfg` | 34 | 1.2 KB |  |
+| `p75.cfg` | 34 | 1.2 KB |  |
 | `req02.cfg` | 2 | 0.1 KB |  |
 | `req03.cfg` | 2 | 0.1 KB |  |
 | `req04.cfg` | 2 | 0.1 KB |  |

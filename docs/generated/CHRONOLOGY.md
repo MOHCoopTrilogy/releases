@@ -13,27 +13,25 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `069ff3f 2026-08-18 docs: bug-1917 - the original armory bg recovered byte-exact from the v1.3.1 release via ranged fetch` |
-| commits | 125 |
+| HEAD | `8852b77 2026-08-18 tools: gen_loadout emits offline finish previews` |
+| commits | 126 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **1 modified, 0 untracked** |
-| unstaged diff | 1 file changed, 4 insertions(+) |
-
-> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 71 |
+| 2026-08 | 72 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (125)
+### Commits since 2026-01-01 (126)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `8852b77` | 2026-08-18 | joncurry94-tech | tools: gen_loadout emits offline finish previews |
 | `069ff3f` | 2026-08-18 | joncurry94-tech | docs: bug-1917 - the original armory bg recovered byte-exact from the v1.3.1 release via ranged fetch |
 | `a9b192b` | 2026-08-18 | joncurry94-tech | tools: gen_armory_bg --plain (the revert look) + the overwrite lesson in the buglog |
 | `c67df7d` | 2026-08-18 | joncurry94-tech | tools: the Field Requisition armory bake generator - overlap-refusing by design |
@@ -165,8 +163,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `8968cf3 2026-08-18 loadout: slot cards drive the 3D soldier - clicking SIDEARM shows him holding your sidearm` |
-| commits | 1,475 |
+| HEAD | `ccb6f6c 2026-08-18 loadout: finishes preview offline like variants; honest slot seeds` |
+| commits | 1,476 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -174,7 +172,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 82 |
+| 2026-08 | 83 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -214,10 +212,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (126)
+### Commits since 2026-01-01 (127)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `ccb6f6c` | 2026-08-18 | joncurry94 | loadout: finishes preview offline like variants; honest slot seeds |
 | `8968cf3` | 2026-08-18 | joncurry94 | loadout: slot cards drive the 3D soldier - clicking SIDEARM shows him holding your sidearm |
 | `62a4a3c` | 2026-08-18 | joncurry94 | loadout: variant/finish confirms no longer undo themselves - stufftext order |
 | `efbe9b6` | 2026-08-18 | joncurry94 | armory: the shipped bind moves F3 -> F7 - F3 was retail's Controls menu; F7/F8 are the only genuinely free F-keys across retail d… |

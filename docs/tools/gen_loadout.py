@@ -60,7 +60,9 @@ def preview(w):
     MV_HOSTS = ("01", "04", "05", "12", "13", "24", "26", "36", "37", "44", "48", "74")
     mv_on = "1" if w["id"] in MV_HOSTS else "0"
     mv_req = ("exec ui/loadout/reqmv%s.cfg" % w["id"]) if w["id"] in MV_HOSTS else "exec ui/loadout/reqclear.cfg"
-    mv_pn = ("exec ui/loadout/mvp%s_1.cfg" % w["id"]) if w["id"] in MV_HOSTS else ""
+    mv_pn = ("vstr coop_loMvPN_s1") if w["id"] in MV_HOSTS else ""
+    mv_pns = [("exec ui/loadout/mvp%s_1_s%d.cfg" % (w["id"], _sl)) if w["id"] in MV_HOSTS else ""
+              for _sl in (1, 2, 3, 4)]
 
     # [user 2026-08-18] OFFLINE finish previews: variants had a client-side preview chain and
     # finishes did not - so from the main menu a finish click changed nothing visible (the server
@@ -77,6 +79,9 @@ def preview(w):
         'set coop_loMvOn %s' % mv_on,
         'set coop_loMvReqCur "%s"' % mv_req,
         'set coop_loMvPN "%s"' % mv_pn,
+    ]
+    L += ['set coop_loMvPN_s%d "%s"' % (_sl + 1, _v) for _sl, _v in enumerate(mv_pns)]
+    L += [
     ]
     L += ['set coop_loFinP%d "%s"' % (_i + 1, _v) for _i, _v in enumerate(finp)]
     L += [

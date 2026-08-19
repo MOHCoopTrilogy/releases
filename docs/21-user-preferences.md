@@ -195,3 +195,10 @@ guess to fill the silence.
   command line is overridden by the shipped autoexec and the probe stays silent;
 - **verify the probe is live before asking for a test** (rcon read the cvar, confirm the marker
   appears) rather than assuming it armed.
+
+- **Menus must be foolproof under heavy clicking** (2026-08-18, stated for the armory and
+  extended to the Service Record): players "will be clicking around a lot... it should be
+  completely foolproof." Concretely: every click-driven state must either be idempotent, be
+  re-echoed by the server after each apply (the variant chain-position echo), or archive the
+  EXACT resulting state rather than a relative step (the cycle-once replay bug). Rapid-click
+  desync between an offline preview and server truth is a defect, not an edge case.
