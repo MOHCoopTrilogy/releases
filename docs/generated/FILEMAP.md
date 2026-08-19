@@ -193,7 +193,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
-| `hzm-mohaa-coop-mod` | 38 | 1539.01 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
+| `hzm-mohaa-coop-mod` | 38 | 1539.02 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -238,7 +238,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/_research/release_drafts` | 6 | 0.04 MB | .md×6 |
 | `hzm-mohaa-coop-mod/anim` | 23 | 0.16 MB | .scr×23 |
 | `hzm-mohaa-coop-mod/cmpatch` | 1 | 0.00 MB | .txt×1 |
-| `hzm-mohaa-coop-mod/coop_mod` | 119 | 3.69 MB | .scr×114, .st×3, .cfg×2 |
+| `hzm-mohaa-coop-mod/coop_mod` | 119 | 3.70 MB | .scr×114, .st×3, .cfg×2 |
 | `hzm-mohaa-coop-mod/coop_mod/alias` | 2 | 0.03 MB | .cfg×1, .scr×1 |
 | `hzm-mohaa-coop-mod/coop_mod/bp` | 5 | 0.03 MB | .dat×5 |
 | `hzm-mohaa-coop-mod/coop_mod/cache` | 1 | 0.00 MB | .scr×1 |
@@ -1143,7 +1143,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `autoexec.cfg` | 1,229 | 88.3 KB | HZM Extended Coop Mod |
 | `coop.cfg` | 3 | 0.1 KB | DEVELOPER CONFIG FILE |
-| `coop_defaults.cfg` | 350 | 21.2 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
+| `coop_defaults.cfg` | 351 | 21.2 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
 | `net_cl.cfg` | 18 | 1.2 KB | HZM Coop recommended CLIENT settings. |
 | `net_sv.cfg` | 21 | 1.2 KB | HZM Coop recommended SERVER settings. |
 
@@ -1213,10 +1213,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `aim.scr` | 176 | 4.2 KB | Aim script - causes the character to aim its current weapon. Right now it requires |
-| `attack.scr` | 1,944 | 52.0 KB | Attack |
-| `cornerleft.scr` | 287 | 9.4 KB | CornerLeft.scr |
-| `cornerright.scr` | 290 | 9.5 KB | Cornerright.scr |
+| `aim.scr` | 177 | 4.3 KB | Aim script - causes the character to aim its current weapon. Right now it requires |
+| `attack.scr` | 1,946 | 52.3 KB | Attack |
+| `cornerleft.scr` | 288 | 9.5 KB | CornerLeft.scr |
+| `cornerright.scr` | 291 | 9.6 KB | Cornerright.scr |
 | `disguise_accept.scr` | 71 | 3.0 KB | disguise_accept.scr |
 | `disguise_deny.scr` | 81 | 3.5 KB | disguise_deny.scr |
 | `disguise_enemy.scr` | 59 | 2.6 KB | disguise_enemy.scr |
@@ -1246,7 +1246,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `ads_dbg.scr` | 11 | 0.5 KB | HZM coop - ADS diagnostic. Called from the AIM state's entrycommands in |
 | `aibehav.scr` | 120 | 5.7 KB | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
 | `aicombat.scr` | 119 | 5.0 KB | aicombat.scr - HZM coop AUTOMATED COMBAT DRIVER (2026-07-23) |
-| `aihandler.scr` | 1,691 | 95.4 KB | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
+| `aihandler.scr` | 1,705 | 96.2 KB | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
 | `aimaneuver.scr` | 261 | 14.3 KB | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
 | `aisquad.scr` | 245 | 12.3 KB | aisquad.scr - HZM coop SQUAD BRAIN (2026-07-24) |
 | `aivoice.scr` | 398 | 17.5 KB | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
@@ -5454,8 +5454,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `trigger.cpp` | 3,291 | 89.2 KB | trigger.cpp: Environment based triggers. |
 | `trigger.h` | 656 | 14.4 KB | trigger.h: Environment based triggers. |
 | `umap.h` | 292 | 6.9 KB | umap.h: Hash table based map class template. Maps text based keys to previously |
-| `vehicle.cpp` | 7,326 | 197.1 KB | vehicle.cpp: Script controlled Vehicles. |
-| `vehicle.h` | 617 | 25.3 KB | vehicle.h: Script controlled vehicles. |
+| `vehicle.cpp` | 7,430 | 200.7 KB | vehicle.cpp: Script controlled Vehicles. |
+| `vehicle.h` | 623 | 25.6 KB | vehicle.h: Script controlled vehicles. |
 | `vehicletanktandem.cpp` | 61 | 2.0 KB |  |
 | `vehicletanktandem.h` | 38 | 1.2 KB |  |
 | `vehicleturret.cpp` | 2,265 | 61.6 KB | vehicleturret.cpp: Vehicle Turret. |

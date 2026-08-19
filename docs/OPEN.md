@@ -94,6 +94,16 @@ All deployed, boot-verified 0 script errors, committed. Root causes in buglog 19
   mop-up grace, then the reveal + conversation fire directly - no more BSP-trigger or
   stuck-straggler stalls. Verify: kill the halftrack, Ramsey chats within ~15s worst case.
 
+- **Cut-content animation wave 2 (2026-08-19)**: locational hit reactions (92-row census
+  whitelist: stand/crouch flinch by head/back/arm/leg from self.fact.location; arm hits can
+  play the rifle/thompson dropgun flinch), mortal-wound crawl-to-death theater (collapse ->
+  floor drag -> die in place, pose kept via stub deathhandler), crate-cover crouch combat
+  (crate_alert for 8 groups + over-the-cover blindfire bursts for bar/thompson/vickers),
+  fear facial + post-fire alert scan on suppression, anger facial on the runfire charge.
+  Cvars: coop_aiHitReact 55, coop_aiCrateFight 35, coop_aiCrawlDeathChance 30. ALL
+  feel-unverified until played. Skipped deliberately: curious01/02 idles (no clean generic
+  hook - investigation is engine/stealth-owned) and directional walk sets (engine motion
+  domain).
 - **Realistic vehicle explosions (engine, 2026-08-18)**: every vehicle death now layers a
   640u camera shake, 2-4 staged fuel/ammo cook-off pops (small real damage), a burning-wreck
   fire (45s, coop_vehicleFxTime) and a lingering smoke column - on top of coop_vehicleWrecks'

@@ -7,7 +7,7 @@
      ============================================================ -->
 # Engine cvar inventory (generated)
 Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name is a string literal. Anchors are `path:line` relative to that directory. Defaults and flags are verbatim from source.
-- **1619** distinct cvars across **2121** registration sites in **119** translation units.
+- **1621** distinct cvars across **2123** registration sites in **119** translation units.
 - **31** call sites use a computed name (a variable or `va()`) and cannot be listed here. That number is reported rather than hidden - if it grows, something is registering cvars this inventory cannot see.
 - **56** cvars are registered with **different defaults** in different files. Those are real (usually renderergl1 vs renderergl2), not transcription errors.
 
@@ -16,7 +16,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 |---|---:|
 | `r_` | 387 |
 | `cg_` | 222 |
-| `coop_` | 204 |
+| `coop_` | 206 |
 | `g_` | 194 |
 | `sv_` | 90 |
 | `(no prefix)` | 65 |
@@ -851,7 +851,9 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_turretViewFwd` | `-20` | `CVAR_ARCHIVE` | `fgame/weapturret.cpp:1018` |
 | `coop_turretViewSide` | `0` | `CVAR_ARCHIVE` | `fgame/weapturret.cpp:1020` |
 | `coop_turretViewUp` | `16` | `CVAR_ARCHIVE` | `fgame/weapturret.cpp:1019` |
-| `coop_vehicleWrecks` | `1` | `CVAR_ARCHIVE` | `fgame/vehicle.cpp:7218` |
+| `coop_vehicleFx` | `1` | `CVAR_ARCHIVE` | `fgame/vehicle.cpp:5596` |
+| `coop_vehicleFxTime` | `45` | `CVAR_ARCHIVE` | `fgame/vehicle.cpp:5599` |
+| `coop_vehicleWrecks` | `1` | `CVAR_ARCHIVE` | `fgame/vehicle.cpp:7322` |
 | `coop_vehTurretBack` | `35` | `CVAR_ARCHIVE` | `fgame/vehicleturret.cpp:962` |
 | `coop_vehTurretDown` | `15` | `CVAR_ARCHIVE` | `fgame/vehicleturret.cpp:965` |
 | `coop_wallProbe` | `0` | `0` | `fgame/player.cpp:4018` |
@@ -1147,11 +1149,11 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `g_showplayeranim` | `0` | `0` | `fgame/gamecvars.cpp:415` |
 | `g_showplayerstate` | `0` | `0` | `fgame/gamecvars.cpp:414` |
 | `g_showtokens` | `0` | `0` | `fgame/gamecvars.cpp:437` |
-| `g_showvehicleentrypoints` | `0` | `0` | `fgame/vehicle.cpp:1053` |
-| `g_showvehiclemovedebug` | `0` | `0` | `fgame/vehicle.cpp:1052` |
-| `g_showvehiclepath` | `0` | `0` | `fgame/vehicle.cpp:1056` |
-| `g_showvehicleslotpoints` | `0` | `0` | `fgame/vehicle.cpp:1054` |
-| `g_showvehicletags` | `0` | `0` | `fgame/vehicle.cpp:1055` |
+| `g_showvehicleentrypoints` | `0` | `0` | `fgame/vehicle.cpp:1065` |
+| `g_showvehiclemovedebug` | `0` | `0` | `fgame/vehicle.cpp:1064` |
+| `g_showvehiclepath` | `0` | `0` | `fgame/vehicle.cpp:1068` |
+| `g_showvehicleslotpoints` | `0` | `0` | `fgame/vehicle.cpp:1066` |
+| `g_showvehicletags` | `0` | `0` | `fgame/vehicle.cpp:1067` |
 | `g_smoothClients` | `1` | `0` | `fgame/gamecvars.cpp:494` |
 | `g_spawnai` | `1` | `0` | `fgame/gamecvars.cpp:451` |
 | `g_spawnentities` | `1` | `0` | `fgame/gamecvars.cpp:450` |

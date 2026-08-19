@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `b844654 2026-08-18 docs: loadout deep-trace fix wave recorded; gen_loadout emits FA-clearing commit cfgs; gen_skinbase build step` |
-| commits | 143 |
+| HEAD | `70dfe57 2026-08-18 docs: vehicle death fx awaiting playtest` |
+| commits | 144 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 89 |
+| 2026-08 | 90 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (143)
+### Commits since 2026-01-01 (144)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `70dfe57` | 2026-08-18 | joncurry94-tech | docs: vehicle death fx awaiting playtest |
 | `b844654` | 2026-08-18 | joncurry94-tech | docs: loadout deep-trace fix wave recorded; gen_loadout emits FA-clearing commit cfgs; gen_skinbase build step |
 | `61a6e65` | 2026-08-18 | joncurry94-tech | tools: gen_skinbase.py (variant->base reverse map) wired as a build step |
 | `bd4ebba` | 2026-08-18 | joncurry94-tech | docs: exec INSERTS not appends (corrects d2e7084 rationale); one-token-per-batch bus trap |
@@ -180,8 +181,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `1e0a02d 2026-08-18 loadout deep-trace fix wave: phases 1-4 + slot re-preview (bugs 1928-1938)` |
-| commits | 1,492 |
+| HEAD | `aa14f86 2026-08-18 ai: the G98 variant cycles its bolt - its tik name joins every kar98 bolt-anim branch (aim/attack/corner scripts)` |
+| commits | 1,494 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -189,7 +190,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 99 |
+| 2026-08 | 101 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -229,10 +230,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (143)
+### Commits since 2026-01-01 (145)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `aa14f86` | 2026-08-18 | joncurry94 | ai: the G98 variant cycles its bolt - its tik name joins every kar98 bolt-anim branch (aim/attack/corner scripts) |
+| `a669b12` | 2026-08-18 | joncurry94 | ai: G43 service roll - a slice of German Kar98 riflemen carry (and drop) the G43; carriers can then roll the G98 variant. coop_ai… |
 | `1e0a02d` | 2026-08-18 | joncurry94 | loadout deep-trace fix wave: phases 1-4 + slot re-preview (bugs 1928-1938) |
 | `66095d7` | 2026-08-18 | joncurry94 | loadout phase 1 (hands): resolved raise targets, variant-aware ammo classing, revive re-kick, dead guard |
 | `a0a494c` | 2026-08-18 | joncurry94 | loadout: regive rebuilds the resolved kit; 120s gate deleted; finish clicks preview in the viewer |
@@ -382,8 +385,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `257d0aa4 2026-08-18 pins: cid-keyed store with legacy migration + catalogue-generation self-heal (bug-1926)` |
-| commits | 4,998 |
+| HEAD | `0633d074 2026-08-18 vehicles: layered realistic death fx - shake + staged cook-offs + burning wreck + smoke column` |
+| commits | 4,999 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -391,7 +394,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 18 |
+| 2026-08 | 19 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -452,10 +455,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (33)
+### Commits since 2026-01-01 (34)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `0633d074` | 2026-08-18 | joncurry94 | vehicles: layered realistic death fx - shake + staged cook-offs + burning wreck + smoke column |
 | `257d0aa4` | 2026-08-18 | joncurry94 | pins: cid-keyed store with legacy migration + catalogue-generation self-heal (bug-1926) |
 | `4804546b` | 2026-08-18 | joncurry94 | ads: crouch blocks of the standing-only rows re-synced to correct family donors - silenced pistols crouch like their base gun, PP… |
 | `e1939962` | 2026-08-18 | joncurry94 | ads: donor-alias stage in CG_FindAdsTune - new guns borrow a dialled family tune by one alias line (DP-28, FG 42, G 43, SVT 40, J… |

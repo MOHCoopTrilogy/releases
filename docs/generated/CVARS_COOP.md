@@ -17,9 +17,9 @@ Union of four sources, all swept fresh:
 
 | metric | count |
 |---|---:|
-| distinct `coop_*` cvars | 2441 |
-| registered with a default by the engine | 204 |
-| seeded by a shipped cfg | 1390 |
+| distinct `coop_*` cvars | 2444 |
+| registered with a default by the engine | 206 |
+| seeded by a shipped cfg | 1391 |
 | seeded nowhere at all | 975 |
 | **&nbsp;&nbsp;of those, read by a script** | **214** |
 | &nbsp;&nbsp;of those, menu-only (set at runtime by the UI) | 761 |
@@ -219,6 +219,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_aiCoverRelocateMs` | `12000` | `CVAR_ARCHIVE` | `fgame/actor_cover.cpp:501` |  |  |  |
 | `coop_aiCoverThink` | `1` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:317` |  | `coop_mod/aimaneuver.scr:145` |  |
 | `coop_aiDynamic` | `1` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:307` | FORCED `1` @ `autoexec.cfg:589` | `coop_mod/aihandler.scr:109` (+2) |  |
+| `coop_aiG43Chance` |  |  |  | DEFAULT `15` @ `coop_defaults.cfg:351` | `coop_mod/aihandler.scr:1675` |  |
 | `coop_aiHideMaxMs` | `15000` | `0` | `fgame/actor_cover.cpp:41` (+1) |  | `coop_mod/main.scr:285` (+2) |  |
 | `coop_aiHideMinMs` | `4000` | `0` | `fgame/actor_cover.cpp:38` |  |  |  |
 | `coop_aiJinkMs` | `0` | `0` | `fgame/actor_turret.cpp:267` |  |  |  |
@@ -243,7 +244,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_aiSuppressTime` | `1.5` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:2332` | FORCED `1.5` @ `autoexec.cfg:802` |  |  |
 | `coop_aiSurrenderChance` |  |  |  | DEFAULT `35` @ `coop_defaults.cfg:345` | `coop_mod/officer.scr:4858` |  |
 | `coop_aiTestHp` |  |  |  |  | `coop_mod/aihandler.scr:882` |  |
-| `coop_aiVariantChance` |  |  |  | DEFAULT `35` @ `coop_defaults.cfg:350` | `coop_mod/aihandler.scr:1663` |  |
+| `coop_aiVariantChance` |  |  |  | DEFAULT `35` @ `coop_defaults.cfg:350` | `coop_mod/aihandler.scr:1682` |  |
 | `coop_aiVoice` |  |  |  | FORCED `1` @ `autoexec.cfg:624` | `coop_mod/aihandler.scr:498` (+4) |  |
 | `coop_aiVoiceDebug` |  |  |  | FORCED `0` @ `autoexec.cfg:631` | `coop_mod/aivoice.scr:236` |  |
 | `coop_aiVoiceMax` |  |  |  | FORCED `2` @ `autoexec.cfg:626` | `coop_mod/aivoice.scr:278` (+1) |  |
@@ -2595,7 +2596,9 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_uiP98` |  |  |  | other `0` @ `ui/coop_sr_pinclear.cfg:100`<br>other `0` @ `ui/coop_sr_pinreset.cfg:105` |  | `ui/coop_sr.urc` |
 | `coop_uiP99` |  |  |  | other `0` @ `ui/coop_sr_pinclear.cfg:101`<br>other `0` @ `ui/coop_sr_pinreset.cfg:106` |  | `ui/coop_sr.urc` |
 | `coop_unsponge` |  |  |  | FORCED `1` @ `autoexec.cfg:403` | `coop_mod/aihandler.scr:320` (+1) |  |
-| `coop_vehicleWrecks` | `1` | `CVAR_ARCHIVE` | `fgame/vehicle.cpp:7218` |  |  |  |
+| `coop_vehicleFx` | `1` | `CVAR_ARCHIVE` | `fgame/vehicle.cpp:5596` |  |  |  |
+| `coop_vehicleFxTime` | `45` | `CVAR_ARCHIVE` | `fgame/vehicle.cpp:5599` |  |  |  |
+| `coop_vehicleWrecks` | `1` | `CVAR_ARCHIVE` | `fgame/vehicle.cpp:7322` |  |  |  |
 | `coop_vehTurretBack` | `35` | `CVAR_ARCHIVE` | `fgame/vehicleturret.cpp:962` |  |  |  |
 | `coop_vehTurretDown` | `15` | `CVAR_ARCHIVE` | `fgame/vehicleturret.cpp:965` |  |  |  |
 | `coop_voidDrop` |  |  |  |  | `coop_mod/officer.scr:1659` |  |
