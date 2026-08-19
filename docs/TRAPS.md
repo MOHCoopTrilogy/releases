@@ -897,3 +897,25 @@ the pages) and is wiped on mismatch - blank beats wrong, the next join re-export
 (3) a generated lookup map must be `set`, not `seta` - an archived map satisfies the "is it
 loaded?" probe forever and the current one never loads.
 
+## Client `exec`/`vstr` INSERT at the buffer front; only stufftext APPENDS
+
+Verified in cmd.c: `Cmd_Exec_f` and `Cmd_Vstr_f` call `Cbuf_InsertText` - a click's whole
+cfg chain runs depth-first, atomically, in textual order. The 2026-08-18 "exec APPENDS"
+rationale (commit d2e7084 and a loadoutpick.scr comment) is WRONG about the engine; the
+server-visual strip stays correct for a different reason - server stufftext arrives frames
+later over the WIRE (Cbuf_AddText) and always lands after the client's instant chain.
+Ordering rules that follow: (1) within one client chain, LAST textual line wins - s<n>sel.cfg
+correcting coop_loMvPN on its final line only works because of insert semantics, so do not
+"fix" it by moving the line earlier; (2) any server echo races the client's next click by one
+round trip and can revert an instant preview - never send server echoes for state the client
+already set correctly.
+
+## The name bus dispatches ONE token per ~0.75s batch - every other stacked token is destroyed
+
+playerNameCommand walks the token indexes and breaks at the FIRST with data; playerCleanName
+then truncates the name at the first " ,", destroying the rest. Dispatch priority is BUS INDEX
+order, not click order (skin 31 > helmet 35 > weapons 42-45 > menu 46 > pins 47 > finishes
+48-51). Rapid armory clicking therefore silently drops actions - helmets/skins got close-time
+commit replays for exactly this (bug-773); weapons/finishes have none. Any new bus feature
+must either tolerate drops (archived-seta + join replay) or add a close-commit.
+
