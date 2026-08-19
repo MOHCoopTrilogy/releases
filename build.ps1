@@ -35,6 +35,9 @@ if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by ui_wiring_audit" -Foregr
 # fast; a failure blocks the deploy like any other gate.
 python "C:\mohaa-coop-dev\docs\tools\gen_service_record.py" build
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_service_record" -ForegroundColor Red; exit 1 }
+# [user 2026-08-18] variant->base reverse map, derived from the skin table on every build
+python "C:\mohaa-coop-dev\docs\tools\gen_skinbase.py"
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_skinbase" -ForegroundColor Red; exit 1 }
 
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by scrlint" -ForegroundColor Red; exit 1 }
 $deployDir  = "G:\GOG\Medal of Honor - Allied Assault War Chest\maintt"
