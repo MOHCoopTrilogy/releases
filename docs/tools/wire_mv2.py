@@ -17,25 +17,25 @@ UI = MOD + "ui/loadout/"
 
 # per-gun ordered variant lists: (base stem, [(key, LABEL), ...]) -> fids 8, 9, 10...
 MV = [
-    ("thompsonsmg",  [("tommy28", "THOMPSON (M1928)"), ("tommy1928d", "THOMPSON (1928 TOMMY)"),
-                      ("tommy27a1", "THOMPSON (27A1 COMMANDO)"), ("m1a1dk", "M1A1 REMODEL")], "wpn_thompson_e"),
-    ("mp40",         [("mp40r2", "MP40 (REACTIVATED)"), ("mp18", "MP18 (WW1 EXT)")], "wpn_mp40_e"),
-    ("bar",          [("pabar", "BAR (PACIFIC) (MOH:PA)"), ("bar1918", "BAR M1918 (WWI) (WW1 EXT)"),
-                      ("bar1918a", "M1918 CLASSIC"), ("bar1918a1", "M1918A1"),
-                      ("bar1918a2", "M1918A2")], "wpn_bar_e"),
-    ("m1_garand",    [("pagarand", "M1 GARAND (PACIFIC) (MOH:PA)")], "wpn_garand_e"),
-    ("mp44",         [("mp44strap", "STG 44 (STRAPPED)")], "wpn_stg44_e"),
-    ("colt45",       [("coltpa", "COLT 45 (PACIFIC) (MOH:PA)"), ("colt1911w", "M1911 (WWI) (WW1 EXT)"),
+    ("thompsonsmg",  [("tommy28", "THOMPSON (M1928)"), ("tommy1928d", "THOMPSON (1928 TOMMY) (DR.DELETO)"),
+                      ("tommy27a1", "THOMPSON (27A1 COMMANDO) (FLAKRIDER)"), ("m1a1dk", "M1A1 REMODEL (DARKANGEL)")], "wpn_thompson_e"),
+    ("mp40",         [("mp40r2", "MP40 (REACTIVATED)"), ("mp18", "MP18 (EAST)")], "wpn_mp40_e"),
+    ("bar",          [("pabar", "BAR (PACIFIC) (MOH:PA)"), ("bar1918", "BAR M1918 (WWI) (EAST)"),
+                      ("bar1918a", "M1918 CLASSIC (STLKID)"), ("bar1918a1", "M1918A1 (STLKID)"),
+                      ("bar1918a2", "M1918A2 (STLKID)")], "wpn_bar_e"),
+    ("m1_garand",    [("pagarand", "M1 GARAND (PACIFIC) (ACME313)")], "wpn_garand_e"),
+    ("mp44",         [("mp44strap", "STG 44 (STRAPPED) (DARKANGEL)")], "wpn_stg44_e"),
+    ("colt45",       [("coltpa", "COLT 45 (PACIFIC) (ACME313)"), ("colt1911w", "M1911 (WWI) (EAST)"),
                       ("covert", "M1911 COVERT"), ("drbond", "1911 CLASSIC"),
-                      ("bloodyeic", "M1911 BLOODY EIC")], "wpn_colt_e"),
-    ("enfield",      [("p14", "P14 ENFIELD (WW1 EXT)")], "wpn_enfield_e"),
+                      ("bloodyeic", "M1911 BLOODY EIC (SCHUTZE)")], "wpn_colt_e"),
+    ("enfield",      [("p14", "P14 ENFIELD (EAST)")], "wpn_enfield_e"),
     # G98 is HOSTED under the G43 (family grouping, user request) but its BODY is the Kar98's -
     # "a bolt action should remain a bolt action". The explicit path points at the kar98-derived
     # tik; its name strips to "Mauser KAR 98K", so hands, bolt-cycle anims and ADS are the Kar98's.
-    ("G43",          [("g98", "GEWEHR 98 (BOLT) (WW1 EXT)", "models/weapons/kar98_g98.tik")], "wpn_g43_e"),
-    ("KAR98sniper",  [("g98scope", "G98 SCOPED (WW1 EXT)")], "wpn_kar98sniper_e"),
-    ("springfield",  [("smlescope", "SMLE SCOPED (WW1 EXT)"), ("m1903", "M1903 SPRINGFIELD (WW1 EXT)")], "wpn_springfield_e"),
-    ("mauser_c96",   [("c96trench", "C96 (TRENCH) (WW1 EXT)")], "wpn_c96_e"),
+    ("G43",          [("g98", "GEWEHR 98 (BOLT) (EAST)", "models/weapons/kar98_g98.tik")], "wpn_g43_e"),
+    ("KAR98sniper",  [("g98scope", "G98 SCOPED (EAST)")], "wpn_kar98sniper_e"),
+    ("springfield",  [("smlescope", "SMLE SCOPED (EAST)"), ("m1903", "M1903 SPRINGFIELD (EAST)")], "wpn_springfield_e"),
+    ("mauser_c96",   [("c96trench", "C96 (TRENCH) (EAST)")], "wpn_c96_e"),
     ("shotgun",      [("authwinch", "AUTHENTIC WOOD")], "wpn_shotgun_e"),
 ]
 

@@ -54,3 +54,30 @@ Sources: the AAAA MOHAA archive (mohaaaa.co.uk) and ModDB.
   `pvt_helmet`, `sgt_helmet`); THEIR copies were renamed `ba_*` and their tiks retargeted so
   neither pack's appearance changes. No art was altered.
 - No textures or models were edited. `zzz-Ranger_Medic` ("please do not edit") ships unmodified.
+
+## Weapon variant / import authorship (skins-hunt research, 2026-08-19)
+
+Resolved by archived-page + local-readme evidence (full report: _research/skins_hunt_2026-08-19.md):
+
+- **MOHPA ports (pagarand, PA colt; PA sniper on GB)** - **acme313** (archived FileFront page,
+  Developer field; his colt readme self-credits). The PA BAR port is ambiguous (vdog77 also
+  ported one, explicitly claiming no credit) - left at pack-level credit.
+- **WW1 arsenal (P14, G98, MP18, C96 trench, M1911 WWI, BAR M1918, M1903, SMLE)** - weapons by
+  **East** (Medal of Honor World War 1 mod; skins Magna_Carta, MP18 anims from SH assets).
+  "WW1 Extended" (MOHI-KAN) contributed fixes/menus only, no weapons. NOTE East's readme:
+  contents not to be used without permission (Spearhead-derived material + Dark'nStein anims
+  excepted) - CONTACT EAST BEFORE ANY PUBLIC RELEASE ANNOUNCEMENT of these (ModDB fallback;
+  MATSEAST92@msn.com is 2009-era).
+- **Thompson M1A1 remodel** - model DaRKaNGeL, skins Apocalypse. **Strapped StG44** - DarkAngel.
+- **Thompson 1928 drum** - model Dr.Deleto, reskin/anim swap Static.
+- **Thompson 27A1 commando** - FlakRider (strap texture by Hobbs).
+- **M1911 Bloody EIC** - Schutze (EIC series). **BAR M1918 classic/A1/A2 trio** - stlkid.
+- **DP-28** - Lt. Pato (Patricio Mardones) - readme grants reuse WITH CREDIT (the only explicit
+  yes in the pile). **Johnson M1941 / Mauser C96 / S&W M10** - East (no-alteration readmes;
+  displayed credit honors the spirit; modifications technically need his OK).
+- **FG42** - EA's own unused vanilla stub, revived in-house (no external credit). DarkAngel's
+  2005 animated FG42 add-on exists if we ever want real anims - credit him then.
+- **Kar98 rifle-grenade (Gewehrgranate)** - stock EA SH/BT asset.
+- Still pending author: tommy28 (M1928), MP40 Reactivated, M1911 Covert, 1911 Classic (drbond
+  key suggests "Dr. Bond"?), Authentic-wood Winchester.
+
