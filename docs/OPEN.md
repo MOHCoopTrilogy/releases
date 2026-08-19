@@ -79,9 +79,6 @@ as opt-in. Right now the shipped behaviour is whatever a fallback branch happens
 <a name="defects"></a>
 ## Requested, not yet started (2026-08-18)
 
-- **m3l3: Captain Ramsey's paratrooper conversation is sometimes delayed.** It should trigger
-  immediately after the halftrack is destroyed; sometimes it lags. Find what gates the trigger and
-  make it fire off the halftrack's death directly.
 - **Reload magazine keeps the stock skin on a finished gun.** The gun's own `Clip` surface IS
   reskinned (verified on the gold Thompson) and the mesh has only four surfaces, so the magazine
   seen in hand during reload is a DIFFERENT model. `models/ammo/thompson_clip.tik` is cached by the
@@ -92,6 +89,10 @@ as opt-in. Right now the shipped behaviour is whatever a fallback branch happens
 ## Awaiting the next playtest (2026-08-18 evening batch)
 
 All deployed, boot-verified 0 script errors, committed. Root causes in buglog 1919-1923.
+
+- **m3l3 Ramsey conversation now keys on the halftrack's death** (bug-1925): wave stops, 12s
+  mop-up grace, then the reveal + conversation fire directly - no more BSP-trigger or
+  stuck-straggler stalls. Verify: kill the halftrack, Ramsey chats within ~15s worst case.
 
 - **Armory apply loop, fully closed**: server no longer touches menu visuals (`exec` APPENDS -
   client finp/mvp chains are sole viewer authority); every finish/variant success path kicks a
