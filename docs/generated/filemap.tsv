@@ -308,7 +308,7 @@ autotest_home/qkey	2048		0	autotest_home
 autotest_rcon.py	2696	.py	79	<root>
 autotest_results/SUMMARY.tsv	515	.tsv	0	autotest_results
 autotest_results/run001_SETUP-FAIL.log	314796	.log	0	autotest_results
-build.ps1	14633	.ps1	250	<root>
+build.ps1	14976	.ps1	254	<root>
 campaign_audit.tsv	53966	.tsv	0	<root>
 campaign_audit_prevrun_20260624_185016.tsv	34752	.tsv	0	<root>
 command.ln	512	.ln	0	<root>
@@ -339,7 +339,7 @@ docs/33-inventory-build-deploy.md	11569	.md	205	docs
 docs/90-folklore.md	16996	.md	179	docs
 docs/BUGLOG_INDEX.md	2705	.md	47	docs
 docs/CUT_CONTENT.md	20431	.md	318	docs
-docs/DECISIONS.md	37477	.md	536	docs
+docs/DECISIONS.md	37942	.md	541	docs
 docs/ENGINE.md	26462	.md	322	docs
 docs/FEATURES.md	88656	.md	1164	docs
 docs/HISTORY.md	29926	.md	249	docs
@@ -454,7 +454,7 @@ docs/tools/docs.ps1	1526	.ps1	49	docs
 docs/tools/gen_armory_bg.py	11046	.py	254	docs
 docs/tools/gen_loadout.py	16810	.py	356	docs
 docs/tools/gen_public_pages.py	21733	.py	540	docs
-docs/tools/gen_service_record.py	63311	.py	978	docs
+docs/tools/gen_service_record.py	64057	.py	989	docs
 docs/tools/gen_skins.py	12997	.py	285	docs
 docs/tools/gen_weapon_skins.py	8538	.py	189	docs
 docs/tools/hudslots.py	4069	.py	98	docs
@@ -463,6 +463,7 @@ docs/tools/loadout_weapons.tsv	15392	.tsv	0	docs
 docs/tools/quotecheck.py	2833	.py	79	docs
 docs/tools/resolve_basetex.py	5017	.py	135	docs
 docs/tools/scrlint.py	3338	.py	82	docs
+docs/tools/ui_wiring_audit.py	6050	.py	133	docs
 docs/tools/unlock_audit.py	5122	.py	107	docs
 dog_crash.txt	10160	.txt	133	<root>
 dragon-studio-thudding-heartbeat-372487.mp3	259134	.mp3	0	<root>
@@ -1465,7 +1466,7 @@ hzm-mohaa-coop-mod/coop_mod/cfg/objdiag.cfg	490	.cfg	11	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/posetest.cfg	659	.cfg	11	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/wallgun.cfg	2304	.cfg	49	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/wallgun_off.cfg	936	.cfg	27	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/challenges.scr	237769	.scr	3797	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/challenges.scr	238526	.scr	3808	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/collectible.scr	22012	.scr	443	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/coop_placements.scr	32871	.scr	1021	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/coop_selftest.scr	13524	.scr	320	hzm-mohaa-coop-mod
@@ -1498,6 +1499,7 @@ hzm-mohaa-coop-mod/coop_mod/flmusic.scr	9561	.scr	200	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/fog/e2l2.dat	36	.dat	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/fog/m1l3c.dat	36	.dat	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/fogmode.scr	24013	.scr	473	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/gen_sr_stamp.scr	163	.scr	5	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/gurgle.scr	7280	.scr	140	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/helmet.scr	112111	.scr	1746	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/helmtest.scr	3758	.scr	96	hzm-mohaa-coop-mod
@@ -10202,7 +10204,7 @@ hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	542436872	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	906188958	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23409449	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	23410004	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm_coop_framework_guide.md	27594	.md	382	<root>
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -13026,7 +13028,7 @@ relnotes_1.2.1.md	1025	.md	15	<root>
 resume_publish.ps1	8738	.ps1	157	<root>
 rollout_implementation_log.md	13772	.md	194	<root>
 scratchpad/rcon.py	926	.py	27	scratchpad
-server_home/boot_m1l1.log	216712	.log	0	server_home
+server_home/boot_m1l1.log	216791	.log	0	server_home
 server_home/boot_m3l2.log	194081	.log	0	server_home
 server_home/boot_m3l3.log	198879	.log	0	server_home
 server_home/boot_t2l2.log	172217	.log	0	server_home
@@ -13056,7 +13058,7 @@ server_home/maintt/prev/qconsole-20260815-112103.log	282324	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-112454.log	317859	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-113246.log	320900	.log	0	server_home
 server_home/maintt/prev/qconsole-20260815-114100.log	292931	.log	0	server_home
-server_home/maintt/qconsole.log	216712	.log	0	server_home
+server_home/maintt/qconsole.log	216791	.log	0	server_home
 server_home/maintt/qconsole.log.pre_e3l4	302778	.pre_e3l4	0	server_home
 server_home_probe/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home_probe
 server_home_probe/maintt/autoexec.cfg	89444	.cfg	1202	server_home_probe

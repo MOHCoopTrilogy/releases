@@ -94,6 +94,13 @@ All deployed, boot-verified 0 script errors, committed. Root causes in buglog 19
   mop-up grace, then the reveal + conversation fire directly - no more BSP-trigger or
   stuck-straggler stalls. Verify: kill the halftrack, Ramsey chats within ~15s worst case.
 
+- **Armory apply loop, take 3 (bugs 1927-1928)**: the regive now REBUILDS the resolved kit
+  first (it was faithfully re-issuing the stale list - toast said applied, hands unchanged); the
+  120s gate is deleted (no map ever set its supposed beneficiary flag; m2l2a now sets
+  coop_loadoutLocked properly); finish clicks now show their finish in the 3D viewer (the 36
+  fin cfgs never fired the armed previews). VERIFY: mid-mission, change a weapon AND a finish,
+  hit nothing - both should be in your hands in ~2s; gold shows on the viewer soldier.
+  Housekeeping: fin_/mvp_ cfg families are one-off-generated - fold into gen_loadout.
 - **Armory apply loop, fully closed**: server no longer touches menu visuals (`exec` APPENDS -
   client finp/mvp chains are sole viewer authority); every finish/variant success path kicks a
   debounced regive marked COSMETIC so the 120s mid-mission gate lets it through. "Equipped"

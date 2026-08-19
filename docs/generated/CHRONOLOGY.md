@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `19322f0 2026-08-18 docs: positional-archived-state trap (bug-1926); SR generator emits cid map + generation stamp` |
-| commits | 137 |
+| HEAD | `4c6842e 2026-08-18 guard rails: ui_wiring_audit gate (exec/vstr/bus closure), SR deployed-truth stamp emission; DECISIONS updated` |
+| commits | 138 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 83 |
+| 2026-08 | 84 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (137)
+### Commits since 2026-01-01 (138)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `4c6842e` | 2026-08-18 | joncurry94-tech | guard rails: ui_wiring_audit gate (exec/vstr/bus closure), SR deployed-truth stamp emission; DECISIONS updated |
 | `19322f0` | 2026-08-18 | joncurry94-tech | docs: positional-archived-state trap (bug-1926); SR generator emits cid map + generation stamp |
 | `c471e8f` | 2026-08-18 | joncurry94-tech | build: gen_service_record runs on every build - SR freshness is structural, not remembered |
 | `9c440c9` | 2026-08-18 | joncurry94-tech | docs: SR hover curation gate in check_challenges; 25 reward names curated from in-game tables |
@@ -174,8 +175,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `697ca23 2026-08-18 pins: server import accepts cids (legacy index fallback); dead repaint stub removed; SR pages + cid map regenerated` |
-| commits | 1,488 |
+| HEAD | `03c43d8 2026-08-18 self-test: boot-time deployed-truth check - live challenge count vs the stamp baked with the SR pages` |
+| commits | 1,489 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -183,7 +184,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 95 |
+| 2026-08 | 96 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -223,10 +224,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (139)
+### Commits since 2026-01-01 (140)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `03c43d8` | 2026-08-18 | joncurry94 | self-test: boot-time deployed-truth check - live challenge count vs the stamp baked with the SR pages |
 | `697ca23` | 2026-08-18 | joncurry94 | pins: server import accepts cids (legacy index fallback); dead repaint stub removed; SR pages + cid map regenerated |
 | `d1a3140` | 2026-08-18 | joncurry94 | service record: pages regenerated (were stale since the panzerfaust removal), 25 hover names curated, bp ladder retuned |
 | `89197d0` | 2026-08-18 | joncurry94 | blueprints: every 5th find flips a coin on a random unlock of any type |

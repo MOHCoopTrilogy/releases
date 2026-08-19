@@ -4,19 +4,19 @@
     "buglog_entries": 1282,
     "engine_cvar_dynamic_names": 31,
     "engine_cvar_registrations": 2121,
-    "workspace_files": 38482
+    "workspace_files": 38484
   },
   "files": {
-    "CHRONOLOGY.md": "df2ca05ff3383cd1576e64856d420dd6b180c6fa93c87e59af4fc01c0b350195",
-    "CVARS_COOP.md": "8a37d590c34ba4f0d071c54f59a4b0ac9edb22c57c7fd3ba816c52ec953dcd84",
+    "CHRONOLOGY.md": "49440eb7b13c7ce40847f4817599788bc8d6445612713d85a5d425a8343cba22",
+    "CVARS_COOP.md": "7e46b8621e67cd2288ba49199e814d500dee8bb3ffe3311f936bae1cc139eed6",
     "CVARS_ENGINE.md": "f90977856ac0c1efb042f849aea20413d29a1fd0e1e69227b08b927dec9f5a1c",
-    "FILEMAP.md": "c551daead56ac1eb4fbac9898b588d473afb11d1f6546d61c2a086c0b7fe9592",
+    "FILEMAP.md": "fc7a8fba4efa99bdd9c9e44280b55cf1ae451ee10ce586809935f0aaf00667ee",
     "FIX_INDEX.md": "4473c2693d0550521c0ba803d07e1c1aaf031bf2efd0eae446371e9773679ea9",
     "FIX_LEDGER.md": "e71982ac69e2b25ffd23c8720bd8db39b48535f6a924a395c55f9fceab63f99e",
-    "README.md": "e4245e9d2bfeaf63b8503d9c9452cc0898218c71549f38404f6e9d0e53b3d7ef",
-    "SUBSYSTEMS.md": "faa947131493d00b707cfe10f98c47e42c04fae915b6008e6b6e8689dab76c83",
-    "filemap.tsv": "1e0f2cfe31a540ca0c030b577b489141ee7ffe79de8fd48facf5b67238bcbd4f"
+    "README.md": "7b5a252cc5a7cf8e66636424e21f2f5e26388527330f2788e867f78fd04eaf7b",
+    "SUBSYSTEMS.md": "b8f1eda2ef46ee018c38fdfa75e02f8de5fbb8cac80d611ed87db03a228fb2b8",
+    "filemap.tsv": "a85c0beb0194803a980f8a143e1eb6f872b41a77cd633c31844029e8ca8bb5c4"
   },
-  "inputs_fingerprint": "0511dd8d560290c57d00e335bc53105985d4980482615fdca93dcda3a76ecdb6",
+  "inputs_fingerprint": "c40149263709fd6607a54614979a4903c01db0fe1cfb34f23d91349bfac3d29c",
   "tool_version": "1.0.0"
 }

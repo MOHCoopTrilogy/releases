@@ -30,12 +30,12 @@ Union of four sources, all swept fresh:
 ## Runtime-built names
 These literals are concatenated with a variable at the call site (`getcvar("coop_chal_" + local.id)`), so the real cvar name only exists at runtime. They are **not** cvars and are excluded from the table below - listed here so the omission is visible rather than silent.
 
-- `coop_chal_*` — `coop_mod/challenges.scr:771` (+1 more)
+- `coop_chal_*` — `coop_mod/challenges.scr:782` (+1 more)
 - `coop_lo*` — `coop_mod/loadoutpick.scr:372`
 - `coop_medals_*` — `coop_mod/medals.scr:75` (+1 more)
-- `coop_pend_*` — `coop_mod/challenges.scr:794` (+2 more)
-- `coop_pins_*` — `coop_mod/challenges.scr:3293` (+1 more)
-- `coop_unlocks_*` — `coop_mod/challenges.scr:780` (+1 more)
+- `coop_pend_*` — `coop_mod/challenges.scr:805` (+2 more)
+- `coop_pins_*` — `coop_mod/challenges.scr:3304` (+1 more)
+- `coop_unlocks_*` — `coop_mod/challenges.scr:791` (+1 more)
 - `coop_xp_*` — `coop_mod/xp.scr:348` (+2 more)
 
 ## Seeded nowhere, but a script reads it
@@ -324,9 +324,9 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_campaign` |  |  |  | other `1` @ `coop_mod/cfg/campaign_start.cfg:19`<br>other `0` @ `coop_mod/start_server.cfg:36` | `global/missioncomplete.scr:39` |  |
 | `coop_campaignNext` |  |  |  |  | `coop_mod/lobby.scr:697` (+2) |  |
 | `coop_censusdone` |  |  |  |  | `coop_mod/covwalk.scr:131` (+1) |  |
-| `coop_chal_pin` |  |  |  |  | `coop_mod/challenges.scr:3134` (+2) |  |
+| `coop_chal_pin` |  |  |  |  | `coop_mod/challenges.scr:3145` (+2) |  |
 | `coop_challenges` |  |  |  |  | `coop_mod/challenges.scr:40` (+2) |  |
-| `coop_chalPopup` |  |  |  | DEFAULT `1` @ `coop_defaults.cfg:22` | `coop_mod/challenges.scr:1899` | `ui/coop_settings.urc` |
+| `coop_chalPopup` |  |  |  | DEFAULT `1` @ `coop_defaults.cfg:22` | `coop_mod/challenges.scr:1910` | `ui/coop_settings.urc` |
 | `coop_chDebug` |  |  |  |  | `maps/M3L3.scr:6740` |  |
 | `coop_check` |  |  |  | other `0` @ `coop_mod/server.cfg:35`<br>other `0` @ `coop_mod/start_server.cfg:35` |  |  |
 | `coop_chHold` |  |  |  |  | `maps/M3L3.scr:6722` |  |
