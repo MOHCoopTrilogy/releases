@@ -1391,7 +1391,7 @@ hzm-mohaa-coop-mod/_research/stealth_native_plan.md	14387	.md	261	hzm-mohaa-coop
 hzm-mohaa-coop-mod/_research/sweep_pass1_monitor.txt	112	.txt	2	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_research/waittill_risk.md	1473	.md	35	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/aim.scr	4360	.scr	177	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/anim/attack.scr	56471	.scr	2012	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/anim/attack.scr	57066	.scr	2019	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/cornerleft.scr	9937	.scr	291	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/cornerright.scr	9987	.scr	294	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/anim/disguise_accept.scr	3093	.scr	71	hzm-mohaa-coop-mod
@@ -1417,11 +1417,11 @@ hzm-mohaa-coop-mod/autoexec.cfg	90448	.cfg	1229	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/cmpatch/e1l2.txt	472	.txt	7	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coolness 2.jpg	149265	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop.cfg	122	.cfg	3	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_defaults.cfg	22286	.cfg	363	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_defaults.cfg	22345	.cfg	365	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/admin.scr	3507	.scr	87	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/ads.scr	1722	.scr	39	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/ads_dbg.scr	518	.scr	11	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/aibehav.scr	7568	.scr	165	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/aibehav.scr	7596	.scr	166	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/aicombat.scr	5119	.scr	119	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/aihandler.scr	106292	.scr	1868	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/aimaneuver.scr	14608	.scr	261	hzm-mohaa-coop-mod
@@ -1546,7 +1546,7 @@ hzm-mohaa-coop-mod/coop_mod/morale.scr	4758	.scr	94	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objective_drop.scr	7236	.scr	165	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objective_positions.scr	3691	.scr	89	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/objectives.scr	30583	.scr	693	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/officer.scr	221046	.scr	4922	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/officer.scr	221218	.scr	4924	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/officer_positions.scr	35036	.scr	624	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/paradrop.scr	33463	.scr	774	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/player.scr	94253	.scr	1834	hzm-mohaa-coop-mod
@@ -1568,6 +1568,7 @@ hzm-mohaa-coop-mod/coop_mod/spawnlocations.scr	175077	.scr	3617	hzm-mohaa-coop-m
 hzm-mohaa-coop-mod/coop_mod/start_server.cfg	3833	.cfg	59	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/strings.scr	34119	.scr	1301	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/subsink.scr	27745	.scr	618	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/surrender.scr	2951	.scr	70	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/takecover.scr	2460	.scr	47	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/thirdperson.scr	2011	.scr	52	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/tinnitus.scr	9315	.scr	202	hzm-mohaa-coop-mod
@@ -1693,7 +1694,7 @@ hzm-mohaa-coop-mod/global/landmine_sp.scr	9809	.scr	296	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/loadout.scr	6305	.scr	235	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/localization_coop.txt	1248	.txt	27	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/mg42.scr	6914	.scr	232	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/global/mg42_active.scr	19696	.scr	547	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/global/mg42_active.scr	19809	.scr	547	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/mg42init.scr	5101	.scr	200	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/minefield.scr	5518	.scr	142	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/missioncomplete.scr	4348	.scr	94	hzm-mohaa-coop-mod
@@ -1716,7 +1717,7 @@ hzm-mohaa-coop-mod/global/squad.scr	8043	.scr	282	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/stickybomb.scr	5589	.scr	178	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/turret.scr	22007	.scr	769	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/vehicles_thinkers.scr	65526	.scr	1979	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/global/weapon.scr	9022	.scr	352	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/global/weapon.scr	9809	.scr	364	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/weather.scr	16737	.scr	622	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/welder.scr	2547	.scr	110	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/wrenching.scr	3212	.scr	117	hzm-mohaa-coop-mod
@@ -1729,7 +1730,7 @@ hzm-mohaa-coop-mod/hzm_legal.txt	8961	.txt	239	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maintt/maptest_autoboot.cfg	117	.cfg	5	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/M1L3a.scr	30163	.scr	890	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/M1L3c.scr	33866	.scr	1138	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/M3L3.scr	385137	.scr	9003	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/M3L3.scr	387257	.scr	9032	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/M5L2A.scr	34587	.scr	850	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/M6L1b.scr	6395	.scr	166	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/briefing/briefing1.scr	6376	.scr	193	hzm-mohaa-coop-mod
@@ -5293,7 +5294,8 @@ hzm-mohaa-coop-mod/sound/weapons/fire/c96_snd_fire1.wav	105644	.wav	0	hzm-mohaa-
 hzm-mohaa-coop-mod/sound/weapons/fire/c96_snd_fire2.wav	105644	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/weapons/fire/carcano_fire5.wav	153678	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/weapons/fire/carcano_fire6.wav	153678	.wav	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/sound/weapons/fire/colt45fire1.wav	105678	.wav	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/sound/weapons/fire/colt45fire1.wav	105644	.wav	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/sound/weapons/fire/colt45fire1.wav.pre_thump_nobuild	105678	.pre_thump_nobuild	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/weapons/fire/dp28_snd_fire1.wav	96044	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/weapons/fire/dp28_snd_fire2.wav	96044	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/weapons/fire/dtm_fire1.wav	124878	.wav	0	hzm-mohaa-coop-mod
@@ -12412,7 +12414,7 @@ openmohaa-hzm/code/fgame/object.cpp	20067	.cpp	625	openmohaa-hzm
 openmohaa-hzm/code/fgame/object.h	3328	.h	111	openmohaa-hzm
 openmohaa-hzm/code/fgame/parm.cpp	3461	.cpp	164	openmohaa-hzm
 openmohaa-hzm/code/fgame/parm.h	1742	.h	59	openmohaa-hzm
-openmohaa-hzm/code/fgame/player.cpp	478510	.cpp	15332	openmohaa-hzm
+openmohaa-hzm/code/fgame/player.cpp	482829	.cpp	15421	openmohaa-hzm
 openmohaa-hzm/code/fgame/player.cpp.bak_botinput	436393	.bak_botinput	0	openmohaa-hzm
 openmohaa-hzm/code/fgame/player.h	53370	.h	1438	openmohaa-hzm
 openmohaa-hzm/code/fgame/player.h.bak_botinput	47697	.bak_botinput	0	openmohaa-hzm
@@ -12482,8 +12484,8 @@ openmohaa-hzm/code/fgame/weapon.cpp	146940	.cpp	5157	openmohaa-hzm
 openmohaa-hzm/code/fgame/weapon.h	26418	.h	637	openmohaa-hzm
 openmohaa-hzm/code/fgame/weapturret.cpp	76864	.cpp	2642	openmohaa-hzm
 openmohaa-hzm/code/fgame/weapturret.h	10218	.h	264	openmohaa-hzm
-openmohaa-hzm/code/fgame/weaputils.cpp	113084	.cpp	3638	openmohaa-hzm
-openmohaa-hzm/code/fgame/weaputils.h	9471	.h	371	openmohaa-hzm
+openmohaa-hzm/code/fgame/weaputils.cpp	113139	.cpp	3640	openmohaa-hzm
+openmohaa-hzm/code/fgame/weaputils.h	9566	.h	372	openmohaa-hzm
 openmohaa-hzm/code/fgame/windows.cpp	4755	.cpp	189	openmohaa-hzm
 openmohaa-hzm/code/fgame/windows.h	1468	.h	53	openmohaa-hzm
 openmohaa-hzm/code/fgame/worldspawn.cpp	34662	.cpp	1331	openmohaa-hzm
@@ -13250,7 +13252,7 @@ openmohaa-hzm/code/qcommon/str.h	14296	.h	677	openmohaa-hzm
 openmohaa-hzm/code/qcommon/surfaceflags.h	6146	.h	121	openmohaa-hzm
 openmohaa-hzm/code/qcommon/tests/test_lz77.cpp	2221	.cpp	80	openmohaa-hzm
 openmohaa-hzm/code/qcommon/tiki.h	6565	.h	199	openmohaa-hzm
-openmohaa-hzm/code/qcommon/tiki_main.cpp	14117	.cpp	408	openmohaa-hzm
+openmohaa-hzm/code/qcommon/tiki_main.cpp	14402	.cpp	411	openmohaa-hzm
 openmohaa-hzm/code/qcommon/tiki_main.h	1720	.h	47	openmohaa-hzm
 openmohaa-hzm/code/qcommon/tiki_script.cpp	25607	.cpp	1301	openmohaa-hzm
 openmohaa-hzm/code/qcommon/tiki_script.h	4679	.h	152	openmohaa-hzm

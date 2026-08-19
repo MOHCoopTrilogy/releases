@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `64d0c86 2026-08-19 docs: class-split trap; bugs 1948-1950 recorded` |
-| commits | 155 |
+| HEAD | `1f203b3 2026-08-19 docs: bugs 1951-1953 logged` |
+| commits | 156 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 101 |
+| 2026-08 | 102 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (155)
+### Commits since 2026-01-01 (156)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `1f203b3` | 2026-08-19 | joncurry94-tech | docs: bugs 1951-1953 logged |
 | `64d0c86` | 2026-08-19 | joncurry94-tech | docs: class-split trap; bugs 1948-1950 recorded |
 | `1fd6005` | 2026-08-19 | joncurry94-tech | docs: Leon wave + licensing decision recorded |
 | `3c74c45` | 2026-08-19 | joncurry94-tech | docs: MV wave 3 recorded |
@@ -192,8 +193,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `202b57d 2026-08-19 fix: tinnitus 10s package + variant scene-guard + deeper ducks (bugs 1948-1949 script side)` |
-| commits | 1,509 |
+| HEAD | `a166a94 2026-08-19 feat+fix: live-playtest wave 2 - surrender conversion, church-clear re-gate, 10s prone dwell, colt thump A, pcMult cast, weapon.scr variant normalization (bugs 1951-1952)` |
+| commits | 1,510 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -201,7 +202,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 116 |
+| 2026-08 | 117 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -241,10 +242,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (160)
+### Commits since 2026-01-01 (161)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `a166a94` | 2026-08-19 | joncurry94 | feat+fix: live-playtest wave 2 - surrender conversion, church-clear re-gate, 10s prone dwell, colt thump A, pcMult cast, weapon.s… |
 | `202b57d` | 2026-08-19 | joncurry94 | fix: tinnitus 10s package + variant scene-guard + deeper ducks (bugs 1948-1949 script side) |
 | `43377a7` | 2026-08-19 | joncurry94 | feat: Leon wave shipped - 21 credited variants (Team Tactics 16-gun pack + 5 singles), textures 2x |
 | `3ee3e6b` | 2026-08-19 | joncurry94 | feat: wave-3 variant textures upscaled 2x (39/39 clean); tommy28 credited to sT@t!c |
@@ -411,8 +413,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `99d9392f 2026-08-19 fix: actor getter returns BASE name (bug-1948); vehicle AI gunner tuning trio (bug-1950); reload camera sway` |
-| commits | 5,005 |
+| HEAD | `64bd613d 2026-08-19 feat: grenade kick + vault mechanic (player Postthink; coop_grenadeKick/coop_vault)` |
+| commits | 5,007 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -420,7 +422,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 25 |
+| 2026-08 | 27 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -481,10 +483,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (40)
+### Commits since 2026-01-01 (42)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `64bd613d` | 2026-08-19 | joncurry94 | feat: grenade kick + vault mechanic (player Postthink; coop_grenadeKick/coop_vault) |
+| `389c79c7` | 2026-08-19 | joncurry94 | fix: TIKI_Error always prints (bug-1953 tripwire; Message/Warning stay dev-gated) |
 | `99d9392f` | 2026-08-19 | joncurry94 | fix: actor getter returns BASE name (bug-1948); vehicle AI gunner tuning trio (bug-1950); reload camera sway |
 | `2922a724` | 2026-08-19 | joncurry94 | fix: vehicle-mounted MGs run the player heat cycle (bug-1946) |
 | `63b1ed78` | 2026-08-19 | joncurry94 | fix: actor weapon getter returns held weapon name; shellshock sway moved to final view path (bugs 1942-1943) |

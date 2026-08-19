@@ -8,8 +8,8 @@
 # Coop subsystem inventory (generated)
 | metric | value |
 |---|---:|
-| `coop_mod/*.scr` files | 116 |
-| total lines in `coop_mod/` | 73,061 |
+| `coop_mod/*.scr` files | 117 |
+| total lines in `coop_mod/` | 73,134 |
 | top-level `maps/*.scr` | 121 |
 | of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
 
@@ -85,7 +85,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `admin.scr` | 87 | 4 | [204] chrissstrahl - All Admin Menu Commands would go in here, see developer.scr for examples |
 | `ads.scr` | 39 | 0 | HZM coop - AIM DOWN SIGHTS support (per-player), dedicated ADS button (RMB by default). |
 | `ads_dbg.scr` | 11 | 1 | HZM coop - ADS diagnostic. Called from the AIM state's entrycommands in |
-| `aibehav.scr` | 165 | 2 | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
+| `aibehav.scr` | 166 | 2 | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
 | `aicombat.scr` | 119 | 1 | aicombat.scr - HZM coop AUTOMATED COMBAT DRIVER (2026-07-23) |
 | `aihandler.scr` | 1,868 | 26 | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
 | `aimaneuver.scr` | 261 | 1 | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
@@ -170,7 +170,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `objective_drop.scr` | 165 | 1 | Objective Bonus Drop |
 | `objective_positions.scr` | 89 | 1 | objective_positions.scr |
 | `objectives.scr` | 693 | 7 | Coop Side Objectives (optional / secondary) |
-| `officer.scr` | 4,922 | 27 | Officer Boss + Radio Station |
+| `officer.scr` | 4,924 | 27 | Officer Boss + Radio Station |
 | `officer_positions.scr` | 624 | 1 | coop_officer_positions.scr |
 | `paradrop.scr` | 774 | 1 | Allied Paradrop System |
 | `player.scr` | 1,834 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |
@@ -186,6 +186,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `spawnlocations.scr` | 3,617 | 181 | [200] chrissstrahl - fixed using unfiltred mapname (using now level.coop_mapname) |
 | `strings.scr` | 1,301 | 6 | [200] Smithy - this is taken from xnull. Not mine, but is used by many. Will be useful to us. |
 | `subsink.scr` | 618 | 4 | HZM coop - STAGED U-BOAT DEATH |
+| `surrender.scr` | 70 | 0 | HZM coop - SURRENDER CONVERSION [user 2026-08-19]: "when a german surrenders can you |
 | `takecover.scr` | 47 | 0 | [214] HZM coop - TAKE COVER v1 (player cover system). |
 | `thirdperson.scr` | 52 | 0 | HZM coop [237] - the 3rd-person bind now CYCLES three view modes (user): |
 | `tinnitus.scr` | 202 | 1 | HZM coop - TINNITUS / MUFFLED HEARING (per-player). |

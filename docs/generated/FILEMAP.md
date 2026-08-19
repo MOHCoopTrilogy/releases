@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 40,084 |
+| files in the workspace | 40,086 |
 | bytes | 42.0 GB |
-| files in project scope (indexed per-file) | 14,713 |
-| source files (per-file rows with line counts) | 6,096 |
+| files in project scope (indexed per-file) | 14,715 |
+| source files (per-file rows with line counts) | 6,097 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -24,7 +24,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 11,209 | 7146.1 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 11,211 | 7146.2 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
@@ -77,7 +77,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 |---|---:|
 | `.wav` | 14,228 |
 | `.dds` | 3,557 |
-| `.scr` | 2,512 |
+| `.scr` | 2,513 |
 | `.tga` | 2,400 |
 | `.jpg` | 2,214 |
 | `.cfg` | 2,120 |
@@ -238,7 +238,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/_research/release_drafts` | 6 | 0.04 MB | .md×6 |
 | `hzm-mohaa-coop-mod/anim` | 23 | 0.16 MB | .scr×23 |
 | `hzm-mohaa-coop-mod/cmpatch` | 1 | 0.00 MB | .txt×1 |
-| `hzm-mohaa-coop-mod/coop_mod` | 119 | 3.73 MB | .scr×114, .st×3, .cfg×2 |
+| `hzm-mohaa-coop-mod/coop_mod` | 120 | 3.74 MB | .scr×115, .st×3, .cfg×2 |
 | `hzm-mohaa-coop-mod/coop_mod/alias` | 2 | 0.03 MB | .cfg×1, .scr×1 |
 | `hzm-mohaa-coop-mod/coop_mod/bp` | 5 | 0.03 MB | .dat×5 |
 | `hzm-mohaa-coop-mod/coop_mod/cache` | 1 | 0.00 MB | .scr×1 |
@@ -424,7 +424,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/sound/items` | 7 | 0.11 MB | .wav×7 |
 | `hzm-mohaa-coop-mod/sound/mechanics` | 1 | 0.23 MB | .wav×1 |
 | `hzm-mohaa-coop-mod/sound/music` | 90 | 271.40 MB | .mp3×89, .bak×1 |
-| `hzm-mohaa-coop-mod/sound/weapons/fire` | 65 | 11.24 MB | .wav×65 |
+| `hzm-mohaa-coop-mod/sound/weapons/fire` | 66 | 11.34 MB | .wav×65, .pre_thump_nobuild×1 |
 | `hzm-mohaa-coop-mod/sound/weapons/foley` | 11 | 0.60 MB | .wav×11 |
 | `hzm-mohaa-coop-mod/sound/weapons/impact` | 54 | 3.36 MB | .wav×54 |
 | `hzm-mohaa-coop-mod/sound/weapons/zings` | 21 | 1.36 MB | .wav×21 |
@@ -709,7 +709,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/code/client` | 87 | 1.51 MB | .cpp×37, .h×33, .c×16, .txt×1 |
 | `openmohaa-hzm/code/client/new` | 3 | 0.02 MB | .h×2, .cpp×1 |
 | `openmohaa-hzm/code/curl` | 2 | 0.00 MB | .txt×1, .h×1 |
-| `openmohaa-hzm/code/fgame` | 283 | 5.92 MB | .cpp×157, .h×122, .bak_botinput×2, .txt×1 |
+| `openmohaa-hzm/code/fgame` | 283 | 5.93 MB | .cpp×157, .h×122, .bak_botinput×2, .txt×1 |
 | `openmohaa-hzm/code/gamespy` | 23 | 0.21 MB | .h×11, .c×10, .txt×2 |
 | `openmohaa-hzm/code/gamespy/Chat` | 15 | 0.38 MB | .h×8, .c×6, .txt×1 |
 | `openmohaa-hzm/code/gamespy/Chat/chatc` | 1 | 0.02 MB | .c×1 |
@@ -1199,7 +1199,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `autoexec.cfg` | 1,229 | 88.3 KB | HZM Extended Coop Mod |
 | `coop.cfg` | 3 | 0.1 KB | DEVELOPER CONFIG FILE |
-| `coop_defaults.cfg` | 363 | 21.8 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
+| `coop_defaults.cfg` | 365 | 21.8 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
 | `net_cl.cfg` | 18 | 1.2 KB | HZM Coop recommended CLIENT settings. |
 | `net_sv.cfg` | 21 | 1.2 KB | HZM Coop recommended SERVER settings. |
 
@@ -1270,7 +1270,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | file | lines | size | summary |
 |---|---:|---:|---|
 | `aim.scr` | 177 | 4.3 KB | Aim script - causes the character to aim its current weapon. Right now it requires |
-| `attack.scr` | 2,012 | 55.1 KB | Attack |
+| `attack.scr` | 2,019 | 55.7 KB | Attack |
 | `cornerleft.scr` | 291 | 9.7 KB | CornerLeft.scr |
 | `cornerright.scr` | 294 | 9.8 KB | Cornerright.scr |
 | `disguise_accept.scr` | 71 | 3.0 KB | disguise_accept.scr |
@@ -1293,14 +1293,14 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `runto_inopen.scr` | 122 | 3.9 KB | HZM coop [2026-08-06] extracted from maintt/pak1.pk3 (bug-1490) to add a dog branch. Retail's own |
 | `shoot.scr` | 262 | 6.7 KB | Shoot |
 
-### `hzm-mohaa-coop-mod/coop_mod/` — 119 source files
+### `hzm-mohaa-coop-mod/coop_mod/` — 120 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
 | `admin.scr` | 87 | 3.4 KB | [204] chrissstrahl - All Admin Menu Commands would go in here, see developer.scr for examples |
 | `ads.scr` | 39 | 1.7 KB | HZM coop - AIM DOWN SIGHTS support (per-player), dedicated ADS button (RMB by default). |
 | `ads_dbg.scr` | 11 | 0.5 KB | HZM coop - ADS diagnostic. Called from the AIM state's entrycommands in |
-| `aibehav.scr` | 165 | 7.4 KB | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
+| `aibehav.scr` | 166 | 7.4 KB | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
 | `aicombat.scr` | 119 | 5.0 KB | aicombat.scr - HZM coop AUTOMATED COMBAT DRIVER (2026-07-23) |
 | `aihandler.scr` | 1,868 | 103.8 KB | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
 | `aimaneuver.scr` | 261 | 14.3 KB | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
@@ -1383,7 +1383,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `objective_drop.scr` | 165 | 7.1 KB | Objective Bonus Drop |
 | `objective_positions.scr` | 89 | 3.6 KB | objective_positions.scr |
 | `objectives.scr` | 693 | 29.9 KB | Coop Side Objectives (optional / secondary) |
-| `officer.scr` | 4,922 | 215.9 KB | Officer Boss + Radio Station |
+| `officer.scr` | 4,924 | 216.0 KB | Officer Boss + Radio Station |
 | `officer_positions.scr` | 624 | 34.2 KB | coop_officer_positions.scr |
 | `paradrop.scr` | 774 | 32.7 KB | Allied Paradrop System |
 | `player.scr` | 1,834 | 92.0 KB | started by chrissstrahl on 2020.10.16 ([202]) |
@@ -1404,6 +1404,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `start_server.cfg` | 59 | 3.7 KB | used cfg to start server, executed from within game menu coop_start.urc |
 | `strings.scr` | 1,301 | 33.3 KB | [200] Smithy - this is taken from xnull. Not mine, but is used by many. Will be useful to us. |
 | `subsink.scr` | 618 | 27.1 KB | HZM coop - STAGED U-BOAT DEATH |
+| `surrender.scr` | 70 | 2.9 KB | HZM coop - SURRENDER CONVERSION [user 2026-08-19]: "when a german surrenders can you |
 | `takecover.scr` | 47 | 2.4 KB | [214] HZM coop - TAKE COVER v1 (player cover system). |
 | `thirdperson.scr` | 52 | 2.0 KB | HZM coop [237] - the 3rd-person bind now CYCLES three view modes (user): |
 | `tinnitus.scr` | 202 | 9.1 KB | HZM coop - TINNITUS / MUFFLED HEARING (per-player). |
@@ -1534,7 +1535,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `landmine_sp.scr` | 296 | 9.6 KB | chrisstrahl modified for coop on 2020.01.13s |
 | `loadout.scr` | 235 | 6.2 KB | chrissstrahl - modified for coop |
 | `mg42.scr` | 232 | 6.8 KB | dont forget to set "playerusable" "0" in the editor (if the player cant use the turret) or |
-| `mg42_active.scr` | 547 | 19.2 KB | MoH: Allied Assault Script File |
+| `mg42_active.scr` | 547 | 19.3 KB | MoH: Allied Assault Script File |
 | `mg42init.scr` | 200 | 5.0 KB | AttachGuyToMG42 |
 | `minefield.scr` | 142 | 5.4 KB | minefield script |
 | `missioncomplete.scr` | 94 | 4.2 KB | chrissstrahl - modified original file for loading next map |
@@ -1557,7 +1558,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `stickybomb.scr` | 178 | 5.5 KB | [user 08-02] SHIPPED BY THE COOP MOD ON PURPOSE - do not delete. |
 | `turret.scr` | 769 | 21.5 KB | [204] chrissstrahl |
 | `vehicles_thinkers.scr` | 1,979 | 64.0 KB | chrissstrahl - this shitt is here to correct the false offset that is happening in mp after first use or if n… |
-| `weapon.scr` | 352 | 8.8 KB | [200] Smithy - this script is called by the engine whenever a weapon is given to an actor |
+| `weapon.scr` | 364 | 9.6 KB | [200] Smithy - this script is called by the engine whenever a weapon is given to an actor |
 | `weather.scr` | 622 | 16.3 KB | local.weatherroof local.weatherwindow local.weatherin local.weatherout local.weatherflash local.weathertreewi… |
 | `welder.scr` | 110 | 2.5 KB |  |
 | `wrenching.scr` | 117 | 3.1 KB | chrissstrahl - make sure they don't get stuck in a loop |
@@ -1574,7 +1575,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `M1L3a.scr` | 890 | 29.5 KB | THE DESERT |
 | `M1L3c.scr` | 1,138 | 33.1 KB | THE SEA WALL |
-| `M3L3.scr` | 9,003 | 376.1 KB | LEVEL: M3L3 |
+| `M3L3.scr` | 9,032 | 378.2 KB | LEVEL: M3L3 |
 | `M5L2A.scr` | 850 | 33.8 KB | TANK DRIVE 1 |
 | `M6L1b.scr` | 166 | 6.2 KB | SNOWY FOREST2 |
 | `co_lobby1.scr` | 46 | 2.6 KB | LEVEL: co_lobby1.bsp (a copy of training.bsp) |
@@ -5772,7 +5773,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `object.h` | 111 | 3.2 KB | object.h: Object (used by common TIKIs) |
 | `parm.cpp` | 164 | 3.4 KB | parm.cpp : Event parameters |
 | `parm.h` | 59 | 1.7 KB | parm.h: Event parameters |
-| `player.cpp` | 15,332 | 467.3 KB | player.h: Class definition of the player. |
+| `player.cpp` | 15,421 | 471.5 KB | player.h: Class definition of the player. |
 | `player.h` | 1,438 | 52.1 KB | player.h: Class definition of the player. |
 | `player_animation.cpp` | 540 | 15.8 KB | player_animation.cpp: Animation utility functions |
 | `player_combat.cpp` | 205 | 6.8 KB | player_combat.cpp: Player combat system and combat utility functions |
@@ -5840,8 +5841,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `weapon.h` | 637 | 25.8 KB | weapon.h: Header file for Weapon class. The weapon class is the base class for |
 | `weapturret.cpp` | 2,642 | 75.1 KB | weapturret.cpp: MOH Turret. Usable by sentients and monsters. |
 | `weapturret.h` | 264 | 10.0 KB | weapturret.h: MOH Turret. Usable by sentients and monsters. |
-| `weaputils.cpp` | 3,638 | 110.4 KB | weaputils.cpp: General Weapon Utility Functions |
-| `weaputils.h` | 371 | 9.2 KB | weaputils.h: |
+| `weaputils.cpp` | 3,640 | 110.5 KB | weaputils.cpp: General Weapon Utility Functions |
+| `weaputils.h` | 372 | 9.3 KB | weaputils.h: |
 | `windows.cpp` | 189 | 4.6 KB | windows.cpp: Window class |
 | `windows.h` | 53 | 1.4 KB | windows.h: Window class |
 | `worldspawn.cpp` | 1,331 | 33.8 KB | world.cpp : Holds the target list, and general info (fog and such). |
@@ -6783,7 +6784,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `str.h` | 677 | 14.0 KB | str.cpp: Simple, DLL portable string class |
 | `surfaceflags.h` | 121 | 6.0 KB | This file must be identical in the quake and utils directories |
 | `tiki.h` | 199 | 6.4 KB |  |
-| `tiki_main.cpp` | 408 | 13.8 KB | tiki_skel.cpp : TIKI skeletor loader |
+| `tiki_main.cpp` | 411 | 14.1 KB | tiki_skel.cpp : TIKI skeletor loader |
 | `tiki_main.h` | 47 | 1.7 KB | tiki_main.h : TIKI main |
 | `tiki_script.cpp` | 1,301 | 25.0 KB | tiki_parse.cpp : TIKI Script |
 | `tiki_script.h` | 152 | 4.6 KB | tiki_script.h : TIKI script |

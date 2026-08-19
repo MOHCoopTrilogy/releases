@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1307** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1310** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 644 |
+| 2026-08 | 647 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1324,6 +1324,9 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1948` | 2026-08-19 | `openmohaa-hzm/code/fgame/actor.cpp` | - | ^~^~^ Reload default case for weapon Thompson - weapon type not supported (spamming, live playtest); AI reload/aim/attack anim switches defaulting fo… | Actor::EventGetWeapon strips the ' (' parenthetical before returning (variants read as their base gun to ALL script consumers). The armory/player sid… |
 | `bug-1949` | 2026-08-19 | `hzm-mohaa-coop-mod/coop_mod/aihandler.scr` | - | the airborne guy that is supposed to talk to ramsey just ran over without his rifle and didn't talk to ramsey, he has no weapon. Ramsey finished all… | coop_variantRoll now ends early when self.no_idle == 1 (the same scripted-scene guard aivoice uses). |
 | `bug-1950` | 2026-08-19 | `openmohaa-hzm/code/fgame/vehicleturret.cpp` | - | these stupid mg42s on the road are still deadly accurate, are they getting reset or something? (user, live m3l3 - after bug-1940 shipped) | De-static'd the trio (weapturret.h externs). VehicleTurretGun::GetMuzzlePosition applies the TurretGun scatter formula + spread bonus for actor gunne… |
+| `bug-1951` | 2026-08-19 | `hzm-mohaa-coop-mod/global/mg42_active.scr` | - | 300 script errors/session: binary '*' float and string + cascading 'none >= int' x250 (live m3l3) | local.mult = float(local.rc). |
+| `bug-1952` | 2026-08-19 | `hzm-mohaa-coop-mod/global/weapon.scr` | - | 495x: weapon 'models/weapons/<variant>.tik' is not handled in weapon.scr... setting to none!! -> weaponless enemies running around (user report) | Normalize through the generated variant->base map before the switch (loadoutskins_base + makeWeaponStringValid, keys lowercased). Self-healing: gen_s… |
+| `bug-1953` | 2026-08-19 | `openmohaa-hzm/code/qcommon/tiki_main.cpp` | - | alert01/02 + floorcrawl still 'unknown animation' on waffenss models at runtime DESPITE the bug-1945 includes deployed and loading | Tripwire shipped: TIKI_Error now always Com_Printf's. Next session's log will name the actual failure. Census gaps ALSO real: human_rifle has no pain… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |
