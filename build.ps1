@@ -26,6 +26,12 @@ python "C:\mohaa-coop-dev\docs\tools\unlock_audit.py"
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by unlock_audit" -ForegroundColor Red; exit 1 }
 python "C:\mohaa-coop-dev\docs\tools\ads_audit.py"
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by ads_audit" -ForegroundColor Red; exit 1 }
+# [user 2026-08-18] SR pages are DERIVED, so derive them on every build - the checked-in copy
+# shipped 3 ghost challenge rows for days because regeneration relied on memory. Idempotent and
+# fast; a failure blocks the deploy like any other gate.
+python "C:\mohaa-coop-dev\docs\tools\gen_service_record.py" build
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_service_record" -ForegroundColor Red; exit 1 }
+
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by scrlint" -ForegroundColor Red; exit 1 }
 $deployDir  = "G:\GOG\Medal of Honor - Allied Assault War Chest\maintt"
 $appDataDir = "$env:APPDATA\openmohaa\maintt"
