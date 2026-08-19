@@ -26,6 +26,10 @@ python "C:\mohaa-coop-dev\docs\tools\unlock_audit.py"
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by unlock_audit" -ForegroundColor Red; exit 1 }
 python "C:\mohaa-coop-dev\docs\tools\ads_audit.py"
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by ads_audit" -ForegroundColor Red; exit 1 }
+# [user 2026-08-18] WIRING GATE: every exec resolves to a real file (exact case), every vstr
+# in our namespaces is assigned somewhere, every bus token is registered AND dispatched.
+python "C:\mohaa-coop-dev\docs\tools\ui_wiring_audit.py"
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by ui_wiring_audit" -ForegroundColor Red; exit 1 }
 # [user 2026-08-18] SR pages are DERIVED, so derive them on every build - the checked-in copy
 # shipped 3 ghost challenge rows for days because regeneration relied on memory. Idempotent and
 # fast; a failure blocks the deploy like any other gate.

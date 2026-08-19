@@ -529,8 +529,13 @@ an every-5 award that never existed - both are the same failure: two places stat
 nothing checks they agree. The decision: whenever a system spans two sources (UI text vs
 enforcement, roster vs challenge table, tik names vs tune table), a small audit script ships
 WITH it and goes straight into build.ps1 as a deploy-blocking gate. Current gates: scrlint,
-check_empty_rhs, check_tik_surfaces, check_challenges, check_download_links, unlock_audit,
-ads_audit. REJECTED: deriving the hover text from the enforcement source instead of auditing it
+check_empty_rhs, check_tik_surfaces, check_challenges (incl. SR hover curation),
+check_download_links, unlock_audit, ads_audit, ui_wiring_audit (exec/vstr/bus closure), and
+gen_service_record regenerates on every build. Above the static tier sits a RUNTIME layer:
+generation-stamped self-healing client state (wipe-on-mismatch), and a deployed-truth stamp
+compiled into the scripts that chal_init compares at every boot - it catches mixed deployments
+(stale pk3, shadowing pak) that no tree-level check can see, printing a ^~^~^ SELFTEST line the
+boot harness greps. REJECTED: deriving the hover text from the enforcement source instead of auditing it
 - hover lines are width-curated prose (two ~24-char lines) and mechanical derivation produced
 worse text than the curated tsv; the gate catches drift at the same point a generator would.
 

@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `f76adf4 2026-08-18 docs: decision - cross-source invariants get deploy-blocking build gates` |
-| commits | 134 |
+| HEAD | `19322f0 2026-08-18 docs: positional-archived-state trap (bug-1926); SR generator emits cid map + generation stamp` |
+| commits | 137 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,18 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 80 |
+| 2026-08 | 83 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (134)
+### Commits since 2026-01-01 (137)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `19322f0` | 2026-08-18 | joncurry94-tech | docs: positional-archived-state trap (bug-1926); SR generator emits cid map + generation stamp |
+| `c471e8f` | 2026-08-18 | joncurry94-tech | build: gen_service_record runs on every build - SR freshness is structural, not remembered |
+| `9c440c9` | 2026-08-18 | joncurry94-tech | docs: SR hover curation gate in check_challenges; 25 reward names curated from in-game tables |
 | `f76adf4` | 2026-08-18 | joncurry94-tech | docs: decision - cross-source invariants get deploy-blocking build gates |
 | `0a24d83` | 2026-08-18 | joncurry94-tech | build: unlock_audit + ads_audit are deploy-blocking drift gates; ads_audit gains the expected-miss allowlist |
 | `6387687` | 2026-08-18 | joncurry94-tech | docs: unlock_audit.py cross-checks roster vs challenge/rank/free enforcement; 7 hover texts corrected to the enforced path |
@@ -171,8 +174,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `89197d0 2026-08-18 blueprints: every 5th find flips a coin on a random unlock of any type` |
-| commits | 1,486 |
+| HEAD | `697ca23 2026-08-18 pins: server import accepts cids (legacy index fallback); dead repaint stub removed; SR pages + cid map regenerated` |
+| commits | 1,488 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -180,7 +183,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 93 |
+| 2026-08 | 95 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -220,10 +223,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (137)
+### Commits since 2026-01-01 (139)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `697ca23` | 2026-08-18 | joncurry94 | pins: server import accepts cids (legacy index fallback); dead repaint stub removed; SR pages + cid map regenerated |
+| `d1a3140` | 2026-08-18 | joncurry94 | service record: pages regenerated (were stale since the panzerfaust removal), 25 hover names curated, bp ladder retuned |
 | `89197d0` | 2026-08-18 | joncurry94 | blueprints: every 5th find flips a coin on a random unlock of any type |
 | `20652fe` | 2026-08-18 | joncurry94 | armory: 7 unlock hovers now state the ENFORCED path - BAR/StG44/Vickers/Breda/Trench Gun are faction-challenge unlocks (hover cla… |
 | `20d00e5` | 2026-08-18 | joncurry94 | m3l3: ramsey's paratrooper chat keys on the halftrack's death, not the trigger maze |
@@ -367,8 +372,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `4804546b 2026-08-18 ads: crouch blocks of the standing-only rows re-synced to correct family donors - silenced pistols crouch like their base gun, PPS-43 like the PPSH, Beretta M38 like the Moschetto; standing values untouched` |
-| commits | 4,997 |
+| HEAD | `257d0aa4 2026-08-18 pins: cid-keyed store with legacy migration + catalogue-generation self-heal (bug-1926)` |
+| commits | 4,998 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -376,7 +381,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 17 |
+| 2026-08 | 18 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -437,10 +442,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (32)
+### Commits since 2026-01-01 (33)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `257d0aa4` | 2026-08-18 | joncurry94 | pins: cid-keyed store with legacy migration + catalogue-generation self-heal (bug-1926) |
 | `4804546b` | 2026-08-18 | joncurry94 | ads: crouch blocks of the standing-only rows re-synced to correct family donors - silenced pistols crouch like their base gun, PP… |
 | `e1939962` | 2026-08-18 | joncurry94 | ads: donor-alias stage in CG_FindAdsTune - new guns borrow a dialled family tune by one alias line (DP-28, FG 42, G 43, SVT 40, J… |
 | `0d42d10b` | 2026-08-18 | joncurry94 | ai: export the suppression moment to script - self.coop_suppressedAt stamped beside m_fSuppressTime |

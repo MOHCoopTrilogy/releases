@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 38,475 |
+| files in the workspace | 38,482 |
 | bytes | 40.7 GB |
-| files in project scope (indexed per-file) | 13,104 |
-| source files (per-file rows with line counts) | 5,769 |
+| files in project scope (indexed per-file) | 13,111 |
+| source files (per-file rows with line counts) | 5,770 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -24,7 +24,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 9,604 | 5776.4 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 9,611 | 5777.2 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
@@ -78,9 +78,9 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.wav` | 14,222 |
 | `.dds` | 3,557 |
 | `.scr` | 2,508 |
-| `.tga` | 2,354 |
+| `.tga` | 2,360 |
 | `.jpg` | 2,189 |
-| `.cfg` | 1,854 |
+| `.cfg` | 1,855 |
 | `.tik` | 1,597 |
 | `.png` | 1,371 |
 | `.obj` | 1,224 |
@@ -187,13 +187,13 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/public` | 6 | 0.07 MB | .md×6 |
 | `docs/public/fixes` | 11 | 0.66 MB | .md×11 |
 | `docs/reference` | 4 | 0.07 MB | .md×3, .txt×1 |
-| `docs/tools` | 28 | 0.31 MB | .py×24, .md×1, .cmd×1, .ps1×1 |
+| `docs/tools` | 28 | 0.32 MB | .py×24, .md×1, .cmd×1, .ps1×1 |
 | `extracted-scripts` | 5 | 0.06 MB | .scr×5 |
 | `extracted-scripts/main_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
-| `hzm-mohaa-coop-mod` | 38 | 1538.93 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
+| `hzm-mohaa-coop-mod` | 38 | 1539.00 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -619,7 +619,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/mohmenu/Slideshow/Berlin` | 14 | 7.76 MB | .jpg×14 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/Slideshow/Normandy` | 18 | 8.19 MB | .jpg×18 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/coop` | 3 | 2.22 MB | .tga×3 |
-| `hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward` | 316 | 39.04 MB | .tga×316 |
+| `hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward` | 322 | 39.76 MB | .tga×322 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/dmloading` | 71 | 49.97 MB | .jpg×68, .tga×3 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/dmloading/briefing` | 6 | 2.13 MB | .jpg×6 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/levelbriefing` | 50 | 471.86 MB | .tga×50 |
@@ -630,7 +630,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/sprites` | 5 | 0.14 MB | .tga×5 |
 | `hzm-mohaa-coop-mod/textures/wilderness` | 2 | 3.72 MB | .jpg×2 |
 | `hzm-mohaa-coop-mod/ubersound` | 11 | 6.93 MB | .scr×11 |
-| `hzm-mohaa-coop-mod/ui` | 111 | 0.95 MB | .urc×104, .cfg×3, .inc×2, .scr×1 |
+| `hzm-mohaa-coop-mod/ui` | 112 | 0.96 MB | .urc×104, .cfg×4, .inc×2, .scr×1 |
 | `hzm-mohaa-coop-mod/ui/coop_fov` | 33 | 0.01 MB | .cfg×31, .bat×2 |
 | `hzm-mohaa-coop-mod/ui/coop_objectives` | 46 | 0.02 MB | .cfg×46 |
 | `hzm-mohaa-coop-mod/ui/coop_start` | 14 | 0.03 MB | .cfg×14 |
@@ -905,7 +905,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `ai_ab_test.ps1` | 78 | 3.9 KB | ai_ab_test.ps1 - controlled A/B for the dynamic-AI layer. |
 | `autotest_rcon.py` | 79 | 2.6 KB | !/usr/bin/env python3 |
-| `build.ps1` | 244 | 13.9 KB | [user 2026-08-05] PARSE-KILLER GATE (detector rank 1, static half): a single BOM/em-dash/odd |
+| `build.ps1` | 250 | 14.3 KB | [user 2026-08-05] PARSE-KILLER GATE (detector rank 1, static half): a single BOM/em-dash/odd |
 | `launch_2player_m2l2a.ps1` | 216 | 11.1 KB | MOH Coop Trilogy - 2-player STEALTH test launcher (m2l2a) |
 | `launch_2player_test.ps1` | 78 | 3.7 KB | MOH Coop Trilogy - 2-player local test launcher |
 | `launch_dedicated_2player.ps1` | 236 | 11.3 KB | Replaces the listen-server harness for testing. Why it matters, measured 2026-08-10: |
@@ -989,7 +989,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `audit_shaders.py` | 129 | 4.8 KB | !/usr/bin/env python |
 | `audit_weapons.py` | 361 | 15.7 KB | !/usr/bin/env python |
 | `bake_skins.py` | 92 | 4.1 KB |  |
-| `check_challenges.py` | 319 | 13.5 KB | !/usr/bin/env python3 |
+| `check_challenges.py` | 334 | 14.5 KB | !/usr/bin/env python3 |
 | `check_download_links.py` | 78 | 3.0 KB |  |
 | `check_empty_rhs.py` | 95 | 3.8 KB |  |
 | `check_tik_surfaces.py` | 88 | 3.7 KB |  |
@@ -1001,7 +1001,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `gen_armory_bg.py` | 254 | 10.8 KB | plain: the pre-overhaul look (near-black, subtle panels, caption + stat labels only). |
 | `gen_loadout.py` | 356 | 16.4 KB | !/usr/bin/env python |
 | `gen_public_pages.py` | 540 | 21.2 KB | !/usr/bin/env python3 |
-| `gen_service_record.py` | 932 | 58.6 KB | [user 08-07] friendly display name for a challenge's reward field (chal_def's 7th arg) |
+| `gen_service_record.py` | 978 | 61.8 KB | [user 08-07] friendly display name for a challenge's reward field (chal_def's 7th arg) |
 | `gen_skins.py` | 285 | 12.7 KB |  |
 | `gen_weapon_skins.py` | 189 | 8.3 KB |  |
 | `hudslots.py` | 98 | 4.0 KB | !/usr/bin/env python3 |
@@ -1261,7 +1261,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `bust.scr` | 1,574 | 86.0 KB | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
 | `butler.scr` | 498 | 18.9 KB | created by chrissstrahl on 2019.09.12 |
 | `cannonThink.scr` | 147 | 4.8 KB | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
-| `challenges.scr` | 3,794 | 231.9 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
+| `challenges.scr` | 3,797 | 232.2 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
 | `collectible.scr` | 443 | 21.5 KB | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
 | `coop_placements.scr` | 1,021 | 32.1 KB | HZM coop - BAKED BUILD-MODE PLACEMENTS (generated from build_<map>.dat). |
 | `coop_selftest.scr` | 320 | 13.2 KB | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
@@ -3652,7 +3652,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `uberdialog.scr` | 42,175 | 6023.9 KB | UBERDIALOG |
 | `ubersound.scr` | 5,415 | 593.0 KB | start chrissstrahl - fix sound issue |
 
-### `hzm-mohaa-coop-mod/ui/` — 108 source files
+### `hzm-mohaa-coop-mod/ui/` — 109 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -3682,9 +3682,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_postfx3.urc` | 259 | 5.6 KB |  |
 | `coop_report.urc` | 152 | 2.8 KB |  |
 | `coop_settings.urc` | 369 | 7.5 KB |  |
-| `coop_sr.urc` | 32,927 | 582.9 KB |  |
-| `coop_sr_pinclear.cfg` | 393 | 7.2 KB | GENERATED by docs/tools/gen_service_record.py - clears every pinned-row marker + medal lock state. |
-| `coop_sr_pinreset.cfg` | 375 | 6.9 KB | GENERATED by docs/tools/gen_service_record.py - CLEAR PINS (builtins only). |
+| `coop_sr.urc` | 32,676 | 578.6 KB |  |
+| `coop_sr_cids.cfg` | 367 | 11.2 KB | GENERATED by docs/tools/gen_service_record.py - row index -> cid map (pin store). |
+| `coop_sr_pinclear.cfg` | 390 | 7.2 KB | GENERATED by docs/tools/gen_service_record.py - clears every pinned-row marker + medal lock state. |
+| `coop_sr_pinreset.cfg` | 372 | 6.9 KB | GENERATED by docs/tools/gen_service_record.py - CLEAR PINS (builtins only). |
 | `coop_start.urc` | 421 | 10.4 KB |  |
 | `coop_weaponselect_suppress.urc` | 78 | 3.0 KB |  |
 | `coop_whatsnew.urc` | 132 | 3.1 KB |  |
@@ -5094,7 +5095,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `cl_invrender.cpp` | 1,169 | 34.1 KB |  |
 | `cl_invrender.h` | 125 | 3.7 KB |  |
 | `cl_keys.cpp` | 1,480 | 43.4 KB |  |
-| `cl_main.cpp` | 5,390 | 139.2 KB | cl_main.c -- client main loop |
+| `cl_main.cpp` | 5,456 | 142.3 KB | cl_main.c -- client main loop |
 | `cl_net_chan.cpp` | 187 | 5.0 KB |  |
 | `cl_parse.cpp` | 1,143 | 28.8 KB | cl_parse.c -- parse a message received from the server |
 | `cl_scrn.cpp` | 560 | 12.2 KB | cl_scrn.c -- master for refresh, status bar, console, chat, notify, etc |
