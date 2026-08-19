@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `04ad6bd 2026-08-19 docs: animation wave 2 recorded` |
-| commits | 145 |
+| HEAD | `e8a9525 2026-08-19 docs: cut-content deep scan indexed in OPEN` |
+| commits | 146 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 91 |
+| 2026-08 | 92 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (145)
+### Commits since 2026-01-01 (146)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `e8a9525` | 2026-08-19 | joncurry94-tech | docs: cut-content deep scan indexed in OPEN |
 | `04ad6bd` | 2026-08-19 | joncurry94-tech | docs: animation wave 2 recorded |
 | `70dfe57` | 2026-08-18 | joncurry94-tech | docs: vehicle death fx awaiting playtest |
 | `b844654` | 2026-08-18 | joncurry94-tech | docs: loadout deep-trace fix wave recorded; gen_loadout emits FA-clearing commit cfgs; gen_skinbase build step |
@@ -182,8 +183,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `832f37e 2026-08-19 ai: cut-content animation wave 2 - locational hits, crawl-to-death, crate combat, facial moods` |
-| commits | 1,495 |
+| HEAD | `18bada3 2026-08-19 research: cut-content deep scan record - 3 verified digs over all 17 retail pk3s` |
+| commits | 1,496 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -191,7 +192,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 102 |
+| 2026-08 | 103 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -231,10 +232,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (146)
+### Commits since 2026-01-01 (147)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `18bada3` | 2026-08-19 | joncurry94 | research: cut-content deep scan record - 3 verified digs over all 17 retail pk3s |
 | `832f37e` | 2026-08-19 | joncurry94 | ai: cut-content animation wave 2 - locational hits, crawl-to-death, crate combat, facial moods |
 | `aa14f86` | 2026-08-18 | joncurry94 | ai: the G98 variant cycles its bolt - its tik name joins every kar98 bolt-anim branch (aim/attack/corner scripts) |
 | `a669b12` | 2026-08-18 | joncurry94 | ai: G43 service roll - a slice of German Kar98 riflemen carry (and drop) the G43; carriers can then roll the G98 variant. coop_ai… |

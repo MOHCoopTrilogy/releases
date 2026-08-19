@@ -94,6 +94,16 @@ All deployed, boot-verified 0 script errors, committed. Root causes in buglog 19
   mop-up grace, then the reveal + conversation fire directly - no more BSP-trigger or
   stuck-straggler stalls. Verify: kill the halftrack, Ramsey chats within ~15s worst case.
 
+- **Cut-VO restoration batch 1 SHIPPED (2026-08-19)**: 1,389 never-played retail takes folded
+  into the aivoice driver via generated pools (gen_chatter_pools.py -> ubersound/
+  coop_chatter.scr, retail map-gates stripped): BT Global Dialog classified by its own meaning
+  comments into cover/backup/attack/contact pools for all four nationalities; allied
+  suppressing-fire calls (574) on a new loop branch keyed off the engine's coop_suppressedAt
+  stamp on the ALLY'S TARGET; allied reload shouts (283) into the existing reload situation
+  (zero new hooks); den_fear (166) rides the suppression pose; German idle banter
+  (laugh/joke, 26) on a sparse idle branch; "HANDS UP!" (6) from the nearest German on a
+  disguise bust. VERIFY in play: ally calls "suppressing fire" when you pin someone near him;
+  Germans laugh/joke when unaware; pinned Germans sound afraid; bust = hands-up shout.
 - **CUT-CONTENT DEEP SCAN complete (2026-08-19)** - three verified digs (logic/audio/assets)
   over all 17 retail pk3s; full record in _research/cutdig_2026-08-19.md. ~40 major finds
   awaiting a restoration-batch decision; headliners: Omaha mortar-death choreography, e2l1

@@ -343,7 +343,7 @@ docs/DECISIONS.md	37942	.md	541	docs
 docs/ENGINE.md	26462	.md	322	docs
 docs/FEATURES.md	88656	.md	1164	docs
 docs/HISTORY.md	29926	.md	249	docs
-docs/OPEN.md	50683	.md	721	docs
+docs/OPEN.md	51282	.md	728	docs
 docs/PROPOSED_CLAUDE.md	11428	.md	182	docs
 docs/README.md	6634	.md	109	docs
 docs/SESSION_HANDOFF.md	7032	.md	126	docs
@@ -736,6 +736,7 @@ hzm-mohaa-coop-mod/_research/cov_manifests.json	700934	.json	78997	hzm-mohaa-coo
 hzm-mohaa-coop-mod/_research/cov_report.md	62081	.md	1268	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_research/cov_report.py	8399	.py	173	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_research/cover_structures_catalog.md	51751	.md	526	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/_research/cutdig_2026-08-19.md	16507	.md	215	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_research/director_dda_plan.md	21628	.md	173	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_research/e1l2_coop_audit.md	19720	.md	139	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_research/fontgen/gen_hidpi_fonts.py	17490	.py	412	hzm-mohaa-coop-mod
