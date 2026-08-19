@@ -31,7 +31,7 @@ Union of four sources, all swept fresh:
 These literals are concatenated with a variable at the call site (`getcvar("coop_chal_" + local.id)`), so the real cvar name only exists at runtime. They are **not** cvars and are excluded from the table below - listed here so the omission is visible rather than silent.
 
 - `coop_chal_*` — `coop_mod/challenges.scr:782` (+1 more)
-- `coop_lo*` — `coop_mod/loadoutpick.scr:372`
+- `coop_lo*` — `coop_mod/loadoutpick.scr:367`
 - `coop_medals_*` — `coop_mod/medals.scr:75` (+1 more)
 - `coop_pend_*` — `coop_mod/challenges.scr:805` (+2 more)
 - `coop_pins_*` — `coop_mod/challenges.scr:3304` (+1 more)
@@ -770,7 +770,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_loSel2` |  |  |  | other `0` @ `ui/loadout/init.cfg:9`<br>other `0` @ `ui/loadout/s1sel.cfg:3`<br>other `1` @ `ui/loadout/s2sel.cfg:3`<br>(+2 more) |  | `ui/coop_loadout.urc` |
 | `coop_loSel3` |  |  |  | other `0` @ `ui/loadout/init.cfg:10`<br>other `0` @ `ui/loadout/s1sel.cfg:4`<br>other `0` @ `ui/loadout/s2sel.cfg:4`<br>(+2 more) |  | `ui/coop_loadout.urc` |
 | `coop_loSel4` |  |  |  | other `0` @ `ui/loadout/init.cfg:11`<br>other `0` @ `ui/loadout/s1sel.cfg:5`<br>other `0` @ `ui/loadout/s2sel.cfg:5`<br>(+2 more) |  | `ui/coop_loadout.urc` |
-| `coop_loSkin` |  |  |  |  | `coop_mod/loadoutpick.scr:270` (+1) |  |
+| `coop_loSkin` |  |  |  |  | `coop_mod/loadoutpick.scr:265` (+1) |  |
 | `coop_loSpinSens` | `0.6` | `CVAR_ARCHIVE` | `client/cl_uistd.cpp:594` |  |  |  |
 | `coop_loStdH` |  |  |  | other `set coop_loHelm models/…` @ `ui/loadout/init.cfg:42`<br>other `set coop_loHelm models/…` @ `ui/loadout/skin/s01.cfg:17`<br>other `set coop_loHelm models/…` @ `ui/loadout/skin/s02.cfg:17`<br>(+133 more) |  |  |
 | `coop_loUnregP1` |  |  |  | other `(empty)` @ `ui/loadout/clrP1.cfg:7`<br>other `exec ui/loadout/unreg_r…` @ `ui/loadout/w01_s1.cfg:11`<br>other `exec ui/loadout/unreg_r…` @ `ui/loadout/w02_s1.cfg:11`<br>(+48 more) |  |  |
@@ -820,8 +820,8 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_musicFiller` |  |  |  |  | `coop_mod/flmusic.scr:88` (+1) |  |
 | `coop_muzzleLight` | `160` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:592` | FORCED `160` @ `autoexec.cfg:792` |  |  |
 | `coop_navRecSpacing` | `96` | `CVAR_ARCHIVE` | `fgame/player.cpp:13664` |  |  |  |
-| `coop_naxosHold` |  |  |  | DEFAULT `2.5` @ `coop_defaults.cfg:275` | `maps/m2l2a.scr:563` |  |
-| `coop_naxosRoomRadius` |  |  |  | DEFAULT `512` @ `coop_defaults.cfg:276` | `maps/m2l2a.scr:569` |  |
+| `coop_naxosHold` |  |  |  | DEFAULT `2.5` @ `coop_defaults.cfg:275` | `maps/m2l2a.scr:568` |  |
+| `coop_naxosRoomRadius` |  |  |  | DEFAULT `512` @ `coop_defaults.cfg:276` | `maps/m2l2a.scr:574` |  |
 | `coop_noPlayerClip` | `0` | `0` | `fgame/player.cpp:3987` | FORCED `0` @ `autoexec.cfg:368` |  |  |
 | `coop_nullclosest` |  |  |  |  | `coop_mod/coop_selftest_scaling.scr:82` |  |
 | `coop_o1` |  |  |  | other `;` @ `ui/coop_objectives/obj_1hidden.cfg:4`<br>other `Empty";` @ `ui/coop_objectives/obj_setup.cfg:3`<br>other `Empty";` @ `ui/coop_objectives/obj_showall.cfg:4` |  | `ui/coop_objectives.urc` |
@@ -1396,7 +1396,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_st_xp` |  |  |  |  | `coop_mod/main.scr:251` |  |
 | `coop_st_xp_mode` |  |  |  |  | `coop_mod/coop_selftest_xp.scr:113` |  |
 | `coop_stealthHolster` |  |  |  |  | `maps/m6l2a.scr:1366` |  |
-| `coop_stealthNoAggro` |  |  |  | FORCED `0` @ `autoexec.cfg:1206`<br>DEFAULT `0` @ `coop_defaults.cfg:235` | `maps/m2l2a.scr:532` (+1) |  |
+| `coop_stealthNoAggro` |  |  |  | FORCED `0` @ `autoexec.cfg:1206`<br>DEFAULT `0` @ `coop_defaults.cfg:235` | `maps/m2l2a.scr:537` (+1) |  |
 | `coop_stealthRecoverAlarm` |  |  |  | FORCED `1` @ `autoexec.cfg:1218`<br>DEFAULT `1` @ `coop_defaults.cfg:239` |  |  |
 | `coop_stealthStart` |  |  |  | FORCED `1` @ `autoexec.cfg:1205`<br>DEFAULT `1` @ `coop_defaults.cfg:231` | `coop_mod/bust.scr:976` (+7) |  |
 | `coop_stingers` |  |  |  |  | `coop_mod/flmusic.scr:23` |  |

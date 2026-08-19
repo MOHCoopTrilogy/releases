@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `4c6842e 2026-08-18 guard rails: ui_wiring_audit gate (exec/vstr/bus closure), SR deployed-truth stamp emission; DECISIONS updated` |
-| commits | 138 |
+| HEAD | `bd4ebba 2026-08-18 docs: exec INSERTS not appends (corrects d2e7084 rationale); one-token-per-batch bus trap` |
+| commits | 141 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,18 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 84 |
+| 2026-08 | 87 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (138)
+### Commits since 2026-01-01 (141)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `bd4ebba` | 2026-08-18 | joncurry94-tech | docs: exec INSERTS not appends (corrects d2e7084 rationale); one-token-per-batch bus trap |
+| `e4f2990` | 2026-08-18 | joncurry94-tech | docs: correct bug ids 1926-1927 |
+| `df42994` | 2026-08-18 | joncurry94-tech | docs: armory take-3 entries |
 | `4c6842e` | 2026-08-18 | joncurry94-tech | guard rails: ui_wiring_audit gate (exec/vstr/bus closure), SR deployed-truth stamp emission; DECISIONS updated |
 | `19322f0` | 2026-08-18 | joncurry94-tech | docs: positional-archived-state trap (bug-1926); SR generator emits cid map + generation stamp |
 | `c471e8f` | 2026-08-18 | joncurry94-tech | build: gen_service_record runs on every build - SR freshness is structural, not remembered |
@@ -175,8 +178,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `03c43d8 2026-08-18 self-test: boot-time deployed-truth check - live challenge count vs the stamp baked with the SR pages` |
-| commits | 1,489 |
+| HEAD | `a0a494c 2026-08-18 loadout: regive rebuilds the resolved kit; 120s gate deleted; finish clicks preview in the viewer` |
+| commits | 1,490 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -184,7 +187,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 96 |
+| 2026-08 | 97 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -224,10 +227,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (140)
+### Commits since 2026-01-01 (141)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `a0a494c` | 2026-08-18 | joncurry94 | loadout: regive rebuilds the resolved kit; 120s gate deleted; finish clicks preview in the viewer |
 | `03c43d8` | 2026-08-18 | joncurry94 | self-test: boot-time deployed-truth check - live challenge count vs the stamp baked with the SR pages |
 | `697ca23` | 2026-08-18 | joncurry94 | pins: server import accepts cids (legacy index fallback); dead repaint stub removed; SR pages + cid map regenerated |
 | `d1a3140` | 2026-08-18 | joncurry94 | service record: pages regenerated (were stale since the panzerfaust removal), 25 hover names curated, bp ladder retuned |

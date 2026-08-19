@@ -60,7 +60,11 @@ def preview(w):
     MV_HOSTS = ("01", "04", "05", "12", "13", "24", "26", "36", "37", "44", "48", "74")
     mv_on = "1" if w["id"] in MV_HOSTS else "0"
     mv_req = ("exec ui/loadout/reqmv%s.cfg" % w["id"]) if w["id"] in MV_HOSTS else "exec ui/loadout/reqclear.cfg"
-    mv_pn = ("vstr coop_loMvPN_s1") if w["id"] in MV_HOSTS else ""
+    # [user 2026-08-18] deep-trace F5(viewer): this used to hard-code the ACTIVE pointer to
+    # slot 1 on every variant-host page - a tile inspect on any other slot cross-wired the
+    # VARIANT button into slot 1's ring and CORRUPTED slot 1's archived finish. The pointer is
+    # owned solely by s<n>sel.cfg (set per slot click); pages only arm the per-slot rings.
+    mv_pn = None
     mv_pns = [("exec ui/loadout/mvp%s_1_s%d.cfg" % (w["id"], _sl)) if w["id"] in MV_HOSTS else ""
               for _sl in (1, 2, 3, 4)]
 
@@ -78,7 +82,7 @@ def preview(w):
     L = [
         'set coop_loMvOn %s' % mv_on,
         'set coop_loMvReqCur "%s"' % mv_req,
-        'set coop_loMvPN "%s"' % mv_pn,
+
     ]
     L += ['set coop_loMvPN_s%d "%s"' % (_sl + 1, _v) for _sl, _v in enumerate(mv_pns)]
     L += [
@@ -132,6 +136,10 @@ def slotfile(w, s):
     # registers ITS gun's inspect page, so the slot cards can drive the 3D soldier's held weapon
     # (s<N>sel.cfg replays coop_loInspectS<N>). OpenInspect stays for the server-confirm path.
     L.append('seta coop_loInspectS%s "exec ui/loadout/p%s.cfg"' % (s, w["id"]))
+    # [user 2026-08-18] deep-trace F11: a NEW gun in the slot starts STANDARD - clear the
+    # archived finish chip + replay recipe with the commit (client half; the server NILs its flag).
+    L.append('seta coop_loS%sF "0"' % s)
+    L.append('seta coop_loFA%s ""' % s)
     if s == "1":
         L.append('seta coop_loOpenInspect "exec ui/loadout/p%s.cfg"' % w["id"])
     if gated:

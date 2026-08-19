@@ -94,6 +94,15 @@ All deployed, boot-verified 0 script errors, committed. Root causes in buglog 19
   mop-up grace, then the reveal + conversation fire directly - no more BSP-trigger or
   stuck-straggler stalls. Verify: kill the halftrack, Ramsey chats within ~15s worst case.
 
+- **LOADOUT OVERHAUL - the vetted deep-trace fix wave (bugs 1928-1938, 2026-08-18 late)**:
+  three parallel deep-traces + line-by-line cross-verification found ~15 independent defects;
+  all four fix phases deployed and boot-clean. PLAYTEST CHECKLIST: (1) mid-mission finish/
+  variant/weapon click lands in hands in ~2s WITH the right gun raised; (2) rapid-click several
+  finishes then close - server converges to the LAST click within ~10s of closing; (3) re-enter
+  a slot with gold applied - viewer shows GOLD not base; (4) variants cycled from slot 2/3 no
+  longer touch slot 1; (5) armory browse + quit no longer loses finishes; (6) USE MAP DEFAULT
+  then rejoin - no deny beeps; (7) apply while DBNO - lands on revive; (8) a player name with a
+  trailing space still gets applies; (9) locked map says "kits are scripted on this mission".
 - **Armory apply loop, take 3 (bugs 1926-1927)**: the regive now REBUILDS the resolved kit
   first (it was faithfully re-issuing the stale list - toast said applied, hands unchanged); the
   120s gate is deleted (no map ever set its supposed beneficiary flag; m2l2a now sets

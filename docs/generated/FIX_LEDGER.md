@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1282** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1284** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 619 |
+| 2026-08 | 621 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1299,6 +1299,8 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1923` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | - | it didnt actually update my gear when I hit done (finish/variant applies never reached hands even after the 120s-gate fix) | loadout_finKick helper (cosmetic mark + Dirty stamp + debounced watch spawn) called from all four SUCCESS paths of loadout_finish (standard, finish 1… |
 | `bug-1924` | 2026-08-18 | `hzm-mohaa-coop-mod/maps/M3L3.scr` | - | m3l3: captain ramsey is sometimes delayed to chat with the paratroopers after the halftrack is destroyed | coop_scene2Prompt thread (coop-gated, started with scene1): keys on the map's own death signal (level.halftrack_alive), stops wave spawning, grants a… |
 | `bug-1925` | 2026-08-18 | `openmohaa-hzm/code/client/cl_main.cpp` | - | pinned challenges silently repoint at DIFFERENT challenges whenever the catalogue renumbers (proved live by the panzerfaust removal shifting every la… | cid-keyed end-to-end: gen_service_record emits ui/coop_sr_cids.cfg (row->cid map + a crc32 generation stamp, `set` NOT `seta` so a stale archived map… |
+| `bug-1926` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | - | you still dont get the updated weapons or weapon variants after you hit done in loadout in game | loadout_finKick now waitthreads loadout_rebuild before stamping dirty; the 120s gate and the coop_loFinKick flag are deleted outright; m2l2a (the rea… |
+| `bug-1927` | 2026-08-18 | `hzm-mohaa-coop-mod/ui/loadout/fin1_s1.cfg` | - | the other skins (gold, etc.) are not showing in the viewer when you select them | All fin cfgs now fire their preview: fid 1-7 vstr coop_loFinP<fid>, fid 0 vstr coop_loOpenInspect (back to the standard gun). Wiring-audit note: thes… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |
