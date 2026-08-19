@@ -94,7 +94,7 @@ All deployed, boot-verified 0 script errors, committed. Root causes in buglog 19
   mop-up grace, then the reveal + conversation fire directly - no more BSP-trigger or
   stuck-straggler stalls. Verify: kill the halftrack, Ramsey chats within ~15s worst case.
 
-- **Armory apply loop, take 3 (bugs 1927-1928)**: the regive now REBUILDS the resolved kit
+- **Armory apply loop, take 3 (bugs 1926-1927)**: the regive now REBUILDS the resolved kit
   first (it was faithfully re-issuing the stale list - toast said applied, hands unchanged); the
   120s gate is deleted (no map ever set its supposed beneficiary flag; m2l2a now sets
   coop_loadoutLocked properly); finish clicks now show their finish in the 3D viewer (the 36
