@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1274** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1275** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 611 |
+| 2026-08 | 612 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1291,6 +1291,7 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-1915` | 2026-08-18 | `openmohaa-hzm/code/fgame/object.cpp` | - | user: 'heads still float' - the FIFTH report, after four separate fixes that each changed nothing visible | CoopHeadSettle is scheduled again and rewritten: detect the freeze the way bug-923 does (origin not moving for 3 ticks) and snap the HEAD, not the or… |
 | `bug-1916` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/loadoutskins.scr` | V | (caught pre-ship) finish strip: 14 of 51 guns' finishes would have been silently dead - table lookup missed | The emitter now keys the table on the give AS THE ROSTER SPELLS IT (case-insensitive match in Python, emit the roster's exact string). Verified 0 cas… |
 | `bug-1917` | 2026-08-18 | `docs/tools/gen_armory_bg.py` | R | user: 'Revert the armory back for now' - and the original could not be restored | gen_armory_bg.py gained --plain, which reproduces the pre-overhaul look from its documented content (near-black, subtle panels, ARMORY wordmark, capt… |
+| `bug-1918` | 2026-08-18 | `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | R | user: 'when i try switching variants it forces the switch back' (in-game armory, VARIANT cycling visually reverts instantly) | Page first, then overrides, in all three apply paths (finishes 1-7, wrap-to-standard, variants 8-13): vstr coop_loOpenInspect, THEN set coop_loPrev <… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

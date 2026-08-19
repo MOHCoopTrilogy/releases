@@ -8,7 +8,7 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-954 distinct file paths, 3,121 distinct tags.
+954 distinct file paths, 3,127 distinct tags.
 
 ## Files with the most history
 
@@ -353,7 +353,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/coop_mod/keyitems.scr + medkit.scr + loadoutpick.scr` | 1 | `bug-625` |
 | `hzm-mohaa-coop-mod/coop_mod/ladder.scr` | 3 | `bug-1835` `bug-1836` `bug-1839` |
 | `hzm-mohaa-coop-mod/coop_mod/loadout.scr` | 3 | `bug-132` `bug-133` `bug-1252` |
-| `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | 4 | `bug-666` `bug-1205` `bug-1675` `bug-1678` |
+| `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr` | 5 | `bug-666` `bug-1205` `bug-1675` `bug-1678` `bug-1918` |
 | `hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr + player.scr + itemhandler.scr` | 2 | `bug-800` `bug-802` |
 | `hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr` | 2 | `bug-1902` `bug-1906` |
 | `hzm-mohaa-coop-mod/coop_mod/loadoutskins.scr` | 1 | `bug-1916` |
@@ -2051,6 +2051,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `filter-reuse` | 1 | `bug-1687` |
 | `finale` | 1 | `bug-1858` |
 | `findtrigger` | 1 | `bug-1483` |
+| `finish-strip` | 1 | `bug-1918` |
 | `fire` | 2 | `bug-1755` `bug-1775` |
 | `firedelay` | 1 | `bug-648` |
 | `first-boot` | 1 | `bug-1128` |
@@ -2182,6 +2183,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `gimbal-lock` | 1 | `bug-1173` |
 | `git` | 1 | `bug-425` |
 | `github` | 1 | `bug-1804` |
+| `github-release` | 1 | `bug-1917` |
 | `gitignore` | 2 | `bug-1873` `bug-1917` |
 | `give` | 1 | `bug-098` |
 | `give-all` | 5 | `bug-1897` `bug-482` `bug-483` `bug-484` `bug-494` |
@@ -2478,7 +2480,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `load-in` | 1 | `bug-1401` |
 | `load_scale` | 1 | `bug-1228` |
 | `loaddds` | 1 | `bug-m3l2-ground-seams` |
-| `loadout` | 35 | `bug-1204` `bug-1252` `bug-1279` `bug-133` `bug-1675` `bug-1677` `bug-1678` `bug-1692` `bug-1729` `bug-1896` `bug-1902` `bug-1906` `bug-1908` `bug-1916` `bug-586` `bug-587` `bug-588` `bug-589` `bug-591` `bug-592` `bug-595` `bug-618` `bug-620` `bug-626` `bug-627` `bug-666` `bug-682` `bug-683` `bug-707` `bug-716` `bug-758` `bug-800` `bug-802` `bug-871` `bug-897` |
+| `loadout` | 36 | `bug-1204` `bug-1252` `bug-1279` `bug-133` `bug-1675` `bug-1677` `bug-1678` `bug-1692` `bug-1729` `bug-1896` `bug-1902` `bug-1906` `bug-1908` `bug-1916` `bug-1918` `bug-586` `bug-587` `bug-588` `bug-589` `bug-591` `bug-592` `bug-595` `bug-618` `bug-620` `bug-626` `bug-627` `bug-666` `bug-682` `bug-683` `bug-707` `bug-716` `bug-758` `bug-800` `bug-802` `bug-871` `bug-897` |
 | `loadout-ui` | 2 | `bug-1358` `bug-armory-roster76` |
 | `loadoutpick` | 1 | `bug-1205` |
 | `loadtga` | 1 | `bug-059` |
@@ -3022,7 +3024,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `prerequisite` | 1 | `bug-1154` |
 | `pressure` | 1 | `bug-1846` |
 | `preventive` | 1 | `bug-1745` |
-| `preview` | 8 | `bug-1425` `bug-1545` `bug-590` `bug-594` `bug-596` `bug-666` `bug-801` `bug-803` |
+| `preview` | 9 | `bug-1425` `bug-1545` `bug-1918` `bug-590` `bug-594` `bug-596` `bug-666` `bug-801` `bug-803` |
 | `print-once` | 1 | `bug-1807` |
 | `printf-mismatch` | 2 | `bug-153` `bug-156` |
 | `println` | 3 | `bug-1751` `bug-592` `bug-911` |
@@ -3125,6 +3127,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `random-chatter` | 1 | `bug-1201` |
 | `random-pool` | 1 | `bug-260` |
 | `range` | 1 | `bug-1730` |
+| `ranged-fetch` | 1 | `bug-1917` |
 | `rank` | 3 | `bug-1897` `bug-494` `bug-622` |
 | `rank-bar` | 1 | `bug-553` |
 | `rank-up` | 1 | `bug-957` |
@@ -3155,6 +3158,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `rebuilt-gamedll` | 1 | `bug-230` |
 | `reconnect` | 1 | `bug-1066` |
 | `reconstructed` | 1 | `bug-1896` |
+| `recovered` | 1 | `bug-1917` |
 | `recurrence` | 1 | `bug-1582` |
 | `recurring` | 1 | `bug-postfx-intensity-clobbered` |
 | `recycled-entnum` | 2 | `bug-919` `bug-924` |
@@ -3662,6 +3666,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `stuck-value` | 1 | `bug-1501` |
 | `stuffcommand` | 1 | `bug-589` |
 | `stufftext` | 10 | `bug-1305` `bug-1364` `bug-1449` `bug-1628` `bug-1678` `bug-1747` `bug-595` `bug-597` `bug-736` `bug-758` |
+| `stufftext-order` | 1 | `bug-1918` |
 | `stuka` | 3 | `bug-1174` `bug-1373` `bug-1488` |
 | `stun` | 2 | `bug-1737` `bug-1739` |
 | `stutter` | 2 | `bug-071` `bug-1703` |
@@ -3940,7 +3945,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `user-expectation` | 1 | `bug-1554` |
 | `user-question` | 1 | `bug-1770` |
 | `user-report` | 15 | `bug-1650` `bug-1651` `bug-1652` `bug-1654` `bug-1656` `bug-1744` `bug-1754` `bug-1755` `bug-1757` `bug-1764` `bug-1776` `bug-1786` `bug-1799` `bug-gl2-introhud` `bug-taunt-intro` |
-| `user-reported` | 13 | `bug-1892` `bug-1898` `bug-1902` `bug-1903` `bug-1905` `bug-1906` `bug-1907` `bug-1908` `bug-1910` `bug-1912` `bug-1913` `bug-1914` `bug-1915` |
+| `user-reported` | 14 | `bug-1892` `bug-1898` `bug-1902` `bug-1903` `bug-1905` `bug-1906` `bug-1907` `bug-1908` `bug-1910` `bug-1912` `bug-1913` `bug-1914` `bug-1915` `bug-1918` |
 | `user-request` | 2 | `bug-1287` `bug-1289` |
 | `user-requested` | 1 | `bug-1904` |
 | `user-spec` | 16 | `bug-1731` `bug-1738` `bug-1740` `bug-1741` `bug-1742` `bug-1746` `bug-1748` `bug-1750` `bug-1758` `bug-1762` `bug-1763` `bug-1765` `bug-1769` `bug-1773` `bug-1774` `bug-1775` |
@@ -3967,6 +3972,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `vanilla-parity` | 2 | `bug-1328` `bug-1747` |
 | `vanilla-revert` | 1 | `bug-157` |
 | `variable_none` | 1 | `bug-948` |
+| `variants` | 1 | `bug-1918` |
 | `vector-arithmetic` | 1 | `bug-402` |
 | `vector-literal` | 3 | `bug-1069` `bug-1830` `bug-348` |
 | `vector_length` | 1 | `bug-1838` |

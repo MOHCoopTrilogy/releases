@@ -62,10 +62,24 @@ def preview(w):
     mv_req = ("exec ui/loadout/reqmv%s.cfg" % w["id"]) if w["id"] in MV_HOSTS else "exec ui/loadout/reqclear.cfg"
     mv_pn = ("exec ui/loadout/mvp%s_1.cfg" % w["id"]) if w["id"] in MV_HOSTS else ""
 
+    # [user 2026-08-18] OFFLINE finish previews: variants had a client-side preview chain and
+    # finishes did not - so from the main menu a finish click changed nothing visible (the server
+    # confirm is what swaps the preview, and there is no server there). Every page arms
+    # coop_loFinP1..7 at its gun's finish tiks where they exist; the fin cfgs vstr them locally.
+    import os as _os
+    _stem = _os.path.splitext(_os.path.basename(w["tik"]))[0]
+    _fk = ["gold", "chrome", "blued", "bloody", "camo_woodland", "camo_winter", "camo_desert"]
+    finp = []
+    for _i, _k in enumerate(_fk):
+        _vt = _os.path.join(ROOT, "hzm-mohaa-coop-mod", "models", "weapons", "%s_%s.tik" % (_stem, _k))
+        finp.append("exec ui/loadout/finp%s_%d.cfg" % (w["id"], _i + 1) if _os.path.exists(_vt) else "")
     L = [
         'set coop_loMvOn %s' % mv_on,
         'set coop_loMvReqCur "%s"' % mv_req,
         'set coop_loMvPN "%s"' % mv_pn,
+    ]
+    L += ['set coop_loFinP%d "%s"' % (_i + 1, _v) for _i, _v in enumerate(finp)]
+    L += [
         'set coop_loPrev "%s"' % w["tik"],
         'set coop_loXfmW "%s"' % w["xfm"],
         'set coop_loPrevId "%s"' % w["id"],
@@ -109,6 +123,10 @@ def slotfile(w, s):
         'set coop_loXfmT%s "%s"' % (s, w["xfm"]),
         "vstr coop_loA%s" % s,
     ]
+    # [user 2026-08-18] "if I click sidearm he's still holding primary 1" - every slot commit now
+    # registers ITS gun's inspect page, so the slot cards can drive the 3D soldier's held weapon
+    # (s<N>sel.cfg replays coop_loInspectS<N>). OpenInspect stays for the server-confirm path.
+    L.append('seta coop_loInspectS%s "exec ui/loadout/p%s.cfg"' % (s, w["id"]))
     if s == "1":
         L.append('seta coop_loOpenInspect "exec ui/loadout/p%s.cfg"' % w["id"])
     if gated:
@@ -171,6 +189,19 @@ def render_all(rows):
     out = {}
     for w in rows:
         out["p%s.cfg" % w["id"]] = preview(w)
+        # offline finish-preview stubs (only where the finish tik exists for this gun) - the
+        # main-menu armory has no server to swap the preview, so the fin cfgs vstr these locally
+        _stem2 = os.path.splitext(os.path.basename(w["tik"]))[0]
+        for _i, (_k, _lab) in enumerate([("gold", "GOLD"), ("chrome", "CHROME"),
+                                         ("blued", "BLUED"), ("bloody", "BLOODY"),
+                                         ("camo_woodland", "WOODLAND"), ("camo_winter", "WINTER"),
+                                         ("camo_desert", "DESERT")]):
+            _vt = os.path.join(ROOT, "hzm-mohaa-coop-mod", "models", "weapons",
+                               "%s_%s.tik" % (_stem2, _k))
+            if os.path.exists(_vt):
+                out["finp%s_%d.cfg" % (w["id"], _i + 1)] = (
+                    'set coop_loPrev "models/weapons/%s_%s.tik"\n' % (_stem2, _k)
+                    + 'set coop_loNm "%s (%s)"\n' % (w["name"], _lab))
         out["t%s.cfg" % w["id"]] = tile(w)
         for s in w["slots"]:
             out["w%s_s%s.cfg" % (w["id"], s)] = slotfile(w, s)
