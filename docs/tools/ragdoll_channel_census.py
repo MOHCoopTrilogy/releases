@@ -49,6 +49,8 @@ def build_index():
     return idx
 
 
+_zipcache = {}
+
 def read_file(idx, path):
     ent = idx.get(path.lower().replace("\\", "/"))
     if not ent:
@@ -56,8 +58,10 @@ def read_file(idx, path):
     pk, member = ent
     if pk is None:
         return open(member, "rb").read()
-    with zipfile.ZipFile(pk) as z:
-        return z.read(member)
+    z = _zipcache.get(pk)
+    if z is None:
+        z = _zipcache[pk] = zipfile.ZipFile(pk)
+    return z.read(member)
 
 
 def skd_bones(data):
