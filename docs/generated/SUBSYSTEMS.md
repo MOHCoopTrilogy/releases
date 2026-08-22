@@ -9,7 +9,7 @@
 | metric | value |
 |---|---:|
 | `coop_mod/*.scr` files | 118 |
-| total lines in `coop_mod/` | 73,502 |
+| total lines in `coop_mod/` | 73,680 |
 | top-level `maps/*.scr` | 121 |
 | of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
 
@@ -87,8 +87,8 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `ads_dbg.scr` | 11 | 1 | HZM coop - ADS diagnostic. Called from the AIM state's entrycommands in |
 | `aibehav.scr` | 166 | 2 | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
 | `aicombat.scr` | 119 | 1 | aicombat.scr - HZM coop AUTOMATED COMBAT DRIVER (2026-07-23) |
-| `aihandler.scr` | 1,952 | 26 | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
-| `aimaneuver.scr` | 261 | 1 | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
+| `aihandler.scr` | 1,978 | 26 | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
+| `aimaneuver.scr` | 266 | 1 | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
 | `aisquad.scr` | 245 | 1 | aisquad.scr - HZM coop SQUAD BRAIN (2026-07-24) |
 | `aivoice.scr` | 455 | 4 | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
 | `m3l2.scr` | 81 | 0 |  |
@@ -97,7 +97,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `ammobox.scr` | 273 | 0 | HZM coop - player-deployable AMMO BOX. |
 | `blueprint.scr` | 567 | 1 | HZM coop - BLUEPRINT / PLAYER STRUCTURES (build-mode extension) |
 | `bt_playerTank.scr` | 36 | 0 | chrissstrahl - Exit Tank Script for BT-Coop |
-| `buildmode.scr` | 1,035 | 4 | HZM Coop - BUILD MODE (dev tool). Full docs: _research/build_mode.md |
+| `buildmode.scr` | 1,060 | 4 | HZM Coop - BUILD MODE (dev tool). Full docs: _research/build_mode.md |
 | `buildmode_actors.scr` | 411 | 1 | HZM Coop - BUILD MODE : ALLIED ACTORS + ANIMATION catalog (DATA + ghost animator). |
 | `buildmode_catalog.scr` | 2,294 | 1 | HZM Coop - BUILD MODE model catalog (DATA ONLY). Generated from main/mainta/maintt Pak*.pk3 |
 | `buildmode_sounds.scr` | 369 | 5 | HZM Coop - BUILD MODE : placeable SOUND EMITTERS (catalog + SOUND-mode control bus). |
@@ -141,7 +141,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `helmet.scr` | 1,746 | 4 | [305] HZM coop - LIVE HELMET SWITCHER |
 | `helmtest.scr` | 96 | 1 | HZM dev probe (TEMPORARY): verify the retail sethelmet/pophelmet mechanic end to end. |
 | `holdout.scr` | 759 | 16 | HOLDOUT - checkpoint wave-defence gametype [user 2026-08-04] |
-| `itemhandler.scr` | 3,722 | 36 | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
+| `itemhandler.scr` | 3,750 | 36 | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
 | `keyitems.scr` | 161 | 1 | [306] HZM coop - KEY MISSION ITEMS can never be permanently lost |
 | `ladder.scr` | 295 | 1 | HZM coop - PLACEABLE CLIMBABLE LADDERS [user 2026-08-05] bug-1415 |
 | `ladder_state.scr` | 24 | 0 | HZM coop - LADDER STATE HOOK [user 2026-08-05] bug-1415 |
@@ -170,7 +170,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `objective_drop.scr` | 165 | 1 | Objective Bonus Drop |
 | `objective_positions.scr` | 89 | 1 | objective_positions.scr |
 | `objectives.scr` | 693 | 7 | Coop Side Objectives (optional / secondary) |
-| `officer.scr` | 5,018 | 27 | Officer Boss + Radio Station |
+| `officer.scr` | 5,080 | 27 | Officer Boss + Radio Station |
 | `officer_positions.scr` | 624 | 1 | coop_officer_positions.scr |
 | `painbreath.scr` | 69 | 0 | HZM coop - WOUNDED BREATHING. |
 | `paradrop.scr` | 774 | 1 | Allied Paradrop System |
@@ -187,7 +187,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `spawnlocations.scr` | 3,617 | 181 | [200] chrissstrahl - fixed using unfiltred mapname (using now level.coop_mapname) |
 | `strings.scr` | 1,301 | 6 | [200] Smithy - this is taken from xnull. Not mine, but is used by many. Will be useful to us. |
 | `subsink.scr` | 618 | 4 | HZM coop - STAGED U-BOAT DEATH |
-| `surrender.scr` | 125 | 0 | HZM coop - SURRENDER CONVERSION [user 2026-08-19]: "when a german surrenders can you |
+| `surrender.scr` | 157 | 0 | HZM coop - SURRENDER CONVERSION [user 2026-08-19]: "when a german surrenders can you |
 | `takecover.scr` | 47 | 0 | [214] HZM coop - TAKE COVER v1 (player cover system). |
 | `thirdperson.scr` | 52 | 0 | HZM coop [237] - the 3rd-person bind now CYCLES three view modes (user): |
 | `tinnitus.scr` | 202 | 1 | HZM coop - TINNITUS / MUFFLED HEARING (per-player). |

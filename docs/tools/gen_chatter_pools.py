@@ -77,7 +77,30 @@ def add(nat, sit, path, parms):
     pools.setdefault((nat, sit), []).append((path, parms))
 
 seen = set()
+# [user 2026-08-21 / bug-2021] EXISTENCE FILTER. Retail's own alias files reference 34 mp3s
+# (dfr_supress_* under Mission_N/Allies) that were cut MORE deeply than their aliases - the
+# takes exist in no pak and no loose tree. Emitting them produced aliases that error at play
+# time on every machine. An alias only makes it into the pool if its file is actually present
+# in a retail pak or in the mod source tree (what build.ps1 packs) - the SHIPPED set, never
+# the dev machine's loose files, which is exactly the trap that hid 1,623 dead refs (bug-2020).
+MOD = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..', 'hzm-mohaa-coop-mod'))
+_have = set()
+for _sub in ('main', 'mainta', 'maintt'):
+    for _pk in glob.glob(GOG + '/' + _sub + '/[Pp]ak*.pk3'):
+        try:
+            for _n in zipfile.ZipFile(_pk).namelist():
+                _have.add(_n.lower())
+        except Exception:
+            pass
+for _dp, _, _fs in os.walk(MOD):
+    for _fn in _fs:
+        _have.add(os.path.relpath(os.path.join(_dp, _fn), MOD).replace(os.sep, '/').lower())
+_dropped = []
+
 for sub, name, path, rest, groupmeaning in alias_lines():
+    if path.lower() not in _have:
+        _dropped.append(path)
+        continue
     lo = name.lower()
     key = (lo, path.lower())
     if key in seen:
@@ -140,3 +163,5 @@ for (nat, sit), t in pools.items():
     summary[sit] += len(t)
 print("coop_chatter.scr: %d takes across %d pools" % (total, len(pools)))
 print("by situation:", dict(sorted(summary.items(), key=lambda x: -x[1])))
+if _dropped:
+    print("  dropped %d aliases whose files exist nowhere shipped" % len(set(_dropped)))

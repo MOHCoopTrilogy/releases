@@ -13,27 +13,40 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `74d6e4e 2026-08-21 docs: prune TRAPS and preferences back under budget` |
-| commits | 162 |
+| HEAD | `445875d 2026-08-22 tools: scene-actor audit now covers the whole trilogy, not just top-level map scripts` |
+| commits | 175 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **7 modified, 3 untracked** |
-| unstaged diff | 7 files changed, 209 insertions(+), 117 deletions(-) |
+| **uncommitted** | **1 modified, 1 untracked** |
+| unstaged diff | 1 file changed, 25 insertions(+) |
 
-> Working tree is dirty. Everything in those 10 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 2 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 108 |
+| 2026-08 | 121 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (162)
+### Commits since 2026-01-01 (175)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `445875d` | 2026-08-22 | joncurry94-tech | tools: scene-actor audit now covers the whole trilogy, not just top-level map scripts |
+| `0faa37a` | 2026-08-22 | joncurry94-tech | tools: audit_scene_actors.py - which maps have scripted actors the personality roll can break |
+| `d18372d` | 2026-08-22 | joncurry94-tech | manifest 1.4.2 |
+| `72dac0f` | 2026-08-22 | joncurry94-tech | fix: in-game Report a Bug was dead for every player - webhook written to a path that never existed |
+| `5950141` | 2026-08-22 | joncurry94-tech | docs: wall-cover research - it was never deleted, only switched off |
+| `ef14a33` | 2026-08-21 | joncurry94-tech | tools: player-skin resolution audit + upscale (52 textures, 2x) |
+| `4c22ee0` | 2026-08-21 | joncurry94-tech | tools: gen_cos_reqs.py - armory cosmetic hovers derived from the unlock tables |
+| `f54483f` | 2026-08-21 | joncurry94-tech | docs: public Challenges + Unlockables brought current; variants and finishes now first-class |
+| `fb96625` | 2026-08-21 | joncurry94-tech | docs: public README revamped - full feature inventory, early-testing callouts, known + fixed bugs |
+| `a296ba0` | 2026-08-21 | joncurry94-tech | docs+tools: explosion pool generators, menu audit, and the session's authored updates |
+| `db14e41` | 2026-08-21 | joncurry94-tech | docs: v1.4.0/v1.4.1 release record, two release-audit traps |
+| `c643801` | 2026-08-21 | joncurry94-tech | manifest 1.4.1 |
+| `5d14336` | 2026-08-21 | joncurry94-tech | manifest 1.4.0 |
 | `74d6e4e` | 2026-08-21 | joncurry94-tech | docs: prune TRAPS and preferences back under budget |
 | `4510c41` | 2026-08-21 | joncurry94-tech | tools: slice weapon-handling construction kits into game-ready takes |
 | `df442fd` | 2026-08-21 | joncurry94-tech | tools: join AI path failures back to the actors that caused them |
@@ -202,19 +215,18 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `dac1a3a 2026-08-21 fix: trim the pain pool - the sound index table was full` |
-| commits | 1,535 |
+| HEAD | `4cdab4a 2026-08-22 fix: the weapon-variant roll re-armed scripted actors across the whole trilogy` |
+| commits | 1,555 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **19 modified, 49 untracked** |
-| unstaged diff | 18 files changed, 1599 insertions(+), 1511 deletions(-) |
+| **uncommitted** | **0 modified, 57 untracked** |
 
-> Working tree is dirty. Everything in those 68 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 57 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 142 |
+| 2026-08 | 162 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -254,10 +266,30 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (186)
+### Commits since 2026-01-01 (206)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `4cdab4a` | 2026-08-22 | joncurry94 | fix: the weapon-variant roll re-armed scripted actors across the whole trilogy |
+| `fbdeb5d` | 2026-08-22 | joncurry94 | fix: the scene-actor guard never ran - enableEnemy is write-only |
+| `deac915` | 2026-08-22 | joncurry94 | fix: scripted scene actors are protected trilogy-wide, not just where we noticed |
+| `f063a65` | 2026-08-22 | joncurry94 | fix: m1l1 checkpoint cast is exempt from the AI personality roll |
+| `3faa9e4` | 2026-08-22 | joncurry94 | fix: scene actors are exempt from enemy count-scaling (coop_noScale) |
+| `2f7a66f` | 2026-08-22 | joncurry94 | release: field report card rebaked for v1.4.2 |
+| `3dc3e30` | 2026-08-22 | joncurry94 | docs: wall-cover design plan v1 (research only, no code) |
+| `37ca784` | 2026-08-21 | joncurry94 | fix: the spawn re-give hitch - backfill now skips when nothing is actually missing |
+| `c39c159` | 2026-08-21 | joncurry94 | fix: armory hovers state the REAL unlock path; finish strip un-overlapped; rock clip cores |
+| `a606ca2` | 2026-08-21 | joncurry94 | fix: surrendered germans commit to it; convert prompt + allied star; officer music restore |
+| `5bed16c` | 2026-08-21 | joncurry94 | fix: church barrage hit players through the church walls |
+| `5d4d0be` | 2026-08-21 | joncurry94 | fix: 1,623 audio refs were silent for every player but the dev machine |
+| `24dc923` | 2026-08-21 | joncurry94 | feat: severity-tiered player pain - a graze and a mortal hit sounded identical |
+| `0ec0448` | 2026-08-21 | joncurry94 | release: ragdolls on by default; field report card for v1.4.1 |
+| `b481ec8` | 2026-08-21 | joncurry94 | release: field report card rebaked for v1.4.0 |
+| `86b0458` | 2026-08-21 | joncurry94 | release: silence the two temporary debug probes for v1.4.0 |
+| `a30d79f` | 2026-08-21 | joncurry94 | docs: ragdoll r8-r13, weapon-feel r1 and vault-camera design records |
+| `caf83df` | 2026-08-21 | joncurry94 | fix: remove the inert _idlelower rows; graphics menus audited end to end |
+| `b92b0e0` | 2026-08-21 | joncurry94 | feat: explosion pool, wounded breathing, and the 3P foley takes |
+| `4291195` | 2026-08-21 | joncurry94 | fix: the church barrage was damaging you invisibly, and enemies never reloaded |
 | `dac1a3a` | 2026-08-21 | joncurry94 | fix: trim the pain pool - the sound index table was full |
 | `a988515` | 2026-08-21 | joncurry94 | fix: a recruited german held the church gate open forever (bug-1972) |
 | `7681250` | 2026-08-21 | joncurry94 | feat: weapon handling foley - the motions had no sound at all |
@@ -450,19 +482,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `00a2f577 2026-08-21 fix: invisible enemies - the gore tier asked surfaces for skins they do not have` |
-| commits | 5,067 |
+| HEAD | `b66dd89b 2026-08-22 feat: weapon weight now affects movement speed, derived from class not tiki` |
+| commits | 5,075 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **12 modified, 0 untracked** |
-| unstaged diff | 12 files changed, 1754 insertions(+), 31 deletions(-) |
-
-> Working tree is dirty. Everything in those 12 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 87 |
+| 2026-08 | 95 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -523,10 +552,18 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (102)
+### Commits since 2026-01-01 (110)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `b66dd89b` | 2026-08-22 | joncurry94 | feat: weapon weight now affects movement speed, derived from class not tiki |
+| `d3f1af09` | 2026-08-22 | joncurry94 | feat: wall cover Phase 1 + 2 - re-enabled, side solver with a real NONE, lean not teleport |
+| `c3f51293` | 2026-08-22 | joncurry94 | feat: viewmodel gets 8 bone controllers (Option B) - full finger set, zero protocol change |
+| `348a87be` | 2026-08-21 | joncurry94 | feat: coop_hasitem - non-perturbing script inventory query (bug-2027) |
+| `334acd1c` | 2026-08-21 | joncurry94 | feat: surrendered-german allied star override (COOP_BOSS + LIGHTSTYLE_DLIGHT -> star despite EF_AXIS) |
+| `1c6e938d` | 2026-08-21 | joncurry94 | feat: Player::Pain selects a pain tier from the damage it already has |
+| `d29fe481` | 2026-08-21 | joncurry94 | release: ragdolls ON by default (user call, v1.4.1) |
+| `9045a836` | 2026-08-21 | joncurry94 | feat: procedural finger life, idle inspect framing, and the ADS shoulder-pop fix |
 | `00a2f577` | 2026-08-21 | joncurry94 | fix: invisible enemies - the gore tier asked surfaces for skins they do not have |
 | `a62b8d41` | 2026-08-21 | joncurry94 | fix: cover raises your eye above the sight line, and the ADS blend finished early |
 | `baea47cf` | 2026-08-21 | joncurry94 | feat: fire the handling foley from the motions that were silent |

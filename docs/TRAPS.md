@@ -512,32 +512,8 @@ a `level.coop_*` name — the error names the type, never the other owner.**
 
 **Bugs:** 1026, 1027, 1218-1220, 1473-1490, 1596-1598, 1812-1813.
 
-**Tell:** a map graded clean by a read-through then storms on boot - t2l2 graded **A-** statically and
-throws 265 errors on coop boot, *degraded not dead*, which is why a read-through missed it. **A live
-boot is the only real test**, and **absence does not log**: a parse error screams, but a VO line that
-never plays, a trigger nobody walks into, an alias resolving to nothing are silent, so error-driven
-testing cannot find them by construction. You need an **expectation manifest** (what *should* fire,
-from the BSP entity lump) diffed against **engine instrumentation** (what *did*) - the coverage sweep.
+*(worked examples archived to `docs/archive/traps-t14-worked-examples.md`)*
 
-**Settled 2026-08-06 by the 4-player coverage sweep.** 49 walker-valid maps threw **26,230 script
-errors across 548 sites**, none reported by any static audit, concentrated in **shared** files so few
-fixes repair many maps: `vehicle_warning.scr` 12,690 (48%), `gags/t2l3_friendly.scr` 8,694 (33%),
-`gags/t3l1_enemyspawn.scr` 972, `global/spotlight.scr` 798, `coop_mod/officer.scr:1754` 666 (our **own**
-code, all 48 maps). The dominant cause is `$player`-as-array ([T5](#t5)) hitting a retail SP script that
-dereferences `.origin` - invisible in SP *and* solo coop, since `OP_UN_TARGETNAME` yields a plain
-listener at one match and a container only at 2+. **It needs two connected players to reproduce at
-all**, which is why years of solo testing never saw the trilogy's largest error source.
-
-**A MEASUREMENT HARNESS FAILS SILENTLY TOO — a broken one does not error, it reports.** Four AI A/B runs
-(2026-08-15) were each invalidated a different invisible way, all four looking clean. **Refuse to report
-unless preconditions held, and prove the guard fires** - the four modes and six rules are in
-[reference/harness_and_reproduction.md](reference/harness_and_reproduction.md). **A declaration with no
-producer is the same silence** (bugs 1596-1598): cross-reference mechanically, walking the WHOLE tree - a
-`maps/*.scr` glob misses `maps/<map>/*.scr` and miscounted three wired challenges as dead.
-
----
-
-<a name="t16"></a>
 ## T16 — Waits that never complete: failsafe recursion, missing anims, unguarded `waittill`
 
 **Bugs:** 1361 → 1366 (e3l4 supply/delivery), 1367, 1368, 1370, 1579, 1921, 1945; same shape as the AB41
@@ -823,3 +799,29 @@ floor on the AMOUNT, at a survivable share of max health.
 Deal damage with the real event and pass a direction (`vector_normalize(victim - source)`) like a
 bullet does; `player.cpp` derives the indicator bearing from arg 5, the DIRECTION, not the position.
 (bug-2015)
+
+## Coop systems that touch EVERY actor will find the scripted ones
+
+Every global actor pass - the weapon-variant roll, the AI personality roll, enemy
+count-scaling - runs on a map's SCRIPTED CAST as readily as on its garrison, and a scripted
+actor is defined by state the pass casually overwrites. `coop_variantRoll` ends in
+`self.weapon = <tik>` + `self unholster` and re-armed m1l1's truck driver **while he was
+holding the steering wheel**; the personality roll overwrites `type_attack` on ~65% of rolls
+and locks a prone pose on ~12%, destroying the think the map assigned.
+
+**This has now been "fixed" twice too narrowly.** bug-1949 added `self.no_idle` to the
+variant roll after it broke the m3l3 Ramsey conversation - but `no_idle` appears in 19
+scripts while **42 hold ler actors**, so m1l1 was still exposed a month later (bug-2035).
+The personality roll had the same shape: a per-map name list added only for the maps where
+someone had noticed (bug-2033 found 99 unprotected scripts).
+
+**The rule: one shared scene test, never a private one per pass.**
+`officer.scr::coop_isProtectedActor` is that test. A new global pass calls it; it must not
+invent a second, narrower check that will drift out of step with the first.
+
+**Detecting scenery generically:** a map that calls `global/disable_ai.scr` has *declared*
+the actor scenery, so our override of that file records it as `coop_aiDisabled` - a readable
+mirror, because `enableEnemy` itself is **write-only** and reading it throws (bug-2034).
+Actors that are only *holstered* still have no generic marker; flag those with
+`flags["coop_sceneActor"] = 1`, which is what spawned actors need anyway since a targetname
+list cannot reach them. Audit with `docs/tools/audit_scene_actors.py`.

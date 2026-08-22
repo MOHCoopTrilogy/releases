@@ -177,3 +177,29 @@ probe: [`archive/prefs-pruned-2026-08-20.md`](archive/prefs-pruned-2026-08-20.md
   dereferences), never by eye - a cvar name appears only at its registration. **Verify its findings
   against source before deleting anything:** its first run called 8 live controls dead, all blind
   spots in the tool.
+
+## Search `buglog.json` BEFORE theorising, not after
+
+[user 2026-08-22] "Are we operating as efficiently as we can based off of what we have
+learned as we go?" - the honest answer was no, and the day proved it.
+
+Chasing why m1l1's scripted cast broke, two wrong diagnoses were proposed from first
+principles (enemy count-scaling; then the personality roll alone) before the real cause -
+the weapon-variant roll re-arming holstered actors - turned up. **That exact defect class
+was already in the buglog as bug-1949**, complete with the guard someone had added for it.
+One search for "unholster scripted actor" would have produced the precedent AND the fact
+that its guard was too narrow, in a single step.
+
+The protocol already says to read `buglog.json` before fixing. In practice it gets read
+*after* a theory has formed, to confirm it. Read it FIRST, to find out whether the problem
+is already solved or half-solved.
+
+**Promote what you find.** Today's other lesson: wall cover's entire crash history existed
+only in the buglog - `TRAPS.md` and `DECISIONS.md` had zero cover entries - so a session
+following the documented reading order would have found no reason not to delete the
+`if (false)` and rebuild the crash. The buglog is a search index, not a substitute for the
+authored docs. If a buglog entry would change a future decision, it belongs in TRAPS or
+DECISIONS too.
+
+**Budgets are not the enemy.** Pruning keeps rules and drops war stories; nothing load-bearing
+has been lost that way. The real inefficiency is knowledge that never left the buglog at all.

@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 40,412 |
-| bytes | 42.1 GB |
-| files in project scope (indexed per-file) | 15,041 |
-| source files (per-file rows with line counts) | 6,128 |
+| files in the workspace | 41,518 |
+| bytes | 42.2 GB |
+| files in project scope (indexed per-file) | 16,147 |
+| source files (per-file rows with line counts) | 6,136 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -24,7 +24,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 11,521 | 7176.4 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 12,618 | 7316.3 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
@@ -34,13 +34,13 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `original-scripts` | 915 | 1173.7 MB | no - reference | vanilla MOHAA script/asset extraction (reference) |
 | `player1_home` | 296 | 3.0 MB | no - reference | test client profile dir |
 | `_research` | 171 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
-| `docs` | 153 | 4.4 MB | **yes** | this documentation set (authored + generated) |
+| `docs` | 159 | 4.6 MB | **yes** | this documentation set (authored + generated) |
 | `<root>` | 126 | 3409.4 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `extracted-scripts` | 99 | 2.6 MB | **yes** | extracted vanilla scripts kept for diffing |
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
 | `_menu_pilot` | 81 | 90.7 MB | no - reference | Photoshop menu round-trip staging |
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
-| `manifests` | 43 | 0.5 MB | **yes** | release manifests consumed by the auto-updater |
+| `manifests` | 46 | 0.6 MB | **yes** | release manifests consumed by the auto-updater |
 | `_variant_packs` | 38 | 343.4 MB | **yes** |  |
 | `_tools` | 37 | 69.0 MB | no - reference | downloaded third-party binaries |
 | `server_home` | 32 | 6.2 MB | **yes** |  |
@@ -76,31 +76,31 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 ## Extension census (whole workspace)
 | ext | files |
 |---|---:|
-| `.wav` | 14,459 |
+| `.wav` | 14,768 |
 | `.dds` | 3,557 |
-| `.scr` | 2,517 |
+| `.scr` | 2,520 |
 | `.tga` | 2,402 |
 | `.jpg` | 2,214 |
 | `.cfg` | 2,134 |
+| `.mp3` | 1,654 |
 | `.tik` | 1,652 |
 | `.png` | 1,371 |
+| `.pre_upscale_nobuild` | 1,252 |
 | `.obj` | 1,224 |
-| `.pre_upscale_nobuild` | 1,200 |
 | `.h` | 955 |
-| `.mp3` | 923 |
 | `.c` | 718 |
 | `.txt` | 605 |
 | `.asf` | 514 |
 | `.cpp` | 475 |
 | `.skc` | 415 |
 | `.ogg` | 376 |
-| `.md` | 370 |
+| `.md` | 373 |
 | `.skd` | 345 |
 | `.shader` | 225 |
 | `.urc` | 169 |
-| `.json` | 130 |
+| `.json` | 133 |
 | `.bsp` | 129 |
-| `.py` | 101 |
+| `.py` | 106 |
 | `.min` | 100 |
 | `.class` | 64 |
 | `(none)` | 60 |
@@ -120,7 +120,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 ## Directories in project scope
 | directory | files | size | top extensions |
 |---|---:|---:|---|
-| `.` | 126 | 3409.42 MB | .md×64, .txt×15, .ps1×14, .png×6 |
+| `.` | 126 | 3409.44 MB | .md×64, .txt×15, .ps1×14, .png×6 |
 | `_backups` | 1 | 0.02 MB | .bak×1 |
 | `_backups/colt_2026-08-20` | 1 | 0.11 MB | .pre_loudness_nobuild×1 |
 | `_backups/xpbar_2026-08-20` | 2 | 0.04 MB | .pre_channelfit_nobuild×2 |
@@ -179,8 +179,8 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `autotest_home/maintt/configs` | 1 | 0.07 MB | .cfg×1 |
 | `autotest_home/maintt/coop_mod/save` | 3 | 0.00 MB | .dat×3 |
 | `autotest_results` | 2 | 0.32 MB | .tsv×1, .log×1 |
-| `docs` | 31 | 1.53 MB | .md×30, .png×1 |
-| `docs/archive` | 13 | 0.19 MB | .md×13 |
+| `docs` | 31 | 1.54 MB | .md×30, .png×1 |
+| `docs/archive` | 14 | 0.19 MB | .md×14 |
 | `docs/proposals` | 24 | 0.88 MB | .md×23, .json×1 |
 | `docs/proposals/cover_attach` | 2 | 0.04 MB | .md×2 |
 | `docs/proposals/m2l2a_phaseA` | 1 | 0.00 MB | .md×1 |
@@ -188,16 +188,16 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/proposals/objective_audit` | 2 | 0.02 MB | .md×2 |
 | `docs/proposals/postfx_ghost` | 3 | 0.06 MB | .md×3 |
 | `docs/proposals/research_m2l2a` | 8 | 0.25 MB | .md×8 |
-| `docs/public` | 6 | 0.07 MB | .md×6 |
-| `docs/public/fixes` | 11 | 0.66 MB | .md×11 |
+| `docs/public` | 6 | 0.08 MB | .md×6 |
+| `docs/public/fixes` | 11 | 0.79 MB | .md×11 |
 | `docs/reference` | 4 | 0.07 MB | .md×3, .txt×1 |
-| `docs/tools` | 39 | 0.40 MB | .py×35, .md×1, .cmd×1, .ps1×1 |
+| `docs/tools` | 44 | 0.42 MB | .py×40, .md×1, .cmd×1, .ps1×1 |
 | `extracted-scripts` | 5 | 0.06 MB | .scr×5 |
 | `extracted-scripts/main_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
-| `hzm-mohaa-coop-mod` | 38 | 1941.41 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
+| `hzm-mohaa-coop-mod` | 38 | 2002.46 MB | .txt×12, .jpg×10, .cfg×5, .png×3 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -208,7 +208,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/_notes/audio_backup_20260705/fire` | 57 | 10.35 MB | .wav×57 |
 | `hzm-mohaa-coop-mod/_notes/audio_backup_20260705/tails` | 6 | 0.96 MB | .wav×6 |
 | `hzm-mohaa-coop-mod/_notes/game` | 5 | 0.01 MB | .txt×5 |
-| `hzm-mohaa-coop-mod/_research` | 96 | 11.33 MB | .md×83, .py×4, .log×4, .json×3 |
+| `hzm-mohaa-coop-mod/_research` | 98 | 11.42 MB | .md×85, .py×4, .log×4, .json×3 |
 | `hzm-mohaa-coop-mod/_research/fontgen` | 4 | 0.25 MB | .py×3, .png×1 |
 | `hzm-mohaa-coop-mod/_research/hdfix` | 21 | 472.56 MB | .png×15, .py×4, .pk3×2 |
 | `hzm-mohaa-coop-mod/_research/hdfix/pk3/textures/wilderness` | 2 | 1.30 MB | .dds×1, .jpg×1 |
@@ -243,7 +243,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/_research/release_drafts` | 6 | 0.04 MB | .md×6 |
 | `hzm-mohaa-coop-mod/anim` | 23 | 0.17 MB | .scr×23 |
 | `hzm-mohaa-coop-mod/cmpatch` | 1 | 0.00 MB | .txt×1 |
-| `hzm-mohaa-coop-mod/coop_mod` | 121 | 3.76 MB | .scr×116, .st×3, .cfg×2 |
+| `hzm-mohaa-coop-mod/coop_mod` | 121 | 3.77 MB | .scr×116, .st×3, .cfg×2 |
 | `hzm-mohaa-coop-mod/coop_mod/alias` | 2 | 0.03 MB | .cfg×1, .scr×1 |
 | `hzm-mohaa-coop-mod/coop_mod/bp` | 5 | 0.03 MB | .dat×5 |
 | `hzm-mohaa-coop-mod/coop_mod/cache` | 1 | 0.00 MB | .scr×1 |
@@ -258,7 +258,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/fonts` | 13 | 0.18 MB | .ritualfont×13 |
 | `hzm-mohaa-coop-mod/gags` | 22 | 0.39 MB | .scr×22 |
 | `hzm-mohaa-coop-mod/gfx/fonts` | 25 | 69.21 MB | .tga×25 |
-| `hzm-mohaa-coop-mod/global` | 70 | 1.04 MB | .scr×68, .txt×2 |
+| `hzm-mohaa-coop-mod/global` | 72 | 1.04 MB | .scr×70, .txt×2 |
 | `hzm-mohaa-coop-mod/maintt` | 1 | 0.00 MB | .cfg×1 |
 | `hzm-mohaa-coop-mod/maps` | 130 | 89.10 MB | .scr×121, .bsp×8, .pth×1 |
 | `hzm-mohaa-coop-mod/maps/briefing` | 12 | 0.06 MB | .scr×12 |
@@ -402,7 +402,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/models/weapons/fg42` | 2 | 0.09 MB | .skc×1, .skd×1 |
 | `hzm-mohaa-coop-mod/music` | 1 | 0.00 MB | .mus×1 |
 | `hzm-mohaa-coop-mod/scripts` | 90 | 0.78 MB | .shader×89, (none)×1 |
-| `hzm-mohaa-coop-mod/sound/amb` | 3 | 2.34 MB | .wav×3 |
+| `hzm-mohaa-coop-mod/sound/amb` | 10 | 8.46 MB | .wav×8, .mp3×2 |
 | `hzm-mohaa-coop-mod/sound/amb_stereo` | 77 | 148.87 MB | .mp3×70, .wav×7 |
 | `hzm-mohaa-coop-mod/sound/characters` | 33 | 1.00 MB | .wav×33 |
 | `hzm-mohaa-coop-mod/sound/coop` | 3 | 1.69 MB | .wav×3 |
@@ -426,17 +426,43 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/sound/coop_sprint` | 2 | 0.37 MB | .wav×2 |
 | `hzm-mohaa-coop-mod/sound/coop_tinnitus` | 3 | 1.08 MB | .wav×2, .pre_ext_nobuild×1 |
 | `hzm-mohaa-coop-mod/sound/coop_vo` | 3 | 0.52 MB | .wav×3 |
-| `hzm-mohaa-coop-mod/sound/dialogue/Mission_2/Allies` | 16 | 0.31 MB | .mp3×16 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/A/attack` | 17 | 0.64 MB | .wav×17 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/A/cover` | 8 | 0.32 MB | .wav×8 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/A/damage` | 24 | 0.47 MB | .wav×24 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/A/death` | 14 | 0.57 MB | .wav×14 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/A/kill` | 2 | 0.06 MB | .wav×2 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/A/panic` | 9 | 0.26 MB | .wav×9 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/A/sighted` | 1 | 0.03 MB | .wav×1 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/G/attack` | 42 | 2.19 MB | .wav×42 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/G/disguise` | 3 | 0.11 MB | .wav×3 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/G/fear` | 134 | 6.98 MB | .wav×134 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/G/idle` | 26 | 7.93 MB | .wav×26 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/G/sighted` | 20 | 0.95 MB | .wav×20 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/UK` | 50 | 0.54 MB | .mp3×50 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/US` | 58 | 0.66 MB | .mp3×58 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/it/attack` | 3 | 0.03 MB | .mp3×3 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/it/curious` | 3 | 0.03 MB | .mp3×3 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/it/fear` | 7 | 0.08 MB | .mp3×7 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Generic/it/sighted` | 4 | 0.03 MB | .mp3×4 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Mission_1/Allies` | 83 | 1.51 MB | .mp3×83 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Mission_1/Axis` | 8 | 0.12 MB | .mp3×8 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Mission_2/Allies` | 119 | 5.08 MB | .mp3×119 |
 | `hzm-mohaa-coop-mod/sound/dialogue/Mission_2/Axis` | 4 | 0.04 MB | .mp3×4 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Mission_3/Allies` | 57 | 1.48 MB | .mp3×57 |
+| `hzm-mohaa-coop-mod/sound/dialogue/Multiplayer/Russian` | 19 | 0.43 MB | .mp3×19 |
+| `hzm-mohaa-coop-mod/sound/dialogue/global/GM` | 36 | 0.34 MB | .mp3×36 |
+| `hzm-mohaa-coop-mod/sound/dialogue/global/IT` | 79 | 0.69 MB | .mp3×79 |
+| `hzm-mohaa-coop-mod/sound/dialogue/global/UK` | 114 | 1.08 MB | .mp3×114 |
+| `hzm-mohaa-coop-mod/sound/dialogue/global/US` | 105 | 0.91 MB | .mp3×105 |
 | `hzm-mohaa-coop-mod/sound/frontline` | 10 | 63.17 MB | .wav×10 |
 | `hzm-mohaa-coop-mod/sound/items` | 7 | 0.11 MB | .wav×7 |
-| `hzm-mohaa-coop-mod/sound/mechanics` | 1 | 0.23 MB | .wav×1 |
+| `hzm-mohaa-coop-mod/sound/mechanics` | 5 | 10.15 MB | .wav×5 |
 | `hzm-mohaa-coop-mod/sound/music` | 90 | 271.40 MB | .mp3×89, .bak×1 |
 | `hzm-mohaa-coop-mod/sound/weapons/fire` | 66 | 11.34 MB | .wav×65, .pre_thump_nobuild×1 |
 | `hzm-mohaa-coop-mod/sound/weapons/foley` | 13 | 0.63 MB | .wav×13 |
 | `hzm-mohaa-coop-mod/sound/weapons/impact` | 54 | 3.36 MB | .wav×54 |
 | `hzm-mohaa-coop-mod/sound/weapons/zings` | 21 | 1.36 MB | .wav×21 |
-| `hzm-mohaa-coop-mod/textures` | 140 | 28.43 MB | .tga×129, .jpg×10, (none)×1 |
+| `hzm-mohaa-coop-mod/textures` | 192 | 57.85 MB | .tga×129, .pre_upscale_nobuild×52, .jpg×10, (none)×1 |
 | `hzm-mohaa-coop-mod/textures/brit_general` | 4 | 0.85 MB | .tga×4 |
 | `hzm-mohaa-coop-mod/textures/common` | 2 | 0.00 MB | .jpg×2 |
 | `hzm-mohaa-coop-mod/textures/coop_authwinch` | 2 | 5.24 MB | .tga×1, .pre_upscale_nobuild×1 |
@@ -691,7 +717,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/renan_models` | 31 | 7.05 MB | .jpg×25, .tga×6 |
 | `hzm-mohaa-coop-mod/textures/sprites` | 5 | 0.14 MB | .tga×5 |
 | `hzm-mohaa-coop-mod/textures/wilderness` | 2 | 3.72 MB | .jpg×2 |
-| `hzm-mohaa-coop-mod/ubersound` | 16 | 7.17 MB | .scr×16 |
+| `hzm-mohaa-coop-mod/ubersound` | 17 | 7.16 MB | .scr×17 |
 | `hzm-mohaa-coop-mod/ui` | 112 | 0.96 MB | .urc×104, .cfg×4, .inc×2, .scr×1 |
 | `hzm-mohaa-coop-mod/ui/coop_fov` | 33 | 0.01 MB | .cfg×31, .bat×2 |
 | `hzm-mohaa-coop-mod/ui/coop_objectives` | 46 | 0.02 MB | .cfg×46 |
@@ -700,7 +726,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/loadout` | 1,113 | 0.33 MB | .cfg×1113 |
 | `hzm-mohaa-coop-mod/ui/loadout/helm` | 48 | 0.03 MB | .cfg×48 |
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 135 | 0.13 MB | .cfg×135 |
-| `manifests` | 43 | 0.55 MB | .json×43 |
+| `manifests` | 46 | 0.59 MB | .json×46 |
 | `map_entities` | 92 | 10.22 MB | .txt×88, .md×4 |
 | `openmohaa-hzm` | 8 | 0.04 MB | (none)×2, .txt×2, .md×2, .ps1×1 |
 | `openmohaa-hzm/.github/ISSUE_TEMPLATE` | 1 | 0.00 MB | .md×1 |
@@ -713,11 +739,11 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/code/autoupdater` | 1 | 0.03 MB | .c×1 |
 | `openmohaa-hzm/code/autoupdater/rsa_tools` | 9 | 0.01 MB | .c×4, .sh×3, (none)×1, .h×1 |
 | `openmohaa-hzm/code/botlib` | 57 | 1.15 MB | .h×29, .c×28 |
-| `openmohaa-hzm/code/cgame` | 44 | 1.66 MB | .cpp×20, .c×13, .h×10, .txt×1 |
+| `openmohaa-hzm/code/cgame` | 44 | 1.67 MB | .cpp×20, .c×13, .h×10, .txt×1 |
 | `openmohaa-hzm/code/client` | 87 | 1.51 MB | .cpp×37, .h×33, .c×16, .txt×1 |
 | `openmohaa-hzm/code/client/new` | 3 | 0.02 MB | .h×2, .cpp×1 |
 | `openmohaa-hzm/code/curl` | 2 | 0.00 MB | .txt×1, .h×1 |
-| `openmohaa-hzm/code/fgame` | 283 | 5.97 MB | .cpp×157, .h×122, .bak_botinput×2, .txt×1 |
+| `openmohaa-hzm/code/fgame` | 283 | 5.99 MB | .cpp×157, .h×122, .bak_botinput×2, .txt×1 |
 | `openmohaa-hzm/code/gamespy` | 23 | 0.21 MB | .h×11, .c×10, .txt×2 |
 | `openmohaa-hzm/code/gamespy/Chat` | 15 | 0.38 MB | .h×8, .c×6, .txt×1 |
 | `openmohaa-hzm/code/gamespy/Chat/chatc` | 1 | 0.02 MB | .c×1 |
@@ -1042,7 +1068,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `omconfig.cfg` | 2,488 | 68.4 KB | generated by openmohaa |
 
-### `docs/tools/` — 37 source files
+### `docs/tools/` — 42 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -1050,7 +1076,9 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `ads_sweep.py` | 115 | 4.5 KB | the tuned rows |
 | `ai_ab_report.py` | 121 | 5.5 KB |  |
 | `audit_menu_cvars.py` | 201 | 9.0 KB |  |
+| `audit_scene_actors.py` | 131 | 6.1 KB | !/usr/bin/env python3 |
 | `audit_shaders.py` | 129 | 4.8 KB | !/usr/bin/env python |
+| `audit_skin_res.py` | 60 | 2.6 KB | every texture basename any pak provides, and in what format |
 | `audit_weapons.py` | 361 | 15.7 KB | !/usr/bin/env python |
 | `bake_skins.py` | 92 | 4.1 KB |  |
 | `build_explosions.py` | 201 | 7.3 KB |  |
@@ -1064,10 +1092,12 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `docs.cmd` | 13 | 0.5 KB |  |
 | `docs.ps1` | 49 | 1.5 KB |  |
 | `gen_armory_bg.py` | 254 | 10.8 KB | plain: the pre-overhaul look (near-black, subtle panels, caption + stat labels only). |
-| `gen_chatter_pools.py` | 142 | 7.6 KB | !/usr/bin/env python |
-| `gen_explosion_aliases.py` | 98 | 4.8 KB |  |
+| `gen_chatter_pools.py` | 167 | 8.7 KB | !/usr/bin/env python |
+| `gen_cos_reqs.py` | 81 | 3.6 KB | !/usr/bin/env python3 |
+| `gen_explosion_aliases.py` | 110 | 5.9 KB |  |
 | `gen_loadout.py` | 364 | 17.0 KB | !/usr/bin/env python |
-| `gen_public_pages.py` | 540 | 21.2 KB | !/usr/bin/env python3 |
+| `gen_pain_tiers.py` | 97 | 5.1 KB | !/usr/bin/env python3 |
+| `gen_public_pages.py` | 595 | 23.8 KB | !/usr/bin/env python3 |
 | `gen_service_record.py` | 989 | 62.6 KB | [user 08-07] friendly display name for a challenge's reward field (chal_def's 7th arg) |
 | `gen_skinbase.py` | 40 | 1.9 KB | !/usr/bin/env python |
 | `gen_skins.py` | 285 | 12.7 KB |  |
@@ -1082,6 +1112,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `slice_gunfoley.py` | 269 | 11.5 KB |  |
 | `ui_wiring_audit.py` | 133 | 5.9 KB | !/usr/bin/env python |
 | `unlock_audit.py` | 107 | 5.0 KB | !/usr/bin/env python |
+| `upscale_skins.py` | 104 | 4.6 KB |  |
 | `wire_mv2.py` | 249 | 15.9 KB | PRESERVED 2026-08-19 from session scratchpad - the model-variant wiring generator |
 
 ### `extracted-scripts/` — 5 source files
@@ -1212,9 +1243,9 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `autoexec.cfg` | 1,272 | 91.2 KB | HZM Extended Coop Mod |
+| `autoexec.cfg` | 1,279 | 91.8 KB | HZM Extended Coop Mod |
 | `coop.cfg` | 3 | 0.1 KB | DEVELOPER CONFIG FILE |
-| `coop_defaults.cfg` | 399 | 24.0 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
+| `coop_defaults.cfg` | 413 | 25.1 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
 | `net_cl.cfg` | 18 | 1.2 KB | HZM Coop recommended CLIENT settings. |
 | `net_sv.cfg` | 21 | 1.2 KB | HZM Coop recommended SERVER settings. |
 
@@ -1317,8 +1348,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `ads_dbg.scr` | 11 | 0.5 KB | HZM coop - ADS diagnostic. Called from the AIM state's entrycommands in |
 | `aibehav.scr` | 166 | 7.4 KB | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
 | `aicombat.scr` | 119 | 5.0 KB | aicombat.scr - HZM coop AUTOMATED COMBAT DRIVER (2026-07-23) |
-| `aihandler.scr` | 1,952 | 109.0 KB | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
-| `aimaneuver.scr` | 261 | 14.3 KB | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
+| `aihandler.scr` | 1,978 | 111.0 KB | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
+| `aimaneuver.scr` | 266 | 14.5 KB | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
 | `aisquad.scr` | 245 | 12.3 KB | aisquad.scr - HZM coop SQUAD BRAIN (2026-07-24) |
 | `aivoice.scr` | 455 | 20.1 KB | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
 | `allysquad.scr` | 382 | 17.1 KB | [user 08-08] ALLIED SQUAD SURVIVABILITY |
@@ -1326,7 +1357,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `ammobox.scr` | 273 | 12.2 KB | HZM coop - player-deployable AMMO BOX. |
 | `blueprint.scr` | 567 | 23.0 KB | HZM coop - BLUEPRINT / PLAYER STRUCTURES (build-mode extension) |
 | `bt_playerTank.scr` | 36 | 1.6 KB | chrissstrahl - Exit Tank Script for BT-Coop |
-| `buildmode.scr` | 1,035 | 58.6 KB | HZM Coop - BUILD MODE (dev tool). Full docs: _research/build_mode.md |
+| `buildmode.scr` | 1,060 | 60.2 KB | HZM Coop - BUILD MODE (dev tool). Full docs: _research/build_mode.md |
 | `buildmode_actors.scr` | 411 | 21.8 KB | HZM Coop - BUILD MODE : ALLIED ACTORS + ANIMATION catalog (DATA + ghost animator). |
 | `buildmode_catalog.scr` | 2,294 | 155.7 KB | HZM Coop - BUILD MODE model catalog (DATA ONLY). Generated from main/mainta/maintt Pak*.pk3 |
 | `buildmode_sounds.scr` | 369 | 18.5 KB | HZM Coop - BUILD MODE : placeable SOUND EMITTERS (catalog + SOUND-mode control bus). |
@@ -1369,7 +1400,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `helmet.scr` | 1,746 | 109.5 KB | [305] HZM coop - LIVE HELMET SWITCHER |
 | `helmtest.scr` | 96 | 3.7 KB | HZM dev probe (TEMPORARY): verify the retail sethelmet/pophelmet mechanic end to end. |
 | `holdout.scr` | 759 | 30.9 KB | HOLDOUT - checkpoint wave-defence gametype [user 2026-08-04] |
-| `itemhandler.scr` | 3,722 | 193.2 KB | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
+| `itemhandler.scr` | 3,750 | 194.7 KB | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
 | `keyitems.scr` | 161 | 8.3 KB | [306] HZM coop - KEY MISSION ITEMS can never be permanently lost |
 | `ladder.scr` | 295 | 15.6 KB | HZM coop - PLACEABLE CLIMBABLE LADDERS [user 2026-08-05] bug-1415 |
 | `ladder_state.scr` | 24 | 1.2 KB | HZM coop - LADDER STATE HOOK [user 2026-08-05] bug-1415 |
@@ -1398,7 +1429,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `objective_drop.scr` | 165 | 7.1 KB | Objective Bonus Drop |
 | `objective_positions.scr` | 89 | 3.6 KB | objective_positions.scr |
 | `objectives.scr` | 693 | 29.9 KB | Coop Side Objectives (optional / secondary) |
-| `officer.scr` | 5,018 | 222.5 KB | Officer Boss + Radio Station |
+| `officer.scr` | 5,080 | 226.8 KB | Officer Boss + Radio Station |
 | `officer_positions.scr` | 624 | 34.2 KB | coop_officer_positions.scr |
 | `painbreath.scr` | 69 | 3.1 KB | HZM coop - WOUNDED BREATHING. |
 | `paradrop.scr` | 774 | 32.7 KB | Allied Paradrop System |
@@ -1420,7 +1451,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `start_server.cfg` | 59 | 3.7 KB | used cfg to start server, executed from within game menu coop_start.urc |
 | `strings.scr` | 1,301 | 33.3 KB | [200] Smithy - this is taken from xnull. Not mine, but is used by many. Will be useful to us. |
 | `subsink.scr` | 618 | 27.1 KB | HZM coop - STAGED U-BOAT DEATH |
-| `surrender.scr` | 125 | 5.9 KB | HZM coop - SURRENDER CONVERSION [user 2026-08-19]: "when a german surrenders can you |
+| `surrender.scr` | 157 | 7.7 KB | HZM coop - SURRENDER CONVERSION [user 2026-08-19]: "when a german surrenders can you |
 | `takecover.scr` | 47 | 2.4 KB | [214] HZM coop - TAKE COVER v1 (player cover system). |
 | `thirdperson.scr` | 52 | 2.0 KB | HZM coop [237] - the 3rd-person bind now CYCLES three view modes (user): |
 | `tinnitus.scr` | 202 | 9.1 KB | HZM coop - TINNITUS / MUFFLED HEARING (per-player). |
@@ -1520,7 +1551,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `t3l1_enemyspawn.scr` | 695 | 19.9 KB | [user 08-02] SHIPPED BY THE COOP MOD ON PURPOSE - do not delete. |
 | `t3l1_fourrussians.scr` | 100 | 2.8 KB | [user 08-02] SHIPPED BY THE COOP MOD ON PURPOSE - do not delete. |
 
-### `hzm-mohaa-coop-mod/global/` — 68 source files
+### `hzm-mohaa-coop-mod/global/` — 70 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -1555,6 +1586,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `chainspawner.scr` | 133 | 4.1 KB | SPAWNERS!!! |
 | `credits.scr` | 867 | 27.5 KB | [200] chrissstrahl - modified for coop - 2020.06.20 |
 | `credits_hazardmodding.scr` | 249 | 13.8 KB | MoH: Allied Assault Script File |
+| `disable_ai.scr` | 15 | 0.9 KB | Disables independent AI. |
+| `enable_ai.scr` | 8 | 0.3 KB | Enables independent AI. |
 | `entsound.scr` | 15 | 0.5 KB | local.ent playsound local.sound wait //[202][hotfix] |
 | `exploder.scr` | 744 | 20.0 KB | Exploding chunk system created by Mackey McCandlish. |
 | `friendly.scr` | 2,895 | 88.6 KB | [202] chrissstrahl |
@@ -1605,7 +1638,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `M1L3a.scr` | 890 | 29.5 KB | THE DESERT |
 | `M1L3c.scr` | 1,138 | 33.1 KB | THE SEA WALL |
-| `M3L3.scr` | 9,053 | 379.7 KB | LEVEL: M3L3 |
+| `M3L3.scr` | 9,094 | 382.8 KB | LEVEL: M3L3 |
 | `M5L2A.scr` | 850 | 33.8 KB | TANK DRIVE 1 |
 | `M6L1b.scr` | 166 | 6.2 KB | SNOWY FOREST2 |
 | `co_lobby1.scr` | 46 | 2.6 KB | LEVEL: co_lobby1.bsp (a copy of training.bsp) |
@@ -1641,7 +1674,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `e3l4_arena.scr` | 532 | 24.7 KB | HOLDOUT ARENA - MONTE BATTAGLIA (map name e3l4_arena) |
 | `e3l4_arena_precache.scr` | 5 | 0.4 KB | HOLDOUT ARENA precache. [user 2026-08-05] bug-1393 |
 | `e3l4_precache.scr` | 164 | 6.0 KB | Stripped 117 global-duplicate cache lines (2026-06-23) |
-| `m1l1.scr` | 3,025 | 88.5 KB | chrissstrahl - modified for coop |
+| `m1l1.scr` | 3,052 | 93.3 KB | chrissstrahl - modified for coop |
 | `m1l1_precache.scr` | 113 | 4.1 KB |  |
 | `m1l2a.scr` | 4,600 | 141.3 KB | $oldtruckclip notsolid |
 | `m1l2a_precache.scr` | 119 | 4.3 KB |  |
@@ -3783,22 +3816,23 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `us_sniper.shader` | 67 | 1.4 KB |  |
 | `venom.shader` | 75 | 1.7 KB |  |
 
-### `hzm-mohaa-coop-mod/ubersound/` — 16 source files
+### `hzm-mohaa-coop-mod/ubersound/` — 17 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
 | `coop_aivoice.scr` | 318 | 34.2 KB | HZM coop - SITUATIONAL AI VOICE pools (coop_mod/aivoice.scr). |
 | `coop_audio.scr` | 150 | 14.2 KB | HZM coop - AUDIO ENHANCEMENT SUITE aliases (any ubersound/*.scr is auto-registered). |
 | `coop_buildsounds.scr` | 68 | 7.0 KB | HZM coop - BUILD MODE placeable SOUND EMITTERS catalog aliases. |
-| `coop_chatter.scr` | 1,426 | 185.5 KB | GENERATED by docs/tools/gen_chatter_pools.py - DO NOT EDIT. |
+| `coop_chatter.scr` | 1,350 | 175.0 KB | GENERATED by docs/tools/gen_chatter_pools.py - DO NOT EDIT. |
 | `coop_deathvox.scr` | 512 | 66.5 KB | HZM coop - 'Death Sounds Reborn' varied death voices (converted .ogg -> .wav, 22050 mono). |
-| `coop_explosions.scr` | 125 | 15.2 KB | HZM coop - EXPLOSION POOL. |
+| `coop_explosions.scr` | 132 | 16.2 KB | HZM coop - EXPLOSION POOL. |
 | `coop_flvo.scr` | 140 | 17.4 KB | HZM coop - MOH Frontline battle-chatter pools (user-approved VO expansion, 2026-07-13). |
 | `coop_gunfoley.scr` | 123 | 14.5 KB | HZM coop [user 2026-08-21] WEAPON HANDLING FOLEY. |
 | `coop_gurgle.scr` | 31 | 3.2 KB | HZM coop - subtle WET DEATH-RATTLE / bleed-out gurgle SFX (converted .ogg -> .wav, 22050 mono). |
 | `coop_headshot.scr` | 4 | 0.4 KB | HZM coop - HEADSHOT KILL cue. Played to the killing player (CHAN_LOCAL) by the engine when a player |
 | `coop_morocco_ubersound.scr` | 15 | 0.7 KB | UBERSOUND FILE |
-| `coop_pain.scr` | 92 | 10.3 KB | HZM coop [user 2026-08-21] PLAYER PAIN + DEATH VOICE - the whole pool, on every map. |
+| `coop_pain.scr` | 80 | 8.1 KB | HZM coop [user 2026-08-21] PLAYER PAIN + DEATH VOICE - the whole pool, on every map. |
+| `coop_paintiers.scr` | 53 | 6.4 KB | HZM coop - SEVERITY-TIERED PLAYER PAIN. GENERATED by docs/tools/gen_pain_tiers.py. |
 | `coop_taunt.scr` | 81 | 10.6 KB | HZM coop - MP TAUNT wrappers so campaign AI can jeer at the players (2026-07-17, REBUILT 2026-07-18). |
 | `coop_wounded.scr` | 17 | 1.3 KB | HZM coop - WOUNDED BREATHING aliases (coop_mod/wounded.scr). |
 | `uberdialog.scr` | 42,175 | 6023.9 KB | UBERDIALOG |
@@ -3825,7 +3859,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coopDev.urc` | 276 | 5.6 KB |  |
 | `coopMomMenuExample.urc` | 276 | 5.4 KB |  |
 | `coop_jeepEnter.urc` | 31 | 0.5 KB |  |
-| `coop_loadout.urc` | 3,915 | 75.8 KB |  |
+| `coop_loadout.urc` | 3,918 | 76.1 KB |  |
 | `coop_login.urc` | 280 | 5.1 KB |  |
 | `coop_mom.urc` | 287 | 5.5 KB |  |
 | `coop_objectives.urc` | 1,343 | 23.3 KB |  |
@@ -5150,7 +5184,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `h01.cfg` | 16 | 0.7 KB | GENERATED - helmet preview step 1/47 (std) |
 | `h02.cfg` | 13 | 0.4 KB | GENERATED - helmet preview step 2/47 (none) |
-| `h03.cfg` | 13 | 0.5 KB | GENERATED - helmet preview step 3/47 (models/coop_helmets/coop_helmet_plain.tik) |
+| `h03.cfg` | 13 | 0.6 KB | GENERATED - helmet preview step 3/47 (models/coop_helmets/coop_helmet_plain.tik) |
 | `h04.cfg` | 14 | 0.6 KB | GENERATED - helmet preview step 4/47 (models/coop_helmets/coop_helmet_net.tik) [GATED] |
 | `h05.cfg` | 14 | 0.6 KB | GENERATED - helmet preview step 5/47 (models/coop_helmets/coop_helmet_29th.tik) [GATED] |
 | `h06.cfg` | 14 | 0.6 KB | GENERATED - helmet preview step 6/47 (models/coop_helmets/coop_helmet_29thnet.tik) [GATED] |
@@ -5167,7 +5201,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `h17.cfg` | 14 | 0.6 KB | GENERATED - helmet preview step 17/47 (models/coop_helmets/coop_helmet_ger_helmet_sh.tik) [GATED] |
 | `h18.cfg` | 14 | 0.6 KB | GENERATED - helmet preview step 18/47 (models/coop_helmets/coop_helmet_ger_helmet.tik) [GATED] |
 | `h19.cfg` | 14 | 0.6 KB | GENERATED - helmet preview step 19/47 (models/coop_helmets/coop_helmet_ger_covered.tik) [GATED] |
-| `h20.cfg` | 14 | 0.6 KB | GENERATED - helmet preview step 20/47 (models/coop_helmets/coop_helmet_ger_creasecap.tik) [GATED] |
+| `h20.cfg` | 14 | 0.7 KB | GENERATED - helmet preview step 20/47 (models/coop_helmets/coop_helmet_ger_creasecap.tik) [GATED] |
 | `h21.cfg` | 14 | 0.6 KB | GENERATED - helmet preview step 21/47 (models/coop_helmets/coop_helmet_dak_hat.tik) [GATED] |
 | `h22.cfg` | 14 | 0.6 KB | GENERATED - helmet preview step 22/47 (models/coop_helmets/coop_helmet_ger_offhat_sh.tik) [GATED] |
 | `h23.cfg` | 14 | 0.6 KB | GENERATED - helmet preview step 23/47 (models/coop_helmets/coop_helmet_ger_officercap.tik) [GATED] |
@@ -5182,149 +5216,149 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `h32.cfg` | 14 | 0.6 KB | GENERATED - helmet preview step 32/47 (models/coop_helmets/coop_helmet_soviet_hat.tik) [GATED] |
 | `h33.cfg` | 14 | 0.6 KB | GENERATED - helmet preview step 33/47 (models/coop_helmets/coop_helmet_net_cig.tik) [GATED] |
 | `h34.cfg` | 14 | 0.6 KB | GENERATED - helmet preview step 34/47 (models/coop_helmets/coop_helmet_ltnt.tik) [GATED] |
-| `h35.cfg` | 13 | 0.5 KB | GENERATED - helmet preview step 35/47 (models/coop_helmets/coop_helmet_gasmask.tik) |
-| `h36.cfg` | 13 | 0.5 KB | GENERATED - helmet preview step 36/47 (models/coop_helmets/coop_helmet_brit_tankberet.tik) |
-| `h37.cfg` | 13 | 0.5 KB | GENERATED - helmet preview step 37/47 (models/coop_helmets/coop_helmet_us_gasmask.tik) |
-| `h38.cfg` | 13 | 0.5 KB | GENERATED - helmet preview step 38/47 (models/coop_helmets/coop_helmet_eyeglasses.tik) |
-| `h39.cfg` | 13 | 0.5 KB | GENERATED - helmet preview step 39/47 (models/coop_helmets/coop_helmet_avglasses.tik) |
-| `h40.cfg` | 13 | 0.5 KB | GENERATED - helmet preview step 40/47 (models/coop_helmets/coop_helmet_ger_crusher.tik) |
-| `h41.cfg` | 13 | 0.5 KB | GENERATED - helmet preview step 41/47 (models/coop_helmets/coop_helmet_ss_officerhat.tik) |
-| `h42.cfg` | 13 | 0.5 KB | GENERATED - helmet preview step 42/47 (models/coop_helmets/coop_helmet_ss_mutze.tik) |
-| `h43.cfg` | 13 | 0.5 KB | GENERATED - helmet preview step 43/47 (models/coop_helmets/coop_helmet_woolcap.tik) |
-| `h44.cfg` | 13 | 0.5 KB | GENERATED - helmet preview step 44/47 (models/coop_helmets/coop_helmet_brit_paramask.tik) |
-| `h45.cfg` | 13 | 0.5 KB | GENERATED - helmet preview step 45/47 (models/coop_helmets/coop_helmet_brit_mk2.tik) |
-| `h46.cfg` | 13 | 0.5 KB | GENERATED - helmet preview step 46/47 (models/coop_helmets/coop_helmet_brit_offcap2.tik) |
-| `h47.cfg` | 13 | 0.5 KB | GENERATED - helmet preview step 47/47 (models/coop_helmets/coop_helmet_ger_splinter.tik) |
+| `h35.cfg` | 13 | 0.6 KB | GENERATED - helmet preview step 35/47 (models/coop_helmets/coop_helmet_gasmask.tik) |
+| `h36.cfg` | 13 | 0.6 KB | GENERATED - helmet preview step 36/47 (models/coop_helmets/coop_helmet_brit_tankberet.tik) |
+| `h37.cfg` | 13 | 0.6 KB | GENERATED - helmet preview step 37/47 (models/coop_helmets/coop_helmet_us_gasmask.tik) |
+| `h38.cfg` | 13 | 0.6 KB | GENERATED - helmet preview step 38/47 (models/coop_helmets/coop_helmet_eyeglasses.tik) |
+| `h39.cfg` | 13 | 0.6 KB | GENERATED - helmet preview step 39/47 (models/coop_helmets/coop_helmet_avglasses.tik) |
+| `h40.cfg` | 13 | 0.6 KB | GENERATED - helmet preview step 40/47 (models/coop_helmets/coop_helmet_ger_crusher.tik) |
+| `h41.cfg` | 13 | 0.6 KB | GENERATED - helmet preview step 41/47 (models/coop_helmets/coop_helmet_ss_officerhat.tik) |
+| `h42.cfg` | 13 | 0.6 KB | GENERATED - helmet preview step 42/47 (models/coop_helmets/coop_helmet_ss_mutze.tik) |
+| `h43.cfg` | 13 | 0.6 KB | GENERATED - helmet preview step 43/47 (models/coop_helmets/coop_helmet_woolcap.tik) |
+| `h44.cfg` | 13 | 0.6 KB | GENERATED - helmet preview step 44/47 (models/coop_helmets/coop_helmet_brit_paramask.tik) |
+| `h45.cfg` | 13 | 0.6 KB | GENERATED - helmet preview step 45/47 (models/coop_helmets/coop_helmet_brit_mk2.tik) |
+| `h46.cfg` | 13 | 0.6 KB | GENERATED - helmet preview step 46/47 (models/coop_helmets/coop_helmet_brit_offcap2.tik) |
+| `h47.cfg` | 13 | 0.6 KB | GENERATED - helmet preview step 47/47 (models/coop_helmets/coop_helmet_ger_splinter.tik) |
 | `hclear.cfg` | 5 | 0.4 KB | GENERATED - armory helmet tile CLEAR (No Helmet). The server pushes an exec of this file |
 
 ### `hzm-mohaa-coop-mod/ui/loadout/skin/` — 135 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `s01.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 1/76 (allied_101st_captain) [GATED] |
+| `s01.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 1/76 (allied_101st_captain) [GATED] |
 | `s02.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 2/76 (allied_101st_infantry) [GATED] |
 | `s03.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 3/76 (allied_101st_scout) [GATED] |
-| `s04.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 4/76 (allied_501st_pir_scout) [GATED] |
+| `s04.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 4/76 (allied_501st_pir_scout) [GATED] |
 | `s05.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 5/76 (allied_501st_pir_soldier) [GATED] |
 | `s06.cfg` | 17 | 0.9 KB | GENERATED - skin preview step 6/76 (allied_airborne) |
-| `s07.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 7/76 (allied_airborne_101st_1) [GATED] |
-| `s08.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 8/76 (allied_airborne_101st_2) [GATED] |
+| `s07.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 7/76 (allied_airborne_101st_1) [GATED] |
+| `s08.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 8/76 (allied_airborne_101st_2) [GATED] |
 | `s09.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 9/76 (allied_airborne_101st_sgt) [GATED] |
-| `s10.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 10/76 (allied_airborne_82nd_1) [GATED] |
+| `s10.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 10/76 (allied_airborne_82nd_1) [GATED] |
 | `s100.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 100/121 (american_8thUrbanRangerSniper) |
 | `s101.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 101/121 (american_8thUrbanRanger) |
 | `s102.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 102/121 (american_8thUrbanRangerBar) |
 | `s103.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 103/121 (american_8thUrbanRangeradio) |
 | `s104.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 104/121 (american_8thUrbanRangerMG) |
-| `s105.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 105/121 (allied_82ndair) |
-| `s106.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 106/121 (allied_airborne_elite) |
-| `s107.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 107/121 (american_sniper) |
-| `s108.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 108/121 (american_omaha_ranger) |
+| `s105.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 105/121 (allied_82ndair) |
+| `s106.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 106/121 (allied_airborne_elite) |
+| `s107.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 107/121 (american_sniper) |
+| `s108.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 108/121 (american_omaha_ranger) |
 | `s109.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 109/121 (allied_17thAirb_soldierbloody) |
 | `s11.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 11/76 (allied_airborne_82nd_2) [GATED] |
 | `s110.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 110/121 (allied_1st_manon) |
-| `s111.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 111/121 (allied_1st_sniper) |
+| `s111.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 111/121 (allied_1st_sniper) |
 | `s112.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 112/121 (allied_Commanding_Officer) |
-| `s113.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 113/121 (allied_big_red_one) |
-| `s114.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 114/121 (allied_infantry) |
-| `s115.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 115/121 (allied_russian_Pvt) |
-| `s116.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 116/121 (allied_332nd_Fighter_Pilot) |
+| `s113.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 113/121 (allied_big_red_one) |
+| `s114.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 114/121 (allied_infantry) |
+| `s115.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 115/121 (allied_russian_Pvt) |
+| `s116.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 116/121 (allied_332nd_Fighter_Pilot) |
 | `s117.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 117/121 (allied_camo_108thMGST) |
-| `s118.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 118/121 (american_medic) |
-| `s119.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 119/121 (allied_sniper) |
+| `s118.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 118/121 (american_medic) |
+| `s119.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 119/121 (allied_sniper) |
 | `s12.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 12/76 (allied_airborne_82nd_3) [GATED] |
 | `s120.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 120/121 (allied_british_general) |
-| `s121.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 121/121 (allied_medic) |
+| `s121.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 121/121 (allied_medic) |
 | `s122.cfg` | 15 | 0.7 KB | GENERATED [user 08-07] skin preview step 122/135 (ramsey) |
 | `s123.cfg` | 15 | 0.7 KB | GENERATED [user 08-07] skin preview step 123/135 (mcmartin) |
-| `s124.cfg` | 15 | 0.7 KB | GENERATED [user 08-07] skin preview step 124/135 (johnson_e2l1) |
-| `s125.cfg` | 15 | 0.6 KB | GENERATED [user 08-07] skin preview step 125/135 (cappy_sh) |
+| `s124.cfg` | 15 | 0.8 KB | GENERATED [user 08-07] skin preview step 124/135 (johnson_e2l1) |
+| `s125.cfg` | 15 | 0.7 KB | GENERATED [user 08-07] skin preview step 125/135 (cappy_sh) |
 | `s126.cfg` | 15 | 0.7 KB | GENERATED [user 08-07] skin preview step 126/135 (hildebrandt) |
 | `s127.cfg` | 15 | 0.7 KB | GENERATED [user 08-07] skin preview step 127/135 (captain_ike) |
 | `s128.cfg` | 15 | 0.7 KB | GENERATED [user 08-07] skin preview step 128/135 (wilson_sh) |
-| `s129.cfg` | 15 | 0.6 KB | GENERATED [user 08-07] skin preview step 129/135 (claus) |
+| `s129.cfg` | 15 | 0.7 KB | GENERATED [user 08-07] skin preview step 129/135 (claus) |
 | `s13.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 13/76 (allied_airborne_82nd_sgt) [GATED] |
 | `s130.cfg` | 15 | 0.7 KB | GENERATED [user 08-07] skin preview step 130/135 (burton) |
-| `s131.cfg` | 15 | 0.6 KB | GENERATED [user 08-07] skin preview step 131/135 (gobbs) |
+| `s131.cfg` | 15 | 0.7 KB | GENERATED [user 08-07] skin preview step 131/135 (gobbs) |
 | `s132.cfg` | 15 | 0.7 KB | GENERATED [user 08-07] skin preview step 132/135 (hammon) |
-| `s133.cfg` | 15 | 0.6 KB | GENERATED [user 08-07] skin preview step 133/135 (glenn) |
+| `s133.cfg` | 15 | 0.7 KB | GENERATED [user 08-07] skin preview step 133/135 (glenn) |
 | `s134.cfg` | 15 | 0.7 KB | GENERATED [user 08-07] skin preview step 134/135 (campbell) |
 | `s135.cfg` | 15 | 0.7 KB | GENERATED [user 08-07] skin preview step 135/135 (whittaker) |
 | `s14.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 14/76 (allied_british_6th_airborne_captain) [GATED] |
-| `s15.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 15/76 (allied_british_6th_airborne_paratrooper) [GATED] |
-| `s16.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 16/76 (allied_british_cmd) [GATED] |
-| `s17.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 17/76 (allied_british_tank) [GATED] |
+| `s15.cfg` | 18 | 1.1 KB | GENERATED - skin preview step 15/76 (allied_british_6th_airborne_paratrooper) [GATED] |
+| `s16.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 16/76 (allied_british_cmd) [GATED] |
+| `s17.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 17/76 (allied_british_tank) [GATED] |
 | `s18.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 18/76 (allied_british_tank_corporal) [GATED] |
-| `s19.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 19/76 (allied_manon) [GATED] |
-| `s20.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 20/76 (allied_norwegian_resistance) [GATED] |
+| `s19.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 19/76 (allied_manon) [GATED] |
+| `s20.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 20/76 (allied_norwegian_resistance) [GATED] |
 | `s21.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 21/76 (allied_pilot) [GATED] |
 | `s22.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 22/76 (allied_russian_corporal) [GATED] |
-| `s23.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 23/76 (allied_russian_crazy_boris) [GATED] |
-| `s24.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 24/76 (allied_russian_recon_scout) [GATED] |
-| `s25.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 25/76 (allied_russian_recon_soldier) [GATED] |
-| `s26.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 26/76 (allied_russian_seaman) [GATED] |
+| `s23.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 23/76 (allied_russian_crazy_boris) [GATED] |
+| `s24.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 24/76 (allied_russian_recon_scout) [GATED] |
+| `s25.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 25/76 (allied_russian_recon_soldier) [GATED] |
+| `s26.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 26/76 (allied_russian_seaman) [GATED] |
 | `s27.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 27/76 (allied_sas) [GATED] |
-| `s28.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 28/76 (allied_tanker) [GATED] |
-| `s29.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 29/76 (allied_tanker2) [GATED] |
-| `s30.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 30/76 (allied_technician) [GATED] |
-| `s31.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 31/76 (allied_us_mask) [GATED] |
-| `s32.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 32/76 (allied_us_tank) [GATED] |
-| `s33.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 33/76 (allied_wheathers) [GATED] |
+| `s28.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 28/76 (allied_tanker) [GATED] |
+| `s29.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 29/76 (allied_tanker2) [GATED] |
+| `s30.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 30/76 (allied_technician) [GATED] |
+| `s31.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 31/76 (allied_us_mask) [GATED] |
+| `s32.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 32/76 (allied_us_tank) [GATED] |
+| `s33.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 33/76 (allied_wheathers) [GATED] |
 | `s34.cfg` | 17 | 0.9 KB | GENERATED - skin preview step 34/76 (american_army) |
 | `s35.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 35/76 (american_army2) [GATED] |
 | `s36.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 36/76 (american_army3) [GATED] |
-| `s37.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 37/76 (american_army_29id) [GATED] |
+| `s37.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 37/76 (american_army_29id) [GATED] |
 | `s38.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 38/76 (american_army_29id_bar) [GATED] |
 | `s39.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 39/76 (american_army_29id_radioman) [GATED] |
-| `s40.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 40/76 (american_army_29id_sgt) [GATED] |
-| `s41.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 41/76 (american_army_bar) [GATED] |
-| `s42.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 42/76 (american_army_captain) [GATED] |
-| `s43.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 43/76 (american_army_hbt) [GATED] |
+| `s40.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 40/76 (american_army_29id_sgt) [GATED] |
+| `s41.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 41/76 (american_army_bar) [GATED] |
+| `s42.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 42/76 (american_army_captain) [GATED] |
+| `s43.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 43/76 (american_army_hbt) [GATED] |
 | `s44.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 44/76 (american_army_lieutenant) [GATED] |
-| `s45.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 45/76 (american_army_m43) [GATED] |
-| `s46.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 46/76 (american_army_major) [GATED] |
-| `s47.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 47/76 (american_army_medic) [GATED] |
-| `s48.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 48/76 (american_army_sergeant) [GATED] |
-| `s49.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 49/76 (american_assault_engineer) [GATED] |
+| `s45.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 45/76 (american_army_m43) [GATED] |
+| `s46.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 46/76 (american_army_major) [GATED] |
+| `s47.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 47/76 (american_army_medic) [GATED] |
+| `s48.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 48/76 (american_army_sergeant) [GATED] |
+| `s49.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 49/76 (american_assault_engineer) [GATED] |
 | `s50.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 50/76 (american_assault_engineer2) [GATED] |
-| `s51.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 51/76 (american_major) [GATED] |
+| `s51.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 51/76 (american_major) [GATED] |
 | `s52.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 52/76 (american_navy_beach_radioman) [GATED] |
-| `s53.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 53/76 (american_ranger) [GATED] |
-| `s54.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 54/76 (american_ranger2) [GATED] |
+| `s53.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 53/76 (american_ranger) [GATED] |
+| `s54.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 54/76 (american_ranger2) [GATED] |
 | `s55.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 55/76 (american_ranger3_hbt) [GATED] |
-| `s56.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 56/76 (american_ranger_assault) [GATED] |
+| `s56.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 56/76 (american_ranger_assault) [GATED] |
 | `s57.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 57/76 (american_ranger_assault_captain) [GATED] |
 | `s58.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 58/76 (american_ranger_assault_sergeant) [GATED] |
 | `s59.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 59/76 (american_ranger_lieutenant) [GATED] |
-| `s60.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 60/76 (american_ranger_medic) [GATED] |
-| `s61.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 61/76 (american_ranger_sergeant) [GATED] |
-| `s62.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 62/76 (american_ranger_winter) [GATED] |
+| `s60.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 60/76 (american_ranger_medic) [GATED] |
+| `s61.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 61/76 (american_ranger_sergeant) [GATED] |
+| `s62.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 62/76 (american_ranger_winter) [GATED] |
 | `s63.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 63/76 (american_ranger_winter_m41) [GATED] |
 | `s64.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 64/76 (american_ranger_winter_m43) [GATED] |
 | `s65.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 65/76 (american_ranger_winter_m43_lt) [GATED] |
 | `s66.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 66/76 (american_ranger_winter_sgt) [GATED] |
 | `s67.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 67/76 (american_winter_m41) [GATED] |
-| `s68.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 68/76 (american_winter_m43) [GATED] |
-| `s69.cfg` | 18 | 0.9 KB | GENERATED - skin preview step 69/76 (american_winter_sgt) [GATED] |
+| `s68.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 68/76 (american_winter_m43) [GATED] |
+| `s69.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 69/76 (american_winter_sgt) [GATED] |
 | `s70.cfg` | 18 | 1.0 KB | GENERATED - skin preview step 70/76 (american_winter_specengineer) [GATED] |
-| `s71.cfg` | 17 | 0.8 KB | GENERATED - skin preview step 71/76 (rifleman) |
-| `s72.cfg` | 17 | 0.8 KB | GENERATED - skin preview step 72/76 (riflemannohelm) |
+| `s71.cfg` | 17 | 0.9 KB | GENERATED - skin preview step 71/76 (rifleman) |
+| `s72.cfg` | 17 | 0.9 KB | GENERATED - skin preview step 72/76 (riflemannohelm) |
 | `s73.cfg` | 17 | 0.9 KB | GENERATED - skin preview step 73/76 (submachine_gunner) |
-| `s74.cfg` | 17 | 0.8 KB | GENERATED - skin preview step 74/76 (submachine_gunnernohelm) |
+| `s74.cfg` | 17 | 0.9 KB | GENERATED - skin preview step 74/76 (submachine_gunnernohelm) |
 | `s75.cfg` | 17 | 0.9 KB | GENERATED - skin preview step 75/76 (support_gunner) |
-| `s76.cfg` | 17 | 0.8 KB | GENERATED - skin preview step 76/76 (support_gunnernohelm) |
+| `s76.cfg` | 17 | 0.9 KB | GENERATED - skin preview step 76/76 (support_gunnernohelm) |
 | `s77.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 77/121 (allied_Airborne_101E_Col_Sink) |
 | `s78.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 78/121 (allied_Airborne_101E_Lt_Speirs) |
 | `s79.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 79/121 (allied_Airborne_101E_Corp_Liebgott) |
-| `s80.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 80/121 (allied_British_Officer) |
-| `s81.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 81/121 (Allied_British_rifleman) |
-| `s82.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 82/121 (allied_british_paratroops) |
+| `s80.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 80/121 (allied_British_Officer) |
+| `s81.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 81/121 (Allied_British_rifleman) |
+| `s82.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 82/121 (allied_british_paratroops) |
 | `s83.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 83/121 (allied_british_paratroops_helmet) |
 | `s84.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 84/121 (allied_british_paratroops_officer) |
-| `s85.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 85/121 (allied_british_polish_para) |
-| `s86.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 86/121 (Allied_British_1_snow_helmet1) |
+| `s85.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 85/121 (allied_british_polish_para) |
+| `s86.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 86/121 (Allied_British_1_snow_helmet1) |
 | `s87.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 87/121 (Allied_British_1_snow_RADIO) |
-| `s88.cfg` | 17 | 0.9 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 88/121 (allied_capt_recon) |
+| `s88.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 88/121 (allied_capt_recon) |
 | `s89.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 89/121 (american_1st_rangers_engineer) |
 | `s90.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 90/121 (american_1st_rangers_lieutenant) |
 | `s91.cfg` | 17 | 1.0 KB | GENERATED [user 2026-08-04] bug-1358 - skin preview step 91/121 (american_1st_rangers_sergeant) |
@@ -5464,17 +5498,17 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `cg_local.h` | 1,037 | 36.9 KB | DESCRIPTION: |
 | `cg_main.c` | 1,093 | 41.6 KB | DESCRIPTION: |
 | `cg_marks.c` | 2,074 | 65.3 KB | DESCRIPTION: |
-| `cg_modelanim.c` | 2,592 | 110.4 KB | DESCRIPTION: |
+| `cg_modelanim.c` | 2,647 | 116.8 KB | DESCRIPTION: |
 | `cg_nature.cpp` | 389 | 14.7 KB | DESCRIPTION: |
 | `cg_parsemsg.cpp` | 2,489 | 90.7 KB | DESCRIPTION: |
 | `cg_parsemsg.h` | 38 | 1.2 KB | DESCRIPTION: |
 | `cg_player.cpp` | 75 | 2.2 KB | DESCRIPTION: |
 | `cg_playerstate.c` | 38 | 1.4 KB | DESCRIPTION: |
-| `cg_predict.c` | 795 | 25.6 KB | DESCRIPTION: |
+| `cg_predict.c` | 815 | 26.8 KB | DESCRIPTION: |
 | `cg_public.h` | 547 | 22.9 KB | DESCRIPTION: |
 | `cg_radar.cpp` | 161 | 4.2 KB |  |
 | `cg_radar.h` | 42 | 1.3 KB | DESCRIPTION: |
-| `cg_ragdoll.c` | 2,953 | 133.3 KB |  |
+| `cg_ragdoll.c` | 2,957 | 133.7 KB |  |
 | `cg_scoreboard.cpp` | 663 | 22.9 KB | DESCRIPTION: |
 | `cg_servercmds.c` | 482 | 14.8 KB | DESCRIPTION: |
 | `cg_servercmds_filter.cpp` | 387 | 12.2 KB | DESCRIPTION: |
@@ -5488,7 +5522,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `cg_testemitter.cpp` | 2,096 | 85.1 KB | DESCRIPTION: |
 | `cg_ui.cpp` | 292 | 8.4 KB | DESCRIPTION: |
 | `cg_vehicle.cpp` | 39 | 1.2 KB | DESCRIPTION: |
-| `cg_view.c` | 5,823 | 302.2 KB |  |
+| `cg_view.c` | 5,850 | 304.5 KB |  |
 | `cg_viewmodelanim.c` | 948 | 39.0 KB | DESCRIPTION: |
 | `cg_volumetricsmoke.cpp` | 1,370 | 44.4 KB | DESCRIPTION: |
 | `memarchiver.cpp` | 241 | 5.5 KB |  |
@@ -5669,8 +5703,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `beam.h` | 140 | 4.2 KB | beam.h: Beam |
 | `bg_local.h` | 89 | 2.6 KB | bg_local.h -- local definitions for the bg (both games) files |
 | `bg_misc.cpp` | 420 | 11.3 KB | bg_misc.c -- both games misc functions, all completely stateless |
-| `bg_pmove.cpp` | 1,768 | 47.6 KB | bg_pmove.c -- both games player movement code |
-| `bg_public.h` | 854 | 34.7 KB | bg_public.h -- definitions shared by both the server game and client game modules |
+| `bg_pmove.cpp` | 1,782 | 48.4 KB | bg_pmove.c -- both games player movement code |
+| `bg_public.h` | 862 | 35.3 KB | bg_public.h -- definitions shared by both the server game and client game modules |
 | `bg_slidemove.cpp` | 308 | 9.8 KB | bg_slidemove.c -- part of bg_pmove functionality |
 | `bg_voteoptions.cpp` | 741 | 21.3 KB |  |
 | `bg_voteoptions.h` | 135 | 3.9 KB |  |
@@ -5717,13 +5751,13 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `g_client.cpp` | 1,203 | 31.1 KB |  |
 | `g_items.cpp` | 25 | 1.0 KB |  |
 | `g_local.h` | 527 | 17.0 KB | g_local.h -- local definitions for game module |
-| `g_main.cpp` | 2,165 | 59.2 KB |  |
+| `g_main.cpp` | 2,176 | 60.1 KB |  |
 | `g_main.h` | 56 | 1.8 KB | g_main.h -- Global header file for g_main.cpp |
 | `g_mem.cpp` | 58 | 1.6 KB | g_mem.c |
 | `g_mmove.cpp` | 580 | 17.0 KB | g_mmove.cpp : AI/Path movement code. |
 | `g_phys.cpp` | 1,497 | 41.2 KB | g_phys.cpp |
 | `g_phys.h` | 77 | 2.4 KB | g_phys.h: Header for g_phys.cpp |
-| `g_public.h` | 956 | 34.8 KB | g_public.h -- game module information visible to server |
+| `g_public.h` | 957 | 34.8 KB | g_public.h -- game module information visible to server |
 | `g_session.cpp` | 140 | 3.4 KB |  |
 | `g_spawn.cpp` | 1,312 | 34.3 KB | g_spawn.cpp : spawner for scripts. |
 | `g_spawn.h` | 79 | 2.4 KB | g_spawn.h : spawner for scripts. |
@@ -5810,8 +5844,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `object.h` | 111 | 3.2 KB | object.h: Object (used by common TIKIs) |
 | `parm.cpp` | 164 | 3.4 KB | parm.cpp : Event parameters |
 | `parm.h` | 59 | 1.7 KB | parm.h: Event parameters |
-| `player.cpp` | 15,506 | 476.3 KB | player.h: Class definition of the player. |
-| `player.h` | 1,444 | 52.6 KB | player.h: Class definition of the player. |
+| `player.cpp` | 15,755 | 490.0 KB | player.h: Class definition of the player. |
+| `player.h` | 1,454 | 53.5 KB | player.h: Class definition of the player. |
 | `player_animation.cpp` | 540 | 15.8 KB | player_animation.cpp: Animation utility functions |
 | `player_combat.cpp` | 205 | 6.8 KB | player_combat.cpp: Player combat system and combat utility functions |
 | `player_conditionals.cpp` | 2,239 | 64.8 KB | player_combat.cpp: Player combat system and combat utility functions |
@@ -5841,9 +5875,9 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `scriptthread.h` | 400 | 12.1 KB |  |
 | `scripttimer.cpp` | 264 | 5.3 KB | scripttimer.cpp: Scripted Timer & Fader |
 | `scripttimer.h` | 82 | 2.0 KB | ScriptTimer.cpp: Scripted Timer & Fader |
-| `sentient.cpp` | 5,531 | 185.7 KB | sentient.cpp: Base class of entity that can carry other entities, and use weapons. |
-| `sentient.h` | 421 | 19.6 KB | sentient.h: Base class of entity that can carry other entities, and use weapons. |
-| `sentient_combat.cpp` | 1,487 | 37.6 KB |  |
+| `sentient.cpp` | 5,548 | 186.5 KB | sentient.cpp: Base class of entity that can carry other entities, and use weapons. |
+| `sentient.h` | 422 | 19.7 KB | sentient.h: Base class of entity that can carry other entities, and use weapons. |
+| `sentient_combat.cpp` | 1,494 | 37.9 KB |  |
 | `simpleactor.cpp` | 1,350 | 34.3 KB | simpleactor.cpp: Base class for character AI |
 | `simpleactor.h` | 480 | 16.9 KB | simpleactor.h: Base class for character AI. |
 | `simpleentity.cpp` | 623 | 13.0 KB | simpleentity.cpp : Simple entity |
@@ -5874,7 +5908,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `vehicleturret.h` | 214 | 7.7 KB | vehicleturret.h: Vehicle Turret. |
 | `viewthing.cpp` | 845 | 21.2 KB | viewthing.cpp: Actor code for the Viewthing. |
 | `viewthing.h` | 106 | 2.9 KB | viewthing.h: Actor code for the viewthing. |
-| `weapon.cpp` | 5,218 | 147.3 KB | weapon.cpp: Source file for Weapon class. The weapon class is the base class for |
+| `weapon.cpp` | 5,236 | 148.6 KB | weapon.cpp: Source file for Weapon class. The weapon class is the base class for |
 | `weapon.h` | 641 | 26.0 KB | weapon.h: Header file for Weapon class. The weapon class is the base class for |
 | `weapturret.cpp` | 2,642 | 75.1 KB | weapturret.cpp: MOH Turret. Usable by sentients and monsters. |
 | `weapturret.h` | 264 | 10.0 KB | weapturret.h: MOH Turret. Usable by sentients and monsters. |
@@ -6851,9 +6885,9 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `tr_image_png.c` | 2,485 | 42.2 KB |  |
 | `tr_image_tga.c` | 324 | 9.3 KB |  |
 | `tr_noise.c` | 91 | 2.8 KB | tr_noise.c |
-| `tr_public.h` | 362 | 16.3 KB |  |
+| `tr_public.h` | 363 | 16.3 KB |  |
 | `tr_subs.c` | 60 | 1.8 KB | tr_subs.c - common function replacements for modular renderer |
-| `tr_types.h` | 284 | 8.9 KB |  |
+| `tr_types.h` | 290 | 9.4 KB |  |
 
 ### `openmohaa-hzm/code/renderercommon/new/` — 2 source files
 
@@ -6886,7 +6920,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `tr_main.c` | 1,882 | 51.3 KB | tr_main.c -- main control flow for each frame |
 | `tr_marks.c` | 955 | 29.3 KB | tr_marks.c -- polygon projection on the world polygons |
 | `tr_marks_permanent.c` | 2,001 | 61.3 KB | tr_marks_pernanent.c: permanent marks |
-| `tr_model.cpp` | 2,085 | 62.9 KB | tr_models.cpp -- model loading and caching |
+| `tr_model.cpp` | 2,087 | 63.0 KB | tr_models.cpp -- model loading and caching |
 | `tr_postprocess_gl1.c` | 1,220 | 61.7 KB | gl1 normally uses qgl_linked.h (direct #define qglX glX) and never declared the FBO/shader |
 | `tr_postprocess_gl1.h` | 15 | 0.9 KB |  |
 | `tr_public.h` | 250 | 11.6 KB |  |
@@ -6944,7 +6978,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `tr_marks_permanent.c` | 2,006 | 61.8 KB | tr_marks_pernanent.c: permanent marks |
 | `tr_mesh.c` | 424 | 10.8 KB | tr_mesh.c: triangle model functions |
 | `tr_model.c` | 1,424 | 38.2 KB | tr_models.c -- model loading and caching |
-| `tr_model.cpp` | 2,592 | 94.1 KB | tr_models.cpp -- model loading and caching |
+| `tr_model.cpp` | 2,594 | 94.2 KB | tr_models.cpp -- model loading and caching |
 | `tr_model_iqm.c` | 1,758 | 56.9 KB |  |
 | `tr_postprocess.c` | 1,487 | 58.1 KB |  |
 | `tr_postprocess.h` | 39 | 2.1 KB |  |
@@ -7074,8 +7108,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `SkelVec3.h` | 209 | 3.8 KB | SkelVec3.h : Skeletor |
 | `SkelVec4.h` | 72 | 1.7 KB | SkelVec4.h : Skeletor Vec4 |
 | `bonetable.cpp` | 359 | 10.9 KB | bonetable.cpp : Bone table |
-| `skeletor.cpp` | 1,269 | 38.9 KB | skeletor.cpp : Skeletor |
-| `skeletor.h` | 249 | 8.8 KB | skeletor.h : General skeletor structures |
+| `skeletor.cpp` | 1,278 | 39.5 KB | skeletor.cpp : Skeletor |
+| `skeletor.h` | 250 | 8.9 KB | skeletor.h : General skeletor structures |
 | `skeletor_animation_file_format.h` | 114 | 3.8 KB | skeletor_animation_file_format.h : Skeletor animation file format |
 | `skeletor_imports.cpp` | 63 | 1.6 KB | skeletor_imports.cpp : Skeletor imports |
 | `skeletor_internal.h` | 231 | 7.3 KB | skeletor_internal.h : General skeletor internal structures |
@@ -7941,8 +7975,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `tiki_skel.h` | 49 | 1.9 KB | tiki_skel.h : TIKI Skeletor |
 | `tiki_surface.cpp` | 76 | 2.3 KB | tiki_surface.cpp : TIKI surface |
 | `tiki_surface.h` | 37 | 1.2 KB | tiki_surface.h : TIKI Surface |
-| `tiki_tag.cpp` | 309 | 10.0 KB | tiki_tag.cpp : TIKI Tag |
-| `tiki_tag.h` | 46 | 2.0 KB | tiki_tag.h : TIKI Tag |
+| `tiki_tag.cpp` | 310 | 10.0 KB | tiki_tag.cpp : TIKI Tag |
+| `tiki_tag.h` | 47 | 2.0 KB | tiki_tag.h : TIKI Tag |
 | `tiki_utility.cpp` | 215 | 4.1 KB | tiki_utility.cpp : TIKI Utility |
 | `tiki_utility.h` | 44 | 1.7 KB | tiki_utility.h : TIKI Utility |
 
@@ -8353,7 +8387,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `updater.ps1` | 349 | 16.5 KB | MOH Coop Trilogy - launch-time updater |
+| `updater.ps1` | 362 | 17.6 KB | MOH Coop Trilogy - launch-time updater |
 
 ### `watchdog/` — 9 source files
 
