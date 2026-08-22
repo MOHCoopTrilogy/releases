@@ -218,7 +218,7 @@ handed out the world slot: a weekend of use-after-free minidumps.
   consumes it - `omconfig.cfg` hit **3019** cvars (Service Record ~1500, armory locks ~500), crossing
   4096 a month after bug-598 doubled it. Doubling is headroom, not a cure; now 8192 + 80% warning.
 
-**Read `openmohaa-hzm/code/qcommon/q_shared.h:1690-1755` in full before touching any capacity constant** - the `MAX_SOUNDS` comment there is canonical and not reproduced here: four binding constraints in the order they bite (`CS_AXIS = MAX_SOUNDS + 2393`, bug-1179; `MAX_RELIABLE_COMMANDS` must stay a power of two, bug-1183 twice; the 11-bit `sound_index` that silently truncates; `MAX_GAMESTATE_CHARS`), each tagged with the bug that found it including the two failed attempts, backed by a compile-time `#error`. **Turn every capacity rule into a build break.**
+**Read `openmohaa-hzm/code/qcommon/q_shared.h:1690-1755` before touching any capacity constant** - the `MAX_SOUNDS` comment there is canonical and not reproduced here: four binding constraints in the order they bite (`CS_AXIS = MAX_SOUNDS + 2393`, bug-1179; `MAX_RELIABLE_COMMANDS` must stay a power of two, bug-1183 twice; the 11-bit `sound_index` that silently truncates; `MAX_GAMESTATE_CHARS`), each tagged with the bug that found it including the two failed attempts, backed by a compile-time `#error`. **Turn every capacity rule into a build break.**
 
 ---
 
@@ -284,7 +284,8 @@ changes.
 | Shader **NAME** overrides lose the reverse-concat race | Whole-**FILE** overrides win: the filesystem dedupes by filename and the coop pak mounts last (bug-921 used bug-525's whole-file pattern on `scripts/equipment.shader`) |
 | `zzzzzzzz_*` sorts after `zzzzzz_*` | bug-1190 |
 | `.tik` surface directives must match the `.skd`'s real surface names | else `TIKI_InitTiki` drops them (bug-1216) |
-| Homepath `maintt/` beats basepath; loose files beat paks | **bug-1633:** the live profile runs `fs_homepath G:\mohaa-gl2\home`, and stale `autoexec.cfg`/`coop_defaults.cfg` in its `maintt/` shadowed every deployed cfg change; `build.ps1` now deploys cfgs to all three targets (GOG maintt, APPDATA maintt, gl2-home maintt). bug-595 lost a session to a stale **0-byte** `omconfig.cfg` decoy, **still on disk** at `%APPDATA%\openmohaa\maintt\omconfig.cfg` (0 bytes, 2026-07-04) |
+| Loose files beat paks **both ways** | bug-2020: 7,755 loose dev-only files under `G:\mohaa-gl2\main\sound\` made 1,623 alias refs (chatter restoration included) work in dev, silent for everyone else. **Audit assets against the SHIPPED set (retail paks + mod source tree), never the dev install** - loose files mask this class. |
+| Homepath `maintt/` beats basepath; loose files beat paks | **bug-1633:** stale cfgs in the live profile's `maintt/` shadowed every deployed change; `build.ps1` now deploys cfgs to all three targets. Also watch for 0-byte decoys (bug-595). |
 
 **⭐ THE FINAL ANSWER when a name is contested** (bug-922, closing the 5-round black-pouch saga): **stop
 fighting for the name.** Mint a NEW shader name existing only in the coop pak, pointing at a PRIVATE
@@ -354,7 +355,7 @@ killed `coop_tinnitusBlast` and `coop_goreDripCorpseTime`. One trap, three dead 
 | **`CVAR_CHEAT` probes are useless on a listen server** — `sv_cheats 0` clamps them back; `r_globalFogDebug` moved to `CVAR_TEMP` (**still `CVAR_TEMP` at `renderergl2/tr_init.c:1926` — restore it**). | Debug view won't enable | — |
 | **Never `seta` a genuine user preference** in `autoexec.cfg` (`cg_adsShoulderRight`). | Preference resets each launch | 258 |
 | **Never seed `coop_uiB*`/`coop_uiN*`** — wipes last-known challenge progress. | Progress lost | — |
-| **⭐ `g_gametype` is LATCHED — the FIRST map of a launch runs before it applies.** `ui_startdmmap 2` sets it, the engine answers *"g_gametype will be changed upon restarting"*, and the change lands at the **next** map load (observed 59 s later). Map #1 initialises with `g_gametype` **0**, `coop_mod/variables.scr:38` caches `level.gametype = 0`, and **`variables.scr:89`'s `if(level.gametype == 0){ end }` aborts the whole coop init** - every later check takes its SP branch, including `replace.scr::waitForPlayer:105`, a raw `level waittill spawn` that throws and so does not WAIT. Clients connect, get kits, never spawn. **Seed `+set g_gametype 2` on the command line.** | First map of a run has no coop | 1492 |
+| **`g_gametype` is LATCHED - the FIRST map of a launch runs before it applies.** `ui_startdmmap` sets it and starts the map in the same frame, so map 1 boots under the OLD value: coop gates read 0 and never arm. Put `+set g_gametype 2` on the command line for any automated/dedicated run. |
 
 **⚠️ A workaround written into the SAVED config outlives the bug it worked around and beats
 `coop_defaults.cfg` forever.** MSAA 0 mitigated a **gl2** artifact (bug-1298); gl2 was abandoned and the
@@ -461,7 +462,7 @@ entries and **zero** for `renderer_opengl2.dll`.
 <a name="t11"></a>
 ## T11 — Trusting the record over the code  ⚠️ STRUCTURAL
 
-**Agreement between reviewers is NOT corroboration when they share an upstream source** (bug-1290). A multi-agent audit called "the injury vignette is permanently maxed after any DBNO revive" a live bug and two independent critique lenses confirmed it - all three had inherited one unchecked premise, that `dbno.scr:49`'s `healthonly 9999` puts 9999 into health. `Entity::EventSetHealthOnly` **clamps to `max_health`** and `player.cpp:8113` writes `stats[STAT_HEALTH]` as an already-normalised 0..100 percentage, so the tracker cannot latch and the "fix" would have hidden genuine low health. **Verify a finding's load-bearing premise against the code yourself** - agents reading the same brief are one witness, not three.
+**Agreement between reviewers is NOT corroboration when they share an upstream source** (bug-1290). A multi-agent audit called "the injury vignette is permanently maxed after any DBNO revive" a live bug and two independent critique lenses confirmed it - all three had inherited one unchecked premise (that `healthonly 9999` puts 9999 into health; it clamps to `max_health`), so the "fix" would have hidden genuine low health. **Verify a finding's load-bearing premise against the code yourself** - agents reading the same brief are one witness, not three.
 
 **A later entry can silently reverse an earlier one, so read the ordered LIST, not one entry.**
 `docs/generated/FIX_INDEX.md` (file -> ordered bug ids) is the fix; the story belongs in HISTORY. Nothing

@@ -539,3 +539,39 @@ boot harness greps. REJECTED: deriving the hover text from the enforcement sourc
 - hover lines are width-curated prose (two ~24-char lines) and mechanical derivation produced
 worse text than the curated tsv; the gate catches drift at the same point a generator would.
 
+## Wall cover: disabled, not deleted - and what re-enabling actually costs
+
+**Decision (2026, kept):** standing back-to-wall cover is switched off behind a single
+`if (false)` at `openmohaa-hzm/code/fgame/player.cpp:13805`. Crouch/LOW cover stayed on.
+Nothing was removed: the statemap states (`COVER_WALL` at `player_Legs.st:1915`,
+`COVER_WALL_FIRE` at `:1939`), the engine conditionals and the animation aliases all still
+exist and still compile.
+
+**Why it was killed.** Three separate faults, of which two were already fixed by the time
+the switch went in: bug-308 was a null deref (`cgi.get_camera_offset(NULL,NULL)`, unrelated
+to geometry), and bug-307 / bug-313 were statemap `ERR_DROP`s. What actually remained was
+bug-463: a per-frame server `setOrigin()` at `player.cpp:13983` shoving the collision hull
+toward a corner while the client predictor fought it. The kill switch masked that; it did
+not fix it.
+
+**Re-enabling is therefore NOT "delete the if (false)".** Two things must happen in the
+same edit or the crash class comes straight back:
+
+1. **Delete the peek step-out block (`player.cpp:~13955-13986`).** It is still live code
+   gated on `(m_bCoopCoverWall || m_fCoopPeekFrac > 0)`; removing the switch re-arms the
+   exact `setOrigin` that caused bug-463. Replace displacement with the engine's own
+   `ps->fLeanAngle`, which is already replicated (`msg.cpp:3375`), already client-predicted
+   in shared `bg_pmove.cpp`, and **cannot move the collision hull**. Lean, do not teleport.
+2. **Give `m_iCoopCoverSide` an UNKNOWN state.** It initialises to `1` (`player.cpp:2406`)
+   and its only writers (`:13869`, `:13877`) live INSIDE the disabled block, so today it is
+   permanently 1. Harmless only because the blindfire steering that reads it
+   (`weapon.cpp:2081`) is itself gated on `IsCoopCoverWall()`, which can never be true.
+   Re-enable wall cover without fixing this and a stale side swings blindfire 50 degrees
+   and pushes the muzzle 20u INTO the wall the player is leaning on - which is exactly what
+   bug-305 was filed for.
+
+**Known dead end:** right-jamb blindfire has no usable animation. Every `_right` cornering
+clip carries `attachtohand offhand`, which players cannot honour (bug-310). Design around
+it; do not go looking for the clip again.
+
+Full design, doorway-side algorithm, A/D slide and probes: `_research/wallcover_plan_v1.md`.
