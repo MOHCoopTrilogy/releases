@@ -415,3 +415,36 @@ prose in a free-text field where "FIXED", "NOT YET VISUALLY VERIFIED", "PENDING 
 **both** the REVERTED and the VERIFIED buckets. Consequently the `SHIPPED-VERIFIED` set here is
 deliberately small and the `SHIPPED-UNVERIFIED` set is almost certainly **under-counted** — some of
 it was tested and simply never written down. Only the user can close most of these.
+
+## Headless verification: the dedicated boot WORKS
+
+**Re-established 2026-08-22 after a stale "dedicated smoke BROKEN" note had been treated as
+current for weeks.** It is not broken. It boots clean, and it is the fastest way to catch the
+single most common class of self-inflicted defect in this project - a script that no longer
+parses, or a coop init that no longer runs.
+
+```powershell
+omohaaded.exe +set com_target_game 2 +set dedicated 1 +set fs_homepath <srvHome>
+              +set net_port 12203 +set sv_maxclients 8 +set g_gametype 2
+              +set logfile 2 +exec dedicated_start.cfg
+```
+
+`g_gametype 2` **must** be on the command line - it is latched, and the first map of a launch
+otherwise boots under the old value with every coop gate reading 0.
+`dedicated_start.cfg` is any cvar seeding followed by `map <name>`.
+`launch_dedicated_2player.ps1` already automates this plus two clients.
+
+**A clean boot reads:** `Server: <map>`, `CM_LoadMap(...)`, and
+`initialising coop weapon loadout for maps/<map>.scr`, with **0** `Script Error` and **0**
+`not properly loaded` in `<srvHome>/maintt/qconsole.log`.
+
+**What it proves:** script parse integrity, coop init reached, map loads. Bugs 1822, 1826 and
+1830 were all closed this way.
+**What it does NOT prove:** anything about AI behaviour or feel - with no client connected the
+AI never ticks, so no `PERS` or `AIBEHAV` markers appear. Those still need a player.
+
+**It binds net_port 12203**, the same port a listen game uses. Stop it before playing.
+
+> Why this entry exists: believing the stale note meant every check got deferred to the user,
+> and that is how bug-2034 shipped - a guard that had never been executed once, which then did
+> nothing while emitting 136 errors per map load. A two-minute boot would have caught it.
