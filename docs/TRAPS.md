@@ -347,21 +347,21 @@ killed `coop_tinnitusBlast` and `coop_goreDripCorpseTime`. One trap, three dead 
 | Trap | Tell | Bug |
 |---|---|---|
 | **Exec order** — engine execs `default.cfg` → saved config → `autoexec.cfg` **LAST**; `autoexec` `seta`-ing ~200 curated defaults overwrote every menu change on every launch. | Menu changes don't stick | 710 |
-| **`Cvar_Get` ORs flags** — `r_lodscale` registered twice in gl2 (`CVAR_CHEAT` + `CVAR_ARCHIVE`) became cheat-protected; the slider silently reverted. | Slider reverts | 1125 |
-| **A temporary flag flip persists** — `r_entlight_scale` flipped `CVAR_CHEAT`→`CVAR_ARCHIVE` for an A/B test **archived** 0.3 and dimmed every entity on every launch. | Global regression from a test | 918 |
+| **A renderer cvar's FLAGS are as sticky as its value**, and four bugs are one lesson: `Cvar_Get` ORs flags (`r_lodscale` twice-registered in gl2 became `CVAR_CHEAT`, slider reverted, 1125); a flag flipped for one A/B test archived it (`r_entlight_scale` dimmed every entity, 918); a `CVAR_ARCHIVE` rcon probe is retained forever (`r_toneMap 0`, 1148); and `CVAR_CHEAT` probes are useless on a listen server since `sv_cheats 0` clamps them back — use `CVAR_TEMP` (`r_globalFogDebug` **is still `CVAR_TEMP` at `renderergl2/tr_init.c:1926` — restore it**). | Slider reverts, or a test becomes a global regression | 918, 1125, 1148 |
 | **Fail-open locks** — the armory padlock recompute zeroed all lock cvars then relied on a server push that might never arrive. Redesigned fail-**LOCKED**. | Content unlocked that shouldn't be | 682 |
 | **Clamped cvars lie to menus** — gl2 clamps `r_ext_multisample` to 4, so the 8× MSAA plate was repointed at the unclamped `r_ext_framebuffer_multisample`. | Menu offers a value the renderer refuses | 1152 |
-| **`CVAR_ARCHIVE` probes poison every later boot** — an rcon probe set `r_toneMap 0`; silently retained, feature never ran again. | See [T3](#t3) | 1148 |
-| **`CVAR_CHEAT` probes are useless on a listen server** — `sv_cheats 0` clamps them back; `r_globalFogDebug` moved to `CVAR_TEMP` (**still `CVAR_TEMP` at `renderergl2/tr_init.c:1926` — restore it**). | Debug view won't enable | — |
 | **Never `seta` a genuine user preference** in `autoexec.cfg` (`cg_adsShoulderRight`). | Preference resets each launch | 258 |
 | **Never seed `coop_uiB*`/`coop_uiN*`** — wipes last-known challenge progress. | Progress lost | — |
 | **`g_gametype` is LATCHED - the FIRST map of a launch runs before it applies.** `ui_startdmmap` sets it and starts the map in the same frame, so map 1 boots under the OLD value: coop gates read 0 and never arm. Put `+set g_gametype 2` on the command line for any automated/dedicated run. |
 
 **⚠️ A workaround written into the SAVED config outlives the bug it worked around and beats
-`coop_defaults.cfg` forever.** MSAA 0 mitigated a **gl2** artifact (bug-1298); gl2 was abandoned and the
-artifact fixed (bug-1300), but archived `r_ext_multisample 0` kept beating the `8` in defaults - MSAA off
-for months on a renderer that never had the bug. **Record a cvar mitigation with its bug id and clear it
-when that bug closes**; `seta` in a saved config is a fossil, not a decision. (bug-1990)
+`coop_defaults.cfg` forever** - `seta` in a saved config is a fossil, not a decision, so **record a
+cvar mitigation with its bug id and clear it when that bug closes** (bug-1990). MSAA is the LIVE
+case: `r_ext_multisample 0` mitigates a gl2 foliage-cutout artifact that is **still open**
+(bug-1298), so the archived `0` stays until it closes. This section used to say gl2 was abandoned
+and the artifact fixed - **both false**, and acting on that record produced a wrong MSAA fix on
+2026-08-21. **gl2 is the renderer we ship and test on**; confirm from the qconsole banner, never
+from a doc. [T11](#t11) biting inside T7.
 
 **The structural fix is half-built:** `coop_defaults.cfg` execs **BEFORE** the saved config, so its values
 are true defaults a menu change overrides and persists. Migration out of `autoexec.cfg` is incomplete, and
@@ -809,19 +809,38 @@ actor is defined by state the pass casually overwrites. `coop_variantRoll` ends 
 holding the steering wheel**; the personality roll overwrites `type_attack` on ~65% of rolls
 and locks a prone pose on ~12%, destroying the think the map assigned.
 
-**This has now been "fixed" twice too narrowly.** bug-1949 added `self.no_idle` to the
-variant roll after it broke the m3l3 Ramsey conversation - but `no_idle` appears in 19
-scripts while **42 hold ler actors**, so m1l1 was still exposed a month later (bug-2035).
-The personality roll had the same shape: a per-map name list added only for the maps where
-someone had noticed (bug-2033 found 99 unprotected scripts).
+**Every fix for this has been correct and too narrow.** bug-1949 guarded the variant roll
+with `self.no_idle` - which appears in 19 scripts while **42 hold ler actors**, so m1l1 broke
+a month later anyway. That arithmetic is the tell: a guard that covers fewer sites than the
+hazard has is a guard you will write again.
 
 **The rule: one shared scene test, never a private one per pass.**
 `officer.scr::coop_isProtectedActor` is that test. A new global pass calls it; it must not
 invent a second, narrower check that will drift out of step with the first.
 
-**Detecting scenery generically:** a map that calls `global/disable_ai.scr` has *declared*
-the actor scenery, so our override of that file records it as `coop_aiDisabled` - a readable
-mirror, because `enableEnemy` itself is **write-only** and reading it throws (bug-2034).
+**Detecting scenery generically.** Maps declare it three ways; `audit_scene_actors.py` finds
+all three, and each now has a guard (bugs 2033/2035/2037/2038 - one per pass, because each fix
+patched only the consumer that had just broken):
+
+| marker | readable as | guarded in |
+|---|---|---|
+| `exec global/disable_ai.scr` | `coop_aiDisabled` (our override sets it) | `coop_isProtectedActor` |
+| `anim_scripted` | `self.no_idle` | `coop_isProtectedActor` |
+| `threatbias ignoreme` | `self.threatbias == 0 - 6969` | `coop_variantRoll` **only** |
+
+The last is deliberately NOT in the shared test: `ignoreme` means *do not target me*, not *I am
+scenery*, so live-but-untargetable AI exist (m5l1b:704, e1l3/hacks' Claus). Blocking a weapon
+**skin** on them is free; blocking their **personality** would revert them to stand-and-shoot
+turrets. **Match a guard's scope to what it costs to be wrong.**
+
+**Before guarding on a property, prove you can READ it.** `enableEnemy` is a lone `EV_SETTER`
+(actor.cpp:1470) so reading throws - 136 errors a map, and since *a Script Error skips the
+statement*, that guard shipped having never once executed (bug-2034). `threatbias` has a real
+`EV_GETTER` (sentient.cpp:469) and reads fine. Registration tells you which you have, but that
+same reasoning produced bug-2034 - so **probe it at runtime first, then re-probe against a
+baseline count after**, or an over-broad guard silently kills the feature instead. A depth scan
+proves a script *parses*, never that a property is *readable*.
+
 Actors that are only *holstered* still have no generic marker; flag those with
 `flags["coop_sceneActor"] = 1`, which is what spawned actors need anyway since a targetname
-list cannot reach them. Audit with `docs/tools/audit_scene_actors.py`.
+list cannot reach them.
