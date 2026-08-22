@@ -196,26 +196,72 @@ def show_surrendered(recs):
 
 
 def show_aggro(recs):
+    """Who lit up first, and - the question the old tracker could never answer - who did
+    they pick? A german's .enemy may be a Player or another Actor. "12 germans engaging"
+    means either twelve enemies shooting at the players or twelve enemies fighting the
+    map's own allied cast, and those two have opposite fixes."""
     frames = censuses(recs)
-    state, out = {}, []
+    if not frames:
+        print("  no census frames - enable bit 128.")
+        return
+    state, acquired = {}, []
     for t, fr in frames.items():
         for ent, r in fr.items():
-            was, now = state.get(ent), r.get('hasEnemy')
-            if was is not None and was != now and now == '1':
-                out.append((t, ent, r))
+            was, now = state.get(ent), r.get("hasEnemy")
+            if now == "1" and was != "1":
+                acquired.append((t, ent, r))
             state[ent] = now
-    if not out:
-        print("  no actor was observed ACQUIRING an enemy (they may have had one from the"
-              " first census - lower coop_probeInterval to catch the transition).")
-    else:
-        print("  actors acquiring an enemy:")
-        for t, ent, r in out:
-            print("    t=%-5ds ent=%-6s tn=%-22s tm=%-8s pers=%s"
-                  % (t, ent, r.get('tn'), r.get('tm'), r.get('pers')))
-    for t, fr in list(frames.items())[:1]:
-        n = sum(1 for r in fr.values() if r.get('hasEnemy') == '1')
-        print("\n  FIRST census t=%ds: %d of %d actors already had an enemy." % (t, n, len(fr)))
 
+    t0 = list(frames)[0]
+    first = frames[t0]
+    pre = [r for r in first.values() if r.get("hasEnemy") == "1"]
+    print("  FIRST census t=%ss: %d of %d actors ALREADY had an enemy."
+          % (t0, len(pre), len(first)))
+    if pre:
+        print("  (they aggroed before the first sample - lower coop_probeInterval)")
+        for r in pre[:6]:
+            print("      ent=%-6s tn=%-22s tm=%-8s -> foe %s/%s"
+                  % (r.get("ent"), r.get("tn"), r.get("tm"),
+                     r.get("foeCls"), r.get("foeTm")))
+
+    if not acquired:
+        print("")
+        print("  no acquisition transitions captured.")
+    else:
+        print("")
+        print("  ACQUISITION ORDER (who started it, and on whom):")
+        print("  %-7s %-7s %-22s %-9s %-9s %-9s %s"
+              % ("t", "ent", "targetname", "team", "role", "foeClass", "foeTeam"))
+        print("  " + "-" * 86)
+        for t, ent, r in acquired[:30]:
+            print("  %-7s %-7s %-22s %-9s %-9s %-9s %s"
+                  % (str(t) + "s", ent, (r.get("tn") or "-")[:22], r.get("tm"),
+                     r.get("role"), r.get("foeCls"), r.get("foeTm")))
+
+    tally = collections.Counter()
+    for t, fr in frames.items():
+        for r in fr.values():
+            if r.get("hasEnemy") == "1":
+                tally[r.get("foeCls", "-")] += 1
+    if tally:
+        tot = sum(tally.values())
+        print("")
+        print("  WHO ARE THEY FIGHTING (engaged samples, all censuses):")
+        for cls, n in tally.most_common():
+            print("      %-10s %5d  %5.1f%%" % (cls, n, 100.0 * n / tot))
+        pl = tally.get("Player", 0)
+        print("")
+        if pl == 0:
+            print("  VERDICT: NOT ONE engaged actor targeted a Player. This is the map's own")
+            print("           cast fighting each other - an ally/scene-actor problem, NOT the")
+            print("           players being detected.")
+        elif pl == tot:
+            print("  VERDICT: every engaged actor targeted a Player - they are detecting you,")
+            print("           so look at what makes players targetable, not at the AI cast.")
+        else:
+            print("  VERDICT: MIXED - %.0f%% player-directed. Read the acquisition order:"
+                  % (100.0 * pl / tot))
+            print("           whoever acquired FIRST started the cascade.")
 
 def show_events(recs):
     for r in recs:
