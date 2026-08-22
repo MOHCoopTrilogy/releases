@@ -20,7 +20,7 @@ Decisions with their rationale. Read before re-opening any of these.
 | **Do NOT pick a VO pool from `self.team`** | MOHAA teams are only american/german, so British and Italian models land on the wrong pool. Read `self.model`. | cerebrum 2026-07-28 |
 | **Release notes & the What's New card are player-facing only** | Never build-mode or dev tooling. User directive 2026-07-21. | |
 | **Version scheme**: tiny polish releases append a digit (1.1.31, 1.1.32); real feature releases bump the third digit (1.1.4) | Updater is hash-based so ordering never matters. | cerebrum 2026-07-05 |
-| **Never say "Boom Library" publicly** | Standing instruction on the sound-library sourcing. | memory `service_record_challenges` |
+| **Never name the licensed sound library publicly** | Standing instruction: it must not appear in the mod, its docs, its filenames or its commit messages. Source paths go in env vars, never hard-coded (that leaked once via `docs/tools/slice_gunfoley.py`). | memory `service_record_challenges` |
 
 ---
 

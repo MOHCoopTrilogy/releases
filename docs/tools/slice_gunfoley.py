@@ -8,12 +8,12 @@ fades, resamples to the project's 22050 Hz mono 16-bit convention and writes one
 Two properties of the source are worth knowing:
   * every take exists at TWO mic positions - "Shotgun" (tight, dry, close) and "MS" (stereo, roomier).
     Shotgun is the first-person perspective, MS is what someone else's weapon sounds like across a
-    room. This only slices the Shotgun set; the MS set is the same pipeline with a different filter
-    if third-person handling foley is ever wanted.
+    room. Default slices the close mic (first person); pass --3p for the room mic, which is the
+    source for third-person handling foley heard on OTHER players' weapons.
   * output is a DERIVATIVE (sliced, downsampled, re-normalised), not a library file, and lands under
     a neutrally-named folder. The source library is never named in the mod, its docs or its commits.
 
-Usage:  python docs/tools/slice_gunfoley.py [--dry]
+Usage:  python docs/tools/slice_gunfoley.py [--dry] [--3p]
 """
 import io
 import os
@@ -24,11 +24,28 @@ import wave
 import zipfile
 
 DRY = '--dry' in sys.argv
+# --3p slices the ROOM mic instead of the tight one. Every take exists at two mic positions:
+# the close/dry mic is what your own hands sound like, the room mic is what someone else's
+# weapon sounds like across a space. Same manifest, same slicing - one filter and one output
+# folder differ, which is why this is a flag rather than a second script.
+P3 = '--3p' in sys.argv
 
-W2 = 'F:/Boom Library - World War II Firearms (WAV).zip'
-W1 = ('F:/Boom Library - World War I Firearms (Construction Kit) (WAV)/'
-      'Boom Library - World War I Firearms (Construction Kit) (WAV).zip')
-OUT = 'C:/mohaa-coop-dev/hzm-mohaa-coop-mod/sound/coop_gunfoley/'
+# SOURCE ARCHIVES ARE NOT NAMED IN THIS REPO. The licensed library must never appear in the mod, its
+# docs, its filenames or its commit messages - and a hard-coded path is exactly as public as a comment.
+# Point these at your local copies instead:
+#
+#   set COOP_FOLEY_KIT_WW2=D:\path\to\ww2-firearms.zip
+#   set COOP_FOLEY_KIT_WW1=D:\path\to\ww1-firearms-construction-kit.zip
+#
+# The script exits with a clear message if either is unset, rather than half-running.
+W2 = os.environ.get('COOP_FOLEY_KIT_WW2', '')
+W1 = os.environ.get('COOP_FOLEY_KIT_WW1', '')
+OUT = ('C:/mohaa-coop-dev/hzm-mohaa-coop-mod/sound/coop_gunfoley3p/' if P3
+       else 'C:/mohaa-coop-dev/hzm-mohaa-coop-mod/sound/coop_gunfoley/')
+
+if not W2 or not W1:
+    sys.exit('COOP_FOLEY_KIT_WW2 / COOP_FOLEY_KIT_WW1 must point at the source archives '
+             '(deliberately not hard-coded - see the note above).')
 
 SR_OUT = 22050
 MAX_TAKES = 4        # per (class, action) - variety without bloating the pk3
@@ -82,10 +99,11 @@ def find(kit, weapon, action):
     z = zopen(kit)
     want = ('%s %s' % (weapon, action)).lower()
     for n in z.namelist():
-        if '/Mechanics/' not in n or not n.endswith('_Shotgun.wav'):
+        mic = '_MS.wav' if P3 else '_Shotgun.wav'
+        if '/Mechanics/' not in n or not n.endswith(mic):
             continue
         b = n.split('/')[-1].lower()
-        m = re.match(r'gunmech_foley-(.+?)_b00m_\w+_shotgun\.wav', b)
+        m = re.match(r'gunmech_foley-(.+?)_b00m_\w+_%s\.wav' % ('ms' if P3 else 'shotgun'), b)
         if m and m.group(1).strip() == want:
             return n
     return None
@@ -114,41 +132,57 @@ def decode(raw):
     return v, p.framerate
 
 
-def events(v, sr, floor_db=-52.0, min_gap=0.10, min_len=0.045, max_len=1.6):
-    """Discrete performances: RMS envelope, threshold relative to peak, merge across short gaps."""
+def events(v, sr, floor_db=-50.0, min_len=0.045, max_len=0.85):
+    """Split on ATTACK TRANSIENTS, not on silence gaps.
+
+    [user 2026-08-21] "it sounds like its multiple taps, not just one... kinda pulls you out of it".
+    The first version merged anything separated by less than 100 ms, so a single output take could
+    contain two or three distinct hits - a bolt throw and its return, a mag seating and the catch.
+    Played as one "event" that reads as a stutter rather than an action.
+
+    A mechanical action is a sharp energy RISE followed by a decay, so cut at the rises: an attack is
+    a hop whose energy jumps well above the running average and clears the noise floor. Each take
+    then runs from its own attack to just before the next one, which makes one-hit-per-file
+    structural rather than something the gap threshold has to be tuned into.
+    """
     hop = max(1, int(sr * 0.004))
     env = []
     for i in range(0, len(v) - hop, hop):
-        s = v[i:i + hop]
+        s2 = v[i:i + hop]
         acc = 0.0
-        for x in s:
+        for x in s2:
             acc += x * x
-        env.append((acc / len(s)) ** 0.5)
-    if not env:
+        env.append((acc / len(s2)) ** 0.5)
+    if len(env) < 8:
         return []
     peak = max(env)
     if peak <= 0:
         return []
     thr = peak * (10 ** (floor_db / 20.0))
-    on = [e > thr for e in env]
-    gap = int(min_gap / 0.004)
-    out, i = [], 0
-    while i < len(on):
-        if on[i]:
-            j, silent = i, 0
-            while j < len(on):
-                if on[j]:
-                    silent = 0
-                else:
-                    silent += 1
-                    if silent > gap:
-                        break
-                j += 1
-            a, b = i * hop, (j - silent) * hop
-            if min_len <= (b - a) / float(sr) <= max_len:
-                out.append((max(0, a - int(sr * 0.006)), min(len(v), b + int(sr * 0.02))))
-            i = j
-        i += 1
+
+    # attack = a hop that is both above the floor and a marked rise over the recent past
+    attacks = []
+    run = env[0]
+    for i in range(2, len(env)):
+        run = run * 0.82 + env[i] * 0.18          # slow follower = the "recent past"
+        if env[i] > thr and env[i] > run * 2.4 and env[i] > env[i - 1] * 1.6:
+            if not attacks or (i - attacks[-1]) * 0.004 > 0.055:   # never two inside 55 ms
+                attacks.append(i)
+
+    out = []
+    for k, a in enumerate(attacks):
+        nxt = attacks[k + 1] if k + 1 < len(attacks) else len(env)
+        # end at the next attack, or earlier if it has already decayed back into the floor
+        e = a
+        while e < nxt - 1 and (e - a) * 0.004 < max_len:
+            if env[e] < thr and (e - a) * 0.004 > min_len:
+                break
+            e += 1
+        if (e - a) * 0.004 < min_len:
+            continue
+        st = max(0, a * hop - int(sr * 0.005))     # a hair of pre-roll so the attack is not clipped
+        en = min(len(v), e * hop + int(sr * 0.015))
+        out.append((st, en))
     return out
 
 

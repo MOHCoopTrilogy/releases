@@ -13,24 +13,33 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `1f203b3 2026-08-19 docs: bugs 1951-1953 logged` |
-| commits | 156 |
+| HEAD | `74d6e4e 2026-08-21 docs: prune TRAPS and preferences back under budget` |
+| commits | 162 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **7 modified, 3 untracked** |
+| unstaged diff | 7 files changed, 209 insertions(+), 117 deletions(-) |
+
+> Working tree is dirty. Everything in those 10 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 102 |
+| 2026-08 | 108 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (156)
+### Commits since 2026-01-01 (162)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `74d6e4e` | 2026-08-21 | joncurry94-tech | docs: prune TRAPS and preferences back under budget |
+| `4510c41` | 2026-08-21 | joncurry94-tech | tools: slice weapon-handling construction kits into game-ready takes |
+| `df442fd` | 2026-08-21 | joncurry94-tech | tools: join AI path failures back to the actors that caused them |
+| `4b86e70` | 2026-08-21 | joncurry94-tech | tools: ads_sweep - find per-gun tune rows that do not behave like their peers |
+| `27441d9` | 2026-08-19 | joncurry94-tech | tools: ragdoll P0 channel census |
+| `6175dd9` | 2026-08-19 | joncurry94-tech | docs: evening mega-wave recorded |
 | `1f203b3` | 2026-08-19 | joncurry94-tech | docs: bugs 1951-1953 logged |
 | `64d0c86` | 2026-08-19 | joncurry94-tech | docs: class-split trap; bugs 1948-1950 recorded |
 | `1fd6005` | 2026-08-19 | joncurry94-tech | docs: Leon wave + licensing decision recorded |
@@ -193,16 +202,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `a166a94 2026-08-19 feat+fix: live-playtest wave 2 - surrender conversion, church-clear re-gate, 10s prone dwell, colt thump A, pcMult cast, weapon.scr variant normalization (bugs 1951-1952)` |
-| commits | 1,510 |
+| HEAD | `dac1a3a 2026-08-21 fix: trim the pain pool - the sound index table was full` |
+| commits | 1,535 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **19 modified, 49 untracked** |
+| unstaged diff | 18 files changed, 1599 insertions(+), 1511 deletions(-) |
+
+> Working tree is dirty. Everything in those 68 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 117 |
+| 2026-08 | 142 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -242,10 +254,35 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (161)
+### Commits since 2026-01-01 (186)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `dac1a3a` | 2026-08-21 | joncurry94 | fix: trim the pain pool - the sound index table was full |
+| `a988515` | 2026-08-21 | joncurry94 | fix: a recruited german held the church gate open forever (bug-1972) |
+| `7681250` | 2026-08-21 | joncurry94 | feat: weapon handling foley - the motions had no sound at all |
+| `b43feff` | 2026-08-21 | joncurry94 | probe: print the entnum of every count-scaling replica at birth |
+| `48f1354` | 2026-08-21 | joncurry94 | fix: you make no sound at all when shot on Spearhead, and 2 hits in 3 are silent elsewhere |
+| `1ecfafb` | 2026-08-21 | joncurry94 | fix: camo skin had missing-texture first-person sleeves |
+| `cd6b103` | 2026-08-21 | joncurry94 | fix: the combat-snap and ricochet sounds were never registered |
+| `3745f1a` | 2026-08-21 | joncurry94 | fix: script-side review findings |
+| `c72144f` | 2026-08-21 | joncurry94 | fix: the XP bar could never fill |
+| `36a6b15` | 2026-08-21 | joncurry94 | feat: weapon action foley aliases; widen the airstrike XP window |
+| `db41a85` | 2026-08-21 | joncurry94 | feat: stow the weapon while applying a medkit |
+| `907ed9d` | 2026-08-20 | joncurry94 | fix: you can hear the bombing run coming now |
+| `f5cb872` | 2026-08-20 | joncurry94 | docs: record the three review findings in the ADS/composure plan |
+| `5c43a80` | 2026-08-20 | joncurry94 | fix: restore the Colt's decay trail |
+| `db1f788` | 2026-08-19 | joncurry94 | fix: host-table keys lowercased; weapon.scr display-name alias cases; coop_mg42AiSpread force-seta 300 (stale archived 45 caught… |
+| `6c7d5af` | 2026-08-19 | joncurry94 | docs: hud slot 47 claimed (grenade-kick icon) |
+| `3835948` | 2026-08-19 | joncurry94 | feat: coop_kick sound alias + KICK hud icon asset |
+| `c6f1a28` | 2026-08-19 | joncurry94 | fix: weapon.scr passes tik-path gives through (bug-1959 - the switch stripped every import/variant give, both teams); g43-carrier… |
+| `10e4dbf` | 2026-08-19 | joncurry94 | fix: surrender conversion v3 - real 'american' team command + explicit pre-surrender gun restore (bug-1958 SOLVED by live probes:… |
+| `6fdfaf7` | 2026-08-19 | joncurry94 | fix: surrender conversion v3 - the real 'american' team command + explicit pre-surrender gun restore (bug-1958 SOLVED by live pro… |
+| `79a08ba` | 2026-08-19 | joncurry94 | fix: G43 service give gets the same read-back/fallback guard as the variant site (bug-1957 - live 1:1 correlation g43=1/one unarm… |
+| `b4a12e7` | 2026-08-19 | joncurry94 | docs: ragdoll plan v3 + full vetting lineage (3 rounds, 7 agents, 34+16 findings closed) |
+| `1eb9eb5` | 2026-08-19 | joncurry94 | fix: colt fire alias played the thump at pitch 0.8 with +82% clipping gain - retuned to natural pitch, modest gain (user: 'sounds… |
+| `fa3d9e3` | 2026-08-19 | joncurry94 | fix: live wave 3 - attack.scr NULL-delete guards, TAF_RANDOM alert stem, rifle floorcrawl alias, variant-give/convert probes+fall… |
+| `aea18f2` | 2026-08-19 | joncurry94 | feat: gore package assets - headgib/gorechunk/eyegib xbeam props, eye texture, shader blocks; seeds (chunks/impulse/eyeGib, blood… |
 | `a166a94` | 2026-08-19 | joncurry94 | feat+fix: live-playtest wave 2 - surrender conversion, church-clear re-gate, 10s prone dwell, colt thump A, pcMult cast, weapon.s… |
 | `202b57d` | 2026-08-19 | joncurry94 | fix: tinnitus 10s package + variant scene-guard + deeper ducks (bugs 1948-1949 script side) |
 | `43377a7` | 2026-08-19 | joncurry94 | feat: Leon wave shipped - 21 credited variants (Team Tactics 16-gun pack + 5 singles), textures 2x |
@@ -413,16 +450,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `64bd613d 2026-08-19 feat: grenade kick + vault mechanic (player Postthink; coop_grenadeKick/coop_vault)` |
-| commits | 5,007 |
+| HEAD | `00a2f577 2026-08-21 fix: invisible enemies - the gore tier asked surfaces for skins they do not have` |
+| commits | 5,067 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **12 modified, 0 untracked** |
+| unstaged diff | 12 files changed, 1754 insertions(+), 31 deletions(-) |
+
+> Working tree is dirty. Everything in those 12 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 27 |
+| 2026-08 | 87 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -483,10 +523,70 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (42)
+### Commits since 2026-01-01 (102)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `00a2f577` | 2026-08-21 | joncurry94 | fix: invisible enemies - the gore tier asked surfaces for skins they do not have |
+| `a62b8d41` | 2026-08-21 | joncurry94 | fix: cover raises your eye above the sight line, and the ADS blend finished early |
+| `baea47cf` | 2026-08-21 | joncurry94 | feat: fire the handling foley from the motions that were silent |
+| `95871424` | 2026-08-21 | joncurry94 | fix: a wall must not latch the ragdoll body rotation |
+| `e48c4055` | 2026-08-21 | joncurry94 | fix: restore the DBNO camera and the weapon-collision retract |
+| `54b2867f` | 2026-08-21 | joncurry94 | feat: shoulder swap, ragdoll settle on props, roll budget, traced camera dip |
+| `ecdd1f46` | 2026-08-21 | joncurry94 | fix: third review - the invisible-torso fix was wrong, and the feel budget broke three features |
+| `7fee0110` | 2026-08-21 | joncurry94 | feat: camera motion, movement momentum, action foley, movement spread; fix the review findings |
+| `4ca4fc2d` | 2026-08-21 | joncurry94 | fix: invisible torsos - stale surface bits survived entity recycling |
+| `a7da417c` | 2026-08-21 | joncurry94 | feat: viewmodel crossblend floor, medkit stow, blood on the gun |
+| `1594d1fb` | 2026-08-20 | joncurry94 | feat: crouch/stand carries weight |
+| `0b96dadc` | 2026-08-20 | joncurry94 | feat: one stress scalar, plus idle inspect, sprint-to-fire and a low-ammo tell |
+| `9e71d739` | 2026-08-20 | joncurry94 | fix: the ADS jolt - one eased factor for rotation, shift and crouch |
+| `b06f9c41` | 2026-08-20 | joncurry94 | fix: skin variants now match their base gun server-side (wrong clip in hand) |
+| `a42b518f` | 2026-08-20 | joncurry94 | feat: weapon weight - hip recoil, mass-scaled recovery, landing dip, footfall, breathing |
+| `ba062d27` | 2026-08-20 | joncurry94 | feat: ease the ADS sight rotation in and out instead of snapping it |
+| `6e4f96a6` | 2026-08-20 | joncurry94 | feat: weapon weight on every handling action, handling shake, shadow clamp, ragdoll OOB guard |
+| `09828f97` | 2026-08-20 | joncurry94 | revert: remove the torso twist limit - it pumped spin into corpses |
+| `a760f29b` | 2026-08-20 | joncurry94 | fix: unlock cue was ducked by its own duck; loosen the kick-grenade icon gates |
+| `d7833f7c` | 2026-08-20 | joncurry94 | feat: self-collision, torso twist limit, and the anti-chatter ramp |
+| `f2705ce6` | 2026-08-20 | joncurry94 | feat: ragdoll stage 3 - 18 angular joint limits, atomic with the fold-brace gate |
+| `1709b82a` | 2026-08-20 | joncurry94 | feat: ragdoll stage 2 - the shin gets a direction of its own (feet as points 15/16) |
+| `034ebd49` | 2026-08-20 | joncurry94 | fix: bound how far damage may rewrite a corpse's pose (coop_ragdollStickMax) |
+| `f9d57cb8` | 2026-08-20 | joncurry94 | feat: coop_ragdollStick - a struck limb keeps where the bullet put it |
+| `351acb57` | 2026-08-20 | joncurry94 | fix: guard cg.snap deref in the ragdoll re-arm scan (r13 audit) |
+| `f52d03d7` | 2026-08-20 | joncurry94 | fix: separate push from twist, anchor the pelvis, re-arm evicted corpses |
+| `f70a059d` | 2026-08-20 | joncurry94 | fix: the flesh-hit direction was never a direction; torque-couple the impulse |
+| `773dd947` | 2026-08-20 | joncurry94 | fix: negative shape-match alpha on long limps, and ride the server corpse toss |
+| `15a8f5c5` | 2026-08-20 | joncurry94 | fix: bullet impulses must ROTATE a limb, not translate it |
+| `a0122287` | 2026-08-20 | joncurry94 | feat: coop_ragdollTruss - test the loose-body hypothesis before building joint limits |
+| `663bd1bd` | 2026-08-20 | joncurry94 | fix: bullets target the BONE SEGMENT, explosions vary per limb |
+| `cad7efcb` | 2026-08-20 | joncurry94 | fix: localize corpse bullet impacts, wire explosions, cap impulse accumulation |
+| `27f90ff1` | 2026-08-20 | joncurry94 | feat: shoot a corpse and its limbs move (post-death impacts) |
+| `c2e9bef1` | 2026-08-20 | joncurry94 | feat: ragdoll round 10 - measure the spin, cvar every reactive fix |
+| `35428898` | 2026-08-20 | joncurry94 | fix: latch the ragdoll rotation lock (spin was universal, not occasional) |
+| `877b132f` | 2026-08-20 | joncurry94 | fix: ragdoll slow-spin feedback loop + shape-match energy injection + blowup net |
+| `62b92b14` | 2026-08-20 | joncurry94 | fix: ragdoll coverage (drop the interpolate gate) + no hover off the authored pose |
+| `5deb1132` | 2026-08-20 | joncurry94 | diag: print pending evictions (the last silent pending-loss path) |
+| `c009ca62` | 2026-08-20 | joncurry94 | fix: ragdoll settle releases wall-clipped points instead of freezing them |
+| `ff57cdff` | 2026-08-20 | joncurry94 | feat: ragdoll round-8 spec - server-park handoff, child-driven bones, contact drape |
+| `dc697a49` | 2026-08-20 | joncurry94 | feat: ragdoll SETTLE branch - authored death anim owns the fall, physics owns the landing |
+| `b92bd96b` | 2026-08-19 | joncurry94 | feat: ragdoll per-bone collision radii (facts-vet FIX 4) |
+| `eee3b88c` | 2026-08-19 | joncurry94 | fix: ragdoll renders against CURRENT entity placement (plan C13) + depth-hack dots |
+| `487c346c` | 2026-08-19 | joncurry94 | feat: ragdoll diagnosis instruments - skeleton dots + freeze-pose drill + velocity cap |
+| `f227fbc5` | 2026-08-19 | joncurry94 | feat: ragdoll facts-vet bundle - hip fold limits, inequality braces, hierarchy anchors |
+| `fd903d6a` | 2026-08-19 | joncurry94 | fix: ragdoll contact gate 150->44 u/s, seed jitter 50->10 u/s (audit d3/d7) |
+| `902d2cd5` | 2026-08-19 | joncurry94 | fix: ragdoll vetted math - rotation frames + double-scale offsets |
+| `9f706205` | 2026-08-19 | joncurry94 | fix: ragdoll per-substep world collision + capture pre-lift (P3 tune 2) |
+| `f37965c4` | 2026-08-19 | joncurry94 | fix: ragdoll anti-pile truss + rest-contact snap (P3 live tune) |
+| `3248723d` | 2026-08-19 | joncurry94 | feat: ragdoll Phase 3 - world + brush-entity collision (plan v3 s3) |
+| `8497126a` | 2026-08-19 | joncurry94 | feat: ragdoll Phase 2 - capture + Verlet sim (no collision; plan v3) |
+| `2df3305a` | 2026-08-19 | joncurry94 | feat: ragdoll bridge ported to gl2 (lockstep - the user's daily renderer; bridge=NULL diagnostic named it) |
+| `f124e79e` | 2026-08-19 | joncurry94 | fix: getter lowercases base names (Morpheus switches are case-sensitive, bug-1960); P1 arm-gate diagnostics; kick-icon debug |
+| `095e89a0` | 2026-08-19 | joncurry94 | feat: grenade-kick discoverability - KICK hud icon (slot 47, awareness range 120u) + audible boot on kick |
+| `78d56f96` | 2026-08-19 | joncurry94 | fix: empty actor weapon gives are no-ops at both layers (bug-1959b - one '' give stripped the actor then the AI re-drew '' every… |
+| `9fec6e63` | 2026-08-19 | joncurry94 | feat: ragdoll Phase 1 - the bridge proof (plan v3) |
+| `8a40fbe6` | 2026-08-19 | joncurry94 | fix: actor weapon getter returns empty for unarmed (bug-1957 - the m_csWeapon fallback masked give failures from every read-back… |
+| `1b0a0cc6` | 2026-08-19 | joncurry94 | feat: ragdoll Phase 0 - cg_ragdoll.c seed-quality probe + arm-guard shape (plan v3, vetted PASS) |
+| `2a63387c` | 2026-08-19 | joncurry94 | feat: reload sway v2 - phase-mapped (unload up, seat higher, cock snaps down through baseline) |
+| `1daf0ec8` | 2026-08-19 | joncurry94 | feat: gore package - corpse impulse, explosion meat chunks, decap re-add (bug-866 safe pattern), headshot brain chunks + dangling… |
 | `64bd613d` | 2026-08-19 | joncurry94 | feat: grenade kick + vault mechanic (player Postthink; coop_grenadeKick/coop_vault) |
 | `389c79c7` | 2026-08-19 | joncurry94 | fix: TIKI_Error always prints (bug-1953 tripwire; Message/Warning stay dev-gated) |
 | `99d9392f` | 2026-08-19 | joncurry94 | fix: actor getter returns BASE name (bug-1948); vehicle AI gunner tuning trio (bug-1950); reload camera sway |

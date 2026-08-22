@@ -72,36 +72,9 @@ into "retail never wired the asset up" in one run. Ask for it early.
 
 ## Player experience
 
-- **Single player is the spec.** Asked how to resolve a timing trade-off: *"the behavior that the
-  mission is scripted to have in single player."* — 2026-08-02. When coop and retail SP disagree,
-  reproduce SP unless there is a coop-specific reason not to. Same day: a scripted mortar is meant
-  to **kill** the riflemen it targets, so make that deterministic rather than leaving it to
-  `radiusdamage` falloff (bug-1282); an intro lock should hold to the **story beat** the scene is
-  built around, not to whenever the title cards finish (bug-1289).
-- **Generalise; do not special-case.** *"I'd like for it to work regardless of what weapon you have."*
-  — 2026-08-02, on the low-health limp being wired for rifles only. When a feature is implemented for
-  the one case with perfect assets, say so and offer the general version; the user will take a
-  slightly imperfect general behaviour over a perfect narrow one.
-- **Never trade one visible artifact for another silently.** When a fix swaps a problem rather than
-  solving it (gl2 fog: sky exempt → unfogged trees; sky fogged → buried sky), say which artifact
-  each state buys, which is live, and treat it as unfinished.
-- **Developer debug prints must NEVER reach players.** Gate every diagnostic `iprintln`/
-  `iprintlnbold` behind the project `level.cMTE_coop_*` flag. *"Stop posting the REINF state —
-  players don't need to know about that."* Genuine narrative/objective messages stay ungated.
-- **Every VISUAL-EFFECT enhancement must be exposed in the in-game SETTINGS UI** (toggle + key
-  sliders), never console-cvar-only: renderer post-FX → `ui/coop_postfx.urc` (the "EFFECTS" button
-  on Video Options), gameplay/coop features → `ui/coop_settings.urc` (main-menu desk **telephone**).
-- **Menu text must use the game font** (`facfont-20` for titles/buttons, `verdana-12` for body).
-  Courier/Verdana-elsewhere was immediately flagged as *"different from the rest of the game."*
-- **Menus must be foolproof under heavy clicking** (2026-08-18, stated for the armory, extended to
-  the Service Record): players *"will be clicking around a lot... it should be completely
-  foolproof."* Every click-driven state must be idempotent, be re-echoed by the server after each
-  apply, or archive the EXACT resulting state rather than a relative step. Rapid-click desync
-  between offline preview and server truth is a defect, not an edge case.
-- **Explosion-death wound visuals must read as SLASHES / DEEP CUTS** (shrapnel lacerations), never
-  circular bullet-hole marks.
-- **No body gore on players, ever, and players never pool** (alive or dead). Pools mark dead
-  **actors** only, both sides.
+- **Single player is the spec.** Where coop and the original campaign disagree, match the original
+  unless the difference exists to make coop work. Full entry in
+  [`archive/prefs-pruned-2026-08-20.md`](archive/prefs-pruned-2026-08-20.md).
 
 ---
 
@@ -193,3 +166,14 @@ probe: [`archive/prefs-pruned-2026-08-20.md`](archive/prefs-pruned-2026-08-20.md
 - **`.wolf/buglog.json` is the record that still works** because it is structured and keyed. Copy
   the file aside first, take `max(numeric id)+1` immediately before writing, and verify with
   `json.load` plus an entry-count check afterwards.
+
+## A setting is a promise
+
+- **"If we removed settings for a bug reason that setting needs to be removed."** (2026-08-21) A
+  control still toggleable after its feature was disabled is worse than none - the player toggles it,
+  nothing happens, and the whole options screen reads as fake. Both directions: pull a feature, pull
+  its control; force a cvar mitigation for a bug, clear it when that bug closes. Check with
+  `docs/tools/audit_menu_cvars.py` (resolves each cvar to its cached pointer and counts real
+  dereferences), never by eye - a cvar name appears only at its registration. **Verify its findings
+  against source before deleting anything:** its first run called 8 live controls dead, all blind
+  spots in the tool.

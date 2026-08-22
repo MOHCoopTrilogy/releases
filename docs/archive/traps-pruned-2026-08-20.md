@@ -1855,3 +1855,47 @@ text and corrupts 1–2px chrome.
 ## T1 live status
 
 **Live status:** clean (re-scans 2026-07-29, 2026-08-08). bug-1027 (`e3l4/outro.scr`) has this signature.
+
+
+## Moved from TRAPS.md 2026-08-21 (over ceiling; operative rule kept in place)
+
+- **Reading a level var CREATES it with type `none`.** `GetVariable` returns non-NULL for a variable
+  that exists but was never *assigned*, so a NULL guard passes and `intValue()` throws `Cannot cast
+  'none' to int`. `coop_vehKill_monitor` merely *read* `level.coop_vehKills` each frame, poisoning
+  `DrivableVehicle::Killed` so **no drivable vehicle on any map could be destroyed**: it aborted before
+  the explosion, the tank sat at negative health with `deadflag 2`, the VEHZOMBIE rescue revived it for
+  the next hit, and it read as invincible. **Always ASSIGN a level var before anything reads it**, and
+  prefer a type check over a NULL check engine-side. (bug-1371)
+- **Map entity keyvalues arrive as STRINGS.** `#totalguys` / `#activeguys` compared against an int gave
+  115 errors a level in `global/parade.scr` and silently killed the parade spawn loop. `int()`-coerce
+  once at the top, not per comparison. Same class as the parsed-`.dat` fog values. (bug-1352, bug-1372)
+- **A command registered on `ScriptThread` is NOT a Player event.** `iprintlnbold`/`iprintln` live in
+  `scriptthread.cpp:225/234` only, so every `<player> iprintlnbold "..."` fails - 39 sites across 11
+  files whose messages had *never once* reached a player. The Player-scoped form is `iprint <text> 1`
+  (`player.cpp:1222`, `"sI"`). **Confirm a command is registered on that entity's class first.**
+  (bug-1374)
+- **Some engine events are SETTER PROPERTIES, not commands.** `EV_Actor_SetWeapon` is `EV_SETTER`:
+  `self.weapon = "models/weapons/x.tik"` works, `self weapon models/weapons/x.tik` does not exist - which
+  is why retail's own post-spawn swaps sit commented out in m1l2a and m5l3. (Command syntax on the getter
+  half is a T1 parse killer, bug-910.) Reading `self.weapon` on an ACTOR returned raw `m_csWeapon` -
+  whatever a script/tik wrote ("mp40", a full path, any case, or EMPTY for tik-armed actors) - **not**
+  the tik `name` the PLAYER getter returns, so a display-name-keyed lookup missed 100% (bug-1943). Since
+  2026-08-19 the getter returns the HELD weapon's name field with the raw fallback when unarmed.
+  String-keyed array LOOKUPS stay case-sensitive even though `==` is not (bug-1916 family).
+- **A bare identifier is a CONST STRING, and `int + conststring` CONCATENATES.** `local.wave1 +
+  local.wave2 + wave3 + 5` (missing `local.`) produced `"20wave35"`, and `intValue()` on a string is
+  `atoi` -> **20** against a gate waiting for 35: total mission softlock, no error, and it is a *vanilla*
+  typo byte-identical in retail. (bug-1377)
+- **⚠️ Fixing a type error can UNMASK a latent logic bug.** That same line threw every frame, and the
+  throw aborted the parade's done-check, so the parade never stopped and the gate happened to pass; the
+  correct `int()` coercion (bug-1372) made the comparison work, the parade stopped at 20, and the map
+  became *unfinishable*. **After silencing a recurring script error, re-test the feature it fired in.**
+- **`thread <label>` inside a boolean is ALWAYS TRUE** - it evaluates to a HANDLE, so
+  `if( x && thread foo::bar )` is `if( x && <truthy> )`. Five `anim/disguise_*.scr` gates never guarded
+  anything for years; use `waitthread` when you want the value. Because those branches end in `end`, four
+  statements below were unreachable whenever one fired, including the squad-wide papers pass. **When you
+  fix a condition that was always true, audit what sits below its `end`.**
+- **`continue` in a `while` whose index advances at the BOTTOM = infinite loop = server hang.** `for`
+  runs the increment on `continue`; `while` does not. `aihandler.scr`'s actor sweep is a `while` at
+  `:302` incrementing at `:484`. Wrap the body in an inverted `if`, and **check the loop KIND and where
+  the increment lives before writing any early-skip.**

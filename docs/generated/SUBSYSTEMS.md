@@ -8,8 +8,8 @@
 # Coop subsystem inventory (generated)
 | metric | value |
 |---|---:|
-| `coop_mod/*.scr` files | 117 |
-| total lines in `coop_mod/` | 73,134 |
+| `coop_mod/*.scr` files | 118 |
+| total lines in `coop_mod/` | 73,502 |
 | top-level `maps/*.scr` | 121 |
 | of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
 
@@ -87,7 +87,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `ads_dbg.scr` | 11 | 1 | HZM coop - ADS diagnostic. Called from the AIM state's entrycommands in |
 | `aibehav.scr` | 166 | 2 | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
 | `aicombat.scr` | 119 | 1 | aicombat.scr - HZM coop AUTOMATED COMBAT DRIVER (2026-07-23) |
-| `aihandler.scr` | 1,868 | 26 | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
+| `aihandler.scr` | 1,952 | 26 | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
 | `aimaneuver.scr` | 261 | 1 | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
 | `aisquad.scr` | 245 | 1 | aisquad.scr - HZM coop SQUAD BRAIN (2026-07-24) |
 | `aivoice.scr` | 455 | 4 | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
@@ -161,8 +161,8 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `maptest_vehicle.scr` | 474 | 1 | HZM Coop - Vehicle Scene Tester (Phase 2 sibling) |
 | `maptest_waypoints.scr` | 4,171 | 0 | HZM Coop - Phase 2 Map Tester: Pre-Extracted Waypoints |
 | `medals.scr` | 208 | 1 | [401] HZM MEDALS & BADGES - campaign-wide meta-achievements, one per Service Record category plus |
-| `medkit.scr` | 777 | 1 |  |
-| `mg42_hack.scr` | 24 | 0 | chrissstrahl - scale health to players |
+| `medkit.scr` | 803 | 1 |  |
+| `mg42_hack.scr` | 36 | 0 | chrissstrahl - scale health to players |
 | `missioncomplete.scr` | 87 | 0 | [200] chrissstrahl - 2020.06.14 |
 | `mom_actions.scr` | 173 | 17 | Created by chrissstrahl on 2018.07.02 - based on Multi Option Menu from Star Trek Elite Force II from 2009 fo… |
 | `mom_login.scr` | 167 | 17 | Created by chrissstrahl on 2018.07.02 - based on Multi Option Menu from Star Trek Elite Force II from 2009 fo… |
@@ -170,10 +170,11 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `objective_drop.scr` | 165 | 1 | Objective Bonus Drop |
 | `objective_positions.scr` | 89 | 1 | objective_positions.scr |
 | `objectives.scr` | 693 | 7 | Coop Side Objectives (optional / secondary) |
-| `officer.scr` | 4,924 | 27 | Officer Boss + Radio Station |
+| `officer.scr` | 5,018 | 27 | Officer Boss + Radio Station |
 | `officer_positions.scr` | 624 | 1 | coop_officer_positions.scr |
+| `painbreath.scr` | 69 | 0 | HZM coop - WOUNDED BREATHING. |
 | `paradrop.scr` | 774 | 1 | Allied Paradrop System |
-| `player.scr` | 1,834 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |
+| `player.scr` | 1,840 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |
 | `precache.scr` | 186 | 0 |  |
 | `probe.scr` | 74 | 1 | probe.scr |
 | `profile.scr` | 71 | 0 | HZM COOP - PER-PLAYER PROFILE MIRROR (user decision 2026-08-10) |
@@ -186,7 +187,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `spawnlocations.scr` | 3,617 | 181 | [200] chrissstrahl - fixed using unfiltred mapname (using now level.coop_mapname) |
 | `strings.scr` | 1,301 | 6 | [200] Smithy - this is taken from xnull. Not mine, but is used by many. Will be useful to us. |
 | `subsink.scr` | 618 | 4 | HZM coop - STAGED U-BOAT DEATH |
-| `surrender.scr` | 70 | 0 | HZM coop - SURRENDER CONVERSION [user 2026-08-19]: "when a german surrenders can you |
+| `surrender.scr` | 125 | 0 | HZM coop - SURRENDER CONVERSION [user 2026-08-19]: "when a german surrenders can you |
 | `takecover.scr` | 47 | 0 | [214] HZM coop - TAKE COVER v1 (player cover system). |
 | `thirdperson.scr` | 52 | 0 | HZM coop [237] - the 3rd-person bind now CYCLES three view modes (user): |
 | `tinnitus.scr` | 202 | 1 | HZM coop - TINNITUS / MUFFLED HEARING (per-player). |
@@ -198,7 +199,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `weaponstate.scr` | 125 | 0 | [200] Smithy |
 | `weather.scr` | 360 | 8 | HZM coop - WEATHER (v2): coop now drives the NATIVE SP trilogy weather system (global/weather.scr) so |
 | `wounded.scr` | 602 | 2 | [user 2026-07-17] WOUNDED GERMAN LIMP-AWAY. |
-| `xp.scr` | 1,953 | 14 | [302] HZM XP SYSTEM - Phase 1 (tracking + persistence + end-of-map debrief + own-rank HUD) |
+| `xp.scr` | 1,975 | 14 | [302] HZM XP SYSTEM - Phase 1 (tracking + persistence + end-of-map debrief + own-rank HUD) |
 
 ## Coop-integrated map scripts
 | map | theatre flag |
