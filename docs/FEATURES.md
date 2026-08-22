@@ -1162,3 +1162,27 @@ Not the stealth *feature* (that is Phase C, still on paper) - the layer undernea
   resolves the player who actually bumped, plus holds off rewriting a scripted-animation actor's think map.
 - **Quiet Naxos sabotage** (hold USE) no longer strands the scientist mid-scene.
 
+## Ragdoll physics (v1.4.0 opt-in, v1.4.1 ON by default) - SHIPPED, NEWEST SYSTEM
+
+`cg_ragdoll.c`, client-side. A Verlet solver over the character skeleton: 18 angular joint
+limits, world and brush-entity collision, per-bone collision radii, and a settle branch in
+which the **authored death animation owns the fall and physics owns the landing** - which is
+what stopped bodies looking like dropped puppets. Shoot a corpse and the struck limb moves and
+KEEPS where the bullet put it (`coop_ragdollStick`, bounded by `coop_ragdollStickMax`);
+explosions vary per limb rather than translating the whole body.
+
+Built over six review rounds (r8-r13) across 2026-08-19..21, ~30 commits. The hard-won ones:
+bullet impulses must ROTATE a limb, not translate it; the flesh-hit "direction" was never a
+direction until it was torque-coupled; a correction that moves `pt` without `ptPrev` INJECTS
+velocity, because in Verlet velocity *is* `pt - ptPrev` (this caused a universal slow spin and
+forced the torso-twist limit to be reverted outright); and a wall must not latch the body
+rotation.
+
+**Default flip was migration-free, and the reason is worth keeping:** `coop_ragdoll` is
+CVAR_ARCHIVE, so a saved config normally beats a changed engine default. It did not here only
+because the cvar first existed 2026-08-19, two days AFTER v1.3.1 was cut - no shipped client
+had ever registered it. Any future default flip on an already-shipped archive cvar needs a
+one-shot migration instead (see `docs/TRAPS.md` T7, and bugs 1940 / 2017).
+
+Status: `SHIPPED` and on by default, but the least-settled system in the mod - odd poses and
+occasional over-spin are expected. `coop_ragdoll 0` reverts to retail death animations cleanly.

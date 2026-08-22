@@ -356,6 +356,12 @@ killed `coop_tinnitusBlast` and `coop_goreDripCorpseTime`. One trap, three dead 
 | **Never seed `coop_uiB*`/`coop_uiN*`** — wipes last-known challenge progress. | Progress lost | — |
 | **⭐ `g_gametype` is LATCHED — the FIRST map of a launch runs before it applies.** `ui_startdmmap 2` sets it, the engine answers *"g_gametype will be changed upon restarting"*, and the change lands at the **next** map load (observed 59 s later). Map #1 initialises with `g_gametype` **0**, `coop_mod/variables.scr:38` caches `level.gametype = 0`, and **`variables.scr:89`'s `if(level.gametype == 0){ end }` aborts the whole coop init** - every later check takes its SP branch, including `replace.scr::waitForPlayer:105`, a raw `level waittill spawn` that throws and so does not WAIT. Clients connect, get kits, never spawn. **Seed `+set g_gametype 2` on the command line.** | First map of a run has no coop | 1492 |
 
+**⚠️ A workaround written into the SAVED config outlives the bug it worked around and beats
+`coop_defaults.cfg` forever.** MSAA 0 mitigated a **gl2** artifact (bug-1298); gl2 was abandoned and the
+artifact fixed (bug-1300), but archived `r_ext_multisample 0` kept beating the `8` in defaults - MSAA off
+for months on a renderer that never had the bug. **Record a cvar mitigation with its bug id and clear it
+when that bug closes**; `seta` in a saved config is a fossil, not a decision. (bug-1990)
+
 **The structural fix is half-built:** `coop_defaults.cfg` execs **BEFORE** the saved config, so its values
 are true defaults a menu change overrides and persists. Migration out of `autoexec.cfg` is incomplete, and
 any menu-wired cvar still `seta`'d there **cannot** persist; the two files are disjoint, so they never
@@ -385,20 +391,23 @@ cache a generation stamp (crc of the id list) and wipe on mismatch; and a genera
    (`coop_mod/cfg/detect.cfg`), the objectives setup and the armory pick carry-over, presenting as
    **three unrelated bugs**. Fixed with scoped exemptions: exec only for mod-namespaced paths, vstr only
    for `coop_*`/user-created cvars. (bug-597)
+   **A plain `set <cvar>` is filtered the same way, invisibly.** Stuff two cvars with only one listed
+   and the listed half still works, so it reads as a *logic* bug: the 3-mode view cycle set
+   `cg_3rd_person` (listed) + `cg_freecam` (not), so first person worked, free-cam and chase were
+   identical, and archived `cg_freecam` was unclearable. **Symptom → check the list:** one mode of a
+   multi-mode client feature works, the rest collapse together. (bug-1991)
 3. **Whitespace collapse** - `Cvar_Set_f` (`cvar.c:936`) takes its value from `Cmd_ArgsFrom(2)`, which
    re-joins *tokenised* args with a single space. Multi-word values survive unquoted (why the
    `coop_so1`/`coop_cp1` HUD pushes work), but **any run of whitespace normalises to one space** - never
    pad with spaces to align columns; use a visible separator. (bug-1364)
 4. **An undispatchable token** - a bare name-bus token with no data character makes `playerExtract`
    return NIL. (bug-772)
-5. **Client `exec`/`vstr` INSERT at the buffer front; only stufftext APPENDS.** In `cmd.c`, `Cmd_Exec_f`
-   and `Cmd_Vstr_f` call `Cbuf_InsertText`, so a click's whole cfg chain runs depth-first, atomically, in
-   textual order. The 2026-08-18 "exec APPENDS" rationale (commit `d2e7084` and a `loadoutpick.scr`
-   comment) is **WRONG about the engine**; the server-visual strip is right for a different reason -
-   server stufftext arrives frames later over the WIRE (`Cbuf_AddText`), always after the client's chain.
-   So **the LAST textual line in a client chain wins** (`s<n>sel.cfg` correcting `coop_loMvPN` on its
-   final line works only because of insert semantics - do not move it earlier), and any server echo races
-   the next click by a round trip and can revert a preview.
+5. **Client `exec`/`vstr` INSERT at the buffer front; only stufftext APPENDS.** `Cmd_Exec_f`/`Cmd_Vstr_f`
+   call `Cbuf_InsertText` (`cmd.c`), so a click's whole cfg chain runs depth-first, atomically, in textual
+   order, and **the LAST textual line in a client chain wins** (`s<n>sel.cfg` corrects `coop_loMvPN` on its
+   final line *because of* insert semantics - do not move it earlier). Server stufftext arrives frames
+   later over the wire (`Cbuf_AddText`), always after the client's chain, so a server echo races the next
+   click by a round trip and can revert a preview. Any comment claiming exec APPENDS is wrong.
 6. **The name bus dispatches ONE token per ~0.75 s batch; every other stacked token is destroyed.**
    `playerNameCommand` breaks at the FIRST token with data and `playerCleanName` truncates at the first
    `" ,"`. Priority is **BUS INDEX order, not click order** (skin 31 > helmet 35 > weapons 42-45 > menu
@@ -584,46 +593,17 @@ One failure in variants: the value is not the type the reader assumes, the threa
 the caller still reports success. **Tell:** a feature that "does nothing" with no crash, plus a
 `Script Error` naming a file and line you were not looking at.
 
-- **Reading a level var CREATES it with type `none`.** `GetVariable` returns non-NULL for a variable
-  that exists but was never *assigned*, so a NULL guard passes and `intValue()` throws `Cannot cast
-  'none' to int`. `coop_vehKill_monitor` merely *read* `level.coop_vehKills` each frame, poisoning
-  `DrivableVehicle::Killed` so **no drivable vehicle on any map could be destroyed**: it aborted before
-  the explosion, the tank sat at negative health with `deadflag 2`, the VEHZOMBIE rescue revived it for
-  the next hit, and it read as invincible. **Always ASSIGN a level var before anything reads it**, and
-  prefer a type check over a NULL check engine-side. (bug-1371)
-- **Map entity keyvalues arrive as STRINGS.** `#totalguys` / `#activeguys` compared against an int gave
-  115 errors a level in `global/parade.scr` and silently killed the parade spawn loop. `int()`-coerce
-  once at the top, not per comparison. Same class as the parsed-`.dat` fog values. (bug-1352, bug-1372)
-- **A command registered on `ScriptThread` is NOT a Player event.** `iprintlnbold`/`iprintln` live in
-  `scriptthread.cpp:225/234` only, so every `<player> iprintlnbold "..."` fails - 39 sites across 11
-  files whose messages had *never once* reached a player. The Player-scoped form is `iprint <text> 1`
-  (`player.cpp:1222`, `"sI"`). **Confirm a command is registered on that entity's class first.**
-  (bug-1374)
-- **Some engine events are SETTER PROPERTIES, not commands.** `EV_Actor_SetWeapon` is `EV_SETTER`:
-  `self.weapon = "models/weapons/x.tik"` works, `self weapon models/weapons/x.tik` does not exist - which
-  is why retail's own post-spawn swaps sit commented out in m1l2a and m5l3. (Command syntax on the getter
-  half is a T1 parse killer, bug-910.) Reading `self.weapon` on an ACTOR returned raw `m_csWeapon` -
-  whatever a script/tik wrote ("mp40", a full path, any case, or EMPTY for tik-armed actors) - **not**
-  the tik `name` the PLAYER getter returns, so a display-name-keyed lookup missed 100% (bug-1943). Since
-  2026-08-19 the getter returns the HELD weapon's name field with the raw fallback when unarmed.
-  String-keyed array LOOKUPS stay case-sensitive even though `==` is not (bug-1916 family).
-- **A bare identifier is a CONST STRING, and `int + conststring` CONCATENATES.** `local.wave1 +
-  local.wave2 + wave3 + 5` (missing `local.`) produced `"20wave35"`, and `intValue()` on a string is
-  `atoi` -> **20** against a gate waiting for 35: total mission softlock, no error, and it is a *vanilla*
-  typo byte-identical in retail. (bug-1377)
-- **⚠️ Fixing a type error can UNMASK a latent logic bug.** That same line threw every frame, and the
-  throw aborted the parade's done-check, so the parade never stopped and the gate happened to pass; the
-  correct `int()` coercion (bug-1372) made the comparison work, the parade stopped at 20, and the map
-  became *unfinishable*. **After silencing a recurring script error, re-test the feature it fired in.**
-- **`thread <label>` inside a boolean is ALWAYS TRUE** - it evaluates to a HANDLE, so
-  `if( x && thread foo::bar )` is `if( x && <truthy> )`. Five `anim/disguise_*.scr` gates never guarded
-  anything for years; use `waitthread` when you want the value. Because those branches end in `end`, four
-  statements below were unreachable whenever one fired, including the squad-wide papers pass. **When you
-  fix a condition that was always true, audit what sits below its `end`.**
-- **`continue` in a `while` whose index advances at the BOTTOM = infinite loop = server hang.** `for`
-  runs the increment on `continue`; `while` does not. `aihandler.scr`'s actor sweep is a `while` at
-  `:302` incrementing at `:484`. Wrap the body in an inverted `if`, and **check the loop KIND and where
-  the increment lives before writing any early-skip.**
+- **Reading a level var CREATES it with type `none`** — `GetVariable` returns non-NULL for a var that
+  exists but was never *assigned*, so a NULL guard passes and `intValue()` throws. **Always ASSIGN a
+  level var before anything reads it.** (bug-1371)
+- **Map entity keyvalues arrive as STRINGS** — `int()`-coerce once at the top, not per comparison.
+  (bug-1352, bug-1372)
+- **A command registered on `ScriptThread` is NOT a Player event** — `iprintlnbold`/`iprintln` are
+  ScriptThread-only, so `<player> iprintlnbold "..."` silently fails; the Player form is
+  `iprint <text> 1`.
+
+  Worked examples and the failure histories for these three are in
+  [`archive/traps-pruned-2026-08-20.md`](archive/traps-pruned-2026-08-20.md).
 
 ---
 
@@ -775,7 +755,7 @@ stripped base name.** (bug-1982)
 ---
 
 <a name="procedural"></a>
-## Procedural view/weapon motion: two rules that have each cost a shipped regression
+## Procedural view/weapon motion: four rules that have each cost a shipped regression
 
 Both were broken on 2026-08-20 in a single batch of viewmodel "feel" work, and both produced defects
 that survived review, a clean build, and a deploy, and were only caught by the user playing.
@@ -812,6 +792,33 @@ ceiling was `6 x the per-shot kick`, so it scaled with every factor the kick sca
 camera. Ceilings on a physical displacement belong in world units, and a component that can reach
 the eye needs its own saturation separate from the total. (bug-1985)
 
+**4. A shared budget that uniformly scales its members makes every control inside it non-linear,
+and past saturation, INERT.** The viewmodel feel budget clamps the summed offset to 9u and scales
+every layer to fit. The idle inspect wrote raise/pull/centre into it without registering as an
+authored stow, asking ~9.4u by itself while sharing the 9u with breathing, sway, bob and mass lag.
+Turning `coop_inspectCentre` UP raised the total length, raised the scale-down factor, and cancelled
+the gain - the user correctly reported the control did nothing. **When a user says "adjusting X has
+no effect", suspect a clamp before suspecting the value.** A deliberate large pose must be
+registered in the budget's exemption (`s_vFeelExempt`) as the medkit stow, collision retract and
+DBNO eye drop already were. Exempt only what must be large: the inspect's rearward pull stays inside
+the budget because the 4u rear cap guards against a long gun reaching the near clip plane. (bug-2016)
+
 **Related, same family:** the reverted ragdoll torso-twist limit (bug-1981) pumped rotational energy
 because a correction moved `pt` without `ptPrev` — in Verlet, velocity IS `pt - ptPrev`, so moving a
 point alone injects velocity. Same underlying error: mutating state that another integrator owns.
+
+## Writing `.health` directly bypasses EVERY piece of damage feedback
+
+`ent.health = ent.health - n` is not a quiet way to deal damage - it skips `Sentient::Damage`
+entirely. No pain sound, no hit flash, no hitreact, and no `STAT_DAMAGEDIR`, the only field
+`coop_dmgIndicator` reads. m3l3's church barrage did this, so damage arrived from nowhere: the
+shells were audible, but nothing said you had been HIT, and the user reasonably called it random.
+
+The floor is the second half. Clamping `health` to 1 after the subtraction makes the effect
+non-lethal only in the narrowest sense - it never lands the kill, but pins the player at one hit
+point so the next stray round does. That reads as the effect killing them, because it did. Put the
+floor on the AMOUNT, at a survivable share of max health.
+
+Deal damage with the real event and pass a direction (`vector_normalize(victim - source)`) like a
+bullet does; `player.cpp` derives the indicator bearing from arg 5, the DIRECTION, not the position.
+(bug-2015)
