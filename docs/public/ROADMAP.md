@@ -10,20 +10,14 @@ What is planned, in progress, or known to be broken. This is generated from the 
 
 ## P0 — infrastructure, fix before feature work
 
-- The deployed engine binaries do not match each other
-- Six days of engine work and v1.1.55 mod content exist only in the working tree
 - `renderer_opengl2.dll` has zero rollback points
-- A v1.1.51-era gl2 DLL ships to players
-- Shipped binaries lag source; exe/cgame frozen at v1.1.51
 
 ## Defects with evidence
 
 - e3l4: jeep passenger never completes the first supply run — INSTRUMENTED, cause open
 - Pinned challenges: no in-mission pin surface
-- m3l2: missing script label — code-confirmed
 - m3l2: `SV_FindIndex overflow (max=1280)` ×243
 - e2l2: 12× "applied to NULL listener"
-- e3l4: `outro.scr` fails to load — BT campaign ending broken
 - t2l2: 265 script errors on coop boot despite an A− static audit grade
 - Phase C stealth contain (m2l2a) — shipped, mostly unverified
 - m6l2a contain — bugs 1732-1737, deployed 2026-08-12
@@ -33,7 +27,7 @@ What is planned, in progress, or known to be broken. This is generated from the 
 - objectives.scr's NEW OBJECTIVE toast collides with two live features
 - Second vehicle-crew spawn path on t2l2 / t3l2 still unguarded
 - Dedicated server segfaults on bare DM maps
-- AI prone/crouch postures are disabled because enabling them crashes the server
+- AI crouch posture stays disabled (crouch leg was the crasher); prone is BACK
 - ET3 engine jink is built and dormant
 - Airborne black-texture patch — 4th report in the same family
 
@@ -67,4 +61,8 @@ What is planned, in progress, or known to be broken. This is generated from the 
 
 - e3l4 AI spawner threads die on AISpawnPoint/PathNode (bug-1471, OPEN)
 - Unwired challenges: 25 still have no producer (bugs 1596-1598, OPEN)
+
+## m2l2a stealth - state after Phase A (2026-08-10)
+
+- Scripted-conversation guard sweep (TRAPS: waittill outranges its guard)
 

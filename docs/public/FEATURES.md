@@ -6,7 +6,7 @@
 
 Every system built for the trilogy coop mod, grouped by domain. Generated from the project's own feature record, so it stays in step with what is actually in the build - including the parts that are shipped but not yet confirmed in play.
 
-**153 systems** across **17 domains**.
+**154 systems** across **18 domains**.
 
 | Status | Count |
 |---|---:|
@@ -254,4 +254,10 @@ Every system built for the trilogy coop mod, grouped by domain. Generated from t
 |---|---|---|
 | **VERIFIED in play:** |  | the contain loop end to end; the escalation path handing over the FULL loadout; |
 | **STILL UNVERIFIED:** |  | the 15s loiter -> cover-blown escalation, the stun-witness route, and the |
+
+## Ragdoll physics (v1.4.0 opt-in, v1.4.1 ON by default) - SHIPPED, NEWEST SYSTEM
+
+| System | Status | What it does |
+|---|---|---|
+| **Default flip was migration-free, and the reason is worth keeping:** |  | coop_ragdoll is |
 

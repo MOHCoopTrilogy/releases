@@ -6,19 +6,19 @@
 
 Every challenge in the mod, grouped exactly as the in-game **Service Record** groups them (Join Game -> Service Record). Challenges marked *(Elite)* are the harder second tier of the same weapon or feat.
 
-**344 challenges** across **11 categories**.
+**365 challenges** across **12 categories**.
 
 | Category | Challenges |
 |---|---:|
-| [RIFLES](#rifles) | 27 |
+| [RIFLES](#rifles) | 30 |
 | [MARKSMAN](#marksman) | 18 |
-| [SUBMACHINE GUNS](#submachine-guns) | 18 |
-| [SIDEARMS](#sidearms) | 27 |
-| [SUPPORT WEAPONS](#support-weapons) | 18 |
+| [SUBMACHINE GUNS](#submachine-guns) | 19 |
+| [SIDEARMS](#sidearms) | 33 |
+| [SUPPORT WEAPONS](#support-weapons) | 21 |
 | [COMBAT](#combat) | 29 |
 | [FIRETEAM](#fireteam) | 21 |
 | [ARMOR & VEHICLES](#armor--vehicles) | 16 |
-| [CAMPAIGN](#campaign) | 94 |
+| [CAMPAIGN](#campaign) | 95 |
 | [STEALTH & FEATS](#stealth--feats) | 53 |
 | [AXIS FORCES](#axis-forces) | 23 |
 
@@ -44,6 +44,9 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Banzai Bolt** | Get 90 kills with the Arisaka (Elite) |
 | **Sturmgeist's Choice** | Get 40 kills with the StG44 |
 | **Sturm und Drang** | Get 120 kills with the StG44 (Elite) |
+| **Near as Good** | Get 120 long-range kills to unlock the Johnson M1941 |
+| **Rotary Feed** | Get 50 kills with the Johnson M1941 |
+| **The Better Rifle** | Get 150 kills with the Johnson M1941 (Elite) |
 | **Sniper's Eye** | Get 100 kills with the M1 Garand |
 | **Quiet Ping** | Get 175 kills with the M1 Garand |
 | **Mauser Master** | Get 100 kills with the Kar98k |
@@ -95,6 +98,7 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Rising Sun Ripper** | Get 90 kills with the Type 100 (Elite) |
 | **Balilla Automatico** | Get 30 kills with the Beretta M38 |
 | **Roman Ripper** | Get 90 kills with the Beretta M38 (Elite) |
+| **Chicago Typewriter** | Get 250 kills with the Thompson to unlock it in gold |
 | **More Dakka** | Get 100 kills with the Thompson |
 | **Hush Puppy** | Get 100 kills with the MP40 |
 | **Silent Papasha** | Get 100 kills with the PPSh-41 |
@@ -125,6 +129,12 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Papa Nambu** | Get 30 kills with the Nambu |
 | **Rising Sun Roscoe** | Get 90 kills with the Nambu (Elite) |
 | **Assassin's Whisper** | Get 25 kills with the Welrod |
+| **Broomhandle** | Get 150 headshots to unlock the Mauser C96 |
+| **Red Nine** | Get 30 kills with the Mauser C96 |
+| **Nine-Millimetre Mauser** | Get 90 kills with the Mauser C96 (Elite) |
+| **Victory Model** | Get 250 headshots to unlock the S&W M10 .38 |
+| **Double Action** | Get 30 kills with the S&W M10 .38 |
+| **Six for Sure** | Get 90 kills with the S&W M10 .38 (Elite) |
 | **SOE Silencer** | Get 75 kills with the Welrod (Elite) |
 | **Old Slabsides** | Get 50 kills with the Colt .45 |
 | **Officer's Whisper** | Get 50 kills with the Walther P38 |
@@ -136,6 +146,9 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 
 | Challenge | How to earn it |
 |---|---|
+| **Pan Fed** | Kill 200 reinforcements to unlock the DP-28 |
+| **Degtyaryov** | Get 50 kills with the DP-28 |
+| **Record Player** | Get 150 kills with the DP-28 (Elite) |
 | **Walking Fire** | Get 50 kills with the BAR |
 | **Browning's Bruiser** | Get 150 kills with the BAR (Elite) |
 | **Belt-Fed Fury** | Get 40 kills with the .30 Cal |
@@ -261,6 +274,7 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Gamespy** | Recover either set of stolen papers on the Naxos mission |
 | **Expect Close Contact** | In the Bocage house, keep an airborne soldier alive through both ambushes |
 | **The Way to Win a War** | Keep Captain Ramsey alive through the Nebelwerfer Hunt |
+| **The Hunt** | Hold the church at the Nebelwerfer Hunt without it being contested once |
 | **Tooth and Nail** | Eliminate every sniper in Sniper Town |
 | **Steady the Line** | Steal the King Tiger with Sergeant Hammon still standing |
 | **Combat Medic** | Steal the King Tiger with T/4 Medic Glenn still standing |
@@ -356,9 +370,9 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **The Way it Was** | Destroy the U-boat the way it was intended to be |
 | **Mit den Fischen schlafen** | Scuttle the U-boat without killing a single man yourself - let the sea take them |
 | **Paper Trail** | Recover 5 hidden blueprints |
-| **Draughtsman** | Recover 12 hidden blueprints |
-| **Archivist** | Recover 20 hidden blueprints |
-| **The Whole Portfolio** | Recover all 31 hidden blueprints |
+| **Draughtsman** | Recover 42 hidden blueprints |
+| **Archivist** | Recover 70 hidden blueprints |
+| **The Whole Portfolio** | Recover 112 hidden blueprints |
 | **Eyes Open** | Clear Sniper Town without ever using a scope or the aim camera |
 | **The Long Way** | Hold the bocage house without ever firing a mounted machinegun |
 | **Weathered** | Complete a mission in each of the five weather themes |
@@ -420,4 +434,16 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **High-Value Target** | Eliminate 8 high-ranking commanders |
 | **Counter-Sniper** | Eliminate 15 enemy snipers |
 | **Ghost in the Fog** | Eliminate 45 enemy snipers |
+
+## FINISHES
+
+| Challenge | How to earn it |
+|---|---|
+| **Midas Touch** | Get 250 kills to unlock the GOLD finish |
+| **Untouchable** | Complete a mission with no deaths to unlock CHROME |
+| **Gun Blue** | Get 150 headshots to unlock the BLUED finish |
+| **Red Right Hand** | Get 150 melee kills to unlock the BLOODY finish |
+| **Home Front** | Get 150 kills in the US campaign to unlock WOODLAND |
+| **Cold Snap** | Get 150 kills on snow maps to unlock WINTER |
+| **Scorched Sand** | Get 150 kills in North Africa to unlock DESERT |
 

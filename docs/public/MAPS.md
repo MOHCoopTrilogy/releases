@@ -19,30 +19,30 @@ Every mission in the trilogy that has a coop script, what state it is in, and ho
 | `m1l3b` | yes | 1445 | 2 |
 | `m1l3c` | yes | 1139 | 4 |
 | `m2l1` | yes | 655 | 7 |
-| `m2l2a` | yes | 1931 | 50 |
+| `m2l2a` | yes | 1936 | 51 |
 | `m2l2b` | yes | 1481 | 7 |
 | `m2l2c` | yes | 196 | 0 |
 | `m2l3` | yes | 1144 | 0 |
 | `m3l1a` | yes | 8435 | 3 |
 | `m3l1b` | yes | 3198 | 15 |
-| `m3l2` | yes | 3724 | 6 |
-| `m3l3` | yes | 6015 | 1 |
+| `m3l2` | yes | 3740 | 6 |
+| `m3l3` | yes | 9095 | 50 |
 | `m4l0` | yes | 500 | 1 |
 | `m4l1` | yes | 735 | 1 |
-| `m4l2` | yes | 1451 | 0 |
-| `m4l3` | yes | 1596 | 1 |
-| `m5l1a` | yes | 1723 | 1 |
-| `m5l1b` | yes | 1670 | 2 |
+| `m4l2` | yes | 1473 | 0 |
+| `m4l3` | yes | 1617 | 1 |
+| `m5l1a` | yes | 1737 | 1 |
+| `m5l1b` | yes | 1704 | 3 |
 | `m5l2a` | yes | 851 | 1 |
 | `m5l2b` | yes | 744 | 1 |
-| `m5l3` | yes | 2173 | 0 |
-| `m6l1a` | yes | 164 | 0 |
-| `m6l1b` | yes | 144 | 0 |
-| `m6l1c` | yes | 1869 | 12 |
-| `m6l2a` | yes | 3723 | 69 |
-| `m6l2b` | yes | 355 | 1 |
-| `m6l3a` | yes | 3154 | 1 |
-| `m6l3b` | yes | 176 | 0 |
+| `m5l3` | yes | 2191 | 0 |
+| `m6l1a` | yes | 189 | 0 |
+| `m6l1b` | yes | 167 | 0 |
+| `m6l1c` | yes | 1928 | 13 |
+| `m6l2a` | yes | 3777 | 72 |
+| `m6l2b` | yes | 376 | 1 |
+| `m6l3a` | yes | 3170 | 1 |
+| `m6l3b` | yes | 189 | 0 |
 | `m6l3c` | yes | 1790 | 1 |
 
 ## Spearhead
@@ -53,7 +53,7 @@ Every mission in the trilogy that has a coop script, what state it is in, and ho
 | `t1l2` | yes | 1039 | 5 |
 | `t1l3` | yes | 1250 | 9 |
 | `t2l1` | yes | 2372 | 8 |
-| `t2l2` | yes | 1525 | 22 |
+| `t2l2` | yes | 1525 | 23 |
 | `t2l3` | yes | 3481 | 4 |
 | `t2l4` | yes | 1226 | 2 |
 | `t3l1` | yes | 1384 | 16 |
@@ -63,17 +63,17 @@ Every mission in the trilogy that has a coop script, what state it is in, and ho
 
 | Map | Coop | Script lines | Logged fixes |
 |---|---|---:|---:|
-| `e1l1` | yes | 737 | 5 |
-| `e1l2` | yes | 380 | 36 |
-| `e1l3` | yes | 312 | 3 |
-| `e1l4` | yes | 506 | 1 |
-| `e2l1` | yes | 799 | 40 |
-| `e2l2` | yes | 545 | 8 |
-| `e2l3` | yes | 341 | 8 |
+| `e1l1` | yes | 752 | 5 |
+| `e1l2` | yes | 402 | 36 |
+| `e1l3` | yes | 332 | 3 |
+| `e1l4` | yes | 540 | 1 |
+| `e2l1` | yes | 816 | 40 |
+| `e2l2` | yes | 563 | 9 |
+| `e2l3` | yes | 359 | 8 |
 | `e3l1` | yes | 417 | 4 |
 | `e3l2` | yes | 499 | 4 |
 | `e3l3` | yes | 865 | 5 |
-| `e3l4` | yes | 367 | 26 |
+| `e3l4` | yes | 367 | 27 |
 
 ## Most repaired
 
@@ -81,19 +81,19 @@ Fix counts are a rough proxy for how much a map fought back. A high count usuall
 
 | Map | Logged fixes |
 |---|---:|
-| `m6l2a` | 69 |
-| `m2l2a` | 50 |
+| `m6l2a` | 72 |
+| `m2l2a` | 51 |
+| `m3l3` | 50 |
 | `e2l1` | 40 |
 | `e1l2` | 36 |
-| `e3l4` | 26 |
-| `t2l2` | 22 |
+| `e3l4` | 27 |
+| `t2l2` | 23 |
 | `t3l1` | 16 |
 | `m3l1b` | 15 |
-| `m6l1c` | 12 |
+| `m6l1c` | 13 |
 | `m1l1` | 10 |
+| `e2l2` | 9 |
 | `t1l3` | 9 |
-| `e2l2` | 8 |
 | `e2l3` | 8 |
 | `t2l1` | 8 |
-| `m2l1` | 7 |
 

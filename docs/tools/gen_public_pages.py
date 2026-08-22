@@ -93,7 +93,47 @@ UNLOCK_KINDS = [
     ("perk", "Perks", "Passive squad abilities and extra equipment."),
     ("models/coop_helmets", "Helmets", "Headgear for your soldier, picked in the Helmet selector."),
     ("models/player", "Uniforms & skins", "Player appearances, picked in the Armory."),
+    # [user 2026-08-21] finishes were falling through to "Other", which buried the whole
+    # 357-finish system under a miscellaneous heading on a public page.
+    ("finish", "Weapon finishes", "Gun finishes (gold, chrome, blued, camo...). Unlocking a "
+     "finish TYPE makes it available on every gun that supports it - the in-game finish "
+     "count multiplies these across the roster."),
 ]
+
+
+def variant_rows():
+    """Model-variant inventory, derived from the armory's own generated cfg pages
+    (ui/loadout/p<NN>.cfg = host gun name, mvp<NN>_<k>_s1.cfg = one variant name each).
+    Derived, never hand-listed - wire_mv regenerates these cfgs, so this can not drift.
+    The unlock RULE is per-gun (loadoutpick.scr): the gun's ELITE challenge, after
+    mastering the gun (its kill challenge)."""
+    import glob as _g
+    lo = os.path.join(MOD, "ui", "loadout")
+    hosts = {}
+    for f in sorted(_g.glob(os.path.join(lo, "p[0-9][0-9].cfg"))):
+        nn = os.path.basename(f)[1:3]
+        for line in io.open(f, encoding="utf-8", errors="replace"):
+            m = re.match(r'\s*set coop_loNm\s+"([^"]+)"', line)
+            if m:
+                hosts[nn] = m.group(1)
+                break
+    out = {}
+    for f in sorted(_g.glob(os.path.join(lo, "mvp[0-9][0-9]_*_s1.cfg"))):
+        base = os.path.basename(f)
+        nn = base[3:5]
+        # chain index 0 is the gun's own STOCK model, not a variant - listing it inflated
+        # the public count to 100 when the real credited-variant count is 77 (23 hosts).
+        if base[6:8] == "0_":
+            continue
+        gun = hosts.get(nn)
+        if not gun:
+            continue
+        for line in io.open(f, encoding="utf-8", errors="replace"):
+            m = re.match(r'\s*set coop_loNm\s+"([^"]+)"', line)
+            if m:
+                out.setdefault(gun, []).append(m.group(1))
+                break
+    return out
 
 
 def pretty_asset(path):
@@ -168,6 +208,21 @@ def page_unlockables(rows_full):
         for u in items:
             out.append("| **%s** | %s | %s |\n" % (
                 esc(pretty_asset(u["reward"])), esc(u["name"]), esc(u["desc"])))
+        out.append("\n")
+
+    mv = variant_rows()
+    if mv:
+        total = sum(len(v) for v in mv.values())
+        out.append("## Model variants\n\n")
+        out.append(
+            "**%d community-credited model variants** across %d host guns - different guns "
+            "entirely, not reskins, each credited to its original author in the name. They are "
+            "not individual challenge rewards: variants for a gun unlock together at that gun's "
+            "**ELITE challenge**, after mastering the gun (its kill challenge).\n\n"
+            % (total, len(mv)))
+        out.append("| Host gun | Variants |\n|---|---|\n")
+        for gun in sorted(mv):
+            out.append("| **%s** | %s |\n" % (esc(gun), esc(", ".join(mv[gun]))))
         out.append("\n")
 
     other = [u for u in unlocks if kind_of(u["reward"]) == "Other"]

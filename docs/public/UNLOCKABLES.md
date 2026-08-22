@@ -6,14 +6,15 @@
 
 Everything you can earn, and exactly what earns it. Nothing here is bought or random - every unlock is attached to a specific challenge, and completing that challenge grants it.
 
-**220 unlocks** across 4 kinds. Unlock names are derived from the game assets themselves, so they match what you see in the menus.
+**237 unlocks** across 5 kinds. Unlock names are derived from the game assets themselves, so they match what you see in the menus.
 
 | Kind | Unlocks | What they are |
 |---|---:|---|
-| **Weapons** | 36 | Usable weapons added to your loadout options. |
+| **Weapons** | 41 | Usable weapons added to your loadout options. |
 | **Perks** | 15 | Passive squad abilities and extra equipment. |
-| **Helmets** | 48 | Headgear for your soldier, picked in the Helmet selector. |
-| **Uniforms & skins** | 121 | Player appearances, picked in the Armory. |
+| **Helmets** | 51 | Headgear for your soldier, picked in the Helmet selector. |
+| **Uniforms & skins** | 123 | Player appearances, picked in the Armory. |
+| **Weapon finishes** | 7 | Gun finishes (gold, chrome, blued, camo...). Unlocking a finish TYPE makes it available on every gun that supports it - the in-game finish count multiplies these across the roster. |
 
 ## Weapons
 
@@ -30,15 +31,19 @@ Usable weapons added to your loadout options.
 | **Carcano Sniper** | Cecchino | Get 100 kills with the Carcano |
 | **Colt Silenced** | Old Slabsides | Get 50 kills with the Colt .45 |
 | **Delisle** | The Silent Carbine | Get 25 kills with the De Lisle |
+| **Dp28** | Pan Fed | Kill 200 reinforcements to unlock the DP-28 |
 | **Enfield Sniper** | His Majesty's Marksman | Get 25 kills with the L42A1 |
 | **G43 Sniper** | Walther's Finest | Get 100 kills with the Gewehr 43 |
 | **Garand Scoped** | Sniper's Eye | Get 100 kills with the M1 Garand |
 | **Garand Silenced** | Quiet Ping | Get 175 kills with the M1 Garand |
 | **Greasegun Silenced** | Oiled and Quiet | Get 100 kills with the Grease Gun |
+| **Johnson M1941** | Near as Good | Get 120 long-range kills to unlock the Johnson M1941 |
 | **KAR98 Sniper** | Mauser Master | Get 100 kills with the Kar98k |
 | **KAR98 Snipersilenced** | Their Own Scope | Get 40 kills with the Kar98 Sniper |
 | **L42A1** | Sniper's Enfield | Get 100 kills with the Lee-Enfield |
 | **Lugerp08 Silenced** | Toggle Silencer | Get 50 kills with the Luger P08 |
+| **M10 Revolver** | Victory Model | Get 250 headshots to unlock the S&W M10 .38 |
+| **Mauser C96** | Broomhandle | Get 150 headshots to unlock the Mauser C96 |
 | **Mg42portable** | Bonesaw | Get 40 kills with the MG42 |
 | **MP40** | Not a Schmeisser | Get 50 kills with the MP40 |
 | **MP40 Silenced** | Hush Puppy | Get 100 kills with the MP40 |
@@ -54,6 +59,7 @@ Usable weapons added to your loadout options.
 | **Shotgun** | Shadow Hunter | Eliminate 12 Gestapo officers |
 | **Springfield** | Kopfschuss | Get 25 headshot kills |
 | **Thompson50** | More Dakka | Get 100 kills with the Thompson |
+| **Thompsonsmg Gold** | Chicago Typewriter | Get 250 kills with the Thompson to unlock it in gold |
 | **Tt33 Silenced** | Soviet Silencer | Get 50 kills with the TT-33 |
 | **Vickers** | Sands of Victory | Eliminate 150 Afrika Korps soldiers |
 | **Welrod** | Knuckle and Blade | Get 45 melee kills |
@@ -110,6 +116,7 @@ Headgear for your soldier, picked in the Helmet selector.
 | **Coop Helmet Ger Covered** | Silence in the Pens | Reach the second U-boat without raising the alarm |
 | **Coop Helmet Ger Creasecap** | Hoist by His Own Petard | Make an officer blow himself up with one of his own reinforcements |
 | **Coop Helmet Ger Crusher** | High-Value Target | Eliminate 8 high-ranking commanders |
+| **Coop Helmet Ger Hat** | The Hunt | Hold the church at the Nebelwerfer Hunt without it being contested once |
 | **Coop Helmet Ger Hat** | Nothing Quiet About It | Clear the church and hotel at Stavelot |
 | **Coop Helmet Ger Helmet** | Wire It Quiet | Wire the radio command post undetected |
 | **Coop Helmet Ger Helmet Sh** | Papers, Please | Infiltrate the ship in disguise without blowing your cover |
@@ -125,7 +132,9 @@ Headgear for your soldier, picked in the Helmet selector.
 | **Coop Helmet Net** | Kopfjager | Get 100 headshot kills |
 | **Coop Helmet Net Cig** | Business Is A-Boomin' | Business is a-boomin' - get 250 total kills |
 | **Coop Helmet Plain** | Soviet Sidearm | Get 90 kills with the TT-33 (Elite) |
+| **Coop Helmet Plain** | Nine-Millimetre Mauser | Get 90 kills with the Mauser C96 (Elite) |
 | **Coop Helmet Sergeant** | Roman Roscoe | Get 90 kills with the Beretta (Elite) |
+| **Coop Helmet Soviet Hat** | Record Player | Get 150 kills with the DP-28 (Elite) |
 | **Coop Helmet Soviet Hat** | Somme Survivor | Get 90 kills with the Vickers (Elite) |
 | **Coop Helmet Ss Mutze** | Chain of Command Broken | Eliminate 50 German field officers |
 | **Coop Helmet Ss Officerhat** | Total De-Nazification | Eliminate 20 Gestapo officers |
@@ -200,6 +209,8 @@ Player appearances, picked in the Armory.
 | **Allied Us Tank** | Beyond the Seawall | Complete the D-Day breakout |
 | **Allied Wheathers** | Iron Coffin | Complete the U-boat pens |
 | **American Army** | The Tell-Tale Ping | Get 150 kills with the M1 Garand (Elite) |
+| **American Army** | The Better Rifle | Get 150 kills with the Johnson M1941 (Elite) |
+| **American Army** | Six for Sure | Get 90 kills with the S&W M10 .38 (Elite) |
 | **American Army 29id** | Cheap and Deadly | Get 120 kills with the M3 Grease Gun (Elite) |
 | **American Army 29id BAR** | Slabsides Slayer | Get 120 kills with the Colt .45 (Elite) |
 | **American Army 29id Radioman** | Browning's Bruiser | Get 150 kills with the BAR (Elite) |
@@ -262,4 +273,48 @@ Player appearances, picked in the Armory.
 | **Support Gunner Nohelm** | Commissar's Companion | Get 90 kills with the Nagant Revolver (Elite) |
 | **Whittaker** | Doc at the Wheel | Finish the Italy jeep run with Whittaker still alive |
 | **Wilson Sh** | No Man Left | Finish the Normandy bridge raid with the private still at your side |
+
+## Weapon finishes
+
+Gun finishes (gold, chrome, blued, camo...). Unlocking a finish TYPE makes it available on every gun that supports it - the in-game finish count multiplies these across the roster.
+
+| Unlock | Earned by | How to earn it |
+|---|---|---|
+| **Finish Bloody** | Red Right Hand | Get 150 melee kills to unlock the BLOODY finish |
+| **Finish Blued** | Gun Blue | Get 150 headshots to unlock the BLUED finish |
+| **Finish Camo Desert** | Scorched Sand | Get 150 kills in North Africa to unlock DESERT |
+| **Finish Camo Winter** | Cold Snap | Get 150 kills on snow maps to unlock WINTER |
+| **Finish Camo Woodland** | Home Front | Get 150 kills in the US campaign to unlock WOODLAND |
+| **Finish Chrome** | Untouchable | Complete a mission with no deaths to unlock CHROME |
+| **Finish Gold** | Midas Touch | Get 250 kills to unlock the GOLD finish |
+
+## Model variants
+
+**77 community-credited model variants** across 23 host guns - different guns entirely, not reskins, each credited to its original author in the name. They are not individual challenge rewards: variants for a gun unlock together at that gun's **ELITE challenge**, after mastering the gun (its kill challenge).
+
+| Host gun | Variants |
+|---|---|
+| **BAR M1918** | BAR (PACIFIC) (MOH:PA), BAR M1918 (WWI) (EAST), M1918 CLASSIC (STLKID), M1918A1 (STLKID), M1918A2 (STLKID) |
+| **BERETTA M1934** | TEAM TACTICS (LEON) |
+| **CARCANO M91/38** | TEAM TACTICS (LEON) |
+| **COLT M1911** | COLT 45 (PACIFIC) (ACME313), M1911 (WWI) (EAST), M1911 COVERT, 1911 CLASSIC, M1911 BLOODY EIC (SCHUTZE), COLT 1911 (GUANSHIRE), TEAM TACTICS (LEON) |
+| **DE LISLE CARBINE** | TEAM TACTICS (LEON), WEHRMACHT DELISLE (LEON) |
+| **ENFIELD L42A1** | CAMO L42A1 (DIRTYHARRY) |
+| **GEWEHR 43** | GEWEHR 98 (BOLT) (EAST), FLECKTARN G43 (DIRTYHARRY), WOODLAND G43 (HOBBS), URBAN G43 (HOBBS), TEAM TACTICS (LEON) |
+| **KAR98K** | WORN KAR 98K (HOBBS), WOODLAND KAR 98K (HOBBS), TEAM TACTICS (LEON) |
+| **KAR98K SNIPER** | G98 SCOPED (EAST), TEAM TACTICS (LEON), MAUSER 98 KS (LEON) |
+| **LEE-ENFIELD NO.4** | P14 ENFIELD (EAST), URBAN ENFIELD (HOBBS), TEAM TACTICS (LEON) |
+| **M1 GARAND** | M1 GARAND (PACIFIC) (ACME313), M1 GARAND (GUANSHIRE), TEAM TACTICS (LEON) |
+| **M1A1 BAZOOKA** | REALISTIC BAZOOKA (GUANSHIRE) |
+| **MAUSER C96** | C96 (TRENCH) (EAST) |
+| **MOSIN-NAGANT** | URBAN MOSIN (HOBBS), TEAM TACTICS (LEON) |
+| **MP40** | MP40 (REACTIVATED), MP18 (EAST), MP40 (GUANSHIRE), SILVER MP40 (GUANSHIRE), MP 75 AUSF D (LEON) |
+| **PANZERSCHRECK** | OFENROHR (LEON) |
+| **SPRINGFIELD SNIPER** | URBAN '03 (HOBBS), TEAM TACTICS (LEON), SMLE SCOPED (EAST), M1903 SPRINGFIELD (EAST), DESERT CAMO '03 (DIRTYHARRY), DIGITAL CAMO '03 (DIRTYHARRY), TIGER CAMO '03 (DIRTYHARRY), WINTER CAMO '03 (DIRTYHARRY), LIGHTWOOD '03 (GUANSHIRE), SPRINGFIELD II (GUANSHIRE), WOODLAND '03 (HOBBS) |
+| **STG 44** | STG 44 (STRAPPED) (DARKANGEL), SS STG 44 (DIRTYHARRY), STG 44 (GUANSHIRE), TEAM TACTICS (LEON) |
+| **SVT-40** | WOODLAND SVT-40 (HOBBS) |
+| **THOMPSON M1** | THOMPSON (M1928) (STATIC), THOMPSON (1928 TOMMY) (DR.DELETO), THOMPSON (27A1 COMMANDO) (FLAKRIDER), M1A1 REMODEL (DARKANGEL), WORN THOMPSON (HOBBS), THOMPSON (GUANSHIRE), TEAM TACTICS (LEON), FAMAS THOMPSON II (LEON) |
+| **TRENCH GUN** | AUTHENTIC WOOD, BLACK TACTICAL (DIRTYHARRY), CHROME TACTICAL (DIRTYHARRY), RECOIL SHOTTY (HOBBS & RECOIL), SHOTGUN (GUANSHIRE), TEAM TACTICS (LEON) |
+| **WALTHER P38** | WALTHER P38 (GUANSHIRE), TEAM TACTICS (LEON) |
+| **WEBLEY MK VI** | TEAM TACTICS (LEON) |
 
