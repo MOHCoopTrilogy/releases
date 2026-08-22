@@ -84,10 +84,18 @@ def scan(path):
 
 def main():
     rows = []
-    for p in sorted(glob.glob(os.path.join(MAPS, "*.scr"))):
+    # [2026-08-22] Scan SUB-SCRIPTS too. The first version of this tool looked only at
+    # maps/*.scr and reported "34 maps exposed"; the user asked whether that covered the whole
+    # trilogy, and it did not. Breakthrough in particular keeps almost all of its scene logic in
+    # maps/<map>/<Scene>.scr - Courtyard, JailBreak, Intro, prisoner sections, Bunker3, castle -
+    # so 68 more files with scene markers were invisible to the audit.
+    paths = sorted(glob.glob(os.path.join(MAPS, "*.scr")))
+    paths += sorted(glob.glob(os.path.join(MAPS, "*", "*.scr")))
+    paths += sorted(glob.glob(os.path.join(MAPS, "*", "*", "*.scr")))
+    for p in paths:
         r = scan(p)
         if r:
-            r["map"] = os.path.basename(p)
+            r["map"] = os.path.relpath(p, MAPS).replace(os.sep, "/")
             rows.append(r)
 
     prot = [r for r in rows if r["protected"]]
@@ -100,15 +108,15 @@ def main():
           % (len(prot), ", ".join(sorted(r["map"] for r in prot))))
     print("  NO protection                    : %d" % len(expo))
     print()
-    print("  %-16s %5s %6s %6s %8s  %s" % ("map", "AXIS", "unknown", "ally", "total", "markers"))
+    print("  %-34s %5s %6s %6s %8s" % ("script", "AXIS", "unknown", "ally", "total"))
     print("  " + "-" * 84)
     for r in expo:
         if not (r["sides"]["axis"] or r["sides"]["unknown"]):
             continue   # every scripted actor is allied - the german gate cannot reach them
         det = ", ".join("%s x%d" % (k, v) for k, v in sorted(r["hits"].items()))
-        print("  %-16s %5d %6d %6d %8d  %s"
+        print("  %-34s %5d %6d %6d %8d"
               % (r["map"], r["sides"]["axis"], r["sides"]["unknown"], r["sides"]["ally"],
-                 r["total"], det[:38]))
+                 r["total"]))
     skipped = [r["map"] for r in expo if not (r["sides"]["axis"] or r["sides"]["unknown"])]
     if skipped:
         print()
