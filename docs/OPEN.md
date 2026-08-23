@@ -104,6 +104,65 @@ as opt-in. Right now the shipped behaviour is whatever a fallback branch happens
   point unknown, needs a runtime probe; both the MP40 and Tommy packs ship replacement clip
   models we can use once found); MOHPA porter unidentified - credits entry pending.
 
+## m1l1 scripted intro ride - CLOSED 2026-08-22, one item left
+
+Five sessions of "the germans shoot us during the truck ride" resolved to **bug-2064**: the script
+command `notarget` reached `Player::NoTargetCheat`, a **toggle** that discards its argument. Engine
+now SETS on an argument and toggles on none, and `Entity::GetNoTarget` makes the flag readable - the
+probe prints `notgt=`. Verified over four live 2-player rides: `engaging=0` for the whole ride while
+`canSeePlayer` stayed 8-10. Same pass: **bug-2065** (truck allies stood up), **bug-2067** (kit issued
+three times), **bug-2049 -> bug-2066** (flicker = EF_UNARMED on give; LOCKSTEP `agree=1` refutes the
+pm_flags-desync theory). Full detail in `buglog.json` 2064-2068.
+
+**SCOPE: trilogy-wide, not m1l1-only.** Every `notarget` write is in shared coop code
+(`main.scr::playerGlue`, `replace.scr::unglue`, the `player.scr` watcher, `buildmode.scr`), and
+`replace.scr::glue` is called by **15 map scripts** across AA and BT - no Spearhead t-series map
+glues. Re-derive with `grep -rl 'replace.scr::glue' hzm-mohaa-coop-mod/maps/`.
+m1l1 broke *every* run only because it is the one map that also sets vanilla `level.glueplayer` at
+map init, making the spawn-time `playerGlue` path fire twice and cancel; elsewhere the toggle parity
+tracked spawn count, so those rides were intermittently hot and were never isolated. Build mode was
+hit too - `holdout.scr:271` records an incident that was filed as a holdout problem. **Verified live
+on m1l1 only (4 rides);** the wider claim is shared-code reach. Best next checks: `e1l3/TankRide` and
+`m3l1a`. bug-2065 and bug-2067 have no map gating at all.
+
+**STILL OPEN from that hunt:**
+- **OWED VERIFICATION (bug-2068).** `coop_notargetWatch` now releases only the flag it acquired,
+  so build mode and the MoM dev `notarget` toggle survive it - an earlier draft would have revoked
+  them within 0.5 s. The ride was re-verified live; the FOREIGN-OWNER path was **not** executed
+  (testing paused). Next session: boot m1l1, and while NOT in the ride run
+  `rcon set coop_probe notgt` - require `foreign=RESPECTED`. A guard that has never run is not a
+  fix (bug-2034).
+- **bug-2055 - wall cover.** The open-side solver's STEP 2 (does the body fit through the gap) fails
+  in 4864 of 6271 samples - the hull sweep starts at the player's own origin, which in cover is
+  against the wall, so it returns startsolid and both sides read closed. The other 22% proves the
+  logic sound. Likely fix: offset the sweep off the wall first, or use a reduced hull. The **pose,
+  camera and auto-cover symptoms are NOT diagnosed** and need their own probe pass.
+- **The gun flicker is NOT measurably reduced** - correction to my own claim. Gives per spawn went
+  3 -> 2 (measured), but flickers were 2-over-4-spawns before and 0-over-1-spawn after, which is what
+  an unchanged build would produce; and `GUNVIS` is edge-triggered, so a sub-frame unarmed window
+  neither prints nor shows. Mechanism settled, rate change unproven. Real fix: make the give
+  idempotent (`coop_hasitem`, already used by `coop_backfillPrimaries` but only AFTER the give).
+- **The m1l1 ride hiding the weapon/arms for ~74 s is INTENDED - do not "fix" it.** (User,
+  2026-08-22: "the m1l1 ride hide I don't want to change that's normal.") The glue calls
+  `local.player hide`, which sets `RF_DONTDRAW`, and the viewmodel submission is gated on that
+  same flag - so the first-person gun and arms go with the body for the length of the scripted
+  ride. It shows up in any capture as a `dontdraw=1 unarmed=0` span of ~74 s and looks exactly
+  like a defect if you meet it cold. It is not one. See DECISIONS.md.
+- **NEW, larger: the JOIN blank is 3.7-5.6 SECONDS of no arms.** You spawn and the viewmodel is
+  empty until the first kit is given. Same `EF_UNARMED` mechanism, far more visible than a 141 ms
+  blip, and not the reported defect. **NOT the map holding you unarmed for the scene** (user
+  hypothesis, checked and refuted): m1l1 has no `takeall`/`coop_noWeapon`, its four `holster` calls
+  are on `level.guard`/`guard2`/`driver`/`passenger` (ACTORS), and `playerGlue` only does
+  `notsolid`/`physics_off`/`hide`. Two clocks agree the arms return when the KIT lands, not when the
+  scene ends - server "entered the battle" -> KITGIVE = 4.0 s, client HIDE -> SHOW = 3.68 s - and
+  the blank closes entirely BEFORE `glued=1` (t=50..110). So it is spawn->first-give latency. Why
+  that latency is ~4 s is not investigated.
+- **bug-2053 - free-cam scroll** consumes the mouse wheel instead of switching weapons. Narrowed by
+  the user to free cam only (chase cam is correct), so the search is small. Not investigated.
+- **Probe fidelity:** `canSeePlayer` read 0 through two otherwise-correct rides and 8-10 through two
+  others - `replace.scr::player_closestTo` sometimes returns NULL for a glued player. Harmless to
+  play, but it is a census column being trusted in diagnosis.
+
 ## Defects with evidence
 
 ### e3l4: jeep passenger never completes the first supply run — INSTRUMENTED, cause open

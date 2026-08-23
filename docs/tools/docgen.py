@@ -152,11 +152,18 @@ SOURCE_EXT = {
 # code") physically impossible. A budget is the counterweight. Enforcing it in a
 # tool rather than in a paragraph is the whole point: an instruction telling
 # someone to prune is the same class of thing that already failed three times.
+#
+# RAISED, not evaded (user call, 2026-08-22): TRAPS 60 -> 70. It sat 2 KB over for
+# several sessions, and a fix pass then had to archive three retellings just to make
+# room for one new trap. A ceiling exists to force merge-and-prune, not to force
+# deleting live rules to pay for a live rule - when the only cuts left are rules that
+# still earn their place, the number is wrong, not the file. Raise it deliberately and
+# date it; never silently blow past it.
 AUTHORED_CEILINGS_KB = {
     "SOURCE_OF_TRUTH.md": 40,
-    "TRAPS.md": 60,
+    "TRAPS.md": 70,
     "DECISIONS.md": 45,
-    "OPEN.md": 45,
+    "OPEN.md": 50,   # raised 45 -> 50, 2026-08-22, same call as TRAPS above
     "FEATURES.md": 90,
     "ENGINE.md": 40,
     "HISTORY.md": 30,

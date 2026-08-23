@@ -24,3 +24,32 @@ compare tells.
 | **47 shipped challenges** | v1.2.1 added ~50 `chal_def` rows and none of the hooks meant to feed them. `chal_bump` early-exits when `level.coop_chal_statN[stat]` is NIL, so an unbumped stat is a **no-op, not an error** — the rows show in the Service Record and can never be completed, and every static check passes. Corollary that cost two duplicate challenges: **absence of a hook is not absence of a feature** — check `chal_def` by title and feat, never by whether a producer exists. | 1596–1598 |
 | **A whole map's lighting + effects (e2l1)** | A bare `level waittill spawn` in a retail sub-script. In coop that event has already fired, and a failed `waittill` **does not wait** - so the script ran before the map's entities existed. See the shape note below. | 1294 |
 
+---
+
+## Compressed out of T3 on 2026-08-22 (budget)
+
+TRAPS kept the rule sentence of each of these; the full retelling lives here.
+
+**⭐ A guard written for one question is wrong for the neighbouring one** (bug-1687).
+`coop_isProtectedActor` answers *"leave this actor alone?"* and on m2l2a says yes to the whole cast (14
+`ai_alarm` actors, anything with an `alarmthread`, every papers checker, the scene actors); reused for
+*"who would notice a corpse?"* it vetoed everybody. **Re-read what a predicate was written to decide
+before reusing it; when the answers differ, SPLIT rather than widen** — detection now filters on
+nothing, the role uses a narrower `coop_bustCanKneel`, and the original stays for the containment sweep.
+
+**⭐ Gating one entry point is not gating the feature** (bug-1685). Papers had **three** writers -
+`enableClickablePapers`, `forcePapersInHand`, persistent `coop_papersAnytime` - and only two carried the
+`coop_busted` guard, so pressing fire equipped papers and swallowed the trigger ("he just doesn't
+shoot"). **Grep every writer of the shared state before calling a gate complete.** Same shape in our own
+tooling (bug-1860): `docgen.py` applied `SELF_EXCLUDE` to the porcelain FILE LIST but not to the
+`git diff --shortstat` it embeds in CHRONOLOGY, so every `build` changed the number CHRONOLOGY reports
+about itself and **`check` could never pass** - a permanently red oracle trains everyone to ignore it.
+
+**⭐ Our own guard disabled the retail mechanism**, twice in one day. On m2l2a `$naxos` is a
+`trigger_multiple` with `spawnflags 128` = `TRIGGER_DAMAGE`, so the engine gives it
+`takedamage = DAMAGE_YES` + `CONTENTS_CLAYPIDGEON` (`trigger.cpp:285-289`) - **shooting it is how retail
+completes that objective**, and our stealth workaround opened with `$naxos nottriggerable` (bug-1671).
+Same shape as bug-1669's limp *warning* disabling its own feature. **Ask what the vanilla mechanism
+already is before adding a guard**, and when a user says "this is how vanilla handles it", read the
+ENTITY, not the scripts around it.
+

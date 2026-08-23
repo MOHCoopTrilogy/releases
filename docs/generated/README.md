@@ -48,13 +48,13 @@ The authored files carry judgement, so they cannot be generated - but they can s
 
 | authored file | size | ceiling | |
 |---|---:|---:|---|
-| `docs/21-user-preferences.md` | 10 KB | 12 KB | ok |
-| `docs/DECISIONS.md` | 39 KB | 45 KB | ok |
+| `docs/21-user-preferences.md` | 12 KB | 12 KB | ok |
+| `docs/DECISIONS.md` | 41 KB | 45 KB | ok |
 | `docs/ENGINE.md` | 26 KB | 40 KB | ok |
 | `docs/FEATURES.md` | 88 KB | 90 KB | ok |
 | `docs/HISTORY.md` | 30 KB | 30 KB | ok |
-| `docs/OPEN.md` | 52 KB | 45 KB | **OVER - prune** |
-| `docs/SOURCE_OF_TRUTH.md` | 29 KB | 40 KB | ok |
-| `docs/TRAPS.md` | 60 KB | 60 KB | ok |
+| `docs/OPEN.md` | 46 KB | 50 KB | ok |
+| `docs/SOURCE_OF_TRUTH.md` | 31 KB | 40 KB | ok |
+| `docs/TRAPS.md` | 63 KB | 70 KB | ok |
 
-Input fingerprint of this generation: `4791b7b565ed7b3703619c6aea704c4fe94caf7ed4022b6c93875bf8a536abc3`
+Input fingerprint of this generation: `a9cb1eb387893c4e6528cb079958e1fec47d437b47fc197e19430025bd9f53a0`

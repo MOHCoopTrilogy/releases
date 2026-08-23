@@ -575,3 +575,26 @@ clip carries `attachtohand offhand`, which players cannot honour (bug-310). Desi
 it; do not go looking for the clip again.
 
 Full design, doorway-side algorithm, A/D slide and probes: `_research/wallcover_plan_v1.md`.
+
+---
+
+## Hiding the player during a scripted ride also hides their weapon and arms — INTENDED
+
+**Decision (user, 2026-08-22): leave it. "the m1l1 ride hide I don't want to change that's normal."**
+
+`main.scr::playerGlue` calls `local.player hide` for a glued passenger, which sets `RF_DONTDRAW`
+on the player entity — and the first-person viewmodel submission is gated on that *same* flag
+(`cg_modelanim.c`: `if (!(s1->renderfx & RF_DONTDRAW) && !bCoopHideDraw)`). So the gun and arms
+go with the body for the whole ride.
+
+**Why this is written down.** It presents in any probe capture as a `dontdraw=1 unarmed=0` span of
+~74 s, reproducing to within a second across sessions, in the middle of an investigation into a gun
+that disappears. It looks exactly like the defect you are hunting. It is not one — it is the ride
+working, and the 15 map scripts that call `replace.scr::glue` all inherit it (AA `m1l1`/`m3l1a`/
+`m4l2`/`m4l3`, plus ten BT sub-scripts; no Spearhead map glues).
+
+**Do not "fix" it by ungating the viewmodel from `RF_DONTDRAW`** — that flag is also how a hidden
+player stays hidden, and the two share one bit by design.
+
+**Not the same thing** as the 3.7–5.6 s blank at *join*, which is spawn-to-first-kit latency
+(`EF_UNARMED`) and is a separate, still-open question.

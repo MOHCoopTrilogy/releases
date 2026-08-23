@@ -128,27 +128,20 @@ no effect / can't be felt." Before tuning X, **prove X executes.** Instances:
 long narratives for the starred four in `archive/traps-pruned-2026-08-20.md`.
 
 **⭐ A guard written for one question is wrong for the neighbouring one** (bug-1687).
-`coop_isProtectedActor` answers *"leave this actor alone?"* and on m2l2a says yes to the whole cast (14
-`ai_alarm` actors, anything with an `alarmthread`, every papers checker, the scene actors); reused for
-*"who would notice a corpse?"* it vetoed everybody. **Re-read what a predicate was written to decide
-before reusing it; when the answers differ, SPLIT rather than widen** — detection now filters on
-nothing, the role uses a narrower `coop_bustCanKneel`, and the original stays for the containment sweep.
+**Re-read what a predicate was written to decide before reusing it; when the answers differ, SPLIT
+rather than widen.** `coop_isProtectedActor` ("leave this actor alone?") reused for "who would
+notice a corpse?" vetoed the entire m2l2a cast.
 
-**⭐ Gating one entry point is not gating the feature** (bug-1685). Papers had **three** writers -
-`enableClickablePapers`, `forcePapersInHand`, persistent `coop_papersAnytime` - and only two carried the
-`coop_busted` guard, so pressing fire equipped papers and swallowed the trigger ("he just doesn't
-shoot"). **Grep every writer of the shared state before calling a gate complete.** Same shape in our own
-tooling (bug-1860): `docgen.py` applied `SELF_EXCLUDE` to the porcelain FILE LIST but not to the
-`git diff --shortstat` it embeds in CHRONOLOGY, so every `build` changed the number CHRONOLOGY reports
-about itself and **`check` could never pass** - a permanently red oracle trains everyone to ignore it.
+**⭐ Gating one entry point is not gating the feature** (bug-1685). **Grep every writer of the
+shared state before calling a gate complete.** Papers had three writers and only two carried the
+`coop_busted` guard, so firing equipped papers and swallowed the trigger ("he just doesn't shoot").
+Our own tooling had it too (bug-1860): `docgen check` could never pass.
 
-**⭐ Our own guard disabled the retail mechanism**, twice in one day. On m2l2a `$naxos` is a
-`trigger_multiple` with `spawnflags 128` = `TRIGGER_DAMAGE`, so the engine gives it
-`takedamage = DAMAGE_YES` + `CONTENTS_CLAYPIDGEON` (`trigger.cpp:285-289`) - **shooting it is how retail
-completes that objective**, and our stealth workaround opened with `$naxos nottriggerable` (bug-1671).
-Same shape as bug-1669's limp *warning* disabling its own feature. **Ask what the vanilla mechanism
-already is before adding a guard**, and when a user says "this is how vanilla handles it", read the
-ENTITY, not the scripts around it.
+**⭐ Our own guard disabled the retail mechanism**, twice in one day (bugs 1671, 1669). **Ask what
+the vanilla mechanism already is before adding a guard**, and when a user says "this is how vanilla
+handles it", read the ENTITY, not the scripts around it - m2l2a's `$naxos` carries `spawnflags 128`
+(`TRIGGER_DAMAGE`), so *shooting it* is how retail completes that objective, and our stealth
+workaround opened by making it `nottriggerable`.
 
 **⭐ A guard can key on data that does not exist yet when it runs.** The scene-actor exemption tested
 `alarmthread != NIL`, but `coop_apply_personality` fires on all 55 germans **23 s before**
@@ -169,9 +162,8 @@ sufficient - prove nothing later writes the same field, and prefer the LAST writ
 path. The dangerous variant is a misplaced write that lands somewhere real (bug-1238 moved the 3P pivot):
 silent corruption of a neighbouring feature.
 
-**The UI corollary - never trade a working widget for an unverified one.** A `.urc` cannot be run or
-diffed from here; the only oracle is the user's screenshot, and six attempts at one Service Record
-checkmark each replaced a functioning pin box and each came back worse (bug-1546). **Add alongside it.**
+**The UI corollary - never trade a working widget for an unverified one; ADD ALONGSIDE IT.** A `.urc`
+cannot be run or diffed from here, so the only oracle is the user's screenshot (bug-1546).
 
 **A vanilla scene reachable only from a BSP `trigger_once` never runs in coop.** m3l3's `main` carries
 seven `//thread sceneN` lines noted "called from a trigger_once in the bsp", which never fire on a coop
@@ -188,17 +180,27 @@ branch, so "probe prints nothing" was indistinguishable from "no wall was ever v
 after it** and the probe blinded itself on the exact map under investigation. Put the probe
 OUTSIDE the branch, and print the deciding inputs, not just the outcome.
 
-**HEADLESS VERIFICATION CANNOT TEST A PLAYER-TIMING BUG.** A dedicated boot has no clients, so
-any race between "player spawns" and "map does X" has no window to lose and always passes. Two
-fixes shipped green headless and failed live for exactly this. `0 Script Errors` headless proves
-the script *parses and runs*; it proves nothing about ordering that involves a player.
+**HEADLESS CANNOT TEST A PLAYER-TIMING BUG - THE 2-PLAYER HARNESS CAN.** A bare dedicated boot has
+no clients, so any race between "player spawns" and "map does X" has no window to lose and always
+passes; three fixes shipped green headless and failed live on exactly that. **`launch_dedicated_2player.ps1
+-Map <map>` + `spawn_clicker_2player.ps1` gives real players with no human in the loop** (the
+clicker joins and re-joins across map changes); then `scratchpad/rcon.py map <map>` restarts with
+both already present at t=0, the condition a listen server has. Do not ask the user to click.
 
-**WHEN SEVERAL WRITERS TOUCH ONE PIECE OF STATE, RE-ASSERT IT - DO NOT REASON ABOUT WHO RAN
-LAST.** `FL_NOTARGET` on a glued player was set once at spawn and lost, because
-`manageAliveSpawning` runs three times (the kit is issued three times - the user noticed from
-the game before the log showed it). Four attempts argued about ordering; a 0.5s watcher holding
-the flag ended it. Same shape as the surrender loop's backstop. The rule generalises: a one-shot
-write into contested state is a bet on ordering, and this project loses that bet.
+**BEFORE RE-ASSERTING CONTESTED STATE, PROVE THE WRITE IS A *SET*.** *(Corrected 2026-08-22: this
+entry used to credit a 0.5 s watcher with fixing the m1l1 ride. It did not.)* A one-shot write
+into contested state is a bet on ordering and this project loses that bet - but a re-assert onto
+a **toggle** is an oscillator, not a fix, and `notarget` is a toggle on players ([T12](#t12)), so
+the watcher would have square-waved the flag at 2 Hz. Prove the write does what its name says
+**first**; then decide whether to re-assert.
+
+**AND JUDGE IT BY THE STATE ITSELF, NEVER A PROXY.** Five attempts were scored on `engaging` /
+`foeCls=Player`, both structurally blind to that flag: script `cansee` has no `FL_NOTARGET` test
+(`entity.cpp:2941`) and `AddPotentialEnemy` rejects only dead/IGNOREME (`actorenemy.cpp:280`), so
+an actor legitimately names a notarget'd player as `.enemy` while the engine refuses the attack
+(`actor.cpp:9150`) - four actors, sixty seconds, zero damage. **A flag with no getter cannot be
+debugged; add the getter first** (`Entity::GetNoTarget`). The shape that finally proved it:
+`engaging` fell to 0 **while `canSeePlayer` stayed 8-10** - they still see, they cannot target.
 
 **ONE RUN IS NOT PROOF WHEN THE BUG IS INTERMITTENT.** Two "fixed" verdicts on 2026-08-22 were
 single runs: one was a log truncated 11 seconds before the scripted fight starts, the other a
@@ -515,9 +517,7 @@ docs, audits, **the regression harness**) and `C:\mohaa-coop-dev\hzm-mohaa-coop-
 (buildmode inventories, `hud_slot_map.md`, `director_dda_plan.md`) - only the second is inside the shipped
 tree. **Ship risk: CLOSED (re-verified 2026-08-17):** `build.ps1:32`'s
 `$excludeTop = @("_notes", "_research")` is committed and the deployed
-`zzzzzz_co-op_hzm_mod_code.pk3` has **zero** `_research`/`_notes` entries. *(This entry previously
-read "OPEN NOW" and cited an uncommitted `build.ps1:27` - both stale; releases up to v1.1.55 did
-ship design docs, which is history, not a live hazard.)* **Still open:** the regression harness - the
+`zzzzzz_co-op_hzm_mod_code.pk3` has **zero** `_research`/`_notes` entries. **Still open:** the regression harness - the
 only working automated verification - lives in a directory named `_research`, which the build script
 treats as disposable; **promote it out**. Related: four uppercase map scripts (`M1*`, `M3*`, `M5*`,
 `M6*.scr`) sit alongside lowercase counterparts, unchecked for case-collision in a pak.
@@ -529,6 +529,19 @@ read throws `[] applied to invalid type 'listener'` once per ambient on every ma
 so nothing crashed, and the sole casualty was m1l2b's ringing-telephone gag, which polls that dictionary
 100x0.1 s and so always burned 10 s and printed `PHONEGAG FAIL`. **Grep the mod tree before adding
 a `level.coop_*` name — the error names the type, never the other owner.**
+
+**And one level down again: two ENGINE EVENTS sharing a script command name** (bug-2064, the most
+expensive of the three). `notarget` is declared **twice** as `EV_NORMAL` - `Entity::NoTarget`
+(SETS from its argument) and `Player::NoTargetCheat` (ignores the argument, **XORs** the flag) -
+and `ScriptMaster` keeps one **name -> eventnum entry, last write wins** (`scriptmaster.cpp:616`)
+over an unordered container. **Which handler a script command reaches is therefore a build
+detail, not a decision.** For players the cheat won, turning every `player notarget 1` into a
+flip; it read as *intermittent* across five sessions because the outcome was call **parity**.
+**Grep the engine for a second `Event` with the same command string before trusting a script
+command's signature**, and when there is one make BOTH handlers agree for BOTH call shapes
+(argument = set, none = toggle) rather than betting on the lookup. Same tell as `.gun`
+(bug-2046) and `enableEnemy` (bug-2034): *the command name is not the contract, the `Event`
+declaration is.*
 
 ---
 
@@ -851,12 +864,14 @@ patched only the consumer that had just broken):
 |---|---|---|
 | `exec global/disable_ai.scr` | `coop_aiDisabled` (our override sets it) | `coop_isProtectedActor` |
 | `anim_scripted` | `self.no_idle` | `coop_isProtectedActor` |
-| `threatbias ignoreme` | `self.threatbias == 0 - 6969` | `coop_variantRoll` **only** |
+| `threatbias ignoreme` | `self.threatbias == 0 - 6969` | `coop_variantRoll` **and** `coop_apply_personality` |
 
-The last is deliberately NOT in the shared test: `ignoreme` means *do not target me*, not *I am
-scenery*, so live-but-untargetable AI exist (m5l1b:704, e1l3/hacks' Claus). Blocking a weapon
-**skin** on them is free; blocking their **personality** would revert them to stand-and-shoot
-turrets. **Match a guard's scope to what it costs to be wrong.**
+The last row was once "variant roll only", on the reasoning that `ignoreme` means *do not target
+me*, not *I am scenery* - live-but-untargetable AI do exist (m5l1b:704, e1l3/hacks' Claus). A live
+measurement beat the reasoning (bug-2051): m1l1's `barrel_guy`/`bazooka_wall` set-pieces were
+carrying roles we assigned and targeting the player, so the personality roll honours it too. Keep
+the general rule - **match a guard's scope to what it costs to be wrong** - but note which way it
+was settled.
 
 **Before guarding on a property, prove you can READ it.** `enableEnemy` is a lone `EV_SETTER`
 (actor.cpp:1470) so reading throws - 136 errors a map, and since *a Script Error skips the

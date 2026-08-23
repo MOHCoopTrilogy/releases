@@ -9,7 +9,7 @@
 | metric | value |
 |---|---:|
 | `coop_mod/*.scr` files | 118 |
-| total lines in `coop_mod/` | 73,680 |
+| total lines in `coop_mod/` | 74,714 |
 | top-level `maps/*.scr` | 121 |
 | of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
 
@@ -21,63 +21,64 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | 1 | 84 | `waitthread` | `coop_mod/variables.scr::main` |
 | 2 | 104 | `thread` | `spWaitForPlayer` |
 | 3 | 109 | `waitthread` | `coop_mod/server.scr::main` |
-| 4 | 113 | `thread` | `coop_mod/xp.scr::xp_init` |
-| 5 | 116 | `thread` | `coop_mod/challenges.scr::chal_init` |
-| 6 | 120 | `thread` | `coop_mod/medals.scr::medal_init` |
-| 7 | 123 | `waitthread` | `coop_mod/spawnlocations.scr::main` |
-| 8 | 126 | `thread` | `coop_mod/player.scr::manage` |
-| 9 | 129 | `thread` | `coop_mod/aihandler.scr::coop_reinf_brain` |
-| 10 | 132 | `exec` | `coop_mod/loadout.scr` |
-| 11 | 135 | `thread` | `coop_mod/itemhandler.scr::disableAllWeaponsOnMenu` |
-| 12 | 136 | `thread` | `coop_launcherRespawnSweep` |
-| 13 | 141 | `thread` | `coop_mod/holdout.scr::holdout_init` |
-| 14 | 145 | `thread` | `coop_mod/wallgun.scr::wall_init` |
-| 15 | 146 | `thread` | `coop_mod/props.scr::prop_init` |
-| 16 | 153 | `thread` | `coop_mod/events.scr::initialiseEvents` |
-| 17 | 161 | `thread` | `coop_mod/fogmode.scr::coop_fog_boot` |
-| 18 | 162 | `thread` | `coop_mod/probe.scr::boot` |
-| 19 | 164 | `thread` | `coop_mod/medkit.scr::coop_scan_health_entities` |
-| 20 | 165 | `thread` | `coop_mod/officer.scr::coop_officer_init` |
-| 21 | 166 | `thread` | `coop_mod/director.scr::director_main` |
-| 22 | 167 | `thread` | `coop_mod/weather.scr::coop_weather_init` |
-| 23 | 168 | `thread` | `coop_mod/ambience.scr::coop_ambience_init` |
-| 24 | 169 | `thread` | `coop_mod/flchatter.scr::flchatter_init` |
-| 25 | 170 | `thread` | `coop_mod/aivoice.scr::aivoice_init` |
-| 26 | 171 | `thread` | `coop_mod/flmusic.scr::coop_flmusic_filler` |
-| 27 | 178 | `thread` | `coop_mod/helmtest.scr::main` |
-| 28 | 184 | `thread` | `coop_mod/maptest.scr::coop_maptest_tick` |
-| 29 | 188 | `thread` | `coop_mod/maptest.scr::coop_maptest_tick` |
-| 30 | 191 | `thread` | `coop_mod/maptest_phase2.scr::coop_maptest_phase2_tick` |
-| 31 | 196 | `thread` | `coop_mod/maptest_m5l3.scr::coop_maptest_m5l3_walk` |
-| 32 | 201 | `thread` | `coop_mod/maptest_vehicle.scr::coop_maptest_vehicle_tick` |
-| 33 | 205 | `thread` | `coop_mod/tracescan.scr::scan` |
-| 34 | 211 | `thread` | `coop_mod/coop_selftest.scr::weaptest_run` |
-| 35 | 214 | `thread` | `coop_mod/coop_selftest.scr::dbnotest_run` |
-| 36 | 217 | `thread` | `coop_mod/coop_selftest.scr::dbnoteam_run` |
-| 37 | 220 | `thread` | `coop_mod/coop_selftest.scr::xptest_run` |
-| 38 | 223 | `thread` | `coop_mod/coop_selftest.scr::scaletest_run` |
-| 39 | 228 | `thread` | `coop_mod/coop_selftest_scaling.scr::st_scaling_run` |
-| 40 | 231 | `thread` | `coop_mod/coop_selftest_engine.scr::st_engine_run` |
-| 41 | 234 | `thread` | `coop_mod/coop_selftest_vehicles.scr::st_vehicles_run` |
-| 42 | 237 | `thread` | `coop_mod/coop_selftest_objectives.scr::st_objectives_run` |
-| 43 | 240 | `thread` | `coop_mod/coop_selftest_triggers.scr::st_triggers_run` |
-| 44 | 243 | `thread` | `coop_mod/coop_selftest_officer.scr::st_officer_run` |
-| 45 | 246 | `thread` | `coop_mod/coop_selftest_keyitems.scr::st_keyitems_run` |
-| 46 | 249 | `thread` | `coop_mod/coop_selftest_dbno.scr::st_dbno_run` |
-| 47 | 252 | `thread` | `coop_mod/coop_selftest_xp.scr::st_xp_run` |
-| 48 | 255 | `thread` | `coop_mod/coop_selftest_weapons.scr::st_weapons_run` |
-| 49 | 258 | `thread` | `coop_mod/coop_selftest.scr::wintest_run` |
-| 50 | 261 | `thread` | `coop_mod/coop_selftest_officer.scr::st_officer_run` |
-| 51 | 267 | `thread` | `coop_mod/coop_selftest_engine.scr::st_engine_run` |
-| 52 | 274 | `thread` | `coop_mod/coop_selftest_objectives.scr::st_objectives_run` |
-| 53 | 278 | `thread` | `coop_mod/voidguard.scr::main` |
-| 54 | 287 | `thread` | `coop_mod/aimaneuver.scr::main` |
-| 55 | 297 | `thread` | `coop_mod/aibehav.scr::main` |
-| 56 | 302 | `thread` | `coop_mod/aicombat.scr::main` |
-| 57 | 308 | `thread` | `coop_mod/sndcache.scr::main` |
-| 58 | 311 | `thread` | `coop_mod/devprobe.scr::main` |
-| 59 | 313 | `thread` | `coop_mod/devprobe.scr::stuckWatch` |
-| 60 | 322 | `thread` | `coop_mod/eventsystem.scr::doEvent` |
+| 4 | 115 | `waitthread` | `coop_mod/probe.scr::prb_init` |
+| 5 | 119 | `thread` | `coop_mod/xp.scr::xp_init` |
+| 6 | 122 | `thread` | `coop_mod/challenges.scr::chal_init` |
+| 7 | 126 | `thread` | `coop_mod/medals.scr::medal_init` |
+| 8 | 129 | `waitthread` | `coop_mod/spawnlocations.scr::main` |
+| 9 | 132 | `thread` | `coop_mod/player.scr::manage` |
+| 10 | 135 | `thread` | `coop_mod/aihandler.scr::coop_reinf_brain` |
+| 11 | 138 | `exec` | `coop_mod/loadout.scr` |
+| 12 | 141 | `thread` | `coop_mod/itemhandler.scr::disableAllWeaponsOnMenu` |
+| 13 | 142 | `thread` | `coop_launcherRespawnSweep` |
+| 14 | 147 | `thread` | `coop_mod/holdout.scr::holdout_init` |
+| 15 | 151 | `thread` | `coop_mod/wallgun.scr::wall_init` |
+| 16 | 152 | `thread` | `coop_mod/props.scr::prop_init` |
+| 17 | 159 | `thread` | `coop_mod/events.scr::initialiseEvents` |
+| 18 | 167 | `thread` | `coop_mod/fogmode.scr::coop_fog_boot` |
+| 19 | 168 | `thread` | `coop_mod/probe.scr::boot` |
+| 20 | 170 | `thread` | `coop_mod/medkit.scr::coop_scan_health_entities` |
+| 21 | 171 | `thread` | `coop_mod/officer.scr::coop_officer_init` |
+| 22 | 172 | `thread` | `coop_mod/director.scr::director_main` |
+| 23 | 173 | `thread` | `coop_mod/weather.scr::coop_weather_init` |
+| 24 | 174 | `thread` | `coop_mod/ambience.scr::coop_ambience_init` |
+| 25 | 175 | `thread` | `coop_mod/flchatter.scr::flchatter_init` |
+| 26 | 176 | `thread` | `coop_mod/aivoice.scr::aivoice_init` |
+| 27 | 177 | `thread` | `coop_mod/flmusic.scr::coop_flmusic_filler` |
+| 28 | 184 | `thread` | `coop_mod/helmtest.scr::main` |
+| 29 | 190 | `thread` | `coop_mod/maptest.scr::coop_maptest_tick` |
+| 30 | 194 | `thread` | `coop_mod/maptest.scr::coop_maptest_tick` |
+| 31 | 197 | `thread` | `coop_mod/maptest_phase2.scr::coop_maptest_phase2_tick` |
+| 32 | 202 | `thread` | `coop_mod/maptest_m5l3.scr::coop_maptest_m5l3_walk` |
+| 33 | 207 | `thread` | `coop_mod/maptest_vehicle.scr::coop_maptest_vehicle_tick` |
+| 34 | 211 | `thread` | `coop_mod/tracescan.scr::scan` |
+| 35 | 217 | `thread` | `coop_mod/coop_selftest.scr::weaptest_run` |
+| 36 | 220 | `thread` | `coop_mod/coop_selftest.scr::dbnotest_run` |
+| 37 | 223 | `thread` | `coop_mod/coop_selftest.scr::dbnoteam_run` |
+| 38 | 226 | `thread` | `coop_mod/coop_selftest.scr::xptest_run` |
+| 39 | 229 | `thread` | `coop_mod/coop_selftest.scr::scaletest_run` |
+| 40 | 234 | `thread` | `coop_mod/coop_selftest_scaling.scr::st_scaling_run` |
+| 41 | 237 | `thread` | `coop_mod/coop_selftest_engine.scr::st_engine_run` |
+| 42 | 240 | `thread` | `coop_mod/coop_selftest_vehicles.scr::st_vehicles_run` |
+| 43 | 243 | `thread` | `coop_mod/coop_selftest_objectives.scr::st_objectives_run` |
+| 44 | 246 | `thread` | `coop_mod/coop_selftest_triggers.scr::st_triggers_run` |
+| 45 | 249 | `thread` | `coop_mod/coop_selftest_officer.scr::st_officer_run` |
+| 46 | 252 | `thread` | `coop_mod/coop_selftest_keyitems.scr::st_keyitems_run` |
+| 47 | 255 | `thread` | `coop_mod/coop_selftest_dbno.scr::st_dbno_run` |
+| 48 | 258 | `thread` | `coop_mod/coop_selftest_xp.scr::st_xp_run` |
+| 49 | 261 | `thread` | `coop_mod/coop_selftest_weapons.scr::st_weapons_run` |
+| 50 | 264 | `thread` | `coop_mod/coop_selftest.scr::wintest_run` |
+| 51 | 267 | `thread` | `coop_mod/coop_selftest_officer.scr::st_officer_run` |
+| 52 | 273 | `thread` | `coop_mod/coop_selftest_engine.scr::st_engine_run` |
+| 53 | 280 | `thread` | `coop_mod/coop_selftest_objectives.scr::st_objectives_run` |
+| 54 | 284 | `thread` | `coop_mod/voidguard.scr::main` |
+| 55 | 293 | `thread` | `coop_mod/aimaneuver.scr::main` |
+| 56 | 303 | `thread` | `coop_mod/aibehav.scr::main` |
+| 57 | 308 | `thread` | `coop_mod/aicombat.scr::main` |
+| 58 | 314 | `thread` | `coop_mod/sndcache.scr::main` |
+| 59 | 317 | `thread` | `coop_mod/devprobe.scr::main` |
+| 60 | 319 | `thread` | `coop_mod/devprobe.scr::stuckWatch` |
+| 61 | 328 | `thread` | `coop_mod/eventsystem.scr::doEvent` |
 
 ## `coop_mod/` scripts
 | file | lines | labels | summary |
@@ -87,8 +88,8 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `ads_dbg.scr` | 11 | 1 | HZM coop - ADS diagnostic. Called from the AIM state's entrycommands in |
 | `aibehav.scr` | 166 | 2 | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
 | `aicombat.scr` | 119 | 1 | aicombat.scr - HZM coop AUTOMATED COMBAT DRIVER (2026-07-23) |
-| `aihandler.scr` | 1,978 | 26 | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
-| `aimaneuver.scr` | 266 | 1 | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
+| `aihandler.scr` | 2,019 | 26 | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
+| `aimaneuver.scr` | 267 | 1 | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
 | `aisquad.scr` | 245 | 1 | aisquad.scr - HZM coop SQUAD BRAIN (2026-07-24) |
 | `aivoice.scr` | 455 | 4 | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
 | `m3l2.scr` | 81 | 0 |  |
@@ -141,19 +142,19 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `helmet.scr` | 1,746 | 4 | [305] HZM coop - LIVE HELMET SWITCHER |
 | `helmtest.scr` | 96 | 1 | HZM dev probe (TEMPORARY): verify the retail sethelmet/pophelmet mechanic end to end. |
 | `holdout.scr` | 759 | 16 | HOLDOUT - checkpoint wave-defence gametype [user 2026-08-04] |
-| `itemhandler.scr` | 3,750 | 36 | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
+| `itemhandler.scr` | 3,753 | 36 | [200] Smithy - this script is called every time an item enters the world by exec it on their tiki |
 | `keyitems.scr` | 161 | 1 | [306] HZM coop - KEY MISSION ITEMS can never be permanently lost |
 | `ladder.scr` | 295 | 1 | HZM coop - PLACEABLE CLIMBABLE LADDERS [user 2026-08-05] bug-1415 |
 | `ladder_state.scr` | 24 | 0 | HZM coop - LADDER STATE HOOK [user 2026-08-05] bug-1415 |
 | `loadout.scr` | 765 | 0 | [200] Smithy - this contains the weaponsloadout for coop |
-| `loadoutpick.scr` | 1,148 | 0 | [310] HZM coop ARMORY - per-player loadout picks (Phase 1). |
+| `loadoutpick.scr` | 1,179 | 0 | [310] HZM coop ARMORY - per-player loadout picks (Phase 1). |
 | `loadoutroster.scr` | 833 | 1 | GENERATED by scratchpad/gen_loadout3.py -- DO NOT HAND-EDIT (regenerate instead) |
 | `loadoutskins.scr` | 646 | 1 | GENERATED by build_finish_strip.py + gen_skins.py - the server-side skin variant table. |
 | `loadoutskins_base.scr` | 434 | 1 | GENERATED by docs/tools/gen_skinbase.py from loadoutskins.scr - DO NOT EDIT. |
 | `lobby.scr` | 1,177 | 20 | HZM Coop - Pre-Mission Lobby module. Full spec: _research/coop_lobby1_build.md |
 | `lobbyui.scr` | 265 | 3 | [304] CLICKABLE LOBBY UI - a mouse cursor + button framework for the live |
 | `m4l3_precache.scr` | 157 | 0 |  |
-| `main.scr` | 2,193 | 21 | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
+| `main.scr` | 2,225 | 21 | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
 | `maplist.scr` | 119 | 2 | [201] Smithy - used to populate the coop_mapsList array to check for next/previous map (and any other future… |
 | `maptest.scr` | 268 | 2 | HZM Coop - Map Rotation Auto-Tester |
 | `maptest_m5l3.scr` | 284 | 1 | HZM Coop - m5l3 Scene-Walk Tester |
@@ -170,17 +171,17 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `objective_drop.scr` | 165 | 1 | Objective Bonus Drop |
 | `objective_positions.scr` | 89 | 1 | objective_positions.scr |
 | `objectives.scr` | 693 | 7 | Coop Side Objectives (optional / secondary) |
-| `officer.scr` | 5,080 | 27 | Officer Boss + Radio Station |
+| `officer.scr` | 5,286 | 27 | Officer Boss + Radio Station |
 | `officer_positions.scr` | 624 | 1 | coop_officer_positions.scr |
 | `painbreath.scr` | 69 | 0 | HZM coop - WOUNDED BREATHING. |
 | `paradrop.scr` | 774 | 1 | Allied Paradrop System |
-| `player.scr` | 1,840 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |
+| `player.scr` | 1,929 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |
 | `precache.scr` | 186 | 0 |  |
-| `probe.scr` | 74 | 1 | probe.scr |
+| `probe.scr` | 694 | 6 | COOP PROBE BUS - one diagnostic channel for everything this mod added. |
 | `profile.scr` | 71 | 0 | HZM COOP - PER-PLAYER PROFILE MIRROR (user decision 2026-08-10) |
 | `props.scr` | 414 | 2 | HZM coop - ARENA PROP PERSISTENCE [user 2026-08-04] bug-1381 |
 | `readygate.scr` | 301 | 3 | HZM Coop - READY GATE (reusable "whole squad press [Use] to continue"). |
-| `replace.scr` | 3,035 | 44 | chrissstrahl 23.06.2018 |
+| `replace.scr` | 3,046 | 44 | chrissstrahl 23.06.2018 |
 | `server.scr` | 313 | 10 | started by chrissstrahl on 2020.10.16 ([202]) |
 | `sndcache.scr` | 111 | 1 | [user 2026-08-10] 633 cache lines REMOVED - deathvox (484), flvo (135), gurgle (13) and headshot |
 | `sound.scr` | 63 | 4 | [203] Smithy - we can use this for sound related code |

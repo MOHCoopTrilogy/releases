@@ -50,6 +50,14 @@ The user is the **sole tester**. Never hand them debug homework (`set <cvar> 1`,
 console reading). Drive the console yourself over rcon and read `qconsole.log`. Tooling is already
 in place — see [01-project-map.md](01-project-map.md) §4.
 
+> **"I clicked for you. but you've built things before to do this yourself."** — 2026-08-22
+
+**Look for the existing harness before asking the user for anything manual, including a click.**
+Areal player in a dedicated test = `launch_dedicated_2player.ps1 -Map <map>` + `spawn_clicker_2player.ps1`
+(joins both clients, re-joins across map changes); `rcon.py map <map>` then restarts with
+both present at t=0. Both predate this session.
+**`ls` the root for `launch_*`/`*_clicker` before calling a manual step unavoidable.**
+
 > **"You might want to watch console every time you deploy too, just in case we are missing any
 > problems."** — 2026-07-27
 
@@ -113,14 +121,12 @@ into "retail never wired the asset up" in one run. Ask for it early.
 
 ## Two failed attempts is the budget — then REVERT (2026-08-03)
 
-- **Two failed attempts on the same symptom is the budget; then revert, do not iterate.** The
-  glider smoke went dense → retimed → removed; the Service Record tick was iterated *six* times,
-  each round replacing a pin box that already worked, escalating to *"you need to revert back to
-  what was working"*. On a surface you cannot observe from here (a `.urc`), the SECOND failure
-  should trigger the revert. Put the honest conclusion in the buglog.
-- **A revert means recovering the actual prior artifact, not reconstructing it** - `git show
-  HEAD:<path>` produced the exact working widget; rebuilding from memory is how a "revert" becomes
-  a seventh variant.
+- **Two failed attempts on the same symptom is the budget; then revert, do not iterate.** On a
+  surface you cannot observe from here (a `.urc`), the SECOND failure triggers the revert - the
+  Service Record tick was iterated six times, each round replacing a pin box that already worked.
+  Put the honest conclusion in the buglog.
+- **A revert means recovering the actual prior artifact** (`git show HEAD:<path>`), never
+  reconstructing it from memory - that is how a "revert" becomes a seventh variant.
 
 ---
 
@@ -129,15 +135,13 @@ into "retail never wired the asset up" in one run. Ask for it early.
 > "let's make it the standard practice to always build probes first to test"
 
 For any defect whose cause is not already proven, **ship a measurement pass first and a fix second**.
-Do not spend a playtest cycle on a guess. The one defect **probed first** was fixed first try, and
-the probe also showed the planned fix keyed on data that does not exist yet at that moment - it
-would have shipped clean and fixed nothing. Everything attacked by inference failed repeatedly:
-eight resolver attempts on the blueprint pickup before the ninth printed the four filter fields and
-settled it in one run (bug-1665), and six deployed hypotheses on the white-distant-objects bug that
-cost a whole day - *"I dont feel like this has helped at all"*. When inspection says the wiring is
-correct, say so and ask for an empirical A/B; never ship a guess to fill the silence, and **verify
-the probe is live before asking for a test**. Row-by-row evidence and the four rules for writing a
-probe: [`archive/prefs-pruned-2026-08-20.md`](archive/prefs-pruned-2026-08-20.md).
+Everything attacked by inference has failed repeatedly - eight resolver attempts on the blueprint
+pickup before the ninth simply *printed the four filter fields* and settled it in one run
+(bug-1665); five attempts at m1l1's scripted ride before a probe read the flag back and showed the
+write was a toggle (bug-2064). **Probe the DECIDING INPUT, not the outcome**, and verify the probe
+is live before asking for a test. When inspection says the wiring is correct, say so and ask for an
+empirical A/B; never ship a guess to fill the silence. Row-by-row evidence and the four rules for
+writing a probe: [`archive/prefs-pruned-2026-08-20.md`](archive/prefs-pruned-2026-08-20.md).
 
 
 ---

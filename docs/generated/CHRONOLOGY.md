@@ -13,27 +13,34 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `445875d 2026-08-22 tools: scene-actor audit now covers the whole trilogy, not just top-level map scripts` |
-| commits | 175 |
+| HEAD | `8e5a32d 2026-08-22 docs: the four method lessons that cost 2026-08-22` |
+| commits | 182 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **1 modified, 1 untracked** |
-| unstaged diff | 1 file changed, 25 insertions(+) |
+| **uncommitted** | **7 modified, 63 untracked** |
+| unstaged diff | 7 files changed, 202 insertions(+), 64 deletions(-) |
 
-> Working tree is dirty. Everything in those 2 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 70 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 121 |
+| 2026-08 | 128 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (175)
+### Commits since 2026-01-01 (182)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `8e5a32d` | 2026-08-22 | joncurry94-tech | docs: the four method lessons that cost 2026-08-22 |
+| `4f0945d` | 2026-08-22 | joncurry94-tech | tools: --aggro reports acquisition ORDER and who each actor picked |
+| `0711a70` | 2026-08-22 | joncurry94-tech | tools: probe_read.py - turn a probe log into an answer |
+| `c4c7679` | 2026-08-22 | joncurry94-tech | docs: three-marker scene guard table; correct a false gl2 claim that cost a wrong fix |
+| `6750d70` | 2026-08-22 | joncurry94-tech | docs: the dedicated boot is NOT broken - recipe recorded in SOURCE_OF_TRUTH |
+| `9bc26ca` | 2026-08-22 | joncurry94-tech | docs: freeze 62 legacy root documents; the root now holds only CLAUDE.md and README.md |
+| `6634e72` | 2026-08-22 | joncurry94-tech | docs: promote buglog knowledge into the authored docs; OPEN back under budget |
 | `445875d` | 2026-08-22 | joncurry94-tech | tools: scene-actor audit now covers the whole trilogy, not just top-level map scripts |
 | `0faa37a` | 2026-08-22 | joncurry94-tech | tools: audit_scene_actors.py - which maps have scripted actors the personality roll can break |
 | `d18372d` | 2026-08-22 | joncurry94-tech | manifest 1.4.2 |
@@ -215,18 +222,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `4cdab4a 2026-08-22 fix: the weapon-variant roll re-armed scripted actors across the whole trilogy` |
-| commits | 1,555 |
+| HEAD | `b626178 2026-08-22 fix: HOLD notarget through the ride instead of setting it once - m1l1 intro is quiet` |
+| commits | 1,571 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **0 modified, 57 untracked** |
+| **uncommitted** | **4 modified, 58 untracked** |
+| unstaged diff | 4 files changed, 154 insertions(+), 3 deletions(-) |
 
-> Working tree is dirty. Everything in those 57 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 62 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 162 |
+| 2026-08 | 178 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -266,10 +274,26 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (206)
+### Commits since 2026-01-01 (222)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `b626178` | 2026-08-22 | joncurry94 | fix: HOLD notarget through the ride instead of setting it once - m1l1 intro is quiet |
+| `8c2f1cc` | 2026-08-22 | joncurry94 | fix: apply notarget from SPAWN, not from glue - the window between them is the bug |
+| `f68ac37` | 2026-08-22 | joncurry94 | fix: a glued player is scenery - tell the AI so (FL_NOTARGET), plus probe channels |
+| `d89ce48` | 2026-08-22 | joncurry94 | probe: record position, sightline and the protection inputs - the fields today needed |
+| `18d6ada` | 2026-08-22 | joncurry94 | probe: record whether the prone shooter's gates block, and whether its gun actually fires |
+| `cd16beb` | 2026-08-22 | joncurry94 | fix: the prone shooter must honour threatbias - the stealth gate alone is inert on m1l1 |
+| `620107f` | 2026-08-22 | joncurry94 | fix: the prone shooter was firing on disguised players - it is what wrecked m1l1's ride |
+| `63418fb` | 2026-08-22 | joncurry94 | fix: a map that said "ignore this one" meant it - and read the marker late enough to see it |
+| `6b5028d` | 2026-08-22 | joncurry94 | fix: restore the retail spawner loop - half the end-of-mission germans never converted |
+| `1bebd5f` | 2026-08-22 | joncurry94 | fix: an entry guard cannot protect against state that arrives after entry |
+| `e24a377` | 2026-08-22 | joncurry94 | fix: a predicate stopped attaching behaviour, and the searchlight gunner got his gun back |
+| `adf106e` | 2026-08-22 | joncurry94 | fix: probe self-starts on dedicated too, and four defects in the probe itself |
+| `34f9afb` | 2026-08-22 | joncurry94 | fix: restore the rcon entity probe I overwrote, and fix its damage-proof verdict |
+| `6a4cc5e` | 2026-08-22 | joncurry94 | feat: coop probe bus - one diagnostic channel with identity on every record |
+| `4a1ed73` | 2026-08-22 | joncurry94 | fix: guard the third scene marker - threatbias ignoreme (bug-2038) |
+| `1ba12d7` | 2026-08-22 | joncurry94 | fix: never re-enable an actor the MAP disabled - the allies were starting the fight |
 | `4cdab4a` | 2026-08-22 | joncurry94 | fix: the weapon-variant roll re-armed scripted actors across the whole trilogy |
 | `fbdeb5d` | 2026-08-22 | joncurry94 | fix: the scene-actor guard never ran - enableEnemy is write-only |
 | `deac915` | 2026-08-22 | joncurry94 | fix: scripted scene actors are protected trilogy-wide, not just where we noticed |
@@ -482,16 +506,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `b66dd89b 2026-08-22 feat: weapon weight now affects movement speed, derived from class not tiki` |
-| commits | 5,075 |
+| HEAD | `569fba5c 2026-08-22 probe: instrument the one path that can drop the whole viewmodel silently` |
+| commits | 5,077 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **7 modified, 0 untracked** |
+| unstaged diff | 7 files changed, 372 insertions(+), 16 deletions(-) |
+
+> Working tree is dirty. Everything in those 7 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 95 |
+| 2026-08 | 97 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -552,10 +579,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (110)
+### Commits since 2026-01-01 (112)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `569fba5c` | 2026-08-22 | joncurry94 | probe: instrument the one path that can drop the whole viewmodel silently |
+| `b351231c` | 2026-08-22 | joncurry94 | fix: vehicle turret never un-zoomed its gunner; arm the gunvis probe by default |
 | `b66dd89b` | 2026-08-22 | joncurry94 | feat: weapon weight now affects movement speed, derived from class not tiki |
 | `d3f1af09` | 2026-08-22 | joncurry94 | feat: wall cover Phase 1 + 2 - re-enabled, side solver with a real NONE, lean not teleport |
 | `c3f51293` | 2026-08-22 | joncurry94 | feat: viewmodel gets 8 bone controllers (Option B) - full finger set, zero protocol change |
