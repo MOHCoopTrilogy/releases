@@ -180,6 +180,31 @@ asleep - no crews, no MG nests, no firing nebelwerfers, a final objective that c
 session log with **zero** occurrences of `scene7`. **Grep a map's `main` for commented-out `sceneN`
 threads, account for every one, and guard each (`level.coop_sceneNStarted`).**
 
+**A PROBE NESTED INSIDE THE CONDITION IT MEASURES IS BLIND.** Three times in one day
+(2026-08-22): the viewmodel SKIP-DRAW probe was gated on `!bThirdPerson` - the very flag whose
+flip caused the symptom; `coop_coverProbe` registered its cvar only inside the `wallValid`
+branch, so "probe prints nothing" was indistinguishable from "no wall was ever valid"; and a
+`player.snap` line concatenated a NIL level var, so the Script Error **truncated every field
+after it** and the probe blinded itself on the exact map under investigation. Put the probe
+OUTSIDE the branch, and print the deciding inputs, not just the outcome.
+
+**HEADLESS VERIFICATION CANNOT TEST A PLAYER-TIMING BUG.** A dedicated boot has no clients, so
+any race between "player spawns" and "map does X" has no window to lose and always passes. Two
+fixes shipped green headless and failed live for exactly this. `0 Script Errors` headless proves
+the script *parses and runs*; it proves nothing about ordering that involves a player.
+
+**WHEN SEVERAL WRITERS TOUCH ONE PIECE OF STATE, RE-ASSERT IT - DO NOT REASON ABOUT WHO RAN
+LAST.** `FL_NOTARGET` on a glued player was set once at spawn and lost, because
+`manageAliveSpawning` runs three times (the kit is issued three times - the user noticed from
+the game before the log showed it). Four attempts argued about ordering; a 0.5s watcher holding
+the flag ended it. Same shape as the surrender loop's backstop. The rule generalises: a one-shot
+write into contested state is a bet on ordering, and this project loses that bet.
+
+**ONE RUN IS NOT PROOF WHEN THE BUG IS INTERMITTENT.** Two "fixed" verdicts on 2026-08-22 were
+single runs: one was a log truncated 11 seconds before the scripted fight starts, the other a
+config where the suspected culprit happened not to fire. Establish the *shape* of the
+measurement changing (`engaging 7->0` while `canSeePlayer` stays 9), not the number.
+
 **The cure that works:** an autonomous verification rig - its value is catching a feature that silently
 doesn't fire. And when you fix a silent-discard branch, **add the warning even though you also raised the
 limit** - `sv_snapshot.c:549-553` does.
