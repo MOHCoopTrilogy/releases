@@ -25,6 +25,20 @@ BARX=1300; BARW=470; BARH=44; CNTX=BARX+BARW+22
 # appears in chal_def. Falls back to the old mechanical transform ONLY for a reward value added
 # later that hasn't been curated yet, so nothing silently goes blank.
 REWARD_NAMES = {
+    # [bug-2079] the three Elite rewards repointed off the free default uniform
+    "models/player/american_28th_private.tik": "28th Infantry Rifleman",
+    "models/player/34th_Infantery_Division_sniper.tik": "34th Infantry Marksman",
+    "models/player/american_1st_rangers_captain.tik": "1st Rangers Captain",
+
+    # [bug-2080] armory gloves. Curated here so the Service Record hover shows the display
+    # name rather than the mechanical transform of the token id.
+    "glv_leather": "Leather Gloves",
+    "glv_wool": "Wool Knit Gloves",
+    "glv_uswinter": "US Winter Gloves",
+    "glv_mittens": "Wool Mittens",
+    "glv_seaman": "Seaman's Gloves",
+    "glv_alpine": "Alpine Hands",
+
     # weapon finishes (the armory strip - symbolic rewards probed from the unlock store)
     "finish_gold": "Gold Weapon Finish",
     "finish_chrome": "Chrome Weapon Finish",

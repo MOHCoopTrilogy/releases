@@ -104,6 +104,7 @@ signature.
 | A shader generator's brace matcher mishandled mixed CRLF/LF plus `//`-commented braces, emitting blocks missing closing braces (45 open / 43 close) → white-square HUD icons. | 480 |
 | A **texture upscaler** tiled (3x3 -> resize -> crop centre) then ran UnsharpMask on the CROPPED result; a convolution clamps at the border, so it invented edge pixels and reintroduced the exact seam tiling existed to prevent (14x worse on `ocean1b`), and Lanczos lobes separately overshot a capped alpha (189 -> 255). Fix: sharpen **inside** the tiled space, clamp each channel back to the source range. | 1247 |
 | A PowerShell harness assigned `$home`, a **built-in automatic variable**; the assignment silently no-op'd and logs landed in the user profile. | ps-home-var |
+| `sed -i` on a **CRLF** `.scr` stripped every CR while correctly deleting its 16 target lines, turning a 16-line edit into a 331-line whole-file rewrite. The check that cleared it, `grep -c $'\r'`, reports **0 on a CRLF file** under Git Bash - a broken detector handing back a false all-clear. | 2081 |
 
 - **Binary mode on BOTH sides, repo files included.** `open(p, encoding=...)` translates newlines on
   *read*, so a CRLF file arrives as LF and `\r\n` patterns match nothing; `newline=""` on write then
@@ -111,6 +112,12 @@ signature.
   raising. Use `rb`/`wb`; the tree is **not uniform** (`challenges.scr` CRLF, `lobbyui.scr` LF-only,
   `docs/TRAPS.md` LF - bug-1600 was this file flipped by a prune script). Detect per file and **assert
   the match count before every replace**; that assert caught bug-1363.
+  Not Python-only: **`sed -i` and any shell in-place rewriter flip the whole file the same way** (bug-2081).
+  Detect endings by counting `b'\r\n'` against bare `b'\n'` on the RAW BYTES - `grep -c $'\r'`
+  answers 0 on a CRLF file and will clear a broken edit. Then confirm the diff is the SHAPE you
+  intended (`cmp`, `git diff --numstat`): a whole-file diff on a 16-line edit is the tell.
+  With `core.autocrlf=true`, `git checkout --` re-stamps CRLF onto a file whose blob is LF, so
+  a 'clean' status does **not** mean the bytes on disk are the ones you started with.
 - **Never** emit script files through a bash heredoc.
 - **Verify the invariant you claim to preserve, against the ORIGINAL** - the seam regression was caught
   only by measuring edge-wrap error on output vs input per file.

@@ -226,7 +226,10 @@ foreach ($bin in $binaries) {
 $chk = "C:\mohaa-coop-dev\docs\tools\check_challenges.py"
 if (Test-Path $chk) {
     $out = & python $chk --warn 2>&1
-    $summary = $out | Select-String -Pattern "^challenges:|cannot be completed|^OK - every"
+    # [2026-08-23] Surface the NO-OP REWARD header too. The filter used to show only the counts,
+    # so a validator finding printed "3 challenge(s) cannot be completed as shipped" with no hint
+    # of WHICH or WHY - a warning nobody can act on is a warning nobody reads.
+    $summary = $out | Select-String -Pattern "^challenges:|cannot be completed|^OK - every|^NO-OP REWARD|^DEAD -|^SHORT -|^MISSING -"
     foreach ($line in $summary) { Write-Host "  $line" -ForegroundColor DarkGray }
 }
 

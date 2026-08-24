@@ -13,27 +13,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `8e5a32d 2026-08-22 docs: the four method lessons that cost 2026-08-22` |
-| commits | 182 |
+| HEAD | `ec51766 2026-08-23 manifest 1.4.3` |
+| commits | 184 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **7 modified, 63 untracked** |
-| unstaged diff | 7 files changed, 202 insertions(+), 64 deletions(-) |
+| **uncommitted** | **5 modified, 6 untracked** |
+| unstaged diff | 5 files changed, 97 insertions(+), 7 deletions(-) |
 
-> Working tree is dirty. Everything in those 70 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 11 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 128 |
+| 2026-08 | 130 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (182)
+### Commits since 2026-01-01 (184)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `ec51766` | 2026-08-23 | joncurry94-tech | manifest 1.4.3 |
+| `bde9add` | 2026-08-23 | joncurry94-tech | docs: the notarget toggle, and four times I stated an inference as a measurement |
 | `8e5a32d` | 2026-08-22 | joncurry94-tech | docs: the four method lessons that cost 2026-08-22 |
 | `4f0945d` | 2026-08-22 | joncurry94-tech | tools: --aggro reports acquisition ORDER and who each actor picked |
 | `0711a70` | 2026-08-22 | joncurry94-tech | tools: probe_read.py - turn a probe log into an answer |
@@ -222,19 +224,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `b626178 2026-08-22 fix: HOLD notarget through the ride instead of setting it once - m1l1 intro is quiet` |
-| commits | 1,571 |
+| HEAD | `ddd3439 2026-08-23 docs: v1.4.3 field report; Discord draft (NOT posted)` |
+| commits | 1,573 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **4 modified, 58 untracked** |
-| unstaged diff | 4 files changed, 154 insertions(+), 3 deletions(-) |
+| **uncommitted** | **466 modified, 175 untracked** |
+| unstaged diff | 466 files changed, 7061 insertions(+), 4406 deletions(-) |
 
-> Working tree is dirty. Everything in those 62 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 641 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 178 |
+| 2026-08 | 180 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -274,10 +276,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (222)
+### Commits since 2026-01-01 (224)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `ddd3439` | 2026-08-23 | joncurry94 | docs: v1.4.3 field report; Discord draft (NOT posted) |
+| `8880f12` | 2026-08-23 | joncurry94 | fix: hold notarget through the ride, guard the pose not just the bounce, one kit apply |
 | `b626178` | 2026-08-22 | joncurry94 | fix: HOLD notarget through the ride instead of setting it once - m1l1 intro is quiet |
 | `8c2f1cc` | 2026-08-22 | joncurry94 | fix: apply notarget from SPAWN, not from glue - the window between them is the bug |
 | `f68ac37` | 2026-08-22 | joncurry94 | fix: a glued player is scenery - tell the AI so (FL_NOTARGET), plus probe channels |
@@ -506,19 +510,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `569fba5c 2026-08-22 probe: instrument the one path that can drop the whole viewmodel silently` |
-| commits | 5,077 |
+| HEAD | `95dc8eae 2026-08-23 fix: cover stops stealing your view and your crouch; sprint default 1.3 -> 1.15` |
+| commits | 5,080 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **7 modified, 0 untracked** |
-| unstaged diff | 7 files changed, 372 insertions(+), 16 deletions(-) |
+| **uncommitted** | **14 modified, 1 untracked** |
+| unstaged diff | 13 files changed, 533 insertions(+), 63 deletions(-) |
 
-> Working tree is dirty. Everything in those 7 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 15 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 97 |
+| 2026-08 | 100 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -579,10 +583,13 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (112)
+### Commits since 2026-01-01 (115)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `95dc8eae` | 2026-08-23 | joncurry94 | fix: cover stops stealing your view and your crouch; sprint default 1.3 -> 1.15 |
+| `84a84cd9` | 2026-08-23 | joncurry94 | fix: rate-limit the cover probe before it ships to players |
+| `e521cf2f` | 2026-08-23 | joncurry94 | fix: notarget was a TOGGLE for players; wall-cover camera + probe that can answer |
 | `569fba5c` | 2026-08-22 | joncurry94 | probe: instrument the one path that can drop the whole viewmodel silently |
 | `b351231c` | 2026-08-22 | joncurry94 | fix: vehicle turret never un-zoomed its gunner; arm the gunvis probe by default |
 | `b66dd89b` | 2026-08-22 | joncurry94 | feat: weapon weight now affects movement speed, derived from class not tiki |

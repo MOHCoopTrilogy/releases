@@ -273,7 +273,9 @@ def main():
         # strings probed straight out of the pipe store by loadout_finUnlocked - the finish strip,
         # 2026-08-18). Anything else must be a real file, or the challenge pays nothing.
         rew = c["reward"]
-        if rew and not rew.startswith(("perk_", "finish_")) and rew.lower() not in have:
+        # glv_ joins perk_/finish_ as a non-asset reward family (bug-2080): a glove is a shader
+        # index on a surface the model already has, not a file to resolve.
+        if rew and not rew.startswith(("perk_", "finish_", "glv_")) and rew.lower() not in have:
             missing.append(c)
 
     if as_json:
@@ -319,7 +321,36 @@ def main():
         for r in uncurated:
             print("  " + r)
 
-    bad = len(dead) + len(short) + len(missing) + len(uncurated)
+    # [user 2026-08-23, bug-2079] NO-OP REWARD GATE. The MISSING check above proves the reward is a
+    # real FILE; it does not prove the player does not already own it. cosmetic_gatedBuild in
+    # helmet.scr is an ALLOW-LIST of cosmetics that require unlocking - anything absent from it is
+    # free to everyone. So a challenge whose reward is an ungated cosmetic pays nothing, and this
+    # validator was printing "a real reward" over exactly that case. Found by the armory unlock
+    # audit (docs/tools/armory_unlocks.py), not by this file, which is why the check now lives here.
+    # Weapons are excluded: their gate is loadout_isUnlocked's free-starter list, a different rule.
+    noop = []
+    try:
+        helmet_src = io.open(os.path.join(MOD, "coop_mod", "helmet.scr"),
+                             encoding="utf-8", errors="replace").read()
+        helmet_src = "\n".join(l.split("//")[0] for l in helmet_src.splitlines())
+        gated_tok = set(re.findall(r'coop_cosmeticGatedTok\["([^"]+)"\]\s*=\s*1', helmet_src))
+    except OSError:
+        gated_tok = set()
+    if gated_tok:
+        for c in chals:
+            r = c["reward"]
+            if r.startswith(("models/player/", "models/coop_helmets/", "glv_")):
+                if r not in gated_tok:
+                    noop.append(c)
+    if noop:
+        print("\nNO-OP REWARD - cosmetic is ungated, so every player already has it (%d):"
+              % len(noop))
+        for c in noop:
+            print("  %-26s %-30s -> %s" % (c["cid"], c["name"][:30], c["reward"]))
+        print("  Fix by either gating the cosmetic (add it to cosmetic_gatedBuild in helmet.scr)")
+        print("  or pointing the challenge at a reward the player does not already own.")
+
+    bad = len(dead) + len(short) + len(missing) + len(uncurated) + len(noop)
     if not bad:
         print("\nOK - every challenge has a writer, a reachable target and a real reward.")
         return 0
