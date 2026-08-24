@@ -207,3 +207,16 @@ DECISIONS too.
 
 **Budgets are not the enemy.** Pruning keeps rules and drops war stories; nothing load-bearing
 has been lost that way. The real inefficiency is knowledge that never left the buglog at all.
+
+## Project name: MOH Trilogy Coop, not HZM
+
+[user 2026-08-23] "going forward call it MOH Trilogy Coop. we aren't HZM."
+
+HZM / HaZardModding is a different group, so using their name publicly misattributes this
+work. Everything player-facing or public says **MOH Trilogy Coop**: release notes, Discord,
+the in-game field report, menu titles, installer copy. The GitHub org (MOHCoopTrilogy)
+already matches.
+
+NOT renamed, deliberately: repo names, directory names, pk3 filenames and in-code
+`// HZM coop` comments. Those are internal, and changing them touches the deploy paths and
+every installer manifest - ask before taking it on as its own job.
