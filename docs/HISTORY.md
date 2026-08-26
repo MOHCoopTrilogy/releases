@@ -222,3 +222,17 @@ source is not corroboration, and the expensive fix refuted by measurement — no
   put to them** - specifically the prone reload duration, which changes for every weapon and could not
   be measured offline because retail `.skc` files are obfuscated. Pre-publish gate earned its keep: the
   dry run refused because the What's New card still said v1.4.4.
+
+- **2026-08-26** - v1.4.5 shipped, then a long fix pass on top of it. bug-2111: the grenade-kick
+  detector tested model names for "grenade", so the German `steilhandgranate` (GRANATE) never matched -
+  the prompt had never once appeared for an enemy grenade. bug-2112: my prone work derived
+  `PMF_VIEW_PRONE` from hull height alone and a DOWNED player shares that hull, putting the DBNO camera
+  under the floor. bug-2114: one elite challenge unlocked a gun's ENTIRE variant cycle; now 77 generated
+  per-variant challenges on an accelerating curve capped at 750. Extending `check_challenges.py` to see
+  the new file immediately exposed a false green, and `gen_service_record.py` had the same blind spot -
+  it baked 367 SR rows against 444 live challenges, which the deployed-truth stamp caught in play as
+  `SELFTEST FAIL ... MIXED DEPLOYMENT`. bug-2113/2115, prone reload, three attempts: the real mechanism
+  is that NOTETRACKS on the animation perform the reload (`first reloadweapon`, `clip_fill`), so a bare
+  substituted alias left the clip empty and locked the player out of firing. Final approach runs the real
+  animation at zero torso render weight, leaving the duration bit-for-bit unchanged. Enemies that walk up
+  and stand there remain OPEN: notarget and count-scaling replicas both ruled out by measurement.

@@ -375,15 +375,7 @@ killed `coop_tinnitusBlast` and `coop_goreDripCorpseTime`. One trap, three dead 
 - **Find the collision set:** intersect engine `Cvar_Get("coop_*", <non-empty default>)` against every
   `getcvar("coop_*")` in the scripts. It was six; four were genuinely broken.
 
-| Trap | Tell | Bug |
-|---|---|---|
-| **Exec order** — engine execs `default.cfg` → saved config → `autoexec.cfg` **LAST**; `autoexec` `seta`-ing ~200 curated defaults overwrote every menu change on every launch. | Menu changes don't stick | 710 |
-| **A renderer cvar's FLAGS are as sticky as its value**, and four bugs are one lesson: `Cvar_Get` ORs flags (`r_lodscale` twice-registered in gl2 became `CVAR_CHEAT`, slider reverted, 1125); a flag flipped for one A/B test archived it (`r_entlight_scale` dimmed every entity, 918); a `CVAR_ARCHIVE` rcon probe is retained forever (`r_toneMap 0`, 1148); and `CVAR_CHEAT` probes are useless on a listen server since `sv_cheats 0` clamps them back — use `CVAR_TEMP` (`r_globalFogDebug` **is still `CVAR_TEMP` at `renderergl2/tr_init.c:1926` — restore it**). | Slider reverts, or a test becomes a global regression | 918, 1125, 1148 |
-| **Fail-open locks** — the armory padlock recompute zeroed all lock cvars then relied on a server push that might never arrive. Redesigned fail-**LOCKED**. | Content unlocked that shouldn't be | 682 |
-| **Clamped cvars lie to menus** — gl2 clamps `r_ext_multisample` to 4, so the 8× MSAA plate was repointed at the unclamped `r_ext_framebuffer_multisample`. | Menu offers a value the renderer refuses | 1152 |
-| **Never `seta` a genuine user preference** in `autoexec.cfg` (`cg_adsShoulderRight`). | Preference resets each launch | 258 |
-| **Never seed `coop_uiB*`/`coop_uiN*`** — wipes last-known challenge progress. | Progress lost | — |
-| **`g_gametype` is LATCHED - the FIRST map of a launch runs before it applies.** `ui_startdmmap` sets it and starts the map in the same frame, so map 1 boots under the OLD value: coop gates read 0 and never arm. Put `+set g_gametype 2` on the command line for any automated/dedicated run. |
+*(summary table moved to [`archive/traps-t7-cvar-table.md`](archive/traps-t7-cvar-table.md) - the rules it tabulates are the prose above and below.)*
 
 **⚠️ A workaround written into the SAVED config outlives the bug it worked around and beats
 `coop_defaults.cfg` forever** - `seta` in a saved config is a fossil, not a decision, so **record a
@@ -563,14 +555,12 @@ declaration is.*
 **Bugs:** 1026-1027, 1218-1220, 1473-1490, 1596-1598, 1812-1813, 2101-2102.
 
 **PROBE DESIGN - three ways a probe lies.** *(1) Nested inside the condition it measures* - blind; put
-it OUTSIDE the branch; print the deciding inputs, not the outcome (3 instances; archive). *(2) Reading back your own input* - `m_fCoopHeadYaw` and `bone_tag` both
-tracked perfectly while the networked value was clobbered by a subsystem the probe never read
-(bug-2102). **Probe the FINAL consumed value**; prefer a **sentinel the other writer cannot
-produce** (head `11/22`): it answers "did my write survive?" with no preconditions:
-`0.00` on 328/328 samples; `35.00` once fixed. *(3) Never exercising the branch* - **force
-it**: `coop_boneDebug 2` runs the prone spine maths on a standing player, separating "the maths is
-wrong" from "prone never engaged".
-
+it OUTSIDE the branch and print the deciding inputs (3 instances 2026-08-22; archive). *(2) Reading back
+your own input* - `m_fCoopHeadYaw` tracked perfectly while the networked value was clobbered by a
+subsystem the probe never read (bug-2102). **Probe the FINAL consumed value**; prefer a **sentinel the
+other writer cannot produce** (head `11/22`): `0.00` on 328/328 samples, then `35.00` once fixed.
+*(3) Never exercising the branch* - **force it**: `coop_boneDebug 2` runs the prone maths on a standing
+player, separating "the maths is wrong" from "prone never engaged".
 *(worked examples archived to `docs/archive/traps-t14-worked-examples.md`)*
 
 ## T16 — Waits that never complete: failsafe recursion, missing anims, unguarded `waittill`
@@ -719,6 +709,18 @@ Four shapes from the m6l1c stealth route (2026-08-11); in each the symptom point
 
 <a name="tiki"></a>
 ## TIKI and sound-alias traps
+
+**A BARE ANIMATION ALIAS DROPS THE NOTETRACKS THAT DO THE WORK - three times now.** The ANIMATION
+performs the action; the statemap only plays it. A retail alias is `name file.skc { server { <frame>
+<command> } }`, and copying only the `name file.skc` half yields an animation that looks right and does
+nothing: the prone ADS alias without `{ server { first fire } }` fired no rounds; the prone reload alias
+without `first reloadweapon` + `clip_fill` never refilled the clip, and `Weapon::ShouldReload` latches
+TRUE on an empty clip regardless of its own flag (`weapon.cpp:3980`), locking the player in the reload
+unable to shoot (bug-2115). **Open the retail alias and copy its notetrack block, or do not substitute.**
+To preserve a timeline exactly, change the animation's WEIGHT, not the animation - notetracks are queued
+once at set time and ANIMDONE runs on elapsed time, so neither depends on weight. And retail `.skc`
+durations ARE measurable (`Pak0` copies are plain `SKAN`: `numFrames`@44 x `frameTime`@16); a session
+wrote "obfuscated, cannot measure" and accepted an unmeasured 55% balance change on that basis.
 
 In **`docs/reference/tiki_and_sound_aliases.md`**: frame-command lines inside `server{}`/`client{}`,
 aliases without a `maps` spec never loading, per-map `includes` blocks, cut-but-shipped content, and

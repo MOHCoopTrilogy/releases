@@ -25,6 +25,88 @@ BARX=1300; BARW=470; BARH=44; CNTX=BARX+BARW+22
 # appears in chal_def. Falls back to the old mechanical transform ONLY for a reward value added
 # later that hasn't been curated yet, so nothing silently goes blank.
 REWARD_NAMES = {
+
+    # [user 2026-08-26] MODEL VARIANT rewards. Names are lifted verbatim from
+    # loadoutskins.scr::coop_skinMvName - the same table the armory renders - so the Service Record
+    # hover and the armory can never disagree. Regenerate with docs/tools/variant_challenges.py.
+    "models/weapons/bar_pabar.tik": "Bar (pacific) (moh:pa)",
+    "models/weapons/bar_bar1918.tik": "Bar M1918 (wwi) (east)",
+    "models/weapons/bar_bar1918a.tik": "M1918 Classic (stlkid)",
+    "models/weapons/bar_bar1918a1.tik": "M1918a1 (stlkid)",
+    "models/weapons/bar_bar1918a2.tik": "M1918a2 (stlkid)",
+    "models/weapons/bazooka_guanbazooka.tik": "Realistic Bazooka (guanshire)",
+    "models/weapons/colt45_coltpa.tik": "Colt 45 (pacific) (acme313)",
+    "models/weapons/colt45_colt1911w.tik": "M1911 (wwi) (east)",
+    "models/weapons/colt45_covert.tik": "M1911 Covert",
+    "models/weapons/colt45_drbond.tik": "1911 Classic",
+    "models/weapons/colt45_bloodyeic.tik": "M1911 Bloody Eic (schutze)",
+    "models/weapons/colt45_guancolt.tik": "Colt 1911 (guanshire)",
+    "models/weapons/colt45_lv_ttcolt.tik": "Team Tactics (leon)",
+    "models/weapons/delisle_lv_ttdelisle.tik": "Team Tactics (leon)",
+    "models/weapons/delisle_lv_wdelisle.tik": "Wehrmacht Delisle (leon)",
+    "models/weapons/enfield_p14.tik": "P14 Enfield (east)",
+    "models/weapons/enfield_hobbsenfurb.tik": "Urban Enfield (hobbs)",
+    "models/weapons/enfield_lv_ttenfield.tik": "Team Tactics (leon)",
+    "models/weapons/kar98_g98.tik": "Gewehr 98 (bolt) (east)",
+    "models/weapons/G43_dhg43fleck.tik": "Flecktarn G43 (dirtyharry)",
+    "models/weapons/G43_hobbsg43wood.tik": "Woodland G43 (hobbs)",
+    "models/weapons/G43_hobbsg43urb.tik": "Urban G43 (hobbs)",
+    "models/weapons/G43_lv_ttg43.tik": "Team Tactics (leon)",
+    "models/weapons/it_w_beretta_lv_ttberetta.tik": "Team Tactics (leon)",
+    "models/weapons/it_w_carcano_lv_ttcarcano.tik": "Team Tactics (leon)",
+    "models/weapons/kar98_hobbskarworn.tik": "Worn Kar 98k (hobbs)",
+    "models/weapons/kar98_hobbskarwood.tik": "Woodland Kar 98k (hobbs)",
+    "models/weapons/kar98_lv_ttkar98.tik": "Team Tactics (leon)",
+    "models/weapons/KAR98sniper_g98scope.tik": "G98 Scoped (east)",
+    "models/weapons/KAR98sniper_lv_ttkar98sn.tik": "Team Tactics (leon)",
+    "models/weapons/KAR98sniper_lv_98ks.tik": "Mauser 98 KS (leon)",
+    "models/weapons/m1_garand_pagarand.tik": "M1 Garand (pacific) (acme313)",
+    "models/weapons/m1_garand_guangarand.tik": "M1 Garand (guanshire)",
+    "models/weapons/m1_garand_lv_ttgarand.tik": "Team Tactics (leon)",
+    "models/weapons/mauser_c96_c96trench.tik": "C96 (trench) (east)",
+    "models/weapons/mosin_nagant_rifle_hobbsmosinur.tik": "Urban Mosin (hobbs)",
+    "models/weapons/mosin_nagant_rifle_lv_ttmosin.tik": "Team Tactics (leon)",
+    "models/weapons/mp40_mp40r2.tik": "Mp40 (reactivated)",
+    "models/weapons/mp40_mp18.tik": "Mp18 (east)",
+    "models/weapons/mp40_guanmp40.tik": "Mp40 (guanshire)",
+    "models/weapons/mp40_guanmp40s.tik": "Silver Mp40 (guanshire)",
+    "models/weapons/mp40_lv_mp75.tik": "MP 75 Ausf D (leon)",
+    "models/weapons/mp44_mp44strap.tik": "Stg 44 (strapped) (darkangel)",
+    "models/weapons/mp44_dhstg44ss.tik": "SS Stg 44 (dirtyharry)",
+    "models/weapons/mp44_guanmp44.tik": "Stg 44 (guanshire)",
+    "models/weapons/mp44_lv_ttmp44.tik": "Team Tactics (leon)",
+    "models/weapons/p38_guanp38.tik": "Walther P38 (guanshire)",
+    "models/weapons/p38_lv_ttp38.tik": "Team Tactics (leon)",
+    "models/weapons/panzerschreck_lv_ofenrohr.tik": "Ofenrohr (leon)",
+    "models/weapons/shotgun_authwinch.tik": "Authentic Wood",
+    "models/weapons/shotgun_dhshotblack.tik": "Black Tactical (dirtyharry)",
+    "models/weapons/shotgun_dhshotchrome.tik": "Chrome Tactical (dirtyharry)",
+    "models/weapons/shotgun_hobbsshotty.tik": "Recoil Shotty (hobbs & Recoil)",
+    "models/weapons/shotgun_guanshotty.tik": "Shotgun (guanshire)",
+    "models/weapons/shotgun_lv_ttshotgun.tik": "Team Tactics (leon)",
+    "models/weapons/springfield_smlescope.tik": "Smle Scoped (east)",
+    "models/weapons/springfield_m1903.tik": "M1903 Springfield (east)",
+    "models/weapons/springfield_dhspdesert.tik": "Desert Camo '03 (dirtyharry)",
+    "models/weapons/springfield_dhspdigital.tik": "Digital Camo '03 (dirtyharry)",
+    "models/weapons/springfield_dhsptiger.tik": "Tiger Camo '03 (dirtyharry)",
+    "models/weapons/springfield_dhspwinter.tik": "Winter Camo '03 (dirtyharry)",
+    "models/weapons/springfield_guansplight.tik": "Lightwood '03 (guanshire)",
+    "models/weapons/springfield_guansp2.tik": "Springfield II (guanshire)",
+    "models/weapons/springfield_hobbsspwood.tik": "Woodland '03 (hobbs)",
+    "models/weapons/springfield_hobbsspurban.tik": "Urban '03 (hobbs)",
+    "models/weapons/springfield_lv_ttspring.tik": "Team Tactics (leon)",
+    "models/weapons/svt_rifle_hobbssvtwood.tik": "Woodland Svt-40 (hobbs)",
+    "models/weapons/thompsonsmg_tommy28.tik": "Thompson (m1928) (static)",
+    "models/weapons/thompsonsmg_tommy1928d.tik": "Thompson (1928 Tommy) (dr.deleto)",
+    "models/weapons/thompsonsmg_tommy27a1.tik": "Thompson (27a1 Commando) (flakrider)",
+    "models/weapons/thompsonsmg_m1a1dk.tik": "M1a1 Remodel (darkangel)",
+    "models/weapons/thompsonsmg_hobbstomworn.tik": "Worn Thompson (hobbs)",
+    "models/weapons/thompsonsmg_guantommy.tik": "Thompson (guanshire)",
+    "models/weapons/thompsonsmg_lv_tttommy.tik": "Team Tactics (leon)",
+    "models/weapons/thompsonsmg_lv_famastommy.tik": "Famas Thompson II (leon)",
+    "models/weapons/uk_w_l42a1_dhl42camo.tik": "Camo L42a1 (dirtyharry)",
+    "models/weapons/webley_revolver_lv_ttwebley.tik": "Team Tactics (leon)",
+
     # [bug-2079] the three Elite rewards repointed off the free default uniform
     "models/player/american_28th_private.tik": "28th Infantry Rifleman",
     "models/player/34th_Infantery_Division_sniper.tik": "34th Infantry Marksman",
@@ -397,7 +479,15 @@ _mark("pin").save("textures/hud/coop_sr/box_pin.tga")
 _mark("done").save("textures/hud/coop_sr/box_done.tga")
 
 # ---- read challenges, group by category (file order = global export index) ----
+# [user 2026-08-26] challenges.scr is no longer the only definition site: mvchal_gen.scr carries one
+# chal_def per weapon MODEL VARIANT. Reading only challenges.scr baked 367 SR rows while the running
+# game defined 444, which is precisely the mixed deployment the stamp below exists to catch - and it
+# duly caught it live: "SELFTEST FAIL: challenges live 444 vs SR pages baked 367".
 src=open("coop_mod/challenges.scr",encoding="latin-1").read()
+import os as _os
+for _extra in ("coop_mod/mvchal_gen.scr",):
+    if _os.path.exists(_extra):
+        src += chr(10) + open(_extra, encoding="latin-1").read()
 rx=re.compile(r'chal_def\s+"([^"]*)"\s+"([^"]*)"\s+"([^"]*)"\s+"([^"]*)"\s+"([^"]*)"\s+(\d+)\s+"([^"]*)"')
 rows=[m.groups() for m in rx.finditer(src)]
 idx={r[0]:i for i,r in enumerate(rows)}
