@@ -211,3 +211,14 @@ source is not corroboration, and the expensive fix refuted by measurement — no
   length becomes the reload duration. bug-2106: stress now widens the spread cone via a server-side
   mirror, ending 'the gun shakes but the crosshair is steady'. Head tracking defaulted off at user
   request (bug-2110) - one message after bug-2101 finally made it run.
+
+- **2026-08-26** **v1.4.5 released** (github + discord + baked field report). Prone made playable:
+  the crawl fix (`PM_Friction`'s flat `pm_stopspeed` floor, bug-2103), both speed floors respecting
+  prone (bug-2104), the exit rewritten as an edge-trigger after the hold-to-stay design produced two
+  opposite symptoms (bug-2108), and the prone reload swapped to the one body-space animation the game
+  ships. Stress now widens the weapon spread cone (bug-2106) so a shaking gun costs accuracy. Head
+  tracking and torso lag, inert since they shipped (bug-2101), were fixed and then head tracking was
+  turned off by preference. **Published UNPLAYTESTED at the user's explicit call after the risk was
+  put to them** - specifically the prone reload duration, which changes for every weapon and could not
+  be measured offline because retail `.skc` files are obfuscated. Pre-publish gate earned its keep: the
+  dry run refused because the What's New card still said v1.4.4.
