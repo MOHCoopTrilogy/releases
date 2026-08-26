@@ -206,6 +206,39 @@ restored trilogy-wide. *Anchor:* `global/spawner.scr:95-138`.
 <a name="movement"></a>
 ## Player movement & combat
 
+**Composure/stress scalar + perturbation** — `SHIPPED-UNVERIFIED`. `CoopWFeelStress()` 0..1 from
+suppression .45, health .25, stamina .18, speed .12; x0.85 crouched, x0.60 breath-held; spikes 9/s,
+bleeds 0.8/s. Reads `r_ppHealthFrac`, **not** raw `STAT_HEALTH` — sidestepping vehicles hijacking it
+and DBNO's `healthonly 9999`. Part F (08-24): breathing takes **max**(health-deficit, stress) — max,
+not sum, since health is already an input — ADS damping releases as you get rattled, and an
+irrational third harmonic stops the hands settling twice in one spot.
+`coop_wfeelStress`, `coop_stressBreathAds`, mirror `coop_wfeelStressCur`.
+
+**Sprint-to-slide** — `SHIPPED-UNVERIFIED` (2026-08-24). Sprint + hold crouch: speed decays
+quadratically to a crouch-walk over `coop_slideTime`. **Speed change ONLY** — no bbox surgery, no
+forced `PMF_DUCKED`, because holding crouch IS the trigger so `PM_CheckDuck` owns the hull as for any
+crouch; that is what stops it wedging anyone in geometry. Applied right after the crouch multiplier —
+the penalty a slide exists to carry you through. Costs stamina + cooldown, so it cannot out-run
+sprinting. `coop_slide`, `coop_slideSpeed` 1.9, `coop_slideTime` 0.75, `coop_slideCooldown` 1.2,
+`coop_slideStamina` 0.55. `Player::TickSlide`.
+
+**Quick grenade** — `SHIPPED-UNVERIFIED` (2026-08-24). `bind g "+coopnade"`: tap to throw without
+hand-selecting, hold to charge (further) and cook. **A sequencer, not a mechanic** — distance
+(`charge_fraction`, `weapon.cpp:2948`), the overcook warning and blowing up in your hand are all stock,
+selection posts the same `EV_Sentient_UseWeaponClass "grenade"` the weapon key uses, return is
+`EV_Sentient_UseLastWeapon`. A `+`/`-` console command — no usercmd button bits remain
+([TRAPS T22](TRAPS.md#t22)); release only records key state, so a tap still throws. Bind is in
+`coop_defaults.cfg` so a rebind survives. `coop_quickNade`, `coop_quickNadeReturn` 0.9.
+
+**Hit flinch** — `SHIPPED-UNVERIFIED`. The view weapon jolts when you are hit, along the
+real bearing (`STAT_DAMAGEDIR` is `damage_yaw` in TENTHS of a degree). Two edge detectors — health drop
+AND bearing change — because either alone misses a case. Translation only (a flinch-scale rotation
+pulls the gun out of the hands, bug-105). Cosmetic: never touches the aim vector. `coop_hitFlinch`.
+
+**Directional damage ROLL restored** — `SHIPPED-UNVERIFIED` (bug-2092). `damage_angles.z`
+was clamped from `.y`, discarding the computed roll, so `g_viewkick_roll` had never done anything.
+Fixed; default retuned 0.15 → 0.08 since 0.15 was untested author intent.
+
 **Sprint / walk / stamina** — `SHIPPED-UNVERIFIED` (game *feel* unverified). Shift (not aiming) =
 sprint at `sv_runspeed * coop_sprintMult`; Shift (aiming) = untouched vanilla breath-hold; Alt =
 walk. Adds an out-of-breath pant, a 3D gear-rattle loop, and a real `SPRINT_FORWARD` legs state.
@@ -947,18 +980,15 @@ shipped and was pulled the same week, and the source-level revert was deliberate
 <a name="tooling"></a>
 ## Tooling
 
-**Map-rotation test harness** — `SHIPPED-VERIFIED`. `coop_maptest 1` = load-time smoke test across the
-rotation, `2` = player-teleporting patrol through AI areas; `coop_maptest_dwell` tunes dwell.
-**⭐ Maps MUST be loaded the real coop way** (`set ui_dmmap <m>` + `exec start_server.cfg` /
-`ui_startdmmap 2`) — `devmap` is single-player and plain `map` does nothing on a running coop server.
-**⭐ Crash gotcha:** `G_ArchivePersistant` `Com_Error`s on non-empty coop `game.*` vars **if
-`g_scriptcheck` is on**, which looks exactly like a crash — force it 0. Banners prefixed `^~^~^`.
+**Map-rotation test harness** — `SHIPPED-VERIFIED`. `coop_maptest 1` = load-time smoke test, `2` =
+teleporting patrol through AI areas; `coop_maptest_dwell` tunes dwell. Banners prefixed `^~^~^`.
+Launch method and the `g_scriptcheck` crash gotcha: see CLAUDE.md § Running and testing.
 
 **Regression harness** — `SHIPPED-VERIFIED` (produced bugs 1218–1220 on 2026-07-29). Lives at
 `C:\mohaa-coop-dev\_research\regression\` (`regress.ps1`, `regress.py`, `hzmreg/`, `roster.json`,
 `baselines/`, `runs/`). **Currently the project's only working automated verification.**
-⚠️ It sits in a directory named `_research`, a name `build.ps1` treats as disposable — **promote it
-out.** See [TRAPS.md § T12](TRAPS.md#t12).
+⚠️ Sits under `_research`, which `build.ps1` treats as disposable — **promote it out**
+([TRAPS T12](TRAPS.md#t12)).
 
 **Autonomous combat-verification rig** — `SHIPPED-VERIFIED`. `coop_botInput 1` injects the HOST
 client's usercmd — aims at the nearest visible German and **fires real bullets**, which is what makes

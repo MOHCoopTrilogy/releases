@@ -1,4 +1,4 @@
-Add-Type -AssemblyName System.IO.Compression
+﻿Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 $srcDir     = "C:\mohaa-coop-dev\hzm-mohaa-coop-mod"
@@ -65,6 +65,13 @@ $assetDirs = @("sound","textures","models","gfx","env")
 $excludeTop = @("_notes", "_research")   # dev notes + research (pipelines, retail extracts) never ship
 $excludeNames = @(".gitignore", ".gitattributes", "README.md")   # repo housekeeping never ships
 
+# HZM coop [user 2026-08-24] NEVER SHIP THE PRE-UPSCALE BACKUPS.
+# 1,252 files / 200 MiB on disk / ~87 MiB inside zzzzzz_co-op_hzm_mod_assets_tex.pk3 were packed and
+# pushed to every client on connect, for art the engine can NEVER load - ".pre_upscale_nobuild" is
+# not an extension R_LoadImage ever probes (it tries .dds, .jpg, .tga and stops).
+# The filenames literally end in "nobuild", so the intent to exclude them was DOCUMENTED IN THE NAME
+# and never implemented anywhere. A convention nothing enforces is not a rule.
+
 function Get-TopDir($relPath) {
     $i = $relPath.IndexOf('/')
     if ($i -lt 0) { return "" }
@@ -85,7 +92,8 @@ if (-not (Test-Path $cacheDir)) { New-Item -ItemType Directory -Path $cacheDir -
 $allFiles = Get-ChildItem -Path $srcDir -Recurse -File | Where-Object {
     $_.Extension -ne '.bak' -and $_.Extension -ne '.pk3' -and
     $_.FullName -notmatch '\\\.git(\\|$)' -and
-    $excludeNames -notcontains $_.Name
+    $excludeNames -notcontains $_.Name -and
+    $_.Name -notlike '*.pre_upscale_nobuild'
 }
 
 # bucket files

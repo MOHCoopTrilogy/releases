@@ -18,69 +18,11 @@ Moved to **[archive/history-pre-2026-06-26.md](archive/history-pre-2026-06-26.md
 2026-08-17 to keep this file under budget: pre-history, the current era's opening, and the
 pre-buglog months.
 
-## 2026-06-26 → 06-30 — the buglog begins
+## 2026-06-26 -> 07-10  (archived)
 
-| When | What |
-|---|---|
-| 06-26 | **`.wolf/buglog.json` starts** (first id `bug-535`). |
-| 06-26 | `V` Coop reward items MP fixes: per-owner HUD (`ihuddraw_*` targets ONE client), drop-on-death re-pickup, radio to all players. ⭐ `loopsound … levelwide` is the only PVS-proof MP audio. |
-| 06-26 | `U` m1l3b jeep multi-passenger seating **re-enabled** — it had been fully written then disabled with early `end`s. |
-| 06-26 | `U` Sky-trace false-indoors fix — an up-trace **hits the skybox brush**, silently disabling the binoc airstrike AND the officer's Stuka/artillery waves. |
-| 06-26 | `U` ~1300 "unknown animation thompson_*" errors fixed by moving `$include human_thompson.tik` into the unconditional block of `new_generic_human.tik`. |
-| 06-27 | `U` Enemy count-scaling (per-spawn replication by player count). |
-| 06-27 | `U` MG42 / mounted turret overheat, players and AI. |
-| 06-27 | `U` Deployable ammo box. |
-| 06-27 | `U` Officer German idle VO + alarm variety + dot-product heal-retreat. |
-| 06-27 | `U` Reinforcement natural behaviour — spread radius **capped** (was uncapped to ~1240u = "battalions spawned inside walls"). |
-| 06-27 | `V` `s_sfxduck` + m3l1a Omaha ramp-drop cinematic. ⭐ Uncovered that server-stuffed SETs of `CVAR_ARCHIVE` cvars are dropped unless whitelisted. |
-| 06-27 | `U` Officer/paradrop bombing-run banked diving arc, auto-scaled from `$world.farplane`. |
-| 06-27 | `V` `LoadTGA` hard-crash softened. ⭐ The first attempt patched the **wrong file** — there are five TGA parsers in-tree. |
-| 06-28 | `V` Corpse persistence + despawn; `MAX_BODYQUEUE` 5→128; `EV_DeathSinkStart` gated to SP. |
-| 06-28 | `U` Corpse blast impulse (`g_corpseImpulse`). Same research verdict: **ragdoll not feasible**. |
-| 06-28 | `U` Weapon weight / view-model lag Phase 1. |
-| 06-28 | gl2 migration **paused and reverted** (later rescoped — see 07-24). |
-| 06-29 | `U` Sprint / walk / stamina three-speed movement. |
-| 06-29 | `U` ADS on its own usercmd bit (**bit 13, the last free one**) + bash restored. |
-| 06-29 | `U` Tinnitus (script layer). |
-| 06-29 | `U` Wounded-AI blood trails. |
-| 06-29 | `U` Suppression screen FX. |
-| 06-29 | `U` Lingering gun smoke. |
-| 06-29 | `O` **bug-165 — reload camera dip never visible.** Signal chain fully source-verified; still open, oldest live item. |
-| 06-30 | `V` `md5_2_skX` model converter ported and round-trip validated. ⚠️ Raw output is engine-lethal without `skd_add_collapse.py`. |
-
----
-
-## 2026-07-01 → 07-10
-
-| When | What |
-|---|---|
-| 07-01 | `V` t2l2 halftrack + truck coop seating finalised. ⭐ **Riders are now SOLID** — supersedes the old notsolid rule. Root cause of judder: the rider's view was interpolated independently of the vehicle. |
-| 07-02 | `U` Dynamic weather v2 — the custom v1 renderer **retired** in favour of driving the native SP system. |
-| 07-03 | Weather never-fired bug fixed (theme read NIL because maps set it on the line *after* `main`). |
-| 07-04 | `V` Full audio mixer (Master/Music/SFX/Ambience/Dialogue) + `s_sfxvolume`. |
-| 07-04 | `U` Six-feature audio batch: reverb enabled, HRTF, occlusion low-pass, distance gun tails, CAS sharpen, corpse impulse. ⭐ **The auto-reverb driver was already built in the fork and forgotten.** |
-| 07-04 | `V` Fresh recorded gun audio + 24 footstep surfaces + 44 impacts; distance model `INVERSE` → `LINEAR_DISTANCE_CLAMPED`. |
-| 07-04 | `R` Warzone explosion variants and VFA wood footsteps rejected in play and backed out; artillery beds kept. |
-| 07-04 | `U` Destroyable-objective failsafe (throbbox `BlowUp`). |
-| 07-05 | **v1.1.33 release batch** — spawn protection, DBNO corpse-revive, sniper 3P parallax, stuka/arty warning, What's New pipeline. |
-| 07-05 | **`CLAUDE.md` last updated.** Stale from here on. |
-| 07-06 | `V` HUD fade (v1.1.36) — four live-report bugs fixed; compass exempt by user choice. |
-| 07-06 | `U` Player emotes (salute / at-ease / stretch) via `forcelegsstate`. |
-| 07-06 | `U` Staged 3P shoulder ADS. ⭐ `CG_AdsForceFirstPerson` is the single decider. |
-| 07-06 | `U` m1l3a jeep seating ported from m1l3b. |
-| 07-06 | Blender sprint carry-pose edit **paused by the user** mid-edit at arm-bone selection. |
-| 07-07 | `U` XP / rank system Phase 1 built + deployed (~470 lines, 13 ranks, emblems). |
-| 07-07 | `U` 3P free cam v2 (auto-face). ⭐ Zero-ABI client→cgame bridge via `cgi.get_camera_offset()`. |
-| 07-07 | `U` Officer reinforcement player-count scaling. |
-| 07-07 | `U` NAT hole-punch **phase 1 committed and verified end-to-end locally** (daemon + engine hooks). |
-| 07-08 | `U` Coop Lobby #1 full build. Revert tag `checkpoint-lobby-working-20260708` in both repos. |
-| 07-09 | `U` Exact-ammo respawn (new Sentient `getammo`/`setammo` events). |
-| 07-09 | `U` `MAX_SOUNDS` 1024→1280; `MAX_GAMESTATE_CHARS` 41952→98304. |
-| 07-09 | `O` **bug-431 — DBNO crawl plays opposite to movement.** No follow-up since. |
-| 07-10 | `U` Live helmet switcher. ⭐ Placement derived by copying the gear helmet: `us_helmet.skd`'s 147 verts are single-weighted to bone 8, so its weight offsets **are** exact head-local coords. |
-| 07-10 | `U` m3l1b cut FLAK 88 objective restored (the devs' own "TEMP TEMP TEMP PREMATURE POOPHEAD ENDING"). |
-
----
+Moved to [archive/history-2026-06-26-to-07-10.md](archive/history-2026-06-26-to-07-10.md) on
+2026-08-24 to keep this file inside its ceiling. The buglog begins; the coop framework, officer
+waves and the first engine fixes land.
 
 ## 2026-07-11 → 07-20
 
@@ -194,36 +136,17 @@ pre-buglog months.
 
 ## 2026-08-02 — PDF defect sweep, the limp, and two gl2 rendering bugs
 
-46 buglog entries (bug-1251 → 1296). The day's shape: **most of the damage was silent-veto**, and the
-runtime log — not static audit — found nearly all of it.
+46 buglog entries (bug-1251 -> 1296). The day's shape: **most of the damage was silent-veto**, and
+the runtime log — not static audit — found nearly all of it. RC1 detonated every watched demolition
+charge ~0.3 s into map load across 16 sites; `coop_painThread` was a latch nothing cleared, making
+every enemy a permanent bullet sponge; 11 maps were taking the armory loadout back after issuing it;
+and one `1e-5` depth epsilon in the gl2 fog pass exempted everything past 88-98% of zFar, explaining
+two separately-reported symptoms at once.
 
-- **RC1 (bug-1251)** detonated every watched demolition charge ~0.3 s into map load across **16 sites**
-  (`isalive` is `health > 0`, and all watched targets are health-less). Two soft locks, plus a
-  downstream corruption of e3l2's POW chain that had been filed as its own bug.
-- **`pain.scr` (bug-1275)**: `coop_painThread` was a boolean latch nothing ever cleared, so the coop
-  pain handler ran **once per actor, ever** — every enemy a permanent bullet sponge. 15 log occurrences
-  → 0 after the fix.
-- **The armory loadout was being taken back by the maps themselves** (bug-1279). Maps run
-  `replace.scr::takeAll` + SP-kit `item` gives from *behind* `waitForPlayer`, i.e. after
-  `spawnInventory` already handed out the player's picks. Affected **11 maps**, not one.
-- **Low-health limp shipped** (bug-1291/1292) — see FEATURES.md.
-- **Two gl2 rendering bugs, both gl1-parity gaps**: sky faces were DXT1-compressed where gl1 loads them
-  uncompressed (bug-1295); and the fog pass's sky exemption used a depth epsilon of `1e-5`, which —
-  depth being nonlinear — exempted everything past **88–98% of zFar**, a slab up to 5500 units deep of
-  ordinary geometry (bug-1296). That one epsilon explained *both* reported symptoms at once: unfogged
-  bright distant geometry at `r_globalFogSky 0`, buried geometry at `1`.
+*The day's three lessons — a failed `waittill` does not abort, agreement between reviewers sharing a
+source is not corroboration, and the expensive fix refuted by measurement — now live in
+[TRAPS.md](TRAPS.md) T3/T11, which is where they get read. Per-bug detail is in the buglog.*
 
-**Three lessons worth carrying:**
-
-1. **A failed `waittill` does not abort — it just does not wait.** Four scripts on e2l1 therefore ran
-   before the map's entities existed, costing the map all its light styles and fire effects
-   (bug-1294). Will recur on every remaining map; the log is the oracle, not a bulk sweep.
-2. **Agreement between reviewers is not corroboration when they share a source.** A multi-agent audit
-   plus two independent critique lenses all confirmed a vignette bug that did not exist — all three had
-   inherited one unchecked premise (bug-1290). The "fix" would have been a real regression.
-3. **The expensive fix was refuted by measurement.** A stencil sky-mask was designed and about to be
-   built; resolving all 69 shaders in e2l1's BSP showed every tree already writes depth, so the premise
-   was false and the actual fix was one epsilon.
 - 2026-08-05: coverage sweep shipped (engine covtrace + maptest Phase 3 covwalk + diff reporter); layer-1 static scan found 170 dead alias refs on 43 trilogy maps
 - 2026-08-07: V m1l1 loading screen rebuilt as a single BSP-rendered "case file" composite (recon photo + retypeset OSS letter + 3 stock briefing-slide photos, pinned on a corkboard); single 2048x2048 POT texture replaces the old two-tile TGA pair, new explicit `coop_load_m1l1` shader (force32bit) closes the one real gap vs. vanilla UI shaders
 - 2026-08-07: U XP rebalance (downed fight/officer kill/assist/vehicle-destroy retuned, attacker-only vehicle-kill via new `coop_vehKillerNum` engine plumbing, air-strike-kill + Searchlight Disabled bonuses added) + Service Record reward-name overlap fix (curated 180+-entry `REWARD_NAMES` table, Armory-matched weapon names) + 11 named-NPC trilogy skins shipped as real armory unlocks (bug-1521)
@@ -249,3 +172,42 @@ runtime log — not static audit — found nearly all of it.
 - 2026-08-19 (evening) - **Live-playtest mega-wave shipped**: surrender conversion (hold USE recruits a surrendered german), grenade kick, vault/mantle, gore package (corpse impulse, explosion chunks, decap re-add per bug-866 safe pattern, headshot brain chunks + eyeball dangle), 10s shellshock envelope, reload camera sway, colt thump A, 10s prone dwell, m3l3 church-clear re-gate, vehicle AI gunner tuning trio, weapon.scr variant normalization, TIKI_Error un-gated (bugs 1941-1953).
 - 2026-08-21 - **v1.4.0 / v1.4.1 RELEASED** (176 commits since v1.3.1). Headline: the Armory (F7, 357 finishes + model variants, challenge/rank-gated unlocks), weapon weight and the whole feel system, ragdolls, the gore package, AI that takes cover/goes prone/surrenders, 60 new explosion recordings behind 79 aliases, 1,389 restored retail VO takes, and 4 new guns (C96/Johnson/DP-28/M10; Panzerfaust removed). v1.4.1 flipped `coop_ragdoll` ON by default at the user call - safe with no migration because the cvar first existed 08-19, AFTER v1.3.1 was cut, so no shipped client had it archived. Pre-release audit caught two live defects: `coop_decapMax` seeded 16 over the engine's corrected 32, and `coop_goreDebug`/`coop_profProbe` still forced on from temporary diagnoses.
 - 2026-08-22 - **m1l1's scripted ride fixed at the root after five attempts** (bug-2064): `notarget` is declared twice as `EV_NORMAL`; for players the *cheat toggle* won the name lookup, so every `notarget 1` FLIPPED the flag. Engine now sets on an argument, toggles on none, plus an `EV_GETTER`. Four live 2-player rides: engaging=0 throughout, canSeePlayer 8-10. Same pass: truck allies stay seated (2065), kit issued once not thrice (2067), gun flicker confirmed as EF_UNARMED on give (2066).
+- 2026-08-23 v1.4.4 - user CONFIRMED in play: weapon mass, sprint at 1.12 and gore wounds all
+  feel right. Notable because all three had been silently wrong for a long time: our own
+  autoexec.cfg was shipping coop_sprintMult 1.9 and coop_goreWounds 0, and autoexec execs
+  LAST, so every engine-default change made to them had reached nobody.
+- 2026-08-24 - **Feel batch + two softlock-class fixes.** `coop_countasdead` (bug-2091): recruiting an
+  enemy now releases his `waittill death` waiters, so objectives that count PER-ACTOR deaths complete -
+  bug-2088 had only fixed the ARRAY-counting kind and shipped untested, and the m3l1b softlock was
+  absolute because same-team damage is filtered in every gametype. `Actor::setModel` now carries surface
+  bits across a composite rebuild BY NAME instead of memset-ing them (bug-2075) - that memset was wiping
+  the ranger tik's own `surface bang* +nodraw`, hence bangalores through every ally. Feel: Part F stress
+  perturbation (breathing reads `CoopWFeelStress()` via max-not-sum, ADS damping releases under stress,
+  an irrational third term so the hands never settle twice in the same place), sprint-to-slide,
+  hit flinch on the real `STAT_DAMAGEDIR` bearing, and quick-grenade on G. bug-2092: `g_viewkick_roll`
+  had NEVER applied - `damage_angles.z` was clamped from `.y` - fixed and retuned 0.15 -> 0.08.
+  Method note: the session opened by being sent to re-fix the ADS jolt, which had shipped in v1.4.4 four
+  days earlier; the plan's header still said "PLAN ONLY - nothing built" (bug-2089, TRAPS T11).
+
+- **2026-08-25** - bug-2101: head tracking and torso counter-rotation had been **inert since they
+  shipped**. `TickCoopLook` wrote the player's bone controllers from `ClientThink`, and
+  `PmoveAdjustAngleSettings` - their sole writer - rewrites all four with `VectorCopy` from `EndFrame`,
+  after it. Proved with a sentinel the other writer cannot produce (head `11/22`): readback `0.00/0.00`
+  on 328/328 samples. Fixed by moving application to `Player::ApplyCoopBoneOffsets`, called immediately
+  after the pmove call and applied ADDITIVELY so the vanilla view-pitch spine distribution survives.
+  Same site now carries the prone spine bias, which is why a prone player aiming level had a vertical
+  chest: at pitch 0 every share of that distribution is 0, so the spine is straight. I had reported head
+  tracking as working-but-subtle the message before measuring it (bug-2102, TRAPS T14).
+
+- **2026-08-25 (later)** - prone made actually playable, by measurement rather than iteration.
+  bug-2103: crawling was never a terrain problem - `PM_Friction` uses a FLAT floor of `pm_stopspeed` 50,
+  so movement needs `pm_accelerate*wishspeed > 50*pm_friction`, i.e. wishspeed > ~41; crawl speed was 45.
+  Probe showed velocity pinned at 1-5 while nrmZ was 0.97-1.00 and walking=1. Floor now scales with the
+  stance cap. bug-2104: both speed FLOORS discounted for crouch and not prone, so aiming RAISED a prone
+  player to ~172. bug-2105: `PMF_VIEW_PRONE` is overloaded - MOVECONTROL_CROUCH raises it too, so the
+  spine bias fired during scripted crouch set pieces. bug-2108: the exit condition was the DESIGN - prone
+  demanded holding crouch forever; the broken standup trace hid it, an escape valve exposed it, and it is
+  now edge-triggered. bug-2109: prone reload swapped to the real body-space animation, accepting that its
+  length becomes the reload duration. bug-2106: stress now widens the spread cone via a server-side
+  mirror, ending 'the gun shakes but the crosshair is steady'. Head tracking defaulted off at user
+  request (bug-2110) - one message after bug-2101 finally made it run.

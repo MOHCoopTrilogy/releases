@@ -454,6 +454,10 @@ someone consciously stopped short:
 
 | Item | Note |
 |---|---|
+| Prone, whole feature (2026-08-25 build) | UNPLAYED. Same-day rewrite of the exit into an edge-trigger (hold crouch to go down, release does nothing, press crouch or jump to get up), plus the PM_Friction floor fix that made crawling possible at all, plus both speed floors respecting prone. Three separate defects, none of them playtested together. |
+| Prone reload animation | UNPLAYED. Every weapon now uses `pistol_prone_reload` while prone - the only body-space prone reload in any pak. **Known cost: RELOAD_* exits on ANIMDONE_TORSO, so that animation's LENGTH is now the reload duration for every gun while prone.** Could not be measured offline (retail .skc are obfuscated). Single-round reloads (Springfield/Webley/Nagant/shotgun) deliberately untouched. |
+| Standup clearance trace | The `STANDUP` probe is deployed and unread. It is the last unknown behind BOTH 'cannot prone here' and the old stuck-prone: the trace refuses on ground where a crouch box should fit. Probe prints startsolid/allsolid and the box. |
+| Stress -> weapon spread | Chain verified on the harness by forced injection (coop_stressDebug 2); the BULLET HOOK is unverified - harness AI never shot the test bots (m2l2a is stealth, and on m3l1a they stand at spawn). `coop_stressDebug 1` in a real firefight, check `hits=` climbs. |
 | **Headshot gore chain** (bug-1142) | Sandbox-verified 10/10 on m1l1+m3l2 and 20/20 kills; **play rollout staged** |
 | **13-bit `frameInfo` anim-index widening** | Open task **#16** to verify — may or may not fix bug-1213 |
 | **`coop_unsponge`** bullet-sponge sweep (bug-1212) | Landed in the last hours of the mined window |

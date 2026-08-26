@@ -598,3 +598,26 @@ player stays hidden, and the two share one bit by design.
 
 **Not the same thing** as the 3.7–5.6 s blank at *join*, which is spawn-to-first-kit latency
 (`EF_UNARMED`) and is a separate, still-open question.
+
+---
+
+## Gore is permanent, and everything stays killable (2026-08-03)
+
+> **"I don't ever want blood wiped from any model... All models should be susceptible to complete
+> annihilation by shooting them even if dead."**
+
+1. **Blood is never removed once applied.** Any path that clears a gore skin tier, resets
+   `m_iCoopGoreSkinTier`, or re-asserts a surface skin without preserving the blood bits is a defect -
+   `CG4Aglider.tik`'s bank anims re-asserted `-skin1 +skin2` and wiped the bloodied windscreen seconds
+   after it appeared (bug-1316). **When adding a skin tier, check every OTHER writer of that surface
+   first.**
+2. **Corpses must remain shootable and destructible** - bug-1321 (flat `CONTENTS_WEAPONCLIP` bbox, so
+   shots stop on a body while players walk through) plus bug-1975 (dead sentients route into
+   `CoopGoreCorpseDamage`: tiers, holes, face, gib skins, decap; no health/pain/AI). **The lesson is
+   the 17-day gap:** bug-1321 recorded the damage half as already in place and it was not
+   (`ArmorDamage` opened `if (IsDead()) return;`), so a shot corpse bled and nothing anywhere said so.
+
+---
+
+*(Moved here from `21-user-preferences.md` on 2026-08-24: this is a standing DESIGN decision
+about how the game behaves, not a workflow preference about how to work.)*

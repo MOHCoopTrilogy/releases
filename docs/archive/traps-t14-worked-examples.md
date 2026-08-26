@@ -30,3 +30,18 @@ producer is the same silence** (bugs 1596-1598): cross-reference mechanically, w
 ---
 
 <a name="t16"></a>
+
+## 2026-08-25 - the inert bone controllers (bug-2101 / bug-2102)
+
+Head tracking and torso counter-rotation were reported by me as working-but-subtle ("+/-8 deg, too
+subtle to notice"). They were inert. The probe printed `want=`/`cur=` from `m_fCoopHeadYaw` and the
+`bone_tag` registration; all three tracked perfectly because all three were inputs to the write, not
+the surviving output.
+
+The measurement that settled it: write an impossible sentinel (head `11/22`, torso `33/44`) every frame
+and read the slot back at the top of the next frame. Result `0.00/0.00`, 328/328 samples. Then a sweep
+of every `bone_angles` writer in the tree showed `PmoveAdjustAngleSettings`/`_Client` is the sole writer
+for players, running from `EndFrame` - after `ClientThink`. Causation established without a debugger.
+
+Post-fix the same probe read `35.00/0.00`, matching the computed head pitch exactly; and a forced-prone
+run predicted arms `18.0` / torso `12.0` from a 30 deg bias split 0.6/0.4 and measured exactly that.

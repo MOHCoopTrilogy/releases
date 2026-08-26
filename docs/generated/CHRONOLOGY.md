@@ -13,27 +13,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `ec51766 2026-08-23 manifest 1.4.3` |
-| commits | 184 |
+| HEAD | `036161c 2026-08-24 docs: MOH Trilogy Coop naming preference` |
+| commits | 186 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **5 modified, 6 untracked** |
-| unstaged diff | 5 files changed, 97 insertions(+), 7 deletions(-) |
+| **uncommitted** | **6 modified, 2 untracked** |
+| unstaged diff | 6 files changed, 229 insertions(+), 183 deletions(-) |
 
-> Working tree is dirty. Everything in those 11 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 8 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 130 |
+| 2026-08 | 132 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (184)
+### Commits since 2026-01-01 (186)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `036161c` | 2026-08-24 | joncurry94-tech | docs: MOH Trilogy Coop naming preference |
+| `3ad5aec` | 2026-08-24 | joncurry94-tech | manifest 1.4.4 |
 | `ec51766` | 2026-08-23 | joncurry94-tech | manifest 1.4.3 |
 | `bde9add` | 2026-08-23 | joncurry94-tech | docs: the notarget toggle, and four times I stated an inference as a measurement |
 | `8e5a32d` | 2026-08-22 | joncurry94-tech | docs: the four method lessons that cost 2026-08-22 |
@@ -224,19 +226,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `ddd3439 2026-08-23 docs: v1.4.3 field report; Discord draft (NOT posted)` |
-| commits | 1,573 |
+| HEAD | `5a6507c 2026-08-24 docs: v1.4.4 Discord announcement posted (archived)` |
+| commits | 1,576 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **466 modified, 175 untracked** |
-| unstaged diff | 466 files changed, 7061 insertions(+), 4406 deletions(-) |
+| **uncommitted** | **8 modified, 0 untracked** |
+| unstaged diff | 8 files changed, 436 insertions(+), 5 deletions(-) |
 
-> Working tree is dirty. Everything in those 641 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 8 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 180 |
+| 2026-08 | 183 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -276,10 +278,13 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (224)
+### Commits since 2026-01-01 (227)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `5a6507c` | 2026-08-24 | joncurry94 | docs: v1.4.4 Discord announcement posted (archived) |
+| `52dabc1` | 2026-08-24 | joncurry94 | rename: MOH Trilogy Coop in player-facing text (not HZM) |
+| `ce8ed6b` | 2026-08-24 | joncurry94 | v1.4.4 - armory gloves, unlock requirements, AI leash, and several inert fixes made real |
 | `ddd3439` | 2026-08-23 | joncurry94 | docs: v1.4.3 field report; Discord draft (NOT posted) |
 | `8880f12` | 2026-08-23 | joncurry94 | fix: hold notarget through the ride, guard the pose not just the bounce, one kit apply |
 | `b626178` | 2026-08-22 | joncurry94 | fix: HOLD notarget through the ride instead of setting it once - m1l1 intro is quiet |
@@ -510,19 +515,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `95dc8eae 2026-08-23 fix: cover stops stealing your view and your crouch; sprint default 1.3 -> 1.15` |
-| commits | 5,080 |
+| HEAD | `d77779da 2026-08-24 coop v1.4.4: 3-bit per-surface skin index for armory gloves; MAX_TIKI_LOAD_SHADERS fix (hang); gore exemptions; cover frame reconcile; coop_coverType` |
+| commits | 5,081 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **14 modified, 1 untracked** |
-| unstaged diff | 13 files changed, 533 insertions(+), 63 deletions(-) |
+| **uncommitted** | **14 modified, 0 untracked** |
+| unstaged diff | 14 files changed, 1350 insertions(+), 32 deletions(-) |
 
-> Working tree is dirty. Everything in those 15 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 14 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 100 |
+| 2026-08 | 101 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -583,10 +588,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (115)
+### Commits since 2026-01-01 (116)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `d77779da` | 2026-08-24 | joncurry94 | coop v1.4.4: 3-bit per-surface skin index for armory gloves; MAX_TIKI_LOAD_SHADERS fix (hang); gore exemptions; cover frame recon… |
 | `95dc8eae` | 2026-08-23 | joncurry94 | fix: cover stops stealing your view and your crouch; sprint default 1.3 -> 1.15 |
 | `84a84cd9` | 2026-08-23 | joncurry94 | fix: rate-limit the cover probe before it ships to players |
 | `e521cf2f` | 2026-08-23 | joncurry94 | fix: notarget was a TOGGLE for players; wall-cover camera + probe that can answer |

@@ -131,7 +131,7 @@ signature.
 
 **The project's most expensive recurring *shape*.** **Tell:** "we built X and it does nothing / has
 no effect / can't be felt." Before tuning X, **prove X executes.** Instances:
-[`archive/traps-t3-instances.md`](archive/traps-t3-instances.md) and `traps-t3-archived-rows.md`;
+`archive/traps-t3-instances.md`, `traps-t3-archived-rows.md`;
 long narratives for the starred four in `archive/traps-pruned-2026-08-20.md`.
 
 **⭐ A guard written for one question is wrong for the neighbouring one** (bug-1687).
@@ -167,25 +167,19 @@ sub-scripts absent from the mod tree: extract into `maps/<map>/`, change **only*
 **A second shape: the write executes and is then overwritten.** Proving execution is necessary but not
 sufficient - prove nothing later writes the same field, and prefer the LAST write site in a render/view
 path. The dangerous variant is a misplaced write that lands somewhere real (bug-1238 moved the 3P pivot):
-silent corruption of a neighbouring feature.
+silent corruption of a neighbouring feature. **Canonical case: head tracking + torso lag shipped INERT**
+(bug-2101) - `TickCoopLook` wrote the bone controllers from `ClientThink`, but
+`PmoveAdjustAngleSettings` (`bg_pmove.cpp:1622`) is their SOLE writer and rewrites all four with
+`VectorCopy` from `EndFrame`, after it. **Grep every writer of a shared per-frame field, establish who
+runs last**; the cure is a different call site, not a different value.
 
 **The UI corollary - never trade a working widget for an unverified one; ADD ALONGSIDE IT.** A `.urc`
 cannot be run or diffed from here, so the only oracle is the user's screenshot (bug-1546).
 
 **A vanilla scene reachable only from a BSP `trigger_once` never runs in coop.** m3l3's `main` carries
-seven `//thread sceneN` lines noted "called from a trigger_once in the bsp", which never fire on a coop
-server. scene6's one-off workaround (`coop_churchApproach` threads it) hid the pattern, so scene7 shipped
-asleep - no crews, no MG nests, no firing nebelwerfers, a final objective that could never complete, and a
-session log with **zero** occurrences of `scene7`. **Grep a map's `main` for commented-out `sceneN`
-threads, account for every one, and guard each (`level.coop_sceneNStarted`).**
-
-**A PROBE NESTED INSIDE THE CONDITION IT MEASURES IS BLIND.** Three times in one day
-(2026-08-22): the viewmodel SKIP-DRAW probe was gated on `!bThirdPerson` - the very flag whose
-flip caused the symptom; `coop_coverProbe` registered its cvar only inside the `wallValid`
-branch, so "probe prints nothing" was indistinguishable from "no wall was ever valid"; and a
-`player.snap` line concatenated a NIL level var, so the Script Error **truncated every field
-after it** and the probe blinded itself on the exact map under investigation. Put the probe
-OUTSIDE the branch, and print the deciding inputs, not just the outcome.
+seven `//thread sceneN` lines "called from a trigger_once in the bsp"; scene6's one-off workaround hid
+the pattern and scene7 shipped asleep - no crews, no MG nests, an objective that could never complete.
+**Grep a map's `main` for commented-out `sceneN` threads, account for every one, guard each.**
 
 **HEADLESS CANNOT TEST A PLAYER-TIMING BUG - THE 2-PLAYER HARNESS CAN.** A bare dedicated boot has
 no clients, so any race between "player spawns" and "map does X" has no window to lose and always
@@ -194,25 +188,18 @@ passes; three fixes shipped green headless and failed live on exactly that. **`l
 clicker joins and re-joins across map changes); then `scratchpad/rcon.py map <map>` restarts with
 both already present at t=0, the condition a listen server has. Do not ask the user to click.
 
-**BEFORE RE-ASSERTING CONTESTED STATE, PROVE THE WRITE IS A *SET*.** *(Corrected 2026-08-22: this
-entry used to credit a 0.5 s watcher with fixing the m1l1 ride. It did not.)* A one-shot write
-into contested state is a bet on ordering and this project loses that bet - but a re-assert onto
-a **toggle** is an oscillator, not a fix, and `notarget` is a toggle on players ([T12](#t12)), so
-the watcher would have square-waved the flag at 2 Hz. Prove the write does what its name says
-**first**; then decide whether to re-assert.
+**BEFORE RE-ASSERTING CONTESTED STATE, PROVE THE WRITE IS A *SET*.** A one-shot write into contested
+state is a bet on ordering and this project loses it - but re-asserting onto a **toggle** is an
+oscillator, not a fix, and `notarget` is a toggle on players ([T12](#t12)). **And judge by the state
+itself, never a proxy**: five attempts were scored on `engaging`/`foeCls=Player`, both structurally blind
+to that flag (`cansee` has no `FL_NOTARGET` test, `entity.cpp:2941`; `AddPotentialEnemy` rejects only
+dead/IGNOREME, `actorenemy.cpp:280`), so an actor names a notarget'd player as `.enemy` while the engine
+refuses the attack (`actor.cpp:9150`). **A flag with no getter cannot be debugged; add the getter first.**
 
-**AND JUDGE IT BY THE STATE ITSELF, NEVER A PROXY.** Five attempts were scored on `engaging` /
-`foeCls=Player`, both structurally blind to that flag: script `cansee` has no `FL_NOTARGET` test
-(`entity.cpp:2941`) and `AddPotentialEnemy` rejects only dead/IGNOREME (`actorenemy.cpp:280`), so
-an actor legitimately names a notarget'd player as `.enemy` while the engine refuses the attack
-(`actor.cpp:9150`) - four actors, sixty seconds, zero damage. **A flag with no getter cannot be
-debugged; add the getter first** (`Entity::GetNoTarget`). The shape that finally proved it:
-`engaging` fell to 0 **while `canSeePlayer` stayed 8-10** - they still see, they cannot target.
-
-**ONE RUN IS NOT PROOF WHEN THE BUG IS INTERMITTENT.** Two "fixed" verdicts on 2026-08-22 were
-single runs: one was a log truncated 11 seconds before the scripted fight starts, the other a
-config where the suspected culprit happened not to fire. Establish the *shape* of the
-measurement changing (`engaging 7->0` while `canSeePlayer` stays 9), not the number.
+**ONE RUN IS NOT PROOF WHEN THE BUG IS INTERMITTENT.** Two "fixed" verdicts on 2026-08-22 were single
+runs - one a log truncated 11 s before the scripted fight starts, the other a config where the suspect
+happened not to fire. Establish the *shape* of the measurement changing (`engaging 7->0` while
+`canSeePlayer` stays 9), not the number.
 
 **The cure that works:** an autonomous verification rig - its value is catching a feature that silently
 doesn't fire. And when you fix a silent-discard branch, **add the warning even though you also raised the
@@ -351,6 +338,16 @@ and text, and corrupts 1-2px chrome.
 
 <a name="t7"></a>
 ## T7 — Cvar registration, flags, and exec order
+
+**⭐ BINDS CANNOT LIVE IN `coop_defaults.cfg`.** Verified order in `qcommon/common.c`:
+`coop_defaults.cfg` (:1841) -> `configs/<config>` (:1847) -> `autoexec.cfg` (:1862). Before-the-config
+is exactly right for `seta` CVARS — that is why the file exists — but **`configs/omconfig.cfg` opens
+with `unbindall`**, so any bind seeded there is created and then destroyed on every launch. bug-2093:
+the quick-grenade key was put there on the (correct-sounding, and wrong) reasoning that it would let a
+player rebind persist; G was simply unbound and the feature looked completely dead while its engine
+code was fine and had never run. All 40 of the project's binds are in `autoexec.cfg` for this reason.
+The cost is real and unavoidable: autoexec re-forces the bind each launch, so a rebind is lost next
+start. **Feature dead + code obviously correct = check the bind actually exists before debugging it.**
 
 **Bugs:** 258, 682, 710, 918, 1125, 1148, 1152, 1427, 1492, 1669.
 
@@ -503,6 +500,14 @@ entries and **zero** for `renderer_opengl2.dll`.
 in the schema flags a reversal, so **edit the original entry** when you supersede a finding - bug-1473/1474
 were corrected in place on 2026-08-06 after being filed on the wrong files.
 
+- **⭐ A plan's STATUS HEADER is a record too, and it rots hardest.**
+  `_research/composure_and_ads_plan.md` led with "**PLAN ONLY — nothing built**" for four days
+  after its Part A was built, committed (`9e71d739`) and shipped in v1.4.4. The correction existed —
+  500 lines further down, in a revision section. On 2026-08-24 the stale header sent a session to
+  re-fix a fixed defect from line numbers that had already moved. Same shape as the unmarked
+  `_final.md` release notes (HISTORY 07-18). **When a plan ships, edit its header in the same
+  commit**: a superseded diagnosis standing at the TOP of a file outranks a correction at the
+  bottom, because the top is what gets read. Mark the superseded body too, not just the header.
 - **Wrong anchors are worse than no anchors.** `q_shared.h:1680` credits the `MAX_MODELS` 1024->2048
   raise to **bug-866**; the actual work is **bug-892**, and a grep at a wrong path reads as "already
   fixed". **28 bug ids cited in source comments have no buglog entry** - bug-237 (packer determinism,
@@ -555,7 +560,16 @@ declaration is.*
 <a name="t14"></a>
 ## T14 — Your verification lied: audits that pass, harnesses that measure nothing
 
-**Bugs:** 1026, 1027, 1218-1220, 1473-1490, 1596-1598, 1812-1813.
+**Bugs:** 1026-1027, 1218-1220, 1473-1490, 1596-1598, 1812-1813, 2101-2102.
+
+**PROBE DESIGN - three ways a probe lies.** *(1) Nested inside the condition it measures* - blind; put
+it OUTSIDE the branch; print the deciding inputs, not the outcome (3 instances; archive). *(2) Reading back your own input* - `m_fCoopHeadYaw` and `bone_tag` both
+tracked perfectly while the networked value was clobbered by a subsystem the probe never read
+(bug-2102). **Probe the FINAL consumed value**; prefer a **sentinel the other writer cannot
+produce** (head `11/22`): it answers "did my write survive?" with no preconditions:
+`0.00` on 328/328 samples; `35.00` once fixed. *(3) Never exercising the branch* - **force
+it**: `coop_boneDebug 2` runs the prone spine maths on a standing player, separating "the maths is
+wrong" from "prone never engaged".
 
 *(worked examples archived to `docs/archive/traps-t14-worked-examples.md`)*
 
@@ -694,6 +708,12 @@ Four shapes from the m6l1c stealth route (2026-08-11); in each the symptom point
 5. **Am I guessing, or measuring?** (was T13) **BISECT FIRST - a cvar bisect beats any number of
    hypotheses** (bug-1298): turn things off one at a time until the symptom moves. Six deployed
    hypotheses on the gl2 "white distant objects" bug changed nothing; one bisect found it.
+6. **Symptom or design?** A fix producing the MIRROR IMAGE of the bug means the
+   design underneath is wrong. Prone demanded holding crouch forever to stay down; a broken standup
+   trace hid it by refusing to let anyone up, so an escape valve was added - which force-stood the
+   player a second after they let go. "Stuck prone" and "popped back to crouch" were one flaw
+   from two sides (bug-2108). **The user's phrasing often names the design**: "space or control should
+   put me back into crouch" described the INPUT MODEL, read as a trace bug twice.
 
 ---
 
@@ -779,8 +799,8 @@ stripped base name.** (bug-1982)
 <a name="procedural"></a>
 ## Procedural view/weapon motion: four rules that have each cost a shipped regression
 
-Both were broken on 2026-08-20 in a single batch of viewmodel "feel" work, and both produced defects
-that survived review, a clean build, and a deploy, and were only caught by the user playing.
+Each cost a regression that survived review, a clean build and a deploy, and was caught only by the user
+playing.
 
 **1. Never compute an oscillator's phase as `time * frequency`. Integrate it.**
 
@@ -891,3 +911,83 @@ proves a script *parses*, never that a property is *readable*.
 Actors that are only *holstered* still have no generic marker; flag those with
 `flags["coop_sceneActor"] = 1`, which is what spawned actors need anyway since a targetname
 list cannot reach them.
+
+---
+
+<a name="t21"></a>
+## T21 — Removing an enemy from the fight is not the same as killing him
+
+**Bugs:** 1972 (M3L3 church), 2088 (array counts), 2091 (m3l1b bunker). **Three times, three maps.**
+
+**Tell:** an objective that says "kill them all" never completes, and the survivor is somebody the
+player recruited, disabled, or otherwise took out of play.
+
+Maps count enemies in **two unrelated ways**, and a fix for one does nothing for the other:
+
+| mechanism | example | repaired by |
+|---|---|---|
+| an ARRAY of living axis | `level.coop_actorArray["german"]` | `aihandler.scr::coop_moveActorToTeam` (bug-2088) |
+| a PER-ACTOR `waittill death` | `m3l1b.scr:1671-1697`, one watcher per defender | `coop_countasdead` (bug-2091) |
+
+bug-2088 was believed to cover both and shipped untested; it could not, because the second kind
+never counts anything — it *waits on a body to die*. Recruiting that body removes it.
+
+**⭐ And the resulting softlock is ABSOLUTE, which is the part that surprises people.**
+`Sentient::TakeDamage` filters same-team damage in **every** gametype (`sentient.cpp:1705-1706`), and
+`:1752` records the consequence plainly: *an allied victim never reaches health <= 0*. So once an
+actor is on your team the player **cannot kill him by any means** — not bullets, not explosives, not
+splash. There is no player-side recovery and no console command for it; the run is lost. Never design
+anything that relies on a player being able to finish off an ally.
+
+**The fix pattern, for anything that takes an actor out of the fight without killing him:** fire the
+notification, not the death. `Unregister(STRING_DEATH)` is exactly what wakes a `waittill death` and
+is what the real death path already uses (`Actor::Killed:5505`, `Actor::Remove:12229`); calling it
+alone releases every waiter while health, deadflag, think state, gun and corpse stay untouched. It
+cannot double-count, because each watcher does `waittill` -> `++` -> `end` and is gone before any
+genuine later death. **Check what else waits on that actor first** — a watcher polling `isAlive`
+(like `surrender.scr::convertedWatch`) is unaffected, but one using `waittill death` would fire early.
+
+---
+
+<a name="t22"></a>
+## T22 — The usercmd button bits are FULL. Use a `+`/`-` console command.
+
+**Tell:** you want a new held/bindable action and reach for a `BUTTON_*` bit.
+
+There are none. `q_shared.h:1965-1978`: bits **0-6** stock, **7-11** are the weapon-command field
+(`GetWeaponCommandMask`, a 5-bit enum — *not* spare bits), **12** `COOPWALK`, **13** `COOPADS`
+(its own comment calls it *"the last free one"*), **14-15** `ANY`/`MOUSE`.
+
+**Use a server console command instead — it needs no protocol change at all.** The Quake `+`/`-`
+bind convention is intact here: key-down builds `+cmd <key> <time>` (`cl_keys.cpp:1266`), key-up
+builds `-cmd <key> <time>` (`:1078`), and unmatched commands forward to the server. Register both
+forms in `G_ConsoleCmds` (`gamecmds.cpp:120`) — that table takes a plain function pointer and
+**ignores the trailing key/time args**, so no Event format string is needed. Record only the key
+state in the handler and do the work in a per-frame tick, or a tap released before your state
+machine is ready gets swallowed. `+coopnade` (quick grenade) is the worked example.
+
+Two neighbours that ARE extensible, if you genuinely need wire state: the weapon-command enum has
+16 of its 31 values used, and `entityState.surfaces[]` bit 6 was reclaimed once (bug-2080). Both
+are **wire semantics** — changing either means shipping exe + cgame + game + both renderers together.
+
+---
+
+<a name="t23"></a>
+## T23 — Wired, plausible, and doing nothing
+
+**Bugs:** 2099 (prone). Two causes, one feature, no error message from either.
+
+**⭐ An animation alias without its NOTETRACK is a mime.** `human_rifle.tik` declares
+`rifle_prone_shoot` as `{ server { first fire } }` — **the ANIMATION pulls the trigger; the statemap
+only plays it.** A bare `.skc` alias gave a perfect prone firing animation that discharged nothing.
+The cover blindfire aliases already record this ("copied VERBATIM") and it still got missed. When
+borrowing an AI animation, copy the whole block from the source `human_*.tik`, not the path.
+
+**⭐ `last_ucmd` is not continuous — never reset a hold timer on one frame of no input.** Probe:
+`up=-127` the whole time a key was held, yet the hold read `0.02 → 0.00 → 0.27 → 0.00`. The server
+reads `upmove 0` on the odd frame (usercmd not yet refreshed). It presented as *"only works on
+certain terrain"* — never terrain, just whether the jitter spared a clean 0.35 s. Hold-to-do-X needs
+a grace period (150 ms) before treating a key as released.
+
+**Shape:** four causes all presented as "prone is broken" and no two shared a fix. Resist the
+single-root-cause instinct; probe each symptom. None of the four was found by reasoning about code.
