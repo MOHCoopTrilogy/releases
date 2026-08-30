@@ -1,0 +1,6 @@
+
+# type: what changed (imperative, <= 72 chars)
+#
+# - one line per change, ~6 max. Name the bug id; do not explain it here.
+# - WHY lives in .wolf/buglog.json and docs/. A commit body cannot be corrected later.
+# - no root-cause narrative, no measurements, no file:line citations.
