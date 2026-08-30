@@ -892,13 +892,33 @@ NCAT=len(catGroups)
 TABX0=4; ROWY=[430,452]
 PERROW=math.ceil((NCAT+2)/2.0)          # NCAT category tabs + 1 MEDALS + 1 BACK, split across two rows
 TABW=(640-2*TABX0)//PERROW
+# [user 2026-08-26] PAGE-SELECT CHAINS GO THROUGH CFG FILES, NOT INLINE STUFFCOMMANDS (bug-2116).
+# The old inline form - '; '.join('set coop_srP%d ...' for every page) - grows ~18 chars per page,
+# and the urc tokenizer has a HARD 512-byte token cap (script.cpp SCRIPT_MAXTOKEN): at 25 pages the
+# chain fit, at 28 it crossed the cap and the FIRST BOOT after regeneration died at init with
+# 'String too large on line 37575 in file ui/coop_sr.urc' -> 'Error during initialization'.
+# A per-page cfg holds the chain (one 'set' per LINE, each its own token, no cap to hit) and the
+# stuffcommand becomes a ~40-char constant that can never grow with the catalogue again.
+def pageSelCmd(pageIdx):
+    # pageIdx -1 = medals view (all pages off)
+    return "exec ui/coop_sr_pg%s.cfg" % ("m" if pageIdx < 0 else str(pageIdx))
+
+_PGNL = chr(10)
+for _pj in range(NT):
+    open("ui/coop_sr_pg%d.cfg" % _pj, "w", encoding="latin-1", newline="").write(
+        "".join("set coop_srP%d %d" % (_pk, 1 if _pk == _pj else 0) + _PGNL for _pk in range(NT))
+        + "set coop_srMedals 0" + _PGNL)
+open("ui/coop_sr_pgm.cfg", "w", encoding="latin-1", newline="").write(
+    "".join("set coop_srP%d 0" % _pk + _PGNL for _pk in range(NT))
+    + "set coop_srMedals 1" + _PGNL)
+
 def catTabBtn(slotIdx,tl,bx,by,w,firstPageIdx):
-    setcmd="; ".join(("set coop_srP%d %d"%(j,(1 if j==firstPageIdx else 0))) for j in range(NT))
+    setcmd=pageSelCmd(firstPageIdx)
     # [user 08-07] coop_srsync (CL_SyncSR_f, code/client/cl_main.cpp) republishes every coop_uiD<i>
     # done-flag from the archived coop_uiN<i> progress strings. Run on every tab click so the
     # done-checkmarks are correct the moment a page is shown - without it they only refreshed on
     # the server's 30s chal_flush, i.e. never at all when browsing disconnected.
-    setcmd += "; set coop_srMedals 0; coop_srsync"
+    setcmd += "; coop_srsync"  # the pg cfg already clears coop_srMedals
     return ["resource","Button","{",'name "tabCat%d"'%slotIdx,'title "%s"'%tl,"rect %d %d %d 18"%(bx,by,w),
         "fgcolor 0.92 0.86 0.66 1.00","bgcolor 0.16 0.11 0.06 0.92","borderstyle \"3D_BORDER\"",
         "font \"verdana-12\"","clicksound \"sound/menu/apply.wav\"",'stuffcommand "%s"'%setcmd,"}",""]
@@ -926,8 +946,8 @@ for key,tab,hdr,pageIdxs in catGroups:
         # different offsets than on every other page.
         prevPi = pageIdxs[(j-1) % n]
         nextPi = pageIdxs[(j+1) % n]
-        prevSet="; ".join(("set coop_srP%d %d"%(k,(1 if k==prevPi else 0))) for k in range(NT))
-        nextSet="; ".join(("set coop_srP%d %d"%(k,(1 if k==nextPi else 0))) for k in range(NT))
+        prevSet=pageSelCmd(prevPi)+"; coop_srsync"
+        nextSet=pageSelCmd(nextPi)+"; coop_srsync"
         L+=["resource","Button","{",'name "pgPrev%d"'%pi,"title \"<\"","rect %d %d 16 14"%(PGX0,PGY),
             "fgcolor 0.92 0.86 0.66 1.00","bgcolor 0.16 0.11 0.06 0.92","borderstyle \"3D_BORDER\"",
             "font \"verdana-12\"","clicksound \"sound/menu/scroll.wav\"",gate,
@@ -943,7 +963,7 @@ for key,tab,hdr,pageIdxs in catGroups:
 
 # MEDALS tab occupies the slot right after the last category tab
 bx,by=slotxy(NCAT)
-medalsSetcmd="; ".join(("set coop_srP%d 0"%j) for j in range(NT)) + "; set coop_srMedals 1; coop_srsync"
+medalsSetcmd=pageSelCmd(-1) + "; coop_srsync"
 L+=["resource","Button","{",'name "tabMedals"','title "MEDALS"',"rect %d %d %d 18"%(bx,by,TABW-2),
     "fgcolor 0.92 0.86 0.66 1.00","bgcolor 0.16 0.11 0.06 0.92","borderstyle \"3D_BORDER\"",
     "font \"verdana-12\"","clicksound \"sound/menu/apply.wav\"",'stuffcommand "%s"'%medalsSetcmd,"}",""]

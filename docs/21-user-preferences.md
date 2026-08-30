@@ -188,3 +188,22 @@ The pattern repeats (`notarget` as a setter not a toggle; `coop_vmAntiPop` rejec
 a 45-unit step is worse than the step). **When presenting options, describe the MECHANISM each one
 uses, not only what it achieves** — the user reads mechanisms and routinely spots the minimal one.
 Framing a choice purely in outcomes hides exactly the information they decide on.
+
+
+## Commit messages: short. The detail already lives somewhere better (2026-08-30)
+
+User: *"I think git needs a makeover. way too much info."*
+
+Commit bodies had grown into essays - `40d6451` and `b25bef8` each run 15+ lines of prose with
+engine line numbers, measured velocities and root-cause narratives. **All of that is already in
+`.wolf/buglog.json` and the authored docs, which are searchable, structured and updateable; a commit
+body is none of those and cannot be corrected after the fact.**
+
+**The style, enforced by `.gitmessage`:**
+- Subject: `type: what changed`, imperative, <= 72 chars.
+- Body: at most ~6 bullets, ONE line each. Name the bug id and let the reader follow it.
+- No root-cause narrative, no measurements, no file:line citations. Those go in the buglog entry.
+- If a bullet needs a second line to make sense, the explanation belongs in `docs/` instead.
+
+Rule of thumb: **a commit body says WHAT changed and points at WHERE the why lives.** Someone
+skimming `git log --oneline` should get the shape of a release without opening a single commit.

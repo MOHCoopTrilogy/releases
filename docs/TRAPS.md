@@ -8,6 +8,46 @@
 > anchor kept, verified by an anchor-set diff. War-story detail and one relocated section are in
 > [`archive/traps-pruned-2026-08-20.md`](archive/traps-pruned-2026-08-20.md).
 
+
+
+
+## ClientThink runs once per USERCMD, not once per server frame
+
+Anything integrating `level.frametime` inside ClientThink advances once per COMMAND, so its rate scales
+with client framerate - com_maxfps 180 against sv_fps 40 is ~4.5x, and it differs between players on one
+server. This bit four systems in a single session (recoil recovery, crouch-to-prone dwell, stress and
+brace envelopes) and two silently changed a balance number, since stress multiplies bullet spread.
+**Use elapsed time:** keep `m_fCoop<X>Last`, take `dt = level.time - last`, clamp it (0.1-0.25 s) so a
+hitch cannot dump the whole envelope, and seed the member in the constructor - player memory is not zeroed.
+
+## Per-weapon TIK data: read the copy the ENGINE resolves, under the name it actually ships as
+
+Two independent ways a per-weapon table reads the wrong thing.
+
+**Which COPY.** Pak priority is main < mainta < maintt < the mod's own pk3s - **the LAST copy wins**. An
+extractor that sweeps in that order and keeps the FIRST match ships Spearhead's values: a G43 authored at
+1 degree of yaw got 16, and it reached the player's real aim on every shot. Resolve last-wins, and include
+the mod's own `models/weapons`, which beat every pak. **Also strip trailing `//` before tokenizing a TIK
+line** - at least one weapon carries an ACTIVE viewkick line with a commented-out alternative appended on
+the SAME line, and a naive tokenizer reads straight through into the comment.
+
+**Which NAME.** 481 weapon TIKs ship and only ~41 are base guns; the rest are finish variants named
+`<base>_<finish>` (`G43_dhg43fleck`), so an exact-name key covers ~8% of weapons - dead on 428 of them
+while working perfectly on the handful you test with. **Try the full name, then drop trailing `_segments`
+one at a time. Never cut at the FIRST underscore** - real base names contain one (`m1_garand`,
+`svt_rifle`) and match before any stripping. The display-name equivalent is `CoopStripSkinSuffix`, which
+splits on `" ("`: a different convention for a different string, so neither substitutes for the other.
+
+## A trailing comment swallows a closing brace (4 occurrences)
+
+Appending `// note` to a one-line body such as `if (!p) { p = Cvar_Get(...); }` puts the closing brace
+INSIDE the comment. The function never closes and the compiler blames the NEXT one (`error C2601: local
+function definitions are illegal`), often hundreds of lines downstream - which is why this wastes time
+every time. **Never put a trailing comment on a line that closes a brace; put it on its own line above.**
+To find it, run a brace-depth scan over the function (the idea behind `docs/tools/depthscan2.py`): depth
+never returns to 0, and the first line where it climbs and stays is the culprit. Searching near the
+reported error line will not find it.
+
 ## Quick index
 
 **!** = open now, **~** = recurring.
@@ -22,31 +62,31 @@ SPHERE · [T20](#t20) one flag two states · [`Script Error` skips the STATEMENT
 [turrets/AI spread](#turrets) · [`item_name` suffixes](#itemname) · [view motion](#procedural) ·
 [TIKI/sound](#tiki) · [cross-cutting](#cross-cutting).
 
-**T13** = [Cross-cutting](#cross-cutting) Q5; **T15** = `reference/harness_and_reproduction.md`;
-**T18** = `archive/traps-t16-failsafe-recursion.md`. Older docs still link to `#t13` / `#t15`.
+**T13** = [Cross-cutting](#cross-cutting) Q5 · **T15** = `reference/harness_and_reproduction.md` ·
+**T18** = `archive/traps-t16-failsafe-recursion.md` (older docs still link to these).
 ---
 
 <a name="t1"></a>
 ## T1 — Morpheus parse killers: one bad token silently kills the WHOLE `.scr`
 
-**Recurred under 15+ bug ids:** 089, 298, 331, 348, 402, 533, 739/750, 910, 962, 1067, 1069, 1105, 1205, 1283, 1285, 1751, 1908.
+**Recurred under 17 bug ids:** 089, 298, 331, 348, 402, 533, 739/750, 910, 962, 1067, 1069, 1105,
+1205, 1283, 1285, 1751, 1908.
 
 **Tell:** a feature silently does nothing, with **no error at the failure site**; every `::` call into the
 file logs `Script was not properly loaded`. A whole subsystem dying at once (bug-533 took helmet + sandbag
 + medkit + emotes) means the shared bus file. The compiler is all-or-nothing: one syntax error kills the
 entire file and the map runs with no script at all - raw team menu, unstartable.
 
-> **An assignment with no value is a parse killer, and the error points at the WRONG line** (bug-1908):
+> **An assignment with no value is a parse killer and the error points at the WRONG line** (bug-1908):
 > `level.coop_loRosterTab[69] = ` with nothing after it makes the parser take the *next* statement as the
-> value and die on **that** statement's `=`. Not "the line ends with `=`" - a bare trailing `=` is a legal
-> continuation retail `global/MountGunOrPlantCharge.scr` relies on; fatal only when the next code line is
-> itself an assignment. `docs/tools/check_empty_rhs.py` runs every build. It came from a **generator**
-> rendering an empty column: validate a generator's inputs.
+> value and die on **that** statement's `=`. A bare trailing `=` is legal continuation that retail
+> `global/MountGunOrPlantCharge.scr` relies on - fatal only when the next code line is itself an
+> assignment. `docs/tools/check_empty_rhs.py` runs every build. It came from a **generator** rendering an
+> empty column: validate a generator's inputs.
 >
 > **All three scanners pass a file that cannot compile** - they check brace depth, line shape and string
-> termination, not *expression* syntax; `println "a" + x + "b"` without parens is `unexpected TOKEN_PLUS`,
-> kills the file, and scans clean (bug-1751). **Not verified until a server has loaded the map and the log
-> shows no `parse error`.**
+> termination, not *expression* syntax; `println "a" + x + "b"` without parens kills the file and scans
+> clean (bug-1751). **Not verified until a server has loaded the map and the log shows no `parse error`.**
 
 **Run all three — they catch disjoint classes:**
 
@@ -59,22 +99,16 @@ entire file and the map runs with no script at all - raw team menu, unstartable.
 The log names only the **first** offending line - bug-1283 had two multi-line strings in one file and
 fixing the reported one would have left it equally dead. **Fix the class, not the line.**
 
-| Confirmed trigger | Bug |
-|---|---|
-| Command syntax on an `EV_GETTER` property (`local.e getmins`) — must use property syntax | 910 |
-| A script command a sub-agent invented (`userinfo`, `getcurrentdmweapontype`) | 298, 1067 |
-| A function call inside a vector literal, or with one in the same expression | 348, 402 |
-| Negatives/arithmetic: parenthesised `(-1)`, or in a COMMAND ARG slot — `$ent coopammo 0 - 1`. Compute to a local. **But** negative *vector components* are fine: `( 4016 0 - 967 0 - 328 )` == `( 4016 -967 -328 )`. | 1069, 1826, 1830 |
-| An empty-array literal `[]` — morlang has none | 1105 |
-| An unquoted `+`/`-` directive argument: `surface X -nodraw`, `surface X "+skin1"` — valid TIKI syntax, fatal in script (`unexpected TOKEN_PLUS`), **quote it**. Braces balance, so the depth scan misses it. | 533, 1308 |
-| A leading `&&` or `\|\|` on a continuation line | 739/750 |
-| A real newline inside a string literal — from a generator, or a hand-typed banner | 331, 962, 1283, 1285 |
-| A backslash in a script path (resolved to `coop_modhelmet.scr`) | 1205 |
-| Em-dash, UTF-8 BOM, any non-ASCII; duplicate label; label/brace mismatch | (CLAUDE.md) |
+**The 11 confirmed triggers are tabulated in
+[`archive/traps-t1-triggers.md`](archive/traps-t1-triggers.md)** - read it before writing `.scr`. The four
+that recur most: **command syntax on an `EV_GETTER`** (must use property syntax); **a parenthesised
+negative `(-1)` or a bare negative in a COMMAND ARG slot** (compute to a local - but negative *vector
+components* are fine); **an unquoted `+`/`-` directive argument** such as `surface X -nodraw` (valid TIKI,
+fatal in script, and braces still balance so the depth scan misses it); and **a real newline inside a
+string literal**, usually from a generator.
 
-**NOT a parse killer, contrary to an older note:** `spawn <class>` **with** inline keyvalues is fine - 192
-working occurrences including `main.scr`. `KNOWN_WORKING_STATE.md` still forbids it and is wrong; see
-[90-folklore.md](90-folklore.md).
+**NOT a parse killer:** `spawn <class>` **with** inline keyvalues is fine (192 working occurrences incl.
+`main.scr`). `KNOWN_WORKING_STATE.md` still forbids it and is wrong - see [90-folklore.md](90-folklore.md).
 
 1. **`developer 1` is mandatory** - compile errors are developer-gated at `fgame/scriptthread.cpp:2858`,
    `:2869`, `:2883`; without it the failure is *completely* silent.
@@ -84,8 +118,6 @@ working occurrences including `main.scr`. `KNOWN_WORKING_STATE.md` still forbids
 3. Scanners live in `docs/tools/` (`depthscan2.py`, `linecheck.py`, `quotecheck.py`, `scrlint.py`).
    Verify any claimed script command against engine source **before** it lands.
 
-**Live status:** clean (re-scans 2026-07-29, 2026-08-08); bug-1027 (`e3l4/outro.scr`) has this
-signature.
 
 ---
 
@@ -144,17 +176,23 @@ shared state before calling a gate complete.** Papers had three writers and only
 `coop_busted` guard, so firing equipped papers and swallowed the trigger ("he just doesn't shoot").
 Our own tooling had it too (bug-1860): `docgen check` could never pass.
 
+**⭐ The same shape at the FIX end: a repair applied to one member of a set nobody enumerated.**
+**Name the set a fix belongs to and check every member.** Three flavours, one sweep
+(bugs 2171/2172/2175, 2026-08-30): a **pair** (one half of a client/server pair
+flipped on), a **list** (three of nine stomping cfg lines commented out), a **direction** (a guard
+added to one side of a two-way HUD conflict). Tell for the pair: **a cvar seeded in no cfg has no
+default but the one in code, so two `Cvar_Get` calls with different defaults ARE the bug.**
+
 **⭐ Our own guard disabled the retail mechanism**, twice in one day (bugs 1671, 1669). **Ask what
 the vanilla mechanism already is before adding a guard**, and when a user says "this is how vanilla
 handles it", read the ENTITY, not the scripts around it - m2l2a's `$naxos` carries `spawnflags 128`
 (`TRIGGER_DAMAGE`), so *shooting it* is how retail completes that objective, and our stealth
 workaround opened by making it `nottriggerable`.
 
-**⭐ A guard can key on data that does not exist yet when it runs.** The scene-actor exemption tested
-`alarmthread != NIL`, but `coop_apply_personality` fires on all 55 germans **23 s before**
-`alarm_system_setup` assigns any `alarmthread` — it would have matched NOTHING and passed its own
-acceptance check vacuously. **Print the keys a heuristic depends on and confirm they are populated at
-that instant**; this is why a fix pass is instrumented first, repaired second.
+**⭐ A guard can key on data that does not exist yet when it runs.** **Print the keys a heuristic depends
+on and confirm they are populated at that instant** - the scene-actor exemption tested `alarmthread != NIL`
+23 s before anything assigns one, so it matched NOTHING while passing its own acceptance check vacuously.
+This is why a fix pass is instrumented first, repaired second.
 
 **The `waittill`-already-fired shape recurs on every remaining map.** `invalid waittill spawn for
 'Level'` reads like a warning but means "this script ran at the wrong time"; a failed `waittill` does not
@@ -165,45 +203,22 @@ oracle** - fix only sites that actually throw, per map, as each is played ([T14]
 sub-scripts absent from the mod tree: extract into `maps/<map>/`, change **only** the offending line.
 
 **A second shape: the write executes and is then overwritten.** Proving execution is necessary but not
-sufficient - prove nothing later writes the same field, and prefer the LAST write site in a render/view
-path. The dangerous variant is a misplaced write that lands somewhere real (bug-1238 moved the 3P pivot):
-silent corruption of a neighbouring feature. **Canonical case: head tracking + torso lag shipped INERT**
-(bug-2101) - `TickCoopLook` wrote the bone controllers from `ClientThink`, but
-`PmoveAdjustAngleSettings` (`bg_pmove.cpp:1622`) is their SOLE writer and rewrites all four with
-`VectorCopy` from `EndFrame`, after it. **Grep every writer of a shared per-frame field, establish who
-runs last**; the cure is a different call site, not a different value.
+sufficient - **grep every writer of a shared per-frame field and establish who runs last**, preferring the
+LAST write site in a render/view path. Head tracking + torso lag shipped INERT this way (bug-2101):
+`PmoveAdjustAngleSettings` (`bg_pmove.cpp:1622`) rewrites all four bone controllers from `EndFrame`,
+after `ClientThink` set them. The cure is a different call site, not a different value. The dangerous
+variant is a misplaced write that lands somewhere real (bug-1238 moved the 3P pivot) - silent corruption
+of a neighbouring feature.
 
 **The UI corollary - never trade a working widget for an unverified one; ADD ALONGSIDE IT.** A `.urc`
 cannot be run or diffed from here, so the only oracle is the user's screenshot (bug-1546).
 
-**A vanilla scene reachable only from a BSP `trigger_once` never runs in coop.** m3l3's `main` carries
-seven `//thread sceneN` lines "called from a trigger_once in the bsp"; scene6's one-off workaround hid
-the pattern and scene7 shipped asleep - no crews, no MG nests, an objective that could never complete.
-**Grep a map's `main` for commented-out `sceneN` threads, account for every one, guard each.**
-
-**HEADLESS CANNOT TEST A PLAYER-TIMING BUG - THE 2-PLAYER HARNESS CAN.** A bare dedicated boot has
-no clients, so any race between "player spawns" and "map does X" has no window to lose and always
-passes; three fixes shipped green headless and failed live on exactly that. **`launch_dedicated_2player.ps1
--Map <map>` + `spawn_clicker_2player.ps1` gives real players with no human in the loop** (the
-clicker joins and re-joins across map changes); then `scratchpad/rcon.py map <map>` restarts with
-both already present at t=0, the condition a listen server has. Do not ask the user to click.
-
-**BEFORE RE-ASSERTING CONTESTED STATE, PROVE THE WRITE IS A *SET*.** A one-shot write into contested
-state is a bet on ordering and this project loses it - but re-asserting onto a **toggle** is an
-oscillator, not a fix, and `notarget` is a toggle on players ([T12](#t12)). **And judge by the state
-itself, never a proxy**: five attempts were scored on `engaging`/`foeCls=Player`, both structurally blind
-to that flag (`cansee` has no `FL_NOTARGET` test, `entity.cpp:2941`; `AddPotentialEnemy` rejects only
-dead/IGNOREME, `actorenemy.cpp:280`), so an actor names a notarget'd player as `.enemy` while the engine
-refuses the attack (`actor.cpp:9150`). **A flag with no getter cannot be debugged; add the getter first.**
-
-**ONE RUN IS NOT PROOF WHEN THE BUG IS INTERMITTENT.** Two "fixed" verdicts on 2026-08-22 were single
-runs - one a log truncated 11 s before the scripted fight starts, the other a config where the suspect
-happened not to fire. Establish the *shape* of the measurement changing (`engaging 7->0` while
-`canSeePlayer` stays 9), not the number.
-
 **The cure that works:** an autonomous verification rig - its value is catching a feature that silently
 doesn't fire. And when you fix a silent-discard branch, **add the warning even though you also raised the
 limit** - `sv_snapshot.c:549-553` does.
+
+**Four more rules + their instances: [`archive/traps-t3-instances.md`](archive/traps-t3-instances.md)**
+- headless boots always pass; a flag with no getter cannot be debugged.
 
 ---
 
@@ -384,7 +399,12 @@ case: `r_ext_multisample 0` mitigates a gl2 foliage-cutout artifact that is **st
 (bug-1298), so the archived `0` stays until it closes. This section used to say gl2 was abandoned
 and the artifact fixed - **both false**, and acting on that record produced a wrong MSAA fix on
 2026-08-21. **gl2 is the renderer we ship and test on**; confirm from the qconsole banner, never
-from a doc. [T11](#t11) biting inside T7.
+from a doc. [T11](#t11) biting inside T7. **This has now bitten three times** - the 2026-08-21 MSAA fix,
+and on 2026-08-28 `autoexec.cfg` was found pinning `r_mapOverBrightBits 1` under a comment calling it
+"the engine default" for "this gl1 build": gl1 defaults to 1, **gl2 defaults to 2**
+(`renderergl2/tr_init.c:1886`), so the setting was silently halving lightmap overbright on every world
+surface. **Any cvar comment naming a renderer is suspect until re-read against that renderer's
+`tr_init.c`** - the two renderers disagree on defaults far more often than the configs assume.
 
 **The structural fix is half-built:** `coop_defaults.cfg` execs **BEFORE** the saved config, so its values
 are true defaults a menu change overrides and persists. Migration out of `autoexec.cfg` is incomplete, and
@@ -470,15 +490,17 @@ and deployed when it shouldn't have been (bug-1172 - `build.ps1` runs during a g
 pushed sandbox-only `MAX_SOUNDS 2000` / `MAX_ENTITIES 4095` / `MAX_TIKI_ALIASES 8192` binaries into the
 user's **real install**).
 
-**The exe is the usual gap.** `build.ps1` deploys the pk3s, `cgame.dll` and `renderer_opengl1.dll` -
-**not** `openmohaa.exe`, `game.dll` or `renderer_opengl2.dll`, hand-copied to the GOG root, so the
-deployed set spans several build dates and a change can be live in source, in `.cmake`, and *not* in
-the binary being run. **A "verified" claim must name which binaries were deployed and when.**
-`build.ps1` refuses to deploy while the game is running, so if you edited and did not deploy,
-everything the user tests is the PREVIOUS build and every conclusion is void. A protocol-constant
-change ships **all four** binaries; `game.pdb`/`cgame.pdb` ship beside their DLLs; back up as
-`<binary>_pre_<feature>_bak.<ext>` - that hand-run convention *is* the rollback system, with 157
-entries and **zero** for `renderer_opengl2.dll`.
+**The deploy set is complete now - verify it anyway.** This paragraph used to say `build.ps1` skipped
+`openmohaa.exe`, `game.dll` and `renderer_opengl2.dll`. It ships **all six** (both renderers and
+`omohaaded.exe` included, `build.ps1:200-215`) since bug-1796/bug-1634 - T11 biting inside T10, and the
+record was wrong for a month. While gl2 *was* missing, every renderer-side fix silently failed to reach
+the running game. **A "verified" claim must name which binaries were deployed and when, and prove it by
+hashing the deployed file against the build output** - a timestamp check misreads 12-hour times and will
+tell you a good deploy failed. `build.ps1` refuses to deploy while the game is running, so if you edited
+and did not deploy, everything the user tests is the PREVIOUS build and every conclusion is void.
+**Some changes must ship as a PAIR or they are worse than not shipping:** `bg_pmove.cpp` compiles into
+`game.dll` *and* `cgame.dll`, so a movement change in it desyncs client prediction from server truth if
+either ships alone (bug-2149); a protocol-constant change ships exe + cgame + game together.
 
 ---
 
@@ -688,22 +710,20 @@ Four shapes from the m6l1c stealth route (2026-08-11); in each the symptom point
 ## Cross-cutting: the questions to ask before "it doesn't work"
 
 1. **Did it compile?** ([T1](#t1) — `developer 1`, running-depth scan)
-2. **Did it run?** ([T3](#t3) - prove execution before tuning; check the gate cvar is seeded). And when
-   a constant becomes a cvar, **update every reader in the same pass**: `coop_aiBuffer` converted the
-   unsponge detectors but not `actorPainHandler`, still testing the literal 5000 while actors buffered to
-   the unseeded fallback 1000, so the AI pain handler detached on **every actor's first hit**, silently
-   (bug-1733) - and fixing it exposed a reader right only by accident (bug-1734).
+2. **Did it run?** ([T3](#t3) - prove execution before tuning; check the gate cvar is seeded). And when a
+   constant becomes a cvar, **update every reader in the same pass**: `coop_aiBuffer` converted the
+   unsponge detectors but not `actorPainHandler`, so the AI pain handler detached on every actor's first
+   hit, silently (bug-1733) - and fixing it exposed a reader right only by accident (bug-1734).
 3. **Is the binary I'm testing the one I built?** ([T10](#t10) — three binary states are live now)
 4. **Am I reading the record or the code?** ([T11](#t11) — the code wins; read the record to the END)
 5. **Am I guessing, or measuring?** (was T13) **BISECT FIRST - a cvar bisect beats any number of
    hypotheses** (bug-1298): turn things off one at a time until the symptom moves. Six deployed
    hypotheses on the gl2 "white distant objects" bug changed nothing; one bisect found it.
-6. **Symptom or design?** A fix producing the MIRROR IMAGE of the bug means the
-   design underneath is wrong. Prone demanded holding crouch forever to stay down; a broken standup
-   trace hid it by refusing to let anyone up, so an escape valve was added - which force-stood the
-   player a second after they let go. "Stuck prone" and "popped back to crouch" were one flaw
-   from two sides (bug-2108). **The user's phrasing often names the design**: "space or control should
-   put me back into crouch" described the INPUT MODEL, read as a trace bug twice.
+6. **Symptom or design?** A fix producing the MIRROR IMAGE of the bug means the design underneath is
+   wrong. "Stuck prone" and "popped back to crouch" were one flaw from two sides (bug-2108): an escape
+   valve added to work around a broken standup trace force-stood the player a second after they let go.
+   **The user's phrasing often names the design** - "space or control should put me back into crouch"
+   described the INPUT MODEL, and was read as a trace bug twice.
 
 ---
 
@@ -801,8 +821,7 @@ stripped base name.** (bug-1982)
 <a name="procedural"></a>
 ## Procedural view/weapon motion: four rules that have each cost a shipped regression
 
-Each cost a regression that survived review, a clean build and a deploy, and was caught only by the user
-playing.
+Each survived review, a clean build and a deploy, and was caught only by the user playing.
 
 **1. Never compute an oscillator's phase as `time * frequency`. Integrate it.**
 
@@ -810,46 +829,41 @@ playing.
 ph = cg.time * 0.001f * (4.0f + fSpeed * 0.012f);   // WRONG
 s_phase += fDt * (4.0f + fSpeed * 0.012f);          // right
 ```
-If a frequency that multiplies elapsed time changes, the phase jumps by
-`elapsed_time * delta_frequency` — and elapsed time only grows, so the defect gets worse the longer
-the map runs. Five minutes in, a walking-speed change of ONE unit displaced the footfall bob by 3.6
-radians in a single frame. Player speed changes every frame, so the bob teleported around the sine
-continuously. The idle-breathing term had the same bug keyed on health. (bug-1983)
+When a frequency multiplying elapsed time changes, the phase jumps by `elapsed * delta_frequency` -
+and elapsed only grows, so it worsens the longer the map runs. Five minutes in, a ONE-unit speed change
+displaced the footfall bob by 3.6 radians in a frame; player speed changes every frame, so the bob
+teleported around the sine continuously. Idle breathing had the same bug keyed on health. (bug-1983)
 
 **2. Never write a periodic term into a state variable that an exponential ease is tracking.**
 
-An ease of the form `x += (target - x) * k` owns `x`. Adding a sine into `x` creates a feedback loop
-with three distinct failure modes, all of which shipped at once: the ease fights the tremor as if it
-were signal; any entry gate of the form `|x| > eps` is held true BY the tremor, so it can never
-stop; and the return-to-rest snap `|x| < eps` can never fire either. Result: a permanent ~2.75 Hz
-tremor on the CAMERA that lasted until map change. Because it rode the camera it made every other
-system look broken too — the ADS transition, weapon handling, walking — which sent three separate
-diagnoses in the wrong direction before the real cause was found.
+An ease `x += (target - x) * k` OWNS `x`. Adding a sine into it fails three ways at once: the ease fights
+the tremor as signal; an entry gate `|x| > eps` is held true BY the tremor so it never stops; and the
+return-to-rest snap `|x| < eps` never fires. Result: a permanent ~2.75 Hz CAMERA tremor lasting until map
+change - and because it rode the camera it made ADS, weapon handling and walking all look broken, sending
+three diagnoses the wrong way first.
 
 **The fix pattern for both:** separate STATE from OUTPUT. Ease only an *amplitude*; recompute the
 oscillation statelessly at apply time from fixed frequencies. Gate on an external condition (is the
-animation live?), never on the magnitude of the value the oscillator itself is feeding. (bug-1984)
+animation live?), never on the magnitude of the value the oscillator itself feeds. (bug-1984)
 
-**3. A cap expressed as a multiple of the thing it caps is not a cap.** The sustained-fire recoil
-ceiling was `6 x the per-shot kick`, so it scaled with every factor the kick scaled with and reached
-6.1 units on an MG — half of it straight back into the near plane, which put the gun through the
-camera. Ceilings on a physical displacement belong in world units, and a component that can reach
-the eye needs its own saturation separate from the total. (bug-1985)
+**3. A cap expressed as a multiple of the thing it caps is not a cap.** The sustained-fire recoil ceiling
+was `6 x the per-shot kick`, so it scaled with every factor the kick did and reached 6.1u on an MG - half
+of it straight back into the near plane, putting the gun through the camera. **Ceilings on a physical
+displacement belong in world units**, and a component that can reach the eye needs its own saturation
+separate from the total. (bug-1985)
 
-**4. A shared budget that uniformly scales its members makes every control inside it non-linear,
-and past saturation, INERT.** The viewmodel feel budget clamps the summed offset to 9u and scales
-every layer to fit. The idle inspect wrote raise/pull/centre into it without registering as an
-authored stow, asking ~9.4u by itself while sharing the 9u with breathing, sway, bob and mass lag.
-Turning `coop_inspectCentre` UP raised the total length, raised the scale-down factor, and cancelled
-the gain - the user correctly reported the control did nothing. **When a user says "adjusting X has
-no effect", suspect a clamp before suspecting the value.** A deliberate large pose must be
-registered in the budget's exemption (`s_vFeelExempt`) as the medkit stow, collision retract and
-DBNO eye drop already were. Exempt only what must be large: the inspect's rearward pull stays inside
-the budget because the 4u rear cap guards against a long gun reaching the near clip plane. (bug-2016)
+**4. A shared budget that uniformly scales its members makes every control inside it non-linear, and past
+saturation, INERT.** The viewmodel feel budget clamps the summed offset to 9u and scales every layer to
+fit. The idle inspect wrote raise/pull/centre into it without registering as an authored stow, asking
+~9.4u by itself while sharing 9u with breathing, sway, bob and mass lag. Turning `coop_inspectCentre` UP
+raised the total, raised the scale-down factor and cancelled the gain - the control genuinely did nothing.
+**When a user says "adjusting X has no effect", suspect a clamp before suspecting the value.** A
+deliberate large pose must be registered in the budget's exemption (`s_vFeelExempt`), as the medkit stow,
+collision retract and DBNO eye drop already are. Exempt only what must be large. (bug-2016)
 
 **Related, same family:** the reverted ragdoll torso-twist limit (bug-1981) pumped rotational energy
-because a correction moved `pt` without `ptPrev` — in Verlet, velocity IS `pt - ptPrev`, so moving a
-point alone injects velocity. Same underlying error: mutating state that another integrator owns.
+because a correction moved `pt` without `ptPrev` - in Verlet, velocity IS `pt - ptPrev`. Same underlying
+error: mutating state another integrator owns.
 
 ## Writing `.health` directly bypasses EVERY piece of damage feedback
 

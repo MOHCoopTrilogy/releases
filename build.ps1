@@ -158,6 +158,16 @@ foreach ($destDir in @($deployDir, $appDataDir)) {
         Remove-Item $mono -Force -Confirm:$false
         Write-Host "  Retired old monolith -> $mono"
     }
+    # [2026-08-28] The CC0 terrain replacement pak. Built out-of-band by
+    # docs/tools/build_terrain_pack.py (it downloads from ambientCG), so it is copied rather than
+    # repacked here. THE NAME IS LOAD-BEARING: paks sort alphabetically and the LAST one wins, and the
+    # HD packs reach zzzzzzzz_hd_seamfix (eight z). Nine beats it. Rename this below that and the
+    # AI-upscaled ground silently wins again with no error anywhere.
+    $terrainPak = Join-Path $srcDir 'zzzzzzzzz_coop_terrain.pk3'
+    if (Test-Path $terrainPak) {
+        Copy-Item -Path $terrainPak -Destination (Join-Path $destDir 'zzzzzzzzz_coop_terrain.pk3') -Force
+        Write-Host "  Deployed terrain pak -> $destDir"
+    }
     Write-Host "  Deployed 3 pk3s -> $destDir"
 }
 

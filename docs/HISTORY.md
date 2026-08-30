@@ -236,3 +236,4 @@ source is not corroboration, and the expensive fix refuted by measurement — no
   substituted alias left the clip empty and locked the player out of firing. Final approach runs the real
   animation at zero torso render weight, leaving the duration bit-for-bit unchanged. Enemies that walk up
   and stand there remain OPEN: notarget and count-scaling replicas both ruled out by measurement.
+- 2026-08-27: Gun bracing shipped (automatic surface support: spread/recoil/sway/lag/stress damping, procedural crosshair pip, local thunk). Prone/supine geometry corrected - the supine body yaw target was view+180 on a false premise and cancelled to a no-op.

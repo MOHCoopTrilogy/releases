@@ -9,6 +9,32 @@ Anchors are bug ids or `file:line`. Cvars listed are the ones you would actually
 > nobody wrote it down; the record cannot tell the two apart. See
 > [SOURCE_OF_TRUTH.md § Confidence](SOURCE_OF_TRUTH.md#7-confidence).
 
+## Gun Bracing (weapon mounting) - SHIPPED 2026-08-27, UNTESTED IN PLAY
+
+When the gun is physically supported by geometry the shot tightens and the weapon settles.
+AUTOMATIC (no bind, `coop_brace 0` opts out), buff-only - it never blocks firing.
+
+Three supports, cheapest first: cover-peek (free, reuses cover's own validated geometry);
+lean at a corner past 22 deg PLUS a confirming trace (never lean alone - vanilla lean does no
+geometry test, so raw lean would grant free accuracy in an open field); and a muzzle-support
+trace for the sills/crates/sandbags/fences cover never claims (support must HIT below the gun
+line while the eye line stays CLEAR - you brace on what you can shoot OVER).
+
+Effects scale on an eased 0..1 envelope (rise 6/s, fall 3/s - the ramp IS the settle): spread
+x0.5, recoil x0.6, view-shove x0.5, ADS sway x0.35, weapon-lag gain x0.4 (damped, never frozen),
+suppression-stress x0.7. Stacks with crouch (0.40 of base spread) but stays behind prone's 0.35,
+so the stance ladder keeps its order; prone and blindfire never brace.
+
+Gated on stillness (20 u/s in, 35 out), ground, and the usual dead/vehicle/turret/ladder list.
+Enter dwell 0.25s, exit grace 0.35s - small enter threshold, generous exit.
+
+Feedback: a local-only rest thunk on the rising edge (synthesized, `sound/coop_brace/`), the
+sway dying (the strongest tell), and a crosshair pip drawn PROCEDURALLY - filled rects scaled off
+screen height, so it is pixel-sharp at any resolution instead of a texture resampled soft.
+
+Transport: `coop_braceView` 0-100 change-only stufftext (all pm_flags bits are allocated), so no
+protocol or exe change. game.dll + cgame.dll + pk3 ship together (the stress dampers are twins).
+
 ## Domain index
 
 [Core coop](#core) · [AI](#ai) · [Player movement & combat](#movement) · [Camera](#camera) ·
@@ -1059,84 +1085,58 @@ the GOG dir. *Anchor:* bug-330.
 
 ---
 
-## Low-health limp (2026-08-02)
+## Inert-feature sweep - six built-but-never-running systems (2026-08-30)
 
-**`SHIPPED`, awaiting playtest verdict.** *"when the player gets really low health they should start
-playing the same limp animation the actors do, and you should see the limp in first person (camera
-should imitate that as you move)."*
+`SHIPPED, UNTESTED IN PLAY`. Bugs 2176-2182. Six features built, logged as done and never executed.
+**Only two were fixed by turning them on**; "seed the gate cvar" was the wrong answer four times
+out of six.
 
-Below `coop_limpStart` (0.30) of `max_health`, on the ground, not dead/downed/vehicle/turret:
+- **MP voice-command wheel** - `SHIPPED`. Silent on every campaign map of all three games, from TWO
+  independent causes: all 230 aliases (`uberdialog.scr:31116-31419`) carried retail's deathmatch-only
+  map scope, and V - retail's only `instamsg_main` key - was taken by the bash at `autoexec.cfg:980`.
+  Fixed with the `always` keyword (the real load guarantee, honoured by both `RegisterAlias` and
+  `ClientGameCommandManager::Alias`, and the only thing that covers custom maps) plus `bind x`.
+- **Teammate radar** - `SHIPPED`. `SV_PackNonPVSClient` normalised the teammate delta to a UNIT
+  vector, so every out-of-PVS mate arrived at exactly `com_radar_range` and drew pinned to the rim:
+  the radar was direction-only for the one case it exists to cover. Packer now clamps instead.
+  Range 1024 -> 6144 seeded from `server.scr` (the cvar is `CVAR_SYSTEMINFO`, and the saved config
+  beats `coop_defaults.cfg`). The packer fix helps every team gametype, not just coop.
+- **Objective bonus drop** - `SHIPPED`. Disabled since 2026-07-01 by a comment describing a defect
+  that was fixed *in the same commit*. Re-enabled, plus nine coordinates derived from BSP entity
+  dumps (was one), a ground snap that places nothing rather than burying the pickup, and the glow
+  beacon the binoc half was missing - without which it would have shipped half-inert.
+- **Bounding overwatch** (`coop_aiBound`) - `SHIPPED`, re-architected first. Its gate sat in
+  SP/SH/BT-shared `State_Cover_Shoot` while permissions came from a german-only script, so enabling
+  it globally would have pinned single-player and allied actors. Now gates on squad-brain
+  **ownership** (`m_iCoopBoundOwnedUntil`), fail-open by construction. ⚠️ **Measured effect is ~3.5%
+  fewer repositions, not the "half the cluster" its own comments claim** - a de-synchroniser, not a
+  tactic; the relocation period is 12 s while the brain ticks every 1.7 s.
+- **Aggressive advance** (`coop_aiAggrMove`) - **DELETED, no replacement.** It would have issued the
+  same `runto` bug-1812 measured stalling 85% of the time, and worse for `aggr` (the only role still
+  on native `THINK_TURRET`). The obvious substitute - lowering `coop_aiChargeRange` - was designed
+  and rejected: engine-wide, no role gate, and its only safety argument is a leash bug-2100 already
+  recorded as no bound at all. Replaced with telemetry (`aggrMove` / `aggrStatic` / `aggrCover` on
+  the `AIBEHAV` line) so the next attempt starts from measurement.
+- **Stealth arm-on-hurt** (`coop_stealthArmOnHurt`) - **DELETED.** No caller for its whole life, yet
+  bug-1674 diagnosed a race through it and bug-1676 shipped a fix into it. Wiring it to e1l3, the one
+  uncovered map, would have zeroed `level.papers` and made the escape **unwinnable**.
 
-- **Server is the single authority.** `Player::TickLimp` sets `m_bCoopLimping` and stuffs
-  `coop_limpView` to the owning client **on change only**. The client never re-derives a threshold —
-  so `coop_limp 0` on a server genuinely disables it everywhere, not just the body.
-- **Health signal is `health / max_health`.** Deliberately NOT a peak-health tracker: `healthonly`
-  clamps to `max_health` (`entity.cpp`), so DBNO's `9999` can never inflate a peak — see bug-1290 for
-  the audit that wrongly claimed otherwise.
-- **3P body**: four `LIMP_FORWARD/BACKWARD/LEFT/RIGHT` states built from the real `WALK_*` legs
-  blocks. Row order carries the design — **every armed class** gets `rifle_run_injured` (retail's only
-  armed injured cycle), unarmed gets the full directional `walk_injured_*` set. The unarmed clip must
-  never drive an armed player: a STAND torso takes its animation *from* the legs
-  (`player_Torso.st:19-21`), so it would strip weapon posture.
-- **Directional aliases fixed**: `walk_injured_back/_left/_right` all pointed at the **forward** clip;
-  the real directional `.skc` files ship in retail `Pak0` and were simply never referenced.
-- **FP camera** modulates the *existing* bob rather than adding an oscillator. The vertical term's
-  `fabs()` gives it one lobe per footstep, so `sign(sin(phase-0.94))` **is** foot parity — one foot's
-  dip deepens, the other's shallows, continuously. Plus amplitude-scaled ADS-damped roll and uneven
-  step timing. Placed before the `MASK_PLAYERSOLID` traces so a deep dip cannot punch the eye through
-  a floor.
-- **Speed**: `coop_limpSpeedMult` 0.60 applied *after* the whole multiplier chain as a scale (mid-chain
-  it would be overwritten by Alt-walk then re-scaled by `sv_dmspeedmult`). Never freezes — floored at
-  `coop_limpMinFrac` 0.35 of run speed but **capped at the pre-limp speed**, so injured is never faster
-  than healthy in the same stance. The 3P shoulder-aim floor is *scaled* by the limp mult, not skipped.
-- **Dev**: `coop_limptest <frac>` sets health without damage. ⚠️ A large single-frame drop still trips
-  DBNO, which derives damage from health deltas — step down with ~2s pauses.
+## Archived feature records (2026-08-02 to 08-07)
 
-*Anchors:* bug-1291, bug-1292. Cvars: `coop_limp`, `coop_limpStart`, `coop_limpSpeedMult`,
-`coop_limpMinFrac`, `cg_limpDepth`, `cg_limpRoll`, `cg_limpRollAds`, `cg_limpDrag`, `cg_limpCamSpeed`.
+Full write-ups moved to [`archive/features-dated-2026-08.md`](archive/features-dated-2026-08.md) on
+2026-08-30 to stay under this file's 90 KB ceiling. All four still ship; none is superseded.
 
-## AI voice nationality — Russian added, French silenced (2026-08-02)
-
-**`SHIPPED`, awaiting playtest.** *"we should never have any actors/reinforcements speaking the wrong
-language."* Audited **all 1481 shipped human tiks** rather than the 111 the scripts name. Result:
-American/British/German/Italian detection was already complete — every `allied_uk_*` caught by `_uk_`,
-every `sc_al_brit_*` by `brit`. Only two real misroutes existed:
-
-- **5 `soviet_*` models returned `"de"`** — Russian soldiers speaking **German**. MOHAA's team enum has
-  only american/german, so Soviets fall through as german (the same reason the health exemption needed
-  a model test). Added `"ru"` inside the german branch, plus a 22-alias `coop_av_ru_*` pool across 9
-  situations drawn from the retail per-nationality **MP voice reel** (Russian is first-class there: 44
-  files in `mainta`, 61 in `maintt`). `mandown`/`reload` stay **silent** — no honest line exists, and
-  silence is this codebase's rule. `"ru"` also added to the allied CONTACT gate, which was `us||uk`.
-- **French resistance** (`allied_resistance`, `allied_misc_manon`) drew **American** lines; now return
-  `""` and stay silent, since no French reel ships.
-
-*Anchor:* bug-1288.
-
-## m1l1 loading screen — corkboard case file - 2026-08-07
-SHIPPED-VERIFIED (user confirmed in-game). Replaces the stock two-tile aerial-recon TGA pair with a single BSP-rendered
-composite: the aerial recon photo (officer position marked), a clean retypeset of the vanilla m1l1
-OSS briefing letter (Col. Stanley Hargrove, found orphaned at `textures/mohmenu/levelbriefing/`,
-never wired to any live menu), and 3 photos pulled from the stock `briefing1` slideshow (Torch map,
-Grillo's dossier photo, terrain, pill), pinned together with a red string on a corkboard. Single
-2048x2048 POT texture via the new `coop_load_m1l1` shader (`scripts/coop_loadscreens.shader`) — see
-[DECISIONS.md § Loading screens](DECISIONS.md#loading-screens--single-pot-texture-new-work-only)
-for why this replaces the old tile convention. Render pipeline: `_research/maprender/` (BSP extract
-+ procedural recon-photo render), generator scripts for the letter/composite are scratch-only so
-far, not yet copied into the repo.
-
-## Coverage sweep (covtrace + covwalk) - 2026-08-05
-Answer to "our trilogy sweeps missed a lot": absence doesn't log, so the sweep is now
-coverage-driven. Engine (game.dll, coop_covtrace 1): one `^~^~^ COV` line per committed trigger
-fire (volume centroid + targetname), per sound alias PLAY and per alias MISS, and per maps/*
-label thread start. Static side: `_research/cov_manifests.json` (1,773 triggers across 30 BSPs)
-+ generated `maps/cov/<map>_walk.scr` lists. `coop_maptest 3` = Phase 3: the rotation tick
-teleports every connected player round-robin through every trigger volume, then advances.
-`coop_covwalk_force 1` additionally direct-fires named triggers (chaotic - throwaway runs only).
-Report: `python _research/cov_report.py` -> `_research/cov_report.md` (never-fired triggers per
-map, runtime-confirmed dead aliases, labels run). Static layer 1 results:
-`scratchpad dead_aliases_confirmed.json` - 170 dead alias refs on 43 maps, families
-(bombtick/plantbomb/pickup_papers/door_locked) look retail-dead = restorable content.
+- **Low-health limp** (08-02) - `SHIPPED`, awaiting playtest. Below `coop_limpStart` (0.30) of
+  `max_health` the player limps in 3P and the camera imitates it in 1P. Server is sole authority
+  (`Player::TickLimp` stuffs `coop_limpView` on change only), so `coop_limp 0` disables it everywhere.
+- **AI voice nationality** (08-02) - `SHIPPED`, awaiting playtest. Audited all 1481 shipped human
+  tiks; added `"ru"` for 5 `soviet_*` models that had been speaking German, plus a 22-alias
+  `coop_av_ru_*` pool. French silenced.
+- **Coverage sweep, covtrace + covwalk** (08-05) - absence does not log, so sweeps are now
+  coverage-driven. `coop_covtrace 1` emits one `^~^~^ COV` line per trigger fire / sound alias /
+  label thread; `coop_maptest 3` teleports players through all 1,773 catalogued trigger volumes.
+- **m1l1 corkboard loading screen** (08-07) - `SHIPPED-VERIFIED` in game. Single 2048x2048 POT
+  composite (recon photo, retypeset OSS briefing letter, pinned photos) via `coop_load_m1l1`.
 
 ## m2l2a Phase C - the player-initiated CONTAIN (2026-08-10) - SHIPPED, partly verified
 

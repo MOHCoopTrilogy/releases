@@ -13,27 +13,31 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `036161c 2026-08-24 docs: MOH Trilogy Coop naming preference` |
-| commits | 186 |
+| HEAD | `40d6451 2026-08-26 fix: grenade kick vs German grenades, DBNO camera, per-variant unlocks, prone reload` |
+| commits | 190 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **6 modified, 2 untracked** |
-| unstaged diff | 6 files changed, 229 insertions(+), 183 deletions(-) |
+| **uncommitted** | **7 modified, 5 untracked** |
+| unstaged diff | 7 files changed, 326 insertions(+), 218 deletions(-) |
 
-> Working tree is dirty. Everything in those 8 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 12 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 132 |
+| 2026-08 | 136 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (186)
+### Commits since 2026-01-01 (190)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `40d6451` | 2026-08-26 | joncurry94-tech | fix: grenade kick vs German grenades, DBNO camera, per-variant unlocks, prone reload |
+| `9be284f` | 2026-08-26 | joncurry94-tech | docs: v1.4.5 released |
+| `0cc504e` | 2026-08-26 | joncurry94-tech | manifest 1.4.5 |
+| `b25bef8` | 2026-08-26 | joncurry94-tech | prone: fix crawl, exit model, ADS speed; stress drives weapon spread |
 | `036161c` | 2026-08-24 | joncurry94-tech | docs: MOH Trilogy Coop naming preference |
 | `3ad5aec` | 2026-08-24 | joncurry94-tech | manifest 1.4.4 |
 | `ec51766` | 2026-08-23 | joncurry94-tech | manifest 1.4.3 |
@@ -229,10 +233,10 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | HEAD | `5a6507c 2026-08-24 docs: v1.4.4 Discord announcement posted (archived)` |
 | commits | 1,576 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **8 modified, 0 untracked** |
-| unstaged diff | 8 files changed, 436 insertions(+), 5 deletions(-) |
+| **uncommitted** | **38 modified, 43 untracked** |
+| unstaged diff | 38 files changed, 12981 insertions(+), 3863 deletions(-) |
 
-> Working tree is dirty. Everything in those 8 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 81 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
@@ -518,10 +522,10 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | HEAD | `d77779da 2026-08-24 coop v1.4.4: 3-bit per-surface skin index for armory gloves; MAX_TIKI_LOAD_SHADERS fix (hang); gore exemptions; cover frame reconcile; coop_coverType` |
 | commits | 5,081 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **14 modified, 0 untracked** |
-| unstaged diff | 14 files changed, 1350 insertions(+), 32 deletions(-) |
+| **uncommitted** | **33 modified, 0 untracked** |
+| unstaged diff | 33 files changed, 5661 insertions(+), 232 deletions(-) |
 
-> Working tree is dirty. Everything in those 14 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 33 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 

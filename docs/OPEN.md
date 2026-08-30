@@ -62,6 +62,11 @@ that does not exist.
 | ~~Squad morale break~~ | `coop_moraleEnable` | `main.scr:257` | **NOW SEEDED** - autoexec.cfg:594 |
 | ~~Tactical retreat~~ | `coop_retreatEnable` | `wounded.scr` | **NOW SEEDED** - autoexec.cfg:596 |
 | Last-known search sweep | `coop_aiSearch` | `aisquad.scr:226` | was the ONLY one still unseeded - seeded 2026-08-17, **never run before that** |
+| ~~Bounding overwatch~~ | `coop_aiBound` | `aisquad.scr:112`, `actor_cover.cpp:511` | **CLOSED 2026-08-30, bug-2181** - re-gated on squad-brain OWNERSHIP, not the cvar, then seeded |
+| ~~Aggressive advance~~ | `coop_aiAggrMove` | `aimaneuver.scr:113` | **DELETED 2026-08-30, bug-2180** - would have issued the runto bug-1812 measured stalling 85% of the time |
+| ~~Objective bonus drop~~ | *(commented hook)* | `main.scr:178` | **CLOSED 2026-08-30, bug-2179** - blocker comment described a draft fixed in the same commit |
+| ~~MP voice-command wheel~~ | *(alias map scope)* | `uberdialog.scr:31116` | **CLOSED 2026-08-30, bug-2176** - DM-only scope AND V taken by the bash; both had to be fixed |
+| ~~Stealth arm-on-hurt~~ | *(no caller)* | `itemhandler.scr:1590` | **DELETED 2026-08-30, bug-2178** - wiring it to e1l3 would have made that map unwinnable |
 
 **[2026-08-17] This table was stale.** Four of the five had since been seeded (engine pre-registration
 and autoexec), leaving only `coop_aiSearch` genuinely dead - which is exactly the failure mode the
@@ -77,6 +82,16 @@ has never run for a player. See [TRAPS.md § T15](TRAPS.md#t15).
 
 **Decision needed:** for each, either seed a deliberate default in `coop_defaults.cfg`, or document it
 as opt-in. Right now the shipped behaviour is whatever a fallback branch happens to do.
+
+**[2026-08-30] Five more closed in one sweep (bugs 2176-2181), and the lesson is that "seed the cvar"
+was the right answer for only ONE of them.** Two were deleted instead of enabled, because enabling
+them was actively harmful: `coop_aiAggrMove` would have shipped a twice-user-reported defect
+(bug-2100) as behaviour, and wiring the stealth watchdog to e1l3 would have zeroed `level.papers` and
+made the escape unwinnable. One (`coop_aiBound`) needed re-architecting before it could be turned on
+at all, because its gate sat in SP/SH/BT-shared code while its permissions came from a german-only
+script. **Residuals:** each objective-drop pickup is a `SOLID_BBOX` obstruction until taken; and
+`coop_aiBound`'s measured effect is ~3.5% fewer repositions, not the "half the cluster" its own
+comments claimed - a de-synchroniser, not a tactic.
 
 ---
 
@@ -280,9 +295,16 @@ form and has never been checked.
 
 bug-1680. It owns 135-142 (header 135, lines **computed** `136 + local.line`), overlapping the DBNO
 team-revive channel (135-140) and the XP micro popup (142-144). All three are mission-time and can
-co-display. Not fixed: rewriting a widget that currently works is a blind bet with no oracle
-(TRAPS T3 UI corollary). Moving the toast into the menu-only 216-249 range would fix it and return
-eight fade-exempt slots — **the ≥100 band is now completely full.**
+co-display. Not fixed by relocation: rewriting a widget that currently works is a blind bet with no
+oracle (TRAPS T3 UI corollary). Moving the toast into the menu-only 216-249 range would fix it
+properly and return eight fade-exempt slots — **the ≥100 band is now completely full.**
+
+✅ **The DBNO half is closed both ways as of 2026-08-30 (bug-2175).** The original fix only made the
+toast WAIT for a player who was already down; a player who went down *while* the toast was up still
+had the revive prompt and both bars zeroed by its unconditional teardown, and `local.shown` is a
+latch so nothing ever redrew them — blank HUD for a 90-second bleed-out. `dbno.scr` now watches
+`level.coop_objToastBusy` and clears the latch on its falling edge, so the worst case is a 0.1s
+flicker. **Still open: the XP micro popup (142-144), which has no such re-assert.**
 
 ### Second vehicle-crew spawn path on t2l2 / t3l2 still unguarded
 `OPEN` · *`_research/coop_2player_sweep.md` residual list* — the `vehicles_thinkers.scr` NIL-crew guard
@@ -523,19 +545,20 @@ worth citing belongs in `docs/tools/` or `scratchpad/` with a note here.
 
 ## Config
 
-### Nine post-FX cvars are menu-wired AND force-reset by `autoexec.cfg` every launch
-`OPEN` · *`autoexec.cfg` lines 661, 662, 663, 669, 670, 705, 713, 714, 729 vs `ui/coop_postfx.urc` + `ui/coop_postfx2.urc`*
+### Nine post-FX cvars were menu-wired AND force-reset by `autoexec.cfg` every launch
+`FIXED 2026-08-30` · bug-2172 · *all nine now commented out in `autoexec.cfg`; seeds live in `coop_defaults.cfg`*
 
-`r_ppLowHealthStart`, `r_ppLowHealthAmount`, `r_ppLowHealthBeat`, `r_ppSharpen`, `r_ppSharpenAmount`,
-`r_ppHeatAmount`, `r_ppRainDrops`, `r_ppRainAmount`, `r_ppMuzzleRadius`. Because `autoexec.cfg` execs
-**after** the saved config, a player's menu change is wiped on every launch. **Fix: move these nine to
-`coop_defaults.cfg`.** The other 4 `r_pp*` lines in `autoexec.cfg` (`MuzzleX`, `MuzzleY`,
-`SunShaftDecay`, `SunShaftThreshold`) are correctly non-menu and can stay.
+`autoexec.cfg` execs **after** the saved config (`common.c:1864`) while `coop_defaults.cfg` execs
+**before** it, so a `seta` in autoexec re-forced the default every launch and wiped the player's slider.
+`r_ppLowHealthStart/Amount/Beat` were fixed earlier; the six left behind (`r_ppSharpen`,
+`r_ppSharpenAmount`, `r_ppHeatAmount`, `r_ppRainDrops`, `r_ppRainAmount`, `r_ppMuzzleRadius`) are now
+commented out too. The other 4 `r_pp*` lines (`MuzzleX`, `MuzzleY`, `SunShaftDecay`,
+`SunShaftThreshold`) are correctly non-menu and stay.
 
-⭐ Good news: the two files are **strictly disjoint** — a `comm -12` on their `seta <name>` token sets
-returns empty. There is zero double-seeding, so they never fight. The only defect is which **side** of
-the saved config a cvar sits on. Current counts: `autoexec.cfg` has 179 `seta coop_*` and 13
-`seta r_pp*`.
+⚠ **The old "strictly disjoint / zero double-seeding" note here was WRONG** — a `comm -12` on the two
+files' `seta` token sets returns **17 shared names**, and `r_ppSharpenAmount` conflicted outright
+(`coop_defaults` 0.779370 vs autoexec 0.35). Re-run that `comm` before trusting any disjointness claim;
+the remaining 11 shared names are not yet triaged.
 
 ### 144 `coop_*` cvars are seeded nowhere
 `OPEN` · For those, `getcvar` returns `""` on a clean profile and a script fallback branch silently
