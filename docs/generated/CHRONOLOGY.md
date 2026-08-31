@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `db5da8b 2026-08-30 docs: point the installer download table at v1.4.6` |
-| commits | 195 |
+| HEAD | `653eead 2026-08-30 docs: regenerate after the v1.4.6 installer publish` |
+| commits | 196 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 141 |
+| 2026-08 | 142 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (195)
+### Commits since 2026-01-01 (196)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `653eead` | 2026-08-30 | joncurry94-tech | docs: regenerate after the v1.4.6 installer publish |
 | `db5da8b` | 2026-08-30 | joncurry94-tech | docs: point the installer download table at v1.4.6 |
 | `69a71e9` | 2026-08-30 | joncurry94-tech | docs: regenerate after v1.4.6 (bug-2183 truck texture investigation) |
 | `350532b` | 2026-08-30 | joncurry94-tech | manifest 1.4.6 |
