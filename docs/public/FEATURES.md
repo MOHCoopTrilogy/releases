@@ -6,11 +6,11 @@
 
 Every system built for the trilogy coop mod, grouped by domain. Generated from the project's own feature record, so it stays in step with what is actually in the build - including the parts that are shipped but not yet confirmed in play.
 
-**154 systems** across **18 domains**.
+**156 systems** across **17 domains**.
 
 | Status | Count |
 |---|---:|
-| shipped, not yet confirmed in play | 66 |
+| shipped, not yet confirmed in play | 71 |
 | shipped, confirmed working in play | 30 |
 | planned | 8 |
 | open | 5 |
@@ -61,6 +61,11 @@ Every system built for the trilogy coop mod, grouped by domain. Generated from t
 
 | System | Status | What it does |
 |---|---|---|
+| **Composure/stress scalar + perturbation** | shipped, not yet confirmed in play | CoopWFeelStress() 0..1 from |
+| **Sprint-to-slide** | shipped, not yet confirmed in play | (2026-08-24). |
+| **Quick grenade** | shipped, not yet confirmed in play | (2026-08-24). |
+| **Hit flinch** | shipped, not yet confirmed in play | The view weapon jolts when you are hit, along the |
+| **Directional damage ROLL restored** | shipped, not yet confirmed in play | (bug-2092). |
 | **Sprint / walk / stamina** | shipped, not yet confirmed in play | (game *feel* unverified). |
 | **ADS on its own button + bash restored** | shipped, not yet confirmed in play | ADS moved off secondary-fire onto |
 | **ADS iron-sight port + per-gun tune table** | shipped, confirmed working in play | (user dialled 45 guns by hand). |
@@ -217,9 +222,7 @@ Every system built for the trilogy coop mod, grouped by domain. Generated from t
 
 | System | Status | What it does |
 |---|---|---|
-| **Map-rotation test harness** | shipped, confirmed working in play | coop_maptest 1 = load-time smoke test across the |
-| **⭐ Maps MUST be loaded the real coop way** |  | (set ui_dmmap <m> + exec start_server.cfg / |
-| **⭐ Crash gotcha:** |  | G_ArchivePersistant Com_Errors on non-empty coop game.* vars **if |
+| **Map-rotation test harness** | shipped, confirmed working in play | coop_maptest 1 = load-time smoke test, 2 = |
 | **Regression harness** | shipped, confirmed working in play | (produced bugs 1218–1220 on 2026-07-29). |
 | **Autonomous combat-verification rig** | shipped, confirmed working in play | coop_botInput 1 injects the HOST |
 | **Coop self-test suite** | shipped, not yet confirmed in play | , undocumented in every index. |
@@ -236,17 +239,11 @@ Every system built for the trilogy coop mod, grouped by domain. Generated from t
 | **NAT hole-punch rendezvous, Phase 1** | shipped, not yet confirmed in play | (signaling verified end-to-end locally; |
 | **Dedicated server on bare DM maps** | open | game.dll crashes loading non-coop maps |
 
-## Low-health limp (2026-08-02)
+## Inert-feature sweep - six built-but-never-running systems (2026-08-30)
 
 | System | Status | What it does |
 |---|---|---|
-| **`SHIPPED`, awaiting playtest verdict.** |  | *"when the player gets really low health they should start |
-
-## AI voice nationality — Russian added, French silenced (2026-08-02)
-
-| System | Status | What it does |
-|---|---|---|
-| **`SHIPPED`, awaiting playtest.** |  | *"we should never have any actors/reinforcements speaking the wrong |
+| **Only two were fixed by turning them on** |  | ; "seed the gate cvar" was the wrong answer four times |
 
 ## m2l2a Phase C - the player-initiated CONTAIN (2026-08-10) - SHIPPED, partly verified
 

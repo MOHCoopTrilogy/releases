@@ -6,7 +6,7 @@
 
 Everything you can earn, and exactly what earns it. Nothing here is bought or random - every unlock is attached to a specific challenge, and completing that challenge grants it.
 
-**237 unlocks** across 5 kinds. Unlock names are derived from the game assets themselves, so they match what you see in the menus.
+**239 unlocks** across 5 kinds. Unlock names are derived from the game assets themselves, so they match what you see in the menus.
 
 | Kind | Unlocks | What they are |
 |---|---:|---|
@@ -150,6 +150,7 @@ Player appearances, picked in the Armory.
 
 | Unlock | Earned by | How to earn it |
 |---|---|---|
+| **34th Infantery Division Sniper** | The Better Rifle | Get 150 kills with the Johnson M1941 (Elite) |
 | **Allied 101st Captain** | Wet Behind the Ears | Complete 1 mission |
 | **Allied 101st Infantry** | To Hell and Back | Get 2500 total kills |
 | **Allied 101st Scout** | A Thousand Yards | Get 75 long-range kills |
@@ -208,9 +209,8 @@ Player appearances, picked in the Armory.
 | **Allied Us Mask** | Easy Red | Complete the Omaha Beach landing |
 | **Allied Us Tank** | Beyond the Seawall | Complete the D-Day breakout |
 | **Allied Wheathers** | Iron Coffin | Complete the U-boat pens |
-| **American Army** | The Tell-Tale Ping | Get 150 kills with the M1 Garand (Elite) |
-| **American Army** | The Better Rifle | Get 150 kills with the Johnson M1941 (Elite) |
-| **American Army** | Six for Sure | Get 90 kills with the S&W M10 .38 (Elite) |
+| **American 1st Rangers Captain** | Six for Sure | Get 90 kills with the S&W M10 .38 (Elite) |
+| **American 28th Private** | The Tell-Tale Ping | Get 150 kills with the M1 Garand (Elite) |
 | **American Army 29id** | Cheap and Deadly | Get 120 kills with the M3 Grease Gun (Elite) |
 | **American Army 29id BAR** | Slabsides Slayer | Get 120 kills with the Colt .45 (Elite) |
 | **American Army 29id Radioman** | Browning's Bruiser | Get 150 kills with the BAR (Elite) |
@@ -317,4 +317,11 @@ Gun finishes (gold, chrome, blued, camo...). Unlocking a finish TYPE makes it av
 | **TRENCH GUN** | AUTHENTIC WOOD, BLACK TACTICAL (DIRTYHARRY), CHROME TACTICAL (DIRTYHARRY), RECOIL SHOTTY (HOBBS & RECOIL), SHOTGUN (GUANSHIRE), TEAM TACTICS (LEON) |
 | **WALTHER P38** | WALTHER P38 (GUANSHIRE), TEAM TACTICS (LEON) |
 | **WEBLEY MK VI** | TEAM TACTICS (LEON) |
+
+## Other
+
+| Unlock | Earned by | How to earn it |
+|---|---|---|
+| **Glv Wool** | Frozen Fingers | Get 150 kills in snow to unlock the Wool Knit Gloves |
+| **Glv Mittens** | Steady Hands | Finish 5 missions without dying to unlock the Wool Mittens |
 

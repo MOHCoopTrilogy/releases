@@ -52,7 +52,7 @@ What is planned, in progress, or known to be broken. This is generated from the 
 
 ## Config
 
-- Nine post-FX cvars are menu-wired AND force-reset by `autoexec.cfg` every launch
+- Nine post-FX cvars were menu-wired AND force-reset by `autoexec.cfg` every launch
 - 144 `coop_*` cvars are seeded nowhere
 - The bug-595 0-byte `omconfig.cfg` decoy is still on disk
 - `build.ps1`'s `_research` exclusion is uncommitted
@@ -61,8 +61,4 @@ What is planned, in progress, or known to be broken. This is generated from the 
 
 - e3l4 AI spawner threads die on AISpawnPoint/PathNode (bug-1471, OPEN)
 - Unwired challenges: 25 still have no producer (bugs 1596-1598, OPEN)
-
-## m2l2a stealth - state after Phase A (2026-08-10)
-
-- Scripted-conversation guard sweep (TRAPS: waittill outranges its guard)
 

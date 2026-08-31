@@ -191,7 +191,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/proposals/postfx_ghost` | 3 | 0.06 MB | .md×3 |
 | `docs/proposals/research_m2l2a` | 8 | 0.25 MB | .md×8 |
 | `docs/public` | 6 | 0.08 MB | .md×6 |
-| `docs/public/fixes` | 11 | 0.79 MB | .md×11 |
+| `docs/public/fixes` | 11 | 0.89 MB | .md×11 |
 | `docs/reference` | 4 | 0.07 MB | .md×3, .txt×1 |
 | `docs/tools` | 56 | 0.53 MB | .py×52, .md×1, .cmd×1, .ps1×1 |
 | `extracted-scripts` | 5 | 0.06 MB | .scr×5 |

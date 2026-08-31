@@ -12,7 +12,7 @@ Every mission in the trilogy that has a coop script, what state it is in, and ho
 
 | Map | Coop | Script lines | Logged fixes |
 |---|---|---:|---:|
-| `m1l1` | yes | 3026 | 10 |
+| `m1l1` | yes | 3073 | 25 |
 | `m1l2a` | yes | 4601 | 5 |
 | `m1l2b` | yes | 1094 | 3 |
 | `m1l3a` | yes | 891 | 2 |
@@ -23,15 +23,15 @@ Every mission in the trilogy that has a coop script, what state it is in, and ho
 | `m2l2b` | yes | 1481 | 7 |
 | `m2l2c` | yes | 196 | 0 |
 | `m2l3` | yes | 1144 | 0 |
-| `m3l1a` | yes | 8435 | 3 |
-| `m3l1b` | yes | 3198 | 15 |
-| `m3l2` | yes | 3740 | 6 |
+| `m3l1a` | yes | 8484 | 3 |
+| `m3l1b` | yes | 3205 | 18 |
+| `m3l2` | yes | 3740 | 9 |
 | `m3l3` | yes | 9095 | 50 |
-| `m4l0` | yes | 500 | 1 |
+| `m4l0` | yes | 500 | 2 |
 | `m4l1` | yes | 735 | 1 |
 | `m4l2` | yes | 1473 | 0 |
 | `m4l3` | yes | 1617 | 1 |
-| `m5l1a` | yes | 1737 | 1 |
+| `m5l1a` | yes | 1752 | 2 |
 | `m5l1b` | yes | 1704 | 3 |
 | `m5l2a` | yes | 851 | 1 |
 | `m5l2b` | yes | 744 | 1 |
@@ -65,7 +65,7 @@ Every mission in the trilogy that has a coop script, what state it is in, and ho
 |---|---|---:|---:|
 | `e1l1` | yes | 752 | 5 |
 | `e1l2` | yes | 402 | 36 |
-| `e1l3` | yes | 332 | 3 |
+| `e1l3` | yes | 332 | 4 |
 | `e1l4` | yes | 540 | 1 |
 | `e2l1` | yes | 816 | 40 |
 | `e2l2` | yes | 563 | 9 |
@@ -87,13 +87,13 @@ Fix counts are a rough proxy for how much a map fought back. A high count usuall
 | `e2l1` | 40 |
 | `e1l2` | 36 |
 | `e3l4` | 27 |
+| `m1l1` | 25 |
 | `t2l2` | 23 |
+| `m3l1b` | 18 |
 | `t3l1` | 16 |
-| `m3l1b` | 15 |
 | `m6l1c` | 13 |
-| `m1l1` | 10 |
 | `e2l2` | 9 |
+| `m3l2` | 9 |
 | `t1l3` | 9 |
 | `e2l3` | 8 |
-| `t2l1` | 8 |
 

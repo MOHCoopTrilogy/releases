@@ -6,7 +6,7 @@
 
 Every challenge in the mod, grouped exactly as the in-game **Service Record** groups them (Join Game -> Service Record). Challenges marked *(Elite)* are the harder second tier of the same weapon or feat.
 
-**365 challenges** across **12 categories**.
+**367 challenges** across **12 categories**.
 
 | Category | Challenges |
 |---|---:|
@@ -15,8 +15,8 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | [SUBMACHINE GUNS](#submachine-guns) | 19 |
 | [SIDEARMS](#sidearms) | 33 |
 | [SUPPORT WEAPONS](#support-weapons) | 21 |
-| [COMBAT](#combat) | 29 |
-| [FIRETEAM](#fireteam) | 21 |
+| [COMBAT](#combat) | 30 |
+| [FIRETEAM](#fireteam) | 22 |
 | [ARMOR & VEHICLES](#armor--vehicles) | 16 |
 | [CAMPAIGN](#campaign) | 95 |
 | [STEALTH & FEATS](#stealth--feats) | 53 |
@@ -172,6 +172,7 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 
 | Challenge | How to earn it |
 |---|---|
+| **Frozen Fingers** | Get 150 kills in snow to unlock the Wool Knit Gloves |
 | **Kopfschuss** | Get 25 headshot kills |
 | **Kopfjager** | Get 100 headshot kills |
 | **Cold Steel** | Get 15 melee kills |
@@ -206,6 +207,7 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 
 | Challenge | How to earn it |
 |---|---|
+| **Steady Hands** | Finish 5 missions without dying to unlock the Wool Mittens |
 | **Leave No Man** | Save a teammate 20 times with a savior kill |
 | **For Donnie** | Get 60 savior kills |
 | **Sulfa and a Prayer** | Revive 10 downed teammates |
