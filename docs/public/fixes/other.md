@@ -6,10 +6,11 @@
 
 [<- back to all fixes](../BUGFIXES.md)
 
-**161 fixes**, newest first.
+**162 fixes**, newest first.
 
 | ID | Problem | Cause | Fix |
 |---|---|---|---|
+| `bug-2184` | SECURITY: any client on any server could grant themselves god mode, noclip and every weapon by changing their player name. Live in shipped co-op, not just a multiplayer concern. | coop_mod/player.scr::playerNameCommand is the name-append command bus: it extracts a marker from the player's NAME and dispatches straight to an index table with NO authentication of any kind - no coop_dev test, no coop_isHost test, no coop | Added the coopDeveloperVerified test INSIDE godmode_toggle, noclip_toggle, give_all_weapons and give_next_weapon rather than at the dispatch site, so any future caller is covered too. Denial is silent (a ^~^~^ DEVDENY println for the log, n |
 | `bug-2165` | user: 'screen almost looks like it has a filter on it, is that night mode?' - a night grade survived a full restart | TWO faults compounding. (1) coop_daylight was registered CVAR_ARCHIVE, so a night value written once - by a script, or over rcon during testing - was SAVED and came back on the next launch. Time of day is scripted/server-driven runtime stat | coop_daylight registered with no flags - the server republishes it on every connect, so nothing is lost by not saving it. And the restore now runs on the FIRST evaluation regardless of s_gradeOn (`if (s_gradeOn \|\| bFirst)`), so a stale ar |
 | `bug-2158` | user: 'moving in any direction while braced should exit brace (W,S,A,D)' | Movement was supposed to break the mount already, but only indirectly: the stillness latch fed m_bCoopBraceAvail through a dwell timer and a 0.35 s grace window, and the unmount happened downstream of availability. That let a mount survive  | Test the INPUT directly - current_ucmd->forwardmove \|\| rightmove while mounted unmounts immediately. The rule is now exactly what the player pressed, and walking away always releases even if the surface probe still reports a wall. |
 | `bug-2155` | scripted fadeout/fadein runs N times too fast with N players in coop | `level.m_fade_time -= level.frametime;` sits inside Player::CalcBlend (player.cpp:7741), which runs ONCE PER PLAYER PER FRAME. The timer it decrements is level-global. So a fade that should take 2 s takes 1 s with two players and 0.5 s with | Guard the decrement on level.framenum so it happens once per frame regardless of player count, whichever player reaches it first. |

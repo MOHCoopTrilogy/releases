@@ -8,7 +8,7 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-1,081 distinct file paths, 3,828 distinct tags.
+1,081 distinct file paths, 3,833 distinct tags.
 
 ## Files with the most history
 
@@ -362,7 +362,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/coop_mod/coop_placements.scr + hzm-mohaa-coop-mod/maps/e1l2.scr` | 1 | `bug-896` |
 | `hzm-mohaa-coop-mod/coop_mod/dbno.scr` | 9 | `bug-dbno-medkit-letgo-same-key` `bug-618` `bug-1660` `bug-1661` `bug-1668` `bug-1679` `bug-1930` `bug-2169` `bug-2175` |
 | `hzm-mohaa-coop-mod/coop_mod/deathvox.scr` | 1 | `bug-1517` |
-| `hzm-mohaa-coop-mod/coop_mod/developer.scr` | 2 | `bug-098` `bug-1666` |
+| `hzm-mohaa-coop-mod/coop_mod/developer.scr` | 3 | `bug-098` `bug-1666` `bug-2184` |
 | `hzm-mohaa-coop-mod/coop_mod/developer.scr (give_all_weapons) + itemhandler.scr` | 1 | `bug-484` |
 | `hzm-mohaa-coop-mod/coop_mod/flchatter.scr` | 5 | `bug-837` `bug-839` `bug-726` `bug-774` `bug-taunt-intro` |
 | `hzm-mohaa-coop-mod/coop_mod/flchatter.scr + models/human/animation/dialogue/*Generic_dialogue_german*.tik` | 1 | `bug-1203` |
@@ -1366,6 +1366,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `audit-methodology` | 1 | `bug-1523` |
 | `audit-scaffolding` | 1 | `bug-1550` |
 | `audited` | 1 | `bug-1180` |
+| `authentication` | 1 | `bug-2184` |
 | `authored-docs-gap` | 1 | `bug-2029` |
 | `authored-stow` | 2 | `bug-2007` `bug-2016` |
 | `authored-vs-generated` | 1 | `bug-2166` |
@@ -1639,6 +1640,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `charshadows` | 1 | `bug-1230` |
 | `chat` | 1 | `bug-261` |
 | `chatter` | 3 | `bug-1578` `bug-2021` `bug-725` |
+| `cheat` | 1 | `bug-2184` |
 | `check` | 1 | `bug-1860` |
 | `checker` | 2 | `bug-1601` `bug-1765` |
 | `checker-gap` | 1 | `bug-1751` |
@@ -2067,7 +2069,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `dev-instrumentation` | 1 | `bug-1062` |
 | `dev-only` | 1 | `bug-2020` |
 | `dev-tool` | 1 | `bug-945` |
-| `developer` | 2 | `bug-1550` `bug-1666` |
+| `developer` | 3 | `bug-1550` `bug-1666` `bug-2184` |
 | `developer-1-names-file` | 2 | `bug-739` `bug-750` |
 | `developer-cvar` | 1 | `bug-911` |
 | `developer-gate` | 1 | `bug-1807` |
@@ -2597,6 +2599,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `glue` | 10 | `bug-052` `bug-071` `bug-1429` `bug-1436` `bug-1437` `bug-2060` `bug-2062` `bug-2063` `bug-2064` `bug-917` |
 | `gmbox` | 2 | `bug-261` `bug-font-bleed` |
 | `gmcinside` | 1 | `bug-2183` |
+| `godmode` | 1 | `bug-2184` |
 | `godrays` | 1 | `bug-1154` |
 | `gog-repack` | 1 | `bug-854` |
 | `gore` | 42 | `bug-1142` `bug-1167` `bug-1216` `bug-1241` `bug-1320` `bug-1321` `bug-1327` `bug-1332` `bug-1518` `bug-1539` `bug-1586` `bug-1873` `bug-1874` `bug-1875` `bug-1876` `bug-1880` `bug-1883` `bug-1903` `bug-1906` `bug-1910` `bug-1914` `bug-1915` `bug-1975` `bug-1988` `bug-2080` `bug-731` `bug-734` `bug-747` `bug-776` `bug-780` `bug-795` `bug-796` `bug-797` `bug-817` `bug-828` `bug-849` `bug-861` `bug… |
@@ -3209,6 +3212,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `name-append-bus` | 4 | `bug-2080` `bug-533` `bug-757` `bug-772` |
 | `name-bus` | 3 | `bug-1936` `bug-1937` `bug-773` |
 | `name-collision` | 3 | `bug-1612` `bug-2041` `bug-2096` |
+| `name-command-bus` | 1 | `bug-2184` |
 | `naming` | 1 | `bug-1519` |
 | `naming-discipline` | 1 | `bug-2002` |
 | `nan-velocity` | 1 | `bug-954` |
@@ -3271,7 +3275,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `no-spawn` | 1 | `bug-1458` |
 | `no-version-control` | 1 | `bug-1873` |
 | `no_idle` | 1 | `bug-1949` |
-| `noclip` | 2 | `bug-1666` `bug-380` |
+| `noclip` | 3 | `bug-1666` `bug-2184` `bug-380` |
 | `nodamage` | 1 | `bug-1260` |
 | `nodraw` | 10 | `bug-1208` `bug-1359` `bug-1360` `bug-1386` `bug-1533` `bug-1545` `bug-1988` `bug-2075` `bug-533` `bug-949` |
 | `nohup` | 1 | `bug-gl2-sweep-crash` |
@@ -4003,6 +4007,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `second-cause` | 1 | `bug-gl2-invisible-friendly-actor-2nd` |
 | `second-primary` | 1 | `bug-897` |
 | `section-close` | 1 | `bug-306` |
+| `security` | 1 | `bug-2184` |
 | `sed` | 1 | `bug-2081` |
 | `seed` | 1 | `bug-1935` |
 | `seed-debounce` | 1 | `bug-326` |
@@ -4102,7 +4107,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `shipped` | 1 | `bug-1691` |
 | `shipped-armed` | 1 | `bug-2090` |
 | `shipped-code-disabled` | 1 | `bug-1688` |
-| `shipped-defect` | 2 | `bug-1551` `bug-2030` |
+| `shipped-defect` | 3 | `bug-1551` `bug-2030` `bug-2184` |
 | `shipped-noop` | 1 | `bug-2034` |
 | `shipped-unused` | 1 | `bug-1888` |
 | `shipping` | 1 | `bug-2020` |

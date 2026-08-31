@@ -13,24 +13,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `e21165d 2026-08-30 fix: make the "public docs cannot drift" claim true, and reclaim 21 GB` |
-| commits | 198 |
+| HEAD | `d7db1a7 2026-08-30 fix: terrain pack never shipped; repair config_fossils.py; prune README` |
+| commits | 200 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **3 modified, 0 untracked** |
+| unstaged diff | 3 files changed, 39 insertions(+), 3 deletions(-) |
+
+> Working tree is dirty. Everything in those 3 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 144 |
+| 2026-08 | 146 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (198)
+### Commits since 2026-01-01 (200)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `d7db1a7` | 2026-08-30 | joncurry94-tech | fix: terrain pack never shipped; repair config_fossils.py; prune README |
+| `9bdf3ee` | 2026-08-30 | joncurry94-tech | docs: README current-release section was five releases stale |
 | `e21165d` | 2026-08-30 | joncurry94-tech | fix: make the "public docs cannot drift" claim true, and reclaim 21 GB |
 | `476b4f6` | 2026-08-30 | joncurry94-tech | docs: regenerate (final) |
 | `653eead` | 2026-08-30 | joncurry94-tech | docs: regenerate after the v1.4.6 installer publish |
@@ -235,8 +240,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `47f5269 2026-08-30 docs: v1.4.6 release notes` |
-| commits | 1,579 |
+| HEAD | `d99ec2e 2026-08-30 docs: MP build-out - all 127 features classified for standard multiplayer` |
+| commits | 1,585 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -244,7 +249,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 186 |
+| 2026-08 | 192 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -284,10 +289,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (230)
+### Commits since 2026-01-01 (236)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `d99ec2e` | 2026-08-30 | joncurry94 | docs: MP build-out - all 127 features classified for standard multiplayer |
+| `1f97cdf` | 2026-08-30 | joncurry94 | security: name-command bus let any client take god mode, noclip and all guns |
+| `889797c` | 2026-08-30 | joncurry94 | docs: the g_modernmp plan for standard MP + coop coexistence |
+| `8aa5a79` | 2026-08-30 | joncurry94 | security: rcon password shipped to every player; move it to a loose dev file |
+| `172f8d1` | 2026-08-30 | joncurry94 | fix: four verified-open items from the two-week survey |
+| `a441e66` | 2026-08-30 | joncurry94 | rename: two player-facing HZM strings the 2026-08-24 pass missed |
 | `47f5269` | 2026-08-30 | joncurry94 | docs: v1.4.6 release notes |
 | `7a38dd3` | 2026-08-30 | joncurry94 | docs: v1.4.6 field report card + Discord announcement (posted) |
 | `193bdfb` | 2026-08-30 | joncurry94 | feat: voice wheel, objective drops, Omaha pass; fix count-scaling + revive HUD |

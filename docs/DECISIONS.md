@@ -621,3 +621,38 @@ player stays hidden, and the two share one bit by design.
 
 *(Moved here from `21-user-preferences.md` on 2026-08-24: this is a standing DESIGN decision
 about how the game behaves, not a workflow preference about how to work.)*
+
+
+---
+
+## Standard MP: ONE host switch, modern mechanics ON by default (user, 2026-08-30)
+
+User, asked how to get the stock multiplayer gametypes working without breaking co-op:
+
+> *"honestly if it could be an on/off switch for server hosts that would be ideal. by default I'd
+> like those mechanics all enabled in mp, but a simple switch to toggle it off to be more like
+> classic mohaa."*
+
+**This settles a question that was about to be put to them as a per-system decision.** The prior
+framing - go through sprint / prone / ADS / brace / hit markers / radar one at a time and decide
+which belong in competitive MP - is REJECTED. One switch, one default.
+
+**The design therefore has TWO categories, not one, and conflating them is the trap:**
+
+| | applies in standard MP? | gate |
+|---|---|---|
+| **Feel and mechanics** - sprint, prone, ADS, brace, hit markers, radar, gore, suppression | **YES, by default.** Host may turn them off for classic MOHAA. | ONE server cvar |
+| **Co-op-only systems** - AI count-scaling, DBNO, officer waves, co-op objectives, spawn warping | **NEVER.** Meaningless or actively broken without a co-op map. | the co-op discriminator |
+
+So the co-op discriminator is NOT the switch, and the switch is NOT the discriminator. A stock DM
+map with the switch ON should play with modern movement and no co-op systems whatsoever.
+
+**Why one switch rather than per-system cvars:** the per-system cvars already exist and are the
+problem - `config_fossils.py` counted **87** of them force-set by `autoexec.cfg` after the saved
+config, so a host cannot currently opt out of anything. Adding more knobs deepens that. The switch
+must be a single server-side, replicated value a host sets once.
+
+**Implied requirement:** OFF must mean *classic*, not *half-modern*. Any mechanic that cannot be
+cleanly disabled at runtime (a pmove change with no gate, an animation the statemap always picks)
+has to grow a gate or be listed as a known exception - **an OFF switch that leaves three systems
+running is worse than no switch**, because the host believes they are on stock rules.

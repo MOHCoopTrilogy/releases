@@ -9,7 +9,7 @@
 | metric | value |
 |---|---:|
 | `coop_mod/*.scr` files | 121 |
-| total lines in `coop_mod/` | 76,140 |
+| total lines in `coop_mod/` | 76,187 |
 | top-level `maps/*.scr` | 122 |
 | of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
 
@@ -129,7 +129,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `dbno.scr` | 1,455 | 4 | safety-net: make sure the cgame "downed" view flag is cleared on (re)spawn, so a player who died while |
 | `dbno_test.scr` | 3 | 1 |  |
 | `deathvox.scr` | 81 | 0 | HZM coop - varied DEATH VOICES (+ native-VO mute for AI). |
-| `developer.scr` | 1,578 | 28 | chrissstrahl - since the game refuses to let me use cheats in multiplayer |
+| `developer.scr` | 1,622 | 28 | chrissstrahl - since the game refuses to let me use cheats in multiplayer |
 | `devprobe.scr` | 147 | 2 | DEV PROBE - "who is that actor, right now?" |
 | `director.scr` | 227 | 2 | [user 2026-07-17] REACTIVE DIFFICULTY DIRECTOR - Phase 1 (plan: _research/director_dda_plan.md). |
 | `e1l4alarm.scr` | 76 | 4 | coop_mod/e1l4alarm.scr |
@@ -174,7 +174,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `objective_drop.scr` | 218 | 1 | Objective Bonus Drop |
 | `objective_positions.scr` | 132 | 1 | objective_positions.scr |
 | `objectives.scr` | 739 | 7 | Coop Side Objectives (optional / secondary) |
-| `officer.scr` | 5,387 | 27 | Officer Boss + Radio Station |
+| `officer.scr` | 5,390 | 27 | Officer Boss + Radio Station |
 | `officer_positions.scr` | 624 | 1 | coop_officer_positions.scr |
 | `painbreath.scr` | 69 | 0 | HZM coop - WOUNDED BREATHING. |
 | `paradrop.scr` | 774 | 1 | Allied Paradrop System |
