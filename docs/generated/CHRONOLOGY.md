@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `6840d69 2026-08-30 tools: coop_regression.py - diff a coop run against a known-good baseline` |
-| commits | 201 |
+| HEAD | `17f3a0c 2026-08-30 test: coop regression baseline - 85 families, 2-player m1l1, 180s window` |
+| commits | 202 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 147 |
+| 2026-08 | 148 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (201)
+### Commits since 2026-01-01 (202)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `17f3a0c` | 2026-08-30 | joncurry94-tech | test: coop regression baseline - 85 families, 2-player m1l1, 180s window |
 | `6840d69` | 2026-08-30 | joncurry94-tech | tools: coop_regression.py - diff a coop run against a known-good baseline |
 | `d7db1a7` | 2026-08-30 | joncurry94-tech | fix: terrain pack never shipped; repair config_fossils.py; prune README |
 | `9bdf3ee` | 2026-08-30 | joncurry94-tech | docs: README current-release section was five releases stale |
@@ -238,8 +239,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `9f5e7a6 2026-08-30 test: arm the eleven coop self-test batteries as one suite` |
-| commits | 1,586 |
+| HEAD | `f8f11d4 2026-08-30 test: document the regression capture procedure` |
+| commits | 1,587 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -247,7 +248,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 193 |
+| 2026-08 | 194 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -287,10 +288,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (237)
+### Commits since 2026-01-01 (238)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `f8f11d4` | 2026-08-30 | joncurry94 | test: document the regression capture procedure |
 | `9f5e7a6` | 2026-08-30 | joncurry94 | test: arm the eleven coop self-test batteries as one suite |
 | `d99ec2e` | 2026-08-30 | joncurry94 | docs: MP build-out - all 127 features classified for standard multiplayer |
 | `1f97cdf` | 2026-08-30 | joncurry94 | security: name-command bus let any client take god mode, noclip and all guns |

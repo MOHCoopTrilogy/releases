@@ -22,7 +22,16 @@ AppId={{7B7A1C64-HZMC-40OP-TRIL-OGY000000001}
 AppName=MOH Coop Trilogy (HZM Extended)
 AppVersion={#AppVer}
 AppPublisher=HaZardModding / HZM Coop
+; [2026-08-31] The destination page is SHOWN. DisableDirPage is left unset, which means Inno's
+; default of `auto`: the page appears on a fresh install and is skipped only when a previous
+; install of this AppId is found (then UsePreviousAppDir reuses that folder). The path below is
+; therefore a DEFAULT the player can change, not a fixed location - said explicitly because the
+; public README used to state it as a fact.
+; localappdata is deliberate: PrivilegesRequired=lowest, so a non-admin install must land
+; somewhere writable without elevation. A player who wants it elsewhere just browses.
 DefaultDirName={localappdata}\MOH Coop Trilogy
+DirExistsWarning=auto
+AppendDefaultDirName=no
 DisableProgramGroupPage=yes
 PrivilegesRequired=lowest
 OutputDir={#Dev}\installer\dist
@@ -144,9 +153,73 @@ begin
     GogPage.Values[0] := Detected;
 end;
 
+{ [2026-08-31] Is the chosen destination somebody's EXISTING game or engine install?
+  The player picks this folder freely, and Setup writes openmohaa.exe, cgame.dll, game.dll and
+  both renderers straight into it. Dropped on an existing OpenMOHAA checkout or build, that
+  silently replaces their binaries with ours; dropped inside the GOG folder, it breaks the one
+  guarantee this installer makes - that your original game is only ever READ.
+  IsOurInstall lets a re-install over our own folder through untouched. }
+function IsOurInstall(const P: String): Boolean;
+begin
+  Result := FileExists(AddBackslash(P) + 'install_info.txt') or
+            FileExists(AddBackslash(P) + 'updater.ini');
+end;
+
+function LooksLikeForeignEngine(const P: String): Boolean;
+begin
+  Result := (not IsOurInstall(P)) and
+            (FileExists(AddBackslash(P) + 'openmohaa.exe') or
+             FileExists(AddBackslash(P) + 'omohaaded.exe') or
+             FileExists(AddBackslash(P) + 'launch_openmohaa_base.exe'));
+end;
+
+function LooksLikeRetailGame(const P: String): Boolean;
+begin
+  Result := FileExists(AddBackslash(P) + 'MOHAA.exe') or
+            FileExists(AddBackslash(P) + 'main\Pak0.pk3');
+end;
+
+function IsInside(const Child, Parent: String): Boolean;
+var
+  C, R: String;
+begin
+  C := AddBackslash(Lowercase(Child));
+  R := AddBackslash(Lowercase(Parent));
+  Result := (R <> '\') and (Copy(C, 1, Length(R)) = R);
+end;
+
 function NextButtonClick(CurPageID: Integer): Boolean;
+var
+  Dest: String;
 begin
   Result := True;
+
+  if CurPageID = wpSelectDir then
+  begin
+    Dest := WizardDirValue();
+
+    if LooksLikeRetailGame(Dest) then
+    begin
+      MsgBox('That folder is a Medal of Honor game install.' + #13#10#13#10 +
+             'MOH Coop Trilogy installs SIDE BY SIDE and only ever READS your original game. ' +
+             'Installing into it would modify it, which is exactly what this installer avoids.' + #13#10#13#10 +
+             'Please choose a different folder.', mbError, MB_OK);
+      Result := False;
+      Exit;
+    end;
+
+    if LooksLikeForeignEngine(Dest) then
+    begin
+      MsgBox('That folder already contains an OpenMOHAA installation that was not put there ' +
+             'by this installer.' + #13#10#13#10 +
+             'Installing here would overwrite openmohaa.exe, cgame.dll, game.dll and the ' +
+             'renderers with our builds, and break that installation.' + #13#10#13#10 +
+             'Please choose a different folder.', mbError, MB_OK);
+      Result := False;
+      Exit;
+    end;
+  end;
+
   if (GogPage <> nil) and (CurPageID = GogPage.ID) then
   begin
     if not IsValidGogPath(GogPage.Values[0]) then
@@ -154,6 +227,17 @@ begin
       MsgBox('That folder does not look like a MOHAA War Chest install ' +
              '(main\Pak0.pk3 not found). Please pick the game''s root folder.', mbError, MB_OK);
       Result := False;
+      Exit;
+    end;
+    { The destination is chosen BEFORE this page, so the containment test belongs here, where
+      both paths are finally known. }
+    if IsInside(WizardDirValue(), GogPage.Values[0]) then
+    begin
+      MsgBox('The install folder you chose is inside your Medal of Honor game folder.' + #13#10#13#10 +
+             'Your original game must stay untouched, so please go Back and ' +
+             'choose an install folder outside it.', mbError, MB_OK);
+      Result := False;
+      Exit;
     end;
   end;
 end;
