@@ -30,6 +30,13 @@ AppPublisher=HaZardModding / HZM Coop
 ; localappdata is deliberate: PrivilegesRequired=lowest, so a non-admin install must land
 ; somewhere writable without elevation. A player who wants it elsewhere just browses.
 DefaultDirName={localappdata}\MOH Coop Trilogy
+; [2026-08-31] ALWAYS offer the folder choice. Inno's default here is `auto`, which HIDES
+; the destination page whenever a previous install of this AppId is found - so anybody who
+; already had the mod was silently given their old folder and never saw the option. Verified
+; by screenshotting a demo build on a machine that had 1.4.6: the page did not appear at all.
+; UsePreviousAppDir still pre-fills the previous location, so an upgrade stays one click,
+; but moving the install somewhere else is now possible instead of impossible.
+DisableDirPage=no
 DirExistsWarning=auto
 AppendDefaultDirName=no
 DisableProgramGroupPage=yes
@@ -190,14 +197,20 @@ procedure CurPageChanged(CurPageID: Integer);
 begin
   if CurPageID = wpSelectDir then
   begin
+    { SelectDirLabel is a fixed-height control and does NOT grow with its text - a long caption
+      is silently clipped to the first line, which is what happened on the first attempt here.
+      Grow the label and push the two controls below it down by the same amount, then keep the
+      text short enough to fit. The detailed rules are not repeated here on purpose: they are
+      enforced by the refusal dialogs, and nobody reads a wall of text on a wizard page. }
+    WizardForm.SelectDirLabel.AutoSize := False;
+    WizardForm.SelectDirLabel.Height := ScaleY(46);
+    WizardForm.SelectDirBrowseLabel.Top := WizardForm.SelectDirLabel.Top + ScaleY(54);
+    WizardForm.DirEdit.Top          := WizardForm.SelectDirBrowseLabel.Top + ScaleY(20);
+    WizardForm.DirBrowseButton.Top  := WizardForm.DirEdit.Top - ScaleY(2);
     WizardForm.SelectDirLabel.Caption :=
-      'Choose where to install MOH Coop Trilogy. This is a NEW, self-contained folder - the ' +
-      'engine, the mod and your saves and settings all live here, separately from the game ' +
-      'you already own.' + #13#10#13#10 +
-      'Any location you can write to is fine. Do NOT choose your Medal of Honor folder, an ' +
-      'existing OpenMOHAA installation, or a folder inside your game - Setup will refuse those, ' +
-      'because keeping your original install untouched is the point.' + #13#10#13#10 +
-      'Uninstalling removes only this folder.';
+      'Choose where to install MOH Coop Trilogy. This is a NEW, self-contained folder - ' +
+      'the engine, the mod, and your saves and settings all live here, separate from the ' +
+      'copy of the game you already own. Any folder you can write to will do.';
   end;
 end;
 
