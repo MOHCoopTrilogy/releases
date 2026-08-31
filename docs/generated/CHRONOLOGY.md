@@ -13,27 +13,25 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `476b4f6 2026-08-30 docs: regenerate (final)` |
-| commits | 197 |
+| HEAD | `e21165d 2026-08-30 fix: make the "public docs cannot drift" claim true, and reclaim 21 GB` |
+| commits | 198 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **16 modified, 0 untracked** |
-| unstaged diff | 16 files changed, 207 insertions(+), 56 deletions(-) |
-
-> Working tree is dirty. Everything in those 16 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 143 |
+| 2026-08 | 144 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (197)
+### Commits since 2026-01-01 (198)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `e21165d` | 2026-08-30 | joncurry94-tech | fix: make the "public docs cannot drift" claim true, and reclaim 21 GB |
 | `476b4f6` | 2026-08-30 | joncurry94-tech | docs: regenerate (final) |
 | `653eead` | 2026-08-30 | joncurry94-tech | docs: regenerate after the v1.4.6 installer publish |
 | `db5da8b` | 2026-08-30 | joncurry94-tech | docs: point the installer download table at v1.4.6 |

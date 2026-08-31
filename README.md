@@ -91,11 +91,38 @@ it. **Download all five into the same folder.**
 
 ### Playing
 
-Host: launch the shortcut, then **Multiplayer → Start Game → HaZardModding Coop Mod**, pick a mission tile, hit Apply. Friends join over LAN/Internet via **Multiplayer → Join Game** or `connect <ip>` in the console.
+Host: launch the shortcut, then **Multiplayer → Start Game → MOH Trilogy Coop**, pick a mission tile, hit Apply. Friends join over LAN/Internet via **Multiplayer → Join Game** or `connect <ip>` in the console.
 
-## Current release — v1.4.1 *"Weight, Wounds and the Armory"*
+## Current release — v1.4.6 *"Six Things That Were Never Running"*
 
-The largest update the mod has had: 176 commits since v1.3.1, plus a live playtest pass. Headlines: the **Armory** loadout screen (press F7) with 357 weapon finishes and model variants, the **weapon weight** feel system, **ragdoll physics** (on by default), an **AI overhaul** — Germans take cover, go prone, surrender, and their MG42 crews finally shoot like MG42 crews — 60 new explosion recordings, four new weapons (Mauser C96, Johnson M1941, DP-28, S&W M10), and layered vehicle deaths with cook-offs and burning wrecks. Full details in the [release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest) — and please read [Still early](#still-early--read-before-reporting) and [Known bugs](#known-bugs-open-right-now) below before reporting.
+Five releases have landed since v1.4.1. This one is mostly about features that were **built,
+logged as done, and never actually executed** — the failure mode this project keeps finding in
+itself. Six of them were closed at once.
+
+- **Voice commands work now — press X.** The radio wheel ("Cover me!", "Enemy spotted!") was
+  silent on every campaign map in all three games, for two independent reasons: the voice lines
+  were tagged deathmatch-only, *and* the key that opens the wheel was already taken by the rifle
+  bash. Both fixed.
+- **Squad radar was lying to you.** It reached about one room, and any teammate you could not see
+  was drawn stuck to the rim regardless of real distance — direction only, never distance.
+- **Difficulty stopped punishing you for being down a man.** Enemy numbers, accuracy and
+  reinforcement wave size counted *connected* players, so a spectator or a teammate bleeding out
+  still counted as a full fighter. It also picked enemy counts in the level's first frame while
+  people were still loading, so a four-player game often populated as if two of you turned up.
+- **The revive prompt stopped vanishing** when an objective banner popped mid-revive.
+- **Hit markers**, **objective reward drops** on nine maps, and **weapon bracing** on cover and
+  while prone.
+
+Since v1.4.1: **prone** (v1.4.5), **stress-driven accuracy** (v1.4.5), the **in-game bug reporter
+that had never reached us** (v1.4.2), **wall cover**, and the *notarget* root-cause fix that
+quieted the scripted truck rides across the whole trilogy (v1.4.3).
+
+> **Straight with you:** v1.4.6's six systems load and run clean but have not had a full playtest
+> pass yet. If something misbehaves, **Report a Problem** is the fastest way to tell us.
+
+Full details in the [release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest) —
+and please read [Still early](#still-early--read-before-reporting) and
+[Known bugs](#known-bugs-open-right-now) below before reporting.
 
 ## Full documentation
 
@@ -304,9 +331,8 @@ Honesty corner. These are the newest, least-settled systems — deliberately shi
 
 ## Known bugs (open right now)
 
-The current honest list — carried in the [v1.4.1 notes](https://github.com/MOHCoopTrilogy/releases/releases/latest) and the internal defect ledger:
+The current honest list — carried in the [release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest) and the internal defect ledger:
 
-- **The restored voice lines and new injury audio are silent in v1.4.0/v1.4.1.** A packaging defect found right after release: over 1,600 audio alias references pointed at files that only existed on the dev machine and never shipped — so the ~1,300 restored retail voice takes and the new tiered pain sounds play for nobody. Already fixed and verified for the next update; nothing to do on your end.
 - **e3l4**: a jeep passenger can fail to complete the first supply run. Failsafes catch it so the mission still completes; the root cause is instrumented and being chased.
 - **m3l2**: `SV_FindIndex overflow` warnings on load.
 - **t2l2**: script errors on coop boot — some addon MG42 nests go unmanned and one German vehicle fails to appear. The map plays through regardless (degraded, not dead).
