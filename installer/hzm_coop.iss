@@ -131,26 +131,74 @@ begin
     Result := P;
 end;
 
-function IsValidGogPath(const P: String): Boolean;
+{ [2026-08-31] WAR CHEST means all three games, and the mod genuinely needs all three.
+  The shortcut launches with com_target_game 2 (Breakthrough), and at that target the engine
+  mounts main + mainta + maintt. Validation used to accept any folder holding main\Pak0.pk3,
+  so a plain MOHAA install - or MOHAA + Spearhead without Breakthrough - passed setup happily
+  and produced a broken game later, with nothing pointing back at the cause.
+  MissingGameData returns the first missing piece by name so the player is told WHICH game is
+  absent instead of "that folder does not look right". }
+function MissingGameData(const P: String): String;
+var
+  B: String;
 begin
-  Result := FileExists(AddBackslash(P) + 'main\Pak0.pk3');
+  B := AddBackslash(P);
+  Result := '';
+  if not FileExists(B + 'main\Pak0.pk3') then
+    Result := 'Medal of Honor: Allied Assault  (main\Pak0.pk3)'
+  else if not DirExists(B + 'mainta') then
+    Result := 'the Spearhead expansion  (mainta folder)'
+  else if not DirExists(B + 'maintt') then
+    Result := 'the Breakthrough expansion  (maintt folder)';
 end;
 
+function IsValidGogPath(const P: String): Boolean;
+begin
+  Result := (MissingGameData(P) = '');
+end;
+
+{ [2026-08-31] The game page is created after wpWelcome, i.e. BEFORE the destination page.
+  It used to sit after wpSelectDir, which asked the player to choose an install folder before
+  anything had told them the mod needs their retail game at all - and it made the
+  "don't install inside your GOG folder" check impossible to run at wpSelectDir, because the
+  GOG path was not known yet. That check had to bounce the player Back a page. Asking for the
+  game first fixes both: the hard prerequisite fails early, and every destination rule can be
+  answered the moment the folder is picked. }
 procedure InitializeWizard();
 var
   Detected: String;
 begin
-  GogPage := CreateInputDirPage(wpSelectDir,
+  GogPage := CreateInputDirPage(wpWelcome,
     'Locate Medal of Honor: Allied Assault War Chest',
     'Where is your MOHAA War Chest installed?',
-    'Setup needs your existing game (GOG "War Chest" edition). It is only READ - ' +
-    'nothing in that folder is ever modified. If the detected path is wrong, browse to ' +
-    'the folder that contains MOHAA.exe and the main/mainta/maintt folders.',
+    'MOH Coop Trilogy is a mod, not a standalone game - it needs the retail game data from a ' +
+    'copy of MOHAA War Chest you already own (the GOG edition). That folder is only ever READ; ' +
+    'nothing in it is modified, and you can keep playing the original campaign normally.' + #13#10 +
+    'If the detected path is wrong or empty, browse to the folder containing MOHAA.exe and the ' +
+    'main / mainta / maintt subfolders.',
     False, '');
   GogPage.Add('');
   Detected := DetectGogPath();
   if Detected <> '' then
     GogPage.Values[0] := Detected;
+end;
+
+{ Replace the stock "Setup will install into the following folder" text with something that
+  actually tells the player what this folder is and what not to point it at. Inno still appends
+  its own free-space line underneath. }
+procedure CurPageChanged(CurPageID: Integer);
+begin
+  if CurPageID = wpSelectDir then
+  begin
+    WizardForm.SelectDirLabel.Caption :=
+      'Choose where to install MOH Coop Trilogy. This is a NEW, self-contained folder - the ' +
+      'engine, the mod and your saves and settings all live here, separately from the game ' +
+      'you already own.' + #13#10#13#10 +
+      'Any location you can write to is fine. Do NOT choose your Medal of Honor folder, an ' +
+      'existing OpenMOHAA installation, or a folder inside your game - Setup will refuse those, ' +
+      'because keeping your original install untouched is the point.' + #13#10#13#10 +
+      'Uninstalling removes only this folder.';
+  end;
 end;
 
 { [2026-08-31] Is the chosen destination somebody's EXISTING game or engine install?
@@ -218,24 +266,28 @@ begin
       Result := False;
       Exit;
     end;
+
+    { The game folder is known by now - it is asked for on the page before this one. }
+    if (GogPage <> nil) and (GogPage.Values[0] <> '') and IsInside(Dest, GogPage.Values[0]) then
+    begin
+      MsgBox('That folder is inside your Medal of Honor game folder.' + #13#10#13#10 +
+             'The mod installs side by side with your game, never inside it, so that your ' +
+             'original install stays exactly as it is.' + #13#10#13#10 +
+             'Please choose a folder outside it.', mbError, MB_OK);
+      Result := False;
+      Exit;
+    end;
   end;
 
   if (GogPage <> nil) and (CurPageID = GogPage.ID) then
   begin
     if not IsValidGogPath(GogPage.Values[0]) then
     begin
-      MsgBox('That folder does not look like a MOHAA War Chest install ' +
-             '(main\Pak0.pk3 not found). Please pick the game''s root folder.', mbError, MB_OK);
-      Result := False;
-      Exit;
-    end;
-    { The destination is chosen BEFORE this page, so the containment test belongs here, where
-      both paths are finally known. }
-    if IsInside(WizardDirValue(), GogPage.Values[0]) then
-    begin
-      MsgBox('The install folder you chose is inside your Medal of Honor game folder.' + #13#10#13#10 +
-             'Your original game must stay untouched, so please go Back and ' +
-             'choose an install folder outside it.', mbError, MB_OK);
+      MsgBox('That folder is missing ' + MissingGameData(GogPage.Values[0]) + '.' + #13#10#13#10 +
+             'MOH Coop Trilogy covers all three games, so it needs a War Chest install ' +
+             'containing main, mainta and maintt.' + #13#10#13#10 +
+             'Please browse to the folder that contains MOHAA.exe and those three subfolders.',
+             mbError, MB_OK);
       Result := False;
       Exit;
     end;
