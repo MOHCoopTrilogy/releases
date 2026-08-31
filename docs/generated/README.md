@@ -48,7 +48,7 @@ The authored files carry judgement, so they cannot be generated - but they can s
 
 | authored file | size | ceiling | |
 |---|---:|---:|---|
-| `docs/21-user-preferences.md` | 11 KB | 12 KB | ok |
+| `docs/21-user-preferences.md` | 12 KB | 12 KB | ok |
 | `docs/DECISIONS.md` | 42 KB | 45 KB | ok |
 | `docs/ENGINE.md` | 26 KB | 40 KB | ok |
 | `docs/FEATURES.md` | 90 KB | 90 KB | ok |
@@ -57,4 +57,4 @@ The authored files carry judgement, so they cannot be generated - but they can s
 | `docs/SOURCE_OF_TRUTH.md` | 31 KB | 40 KB | ok |
 | `docs/TRAPS.md` | 70 KB | 70 KB | ok |
 
-Input fingerprint of this generation: `417ada14f68c8580b24cbcc09b17e06376bfe80c8289a9808df945994d368e03`
+Input fingerprint of this generation: `03d3391e47e482009025e6a9de4c26ef05f5da2328f728be1bd02fbf6c8510f4`

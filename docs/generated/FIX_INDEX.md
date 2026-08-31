@@ -8,7 +8,7 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-1,080 distinct file paths, 3,824 distinct tags.
+1,081 distinct file paths, 3,828 distinct tags.
 
 ## Files with the most history
 
@@ -599,6 +599,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/textures/hud/xpbar/*.tga` | 1 | `bug-312` |
 | `hzm-mohaa-coop-mod/textures/models/human/faces/` | 1 | `bug-1873` |
 | `hzm-mohaa-coop-mod/textures/models/human/faces/Bensonazi_blood2.jpg` | 1 | `bug-1327` |
+| `hzm-mohaa-coop-mod/textures/models/vehicles/gmc/gmcinside.dds` | 1 | `bug-2183` |
 | `hzm-mohaa-coop-mod/textures/mohmenu/` | 1 | `bug-144` |
 | `hzm-mohaa-coop-mod/textures/mohmenu/*.tga` | 1 | `bug-157` |
 | `hzm-mohaa-coop-mod/textures/wilderness/m3l3grass_set2.jpg (+ set2rad)` | 1 | `bug-m3l2-ground-seams` |
@@ -1958,7 +1959,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `daylight` | 2 | `bug-2163` `bug-2165` |
 | `dbno` | 45 | `bug-088` `bug-1065` `bug-1067` `bug-1204` `bug-1208` `bug-1217` `bug-1236` `bug-1238` `bug-1241` `bug-1246` `bug-1250` `bug-1265` `bug-1290` `bug-1293` `bug-133` `bug-1339` `bug-1347` `bug-1450` `bug-166` `bug-1660` `bug-1661` `bug-1668` `bug-1679` `bug-1680` `bug-1870` `bug-1930` `bug-2112` `bug-2123` `bug-2168` `bug-2169` `bug-2174` `bug-2175` `bug-257` `bug-431` `bug-618` `bug-625` `bug-880`… |
 | `dday_camo_hel` | 1 | `bug-530` |
-| `dds` | 5 | `bug-1129` `bug-1225` `bug-2164` `bug-gl2-decal-red-dds` `bug-m3l2-ground-seams` |
+| `dds` | 6 | `bug-1129` `bug-1225` `bug-2164` `bug-2183` `bug-gl2-decal-red-dds` `bug-m3l2-ground-seams` |
 | `dds-shadowing` | 1 | `bug-2164` |
 | `dead-assets` | 1 | `bug-2098` |
 | `dead-branch` | 2 | `bug-1147` `bug-1942` |
@@ -2171,7 +2172,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `dwell` | 1 | `bug-1922` |
 | `dwm` | 1 | `bug-1795` |
 | `dx10` | 1 | `bug-m3l2-ground-seams` |
-| `dxt1` | 1 | `bug-1295` |
+| `dxt1` | 2 | `bug-1295` `bug-2183` |
 | `dynamic-ai` | 2 | `bug-1103` `bug-1104` |
 | `e-02` | 1 | `bug-885` |
 | `e-03` | 1 | `bug-885` |
@@ -2595,6 +2596,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `glsl` | 8 | `bug-1148` `bug-1149` `bug-1159` `bug-1240` `bug-1304` `bug-gl2-fog` `bug-gl2-nextbundle2` `bug-gl2-texgen` |
 | `glue` | 10 | `bug-052` `bug-071` `bug-1429` `bug-1436` `bug-1437` `bug-2060` `bug-2062` `bug-2063` `bug-2064` `bug-917` |
 | `gmbox` | 2 | `bug-261` `bug-font-bleed` |
+| `gmcinside` | 1 | `bug-2183` |
 | `godrays` | 1 | `bug-1154` |
 | `gog-repack` | 1 | `bug-854` |
 | `gore` | 42 | `bug-1142` `bug-1167` `bug-1216` `bug-1241` `bug-1320` `bug-1321` `bug-1327` `bug-1332` `bug-1518` `bug-1539` `bug-1586` `bug-1873` `bug-1874` `bug-1875` `bug-1876` `bug-1880` `bug-1883` `bug-1903` `bug-1906` `bug-1910` `bug-1914` `bug-1915` `bug-1975` `bug-1988` `bug-2080` `bug-731` `bug-734` `bug-747` `bug-776` `bug-780` `bug-795` `bug-796` `bug-797` `bug-817` `bug-828` `bug-849` `bug-861` `bug… |
@@ -2960,7 +2962,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `lt-pato` | 1 | `bug-1899` |
 | `m1-garand` | 1 | `bug-133` |
 | `m10` | 3 | `bug-1900` `bug-1905` `bug-1911` |
-| `m1l1` | 22 | `bug-1161` `bug-1162` `bug-1173` `bug-1174` `bug-1175` `bug-1184` `bug-1213` `bug-1228` `bug-1476` `bug-2031` `bug-2032` `bug-2037` `bug-2040` `bug-2047` `bug-2050` `bug-2057` `bug-2060` `bug-2062` `bug-2063` `bug-2064` `bug-2065` `bug-2067` |
+| `m1l1` | 23 | `bug-1161` `bug-1162` `bug-1173` `bug-1174` `bug-1175` `bug-1184` `bug-1213` `bug-1228` `bug-1476` `bug-2031` `bug-2032` `bug-2037` `bug-2040` `bug-2047` `bug-2050` `bug-2057` `bug-2060` `bug-2062` `bug-2063` `bug-2064` `bug-2065` `bug-2067` `bug-2183` |
 | `m1l1-walkers` | 1 | `bug-822` |
 | `m1l2a` | 4 | `bug-1248` `bug-1484` `bug-1485` `bug-842` |
 | `m1l2b` | 3 | `bug-1245` `bug-1513` `bug-1612` |
@@ -3224,6 +3226,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `needs-boot-trace` | 1 | `bug-gl2-viewmodel-over-menu` |
 | `needs-full-sequence-audit` | 1 | `bug-1483` |
 | `needs-regression-test` | 1 | `bug-1700` |
+| `needs-reporter-info` | 1 | `bug-2183` |
 | `needs-repro` | 1 | `bug-2031` |
 | `needs-user-decision` | 1 | `bug-1733` |
 | `nest` | 2 | `bug-1572` `bug-1573` |
@@ -3293,6 +3296,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `not-investigated` | 1 | `bug-2053` |
 | `not-our-bug` | 1 | `bug-1968` |
 | `not-reachable` | 1 | `bug-1890` |
+| `not-reproduced` | 1 | `bug-2183` |
 | `not-yet-fixed` | 2 | `bug-2048` `bug-2066` |
 | `not-yet-visually-confirmed` | 1 | `bug-1189` |
 | `notarget` | 6 | `bug-1418` `bug-2060` `bug-2062` `bug-2063` `bug-2064` `bug-2068` |
@@ -3662,7 +3666,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `r_drawstring` | 1 | `bug-139` |
 | `r_drawsunrays` | 1 | `bug-1207` |
 | `r_entlight_scale` | 1 | `bug-916` |
-| `r_ext_compressed_textures` | 1 | `bug-1225` |
+| `r_ext_compressed_textures` | 2 | `bug-1225` `bug-2183` |
 | `r_ext_framebuffer_multisample` | 1 | `bug-1152` |
 | `r_ext_multisample` | 1 | `bug-1152` |
 | `r_fastentlight` | 1 | `bug-1229` |
@@ -4460,6 +4464,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `texture` | 7 | `bug-1129` `bug-1327` `bug-1917` `bug-481` `bug-gl2-01` `bug-m3l2-ground-seams` `bug-menu-shader-label-invisible` |
 | `texture-closure` | 1 | `bug-853` |
 | `texture-compression` | 1 | `bug-1295` |
+| `texture-corruption` | 1 | `bug-2183` |
 | `texture-generation` | 1 | `bug-1901` |
 | `textures` | 6 | `bug-1016` `bug-1245` `bug-1247` `bug-157` `bug-2164` `bug-622` |
 | `tga` | 4 | `bug-092` `bug-1130` `bug-144` `bug-312` |
@@ -4712,7 +4717,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `user-question` | 1 | `bug-1770` |
 | `user-refuted-both` | 1 | `bug-2069` |
 | `user-refuted-my-diagnosis` | 1 | `bug-2048` |
-| `user-report` | 15 | `bug-1650` `bug-1651` `bug-1652` `bug-1654` `bug-1656` `bug-1744` `bug-1754` `bug-1755` `bug-1757` `bug-1764` `bug-1776` `bug-1786` `bug-1799` `bug-gl2-introhud` `bug-taunt-intro` |
+| `user-report` | 16 | `bug-1650` `bug-1651` `bug-1652` `bug-1654` `bug-1656` `bug-1744` `bug-1754` `bug-1755` `bug-1757` `bug-1764` `bug-1776` `bug-1786` `bug-1799` `bug-2183` `bug-gl2-introhud` `bug-taunt-intro` |
 | `user-reported` | 39 | `bug-1892` `bug-1898` `bug-1902` `bug-1903` `bug-1905` `bug-1906` `bug-1907` `bug-1908` `bug-1910` `bug-1912` `bug-1913` `bug-1914` `bug-1915` `bug-1918` `bug-1986` `bug-2053` `bug-2074` `bug-2075` `bug-2076` `bug-2078` `bug-2082` `bug-2085` `bug-2086` `bug-2087` `bug-2088` `bug-2091` `bug-2094` `bug-2099` `bug-2128` `bug-2129` `bug-2136` `bug-2146` `bug-2152` `bug-2157` `bug-2159` `bug-2162` `bu… |
 | `user-request` | 2 | `bug-1287` `bug-1289` |
 | `user-requested` | 4 | `bug-1904` `bug-2080` `bug-2158` `bug-2170` |

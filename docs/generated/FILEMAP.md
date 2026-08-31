@@ -10,9 +10,9 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 42,390 |
+| files in the workspace | 42,394 |
 | bytes | 42.5 GB |
-| files in project scope (indexed per-file) | 17,019 |
+| files in project scope (indexed per-file) | 17,023 |
 | source files (per-file rows with line counts) | 6,302 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
@@ -24,7 +24,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 13,178 | 7470.7 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 13,180 | 7470.7 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
@@ -40,8 +40,8 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
 | `_menu_pilot` | 81 | 90.7 MB | no - reference | Photoshop menu round-trip staging |
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
-| `<root>` | 65 | 3408.6 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
-| `manifests` | 48 | 0.6 MB | **yes** | release manifests consumed by the auto-updater |
+| `<root>` | 66 | 3408.6 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
+| `manifests` | 49 | 0.6 MB | **yes** | release manifests consumed by the auto-updater |
 | `server_home` | 41 | 17.3 MB | **yes** |  |
 | `_variant_packs` | 38 | 343.4 MB | **yes** |  |
 | `_tools` | 37 | 69.0 MB | no - reference | downloaded third-party binaries |
@@ -93,18 +93,18 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.asf` | 514 |
 | `.cpp` | 475 |
 | `.skc` | 422 |
-| `.md` | 398 |
+| `.md` | 400 |
 | `.ogg` | 376 |
 | `.skd` | 345 |
 | `.shader` | 227 |
 | `.urc` | 169 |
-| `.json` | 135 |
+| `.json` | 136 |
 | `.bsp` | 129 |
 | `.py` | 119 |
 | `.min` | 100 |
 | `.log` | 73 |
 | `.class` | 64 |
-| `(none)` | 60 |
+| `(none)` | 61 |
 | `.pth` | 55 |
 | `.dat` | 54 |
 | `.st` | 53 |
@@ -120,7 +120,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 ## Directories in project scope
 | directory | files | size | top extensions |
 |---|---:|---:|---|
-| `.` | 65 | 3408.64 MB | .txt×15, .ps1×14, .png×6, .jpg×5 |
+| `.` | 66 | 3408.64 MB | .txt×15, .ps1×14, .png×6, .jpg×5 |
 | `_backups` | 1 | 0.02 MB | .bak×1 |
 | `_backups/colt_2026-08-20` | 1 | 0.11 MB | .pre_loudness_nobuild×1 |
 | `_backups/xpbar_2026-08-20` | 2 | 0.04 MB | .pre_channelfit_nobuild×2 |
@@ -242,7 +242,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/_research/hdfix/work/stock` | 11 | 3.47 MB | .jpg×9, .dds×1, .tga×1 |
 | `hzm-mohaa-coop-mod/_research/maprender` | 7 | 22.81 MB | .png×3, .py×3, .md×1 |
 | `hzm-mohaa-coop-mod/_research/nohat` | 11 | 0.05 MB | .py×10, .txt×1 |
-| `hzm-mohaa-coop-mod/_research/release_drafts` | 10 | 0.05 MB | .md×10 |
+| `hzm-mohaa-coop-mod/_research/release_drafts` | 12 | 0.06 MB | .md×12 |
 | `hzm-mohaa-coop-mod/_terrain_pack/textures/algiers` | 2 | 2.10 MB | .dds×2 |
 | `hzm-mohaa-coop-mod/_terrain_pack/textures/central_europe_winter` | 2 | 2.10 MB | .dds×2 |
 | `hzm-mohaa-coop-mod/_terrain_pack/textures/models/items` | 2 | 2.10 MB | .dds×2 |
@@ -770,7 +770,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/loadout/glove` | 7 | 0.00 MB | .cfg×7 |
 | `hzm-mohaa-coop-mod/ui/loadout/helm` | 48 | 0.03 MB | .cfg×48 |
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 135 | 0.13 MB | .cfg×135 |
-| `manifests` | 48 | 0.62 MB | .json×48 |
+| `manifests` | 49 | 0.64 MB | .json×49 |
 | `map_entities` | 92 | 10.22 MB | .txt×88, .md×4 |
 | `openmohaa-hzm` | 8 | 0.04 MB | (none)×2, .txt×2, .md×2, .ps1×1 |
 | `openmohaa-hzm/.github/ISSUE_TEMPLATE` | 1 | 0.00 MB | .md×1 |

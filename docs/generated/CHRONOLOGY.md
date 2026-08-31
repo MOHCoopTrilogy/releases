@@ -13,27 +13,27 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `40d6451 2026-08-26 fix: grenade kick vs German grenades, DBNO camera, per-variant unlocks, prone reload` |
-| commits | 190 |
+| HEAD | `350532b 2026-08-30 manifest 1.4.6` |
+| commits | 193 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **7 modified, 5 untracked** |
-| unstaged diff | 7 files changed, 326 insertions(+), 218 deletions(-) |
-
-> Working tree is dirty. Everything in those 12 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 136 |
+| 2026-08 | 139 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (190)
+### Commits since 2026-01-01 (193)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `350532b` | 2026-08-30 | joncurry94-tech | manifest 1.4.6 |
+| `54cb5f2` | 2026-08-30 | joncurry94-tech | chore: track .gitmessage so the short-commit style travels |
+| `bd91a66` | 2026-08-30 | joncurry94-tech | docs: inert-feature sweep, commit-style makeover, budget cleanup |
 | `40d6451` | 2026-08-26 | joncurry94-tech | fix: grenade kick vs German grenades, DBNO camera, per-variant unlocks, prone reload |
 | `9be284f` | 2026-08-26 | joncurry94-tech | docs: v1.4.5 released |
 | `0cc504e` | 2026-08-26 | joncurry94-tech | manifest 1.4.5 |
@@ -230,19 +230,18 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `5a6507c 2026-08-24 docs: v1.4.4 Discord announcement posted (archived)` |
-| commits | 1,576 |
+| HEAD | `7a38dd3 2026-08-30 docs: v1.4.6 field report card + Discord announcement (posted)` |
+| commits | 1,578 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **38 modified, 43 untracked** |
-| unstaged diff | 38 files changed, 12981 insertions(+), 3863 deletions(-) |
+| **uncommitted** | **0 modified, 1 untracked** |
 
-> Working tree is dirty. Everything in those 81 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 183 |
+| 2026-08 | 185 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -282,10 +281,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (227)
+### Commits since 2026-01-01 (229)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `7a38dd3` | 2026-08-30 | joncurry94 | docs: v1.4.6 field report card + Discord announcement (posted) |
+| `193bdfb` | 2026-08-30 | joncurry94 | feat: voice wheel, objective drops, Omaha pass; fix count-scaling + revive HUD |
 | `5a6507c` | 2026-08-24 | joncurry94 | docs: v1.4.4 Discord announcement posted (archived) |
 | `52dabc1` | 2026-08-24 | joncurry94 | rename: MOH Trilogy Coop in player-facing text (not HZM) |
 | `ce8ed6b` | 2026-08-24 | joncurry94 | v1.4.4 - armory gloves, unlock requirements, AI leash, and several inert fixes made real |
@@ -519,19 +520,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `d77779da 2026-08-24 coop v1.4.4: 3-bit per-surface skin index for armory gloves; MAX_TIKI_LOAD_SHADERS fix (hang); gore exemptions; cover frame reconcile; coop_coverType` |
-| commits | 5,081 |
+| HEAD | `448e74f1 2026-08-30 feat: gun bracing, hit markers, sidearm swap, terrain normals; fix radar + lean` |
+| commits | 5,082 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **33 modified, 0 untracked** |
-| unstaged diff | 33 files changed, 5661 insertions(+), 232 deletions(-) |
-
-> Working tree is dirty. Everything in those 33 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 101 |
+| 2026-08 | 102 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -592,10 +590,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (116)
+### Commits since 2026-01-01 (117)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `448e74f1` | 2026-08-30 | joncurry94 | feat: gun bracing, hit markers, sidearm swap, terrain normals; fix radar + lean |
 | `d77779da` | 2026-08-24 | joncurry94 | coop v1.4.4: 3-bit per-surface skin index for armory gloves; MAX_TIKI_LOAD_SHADERS fix (hang); gore exemptions; cover frame recon… |
 | `95dc8eae` | 2026-08-23 | joncurry94 | fix: cover stops stealing your view and your crouch; sprint default 1.3 -> 1.15 |
 | `84a84cd9` | 2026-08-23 | joncurry94 | fix: rate-limit the cover probe before it ships to players |

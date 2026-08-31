@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1528** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1529** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -16,7 +16,7 @@
 |---|---:|
 | 2026-06 | 80 |
 | 2026-07 | 577 |
-| 2026-08 | 865 |
+| 2026-08 | 866 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1545,6 +1545,7 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-2180` | 2026-08-30 | `hzm-mohaa-coop-mod/coop_mod/aimaneuver.scr` | - | coop_aiAggrMove: aggressive-advance branch for ~37% of the AI force, gate seeded nowhere, never playtested | DELETED the branch rather than leaving it unseeded, and shipped NO replacement. The obvious substitute - lowering coop_aiChargeRange so THINK_TURRET… |
 | `bug-2181` | 2026-08-30 | `openmohaa-hzm/code/fgame/actor_cover.cpp` | - | Bounding overwatch (coop_aiBound) built across engine and script, gate defaulted 0 and was seeded in no cfg, menu or script - and could not be safely… | Gate on squad-brain OWNERSHIP instead of on a global cvar. New Actor::m_iCoopBoundOwnedUntil is stamped by EVERY coop_relocateok - a grant and a deny… |
 | `bug-2182` | 2026-08-30 | `openmohaa-hzm/code/server/sv_snapshot.c` | - | omohaaded.exe segfaults during Common Initialization when launched from G:\mohaa-gl2, but the SAME binary starts normally from the GOG root | No code change. Recorded so the next session does not mistake it for a fresh regression and bisect the engine for it. Verification for this session w… |
+| `bug-2183` | 2026-08-30 | `hzm-mohaa-coop-mod/textures/models/vehicles/gmc/gmcinside.dds` | V | user (friend's screenshot, older build): m1l1 intro truck - the canvas walls and roof render as dense blue/green block noise. Everything else in the… | No code change. Current build verified clean, so the first move is to establish the reporter's version: gmcinside.dds only entered the mod on 2026-08… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |
