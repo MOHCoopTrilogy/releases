@@ -66,17 +66,17 @@ it. **Download all five into the same folder.**
 
 | # | File | Size |
 |---|---|---|
-| 1 | **[MOHCoopTrilogy-Setup-1.2.8.exe](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.8/MOHCoopTrilogy-Setup-1.2.8.exe)** — run this one | 2 MB |
-| 2 | [MOHCoopTrilogy-Setup-1.2.8-1.bin](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.8/MOHCoopTrilogy-Setup-1.2.8-1.bin) | 2.1 GB |
-| 3 | [MOHCoopTrilogy-Setup-1.2.8-2.bin](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.8/MOHCoopTrilogy-Setup-1.2.8-2.bin) | 2.1 GB |
-| 4 | [MOHCoopTrilogy-Setup-1.2.8-3.bin](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.8/MOHCoopTrilogy-Setup-1.2.8-3.bin) | 2.1 GB |
-| 5 | [MOHCoopTrilogy-Setup-1.2.8-4.bin](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.2.8/MOHCoopTrilogy-Setup-1.2.8-4.bin) | 0.5 GB |
+| 1 | **[MOHCoopTrilogy-Setup-1.4.6.exe](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.4.6/MOHCoopTrilogy-Setup-1.4.6.exe)** - run this one | 2 MB |
+| 2 | [MOHCoopTrilogy-Setup-1.4.6-1.bin](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.4.6/MOHCoopTrilogy-Setup-1.4.6-1.bin) | 2.0 GB |
+| 3 | [MOHCoopTrilogy-Setup-1.4.6-2.bin](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.4.6/MOHCoopTrilogy-Setup-1.4.6-2.bin) | 2.0 GB |
+| 4 | [MOHCoopTrilogy-Setup-1.4.6-3.bin](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.4.6/MOHCoopTrilogy-Setup-1.4.6-3.bin) | 2.0 GB |
+| 5 | [MOHCoopTrilogy-Setup-1.4.6-4.bin](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.4.6/MOHCoopTrilogy-Setup-1.4.6-4.bin) | 989 MB |
 |   | **Total** | **~6.8 GB** |
 
 > [!IMPORTANT]
-> **The installer says 1.2.8 and that is correct — do not go looking for a newer one.** The full
+> **The installer says 1.4.6 and that is correct — do not go looking for a newer one.** The full
 > installer is published every so often, not with every release, because it is ~6.8 GB while a
-> normal update is a few megabytes. Install 1.2.8 and it brings itself up to the current version
+> normal update is a few megabytes. Install 1.4.6 and it brings itself up to the current version
 > the first time you launch it. The newest *release* on this page is always the newest *game*; the
 > newest *installer* is just the most recent full package.
 
