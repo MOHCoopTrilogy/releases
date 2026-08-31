@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `350532b 2026-08-30 manifest 1.4.6` |
-| commits | 193 |
+| HEAD | `db5da8b 2026-08-30 docs: point the installer download table at v1.4.6` |
+| commits | 195 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,15 +22,17 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-08 | 139 |
+| 2026-08 | 141 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (193)
+### Commits since 2026-01-01 (195)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `db5da8b` | 2026-08-30 | joncurry94-tech | docs: point the installer download table at v1.4.6 |
+| `69a71e9` | 2026-08-30 | joncurry94-tech | docs: regenerate after v1.4.6 (bug-2183 truck texture investigation) |
 | `350532b` | 2026-08-30 | joncurry94-tech | manifest 1.4.6 |
 | `54cb5f2` | 2026-08-30 | joncurry94-tech | chore: track .gitmessage so the short-commit style travels |
 | `bd91a66` | 2026-08-30 | joncurry94-tech | docs: inert-feature sweep, commit-style makeover, budget cleanup |
@@ -230,18 +232,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `7a38dd3 2026-08-30 docs: v1.4.6 field report card + Discord announcement (posted)` |
-| commits | 1,578 |
+| HEAD | `47f5269 2026-08-30 docs: v1.4.6 release notes` |
+| commits | 1,579 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **0 modified, 1 untracked** |
-
-> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 185 |
+| 2026-08 | 186 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -281,10 +281,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (229)
+### Commits since 2026-01-01 (230)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `47f5269` | 2026-08-30 | joncurry94 | docs: v1.4.6 release notes |
 | `7a38dd3` | 2026-08-30 | joncurry94 | docs: v1.4.6 field report card + Discord announcement (posted) |
 | `193bdfb` | 2026-08-30 | joncurry94 | feat: voice wheel, objective drops, Omaha pass; fix count-scaling + revive HUD |
 | `5a6507c` | 2026-08-24 | joncurry94 | docs: v1.4.4 Discord announcement posted (archived) |
