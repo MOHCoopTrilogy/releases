@@ -56,8 +56,10 @@ That's the whole list. The engine, renderer, runtimes, and all mod content are b
 > Honor: Allied Assault War Chest* install and any vanilla OpenMOHAA install are left exactly as
 > they are — nothing is overwritten, patched, or moved. Setup will refuse a folder that would
 > break that promise: it will not install into a Medal of Honor game folder, into an existing
-> OpenMOHAA installation it did not create, or anywhere inside your GOG folder. The installer *reads* three support DLLs from your
-> GOG folder and copies them across; it never writes anything back to it, and it asks for no
+> OpenMOHAA installation it did not create, or anywhere inside your GOG folder.
+>
+> The installer *reads* three support DLLs from your GOG folder and copies them across; it
+> never writes anything back to it, and it asks for no
 > administrator rights, so it could not modify a protected location even if it tried. Uninstalling
 > removes its own folder and nothing else. You can keep playing the original campaign normally.
 
