@@ -130,8 +130,8 @@ def main():
             print('   %-30s %-12s %-12s %s' % (name, val, dflt, seed if seed is not None else '-'))
         print()
     if shipped:
-        print('== SHIPPED BY autoexec.cfg (%d) - these beat the engine default AND the saved
-   config, because autoexec execs last. Changing a Cvar_Get default cannot move them.'
+        print('== SHIPPED BY autoexec.cfg (%d) - these beat the engine default AND the saved '
+              'config, because autoexec execs last. Changing a Cvar_Get default cannot move them.'
               % len(shipped))
         print('   %-30s %-12s %s' % ('cvar', 'autoexec', 'engine default'))
         for scope, name, val, dflt in shipped:

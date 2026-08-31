@@ -74,6 +74,10 @@ Source: "{#Gog}\maintt\zzzzzz-HRRTM_Pak4c_WeaponTGA.pk3"; DestDir: "{app}\home\m
 Source: "{#Mod}\zzzzzz_co-op_hzm_mod_assets_snd.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
 Source: "{#Mod}\zzzzzz_co-op_hzm_mod_assets_tex.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
 Source: "{#Mod}\zzzzzz_co-op_hzm_mod_code.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
+; [2026-08-30] CC0 terrain pak (bug-2164, CC0 ground replacement). Built out-of-band by docs/tools/build_terrain_pack.py and deployed by build.ps1, but it reached NEITHER the release manifest NOR the installer, so it only ever existed on the dev machine.
+; MUST stay in lockstep with $stage in package_installer.ps1 - that list seeds
+; installed_manifest.json, so shipping a file the seed does not name makes the seed lie.
+Source: "{#Mod}\zzzzzzzzz_coop_terrain.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
 Source: "{#Gog}\maintt\zzzzzz_hd_charskins.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
 Source: "{#Gog}\maintt\zzzzzz_hd_fx.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion
 Source: "{#Gog}\maintt\zzzzzz_hd_skybox.pk3"; DestDir: "{app}\home\maintt"; Flags: ignoreversion

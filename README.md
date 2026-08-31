@@ -239,7 +239,7 @@ Everything here exists in the current build. Status honesty: systems marked *(ex
 - **Tinnitus and shellshock** after close blasts, ricochet whines, supersonic **near-miss cracks and zings**, and muffled screams from crews still inside a burning vehicle
 - **Death voices**: a 484-clip pool with distance filtering — far-away kills sound far away — plus a headshot kill cue and tiered injury audio
 - **Footstep overhaul** — stone/dirt/foliage/metal/sand/snow/water, 44 per-surface bullet impacts, shell casings, and enemies you can actually hear coming
-- **1,389 never-played retail voice takes** restored to the campaign — suppressing-fire calls, reload shouts, German banter, fear barks *(shipped in v1.4.x but currently silent for players due to a packaging defect — see [Known bugs](#known-bugs-open-right-now))*
+- **1,389 never-played retail voice takes** restored to the campaign — suppressing-fire calls, reload shouts, German banter, fear barks
 - Full in-game **audio mixer**: Master, Music, SFX, Ambience, and Dialogue sliders that each actually do what they say, plus an **output-device picker**; cinematic ducks return to *your* levels afterward
 - Per-map ambience beds, dynamic weather you can hear roll in, radio squelch on officer calls, and ~3,100 missing vehicle-collision sounds restored trilogy-wide
 - Engine-level fixes: the sound table tripled (512 → 1600), audio follows your Windows default device, and map-wide gunfire falloff restored to how the original engine did it
@@ -334,14 +334,12 @@ Honesty corner. These are the newest, least-settled systems — deliberately shi
 The current honest list — carried in the [release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest) and the internal defect ledger:
 
 - **e3l4**: a jeep passenger can fail to complete the first supply run. Failsafes catch it so the mission still completes; the root cause is instrumented and being chased.
-- **m3l2**: `SV_FindIndex overflow` warnings on load.
 - **t2l2**: script errors on coop boot — some addon MG42 nests go unmanned and one German vehicle fails to appear. The map plays through regardless (degraded, not dead).
 - **Pinned challenges have no in-mission surface yet** — pin from the lobby or main-menu Service Record; an in-mission panel needs engine work.
 - **DBNO crawl** animation plays opposite to your movement direction (crawling forward looks like crawling backward).
 - **Reload magazines keep the stock skin** on a finished/skinned gun — the in-hand magazine is a separate model whose source is still being traced.
 - **m1l1**: a couple of the Rangers riding the opening truck can render with mangled limbs. Six investigations so far; a targeted diagnostic ships in the build.
 - **e2l2**: a dozen harmless-looking "NULL listener" script warnings on boot — being fixed with the established guard pattern.
-- A handful of Service Record **challenges are visible but not yet completable** (their stat producers aren't wired). They're triaged; most were wired in a recent pass.
 - **OpenGL2 renderer path**: surfaces lit by animated light styles (e.g. the e2l1 bridge rails) can pulse red, and distant objects can pop through fog instead of fading. The classic renderer path doesn't show either.
 - **Dedicated servers** work for coop maps but crash loading plain deathmatch maps; listen servers (the normal way to host) are unaffected.
 

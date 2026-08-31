@@ -108,6 +108,9 @@ foreach ($p in @("zzzzzz_co-op_hzm_mod_assets_snd.pk3","zzzzzz_co-op_hzm_mod_ass
     $stage["home/maintt/$p"] = "$mod\$p"
 }
 # autoexec (ours; users edit omconfig, not this)
+# [2026-08-30] The CC0 terrain pak (bug-2164, CC0 ground replacement). Built out-of-band by docs/tools/build_terrain_pack.py and deployed by build.ps1, but it reached NEITHER the release manifest NOR the installer, so it only ever existed on the dev machine.
+# Players updating had the old AI-upscaled ground; fresh installs had it too.
+$stage["home/maintt/zzzzzzzzz_coop_terrain.pk3"] = "$mod\zzzzzzzzz_coop_terrain.pk3"
 $stage["home/maintt/autoexec.cfg"] = "$mod\autoexec.cfg"
 # What's New card trigger seed (constant content = constant hash = downloaded once ever).
 # Lives in installer/ (NOT the mod tree) so build.ps1 never packs it into a pk3 - a pk3 copy

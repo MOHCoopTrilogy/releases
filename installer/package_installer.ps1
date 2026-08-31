@@ -53,7 +53,11 @@ $stage["home/maintt/dedicated_example.cfg"] = "$mod\coop_mod\cfg\dedicated_examp
 $stage["updater.ps1"]          = "$dev\updater\updater.ps1"
 $stage["launch_coop.vbs"]      = "$dev\updater\launch_coop.vbs"
 $stage["report_problem.ps1"]   = "$dev\installer\report_problem.ps1"
-foreach ($p in @("zzzzzz_co-op_hzm_mod_assets_snd.pk3","zzzzzz_co-op_hzm_mod_assets_tex.pk3","zzzzzz_co-op_hzm_mod_code.pk3")) {
+# [2026-08-30] zzzzzzzzz_coop_terrain.pk3 joins the three mod paks here AND at its Source line
+# in hzm_coop.iss. The two lists must agree: this one seeds installed_manifest.json, which is
+# the updater's idea of what is on disk, so a file shipped but not seeded is re-downloaded on
+# first launch, and a file seeded but not shipped makes the first diff fail.
+foreach ($p in @("zzzzzz_co-op_hzm_mod_assets_snd.pk3","zzzzzz_co-op_hzm_mod_assets_tex.pk3","zzzzzz_co-op_hzm_mod_code.pk3","zzzzzzzzz_coop_terrain.pk3")) {
     $stage["home/maintt/$p"] = "$mod\$p"
 }
 $stage["home/maintt/autoexec.cfg"] = "$mod\autoexec.cfg"
