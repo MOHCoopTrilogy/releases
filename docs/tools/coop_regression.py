@@ -60,7 +60,12 @@ LOG_CANDIDATES = [
     os.path.join(ROOT, "server_home", "maintt", "qconsole.log"),
 ]
 
-MARKER = re.compile(r"\^~\^~\^ ([A-Z][A-Z0-9_]*)\b(.*)$")
+# A family is an ALL-CAPS token of 2+ chars terminated by whitespace/punctuation.
+# The 2-char minimum and the terminator both matter: the engine also prints prose behind
+# this prefix ("^~^~^ Add the following line...", "^~^~^ Warning: ..."), and a naive
+# [A-Z][A-Z0-9_]* happily reads those as families "A" and "W", which would put engine
+# chatter into the fingerprint and make every baseline noisy.
+MARKER = re.compile(r"\^~\^~\^ ([A-Z0-9][A-Z0-9_]+)(?=[\s:=,.]|$)(.*)$")
 KEY = re.compile(r"([a-zA-Z_][a-zA-Z0-9_]*)=")
 SCRIPT_ERROR = re.compile(r"Script Error|Could not find label|Expecting|ERR_DROP", re.I)
 
@@ -76,14 +81,41 @@ def newest_log(explicit=None):
     return max(found, key=os.path.getmtime)
 
 
-def fingerprint(path):
-    """(families, errors, meta) - counts and key-sets per marker family."""
+TIMESTAMP = re.compile(r"^\[(\d{4})-(\d\d)-(\d\d) (\d\d):(\d\d):(\d\d)")
+
+
+def _seconds(line):
+    """Wall-clock seconds from a qconsole timestamp, or None."""
+    m = TIMESTAMP.match(line)
+    if not m:
+        return None
+    y, mo, d, h, mi, s = (int(x) for x in m.groups())
+    return ((d * 24 + h) * 60 + mi) * 60 + s
+
+
+def fingerprint(path, window=None):
+    """(families, errors, meta) - counts and key-sets per marker family.
+
+    `window` bounds the capture to N seconds after the FIRST marker line. Without it the
+    fingerprint is not reproducible: families like SVFRAME, SQUAD and PRB tick on a timer,
+    so their counts scale with how long the session happened to run, and every later check
+    would report a diff for a session that merely lasted longer. Bounding the window makes
+    counts comparable, which is the whole point of the tool.
+    """
     fams = {}
     errors = {}
     total = 0
+    t0 = None
     with io.open(path, encoding="utf-8", errors="replace") as fh:
         for line in fh:
             total += 1
+            if window is not None:
+                t = _seconds(line)
+                if t is not None:
+                    if t0 is None and MARKER.search(line):
+                        t0 = t
+                    if t0 is not None and t - t0 > window:
+                        break
             m = MARKER.search(line)
             if m:
                 fam, rest = m.group(1), m.group(2)
@@ -97,7 +129,7 @@ def fingerprint(path):
                 k = re.sub(r"\b\d+\b", "N", line.strip())[:160]
                 errors[k] = errors.get(k, 0) + 1
     fams = {k: {"lines": v["lines"], "keys": sorted(v["keys"])} for k, v in fams.items()}
-    meta = {"log": path, "logLines": total, "families": len(fams)}
+    meta = {"log": path, "logLines": total, "families": len(fams), "windowSec": window}
     return fams, errors, meta
 
 
@@ -109,7 +141,7 @@ def load_baseline():
 
 def cmd_baseline(args):
     path = newest_log(args.log)
-    fams, errors, meta = fingerprint(path)
+    fams, errors, meta = fingerprint(path, args.window)
     if not fams:
         sys.exit("that log contains no ^~^~^ markers - did you exec coop_regression.cfg\n"
                  "and set developer 1 before starting the map?  log: %s" % path)
@@ -123,7 +155,7 @@ def cmd_baseline(args):
 
 
 def cmd_show(args):
-    fams, errors, meta = fingerprint(newest_log(args.log))
+    fams, errors, meta = fingerprint(newest_log(args.log), args.window)
     print("log: %s (%d lines)" % (meta["log"], meta["logLines"]))
     for f in sorted(fams):
         print("  %-22s %4d lines  keys: %s" % (f, fams[f]["lines"], ",".join(fams[f]["keys"]) or "-"))
@@ -135,7 +167,7 @@ def cmd_show(args):
 
 def cmd_check(args):
     base = load_baseline()
-    fams, errors, meta = fingerprint(newest_log(args.log))
+    fams, errors, meta = fingerprint(newest_log(args.log), base["meta"].get("windowSec"))
     bf, be = base["families"], base.get("errors", {})
     problems = []
 
@@ -177,6 +209,8 @@ def cmd_check(args):
 
 def main():
     ap = argparse.ArgumentParser(description="co-op regression gate: diff a run against a known-good baseline")
+    ap.add_argument("--window", type=int, default=180,
+                    help="seconds after the first marker to consider (default 180). --check reuses the BASELINE's window so the two are always comparable.")
     ap.add_argument("--log", help="explicit qconsole.log (default: newest of the known locations)")
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--baseline", action="store_true", help="store this run as the known-good baseline")

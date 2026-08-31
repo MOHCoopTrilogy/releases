@@ -1,0 +1,786 @@
+{
+  "errors": {
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : Bad hash code value: NIL": 1,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : Cannot cast 'array' to listener": 1,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : Cannot cast 'none' to float": 2,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : Cannot cast 'none' to int": 2,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : binary '*' applied to incompatible types 'float' and 'none'": 2,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : binary '*' applied to incompatible types 'none' and 'int'": 3,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : binary '+' applied to incompatible types 'float' and 'none'": 2,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : binary '+' applied to incompatible types 'int' and 'none'": 3,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'": 5,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'int'": 3,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'": 1,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'string'": 1,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'": 2,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : binary '-' applied to incompatible types 'pointer' and 'int'": 4,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : binary '/' applied to incompatible types 'none' and 'int'": 2,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : binary '<' applied to incompatible types 'none' and 'int'": 5,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : binary '<=' applied to incompatible types 'int' and 'none'": 1,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : binary '>' applied to incompatible types 'none' and 'int'": 5,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : binary '>=' applied to incompatible types 'none' and 'int'": 1,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : command 'delete' applied to NULL listener": 1,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : command 'waitTill' applied to NULL listener": 1,
+    "[N-N-N N:N:N UTC-N.N] ^~^~^ Script Error : self is NULL": 8
+  },
+  "families": {
+    "AGGRO": {
+      "keys": [
+        "actor",
+        "alarm",
+        "enableDisg",
+        "target",
+        "tgtDisguised"
+      ],
+      "lines": 14
+    },
+    "AIBEHAV": {
+      "keys": [
+        "aggr",
+        "aggrCover",
+        "aggrMove",
+        "aggrStatic",
+        "alive",
+        "cover",
+        "engaging",
+        "flank",
+        "flanked",
+        "glue",
+        "moving",
+        "near",
+        "nearCur",
+        "nearEE0",
+        "nearEnemy",
+        "nearSee",
+        "none",
+        "ntgt",
+        "prone",
+        "staticCombat"
+      ],
+      "lines": 45
+    },
+    "AIBEHAV2": {
+      "keys": [
+        "avgDist",
+        "engagedMoved",
+        "repositioned",
+        "totalDist",
+        "window"
+      ],
+      "lines": 22
+    },
+    "AIBEHAV3": {
+      "keys": [
+        "convert",
+        "corner",
+        "cornerdeath",
+        "cornernade",
+        "crate",
+        "crateblind",
+        "crawldeath",
+        "crouch",
+        "dropgun",
+        "fear",
+        "g43",
+        "hitreact",
+        "martyr",
+        "prone",
+        "runfire",
+        "surrender",
+        "variant"
+      ],
+      "lines": 6
+    },
+    "AMBIENCE": {
+      "keys": [
+        "bed"
+      ],
+      "lines": 1
+    },
+    "BP": {
+      "keys": [
+        "id",
+        "n",
+        "rows"
+      ],
+      "lines": 9
+    },
+    "BPMGR": {
+      "keys": [
+        "act",
+        "count",
+        "found1",
+        "map",
+        "psize",
+        "slot1"
+      ],
+      "lines": 46
+    },
+    "BUILD_STRUCT_REG": {
+      "keys": [],
+      "lines": 1
+    },
+    "BUNKER": {
+      "keys": [],
+      "lines": 1
+    },
+    "CHALUI": {
+      "keys": [
+        "rows",
+        "sent"
+      ],
+      "lines": 10
+    },
+    "COVERSIDE": {
+      "keys": [
+        "wall"
+      ],
+      "lines": 2398
+    },
+    "DBNO": {
+      "keys": [
+        "p"
+      ],
+      "lines": 20
+    },
+    "DBNOCORPSE": {
+      "keys": [
+        "alive",
+        "aliveNow",
+        "corpseOrigin",
+        "dist",
+        "killed",
+        "respawnOrigin",
+        "reviveAttempted",
+        "sub"
+      ],
+      "lines": 4
+    },
+    "DBNOCRAWL": {
+      "keys": [
+        "elapsed",
+        "moved",
+        "p"
+      ],
+      "lines": 2
+    },
+    "DBNORACE": {
+      "keys": [
+        "aliveEnd",
+        "fired",
+        "sub"
+      ],
+      "lines": 2
+    },
+    "DBNOTEAM": {
+      "keys": [
+        "alive",
+        "downed",
+        "map",
+        "revived",
+        "reviver"
+      ],
+      "lines": 4
+    },
+    "DBNOTEST": {
+      "keys": [
+        "alive",
+        "downed",
+        "map",
+        "p",
+        "revived"
+      ],
+      "lines": 3
+    },
+    "DBNOWIPE": {
+      "keys": [
+        "active",
+        "n",
+        "total"
+      ],
+      "lines": 2
+    },
+    "DECAPTRY": {
+      "keys": [
+        "ent",
+        "gibsurfs",
+        "headofs",
+        "headsurfs",
+        "mod",
+        "model"
+      ],
+      "lines": 1
+    },
+    "DISG": {
+      "keys": [
+        "actor",
+        "age",
+        "curstate",
+        "dead",
+        "disabled",
+        "ent",
+        "ignoreme",
+        "newthink",
+        "oldthink",
+        "player",
+        "team",
+        "tn"
+      ],
+      "lines": 57
+    },
+    "EDICTHI": {
+      "keys": [
+        "max",
+        "num_entities",
+        "slot"
+      ],
+      "lines": 1
+    },
+    "EE0NEAR": {
+      "keys": [
+        "dis",
+        "ent",
+        "src",
+        "surr"
+      ],
+      "lines": 6
+    },
+    "FLMUSIC": {
+      "keys": [],
+      "lines": 1
+    },
+    "FPRINT": {
+      "keys": [
+        "ENTBITS",
+        "MAX_SOUNDS"
+      ],
+      "lines": 1
+    },
+    "HOLDOUT": {
+      "keys": [],
+      "lines": 1
+    },
+    "HURT": {
+      "keys": [
+        "actor",
+        "hasAlarm",
+        "hp",
+        "oldtype"
+      ],
+      "lines": 2
+    },
+    "KITBACKFILL": {
+      "keys": [
+        "player",
+        "primaries",
+        "sidearms"
+      ],
+      "lines": 14
+    },
+    "KITGIVE": {
+      "keys": [
+        "ents",
+        "player"
+      ],
+      "lines": 11
+    },
+    "KITSPAWN": {
+      "keys": [
+        "ents",
+        "player"
+      ],
+      "lines": 11
+    },
+    "LOADOUT": {
+      "keys": [],
+      "lines": 2
+    },
+    "LOADOUTPISTOL": {
+      "keys": [],
+      "lines": 1
+    },
+    "MANEUVER": {
+      "keys": [
+        "attackState",
+        "candidates",
+        "coverThink",
+        "runtoIssued"
+      ],
+      "lines": 90
+    },
+    "MORALE": {
+      "keys": [
+        "berserk",
+        "falter",
+        "live",
+        "peak"
+      ],
+      "lines": 1
+    },
+    "NAMECMD": {
+      "keys": [],
+      "lines": 19
+    },
+    "OFFICERTEST": {
+      "keys": [
+        "done",
+        "enemies",
+        "map",
+        "maxscalar",
+        "mode"
+      ],
+      "lines": 6
+    },
+    "PERS": {
+      "keys": [
+        "actor",
+        "hasAlarm",
+        "type"
+      ],
+      "lines": 8
+    },
+    "PERSSKIP": {
+      "keys": [
+        "actor"
+      ],
+      "lines": 1
+    },
+    "PRB": {
+      "keys": [
+        "active",
+        "actor",
+        "actors",
+        "aiDis",
+        "aiDisabled",
+        "alrm",
+        "anim",
+        "atk",
+        "busted",
+        "canSeePlayer",
+        "census",
+        "conv",
+        "dbno",
+        "disg",
+        "dist",
+        "engaging",
+        "ent",
+        "feature",
+        "filter",
+        "foeCls",
+        "foeEnt",
+        "foeTbias",
+        "foeTm",
+        "glued",
+        "hasEnemy",
+        "hp",
+        "hpMax",
+        "hpReal",
+        "lvlAlarm",
+        "lvlDisg",
+        "lvlTbias",
+        "mask",
+        "n",
+        "noIdle",
+        "noLongPain",
+        "notgt",
+        "org",
+        "persSet",
+        "player",
+        "pos",
+        "role",
+        "scene",
+        "script",
+        "see",
+        "sound",
+        "stopPain",
+        "supp",
+        "surr",
+        "surrendered",
+        "t",
+        "tbias",
+        "tdis",
+        "tidl",
+        "tm",
+        "tn",
+        "verdict",
+        "weapon",
+        "wg",
+        "wp",
+        "yaw"
+      ],
+      "lines": 453
+    },
+    "PROFCHAN": {
+      "keys": [
+        "cvar"
+      ],
+      "lines": 10
+    },
+    "PRONEDBG": {
+      "keys": [
+        "tries",
+        "wg"
+      ],
+      "lines": 1
+    },
+    "PRONEPOSE": {
+      "keys": [
+        "actor",
+        "wg"
+      ],
+      "lines": 1
+    },
+    "PROPS": {
+      "keys": [],
+      "lines": 1
+    },
+    "REISSUE": {
+      "keys": [
+        "n",
+        "player"
+      ],
+      "lines": 12
+    },
+    "RESPAWNKIT": {
+      "keys": [
+        "ammo",
+        "phase",
+        "primaries",
+        "weap"
+      ],
+      "lines": 2
+    },
+    "SCALETEST": {
+      "keys": [
+        "battalion",
+        "germans",
+        "guards",
+        "hardcap",
+        "map",
+        "pc"
+      ],
+      "lines": 18
+    },
+    "SELFTEST": {
+      "keys": [],
+      "lines": 1
+    },
+    "SHELLSHOCK": {
+      "keys": [
+        "ping"
+      ],
+      "lines": 2
+    },
+    "SHOTDIST": {
+      "keys": [
+        "dist",
+        "owner",
+        "range",
+        "weap"
+      ],
+      "lines": 1
+    },
+    "SPAWNDISG": {
+      "keys": [
+        "enableDisg",
+        "eng_has",
+        "eng_is",
+        "gun",
+        "itemPapers",
+        "modHas",
+        "modPapers",
+        "noWeapon",
+        "uniOnSpawn"
+      ],
+      "lines": 11
+    },
+    "SPAWNPROT": {
+      "keys": [
+        "hpAfter",
+        "hpBefore",
+        "p",
+        "phase"
+      ],
+      "lines": 2
+    },
+    "SQUAD": {
+      "keys": [
+        "alerts",
+        "bound",
+        "clusters",
+        "engaged",
+        "search"
+      ],
+      "lines": 106
+    },
+    "ST_DBNO": {
+      "keys": [
+        "map"
+      ],
+      "lines": 2
+    },
+    "ST_KEYITEMS": {
+      "keys": [
+        "map"
+      ],
+      "lines": 2
+    },
+    "ST_OBJECTIVES_FANOUT": {
+      "keys": [
+        "idx",
+        "name",
+        "player",
+        "sent",
+        "status",
+        "textok",
+        "total"
+      ],
+      "lines": 4
+    },
+    "ST_OBJECTIVES_IDEM": {
+      "keys": [
+        "complete_flag",
+        "current",
+        "xp_paid"
+      ],
+      "lines": 2
+    },
+    "ST_OBJECTIVES_LATCH": {
+      "keys": [
+        "skipped"
+      ],
+      "lines": 2
+    },
+    "ST_OBJECTIVES_MCIDEM": {
+      "keys": [
+        "skipped"
+      ],
+      "lines": 2
+    },
+    "ST_OBJECTIVES_RECON": {
+      "keys": [
+        "active",
+        "map",
+        "slots"
+      ],
+      "lines": 2
+    },
+    "ST_OBJECTIVES_SIDEOBJ": {
+      "keys": [
+        "pushed",
+        "reg",
+        "repush4",
+        "total"
+      ],
+      "lines": 2
+    },
+    "ST_OBJECTIVES_WRAP": {
+      "keys": [
+        "case",
+        "lines",
+        "maxlen",
+        "over"
+      ],
+      "lines": 8
+    },
+    "ST_SCALING": {
+      "keys": [
+        "map"
+      ],
+      "lines": 1
+    },
+    "ST_TRIGGERS": {
+      "keys": [
+        "map"
+      ],
+      "lines": 2
+    },
+    "ST_TRIGGERS_EVTBUS": {
+      "keys": [
+        "event",
+        "namelist",
+        "released",
+        "waiters"
+      ],
+      "lines": 4
+    },
+    "ST_TRIGGERS_SAYLEN": {
+      "keys": [
+        "checked",
+        "firstmiss",
+        "lang",
+        "missing",
+        "tableok"
+      ],
+      "lines": 1
+    },
+    "ST_TRIGGERS_SHIM": {
+      "keys": [
+        "case",
+        "excl",
+        "fn",
+        "ret"
+      ],
+      "lines": 9
+    },
+    "ST_VEHICLES": {
+      "keys": [
+        "abort",
+        "map",
+        "mode"
+      ],
+      "lines": 2
+    },
+    "ST_WEAPONS": {
+      "keys": [
+        "map"
+      ],
+      "lines": 1
+    },
+    "ST_XP": {
+      "keys": [
+        "map",
+        "players"
+      ],
+      "lines": 2
+    },
+    "ST_XP_AUDBAND": {
+      "keys": [
+        "abort"
+      ],
+      "lines": 1
+    },
+    "ST_XP_CCCLEAN": {
+      "keys": [
+        "abort"
+      ],
+      "lines": 1
+    },
+    "ST_XP_CHALWPN": {
+      "keys": [
+        "bumped",
+        "held",
+        "kill"
+      ],
+      "lines": 2
+    },
+    "ST_XP_XPASSIST": {
+      "keys": [
+        "abort"
+      ],
+      "lines": 1
+    },
+    "ST_XP_XPCAP": {
+      "keys": [
+        "factor",
+        "np",
+        "teamkills"
+      ],
+      "lines": 3
+    },
+    "ST_XP_XPOWN": {
+      "keys": [
+        "gainOthers",
+        "gainSelf",
+        "idx",
+        "killer",
+        "total"
+      ],
+      "lines": 1
+    },
+    "ST_XP_XPPOPUP": {
+      "keys": [
+        "fired",
+        "leaked",
+        "slotsUsed"
+      ],
+      "lines": 1
+    },
+    "ST_XP_XPRANK": {
+      "keys": [
+        "fromRank",
+        "p",
+        "toRank",
+        "unlocksAdded",
+        "unlocksAfterRebackfill"
+      ],
+      "lines": 1
+    },
+    "ST_XP_XPVALOR": {
+      "keys": [
+        "abort"
+      ],
+      "lines": 1
+    },
+    "SVFRAME": {
+      "keys": [
+        "budget",
+        "mean",
+        "over",
+        "worst"
+      ],
+      "lines": 122
+    },
+    "WALLGUN": {
+      "keys": [],
+      "lines": 1
+    },
+    "WEAPTEST": {
+      "keys": [
+        "count",
+        "gave",
+        "id",
+        "idx",
+        "map",
+        "tik"
+      ],
+      "lines": 150
+    },
+    "WEATHER": {
+      "keys": [
+        "coop"
+      ],
+      "lines": 1
+    },
+    "WXSEED": {
+      "keys": [
+        "pattern",
+        "rain_density"
+      ],
+      "lines": 5
+    },
+    "XPKILL": {
+      "keys": [
+        "attributed",
+        "mod",
+        "victim"
+      ],
+      "lines": 8
+    },
+    "XPPROBE": {
+      "keys": [
+        "amt",
+        "cls",
+        "enabled",
+        "id",
+        "init",
+        "map",
+        "playerOk",
+        "total"
+      ],
+      "lines": 2
+    },
+    "XPTEST": {
+      "keys": [
+        "map"
+      ],
+      "lines": 2
+    }
+  },
+  "meta": {
+    "families": 85,
+    "log": "C:/Users/curry/AppData/Local/Temp/claude/C--mohaa-coop-dev/16396f85-9f5f-4159-8516-3f08362e0a18/scratchpad/baseline_capture.log",
+    "logLines": 10044,
+    "windowSec": 180
+  }
+}

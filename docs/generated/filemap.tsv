@@ -526,6 +526,7 @@ docs/tools/check_download_links.py	3081	.py	78	docs
 docs/tools/check_empty_rhs.py	3861	.py	95	docs
 docs/tools/check_tik_surfaces.py	3773	.py	88	docs
 docs/tools/config_fossils.py	6498	.py	149	docs
+docs/tools/coop_regression.py	8235	.py	194	docs
 docs/tools/count_skel_channels.py	7342	.py	180	docs
 docs/tools/depthscan2.py	2359	.py	76	docs
 docs/tools/docgen.py	64136	.py	1478	docs
@@ -1637,6 +1638,8 @@ hzm-mohaa-coop-mod/coop_mod/cfg/buildmode.cfg	3744	.cfg	69	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/buildmode_stop.cfg	896	.cfg	36	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/campaign_start.cfg	1116	.cfg	19	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/coop_fxdefaults.cfg	1675	.cfg	59	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/cfg/coop_regression.cfg	2474	.cfg	55	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/cfg/coop_regression_off.cfg	411	.cfg	17	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/covertune.cfg	2782	.cfg	50	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/covertune_off.cfg	581	.cfg	18	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/dedicated_example.cfg	2448	.cfg	51	hzm-mohaa-coop-mod
@@ -13856,7 +13859,7 @@ hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	595656233	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	1260539634	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	57517278	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	57518892	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzzzzz_coop_terrain.pk3	33902433	.pk3	0	hzm-mohaa-coop-mod
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
