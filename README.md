@@ -50,10 +50,13 @@ That's the whole list. The engine, renderer, runtimes, and all mod content are b
 ## Install
 
 > [!NOTE]
-> **It will not touch your existing game.** The mod installs into its own folder
-> (`%LOCALAPPDATA%\MOH Coop Trilogy`) and runs from there. Your GOG *Medal of Honor: Allied
-> Assault War Chest* install and any vanilla OpenMOHAA install are left exactly as they are —
-> nothing is overwritten, patched, or moved. The installer *reads* three support DLLs from your
+> **It will not touch your existing game.** The mod installs into its own folder and runs from
+> there. **You choose that folder during setup** — the installer suggests
+> `%LOCALAPPDATA%\MOH Coop Trilogy`, and you can put it anywhere you like. Your GOG *Medal of
+> Honor: Allied Assault War Chest* install and any vanilla OpenMOHAA install are left exactly as
+> they are — nothing is overwritten, patched, or moved. Setup will refuse a folder that would
+> break that promise: it will not install into a Medal of Honor game folder, into an existing
+> OpenMOHAA installation it did not create, or anywhere inside your GOG folder. The installer *reads* three support DLLs from your
 > GOG folder and copies them across; it never writes anything back to it, and it asks for no
 > administrator rights, so it could not modify a protected location even if it tried. Uninstalling
 > removes its own folder and nothing else. You can keep playing the original campaign normally.
