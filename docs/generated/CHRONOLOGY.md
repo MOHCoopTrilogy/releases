@@ -12,28 +12,26 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | | |
 |---|---|
-| branch | `main` |
-| HEAD | `57e8074 2026-08-31 manifest 1.4.7` |
-| commits | 208 |
+| branch | `omaha-chaos-and-gl2-fixes` |
+| HEAD | `ced258e 2026-08-31 docs+tools: gl2 renderer parity, the Omaha pass, and three generators that cannot rot` |
+| commits | 209 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **16 modified, 5 untracked** |
-| unstaged diff | 16 files changed, 225 insertions(+), 43 deletions(-) |
-
-> Working tree is dirty. Everything in those 21 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 154 |
+| 2026-08 | 155 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (208)
+### Commits since 2026-01-01 (209)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `ced258e` | 2026-08-31 | joncurry94-tech | docs+tools: gl2 renderer parity, the Omaha pass, and three generators that cannot rot |
 | `57e8074` | 2026-08-31 | joncurry94-tech | manifest 1.4.7 |
 | `c72d093` | 2026-08-31 | joncurry94-tech | installer: always offer the folder choice, and make the guidance actually visible |
 | `eb1f653` | 2026-08-31 | joncurry94-tech | installer: ask for the game first, guide the destination, require all three games |
@@ -248,19 +246,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `e455222 2026-08-31 docs: v1.4.7 field report card + release notes` |
-| commits | 1,589 |
+| HEAD | `c1e3d68 2026-08-31 release: Field Report card re-cut for v1.4.8` |
+| commits | 1,591 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **20 modified, 75 untracked** |
-| unstaged diff | 20 files changed, 3517 insertions(+), 135 deletions(-) |
-
-> Working tree is dirty. Everything in those 95 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 196 |
+| 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -300,10 +295,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (240)
+### Commits since 2026-01-01 (242)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `c1e3d68` | 2026-08-31 | joncurry94 | release: Field Report card re-cut for v1.4.8 |
+| `b750e6e` | 2026-08-31 | joncurry94 | feat: Omaha chaos pass - retail content nobody wired, plus the blood and gore fixes |
 | `e455222` | 2026-08-31 | joncurry94 | docs: v1.4.7 field report card + release notes |
 | `b6890d7` | 2026-08-31 | joncurry94 | fix: REGRESSION I shipped in v1.4.6 - officer wave sizing broke |
 | `f8f11d4` | 2026-08-30 | joncurry94 | test: document the regression capture procedure |
@@ -550,19 +547,16 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `448e74f1 2026-08-30 feat: gun bracing, hit markers, sidearm swap, terrain normals; fix radar + lean` |
-| commits | 5,082 |
+| HEAD | `a5cfc868 2026-08-31 fix: gl2 shader overrides were dead, clampmapy clamped both axes, tinnitus ducked itself` |
+| commits | 5,083 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **9 modified, 0 untracked** |
-| unstaged diff | 9 files changed, 275 insertions(+), 35 deletions(-) |
-
-> Working tree is dirty. Everything in those 9 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 102 |
+| 2026-08 | 103 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
 | 2025-09 | 1 |
@@ -623,10 +617,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (117)
+### Commits since 2026-01-01 (118)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `a5cfc868` | 2026-08-31 | joncurry94 | fix: gl2 shader overrides were dead, clampmapy clamped both axes, tinnitus ducked itself |
 | `448e74f1` | 2026-08-30 | joncurry94 | feat: gun bracing, hit markers, sidearm swap, terrain normals; fix radar + lean |
 | `d77779da` | 2026-08-24 | joncurry94 | coop v1.4.4: 3-bit per-surface skin index for armory gloves; MAX_TIKI_LOAD_SHADERS fix (hang); gore exemptions; cover frame recon… |
 | `95dc8eae` | 2026-08-23 | joncurry94 | fix: cover stops stealing your view and your crouch; sprint default 1.3 -> 1.15 |
