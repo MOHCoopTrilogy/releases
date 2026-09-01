@@ -1,0 +1,11 @@
+models/human/german_elite_gestapo.tik
+models/human/german_kreigsmarine.tik
+models/human/german_misc_scientist.tik
+models/human/german_waffenss_officer.tik
+models/human/german_wehrmact_colonel.tik
+models/human/german_winter_artillery-crew.tik
+models/human/it_ax_ital_vol.tik
+models/human/sc_ax_ital_inf.tik
+models/human/sc_ax_ital_inf2.tik
+models/human/sc_ax_ital_para.tik
+models/human/soviet_officer.tik

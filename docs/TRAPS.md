@@ -44,9 +44,8 @@ Appending `// note` to a one-line body such as `if (!p) { p = Cvar_Get(...); }` 
 INSIDE the comment. The function never closes and the compiler blames the NEXT one (`error C2601: local
 function definitions are illegal`), often hundreds of lines downstream - which is why this wastes time
 every time. **Never put a trailing comment on a line that closes a brace; put it on its own line above.**
-To find it, run a brace-depth scan over the function (the idea behind `docs/tools/depthscan2.py`): depth
-never returns to 0, and the first line where it climbs and stays is the culprit. Searching near the
-reported error line will not find it.
+`docs/tools/depthscan2.py` finds it (every build): the culprit is the first line where depth climbs
+and stays, **never** the reported error line.
 
 ## Quick index
 
@@ -394,17 +393,22 @@ killed `coop_tinnitusBlast` and `coop_goreDripCorpseTime`. One trap, three dead 
 
 **⚠️ A workaround written into the SAVED config outlives the bug it worked around and beats
 `coop_defaults.cfg` forever** - `seta` in a saved config is a fossil, not a decision, so **record a
-cvar mitigation with its bug id and clear it when that bug closes** (bug-1990). MSAA is the LIVE
-case: `r_ext_multisample 0` mitigates a gl2 foliage-cutout artifact that is **still open**
-(bug-1298), so the archived `0` stays until it closes. This section used to say gl2 was abandoned
-and the artifact fixed - **both false**, and acting on that record produced a wrong MSAA fix on
-2026-08-21. **gl2 is the renderer we ship and test on**; confirm from the qconsole banner, never
-from a doc. [T11](#t11) biting inside T7. **This has now bitten three times** - the 2026-08-21 MSAA fix,
-and on 2026-08-28 `autoexec.cfg` was found pinning `r_mapOverBrightBits 1` under a comment calling it
-"the engine default" for "this gl1 build": gl1 defaults to 1, **gl2 defaults to 2**
-(`renderergl2/tr_init.c:1886`), so the setting was silently halving lightmap overbright on every world
-surface. **Any cvar comment naming a renderer is suspect until re-read against that renderer's
-`tr_init.c`** - the two renderers disagree on defaults far more often than the configs assume.
+cvar mitigation with its bug id and clear it when that bug closes** (bug-1990). LIVE case:
+`r_ext_multisample 0` mitigates a gl2 foliage-cutout artifact still open as bug-1298, so the archived
+`0` stays until it closes. [T11](#t11) biting inside T7.
+
+**⚠️ gl2 is the renderer we ship and test on** - confirm from the qconsole banner, never a
+doc. Four bites, each widening it:
+- **2026-08-21** - this section claimed gl2 abandoned and the MSAA artifact fixed. Both false; the
+  record produced a wrong fix.
+- **2026-08-28** - `autoexec.cfg` pinned `r_mapOverBrightBits 1` under a comment calling it "the
+  engine default" for "this gl1 build". gl1 defaults to 1, **gl2 to 2**
+  (`renderergl2/tr_init.c:1886`), silently halving lightmap overbright on every world surface. **Any
+  cvar comment naming a renderer is suspect until re-read against that renderer's `tr_init.c`.**
+- **2026-08-31 (bug-2186)** - past cvars: **a feature gl1 IMPLEMENTS can be a `// FIXME:
+  unimplemented` stub in gl2** (`nofog` was). **Grep the OTHER renderer for the token before trusting
+  a feature works**, and read a bug appearing just after a renderer feature ships as a gap it
+  exposed.
 
 **The structural fix is half-built:** `coop_defaults.cfg` execs **BEFORE** the saved config, so its values
 are true defaults a menu change overrides and persists. Migration out of `autoexec.cfg` is incomplete, and

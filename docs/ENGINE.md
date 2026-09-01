@@ -306,6 +306,129 @@ they never fight. See [TRAPS.md § T7](TRAPS.md#t7).
 
 ---
 
+## 3.5. Console, cvar and spawn mechanics you will otherwise rediscover
+
+Four engine behaviours that each cost a debugging session on 2026-08-31. All verified in source.
+
+### There is no `if` console command
+
+The console has `toggle` (`qcommon/cvar.c:1781`) and nothing else conditional. Any cfg written as
+`if $x == 1 then ...` silently fails. **Conditional startup logic is done with an archived cvar whose
+*value is a command*, and `vstr`:**
+
+```
+coop_defaults.cfg   (execs BEFORE the saved config)   seta coop_fxPoolStep vstr coop_fxPoolDo
+<the player's config>  (overrides it once migrated)   seta coop_fxPoolStep "vstr coop_fxPoolNone"
+autoexec.cfg        (execs AFTER, so it runs last)    vstr coop_fxPoolStep
+```
+
+That is the **only** way to raise an archived, menu-wired cvar on installs that already have the old
+value saved. `coop_defaults` alone cannot (the saved config beats it); `autoexec` alone must not (it
+would overwrite the player's own menu choice on every launch — that is bug-2172). The migrating
+branch rewrites `coop_fxPoolStep` to the no-op, so it fires exactly once. See bug-2218.
+
+**`seta`/`set` concatenate the rest of the line** — `Cvar_Set_f` takes `Cmd_ArgsFrom(2)`
+(`qcommon/cvar.c:976`). So `seta x vstr y` stores `vstr y`, and you never need nested quotes inside a
+`set` value. Nested quotes are what truncated the loadout stufftext in bug-758, so this matters.
+
+### `spawn "<tikpath>"` needs the TIKI to declare a classname
+
+`spawn "models/animate/fx_mortar_dirt.tik"` works; `spawn "models/fx/dudimpact.tik"` does not, and
+fails with **`You must specify an explicit classname for misc object tik models`** preceded by
+`Classname (null) used, but TIKI had no Initialization commands`. The difference is whether the TIKI
+carries `init { server { classname ... } }`. Many `models/fx/*` do not.
+
+**The vanilla idiom for a classname-less model is `spawn script_model model "<path>"`** (18 uses
+across the retail scripts). It works for every model, so prefer it unless you specifically want the
+TIKI's own classname behaviour.
+
+**This failure is invisible to the usual guard.** A refused spawn returns `none`, which reads as NIL,
+and `NIL != NULL` is **TRUE** — so `if(local.x != NULL)` waves it straight through to `.origin =`
+(`Cannot cast 'none' to listener`) and then `notsolid`/`anim`/`remove` (`applied to NIL`). One bad
+spawn becomes four errors per loop iteration. **Always guard a spawn result on both:**
+`if(local.x != NULL && local.x != NIL)`. See bug-2215, bug-2216.
+
+### The client particle pool evicts the OLDEST particles, so long-lived emitters die first
+
+`ClientGameCommandManager::FreeSomeTempModels` (`cgame/cg_tempmodels.cpp:133-158`) walks from
+`m_active_tempmodels.prev` — the oldest end — and frees as soon as the active count passes
+`cg_max_tempmodels - cg_reserve_tempmodels`.
+
+The consequence is not obvious and is worth stating plainly: **a long-lived, high-count emitter always
+holds the oldest particles, so it is always the first thing culled.** On Omaha the smoke screen grew
+to the cap, collapsed, and regrew on a loop while nearby impact effects took the budget — which reads
+as "the smoke is broken", not "the pool is full". If a big emitter pulses like that, look at what else
+is spawning near it before you touch the emitter.
+
+`cg_max_tempmodels` is now **2048**, the hard ceiling (`MAX_TEMPMODELS`, `cgame/cg_commands.h:738`).
+Raising it costs nothing: `m_tempmodels` is a plain array sized at `MAX_TEMPMODELS` regardless of the
+cvar (`cg_commands.h:747`), so the slots were always allocated and were simply going unused. Note the
+**menu slider must be able to reach a raised value** — `ui/advanced_graphics.urc` had `setrange 200
+1100`, so touching "Max Effects" would have snapped it back down. See bug-2217.
+
+### Registering a debug cvar with default `1`
+
+`coop_coverProbe` shipped registered as `"1"` at three sites and quietly wrote 1673 lines into one
+session's `qconsole.log`. Rate-limiting (2 Hz here) hides this — it never looks alarming, it just
+never stops. **Dev probes register with `"0"`.** See bug-2221.
+
+## 3.6. gl2 renderer parity - where gl2 quietly disagreed with gl1
+
+**gl1 is the reference implementation.** Where the two disagree, gl1 is right and gl2 is the bug.
+Both of the following were found on 2026-08-31 chasing one long-standing complaint, and both are now
+fixed - they are recorded because the *method* generalises and because either would be easy to
+reintroduce.
+
+### Shader overrides were dead on gl2 (bug-2228)
+
+This is the expensive one. **A mod shader that shadows a retail name lost on gl2 and won on gl1**, so
+every override written against the documented `zz_` naming trick was never parsed on the renderer we
+actually ship. Two edits to the Omaha shoreline shader produced no visible change for exactly this
+reason, and the failure is completely silent - no warning, no log line.
+
+The mechanism needs both halves:
+
+| | builds `s_shaderText` | indexes it | returns | winner |
+|---|---|---|---|---|
+| gl1 | reverse FS order | forward walk, **prepends** to bucket | chain **head** | **last** text occurrence = lowest FS index = **highest-priority pak** |
+| gl2 (before) | reverse FS order | forward walk, **appends** | **first** match | first text occurrence = highest FS index = *lowest*-priority pak |
+
+`FS_ListFiles` returns the highest-priority pak's files first, so a **low FS index means high
+priority** - and reverse concatenation puts a low index *late* in the text. Measured live:
+`zz_coop_shoreline.shader` is index 93, retail `misc_outside.shader` is 212.
+
+Fixed by making `FindShaderInShaderText` return the **last** bucket match (and the same in its
+linear-scan fallback). Note the fix also changes which *retail* pak wins where a name is defined more
+than once: `main/Pak0`, `mainta/pak1` and `maintt/pak1` all ship `misc_outside.shader`, and gl2 had
+been picking `main`'s copy even under Breakthrough. gl1 picks `maintt`'s.
+
+**If a shader override ever "does nothing" again, check this first** - and check it on gl2, not by
+reading gl1.
+
+### `clampmapy` clamped both axes (bug-2227)
+
+gl2 matched `clampmap` as an 8-character **prefix**, so `clampmapx`/`clampmapy` entered the same
+branch and got the both-axis `IMGFLAG_CLAMPTOEDGE`; a `// FIXME: Support clampmapx and clampmapy`
+sat above it. gl1 has always read `token[8]` and resolved the axes separately.
+
+It matters on **exactly one surface in the shipped game**, which is why it survived for so long:
+`clampmapy` appears 5 times across every pak and 3 of those are Omaha's wet-sand strip
+(`textures/mohtest/omaha_set4_shoreline`); `clampmapx` appears 0 times. That strip is authored to
+repeat along the beach and clamp across it. Clamping S as well pinned S at the edge texel: from the
+BSP, the 6 faces span 15,872 units with S running 0.25 → 20.25, so **92.7% of the waterline was one
+smeared texel column** - the "blurred texture where the water meets the sand" reported since gl2.
+
+Fixed with `IMGFLAG_CLAMPTOEDGE_X` / `_Y`, **appended** to `imgFlags_t` so no existing value moves
+(`image_s.flags` is compared in both renderers and `tr_gore.c`), plus per-axis `glWrapS`/`glWrapT` in
+`R_CreateImage`.
+
+### Reading a MOHAA BSP, since this needed it
+
+`dheader_t` is `ident, version, **checksum**, lumps[28]` - so **lumps start at byte 12, not 8**.
+Shader lump stride is **140**, `dsurface_t` is **108**, `drawVert_t` is **44**
+(`xyz[3], st[2], lightmap[2], normal[3], color[4]`). That is enough to answer "what shader is this
+surface and what are its UVs", which settled this bug when source reading alone could not.
+
 ## 4. Known engine-side unknowns
 
 - **What is inside the ~10,750 uncommitted lines.** Measured in aggregate, not read. A concurrent

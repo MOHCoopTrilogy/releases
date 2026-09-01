@@ -6,10 +6,11 @@
 
 [<- back to all fixes](../BUGFIXES.md)
 
-**121 fixes**, newest first.
+**122 fixes**, newest first.
 
 | ID | Problem | Cause | Fix |
 |---|---|---|---|
+| `bug-2205` | m3l1a: the two middle MG42s never track a player - coop_mg42_attack_closest is a silent no-op | coopified.scr:372-373 used the PROPERTY form `$mg42_middle1.setaimtarget = local.player`. setAimTarget is registered EV_NORMAL, not EV_SETTER (fgame/weapturret.cpp), and the property form only reaches an EV_SETTER event - so this wrote a de | Command form: `$mg42_middle1 setaimtarget local.player`, matching :67 and :126. |
 | `bug-2160` | the shipped headshot kill cue is heard by EVERY player, not just the shooter | attacker->Sound("coop_headshot", CHAN_LOCAL) READS as shooter-only and is not. Entity::Sound ends in gi.Sound -> SV_Sound (server/sv_snd.c:69), which loops every active client, and CHAN_LOCAL then makes it a 2D listener-positioned sound at  | Per-client counter instead: the server bumps m_iCoopHsCueSent and publishes it with a stufftext `set coop_hsCue <n>` to that one client (coop_* is auto-allowed by the servercmd filter); CG_CoopHeadshotCueThink watches for a change and plays |
 | `bug-2157` | user: 'the ads issue is when you crouch and use brace... its fine when standing' | STATEMAP ROW ORDER, not the view code. In the STAND transition block, `COVER_TORSO : COOP_COVER` and `COVER_TORSO : COOP_COVER_LOW` sit ABOVE the `AIM : COOP_ADS ...` row, and first match wins. Crouched at a wall, auto-cover-low was true, s | Both sides, deliberately. Client: `!COOP_BRACED` added to both COVER_TORSO rows so bracing wins where the contest is actually decided. Server: while m_bCoopBraceMounted, re-assert m_bCoopCoverRequested/Wall/Low/Blindfire false EVERY frame r |
 | `bug-2153` | FEATURE: gunfire carries no low end - retail aliases are a crack and a tail, the shot has no body | Not a defect - a gap. MOHAA's fire aliases carry mid-band content only, so no weapon has weight in the low frequencies and a Panzerschreck sounds much like a rifle. The weight plan listed the audio items as blocked on sound assets, which wa | Four tiered sub layers generated offline from fire sounds ALREADY in the mod (transient -> 4th-order 190 Hz low-pass -> pitch down 1.35-2.0x -> 6 ms attack with exponential decay 0.16-0.55 s); measured spectral centroids 108-177 Hz. Fired s |

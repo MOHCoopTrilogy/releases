@@ -62,7 +62,11 @@ $paks = @(
     @{ Name = "zzzzzz_co-op_hzm_mod_code.pk3";       Dirs = @() }   # everything else (catch-all)
 )
 $assetDirs = @("sound","textures","models","gfx","env")
-$excludeTop = @("_notes", "_research")   # dev notes + research (pipelines, retail extracts) never ship
+# [2026-08-31] _terrain_pack joins the never-ship list. It is the STAGING dir for the CC0 terrain
+# replacements, and it was adding 37.6 MB to the code pk3 under the path prefix "_terrain_pack/",
+# which the engine never looks at - the real textures ship separately in zzzzzzzzz_coop_terrain.pk3,
+# copied verbatim further down. Every byte of it was unreachable dead weight pushed to each client.
+$excludeTop = @("_notes", "_research", "_terrain_pack")   # dev notes, research, terrain staging: never ship
 $excludeNames = @(".gitignore", ".gitattributes", "README.md")   # repo housekeeping never ships
 
 # HZM coop [user 2026-08-24] NEVER SHIP THE PRE-UPSCALE BACKUPS.

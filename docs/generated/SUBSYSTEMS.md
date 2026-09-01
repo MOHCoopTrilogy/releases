@@ -9,7 +9,7 @@
 | metric | value |
 |---|---:|
 | `coop_mod/*.scr` files | 121 |
-| total lines in `coop_mod/` | 76,187 |
+| total lines in `coop_mod/` | 76,219 |
 | top-level `maps/*.scr` | 122 |
 | of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
 
@@ -156,7 +156,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `lobby.scr` | 1,177 | 20 | HZM Coop - Pre-Mission Lobby module. Full spec: _research/coop_lobby1_build.md |
 | `lobbyui.scr` | 265 | 3 | [304] CLICKABLE LOBBY UI - a mouse cursor + button framework for the live |
 | `m4l3_precache.scr` | 157 | 0 |  |
-| `main.scr` | 2,295 | 23 | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
+| `main.scr` | 2,301 | 23 | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
 | `maplist.scr` | 119 | 2 | [201] Smithy - used to populate the coop_mapsList array to check for next/previous map (and any other future… |
 | `maptest.scr` | 268 | 2 | HZM Coop - Map Rotation Auto-Tester |
 | `maptest_m5l3.scr` | 284 | 1 | HZM Coop - m5l3 Scene-Walk Tester |
@@ -174,7 +174,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `objective_drop.scr` | 218 | 1 | Objective Bonus Drop |
 | `objective_positions.scr` | 132 | 1 | objective_positions.scr |
 | `objectives.scr` | 739 | 7 | Coop Side Objectives (optional / secondary) |
-| `officer.scr` | 5,390 | 27 | Officer Boss + Radio Station |
+| `officer.scr` | 5,414 | 27 | Officer Boss + Radio Station |
 | `officer_positions.scr` | 624 | 1 | coop_officer_positions.scr |
 | `painbreath.scr` | 69 | 0 | HZM coop - WOUNDED BREATHING. |
 | `paradrop.scr` | 774 | 1 | Allied Paradrop System |
@@ -187,7 +187,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `replace.scr` | 3,046 | 44 | chrissstrahl 23.06.2018 |
 | `server.scr` | 329 | 10 | started by chrissstrahl on 2020.10.16 ([202]) |
 | `sndcache.scr` | 111 | 1 | [user 2026-08-10] 633 cache lines REMOVED - deathvox (484), flvo (135), gurgle (13) and headshot |
-| `sound.scr` | 63 | 4 | [203] Smithy - we can use this for sound related code |
+| `sound.scr` | 65 | 4 | [203] Smithy - we can use this for sound related code |
 | `spawnlocations.scr` | 3,617 | 181 | [200] chrissstrahl - fixed using unfiltred mapname (using now level.coop_mapname) |
 | `strings.scr` | 1,301 | 6 | [200] Smithy - this is taken from xnull. Not mine, but is used by many. Will be useful to us. |
 | `subsink.scr` | 618 | 4 | HZM coop - STAGED U-BOAT DEATH |

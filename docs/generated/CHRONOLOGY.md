@@ -13,24 +13,33 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `17f3a0c 2026-08-30 test: coop regression baseline - 85 families, 2-player m1l1, 180s window` |
-| commits | 202 |
+| HEAD | `57e8074 2026-08-31 manifest 1.4.7` |
+| commits | 208 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **16 modified, 5 untracked** |
+| unstaged diff | 16 files changed, 225 insertions(+), 43 deletions(-) |
+
+> Working tree is dirty. Everything in those 21 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 148 |
+| 2026-08 | 154 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (202)
+### Commits since 2026-01-01 (208)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `57e8074` | 2026-08-31 | joncurry94-tech | manifest 1.4.7 |
+| `c72d093` | 2026-08-31 | joncurry94-tech | installer: always offer the folder choice, and make the guidance actually visible |
+| `eb1f653` | 2026-08-31 | joncurry94-tech | installer: ask for the game first, guide the destination, require all three games |
+| `9865300` | 2026-08-31 | joncurry94-tech | docs: rewrap the install-folder note |
+| `6ee5150` | 2026-08-31 | joncurry94-tech | docs: the install folder is the player's choice, and say what setup refuses |
+| `9db2339` | 2026-08-31 | joncurry94-tech | installer: guard the destination folder; document that it is the player's choice |
 | `17f3a0c` | 2026-08-30 | joncurry94-tech | test: coop regression baseline - 85 families, 2-player m1l1, 180s window |
 | `6840d69` | 2026-08-30 | joncurry94-tech | tools: coop_regression.py - diff a coop run against a known-good baseline |
 | `d7db1a7` | 2026-08-30 | joncurry94-tech | fix: terrain pack never shipped; repair config_fossils.py; prune README |
@@ -239,16 +248,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `f8f11d4 2026-08-30 test: document the regression capture procedure` |
-| commits | 1,587 |
+| HEAD | `e455222 2026-08-31 docs: v1.4.7 field report card + release notes` |
+| commits | 1,589 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **20 modified, 75 untracked** |
+| unstaged diff | 20 files changed, 3517 insertions(+), 135 deletions(-) |
+
+> Working tree is dirty. Everything in those 95 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 194 |
+| 2026-08 | 196 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
 | 2026-03 | 6 |
@@ -288,10 +300,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (238)
+### Commits since 2026-01-01 (240)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `e455222` | 2026-08-31 | joncurry94 | docs: v1.4.7 field report card + release notes |
+| `b6890d7` | 2026-08-31 | joncurry94 | fix: REGRESSION I shipped in v1.4.6 - officer wave sizing broke |
 | `f8f11d4` | 2026-08-30 | joncurry94 | test: document the regression capture procedure |
 | `9f5e7a6` | 2026-08-30 | joncurry94 | test: arm the eleven coop self-test batteries as one suite |
 | `d99ec2e` | 2026-08-30 | joncurry94 | docs: MP build-out - all 127 features classified for standard multiplayer |
@@ -539,7 +553,10 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | HEAD | `448e74f1 2026-08-30 feat: gun bracing, hit markers, sidearm swap, terrain normals; fix radar + lean` |
 | commits | 5,082 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **9 modified, 0 untracked** |
+| unstaged diff | 9 files changed, 275 insertions(+), 35 deletions(-) |
+
+> Working tree is dirty. Everything in those 9 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
