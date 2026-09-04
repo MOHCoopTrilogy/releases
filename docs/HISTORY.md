@@ -237,3 +237,10 @@ source is not corroboration, and the expensive fix refuted by measurement — no
   animation at zero torso render weight, leaving the duration bit-for-bit unchanged. Enemies that walk up
   and stand there remain OPEN: notarget and count-scaling replicas both ruled out by measurement.
 - 2026-08-27: Gun bracing shipped (automatic surface support: spread/recoil/sway/lag/stress damping, procedural crosshair pip, local thunk). Prone/supine geometry corrected - the supine body yaw target was view+180 on a false premise and cancelled to a no-op.
+- **2026-09-02** — m3l1a Omaha, second batch: the "Not the Actual Events" challenge (fires off the smoke
+  radio); naval gunfire flashing out at sea with its report arriving a beat late; rounds punching into the
+  water during the underwater cinematic; a ~120-piece drowned-kit wreckage field seated by world trace;
+  the shock sequence rebuilt to 17.4s (plunge → seabed → 12s on the bottom → swim up) with the user's new
+  shellshock and underwater beds and 15 reverb-baked "voices from the past"; and real bunker-MG tracer
+  fire into the Higgins with visible bullet impacts on the men. One intermittent 0xC0000005 in ntdll seen
+  once and not reproduced in five further boots — logged as bug-2341, NOT closed.

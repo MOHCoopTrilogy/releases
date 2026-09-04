@@ -9,7 +9,7 @@
 | metric | value |
 |---|---:|
 | `coop_mod/*.scr` files | 121 |
-| total lines in `coop_mod/` | 76,219 |
+| total lines in `coop_mod/` | 76,498 |
 | top-level `maps/*.scr` | 122 |
 | of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
 
@@ -58,28 +58,30 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | 38 | 228 | `thread` | `coop_mod/coop_selftest.scr::dbnoteam_run` |
 | 39 | 231 | `thread` | `coop_mod/coop_selftest.scr::xptest_run` |
 | 40 | 234 | `thread` | `coop_mod/coop_selftest.scr::scaletest_run` |
-| 41 | 239 | `thread` | `coop_mod/coop_selftest_scaling.scr::st_scaling_run` |
-| 42 | 242 | `thread` | `coop_mod/coop_selftest_engine.scr::st_engine_run` |
-| 43 | 245 | `thread` | `coop_mod/coop_selftest_vehicles.scr::st_vehicles_run` |
-| 44 | 248 | `thread` | `coop_mod/coop_selftest_objectives.scr::st_objectives_run` |
-| 45 | 251 | `thread` | `coop_mod/coop_selftest_triggers.scr::st_triggers_run` |
-| 46 | 254 | `thread` | `coop_mod/coop_selftest_officer.scr::st_officer_run` |
-| 47 | 257 | `thread` | `coop_mod/coop_selftest_keyitems.scr::st_keyitems_run` |
-| 48 | 260 | `thread` | `coop_mod/coop_selftest_dbno.scr::st_dbno_run` |
-| 49 | 263 | `thread` | `coop_mod/coop_selftest_xp.scr::st_xp_run` |
-| 50 | 266 | `thread` | `coop_mod/coop_selftest_weapons.scr::st_weapons_run` |
-| 51 | 269 | `thread` | `coop_mod/coop_selftest.scr::wintest_run` |
-| 52 | 272 | `thread` | `coop_mod/coop_selftest_officer.scr::st_officer_run` |
-| 53 | 278 | `thread` | `coop_mod/coop_selftest_engine.scr::st_engine_run` |
-| 54 | 285 | `thread` | `coop_mod/coop_selftest_objectives.scr::st_objectives_run` |
-| 55 | 289 | `thread` | `coop_mod/voidguard.scr::main` |
-| 56 | 298 | `thread` | `coop_mod/aimaneuver.scr::main` |
-| 57 | 308 | `thread` | `coop_mod/aibehav.scr::main` |
-| 58 | 313 | `thread` | `coop_mod/aicombat.scr::main` |
-| 59 | 319 | `thread` | `coop_mod/sndcache.scr::main` |
-| 60 | 322 | `thread` | `coop_mod/devprobe.scr::main` |
-| 61 | 324 | `thread` | `coop_mod/devprobe.scr::stuckWatch` |
-| 62 | 333 | `thread` | `coop_mod/eventsystem.scr::doEvent` |
+| 41 | 244 | `thread` | `coop_mod/coop_selftest.scr::st_autodeploy_run` |
+| 42 | 249 | `thread` | `coop_mod/coop_selftest.scr::st_flanktest_run` |
+| 43 | 252 | `thread` | `coop_mod/coop_selftest_scaling.scr::st_scaling_run` |
+| 44 | 255 | `thread` | `coop_mod/coop_selftest_engine.scr::st_engine_run` |
+| 45 | 258 | `thread` | `coop_mod/coop_selftest_vehicles.scr::st_vehicles_run` |
+| 46 | 261 | `thread` | `coop_mod/coop_selftest_objectives.scr::st_objectives_run` |
+| 47 | 264 | `thread` | `coop_mod/coop_selftest_triggers.scr::st_triggers_run` |
+| 48 | 267 | `thread` | `coop_mod/coop_selftest_officer.scr::st_officer_run` |
+| 49 | 270 | `thread` | `coop_mod/coop_selftest_keyitems.scr::st_keyitems_run` |
+| 50 | 273 | `thread` | `coop_mod/coop_selftest_dbno.scr::st_dbno_run` |
+| 51 | 276 | `thread` | `coop_mod/coop_selftest_xp.scr::st_xp_run` |
+| 52 | 279 | `thread` | `coop_mod/coop_selftest_weapons.scr::st_weapons_run` |
+| 53 | 282 | `thread` | `coop_mod/coop_selftest.scr::wintest_run` |
+| 54 | 285 | `thread` | `coop_mod/coop_selftest_officer.scr::st_officer_run` |
+| 55 | 291 | `thread` | `coop_mod/coop_selftest_engine.scr::st_engine_run` |
+| 56 | 298 | `thread` | `coop_mod/coop_selftest_objectives.scr::st_objectives_run` |
+| 57 | 302 | `thread` | `coop_mod/voidguard.scr::main` |
+| 58 | 311 | `thread` | `coop_mod/aimaneuver.scr::main` |
+| 59 | 321 | `thread` | `coop_mod/aibehav.scr::main` |
+| 60 | 326 | `thread` | `coop_mod/aicombat.scr::main` |
+| 61 | 332 | `thread` | `coop_mod/sndcache.scr::main` |
+| 62 | 335 | `thread` | `coop_mod/devprobe.scr::main` |
+| 63 | 337 | `thread` | `coop_mod/devprobe.scr::stuckWatch` |
+| 64 | 346 | `thread` | `coop_mod/eventsystem.scr::doEvent` |
 
 ## `coop_mod/` scripts
 | file | lines | labels | summary |
@@ -89,10 +91,10 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `ads_dbg.scr` | 11 | 1 | HZM coop - ADS diagnostic. Called from the AIM state's entrycommands in |
 | `aibehav.scr` | 237 | 2 | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
 | `aicombat.scr` | 119 | 1 | aicombat.scr - HZM coop AUTOMATED COMBAT DRIVER (2026-07-23) |
-| `aihandler.scr` | 2,151 | 26 | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
+| `aihandler.scr` | 2,161 | 26 | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
 | `aimaneuver.scr` | 288 | 1 | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
 | `aisquad.scr` | 271 | 1 | aisquad.scr - HZM coop SQUAD BRAIN (2026-07-24) |
-| `aivoice.scr` | 455 | 4 | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
+| `aivoice.scr` | 467 | 4 | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
 | `m3l2.scr` | 81 | 0 |  |
 | `allysquad.scr` | 382 | 4 | [user 08-08] ALLIED SQUAD SURVIVABILITY |
 | `ambience.scr` | 326 | 5 | HZM coop - AMBIENCE BEDS + COMBAT MIXING (script-only; modeled on weather.scr::coop_weather_sound). |
@@ -108,10 +110,10 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `butler.scr` | 498 | 12 | created by chrissstrahl on 2019.09.12 |
 | `common.scr` | 120 | 0 |  |
 | `cannonThink.scr` | 147 | 1 | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
-| `challenges.scr` | 3,865 | 27 | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
+| `challenges.scr` | 3,880 | 27 | [user, earlier ask, found by the audit sweep 2026-09-02] challenge targets capped at 750. |
 | `collectible.scr` | 443 | 2 | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
 | `coop_placements.scr` | 1,021 | 3 | HZM coop - BAKED BUILD-MODE PLACEMENTS (generated from build_<map>.dat). |
-| `coop_selftest.scr` | 320 | 6 | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
+| `coop_selftest.scr` | 435 | 8 | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
 | `coop_selftest_dbno.scr` | 424 | 8 | coop_selftest_dbno.scr - HZM dev automated DBNO-subsystem probes |
 | `coop_selftest_engine.scr` | 304 | 6 | coop_selftest_engine.scr - HZM dev engine-stress self-tests (2026-07-23) |
 | `coop_selftest_keyitems.scr` | 575 | 10 | coop_selftest_keyitems.scr - HZM dev automated self-tests (KEYITEMS) |
@@ -128,15 +130,15 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `custom_items.scr` | 37 | 0 | [200] Smithy - used for spawning any script built custom items we want |
 | `dbno.scr` | 1,455 | 4 | safety-net: make sure the cgame "downed" view flag is cleared on (re)spawn, so a player who died while |
 | `dbno_test.scr` | 3 | 1 |  |
-| `deathvox.scr` | 81 | 0 | HZM coop - varied DEATH VOICES (+ native-VO mute for AI). |
-| `developer.scr` | 1,622 | 28 | chrissstrahl - since the game refuses to let me use cheats in multiplayer |
+| `deathvox.scr` | 100 | 0 | HZM coop - varied DEATH VOICES (+ native-VO mute for AI). |
+| `developer.scr` | 1,658 | 28 | chrissstrahl - since the game refuses to let me use cheats in multiplayer |
 | `devprobe.scr` | 147 | 2 | DEV PROBE - "who is that actor, right now?" |
 | `director.scr` | 227 | 2 | [user 2026-07-17] REACTIVE DIFFICULTY DIRECTOR - Phase 1 (plan: _research/director_dda_plan.md). |
 | `e1l4alarm.scr` | 76 | 4 | coop_mod/e1l4alarm.scr |
 | `events.scr` | 57 | 3 | [200] Smithy - 'built-in' events used for coop |
 | `eventsystem.scr` | 163 | 1 | [200] Smithy - Custom named events system now has own file. |
 | `flchatter.scr` | 322 | 5 | HZM coop - FRONTLINE BATTLE CHATTER (user-approved VO expansion, 2026-07-13). |
-| `flmusic.scr` | 200 | 5 | [311] HZM coop - FRONTLINE SCORE LAYER (Phase 1: stingers + war-ambience beds). |
+| `flmusic.scr` | 226 | 5 | [311] HZM coop - FRONTLINE SCORE LAYER (Phase 1: stingers + war-ambience beds). |
 | `fogmode.scr` | 473 | 11 | HZM coop - FOG / DARKNESS MODE [user 08-02] |
 | `gen_sr_stamp.scr` | 5 | 1 | GENERATED by docs/tools/gen_service_record.py - deployed-truth stamp. DO NOT EDIT. |
 | `gloves.scr` | 200 | 1 | HZM coop - ARMORY GLOVES [user 2026-08-23, bug-2080] |
@@ -156,7 +158,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `lobby.scr` | 1,177 | 20 | HZM Coop - Pre-Mission Lobby module. Full spec: _research/coop_lobby1_build.md |
 | `lobbyui.scr` | 265 | 3 | [304] CLICKABLE LOBBY UI - a mouse cursor + button framework for the live |
 | `m4l3_precache.scr` | 157 | 0 |  |
-| `main.scr` | 2,301 | 23 | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
+| `main.scr` | 2,314 | 23 | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
 | `maplist.scr` | 119 | 2 | [201] Smithy - used to populate the coop_mapsList array to check for next/previous map (and any other future… |
 | `maptest.scr` | 268 | 2 | HZM Coop - Map Rotation Auto-Tester |
 | `maptest_m5l3.scr` | 284 | 1 | HZM Coop - m5l3 Scene-Walk Tester |
@@ -180,11 +182,11 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `paradrop.scr` | 774 | 1 | Allied Paradrop System |
 | `player.scr` | 1,933 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |
 | `precache.scr` | 186 | 0 |  |
-| `probe.scr` | 694 | 6 | COOP PROBE BUS - one diagnostic channel for everything this mod added. |
+| `probe.scr` | 719 | 6 | COOP PROBE BUS - one diagnostic channel for everything this mod added. |
 | `profile.scr` | 71 | 0 | HZM COOP - PER-PLAYER PROFILE MIRROR (user decision 2026-08-10) |
 | `props.scr` | 414 | 2 | HZM coop - ARENA PROP PERSISTENCE [user 2026-08-04] bug-1381 |
 | `readygate.scr` | 301 | 3 | HZM Coop - READY GATE (reusable "whole squad press [Use] to continue"). |
-| `replace.scr` | 3,046 | 44 | chrissstrahl 23.06.2018 |
+| `replace.scr` | 3,054 | 44 | chrissstrahl 23.06.2018 |
 | `server.scr` | 329 | 10 | started by chrissstrahl on 2020.10.16 ([202]) |
 | `sndcache.scr` | 111 | 1 | [user 2026-08-10] 633 cache lines REMOVED - deathvox (484), flvo (135), gurgle (13) and headshot |
 | `sound.scr` | 65 | 4 | [203] Smithy - we can use this for sound related code |

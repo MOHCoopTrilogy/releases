@@ -177,3 +177,38 @@ order, instead of hunting for unwired content.
 `build.ps1` packed a 6 MB `uberdialog.scr.bak_gp1306` straight into the shipped pk3. Write backups to
 the scratchpad. Also: build.ps1's `Cache hit ... unchanged` line can be misleading — **verify a change
 shipped by hash-comparing the source against the pk3 member**, not by reading the build log.
+
+
+## Moved from TRAPS.md 2026-09-03 (budget)
+
+**⭐ `<actor> say <alias>` IS AN ANIMATION CALL, NOT A SOUND CALL** (2026-09-02, after FIVE failed
+fixes aimed at the mixer). `Event "say"` on an Actor is `EV_Actor_SayAnim` - *"the name of a dialog
+animation to play"* (`actor.cpp:539`) - and `Actor::SoundSayAnim` returns the instant
+`gi.Anim_NumForName` resolves it (`actor.cpp:7613`), **playing no sound at all**. The audio is a
+**client** frame command inside the dialogue TIKI
+(`M3L1_dialogue_US.tik`: `..._083a.skc { client { first sound streamed_..._083a } }`). Consequences:
+`coop_covtrace` instruments `Entity::Sound` and is **structurally blind** to every scripted line; the
+alias in the TIK need not be the alias in the script (`say ..._073a_prone` sounds `..._073a_1`); and
+the direct-`Sound()` fallback - the only path that prints anything - runs **only when the anim is
+missing**. `EventSayAnim` merely QUEUES; `Actor::UpdateSayAnim` (`actor.cpp:7854-7916`) starts it and
+has **three silent early returns**, two of which `Unregister(STRING_SAYDONE)` in the same frame so the
+`waittill saydone` releases instantly and the script sails on with no audio and no log line:
+ThinkState KILLED/PAIN; `anim == -1`; and **`TAF_HASUPPER` while ThinkState is ATTACK or GRENADE**.
+That last one is why a line can be word-perfect on a boat ride and silent in a firefight - but
+**measure it, do not assume it**: `bHasUpper` is just "the `.skc` carries `Bip01 Spine rot` AND
+`Bip01 Spine1 rot`" (`skeletor_loadanimation.cpp:326-330`), greppable straight out of the file, and on
+the Omaha captain it is **false on every line**, which refuted this as his cause.
+
+**A BARE ANIMATION ALIAS DROPS THE NOTETRACKS THAT DO THE WORK - three times now.** The ANIMATION
+performs the action; the statemap only plays it. A retail alias is `name file.skc { server { <frame>
+<command> } }`, and copying only the `name file.skc` half yields an animation that looks right and does
+nothing: the prone ADS alias without `{ server { first fire } }` fired no rounds; the prone reload alias
+without `first reloadweapon` + `clip_fill` never refilled the clip, and `Weapon::ShouldReload` latches
+TRUE on an empty clip regardless of its own flag (`weapon.cpp:3980`), locking the player in the reload
+unable to shoot (bug-2115); and `rifle_prone_shoot` gave a perfect prone firing animation that
+discharged nothing (bug-2099). **Open the retail alias in `human_*.tik` and copy its whole notetrack
+block, or do not substitute** - the cover blindfire aliases carry a "copied VERBATIM" note and it was
+missed anyway. To preserve a timeline exactly change the animation's WEIGHT, not the animation -
+notetracks queue once at set time and ANIMDONE runs on elapsed time, so neither depends on weight.
+**Sanity-check any offset you extract from a `.skc`** (a frame count is positive, a duration is
+seconds): the header offsets once written here did not reproduce on `SKAN` v14.

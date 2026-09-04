@@ -6,7 +6,7 @@
 
 Every challenge in the mod, grouped exactly as the in-game **Service Record** groups them (Join Game -> Service Record). Challenges marked *(Elite)* are the harder second tier of the same weapon or feat.
 
-**367 challenges** across **12 categories**.
+**368 challenges** across **12 categories**.
 
 | Category | Challenges |
 |---|---:|
@@ -18,7 +18,7 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | [COMBAT](#combat) | 30 |
 | [FIRETEAM](#fireteam) | 22 |
 | [ARMOR & VEHICLES](#armor--vehicles) | 16 |
-| [CAMPAIGN](#campaign) | 95 |
+| [CAMPAIGN](#campaign) | 96 |
 | [STEALTH & FEATS](#stealth--feats) | 53 |
 | [AXIS FORCES](#axis-forces) | 23 |
 
@@ -189,9 +189,9 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Taking You With Me** | Kill 10 enemies while downed (DBNO) |
 | **Blooded** | Get 100 total kills |
 | **Business Is A-Boomin'** | Business is a-boomin' - get 250 total kills |
-| **Dogface** | Get 1000 total kills |
-| **To Hell and Back** | Get 2500 total kills |
-| **Todesengel** | Get 5000 total kills |
+| **Dogface** | Get 250 total kills |
+| **To Hell and Back** | Get 500 total kills |
+| **Todesengel** | Get 750 total kills |
 | **A Persistent One...** | Eliminate your first High-Ranking Officer |
 | **Herr Kommandant** | Kill 5 enemy officers |
 | **Enjoy the Walk** | Kill 20 enemy officers |
@@ -259,6 +259,7 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 | **Conspicuous Gallantry** | Complete 50 primary objectives |
 | **Dead Air** | Complete 10 side objectives |
 | **Easy Red** | Complete the Omaha Beach landing |
+| **Not the Actual Events** | Signal the bomber to conceal the advance to the shingle |
 | **Beyond the Seawall** | Complete the D-Day breakout |
 | **Iron Coffin** | Complete the U-boat pens |
 | **The Marshalling Yard** | Complete the train station finale |
@@ -415,7 +416,7 @@ Every challenge in the mod, grouped exactly as the in-game **Service Record** gr
 |---|---|
 | **Frontline Sweeper** | Eliminate 50 Wehrmacht infantry |
 | **Iron Curtain Smasher** | Eliminate 250 Wehrmacht infantry |
-| **The Scourge of Berlin** | Eliminate 1000 Wehrmacht infantry |
+| **The Scourge of Berlin** | Eliminate 750 Wehrmacht infantry |
 | **Submarine Saboteur** | Eliminate 15 Kriegsmarine sailors |
 | **U-Boat Threat Neutralized** | Eliminate 35 Kriegsmarine sailors |
 | **Desert Fox Hunter** | Eliminate 50 Afrika Korps soldiers |

@@ -18,6 +18,28 @@ if ($LASTEXITCODE -ne 0) { exit 1 }
 python "C:\mohaa-coop-dev\docs\tools\check_tik_surfaces.py" $srcDir
 if ($LASTEXITCODE -ne 0) { exit 1 }
 
+# [user 2026-09-01] THE "IT PLAYED, IT JUST DIDN'T LOOK OR SOUND LIKE IT" GATES. Three separate
+# reports this session were all the same shape: the thing was wired, reachable and running, and still
+# produced nothing the player could see or hear. Static reachability checks could not catch any of
+# them, because nothing was missing - the TIMING or the TARGET was wrong.
+#
+#   check_anim_dwell  - `anim X` followed by a `wait` LONGER than X actually lasts. A one-shot fires
+#                       ANIMDONE and the actor reverts to its idle, which for a standing human is
+#                       STANDING. rifle_pain_flooridle runs 2.70s and was waited on for up to 6.80s,
+#                       so every wounded man stood up in the open for four seconds (bug-2295). This
+#                       is the measurable core of ~8 separate "guys just standing around" reports.
+#   check_say_aliases - every `say` line a map speaks, checked three ways: alias declared, its `maps`
+#                       field admits this map, AND the .wav it points at actually ships in this
+#                       edition. Found eight silent lines on m3l1a including the captain's, all of
+#                       which animate a mouth and make no sound with no console error (bug-2296).
+# Both read the real SKC headers and the real pak contents rather than trusting a manifest.
+python "C:\mohaa-coop-dev\docs\tools\check_anim_dwell.py"
+if ($LASTEXITCODE -ne 0) { exit 1 }
+# NOTE: say-alias check is a WARNING, not a blocker - five m3l1a lines have no audio in War Chest
+# under any name, so this can never reach zero without replacing retail content. It must stay visible
+# so a NEW break is noticed among the known ones.
+python "C:\mohaa-coop-dev\docs\tools\check_say_aliases.py" | Out-String | Write-Host
+
 # [user 2026-08-18] DRIFT GATES ("how can we ensure we do not miss anything like that again"):
 # every cross-source invariant gets an audit that BLOCKS the deploy. unlock_audit = every roster
 # gun has an enforced path (free/challenge/rank) and the hover text matches it (7 hovers lied for
@@ -37,6 +59,28 @@ python "C:\mohaa-coop-dev\docs\tools\gen_service_record.py" build
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_service_record" -ForegroundColor Red; exit 1 }
 # [user 2026-08-18] variant->base reverse map, derived from the skin table on every build
 python "C:\mohaa-coop-dev\docs\tools\gen_skinbase.py"
+# [user 2026-09-01, bug-2297] THE VO OVERRIDE BLOCK. 179 PlaySound errors in one of the user's own
+# sessions, all "needs an alias" for allied attack/cover callouts that ARE declared - 3,654 times -
+# but where every declaration carries a `maps` field that never lists m3l1a. That field is a LOAD
+# FILTER, so the whole pool was absent on Omaha and the few lines that did load repeated, which is
+# exactly the "I hear allies repeating lines like 'He's hit' over and over" report: one bug, not two.
+# Regenerated from the pk3s every deploy so it can never name a file that does not ship.
+python "C:\mohaa-coop-dev\docs\tools\gen_coop_vo_override.py"
+if ($LASTEXITCODE -ne 0) { exit 1 }
+# [user 2026-09-01, bug-2314] Brush indices for the steel obstacles, so the engine can OR SURF_METAL
+# into them at clipmap load and bullets spark off tank traps instead of thudding. Derived from the
+# BSP's own static-model origins so it regenerates rather than rotting - and it is the ONLY way to
+# change that surface type, which was baked into the map in 2001 and is read from the BSP's shader
+# lump, not from any .shader the mod could override.
+python "C:\mohaa-coop-dev\docs\tools\gen_metal_brushes.py"
+if ($LASTEXITCODE -ne 0) { exit 1 }
+# [user 2026-09-02, bug-2316] Same-name aliases are DISCARDED by the engine, not pooled: alias.c:326
+# logs "DUPLICATE ALIASES" and returns WITHOUT adding. Both coop voice files built their pools that
+# way, so every pool resolved to exactly one line - which is the "its just Hes hit constantly, zero
+# variety" report, and 1,530 recorded lines the engine was throwing away. A real pool is name+DIGITS.
+# --check fails the build if they ever drift back to same-name form.
+python "C:\mohaa-coop-dev\docs\tools\fix_vo_pools.py" --check
+if ($LASTEXITCODE -ne 0) { exit 1 }
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_skinbase" -ForegroundColor Red; exit 1 }
 
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by scrlint" -ForegroundColor Red; exit 1 }

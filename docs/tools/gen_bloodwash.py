@@ -21,7 +21,17 @@ join and is strongest where the user asked for it: right at the edge of the wate
 
 WHAT IT DOES
 ------------
-Keeps the existing authored RGB - the colour was never the problem - and rebuilds only the ALPHA:
+Rebuilds the ALPHA, and since 2026-09-01 RETINTS the RGB as well.
+
+  RETINT [user 2026-09-01]: "The blood in the water could be slightly more red." It could - the
+  authored sheet is RGB 15/1/0 where it is opaque, i.e. very nearly BLACK, with a maximum red of 18
+  out of 255. Under GL_SRC_ALPHA/GL_ONE_MINUS_SRC_ALPHA that does not tint the sea red at all, it
+  DARKENS it, which is why heavy coverage read as muddy water rather than as blood. The colour was
+  never examined before because the alpha was the thing being argued about. RED_* below set a real
+  blood red, modulated by the alpha field so the thick middles of the slicks are darker and more
+  venous than their thinned edges - flat red would read as paint.
+
+The alpha rebuild:
 
   * a seamless low-frequency field, built from a sum of sine products at INTEGER frequencies, so it
     tiles perfectly with no edge seam and needs no noise library;
@@ -58,6 +68,16 @@ TARGET_COVERAGE = 0.42
 # The low pair makes broad slicks; the higher pairs break their edges up so they do not read as blobs.
 BANDS = [(1, 1, 1.00), (2, 1, 0.55), (1, 3, 0.45), (3, 2, 0.30), (5, 4, 0.18), (8, 7, 0.10)]
 PHASE = [0.00, 1.31, 2.60, 0.77, 3.94, 5.21]
+
+# RETINT palette [user 2026-09-01]. THIN = the feathered edge of a slick, THICK = its middle.
+# Deliberately not a pure hue: real blood in seawater keeps a little green and blue or it reads as a
+# decal. Kept under 190 red so it never glows against the surf's own highlights.
+# [user 2026-09-01] "I also change my mind the blood effects in the water need to be darker" - the first
+# retint went from a near-black 14/1/0 to a bright 134/21/16 and overshot. Scaled to ~60%: still
+# unmistakably red rather than the dark stain it was, but venous instead of arterial, which is what
+# blood diluted in seawater actually looks like.
+RED_R_THIN,  RED_G_THIN,  RED_B_THIN  = 106, 21, 16
+RED_R_THICK, RED_G_THICK, RED_B_THICK =  58,  8,  6
 
 
 def field(w, h):
@@ -109,13 +129,40 @@ def build(src):
         t = t * t * (3.0 - 2.0 * t)
         out[i] = int(round(255.0 * min(1.0, 0.30 + 0.70 * t)))
 
-    return Image.merge("RGBA", (r, g, b, Image.frombytes("L", (w, h), bytes(out))))
+    # --- RETINT [user 2026-09-01] - see the module docstring.
+    # Blood over water is not one colour: the thin edge of a slick is bright and arterial where the
+    # light still gets through it, and the thick middle is dark and almost brown. Drive the hue off
+    # the alpha we just built, which IS the thickness, so the two ends of that range both appear.
+    rr = bytearray(w * h)
+    gg = bytearray(w * h)
+    bb = bytearray(w * h)
+    for i in range(w * h):
+        a = out[i]
+        if a == 0:
+            continue                          # clear water - RGB is never sampled, leave it black
+        t = a / 255.0                         # 0 = barely there, 1 = deepest part of the slick
+        rr[i] = int(round(RED_R_THIN + (RED_R_THICK - RED_R_THIN) * t))
+        gg[i] = int(round(RED_G_THIN + (RED_G_THICK - RED_G_THIN) * t))
+        bb[i] = int(round(RED_B_THIN + (RED_B_THICK - RED_B_THIN) * t))
+
+    return Image.merge("RGBA", (
+        Image.frombytes("L", (w, h), bytes(rr)),
+        Image.frombytes("L", (w, h), bytes(gg)),
+        Image.frombytes("L", (w, h), bytes(bb)),
+        Image.frombytes("L", (w, h), bytes(out)),
+    ))
 
 
 def stats(im):
     d = list(im.split()[3].tobytes())
     n = len(d)
+    rr, gg, bb = [list(c.tobytes()) for c in im.split()[:3]]
+    sel = [i for i, v in enumerate(d) if v > 25]
+    m = max(1, len(sel))
     return {
+        "r": sum(rr[i] for i in sel) / m,
+        "g": sum(gg[i] for i in sel) / m,
+        "b": sum(bb[i] for i in sel) / m,
         "mean": sum(d) / n,
         "clear": 100.0 * sum(1 for x in d if x == 0) / n,
         "a25": 100.0 * sum(1 for x in d if x > 25) / n,
@@ -151,12 +198,14 @@ def main():
     before = stats(src)
     print("  before: mean alpha %.1f, clear water %.1f%%, above 25 %.1f%%, above 140 %.1f%%"
           % (before["mean"], before["clear"], before["a25"], before["a140"]))
+    print("          visible RGB %.0f/%.0f/%.0f" % (before["r"], before["g"], before["b"]))
 
     out = build(src)
     after = stats(out)
     lr, tb = seam(out)
     print("  after : mean alpha %.1f, clear water %.1f%%, above 25 %.1f%%, above 140 %.1f%%"
           % (after["mean"], after["clear"], after["a25"], after["a140"]))
+    print("          visible RGB %.0f/%.0f/%.0f" % (after["r"], after["g"], after["b"]))
     print("  wrap seam: left/right %.1f, top/bottom %.1f (0 = perfectly tileable)" % (lr, tb))
 
     if args.check:

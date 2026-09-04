@@ -6,13 +6,13 @@
 
 Everything you can earn, and exactly what earns it. Nothing here is bought or random - every unlock is attached to a specific challenge, and completing that challenge grants it.
 
-**239 unlocks** across 5 kinds. Unlock names are derived from the game assets themselves, so they match what you see in the menus.
+**240 unlocks** across 5 kinds. Unlock names are derived from the game assets themselves, so they match what you see in the menus.
 
 | Kind | Unlocks | What they are |
 |---|---:|---|
 | **Weapons** | 41 | Usable weapons added to your loadout options. |
 | **Perks** | 15 | Passive squad abilities and extra equipment. |
-| **Helmets** | 51 | Headgear for your soldier, picked in the Helmet selector. |
+| **Helmets** | 52 | Headgear for your soldier, picked in the Helmet selector. |
 | **Uniforms & skins** | 123 | Player appearances, picked in the Armory. |
 | **Weapon finishes** | 7 | Gun finishes (gold, chrome, blued, camo...). Unlocking a finish TYPE makes it available on every gun that supports it - the in-game finish count multiplies these across the roster. |
 
@@ -94,6 +94,7 @@ Headgear for your soldier, picked in the Helmet selector.
 |---|---|---|
 | **Coop Helmet 29th** | Across Dog Green | Cross the beach to the seawall in under 90 seconds |
 | **Coop Helmet 29th** | All Present and Correct | Finish a mission with four players alive and nobody ever downed |
+| **Coop Helmet 29thnet** | Not the Actual Events | Signal the bomber to conceal the advance to the shingle |
 | **Coop Helmet 29thnet** | Finest Hour | Reach the bangalores on Omaha without a squadmate going down |
 | **Coop Helmet 29thnet** | Four Abreast | Reach the Omaha seawall with all four players still alive |
 | **Coop Helmet Avglasses** | Get the Flyboy Home | Escort the downed pilot to the Maquis hideout alive |
@@ -152,7 +153,7 @@ Player appearances, picked in the Armory.
 |---|---|---|
 | **34th Infantery Division Sniper** | The Better Rifle | Get 150 kills with the Johnson M1941 (Elite) |
 | **Allied 101st Captain** | Wet Behind the Ears | Complete 1 mission |
-| **Allied 101st Infantry** | To Hell and Back | Get 2500 total kills |
+| **Allied 101st Infantry** | To Hell and Back | Get 500 total kills |
 | **Allied 101st Scout** | A Thousand Yards | Get 75 long-range kills |
 | **Allied 17thairb Soldierbloody** | Rode It In | Reach the tank park aboard the German truck without ever being spotted |
 | **Allied 1st Manon** | House Call | Finish Sniper Town with nobody going down |
@@ -162,7 +163,7 @@ Player appearances, picked in the Armory.
 | **Allied 501st Pir Soldier** | Ghost of Stalingrad | Get 90 kills with the Mosin Sniper (Elite) |
 | **Allied 82ndair** | Ghost in the Ductwork | Reach the train station without the base ever escalating past its first alert |
 | **Allied Airborne** | Enfield Enforcer | Get 75 kills with the L42A1 (Elite) |
-| **Allied Airborne 101E Col Sink** | The Scourge of Berlin | Eliminate 1000 Wehrmacht infantry |
+| **Allied Airborne 101E Col Sink** | The Scourge of Berlin | Eliminate 750 Wehrmacht infantry |
 | **Allied Airborne 101E Corp Liebgott** | Spotless Record | Complete 5 missions with every primary objective done and nobody going down |
 | **Allied Airborne 101E Lt Speirs** | Kentucky Windage | Get 25 long-range kills (over 2000 units) |
 | **Allied Airborne 101st 1** | Currahee | Call in 15 paradrops |
@@ -201,7 +202,7 @@ Player appearances, picked in the Armory.
 | **Allied Russian Recon Scout** | The Chancellery Job | Crack the Chancellery safe and steal a T-34 |
 | **Allied Russian Recon Soldier** | Stalingrad Rifle-Only Server | Beat a campaign level using only a bolt-action rifle |
 | **Allied Russian Seaman** | Blue Fox, This Is White Rook | Infiltrate the sub pen and finish the mission for Grillo |
-| **Allied Sas** | Todesengel | Get 5000 total kills |
+| **Allied Sas** | Todesengel | Get 750 total kills |
 | **Allied Sniper** | Six Flushes | Flush the outhouse six times and see what comes out |
 | **Allied Tanker** | Panzer Graveyard | Destroy 30 enemy vehicles in the campaign |
 | **Allied Tanker2** | SOE Silencer | Get 75 kills with the Welrod (Elite) |
@@ -225,7 +226,7 @@ Player appearances, picked in the Armory.
 | **American Army Medic** | Red Bull Country | Hold the line in Tunisia |
 | **American Army Sergeant** | Mauser Meister | Get 150 kills with the Kar98k (Elite) |
 | **American Army2** | Blooded | Get 100 total kills |
-| **American Army3** | Dogface | Get 1000 total kills |
+| **American Army3** | Dogface | Get 250 total kills |
 | **American Assault Engineer** | Fort of Pain | Plant the charges deep in the Fort Schmerzen gas works |
 | **American Assault Engineer2** | Out Through the Fire | Escape the burning fort with everyone on their feet |
 | **American Major** | Gewehr Grognard | Get 120 kills with the Gewehr 43 (Elite) |

@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 42,726 |
-| bytes | 42.5 GB |
-| files in project scope (indexed per-file) | 17,355 |
-| source files (per-file rows with line counts) | 6,393 |
+| files in the workspace | 42,858 |
+| bytes | 42.9 GB |
+| files in project scope (indexed per-file) | 17,496 |
+| source files (per-file rows with line counts) | 6,438 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -24,32 +24,33 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 13,504 | 7508.0 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 13,567 | 7516.4 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
-| `openmohaa-hzm` | 2,660 | 87.1 MB | **yes** | **the engine** - HZM fork of OpenMOHAA (C/C++) |
+| `openmohaa-hzm` | 2,661 | 87.2 MB | **yes** | **the engine** - HZM fork of OpenMOHAA (C/C++) |
 | `UBER-MODS-v8.00-MOHAA` | 2,614 | 115.5 MB | no - reference | third-party mod, reference only |
 | `moh-modelviewer` | 1,270 | 565.8 MB | no - reference | Node model preview tool (rarely touched) |
 | `original-scripts` | 915 | 1173.7 MB | no - reference | vanilla MOHAA script/asset extraction (reference) |
-| `player1_home` | 296 | 3.3 MB | no - reference | test client profile dir |
+| `player1_home` | 291 | 2.2 MB | no - reference | test client profile dir |
+| `docs` | 281 | 44.5 MB | **yes** | this documentation set (authored + generated) |
 | `scratchpad` | 269 | 45.8 MB | **yes** |  |
-| `docs` | 258 | 44.0 MB | **yes** | this documentation set (authored + generated) |
 | `_research` | 171 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
 | `extracted-scripts` | 99 | 2.6 MB | **yes** | extracted vanilla scripts kept for diffing |
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
 | `_menu_pilot` | 81 | 90.7 MB | no - reference | Photoshop menu round-trip staging |
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
-| `<root>` | 66 | 3408.6 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
-| `manifests` | 50 | 0.7 MB | **yes** | release manifests consumed by the auto-updater |
-| `server_home` | 42 | 18.7 MB | **yes** |  |
+| `<root>` | 67 | 3408.6 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
+| `manifests` | 51 | 0.7 MB | **yes** | release manifests consumed by the auto-updater |
+| `_psx_moh` | 49 | 426.8 MB | **yes** |  |
+| `server_home` | 42 | 34.5 MB | **yes** |  |
 | `_variant_packs` | 38 | 343.4 MB | **yes** |  |
 | `_tools` | 37 | 69.0 MB | no - reference | downloaded third-party binaries |
 | `_skins` | 29 | 4.4 MB | **yes** |  |
 | `installer` | 18 | 15873.3 MB | no - reference | Inno Setup output + payload staging |
-| `player2_home` | 16 | 1.9 MB | no - reference | test client profile dir |
 | `vanilla_audio_ref` | 13 | 15.0 MB | no - reference | vanilla audio reference |
 | `_blender_kit` | 12 | 1.1 MB | no - reference | Blender pipeline scratch |
+| `player2_home` | 12 | 0.6 MB | no - reference | test client profile dir |
 | `tools` | 12 | 0.3 MB | **yes** | misc build/debug tooling |
 | `watchdog` | 12 | 2.8 MB | **yes** | server watchdog scripts |
 | `_east_weapons` | 11 | 43.9 MB | **yes** |  |
@@ -68,6 +69,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `player3_home` | 4 | 0.3 MB | no - reference | test client profile dir |
 | `player4_home` | 4 | 0.3 MB | no - reference | test client profile dir |
 | `research_extracted` | 4 | 0.1 MB | no - reference | extracted research payloads |
+| `fsafe_home` | 3 | 1.4 MB | **yes** |  |
 | `autotest_results` | 2 | 0.3 MB | **yes** |  |
 | `updater` | 2 | 0.0 MB | **yes** | auto-updater client |
 | `_eaglework` | 1 | 0.1 MB | no - reference | asset scratch |
@@ -76,33 +78,33 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 ## Extension census (whole workspace)
 | ext | files |
 |---|---:|
-| `.wav` | 14,776 |
+| `.wav` | 14,841 |
 | `.dds` | 4,100 |
-| `.scr` | 2,524 |
-| `.tga` | 2,494 |
-| `.jpg` | 2,447 |
-| `.cfg` | 2,180 |
-| `.tik` | 1,831 |
+| `.scr` | 2,525 |
+| `.tga` | 2,498 |
+| `.jpg` | 2,467 |
+| `.cfg` | 2,184 |
+| `.tik` | 1,851 |
 | `.mp3` | 1,654 |
 | `.png` | 1,371 |
 | `.pre_upscale_nobuild` | 1,252 |
 | `.obj` | 1,224 |
 | `.h` | 955 |
 | `.c` | 718 |
-| `.txt` | 612 |
+| `.txt` | 613 |
 | `.asf` | 514 |
 | `.cpp` | 475 |
 | `.skc` | 422 |
-| `.md` | 403 |
+| `.md` | 406 |
 | `.ogg` | 376 |
 | `.skd` | 345 |
-| `.shader` | 229 |
+| `.shader` | 231 |
 | `.urc` | 175 |
-| `.json` | 137 |
+| `.py` | 143 |
+| `.json` | 138 |
 | `.bsp` | 129 |
-| `.py` | 124 |
 | `.min` | 100 |
-| `.log` | 74 |
+| `.log` | 75 |
 | `.class` | 64 |
 | `(none)` | 61 |
 | `.pth` | 55 |
@@ -110,7 +112,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.st` | 53 |
 | `.pk3` | 51 |
 | `.dcl` | 49 |
-| `.glsl` | 46 |
+| `.glsl` | 47 |
 | `.lod` | 37 |
 | `.ps1` | 35 |
 | `.tsv` | 30 |
@@ -120,7 +122,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 ## Directories in project scope
 | directory | files | size | top extensions |
 |---|---:|---:|---|
-| `.` | 66 | 3408.64 MB | .txt×15, .ps1×14, .png×6, .jpg×5 |
+| `.` | 67 | 3408.65 MB | .txt×15, .ps1×14, .png×6, .jpg×5 |
 | `_backups` | 1 | 0.02 MB | .bak×1 |
 | `_backups/colt_2026-08-20` | 1 | 0.11 MB | .pre_loudness_nobuild×1 |
 | `_backups/xpbar_2026-08-20` | 2 | 0.04 MB | .pre_channelfit_nobuild×2 |
@@ -133,6 +135,9 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `_east_weapons/snd_out` | 6 | 0.72 MB | .wav×6 |
 | `_east_weapons/snd_src` | 3 | 41.31 MB | .wav×3 |
 | `_pakbackups` | 1 | 0.03 MB | .pk3×1 |
+| `_psx_moh` | 22 | 412.52 MB | .wav×22 |
+| `_psx_moh/stingers` | 21 | 3.71 MB | .wav×21 |
+| `_psx_moh/vb` | 6 | 10.58 MB | .wav×6 |
 | `_research` | 51 | 3.74 MB | .md×46, .png×3, .json×1, .csv×1 |
 | `_research/airborne_hud` | 2 | 0.00 MB | .txt×2 |
 | `_research/airborne_hud/MOHAA/main` | 1 | 0.48 MB | .pk3×1 |
@@ -180,7 +185,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `autotest_home/maintt/coop_mod/save` | 3 | 0.00 MB | .dat×3 |
 | `autotest_results` | 2 | 0.32 MB | .tsv×1, .log×1 |
 | `docs` | 31 | 1.56 MB | .md×30, .png×1 |
-| `docs/archive` | 20 | 0.22 MB | .md×20 |
+| `docs/archive` | 22 | 0.23 MB | .md×22 |
 | `docs/archive/legacy-root-2026-06` | 63 | 0.81 MB | .md×63 |
 | `docs/probe_captures` | 12 | 38.01 MB | .log×12 |
 | `docs/proposals` | 24 | 0.88 MB | .md×23, .json×1 |
@@ -191,15 +196,16 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/proposals/postfx_ghost` | 3 | 0.06 MB | .md×3 |
 | `docs/proposals/research_m2l2a` | 8 | 0.25 MB | .md×8 |
 | `docs/public` | 6 | 0.08 MB | .md×6 |
-| `docs/public/fixes` | 11 | 0.92 MB | .md×11 |
+| `docs/public/fixes` | 11 | 1.02 MB | .md×11 |
 | `docs/reference` | 4 | 0.07 MB | .md×3, .txt×1 |
-| `docs/tools` | 62 | 0.84 MB | .py×57, .md×1, .tga×1, .cmd×1 |
+| `docs/tools` | 83 | 1.27 MB | .py×76, .tga×3, .md×1, .cmd×1 |
 | `extracted-scripts` | 5 | 0.06 MB | .scr×5 |
 | `extracted-scripts/main_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
-| `hzm-mohaa-coop-mod` | 39 | 2016.01 MB | .txt×12, .jpg×10, .cfg×5, .pk3×4 |
+| `fsafe_home/maintt` | 3 | 1.43 MB | .pid×1, .cfg×1, .log×1 |
+| `hzm-mohaa-coop-mod` | 39 | 2019.71 MB | .txt×12, .jpg×10, .cfg×5, .pk3×4 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -249,12 +255,12 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/_terrain_pack/textures/mohtest` | 4 | 6.29 MB | .dds×4 |
 | `hzm-mohaa-coop-mod/_terrain_pack/textures/wilderness` | 13 | 24.29 MB | .dds×13 |
 | `hzm-mohaa-coop-mod/anim` | 23 | 0.17 MB | .scr×23 |
-| `hzm-mohaa-coop-mod/cmpatch` | 1 | 0.00 MB | .txt×1 |
-| `hzm-mohaa-coop-mod/coop_mod` | 125 | 4.03 MB | .scr×119, .st×3, .cfg×2, .txt×1 |
+| `hzm-mohaa-coop-mod/cmpatch` | 2 | 0.00 MB | .txt×2 |
+| `hzm-mohaa-coop-mod/coop_mod` | 125 | 4.05 MB | .scr×119, .st×3, .cfg×2, .txt×1 |
 | `hzm-mohaa-coop-mod/coop_mod/alias` | 2 | 0.03 MB | .cfg×1, .scr×1 |
 | `hzm-mohaa-coop-mod/coop_mod/bp` | 5 | 0.03 MB | .dat×5 |
 | `hzm-mohaa-coop-mod/coop_mod/cache` | 1 | 0.00 MB | .scr×1 |
-| `hzm-mohaa-coop-mod/coop_mod/cfg` | 45 | 0.07 MB | .cfg×45 |
+| `hzm-mohaa-coop-mod/coop_mod/cfg` | 46 | 0.07 MB | .cfg×46 |
 | `hzm-mohaa-coop-mod/coop_mod/cov` | 1 | 0.02 MB | .txt×1 |
 | `hzm-mohaa-coop-mod/coop_mod/fog` | 2 | 0.00 MB | .dat×2 |
 | `hzm-mohaa-coop-mod/coop_mod/holdout_backup` | 4 | 0.04 MB | .dat×4 |
@@ -267,7 +273,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/gfx/fonts` | 25 | 69.21 MB | .tga×25 |
 | `hzm-mohaa-coop-mod/global` | 72 | 1.04 MB | .scr×70, .txt×2 |
 | `hzm-mohaa-coop-mod/maintt` | 1 | 0.00 MB | .cfg×1 |
-| `hzm-mohaa-coop-mod/maps` | 131 | 89.13 MB | .scr×122, .bsp×8, .pth×1 |
+| `hzm-mohaa-coop-mod/maps` | 131 | 89.15 MB | .scr×122, .bsp×8, .pth×1 |
 | `hzm-mohaa-coop-mod/maps/briefing` | 12 | 0.06 MB | .scr×12 |
 | `hzm-mohaa-coop-mod/maps/cov` | 220 | 0.97 MB | .scr×220 |
 | `hzm-mohaa-coop-mod/maps/dm` | 9 | 0.01 MB | .scr×9 |
@@ -282,12 +288,12 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/maps/e3l2` | 18 | 0.17 MB | .scr×18 |
 | `hzm-mohaa-coop-mod/maps/e3l3` | 7 | 0.09 MB | .scr×7 |
 | `hzm-mohaa-coop-mod/maps/e3l4` | 12 | 0.19 MB | .scr×12 |
-| `hzm-mohaa-coop-mod/maps/m3l1a` | 1 | 0.16 MB | .scr×1 |
+| `hzm-mohaa-coop-mod/maps/m3l1a` | 2 | 0.68 MB | .scr×2 |
 | `hzm-mohaa-coop-mod/maps/m3l3` | 1 | 0.00 MB | .scr×1 |
 | `hzm-mohaa-coop-mod/models` | 26 | 0.02 MB | .tik×24, (none)×2 |
 | `hzm-mohaa-coop-mod/models/6abs` | 33 | 0.41 MB | .skc×12, .skd×12, .lod×9 |
 | `hzm-mohaa-coop-mod/models/abs` | 41 | 0.34 MB | .skc×15, .skd×15, .lod×11 |
-| `hzm-mohaa-coop-mod/models/ammo` | 2 | 0.00 MB | .tik×2 |
+| `hzm-mohaa-coop-mod/models/ammo` | 19 | 0.03 MB | .tik×19 |
 | `hzm-mohaa-coop-mod/models/ammo/coop_dp28` | 2 | 0.01 MB | .skc×1, .skd×1 |
 | `hzm-mohaa-coop-mod/models/ammo/fg42clip` | 4 | 0.02 MB | .skc×2, .skd×2 |
 | `hzm-mohaa-coop-mod/models/britpack` | 34 | 0.74 MB | .skc×17, .skd×17 |
@@ -308,7 +314,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/models/emitters` | 3 | 0.01 MB | .tik×3 |
 | `hzm-mohaa-coop-mod/models/falsh` | 2 | 0.04 MB | .skd×2 |
 | `hzm-mohaa-coop-mod/models/furniture` | 1 | 0.00 MB | .tik×1 |
-| `hzm-mohaa-coop-mod/models/fx` | 14 | 0.01 MB | .tik×13, .txt×1 |
+| `hzm-mohaa-coop-mod/models/fx` | 16 | 0.02 MB | .tik×15, .txt×1 |
 | `hzm-mohaa-coop-mod/models/fx/crates` | 1 | 0.00 MB | .tik×1 |
 | `hzm-mohaa-coop-mod/models/fx/muzflash` | 1 | 0.02 MB | .tga×1 |
 | `hzm-mohaa-coop-mod/models/gear` | 11 | 0.20 MB | .skd×5, .lod×3, .skc×3 |
@@ -350,6 +356,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/models/milkshape/steak` | 3 | 0.00 MB | .skb×1, .skc×1, .tik×1 |
 | `hzm-mohaa-coop-mod/models/milkshape/triporteur` | 3 | 0.07 MB | .skb×1, .skc×1, .tik×1 |
 | `hzm-mohaa-coop-mod/models/milkshape/vgstove` | 3 | 0.08 MB | .skb×1, .skc×1, .tik×1 |
+| `hzm-mohaa-coop-mod/models/miscobj` | 1 | 0.00 MB | .tik×1 |
 | `hzm-mohaa-coop-mod/models/player` | 374 | 0.86 MB | .tik×373, (none)×1 |
 | `hzm-mohaa-coop-mod/models/player/base` | 9 | 0.08 MB | .txt×7, .bak×2 |
 | `hzm-mohaa-coop-mod/models/projectiles` | 3 | 0.00 MB | .tik×2, .txt×1 |
@@ -409,10 +416,10 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/models/weapons/coop_tommy28` | 4 | 0.22 MB | .skc×3, .skd×1 |
 | `hzm-mohaa-coop-mod/models/weapons/fg42` | 2 | 0.09 MB | .skc×1, .skd×1 |
 | `hzm-mohaa-coop-mod/music` | 1 | 0.00 MB | .mus×1 |
-| `hzm-mohaa-coop-mod/scripts` | 94 | 0.84 MB | .shader×93, (none)×1 |
+| `hzm-mohaa-coop-mod/scripts` | 96 | 0.86 MB | .shader×95, (none)×1 |
 | `hzm-mohaa-coop-mod/sound/amb` | 10 | 8.46 MB | .wav×8, .mp3×2 |
 | `hzm-mohaa-coop-mod/sound/amb_stereo` | 77 | 148.87 MB | .mp3×70, .wav×7 |
-| `hzm-mohaa-coop-mod/sound/characters` | 33 | 1.00 MB | .wav×33 |
+| `hzm-mohaa-coop-mod/sound/characters` | 35 | 1.19 MB | .wav×35 |
 | `hzm-mohaa-coop-mod/sound/coop` | 3 | 1.69 MB | .wav×3 |
 | `hzm-mohaa-coop-mod/sound/coop/german` | 10 | 0.38 MB | .wav×7, .mp3×3 |
 | `hzm-mohaa-coop-mod/sound/coop/radio` | 24 | 2.11 MB | .wav×22, .mp3×2 |
@@ -431,9 +438,10 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/sound/coop_gurgle` | 13 | 1.78 MB | .wav×13 |
 | `hzm-mohaa-coop-mod/sound/coop_headshot` | 1 | 0.06 MB | .wav×1 |
 | `hzm-mohaa-coop-mod/sound/coop_injury` | 1 | 0.44 MB | .wav×1 |
+| `hzm-mohaa-coop-mod/sound/coop_memory` | 6 | 1.17 MB | .wav×6 |
 | `hzm-mohaa-coop-mod/sound/coop_ric` | 3 | 0.06 MB | .wav×3 |
 | `hzm-mohaa-coop-mod/sound/coop_sprint` | 2 | 0.37 MB | .wav×2 |
-| `hzm-mohaa-coop-mod/sound/coop_tinnitus` | 3 | 1.08 MB | .wav×2, .pre_ext_nobuild×1 |
+| `hzm-mohaa-coop-mod/sound/coop_tinnitus` | 5 | 2.14 MB | .wav×4, .pre_ext_nobuild×1 |
 | `hzm-mohaa-coop-mod/sound/coop_vo` | 3 | 0.52 MB | .wav×3 |
 | `hzm-mohaa-coop-mod/sound/dialogue/Generic/A/attack` | 17 | 0.64 MB | .wav×17 |
 | `hzm-mohaa-coop-mod/sound/dialogue/Generic/A/cover` | 8 | 0.32 MB | .wav×8 |
@@ -467,6 +475,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/sound/items` | 7 | 0.11 MB | .wav×7 |
 | `hzm-mohaa-coop-mod/sound/mechanics` | 5 | 10.15 MB | .wav×5 |
 | `hzm-mohaa-coop-mod/sound/music` | 90 | 271.40 MB | .mp3×89, .bak×1 |
+| `hzm-mohaa-coop-mod/sound/psx` | 6 | 1.06 MB | .wav×6 |
 | `hzm-mohaa-coop-mod/sound/weapons/fire` | 66 | 11.34 MB | .wav×65, .pre_thump_nobuild×1 |
 | `hzm-mohaa-coop-mod/sound/weapons/foley` | 13 | 0.63 MB | .wav×13 |
 | `hzm-mohaa-coop-mod/sound/weapons/impact` | 54 | 3.36 MB | .wav×54 |
@@ -487,7 +496,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/coop_covert` | 2 | 0.98 MB | .tga×1, .pre_upscale_nobuild×1 |
 | `hzm-mohaa-coop-mod/textures/coop_dp28` | 4 | 0.46 MB | .jpg×2, .pre_upscale_nobuild×2 |
 | `hzm-mohaa-coop-mod/textures/coop_drbond` | 2 | 0.98 MB | .tga×1, .pre_upscale_nobuild×1 |
-| `hzm-mohaa-coop-mod/textures/coop_fx` | 6 | 1.06 MB | .tga×5, .pre_upscale_nobuild×1 |
+| `hzm-mohaa-coop-mod/textures/coop_fx` | 7 | 1.06 MB | .tga×6, .pre_upscale_nobuild×1 |
 | `hzm-mohaa-coop-mod/textures/coop_g98` | 241 | 104.67 MB | .pre_upscale_nobuild×118, .tga×64, .jpg×59 |
 | `hzm-mohaa-coop-mod/textures/coop_g98scope` | 241 | 104.67 MB | .pre_upscale_nobuild×118, .tga×64, .jpg×59 |
 | `hzm-mohaa-coop-mod/textures/coop_gore` | 5 | 0.52 MB | .tga×3, .pre_upscale_nobuild×2 |
@@ -502,8 +511,8 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/coop_p14` | 241 | 104.67 MB | .pre_upscale_nobuild×118, .tga×64, .jpg×59 |
 | `hzm-mohaa-coop-mod/textures/coop_pabar` | 1 | 0.15 MB | .jpg×1 |
 | `hzm-mohaa-coop-mod/textures/coop_pagarand` | 1 | 0.81 MB | .jpg×1 |
-| `hzm-mohaa-coop-mod/textures/coop_skins` | 2 | 0.25 MB | .tga×1, .pre_upscale_nobuild×1 |
-| `hzm-mohaa-coop-mod/textures/coop_skins/bar` | 8 | 1.68 MB | .jpg×8 |
+| `hzm-mohaa-coop-mod/textures/coop_skins` | 2 | 0.10 MB | .tga×1, .pre_upscale_nobuild×1 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/bar` | 12 | 1.71 MB | .jpg×12 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/bazooka` | 8 | 0.42 MB | .jpg×8 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/colt45` | 4 | 0.12 MB | .jpg×4 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/coop_binoculars` | 4 | 0.03 MB | .jpg×4 |
@@ -511,7 +520,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/coop_skins/dbno_pistol` | 4 | 0.12 MB | .jpg×4 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/delisle` | 4 | 0.42 MB | .jpg×4 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/dp28` | 8 | 0.67 MB | .jpg×8 |
-| `hzm-mohaa-coop-mod/textures/coop_skins/enfield` | 4 | 0.37 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/enfield` | 8 | 0.40 MB | .jpg×8 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/enfield_lite` | 4 | 0.37 MB | .jpg×4 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/fg42` | 4 | 0.41 MB | .jpg×4 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/g43` | 4 | 0.42 MB | .jpg×4 |
@@ -519,11 +528,11 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/coop_skins/gr_w_minedetector` | 4 | 0.26 MB | .jpg×4 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/it_w_beretta` | 4 | 0.10 MB | .jpg×4 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/it_w_breda` | 4 | 0.55 MB | .jpg×4 |
-| `hzm-mohaa-coop-mod/textures/coop_skins/it_w_carcano` | 4 | 0.50 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/it_w_carcano` | 8 | 0.54 MB | .jpg×8 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/it_w_carcano_lite` | 4 | 0.50 MB | .jpg×4 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/it_w_moschetto` | 4 | 0.51 MB | .jpg×4 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/johnson_m1941` | 64 | 1.54 MB | .jpg×64 |
-| `hzm-mohaa-coop-mod/textures/coop_skins/kar98` | 8 | 0.25 MB | .jpg×8 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/kar98` | 12 | 0.60 MB | .jpg×12 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/kar98_lite` | 8 | 0.25 MB | .jpg×8 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/kar98_mortar` | 20 | 0.48 MB | .jpg×20 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/kar98sniper` | 4 | 0.06 MB | .jpg×4 |
@@ -541,7 +550,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/coop_skins/ppsh_smg` | 4 | 0.40 MB | .jpg×4 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/shotgun` | 4 | 0.40 MB | .jpg×4 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/silencedpistol` | 4 | 0.11 MB | .jpg×4 |
-| `hzm-mohaa-coop-mod/textures/coop_skins/springfield` | 4 | 0.40 MB | .jpg×4 |
+| `hzm-mohaa-coop-mod/textures/coop_skins/springfield` | 8 | 0.44 MB | .jpg×8 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/sten` | 4 | 0.40 MB | .jpg×4 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/svt_rifle` | 4 | 0.50 MB | .jpg×4 |
 | `hzm-mohaa-coop-mod/textures/coop_skins/thompsonsmg` | 4 | 0.48 MB | .jpg×4 |
@@ -759,7 +768,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/mohmenu/Slideshow/Berlin` | 14 | 7.76 MB | .jpg×14 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/Slideshow/Normandy` | 18 | 8.19 MB | .jpg×18 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/coop` | 3 | 2.22 MB | .tga×3 |
-| `hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward` | 404 | 50.16 MB | .tga×404 |
+| `hzm-mohaa-coop-mod/textures/mohmenu/coop_sr_reward` | 405 | 50.35 MB | .tga×405 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/dmloading` | 71 | 49.97 MB | .jpg×68, .tga×3 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/dmloading/briefing` | 6 | 2.13 MB | .jpg×6 |
 | `hzm-mohaa-coop-mod/textures/mohmenu/levelbriefing` | 50 | 471.86 MB | .tga×50 |
@@ -769,7 +778,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/renan_models` | 31 | 7.05 MB | .jpg×25, .tga×6 |
 | `hzm-mohaa-coop-mod/textures/sprites` | 5 | 0.14 MB | .tga×5 |
 | `hzm-mohaa-coop-mod/textures/wilderness` | 2 | 3.72 MB | .jpg×2 |
-| `hzm-mohaa-coop-mod/ubersound` | 17 | 7.18 MB | .scr×17 |
+| `hzm-mohaa-coop-mod/ubersound` | 17 | 7.22 MB | .scr×17 |
 | `hzm-mohaa-coop-mod/ui` | 142 | 1.08 MB | .urc×104, .cfg×34, .inc×2, .scr×1 |
 | `hzm-mohaa-coop-mod/ui/coop_fov` | 33 | 0.01 MB | .cfg×31, .bat×2 |
 | `hzm-mohaa-coop-mod/ui/coop_objectives` | 46 | 0.02 MB | .cfg×46 |
@@ -780,7 +789,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/loadout/helm` | 48 | 0.03 MB | .cfg×48 |
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 135 | 0.13 MB | .cfg×135 |
 | `hzm-mohaa-coop-mod/ui/proto` | 11 | 0.14 MB | .urc×6, .cfg×3, .inc×2 |
-| `manifests` | 50 | 0.65 MB | .json×50 |
+| `manifests` | 51 | 0.67 MB | .json×51 |
 | `map_entities` | 92 | 10.22 MB | .txt×88, .md×4 |
 | `openmohaa-hzm` | 8 | 0.04 MB | (none)×2, .txt×2, .md×2, .ps1×1 |
 | `openmohaa-hzm/.github/ISSUE_TEMPLATE` | 1 | 0.00 MB | .md×1 |
@@ -794,11 +803,11 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/code/autoupdater` | 1 | 0.03 MB | .c×1 |
 | `openmohaa-hzm/code/autoupdater/rsa_tools` | 9 | 0.01 MB | .c×4, .sh×3, (none)×1, .h×1 |
 | `openmohaa-hzm/code/botlib` | 57 | 1.15 MB | .h×29, .c×28 |
-| `openmohaa-hzm/code/cgame` | 44 | 1.75 MB | .cpp×20, .c×13, .h×10, .txt×1 |
-| `openmohaa-hzm/code/client` | 87 | 1.52 MB | .cpp×37, .h×33, .c×16, .txt×1 |
+| `openmohaa-hzm/code/cgame` | 44 | 1.77 MB | .cpp×20, .c×13, .h×10, .txt×1 |
+| `openmohaa-hzm/code/client` | 87 | 1.53 MB | .cpp×37, .h×33, .c×16, .txt×1 |
 | `openmohaa-hzm/code/client/new` | 3 | 0.02 MB | .h×2, .cpp×1 |
 | `openmohaa-hzm/code/curl` | 2 | 0.00 MB | .txt×1, .h×1 |
-| `openmohaa-hzm/code/fgame` | 283 | 6.28 MB | .cpp×157, .h×122, .bak_botinput×2, .txt×1 |
+| `openmohaa-hzm/code/fgame` | 283 | 6.30 MB | .cpp×157, .h×122, .bak_botinput×2, .txt×1 |
 | `openmohaa-hzm/code/gamespy` | 23 | 0.21 MB | .h×11, .c×10, .txt×2 |
 | `openmohaa-hzm/code/gamespy/Chat` | 15 | 0.38 MB | .h×8, .c×6, .txt×1 |
 | `openmohaa-hzm/code/gamespy/Chat/chatc` | 1 | 0.02 MB | .c×1 |
@@ -882,18 +891,18 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/code/parser` | 6 | 0.06 MB | .cpp×3, .txt×2, .h×1 |
 | `openmohaa-hzm/code/parser/generated` | 4 | 0.23 MB | .cpp×2, .h×1, .hpp×1 |
 | `openmohaa-hzm/code/q3_ui` | 1 | 0.00 MB | .c×1 |
-| `openmohaa-hzm/code/qcommon` | 91 | 2.52 MB | .h×44, .c×23, .cpp×20, .txt×1 |
+| `openmohaa-hzm/code/qcommon` | 91 | 2.53 MB | .h×44, .c×23, .cpp×20, .txt×1 |
 | `openmohaa-hzm/code/qcommon/tests` | 1 | 0.00 MB | .cpp×1 |
 | `openmohaa-hzm/code/renderercommon` | 16 | 0.20 MB | .c×9, .h×6, .txt×1 |
 | `openmohaa-hzm/code/renderercommon/new` | 2 | 0.00 MB | .h×2 |
 | `openmohaa-hzm/code/renderergl1` | 46 | 1.60 MB | .c×25, .cpp×11, .h×7, .txt×1 |
-| `openmohaa-hzm/code/renderergl2` | 55 | 2.09 MB | .c×35, .cpp×11, .h×8, .txt×1 |
-| `openmohaa-hzm/code/renderergl2/glsl` | 47 | 0.12 MB | .glsl×46, .cmake×1 |
+| `openmohaa-hzm/code/renderergl2` | 55 | 2.11 MB | .c×35, .cpp×11, .h×8, .txt×1 |
+| `openmohaa-hzm/code/renderergl2/glsl` | 48 | 0.15 MB | .glsl×47, .cmake×1 |
 | `openmohaa-hzm/code/script` | 12 | 0.24 MB | .cpp×6, .h×6 |
 | `openmohaa-hzm/code/sdl` | 7 | 0.11 MB | .c×5, .txt×1, .h×1 |
 | `openmohaa-hzm/code/server` | 11 | 0.35 MB | .c×9, .txt×1, .h×1 |
 | `openmohaa-hzm/code/skeletor` | 20 | 0.19 MB | .h×11, .cpp×8, .txt×1 |
-| `openmohaa-hzm/code/sys` | 22 | 0.15 MB | .c×9, .h×6, .cpp×3, .txt×1 |
+| `openmohaa-hzm/code/sys` | 22 | 0.16 MB | .c×9, .h×6, .cpp×3, .txt×1 |
 | `openmohaa-hzm/code/sys/new` | 4 | 0.01 MB | .c×3, .h×1 |
 | `openmohaa-hzm/code/thirdparty/SDL2-2.32.8/include` | 91 | 2.53 MB | .h×91 |
 | `openmohaa-hzm/code/thirdparty/curl-8.15.0/include/curl` | 12 | 0.21 MB | .h×12 |
@@ -1070,10 +1079,10 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `scratchpad/veh_dds_reverted/textures/models/vehicles/train_cab` | 22 | 2.59 MB | .dds×22 |
 | `scratchpad/veh_dds_reverted/textures/models/vehicles/veltro_fly` | 1 | 0.35 MB | .dds×1 |
 | `server_home` | 4 | 1.38 MB | .log×4 |
-| `server_home/maintt` | 15 | 7.73 MB | .log×9, .cfg×4, .pid×1, .pre_e3l4×1 |
+| `server_home/maintt` | 15 | 9.60 MB | .log×9, .cfg×4, .pid×1, .pre_e3l4×1 |
 | `server_home/maintt/configs` | 1 | 0.02 MB | .cfg×1 |
 | `server_home/maintt/coop_mod/save` | 12 | 0.01 MB | .dat×12 |
-| `server_home/maintt/prev` | 10 | 9.53 MB | .log×10 |
+| `server_home/maintt/prev` | 10 | 23.50 MB | .log×10 |
 | `server_home_probe/maintt` | 5 | 0.30 MB | .cfg×3, .pid×1, .log×1 |
 | `tools` | 4 | 0.17 MB | .bat×1, .c×1, .exe×1, .obj×1 |
 | `tools/rendezvous` | 8 | 0.18 MB | .log×3, .md×1, .c×1, .exe×1 |
@@ -1088,8 +1097,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | file | lines | size | summary |
 |---|---:|---:|---|
 | `ai_ab_test.ps1` | 78 | 3.9 KB | ai_ab_test.ps1 - controlled A/B for the dynamic-AI layer. |
-| `autotest_rcon.py` | 79 | 2.6 KB | !/usr/bin/env python3 |
-| `build.ps1` | 282 | 16.8 KB | [user 2026-08-05] PARSE-KILLER GATE (detector rank 1, static half): a single BOM/em-dash/odd |
+| `autotest_rcon.py` | 79 | 2.7 KB | !/usr/bin/env python3 |
+| `build.ps1` | 326 | 20.6 KB | [user 2026-08-05] PARSE-KILLER GATE (detector rank 1, static half): a single BOM/em-dash/odd |
 | `launch_2player_m2l2a.ps1` | 216 | 11.1 KB | MOH Coop Trilogy - 2-player STEALTH test launcher (m2l2a) |
 | `launch_2player_test.ps1` | 78 | 3.7 KB | MOH Coop Trilogy - 2-player local test launcher |
 | `launch_dedicated_2player.ps1` | 236 | 11.3 KB | Replaces the listen-server harness for testing. Why it matters, measured 2026-08-10: |
@@ -1156,7 +1165,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `autoexec.cfg` | 1,178 | 85.6 KB | HZM Extended Coop Mod |
 | `coop_defaults.cfg` | 209 | 11.3 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
-| `stealthtest.cfg` | 22 | 0.7 KB | generated by stealth_autotest.ps1 - test harness only, never shipped |
+| `stealthtest.cfg` | 22 | 0.8 KB | generated by stealth_autotest.ps1 - test harness only, never shipped |
 
 ### `autotest_home/maintt/configs/` — 1 source files
 
@@ -1164,7 +1173,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `omconfig.cfg` | 2,488 | 68.4 KB | generated by openmohaa |
 
-### `docs/tools/` — 59 source files
+### `docs/tools/` — 78 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -1172,7 +1181,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `ads_sweep.py` | 115 | 4.5 KB | the tuned rows |
 | `ai_ab_report.py` | 121 | 5.5 KB |  |
 | `armory_unlocks.py` | 330 | 14.5 KB | !/usr/bin/env python3 |
-| `audit_gore_skins.py` | 184 | 7.0 KB |  |
+| `audit_gore_skins.py` | 184 | 7.2 KB |  |
 | `audit_menu_cvars.py` | 201 | 9.0 KB |  |
 | `audit_scene_actors.py` | 131 | 6.1 KB | !/usr/bin/env python3 |
 | `audit_shaders.py` | 129 | 4.8 KB | !/usr/bin/env python |
@@ -1181,9 +1190,13 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `bake_skins.py` | 92 | 4.1 KB |  |
 | `build_explosions.py` | 201 | 7.3 KB |  |
 | `build_terrain_pack.py` | 174 | 8.2 KB | !/usr/bin/env python |
+| `check_anim_dwell.py` | 136 | 5.5 KB | !/usr/bin/env python |
 | `check_challenges.py` | 373 | 17.0 KB | !/usr/bin/env python3 |
 | `check_download_links.py` | 78 | 3.0 KB |  |
 | `check_empty_rhs.py` | 95 | 3.8 KB |  |
+| `check_map_anims.py` | 412 | 19.2 KB |  |
+| `check_map_compiles.py` | 103 | 4.2 KB | !/usr/bin/env python |
+| `check_say_aliases.py` | 196 | 9.4 KB | !/usr/bin/env python |
 | `check_tik_surfaces.py` | 88 | 3.7 KB |  |
 | `config_fossils.py` | 149 | 6.3 KB | !/usr/bin/env python3 |
 | `coop_regression.py` | 228 | 9.8 KB | !/usr/bin/env python3 |
@@ -1192,17 +1205,27 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `docgen.py` | 1,478 | 62.6 KB | !/usr/bin/env python3 |
 | `docs.cmd` | 13 | 0.5 KB |  |
 | `docs.ps1` | 49 | 1.5 KB |  |
+| `find_dread_vo.py` | 219 | 9.9 KB | !/usr/bin/env python |
+| `find_panic_vo.py` | 143 | 6.3 KB | !/usr/bin/env python |
+| `fix_vo_pools.py` | 132 | 5.5 KB | !/usr/bin/env python |
 | `gen_armory_bg.py` | 254 | 10.8 KB | plain: the pre-overhaul look (near-black, subtle panels, caption + stat labels only). |
-| `gen_bloodwash.py` | 174 | 6.9 KB |  |
+| `gen_bloodcloud.py` | 140 | 6.3 KB |  |
+| `gen_bloodslick_tint.py` | 108 | 4.4 KB |  |
+| `gen_bloodwash.py` | 223 | 9.7 KB |  |
 | `gen_chatter_pools.py` | 167 | 8.7 KB | !/usr/bin/env python |
+| `gen_clip_art.py` | 114 | 5.5 KB |  |
+| `gen_clip_skins.py` | 356 | 16.0 KB |  |
+| `gen_coop_vo_override.py` | 201 | 10.7 KB | !/usr/bin/env python |
 | `gen_cos_reqs.py` | 116 | 5.5 KB | !/usr/bin/env python3 |
 | `gen_explosion_aliases.py` | 110 | 5.9 KB |  |
 | `gen_glove_ui.py` | 182 | 7.3 KB | !/usr/bin/env python3 |
 | `gen_glove_views.py` | 192 | 7.0 KB | !/usr/bin/env python3 |
 | `gen_gloves.py` | 235 | 10.5 KB | !/usr/bin/env python3 |
-| `gen_gore_skins.py` | 429 | 17.5 KB |  |
-| `gen_gore_tiks.py` | 213 | 8.1 KB |  |
+| `gen_gore_skins.py` | 429 | 17.9 KB |  |
+| `gen_gore_tiks.py` | 213 | 8.3 KB |  |
 | `gen_loadout.py` | 364 | 17.0 KB | !/usr/bin/env python |
+| `gen_m3l1a_obstacles.py` | 245 | 11.6 KB |  |
+| `gen_metal_brushes.py` | 214 | 9.5 KB | !/usr/bin/env python |
 | `gen_pain_tiers.py` | 97 | 5.1 KB | !/usr/bin/env python3 |
 | `gen_public_pages.py` | 595 | 23.8 KB | !/usr/bin/env python3 |
 | `gen_service_record.py` | 1,113 | 70.4 KB | [user 08-07] friendly display name for a challenge's reward field (chal_def's 7th arg) |
@@ -1211,9 +1234,14 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `gen_weapon_skins.py` | 189 | 8.3 KB |  |
 | `hudslots.py` | 98 | 4.0 KB | !/usr/bin/env python3 |
 | `linecheck.py` | 127 | 5.8 KB | a continuation line may not START with one of these |
+| `parse_playtest.py` | 149 | 6.7 KB | !/usr/bin/env python |
 | `probe_read.py` | 303 | 11.7 KB | !/usr/bin/env python3 |
+| `psx_cut_stingers.py` | 150 | 6.1 KB | !/usr/bin/env python |
+| `psx_vb_extract.py` | 175 | 6.3 KB | !/usr/bin/env python |
+| `psx_xa_extract.py` | 209 | 7.5 KB | !/usr/bin/env python |
 | `quotecheck.py` | 79 | 2.8 KB |  |
 | `ragdoll_channel_census.py` | 134 | 4.4 KB |  |
+| `rcon.py` | 74 | 2.7 KB | !/usr/bin/env python |
 | `replica_pathjoin.py` | 111 | 4.6 KB |  |
 | `resolve_basetex.py` | 135 | 4.9 KB |  |
 | `scrlint.py` | 82 | 3.3 KB |  |
@@ -1352,13 +1380,19 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `training.scr` | 1,413 | 51.2 KB | LEVEL: training.bsp |
 | `training_precache.scr` | 98 | 3.6 KB |  |
 
+### `fsafe_home/maintt/` — 1 source files
+
+| file | lines | size | summary |
+|---|---:|---:|---|
+| `dedicated_start.cfg` | 7 | 0.1 KB |  |
+
 ### `hzm-mohaa-coop-mod/` — 5 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `autoexec.cfg` | 1,512 | 109.2 KB | HZM Extended Coop Mod |
+| `autoexec.cfg` | 1,571 | 113.7 KB | HZM Extended Coop Mod |
 | `coop.cfg` | 3 | 0.1 KB | DEVELOPER CONFIG FILE |
-| `coop_defaults.cfg` | 480 | 30.0 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
+| `coop_defaults.cfg` | 481 | 30.1 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
 | `net_cl.cfg` | 18 | 1.2 KB | HZM Coop recommended CLIENT settings. |
 | `net_sv.cfg` | 21 | 1.2 KB | HZM Coop recommended SERVER settings. |
 
@@ -1461,10 +1495,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `ads_dbg.scr` | 11 | 0.5 KB | HZM coop - ADS diagnostic. Called from the AIM state's entrycommands in |
 | `aibehav.scr` | 237 | 11.4 KB | aibehav.scr - HZM coop ENEMY-BEHAVIOR TRACKER (2026-07-23) |
 | `aicombat.scr` | 119 | 5.0 KB | aicombat.scr - HZM coop AUTOMATED COMBAT DRIVER (2026-07-23) |
-| `aihandler.scr` | 2,151 | 123.3 KB | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
+| `aihandler.scr` | 2,161 | 124.1 KB | [200] Smithy - this script is called every time an actor enters the world by exec it on their tiki (via share… |
 | `aimaneuver.scr` | 288 | 16.5 KB | aimaneuver.scr - HZM coop COMBAT MANEUVER layer (2026-07-23) |
 | `aisquad.scr` | 271 | 14.3 KB | aisquad.scr - HZM coop SQUAD BRAIN (2026-07-24) |
-| `aivoice.scr` | 455 | 20.1 KB | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
+| `aivoice.scr` | 467 | 20.9 KB | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
 | `allysquad.scr` | 382 | 17.1 KB | [user 08-08] ALLIED SQUAD SURVIVABILITY |
 | `ambience.scr` | 326 | 15.9 KB | HZM coop - AMBIENCE BEDS + COMBAT MIXING (script-only; modeled on weather.scr::coop_weather_sound). |
 | `ammobox.scr` | 273 | 12.2 KB | HZM coop - player-deployable AMMO BOX. |
@@ -1478,10 +1512,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `bust.scr` | 1,576 | 86.2 KB | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
 | `butler.scr` | 498 | 18.9 KB | created by chrissstrahl on 2019.09.12 |
 | `cannonThink.scr` | 147 | 4.8 KB | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
-| `challenges.scr` | 3,865 | 236.9 KB | [303] HZM CHALLENGES / ACHIEVEMENTS SYSTEM - Phase 1 (tracking + persistence + unlocks + HUD toast + review) |
+| `challenges.scr` | 3,880 | 238.3 KB | [user, earlier ask, found by the audit sweep 2026-09-02] challenge targets capped at 750. |
 | `collectible.scr` | 443 | 21.5 KB | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
 | `coop_placements.scr` | 1,021 | 32.1 KB | HZM coop - BAKED BUILD-MODE PLACEMENTS (generated from build_<map>.dat). |
-| `coop_selftest.scr` | 320 | 13.2 KB | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
+| `coop_selftest.scr` | 435 | 19.2 KB | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
 | `coop_selftest_dbno.scr` | 424 | 15.2 KB | coop_selftest_dbno.scr - HZM dev automated DBNO-subsystem probes |
 | `coop_selftest_engine.scr` | 304 | 13.6 KB | coop_selftest_engine.scr - HZM dev engine-stress self-tests (2026-07-23) |
 | `coop_selftest_keyitems.scr` | 575 | 22.7 KB | coop_selftest_keyitems.scr - HZM dev automated self-tests (KEYITEMS) |
@@ -1498,15 +1532,15 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `custom_items.scr` | 37 | 1.6 KB | [200] Smithy - used for spawning any script built custom items we want |
 | `dbno.scr` | 1,455 | 68.3 KB | safety-net: make sure the cgame "downed" view flag is cleared on (re)spawn, so a player who died while |
 | `dbno_test.scr` | 3 | 0.1 KB |  |
-| `deathvox.scr` | 81 | 4.4 KB | HZM coop - varied DEATH VOICES (+ native-VO mute for AI). |
-| `developer.scr` | 1,622 | 57.3 KB | chrissstrahl - since the game refuses to let me use cheats in multiplayer |
+| `deathvox.scr` | 100 | 5.6 KB | HZM coop - varied DEATH VOICES (+ native-VO mute for AI). |
+| `developer.scr` | 1,658 | 60.5 KB | chrissstrahl - since the game refuses to let me use cheats in multiplayer |
 | `devprobe.scr` | 147 | 7.1 KB | DEV PROBE - "who is that actor, right now?" |
 | `director.scr` | 227 | 10.4 KB | [user 2026-07-17] REACTIVE DIFFICULTY DIRECTOR - Phase 1 (plan: _research/director_dda_plan.md). |
 | `e1l4alarm.scr` | 76 | 3.1 KB | coop_mod/e1l4alarm.scr |
 | `events.scr` | 57 | 2.8 KB | [200] Smithy - 'built-in' events used for coop |
 | `eventsystem.scr` | 163 | 7.5 KB | [200] Smithy - Custom named events system now has own file. |
 | `flchatter.scr` | 322 | 15.1 KB | HZM coop - FRONTLINE BATTLE CHATTER (user-approved VO expansion, 2026-07-13). |
-| `flmusic.scr` | 200 | 9.3 KB | [311] HZM coop - FRONTLINE SCORE LAYER (Phase 1: stingers + war-ambience beds). |
+| `flmusic.scr` | 226 | 11.2 KB | [311] HZM coop - FRONTLINE SCORE LAYER (Phase 1: stingers + war-ambience beds). |
 | `fogmode.scr` | 473 | 23.5 KB | HZM coop - FOG / DARKNESS MODE [user 08-02] |
 | `gen_sr_stamp.scr` | 5 | 0.2 KB | GENERATED by docs/tools/gen_service_record.py - deployed-truth stamp. DO NOT EDIT. |
 | `gloves.scr` | 200 | 10.0 KB | HZM coop - ARMORY GLOVES [user 2026-08-23, bug-2080] |
@@ -1526,7 +1560,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `lobby.scr` | 1,177 | 53.4 KB | HZM Coop - Pre-Mission Lobby module. Full spec: _research/coop_lobby1_build.md |
 | `lobbyui.scr` | 265 | 10.6 KB | [304] CLICKABLE LOBBY UI - a mouse cursor + button framework for the live |
 | `m4l3_precache.scr` | 157 | 6.0 KB |  |
-| `main.scr` | 2,301 | 115.0 KB | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
+| `main.scr` | 2,314 | 115.8 KB | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
 | `maplist.scr` | 119 | 3.9 KB | [201] Smithy - used to populate the coop_mapsList array to check for next/previous map (and any other future… |
 | `maptest.scr` | 268 | 11.8 KB | HZM Coop - Map Rotation Auto-Tester |
 | `maptest_m5l3.scr` | 284 | 10.4 KB | HZM Coop - m5l3 Scene-Walk Tester |
@@ -1553,17 +1587,17 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `player_Torso.st` | 4,101 | 119.6 KB |  |
 | `player_legs.st` | 2,803 | 80.9 KB |  |
 | `precache.scr` | 186 | 7.2 KB |  |
-| `probe.scr` | 694 | 35.5 KB | COOP PROBE BUS - one diagnostic channel for everything this mod added. |
+| `probe.scr` | 719 | 37.6 KB | COOP PROBE BUS - one diagnostic channel for everything this mod added. |
 | `profile.scr` | 71 | 4.0 KB | HZM COOP - PER-PLAYER PROFILE MIRROR (user decision 2026-08-10) |
 | `props.scr` | 414 | 17.0 KB | HZM coop - ARENA PROP PERSISTENCE [user 2026-08-04] bug-1381 |
 | `readygate.scr` | 301 | 14.4 KB | HZM Coop - READY GATE (reusable "whole squad press [Use] to continue"). |
-| `replace.scr` | 3,046 | 124.9 KB | chrissstrahl 23.06.2018 |
-| `server.cfg` | 45 | 2.2 KB | test and example server start cfg |
+| `replace.scr` | 3,054 | 125.5 KB | chrissstrahl 23.06.2018 |
+| `server.cfg` | 46 | 2.1 KB | test and example server start cfg |
 | `server.scr` | 329 | 14.4 KB | started by chrissstrahl on 2020.10.16 ([202]) |
 | `sndcache.scr` | 111 | 5.2 KB | [user 2026-08-10] 633 cache lines REMOVED - deathvox (484), flvo (135), gurgle (13) and headshot |
 | `sound.scr` | 65 | 2.6 KB | [203] Smithy - we can use this for sound related code |
 | `spawnlocations.scr` | 3,617 | 171.0 KB | [200] chrissstrahl - fixed using unfiltred mapname (using now level.coop_mapname) |
-| `start_server.cfg` | 59 | 3.7 KB | used cfg to start server, executed from within game menu coop_start.urc |
+| `start_server.cfg` | 60 | 4.0 KB | used cfg to start server, executed from within game menu coop_start.urc |
 | `strings.scr` | 1,301 | 33.3 KB | [200] Smithy - this is taken from xnull. Not mine, but is used by many. Will be useful to us. |
 | `subsink.scr` | 618 | 27.1 KB | HZM coop - STAGED U-BOAT DEATH |
 | `surrender.scr` | 177 | 9.2 KB | HZM coop - SURRENDER CONVERSION [user 2026-08-19]: "when a german surrenders can you |
@@ -1594,7 +1628,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `common.scr` | 120 | 4.2 KB |  |
 
-### `hzm-mohaa-coop-mod/coop_mod/cfg/` — 45 source files
+### `hzm-mohaa-coop-mod/coop_mod/cfg/` — 46 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -1638,6 +1672,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `rag_soft.cfg` | 6 | 0.4 KB | HZM coop - RAGDOLL settle SOFT [bound to F11] |
 | `rag_stick_off.cfg` | 3 | 0.2 KB | HZM coop - A/B: struck limbs SNAP BACK to the death pose (the old behaviour) |
 | `rag_stickmax.cfg` | 5 | 0.4 KB | HZM coop - A/B: how far damage may rearrange a corpse [bound to 8] |
+| `voprobe.cfg` | 62 | 3.9 KB | voprobe.cfg - WHY IS THE CAPTAIN SILENT? One boot answers it. |
 | `wallgun.cfg` | 49 | 2.2 KB | INVISIBLE BARRIER TOOL - arm it, then build. [user 2026-08-04] |
 | `wallgun_off.cfg` | 27 | 0.9 KB | Put the barrier tool away. [user 2026-08-04] |
 | `wfeel_off.cfg` | 3 | 0.2 KB | HZM coop - RELOAD FEEL: back to the old fixed-timing behaviour [A/B partner of wfeel_on] |
@@ -1726,7 +1761,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `moveto.scr` | 21 | 0.6 KB | parameters: |
 | `music.scr` | 118 | 2.9 KB | music.scr |
 | `obj.scr` | 19 | 1.3 KB | HZM coop - override of the base-game global/obj.scr. |
-| `objectives.scr` | 751 | 28.4 KB | add / modify an objective in the list |
+| `objectives.scr` | 771 | 29.9 KB | add / modify an objective in the list |
 | `old_friendly.scr` | 2,552 | 75.6 KB | [202] chrissstrahl |
 | `pain.scr` | 63 | 3.8 KB | [200] Smithy - modified original file. Engine calls this every time an actor feels pain |
 | `parade.scr` | 1,048 | 32.7 KB | Parades: |
@@ -1814,8 +1849,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `m2l2c_precache.scr` | 82 | 2.8 KB |  |
 | `m2l3.scr` | 1,143 | 34.0 KB | [207] opt-in to per-map optional callbacks (guarded dispatch) |
 | `m2l3_precache.scr` | 107 | 3.7 KB |  |
-| `m3l1a.scr` | 8,684 | 299.4 KB | MoH: Allied Assault Script File |
-| `m3l1a_precache.scr` | 150 | 6.0 KB | M3L1a Precache Script |
+| `m3l1a.scr` | 8,906 | 318.9 KB | MoH: Allied Assault Script File |
+| `m3l1a_precache.scr` | 209 | 9.2 KB | M3L1a Precache Script |
 | `m3l1b.scr` | 3,174 | 112.5 KB | MoH: Allied Assault Script File |
 | `m3l1b_precache.scr` | 119 | 4.4 KB | M3L1b Precache Script |
 | `m3l2.scr` | 3,739 | 131.8 KB | LEVEL: M3L2 |
@@ -2330,11 +2365,12 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `friendly.scr` | 90 | 3.0 KB | self.destination = self |
 | `hacks.scr` | 22 | 1.3 KB | [user 2026-08-04] bug-1378 - ARENA BUILD MODE. 'coop_buildmap 1' before the map loads turns this |
 
-### `hzm-mohaa-coop-mod/maps/m3l1a/` — 1 source files
+### `hzm-mohaa-coop-mod/maps/m3l1a/` — 2 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `coopified.scr` | 3,622 | 158.6 KB | chrissstrahl - handles stuff for coop of m3l1a |
+| `coopified.scr` | 12,569 | 608.9 KB | chrissstrahl - handles stuff for coop of m3l1a |
+| `obstacles.scr` | 419 | 59.8 KB | HZM coop [2026-09-01, bug-2262] OMAHA BEACH OBSTACLE TABLE. |
 
 ### `hzm-mohaa-coop-mod/maps/m3l3/` — 1 source files
 
@@ -2371,12 +2407,29 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `waw_bush.tik` | 27 | 0.3 KB |  |
 | `waw_stove.tik` | 33 | 0.6 KB |  |
 
-### `hzm-mohaa-coop-mod/models/ammo/` — 2 source files
+### `hzm-mohaa-coop-mod/models/ammo/` — 19 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
+| `bar_clip.tik` | 38 | 1.7 KB |  |
+| `colt_clip.tik` | 49 | 1.8 KB |  |
+| `enfield_clip1.tik` | 37 | 1.8 KB |  |
+| `enfield_clip2.tik` | 37 | 1.8 KB |  |
 | `fg42clip.tik` | 13 | 0.2 KB |  |
 | `fg42clip2.tik` | 13 | 0.2 KB |  |
+| `garand_clip_reload.tik` | 43 | 1.6 KB |  |
+| `it_w_beretta_clip.tik` | 53 | 2.4 KB |  |
+| `it_w_carcano_clip.tik` | 47 | 2.0 KB |  |
+| `kar98_clip_reload.tik` | 57 | 2.4 KB |  |
+| `mp40_clip.tik` | 37 | 1.7 KB |  |
+| `mp44_clip.tik` | 45 | 1.8 KB |  |
+| `p38_clip.tik` | 49 | 1.8 KB |  |
+| `ppsh_clip_reload.tik` | 37 | 1.8 KB |  |
+| `silencedpistol_clip.tik` | 49 | 1.9 KB |  |
+| `springfield_clip_reload.tik` | 49 | 1.9 KB |  |
+| `sten_clip.tik` | 37 | 1.8 KB |  |
+| `svt_clip_reload.tik` | 37 | 1.9 KB |  |
+| `thompson_clip.tik` | 37 | 1.7 KB |  |
 
 ### `hzm-mohaa-coop-mod/models/coop/` — 2 source files
 
@@ -2696,11 +2749,12 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `bunkerchrnw.tik` | 24 | 0.4 KB |  |
 
-### `hzm-mohaa-coop-mod/models/fx/` — 13 source files
+### `hzm-mohaa-coop-mod/models/fx/` — 15 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
 | `coop_barrelsmoke.tik` | 41 | 0.9 KB |  |
+| `coop_bloodcloud.tik` | 118 | 5.0 KB |  |
 | `coop_blooddrip.tik` | 72 | 1.9 KB |  |
 | `coop_blooddrip_long.tik` | 17 | 0.6 KB |  |
 | `coop_blooddrip_slow.tik` | 70 | 1.7 KB |  |
@@ -2712,6 +2766,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_oilslick.tik` | 25 | 0.5 KB |  |
 | `coop_severedhead.tik` | 37 | 1.5 KB |  |
 | `coop_stump_neck.tik` | 25 | 1.2 KB |  |
+| `coop_tank_explosion.tik` | 133 | 2.6 KB |  |
 | `coop_wound1.tik` | 19 | 0.7 KB |  |
 
 ### `hzm-mohaa-coop-mod/models/fx/crates/` — 1 source files
@@ -2807,7 +2862,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `german_winter_type1.tik` | 213 | 4.8 KB |  |
 | `german_winter_type2.tik` | 235 | 5.4 KB |  |
 | `it_ax_ital_vol.tik` | 68 | 2.3 KB |  |
-| `new_generic_human.tik` | 2,302 | 78.1 KB |  |
+| `new_generic_human.tik` | 2,342 | 80.7 KB |  |
 | `sc_al_brit_cmd.tik` | 76 | 2.6 KB |  |
 | `sc_al_brit_off.tik` | 76 | 2.6 KB |  |
 | `sc_al_brit_pilot.tik` | 76 | 2.6 KB |  |
@@ -3021,6 +3076,12 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | file | lines | size | summary |
 |---|---:|---:|---|
 | `vgstove.tik` | 24 | 0.8 KB |  |
+
+### `hzm-mohaa-coop-mod/models/miscobj/` — 1 source files
+
+| file | lines | size | summary |
+|---|---:|---:|---|
+| `welding_torch.tik` | 156 | 4.7 KB |  |
 
 ### `hzm-mohaa-coop-mod/models/player/` — 373 source files
 
@@ -4022,7 +4083,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `welrod_chrome.tik` | 254 | 7.5 KB |  |
 | `welrod_gold.tik` | 254 | 7.5 KB |  |
 
-### `hzm-mohaa-coop-mod/scripts/` — 93 source files
+### `hzm-mohaa-coop-mod/scripts/` — 95 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -4052,7 +4113,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `british paras.shader` | 254 | 3.9 KB |  |
 | `britpack.shader` | 206 | 3.2 KB |  |
 | `britsnow1.shader` | 241 | 4.2 KB |  |
-| `commando.shader` | 254 | 5.6 KB |  |
+| `commando.shader` | 257 | 6.3 KB |  |
 | `coop_1936_imports.shader` | 384 | 7.8 KB |  |
 | `coop_airborne_fix.shader` | 33 | 1.6 KB |  |
 | `coop_authwinch.shader` | 13 | 0.4 KB |  |
@@ -4060,11 +4121,12 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_bar1918a.shader` | 13 | 0.4 KB |  |
 | `coop_bar1918a1.shader` | 13 | 0.4 KB |  |
 | `coop_bar1918a2.shader` | 23 | 0.5 KB |  |
-| `coop_blood.shader` | 109 | 4.1 KB |  |
+| `coop_blood.shader` | 142 | 6.1 KB |  |
 | `coop_bloodslick.shader` | 24 | 1.1 KB |  |
 | `coop_bloodyeic.shader` | 13 | 0.4 KB |  |
 | `coop_c96.shader` | 125 | 2.1 KB |  |
 | `coop_c96trench.shader` | 1,502 | 27.7 KB |  |
+| `coop_clip_skins.shader` | 494 | 10.4 KB |  |
 | `coop_colt1911w.shader` | 1,502 | 27.7 KB |  |
 | `coop_coltpa.shader` | 12 | 0.3 KB |  |
 | `coop_covert.shader` | 13 | 0.4 KB |  |
@@ -4080,6 +4142,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_gore.shader` | 2,343 | 54.5 KB |  |
 | `coop_gore3.shader` | 1,056 | 22.6 KB |  |
 | `coop_gore_gen.shader` | 2,732 | 51.1 KB |  |
+| `coop_hdfx_missing.shader` | 44 | 2.3 KB |  |
 | `coop_hud_sprites.shader` | 98 | 2.8 KB |  |
 | `coop_johnson.shader` | 156 | 2.9 KB |  |
 | `coop_loadscreens.shader` | 16 | 0.6 KB |  |
@@ -4124,10 +4187,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `coop_aivoice.scr` | 353 | 38.1 KB | HZM coop - SITUATIONAL AI VOICE pools (coop_mod/aivoice.scr). |
-| `coop_audio.scr` | 204 | 19.0 KB | HZM coop - AUDIO ENHANCEMENT SUITE aliases (any ubersound/*.scr is auto-registered). |
+| `coop_aivoice.scr` | 409 | 45.4 KB | HZM coop - SITUATIONAL AI VOICE pools (coop_mod/aivoice.scr). |
+| `coop_audio.scr` | 322 | 31.2 KB | HZM coop - AUDIO ENHANCEMENT SUITE aliases (any ubersound/*.scr is auto-registered). |
 | `coop_buildsounds.scr` | 68 | 7.0 KB | HZM coop - BUILD MODE placeable SOUND EMITTERS catalog aliases. |
-| `coop_chatter.scr` | 1,350 | 175.0 KB | GENERATED by docs/tools/gen_chatter_pools.py - DO NOT EDIT. |
+| `coop_chatter.scr` | 1,350 | 178.0 KB | GENERATED by docs/tools/gen_chatter_pools.py - DO NOT EDIT. |
 | `coop_deathvox.scr` | 512 | 66.5 KB | HZM coop - 'Death Sounds Reborn' varied death voices (converted .ogg -> .wav, 22050 mono). |
 | `coop_explosions.scr` | 132 | 16.2 KB | HZM coop - EXPLOSION POOL. |
 | `coop_flvo.scr` | 140 | 17.4 KB | HZM coop - MOH Frontline battle-chatter pools (user-approved VO expansion, 2026-07-13). |
@@ -4139,8 +4202,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_paintiers.scr` | 53 | 6.4 KB | HZM coop - SEVERITY-TIERED PLAYER PAIN. GENERATED by docs/tools/gen_pain_tiers.py. |
 | `coop_taunt.scr` | 81 | 10.6 KB | HZM coop - MP TAUNT wrappers so campaign AI can jeer at the players (2026-07-17, REBUILT 2026-07-18). |
 | `coop_wounded.scr` | 17 | 1.3 KB | HZM coop - WOUNDED BREATHING aliases (coop_mod/wounded.scr). |
-| `uberdialog.scr` | 42,202 | 6029.2 KB | UBERDIALOG |
-| `ubersound.scr` | 5,452 | 596.7 KB | start chrissstrahl - fix sound issue |
+| `uberdialog.scr` | 42,274 | 6035.5 KB | UBERDIALOG |
+| `ubersound.scr` | 5,625 | 610.2 KB | start chrissstrahl - fix sound issue |
 
 ### `hzm-mohaa-coop-mod/ui/` — 139 source files
 
@@ -4172,8 +4235,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_postfx3.urc` | 259 | 5.6 KB |  |
 | `coop_report.urc` | 152 | 2.8 KB |  |
 | `coop_settings.urc` | 371 | 7.7 KB |  |
-| `coop_sr.urc` | 39,489 | 671.4 KB |  |
-| `coop_sr_cids.cfg` | 446 | 13.8 KB | GENERATED by docs/tools/gen_service_record.py - row index -> cid map (pin store). |
+| `coop_sr.urc` | 39,573 | 672.9 KB |  |
+| `coop_sr_cids.cfg` | 447 | 13.8 KB | GENERATED by docs/tools/gen_service_record.py - row index -> cid map (pin store). |
 | `coop_sr_pg0.cfg` | 30 | 0.5 KB |  |
 | `coop_sr_pg1.cfg` | 30 | 0.5 KB |  |
 | `coop_sr_pg10.cfg` | 30 | 0.5 KB |  |
@@ -4204,8 +4267,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_sr_pg8.cfg` | 30 | 0.5 KB |  |
 | `coop_sr_pg9.cfg` | 30 | 0.5 KB |  |
 | `coop_sr_pgm.cfg` | 30 | 0.5 KB |  |
-| `coop_sr_pinclear.cfg` | 469 | 8.6 KB | GENERATED by docs/tools/gen_service_record.py - clears every pinned-row marker + medal lock state. |
-| `coop_sr_pinreset.cfg` | 451 | 8.3 KB | GENERATED by docs/tools/gen_service_record.py - CLEAR PINS (builtins only). |
+| `coop_sr_pinclear.cfg` | 470 | 8.7 KB | GENERATED by docs/tools/gen_service_record.py - clears every pinned-row marker + medal lock state. |
+| `coop_sr_pinreset.cfg` | 452 | 8.3 KB | GENERATED by docs/tools/gen_service_record.py - CLEAR PINS (builtins only). |
 | `coop_start.urc` | 421 | 10.4 KB |  |
 | `coop_weaponselect_suppress.urc` | 78 | 3.0 KB |  |
 | `coop_whatsnew.urc` | 132 | 3.2 KB |  |
@@ -5849,23 +5912,23 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `cg_archive.h` | 53 | 1.7 KB | DESCRIPTION: |
 | `cg_beam.cpp` | 1,459 | 41.2 KB | DESCRIPTION: |
 | `cg_commands.cpp` | 6,471 | 170.5 KB | DESCRIPTION: |
-| `cg_commands.h` | 1,054 | 31.1 KB | DESCRIPTION: |
+| `cg_commands.h` | 1,065 | 31.9 KB | DESCRIPTION: |
 | `cg_consolecmds.c` | 888 | 30.4 KB | DESCRIPTION: |
 | `cg_drawtools.cpp` | 2,683 | 94.9 KB | DESCRIPTION: |
 | `cg_ents.c` | 756 | 23.1 KB | cg_ents.c -- present snapshot entities, happens every single frame |
 | `cg_event.c` | 36 | 1.2 KB | DESCRIPTION: |
 | `cg_lightstyles.cpp` | 585 | 16.8 KB | DESCRIPTION: |
-| `cg_local.h` | 1,042 | 37.3 KB | DESCRIPTION: |
-| `cg_main.c` | 1,093 | 41.6 KB | DESCRIPTION: |
+| `cg_local.h` | 1,045 | 37.5 KB | DESCRIPTION: |
+| `cg_main.c` | 1,099 | 42.1 KB | DESCRIPTION: |
 | `cg_marks.c` | 2,074 | 65.3 KB | DESCRIPTION: |
 | `cg_modelanim.c` | 2,812 | 127.7 KB | DESCRIPTION: |
 | `cg_nature.cpp` | 416 | 16.2 KB | DESCRIPTION: |
-| `cg_parsemsg.cpp` | 2,499 | 91.3 KB | DESCRIPTION: |
+| `cg_parsemsg.cpp` | 2,516 | 92.6 KB | DESCRIPTION: |
 | `cg_parsemsg.h` | 38 | 1.2 KB | DESCRIPTION: |
 | `cg_player.cpp` | 75 | 2.2 KB | DESCRIPTION: |
 | `cg_playerstate.c` | 38 | 1.4 KB | DESCRIPTION: |
 | `cg_predict.c` | 821 | 27.4 KB | DESCRIPTION: |
-| `cg_public.h` | 547 | 22.9 KB | DESCRIPTION: |
+| `cg_public.h` | 549 | 22.9 KB | DESCRIPTION: |
 | `cg_radar.cpp` | 161 | 4.2 KB |  |
 | `cg_radar.h` | 42 | 1.3 KB | DESCRIPTION: |
 | `cg_ragdoll.c` | 2,957 | 133.7 KB |  |
@@ -5882,7 +5945,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `cg_testemitter.cpp` | 2,096 | 85.1 KB | DESCRIPTION: |
 | `cg_ui.cpp` | 292 | 8.4 KB | DESCRIPTION: |
 | `cg_vehicle.cpp` | 39 | 1.2 KB | DESCRIPTION: |
-| `cg_view.c` | 6,744 | 353.6 KB |  |
+| `cg_view.c` | 7,131 | 374.3 KB |  |
 | `cg_viewmodelanim.c` | 971 | 40.7 KB | DESCRIPTION: |
 | `cg_volumetricsmoke.cpp` | 1,370 | 44.4 KB | DESCRIPTION: |
 | `memarchiver.cpp` | 241 | 5.5 KB |  |
@@ -5947,7 +6010,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `cl_uistd.h` | 129 | 6.1 KB |  |
 | `cl_uiview3d.cpp` | 899 | 28.1 KB |  |
 | `cl_uiview3d.h` | 76 | 2.4 KB |  |
-| `client.h` | 763 | 23.2 KB | client.h -- primary header for client |
+| `client.h` | 767 | 23.5 KB | client.h -- primary header for client |
 | `keycodes.h` | 316 | 5.4 KB |  |
 | `keys.h` | 58 | 1.8 KB |  |
 | `libmumblelink.c` | 188 | 4.6 KB |  |
@@ -5963,10 +6026,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `snd_codec_opus.c` | 449 | 9.5 KB |  |
 | `snd_codec_wav.c` | 297 | 6.1 KB |  |
 | `snd_dma.c` | 1,643 | 38.7 KB |  |
-| `snd_dma_new.cpp` | 847 | 19.3 KB |  |
+| `snd_dma_new.cpp` | 892 | 21.1 KB |  |
 | `snd_info.cpp` | 127 | 6.5 KB |  |
 | `snd_local.h` | 289 | 8.2 KB | snd_local.h -- private sound definations |
-| `snd_local_new.h` | 254 | 7.2 KB |  |
+| `snd_local_new.h` | 315 | 12.0 KB |  |
 | `snd_main.c` | 550 | 10.8 KB |  |
 | `snd_mem.c` | 297 | 8.5 KB |  |
 | `snd_mem_new.cpp` | 590 | 14.0 KB |  |
@@ -5974,7 +6037,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `snd_miles_new.h` | 28 | 1.1 KB | This file exists in the original source code. |
 | `snd_mix.c` | 627 | 15.5 KB | snd_mix.c -- portable code to mix sounds for snd_dma.c |
 | `snd_openal.c` | 2,734 | 64.9 KB |  |
-| `snd_openal_new.cpp` | 5,828 | 174.1 KB |  |
+| `snd_openal_new.cpp` | 6,087 | 183.4 KB |  |
 | `snd_openal_new.h` | 238 | 6.2 KB |  |
 | `snd_public.h` | 186 | 6.2 KB |  |
 | `snd_wavelet.c` | 252 | 6.1 KB |  |
@@ -6014,8 +6077,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `VehicleTank.cpp` | 584 | 17.1 KB |  |
 | `VehicleWheelsX2.cpp` | 688 | 21.1 KB |  |
 | `VehicleWheelsX4.cpp` | 701 | 22.0 KB |  |
-| `actor.cpp` | 13,775 | 336.3 KB | actor.cpp: Base class for character AI. |
-| `actor.h` | 2,415 | 83.1 KB | actor.h: Base class for character AI. |
+| `actor.cpp` | 13,921 | 342.7 KB | actor.cpp: Base class for character AI. |
+| `actor.h` | 2,418 | 83.3 KB | actor.h: Base class for character AI. |
 | `actor_aim.cpp` | 65 | 1.8 KB | actor_aim.cpp |
 | `actor_alarm.cpp` | 131 | 3.3 KB | actor_alarm.cpp |
 | `actor_anim.cpp` | 89 | 2.7 KB | actor_anim.cpp |
@@ -6098,7 +6161,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `earthquake.h` | 82 | 2.4 KB | earthquake.h: Earthquake trigger causes a localized earthquake when triggered. |
 | `effectentity.cpp` | 34 | 1.2 KB | effectentity.cpp: Effect entity. |
 | `effectentity.h` | 35 | 1.1 KB | actor.cpp: Base class for character AI. |
-| `entity.cpp` | 6,679 | 163.8 KB | entity.cpp: Base class for all enities that are controlled by Sin. If you have any |
+| `entity.cpp` | 6,757 | 167.1 KB | entity.cpp: Base class for all enities that are controlled by Sin. If you have any |
 | `entity.h` | 856 | 22.9 KB | entity.h: Base class for all enities that are controlled by Sin. If you have any |
 | `explosion.cpp` | 569 | 17.9 KB | explosion.cpp: Standard explosion object that is spawned by other entites and not map designers. |
 | `explosion.h` | 126 | 3.3 KB | explosion.h: Standard explosion object that is spawned by other entites and not map designers. |
@@ -6111,7 +6174,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `g_client.cpp` | 1,203 | 31.1 KB |  |
 | `g_items.cpp` | 25 | 1.0 KB |  |
 | `g_local.h` | 527 | 17.0 KB | g_local.h -- local definitions for game module |
-| `g_main.cpp` | 2,184 | 60.8 KB |  |
+| `g_main.cpp` | 2,210 | 62.7 KB |  |
 | `g_main.h` | 56 | 1.8 KB | g_main.h -- Global header file for g_main.cpp |
 | `g_mem.cpp` | 58 | 1.6 KB | g_mem.c |
 | `g_mmove.cpp` | 580 | 17.0 KB | g_mmove.cpp : AI/Path movement code. |
@@ -6129,7 +6192,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `game.h` | 56 | 1.5 KB | game.h: General Game Info |
 | `gamecmds.cpp` | 829 | 21.1 KB | gamecmds.cpp: Game commands |
 | `gamecmds.h` | 63 | 2.3 KB | gamecmds.h: Game Commands. |
-| `gamecvars.cpp` | 698 | 25.9 KB | gamecvars.cpp: Definitions for any cvars used by the game. |
+| `gamecvars.cpp` | 701 | 26.2 KB | gamecvars.cpp: Definitions for any cvars used by the game. |
 | `gamecvars.h` | 294 | 7.6 KB | gamecvars.h: Game variables |
 | `gamescript.cpp` | 1,259 | 30.3 KB | gamescript.cpp : Subclass of script that preprocesses labels |
 | `gamescript.h` | 205 | 5.8 KB | gamescript.h: Subclass of script that preprocesses labels |
@@ -6153,7 +6216,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `ipfilter.h` | 30 | 1.1 KB | ipfilter.h: DESCRIPTION: |
 | `item.cpp` | 1,006 | 22.1 KB | item.cpp: Base class for respawnable, carryable objects. |
 | `item.h` | 180 | 5.3 KB | item.h: Base class for respawnable, carryable objects. |
-| `level.cpp` | 2,863 | 75.0 KB | level.cpp : Global Level Info. |
+| `level.cpp` | 2,879 | 76.3 KB | level.cpp : Global Level Info. |
 | `level.h` | 410 | 11.6 KB | level.h: General Level Info |
 | `light.cpp` | 150 | 3.4 KB | light.cpp: Classes for creating and controlling lights. |
 | `light.h` | 37 | 1.2 KB | light.h: Classes for creating and controlling lights. |
@@ -6204,7 +6267,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `object.h` | 111 | 3.2 KB | object.h: Object (used by common TIKIs) |
 | `parm.cpp` | 164 | 3.4 KB | parm.cpp : Event parameters |
 | `parm.h` | 59 | 1.7 KB | parm.h: Event parameters |
-| `player.cpp` | 18,547 | 655.9 KB | player.h: Class definition of the player. |
+| `player.cpp` | 18,601 | 658.8 KB | player.h: Class definition of the player. |
 | `player.h` | 1,576 | 63.7 KB | player.h: Class definition of the player. |
 | `player_animation.cpp` | 640 | 23.2 KB | player_animation.cpp: Animation utility functions |
 | `player_combat.cpp` | 205 | 6.8 KB | player_combat.cpp: Player combat system and combat utility functions |
@@ -6235,8 +6298,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `scriptthread.h` | 400 | 12.1 KB |  |
 | `scripttimer.cpp` | 264 | 5.3 KB | scripttimer.cpp: Scripted Timer & Fader |
 | `scripttimer.h` | 82 | 2.0 KB | ScriptTimer.cpp: Scripted Timer & Fader |
-| `sentient.cpp` | 5,811 | 204.9 KB | sentient.cpp: Base class of entity that can carry other entities, and use weapons. |
-| `sentient.h` | 423 | 19.8 KB | sentient.h: Base class of entity that can carry other entities, and use weapons. |
+| `sentient.cpp` | 5,935 | 213.0 KB | sentient.cpp: Base class of entity that can carry other entities, and use weapons. |
+| `sentient.h` | 426 | 20.2 KB | sentient.h: Base class of entity that can carry other entities, and use weapons. |
 | `sentient_combat.cpp` | 1,494 | 37.9 KB |  |
 | `simpleactor.cpp` | 1,350 | 34.3 KB | simpleactor.cpp: Base class for character AI |
 | `simpleactor.h` | 480 | 16.9 KB | simpleactor.h: Base class for character AI. |
@@ -7141,7 +7204,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `class.cpp` | 842 | 20.7 KB | class.cpp: General class. |
 | `class.h` | 311 | 12.6 KB | class.h: General class |
 | `cm_fencemask.c` | 638 | 18.2 KB |  |
-| `cm_load.c` | 1,576 | 40.5 KB | cmodel.c -- model loading |
+| `cm_load.c` | 1,655 | 43.8 KB | cmodel.c -- model loading |
 | `cm_local.h` | 282 | 7.4 KB |  |
 | `cm_patch.c` | 1,720 | 43.2 KB |  |
 | `cm_patch.h` | 106 | 3.4 KB | define CULL_BBOX |
@@ -7200,7 +7263,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `q_math.c` | 4,347 | 110.3 KB | q_math.c -- stateless support routines that are included in each code module |
 | `q_platform.h` | 542 | 12.5 KB |  |
 | `q_shared.c` | 2,184 | 37.8 KB | q_shared.c -- stateless support routines that are included in each code dll |
-| `q_shared.h` | 2,498 | 89.5 KB | q_shared.h -- included first by ALL program modules. |
+| `q_shared.h` | 2,545 | 90.8 KB | q_shared.h -- included first by ALL program modules. |
 | `q_version.cmake` | 68 | 2.1 KB | Current branch |
 | `q_version.h` | 106 | 3.2 KB | q_version.h -- file versioning |
 | `qcommon.h` | 1,581 | 50.8 KB | qcommon.h -- definitions common between client and server, but not game.or ref modules |
@@ -7254,7 +7317,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | file | lines | size | summary |
 |---|---:|---:|---|
 | `tr_public_new.h` | 21 | 0.9 KB |  |
-| `tr_types_new.h` | 90 | 3.0 KB |  |
+| `tr_types_new.h` | 98 | 3.7 KB |  |
 
 ### `openmohaa-hzm/code/renderergl1/` — 43 source files
 
@@ -7276,7 +7339,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `tr_image.c` | 3,304 | 83.6 KB | tr_image.c |
 | `tr_init.c` | 2,143 | 69.8 KB | tr_init.c -- functions that are not called every frame |
 | `tr_light.c` | 1,613 | 45.9 KB | tr_light.c |
-| `tr_local.h` | 2,642 | 79.2 KB |  |
+| `tr_local.h` | 2,648 | 79.8 KB |  |
 | `tr_main.c` | 1,882 | 51.3 KB | tr_main.c -- main control flow for each frame |
 | `tr_marks.c` | 955 | 29.3 KB | tr_marks.c -- polygon projection on the world polygons |
 | `tr_marks_permanent.c` | 2,001 | 61.3 KB | tr_marks_pernanent.c: permanent marks |
@@ -7309,7 +7372,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | file | lines | size | summary |
 |---|---:|---:|---|
 | `tr_animation.c` | 523 | 14.7 KB |  |
-| `tr_backend.c` | 2,661 | 86.1 KB |  |
+| `tr_backend.c` | 2,686 | 87.2 KB |  |
 | `tr_bsp.c` | 4,102 | 120.4 KB | tr_map.c |
 | `tr_cmds.c` | 658 | 15.9 KB |  |
 | `tr_curve.c` | 739 | 19.3 KB |  |
@@ -7326,13 +7389,13 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `tr_font.cpp` | 1,013 | 30.5 KB | tr_font.cpp -- font rendering |
 | `tr_ghost.cpp` | 1,662 | 36.0 KB | tr_ghost.cpp |
 | `tr_ghost.h` | 300 | 7.3 KB |  |
-| `tr_glsl.c` | 1,998 | 60.6 KB | tr_glsl.c |
+| `tr_glsl.c` | 2,073 | 62.6 KB | tr_glsl.c |
 | `tr_gore.c` | 1,854 | 73.9 KB |  |
 | `tr_image.c` | 4,170 | 107.8 KB | tr_image.c |
 | `tr_image_dds.c` | 498 | 13.8 KB |  |
 | `tr_init.c` | 2,705 | 100.5 KB | tr_init.c -- functions that are not called every frame |
 | `tr_light.c` | 1,324 | 38.1 KB | tr_light.c |
-| `tr_local.h` | 3,912 | 118.5 KB |  |
+| `tr_local.h` | 3,946 | 117.0 KB |  |
 | `tr_main.c` | 4,093 | 121.7 KB | tr_main.c -- main control flow for each frame |
 | `tr_marks.c` | 479 | 14.9 KB | tr_marks.c -- polygon projection on the world polygons |
 | `tr_marks_permanent.c` | 2,006 | 61.8 KB | tr_marks_pernanent.c: permanent marks |
@@ -7340,11 +7403,11 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `tr_model.c` | 1,424 | 38.2 KB | tr_models.c -- model loading and caching |
 | `tr_model.cpp` | 2,579 | 93.3 KB | tr_models.cpp -- model loading and caching |
 | `tr_model_iqm.c` | 1,758 | 56.9 KB |  |
-| `tr_postprocess.c` | 1,487 | 58.1 KB |  |
+| `tr_postprocess.c` | 1,784 | 73.8 KB |  |
 | `tr_postprocess.h` | 39 | 2.1 KB |  |
 | `tr_ragdoll.cpp` | 196 | 7.4 KB |  |
 | `tr_scene.c` | 1,012 | 32.6 KB |  |
-| `tr_shade.c` | 3,092 | 111.8 KB | tr_shade.c |
+| `tr_shade.c` | 3,128 | 113.7 KB | tr_shade.c |
 | `tr_shade_calc.c` | 1,043 | 29.1 KB | tr_shade_calc.c |
 | `tr_shader.c` | 5,288 | 143.8 KB | tr_shader.c -- this file deals with the parsing and definition of shaders |
 | `tr_shadows.c` | 333 | 7.7 KB |  |
@@ -7363,10 +7426,11 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `tr_vis.h` | 36 | 1.1 KB |  |
 | `tr_world.c` | 1,037 | 24.9 KB |  |
 
-### `openmohaa-hzm/code/renderergl2/glsl/` — 47 source files
+### `openmohaa-hzm/code/renderergl2/glsl/` — 48 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
+| `bloodspatter_fp.glsl` | 362 | 21.3 KB |  |
 | `bloom_blur_fp.glsl` | 32 | 1.5 KB |  |
 | `bloom_bright_fp.glsl` | 43 | 2.6 KB |  |
 | `bokeh_fp.glsl` | 84 | 4.3 KB |  |
@@ -7413,7 +7477,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `tonemap_fp.glsl` | 57 | 1.6 KB |  |
 | `tonemap_hzm_fp.glsl` | 44 | 2.2 KB |  |
 | `tonemap_vp.glsl` | 27 | 0.8 KB |  |
-| `underwater_fp.glsl` | 40 | 1.7 KB |  |
+| `underwater_fp.glsl` | 312 | 14.6 KB |  |
 
 ### `openmohaa-hzm/code/script/` — 12 source files
 
@@ -7451,10 +7515,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `sv_ccmds.c` | 2,757 | 63.8 KB |  |
 | `sv_client.c` | 2,198 | 64.1 KB | sv_client.c -- server code for dealing with clients |
 | `sv_game.c` | 1,969 | 41.6 KB | sv_game.c -- interface to the game dll |
-| `sv_init.c` | 1,384 | 33.3 KB |  |
+| `sv_init.c` | 1,413 | 35.1 KB |  |
 | `sv_main.c` | 1,537 | 41.8 KB |  |
 | `sv_net_chan.c` | 442 | 13.7 KB |  |
-| `sv_snapshot.c` | 1,383 | 38.5 KB |  |
+| `sv_snapshot.c` | 1,386 | 38.7 KB |  |
 | `sv_snd.c` | 120 | 3.1 KB | sv_snd.c: Server sound |
 | `sv_world.c` | 892 | 22.2 KB | world.c -- world query functions |
 
@@ -7489,7 +7553,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `con_log.c` | 129 | 3.0 KB |  |
 | `con_passive.c` | 68 | 1.6 KB |  |
 | `con_tty.c` | 537 | 12.1 KB |  |
-| `con_win32.c` | 554 | 12.5 KB |  |
+| `con_win32.c` | 576 | 14.0 KB |  |
 | `sys_autoupdater.c` | 86 | 2.3 KB |  |
 | `sys_curl.c` | 142 | 5.4 KB |  |
 | `sys_curl.h` | 38 | 1.2 KB |  |
@@ -8316,7 +8380,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `tiki_anim.cpp` | 547 | 13.0 KB | tiki_anim.cpp : TIKI Anim |
 | `tiki_anim.h` | 51 | 2.3 KB | tiki_anim.h : TIKI Anim |
-| `tiki_cache.cpp` | 499 | 11.2 KB | tiki_cache.cpp : TIKI's fast implementation |
+| `tiki_cache.cpp` | 525 | 13.2 KB | tiki_cache.cpp : TIKI's fast implementation |
 | `tiki_cache.h` | 49 | 1.8 KB | tiki_cache.h : TIKI Cache |
 | `tiki_commands.cpp` | 39 | 1.3 KB | tiki_anim.cpp : TIKI Anim |
 | `tiki_commands.h` | 35 | 1.1 KB | tiki_commands.h : TIKI Commands |
@@ -8330,7 +8394,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `tiki_mesh.h` | 73 | 4.1 KB |  |
 | `tiki_parse.cpp` | 1,306 | 39.2 KB | tiki_parse.cpp : TIKI Parser |
 | `tiki_parse.h` | 80 | 3.0 KB |  |
-| `tiki_shared.h` | 451 | 13.7 KB | tiki_shared.h : Skeletor |
+| `tiki_shared.h` | 455 | 14.1 KB | tiki_shared.h : Skeletor |
 | `tiki_skel.cpp` | 1,159 | 38.7 KB | tiki_skel.cpp : TIKI skeletor loader |
 | `tiki_skel.h` | 49 | 1.9 KB | tiki_skel.h : TIKI Skeletor |
 | `tiki_surface.cpp` | 76 | 2.3 KB | tiki_surface.cpp : TIKI surface |
@@ -8718,10 +8782,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `autoexec.cfg` | 1,479 | 108.1 KB | HZM Extended Coop Mod |
-| `coop_defaults.cfg` | 454 | 27.8 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
+| `autoexec.cfg` | 1,571 | 113.7 KB | HZM Extended Coop Mod |
+| `coop_defaults.cfg` | 481 | 30.1 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
 | `coop_devrcon.cfg` | 7 | 0.5 KB | DEV ONLY - never packed into a pk3, never committed, never in the release manifest. |
-| `dedicated_start.cfg` | 67 | 4.0 KB | generated by launch_dedicated_2player.ps1 - do not hand-edit |
+| `dedicated_start.cfg` | 70 | 4.3 KB | generated by launch_dedicated_2player.ps1 - do not hand-edit |
 
 ### `server_home/maintt/configs/` — 1 source files
 
@@ -8733,9 +8797,9 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `autoexec.cfg` | 1,202 | 87.3 KB | HZM Extended Coop Mod |
+| `autoexec.cfg` | 1,202 | 87.4 KB | HZM Extended Coop Mod |
 | `coop_defaults.cfg` | 217 | 12.1 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
-| `dedicated_start.cfg` | 54 | 3.1 KB | generated by the bug-1664 probe - do not hand-edit |
+| `dedicated_start.cfg` | 54 | 3.2 KB | generated by the bug-1664 probe - do not hand-edit |
 
 ### `tools/` — 2 source files
 

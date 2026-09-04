@@ -12,25 +12,30 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | | |
 |---|---|
-| branch | `omaha-chaos-and-gl2-fixes` |
-| HEAD | `ced258e 2026-08-31 docs+tools: gl2 renderer parity, the Omaha pass, and three generators that cannot rot` |
-| commits | 209 |
+| branch | `main` |
+| HEAD | `6876e9d 2026-08-31 docs: regenerate after the v1.4.8 publish` |
+| commits | 211 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **19 modified, 23 untracked** |
+| unstaged diff | 19 files changed, 561 insertions(+), 293 deletions(-) |
+
+> Working tree is dirty. Everything in those 42 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-08 | 155 |
+| 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (209)
+### Commits since 2026-01-01 (211)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `6876e9d` | 2026-08-31 | joncurry94-tech | docs: regenerate after the v1.4.8 publish |
+| `da92586` | 2026-08-31 | joncurry94-tech | manifest 1.4.8 |
 | `ced258e` | 2026-08-31 | joncurry94-tech | docs+tools: gl2 renderer parity, the Omaha pass, and three generators that cannot rot |
 | `57e8074` | 2026-08-31 | joncurry94-tech | manifest 1.4.7 |
 | `c72d093` | 2026-08-31 | joncurry94-tech | installer: always offer the folder choice, and make the guidance actually visible |
@@ -249,7 +254,10 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | HEAD | `c1e3d68 2026-08-31 release: Field Report card re-cut for v1.4.8` |
 | commits | 1,591 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **31 modified, 25 untracked** |
+| unstaged diff | 31 files changed, 15093 insertions(+), 4922 deletions(-) |
+
+> Working tree is dirty. Everything in those 56 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
@@ -550,7 +558,10 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | HEAD | `a5cfc868 2026-08-31 fix: gl2 shader overrides were dead, clampmapy clamped both axes, tinnitus ducked itself` |
 | commits | 5,083 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **34 modified, 1 untracked** |
+| unstaged diff | 34 files changed, 4799 insertions(+), 2588 deletions(-) |
+
+> Working tree is dirty. Everything in those 35 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
