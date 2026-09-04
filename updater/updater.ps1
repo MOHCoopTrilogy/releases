@@ -67,6 +67,16 @@ function LaunchGame {
             }
             $args = "+set fs_basepath `"$gog`" +set fs_homepath `"$app\home`" +set com_target_game 2"
         }
+        # [user 2026-09-04] ALWAYS gl2, on the command line, for new installs AND updated old ones.
+        # cl_renderer defaults to "opengl1" in the engine (cl_main.cpp:3231) and nothing ever set it,
+        # so every player who installed the mod has been running gl1 - losing the whole gl2 visual
+        # layer (the underwater pass is renderergl2-only) and, on gl1, hitting a DDS upload crash on
+        # Omaha. The configs carry the same value, but $args here normally comes from updater.ini,
+        # which the INSTALLER wrote and which therefore still holds the old renderer-less string on
+        # every existing install. Appending fixes those without rewriting updater.ini, and setting it
+        # on the command line beats the CVAR_LATCH delay: the player is on gl2 for THIS launch, not
+        # the next one. -notmatch keeps it idempotent so it cannot accumulate.
+        if ($args -notmatch "cl_renderer") { $args = "$args +set cl_renderer opengl2" }
         Start-Process -FilePath $exe -ArgumentList $args -WorkingDirectory $app
     } catch {
         Log "LaunchGame FAILED: $_"

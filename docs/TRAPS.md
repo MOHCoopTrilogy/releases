@@ -743,11 +743,10 @@ in `includes <tok...> { }` and `TIKI_ParseIncludes` (`tiki_parse.cpp:345`) makes
 one token is a **prefix of the live map name** - so `includes test utils traf holodeck coop` does NOT
 match `m3l1a`, and crate_carry/welding/workers were unreachable on Omaha while three sessions faked
 around them. Adding a pack costs one `$include` line in the right block.
-**`docs/tools/check_map_anims.py` resolves that chain and fails the build** on any `anim`, `playsound`
-or model path that does not resolve on the map; its docstring carries the three facts it encodes (SKC
-loop flag at offset **8**, a looping alias never fires ANIMDONE so a following `waittill animdone`
-parks forever, and sound aliases resolve as PREFIX GROUPS - `alias.c:545`). `check_say_aliases.py` does
-the same for `say`/`sayd`, which that tool never covered.
+**`docs/tools/check_map_anims.py` fails the build** on any `anim`, `playsound` or model path that
+does not resolve on the map; its docstring carries the facts it encodes (SKC loop flag at offset **8**,
+a looping alias never fires ANIMDONE so a following `waittill animdone` parks forever, PREFIX GROUPS -
+`alias.c:545`). `check_say_aliases.py` covers `say`/`sayd`.
 
 **A TIKI's `init { server { ... } }` runs even when you `spawn script_model model "<path>"`.**
 `models/fx/fx_tank_explosion.tik` carries `classname Explosion` / `radiusdamage 120` in its own init
@@ -758,6 +757,16 @@ original. Read the other way, the same fact decides how you spawn one: `init { c
 the entity first reaches a **snapshot**, after the server set the origin, so *spawn, then position* is
 correct (`bh_water_hard`); a **server** block fires at spawn, so its origin must be inline or the effect
 bursts at the world origin. The two read identically in a script.
+
+**`playlocalsound <alias> 1` writes ONE FIELD, not a channel.** The loop branch of
+`Player::PlayLocalSound` sets `edict->s.loopSound` (`player.cpp:18183`) - a single int in
+`entityState` - so a second local loop on the same entity **silently overwrites the first**, and
+`stoplocalsound` zeroes it *and* calls `gi.StopSound(entnum, CHAN_LOCAL)`, killing whatever one-shot
+held that channel. `dbno.scr` starts three and only the last has ever played (bug-2432). It also
+hardcodes `loopSoundVolume = 1.0f`, so the alias volume is **discarded** - bake the level into the
+wav (bug-2431). Flag 1 is
+`LOOPSOUND_FLAG_NO_PAN`: 2D, centred, **no distance falloff** - and loopSound is broadcast, so every
+client emitted every *other* player's private body sounds until `CG_LoopSoundIsForeignLocal` (bug-2429).
 
 **Dialogue prefixes name the speaker's SIDE: `dfr_` friendly, `den_` German** - mixed in one
 per-mission folder, so filtering by mission alone gets both (36 of 64 Omaha "prior-mission" lines were

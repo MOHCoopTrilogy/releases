@@ -326,7 +326,7 @@ begin
       'GogPath=' + GetGogPath('') + #13#10 +
       'ManifestUrl=https://github.com/MOHCoopTrilogy/releases/releases/latest/download/manifest.json' + #13#10 +
       'ManifestUrlFallback=https://raw.githubusercontent.com/MOHCoopTrilogy/releases/main/manifests/latest.json' + #13#10 +
-      'LaunchArgs=+set fs_basepath "' + GetGogPath('') + '" +set fs_homepath "' + ExpandConstant('{app}') + '\home" +set com_target_game 2' + #13#10 +
+      'LaunchArgs=+set fs_basepath "' + GetGogPath('') + '" +set fs_homepath "' + ExpandConstant('{app}') + '\home" +set com_target_game 2 +set cl_renderer opengl2' + #13#10 +
       'ReportWebhook=' + '{#ReportWebhook}' + #13#10, False);
   end;
 end;
