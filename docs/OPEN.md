@@ -59,7 +59,7 @@ minidump). gl2 does not share that code path.
   the plunge and are armed no-ops until the wavs and aliases exist; a one-shot `RAMPUW airhook armed`
   marker reports it so this cannot become another silent-forever call site like `coop_uw_strain` was.
   22050 mono 16-bit into `sound/coop_tinnitus/` — that path is duck-exempt, anywhere else is inaudible.
-- **2026-09-05/06 Omaha batch (bugs 2473-2499) - third build AWAITING PLAYTEST.** Two runs on 09-06
+- **2026-09-05/06 Omaha batch (bugs 2473-2499) - SHIPPED as v1.5.2, third build AWAITING PLAYTEST.** Two runs on 09-06
   (08:52, 13:03) verified from markers: waders, seabed bodies, hull FX, obstacle wash, bazooka pose,
   the underwater sequence, the captain's exchange (`FIRSTSEQ start`), the radio call and reply
   (`RADIOTX`), 044a and the whistles, the advance (`BEACHADV fired`), flank guns 2 and 4 firing

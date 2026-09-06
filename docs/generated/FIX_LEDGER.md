@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1817** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1818** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -17,7 +17,7 @@
 | 2026-06 | 80 |
 | 2026-07 | 577 |
 | 2026-08 | 918 |
-| 2026-09 | 236 |
+| 2026-09 | 237 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1835,6 +1835,7 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-2497` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: 'i dont feel like i take any damage at all up until the shingles, even there i havent been hit once' - after the 09:29 build that raised the be… | isInCover: world-only trace first (arg 1, the bunker wall), then the entity trace (arg 0, which is what sees the tank-wreck boxes bug-2211 wanted) to… |
 | `bug-2498` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user, 13:03 run: 'there are a ton of allies just standing around near the radiomen ... not laying in cover or being injured or anything' (screenshot:… | Spawn on the wader recipe (disable_ai, dontdropweapons, no retail ai_friendly_setup) and HOLD a loop through coop_vigHold with coop_vigOwned=1 and no… |
 | `bug-2499` | 2026-09-06 | `openmohaa-hzm/code/cgame/cg_modelanim.c` | - | user, 13:03 run: 'primary still facing the wrong way when I use the quick draw' (screenshot: stock up-left, muzzle down-right toward the shooter) - a… | coop_qdrawHoldFlip is an axis selector: 0 none, 1 about Y, 2 about X (keep X, negate Y and Z - the default now), 3 about Z, so the next wrong guess i… |
+| `bug-2500` | 2026-09-06 | `publish_release.ps1` | - | publish_release.ps1 -Version 1.5.2: 'Exception calling OpenRead: Could not find file hzm-mohaa-coop-mod\maps\m3l1a\done' during the code-pak pack; no… | Re-ran the publish on the now-consistent tree: v1.5.2 live with 11 assets, manifest.json published, manifests committed and pushed, Discord announcem… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

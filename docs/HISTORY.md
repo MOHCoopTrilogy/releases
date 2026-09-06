@@ -242,7 +242,7 @@ source is not corroboration, and the expensive fix refuted by measurement — no
   voices came back from a local.ok int/array collision, waders and seabed kills retimed into the swim,
   hull sparks, ocean flap calmed, obstacle wash, the quick-draw primary placed in view; then water
   research #1, the wet-sand swash (bug-2485; gl2 drops `alphaGen tCoord` without a deform, 2486).
-- **2026-09-06** - two playtests: the Higgins sink had never moved (a solid clip, then the hull's model
-  swap re-solidifying it, 2487/2496), the beach fire vetoed every hit since 08-31 (2497), the captain's
-  exchange never fired (2490); sinking bodies cut, quick-draw flipped (2491/2499), ragged wet line
+- **2026-09-06** **v1.5.2 released** (github + discord + baked field report) after two runs: the
+  Higgins sink had never moved (a clip, then a model swap, 2487/2496), beach fire vetoed since 08-31
+  (2497), the captain's exchange never fired (2490); quick-draw flipped (2491/2499), ragged wet line
   (2493), hedgehog crowd (2495/2498); ricochet research filed.

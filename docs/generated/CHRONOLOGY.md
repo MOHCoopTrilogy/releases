@@ -13,28 +13,30 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `a92e6da 2026-09-04 manifest 1.5.1` |
-| commits | 215 |
+| HEAD | `fcc148a 2026-09-06 manifest 1.5.2` |
+| commits | 217 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **19 modified, 7 untracked** |
-| unstaged diff | 19 files changed, 453 insertions(+), 284 deletions(-) |
+| **uncommitted** | **2 modified, 0 untracked** |
+| unstaged diff | 2 files changed, 4 insertions(+), 4 deletions(-) |
 
-> Working tree is dirty. Everything in those 26 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 2 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 4 |
+| 2026-09 | 6 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (215)
+### Commits since 2026-01-01 (217)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `fcc148a` | 2026-09-06 | joncurry94-tech | manifest 1.5.2 |
+| `0b982f0` | 2026-09-06 | joncurry94-tech | docs+tools: the Omaha 09-06 pass, three traps that hid for a week, two proposals |
 | `a92e6da` | 2026-09-04 | joncurry94-tech | manifest 1.5.1 |
 | `98d05e9` | 2026-09-04 | joncurry94-tech | gl2 for every player, on every path, plus the Omaha finish pass |
 | `349048b` | 2026-09-03 | joncurry94-tech | manifest 1.5.0 |
@@ -256,19 +258,18 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `4dfb527 2026-09-04 Omaha: everyone on gl2, a crash fixed, and the plunge rebuilt` |
-| commits | 1,593 |
+| HEAD | `40d9d963 2026-09-06 chore: drop a stray 16-byte log-break file committed with the Omaha pass` |
+| commits | 1,595 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **18 modified, 9 untracked** |
-| unstaged diff | 18 files changed, 4229 insertions(+), 397 deletions(-) |
+| **uncommitted** | **0 modified, 5 untracked** |
 
-> Working tree is dirty. Everything in those 27 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 5 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 2 |
+| 2026-09 | 4 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -309,273 +310,274 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (244)
+### Commits since 2026-01-01 (246)
 
 | sha | date | author | subject |
 |---|---|---|---|
-| `4dfb527` | 2026-09-04 | joncurry94 | Omaha: everyone on gl2, a crash fixed, and the plunge rebuilt |
-| `bde7fb4` | 2026-09-03 | joncurry94 | Omaha: the landing rebuilt, and the voices the game never played |
-| `c1e3d68` | 2026-08-31 | joncurry94 | release: Field Report card re-cut for v1.4.8 |
-| `b750e6e` | 2026-08-31 | joncurry94 | feat: Omaha chaos pass - retail content nobody wired, plus the blood and gore fixes |
-| `e455222` | 2026-08-31 | joncurry94 | docs: v1.4.7 field report card + release notes |
-| `b6890d7` | 2026-08-31 | joncurry94 | fix: REGRESSION I shipped in v1.4.6 - officer wave sizing broke |
-| `f8f11d4` | 2026-08-30 | joncurry94 | test: document the regression capture procedure |
-| `9f5e7a6` | 2026-08-30 | joncurry94 | test: arm the eleven coop self-test batteries as one suite |
-| `d99ec2e` | 2026-08-30 | joncurry94 | docs: MP build-out - all 127 features classified for standard multiplayer |
-| `1f97cdf` | 2026-08-30 | joncurry94 | security: name-command bus let any client take god mode, noclip and all guns |
-| `889797c` | 2026-08-30 | joncurry94 | docs: the g_modernmp plan for standard MP + coop coexistence |
-| `8aa5a79` | 2026-08-30 | joncurry94 | security: rcon password shipped to every player; move it to a loose dev file |
-| `172f8d1` | 2026-08-30 | joncurry94 | fix: four verified-open items from the two-week survey |
-| `a441e66` | 2026-08-30 | joncurry94 | rename: two player-facing HZM strings the 2026-08-24 pass missed |
-| `47f5269` | 2026-08-30 | joncurry94 | docs: v1.4.6 release notes |
-| `7a38dd3` | 2026-08-30 | joncurry94 | docs: v1.4.6 field report card + Discord announcement (posted) |
-| `193bdfb` | 2026-08-30 | joncurry94 | feat: voice wheel, objective drops, Omaha pass; fix count-scaling + revive HUD |
-| `5a6507c` | 2026-08-24 | joncurry94 | docs: v1.4.4 Discord announcement posted (archived) |
-| `52dabc1` | 2026-08-24 | joncurry94 | rename: MOH Trilogy Coop in player-facing text (not HZM) |
-| `ce8ed6b` | 2026-08-24 | joncurry94 | v1.4.4 - armory gloves, unlock requirements, AI leash, and several inert fixes made real |
-| `ddd3439` | 2026-08-23 | joncurry94 | docs: v1.4.3 field report; Discord draft (NOT posted) |
-| `8880f12` | 2026-08-23 | joncurry94 | fix: hold notarget through the ride, guard the pose not just the bounce, one kit apply |
-| `b626178` | 2026-08-22 | joncurry94 | fix: HOLD notarget through the ride instead of setting it once - m1l1 intro is quiet |
-| `8c2f1cc` | 2026-08-22 | joncurry94 | fix: apply notarget from SPAWN, not from glue - the window between them is the bug |
-| `f68ac37` | 2026-08-22 | joncurry94 | fix: a glued player is scenery - tell the AI so (FL_NOTARGET), plus probe channels |
-| `d89ce48` | 2026-08-22 | joncurry94 | probe: record position, sightline and the protection inputs - the fields today needed |
-| `18d6ada` | 2026-08-22 | joncurry94 | probe: record whether the prone shooter's gates block, and whether its gun actually fires |
-| `cd16beb` | 2026-08-22 | joncurry94 | fix: the prone shooter must honour threatbias - the stealth gate alone is inert on m1l1 |
-| `620107f` | 2026-08-22 | joncurry94 | fix: the prone shooter was firing on disguised players - it is what wrecked m1l1's ride |
-| `63418fb` | 2026-08-22 | joncurry94 | fix: a map that said "ignore this one" meant it - and read the marker late enough to see it |
-| `6b5028d` | 2026-08-22 | joncurry94 | fix: restore the retail spawner loop - half the end-of-mission germans never converted |
-| `1bebd5f` | 2026-08-22 | joncurry94 | fix: an entry guard cannot protect against state that arrives after entry |
-| `e24a377` | 2026-08-22 | joncurry94 | fix: a predicate stopped attaching behaviour, and the searchlight gunner got his gun back |
-| `adf106e` | 2026-08-22 | joncurry94 | fix: probe self-starts on dedicated too, and four defects in the probe itself |
-| `34f9afb` | 2026-08-22 | joncurry94 | fix: restore the rcon entity probe I overwrote, and fix its damage-proof verdict |
-| `6a4cc5e` | 2026-08-22 | joncurry94 | feat: coop probe bus - one diagnostic channel with identity on every record |
-| `4a1ed73` | 2026-08-22 | joncurry94 | fix: guard the third scene marker - threatbias ignoreme (bug-2038) |
-| `1ba12d7` | 2026-08-22 | joncurry94 | fix: never re-enable an actor the MAP disabled - the allies were starting the fight |
-| `4cdab4a` | 2026-08-22 | joncurry94 | fix: the weapon-variant roll re-armed scripted actors across the whole trilogy |
-| `fbdeb5d` | 2026-08-22 | joncurry94 | fix: the scene-actor guard never ran - enableEnemy is write-only |
-| `deac915` | 2026-08-22 | joncurry94 | fix: scripted scene actors are protected trilogy-wide, not just where we noticed |
-| `f063a65` | 2026-08-22 | joncurry94 | fix: m1l1 checkpoint cast is exempt from the AI personality roll |
-| `3faa9e4` | 2026-08-22 | joncurry94 | fix: scene actors are exempt from enemy count-scaling (coop_noScale) |
-| `2f7a66f` | 2026-08-22 | joncurry94 | release: field report card rebaked for v1.4.2 |
-| `3dc3e30` | 2026-08-22 | joncurry94 | docs: wall-cover design plan v1 (research only, no code) |
-| `37ca784` | 2026-08-21 | joncurry94 | fix: the spawn re-give hitch - backfill now skips when nothing is actually missing |
-| `c39c159` | 2026-08-21 | joncurry94 | fix: armory hovers state the REAL unlock path; finish strip un-overlapped; rock clip cores |
-| `a606ca2` | 2026-08-21 | joncurry94 | fix: surrendered germans commit to it; convert prompt + allied star; officer music restore |
-| `5bed16c` | 2026-08-21 | joncurry94 | fix: church barrage hit players through the church walls |
-| `5d4d0be` | 2026-08-21 | joncurry94 | fix: 1,623 audio refs were silent for every player but the dev machine |
-| `24dc923` | 2026-08-21 | joncurry94 | feat: severity-tiered player pain - a graze and a mortal hit sounded identical |
-| `0ec0448` | 2026-08-21 | joncurry94 | release: ragdolls on by default; field report card for v1.4.1 |
-| `b481ec8` | 2026-08-21 | joncurry94 | release: field report card rebaked for v1.4.0 |
-| `86b0458` | 2026-08-21 | joncurry94 | release: silence the two temporary debug probes for v1.4.0 |
-| `a30d79f` | 2026-08-21 | joncurry94 | docs: ragdoll r8-r13, weapon-feel r1 and vault-camera design records |
-| `caf83df` | 2026-08-21 | joncurry94 | fix: remove the inert _idlelower rows; graphics menus audited end to end |
-| `b92b0e0` | 2026-08-21 | joncurry94 | feat: explosion pool, wounded breathing, and the 3P foley takes |
-| `4291195` | 2026-08-21 | joncurry94 | fix: the church barrage was damaging you invisibly, and enemies never reloaded |
-| `dac1a3a` | 2026-08-21 | joncurry94 | fix: trim the pain pool - the sound index table was full |
-| `a988515` | 2026-08-21 | joncurry94 | fix: a recruited german held the church gate open forever (bug-1972) |
-| `7681250` | 2026-08-21 | joncurry94 | feat: weapon handling foley - the motions had no sound at all |
-| `b43feff` | 2026-08-21 | joncurry94 | probe: print the entnum of every count-scaling replica at birth |
-| `48f1354` | 2026-08-21 | joncurry94 | fix: you make no sound at all when shot on Spearhead, and 2 hits in 3 are silent elsewhere |
-| `1ecfafb` | 2026-08-21 | joncurry94 | fix: camo skin had missing-texture first-person sleeves |
-| `cd6b103` | 2026-08-21 | joncurry94 | fix: the combat-snap and ricochet sounds were never registered |
-| `3745f1a` | 2026-08-21 | joncurry94 | fix: script-side review findings |
-| `c72144f` | 2026-08-21 | joncurry94 | fix: the XP bar could never fill |
-| `36a6b15` | 2026-08-21 | joncurry94 | feat: weapon action foley aliases; widen the airstrike XP window |
-| `db41a85` | 2026-08-21 | joncurry94 | feat: stow the weapon while applying a medkit |
-| `907ed9d` | 2026-08-20 | joncurry94 | fix: you can hear the bombing run coming now |
-| `f5cb872` | 2026-08-20 | joncurry94 | docs: record the three review findings in the ADS/composure plan |
-| `5c43a80` | 2026-08-20 | joncurry94 | fix: restore the Colt's decay trail |
-| `db1f788` | 2026-08-19 | joncurry94 | fix: host-table keys lowercased; weapon.scr display-name alias cases; coop_mg42AiSpread force-seta 300 (stale archived 45 caught… |
-| `6c7d5af` | 2026-08-19 | joncurry94 | docs: hud slot 47 claimed (grenade-kick icon) |
-| `3835948` | 2026-08-19 | joncurry94 | feat: coop_kick sound alias + KICK hud icon asset |
-| `c6f1a28` | 2026-08-19 | joncurry94 | fix: weapon.scr passes tik-path gives through (bug-1959 - the switch stripped every import/variant give, both teams); g43-carrier… |
-| `10e4dbf` | 2026-08-19 | joncurry94 | fix: surrender conversion v3 - real 'american' team command + explicit pre-surrender gun restore (bug-1958 SOLVED by live probes:… |
-| `6fdfaf7` | 2026-08-19 | joncurry94 | fix: surrender conversion v3 - the real 'american' team command + explicit pre-surrender gun restore (bug-1958 SOLVED by live pro… |
-| `79a08ba` | 2026-08-19 | joncurry94 | fix: G43 service give gets the same read-back/fallback guard as the variant site (bug-1957 - live 1:1 correlation g43=1/one unarm… |
-| `b4a12e7` | 2026-08-19 | joncurry94 | docs: ragdoll plan v3 + full vetting lineage (3 rounds, 7 agents, 34+16 findings closed) |
-| `1eb9eb5` | 2026-08-19 | joncurry94 | fix: colt fire alias played the thump at pitch 0.8 with +82% clipping gain - retuned to natural pitch, modest gain (user: 'sounds… |
-| `fa3d9e3` | 2026-08-19 | joncurry94 | fix: live wave 3 - attack.scr NULL-delete guards, TAF_RANDOM alert stem, rifle floorcrawl alias, variant-give/convert probes+fall… |
-| `aea18f2` | 2026-08-19 | joncurry94 | feat: gore package assets - headgib/gorechunk/eyegib xbeam props, eye texture, shader blocks; seeds (chunks/impulse/eyeGib, blood… |
-| `a166a94` | 2026-08-19 | joncurry94 | feat+fix: live-playtest wave 2 - surrender conversion, church-clear re-gate, 10s prone dwell, colt thump A, pcMult cast, weapon.s… |
-| `202b57d` | 2026-08-19 | joncurry94 | fix: tinnitus 10s package + variant scene-guard + deeper ducks (bugs 1948-1949 script side) |
-| `43377a7` | 2026-08-19 | joncurry94 | feat: Leon wave shipped - 21 credited variants (Team Tactics 16-gun pack + 5 singles), textures 2x |
-| `3ee3e6b` | 2026-08-19 | joncurry94 | feat: wave-3 variant textures upscaled 2x (39/39 clean); tommy28 credited to sT@t!c |
-| `de25c52` | 2026-08-19 | joncurry94 | feat: MV wave 3 - 31 credited weapon variants (Hobbs/Guanshire/DirtyHarry) |
-| `ceb953d` | 2026-08-19 | joncurry94 | fix: shellshock chain + odometer-zero systems (bugs 1942-1945) |
-| `274bc93` | 2026-08-19 | joncurry94 | tinnitus: dizziness handoff moved inside the ping guard (bug-1941 - the unset-ping concat spammed 2283 script errors live) |
-| `50a4c5d` | 2026-08-19 | joncurry94 | variants: author-level credits in display names (ACME313, EAST, DARKANGEL, DR.DELETO, FLAKRIDER, SCHUTZE, STLKID) - 19 upgraded e… |
-| `7655385` | 2026-08-19 | joncurry94 | boom package data: synthesized ricochet whines (sound/coop_ric), aliases, tinnitus dizziness handoff, cvar seeds |
-| `7157d0a` | 2026-08-19 | joncurry94 | combat feel: prominent near-miss audio, near-impact snaps, upward blood spurts, behavior odometer |
-| `1551c6e` | 2026-08-19 | joncurry94 | ai: crouch returns (dodge crasher hard-skipped via ainocrouchdodge), prone chance cvar finally wired (was an orphan seed) and rai… |
-| `b9825cf` | 2026-08-19 | joncurry94 | variants: pack-level credits in display names - (MOH:PA) for the Pacific ports, (WW1 EXT) for the WW1 Extended set (12 entries, 5… |
-| `a86bf05` | 2026-08-19 | joncurry94 | m3l3: remove the 14 placebo bulletspread lines (bug-1940 - manned turrets never read them; their only live effect widened PLAYER… |
-| `a29f22b` | 2026-08-19 | joncurry94 | cut-content VO batch 1: BT global dialog + German personality + allied shout categories |
-| `18bada3` | 2026-08-19 | joncurry94 | research: cut-content deep scan record - 3 verified digs over all 17 retail pk3s |
-| `832f37e` | 2026-08-19 | joncurry94 | ai: cut-content animation wave 2 - locational hits, crawl-to-death, crate combat, facial moods |
-| `aa14f86` | 2026-08-18 | joncurry94 | ai: the G98 variant cycles its bolt - its tik name joins every kar98 bolt-anim branch (aim/attack/corner scripts) |
-| `a669b12` | 2026-08-18 | joncurry94 | ai: G43 service roll - a slice of German Kar98 riflemen carry (and drop) the G43; carriers can then roll the G98 variant. coop_ai… |
-| `1e0a02d` | 2026-08-18 | joncurry94 | loadout deep-trace fix wave: phases 1-4 + slot re-preview (bugs 1928-1938) |
-| `66095d7` | 2026-08-18 | joncurry94 | loadout phase 1 (hands): resolved raise targets, variant-aware ammo classing, revive re-kick, dead guard |
-| `a0a494c` | 2026-08-18 | joncurry94 | loadout: regive rebuilds the resolved kit; 120s gate deleted; finish clicks preview in the viewer |
-| `03c43d8` | 2026-08-18 | joncurry94 | self-test: boot-time deployed-truth check - live challenge count vs the stamp baked with the SR pages |
-| `697ca23` | 2026-08-18 | joncurry94 | pins: server import accepts cids (legacy index fallback); dead repaint stub removed; SR pages + cid map regenerated |
-| `d1a3140` | 2026-08-18 | joncurry94 | service record: pages regenerated (were stale since the panzerfaust removal), 25 hover names curated, bp ladder retuned |
-| `89197d0` | 2026-08-18 | joncurry94 | blueprints: every 5th find flips a coin on a random unlock of any type |
-| `20652fe` | 2026-08-18 | joncurry94 | armory: 7 unlock hovers now state the ENFORCED path - BAR/StG44/Vickers/Breda/Trench Gun are faction-challenge unlocks (hover cla… |
-| `20d00e5` | 2026-08-18 | joncurry94 | m3l3: ramsey's paratrooper chat keys on the halftrack's death, not the trigger maze |
-| `cd35597` | 2026-08-18 | joncurry94 | sprint: the Omaha thompson beach charge is now THE two-handed sprint - pistol/grenade keep the alert dash |
-| `fa7242e` | 2026-08-18 | joncurry94 | ai variants: faction guard - the AI roll skips the British SMLE under the American Springfield host (player armory keeps it) |
-| `3a1c12e` | 2026-08-18 | joncurry94 | five fronts: mg42 spread was an average, wall-anim hangs, prone dwell, armory regive kick, AI weapon variants |
-| `32ee8c2` | 2026-08-18 | joncurry94 | loadout: cosmetic applies bypass the 120s regive gate - "equipped" now means equipped |
-| `d2e7084` | 2026-08-18 | joncurry94 | loadout: the server stops touching menu visuals - exec APPENDS, so it always lost |
-| `679d71e` | 2026-08-18 | joncurry94 | loadout: slot-card registrations self-heal - the server pushes them from slot ids on every export, so picks made before the featu… |
-| `727b0f7` | 2026-08-18 | joncurry94 | loadout: foolproof under heavy clicking - exact-fid archives, per-slot chains, server echo, regive |
-| `ccb6f6c` | 2026-08-18 | joncurry94 | loadout: finishes preview offline like variants; honest slot seeds |
-| `8968cf3` | 2026-08-18 | joncurry94 | loadout: slot cards drive the 3D soldier - clicking SIDEARM shows him holding your sidearm |
-| `62a4a3c` | 2026-08-18 | joncurry94 | loadout: variant/finish confirms no longer undo themselves - stufftext order |
-| `efbe9b6` | 2026-08-18 | joncurry94 | armory: the shipped bind moves F3 -> F7 - F3 was retail's Controls menu; F7/F8 are the only genuinely free F-keys across retail d… |
-| `4da2ce9` | 2026-08-18 | joncurry94 | armory: F3 opens the loadout anywhere - first shipped bind for it |
-| `2052332` | 2026-08-18 | joncurry94 | ai: retail long-range prone re-enabled - prone leg only, kill-switch guarded |
-| `1dd170e` | 2026-08-18 | joncurry94 | ai: the last soldier of a wiped squad may surrender |
-| `98362f4` | 2026-08-18 | joncurry94 | ai: suppression-reactive poses + MG42 crew side-steps - the two engine-gated deferrals, delivered |
-| `20e089e` | 2026-08-18 | joncurry94 | ai: the animation batch - nine buried behaviors wired in |
-| `02e02e7` | 2026-08-18 | joncurry94 | weapons: the Panzerfaust is removed - dead end by user call |
-| `2609e97` | 2026-08-18 | joncurry94 | service record: the server-side pin marker used "setas" - not a command in this engine |
-| `6bbf470` | 2026-08-18 | joncurry94 | loadout: the main-menu armory can now SHOW model variants with no server |
-| `aea6b84` | 2026-08-18 | joncurry94 | skins: bolt rifles actually cycle their bolts; three variants removed by user call |
-| `1b542d5` | 2026-08-18 | joncurry94 | skins wave 2: nine authored-shader variants - the packs shipped none |
-| `c96a781` | 2026-08-18 | joncurry94 | skins: the G98 stays bolt-action - menu host and tik body decoupled |
-| `897d865` | 2026-08-18 | joncurry94 | skins: P14, M1903 and Gewehr 98 re-hosted onto the Enfield, Springfield and G43 |
-| `7128b08` | 2026-08-18 | joncurry94 | skins: 13 more model variants + the VARIANT button now cycles |
-| `ceca89d` | 2026-08-18 | joncurry94 | skins: every unlock announces through the existing challenge pipeline |
-| `30dda59` | 2026-08-18 | joncurry94 | finish strip: playtest round 1 fixes |
-| `f0e0e5d` | 2026-08-18 | joncurry94 | skins: four model variants imported and wired onto the strip's VARIANT button |
-| `9a9b442` | 2026-08-18 | joncurry94 | loadout: the finish strip - skin variants pickable in the armory, locked and validated |
-| `a841889` | 2026-08-18 | joncurry94 | plan: skin variant selector - finish strip design, unlock wiring, import grading |
-| `45fed1e` | 2026-08-18 | joncurry94 | skins full rollout + m3l3 MG42 suppression spread + officer heal metered over a minute |
-| `3a3f121` | 2026-08-18 | joncurry94 | cfg: seed coop_fireDebug 1 for the Panzerfaust hunt - ReadyToFire prints every value it decides on |
-| `0ce6e34` | 2026-08-18 | joncurry94 | panzerfaust: surfaces now match East's mesh; skin finishes lose their stray parens |
-| `42ed071` | 2026-08-17 | joncurry94 | skins: Thompson finish variants, generated |
-| `8cbc124` | 2026-08-17 | joncurry94 | weapons: two imported guns referenced shader names nothing defines |
-| `fc915e6` | 2026-08-17 | joncurry94 | loadout: fill the tab column so the roster script compiles again |
-| `aa14303` | 2026-08-17 | joncurry94 | weapons: a TIKI animations block cannot take a full path - fix three that did |
-| `10bfb72` | 2026-08-17 | joncurry94 | m3l3: new challenge "The Hunt" - hold the church without it ever being contested |
-| `fde072f` | 2026-08-17 | joncurry94 | armory: put the new weapons in the unlock roster - without it they draw but do nothing |
-| `a2a32a3` | 2026-08-17 | joncurry94 | armory: add the S&W M10, completing the six imported weapons |
-| `a7c0b77` | 2026-08-17 | joncurry94 | armory: add five imported weapons to the picker, without renumbering anything |
-| `3917a9f` | 2026-08-17 | joncurry94 | skins: weapon finish variants, with Thompson (Gold) wired end to end |
-| `b44ec73` | 2026-08-17 | joncurry94 | weapons: add East's Panzerfaust and S&W M10 .38 as additions |
-| `688a8fc` | 2026-08-17 | joncurry94 | weapons: add Lt. Pato's DP-28 as an addition, not a BAR replacement |
-| `daa343a` | 2026-08-17 | joncurry94 | weapons: unique ranks for the C96 and Johnson, and un-mute two guns defined at pitch zero |
-| `a522959` | 2026-08-17 | joncurry94 | weapons: add East's Mauser C96 and Johnson M1941 as additions, not replacements |
-| `802a8e3` | 2026-08-17 | joncurry94 | m3l2: add the level_end_trigger label the BSP has always called; fix the airborne holster mesh |
-| `f305d4a` | 2026-08-17 | joncurry94 | field report: v1.3.1 card - healing, breath-hold, gore, XP, FG42, silent guns |
-| `65003fb` | 2026-08-17 | joncurry94 | m3l3 nebelwerfer chain, XP sources, teammate healing, and a full weapon audit |
-| `c48737f` | 2026-08-16 | joncurry94 | m3l3: full objective chain, church hold, and the AI accuracy pass shipped as v1.3.0 |
-| `7c97ab3` | 2026-08-14 | joncurry94 | e2l2 + e2l3: bake eight blueprints, ladder to 112 |
-| `43e9b8d` | 2026-08-14 | joncurry94 | m6l1b + e2l1: bake nine blueprints, ladder to 104 |
-| `a83f0d3` | 2026-08-14 | joncurry94 | e1l4: bake the four placed blueprints, ladder to 95 |
-| `655ae71` | 2026-08-14 | joncurry94 | e1l4: enable Phase C contain |
-| `6c8e687` | 2026-08-14 | joncurry94 | e1l3: bake the five placed blueprints, ladder to 91 |
-| `508ddb7` | 2026-08-14 | joncurry94 | e1l2: bake the four placed blueprints, ladder to 86 |
-| `461c583` | 2026-08-14 | joncurry94 | e1l1: bake the two placed blueprints, ladder to 82 - Breakthrough begins |
-| `8d8ba86` | 2026-08-14 | joncurry94 | m6l3d: make the gas mask visible in coop |
-| `4dcac85` | 2026-08-14 | joncurry94 | m6l3b + m6l3d: bake the placed blueprints, ladder to 80 - Allied Assault complete |
-| `2350558` | 2026-08-14 | joncurry94 | m6l3a: bake the three placed blueprints, ladder to 76 |
-| `4a469c9` | 2026-08-14 | joncurry94 | m6l2b: bake the four placed blueprints, ladder to 73 |
-| `837ccc9` | 2026-08-14 | joncurry94 | m6l2a: five blueprints, filtered numerically out of a 77-placement save |
-| `c180f42` | 2026-08-14 | joncurry94 | m6l1c: five blueprints (not twelve), and split the truck brief onto two rows |
-| `94a784b` | 2026-08-14 | joncurry94 | m6l1a: bake the seven placed blueprints, ladder to 59 |
-| `2089898` | 2026-08-14 | joncurry94 | m5l3: bake the four placed blueprints, ladder to 52 |
-| `aacf09d` | 2026-08-14 | joncurry94 | m5l1b: six blueprints, and make the map storm again |
-| `a1c9ee0` | 2026-08-14 | joncurry94 | m5l1a: bake the two placed blueprints, ladder to 42 |
-| `25bd05a` | 2026-08-14 | joncurry94 | officer: re-site the m4l3 anchor and reinforcement zone from in-game readings |
-| `62cb2b7` | 2026-08-14 | joncurry94 | m4l3: bake the five placed blueprints, ladder to 40 |
-| `1614494` | 2026-08-14 | joncurry94 | m4l2: bake the four placed blueprints, and retune the ladder to 35 |
-| `aedfea4` | 2026-08-14 | joncurry94 | officer: re-site the m4l2 anchor and reinforcement zone from in-game readings |
-| `0eb3867` | 2026-08-14 | joncurry94 | service record: put the blueprint count under its caption, inside the banner |
-| `ec0d1b1` | 2026-08-14 | joncurry94 | service record: BLUEPRINTS counter in the title banner, with layout asserts |
-| `138bc64` | 2026-08-14 | joncurry94 | service record: dedicated BLUEPRINTS n/31 counter in the header |
-| `e3d723a` | 2026-08-14 | joncurry94 | cosmetics: gate the eight Elite rewards, free the two nobody could ever get |
-| `844a668` | 2026-08-14 | joncurry94 | challenges: all 344 now earnable; fix the launcher sweep that caused the t2l1 errors |
-| `45cc8eb` | 2026-08-14 | joncurry94 | challenges: replace the last 12 unmeasurable conditions with trackable ones |
-| `f4a6efe` | 2026-08-14 | joncurry94 | challenges: wire "All Seven Home" (e3l2) and "They Never Saw Us" (e2l1) |
-| `bd9aee8` | 2026-08-14 | joncurry94 | challenges: wire "Let Them Sleep" on e2l2 with a real wake signal |
-| `6763b7b` | 2026-08-14 | joncurry94 | challenges: wire three more feats (Omaha bunker, the Bocage house, the POW) |
-| `fd924d8` | 2026-08-14 | joncurry94 | challenges: wire the three AA alarm-gated feats through the objective dispatcher |
-| `caffb76` | 2026-08-14 | joncurry94 | challenges: wire The Quiet Type, and the shared plumbing the rest of the group needs |
-| `a8a439c` | 2026-08-14 | joncurry94 | challenges: replace the Bersaglieri pair with a combined-Italian ladder |
-| `e9be16a` | 2026-08-14 | joncurry94 | challenges: unlock the padlocked guns, make snipers real, replace the dead FJ pair |
-| `6a91c88` | 2026-08-14 | joncurry94 | challenges: make unreachable targets reachable (audit of all 344) |
-| `29272f9` | 2026-08-13 | joncurry94 | v1.2.8: capture-safe borderless, audio device fix, Service Record repair |
-| `69a7ed9` | 2026-08-13 | joncurry94 | v1.2.7: m6l2a stealth route, level-2 checkpoint, and the bust fixes it found |
-| `c21a0dd` | 2026-08-10 | joncurry94 | coop: fix reliable-command overflow, blueprint pickup, HUD-fade class, Naxos |
-| `f694b31` | 2026-08-07 | joncurry94 | v1.2.201: m3l1b coop pass, flak/bomb fixes, audio + console cleanup |
-| `3266244` | 2026-08-07 | joncurry94 | v1.2.2 snapshot: Service Record reorganization + Medals & Badges + helmet/skin unlocks |
-| `7410b61` | 2026-08-06 | joncurry94 | v1.2.1 snapshot: audit fixes + audio mixer overhaul + Service Record pinning + 6 new challenges |
-| `f10ac19` | 2026-07-23 | joncurry94 | v1.1.54: FIX the v1.1.53 crash fix - autoexec.cfg negated it |
-| `fdd006a` | 2026-07-23 | joncurry94 | v1.1.53 snapshot: server crash fix + tank-aim storm + long-tail 4p fixes |
-| `425dc4d` | 2026-07-22 | joncurry94 | v1.1.52 snapshot: co-op stability pass (4-player full-trilogy sweep, ~45k script errors eliminated, 46/54 maps clean) |
-| `92aeb06` | 2026-07-21 | joncurry94 | v1.1.51 snapshot: e1l2 invisible-wall resolution (cmpatch + collision cleanup + barriers), all-maps void guardian, artillery obje… |
-| `52b6e1f` | 2026-07-16 | joncurry94 | Weapon unlock progression: 3-route system (rank R1-R21, challenge kill-chains, tree-gated heavies), armory padlock gate + hover r… |
-| `1561019` | 2026-07-16 | joncurry94 | v1.1.48 snapshot: weapons-on-back (holster data live in 37 tiks), cut dialogue wave 1 (5 maps), Frontline battle chatter + 150 de… |
-| `81bed9a` | 2026-07-10 | joncurry94 | WIP snapshot: Omaha bunker cut-content restore + new weapons + report-a-bug/display-modes/briefing + today's fixes |
-| `8ced1b4` | 2026-07-09 | joncurry94 | v1.1.42: coop lobby + full campaign, XP overhaul, build-mode categories |
-| `1064e5d` | 2026-07-08 | joncurry94 | checkpoint: coop lobby avenue #2 - animated mannequins (WORKING) |
-| `c1ef70d` | 2026-07-08 | joncurry94 | checkpoint: working coop lobby (frozen hands-on-hips parade rest) |
-| `8efdc7e` | 2026-07-06 | joncurry94 | v1.1.40: XP system Phase 1, take-cover system (experimental), turret 3P + manning pose, freecam v2 steering, build mode |
-| `3eb8f9b` | 2026-07-06 | joncurry94 | v1.1.39: 3P free cam, emotes, sprint anim, DBNO cinematics, FOV slider |
-| `059b5d8` | 2026-07-06 | joncurry94 | v1.1.38: M1L3a full-squad jeep ride (m1l3b passenger port w/ drive-phase gate) |
-| `8115ed3` | 2026-07-06 | joncurry94 | v1.1.37: whatsnew card retitle (sniper hotfix release) |
-| `9c3cc33` | 2026-07-06 | joncurry94 | v1.1.36: 3P shoulder ADS defaults + HUD fade cvars, e3l3 officer removed + AB41 ejection final, whatsnew card |
-| `57a9c79` | 2026-07-05 | joncurry94 | v1.1.35: m1l3c first-commit label mangle fix (campaign sweep 46/46 clean), Garand any-time reload, AB41 whole-squad ride + author… |
-| `6de6f9c` | 2026-07-05 | joncurry94 | v1.1.34: officer wave cooldown + accuracy/sight nerf, paratrooper buffs, field-report whats-new card |
-| `dd34fe3` | 2026-07-05 | joncurry94 | v1.1.33 gameplay batch: spawn protection, DBNO corpse-revive, strike warnings, deployable QoL |
-| `fdef366` | 2026-07-05 | joncurry94 | Menu polish: 6-per-row boards, m6l3e finale selectable, ghost-label root fix |
-| `cabef98` | 2026-07-05 | joncurry94 | Coop menu: mission tiles for all SH maps + BT mission 3 |
-| `4622dee` | 2026-07-04 | joncurry94 | Source-repo README: pointer to the project page + build notes |
-| `ddf0930` | 2026-07-04 | joncurry94 | HZM coop mega-batch: objective failsafes, tool protection, audio systems, WWI guns, distance layers |
-| `3c4e196` | 2026-07-01 | joncurry94 | t2l2 vehicle ride: reinforcements, German loadout, deployables/medkit off, tuning |
-| `f73d179` | 2026-07-01 | joncurry94 | t2l2 coop: strip F5 seat-cycle debug tool + force-seat test cvar |
-| `7b3956f` | 2026-07-01 | joncurry94 | t2l2 coop: working ride (notsolid riders) + DBNO-off/medkits/crouch |
-| `4fa27cd` | 2026-07-01 | joncurry94 | Coop WIP fallback: t2l2 halftrack/truck seating, DBNO/medkit/damage tuning |
-| `0c747b5` | 2026-04-11 | chrissstrahl | Coopified |
-| `21e4ad1` | 2026-04-11 | chrissstrahl | Coopified |
-| `715a611` | 2026-04-11 | chrissstrahl | Coopified |
-| `4322030` | 2026-04-11 | chrissstrahl | Added: level.playerJeepGunner as levelwide reference |
-| `cb49e82` | 2026-04-11 | chrissstrahl | Coopified, added Notes |
-| `707bebb` | 2026-04-11 | chrissstrahl | Coopified |
-| `e72d3c6` | 2026-04-11 | chrissstrahl | Coopified |
-| `7632eaf` | 2026-04-11 | chrissstrahl | Coopified - cheap hack |
-| `a8c09f9` | 2026-04-10 | chrissstrahl | Added: Functions |
-| `5eed2c2` | 2026-04-10 | chrissstrahl | Added: Level e3l1 to the list |
-| `488118c` | 2026-04-10 | chrissstrahl | Modified for Coop |
-| `ab6f5f6` | 2026-04-10 | chrissstrahl | Added file for future modifications |
-| `340aeed` | 2026-03-07 | chrissstrahl | Update README with legal notice and project details |
-| `6483e85` | 2026-03-07 | chrissstrahl | Refined Legal text - fixed several unclear statements |
-| `b8f9863` | 2026-03-05 | chrissstrahl | Added HaZardModding brand Identity Document |
-| `28c55c6` | 2026-03-05 | chrissstrahl | Updated Project Legal Document |
-| `2b449fc` | 2026-03-05 | chrissstrahl | Fixed: vars getting used before set - this needs to be tested |
-| `4c9ddfe` | 2026-03-05 | chrissstrahl | Fixed: Typo in variable name |
+| `40d9d963` | 2026-09-06 | joncurry94 | chore: drop a stray 16-byte log-break file committed with the Omaha pass |
+| `2f3ca085` | 2026-09-06 | joncurry94 | Omaha: the sink that never rolled, beach fire restored, the hedgehog crowd |
+| `4dfb5270` | 2026-09-04 | joncurry94 | Omaha: everyone on gl2, a crash fixed, and the plunge rebuilt |
+| `bde7fb4f` | 2026-09-03 | joncurry94 | Omaha: the landing rebuilt, and the voices the game never played |
+| `c1e3d680` | 2026-08-31 | joncurry94 | release: Field Report card re-cut for v1.4.8 |
+| `b750e6ed` | 2026-08-31 | joncurry94 | feat: Omaha chaos pass - retail content nobody wired, plus the blood and gore fixes |
+| `e455222a` | 2026-08-31 | joncurry94 | docs: v1.4.7 field report card + release notes |
+| `b6890d77` | 2026-08-31 | joncurry94 | fix: REGRESSION I shipped in v1.4.6 - officer wave sizing broke |
+| `f8f11d49` | 2026-08-30 | joncurry94 | test: document the regression capture procedure |
+| `9f5e7a6e` | 2026-08-30 | joncurry94 | test: arm the eleven coop self-test batteries as one suite |
+| `d99ec2e2` | 2026-08-30 | joncurry94 | docs: MP build-out - all 127 features classified for standard multiplayer |
+| `1f97cdfc` | 2026-08-30 | joncurry94 | security: name-command bus let any client take god mode, noclip and all guns |
+| `889797cf` | 2026-08-30 | joncurry94 | docs: the g_modernmp plan for standard MP + coop coexistence |
+| `8aa5a792` | 2026-08-30 | joncurry94 | security: rcon password shipped to every player; move it to a loose dev file |
+| `172f8d12` | 2026-08-30 | joncurry94 | fix: four verified-open items from the two-week survey |
+| `a441e669` | 2026-08-30 | joncurry94 | rename: two player-facing HZM strings the 2026-08-24 pass missed |
+| `47f52691` | 2026-08-30 | joncurry94 | docs: v1.4.6 release notes |
+| `7a38dd34` | 2026-08-30 | joncurry94 | docs: v1.4.6 field report card + Discord announcement (posted) |
+| `193bdfbb` | 2026-08-30 | joncurry94 | feat: voice wheel, objective drops, Omaha pass; fix count-scaling + revive HUD |
+| `5a6507c3` | 2026-08-24 | joncurry94 | docs: v1.4.4 Discord announcement posted (archived) |
+| `52dabc12` | 2026-08-24 | joncurry94 | rename: MOH Trilogy Coop in player-facing text (not HZM) |
+| `ce8ed6b4` | 2026-08-24 | joncurry94 | v1.4.4 - armory gloves, unlock requirements, AI leash, and several inert fixes made real |
+| `ddd34390` | 2026-08-23 | joncurry94 | docs: v1.4.3 field report; Discord draft (NOT posted) |
+| `8880f121` | 2026-08-23 | joncurry94 | fix: hold notarget through the ride, guard the pose not just the bounce, one kit apply |
+| `b626178a` | 2026-08-22 | joncurry94 | fix: HOLD notarget through the ride instead of setting it once - m1l1 intro is quiet |
+| `8c2f1cce` | 2026-08-22 | joncurry94 | fix: apply notarget from SPAWN, not from glue - the window between them is the bug |
+| `f68ac371` | 2026-08-22 | joncurry94 | fix: a glued player is scenery - tell the AI so (FL_NOTARGET), plus probe channels |
+| `d89ce482` | 2026-08-22 | joncurry94 | probe: record position, sightline and the protection inputs - the fields today needed |
+| `18d6ada3` | 2026-08-22 | joncurry94 | probe: record whether the prone shooter's gates block, and whether its gun actually fires |
+| `cd16beb1` | 2026-08-22 | joncurry94 | fix: the prone shooter must honour threatbias - the stealth gate alone is inert on m1l1 |
+| `620107fe` | 2026-08-22 | joncurry94 | fix: the prone shooter was firing on disguised players - it is what wrecked m1l1's ride |
+| `63418fbb` | 2026-08-22 | joncurry94 | fix: a map that said "ignore this one" meant it - and read the marker late enough to see it |
+| `6b5028d1` | 2026-08-22 | joncurry94 | fix: restore the retail spawner loop - half the end-of-mission germans never converted |
+| `1bebd5fe` | 2026-08-22 | joncurry94 | fix: an entry guard cannot protect against state that arrives after entry |
+| `e24a3771` | 2026-08-22 | joncurry94 | fix: a predicate stopped attaching behaviour, and the searchlight gunner got his gun back |
+| `adf106ea` | 2026-08-22 | joncurry94 | fix: probe self-starts on dedicated too, and four defects in the probe itself |
+| `34f9afb1` | 2026-08-22 | joncurry94 | fix: restore the rcon entity probe I overwrote, and fix its damage-proof verdict |
+| `6a4cc5e3` | 2026-08-22 | joncurry94 | feat: coop probe bus - one diagnostic channel with identity on every record |
+| `4a1ed734` | 2026-08-22 | joncurry94 | fix: guard the third scene marker - threatbias ignoreme (bug-2038) |
+| `1ba12d75` | 2026-08-22 | joncurry94 | fix: never re-enable an actor the MAP disabled - the allies were starting the fight |
+| `4cdab4a0` | 2026-08-22 | joncurry94 | fix: the weapon-variant roll re-armed scripted actors across the whole trilogy |
+| `fbdeb5d7` | 2026-08-22 | joncurry94 | fix: the scene-actor guard never ran - enableEnemy is write-only |
+| `deac915f` | 2026-08-22 | joncurry94 | fix: scripted scene actors are protected trilogy-wide, not just where we noticed |
+| `f063a658` | 2026-08-22 | joncurry94 | fix: m1l1 checkpoint cast is exempt from the AI personality roll |
+| `3faa9e4c` | 2026-08-22 | joncurry94 | fix: scene actors are exempt from enemy count-scaling (coop_noScale) |
+| `2f7a66f7` | 2026-08-22 | joncurry94 | release: field report card rebaked for v1.4.2 |
+| `3dc3e303` | 2026-08-22 | joncurry94 | docs: wall-cover design plan v1 (research only, no code) |
+| `37ca7842` | 2026-08-21 | joncurry94 | fix: the spawn re-give hitch - backfill now skips when nothing is actually missing |
+| `c39c1595` | 2026-08-21 | joncurry94 | fix: armory hovers state the REAL unlock path; finish strip un-overlapped; rock clip cores |
+| `a606ca27` | 2026-08-21 | joncurry94 | fix: surrendered germans commit to it; convert prompt + allied star; officer music restore |
+| `5bed16c0` | 2026-08-21 | joncurry94 | fix: church barrage hit players through the church walls |
+| `5d4d0be5` | 2026-08-21 | joncurry94 | fix: 1,623 audio refs were silent for every player but the dev machine |
+| `24dc9235` | 2026-08-21 | joncurry94 | feat: severity-tiered player pain - a graze and a mortal hit sounded identical |
+| `0ec0448f` | 2026-08-21 | joncurry94 | release: ragdolls on by default; field report card for v1.4.1 |
+| `b481ec8d` | 2026-08-21 | joncurry94 | release: field report card rebaked for v1.4.0 |
+| `86b04588` | 2026-08-21 | joncurry94 | release: silence the two temporary debug probes for v1.4.0 |
+| `a30d79fc` | 2026-08-21 | joncurry94 | docs: ragdoll r8-r13, weapon-feel r1 and vault-camera design records |
+| `caf83df6` | 2026-08-21 | joncurry94 | fix: remove the inert _idlelower rows; graphics menus audited end to end |
+| `b92b0e03` | 2026-08-21 | joncurry94 | feat: explosion pool, wounded breathing, and the 3P foley takes |
+| `42911950` | 2026-08-21 | joncurry94 | fix: the church barrage was damaging you invisibly, and enemies never reloaded |
+| `dac1a3a0` | 2026-08-21 | joncurry94 | fix: trim the pain pool - the sound index table was full |
+| `a9885156` | 2026-08-21 | joncurry94 | fix: a recruited german held the church gate open forever (bug-1972) |
+| `76812507` | 2026-08-21 | joncurry94 | feat: weapon handling foley - the motions had no sound at all |
+| `b43feff4` | 2026-08-21 | joncurry94 | probe: print the entnum of every count-scaling replica at birth |
+| `48f13548` | 2026-08-21 | joncurry94 | fix: you make no sound at all when shot on Spearhead, and 2 hits in 3 are silent elsewhere |
+| `1ecfafba` | 2026-08-21 | joncurry94 | fix: camo skin had missing-texture first-person sleeves |
+| `cd6b1039` | 2026-08-21 | joncurry94 | fix: the combat-snap and ricochet sounds were never registered |
+| `3745f1a0` | 2026-08-21 | joncurry94 | fix: script-side review findings |
+| `c72144fa` | 2026-08-21 | joncurry94 | fix: the XP bar could never fill |
+| `36a6b15a` | 2026-08-21 | joncurry94 | feat: weapon action foley aliases; widen the airstrike XP window |
+| `db41a852` | 2026-08-21 | joncurry94 | feat: stow the weapon while applying a medkit |
+| `907ed9d4` | 2026-08-20 | joncurry94 | fix: you can hear the bombing run coming now |
+| `f5cb8722` | 2026-08-20 | joncurry94 | docs: record the three review findings in the ADS/composure plan |
+| `5c43a80a` | 2026-08-20 | joncurry94 | fix: restore the Colt's decay trail |
+| `db1f7889` | 2026-08-19 | joncurry94 | fix: host-table keys lowercased; weapon.scr display-name alias cases; coop_mg42AiSpread force-seta 300 (stale archived 45 caught… |
+| `6c7d5af1` | 2026-08-19 | joncurry94 | docs: hud slot 47 claimed (grenade-kick icon) |
+| `38359481` | 2026-08-19 | joncurry94 | feat: coop_kick sound alias + KICK hud icon asset |
+| `c6f1a28e` | 2026-08-19 | joncurry94 | fix: weapon.scr passes tik-path gives through (bug-1959 - the switch stripped every import/variant give, both teams); g43-carrier… |
+| `10e4dbf9` | 2026-08-19 | joncurry94 | fix: surrender conversion v3 - real 'american' team command + explicit pre-surrender gun restore (bug-1958 SOLVED by live probes:… |
+| `6fdfaf7d` | 2026-08-19 | joncurry94 | fix: surrender conversion v3 - the real 'american' team command + explicit pre-surrender gun restore (bug-1958 SOLVED by live pro… |
+| `79a08ba0` | 2026-08-19 | joncurry94 | fix: G43 service give gets the same read-back/fallback guard as the variant site (bug-1957 - live 1:1 correlation g43=1/one unarm… |
+| `b4a12e72` | 2026-08-19 | joncurry94 | docs: ragdoll plan v3 + full vetting lineage (3 rounds, 7 agents, 34+16 findings closed) |
+| `1eb9eb51` | 2026-08-19 | joncurry94 | fix: colt fire alias played the thump at pitch 0.8 with +82% clipping gain - retuned to natural pitch, modest gain (user: 'sounds… |
+| `fa3d9e35` | 2026-08-19 | joncurry94 | fix: live wave 3 - attack.scr NULL-delete guards, TAF_RANDOM alert stem, rifle floorcrawl alias, variant-give/convert probes+fall… |
+| `aea18f21` | 2026-08-19 | joncurry94 | feat: gore package assets - headgib/gorechunk/eyegib xbeam props, eye texture, shader blocks; seeds (chunks/impulse/eyeGib, blood… |
+| `a166a94c` | 2026-08-19 | joncurry94 | feat+fix: live-playtest wave 2 - surrender conversion, church-clear re-gate, 10s prone dwell, colt thump A, pcMult cast, weapon.s… |
+| `202b57d5` | 2026-08-19 | joncurry94 | fix: tinnitus 10s package + variant scene-guard + deeper ducks (bugs 1948-1949 script side) |
+| `43377a7c` | 2026-08-19 | joncurry94 | feat: Leon wave shipped - 21 credited variants (Team Tactics 16-gun pack + 5 singles), textures 2x |
+| `3ee3e6bb` | 2026-08-19 | joncurry94 | feat: wave-3 variant textures upscaled 2x (39/39 clean); tommy28 credited to sT@t!c |
+| `de25c52c` | 2026-08-19 | joncurry94 | feat: MV wave 3 - 31 credited weapon variants (Hobbs/Guanshire/DirtyHarry) |
+| `ceb953df` | 2026-08-19 | joncurry94 | fix: shellshock chain + odometer-zero systems (bugs 1942-1945) |
+| `274bc935` | 2026-08-19 | joncurry94 | tinnitus: dizziness handoff moved inside the ping guard (bug-1941 - the unset-ping concat spammed 2283 script errors live) |
+| `50a4c5d0` | 2026-08-19 | joncurry94 | variants: author-level credits in display names (ACME313, EAST, DARKANGEL, DR.DELETO, FLAKRIDER, SCHUTZE, STLKID) - 19 upgraded e… |
+| `76553857` | 2026-08-19 | joncurry94 | boom package data: synthesized ricochet whines (sound/coop_ric), aliases, tinnitus dizziness handoff, cvar seeds |
+| `7157d0a5` | 2026-08-19 | joncurry94 | combat feel: prominent near-miss audio, near-impact snaps, upward blood spurts, behavior odometer |
+| `1551c6e2` | 2026-08-19 | joncurry94 | ai: crouch returns (dodge crasher hard-skipped via ainocrouchdodge), prone chance cvar finally wired (was an orphan seed) and rai… |
+| `b9825cfd` | 2026-08-19 | joncurry94 | variants: pack-level credits in display names - (MOH:PA) for the Pacific ports, (WW1 EXT) for the WW1 Extended set (12 entries, 5… |
+| `a86bf055` | 2026-08-19 | joncurry94 | m3l3: remove the 14 placebo bulletspread lines (bug-1940 - manned turrets never read them; their only live effect widened PLAYER… |
+| `a29f22bb` | 2026-08-19 | joncurry94 | cut-content VO batch 1: BT global dialog + German personality + allied shout categories |
+| `18bada3e` | 2026-08-19 | joncurry94 | research: cut-content deep scan record - 3 verified digs over all 17 retail pk3s |
+| `832f37e8` | 2026-08-19 | joncurry94 | ai: cut-content animation wave 2 - locational hits, crawl-to-death, crate combat, facial moods |
+| `aa14f868` | 2026-08-18 | joncurry94 | ai: the G98 variant cycles its bolt - its tik name joins every kar98 bolt-anim branch (aim/attack/corner scripts) |
+| `a669b12f` | 2026-08-18 | joncurry94 | ai: G43 service roll - a slice of German Kar98 riflemen carry (and drop) the G43; carriers can then roll the G98 variant. coop_ai… |
+| `1e0a02df` | 2026-08-18 | joncurry94 | loadout deep-trace fix wave: phases 1-4 + slot re-preview (bugs 1928-1938) |
+| `66095d73` | 2026-08-18 | joncurry94 | loadout phase 1 (hands): resolved raise targets, variant-aware ammo classing, revive re-kick, dead guard |
+| `a0a494c5` | 2026-08-18 | joncurry94 | loadout: regive rebuilds the resolved kit; 120s gate deleted; finish clicks preview in the viewer |
+| `03c43d8a` | 2026-08-18 | joncurry94 | self-test: boot-time deployed-truth check - live challenge count vs the stamp baked with the SR pages |
+| `697ca230` | 2026-08-18 | joncurry94 | pins: server import accepts cids (legacy index fallback); dead repaint stub removed; SR pages + cid map regenerated |
+| `d1a3140d` | 2026-08-18 | joncurry94 | service record: pages regenerated (were stale since the panzerfaust removal), 25 hover names curated, bp ladder retuned |
+| `89197d0c` | 2026-08-18 | joncurry94 | blueprints: every 5th find flips a coin on a random unlock of any type |
+| `20652fe0` | 2026-08-18 | joncurry94 | armory: 7 unlock hovers now state the ENFORCED path - BAR/StG44/Vickers/Breda/Trench Gun are faction-challenge unlocks (hover cla… |
+| `20d00e58` | 2026-08-18 | joncurry94 | m3l3: ramsey's paratrooper chat keys on the halftrack's death, not the trigger maze |
+| `cd355974` | 2026-08-18 | joncurry94 | sprint: the Omaha thompson beach charge is now THE two-handed sprint - pistol/grenade keep the alert dash |
+| `fa7242ea` | 2026-08-18 | joncurry94 | ai variants: faction guard - the AI roll skips the British SMLE under the American Springfield host (player armory keeps it) |
+| `3a1c12ed` | 2026-08-18 | joncurry94 | five fronts: mg42 spread was an average, wall-anim hangs, prone dwell, armory regive kick, AI weapon variants |
+| `32ee8c20` | 2026-08-18 | joncurry94 | loadout: cosmetic applies bypass the 120s regive gate - "equipped" now means equipped |
+| `d2e70842` | 2026-08-18 | joncurry94 | loadout: the server stops touching menu visuals - exec APPENDS, so it always lost |
+| `679d71e4` | 2026-08-18 | joncurry94 | loadout: slot-card registrations self-heal - the server pushes them from slot ids on every export, so picks made before the featu… |
+| `727b0f75` | 2026-08-18 | joncurry94 | loadout: foolproof under heavy clicking - exact-fid archives, per-slot chains, server echo, regive |
+| `ccb6f6ca` | 2026-08-18 | joncurry94 | loadout: finishes preview offline like variants; honest slot seeds |
+| `8968cf3b` | 2026-08-18 | joncurry94 | loadout: slot cards drive the 3D soldier - clicking SIDEARM shows him holding your sidearm |
+| `62a4a3c2` | 2026-08-18 | joncurry94 | loadout: variant/finish confirms no longer undo themselves - stufftext order |
+| `efbe9b63` | 2026-08-18 | joncurry94 | armory: the shipped bind moves F3 -> F7 - F3 was retail's Controls menu; F7/F8 are the only genuinely free F-keys across retail d… |
+| `4da2ce95` | 2026-08-18 | joncurry94 | armory: F3 opens the loadout anywhere - first shipped bind for it |
+| `2052332e` | 2026-08-18 | joncurry94 | ai: retail long-range prone re-enabled - prone leg only, kill-switch guarded |
+| `1dd170e9` | 2026-08-18 | joncurry94 | ai: the last soldier of a wiped squad may surrender |
+| `98362f43` | 2026-08-18 | joncurry94 | ai: suppression-reactive poses + MG42 crew side-steps - the two engine-gated deferrals, delivered |
+| `20e089ef` | 2026-08-18 | joncurry94 | ai: the animation batch - nine buried behaviors wired in |
+| `02e02e7b` | 2026-08-18 | joncurry94 | weapons: the Panzerfaust is removed - dead end by user call |
+| `2609e97c` | 2026-08-18 | joncurry94 | service record: the server-side pin marker used "setas" - not a command in this engine |
+| `6bbf4704` | 2026-08-18 | joncurry94 | loadout: the main-menu armory can now SHOW model variants with no server |
+| `aea6b84b` | 2026-08-18 | joncurry94 | skins: bolt rifles actually cycle their bolts; three variants removed by user call |
+| `1b542d51` | 2026-08-18 | joncurry94 | skins wave 2: nine authored-shader variants - the packs shipped none |
+| `c96a7816` | 2026-08-18 | joncurry94 | skins: the G98 stays bolt-action - menu host and tik body decoupled |
+| `897d8652` | 2026-08-18 | joncurry94 | skins: P14, M1903 and Gewehr 98 re-hosted onto the Enfield, Springfield and G43 |
+| `7128b086` | 2026-08-18 | joncurry94 | skins: 13 more model variants + the VARIANT button now cycles |
+| `ceca89db` | 2026-08-18 | joncurry94 | skins: every unlock announces through the existing challenge pipeline |
+| `30dda59e` | 2026-08-18 | joncurry94 | finish strip: playtest round 1 fixes |
+| `f0e0e5d9` | 2026-08-18 | joncurry94 | skins: four model variants imported and wired onto the strip's VARIANT button |
+| `9a9b442a` | 2026-08-18 | joncurry94 | loadout: the finish strip - skin variants pickable in the armory, locked and validated |
+| `a841889a` | 2026-08-18 | joncurry94 | plan: skin variant selector - finish strip design, unlock wiring, import grading |
+| `45fed1ec` | 2026-08-18 | joncurry94 | skins full rollout + m3l3 MG42 suppression spread + officer heal metered over a minute |
+| `3a3f121a` | 2026-08-18 | joncurry94 | cfg: seed coop_fireDebug 1 for the Panzerfaust hunt - ReadyToFire prints every value it decides on |
+| `0ce6e34e` | 2026-08-18 | joncurry94 | panzerfaust: surfaces now match East's mesh; skin finishes lose their stray parens |
+| `42ed0717` | 2026-08-17 | joncurry94 | skins: Thompson finish variants, generated |
+| `8cbc1248` | 2026-08-17 | joncurry94 | weapons: two imported guns referenced shader names nothing defines |
+| `fc915e60` | 2026-08-17 | joncurry94 | loadout: fill the tab column so the roster script compiles again |
+| `aa14303b` | 2026-08-17 | joncurry94 | weapons: a TIKI animations block cannot take a full path - fix three that did |
+| `10bfb729` | 2026-08-17 | joncurry94 | m3l3: new challenge "The Hunt" - hold the church without it ever being contested |
+| `fde072f5` | 2026-08-17 | joncurry94 | armory: put the new weapons in the unlock roster - without it they draw but do nothing |
+| `a2a32a35` | 2026-08-17 | joncurry94 | armory: add the S&W M10, completing the six imported weapons |
+| `a7c0b779` | 2026-08-17 | joncurry94 | armory: add five imported weapons to the picker, without renumbering anything |
+| `3917a9f3` | 2026-08-17 | joncurry94 | skins: weapon finish variants, with Thompson (Gold) wired end to end |
+| `b44ec736` | 2026-08-17 | joncurry94 | weapons: add East's Panzerfaust and S&W M10 .38 as additions |
+| `688a8fc1` | 2026-08-17 | joncurry94 | weapons: add Lt. Pato's DP-28 as an addition, not a BAR replacement |
+| `daa343a7` | 2026-08-17 | joncurry94 | weapons: unique ranks for the C96 and Johnson, and un-mute two guns defined at pitch zero |
+| `a5229595` | 2026-08-17 | joncurry94 | weapons: add East's Mauser C96 and Johnson M1941 as additions, not replacements |
+| `802a8e38` | 2026-08-17 | joncurry94 | m3l2: add the level_end_trigger label the BSP has always called; fix the airborne holster mesh |
+| `f305d4a2` | 2026-08-17 | joncurry94 | field report: v1.3.1 card - healing, breath-hold, gore, XP, FG42, silent guns |
+| `65003fb3` | 2026-08-17 | joncurry94 | m3l3 nebelwerfer chain, XP sources, teammate healing, and a full weapon audit |
+| `c48737f7` | 2026-08-16 | joncurry94 | m3l3: full objective chain, church hold, and the AI accuracy pass shipped as v1.3.0 |
+| `7c97ab31` | 2026-08-14 | joncurry94 | e2l2 + e2l3: bake eight blueprints, ladder to 112 |
+| `43e9b8d7` | 2026-08-14 | joncurry94 | m6l1b + e2l1: bake nine blueprints, ladder to 104 |
+| `a83f0d36` | 2026-08-14 | joncurry94 | e1l4: bake the four placed blueprints, ladder to 95 |
+| `655ae71b` | 2026-08-14 | joncurry94 | e1l4: enable Phase C contain |
+| `6c8e687c` | 2026-08-14 | joncurry94 | e1l3: bake the five placed blueprints, ladder to 91 |
+| `508ddb7b` | 2026-08-14 | joncurry94 | e1l2: bake the four placed blueprints, ladder to 86 |
+| `461c583a` | 2026-08-14 | joncurry94 | e1l1: bake the two placed blueprints, ladder to 82 - Breakthrough begins |
+| `8d8ba869` | 2026-08-14 | joncurry94 | m6l3d: make the gas mask visible in coop |
+| `4dcac856` | 2026-08-14 | joncurry94 | m6l3b + m6l3d: bake the placed blueprints, ladder to 80 - Allied Assault complete |
+| `2350558d` | 2026-08-14 | joncurry94 | m6l3a: bake the three placed blueprints, ladder to 76 |
+| `4a469c9a` | 2026-08-14 | joncurry94 | m6l2b: bake the four placed blueprints, ladder to 73 |
+| `837ccc98` | 2026-08-14 | joncurry94 | m6l2a: five blueprints, filtered numerically out of a 77-placement save |
+| `c180f427` | 2026-08-14 | joncurry94 | m6l1c: five blueprints (not twelve), and split the truck brief onto two rows |
+| `94a784b4` | 2026-08-14 | joncurry94 | m6l1a: bake the seven placed blueprints, ladder to 59 |
+| `2089898f` | 2026-08-14 | joncurry94 | m5l3: bake the four placed blueprints, ladder to 52 |
+| `aacf09df` | 2026-08-14 | joncurry94 | m5l1b: six blueprints, and make the map storm again |
+| `a1c9ee0c` | 2026-08-14 | joncurry94 | m5l1a: bake the two placed blueprints, ladder to 42 |
+| `25bd05ae` | 2026-08-14 | joncurry94 | officer: re-site the m4l3 anchor and reinforcement zone from in-game readings |
+| `62cb2b7e` | 2026-08-14 | joncurry94 | m4l3: bake the five placed blueprints, ladder to 40 |
+| `1614494b` | 2026-08-14 | joncurry94 | m4l2: bake the four placed blueprints, and retune the ladder to 35 |
+| `aedfea46` | 2026-08-14 | joncurry94 | officer: re-site the m4l2 anchor and reinforcement zone from in-game readings |
+| `0eb3867a` | 2026-08-14 | joncurry94 | service record: put the blueprint count under its caption, inside the banner |
+| `ec0d1b12` | 2026-08-14 | joncurry94 | service record: BLUEPRINTS counter in the title banner, with layout asserts |
+| `138bc641` | 2026-08-14 | joncurry94 | service record: dedicated BLUEPRINTS n/31 counter in the header |
+| `e3d723ad` | 2026-08-14 | joncurry94 | cosmetics: gate the eight Elite rewards, free the two nobody could ever get |
+| `844a6684` | 2026-08-14 | joncurry94 | challenges: all 344 now earnable; fix the launcher sweep that caused the t2l1 errors |
+| `45cc8ebe` | 2026-08-14 | joncurry94 | challenges: replace the last 12 unmeasurable conditions with trackable ones |
+| `f4a6efe0` | 2026-08-14 | joncurry94 | challenges: wire "All Seven Home" (e3l2) and "They Never Saw Us" (e2l1) |
+| `bd9aee88` | 2026-08-14 | joncurry94 | challenges: wire "Let Them Sleep" on e2l2 with a real wake signal |
+| `6763b7bf` | 2026-08-14 | joncurry94 | challenges: wire three more feats (Omaha bunker, the Bocage house, the POW) |
+| `fd924d81` | 2026-08-14 | joncurry94 | challenges: wire the three AA alarm-gated feats through the objective dispatcher |
+| `caffb76a` | 2026-08-14 | joncurry94 | challenges: wire The Quiet Type, and the shared plumbing the rest of the group needs |
+| `a8a439c8` | 2026-08-14 | joncurry94 | challenges: replace the Bersaglieri pair with a combined-Italian ladder |
+| `e9be16a4` | 2026-08-14 | joncurry94 | challenges: unlock the padlocked guns, make snipers real, replace the dead FJ pair |
+| `6a91c88f` | 2026-08-14 | joncurry94 | challenges: make unreachable targets reachable (audit of all 344) |
+| `29272f91` | 2026-08-13 | joncurry94 | v1.2.8: capture-safe borderless, audio device fix, Service Record repair |
+| `69a7ed93` | 2026-08-13 | joncurry94 | v1.2.7: m6l2a stealth route, level-2 checkpoint, and the bust fixes it found |
+| `c21a0ddd` | 2026-08-10 | joncurry94 | coop: fix reliable-command overflow, blueprint pickup, HUD-fade class, Naxos |
+| `f694b31c` | 2026-08-07 | joncurry94 | v1.2.201: m3l1b coop pass, flak/bomb fixes, audio + console cleanup |
+| `3266244a` | 2026-08-07 | joncurry94 | v1.2.2 snapshot: Service Record reorganization + Medals & Badges + helmet/skin unlocks |
+| `7410b61b` | 2026-08-06 | joncurry94 | v1.2.1 snapshot: audit fixes + audio mixer overhaul + Service Record pinning + 6 new challenges |
+| `f10ac197` | 2026-07-23 | joncurry94 | v1.1.54: FIX the v1.1.53 crash fix - autoexec.cfg negated it |
+| `fdd006a2` | 2026-07-23 | joncurry94 | v1.1.53 snapshot: server crash fix + tank-aim storm + long-tail 4p fixes |
+| `425dc4d9` | 2026-07-22 | joncurry94 | v1.1.52 snapshot: co-op stability pass (4-player full-trilogy sweep, ~45k script errors eliminated, 46/54 maps clean) |
+| `92aeb06f` | 2026-07-21 | joncurry94 | v1.1.51 snapshot: e1l2 invisible-wall resolution (cmpatch + collision cleanup + barriers), all-maps void guardian, artillery obje… |
+| `52b6e1fa` | 2026-07-16 | joncurry94 | Weapon unlock progression: 3-route system (rank R1-R21, challenge kill-chains, tree-gated heavies), armory padlock gate + hover r… |
+| `15610198` | 2026-07-16 | joncurry94 | v1.1.48 snapshot: weapons-on-back (holster data live in 37 tiks), cut dialogue wave 1 (5 maps), Frontline battle chatter + 150 de… |
+| `81bed9a4` | 2026-07-10 | joncurry94 | WIP snapshot: Omaha bunker cut-content restore + new weapons + report-a-bug/display-modes/briefing + today's fixes |
+| `8ced1b4a` | 2026-07-09 | joncurry94 | v1.1.42: coop lobby + full campaign, XP overhaul, build-mode categories |
+| `1064e5d7` | 2026-07-08 | joncurry94 | checkpoint: coop lobby avenue #2 - animated mannequins (WORKING) |
+| `c1ef70dc` | 2026-07-08 | joncurry94 | checkpoint: working coop lobby (frozen hands-on-hips parade rest) |
+| `8efdc7e8` | 2026-07-06 | joncurry94 | v1.1.40: XP system Phase 1, take-cover system (experimental), turret 3P + manning pose, freecam v2 steering, build mode |
+| `3eb8f9b1` | 2026-07-06 | joncurry94 | v1.1.39: 3P free cam, emotes, sprint anim, DBNO cinematics, FOV slider |
+| `059b5d86` | 2026-07-06 | joncurry94 | v1.1.38: M1L3a full-squad jeep ride (m1l3b passenger port w/ drive-phase gate) |
+| `8115ed3a` | 2026-07-06 | joncurry94 | v1.1.37: whatsnew card retitle (sniper hotfix release) |
+| `9c3cc339` | 2026-07-06 | joncurry94 | v1.1.36: 3P shoulder ADS defaults + HUD fade cvars, e3l3 officer removed + AB41 ejection final, whatsnew card |
+| `57a9c796` | 2026-07-05 | joncurry94 | v1.1.35: m1l3c first-commit label mangle fix (campaign sweep 46/46 clean), Garand any-time reload, AB41 whole-squad ride + author… |
+| `6de6f9cc` | 2026-07-05 | joncurry94 | v1.1.34: officer wave cooldown + accuracy/sight nerf, paratrooper buffs, field-report whats-new card |
+| `dd34fe30` | 2026-07-05 | joncurry94 | v1.1.33 gameplay batch: spawn protection, DBNO corpse-revive, strike warnings, deployable QoL |
+| `fdef3664` | 2026-07-05 | joncurry94 | Menu polish: 6-per-row boards, m6l3e finale selectable, ghost-label root fix |
+| `cabef989` | 2026-07-05 | joncurry94 | Coop menu: mission tiles for all SH maps + BT mission 3 |
+| `4622dee3` | 2026-07-04 | joncurry94 | Source-repo README: pointer to the project page + build notes |
+| `ddf0930f` | 2026-07-04 | joncurry94 | HZM coop mega-batch: objective failsafes, tool protection, audio systems, WWI guns, distance layers |
+| `3c4e1969` | 2026-07-01 | joncurry94 | t2l2 vehicle ride: reinforcements, German loadout, deployables/medkit off, tuning |
+| `f73d1796` | 2026-07-01 | joncurry94 | t2l2 coop: strip F5 seat-cycle debug tool + force-seat test cvar |
+| `7b3956fa` | 2026-07-01 | joncurry94 | t2l2 coop: working ride (notsolid riders) + DBNO-off/medkits/crouch |
+| `4fa27cd1` | 2026-07-01 | joncurry94 | Coop WIP fallback: t2l2 halftrack/truck seating, DBNO/medkit/damage tuning |
+| `0c747b5a` | 2026-04-11 | chrissstrahl | Coopified |
+| `21e4ad13` | 2026-04-11 | chrissstrahl | Coopified |
+| `715a6115` | 2026-04-11 | chrissstrahl | Coopified |
+| `43220301` | 2026-04-11 | chrissstrahl | Added: level.playerJeepGunner as levelwide reference |
+| `cb49e82f` | 2026-04-11 | chrissstrahl | Coopified, added Notes |
+| `707bebb2` | 2026-04-11 | chrissstrahl | Coopified |
+| `e72d3c68` | 2026-04-11 | chrissstrahl | Coopified |
+| `7632eaf9` | 2026-04-11 | chrissstrahl | Coopified - cheap hack |
+| `a8c09f96` | 2026-04-10 | chrissstrahl | Added: Functions |
+| `5eed2c20` | 2026-04-10 | chrissstrahl | Added: Level e3l1 to the list |
+| `488118cd` | 2026-04-10 | chrissstrahl | Modified for Coop |
+| `ab6f5f6d` | 2026-04-10 | chrissstrahl | Added file for future modifications |
+| `340aeed7` | 2026-03-07 | chrissstrahl | Update README with legal notice and project details |
+| `6483e85b` | 2026-03-07 | chrissstrahl | Refined Legal text - fixed several unclear statements |
+| `b8f9863e` | 2026-03-05 | chrissstrahl | Added HaZardModding brand Identity Document |
+| `28c55c6e` | 2026-03-05 | chrissstrahl | Updated Project Legal Document |
+| `2b449fc5` | 2026-03-05 | chrissstrahl | Fixed: vars getting used before set - this needs to be tested |
+| `4c9ddfe6` | 2026-03-05 | chrissstrahl | Fixed: Typo in variable name |
 
 ## `openmohaa-hzm` — HZM fork of the OpenMOHAA engine
 
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `9d2f160c 2026-09-04 gl1 DDS crash, a local-loop leak, and a concussion muffle` |
-| commits | 5,085 |
+| HEAD | `acab7986 2026-09-06 feat: quick-draw sidearm, weapon-lag rotation, actor think-state names` |
+| commits | 5,086 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **22 modified, 3 untracked** |
-| unstaged diff | 22 files changed, 2781 insertions(+), 47 deletions(-) |
+| **uncommitted** | **0 modified, 3 untracked** |
 
-> Working tree is dirty. Everything in those 25 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 3 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 2 |
+| 2026-09 | 3 |
 | 2026-08 | 103 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
@@ -637,10 +639,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (120)
+### Commits since 2026-01-01 (121)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `acab7986` | 2026-09-06 | joncurry94 | feat: quick-draw sidearm, weapon-lag rotation, actor think-state names |
 | `9d2f160c` | 2026-09-04 | joncurry94 | gl1 DDS crash, a local-loop leak, and a concussion muffle |
 | `895358f8` | 2026-09-03 | joncurry94 | Omaha engine: depth-driven water, refracting lens blood, a pannable local sound |
 | `a5cfc868` | 2026-08-31 | joncurry94 | fix: gl2 shader overrides were dead, clampmapy clamped both axes, tinnitus ducked itself |

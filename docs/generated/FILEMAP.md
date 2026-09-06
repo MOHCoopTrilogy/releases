@@ -24,7 +24,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 13,587 | 7535.1 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 13,586 | 7535.1 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
@@ -41,7 +41,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `_menu_pilot` | 81 | 90.7 MB | no - reference | Photoshop menu round-trip staging |
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
 | `<root>` | 68 | 3408.7 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
-| `manifests` | 53 | 0.7 MB | **yes** | release manifests consumed by the auto-updater |
+| `manifests` | 54 | 0.7 MB | **yes** | release manifests consumed by the auto-updater |
 | `_psx_moh` | 49 | 426.8 MB | **yes** |  |
 | `server_home` | 42 | 30.7 MB | **yes** |  |
 | `_variant_packs` | 38 | 343.4 MB | **yes** |  |
@@ -101,12 +101,12 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.shader` | 233 |
 | `.urc` | 175 |
 | `.py` | 144 |
-| `.json` | 140 |
+| `.json` | 141 |
 | `.bsp` | 129 |
 | `.min` | 100 |
 | `.log` | 75 |
 | `.class` | 64 |
-| `(none)` | 63 |
+| `(none)` | 62 |
 | `.pth` | 55 |
 | `.dat` | 54 |
 | `.st` | 53 |
@@ -290,7 +290,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/maps/e3l2` | 18 | 0.17 MB | .scr×18 |
 | `hzm-mohaa-coop-mod/maps/e3l3` | 7 | 0.09 MB | .scr×7 |
 | `hzm-mohaa-coop-mod/maps/e3l4` | 12 | 0.19 MB | .scr×12 |
-| `hzm-mohaa-coop-mod/maps/m3l1a` | 5 | 2.65 MB | .scr×2, .pre_0905lanes_bak×1, .pre_wade_bak×1, (none)×1 |
+| `hzm-mohaa-coop-mod/maps/m3l1a` | 4 | 2.65 MB | .scr×2, .pre_0905lanes_bak×1, .pre_wade_bak×1 |
 | `hzm-mohaa-coop-mod/maps/m3l3` | 1 | 0.00 MB | .scr×1 |
 | `hzm-mohaa-coop-mod/models` | 26 | 0.02 MB | .tik×24, (none)×2 |
 | `hzm-mohaa-coop-mod/models/6abs` | 33 | 0.41 MB | .skc×12, .skd×12, .lod×9 |
@@ -793,7 +793,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/loadout/helm` | 48 | 0.03 MB | .cfg×48 |
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 135 | 0.13 MB | .cfg×135 |
 | `hzm-mohaa-coop-mod/ui/proto` | 11 | 0.14 MB | .urc×6, .cfg×3, .inc×2 |
-| `manifests` | 53 | 0.70 MB | .json×53 |
+| `manifests` | 54 | 0.71 MB | .json×54 |
 | `map_entities` | 92 | 10.22 MB | .txt×88, .md×4 |
 | `openmohaa-hzm` | 8 | 0.04 MB | (none)×2, .txt×2, .md×2, .ps1×1 |
 | `openmohaa-hzm/.github/ISSUE_TEMPLATE` | 1 | 0.00 MB | .md×1 |

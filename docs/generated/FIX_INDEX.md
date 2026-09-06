@@ -1051,7 +1051,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `player_Torso.st` | 5 | `bug-2099` `bug-2123` `bug-2125` `bug-2126` `bug-2127` |
 | `playerbot.cpp` | 1 | `bug-920` |
 | `plus cc_static_line / cc_desert_fox / cc_enemy_mine)` | 1 | `bug-1596` |
-| `publish_release.ps1` | 3 | `bug-424` `bug-1804` `bug-1805` |
+| `publish_release.ps1` | 4 | `bug-424` `bug-1804` `bug-1805` `bug-2500` |
 | `qcommon/msg.cpp` | 1 | `bug-1198` |
 | `raindrops_fp.glsl` | 1 | `bug-1150` |
 | `README.md` | 1 | `bug-1805` |
@@ -1660,7 +1660,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `bug-934-family` | 1 | `bug-1186` |
 | `bug-939` | 1 | `bug-1204` |
 | `buglog` | 3 | `bug-1227` `bug-2399` `bug-buglog-dataloss` |
-| `build` | 10 | `bug-020` `bug-089` `bug-1240` `bug-1724` `bug-1796` `bug-1798` `bug-1909` `bug-2097` `bug-2224` `bug-2453` |
+| `build` | 11 | `bug-020` `bug-089` `bug-1240` `bug-1724` `bug-1796` `bug-1798` `bug-1909` `bug-2097` `bug-2224` `bug-2453` `bug-2500` |
 | `build-break` | 2 | `bug-2137` `bug-2315` |
 | `build-error` | 1 | `bug-2107` |
 | `build-guard` | 1 | `bug-1864` |
@@ -3924,7 +3924,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `procedural` | 1 | `bug-2010` |
 | `procedural-draw` | 1 | `bug-2132` |
 | `procedural-drawing` | 1 | `bug-2161` |
-| `process` | 14 | `bug-1290` `bug-1298` `bug-1363` `bug-1402` `bug-1416` `bug-1421` `bug-1590` `bug-1598` `bug-1917` `bug-2036` `bug-2081` `bug-2089` `bug-911` `bug-918` |
+| `process` | 15 | `bug-1290` `bug-1298` `bug-1363` `bug-1402` `bug-1416` `bug-1421` `bug-1590` `bug-1598` `bug-1917` `bug-2036` `bug-2081` `bug-2089` `bug-2500` `bug-911` `bug-918` |
 | `process-error` | 2 | `bug-1172` `bug-1231` |
 | `process-failure` | 2 | `bug-1544` `bug-2009` |
 | `process-leak` | 1 | `bug-gl2-sweep-crash` |
@@ -3960,7 +3960,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `ps-speed` | 2 | `bug-2127` `bug-2130` |
 | `ps1` | 1 | `bug-1122` |
 | `pshadow` | 2 | `bug-1223` `bug-1226` |
-| `publish` | 4 | `bug-1800` `bug-1804` `bug-1805` `bug-424` |
+| `publish` | 5 | `bug-1800` `bug-1804` `bug-1805` `bug-2500` `bug-424` |
 | `pulldown` | 2 | `bug-754` `bug-756` |
 | `pullups` | 1 | `bug-626` |
 | `pushmenu` | 2 | `bug-1165` `bug-461` |
@@ -4113,7 +4113,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `reinvestigated` | 1 | `bug-1487` |
 | `rejected-fix` | 1 | `bug-2180` |
 | `relative-origin` | 1 | `bug-1470` |
-| `release` | 3 | `bug-1635` `bug-1805` `bug-424` |
+| `release` | 4 | `bug-1635` `bug-1805` `bug-2500` `bug-424` |
 | `release-audit` | 2 | `bug-2017` `bug-2018` |
 | `release-impact` | 1 | `bug-2020` |
 | `release-notes` | 1 | `bug-1804` |
@@ -4382,7 +4382,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `self-heal` | 4 | `bug-1728` `bug-1925` `bug-801` `bug-803` |
 | `self-healing` | 3 | `bug-1879` `bug-1952` `bug-2326` |
 | `self-healing-sweep` | 1 | `bug-1212` |
-| `self-inflicted` | 79 | `bug-1172` `bug-1178` `bug-1179` `bug-1181` `bug-1183` `bug-1262` `bug-1269` `bug-1273` `bug-1274` `bug-1281` `bug-1292` `bug-1494` `bug-1499` `bug-1500` `bug-1558` `bug-1575` `bug-1598` `bug-1600` `bug-1603` `bug-1604` `bug-1606` `bug-1608` `bug-1671` `bug-1681` `bug-1696` `bug-1713` `bug-1749` `bug-1751` `bug-1756` `bug-1768` `bug-1781` `bug-1785` `bug-1801` `bug-1850` `bug-1864` `bug-1869` `bu… |
+| `self-inflicted` | 80 | `bug-1172` `bug-1178` `bug-1179` `bug-1181` `bug-1183` `bug-1262` `bug-1269` `bug-1273` `bug-1274` `bug-1281` `bug-1292` `bug-1494` `bug-1499` `bug-1500` `bug-1558` `bug-1575` `bug-1598` `bug-1600` `bug-1603` `bug-1604` `bug-1606` `bug-1608` `bug-1671` `bug-1681` `bug-1696` `bug-1713` `bug-1749` `bug-1751` `bug-1756` `bug-1768` `bug-1781` `bug-1785` `bug-1801` `bug-1850` `bug-1864` `bug-1869` `bu… |
 | `self-is-null` | 1 | `bug-1580` |
 | `self-referential` | 1 | `bug-1860` |
 | `self-regression` | 1 | `bug-1128` |
