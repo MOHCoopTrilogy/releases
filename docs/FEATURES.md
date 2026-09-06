@@ -1087,56 +1087,57 @@ the GOG dir. *Anchor:* bug-330.
 
 ## Inert-feature sweep - six built-but-never-running systems (2026-08-30)
 
-`SHIPPED, UNTESTED IN PLAY`. Bugs 2176-2182. Six features built, logged as done and never executed.
-**Only two were fixed by turning them on**; "seed the gate cvar" was the wrong answer four times
-out of six.
+`SHIPPED, UNTESTED IN PLAY`. Bugs 2176-2182 carry the full mechanism of each. Six features built, logged
+as done and never executed; only two were fixed by turning them on - "seed the gate cvar" was the wrong
+answer four times out of six.
 
-- **MP voice-command wheel** - `SHIPPED`. Silent on every campaign map of all three games, from TWO
-  independent causes: all 230 aliases (`uberdialog.scr:31116-31419`) carried retail's deathmatch-only
-  map scope, and V - retail's only `instamsg_main` key - was taken by the bash at `autoexec.cfg:980`.
-  Fixed with the `always` keyword (the real load guarantee, honoured by both `RegisterAlias` and
-  `ClientGameCommandManager::Alias`, and the only thing that covers custom maps) plus `bind x`.
-- **Teammate radar** - `SHIPPED`. `SV_PackNonPVSClient` normalised the teammate delta to a UNIT
-  vector, so every out-of-PVS mate arrived at exactly `com_radar_range` and drew pinned to the rim:
-  the radar was direction-only for the one case it exists to cover. Packer now clamps instead.
-  Range 1024 -> 6144 seeded from `server.scr` (the cvar is `CVAR_SYSTEMINFO`, and the saved config
-  beats `coop_defaults.cfg`). The packer fix helps every team gametype, not just coop.
-- **Objective bonus drop** - `SHIPPED`. Disabled since 2026-07-01 by a comment describing a defect
-  that was fixed *in the same commit*. Re-enabled, plus nine coordinates derived from BSP entity
-  dumps (was one), a ground snap that places nothing rather than burying the pickup, and the glow
-  beacon the binoc half was missing - without which it would have shipped half-inert.
-- **Bounding overwatch** (`coop_aiBound`) - `SHIPPED`, re-architected first. Its gate sat in
-  SP/SH/BT-shared `State_Cover_Shoot` while permissions came from a german-only script, so enabling
-  it globally would have pinned single-player and allied actors. Now gates on squad-brain
-  **ownership** (`m_iCoopBoundOwnedUntil`), fail-open by construction. ⚠️ **Measured effect is ~3.5%
-  fewer repositions, not the "half the cluster" its own comments claim** - a de-synchroniser, not a
-  tactic; the relocation period is 12 s while the brain ticks every 1.7 s.
-- **Aggressive advance** (`coop_aiAggrMove`) - **DELETED, no replacement.** It would have issued the
-  same `runto` bug-1812 measured stalling 85% of the time, and worse for `aggr` (the only role still
-  on native `THINK_TURRET`). The obvious substitute - lowering `coop_aiChargeRange` - was designed
-  and rejected: engine-wide, no role gate, and its only safety argument is a leash bug-2100 already
-  recorded as no bound at all. Replaced with telemetry (`aggrMove` / `aggrStatic` / `aggrCover` on
-  the `AIBEHAV` line) so the next attempt starts from measurement.
-- **Stealth arm-on-hurt** (`coop_stealthArmOnHurt`) - **DELETED.** No caller for its whole life, yet
-  bug-1674 diagnosed a race through it and bug-1676 shipped a fix into it. Wiring it to e1l3, the one
-  uncovered map, would have zeroed `level.papers` and made the escape **unwinnable**.
-
+- **MP voice-command wheel** - `SHIPPED`. Silent on every campaign map from two causes: 230 aliases
+  carried retail's deathmatch-only map scope (fixed with `always`), and V was taken by the bash.
+- **Teammate radar** - `SHIPPED`. `SV_PackNonPVSClient` normalised the delta to a unit vector, pinning
+  every out-of-PVS mate to the rim; the packer clamps now. Range 1024 -> 6144 seeded from `server.scr`.
+- **Objective bonus drop** - `SHIPPED`. Disabled since 07-01 by a comment describing a defect fixed in
+  the same commit; re-enabled with nine BSP-derived coordinates, a ground snap and the glow beacon.
+- **Bounding overwatch** (`coop_aiBound`) - `SHIPPED`, re-architected to gate on squad-brain ownership
+  (fail-open). Measured effect ~3.5% fewer repositions - a de-synchroniser, not a tactic.
+- **Aggressive advance** (`coop_aiAggrMove`) - **DELETED**; it would have issued the `runto` bug-1812
+  measured stalling 85% of the time. Replaced with `AIBEHAV` telemetry.
+- **Stealth arm-on-hurt** (`coop_stealthArmOnHurt`) - **DELETED**; no caller for its whole life, and
+  wiring it to e1l3 would have made the escape unwinnable.
 ## Archived feature records (2026-08-02 to 08-07)
 
-Full write-ups moved to [`archive/features-dated-2026-08.md`](archive/features-dated-2026-08.md) on
-2026-08-30 to stay under this file's 90 KB ceiling. All four still ship; none is superseded.
+Low-health limp, AI voice nationality, the covtrace/covwalk coverage sweep and the m1l1 corkboard
+loading screen: full write-ups in [`archive/features-dated-2026-08.md`](archive/features-dated-2026-08.md).
+All four still ship; none is superseded.
 
-- **Low-health limp** (08-02) - `SHIPPED`, awaiting playtest. Below `coop_limpStart` (0.30) of
-  `max_health` the player limps in 3P and the camera imitates it in 1P. Server is sole authority
-  (`Player::TickLimp` stuffs `coop_limpView` on change only), so `coop_limp 0` disables it everywhere.
-- **AI voice nationality** (08-02) - `SHIPPED`, awaiting playtest. Audited all 1481 shipped human
-  tiks; added `"ru"` for 5 `soviet_*` models that had been speaking German, plus a 22-alias
-  `coop_av_ru_*` pool. French silenced.
-- **Coverage sweep, covtrace + covwalk** (08-05) - absence does not log, so sweeps are now
-  coverage-driven. `coop_covtrace 1` emits one `^~^~^ COV` line per trigger fire / sound alias /
-  label thread; `coop_maptest 3` teleports players through all 1,773 catalogued trigger volumes.
-- **m1l1 corkboard loading screen** (08-07) - `SHIPPED-VERIFIED` in game. Single 2048x2048 POT
-  composite (recon photo, retypeset OSS briefing letter, pinned photos) via `coop_load_m1l1`.
+## Omaha (m3l1a) 2026-09-05 batch - SHIPPED, AWAITING PLAYTEST
+
+Bugs 2473-2483; three verifier rounds, no confirmed blockers, ~20 concerns folded in. Every beat has a
+kill switch (`level.coop_*On`) and a `^~^~^` marker; acceptance lines are in OPEN.md.
+
+- **Flank MG42 crews fire** - the crewman was named so `global/mg42_active.scr` could never bind him,
+  the script fallback silenced the guns it declined to drive, and the field block was set as commands
+  only. `FLANKGUN`/`FLANKMGSTAT` probe; `coop_flankCrewDrive 0` bisect; cap `coop_flankCrewMax`.
+- **Radioman rework** - silent, shot on approach; the PLAYER transmits 036h from the set on his body
+  and 045a answers (`dialog streamed` re-aliases at 200/3000); `dfr_M3L1_300f` 'Just get up the
+  beach!' - finished retail VO spoken by nothing in three games - now the order after the round.
+- **044a voices restored** - a `local.ok` int/array collision had NIL'd both speakers since bug-2451.
+- **Underwater cinematic** - waders retimed into the swim (spawns under the boat look, kills during
+  the strokes, pace-correct); the seven seabed corpses and scripted kills, which had never run once;
+  hull sparks as an aimed 0.25 s burst from a coop-owned `notagaxis` copy of the metal emitter.
+- **Ocean** - `zz_coop_ocean.shader` (flap max 10 -> 1, m3l1a-only), coop Higgins at retail's -563.7,
+  six ashore boats re-solved clear of statics and seated by `droptofloor`.
+- **Obstacle wash** - surf sprays against the 72 statics standing in water, five at a time near a
+  player, from the generated obstacle table (`coop_obstWashOn`).
+- **Quick-draw parked primary visible** - re-placed in view space lower-left (`coop_qdrawVOfs/VAng`,
+  probe `coop_qdrawVDbg`), keyed on entnum+tag; the left hand is NOT on it (clip-posed).
+- **Bazooka team pose** - legs in the motion slot, gun in the action slot (retail's own pairing);
+  build gate `check_anim_rootless.py` also fails random-group members and computed names.
+- **Wet-sand swash + shore foam** (bug-2485/2493) - `zz_coop_wetsand.shader`: a clamped gradient
+  multiply moved in T by the waterline flap's wave, and wash2's foam band with its reach baked into
+  texture alpha (gl2 drops `alphaGen tCoord` without a deform, 2486), both ragged on a 256 u period.
+- **Omaha 09-06 pass** - Higgins sink never rolled in four runs (a solid clip, then the hull's model
+  swap making it SOLID_BBOX, 2487/2496); beach fire restored (cover trace ended in the player's box,
+  2497); captain's exchange gated (2490); hedgehog crowd (2495/2498); quick-draw X flip (2499).
 
 ## m2l2a Phase C - the player-initiated CONTAIN (2026-08-10) - SHIPPED, partly verified
 

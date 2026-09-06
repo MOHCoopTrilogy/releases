@@ -35,6 +35,11 @@ if ($LASTEXITCODE -ne 0) { exit 1 }
 # Both read the real SKC headers and the real pak contents rather than trusting a manifest.
 python "C:\mohaa-coop-dev\docs\tools\check_anim_dwell.py"
 if ($LASTEXITCODE -ne 0) { exit 1 }
+# [2026-09-05, bug-2481] check_anim_rootless - an `anim <clip>` whose clip has no 'Bip01 pos' or foot channel
+# is an ACTION clip driven through the MOTION slot: the root falls to (0,0,0) and the man is buried
+# (the bazooka team, three reports). Resolves every alias through the map's real tik chain.
+python "C:\mohaa-coop-dev\docs\tools\check_anim_rootless.py" --map m3l1a --script "C:\mohaa-coop-dev\hzm-mohaa-coop-mod\maps\m3l1a\coopified.scr"
+if ($LASTEXITCODE -ne 0) { exit 1 }
 # NOTE: say-alias check is a WARNING, not a blocker - five m3l1a lines have no audio in War Chest
 # under any name, so this can never reach zero without replacing retail content. It must stay visible
 # so a NEW break is noticed among the known ones.

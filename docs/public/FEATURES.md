@@ -6,7 +6,7 @@
 
 Every system built for the trilogy coop mod, grouped by domain. Generated from the project's own feature record, so it stays in step with what is actually in the build - including the parts that are shipped but not yet confirmed in play.
 
-**156 systems** across **17 domains**.
+**155 systems** across **16 domains**.
 
 | Status | Count |
 |---|---:|
@@ -238,12 +238,6 @@ Every system built for the trilogy coop mod, grouped by domain. Generated from t
 |---|---|---|
 | **NAT hole-punch rendezvous, Phase 1** | shipped, not yet confirmed in play | (signaling verified end-to-end locally; |
 | **Dedicated server on bare DM maps** | open | game.dll crashes loading non-coop maps |
-
-## Inert-feature sweep - six built-but-never-running systems (2026-08-30)
-
-| System | Status | What it does |
-|---|---|---|
-| **Only two were fixed by turning them on** |  | ; "seed the gate cvar" was the wrong answer four times |
 
 ## m2l2a Phase C - the player-initiated CONTAIN (2026-08-10) - SHIPPED, partly verified
 

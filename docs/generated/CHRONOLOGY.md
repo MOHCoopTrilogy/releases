@@ -13,27 +13,32 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `6876e9d 2026-08-31 docs: regenerate after the v1.4.8 publish` |
-| commits | 211 |
+| HEAD | `a92e6da 2026-09-04 manifest 1.5.1` |
+| commits | 215 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **19 modified, 23 untracked** |
-| unstaged diff | 19 files changed, 561 insertions(+), 293 deletions(-) |
+| **uncommitted** | **19 modified, 7 untracked** |
+| unstaged diff | 19 files changed, 453 insertions(+), 284 deletions(-) |
 
-> Working tree is dirty. Everything in those 42 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 26 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
+| 2026-09 | 4 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (211)
+### Commits since 2026-01-01 (215)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `a92e6da` | 2026-09-04 | joncurry94-tech | manifest 1.5.1 |
+| `98d05e9` | 2026-09-04 | joncurry94-tech | gl2 for every player, on every path, plus the Omaha finish pass |
+| `349048b` | 2026-09-03 | joncurry94-tech | manifest 1.5.0 |
+| `3b86925` | 2026-09-03 | joncurry94-tech | docs+tools: the Omaha pass, and three traps that cost a day between them |
 | `6876e9d` | 2026-08-31 | joncurry94-tech | docs: regenerate after the v1.4.8 publish |
 | `da92586` | 2026-08-31 | joncurry94-tech | manifest 1.4.8 |
 | `ced258e` | 2026-08-31 | joncurry94-tech | docs+tools: gl2 renderer parity, the Omaha pass, and three generators that cannot rot |
@@ -251,18 +256,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `c1e3d68 2026-08-31 release: Field Report card re-cut for v1.4.8` |
-| commits | 1,591 |
+| HEAD | `4dfb527 2026-09-04 Omaha: everyone on gl2, a crash fixed, and the plunge rebuilt` |
+| commits | 1,593 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **31 modified, 25 untracked** |
-| unstaged diff | 31 files changed, 15093 insertions(+), 4922 deletions(-) |
+| **uncommitted** | **18 modified, 9 untracked** |
+| unstaged diff | 18 files changed, 4229 insertions(+), 397 deletions(-) |
 
-> Working tree is dirty. Everything in those 56 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 27 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
+| 2026-09 | 2 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -303,10 +309,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (242)
+### Commits since 2026-01-01 (244)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `4dfb527` | 2026-09-04 | joncurry94 | Omaha: everyone on gl2, a crash fixed, and the plunge rebuilt |
+| `bde7fb4` | 2026-09-03 | joncurry94 | Omaha: the landing rebuilt, and the voices the game never played |
 | `c1e3d68` | 2026-08-31 | joncurry94 | release: Field Report card re-cut for v1.4.8 |
 | `b750e6e` | 2026-08-31 | joncurry94 | feat: Omaha chaos pass - retail content nobody wired, plus the blood and gore fixes |
 | `e455222` | 2026-08-31 | joncurry94 | docs: v1.4.7 field report card + release notes |
@@ -555,18 +563,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `a5cfc868 2026-08-31 fix: gl2 shader overrides were dead, clampmapy clamped both axes, tinnitus ducked itself` |
-| commits | 5,083 |
+| HEAD | `9d2f160c 2026-09-04 gl1 DDS crash, a local-loop leak, and a concussion muffle` |
+| commits | 5,085 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **34 modified, 1 untracked** |
-| unstaged diff | 34 files changed, 4799 insertions(+), 2588 deletions(-) |
+| **uncommitted** | **22 modified, 3 untracked** |
+| unstaged diff | 22 files changed, 2781 insertions(+), 47 deletions(-) |
 
-> Working tree is dirty. Everything in those 35 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 25 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
+| 2026-09 | 2 |
 | 2026-08 | 103 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
@@ -628,10 +637,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (118)
+### Commits since 2026-01-01 (120)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `9d2f160c` | 2026-09-04 | joncurry94 | gl1 DDS crash, a local-loop leak, and a concussion muffle |
+| `895358f8` | 2026-09-03 | joncurry94 | Omaha engine: depth-driven water, refracting lens blood, a pannable local sound |
 | `a5cfc868` | 2026-08-31 | joncurry94 | fix: gl2 shader overrides were dead, clampmapy clamped both axes, tinnitus ducked itself |
 | `448e74f1` | 2026-08-30 | joncurry94 | feat: gun bracing, hit markers, sidearm swap, terrain normals; fix radar + lean |
 | `d77779da` | 2026-08-24 | joncurry94 | coop v1.4.4: 3-bit per-surface skin index for armory gloves; MAX_TIKI_LOAD_SHADERS fix (hang); gore exemptions; cover frame recon… |

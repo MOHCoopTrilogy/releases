@@ -656,3 +656,18 @@ must be a single server-side, replicated value a host sets once.
 cleanly disabled at runtime (a pmove change with no gate, an animation the statemap always picks)
 has to grow a gate or be listed as a known exception - **an OFF switch that leaves three systems
 running is worse than no switch**, because the host believes they are on stock rules.
+
+## Sprint one-handed carry - REFUSED as procedural (2026-09-05)
+
+**Asked:** the sprint viewmodel should randomly alternate between the current lowered carry and a raised
+ONE-HANDED carry. **Decision: not buildable procedurally, and not built.** The sprint pose is three
+translations of the first-person rig (`cg_sprintLower*`, cg_view.c) plus a stride pump; the HANDS are
+posed by whichever viewmodel clip is playing, and every rifle clip has both hands on the gun. Rotating
+the gun at the grip leaves the left hand floating where the foregrip was; rotating the whole rig keeps
+both hands on it - a two-handed high port, not one-handed. A genuinely one-handed raised carry needs a
+viewmodel CLIP with the left hand off the weapon (none ships; the pistol clips park the left hand at the
+hip, off screen). **Rejected alternatives:** (a) play a PISTOL clip while sprinting with a rifle so the
+rifle sits one-handed in the right hand - works mechanically, but the hand pose is a pistol grip and the
+muzzle points forward at eye level; (b) a two-handed high port as a rigid rotation of the rig about the
+grip (the bug-2462 inspect compensation already does this) - reachable in an afternoon if a two-handed
+variant is acceptable. Either is a separate ask, not a substitute for what was asked.

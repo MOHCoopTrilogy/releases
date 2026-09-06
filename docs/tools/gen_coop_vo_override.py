@@ -80,6 +80,54 @@ def pak_files():
     return sorted(set(out))
 
 
+def sweep_noammo():
+    """Every *_snd_noammo alias in the paks, resolved LAST-WINS, with its own wav and soundparms.
+
+    Derived, never hand-listed: the set of weapons and the levels each click was authored at are
+    facts about what ships, and a hand-copied table of 33 of them would rot the first time a pak
+    changed. Only the `maps` field is replaced - the wav path, the volume/pitch/distance parms and
+    the channel are all kept exactly as the content designers authored them, so this changes WHERE a
+    click loads and nothing about HOW it sounds.
+    """
+    out = {}
+    rx = re.compile(
+        r'^\s*aliascache\s+(\S*_snd_noammo)\s+(\S+)\s+soundparms\s+'
+        r'([-\d.]+\s+[-\d.]+\s+[-\d.]+\s+[-\d.]+\s+[-\d.]+\s+[-\d.]+)\s+(\S+)',
+        re.I)
+    for p in pak_files_ordered():
+        try:
+            z = zipfile.ZipFile(p)
+        except Exception:
+            continue
+        for n in z.namelist():
+            ln = n.lower()
+            if not (ln.startswith("ubersound/") and ln.endswith(".scr")):
+                continue
+            try:
+                text = z.read(n).decode("latin-1")
+            except Exception:
+                continue
+            for line in text.split("\n"):
+                m = rx.match(line)
+                if m:
+                    # later pak / later line wins, exactly as the engine resolves it
+                    out[m.group(1).lower()] = (m.group(2), m.group(3).strip(), m.group(4))
+    return out
+
+
+def pak_files_ordered():
+    """Pak paths in ENGINE MOUNT ORDER (main < mainta < maintt, alphabetical within each)."""
+    out = []
+    for sub in ("main", "mainta", "maintt"):
+        d = os.path.join(GAME_ROOT, sub)
+        if not os.path.isdir(d):
+            continue
+        for f in sorted(os.listdir(d), key=lambda s: s.lower()):
+            if f.lower().endswith(".pk3"):
+                out.append(os.path.join(d, f))
+    return out
+
+
 def build(files):
     attack = sorted(p for p in files if re.search(r"dialogue/Generic/A/attack/", p, re.I))
     cover = sorted(p for p in files if re.search(r"dialogue/Generic/A/cover/", p, re.I))
@@ -163,6 +211,45 @@ def build(files):
                  % (ping, ALLMAPS))
     else:
         L.append("// (M1_Ping.WAV not found in the paks - nothing written)")
+    L.append("")
+
+    # ---- dry-fire / no-ammo clicks, silenced trilogy-wide by the same maps filter
+    L.append("// --- [user 2026-09-04, bug-2461] THE DRY-FIRE CLICK, and it is the snd_ping defect above")
+    L.append("// rather than silence. The first measurement said \"31 of 33 are silent on m3l1a\"; that was")
+    L.append("// WRONG and is corrected here, because 32 of the 33 are declared `always` and an `always`")
+    L.append("// alias exists on every map. MEASURED with last-wins pak ordering and prefix semantics:")
+    L.append("//    m3l1a  truly silent  0   alias-present-but-UNCACHED 31")
+    L.append("//    t1l1   truly silent  1   alias-present-but-UNCACHED 31")
+    L.append("//    e1l1   truly silent  1   alias-present-but-UNCACHED 20")
+    L.append("// So the common defect is the registered-but-uncached combination: the click plays, but")
+    L.append("// the FIRST one for each weapon has to fetch its wav from the pak mid-firefight - exactly")
+    L.append("// the symptom reported for the Garand ping (bug-2304), and the reason that fix is above.")
+    L.append("// Exactly one alias is genuinely absent, and only on the t- and e-series.")
+    L.append("//")
+    L.append("// Retail's curation outlived by the mod, not a retail bug: those filters were written for")
+    L.append("// retail's single-player weapon placement, and the coop armory puts all 69 weapons on")
+    L.append("// every map in the trilogy, so the filter no longer describes where these can be needed.")
+    L.append("//")
+    L.append("// WIDENING IS CORRECT HERE, and it is worth saying why, because the attack/cover block")
+    L.append("// ABOVE records the opposite conclusion for AI voice. That was engine-fired ambient")
+    L.append("// barking with no rate limit, where the maps field WAS the curation. A dry-fire click is")
+    L.append("// a mechanical response to the player's own trigger pull, fired once per pull and already")
+    L.append("// rate-limited in the engine (`next_noammo_time = level.time + frametime + FireDelay`,")
+    L.append("// weapon.cpp:3165). There is no barking failure mode to reproduce.")
+    L.append("//")
+    L.append("// BOTH `always` AND a wide maps field, for the reason the snd_ping note above establishes:")
+    L.append("// `always` keeps the ALIAS alive everywhere, but the CacheResource call sits INSIDE the")
+    L.append("// maps test (scriptmaster.cpp:491-501), so `always` alone gets the registered-but-uncached")
+    L.append("// combination that plays badly on first use mid-firefight.")
+    noammo = sweep_noammo()
+    if noammo:
+        for name in sorted(noammo):
+            path, parms, chan = noammo[name]
+            L.append('aliascache %s %s soundparms %s %s loaded always maps "%s"'
+                     % (name, path, parms, chan, ALLMAPS))
+        L.append("// %d dry-fire aliases re-declared" % len(noammo))
+    else:
+        L.append("// (no *_snd_noammo aliases found in the paks - nothing written)")
     L.append("")
     L.append(END)
     return "\n".join(L)

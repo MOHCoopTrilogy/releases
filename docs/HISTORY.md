@@ -223,19 +223,12 @@ source is not corroboration, and the expensive fix refuted by measurement — no
   be measured offline because retail `.skc` files are obfuscated. Pre-publish gate earned its keep: the
   dry run refused because the What's New card still said v1.4.4.
 
-- **2026-08-26** - v1.4.5 shipped, then a long fix pass on top of it. bug-2111: the grenade-kick
-  detector tested model names for "grenade", so the German `steilhandgranate` (GRANATE) never matched -
-  the prompt had never once appeared for an enemy grenade. bug-2112: my prone work derived
-  `PMF_VIEW_PRONE` from hull height alone and a DOWNED player shares that hull, putting the DBNO camera
-  under the floor. bug-2114: one elite challenge unlocked a gun's ENTIRE variant cycle; now 77 generated
-  per-variant challenges on an accelerating curve capped at 750. Extending `check_challenges.py` to see
-  the new file immediately exposed a false green, and `gen_service_record.py` had the same blind spot -
-  it baked 367 SR rows against 444 live challenges, which the deployed-truth stamp caught in play as
-  `SELFTEST FAIL ... MIXED DEPLOYMENT`. bug-2113/2115, prone reload, three attempts: the real mechanism
-  is that NOTETRACKS on the animation perform the reload (`first reloadweapon`, `clip_fill`), so a bare
-  substituted alias left the clip empty and locked the player out of firing. Final approach runs the real
-  animation at zero torso render weight, leaving the duration bit-for-bit unchanged. Enemies that walk up
-  and stand there remain OPEN: notarget and count-scaling replicas both ruled out by measurement.
+- **2026-08-26** - v1.4.5 shipped, then a fix pass: bug-2111 the grenade-kick detector never matched the
+  German `steilhandgranate`; bug-2112 a DOWNED player shared the prone hull and got the DBNO camera under
+  the floor; bug-2114 one elite challenge unlocked a gun's entire variant cycle (now 77 generated
+  per-variant challenges); bug-2113/2115 prone reload, three attempts - the NOTETRACKS perform the
+  reload, so the real animation now runs at zero torso weight. Enemies that walk up and stand there
+  remained OPEN.
 - 2026-08-27: Gun bracing shipped (automatic surface support: spread/recoil/sway/lag/stress damping, procedural crosshair pip, local thunk). Prone/supine geometry corrected - the supine body yaw target was view+180 on a false premise and cancelled to a no-op.
 - **2026-09-02** — m3l1a Omaha, second batch: the "Not the Actual Events" challenge (fires off the smoke
   radio); naval gunfire flashing out at sea with its report arriving a beat late; rounds punching into the
@@ -244,3 +237,12 @@ source is not corroboration, and the expensive fix refuted by measurement — no
   shellshock and underwater beds and 15 reverb-baked "voices from the past"; and real bunker-MG tracer
   fire into the Higgins with visible bullet impacts on the men. One intermittent 0xC0000005 in ntdll seen
   once and not reproduced in five further boots — logged as bug-2341, NOT closed.
+- **2026-09-05** - Omaha, the six in-flight lanes landed (bugs 2473-2483): flank MG42 crews fire (a
+  gunner NAME mg42_active could never bind), the radioman goes silent and the player transmits, the 044a
+  voices came back from a local.ok int/array collision, waders and seabed kills retimed into the swim,
+  hull sparks, ocean flap calmed, obstacle wash, the quick-draw primary placed in view; then water
+  research #1, the wet-sand swash (bug-2485; gl2 drops `alphaGen tCoord` without a deform, 2486).
+- **2026-09-06** - two playtests: the Higgins sink had never moved (a solid clip, then the hull's model
+  swap re-solidifying it, 2487/2496), the beach fire vetoed every hit since 08-31 (2497), the captain's
+  exchange never fired (2490); sinking bodies cut, quick-draw flipped (2491/2499), ragged wet line
+  (2493), hedgehog crowd (2495/2498); ricochet research filed.

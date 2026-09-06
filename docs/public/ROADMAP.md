@@ -20,7 +20,7 @@ What is planned, in progress, or known to be broken. This is generated from the 
 - e2l2: 12× "applied to NULL listener"
 - t2l2: 265 script errors on coop boot despite an A− static audit grade
 - Phase C stealth contain (m2l2a) — shipped, mostly unverified
-- m6l2a contain — bugs 1732-1737, deployed 2026-08-12
+- m6l2a contain - bugs 1732-1737, deployed 2026-08-12 - moved to `archive/open-m6l2a-contain.md`
 - ⚠️ m2l2a REGRESSION RISK — the attackplayer latch removal (bug-1700)
 - `coop_stealthArmOnHurt` is dead code — and something else may be covering for it
 - A hand-rolled distance returned a wrong value once and could not be reproduced

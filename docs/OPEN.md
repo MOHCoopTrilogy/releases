@@ -1,8 +1,9 @@
 # OPEN — defects, unverified work, and unbuilt plans
 
 Status vocabulary in [SOURCE_OF_TRUTH.md](SOURCE_OF_TRUTH.md#status-vocabulary).
-Snapshot date **2026-07-29**. The buglog is live and concurrently written — it grew 634→639 during
-the audit that produced this — so treat counts as of that date.
+Snapshot date **2026-07-29**, partially trued up **2026-09-04** (the Omaha pass and the gl2 default;
+everything else below still carries its original date). The buglog is live and concurrently written —
+1766 entries at the 09-04 pass — so treat counts as of the date on each item.
 
 ## Sections
 
@@ -18,6 +19,80 @@ the audit that produced this — so treat counts as of that date.
 ---
 
 <a name="p0"></a>
+## ⭐ gl2 IS NOW THE DEFAULT FOR EVERY PLAYER (2026-09-04) — re-price the gl2 section below
+
+`cl_renderer` defaults to `"opengl1"` in the engine (`cl_main.cpp:3231`) and **nothing in the mod
+ever set it** — `PLAY-GL2.bat` existed only on one machine and was never in the release, which staged
+both renderer DLLs and selected neither. So until v1.5.1 essentially every player was on **gl1**, and
+the whole gl2 visual layer (the underwater pass is renderergl2-only) was invisible to them. Fixed in
+four layers: installer `LaunchArgs`, an append in `updater.ps1` (for existing installs whose
+`updater.ini` still holds the old string), `autoexec.cfg` (the only file that execs AFTER the saved
+config, so it lifts a config already holding `opengl1`) and `coop_defaults.cfg` (bug-2446).
+
+**THE CONSEQUENCE FOR THIS FILE: every entry in [gl2 open items](#gl2) has just gone from "affects
+almost nobody" to "affects everybody".** Re-read that section with that in mind. In particular
+**bug-2190 (m3l2 renders BLACK with a WHITE sky after a straight-through transition from Omaha)** is
+now on the live campaign path immediately after the mission shipped in v1.5.0/v1.5.1, and
+**bug-1331** (styled-lightmap surfaces pulse red) is a gl2 renderer defect, gl1-clean.
+
+Also fixed the same day, and the reason the crash was gl1-only: `LoadDDS` sized its buffer from
+`pitchOrFirstMipSize`, a **union** meaning bytes-per-scanline under `_DDSFLAGS_PITCH` and the first
+mip under `_DDSFLAGS_FIRSTMIPSIZE` — both `#define`d in that file, neither ever tested — so
+`UploadCompressed` walked past the allocation into the GL driver (**bug-2445**, a real player
+minidump). gl2 does not share that code path.
+
+## Omaha (m3l1a) after the v1.5.1 pass — open (2026-09-04)
+
+- **bug-2442 — in coop the beach damages players SEQUENTIALLY, so DPS scales as 1/N.** The warning
+  phase and the eight fire ticks both sit inside the per-player `for` loop in `mg42AttackBeach`, and
+  there is one shared `$player_target`. At the current tuning y=1000 is ~52 s time-to-death solo and
+  ~189 s for four players. NOT FIXED deliberately: it rebalances 4-player and wants its own playtest.
+  This is the dominant term for coop and dwarfs the bug-2441 curve tuning.
+- **The beach aim cone is un-tuned, and the handle is not `bulletrange`.** The turret-ownership
+  question is SETTLED: the guns ARE actor-owned, so `bulletrange` is live — but it is the denominator
+  of the same term whose numerator `level.coop_beachSpread` is already exposed and already named for
+  what it does. Better lever still: `level.target_offset` is 55 (upper chest) while the client zing
+  band is measured at the HEAD, so raising it toward 64-70 recentres the whole distribution on the
+  band. Also corrects **bug-2439**: `bulletrange` is an accuracy divisor, NOT a reach limit — rounds
+  travel `MAX_TRAVEL_DIST` 16216 regardless.
+- **Out-of-breath audio is still owed by the user.** `coop_uw_airout` / `coop_uw_wake` are called in
+  the plunge and are armed no-ops until the wavs and aliases exist; a one-shot `RAMPUW airhook armed`
+  marker reports it so this cannot become another silent-forever call site like `coop_uw_strain` was.
+  22050 mono 16-bit into `sound/coop_tinnitus/` — that path is duck-exempt, anywhere else is inaudible.
+- **2026-09-05/06 Omaha batch (bugs 2473-2499) - third build AWAITING PLAYTEST.** Two runs on 09-06
+  (08:52, 13:03) verified from markers: waders, seabed bodies, hull FX, obstacle wash, bazooka pose,
+  the underwater sequence, the captain's exchange (`FIRSTSEQ start`), the radio call and reply
+  (`RADIOTX`), 044a and the whistles, the advance (`BEACHADV fired`), flank guns 2 and 4 firing
+  (`drvfire=1`; guns 1 and 3 read `see=0` - sightline), the crowd's charge. DISPROVED and re-fixed: the
+  Higgins sink (never rolled in four runs - a solid clip, then the hull's model swap making a boat-sized
+  SOLID_BBOX, 2487/2496), the beach fire (the cover test's trace ended inside the player's own box, no
+  hit landed since 08-31, 2497), the crowd's poses (numbered members of `random` groups, one-shot
+  clips, a failsafe lerp to the wire, 2498), the quick-draw flip axis (2499). Still unseen, with the
+  marker that proves each: boat roll (`HIGGINSSINK leg 1 done` ~9 s after `legs`, `complete` ~55 s, no
+  `STALLED`) · beach fire (`BEACHLOS seen=1` on open sand, `BEACHHIT` lines, felt hits; `coop_dmgProbe
+  1` is the engine cross-check) · crowd held crouched / shaking / wounded at the hedgehogs, running on
+  the whistle, prone short of the bank, no `HEDGECROWD drift` lines · quick-draw muzzle up-left with
+  sights up (`coop_qdrawHoldFlip` 0-3 by rcon if not) · weapon-lag rotation · ragged wet line on gl2
+  and gl1. Caveats: a busy voicebank can hold the smoke advance ~17 s; a listener whose snapshot drops
+  the corpse mid-line loses the rest; quick-draw placement also applies in SP; the timber ramp still
+  draws no hits; the water SHEET's own edge is still straight (its edge lives in the 8-stage
+  `zz_coop_shoreline.shader` - a texture bake, next); LOS cover plays no suppression sound (the
+  in-cover branch gets a NULL trigger).
+- **Still open from the 09-04/05 handoff:** the trench grenade an ally promises and nobody throws
+  (build or leave - user's call); the coop bazooka team can throw a live rocket (probe shipped, not
+  fixed); `docs/02-status-ledger.md:86` still calls gl2 'PAUSED'; bodycam DoF focus pull
+  (recommended, not built); the sprint one-handed carry was REFUSED as procedural - the hands are
+  posed by the viewmodel clip, so a one-handed raised carry needs a clip (a two-handed high port as a
+  rigid rig rotation about the grip IS reachable if wanted); water research #1 is built (bug-2485),
+  #2+ stay ranked in `docs/proposals/water_omaha_2026-09-05/`; ricochet research (feasible, engine
+  pair, ~250 lines) is filed in `docs/proposals/ricochet_2026-09-06/` - not built.
+- **The muffle's one unverifiable premise:** whether OpenAL Soft applies `AL_DIRECT_FILTER` to an
+  `AL_SOURCE_RELATIVE` (2D) source. Only the headers are vendored, not the mixer. If it does not, the
+  muffle is inert rather than broken. A ten-second A/B in game settles it (bug-2444).
+- **bug-2432 — `dbno.scr` starts three concurrent local LOOPS on one player** but `edict->s.loopSound`
+  is a single field, so only the last survives: the DBNO heartbeat and breathing stages have never
+  been audible. Needs a design call (one combined bed, or carrier entities).
+
 ## e2l1 (Kasserine glider) - parked
 
 Four open item sets from the 2026-08-03 round (remaining glider items, the crash-landing arrival
@@ -119,64 +194,7 @@ comments claimed - a de-synchroniser, not a tactic.
   point unknown, needs a runtime probe; both the MP40 and Tommy packs ship replacement clip
   models we can use once found); MOHPA porter unidentified - credits entry pending.
 
-## m1l1 scripted intro ride - CLOSED 2026-08-22, one item left
-
-Five sessions of "the germans shoot us during the truck ride" resolved to **bug-2064**: the script
-command `notarget` reached `Player::NoTargetCheat`, a **toggle** that discards its argument. Engine
-now SETS on an argument and toggles on none, and `Entity::GetNoTarget` makes the flag readable - the
-probe prints `notgt=`. Verified over four live 2-player rides: `engaging=0` for the whole ride while
-`canSeePlayer` stayed 8-10. Same pass: **bug-2065** (truck allies stood up), **bug-2067** (kit issued
-three times), **bug-2049 -> bug-2066** (flicker = EF_UNARMED on give; LOCKSTEP `agree=1` refutes the
-pm_flags-desync theory). Full detail in `buglog.json` 2064-2068.
-
-**SCOPE: trilogy-wide, not m1l1-only.** Every `notarget` write is in shared coop code
-(`main.scr::playerGlue`, `replace.scr::unglue`, the `player.scr` watcher, `buildmode.scr`), and
-`replace.scr::glue` is called by **15 map scripts** across AA and BT - no Spearhead t-series map
-glues. Re-derive with `grep -rl 'replace.scr::glue' hzm-mohaa-coop-mod/maps/`.
-m1l1 broke *every* run only because it is the one map that also sets vanilla `level.glueplayer` at
-map init, making the spawn-time `playerGlue` path fire twice and cancel; elsewhere the toggle parity
-tracked spawn count, so those rides were intermittently hot and were never isolated. Build mode was
-hit too - `holdout.scr:271` records an incident that was filed as a holdout problem. **Verified live
-on m1l1 only (4 rides);** the wider claim is shared-code reach. Best next checks: `e1l3/TankRide` and
-`m3l1a`. bug-2065 and bug-2067 have no map gating at all.
-
-**STILL OPEN from that hunt:**
-- **OWED VERIFICATION (bug-2068).** `coop_notargetWatch` now releases only the flag it acquired,
-  so build mode and the MoM dev `notarget` toggle survive it - an earlier draft would have revoked
-  them within 0.5 s. The ride was re-verified live; the FOREIGN-OWNER path was **not** executed
-  (testing paused). Next session: boot m1l1, and while NOT in the ride run
-  `rcon set coop_probe notgt` - require `foreign=RESPECTED`. A guard that has never run is not a
-  fix (bug-2034).
-- **bug-2055 - wall cover.** The open-side solver's STEP 2 (does the body fit through the gap) fails
-  in 4864 of 6271 samples - the hull sweep starts at the player's own origin, which in cover is
-  against the wall, so it returns startsolid and both sides read closed. The other 22% proves the
-  logic sound. Likely fix: offset the sweep off the wall first, or use a reduced hull. The **pose,
-  camera and auto-cover symptoms are NOT diagnosed** and need their own probe pass.
-- **The gun flicker is NOT measurably reduced** - correction to my own claim. Gives per spawn went
-  3 -> 2 (measured), but flickers were 2-over-4-spawns before and 0-over-1-spawn after, which is what
-  an unchanged build would produce; and `GUNVIS` is edge-triggered, so a sub-frame unarmed window
-  neither prints nor shows. Mechanism settled, rate change unproven. Real fix: make the give
-  idempotent (`coop_hasitem`, already used by `coop_backfillPrimaries` but only AFTER the give).
-- **The m1l1 ride hiding the weapon/arms for ~74 s is INTENDED - do not "fix" it.** (User,
-  2026-08-22: "the m1l1 ride hide I don't want to change that's normal.") The glue calls
-  `local.player hide`, which sets `RF_DONTDRAW`, and the viewmodel submission is gated on that
-  same flag - so the first-person gun and arms go with the body for the length of the scripted
-  ride. It shows up in any capture as a `dontdraw=1 unarmed=0` span of ~74 s and looks exactly
-  like a defect if you meet it cold. It is not one. See DECISIONS.md.
-- **NEW, larger: the JOIN blank is 3.7-5.6 SECONDS of no arms.** You spawn and the viewmodel is
-  empty until the first kit is given. Same `EF_UNARMED` mechanism, far more visible than a 141 ms
-  blip, and not the reported defect. **NOT the map holding you unarmed for the scene** (user
-  hypothesis, checked and refuted): m1l1 has no `takeall`/`coop_noWeapon`, its four `holster` calls
-  are on `level.guard`/`guard2`/`driver`/`passenger` (ACTORS), and `playerGlue` only does
-  `notsolid`/`physics_off`/`hide`. Two clocks agree the arms return when the KIT lands, not when the
-  scene ends - server "entered the battle" -> KITGIVE = 4.0 s, client HIDE -> SHOW = 3.68 s - and
-  the blank closes entirely BEFORE `glued=1` (t=50..110). So it is spawn->first-give latency. Why
-  that latency is ~4 s is not investigated.
-- **bug-2053 - free-cam scroll** consumes the mouse wheel instead of switching weapons. Narrowed by
-  the user to free cam only (chase cam is correct), so the search is small. Not investigated.
-- **Probe fidelity:** `canSeePlayer` read 0 through two otherwise-correct rides and 8-10 through two
-  others - `replace.scr::player_closestTo` sometimes returns NULL for a glued player. Harmless to
-  play, but it is a census column being trusted in diagnosis.
+## m1l1 scripted intro ride - CLOSED 2026-08-22 (bug-2064; residue in `archive/open-m1l1-intro-ride.md`)
 
 ## Defects with evidence
 
@@ -225,32 +243,7 @@ around it on 2026-08-10 is deployed and **not** confirmed in play:
 Since confirmed in play: the contain loop, the escalation loadout (1692), the bust-time aggro
 exemption (1686).
 
-### m6l2a contain — bugs 1732-1737, deployed 2026-08-12
-
-1732 / 1734 / 1735 / 1736 are **closed** — each exposed the next, verified in a three-contain run
-(kill / let-survive / kill). Causes in buglog. Still open:
-
-**1739 unverified — the stun's re-assertion has never once fired.** The re-hit that pulls a guard back
-into pain is gated on `curHp > minHp`, `minHp` = 40% of health. That floor predates bug-1731's drop to
-`coop_bustVulnHealth` 25: 40% of 25 is **10**, exactly where the bash's own 15 damage lands him — false
-from the first tick, and `BUSTSTUN` prints a flat `hp=10.000` in *every* contain, including the ones
-that looked right. The stun rode on one pain animation, holding only when the guard faced away
-(`EnemyIsDisguised` = `hasDisguise && (isDisguised || !CanSeeEnemy)`). 1737 is intact and still needed:
-it makes pain *start*, not *hold*. Absolute floor of 2 while dropped. Verify: hp **decreases**
-(10→7→4→1) instead of sitting flat.
-
-**1738 unverified.** One latch both kept the corpse rediscoverable *and* pinned `seers` at 1 forever,
-so the loiter timer ran on with every witness dead — cover blew 6 s after the player contained the
-investigator himself. Now a live per-tick count. Verify: silence the investigator, stay by the body,
-expect `BUSTBODY nobody has eyes on the body any more` and no escalation.
-
-**1733 partial.** `PAINDETACH` still fires on a same-frame double hit — gap **exactly 3.0** both times
-regardless of real damage (400, 15): the stun's `hurt 3` racing a round, which `actorPainHandler`'s
-exact-equality test can't tolerate. Bashed guards only; 1734 covers both paths, so it degrades.
-
-**Bullet sponges no longer reproduce** — a full Thompson run, none seen, and no damage value was
-changed. Probably fixed by 1733, not confirmed.
-
+### m6l2a contain - bugs 1732-1737, deployed 2026-08-12 - moved to `archive/open-m6l2a-contain.md`
 ### ⚠️ m2l2a REGRESSION RISK — the attackplayer latch removal (bug-1700)
 
 **User-requested review item.** m2l2a is signed off as very playable; bug-1700 changes the aggro

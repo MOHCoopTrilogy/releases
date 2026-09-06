@@ -16,19 +16,6 @@ brace envelopes) and two silently changed a balance number, since stress multipl
 **Use elapsed time:** keep `m_fCoop<X>Last`, take `dt = level.time - last`, clamp it (0.1-0.25 s) so a
 hitch cannot dump the whole envelope, and seed the member in the constructor - player memory is not zeroed.
 
-## Per-weapon TIK data: read the copy the ENGINE resolves, under the name it actually ships as
-
-Two independent ways a per-weapon table reads the wrong thing.
-
-**Which COPY.** Pak priority is main < mainta < maintt < the mod's own pk3s - **the LAST copy wins**. An
-extractor that sweeps in that order and keeps the FIRST match ships Spearhead's values: a G43 authored at
-1 degree of yaw got 16, and it reached the player's real aim on every shot. Resolve last-wins, and include
-the mod's own `models/weapons`, which beat every pak. **Also strip trailing `//` before tokenizing a TIK
-line** - at least one weapon carries an ACTIVE viewkick line with a commented-out alternative appended on
-the SAME line, and a naive tokenizer reads straight through into the comment.
-
-**Which NAME.** See [`item_name` suffixes](#itemname) - the same variant-naming trap, both halves.
-
 ## Quick index
 
 **Every `##` heading is an entry — grep them for the full set.** Below is only what a grep cannot
@@ -38,7 +25,9 @@ give you.
 **Recurring:** [T1](#t1) parse killers · [T3](#t3) silent veto · [T4](#t4) capacity families ·
 [T6](#t6) what loads != what you shipped · [T10](#t10) deploy gaps · [T12](#t12) same-named trees.
 **Legacy numbers:** **T13** = [cross-cutting](#cross-cutting) Q5, **T15** =
-`reference/harness_and_reproduction.md`, **T18** = `archive/traps-t16-failsafe-recursion.md`.
+`reference/harness_and_reproduction.md`, **T18** = `archive/traps-t16-failsafe-recursion.md`,
+**T19** (a radius is a sphere; use `vector_length` on flattened points, bugs 1689/1690) and the
+`.health`-bypasses-damage-feedback entry (bug-2015) = `archive/traps-pruned-2026-09-05.md`.
 ---
 
 <a name="t1"></a>
@@ -117,7 +106,6 @@ and stays, never the reported line.
 | A shader generator's brace matcher mishandled mixed CRLF/LF plus `//`-commented braces, emitting blocks missing closing braces (45 open / 43 close) → white-square HUD icons. | 480 |
 | A **texture upscaler** tiled (3x3 -> resize -> crop centre) then ran UnsharpMask on the CROPPED result; a convolution clamps at the border, so it invented edge pixels and reintroduced the exact seam tiling existed to prevent (14x worse on `ocean1b`), and Lanczos lobes separately overshot a capped alpha (189 -> 255). Fix: sharpen **inside** the tiled space, clamp each channel back to the source range. | 1247 |
 | A PowerShell harness assigned `$home`, a **built-in automatic variable**; the assignment silently no-op'd and logs landed in the user profile. | ps-home-var |
-| `sed -i` on a **CRLF** `.scr` stripped every CR while correctly deleting its 16 target lines, turning a 16-line edit into a 331-line whole-file rewrite. The check that cleared it, `grep -c $'\r'`, reports **0 on a CRLF file** under Git Bash - a broken detector handing back a false all-clear. | 2081 |
 
 - **Binary mode on BOTH sides, repo files included.** `open(p, encoding=...)` translates newlines on
   *read*, so a CRLF file arrives as LF and `\r\n` patterns match nothing; `newline=""` on write then
@@ -129,8 +117,16 @@ and stays, never the reported line.
   Detect endings by counting `b'\r\n'` against bare `b'\n'` on the RAW BYTES - `grep -c $'\r'`
   answers 0 on a CRLF file and will clear a broken edit. Then confirm the diff is the SHAPE you
   intended (`cmp`, `git diff --numstat`): a whole-file diff on a 16-line edit is the tell.
-  With `core.autocrlf=true`, `git checkout --` re-stamps CRLF onto a file whose blob is LF, so
-  a 'clean' status does **not** mean the bytes on disk are the ones you started with.
+  With `core.autocrlf=true` (**both** sub-repos), git's smudge filter runs on `git apply` as well as
+  `git checkout --`, so **a patch that applies cleanly still rewrites every line ending in the file**
+  (bug-2453) while `git diff` shows nothing, the blob being LF all along. `build.ps1` packs the
+  WORKING COPY, so that CRLF ships: after **any** `git apply`, re-count `b'\r'` per touched file
+  against an unpatched neighbour. Hence `.scr` patches are Python fixers, never diffs.
+- **Derive generated hunks against the base the generator saw.** Diffing a lane's FULL patched
+  copy against a text that already carries other lanes' edits turns every one of those edits into
+  a deletion - and per-hunk uniqueness asserts pass, because each reverting FIND genuinely occurs
+  once (bug-2482). Print the byte delta of every edit and read the signs: a `-10870` where an
+  insert was expected is the only tell.
 - **Never** emit script files through a bash heredoc.
 - **Verify the invariant you claim to preserve, against the ORIGINAL** - the seam regression was caught
   only by measuring edge-wrap error on output vs input per file.
@@ -199,16 +195,16 @@ fix a silent-discard branch, **add the warning even though you also raised the l
 
 <a name="t4"></a>
 
-**`int / int` IS C INTEGER DIVISION AND SILENTLY ZEROES WHOLE FEATURES** (bugs 2424/2425, four sites
-in one day). `scriptvariable.cpp:1671-1679` divides two ints as ints, so **`38 / 100` is `0`** and a
-percentage written that way disables what it scales with no error and no log line. The Higgins sink
-ran all four legs for weeks issuing `rotatexup 0 / movedown 0`, printing `roll=0/0/0/0` the whole
-time. A 70-step `( k / steps )` ramp is 0 until the last step then 1 - a hard flip that reads as "the
-effect doesn't work". `wait ( 34 / 24 )` waits **1**, so `coop_cvarFade`'s 34-second fade has always
-taken 24, on every map - hidden because `(vhi-vlo)/steps` was correct (floats), so only the CLOCK was
-wrong and everything was uniformly fast. **Write `* 0.01`, or `* 1.0` before dividing** (`* 0.01`
-survives a tunable later becoming a float). Auditing rule: a ratio is safe only if you can NAME the
-float operand - `vector_length` results and accumulated fractions are; counts never are.
+**`int / int` IS C INTEGER DIVISION AND SILENTLY ZEROES (OR MULTIPLIES) WHOLE FEATURES** (bugs
+2424/2425, 2497). `scriptvariable.cpp:1671` divides ints as ints: **`38 / 100` is `0`**, `750 / 100` is
+`7` (a 7x scale, 2497). The Higgins sink issued `rotatexup 0` for weeks; `wait ( 34 / 24 )` waits **1**.
+**Write `* 0.01`, or `* 1.0` before dividing.** A ratio is safe only if you can NAME the float
+operand - `vector_length` results are; counts never are.
+
+**A `sighttrace` ending at an entity's own origin ends INSIDE its box.** With the third arg 0 the mask
+keeps CONTENTS_BODY/BBOX and a segment that ends inside the target's collision box reads as blocked -
+so `isInCover`'s LOS clause vetoed every beach hit on every solid player for a week (bug-2497). Pull
+the end point outside the box, or trace world-only (arg 1) first.
 
 ## T4 — A capacity family has more members than you think
 
@@ -317,6 +313,7 @@ changes.
 
 | Load-order rule | Consequence |
 |---|---|
+| Pak order main < mainta < maintt < mod pk3s, **LAST copy wins** | An extractor keeping the FIRST match ships Spearhead's values (a G43 at 1 degree of yaw got 16); strip trailing `//` before tokenising a TIK line. Full entry: `archive/traps-pruned-2026-09-05.md`. |
 | `.dds` beats `.jpg`/`.tga` | `R_LoadImage` rewrites the extension to `.dds` and tries `LoadDDS` **first** whenever texture compression is on, so a same-basename stock `.dds` beats your HD `.jpg` - this made 881 upscales dead. Disabling `r_ext_compressed_textures` is **not** a fix (~1400 stock-`.dds`-only textures would vanish); ship DXT `.dds` overrides with a full mip chain. |
 | The engine tries `.jpg` **before** `.tga` | Menu art in particular |
 | Shader **NAME** overrides lose the reverse-concat race | Whole-**FILE** overrides win: the filesystem dedupes by filename and the coop pak mounts last (bug-921 used bug-525's whole-file pattern on `scripts/equipment.shader`) |
@@ -330,12 +327,14 @@ changes.
 fighting for the name.** Mint a NEW shader name existing only in the coop pak, pointing at a PRIVATE
 texture path also only in the coop pak, and retarget the `.tik` surface. **Tell:** a "black" surface
 showing per-face **shading** means a lit default shader is drawing it and your def never reached it.
+**Precedence is PAK order, not file name** (verified 2026-09-05, bug-2485): both renderers resolve a
+duplicated shader name to the highest-priority pak and, within one pak, to the alphabetically FIRST
+shader file - the `zz_` prefix on the coop overrides buys nothing and would lose an intra-pak duplicate.
+Define a name in exactly one coop file.
 
-**⭐ A playtest log only testifies about the build it loaded** (bug-1610). `coop_enigma.shader` existed
-yet the log said `Couldn't find image file for shader enigma`: the client loaded 23:34 and quit 23:37:11,
-the file was packed at **23:38:06**. **Compare the pk3 entry's timestamp
-(`zipfile.getinfo(name).date_time`) against the `InitGame` line**, and verify fixes by reading them back
-out of the deployed pk3.
+**⭐ A playtest log only testifies about the build it loaded** (bug-1610): the client quit at 23:37, the
+file was packed at 23:38. **Compare the pk3 entry's timestamp (`zipfile.getinfo(name).date_time`) against
+the `InitGame` line**, and verify fixes by reading them back out of the deployed pk3.
 
 **⭐ Imported third-party skin packs are this trap with the blast radius reversed.** A 2002-era skin pk3
 routinely *redefines* stock shader names instead of minting its own, and the coop pak mounts last, so the
@@ -406,7 +405,10 @@ this section once claimed gl2 was abandoned and produced a wrong fix (2026-08-21
 comment calling 1 "the engine default" silently halved lightmap overbright on every world surface;
 and **grep the OTHER renderer for a token before trusting the feature works** - what gl1 implements
 can be a `// FIXME: unimplemented` stub in gl2 (`nofog`, bug-2186), so a bug appearing just after a
-renderer feature ships reads as a gap that feature exposed.
+renderer feature ships reads as a gap that feature exposed. **And a feature gl2 implements can still
+be unreachable**: `alphaGen sCoord/tCoord` lives only in the GENERIC program, and a shader with no
+`deformVertexes` is collapsed into LIGHTALL, which has none - the stage draws at alpha 1 with no warning
+(bug-2486). On a deform-free shader, bake a coordinate ramp into texture alpha (bug-2485).
 
 **The structural fix is half-built:** `coop_defaults.cfg` execs **BEFORE** the saved config, so its values
 are true defaults a menu change overrides and persists. Migration out of `autoexec.cfg` is incomplete, and
@@ -443,7 +445,10 @@ Worked cases and the exact call sites in
 
 **Fixed; pattern known.** Full write-up in
 [archive/traps-t9-spawn-race.md](archive/traps-t9-spawn-race.md). Short form: a `spawn`, its `model`
-and `solid` cannot all land in one frame — step them.
+and `solid` cannot all land in one frame — step them. **And a `.tik` `model` swap RE-SOLIDIFIES:**
+`ScriptSlave::SetModelEvent` (`scriptslave.cpp:893`) sets SOLID_BBOX for any .tik, so `notsolid` must
+FOLLOW the swap. The Higgins hull became a box one line before its roll and blocked its own mover for
+four runs (bug-2496); every beach wreck carried the same box.
 
 ---
 
@@ -524,6 +529,11 @@ so nothing crashed, and the sole casualty was m1l2b's ringing-telephone gag, whi
 100x0.1 s and so always burned 10 s and printed `PHONEGAG FAIL`. **Grep the mod tree before adding
 a `level.coop_*` name — the error names the type, never the other owner.**
 
+**And inside ONE label: a local used as an int flag, then as an array** (bug-2483). `local.ok = 1`
+in a wait loop, `local.ok[n] = x` ninety lines later: `[]` on an int throws, the store is skipped,
+both reads come back none and both 044a voices went to NIL for four days while the label's own
+probe printed a healthy pick count. Grep a label for `local.X =` and `local.X[` before reusing a name.
+
 **And one level down again: two ENGINE EVENTS sharing a script command name** (bug-2064, the most
 expensive of the three). `notarget` is declared **twice** as `EV_NORMAL` - `Entity::NoTarget`
 (SETS from its argument) and `Player::NoTargetCheat` (ignores the argument, **XORs** the flag) -
@@ -569,18 +579,20 @@ new beat gets a `^~^~^` marker or a census reads it as missing.
 
 ## T16 — Waits that never complete: failsafe recursion, missing anims, unguarded `waittill`
 
-**Bugs:** 1361 → 1366 (e3l4 supply/delivery), 1367, 1368, 1370, 1579, 1921, 1945; same shape as the AB41
-and truck-unload failsafes. Worked example: **`docs/archive/traps-t16-failsafe-recursion.md`**.
+**Bugs:** 1361-1366 (e3l4), 1367, 1368, 1370, 1579, 1921, 1945, 2487; same shape as the AB41 and
+truck-unload failsafes. Example: `docs/archive/traps-t16-failsafe-recursion.md`.
 
-**Tell:** the same user report twice with a failsafe log line in between; or an actor frozen mid-action —
-standing upright while dead, unresponsive after a conversation, a sequence that just stops — no error.
+**Tell:** a report repeated across a failsafe line; an actor frozen mid-action; a mover that never
+finishes - **a `ScriptSlave` blocked by a solid actor never posts `movedone`**; `BlockFunc`
+(`scriptslave.cpp:1360`) crush-ticks the blocker 2 hp/0.5 s and the kill gibs him (NULL). The
+Higgins sink rolled its solid clip into a deck-hand for three sessions (bug-2487): drop the solids first.
 
 **A recovery path must contain no wait that the failure mode can block.** The e3l4 failsafe bounded a
 blocking wait at 45 s then "recovered" by calling a routine opening with `runto` + `waittill movedone` -
 the actor's whole problem was having no nav path, so the soft-lock moved rather than closed. For actors:
 no `runto`/`walkto`/`waittill turndone`/`waittill animdone`, no unbounded
-`while (vector_length(...) > N)`. Seat or place them directly, taking the **tail** of the vanilla routine.
-Grep the recovery path for `waittill` before shipping, and check the *next* stage for the same shape.
+`while (vector_length(...) > N)`. Place them directly (the **tail** of the vanilla routine); grep the
+recovery path for `waittill`; check the *next* stage too.
 
 **Two engine facts make actor waits unsafe** (bug-1368): `Unregister(STRING_TURNDONE)` exists in exactly
 one place, `Actor::IdleTurn` (`actor.cpp:5032`), which no runner think reaches - so a failed `runto` pins
@@ -637,28 +649,6 @@ the caller still reports success. **Tell:** a feature that "does nothing" with n
 
   Worked examples and the failure histories for these three are in
   [`archive/traps-pruned-2026-08-20.md`](archive/traps-pruned-2026-08-20.md).
-
----
-
-<a name="t19"></a>
-## T19 — A radius is a SPHERE, and hand-rolled distance is not trustworthy
-
-**Bugs:** 1689, 1690. **Tell:** a proximity prompt fires on the floor below or through a ceiling - "the
-Naxos text appears when you are downstairs underneath the room", "you get caught on the 2nd floor for his
-dead body on the first".
-
-**`vector_length` is a 3D distance**, so every "within N units" test is a sphere - almost never what is
-meant in a building. **"Near" is a HORIZONTAL question plus a same-storey question, tested as both**: 2D
-distance plus a vertical band (96u; a MOHAA storey is ~128). Three sites in one feature had it.
-
-**Flatten both points to z=0 inside a vector literal and use `vector_length`** (locals inside a literal
-are fine - `props.scr:407`, `tracescan.scr:79`), **not hand-rolled pythagoras**: a
-`sqrt( (dx*dx) + (dy*dy) )` here returned **265.965 for two points 2013u apart**, twice across two
-builds, while `dz` by plain subtraction was exactly right. No mechanism is claimed - only that
-`vector_length` was right on every sample and the hand-rolled form was not on at least one.
-`aimaneuver.scr:129` uses the same inline form, never checked. **And a range must be the right SIZE for
-its job:** that feature's warning was drawn off the *action* prompt's 112u bash range, so it appeared
-only once the player was already on top of the officer.
 
 ---
 
@@ -721,22 +711,23 @@ do the work** (three occurrences). Both stories, with the five failed fixes that
 are in `docs/reference/tiki_and_sound_aliases.md`.
 
 **A sound alias's `maps` field is a LOAD FILTER.** `aliascache explode_tank ... maps "m2l2b "` means
-the alias **does not exist** elsewhere, and `playsound` on it is silent with no error and no log line
-(bug-2248). Grep for **name AND maps field** before using one; tokens match as PREFIXES, so `m3l1b`
-does **not** cover `m3l1a` (bug-2394, metal footsteps). Same trap the other way round: on a `loaded`
-(3D) alias `maxDist` is a hard START gate, not a rolloff - a 200/2000 alias never begins for a listener
-outside it (the Omaha whistle needed re-aliasing at 600/9000, not just more volume). **`streamed`
-aliases are the exception, and it matters:** `S_OPENAL_StartSound` diverts `SFX_FLAG_STREAMED` to the
-2D path and returns *before* `PickChannel3D` (`snd_openal_new.cpp:1953`), so a streamed line has no
-start gate and costs no 3D channel. Most scripted dialogue is `streamed` - so neither maxDist nor the
-3D channel pool can ever explain a silent scripted line, and bug-2309's 32->96 3D raise could not have.
+the alias **does not exist** elsewhere, and `playsound` on it is silent with no error (bug-2248). Grep
+for **name AND maps field**; tokens match as PREFIXES, so `m3l1b` does **not** cover `m3l1a`
+(bug-2394). On a `loaded` (3D) alias `maxDist` is a hard START gate, not a rolloff. **`streamed`
+aliases are the exception:** `S_OPENAL_StartSound` diverts them to the 2D path before `PickChannel3D`
+(`snd_openal_new.cpp:1953`) - no start gate, no 3D channel - so neither can explain a silent scripted
+line (bug-2309's 3D raise could not have).
 
-**...but sometimes it is CURATION and widening it IS the defect** (bug-2307, mine): clearing 179
-`needs an alias` errors by making the AI callout pools trilogy-wide made the beach bark nonstop - the
-engine fires those with no cooldown, so the map list *was* the rate limit. On the real outages
-something **audibly broke**; here only the log was noisy. **A console error is not evidence of a
-defect - silence can be authored.** (`always` gets the ALIAS, the maps field gets the **CACHE**,
-`scriptmaster.cpp:499`; uncached plays *badly* - bug-2304.)
+**A `random` alias group registers under its digit-stripped STEM.** `crouch_beach_idle01..05 ... random`
+loads as ONE anim, `crouch_beach_idle`; `anim crouch_beach_idle02` is `unknown animation`
+(`tiki_files.cpp:1046`; bug-2214, re-tripped as 2498). Address the stem, never a member;
+`check_anim_rootless.py` now fails numbered members and computed names.
+
+**...but sometimes it is CURATION and widening it IS the defect** (bug-2307): clearing 179 `needs an
+alias` errors by making the AI callout pools trilogy-wide made the beach bark nonstop - the map list
+*was* the rate limit. **A console error is not evidence of a defect - silence can be authored.**
+(`always` gets the ALIAS, the maps field gets the **CACHE**, `scriptmaster.cpp:499`; uncached plays
+*badly* - bug-2304.)
 
 **An animation pack is gated by a PREFIX match on the MAP NAME.** `new_generic_human.tik` wraps packs
 in `includes <tok...> { }` and `TIKI_ParseIncludes` (`tiki_parse.cpp:345`) makes a block live only if
@@ -757,6 +748,20 @@ original. Read the other way, the same fact decides how you spawn one: `init { c
 the entity first reaches a **snapshot**, after the server set the origin, so *spawn, then position* is
 correct (`bh_water_hard`); a **server** block fires at spawn, so its origin must be inline or the effect
 bursts at the world origin. The two read identically in a script.
+
+**A `script_model` carrier renders a tik's `originemitter` blocks and NOTHING ELSE** (bug-2477).
+Every `sfx` block - originspawn sparks, `blockdlight`, volumetric smoke - is recorded only while
+`ClientSpecialEffectsManager::LoadEffects` holds `m_pCurrentSfx`; `StartSFXCommand`
+(cg_commands.cpp:1642) returns at once otherwise, and nothing sets it for an entity spawned from
+script. hd_fxfix's `bh_stone_lite` is nine sfx blocks and no emitter, so the ramp-drop hull hits
+drew nothing for a day while two sessions argued about sprite shaders. A full impact effect from
+script needs the engine's impact message; and an emitter follows a carrier's ANGLES only if its
+block says `notagaxis` - `randvelaxis` otherwise reads the identity tag axis (cg_tempmodels.cpp).
+
+**Re-alias dialogue as `dialog streamed`, never `voice loaded`** (bug-2474). Streamed IS the 2D path
+above - no start gate, a linear fade to maxDist, the Dialogue slider, the vox sidechain - so the
+only reason to re-alias a retail line is a wider fade. `loaded` is the 3D path where `set_3d`
+discards the alias volume (bug-2452) and every bark ducks the line.
 
 **`playlocalsound <alias> 1` writes ONE FIELD, not a channel.** The loop branch of
 `Player::PlayLocalSound` sets `edict->s.loopSound` (`player.cpp:18183`) - a single int in
@@ -851,29 +856,9 @@ an `Animate` spawned by an `attachmodel` frame command in the THIRD-PERSON torso
 <a name="procedural"></a>
 ## Procedural view/weapon motion
 
-Four rules, each of which already cost a shipped regression that review, build and deploy all passed:
-(1) integrate an oscillator's phase, never compute it as `time * frequency`; (2) never write a periodic
-term into a state variable an exponential ease is tracking - ease an AMPLITUDE and recompute the
-oscillation statelessly; (3) a cap expressed as a multiple of the thing it caps is not a cap; (4) a
-shared budget that uniformly scales its members makes every control inside it non-linear. Worked cases
-in **[`archive/traps-view-motion.md`](archive/traps-view-motion.md)**.
-Read it before touching view bob, sway, recoil, lean or the ADS transform.
-
-## Writing `.health` directly bypasses EVERY piece of damage feedback
-
-`ent.health = ent.health - n` is not a quiet way to deal damage - it skips `Sentient::Damage`
-entirely. No pain sound, no hit flash, no hitreact, and no `STAT_DAMAGEDIR`, the only field
-`coop_dmgIndicator` reads. m3l3's church barrage did this, so damage arrived from nowhere: the
-shells were audible, but nothing said you had been HIT, and the user reasonably called it random.
-
-The floor is the second half. Clamping `health` to 1 after the subtraction makes the effect
-non-lethal only in the narrowest sense - it never lands the kill, but pins the player at one hit
-point so the next stray round does. That reads as the effect killing them, because it did. Put the
-floor on the AMOUNT, at a survivable share of max health.
-
-Deal damage with the real event and pass a direction (`vector_normalize(victim - source)`) like a
-bullet does; `player.cpp` derives the indicator bearing from arg 5, the DIRECTION, not the position.
-(bug-2015)
+Four rules in **[`archive/traps-view-motion.md`](archive/traps-view-motion.md)** - integrate oscillator phase, never
+`time*frequency`; ease an amplitude, not a periodic state; a cap in units of the thing it caps is not a cap; a
+shared scaled budget makes every control non-linear. Read it before touching bob, sway, recoil, lean or ADS.
 
 ## Coop systems that touch EVERY actor will find the scripted ones
 
@@ -967,13 +952,20 @@ There are none. `q_shared.h:1965-1978`: bits **0-6** stock, **7-11** are the wea
 (`GetWeaponCommandMask`, a 5-bit enum — *not* spare bits), **12** `COOPWALK`, **13** `COOPADS`
 (its own comment calls it *"the last free one"*), **14-15** `ANY`/`MOUSE`.
 
-**Use a server console command instead — it needs no protocol change at all.** The Quake `+`/`-`
-bind convention is intact here: key-down builds `+cmd <key> <time>` (`cl_keys.cpp:1266`), key-up
-builds `-cmd <key> <time>` (`:1078`), and unmatched commands forward to the server. Register both
-forms in `G_ConsoleCmds` (`gamecmds.cpp:120`) — that table takes a plain function pointer and
-**ignores the trailing key/time args**, so no Event format string is needed. Record only the key
-state in the handler and do the work in a per-frame tick, or a tap released before your state
-machine is ready gets swallowed. `+coopnade` (quick grenade) is the worked example.
+**Use a `+`/`-` console command instead — no protocol change.** Key-down builds `+cmd <key> <time>`
+(`cl_keys.cpp:1266`), key-up `-cmd` (`:1078`). Register **both** forms in `G_ConsoleCmds`
+(`gamecmds.cpp:120`) — plain function pointer, trailing key/time args ignored, no Event format string —
+**and both in cgame's `commands[]`**, forwarding via `cgi.SendClientCommand("+yourcmd")`. Record only
+key state in the handler; do the work in a per-frame tick, or a tap released before your state machine
+is ready is swallowed.
+
+⚠️ **BOTH REGISTRATIONS, or it is HOST-ONLY** (bug-2460). Unmatched `+`/`-` do **not** forward:
+`CL_ForwardCommandToServer` (`cl_main.cpp:1056`) drops `-` silently, answers `+` with "Unknown command".
+`Cmd_ExecuteString` (`qcommon/cmd.c:1002`) tries client cmds → cvars → **cgame** → **`SV_GameCommand`,
+only if `com_sv_running`** → forward. So the host works via the local-server shortcut and every joiner
+does nothing — which is also why it survives playtesting by whoever hosts. `G_ProcessClientCommand`
+matches by literal name, so the `+`/`-` survives the relay. Worked example: `+coopnade` in
+`cg_consolecmds.c`.
 
 Two neighbours that ARE extensible, if you genuinely need wire state: the weapon-command enum has
 16 of its 31 values used, and `entityState.surfaces[]` bit 6 was reclaimed once (bug-2080). Both
