@@ -46,7 +46,8 @@ starts from #2 and adds measurements the earlier lanes did not take. Paths: `E/`
    multiply. Zero references in `M/maps/m3l1a.scr`, the entity lump, or any coop map script (only
    the build-mode catalog lists it). Spearhead adds `models/emitters/waterWake.tik` (flat sprites,
    `life 15`, `accel -5 0 0`) and `waterRing.tik` (`life 10`), both `originemitter`-only, in
-   `mainta/pak1` and `maintt/pak1` with their `effects.shader` sprites. These are the retail recipes
+   `mainta/pak1` (tiks) with their sprite shaders in both `mainta/pak1` and `maintt/pak1`
+   `effects.shader`; all three trees mount under `com_target_game 2`. These are the retail recipes
    the fix methodology asks for first.
 7. **Retail's own better ocean exists in maintt**: `sf_ddayocean` / `sf_deepbluesea`
    (`maintt/pak1.pk3 scripts/misc_outside.shader`) use `deformVertexes bulge`, `tcMod turb`, an
@@ -87,7 +88,7 @@ generic path drops normal/specular/cubemap. Consequences per surface:
 **Renderer vocabulary that is real on gl2** (parser `E/renderergl2/tr_shader.c`): deforms `wave`
 (GPU), `bulge` (GPU), `move`, `normal` (CPU, `tr_shade_calc.c:242-247`), `flap s|t` (CPU, HZM clamp at
 `tr_shade_calc.c:205/224`), autosprite; tcMods `turb scale scroll stretch transform rotate wavetrans
-wavetrant entityTranslate` (`:445-660`); `tcGen environment/environmentmodel` in the vertex program
+wavetrant entityTranslate` (`:444-655`); `tcGen environment/environmentmodel` in the vertex program
 (`generic_vp.glsl:149-165`); alphaGen implemented: const, wave, entity, vertex, lightingSpecular
 (hard-coded light), portal, sCoord/tCoord (4-param, generic only), distFade family
 (`tr_shade.c:707-800`); alphaGen parsed-but-dead: dot, oneMinusDot, dotView, oneMinusDotView,
@@ -120,7 +121,7 @@ and `:1068-1070`: +/-200 x, +648 y, +32 z off the hull origin at `384 -7808 -504
 switched `anim start`/`stop` per leg (`:772-799`) with the `wave_crash` alias on boat 1.
 
 **What the sea does under it.** `zz_coop_ocean.shader:71` heaves the open sheet +/-10 x rawT on a
-10 s cycle (rawT 0 at the seam, 1 at y -8000), so under the fleet at y -7100..-5000 it is +/-6..9 u
+10 s cycle (rawT 0 at the seam, 1 at y -8000), so under the fleet at y -7100..-5000 it is +/-5..9 u
 - the same order as the bob, **on a different period (6 s vs 10 s) with an unknowable phase**
 (shader time is absolute server ms, script `level.time` is rebased; LANE-A section 8). Half of every
 minute the hull and the sea move against each other. That is the residue of the "boats underwater"

@@ -521,7 +521,7 @@ docs/proposals/objective_audit/REVIEW.md	8946	.md	141	docs
 docs/proposals/objective_audit/scan_t-extra.md	12769	.md	213	docs
 docs/proposals/objective_challenges.md	13054	.md	203	docs
 docs/proposals/objective_challenges_vetted.md	31284	.md	393	docs
-docs/proposals/ocean_2026-09-06/README.md	25562	.md	292	docs
+docs/proposals/ocean_2026-09-06/README.md	25650	.md	293	docs
 docs/proposals/orphan_challenge_triage.md	7559	.md	113	docs
 docs/proposals/pinned_challenges.md	34613	.md	531	docs
 docs/proposals/postfx_ghost/01_lifecycle.md	19587	.md	229	docs
@@ -557,7 +557,7 @@ docs/public/UNLOCKABLES.md	26158	.md	328	docs
 docs/public/fixes/ai-enemy-behaviour.md	289988	.md	532	docs
 docs/public/fixes/audio.md	47430	.md	89	docs
 docs/public/fixes/build-deploy-tooling.md	14478	.md	34	docs
-docs/public/fixes/engine-crashes.md	192341	.md	322	docs
+docs/public/fixes/engine-crashes.md	193013	.md	323	docs
 docs/public/fixes/maps-missions.md	94207	.md	171	docs
 docs/public/fixes/multiplayer-networking.md	32473	.md	67	docs
 docs/public/fixes/other.md	104071	.md	198	docs
@@ -629,6 +629,7 @@ docs/tools/gen_service_record.py	72061	.py	1113	docs
 docs/tools/gen_skinbase.py	1923	.py	40	docs
 docs/tools/gen_skins.py	12997	.py	285	docs
 docs/tools/gen_weapon_skins.py	8538	.py	189	docs
+docs/tools/gen_wetsand.py	5104	.py	105	docs
 docs/tools/hudslots.py	4069	.py	98	docs
 docs/tools/linecheck.py	5953	.py	127	docs
 docs/tools/loadout_weapons.tsv	15392	.tsv	0	docs
@@ -2484,11 +2485,11 @@ hzm-mohaa-coop-mod/maps/m2l3.scr	34782	.scr	1143	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m2l3_precache.scr	3738	.scr	107	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1a.scr	345319	.scr	9181	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1a.scr.pre_0905lanes_bak	341098	.pre_0905lanes_bak	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr	944642	.scr	17984	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr	957739	.scr	18263	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr.pre_0905lanes_bak	861614	.pre_0905lanes_bak	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr.pre_wade_bak	790520	.pre_wade_bak	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1a/obstacles.scr	61265	.scr	419	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/m3l1a_precache.scr	9512	.scr	210	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/m3l1a_precache.scr	9702	.scr	212	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1a_precache.scr.pre_0905lanes_bak	9419	.pre_0905lanes_bak	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1b.pth	418194	.pth	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1b.scr	115210	.scr	3174	hzm-mohaa-coop-mod
@@ -3199,6 +3200,8 @@ hzm-mohaa-coop-mod/models/fx/coop_oilslick.tik	527	.tik	25	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/coop_severedhead.tik	1564	.tik	37	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/coop_stump_neck.tik	1259	.tik	25	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/coop_tank_explosion.tik	2624	.tik	133	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/fx/coop_uwbubble.tik	3564	.tik	78	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/fx/coop_uwbubble_burst.tik	4837	.tik	99	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/coop_wound1.tik	761	.tik	19	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/crates/debris_255.tik	2142	.tik	116	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/muzflash/flashnode1.tga	16402	.tga	0	hzm-mohaa-coop-mod
@@ -4832,7 +4835,8 @@ hzm-mohaa-coop-mod/scripts/new_opelgray.shader	1566	.shader	42	hzm-mohaa-coop-mo
 hzm-mohaa-coop-mod/scripts/soviet_weapons.shader	2797	.shader	97	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/us_sniper.shader	1445	.shader	67	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/venom.shader	1709	.shader	75	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/scripts/zz_coop_ocean.shader	4648	.shader	95	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/scripts/zz_coop_ocean.shader	6396	.shader	116	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/scripts/zz_coop_seabed.shader	5564	.shader	78	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/zz_coop_shoreline.shader	12535	.shader	239	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/zz_coop_wetsand.shader	9422	.shader	132	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/somepicture.jpg	52305	.jpg	0	hzm-mohaa-coop-mod
@@ -5917,6 +5921,7 @@ hzm-mohaa-coop-mod/sound/coop_gurgle/coop_bloodleak.wav	307908	.wav	0	hzm-mohaa-
 hzm-mohaa-coop-mod/sound/coop_headshot/headshot.wav	55156	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/coop_heart/coop_dbno_bed1.wav	44144	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/coop_heart/coop_heart01.wav	53186	.wav	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/sound/coop_heart/coop_uw_heart01.wav	28268	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/coop_injury/cough.wav	441078	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/coop_memory/coop_memvoice01.wav	433920	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/coop_memory/coop_memvoice02.wav	117262	.wav	0	hzm-mohaa-coop-mod
@@ -5930,6 +5935,7 @@ hzm-mohaa-coop-mod/sound/coop_ric/ric_03.wav	20598	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/coop_sprint/breath1.wav	181770	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/coop_sprint/breath2.wav	189268	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/coop_swim/coop_uw_bed01.wav	1168694	.wav	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/sound/coop_swim/coop_uw_inhale01.wav	72050	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/coop_swim/coop_uw_swim01.wav	34364	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/coop_tinnitus/coop_shellshock02.wav	441078	.wav	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/sound/coop_tinnitus/coop_underwater01.wav	617478	.wav	0	hzm-mohaa-coop-mod
@@ -12770,7 +12776,7 @@ hzm-mohaa-coop-mod/textures/viewsleeves_bd1.tga.pre_upscale_nobuild	196652	.pre_
 hzm-mohaa-coop-mod/textures/wilderness/m3l3grass_set2.jpg	1291736	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/textures/wilderness/m3l3grass_set2rad.jpg	2424082	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ubersound/coop_aivoice.scr	46515	.scr	409	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ubersound/coop_audio.scr	51126	.scr	552	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ubersound/coop_audio.scr	53317	.scr	573	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ubersound/coop_audio.scr.pre_0905lanes_bak	48575	.pre_0905lanes_bak	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ubersound/coop_buildsounds.scr	7172	.scr	68	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ubersound/coop_chatter.scr	182245	.scr	1350	hzm-mohaa-coop-mod
@@ -14351,9 +14357,9 @@ hzm-mohaa-coop-mod/ui/proto/coop_proto_c_stack.inc	6294	.inc	115	hzm-mohaa-coop-
 hzm-mohaa-coop-mod/ui/proto/coop_proto_chrome.inc	8054	.inc	226	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	605413268	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	1296985242	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	24823764	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	605497407	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	1296989726	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	24831761	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzzzzz_coop_terrain.pk3	33429489	.pk3	0	hzm-mohaa-coop-mod
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -14631,7 +14637,7 @@ openmohaa-hzm/code/cgame/cg_ents.c	25590	.c	786	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_event.c	1225	.c	36	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_lightstyles.cpp	17153	.cpp	585	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_local.h	38847	.h	1050	openmohaa-hzm
-openmohaa-hzm/code/cgame/cg_main.c	44114	.c	1111	openmohaa-hzm
+openmohaa-hzm/code/cgame/cg_main.c	44545	.c	1117	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_marks.c	66881	.c	2074	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_modelanim.c	161552	.c	3251	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_modelanim.c.pre_0905lanes_bak	146474	.pre_0905lanes_bak	0	openmohaa-hzm
@@ -14658,7 +14664,7 @@ openmohaa-hzm/code/cgame/cg_tempmodels.cpp	54277	.cpp	1637	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_testemitter.cpp	87160	.cpp	2096	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_ui.cpp	8613	.cpp	292	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_vehicle.cpp	1239	.cpp	39	openmohaa-hzm
-openmohaa-hzm/code/cgame/cg_view.c	412124	.c	7560	openmohaa-hzm
+openmohaa-hzm/code/cgame/cg_view.c	414981	.c	7612	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_viewmodelanim.c	41633	.c	971	openmohaa-hzm
 openmohaa-hzm/code/cgame/cg_volumetricsmoke.cpp	45486	.cpp	1370	openmohaa-hzm
 openmohaa-hzm/code/cgame/memarchiver.cpp	5651	.cpp	241	openmohaa-hzm
@@ -15922,7 +15928,7 @@ openmohaa-hzm/code/renderergl2/glsl/texturecolor_vp.glsl	265	.glsl	13	openmohaa-
 openmohaa-hzm/code/renderergl2/glsl/tonemap_fp.glsl	1618	.glsl	57	openmohaa-hzm
 openmohaa-hzm/code/renderergl2/glsl/tonemap_hzm_fp.glsl	2255	.glsl	44	openmohaa-hzm
 openmohaa-hzm/code/renderergl2/glsl/tonemap_vp.glsl	814	.glsl	27	openmohaa-hzm
-openmohaa-hzm/code/renderergl2/glsl/underwater_fp.glsl	14913	.glsl	312	openmohaa-hzm
+openmohaa-hzm/code/renderergl2/glsl/underwater_fp.glsl	16836	.glsl	338	openmohaa-hzm
 openmohaa-hzm/code/renderergl2/tr_animation.c	15057	.c	523	openmohaa-hzm
 openmohaa-hzm/code/renderergl2/tr_backend.c	89328	.c	2686	openmohaa-hzm
 openmohaa-hzm/code/renderergl2/tr_bsp.c	123259	.c	4102	openmohaa-hzm
@@ -15955,7 +15961,7 @@ openmohaa-hzm/code/renderergl2/tr_mesh.c	11059	.c	424	openmohaa-hzm
 openmohaa-hzm/code/renderergl2/tr_model.c	39086	.c	1424	openmohaa-hzm
 openmohaa-hzm/code/renderergl2/tr_model.cpp	95538	.cpp	2579	openmohaa-hzm
 openmohaa-hzm/code/renderergl2/tr_model_iqm.c	58276	.c	1758	openmohaa-hzm
-openmohaa-hzm/code/renderergl2/tr_postprocess.c	75568	.c	1784	openmohaa-hzm
+openmohaa-hzm/code/renderergl2/tr_postprocess.c	77387	.c	1810	openmohaa-hzm
 openmohaa-hzm/code/renderergl2/tr_postprocess.h	2129	.h	39	openmohaa-hzm
 openmohaa-hzm/code/renderergl2/tr_ragdoll.cpp	7626	.cpp	196	openmohaa-hzm
 openmohaa-hzm/code/renderergl2/tr_scene.c	33403	.c	1012	openmohaa-hzm
@@ -17482,7 +17488,7 @@ server_home/maintt/prev/qconsole-20260904-151252.log	260732	.log	0	server_home
 server_home/maintt/prev/qconsole-20260904-154803.log	265880	.log	0	server_home
 server_home/maintt/prev/qconsole-20260904-160506.log	2430664	.log	0	server_home
 server_home/maintt/prev/qconsole-20260904-161043.log	1216600	.log	0	server_home
-server_home/maintt/qconsole.log	417385	.log	0	server_home
+server_home/maintt/qconsole.log	423240	.log	0	server_home
 server_home/maintt/qconsole.log.pre_e3l4	302778	.pre_e3l4	0	server_home
 server_home/maintt/qconsole.prev.log	918609	.log	0	server_home
 server_home/maintt/qconsole.prev2.log	630655	.log	0	server_home
