@@ -77,7 +77,9 @@ minidump). gl2 does not share that code path.
   the corpse mid-line loses the rest; quick-draw placement also applies in SP; the timber ramp still
   draws no hits; the water SHEET's own edge is still straight (its edge lives in the 8-stage
   `zz_coop_shoreline.shader` - a texture bake, next); LOS cover plays no suppression sound (the
-  in-cover branch gets a NULL trigger).
+  in-cover branch gets a NULL trigger). FOURTH build (unpublished): boat stare off, pace 0.9, waders
+  slid (2503); smoke blinds the guns (2501); arms carry the lag swing (2502); hull fires at deck height
+  (2504); placeholder underwater aliases reverted, cut the bed (2505); radioman pair moved (2506).
 - **Still open from the 09-04/05 handoff:** the trench grenade an ally promises and nobody throws
   (build or leave - user's call); the coop bazooka team can throw a live rocket (probe shipped, not
   fixed); `docs/02-status-ledger.md:86` still calls gl2 'PAUSED'; bodycam DoF focus pull

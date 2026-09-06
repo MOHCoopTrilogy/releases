@@ -13,28 +13,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `fcc148a 2026-09-06 manifest 1.5.2` |
-| commits | 217 |
+| HEAD | `d816d3e 2026-09-06 docs: regenerate after the v1.5.2 publish` |
+| commits | 218 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **2 modified, 0 untracked** |
-| unstaged diff | 2 files changed, 4 insertions(+), 4 deletions(-) |
+| **uncommitted** | **7 modified, 2 untracked** |
+| unstaged diff | 7 files changed, 21 insertions(+), 12 deletions(-) |
 
-> Working tree is dirty. Everything in those 2 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 9 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 6 |
+| 2026-09 | 7 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (217)
+### Commits since 2026-01-01 (218)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `d816d3e` | 2026-09-06 | joncurry94-tech | docs: regenerate after the v1.5.2 publish |
 | `fcc148a` | 2026-09-06 | joncurry94-tech | manifest 1.5.2 |
 | `0b982f0` | 2026-09-06 | joncurry94-tech | docs+tools: the Omaha 09-06 pass, three traps that hid for a week, two proposals |
 | `a92e6da` | 2026-09-04 | joncurry94-tech | manifest 1.5.1 |
@@ -258,8 +259,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `40d9d963 2026-09-06 chore: drop a stray 16-byte log-break file committed with the Omaha pass` |
-| commits | 1,595 |
+| HEAD | `bc97255a 2026-09-06 Omaha: the sink's hull box, beach fire's own-box trace, crowd poses, smoke cover` |
+| commits | 1,596 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 5 untracked** |
 
@@ -269,7 +270,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 4 |
+| 2026-09 | 5 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -310,10 +311,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (246)
+### Commits since 2026-01-01 (247)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `bc97255a` | 2026-09-06 | joncurry94 | Omaha: the sink's hull box, beach fire's own-box trace, crowd poses, smoke cover |
 | `40d9d963` | 2026-09-06 | joncurry94 | chore: drop a stray 16-byte log-break file committed with the Omaha pass |
 | `2f3ca085` | 2026-09-06 | joncurry94 | Omaha: the sink that never rolled, beach fire restored, the hedgehog crowd |
 | `4dfb5270` | 2026-09-04 | joncurry94 | Omaha: everyone on gl2, a crash fixed, and the plunge rebuilt |
@@ -566,8 +568,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `acab7986 2026-09-06 feat: quick-draw sidearm, weapon-lag rotation, actor think-state names` |
-| commits | 5,086 |
+| HEAD | `fa5debe6 2026-09-06 fix: quick-draw flip about X; the arms carry the weapon-lag swing` |
+| commits | 5,087 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 3 untracked** |
 
@@ -577,7 +579,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 3 |
+| 2026-09 | 4 |
 | 2026-08 | 103 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
@@ -639,10 +641,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (121)
+### Commits since 2026-01-01 (122)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `fa5debe6` | 2026-09-06 | joncurry94 | fix: quick-draw flip about X; the arms carry the weapon-lag swing |
 | `acab7986` | 2026-09-06 | joncurry94 | feat: quick-draw sidearm, weapon-lag rotation, actor think-state names |
 | `9d2f160c` | 2026-09-04 | joncurry94 | gl1 DDS crash, a local-loop leak, and a concussion muffle |
 | `895358f8` | 2026-09-03 | joncurry94 | Omaha engine: depth-driven water, refracting lens blood, a pannable local sound |

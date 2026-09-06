@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1818** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1824** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -17,7 +17,7 @@
 | 2026-06 | 80 |
 | 2026-07 | 577 |
 | 2026-08 | 918 |
-| 2026-09 | 237 |
+| 2026-09 | 243 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1836,6 +1836,12 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-2498` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user, 13:03 run: 'there are a ton of allies just standing around near the radiomen ... not laying in cover or being injured or anything' (screenshot:… | Spawn on the wader recipe (disable_ai, dontdropweapons, no retail ai_friendly_setup) and HOLD a loop through coop_vigHold with coop_vigOwned=1 and no… |
 | `bug-2499` | 2026-09-06 | `openmohaa-hzm/code/cgame/cg_modelanim.c` | - | user, 13:03 run: 'primary still facing the wrong way when I use the quick draw' (screenshot: stock up-left, muzzle down-right toward the shooter) - a… | coop_qdrawHoldFlip is an axis selector: 0 none, 1 about Y, 2 about X (keep X, negate Y and Z - the default now), 3 about Z, so the next wrong guess i… |
 | `bug-2500` | 2026-09-06 | `publish_release.ps1` | - | publish_release.ps1 -Version 1.5.2: 'Exception calling OpenRead: Could not find file hzm-mohaa-coop-mod\maps\m3l1a\done' during the code-pak pack; no… | Re-ran the publish on the now-consistent tree: v1.5.2 live with 11 assets, manifest.json published, manifests committed and pushed, Discord announcem… |
+| `bug-2501` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: 'We need to make it so we can't take damage if we are behind the smoke that gets called in during the drop too - it should be stopping them fro… | isInCover: after a gun's world and entity traces pass, each landed column (coop_smokeSignal_round stores its emitter in level.coop_smokeCloud[slot];… |
+| `bug-2502` | 2026-09-06 | `openmohaa-hzm/code/cgame/cg_view.c` | - | user: 'When you move your weapon left or right on a two handed weapon the hand doesnt follow it correctly (the left hand holding the grip area), this… | The swing is applied to the BODY in cg_view.c's lag block, about the same grip point, with the tag-pivot fix the idle-inspect body turn already uses… |
+| `bug-2503` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: 'lets remove the boat stare when underwater scene, and shorten the segment a bit.' | level.coop_uwBoatLookOn defaults to 0 at both seeds (1 brings the look back); the sink start (coop_higginsSinkLeg 0, SinkDelay 0.05, coop_uwUnbind 1… |
+| `bug-2504` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: 'There are some fires underwater that dont really make sense.' | coop_boatBurn flames at origin+100..134 and its smoke columns at +130/+150; coop_higginsSinkBurn flames at +100..134 and its fireandsmoke at +118 - d… |
+| `bug-2505` | 2026-09-06 | `hzm-mohaa-coop-mod/ubersound/coop_audio.scr` | - | The bug-2494 placeholder aliases (coop_uw_hitsand -> coop_uw_impact01, coop_uw_strain -> coop_uwbreath01) made the plunge WORSE: the drowning researc… | Both placeholder aliases removed; the comment in coop_audio.scr records why the 'needs to be aliased' line is the honest state until the user's real… |
+| `bug-2506` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: 'remove the two allies that are right on top of our radiomen, move them somewhere else.' | Anchor 1 is now cover_trigger *124 at (610 1032), the next hedgehog up the beach; the other four anchors and the seat count are unchanged. Mod only. |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |
