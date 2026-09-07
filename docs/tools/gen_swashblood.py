@@ -105,10 +105,14 @@ GUARD_1, GUARD_0 = 0.92, 0.96          # in raw t: alpha ramps to 0 by 0.96, row
 def off(s):
     """gen_wetsand.py's per-column wander o(s), s in [0,1) periodic, in T units. Copied verbatim - the
     blood's rag must be the wet line's rag, so this must not drift from that file."""
-    return (0.050 * math.sin(2 * math.pi * s)
-            + 0.030 * math.sin(2 * math.pi * 3 * s + 1.7)
-            + 0.018 * math.sin(2 * math.pi * 5 * s + 0.6)
-            + 0.012 * math.sin(2 * math.pi * 11 * s + 2.9))
+    # [bug-2519] SYNCED with gen_wetsand.py's spectrum split. If these two ever diverge the blood stops
+    # sitting in the wet line's own rag, which is the whole reason it looks deposited rather than painted.
+    return (0.0170 * math.sin(2 * math.pi * 1 * s + 0.9)
+            + 0.0450 * math.sin(2 * math.pi * 3 * s + 1.7)
+            + 0.0243 * math.sin(2 * math.pi * 5 * s + 0.6)
+            + 0.0097 * math.sin(2 * math.pi * 11 * s + 2.9)
+            + 0.0050 * math.sin(2 * math.pi * 19 * s + 4.1)
+            + 0.0030 * math.sin(2 * math.pi * 29 * s + 5.3))
 
 
 def t_of_row(r):

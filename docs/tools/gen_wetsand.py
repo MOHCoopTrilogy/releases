@@ -12,10 +12,19 @@ OUT = r"C:\mohaa-coop-dev\hzm-mohaa-coop-mod\textures\coop_fx"
 W = 256; H = 256
 
 def off(s):   # s in [0,1), periodic; T units
-    return (0.050 * math.sin(2 * math.pi * s)
-          + 0.030 * math.sin(2 * math.pi * 3 * s + 1.7)
-          + 0.018 * math.sin(2 * math.pi * 5 * s + 0.6)
-          + 0.012 * math.sin(2 * math.pi * 11 * s + 2.9))
+    # [user 2026-09-07, bug-2519] SPECTRUM SPLIT. A real swash edge is self-affine: it wanders MORE the
+    # further along the beach you can see. A 256 u tile does the opposite and saturates at 6.5 m, which
+    # is why this strip averaged to a ruler at any distance. The sheet now owns the 14-34 m band (the
+    # scallops baked into breakfoam.tga), so this strip takes 0.2-6.5 m and hands over cleanly.
+    # The n=1 fundamental is KEPT but cut from 0.050 to 0.017: deleting it would leave a 7x hole
+    # between 2.2 m and 14 m, and a self-affine edge is continuous across that range. At 0.017 it is a
+    # 4.3 u wiggle, undetectable as a repeat once the sheet's non-repeating 25 m scallop rides over it.
+    return (0.0170 * math.sin(2 * math.pi * 1 * s + 0.9)     # 256 u = 6.50 m
+          + 0.0450 * math.sin(2 * math.pi * 3 * s + 1.7)     #  85 u = 2.16 m
+          + 0.0243 * math.sin(2 * math.pi * 5 * s + 0.6)     #  51 u = 1.30 m
+          + 0.0097 * math.sin(2 * math.pi * 11 * s + 2.9)    #  23 u = 0.58 m
+          + 0.0050 * math.sin(2 * math.pi * 19 * s + 4.1)    #  13.5 u = 0.34 m
+          + 0.0030 * math.sin(2 * math.pi * 29 * s + 5.3))   #   8.8 u = 0.22 m
 
 offs = [off((c + 0.5) / W) for c in range(W)]
 print("offset range %.3f .. %.3f T" % (min(offs), max(offs)))
@@ -75,6 +84,13 @@ for r in range(H):
         a = alpha_of(td)
         if 0.60 <= td <= 0.90 and t < 0.97:
             bgr = wash2_rgb(td, c)
+            # [bug-2519] FOAM TINT, baked not rgbGen'd. Under solid overcast the key light is flat
+            # cool grey and nothing on this beach should glow; 0.86/0.86/0.85 desaturates the foam
+            # slightly and takes it further under the bloom knee. Baked because an rgbGen
+            # brightness was ignored on one renderer path once already (bug-2509, the greenish
+            # squares) - a baked value cannot be lost to a collapse path. Only the FOAM branch:
+            # wetsand_swash.tga is a DST_COLOR multiply where 255 means 'leave the sand alone'.
+            bgr = (int(round(bgr[0] * 0.85)), int(round(bgr[1] * 0.86)), int(round(bgr[2] * 0.86)))
         else:
             bgr = (0, 0, 0)
         if t >= 0.97:                    # the clamped sea-edge rows: black AND transparent, whatever o(s) does

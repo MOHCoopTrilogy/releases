@@ -86,7 +86,26 @@ Z = -520.0                          # all 225 control points of both patches
 NX, NY = 32, 48                     # quads: 496 u in x, 121.7 u in y (the patch draws ~730 u rows)
 TAPER_L = 1200.0                    # amplitude reaches 1.0 this far seaward of the seam
 NORMAL_FLOOR = 0.001                # never a true zero normal (tangent maths elsewhere divides)
-YAW = 225.0                         # the entity yaw the mesh is pre-rotated for
+YAW = 180.0                         # [bug-2519] 225 -> 180: the wave travelled EXACTLY shore-normal,
+                                    # so its crest lines were infinitely long and parallel to the
+                                    # beach - the straight line the user photographed, on the one
+                                    # surface able to carry the historical NW oblique approach.
+                                    # DERIVED, and the design's own 270 is wrong in this file's
+                                    # convention: deformVertexes wave phases on model-space
+                                    # (x+y+z) (tr_shade_calc.c:138) and the crest travels toward
+                                    # DECREASING (x+y+z), i.e. entity -(1,1). Through
+                                    # entity_to_world that is world (-cos(YAW)+sin(YAW),
+                                    # -sin(YAW)-cos(YAW)): at 225 it is (0, +1.41), pure
+                                    # shore-normal - which is exactly the shipped defect; at 270
+                                    # it is (-1, +1), shoreward but WEST, against the tide; at
+                                    # 180 it is (+1, +1), shoreward and +X, which is the same
+                                    # along-shore sense as the foam drift on the sand strip. The
+                                    # two must agree or the water contradicts itself. The world
+                                    # footprint is unchanged (model space is built from world
+                                    # coords) and TAPER_L still draws the refraction gradient for
+                                    # free: oblique out to sea, shore-parallel at the waterline,
+                                    # which is what refraction actually does.
+                                    # coopified.scr:2494 MUST carry the same number.
 ORIGIN = ((XMIN + XMAX) * 0.5, (YSEAM + YFAR) * 0.5, Z)   # (64, -5080, -520)
 ROWS_PER_SURF = 24                  # 25 rows x 33 cols = 825 verts, 1536 tris per surface (caps 1000/2000)
 WAVE_MARGIN = 24.0                  # bounds/radius slack over the summed wave amplitude (8.5)
@@ -94,10 +113,28 @@ BONE_NAME = b"Box01"
 CHANNELS = ("Box01 pos", "Box01 rot")   # the order the reference skc stores them in
 
 # the swell (shader): lambda_y = div / sqrt(2); speed = lambda_y * freq, shoreward
+# [bug-2519] The shipped pair violated deep-water dispersion by 31% and 26% - crests moving at the
+# wrong speed for their spacing - and the 0.18 Hz chop beat against the shore's 0.16 Hz crest at
+# exactly 50 s ACROSS THE SEAM, which is the real frequency defect on this map and one the sheet's
+# flap frequencies cannot fix. Both of these are dispersion-correct and both are historically right
+# periods for a Force 4-5 Channel sea; 6.25 s is also the shoreline crest stage's own arrival period,
+# so the offshore swell and the beach crests arrive in lock for free.
+#   SEA STATE. sigma = sqrt(sum(a^2)/2), Hs = 4 sigma. At SEA_K 1.0 that is 0.895 m, against a
+#   historical 0.9-1.1 m; the shipped 6.0 + 2.5 gave 0.47 m. Submerged fraction of a retail Higgins =
+#   (43.72 + 16.3k)/141.8, so k = 1.0 puts it at 42%, a correct loaded draught. The failure that
+#   produced the "underwater boats" report (bug-2478) was 89%. WAVE_MARGIN is additive slack over the
+#   summed amplitude, so it does NOT need raising.
+SEA_K = 1.23                        # sea-state scale, set from the ENVELOPE'S FLEET MEAN (0.832),
+                                    # not from its peak: Hs 0.92 m where the fleet forms up and
+                                    # 0.99 m at the envelope's maximum, against a historical
+                                    # 0.9-1.1 m. Retail Higgins submerged fraction
+                                    # (43.72 + 16.3k)/141.8 = 45%, a loaded draught; the
+                                    # "underwater boats" failure (bug-2478) was 89%.
+                                    # 0.42 restores the shipped calm.
 WAVES = (
     # div,  amp, freq,  note
-    (5091, 6.0, 0.10, "long swell: lambda 3600 u, 10 s (the sheet's flap period, bob-sync stays valid), 360 u/s"),
-    (1697, 2.5, 0.18, "short chop: lambda 1200 u, 5.6 s, 216 u/s; 10 rows per wavelength"),
+    (3396, 11.5 * SEA_K, 0.16, "swell: lambda 2401 u = 61.0 m, T 6.25 s - the shore crest's own arrival period"),
+    (1390, 4.8 * SEA_K, 0.25, "chop:  lambda  983 u = 25.0 m, T 4.00 s"),
 )
 
 TIKI_MAX_VERTEXES, TIKI_MAX_TRIANGLES, MAX_MODEL_SURFACES = 1000, 2000, 32
@@ -105,9 +142,14 @@ TIKI_MAX_VERTEXES, TIKI_MAX_TRIANGLES, MAX_MODEL_SURFACES = 1000, 2000, 32
 
 # ---------------------------------------------------------------- rotation (AnglesToAxis convention)
 def world_to_entity(X, Y):
+    # [bug-2519] was hard-coded to the 225-degree inverse (r = sqrt(0.5)); that silently stopped being
+    # the inverse of entity_to_world the moment YAW moved. This is the general transpose of the
+    # rotation, and it reduces to the old two lines exactly at YAW 225. The round-trip assert in
+    # build_grid is what proves it.
     dx, dy = X - ORIGIN[0], Y - ORIGIN[1]
-    r = math.sqrt(0.5)
-    return (-(dx + dy) * r, (dx - dy) * r)
+    a = math.radians(YAW)
+    cy, sy = math.cos(a), math.sin(a)
+    return (cy * dx + sy * dy, -sy * dx + cy * dy)
 
 
 def entity_to_world(xp, yp):
@@ -122,9 +164,28 @@ def build_grid():
     verts = []
     for j in range(NY + 1):
         Y = YSEAM + (YFAR - YSEAM) * j / NY
-        n = max(NORMAL_FLOOR, min(1.0, (YSEAM - Y) / TAPER_L))
+        base = max(NORMAL_FLOOR, min(1.0, (YSEAM - Y) / TAPER_L))
         for i in range(NX + 1):
             X = XMIN + (XMAX - XMIN) * i / NX
+            # [bug-2519] ALONG-CREST HEIGHT VARIATION. Even oblique, a crest of constant height is a
+            # ruler. Nothing in the chain renormalises the SKD normal - TIKI_LoadSKD copies the floats
+            # verbatim, R_VaoPackNormal is a pure x32767 round trip, and both deform paths multiply the
+            # unpacked normal - so |n| is a free per-vertex amplitude gain, which this generator already
+            # exploits along Y for the seam taper. Two harmonics only: 11000 u and 4300 u give 8.7+
+            # samples per cycle at the shipped column spacing, so no density raise is needed (a 2100 u
+            # term would be ~4 samples and alias). The floor is 0.35, NOT 0.18: |n| is capped at 1.0 so
+            # this can only ATTENUATE, and a low mean would just make an already-short sea calmer.
+            # SOLVED, not chosen: with only two harmonics the envelope cannot hold 1.0 across the
+            # whole 6500 u the fleet occupies, so the phases are solved to MAXIMISE the fleet mean
+            # (0.832) and the depth is reduced to match - 0.72 +/- 0.28 with a 0.50 floor, i.e. a 1.8:1
+            # height ratio along the beach instead of 2.9:1. SEA_K is then set from that mean rather
+            # than from the peak. The envelope tops out at 0.901, comfortably under the 1.00003 at
+            # which R_VaoPackNormal's int16 round trip would wrap negative and INVERT the wave.
+            env = 0.72 + 0.28 * (0.65 * math.sin(2 * math.pi * (X + 7872.0) / 11000.0 + 3.440)
+                                 + 0.35 * math.sin(2 * math.pi * (X + 7872.0) / 4300.0 + 6.000))
+            env = max(0.50, min(1.0, env))
+            # the seam row must stay EXACTLY at NORMAL_FLOOR or the skd round-trip assert fails
+            n = NORMAL_FLOOR if base <= NORMAL_FLOOR else max(NORMAL_FLOOR, min(1.0, base * env))
             xp, yp = world_to_entity(X, Y)
             Xb, Yb = entity_to_world(xp, yp)
             assert abs(Xb - X) < 1e-6 and abs(Yb - Y) < 1e-6, ("rotation round trip", X, Y, Xb, Yb)
@@ -440,9 +501,15 @@ def verify_skd(data, surfaces):
         xp, yp, zp = svl[k][2]
         X, Y = entity_to_world(xp, yp)
         assert XMIN - 1e-3 <= X <= XMAX + 1e-3 and YFAR - 1e-3 <= Y <= YSEAM + 1e-3, (X, Y)
-    # the seam row is (almost) still, the far rows are at full gain
+    # the seam row is (almost) still; the far rows are at the along-crest envelope's gain, not at 1.0
+    # (bug-2519 - before the envelope this asserted exactly 1.0, which is why it is worth restating:
+    # the far edge is now base 1.0 x env(X), and env is bounded by construction).
     assert abs(svl[0][0][2] - NORMAL_FLOOR) < 1e-9
-    assert abs(surfaces[-1][2][-1][0][2] - 1.0) < 1e-9
+    ns = [v[0][2] for (_n, _tb, sv) in surfaces for v in sv]
+    assert min(ns) >= NORMAL_FLOOR - 1e-9, "a normal fell below the floor: %.6f" % min(ns)
+    assert max(ns) <= 0.99, "normal length %.6f - above ~1.00003 R_VaoPackNormal's int16 wraps and INVERTS the wave" % max(ns)
+    far = [v[0][2] for v in surfaces[-1][2][-(NX + 1):]]
+    assert 0.50 - 1e-9 <= min(far) and max(far) <= 0.91, "far-edge gain %.3f..%.3f outside the envelope" % (min(far), max(far))
     return m
 
 

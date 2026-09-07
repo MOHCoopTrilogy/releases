@@ -8,7 +8,7 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-1,166 distinct file paths, 4,214 distinct tags.
+1,167 distinct file paths, 4,217 distinct tags.
 
 ## Files with the most history
 
@@ -251,6 +251,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `docs/tools/gen_armory_bg.py` | 1 | `bug-1917` |
 | `docs/tools/gen_bloodslick_tint.py` | 1 | `bug-2263` |
 | `docs/tools/gen_bloodwash.py` | 1 | `bug-2249` |
+| `docs/tools/gen_breakfoam.py` | 1 | `bug-2519` |
 | `docs/tools/gen_chatter_pools.py` | 1 | `bug-2021` |
 | `docs/tools/gen_coop_vo_override.py` | 2 | `bug-2307` `bug-2461` |
 | `docs/tools/gen_gore_skins.py` | 1 | `bug-2229` |
@@ -2086,6 +2087,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `culling` | 1 | `bug-1849` |
 | `curation` | 1 | `bug-2307` |
 | `curious` | 1 | `bug-1636` |
+| `current` | 1 | `bug-2519` |
 | `cursor` | 1 | `bug-588` |
 | `curtain` | 2 | `bug-1401` `bug-1406` |
 | `custom-maps` | 1 | `bug-853` |
@@ -2756,7 +2758,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `generated-normals` | 3 | `bug-2147` `bug-2150` `bug-2154` |
 | `generated-table` | 1 | `bug-2479` |
 | `generation-stamp` | 1 | `bug-1925` |
-| `generator` | 28 | `bug-1247` `bug-1416` `bug-1464` `bug-1896` `bug-1902` `bug-1908` `bug-1916` `bug-2021` `bug-2116` `bug-2203` `bug-2225` `bug-2229` `bug-2241` `bug-2249` `bug-2262` `bug-2263` `bug-2267` `bug-2282` `bug-2297` `bug-2314` `bug-2359` `bug-2518` `bug-586` `bug-666` `bug-731` `bug-796` `bug-817` `bug-armory-roster76` |
+| `generator` | 29 | `bug-1247` `bug-1416` `bug-1464` `bug-1896` `bug-1902` `bug-1908` `bug-1916` `bug-2021` `bug-2116` `bug-2203` `bug-2225` `bug-2229` `bug-2241` `bug-2249` `bug-2262` `bug-2263` `bug-2267` `bug-2282` `bug-2297` `bug-2314` `bug-2359` `bug-2518` `bug-2519` `bug-586` `bug-666` `bug-731` `bug-796` `bug-817` `bug-armory-roster76` |
 | `generator-corrupts` | 1 | `bug-2399` |
 | `generator-drift` | 1 | `bug-755` |
 | `generator-misfire` | 1 | `bug-936b` |
@@ -3240,7 +3242,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `m2l2a-recipe` | 1 | `bug-1627` |
 | `m2l2a-risk` | 1 | `bug-1700` |
 | `m2l2b` | 7 | `bug-1608` `bug-1610` `bug-1611` `bug-1613` `bug-1620` `bug-1621` `bug-1628` |
-| `m3l1a` | 228 | `bug-1249` `bug-1501` `bug-1502` `bug-2187` `bug-2188` `bug-2192` `bug-2193` `bug-2194` `bug-2195` `bug-2196` `bug-2197` `bug-2199` `bug-2200` `bug-2201` `bug-2203` `bug-2204` `bug-2205` `bug-2206` `bug-2208` `bug-2209` `bug-2210` `bug-2211` `bug-2213` `bug-2214` `bug-2215` `bug-2216` `bug-2217` `bug-2219` `bug-2220` `bug-2223` `bug-2227` `bug-2230` `bug-2231` `bug-2232` `bug-2233` `bug-2234` `bu… |
+| `m3l1a` | 229 | `bug-1249` `bug-1501` `bug-1502` `bug-2187` `bug-2188` `bug-2192` `bug-2193` `bug-2194` `bug-2195` `bug-2196` `bug-2197` `bug-2199` `bug-2200` `bug-2201` `bug-2203` `bug-2204` `bug-2205` `bug-2206` `bug-2208` `bug-2209` `bug-2210` `bug-2211` `bug-2213` `bug-2214` `bug-2215` `bug-2216` `bug-2217` `bug-2219` `bug-2220` `bug-2223` `bug-2227` `bug-2230` `bug-2231` `bug-2232` `bug-2233` `bug-2234` `bu… |
 | `m3l1b` | 18 | `bug-1548` `bug-1549` `bug-1552` `bug-1553` `bug-1554` `bug-1555` `bug-1557` `bug-1558` `bug-1560` `bug-1562` `bug-1568` `bug-1574` `bug-1575` `bug-1626` `bug-2075` `bug-2087` `bug-2091` `bug-2485` |
 | `m3l2` | 9 | `bug-059` `bug-1129` `bug-1218` `bug-1219` `bug-2074` `bug-2076` `bug-2100` `bug-2190` `bug-m3l2-ground-seams` |
 | `m3l3` | 49 | `bug-1625` `bug-1806` `bug-1816` `bug-1817` `bug-1820` `bug-1822` `bug-1824` `bug-1826` `bug-1828` `bug-1829` `bug-1831` `bug-1832` `bug-1833` `bug-1834` `bug-1835` `bug-1836` `bug-1837` `bug-1838` `bug-1839` `bug-1840` `bug-1841` `bug-1842` `bug-1845` `bug-1846` `bug-1847` `bug-1848` `bug-1849` `bug-1853` `bug-1854` `bug-1855` `bug-1856` `bug-1858` `bug-1859` `bug-1861` `bug-1862` `bug-1863` `bu… |
@@ -3363,6 +3365,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `menu-persistence` | 1 | `bug-2172` |
 | `menu_button_trans` | 2 | `bug-754` `bug-756` |
 | `menudbg` | 1 | `bug-777` |
+| `mesh` | 1 | `bug-2519` |
 | `method` | 1 | `bug-2102` |
 | `method-error` | 1 | `bug-2209` |
 | `methodology` | 1 | `bug-1576` |
@@ -4082,6 +4085,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `ready-up` | 3 | `bug-526` `bug-684` `bug-712` |
 | `readygate` | 6 | `bug-641` `bug-684` `bug-712` `bug-736` `bug-773` `bug-788` |
 | `real-esrgan` | 1 | `bug-144` |
+| `realism` | 1 | `bug-2519` |
 | `realtime` | 1 | `bug-713` |
 | `rebuild` | 1 | `bug-1926` |
 | `rebuilt-gamedll` | 1 | `bug-230` |
@@ -4869,7 +4873,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `texgen` | 1 | `bug-gl2-texgen` |
 | `text-audit` | 4 | `bug-1777` `bug-1778` `bug-1779` `bug-1780` |
 | `text-layout` | 3 | `bug-1525` `bug-1531` `bug-1532` |
-| `texture` | 17 | `bug-1129` `bug-1327` `bug-1917` `bug-2210` `bug-2223` `bug-2230` `bug-2249` `bug-2263` `bug-2445` `bug-2493` `bug-2508` `bug-2509` `bug-2518` `bug-481` `bug-gl2-01` `bug-m3l2-ground-seams` `bug-menu-shader-label-invisible` |
+| `texture` | 18 | `bug-1129` `bug-1327` `bug-1917` `bug-2210` `bug-2223` `bug-2230` `bug-2249` `bug-2263` `bug-2445` `bug-2493` `bug-2508` `bug-2509` `bug-2518` `bug-2519` `bug-481` `bug-gl2-01` `bug-m3l2-ground-seams` `bug-menu-shader-label-invisible` |
 | `texture-closure` | 1 | `bug-853` |
 | `texture-compression` | 1 | `bug-1295` |
 | `texture-corruption` | 1 | `bug-2183` |
@@ -5296,7 +5300,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `watchdog` | 6 | `bug-1286` `bug-1450` `bug-1452` `bug-1459` `bug-2306` `bug-2437` |
 | `watcher` | 1 | `bug-2068` |
 | `watcher-vs-event` | 1 | `bug-1939` |
-| `water` | 17 | `bug-1242` `bug-1247` `bug-1249` `bug-1250` `bug-1515` `bug-2219` `bug-2230` `bug-2255` `bug-2264` `bug-2265` `bug-2471` `bug-2479` `bug-2485` `bug-2493` `bug-2508` `bug-2514` `bug-2518` |
+| `water` | 18 | `bug-1242` `bug-1247` `bug-1249` `bug-1250` `bug-1515` `bug-2219` `bug-2230` `bug-2255` `bug-2264` `bug-2265` `bug-2471` `bug-2479` `bug-2485` `bug-2493` `bug-2508` `bug-2514` `bug-2518` `bug-2519` |
 | `wateronly` | 1 | `bug-2359` |
 | `wave` | 1 | `bug-1846` |
 | `wave-director` | 1 | `bug-1831` |

@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1836** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1837** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -17,7 +17,7 @@
 | 2026-06 | 80 |
 | 2026-07 | 577 |
 | 2026-08 | 918 |
-| 2026-09 | 255 |
+| 2026-09 | 256 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1854,6 +1854,7 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-2516` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | R | user: 'Also is there a storm sound effect playing here, like thunder? If so I don't think that makes sense, it might be something else.' | coopified.scr:9276 `local.r = randomint 3` -> `( randomint 2 ) + 1`, dropping far1 and keeping far2/far3 which measure 85.6% and 69.0% above 2 kHz -… |
 | `bug-2517` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | qconsole.log, every plunge: 9 lines of `ERROR: Player::PlayLocalSound: coop_uw_strain needs to be aliased - Please fix.` (6) and the same for coop_uw… | All three now pass "": coop_uwJolt already guards `local.alias != NIL && local.alias != ""` and four other callers pass it, so the screen shake stays… |
 | `bug-2518` | 2026-09-06 | `hzm-mohaa-coop-mod/textures/coop_fx/surfcell.tga` | - | user (top-down screenshots): 'you can tell there is a lot of perfect symmetry, doesn't come off as very realistic... last I was on a beach waves were… | A second texture bundle, which is the one channel that can carry along-shore variation without spending a stage. docs/tools/gen_surfcell.py writes th… |
+| `bug-2519` | 2026-09-07 | `docs/tools/gen_breakfoam.py` | - | user: 'let's make it more realistic. maybe research how waves actually work, how currents actually work, etc ... it all looks like a straight line an… | (4) gen_breakfoam.py rewritten from a resample into a procedural 2048x512 bake: 14 scallops of +/-2.7 m cross-shore wander over the beach (harmonics… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

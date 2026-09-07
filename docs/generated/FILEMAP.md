@@ -24,7 +24,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 13,601 | 7540.6 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 13,601 | 7544.6 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
@@ -43,7 +43,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `<root>` | 68 | 3408.7 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `manifests` | 54 | 0.7 MB | **yes** | release manifests consumed by the auto-updater |
 | `_psx_moh` | 49 | 426.8 MB | **yes** |  |
-| `server_home` | 42 | 30.6 MB | **yes** |  |
+| `server_home` | 42 | 30.7 MB | **yes** |  |
 | `_variant_packs` | 38 | 343.4 MB | **yes** |  |
 | `_tools` | 37 | 69.0 MB | no - reference | downloaded third-party binaries |
 | `_skins` | 29 | 4.4 MB | **yes** |  |
@@ -202,14 +202,14 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/public` | 6 | 0.08 MB | .md×6 |
 | `docs/public/fixes` | 11 | 1.08 MB | .md×11 |
 | `docs/reference` | 4 | 0.07 MB | .md×3, .txt×1 |
-| `docs/tools` | 92 | 1.37 MB | .py×85, .tga×3, .md×1, .cmd×1 |
+| `docs/tools` | 92 | 1.39 MB | .py×85, .tga×3, .md×1, .cmd×1 |
 | `extracted-scripts` | 5 | 0.06 MB | .scr×5 |
 | `extracted-scripts/main_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
 | `fsafe_home/maintt` | 3 | 1.43 MB | .pid×1, .cfg×1, .log×1 |
-| `hzm-mohaa-coop-mod` | 39 | 2027.67 MB | .txt×12, .jpg×10, .cfg×5, .pk3×4 |
+| `hzm-mohaa-coop-mod` | 39 | 2027.73 MB | .txt×12, .jpg×10, .cfg×5, .pk3×4 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -504,7 +504,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/coop_covert` | 2 | 0.98 MB | .tga×1, .pre_upscale_nobuild×1 |
 | `hzm-mohaa-coop-mod/textures/coop_dp28` | 4 | 0.46 MB | .jpg×2, .pre_upscale_nobuild×2 |
 | `hzm-mohaa-coop-mod/textures/coop_drbond` | 2 | 0.98 MB | .tga×1, .pre_upscale_nobuild×1 |
-| `hzm-mohaa-coop-mod/textures/coop_fx` | 16 | 8.79 MB | .tga×15, .pre_upscale_nobuild×1 |
+| `hzm-mohaa-coop-mod/textures/coop_fx` | 16 | 12.73 MB | .tga×15, .pre_upscale_nobuild×1 |
 | `hzm-mohaa-coop-mod/textures/coop_g98` | 241 | 104.67 MB | .pre_upscale_nobuild×118, .tga×64, .jpg×59 |
 | `hzm-mohaa-coop-mod/textures/coop_g98scope` | 241 | 104.67 MB | .pre_upscale_nobuild×118, .tga×64, .jpg×59 |
 | `hzm-mohaa-coop-mod/textures/coop_gore` | 5 | 0.52 MB | .tga×3, .pre_upscale_nobuild×2 |
@@ -1087,7 +1087,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `scratchpad/veh_dds_reverted/textures/models/vehicles/train_cab` | 22 | 2.59 MB | .dds×22 |
 | `scratchpad/veh_dds_reverted/textures/models/vehicles/veltro_fly` | 1 | 0.35 MB | .dds×1 |
 | `server_home` | 4 | 1.38 MB | .log×4 |
-| `server_home/maintt` | 15 | 6.78 MB | .log×9, .cfg×4, .pid×1, .pre_e3l4×1 |
+| `server_home/maintt` | 15 | 6.79 MB | .log×9, .cfg×4, .pid×1, .pre_e3l4×1 |
 | `server_home/maintt/configs` | 1 | 0.02 MB | .cfg×1 |
 | `server_home/maintt/coop_mod/save` | 12 | 0.01 MB | .dat×12 |
 | `server_home/maintt/prev` | 10 | 22.45 MB | .log×10 |
@@ -1227,12 +1227,12 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `gen_bloodcloud.py` | 140 | 6.3 KB |  |
 | `gen_bloodslick_tint.py` | 108 | 4.4 KB |  |
 | `gen_bloodwash.py` | 223 | 9.7 KB |  |
-| `gen_breakfoam.py` | 111 | 5.1 KB | coding: utf-8 |
+| `gen_breakfoam.py` | 279 | 11.9 KB | coding: utf-8 |
 | `gen_caustic.py` | 31 | 1.8 KB | coding: utf-8 |
 | `gen_chatter_pools.py` | 167 | 8.7 KB | !/usr/bin/env python |
 | `gen_clip_art.py` | 114 | 5.5 KB |  |
 | `gen_clip_skins.py` | 356 | 16.0 KB |  |
-| `gen_coop_sea.py` | 512 | 24.9 KB | !/usr/bin/env python |
+| `gen_coop_sea.py` | 579 | 31.0 KB | !/usr/bin/env python |
 | `gen_coop_vo_override.py` | 288 | 15.5 KB | !/usr/bin/env python |
 | `gen_coop_wake_skc.py` | 195 | 9.8 KB | !/usr/bin/env python |
 | `gen_cos_reqs.py` | 116 | 5.5 KB | !/usr/bin/env python3 |
@@ -1252,9 +1252,9 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `gen_skins.py` | 285 | 12.7 KB |  |
 | `gen_skysheen.py` | 345 | 14.9 KB |  |
 | `gen_surfcell.py` | 287 | 14.2 KB | coding: utf-8 |
-| `gen_swashblood.py` | 258 | 12.4 KB | coding: utf-8 |
+| `gen_swashblood.py` | 262 | 12.8 KB | coding: utf-8 |
 | `gen_weapon_skins.py` | 189 | 8.3 KB |  |
-| `gen_wetsand.py` | 105 | 5.0 KB | coding: utf-8 |
+| `gen_wetsand.py` | 121 | 6.6 KB | coding: utf-8 |
 | `hudslots.py` | 98 | 4.0 KB | !/usr/bin/env python3 |
 | `linecheck.py` | 127 | 5.8 KB | a continuation line may not START with one of these |
 | `parse_playtest.py` | 149 | 6.7 KB | !/usr/bin/env python |
@@ -2392,7 +2392,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `coopified.scr` | 18,543 | 952.4 KB | chrissstrahl - handles stuff for coop of m3l1a |
+| `coopified.scr` | 18,547 | 952.7 KB | chrissstrahl - handles stuff for coop of m3l1a |
 | `obstacles.scr` | 419 | 59.8 KB | HZM coop [2026-09-01, bug-2262] OMAHA BEACH OBSTACLE TABLE. |
 
 ### `hzm-mohaa-coop-mod/maps/m3l3/` — 1 source files
@@ -4213,9 +4213,9 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `zz_coop_ocean.shader` | 220 | 13.3 KB |  |
 | `zz_coop_sea.shader` | 60 | 2.5 KB |  |
 | `zz_coop_seabed.shader` | 82 | 5.8 KB |  |
-| `zz_coop_shoreline.shader` | 352 | 22.5 KB |  |
+| `zz_coop_shoreline.shader` | 359 | 23.1 KB |  |
 | `zz_coop_wake.shader` | 35 | 1.4 KB |  |
-| `zz_coop_wetsand.shader` | 156 | 11.0 KB |  |
+| `zz_coop_wetsand.shader` | 164 | 11.7 KB |  |
 
 ### `hzm-mohaa-coop-mod/ubersound/` — 17 source files
 
