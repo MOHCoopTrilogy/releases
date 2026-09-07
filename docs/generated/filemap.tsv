@@ -381,7 +381,7 @@ docs/ENGINE.md	34196	.md	445	docs
 docs/FEATURES.md	92667	.md	1221	docs
 docs/HANDOFF-2026-09-05.md	12702	.md	139	docs
 docs/HISTORY.md	31226	.md	248	docs
-docs/OPEN.md	51708	.md	695	docs
+docs/OPEN.md	51697	.md	695	docs
 docs/PROPOSED_CLAUDE.md	11428	.md	182	docs
 docs/README.md	6634	.md	109	docs
 docs/SESSION_HANDOFF.md	7032	.md	126	docs
@@ -2490,14 +2490,10 @@ hzm-mohaa-coop-mod/maps/m2l2c.scr	6394	.scr	195	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m2l2c_precache.scr	2819	.scr	82	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m2l3.scr	34782	.scr	1143	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m2l3_precache.scr	3738	.scr	107	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/m3l1a.scr	346495	.scr	9198	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/m3l1a.scr.pre_0905lanes_bak	341098	.pre_0905lanes_bak	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr	968393	.scr	18457	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr.pre_0905lanes_bak	861614	.pre_0905lanes_bak	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr.pre_wade_bak	790520	.pre_wade_bak	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/m3l1a.scr	347654	.scr	9215	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr	971983	.scr	18511	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1a/obstacles.scr	61265	.scr	419	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/m3l1a_precache.scr	9965	.scr	214	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/m3l1a_precache.scr.pre_0905lanes_bak	9419	.pre_0905lanes_bak	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/m3l1a_precache.scr	10087	.scr	215	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1b.pth	418194	.pth	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1b.scr	115210	.scr	3174	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1b_precache.scr	4483	.scr	119	hzm-mohaa-coop-mod
@@ -3212,7 +3208,7 @@ hzm-mohaa-coop-mod/models/fx/coop_stump_neck.tik	1259	.tik	25	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/coop_tank_explosion.tik	2624	.tik	133	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/coop_uwbubble.tik	3564	.tik	78	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/coop_uwbubble_burst.tik	4837	.tik	99	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/models/fx/coop_wake.tik	2267	.tik	47	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/fx/coop_wake.tik	3036	.tik	55	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/coop_waterwake.tik	3161	.tik	74	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/coop_wound1.tik	761	.tik	19	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/crates/debris_255.tik	2142	.tik	116	hzm-mohaa-coop-mod
@@ -12796,7 +12792,6 @@ hzm-mohaa-coop-mod/textures/wilderness/m3l3grass_set2.jpg	1291736	.jpg	0	hzm-moh
 hzm-mohaa-coop-mod/textures/wilderness/m3l3grass_set2rad.jpg	2424082	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ubersound/coop_aivoice.scr	46515	.scr	409	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ubersound/coop_audio.scr	53317	.scr	573	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ubersound/coop_audio.scr.pre_0905lanes_bak	48575	.pre_0905lanes_bak	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ubersound/coop_buildsounds.scr	7172	.scr	68	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ubersound/coop_chatter.scr	182245	.scr	1350	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ubersound/coop_deathvox.scr	68069	.scr	512	hzm-mohaa-coop-mod
@@ -14377,8 +14372,8 @@ hzm-mohaa-coop-mod/ui/proto/coop_proto_chrome.inc	8054	.inc	226	hzm-mohaa-coop-m
 hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	605497407	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	1296989726	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	24831761	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	1297197012	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	24232395	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzzzzz_coop_terrain.pk3	33429489	.pk3	0	hzm-mohaa-coop-mod
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -17507,7 +17502,7 @@ server_home/maintt/prev/qconsole-20260904-151252.log	260732	.log	0	server_home
 server_home/maintt/prev/qconsole-20260904-154803.log	265880	.log	0	server_home
 server_home/maintt/prev/qconsole-20260904-160506.log	2430664	.log	0	server_home
 server_home/maintt/prev/qconsole-20260904-161043.log	1216600	.log	0	server_home
-server_home/maintt/qconsole.log	423240	.log	0	server_home
+server_home/maintt/qconsole.log	16304	.log	0	server_home
 server_home/maintt/qconsole.log.pre_e3l4	302778	.pre_e3l4	0	server_home
 server_home/maintt/qconsole.prev.log	918609	.log	0	server_home
 server_home/maintt/qconsole.prev2.log	630655	.log	0	server_home

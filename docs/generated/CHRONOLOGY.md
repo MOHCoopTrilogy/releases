@@ -13,28 +13,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `417ace8 2026-09-06 docs: ocean research filed, wet-sand generator checked in, drowning build logged` |
-| commits | 220 |
+| HEAD | `21d7224 2026-09-06 docs: ocean pass logged, evening fixes, six texture/mesh generators checked in` |
+| commits | 221 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **5 modified, 7 untracked** |
-| unstaged diff | 5 files changed, 57 insertions(+), 55 deletions(-) |
+| **uncommitted** | **1 modified, 0 untracked** |
+| unstaged diff | 1 file changed, 3 insertions(+), 3 deletions(-) |
 
-> Working tree is dirty. Everything in those 12 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 9 |
+| 2026-09 | 10 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (220)
+### Commits since 2026-01-01 (221)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `21d7224` | 2026-09-06 | joncurry94-tech | docs: ocean pass logged, evening fixes, six texture/mesh generators checked in |
 | `417ace8` | 2026-09-06 | joncurry94-tech | docs: ocean research filed, wet-sand generator checked in, drowning build logged |
 | `890c908` | 2026-09-06 | joncurry94-tech | docs: fourth Omaha build of 09-06, drowning research filed |
 | `d816d3e` | 2026-09-06 | joncurry94-tech | docs: regenerate after the v1.5.2 publish |
@@ -264,10 +265,10 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | HEAD | `8d9b3240 2026-09-06 Omaha: the drowning pass - air ramp, heart, bubbles, lid, exit, caustics` |
 | commits | 1,597 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **7 modified, 11 untracked** |
+| **uncommitted** | **8 modified, 6 untracked** |
 | unstaged diff | 7 files changed, 487 insertions(+), 67 deletions(-) |
 
-> Working tree is dirty. Everything in those 18 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 14 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 

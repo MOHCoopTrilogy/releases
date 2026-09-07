@@ -56,8 +56,7 @@ minidump). gl2 does not share that code path.
   band. Also corrects **bug-2439**: `bulletrange` is an accuracy divisor, NOT a reach limit — rounds
   travel `MAX_TRAVEL_DIST` 16216 regardless.
 - **Out-of-breath audio is still owed by the user.** `coop_uw_airout` / `coop_uw_wake` are called in
-  the plunge and are armed no-ops until the wavs and aliases exist; a one-shot `RAMPUW airhook armed`
-  marker reports it so this cannot become another silent-forever call site like `coop_uw_strain` was.
+  the plunge and are armed no-ops until the wavs and aliases exist (`RAMPUW airhook armed` reports it).
   22050 mono 16-bit into `sound/coop_tinnitus/` — that path is duck-exempt, anywhere else is inaudible.
 - **2026-09-05/06 Omaha batch (bugs 2473-2511) - SHIPPED as v1.5.2, later builds AWAITING PLAYTEST.** Three
   runs on 09-06 (08:52, 13:03, 18:30) verified from markers everything from the waders to the crowd's
@@ -80,7 +79,8 @@ minidump). gl2 does not share that code path.
   the OCEAN pass (2508: sheet fades out at T 0.82 into the strip's wet line (4-param tCoord, T2 knee), swash blood, a tint +
   break-foam band in the two reclaimed stages, froth + sky sheen offshore, a boat wake (v13 skc
   re-encode), the bob resynced to the sheet's 10 s, gl2 alphaGen dot + a real sun (r_hzmAlphaGenDot),
-  an open-sea wave mesh behind coop_seaMeshOn; A/Bs owed on the stage-2 seam and 1936 thin branches).
+  an open-sea wave mesh behind coop_seaMeshOn - up only from the grounding to the plunge, the ride's
+  sheet is $ocean_calm (2513); A/Bs owed on the stage-2 seam and the 1936 thin branches).
 - **Still open from the 09-04/05 handoff:** the trench grenade an ally promises and nobody throws
   (build or leave - user's call); the coop bazooka team can throw a live rocket (probe shipped, not
   fixed); `docs/02-status-ledger.md:86` still calls gl2 'PAUSED'; bodycam DoF focus pull
