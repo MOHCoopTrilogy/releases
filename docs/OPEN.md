@@ -59,33 +59,33 @@ minidump). gl2 does not share that code path.
   the plunge and are armed no-ops until the wavs and aliases exist; a one-shot `RAMPUW airhook armed`
   marker reports it so this cannot become another silent-forever call site like `coop_uw_strain` was.
   22050 mono 16-bit into `sound/coop_tinnitus/` — that path is duck-exempt, anywhere else is inaudible.
-- **2026-09-05/06 Omaha batch (bugs 2473-2499) - SHIPPED as v1.5.2, third build AWAITING PLAYTEST.** Two runs on 09-06
-  (08:52, 13:03) verified from markers: waders, seabed bodies, hull FX, obstacle wash, bazooka pose,
-  the underwater sequence, the captain's exchange (`FIRSTSEQ start`), the radio call and reply
-  (`RADIOTX`), 044a and the whistles, the advance (`BEACHADV fired`), flank guns 2 and 4 firing
-  (`drvfire=1`; guns 1 and 3 read `see=0` - sightline), the crowd's charge. DISPROVED and re-fixed: the
-  Higgins sink (never rolled in four runs - a solid clip, then the hull's model swap making a boat-sized
-  SOLID_BBOX, 2487/2496), the beach fire (the cover test's trace ended inside the player's own box, no
-  hit landed since 08-31, 2497), the crowd's poses (numbered members of `random` groups, one-shot
-  clips, a failsafe lerp to the wire, 2498), the quick-draw flip axis (2499). Still unseen, with the
-  marker that proves each: boat roll (`HIGGINSSINK leg 1 done` ~9 s after `legs`, `complete` ~55 s, no
-  `STALLED`) · beach fire (`BEACHLOS seen=1` on open sand, `BEACHHIT` lines, felt hits; `coop_dmgProbe
-  1` is the engine cross-check) · crowd held crouched / shaking / wounded at the hedgehogs, running on
-  the whistle, prone short of the bank, no `HEDGECROWD drift` lines · quick-draw muzzle up-left with
-  sights up (`coop_qdrawHoldFlip` 0-3 by rcon if not) · weapon-lag rotation · ragged wet line on gl2
-  and gl1. Caveats: a busy voicebank can hold the smoke advance ~17 s; a listener whose snapshot drops
-  the corpse mid-line loses the rest; quick-draw placement also applies in SP; the timber ramp still
-  draws no hits; the water SHEET's own edge is still straight (its edge lives in the 8-stage
-  `zz_coop_shoreline.shader` - a texture bake, next); LOS cover plays no suppression sound (the
-  in-cover branch gets a NULL trigger). FOURTH build (unpublished): boat stare off, pace 0.9, waders
-  slid (2503); smoke blinds the guns (2501); arms carry the lag swing (2502); hull fires at deck height
-  (2504); placeholder underwater aliases reverted, cut the bed (2505); radioman pair moved (2506).
+- **2026-09-05/06 Omaha batch (bugs 2473-2511) - SHIPPED as v1.5.2, later builds AWAITING PLAYTEST.** Three
+  runs on 09-06 (08:52, 13:03, 18:30) verified from markers everything from the waders to the crowd's
+  charge (`FIRSTSEQ start`, `RADIOTX`, 044a, whistles, `BEACHADV fired`, flank guns 2 and 4 `drvfire=1`;
+  guns 1 and 3 read `see=0` - sightline) and, at 18:30, the Higgins sink at last (`HIGGINSSINK leg 1..4
+  done`, `complete` +56 s) after four runs where it never rolled (a solid clip, then the hull's
+  model swap making it SOLID_BBOX, 2487/2496). Also DISPROVED and re-fixed: beach fire (the cover trace
+  ended inside the player's own box, 2497), crowd poses (2498), quick-draw flip axis (2499). Still
+  unseen, with the marker that proves each: beach fire (`BEACHLOS seen=1` on open sand, `BEACHHIT`,
+  felt hits; `coop_dmgProbe 1` is the engine cross-check) · crowd crouched / shaking / wounded at the
+  hedgehogs, running on the whistle, prone short of the bank, no `HEDGECROWD drift` · quick-draw muzzle
+  up-left, sights up (`coop_qdrawHoldFlip` 0-3 by rcon if not) · weapon-lag rotation · ragged wet line
+  on gl2 and gl1 · the sink's END STATE (roll 30 / drop 72, ramp dead bound, 2510) · caustics dimmed
+  (2509) · urgency after the smoke (`URGENCY say`, 2511). Caveats: a busy voicebank can hold the smoke
+  advance ~17 s; the timber ramp draws no hits; LOS cover plays no suppression sound (NULL trigger in
+  the in-cover branch). Unpublished builds: boat stare off, pace 0.9, waders slid (2503); smoke blinds
+  the guns (2501); arms carry the lag swing (2502); hull fires at deck height (2504); placeholder
+  aliases reverted (2505); radioman pair moved (2506); the DROWNING pass (2507: air ramp `RAMPUW air=`,
+  heart `bpm=`, bubbles `burst=`, lid `alpha=`, exit flash/ring/inhale, caustics on the real seabed);
+  the OCEAN pass (2508: sheet fades out at T 0.82 into the strip's wet line (4-param tCoord, T2 knee), swash blood, a tint +
+  break-foam band in the two reclaimed stages, froth + sky sheen offshore, a boat wake (v13 skc
+  re-encode), the bob resynced to the sheet's 10 s, gl2 alphaGen dot + a real sun (r_hzmAlphaGenDot),
+  an open-sea wave mesh behind coop_seaMeshOn; A/Bs owed on the stage-2 seam and 1936 thin branches).
 - **Still open from the 09-04/05 handoff:** the trench grenade an ally promises and nobody throws
   (build or leave - user's call); the coop bazooka team can throw a live rocket (probe shipped, not
   fixed); `docs/02-status-ledger.md:86` still calls gl2 'PAUSED'; bodycam DoF focus pull
-  (recommended, not built); the sprint one-handed carry was REFUSED as procedural - the hands are
-  posed by the viewmodel clip, so a one-handed raised carry needs a clip (a two-handed high port as a
-  rigid rig rotation about the grip IS reachable if wanted); water research #1 is built (bug-2485),
+  (recommended, not built); the sprint one-handed carry needs a viewmodel clip (refused as procedural, see DECISIONS.md);
+  water research #1 is built (bug-2485),
   #2+ stay ranked in `docs/proposals/water_omaha_2026-09-05/`; ricochet research (feasible, engine
   pair, ~250 lines) is filed in `docs/proposals/ricochet_2026-09-06/` - not built.
 - **The muffle's one unverifiable premise:** whether OpenAL Soft applies `AL_DIRECT_FILTER` to an

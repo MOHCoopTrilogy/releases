@@ -13,28 +13,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `890c908 2026-09-06 docs: fourth Omaha build of 09-06, drowning research filed` |
-| commits | 219 |
+| HEAD | `417ace8 2026-09-06 docs: ocean research filed, wet-sand generator checked in, drowning build logged` |
+| commits | 220 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **4 modified, 1 untracked** |
-| unstaged diff | 4 files changed, 10 insertions(+), 8 deletions(-) |
+| **uncommitted** | **5 modified, 7 untracked** |
+| unstaged diff | 5 files changed, 57 insertions(+), 55 deletions(-) |
 
-> Working tree is dirty. Everything in those 5 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 12 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 8 |
+| 2026-09 | 9 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (219)
+### Commits since 2026-01-01 (220)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `417ace8` | 2026-09-06 | joncurry94-tech | docs: ocean research filed, wet-sand generator checked in, drowning build logged |
 | `890c908` | 2026-09-06 | joncurry94-tech | docs: fourth Omaha build of 09-06, drowning research filed |
 | `d816d3e` | 2026-09-06 | joncurry94-tech | docs: regenerate after the v1.5.2 publish |
 | `fcc148a` | 2026-09-06 | joncurry94-tech | manifest 1.5.2 |
@@ -263,9 +264,10 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | HEAD | `8d9b3240 2026-09-06 Omaha: the drowning pass - air ramp, heart, bubbles, lid, exit, caustics` |
 | commits | 1,597 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **0 modified, 5 untracked** |
+| **uncommitted** | **7 modified, 11 untracked** |
+| unstaged diff | 7 files changed, 487 insertions(+), 67 deletions(-) |
 
-> Working tree is dirty. Everything in those 5 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 18 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
@@ -570,8 +572,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `5f1a74cc 2026-09-06 feat: underwater air ramp in the gl2 water pass, faster water-out` |
-| commits | 5,088 |
+| HEAD | `6fe11c4d 2026-09-06 feat(gl2): alphaGen dot/oneMinusDot port and a real sun for lightingSpecular` |
+| commits | 5,089 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 3 untracked** |
 
@@ -581,7 +583,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 5 |
+| 2026-09 | 6 |
 | 2026-08 | 103 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
@@ -643,10 +645,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (123)
+### Commits since 2026-01-01 (124)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `6fe11c4d` | 2026-09-06 | joncurry94 | feat(gl2): alphaGen dot/oneMinusDot port and a real sun for lightingSpecular |
 | `5f1a74cc` | 2026-09-06 | joncurry94 | feat: underwater air ramp in the gl2 water pass, faster water-out |
 | `fa5debe6` | 2026-09-06 | joncurry94 | fix: quick-draw flip about X; the arms carry the weapon-lag swing |
 | `acab7986` | 2026-09-06 | joncurry94 | feat: quick-draw sidearm, weapon-lag rotation, actor think-state names |

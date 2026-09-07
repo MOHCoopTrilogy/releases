@@ -235,8 +235,7 @@ source is not corroboration, and the expensive fix refuted by measurement — no
   water during the underwater cinematic; a ~120-piece drowned-kit wreckage field seated by world trace;
   the shock sequence rebuilt to 17.4s (plunge → seabed → 12s on the bottom → swim up) with the user's new
   shellshock and underwater beds and 15 reverb-baked "voices from the past"; and real bunker-MG tracer
-  fire into the Higgins with visible bullet impacts on the men. One intermittent 0xC0000005 in ntdll seen
-  once and not reproduced in five further boots — logged as bug-2341, NOT closed.
+  fire into the Higgins with visible bullet impacts on the men. One 0xC0000005 in ntdll (bug-2341, open).
 - **2026-09-05** - Omaha, the six in-flight lanes landed (bugs 2473-2483): flank MG42 crews fire (a
   gunner NAME mg42_active could never bind), the radioman goes silent and the player transmits, the 044a
   voices came back from a local.ok int/array collision, waders and seabed kills retimed into the swim,
@@ -245,4 +244,5 @@ source is not corroboration, and the expensive fix refuted by measurement — no
 - **2026-09-06** **v1.5.2 released** (github + discord + baked field report) after two runs: the
   Higgins sink had never moved (a clip, then a model swap, 2487/2496), beach fire vetoed since 08-31
   (2497), the captain's exchange never fired (2490); quick-draw flipped (2491/2499), ragged wet line
-  (2493), hedgehog crowd (2495/2498); ricochet research filed.
+  (2493), hedgehog crowd (2495/2498); ricochet research filed. Evening: drowning pass (2507)
+  and ocean pass (2508); sink end, caustics, urgency (2509-11).

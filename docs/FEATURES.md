@@ -598,13 +598,10 @@ A completed challenge can't be pinned (bug-1537) — three independent layers (`
 (`coop_uiD<gi>`, archived so it survives to the disconnected menu).
 
 **Armory unlock-gate closes the native MP options menu** — `SHIPPED-UNVERIFIED` (2026-08-07). Retail
-`ui/multiplayeroptions.urc`'s "Allies Player Model" button wrote straight to `dm_playermodel` via the
-native `playermodel`/`ui_applyplayermodel` commands (`cl_ui.cpp:3512-3550`), with zero awareness of
-the Armory's unlock system — `player.scr::manageAliveSpawning` already heals a locked worn skin back
-on its own, so this was never a hard exploit, but it let the menu "grant" any of ~180 skins that then
-silently reverted. Mod now overrides that one `.urc`; every widget is unchanged except that button,
-which runs `exec ui/loadout/open.cfg` (opens the Armory) instead of cycling the model in place. Axis
-model / rate / name fields untouched. *Anchor:* `ui/multiplayeroptions.urc`. **Pins are per player throughout** — held in `self.flags["coop_pin1..5"]`/`coop_pinN`,
+`ui/multiplayeroptions.urc`'s "Allies Player Model" button set `dm_playermodel` directly (`cl_ui.cpp:3512`),
+blind to the Armory's unlocks; `manageAliveSpawning` healed the skin back, so the menu "granted" skins
+that silently reverted. The mod overrides that one `.urc`: only that button changes, to `exec
+ui/loadout/open.cfg`. *Anchor:* `ui/multiplayeroptions.urc`. **Pins are per player throughout** — held in `self.flags["coop_pin1..5"]`/`coop_pinN`,
 saved to that player's own `coop_pins_<id>.dat` under the challenge identity, and pushed with a
 per-player `stufftext`; nothing is a `level.` var, so two players in one session keep entirely
 separate lists. Pin by **clicking a challenge row** in the Service Record (same hit box as the
@@ -1111,33 +1108,38 @@ All four still ship; none is superseded.
 
 ## Omaha (m3l1a) 2026-09-05 batch - SHIPPED, AWAITING PLAYTEST
 
-Bugs 2473-2483; three verifier rounds, no confirmed blockers, ~20 concerns folded in. Every beat has a
+Bugs 2473-2511. Every beat has a
 kill switch (`level.coop_*On`) and a `^~^~^` marker; acceptance lines are in OPEN.md.
 
 - **Flank MG42 crews fire** - the crewman was named so `global/mg42_active.scr` could never bind him,
   the script fallback silenced the guns it declined to drive, and the field block was set as commands
   only. `FLANKGUN`/`FLANKMGSTAT` probe; `coop_flankCrewDrive 0` bisect; cap `coop_flankCrewMax`.
-- **Radioman rework** - silent, shot on approach; the PLAYER transmits 036h from the set on his body
-  and 045a answers (`dialog streamed` re-aliases at 200/3000); `dfr_M3L1_300f` 'Just get up the
-  beach!' - finished retail VO spoken by nothing in three games - now the order after the round.
+- **Radioman rework** - silent, shot on approach; the PLAYER transmits 036h from the set on his body,
+  045a answers (`dialog streamed` re-aliases at 200/3000); `dfr_M3L1_300f`, unused retail VO, is the
+  order after the round.
 - **044a voices restored** - a `local.ok` int/array collision had NIL'd both speakers since bug-2451.
-- **Underwater cinematic** - waders retimed into the swim (spawns under the boat look, kills during
-  the strokes, pace-correct); the seven seabed corpses and scripted kills, which had never run once;
-  hull sparks as an aimed 0.25 s burst from a coop-owned `notagaxis` copy of the metal emitter.
+- **Underwater cinematic** - waders retimed into the swim; the seven seabed corpses and kills;
+  hull sparks as an aimed 0.25 s burst from a coop-owned `notagaxis` metal emitter.
 - **Ocean** - `zz_coop_ocean.shader` (flap max 10 -> 1, m3l1a-only), coop Higgins at retail's -563.7,
   six ashore boats re-solved clear of statics and seated by `droptofloor`.
-- **Obstacle wash** - surf sprays against the 72 statics standing in water, five at a time near a
-  player, from the generated obstacle table (`coop_obstWashOn`).
-- **Quick-draw parked primary visible** - re-placed in view space lower-left (`coop_qdrawVOfs/VAng`,
-  probe `coop_qdrawVDbg`), keyed on entnum+tag; the left hand is NOT on it (clip-posed).
-- **Bazooka team pose** - legs in the motion slot, gun in the action slot (retail's own pairing);
-  build gate `check_anim_rootless.py` also fails random-group members and computed names.
+- **Obstacle wash** - surf sprays on the 72 statics in water, five nearest a player (`coop_obstWashOn`).
+- **Quick-draw parked primary** - in view lower-left (`coop_qdrawVOfs/VAng`, probe `coop_qdrawVDbg`);
+  the left hand is NOT on it (clip-posed).
+- **Bazooka team pose** - legs in the motion slot, gun in the action slot.
 - **Wet-sand swash + shore foam** (bug-2485/2493) - `zz_coop_wetsand.shader`: a clamped gradient
   multiply moved in T by the waterline flap's wave, and wash2's foam band with its reach baked into
   texture alpha (gl2 drops `alphaGen tCoord` without a deform, 2486), both ragged on a 256 u period.
 - **Omaha 09-06 pass** - Higgins sink never rolled in four runs (a solid clip, then the hull's model
   swap making it SOLID_BBOX, 2487/2496); beach fire restored (cover trace ended in the player's box,
   2497); captain's exchange gated (2490); hedgehog crowd (2495/2498); quick-draw X flip (2499).
+- **Drowning pass** (2507) - air ramp into the gl2 water pass (tunnel, desaturation, blur, pulse),
+  heart one-shots on a carrier, bubbles, the lid seen from below, thrash, a real exit; caustics (dimmed
+  18%, 2509). **Sink end state** roll 30 / drop 72, ramp dead ride the deck (2510). **Urgency** after
+  the smoke: seven m3l1 shouts + attack pool, no man twice, `URGENCY say` (2511).
+- **Ocean pass** (2508) - sheet fades out at T 0.82 into the strip's wet line (4-param tCoord, T2 knee), swash blood, a tint +
+  break-foam band in the two reclaimed stages, froth + sky sheen offshore, a boat wake (v13 skc
+  re-encode), the bob resynced to the sheet's 10 s, gl2 alphaGen dot + a real sun (r_hzmAlphaGenDot),
+  an open-sea wave mesh behind coop_seaMeshOn; A/Bs owed on the stage-2 seam and 1936 thin branches.
 
 ## m2l2a Phase C - the player-initiated CONTAIN (2026-08-10) - SHIPPED, partly verified
 

@@ -750,13 +750,13 @@ correct (`bh_water_hard`); a **server** block fires at spawn, so its origin must
 bursts at the world origin. The two read identically in a script.
 
 **A `script_model` carrier renders a tik's `originemitter` blocks and NOTHING ELSE** (bug-2477).
-Every `sfx` block - originspawn sparks, `blockdlight`, volumetric smoke - is recorded only while
-`ClientSpecialEffectsManager::LoadEffects` holds `m_pCurrentSfx`; `StartSFXCommand`
-(cg_commands.cpp:1642) returns at once otherwise, and nothing sets it for an entity spawned from
-script. hd_fxfix's `bh_stone_lite` is nine sfx blocks and no emitter, so the ramp-drop hull hits
-drew nothing for a day while two sessions argued about sprite shaders. A full impact effect from
-script needs the engine's impact message; and an emitter follows a carrier's ANGLES only if its
-block says `notagaxis` - `randvelaxis` otherwise reads the identity tag axis (cg_tempmodels.cpp).
+`sfx` blocks are recorded only while `ClientSpecialEffectsManager::LoadEffects` holds
+`m_pCurrentSfx` (`StartSFXCommand` returns otherwise), and an `originspawn` in `init { client {} }`
+is visited once at registration with NO entity (`BeginOriginSpawn` returns at once) - a one-shot
+burst on a carrier belongs in an animation's `enter` frame commands, as retail exp_flak_near does
+(bug-2507). An emitter follows the carrier's ANGLES only with `notagaxis` (cg_tempmodels.cpp).
+Author counts for `cg_effectdetail 1.0`: the mod ships 1.0, retail's default is 0.2, and
+`count`/`spawnrate` are multiplied by it - x5-for-retail tiks are 5x too dense here (2477, 2507).
 
 **Re-alias dialogue as `dialog streamed`, never `voice loaded`** (bug-2474). Streamed IS the 2D path
 above - no start gate, a linear fade to maxDist, the Dialogue slider, the vox sidechain - so the

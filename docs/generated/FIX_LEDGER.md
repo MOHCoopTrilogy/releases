@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1825** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1829** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -17,7 +17,7 @@
 | 2026-06 | 80 |
 | 2026-07 | 577 |
 | 2026-08 | 918 |
-| 2026-09 | 244 |
+| 2026-09 | 248 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1843,6 +1843,10 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-2505` | 2026-09-06 | `hzm-mohaa-coop-mod/ubersound/coop_audio.scr` | - | The bug-2494 placeholder aliases (coop_uw_hitsand -> coop_uw_impact01, coop_uw_strain -> coop_uwbreath01) made the plunge WORSE: the drowning researc… | Both placeholder aliases removed; the comment in coop_audio.scr records why the 'needs to be aliased' line is the honest state until the user's real… |
 | `bug-2506` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: 'remove the two allies that are right on top of our radiomen, move them somewhere else.' | Anchor 1 is now cover_trigger *124 at (610 1032), the next hedgehog up the beach; the other four anchors and the seat count are unchanged. Mod only. |
 | `bug-2507` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | RV | FEATURE (user: 'Proceed with all of the drowning research ideas'): the eight items of docs/proposals/drowning_2026-09-06 built across renderer, cgame… | (1) AIR RAMP: server stuffs `set coop_uwAir <v>` per beat (coop_uwAirSet, edge-triggered, per-player stufftext in the coop_uwDizzy form, values 1.0 p… |
+| `bug-2508` | 2026-09-06 | `hzm-mohaa-coop-mod/scripts/zz_coop_shoreline.shader` | VP | FEATURE (user: 'Proceed with all of the ocean proposals too'): the eight items of docs/proposals/ocean_2026-09-06 built across shaders, textures, tik… | (1) Sheet hand-off: every live stage of deepbluesea_shoreline fades to alpha 0 by raw T 0.82 with the four-parameter tCoord (the additive stages move… |
+| `bug-2509` | 2026-09-06 | `hzm-mohaa-coop-mod/scripts/zz_coop_seabed.shader` | - | user (screenshot, 18:30 run): 'Something is causing these giant greenish/white squares now under the water' - thick bright bands across the seabed se… | Brightness moved INTO the texture, which every renderer path honours: textures/coop_fx/caustic_dim.tga = the retail jpg at 18% (mean 4.5, max 45 of 2… |
+| `bug-2510` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user (18:30 run): 'our higgins boat seems to be stuck kinda in the air due to the dead bodies that fall'. The log of the same run has the sink COMPLE… | coop_higginsSinkRoll 38 -> 30, coop_higginsSinkDrop 26 -> 72 (low gunwale under, high gunwale ~20 u proud at the end); coop_higginsBail binds the dea… |
+| `bug-2511` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: 'When we push up after the smoke drops id like to hear more urgency around me, more people saying Move, go go go, push up, whatever dialogue we… | coop_smokeUrgency, threaded from coop_advanceOnSmoke right after 'BEACHADV fired': a pool of seven shipped m3l1 shouts (102a_2 'Go! Go, get moving',… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

@@ -7,7 +7,7 @@
      ============================================================ -->
 # Engine cvar inventory (generated)
 Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name is a string literal. Anchors are `path:line` relative to that directory. Defaults and flags are verbatim from source.
-- **1945** distinct cvars across **2524** registration sites in **123** translation units.
+- **1946** distinct cvars across **2525** registration sites in **124** translation units.
 - **31** call sites use a computed name (a variable or `va()`) and cannot be listed here. That number is reported rather than hidden - if it grows, something is registering cvars this inventory cannot see.
 - **57** cvars are registered with **different defaults** in different files. Those are real (usually renderergl1 vs renderergl2), not transcription errors.
 
@@ -15,7 +15,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | prefix | distinct cvars |
 |---|---:|
 | `coop_` | 489 |
-| `r_` | 407 |
+| `r_` | 408 |
 | `cg_` | 235 |
 | `g_` | 194 |
 | `sv_` | 90 |
@@ -1936,6 +1936,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `r_greyscale` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1466` |
 | `r_hdr` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1471` |
 | `r_hzmAlphaGenCoord` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1535` |
+| `r_hzmAlphaGenDot` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_glsl.c:2019` |
 | `r_hzmDlightShadowCasters` | `3` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1881` |
 | `r_hzmDlightShadowChars` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1889` |
 | `r_hzmDlightShadowDebug` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1895` |
@@ -2249,8 +2250,8 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `r_singleShader` | `0` | `CVAR_CHEAT \| CVAR_LATCH` | `renderergl2/tr_init.c:1908` |
 | `r_skeldiag` | `0` | `CVAR_TEMP` | `renderergl2/tr_model.cpp:68` |
 | `r_skeldiag` | `0` | `CVAR_TEMP` | `renderergl2/tr_model.cpp:224` |
-| `r_skeldiag` | `0` | `0` | `renderergl2/tr_shade.c:2655` |
-| `r_skeldiag` | `0` | `0` | `renderergl2/tr_shade.c:2827` |
+| `r_skeldiag` | `0` | `0` | `renderergl2/tr_shade.c:2706` |
+| `r_skeldiag` | `0` | `0` | `renderergl2/tr_shade.c:2878` |
 | `r_skipBackEnd` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1575` |
 | `r_skipBackEnd` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1968` |
 | `r_skybox_farplane` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1672` |
@@ -2298,7 +2299,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `r_test_maskrfx` | `0` | `0` | `renderergl2/tr_model.cpp:119` |
 | `r_test_noprepass` | `0` | `0` | `renderergl2/tr_model.cpp:115` |
 | `r_test_twosided` | `0` | `0` | `renderergl2/tr_model.cpp:116` |
-| `r_test_twosided` | `0` | `0` | `renderergl2/tr_shade.c:2703` |
+| `r_test_twosided` | `0` | `0` | `renderergl2/tr_shade.c:2754` |
 | `r_texturebits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1397` |
 | `r_texturebits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1440` |
 | `r_textureDetails` | `1` | `33` | `renderergl1/tr_init.c:1396` |
