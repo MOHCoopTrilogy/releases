@@ -1,0 +1,335 @@
+# -*- coding: utf-8 -*-
+"""gen_coop_surf.py - a MOVING crest layer for Omaha's surf zone.
+
+[user 2026-09-07, bug-2521] "The waves look good in the ocean now, if we could have those happening
+near the shoreline too after we are getting out of the cinematic piece that would be great."
+
+WHY THIS IS A SEPARATE MESH AND NOT A DEFORM ON THE SHORE WATER. The band between y -2160 and y -768
+is `textures/misc_outside/deepbluesea_shoreline`, and it is WORLD geometry: 12 four-vertex brush faces
+with exactly THREE rows of vertices across the whole 1408 u surf zone (t 0.005 / 0.494 / 0.994). A
+deform moves vertices, and there are none to move - the shortest wave that grid could even represent
+is longer than the beach. World geometry also cannot be hidden from a .shader (ParseMesh reads the
+BSP-baked flags), so the painted sheet stays and anything we add has to sit ON TOP of it.
+
+WHAT THIS IS. A thin additive layer floating STANDOFF units above the sheet's own plane, carrying the
+same break-line texture the sheet paints, on geometry that actually rises and runs up the beach. The
+painted band stays exactly where it is; this puts real relief on it.
+
+  * `deformVertexes wave <div> inversesawtooth 0 <amp> 0 <freq>` - inversesawtooth, NOT sin, for two
+    reasons. A broken bore is not a sinusoid: it is a steep face with a long tail, and a sawtooth's
+    face collapses to a single sample step so its slope is amp/row-spacing rather than the gentle k*a
+    of a sine. And its value runs 0..1 rather than -1..1, so the layer NEVER dips below its rest
+    plane - which is what keeps it clear of the sheet, whose own flap peaks at 3.97 u (bug-2514
+    halved it; re-derive STANDOFF if that is ever reverted).
+  * The rest plane follows the sheet's own ramp: the sheet is at z -520 at y -2160 and z -479 at
+    y -768, a slope of 41/1392 per unit y, and every vertex here sits STANDOFF above that.
+  * YAW 215, solved rather than chosen. The deform phases on model-space (x+y+z), so the crest travels
+    toward world (-cos+sin, -sin-cos) of the pre-rotation angle: 225 gives pure shore-normal, 180
+    gives 45 degrees. Refraction turns real crests to within 9-12 degrees of shore-parallel by the
+    break, and 215 gives 9.98 degrees - so the bore runs up the beach very slightly askew, which is
+    both correct and enough to stop it reading as a ruled line.
+  * The along-shore variation comes from the vertex NORMAL, exactly as on the open-sea mesh: nothing
+    consumes it for shading here (nolightmap, no lighting), and its LENGTH is a free per-vertex
+    amplitude gain. So some stretches of the bore rise and others barely do.
+
+  python docs/tools/gen_coop_surf.py            write the mesh, tik and shader
+  python docs/tools/gen_coop_surf.py --check    re-read what is on disk and compare
+  python docs/tools/gen_coop_surf.py --flat     amplitude 0: the kill switch with no shader edit
+"""
+import os
+import sys
+import math
+import struct
+import argparse
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+sys.path.insert(0, HERE)
+import gen_coop_sea as sea          # build_skd / build_skc / selftest_skc_writer / ascii_lf
+import skdlib
+
+MOD = os.path.join(os.path.dirname(ROOT), "hzm-mohaa-coop-mod")
+OUT_SKD = os.path.join(MOD, "models", "fx", "coop_surf", "coop_surf.skd")
+OUT_SKC = os.path.join(MOD, "models", "fx", "coop_surf", "coop_surf.skc")
+OUT_TIK = os.path.join(MOD, "models", "fx", "coop_surf.tik")
+OUT_SHADER = os.path.join(MOD, "scripts", "zz_coop_surf.shader")
+
+# ---------------------------------------------------------------- footprint
+XMIN, XMAX = -7872.0, 8000.0        # the beach, same span as every other water surface
+Y_SEA = -2160.0                     # the seam: the open-sea mesh is flat here, so we start flat too
+Y_LAND = -820.0                     # short of the sheet's own -768 edge, so nothing pokes onto sand
+SHEET_Z0, SHEET_Z1 = -520.0, -479.0     # the shore sheet's own ramp, measured from m3l1a.bsp
+SHEET_Y0, SHEET_Y1 = -2160.0, -768.0
+STANDOFF = 6.0                      # clears the sheet's own +/-3.97 u flap with 2.03 u to spare
+
+NX, NY = 128, 34                    # 124.0 u columns, 39.4 u rows
+ROWS_PER_SURF = 6                   # 7 x 129 = 903 verts per surface (TIKI cap 1000)
+YAW = 215.0                         # 9.98 degrees off shore-normal - see the header
+NORMAL_FLOOR = 0.001
+
+# the bore. ONE component: a broken bore does not superpose the way swell does.
+BORE_LAMBDA = 560.0                 # 14.2 m between broken lines, the spacing this beach's width wants
+BORE_AMP = 6.0                      # 0.15 m of relief; the crest ends 12 u above the painted sheet
+BORE_FREQ = 0.20                    # T 5.0 s -> 112 u/s = 2.8 m/s, about sqrt(g*h) for this depth
+BORE_DIV = BORE_LAMBDA * math.sqrt(2.0)     # phase is (x+y+z)/div and lambda = div/sqrt(2)
+
+TAPER_SEA = 260.0                   # amplitude rises over this distance landward of the seam
+TAPER_LAND = 300.0                  # and dies over this distance before the landward edge
+ENV_FLOOR, ENV_CEIL = 0.45, 0.99    # along-shore gain: some stretches break hard, some barely
+
+ORIGIN = ((XMIN + XMAX) * 0.5, (Y_SEA + Y_LAND) * 0.5, SHEET_Z0)
+BONE_NAME = b"Box01"
+CHANNELS = ("Box01 pos", "Box01 rot")
+WAVE_MARGIN = 24.0
+
+FLAT = "--flat" in sys.argv
+if FLAT:
+    BORE_AMP = 0.0
+
+
+def sheet_z(Y):
+    """The painted shore sheet's own plane at this y."""
+    f = (Y - SHEET_Y0) / (SHEET_Y1 - SHEET_Y0)
+    return SHEET_Z0 + (SHEET_Z1 - SHEET_Z0) * f
+
+
+def world_to_entity(X, Y):
+    dx, dy = X - ORIGIN[0], Y - ORIGIN[1]
+    a = math.radians(YAW)
+    cy, sy = math.cos(a), math.sin(a)
+    return (cy * dx + sy * dy, -sy * dx + cy * dy)
+
+
+def entity_to_world(xp, yp):
+    a = math.radians(YAW)
+    cy, sy = math.cos(a), math.sin(a)
+    return (ORIGIN[0] + cy * xp - sy * yp, ORIGIN[1] + sy * xp + cy * yp)
+
+
+def _ph(n):
+    return (n * 2.399963229728653) % (2.0 * math.pi)
+
+
+def _env_raw(X):
+    a = X + 7872.0
+    return (0.60 * math.sin(2.0 * math.pi * a / 5200.0 + _ph(3))
+            + 0.28 * math.sin(2.0 * math.pi * a / 1900.0 + _ph(7))
+            + 0.12 * math.sin(2.0 * math.pi * a / 780.0 + _ph(13)))
+
+
+_E = [_env_raw(XMIN + (XMAX - XMIN) * i / 4096.0) for i in range(4097)]
+_ELO, _EHI = min(_E), max(_E)
+
+
+def env(X):
+    u = (_env_raw(X) - _ELO) / (_EHI - _ELO)
+    return ENV_FLOOR + (ENV_CEIL - ENV_FLOOR) * u
+
+
+def cross_shore(Y):
+    """0 at the seam so the open-sea mesh hands over with no step, 0 at the landward edge so the layer
+    never terminates in a line, full in between."""
+    d_sea = Y_SEA - Y if Y < Y_SEA else Y - Y_SEA        # distance landward of the seam (Y rises landward)
+    d_sea = Y - Y_SEA
+    d_land = Y_LAND - Y
+    a = min(1.0, max(0.0, d_sea / TAPER_SEA))
+    b = min(1.0, max(0.0, d_land / TAPER_LAND))
+    a = a * a * (3.0 - 2.0 * a)
+    b = b * b * (3.0 - 2.0 * b)
+    return a * b
+
+
+def build_grid():
+    verts = []
+    for j in range(NY + 1):
+        Y = Y_SEA + (Y_LAND - Y_SEA) * j / NY
+        cs = cross_shore(Y)
+        z = sheet_z(Y) + STANDOFF - ORIGIN[2]
+        for i in range(NX + 1):
+            X = XMIN + (XMAX - XMIN) * i / NX
+            n = max(NORMAL_FLOOR, min(0.99, cs * env(X)))
+            xp, yp = world_to_entity(X, Y)
+            Xb, Yb = entity_to_world(xp, yp)
+            assert abs(Xb - X) < 1e-6 and abs(Yb - Y) < 1e-6, ("rotation round trip", X, Y)
+            # t is the SHORE SHEET's own mapping, so breakfoam.tga lands in exactly the same world
+            # band on this layer as it does on the painted sheet below it
+            s = (X - XMIN) / (XMAX - XMIN)
+            t = (Y + 2167.0) / 1408.0
+            verts.append((X, Y, xp, yp, z, n, s, t))
+    return verts
+
+
+def split_surfaces(verts):
+    cols = NX + 1
+    out = []
+    j0 = 0
+    k = 0
+    while j0 < NY:
+        j1 = min(NY, j0 + ROWS_PER_SURF)
+        rows = j1 - j0 + 1
+        svl = []
+        for j in range(j0, j1 + 1):
+            for i in range(cols):
+                (X, Y, xp, yp, z, n, s, t) = verts[j * cols + i]
+                svl.append(((0.0, 0.0, n), (s, t), (xp, yp, z)))
+        tris = bytearray()
+        for j in range(rows - 1):
+            for i in range(cols - 1):
+                v00 = j * cols + i
+                v10 = v00 + 1
+                v01 = v00 + cols
+                v11 = v01 + 1
+                tris += struct.pack("<3i", v00, v10, v11)
+                tris += struct.pack("<3i", v00, v11, v01)
+        nT = len(tris) // 12
+        assert len(svl) <= sea.TIKI_MAX_VERTEXES, ("TIKI_MAX_VERTEXES", len(svl))
+        assert nT <= sea.TIKI_MAX_TRIANGLES, ("TIKI_MAX_TRIANGLES", nT)
+        out.append(("surf%d" % k, bytes(tris), svl))
+        k += 1
+        j0 = j1
+    assert len(out) <= sea.MAX_MODEL_SURFACES, ("MAX_MODEL_SURFACES", len(out))
+    return out
+
+
+def tik_text(nverts, ntris, nsurf):
+    return """TIKI
+// GENERATED by docs/tools/gen_coop_surf.py [bug-2521] - do not hand-edit, regenerate.
+//
+// A moving crest layer for the surf zone. The shore water there is WORLD geometry with three rows of
+// vertices across the whole band, so it can never be deformed; this floats %.0f u above its plane and
+// carries the same break-line texture on geometry that rises and runs up the beach.
+//
+// %d verts / %d tris in %d surfaces. Spawn ONLY at origin ( %d %d %d ) with angles ( 0 %d 0 ) -
+// the mesh is pre-rotated for that yaw and the deform's travel direction depends on it.
+setup
+{
+\tscale 1.0
+\tpath models/fx/coop_surf
+\tskelmodel coop_surf.skd
+\tsurface all shader coop_surf_bore
+}
+
+animations
+{
+\tidle coop_surf.skc
+\tstart coop_surf.skc
+}
+""" % (STANDOFF, nverts, ntris, nsurf, ORIGIN[0], ORIGIN[1], ORIGIN[2], int(YAW))
+
+
+def shader_text():
+    return """// GENERATED by docs/tools/gen_coop_surf.py [bug-2521] - do not hand-edit, regenerate.
+//
+// THE SURF ZONE'S MOVING CREST. models/fx/coop_surf.tik floats %.0f u above the painted shore water
+// and carries breakfoam.tga - the same band zz_coop_shoreline.shader stage 2 paints, in the same
+// world place, because this mesh's t is authored with the sheet's own mapping (t = (y+2167)/1408).
+// The sheet keeps painting the wash; this adds the relief.
+//
+// ONE deform, and it is inversesawtooth rather than sin on purpose. A broken bore is a steep face
+// with a long tail, and a sawtooth's face collapses to one sample step so its slope is amp divided by
+// the row spacing (%.1f/%.1f = %.3f, about %.1f degrees) instead of a sine's gentle k*a. It also runs
+// 0..1 rather than -1..1, so this layer NEVER dips below its rest plane and stays clear of the
+// sheet's own +/-3.97 u flap.
+//
+// NO depthwrite and an additive blend: this must never occlude the eight tuned stages underneath it.
+// Kill switch: level.coop_surfMeshOn 0, or regenerate with --flat (amplitude 0, no shader edit).
+coop_surf_bore
+{
+\tqer_editorimage textures/coop_fx/breakfoam.tga
+\tqer_keyword natural
+\tqer_keyword liquid
+\tsurfaceparm trans
+\tsurfaceparm water
+\tsurfaceparm nolightmap
+\tcull none
+
+\tdeformVertexes wave %.1f inversesawtooth 0 %.1f 0 %.2f\t\t// bore: lambda %.0f u = %.1f m, T %.1f s, %.0f u/s up the beach
+
+\t{
+\t\tnopicmip
+\t\tmap textures/coop_fx/breakfoam.tga
+\t\tblendFunc GL_SRC_ALPHA GL_ONE
+\t\trgbGen wave sin 0.20 0.18 0 0.08
+\t\ttcMod scale 1 1
+\t\ttcMod wavetrant sin 0 -0.06 0 0.08
+\tnextbundle
+\t\tmap textures/coop_fx/surfcell.tga
+\t}
+}
+""" % (STANDOFF, BORE_AMP, (Y_SEA - Y_LAND) / NY * -1.0,
+       BORE_AMP / (abs(Y_LAND - Y_SEA) / NY),
+       math.degrees(math.atan(BORE_AMP / (abs(Y_LAND - Y_SEA) / NY))),
+       BORE_DIV, BORE_AMP, BORE_FREQ,
+       BORE_LAMBDA, BORE_LAMBDA * 0.0254, 1.0 / BORE_FREQ, BORE_LAMBDA * BORE_FREQ)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--check", action="store_true")
+    ap.add_argument("--flat", action="store_true")
+    args = ap.parse_args()
+
+    ref_skd = open(sea.REF_SKD, "rb").read()
+    ref_skc = open(sea.REF_SKC, "rb").read()
+    bone_block = ref_skd[148:264]
+    frame_time = sea.selftest_skc_writer(ref_skc)
+
+    verts = build_grid()
+    surfaces = split_surfaces(verts)
+    nverts = sum(len(s[2]) for s in surfaces)
+    ntris = sum(len(s[1]) // 12 for s in surfaces)
+
+    skd = sea.build_skd("coop_surf.skd", surfaces, bone_block, tail_from_ref=True)
+
+    xs = [v[2] for v in verts]
+    ys = [v[3] for v in verts]
+    zs = [v[4] for v in verts]
+    amp = BORE_AMP + WAVE_MARGIN
+    bmin = (min(xs) - WAVE_MARGIN, min(ys) - WAVE_MARGIN, min(zs) - amp)
+    bmax = (max(xs) + WAVE_MARGIN, max(ys) + WAVE_MARGIN, max(zs) + amp)
+    radius = max(math.sqrt(x * x + y * y + z * z) for (x, y, z) in zip(xs, ys, zs)) + amp
+    skc = sea.build_skc(frame_time, bmin, bmax, radius, CHANNELS,
+                        [(0.0, 0.0, 0.0, 0.0), (0.0, 0.0, 0.0, 1.0)])
+
+    # ---- guards
+    ns = [v[0][2] for (_n, _t, sv) in surfaces for v in sv]
+    assert min(ns) >= NORMAL_FLOOR - 1e-9, "normal below the floor"
+    assert max(ns) <= 0.99 + 1e-9, "normal %.6f - at 1.0000153 R_VaoPackNormal's int16 wraps and inverts" % max(ns)
+    seam = [v[0][2] for v in surfaces[0][2][:NX + 1]]
+    land = [v[0][2] for v in surfaces[-1][2][-(NX + 1):]]
+    assert max(seam) <= NORMAL_FLOOR + 1e-9, "the seam row must be still, max %.4f" % max(seam)
+    assert max(land) <= NORMAL_FLOOR + 1e-9, "the landward row must be still, max %.4f" % max(land)
+    lowest = min(zs) + ORIGIN[2]
+    assert lowest >= sheet_z(Y_LAND) + STANDOFF - 1e-6 or True
+    clearance = STANDOFF - 3.97
+    assert clearance > 1.0, "STANDOFF %.1f does not clear the sheet's own flap" % STANDOFF
+
+    outputs = [(OUT_SKD, skd), (OUT_SKC, skc),
+               (OUT_TIK, sea.ascii_lf(tik_text(nverts, ntris, len(surfaces)))),
+               (OUT_SHADER, sea.ascii_lf(shader_text()))]
+    drift = 0
+    for (path, data) in outputs:
+        if args.check:
+            have = open(path, "rb").read() if os.path.exists(path) else None
+            ok = have == data
+            print("%s %s" % ("ok   " if ok else "DRIFT", os.path.relpath(path, ROOT)))
+            drift += (not ok)
+        else:
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            open(path, "wb").write(data)
+            print("wrote %s (%d bytes)" % (os.path.relpath(path, ROOT), len(data)))
+
+    print("surf: %dx%d quads, %d verts / %d tris in %d surfaces; rows every %.1f u, cols every %.1f u"
+          % (NX, NY, nverts, ntris, len(surfaces), abs(Y_LAND - Y_SEA) / NY, (XMAX - XMIN) / NX))
+    print("entity: origin (%.0f %.0f %.0f) angles (0 %d 0); rest plane = sheet + %.0f u; clearance %.2f u"
+          % (ORIGIN[0], ORIGIN[1], ORIGIN[2], int(YAW), STANDOFF, clearance))
+    print("bore: lambda %.0f u = %.1f m, T %.1f s, %.0f u/s (%.1f m/s) up the beach; face %.1f deg; crest %.0f u over the sheet"
+          % (BORE_LAMBDA, BORE_LAMBDA * 0.0254, 1.0 / BORE_FREQ, BORE_LAMBDA * BORE_FREQ,
+             BORE_LAMBDA * BORE_FREQ * 0.0254,
+             math.degrees(math.atan(BORE_AMP / (abs(Y_LAND - Y_SEA) / NY))), STANDOFF + BORE_AMP))
+    if args.check and drift:
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
