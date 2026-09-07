@@ -522,7 +522,7 @@ docs/proposals/objective_audit/scan_t-extra.md	12769	.md	213	docs
 docs/proposals/objective_challenges.md	13054	.md	203	docs
 docs/proposals/objective_challenges_vetted.md	31284	.md	393	docs
 docs/proposals/ocean_2026-09-06/README.md	25650	.md	293	docs
-docs/proposals/ocean_2026-09-06/seamesh_spawn.scr	2393	.scr	39	docs
+docs/proposals/ocean_2026-09-06/seamesh_spawn.scr	2369	.scr	39	docs
 docs/proposals/orphan_challenge_triage.md	7559	.md	113	docs
 docs/proposals/pinned_challenges.md	34613	.md	531	docs
 docs/proposals/postfx_ghost/01_lifecycle.md	19587	.md	229	docs
@@ -561,7 +561,7 @@ docs/public/fixes/build-deploy-tooling.md	14478	.md	34	docs
 docs/public/fixes/engine-crashes.md	195797	.md	327	docs
 docs/public/fixes/maps-missions.md	96269	.md	174	docs
 docs/public/fixes/multiplayer-networking.md	32473	.md	67	docs
-docs/public/fixes/other.md	104071	.md	198	docs
+docs/public/fixes/other.md	104775	.md	199	docs
 docs/public/fixes/stealth-disguise-contain.md	54594	.md	101	docs
 docs/public/fixes/ui-hud-menus.md	134904	.md	240	docs
 docs/public/fixes/vehicles-rides.md	26074	.md	57	docs
@@ -615,7 +615,7 @@ docs/tools/gen_caustic.py	1812	.py	31	docs
 docs/tools/gen_chatter_pools.py	8881	.py	167	docs
 docs/tools/gen_clip_art.py	5677	.py	114	docs
 docs/tools/gen_clip_skins.py	16429	.py	356	docs
-docs/tools/gen_coop_sea.py	31712	.py	579	docs
+docs/tools/gen_coop_sea.py	39587	.py	712	docs
 docs/tools/gen_coop_vo_override.py	15848	.py	288	docs
 docs/tools/gen_coop_wake_skc.py	10066	.py	195	docs
 docs/tools/gen_cos_reqs.py	5667	.py	116	docs
@@ -2491,8 +2491,8 @@ hzm-mohaa-coop-mod/maps/m2l2c.scr	6394	.scr	195	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m2l2c_precache.scr	2819	.scr	82	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m2l3.scr	34782	.scr	1143	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m2l3_precache.scr	3738	.scr	107	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/m3l1a.scr	347654	.scr	9215	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr	975573	.scr	18547	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/m3l1a.scr	348377	.scr	9223	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr	976404	.scr	18558	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1a/obstacles.scr	61265	.scr	419	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1a_precache.scr	10087	.scr	215	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1b.pth	418194	.pth	0	hzm-mohaa-coop-mod
@@ -3201,9 +3201,9 @@ hzm-mohaa-coop-mod/models/fx/coop_gunsmoke.tik	1425	.tik	60	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/coop_headgib.tik	507	.tik	16	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/coop_hullspark.tik	2410	.tik	60	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/coop_oilslick.tik	527	.tik	25	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/models/fx/coop_sea.tik	1880	.tik	44	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/fx/coop_sea.tik	2359	.tik	57	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/coop_sea/coop_sea.skc	192	.skc	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/models/fx/coop_sea/coop_sea.skd	129728	.skd	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/models/fx/coop_sea/coop_sea.skd	1036764	.skd	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/coop_severedhead.tik	1564	.tik	37	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/coop_stump_neck.tik	1259	.tik	25	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/models/fx/coop_tank_explosion.tik	2624	.tik	133	hzm-mohaa-coop-mod
@@ -4846,7 +4846,7 @@ hzm-mohaa-coop-mod/scripts/soviet_weapons.shader	2797	.shader	97	hzm-mohaa-coop-
 hzm-mohaa-coop-mod/scripts/us_sniper.shader	1445	.shader	67	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/venom.shader	1709	.shader	75	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/zz_coop_ocean.shader	13621	.shader	220	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/scripts/zz_coop_sea.shader	2511	.shader	60	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/scripts/zz_coop_sea.shader	2747	.shader	63	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/zz_coop_seabed.shader	5959	.shader	82	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/zz_coop_shoreline.shader	23643	.shader	359	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/zz_coop_wake.shader	1459	.shader	35	hzm-mohaa-coop-mod
@@ -14376,8 +14376,8 @@ hzm-mohaa-coop-mod/ui/proto/coop_proto_chrome.inc	8054	.inc	226	hzm-mohaa-coop-m
 hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	605497407	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	1297551093	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	24238046	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	1297757525	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	24238668	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzzzzz_coop_terrain.pk3	33429489	.pk3	0	hzm-mohaa-coop-mod
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -17478,7 +17478,7 @@ server_home/boot_m1l1.log	519287	.log	0	server_home
 server_home/boot_m3l2.log	194081	.log	0	server_home
 server_home/boot_m3l3.log	498996	.log	0	server_home
 server_home/boot_t2l2.log	172217	.log	0	server_home
-server_home/maintt/OpenMoHAA_server.pid	6	.pid	0	server_home
+server_home/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home
 server_home/maintt/autoexec.cfg	117301	.cfg	1582	server_home
 server_home/maintt/configs/omconfig.cfg	21513	.cfg	758	server_home
 server_home/maintt/coop_defaults.cfg	31649	.cfg	492	server_home
@@ -17506,7 +17506,7 @@ server_home/maintt/prev/qconsole-20260904-151252.log	260732	.log	0	server_home
 server_home/maintt/prev/qconsole-20260904-154803.log	265880	.log	0	server_home
 server_home/maintt/prev/qconsole-20260904-160506.log	2430664	.log	0	server_home
 server_home/maintt/prev/qconsole-20260904-161043.log	1216600	.log	0	server_home
-server_home/maintt/qconsole.log	415826	.log	0	server_home
+server_home/maintt/qconsole.log	409190	.log	0	server_home
 server_home/maintt/qconsole.log.pre_e3l4	302778	.pre_e3l4	0	server_home
 server_home/maintt/qconsole.prev.log	918609	.log	0	server_home
 server_home/maintt/qconsole.prev2.log	630655	.log	0	server_home

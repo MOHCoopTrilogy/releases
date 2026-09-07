@@ -81,9 +81,20 @@ OUT_RECIPE = os.path.join(ROOT, "docs", "proposals", "ocean_2026-09-06", "seames
 
 # ---------------------------------------------------------------- the numbers (LANE-A section 1)
 XMIN, XMAX = -7872.0, 8000.0        # the open-sea patch's x extent (shared corners with the waterline)
-YSEAM, YFAR = -2160.0, -8000.0      # rawT 0 at the seam, 1 at the far edge (zz_coop_ocean.shader)
+YSEAM, YFAR = -2160.0, -13312.0     # [bug-2520] -8000 -> -13312: the mesh now covers the SAME water
+                                    # as $ocean_calm (BSP model 85), which is the sheet the player
+                                    # rides on for the whole approach. At -8000 the mesh ended in a
+                                    # hard 15872 u line 192 u astern of the boat at t=0.
+UV_V_PER_UNIT = 5840.0              # t per world unit is HELD at the old value so that every
+                                    # alphaGen tCoord constant ported from zz_coop_ocean.shader
+                                    # still lands at the same world y. t now runs 0..1.909.
 Z = -520.0                          # all 225 control points of both patches
-NX, NY = 32, 48                     # quads: 496 u in x, 121.7 u in y (the patch draws ~730 u rows)
+NX, NY = 128, 90                    # [bug-2520] SQUARE CELLS, 124.0 x 123.9 u. The yaw-180 rotation
+                                    # (bug-2519) made the deform phase depend on (x+y), which made
+                                    # the 496 u COLUMN pitch load-bearing and nobody raised NX.
+                                    # Reconstruction error sum(a_i*(1-cos(pi*(dx+dy)/div_i))) was
+                                    # 7.12 u = 35.5% of amplitude, with the chop 83% destroyed at
+                                    # worst phase and pulsing as it travelled. Now 1.27 u = 6.3%.
 TAPER_L = 1200.0                    # amplitude reaches 1.0 this far seaward of the seam
 NORMAL_FLOOR = 0.001                # never a true zero normal (tangent maths elsewhere divides)
 YAW = 180.0                         # [bug-2519] 225 -> 180: the wave travelled EXACTLY shore-normal,
@@ -107,7 +118,9 @@ YAW = 180.0                         # [bug-2519] 225 -> 180: the wave travelled 
                                     # which is what refraction actually does.
                                     # coopified.scr:2494 MUST carry the same number.
 ORIGIN = ((XMIN + XMAX) * 0.5, (YSEAM + YFAR) * 0.5, Z)   # (64, -5080, -520)
-ROWS_PER_SURF = 24                  # 25 rows x 33 cols = 825 verts, 1536 tris per surface (caps 1000/2000)
+ROWS_PER_SURF = 6                   # 7 rows x 129 cols = 903 verts per surface (cap 1000), 15
+                                    # surfaces (cap 32). Raised from 24 because the cap is per
+                                    # SURFACE, so a denser grid must be split more finely.
 WAVE_MARGIN = 24.0                  # bounds/radius slack over the summed wave amplitude (8.5)
 BONE_NAME = b"Box01"
 CHANNELS = ("Box01 pos", "Box01 rot")   # the order the reference skc stores them in
@@ -124,18 +137,53 @@ CHANNELS = ("Box01 pos", "Box01 rot")   # the order the reference skc stores the
 #   (43.72 + 16.3k)/141.8, so k = 1.0 puts it at 42%, a correct loaded draught. The failure that
 #   produced the "underwater boats" report (bug-2478) was 89%. WAVE_MARGIN is additive slack over the
 #   summed amplitude, so it does NOT need raising.
-SEA_K = 1.23                        # sea-state scale, set from the ENVELOPE'S FLEET MEAN (0.832),
+SEA_K = 1.55                        # sea-state scale, set from the FLEET MEAN OF THE FULL NORMAL
+                                    # FIELD (0.670 with the shoaling taper in), not from the peak.
+                                    # The taper deliberately holds the far field at SHOAL_FAR so
+                                    # the water GROWS toward the shore, and that costs amplitude
+                                    # out where the fleet forms up, so the amplitudes are
+                                    # compensated by roughly 1/SHOAL_FAR. Result: Hs 0.99 m at the
+                                    # fleet (historical 0.9-1.1 m), 1.46 m at the shoaling peak,
+                                    # max surface slope 5.2 deg at the fleet rising to 7.7 deg in
+                                    # the shoaling band against 6-9 deg for a real Force 4-5 sea,
+                                    # and a retail Higgins submerged 46% - a loaded draught, where
+                                    # the bug-2478 failure was 89%. 0.42 restores the shipped calm.
+                                    # The old 1.23 read low because it was set from the
+                                    # ENVELOPE'S fleet mean (0.832) alone,
                                     # not from its peak: Hs 0.92 m where the fleet forms up and
                                     # 0.99 m at the envelope's maximum, against a historical
                                     # 0.9-1.1 m. Retail Higgins submerged fraction
                                     # (43.72 + 16.3k)/141.8 = 45%, a loaded draught; the
                                     # "underwater boats" failure (bug-2478) was 89%.
                                     # 0.42 restores the shipped calm.
+# [bug-2520] A THIRD COMPONENT, AND IT IS THE LAST ONE ALLOWED. MAX_SHADER_DEFORMS is 3, and a
+# fourth does NOT warn and skip: ParseDeform returns without SkipRestOfLine, the leftover token hits
+# the unknown-parameter branch (tr_shader.c:2851-2854), ParseShader returns qfalse and THE ENTIRE SEA
+# FALLS BACK TO defaultShader. Same on gl1.
+#   WHY a third at all: with no lightmap and identityLighting on this shader, a crest and a trough
+#   render the SAME COLOUR. Relief can only be read from silhouette, texture parallax and occlusion,
+#   so the metric that decides whether the user sees waves is MAX SURFACE SLOPE, not vertex count.
+#   Two components gave 3.56 deg at the fleet against 6-9 deg for a real Force 4-5 sea. Adding this
+#   one takes it to 6.16 deg and drops the occlusion floor from 1447 u to 836 u from a Higgins eye,
+#   so the sea starts reading as relief while it is still only ~20% fogged instead of 41%.
+#   Dispersion: lambda = 1500/sqrt(2) = 1060.7 u = 26.94 m -> deep-water T 4.153 s -> f 0.2408.
 WAVES = (
     # div,  amp, freq,  note
     (3396, 11.5 * SEA_K, 0.16, "swell: lambda 2401 u = 61.0 m, T 6.25 s - the shore crest's own arrival period"),
     (1390, 4.8 * SEA_K, 0.25, "chop:  lambda  983 u = 25.0 m, T 4.00 s"),
+    (1500, 4.61 * SEA_K, 0.240, "steepener: lambda 1061 u = 26.9 m, T 4.17 s - bought for slope, not height"),
 )
+
+# Every frequency must divide the 100 s beat exactly, or a script sampling the same field from
+# level.seaclock (which is the server clock mod 100 s) drifts against what the client draws.
+# freq * 100 must be a whole number: 16, 25 and 24.
+assert len(WAVES) <= 3, (
+    "MAX_SHADER_DEFORMS is 3. A FOURTH deformVertexes does not warn and skip: ParseDeform returns "
+    "without SkipRestOfLine, the leftover token hits the unknown-parameter branch "
+    "(tr_shader.c:2851-2854), ParseShader returns qfalse, and THE ENTIRE SEA FALLS BACK TO "
+    "defaultShader on both renderers. Free a slot before adding one.")
+for _d, _a, _f, _n in WAVES:
+    assert abs(_f * 100.0 - round(_f * 100.0)) < 1e-9, "freq %.4f does not divide the 100 s beat" % _f
 
 TIKI_MAX_VERTEXES, TIKI_MAX_TRIANGLES, MAX_MODEL_SURFACES = 1000, 2000, 32
 
@@ -158,13 +206,90 @@ def entity_to_world(xp, yp):
     return (ORIGIN[0] + cy * xp - sy * yp, ORIGIN[1] + sy * xp + cy * yp)
 
 
+# ---------------------------------------------------------------- the normal field
+# The vertex normal is a free per-vertex channel on this shader: coop_sea_deep is surfaceparm
+# nolightmap with identityLighting stages, so nothing consumes it for shading, and deformVertexes wave
+# displaces each vertex by normal * scale. Its LENGTH is therefore a pure amplitude gain. Nothing
+# renormalises it (TIKI_LoadSKD copies the floats verbatim; R_VaoPackNormal is a pure v*32767+0.5 int16
+# round trip) - which also means any component at or above 1.0000153 WRAPS NEGATIVE and inverts that
+# vertex's wave. NORMAL_CAP keeps a wide margin.
+NORMAL_CAP = 0.99
+
+SHOAL_FAR = 0.72        # far-field gain
+SHOAL_PEAK_D = 450.0    # distance seaward of the seam at which the wave is tallest
+SHOAL_DECAY = 1200.0    # how fast it relaxes to the far field beyond that
+
+
+def shoal(d):
+    """[bug-2520] SHOALING. d is distance seaward of the seam. Real waves GROW as they come into
+    shallow water and then break; the shipped taper faded them monotonically toward the shore, which is
+    backwards, and is why the near water read as dead. This rises from nothing at the waterline to a
+    peak just seaward of it, then relaxes to the far field. The rise also keeps the mesh from poking
+    through the sand at the seam."""
+    if d <= 0.0:
+        return NORMAL_FLOOR
+    rise = min(1.0, d / SHOAL_PEAK_D)
+    rise = rise * rise * (3.0 - 2.0 * rise)          # smoothstep, no corner to catch the ridge
+    if d <= SHOAL_PEAK_D:
+        lvl = 1.0
+    else:
+        lvl = SHOAL_FAR + (1.0 - SHOAL_FAR) * math.exp(-(d - SHOAL_PEAK_D) / SHOAL_DECAY)
+    return max(NORMAL_FLOOR, rise * lvl)
+
+
+def _env_raw(X, Y):
+    a = (X + 7872.0)
+    b = (Y + 2160.0)
+    return (0.65 * math.sin(2.0 * math.pi * a / 11000.0 + 3.440)
+            + 0.35 * math.sin(2.0 * math.pi * a / 4300.0 + 6.000)
+            + 0.30 * math.sin(2.0 * math.pi * (a / 1400.0 + b / 2600.0) + 1.900))
+
+
+def _env_extrema():
+    lo = hi = None
+    for jj in range(0, 121):
+        Yy = YSEAM + (YFAR - YSEAM) * jj / 120.0
+        for ii in range(0, 513):
+            v = _env_raw(XMIN + (XMAX - XMIN) * ii / 512.0, Yy)
+            lo = v if lo is None or v < lo else lo
+            hi = v if hi is None or v > hi else hi
+    return lo, hi
+
+
+_ENV_LO, _ENV_HI = _env_extrema()
+ENV_FLOOR, ENV_CEIL = 0.62, 1.00        # the along-crest height ratio, 1.6:1
+
+
+def env_field(X, Y):
+    u = (_env_raw(X, Y) - _ENV_LO) / (_ENV_HI - _ENV_LO)     # 0..1, smooth, no clamp binding
+    return ENV_FLOOR + (ENV_CEIL - ENV_FLOOR) * u
+
+
+ENV_GAIN = 1.0          # solved below so the product peaks at exactly NORMAL_CAP
+
+
+def _solve_env_gain():
+    global ENV_GAIN
+    peak = 0.0
+    for jj in range(NY + 1):
+        Yy = YSEAM + (YFAR - YSEAM) * jj / NY
+        bs = shoal(YSEAM - Yy)
+        for ii in range(NX + 1):
+            Xx = XMIN + (XMAX - XMIN) * ii / NX
+            v = bs * env_field(Xx, Yy)
+            if v > peak:
+                peak = v
+    ENV_GAIN = NORMAL_CAP / peak
+
+
 # ---------------------------------------------------------------- geometry
 def build_grid():
     """verts: list of (world X, Y, entity x', y', normal_z, s, t); one row per j, seam row first."""
+    _solve_env_gain()
     verts = []
     for j in range(NY + 1):
         Y = YSEAM + (YFAR - YSEAM) * j / NY
-        base = max(NORMAL_FLOOR, min(1.0, (YSEAM - Y) / TAPER_L))
+        base = shoal(YSEAM - Y)
         for i in range(NX + 1):
             X = XMIN + (XMAX - XMIN) * i / NX
             # [bug-2519] ALONG-CREST HEIGHT VARIATION. Even oblique, a crest of constant height is a
@@ -181,16 +306,20 @@ def build_grid():
             # height ratio along the beach instead of 2.9:1. SEA_K is then set from that mean rather
             # than from the peak. The envelope tops out at 0.901, comfortably under the 1.00003 at
             # which R_VaoPackNormal's int16 round trip would wrap negative and INVERT the wave.
-            env = 0.72 + 0.28 * (0.65 * math.sin(2 * math.pi * (X + 7872.0) / 11000.0 + 3.440)
-                                 + 0.35 * math.sin(2 * math.pi * (X + 7872.0) / 4300.0 + 6.000))
-            env = max(0.50, min(1.0, env))
+            # [bug-2520] The two deforms both phase on the SAME (x+y+z) scalar, so every crest is a
+            # straight infinite line at 45 degrees and no amount of deform stacking or retuning can
+            # curve it. But the visible ridge sits where d/ds(E*sin psi) = 0, not where psi = pi/2, so
+            # the AMPLITUDE ENVELOPE displaces the ridge laterally. Three harmonics now, the third
+            # depending on Y as well as X, and the hard clamps replaced by an affine map of the field's
+            # own extrema - a clamp makes the ridge JUMP where it binds.
+            env = env_field(X, Y)
             # the seam row must stay EXACTLY at NORMAL_FLOOR or the skd round-trip assert fails
-            n = NORMAL_FLOOR if base <= NORMAL_FLOOR else max(NORMAL_FLOOR, min(1.0, base * env))
+            n = NORMAL_FLOOR if base <= NORMAL_FLOOR else max(NORMAL_FLOOR, min(NORMAL_CAP, base * env * ENV_GAIN))
             xp, yp = world_to_entity(X, Y)
             Xb, Yb = entity_to_world(xp, yp)
             assert abs(Xb - X) < 1e-6 and abs(Yb - Y) < 1e-6, ("rotation round trip", X, Y, Xb, Yb)
             s = (X - XMIN) / (XMAX - XMIN)
-            t = (YSEAM - Y) / (YSEAM - YFAR)
+            t = (YSEAM - Y) / UV_V_PER_UNIT     # [bug-2520] held, so ported alphaGen constants transfer
             verts.append((X, Y, xp, yp, n, s, t))
     return verts
 
@@ -329,10 +458,10 @@ def tik_text(surfaces, nverts, ntris):
 // two travelling waves; the vertex NORMAL length is the per-vertex amplitude gain, tapering to ~0 on
 // the seam row at y %d so the plane meets the waterline band there with no step and no z-fight.
 //
-// The mesh is PRE-ROTATED by -225 degrees so that `angles ( 0 225 0 )` on the entity lays it
-// axis-aligned in the world: that turns the deform's (x+y+z) phase into a function of world Y alone,
-// which is what makes the crests parallel to the beach and travel shoreward. Spawn it ONLY with that
-// yaw and ONLY at origin ( %d %d %d ).
+// The mesh is PRE-ROTATED so that the entity yaw below lays it into the world. That rotation is what
+// decides which way the deform travels, and the generator prints the value it baked on every run -
+// read it there, never from this comment. The spawn in coopified.scr::coop_seaMeshStart MUST carry
+// the same yaw and the same origin ( %d %d %d ).
 //
 // Bone: Box01 (POSROT, identity pose in coop_sea.skc), lifted from the shipping coop_helmets
 // container pattern. No LOD file, so RB_SkelMesh renders every vertex (pLOD NULL).
@@ -377,8 +506,9 @@ def shader_text():
 // the 64-vert patch a wave is under-sampled; on the coop_sea mesh (121.7 u rows) it is not.
 //
 // `deformVertexes wave <div> sin <base> <amp> <phase> <freq>` phases each vertex by (x+y+z)/div in
-// entity space. The mesh is pre-rotated for yaw 225, so x+y = -sqrt(2)*(Y - oy): the wavelength
-// along world Y is div/sqrt(2) = %s u and a positive freq moves the crests toward +Y = the beach.
+// entity space. NOTE the crest-normal wavelength is div/sqrt(2) = %s u, but the spacing along world
+// X and along world Y is div itself - text here once said otherwise, and that is exactly the sort of
+// sentence a later session uses to pick a wavelength.
 // The per-vertex amplitude is the mesh's own normal length (0 on the seam row, 1 from 1200 u out),
 // so nothing here needs to know where the seam is. Two deforms put this shader on the CPU deform
 // path (tr_local.h:2846), where both are applied (tr_shade_calc.c:704-715); 1,617 verts, trivial.
@@ -418,7 +548,8 @@ coop_sea_deep
 \t{
 \t\tnopicmip
 \t\tmap textures/misc_outside/oceandday1.tga
-\t\tblendFunc add
+\t\tblendFunc GL_SRC_ALPHA GL_ONE
+\t\talphaGen tCoord 0 4 0 1
 \t\ttcMod scale .2 .5
 \t\ttcMod scroll 0 .005
 \tnextbundle
@@ -442,7 +573,7 @@ def recipe_text():
 // crossing a flat sheet shows the sheet in every trough (gen_coop_sea.py header).
 //
 // KILL SWITCH: level.coop_seaMeshOn 0 (default 1). PROBE: '^~^~^ SEAMESH on' / '^~^~^ SEAMESH off'.
-// ORIGIN and YAW are the mesh's own (pre-rotated for yaw 225, centred on the patch footprint): change
+// ORIGIN and YAW are the mesh's own (centred on the patch footprint): change
 // neither without regenerating the mesh.
 //=========================================================================
 coop_seaMeshStart:
@@ -507,9 +638,11 @@ def verify_skd(data, surfaces):
     assert abs(svl[0][0][2] - NORMAL_FLOOR) < 1e-9
     ns = [v[0][2] for (_n, _tb, sv) in surfaces for v in sv]
     assert min(ns) >= NORMAL_FLOOR - 1e-9, "a normal fell below the floor: %.6f" % min(ns)
-    assert max(ns) <= 0.99, "normal length %.6f - above ~1.00003 R_VaoPackNormal's int16 wraps and INVERTS the wave" % max(ns)
+    assert max(ns) <= NORMAL_CAP + 1e-9, \
+        "normal length %.6f - at or above 1.0000153 R_VaoPackNormal's int16 wraps and INVERTS that vertex" % max(ns)
     far = [v[0][2] for v in surfaces[-1][2][-(NX + 1):]]
-    assert 0.50 - 1e-9 <= min(far) and max(far) <= 0.91, "far-edge gain %.3f..%.3f outside the envelope" % (min(far), max(far))
+    assert 0.20 <= min(far) and max(far) <= NORMAL_CAP + 1e-9, \
+        "far-edge gain %.3f..%.3f outside the shoaling envelope" % (min(far), max(far))
     return m
 
 

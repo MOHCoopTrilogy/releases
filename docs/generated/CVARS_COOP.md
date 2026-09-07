@@ -463,7 +463,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_csstress` |  |  |  |  | `coop_mod/coop_selftest_engine.scr:44` (+1) |  |
 | `coop_csstress_ceil` |  |  |  |  | `coop_mod/coop_selftest_engine.scr:148` |  |
 | `coop_csstress_cycles` |  |  |  |  | `coop_mod/coop_selftest_engine.scr:150` |  |
-| `coop_cueCut` | `1` | `0` | `client/snd_dma_new.cpp:114` (+2) |  | `maps/m3l1a.scr:2836` (+1) |  |
+| `coop_cueCut` | `1` | `0` | `client/snd_dma_new.cpp:114` (+2) |  | `maps/m3l1a.scr:2844` (+1) |  |
 | `coop_daylight` | `1` | `0` | `cgame/cg_view.c:7008` (+1) |  |  |  |
 | `coop_dbgForceSeat` |  |  |  | FORCED `0` @ `autoexec.cfg:373` | `maps/t2l2.scr:1389` |  |
 | `coop_dbgNoSeat` |  |  |  | FORCED `0` @ `autoexec.cfg:379` | `maps/t2l2.scr:1383` |  |
@@ -1229,7 +1229,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_ricochet` | `1` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:93` | DEFAULT `1` @ `coop_defaults.cfg:435` |  |  |
 | `coop_riderSolid` |  |  |  | FORCED `1` @ `autoexec.cfg:376` | `maps/t2l2.scr:1447` |  |
 | `coop_save` |  |  |  |  | `maps/e1l3/Sneakers.scr:131` (+4) |  |
-| `coop_sayProbe` |  |  |  |  | `maps/m3l1a/coopified.scr:18520` |  |
+| `coop_sayProbe` |  |  |  |  | `maps/m3l1a/coopified.scr:18531` |  |
 | `coop_scalecheck` |  |  |  |  | `coop_mod/coop_selftest_scaling.scr:70` |  |
 | `coop_scaletest` |  |  |  | other `1` @ `coop_mod/cfg/coop_regression.cfg:47`<br>other `0` @ `coop_mod/cfg/coop_regression_off.cfg:16` | `coop_mod/main.scr:246` |  |
 | `coop_shadowAuto` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:783` | FORCED `1` @ `autoexec.cfg:850` |  |  |
@@ -1763,7 +1763,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_srP8` |  |  |  | FORCED `0` @ `autoexec.cfg:603`<br>other `0` @ `ui/coop_sr_pg0.cfg:9`<br>other `0` @ `ui/coop_sr_pg1.cfg:9`<br>(+28 more) |  | `ui/coop_sr.urc` |
 | `coop_srP9` |  |  |  | FORCED `0` @ `autoexec.cfg:604`<br>other `0` @ `ui/coop_sr_pg0.cfg:10`<br>other `0` @ `ui/coop_sr_pg1.cfg:10`<br>(+28 more) |  | `ui/coop_sr.urc` |
 | `coop_st_autodeploy` |  |  |  |  | `coop_mod/main.scr:256` |  |
-| `coop_st_bangtest` |  |  |  |  | `maps/m3l1a/coopified.scr:18467` |  |
+| `coop_st_bangtest` |  |  |  |  | `maps/m3l1a/coopified.scr:18478` |  |
 | `coop_st_dbno` |  |  |  | other `1` @ `coop_mod/cfg/coop_regression.cfg:36`<br>other `0` @ `coop_mod/cfg/coop_regression_off.cfg:7` | `coop_mod/main.scr:285` |  |
 | `coop_st_engine` |  |  |  | other `1` @ `coop_mod/cfg/coop_regression.cfg:32`<br>other `0` @ `coop_mod/cfg/coop_regression_off.cfg:3` | `coop_mod/main.scr:267` (+1) |  |
 | `coop_st_flanktest` |  |  |  |  | `coop_mod/main.scr:261` |  |
@@ -3259,7 +3259,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_unsponge` |  |  |  | FORCED `1` @ `autoexec.cfg:437` | `coop_mod/aihandler.scr:408` (+1) |  |
 | `coop_uwAir` | `1` | `0` | `cgame/cg_view.c:5898` |  |  |  |
 | `coop_uwAirRate` | `0.6` | `0` | `cgame/cg_view.c:5900` |  |  |  |
-| `coop_uwBedVol` |  |  |  |  | `maps/m3l1a/coopified.scr:13199` |  |
+| `coop_uwBedVol` |  |  |  |  | `maps/m3l1a/coopified.scr:13210` |  |
 | `coop_uwOutRate` | `3.3` | `0` | `cgame/cg_view.c:5868` |  |  |  |
 | `coop_vault` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:18746` |  |  |  |
 | `coop_vaultAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1557` |  |  |  |
@@ -3276,7 +3276,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_vmBlendAds` | `0.30` | `CVAR_ARCHIVE` | `cgame/cg_viewmodelanim.c:516` |  |  |  |
 | `coop_voidDrop` |  |  |  |  | `coop_mod/officer.scr:1706` |  |
 | `coop_voidGuard` |  |  |  |  | `coop_mod/voidguard.scr:16` |  |
-| `coop_voxCut` | `1` | `0` | `client/snd_dma_new.cpp:113` (+2) |  | `maps/m3l1a.scr:2834` (+5) |  |
+| `coop_voxCut` | `1` | `0` | `client/snd_dma_new.cpp:113` (+2) |  | `maps/m3l1a.scr:2842` (+5) |  |
 | `coop_wall` |  |  |  | other `1` @ `coop_mod/cfg/wallgun.cfg:26`<br>other `0` @ `coop_mod/cfg/wallgun_off.cfg:11` | `coop_mod/wallgun.scr:78` (+2) |  |
 | `coop_wall_cmd` |  |  |  |  | `coop_mod/wallgun.scr:42` (+2) |  |
 | `coop_wallH` |  |  |  |  | `coop_mod/wallgun.scr:44` (+5) |  |

@@ -13,28 +13,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `8519ede 2026-09-07 docs: the Omaha water pass and the cell-mask generator` |
-| commits | 223 |
+| HEAD | `507acd7 2026-09-07 docs: the realism pass generators` |
+| commits | 224 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **10 modified, 0 untracked** |
-| unstaged diff | 10 files changed, 388 insertions(+), 128 deletions(-) |
+| **uncommitted** | **5 modified, 0 untracked** |
+| unstaged diff | 5 files changed, 162 insertions(+), 28 deletions(-) |
 
-> Working tree is dirty. Everything in those 10 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 5 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 12 |
+| 2026-09 | 13 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (223)
+### Commits since 2026-01-01 (224)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `507acd7` | 2026-09-07 | joncurry94-tech | docs: the realism pass generators |
 | `8519ede` | 2026-09-07 | joncurry94-tech | docs: the Omaha water pass and the cell-mask generator |
 | `3cb46de` | 2026-09-06 | joncurry94-tech | docs: sea-mesh site caveat (bug-2513), backups pruned from the pack (2512), regenerate |
 | `21d7224` | 2026-09-06 | joncurry94-tech | docs: ocean pass logged, evening fixes, six texture/mesh generators checked in |
@@ -264,8 +265,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `fdb21dd7 2026-09-07 Omaha: a spilling break that wanders, a drifting shore, and an oblique swell` |
-| commits | 1,600 |
+| HEAD | `72a33929 2026-09-07 Omaha: real waves for the whole ride, not eight seconds` |
+| commits | 1,601 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 1 untracked** |
 
@@ -275,7 +276,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 9 |
+| 2026-09 | 10 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -316,10 +317,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (251)
+### Commits since 2026-01-01 (252)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `72a33929` | 2026-09-07 | joncurry94 | Omaha: real waves for the whole ride, not eight seconds |
 | `fdb21dd7` | 2026-09-07 | joncurry94 | Omaha: a spilling break that wanders, a drifting shore, and an oblique swell |
 | `33fc2d7a` | 2026-09-07 | joncurry94 | Omaha: close the ocean-to-shore seam, break the along-shore stripes, unstack the boats |
 | `33ae5971` | 2026-09-06 | joncurry94 | Omaha: the ocean pass, sink end state, dimmed caustics, urgency after the smoke |

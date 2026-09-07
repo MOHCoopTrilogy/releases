@@ -57,4 +57,4 @@ The authored files carry judgement, so they cannot be generated - but they can s
 | `docs/SOURCE_OF_TRUTH.md` | 31 KB | 40 KB | ok |
 | `docs/TRAPS.md` | 70 KB | 70 KB | ok |
 
-Input fingerprint of this generation: `eadaa0cb99058de3000407ff003d35907d46e0a9a18ecaa6ddb63b937d524a4d`
+Input fingerprint of this generation: `4db3d6ed9c8e165f645c855b710872a869b5d776130ba57fe97aa3f217f6647e`
