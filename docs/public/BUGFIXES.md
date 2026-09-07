@@ -6,19 +6,19 @@
 
 Every defect this project has found and fixed, from the day the log was started. This is the raw engineering record rather than a changelog: it gives the cause as well as the symptom, because the cause is usually the useful part.
 
-**1825 fixes logged.**
+**1831 fixes logged.**
 
 | Area | Fixes |
 |---|---:|
 | [Stealth, disguise & contain](fixes/stealth-disguise-contain.md) | 89 |
 | [AI & enemy behaviour](fixes/ai-enemy-behaviour.md) | 520 |
-| [Engine & crashes](fixes/engine-crashes.md) | 311 |
+| [Engine & crashes](fixes/engine-crashes.md) | 313 |
 | [Weapons & combat](fixes/weapons-combat.md) | 134 |
-| [Audio](fixes/audio.md) | 77 |
-| [UI, HUD & menus](fixes/ui-hud-menus.md) | 227 |
+| [Audio](fixes/audio.md) | 78 |
+| [UI, HUD & menus](fixes/ui-hud-menus.md) | 228 |
 | [Vehicles & rides](fixes/vehicles-rides.md) | 45 |
 | [Multiplayer & networking](fixes/multiplayer-networking.md) | 55 |
-| [Maps & missions](fixes/maps-missions.md) | 159 |
+| [Maps & missions](fixes/maps-missions.md) | 161 |
 | [Build, deploy & tooling](fixes/build-deploy-tooling.md) | 22 |
 | [Other](fixes/other.md) | 186 |
 

@@ -13,28 +13,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `21d7224 2026-09-06 docs: ocean pass logged, evening fixes, six texture/mesh generators checked in` |
-| commits | 221 |
+| HEAD | `3cb46de 2026-09-06 docs: sea-mesh site caveat (bug-2513), backups pruned from the pack (2512), regenerate` |
+| commits | 222 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **1 modified, 0 untracked** |
-| unstaged diff | 1 file changed, 3 insertions(+), 3 deletions(-) |
+| **uncommitted** | **7 modified, 1 untracked** |
+| unstaged diff | 7 files changed, 19 insertions(+), 13 deletions(-) |
 
-> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 8 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 10 |
+| 2026-09 | 11 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (221)
+### Commits since 2026-01-01 (222)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `3cb46de` | 2026-09-06 | joncurry94-tech | docs: sea-mesh site caveat (bug-2513), backups pruned from the pack (2512), regenerate |
 | `21d7224` | 2026-09-06 | joncurry94-tech | docs: ocean pass logged, evening fixes, six texture/mesh generators checked in |
 | `417ace8` | 2026-09-06 | joncurry94-tech | docs: ocean research filed, wet-sand generator checked in, drowning build logged |
 | `890c908` | 2026-09-06 | joncurry94-tech | docs: fourth Omaha build of 09-06, drowning research filed |
@@ -262,19 +263,18 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `8d9b3240 2026-09-06 Omaha: the drowning pass - air ramp, heart, bubbles, lid, exit, caustics` |
-| commits | 1,597 |
+| HEAD | `33fc2d7a 2026-09-07 Omaha: close the ocean-to-shore seam, break the along-shore stripes, unstack the boats` |
+| commits | 1,599 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **8 modified, 6 untracked** |
-| unstaged diff | 7 files changed, 487 insertions(+), 67 deletions(-) |
+| **uncommitted** | **0 modified, 1 untracked** |
 
-> Working tree is dirty. Everything in those 14 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 6 |
+| 2026-09 | 8 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -315,10 +315,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (248)
+### Commits since 2026-01-01 (250)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `33fc2d7a` | 2026-09-07 | joncurry94 | Omaha: close the ocean-to-shore seam, break the along-shore stripes, unstack the boats |
+| `33ae5971` | 2026-09-06 | joncurry94 | Omaha: the ocean pass, sink end state, dimmed caustics, urgency after the smoke |
 | `8d9b3240` | 2026-09-06 | joncurry94 | Omaha: the drowning pass - air ramp, heart, bubbles, lid, exit, caustics |
 | `bc97255a` | 2026-09-06 | joncurry94 | Omaha: the sink's hull box, beach fire's own-box trace, crowd poses, smoke cover |
 | `40d9d963` | 2026-09-06 | joncurry94 | chore: drop a stray 16-byte log-break file committed with the Omaha pass |

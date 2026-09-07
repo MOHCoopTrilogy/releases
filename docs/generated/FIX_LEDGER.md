@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1831** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1836** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -17,7 +17,7 @@
 | 2026-06 | 80 |
 | 2026-07 | 577 |
 | 2026-08 | 918 |
-| 2026-09 | 250 |
+| 2026-09 | 255 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1849,6 +1849,11 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-2511` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: 'When we push up after the smoke drops id like to hear more urgency around me, more people saying Move, go go go, push up, whatever dialogue we… | coop_smokeUrgency, threaded from coop_advanceOnSmoke right after 'BEACHADV fired': a pool of seven shipped m3l1 shouts (102a_2 'Go! Go, get moving',… |
 | `bug-2512` | 2026-09-06 | `build.ps1` | - | Five untracked script backups (maps/m3l1a.scr.pre_0905lanes_bak, maps/m3l1a/coopified.scr.pre_0905lanes_bak, coopified.scr.pre_wade_bak, m3l1a_precac… | The five copies deleted from the tree before this deploy (their originals are tracked, commits 2f3ca085/bc97255a/8d9b3240 carry the history). No excl… |
 | `bug-2513` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a.scr` | - | Ocean item 8 (bug-2508): the open-sea wave mesh is only up from the grounding to the ramp plunge, not during the run-in ride where the player actuall… | NOT fixed - logged. Moving the start to main_boat_ride_go needs the mesh recipe to hide/restore $ocean_calm (coplanar with the mesh: z-fight and a sh… |
+| `bug-2514` | 2026-09-06 | `hzm-mohaa-coop-mod/scripts/zz_coop_ocean.shader` | - | user (screenshots shot0176-0181): 'How can we better blend the ocean you drive on during the intro and the shore itself. There's a very obvious conne… | (1) The sea's stage 2 goes `blendFunc add` -> `GL_SRC_ALPHA GL_ONE` (add is ONE\|ONE and ignores alpha entirely, tr_shader.c:1007, so the blendFunc i… |
+| `bug-2515` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user (screenshot, 22:0x run): 'You have some higgins boats colliding into each other' - two landing craft interpenetrating, one craft's lowered ramp… | Eight placement corrections, all coop rows, retail untouched: ashore#4 x 2520->2660 (higgins6 -17.13 -> +122.87 u); incoming#6 x 760->860 (the player… |
+| `bug-2516` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | R | user: 'Also is there a storm sound effect playing here, like thunder? If so I don't think that makes sense, it might be something else.' | coopified.scr:9276 `local.r = randomint 3` -> `( randomint 2 ) + 1`, dropping far1 and keeping far2/far3 which measure 85.6% and 69.0% above 2 kHz -… |
+| `bug-2517` | 2026-09-06 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | qconsole.log, every plunge: 9 lines of `ERROR: Player::PlayLocalSound: coop_uw_strain needs to be aliased - Please fix.` (6) and the same for coop_uw… | All three now pass "": coop_uwJolt already guards `local.alias != NIL && local.alias != ""` and four other callers pass it, so the screen shake stays… |
+| `bug-2518` | 2026-09-06 | `hzm-mohaa-coop-mod/textures/coop_fx/surfcell.tga` | - | user (top-down screenshots): 'you can tell there is a lot of perfect symmetry, doesn't come off as very realistic... last I was on a beach waves were… | A second texture bundle, which is the one channel that can carry along-shore variation without spending a stage. docs/tools/gen_surfcell.py writes th… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

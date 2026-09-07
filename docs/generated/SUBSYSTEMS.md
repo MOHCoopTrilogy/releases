@@ -9,7 +9,7 @@
 | metric | value |
 |---|---:|
 | `coop_mod/*.scr` files | 121 |
-| total lines in `coop_mod/` | 76,634 |
+| total lines in `coop_mod/` | 76,641 |
 | top-level `maps/*.scr` | 122 |
 | of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
 
@@ -97,7 +97,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `aivoice.scr` | 467 | 4 | HZM coop - SITUATIONAL AI VOICE (user report 2026-07-28: "make the dialogue more logical, |
 | `m3l2.scr` | 81 | 0 |  |
 | `allysquad.scr` | 382 | 4 | [user 08-08] ALLIED SQUAD SURVIVABILITY |
-| `ambience.scr` | 326 | 5 | HZM coop - AMBIENCE BEDS + COMBAT MIXING (script-only; modeled on weather.scr::coop_weather_sound). |
+| `ambience.scr` | 333 | 5 | HZM coop - AMBIENCE BEDS + COMBAT MIXING (script-only; modeled on weather.scr::coop_weather_sound). |
 | `ammobox.scr` | 273 | 0 | HZM coop - player-deployable AMMO BOX. |
 | `blueprint.scr` | 567 | 1 | HZM coop - BLUEPRINT / PLAYER STRUCTURES (build-mode extension) |
 | `bt_playerTank.scr` | 36 | 0 | chrissstrahl - Exit Tank Script for BT-Coop |

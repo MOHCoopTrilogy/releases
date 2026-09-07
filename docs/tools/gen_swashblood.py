@@ -90,7 +90,7 @@ def _vnoise(x, y, cells, k):
 
 # Fraction of texels INSIDE the full-reach band that carry blood. Sparser than the sheet's 0.42: on sand
 # the slicks read against a dark wet ground, and clear sand between them is what makes them slicks.
-TARGET_COVERAGE = 0.38
+TARGET_COVERAGE = 0.11
 
 # gen_bloodwash.py's venous palette [user 2026-09-01]: THIN = feathered edge, THICK = middle of a slick.
 RED_R_THIN, RED_G_THIN, RED_B_THIN = 106, 21, 16
@@ -176,7 +176,7 @@ def build():
         x = (v - cut) / span
         x = x ** 0.38
         x = x * x * (3.0 - 2.0 * x)
-        return min(1.0, 0.30 + 0.70 * x)
+        return min(1.0, 0.08 + 0.62 * x)
 
     rows = []
     for r in range(H):
