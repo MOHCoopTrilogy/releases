@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1845** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1847** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -17,7 +17,7 @@
 | 2026-06 | 80 |
 | 2026-07 | 577 |
 | 2026-08 | 918 |
-| 2026-09 | 264 |
+| 2026-09 | 266 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1863,6 +1863,8 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-2525` | 2026-09-07 | `docs/tools/gen_boreshade.py` | V | user: 'So is there no way to make the waves actually more 3d?' | The one mechanism that remains: the wave's shape is a deterministic function of position and time, so the light and dark it WOULD have is equally det… |
 | `bug-2526` | 2026-09-08 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: 'Medics dont seem to animate the heal.' | coop_medicHealAnim: on every heal the medic breaks off - playsound med_kit, lookat the player, switch to the OTHER medic clip through coop_dryPose (t… |
 | `bug-2527` | 2026-09-08 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: 'research a quick time event setup each player would have to do themselves to get thru the drowning cinematic scene ... Tap Use QTE to Fight th… | NOTHING OF THE FEATURE IS BUILT YET, deliberately. The design's own first instruction is to settle one unknown before writing two hundred lines again… |
+| `bug-2528` | 2026-09-08 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | V | user: 'Im good with your suggested approach for QTE' - build the tap-Use struggle in the drowning cinematic to the verified design, after the input p… | coop_qteRun, a new held-pose leg between BEAT 5 and BEAT 6 - he is on his knees on the bottom with the boat going down behind him and has to claw off… |
+| `bug-2529` | 2026-09-08 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: 'The smoke barrage shouldnt start dropping until AFTER the dialogue is thru from shore party.' | The drop now waits on level.coop_radiomanTxDone, which is the same flag coop_advanceOnSmoke already waits on at :2174 and which the caller stamps 0 B… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

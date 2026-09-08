@@ -292,7 +292,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/maps/e3l2` | 18 | 0.17 MB | .scr×18 |
 | `hzm-mohaa-coop-mod/maps/e3l3` | 7 | 0.09 MB | .scr×7 |
 | `hzm-mohaa-coop-mod/maps/e3l4` | 12 | 0.19 MB | .scr×12 |
-| `hzm-mohaa-coop-mod/maps/m3l1a` | 2 | 1.06 MB | .scr×2 |
+| `hzm-mohaa-coop-mod/maps/m3l1a` | 2 | 1.07 MB | .scr×2 |
 | `hzm-mohaa-coop-mod/maps/m3l3` | 1 | 0.00 MB | .scr×1 |
 | `hzm-mohaa-coop-mod/models` | 26 | 0.02 MB | .tik×24, (none)×2 |
 | `hzm-mohaa-coop-mod/models/6abs` | 33 | 0.41 MB | .skc×12, .skd×12, .lod×9 |
@@ -1088,7 +1088,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `scratchpad/veh_dds_reverted/textures/models/vehicles/train_cab` | 22 | 2.59 MB | .dds×22 |
 | `scratchpad/veh_dds_reverted/textures/models/vehicles/veltro_fly` | 1 | 0.35 MB | .dds×1 |
 | `server_home` | 4 | 1.38 MB | .log×4 |
-| `server_home/maintt` | 15 | 6.79 MB | .log×9, .cfg×4, .pid×1, .pre_e3l4×1 |
+| `server_home/maintt` | 15 | 6.80 MB | .log×9, .cfg×4, .pid×1, .pre_e3l4×1 |
 | `server_home/maintt/configs` | 1 | 0.02 MB | .cfg×1 |
 | `server_home/maintt/coop_mod/save` | 12 | 0.01 MB | .dat×12 |
 | `server_home/maintt/prev` | 10 | 22.45 MB | .log×10 |
@@ -1608,7 +1608,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `officer_positions.scr` | 624 | 34.2 KB | coop_officer_positions.scr |
 | `painbreath.scr` | 81 | 4.0 KB | HZM coop - WOUNDED BREATHING. |
 | `paradrop.scr` | 774 | 32.7 KB | Allied Paradrop System |
-| `player.scr` | 1,935 | 98.8 KB | started by chrissstrahl on 2020.10.16 ([202]) |
+| `player.scr` | 1,941 | 99.3 KB | started by chrissstrahl on 2020.10.16 ([202]) |
 | `player.st` | 18 | 0.4 KB |  |
 | `player_Torso.st` | 4,101 | 119.6 KB |  |
 | `player_legs.st` | 2,803 | 80.9 KB |  |
@@ -2395,7 +2395,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `coopified.scr` | 18,908 | 971.4 KB | chrissstrahl - handles stuff for coop of m3l1a |
+| `coopified.scr` | 19,299 | 989.4 KB | chrissstrahl - handles stuff for coop of m3l1a |
 | `obstacles.scr` | 419 | 59.8 KB | HZM coop [2026-09-01, bug-2262] OMAHA BEACH OBSTACLE TABLE. |
 
 ### `hzm-mohaa-coop-mod/maps/m3l3/` — 1 source files

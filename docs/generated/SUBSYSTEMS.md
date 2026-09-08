@@ -9,7 +9,7 @@
 | metric | value |
 |---|---:|
 | `coop_mod/*.scr` files | 121 |
-| total lines in `coop_mod/` | 76,641 |
+| total lines in `coop_mod/` | 76,647 |
 | top-level `maps/*.scr` | 122 |
 | of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
 
@@ -180,7 +180,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `officer_positions.scr` | 624 | 1 | coop_officer_positions.scr |
 | `painbreath.scr` | 81 | 0 | HZM coop - WOUNDED BREATHING. |
 | `paradrop.scr` | 774 | 1 | Allied Paradrop System |
-| `player.scr` | 1,935 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |
+| `player.scr` | 1,941 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |
 | `precache.scr` | 186 | 0 |  |
 | `probe.scr` | 719 | 6 | COOP PROBE BUS - one diagnostic channel for everything this mod added. |
 | `profile.scr` | 71 | 0 | HZM COOP - PER-PLAYER PROFILE MIRROR (user decision 2026-08-10) |
