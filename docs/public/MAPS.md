@@ -23,7 +23,7 @@ Every mission in the trilogy that has a coop script, what state it is in, and ho
 | `m2l2b` | yes | 1481 | 7 |
 | `m2l2c` | yes | 196 | 0 |
 | `m2l3` | yes | 1144 | 0 |
-| `m3l1a` | yes | 9224 | 236 |
+| `m3l1a` | yes | 9224 | 237 |
 | `m3l1b` | yes | 3205 | 19 |
 | `m3l2` | yes | 3740 | 10 |
 | `m3l3` | yes | 9095 | 50 |
@@ -81,7 +81,7 @@ Fix counts are a rough proxy for how much a map fought back. A high count usuall
 
 | Map | Logged fixes |
 |---|---:|
-| `m3l1a` | 236 |
+| `m3l1a` | 237 |
 | `m6l2a` | 72 |
 | `m2l2a` | 51 |
 | `m3l3` | 50 |

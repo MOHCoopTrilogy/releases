@@ -558,7 +558,7 @@ docs/public/UNLOCKABLES.md	26158	.md	328	docs
 docs/public/fixes/ai-enemy-behaviour.md	289988	.md	532	docs
 docs/public/fixes/audio.md	49316	.md	92	docs
 docs/public/fixes/build-deploy-tooling.md	14478	.md	34	docs
-docs/public/fixes/engine-crashes.md	196469	.md	328	docs
+docs/public/fixes/engine-crashes.md	197035	.md	329	docs
 docs/public/fixes/maps-missions.md	97677	.md	176	docs
 docs/public/fixes/multiplayer-networking.md	32473	.md	67	docs
 docs/public/fixes/other.md	106079	.md	201	docs
@@ -2494,7 +2494,7 @@ hzm-mohaa-coop-mod/maps/m2l2c_precache.scr	2819	.scr	82	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m2l3.scr	34782	.scr	1143	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m2l3_precache.scr	3738	.scr	107	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1a.scr	348377	.scr	9223	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr	988093	.scr	18767	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr	994743	.scr	18908	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1a/obstacles.scr	61265	.scr	419	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1a_precache.scr	10161	.scr	216	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/maps/m3l1b.pth	418194	.pth	0	hzm-mohaa-coop-mod
@@ -14384,7 +14384,7 @@ hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	605497407	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	1298020622	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	24244839	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	24246841	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzzzzz_coop_terrain.pk3	33429489	.pk3	0	hzm-mohaa-coop-mod
 launch_2player_m2l2a.ps1	11357	.ps1	216	<root>
@@ -17485,7 +17485,7 @@ server_home/boot_m1l1.log	519287	.log	0	server_home
 server_home/boot_m3l2.log	194081	.log	0	server_home
 server_home/boot_m3l3.log	498996	.log	0	server_home
 server_home/boot_t2l2.log	172217	.log	0	server_home
-server_home/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home
+server_home/maintt/OpenMoHAA_server.pid	4	.pid	0	server_home
 server_home/maintt/autoexec.cfg	117301	.cfg	1582	server_home
 server_home/maintt/configs/omconfig.cfg	21513	.cfg	758	server_home
 server_home/maintt/coop_defaults.cfg	31649	.cfg	492	server_home
@@ -17513,7 +17513,7 @@ server_home/maintt/prev/qconsole-20260904-151252.log	260732	.log	0	server_home
 server_home/maintt/prev/qconsole-20260904-154803.log	265880	.log	0	server_home
 server_home/maintt/prev/qconsole-20260904-160506.log	2430664	.log	0	server_home
 server_home/maintt/prev/qconsole-20260904-161043.log	1216600	.log	0	server_home
-server_home/maintt/qconsole.log	407312	.log	0	server_home
+server_home/maintt/qconsole.log	410113	.log	0	server_home
 server_home/maintt/qconsole.log.pre_e3l4	302778	.pre_e3l4	0	server_home
 server_home/maintt/qconsole.prev.log	918609	.log	0	server_home
 server_home/maintt/qconsole.prev2.log	630655	.log	0	server_home

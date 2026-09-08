@@ -13,28 +13,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `c51e390 2026-09-07 docs: the shoreline ocean pass` |
-| commits | 227 |
+| HEAD | `1bd6a00 2026-09-07 docs: the trough-shadow generator` |
+| commits | 228 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **5 modified, 1 untracked** |
-| unstaged diff | 5 files changed, 34 insertions(+), 7 deletions(-) |
+| **uncommitted** | **3 modified, 0 untracked** |
+| unstaged diff | 3 files changed, 6 insertions(+), 5 deletions(-) |
 
-> Working tree is dirty. Everything in those 6 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 3 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 16 |
+| 2026-09 | 17 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (227)
+### Commits since 2026-01-01 (228)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `1bd6a00` | 2026-09-07 | joncurry94-tech | docs: the trough-shadow generator |
 | `c51e390` | 2026-09-07 | joncurry94-tech | docs: the shoreline ocean pass |
 | `e642604` | 2026-09-07 | joncurry94-tech | docs: the surf-zone crest generator |
 | `751895f` | 2026-09-07 | joncurry94-tech | docs: the wave pass generator |
@@ -268,8 +269,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `5621af79 2026-09-07 Omaha: give the surf a shadow, since it can never have a light` |
-| commits | 1,605 |
+| HEAD | `86133f60 2026-09-08 Omaha: the drowning-QTE input probe, before any of the QTE` |
+| commits | 1,607 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 1 untracked** |
 
@@ -279,7 +280,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 14 |
+| 2026-09 | 16 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -320,10 +321,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (256)
+### Commits since 2026-01-01 (258)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `86133f60` | 2026-09-08 | joncurry94 | Omaha: the drowning-QTE input probe, before any of the QTE |
+| `7f62845d` | 2026-09-08 | joncurry94 | Omaha: the medics now animate the heal |
 | `5621af79` | 2026-09-07 | joncurry94 | Omaha: give the surf a shadow, since it can never have a light |
 | `dbb2bc49` | 2026-09-07 | joncurry94 | Omaha: the shore crest was moving at the speed of nine centimetres of water |
 | `fba3b833` | 2026-09-07 | joncurry94 | Omaha: spread the medics across the beach and stop them cradling a rifle they do not have |
