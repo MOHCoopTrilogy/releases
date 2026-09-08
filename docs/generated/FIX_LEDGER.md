@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1842** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1843** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -17,7 +17,7 @@
 | 2026-06 | 80 |
 | 2026-07 | 577 |
 | 2026-08 | 918 |
-| 2026-09 | 261 |
+| 2026-09 | 262 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1860,6 +1860,7 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-2522` | 2026-09-07 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: 'Can we place a few more medics just staying behind hedgehogs (crouched) in cover. Add medic kits around their head that spin (just like we use… | coop_beachMedics spawns four dday_ranger_medic actors at the same cover_trigger anchors the hedgehog crowd uses but LANDWARD of them, so a medic is b… |
 | `bug-2523` | 2026-09-07 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: 'Two of your medics are spawned right near each other and are spawning on top of hedgehogs, htey need to be spread out more across the beach no… | POSITIONS SOLVED, not chosen. The map carries 55 trigger_multiple entities with $cover_type "hedgehog" - the key has a $ prefix, which is why a first… |
 | `bug-2524` | 2026-09-07 | `hzm-mohaa-coop-mod/scripts/zz_coop_shoreline.shader` | - | user: 'Id like you to also do more deep research on the shore line, how the hell can we make this seem more like an ocean and not like it is now with… | A1 CELERITY, two tokens on the shore sheet's crest stage: tcMod scale 5 -6 -> 5 -2.4238 and scroll 0.01 0.16 -> 0.01 0.2000, derived from the mesh's… |
+| `bug-2525` | 2026-09-07 | `docs/tools/gen_boreshade.py` | V | user: 'So is there no way to make the waves actually more 3d?' | The one mechanism that remains: the wave's shape is a deterministic function of position and time, so the light and dark it WOULD have is equally det… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

@@ -13,11 +13,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `e642604 2026-09-07 docs: the surf-zone crest generator` |
-| commits | 226 |
+| HEAD | `c51e390 2026-09-07 docs: the shoreline ocean pass` |
+| commits | 227 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **6 modified, 0 untracked** |
-| unstaged diff | 6 files changed, 92 insertions(+), 15 deletions(-) |
+| **uncommitted** | **5 modified, 1 untracked** |
+| unstaged diff | 5 files changed, 34 insertions(+), 7 deletions(-) |
 
 > Working tree is dirty. Everything in those 6 files exists only here - a `git checkout` destroys it with no restore point.
 
@@ -25,16 +25,17 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 15 |
+| 2026-09 | 16 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (226)
+### Commits since 2026-01-01 (227)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `c51e390` | 2026-09-07 | joncurry94-tech | docs: the shoreline ocean pass |
 | `e642604` | 2026-09-07 | joncurry94-tech | docs: the surf-zone crest generator |
 | `751895f` | 2026-09-07 | joncurry94-tech | docs: the wave pass generator |
 | `507acd7` | 2026-09-07 | joncurry94-tech | docs: the realism pass generators |
@@ -267,8 +268,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `dbb2bc49 2026-09-07 Omaha: the shore crest was moving at the speed of nine centimetres of water` |
-| commits | 1,604 |
+| HEAD | `5621af79 2026-09-07 Omaha: give the surf a shadow, since it can never have a light` |
+| commits | 1,605 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 1 untracked** |
 
@@ -278,7 +279,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 13 |
+| 2026-09 | 14 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -319,10 +320,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (255)
+### Commits since 2026-01-01 (256)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `5621af79` | 2026-09-07 | joncurry94 | Omaha: give the surf a shadow, since it can never have a light |
 | `dbb2bc49` | 2026-09-07 | joncurry94 | Omaha: the shore crest was moving at the speed of nine centimetres of water |
 | `fba3b833` | 2026-09-07 | joncurry94 | Omaha: spread the medics across the beach and stop them cradling a rifle they do not have |
 | `b8beeeed` | 2026-09-07 | joncurry94 | Omaha: a moving crest in the surf zone, and medics in cover |

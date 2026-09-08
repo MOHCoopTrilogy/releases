@@ -323,6 +323,31 @@ coop_surf_bore
 \tnextbundle
 \t\tmap textures/coop_fx/surfcell.tga
 \t}
+
+\t// [user 2026-09-07, bug-2525] THE TROUGH SHADOW - 'is there no way to make the waves actually
+\t// more 3d?'. The geometry here is real; what is missing is that nothing on this beach is shaded
+\t// and nothing can be: every water shader is nolightmap, the map's sun sits at the exact zenith
+\t// so a crest and a trough take identical light, and deformVertexes never writes tess.normal, so
+\t// every orientation-based generator reads a stale straight-up normal and draws a vignette.
+\t// But the wave's shape is deterministic, so its light and dark is too - and since bug-2524 the
+\t// paint and the geometry travel at the same speed and spacing, so a painted shadow STAYS in the
+\t// trough instead of drifting through it. The stage above puts the highlight on the crest; this
+\t// puts the shadow in the trough, measured to be exactly half a period away from it. A highlight
+\t// alone is a stripe. A highlight with a shadow is a form. That pairing is the only shading this
+\t// water will ever have.
+\t// blendFunc blend pulls the water TOWARD the texture's dark colour in proportion to its alpha,
+\t// so it is a shadow rather than a smear; alphaGen tCoord kills it landward on the same knee the
+\t// foam uses, and reads the RAW texcoord so the scroll cannot drag it.
+\t// Kill switch: python docs/tools/gen_boreshade.py --flat, no shader edit.
+\t{
+\t\tnopicmip
+\t\tmap textures/coop_fx/boreshade.tga
+\t\tblendFunc blend
+\t\trgbGen identity
+\t\talphaGen tCoord 8.2 -1.8 0 1
+\t\ttcMod scale 1 2.4238
+\t\ttcMod scroll 0 -0.2000
+\t}
 }
 """ % (STANDOFF, BORE_AMP, (Y_SEA - Y_LAND) / NY * -1.0,
        BORE_AMP / (abs(Y_LAND - Y_SEA) / NY),
