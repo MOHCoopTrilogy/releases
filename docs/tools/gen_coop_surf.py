@@ -62,18 +62,32 @@ SHEET_Z0, SHEET_Z1 = -520.0, -479.0     # the shore sheet's own ramp, measured f
 SHEET_Y0, SHEET_Y1 = -2160.0, -768.0
 STANDOFF = 6.0                      # clears the sheet's own +/-3.97 u flap with 2.03 u to spare
 
-NX, NY = 128, 34                    # 124.0 u columns, 39.4 u rows
-ROWS_PER_SURF = 6                   # 7 x 129 = 903 verts per surface (TIKI cap 1000)
+NX, NY = 256, 34                    # [bug-2524] 128 -> 256 columns: 62.0 u x 39.4 u. At the new
+                                    # amplitude the 10.2-degree crest quantised onto a 124 u grid as
+                                    # a plan-view staircase with 5.6 m treads and 1 m risers, the
+                                    # same scale as the crest itself. DO NOT raise NY instead: face
+                                    # slope is amplitude / row pitch, so finer rows steepen the face
+                                    # toward a plunging breaker, and Omaha on 6 June was spilling.
+ROWS_PER_SURF = 2                   # 3 x 257 = 771 verts per surface (TIKI cap 1000), 17 surfaces
+                                    # (cap 32), 1024 tris each (cap 2000)
 YAW = 215.0                         # 9.98 degrees off shore-normal - see the header
 NORMAL_FLOOR = 0.001
 
 # the bore. ONE component: a broken bore does not superpose the way swell does.
 BORE_LAMBDA = 560.0                 # 14.2 m between broken lines, the spacing this beach's width wants
-BORE_AMP = 6.0                      # 0.15 m of relief; the crest ends 12 u above the painted sheet
+BORE_AMP = 20.0                     # [bug-2524] the SHADER amplitude, i.e. the ceiling. The delivered
+                                    # height at any vertex is this times the normal length, which now
+                                    # carries a depth-and-eye-limited profile - see amp_profile().
+                                    # It was a flat 6.0 = 0.15 m, against a depth-limited 7-27 u, and
+                                    # it held one height across 780 u where the water depth halves.
 BORE_FREQ = 0.20                    # T 5.0 s -> 112 u/s = 2.8 m/s, about sqrt(g*h) for this depth
 BORE_DIV = BORE_LAMBDA * math.sqrt(2.0)     # phase is (x+y+z)/div and lambda = div/sqrt(2)
 
-TAPER_SEA = 260.0                   # amplitude rises over this distance landward of the seam
+TAPER_SEA = 120.0                   # [bug-2524] 260 -> 120. Both meshes tapered to zero at the
+                                    # shared row y -2160, so there was a guaranteed dead-flat line
+                                    # across all 15872 u at exactly the point the drawn water is
+                                    # deepest - and 35 m in front of a player who has just left the
+                                    # ramp. Both still reach zero, so no step is introduced.
 TAPER_LAND = 300.0                  # and dies over this distance before the landward edge
 ENV_FLOOR, ENV_CEIL = 0.45, 0.99    # along-shore gain: some stretches break hard, some barely
 
@@ -91,6 +105,36 @@ def sheet_z(Y):
     """The painted shore sheet's own plane at this y."""
     f = (Y - SHEET_Y0) / (SHEET_Y1 - SHEET_Y0)
     return SHEET_Z0 + (SHEET_Z1 - SHEET_Z0) * f
+
+
+# The sand under the water, measured off m3l1a.bsp: textures/mohtest/omaha_set4_covered is FLAT at
+# z -576 from y -2816 to -1792, then ramps to -504 by y -1024 (72 u over 768). Reproducing both
+# segments matters: a single straight line through them gets the depth at the seam wrong by 26 u.
+BED_FLAT_Z = -576.0
+BED_KNEE_Y = -1792.0
+BED_SLOPE = 72.0 / 768.0
+EYE_HEIGHT = 82.0                   # DEFAULT_VIEWHEIGHT: a standing player's eye above the sand
+
+
+def bed_z(Y):
+    if Y <= BED_KNEE_Y:
+        return BED_FLAT_Z
+    return BED_FLAT_Z + (Y - BED_KNEE_Y) * BED_SLOPE
+
+
+def amp_profile(Y):
+    """[bug-2524] How tall the bore may be at this y, in world units.
+
+    TWO limits, and the second is the one nobody was applying. A broken wave is DEPTH-LIMITED: it
+    cannot carry more than about 0.4 of the local still-water depth once it has broken. And it is
+    EYE-LIMITED: at y -1792 the water is 66.8 u deep, so a standing player's eye is only 15.2 u above
+    it, and a crest at the pure depth limit would blind him for most of every five-second cycle,
+    during the wade, under fire. The floor of 3 keeps the far rows alive; the ceiling is the shader's
+    own amplitude."""
+    h = sheet_z(Y) - bed_z(Y)                   # still-water depth
+    e = EYE_HEIGHT - h                          # a standing eye above the local water
+    a = min(0.40 * h, 0.60 * e)
+    return max(3.0, min(BORE_AMP, a))
 
 
 def world_to_entity(X, Y):
@@ -147,7 +191,7 @@ def build_grid():
         z = sheet_z(Y) + STANDOFF - ORIGIN[2]
         for i in range(NX + 1):
             X = XMIN + (XMAX - XMIN) * i / NX
-            n = max(NORMAL_FLOOR, min(0.99, cs * env(X)))
+            n = max(NORMAL_FLOOR, min(0.99, cs * env(X) * (amp_profile(Y) / BORE_AMP)))
             xp, yp = world_to_entity(X, Y)
             Xb, Yb = entity_to_world(xp, yp)
             assert abs(Xb - X) < 1e-6 and abs(Yb - Y) < 1e-6, ("rotation round trip", X, Y)
@@ -249,9 +293,33 @@ coop_surf_bore
 \t\tnopicmip
 \t\tmap textures/coop_fx/breakfoam.tga
 \t\tblendFunc GL_SRC_ALPHA GL_ONE
-\t\trgbGen wave sin 0.20 0.18 0 0.08
-\t\ttcMod scale 1 1
+\t\trgbGen wave sin 0.30 0.06 0 0.08
 \t\ttcMod wavetrant sin 0 -0.06 0 0.08
+\tnextbundle
+\t\tmap textures/coop_fx/surfcell.tga
+\t}
+
+\t// [bug-2524] THE BORE TRAIN. Stage 1 above is the authored break-line band and stays put.
+\t// This tiles the same texture ONCE PER GEOMETRIC BORE, so every crest carries foam and every
+\t// trough is clear water; before it, ~63%% of this mesh's cross-shore span drew alpha 0 for
+\t// ever. breakfoam.tga's t=0 and t=1 rows are both alpha 0 and luminance 0, so it tiles with
+\t// no seam, and its 35%% duty cycle becomes 35%% foam / 65%% clear per crest.
+\t// The T scale is the mesh's own deform phase gradient measured on the shipped geometry with
+\t// the yaw-215 pre-rotation and the sheet's z-ramp included: 2.4238 cycles per 1.0 t. This
+\t// stage's t-scale is POSITIVE, so shoreward is NEGATIVE scroll - the mirror of the shore
+\t// sheet's crest stage, from the same derivation.
+\t// alphaGen tCoord reads the RAW texcoord before every tcMod, so the scroll cannot drag it:
+\t// it kills the train at t 0.82 (y -1006) before the wet-sand strip, and costs no tcMod slot.
+\t// surfcell on bundle 1 is MANDATORY: the deform's phase is linear in position, so its crest
+\t// is a mathematically straight 15872 u line and nothing else can rag it.
+\t{
+\t\tnopicmip
+\t\tmap textures/coop_fx/breakfoam.tga
+\t\tblendFunc GL_SRC_ALPHA GL_ONE
+\t\trgbGen identity
+\t\talphaGen tCoord 8.2 -1.8 0 1
+\t\ttcMod scale 1 2.4238
+\t\ttcMod scroll 0 -0.2000
 \tnextbundle
 \t\tmap textures/coop_fx/surfcell.tga
 \t}

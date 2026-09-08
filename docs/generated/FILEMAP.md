@@ -24,7 +24,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 13,605 | 7546.2 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 13,605 | 7546.9 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
@@ -209,7 +209,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
 | `fsafe_home/maintt` | 3 | 1.43 MB | .pid×1, .cfg×1, .log×1 |
-| `hzm-mohaa-coop-mod` | 39 | 2028.05 MB | .txt×12, .jpg×10, .cfg×5, .pk3×4 |
+| `hzm-mohaa-coop-mod` | 39 | 2028.17 MB | .txt×12, .jpg×10, .cfg×5, .pk3×4 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -320,7 +320,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/models/furniture` | 1 | 0.00 MB | .tik×1 |
 | `hzm-mohaa-coop-mod/models/fx` | 23 | 0.04 MB | .tik×22, .txt×1 |
 | `hzm-mohaa-coop-mod/models/fx/coop_sea` | 2 | 1.04 MB | .skc×1, .skd×1 |
-| `hzm-mohaa-coop-mod/models/fx/coop_surf` | 2 | 0.39 MB | .skc×1, .skd×1 |
+| `hzm-mohaa-coop-mod/models/fx/coop_surf` | 2 | 0.95 MB | .skc×1, .skd×1 |
 | `hzm-mohaa-coop-mod/models/fx/crates` | 1 | 0.00 MB | .tik×1 |
 | `hzm-mohaa-coop-mod/models/fx/muzflash` | 1 | 0.02 MB | .tga×1 |
 | `hzm-mohaa-coop-mod/models/fx/wake` | 1 | 0.00 MB | .skc×1 |
@@ -1088,7 +1088,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `scratchpad/veh_dds_reverted/textures/models/vehicles/train_cab` | 22 | 2.59 MB | .dds×22 |
 | `scratchpad/veh_dds_reverted/textures/models/vehicles/veltro_fly` | 1 | 0.35 MB | .dds×1 |
 | `server_home` | 4 | 1.38 MB | .log×4 |
-| `server_home/maintt` | 15 | 6.79 MB | .log×9, .cfg×4, .pid×1, .pre_e3l4×1 |
+| `server_home/maintt` | 15 | 6.78 MB | .log×9, .cfg×4, .pid×1, .pre_e3l4×1 |
 | `server_home/maintt/configs` | 1 | 0.02 MB | .cfg×1 |
 | `server_home/maintt/coop_mod/save` | 12 | 0.01 MB | .dat×12 |
 | `server_home/maintt/prev` | 10 | 22.45 MB | .log×10 |
@@ -1233,8 +1233,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `gen_chatter_pools.py` | 167 | 8.7 KB | !/usr/bin/env python |
 | `gen_clip_art.py` | 114 | 5.5 KB |  |
 | `gen_clip_skins.py` | 356 | 16.0 KB |  |
-| `gen_coop_sea.py` | 712 | 38.7 KB | !/usr/bin/env python |
-| `gen_coop_surf.py` | 335 | 14.7 KB | coding: utf-8 |
+| `gen_coop_sea.py` | 719 | 39.3 KB | !/usr/bin/env python |
+| `gen_coop_surf.py` | 403 | 18.8 KB | coding: utf-8 |
 | `gen_coop_vo_override.py` | 288 | 15.5 KB | !/usr/bin/env python |
 | `gen_coop_wake_skc.py` | 195 | 9.8 KB | !/usr/bin/env python |
 | `gen_cos_reqs.py` | 116 | 5.5 KB | !/usr/bin/env python3 |
@@ -2394,7 +2394,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `coopified.scr` | 18,744 | 962.5 KB | chrissstrahl - handles stuff for coop of m3l1a |
+| `coopified.scr` | 18,760 | 964.3 KB | chrissstrahl - handles stuff for coop of m3l1a |
 | `obstacles.scr` | 419 | 59.8 KB | HZM coop [2026-09-01, bug-2262] OMAHA BEACH OBSTACLE TABLE. |
 
 ### `hzm-mohaa-coop-mod/maps/m3l3/` — 1 source files
@@ -4216,8 +4216,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `zz_coop_ocean.shader` | 220 | 13.3 KB |  |
 | `zz_coop_sea.shader` | 63 | 2.7 KB |  |
 | `zz_coop_seabed.shader` | 82 | 5.8 KB |  |
-| `zz_coop_shoreline.shader` | 359 | 23.1 KB |  |
-| `zz_coop_surf.shader` | 38 | 1.6 KB |  |
+| `zz_coop_shoreline.shader` | 369 | 24.0 KB |  |
+| `zz_coop_surf.shader` | 62 | 2.9 KB |  |
 | `zz_coop_wake.shader` | 35 | 1.4 KB |  |
 | `zz_coop_wetsand.shader` | 164 | 11.7 KB |  |
 

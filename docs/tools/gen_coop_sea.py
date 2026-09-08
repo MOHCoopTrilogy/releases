@@ -95,7 +95,14 @@ NX, NY = 128, 90                    # [bug-2520] SQUARE CELLS, 124.0 x 123.9 u. 
                                     # Reconstruction error sum(a_i*(1-cos(pi*(dx+dy)/div_i))) was
                                     # 7.12 u = 35.5% of amplitude, with the chop 83% destroyed at
                                     # worst phase and pulsing as it travelled. Now 1.27 u = 6.3%.
-TAPER_L = 1200.0                    # amplitude reaches 1.0 this far seaward of the seam
+TAPER_L = 1200.0                    # DEAD as of bug-2519: shoal() replaced the linear taper and
+                                    # does not read this. It is kept only because the header still
+                                    # describes it. The seaward half of the y -2160 dead line is
+                                    # SHOAL_PEAK_D below, which already rises over 450 u - close
+                                    # enough to the 400 the shore study asked for that changing it
+                                    # is not worth a regenerate. A bug-2524 edit to THIS constant
+                                    # was reverted because it changed nothing: the skd hashed
+                                    # identical before and after, which is how it was caught.
 NORMAL_FLOOR = 0.001                # never a true zero normal (tangent maths elsewhere divides)
 YAW = 180.0                         # [bug-2519] 225 -> 180: the wave travelled EXACTLY shore-normal,
                                     # so its crest lines were infinitely long and parallel to the

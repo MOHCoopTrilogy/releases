@@ -13,28 +13,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `751895f 2026-09-07 docs: the wave pass generator` |
-| commits | 225 |
+| HEAD | `e642604 2026-09-07 docs: the surf-zone crest generator` |
+| commits | 226 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **3 modified, 1 untracked** |
-| unstaged diff | 3 files changed, 6 insertions(+), 5 deletions(-) |
+| **uncommitted** | **6 modified, 0 untracked** |
+| unstaged diff | 6 files changed, 92 insertions(+), 15 deletions(-) |
 
-> Working tree is dirty. Everything in those 4 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 6 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 14 |
+| 2026-09 | 15 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (225)
+### Commits since 2026-01-01 (226)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `e642604` | 2026-09-07 | joncurry94-tech | docs: the surf-zone crest generator |
 | `751895f` | 2026-09-07 | joncurry94-tech | docs: the wave pass generator |
 | `507acd7` | 2026-09-07 | joncurry94-tech | docs: the realism pass generators |
 | `8519ede` | 2026-09-07 | joncurry94-tech | docs: the Omaha water pass and the cell-mask generator |
@@ -266,8 +267,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `b8beeeed 2026-09-07 Omaha: a moving crest in the surf zone, and medics in cover` |
-| commits | 1,602 |
+| HEAD | `dbb2bc49 2026-09-07 Omaha: the shore crest was moving at the speed of nine centimetres of water` |
+| commits | 1,604 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 1 untracked** |
 
@@ -277,7 +278,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 11 |
+| 2026-09 | 13 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -318,10 +319,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (253)
+### Commits since 2026-01-01 (255)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `dbb2bc49` | 2026-09-07 | joncurry94 | Omaha: the shore crest was moving at the speed of nine centimetres of water |
+| `fba3b833` | 2026-09-07 | joncurry94 | Omaha: spread the medics across the beach and stop them cradling a rifle they do not have |
 | `b8beeeed` | 2026-09-07 | joncurry94 | Omaha: a moving crest in the surf zone, and medics in cover |
 | `72a33929` | 2026-09-07 | joncurry94 | Omaha: real waves for the whole ride, not eight seconds |
 | `fdb21dd7` | 2026-09-07 | joncurry94 | Omaha: a spilling break that wanders, a drifting shore, and an oblique swell |
