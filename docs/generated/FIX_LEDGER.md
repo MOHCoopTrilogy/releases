@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1847** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1851** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -17,7 +17,7 @@
 | 2026-06 | 80 |
 | 2026-07 | 577 |
 | 2026-08 | 918 |
-| 2026-09 | 266 |
+| 2026-09 | 270 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1865,6 +1865,10 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-2527` | 2026-09-08 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: 'research a quick time event setup each player would have to do themselves to get thru the drowning cinematic scene ... Tap Use QTE to Fight th… | NOTHING OF THE FEATURE IS BUILT YET, deliberately. The design's own first instruction is to settle one unknown before writing two hundred lines again… |
 | `bug-2528` | 2026-09-08 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | V | user: 'Im good with your suggested approach for QTE' - build the tap-Use struggle in the drowning cinematic to the verified design, after the input p… | coop_qteRun, a new held-pose leg between BEAT 5 and BEAT 6 - he is on his knees on the bottom with the boat going down behind him and has to claw off… |
 | `bug-2529` | 2026-09-08 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: 'The smoke barrage shouldnt start dropping until AFTER the dialogue is thru from shore party.' | The drop now waits on level.coop_radiomanTxDone, which is the same flag coop_advanceOnSmoke already waits on at :2174 and which the caller stamps 0 B… |
+| `bug-2530` | 2026-09-08 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: "this did not work at all, it did not play the cutscene, I hear all the audio etc but it spawned me instantly with my gun in the spot" / "Didnt… | Seed at the READERS, not at the config site: `if(level.coop_qteWatchBump == NIL){ level.coop_qteWatchBump = 0 }` at the head of both watchdog labels,… |
+| `bug-2531` | 2026-09-08 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | Eight comment continuation lines lost their `//` and stood as bare Morpheus statements (e.g. `test skips the WHOLE LOOP, and the code after this one… | Repaired the eight lines, and built docs/tools/prosecheck.py so the class cannot pass silently again. It discriminates prose from commands by ENGLISH… |
+| `bug-2532` | 2026-09-08 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: "also, there are random fires in the ocean out at sea just a heads up." | coop_boatBurn takes an optional owner: the two flames and both smoke columns `bind` to it so they travel with the hull, are tracked, and are removed… |
+| `bug-2533` | 2026-09-08 | `hzm-mohaa-coop-mod/textures/models/vehicles/higgins/higgins.dds` | - | user: "Can you also confirm that the INSIDE texture of the higgins boat got upscaled, looks like low quality/low res still" then "what the hell else… | Census of everything m3l1a draws - BSP surfaces weighted by world area, the skyParms box's six faces, and every TIKI placed by the BSP entity string… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

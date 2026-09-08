@@ -221,6 +221,18 @@ foreach ($destDir in @($deployDir, $appDataDir)) {
         Copy-Item -Path $terrainPak -Destination (Join-Path $destDir 'zzzzzzzzz_coop_terrain.pk3') -Force
         Write-Host "  Deployed terrain pak -> $destDir"
     }
+    # [2026-09-08] The m3l1a 4x upscale pak. Built out-of-band by docs/tools/upscale_m3l1a.py, so it
+    # is copied rather than repacked (build.ps1:146 already excludes .pk3 from the pack sweep).
+    # THE NAME IS LOAD-BEARING, AND IT NEEDS TEN z. 40 of its 145 textures are currently won by
+    # zzzzzzz_dds_hdmem / zzzzzzz_dds_override (seven z), zzzzzzzz_hd_seamfix (eight) or
+    # zzzzzzzzz_coop_terrain (nine) - the terrain pak above. Anything at nine or below loses to one
+    # of those and the upscale is silently invisible, which is the exact failure the 2026-08 audit
+    # found 21 live instances of. Ten beats every one of them.
+    $hdPak = Join-Path $srcDir 'zzzzzzzzzz_coop_hd_m3l1a.pk3'
+    if (Test-Path $hdPak) {
+        Copy-Item -Path $hdPak -Destination (Join-Path $destDir 'zzzzzzzzzz_coop_hd_m3l1a.pk3') -Force
+        Write-Host "  Deployed m3l1a HD pak -> $destDir"
+    }
     Write-Host "  Deployed 3 pk3s -> $destDir"
 }
 

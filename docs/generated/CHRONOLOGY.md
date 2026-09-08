@@ -13,28 +13,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `41d367d 2026-09-08 docs: the drowning QTE and the smoke sequencing` |
-| commits | 230 |
+| HEAD | `2dba4d7 2026-09-08 docs: the QTE and the Omaha realism pass, with the prunes that paid for them` |
+| commits | 231 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **6 modified, 3 untracked** |
-| unstaged diff | 6 files changed, 156 insertions(+), 130 deletions(-) |
+| **uncommitted** | **2 modified, 4 untracked** |
+| unstaged diff | 2 files changed, 39 insertions(+), 31 deletions(-) |
 
-> Working tree is dirty. Everything in those 9 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 6 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 19 |
+| 2026-09 | 20 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (230)
+### Commits since 2026-01-01 (231)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `2dba4d7` | 2026-09-08 | joncurry94-tech | docs: the QTE and the Omaha realism pass, with the prunes that paid for them |
 | `41d367d` | 2026-09-08 | joncurry94-tech | docs: the drowning QTE and the smoke sequencing |
 | `c4152df` | 2026-09-08 | joncurry94-tech | docs: the drowning-QTE research and its input probe |
 | `1bd6a00` | 2026-09-07 | joncurry94-tech | docs: the trough-shadow generator |
@@ -271,8 +272,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `3b807522 2026-09-08 Omaha: the drowning QTE, and the smoke waits for the shore party` |
-| commits | 1,608 |
+| HEAD | `bfd1d8ee 2026-09-08 Omaha: the fires in the ocean now belong to their wrecks` |
+| commits | 1,610 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 1 untracked** |
 
@@ -282,7 +283,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 17 |
+| 2026-09 | 19 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -323,10 +324,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (259)
+### Commits since 2026-01-01 (261)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `bfd1d8ee` | 2026-09-08 | joncurry94 | Omaha: the fires in the ocean now belong to their wrecks |
+| `d1a9ff87` | 2026-09-08 | joncurry94 | Omaha: fix the QTE regression that ate the whole drowning cinematic |
 | `3b807522` | 2026-09-08 | joncurry94 | Omaha: the drowning QTE, and the smoke waits for the shore party |
 | `86133f60` | 2026-09-08 | joncurry94 | Omaha: the drowning-QTE input probe, before any of the QTE |
 | `7f62845d` | 2026-09-08 | joncurry94 | Omaha: the medics now animate the heal |

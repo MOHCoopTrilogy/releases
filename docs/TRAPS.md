@@ -22,15 +22,13 @@ hitch cannot dump the whole envelope, and seed the member in the constructor - p
 give you.
 
 **Open now:** [T11](#t11) trusting the record over the code · [T14](#t14) verification that lied.
-**Recurring:** [T1](#t1) parse killers · [T3](#t3) silent veto · [T4](#t4) capacity families ·
-[T6](#t6) what loads != what you shipped · [T10](#t10) deploy gaps · [T12](#t12) same-named trees.
+**Most recurrent:** T1 parse killers, T4 capacity families, T6 what loads != what you shipped.
 ---
 
 <a name="t1"></a>
 ## T1 — Morpheus parse killers: one bad token silently kills the WHOLE `.scr`
 
-**Recurred under 17 bug ids:** 089, 298, 331, 348, 402, 533, 739/750, 910, 962, 1067, 1069, 1105,
-1205, 1283, 1285, 1751, 1908.
+**Recurred under 17 bug ids** - `grep parse docs/generated/FIX_LEDGER.md`.
 
 **Tell:** a feature silently does nothing, with **no error at the failure site**; every `::` call into
 the file logs `Script was not properly loaded`. A whole subsystem dying at once (bug-533 took helmet +
@@ -38,29 +36,29 @@ sandbag + medkit + emotes) means the shared bus file. The compiler is all-or-not
 kills the entire file and the map runs with no script - raw team menu, unstartable.
 
 > **An assignment with no value is a parse killer and the error points at the WRONG line** (bug-1908):
-> `level.coop_loRosterTab[69] = ` with nothing after it makes the parser take the *next* statement as the
-> value and die on **that** statement's `=`. A bare trailing `=` is legal continuation that retail
-> `global/MountGunOrPlantCharge.scr` relies on - fatal only when the next code line is itself an
-> assignment. `docs/tools/check_empty_rhs.py` runs every build. It came from a **generator** rendering an
-> empty column: validate a generator's inputs.
+> the parser takes the *next* statement as the value and dies on **that** statement's `=`. A bare
+> trailing `=` is legal continuation, so it is fatal only when the next code line is itself an
+> assignment. `docs/tools/check_empty_rhs.py` runs every build. It came from a **generator**
+> rendering an empty column: validate a generator's inputs.
 >
 > **All three scanners pass a file that cannot compile** - they check brace depth, line shape and string
 > termination, not *expression* syntax; `println "a" + x + "b"` without parens kills the file and scans
 > clean (bug-1751). **Not verified until a server has loaded the map and the log shows no `parse error`.**
 >
-> **A comment that lost its `//` scans perfectly** (2026-09-06). A fixer's replacement dropped the
-> marker off the second line of a wrapped comment in `coopified.scr`, leaving `them. A mid-beat kill...`
-> standing as a bare statement. Braces balanced, quotes balanced, no line began with an operator, so all
-> three scanners said PASS. **A fixer that touches comment TEXT can emit code: read the changed lines
-> back as lines, not just the file as a depth profile.**
+> **A comment that lost its `//` scans perfectly - TWICE** (2026-09-06; then 2026-09-08, eight
+> lines at once, in the fixer that fixed the first, in the session that wrote this entry). Both times
+> a Python fixer emitted a multi-line comment with `//` on the FIRST line only; braces and quotes
+> balance, so every structural scanner passed. Knowing the trap did not prevent it -
+> **`docs/tools/prosecheck.py` does.**
 
-**Run all three — they catch disjoint classes:**
+**Run all four — they catch disjoint classes; only the last reads a line as language:**
 
 | tool | catches | blind to |
 |---|---|---|
 | `docs/tools/depthscan2.py` | brace/label depth (never negative; 0 at each column-0 label) | everything below |
 | `docs/tools/linecheck.py` | a line **starting** with a binary operator | everything below |
-| odd-quote scan (comment- and string-aware, per line) | unterminated / multi-line string literals | the rest of T1 |
+| odd-quote scan (comment- and string-aware, per line) | unterminated / multi-line string literals | everything below |
+| `docs/tools/prosecheck.py` | **English prose standing where a statement should be** | expression syntax |
 
 The log names only the **first** offending line - bug-1283 had two multi-line strings in one file and
 fixing the reported one would have left it equally dead. **Fix the class, not the line.**
@@ -96,7 +94,6 @@ and stays, never the reported line.
 
 ## T2 — Generators corrupt the files they write
 
-**Bugs:** 259, 331, 480, 962, 1247, 1363, 1600, `bug-ps-home-var`.
 
 **Tell:** the output looks right in a diff and is silently rejected downstream; TIKI in particular
 **drops bad aliases without a word.** Every instance is a TOOL writing project data, not a human:
@@ -261,7 +258,6 @@ handed out the world slot: a weekend of use-after-free minidumps.
 <a name="t5"></a>
 ## T5 — `$player` is an array; NIL ≠ NULL; storms are sequential
 
-**Bugs:** 1049, 1051, 1052, 1054, 1065, 1104, 1624, 1632, 1665; the 4-player sweep.
 **Tell:** thousands of identical `Script Error` lines. **Solo boots cannot reproduce any of it.**
 
 1. **`Cannot cast array to listener`** - vanilla SP treats `$player` as one entity, but with **2+
@@ -366,7 +362,6 @@ the project's binds are in `autoexec.cfg` for this reason.
 The cost is real and unavoidable: autoexec re-forces the bind each launch, so a rebind is lost next
 start. **Feature dead + code obviously correct = check the bind actually exists before debugging it.**
 
-**Bugs:** 258, 682, 710, 918, 1125, 1148, 1152, 1427, 1492, 1669.
 
 **An archived cvar is a latch - including one you add for debugging** (bug-1427, twice). A
 `seta`-archived switch rides `omconfig.cfg` forever and re-fires on every later load (`coop_buildmap`
@@ -554,7 +549,6 @@ declaration is.*
 <a name="t14"></a>
 ## T14 — Your verification lied: audits that pass, harnesses that measure nothing
 
-**Bugs:** 1026-1027, 1218-1220, 1473-1490, 1596-1598, 1812-1813, 2101-2102.
 
 **PROBE DESIGN - three ways a probe lies.** *(1) Nested inside the condition it measures* - blind; put
 it OUTSIDE the branch and print the deciding inputs (3 instances 2026-08-22; archive). *(2) Reading back
@@ -573,8 +567,9 @@ pattern matches everything**: `grep -c $'\r'` returned each file's TOTAL LINE CO
 pure-LF files were CRLF - and a CRLF misread is how T2 corruption starts. **Count bytes, never grep,
 for line endings.** *(c)* **A pass that cannot fail**: `node --check f | head -5 && echo OK` prints OK
 unconditionally because `head` exits 0. **Gate on the tool's own exit code, never through a pipe.**
-*(d)* **`check_map_compiles.py` is flaky against a LIVE dedicated server** - 3 errors once, 0 on four
-re-runs, while the server's own log showed 0. Confirm no `omohaaded`/`openmohaa` is running first.
+*(d)* **`check_map_compiles.py` is flaky against a LIVE dedicated server** - confirm no
+`omohaaded`/`openmohaa` is running first. **And it only proves the map INITS**: bug-2530's errors
+fired two minutes into the ride and it passed clean.
 **And absence of a marker is not absence of behaviour**: `playsound` on an entity prints nothing, so
 grepping for it measures the marker. Three Omaha systems were mis-diagnosed as dead this way. Every
 new beat gets a `^~^~^` marker or a census reads it as missing.
@@ -643,6 +638,13 @@ the caller still reports success. **Tell:** a feature that "does nothing" with n
 - **Reading a level var CREATES it with type `none`** — `GetVariable` returns non-NULL for a var that
   exists but was never *assigned*, so a NULL guard passes and `intValue()` throws. **Always ASSIGN a
   level var before anything reads it.** (bug-1371)
+  - **⭐ A THROW INSIDE A `while` CONDITION SKIPS THE WHOLE LOOP** (bug-2530). "Skips the statement"
+    is survivable in a body and catastrophic in a test - the statement *is* the loop, so control
+    falls to what follows. Both m3l1a ramp watchdogs read a var assigned later in the beat, threw on
+    `120 + none`, and ran their **timed-out** branch at t=0: one forced the handoff, spawning the
+    player on the beach a second into a cinematic that then played to nobody. **Seed at the READER,
+    not at the feature's config block** - which may sit below the reader's thread site and behind
+    the feature's own kill switch. `== NIL` and `!= 1` are safe on `none`; `+ - / <` are not.
 - **Map entity keyvalues arrive as STRINGS** — `int()`-coerce once at the top, not per comparison.
   (bug-1352, bug-1372)
 - **A command registered on `ScriptThread` is NOT a Player event** — `iprintlnbold`/`iprintln` are
@@ -917,15 +919,9 @@ list cannot reach them.
 **Tell:** an objective that says "kill them all" never completes and the survivor is somebody the player
 recruited or disabled.
 
-Maps count enemies in **two unrelated ways**, and a fix for one does nothing for the other:
-
-| mechanism | example | repaired by |
-|---|---|---|
-| an ARRAY of living axis | `level.coop_actorArray["german"]` | `aihandler.scr::coop_moveActorToTeam` (bug-2088) |
-| a PER-ACTOR `waittill death` | `m3l1b.scr:1671-1697`, one watcher per defender | `coop_countasdead` (bug-2091) |
-
-bug-2088 was believed to cover both and shipped untested; it could not, because the second kind
-never counts anything — it *waits on a body to die*. Recruiting that body removes it.
+Maps count enemies **two unrelated ways** - an ARRAY of living axis, and a PER-ACTOR
+`waittill death` - and a fix for one does nothing for the other; bug-2088 shipped believing it
+covered both. Detail in [`archive/traps-t21-counting.md`](archive/traps-t21-counting.md).
 
 **⭐ And the resulting softlock is ABSOLUTE.** `Sentient::TakeDamage` filters same-team damage in
 **every** gametype (`sentient.cpp:1705-1706`, and `:1752` states the consequence: *an allied victim
