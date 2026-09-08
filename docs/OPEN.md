@@ -21,25 +21,15 @@ everything else below still carries its original date). The buglog is live and c
 <a name="p0"></a>
 ## ⭐ gl2 IS NOW THE DEFAULT FOR EVERY PLAYER (2026-09-04) — re-price the gl2 section below
 
-`cl_renderer` defaults to `"opengl1"` in the engine (`cl_main.cpp:3231`) and **nothing in the mod
-ever set it** — `PLAY-GL2.bat` existed only on one machine and was never in the release, which staged
-both renderer DLLs and selected neither. So until v1.5.1 essentially every player was on **gl1**, and
-the whole gl2 visual layer (the underwater pass is renderergl2-only) was invisible to them. Fixed in
-four layers: installer `LaunchArgs`, an append in `updater.ps1` (for existing installs whose
-`updater.ini` still holds the old string), `autoexec.cfg` (the only file that execs AFTER the saved
-config, so it lifts a config already holding `opengl1`) and `coop_defaults.cfg` (bug-2446).
+Until v1.5.1 essentially every player was on **gl1** - `cl_renderer` defaults to `"opengl1"` and
+nothing in the mod ever set it - so the whole gl2 visual layer, the underwater pass included, was
+invisible to them. Fixed in four layers (bug-2446).
 
 **THE CONSEQUENCE FOR THIS FILE: every entry in [gl2 open items](#gl2) has just gone from "affects
 almost nobody" to "affects everybody".** Re-read that section with that in mind. In particular
 **bug-2190 (m3l2 renders BLACK with a WHITE sky after a straight-through transition from Omaha)** is
 now on the live campaign path immediately after the mission shipped in v1.5.0/v1.5.1, and
 **bug-1331** (styled-lightmap surfaces pulse red) is a gl2 renderer defect, gl1-clean.
-
-Also fixed the same day, and the reason the crash was gl1-only: `LoadDDS` sized its buffer from
-`pitchOrFirstMipSize`, a **union** meaning bytes-per-scanline under `_DDSFLAGS_PITCH` and the first
-mip under `_DDSFLAGS_FIRSTMIPSIZE` — both `#define`d in that file, neither ever tested — so
-`UploadCompressed` walked past the allocation into the GL driver (**bug-2445**, a real player
-minidump). gl2 does not share that code path.
 
 ## Omaha (m3l1a) after the v1.5.1 pass — open (2026-09-04)
 
@@ -58,29 +48,43 @@ minidump). gl2 does not share that code path.
 - **Out-of-breath audio is still owed by the user.** `coop_uw_airout` / `coop_uw_wake` are called in
   the plunge and are armed no-ops until the wavs and aliases exist (`RAMPUW airhook armed` reports it).
   22050 mono 16-bit into `sound/coop_tinnitus/` — that path is duck-exempt, anywhere else is inaudible.
-- **2026-09-05/06 Omaha batch (bugs 2473-2511) - SHIPPED as v1.5.2, later builds AWAITING PLAYTEST.** Three
-  runs on 09-06 (08:52, 13:03, 18:30) verified from markers everything from the waders to the crowd's
-  charge (`FIRSTSEQ start`, `RADIOTX`, 044a, whistles, `BEACHADV fired`, flank guns 2 and 4 `drvfire=1`;
-  guns 1 and 3 read `see=0` - sightline) and, at 18:30, the Higgins sink at last (`HIGGINSSINK leg 1..4
-  done`, `complete` +56 s) after four runs where it never rolled (a solid clip, then the hull's
-  model swap making it SOLID_BBOX, 2487/2496). Also DISPROVED and re-fixed: beach fire (the cover trace
-  ended inside the player's own box, 2497), crowd poses (2498), quick-draw flip axis (2499). Still
-  unseen, with the marker that proves each: beach fire (`BEACHLOS seen=1` on open sand, `BEACHHIT`,
-  felt hits; `coop_dmgProbe 1` is the engine cross-check) · crowd crouched / shaking / wounded at the
-  hedgehogs, running on the whistle, prone short of the bank, no `HEDGECROWD drift` · quick-draw muzzle
-  up-left, sights up (`coop_qdrawHoldFlip` 0-3 by rcon if not) · weapon-lag rotation · ragged wet line
-  on gl2 and gl1 · the sink's END STATE (roll 30 / drop 72, ramp dead bound, 2510) · caustics dimmed
-  (2509) · urgency after the smoke (`URGENCY say`, 2511). Caveats: a busy voicebank can hold the smoke
-  advance ~17 s; the timber ramp draws no hits; LOS cover plays no suppression sound (NULL trigger in
-  the in-cover branch). Unpublished builds: boat stare off, pace 0.9, waders slid (2503); smoke blinds
-  the guns (2501); arms carry the lag swing (2502); hull fires at deck height (2504); placeholder
-  aliases reverted (2505); radioman pair moved (2506); the DROWNING pass (2507: air ramp `RAMPUW air=`,
-  heart `bpm=`, bubbles `burst=`, lid `alpha=`, exit flash/ring/inhale, caustics on the real seabed);
-  the OCEAN pass (2508: sheet fades out at T 0.82 into the strip's wet line (4-param tCoord, T2 knee), swash blood, a tint +
-  break-foam band in the two reclaimed stages, froth + sky sheen offshore, a boat wake (v13 skc
-  re-encode), the bob resynced to the sheet's 10 s, gl2 alphaGen dot + a real sun (r_hzmAlphaGenDot),
-  an open-sea wave mesh behind coop_seaMeshOn - up only from the grounding to the plunge, the ride's
-  sheet is $ocean_calm (2513); A/Bs owed on the stage-2 seam and the 1936 thin branches).
+- **2026-09-05/06 Omaha batch (bugs 2473-2511, shipped v1.5.2) - the per-item verification list is
+  in [archive/open-omaha-2026-09-05.md](archive/open-omaha-2026-09-05.md)**, with the marker that
+  proves each. Three runs on 09-06 confirmed the sequence end to end, including the Higgins sink after
+  four failures. Still unseen there: beach fire landing (`BEACHLOS seen=1`, `BEACHHIT`), the hedgehog
+  crowd's poses and charge, quick-draw flip, the sink's end state, urgency after the smoke. Two of its
+  caveats are now closed - the smoke-advance stall by 2529 below, the seam and banding A/Bs by the
+  09-07/08 pass below.
+- **⭐ 2026-09-07/08 Omaha batch (bugs 2512-2529) - DEPLOYED AND READ BACK, NOTHING PLAYTESTED.**
+  Everything below is verified only to "the map boots with 0 compile / 0 script errors and the bytes in
+  both roots match what was packed". None of it has been seen or felt.
+  - **The drowning QTE (2528) is the only thing here that can fail a player, and it is the least proven
+    thing here. The bar has never been drawn, the meter has never been felt, and nobody has drowned.**
+    Tap Use to claw off the seabed between BEAT 5 and BEAT 6; beats 6-8 are unchanged and run as the
+    reward. Knobs, all assigned unconditionally beside `coop_uwPace` in `coopified.scr`:
+    `level.coop_qteLethal 0` makes it survivable without removing it, `coop_qteOn 0` removes it,
+    `coop_qteWin 18.0` / `coop_qteGain 0.070` / `coop_qteDrain 0.10` set the pace, `coop_qteHud 0`
+    drops the bar alone (slots 123 curtain / 124 track / 125 fill / 179 label). Failure is **per
+    player** - LMS-exempt in `coop_mod/player.scr`, and deliberately NOT `missionfailed`, which in coop
+    reloads the map for everyone (TRAPS T17). The input edge is the one proven part: measured in game
+    at 971 samples / 395 held / 77 edges - a 5.35 s hold gave exactly one.
+  - Smoke barrage now waits on `level.coop_radiomanTxDone`, 20 s anti-strand ceiling (2529, user
+    report: it was dropping over the shore-party exchange). Probe `SMOKEDROP waited= txdone=`.
+  - Five extra beach medics crouched behind hedgehogs, spinning DBNO-style kits, healing on approach,
+    with a break-off heal animation (2522/2523/2526). Solved 190 u seaward of a hedgehog cover trigger,
+    min separation 1408 u - the first two tries were bunched, offset onto the exposed side, and posed
+    holding a rifle they do not carry.
+  - Ocean and surf realism (2515-2525): an open-sea mesh of three Airy components, a surf-zone bore
+    layer (`docs/tools/gen_coop_surf.py`), and a trough shadow painted antiphase to the break foam
+    (`gen_boreshade.py`) - **because deformed water cannot be lit here at all**, see
+    [ENGINE.md](ENGINE.md) 3.6. Boat overlaps fixed; the naval "thunder" was answered as an HD sound
+    pack's 2.72 s shell roll, not weather.
+  - **Deferred by design and still ranked** in `docs/proposals/water_omaha_2026-09-05/`: obliquity
+    shear (sign unsettled), sky sheen (doubles brightness at the proposed ceiling), aerial perspective
+    (a live cvar A/B on `r_globalFogStartScale 0.556`), seaward crest and wash continuations, seabed
+    depth tint, and **boats riding the waves** - which needs no engine change, since `level.time` and
+    `sin` both exist, but must sample the same wave function: a fixed 6.25 s retime was refuted on
+    Doppler grounds.
 - **Still open from the 09-04/05 handoff:** the trench grenade an ally promises and nobody throws
   (build or leave - user's call); the coop bazooka team can throw a live rocket (probe shipped, not
   fixed); `docs/02-status-ledger.md:86` still calls gl2 'PAUSED'; bodycam DoF focus pull
@@ -184,10 +188,9 @@ comments claimed - a de-synchroniser, not a tactic.
 
 ## Awaiting the next playtest (2026-08-17)
 
-- **Panzerfaust: REMOVED (2026-08-18).** Never fired despite the bug-1907 elimination
-  campaign; the user called it a dead end. Stripped from every system; armory id 73 stays a
-  permanent hole (never renumber). The WW1 flamethrower remains the candidate for a future
-  launcher-slot novelty if wanted.
+- **Panzerfaust: REMOVED (2026-08-18)** - never fired, user called it a dead end. The live residue:
+  **armory id 73 is a permanent hole, never renumber.** The WW1 flamethrower is the candidate if a
+  launcher-slot novelty is ever wanted.
 - **Skin system: built end-to-end, awaiting menu playtest (2026-08-18).** All 357 finish variants
   across 45 guns; the finish strip (8 buttons + VARIANT) in the armory; 7 finish challenges; both
   unlock gates server-side at apply AND spawn; 25 imported model variants across 12 host guns
@@ -195,8 +198,6 @@ comments claimed - a de-synchroniser, not a tactic.
   OPEN: the in-hand reload magazine keeps the stock skin (models/ammo/<gun>_clip.tik - reference
   point unknown, needs a runtime probe; both the MP40 and Tommy packs ship replacement clip
   models we can use once found); MOHPA porter unidentified - credits entry pending.
-
-## m1l1 scripted intro ride - CLOSED 2026-08-22 (bug-2064; residue in `archive/open-m1l1-intro-ride.md`)
 
 ## Defects with evidence
 

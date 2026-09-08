@@ -10,9 +10,9 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 42,928 |
+| files in the workspace | 42,931 |
 | bytes | 43.0 GB |
-| files in project scope (indexed per-file) | 17,565 |
+| files in project scope (indexed per-file) | 17,568 |
 | source files (per-file rows with line counts) | 6,463 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
@@ -32,7 +32,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `UBER-MODS-v8.00-MOHAA` | 2,614 | 115.5 MB | no - reference | third-party mod, reference only |
 | `moh-modelviewer` | 1,270 | 565.8 MB | no - reference | Node model preview tool (rarely touched) |
 | `original-scripts` | 915 | 1173.7 MB | no - reference | vanilla MOHAA script/asset extraction (reference) |
-| `docs` | 304 | 45.0 MB | **yes** | this documentation set (authored + generated) |
+| `docs` | 307 | 45.0 MB | **yes** | this documentation set (authored + generated) |
 | `player1_home` | 291 | 2.1 MB | no - reference | test client profile dir |
 | `scratchpad` | 269 | 45.8 MB | **yes** |  |
 | `_research` | 171 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
@@ -95,7 +95,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.asf` | 514 |
 | `.cpp` | 475 |
 | `.skc` | 425 |
-| `.md` | 417 |
+| `.md` | 420 |
 | `.ogg` | 376 |
 | `.skd` | 347 |
 | `.shader` | 237 |
@@ -185,7 +185,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `autotest_home/maintt/coop_mod/save` | 3 | 0.00 MB | .dat×3 |
 | `autotest_results` | 2 | 0.32 MB | .tsv×1, .log×1 |
 | `docs` | 32 | 1.58 MB | .md×31, .png×1 |
-| `docs/archive` | 25 | 0.24 MB | .md×25 |
+| `docs/archive` | 28 | 0.25 MB | .md×28 |
 | `docs/archive/legacy-root-2026-06` | 63 | 0.81 MB | .md×63 |
 | `docs/probe_captures` | 12 | 38.01 MB | .log×12 |
 | `docs/proposals` | 24 | 0.88 MB | .md×23, .json×1 |

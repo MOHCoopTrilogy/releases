@@ -189,6 +189,10 @@ a 45-unit step is worse than the step). **When presenting options, describe the 
 uses, not only what it achieves** — the user reads mechanisms and routinely spots the minimal one.
 Framing a choice purely in outcomes hides exactly the information they decide on.
 
+**And when a LOOK is rejected as unreal, research the real phenomenon before touching a
+parameter** (2026-09-07: *"research how waves actually work, how currents actually work"*) -
+two shader nudges had already failed.
+
 
 ## Commit messages: short. The detail already lives somewhere better (2026-08-30)
 

@@ -24,10 +24,6 @@ give you.
 **Open now:** [T11](#t11) trusting the record over the code · [T14](#t14) verification that lied.
 **Recurring:** [T1](#t1) parse killers · [T3](#t3) silent veto · [T4](#t4) capacity families ·
 [T6](#t6) what loads != what you shipped · [T10](#t10) deploy gaps · [T12](#t12) same-named trees.
-**Legacy numbers:** **T13** = [cross-cutting](#cross-cutting) Q5, **T15** =
-`reference/harness_and_reproduction.md`, **T18** = `archive/traps-t16-failsafe-recursion.md`,
-**T19** (a radius is a sphere; use `vector_length` on flattened points, bugs 1689/1690) and the
-`.health`-bypasses-damage-feedback entry (bug-2015) = `archive/traps-pruned-2026-09-05.md`.
 ---
 
 <a name="t1"></a>
@@ -51,6 +47,12 @@ kills the entire file and the map runs with no script - raw team menu, unstartab
 > **All three scanners pass a file that cannot compile** - they check brace depth, line shape and string
 > termination, not *expression* syntax; `println "a" + x + "b"` without parens kills the file and scans
 > clean (bug-1751). **Not verified until a server has loaded the map and the log shows no `parse error`.**
+>
+> **A comment that lost its `//` scans perfectly** (2026-09-06). A fixer's replacement dropped the
+> marker off the second line of a wrapped comment in `coopified.scr`, leaving `them. A mid-beat kill...`
+> standing as a bare statement. Braces balanced, quotes balanced, no line began with an operator, so all
+> three scanners said PASS. **A fixer that touches comment TEXT can emit code: read the changed lines
+> back as lines, not just the file as a depth profile.**
 
 **Run all three — they catch disjoint classes:**
 
@@ -345,10 +347,10 @@ an external pack's shader block names against `scripts/*.shader` and the retail 
 model. `map foo.tga` resolves extension-agnostically, so a shader naming `.tga` beside a shipped `.jpg`
 is **not** missing.
 
-**Related generated-asset hazard:** ESRGAN upscales have shipped hallucinated worm noise (bug-1129), a
-GPU-corrupted all-black `netgame_a/b` that blanked the server browser (bug-247), and 29 overridden
-**vanilla** menu textures (bug-157). **Brightness-check output before commit**; ESRGAN is for photos and
-text, and corrupts 1-2px chrome.
+**Related generated-asset hazard:** ESRGAN upscales have shipped worm noise, an all-black
+`netgame_a/b` that blanked the server browser, and 29 overridden **vanilla** menu textures (bugs 1129,
+247, 157). **Brightness-check output before commit**; it is for photos and text, and corrupts 1-2px
+chrome.
 
 ---
 
@@ -645,7 +647,13 @@ the caller still reports success. **Tell:** a feature that "does nothing" with n
   (bug-1352, bug-1372)
 - **A command registered on `ScriptThread` is NOT a Player event** — `iprintlnbold`/`iprintln` are
   ScriptThread-only, so `<player> iprintlnbold "..."` silently fails; the Player form is
-  `iprint <text> 1`.
+  `iprint <text> 1`. **The same shape one level up: a primitive that reads per-player and is actually
+  the whole SERVER.** In coop `missionfailed` runs `replace.scr:2644` -> `main.scr:2015`
+  `stuffsrv "map <this map>"` - a full reload for everyone, so failing one player with it restarts the
+  other three. `fadeout`/`fadein`/`clearfade` write `level.m_fade_*`, which `Player::CalcBlend` copies
+  to **every** client, so one player's blackout blacks out the server. Per-player failure and
+  per-player screen state must be built from per-player primitives - `self.flags[...]` and an
+  `ihuddraw_*` slot, which is per client (bug-2528).
 
   Worked examples and the failure histories for these three are in
   [`archive/traps-pruned-2026-08-20.md`](archive/traps-pruned-2026-08-20.md).
@@ -837,19 +845,11 @@ grep the consumer, not the setter.** Three instances; full write-up in
 <a name="itemname"></a>
 ## Weapon variant suffixes - every consumer must strip them (two conventions, do not mix)
 
-A variant exists twice under two different spellings, and an exact-name key misses almost the whole set
-in both. **TIK FILENAME `<base>_<finish>`** (`G43_dhg43fleck`): 481 weapon TIKs ship and only ~41 are
-base guns, so an exact key covers ~8% - dead on 428 while working on the handful you test with. **Try
-the full name, then drop trailing `_segments` one at a time; never cut at the FIRST underscore**, since
-real base names contain one (`m1_garand`, `svt_rifle`). **DISPLAY STRING `"<Base Gun> (<Finish>)"`**:
-whole-string comparison of `weapon->item_name` mismatches all 247 variants and falls through to the
-default. `CoopStripSkinSuffix` splits on `" ("` - a different convention for a different string, so
-neither substitutes for the other. FOUR consumers, one missed for three days: `CG_GetVMAnimPrefixIndex`
-and `CG_FindAdsTune` (`cg_modelanim.c`), and `Player::CondWeaponActive` (`player_conditionals.cpp`)
-inline. The missed one read as the wrong MAGAZINE during reload - the clip is not part of the gun, it is
-an `Animate` spawned by an `attachmodel` frame command in the THIRD-PERSON torso anim, picked by
-`IS_WEAPON_ACTIVE`. **Any new consumer tries the exact match first, then the stripped base name.**
-(bug-1982)
+**Two spellings, and an exact-name key misses ~92% of the set in both** - full entry in
+**[`archive/traps-weapon-variant-suffixes.md`](archive/traps-weapon-variant-suffixes.md)**. TIK filename
+`<base>_<finish>`: drop trailing `_segments` one at a time, never cut at the FIRST underscore. Display
+string `"<Base Gun> (<Finish>)"`: split on `" ("`. Different conventions; neither substitutes for the
+other. **Any new consumer tries the exact match first, then the stripped base name.** (bug-1982)
 
 ---
 

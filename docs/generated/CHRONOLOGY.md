@@ -13,25 +13,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `c4152df 2026-09-08 docs: the drowning-QTE research and its input probe` |
-| commits | 229 |
+| HEAD | `41d367d 2026-09-08 docs: the drowning QTE and the smoke sequencing` |
+| commits | 230 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **6 modified, 3 untracked** |
+| unstaged diff | 6 files changed, 156 insertions(+), 130 deletions(-) |
+
+> Working tree is dirty. Everything in those 9 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 18 |
+| 2026-09 | 19 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (229)
+### Commits since 2026-01-01 (230)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `41d367d` | 2026-09-08 | joncurry94-tech | docs: the drowning QTE and the smoke sequencing |
 | `c4152df` | 2026-09-08 | joncurry94-tech | docs: the drowning-QTE research and its input probe |
 | `1bd6a00` | 2026-09-07 | joncurry94-tech | docs: the trough-shadow generator |
 | `c51e390` | 2026-09-07 | joncurry94-tech | docs: the shoreline ocean pass |

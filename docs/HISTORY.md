@@ -24,43 +24,11 @@ Moved to [archive/history-2026-06-26-to-07-10.md](archive/history-2026-06-26-to-
 2026-08-24 to keep this file inside its ceiling. The buglog begins; the coop framework, officer
 waves and the first engine fixes land.
 
-## 2026-07-11 → 07-20
+## 2026-07-11 → 07-20  (archived)
 
-| When | What |
-|---|---|
-| 07-11 | `U` e1l4 alarm can now be silenced (v1.1.45). |
-| 07-11 | Feel/engine/challenges batch — challenge total reaches 185. |
-| 07-12 | `U` ARMORY loadout picker Phase 1 (69 guns). ⭐ Required an **engine** fix — `FindResponder` v2. |
-| 07-12 | `V` Retail objective audit: ~630 scripts, **no P0s**; 2 P1 strand risks on t2l1. Fixed `maps/m2l2b.scr:87` calling a label that never existed. |
-| 07-12 | **Objectives script-panel RETIRED** — the user saw both displays at once ("obnoxious"). |
-| 07-12 | `U` King Tiger 2nd-player MG gunner slot prototype. |
-| 07-12 | `U` Frontline PS3 extraction: 339 cues / 175 ambience beds. ⭐ `main.musx` → chunk-walk split → rename `.asf` → vgmstream. |
-| 07-13 | `V` Helmet pop-off mechanic fixed — **not cut content**; pops were firing all along but invisible. |
-| 07-13 | `U` Cut-content dig + dialogue restoration wave 1 (~15 lines / 5 maps). ⭐ **The MP hitmarker is disabled at retail by a `null.wav` alias.** |
-| 07-13 | `P` Bipod design research — BUILD weapon-stance supported aim, REJECT turret swap. |
-| 07-13 | **Deployables skill tree REJECTED by the user.** |
-| 07-16 | `U` Weapon unlock progression + cosmetic unlocks built + deployed. |
-| 07-17 | `U` Build-mode geometry (14 primitives) + blueprint system. |
-| 07-17 | `U`→**ON** Reactive Difficulty Director built and wired (`director.scr`) — recorded as "PLANNED, DO NOT BUILD," enabled by default in `autoexec.cfg:381`. |
-| 07-17 | `V` Vehicle-turret invisible-to-1P-driver fixed (bug-647, game.dll only). |
-| 07-17 | `U` ARMORY V3 rebuild. |
-| 07-18 | `U` All four gore tiers built + deployed (`tr_gore.c`, 836 lines). |
-| 07-18 | `R` **Decapitation v1 shipped → "the AI went all glitchy" → pulled** (bug-861). |
-| 07-18 | `U` Corpse gurgle + wet blood-leak loop. ⭐ bug-822 root cause: `Actor::Remove` calls `Unregister(STRING_DEATH)`, so `self delete` on a live scenic actor fires the parked `waittill death`. |
-| 07-18 | `U` Blast tinnitus in the engine (`RadiusDamage` stamps `coop_blastPing`). |
-| 07-18 | `V` Weapons-on-back shipped — **EA shipped the system and disabled it with comment slashes**; 79 retail TIKs had commented `holstertag` lines. |
-| 07-18 | `V` xw pack full shader audit: **pack is CLEAN** (9 dead paths, all unreferenced). Do not re-audit. |
-| 07-18 | `U` Armory stufftext quote-truncation fixed, rcon-verified (bug-758). |
-| 07-18 | **v1.2.0 release notes finalised — and never published.** The line continued 1.1.49 → 1.1.55. |
-| 07-19 | `R` **Decapitation reverted from SOURCE** during the `MAX_MODELS` three-binary rebuild (bug-892), so a rebuild cannot reintroduce it. |
-| 07-19 | `V` `MAX_MODELS` 1024→2048 (at 1024 full, further enemies register as model index 0 = **invisible**). ⚠️ `q_shared.h:1680` credits this to bug-866; it is bug-892. |
-| 07-19 | WinDbg `cdb` installed; `game.pdb` now ships next to `game.dll` so dumps resolve exact lines. |
-| 07-20 | `V` **The entity-pool saga resolves.** `set maxentities 2048` had shipped for years against a 10-bit wire — it added no entities, it **disabled `AllocEdict`'s overflow guard**, so the allocator handed out slot 1022 (WORLD). One lie = a weekend of use-after-free minidumps. Fixed by `GENTITYNUM_BITS` 10→11 + ~25 guards + `g_droppeditemlife 60`. |
-| 07-20 | `V` e1l2 invisible walls solved — three species (33 solid landmines → `CONTENTS_WEAPONCLIP`; artillery TIK setsize tightened; a 225-segment retail playerclip web). |
-| 07-20 | `R` Regional clip-strip **zones retired** — wrong-grained, let players out of bounds. Replaced by `cmpatch/<map>.txt` brush surgery. ⭐ **The server loads `<name>_sml.bsp`.** |
-| 07-20 | `V` `MAX_ENTITIES_IN_SNAPSHOT` + `MAX_PARSE_ENTITIES` raised (bug-934). |
-
----
+Moved to [archive/history-2026-07-11-to-07-20.md](archive/history-2026-07-11-to-07-20.md)
+on 2026-09-08 to keep this file inside its ceiling. Weapons-on-back, the armory and
+loadout system, the entity-pool saga, and the first ADS work.
 
 ## 2026-07-21 → 07-29
 
@@ -246,3 +214,10 @@ source is not corroboration, and the expensive fix refuted by measurement — no
   (2497), the captain's exchange never fired (2490); quick-draw flipped (2491/2499), ragged wet line
   (2493), hedgehog crowd (2495/2498); ricochet research filed. Evening: drowning pass (2507)
   and ocean pass (2508); sink end, caustics, urgency (2509-11).
+- **2026-09-07/08** Omaha realism and the drowning QTE (2512-2529), all `U`. The ocean got an
+  open-sea Airy mesh, a surf-zone bore layer and a painted trough shadow, after establishing that
+  deformed water cannot be lit in this engine at all (ENGINE.md 3.6); boat overlaps and the
+  shore/ocean seam closed; the "thunder" was an HD shell roll, not weather. Five beach medics in
+  hedgehog cover heal on approach (2522/2523/2526). **The drowning cinematic became a tap-Use QTE
+  (2528)** - per-player failure, LMS-exempt, never `missionfailed`; the input edge was proven in
+  game before the feature was written. Smoke barrage now waits for the shore party (2529).

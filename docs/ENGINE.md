@@ -422,6 +422,48 @@ Fixed with `IMGFLAG_CLAMPTOEDGE_X` / `_Y`, **appended** to `imgFlags_t` so no ex
 (`image_s.flags` is compared in both renderers and `tr_gore.c`), plus per-axis `glWrapS`/`glWrapT` in
 `R_CreateImage`.
 
+### Shader hard limits, and the ceiling on what water can be made to look like
+
+Found across the Omaha ocean pass (bugs 2518-2525), where several "the edit did nothing" rounds were
+each one of these. Constants are `renderercommon/tr_types.h` / `tr_local.h`; behaviour was read in
+`tr_shader.c` and `tr_shade_calc.c` and confirmed live on gl2.
+
+**Three limits fail LOUDLY-in-source and silently on screen:**
+
+* **`MAX_SHADER_DEFORMS` is 3.** A **fourth** `deformVertexes` makes `ParseShader` return `qfalse`,
+  and the whole shader - every stage - falls back to `defaultShader`. The surface turns into the
+  white/grey grid, which reads as a missing texture, not as a shader you overfilled.
+* **8 stages per shader**, and a 9th is dropped the same way.
+* **`TR_MAX_TEXMODS` is 4 per bundle** - a 5th `tcMod` is an `ERR_DROP`, so that one at least tells you.
+
+**You cannot shade a deformed surface by its shape.** `deformVertexes wave` phases on *model-space*
+`(x+y+z)*deformationSpread` and displaces along the **unpacked vertex normal**; it writes `tess.xyz`
+and **never** `tess.normal` (`tr_shade_calc.c:136-152`). So `alphaGen dot`, `alphaGen lightingSpecular`
+and `tcGen environment` on a waving surface all read the *flat, pre-deform* normal - they draw a
+distance vignette, not a wave. m3l1a compounds it: worldspawn `sundirection "270 360 0"` puts the light
+at the exact zenith, so a crest and a trough receive identical light even with a lighting stage.
+**Relief on water here has to be painted and moved with the geometry, not lit** - a bright band and a
+dark band half a period apart is the whole mechanism (`docs/tools/gen_boreshade.py`).
+
+**Smaller ones, each of which cost a round:**
+
+* **`alphaGen` is per VERTEX, not per pixel** - its resolution is your mesh's, so a gradient needs rows.
+* **`alphaConst` is an unsigned byte, and the parser's `-1` sentinel stores 255** - so 2-parameter
+  `alphaGen tCoord` saturates at 1.0 and can never reach 0. Use the 4-parameter form.
+* **gl1 reads the `tCoord` AFTER bundle 0's `tcMod`s; gl2 reads the raw attribute.** Any `tcMod scale`
+  on bundle 0 makes `alphaGen tCoord` mean two different things on the two renderers.
+* **A bare `nextbundle` multiplies bundle 1's alpha into the stage** on both (gl2
+  `generic_fp.glsl` `alpha *= color2.a`; gl1 `GL_TexEnv` defaults to `GL_MODULATE`) - which is how you
+  break a ruled band into cells. A dual-bundle stage is also marked `ST_GLSL`, so
+  `CollapseStagesToGLSL` skips it, which happens to protect `alphaGen tCoord` from bug-2486.
+* **`blendFunc add` is `ONE|ONE` and ignores alpha entirely** - an `alphaGen` on an additive stage is
+  wired, plausible, and doing nothing (T23).
+* **`R_VaoPackNormal` is `v*32767+0.5` into an int16**, so a hand-authored normal of magnitude
+  >= 1.0000153 **wraps negative and inverts the vertex**. Normal length is otherwise a free per-vertex
+  amplitude gain, because nothing renormalises it.
+* **A flat patch is culled to 8x8 at load** (collinear cull, `tr_curve.c:569-583`) - so a
+  high-tessellation flat patch authored as a wave bed silently loses its rows before it ever deforms.
+
 ### Reading a MOHAA BSP, since this needed it
 
 `dheader_t` is `ident, version, **checksum**, lumps[28]` - so **lumps start at byte 12, not 8**.

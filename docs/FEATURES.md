@@ -1106,40 +1106,44 @@ Low-health limp, AI voice nationality, the covtrace/covwalk coverage sweep and t
 loading screen: full write-ups in [`archive/features-dated-2026-08.md`](archive/features-dated-2026-08.md).
 All four still ship; none is superseded.
 
-## Omaha (m3l1a) 2026-09-05 batch - SHIPPED, AWAITING PLAYTEST
+## Omaha (m3l1a) 2026-09-05 -> 09-08 batch - SHIPPED, AWAITING PLAYTEST
 
-Bugs 2473-2511. Every beat has a
+Bugs 2473-2529. Every beat has a
 kill switch (`level.coop_*On`) and a `^~^~^` marker; acceptance lines are in OPEN.md.
 
-- **Flank MG42 crews fire** - the crewman was named so `global/mg42_active.scr` could never bind him,
-  the script fallback silenced the guns it declined to drive, and the field block was set as commands
-  only. `FLANKGUN`/`FLANKMGSTAT` probe; `coop_flankCrewDrive 0` bisect; cap `coop_flankCrewMax`.
-- **Radioman rework** - silent, shot on approach; the PLAYER transmits 036h from the set on his body,
-  045a answers (`dialog streamed` re-aliases at 200/3000); `dfr_M3L1_300f`, unused retail VO, is the
-  order after the round.
-- **044a voices restored** - a `local.ok` int/array collision had NIL'd both speakers since bug-2451.
-- **Underwater cinematic** - waders retimed into the swim; the seven seabed corpses and kills;
-  hull sparks as an aimed 0.25 s burst from a coop-owned `notagaxis` metal emitter.
+- **Flank MG42 crews fire** - probe `FLANKGUN`/`FLANKMGSTAT`, bisect `coop_flankCrewDrive 0`, cap
+  `coop_flankCrewMax`.
+- **Radioman rework** - he is silent and shot on approach; the PLAYER transmits 036h from the set on
+  his body and 045a answers, then unused retail VO `dfr_M3L1_300f` gives the order.
+- **Underwater cinematic** - waders retimed into the swim, seven seabed corpses and kills, hull sparks
+  from a `notagaxis` metal emitter.
 - **Ocean** - `zz_coop_ocean.shader` (flap max 10 -> 1, m3l1a-only), coop Higgins at retail's -563.7,
-  six ashore boats re-solved clear of statics and seated by `droptofloor`.
-- **Obstacle wash** - surf sprays on the 72 statics in water, five nearest a player (`coop_obstWashOn`).
-- **Quick-draw parked primary** - in view lower-left (`coop_qdrawVOfs/VAng`, probe `coop_qdrawVDbg`);
-  the left hand is NOT on it (clip-posed).
-- **Bazooka team pose** - legs in the motion slot, gun in the action slot.
-- **Wet-sand swash + shore foam** (bug-2485/2493) - `zz_coop_wetsand.shader`: a clamped gradient
-  multiply moved in T by the waterline flap's wave, and wash2's foam band with its reach baked into
-  texture alpha (gl2 drops `alphaGen tCoord` without a deform, 2486), both ragged on a 256 u period.
-- **Omaha 09-06 pass** - Higgins sink never rolled in four runs (a solid clip, then the hull's model
-  swap making it SOLID_BBOX, 2487/2496); beach fire restored (cover trace ended in the player's box,
-  2497); captain's exchange gated (2490); hedgehog crowd (2495/2498); quick-draw X flip (2499).
-- **Drowning pass** (2507) - air ramp into the gl2 water pass (tunnel, desaturation, blur, pulse),
-  heart one-shots on a carrier, bubbles, the lid seen from below, thrash, a real exit; caustics (dimmed
-  18%, 2509). **Sink end state** roll 30 / drop 72, ramp dead ride the deck (2510). **Urgency** after
-  the smoke: seven m3l1 shouts + attack pool, no man twice, `URGENCY say` (2511).
-- **Ocean pass** (2508) - sheet fades out at T 0.82 into the strip's wet line (4-param tCoord, T2 knee), swash blood, a tint +
-  break-foam band in the two reclaimed stages, froth + sky sheen offshore, a boat wake (v13 skc
-  re-encode), the bob resynced to the sheet's 10 s, gl2 alphaGen dot + a real sun (r_hzmAlphaGenDot),
-  an open-sea wave mesh behind coop_seaMeshOn; A/Bs owed on the stage-2 seam and 1936 thin branches.
+  six ashore boats clear of statics, seated by `droptofloor`.
+- **Obstacle wash** - surf on the 72 statics in water, five nearest a player (`coop_obstWashOn`).
+- **Quick-draw parked primary** - in view lower-left (`coop_qdrawVOfs/VAng`, probe
+  `coop_qdrawVDbg`); the left hand is not on it.
+- **Wet-sand swash + shore foam** (2485/2493) - `zz_coop_wetsand.shader`, both ragged on a 256 u
+  period; the foam's reach is baked into texture alpha because gl2 drops `alphaGen tCoord` without a
+  deform (2486, ENGINE.md 3.6).
+- **Drowning pass** (2507) - an air ramp driving the gl2 water pass (tunnel, desaturation, blur,
+  pulse), heart one-shots, bubbles, the lid from below, thrash, a real exit; caustics dimmed
+  (2509). **Sink end state** roll 30 / drop 72 (2510). **Urgency** after the smoke: seven m3l1 shouts,
+  no man twice, `URGENCY say` (2511).
+- **Ocean pass** (2508) - the sheet fades out at T 0.82 into the strip's wet line (4-param tCoord),
+  swash blood, a tint + break-foam band in two reclaimed stages, offshore froth and sky sheen, a boat
+  wake, gl2 `alphaGen dot` + a real sun (`r_hzmAlphaGenDot`), and the open-sea wave mesh behind
+  `coop_seaMeshOn`.
+- **Drowning QTE** (2528) - the drowning cinematic is now a **tap-Use fight against the current**
+  between BEAT 5 and 6, and every player must clear it to finish the beach-landing objective. Let up
+  and it drags you seaward, fades to black and kills you - **that player alone**: LMS-exempt, never
+  `missionfailed` (a map reload in coop). Bar on HUD slots 123-125 + 179; knobs in OPEN.md.
+  **Nobody has drowned yet.**
+- **Beach medics** (2522/2523/2526) - five more crouched in hedgehog cover with spinning DBNO-style
+  kits, healing on approach with a break-off animation; the map's own medics included.
+- **Ocean and surf realism** (2515-2525) - an open-sea Airy mesh, a surf-zone bore layer and a trough
+  shadow painted antiphase to the break foam (`gen_coop_sea/surf.py`, `gen_boreshade.py`), because
+  deformed water cannot be lit here at all. Boat overlaps and the shore/ocean seam closed; the smoke
+  barrage now holds until the shore party's radio exchange finishes (2529).
 
 ## m2l2a Phase C - the player-initiated CONTAIN (2026-08-10) - SHIPPED, partly verified
 
