@@ -13,28 +13,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `2dba4d7 2026-09-08 docs: the QTE and the Omaha realism pass, with the prunes that paid for them` |
-| commits | 231 |
+| HEAD | `fe9f6a5 2026-09-08 m3l1a: a 4x texture pass, prosecheck, and the QTE/fire records` |
+| commits | 232 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **2 modified, 4 untracked** |
-| unstaged diff | 2 files changed, 39 insertions(+), 31 deletions(-) |
+| **uncommitted** | **5 modified, 0 untracked** |
+| unstaged diff | 5 files changed, 17 insertions(+), 9 deletions(-) |
 
-> Working tree is dirty. Everything in those 6 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 5 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 20 |
+| 2026-09 | 21 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (231)
+### Commits since 2026-01-01 (232)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `fe9f6a5` | 2026-09-08 | joncurry94-tech | m3l1a: a 4x texture pass, prosecheck, and the QTE/fire records |
 | `2dba4d7` | 2026-09-08 | joncurry94-tech | docs: the QTE and the Omaha realism pass, with the prunes that paid for them |
 | `41d367d` | 2026-09-08 | joncurry94-tech | docs: the drowning QTE and the smoke sequencing |
 | `c4152df` | 2026-09-08 | joncurry94-tech | docs: the drowning-QTE research and its input probe |
