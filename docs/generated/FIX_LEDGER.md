@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1860** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1861** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -17,7 +17,7 @@
 | 2026-06 | 80 |
 | 2026-07 | 577 |
 | 2026-08 | 918 |
-| 2026-09 | 279 |
+| 2026-09 | 280 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1878,6 +1878,7 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-2540` | 2026-09-08 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | coop_tinnitus_ring has never been audible | The wash keeps the instant (it is the impact); coop_uwRingLate threads the ring 0.35 s behind it, which is also the order a real concussion arrives i… |
 | `bug-2541` | 2026-09-08 | `docs/tools/gen_coop_surf.py, hzm-mohaa-coop-mod/scripts/zz_coop_shore…` | - | the surf bore and the open-sea swell beat against each other with a 25 s period | BORE_FREQ 0.20 -> 0.16 and BORE_LAMBDA 560 -> 700, which holds run-up speed at the shipped 112 u/s (DIV*freq is what sets speed) while the period mov… |
 | `bug-2542` | 2026-09-08 | `openmohaa-hzm/code/cgame/cg_modelanim.c` | - | user, twice: "Quick draw flip still looks funky gun is facing almost straight upwards" | Default "-37 55 17" -> "14 55 17", with the sscanf fallback moved to match so a malformed cvar cannot silently restore the old pose. It is a live cva… |
+| `bug-2543` | 2026-09-08 | `hzm-mohaa-coop-mod/maps/m3l1a/coopified.scr` | - | user: "it would be great if after a while some of those bombs that hit the shore and ocean hit some of the higgins boats near you and caused them to… | Written fresh against the constraint that looked like an obstacle: moveto and move silently no-op on a script_model, so coop_boatSinkMotion steps .or… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

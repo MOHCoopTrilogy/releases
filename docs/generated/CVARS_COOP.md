@@ -1229,7 +1229,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_ricochet` | `1` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:93` | DEFAULT `1` @ `coop_defaults.cfg:435` |  |  |
 | `coop_riderSolid` |  |  |  | FORCED `1` @ `autoexec.cfg:376` | `maps/t2l2.scr:1447` |  |
 | `coop_save` |  |  |  |  | `maps/e1l3/Sneakers.scr:131` (+4) |  |
-| `coop_sayProbe` |  |  |  |  | `maps/m3l1a/coopified.scr:19616` |  |
+| `coop_sayProbe` |  |  |  |  | `maps/m3l1a/coopified.scr:19834` |  |
 | `coop_scalecheck` |  |  |  |  | `coop_mod/coop_selftest_scaling.scr:70` |  |
 | `coop_scaletest` |  |  |  | other `1` @ `coop_mod/cfg/coop_regression.cfg:47`<br>other `0` @ `coop_mod/cfg/coop_regression_off.cfg:16` | `coop_mod/main.scr:246` |  |
 | `coop_shadowAuto` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:783` | FORCED `1` @ `autoexec.cfg:850` |  |  |
@@ -1763,7 +1763,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_srP8` |  |  |  | FORCED `0` @ `autoexec.cfg:603`<br>other `0` @ `ui/coop_sr_pg0.cfg:9`<br>other `0` @ `ui/coop_sr_pg1.cfg:9`<br>(+28 more) |  | `ui/coop_sr.urc` |
 | `coop_srP9` |  |  |  | FORCED `0` @ `autoexec.cfg:604`<br>other `0` @ `ui/coop_sr_pg0.cfg:10`<br>other `0` @ `ui/coop_sr_pg1.cfg:10`<br>(+28 more) |  | `ui/coop_sr.urc` |
 | `coop_st_autodeploy` |  |  |  |  | `coop_mod/main.scr:256` |  |
-| `coop_st_bangtest` |  |  |  |  | `maps/m3l1a/coopified.scr:19563` |  |
+| `coop_st_bangtest` |  |  |  |  | `maps/m3l1a/coopified.scr:19781` |  |
 | `coop_st_dbno` |  |  |  | other `1` @ `coop_mod/cfg/coop_regression.cfg:36`<br>other `0` @ `coop_mod/cfg/coop_regression_off.cfg:7` | `coop_mod/main.scr:285` |  |
 | `coop_st_engine` |  |  |  | other `1` @ `coop_mod/cfg/coop_regression.cfg:32`<br>other `0` @ `coop_mod/cfg/coop_regression_off.cfg:3` | `coop_mod/main.scr:267` (+1) |  |
 | `coop_st_flanktest` |  |  |  |  | `coop_mod/main.scr:261` |  |
@@ -3259,7 +3259,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_unsponge` |  |  |  | FORCED `1` @ `autoexec.cfg:437` | `coop_mod/aihandler.scr:408` (+1) |  |
 | `coop_uwAir` | `1` | `0` | `cgame/cg_view.c:5898` |  |  |  |
 | `coop_uwAirRate` | `0.6` | `0` | `cgame/cg_view.c:5900` |  |  |  |
-| `coop_uwBedVol` |  |  |  |  | `maps/m3l1a/coopified.scr:13515` |  |
+| `coop_uwBedVol` |  |  |  |  | `maps/m3l1a/coopified.scr:13732` |  |
 | `coop_uwOutRate` | `3.3` | `0` | `cgame/cg_view.c:5868` |  |  |  |
 | `coop_vault` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:18746` |  |  |  |
 | `coop_vaultAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1557` |  |  |  |

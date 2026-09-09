@@ -13,25 +13,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `24a5457 2026-09-08 tools: the shore-wave envelope, the bore period, and the quick-draw pose` |
-| commits | 236 |
+| HEAD | `3169548 2026-09-08 docs: regenerate after the round-3 batch` |
+| commits | 237 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **0 modified, 0 untracked** |
+| **uncommitted** | **7 modified, 0 untracked** |
+| unstaged diff | 7 files changed, 24 insertions(+), 15 deletions(-) |
+
+> Working tree is dirty. Everything in those 7 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 25 |
+| 2026-09 | 26 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (236)
+### Commits since 2026-01-01 (237)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `3169548` | 2026-09-08 | joncurry94-tech | docs: regenerate after the round-3 batch |
 | `24a5457` | 2026-09-08 | joncurry94-tech | tools: the shore-wave envelope, the bore period, and the quick-draw pose |
 | `d4019b3` | 2026-09-08 | joncurry94-tech | gen_coop_sea: move the shoaling peak seaward for the beach fight |
 | `3432551` | 2026-09-08 | joncurry94-tech | tools: fix_dds_shadowing.py - 57 installed HD textures that never loaded |
@@ -274,8 +278,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `ad2d08a0 2026-09-08 Omaha: parallel beach damage, DBNO made reachable, and the shore wave extension` |
-| commits | 1,613 |
+| HEAD | `ad00c2ec 2026-09-08 Omaha: shells find the landing craft and take them down` |
+| commits | 1,614 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 1 untracked** |
 
@@ -285,7 +289,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 22 |
+| 2026-09 | 23 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -326,10 +330,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (264)
+### Commits since 2026-01-01 (265)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `ad00c2ec` | 2026-09-08 | joncurry94 | Omaha: shells find the landing craft and take them down |
 | `ad2d08a0` | 2026-09-08 | joncurry94 | Omaha: parallel beach damage, DBNO made reachable, and the shore wave extension |
 | `9f725ca0` | 2026-09-08 | joncurry94 | Omaha: the sand geysers on the sea, the sink trim, and the swell back for the beach fight |
 | `da899d46` | 2026-09-08 | joncurry94 | Omaha: a longer fight against the current, every medic adopted, and honest QTE timing |

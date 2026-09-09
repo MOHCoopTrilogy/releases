@@ -6,10 +6,11 @@
 
 [<- back to all fixes](../BUGFIXES.md)
 
-**55 fixes**, newest first.
+**56 fixes**, newest first.
 
 | ID | Problem | Cause | Fix |
 |---|---|---|---|
+| `bug-2539` | DBNO can never fire on m3l1a: the player bled 750 to 0 with dbno=0 at every sample and not one DBNO marker in a 3.1 MB log | dbno.scr hard-resets the cumulative counter after 2 quiet seconds; the beach fires bursts of 8 ticks then goes quiet for 6.6 s, so only WITHIN-burst damage ever accumulates. One full burst is 8 * 0.68 landed * 37.5 HP * scale, scale = 0.35  | Override 400 -> 150, which a near-full burst high on the beach can reach and the waterline rarely can - a gradient that costs you for standing in the open. dbno.scr now applies the map override only when no explicit coop_dbnoThreshold is se |
 | `bug-2412` | Harness clients connect, are force-joined to allies, ride the Higgins boat - and never actually enter the game. coop_isActive stays -1. | MEASURED, cause not fully identified. With developer 1 on the server, PRB player.snap shows both clients as ent=0/ent=1, tn=player, tm=american, hp=100, at org=352,-7440,-463 - which is the Higgins boat start position, i.e. the map DID load | NOT SOLVED. Three routes tried and all failed: (1) `rcon map m3l1a` and `rcon restart` - neither reloads a running server (bug-2411); (2) launching the client with `+exec autospawn.cfg` holding waits + popmenu + a synthetic +attack/-attack  |
 | `bug-2410` | launch_dedicated_2player.ps1 boots the server WITHOUT developer 1, so every script marker is silently gated off. | ScriptThread::Println is developer-gated (scriptthread.cpp:2869). The harness seeds sv_maxclients, rconpassword and the map but never `developer`, so a harness run produces a server log with ZERO coop markers - OBSTACLES, BEACHDEAD, SWEEPOW | NOT PATCHED IN THE HARNESS YET - worked around live with `rcon developer 1`, after which SWEEPOWN appeared immediately. The harness should seed `developer 1` next to `logfile 2` in its dedicated_start.cfg block. Recorded here rather than ed |
 | `bug-2366` | user console: 22x '^~^~^ Script Error : You must specify an explicit classname for misc object tik models', all from coopified.scr:8043. | coop_higginsSinkBurn used the bare `spawn "models/fx/water_trail_bubble.tik"` form. That TIKI declares no classname - its emitter lives in init{client{}} and there is nothing else in the file - so the bare form fails. 22 errors, one per ite | `spawn script_model model "..."`, matching the working call site. |
