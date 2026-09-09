@@ -10,11 +10,11 @@
 ## ClientThink runs once per USERCMD, not once per server frame
 
 Anything integrating `level.frametime` inside ClientThink advances once per COMMAND, so its rate scales
-with client framerate - com_maxfps 180 against sv_fps 40 is ~4.5x, and it differs between players on one
-server. This bit four systems in a single session (recoil recovery, crouch-to-prone dwell, stress and
-brace envelopes) and two silently changed a balance number, since stress multiplies bullet spread.
+with client framerate (com_maxfps 180 against sv_fps 40 is ~4.5x) and differs between players on one
+server. It bit four systems in one session - recoil recovery, crouch-to-prone dwell, stress and brace
+envelopes - and two of them silently moved a balance number, since stress multiplies bullet spread.
 **Use elapsed time:** keep `m_fCoop<X>Last`, take `dt = level.time - last`, clamp it (0.1-0.25 s) so a
-hitch cannot dump the whole envelope, and seed the member in the constructor - player memory is not zeroed.
+hitch cannot dump a whole envelope, and seed the member in the constructor - player memory is not zeroed.
 
 ## Quick index
 
@@ -668,26 +668,32 @@ the caller still reports success. **Tell:** a feature that "does nothing" with n
 Four shapes from the m6l1c stealth route (2026-08-11); in each the symptom pointed away from the cause.
 
 - **A flag that answers two questions gets tested for the wrong one.** `is_disguised` is the engine's
-  per-frame opinion (`player.cpp:5519-5545`: disguise + no alarm + nothing real in hand + nobody
-  attacking with real threat); `has_disguise` is the mod's own grant. Testing the first where the second
-  was meant read "someone is shooting at you" as "the grant failed" (bugs 1701, 1701b, 1703). Tell:
-  **the player's viewmodel and HUD stutter** - AI churn alone does not stutter a client. **Count how
-  many things can make a flag false before testing it, and bound every self-re-threading retry.**
+  per-frame opinion (`player.cpp:5519-5545`); `has_disguise` is the mod's own grant. Testing the first
+  where the second was meant read "someone is shooting at you" as "the grant failed" (bugs 1701,
+  1701b, 1703). Tell: **the viewmodel and HUD stutter** - AI churn alone does not stutter a client.
+  **Count how many things can make a flag false before testing it, and bound every self-re-threading
+  retry.**
 - **A one-way primitive lives in more files than you grepped.** Bare `attackplayer` is
   `Actor::ForceAttackPlayer`, cleared **only in the Actor constructor** (`actor.cpp:3092`), and while
   set `EnemyIsDisguised()` is false unconditionally - one call blinds that actor for the map.
-  `attackentity <ent>` is the reversible form; four sites took three sweeps (bugs 1700, 1704, 1708).
+  `attackentity <ent>` is the reversible form; four sites, three sweeps (bugs 1700, 1704, 1708).
 - **An absorbing state hides everything downstream.** `EnemyIsDisguised()` also returned false for any
-  actor in `THINKSTATE_ATTACK` and it ratchets. Fixed by requiring real threat (bug-1707), the treatment
-  `player.cpp:5541` already had. Blocked-aggro across one run: **1051 -> 0**.
+  actor in `THINKSTATE_ATTACK`, and it ratchets. Fixed by requiring real threat (bug-1707), as
+  `player.cpp:5541` already did. Blocked-aggro across one run: **1051 -> 0**.
 - **A flag two systems both own is a race, and it comes back.** `coop_clickablePapersEnabled` (set by
-  `enableClickablePapers`, cleared by `coop_bustArm`) re-armed mid-bash restarts the papers loop, which
-  force-equips papers into the hand holding the drawn pistol and **the player cannot shoot**: bug-1709
-  (0.5 s re-check), bug-1726 (stacked per-target loops), bug-1732 (dedupe insufficient - the guard
-  `coop_activeWeapon == NULL` means both "hand empty" *and* "no raise finished"), bug-1735 and bug-1736
-  (`coop_busted` overloaded once `bust.scr` set it earlier, then cleared only on the success path). **One writer per player; clear the
-  flag and yield a frame before threading a loop that sets it; split the latch from the state and clear
-  it on every exit. Moving a flag's assignment earlier rewrites every guard that reads it.**
+  `enableClickablePapers`, cleared by `coop_bustArm`) re-armed mid-bash restarted the papers loop and
+  force-equipped papers into the hand holding the drawn pistol, so **the player could not shoot** -
+  five rounds to kill it (bugs 1709, 1726, 1732, 1735, 1736). **One writer per player; clear the flag
+  and yield a frame before threading a loop that sets it; split the latch from the state and clear it
+  on every exit. Moving a flag's assignment earlier rewrites every guard that reads it.**
+- **A one-shot guard is not an invariant, and this project keeps writing the first where it needs the
+  second.** Pinned challenges had two - refuse to ADD a finished one, drop it the moment it finishes -
+  so anything that landed a done challenge in the list afterwards sat there for good (bug-2544). Actor
+  weapons had three fixes, each removing one producer of "active weapon, nothing in the hand", and it
+  returned with a fourth (bugs 1957, 1971, 2009, 2546). **If the property must hold at all times,
+  assert it in the routine that already runs unprompted** - the 3 s pin publisher, `Actor::Think` -
+  where it costs one compare when healthy, heals state that already went wrong with no player action,
+  and logs what it caught so the next producer is named rather than guessed.
 
 ---
 
@@ -715,23 +721,22 @@ Four shapes from the m6l1c stealth route (2026-08-11); in each the symptom point
 <a name="tiki"></a>
 ## TIKI and sound-alias traps
 
-**`<actor> say <alias>` IS AN ANIMATION CALL, NOT A SOUND CALL** - it drives the mouth and can
-block; a missing alias animates a silent mouth. **A bare animation alias DROPS THE NOTETRACKS that
-do the work** (three occurrences). Both stories, with the five failed fixes that preceded the first,
-are in `docs/reference/tiki_and_sound_aliases.md`.
+**`<actor> say <alias>` IS AN ANIMATION CALL, NOT A SOUND CALL** - it drives the mouth and can block;
+a missing alias animates a silent mouth. **A bare animation alias DROPS THE NOTETRACKS that do the
+work** (three occurrences). Both, and the five failed fixes before the first, are in
+`docs/reference/tiki_and_sound_aliases.md`.
 
 **A sound alias's `maps` field is a LOAD FILTER.** `aliascache explode_tank ... maps "m2l2b "` means
 the alias **does not exist** elsewhere, and `playsound` on it is silent with no error (bug-2248). Grep
-for **name AND maps field**; tokens match as PREFIXES, so `m3l1b` does **not** cover `m3l1a`
-(bug-2394). On a `loaded` (3D) alias `maxDist` is a hard START gate, not a rolloff. **`streamed`
-aliases are the exception:** `S_OPENAL_StartSound` diverts them to the 2D path before `PickChannel3D`
-(`snd_openal_new.cpp:1953`) - no start gate, no 3D channel - so neither can explain a silent scripted
-line (bug-2309's 3D raise could not have).
+for **name AND maps field**; tokens match as PREFIXES, so `m3l1b` does **not** cover `m3l1a` while
+`m4` DOES cover `m4l3` (bug-2394, `scriptmaster.cpp:433`). On a `loaded` (3D) alias `maxDist` is a
+hard START gate, not a rolloff; **`streamed` aliases are the exception** - `S_OPENAL_StartSound`
+diverts them to the 2D path before `PickChannel3D` (`snd_openal_new.cpp:1953`), so neither can explain
+a silent scripted line (bug-2309's 3D raise could not have).
 
-**A `random` alias group registers under its digit-stripped STEM.** `crouch_beach_idle01..05 ... random`
-loads as ONE anim, `crouch_beach_idle`; `anim crouch_beach_idle02` is `unknown animation`
-(`tiki_files.cpp:1046`; bug-2214, re-tripped as 2498). Address the stem, never a member;
-`check_anim_rootless.py` now fails numbered members and computed names.
+**A `random` alias group registers under its digit-stripped STEM.** `crouch_beach_idle01..05 ...
+random` loads as ONE anim, `crouch_beach_idle`; `anim crouch_beach_idle02` is `unknown animation`
+(`tiki_files.cpp:1046`; bug-2214, re-tripped as 2498). Address the stem, never a member.
 
 **...but sometimes it is CURATION and widening it IS the defect** (bug-2307): clearing 179 `needs an
 alias` errors by making the AI callout pools trilogy-wide made the beach bark nonstop - the map list
@@ -750,28 +755,21 @@ a looping alias never fires ANIMDONE so a following `waittill animdone` parks fo
 `alias.c:545`). `check_say_aliases.py` covers `say`/`sayd`.
 
 **A TIKI's `init { server { ... } }` runs even when you `spawn script_model model "<path>"`.**
-`models/fx/fx_tank_explosion.tik` carries `classname Explosion` / `radiusdamage 120` in its own init
-block, so a purely cosmetic set piece killed the player beside it (bug-2244) while the script contained
-no `radiusdamage` anywhere - an audit of the script therefore found nothing. **Read the TIKI, not just
-the script**, and copy a retail effect under a `coop_` name minus those lines rather than editing the
-original. Read the other way, the same fact decides how you spawn one: `init { client { } }` fires when
-the entity first reaches a **snapshot**, after the server set the origin, so *spawn, then position* is
-correct (`bh_water_hard`); a **server** block fires at spawn, so its origin must be inline or the effect
+`fx_tank_explosion.tik` carries `classname Explosion` / `radiusdamage 120` there, so a cosmetic set
+piece killed the player while the script held no `radiusdamage` at all and a script audit found
+nothing (bug-2244). **Read the TIKI, not just the script**; copy a retail effect under a `coop_` name
+minus those lines. Same fact decides how you spawn one: an `init { client { } }` block fires at the
+first **snapshot**, after the server set the origin, so *spawn, then position* is correct
+(`bh_water_hard`); a **server** block fires at spawn, so its origin must be inline or the effect
 bursts at the world origin. The two read identically in a script.
 
 **A `script_model` carrier renders a tik's `originemitter` blocks and NOTHING ELSE** (bug-2477).
-`sfx` blocks are recorded only while `ClientSpecialEffectsManager::LoadEffects` holds
-`m_pCurrentSfx` (`StartSFXCommand` returns otherwise), and an `originspawn` in `init { client {} }`
-is visited once at registration with NO entity (`BeginOriginSpawn` returns at once) - a one-shot
-burst on a carrier belongs in an animation's `enter` frame commands, as retail exp_flak_near does
-(bug-2507). An emitter follows the carrier's ANGLES only with `notagaxis` (cg_tempmodels.cpp).
-Author counts for `cg_effectdetail 1.0`: the mod ships 1.0, retail's default is 0.2, and
-`count`/`spawnrate` are multiplied by it - x5-for-retail tiks are 5x too dense here (2477, 2507).
-
-**Re-alias dialogue as `dialog streamed`, never `voice loaded`** (bug-2474). Streamed IS the 2D path
-above - no start gate, a linear fade to maxDist, the Dialogue slider, the vox sidechain - so the
-only reason to re-alias a retail line is a wider fade. `loaded` is the 3D path where `set_3d`
-discards the alias volume (bug-2452) and every bark ducks the line.
+`sfx` blocks are recorded only while `LoadEffects` holds `m_pCurrentSfx`, and an `originspawn` in
+`init { client {} }` is visited once at registration with NO entity - so a one-shot burst on a carrier
+belongs in an animation's `enter` frame commands, as retail exp_flak_near does (bug-2507). An emitter
+follows the carrier's ANGLES only with `notagaxis`. Author counts for `cg_effectdetail 1.0`: the mod
+ships 1.0 against retail's 0.2, and `count`/`spawnrate` are multiplied by it, so x5-for-retail tiks
+are 5x too dense here (2477, 2507).
 
 **`playlocalsound <alias> 1` writes ONE FIELD, not a channel.** The loop branch of
 `Player::PlayLocalSound` sets `edict->s.loopSound` (`player.cpp:18183`) - a single int in
@@ -783,12 +781,8 @@ wav (bug-2431). Flag 1 is
 `LOOPSOUND_FLAG_NO_PAN`: 2D, centred, **no distance falloff** - and loopSound is broadcast, so every
 client emitted every *other* player's private body sounds until `CG_LoopSoundIsForeignLocal` (bug-2429).
 
-**Dialogue prefixes name the speaker's SIDE: `dfr_` friendly, `den_` German** - mixed in one
-per-mission folder, so filtering by mission alone gets both (36 of 64 Omaha "prior-mission" lines were
-enemy). Filter on the prefix, not the path.
-
-More in **`docs/reference/tiki_and_sound_aliases.md`** - read it before touching a `.tik` or adding an
-alias; `audit_weapons.py` and `audit_shaders.py` make those traps testable.
+More in **`docs/reference/tiki_and_sound_aliases.md`** (incl. dialogue aliasing) - read before
+touching a `.tik` or adding an alias; `audit_weapons.py`/`audit_shaders.py` make those testable.
 
 ---
 
@@ -823,7 +817,7 @@ latter is `ERR_DROP` and really does take the server down (t2l3, bug-1493).
 ## Turrets and AI spread: three ways a weapon tune never reaches the gun
 
 **Bugs:** 1920, 1940, 1946, 1950. **Rule: before tuning a value, prove the failing PATH reads it -
-grep the consumer, not the setter.** Three instances; full write-up in
+grep the consumer, not the setter.** Full write-up:
 [`archive/traps-pruned-2026-08-20.md`](archive/traps-pruned-2026-08-20.md).
 
 - **A MANNED turret never reads `bulletspread`** - `weapon.cpp`'s `FT_BULLET` sets `vSpread` only for
@@ -864,17 +858,15 @@ shared scaled budget makes every control non-linear. Read it before touching bob
 
 ## Coop systems that touch EVERY actor will find the scripted ones
 
-Every global actor pass - the weapon-variant roll, the AI personality roll, enemy
-count-scaling - runs on a map's SCRIPTED CAST as readily as on its garrison, and a scripted
-actor is defined by state the pass casually overwrites. `coop_variantRoll` ends in
-`self.weapon = <tik>` + `self unholster` and re-armed m1l1's truck driver **while he was
-holding the steering wheel**; the personality roll overwrites `type_attack` on ~65% of rolls
-and locks a prone pose on ~12%, destroying the think the map assigned.
+Every global actor pass - the weapon-variant roll, the AI personality roll, enemy count-scaling -
+runs on a map's SCRIPTED CAST as readily as on its garrison, and a scripted actor is defined by state
+the pass casually overwrites. `coop_variantRoll` ends in `self.weapon = <tik>` + `self unholster` and
+re-armed m1l1's truck driver **while he was holding the steering wheel**; the personality roll
+overwrites `type_attack` on ~65% of rolls and locks a prone pose on ~12%.
 
-**Every fix for this has been correct and too narrow.** bug-1949 guarded the variant roll
-with `self.no_idle` - which appears in 19 scripts while **42 hold ler actors**, so m1l1 broke
-a month later anyway. That arithmetic is the tell: a guard that covers fewer sites than the
-hazard has is a guard you will write again.
+**Every fix has been correct and too narrow.** bug-1949 guarded the variant roll with `self.no_idle`,
+which appears in 19 scripts while **42 hold ler actors** - so m1l1 broke again a month later. That
+arithmetic is the tell: a guard covering fewer sites than the hazard has is one you will write again.
 
 **The rule: one shared scene test, never a private one per pass.**
 `officer.scr::coop_isProtectedActor` is that test. A new global pass calls it; it must not
@@ -890,24 +882,21 @@ patched only the consumer that had just broken):
 | `anim_scripted` | `self.no_idle` | `coop_isProtectedActor` |
 | `threatbias ignoreme` | `self.threatbias == 0 - 6969` | `coop_variantRoll` **and** `coop_apply_personality` |
 
-The last row was once "variant roll only", on the reasoning that `ignoreme` means *do not target
-me*, not *I am scenery* - live-but-untargetable AI do exist (m5l1b:704, e1l3/hacks' Claus). A live
-measurement beat the reasoning (bug-2051): m1l1's `barrel_guy`/`bazooka_wall` set-pieces were
-carrying roles we assigned and targeting the player, so the personality roll honours it too. Keep
-the general rule - **match a guard's scope to what it costs to be wrong** - but note which way it
-was settled.
+The last row was once "variant roll only", reasoning that `ignoreme` means *do not target me*, not
+*I am scenery* (live-but-untargetable AI exist: m5l1b:704, e1l3/hacks' Claus). Measurement beat the
+reasoning (bug-2051). **Match a guard's scope to what it costs to be wrong.**
 
 **Before guarding on a property, prove you can READ it.** `enableEnemy` is a lone `EV_SETTER`
-(actor.cpp:1470) so reading throws - 136 errors a map, and since *a Script Error skips the
-statement*, that guard shipped having never once executed (bug-2034). `threatbias` has a real
-`EV_GETTER` (sentient.cpp:469) and reads fine. Registration tells you which you have, but that
-same reasoning produced bug-2034 - so **probe it at runtime first, then re-probe against a
-baseline count after**, or an over-broad guard silently kills the feature instead. A depth scan
-proves a script *parses*, never that a property is *readable*.
+(actor.cpp:1470), so reading throws - 136 errors a map, and since *a Script Error skips the
+statement* that guard shipped having never once executed (bug-2034); `threatbias` has a real
+`EV_GETTER` (sentient.cpp:469) and reads fine. Registration tells you which you have, but that same
+reasoning produced bug-2034: **probe at runtime first, then re-probe against a baseline count.** A
+depth scan proves a script *parses*, never that a property is *readable*.
 
 Actors that are only *holstered* still have no generic marker; flag those with
-`flags["coop_sceneActor"] = 1`, which is what spawned actors need anyway since a targetname
-list cannot reach them.
+`flags["coop_sceneActor"] = 1`, which spawned actors need anyway - a targetname list cannot reach
+them. The *unarmed-looking* case is handled generically now: see the invariant bullet in
+[T20](#t20).
 
 ---
 
@@ -981,5 +970,14 @@ reads `upmove 0` on the odd frame (usercmd not yet refreshed). It presented as *
 certain terrain"* — never terrain, just whether the jitter spared a clean 0.35 s. Hold-to-do-X needs
 a grace period (150 ms) before treating a key as released.
 
-**Shape:** four causes all presented as "prone is broken" and no two shared a fix. Resist the
-single-root-cause instinct; probe each symptom. None of the four was found by reasoning about code.
+**⭐ `startsolid` says where you ARE, not where you are GOING - and a prone body on a slope is
+already in solid.** bug-2247's stand-up shuffle rejected any candidate whose reachability trace came
+back `startsolid`, a guard written to stop it clipping THROUGH a wall. But a prone hull is a 20-tall
+BOX and terrain is a RAMP, so lying on any hill buries a corner of it and all sixteen candidates were
+discarded before one was examined - deterministically, so pressing again could never answer
+differently (bug-2547). **A trace that starts inside geometry has nothing true to say about
+reachability: skip it while embedded and let the DESTINATION test carry the safety, capped in
+distance.** Same tell as `up=-127` above: "only on certain terrain" was never terrain.
+
+**Shape:** five causes all presented as "prone is broken" and no two shared a fix. Resist the
+single-root-cause instinct; probe each symptom. None was found by reasoning about code.

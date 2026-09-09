@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 43,142 |
+| files in the workspace | 43,143 |
 | bytes | 43.5 GB |
-| files in project scope (indexed per-file) | 17,779 |
-| source files (per-file rows with line counts) | 6,467 |
+| files in project scope (indexed per-file) | 17,780 |
+| source files (per-file rows with line counts) | 6,468 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -24,7 +24,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 13,608 | 7734.4 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 13,609 | 7734.4 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
@@ -100,7 +100,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.md` | 422 |
 | `.ogg` | 376 |
 | `.skd` | 347 |
-| `.shader` | 237 |
+| `.shader` | 238 |
 | `.urc` | 175 |
 | `.py` | 158 |
 | `.json` | 142 |
@@ -271,7 +271,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
 | `fsafe_home/maintt` | 3 | 1.43 MB | .pid×1, .cfg×1, .log×1 |
-| `hzm-mohaa-coop-mod` | 41 | 2211.38 MB | .txt×12, .jpg×10, .pk3×6, .cfg×5 |
+| `hzm-mohaa-coop-mod` | 41 | 2211.39 MB | .txt×12, .jpg×10, .pk3×6, .cfg×5 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -337,7 +337,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/fonts` | 13 | 0.18 MB | .ritualfont×13 |
 | `hzm-mohaa-coop-mod/gags` | 22 | 0.39 MB | .scr×22 |
 | `hzm-mohaa-coop-mod/gfx/fonts` | 25 | 69.21 MB | .tga×25 |
-| `hzm-mohaa-coop-mod/global` | 72 | 1.04 MB | .scr×70, .txt×2 |
+| `hzm-mohaa-coop-mod/global` | 72 | 1.05 MB | .scr×70, .txt×2 |
 | `hzm-mohaa-coop-mod/maintt` | 1 | 0.00 MB | .cfg×1 |
 | `hzm-mohaa-coop-mod/maps` | 131 | 89.17 MB | .scr×122, .bsp×8, .pth×1 |
 | `hzm-mohaa-coop-mod/maps/briefing` | 12 | 0.06 MB | .scr×12 |
@@ -485,7 +485,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/models/weapons/coop_tommy28` | 4 | 0.22 MB | .skc×3, .skd×1 |
 | `hzm-mohaa-coop-mod/models/weapons/fg42` | 2 | 0.09 MB | .skc×1, .skd×1 |
 | `hzm-mohaa-coop-mod/music` | 1 | 0.00 MB | .mus×1 |
-| `hzm-mohaa-coop-mod/scripts` | 102 | 0.92 MB | .shader×101, (none)×1 |
+| `hzm-mohaa-coop-mod/scripts` | 103 | 0.92 MB | .shader×102, (none)×1 |
 | `hzm-mohaa-coop-mod/sound/amb` | 10 | 8.46 MB | .wav×8, .mp3×2 |
 | `hzm-mohaa-coop-mod/sound/amb_stereo` | 77 | 148.87 MB | .mp3×70, .wav×7 |
 | `hzm-mohaa-coop-mod/sound/characters` | 35 | 1.19 MB | .wav×35 |
@@ -878,7 +878,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/code/client` | 87 | 1.56 MB | .cpp×37, .h×33, .c×16, .txt×1 |
 | `openmohaa-hzm/code/client/new` | 3 | 0.02 MB | .h×2, .cpp×1 |
 | `openmohaa-hzm/code/curl` | 2 | 0.00 MB | .txt×1, .h×1 |
-| `openmohaa-hzm/code/fgame` | 285 | 7.21 MB | .cpp×157, .h×122, .bak_botinput×2, .pre_0905lanes_bak×2 |
+| `openmohaa-hzm/code/fgame` | 285 | 7.22 MB | .cpp×157, .h×122, .bak_botinput×2, .pre_0905lanes_bak×2 |
 | `openmohaa-hzm/code/gamespy` | 23 | 0.21 MB | .h×11, .c×10, .txt×2 |
 | `openmohaa-hzm/code/gamespy/Chat` | 15 | 0.38 MB | .h×8, .c×6, .txt×1 |
 | `openmohaa-hzm/code/gamespy/Chat/chatc` | 1 | 0.02 MB | .c×1 |
@@ -1604,7 +1604,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `bust.scr` | 1,576 | 86.2 KB | HZM COOP - PHASE C: THE BUST LOOP (m2l2a stealth) |
 | `butler.scr` | 498 | 18.9 KB | created by chrissstrahl on 2019.09.12 |
 | `cannonThink.scr` | 147 | 4.8 KB | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
-| `challenges.scr` | 3,880 | 238.3 KB | [user, earlier ask, found by the audit sweep 2026-09-02] challenge targets capped at 750. |
+| `challenges.scr` | 3,937 | 240.9 KB | [user, earlier ask, found by the audit sweep 2026-09-02] challenge targets capped at 750. |
 | `collectible.scr` | 443 | 21.5 KB | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
 | `coop_placements.scr` | 1,021 | 32.1 KB | HZM coop - BAKED BUILD-MODE PLACEMENTS (generated from build_<map>.dat). |
 | `coop_selftest.scr` | 435 | 19.2 KB | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
@@ -1817,7 +1817,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `ai.scr` | 2,628 | 65.6 KB | Enemy Spawning system created by Mackey McCandlish. |
 | `aimat.scr` | 23 | 0.8 KB | parameters: |
 | `alarm_system.scr` | 1,015 | 41.3 KB | MoH: Allied Assault Script File |
-| `alarmer.scr` | 661 | 21.1 KB | Alarm system used in m4l3 and m6l2a. Created by Mackey McCandlish and calibrated with Steve Fukuda. |
+| `alarmer.scr` | 686 | 22.7 KB | Alarm system used in m4l3 and m6l2a. Created by Mackey McCandlish and calibrated with Steve Fukuda. |
 | `alarmlight.scr` | 47 | 2.1 KB | [user 2026-08-05] bug-1461 - HZM coop override. The stock raw 'level waittill spawn' here throws |
 | `ambience.scr` | 462 | 19.2 KB | global ambience script |
 | `ambient.scr` | 342 | 7.6 KB | chrissstrahl - modified for coop on 2019.08.25 |
@@ -4182,7 +4182,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `welrod_chrome.tik` | 254 | 7.5 KB |  |
 | `welrod_gold.tik` | 254 | 7.5 KB |  |
 
-### `hzm-mohaa-coop-mod/scripts/` — 101 source files
+### `hzm-mohaa-coop-mod/scripts/` — 102 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -4280,6 +4280,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `soviet_weapons.shader` | 97 | 2.7 KB |  |
 | `us_sniper.shader` | 67 | 1.4 KB |  |
 | `venom.shader` | 75 | 1.7 KB |  |
+| `zz_coop_geometry_fixes.shader` | 60 | 3.2 KB |  |
 | `zz_coop_ocean.shader` | 220 | 13.3 KB |  |
 | `zz_coop_sea.shader` | 63 | 2.7 KB |  |
 | `zz_coop_seabed.shader` | 82 | 5.8 KB |  |
@@ -6182,7 +6183,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `VehicleTank.cpp` | 584 | 17.1 KB |  |
 | `VehicleWheelsX2.cpp` | 688 | 21.1 KB |  |
 | `VehicleWheelsX4.cpp` | 701 | 22.0 KB |  |
-| `actor.cpp` | 13,997 | 346.7 KB | actor.cpp: Base class for character AI. |
+| `actor.cpp` | 13,998 | 346.8 KB | actor.cpp: Base class for character AI. |
 | `actor.h` | 2,418 | 83.3 KB | actor.h: Base class for character AI. |
 | `actor_aim.cpp` | 65 | 1.8 KB | actor_aim.cpp |
 | `actor_alarm.cpp` | 131 | 3.3 KB | actor_alarm.cpp |
@@ -6372,7 +6373,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `object.h` | 145 | 5.3 KB | object.h: Object (used by common TIKIs) |
 | `parm.cpp` | 164 | 3.4 KB | parm.cpp : Event parameters |
 | `parm.h` | 59 | 1.7 KB | parm.h: Event parameters |
-| `player.cpp` | 19,592 | 716.9 KB | player.h: Class definition of the player. |
+| `player.cpp` | 19,668 | 721.8 KB | player.h: Class definition of the player. |
 | `player.h` | 1,625 | 67.3 KB | player.h: Class definition of the player. |
 | `player_animation.cpp` | 640 | 23.2 KB | player_animation.cpp: Animation utility functions |
 | `player_combat.cpp` | 223 | 7.9 KB | player_combat.cpp: Player combat system and combat utility functions |
@@ -6403,8 +6404,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `scriptthread.h` | 400 | 12.1 KB |  |
 | `scripttimer.cpp` | 264 | 5.3 KB | scripttimer.cpp: Scripted Timer & Fader |
 | `scripttimer.h` | 82 | 2.0 KB | ScriptTimer.cpp: Scripted Timer & Fader |
-| `sentient.cpp` | 6,134 | 221.3 KB | sentient.cpp: Base class of entity that can carry other entities, and use weapons. |
-| `sentient.h` | 447 | 22.2 KB | sentient.h: Base class of entity that can carry other entities, and use weapons. |
+| `sentient.cpp` | 6,211 | 224.7 KB | sentient.cpp: Base class of entity that can carry other entities, and use weapons. |
+| `sentient.h` | 449 | 22.4 KB | sentient.h: Base class of entity that can carry other entities, and use weapons. |
 | `sentient_combat.cpp` | 1,494 | 37.9 KB |  |
 | `simpleactor.cpp` | 1,350 | 34.3 KB | simpleactor.cpp: Base class for character AI |
 | `simpleactor.h` | 480 | 16.9 KB | simpleactor.h: Base class for character AI. |

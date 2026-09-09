@@ -13,28 +13,29 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `33b6e17 2026-09-09 manifest 1.5.3` |
-| commits | 240 |
+| HEAD | `0530d2c 2026-09-09 docs: v1.5.3 released` |
+| commits | 241 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **4 modified, 0 untracked** |
-| unstaged diff | 4 files changed, 19 insertions(+), 5 deletions(-) |
+| **uncommitted** | **5 modified, 0 untracked** |
+| unstaged diff | 5 files changed, 128 insertions(+), 115 deletions(-) |
 
-> Working tree is dirty. Everything in those 4 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 5 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 29 |
+| 2026-09 | 30 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (240)
+### Commits since 2026-01-01 (241)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `0530d2c` | 2026-09-09 | joncurry94-tech | docs: v1.5.3 released |
 | `33b6e17` | 2026-09-09 | joncurry94-tech | manifest 1.5.3 |
 | `a694fc9` | 2026-09-09 | joncurry94-tech | release: stage the two new HD paks, which would have shipped to nobody |
 | `963f112` | 2026-09-08 | joncurry94-tech | docs: regenerate after the shell-sink feature |
@@ -281,8 +282,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `453e85f6 2026-09-09 field report card: v1.5.3 THE UNDERTOW` |
-| commits | 1,615 |
+| HEAD | `8b53858d 2026-09-09 m4l3 barn: the stall fences are drawn twice, so stop drawing them twice` |
+| commits | 1,618 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 1 untracked** |
 
@@ -292,7 +293,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 24 |
+| 2026-09 | 27 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -333,10 +334,13 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (266)
+### Commits since 2026-01-01 (269)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `8b53858d` | 2026-09-09 | joncurry94 | m4l3 barn: the stall fences are drawn twice, so stop drawing them twice |
+| `afac0533` | 2026-09-09 | joncurry94 | alarm: make the m4l3 bell audible across a coop-sized play area |
+| `8c37eeb6` | 2026-09-09 | joncurry94 | challenges: a finished challenge can no longer sit in the pin list forever |
 | `453e85f6` | 2026-09-09 | joncurry94 | field report card: v1.5.3 THE UNDERTOW |
 | `ad00c2ec` | 2026-09-08 | joncurry94 | Omaha: shells find the landing craft and take them down |
 | `ad2d08a0` | 2026-09-08 | joncurry94 | Omaha: parallel beach damage, DBNO made reachable, and the shore wave extension |
@@ -609,8 +613,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `a2776792 2026-09-08 cgame: the parked quick-draw gun was aimed 37 degrees muzzle-up` |
-| commits | 5,090 |
+| HEAD | `3a33c645 2026-09-09 fgame: a weapon in the active slot belongs in a hand, and prone must let you up on a slope` |
+| commits | 5,091 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 3 untracked** |
 
@@ -620,7 +624,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 7 |
+| 2026-09 | 8 |
 | 2026-08 | 103 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
@@ -682,10 +686,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (125)
+### Commits since 2026-01-01 (126)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `3a33c645` | 2026-09-09 | joncurry94 | fgame: a weapon in the active slot belongs in a hand, and prone must let you up on a slope |
 | `a2776792` | 2026-09-08 | joncurry94 | cgame: the parked quick-draw gun was aimed 37 degrees muzzle-up |
 | `6fe11c4d` | 2026-09-06 | joncurry94 | feat(gl2): alphaGen dot/oneMinusDot port and a real sun for lightingSpecular |
 | `5f1a74cc` | 2026-09-06 | joncurry94 | feat: underwater air ramp in the gl2 water pass, faster water-out |

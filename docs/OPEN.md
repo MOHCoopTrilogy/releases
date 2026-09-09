@@ -1,15 +1,10 @@
 # OPEN — defects, unverified work, and unbuilt plans
 
 Status vocabulary in [SOURCE_OF_TRUTH.md](SOURCE_OF_TRUTH.md#status-vocabulary).
-Snapshot date **2026-07-29**, partially trued up **2026-09-04** (the Omaha pass and the gl2 default;
-everything else below still carries its original date). The buglog is live and concurrently written —
-1766 entries at the 09-04 pass — so treat counts as of the date on each item.
+Snapshot **2026-07-29**, trued up **09-04** (Omaha, the gl2 default) and **09-09**; every other item
+carries its own date, and the buglog is live, so treat counts as of that date.
 
 ## Sections
-
-> The 2026-08-18 evening playtest batch was archived on 2026-08-22 to
-> `docs/archive/open-playtest-batch-2026-08-18.md` - three releases have shipped since it was
-> written, so none of it was still an open question.
 
 [P0 — infrastructure](#p0) · [Never ran](#never-ran) · [Defects with evidence](#defects) ·
 [gl2 open items](#gl2) · [Diagnostic pending](#diagnostic) · [Awaiting playtest](#unverified) ·
@@ -33,11 +28,6 @@ now on the live campaign path immediately after the mission shipped in v1.5.0/v1
 
 ## Omaha (m3l1a) after the v1.5.1 pass — open (2026-09-04)
 
-- **bug-2442 — in coop the beach damages players SEQUENTIALLY, so DPS scales as 1/N.** The warning
-  phase and the eight fire ticks both sit inside the per-player `for` loop in `mg42AttackBeach`, and
-  there is one shared `$player_target`. At the current tuning y=1000 is ~52 s time-to-death solo and
-  ~189 s for four players. NOT FIXED deliberately: it rebalances 4-player and wants its own playtest.
-  This is the dominant term for coop and dwarfs the bug-2441 curve tuning.
 - **The beach aim cone is un-tuned, and the handle is not `bulletrange`.** The turret-ownership
   question is SETTLED: the guns ARE actor-owned, so `bulletrange` is live — but it is the denominator
   of the same term whose numerator `level.coop_beachSpread` is already exposed and already named for
@@ -95,9 +85,6 @@ now on the live campaign path immediately after the mission shipped in v1.5.0/v1
 - **The muffle's one unverifiable premise:** whether OpenAL Soft applies `AL_DIRECT_FILTER` to an
   `AL_SOURCE_RELATIVE` (2D) source. Only the headers are vendored, not the mixer. If it does not, the
   muffle is inert rather than broken. A ten-second A/B in game settles it (bug-2444).
-- **bug-2432 — `dbno.scr` starts three concurrent local LOOPS on one player** but `edict->s.loopSound`
-  is a single field, so only the last survives: the DBNO heartbeat and breathing stages have never
-  been audible. Needs a design call (one combined bed, or carrier entities).
 
 ## e2l1 (Kasserine glider) - parked
 
@@ -191,15 +178,34 @@ comments claimed - a de-synchroniser, not a tactic.
 - **Panzerfaust: REMOVED (2026-08-18)** - never fired, user called it a dead end. The live residue:
   **armory id 73 is a permanent hole, never renumber.** The WW1 flamethrower is the candidate if a
   launcher-slot novelty is ever wanted.
-- **Skin system: built end-to-end, awaiting menu playtest (2026-08-18).** All 357 finish variants
-  across 45 guns; the finish strip (8 buttons + VARIANT) in the armory; 7 finish challenges; both
-  unlock gates server-side at apply AND spawn; 25 imported model variants across 12 host guns
-  on the strip's VARIANT button, gated on each gun's Elite challenge. Stage finishes visually approved in play ("three metal finishes are good"). STILL
-  OPEN: the in-hand reload magazine keeps the stock skin (models/ammo/<gun>_clip.tik - reference
-  point unknown, needs a runtime probe; both the MP40 and Tommy packs ship replacement clip
-  models we can use once found); MOHPA porter unidentified - credits entry pending.
+- **Skin system: built end-to-end, awaiting menu playtest (2026-08-18).** 357 finish variants across
+  45 guns, the armory finish strip, 7 finish challenges, both unlock gates server-side, 25 imported
+  model variants gated on each gun's Elite challenge. Finishes visually approved in play. STILL OPEN:
+  the in-hand reload magazine keeps the stock skin (bug-2241 - reference point unknown, needs a
+  runtime probe; the MP40 and Tommy packs ship replacement clip models); MOHPA porter unidentified.
 
 ## Defects with evidence
+
+### 2026-09-09 m4l3 + engine round — four fixes shipped, none seen in play yet
+- **Alarm bell** (bug-2545) now carries to 6000 u with a 0.28 floor, was 1400/0.2. `^~^~^ ALARMBELL
+  range= vol=` prints while it rings: if that shows and it is still inaudible, the cause is
+  client-side, not the curve.
+- **Guards posed armed with empty hands** (bug-2546). `CoopAuditHeldWeapon` re-attaches an active
+  main weapon parented to nothing; `^~^~^ WEAPHEAL` names the weapon, tag and state, which is what
+  identifies WHICH producer fires after four fixes failed to pin it.
+- **Stuck in prone on slopes** (bug-2547). Watch that nobody rises THROUGH something: the escape is
+  capped at 40 u out and 18 up and the destination still traces, but the reachability trace is
+  skipped while embedded. `^~^~^ PRONEUNBURY` marks the last resort.
+- **m4l3 barn see-through** (bug-2549). `cull none` dropped from `jh_fence1`. Check the stall fences
+  read from BOTH sides - the pairing scan covers all 160 maps but is a static argument, not a look.
+
+### global/spotlight.scr: 5 Script Errors per spotlight per map load, and a gunner that never fires
+`OPEN` · *bug-2548* — `self.gun` on an Actor is an `EV_GETTER` returning a display-name STRING
+(`actor.cpp:2616`), so `self.gun.angles` throws at `:286` and the next two statements cascade on the
+`none`; every TurretGun event sent through `self.gun` is a no-op for the same reason. The intended
+receiver is already a targetname in `self.spotter.turret` (`:400`), resolvable with `$(...)` as
+`:389` does. Same family as bug-2046.
+
 
 ### e3l4: jeep passenger never completes the first supply run — INSTRUMENTED, cause open
 Freezes at the jeep, never reaches a crate, spams `Path not found in Actor::MoveToPatrolCurrentNode`.
@@ -211,12 +217,9 @@ related: constant `couldn't find end node` for unrelated actors. bug-1361/1366, 
 ### Pinned challenges: no in-mission pin surface
 Lobby and disconnected Service Record can pin; the in-mission `chal_menu` panel cannot — no cursor,
 and the lobby cursor's click is `BUTTON_ATTACKLEFT` (`player.cpp:13559`) so reusing it would fire the
-weapon and swing aim. Needs a `game.dll` change. Disconnected pins queue in the player's name and
-apply on next connect, one at a time. bug-1362/1364.
-
-### m3l2: `SV_FindIndex overflow (max=1280)` ×243
-`OPEN` · *bug-1219* — explained entirely by the P0 deploy gap above. **Will resolve when the current
-exe is deployed.** Do not "fix" it in source; source already says 1600.
+weapon and swing aim. Needs a `game.dll` change. Disconnected pins queue and apply on next
+connect. bug-1362/1364. (The separate STUCK-pin defect, a finished challenge never leaving the list,
+was fixed 2026-09-09 as bug-2544.)
 
 ### e2l2: 12× "applied to NULL listener"
 `OPEN` · *bug-1220* — on `origin`/`hide`/`notsolid`/`nottriggerable`/`triggereffect`/`set_respawn`/
@@ -246,7 +249,6 @@ around it on 2026-08-10 is deployed and **not** confirmed in play:
 Since confirmed in play: the contain loop, the escalation loadout (1692), the bust-time aggro
 exemption (1686).
 
-### m6l2a contain - bugs 1732-1737, deployed 2026-08-12 - moved to `archive/open-m6l2a-contain.md`
 ### ⚠️ m2l2a REGRESSION RISK — the attackplayer latch removal (bug-1700)
 
 **User-requested review item.** m2l2a is signed off as very playable; bug-1700 changes the aggro

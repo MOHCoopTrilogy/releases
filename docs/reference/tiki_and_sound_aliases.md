@@ -212,3 +212,16 @@ missed anyway. To preserve a timeline exactly change the animation's WEIGHT, not
 notetracks queue once at set time and ANIMDONE runs on elapsed time, so neither depends on weight.
 **Sanity-check any offset you extract from a `.skc`** (a frame count is positive, a duration is
 seconds): the header offsets once written here did not reproduce on `SKAN` v14.
+
+
+## Dialogue aliasing (moved out of TRAPS.md 2026-09-09 for budget; text unchanged)
+
+**Re-alias dialogue as `dialog streamed`, never `voice loaded`** (bug-2474). Streamed IS the 2D path
+above - no start gate, a linear fade to maxDist, the Dialogue slider, the vox sidechain - so the
+only reason to re-alias a retail line is a wider fade. `loaded` is the 3D path where `set_3d`
+discards the alias volume (bug-2452) and every bark ducks the line.
+
+**Dialogue prefixes name the speaker's SIDE: `dfr_` friendly, `den_` German** - mixed in one
+per-mission folder, so filtering by mission alone gets both (36 of 64 Omaha "prior-mission" lines were
+enemy). Filter on the prefix, not the path.
+

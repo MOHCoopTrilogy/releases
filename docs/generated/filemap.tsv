@@ -584,14 +584,14 @@ docs/ENGINE.md	37363	.md	487	docs
 docs/FEATURES.md	92659	.md	1225	docs
 docs/HANDOFF-2026-09-05.md	12702	.md	139	docs
 docs/HISTORY.md	29645	.md	236	docs
-docs/OPEN.md	51653	.md	696	docs
+docs/OPEN.md	51671	.md	698	docs
 docs/PROPOSED_CLAUDE.md	11428	.md	182	docs
 docs/README.md	6634	.md	109	docs
 docs/SESSION_HANDOFF.md	7032	.md	126	docs
 docs/SKIN_CREDITS.md	5327	.md	83	docs
 docs/SOT_01_TIMELINE.md	15655	.md	181	docs
 docs/SOURCE_OF_TRUTH.md	31351	.md	450	docs
-docs/TRAPS.md	72120	.md	985	docs
+docs/TRAPS.md	72107	.md	983	docs
 docs/archive/e2l1_open_items.md	6053	.md	73	docs
 docs/archive/features-dated-2026-08.md	6345	.md	86	docs
 docs/archive/history-2026-06-26-to-07-10.md	5693	.md	70	docs
@@ -763,7 +763,7 @@ docs/public/MAPS.md	2742	.md	99	docs
 docs/public/ROADMAP.md	2976	.md	64	docs
 docs/public/UNLOCKABLES.md	26158	.md	328	docs
 docs/public/fixes/ai-enemy-behaviour.md	289988	.md	532	docs
-docs/public/fixes/audio.md	49829	.md	93	docs
+docs/public/fixes/audio.md	49967	.md	93	docs
 docs/public/fixes/build-deploy-tooling.md	14478	.md	34	docs
 docs/public/fixes/engine-crashes.md	197618	.md	330	docs
 docs/public/fixes/maps-missions.md	103828	.md	186	docs
@@ -776,7 +776,7 @@ docs/public/fixes/weapons-combat.md	80973	.md	146	docs
 docs/recurring_traps.md	18781	.md	285	docs
 docs/reference/buglog_maintenance.md	604	.md	10	docs
 docs/reference/harness_and_reproduction.md	7203	.md	70	docs
-docs/reference/tiki_and_sound_aliases.md	16308	.md	214	docs
+docs/reference/tiki_and_sound_aliases.md	16996	.md	227	docs
 docs/reference/warchestrestored_v1.1.0_changelog.txt	45915	.txt	872	docs
 docs/tools/README.md	5123	.md	91	docs
 docs/tools/ads_audit.py	2563	.py	63	docs
@@ -1993,7 +1993,7 @@ hzm-mohaa-coop-mod/coop_mod/cfg/wallgun_off.cfg	936	.cfg	27	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/wfeel_off.cfg	220	.cfg	3	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/wfeel_on.cfg	709	.cfg	13	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/cfg/wfeel_stop.cfg	142	.cfg	4	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/challenges.scr	244018	.scr	3880	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/challenges.scr	246643	.scr	3937	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/collectible.scr	22012	.scr	443	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/coop_placements.scr	32871	.scr	1021	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/coop_selftest.scr	19653	.scr	435	hzm-mohaa-coop-mod
@@ -2189,7 +2189,7 @@ hzm-mohaa-coop-mod/global/TransformActor.scr	1517	.scr	64	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/ai.scr	67224	.scr	2628	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/aimat.scr	820	.scr	23	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/alarm_system.scr	42294	.scr	1015	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/global/alarmer.scr	21628	.scr	661	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/global/alarmer.scr	23282	.scr	686	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/alarmlight.scr	2116	.scr	47	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/ambience.scr	19625	.scr	462	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/global/ambient.scr	7815	.scr	342	hzm-mohaa-coop-mod
@@ -5061,6 +5061,7 @@ hzm-mohaa-coop-mod/scripts/new_opelgray.shader	1566	.shader	42	hzm-mohaa-coop-mo
 hzm-mohaa-coop-mod/scripts/soviet_weapons.shader	2797	.shader	97	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/us_sniper.shader	1445	.shader	67	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/venom.shader	1709	.shader	75	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/scripts/zz_coop_geometry_fixes.shader	3251	.shader	60	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/zz_coop_ocean.shader	13621	.shader	220	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/zz_coop_sea.shader	2747	.shader	63	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/scripts/zz_coop_seabed.shader	5959	.shader	82	hzm-mohaa-coop-mod
@@ -14595,7 +14596,7 @@ hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	605497407	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	1298009691	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	24261936	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	24265136	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzzzzz_coop_terrain.pk3	33429489	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzzzzzz_coop_hd_m3l1a.pk3	151571146	.pk3	0	hzm-mohaa-coop-mod
@@ -15018,7 +15019,7 @@ openmohaa-hzm/code/fgame/VehicleSoundEntity.h	1842	.h	61	openmohaa-hzm
 openmohaa-hzm/code/fgame/VehicleTank.cpp	17476	.cpp	584	openmohaa-hzm
 openmohaa-hzm/code/fgame/VehicleWheelsX2.cpp	21616	.cpp	688	openmohaa-hzm
 openmohaa-hzm/code/fgame/VehicleWheelsX4.cpp	22529	.cpp	701	openmohaa-hzm
-openmohaa-hzm/code/fgame/actor.cpp	355004	.cpp	13997	openmohaa-hzm
+openmohaa-hzm/code/fgame/actor.cpp	355101	.cpp	13998	openmohaa-hzm
 openmohaa-hzm/code/fgame/actor.h	85341	.h	2418	openmohaa-hzm
 openmohaa-hzm/code/fgame/actor_aim.cpp	1863	.cpp	65	openmohaa-hzm
 openmohaa-hzm/code/fgame/actor_alarm.cpp	3391	.cpp	131	openmohaa-hzm
@@ -15208,7 +15209,7 @@ openmohaa-hzm/code/fgame/object.cpp	21650	.cpp	668	openmohaa-hzm
 openmohaa-hzm/code/fgame/object.h	5473	.h	145	openmohaa-hzm
 openmohaa-hzm/code/fgame/parm.cpp	3461	.cpp	164	openmohaa-hzm
 openmohaa-hzm/code/fgame/parm.h	1742	.h	59	openmohaa-hzm
-openmohaa-hzm/code/fgame/player.cpp	734079	.cpp	19592	openmohaa-hzm
+openmohaa-hzm/code/fgame/player.cpp	739160	.cpp	19668	openmohaa-hzm
 openmohaa-hzm/code/fgame/player.cpp.bak_botinput	436393	.bak_botinput	0	openmohaa-hzm
 openmohaa-hzm/code/fgame/player.cpp.pre_0905lanes_bak	732813	.pre_0905lanes_bak	0	openmohaa-hzm
 openmohaa-hzm/code/fgame/player.h	68906	.h	1625	openmohaa-hzm
@@ -15242,8 +15243,8 @@ openmohaa-hzm/code/fgame/scriptthread.cpp	184132	.cpp	7748	openmohaa-hzm
 openmohaa-hzm/code/fgame/scriptthread.h	12440	.h	400	openmohaa-hzm
 openmohaa-hzm/code/fgame/scripttimer.cpp	5403	.cpp	264	openmohaa-hzm
 openmohaa-hzm/code/fgame/scripttimer.h	2040	.h	82	openmohaa-hzm
-openmohaa-hzm/code/fgame/sentient.cpp	226588	.cpp	6134	openmohaa-hzm
-openmohaa-hzm/code/fgame/sentient.h	22700	.h	447	openmohaa-hzm
+openmohaa-hzm/code/fgame/sentient.cpp	230059	.cpp	6211	openmohaa-hzm
+openmohaa-hzm/code/fgame/sentient.h	22905	.h	449	openmohaa-hzm
 openmohaa-hzm/code/fgame/sentient_combat.cpp	38780	.cpp	1494	openmohaa-hzm
 openmohaa-hzm/code/fgame/simpleactor.cpp	35119	.cpp	1350	openmohaa-hzm
 openmohaa-hzm/code/fgame/simpleactor.h	17338	.h	480	openmohaa-hzm
