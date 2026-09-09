@@ -222,16 +222,17 @@ def entity_to_world(xp, yp):
 # vertex's wave. NORMAL_CAP keeps a wide margin.
 NORMAL_CAP = 0.99
 
+# The world-unit amplitude a vertex of |n| = 1 carries: the three deforms add, so this is the
+# ruler that converts a physical height in units into a normal length. Derived, never restated.
+SUM_AMP = sum(w[1] for w in WAVES)
+
 SHOAL_FAR = 0.72        # far-field gain
-SHOAL_PEAK_D = 1600.0   # distance seaward of the seam at which the wave is tallest.
-                        # [user 2026-09-08, bug-2538] 450 -> 1600. The mesh is now up during
-                        # the BEACH FIGHT, and the player surfaces at y -2655 = 495 u seaward
-                        # of the seam - which at 450 was the PEAK. A 32.4 u crest against his
-                        # 26 u of eye headroom ducks the camera under water with no underwater
-                        # tint (the engine takes that from the BSP's CONTENTS_WATER volume,
-                        # not from this entity), which reads as a bug. At 1600 the envelope is
-                        # 22.8% there - about 7.4 u of relief where today there is zero - and
-                        # it still rises to full as he looks seaward. Far field unchanged.
+SHOAL_PEAK_D = 450.0    # distance seaward of the seam at which the wave is tallest.
+                        # [bug-2538] briefly 1600 as a stopgap when the mesh was first restored for
+                        # the beach fight - a 32.4 u crest at the player's surfacing point against
+                        # 26 u of eye headroom. Back to 450 now that amp_cap_n() below caps the
+                        # near rows on PHYSICS (breaking limit + eye guard) instead of by starving
+                        # the whole shoal, which also threw away the relief the shoaling was for.
 SHOAL_DECAY = 1200.0    # how fast it relaxes to the far field beyond that
 
 
@@ -273,6 +274,50 @@ def _env_extrema():
 
 _ENV_LO, _ENV_HI = _env_extrema()
 ENV_FLOOR, ENV_CEIL = 0.62, 1.00        # the along-crest height ratio, 1.6:1
+
+
+def bed_z(Y):
+    """Seabed height, measured out of m3l1a.bsp (omaha_set4_covered): FLAT at -576 from y -2816
+    to the seam, which is the bar the landing craft grounded on. Seaward of -2816 the map draws no
+    bed at all - nothing below z -380 out there except the skybox - so it is authored to fall away
+    gently; only its DEPTH matters here, and only through the breaking limit."""
+    if Y >= -2816.0:
+        return -576.0
+    return -576.0 - (-2816.0 - Y) * 0.035
+
+
+def depth_h(Y):
+    """Still-water depth under the z -520 plane both patches and this mesh sit on."""
+    return -520.0 - bed_z(Y)
+
+
+def amp_cap_n(Y):
+    """The largest |normal| this row may carry, as a fraction of SUM_AMP.
+
+    TWO INDEPENDENT LIMITS, whichever is smaller:
+      * BREAKING. A wave cannot stand taller than the water is deep. H = gamma*h*tanh(H_free/gamma*h)
+        with gamma 0.55 - tanh rather than min(), because a hard min puts a visible kink exactly
+        where the cap starts to bind. This is also the anti-clip proof: trough = H/2 = 0.275*h
+        below the plane against a bed h below it, so clearance is 0.725*h > 0 at every depth.
+      * EYE. 60% of a standing man's headroom above the still plane, (bed + DEFAULT_VIEWHEIGHT 82)
+        - rest z. The camera going under a crest shows NO underwater tint, because the engine takes
+        that from the BSP's CONTENTS_WATER volume and not from this entity, so it reads as a bug.
+        Only applied where a man can actually stand, i.e. where the map draws a bed at all.
+    """
+    h = depth_h(Y)
+    if h <= 0.0:
+        return NORMAL_FLOOR
+    free = 2.0 * SUM_AMP * shoal(YSEAM - Y)
+    gh = 0.55 * h
+    H = gh * math.tanh(free / gh)
+    a = 0.5 * H
+    if Y >= -2816.0:
+        eye = 0.60 * ((bed_z(Y) + 82.0) - Z)
+        if eye < a:
+            a = eye
+    if a <= 0.0:
+        return NORMAL_FLOOR
+    return max(NORMAL_FLOOR, min(NORMAL_CAP, a / SUM_AMP))
 
 
 def env_field(X, Y):
@@ -329,7 +374,12 @@ def build_grid():
             # own extrema - a clamp makes the ridge JUMP where it binds.
             env = env_field(X, Y)
             # the seam row must stay EXACTLY at NORMAL_FLOOR or the skd round-trip assert fails
+            # [bug-2538] and the PHYSICAL cap, which only ever binds on the shallow rows - the far
+            # field is unchanged, because ENV_GAIN is still solved against the unclamped product.
             n = NORMAL_FLOOR if base <= NORMAL_FLOOR else max(NORMAL_FLOOR, min(NORMAL_CAP, base * env * ENV_GAIN))
+            cap = amp_cap_n(Y)
+            if n > cap:
+                n = cap
             xp, yp = world_to_entity(X, Y)
             Xb, Yb = entity_to_world(xp, yp)
             assert abs(Xb - X) < 1e-6 and abs(Yb - Y) < 1e-6, ("rotation round trip", X, Y, Xb, Yb)

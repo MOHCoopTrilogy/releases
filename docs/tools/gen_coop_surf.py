@@ -60,7 +60,11 @@ Y_SEA = -2160.0                     # the seam: the open-sea mesh is flat here, 
 Y_LAND = -820.0                     # short of the sheet's own -768 edge, so nothing pokes onto sand
 SHEET_Z0, SHEET_Z1 = -520.0, -479.0     # the shore sheet's own ramp, measured from m3l1a.bsp
 SHEET_Y0, SHEET_Y1 = -2160.0, -768.0
-STANDOFF = 6.0                      # clears the sheet's own +/-3.97 u flap with 2.03 u to spare
+STANDOFF = 5.0                      # [bug-2541] 6.0 -> 5.0. Buys +13% amplitude at the y -1792
+                                    # pinch, where the retail sheet's art run-up ramp lifts the
+                                    # drawn water 10.8 u while the bed stays flat and squeezes a
+                                    # standing man's headroom to 9.2 u. Still clears the sheet's
+                                    # own +/-3.97 u flap by about 1 u.
 
 NX, NY = 256, 34                    # [bug-2524] 128 -> 256 columns: 62.0 u x 39.4 u. At the new
                                     # amplitude the 10.2-degree crest quantised onto a 124 u grid as
@@ -74,13 +78,20 @@ YAW = 215.0                         # 9.98 degrees off shore-normal - see the he
 NORMAL_FLOOR = 0.001
 
 # the bore. ONE component: a broken bore does not superpose the way swell does.
-BORE_LAMBDA = 560.0                 # 14.2 m between broken lines, the spacing this beach's width wants
+BORE_LAMBDA = 700.0                 # [bug-2541] 560 -> 700, paired with BORE_FREQ below so that
+                                    # DIV*freq - which is what sets run-up SPEED - is unchanged at
+                                    # the shipped 112 u/s while the PERIOD moves onto the swell's.
 BORE_AMP = 20.0                     # [bug-2524] the SHADER amplitude, i.e. the ceiling. The delivered
                                     # height at any vertex is this times the normal length, which now
                                     # carries a depth-and-eye-limited profile - see amp_profile().
                                     # It was a flat 6.0 = 0.15 m, against a depth-limited 7-27 u, and
                                     # it held one height across 780 u where the water depth halves.
-BORE_FREQ = 0.20                    # T 5.0 s -> 112 u/s = 2.8 m/s, about sqrt(g*h) for this depth
+BORE_FREQ = 0.16                    # [bug-2541] 0.20 -> 0.16, i.e. T 5.0 -> 6.25 s, the swell's own
+                                    # period. EVERY BORE IS NOW ONE SWELL CREST. Before bug-2538 the
+                                    # swell was deleted at the plunge and the two never coexisted,
+                                    # so this had no meaning; now they do, and at 0.20 they beat
+                                    # against each other with a 25 s period - which is what made the
+                                    # band read as moving texture rather than as an arriving wave.
 BORE_DIV = BORE_LAMBDA * math.sqrt(2.0)     # phase is (x+y+z)/div and lambda = div/sqrt(2)
 
 TAPER_SEA = 120.0                   # [bug-2524] 260 -> 120. Both meshes tapered to zero at the
@@ -305,7 +316,7 @@ coop_surf_bore
 \t// ever. breakfoam.tga's t=0 and t=1 rows are both alpha 0 and luminance 0, so it tiles with
 \t// no seam, and its 35%% duty cycle becomes 35%% foam / 65%% clear per crest.
 \t// The T scale is the mesh's own deform phase gradient measured on the shipped geometry with
-\t// the yaw-215 pre-rotation and the sheet's z-ramp included: 2.4238 cycles per 1.0 t. This
+\t// the yaw-215 pre-rotation and the sheet's z-ramp included: 1.9390 cycles per 1.0 t. This
 \t// stage's t-scale is POSITIVE, so shoreward is NEGATIVE scroll - the mirror of the shore
 \t// sheet's crest stage, from the same derivation.
 \t// alphaGen tCoord reads the RAW texcoord before every tcMod, so the scroll cannot drag it:
@@ -318,8 +329,8 @@ coop_surf_bore
 \t\tblendFunc GL_SRC_ALPHA GL_ONE
 \t\trgbGen identity
 \t\talphaGen tCoord 8.2 -1.8 0 1
-\t\ttcMod scale 1 2.4238
-\t\ttcMod scroll 0 -0.2000
+\t\ttcMod scale 1 1.9390
+\t\ttcMod scroll 0 -0.1600
 \tnextbundle
 \t\tmap textures/coop_fx/surfcell.tga
 \t}
@@ -345,8 +356,8 @@ coop_surf_bore
 \t\tblendFunc blend
 \t\trgbGen identity
 \t\talphaGen tCoord 8.2 -1.8 0 1
-\t\ttcMod scale 1 2.4238
-\t\ttcMod scroll 0 -0.2000
+\t\ttcMod scale 1 1.9390
+\t\ttcMod scroll 0 -0.1600
 \t}
 }
 """ % (STANDOFF, BORE_AMP, (Y_SEA - Y_LAND) / NY * -1.0,
