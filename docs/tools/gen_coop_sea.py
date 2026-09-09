@@ -223,7 +223,15 @@ def entity_to_world(xp, yp):
 NORMAL_CAP = 0.99
 
 SHOAL_FAR = 0.72        # far-field gain
-SHOAL_PEAK_D = 450.0    # distance seaward of the seam at which the wave is tallest
+SHOAL_PEAK_D = 1600.0   # distance seaward of the seam at which the wave is tallest.
+                        # [user 2026-09-08, bug-2538] 450 -> 1600. The mesh is now up during
+                        # the BEACH FIGHT, and the player surfaces at y -2655 = 495 u seaward
+                        # of the seam - which at 450 was the PEAK. A 32.4 u crest against his
+                        # 26 u of eye headroom ducks the camera under water with no underwater
+                        # tint (the engine takes that from the BSP's CONTENTS_WATER volume,
+                        # not from this entity), which reads as a bug. At 1600 the envelope is
+                        # 22.8% there - about 7.4 u of relief where today there is zero - and
+                        # it still rises to full as he looks seaward. Far field unchanged.
 SHOAL_DECAY = 1200.0    # how fast it relaxes to the far field beyond that
 
 
