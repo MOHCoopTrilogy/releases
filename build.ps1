@@ -233,6 +233,16 @@ foreach ($destDir in @($deployDir, $appDataDir)) {
         Copy-Item -Path $hdPak -Destination (Join-Path $destDir 'zzzzzzzzzz_coop_hd_m3l1a.pk3') -Force
         Write-Host "  Deployed m3l1a HD pak -> $destDir"
     }
+    # [2026-09-08] The DDS-shadowing fix pak, built out-of-band by docs/tools/fix_dds_shadowing.py.
+    # Contains NO new art: 57 HD textures that are already installed on this machine but never load,
+    # because .dds is probed before .jpg/.tga so a stock small .dds beats a large HD .jpg. Re-encoded
+    # as DXT .dds and shipped here, where nothing out-sorts it. Ten z, and it sorts after the m3l1a
+    # pak ('s' > 'm'), which is intended - they do not overlap, and where they would, this is newer.
+    $shadowPak = Join-Path $srcDir 'zzzzzzzzzz_coop_hd_shadowfix.pk3'
+    if (Test-Path $shadowPak) {
+        Copy-Item -Path $shadowPak -Destination (Join-Path $destDir 'zzzzzzzzzz_coop_hd_shadowfix.pk3') -Force
+        Write-Host "  Deployed shadow-fix pak -> $destDir"
+    }
     Write-Host "  Deployed 3 pk3s -> $destDir"
 }
 
