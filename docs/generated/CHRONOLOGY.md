@@ -13,28 +13,31 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `3169548 2026-09-08 docs: regenerate after the round-3 batch` |
-| commits | 237 |
+| HEAD | `33b6e17 2026-09-09 manifest 1.5.3` |
+| commits | 240 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **7 modified, 0 untracked** |
-| unstaged diff | 7 files changed, 24 insertions(+), 15 deletions(-) |
+| **uncommitted** | **4 modified, 0 untracked** |
+| unstaged diff | 4 files changed, 19 insertions(+), 5 deletions(-) |
 
-> Working tree is dirty. Everything in those 7 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 4 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 26 |
+| 2026-09 | 29 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (237)
+### Commits since 2026-01-01 (240)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `33b6e17` | 2026-09-09 | joncurry94-tech | manifest 1.5.3 |
+| `a694fc9` | 2026-09-09 | joncurry94-tech | release: stage the two new HD paks, which would have shipped to nobody |
+| `963f112` | 2026-09-08 | joncurry94-tech | docs: regenerate after the shell-sink feature |
 | `3169548` | 2026-09-08 | joncurry94-tech | docs: regenerate after the round-3 batch |
 | `24a5457` | 2026-09-08 | joncurry94-tech | tools: the shore-wave envelope, the bore period, and the quick-draw pose |
 | `d4019b3` | 2026-09-08 | joncurry94-tech | gen_coop_sea: move the shoaling peak seaward for the beach fight |
@@ -278,8 +281,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `ad00c2ec 2026-09-08 Omaha: shells find the landing craft and take them down` |
-| commits | 1,614 |
+| HEAD | `453e85f6 2026-09-09 field report card: v1.5.3 THE UNDERTOW` |
+| commits | 1,615 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 1 untracked** |
 
@@ -289,7 +292,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 23 |
+| 2026-09 | 24 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -330,10 +333,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (265)
+### Commits since 2026-01-01 (266)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `453e85f6` | 2026-09-09 | joncurry94 | field report card: v1.5.3 THE UNDERTOW |
 | `ad00c2ec` | 2026-09-08 | joncurry94 | Omaha: shells find the landing craft and take them down |
 | `ad2d08a0` | 2026-09-08 | joncurry94 | Omaha: parallel beach damage, DBNO made reachable, and the shore wave extension |
 | `9f725ca0` | 2026-09-08 | joncurry94 | Omaha: the sand geysers on the sea, the sink trim, and the swell back for the beach fight |

@@ -10,9 +10,9 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 43,140 |
+| files in the workspace | 43,142 |
 | bytes | 43.5 GB |
-| files in project scope (indexed per-file) | 17,777 |
+| files in project scope (indexed per-file) | 17,779 |
 | source files (per-file rows with line counts) | 6,467 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
@@ -35,7 +35,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs` | 312 | 45.0 MB | **yes** | this documentation set (authored + generated) |
 | `player1_home` | 291 | 2.1 MB | no - reference | test client profile dir |
 | `scratchpad` | 269 | 45.8 MB | **yes** |  |
-| `_research` | 171 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
+| `_research` | 172 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
 | `_hd_m3l1a` | 145 | 305.8 MB | **yes** |  |
 | `extracted-scripts` | 99 | 2.6 MB | **yes** | extracted vanilla scripts kept for diffing |
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
@@ -43,7 +43,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
 | `<root>` | 68 | 3408.7 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `_hd_shadowfix` | 57 | 61.8 MB | **yes** |  |
-| `manifests` | 54 | 0.7 MB | **yes** | release manifests consumed by the auto-updater |
+| `manifests` | 55 | 0.7 MB | **yes** | release manifests consumed by the auto-updater |
 | `_psx_moh` | 49 | 426.8 MB | **yes** |  |
 | `server_home` | 42 | 30.6 MB | **yes** |  |
 | `_variant_packs` | 38 | 343.4 MB | **yes** |  |
@@ -97,13 +97,13 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.asf` | 514 |
 | `.cpp` | 475 |
 | `.skc` | 425 |
-| `.md` | 421 |
+| `.md` | 422 |
 | `.ogg` | 376 |
 | `.skd` | 347 |
 | `.shader` | 237 |
 | `.urc` | 175 |
 | `.py` | 158 |
-| `.json` | 141 |
+| `.json` | 142 |
 | `.bsp` | 129 |
 | `.min` | 100 |
 | `.log` | 75 |
@@ -233,6 +233,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `_research/regression` | 5 | 0.03 MB | (none)×1, .md×1, .ps1×1, .py×1 |
 | `_research/regression/fixtures` | 8 | 0.02 MB | .log×8 |
 | `_research/regression/hzmreg` | 9 | 0.08 MB | .py×9 |
+| `_research/release_drafts` | 1 | 0.00 MB | .md×1 |
 | `_skins` | 29 | 4.40 MB | .jpg×28, .png×1 |
 | `_variant_packs` | 30 | 193.94 MB | .zip×14, .html×9, .pk3×4, .rar×2 |
 | `_variant_packs/mohww1/MOHWWI_Mod_v1-01_Beta_Patch` | 3 | 51.70 MB | .wmv×1, .txt×1, .pk3×1 |
@@ -859,7 +860,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/loadout/helm` | 48 | 0.03 MB | .cfg×48 |
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 135 | 0.13 MB | .cfg×135 |
 | `hzm-mohaa-coop-mod/ui/proto` | 11 | 0.14 MB | .urc×6, .cfg×3, .inc×2 |
-| `manifests` | 54 | 0.71 MB | .json×54 |
+| `manifests` | 55 | 0.73 MB | .json×55 |
 | `map_entities` | 92 | 10.22 MB | .txt×88, .md×4 |
 | `openmohaa-hzm` | 8 | 0.04 MB | (none)×2, .txt×2, .md×2, .ps1×1 |
 | `openmohaa-hzm/.github/ISSUE_TEMPLATE` | 1 | 0.00 MB | .md×1 |
@@ -1175,7 +1176,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `maptest_monitor.ps1` | 22 | 0.9 KB |  |
 | `maptest_watchdog.ps1` | 314 | 12.1 KB | Launches the game via launch_openmohaa_breakthrough.exe. |
 | `new_generic_human_extracted.tik` | 2,241 | 73.9 KB |  |
-| `publish_release.ps1` | 298 | 17.9 KB | Design: _research/auto_update.md section 6. |
+| `publish_release.ps1` | 306 | 18.6 KB | Design: _research/auto_update.md section 6. |
 | `resume_publish.ps1` | 157 | 8.5 KB | MOH Coop Trilogy - resume an interrupted publish (draft release with partial assets) |
 | `spawn_clicker.ps1` | 163 | 7.1 KB | Watches qconsole.log for ^~^~^ MAPTEST_LOADED, then left-clicks the center of |
 | `spawn_clicker_2player.ps1` | 283 | 11.6 KB | spawn_clicker_2player.ps1 |

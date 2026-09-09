@@ -221,3 +221,16 @@ source is not corroboration, and the expensive fix refuted by measurement — no
   hedgehog cover heal on approach (2522/2523/2526). **The drowning cinematic became a tap-Use QTE
   (2528)** - per-player failure, LMS-exempt, never `missionfailed`; the input edge was proven in
   game before the feature was written. Smoke barrage now waits for the shore party (2529).
+- **2026-09-09** **v1.5.3 released** (github + discord + field report card, 7 assets / 2,015 MB)
+  after a round that started from four user reports. The QTE regression was mine: `+ coop_qteWatchBump`
+  in both ramp watchdog CONDITIONS against a var assigned later in the beat, and a throw in a `while`
+  test skips the whole loop - both watchdogs ran their timed-out branch at t=0 and forced the handoff
+  one second into the ride (2530). Four more defects in the same graft (2530), and the fixer that fixed
+  them re-committed the comment-lost-its-`//` trap eight times over, which produced `prosecheck.py`
+  (2531). Then: the fires were sand geysers from two barrages the first fix missed (2532, 2536); the
+  sink delivered 45.5 of a commanded 72 because the trim lifts the bow (2537); the beach serviced
+  players sequentially so four men took 4x as long to die (2442); DBNO could never fire on this map at
+  all (2539); the Higgins interior had never been upscaled and 57 installed HD textures never loaded
+  (2533); the swell was deleted at the plunge and never restored (2538); the bore beat against it
+  (2541); the quick-draw barrel sat 37 degrees up (2542); and shells now take landing craft down,
+  written fresh after the reuse design was refuted on a 277-unit pivot offset (2543).

@@ -456,6 +456,7 @@ _research/regression/hzmreg/signatures.py	17020	.py	381	_research
 _research/regression/regress.ps1	464	.ps1	14	_research
 _research/regression/regress.py	18903	.py	462	_research
 _research/regression/roster.json	841	.json	60	_research
+_research/release_drafts/release_notes_v1.5.3.md	2593	.md	45	_research
 _research/spearhead_coop_audit.md	6925	.md	98	_research
 _research/trilogy_anims.md	20900	.md	234	_research
 _research/turret_camera_regression_history.md	22577	.md	228	_research
@@ -582,7 +583,7 @@ docs/DECISIONS.md	46286	.md	673	docs
 docs/ENGINE.md	37363	.md	487	docs
 docs/FEATURES.md	92659	.md	1225	docs
 docs/HANDOFF-2026-09-05.md	12702	.md	139	docs
-docs/HISTORY.md	28338	.md	223	docs
+docs/HISTORY.md	29645	.md	236	docs
 docs/OPEN.md	51653	.md	696	docs
 docs/PROPOSED_CLAUDE.md	11428	.md	182	docs
 docs/README.md	6634	.md	109	docs
@@ -765,7 +766,7 @@ docs/public/fixes/ai-enemy-behaviour.md	289988	.md	532	docs
 docs/public/fixes/audio.md	49829	.md	93	docs
 docs/public/fixes/build-deploy-tooling.md	14478	.md	34	docs
 docs/public/fixes/engine-crashes.md	197618	.md	330	docs
-docs/public/fixes/maps-missions.md	103156	.md	185	docs
+docs/public/fixes/maps-missions.md	103828	.md	186	docs
 docs/public/fixes/multiplayer-networking.md	33099	.md	68	docs
 docs/public/fixes/other.md	106079	.md	201	docs
 docs/public/fixes/stealth-disguise-contain.md	54594	.md	101	docs
@@ -13199,7 +13200,7 @@ hzm-mohaa-coop-mod/ui/coop_tiles/t2l4.jpg	45092	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_tiles/t3l1.jpg	37884	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_tiles/t3l2.jpg	52040	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_weaponselect_suppress.urc	3061	.urc	78	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ui/coop_whatsnew.urc	3310	.urc	132	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/coop_whatsnew.urc	3315	.urc	132	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/hd_texel_scale.cfg	1999	.cfg	56	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/hud_ammo_15cmC36.urc	260	.urc	5	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/hud_ammo_AbTurretMain.urc	261	.urc	5	hzm-mohaa-coop-mod
@@ -14594,7 +14595,7 @@ hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	605497407	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	1298009691	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	24261934	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	24261936	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzzzzz_coop_terrain.pk3	33429489	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzzzzzz_coop_hd_m3l1a.pk3	151571146	.pk3	0	hzm-mohaa-coop-mod
@@ -14604,7 +14605,7 @@ launch_2player_test.ps1	3822	.ps1	78	<root>
 launch_dedicated_2player.ps1	12134	.ps1	242	<root>
 m4l3_entities.txt	292989	.txt	18560	<root>
 m4l3_navnodes.csv	75212	.csv	0	<root>
-manifests/latest.json	15285	.json	250	manifests
+manifests/latest.json	16080	.json	262	manifests
 manifests/manifest-1.1.0.json	11267	.json	184	manifests
 manifests/manifest-1.1.1.json	11624	.json	190	manifests
 manifests/manifest-1.1.2.json	11625	.json	190	manifests
@@ -14658,6 +14659,7 @@ manifests/manifest-1.4.8.json	15285	.json	250	manifests
 manifests/manifest-1.5.0.json	15285	.json	250	manifests
 manifests/manifest-1.5.1.json	15285	.json	250	manifests
 manifests/manifest-1.5.2.json	15285	.json	250	manifests
+manifests/manifest-1.5.3.json	16080	.json	262	manifests
 map_entities/OFFICER_SPAWN_TABLE.md	9905	.md	109	map_entities
 map_entities/OFFICER_SPAWN_TABLE_FINAL.md	17394	.md	257	map_entities
 map_entities/SUMMARY.md	19894	.md	332	map_entities
@@ -17419,7 +17421,7 @@ openmohaa-hzm/misc/setup/windows/app/WixUI_InstallDir_Custom.wxs	4561	.wxs	0	ope
 openmohaa-hzm/misc/update-libs.sh	3512	.sh	103	openmohaa-hzm
 parse_test.log	0	.log	0	<root>
 publish_1.4.3.log	15198	.log	0	<root>
-publish_release.ps1	18319	.ps1	298	<root>
+publish_release.ps1	19047	.ps1	306	<root>
 publish_secrets.ini	277	.ini	0	<root>
 release_notes_1.4.8.md	2963	.md	35	<root>
 resume_publish.ps1	8738	.ps1	157	<root>
