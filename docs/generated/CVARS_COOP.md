@@ -463,15 +463,15 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_csstress` |  |  |  |  | `coop_mod/coop_selftest_engine.scr:44` (+1) |  |
 | `coop_csstress_ceil` |  |  |  |  | `coop_mod/coop_selftest_engine.scr:148` |  |
 | `coop_csstress_cycles` |  |  |  |  | `coop_mod/coop_selftest_engine.scr:150` |  |
-| `coop_cueCut` | `1` | `0` | `client/snd_dma_new.cpp:114` (+2) |  | `maps/m3l1a.scr:2844` (+1) |  |
+| `coop_cueCut` | `1` | `0` | `client/snd_dma_new.cpp:114` (+2) |  | `maps/m3l1a.scr:2854` (+1) |  |
 | `coop_daylight` | `1` | `0` | `cgame/cg_view.c:7008` (+1) |  |  |  |
 | `coop_dbgForceSeat` |  |  |  | FORCED `0` @ `autoexec.cfg:373` | `maps/t2l2.scr:1389` |  |
 | `coop_dbgNoSeat` |  |  |  | FORCED `0` @ `autoexec.cfg:379` | `maps/t2l2.scr:1383` |  |
 | `coop_dbno` |  |  |  | FORCED `1` @ `autoexec.cfg:32`<br>other `1` @ `coop_mod/cfg/dedicated_example.cfg:43`<br>other `0` @ `coop_mod/cfg/helmtest.cfg:3`<br>(+5 more) | `coop_mod/dbno.scr:45` |  |
-| `coop_dbnoBed` |  |  |  |  | `coop_mod/dbno.scr:535` |  |
+| `coop_dbnoBed` |  |  |  |  | `coop_mod/dbno.scr:543` |  |
 | `coop_dbnoCorpseRevive` |  |  |  |  | `coop_mod/coop_selftest_dbno.scr:184` (+1) |  |
-| `coop_dbnoDamageMitigation` |  |  |  |  | `coop_mod/dbno.scr:307` |  |
-| `coop_dbnoHitLocation` |  |  |  |  | `coop_mod/dbno.scr:138` (+1) |  |
+| `coop_dbnoDamageMitigation` |  |  |  |  | `coop_mod/dbno.scr:315` |  |
+| `coop_dbnoHitLocation` |  |  |  |  | `coop_mod/dbno.scr:146` (+1) |  |
 | `coop_dbnoSwayMult` | `1.6` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6195` | FORCED `1.6` @ `autoexec.cfg:561` |  |  |
 | `coop_dbnoteam` |  |  |  | other `1` @ `coop_mod/cfg/coop_regression.cfg:45`<br>other `0` @ `coop_mod/cfg/coop_regression_off.cfg:14` | `coop_mod/main.scr:240` |  |
 | `coop_dbnotest` |  |  |  | other `1` @ `coop_mod/cfg/coop_regression.cfg:44`<br>other `0` @ `coop_mod/cfg/coop_regression_off.cfg:13` | `coop_mod/main.scr:237` |  |
@@ -544,10 +544,10 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_explLight` | `420` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:1447` | FORCED `420` @ `autoexec.cfg:963` |  |  |
 | `coop_explosionShake` | `1` | `CVAR_ARCHIVE` | `fgame/explosion.cpp:131` | DEFAULT `1` @ `coop_defaults.cfg:433` |  |  |
 | `coop_eyeGib` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2871` | DEFAULT `1` @ `coop_defaults.cfg:441` |  |  |
-| `coop_fingerAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1732` |  |  |  |
-| `coop_fingerAxis` | `2` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1737` |  |  |  |
-| `coop_fingerLife` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1731` |  |  |  |
-| `coop_fingerTrigRest` | `3.5` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1733` |  |  |  |
+| `coop_fingerAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1742` |  |  |  |
+| `coop_fingerAxis` | `2` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1747` |  |  |  |
+| `coop_fingerLife` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1741` |  |  |  |
+| `coop_fingerTrigRest` | `3.5` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1743` |  |  |  |
 | `coop_fireDebug` | `0` | `0` | `fgame/player.cpp:6885` (+4) | DEFAULT `0` @ `coop_defaults.cfg:406` |  |  |
 | `coop_flakInterval` |  |  |  | DEFAULT `6` @ `coop_defaults.cfg:237` | `coop_mod/bunker.scr:554` (+1) |  |
 | `coop_flakScatter` |  |  |  | DEFAULT `160` @ `coop_defaults.cfg:238` | `coop_mod/bunker.scr:588` |  |
@@ -583,7 +583,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_gate_p4on` |  |  |  |  |  | `ui/briefing1a.urc` (+8) |
 | `coop_gate_p4r` |  |  |  |  |  | `ui/briefing1a.urc` (+8) |
 | `coop_gate_tally` |  |  |  |  |  | `ui/briefing1a.urc` (+8) |
-| `coop_gloveIdx` | `0` | `0` | `cgame/cg_modelanim.c:2896` |  |  |  |
+| `coop_gloveIdx` | `0` | `0` | `cgame/cg_modelanim.c:2906` |  |  |  |
 | `coop_gmboxBoldFont` | `verdana-14` | `CVAR_ARCHIVE` | `client/cl_uigmbox.cpp:331` |  |  |  |
 | `coop_goreChunkBudget` | `6` | `0` | `fgame/sentient.cpp:2827` |  |  |  |
 | `coop_goreChunkLife` | `6` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2833` | DEFAULT `6` @ `coop_defaults.cfg:351` |  |  |
@@ -1155,11 +1155,11 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_qdrawDelay` | `0.25` | `CVAR_ARCHIVE` | `fgame/player.cpp:15949` | DEFAULT `0.25` @ `coop_defaults.cfg:515` |  |  |
 | `coop_qdrawFoley` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1338` | DEFAULT `1` @ `coop_defaults.cfg:530` |  |  |
 | `coop_qdrawFoleyGap` | `0.08` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1339` | DEFAULT `0.08` @ `coop_defaults.cfg:531` |  |  |
-| `coop_qdrawHoldAng` | `-37 55 17` | `0` | `cgame/cg_modelanim.c:1477` |  |  |  |
-| `coop_qdrawHoldFlip` | `2` | `0` | `cgame/cg_modelanim.c:1481` |  |  |  |
-| `coop_qdrawHoldFromAng` | `18 3 0` | `0` | `cgame/cg_modelanim.c:1479` |  |  |  |
-| `coop_qdrawHoldFromOfs` | `14 2 -13` | `0` | `cgame/cg_modelanim.c:1478` |  |  |  |
-| `coop_qdrawHoldMs` | `320` | `0` | `cgame/cg_modelanim.c:1480` |  |  |  |
+| `coop_qdrawHoldAng` | `14 55 17` | `0` | `cgame/cg_modelanim.c:1485` |  |  |  |
+| `coop_qdrawHoldFlip` | `2` | `0` | `cgame/cg_modelanim.c:1489` |  |  |  |
+| `coop_qdrawHoldFromAng` | `18 3 0` | `0` | `cgame/cg_modelanim.c:1487` |  |  |  |
+| `coop_qdrawHoldFromOfs` | `14 2 -13` | `0` | `cgame/cg_modelanim.c:1486` |  |  |  |
+| `coop_qdrawHoldMs` | `320` | `0` | `cgame/cg_modelanim.c:1488` |  |  |  |
 | `coop_qdrawHoldOfs` | `16 10 -7` | `0` | `cgame/cg_modelanim.c:1476` |  |  |  |
 | `coop_qdrawInterrupt` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15962` | DEFAULT `1` @ `coop_defaults.cfg:525` |  |  |
 | `coop_qdrawMaxHold` | `12` | `CVAR_ARCHIVE` | `fgame/player.cpp:15952` | DEFAULT `12` @ `coop_defaults.cfg:518` |  |  |
@@ -1170,7 +1170,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_qdrawReturn` | `0.40` | `CVAR_ARCHIVE` | `fgame/player.cpp:15950` | DEFAULT `0.40` @ `coop_defaults.cfg:516` |  |  |
 | `coop_qdrawShowPrimary` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15955` | DEFAULT `1` @ `coop_defaults.cfg:521` |  |  |
 | `coop_qdrawSticky` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:15953` | DEFAULT `0` @ `coop_defaults.cfg:519` |  |  |
-| `coop_qdrawVDbg` | `0` | `0` | `cgame/cg_modelanim.c:1482` |  |  |  |
+| `coop_qdrawVDbg` | `0` | `0` | `cgame/cg_modelanim.c:1490` |  |  |  |
 | `coop_quickNade` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15724` (+1) |  |  |  |
 | `coop_quickNadeCook` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:15781` |  |  |  |
 | `coop_quickNadeInstant` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15762` |  |  |  |
@@ -1229,7 +1229,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_ricochet` | `1` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:93` | DEFAULT `1` @ `coop_defaults.cfg:435` |  |  |
 | `coop_riderSolid` |  |  |  | FORCED `1` @ `autoexec.cfg:376` | `maps/t2l2.scr:1447` |  |
 | `coop_save` |  |  |  |  | `maps/e1l3/Sneakers.scr:131` (+4) |  |
-| `coop_sayProbe` |  |  |  |  | `maps/m3l1a/coopified.scr:19366` |  |
+| `coop_sayProbe` |  |  |  |  | `maps/m3l1a/coopified.scr:19616` |  |
 | `coop_scalecheck` |  |  |  |  | `coop_mod/coop_selftest_scaling.scr:70` |  |
 | `coop_scaletest` |  |  |  | other `1` @ `coop_mod/cfg/coop_regression.cfg:47`<br>other `0` @ `coop_mod/cfg/coop_regression_off.cfg:16` | `coop_mod/main.scr:246` |  |
 | `coop_shadowAuto` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:783` | FORCED `1` @ `autoexec.cfg:850` |  |  |
@@ -1763,7 +1763,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_srP8` |  |  |  | FORCED `0` @ `autoexec.cfg:603`<br>other `0` @ `ui/coop_sr_pg0.cfg:9`<br>other `0` @ `ui/coop_sr_pg1.cfg:9`<br>(+28 more) |  | `ui/coop_sr.urc` |
 | `coop_srP9` |  |  |  | FORCED `0` @ `autoexec.cfg:604`<br>other `0` @ `ui/coop_sr_pg0.cfg:10`<br>other `0` @ `ui/coop_sr_pg1.cfg:10`<br>(+28 more) |  | `ui/coop_sr.urc` |
 | `coop_st_autodeploy` |  |  |  |  | `coop_mod/main.scr:256` |  |
-| `coop_st_bangtest` |  |  |  |  | `maps/m3l1a/coopified.scr:19313` |  |
+| `coop_st_bangtest` |  |  |  |  | `maps/m3l1a/coopified.scr:19563` |  |
 | `coop_st_dbno` |  |  |  | other `1` @ `coop_mod/cfg/coop_regression.cfg:36`<br>other `0` @ `coop_mod/cfg/coop_regression_off.cfg:7` | `coop_mod/main.scr:285` |  |
 | `coop_st_engine` |  |  |  | other `1` @ `coop_mod/cfg/coop_regression.cfg:32`<br>other `0` @ `coop_mod/cfg/coop_regression_off.cfg:3` | `coop_mod/main.scr:267` (+1) |  |
 | `coop_st_flanktest` |  |  |  |  | `coop_mod/main.scr:261` |  |
@@ -1840,13 +1840,13 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_surrenderRecruit` |  |  |  | DEFAULT `1` @ `coop_defaults.cfg:438` | `coop_mod/surrender.scr:22` |  |
 | `coop_t2l2_reinf` |  |  |  |  | `maps/t2l2.scr:1156` |  |
 | `coop_teamRevive` |  |  |  | FORCED `1` @ `autoexec.cfg:566` | `coop_mod/coop_selftest_dbno.scr:186` (+3) |  |
-| `coop_teamReviveGrace` |  |  |  | FORCED `0.5` @ `autoexec.cfg:569` | `coop_mod/dbno.scr:772` |  |
-| `coop_teamReviveRange` |  |  |  | FORCED `80` @ `autoexec.cfg:568` | `coop_mod/dbno.scr:763` |  |
-| `coop_teamReviveTime` |  |  |  | FORCED `5.0` @ `autoexec.cfg:567` | `coop_mod/dbno.scr:765` |  |
+| `coop_teamReviveGrace` |  |  |  | FORCED `0.5` @ `autoexec.cfg:569` | `coop_mod/dbno.scr:780` |  |
+| `coop_teamReviveRange` |  |  |  | FORCED `80` @ `autoexec.cfg:568` | `coop_mod/dbno.scr:771` |  |
+| `coop_teamReviveTime` |  |  |  | FORCED `5.0` @ `autoexec.cfg:567` | `coop_mod/dbno.scr:773` |  |
 | `coop_tgatest` |  |  |  |  | `coop_mod/coop_selftest_engine.scr:50` |  |
 | `coop_tgatest_tik` |  |  |  |  | `coop_mod/coop_selftest_engine.scr:292` |  |
 | `coop_tinnitus` |  |  |  | DEFAULT `1` @ `coop_defaults.cfg:42` | `coop_mod/tinnitus.scr:20` | `ui/coop_settings.urc` |
-| `coop_tinnitusBaseVol` |  |  |  | FORCED `0.9` @ `autoexec.cfg:999` | `coop_mod/dbno.scr:1263` (+8) |  |
+| `coop_tinnitusBaseVol` |  |  |  | FORCED `0.9` @ `autoexec.cfg:999` | `coop_mod/dbno.scr:1271` (+8) |  |
 | `coop_tinnitusBlast` | `1` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:322` (+1) | FORCED `1` @ `autoexec.cfg:1005` | `coop_mod/tinnitus.scr:35` |  |
 | `coop_tinnitusBlastFull` |  |  |  | FORCED `0.5` @ `autoexec.cfg:1007` | `coop_mod/tinnitus.scr:102` |  |
 | `coop_tinnitusBlastRange` | `500` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:3761` | FORCED `500` @ `autoexec.cfg:1006` |  |  |
@@ -3259,7 +3259,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_unsponge` |  |  |  | FORCED `1` @ `autoexec.cfg:437` | `coop_mod/aihandler.scr:408` (+1) |  |
 | `coop_uwAir` | `1` | `0` | `cgame/cg_view.c:5898` |  |  |  |
 | `coop_uwAirRate` | `0.6` | `0` | `cgame/cg_view.c:5900` |  |  |  |
-| `coop_uwBedVol` |  |  |  |  | `maps/m3l1a/coopified.scr:13333` |  |
+| `coop_uwBedVol` |  |  |  |  | `maps/m3l1a/coopified.scr:13515` |  |
 | `coop_uwOutRate` | `3.3` | `0` | `cgame/cg_view.c:5868` |  |  |  |
 | `coop_vault` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:18746` |  |  |  |
 | `coop_vaultAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1557` |  |  |  |
@@ -3276,7 +3276,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_vmBlendAds` | `0.30` | `CVAR_ARCHIVE` | `cgame/cg_viewmodelanim.c:516` |  |  |  |
 | `coop_voidDrop` |  |  |  |  | `coop_mod/officer.scr:1706` |  |
 | `coop_voidGuard` |  |  |  |  | `coop_mod/voidguard.scr:16` |  |
-| `coop_voxCut` | `1` | `0` | `client/snd_dma_new.cpp:113` (+2) |  | `maps/m3l1a.scr:2842` (+5) |  |
+| `coop_voxCut` | `1` | `0` | `client/snd_dma_new.cpp:113` (+2) |  | `maps/m3l1a.scr:2852` (+5) |  |
 | `coop_wall` |  |  |  | other `1` @ `coop_mod/cfg/wallgun.cfg:26`<br>other `0` @ `coop_mod/cfg/wallgun_off.cfg:11` | `coop_mod/wallgun.scr:78` (+2) |  |
 | `coop_wall_cmd` |  |  |  |  | `coop_mod/wallgun.scr:42` (+2) |  |
 | `coop_wallH` |  |  |  |  | `coop_mod/wallgun.scr:44` (+5) |  |

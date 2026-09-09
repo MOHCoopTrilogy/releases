@@ -260,8 +260,8 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `cg_adsFpFlip` | `0.7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5265` |
 | `cg_adsGuides` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:1890` |
 | `cg_adsGunZoom` | `0.5` | `CVAR_ARCHIVE` | `cgame/cg_main.c:257` |
-| `cg_adsHideOffHand` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:3023` |
-| `cg_adsHideOffHandSkip` | `Thompson` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:3024` |
+| `cg_adsHideOffHand` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:3033` |
+| `cg_adsHideOffHandSkip` | `Thompson` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:3034` |
 | `cg_adsLeanLower` | `0` | `CVAR_ARCHIVE` | `cgame/cg_viewmodelanim.c:962` |
 | `cg_adsLeanRoll` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1881` |
 | `cg_adsLeanRoll` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6150` |
@@ -498,7 +498,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `cg_weaponFootfall` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2573` |
 | `cg_weaponLag` | `0.7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3652` |
 | `cg_weaponLagADS` | `0.35` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3655` |
-| `cg_weaponLagBody` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:2522` |
+| `cg_weaponLagBody` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:2532` |
 | `cg_weaponLagBody` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3803` |
 | `cg_weaponLagDamping` | `0.62` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3649` |
 | `cg_weaponLagHeft` | `0.55` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3651` |
@@ -824,17 +824,17 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_explLight` | `420` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:1447` |
 | `coop_explosionShake` | `1` | `CVAR_ARCHIVE` | `fgame/explosion.cpp:131` |
 | `coop_eyeGib` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2871` |
-| `coop_fingerAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1732` |
-| `coop_fingerAxis` | `2` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1737` |
-| `coop_fingerLife` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1731` |
-| `coop_fingerTrigRest` | `3.5` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1733` |
+| `coop_fingerAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1742` |
+| `coop_fingerAxis` | `2` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1747` |
+| `coop_fingerLife` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1741` |
+| `coop_fingerTrigRest` | `3.5` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1743` |
 | `coop_fireDebug` | `0` | `0` | `fgame/player.cpp:6885` |
 | `coop_fireDebug` | `0` | `0` | `fgame/player_conditionals.cpp:375` |
 | `coop_fireDebug` | `0` | `0` | `fgame/weapon.cpp:1829` |
 | `coop_fireDebug` | `0` | `0` | `fgame/weapon.cpp:2327` |
 | `coop_fireDebug` | `0` | `0` | `fgame/weapon.cpp:3124` |
 | `coop_fovPunch` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2426` |
-| `coop_gloveIdx` | `0` | `0` | `cgame/cg_modelanim.c:2896` |
+| `coop_gloveIdx` | `0` | `0` | `cgame/cg_modelanim.c:2906` |
 | `coop_gmboxBoldFont` | `verdana-14` | `CVAR_ARCHIVE` | `client/cl_uigmbox.cpp:331` |
 | `coop_goreChunkBudget` | `6` | `0` | `fgame/sentient.cpp:2827` |
 | `coop_goreChunkLife` | `6` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2833` |
@@ -888,8 +888,8 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_gunTailDist` | `1400` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:969` |
 | `coop_gunVisTrace` | `0` | `CVAR_ARCHIVE` | `cgame/cg_ents.c:739` |
 | `coop_gunVisTrace` | `0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:80` |
-| `coop_gunVisTrace` | `0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1993` |
-| `coop_gunVisTrace` | `0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:3133` |
+| `coop_gunVisTrace` | `0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:2003` |
+| `coop_gunVisTrace` | `0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:3143` |
 | `coop_headLook` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:15502` |
 | `coop_headLookDebug` | `0` | `0` | `fgame/player.cpp:15590` |
 | `coop_headLookRange` | `1400` | `CVAR_ARCHIVE` | `fgame/player.cpp:15503` |
@@ -1045,24 +1045,24 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_qdrawDelay` | `0.25` | `CVAR_ARCHIVE` | `fgame/player.cpp:15949` |
 | `coop_qdrawFoley` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1338` |
 | `coop_qdrawFoleyGap` | `0.08` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1339` |
-| `coop_qdrawHoldAng` | `-37 55 17` | `0` | `cgame/cg_modelanim.c:1477` |
-| `coop_qdrawHoldFlip` | `2` | `0` | `cgame/cg_modelanim.c:1481` |
-| `coop_qdrawHoldFromAng` | `18 3 0` | `0` | `cgame/cg_modelanim.c:1479` |
-| `coop_qdrawHoldFromOfs` | `14 2 -13` | `0` | `cgame/cg_modelanim.c:1478` |
-| `coop_qdrawHoldMs` | `320` | `0` | `cgame/cg_modelanim.c:1480` |
+| `coop_qdrawHoldAng` | `14 55 17` | `0` | `cgame/cg_modelanim.c:1485` |
+| `coop_qdrawHoldFlip` | `2` | `0` | `cgame/cg_modelanim.c:1489` |
+| `coop_qdrawHoldFromAng` | `18 3 0` | `0` | `cgame/cg_modelanim.c:1487` |
+| `coop_qdrawHoldFromOfs` | `14 2 -13` | `0` | `cgame/cg_modelanim.c:1486` |
+| `coop_qdrawHoldMs` | `320` | `0` | `cgame/cg_modelanim.c:1488` |
 | `coop_qdrawHoldOfs` | `16 10 -7` | `0` | `cgame/cg_modelanim.c:1476` |
 | `coop_qdrawInterrupt` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15962` |
 | `coop_qdrawMaxHold` | `12` | `CVAR_ARCHIVE` | `fgame/player.cpp:15952` |
 | `coop_qdrawMinHold` | `0.60` | `CVAR_ARCHIVE` | `fgame/player.cpp:15951` |
 | `coop_qdrawOn` | `0` | `0` | `cgame/cg_modelanim.c:1439` |
-| `coop_qdrawOn` | `0` | `0` | `cgame/cg_modelanim.c:2372` |
+| `coop_qdrawOn` | `0` | `0` | `cgame/cg_modelanim.c:2382` |
 | `coop_qdrawOn` | `0` | `0` | `cgame/cg_view.c:1337` |
 | `coop_qdrawParkAng` | `0 0 -25` | `CVAR_ARCHIVE` | `fgame/player.cpp:15957` |
 | `coop_qdrawParkOfs` | `-6 5 -4` | `CVAR_ARCHIVE` | `fgame/player.cpp:15956` |
 | `coop_qdrawReturn` | `0.40` | `CVAR_ARCHIVE` | `fgame/player.cpp:15950` |
 | `coop_qdrawShowPrimary` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15955` |
 | `coop_qdrawSticky` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:15953` |
-| `coop_qdrawVDbg` | `0` | `0` | `cgame/cg_modelanim.c:1482` |
+| `coop_qdrawVDbg` | `0` | `0` | `cgame/cg_modelanim.c:1490` |
 | `coop_quickNade` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15724` |
 | `coop_quickNade` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15842` |
 | `coop_quickNadeCook` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:15781` |
@@ -2319,7 +2319,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `r_vertexLight` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1462` |
 | `r_vidmode1024` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1409` |
 | `r_vidmodemax` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1410` |
-| `r_weaponfovx` | `0` | `0` | `cgame/cg_modelanim.c:1567` |
+| `r_weaponfovx` | `0` | `0` | `cgame/cg_modelanim.c:1577` |
 | `r_weaponfovx` | `0` | `0` | `renderergl1/tr_init.c:1450` |
 | `r_weaponfovx` | `0` | `0` | `renderergl2/tr_init.c:2084` |
 | `r_weaponshiftx` | `0` | `0` | `renderergl1/tr_init.c:1460` |

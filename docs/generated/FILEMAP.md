@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 43,081 |
-| bytes | 43.4 GB |
-| files in project scope (indexed per-file) | 17,718 |
-| source files (per-file rows with line counts) | 6,466 |
+| files in the workspace | 43,140 |
+| bytes | 43.5 GB |
+| files in project scope (indexed per-file) | 17,777 |
+| source files (per-file rows with line counts) | 6,467 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -24,7 +24,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 13,607 | 7702.8 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 13,608 | 7734.4 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
@@ -32,7 +32,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `UBER-MODS-v8.00-MOHAA` | 2,614 | 115.5 MB | no - reference | third-party mod, reference only |
 | `moh-modelviewer` | 1,270 | 565.8 MB | no - reference | Node model preview tool (rarely touched) |
 | `original-scripts` | 915 | 1173.7 MB | no - reference | vanilla MOHAA script/asset extraction (reference) |
-| `docs` | 311 | 45.0 MB | **yes** | this documentation set (authored + generated) |
+| `docs` | 312 | 45.0 MB | **yes** | this documentation set (authored + generated) |
 | `player1_home` | 291 | 2.1 MB | no - reference | test client profile dir |
 | `scratchpad` | 269 | 45.8 MB | **yes** |  |
 | `_research` | 171 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
@@ -42,6 +42,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `_menu_pilot` | 81 | 90.7 MB | no - reference | Photoshop menu round-trip staging |
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
 | `<root>` | 68 | 3408.7 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
+| `_hd_shadowfix` | 57 | 61.8 MB | **yes** |  |
 | `manifests` | 54 | 0.7 MB | **yes** | release manifests consumed by the auto-updater |
 | `_psx_moh` | 49 | 426.8 MB | **yes** |  |
 | `server_home` | 42 | 30.7 MB | **yes** |  |
@@ -80,7 +81,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | ext | files |
 |---|---:|
 | `.wav` | 14,849 |
-| `.dds` | 4,246 |
+| `.dds` | 4,303 |
 | `.scr` | 2,526 |
 | `.tga` | 2,508 |
 | `.jpg` | 2,468 |
@@ -101,7 +102,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.skd` | 347 |
 | `.shader` | 237 |
 | `.urc` | 175 |
-| `.py` | 157 |
+| `.py` | 158 |
 | `.json` | 141 |
 | `.bsp` | 129 |
 | `.min` | 100 |
@@ -111,7 +112,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.pth` | 55 |
 | `.dat` | 54 |
 | `.st` | 53 |
-| `.pk3` | 52 |
+| `.pk3` | 53 |
 | `.dcl` | 49 |
 | `.glsl` | 47 |
 | `.lod` | 37 |
@@ -172,6 +173,28 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `_hd_m3l1a/textures/norway` | 4 | 9.09 MB | .dds×4 |
 | `_hd_m3l1a/textures/sprites` | 1 | 1.40 MB | .dds×1 |
 | `_hd_m3l1a/textures/test` | 1 | 2.80 MB | .dds×1 |
+| `_hd_shadowfix/textures/algiers` | 1 | 0.70 MB | .dds×1 |
+| `_hd_shadowfix/textures/decals` | 2 | 0.70 MB | .dds×2 |
+| `_hd_shadowfix/textures/german` | 1 | 0.70 MB | .dds×1 |
+| `_hd_shadowfix/textures/interior` | 7 | 12.31 MB | .dds×7 |
+| `_hd_shadowfix/textures/misc_outside` | 2 | 8.39 MB | .dds×2 |
+| `_hd_shadowfix/textures/models` | 1 | 0.09 MB | .dds×1 |
+| `_hd_shadowfix/textures/models/furniture` | 1 | 0.70 MB | .dds×1 |
+| `_hd_shadowfix/textures/models/gear/german_gear` | 1 | 0.17 MB | .dds×1 |
+| `_hd_shadowfix/textures/models/human/faces` | 4 | 2.80 MB | .dds×4 |
+| `_hd_shadowfix/textures/models/human/germanmaps/elite_sentry` | 2 | 1.57 MB | .dds×2 |
+| `_hd_shadowfix/textures/models/human/germanmaps/motorpool` | 1 | 0.17 MB | .dds×1 |
+| `_hd_shadowfix/textures/models/human/germanmaps/wintertroops` | 2 | 1.40 MB | .dds×2 |
+| `_hd_shadowfix/textures/models/human/heer` | 1 | 0.39 MB | .dds×1 |
+| `_hd_shadowfix/textures/models/human/usmaps/ranger` | 4 | 0.70 MB | .dds×4 |
+| `_hd_shadowfix/textures/models/human/viewsleeves` | 6 | 4.20 MB | .dds×6 |
+| `_hd_shadowfix/textures/models/natural` | 1 | 0.10 MB | .dds×1 |
+| `_hd_shadowfix/textures/models/vehicles/cg4aglider` | 2 | 11.19 MB | .dds×2 |
+| `_hd_shadowfix/textures/models/weapons/panzerschreck` | 1 | 0.04 MB | .dds×1 |
+| `_hd_shadowfix/textures/mohcommon` | 2 | 0.70 MB | .dds×2 |
+| `_hd_shadowfix/textures/mohmenu` | 9 | 0.79 MB | .dds×9 |
+| `_hd_shadowfix/textures/mohtest` | 3 | 2.10 MB | .dds×3 |
+| `_hd_shadowfix/textures/wilderness` | 3 | 11.88 MB | .dds×3 |
 | `_pakbackups` | 1 | 0.03 MB | .pk3×1 |
 | `_psx_moh` | 22 | 412.52 MB | .wav×22 |
 | `_psx_moh/stingers` | 21 | 3.71 MB | .wav×21 |
@@ -240,14 +263,14 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/public` | 6 | 0.08 MB | .md×6 |
 | `docs/public/fixes` | 11 | 1.09 MB | .md×11 |
 | `docs/reference` | 4 | 0.07 MB | .md×3, .txt×1 |
-| `docs/tools` | 97 | 1.45 MB | .py×90, .tga×3, .md×1, .cmd×1 |
+| `docs/tools` | 98 | 1.46 MB | .py×91, .tga×3, .md×1, .cmd×1 |
 | `extracted-scripts` | 5 | 0.06 MB | .scr×5 |
 | `extracted-scripts/main_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_bomber.scr` | 1 | 0.01 MB | .scr×1 |
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
 | `fsafe_home/maintt` | 3 | 1.43 MB | .pid×1, .cfg×1, .log×1 |
-| `hzm-mohaa-coop-mod` | 40 | 2179.79 MB | .txt×12, .jpg×10, .cfg×5, .pk3×5 |
+| `hzm-mohaa-coop-mod` | 41 | 2211.38 MB | .txt×12, .jpg×10, .pk3×6, .cfg×5 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -330,7 +353,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/maps/e3l2` | 18 | 0.17 MB | .scr×18 |
 | `hzm-mohaa-coop-mod/maps/e3l3` | 7 | 0.09 MB | .scr×7 |
 | `hzm-mohaa-coop-mod/maps/e3l4` | 12 | 0.19 MB | .scr×12 |
-| `hzm-mohaa-coop-mod/maps/m3l1a` | 2 | 1.08 MB | .scr×2 |
+| `hzm-mohaa-coop-mod/maps/m3l1a` | 2 | 1.09 MB | .scr×2 |
 | `hzm-mohaa-coop-mod/maps/m3l3` | 1 | 0.00 MB | .scr×1 |
 | `hzm-mohaa-coop-mod/models` | 26 | 0.02 MB | .tik×24, (none)×2 |
 | `hzm-mohaa-coop-mod/models/6abs` | 33 | 0.41 MB | .skc×12, .skd×12, .lod×9 |
@@ -1145,7 +1168,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `ai_ab_test.ps1` | 78 | 3.9 KB | ai_ab_test.ps1 - controlled A/B for the dynamic-AI layer. |
 | `autotest_rcon.py` | 79 | 2.7 KB | !/usr/bin/env python3 |
-| `build.ps1` | 343 | 22.0 KB | [user 2026-08-05] PARSE-KILLER GATE (detector rank 1, static half): a single BOM/em-dash/odd |
+| `build.ps1` | 353 | 22.8 KB | [user 2026-08-05] PARSE-KILLER GATE (detector rank 1, static half): a single BOM/em-dash/odd |
 | `launch_2player_m2l2a.ps1` | 216 | 11.1 KB | MOH Coop Trilogy - 2-player STEALTH test launcher (m2l2a) |
 | `launch_2player_test.ps1` | 78 | 3.7 KB | MOH Coop Trilogy - 2-player local test launcher |
 | `launch_dedicated_2player.ps1` | 242 | 11.8 KB | Replaces the listen-server harness for testing. Why it matters, measured 2026-08-10: |
@@ -1226,7 +1249,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `seamesh_spawn.scr` | 39 | 2.3 KB | [user 2026-09-06, bug-2508] THE DENSE SEA - spawn recipe for maps/m3l1a/coopified.scr. |
 
-### `docs/tools/` — 92 source files
+### `docs/tools/` — 93 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -1261,6 +1284,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `docs.ps1` | 49 | 1.5 KB |  |
 | `find_dread_vo.py` | 219 | 9.9 KB | !/usr/bin/env python |
 | `find_panic_vo.py` | 143 | 6.3 KB | !/usr/bin/env python |
+| `fix_dds_shadowing.py` | 189 | 7.2 KB | coding: utf-8 |
 | `fix_vo_pools.py` | 132 | 5.5 KB | !/usr/bin/env python |
 | `gen_armory_bg.py` | 254 | 10.8 KB | plain: the pre-overhaul look (near-black, subtle panels, caption + stat labels only). |
 | `gen_bloodcloud.py` | 140 | 6.3 KB |  |
@@ -1272,8 +1296,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `gen_chatter_pools.py` | 167 | 8.7 KB | !/usr/bin/env python |
 | `gen_clip_art.py` | 114 | 5.5 KB |  |
 | `gen_clip_skins.py` | 356 | 16.0 KB |  |
-| `gen_coop_sea.py` | 719 | 39.3 KB | !/usr/bin/env python |
-| `gen_coop_surf.py` | 428 | 20.3 KB | coding: utf-8 |
+| `gen_coop_sea.py` | 777 | 42.2 KB | !/usr/bin/env python |
+| `gen_coop_surf.py` | 439 | 21.4 KB | coding: utf-8 |
 | `gen_coop_vo_override.py` | 288 | 15.5 KB | !/usr/bin/env python |
 | `gen_coop_wake_skc.py` | 195 | 9.8 KB | !/usr/bin/env python |
 | `gen_cos_reqs.py` | 116 | 5.5 KB | !/usr/bin/env python3 |
@@ -1597,7 +1621,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `cover.scr` | 336 | 13.3 KB | [user 2026-08-11] NO DEPLOYABLES WHILE DISGUISED. Building a sandbag nest or dropping an |
 | `covwalk.scr` | 282 | 14.5 KB | COVERAGE WALK - trilogy sweep layer 3. [user 2026-08-05] |
 | `custom_items.scr` | 37 | 1.6 KB | [200] Smithy - used for spawning any script built custom items we want |
-| `dbno.scr` | 1,519 | 72.9 KB | [2026-09-05, bug-2432] one bed, one stop. stoploopsound takes NO argument |
+| `dbno.scr` | 1,527 | 73.4 KB | [2026-09-05, bug-2432] one bed, one stop. stoploopsound takes NO argument |
 | `dbno_test.scr` | 3 | 0.1 KB |  |
 | `deathvox.scr` | 100 | 5.6 KB | HZM coop - varied DEATH VOICES (+ native-VO mute for AI). |
 | `developer.scr` | 1,658 | 60.5 KB | chrissstrahl - since the game refuses to let me use cheats in multiplayer |
@@ -1916,7 +1940,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `m2l2c_precache.scr` | 82 | 2.8 KB |  |
 | `m2l3.scr` | 1,143 | 34.0 KB | [207] opt-in to per-map optional callbacks (guarded dispatch) |
 | `m2l3_precache.scr` | 107 | 3.7 KB |  |
-| `m3l1a.scr` | 9,223 | 340.2 KB | MoH: Allied Assault Script File |
+| `m3l1a.scr` | 9,233 | 341.0 KB | MoH: Allied Assault Script File |
 | `m3l1a_precache.scr` | 216 | 9.9 KB | M3L1a Precache Script |
 | `m3l1b.scr` | 3,174 | 112.5 KB | MoH: Allied Assault Script File |
 | `m3l1b_precache.scr` | 119 | 4.4 KB | M3L1b Precache Script |
@@ -2436,7 +2460,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `coopified.scr` | 19,393 | 996.2 KB | chrissstrahl - handles stuff for coop of m3l1a |
+| `coopified.scr` | 19,643 | 1008.5 KB | chrissstrahl - handles stuff for coop of m3l1a |
 | `obstacles.scr` | 419 | 59.8 KB | HZM coop [2026-09-01, bug-2262] OMAHA BEACH OBSTACLE TABLE. |
 
 ### `hzm-mohaa-coop-mod/maps/m3l3/` — 1 source files
@@ -4258,7 +4282,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `zz_coop_ocean.shader` | 220 | 13.3 KB |  |
 | `zz_coop_sea.shader` | 63 | 2.7 KB |  |
 | `zz_coop_seabed.shader` | 82 | 5.8 KB |  |
-| `zz_coop_shoreline.shader` | 369 | 24.0 KB |  |
+| `zz_coop_shoreline.shader` | 373 | 24.4 KB |  |
 | `zz_coop_surf.shader` | 87 | 4.4 KB |  |
 | `zz_coop_wake.shader` | 35 | 1.4 KB |  |
 | `zz_coop_wetsand.shader` | 164 | 11.7 KB |  |
@@ -6001,7 +6025,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `cg_local.h` | 1,050 | 37.9 KB | DESCRIPTION: |
 | `cg_main.c` | 1,117 | 43.5 KB | DESCRIPTION: |
 | `cg_marks.c` | 2,074 | 65.3 KB | DESCRIPTION: |
-| `cg_modelanim.c` | 3,251 | 157.8 KB | DESCRIPTION: |
+| `cg_modelanim.c` | 3,261 | 158.7 KB | DESCRIPTION: |
 | `cg_nature.cpp` | 416 | 16.2 KB | DESCRIPTION: |
 | `cg_parsemsg.cpp` | 2,516 | 92.6 KB | DESCRIPTION: |
 | `cg_parsemsg.h` | 38 | 1.2 KB | DESCRIPTION: |

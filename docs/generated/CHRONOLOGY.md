@@ -13,8 +13,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `f5489b8 2026-09-08 docs: regenerate after the m3l1a pass` |
-| commits | 233 |
+| HEAD | `24a5457 2026-09-08 tools: the shore-wave envelope, the bore period, and the quick-draw pose` |
+| commits | 236 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
 | **uncommitted** | **0 modified, 0 untracked** |
 
@@ -22,16 +22,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 22 |
+| 2026-09 | 25 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (233)
+### Commits since 2026-01-01 (236)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `24a5457` | 2026-09-08 | joncurry94-tech | tools: the shore-wave envelope, the bore period, and the quick-draw pose |
+| `d4019b3` | 2026-09-08 | joncurry94-tech | gen_coop_sea: move the shoaling peak seaward for the beach fight |
+| `3432551` | 2026-09-08 | joncurry94-tech | tools: fix_dds_shadowing.py - 57 installed HD textures that never loaded |
 | `f5489b8` | 2026-09-08 | joncurry94-tech | docs: regenerate after the m3l1a pass |
 | `fe9f6a5` | 2026-09-08 | joncurry94-tech | m3l1a: a 4x texture pass, prosecheck, and the QTE/fire records |
 | `2dba4d7` | 2026-09-08 | joncurry94-tech | docs: the QTE and the Omaha realism pass, with the prunes that paid for them |
@@ -271,8 +274,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `bfd1d8ee 2026-09-08 Omaha: the fires in the ocean now belong to their wrecks` |
-| commits | 1,610 |
+| HEAD | `ad2d08a0 2026-09-08 Omaha: parallel beach damage, DBNO made reachable, and the shore wave extension` |
+| commits | 1,613 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 1 untracked** |
 
@@ -282,7 +285,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 19 |
+| 2026-09 | 22 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -323,10 +326,13 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (261)
+### Commits since 2026-01-01 (264)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `ad2d08a0` | 2026-09-08 | joncurry94 | Omaha: parallel beach damage, DBNO made reachable, and the shore wave extension |
+| `9f725ca0` | 2026-09-08 | joncurry94 | Omaha: the sand geysers on the sea, the sink trim, and the swell back for the beach fight |
+| `da899d46` | 2026-09-08 | joncurry94 | Omaha: a longer fight against the current, every medic adopted, and honest QTE timing |
 | `bfd1d8ee` | 2026-09-08 | joncurry94 | Omaha: the fires in the ocean now belong to their wrecks |
 | `d1a9ff87` | 2026-09-08 | joncurry94 | Omaha: fix the QTE regression that ate the whole drowning cinematic |
 | `3b807522` | 2026-09-08 | joncurry94 | Omaha: the drowning QTE, and the smoke waits for the shore party |
@@ -594,8 +600,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `6fe11c4d 2026-09-06 feat(gl2): alphaGen dot/oneMinusDot port and a real sun for lightingSpecular` |
-| commits | 5,089 |
+| HEAD | `a2776792 2026-09-08 cgame: the parked quick-draw gun was aimed 37 degrees muzzle-up` |
+| commits | 5,090 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 3 untracked** |
 
@@ -605,7 +611,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 6 |
+| 2026-09 | 7 |
 | 2026-08 | 103 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
@@ -667,10 +673,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (124)
+### Commits since 2026-01-01 (125)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `a2776792` | 2026-09-08 | joncurry94 | cgame: the parked quick-draw gun was aimed 37 degrees muzzle-up |
 | `6fe11c4d` | 2026-09-06 | joncurry94 | feat(gl2): alphaGen dot/oneMinusDot port and a real sun for lightingSpecular |
 | `5f1a74cc` | 2026-09-06 | joncurry94 | feat: underwater air ramp in the gl2 water pass, faster water-out |
 | `fa5debe6` | 2026-09-06 | joncurry94 | fix: quick-draw flip about X; the arms carry the weapon-lag swing |

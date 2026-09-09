@@ -9,7 +9,7 @@
 | metric | value |
 |---|---:|
 | `coop_mod/*.scr` files | 121 |
-| total lines in `coop_mod/` | 76,647 |
+| total lines in `coop_mod/` | 76,655 |
 | top-level `maps/*.scr` | 122 |
 | of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
 
@@ -128,7 +128,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `cover.scr` | 336 | 0 | [user 2026-08-11] NO DEPLOYABLES WHILE DISGUISED. Building a sandbag nest or dropping an |
 | `covwalk.scr` | 282 | 1 | COVERAGE WALK - trilogy sweep layer 3. [user 2026-08-05] |
 | `custom_items.scr` | 37 | 0 | [200] Smithy - used for spawning any script built custom items we want |
-| `dbno.scr` | 1,519 | 4 | [2026-09-05, bug-2432] one bed, one stop. stoploopsound takes NO argument |
+| `dbno.scr` | 1,527 | 4 | [2026-09-05, bug-2432] one bed, one stop. stoploopsound takes NO argument |
 | `dbno_test.scr` | 3 | 1 |  |
 | `deathvox.scr` | 100 | 0 | HZM coop - varied DEATH VOICES (+ native-VO mute for AI). |
 | `developer.scr` | 1,658 | 28 | chrissstrahl - since the game refuses to let me use cheats in multiplayer |
