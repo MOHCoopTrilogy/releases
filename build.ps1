@@ -350,4 +350,24 @@ if (Test-Path $dl) {
     foreach ($line in $out) { Write-Host "  $line" -ForegroundColor DarkGray }
 }
 
+# [user 2026-09-09] "I cannot stress this enough we need to make sure this does not in any way
+# impact the coop mod or experience itself." The MP loadout shares the armory, the give chain and
+# several level vars with coop, so the isolation is a CONTRACT and this is the test of it. It ABORTS
+# the build rather than warning: a leak here is silent in play and would surface only as coop
+# behaving differently for reasons nobody could trace back. Clauses whose subject does not exist yet
+# report PENDING rather than passing, so it cannot go green by checking nothing.
+$mpi = "C:\mohaa-coop-dev\docs\tools\check_mp_isolation.py"
+if (Test-Path $mpi) {
+    $out = & python $mpi 2>&1
+    $mpiFailed = ($LASTEXITCODE -ne 0)
+    foreach ($line in $out) {
+        if ($mpiFailed) { Write-Host "  $line" -ForegroundColor Red }
+        else { Write-Host "  $line" -ForegroundColor DarkGray }
+    }
+    if ($mpiFailed) {
+        Write-Host "ABORTED: the MP loadout has leaked into coop." -ForegroundColor Red
+        exit 1
+    }
+}
+
 Write-Host "Done."
