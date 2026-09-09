@@ -111,6 +111,14 @@ foreach ($p in @("zzzzzz_co-op_hzm_mod_assets_snd.pk3","zzzzzz_co-op_hzm_mod_ass
 # [2026-08-30] The CC0 terrain pak (bug-2164, CC0 ground replacement). Built out-of-band by docs/tools/build_terrain_pack.py and deployed by build.ps1, but it reached NEITHER the release manifest NOR the installer, so it only ever existed on the dev machine.
 # Players updating had the old AI-upscaled ground; fresh installs had it too.
 $stage["home/maintt/zzzzzzzzz_coop_terrain.pk3"] = "$mod\zzzzzzzzz_coop_terrain.pk3"
+# [2026-09-09] THE SAME TRAP, TWICE MORE. Both of these are built out-of-band (by
+# docs/tools/upscale_m3l1a.py and docs/tools/fix_dds_shadowing.py) and copied by build.ps1 exactly
+# the way the terrain pak above is - so exactly like it, they were deployed on the dev machine and
+# absent from the release manifest. The v1.5.3 dry run listed 40 staged files and neither of these
+# was among them: the whole 4x upscale would have shipped to nobody. If you add another
+# out-of-band pk3 to build.ps1, ADD IT HERE IN THE SAME COMMIT.
+$stage["home/maintt/zzzzzzzzzz_coop_hd_m3l1a.pk3"]    = "$mod\zzzzzzzzzz_coop_hd_m3l1a.pk3"
+$stage["home/maintt/zzzzzzzzzz_coop_hd_shadowfix.pk3"] = "$mod\zzzzzzzzzz_coop_hd_shadowfix.pk3"
 $stage["home/maintt/autoexec.cfg"] = "$mod\autoexec.cfg"
 # What's New card trigger seed (constant content = constant hash = downloaded once ever).
 # Lives in installer/ (NOT the mod tree) so build.ps1 never packs it into a pk3 - a pk3 copy
