@@ -53,6 +53,10 @@ THE CONTRACT (ISO track, 2026-09-13), and why each clause is here rather than me
  14. ENGINE MP CODE LIVES ONLY IN DECLARED HOOKS: // HZM-MP-BEGIN(name) ... // HZM-MP-END(name),
      each registered in ENGINE_MP_HOOKS, with no coop_lo* or ui/loadout/ inside and no coop_mp*
      token or MP script/cfg path (coop_mod/mp*.scr, coop_mod/cfg/mp*.cfg) outside.
+ 15. MP FILES NEVER NAME THE COOP SESSION FLAG coop_isCoopSession OR A coop_compassBar* CVAR.
+     The top compass bar is coop-only because only coop script (player.scr) sets that flag; an MP line writing it
+     would put the coop bar on an MP map, and the compassBar prefs are saved, so an MP write would follow the player
+     into coop. The same names are in BUILD_BAN, so 12c also stops MP assembling them from strings.
 
 MATCHING RULES
     Every name match is case-insensitive: the engine looks cvars up with Q_stricmp (cvar.c:109).
@@ -82,7 +86,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), 
 DEFAULT_MOD = os.path.join(ROOT, "hzm-mohaa-coop-mod")
 DEFAULT_ENGINE = os.path.join(ROOT, "openmohaa-hzm")
 
-CLAUSES = [str(i) for i in range(15)]
+CLAUSES = [str(i) for i in range(16)]
 
 # ---------------------------------------------------------------- tables
 # The files that ARE multiplayer. Mod-relative, forward slashes, case-insensitive; * stays inside one
@@ -119,7 +123,7 @@ SAVED_COOP_CVARS = ["coop_prone", "coop_coverAuto", "coop_pickupOneMag", "coop_d
                     "coop_health"]
 # Clause 12c. Names MP must not be able to assemble at runtime. A string ending in a prefix of one of these, joined
 # with anything that does not provably steer away from it, is a coop name built where no static scan can see it.
-BUILD_BAN = [c.lower() for c in SAVED_COOP_CVARS] + ["coop_lockloadout", "coop_lo"]
+BUILD_BAN = [c.lower() for c in SAVED_COOP_CVARS] + ["coop_lockloadout", "coop_lo", "coop_iscoopsession", "coop_compassbar"]
 # A string held alone (no `+` after it) counts only when it is exactly one of these stubs; a longer string is a
 # whole name, which 4c and 12a judge.
 STUB_BAN = {"coop_", "coop_l", "coop_lo", "ui/", "ui/loadout", "coop_mod", "coop_mod/", "coop_mod/cfg/"}
@@ -136,6 +140,7 @@ RX_MP_TOKEN = re.compile(r"(?<![A-Za-z0-9])coop_mp\w*", re.I)
 RX_MPX_TOKEN = re.compile(r"(?<![A-Za-z0-9])coop_mpx_\w*", re.I)
 RX_MPA_TOKEN = re.compile(r"(?<![A-Za-z0-9])coop_mpa_\w*", re.I)
 RX_UI_LOADOUT = re.compile(r"ui[/\\]+loadout[/\\]", re.I)
+RX_COMPASS = re.compile(r"(?<![A-Za-z0-9])(?:coop_isCoopSession\b|coop_compassBar\w*)", re.I)
 RX_SAVED_NAME = re.compile(r"(?<![A-Za-z0-9])(?:" + "|".join(re.escape(c) for c in SAVED_COOP_CVARS + ["coop_lockLoadout"])
                            + r")\b", re.I)
 RX_GETCVAR_OPEN = re.compile(r"getcvar\s*\(\s*\"\Z", re.I)
@@ -533,6 +538,16 @@ def run(mod_root, engine_root):
         r.pend("13", "no Allied or Axis armory file exists yet")
     elif len(r.fails) == mark:
         r.ok("13", "Allied (%d) and Axis (%d) armory files stay apart" % (n_allied, n_axis))
+
+    mark = len(r.fails)
+    for rel, texts in mp_texts:
+        for ln, tok in hits(texts, RX_COMPASS):
+            r.fail("15a", where(rel, ln), "MP file names the coop compass-bar cvar %s - only coop script may set the "
+                   "session flag, and the compassBar prefs are saved" % tok)
+    if not mp_texts:
+        r.pend("15", "no MP file exists yet")
+    elif len(r.fails) == mark:
+        r.ok("15", "no MP file names coop_isCoopSession or a coop_compassBar* cvar")
 
     # ------------------------------------------------------------ 6. shared menus are locked by checksum
     for rel in sorted(LOCKS):

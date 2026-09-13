@@ -211,6 +211,10 @@ MUTATIONS = [
       {"14c"}, root="engine", k=2, patch=(HOOKS_ANCHOR, HOOKS_TEST)),
     A("P3+M35", FILTER, "// HZM-MP-BEGIN(test)\nseta coop_loW1 1\n// HZM-MP-END(test)", {"14g"}, root="engine", k=1,
       patch=(HOOKS_ANCHOR, HOOKS_TEST)),
+    # [15] the coop compass-bar session flag and prefs; M36c proves BUILD_BAN carries the new names into 12c
+    A("M36", MP, "local.p stufftext \"set coop_isCoopSession 1\"", {"15a"}),
+    N("M36b", "ui/coop_mpa_zzselftest/cb.cfg", "seta COOP_COMPASSBARSCALE 0.8", {"15a"}),
+    A("M36c", MP, "local.cv = \"coop_compass\" + \"Bar\"", {"12c"}),
 ]
 
 NEAR_MISSES = [
@@ -236,6 +240,8 @@ NEAR_MISSES = [
     mut("N14", "commentanchors"),
     # a stock-named weapon skin outside ui/ and coop_mod/ is a coop asset, not an unlisted MP file
     N("N15", "models/weapons/mp40_zzselftest.tik", "// weapon skin", ()),
+    # naming the compass-bar cvars in a comment is not a write
+    A("N16", MP, "// only coop script sets coop_isCoopSession and the coop_compassBar prefs", ()),
 ]
 
 

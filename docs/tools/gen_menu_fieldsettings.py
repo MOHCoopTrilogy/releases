@@ -101,7 +101,8 @@ SETTINGS_SECTIONS = [
         ("HitMarker", "toggle", "Hit Markers", "coop_hitMarker", T(1), CG + "cg_drawtools.cpp"),
         ("DmgDir", "toggle", "Damage Direction", "coop_dmgIndicator", T(1), CG + "cg_drawtools.cpp"),
         ("Stamina", "toggle", "Stamina Gauge", "coop_staminaArc", T(1), CG + "cg_drawtools.cpp"),
-        ("Compass", "toggle", "Compass", "ui_compass", T(1), "openmohaa-hzm/code/client/cl_ui.cpp"),
+        # [user 2026-09-13] "Modern Compass": on = the top compass bar (coop), off = the classic round ring
+        ("Compass", "toggle", "Modern Compass", "coop_compassBar", T(1), CG + "cg_drawtools.cpp"),
         ("HudFade", "toggle", "Auto-Hide HUD", "coop_hudFade", T(1), CG + "cg_drawtools.cpp"),
         ("HudTime", "slider", "Hide HUD After", "coop_hudFadeTime", S("integer", 2, 15, 1, 5, "2 SEC", "15 SEC"), CG + "cg_drawtools.cpp"),
     ]),
@@ -368,8 +369,7 @@ SEED_END = "// <<< END gen_menu_fieldsettings.py seeds"
 SEED_ANCHOR = "seta coop_xpKillPopup 1    // XP kill-popup toggle (Coop Settings) - archived so the menu choice persists\n"
 SEED_NOTE = [
     "// FIELD SETTINGS sheet cvars that had no seed here. Exact values, so a cold-profile ESC cannot blank a cgame",
-    "// cvar the menu opened before cgame registered it (uimenu.cpp RestoreCVars). ui_compass is registered with flags 0",
-    "// (cl_ui.cpp), so without this seta the choice would not survive a restart. coop_hudFade/coop_hudFadeTime,",
+    "// cvar the menu opened before cgame registered it (uimenu.cpp RestoreCVars). coop_hudFade/coop_hudFadeTime,",
     "// cg_freeAim, coop_bulletCrack and coop_distantFire moved here from autoexec.cfg, which execs AFTER the saved",
     "// config and re-forced them every launch (TRAPS T7).",
 ]
