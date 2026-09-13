@@ -64,7 +64,16 @@ if (Test-Path $cardPath) {
 # --- 2. build ---
 if (-not $SkipBuild) {
     Write-Host "== build.ps1 (3-way pk3 split) =="
-    & "$dev\build.ps1"
+    # [ISO track 2026-09-13] build.ps1 fails two ways: the MP-isolation gate THROWS, every other gate does
+    # `exit 1` - which & never turns into an error, so a failed build used to go on to stage and publish the
+    # previous build's pk3s. Catch the first, check the second (build.ps1 ends with `exit 0`).
+    $global:LASTEXITCODE = 0
+    try {
+        & "$dev\build.ps1"
+    } catch {
+        throw "build.ps1 failed - release aborted, pk3s would be stale ($_)"
+    }
+    if ($LASTEXITCODE -ne 0) { throw "build.ps1 failed - release aborted, pk3s would be stale" }
 }
 
 # --- 3. stage: the complete shippable file set (manifest path -> source file) ---

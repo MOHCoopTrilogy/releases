@@ -69,6 +69,7 @@ python "C:\mohaa-coop-dev\docs\tools\gen_service_record.py" build
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_service_record" -ForegroundColor Red; exit 1 }
 # [user 2026-08-18] variant->base reverse map, derived from the skin table on every build
 python "C:\mohaa-coop-dev\docs\tools\gen_skinbase.py"
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_skinbase" -ForegroundColor Red; exit 1 }
 # [user 2026-09-01, bug-2297] THE VO OVERRIDE BLOCK. 179 PlaySound errors in one of the user's own
 # sessions, all "needs an alias" for allied attack/cover callouts that ARE declared - 3,654 times -
 # but where every declaration carries a `maps` field that never lists m3l1a. That field is a LOAD
@@ -91,9 +92,53 @@ if ($LASTEXITCODE -ne 0) { exit 1 }
 # --check fails the build if they ever drift back to same-name form.
 python "C:\mohaa-coop-dev\docs\tools\fix_vo_pools.py" --check
 if ($LASTEXITCODE -ne 0) { exit 1 }
-if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_skinbase" -ForegroundColor Red; exit 1 }
 
-if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by scrlint" -ForegroundColor Red; exit 1 }
+# [user 2026-09-09] "I cannot stress this enough we need to make sure this does not in any way
+# impact the coop mod or experience itself." The MP loadout shares the armory, the give chain and
+# several level vars with coop, so the isolation is a CONTRACT and this is the test of it.
+# [ISO track 2026-09-13] It runs HERE, before packing: it used to run after the pk3s and DLLs were
+# already copied to every install, so a leak was reported only once it had shipped - and it skipped
+# silently when the checker was missing. The self-test runs first, because a checker that cannot fail
+# proves nothing (TRAPS T14); it is stamped, so it costs minutes only after a checker edit.
+# It THROWS rather than `exit 1`: publish_release.ps1:67 calls this script with & and never checks the
+# exit code, so an exit 1 here let a release go on to stage and publish the previous build's pk3s. The
+# native calls run under a local 'Continue' (publish_release.ps1:35-38's recipe) so one stderr line
+# cannot decide the result inside a Stop-mode caller; LASTEXITCODE starts at 99 so a python that never
+# ran cannot read as a pass.
+# >>> MP-ISOLATION GATE
+$mpi     = "C:\mohaa-coop-dev\docs\tools\check_mp_isolation.py"
+$mpiSelf = "C:\mohaa-coop-dev\docs\tools\check_mp_isolation_selftest.py"
+foreach ($tool in @($mpi, $mpiSelf)) {
+    if (-not (Test-Path -LiteralPath $tool -PathType Leaf)) {
+        Write-Host "BUILD BLOCKED: $tool is missing - the MP/coop isolation contract cannot be checked." -ForegroundColor Red
+        throw "BUILD BLOCKED: MP isolation tool missing"
+    }
+}
+$mpiEap = $ErrorActionPreference
+$ErrorActionPreference = 'Continue'
+$global:LASTEXITCODE = 99
+$mpiSelfOut = & python $mpiSelf --if-changed 2>&1
+$mpiSelfCode = $LASTEXITCODE
+$ErrorActionPreference = $mpiEap
+$mpiSelfOk = ($mpiSelfCode -eq 0) -and (@($mpiSelfOut | Where-Object { "$_" -match '^selftest: (ok|unchanged)\b' }).Count -eq 1)
+foreach ($line in $mpiSelfOut) { if ($mpiSelfOk) { Write-Host "  $line" -ForegroundColor DarkGray } else { Write-Host "  $line" -ForegroundColor Red } }
+if (-not $mpiSelfOk) {
+    Write-Host "BUILD BLOCKED by check_mp_isolation_selftest - nothing was packed or deployed." -ForegroundColor Red
+    throw "BUILD BLOCKED: MP isolation self-test"
+}
+$ErrorActionPreference = 'Continue'
+$global:LASTEXITCODE = 99
+$mpiOut = & python $mpi 2>&1
+$mpiCode = $LASTEXITCODE
+$ErrorActionPreference = $mpiEap
+$mpiOk = ($mpiCode -eq 0) -and (@($mpiOut | Where-Object { "$_" -match '^\d+ passed, \d+ pending, 0 FAILED$' }).Count -eq 1)
+foreach ($line in $mpiOut) { if ($mpiOk) { Write-Host "  $line" -ForegroundColor DarkGray } else { Write-Host "  $line" -ForegroundColor Red } }
+if (-not $mpiOk) {
+    Write-Host "BUILD BLOCKED: the MP loadout has leaked into coop - nothing was packed or deployed." -ForegroundColor Red
+    throw "BUILD BLOCKED: MP isolation contract"
+}
+# <<< MP-ISOLATION GATE
+
 $deployDir  = "G:\GOG\Medal of Honor - Allied Assault War Chest\maintt"
 $appDataDir = "$env:APPDATA\openmohaa\maintt"
 $gogRoot    = "G:\GOG\Medal of Honor - Allied Assault War Chest"
@@ -331,6 +376,8 @@ if (Test-Path $chk) {
     # of WHICH or WHY - a warning nobody can act on is a warning nobody reads.
     $summary = $out | Select-String -Pattern "^challenges:|cannot be completed|^OK - every|^NO-OP REWARD|^DEAD -|^SHORT -|^MISSING -"
     foreach ($line in $summary) { Write-Host "  $line" -ForegroundColor DarkGray }
+} else {
+    Write-Host "  WARNING: $chk is missing - challenge reachability was NOT checked" -ForegroundColor Yellow
 }
 
 # bug-1803: the skeletor channel name table is a process-global static that is NEVER reset between
@@ -344,6 +391,8 @@ $skel = "C:\mohaa-coop-dev\docs\tools\count_skel_channels.py"
 if (Test-Path $skel) {
     $out = & python $skel --check 2>&1
     foreach ($line in $out) { Write-Host "  $line" -ForegroundColor DarkGray }
+} else {
+    Write-Host "  WARNING: $skel is missing - skeletor channel headroom was NOT measured" -ForegroundColor Yellow
 }
 
 # [2026-08-14] The README names the exact installer files a new player must download, with pinned
@@ -355,26 +404,11 @@ $dl = "C:\mohaa-coop-dev\docs\tools\check_download_links.py"
 if (Test-Path $dl) {
     $out = & python $dl 2>&1
     foreach ($line in $out) { Write-Host "  $line" -ForegroundColor DarkGray }
-}
-
-# [user 2026-09-09] "I cannot stress this enough we need to make sure this does not in any way
-# impact the coop mod or experience itself." The MP loadout shares the armory, the give chain and
-# several level vars with coop, so the isolation is a CONTRACT and this is the test of it. It ABORTS
-# the build rather than warning: a leak here is silent in play and would surface only as coop
-# behaving differently for reasons nobody could trace back. Clauses whose subject does not exist yet
-# report PENDING rather than passing, so it cannot go green by checking nothing.
-$mpi = "C:\mohaa-coop-dev\docs\tools\check_mp_isolation.py"
-if (Test-Path $mpi) {
-    $out = & python $mpi 2>&1
-    $mpiFailed = ($LASTEXITCODE -ne 0)
-    foreach ($line in $out) {
-        if ($mpiFailed) { Write-Host "  $line" -ForegroundColor Red }
-        else { Write-Host "  $line" -ForegroundColor DarkGray }
-    }
-    if ($mpiFailed) {
-        Write-Host "ABORTED: the MP loadout has leaked into coop." -ForegroundColor Red
-        exit 1
-    }
+} else {
+    Write-Host "  WARNING: $dl is missing - README download links were NOT checked" -ForegroundColor Yellow
 }
 
 Write-Host "Done."
+# [ISO track 2026-09-13] Explicit, so a caller's $LASTEXITCODE is this script's verdict and never the leftover
+# exit code of the last tool above (publish_release.ps1, maptest_watchdog.ps1 and auto_audit_recover.ps1 read it).
+exit 0
