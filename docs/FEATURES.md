@@ -619,8 +619,12 @@ Buttons emitting `append name ,cp<catalogue index>` on the name bus (token 47) i
 the server resolves it. There is **no in-mission pin surface** — see `docs/OPEN.md`.
 *Anchor:* generator `docs/tools/gen_service_record.py` (never hand-edit `ui/coop_sr.urc`).
 
-**Coop Settings + Post-FX menus** — `SHIPPED-UNVERIFIED`. Coop world/gameplay toggles as `linkcvar`
-checkboxes plus a POST-FX EFFECTS button. Entry = the yellow documents folder on the Options
+**Field Settings (Coop Settings) + Host Rules sheets** - `SHIPPED-UNVERIFIED`; the 2026-09-13
+redesign (bug-2578) is deployed and **not yet opened in game**. `ui/coop_settings.urc` is a two-column
+sheet of 20 player-controlled rows (lamp plates under an invisible whole-row CheckBox; float
+`cg_weaponLag`/`cg_tracerGlow` are sliders, as a CheckBox reads ints); host-decided rows are on
+`ui/coop_hostrules.urc`, opened by HOST RULES on Start Game. **Generated, never hand-edit:**
+`docs/tools/gen_menu_fieldsettings.py` `build`/`check`. Entry = the documents folder on the Options
 workbench. ⚠️ **Both hotspot rects are eyeballed estimates over background art** — nudge if clicks
 miss. Main-menu desk map: radio=options, doors=multiplayer, projector=credits, folder=briefing,
 typewriter=records.
@@ -1009,9 +1013,8 @@ Launch method and the `g_scriptcheck` crash gotcha: see CLAUDE.md § Running and
 
 **Regression harness** — `SHIPPED-VERIFIED` (produced bugs 1218–1220 on 2026-07-29). Lives at
 `C:\mohaa-coop-dev\_research\regression\` (`regress.ps1`, `regress.py`, `hzmreg/`, `roster.json`,
-`baselines/`, `runs/`). **Currently the project's only working automated verification.**
-⚠️ Sits under `_research`, which `build.ps1` treats as disposable — **promote it out**
-([TRAPS T12](TRAPS.md#t12)).
+`baselines/`, `runs/`). **Currently the project's only working automated verification** - promote it
+out of `_research` ([TRAPS T12](TRAPS.md#t12)).
 
 **Autonomous combat-verification rig** — `SHIPPED-VERIFIED`. `coop_botInput 1` injects the HOST
 client's usercmd — aims at the nearest visible German and **fires real bullets**, which is what makes
@@ -1029,13 +1032,10 @@ change is still live in `player.cpp`.
 references in `main.scr` across the gated block at `:171-238`. (There is no `_loadout`, `_ai` or
 `_medkit` module — earlier records claiming 12/13/14 files are wrong.)
 
-**Coop test menu** — `PLANNED`, the largest designed-but-unexecuted work in the project. 94 tests
-across 10 subsystems, each specifying catches / drive / verify / evidence(`file:line`) / risk, most
-needing a new cvar-gated probe emitting a `^~^~^ MARKER`. Several named probes **do** exist, so parts
-may have been built. **No run log or results file was found.** ⭐ One finding embedded in it worth
-permanent watch: `replace.scr:465-470` `player_origin` is an **intentional infinite `while(1)` crash
-trap** that hangs the server rather than erroring — its println reads *"outdated func used, crashed
-game on purpose."*
+**Coop test menu** - `PLANNED`, 94 tests across 10 subsystems; state in
+[OPEN.md](OPEN.md#planned). One finding in it worth permanent watch: `replace.scr:485`
+`player_origin` is an **intentional infinite `while(1)` crash trap** that hangs the server rather than
+erroring (*"outdated func used, crashed game on purpose"*).
 
 **`md5_2_skX` model converter** — `SHIPPED-VERIFIED`, round-trip validated. Unblocks importing
 CC0/Blender models with no 3ds Max. The 2012 tool needed a self-contained `skx_format.h` redeclaring
@@ -1044,10 +1044,8 @@ writes `ofsCollapse`/`ofsCollapseIndex` = 0 and the engine reads both unconditio
 `TIKI_SortLOD` stack OOB → access violation in `Entity::setModel`. **Every converted skd must go
 through `skd_add_collapse.py` + `skx_validate.py`.** It also hardcodes a −90 X roll on the root bone.
 
-**Blender sprint carry-pose edit** — `PLANNED`, paused by the user mid-edit at arm-bone selection.
-Pipeline is 100% working (kit + 4 addon patches, including bug-295's multi-root fix — **MOHAA rigs
-have 3 roots**, `Bip01` plus both feet as IK goals, and the addon's single-root assumption dropped the
-feet from the anim tree). Goal: a weapon-holding sprint anim to replace the one-handed dash.
+**Blender sprint carry-pose edit** - `PLANNED`, paused by the user ([OPEN.md](OPEN.md#planned)). The
+pipeline works; bug-295: **MOHAA rigs have 3 roots** (`Bip01` plus both feet as IK goals).
 
 **Installer** — `PLANNED`, **do not execute until explicitly asked**. Inno Setup 6,
 `PrivilegesRequired=lowest` so it installs to `%LOCALAPPDATA%\MOH Coop Trilogy` with no UAC, GOG
@@ -1057,6 +1055,11 @@ allowlist repo (so it has real history, unlike the mod).
 **Coop dev tools** — `SHIPPED-VERIFIED`. `coop_dev 1` enables dev features. Cheat-flavoured actions
 route through script events (`self noclip` / `self nodamage`) to bypass the latched `sv_cheats` gate.
 A give-next-weapon cycle per category covers the imported guns.
+
+**MP/coop isolation gate** - `SHIPPED-VERIFIED` (bug-2579, 2026-09-13). `docs/tools/check_mp_isolation.py`
+runs in `build.ps1` BEFORE packing and throws on a failure, a missing tool or no `0 FAILED` summary;
+`publish_release.ps1` aborts on a failed build and the watchdogs do not relaunch on stale pk3s.
+`check_mp_isolation_selftest.py` proves the checker can fail.
 
 ---
 
@@ -1073,12 +1076,9 @@ port forwarding. ⚠️ MOHAA OOB packets are `4×FF` + a **direction byte** —
 silently runs nothing (bug-1143). ⚠️ The engine-side commit records an unresolved **dedicated-server
 crash under investigation** with no follow-up found.
 
-**Dedicated server on bare DM maps** — `OPEN`. `game.dll` crashes loading non-coop maps
-(`obj`/`obj_team1`) under a dedicated server; the baseline reproduces with zero rendezvous cvars, so
-it is **not** NAT-related. Coop maps load fine — likely a coop hook assuming coop init ran. Fix:
-"none yet." ⭐ Also recorded: `omohaaded.exe` has headless env quirks (stalls **with** `fs_homepath`,
-dies **without** it); the working dedicated recipe is the **CLIENT exe with `+set dedicated 1`** from
-the GOG dir. *Anchor:* bug-330.
+**Stufftext filter hardening (SEC1, layer 1)** - `SHIPPED-VERIFIED` (bug-2580, runtime-verified
+2026-09-13). `cg_servercmds_filter.cpp` splits statements exactly like `Cbuf_Execute` and checks what a
+server-stuffed `vstr` would expand to, failing closed. Rules: [TRAPS T8](TRAPS.md#t8); layer 2: OPEN.md.
 
 ---
 

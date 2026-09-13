@@ -136,10 +136,6 @@ that does not exist.
 | ~~MP voice-command wheel~~ | *(alias map scope)* | `uberdialog.scr:31116` | **CLOSED 2026-08-30, bug-2176** - DM-only scope AND V taken by the bash; both had to be fixed |
 | ~~Stealth arm-on-hurt~~ | *(no caller)* | `itemhandler.scr:1590` | **DELETED 2026-08-30, bug-2178** - wiring it to e1l3 would have made that map unwinnable |
 
-**[2026-08-17] This table was stale.** Four of the five had since been seeded (engine pre-registration
-and autoexec), leaving only `coop_aiSearch` genuinely dead - which is exactly the failure mode the
-section warns about, so it is corrected in place rather than appended to.
-
 **⚠️ The AI maneuver mover was verified only by the bot rig — which sets the gate cvar itself.** It
 has never run for a player. See [TRAPS.md § T15](TRAPS.md#t15).
 
@@ -493,6 +489,7 @@ The full list is [FEATURES.md](FEATURES.md). These are the ones someone consciou
 | **Armory carry-over volleys** | rcon-verified at the wire level; untested live |
 | **Menu theme picker** (2572) | UNPLAYED. Random per launch, Next/Back, title + game. First build was compiled out; this one is checked in the exe. |
 | **Leave-map audio reset** (2573) | UNPLAYED. Leave Omaha mid-cinematic, load any map: ambience audible, music normal, `AUDIORESET` logged. Also `restart` and a crash relaunch. |
+| **Field Settings / Host Rules sheets** (2578) | UNOPENED. Check the invisible whole-row toggle first (fallback is in the `ui/coop_settings.urc` header), then fit, the two float sliders, and HOST RULES on Start Game. |
 
 ---
 
@@ -515,6 +512,15 @@ The full list is [FEATURES.md](FEATURES.md). These are the ones someone consciou
 | **m3l1b FLAK objective v2** | Gun crews, back-field defenders, plant animation. | `m3l1b_cut_flak88_objective.md` |
 | **Deployables skill tree** | **REJECTED by the user** — building their own model. Doc kept, marked superseded. | `skilltree_plan.md` |
 
+**Security layer 2 - exe-side server-origin taint** (designed 2026-09-13, **needs user decisions**;
+layer 1 is bug-2580). Closes layer 1's residual gaps: a write and its `vstr` in separate stufftexts of
+one snapshot, and `wait`-deferred forms. Decide: Design A vs A+B (persisted taint, or a refuse-list for
+self-vstr'd cvars); `globalwidgetcommand` laundering; a cgame API handshake - `cgi->apiversion` is
+never set or compared, so a new import slot needs a real stamp, append-at-end and a fallback.
+
+Reference design notes, do not duplicate here: `hzm-mohaa-coop-mod/_research/compass_bar_design.md`,
+`mp_decisions_2026-09-13.md`, `koth_source_notes.md`.
+
 ---
 
 <a name="discrepancies"></a>
@@ -525,11 +531,7 @@ corrections rather than open defects, and the code is authoritative in every cas
 
 ## Tooling lost
 
-Mostly **resolved** - verified present 2026-08-07: `scratchpad/rcon.py` (rebuilt), and in-repo
-`docs/tools/`: `depthscan2.py`, `scrlint.py`, `docgen.py`, `quotecheck.py`, `linecheck.py`,
-`gen_service_record.py` (supersedes the old `gen_sr4.py`).
-
-Still missing, all generators for already-shipped artifacts:
+Still missing, all generators for already-shipped artifacts (what IS present: `docs/generated/filemap.tsv`):
 
 | Tool | Consequence |
 |---|---|
@@ -569,13 +571,6 @@ recorded but **the artefact was never removed**, so the identical session-loss i
 any future debugging pass. **Deleting one 0-byte file closes a documented multi-hour trap.** The same
 directory also holds 15 `boot_<map>.cfg` harness files and a 2026-07-05 `whatsnew_pending.cfg`.
 
-### `build.ps1`'s `_research` exclusion is uncommitted
-`OPEN` · *`git diff build.ps1` — one line, `$excludeTop = @("_notes")` → `@("_notes", "_research")`*
-The only modification in the workspace repo's working tree, and **one `git checkout` from being
-lost**. Until it, releases up to and including v1.1.55 packed the mod's `_research` tree into the
-shipped code pak. Corroborated: the released pak is **272,839 B larger** than the post-fix rebuild,
-which is the right order of magnitude. **Commit it.**
-
 ---
 
 <a name="cheapest"></a>
@@ -585,22 +580,19 @@ Effort/impact ranking was the audit's own acknowledged gap; this is an inference
 measurement.
 
 1. **Delete the 0-byte `omconfig.cfg` decoy.** One file, closes a documented multi-hour trap.
-2. **Commit `build.ps1`'s one-line `_research` exclusion.** One commit, stops shipping design docs.
-3. **Deploy the current `openmohaa.exe` + `game.dll`.** A copy. Resolves bug-1219 and the protocol
+2. **Deploy the current `openmohaa.exe` + `game.dll`.** A copy. Resolves bug-1219 and the protocol
    mismatch. Back up first.
-4. **Fix `hzm_cvars.txt:11`** `coop_lmsLifes` → `coop_lmsLives`. One character class, ships to players.
-5. **Fix the three stale in-code comments** (`main.scr:134` Director default, `q_shared.h:1680`
+3. **Fix `hzm_cvars.txt:11`** `coop_lmsLifes` → `coop_lmsLives`. One character class, ships to players.
+4. **Fix the three stale in-code comments** (`main.scr:134` Director default, `q_shared.h:1680`
    bug-866→892, `blueprint.scr:5-7` INERT header). Each will otherwise mislead a future session.
-6. **bug-1218 m3l2 label.** Add the label or drop the `setthread`. Exact site known.
-7. **bug-1027 e3l4 `outro.scr`.** Signature matches T1 exactly; a `developer 1` boot should name the
+5. **bug-1218 m3l2 label.** Add the label or drop the `setthread`. Exact site known.
+6. **bug-1027 e3l4 `outro.scr`.** Signature matches T1 exactly; a `developer 1` boot should name the
    line. Restores the BT campaign ending.
-8. **Decide the four `SHIPPED-CODE-DISABLED` gates.** Either seed defaults or document as opt-in.
+7. **Decide the four `SHIPPED-CODE-DISABLED` gates.** Either seed defaults or document as opt-in.
    Nothing to build — the code exists.
-9. ~~Extract `global/vehicle_warning.scr`~~ — **DONE 2026-08-06** as bug-1473, fixed at the caller
-   instead (`gags/t3l1_enemyspawn.scr`); removed all 12,690 casts, not just the estimated 4,270.
-10. **Restore `r_globalFogDebug` to `CVAR_CHEAT`.** One flag.
-11. **Promote `_research/regression/` out of `_research`.** Protects the only automated verification.
-12. **Take one fresh look at the m3l3 courtyard.** The fix exists and was never evaluated.
+8. **Restore `r_globalFogDebug` to `CVAR_CHEAT`.** One flag.
+9. **Promote `_research/regression/` out of `_research`.** Protects the only automated verification.
+10. **Take one fresh look at the m3l3 courtyard.** The fix exists and was never evaluated.
 
 ## GL2 RENDERER: styled-lightmap surfaces pulse red (was: e2l1 rails) - TOP GL2 VISUAL DEFECT
 CONFIRMED by user bisect 2026-08-04: GL1 clean, GL2 blinks. Affects any surface with a styled

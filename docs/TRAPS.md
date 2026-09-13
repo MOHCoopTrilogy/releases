@@ -103,7 +103,7 @@ and stays, never the reported line.
 | Bytes read out of a `.pk3` (already CRLF) written back through Python **text** mode → `\r\r\n` on 434 lines. TIKI silently dropped **every** alias in `anims_shared.txt`, killing the salute emote. | 259 |
 | A bash-heredoc Python generator collapsed the two-char `\n` escape into literal newlines in 4 string literals → T1 parse kill. | 331, 962 |
 | A shader generator's brace matcher mishandled mixed CRLF/LF plus `//`-commented braces, emitting blocks missing closing braces (45 open / 43 close) → white-square HUD icons. | 480 |
-| A **texture upscaler** tiled (3x3 -> resize -> crop centre) then ran UnsharpMask on the CROPPED result; a convolution clamps at the border, so it invented edge pixels and reintroduced the exact seam tiling existed to prevent (14x worse on `ocean1b`), and Lanczos lobes separately overshot a capped alpha (189 -> 255). Fix: sharpen **inside** the tiled space, clamp each channel back to the source range. | 1247 |
+| A **texture upscaler** sharpened AFTER cropping its 3x3 tile, so the border clamp reintroduced the seam tiling prevents (14x worse on `ocean1b`), and Lanczos overshot a capped alpha. Sharpen inside the tiled space; clamp to the source range. | 1247 |
 | A PowerShell harness assigned `$home`, a **built-in automatic variable**; the assignment silently no-op'd and logs landed in the user profile. | ps-home-var |
 
 - **Binary mode on BOTH sides, repo files included.** `open(p, encoding=...)` translates newlines on
@@ -168,12 +168,10 @@ on and confirm they are populated at that instant** - the scene-actor exemption 
 23 s before anything assigns one, matching NOTHING while passing its own acceptance check vacuously.
 Instrument first, repair second.
 
-**The `waittill`-already-fired shape recurs on every remaining map.** `invalid waittill spawn for
-'Level'` reads like a warning but means "this script ran at the wrong time": a failed `waittill` does not
-abort and does not wait, and the damage surfaces as NULL-listener errors elsewhere. Fix with
-`replace.scr::waitTillSpawn` / `::waitTillPrespawn`. **Do NOT bulk-replace** - 191 bare `level waittill`
-sites ship and most are legitimately reached first, so **the runtime log is the oracle**: fix only sites
-that actually throw, per map, as each is played ([T14](#t14)).
+**`invalid waittill spawn for 'Level'` means "this script ran at the wrong time"** - it does not wait
+([Script Error](#script-error)). Fix with `replace.scr::waitTillSpawn` / `::waitTillPrespawn`, but **do
+NOT bulk-replace**: 191 bare sites ship and most are reached first, so fix only sites the runtime log
+shows throwing ([T14](#t14)).
 
 **A second shape: the write executes and is then overwritten.** Proving execution is necessary but not
 sufficient - **grep every writer of a shared per-frame field and establish who runs last**, preferring
@@ -183,7 +181,11 @@ after `ClientThink` set them - **the cure is a different call site, not a differ
 dangerous variant lands somewhere real instead (bug-1238 moved the 3P pivot).
 
 **The UI corollary - never trade a working widget for an unverified one; ADD ALONGSIDE IT.** A `.urc`
-cannot be run or diffed from here, so the only oracle is the user's screenshot (bug-1546). And when you
+cannot be run or diffed from here, so the only oracle is the user's screenshot (bug-1546). **A `UICheckBox`
+always draws a raised 3D bevel** whatever its `borderstyle` (`uicheckbox.cpp` Draw); it vanishes only
+because `bgcolor` also sets the border colour and alpha 0 propagates through `UBorderColor`, so an
+invisible whole-row click target needs `bgcolor` alpha 0 AND a fully transparent checked/unchecked
+shader (`textures/mohmenu/trans_click`, bug-2578). And when you
 fix a silent-discard branch, **add the warning even though you also raised the limit** -
 `sv_snapshot.c:549-553` does.
 
@@ -251,7 +253,7 @@ handed out the world slot: a weekend of use-after-free minidumps.
   produced two real-but-wrong fixes at ~an hour each; WER's fault RVA + the linker `.map` named it in a
   minute. Recipe in the `crash_dump_analysis` memory.
 
-**Read `openmohaa-hzm/code/qcommon/q_shared.h:1690-1755` before touching any capacity constant.** The `MAX_SOUNDS` comment there is canonical - four binding constraints in the order they bite, each tagged with the bug that found it (including two failed attempts), backed by a compile-time `#error`. **Turn every capacity rule into a build break** - `MAX_SOUNDS` has that `#error` and never regressed; `TIKI_MAX_ENTITIES` had none and silently rotted out of sync (bug-2292).
+**Read `openmohaa-hzm/code/qcommon/q_shared.h:1690-1755` before touching any capacity constant** - the canonical `MAX_SOUNDS` comment (four constraints in the order they bite, each with its bug) and the compile-time `#error` that kept it from regressing while `TIKI_MAX_ENTITIES` rotted (bug-2292).
 
 ---
 
@@ -297,9 +299,6 @@ team=allies act=1 noclip=0`) - the label declares TWO params (`local.object loca
 caller passes ONE. **When a helper "returns nothing", print INSIDE it and inline the same scan in the
 caller; if the inline scan works, stop using the helper.**
 
-**Still open:** `global/vehicle_warning.scr` (4,270 casts, second-worst source) was **never extracted**;
-plus a second vehicle-crew spawn path on t2l2/t3l2 that the `truck_load` guard does not cover.
-
 ---
 
 <a name="t6"></a>
@@ -317,7 +316,7 @@ changes.
 | Shader **NAME** overrides lose the reverse-concat race | Whole-**FILE** overrides win: the filesystem dedupes by filename and the coop pak mounts last (bug-921 used bug-525's whole-file pattern on `scripts/equipment.shader`) |
 | `zzzzzzzz_*` sorts after `zzzzzz_*` | bug-1190 |
 | `.tik` surface directives must match the `.skd`'s real surface names | else `TIKI_InitTiki` drops them (bug-1216) |
-| **A junction hides the loose half from your tools** | `G:\mohaa-gl2\{main,mainta,maintt}` are NTFS **junctions** into the GOG install. Git-Bash `find` does not follow them (needs `-L`) and a pak-only scan misses loose files entirely, so **both** scans that produced the retracted bug-2336 claim - "the install is missing most of its speech, tell the user to reinstall" - still produce it today. Python `os.walk` follows them. Any "is this asset present?" check must cover paks **and** the walked junction, or it will libel the user's install (bug-2386). |
+| **A junction hides the loose half from your tools** | `G:\mohaa-gl2\{main,mainta,maintt}` are NTFS **junctions** into the GOG install: Git-Bash `find` needs `-L` and a pak-only scan misses loose files - both produced the retracted "reinstall, your speech is missing" claim (bug-2336). Python `os.walk` follows them. An asset-presence check must cover paks **and** the walked junction (bug-2386). |
 | Loose files beat paks **both ways** | bug-2020: 7,755 loose dev-only files under `G:\mohaa-gl2\main\sound\` made 1,623 alias refs (chatter restoration included) work in dev, silent for everyone else. **Audit assets against the SHIPPED set (retail paks + mod source tree), never the dev install** - loose files mask this class. |
 | Homepath `maintt/` beats basepath; loose files beat paks | **bug-1633:** stale cfgs in the live profile's `maintt/` shadowed every deployed change; `build.ps1` now deploys cfgs to all three targets. Also watch for 0-byte decoys (bug-595). |
 
@@ -395,8 +394,8 @@ cvar mitigation with its bug id and clear it when that bug closes** (bug-1990). 
 `r_ext_multisample 0` mitigates a gl2 foliage-cutout artifact still open as bug-1298, so the archived
 `0` stays until it closes. [T11](#t11) biting inside T7.
 
-**⚠️ gl2 is the renderer we ship and test on** - confirm from the qconsole banner, never a doc;
-this section once claimed gl2 was abandoned and produced a wrong fix (2026-08-21). Two corollaries:
+**⚠️ gl2 is the renderer we ship and test on** - confirm from the qconsole banner, never a doc.
+Two corollaries:
 **any cvar comment naming a renderer is suspect until re-read against that renderer's `tr_init.c`**
 - `r_mapOverBrightBits` defaults 1 in gl1 and **2** in gl2 (`renderergl2/tr_init.c:1886`), so a
 comment calling 1 "the engine default" silently halved lightmap overbright on every world surface;
@@ -413,7 +412,7 @@ any menu-wired cvar still `seta`'d there **cannot** persist; the two files are d
 fight. Counts live in `docs/generated/CVARS_COOP.md` - never hand-copied here. **A cvar seeded nowhere**
 (no engine `Cvar_Get`, no cfg line) makes `getcvar` return `""` on a clean profile and a script fallback
 branch silently decides behaviour, so **calling such a cvar "default N" describes a branch, not a
-default.****
+default.**
 
 **Archived client state keyed by POSITION rots on every catalogue change** (bug-1926, full entry in
 `archive/traps-pruned-2026-08-20.md`): **persist IDs, never positions**; stamp any positional cache with
@@ -426,7 +425,7 @@ a crc of the id list and wipe on mismatch; a generated lookup map is `set`, not 
 
 Six ways a server->client message is silently destroyed, and one on the receiving end. In short:
 an embedded quote truncates the wire argument, so send values UNQUOTED and one statement per
-stufftext; `cg_servercmds_filter.cpp` silently drops server-stuffed `exec`, `vstr` and unlisted
+stufftext; `cg_servercmds_filter.cpp` silently drops unscoped server-stuffed `exec`, unsafe `vstr` and unlisted
 `set`, which has presented as three unrelated bugs and as "one mode of a multi-mode feature works,
 the rest collapse together"; `Cvar_Set_f` re-joins tokenised args so runs of whitespace normalise
 to one space; client `exec`/`vstr` INSERT at the buffer front while server stufftext APPENDS, so
@@ -434,9 +433,17 @@ the last textual line of a client chain wins and a server echo arrives a round t
 name bus dispatches ONE token per ~0.75s batch in BUS INDEX order, destroying every other stacked
 token. On the receiving end, a `.urc` widget below its menu's declared canvas height draws nothing
 at all, with no error. Remote clients need the updated `cgame.dll` for any of it.
-Worked cases and the exact call sites in
+
+**The filter is a security boundary and must split EXACTLY like `Cbuf_Execute`** (`cmd.c`: quote
+parity, `;`, LF, CR, `//`, `/* */`). `COM_ParseExt` keeps a glued `;` inside a token, so `echo;quit`
+hid `quit`; a text ending inside `/*` carries into the next buffered stufftext and is refused
+(`COVC VDROP comment`); vstr'd values are re-checked as statements (bug-2580). **A new server-vstr'd
+name-bus marker needs a grammar entry in `cg_servercmds_filter.cpp` AND a shipped `cgame.dll` before
+the pk3 change**, or remote clients silently drop it. Self-test: `docs/tools/sec1_filter_selftest/build.bat`.
+
+Worked cases, bypass forms and call sites in
 **[`archive/traps-t8-stufftext.md`](archive/traps-t8-stufftext.md)**. Bugs 595, 597, 736, 758, 772,
-773, 1364, 1365, 1991.
+773, 1364, 1365, 1991, 2580.
 
 ## T9 - Same-frame spawn / model / solid race
 
@@ -460,11 +467,7 @@ and deployed when it shouldn't have been (bug-1172 - `build.ps1` runs during a g
 pushed sandbox-only `MAX_SOUNDS 2000` / `MAX_ENTITIES 4095` / `MAX_TIKI_ALIASES 8192` binaries into the
 user's **real install**).
 
-**The deploy set is complete now - verify it anyway.** This paragraph used to say `build.ps1` skipped
-`openmohaa.exe`, `game.dll` and `renderer_opengl2.dll`. It ships **all six** (both renderers and
-`omohaaded.exe` included, `build.ps1:200-215`) since bug-1796/bug-1634 - T11 biting inside T10, and the
-record was wrong for a month. While gl2 *was* missing, every renderer-side fix silently failed to reach
-the running game. **A "verified" claim must name which binaries were deployed and when, and prove it by
+**The deploy set is complete now (all six binaries, bug-1796/bug-1634) - verify it anyway.** **A "verified" claim must name which binaries were deployed and when, and prove it by
 hashing the deployed file against the build output** - a timestamp check misreads 12-hour times and will
 tell you a good deploy failed. `build.ps1` refuses to deploy while the game is running, so if you edited
 and did not deploy, everything the user tests is the PREVIOUS build and every conclusion is void.
@@ -484,14 +487,11 @@ either ships alone (bug-2149); a protocol-constant change ships exe + cgame + ga
 in the schema flags a reversal, so **edit the original entry** when you supersede a finding - bug-1473/1474
 were corrected in place on 2026-08-06 after being filed on the wrong files.
 
-- **⭐ A plan's STATUS HEADER is a record too, and it rots hardest.**
-  `_research/composure_and_ads_plan.md` led with "**PLAN ONLY — nothing built**" for four days
-  after its Part A was built, committed (`9e71d739`) and shipped in v1.4.4. The correction existed —
-  500 lines further down, in a revision section. On 2026-08-24 the stale header sent a session to
-  re-fix a fixed defect from line numbers that had already moved. Same shape as the unmarked
-  `_final.md` release notes (HISTORY 07-18). **When a plan ships, edit its header in the same
-  commit**: a superseded diagnosis standing at the TOP of a file outranks a correction at the
-  bottom, because the top is what gets read. Mark the superseded body too, not just the header.
+- **A plan's STATUS HEADER is a record too, and it rots hardest.**
+  `_research/composure_and_ads_plan.md` still said "PLAN ONLY - nothing built" four days after Part A
+  shipped in v1.4.4, with the correction 500 lines down, and sent a session to re-fix a fixed defect
+  (bug-2089). **When a plan ships, edit its header and mark the superseded body in the same commit** -
+  the top of a file is what gets read.
 - **Wrong anchors are worse than no anchors.** `q_shared.h:1680` credits the `MAX_MODELS` 1024->2048
   raise to **bug-866**; the actual work is **bug-892**, and a grep at a wrong path reads as "already
   fixed". **28 bug ids cited in source comments have no buglog entry** - bug-237 (packer determinism,
@@ -511,9 +511,8 @@ were corrected in place on 2026-08-06 after being filed on the wrong files.
 **There are TWO `_research` trees** and records conflate them: `C:\mohaa-coop-dev\_research\` (design
 docs, audits, **the regression harness**) and `C:\mohaa-coop-dev\hzm-mohaa-coop-mod\_research\`
 (buildmode inventories, `hud_slot_map.md`, `director_dda_plan.md`) - only the second is inside the shipped
-tree. **Ship risk: CLOSED (re-verified 2026-08-17):** `build.ps1:32`'s
-`$excludeTop = @("_notes", "_research")` is committed and the deployed
-`zzzzzz_co-op_hzm_mod_code.pk3` has **zero** `_research`/`_notes` entries. **Still open:** the regression harness - the
+tree. **Ship risk: closed** - `build.ps1`'s `$excludeTop`
+skips both (the code pk3 had zero such entries on 2026-08-17). **Still open:** the regression harness - the
 only working automated verification - lives in a directory named `_research`, which the build script
 treats as disposable; **promote it out**. Related: four uppercase map scripts (`M1*`, `M3*`, `M5*`,
 `M6*.scr`) sit alongside lowercase counterparts, unchecked for case-collision in a pak.
@@ -559,23 +558,33 @@ other writer cannot produce** (head `11/22`).
 player, separating "the maths is wrong" from "prone never engaged".
 *(worked examples archived to `docs/archive/traps-t14-worked-examples.md`)*
 
-**THE TOOL LIED, NOT THE CODE - five species, all returning plausible results.**
+**THE TOOL LIED, NOT THE CODE - six species, all returning plausible results.**
 *(a)* **`grep` bails on a binary line**: a `qconsole.log` with a NUL makes plain grep print
 `Binary file ... matches` and **nothing else**, so a marker was declared "never fired". **Always
 `grep -a` on logs.** *(b)* **A shell-eaten
 pattern matches everything**: `grep -c $'\r'` returned each file's TOTAL LINE COUNT, "proving" three
 pure-LF files were CRLF - and a CRLF misread is how T2 corruption starts. **Count bytes, never grep,
 for line endings.** *(c)* **A pass that cannot fail**: `node --check f | head -5 && echo OK` prints OK
-unconditionally because `head` exits 0. **Gate on the tool's own exit code, never through a pipe.**
+unconditionally because `head` exits 0; and a `.ps1`'s `exit 1` is not an error to a `&` caller, so a
+failed build went on to publish (bug-2579) - check `$LASTEXITCODE`, end scripts with `exit 0`. **Gate on
+the tool's own exit code, never through a pipe.**
 *(d)* **`check_map_compiles.py` is flaky against a LIVE dedicated server** - confirm no
 `omohaaded`/`openmohaa` is running first. **And it only proves the map INITS**: bug-2530's errors
 fired two minutes into the ride and it passed clean.
 *(e)* **The preprocessor dropped it**: the menu-theme picker built, linked, passed the wiring audit and
 deployed from `snd_main_new.cpp`, which this OpenAL build never compiles (bug-2572). **After an engine
 change, `grep -a -c` one of its string literals in the built binary.**
+*(f)* **Windows PowerShell 5.1 re-splits embedded double quotes passed to a native exe**: an rcon
+`script *0 stufftext "..."` arrived as several arguments. Send such payloads from a python driver.
 **And absence of a marker is not absence of behaviour**: `playsound` on an entity prints nothing, so
 grepping for it measures the marker. Every
 new beat gets a `^~^~^` marker or a census reads it as missing.
+
+**Dedicated-server harness:** `script <ent> <event> <args>` needs cheats, and `SV_Map_f` forces
+`cheats 0` unless `developer` is set; a client is listed in `status` before its Player exists
+(`script *0` answers `Could not find entity *0`). **A self-test that plants violations** must write only
+reserved `zzselftest` names and find anchors in the checker's comment-stripped view - a raw-byte
+precheck blocked real builds on comment-only coop edits (bug-2579).
 
 ## T16 — Waits that never complete: failsafe recursion, missing anims, unguarded `waittill`
 
@@ -627,7 +636,7 @@ GRENADE / PAIN actor overrides the scripted idle anim, so gate on `== idle` (`an
 no `THINKSTATE_ANIM`). **Silence the LINE, never abort the THREAD** - the tail of these labels holds the
 RELEASE (`runto`, `enable_ai`, `type_disguise`) that hands actors back to normal AI, and ending early
 leaves them frozen, dying on their feet with no death animation. Safe exception: a dead-end label
-nothing waits on (`M1L3c` radio room). Sites: **docs/OPEN.md**; helper `replace.scr::convOk`.
+nothing waits on (`M1L3c` radio room). Sites: bug-1579; helper `replace.scr::convOk`.
 
 ---
 
@@ -885,9 +894,8 @@ patched only the consumer that had just broken):
 | `anim_scripted` | `self.no_idle` | `coop_isProtectedActor` |
 | `threatbias ignoreme` | `self.threatbias == 0 - 6969` | `coop_variantRoll` **and** `coop_apply_personality` |
 
-The last row was once "variant roll only", reasoning that `ignoreme` means *do not target me*, not
-*I am scenery* (live-but-untargetable AI exist: m5l1b:704, e1l3/hacks' Claus). Measurement beat the
-reasoning (bug-2051). **Match a guard's scope to what it costs to be wrong.**
+The last row was once variant-roll only, on the reasoning that `ignoreme` is not scenery; measurement
+beat it (bug-2051). **Match a guard's scope to what it costs to be wrong.**
 
 **Before guarding on a property, prove you can READ it.** `enableEnemy` is a lone `EV_SETTER`
 (actor.cpp:1470), so reading throws - 136 errors a map, and since *a Script Error skips the

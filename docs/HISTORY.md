@@ -237,3 +237,6 @@ source is not corroboration, and the expensive fix refuted by measurement — no
 - **2026-09-13** - MP stops using the coop armory, which had been writing coop saves (2571). The menu theme picker had been compiled out and moved to the live sound file (2572). Cinematic audio ducks and Master volume now reset on every exit from a map (2573).
 - **2026-09-13** - Players could not damage each other in multiplayer: coop's same-team damage filter covered every player. Fixed narrowly and proven with bots on a dedicated server, before and after (2574).
 - **2026-09-13** - Main-menu theme picker: drawn 128px arrow buttons replace the stretched 16px retail icons (2575), and a theme now moves on to the next one when it ends (2576).
+- **2026-09-13** - Field Settings redesigned: a generated two-column sheet of 20 player rows, host rows on a new Host Rules sheet, float cvars on sliders, and autoexec no longer overriding player choices (2578, `U`).
+- **2026-09-13** - The MP/coop isolation gate now runs before packing, with a self-test proving it can fail; a failed build aborts the release and the watchdog relaunch (2579).
+- **2026-09-13** - Stufftext filter hardened: it splits commands exactly as the engine does and checks what a `vstr` expands to; runtime-verified on a dedicated server with a real client (2580).
