@@ -49,6 +49,16 @@ THE CONTRACT, and why each clause is here rather than merely sensible
      coop_mpa* / coop_mpx* / coop_mpFreeKit / coop_mpLockLoadout belong to mp.scr, loadoutpick.scr's
      gated block, and the MP UI. Anywhere else means the projection has leaked.
 
+  8. THE CHALLENGE SYSTEM STAYS COOP-ONLY IN MULTIPLAYER.
+     mp.scr commits armory picks through loadout_set, whose unlock gate reaches challenges.scr via chal_ensure.
+     chal_init must stop before its background loops (chal_pin_monitor re-seta's every client's saved Service
+     Record pins every 3 s; autosave and the vehicle-kill monitor would let PvP write coop progression), and
+     chal_ensure must stop after the unlock record and before the pin/medal writers. Both are
+     `if( level.coop_mpRun == 1 ){ end }`, inert on every coop map because mp.scr refuses to run there.
+
+  9. MP MUST NEVER SET flags["coop_isHost"].
+     That flag unlocks dev godmode, noclip and give_all (developer.scr). MP detects the listen host itself.
+
 USAGE
     python docs/tools/check_mp_isolation.py          # exit 1 on any violation
     python docs/tools/check_mp_isolation.py -v       # list what was checked and passed
@@ -162,8 +172,13 @@ else:
 
 # ---------------------------------------------------------------- 4/5. forbidden cvar writes from MP files
 MP_FILES = ["coop_mod/mp.scr", "coop_mod/cfg/mp_start.cfg", "coop_mod/cfg/mp_reset.cfg"]
+# [bug-2564] every saved coop cvar MP could plausibly touch, not just the two that started this list. Each one
+# written from an MP file would follow the player into coop.
 FORBIDDEN = [("4", r'(?:set|seta|setcvar)\s*\(?\s*"?coop_health"?', "coop_health"),
              ("5", r'(?:set|seta|setcvar)\s*\(?\s*"?coop_lockLoadout"?', "coop_lockLoadout")]
+for _cv in ("coop_prone", "coop_coverAuto", "coop_pickupOneMag", "coop_dmgFalloff", "coop_limp",
+            "coop_adsSpeedMult", "coop_tinnitusBaseVol", "coop_sprintStamina", "coop_breathShareStamina"):
+    FORBIDDEN.append(("4", r'(?:set|seta|setcvar)\s*\(?\s*"?' + _cv + r'\b', _cv))
 checked_any = False
 for rel in MP_FILES:
     txt = read(rel)
@@ -173,12 +188,12 @@ for rel in MP_FILES:
     body = strip_comments(txt)
     for clause, pat, name in FORBIDDEN:
         if re.search(pat, body, re.I):
-            fail(clause, "%s writes the %s cvar - that leaks into the NEXT coop map "
-                         "(server.scr re-seeds from it)" % (rel, name))
+            fail(clause, "%s writes the saved coop cvar %s - it would follow the player into coop"
+                         % (rel, name))
 if not checked_any:
     pend("4/5", "no MP script or cfg exists yet - the forbidden-cvar rules have nothing to check")
 else:
-    ok("4/5", "no MP file writes coop_health or coop_lockLoadout")
+    ok("4/5", "no MP file writes a saved coop cvar (%d guarded)" % len(FORBIDDEN))
 
 # ---------------------------------------------------------------- 6. coop_loadout.urc is untouched
 rel = "ui/coop_loadout.urc"
@@ -218,6 +233,44 @@ if leaks:
     fail("7", "MP cvar families appear in coop-only script(s): " + ", ".join(leaks))
 else:
     ok("7", "MP cvar families appear only in mp.scr and loadoutpick.scr's gated block")
+
+# ---------------------------------------------------------------- 8. the challenge system stays coop-only
+chal = read("coop_mod/challenges.scr")
+if chal is None:
+    fail("8", "coop_mod/challenges.scr is missing")
+else:
+    body = strip_comments(chal)
+    guard = re.compile(r"if\(\s*level\.coop_mpRun\s*==\s*1\s*\)\s*\{\s*end\s*\}")
+    for anchor, where in (("thread chal_autosave_loop", "chal_init before its background loops"),
+                          ("waitthread chal_pin_load local.player", "chal_ensure before the pin/medal writers")):
+        idx = body.find(anchor)
+        if idx < 0:
+            fail("8", "challenges.scr: anchor %r not found - re-check the MP guard in %s" % (anchor, where))
+        elif not guard.search(body[max(0, idx - 200):idx]):
+            fail("8", "challenges.scr has NO MP guard in %s - PvP would write coop progression" % where)
+        else:
+            ok("8", "challenges.scr MP guard present in %s" % where)
+
+xpt = read("coop_mod/xp.scr")
+if xpt is None:
+    fail("8", "coop_mod/xp.scr is missing")
+else:
+    xbody = strip_comments(xpt)
+    xidx = xbody.find("thread xp_autosave_loop")
+    if xidx < 0:
+        fail("8", "xp.scr: anchor thread xp_autosave_loop not found - re-check the MP guard in xp_init")
+    elif not re.search(r"if\(\s*level\.coop_mpRun\s*==\s*1\s*\)\s*\{\s*end\s*\}", xbody[max(0, xidx - 200):xidx]):
+        fail("8", "xp.scr has NO MP guard before the xp_init loops - PvP would write coop XP")
+    else:
+        ok("8", "xp.scr MP guard present in xp_init before its loops")
+
+# ---------------------------------------------------------------- 9. MP never grants coop_isHost
+if mp is None:
+    pend("9", "coop_mod/mp.scr does not exist yet")
+elif re.search(r'coop_isHost"\]\s*=', strip_comments(mp)):
+    fail("9", "mp.scr assigns flags[\"coop_isHost\"] - that unlocks dev godmode, noclip and give_all")
+else:
+    ok("9", "mp.scr never assigns flags[\"coop_isHost\"]")
 
 # ---------------------------------------------------------------- report
 print("MP/coop isolation contract")
