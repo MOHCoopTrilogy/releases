@@ -625,7 +625,7 @@ about how the game behaves, not a workflow preference about how to work.)*
 
 ---
 
-## Standard MP: ONE host switch, modern mechanics ON by default (user, 2026-08-30)
+## Standard MP: modern mechanics ON by default, per-feature host toggles (user, 2026-08-30; revised 2026-09-13)
 
 User, asked how to get the stock multiplayer gametypes working without breaking co-op:
 
@@ -633,9 +633,11 @@ User, asked how to get the stock multiplayer gametypes working without breaking 
 > like those mechanics all enabled in mp, but a simple switch to toggle it off to be more like
 > classic mohaa."*
 
-**This settles a question that was about to be put to them as a per-system decision.** The prior
-framing - go through sprint / prone / ADS / brace / hit markers / radar one at a time and decide
-which belong in competitive MP - is REJECTED. One switch, one default.
+**REVISED 2026-09-13 (MP decision sheet M1, H1-H9):** the single switch is SUPERSEDED by per-feature
+host toggles - DBNO, Healing/Medkits, ADS, Prone, Cover, Third Person - plus a Classic master switch
+over the realism toggles. They are `g_mp*` server cvars, latch per map, remember the host's last
+values, and DBNO/Medkits show greyed out until their MP port lands. Full record:
+`hzm-mohaa-coop-mod/_research/mp_decisions_2026-09-13.md`.
 
 **The design therefore has TWO categories, not one, and conflating them is the trap:**
 
@@ -647,10 +649,9 @@ which belong in competitive MP - is REJECTED. One switch, one default.
 So the co-op discriminator is NOT the switch, and the switch is NOT the discriminator. A stock DM
 map with the switch ON should play with modern movement and no co-op systems whatsoever.
 
-**Why one switch rather than per-system cvars:** the per-system cvars already exist and are the
-problem - `config_fossils.py` counted **87** of them force-set by `autoexec.cfg` after the saved
-config, so a host cannot currently opt out of anything. Adding more knobs deepens that. The switch
-must be a single server-side, replicated value a host sets once.
+**Toggles only work if autoexec stops forcing them:** `config_fossils.py` counted **87** cvars
+force-set by `autoexec.cfg` after the saved config, so a host cannot opt out of anything until the
+toggled ones are moved to seeds.
 
 **Implied requirement:** OFF must mean *classic*, not *half-modern*. Any mechanic that cannot be
 cleanly disabled at runtime (a pmove change with no gate, an animation the statemap always picks)
