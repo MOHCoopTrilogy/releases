@@ -53,6 +53,11 @@ python "C:\mohaa-coop-dev\docs\tools\unlock_audit.py"
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by unlock_audit" -ForegroundColor Red; exit 1 }
 python "C:\mohaa-coop-dev\docs\tools\ads_audit.py"
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by ads_audit" -ForegroundColor Red; exit 1 }
+# [user 2026-09-13, bug-2577] The armory pages are GENERATED from docs/tools/loadout_weapons.tsv plus MV_HOSTS. wire_mv2
+# grew MV_HOSTS on 2026-08-19 without regenerating them, and 11 coop VARIANT buttons stayed dark for four weeks because
+# nothing ran the generator's own check. `check` is read-only and exits 1 on any byte difference.
+python "C:\mohaa-coop-dev\docs\tools\gen_loadout.py" check
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_loadout check - regenerate with: python docs/tools/gen_loadout.py build" -ForegroundColor Red; exit 1 }
 # [user 2026-08-18] WIRING GATE: every exec resolves to a real file (exact case), every vstr
 # in our namespaces is assigned somewhere, every bus token is registered AND dispatched.
 python "C:\mohaa-coop-dev\docs\tools\ui_wiring_audit.py"
