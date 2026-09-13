@@ -59,6 +59,12 @@ THE CONTRACT, and why each clause is here rather than merely sensible
   9. MP MUST NEVER SET flags["coop_isHost"].
      That flag unlocks dev godmode, noclip and give_all (developer.scr). MP detects the listen host itself.
 
+ 10. MP DOES NOT USE THE COOP ARMORY. (user 2026-09-13: MP gets its own Allied and Axis armories.)
+     Committing MP picks through loadoutpick.scr::loadout_set wrote coop client state on every join - finish chips,
+     padlocks, and Axis guns archived as unlocked in the coop armory. So mp.scr may not call into loadoutpick,
+     challenges, xp, helmet, gloves or loadoutskins, may not stufftext anything naming a coop_lo cvar, and the old
+     team-blind MP "free floor" (coop_mpFreeKit) may not come back anywhere in coop_mod.
+
 USAGE
     python docs/tools/check_mp_isolation.py          # exit 1 on any violation
     python docs/tools/check_mp_isolation.py -v       # list what was checked and passed
@@ -271,6 +277,32 @@ elif re.search(r'coop_isHost"\]\s*=', strip_comments(mp)):
     fail("9", "mp.scr assigns flags[\"coop_isHost\"] - that unlocks dev godmode, noclip and give_all")
 else:
     ok("9", "mp.scr never assigns flags[\"coop_isHost\"]")
+
+# ---------------------------------------------------------------- 10. MP does not use the coop armory
+if mp is None:
+    pend("10", "coop_mod/mp.scr does not exist yet")
+else:
+    mpc = strip_comments(mp)
+    hits = re.findall(r"coop_mod/(loadoutpick|challenges|xp|helmet|gloves|loadoutskins)\.scr::\w+", mpc)
+    if hits:
+        fail("10", "mp.scr calls coop armory/progression code: " + ", ".join(sorted(set(hits))))
+    else:
+        ok("10", "mp.scr calls no coop armory, challenge, xp or cosmetic code")
+    if re.search(r'stufftext[^\n]*coop_lo', mpc, re.I):
+        fail("10", "mp.scr stufftexts a coop_lo cvar - that is coop loadout state on the client")
+    else:
+        ok("10", "mp.scr stufftexts no coop_lo cvar")
+floor = []
+for dirpath, _dirs, files in os.walk(os.path.join(MOD, "coop_mod")):
+    for f in files:
+        if f.endswith(".scr"):
+            p = os.path.join(dirpath, f)
+            if "coop_mpFreeKit" in strip_comments(io.open(p, "rb").read().decode("latin-1")):
+                floor.append(os.path.relpath(p, MOD).replace("\\", "/"))
+if floor:
+    fail("10", "the team-blind MP free floor is back: coop_mpFreeKit in " + ", ".join(floor))
+else:
+    ok("10", "no MP free floor (coop_mpFreeKit) anywhere in coop_mod")
 
 # ---------------------------------------------------------------- report
 print("MP/coop isolation contract")
