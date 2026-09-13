@@ -646,17 +646,16 @@ values, and DBNO/Medkits show greyed out until their MP port lands. Full record:
 | **Feel and mechanics** - sprint, prone, ADS, brace, hit markers, radar, gore, suppression | **YES, by default.** Host may turn them off for classic MOHAA. | ONE server cvar |
 | **Co-op-only systems** - AI count-scaling, DBNO, officer waves, co-op objectives, spawn warping | **NEVER.** Meaningless or actively broken without a co-op map. | the co-op discriminator |
 
-So the co-op discriminator is NOT the switch, and the switch is NOT the discriminator. A stock DM
-map with the switch ON should play with modern movement and no co-op systems whatsoever.
+The co-op discriminator is NOT a host toggle: a stock DM map with toggles ON plays modern movement
+and no co-op systems whatsoever.
 
 **Toggles only work if autoexec stops forcing them:** `config_fossils.py` counted **87** cvars
 force-set by `autoexec.cfg` after the saved config, so a host cannot opt out of anything until the
 toggled ones are moved to seeds.
 
-**Implied requirement:** OFF must mean *classic*, not *half-modern*. Any mechanic that cannot be
-cleanly disabled at runtime (a pmove change with no gate, an animation the statemap always picks)
-has to grow a gate or be listed as a known exception - **an OFF switch that leaves three systems
-running is worse than no switch**, because the host believes they are on stock rules.
+**OFF must mean *classic*, not *half-modern*.** A mechanic with no runtime gate (an ungated pmove
+change, an animation the statemap always picks) grows a gate or is listed as an exception - an OFF
+that leaves systems running is worse than none, because the host believes they are on stock rules.
 
 ## Sprint one-handed carry - REFUSED as procedural (2026-09-05)
 
