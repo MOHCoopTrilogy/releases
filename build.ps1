@@ -144,6 +144,8 @@ Write-Host "Packing $srcDir (3-way split, deterministic)..."
 if (-not (Test-Path $cacheDir)) { New-Item -ItemType Directory -Path $cacheDir -Force | Out-Null }
 $allFiles = Get-ChildItem -Path $srcDir -Recurse -File | Where-Object {
     $_.Extension -ne '.bak' -and $_.Extension -ne '.pk3' -and
+    $_.Extension -ne '.mp4' -and   # [bug-2570] source videos for the menu themes: the engine cannot play mp4, and the
+                                   # four at the mod root would have added ~70 MB to the code pk3 for nothing
     $_.FullName -notmatch '\\\.git(\\|$)' -and
     $excludeNames -notcontains $_.Name -and
     $_.Name -notlike '*.pre_upscale_nobuild'
