@@ -448,3 +448,23 @@ AI never ticks, so no `PERS` or `AIBEHAV` markers appear. Those still need a pla
 > Why this entry exists: believing the stale note meant every check got deferred to the user,
 > and that is how bug-2034 shipped - a guard that had never been executed once, which then did
 > nothing while emitting 136 errors per map load. A two-minute boot would have caught it.
+
+### Multiplayer check with bots: `docs/tools/mp_bot_damage_test.ps1`
+
+**Added 2026-09-13 (bug-2574).** The same dedicated boot, on a stock MP map with bots fighting, with
+`coop_dmgProbe 1` printing every hit a Player takes and the victim's health before it lands. It proved
+player-vs-player damage broken (96 hits, health never below 100) and then fixed (health falling on every
+exchange), with no human in the game.
+
+```powershell
+powershell -File docs\tools\mp_bot_damage_test.ps1 [-Map dm/mohdm1] [-Gametype 2] [-Seconds 170]
+```
+
+It deploys nothing: it runs whatever `game.dll` is in the GOG root, and stops the server itself.
+Three setup facts it already handles, each of which cost a run:
+- **Stock MP maps are `dm/<name>`, `obj/<name>`, `lib/<name>`.** `map mohdm1` idles on `Can't find map`.
+- **Bots need `sv_maxbots`**, a `CVAR_LATCH` cap that defaults to 0. Set it on the command line with
+  `sv_numbots`, or the log says `No bots, skipping navigation` and nobody spawns.
+- **Script `println` is developer-gated** (ENGINE.md, "Print gating"), so with `developer 0` the MP layer
+  prints no `MP init` line even while it runs. Check it with `rcon.py g_statefile` instead: `coop_mod/player`
+  on a stock MP map means `coop_mod/mp.scr` ran.

@@ -235,3 +235,4 @@ source is not corroboration, and the expensive fix refuted by measurement — no
   (2541); the quick-draw barrel sat 37 degrees up (2542); and shells now take landing craft down,
   written fresh after the reuse design was refuted on a 277-unit pivot offset (2543).
 - **2026-09-13** - MP stops using the coop armory, which had been writing coop saves (2571). The menu theme picker had been compiled out and moved to the live sound file (2572). Cinematic audio ducks and Master volume now reset on every exit from a map (2573).
+- **2026-09-13** - Players could not damage each other in multiplayer: coop's same-team damage filter covered every player. Fixed narrowly and proven with bots on a dedicated server, before and after (2574).

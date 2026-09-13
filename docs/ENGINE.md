@@ -126,6 +126,7 @@ now the 11-bit wire cap of 2048, **and that one fails at build time.**
 | **Blast tinnitus ping** — `RadiusDamage` stamps `coop_blastPing` (a pure-script fix is impossible: the sight trace means zero damage = zero script signal) | `weaputils.cpp` |
 | **Wounded-AI blood trails** — `Sentient::TryDropBloodTrail` from `Actor::Think` | `sentient.cpp` |
 | **Headshot kill cue** — hook moved `BulletAttack` → `ArmorDamage` alive→dead edge | bug-1142 |
+| **PvP damage in MP** - `CoopMpPlayerHit` is one more alternative in `Sentient::ArmorDamage`'s same-team health filter, which HZM widened to every gametype and which compares `m_Team` (TEAM_AMERICAN for every Player). It passes a hit only between two Players, not in SP, with coop not loaded by flag or by map name, and then only for a telefrag, FFA, opposite DM teams or `g_teamdamage`. Actors keep the old rule | bug-2574, `sentient.cpp` |
 | **Helmet pop** — `EV_Stop`→`HelmetTouch` (`G_Impact` skips `SOLID_NOT` so `EV_Touch` never arrives), `g_helmetlife`, clank, `VectorScale`→`VectorMA` velocity fix | bugs 614/615 |
 | **Holster offset** — was stored but never passed to `attach()` | bug-616, `weapon.cpp AttachGun` |
 | **Sprint / walk / stamina** — `TickSprint`, `ClientMove`, `BUTTON_COOPWALK (1<<12)` | `player.cpp ~11851`, `~4062` |
