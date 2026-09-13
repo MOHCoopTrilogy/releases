@@ -512,11 +512,11 @@ The full list is [FEATURES.md](FEATURES.md). These are the ones someone consciou
 | **m3l1b FLAK objective v2** | Gun crews, back-field defenders, plant animation. | `m3l1b_cut_flak88_objective.md` |
 | **Deployables skill tree** | **REJECTED by the user** — building their own model. Doc kept, marked superseded. | `skilltree_plan.md` |
 
-**Security layer 2 - exe-side server-origin taint** (designed 2026-09-13, **needs user decisions**;
+**Security layer 2 - exe-side server-origin taint** (designed 2026-09-13, **APPROVED, not built**;
 layer 1 is bug-2580). Closes layer 1's residual gaps: a write and its `vstr` in separate stufftexts of
-one snapshot, and `wait`-deferred forms. Decide: Design A vs A+B (persisted taint, or a refuse-list for
-self-vstr'd cvars); `globalwidgetcommand` laundering; a cgame API handshake - `cgi->apiversion` is
-never set or compared, so a new import slot needs a real stamp, append-at-end and a fallback.
+one snapshot, and `wait`-deferred forms. User picked: filter EVERY server-origin line in the exe; a
+refuse-list for self-vstr'd cvars (no persisted taint); `globalwidgetcommand` laundering stays a residual;
+a real cgame API handshake (stamp `cgi->apiversion`, append-at-end, fall back to `Cmd_Stuff`).
 
 Reference design notes, do not duplicate here: `hzm-mohaa-coop-mod/_research/compass_bar_design.md`,
 `mp_decisions_2026-09-13.md`, `koth_source_notes.md`.
