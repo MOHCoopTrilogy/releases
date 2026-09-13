@@ -235,6 +235,16 @@ model count, not frame rate (`tr_model.cpp:50-51`).
 - **Sound**: `s_sfxvolume` in `snd_dma_new.cpp S_StartSound`; `AL_MAX_GAIN 8.0` and a music-exempt
   duck in `snd_openal_new.cpp openal_channel::set_gain`; distance model `INVERSE` →
   `LINEAR_DISTANCE_CLAMPED` at context init; `s_openaldevice` sanitised once per process.
+  **Live sound code: `snd_openal_new.cpp`, `snd_dma_new.cpp`, `snd_mem_new.cpp`, `snd_miles_new.cpp`,
+  `snd_info.cpp`** (`NO_MODERN_DMA=0`, `USE_OPENAL=1`). `code/client/new/snd_main_new.cpp`, `snd_dma.c` and
+  `snd_main.c` are not compiled, and `snd_main_new.cpp` is wholly `#if NO_MODERN_DMA` besides - its note
+  that the OpenAL backend is excluded is pre-2024. The menu theme picker went there first and never
+  reached the exe (bug-2572); it lives in `S_TriggeredMusic_PlayIntroMusic`, `snd_openal_new.cpp`.
+- **`CL_HZM_ResetTransientAudio`** (`cl_main.cpp`, from `CL_ClearState` and `CL_ServerRestarted`) - on
+  every exit from a map (disconnect, map change, same-map `restart`, and the next `CL_Init` after a crash)
+  the server-drivable mix cvars go back to rest and the player's own volumes come back from
+  `coop_duckSave*` and `coop_duckSaveVolume` (captured in `cg_servercmds.c CG_CoopNoteServerVolume`)
+  (bug-2573). **A new server-stuffed audio cvar must join its table, or it carries into the next map.**
 
 ### `tiki` / `skeletor`
 

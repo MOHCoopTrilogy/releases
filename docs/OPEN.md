@@ -468,14 +468,12 @@ off.**
 <a name="unverified"></a>
 ## Awaiting playtest — `SHIPPED-UNVERIFIED`
 
-The full list is [FEATURES.md](FEATURES.md) (roughly 60 of ~75 systems). These are the ones where the
-record ends explicitly in "NOT YET VISUALLY VERIFIED", "awaiting user go", or "feel unverified" — i.e.
-someone consciously stopped short:
+The full list is [FEATURES.md](FEATURES.md). These are the ones someone consciously stopped short on:
 
 | Item | Note |
 |---|---|
 | Prone, whole feature (2026-08-25 build) | UNPLAYED. Same-day rewrite of the exit into an edge-trigger (hold crouch to go down, release does nothing, press crouch or jump to get up), plus the PM_Friction floor fix that made crawling possible at all, plus both speed floors respecting prone. Three separate defects, none of them playtested together. |
-| Prone reload (3rd attempt, `coop_proneReloadFlat`) | UNPLAYED. The real per-weapon reload animation now runs with its torso RENDER weight zeroed while prone, so the duration is bit-for-bit unchanged - the earlier substitution approach is abandoned because it dropped the `reloadweapon`/`clip_fill` notetracks that perform the reload (bug-2115). **Correction: the retail .skc ARE measurable** - the old 'obfuscated, cannot measure offline' note here was wrong; pistol_prone_reload is 1.50s vs Kar98 3.37s. KNOWN COSMETIC RISK: the `attachtohand` notetracks still run, so the weapon moves to the support hand and back while the body stays flat. Verify with a Kar98: prone vs standing time-to-fire-again must match. |
+| Prone reload (3rd attempt, `coop_proneReloadFlat`) | UNPLAYED. The real per-weapon reload runs with its torso RENDER weight zeroed while prone, so the duration is unchanged (substituting an anim dropped the `reloadweapon`/`clip_fill` notetracks, bug-2115). Retail .skc: pistol_prone_reload 1.50s, Kar98 3.37s. KNOWN COSMETIC RISK: the `attachtohand` notetracks still run, so the weapon moves to the support hand and back while the body stays flat. Verify with a Kar98: prone vs standing time-to-fire-again must match. |
 | Standup clearance trace | The `STANDUP` probe is deployed and unread. It is the last unknown behind BOTH 'cannot prone here' and the old stuck-prone: the trace refuses on ground where a crouch box should fit. Probe prints startsolid/allsolid and the box. |
 | Stress -> weapon spread | Chain verified on the harness by forced injection (coop_stressDebug 2); the BULLET HOOK is unverified - harness AI never shot the test bots (m2l2a is stealth, and on m3l1a they stand at spawn). `coop_stressDebug 1` in a real firefight, check `hits=` climbs. |
 | **Headshot gore chain** (bug-1142) | Sandbox-verified 10/10 on m1l1+m3l2 and 20/20 kills; **play rollout staged** |
@@ -493,6 +491,8 @@ someone consciously stopped short:
 | **XP system phase 1** | Built 2026-07-07, untested |
 | **Weapon + cosmetic unlocks** | Built 2026-07-16, untested |
 | **Armory carry-over volleys** | rcon-verified at the wire level; untested live |
+| **Menu theme picker** (2572) | UNPLAYED. Random per launch, Next/Back, title + game. First build was compiled out; this one is checked in the exe. |
+| **Leave-map audio reset** (2573) | UNPLAYED. Leave Omaha mid-cinematic, load any map: ambience audible, music normal, `AUDIORESET` logged. Also `restart` and a crash relaunch. |
 
 ---
 

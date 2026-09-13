@@ -551,18 +551,18 @@ declaration is.*
 
 
 **PROBE DESIGN - three ways a probe lies.** *(1) Nested inside the condition it measures* - blind; put
-it OUTSIDE the branch and print the deciding inputs (3 instances 2026-08-22; archive). *(2) Reading back
+it OUTSIDE the branch and print the deciding inputs. *(2) Reading back
 your own input* - `m_fCoopHeadYaw` tracked perfectly while the networked value was clobbered by a
 subsystem the probe never read (bug-2102). **Probe the FINAL consumed value**; prefer a **sentinel the
-other writer cannot produce** (head `11/22`): `0.00` on 328/328 samples, then `35.00` once fixed.
+other writer cannot produce** (head `11/22`).
 *(3) Never exercising the branch* - **force it**: `coop_boneDebug 2` runs the prone maths on a standing
 player, separating "the maths is wrong" from "prone never engaged".
 *(worked examples archived to `docs/archive/traps-t14-worked-examples.md`)*
 
-**THE TOOL LIED, NOT THE CODE - four species, 2026-09-03, all returning plausible numbers.**
-*(a)* **`grep` bails on a binary line**: one `qconsole.log` is a 13.9 MB single line with a NUL, so
-plain grep prints `Binary file ... matches` and **nothing else** - two of eight runs vanished from a
-census and a marker was declared "never fired". **Always `grep -a` on logs.** *(b)* **A shell-eaten
+**THE TOOL LIED, NOT THE CODE - five species, all returning plausible results.**
+*(a)* **`grep` bails on a binary line**: a `qconsole.log` with a NUL makes plain grep print
+`Binary file ... matches` and **nothing else**, so a marker was declared "never fired". **Always
+`grep -a` on logs.** *(b)* **A shell-eaten
 pattern matches everything**: `grep -c $'\r'` returned each file's TOTAL LINE COUNT, "proving" three
 pure-LF files were CRLF - and a CRLF misread is how T2 corruption starts. **Count bytes, never grep,
 for line endings.** *(c)* **A pass that cannot fail**: `node --check f | head -5 && echo OK` prints OK
@@ -570,8 +570,11 @@ unconditionally because `head` exits 0. **Gate on the tool's own exit code, neve
 *(d)* **`check_map_compiles.py` is flaky against a LIVE dedicated server** - confirm no
 `omohaaded`/`openmohaa` is running first. **And it only proves the map INITS**: bug-2530's errors
 fired two minutes into the ride and it passed clean.
+*(e)* **The preprocessor dropped it**: the menu-theme picker built, linked, passed the wiring audit and
+deployed from `snd_main_new.cpp`, which this OpenAL build never compiles (bug-2572). **After an engine
+change, `grep -a -c` one of its string literals in the built binary.**
 **And absence of a marker is not absence of behaviour**: `playsound` on an entity prints nothing, so
-grepping for it measures the marker. Three Omaha systems were mis-diagnosed as dead this way. Every
+grepping for it measures the marker. Every
 new beat gets a `^~^~^` marker or a census reads it as missing.
 
 ## T16 — Waits that never complete: failsafe recursion, missing anims, unguarded `waittill`
