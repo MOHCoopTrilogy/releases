@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 43,504 |
+| files in the workspace | 43,521 |
 | bytes | 43.7 GB |
-| files in project scope (indexed per-file) | 18,141 |
-| source files (per-file rows with line counts) | 6,633 |
+| files in project scope (indexed per-file) | 18,158 |
+| source files (per-file rows with line counts) | 6,638 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -24,7 +24,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 13,795 | 7850.6 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 13,800 | 7850.7 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
@@ -44,8 +44,8 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `<root>` | 68 | 3408.7 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `_hd_shadowfix` | 57 | 61.8 MB | **yes** |  |
 | `manifests` | 56 | 0.7 MB | **yes** | release manifests consumed by the auto-updater |
+| `server_home` | 55 | 30.4 MB | **yes** |  |
 | `_psx_moh` | 49 | 426.8 MB | **yes** |  |
-| `server_home` | 43 | 30.5 MB | **yes** |  |
 | `_variant_packs` | 38 | 343.4 MB | **yes** |  |
 | `_tools` | 37 | 69.0 MB | no - reference | downloaded third-party binaries |
 | `_skins` | 29 | 4.4 MB | **yes** |  |
@@ -83,7 +83,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 |---|---:|
 | `.wav` | 14,849 |
 | `.dds` | 4,303 |
-| `.scr` | 2,533 |
+| `.scr` | 2,538 |
 | `.tga` | 2,512 |
 | `.jpg` | 2,468 |
 | `.cfg` | 2,289 |
@@ -106,8 +106,8 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.py` | 170 |
 | `.json` | 143 |
 | `.bsp` | 129 |
+| `.dat` | 111 |
 | `.min` | 100 |
-| `.dat` | 99 |
 | `.log` | 97 |
 | `(none)` | 64 |
 | `.class` | 64 |
@@ -291,7 +291,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
 | `fsafe_home/maintt` | 3 | 1.43 MB | .pid×1, .cfg×1, .log×1 |
-| `hzm-mohaa-coop-mod` | 45 | 2304.05 MB | .txt×12, .jpg×10, .pk3×6, .cfg×5 |
+| `hzm-mohaa-coop-mod` | 45 | 2304.08 MB | .txt×12, .jpg×10, .pk3×6, .cfg×5 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -342,7 +342,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/_terrain_pack/textures/wilderness` | 13 | 24.29 MB | .dds×13 |
 | `hzm-mohaa-coop-mod/anim` | 23 | 0.17 MB | .scr×23 |
 | `hzm-mohaa-coop-mod/cmpatch` | 2 | 0.00 MB | .txt×2 |
-| `hzm-mohaa-coop-mod/coop_mod` | 132 | 4.15 MB | .scr×126, .st×3, .cfg×2, .txt×1 |
+| `hzm-mohaa-coop-mod/coop_mod` | 137 | 4.21 MB | .scr×131, .st×3, .cfg×2, .txt×1 |
 | `hzm-mohaa-coop-mod/coop_mod/alias` | 2 | 0.03 MB | .cfg×1, .scr×1 |
 | `hzm-mohaa-coop-mod/coop_mod/bp` | 5 | 0.03 MB | .dat×5 |
 | `hzm-mohaa-coop-mod/coop_mod/cache` | 1 | 0.00 MB | .scr×1 |
@@ -1176,9 +1176,9 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `scratchpad/veh_dds_reverted/textures/models/vehicles/veltro_fly` | 1 | 0.35 MB | .dds×1 |
 | `scratchpad_retail` | 17 | 0.18 MB | .tik×17 |
 | `server_home` | 4 | 1.38 MB | .log×4 |
-| `server_home/maintt` | 16 | 6.66 MB | .log×9, .cfg×5, .pid×1, .pre_e3l4×1 |
+| `server_home/maintt` | 16 | 6.50 MB | .log×9, .cfg×5, .pid×1, .pre_e3l4×1 |
 | `server_home/maintt/configs` | 1 | 0.02 MB | .cfg×1 |
-| `server_home/maintt/coop_mod/save` | 12 | 0.01 MB | .dat×12 |
+| `server_home/maintt/coop_mod/save` | 24 | 0.01 MB | .dat×24 |
 | `server_home/maintt/prev` | 10 | 22.45 MB | .log×10 |
 | `server_home_probe/maintt` | 5 | 0.30 MB | .cfg×3, .pid×1, .log×1 |
 | `tools` | 4 | 0.17 MB | .bat×1, .c×1, .exe×1, .obj×1 |
@@ -1664,7 +1664,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `runto_inopen.scr` | 122 | 3.9 KB | HZM coop [2026-08-06] extracted from maintt/pak1.pk3 (bug-1490) to add a dog branch. Retail's own |
 | `shoot.scr` | 262 | 6.7 KB | Shoot |
 
-### `hzm-mohaa-coop-mod/coop_mod/` — 131 source files
+### `hzm-mohaa-coop-mod/coop_mod/` — 136 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -1753,10 +1753,15 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `mom_actions.scr` | 173 | 8.7 KB | Created by chrissstrahl on 2018.07.02 - based on Multi Option Menu from Star Trek Elite Force II from 2009 fo… |
 | `mom_login.scr` | 167 | 5.5 KB | Created by chrissstrahl on 2018.07.02 - based on Multi Option Menu from Star Trek Elite Force II from 2009 fo… |
 | `morale.scr` | 94 | 4.6 KB | morale.scr - HZM coop SQUAD MORALE (ME1, coop_moraleEnable, default off) |
-| `mp.scr` | 403 | 21.4 KB | MP.SCR - the multiplayer entry point. NOT the coop framework. |
+| `mp.scr` | 439 | 22.3 KB | MP.SCR - the multiplayer entry point. NOT the coop framework. |
 | `mp_armory.scr` | 522 | 19.7 KB | MP_ARMORY.SCR - the shared MP armory dispatcher (slice 2, LIVE). |
+| `mp_freezetag.scr` | 309 | 15.2 KB | MP_FREEZETAG.SCR - FREEZE TAG, an MP game MODE (slice 5). Decisions M12/M13/M14: played on Team |
 | `mp_gungame.scr` | 275 | 13.0 KB | MP_GUNGAME.SCR - Gun Game, the first MP game MODE (slice 1). FFA (gt1) only for v1 (decision M9). |
 | `mp_gungame_tiers.scr` | 62 | 2.4 KB | MP_GUNGAME_TIERS.SCR - GENERATED by docs/tools/gen_mp_gungame.py from |
+| `mp_koth.scr` | 371 | 16.6 KB | MP_KOTH.SCR - KING OF THE HILL, an MP game MODE (slice 4). Decision M15: a MOVING hill, TEAM |
+| `mp_lms.scr` | 81 | 4.0 KB | MP_LMS.SCR - LAST MAN STANDING, an MP game MODE (slice 3). Decision M17: team elimination rounds |
+| `mp_rounds.scr` | 325 | 14.6 KB | MP_ROUNDS.SCR - the shared MP round-state helper (slice 3). Consumed by |
+| `mp_snd.scr` | 89 | 4.6 KB | MP_SND.SCR - SEARCH & DESTROY, an MP game MODE (slice 3). Decision M16: the STOCK gametype-4 |
 | `mpa_roster.scr` | 463 | 12.4 KB | GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead) |
 | `mpx_roster.scr` | 397 | 10.6 KB | GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead) |
 | `mvchal_gen.scr` | 214 | 23.6 KB | GENERATED by docs/tools/variant_challenges.py --emit DO NOT EDIT BY HAND |
@@ -7830,7 +7835,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `sdl_gamma.c` | 96 | 2.6 KB |  |
 | `sdl_glimp.c` | 1,387 | 40.9 KB |  |
 | `sdl_icon.h` | 132 | 9.4 KB |  |
-| `sdl_input.c` | 1,326 | 36.3 KB |  |
+| `sdl_input.c` | 1,340 | 37.2 KB |  |
 | `sdl_mouse.c` | 70 | 2.1 KB |  |
 | `sdl_snd.c` | 440 | 10.6 KB |  |
 

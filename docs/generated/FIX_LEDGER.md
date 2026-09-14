@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1919** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1926** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -17,7 +17,7 @@
 | 2026-06 | 80 |
 | 2026-07 | 577 |
 | 2026-08 | 918 |
-| 2026-09 | 338 |
+| 2026-09 | 345 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1937,6 +1937,13 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-2600` | 2026-09-14 | `test harness (dedicated server bot + logging)` | - | dedicated-server bot smoke: `sv_numbots` alone spawned no bots ('No bots, skipping navigation'); script println/^~^~^ lines were absent from the dedi… | Set `sv_maxbots` (>0) before map load to get bots + navigation, and `developer 1` to see script ^~^~^ probe lines in the dedicated qconsole.log. Harn… |
 | `bug-2601` | 2026-09-14 | `hzm-mohaa-coop-mod/coop_mod/mp_gungame.scr (mode_onDeath seam)` | - | Gun Game M8 (a mid-tier melee/bash kill demotes the VICTIM one tier) is not implemented; and the bash-only final tier keeps ~7 clip rounds. | Deferred with a documented seam in mode_onDeath. The final-tier bash WIN (M7) and suicide-demote both work without means-of-death. Closing M8 + true… |
 | `bug-2602` | 2026-09-14 | `hzm-mohaa-coop-mod/coop_mod/mp.scr; hzm-mohaa-coop-mod/coop_mod/mp_ar…` | V | feature (MP modes slice 2): weapon presets (Rifles/Snipers/Rifles+Snipers) did not exist; the armory offered all classes regardless of host intent. | Host cvar coop_mpPreset (none/rifles/snipers/riflesnipers) read in mp.scr::main into level.coop_mpPreset (init line preset=). New mp_armory.scr helpe… |
+| `bug-2603` | 2026-09-14 | `hzm-mohaa-coop-mod/coop_mod/mp_rounds.scr (rounds_i)` | V | Script Error : binary '>=' applied to incompatible types 'string' and 'int' (x6) on the LMS/S&D series check; round scores printed as 'int'/'int1'; s… | Assign the call result to a local first, then end the local: `local.v = int(local.s)` ... `}end local.v`. Re-verified: 0 Script Errors, numeric score… |
+| `bug-2604` | 2026-09-14 | `hzm-mohaa-coop-mod/coop_mod/mp_rounds.scr; coop_mod/mp_snd.scr; coop_…` | V | feature (MP modes slice 3): Search & Destroy and Last Man Standing did not exist; there was no round/no-respawn framework for elimination modes. | mp_rounds.scr: warmup->live->ending state machine, no-respawn via self.flags coop_mpRndOut + spectator/hide re-assert each tick (the coop lmsForceSpe… |
+| `bug-2605` | 2026-09-14 | `hzm-mohaa-coop-mod/coop_mod/mp_koth.scr; hzm-mohaa-coop-mod/coop_mod/…` | V | feature (MP modes slice 4): King of the Hill did not exist; and its hill needs an on-HUD marker, but the coop compass BAR that draws the objective ar… | The STOCK round compass still draws the objective-direction ARROW from playerstat 19 = STAT_OBJECTIVECENTER, fed by the builtin set_objective_pos ->… |
+| `bug-2606` | 2026-09-14 | `openmohaa-hzm/code/sdl/sdl_input.c (IN_InitJoystick)` | V | user: launching PLAY-GL2 gives a black screen; clicking it freezes and crashes. Log ends at 'Calling SDL_Init(SDL_INIT_JOYSTICK)...' during R_Init wi… | Added an early-out at the top of IN_InitJoystick: `if (in_joystick && !in_joystick->integer) { register in_availableJoysticks ROM; return; }` BEFORE… |
+| `bug-2607` | 2026-09-14 | `hzm-mohaa-coop-mod/coop_mod/mp_freezetag.scr; coop_mod/mp.scr; coop_m…` | VP | feature (MP modes slice 5): Freeze Tag did not exist. | mp_freezetag.scr (gt2, coop_mpMode freezetag): on the death edge the victim is respawned, warped to the death origin and held as a live frozen statue… |
+| `bug-2608` | 2026-09-14 | `hzm-mohaa-coop-mod/coop_mod/mp_freezetag.scr` | - | Couldn't compile 'coop_mod/mp_freezetag.scr' ("was not properly loaded" at every call site) - using injail as a command: `entity injail 1`. | Assign as a property: local.p.injail = 1 (and = 0 to clear) at all three sites. Reusable rule: EV_SETTER events use `.prop =`; EV_NORMAL/command even… |
+| `bug-2609` | 2026-09-14 | `hzm-mohaa-coop-mod/coop_mod/player.scr (~1589, wounded/limp monitor)` | P | coop_mod/player.scr:1589 `binary '>' applied to incompatible types 'none' and 'int'` (if( local.cumulative > 0 )) fires once on an MP player - a coop… | NOT YET FIXED - deferred follow-up. Candidate: seed local.cumulative = 0 or guard the comparison (if( local.cumulative != NIL && local.cumulative > 0… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

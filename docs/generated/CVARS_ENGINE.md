@@ -7,7 +7,7 @@
      ============================================================ -->
 # Engine cvar inventory (generated)
 Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name is a string literal. Anchors are `path:line` relative to that directory. Defaults and flags are verbatim from source.
-- **1998** distinct cvars across **2600** registration sites in **126** translation units.
+- **1998** distinct cvars across **2601** registration sites in **126** translation units.
 - **31** call sites use a computed name (a variable or `va()`) and cannot be listed here. That number is reported rather than hidden - if it grows, something is registering cvars this inventory cannot see.
 - **58** cvars are registered with **different defaults** in different files. Those are real (usually renderergl1 vs renderergl2), not transcription errors.
 
@@ -1628,13 +1628,14 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `graphheight` | `32` | `CVAR_CHEAT` | `client/cl_scrn.cpp:418` |
 | `graphscale` | `1` | `CVAR_CHEAT` | `client/cl_scrn.cpp:419` |
 | `graphshift` | `0` | `CVAR_CHEAT` | `client/cl_scrn.cpp:420` |
-| `in_availableJoysticks` |  | `CVAR_ROM` | `sdl/sdl_input.c:512` |
-| `in_joystick` | `0` | `CVAR_ARCHIVE\|CVAR_LATCH` | `sdl/sdl_input.c:1280` |
-| `in_joystickNo` | `0` | `CVAR_ARCHIVE` | `sdl/sdl_input.c:523` |
-| `in_joystickUseAnalog` | `0` | `CVAR_ARCHIVE` | `sdl/sdl_input.c:527` |
-| `in_keyboardDebug` | `0` | `CVAR_ARCHIVE` | `sdl/sdl_input.c:1274` |
-| `in_mouse` | `1` | `CVAR_ARCHIVE` | `sdl/sdl_input.c:1277` |
-| `in_nograb` | `0` | `CVAR_ARCHIVE` | `sdl/sdl_input.c:1278` |
+| `in_availableJoysticks` |  | `CVAR_ROM` | `sdl/sdl_input.c:486` |
+| `in_availableJoysticks` |  | `CVAR_ROM` | `sdl/sdl_input.c:526` |
+| `in_joystick` | `0` | `CVAR_ARCHIVE\|CVAR_LATCH` | `sdl/sdl_input.c:1294` |
+| `in_joystickNo` | `0` | `CVAR_ARCHIVE` | `sdl/sdl_input.c:537` |
+| `in_joystickUseAnalog` | `0` | `CVAR_ARCHIVE` | `sdl/sdl_input.c:541` |
+| `in_keyboardDebug` | `0` | `CVAR_ARCHIVE` | `sdl/sdl_input.c:1288` |
+| `in_mouse` | `1` | `CVAR_ARCHIVE` | `sdl/sdl_input.c:1291` |
+| `in_nograb` | `0` | `CVAR_ARCHIVE` | `sdl/sdl_input.c:1292` |
 | `j_forward` | `-0.25` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4253` |
 | `j_forward_axis` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4259` |
 | `j_pitch` | `0.022` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4251` |
@@ -1646,7 +1647,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `j_yaw` | `-0.022` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4252` |
 | `j_yaw_axis` | `2` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4258` |
 | `journal` | `0` | `CVAR_INIT` | `qcommon/common.c:1015` |
-| `joy_threshold` | `0.15` | `CVAR_ARCHIVE` | `sdl/sdl_input.c:1281` |
+| `joy_threshold` | `0.15` | `CVAR_ARCHIVE` | `sdl/sdl_input.c:1295` |
 | `lod_curve_0_slider` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1548` |
 | `lod_curve_0_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2221` |
 | `lod_curve_0_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1543` |

@@ -13,28 +13,28 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `a1df8a3 2026-09-14 tools: Gun Game ladder generator + isolation self-test mutation (MP slice 1)` |
-| commits | 266 |
+| HEAD | `9444e0f 2026-09-14 docs: TRAPS - a call in a }end <expr> return position is not evaluated (bug-2603)` |
+| commits | 267 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **4 modified, 0 untracked** |
-| unstaged diff | 4 files changed, 10 insertions(+), 7 deletions(-) |
+| **uncommitted** | **1 modified, 0 untracked** |
 
-> Working tree is dirty. Everything in those 4 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 55 |
+| 2026-09 | 56 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (266)
+### Commits since 2026-01-01 (267)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `9444e0f` | 2026-09-14 | joncurry94-tech | docs: TRAPS - a call in a }end <expr> return position is not evaluated (bug-2603) |
 | `a1df8a3` | 2026-09-14 | joncurry94-tech | tools: Gun Game ladder generator + isolation self-test mutation (MP slice 1) |
 | `af74572` | 2026-09-14 | joncurry94-tech | docs: v1.6.0 "The Long View" rollout - README, history, public pages, isolation clause 14 |
 | `e45a3fa` | 2026-09-14 | joncurry94-tech | manifest 1.6.0 |
@@ -307,8 +307,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `daf1ebd8 2026-09-14 mp: weapon presets (Rifles / Snipers / Rifles+Snipers) - slice 2` |
-| commits | 1,668 |
+| HEAD | `f65d8727 2026-09-14 mp: Freeze Tag - slice 5` |
+| commits | 1,671 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 1 untracked** |
 
@@ -318,7 +318,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 77 |
+| 2026-09 | 80 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -359,10 +359,13 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (319)
+### Commits since 2026-01-01 (322)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `f65d8727` | 2026-09-14 | joncurry94 | mp: Freeze Tag - slice 5 |
+| `ace020cd` | 2026-09-14 | joncurry94 | mp: King of the Hill - slice 4 |
+| `50052931` | 2026-09-14 | joncurry94 | mp: Search & Destroy + Last Man Standing on a shared round helper - slice 3 |
 | `daf1ebd8` | 2026-09-14 | joncurry94 | mp: weapon presets (Rifles / Snipers / Rifles+Snipers) - slice 2 |
 | `5b31d36c` | 2026-09-14 | joncurry94 | mp: game-mode scaffold + Gun Game (FFA) - slice 1 |
 | `44ebfd4d` | 2026-09-14 | joncurry94 | mp: armory slice 2 - live dispatcher, kit applies at spawn; v1.6.0 What's New card |
@@ -688,8 +691,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `c2d9224b 2026-09-14 fgame: MP armory engine hooks (E4/E5) - reachable in-match, kit at spawn` |
-| commits | 5,114 |
+| HEAD | `8a8c92b5 2026-09-14 sdl: in_joystick 0 skips SDL joystick init - a bad controller no longer black-screens boot (bug-2606)` |
+| commits | 5,115 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 3 untracked** |
 
@@ -699,7 +702,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 31 |
+| 2026-09 | 32 |
 | 2026-08 | 103 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
@@ -761,10 +764,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (149)
+### Commits since 2026-01-01 (150)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `8a8c92b5` | 2026-09-14 | joncurry94 | sdl: in_joystick 0 skips SDL joystick init - a bad controller no longer black-screens boot (bug-2606) |
 | `c2d9224b` | 2026-09-14 | joncurry94 | fgame: MP armory engine hooks (E4/E5) - reachable in-match, kit at spawn |
 | `120c7fc0` | 2026-09-13 | joncurry94 | gl2+cgame: per-map colour grade layer (server-published, MP-safe) |
 | `a63fe340` | 2026-09-13 | joncurry94 | gl2+cgame: soft particles; stamina arc hard-fade cutoff (bug-2593) |

@@ -71,14 +71,15 @@ components* are fine); **an unquoted `+`/`-` directive argument** such as `surfa
 fatal in script, and braces still balance so the depth scan misses it); and **a real newline inside a
 string literal**, usually from a generator.
 
-**NOT a parse killer:** `spawn <class>` **with** inline keyvalues is fine (192 working occurrences incl. `main.scr`).
+**NOT a parse killer:** `spawn <class>` with inline keyvalues is fine (192 occurrences, incl. `main.scr`).
 
-1. **`developer 1` is mandatory** - compile errors are developer-gated (`fgame/scriptthread.cpp:2858+`); without it the failure is *completely* silent.
-2. **Raw brace counts are invalid** - two opposite errors cancel (bug-239), comment/string braces
-   miscount. Use a **running-depth scan** (never negative, 0 at every column-0 label; internal `goto`
-   labels may sit at depth 1). Scanners: `docs/tools/{depthscan2,linecheck,quotecheck,scrlint}.py`; verify any claimed script command against engine source before it lands.
+1. **`developer 1` is mandatory** - compile errors are developer-gated; without it the failure is silent.
+2. **Raw brace counts are invalid** - opposite errors cancel (bug-239), comment/string braces
+   miscount. Use a **running-depth scan** (never negative; 0 at every col-0 label, `goto` labels
+   may sit at depth 1). Scanners: `docs/tools/{depthscan2,linecheck,quotecheck,scrlint}.py`.
 3. **A call in a `}end <expr>` return position is NOT evaluated** (bug-2603): `}end int(local.s)`
    returns the token `int`, not a number. Assign first: `local.v = int(local.s)` ... `}end local.v`.
+4. **An `EV_SETTER` is assigned, not called** (bug-2608): `ent.injail = 1`, never `ent injail 1` (a compile killer); `EV_NORMAL` events use the command form.
 
 
 ---
