@@ -191,6 +191,11 @@ MUTATIONS = [
     N("M25b", "ui/coop_mpa_zzselftest/c.cfg", "seta COOP_LOW1 5", {"12a"}),
     N("M26", "ui/coop_mpx_zzselftest/a2.cfg", "exec ui/loadout/t01.cfg", {"12b"}),
     N("M26b", "ui/coop_mpx_zzselftest/a3.cfg", "exec ui\\loadout\\t01.cfg", {"12b"}),
+    # [12] the user-approved narrow exception (CLAUSE12_COOP_OPENER) must NOT leak beyond its one (file, token).
+    # M26o: the EXACT opener token in a DIFFERENT MP file still fails 12b (the exception is file-scoped).
+    N("M26o", "ui/coop_mp_zzselftest/probe_open.cfg", "exec ui/loadout/open.cfg", {"12b"}),
+    # M26t: a DIFFERENT ui/loadout token in the excepted file itself still fails 12b (the exception is token-scoped).
+    A("M26t", "ui/coop_mpmenu.urc", "stuffcommand \"exec ui/loadout/other.cfg\"", {"12b"}),
     A("M27", MP, "local.cv = \"coop_\" + \"loW1\"", {"12c"}),
     A("M27b", MP, "local.p stufftext ( \"seta coop_\" + local.n + \" 0\" )", {"12c"}),
     A("M27c", MP, "local.cv = \"coop_l\" + local.x", {"12c"}),
