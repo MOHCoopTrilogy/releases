@@ -8,7 +8,7 @@
 # Fix index by file and tag (generated)
 The single addition `buglog.json` most needs and does not have: **file -> ordered bug ids**. Reading one entry tells you what changed once; reading the ordered list tells you the file's current net state. Consult this before touching any file that appears here.
 
-1,226 distinct file paths, 4,328 distinct tags.
+1,226 distinct file paths, 4,330 distinct tags.
 
 ## Files with the most history
 
@@ -449,8 +449,8 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `hzm-mohaa-coop-mod/coop_mod/medals.scr (new)` | 1 | `bug-1528` |
 | `hzm-mohaa-coop-mod/coop_mod/medkit.scr` | 5 | `bug-088` `bug-1263` `bug-1293` `bug-1659` `bug-1871` |
 | `hzm-mohaa-coop-mod/coop_mod/missioncomplete.scr` | 2 | `bug-788` `bug-818` |
-| `hzm-mohaa-coop-mod/coop_mod/mp.scr` | 6 | `bug-2558` `bug-2563` `bug-2564` `bug-2571` `bug-2597` `bug-2599` |
-| `hzm-mohaa-coop-mod/coop_mod/mp_armory.scr` | 1 | `bug-2597` |
+| `hzm-mohaa-coop-mod/coop_mod/mp.scr` | 7 | `bug-2558` `bug-2563` `bug-2564` `bug-2571` `bug-2597` `bug-2599` `bug-2602` |
+| `hzm-mohaa-coop-mod/coop_mod/mp_armory.scr` | 2 | `bug-2597` `bug-2602` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_gungame.scr` | 1 | `bug-2599` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_gungame.scr (mode_onDeath seam)` | 1 | `bug-2601` |
 | `hzm-mohaa-coop-mod/coop_mod/mp_gungame_tiers.scr` | 1 | `bug-2599` |
@@ -2018,7 +2018,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `coop-hud` | 1 | `bug-2200` |
 | `coop-init` | 1 | `bug-1492` |
 | `coop-integration` | 1 | `bug-1858` |
-| `coop-isolation` | 3 | `bug-2574` `bug-2597` `bug-2599` |
+| `coop-isolation` | 4 | `bug-2574` `bug-2597` `bug-2599` `bug-2602` |
 | `coop-latch` | 1 | `bug-1574` |
 | `coop-lobby` | 14 | `bug-355` `bug-356` `bug-359` `bug-363` `bug-366` `bug-367` `bug-368` `bug-369` `bug-370` `bug-378` `bug-379` `bug-380` `bug-381` `bug-382` |
 | `coop-only` | 2 | `bug-2168` `bug-2169` |
@@ -2658,7 +2658,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `fastfail` | 1 | `bug-2131` |
 | `fbo` | 1 | `bug-gl2-viewmodel-over-menu` |
 | `feasibility` | 1 | `bug-1599` |
-| `feature` | 59 | `bug-1291` `bug-1309` `bug-1322` `bug-1378` `bug-1508` `bug-1622` `bug-1623` `bug-1824` `bug-1870` `bug-1871` `bug-1872` `bug-1874` `bug-1875` `bug-1881` `bug-1904` `bug-2095` `bug-2099` `bug-2132` `bug-2153` `bug-2156` `bug-2161` `bug-2170` `bug-2208` `bug-2213` `bug-2214` `bug-2231` `bug-2232` `bug-2235` `bug-2306` `bug-2337` `bug-2338` `bug-2340` `bug-2342` `bug-2343` `bug-2345` `bug-2361` `bu… |
+| `feature` | 60 | `bug-1291` `bug-1309` `bug-1322` `bug-1378` `bug-1508` `bug-1622` `bug-1623` `bug-1824` `bug-1870` `bug-1871` `bug-1872` `bug-1874` `bug-1875` `bug-1881` `bug-1904` `bug-2095` `bug-2099` `bug-2132` `bug-2153` `bug-2156` `bug-2161` `bug-2170` `bug-2208` `bug-2213` `bug-2214` `bug-2231` `bug-2232` `bug-2235` `bug-2306` `bug-2337` `bug-2338` `bug-2340` `bug-2342` `bug-2343` `bug-2345` `bug-2361` `bu… |
 | `feature-batch` | 1 | `bug-2120` |
 | `feature-disabled` | 1 | `bug-2135` |
 | `feedback` | 3 | `bug-1840` `bug-2015` `bug-2526` |
@@ -3573,10 +3573,11 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `movetopos` | 1 | `bug-363` |
 | `movetype_noclip` | 1 | `bug-380` |
 | `movetype_toss` | 1 | `bug-923` |
-| `mp` | 10 | `bug-2557` `bug-2558` `bug-2563` `bug-2564` `bug-2571` `bug-2574` `bug-2579` `bug-2597` `bug-2598` `bug-2599` |
+| `mp` | 11 | `bug-2557` `bug-2558` `bug-2563` `bug-2564` `bug-2571` `bug-2574` `bug-2579` `bug-2597` `bug-2598` `bug-2599` `bug-2602` |
 | `mp-shim` | 2 | `bug-1613` `bug-1614` |
 | `mp3` | 1 | `bug-2120` |
 | `mp44scoped` | 1 | `bug-1898` |
+| `mp_armory` | 1 | `bug-2602` |
 | `msaa` | 8 | `bug-1123` `bug-1145` `bug-1152` `bug-1298` `bug-1990` `bug-1995` `bug-1997` `bug-2596` |
 | `msbuild` | 1 | `bug-1909` |
 | `msg-netfields` | 1 | `bug-1187` |
@@ -4039,6 +4040,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `preprocessor` | 1 | `bug-2572` |
 | `prerequisite` | 1 | `bug-1154` |
 | `preset-vs-flag` | 1 | `bug-2163` |
+| `presets` | 1 | `bug-2602` |
 | `prespawn` | 1 | `bug-2251` |
 | `pressure` | 1 | `bug-1846` |
 | `preventative` | 1 | `bug-2199` |
@@ -4720,7 +4722,7 @@ The single addition `buglog.json` most needs and does not have: **file -> ordere
 | `sky-gate` | 3 | `bug-134` `bug-1383` `bug-231` |
 | `skybox` | 1 | `bug-1273` |
 | `slice1` | 1 | `bug-2599` |
-| `slice2` | 1 | `bug-2597` |
+| `slice2` | 2 | `bug-2597` `bug-2602` |
 | `slide-chain` | 1 | `bug-2120` |
 | `slider` | 1 | `bug-2578` |
 | `sliders` | 1 | `bug-postfx-intensity-clobbered` |

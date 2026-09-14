@@ -71,16 +71,14 @@ components* are fine); **an unquoted `+`/`-` directive argument** such as `surfa
 fatal in script, and braces still balance so the depth scan misses it); and **a real newline inside a
 string literal**, usually from a generator.
 
-**NOT a parse killer:** `spawn <class>` **with** inline keyvalues is fine (192 working occurrences incl.
-`main.scr`). `KNOWN_WORKING_STATE.md` still forbids it and is wrong - see [90-folklore.md](90-folklore.md).
+**NOT a parse killer:** `spawn <class>` **with** inline keyvalues is fine (192 working occurrences incl. `main.scr`).
 
-1. **`developer 1` is mandatory** - compile errors are developer-gated at `fgame/scriptthread.cpp:2858`,
-   `:2869`, `:2883`; without it the failure is *completely* silent.
-2. **Raw brace counts are an invalid check** - two opposite errors cancel on a broken file (bug-239), and
-   comment/string braces miscount. Use a **running-depth scan**: never negative, 0 at every column-0
-   label (internal `goto` labels may sit at depth 1).
-3. Scanners live in `docs/tools/` (`depthscan2.py`, `linecheck.py`, `quotecheck.py`, `scrlint.py`).
-   Verify any claimed script command against engine source **before** it lands.
+1. **`developer 1` is mandatory** - compile errors are developer-gated (`fgame/scriptthread.cpp:2858+`); without it the failure is *completely* silent.
+2. **Raw brace counts are invalid** - two opposite errors cancel (bug-239), comment/string braces
+   miscount. Use a **running-depth scan** (never negative, 0 at every column-0 label; internal `goto`
+   labels may sit at depth 1). Scanners: `docs/tools/{depthscan2,linecheck,quotecheck,scrlint}.py`; verify any claimed script command against engine source before it lands.
+3. **A call in a `}end <expr>` return position is NOT evaluated** (bug-2603): `}end int(local.s)`
+   returns the token `int`, not a number. Assign first: `local.v = int(local.s)` ... `}end local.v`.
 
 
 ---

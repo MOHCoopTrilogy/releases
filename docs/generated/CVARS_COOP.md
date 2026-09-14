@@ -17,11 +17,11 @@ Union of four sources, all swept fresh:
 
 | metric | count |
 |---|---:|
-| distinct `coop_*` cvars | 3252 |
+| distinct `coop_*` cvars | 3253 |
 | registered with a default by the engine | 512 |
 | seeded by a shipped cfg | 1801 |
-| seeded nowhere at all | 1119 |
-| **&nbsp;&nbsp;of those, read by a script** | **210** |
+| seeded nowhere at all | 1120 |
+| **&nbsp;&nbsp;of those, read by a script** | **211** |
 | &nbsp;&nbsp;of those, menu-only (set at runtime by the UI) | 909 |
 | menu-wired (`.urc`) | 1692 |
 | menu-wired but FORCED by autoexec.cfg (cannot persist) | 15 |
@@ -61,22 +61,23 @@ These literals are concatenated with a variable at the call site (`getcvar("coop
 - `coop_ki_heavy`, `coop_ki_mitem`, `coop_ki_reward`, `coop_ladderVolume`, `coop_latejoin`, `coop_latejoin_phase`
 - `coop_leakAllow`, `coop_lightBudget`, `coop_lobbyCamSway`, `coop_lobbyCountdown`, `coop_lobbyFeetDrop`, `coop_lobbyMusic`
 - `coop_lockLoadout`, `coop_loSkin`, `coop_m6EscapeFuse`, `coop_m6TowerFallYaw`, `coop_maptest_triggers`, `coop_medals`
-- `coop_mgLoaded`, `coop_moraleFrac`, `coop_mpGGKillsPerTier`, `coop_mpMode`, `coop_musicFiller`, `coop_nullclosest`
-- `coop_objToast`, `coop_objToastTime`, `coop_officerAccPct`, `coop_officerBasePc`, `coop_officerBattalionPer`, `coop_officerHealthPct`
-- `coop_officerMaxHeals`, `coop_officerScale`, `coop_officerSquadPer`, `coop_officerWaveCooldown`, `coop_ownerdrop`, `coop_ownerdrop_stage`
-- `coop_prevMap`, `coop_prevMapList`, `coop_propArcScale`, `coop_reboot`, `coop_retreatChance`, `coop_retreatCooldown`
-- `coop_retreatDist`, `coop_retreatHpFrac`, `coop_retreatMax`, `coop_retreatReengage`, `coop_retreatStreak`, `coop_save`
-- `coop_sayProbe`, `coop_scalecheck`, `coop_sndstress`, `coop_sndstress_iters`, `coop_soakbeat`, `coop_spawnProtect`
-- `coop_squadDensity`, `coop_st_autodeploy`, `coop_st_bangtest`, `coop_st_flanktest`, `coop_st_obj_mc`, `coop_st_officer_iters`
-- `coop_st_officer_maxscalar`, `coop_st_officer_mode`, `coop_st_officer_secs`, `coop_st_vehicles_mode`, `coop_st_weapons_ammo`, `coop_st_weapons_ammobox`
-- `coop_st_weapons_blood`, `coop_st_weapons_blood_sec`, `coop_st_weapons_fire`, `coop_st_weapons_gore`, `coop_st_weapons_goreskin`, `coop_st_weapons_holster`
-- `coop_st_weapons_mg42hp`, `coop_st_weapons_smoke`, `coop_st_xp_mode`, `coop_stealthHolster`, `coop_stingers`, `coop_subBlizzard`
-- `coop_subCruise`, `coop_subCruiseSpeed`, `coop_subCruiseZoff`, `coop_subInsertFov`, `coop_subInsertLen`, `coop_subOilZ`
-- `coop_subSinkDepth`, `coop_subSinkPitch`, `coop_subSinkRoll`, `coop_subSinkStern`, `coop_subSinkTime`, `coop_subStartAdvance`
-- `coop_subYawFlip`, `coop_t2l2_reinf`, `coop_tgatest`, `coop_tgatest_tik`, `coop_tracescan`, `coop_ts_fix`
-- `coop_ts_step`, `coop_ts_x0`, `coop_ts_x1`, `coop_ts_y0`, `coop_ts_y1`, `coop_uwBedVol`
-- `coop_voidDrop`, `coop_voidGuard`, `coop_wall_cmd`, `coop_wallH`, `coop_wallW`, `coop_whoProbe`
-- `coop_wintest`, `coop_wintest_bsp`, `coop_wintest_delay`, `coop_wintest_next`, `coop_woundedCrawlChance`, `coop_woundedFlee`
+- `coop_mgLoaded`, `coop_moraleFrac`, `coop_mpGGKillsPerTier`, `coop_mpMode`, `coop_mpPreset`, `coop_musicFiller`
+- `coop_nullclosest`, `coop_objToast`, `coop_objToastTime`, `coop_officerAccPct`, `coop_officerBasePc`, `coop_officerBattalionPer`
+- `coop_officerHealthPct`, `coop_officerMaxHeals`, `coop_officerScale`, `coop_officerSquadPer`, `coop_officerWaveCooldown`, `coop_ownerdrop`
+- `coop_ownerdrop_stage`, `coop_prevMap`, `coop_prevMapList`, `coop_propArcScale`, `coop_reboot`, `coop_retreatChance`
+- `coop_retreatCooldown`, `coop_retreatDist`, `coop_retreatHpFrac`, `coop_retreatMax`, `coop_retreatReengage`, `coop_retreatStreak`
+- `coop_save`, `coop_sayProbe`, `coop_scalecheck`, `coop_sndstress`, `coop_sndstress_iters`, `coop_soakbeat`
+- `coop_spawnProtect`, `coop_squadDensity`, `coop_st_autodeploy`, `coop_st_bangtest`, `coop_st_flanktest`, `coop_st_obj_mc`
+- `coop_st_officer_iters`, `coop_st_officer_maxscalar`, `coop_st_officer_mode`, `coop_st_officer_secs`, `coop_st_vehicles_mode`, `coop_st_weapons_ammo`
+- `coop_st_weapons_ammobox`, `coop_st_weapons_blood`, `coop_st_weapons_blood_sec`, `coop_st_weapons_fire`, `coop_st_weapons_gore`, `coop_st_weapons_goreskin`
+- `coop_st_weapons_holster`, `coop_st_weapons_mg42hp`, `coop_st_weapons_smoke`, `coop_st_xp_mode`, `coop_stealthHolster`, `coop_stingers`
+- `coop_subBlizzard`, `coop_subCruise`, `coop_subCruiseSpeed`, `coop_subCruiseZoff`, `coop_subInsertFov`, `coop_subInsertLen`
+- `coop_subOilZ`, `coop_subSinkDepth`, `coop_subSinkPitch`, `coop_subSinkRoll`, `coop_subSinkStern`, `coop_subSinkTime`
+- `coop_subStartAdvance`, `coop_subYawFlip`, `coop_t2l2_reinf`, `coop_tgatest`, `coop_tgatest_tik`, `coop_tracescan`
+- `coop_ts_fix`, `coop_ts_step`, `coop_ts_x0`, `coop_ts_x1`, `coop_ts_y0`, `coop_ts_y1`
+- `coop_uwBedVol`, `coop_voidDrop`, `coop_voidGuard`, `coop_wall_cmd`, `coop_wallH`, `coop_wallW`
+- `coop_whoProbe`, `coop_wintest`, `coop_wintest_bsp`, `coop_wintest_delay`, `coop_wintest_next`, `coop_woundedCrawlChance`
+- `coop_woundedFlee`
 
 ## Seeded nowhere, referenced only by the UI
 Menu-internal state (`enabledcvar` / `linkcvar` targets) written at runtime by the UI or the engine. Listed for completeness; an unseeded value here is normal, not a defect.
@@ -1113,6 +1114,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_mpGGKillsPerTier` |  |  |  |  | `coop_mod/mp_gungame.scr:159` |  |
 | `coop_mpmenu` |  |  |  | FORCED `1` @ `autoexec.cfg:9`<br>other `0` @ `coop_mod/cfg/detect.cfg:8` |  |  |
 | `coop_mpMode` |  |  |  |  | `coop_mod/mp.scr:74` |  |
+| `coop_mpPreset` |  |  |  |  | `coop_mod/mp.scr:92` |  |
 | `coop_mpx_Cd` |  |  |  | other `7.92MM / BOLT-ACTION` @ `ui/coop_mpx_armory/c03.cfg:4`<br>other `7.92MM / SEMI-AUTO` @ `ui/coop_mpx_armory/c04.cfg:4`<br>other `6.5MM / BOLT-ACTION` @ `ui/coop_mpx_armory/c07.cfg:4`<br>(+33 more) |  | `ui/coop_mpx_armory.urc` |
 | `coop_mpx_K1` |  |  |  | other `03` @ `ui/coop_mpx_armory/c03.cfg:6`<br>other `13` @ `ui/coop_mpx_armory/c13.cfg:6`<br>other `26` @ `ui/coop_mpx_armory/c26.cfg:6`<br>(+3 more) |  |  |
 | `coop_mpx_K2` |  |  |  | other `50` @ `ui/coop_mpx_armory/c50.cfg:6` |  |  |
