@@ -115,7 +115,7 @@ MP_COOP_ALLOW = {"main::containstext", "player::playercleanname", "player::coop_
                  "tinnitus::coop_injured_muffle_monitor"}
 
 # Clause 14. Declared engine MP hooks: name -> one-line reason. Keep this on ONE line (the self-test patches it).
-ENGINE_MP_HOOKS = {}
+ENGINE_MP_HOOKS = {"mp_mapscript_hook": "E4: Level::ServerSpawned starts MP on a non-coop map with no ambient.scr hook", "mp_weaponselect_redirect": "E5: Player::UserSelectWeapon opens the side MP armory when coop_mpRun==1"}
 
 # Clause 16. The one non-coop_mp* menu name MP legitimately owns (the Multiplayer Options side picker,
 # moved out of a coop file in a later slice). A stock/coop menu an MP urc must NEVER redefine (they load

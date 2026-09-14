@@ -7,19 +7,19 @@
      ============================================================ -->
 # Engine cvar inventory (generated)
 Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name is a string literal. Anchors are `path:line` relative to that directory. Defaults and flags are verbatim from source.
-- **1946** distinct cvars across **2526** registration sites in **124** translation units.
+- **1998** distinct cvars across **2600** registration sites in **126** translation units.
 - **31** call sites use a computed name (a variable or `va()`) and cannot be listed here. That number is reported rather than hidden - if it grows, something is registering cvars this inventory cannot see.
-- **57** cvars are registered with **different defaults** in different files. Those are real (usually renderergl1 vs renderergl2), not transcription errors.
+- **58** cvars are registered with **different defaults** in different files. Those are real (usually renderergl1 vs renderergl2), not transcription errors.
 
 ## Registrations by prefix
 | prefix | distinct cvars |
 |---|---:|
-| `coop_` | 489 |
-| `r_` | 408 |
-| `cg_` | 235 |
+| `coop_` | 512 |
+| `r_` | 429 |
+| `cg_` | 242 |
 | `g_` | 194 |
 | `sv_` | 90 |
-| `(no prefix)` | 65 |
+| `(no prefix)` | 66 |
 | `s_` | 65 |
 | `ui_` | 61 |
 | `cl_` | 58 |
@@ -56,43 +56,45 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 ## Conflicting defaults (same cvar, different value per file)
 | cvar | default | flags | anchor |
 |---|---|---|---|
-| `cg_adsLeanRoll` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1881` |
-| `cg_adsLeanRoll` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6150` |
-| `cg_crosshair_friend` | `textures/hud/crosshair_friend` | `CVAR_ARCHIVE` | `cgame/cg_main.c:201` |
-| `cg_crosshair_friend` | `textures/hud/crosshair` | `CVAR_ARCHIVE` | `cgame/cg_main.c:205` |
-| `cg_shadows` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:181` |
+| `cg_adsLeanRoll` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1885` |
+| `cg_adsLeanRoll` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6268` |
+| `cg_crosshair_friend` | `textures/hud/crosshair_friend` | `CVAR_ARCHIVE` | `cgame/cg_main.c:202` |
+| `cg_crosshair_friend` | `textures/hud/crosshair` | `CVAR_ARCHIVE` | `cgame/cg_main.c:206` |
+| `cg_shadows` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:182` |
 | `cg_shadows` | `1` | `0` | `renderergl1/tr_init.c:1653` |
-| `cg_shadows` | `1` | `0` | `renderergl2/tr_init.c:2012` |
-| `cheats` | `0` | `CVAR_USERINFO \| CVAR_SERVERINFO \| CVAR_LATCH` | `cgame/cg_main.c:251` |
+| `cg_shadows` | `1` | `0` | `renderergl2/tr_init.c:2065` |
+| `cheats` | `0` | `CVAR_USERINFO \| CVAR_SERVERINFO \| CVAR_LATCH` | `cgame/cg_main.c:252` |
 | `cheats` | `0` | `CVAR_USERINFO \| CVAR_SERVERINFO \| CVAR_LATCH` | `fgame/gamecvars.cpp:377` |
 | `cheats` | `1` | `CVAR_LATCH \| CVAR_SYSTEMINFO` | `qcommon/cvar.c:1778` |
 | `cheats` | `1` | `CVAR_LATCH \| CVAR_SYSTEMINFO` | `server/sv_init.c:1118` |
 | `cl_running` |  | `0` | `fgame/gamecvars.cpp:700` |
-| `cl_running` | `0` | `CVAR_ROM` | `qcommon/common.c:1928` |
-| `com_protocol` |  | `0` | `cgame/cg_main.c:798` |
+| `cl_running` | `0` | `CVAR_ROM` | `qcommon/common.c:1934` |
+| `com_protocol` |  | `0` | `cgame/cg_main.c:823` |
 | `com_protocol` |  | `0` | `fgame/g_main.cpp:396` |
-| `com_protocol` | `va("%i", PROTOCOL_VERSION)` | `CVAR_INIT` | `qcommon/common.c:1954` |
-| `com_target_game` | `0` | `0` | `cgame/cg_main.c:799` |
+| `com_protocol` | `va("%i", PROTOCOL_VERSION)` | `CVAR_INIT` | `qcommon/common.c:1960` |
+| `com_target_game` | `0` | `0` | `cgame/cg_main.c:824` |
 | `com_target_game` | `0` | `0` | `fgame/g_main.cpp:397` |
 | `com_target_game` |  | `0` | `fgame/gamecvars.cpp:524` |
-| `com_target_game` | `0` | `CVAR_INIT\|CVAR_PROTECTED` | `qcommon/common.c:1775` |
+| `com_target_game` | `0` | `CVAR_INIT\|CVAR_PROTECTED` | `qcommon/common.c:1781` |
 | `coop_blindfireRaise` | `26` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:1613` |
 | `coop_blindfireRaise` | `32` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:1710` |
-| `coop_proneHold` | `0.5` | `CVAR_ARCHIVE` | `fgame/player.cpp:14019` |
-| `coop_proneHold` | `0.35` | `CVAR_ARCHIVE` | `fgame/player.cpp:16892` |
+| `coop_compassBarExe` |  | `0` | `cgame/cg_drawtools.cpp:2505` |
+| `coop_compassBarExe` | `1` | `CVAR_ROM` | `client/cl_ui.cpp:5522` |
+| `coop_proneHold` | `0.5` | `CVAR_ARCHIVE` | `fgame/player.cpp:14041` |
+| `coop_proneHold` | `0.35` | `CVAR_ARCHIVE` | `fgame/player.cpp:16914` |
 | `deathmatch` | `1` | `CVAR_USERINFO \| CVAR_SERVERINFO \| CVAR_LATCH` | `fgame/gamecvars.cpp:314` |
-| `deathmatch` | `0` | `0` | `qcommon/common.c:1911` |
+| `deathmatch` | `0` | `0` | `qcommon/common.c:1917` |
 | `dedicated` | `1` | `0` | `fgame/entity.cpp:3695` |
 | `dedicated` | `1` | `CVAR_LATCH` | `fgame/gamecvars.cpp:313` |
-| `dedicated` | `1` | `CVAR_INIT` | `qcommon/common.c:1888` |
-| `dedicated` | `0` | `CVAR_LATCH` | `qcommon/common.c:1891` |
-| `dedicated` | `0` | `CVAR_LATCH` | `qcommon/common.c:1924` |
-| `dedicated` | `0` | `0` | `qcommon/common.c:2396` |
-| `developer` | `0` | `0` | `cgame/cg_main.c:184` |
+| `dedicated` | `1` | `CVAR_INIT` | `qcommon/common.c:1894` |
+| `dedicated` | `0` | `CVAR_LATCH` | `qcommon/common.c:1897` |
+| `dedicated` | `0` | `CVAR_LATCH` | `qcommon/common.c:1930` |
+| `dedicated` | `0` | `0` | `qcommon/common.c:2408` |
+| `developer` | `0` | `0` | `cgame/cg_main.c:185` |
 | `developer` | `0` | `0` | `fgame/gamecvars.cpp:309` |
-| `developer` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1770` |
+| `developer` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1776` |
 | `developer` |  | `0` | `renderergl1/tr_init.c:1739` |
-| `developer` |  | `0` | `renderergl2/tr_init.c:2187` |
+| `developer` |  | `0` | `renderergl2/tr_init.c:2240` |
 | `fraglimit` | `0` | `CVAR_SERVERINFO` | `fgame/dm_manager.cpp:1069` |
 | `fraglimit` | `0` | `0` | `fgame/dm_manager.cpp:1173` |
 | `fraglimit` | `0` | `CVAR_SERVERINFO` | `fgame/gamecvars.cpp:333` |
@@ -103,30 +105,30 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `g_healrate` | `0` | `0` | `fgame/gamecvars.cpp:486` |
 | `g_obituarylocation` | `0` | `0` | `fgame/gamecvars.cpp:668` |
 | `g_obituarylocation` | `1` | `0` | `fgame/gamecvars.cpp:671` |
-| `g_success` |  | `0` | `cgame/cg_view.c:7353` |
-| `g_success` |  | `0` | `cgame/cg_view.c:7385` |
-| `g_success` |  | `0` | `cgame/cg_view.c:7404` |
-| `g_success` |  | `0` | `cgame/cg_view.c:7434` |
+| `g_success` |  | `0` | `cgame/cg_view.c:7599` |
+| `g_success` |  | `0` | `cgame/cg_view.c:7631` |
+| `g_success` |  | `0` | `cgame/cg_view.c:7650` |
+| `g_success` |  | `0` | `cgame/cg_view.c:7680` |
 | `g_success` | `0` | `0` | `fgame/gamecvars.cpp:569` |
 | `g_TOW_winstate` |  | `0` | `fgame/dm_manager.cpp:1189` |
 | `g_TOW_winstate` | `0` | `0` | `fgame/gamecvars.cpp:647` |
 | `lod_pitch_val` |  | `0` | `fgame/lodthing.cpp:219` |
 | `lod_pitch_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1553` |
-| `lod_pitch_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2173` |
+| `lod_pitch_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2226` |
 | `lod_position` |  | `0` | `fgame/lodthing.cpp:232` |
 | `lod_position` | `0 0 0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1561` |
-| `lod_position` | `0 0 0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2181` |
+| `lod_position` | `0 0 0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2234` |
 | `lod_zee_val` |  | `0` | `fgame/lodthing.cpp:235` |
 | `lod_zee_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1554` |
-| `lod_zee_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2174` |
-| `m_filter` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4133` |
-| `m_filter` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4135` |
+| `lod_zee_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2227` |
+| `m_filter` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4246` |
+| `m_filter` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4248` |
 | `mapname` | `unknown` | `0` | `fgame/actor.cpp:13482` |
 | `mapname` |  | `0` | `fgame/scriptmaster.cpp:419` |
 | `mapname` |  | `0` | `fgame/scriptthread.cpp:7223` |
 | `mapname` | `nomap` | `CVAR_SERVERINFO \| CVAR_ROM` | `server/sv_init.c:1101` |
-| `name` | `UnnamedSoldier` | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_main.cpp:3921` |
-| `name` | `va("UnnamedSoldier#%d", rand() % 100000)` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4185` |
+| `name` | `UnnamedSoldier` | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_main.cpp:4031` |
+| `name` | `va("UnnamedSoldier#%d", rand() % 100000)` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4298` |
 | `net_enabled` | `1` | `CVAR_LATCH \| CVAR_ARCHIVE` | `qcommon/net_ip.c:1430` |
 | `net_enabled` | `3` | `CVAR_LATCH \| CVAR_ARCHIVE` | `qcommon/net_ip.c:1434` |
 | `net_ip` | `localhost` | `CVAR_LATCH` | `gamespy/sv_gamespy.c:355` |
@@ -135,72 +137,76 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `net_mcast6iface` |  | `CVAR_LATCH \| CVAR_ARCHIVE` | `qcommon/net_ip.c:1463` |
 | `net_port` | `12203` | `CVAR_LATCH` | `gamespy/sv_gamespy.c:179` |
 | `net_port` | `va( "%i", PORT_SERVER )` | `CVAR_LATCH` | `qcommon/net_ip.c:1447` |
-| `pmove_msec` | `8` | `0` | `cgame/cg_main.c:179` |
+| `pmove_msec` | `8` | `0` | `cgame/cg_main.c:180` |
 | `pmove_msec` | `0` | `CVAR_SYSTEMINFO` | `fgame/gamecvars.cpp:499` |
-| `protocol` | `com_legacyprotocol->string` | `CVAR_SERVERINFO \| CVAR_ROM` | `qcommon/common.c:1964` |
-| `protocol` | `com_protocol->string` | `CVAR_SERVERINFO \| CVAR_ROM` | `qcommon/common.c:1967` |
+| `protocol` | `com_legacyprotocol->string` | `CVAR_SERVERINFO \| CVAR_ROM` | `qcommon/common.c:1970` |
+| `protocol` | `com_protocol->string` | `CVAR_SERVERINFO \| CVAR_ROM` | `qcommon/common.c:1973` |
 | `protocol` | `va( "%i", PROTOCOL_VERSION )` | `CVAR_SERVERINFO \| CVAR_ROM` | `server/sv_init.c:1100` |
 | `r_ext_texture_env_add` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1370` |
 | `r_ext_texture_env_add` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1372` |
-| `r_ext_texture_env_add` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1422` |
-| `r_inGameVideo` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4118` |
-| `r_inGameVideo` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4120` |
-| `r_inGameVideo` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1922` |
-| `r_largemap` | `0` | `0` | `cgame/cg_main.c:311` |
+| `r_ext_texture_env_add` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1436` |
+| `r_inGameVideo` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4231` |
+| `r_inGameVideo` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4233` |
+| `r_inGameVideo` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1975` |
+| `r_largemap` | `0` | `0` | `cgame/cg_main.c:312` |
 | `r_largemap` | `0` | `0` | `client/cl_main.cpp:199` |
+| `r_largemap` | `0` | `0` | `null/null_client.c:149` |
 | `r_largemap` | `1` | `0` | `renderergl1/tr_init.c:1388` |
 | `r_largemap` | `0` | `0` | `renderergl1/tr_init.c:1390` |
 | `r_mapOverBrightBits` | `1` | `CVAR_LATCH` | `renderergl1/tr_init.c:1438` |
-| `r_mapOverBrightBits` | `2` | `CVAR_LATCH` | `renderergl2/tr_init.c:1906` |
+| `r_mapOverBrightBits` | `2` | `CVAR_LATCH` | `renderergl2/tr_init.c:1955` |
 | `r_overBrightBits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1406` |
-| `r_overBrightBits` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1446` |
+| `r_overBrightBits` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1481` |
 | `r_ppContrast` | `1.0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1483` |
-| `r_ppContrast` | `0.951289` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:99` |
+| `r_ppContrast` | `0.951289` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:170` |
 | `r_ppExposure` | `1.0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1482` |
-| `r_ppExposure` | `0.889971` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:98` |
+| `r_ppExposure` | `0.889971` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:169` |
 | `r_ppFXAA` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1485` |
-| `r_ppFXAA` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:805` |
+| `r_ppFXAA` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1051` |
 | `r_ppHeatAmount` | `1.0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1498` |
-| `r_ppHeatAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:913` |
-| `r_ppLowHealthAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2301` |
+| `r_ppHeatAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1164` |
+| `r_ppLowHealthAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:3377` |
 | `r_ppLowHealthAmount` | `1.0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1492` |
-| `r_ppLowHealthAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:986` |
+| `r_ppLowHealthAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1237` |
 | `r_ppSaturation` | `1.0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1484` |
-| `r_ppSaturation` | `1.031519` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:100` |
+| `r_ppSaturation` | `1.031519` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:171` |
 | `r_ppSSAO` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1472` |
-| `r_ppSSAO` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1518` |
-| `r_ppSuppressAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2380` |
+| `r_ppSSAO` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1553` |
+| `r_ppSuppressAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:3456` |
 | `r_ppSuppressAmount` | `1.0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1495` |
-| `r_ppSuppressAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1100` |
+| `r_ppSuppressAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1351` |
 | `r_stencilbits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1401` |
 | `r_stencilbits` | `8` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1403` |
-| `r_stencilbits` | `8` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1442` |
+| `r_stencilbits` | `8` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1477` |
 | `r_swapInterval` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1513` |
-| `r_swapInterval` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1931` |
-| `r_swapInterval` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1934` |
+| `r_swapInterval` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1984` |
+| `r_swapInterval` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1987` |
 | `r_textureMode` | `GL_LINEAR_MIPMAP_NEAREST` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1512` |
-| `r_textureMode` | `GL_LINEAR_MIPMAP_LINEAR` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1927` |
-| `rate` | `25000` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4186` |
+| `r_textureMode` | `GL_LINEAR_MIPMAP_LINEAR` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1980` |
+| `rate` | `25000` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4299` |
 | `rate` | `5000` | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_uiserverlist.cpp:667` |
 | `s_alAvailableDevices` | `devicenames` | `CVAR_ROM \| CVAR_NORESTART` | `client/snd_openal.c:2594` |
-| `s_alAvailableDevices` | `devicenames` | `CVAR_ROM \| CVAR_NORESTART` | `client/snd_openal_new.cpp:662` |
-| `s_alAvailableDevices` |  | `CVAR_ROM` | `client/snd_openal_new.cpp:912` |
-| `s_alAvailableDevices` |  | `CVAR_ROM` | `client/snd_openal_new.cpp:959` |
-| `s_musicvolume` | `0.9` | `0` | `cgame/cg_view.c:2380` |
-| `s_musicvolume` | `0.9` | `0` | `cgame/cg_view.c:6564` |
-| `s_musicvolume` | `0.9` | `0` | `cgame/cg_view.c:6573` |
+| `s_alAvailableDevices` | `devicenames` | `CVAR_ROM \| CVAR_NORESTART` | `client/snd_openal_new.cpp:671` |
+| `s_alAvailableDevices` |  | `CVAR_ROM` | `client/snd_openal_new.cpp:921` |
+| `s_alAvailableDevices` |  | `CVAR_ROM` | `client/snd_openal_new.cpp:968` |
+| `s_musicvolume` | `0.9` | `0` | `cgame/cg_view.c:2424` |
+| `s_musicvolume` | `0.9` | `0` | `cgame/cg_view.c:6713` |
+| `s_musicvolume` | `0.9` | `0` | `cgame/cg_view.c:6729` |
+| `s_musicvolume` | `0.9` | `0` | `cgame/cg_view.c:6757` |
+| `s_musicvolume` | `0.9` | `0` | `cgame/cg_view.c:6768` |
 | `s_musicvolume` | `0.9` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:106` |
 | `s_musicvolume` | `0.25` | `CVAR_ARCHIVE` | `client/snd_main.c:480` |
+| `s_volume` | `0.9` | `CVAR_ARCHIVE` | `cgame/cg_servercmds.c:358` |
 | `s_volume` | `0.9` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:105` |
 | `s_volume` | `0.8` | `CVAR_ARCHIVE` | `client/snd_main.c:479` |
-| `snaps` | `20` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4187` |
-| `snaps` |  | `0` | `client/cl_main.cpp:5448` |
+| `snaps` | `20` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4300` |
+| `snaps` |  | `0` | `client/cl_main.cpp:5564` |
 | `sv_invulnerabletime` | `3.0` | `CVAR_ARCHIVE \| CVAR_SERVERINFO` | `fgame/gamecvars.cpp:406` |
 | `sv_invulnerabletime` | `0` | `CVAR_ARCHIVE \| CVAR_SERVERINFO` | `fgame/gamecvars.cpp:409` |
-| `sv_maxclients` | `1` | `0` | `client/cl_ui.cpp:4161` |
-| `sv_maxclients` | `1` | `0` | `client/cl_ui.cpp:4496` |
-| `sv_maxclients` | `1` | `0` | `client/cl_ui.cpp:5182` |
-| `sv_maxclients` | `1` | `0` | `client/cl_ui.cpp:5211` |
+| `sv_maxclients` | `1` | `0` | `client/cl_ui.cpp:4212` |
+| `sv_maxclients` | `1` | `0` | `client/cl_ui.cpp:4547` |
+| `sv_maxclients` | `1` | `0` | `client/cl_ui.cpp:5233` |
+| `sv_maxclients` | `1` | `0` | `client/cl_ui.cpp:5262` |
 | `sv_maxclients` | `1` | `0` | `fgame/gamecvars.cpp:317` |
 | `sv_maxclients` | `0` | `CVAR_LATCH \| CVAR_SERVERINFO` | `server/sv_ccmds.c:2503` |
 | `sv_maxclients` | `8` | `0` | `server/sv_init.c:451` |
@@ -210,21 +216,21 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `sv_sprinton` | `1` | `0` | `gamespy/sv_gamespy.c:187` |
 | `sv_team_spawn_interval` | `15` | `CVAR_ARCHIVE \| CVAR_SERVERINFO` | `fgame/gamecvars.cpp:407` |
 | `sv_team_spawn_interval` | `0` | `CVAR_ARCHIVE \| CVAR_SERVERINFO` | `fgame/gamecvars.cpp:410` |
-| `ui_compass_scale` | `0.75` | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/cl_ui.cpp:4024` |
-| `ui_compass_scale` | `0.55` | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/cl_ui.cpp:4027` |
-| `ui_newvidmode` | `va("%d", r_mode)` | `CVAR_RESETSTRING` | `client/cl_ui.cpp:1525` |
-| `ui_newvidmode` | `-1` | `0` | `client/cl_ui.cpp:5467` |
+| `ui_compass_scale` | `0.75` | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/cl_ui.cpp:4075` |
+| `ui_compass_scale` | `0.55` | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/cl_ui.cpp:4078` |
+| `ui_newvidmode` | `va("%d", r_mode)` | `CVAR_RESETSTRING` | `client/cl_ui.cpp:1555` |
+| `ui_newvidmode` | `-1` | `0` | `client/cl_ui.cpp:5523` |
 
 ## All registrations
 | cvar | default | flags | anchor |
 |---|---|---|---|
-| `activeAction` |  | `CVAR_TEMP` | `client/cl_main.cpp:4030` |
+| `activeAction` |  | `CVAR_TEMP` | `client/cl_main.cpp:4140` |
 | `ai_debug_grenades` | `0` | `CVAR_CHEAT` | `fgame/gamecvars.cpp:469` |
 | `ai_debugpath` | `0` | `0` | `fgame/navigate.cpp:2294` |
 | `ai_editmode` | `0` | `CVAR_LATCH` | `fgame/navigate.cpp:2301` |
 | `ai_fallheight` | `96` | `0` | `fgame/navigate.cpp:2293` |
-| `ai_health_kar` | `6` | `CVAR_CHEAT` | `fgame/sentient.cpp:4650` |
-| `ai_health_mp40points` | `2` | `CVAR_CHEAT` | `fgame/sentient.cpp:4651` |
+| `ai_health_kar` | `6` | `CVAR_CHEAT` | `fgame/sentient.cpp:4809` |
+| `ai_health_mp40points` | `2` | `CVAR_CHEAT` | `fgame/sentient.cpp:4810` |
 | `ai_pathcheckdist` | `4096` | `CVAR_CHEAT` | `fgame/navigate.cpp:2296` |
 | `ai_pathchecktime` | `1.5` | `CVAR_CHEAT` | `fgame/navigate.cpp:2295` |
 | `ai_showallnode` | `0` | `0` | `fgame/navigate.cpp:2291` |
@@ -233,7 +239,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `ai_showpath` | `0` | `0` | `fgame/navigate.cpp:2292` |
 | `ai_showroutes` | `0` | `0` | `fgame/navigate.cpp:2287` |
 | `ai_showroutes_distance` | `1000` | `0` | `fgame/navigate.cpp:2288` |
-| `autopaused` | `1` | `CVAR_ARCHIVE` | `qcommon/common.c:1913` |
+| `autopaused` | `1` | `CVAR_ARCHIVE` | `qcommon/common.c:1919` |
 | `bosshealth` | `0` | `0` | `fgame/gamecvars.cpp:346` |
 | `bot_manualmove` | `0` | `0` | `fgame/playerbot.cpp:102` |
 | `cam_angles_pitch` |  | `0` | `fgame/camera.cpp:2042` |
@@ -248,76 +254,76 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `cam_speed` |  | `0` | `fgame/camera.cpp:2068` |
 | `cam_target` |  | `0` | `fgame/camera.cpp:2052` |
 | `cam_watch` |  | `0` | `fgame/camera.cpp:2056` |
-| `cg_3rd_person` | `0` | `0` | `cgame/cg_main.c:165` |
-| `cg_acidtrip` | `0` | `CVAR_CHEAT` | `cgame/cg_main.c:195` |
-| `cg_adsBreathVignette` | `0.55` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2016` |
-| `cg_adsCrouchPitch` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:271` |
-| `cg_adsCrouchRoll` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:273` |
-| `cg_adsCrouchShiftX` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:279` |
-| `cg_adsCrouchShiftY` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:280` |
-| `cg_adsCrouchYaw` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:272` |
-| `cg_adsForward` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:291` |
-| `cg_adsFpFlip` | `0.7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5265` |
-| `cg_adsGuides` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:1890` |
-| `cg_adsGunZoom` | `0.5` | `CVAR_ARCHIVE` | `cgame/cg_main.c:257` |
-| `cg_adsHideOffHand` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:3033` |
-| `cg_adsHideOffHandSkip` | `Thompson` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:3034` |
+| `cg_3rd_person` | `0` | `0` | `cgame/cg_main.c:166` |
+| `cg_acidtrip` | `0` | `CVAR_CHEAT` | `cgame/cg_main.c:196` |
+| `cg_adsBreathVignette` | `0.55` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2129` |
+| `cg_adsCrouchPitch` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:272` |
+| `cg_adsCrouchRoll` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:274` |
+| `cg_adsCrouchShiftX` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:280` |
+| `cg_adsCrouchShiftY` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:281` |
+| `cg_adsCrouchYaw` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:273` |
+| `cg_adsForward` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:292` |
+| `cg_adsFpFlip` | `0.7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5383` |
+| `cg_adsGuides` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2003` |
+| `cg_adsGunZoom` | `0.5` | `CVAR_ARCHIVE` | `cgame/cg_main.c:258` |
+| `cg_adsHideOffHand` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:3173` |
+| `cg_adsHideOffHandSkip` | `Thompson` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:3174` |
 | `cg_adsLeanLower` | `0` | `CVAR_ARCHIVE` | `cgame/cg_viewmodelanim.c:962` |
-| `cg_adsLeanRoll` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1881` |
-| `cg_adsLeanRoll` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6150` |
-| `cg_adsLeanShift` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1968` |
-| `cg_adsMode` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:286` |
-| `cg_adsPitch` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:261` |
-| `cg_adsRecoil` | `0.5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2263` |
-| `cg_adsRight` | `-2` | `CVAR_ARCHIVE` | `cgame/cg_main.c:292` |
-| `cg_adsRoll` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:267` |
+| `cg_adsLeanRoll` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1885` |
+| `cg_adsLeanRoll` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6268` |
+| `cg_adsLeanShift` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1972` |
+| `cg_adsMode` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:287` |
+| `cg_adsPitch` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:262` |
+| `cg_adsRecoil` | `0.5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2267` |
+| `cg_adsRight` | `-2` | `CVAR_ARCHIVE` | `cgame/cg_main.c:293` |
+| `cg_adsRoll` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:268` |
 | `cg_adsRotStep` | `0.5` | `CVAR_ARCHIVE` | `cgame/cg_consolecmds.c:411` |
 | `cg_adsShiftStep` | `0.005` | `CVAR_ARCHIVE` | `cgame/cg_consolecmds.c:412` |
-| `cg_adsShiftX` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:277` |
-| `cg_adsShiftY` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:278` |
-| `cg_adsShoulder` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4936` |
+| `cg_adsShiftX` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:278` |
+| `cg_adsShiftY` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:279` |
+| `cg_adsShoulder` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5054` |
 | `cg_adsShoulderArc` | `26` | `CVAR_ARCHIVE` | `cgame/cg_view.c:988` |
 | `cg_adsShoulderDist` | `45` | `CVAR_ARCHIVE` | `cgame/cg_view.c:866` |
 | `cg_adsShoulderProneDist` | `85` | `CVAR_ARCHIVE` | `cgame/cg_view.c:876` |
 | `cg_adsShoulderProneUp` | `38` | `CVAR_ARCHIVE` | `cgame/cg_view.c:877` |
 | `cg_adsShoulderRight` | `1` | `CVAR_ARCHIVE` | `cgame/cg_consolecmds.c:638` |
 | `cg_adsShoulderRight` | `1` | `CVAR_ARCHIVE` | `cgame/cg_ui.cpp:257` |
-| `cg_adsShoulderRight` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5017` |
-| `cg_adsShoulderRight` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4199` |
+| `cg_adsShoulderRight` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5135` |
+| `cg_adsShoulderRight` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4312` |
 | `cg_adsShoulderSide` | `26` | `CVAR_ARCHIVE` | `cgame/cg_view.c:867` |
-| `cg_adsShoulderSpeed` | `10` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4982` |
-| `cg_adsShoulderSpeed` | `10` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5216` |
+| `cg_adsShoulderSpeed` | `10` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5100` |
+| `cg_adsShoulderSpeed` | `10` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5334` |
 | `cg_adsShoulderUp` | `20` | `CVAR_ARCHIVE` | `cgame/cg_view.c:868` |
-| `cg_adsShoulderZoom` | `0.9` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5412` |
-| `cg_adsStage` | `0` | `0` | `cgame/cg_view.c:4969` |
-| `cg_adsSway` | `0.4` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2261` |
-| `cg_adsSwaySpeed` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2262` |
-| `cg_adsTune` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:285` |
-| `cg_adsUp` | `6` | `CVAR_ARCHIVE` | `cgame/cg_main.c:290` |
-| `cg_adsYaw` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:264` |
-| `cg_adsZoom` | `0.70` | `CVAR_ARCHIVE` | `cgame/cg_main.c:253` |
-| `cg_allowvote` | `1` | `0` | `client/cl_ui.cpp:2592` |
-| `cg_animationviewmodel` | `0` | `CVAR_SYSTEMINFO` | `cgame/cg_main.c:193` |
-| `cg_animspeed` | `1` | `CVAR_CHEAT` | `cgame/cg_main.c:152` |
-| `cg_autoswitch` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4170` |
-| `cg_breathCooldown` | `5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1775` |
-| `cg_breathCooldown` | `5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2311` |
-| `cg_breathCooldown` | `5` | `CVAR_ARCHIVE` | `fgame/player.cpp:17116` |
-| `cg_breathDuck` | `0.7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2376` |
-| `cg_breathHoldTime` | `7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1764` |
-| `cg_breathHoldTime` | `7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2310` |
-| `cg_breathHoldTime` | `7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4724` |
-| `cg_breathHoldTime` | `7` | `CVAR_ARCHIVE` | `fgame/player.cpp:17115` |
-| `cg_breathZoom` | `0.85` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5420` |
-| `cg_cameradist` | `120` | `CVAR_ARCHIVE` | `cgame/cg_main.c:168` |
-| `cg_cameraheight` | `18` | `CVAR_ARCHIVE` | `cgame/cg_main.c:167` |
-| `cg_camerascale` | `0.3` | `CVAR_ARCHIVE` | `cgame/cg_main.c:173` |
-| `cg_camerasideoffset` | `18` | `CVAR_ARCHIVE` | `cgame/cg_main.c:171` |
-| `cg_cameraverticaldisplacement` | `-2` | `CVAR_ARCHIVE` | `cgame/cg_main.c:172` |
-| `cg_crosshair` | `textures/hud/crosshair` | `CVAR_ARCHIVE` | `cgame/cg_main.c:199` |
+| `cg_adsShoulderZoom` | `0.9` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5530` |
+| `cg_adsStage` | `0` | `0` | `cgame/cg_view.c:5087` |
+| `cg_adsSway` | `0.4` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2265` |
+| `cg_adsSwaySpeed` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2266` |
+| `cg_adsTune` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:286` |
+| `cg_adsUp` | `6` | `CVAR_ARCHIVE` | `cgame/cg_main.c:291` |
+| `cg_adsYaw` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:265` |
+| `cg_adsZoom` | `0.70` | `CVAR_ARCHIVE` | `cgame/cg_main.c:254` |
+| `cg_allowvote` | `1` | `0` | `client/cl_ui.cpp:2643` |
+| `cg_animationviewmodel` | `0` | `CVAR_SYSTEMINFO` | `cgame/cg_main.c:194` |
+| `cg_animspeed` | `1` | `CVAR_CHEAT` | `cgame/cg_main.c:153` |
+| `cg_autoswitch` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4283` |
+| `cg_breathCooldown` | `5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1779` |
+| `cg_breathCooldown` | `5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2315` |
+| `cg_breathCooldown` | `5` | `CVAR_ARCHIVE` | `fgame/player.cpp:17138` |
+| `cg_breathDuck` | `0.7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2420` |
+| `cg_breathHoldTime` | `7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1768` |
+| `cg_breathHoldTime` | `7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2314` |
+| `cg_breathHoldTime` | `7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4842` |
+| `cg_breathHoldTime` | `7` | `CVAR_ARCHIVE` | `fgame/player.cpp:17137` |
+| `cg_breathZoom` | `0.85` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5538` |
+| `cg_cameradist` | `120` | `CVAR_ARCHIVE` | `cgame/cg_main.c:169` |
+| `cg_cameraheight` | `18` | `CVAR_ARCHIVE` | `cgame/cg_main.c:168` |
+| `cg_camerascale` | `0.3` | `CVAR_ARCHIVE` | `cgame/cg_main.c:174` |
+| `cg_camerasideoffset` | `18` | `CVAR_ARCHIVE` | `cgame/cg_main.c:172` |
+| `cg_cameraverticaldisplacement` | `-2` | `CVAR_ARCHIVE` | `cgame/cg_main.c:173` |
+| `cg_crosshair` | `textures/hud/crosshair` | `CVAR_ARCHIVE` | `cgame/cg_main.c:200` |
 | `cg_crosshair3p` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:1591` |
-| `cg_crosshair_friend` | `textures/hud/crosshair_friend` | `CVAR_ARCHIVE` | `cgame/cg_main.c:201` |
-| `cg_crosshair_friend` | `textures/hud/crosshair` | `CVAR_ARCHIVE` | `cgame/cg_main.c:205` |
+| `cg_crosshair_friend` | `textures/hud/crosshair_friend` | `CVAR_ARCHIVE` | `cgame/cg_main.c:202` |
+| `cg_crosshair_friend` | `textures/hud/crosshair` | `CVAR_ARCHIVE` | `cgame/cg_main.c:206` |
 | `cg_crosshairSize` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:1575` |
 | `cg_cullTempModels` | `1` | `CVAR_ARCHIVE` | `cgame/cg_tempmodels.cpp:246` |
 | `cg_dbnoCamDist` | `100` | `CVAR_ARCHIVE` | `cgame/cg_view.c:855` |
@@ -325,73 +331,80 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `cg_dbnoCamSide` | `14` | `CVAR_ARCHIVE` | `cgame/cg_view.c:858` |
 | `cg_dbnoCamSpeed` | `6` | `CVAR_ARCHIVE` | `cgame/cg_view.c:723` |
 | `cg_dbnoCamVert` | `-30` | `CVAR_ARCHIVE` | `cgame/cg_view.c:857` |
-| `cg_dbnoEyeDrop` | `50` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4116` |
-| `cg_dbnoForceFirstPerson` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6321` |
-| `cg_debuganim` | `0` | `CVAR_CHEAT` | `cgame/cg_main.c:153` |
-| `cg_debuganimwatch` | `0` | `CVAR_CHEAT` | `cgame/cg_main.c:154` |
-| `cg_debugfootsteps` | `0` | `CVAR_CHEAT` | `cgame/cg_main.c:175` |
-| `cg_dofStrength` | `0.6` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:1988` |
-| `cg_drawsvlag` | `1` | `CVAR_ARCHIVE` | `cgame/cg_main.c:198` |
-| `cg_drawviewmodel` | `2` | `CVAR_ARCHIVE` | `cgame/cg_main.c:166` |
+| `cg_dbnoEyeDrop` | `50` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4234` |
+| `cg_dbnoForceFirstPerson` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6439` |
+| `cg_debuganim` | `0` | `CVAR_CHEAT` | `cgame/cg_main.c:154` |
+| `cg_debuganimwatch` | `0` | `CVAR_CHEAT` | `cgame/cg_main.c:155` |
+| `cg_debugfootsteps` | `0` | `CVAR_CHEAT` | `cgame/cg_main.c:176` |
+| `cg_dofStrength` | `0.6` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2101` |
+| `cg_drawsvlag` | `1` | `CVAR_ARCHIVE` | `cgame/cg_main.c:199` |
+| `cg_drawviewmodel` | `2` | `CVAR_ARCHIVE` | `cgame/cg_main.c:167` |
 | `cg_effect_physicsrate` | `10` | `CVAR_ARCHIVE` | `cgame/cg_tempmodels.cpp:238` |
 | `cg_effectdetail` | `0.2` | `CVAR_ARCHIVE` | `cgame/cg_tempmodels.cpp:235` |
-| `cg_errordecay` | `100` | `0` | `cgame/cg_main.c:155` |
-| `cg_forceModel` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:192` |
-| `cg_fov` | `80` | `CVAR_ARCHIVE` | `cgame/cg_main.c:250` |
-| `cg_freeAim` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6060` |
-| `cg_freeAimBoxPitch` | `2` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6063` |
-| `cg_freeAimBoxYaw` | `3` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6062` |
-| `cg_freeAimGun` | `0.18` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3857` |
-| `cg_freeAimReturn` | `3` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6064` |
-| `cg_freeAimSmooth` | `10` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6065` |
-| `cg_freecam` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5148` |
-| `cg_freecam` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4198` |
-| `cg_freecamCapture` | `0` | `0` | `cgame/cg_view.c:5217` |
+| `cg_errordecay` | `100` | `0` | `cgame/cg_main.c:156` |
+| `cg_forceModel` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:193` |
+| `cg_fov` | `80` | `CVAR_ARCHIVE` | `cgame/cg_main.c:251` |
+| `cg_fpBody` | `0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1957` |
+| `cg_fpBodyBack` | `10` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1958` |
+| `cg_fpBodyDebug` | `0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1960` |
+| `cg_fpBodyHide` | `head hand us_helmet us_helmet_inside bob_helmet_camo inside outside` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1959` |
+| `cg_fpBodyShadow` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:3358` |
+| `cg_freeAim` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6178` |
+| `cg_freeAimBoxPitch` | `2` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6181` |
+| `cg_freeAimBoxYaw` | `3` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6180` |
+| `cg_freeAimGun` | `0.18` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3975` |
+| `cg_freeAimReturn` | `3` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6182` |
+| `cg_freeAimSmooth` | `10` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6183` |
+| `cg_freecam` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5266` |
+| `cg_freecam` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4311` |
+| `cg_freecamCapture` | `0` | `0` | `cgame/cg_view.c:5335` |
 | `cg_freecamCapture` | `0` | `0` | `client/cl_input.cpp:650` |
 | `cg_freecamCapture` | `0` | `0` | `client/cl_input.cpp:909` |
 | `cg_freecamCapture` | `0` | `0` | `client/cl_input.cpp:970` |
 | `cg_freecamDist` | `100` | `CVAR_ARCHIVE` | `cgame/cg_view.c:840` |
 | `cg_freecamFold` | `0` | `0` | `client/cl_input.cpp:651` |
 | `cg_freecamFold` | `0` | `0` | `client/cl_input.cpp:908` |
-| `cg_gametype` | `0` | `0` | `client/cl_main.cpp:4162` |
+| `cg_gametype` | `0` | `0` | `client/cl_main.cpp:4275` |
 | `cg_gametype` | `0` | `CVAR_SERVERINFO \| CVAR_LATCH` | `tiki/tiki_parse.cpp:329` |
-| `cg_headbob` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2037` |
-| `cg_headbobScale` | `1.35` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2038` |
-| `cg_hidetempmodels` | `0` | `0` | `cgame/cg_main.c:159` |
-| `cg_hitmessages` | `1` | `CVAR_ARCHIVE` | `cgame/cg_main.c:194` |
-| `cg_hud` | `0` | `0` | `cgame/cg_main.c:196` |
-| `cg_huddraw_force` | `0` | `CVAR_SAVEGAME` | `cgame/cg_main.c:197` |
-| `cg_lagometer` | `0` | `0` | `cgame/cg_main.c:162` |
-| `cg_limpCamSpeed` | `4` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1997` |
-| `cg_limpDepth` | `0.55` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2087` |
-| `cg_limpDrag` | `0.25` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2013` |
-| `cg_limpRoll` | `1.2` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2105` |
-| `cg_limpRollAds` | `0.25` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2109` |
-| `cg_marks_add` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:150` |
-| `cg_marks_max` | `256` | `CVAR_ARCHIVE \| CVAR_LATCH` | `cgame/cg_main.c:151` |
+| `cg_headbob` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2041` |
+| `cg_headbobScale` | `1.35` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2042` |
+| `cg_hidetempmodels` | `0` | `0` | `cgame/cg_main.c:160` |
+| `cg_hitmessages` | `1` | `CVAR_ARCHIVE` | `cgame/cg_main.c:195` |
+| `cg_hud` | `0` | `0` | `cgame/cg_main.c:197` |
+| `cg_huddraw_force` | `0` | `CVAR_SAVEGAME` | `cgame/cg_main.c:198` |
+| `cg_lagometer` | `0` | `0` | `cgame/cg_main.c:163` |
+| `cg_limpCamSpeed` | `4` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2001` |
+| `cg_limpDepth` | `0.55` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2091` |
+| `cg_limpDrag` | `0.25` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2017` |
+| `cg_limpRoll` | `1.2` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2109` |
+| `cg_limpRollAds` | `0.25` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2113` |
+| `cg_marks_add` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:151` |
+| `cg_marks_max` | `256` | `CVAR_ARCHIVE \| CVAR_LATCH` | `cgame/cg_main.c:152` |
 | `cg_max_tempmodels` | `1100` | `CVAR_ARCHIVE` | `cgame/cg_tempmodels.cpp:239` |
-| `cg_nopredict` | `0` | `0` | `cgame/cg_main.c:156` |
-| `cg_pmove_msec` | `8` | `0` | `cgame/cg_main.c:180` |
+| `cg_nopredict` | `0` | `0` | `cgame/cg_main.c:157` |
+| `cg_pmove_msec` | `8` | `0` | `cgame/cg_main.c:181` |
 | `cg_rain` | `1` | `CVAR_ARCHIVE` | `cgame/cg_nature.cpp:61` |
 | `cg_rain_drawcoverage` | `0` | `CVAR_SAVEGAME \| CVAR_RESETSTRING \| CVAR_SYSTEMINFO` | `cgame/cg_nature.cpp:63` |
+| `cg_recoilRot` | `6.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2564` |
+| `cg_recoilRotMax` | `8.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2565` |
 | `cg_reserve_tempmodels` | `200` | `CVAR_ARCHIVE` | `cgame/cg_tempmodels.cpp:242` |
-| `cg_scopeSway` | `0.25` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2410` |
-| `cg_shadowdebug` | `0` | `0` | `cgame/cg_main.c:183` |
-| `cg_shadows` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:181` |
+| `cg_scopeSway` | `0.25` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2454` |
+| `cg_shadowdebug` | `0` | `0` | `cgame/cg_main.c:184` |
+| `cg_shadows` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:182` |
 | `cg_shadows` | `1` | `0` | `renderergl1/tr_init.c:1653` |
-| `cg_shadows` | `1` | `0` | `renderergl2/tr_init.c:2012` |
-| `cg_shadowscount` | `8` | `0` | `cgame/cg_main.c:182` |
+| `cg_shadows` | `1` | `0` | `renderergl2/tr_init.c:2065` |
+| `cg_shadowscount` | `8` | `0` | `cgame/cg_main.c:183` |
 | `cg_showemitters` | `0` | `0` | `cgame/cg_commands.cpp:5499` |
-| `cg_showmiss` | `0` | `0` | `cgame/cg_main.c:157` |
+| `cg_showmiss` | `0` | `0` | `cgame/cg_main.c:158` |
 | `cg_showtempmodels` | `0` | `0` | `cgame/cg_tempmodels.cpp:232` |
-| `cg_smoothClients` | `1` | `CVAR_ARCHIVE` | `cgame/cg_main.c:176` |
-| `cg_smoothClientsTime` | `100` | `CVAR_ARCHIVE` | `cgame/cg_main.c:177` |
-| `cg_sprintLower` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3880` |
-| `cg_sprintLowerAmount` | `3.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3881` |
-| `cg_sprintLowerBack` | `1.4` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3882` |
-| `cg_sprintLowerTilt` | `1.2` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3883` |
-| `cg_stats` | `0` | `0` | `cgame/cg_main.c:158` |
-| `cg_stereosep` | `0.4` | `CVAR_ARCHIVE` | `cgame/cg_main.c:161` |
+| `cg_smoothClients` | `1` | `CVAR_ARCHIVE` | `cgame/cg_main.c:177` |
+| `cg_smoothClientsTime` | `100` | `CVAR_ARCHIVE` | `cgame/cg_main.c:178` |
+| `cg_sprintLower` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3998` |
+| `cg_sprintLowerAmount` | `3.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3999` |
+| `cg_sprintLowerBack` | `1.4` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4000` |
+| `cg_sprintLowerTilt` | `1.2` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4001` |
+| `cg_stats` | `0` | `0` | `cgame/cg_main.c:159` |
+| `cg_stereosep` | `0.4` | `CVAR_ARCHIVE` | `cgame/cg_main.c:162` |
 | `cg_te_accel_x` | `0` | `0` | `cgame/cg_testemitter.cpp:2002` |
 | `cg_te_accel_y` | `0` | `0` | `cgame/cg_testemitter.cpp:2003` |
 | `cg_te_accel_z` | `0` | `0` | `cgame/cg_testemitter.cpp:2004` |
@@ -490,89 +503,89 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `cg_te_xangles` | `0` | `0` | `cgame/cg_testemitter.cpp:2081` |
 | `cg_te_yangles` | `0` | `0` | `cgame/cg_testemitter.cpp:2082` |
 | `cg_te_zangles` | `0` | `0` | `cgame/cg_testemitter.cpp:2083` |
-| `cg_traceinfo` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:174` |
+| `cg_traceinfo` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:175` |
 | `cg_tracerGlow` | `1.8` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:455` |
 | `cg_treadmark_test` | `0` | `0` | `cgame/cg_marks.c:1015` |
-| `cg_voicechat` | `1` | `0` | `cgame/cg_main.c:238` |
-| `cg_weaponBreath` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3469` |
-| `cg_weaponFootfall` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2573` |
-| `cg_weaponLag` | `0.7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3652` |
-| `cg_weaponLagADS` | `0.35` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3655` |
-| `cg_weaponLagBody` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:2532` |
-| `cg_weaponLagBody` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3803` |
-| `cg_weaponLagDamping` | `0.62` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3649` |
-| `cg_weaponLagHeft` | `0.55` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3651` |
-| `cg_weaponLagMax` | `3.5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3653` |
-| `cg_weaponLagRefFps` | `60` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3650` |
-| `cg_weaponLagRot` | `0.6` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4769` |
-| `cg_weaponLagRotMax` | `2.5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4770` |
-| `cg_weaponLagStiffness` | `7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3654` |
-| `cheats` | `0` | `CVAR_USERINFO \| CVAR_SERVERINFO \| CVAR_LATCH` | `cgame/cg_main.c:251` |
+| `cg_voicechat` | `1` | `0` | `cgame/cg_main.c:239` |
+| `cg_weaponBreath` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3587` |
+| `cg_weaponFootfall` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2691` |
+| `cg_weaponLag` | `0.7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3770` |
+| `cg_weaponLagADS` | `0.35` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3773` |
+| `cg_weaponLagBody` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:2667` |
+| `cg_weaponLagBody` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3921` |
+| `cg_weaponLagDamping` | `0.62` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3767` |
+| `cg_weaponLagHeft` | `0.55` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3769` |
+| `cg_weaponLagMax` | `3.5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3771` |
+| `cg_weaponLagRefFps` | `60` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3768` |
+| `cg_weaponLagRot` | `0.6` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4887` |
+| `cg_weaponLagRotMax` | `2.5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4888` |
+| `cg_weaponLagStiffness` | `7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3772` |
+| `cheats` | `0` | `CVAR_USERINFO \| CVAR_SERVERINFO \| CVAR_LATCH` | `cgame/cg_main.c:252` |
 | `cheats` | `0` | `CVAR_USERINFO \| CVAR_SERVERINFO \| CVAR_LATCH` | `fgame/gamecvars.cpp:377` |
 | `cheats` | `1` | `CVAR_LATCH \| CVAR_SYSTEMINFO` | `qcommon/cvar.c:1778` |
 | `cheats` | `1` | `CVAR_LATCH \| CVAR_SYSTEMINFO` | `server/sv_init.c:1118` |
-| `cl_allowDownload` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4062` |
-| `cl_altbindings` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4112` |
-| `cl_altbindings` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4113` |
-| `cl_anglespeedkey` | `1.5` | `0` | `client/cl_main.cpp:4043` |
-| `cl_anonymous` | `0` | `CVAR_INIT\|CVAR_SYSTEMINFO` | `client/cl_main.cpp:1196` |
-| `cl_autoRecordDemo` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4034` |
-| `cl_aviFrameRate` | `25` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4035` |
-| `cl_aviMotionJpeg` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4036` |
+| `cl_allowDownload` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4175` |
+| `cl_altbindings` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4225` |
+| `cl_altbindings` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4226` |
+| `cl_anglespeedkey` | `1.5` | `0` | `client/cl_main.cpp:4156` |
+| `cl_anonymous` | `0` | `CVAR_INIT\|CVAR_SYSTEMINFO` | `client/cl_main.cpp:1306` |
+| `cl_autoRecordDemo` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4147` |
+| `cl_aviFrameRate` | `25` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4148` |
+| `cl_aviMotionJpeg` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4149` |
 | `cl_browserdetailedcolors` | `0` | `CVAR_ARCHIVE` | `client/cl_uiserverlist.cpp:151` |
-| `cl_connect_timeout` | `15` | `0` | `client/cl_main.cpp:4019` |
-| `cl_consoleKeys` | `~ ` 0x7e 0x60` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4182` |
-| `cl_conXOffset` | `0` | `0` | `client/cl_main.cpp:4115` |
-| `cl_cURLLib` | `DEFAULT_CURL_LIB` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4064` |
+| `cl_connect_timeout` | `15` | `0` | `client/cl_main.cpp:4129` |
+| `cl_consoleKeys` | `~ ` 0x7e 0x60` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4295` |
+| `cl_conXOffset` | `0` | `0` | `client/cl_main.cpp:4228` |
+| `cl_cURLLib` | `DEFAULT_CURL_LIB` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4177` |
 | `cl_debugMove` | `0` | `0` | `client/cl_input.cpp:1451` |
-| `cl_forceavidemo` | `0` | `0` | `client/cl_main.cpp:4037` |
-| `cl_forceModel` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4173` |
+| `cl_forceavidemo` | `0` | `0` | `client/cl_main.cpp:4150` |
+| `cl_forceModel` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4286` |
 | `cl_freecamAimPitch` | `1` | `CVAR_ARCHIVE` | `client/cl_input.cpp:696` |
 | `cl_freecamAutoFace` | `1` | `CVAR_ARCHIVE` | `client/cl_input.cpp:971` |
 | `cl_freecamFoldAds` | `1` | `CVAR_ARCHIVE` | `client/cl_input.cpp:745` |
 | `cl_freecamTurnRate` | `480` | `CVAR_ARCHIVE` | `client/cl_input.cpp:972` |
-| `cl_freelook` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4051` |
-| `cl_freezeDemo` | `0` | `CVAR_TEMP` | `client/cl_main.cpp:4028` |
-| `cl_greenfps` | `0` | `1` | `client/cl_ui.cpp:5503` |
-| `cl_guid` |  | `CVAR_USERINFO \| CVAR_ROM` | `client/cl_main.cpp:4256` |
-| `cl_guidServerUniq` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4166` |
-| `cl_lanForcePackets` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4164` |
-| `cl_langamerefreshstatus` | `Ready` | `0` | `client/cl_main.cpp:4158` |
-| `cl_master` | `MASTER_SERVER_NAME` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4021` |
-| `cl_maxpackets` | `30` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4045` |
-| `cl_maxPing` | `800` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4172` |
-| `cl_motd` | `0` | `0` | `client/cl_main.cpp:4016` |
-| `cl_motdString` |  | `CVAR_ROM` | `client/cl_main.cpp:4156` |
-| `cl_mouseAccel` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4050` |
-| `cl_mouseAccelOffset` | `5` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4057` |
-| `cl_mouseAccelStyle` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4054` |
-| `cl_movieaudio` | `1` | `0` | `client/cl_ui.cpp:5505` |
-| `cl_netprofile` | `0` | `CVAR_TEMP` | `client/cl_main.cpp:4024` |
-| `cl_netprofileoverlay` | `0` | `CVAR_TEMP` | `client/cl_main.cpp:4025` |
+| `cl_freelook` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4164` |
+| `cl_freezeDemo` | `0` | `CVAR_TEMP` | `client/cl_main.cpp:4138` |
+| `cl_greenfps` | `0` | `1` | `client/cl_ui.cpp:5559` |
+| `cl_guid` |  | `CVAR_USERINFO \| CVAR_ROM` | `client/cl_main.cpp:4369` |
+| `cl_guidServerUniq` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4279` |
+| `cl_lanForcePackets` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4277` |
+| `cl_langamerefreshstatus` | `Ready` | `0` | `client/cl_main.cpp:4271` |
+| `cl_master` | `MASTER_SERVER_NAME` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4131` |
+| `cl_maxpackets` | `30` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4158` |
+| `cl_maxPing` | `800` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4285` |
+| `cl_motd` | `0` | `0` | `client/cl_main.cpp:4126` |
+| `cl_motdString` |  | `CVAR_ROM` | `client/cl_main.cpp:4269` |
+| `cl_mouseAccel` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4163` |
+| `cl_mouseAccelOffset` | `5` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4170` |
+| `cl_mouseAccelStyle` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4167` |
+| `cl_movieaudio` | `1` | `0` | `client/cl_ui.cpp:5561` |
+| `cl_netprofile` | `0` | `CVAR_TEMP` | `client/cl_main.cpp:4134` |
+| `cl_netprofileoverlay` | `0` | `CVAR_TEMP` | `client/cl_main.cpp:4135` |
 | `cl_nodelta` | `0` | `0` | `client/cl_input.cpp:1450` |
-| `cl_noprint` | `0` | `0` | `client/cl_main.cpp:4014` |
-| `cl_packetdelay` | `0` | `0` | `qcommon/common.c:1925` |
-| `cl_packetdup` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4046` |
-| `cl_pitchspeed` | `140` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4042` |
-| `cl_playintro` | `1` | `0` | `client/cl_ui.cpp:5504` |
-| `cl_radar_blink_time` | `0.333` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4161` |
-| `cl_radar_icon_size` | `10` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4159` |
-| `cl_radar_speak_time` | `3` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4160` |
-| `cl_renderer` | `opengl1` | `0` | `cgame/cg_drawtools.cpp:2272` |
-| `cl_renderer` | `opengl1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/cl_main.cpp:3231` |
-| `cl_run` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4048` |
+| `cl_noprint` | `0` | `0` | `client/cl_main.cpp:4124` |
+| `cl_packetdelay` | `0` | `0` | `qcommon/common.c:1931` |
+| `cl_packetdup` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4159` |
+| `cl_pitchspeed` | `140` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4155` |
+| `cl_playintro` | `1` | `0` | `client/cl_ui.cpp:5560` |
+| `cl_radar_blink_time` | `0.333` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4274` |
+| `cl_radar_icon_size` | `10` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4272` |
+| `cl_radar_speak_time` | `3` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4273` |
+| `cl_renderer` | `opengl1` | `0` | `cgame/cg_drawtools.cpp:3348` |
+| `cl_renderer` | `opengl1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/cl_main.cpp:3341` |
+| `cl_run` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4161` |
 | `cl_running` |  | `0` | `fgame/gamecvars.cpp:700` |
-| `cl_running` | `0` | `CVAR_ROM` | `qcommon/common.c:1928` |
-| `cl_serverStatusResendTime` | `750` | `0` | `client/cl_main.cpp:4123` |
-| `cl_showmouserate` | `0` | `0` | `client/cl_main.cpp:4060` |
-| `cl_shownet` | `0` | `CVAR_TEMP` | `client/cl_main.cpp:4023` |
+| `cl_running` | `0` | `CVAR_ROM` | `qcommon/common.c:1934` |
+| `cl_serverStatusResendTime` | `750` | `0` | `client/cl_main.cpp:4236` |
+| `cl_showmouserate` | `0` | `0` | `client/cl_main.cpp:4173` |
+| `cl_shownet` | `0` | `CVAR_TEMP` | `client/cl_main.cpp:4133` |
 | `cl_shownet` | `0` | `CVAR_TEMP` | `null/null_client.c:34` |
-| `cl_showSend` | `0` | `CVAR_TEMP` | `client/cl_main.cpp:4026` |
-| `cl_showTimeDelta` | `0` | `CVAR_TEMP` | `client/cl_main.cpp:4027` |
-| `cl_timedemoLog` |  | `CVAR_ARCHIVE` | `client/cl_main.cpp:4033` |
-| `cl_timeNudge` | `0` | `CVAR_TEMP` | `client/cl_main.cpp:4022` |
-| `cl_timeout` | `200` | `0` | `client/cl_main.cpp:4018` |
-| `cl_yawspeed` | `140` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4041` |
+| `cl_showSend` | `0` | `CVAR_TEMP` | `client/cl_main.cpp:4136` |
+| `cl_showTimeDelta` | `0` | `CVAR_TEMP` | `client/cl_main.cpp:4137` |
+| `cl_timedemoLog` |  | `CVAR_ARCHIVE` | `client/cl_main.cpp:4146` |
+| `cl_timeNudge` | `0` | `CVAR_TEMP` | `client/cl_main.cpp:4132` |
+| `cl_timeout` | `200` | `0` | `client/cl_main.cpp:4128` |
+| `cl_yawspeed` | `140` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4154` |
 | `cm_debugSize` | `2` | `0` | `qcommon/cm_patch.c:1599` |
 | `cm_FCMcacheall` | `0` | `CVAR_CHEAT` | `qcommon/cm_load.c:1075` |
 | `cm_FCMdebug` | `0` | `CVAR_CHEAT` | `qcommon/cm_load.c:1076` |
@@ -580,55 +593,57 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `cm_noCurves` | `0` | `CVAR_CHEAT` | `qcommon/cm_load.c:1073` |
 | `cm_playerCurveClip` | `1` | `CVAR_ARCHIVE \| CVAR_CHEAT` | `qcommon/cm_load.c:1074` |
 | `cm_ter_usesphere` | `1` | `CVAR_CHEAT` | `qcommon/cm_load.c:1077` |
-| `com_abnormalExit` | `0` | `CVAR_ROM` | `qcommon/common.c:1937` |
-| `com_altivec` | `1` | `CVAR_ARCHIVE` | `qcommon/common.c:1909` |
-| `com_altivec` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1412` |
-| `com_ansiColor` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1931` |
-| `com_basegame` | `BASEGAME` | `CVAR_INIT` | `qcommon/common.c:1781` |
+| `com_abnormalExit` | `0` | `CVAR_ROM` | `qcommon/common.c:1943` |
+| `com_altivec` | `1` | `CVAR_ARCHIVE` | `qcommon/common.c:1915` |
+| `com_altivec` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1426` |
+| `com_ansiColor` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1937` |
+| `com_basegame` | `BASEGAME` | `CVAR_INIT` | `qcommon/common.c:1787` |
 | `com_blood` | `1` | `CVAR_ARCHIVE` | `fgame/gamecvars.cpp:344` |
-| `com_buildScript` | `0` | `0` | `qcommon/common.c:1929` |
-| `com_busyWait` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1938` |
-| `com_dropsim` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1918` |
-| `com_gamename` |  | `CVAR_SERVERINFO \| CVAR_INIT \| CVAR_USERINFO \| CVAR_SERVERINFO` | `qcommon/common.c:1952` |
-| `com_homepath` |  | `CVAR_INIT\|CVAR_PROTECTED` | `qcommon/common.c:1782` |
-| `com_legacyprotocol` | `va("%i", PROTOCOL_LEGACY_VERSION)` | `CVAR_INIT` | `qcommon/common.c:1956` |
-| `com_maxfps` | `85` | `CVAR_ARCHIVE` | `qcommon/common.c:1910` |
-| `com_maxfpsMinimized` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1936` |
-| `com_maxfpsUnfocused` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1934` |
-| `com_minimized` | `0` | `CVAR_ROM` | `qcommon/common.c:1935` |
-| `com_pipefile` |  | `CVAR_ARCHIVE\|CVAR_LATCH` | `qcommon/common.c:2018` |
-| `com_protocol` |  | `0` | `cgame/cg_main.c:798` |
+| `com_buildScript` | `0` | `0` | `qcommon/common.c:1935` |
+| `com_busyWait` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1944` |
+| `com_dropsim` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1924` |
+| `com_gamename` |  | `CVAR_SERVERINFO \| CVAR_INIT \| CVAR_USERINFO \| CVAR_SERVERINFO` | `qcommon/common.c:1958` |
+| `com_homepath` |  | `CVAR_INIT\|CVAR_PROTECTED` | `qcommon/common.c:1788` |
+| `com_legacyprotocol` | `va("%i", PROTOCOL_LEGACY_VERSION)` | `CVAR_INIT` | `qcommon/common.c:1962` |
+| `com_maxfps` | `85` | `CVAR_ARCHIVE` | `qcommon/common.c:1916` |
+| `com_maxfpsMinimized` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1942` |
+| `com_maxfpsUnfocused` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1940` |
+| `com_minimized` | `0` | `CVAR_ROM` | `qcommon/common.c:1941` |
+| `com_pipefile` |  | `CVAR_ARCHIVE\|CVAR_LATCH` | `qcommon/common.c:2024` |
+| `com_protocol` |  | `0` | `cgame/cg_main.c:823` |
 | `com_protocol` |  | `0` | `fgame/g_main.cpp:396` |
-| `com_protocol` | `va("%i", PROTOCOL_VERSION)` | `CVAR_INIT` | `qcommon/common.c:1954` |
-| `com_radar_range` | `1024` | `CVAR_ARCHIVE \| CVAR_SYSTEMINFO` | `qcommon/common.c:1930` |
-| `com_showtrace` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1917` |
+| `com_protocol` | `va("%i", PROTOCOL_VERSION)` | `CVAR_INIT` | `qcommon/common.c:1960` |
+| `com_radar_range` | `1024` | `0` | `cgame/cg_drawtools.cpp:3002` |
+| `com_radar_range` | `1024` | `0` | `cgame/cg_radar.cpp:135` |
+| `com_radar_range` | `1024` | `CVAR_ARCHIVE \| CVAR_SYSTEMINFO` | `qcommon/common.c:1936` |
+| `com_showtrace` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1923` |
 | `com_soundMegs` | `XSTRING(DEF_COMSOUNDMEGS)` | `CVAR_LATCH \| CVAR_ARCHIVE` | `client/snd_mem.c:85` |
-| `com_speeds` | `0` | `0` | `qcommon/common.c:1922` |
-| `com_standalone` | `0` | `CVAR_ROM` | `qcommon/common.c:1780` |
-| `com_target_demo` | `0` | `CVAR_INIT\|CVAR_PROTECTED` | `qcommon/common.c:1776` |
-| `com_target_extension` |  | `CVAR_ROM` | `qcommon/common.c:1779` |
-| `com_target_game` | `0` | `0` | `cgame/cg_main.c:799` |
+| `com_speeds` | `0` | `0` | `qcommon/common.c:1928` |
+| `com_standalone` | `0` | `CVAR_ROM` | `qcommon/common.c:1786` |
+| `com_target_demo` | `0` | `CVAR_INIT\|CVAR_PROTECTED` | `qcommon/common.c:1782` |
+| `com_target_extension` |  | `CVAR_ROM` | `qcommon/common.c:1785` |
+| `com_target_game` | `0` | `0` | `cgame/cg_main.c:824` |
 | `com_target_game` | `0` | `0` | `fgame/g_main.cpp:397` |
 | `com_target_game` |  | `0` | `fgame/gamecvars.cpp:524` |
-| `com_target_game` | `0` | `CVAR_INIT\|CVAR_PROTECTED` | `qcommon/common.c:1775` |
-| `com_target_shortversion` | `0.00` | `CVAR_ROM` | `qcommon/common.c:1777` |
-| `com_target_version` |  | `CVAR_ROM` | `qcommon/common.c:1778` |
-| `com_unfocused` | `0` | `CVAR_ROM` | `qcommon/common.c:1933` |
-| `com_updatecheck_enabled` | `1` | `CVAR_ARCHIVE` | `qcommon/common.c:1958` |
-| `com_updatecheck_interval` | `15` | `0` | `qcommon/common.c:1959` |
-| `con_autochat` | `1` | `CVAR_ARCHIVE` | `qcommon/common.c:1970` |
-| `config` | `omconfig.cfg` | `0` | `qcommon/common.c:1811` |
-| `convertAnim` | `0` | `0` | `qcommon/common.c:1908` |
-| `coop_actionFoley` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6942` |
+| `com_target_game` | `0` | `CVAR_INIT\|CVAR_PROTECTED` | `qcommon/common.c:1781` |
+| `com_target_shortversion` | `0.00` | `CVAR_ROM` | `qcommon/common.c:1783` |
+| `com_target_version` |  | `CVAR_ROM` | `qcommon/common.c:1784` |
+| `com_unfocused` | `0` | `CVAR_ROM` | `qcommon/common.c:1939` |
+| `com_updatecheck_enabled` | `1` | `CVAR_ARCHIVE` | `qcommon/common.c:1964` |
+| `com_updatecheck_interval` | `15` | `0` | `qcommon/common.c:1965` |
+| `con_autochat` | `1` | `CVAR_ARCHIVE` | `qcommon/common.c:1976` |
+| `config` | `omconfig.cfg` | `0` | `qcommon/common.c:1817` |
+| `convertAnim` | `0` | `0` | `qcommon/common.c:1914` |
+| `coop_actionFoley` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:7141` |
 | `coop_adsFloorCap` | `0.85` | `CVAR_ARCHIVE` | `fgame/player.cpp:5097` |
-| `coop_adsHeft` | `0.45` | `CVAR_ARCHIVE` | `cgame/cg_view.c:7210` |
+| `coop_adsHeft` | `0.45` | `CVAR_ARCHIVE` | `cgame/cg_view.c:7455` |
 | `coop_adsSpeedMult` | `1.0` | `CVAR_ARCHIVE` | `fgame/player.cpp:4865` |
 | `coop_adsSpeedMult3p` | `0.7` | `CVAR_ARCHIVE` | `fgame/player.cpp:5056` |
 | `coop_adsSpread` | `0.55` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2048` |
 | `coop_adsSpread` | `0.55` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2446` |
-| `coop_adsTrace` | `0` | `0` | `cgame/cg_view.c:3324` |
-| `coop_adsTrace` | `0` | `0` | `cgame/cg_view.c:4271` |
-| `coop_adsTrace` | `0` | `0` | `cgame/cg_view.c:7485` |
+| `coop_adsTrace` | `0` | `0` | `cgame/cg_view.c:3442` |
+| `coop_adsTrace` | `0` | `0` | `cgame/cg_view.c:4389` |
+| `coop_adsTrace` | `0` | `0` | `cgame/cg_view.c:7731` |
 | `coop_aiBehav` | `0` | `0` | `fgame/actor_cover.cpp:534` |
 | `coop_aiBehav` | `0` | `0` | `fgame/actor_turret.cpp:149` |
 | `coop_aiBehav` | `0` | `0` | `fgame/actor_turret.cpp:166` |
@@ -659,67 +674,71 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_allyFireDebug` | `0` | `0` | `fgame/weaputils.cpp:3286` |
 | `coop_autoReverb` | `1` | `CVAR_ARCHIVE` | `cgame/cg_snapshot.c:198` |
 | `coop_autoReverb` | `1` | `CVAR_ARCHIVE` | `cgame/cg_snapshot.c:280` |
-| `coop_autoReverb` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1704` |
+| `coop_autoReverb` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1708` |
 | `coop_barrelSmoke` | `0.25` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:572` |
 | `coop_blindfireOut` | `20` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2232` |
 | `coop_blindfireRaise` | `26` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:1613` |
 | `coop_blindfireRaise` | `32` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:1710` |
 | `coop_blindfireSpread` | `3.0` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2184` |
 | `coop_blindfireYaw` | `50` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2231` |
-| `coop_bloodDebug` | `0` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4371` |
+| `coop_bloodDebug` | `0` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4530` |
 | `coop_bloodDebug` | `0` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:3008` |
-| `coop_bloodPool` | `32` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2298` |
 | `coop_bloodPool` | `32` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2403` |
-| `coop_bloodSplatScale` | `1.0` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4555` |
+| `coop_bloodPool` | `32` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2508` |
+| `coop_bloodSplatScale` | `1.0` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4714` |
 | `coop_bloodSpurtUp` | `40` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:1356` |
 | `coop_bloodSpurtUp` | `40` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:1379` |
 | `coop_bloodSpurtUp` | `40` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:1402` |
-| `coop_bloodTrail` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4273` |
-| `coop_bloodTrailChance` | `0.8` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4348` |
-| `coop_bloodTrailDist` | `56` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4329` |
-| `coop_bloodTrailHealthFrac` | `0.5` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4284` |
-| `coop_bloodTrailInterval` | `0.45` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4320` |
-| `coop_bloodTrailScale` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4308` |
-| `coop_bobLock` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2600` |
-| `coop_boneDebug` | `0` | `0` | `fgame/player.cpp:15372` |
+| `coop_bloodTrail` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4432` |
+| `coop_bloodTrailChance` | `0.8` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4507` |
+| `coop_bloodTrailDist` | `56` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4488` |
+| `coop_bloodTrailHealthFrac` | `0.5` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4443` |
+| `coop_bloodTrailInterval` | `0.45` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4479` |
+| `coop_bloodTrailScale` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4467` |
+| `coop_bobLock` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2718` |
+| `coop_boneDebug` | `0` | `0` | `fgame/player.cpp:15394` |
 | `coop_botInput` | `0` | `0` | `fgame/player.cpp:5682` |
 | `coop_botRange` | `700` | `0` | `fgame/player.cpp:5651` |
 | `coop_botTargetMode` | `0` | `0` | `fgame/player.cpp:5591` |
-| `coop_brace` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15035` |
+| `coop_brace` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15057` |
 | `coop_braceArc` | `40` | `CVAR_ARCHIVE` | `client/cl_input.cpp:797` |
 | `coop_braceArcDown` | `20` | `CVAR_ARCHIVE` | `client/cl_input.cpp:799` |
 | `coop_braceArcUp` | `25` | `CVAR_ARCHIVE` | `client/cl_input.cpp:798` |
-| `coop_braceAvail` | `0` | `0` | `cgame/cg_view.c:6739` |
+| `coop_braceAvail` | `0` | `0` | `cgame/cg_view.c:6938` |
 | `coop_braceBloom` | `0.85` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:1994` |
 | `coop_braceBloom` | `0.85` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2392` |
-| `coop_braceDebug` | `0` | `0` | `fgame/player.cpp:15039` |
-| `coop_braceDelay` | `0.12` | `CVAR_ARCHIVE` | `fgame/player.cpp:15037` |
-| `coop_braceDist` | `36` | `CVAR_ARCHIVE` | `fgame/player.cpp:15036` |
-| `coop_braceFlinch` | `0.80` | `CVAR_ARCHIVE` | `fgame/player.cpp:14686` |
-| `coop_braceGrace` | `0.35` | `CVAR_ARCHIVE` | `fgame/player.cpp:15038` |
-| `coop_braceGunDown` | `1.2` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2475` |
-| `coop_braceGunFwd` | `2.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2474` |
-| `coop_braceGunReach` | `4.5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2477` |
+| `coop_braceDebug` | `0` | `0` | `fgame/player.cpp:15061` |
+| `coop_braceDelay` | `0.12` | `CVAR_ARCHIVE` | `fgame/player.cpp:15059` |
+| `coop_braceDist` | `36` | `CVAR_ARCHIVE` | `fgame/player.cpp:15058` |
+| `coop_braceFlinch` | `0.80` | `CVAR_ARCHIVE` | `fgame/player.cpp:14708` |
+| `coop_braceGrace` | `0.35` | `CVAR_ARCHIVE` | `fgame/player.cpp:15060` |
+| `coop_braceGunDown` | `1.2` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2519` |
+| `coop_braceGunFwd` | `2.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2518` |
+| `coop_braceGunReach` | `4.5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2521` |
 | `coop_braceKick` | `0.75` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2878` |
 | `coop_braceKick` | `0.75` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2972` |
-| `coop_braceLag` | `0.18` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3666` |
-| `coop_braceMounted` | `0` | `0` | `cgame/cg_view.c:4877` |
-| `coop_braceProneScale` | `0.35` | `CVAR_ARCHIVE` | `fgame/player.cpp:14537` |
-| `coop_braceRest` | `0` | `0` | `cgame/cg_view.c:2476` |
-| `coop_braceShove` | `0.9` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2282` |
-| `coop_braceSideDist` | `44` | `CVAR_ARCHIVE` | `fgame/player.cpp:15159` |
+| `coop_braceLag` | `0.18` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3784` |
+| `coop_braceMounted` | `0` | `0` | `cgame/cg_view.c:4995` |
+| `coop_braceProneScale` | `0.35` | `CVAR_ARCHIVE` | `fgame/player.cpp:14559` |
+| `coop_braceRest` | `0` | `0` | `cgame/cg_view.c:2520` |
+| `coop_braceShove` | `0.9` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2286` |
+| `coop_braceSideDist` | `44` | `CVAR_ARCHIVE` | `fgame/player.cpp:15181` |
 | `coop_braceSpread` | `0.35` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2028` |
 | `coop_braceSpread` | `0.35` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2426` |
-| `coop_braceStress` | `0.50` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6873` |
-| `coop_braceStress` | `0.50` | `CVAR_ARCHIVE` | `fgame/player.cpp:14500` |
-| `coop_braceStress` | `0.50` | `CVAR_ARCHIVE` | `fgame/player.cpp:15491` |
-| `coop_braceSway` | `0.10` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2281` |
-| `coop_braceView` | `0` | `0` | `cgame/cg_view.c:6758` |
+| `coop_braceStress` | `0.50` | `CVAR_ARCHIVE` | `cgame/cg_view.c:7072` |
+| `coop_braceStress` | `0.50` | `CVAR_ARCHIVE` | `fgame/player.cpp:14522` |
+| `coop_braceStress` | `0.50` | `CVAR_ARCHIVE` | `fgame/player.cpp:15513` |
+| `coop_braceSway` | `0.10` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2285` |
+| `coop_braceView` | `0` | `0` | `cgame/cg_view.c:6957` |
 | `coop_braceView` | `0` | `0` | `client/cl_input.cpp:795` |
 | `coop_braceYaw` | `0` | `0` | `client/cl_input.cpp:796` |
 | `coop_brassLife` | `45` | `CVAR_ARCHIVE` | `cgame/cg_tempmodels.cpp:1438` |
 | `coop_breathAccuracy` | `0.10` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2131` |
 | `coop_breathAccuracy` | `0.10` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2474` |
+| `coop_breathReArm` | `0.25` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2353` |
+| `coop_breathReArm` | `0.25` | `CVAR_ARCHIVE` | `fgame/player.cpp:17144` |
+| `coop_breathShareStamina` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2352` |
+| `coop_breathShareStamina` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:17143` |
 | `coop_build_repeatDelay` | `260` | `CVAR_ARCHIVE` | `client/cl_keys.cpp:1339` |
 | `coop_build_repeatRate` | `90` | `CVAR_ARCHIVE` | `client/cl_keys.cpp:1342` |
 | `coop_bulletCrack` | `1` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:1027` |
@@ -727,46 +746,57 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_caliber` | `1` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:2748` |
 | `coop_caliberDebug` | `0` | `0` | `fgame/weaputils.cpp:2518` |
 | `coop_camMotion` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:155` |
-| `coop_camTurnInertia` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4614` |
+| `coop_camTurnInertia` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4732` |
 | `coop_cineHud` | `0` | `0` | `cgame/cg_drawtools.cpp:1429` |
-| `coop_cineHud` | `0` | `0` | `cgame/cg_main.c:214` |
+| `coop_cineHud` | `0` | `0` | `cgame/cg_main.c:215` |
 | `coop_clipStripZones` |  | `0` | `cgame/cg_predict.c:601` |
 | `coop_clipStripZones` |  | `0` | `fgame/g_utils.cpp:2506` |
-| `coop_corpseGore` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3474` |
-| `coop_corpseGoreBudget` | `6` | `0` | `fgame/sentient.cpp:3475` |
-| `coop_corpseImpulse` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2913` |
+| `coop_compassBar` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2495` |
+| `coop_compassBarExe` |  | `0` | `cgame/cg_drawtools.cpp:2505` |
+| `coop_compassBarExe` | `1` | `CVAR_ROM` | `client/cl_ui.cpp:5522` |
+| `coop_compassBarLive` | `0` | `0` | `cgame/cg_drawtools.cpp:2503` |
+| `coop_compassBarLive` | `0` | `0` | `client/cl_ui.cpp:5521` |
+| `coop_compassBarMates` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2499` |
+| `coop_compassBarObj` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2498` |
+| `coop_compassBarOpacity` | `0.9` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2497` |
+| `coop_compassBarScale` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2496` |
+| `coop_compassProbe` | `0` | `0` | `cgame/cg_drawtools.cpp:2506` |
+| `coop_corpseGore` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3579` |
+| `coop_corpseGoreBudget` | `6` | `0` | `fgame/sentient.cpp:3580` |
+| `coop_corpseImpulse` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3018` |
 | `coop_corpseShootable` | `1` | `CVAR_ARCHIVE` | `fgame/actor.cpp:12944` |
-| `coop_coverAuto` | `1` | `0` | `fgame/player.cpp:17378` |
-| `coop_coverAutoDelay` | `0.9` | `0` | `fgame/player.cpp:17379` |
-| `coop_coverAutoShoulder` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5051` |
-| `coop_coverFaceOpen` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:17923` |
-| `coop_coverGrace` | `0.5` | `CVAR_ARCHIVE` | `fgame/player.cpp:17425` |
+| `coop_coverAuto` | `1` | `0` | `fgame/player.cpp:17441` |
+| `coop_coverAutoDelay` | `0.9` | `0` | `fgame/player.cpp:17442` |
+| `coop_coverAutoShoulder` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5169` |
+| `coop_coverFaceOpen` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:17986` |
+| `coop_coverGrace` | `0.5` | `CVAR_ARCHIVE` | `fgame/player.cpp:17488` |
 | `coop_coverLean` | `1` | `CVAR_ARCHIVE` | `cgame/cg_predict.c:657` |
 | `coop_coverLean` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:4426` |
 | `coop_coverLeanMax` | `28` | `CVAR_ARCHIVE` | `cgame/cg_predict.c:658` |
 | `coop_coverLeanMax` | `28` | `CVAR_ARCHIVE` | `fgame/player.cpp:4427` |
-| `coop_coverLeanRoll` | `0.25` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6162` |
-| `coop_coverLowDist` | `48` | `CVAR_ARCHIVE` | `fgame/player.cpp:17423` |
-| `coop_coverLowHeight` | `72` | `CVAR_ARCHIVE` | `fgame/player.cpp:17424` |
-| `coop_coverProbe` | `0` | `0` | `cgame/cg_view.c:5080` |
-| `coop_coverProbe` | `0` | `0` | `fgame/player.cpp:17739` |
-| `coop_coverProbe` | `0` | `0` | `fgame/player.cpp:17774` |
+| `coop_coverLeanRoll` | `0.25` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6280` |
+| `coop_coverLowDist` | `48` | `CVAR_ARCHIVE` | `fgame/player.cpp:17486` |
+| `coop_coverLowHeight` | `72` | `CVAR_ARCHIVE` | `fgame/player.cpp:17487` |
+| `coop_coverProbe` | `0` | `0` | `cgame/cg_view.c:5198` |
+| `coop_coverProbe` | `0` | `0` | `fgame/player.cpp:17802` |
+| `coop_coverProbe` | `0` | `0` | `fgame/player.cpp:17837` |
 | `coop_coverSide` | `0` | `0` | `cgame/cg_predict.c:659` |
-| `coop_coverSide` | `0` | `0` | `cgame/cg_view.c:5052` |
-| `coop_coverSideCommitMs` | `180` | `CVAR_ARCHIVE` | `fgame/player.cpp:17570` |
-| `coop_coverSideHeadZ` | `62` | `CVAR_ARCHIVE` | `fgame/player.cpp:17568` |
-| `coop_coverSideIntentDead` | `0.25` | `CVAR_ARCHIVE` | `fgame/player.cpp:17569` |
-| `coop_coverSideMaxDelta` | `10` | `CVAR_ARCHIVE` | `fgame/player.cpp:17571` |
-| `coop_coverSideScanMax` | `72` | `CVAR_ARCHIVE` | `fgame/player.cpp:17566` |
-| `coop_coverSideScanMin` | `16` | `CVAR_ARCHIVE` | `fgame/player.cpp:17565` |
-| `coop_coverSideScanStep` | `14` | `CVAR_ARCHIVE` | `fgame/player.cpp:17567` |
-| `coop_coverSnapBody` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:17876` |
+| `coop_coverSide` | `0` | `0` | `cgame/cg_view.c:5170` |
+| `coop_coverSideCommitMs` | `180` | `CVAR_ARCHIVE` | `fgame/player.cpp:17633` |
+| `coop_coverSideHeadZ` | `62` | `CVAR_ARCHIVE` | `fgame/player.cpp:17631` |
+| `coop_coverSideIntentDead` | `0.25` | `CVAR_ARCHIVE` | `fgame/player.cpp:17632` |
+| `coop_coverSideMaxDelta` | `10` | `CVAR_ARCHIVE` | `fgame/player.cpp:17634` |
+| `coop_coverSideScanMax` | `72` | `CVAR_ARCHIVE` | `fgame/player.cpp:17629` |
+| `coop_coverSideScanMin` | `16` | `CVAR_ARCHIVE` | `fgame/player.cpp:17628` |
+| `coop_coverSideScanStep` | `14` | `CVAR_ARCHIVE` | `fgame/player.cpp:17630` |
+| `coop_coverSnapBody` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:17939` |
 | `coop_coverView` | `0` | `0` | `cgame/cg_drawtools.cpp:1612` |
 | `coop_coverView` | `0` | `0` | `cgame/cg_view.c:760` |
 | `coop_coverViewRaise` | `16` | `CVAR_ARCHIVE` | `cgame/cg_view.c:761` |
-| `coop_coverWallDist` | `40` | `CVAR_ARCHIVE` | `fgame/player.cpp:17422` |
-| `coop_covtrace` | `0` | `0` | `cgame/cg_servercmds.c:324` |
-| `coop_covtrace` | `0` | `0` | `cgame/cg_servercmds.c:397` |
+| `coop_coverWallDist` | `40` | `CVAR_ARCHIVE` | `fgame/player.cpp:17485` |
+| `coop_covtrace` | `0` | `0` | `cgame/cg_servercmds.c:402` |
+| `coop_covtrace` | `0` | `0` | `cgame/cg_servercmds.c:475` |
+| `coop_covtrace` | `0` | `0` | `cgame/cg_servercmds_filter.cpp:112` |
 | `coop_covtrace` | `0` | `0` | `fgame/entity.cpp:3723` |
 | `coop_covtrace` | `0` | `0` | `fgame/entity.cpp:3828` |
 | `coop_covtrace` | `0` | `0` | `fgame/scriptmaster.cpp:724` |
@@ -774,56 +804,61 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_crawlDebug` | `0` | `0` | `fgame/player.cpp:5198` |
 | `coop_crouchSpread` | `0.80` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2011` |
 | `coop_crouchSpread` | `0.80` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2409` |
-| `coop_crouchWeight` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2734` |
-| `coop_cueCut` | `1` | `0` | `client/snd_dma_new.cpp:114` |
-| `coop_cueCut` | `1` | `0` | `client/snd_dma_new.cpp:334` |
-| `coop_cueCut` | `1` | `0` | `client/snd_openal_new.cpp:4298` |
-| `coop_daylight` | `1` | `0` | `cgame/cg_view.c:7008` |
-| `coop_daylight` | `1` | `0` | `fgame/player.cpp:15315` |
-| `coop_dbnoSwayMult` | `1.6` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6195` |
-| `coop_dbnoView` | `0` | `0` | `cgame/cg_drawtools.cpp:2201` |
+| `coop_crouchWeight` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2852` |
+| `coop_cueCut` | `1` | `0` | `client/snd_dma_new.cpp:119` |
+| `coop_cueCut` | `1` | `0` | `client/snd_dma_new.cpp:340` |
+| `coop_cueCut` | `1` | `0` | `client/snd_openal_new.cpp:4312` |
+| `coop_daylight` | `1` | `0` | `cgame/cg_view.c:7204` |
+| `coop_daylight` | `1` | `0` | `fgame/player.cpp:15337` |
+| `coop_dbnoSwayMult` | `1.6` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6313` |
+| `coop_dbnoView` | `0` | `0` | `cgame/cg_drawtools.cpp:2314` |
 | `coop_dbnoView` | `0` | `0` | `cgame/cg_view.c:722` |
-| `coop_dbnoView` | `0` | `0` | `cgame/cg_view.c:4357` |
-| `coop_dbnoView` | `0` | `0` | `cgame/cg_view.c:5149` |
-| `coop_dbnoView` | `0` | `0` | `cgame/cg_view.c:5535` |
-| `coop_dbnoView` | `0` | `0` | `cgame/cg_view.c:6194` |
-| `coop_dbnoView` | `0` | `0` | `cgame/cg_view.c:6300` |
-| `coop_dbnoView` | `0` | `0` | `renderergl2/tr_postprocess.c:770` |
-| `coop_dbnoView` | `0` | `0` | `renderergl2/tr_postprocess.c:1054` |
-| `coop_decap` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2914` |
-| `coop_decap` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3689` |
-| `coop_decapBudget` | `3` | `0` | `fgame/sentient.cpp:2916` |
-| `coop_decapBudget` | `3` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3691` |
-| `coop_decapChance` | `30` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2915` |
-| `coop_decapChance` | `30` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3690` |
-| `coop_decapGoreProps` | `3` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4073` |
+| `coop_dbnoView` | `0` | `0` | `cgame/cg_view.c:4475` |
+| `coop_dbnoView` | `0` | `0` | `cgame/cg_view.c:5267` |
+| `coop_dbnoView` | `0` | `0` | `cgame/cg_view.c:5653` |
+| `coop_dbnoView` | `0` | `0` | `cgame/cg_view.c:6312` |
+| `coop_dbnoView` | `0` | `0` | `cgame/cg_view.c:6418` |
+| `coop_dbnoView` | `0` | `0` | `renderergl2/tr_postprocess.c:1016` |
+| `coop_dbnoView` | `0` | `0` | `renderergl2/tr_postprocess.c:1305` |
+| `coop_decap` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3019` |
+| `coop_decap` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3794` |
+| `coop_decapBudget` | `3` | `0` | `fgame/sentient.cpp:3021` |
+| `coop_decapBudget` | `3` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3796` |
+| `coop_decapChance` | `30` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3020` |
+| `coop_decapChance` | `30` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3795` |
+| `coop_decapGoreProps` | `3` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4178` |
 | `coop_decapLife` | `0` | `CVAR_ARCHIVE` | `fgame/object.cpp:577` |
-| `coop_decapMax` | `32` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3603` |
+| `coop_decapMax` | `32` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3708` |
 | `coop_distantFire` | `1` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:625` |
 | `coop_distantFireDist` | `2500` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:626` |
 | `coop_dizzy` | `0` | `0` | `cgame/cg_view.c:678` |
 | `coop_dizzyTime` | `4.2` | `CVAR_ARCHIVE` | `cgame/cg_view.c:679` |
 | `coop_dmgFalloff` | `1` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:2950` |
 | `coop_dmgFalloffAI` | `1` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:2951` |
-| `coop_dmgIndicator` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2473` |
-| `coop_dmgIndicatorRadius` | `0.17` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2475` |
-| `coop_dmgIndicatorTime` | `1200` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2474` |
-| `coop_dmgProbe` | `0` | `0` | `fgame/player.cpp:11552` |
-| `coop_droop` | `2.6` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4819` |
-| `coop_droopMove` | `1.8` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4820` |
-| `coop_duckAmbientInDur` | `4` | `0` | `cgame/cg_view.c:6605` |
-| `coop_duckAmbientOutDur` | `12` | `0` | `cgame/cg_view.c:6606` |
-| `coop_duckAmbientTarget` | `0` | `0` | `cgame/cg_view.c:6604` |
-| `coop_duckAmbientTrigger` | `0` | `0` | `cgame/cg_view.c:6594` |
-| `coop_duckMusicInDur` | `4` | `0` | `cgame/cg_view.c:6571` |
-| `coop_duckMusicOutDur` | `12` | `0` | `cgame/cg_view.c:6572` |
-| `coop_duckMusicTarget` | `1` | `0` | `cgame/cg_view.c:6570` |
-| `coop_duckMusicTrigger` | `0` | `0` | `cgame/cg_view.c:6560` |
+| `coop_dmgIndicator` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:3549` |
+| `coop_dmgIndicatorRadius` | `0.17` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:3551` |
+| `coop_dmgIndicatorTime` | `1200` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:3550` |
+| `coop_dmgProbe` | `0` | `0` | `fgame/player.cpp:11574` |
+| `coop_droop` | `2.6` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4937` |
+| `coop_droopMove` | `1.8` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4938` |
+| `coop_duckAmbientInDur` | `4` | `0` | `cgame/cg_view.c:6803` |
+| `coop_duckAmbientOutDur` | `12` | `0` | `cgame/cg_view.c:6804` |
+| `coop_duckAmbientTarget` | `0` | `0` | `cgame/cg_view.c:6802` |
+| `coop_duckAmbientTrigger` | `0` | `0` | `cgame/cg_view.c:6790` |
+| `coop_duckMusicInDur` | `4` | `0` | `cgame/cg_view.c:6766` |
+| `coop_duckMusicOutDur` | `12` | `0` | `cgame/cg_view.c:6767` |
+| `coop_duckMusicTarget` | `1` | `0` | `cgame/cg_view.c:6765` |
+| `coop_duckMusicTrigger` | `0` | `0` | `cgame/cg_view.c:6753` |
+| `coop_duckSaveAmbient` | `-1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6702` |
+| `coop_duckSaveMusic` | `-1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6710` |
+| `coop_duckSaveVolume` | `-1` | `CVAR_ARCHIVE` | `cgame/cg_servercmds.c:357` |
+| `coop_duckSrvVolume` | `-1` | `CVAR_ARCHIVE` | `cgame/cg_servercmds.c:367` |
+| `coop_duckUnlatchDone` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6722` |
 | `coop_dynLights` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1672` |
 | `coop_dynRainGlobal` | `1` | `CVAR_ARCHIVE` | `cgame/cg_nature.cpp:256` |
 | `coop_explLight` | `420` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:1447` |
 | `coop_explosionShake` | `1` | `CVAR_ARCHIVE` | `fgame/explosion.cpp:131` |
-| `coop_eyeGib` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2872` |
+| `coop_eyeGib` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2977` |
 | `coop_fingerAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1742` |
 | `coop_fingerAxis` | `2` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1747` |
 | `coop_fingerLife` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1741` |
@@ -833,53 +868,53 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_fireDebug` | `0` | `0` | `fgame/weapon.cpp:1829` |
 | `coop_fireDebug` | `0` | `0` | `fgame/weapon.cpp:2327` |
 | `coop_fireDebug` | `0` | `0` | `fgame/weapon.cpp:3124` |
-| `coop_fovPunch` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2426` |
-| `coop_gloveIdx` | `0` | `0` | `cgame/cg_modelanim.c:2906` |
+| `coop_fovPunch` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2470` |
+| `coop_gloveIdx` | `0` | `0` | `cgame/cg_modelanim.c:3046` |
 | `coop_gmboxBoldFont` | `verdana-14` | `CVAR_ARCHIVE` | `client/cl_uigmbox.cpp:331` |
-| `coop_goreChunkBudget` | `6` | `0` | `fgame/sentient.cpp:2828` |
-| `coop_goreChunkLife` | `6` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2834` |
-| `coop_goreChunks` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2827` |
+| `coop_goreChunkBudget` | `6` | `0` | `fgame/sentient.cpp:2933` |
+| `coop_goreChunkLife` | `6` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2939` |
+| `coop_goreChunks` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2932` |
 | `coop_goreDebug` | `0` | `0` | `cgame/cg_ents.c:432` |
-| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:2217` |
-| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:2299` |
+| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:2322` |
 | `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:2404` |
-| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:2594` |
-| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:3346` |
-| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:3476` |
-| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:3692` |
-| `coop_goreDrip` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2476` |
+| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:2509` |
+| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:2699` |
+| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:3451` |
+| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:3581` |
+| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:3797` |
+| `coop_goreDrip` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2581` |
 | `coop_goreDripCorpseTime` | `12` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:321` |
-| `coop_goreDripCorpseTime` | `12` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2481` |
-| `coop_goreDripDamage` | `70` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2477` |
-| `coop_goreDripHealthFrac` | `0.35` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2479` |
-| `coop_goreDripWoundTime` | `20` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2480` |
-| `coop_goreGibSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3344` |
-| `coop_goreHeadshotFace` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2783` |
-| `coop_gorePermanent` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2648` |
-| `coop_gorePermanent` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3239` |
-| `coop_gorePool` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2338` |
-| `coop_goreSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2599` |
-| `coop_goreSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3345` |
+| `coop_goreDripCorpseTime` | `12` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2586` |
+| `coop_goreDripDamage` | `70` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2582` |
+| `coop_goreDripHealthFrac` | `0.35` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2584` |
+| `coop_goreDripWoundTime` | `20` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2585` |
+| `coop_goreGibSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3449` |
+| `coop_goreHeadshotFace` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2888` |
+| `coop_gorePermanent` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2753` |
+| `coop_gorePermanent` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3344` |
+| `coop_gorePool` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2443` |
+| `coop_goreSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2704` |
+| `coop_goreSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3450` |
 | `coop_goreSkinSnap` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1590` |
-| `coop_goreSkinSnap` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2069` |
+| `coop_goreSkinSnap` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2122` |
 | `coop_goreSkinSnapDist` | `26` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1594` |
-| `coop_goreSkinSnapDist` | `26` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2073` |
+| `coop_goreSkinSnapDist` | `26` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2126` |
 | `coop_goreSkinWoundScale` | `1.4` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1584` |
-| `coop_goreSkinWoundScale` | `1.4` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2063` |
-| `coop_goreTier1Dmg` | `35` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2602` |
-| `coop_goreTier1Frac` | `0.22` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2600` |
-| `coop_goreTier2Dmg` | `90` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2603` |
-| `coop_goreTier2Frac` | `0.50` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2601` |
-| `coop_goreWoundMax` | `8` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3056` |
-| `coop_goreWoundPivot` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3182` |
-| `coop_goreWoundProud` | `0.25` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3137` |
-| `coop_goreWounds` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3008` |
-| `coop_goreWoundScale` | `1.6` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3153` |
-| `coop_grenadeKick` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:18690` |
+| `coop_goreSkinWoundScale` | `1.4` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2116` |
+| `coop_goreTier1Dmg` | `35` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2707` |
+| `coop_goreTier1Frac` | `0.22` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2705` |
+| `coop_goreTier2Dmg` | `90` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2708` |
+| `coop_goreTier2Frac` | `0.50` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2706` |
+| `coop_goreWoundMax` | `8` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3161` |
+| `coop_goreWoundPivot` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3287` |
+| `coop_goreWoundProud` | `0.25` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3242` |
+| `coop_goreWounds` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3113` |
+| `coop_goreWoundScale` | `1.6` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3258` |
+| `coop_grenadeKick` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:18783` |
 | `coop_grenDebug` | `0` | `CVAR_ARCHIVE` | `fgame/actor.cpp:10697` |
-| `coop_gunBlood` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:7101` |
+| `coop_gunBlood` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:7346` |
 | `coop_gunFoley` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1217` |
-| `coop_gunHeft` | `0` | `0` | `cgame/cg_view.c:7260` |
+| `coop_gunHeft` | `0` | `0` | `cgame/cg_view.c:7505` |
 | `coop_gunNoneStrips` | `1` | `0` | `fgame/actor.cpp:5461` |
 | `coop_gunSub` | `1` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:1867` |
 | `coop_gunSubGap` | `0.11` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:1868` |
@@ -888,93 +923,97 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_gunTailDist` | `1400` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:969` |
 | `coop_gunVisTrace` | `0` | `CVAR_ARCHIVE` | `cgame/cg_ents.c:739` |
 | `coop_gunVisTrace` | `0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:80` |
-| `coop_gunVisTrace` | `0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:2003` |
-| `coop_gunVisTrace` | `0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:3143` |
-| `coop_headLook` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:15578` |
-| `coop_headLookDebug` | `0` | `0` | `fgame/player.cpp:15666` |
-| `coop_headLookRange` | `1400` | `CVAR_ARCHIVE` | `fgame/player.cpp:15579` |
-| `coop_headshotFx` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2214` |
-| `coop_headshotFxSplatDist` | `140` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2215` |
-| `coop_headshotFxSplatSize` | `16` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2216` |
-| `coop_heatFade` | `1.3` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5718` |
+| `coop_gunVisTrace` | `0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:2138` |
+| `coop_gunVisTrace` | `0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:3283` |
+| `coop_headLook` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:15600` |
+| `coop_headLookDebug` | `0` | `0` | `fgame/player.cpp:15688` |
+| `coop_headLookRange` | `1400` | `CVAR_ARCHIVE` | `fgame/player.cpp:15601` |
+| `coop_headshotFx` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2319` |
+| `coop_headshotFxSplatDist` | `140` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2320` |
+| `coop_headshotFxSplatSize` | `16` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2321` |
+| `coop_heatFade` | `1.3` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5836` |
 | `coop_heatGun` | `0.18` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:589` |
 | `coop_heatGunRadius` | `350` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:592` |
 | `coop_heatRadius` | `700` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:1433` |
 | `coop_heftHearing` | `0.8` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2631` |
-| `coop_heftStamina` | `0.6` | `CVAR_ARCHIVE` | `fgame/player.cpp:17017` |
+| `coop_heftStamina` | `0.6` | `CVAR_ARCHIVE` | `fgame/player.cpp:17039` |
 | `coop_heftSuppress` | `0.6` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:2682` |
-| `coop_heftTorsoLag` | `0.9` | `CVAR_ARCHIVE` | `fgame/player.cpp:15707` |
-| `coop_hitBloodFade` | `2.2` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5700` |
-| `coop_hitFlinch` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3583` |
-| `coop_hitMarker` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2599` |
-| `coop_hitSeverity` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5634` |
-| `coop_hsCue` | `0` | `0` | `cgame/cg_view.c:6982` |
+| `coop_heftTorsoLag` | `0.9` | `CVAR_ARCHIVE` | `fgame/player.cpp:15729` |
+| `coop_hitBloodFade` | `2.2` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5818` |
+| `coop_hitFlinch` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3701` |
+| `coop_hitMarker` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:3675` |
+| `coop_hitSeverity` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5752` |
+| `coop_hsCue` | `0` | `0` | `cgame/cg_view.c:7181` |
 | `coop_hstest` | `0` | `0` | `fgame/weaputils.cpp:2160` |
-| `coop_hudFade` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2134` |
-| `coop_hudFadeDebug` | `0` | `0` | `cgame/cg_drawtools.cpp:2112` |
-| `coop_hudFadeTime` | `5` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2135` |
-| `coop_hudPoke` | `0` | `0` | `cgame/cg_drawtools.cpp:2160` |
+| `coop_hudFade` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2247` |
+| `coop_hudFadeDebug` | `0` | `0` | `cgame/cg_drawtools.cpp:2225` |
+| `coop_hudFadeTime` | `5` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2248` |
+| `coop_hudPoke` | `0` | `0` | `cgame/cg_drawtools.cpp:2273` |
 | `coop_idleBolt` | `0` | `CVAR_ARCHIVE` | `cgame/cg_viewmodelanim.c:641` |
-| `coop_idleInspect` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2794` |
+| `coop_idleInspect` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2912` |
 | `coop_impactSnap` | `1` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:936` |
 | `coop_impactSnapDist` | `200` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:937` |
-| `coop_injuryShake` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3436` |
-| `coop_injuryShakeAds` | `1.15` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3437` |
-| `coop_injuryStart` | `0.5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6177` |
-| `coop_injurySway` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6176` |
-| `coop_inspectBodyTurn` | `12` | `0` | `cgame/cg_view.c:3201` |
-| `coop_inspectBothSides` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3079` |
-| `coop_inspectCentre` | `6.5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3014` |
-| `coop_inspectGrip` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3198` |
-| `coop_inspectGripGain` | `0.6` | `0` | `cgame/cg_view.c:3204` |
-| `coop_inspectMinDist` | `7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2971` |
-| `coop_inspectPull` | `5.5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2945` |
-| `coop_inspectRaise` | `5.5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2923` |
-| `coop_inspectTime` | `3600` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2866` |
-| `coop_inspectTurn` | `1.25` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3045` |
-| `coop_kickHeft` | `0.55` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2300` |
+| `coop_injuryShake` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3554` |
+| `coop_injuryShakeAds` | `1.15` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3555` |
+| `coop_injuryStart` | `0.5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6295` |
+| `coop_injurySway` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6294` |
+| `coop_inspectBodyTurn` | `12` | `0` | `cgame/cg_view.c:3319` |
+| `coop_inspectBothSides` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3197` |
+| `coop_inspectCentre` | `6.5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3132` |
+| `coop_inspectGrip` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3316` |
+| `coop_inspectGripGain` | `0.6` | `0` | `cgame/cg_view.c:3322` |
+| `coop_inspectMinDist` | `7` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3089` |
+| `coop_inspectPull` | `5.5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3063` |
+| `coop_inspectRaise` | `5.5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3041` |
+| `coop_inspectTime` | `3600` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2984` |
+| `coop_inspectTurn` | `1.25` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3163` |
+| `coop_isCoopSession` | `0` | `0` | `cgame/cg_drawtools.cpp:2504` |
+| `coop_kickHeft` | `0.55` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2304` |
 | `coop_ldDebug` | `0` | `0` | `fgame/actor.cpp:8239` |
-| `coop_lensBlood` | `0` | `0` | `cgame/cg_view.c:5947` |
-| `coop_lensSplash` | `0` | `0` | `cgame/cg_view.c:5357` |
+| `coop_lensBlood` | `0` | `0` | `cgame/cg_view.c:6065` |
+| `coop_lensSplash` | `0` | `0` | `cgame/cg_view.c:5475` |
 | `coop_limp` | `1` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:317` |
-| `coop_limp` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:13929` |
+| `coop_limp` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:13951` |
 | `coop_limpMinFrac` | `0.35` | `CVAR_ARCHIVE` | `fgame/player.cpp:5017` |
 | `coop_limpSpeedMult` | `0.60` | `CVAR_ARCHIVE` | `fgame/player.cpp:4999` |
 | `coop_limpSpeedMult` | `0.60` | `CVAR_ARCHIVE` | `fgame/player.cpp:5125` |
 | `coop_limpStart` | `0.30` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:318` |
-| `coop_limpStart` | `0.30` | `CVAR_ARCHIVE` | `fgame/player.cpp:13930` |
-| `coop_limpStart` | `0.30` | `CVAR_ARCHIVE` | `fgame/player.cpp:13991` |
-| `coop_limpView` | `0` | `0` | `cgame/cg_view.c:1996` |
+| `coop_limpStart` | `0.30` | `CVAR_ARCHIVE` | `fgame/player.cpp:13952` |
+| `coop_limpStart` | `0.30` | `CVAR_ARCHIVE` | `fgame/player.cpp:14013` |
+| `coop_limpView` | `0` | `0` | `cgame/cg_view.c:2000` |
 | `coop_lobbyCamFov` | `70` | `0` | `cgame/cg_consolecmds.c:511` |
 | `coop_lobbyCamMode` | `0` | `CVAR_ARCHIVE` | `cgame/cg_consolecmds.c:484` |
 | `coop_lobbyCamTune` | `0` | `CVAR_ARCHIVE` | `cgame/cg_consolecmds.c:481` |
 | `coop_lobbyCamX` | `-5347` | `0` | `cgame/cg_consolecmds.c:508` |
 | `coop_lobbyCamY` | `-100` | `0` | `cgame/cg_consolecmds.c:509` |
 | `coop_lobbyCamZ` | `-205` | `0` | `cgame/cg_consolecmds.c:510` |
-| `coop_lobbyCursorSens` | `0.03` | `0` | `fgame/player.cpp:18162` |
+| `coop_lobbyCursorSens` | `0.03` | `0` | `fgame/player.cpp:18225` |
 | `coop_lobbyLookX` | `-5347` | `0` | `cgame/cg_consolecmds.c:513` |
 | `coop_lobbyLookY` | `-427` | `0` | `cgame/cg_consolecmds.c:514` |
 | `coop_lobbyLookZ` | `-245` | `0` | `cgame/cg_consolecmds.c:515` |
 | `coop_loGlove` | `0` | `0` | `client/cl_invrender.cpp:319` |
 | `coop_loHelmOnChar` | `1` | `0` | `client/cl_invrender.cpp:286` |
 | `coop_loSpinSens` | `0.6` | `CVAR_ARCHIVE` | `client/cl_uistd.cpp:594` |
-| `coop_lowAmmoTell` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2810` |
+| `coop_lowAmmoTell` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2928` |
 | `coop_loWpnOnChar` | `1` | `0` | `client/cl_invrender.cpp:288` |
 | `coop_magEject` | `1` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:343` |
-| `coop_magEject` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:5516` |
+| `coop_magEject` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:5675` |
 | `coop_magEjectBudget` | `4` | `0` | `fgame/g_main.cpp:346` |
-| `coop_magEjectBudget` | `4` | `0` | `fgame/sentient.cpp:5518` |
+| `coop_magEjectBudget` | `4` | `0` | `fgame/sentient.cpp:5677` |
 | `coop_magEjectDebug` | `0` | `0` | `fgame/g_main.cpp:348` |
-| `coop_magEjectDebug` | `0` | `0` | `fgame/sentient.cpp:5520` |
+| `coop_magEjectDebug` | `0` | `0` | `fgame/sentient.cpp:5679` |
 | `coop_magEjectLife` | `20` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:344` |
 | `coop_magEjectLife` | `20` | `CVAR_ARCHIVE` | `fgame/object.cpp:629` |
 | `coop_magEjectMax` | `48` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:345` |
-| `coop_magEjectMax` | `48` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:5517` |
+| `coop_magEjectMax` | `48` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:5676` |
 | `coop_magEjectMinGap` | `0.35` | `0` | `fgame/g_main.cpp:347` |
-| `coop_magEjectMinGap` | `0.35` | `0` | `fgame/sentient.cpp:5519` |
+| `coop_magEjectMinGap` | `0.35` | `0` | `fgame/sentient.cpp:5678` |
+| `coop_magLandSurface` | `1` | `CVAR_ARCHIVE` | `fgame/object.cpp:726` |
+| `coop_magLandSurface` | `1` | `CVAR_ARCHIVE` | `fgame/object.cpp:758` |
+| `coop_mapGrade` |  | `0` | `cgame/cg_view.c:7272` |
 | `coop_maptest` | `0` | `0` | `fgame/g_utils.cpp:2119` |
 | `coop_maptest` | `0` | `0` | `fgame/scriptthread.cpp:3662` |
-| `coop_medkitView` | `0` | `0` | `cgame/cg_view.c:2659` |
+| `coop_medkitView` | `0` | `0` | `cgame/cg_view.c:2777` |
 | `coop_mg42AiAimOff` | `100` | `0` | `fgame/weapturret.cpp:1451` |
 | `coop_mg42AiBurst` | `1` | `0` | `fgame/weapturret.cpp:1471` |
 | `coop_mg42AiDamage` | `40` | `0` | `fgame/weapturret.cpp:1402` |
@@ -984,17 +1023,17 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_mgStay` | `1` | `0` | `fgame/actor_machinegunner.cpp:283` |
 | `coop_moveSpread` | `1.0` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2072` |
 | `coop_moveSpreadSettle` | `0.6` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2073` |
-| `coop_muffle` | `0` | `0` | `client/snd_dma_new.cpp:115` |
-| `coop_muffle` | `0` | `0` | `client/snd_dma_new.cpp:345` |
-| `coop_muffle` | `0` | `0` | `client/snd_openal_new.cpp:2976` |
+| `coop_muffle` | `0` | `0` | `client/snd_dma_new.cpp:120` |
+| `coop_muffle` | `0` | `0` | `client/snd_dma_new.cpp:351` |
+| `coop_muffle` | `0` | `0` | `client/snd_openal_new.cpp:2988` |
 | `coop_muzzleLight` | `160` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:610` |
-| `coop_nadeThrowMin` | `420` | `CVAR_ARCHIVE` | `fgame/player.cpp:15747` |
-| `coop_nadeThrowSpeed` | `900` | `CVAR_ARCHIVE` | `fgame/player.cpp:15746` |
-| `coop_nadeThrowUp` | `9` | `CVAR_ARCHIVE` | `fgame/player.cpp:15748` |
-| `coop_navRecSpacing` | `96` | `CVAR_ARCHIVE` | `fgame/player.cpp:17351` |
+| `coop_nadeThrowMin` | `420` | `CVAR_ARCHIVE` | `fgame/player.cpp:15769` |
+| `coop_nadeThrowSpeed` | `900` | `CVAR_ARCHIVE` | `fgame/player.cpp:15768` |
+| `coop_nadeThrowUp` | `9` | `CVAR_ARCHIVE` | `fgame/player.cpp:15770` |
+| `coop_navRecSpacing` | `96` | `CVAR_ARCHIVE` | `fgame/player.cpp:17414` |
 | `coop_noPlayerClip` | `0` | `0` | `fgame/player.cpp:4161` |
 | `coop_objKey` |  | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_keys.cpp:1035` |
-| `coop_objOpen` | `0` | `0` | `cgame/cg_drawtools.cpp:2222` |
+| `coop_objOpen` | `0` | `0` | `cgame/cg_drawtools.cpp:2355` |
 | `coop_painTierHi` | `15` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:332` |
 | `coop_painTierHi` | `15` | `CVAR_ARCHIVE` | `fgame/player.cpp:3885` |
 | `coop_painTierLo` | `5` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:331` |
@@ -1002,48 +1041,48 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_painTiers` | `1` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:330` |
 | `coop_painTiers` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:3883` |
 | `coop_pickupOneMag` | `1` | `0` | `fgame/weapon.cpp:3955` |
-| `coop_pin1` |  | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_main.cpp:4085` |
-| `coop_pin2` |  | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_main.cpp:4086` |
-| `coop_pin3` |  | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_main.cpp:4087` |
-| `coop_pin4` |  | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_main.cpp:4088` |
-| `coop_pin5` |  | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_main.cpp:4089` |
-| `coop_pinCount` | `va("%d/%d", initCount, COOP_PIN_MAX)` | `0` | `client/cl_main.cpp:4100` |
-| `coop_pinResult` |  | `0` | `client/cl_main.cpp:4102` |
-| `coop_playerBloodTrail` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:18673` |
+| `coop_pin1` |  | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_main.cpp:4198` |
+| `coop_pin2` |  | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_main.cpp:4199` |
+| `coop_pin3` |  | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_main.cpp:4200` |
+| `coop_pin4` |  | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_main.cpp:4201` |
+| `coop_pin5` |  | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_main.cpp:4202` |
+| `coop_pinCount` | `va("%d/%d", initCount, COOP_PIN_MAX)` | `0` | `client/cl_main.cpp:4213` |
+| `coop_pinResult` |  | `0` | `client/cl_main.cpp:4215` |
+| `coop_playerBloodTrail` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:18766` |
 | `coop_playerRifleSpread` | `0.5` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:2764` |
-| `coop_prone` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:14016` |
-| `coop_proneAdsTurnRate` | `25` | `CVAR_ARCHIVE` | `fgame/player.cpp:14919` |
+| `coop_prone` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:14038` |
+| `coop_proneAdsTurnRate` | `25` | `CVAR_ARCHIVE` | `fgame/player.cpp:14941` |
 | `coop_proneAimGate` | `45` | `CVAR_ARCHIVE` | `fgame/player.cpp:5789` |
-| `coop_proneAimGate` | `45` | `CVAR_ARCHIVE` | `fgame/player.cpp:14897` |
-| `coop_proneAimLead` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15458` |
-| `coop_proneDebug` | `0` | `0` | `fgame/player.cpp:14051` |
-| `coop_proneDebug` | `0` | `0` | `fgame/player.cpp:14130` |
-| `coop_proneDebug` | `0` | `0` | `fgame/player.cpp:14213` |
-| `coop_proneDebug` | `0` | `0` | `fgame/player.cpp:14351` |
-| `coop_proneHold` | `0.5` | `CVAR_ARCHIVE` | `fgame/player.cpp:14019` |
-| `coop_proneHold` | `0.35` | `CVAR_ARCHIVE` | `fgame/player.cpp:16892` |
+| `coop_proneAimGate` | `45` | `CVAR_ARCHIVE` | `fgame/player.cpp:14919` |
+| `coop_proneAimLead` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15480` |
+| `coop_proneDebug` | `0` | `0` | `fgame/player.cpp:14073` |
+| `coop_proneDebug` | `0` | `0` | `fgame/player.cpp:14152` |
+| `coop_proneDebug` | `0` | `0` | `fgame/player.cpp:14235` |
+| `coop_proneDebug` | `0` | `0` | `fgame/player.cpp:14373` |
+| `coop_proneHold` | `0.5` | `CVAR_ARCHIVE` | `fgame/player.cpp:14041` |
+| `coop_proneHold` | `0.35` | `CVAR_ARCHIVE` | `fgame/player.cpp:16914` |
 | `coop_proneMoveNoFire` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:5762` |
 | `coop_proneReloadFlat` | `1` | `CVAR_ARCHIVE` | `fgame/player_animation.cpp:450` |
-| `coop_proneRoll` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:14103` |
+| `coop_proneRoll` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:14125` |
 | `coop_proneRollBank` | `14` | `CVAR_ARCHIVE` | `cgame/cg_view.c:274` |
 | `coop_proneRollBankAds` | `0.35` | `CVAR_ARCHIVE` | `cgame/cg_view.c:275` |
 | `coop_proneRollBankPeak` | `0.4` | `CVAR_ARCHIVE` | `cgame/cg_view.c:276` |
 | `coop_proneRollDebug` | `0` | `0` | `cgame/cg_view.c:398` |
-| `coop_proneRollImpulse` | `170` | `CVAR_ARCHIVE` | `fgame/player.cpp:14104` |
+| `coop_proneRollImpulse` | `170` | `CVAR_ARCHIVE` | `fgame/player.cpp:14126` |
 | `coop_proneSpeed` | `0.42` | `CVAR_ARCHIVE` | `fgame/player.cpp:4892` |
 | `coop_proneSpeed` | `0.42` | `CVAR_ARCHIVE` | `fgame/player.cpp:5025` |
 | `coop_proneSpeed` | `0.42` | `CVAR_ARCHIVE` | `fgame/player.cpp:5112` |
-| `coop_proneSpine` | `-5` | `CVAR_ARCHIVE` | `fgame/player.cpp:15370` |
-| `coop_proneSpineAction` | `35` | `CVAR_ARCHIVE` | `fgame/player.cpp:15373` |
-| `coop_proneSpineSplit` | `0.6` | `CVAR_ARCHIVE` | `fgame/player.cpp:15371` |
+| `coop_proneSpine` | `-5` | `CVAR_ARCHIVE` | `fgame/player.cpp:15392` |
+| `coop_proneSpineAction` | `35` | `CVAR_ARCHIVE` | `fgame/player.cpp:15395` |
+| `coop_proneSpineSplit` | `0.6` | `CVAR_ARCHIVE` | `fgame/player.cpp:15393` |
 | `coop_proneSpread` | `0.35` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2010` |
 | `coop_proneSpread` | `0.35` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2408` |
-| `coop_proneStillTurnRate` | `55` | `CVAR_ARCHIVE` | `fgame/player.cpp:14918` |
-| `coop_proneTurnRate` | `120` | `CVAR_ARCHIVE` | `fgame/player.cpp:14720` |
-| `coop_qdraw` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:16024` |
-| `coop_qdrawClasses` | `14` | `CVAR_ARCHIVE` | `fgame/player.cpp:16030` |
-| `coop_qdrawCooldown` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:16034` |
-| `coop_qdrawDelay` | `0.25` | `CVAR_ARCHIVE` | `fgame/player.cpp:16025` |
+| `coop_proneStillTurnRate` | `55` | `CVAR_ARCHIVE` | `fgame/player.cpp:14940` |
+| `coop_proneTurnRate` | `120` | `CVAR_ARCHIVE` | `fgame/player.cpp:14742` |
+| `coop_qdraw` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:16046` |
+| `coop_qdrawClasses` | `14` | `CVAR_ARCHIVE` | `fgame/player.cpp:16052` |
+| `coop_qdrawCooldown` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:16056` |
+| `coop_qdrawDelay` | `0.25` | `CVAR_ARCHIVE` | `fgame/player.cpp:16047` |
 | `coop_qdrawFoley` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1338` |
 | `coop_qdrawFoleyGap` | `0.08` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1339` |
 | `coop_qdrawHoldAng` | `14 55 17` | `0` | `cgame/cg_modelanim.c:1485` |
@@ -1052,23 +1091,23 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_qdrawHoldFromOfs` | `14 2 -13` | `0` | `cgame/cg_modelanim.c:1486` |
 | `coop_qdrawHoldMs` | `320` | `0` | `cgame/cg_modelanim.c:1488` |
 | `coop_qdrawHoldOfs` | `16 10 -7` | `0` | `cgame/cg_modelanim.c:1476` |
-| `coop_qdrawInterrupt` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:16038` |
-| `coop_qdrawMaxHold` | `12` | `CVAR_ARCHIVE` | `fgame/player.cpp:16028` |
-| `coop_qdrawMinHold` | `0.60` | `CVAR_ARCHIVE` | `fgame/player.cpp:16027` |
+| `coop_qdrawInterrupt` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:16060` |
+| `coop_qdrawMaxHold` | `12` | `CVAR_ARCHIVE` | `fgame/player.cpp:16050` |
+| `coop_qdrawMinHold` | `0.60` | `CVAR_ARCHIVE` | `fgame/player.cpp:16049` |
 | `coop_qdrawOn` | `0` | `0` | `cgame/cg_modelanim.c:1439` |
-| `coop_qdrawOn` | `0` | `0` | `cgame/cg_modelanim.c:2382` |
+| `coop_qdrawOn` | `0` | `0` | `cgame/cg_modelanim.c:2517` |
 | `coop_qdrawOn` | `0` | `0` | `cgame/cg_view.c:1337` |
-| `coop_qdrawParkAng` | `0 0 -25` | `CVAR_ARCHIVE` | `fgame/player.cpp:16033` |
-| `coop_qdrawParkOfs` | `-6 5 -4` | `CVAR_ARCHIVE` | `fgame/player.cpp:16032` |
-| `coop_qdrawReturn` | `0.40` | `CVAR_ARCHIVE` | `fgame/player.cpp:16026` |
-| `coop_qdrawShowPrimary` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:16031` |
-| `coop_qdrawSticky` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:16029` |
+| `coop_qdrawParkAng` | `0 0 -25` | `CVAR_ARCHIVE` | `fgame/player.cpp:16055` |
+| `coop_qdrawParkOfs` | `-6 5 -4` | `CVAR_ARCHIVE` | `fgame/player.cpp:16054` |
+| `coop_qdrawReturn` | `0.40` | `CVAR_ARCHIVE` | `fgame/player.cpp:16048` |
+| `coop_qdrawShowPrimary` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:16053` |
+| `coop_qdrawSticky` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:16051` |
 | `coop_qdrawVDbg` | `0` | `0` | `cgame/cg_modelanim.c:1490` |
-| `coop_quickNade` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15800` |
-| `coop_quickNade` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15918` |
-| `coop_quickNadeCook` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:15857` |
-| `coop_quickNadeInstant` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15838` |
-| `coop_quickNadeReturn` | `0.9` | `CVAR_ARCHIVE` | `fgame/player.cpp:15898` |
+| `coop_quickNade` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15822` |
+| `coop_quickNade` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15940` |
+| `coop_quickNadeCook` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:15879` |
+| `coop_quickNadeInstant` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15860` |
+| `coop_quickNadeReturn` | `0.9` | `CVAR_ARCHIVE` | `fgame/player.cpp:15920` |
 | `coop_ragdoll` | `1` | `CVAR_ARCHIVE` | `cgame/cg_ragdoll.c:366` |
 | `coop_ragdollAnchor` | `0.10` | `CVAR_TEMP` | `cgame/cg_ragdoll.c:397` |
 | `coop_ragdollBuriedMax` | `5` | `CVAR_TEMP` | `cgame/cg_ragdoll.c:410` |
@@ -1092,21 +1131,21 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_ragdollVelCap` | `8` | `CVAR_TEMP` | `cgame/cg_ragdoll.c:378` |
 | `coop_rainSkyStrict` | `1` | `CVAR_ARCHIVE` | `cgame/cg_nature.cpp:297` |
 | `coop_rainSkyStrict` | `1` | `CVAR_ARCHIVE` | `cgame/cg_nature.cpp:369` |
-| `coop_readyUp` | `0.35` | `CVAR_ARCHIVE` | `fgame/player.cpp:17031` |
+| `coop_readyUp` | `0.35` | `CVAR_ARCHIVE` | `fgame/player.cpp:17053` |
 | `coop_recoilPerGun` | `1` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2845` |
-| `coop_recoilRecover` | `0.85` | `CVAR_ARCHIVE` | `fgame/player.cpp:14635` |
+| `coop_recoilRecover` | `0.85` | `CVAR_ARCHIVE` | `fgame/player.cpp:14657` |
 | `coop_recoilScale` | `1.0` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2846` |
 | `coop_reloadDebug` | `0` | `0` | `cgame/cg_view.c:449` |
-| `coop_reloadHook` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4168` |
-| `coop_reloadHook` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6403` |
+| `coop_reloadHook` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4286` |
+| `coop_reloadHook` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6521` |
 | `coop_reloadRetime` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:447` |
 | `coop_reloadSway` | `1.6` | `CVAR_ARCHIVE` | `cgame/cg_view.c:445` |
 | `coop_reloadSwayAds` | `0.15` | `CVAR_ARCHIVE` | `cgame/cg_view.c:657` |
 | `coop_reloadSwayMax` | `3.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:448` |
 | `coop_reloadWeight` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:446` |
-| `coop_reportResult` |  | `0` | `client/cl_main.cpp:4073` |
-| `coop_reportText` |  | `0` | `client/cl_main.cpp:4072` |
-| `coop_reportWebhook` |  | `CVAR_ARCHIVE` | `client/cl_main.cpp:4071` |
+| `coop_reportResult` |  | `0` | `client/cl_main.cpp:4186` |
+| `coop_reportText` |  | `0` | `client/cl_main.cpp:4185` |
+| `coop_reportWebhook` |  | `CVAR_ARCHIVE` | `client/cl_main.cpp:4184` |
 | `coop_ricochet` | `1` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:93` |
 | `coop_shadowAuto` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:783` |
 | `coop_shadowAz` | `45` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:778` |
@@ -1114,76 +1153,83 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_shadowEl` | `45` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:779` |
 | `coop_shadowLen` | `1.5` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:780` |
 | `coop_shadowStretchMax` | `3.0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:821` |
-| `coop_shake3p` | `1.7` | `CVAR_ARCHIVE` | `fgame/player.cpp:15487` |
-| `coop_shellPan` | `0` | `0` | `client/snd_openal_new.cpp:4039` |
+| `coop_shake3p` | `1.7` | `CVAR_ARCHIVE` | `fgame/player.cpp:15509` |
+| `coop_shellPan` | `0` | `0` | `client/snd_openal_new.cpp:4053` |
 | `coop_shotDist` | `1` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:2331` |
-| `coop_sidearmSwap` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:1866` |
-| `coop_sidearmSwapChance` | `0.6` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:1867` |
-| `coop_slide` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:16874` |
-| `coop_slideCooldown` | `1.2` | `CVAR_ARCHIVE` | `fgame/player.cpp:16876` |
+| `coop_sidearmSwap` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:1971` |
+| `coop_sidearmSwapChance` | `0.6` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:1972` |
+| `coop_slide` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:16896` |
+| `coop_slideCooldown` | `1.2` | `CVAR_ARCHIVE` | `fgame/player.cpp:16898` |
 | `coop_slideSpeed` | `1.9` | `CVAR_ARCHIVE` | `fgame/player.cpp:4917` |
-| `coop_slideStamina` | `0.55` | `CVAR_ARCHIVE` | `fgame/player.cpp:16877` |
+| `coop_slideStamina` | `0.55` | `CVAR_ARCHIVE` | `fgame/player.cpp:16899` |
 | `coop_slideTime` | `0.75` | `CVAR_ARCHIVE` | `fgame/player.cpp:4918` |
-| `coop_slideTime` | `0.75` | `CVAR_ARCHIVE` | `fgame/player.cpp:16875` |
-| `coop_slideToProne` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:16891` |
+| `coop_slideTime` | `0.75` | `CVAR_ARCHIVE` | `fgame/player.cpp:16897` |
+| `coop_slideToProne` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:16913` |
 | `coop_smgPenetrate` | `1` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:2726` |
 | `coop_smgPenetrateChance` | `0.1` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:2728` |
 | `coop_smgPenetratePower` | `8` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:2729` |
 | `coop_smokeWhip` | `1` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:543` |
 | `coop_smokeWhipImpact` | `0.12` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:551` |
 | `coop_smokeWhipMuzzle` | `0.15` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:544` |
-| `coop_sprint` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3877` |
+| `coop_sprint` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3995` |
 | `coop_sprint` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:4820` |
 | `coop_sprint` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:4850` |
 | `coop_sprint` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:5810` |
-| `coop_sprint` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:16959` |
+| `coop_sprint` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:16981` |
 | `coop_sprint` | `1` | `CVAR_ARCHIVE` | `fgame/player_conditionals.cpp:1259` |
-| `coop_sprintBreath` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:17071` |
-| `coop_sprintBreathTime` | `5` | `CVAR_ARCHIVE` | `fgame/player.cpp:17072` |
-| `coop_sprintGear` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:17052` |
+| `coop_sprintBreath` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:17093` |
+| `coop_sprintBreathTime` | `5` | `CVAR_ARCHIVE` | `fgame/player.cpp:17094` |
+| `coop_sprintGear` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:17074` |
 | `coop_sprintMult` | `1.05` | `CVAR_ARCHIVE` | `fgame/player.cpp:4839` |
 | `coop_sprintMult` | `1.05` | `CVAR_ARCHIVE` | `fgame/player.cpp:5095` |
 | `coop_sprintNoFire` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:5748` |
-| `coop_sprintPump` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4013` |
-| `coop_sprintRegen` | `0.6` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3879` |
-| `coop_sprintRegen` | `0.6` | `CVAR_ARCHIVE` | `fgame/player.cpp:16961` |
-| `coop_sprintStamina` | `5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3878` |
-| `coop_sprintStamina` | `5` | `CVAR_ARCHIVE` | `fgame/player.cpp:14447` |
-| `coop_sprintStamina` | `5` | `CVAR_ARCHIVE` | `fgame/player.cpp:16960` |
-| `coop_sprintToFire` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2795` |
-| `coop_srGenSeen` |  | `CVAR_ARCHIVE` | `client/cl_main.cpp:3737` |
-| `coop_staminaJump` | `1.4` | `CVAR_ARCHIVE` | `fgame/player.cpp:16982` |
-| `coop_staminaRegenDelay` | `1.2` | `CVAR_ARCHIVE` | `fgame/player.cpp:14556` |
-| `coop_staminaVault` | `2.5` | `CVAR_ARCHIVE` | `fgame/player.cpp:18842` |
-| `coop_stress` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:14445` |
-| `coop_stressBreathAds` | `0.85` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3472` |
-| `coop_stressDebug` | `0` | `0` | `fgame/player.cpp:14449` |
+| `coop_sprintPump` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4131` |
+| `coop_sprintRegen` | `0.6` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3997` |
+| `coop_sprintRegen` | `0.6` | `CVAR_ARCHIVE` | `fgame/player.cpp:16983` |
+| `coop_sprintStamina` | `5` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3996` |
+| `coop_sprintStamina` | `5` | `CVAR_ARCHIVE` | `fgame/player.cpp:9149` |
+| `coop_sprintStamina` | `5` | `CVAR_ARCHIVE` | `fgame/player.cpp:14469` |
+| `coop_sprintStamina` | `5` | `CVAR_ARCHIVE` | `fgame/player.cpp:16982` |
+| `coop_sprintStamina` | `5` | `CVAR_ARCHIVE` | `fgame/player.cpp:17145` |
+| `coop_sprintToFire` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2913` |
+| `coop_srGenSeen` |  | `CVAR_ARCHIVE` | `client/cl_main.cpp:3847` |
+| `coop_staminaArc` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:1780` |
+| `coop_staminaArcH` | `60` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:1784` |
+| `coop_staminaArcW` | `256` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:1783` |
+| `coop_staminaArcX` | `32` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:1781` |
+| `coop_staminaArcY` | `95` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:1782` |
+| `coop_staminaJump` | `1.4` | `CVAR_ARCHIVE` | `fgame/player.cpp:17004` |
+| `coop_staminaRegenDelay` | `1.2` | `CVAR_ARCHIVE` | `fgame/player.cpp:14578` |
+| `coop_staminaVault` | `2.5` | `CVAR_ARCHIVE` | `fgame/player.cpp:18935` |
+| `coop_stress` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:14467` |
+| `coop_stressBreathAds` | `0.85` | `CVAR_ARCHIVE` | `cgame/cg_view.c:3590` |
+| `coop_stressDebug` | `0` | `0` | `fgame/player.cpp:14471` |
 | `coop_stressSpread` | `1.0` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2166` |
 | `coop_stressSpread` | `1.0` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2509` |
-| `coop_stressSuppFade` | `2.5` | `CVAR_ARCHIVE` | `fgame/player.cpp:14446` |
+| `coop_stressSuppFade` | `2.5` | `CVAR_ARCHIVE` | `fgame/player.cpp:14468` |
 | `coop_stressSuppress` | `1` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:2622` |
 | `coop_stressSuppressRadius` | `255` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:2624` |
-| `coop_supine` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:14753` |
-| `coop_supineArms` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:14945` |
-| `coop_supineArmsAng` | `180` | `CVAR_ARCHIVE` | `fgame/player.cpp:15524` |
-| `coop_supineCone` | `60` | `CVAR_ARCHIVE` | `fgame/player.cpp:14797` |
-| `coop_supineEnter` | `110` | `CVAR_ARCHIVE` | `fgame/player.cpp:14754` |
-| `coop_supineExit` | `60` | `CVAR_ARCHIVE` | `fgame/player.cpp:14755` |
-| `coop_supineFlipRate` | `200` | `CVAR_ARCHIVE` | `fgame/player.cpp:14851` |
-| `coop_supineMode` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:14848` |
+| `coop_supine` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:14775` |
+| `coop_supineArms` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:14967` |
+| `coop_supineArmsAng` | `180` | `CVAR_ARCHIVE` | `fgame/player.cpp:15546` |
+| `coop_supineCone` | `60` | `CVAR_ARCHIVE` | `fgame/player.cpp:14819` |
+| `coop_supineEnter` | `110` | `CVAR_ARCHIVE` | `fgame/player.cpp:14776` |
+| `coop_supineExit` | `60` | `CVAR_ARCHIVE` | `fgame/player.cpp:14777` |
+| `coop_supineFlipRate` | `200` | `CVAR_ARCHIVE` | `fgame/player.cpp:14873` |
+| `coop_supineMode` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:14870` |
 | `coop_supineMove` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:4910` |
-| `coop_supineMove` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:14085` |
-| `coop_supineSpine` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:15451` |
+| `coop_supineMove` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:14107` |
+| `coop_supineSpine` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:15473` |
 | `coop_supineTest` | `0` | `0` | `fgame/player_conditionals.cpp:1079` |
-| `coop_suppBump` | `0` | `0` | `cgame/cg_view.c:5686` |
-| `coop_suppHold` | `0` | `0` | `cgame/cg_view.c:5676` |
-| `coop_suppressFade` | `1.4` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5597` |
+| `coop_suppBump` | `0` | `0` | `cgame/cg_view.c:5804` |
+| `coop_suppHold` | `0` | `0` | `cgame/cg_view.c:5794` |
+| `coop_suppressFade` | `1.4` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5715` |
 | `coop_surfCarry` | `1` | `CVAR_ARCHIVE` | `fgame/actor.cpp:11721` |
 | `coop_tinnitusBlast` | `1` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:322` |
 | `coop_tinnitusBlast` | `1` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:3759` |
 | `coop_tinnitusBlastRange` | `500` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:3761` |
-| `coop_torsoLag` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15580` |
-| `coop_torsoLagAmount` | `0.35` | `CVAR_ARCHIVE` | `fgame/player.cpp:15581` |
+| `coop_torsoLag` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:15602` |
+| `coop_torsoLagAmount` | `0.35` | `CVAR_ARCHIVE` | `fgame/player.cpp:15603` |
 | `coop_tracerFromMuzzle` | `1` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:1070` |
 | `coop_tracerMuzzleFwd` | `24` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:1071` |
 | `coop_tracerMuzzleRight` | `6` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:1072` |
@@ -1192,10 +1238,10 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_turretViewFwd` | `-20` | `CVAR_ARCHIVE` | `fgame/weapturret.cpp:1018` |
 | `coop_turretViewSide` | `0` | `CVAR_ARCHIVE` | `fgame/weapturret.cpp:1020` |
 | `coop_turretViewUp` | `16` | `CVAR_ARCHIVE` | `fgame/weapturret.cpp:1019` |
-| `coop_uwAir` | `1` | `0` | `cgame/cg_view.c:5898` |
-| `coop_uwAirRate` | `0.6` | `0` | `cgame/cg_view.c:5900` |
-| `coop_uwOutRate` | `3.3` | `0` | `cgame/cg_view.c:5868` |
-| `coop_vault` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:18822` |
+| `coop_uwAir` | `1` | `0` | `cgame/cg_view.c:6016` |
+| `coop_uwAirRate` | `0.6` | `0` | `cgame/cg_view.c:6018` |
+| `coop_uwOutRate` | `3.3` | `0` | `cgame/cg_view.c:5986` |
+| `coop_vault` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:18915` |
 | `coop_vaultAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:1557` |
 | `coop_vaultView` | `0` | `0` | `cgame/cg_view.c:1556` |
 | `coop_vehicleFx` | `1` | `CVAR_ARCHIVE` | `fgame/vehicle.cpp:5596` |
@@ -1205,33 +1251,33 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_vehicleWrecks` | `1` | `CVAR_ARCHIVE` | `fgame/vehicle.cpp:7346` |
 | `coop_vehTurretBack` | `35` | `CVAR_ARCHIVE` | `fgame/vehicleturret.cpp:985` |
 | `coop_vehTurretDown` | `15` | `CVAR_ARCHIVE` | `fgame/vehicleturret.cpp:988` |
-| `coop_vmAntiPop` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4216` |
-| `coop_vmAntiPopRate` | `9.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4217` |
+| `coop_vmAntiPop` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4334` |
+| `coop_vmAntiPopRate` | `9.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4335` |
 | `coop_vmBlend` | `0.12` | `CVAR_ARCHIVE` | `cgame/cg_viewmodelanim.c:490` |
 | `coop_vmBlendAds` | `0.30` | `CVAR_ARCHIVE` | `cgame/cg_viewmodelanim.c:516` |
-| `coop_voxCut` | `1` | `0` | `client/snd_dma_new.cpp:113` |
-| `coop_voxCut` | `1` | `0` | `client/snd_dma_new.cpp:324` |
-| `coop_voxCut` | `1` | `0` | `client/snd_openal_new.cpp:4246` |
+| `coop_voxCut` | `1` | `0` | `client/snd_dma_new.cpp:118` |
+| `coop_voxCut` | `1` | `0` | `client/snd_dma_new.cpp:330` |
+| `coop_voxCut` | `1` | `0` | `client/snd_openal_new.cpp:4260` |
 | `coop_wallProbe` | `0` | `0` | `fgame/player.cpp:4192` |
 | `coop_weapDebug` | `0` | `0` | `fgame/actor.cpp:5478` |
 | `coop_weapDebug` | `0` | `0` | `fgame/actor.cpp:5517` |
-| `coop_weapDebug` | `0` | `0` | `fgame/player.cpp:18745` |
+| `coop_weapDebug` | `0` | `0` | `fgame/player.cpp:18838` |
 | `coop_weapDebug` | `0` | `0` | `fgame/weapon.cpp:3632` |
 | `coop_weapDebug` | `0` | `0` | `fgame/weapon.cpp:3709` |
-| `coop_weaponCollision` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4035` |
-| `coop_weaponCollisionBack` | `9` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4037` |
-| `coop_weaponCollisionDip` | `4` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4038` |
-| `coop_weaponCollisionReach` | `30` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4036` |
+| `coop_weaponCollision` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4153` |
+| `coop_weaponCollisionBack` | `9` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4155` |
+| `coop_weaponCollisionDip` | `4` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4156` |
+| `coop_weaponCollisionReach` | `30` | `CVAR_ARCHIVE` | `cgame/cg_view.c:4154` |
 | `coop_weaponFeel` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:180` |
-| `coop_weaponLagMove` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2688` |
-| `coop_weaponMass` | `0.35` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2166` |
-| `coop_weaponMassRate` | `14.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2167` |
+| `coop_weaponLagMove` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2806` |
+| `coop_weaponMass` | `0.35` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2170` |
+| `coop_weaponMassRate` | `14.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2171` |
 | `coop_weaponMoveByClass` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:4959` |
 | `coop_weaponMoveSpeed` | `0.89` | `CVAR_ARCHIVE` | `fgame/player.cpp:4943` |
 | `coop_weaponShake` | `0.10` | `CVAR_ARCHIVE` | `cgame/cg_view.c:612` |
-| `coop_wfeelStress` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:6821` |
+| `coop_wfeelStress` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:7020` |
 | `coop_wfeelStressAmt` | `0.45` | `CVAR_ARCHIVE` | `cgame/cg_view.c:530` |
-| `coop_wussCount` | `0` | `CVAR_USERINFO` | `cgame/cg_main.c:191` |
+| `coop_wussCount` | `0` | `CVAR_USERINFO` | `cgame/cg_main.c:192` |
 | `CPS` | `1` | `0` | `fgame/g_main.cpp:707` |
 | `curSubtitle` | `0` | `0` | `cgame/cg_commands.cpp:3890` |
 | `curSubtitle` | `0` | `0` | `fgame/entity.cpp:3807` |
@@ -1282,23 +1328,23 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `dcl_widthscale` | `1` | `0` | `renderergl1/tr_marks_permanent.c:1518` |
 | `dcl_widthscale` | `1` | `0` | `renderergl2/tr_marks_permanent.c:1518` |
 | `deathmatch` | `1` | `CVAR_USERINFO \| CVAR_SERVERINFO \| CVAR_LATCH` | `fgame/gamecvars.cpp:314` |
-| `deathmatch` | `0` | `0` | `qcommon/common.c:1911` |
+| `deathmatch` | `0` | `0` | `qcommon/common.c:1917` |
 | `debuggraph` | `0` | `CVAR_CHEAT` | `client/cl_scrn.cpp:417` |
 | `debugSound` | `0` | `0` | `cgame/cg_commands.cpp:3851` |
 | `dedicated` | `1` | `0` | `fgame/entity.cpp:3695` |
 | `dedicated` | `1` | `CVAR_LATCH` | `fgame/gamecvars.cpp:313` |
-| `dedicated` | `1` | `CVAR_INIT` | `qcommon/common.c:1888` |
-| `dedicated` | `0` | `CVAR_LATCH` | `qcommon/common.c:1891` |
-| `dedicated` | `0` | `CVAR_LATCH` | `qcommon/common.c:1924` |
-| `dedicated` | `0` | `0` | `qcommon/common.c:2396` |
+| `dedicated` | `1` | `CVAR_INIT` | `qcommon/common.c:1894` |
+| `dedicated` | `0` | `CVAR_LATCH` | `qcommon/common.c:1897` |
+| `dedicated` | `0` | `CVAR_LATCH` | `qcommon/common.c:1930` |
+| `dedicated` | `0` | `0` | `qcommon/common.c:2408` |
 | `detail` | `1` | `CVAR_ARCHIVE` | `cgame/cg_tempmodels.cpp:233` |
 | `detail` | `1` | `CVAR_ARCHIVE` | `fgame/gamecvars.cpp:343` |
-| `developer` | `0` | `0` | `cgame/cg_main.c:184` |
+| `developer` | `0` | `0` | `cgame/cg_main.c:185` |
 | `developer` | `0` | `0` | `fgame/gamecvars.cpp:309` |
-| `developer` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1770` |
+| `developer` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1776` |
 | `developer` |  | `0` | `renderergl1/tr_init.c:1739` |
-| `developer` |  | `0` | `renderergl2/tr_init.c:2187` |
-| `dlg_badsave` | `This save game is invalid` | `0` | `client/cl_ui.cpp:5507` |
+| `developer` |  | `0` | `renderergl2/tr_init.c:2240` |
+| `dlg_badsave` | `This save game is invalid` | `0` | `client/cl_ui.cpp:5563` |
 | `dm_filter_empty` | `0` | `CVAR_ARCHIVE` | `client/cl_uiserverlist.cpp:538` |
 | `dm_filter_empty` | `0` | `CVAR_ARCHIVE` | `client/cl_uiserverlist.cpp:1006` |
 | `dm_filter_full` | `0` | `CVAR_ARCHIVE` | `client/cl_uiserverlist.cpp:539` |
@@ -1314,10 +1360,10 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `dm_omit_spearhead` | `0` | `1` | `client/cl_uiserverlist.cpp:702` |
 | `dm_omit_spearhead` | `0` | `CVAR_ARCHIVE` | `client/cl_uiserverlist.cpp:760` |
 | `dm_omit_spearhead` | `0` | `CVAR_ARCHIVE` | `client/cl_uiserverlist.cpp:1018` |
-| `dm_playergermanmodel` | `german_wehrmacht_soldier` | `CVAR_ARCHIVE \| CVAR_USERINFO` | `cgame/cg_main.c:186` |
-| `dm_playergermanmodel` | `german_wehrmacht_soldier` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4190` |
-| `dm_playermodel` | `american_army` | `3` | `cgame/cg_main.c:185` |
-| `dm_playermodel` | `american_army` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4189` |
+| `dm_playergermanmodel` | `german_wehrmacht_soldier` | `CVAR_ARCHIVE \| CVAR_USERINFO` | `cgame/cg_main.c:187` |
+| `dm_playergermanmodel` | `german_wehrmacht_soldier` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4303` |
+| `dm_playermodel` | `american_army` | `3` | `cgame/cg_main.c:186` |
+| `dm_playermodel` | `american_army` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4302` |
 | `dm_realism_mode` | `0` | `CVAR_ARCHIVE` | `client/cl_uiserverlist.cpp:536` |
 | `dm_round_based_match` | `1` | `CVAR_ARCHIVE` | `client/cl_uiserverlist.cpp:1012` |
 | `dm_run_fast` | `1` | `CVAR_ARCHIVE` | `client/cl_uiserverlist.cpp:1016` |
@@ -1327,16 +1373,16 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `dm_tow_match` | `1` | `CVAR_ARCHIVE` | `client/cl_uiserverlist.cpp:1014` |
 | `dmflags` | `0` | `CVAR_SERVERINFO` | `fgame/gamecvars.cpp:332` |
 | `dmflags` | `0` | `CVAR_SERVERINFO` | `server/sv_init.c:1094` |
-| `dumploadedanims` | `0` | `0` | `qcommon/common.c:1905` |
+| `dumploadedanims` | `0` | `0` | `qcommon/common.c:1911` |
 | `filterban` | `1` | `0` | `fgame/gamecvars.cpp:330` |
-| `fixedtime` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1916` |
+| `fixedtime` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1922` |
 | `flood_msgs` | `4` | `0` | `fgame/gamecvars.cpp:339` |
 | `flood_persecond` | `4` | `0` | `fgame/gamecvars.cpp:340` |
 | `flood_waitdelay` | `10` | `0` | `fgame/gamecvars.cpp:341` |
-| `fov` | `80` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4194` |
-| `fps` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1914` |
+| `fov` | `80` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4307` |
+| `fps` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1920` |
 | `fps` | `0` | `0` | `renderergl1/tr_init.c:1698` |
-| `fps` | `0` | `0` | `renderergl2/tr_init.c:2186` |
+| `fps` | `0` | `0` | `renderergl2/tr_init.c:2239` |
 | `fraglimit` | `0` | `CVAR_SERVERINFO` | `fgame/dm_manager.cpp:1069` |
 | `fraglimit` | `0` | `0` | `fgame/dm_manager.cpp:1173` |
 | `fraglimit` | `0` | `CVAR_SERVERINFO` | `fgame/gamecvars.cpp:333` |
@@ -1346,7 +1392,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `fs_basepath` | `Sys_DefaultInstallPath()` | `CVAR_INIT \| CVAR_PROTECTED` | `qcommon/files.cpp:3440` |
 | `fs_debug` | `0` | `0` | `qcommon/files.cpp:3439` |
 | `fs_filedir` | `FS_BuildOSPath( fs_basepath->string, fs_gamedir, "/maps/" )` | `0` | `qcommon/files.cpp:3560` |
-| `fs_game` |  | `CVAR_INIT\|CVAR_SYSTEMINFO` | `qcommon/common.c:2146` |
+| `fs_game` |  | `CVAR_INIT\|CVAR_SYSTEMINFO` | `qcommon/common.c:2152` |
 | `fs_game` |  | `CVAR_INIT\|CVAR_SYSTEMINFO` | `qcommon/files.cpp:3451` |
 | `fs_gogpath` | `Sys_GogPath()` | `CVAR_INIT\|CVAR_PROTECTED` | `qcommon/files.cpp:3481` |
 | `fs_homepath` | `homePath` | `CVAR_INIT\|CVAR_PROTECTED` | `qcommon/files.cpp:3450` |
@@ -1358,7 +1404,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `g_ai_noticescale` | `1` | `0` | `fgame/gamecvars.cpp:467` |
 | `g_ai_notifyradius` | `1024` | `0` | `fgame/gamecvars.cpp:466` |
 | `g_ai_soundscale` | `1` | `0` | `fgame/gamecvars.cpp:468` |
-| `g_aiDamageMult` | `1.0` | `0` | `fgame/sentient.cpp:1598` |
+| `g_aiDamageMult` | `1.0` | `0` | `fgame/sentient.cpp:1701` |
 | `g_ailongrange` | `1000` | `0` | `fgame/actor.cpp:11549` |
 | `g_aimaxdeviation` | `0.965` | `0` | `fgame/actor.cpp:11505` |
 | `g_aimcoverfactor` | `0.80` | `0` | `fgame/actor.cpp:11504` |
@@ -1425,8 +1471,8 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `g_instamsg_allowed` | `1` | `0` | `fgame/gamecvars.cpp:691` |
 | `g_instamsg_minDelay` | `1000` | `0` | `fgame/gamecvars.cpp:692` |
 | `g_invulnoverride` | `0` | `0` | `fgame/level.cpp:1132` |
-| `g_invulnoverride` | `0` | `0` | `fgame/player.cpp:18247` |
-| `g_lastsave` |  | `0` | `client/cl_ui.cpp:1466` |
+| `g_invulnoverride` | `0` | `0` | `fgame/player.cpp:18310` |
+| `g_lastsave` |  | `0` | `client/cl_ui.cpp:1496` |
 | `g_lastsave` |  | `0` | `client/cl_uiloadsave.cpp:234` |
 | `g_lastsave` |  | `CVAR_ARCHIVE` | `fgame/gamecvars.cpp:613` |
 | `g_lastsave` |  | `0` | `server/sv_ccmds.c:1727` |
@@ -1469,8 +1515,8 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `g_medalbt3` | `0` | `CVAR_ARCHIVE` | `fgame/gamecvars.cpp:582` |
 | `g_medalbt4` | `0` | `CVAR_ARCHIVE` | `fgame/gamecvars.cpp:583` |
 | `g_medalbt5` | `0` | `CVAR_ARCHIVE` | `fgame/gamecvars.cpp:584` |
-| `g_mission` |  | `CVAR_ARCHIVE` | `cgame/cg_view.c:7351` |
-| `g_mission` |  | `CVAR_ARCHIVE` | `cgame/cg_view.c:7402` |
+| `g_mission` |  | `CVAR_ARCHIVE` | `cgame/cg_view.c:7597` |
+| `g_mission` |  | `CVAR_ARCHIVE` | `cgame/cg_view.c:7648` |
 | `g_monitor` |  | `0` | `fgame/gamecvars.cpp:450` |
 | `g_monitorNum` | `-1` | `0` | `fgame/gamecvars.cpp:451` |
 | `g_navigation_legacy` | `0` | `CVAR_LATCH` | `fgame/gamecvars.cpp:698` |
@@ -1480,7 +1526,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `g_numdebuglinedelays` | `0` | `0` | `fgame/gamecvars.cpp:425` |
 | `g_numdebuglines` | `4096` | `CVAR_LATCH` | `fgame/gamecvars.cpp:424` |
 | `g_numdebuglines` | `4096` | `CVAR_LATCH` | `renderergl1/tr_init.c:1440` |
-| `g_numdebuglines` | `4096` | `CVAR_LATCH` | `renderergl2/tr_init.c:2077` |
+| `g_numdebuglines` | `4096` | `CVAR_LATCH` | `renderergl2/tr_init.c:2130` |
 | `g_numdebugstrings` | `256` | `CVAR_LATCH` | `fgame/gamecvars.cpp:426` |
 | `g_obituarylocation` | `0` | `0` | `fgame/gamecvars.cpp:668` |
 | `g_obituarylocation` | `1` | `0` | `fgame/gamecvars.cpp:671` |
@@ -1535,14 +1581,14 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `g_spiffyvelocity_z` | `0` | `0` | `fgame/gamecvars.cpp:431` |
 | `g_statefile` | `global/mike` | `0` | `fgame/gamecvars.cpp:434` |
 | `g_subtitle` | `0` | `CVAR_ARCHIVE` | `cgame/cg_commands.cpp:3850` |
-| `g_subtitle` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:148` |
+| `g_subtitle` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:149` |
 | `g_subtitle` | `0` | `CVAR_ARCHIVE` | `fgame/entity.cpp:3682` |
-| `g_success` |  | `0` | `cgame/cg_view.c:7353` |
-| `g_success` |  | `0` | `cgame/cg_view.c:7385` |
-| `g_success` |  | `0` | `cgame/cg_view.c:7404` |
-| `g_success` |  | `0` | `cgame/cg_view.c:7434` |
+| `g_success` |  | `0` | `cgame/cg_view.c:7599` |
+| `g_success` |  | `0` | `cgame/cg_view.c:7631` |
+| `g_success` |  | `0` | `cgame/cg_view.c:7650` |
+| `g_success` |  | `0` | `cgame/cg_view.c:7680` |
 | `g_success` | `0` | `0` | `fgame/gamecvars.cpp:569` |
-| `g_synchronousClients` | `0` | `0` | `cgame/cg_main.c:160` |
+| `g_synchronousClients` | `0` | `0` | `cgame/cg_main.c:161` |
 | `g_t2l1` | `0` | `CVAR_ARCHIVE` | `fgame/gamecvars.cpp:608` |
 | `g_t3l1` | `0` | `CVAR_ARCHIVE` | `fgame/gamecvars.cpp:609` |
 | `g_teambalance` | `0` | `0` | `fgame/gamecvars.cpp:696` |
@@ -1589,96 +1635,96 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `in_keyboardDebug` | `0` | `CVAR_ARCHIVE` | `sdl/sdl_input.c:1274` |
 | `in_mouse` | `1` | `CVAR_ARCHIVE` | `sdl/sdl_input.c:1277` |
 | `in_nograb` | `0` | `CVAR_ARCHIVE` | `sdl/sdl_input.c:1278` |
-| `j_forward` | `-0.25` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4140` |
-| `j_forward_axis` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4146` |
-| `j_pitch` | `0.022` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4138` |
-| `j_pitch_axis` | `3` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4144` |
-| `j_side` | `0.25` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4141` |
-| `j_side_axis` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4147` |
-| `j_up` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4142` |
-| `j_up_axis` | `4` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4148` |
-| `j_yaw` | `-0.022` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4139` |
-| `j_yaw_axis` | `2` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4145` |
+| `j_forward` | `-0.25` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4253` |
+| `j_forward_axis` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4259` |
+| `j_pitch` | `0.022` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4251` |
+| `j_pitch_axis` | `3` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4257` |
+| `j_side` | `0.25` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4254` |
+| `j_side_axis` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4260` |
+| `j_up` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4255` |
+| `j_up_axis` | `4` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4261` |
+| `j_yaw` | `-0.022` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4252` |
+| `j_yaw_axis` | `2` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4258` |
 | `journal` | `0` | `CVAR_INIT` | `qcommon/common.c:1015` |
 | `joy_threshold` | `0.15` | `CVAR_ARCHIVE` | `sdl/sdl_input.c:1281` |
 | `lod_curve_0_slider` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1548` |
-| `lod_curve_0_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2168` |
+| `lod_curve_0_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2221` |
 | `lod_curve_0_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1543` |
-| `lod_curve_0_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2163` |
+| `lod_curve_0_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2216` |
 | `lod_curve_1_slider` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1549` |
-| `lod_curve_1_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2169` |
+| `lod_curve_1_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2222` |
 | `lod_curve_1_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1544` |
-| `lod_curve_1_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2164` |
+| `lod_curve_1_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2217` |
 | `lod_curve_2_slider` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1550` |
-| `lod_curve_2_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2170` |
+| `lod_curve_2_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2223` |
 | `lod_curve_2_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1545` |
-| `lod_curve_2_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2165` |
+| `lod_curve_2_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2218` |
 | `lod_curve_3_slider` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1551` |
-| `lod_curve_3_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2171` |
+| `lod_curve_3_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2224` |
 | `lod_curve_3_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1546` |
-| `lod_curve_3_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2166` |
+| `lod_curve_3_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2219` |
 | `lod_curve_4_slider` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1552` |
-| `lod_curve_4_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2172` |
+| `lod_curve_4_slider` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2225` |
 | `lod_curve_4_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1547` |
-| `lod_curve_4_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2167` |
+| `lod_curve_4_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2220` |
 | `lod_edit_0` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1538` |
-| `lod_edit_0` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2158` |
+| `lod_edit_0` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2211` |
 | `lod_edit_1` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1539` |
-| `lod_edit_1` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2159` |
+| `lod_edit_1` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2212` |
 | `lod_edit_2` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1540` |
-| `lod_edit_2` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2160` |
+| `lod_edit_2` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2213` |
 | `lod_edit_3` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1541` |
-| `lod_edit_3` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2161` |
+| `lod_edit_3` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2214` |
 | `lod_edit_4` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1542` |
-| `lod_edit_4` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2162` |
+| `lod_edit_4` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2215` |
 | `lod_LOD` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1534` |
-| `lod_LOD` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2154` |
+| `lod_LOD` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2207` |
 | `lod_LOD_slider` | `0.5` | `CVAR_TEMP` | `renderergl1/tr_init.c:1537` |
-| `lod_LOD_slider` | `0.5` | `CVAR_TEMP` | `renderergl2/tr_init.c:2157` |
+| `lod_LOD_slider` | `0.5` | `CVAR_TEMP` | `renderergl2/tr_init.c:2210` |
 | `lod_maxLOD` | `0.3` | `CVAR_TEMP` | `renderergl1/tr_init.c:1536` |
-| `lod_maxLOD` | `0.3` | `CVAR_TEMP` | `renderergl2/tr_init.c:2156` |
+| `lod_maxLOD` | `0.3` | `CVAR_TEMP` | `renderergl2/tr_init.c:2209` |
 | `lod_mesh` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1555` |
-| `lod_mesh` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2175` |
+| `lod_mesh` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2228` |
 | `lod_meshname` |  | `CVAR_TEMP` | `renderergl1/tr_init.c:1556` |
-| `lod_meshname` |  | `CVAR_TEMP` | `renderergl2/tr_init.c:2176` |
+| `lod_meshname` |  | `CVAR_TEMP` | `renderergl2/tr_init.c:2229` |
 | `lod_metric` | `0.0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1558` |
-| `lod_metric` | `0.0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2178` |
+| `lod_metric` | `0.0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2231` |
 | `lod_minLOD` | `1.0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1535` |
-| `lod_minLOD` | `1.0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2155` |
+| `lod_minLOD` | `1.0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2208` |
 | `lod_pitch_val` |  | `0` | `fgame/lodthing.cpp:219` |
 | `lod_pitch_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1553` |
-| `lod_pitch_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2173` |
+| `lod_pitch_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2226` |
 | `lod_position` |  | `0` | `fgame/lodthing.cpp:232` |
 | `lod_position` | `0 0 0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1561` |
-| `lod_position` | `0 0 0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2181` |
+| `lod_position` | `0 0 0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2234` |
 | `lod_save` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1560` |
-| `lod_save` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2180` |
+| `lod_save` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2233` |
 | `lod_tikiname` |  | `CVAR_TEMP` | `renderergl1/tr_init.c:1557` |
-| `lod_tikiname` |  | `CVAR_TEMP` | `renderergl2/tr_init.c:2177` |
+| `lod_tikiname` |  | `CVAR_TEMP` | `renderergl2/tr_init.c:2230` |
 | `lod_tool` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1562` |
-| `lod_tool` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2182` |
+| `lod_tool` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2235` |
 | `lod_tris` |  | `CVAR_TEMP` | `renderergl1/tr_init.c:1559` |
-| `lod_tris` |  | `CVAR_TEMP` | `renderergl2/tr_init.c:2179` |
+| `lod_tris` |  | `CVAR_TEMP` | `renderergl2/tr_init.c:2232` |
 | `lod_zee_val` |  | `0` | `fgame/lodthing.cpp:235` |
 | `lod_zee_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1554` |
-| `lod_zee_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2174` |
-| `logfile` | `0` | `CVAR_TEMP` | `qcommon/common.c:1920` |
-| `logfile_timestamps` | `1` | `CVAR_TEMP` | `qcommon/common.c:1921` |
-| `low_anim_memory` | `0` | `0` | `qcommon/common.c:1906` |
-| `m_filter` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4133` |
-| `m_filter` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4135` |
-| `m_forward` | `0.25` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4129` |
-| `m_pitch` | `0.022` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4127` |
-| `m_side` | `0.25` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4130` |
-| `m_yaw` | `0.022` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4128` |
+| `lod_zee_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2227` |
+| `logfile` | `0` | `CVAR_TEMP` | `qcommon/common.c:1926` |
+| `logfile_timestamps` | `1` | `CVAR_TEMP` | `qcommon/common.c:1927` |
+| `low_anim_memory` | `0` | `0` | `qcommon/common.c:1912` |
+| `m_filter` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4246` |
+| `m_filter` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4248` |
+| `m_forward` | `0.25` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4242` |
+| `m_pitch` | `0.022` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4240` |
+| `m_side` | `0.25` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4243` |
+| `m_yaw` | `0.022` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4241` |
 | `mapdir` |  | `0` | `qcommon/files.cpp:3559` |
 | `mapname` | `unknown` | `0` | `fgame/actor.cpp:13482` |
 | `mapname` |  | `0` | `fgame/scriptmaster.cpp:419` |
 | `mapname` |  | `0` | `fgame/scriptthread.cpp:7223` |
 | `mapname` | `nomap` | `CVAR_SERVERINFO \| CVAR_ROM` | `server/sv_init.c:1101` |
 | `maxentities` | `4096` | `CVAR_LATCH` | `fgame/gamecvars.cpp:326` |
-| `name` | `UnnamedSoldier` | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_main.cpp:3921` |
-| `name` | `va("UnnamedSoldier#%d", rand() % 100000)` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4185` |
+| `name` | `UnnamedSoldier` | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_main.cpp:4031` |
+| `name` | `va("UnnamedSoldier#%d", rand() % 100000)` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4298` |
 | `net_dropsim` |  | `CVAR_TEMP` | `qcommon/net_ip.c:1488` |
 | `net_enabled` | `1` | `CVAR_LATCH \| CVAR_ARCHIVE` | `qcommon/net_ip.c:1430` |
 | `net_enabled` | `3` | `CVAR_LATCH \| CVAR_ARCHIVE` | `qcommon/net_ip.c:1434` |
@@ -1701,573 +1747,601 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `net_socksPort` | `1080` | `CVAR_LATCH \| CVAR_ARCHIVE` | `qcommon/net_ip.c:1476` |
 | `net_socksServer` |  | `CVAR_LATCH \| CVAR_ARCHIVE` | `qcommon/net_ip.c:1472` |
 | `net_socksUsername` |  | `CVAR_LATCH \| CVAR_ARCHIVE` | `qcommon/net_ip.c:1480` |
+| `nextdemo` |  | `CVAR_TEMP` | `client/cl_main.cpp:4143` |
 | `nextmap` |  | `0` | `fgame/gamecvars.cpp:382` |
 | `nextmap` |  | `CVAR_TEMP` | `server/sv_init.c:1141` |
-| `noipx` | `0` | `CVAR_INIT` | `client/cl_ui.cpp:3239` |
-| `noudp` | `0` | `CVAR_INIT` | `client/cl_ui.cpp:3232` |
-| `password` |  | `CVAR_USERINFO` | `client/cl_main.cpp:4188` |
+| `noipx` | `0` | `CVAR_INIT` | `client/cl_ui.cpp:3290` |
+| `noudp` | `0` | `CVAR_INIT` | `client/cl_ui.cpp:3283` |
+| `password` |  | `CVAR_USERINFO` | `client/cl_main.cpp:4301` |
 | `password` |  | `CVAR_USERINFO` | `fgame/gamecvars.cpp:328` |
-| `paused` | `0` | `0` | `cgame/cg_main.c:163` |
-| `paused` | `0` | `64` | `qcommon/common.c:1912` |
-| `pmove_fixed` | `0` | `0` | `cgame/cg_main.c:178` |
+| `paused` | `0` | `0` | `cgame/cg_main.c:164` |
+| `paused` | `0` | `64` | `qcommon/common.c:1918` |
+| `pmove_fixed` | `0` | `0` | `cgame/cg_main.c:179` |
 | `pmove_fixed` | `0` | `CVAR_SYSTEMINFO` | `fgame/gamecvars.cpp:498` |
-| `pmove_msec` | `8` | `0` | `cgame/cg_main.c:179` |
+| `pmove_msec` | `8` | `0` | `cgame/cg_main.c:180` |
 | `pmove_msec` | `0` | `CVAR_SYSTEMINFO` | `fgame/gamecvars.cpp:499` |
-| `protocol` | `com_legacyprotocol->string` | `CVAR_SERVERINFO \| CVAR_ROM` | `qcommon/common.c:1964` |
-| `protocol` | `com_protocol->string` | `CVAR_SERVERINFO \| CVAR_ROM` | `qcommon/common.c:1967` |
+| `protocol` | `com_legacyprotocol->string` | `CVAR_SERVERINFO \| CVAR_ROM` | `qcommon/common.c:1970` |
+| `protocol` | `com_protocol->string` | `CVAR_SERVERINFO \| CVAR_ROM` | `qcommon/common.c:1973` |
 | `protocol` | `va( "%i", PROTOCOL_VERSION )` | `CVAR_SERVERINFO \| CVAR_ROM` | `server/sv_init.c:1100` |
 | `r_allowExtensions` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1364` |
-| `r_allowExtensions` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1418` |
+| `r_allowExtensions` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1432` |
 | `r_allowResize` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `sdl/sdl_glimp.c:1227` |
 | `r_allowSoftwareGL` | `0` | `CVAR_LATCH` | `sdl/sdl_glimp.c:1225` |
 | `r_alpha_foliage1` | `0.75` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1694` |
 | `r_alpha_foliage2` | `0.75` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1695` |
 | `r_ambientScale` | `0.6` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1522` |
-| `r_ambientScale` | `0.6` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1944` |
+| `r_ambientScale` | `0.6` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1997` |
 | `r_anaglyphMode` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1525` |
-| `r_anaglyphMode` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1947` |
-| `r_arb_seamless_cube_map` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1427` |
-| `r_arb_vertex_array_object` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1428` |
-| `r_autoExposure` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1481` |
+| `r_anaglyphMode` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2000` |
+| `r_arb_seamless_cube_map` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1462` |
+| `r_arb_vertex_array_object` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1463` |
+| `r_autoExposure` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1516` |
 | `r_availableModes` |  | `CVAR_ROM` | `sdl/sdl_glimp.c:1319` |
 | `r_aviMotionJpegQuality` | `90` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1741` |
-| `r_aviMotionJpegQuality` | `90` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2018` |
-| `r_baseGloss` | `0.3` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1553` |
-| `r_baseNormalX` | `1.0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1545` |
-| `r_baseNormalY` | `1.0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1546` |
-| `r_baseParallax` | `0.05` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1547` |
-| `r_baseSpecular` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1552` |
+| `r_aviMotionJpegQuality` | `90` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2071` |
+| `r_baseGloss` | `0.3` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1588` |
+| `r_baseNormalX` | `1.0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1580` |
+| `r_baseNormalY` | `1.0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1581` |
+| `r_baseParallax` | `0.05` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1582` |
+| `r_baseSpecular` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1587` |
 | `r_blendbushes` | `0` | `CVAR_LATCH` | `renderergl1/tr_init.c:1697` |
 | `r_blendtrees` | `0` | `CVAR_LATCH` | `renderergl1/tr_init.c:1696` |
-| `r_cameraExposure` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1486` |
+| `r_cameraExposure` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1521` |
 | `r_captureSafe` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `sdl/sdl_glimp.c:1234` |
 | `r_centerWindow` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `sdl/sdl_glimp.c:1228` |
-| `r_charLightDebug` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1826` |
-| `r_charLighting` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1800` |
-| `r_charLightShadow` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1822` |
-| `r_charLightWrap` | `0.35` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1807` |
-| `r_charShadowBiasFactor` | `2` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1723` |
-| `r_charShadowBiasUnits` | `2` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1724` |
-| `r_charShadowBlob` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1727` |
-| `r_charShadowCascade` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1711` |
-| `r_charShadowDist` | `512` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1714` |
-| `r_charShadowLod` | `0.25` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1718` |
-| `r_charShadows` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1702` |
+| `r_charLightDebug` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1875` |
+| `r_charLighting` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1835` |
+| `r_charLightShadow` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1871` |
+| `r_charLightWrap` | `0.35` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1842` |
+| `r_charShadowBiasFactor` | `2` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1758` |
+| `r_charShadowBiasUnits` | `2` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1759` |
+| `r_charShadowBlob` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1762` |
+| `r_charShadowCascade` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1746` |
+| `r_charShadowDist` | `512` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1749` |
+| `r_charShadowLod` | `0.25` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1753` |
+| `r_charShadows` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1737` |
 | `r_clear` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1631` |
-| `r_clear` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1998` |
+| `r_clear` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2051` |
 | `r_colorbits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1398` |
-| `r_colorbits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1441` |
+| `r_colorbits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1476` |
 | `r_colorMipLevels` | `0` | `CVAR_LATCH` | `renderergl1/tr_init.c:1394` |
-| `r_colorMipLevels` | `0` | `CVAR_LATCH` | `renderergl2/tr_init.c:1437` |
+| `r_colorMipLevels` | `0` | `CVAR_LATCH` | `renderergl2/tr_init.c:1472` |
 | `r_coopRealShadows` | `0` | `0` | `cgame/cg_modelanim.c:764` |
 | `r_coopSunAz` | `45` | `0` | `cgame/cg_modelanim.c:784` |
 | `r_coopSunEl` | `45` | `0` | `cgame/cg_modelanim.c:785` |
-| `r_coopSunPublish` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1770` |
+| `r_coopSunPublish` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1805` |
 | `r_coopSunValid` | `0` | `0` | `cgame/cg_modelanim.c:786` |
-| `r_cubemapAuto` | `16` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1541` |
-| `r_cubemapAutoRadius` | `1200` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1542` |
-| `r_cubeMapping` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1528` |
-| `r_cubemapSize` | `128` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1529` |
+| `r_cubemapAuto` | `16` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1576` |
+| `r_cubemapAutoRadius` | `1200` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1577` |
+| `r_cubeMapping` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1563` |
+| `r_cubemapSize` | `128` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1564` |
 | `r_customaspect` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1426` |
 | `r_customheight` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1425` |
-| `r_customheight` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1459` |
-| `r_customPixelAspect` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1460` |
+| `r_customheight` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1494` |
+| `r_customPixelAspect` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1495` |
 | `r_customwidth` | `1600` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1424` |
-| `r_customwidth` | `1600` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1458` |
-| `r_debuglight` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:1954` |
+| `r_customwidth` | `1600` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1493` |
+| `r_debuglight` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2007` |
 | `r_debuglines_depthmask` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1678` |
-| `r_debuglines_depthmask` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2075` |
+| `r_debuglines_depthmask` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2128` |
 | `r_debugSort` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1564` |
-| `r_debugSort` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1955` |
+| `r_debugSort` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2008` |
 | `r_debugSurface` | `0` | `0` | `qcommon/cm_patch.c:1583` |
 | `r_debugSurface` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1624` |
-| `r_debugSurface` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1993` |
+| `r_debugSurface` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2046` |
 | `r_debugSurfaceUpdate` | `1` | `0` | `qcommon/cm_patch.c:1325` |
 | `r_debugSurfaceUpdate` | `1` | `0` | `qcommon/cm_patch.c:1464` |
-| `r_deluxeMapping` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1524` |
-| `r_deluxeSpecular` | `0.3` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1543` |
+| `r_deluxeMapping` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1559` |
+| `r_deluxeSpecular` | `0.3` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1578` |
 | `r_depthbits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1405` |
-| `r_depthbits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1443` |
-| `r_depthPrepass` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1488` |
+| `r_depthbits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1478` |
+| `r_depthPrepass` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1523` |
 | `r_desktopfullscreen` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1716` |
-| `r_desktopfullscreen` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1457` |
-| `r_detailtextures` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1439` |
+| `r_desktopfullscreen` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1492` |
+| `r_detailtextures` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1474` |
 | `r_directedScale` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1523` |
-| `r_directedScale` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1945` |
+| `r_directedScale` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1998` |
 | `r_displayRefresh` | `0` | `CVAR_LATCH` | `renderergl1/tr_init.c:1435` |
-| `r_displayRefresh` | `0` | `CVAR_LATCH` | `renderergl2/tr_init.c:1903` |
+| `r_displayRefresh` | `0` | `CVAR_LATCH` | `renderergl2/tr_init.c:1952` |
 | `r_dlightBacks` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1510` |
-| `r_dlightBacks` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1925` |
-| `r_dlightMode` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1555` |
+| `r_dlightBacks` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1978` |
+| `r_dlightMode` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1590` |
 | `r_dofBlur` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1503` |
 | `r_dofRadius` | `3` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1504` |
 | `r_drawbrushes` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1597` |
 | `r_drawbrushmodels` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1598` |
 | `r_drawBuffer` | `GL_BACK` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1634` |
-| `r_drawBuffer` | `GL_BACK` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2009` |
+| `r_drawBuffer` | `GL_BACK` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2062` |
 | `r_drawentities` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1579` |
-| `r_drawentities` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1973` |
+| `r_drawentities` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2026` |
 | `r_drawentitypoly` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1580` |
-| `r_drawentitypoly` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2046` |
+| `r_drawentitypoly` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2099` |
 | `r_drawspherelights` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1601` |
-| `r_drawspherelights` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2052` |
+| `r_drawspherelights` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2105` |
 | `r_drawsprites` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1600` |
-| `r_drawsprites` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2051` |
+| `r_drawsprites` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2104` |
 | `r_drawstaticdecals` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1518` |
-| `r_drawstaticdecals` | `0` | `0` | `renderergl2/tr_init.c:2049` |
+| `r_drawstaticdecals` | `0` | `0` | `renderergl2/tr_init.c:2102` |
 | `r_drawstaticmodelpoly` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1596` |
-| `r_drawstaticmodelpoly` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2048` |
+| `r_drawstaticmodelpoly` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2101` |
 | `r_drawstaticmodels` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1595` |
-| `r_drawstaticmodels` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2047` |
+| `r_drawstaticmodels` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2100` |
 | `r_drawSun` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1509` |
-| `r_drawSun` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1923` |
-| `r_drawSunRays` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1672` |
+| `r_drawSun` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1976` |
+| `r_drawSunRays` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1707` |
 | `r_drawterrain` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1599` |
-| `r_drawterrain` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2050` |
+| `r_drawterrain` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2103` |
 | `r_drawworld` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1568` |
-| `r_drawworld` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1960` |
-| `r_dynamiclight` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1924` |
+| `r_drawworld` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2013` |
+| `r_dynamiclight` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1977` |
 | `r_entlight_cubefraction` | `0.5` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1651` |
-| `r_entlight_cubefraction` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2143` |
+| `r_entlight_cubefraction` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2196` |
 | `r_entlight_cubelevel` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1650` |
-| `r_entlight_cubelevel` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2142` |
+| `r_entlight_cubelevel` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2195` |
 | `r_entlight_errbound` | `6` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1649` |
-| `r_entlight_errbound` | `6` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2141` |
+| `r_entlight_errbound` | `6` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2194` |
 | `r_entlight_maxcalc` | `2` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1652` |
-| `r_entlight_maxcalc` | `2` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2144` |
+| `r_entlight_maxcalc` | `2` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2197` |
 | `r_entlight_scale` | `1.3` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1643` |
-| `r_entlight_scale` | `1.3` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2140` |
+| `r_entlight_scale` | `1.3` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2193` |
 | `r_entlight_tikiScale` | `2.2` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1648` |
+| `r_entLightFade` | `15` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1856` |
 | `r_entlightmap` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1637` |
+| `r_entLightSmooth` | `0.10` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1849` |
 | `r_ext_aniso_filter` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1375` |
 | `r_ext_compiled_vertex_array` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1368` |
-| `r_ext_compiled_vertex_array` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1421` |
+| `r_ext_compiled_vertex_array` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1435` |
 | `r_ext_compressed_textures` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1365` |
-| `r_ext_compressed_textures` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1419` |
-| `r_ext_direct_state_access` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1429` |
+| `r_ext_compressed_textures` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1433` |
+| `r_ext_direct_state_access` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1464` |
 | `r_ext_framebuffer_multisample` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1712` |
-| `r_ext_framebuffer_multisample` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1426` |
-| `r_ext_framebuffer_object` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1424` |
+| `r_ext_framebuffer_multisample` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1440` |
+| `r_ext_framebuffer_object` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1438` |
 | `r_ext_gamma_control` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1366` |
 | `r_ext_max_anisotropy` | `2` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1376` |
-| `r_ext_max_anisotropy` | `2` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1433` |
+| `r_ext_max_anisotropy` | `2` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1468` |
 | `r_ext_multisample` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1702` |
-| `r_ext_multisample` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1444` |
+| `r_ext_multisample` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1479` |
 | `r_ext_multitexture` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1367` |
-| `r_ext_multitexture` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1420` |
+| `r_ext_multitexture` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1434` |
 | `r_ext_texture_env_add` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1370` |
 | `r_ext_texture_env_add` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1372` |
-| `r_ext_texture_env_add` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1422` |
+| `r_ext_texture_env_add` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1436` |
 | `r_ext_texture_env_combine` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1374` |
 | `r_ext_texture_filter_anisotropic` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1717` |
-| `r_ext_texture_filter_anisotropic` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1431` |
-| `r_ext_texture_float` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1425` |
-| `r_externalGLSL` | `0` | `CVAR_LATCH` | `renderergl2/tr_init.c:1469` |
+| `r_ext_texture_filter_anisotropic` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1466` |
+| `r_ext_texture_float` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1439` |
+| `r_externalGLSL` | `0` | `CVAR_LATCH` | `renderergl2/tr_init.c:1504` |
 | `r_facePlaneCull` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1515` |
-| `r_facePlaneCull` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1938` |
+| `r_facePlaneCull` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1991` |
 | `r_farclip` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1673` |
-| `r_farclip` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2103` |
+| `r_farclip` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2156` |
 | `r_farplane` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1667` |
-| `r_farplane` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2097` |
+| `r_farplane` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2150` |
 | `r_farplane_bias` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1668` |
-| `r_farplane_bias` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2098` |
+| `r_farplane_bias` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2151` |
 | `r_farplane_color` | `.5 .5 .5` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1669` |
-| `r_farplane_color` | `.5 .5 .5` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2099` |
+| `r_farplane_color` | `.5 .5 .5` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2152` |
 | `r_farplane_nocull` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1670` |
-| `r_farplane_nocull` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2100` |
+| `r_farplane_nocull` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2153` |
 | `r_farplane_nofog` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1671` |
-| `r_farplane_nofog` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2101` |
+| `r_farplane_nofog` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2154` |
 | `r_fastdlights` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1508` |
 | `r_fastentlight` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1638` |
-| `r_fastentlight` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2056` |
+| `r_fastentlight` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2109` |
 | `r_fastsky` | `0` | `0` | `renderergl1/tr_init.c:1507` |
-| `r_fastsky` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1921` |
+| `r_fastsky` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1974` |
 | `r_finish` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1511` |
-| `r_finish` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1926` |
-| `r_flareCoeff` | `FLARE_STDCOEFF` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1966` |
+| `r_finish` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1979` |
+| `r_flareCoeff` | `FLARE_STDCOEFF` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2019` |
 | `r_flareFade` | `7` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1573` |
-| `r_flareFade` | `7` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1965` |
+| `r_flareFade` | `7` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2018` |
 | `r_flares` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1448` |
-| `r_flares` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1915` |
+| `r_flares` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1968` |
 | `r_flareSize` | `40` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1572` |
-| `r_flareSize` | `40` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1964` |
-| `r_floatLightmap` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1472` |
-| `r_forceAutoExposure` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1482` |
-| `r_forceAutoExposureMax` | `2.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1484` |
-| `r_forceAutoExposureMin` | `-2.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1483` |
+| `r_flareSize` | `40` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2017` |
+| `r_floatLightmap` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1507` |
+| `r_forceAutoExposure` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1517` |
+| `r_forceAutoExposureMax` | `2.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1519` |
+| `r_forceAutoExposureMin` | `-2.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1518` |
 | `r_forceClampToEdge` | `0` | `CVAR_ROM` | `renderergl1/tr_init.c:1377` |
-| `r_forceSun` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1669` |
-| `r_forceSunAmbientScale` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1671` |
-| `r_forceSunLightScale` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1670` |
-| `r_forceToneMap` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1476` |
-| `r_forceToneMapAvg` | `-2.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1478` |
-| `r_forceToneMapMax` | `0.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1479` |
-| `r_forceToneMapMin` | `-8.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1477` |
+| `r_forceSun` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1704` |
+| `r_forceSunAmbientScale` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1706` |
+| `r_forceSunLightScale` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1705` |
+| `r_forceToneMap` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1511` |
+| `r_forceToneMapAvg` | `-2.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1513` |
+| `r_forceToneMapMax` | `0.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1514` |
+| `r_forceToneMapMin` | `-8.0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1512` |
+| `r_fsrSharpness` | `0.25` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1450` |
 | `r_fullbright` | `0` | `CVAR_LATCH\|CVAR_CHEAT` | `renderergl1/tr_init.c:1437` |
-| `r_fullbright` | `0` | `CVAR_LATCH\|CVAR_CHEAT` | `renderergl2/tr_init.c:1905` |
-| `r_fullscreen` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4125` |
+| `r_fullbright` | `0` | `CVAR_LATCH\|CVAR_CHEAT` | `renderergl2/tr_init.c:1954` |
+| `r_fullscreen` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4238` |
 | `r_fullscreen` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1423` |
-| `r_fullscreen` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1449` |
+| `r_fullscreen` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1484` |
 | `r_gamma` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1514` |
-| `r_gamma` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1937` |
+| `r_gamma` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1990` |
 | `r_geForce3WorkAround` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1378` |
-| `r_genNormalMaps` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1563` |
+| `r_genNormalMaps` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1598` |
 | `r_glDriver` | `OPENGL_DRIVER_NAME` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1363` |
-| `r_globalFog` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2107` |
-| `r_globalFogDebug` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2119` |
-| `r_globalFogEndScale` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2110` |
-| `r_globalFogForward` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2130` |
-| `r_globalFogIdentityLight` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2113` |
-| `r_globalFogPreTone` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_backend.c:2210` |
-| `r_globalFogRadial` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2112` |
-| `r_globalFogScale` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2108` |
-| `r_globalFogSky` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2111` |
-| `r_globalFogStartScale` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2109` |
-| `r_glossType` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1554` |
+| `r_globalFog` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2160` |
+| `r_globalFogDebug` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2172` |
+| `r_globalFogEndScale` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2163` |
+| `r_globalFogForward` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2183` |
+| `r_globalFogIdentityLight` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2166` |
+| `r_globalFogPreTone` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_backend.c:2253` |
+| `r_globalFogRadial` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2165` |
+| `r_globalFogScale` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2161` |
+| `r_globalFogSky` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2164` |
+| `r_globalFogStartScale` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2162` |
+| `r_glossType` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1589` |
 | `r_goreDebug` | `0` | `0` | `renderergl1/tr_init.c:1582` |
-| `r_goreDebug` | `0` | `0` | `renderergl2/tr_init.c:2061` |
+| `r_goreDebug` | `0` | `0` | `renderergl2/tr_init.c:2114` |
 | `r_goreUV` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1581` |
-| `r_goreUV` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2060` |
+| `r_goreUV` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2113` |
 | `r_grass` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_grass_gl1.c:40` |
 | `r_grassDensity` | `0.004` | `CVAR_ARCHIVE` | `renderergl1/tr_grass_gl1.c:42` |
 | `r_grassHeight` | `16` | `CVAR_ARCHIVE` | `renderergl1/tr_grass_gl1.c:43` |
 | `r_grassMaxDraw` | `16000` | `CVAR_ARCHIVE` | `renderergl1/tr_grass_gl1.c:45` |
 | `r_grassRadius` | `1280` | `CVAR_ARCHIVE` | `renderergl1/tr_grass_gl1.c:41` |
 | `r_grassWind` | `2.5` | `CVAR_ARCHIVE` | `renderergl1/tr_grass_gl1.c:44` |
-| `r_greyscale` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1466` |
-| `r_hdr` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1471` |
-| `r_hzmAlphaGenCoord` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1535` |
-| `r_hzmAlphaGenDot` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_glsl.c:2019` |
-| `r_hzmDlightShadowCasters` | `3` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1881` |
-| `r_hzmDlightShadowChars` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1889` |
-| `r_hzmDlightShadowDebug` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1895` |
-| `r_hzmDlightShadowDist` | `1400` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1870` |
-| `r_hzmDlightShadowLights` | `2` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1861` |
-| `r_hzmDlightShadowMax` | `4` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1866` |
-| `r_hzmDlightShadowMinRadius` | `120` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1877` |
-| `r_hzmDlightShadows` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1855` |
-| `r_hzmFlapDeform` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1536` |
-| `r_hzmGenNormalBlur` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1608` |
-| `r_hzmGenNormalBrighten` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1614` |
-| `r_hzmGenNormalDebug` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1623` |
-| `r_hzmGenNormalExclude` |  | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1621` |
-| `r_hzmGenNormalInclude` | `textures/` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1620` |
-| `r_hzmGenNormalMaxSize` | `512` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1604` |
-| `r_hzmGenNormals` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1589` |
-| `r_hzmGenNormalStrength` | `0.6` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1596` |
-| `r_hzmNormalStrength` | `1.25` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1662` |
-| `r_hzmParallaxDepth` | `0.015` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1657` |
-| `r_hzmParallaxFade` | `800` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1658` |
-| `r_hzmSpecular` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1641` |
-| `r_hzmSpecularGloss` | `0.3` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1645` |
+| `r_greyscale` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1501` |
+| `r_hdr` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1506` |
+| `r_hzmAlphaGenCoord` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1570` |
+| `r_hzmAlphaGenDot` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_glsl.c:2084` |
+| `r_hzmDlightShadowCasters` | `3` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1930` |
+| `r_hzmDlightShadowChars` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1938` |
+| `r_hzmDlightShadowDebug` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1944` |
+| `r_hzmDlightShadowDist` | `1400` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1919` |
+| `r_hzmDlightShadowLights` | `2` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1910` |
+| `r_hzmDlightShadowMax` | `4` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1915` |
+| `r_hzmDlightShadowMinRadius` | `120` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1926` |
+| `r_hzmDlightShadows` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1904` |
+| `r_hzmFlapDeform` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1571` |
+| `r_hzmGenNormalBlur` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1643` |
+| `r_hzmGenNormalBrighten` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1649` |
+| `r_hzmGenNormalDebug` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1658` |
+| `r_hzmGenNormalExclude` |  | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1656` |
+| `r_hzmGenNormalInclude` | `textures/` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1655` |
+| `r_hzmGenNormalMaxSize` | `512` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1639` |
+| `r_hzmGenNormals` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1624` |
+| `r_hzmGenNormalStrength` | `0.6` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1631` |
+| `r_hzmNormalStrength` | `1.25` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1697` |
+| `r_hzmParallaxDepth` | `0.015` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1692` |
+| `r_hzmParallaxFade` | `800` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1693` |
+| `r_hzmSpecular` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1676` |
+| `r_hzmSpecularGloss` | `0.3` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1680` |
 | `r_ignore` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1606` |
-| `r_ignore` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1974` |
-| `r_ignoreDstAlpha` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1898` |
+| `r_ignore` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2027` |
+| `r_ignoreDstAlpha` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1947` |
 | `r_ignoreFastPath` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1428` |
 | `r_ignoreGLErrors` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1506` |
-| `r_ignoreGLErrors` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1920` |
+| `r_ignoreGLErrors` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1973` |
 | `r_ignorehwgamma` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1407` |
-| `r_ignorehwgamma` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1447` |
-| `r_imageUpsample` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1560` |
-| `r_imageUpsampleMaxSize` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1561` |
-| `r_imageUpsampleType` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1562` |
-| `r_inGameVideo` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4118` |
-| `r_inGameVideo` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4120` |
-| `r_inGameVideo` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1922` |
+| `r_ignorehwgamma` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1482` |
+| `r_imageUpsample` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1595` |
+| `r_imageUpsampleMaxSize` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1596` |
+| `r_imageUpsampleType` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1597` |
+| `r_inGameVideo` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4231` |
+| `r_inGameVideo` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4233` |
+| `r_inGameVideo` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1975` |
 | `r_intensity` | `1` | `CVAR_LATCH` | `renderergl1/tr_init.c:1439` |
-| `r_intensity` | `1` | `CVAR_LATCH` | `renderergl2/tr_init.c:1907` |
-| `r_largemap` | `0` | `0` | `cgame/cg_main.c:311` |
+| `r_intensity` | `1` | `CVAR_LATCH` | `renderergl2/tr_init.c:1960` |
+| `r_largemap` | `0` | `0` | `cgame/cg_main.c:312` |
 | `r_largemap` | `0` | `0` | `client/cl_main.cpp:199` |
+| `r_largemap` | `0` | `0` | `null/null_client.c:149` |
 | `r_largemap` | `1` | `0` | `renderergl1/tr_init.c:1388` |
 | `r_largemap` | `0` | `0` | `renderergl1/tr_init.c:1390` |
-| `r_lerpmodels` | `1` | `0` | `cgame/cg_main.c:164` |
+| `r_lerpmodels` | `1` | `0` | `cgame/cg_main.c:165` |
 | `r_lerpmodels` | `1` | `0` | `renderergl1/tr_init.c:1446` |
 | `r_light_int_scale` | `0.05` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1662` |
-| `r_light_int_scale` | `0.05` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2137` |
+| `r_light_int_scale` | `0.05` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2190` |
 | `r_light_lines` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1660` |
-| `r_light_lines` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2135` |
+| `r_light_lines` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2188` |
 | `r_light_nolight` | `0` | `CVAR_CHEAT \| CVAR_ARCHIVE` | `renderergl1/tr_init.c:1663` |
-| `r_light_nolight` | `0` | `CVAR_CHEAT \| CVAR_ARCHIVE` | `renderergl2/tr_init.c:2138` |
+| `r_light_nolight` | `0` | `CVAR_CHEAT \| CVAR_ARCHIVE` | `renderergl2/tr_init.c:2191` |
 | `r_light_showgrid` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1664` |
-| `r_light_showgrid` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2139` |
+| `r_light_showgrid` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2192` |
 | `r_light_sun_line` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1661` |
-| `r_light_sun_line` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2136` |
+| `r_light_sun_line` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2189` |
 | `r_lightcoronasize` | `.1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1676` |
-| `r_lightcoronasize` | `.1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2134` |
+| `r_lightcoronasize` | `.1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2187` |
 | `r_lightmap` | `0` | `0` | `renderergl1/tr_init.c:1569` |
-| `r_lightmap` | `0` | `0` | `renderergl2/tr_init.c:1961` |
+| `r_lightmap` | `0` | `0` | `renderergl2/tr_init.c:2014` |
 | `r_loadftx` | `0` | `CVAR_LATCH` | `renderergl1/tr_init.c:1700` |
 | `r_loadjpg` | `1` | `CVAR_LATCH` | `renderergl1/tr_init.c:1699` |
 | `r_lockpvs` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1635` |
-| `r_lockpvs` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2010` |
-| `r_lodbias` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1914` |
+| `r_lockpvs` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2063` |
+| `r_lodbias` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1967` |
 | `r_lodcap` | `0.35` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1604` |
-| `r_lodcap` | `0.35` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2150` |
+| `r_lodcap` | `0.35` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2203` |
 | `r_lodCurveError` | `250` | `CVAR_ARCHIVE\|CVAR_CHEAT` | `renderergl1/tr_init.c:1447` |
-| `r_lodCurveError` | `250` | `CVAR_ARCHIVE\|CVAR_CHEAT` | `renderergl2/tr_init.c:1913` |
+| `r_lodCurveError` | `250` | `CVAR_ARCHIVE\|CVAR_CHEAT` | `renderergl2/tr_init.c:1966` |
 | `r_lodscale` | `5` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1603` |
-| `r_lodscale` | `5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1971` |
-| `r_lodscale` | `5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2149` |
+| `r_lodscale` | `5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2024` |
+| `r_lodscale` | `5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2202` |
 | `r_lodviewmodelcap` | `0.25` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1605` |
-| `r_lodviewmodelcap` | `0.25` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2151` |
+| `r_lodviewmodelcap` | `0.25` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2204` |
 | `r_logFile` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1623` |
-| `r_logFile` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1992` |
+| `r_logFile` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2045` |
 | `r_mapOverBrightBits` | `1` | `CVAR_LATCH` | `renderergl1/tr_init.c:1438` |
-| `r_mapOverBrightBits` | `2` | `CVAR_LATCH` | `renderergl2/tr_init.c:1906` |
-| `r_marksOnTriangleMeshes` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2014` |
+| `r_mapOverBrightBits` | `2` | `CVAR_LATCH` | `renderergl2/tr_init.c:1955` |
+| `r_mapOverBrightScale` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1959` |
+| `r_marksOnTriangleMeshes` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2067` |
 | `r_maxmode` | `6` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1408` |
 | `r_maxpolys` | `va("%d", MAX_POLYS)` | `0` | `renderergl1/tr_init.c:1655` |
-| `r_maxpolys` | `va("%d", MAX_POLYS)` | `0` | `renderergl2/tr_init.c:2021` |
+| `r_maxpolys` | `va("%d", MAX_POLYS)` | `0` | `renderergl2/tr_init.c:2074` |
 | `r_maxpolyverts` | `va("%d", MAX_POLYVERTS)` | `0` | `renderergl1/tr_init.c:1656` |
-| `r_maxpolyverts` | `va("%d", MAX_POLYVERTS)` | `0` | `renderergl2/tr_init.c:2022` |
+| `r_maxpolyverts` | `va("%d", MAX_POLYVERTS)` | `0` | `renderergl2/tr_init.c:2075` |
 | `r_maxtermarks` | `va("%d", MAX_TERMARKS)` | `0` | `renderergl1/tr_init.c:1657` |
-| `r_maxtermarks` | `va("%d", MAX_TERMARKS)` | `0` | `renderergl2/tr_init.c:2079` |
+| `r_maxtermarks` | `va("%d", MAX_TERMARKS)` | `0` | `renderergl2/tr_init.c:2132` |
 | `r_measureOverdraw` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1577` |
-| `r_measureOverdraw` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1970` |
-| `r_mergeLightmaps` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1559` |
+| `r_measureOverdraw` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2023` |
+| `r_mergeLightmaps` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1594` |
 | `r_mode` | `-2` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1411` |
-| `r_mode` | `-2` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1448` |
+| `r_mode` | `-2` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1483` |
 | `r_nobind` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1625` |
-| `r_nobind` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1994` |
+| `r_nobind` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2047` |
 | `r_noborder` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1713` |
-| `r_noborder` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1450` |
+| `r_noborder` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1485` |
 | `r_nocull` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1607` |
-| `r_nocull` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1975` |
+| `r_nocull` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2028` |
 | `r_nocurves` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1567` |
-| `r_nocurves` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1959` |
+| `r_nocurves` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2012` |
 | `r_noportals` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1636` |
-| `r_noportals` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2011` |
+| `r_noportals` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2064` |
 | `r_norefresh` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1578` |
-| `r_norefresh` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1972` |
-| `r_normalMapping` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1491` |
+| `r_norefresh` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2025` |
+| `r_normalMapping` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1526` |
 | `r_novis` | `0` | `0` | `renderergl1/tr_init.c:1619` |
-| `r_novis` | `0` | `0` | `renderergl2/tr_init.c:1988` |
+| `r_novis` | `0` | `0` | `renderergl2/tr_init.c:2041` |
 | `r_offsetfactor` | `-1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1632` |
-| `r_offsetfactor` | `-1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1999` |
+| `r_offsetfactor` | `-1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2052` |
 | `r_offsetunits` | `-2` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1633` |
-| `r_offsetunits` | `-2` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2000` |
+| `r_offsetunits` | `-2` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2053` |
 | `r_overBrightBits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1406` |
-| `r_overBrightBits` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1446` |
-| `r_parallaxMapOffset` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1526` |
-| `r_parallaxMapping` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1525` |
-| `r_parallaxMapShadows` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1527` |
-| `r_pbr` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1544` |
+| `r_overBrightBits` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1481` |
+| `r_parallaxMapOffset` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1561` |
+| `r_parallaxMapping` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1560` |
+| `r_parallaxMapShadows` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1562` |
+| `r_pbr` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1579` |
 | `r_picmip` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1381` |
-| `r_picmip` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1435` |
+| `r_picmip` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1470` |
 | `r_picmip_cap` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1382` |
 | `r_portalOnly` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1570` |
-| `r_portalOnly` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1962` |
+| `r_portalOnly` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2015` |
 | `r_postProcess` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1467` |
-| `r_postProcess` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1473` |
-| `r_ppBlood` | `0` | `0` | `cgame/cg_view.c:5950` |
-| `r_ppBlood` | `0` | `0` | `renderergl2/tr_postprocess.c:1486` |
-| `r_ppBloodAmt` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1487` |
-| `r_ppBloodFx` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1485` |
-| `r_ppBloodRefract` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1494` |
-| `r_ppBloodRun` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1495` |
-| `r_ppBloodScale` | `0.55` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1496` |
+| `r_postProcess` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1508` |
+| `r_ppBlood` | `0` | `0` | `cgame/cg_view.c:6068` |
+| `r_ppBlood` | `0` | `0` | `renderergl2/tr_postprocess.c:1737` |
+| `r_ppBloodAmt` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1738` |
+| `r_ppBloodFx` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1736` |
+| `r_ppBloodRefract` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1745` |
+| `r_ppBloodRun` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1746` |
+| `r_ppBloodScale` | `0.55` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1747` |
 | `r_ppBloom` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1469` |
-| `r_ppBloom` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:698` |
+| `r_ppBloom` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_backend.c:2273` |
+| `r_ppBloom` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:785` |
 | `r_ppBloomIntensity` | `1.3` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1471` |
-| `r_ppBloomIntensity` | `1.3` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:700` |
+| `r_ppBloomIntensity` | `1.3` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:787` |
+| `r_ppBloomKnee` | `0.1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:792` |
+| `r_ppBloomMode` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_backend.c:2272` |
+| `r_ppBloomMode` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:791` |
 | `r_ppBloomThreshold` | `0.6` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1470` |
-| `r_ppBloomThreshold` | `0.6` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:699` |
-| `r_ppChromaticAberration` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1499` |
-| `r_ppChromaticAberrationAmount` | `0.35` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1500` |
+| `r_ppBloomThreshold` | `0.6` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:786` |
+| `r_ppChromaticAberration` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1750` |
+| `r_ppChromaticAberrationAmount` | `0.35` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1751` |
 | `r_ppContrast` | `1.0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1483` |
-| `r_ppContrast` | `0.951289` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:99` |
-| `r_ppDizzy` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:766` |
-| `r_ppDizzy` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1048` |
-| `r_ppDizzyAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:767` |
-| `r_ppDizzyAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1049` |
-| `r_ppDizzyChroma` | `0.6` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1503` |
-| `r_ppDizzyMaxPix` | `22` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1051` |
-| `r_ppDizzyRate` | `0.9` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1052` |
-| `r_ppDizzyStart` | `0.8` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:768` |
-| `r_ppDizzyStart` | `0.8` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1050` |
+| `r_ppContrast` | `0.951289` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:170` |
+| `r_ppDizzy` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1012` |
+| `r_ppDizzy` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1299` |
+| `r_ppDizzyAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1013` |
+| `r_ppDizzyAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1300` |
+| `r_ppDizzyChroma` | `0.6` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1754` |
+| `r_ppDizzyMaxPix` | `22` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1302` |
+| `r_ppDizzyRate` | `0.9` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1303` |
+| `r_ppDizzyStart` | `0.8` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1014` |
+| `r_ppDizzyStart` | `0.8` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1301` |
 | `r_ppDoF` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1477` |
-| `r_ppDoF` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1503` |
+| `r_ppDoF` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1538` |
 | `r_ppDoFFocus` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1478` |
-| `r_ppDoFFocus` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1348` |
+| `r_ppDoFFocus` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1599` |
 | `r_ppDoFIntensity` | `0.5` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1480` |
-| `r_ppDoFIntensity` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1350` |
+| `r_ppDoFIntensity` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1601` |
 | `r_ppDoFRange` | `1200` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1479` |
-| `r_ppDoFRange` | `1200` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1349` |
+| `r_ppDoFRange` | `1200` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1600` |
 | `r_ppExposure` | `1.0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1482` |
-| `r_ppExposure` | `0.889971` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:98` |
-| `r_ppFilmGrain` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1501` |
-| `r_ppFilmGrainAmount` | `0.35` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1502` |
-| `r_ppFrost` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1497` |
-| `r_ppFrostAmt` | `0` | `0` | `renderergl2/tr_postprocess.c:1498` |
+| `r_ppExposure` | `0.889971` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:169` |
+| `r_ppFilmGrain` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1752` |
+| `r_ppFilmGrainAmount` | `0.35` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1753` |
+| `r_ppFrost` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1748` |
+| `r_ppFrostAmt` | `0` | `0` | `renderergl2/tr_postprocess.c:1749` |
 | `r_ppFXAA` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1485` |
-| `r_ppFXAA` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:805` |
-| `r_ppGrade` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:7009` |
+| `r_ppFXAA` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1051` |
 | `r_ppGrade` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1488` |
-| `r_ppGrade` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:108` |
-| `r_ppHealthFrac` | `1` | `0` | `cgame/cg_drawtools.cpp:2295` |
-| `r_ppHealthFrac` | `1` | `0` | `cgame/cg_view.c:3441` |
-| `r_ppHealthFrac` | `1` | `0` | `cgame/cg_view.c:6833` |
+| `r_ppGrade` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:77` |
+| `r_ppGrade` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:173` |
+| `r_ppHealthFrac` | `1` | `0` | `cgame/cg_drawtools.cpp:3371` |
+| `r_ppHealthFrac` | `1` | `0` | `cgame/cg_view.c:3559` |
+| `r_ppHealthFrac` | `1` | `0` | `cgame/cg_view.c:7032` |
 | `r_ppHealthFrac` | `1` | `0` | `renderergl1/tr_init.c:1490` |
-| `r_ppHealthFrac` | `1` | `0` | `renderergl2/tr_postprocess.c:769` |
-| `r_ppHealthFrac` | `1` | `0` | `renderergl2/tr_postprocess.c:984` |
-| `r_ppHealthFrac` | `1` | `0` | `renderergl2/tr_postprocess.c:1053` |
+| `r_ppHealthFrac` | `1` | `0` | `renderergl2/tr_postprocess.c:1015` |
+| `r_ppHealthFrac` | `1` | `0` | `renderergl2/tr_postprocess.c:1235` |
+| `r_ppHealthFrac` | `1` | `0` | `renderergl2/tr_postprocess.c:1304` |
 | `r_ppHeat` | `0` | `0` | `renderergl1/tr_init.c:1497` |
-| `r_ppHeat` | `0` | `0` | `renderergl2/tr_postprocess.c:912` |
+| `r_ppHeat` | `0` | `0` | `renderergl2/tr_postprocess.c:1163` |
 | `r_ppHeatAmount` | `1.0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1498` |
-| `r_ppHeatAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:913` |
+| `r_ppHeatAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1164` |
 | `r_ppHeatHaze` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1496` |
-| `r_ppHeatHaze` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:911` |
-| `r_ppHit` | `0` | `0` | `renderergl2/tr_postprocess.c:1130` |
-| `r_ppHitAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1131` |
-| `r_ppHitBlood` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1129` |
-| `r_ppLowHealth` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2292` |
+| `r_ppHeatHaze` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1162` |
+| `r_ppHit` | `0` | `0` | `renderergl2/tr_postprocess.c:1381` |
+| `r_ppHitAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1382` |
+| `r_ppHitBlood` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1380` |
+| `r_ppLowHealth` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:3368` |
 | `r_ppLowHealth` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1489` |
-| `r_ppLowHealth` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:983` |
-| `r_ppLowHealthAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2301` |
+| `r_ppLowHealth` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1234` |
+| `r_ppLowHealthAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:3377` |
 | `r_ppLowHealthAmount` | `1.0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1492` |
-| `r_ppLowHealthAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:986` |
-| `r_ppLowHealthBeat` | `0.25` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2304` |
+| `r_ppLowHealthAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1237` |
+| `r_ppLowHealthBeat` | `0.25` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:3380` |
 | `r_ppLowHealthBeat` | `0.25` | `CVAR_ARCHIVE` | `renderergl1/tr_postprocess_gl1.c:775` |
-| `r_ppLowHealthBeat` | `0.25` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:987` |
-| `r_ppLowHealthStart` | `0.5` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2298` |
+| `r_ppLowHealthBeat` | `0.25` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1238` |
+| `r_ppLowHealthStart` | `0.5` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:3374` |
 | `r_ppLowHealthStart` | `0.5` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1491` |
-| `r_ppLowHealthStart` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:985` |
-| `r_ppMotionBlur` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:816` |
-| `r_ppMotionBlurAmount` | `0.35` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:817` |
+| `r_ppLowHealthStart` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1236` |
+| `r_ppMapContrast` | `1` | `0` | `renderergl2/tr_postprocess.c:50` |
+| `r_ppMapExposure` | `1` | `0` | `renderergl2/tr_postprocess.c:49` |
+| `r_ppMapGradeOn` | `1` | `CVAR_ARCHIVE` | `cgame/cg_main.c:903` |
+| `r_ppMapGradeOn` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:7273` |
+| `r_ppMapSaturation` | `1` | `0` | `renderergl2/tr_postprocess.c:51` |
+| `r_ppMapTemp` | `0` | `0` | `renderergl2/tr_postprocess.c:52` |
+| `r_ppMotionBlur` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1062` |
+| `r_ppMotionBlurAmount` | `0.35` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1063` |
 | `r_ppMuzzleHeat` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_postprocess_gl1.c:816` |
-| `r_ppMuzzleHeat` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:914` |
+| `r_ppMuzzleHeat` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1165` |
 | `r_ppMuzzleRadius` | `0.28` | `CVAR_ARCHIVE` | `renderergl1/tr_postprocess_gl1.c:819` |
-| `r_ppMuzzleRadius` | `0.28` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:917` |
+| `r_ppMuzzleRadius` | `0.28` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1168` |
 | `r_ppMuzzleX` | `0.5` | `CVAR_ARCHIVE` | `renderergl1/tr_postprocess_gl1.c:817` |
-| `r_ppMuzzleX` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:915` |
+| `r_ppMuzzleX` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1166` |
 | `r_ppMuzzleY` | `0.6` | `CVAR_ARCHIVE` | `renderergl1/tr_postprocess_gl1.c:818` |
-| `r_ppMuzzleY` | `0.6` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:916` |
+| `r_ppMuzzleY` | `0.6` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1167` |
+| `r_ppNightContrast` | `1` | `0` | `cgame/cg_view.c:7214` |
+| `r_ppNightContrast` | `1` | `0` | `renderergl2/tr_postprocess.c:43` |
+| `r_ppNightExposure` | `1` | `0` | `cgame/cg_view.c:7213` |
+| `r_ppNightExposure` | `1` | `0` | `renderergl2/tr_postprocess.c:42` |
+| `r_ppNightSaturation` | `1` | `0` | `cgame/cg_view.c:7215` |
+| `r_ppNightSaturation` | `1` | `0` | `renderergl2/tr_postprocess.c:44` |
+| `r_ppNightTemp` | `0` | `0` | `cgame/cg_view.c:7216` |
+| `r_ppNightTemp` | `0` | `0` | `renderergl2/tr_postprocess.c:45` |
 | `r_ppPassthrough` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1468` |
 | `r_ppRainAmount` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_postprocess_gl1.c:839` |
-| `r_ppRainAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:809` |
+| `r_ppRainAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1055` |
 | `r_ppRainDrops` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_postprocess_gl1.c:837` |
-| `r_ppRainDrops` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:808` |
-| `r_ppRainWet` | `0` | `0` | `cgame/cg_view.c:7152` |
+| `r_ppRainDrops` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1054` |
+| `r_ppRainWet` | `0` | `0` | `cgame/cg_view.c:7397` |
 | `r_ppRainWet` | `0` | `0` | `renderergl1/tr_postprocess_gl1.c:838` |
-| `r_ppRainWet` | `0` | `0` | `renderergl2/tr_postprocess.c:810` |
+| `r_ppRainWet` | `0` | `0` | `renderergl2/tr_postprocess.c:1056` |
 | `r_ppSaturation` | `1.0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1484` |
-| `r_ppSaturation` | `1.031519` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:100` |
+| `r_ppSaturation` | `1.031519` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:171` |
 | `r_ppSharpen` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1486` |
-| `r_ppSharpen` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:806` |
+| `r_ppSharpen` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1052` |
 | `r_ppSharpenAmount` | `0.35` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1487` |
-| `r_ppSharpenAmount` | `0.35` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:807` |
+| `r_ppSharpenAmount` | `0.35` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1053` |
 | `r_ppSSAO` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1472` |
-| `r_ppSSAO` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1518` |
+| `r_ppSSAO` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1553` |
 | `r_ppSSAOBias` | `0.5` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1475` |
-| `r_ppSSAOBias` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1521` |
+| `r_ppSSAOBias` | `0.5` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1556` |
 | `r_ppSSAODepthAware` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1476` |
-| `r_ppSSAODepthAware` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1522` |
+| `r_ppSSAODepthAware` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1557` |
 | `r_ppSSAOIntensity` | `1.0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1474` |
-| `r_ppSSAOIntensity` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1520` |
+| `r_ppSSAOIntensity` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1555` |
 | `r_ppSSAORadius` | `16` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1473` |
-| `r_ppSSAORadius` | `16` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1519` |
+| `r_ppSSAORadius` | `16` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1554` |
 | `r_ppSunShaftDecay` | `0.95` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1501` |
 | `r_ppSunShaftIntensity` | `0.5` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1500` |
 | `r_ppSunShafts` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1499` |
 | `r_ppSunShaftThreshold` | `0.6` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1502` |
-| `r_ppSuppress` | `0` | `0` | `cgame/cg_drawtools.cpp:2377` |
+| `r_ppSuppress` | `0` | `0` | `cgame/cg_drawtools.cpp:3453` |
 | `r_ppSuppress` | `0` | `0` | `renderergl1/tr_init.c:1494` |
-| `r_ppSuppress` | `0` | `0` | `renderergl2/tr_postprocess.c:1099` |
-| `r_ppSuppressAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2380` |
+| `r_ppSuppress` | `0` | `0` | `renderergl2/tr_postprocess.c:1350` |
+| `r_ppSuppressAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:3456` |
 | `r_ppSuppressAmount` | `1.0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1495` |
-| `r_ppSuppressAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1100` |
-| `r_ppSuppression` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2374` |
+| `r_ppSuppressAmount` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1351` |
+| `r_ppSuppression` | `1` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:3450` |
 | `r_ppSuppression` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1493` |
-| `r_ppSuppression` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1098` |
-| `r_ppTemp` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:101` |
-| `r_ppTonemap` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:7010` |
+| `r_ppSuppression` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1349` |
+| `r_ppTemp` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:172` |
 | `r_ppTonemap` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1481` |
-| `r_ppTonemap` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:107` |
-| `r_ppUnderwater` | `0` | `0` | `renderergl2/tr_postprocess.c:1452` |
-| `r_ppUnderwaterAir` | `1` | `0` | `cgame/cg_view.c:5899` |
-| `r_ppUnderwaterAir` | `1` | `0` | `renderergl2/tr_postprocess.c:1453` |
-| `r_ppUnderwaterAmt` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1457` |
-| `r_ppUnderwaterBlur` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1475` |
-| `r_ppUnderwaterDebug` | `0` | `0` | `renderergl2/tr_postprocess.c:1481` |
-| `r_ppUnderwaterFx` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1451` |
-| `r_ppUnderwaterParticles` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1476` |
-| `r_ppUnderwaterRipple` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1478` |
-| `r_ppUnderwaterShafts` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1477` |
-| `r_ppUnderwaterSilt` | `0.075 0.155 0.135` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1479` |
-| `r_ppUnderwaterSiltBoost` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1480` |
-| `r_ppUnderwaterVis` | `900` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1474` |
+| `r_ppTonemap` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:76` |
+| `r_ppUnderwater` | `0` | `0` | `renderergl2/tr_postprocess.c:1703` |
+| `r_ppUnderwaterAir` | `1` | `0` | `cgame/cg_view.c:6017` |
+| `r_ppUnderwaterAir` | `1` | `0` | `renderergl2/tr_postprocess.c:1704` |
+| `r_ppUnderwaterAmt` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1708` |
+| `r_ppUnderwaterBlur` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1726` |
+| `r_ppUnderwaterDebug` | `0` | `0` | `renderergl2/tr_postprocess.c:1732` |
+| `r_ppUnderwaterFx` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1702` |
+| `r_ppUnderwaterParticles` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1727` |
+| `r_ppUnderwaterRipple` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1729` |
+| `r_ppUnderwaterShafts` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1728` |
+| `r_ppUnderwaterSilt` | `0.075 0.155 0.135` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1730` |
+| `r_ppUnderwaterSiltBoost` | `1.0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1731` |
+| `r_ppUnderwaterVis` | `900` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:1725` |
 | `r_precacheimages` | `0` | `0` | `renderergl1/tr_init.c:1691` |
 | `r_preferOpenGLES` | `-1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `sdl/sdl_glimp.c:1229` |
 | `r_primitives` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1520` |
 | `r_printShaders` | `0` | `0` | `renderergl1/tr_init.c:1565` |
-| `r_printShaders` | `0` | `0` | `renderergl2/tr_init.c:1956` |
-| `r_pshadowDist` | `128` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1556` |
+| `r_printShaders` | `0` | `0` | `renderergl2/tr_init.c:2009` |
+| `r_pshadowDist` | `128` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1591` |
 | `r_ragdollDebug` | `0` | `CVAR_TEMP` | `cgame/cg_ragdoll.c:359` |
-| `r_railCoreWidth` | `6` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1941` |
-| `r_railSegmentLength` | `32` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1942` |
-| `r_railWidth` | `16` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1940` |
+| `r_railCoreWidth` | `6` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1994` |
+| `r_railSegmentLength` | `32` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1995` |
+| `r_railWidth` | `16` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1993` |
+| `r_renderScale` | `1.0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1446` |
+| `r_renderScaleDebug` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:1452` |
 | `r_resAutoDetected` | `0` | `CVAR_ARCHIVE` | `sdl/sdl_glimp.c:562` |
 | `r_reset_tc_array` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1379` |
 | `r_roundImagesDown` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1393` |
-| `r_roundImagesDown` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1436` |
-| `r_saveFontData` | `0` | `0` | `renderergl2/tr_init.c:1957` |
+| `r_roundImagesDown` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1471` |
+| `r_saveFontData` | `0` | `0` | `renderergl2/tr_init.c:2010` |
 | `r_screenshotJpegQuality` | `90` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1742` |
-| `r_screenshotJpegQuality` | `90` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2019` |
+| `r_screenshotJpegQuality` | `90` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2072` |
 | `r_sdlDriver` |  | `CVAR_ROM` | `sdl/sdl_glimp.c:1226` |
-| `r_shadowBlur` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1677` |
-| `r_shadowCascadeZBias` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1681` |
-| `r_shadowCascadeZFar` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1680` |
-| `r_shadowCascadeZNear` | `8` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1679` |
-| `r_shadowCastFoliage` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1731` |
-| `r_shadowDebug` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1764` |
-| `r_shadowFilter` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1676` |
-| `r_shadowMapBiasFactor` | `4` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2007` |
-| `r_shadowMapBiasUnits` | `4` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2008` |
-| `r_shadowMapSize` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1678` |
+| `r_shadowBlur` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1712` |
+| `r_shadowCascadeZBias` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1716` |
+| `r_shadowCascadeZFar` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1715` |
+| `r_shadowCascadeZNear` | `8` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1714` |
+| `r_shadowCastFoliage` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1766` |
+| `r_shadowDebug` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1799` |
+| `r_shadowFilter` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1711` |
+| `r_shadowMapBiasFactor` | `4` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2060` |
+| `r_shadowMapBiasUnits` | `4` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2061` |
+| `r_shadowMapSize` | `1024` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1713` |
 | `r_showcluster` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1620` |
-| `r_showcluster` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1989` |
+| `r_showcluster` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2042` |
 | `r_showcull` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1608` |
-| `r_showcull` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2189` |
+| `r_showcull` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2242` |
 | `r_showhbox` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1629` |
 | `r_showImages` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1530` |
-| `r_showImages` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:1952` |
+| `r_showImages` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2005` |
 | `r_showlod` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1531` |
-| `r_showlod` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2190` |
+| `r_showlod` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2243` |
 | `r_shownormals` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1628` |
-| `r_shownormals` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1997` |
+| `r_shownormals` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2050` |
 | `r_showportal` | `0` | `0` | `renderergl1/tr_init.c:1680` |
-| `r_showportal` | `0` | `0` | `renderergl2/tr_init.c:2192` |
+| `r_showportal` | `0` | `0` | `renderergl2/tr_init.c:2245` |
 | `r_showSkeleton` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1740` |
 | `r_showsky` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1627` |
-| `r_showsky` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1996` |
+| `r_showsky` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2049` |
 | `r_showstaticbboxes` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1630` |
-| `r_showstaticbboxes` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2188` |
+| `r_showstaticbboxes` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2241` |
 | `r_showstaticlod` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1532` |
-| `r_showstaticlod` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2191` |
+| `r_showstaticlod` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2244` |
 | `r_showtris` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1626` |
-| `r_showtris` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1995` |
-| `r_simpleMipMaps` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1461` |
+| `r_showtris` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2048` |
+| `r_simpleMipMaps` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1496` |
 | `r_singleShader` | `0` | `CVAR_CHEAT \| CVAR_LATCH` | `renderergl1/tr_init.c:1441` |
-| `r_singleShader` | `0` | `CVAR_CHEAT \| CVAR_LATCH` | `renderergl2/tr_init.c:1908` |
+| `r_singleShader` | `0` | `CVAR_CHEAT \| CVAR_LATCH` | `renderergl2/tr_init.c:1961` |
 | `r_skeldiag` | `0` | `CVAR_TEMP` | `renderergl2/tr_model.cpp:68` |
 | `r_skeldiag` | `0` | `CVAR_TEMP` | `renderergl2/tr_model.cpp:224` |
-| `r_skeldiag` | `0` | `0` | `renderergl2/tr_shade.c:2706` |
-| `r_skeldiag` | `0` | `0` | `renderergl2/tr_shade.c:2878` |
+| `r_skeldiag` | `0` | `0` | `renderergl2/tr_shade.c:2801` |
+| `r_skeldiag` | `0` | `0` | `renderergl2/tr_shade.c:2973` |
 | `r_skipBackEnd` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1575` |
-| `r_skipBackEnd` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1968` |
+| `r_skipBackEnd` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2021` |
 | `r_skybox_farplane` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1672` |
-| `r_skybox_farplane` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2102` |
+| `r_skybox_farplane` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2155` |
 | `r_skyportal` | `0` | `0` | `renderergl1/tr_init.c:1665` |
 | `r_skyportal` | `0` | `0` | `renderergl1/tr_init.c:1674` |
-| `r_skyportal` | `0` | `0` | `renderergl2/tr_init.c:2081` |
+| `r_skyportal` | `0` | `0` | `renderergl2/tr_init.c:2134` |
 | `r_skyportal_origin` | `0 0 0` | `0` | `renderergl1/tr_init.c:1666` |
 | `r_skyportal_origin` | `0 0 0` | `0` | `renderergl1/tr_init.c:1675` |
-| `r_skyportal_origin` | `0 0 0` | `0` | `renderergl2/tr_init.c:2082` |
-| `r_specularMapping` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1498` |
+| `r_skyportal_origin` | `0 0 0` | `0` | `renderergl2/tr_init.c:2135` |
+| `r_softParticleDistance` | `24` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1459` |
+| `r_softParticles` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1458` |
+| `r_softParticlesDebug` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:1461` |
+| `r_specularMapping` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1533` |
 | `r_speeds` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1621` |
-| `r_speeds` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1990` |
-| `r_sphereCacheScope` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1760` |
-| `r_ssao` | `0` | `CVAR_LATCH \| CVAR_ARCHIVE` | `renderergl2/tr_init.c:1489` |
+| `r_speeds` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2043` |
+| `r_sphereCacheScope` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1795` |
+| `r_ssao` | `0` | `CVAR_LATCH \| CVAR_ARCHIVE` | `renderergl2/tr_init.c:1524` |
 | `r_sse` | `0` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1682` |
 | `r_static_shaderdata0` | `0` | `CVAR_SYSTEMINFO` | `renderergl1/tr_init.c:1683` |
 | `r_static_shaderdata1` | `0` | `CVAR_SYSTEMINFO` | `renderergl1/tr_init.c:1684` |
@@ -2278,70 +2352,71 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `r_static_shadermultiplier2` | `1` | `CVAR_SYSTEMINFO` | `renderergl1/tr_init.c:1689` |
 | `r_static_shadermultiplier3` | `1` | `CVAR_SYSTEMINFO` | `renderergl1/tr_init.c:1690` |
 | `r_staticlod` | `1` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1602` |
-| `r_staticlod` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2148` |
+| `r_staticlod` | `1` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2201` |
 | `r_stencilbits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1401` |
 | `r_stencilbits` | `8` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1403` |
-| `r_stencilbits` | `8` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1442` |
+| `r_stencilbits` | `8` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1477` |
 | `r_stereo` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1399` |
 | `r_stereoEnabled` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1719` |
-| `r_stereoEnabled` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1465` |
-| `r_stereoSeparation` | `64` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1919` |
+| `r_stereoEnabled` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1500` |
+| `r_stereoSeparation` | `64` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1972` |
 | `r_stipplelines` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1659` |
-| `r_stipplelines` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2076` |
+| `r_stipplelines` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2129` |
 | `r_subdivisions` | `4` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1429` |
-| `r_subdivisions` | `4` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1464` |
-| `r_sunlightMode` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1673` |
-| `r_sunShadows` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1675` |
+| `r_subdivisions` | `4` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1499` |
+| `r_sunlightMode` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1708` |
+| `r_sunShadows` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1710` |
 | `r_swapInterval` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1513` |
-| `r_swapInterval` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1931` |
-| `r_swapInterval` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1934` |
+| `r_swapInterval` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1984` |
+| `r_swapInterval` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1987` |
 | `r_test_forcelod0` | `0` | `0` | `renderergl2/tr_model.cpp:118` |
 | `r_test_forcepose` | `1` | `0` | `renderergl2/tr_model.cpp:117` |
 | `r_test_maskrfx` | `0` | `0` | `renderergl2/tr_model.cpp:119` |
 | `r_test_noprepass` | `0` | `0` | `renderergl2/tr_model.cpp:115` |
 | `r_test_twosided` | `0` | `0` | `renderergl2/tr_model.cpp:116` |
-| `r_test_twosided` | `0` | `0` | `renderergl2/tr_shade.c:2754` |
+| `r_test_twosided` | `0` | `0` | `renderergl2/tr_shade.c:2849` |
 | `r_texturebits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1397` |
-| `r_texturebits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1440` |
+| `r_texturebits` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1475` |
 | `r_textureDetails` | `1` | `33` | `renderergl1/tr_init.c:1396` |
 | `r_textureMode` | `GL_LINEAR_MIPMAP_NEAREST` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1512` |
-| `r_textureMode` | `GL_LINEAR_MIPMAP_LINEAR` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1927` |
-| `r_toneMap` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1475` |
-| `r_tonemapMode` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:97` |
-| `r_uiFrameClear` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_backend.c:1851` |
-| `r_uifullscreen` | `0` | `0` | `renderergl2/tr_init.c:1463` |
+| `r_textureMode` | `GL_LINEAR_MIPMAP_LINEAR` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1980` |
+| `r_toneMap` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1510` |
+| `r_tonemapMode` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_postprocess.c:75` |
+| `r_uiFrameClear` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_backend.c:1871` |
+| `r_uifullscreen` | `0` | `0` | `renderergl2/tr_init.c:1498` |
+| `r_upscaleFilter` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1448` |
 | `r_useglfog` | `1` | `64` | `renderergl1/tr_init.c:1677` |
 | `r_uselod` | `1` | `CVAR_TEMP` | `renderergl1/tr_init.c:1533` |
-| `r_uselod` | `1` | `CVAR_TEMP` | `renderergl2/tr_init.c:2153` |
-| `r_vaoCache` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2016` |
+| `r_uselod` | `1` | `CVAR_TEMP` | `renderergl2/tr_init.c:2206` |
+| `r_vaoCache` | `0` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2069` |
 | `r_verbose` | `0` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1622` |
-| `r_verbose` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1991` |
+| `r_verbose` | `0` | `CVAR_CHEAT` | `renderergl2/tr_init.c:2044` |
 | `r_vertexLight` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1427` |
-| `r_vertexLight` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1462` |
+| `r_vertexLight` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1497` |
 | `r_vidmode1024` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1409` |
 | `r_vidmodemax` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1410` |
 | `r_weaponfovx` | `0` | `0` | `cgame/cg_modelanim.c:1577` |
 | `r_weaponfovx` | `0` | `0` | `renderergl1/tr_init.c:1450` |
-| `r_weaponfovx` | `0` | `0` | `renderergl2/tr_init.c:2084` |
+| `r_weaponfovx` | `0` | `0` | `renderergl2/tr_init.c:2137` |
 | `r_weaponshiftx` | `0` | `0` | `renderergl1/tr_init.c:1460` |
-| `r_weaponshiftx` | `0` | `0` | `renderergl2/tr_init.c:2090` |
+| `r_weaponshiftx` | `0` | `0` | `renderergl2/tr_init.c:2143` |
 | `r_weaponshifty` | `-0.05` | `0` | `renderergl1/tr_init.c:1459` |
-| `r_weaponshifty` | `-0.05` | `0` | `renderergl2/tr_init.c:2089` |
+| `r_weaponshifty` | `-0.05` | `0` | `renderergl2/tr_init.c:2142` |
 | `r_weaponznear` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1451` |
-| `r_weaponznear` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2085` |
+| `r_weaponznear` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2138` |
 | `r_znear` | `4` | `CVAR_CHEAT` | `renderergl1/tr_init.c:1449` |
-| `r_znear` | `4` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1916` |
-| `r_zproj` | `64` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1918` |
-| `rate` | `25000` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4186` |
+| `r_znear` | `4` | `CVAR_CHEAT` | `renderergl2/tr_init.c:1969` |
+| `r_zproj` | `64` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1971` |
+| `rate` | `25000` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4299` |
 | `rate` | `5000` | `CVAR_ARCHIVE \| CVAR_USERINFO` | `client/cl_uiserverlist.cpp:667` |
-| `rconAddress` |  | `0` | `client/cl_main.cpp:4039` |
-| `rconPassword` |  | `CVAR_TEMP` | `client/cl_main.cpp:4029` |
+| `rconAddress` |  | `0` | `client/cl_main.cpp:4152` |
+| `rconPassword` |  | `CVAR_TEMP` | `client/cl_main.cpp:4139` |
 | `rconPassword` |  | `CVAR_TEMP` | `server/sv_init.c:1135` |
 | `roundlimit` | `0` | `CVAR_SERVERINFO` | `fgame/gamecvars.cpp:335` |
 | `s_alAvailableDevices` | `devicenames` | `CVAR_ROM \| CVAR_NORESTART` | `client/snd_openal.c:2594` |
-| `s_alAvailableDevices` | `devicenames` | `CVAR_ROM \| CVAR_NORESTART` | `client/snd_openal_new.cpp:662` |
-| `s_alAvailableDevices` |  | `CVAR_ROM` | `client/snd_openal_new.cpp:912` |
-| `s_alAvailableDevices` |  | `CVAR_ROM` | `client/snd_openal_new.cpp:959` |
+| `s_alAvailableDevices` | `devicenames` | `CVAR_ROM \| CVAR_NORESTART` | `client/snd_openal_new.cpp:671` |
+| `s_alAvailableDevices` |  | `CVAR_ROM` | `client/snd_openal_new.cpp:921` |
+| `s_alAvailableDevices` |  | `CVAR_ROM` | `client/snd_openal_new.cpp:968` |
 | `s_alAvailableInputDevices` | `inputdevicenames` | `CVAR_ROM \| CVAR_NORESTART` | `client/snd_openal.c:2685` |
 | `s_alCapture` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/snd_openal.c:2635` |
 | `s_alDevice` |  | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/snd_openal.c:2521` |
@@ -2356,81 +2431,86 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `s_alPrecache` | `1` | `CVAR_ARCHIVE` | `client/snd_openal.c:2508` |
 | `s_alRolloff` | `2` | `CVAR_CHEAT` | `client/snd_openal.c:2515` |
 | `s_alSources` | `96` | `CVAR_ARCHIVE` | `client/snd_openal.c:2510` |
-| `s_ambientvolume` | `0.6` | `0` | `cgame/cg_view.c:2381` |
-| `s_ambientvolume` | `0.6` | `0` | `cgame/cg_view.c:6598` |
-| `s_ambientvolume` | `0.6` | `0` | `cgame/cg_view.c:6607` |
+| `s_ambientvolume` | `0.6` | `0` | `cgame/cg_view.c:2425` |
+| `s_ambientvolume` | `0.6` | `0` | `cgame/cg_view.c:6705` |
+| `s_ambientvolume` | `0.6` | `0` | `cgame/cg_view.c:6725` |
+| `s_ambientvolume` | `0.6` | `0` | `cgame/cg_view.c:6794` |
+| `s_ambientvolume` | `0.6` | `0` | `cgame/cg_view.c:6805` |
 | `s_ambientvolume` | `0.6` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:107` |
 | `s_backend` |  | `CVAR_ROM` | `client/snd_main.c:483` |
-| `s_cueDuck` | `2` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:4266` |
-| `s_cueGain` | `1` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:4323` |
-| `s_cueGain2` | `1` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:4324` |
+| `s_cueDuck` | `2` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:4280` |
+| `s_cueGain` | `1` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:4337` |
+| `s_cueGain2` | `1` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:4338` |
 | `s_debugmusic` | `0` | `0` | `fgame/gamecvars.cpp:515` |
-| `s_dialogscale` | `1` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:122` |
+| `s_dialogscale` | `1` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:127` |
 | `s_doppler` | `1` | `CVAR_ARCHIVE` | `client/snd_main.c:482` |
-| `s_initsound` | `1` | `0` | `client/snd_dma_new.cpp:126` |
+| `s_initsound` | `1` | `0` | `client/snd_dma_new.cpp:131` |
 | `s_initsound` | `1` | `0` | `client/snd_main.c:487` |
-| `s_initsound` | `1` | `0` | `client/snd_openal_new.cpp:1108` |
-| `s_initsound` | `1` | `0` | `client/snd_openal_new.cpp:1331` |
-| `s_khz` | `44` | `CVAR_ARCHIVE \| CVAR_SOUND_LATCH` | `client/snd_dma_new.cpp:117` |
-| `s_loadas8bit` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/snd_dma_new.cpp:118` |
-| `s_milesdriver` | `auto` | `CVAR_SOUND_LATCH \| CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1067` |
+| `s_initsound` | `1` | `0` | `client/snd_openal_new.cpp:1117` |
+| `s_initsound` | `1` | `0` | `client/snd_openal_new.cpp:1343` |
+| `s_khz` | `44` | `CVAR_ARCHIVE \| CVAR_SOUND_LATCH` | `client/snd_dma_new.cpp:122` |
+| `s_loadas8bit` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/snd_dma_new.cpp:123` |
+| `s_milesdriver` | `auto` | `CVAR_SOUND_LATCH \| CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1076` |
 | `s_mixahead` | `0.2` | `CVAR_ARCHIVE` | `client/snd_dma.c:1589` |
 | `s_mixPreStep` | `0.05` | `CVAR_ARCHIVE` | `client/snd_dma.c:1590` |
-| `s_mixPreStep` | `0.05` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:119` |
-| `s_muffleCurve` | `2.0` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1089` |
-| `s_muffleGain` | `0.10` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1088` |
-| `s_muffleHF` | `0.95` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1087` |
-| `s_musicvolume` | `0.9` | `0` | `cgame/cg_view.c:2380` |
-| `s_musicvolume` | `0.9` | `0` | `cgame/cg_view.c:6564` |
-| `s_musicvolume` | `0.9` | `0` | `cgame/cg_view.c:6573` |
+| `s_mixPreStep` | `0.05` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:124` |
+| `s_muffleCurve` | `2.0` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1098` |
+| `s_muffleGain` | `0.10` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1097` |
+| `s_muffleHF` | `0.95` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1096` |
+| `s_musicvolume` | `0.9` | `0` | `cgame/cg_view.c:2424` |
+| `s_musicvolume` | `0.9` | `0` | `cgame/cg_view.c:6713` |
+| `s_musicvolume` | `0.9` | `0` | `cgame/cg_view.c:6729` |
+| `s_musicvolume` | `0.9` | `0` | `cgame/cg_view.c:6757` |
+| `s_musicvolume` | `0.9` | `0` | `cgame/cg_view.c:6768` |
 | `s_musicvolume` | `0.9` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:106` |
 | `s_musicvolume` | `0.25` | `CVAR_ARCHIVE` | `client/snd_main.c:480` |
 | `s_muted` | `0` | `CVAR_ROM` | `client/snd_main.c:481` |
 | `s_muteWhenMinimized` | `0` | `CVAR_ARCHIVE` | `client/snd_main.c:484` |
 | `s_muteWhenUnfocused` | `0` | `CVAR_ARCHIVE` | `client/snd_main.c:485` |
-| `s_obstruction_cal_time` | `500` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1095` |
-| `s_occlusion` | `1` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1085` |
-| `s_occlusionStrength` | `1.0` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1086` |
-| `s_openaldevice` |  | `CVAR_SOUND_LATCH` | `client/snd_openal_new.cpp:1068` |
-| `s_openaldriver` | `ALDRIVER_DEFAULT` | `CVAR_LATCH \| CVAR_PROTECTED` | `client/snd_openal_new.cpp:1099` |
-| `s_poolProbe` | `1` | `0` | `client/snd_openal_new.cpp:3415` |
-| `s_reverb` | `1` | `CVAR_SOUND_LATCH \| CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1084` |
-| `s_reverbGain` | `3.0` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1090` |
+| `s_obstruction_cal_time` | `500` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1104` |
+| `s_occlusion` | `1` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1094` |
+| `s_occlusionStrength` | `1.0` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1095` |
+| `s_openaldevice` |  | `CVAR_SOUND_LATCH` | `client/snd_openal_new.cpp:1077` |
+| `s_openaldriver` | `ALDRIVER_DEFAULT` | `CVAR_LATCH \| CVAR_PROTECTED` | `client/snd_openal_new.cpp:1108` |
+| `s_poolProbe` | `1` | `0` | `client/snd_openal_new.cpp:3427` |
+| `s_reverb` | `1` | `CVAR_SOUND_LATCH \| CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1093` |
+| `s_reverbGain` | `3.0` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1099` |
 | `s_sdlBits` | `16` | `CVAR_ARCHIVE` | `sdl/sdl_snd.c:196` |
 | `s_sdlCapture` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `sdl/sdl_snd.c:283` |
 | `s_sdlChannels` | `2` | `CVAR_ARCHIVE` | `sdl/sdl_snd.c:198` |
 | `s_sdlDevSamps` | `0` | `CVAR_ARCHIVE` | `sdl/sdl_snd.c:199` |
 | `s_sdlMixSamps` | `0` | `CVAR_ARCHIVE` | `sdl/sdl_snd.c:200` |
 | `s_sdlSpeed` | `0` | `CVAR_ARCHIVE` | `sdl/sdl_snd.c:197` |
-| `s_separation` | `0.5` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:116` |
-| `s_sfxCount` | `0` | `0` | `cgame/cg_view.c:6654` |
+| `s_separation` | `0.5` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:121` |
+| `s_sfxCount` | `0` | `0` | `cgame/cg_view.c:6853` |
 | `s_sfxduck` | `1` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:108` |
-| `s_sfxduckVoxFloor` | `1` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:4230` |
-| `s_sfxvolume` | `1` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:123` |
+| `s_sfxduckVoxFloor` | `1` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:4244` |
+| `s_sfxvolume` | `1` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:128` |
 | `s_show` | `0` | `CVAR_CHEAT` | `client/snd_dma.c:1591` |
-| `s_show` | `0` | `CVAR_CHEAT` | `client/snd_dma_new.cpp:120` |
-| `s_show_cpu` | `0` | `0` | `client/snd_openal_new.cpp:1091` |
-| `s_show_num_active_sounds` | `0` | `0` | `client/snd_openal_new.cpp:1092` |
-| `s_show_sounds` | `0` | `0` | `client/snd_openal_new.cpp:1093` |
-| `s_speaker_type` | `0` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1094` |
+| `s_show` | `0` | `CVAR_CHEAT` | `client/snd_dma_new.cpp:125` |
+| `s_show_cpu` | `0` | `0` | `client/snd_openal_new.cpp:1100` |
+| `s_show_num_active_sounds` | `0` | `0` | `client/snd_openal_new.cpp:1101` |
+| `s_show_sounds` | `0` | `0` | `client/snd_openal_new.cpp:1102` |
+| `s_speaker_type` | `0` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:1103` |
 | `s_testsound` | `0` | `CVAR_CHEAT` | `client/snd_dma.c:1592` |
-| `s_testsound` | `0` | `CVAR_CHEAT` | `client/snd_dma_new.cpp:121` |
+| `s_testsound` | `0` | `CVAR_CHEAT` | `client/snd_dma_new.cpp:126` |
 | `s_useOpenAL` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/snd_main.c:501` |
+| `s_volume` | `0.9` | `CVAR_ARCHIVE` | `cgame/cg_servercmds.c:358` |
 | `s_volume` | `0.9` | `CVAR_ARCHIVE` | `client/snd_dma_new.cpp:105` |
 | `s_volume` | `0.8` | `CVAR_ARCHIVE` | `client/snd_main.c:479` |
-| `s_voxDuck` | `0.35` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:4158` |
-| `s_voxProbe` | `1` | `0` | `client/snd_openal_new.cpp:2001` |
+| `s_voxDuck` | `0.35` | `CVAR_ARCHIVE` | `client/snd_openal_new.cpp:4172` |
+| `s_voxProbe` | `1` | `0` | `client/snd_openal_new.cpp:2013` |
 | `scoreboard_toggle1` |  | `0` | `fgame/dm_manager.cpp:995` |
 | `scoreboard_toggle2` |  | `0` | `fgame/dm_manager.cpp:996` |
-| `sensitivity` | `5` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4049` |
+| `sensitivity` | `5` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4162` |
 | `session` | `-1` | `0` | `fgame/g_session.cpp:110` |
-| `shortversion` | `PRODUCT_VERSION` | `CVAR_ROM \| CVAR_USERINFO \| CVAR_SERVERINFO` | `qcommon/common.c:1953` |
+| `shortversion` | `PRODUCT_VERSION` | `CVAR_ROM \| CVAR_USERINFO \| CVAR_SERVERINFO` | `qcommon/common.c:1959` |
 | `showdrop` | `0` | `CVAR_TEMP` | `qcommon/net_chan.c:75` |
-| `showLoad` | `0` | `0` | `qcommon/common.c:1907` |
+| `showLoad` | `0` | `0` | `qcommon/common.c:1913` |
 | `showpackets` | `0` | `CVAR_TEMP` | `qcommon/net_chan.c:74` |
 | `skill` | `1` | `CVAR_USERINFO \| CVAR_SERVERINFO \| CVAR_LATCH` | `fgame/gamecvars.cpp:315` |
-| `snaps` | `20` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4187` |
-| `snaps` |  | `0` | `client/cl_main.cpp:5448` |
+| `snaps` | `20` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4300` |
+| `snaps` |  | `0` | `client/cl_main.cpp:5564` |
 | `snd_chance` |  | `0` | `fgame/soundman.cpp:437` |
 | `snd_currentmood` |  | `0` | `fgame/soundman.cpp:556` |
 | `snd_fallbackmood` |  | `0` | `fgame/soundman.cpp:560` |
@@ -2466,8 +2546,8 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `snd_width` |  | `0` | `fgame/soundman.cpp:620` |
 | `snd_yaw` |  | `0` | `fgame/soundman.cpp:576` |
 | `snd_yaw` |  | `0` | `fgame/soundman.cpp:669` |
-| `soundoverlay` | `0` | `0` | `client/cl_ui.cpp:5463` |
-| `spam` | `1` | `0` | `qcommon/common.c:1904` |
+| `soundoverlay` | `0` | `0` | `client/cl_ui.cpp:5514` |
+| `spam` | `1` | `0` | `qcommon/common.c:1910` |
 | `subAlpha` | `0.5` | `0` | `client/cl_uiview3d.cpp:739` |
 | `sv_allowDownload` | `0` | `CVAR_SERVERINFO` | `server/sv_init.c:1143` |
 | `sv_banFile` | `serverbans.dat` | `CVAR_ARCHIVE` | `server/sv_init.c:1166` |
@@ -2501,10 +2581,10 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `sv_maplist` |  | `CVAR_ARCHIVE \| CVAR_SERVERINFO` | `server/sv_init.c:1115` |
 | `sv_master1` | `MASTER_SERVER_NAME` | `0` | `server/sv_init.c:1145` |
 | `sv_maxbots` | `0` | `CVAR_LATCH` | `fgame/gamecvars.cpp:675` |
-| `sv_maxclients` | `1` | `0` | `client/cl_ui.cpp:4161` |
-| `sv_maxclients` | `1` | `0` | `client/cl_ui.cpp:4496` |
-| `sv_maxclients` | `1` | `0` | `client/cl_ui.cpp:5182` |
-| `sv_maxclients` | `1` | `0` | `client/cl_ui.cpp:5211` |
+| `sv_maxclients` | `1` | `0` | `client/cl_ui.cpp:4212` |
+| `sv_maxclients` | `1` | `0` | `client/cl_ui.cpp:4547` |
+| `sv_maxclients` | `1` | `0` | `client/cl_ui.cpp:5233` |
+| `sv_maxclients` | `1` | `0` | `client/cl_ui.cpp:5262` |
 | `sv_maxclients` | `1` | `0` | `fgame/gamecvars.cpp:317` |
 | `sv_maxclients` | `0` | `CVAR_LATCH \| CVAR_SERVERINFO` | `server/sv_ccmds.c:2503` |
 | `sv_maxclients` | `8` | `0` | `server/sv_init.c:451` |
@@ -2521,10 +2601,10 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `sv_netprofile` | `0` | `0` | `server/sv_init.c:1156` |
 | `sv_netprofileoverlay` | `0` | `0` | `server/sv_init.c:1157` |
 | `sv_numbots` | `0` | `0` | `fgame/gamecvars.cpp:677` |
-| `sv_packetdelay` | `0` | `0` | `qcommon/common.c:1926` |
+| `sv_packetdelay` | `0` | `0` | `qcommon/common.c:1932` |
 | `sv_padPackets` | `0` | `0` | `server/sv_init.c:1151` |
 | `sv_pakNames` |  | `CVAR_SYSTEMINFO \| CVAR_ROM` | `server/sv_init.c:1130` |
-| `sv_paks` |  | `0` | `client/cl_parse.cpp:613` |
+| `sv_paks` |  | `0` | `client/cl_parse.cpp:644` |
 | `sv_paks` |  | `CVAR_SYSTEMINFO \| CVAR_ROM` | `server/sv_init.c:1129` |
 | `sv_precache` | `1` | `0` | `fgame/gamecvars.cpp:311` |
 | `sv_privateClients` | `0` | `CVAR_SERVERINFO` | `server/sv_init.c:1102` |
@@ -2536,12 +2616,12 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `sv_referencedPaks` |  | `CVAR_SYSTEMINFO \| CVAR_ROM` | `server/sv_init.c:1131` |
 | `sv_rollangle` | `2` | `0` | `fgame/gamecvars.cpp:349` |
 | `sv_rollspeed` | `2200` | `0` | `fgame/gamecvars.cpp:348` |
-| `sv_running` | `0` | `0` | `cgame/cg_main.c:243` |
-| `sv_running` | `0` | `CVAR_ROM` | `qcommon/common.c:1927` |
+| `sv_running` | `0` | `0` | `cgame/cg_main.c:244` |
+| `sv_running` | `0` | `CVAR_ROM` | `qcommon/common.c:1933` |
 | `sv_running` | `0` | `0` | `renderergl1/tr_postprocess_gl1.c:726` |
-| `sv_runspeed` | `287` | `0` | `cgame/cg_view.c:6849` |
+| `sv_runspeed` | `287` | `0` | `cgame/cg_view.c:7048` |
 | `sv_runspeed` | `287` | `0` | `fgame/gamecvars.cpp:384` |
-| `sv_runspeed` | `287` | `0` | `fgame/player.cpp:14448` |
+| `sv_runspeed` | `287` | `0` | `fgame/player.cpp:14470` |
 | `sv_scriptfiles` | `0` | `0` | `fgame/gamecvars.cpp:674` |
 | `sv_serverid` | `0` | `CVAR_SYSTEMINFO \| CVAR_ROM` | `server/sv_init.c:1119` |
 | `sv_sharedbots` | `0` | `CVAR_LATCH` | `fgame/gamecvars.cpp:676` |
@@ -2600,14 +2680,14 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `ter_minMarkRadius` | `8` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1692` |
 | `thereisnomonkey` | `0` | `CVAR_TEMP` | `fgame/entity.cpp:5488` |
 | `tiki_posecheck` | `0` | `CVAR_TEMP` | `tiki/tiki_tag.cpp:204` |
-| `timedemo` | `0` | `0` | `client/cl_main.cpp:4032` |
-| `timedemo` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1923` |
+| `timedemo` | `0` | `0` | `client/cl_main.cpp:4145` |
+| `timedemo` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1929` |
 | `timegraph` | `0` | `CVAR_CHEAT` | `client/cl_scrn.cpp:416` |
 | `timelimit` | `0` | `CVAR_SERVERINFO` | `fgame/dm_manager.cpp:1080` |
 | `timelimit` | `0` | `0` | `fgame/dm_manager.cpp:1184` |
 | `timelimit` | `0` | `CVAR_SERVERINFO` | `fgame/gamecvars.cpp:334` |
 | `timelimit` | `0` | `CVAR_SERVERINFO` | `server/sv_init.c:1096` |
-| `timescale` | `1` | `CVAR_CHEAT \| CVAR_SYSTEMINFO` | `qcommon/common.c:1915` |
+| `timescale` | `1` | `CVAR_CHEAT \| CVAR_SYSTEMINFO` | `qcommon/common.c:1921` |
 | `tow_allied_obj1` |  | `0` | `fgame/dm_manager.cpp:971` |
 | `tow_allied_obj2` |  | `0` | `fgame/dm_manager.cpp:972` |
 | `tow_allied_obj3` |  | `0` | `fgame/dm_manager.cpp:973` |
@@ -2619,109 +2699,109 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `tow_axis_obj4` |  | `0` | `fgame/dm_manager.cpp:979` |
 | `tow_axis_obj5` |  | `0` | `fgame/dm_manager.cpp:980` |
 | `tunak` | `0` | `0` | `client/cl_uistd.cpp:1819` |
-| `u_shoulderaim` | `0` | `CVAR_USERINFO` | `cgame/cg_view.c:5111` |
-| `u_view3p` | `0` | `CVAR_USERINFO` | `cgame/cg_view.c:6352` |
-| `ui_Accuracy` | `0` | `0` | `client/cl_ui.cpp:5484` |
-| `ui_compass` | `1` | `0` | `client/cl_ui.cpp:5466` |
-| `ui_compass_scale` | `0.75` | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/cl_ui.cpp:4024` |
-| `ui_compass_scale` | `0.55` | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/cl_ui.cpp:4027` |
-| `ui_console` | `0` | `1` | `client/cl_ui.cpp:5458` |
-| `ui_consoleposition` |  | `1` | `client/cl_ui.cpp:5457` |
-| `ui_crosshair` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:207` |
-| `ui_crosshair` | `0` | `1` | `client/cl_ui.cpp:5459` |
-| `ui_debugload` | `0` | `0` | `client/cl_ui.cpp:5464` |
+| `u_shoulderaim` | `0` | `CVAR_USERINFO` | `cgame/cg_view.c:5229` |
+| `u_view3p` | `0` | `CVAR_USERINFO` | `cgame/cg_view.c:6470` |
+| `ui_Accuracy` | `0` | `0` | `client/cl_ui.cpp:5540` |
+| `ui_compass` | `1` | `0` | `client/cl_ui.cpp:5517` |
+| `ui_compass_scale` | `0.75` | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/cl_ui.cpp:4075` |
+| `ui_compass_scale` | `0.55` | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/cl_ui.cpp:4078` |
+| `ui_console` | `0` | `1` | `client/cl_ui.cpp:5509` |
+| `ui_consoleposition` |  | `1` | `client/cl_ui.cpp:5508` |
+| `ui_crosshair` | `0` | `CVAR_ARCHIVE` | `cgame/cg_main.c:208` |
+| `ui_crosshair` | `0` | `1` | `client/cl_ui.cpp:5510` |
+| `ui_debugload` | `0` | `0` | `client/cl_ui.cpp:5515` |
 | `ui_dedicated` | `0` | `0` | `gamespy/sv_gamespy.c:186` |
-| `ui_drawcoords` | `0` | `0` | `client/cl_ui.cpp:5469` |
-| `ui_failed` | `0` | `0` | `client/cl_ui.cpp:5492` |
-| `ui_gmbox` | `1` | `1` | `client/cl_ui.cpp:5456` |
-| `ui_gmboxspam` | `1` | `0` | `client/cl_ui.cpp:5489` |
-| `ui_gotmedal` | `0` | `0` | `client/cl_ui.cpp:5490` |
-| `ui_GroinShots` | `0` | `0` | `client/cl_ui.cpp:5473` |
-| `ui_GunneryEvaluation` | `0` | `0` | `client/cl_ui.cpp:5472` |
-| `ui_HeadShots` | `0` | `0` | `client/cl_ui.cpp:5479` |
-| `ui_health_end` | `0` | `0` | `client/cl_ui.cpp:5471` |
-| `ui_health_start` | `0` | `0` | `client/cl_ui.cpp:5470` |
-| `ui_hudAlpha` | `1` | `0` | `client/cl_ui.cpp:1862` |
-| `ui_inventoryfile` | `global/inventory.txt` | `0` | `client/cl_ui.cpp:5468` |
-| `ui_itemsbar` | `0` | `1` | `client/cl_ui.cpp:5462` |
-| `ui_LeftArmShots` | `0` | `0` | `client/cl_ui.cpp:5475` |
-| `ui_LeftLegShots` | `0` | `0` | `client/cl_ui.cpp:5477` |
-| `ui_legalscreen_fadein` | `1` | `0` | `client/cl_ui.cpp:5500` |
-| `ui_legalscreen_fadeout` | `1` | `0` | `client/cl_ui.cpp:5501` |
-| `ui_legalscreen_stay` | `3` | `0` | `client/cl_ui.cpp:5502` |
+| `ui_drawcoords` | `0` | `0` | `client/cl_ui.cpp:5525` |
+| `ui_failed` | `0` | `0` | `client/cl_ui.cpp:5548` |
+| `ui_gmbox` | `1` | `1` | `client/cl_ui.cpp:5507` |
+| `ui_gmboxspam` | `1` | `0` | `client/cl_ui.cpp:5545` |
+| `ui_gotmedal` | `0` | `0` | `client/cl_ui.cpp:5546` |
+| `ui_GroinShots` | `0` | `0` | `client/cl_ui.cpp:5529` |
+| `ui_GunneryEvaluation` | `0` | `0` | `client/cl_ui.cpp:5528` |
+| `ui_HeadShots` | `0` | `0` | `client/cl_ui.cpp:5535` |
+| `ui_health_end` | `0` | `0` | `client/cl_ui.cpp:5527` |
+| `ui_health_start` | `0` | `0` | `client/cl_ui.cpp:5526` |
+| `ui_hudAlpha` | `1` | `0` | `client/cl_ui.cpp:1892` |
+| `ui_inventoryfile` | `global/inventory.txt` | `0` | `client/cl_ui.cpp:5524` |
+| `ui_itemsbar` | `0` | `1` | `client/cl_ui.cpp:5513` |
+| `ui_LeftArmShots` | `0` | `0` | `client/cl_ui.cpp:5531` |
+| `ui_LeftLegShots` | `0` | `0` | `client/cl_ui.cpp:5533` |
+| `ui_legalscreen_fadein` | `1` | `0` | `client/cl_ui.cpp:5556` |
+| `ui_legalscreen_fadeout` | `1` | `0` | `client/cl_ui.cpp:5557` |
+| `ui_legalscreen_stay` | `3` | `0` | `client/cl_ui.cpp:5558` |
 | `ui_maplist_ffa` |  | `0` | `client/cl_uimaprotationsetup.cpp:76` |
-| `ui_maplist_ffa` |  | `0` | `fgame/level.cpp:2104` |
+| `ui_maplist_ffa` |  | `0` | `fgame/level.cpp:2138` |
 | `ui_maplist_lib` |  | `0` | `client/cl_uimaprotationsetup.cpp:70` |
-| `ui_maplist_lib` |  | `0` | `fgame/level.cpp:2124` |
+| `ui_maplist_lib` |  | `0` | `fgame/level.cpp:2158` |
 | `ui_maplist_obj` |  | `0` | `client/cl_uimaprotationsetup.cpp:66` |
-| `ui_maplist_obj` |  | `0` | `fgame/level.cpp:2116` |
+| `ui_maplist_obj` |  | `0` | `fgame/level.cpp:2150` |
 | `ui_maplist_round` |  | `0` | `client/cl_uimaprotationsetup.cpp:74` |
-| `ui_maplist_round` |  | `0` | `fgame/level.cpp:2112` |
+| `ui_maplist_round` |  | `0` | `fgame/level.cpp:2146` |
 | `ui_maplist_team` |  | `0` | `client/cl_uimaprotationsetup.cpp:72` |
-| `ui_maplist_team` |  | `0` | `fgame/level.cpp:2108` |
+| `ui_maplist_team` |  | `0` | `fgame/level.cpp:2142` |
 | `ui_maplist_tow` |  | `0` | `client/cl_uimaprotationsetup.cpp:68` |
-| `ui_maplist_tow` |  | `0` | `fgame/level.cpp:2120` |
-| `ui_minicon` | `0` | `1` | `client/cl_ui.cpp:5455` |
-| `ui_newvidmode` | `va("%d", r_mode)` | `CVAR_RESETSTRING` | `client/cl_ui.cpp:1525` |
-| `ui_newvidmode` | `-1` | `0` | `client/cl_ui.cpp:5467` |
-| `ui_NumComplete` | `0` | `0` | `client/cl_ui.cpp:5486` |
-| `ui_NumEnemysKilled` | `0` | `0` | `client/cl_ui.cpp:5480` |
-| `ui_NumHits` | `0` | `0` | `client/cl_ui.cpp:5487` |
-| `ui_NumHitsTaken` | `0` | `0` | `client/cl_ui.cpp:5482` |
-| `ui_NumObjectives` | `0` | `0` | `client/cl_ui.cpp:5485` |
-| `ui_NumObjectsDestroyed` | `0` | `0` | `client/cl_ui.cpp:5481` |
-| `ui_NumShotsFired` | `0` | `0` | `client/cl_ui.cpp:5488` |
+| `ui_maplist_tow` |  | `0` | `fgame/level.cpp:2154` |
+| `ui_minicon` | `0` | `1` | `client/cl_ui.cpp:5506` |
+| `ui_newvidmode` | `va("%d", r_mode)` | `CVAR_RESETSTRING` | `client/cl_ui.cpp:1555` |
+| `ui_newvidmode` | `-1` | `0` | `client/cl_ui.cpp:5523` |
+| `ui_NumComplete` | `0` | `0` | `client/cl_ui.cpp:5542` |
+| `ui_NumEnemysKilled` | `0` | `0` | `client/cl_ui.cpp:5536` |
+| `ui_NumHits` | `0` | `0` | `client/cl_ui.cpp:5543` |
+| `ui_NumHitsTaken` | `0` | `0` | `client/cl_ui.cpp:5538` |
+| `ui_NumObjectives` | `0` | `0` | `client/cl_ui.cpp:5541` |
+| `ui_NumObjectsDestroyed` | `0` | `0` | `client/cl_ui.cpp:5537` |
+| `ui_NumShotsFired` | `0` | `0` | `client/cl_ui.cpp:5544` |
 | `ui_pickedsound` |  | `0` | `fgame/soundman.cpp:441` |
 | `ui_pickedsound` |  | `0` | `fgame/soundman.cpp:488` |
-| `ui_PreferredWeapon` | `none` | `0` | `client/cl_ui.cpp:5483` |
-| `ui_returnmenu` | `0` | `0` | `client/cl_ui.cpp:5493` |
-| `ui_RightArmShots` | `0` | `0` | `client/cl_ui.cpp:5474` |
-| `ui_RightLegShots` | `0` | `0` | `client/cl_ui.cpp:5476` |
-| `ui_signshader` |  | `0` | `client/cl_ui.cpp:5465` |
-| `ui_skip_eamovie` | `1` | `0` | `client/cl_ui.cpp:5494` |
-| `ui_skip_legalscreen` | `1` | `0` | `client/cl_ui.cpp:5496` |
-| `ui_skip_titlescreen` | `1` | `0` | `client/cl_ui.cpp:5495` |
-| `ui_startmap` |  | `1` | `client/cl_ui.cpp:5506` |
-| `ui_success` | `0` | `0` | `client/cl_ui.cpp:5491` |
-| `ui_timemessage` |  | `0` | `cgame/cg_main.c:240` |
-| `ui_titlescreen_fadein` | `1` | `0` | `client/cl_ui.cpp:5497` |
-| `ui_titlescreen_fadeout` | `1` | `0` | `client/cl_ui.cpp:5498` |
-| `ui_titlescreen_stay` | `3` | `0` | `client/cl_ui.cpp:5499` |
-| `ui_TorsoShots` | `0` | `0` | `client/cl_ui.cpp:5478` |
+| `ui_PreferredWeapon` | `none` | `0` | `client/cl_ui.cpp:5539` |
+| `ui_returnmenu` | `0` | `0` | `client/cl_ui.cpp:5549` |
+| `ui_RightArmShots` | `0` | `0` | `client/cl_ui.cpp:5530` |
+| `ui_RightLegShots` | `0` | `0` | `client/cl_ui.cpp:5532` |
+| `ui_signshader` |  | `0` | `client/cl_ui.cpp:5516` |
+| `ui_skip_eamovie` | `1` | `0` | `client/cl_ui.cpp:5550` |
+| `ui_skip_legalscreen` | `1` | `0` | `client/cl_ui.cpp:5552` |
+| `ui_skip_titlescreen` | `1` | `0` | `client/cl_ui.cpp:5551` |
+| `ui_startmap` |  | `1` | `client/cl_ui.cpp:5562` |
+| `ui_success` | `0` | `0` | `client/cl_ui.cpp:5547` |
+| `ui_timemessage` |  | `0` | `cgame/cg_main.c:241` |
+| `ui_titlescreen_fadein` | `1` | `0` | `client/cl_ui.cpp:5553` |
+| `ui_titlescreen_fadeout` | `1` | `0` | `client/cl_ui.cpp:5554` |
+| `ui_titlescreen_stay` | `3` | `0` | `client/cl_ui.cpp:5555` |
+| `ui_TorsoShots` | `0` | `0` | `client/cl_ui.cpp:5534` |
 | `ui_votestringentry` |  | `0` | `fgame/bg_voteoptions.cpp:607` |
 | `ui_votetype` | `0` | `0` | `fgame/bg_voteoptions.cpp:596` |
-| `ui_weaponsbar` | `1` | `1` | `client/cl_ui.cpp:5460` |
-| `ui_weaponsbartime` | `2500` | `1` | `client/cl_ui.cpp:5461` |
-| `version` | `s` | `CVAR_ROM \| CVAR_SERVERINFO` | `qcommon/common.c:1951` |
-| `viewlog` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1919` |
+| `ui_weaponsbar` | `1` | `1` | `client/cl_ui.cpp:5511` |
+| `ui_weaponsbartime` | `2500` | `1` | `client/cl_ui.cpp:5512` |
+| `version` | `s` | `CVAR_ROM \| CVAR_SERVERINFO` | `qcommon/common.c:1957` |
+| `viewlog` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1925` |
 | `viewmodelanim` | `1` | `0` | `cgame/cg_modelanim.c:390` |
 | `viewmodelanimslot` | `1` | `0` | `cgame/cg_modelanim.c:479` |
 | `viewmodelentity` |  | `0` | `renderergl1/tr_model.cpp:753` |
 | `viewmodelentity` |  | `0` | `renderergl2/tr_model.cpp:995` |
-| `viewsize` | `100` | `CVAR_ARCHIVE` | `cgame/cg_main.c:149` |
-| `vm_lean_lower` | `0.1` | `0` | `cgame/cg_main.c:237` |
-| `vm_offset_air_front` | `-3.0` | `0` | `cgame/cg_main.c:220` |
-| `vm_offset_air_side` | `1.5` | `0` | `cgame/cg_main.c:221` |
-| `vm_offset_air_up` | `-6.0` | `0` | `cgame/cg_main.c:222` |
-| `vm_offset_crouch_front` | `-0.5` | `0` | `cgame/cg_main.c:223` |
-| `vm_offset_crouch_side` | `2.25` | `0` | `cgame/cg_main.c:224` |
-| `vm_offset_crouch_up` | `0.2` | `0` | `cgame/cg_main.c:225` |
-| `vm_offset_max` | `8.0` | `0` | `cgame/cg_main.c:215` |
-| `vm_offset_rocketcrouch_front` | `0` | `0` | `cgame/cg_main.c:226` |
-| `vm_offset_rocketcrouch_side` | `0` | `0` | `cgame/cg_main.c:227` |
-| `vm_offset_rocketcrouch_up` | `0` | `0` | `cgame/cg_main.c:228` |
-| `vm_offset_shotguncrouch_front` | `-1` | `0` | `cgame/cg_main.c:229` |
-| `vm_offset_shotguncrouch_side` | `2.5` | `0` | `cgame/cg_main.c:230` |
-| `vm_offset_shotguncrouch_up` | `-1.1` | `0` | `cgame/cg_main.c:231` |
-| `vm_offset_speed` | `8.0` | `0` | `cgame/cg_main.c:216` |
-| `vm_offset_upvel` | `0.0025` | `0` | `cgame/cg_main.c:236` |
-| `vm_offset_vel_base` | `100` | `0` | `cgame/cg_main.c:232` |
-| `vm_offset_vel_front` | `-2.0` | `0` | `cgame/cg_main.c:233` |
-| `vm_offset_vel_side` | `1.5` | `0` | `cgame/cg_main.c:234` |
-| `vm_offset_vel_up` | `-4.0` | `0` | `cgame/cg_main.c:235` |
-| `vm_sway_front` | `0.1` | `0` | `cgame/cg_main.c:217` |
-| `vm_sway_side` | `0.005` | `0` | `cgame/cg_main.c:218` |
-| `vm_sway_up` | `0.003` | `0` | `cgame/cg_main.c:219` |
+| `viewsize` | `100` | `CVAR_ARCHIVE` | `cgame/cg_main.c:150` |
+| `vm_lean_lower` | `0.1` | `0` | `cgame/cg_main.c:238` |
+| `vm_offset_air_front` | `-3.0` | `0` | `cgame/cg_main.c:221` |
+| `vm_offset_air_side` | `1.5` | `0` | `cgame/cg_main.c:222` |
+| `vm_offset_air_up` | `-6.0` | `0` | `cgame/cg_main.c:223` |
+| `vm_offset_crouch_front` | `-0.5` | `0` | `cgame/cg_main.c:224` |
+| `vm_offset_crouch_side` | `2.25` | `0` | `cgame/cg_main.c:225` |
+| `vm_offset_crouch_up` | `0.2` | `0` | `cgame/cg_main.c:226` |
+| `vm_offset_max` | `8.0` | `0` | `cgame/cg_main.c:216` |
+| `vm_offset_rocketcrouch_front` | `0` | `0` | `cgame/cg_main.c:227` |
+| `vm_offset_rocketcrouch_side` | `0` | `0` | `cgame/cg_main.c:228` |
+| `vm_offset_rocketcrouch_up` | `0` | `0` | `cgame/cg_main.c:229` |
+| `vm_offset_shotguncrouch_front` | `-1` | `0` | `cgame/cg_main.c:230` |
+| `vm_offset_shotguncrouch_side` | `2.5` | `0` | `cgame/cg_main.c:231` |
+| `vm_offset_shotguncrouch_up` | `-1.1` | `0` | `cgame/cg_main.c:232` |
+| `vm_offset_speed` | `8.0` | `0` | `cgame/cg_main.c:217` |
+| `vm_offset_upvel` | `0.0025` | `0` | `cgame/cg_main.c:237` |
+| `vm_offset_vel_base` | `100` | `0` | `cgame/cg_main.c:233` |
+| `vm_offset_vel_front` | `-2.0` | `0` | `cgame/cg_main.c:234` |
+| `vm_offset_vel_side` | `1.5` | `0` | `cgame/cg_main.c:235` |
+| `vm_offset_vel_up` | `-4.0` | `0` | `cgame/cg_main.c:236` |
+| `vm_sway_front` | `0.1` | `0` | `cgame/cg_main.c:218` |
+| `vm_sway_side` | `0.005` | `0` | `cgame/cg_main.c:219` |
+| `vm_sway_up` | `0.003` | `0` | `cgame/cg_main.c:220` |
 | `vss_color` | `1` | `0` | `cgame/cg_volumetricsmoke.cpp:266` |
 | `vss_default_b` | `0.4` | `0` | `cgame/cg_volumetricsmoke.cpp:277` |
 | `vss_default_g` | `0.45` | `0` | `cgame/cg_volumetricsmoke.cpp:276` |
@@ -2743,4 +2823,4 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `vss_wind_y` | `4` | `0` | `cgame/cg_volumetricsmoke.cpp:269` |
 | `vss_wind_z` | `2` | `0` | `cgame/cg_volumetricsmoke.cpp:270` |
 | `whereami` | `0` | `0` | `fgame/gamecvars.cpp:345` |
-| `wombat` | `0` | `0` | `client/cl_main.cpp:4013` |
+| `wombat` | `0` | `0` | `client/cl_main.cpp:4123` |

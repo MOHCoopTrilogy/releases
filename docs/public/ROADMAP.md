@@ -14,13 +14,14 @@ What is planned, in progress, or known to be broken. This is generated from the 
 
 ## Defects with evidence
 
+- 2026-09-09 m4l3 + engine round — four fixes shipped, none seen in play yet
+- e1l2 dedicated map-checksum residual (bug-2585)
+- global/spotlight.scr: 5 Script Errors per spotlight per map load, and a gunner that never fires
 - e3l4: jeep passenger never completes the first supply run — INSTRUMENTED, cause open
 - Pinned challenges: no in-mission pin surface
-- m3l2: `SV_FindIndex overflow (max=1280)` ×243
 - e2l2: 12× "applied to NULL listener"
 - t2l2: 265 script errors on coop boot despite an A− static audit grade
 - Phase C stealth contain (m2l2a) — shipped, mostly unverified
-- m6l2a contain - bugs 1732-1737, deployed 2026-08-12 - moved to `archive/open-m6l2a-contain.md`
 - ⚠️ m2l2a REGRESSION RISK — the attackplayer latch removal (bug-1700)
 - `coop_stealthArmOnHurt` is dead code — and something else may be covering for it
 - A hand-rolled distance returned a wrong value once and could not be reproduced
@@ -39,7 +40,7 @@ What is planned, in progress, or known to be broken. This is generated from the 
 - Some bullet-hole decals render RED — deliberately not guessed at
 - Invisible briefing NPC on e2l2
 - Shimmer on thin decorative geometry (shadow acne)
-- Bloom is a no-op at the shipped threshold
+- Bloom reads as a flat haze on the Hable curve
 - Seven gl1 post-FX have no gl2 equivalent
 - `r_globalFogDebug` is still `CVAR_TEMP`
 - Diagnostic scaffolding not yet stripped
@@ -50,12 +51,15 @@ What is planned, in progress, or known to be broken. This is generated from the 
 - Reload camera dip never visible
 - Mine detector possibly still lost after DBNO revive
 
+## Awaiting playtest — `SHIPPED-UNVERIFIED`
+
+- Awaiting runtime verification after the next deploy (2026-09-13)
+
 ## Config
 
 - Nine post-FX cvars were menu-wired AND force-reset by `autoexec.cfg` every launch
 - 144 `coop_*` cvars are seeded nowhere
 - The bug-595 0-byte `omconfig.cfg` decoy is still on disk
-- `build.ps1`'s `_research` exclusion is uncommitted
 
 ## Sweep-blocking maps (2026-08-06) - need dedicated sessions
 

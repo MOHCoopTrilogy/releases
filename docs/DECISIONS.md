@@ -539,40 +539,42 @@ boot harness greps. REJECTED: deriving the hover text from the enforcement sourc
 - hover lines are width-curated prose (two ~24-char lines) and mechanical derivation produced
 worse text than the curated tsv; the gate catches drift at the same point a generator would.
 
-## Wall cover: disabled, not deleted - and what re-enabling actually costs
+## Axis loadout cosmetics are UNGATED; Axis weapons keep their unlocks
 
-**Decision (2026, kept):** standing back-to-wall cover is switched off behind a single
-`if (false)` at `openmohaa-hzm/code/fgame/player.cpp:13805`. Crouch/LOW cover stayed on.
-Nothing was removed: the statemap states (`COVER_WALL` at `player_Legs.st:1915`,
-`COVER_WALL_FIRE` at `:1939`), the engine conditionals and the animation aliases all still
-exist and still compile.
+**Decision (user, 2026-09-09):** in multiplayer, choosing German gives you **any** German outfit,
+helmet or gloves with no unlock requirement. Weapons are unchanged - the armory's 20 German guns keep
+the challenge unlocks they already have. REJECTED: authoring an Axis mirror of the 142 Allied armory
+skins with its own progression, which is an art pass rather than an assembly one and would have
+blocked the whole MP loadout on content. Consequence: the `dmteam != "axis"` guards at
+`coop_mod/player.scr:1275` and `:1299` become team-aware rather than an outright exclusion, and the
+Axis cosmetic set is whatever German models already ship. Revisit only if Axis cosmetics need to
+*earn* anything.
 
-**Why it was killed.** Three separate faults, of which two were already fixed by the time
-the switch went in: bug-308 was a null deref (`cgi.get_camera_offset(NULL,NULL)`, unrelated
-to geometry), and bug-307 / bug-313 were statemap `ERR_DROP`s. What actually remained was
-bug-463: a per-frame server `setOrigin()` at `player.cpp:13983` shoving the collision hull
-toward a corner while the client predictor fought it. The kill switch masked that; it did
-not fix it.
+## Wall cover: RE-ENABLED 2026-08-22 - the kill switch is gone
 
-**Re-enabling is therefore NOT "delete the if (false)".** Two things must happen in the
-same edit or the crash class comes straight back:
+**Superseded (2026-08-22).** This entry used to say standing back-to-wall cover was switched off
+behind an `if (false)`. It is LIVE at `openmohaa-hzm/code/fgame/player.cpp:17362`; both preconditions
+below were met. Corrected 2026-09-09 after a survey found a reader would have re-enabled something
+already shipping. Crouch/LOW cover was never off. Nothing was ever removed: the statemap states
+(`COVER_WALL` at `player_Legs.st:1915`, `COVER_WALL_FIRE` at `:1939`), the engine conditionals and
+the animation aliases all still exist.
 
-1. **Delete the peek step-out block (`player.cpp:~13955-13986`).** It is still live code
-   gated on `(m_bCoopCoverWall || m_fCoopPeekFrac > 0)`; removing the switch re-arms the
-   exact `setOrigin` that caused bug-463. Replace displacement with the engine's own
-   `ps->fLeanAngle`, which is already replicated (`msg.cpp:3375`), already client-predicted
-   in shared `bg_pmove.cpp`, and **cannot move the collision hull**. Lean, do not teleport.
-2. **Give `m_iCoopCoverSide` an UNKNOWN state.** It initialises to `1` (`player.cpp:2406`)
-   and its only writers (`:13869`, `:13877`) live INSIDE the disabled block, so today it is
-   permanently 1. Harmless only because the blindfire steering that reads it
-   (`weapon.cpp:2081`) is itself gated on `IsCoopCoverWall()`, which can never be true.
-   Re-enable wall cover without fixing this and a stale side swings blindfire 50 degrees
-   and pushes the muzzle 20u INTO the wall the player is leaning on - which is exactly what
-   bug-305 was filed for.
+**DO NOT re-propose the peek step-out** that slides the origin 24-32 u toward the open side - that
+design caused bug-463 and its tombstone is at `player.cpp:17938-17947`. `ps->fLeanAngle` replaced it.
 
-**Known dead end:** right-jamb blindfire has no usable animation. Every `_right` cornering
-clip carries `attachtohand offhand`, which players cannot honour (bug-310). Design around
-it; do not go looking for the clip again.
+**What killing it was really about.** Of the three faults, two were already fixed when the switch
+went in (bug-308 a null deref, bug-307/313 statemap `ERR_DROP`s). The one that mattered was bug-463:
+a per-frame server `setOrigin()` shoving the collision hull toward a corner while the client
+predictor fought it. Both preconditions for re-enabling - deleting that peek step-out, and giving
+`m_iCoopCoverSide` an UNKNOWN state so a stale side cannot swing blindfire 50 degrees into the wall
+(bug-305) - were met before it went live.
+
+**Known dead end:** right-jamb blindfire has no usable animation. Every `_right` cornering clip
+carries `attachtohand offhand`, which players cannot honour (bug-310). Design around it; do not go
+looking for the clip again.
+
+**STILL UNVERIFIED IN PLAY.** The feature ships, the user's standing verdict is "isn't right at all",
+and no measurement exists. Arm `coop_coverProbe 1` over rcon before changing anything.
 
 Full design, doorway-side algorithm, A/D slide and probes: `_research/wallcover_plan_v1.md`.
 

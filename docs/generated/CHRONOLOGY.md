@@ -13,28 +13,51 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `0530d2c 2026-09-09 docs: v1.5.3 released` |
-| commits | 241 |
+| HEAD | `e45a3fa 2026-09-14 manifest 1.6.0` |
+| commits | 264 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **5 modified, 0 untracked** |
-| unstaged diff | 5 files changed, 128 insertions(+), 115 deletions(-) |
+| **uncommitted** | **21 modified, 0 untracked** |
+| unstaged diff | 21 files changed, 306 insertions(+), 256 deletions(-) |
 
-> Working tree is dirty. Everything in those 5 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 21 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 30 |
+| 2026-09 | 53 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (241)
+### Commits since 2026-01-01 (264)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `e45a3fa` | 2026-09-14 | joncurry94-tech | manifest 1.6.0 |
+| `9ed1e02` | 2026-09-13 | joncurry94-tech | tools: gen_mapgrade.py - emit coop_mod/cfg/mapgrade.cfg from grade_profiles.tsv (build/check) |
+| `ae49adb` | 2026-09-13 | joncurry94-tech | tools: fog profile generator + fog/grade tables |
+| `c061ff8` | 2026-09-13 | joncurry94-tech | tools: MP armory generator, isolation clauses 16-18, build gate |
+| `a202083` | 2026-09-13 | joncurry94-tech | tools: security layer 2 self-test harness and guard-list generator |
+| `41bfea1` | 2026-09-13 | joncurry94-tech | docs: correct the stale bloom entry and the gl1-only Set2DWindow claim (gl2 render design) |
+| `dc6c51b` | 2026-09-13 | joncurry94-tech | tools: isolation clause 15 for the compass bar; Field Settings generator gets the Modern Compass row |
+| `9830748` | 2026-09-13 | joncurry94-tech | docs: security layer 2 approved as recommended (exe filters every server-origin line, refuse-list, API handshake) |
+| `ff86e2a` | 2026-09-13 | joncurry94-tech | docs: the 2026-09-13 round - stufftext split parity, isolation gate, Field Settings; pruned to budget |
+| `f324f93` | 2026-09-13 | joncurry94-tech | build+tools: isolation gate before packing with a self-test, release stops on a failed build, SEC1 filter self-test, Field Settin… |
+| `88ed1bf` | 2026-09-13 | joncurry94-tech | docs: trim the MP host settings record back under the DECISIONS budget |
+| `5e429b5` | 2026-09-13 | joncurry94-tech | docs: MP host settings are per-feature toggles now, not one switch (decision sheet 2026-09-13) |
+| `717c645` | 2026-09-13 | joncurry94-tech | build: block the deploy when the armory pages drift from their generator |
+| `35ab155` | 2026-09-13 | joncurry94-tech | docs: history line for the theme picker arrows and auto-advance |
+| `73026d5` | 2026-09-13 | joncurry94-tech | tools: draw the main-menu theme picker arrows |
+| `48faddc` | 2026-09-13 | joncurry94-tech | docs: test multiplayer with bots, and the PvP damage rule |
+| `c52bcab` | 2026-09-13 | joncurry94-tech | docs: which sound code is live, the exit audio reset, and a new way a check lies |
+| `ad39c75` | 2026-09-13 | joncurry94-tech | tools: MP may never touch the coop armory (isolation clause 10) |
+| `67385dd` | 2026-09-13 | joncurry94-tech | build: never pack .mp4 files |
+| `31c8926` | 2026-09-13 | joncurry94-tech | tools: the MP isolation contract covers the challenge and XP systems |
+| `ea51201` | 2026-09-09 | joncurry94-tech | build: abort if the MP loadout has leaked into coop |
+| `c8097df` | 2026-09-09 | joncurry94-tech | tools: make the MP/coop isolation a testable contract, not a promise |
+| `cb3212a` | 2026-09-09 | joncurry94-tech | docs: the 2026-09-09 m4l3 round, merged and pruned to budget |
 | `0530d2c` | 2026-09-09 | joncurry94-tech | docs: v1.5.3 released |
 | `33b6e17` | 2026-09-09 | joncurry94-tech | manifest 1.5.3 |
 | `a694fc9` | 2026-09-09 | joncurry94-tech | release: stage the two new HD paks, which would have shipped to nobody |
@@ -282,8 +305,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `8b53858d 2026-09-09 m4l3 barn: the stall fences are drawn twice, so stop drawing them twice` |
-| commits | 1,618 |
+| HEAD | `44ebfd4d 2026-09-14 mp: armory slice 2 - live dispatcher, kit applies at spawn; v1.6.0 What's New card` |
+| commits | 1,666 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 1 untracked** |
 
@@ -293,7 +316,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 27 |
+| 2026-09 | 75 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -334,10 +357,58 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (269)
+### Commits since 2026-01-01 (317)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `44ebfd4d` | 2026-09-14 | joncurry94 | mp: armory slice 2 - live dispatcher, kit applies at spawn; v1.6.0 What's New card |
+| `60a53e4b` | 2026-09-13 | joncurry94 | research: record the moodier-HD-sky-fog decision |
+| `0e3cf4b9` | 2026-09-13 | joncurry94 | coop: wire the per-map colour grade (table + boot thread), on by default |
+| `3bd41016` | 2026-09-13 | joncurry94 | coop: seed soft-particle cvars |
+| `e2f6bf71` | 2026-09-13 | joncurry94 | coop: seed render-scale + FSR cvars (default 1.0 = no change) |
+| `8c600f87` | 2026-09-13 | joncurry94 | coop: per-map fog profiles (subtle depth), 45 maps |
+| `3983dc8e` | 2026-09-13 | joncurry94 | coop: seed exposure-aware bloom + one-time ACES grade baseline restore |
+| `59fa75d7` | 2026-09-13 | joncurry94 | mp: armories slice 1 (mod-only) - Allied + Axis armory screens, rosters, inert dispatcher |
+| `69cdb4d7` | 2026-09-13 | joncurry94 | coop: better shadows + foliage shadows (gl2), one-time raise for existing installs |
+| `389fed1f` | 2026-09-13 | joncurry94 | research: scoped semi-automatic rifles are Sniper class too; only scoped automatics use their base class |
+| `2cd9fc95` | 2026-09-13 | joncurry94 | research: MP armories slice 1 answers - bolt-action Sniper class, Axis starters, side picker, armory chooser |
+| `814563e2` | 2026-09-13 | joncurry94 | research: MP armories slice 1 build plan, reconciled with the 80 decisions |
+| `5676acd7` | 2026-09-13 | joncurry94 | research: gl2 render upgrade decisions - exposure-aware bloom, 1.0 scale + menu, MSAA after compare, soft particles on |
+| `01718371` | 2026-09-13 | joncurry94 | research: gl2 render upgrades design - bloom mode, render scale + FSR 1, soft particles, alpha-to-coverage/MSAA |
+| `160bf77c` | 2026-09-13 | joncurry94 | research: MP starts now in parallel with the visuals; armories are the first slice |
+| `7473f724` | 2026-09-13 | joncurry94 | research: fog and grade decisions - subtle depth, ACES base, grade on by default, fog re-authored to the HD skies |
+| `3b757367` | 2026-09-13 | joncurry94 | research: how per-map fog and colour grade work today, 65-map inventory, pilot proposal |
+| `598e0964` | 2026-09-13 | joncurry94 | coop: push the compass bar session flag, seed the bar prefs, Field Settings "Modern Compass" row |
+| `0e395f2a` | 2026-09-13 | joncurry94 | research: layer 2 go-ahead and the Modern Compass row |
+| `6493d9f6` | 2026-09-13 | joncurry94 | ui: Field Settings redesign - fits the screen, 14 new player settings, host rows move to Host Rules (bug-2578) |
+| `6c87e382` | 2026-09-13 | joncurry94 | research: the 80 answers from the Multiplayer Decision Sheet |
+| `e190e9eb` | 2026-09-13 | joncurry94 | research: record the compass bar, base building and Base Assault decisions |
+| `7788d8c7` | 2026-09-13 | joncurry94 | research: a top-of-screen compass bar, design and open questions |
+| `f0c5965d` | 2026-09-13 | joncurry94 | research: what the two King of the Hill packs actually do |
+| `01cd49a2` | 2026-09-13 | joncurry94 | research: what Ubermod V2's source says, and the community modes deep-dive |
+| `baafd57d` | 2026-09-13 | joncurry94 | research: the MP game modes map, with the user's mode picks |
+| `3681e733` | 2026-09-13 | joncurry94 | research: the Kings Push hunt |
+| `9a7a5e50` | 2026-09-13 | joncurry94 | armory: turn the VARIANT button back on for 11 coop weapons |
+| `e29921f7` | 2026-09-13 | joncurry94 | research: record the Multiplayer Options and stock picker decisions |
+| `b1627716` | 2026-09-13 | joncurry94 | ui: the theme picker arrows are drawn buttons now, not stretched icons |
+| `29fc93dd` | 2026-09-13 | joncurry94 | research: MP progression map, without the duplicated sections |
+| `9dc94589` | 2026-09-13 | joncurry94 | research: the MP progression map |
+| `b4b9b65f` | 2026-09-13 | joncurry94 | research: the MP armories map, and the user's MP progression decisions |
+| `7f87cc7b` | 2026-09-13 | joncurry94 | mp: stop using the coop armory, which leaked into coop saves |
+| `48e684c1` | 2026-09-13 | joncurry94 | ui: main-menu theme picker with six Medal of Honor themes |
+| `e203f687` | 2026-09-13 | joncurry94 | audio: helmet landing aliases for metal, hard, soft and water |
+| `f53039e5` | 2026-09-13 | joncurry94 | audio: magazine landing aliases for metal, hard, soft and water |
+| `dce14d36` | 2026-09-13 | joncurry94 | m3l1a: flashback voices play each line exactly once |
+| `82631e3f` | 2026-09-13 | joncurry94 | mp: the coop feel in multiplayer, and the defects the survey found |
+| `37fd7c69` | 2026-09-13 | joncurry94 | m3l1a: the drowning QTE is the swim itself |
+| `8539bc17` | 2026-09-13 | joncurry94 | autoexec: r_mapOverBrightScale 0.71 - the half step the user asked for |
+| `50da8e01` | 2026-09-09 | joncurry94 | mp: the multiplayer entry point, deliberately not the coop framework |
+| `8f497fc8` | 2026-09-09 | joncurry94 | research: MP loadout - one primary, health 100, isolation as a tested contract |
+| `541d0ae0` | 2026-09-09 | joncurry94 | loadout: the Axis MP floor gets its grenade |
+| `29173f97` | 2026-09-09 | joncurry94 | loadout: an Axis MP kit must not be worse than the stock game it replaces |
+| `9363a0ef` | 2026-09-09 | joncurry94 | autoexec: r_dlightMode 1, and give the lightmap back its missing stop |
+| `7b683918` | 2026-09-09 | joncurry94 | research: MP loadout build plan v1 |
+| `fac98c3c` | 2026-09-09 | joncurry94 | hud: the health-bar outline arc becomes a stamina gauge |
 | `8b53858d` | 2026-09-09 | joncurry94 | m4l3 barn: the stall fences are drawn twice, so stop drawing them twice |
 | `afac0533` | 2026-09-09 | joncurry94 | alarm: make the m4l3 bell audible across a coop-sized play area |
 | `8c37eeb6` | 2026-09-09 | joncurry94 | challenges: a finished challenge can no longer sit in the pin list forever |
@@ -613,8 +684,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `3a33c645 2026-09-09 fgame: a weapon in the active slot belongs in a hand, and prone must let you up on a slope` |
-| commits | 5,091 |
+| HEAD | `c2d9224b 2026-09-14 fgame: MP armory engine hooks (E4/E5) - reachable in-match, kit at spawn` |
+| commits | 5,114 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
 | **uncommitted** | **0 modified, 3 untracked** |
 
@@ -624,7 +695,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 8 |
+| 2026-09 | 31 |
 | 2026-08 | 103 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
@@ -686,10 +757,33 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (126)
+### Commits since 2026-01-01 (149)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `c2d9224b` | 2026-09-14 | joncurry94 | fgame: MP armory engine hooks (E4/E5) - reachable in-match, kit at spawn |
+| `120c7fc0` | 2026-09-13 | joncurry94 | gl2+cgame: per-map colour grade layer (server-published, MP-safe) |
+| `a63fe340` | 2026-09-13 | joncurry94 | gl2+cgame: soft particles; stamina arc hard-fade cutoff (bug-2593) |
+| `c01bad53` | 2026-09-13 | joncurry94 | gl2: render-scale supersampling + AMD FSR 1 (EASU/RCAS) |
+| `70860959` | 2026-09-13 | joncurry94 | gl2: ACES grade goes live (grade survives map load) + exposure-aware bloom (bug-2584, bug-1149) |
+| `dab3af77` | 2026-09-13 | joncurry94 | engine: security layer 2 - filter every server-origin command in the exe (bug-2580 follow-up) |
+| `af2c52dd` | 2026-09-13 | joncurry94 | engine: dedicated server loads the same BSP as clients; an error drop no longer crashes the client (bug-2585) |
+| `d580485a` | 2026-09-13 | joncurry94 | cgame+client: modern top compass bar for coop (replaces the round ring, kill feed moves under it) |
+| `2ed96e8e` | 2026-09-13 | joncurry94 | cgame: split server stufftext the way Cbuf_Execute does, and check what a vstr expands to (bug-2580) |
+| `c53b6a9f` | 2026-09-13 | joncurry94 | client: move on to the next main-menu theme when one finishes |
+| `0c083847` | 2026-09-13 | joncurry94 | fgame: players can damage each other in multiplayer again |
+| `5ed4c8eb` | 2026-09-13 | joncurry94 | client: reset every cinematic audio duck whenever a map is left |
+| `f2c881af` | 2026-09-13 | joncurry94 | client: the menu theme picker now runs; it was compiled out |
+| `3720a2ad` | 2026-09-13 | joncurry94 | client: the main-menu theme is a random pick each launch, and switchable |
+| `a48ed6e2` | 2026-09-13 | joncurry94 | cgame: full-body first person, as a switched-off prototype |
+| `58446c41` | 2026-09-13 | joncurry94 | fgame: helmets land with a surface sound too, on every map |
+| `df1ef98b` | 2026-09-13 | joncurry94 | fgame: a dropped magazine sounds like what it landed on |
+| `d90d1b97` | 2026-09-13 | joncurry94 | breath shares the stamina bar, and recoil climbs at the grip |
+| `506b524c` | 2026-09-13 | joncurry94 | gl2 + cgame: a half-step of overbright, and a stamina arc you can read |
+| `5160b980` | 2026-09-09 | joncurry94 | gl2: fade a lamp in over its outer band instead of switching it on |
+| `92466526` | 2026-09-09 | joncurry94 | gl2: make entity lighting fade, let dlights actually add, and put stamina on the health arc |
+| `7a4a8cab` | 2026-09-09 | joncurry94 | cgame: an audio duck must not survive the session that started it |
+| `14a7a7a0` | 2026-09-09 | joncurry94 | fgame: give the held-weapon invariant a postcondition, and stop believing four things about it |
 | `3a33c645` | 2026-09-09 | joncurry94 | fgame: a weapon in the active slot belongs in a hand, and prone must let you up on a slope |
 | `a2776792` | 2026-09-08 | joncurry94 | cgame: the parked quick-draw gun was aimed 37 degrees muzzle-up |
 | `6fe11c4d` | 2026-09-06 | joncurry94 | feat(gl2): alphaGen dot/oneMinusDot port and a real sun for lightingSpecular |

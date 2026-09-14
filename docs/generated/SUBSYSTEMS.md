@@ -8,8 +8,8 @@
 # Coop subsystem inventory (generated)
 | metric | value |
 |---|---:|
-| `coop_mod/*.scr` files | 121 |
-| total lines in `coop_mod/` | 76,712 |
+| `coop_mod/*.scr` files | 126 |
+| total lines in `coop_mod/` | 78,465 |
 | top-level `maps/*.scr` | 122 |
 | of those, coop-integrated (call `coop_mod/main.scr::main`) | 65 |
 
@@ -36,52 +36,53 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | 16 | 165 | `thread` | `coop_mod/props.scr::prop_init` |
 | 17 | 172 | `thread` | `coop_mod/events.scr::initialiseEvents` |
 | 18 | 180 | `thread` | `coop_mod/fogmode.scr::coop_fog_boot` |
-| 19 | 181 | `thread` | `coop_mod/probe.scr::boot` |
-| 20 | 183 | `thread` | `coop_mod/medkit.scr::coop_scan_health_entities` |
-| 21 | 184 | `thread` | `coop_mod/officer.scr::coop_officer_init` |
-| 22 | 185 | `thread` | `coop_mod/director.scr::director_main` |
-| 23 | 186 | `thread` | `coop_mod/weather.scr::coop_weather_init` |
-| 24 | 187 | `thread` | `coop_mod/ambience.scr::coop_ambience_init` |
-| 25 | 188 | `thread` | `coop_mod/flchatter.scr::flchatter_init` |
-| 26 | 189 | `thread` | `coop_mod/aivoice.scr::aivoice_init` |
-| 27 | 190 | `thread` | `coop_mod/flmusic.scr::coop_flmusic_filler` |
-| 28 | 198 | `thread` | `coop_mod/objective_drop.scr::coop_objective_drop_init` |
-| 29 | 202 | `thread` | `coop_mod/helmtest.scr::main` |
-| 30 | 208 | `thread` | `coop_mod/maptest.scr::coop_maptest_tick` |
+| 19 | 184 | `thread` | `coop_mod/mapgrade.scr::coop_mapgrade_boot` |
+| 20 | 185 | `thread` | `coop_mod/probe.scr::boot` |
+| 21 | 187 | `thread` | `coop_mod/medkit.scr::coop_scan_health_entities` |
+| 22 | 188 | `thread` | `coop_mod/officer.scr::coop_officer_init` |
+| 23 | 189 | `thread` | `coop_mod/director.scr::director_main` |
+| 24 | 190 | `thread` | `coop_mod/weather.scr::coop_weather_init` |
+| 25 | 191 | `thread` | `coop_mod/ambience.scr::coop_ambience_init` |
+| 26 | 192 | `thread` | `coop_mod/flchatter.scr::flchatter_init` |
+| 27 | 193 | `thread` | `coop_mod/aivoice.scr::aivoice_init` |
+| 28 | 194 | `thread` | `coop_mod/flmusic.scr::coop_flmusic_filler` |
+| 29 | 202 | `thread` | `coop_mod/objective_drop.scr::coop_objective_drop_init` |
+| 30 | 206 | `thread` | `coop_mod/helmtest.scr::main` |
 | 31 | 212 | `thread` | `coop_mod/maptest.scr::coop_maptest_tick` |
-| 32 | 215 | `thread` | `coop_mod/maptest_phase2.scr::coop_maptest_phase2_tick` |
-| 33 | 220 | `thread` | `coop_mod/maptest_m5l3.scr::coop_maptest_m5l3_walk` |
-| 34 | 225 | `thread` | `coop_mod/maptest_vehicle.scr::coop_maptest_vehicle_tick` |
-| 35 | 229 | `thread` | `coop_mod/tracescan.scr::scan` |
-| 36 | 235 | `thread` | `coop_mod/coop_selftest.scr::weaptest_run` |
-| 37 | 238 | `thread` | `coop_mod/coop_selftest.scr::dbnotest_run` |
-| 38 | 241 | `thread` | `coop_mod/coop_selftest.scr::dbnoteam_run` |
-| 39 | 244 | `thread` | `coop_mod/coop_selftest.scr::xptest_run` |
-| 40 | 247 | `thread` | `coop_mod/coop_selftest.scr::scaletest_run` |
-| 41 | 257 | `thread` | `coop_mod/coop_selftest.scr::st_autodeploy_run` |
-| 42 | 262 | `thread` | `coop_mod/coop_selftest.scr::st_flanktest_run` |
-| 43 | 265 | `thread` | `coop_mod/coop_selftest_scaling.scr::st_scaling_run` |
-| 44 | 268 | `thread` | `coop_mod/coop_selftest_engine.scr::st_engine_run` |
-| 45 | 271 | `thread` | `coop_mod/coop_selftest_vehicles.scr::st_vehicles_run` |
-| 46 | 274 | `thread` | `coop_mod/coop_selftest_objectives.scr::st_objectives_run` |
-| 47 | 277 | `thread` | `coop_mod/coop_selftest_triggers.scr::st_triggers_run` |
-| 48 | 280 | `thread` | `coop_mod/coop_selftest_officer.scr::st_officer_run` |
-| 49 | 283 | `thread` | `coop_mod/coop_selftest_keyitems.scr::st_keyitems_run` |
-| 50 | 286 | `thread` | `coop_mod/coop_selftest_dbno.scr::st_dbno_run` |
-| 51 | 289 | `thread` | `coop_mod/coop_selftest_xp.scr::st_xp_run` |
-| 52 | 292 | `thread` | `coop_mod/coop_selftest_weapons.scr::st_weapons_run` |
-| 53 | 295 | `thread` | `coop_mod/coop_selftest.scr::wintest_run` |
-| 54 | 298 | `thread` | `coop_mod/coop_selftest_officer.scr::st_officer_run` |
-| 55 | 304 | `thread` | `coop_mod/coop_selftest_engine.scr::st_engine_run` |
-| 56 | 311 | `thread` | `coop_mod/coop_selftest_objectives.scr::st_objectives_run` |
-| 57 | 315 | `thread` | `coop_mod/voidguard.scr::main` |
-| 58 | 324 | `thread` | `coop_mod/aimaneuver.scr::main` |
-| 59 | 334 | `thread` | `coop_mod/aibehav.scr::main` |
-| 60 | 339 | `thread` | `coop_mod/aicombat.scr::main` |
-| 61 | 345 | `thread` | `coop_mod/sndcache.scr::main` |
-| 62 | 348 | `thread` | `coop_mod/devprobe.scr::main` |
-| 63 | 350 | `thread` | `coop_mod/devprobe.scr::stuckWatch` |
-| 64 | 359 | `thread` | `coop_mod/eventsystem.scr::doEvent` |
+| 32 | 216 | `thread` | `coop_mod/maptest.scr::coop_maptest_tick` |
+| 33 | 219 | `thread` | `coop_mod/maptest_phase2.scr::coop_maptest_phase2_tick` |
+| 34 | 224 | `thread` | `coop_mod/maptest_m5l3.scr::coop_maptest_m5l3_walk` |
+| 35 | 229 | `thread` | `coop_mod/maptest_vehicle.scr::coop_maptest_vehicle_tick` |
+| 36 | 233 | `thread` | `coop_mod/tracescan.scr::scan` |
+| 37 | 239 | `thread` | `coop_mod/coop_selftest.scr::weaptest_run` |
+| 38 | 242 | `thread` | `coop_mod/coop_selftest.scr::dbnotest_run` |
+| 39 | 245 | `thread` | `coop_mod/coop_selftest.scr::dbnoteam_run` |
+| 40 | 248 | `thread` | `coop_mod/coop_selftest.scr::xptest_run` |
+| 41 | 251 | `thread` | `coop_mod/coop_selftest.scr::scaletest_run` |
+| 42 | 261 | `thread` | `coop_mod/coop_selftest.scr::st_autodeploy_run` |
+| 43 | 266 | `thread` | `coop_mod/coop_selftest.scr::st_flanktest_run` |
+| 44 | 269 | `thread` | `coop_mod/coop_selftest_scaling.scr::st_scaling_run` |
+| 45 | 272 | `thread` | `coop_mod/coop_selftest_engine.scr::st_engine_run` |
+| 46 | 275 | `thread` | `coop_mod/coop_selftest_vehicles.scr::st_vehicles_run` |
+| 47 | 278 | `thread` | `coop_mod/coop_selftest_objectives.scr::st_objectives_run` |
+| 48 | 281 | `thread` | `coop_mod/coop_selftest_triggers.scr::st_triggers_run` |
+| 49 | 284 | `thread` | `coop_mod/coop_selftest_officer.scr::st_officer_run` |
+| 50 | 287 | `thread` | `coop_mod/coop_selftest_keyitems.scr::st_keyitems_run` |
+| 51 | 290 | `thread` | `coop_mod/coop_selftest_dbno.scr::st_dbno_run` |
+| 52 | 293 | `thread` | `coop_mod/coop_selftest_xp.scr::st_xp_run` |
+| 53 | 296 | `thread` | `coop_mod/coop_selftest_weapons.scr::st_weapons_run` |
+| 54 | 299 | `thread` | `coop_mod/coop_selftest.scr::wintest_run` |
+| 55 | 302 | `thread` | `coop_mod/coop_selftest_officer.scr::st_officer_run` |
+| 56 | 308 | `thread` | `coop_mod/coop_selftest_engine.scr::st_engine_run` |
+| 57 | 315 | `thread` | `coop_mod/coop_selftest_objectives.scr::st_objectives_run` |
+| 58 | 319 | `thread` | `coop_mod/voidguard.scr::main` |
+| 59 | 328 | `thread` | `coop_mod/aimaneuver.scr::main` |
+| 60 | 338 | `thread` | `coop_mod/aibehav.scr::main` |
+| 61 | 343 | `thread` | `coop_mod/aicombat.scr::main` |
+| 62 | 349 | `thread` | `coop_mod/sndcache.scr::main` |
+| 63 | 352 | `thread` | `coop_mod/devprobe.scr::main` |
+| 64 | 354 | `thread` | `coop_mod/devprobe.scr::stuckWatch` |
+| 65 | 363 | `thread` | `coop_mod/eventsystem.scr::doEvent` |
 
 ## `coop_mod/` scripts
 | file | lines | labels | summary |
@@ -110,7 +111,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `butler.scr` | 498 | 12 | created by chrissstrahl on 2019.09.12 |
 | `common.scr` | 120 | 0 |  |
 | `cannonThink.scr` | 147 | 1 | This kind of function is used over and over again, so have it isolated for erference that it can be reused |
-| `challenges.scr` | 3,937 | 27 | [user, earlier ask, found by the audit sweep 2026-09-02] challenge targets capped at 750. |
+| `challenges.scr` | 3,951 | 27 | [user, earlier ask, found by the audit sweep 2026-09-02] challenge targets capped at 750. |
 | `collectible.scr` | 443 | 2 | HZM coop - HIDDEN BLUEPRINT COLLECTIBLES |
 | `coop_placements.scr` | 1,021 | 3 | HZM coop - BAKED BUILD-MODE PLACEMENTS (generated from build_<map>.dat). |
 | `coop_selftest.scr` | 435 | 8 | coop_selftest.scr - HZM dev automated self-tests (2026-07-23) |
@@ -158,7 +159,8 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `lobby.scr` | 1,177 | 20 | HZM Coop - Pre-Mission Lobby module. Full spec: _research/coop_lobby1_build.md |
 | `lobbyui.scr` | 265 | 3 | [304] CLICKABLE LOBBY UI - a mouse cursor + button framework for the live |
 | `m4l3_precache.scr` | 157 | 0 |  |
-| `main.scr` | 2,327 | 23 | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
+| `main.scr` | 2,331 | 23 | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
+| `mapgrade.scr` | 60 | 2 | HZM coop - PER-MAP COLOUR GRADE (server side). |
 | `maplist.scr` | 119 | 2 | [201] Smithy - used to populate the coop_mapsList array to check for next/previous map (and any other future… |
 | `maptest.scr` | 268 | 2 | HZM Coop - Map Rotation Auto-Tester |
 | `maptest_m5l3.scr` | 284 | 1 | HZM Coop - m5l3 Scene-Walk Tester |
@@ -172,6 +174,10 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `mom_actions.scr` | 173 | 17 | Created by chrissstrahl on 2018.07.02 - based on Multi Option Menu from Star Trek Elite Force II from 2009 fo… |
 | `mom_login.scr` | 167 | 17 | Created by chrissstrahl on 2018.07.02 - based on Multi Option Menu from Star Trek Elite Force II from 2009 fo… |
 | `morale.scr` | 94 | 1 | morale.scr - HZM coop SQUAD MORALE (ME1, coop_moraleEnable, default off) |
+| `mp.scr` | 313 | 2 | MP.SCR - the multiplayer entry point. NOT the coop framework. |
+| `mp_armory.scr` | 479 | 5 | MP_ARMORY.SCR - the shared MP armory dispatcher (slice 2, LIVE). |
+| `mpa_roster.scr` | 463 | 1 | GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead) |
+| `mpx_roster.scr` | 397 | 1 | GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead) |
 | `mvchal_gen.scr` | 214 | 1 | GENERATED by docs/tools/variant_challenges.py --emit DO NOT EDIT BY HAND |
 | `objective_drop.scr` | 218 | 1 | Objective Bonus Drop |
 | `objective_positions.scr` | 132 | 1 | objective_positions.scr |
@@ -180,7 +186,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `officer_positions.scr` | 624 | 1 | coop_officer_positions.scr |
 | `painbreath.scr` | 81 | 0 | HZM coop - WOUNDED BREATHING. |
 | `paradrop.scr` | 774 | 1 | Allied Paradrop System |
-| `player.scr` | 1,941 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |
+| `player.scr` | 1,958 | 6 | started by chrissstrahl on 2020.10.16 ([202]) |
 | `precache.scr` | 186 | 0 |  |
 | `probe.scr` | 719 | 6 | COOP PROBE BUS - one diagnostic channel for everything this mod added. |
 | `profile.scr` | 71 | 0 | HZM COOP - PER-PLAYER PROFILE MIRROR (user decision 2026-08-10) |
@@ -206,7 +212,7 @@ Extracted from the source in order. Every one of these runs **synchronously in a
 | `weaponstate.scr` | 125 | 0 | [200] Smithy |
 | `weather.scr` | 360 | 8 | HZM coop - WEATHER (v2): coop now drives the NATIVE SP trilogy weather system (global/weather.scr) so |
 | `wounded.scr` | 602 | 2 | [user 2026-07-17] WOUNDED GERMAN LIMP-AWAY. |
-| `xp.scr` | 1,984 | 14 | [302] HZM XP SYSTEM - Phase 1 (tracking + persistence + end-of-map debrief + own-rank HUD) |
+| `xp.scr` | 1,990 | 14 | [302] HZM XP SYSTEM - Phase 1 (tracking + persistence + end-of-map debrief + own-rank HUD) |
 
 ## Coop-integrated map scripts
 | map | theatre flag |

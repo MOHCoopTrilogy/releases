@@ -403,11 +403,10 @@ impacts, whizbys, casings, thunder, artillery beds; snow bullet impacts made rea
 `LINEAR_DISTANCE_CLAMPED` at context init, restoring Miles-era map-wide gunfire falloff.
 ⚠️ **Never name the commercial source library publicly — say "fresh recorded gun audio."**
 
-**Warzone explosion variants + VFA wood footsteps** — `REVERTED`. Two user-rejected swaps, both
-backed out: the bombing-run explosion pool variants were "too cinematic/sub-heavy for close blasts,"
-and the VFA wood-plank footstep slices "sounded bad in-game" so stock wood was restored. Artillery
-beds from the same library were **kept** (separate judgement). Close-explosion upgrades remain an
-open wishlist item needing a brighter/crunchier library.
+**Warzone explosion variants + VFA wood footsteps** — `REVERTED`. Two user-rejected swaps backed out:
+bombing-run explosion variants "too cinematic/sub-heavy for close blasts," VFA wood footsteps "sounded
+bad in-game" (stock wood restored). Artillery beds from the same library **kept** (separate judgement).
+Close-explosion upgrades remain an open wishlist needing a brighter library.
 
 **MOH Frontline PS3 asset extraction** — `SHIPPED-UNVERIFIED`. Source is the PS3 HD remaster
 decrypted in RPCS3, not a PS2 ISO. **⭐ Recipe:** `main.musx` = multiple EA SCHl songs concatenated →
@@ -446,6 +445,10 @@ falls back to manual angles on sun-less/indoor maps. Cvars `cg_shadows 2` (requi
 ⚠️ **"Do NOT re-implement"** — this was nearly rebuilt from scratch once. Phase B/C real
 shadow-mapping is **not started**.
 
+**Better shadows + foliage shadows** — `SHIPPED` (commit 69cdb4d7, deploy pending). gl2 shadow cvars
+raised via a one-time migration: 2048 shadow map, filter 2, 1024 character shadow distance, foliage
+now casting. Before/after comparison awaits the next deploy.
+
 **Player + AI gore** — `SHIPPED-UNVERIFIED` (all 4 tiers built + deployed, untested in-game).
 T1 skin-bit blood tiers (178 composited textures, 51 override TIKs) driven by **accumulated damage,
 not health fraction** — rank-and-file HP is faked at 5000. T2 drip + chained growing blood pool. T3
@@ -454,22 +457,17 @@ bone-attached wound props via `CM_GetHitLocationInfo`, cap 4. T4 renderer UV wou
 colour authority is `#150200`. Ships **exe + cgame + renderer + game.dll together** (refexport/
 refimport pairing). *Anchor:* `renderergl1/tr_gore.c` (836 lines, **untracked in git**).
 
-**Blast decapitation / dismemberment** — `REVERTED` (twice). v1 shipped, "the AI went all glitchy,"
-pulled at user request (bug-861). v2 re-implemented **safely** by copying the engine's own dead-body
-gib discipline — dead-gated to the `ArmorDamage health<0.1` branch, per-frame budget, short lifetime,
-tracked-only, precached (bug-866). Then **reverted from SOURCE again** during the `MAX_MODELS`
-three-binary rebuild, so a protocol rebuild could not silently reintroduce it (bug-892); inert `.tik`
-assets kept. **Verified this pass: zero `CoopGoreTryDecapitate` / `HeadGibObject` symbols exist in
-`openmohaa-hzm/code/`.** ⭐ **The reason for the FIRST revert no longer holds** — the AI glitching was
-later attributed to the entity-pool stomp (bugs 914–927), which is fixed. bug-866's safe pattern is
-the template for a re-add.
+**Blast decapitation / dismemberment** — `REVERTED` (twice). v1 pulled for "the AI went all glitchy"
+(bug-861); v2 re-added safely on the engine's own dead-gated gib discipline (`ArmorDamage health<0.1`,
+budgeted, tracked, precached, bug-866), then reverted from SOURCE during the `MAX_MODELS` rebuild
+(bug-892), inert `.tik` assets kept. Zero `CoopGoreTryDecapitate`/`HeadGibObject` symbols remain.
+⭐ **The first-revert reason no longer holds** — the glitching was the entity-pool stomp (bugs
+914–927), now fixed; bug-866's safe pattern is the re-add template.
 
-**Gore intensity** — `REVERTED`. Round 4 over-cranked everything (a uniform heavy tier soaking
-~60–75% of the cloth, 2–4 drench blobs, 14–20 patches, spray/smear cast-off, a measured-coverage
-top-up loop). User verdict: *"dial the blood back… put it to what it originally was, now it's way too
-much."* Reverted to the moderate earlier coverage and the spray/smear primitives and coverage loop
-removed entirely. ⭐ Lesson: **generated-asset intensity needs a user checkpoint per round, not per
-feature.**
+**Gore intensity** — `REVERTED`. Round 4 over-cranked coverage (uniform heavy tier, drench blobs,
+spray/smear cast-off, a coverage top-up loop); user: *"dial the blood back… now it's way too much."*
+Reverted to the moderate earlier coverage; spray/smear primitives and coverage loop removed. ⭐ Lesson:
+**generated-asset intensity needs a user checkpoint per round, not per feature.**
 
 **Wounded-AI blood trails** — `SHIPPED-UNVERIFIED`. AI below `coop_bloodTrailHealthFrac 0.5` that is
 moving drips ground decals. Throttled by time (0.45 s) **and** distance (56u) — deliberately **no
@@ -569,18 +567,15 @@ execute from the disconnected menu, so every fix placed inside it was inert; see
 to run, or in `exec` + `seta` builtins (which is why CLEAR PINS works). **A completion tick is still
 wanted — but it must be built alongside the working box and seen to render before the box is touched.**
 
-**Named-NPC trilogy skins** — `SHIPPED-UNVERIFIED` (2026-08-07). 11 campaign characters (Ramsey,
-McMartin, Johnson, Cappy, Hildebrandt, Wilson, Captain Ike, Claus, Burton, Gobbs, Whittaker) ported
-from their retail AI-actor `.tik` into flattened `models/player/*.tik` armory skins, each gated behind
-a real survival/completion condition read from the owning map's own script state (not invented) — see
-`bug-1521`. A skin must be in all three of `helmet.scr`'s `coop_armorySkins[]`/`coop_cosmeticGatedTok[]`
-and `lobby.scr`'s `coop_lobbySkins[]`, or the unlock has no effect. Two characters (Richards, McDevitt)
-share Ramsey's exact retail model and were left on their existing generic reward rather than duplicated.
-⚠️ A separate pre-existing audit (`task_569adfb0`, not yet run) found ~48 *older* challenge rewards
-pointing at `models/player/*.tik` paths that don't exist on disk — unrelated to this batch, unfixed.
-*Anchor:* `coop_mod/challenges.scr` (`cc_win_war`, `cc_static_line`, `cc_t1l3_*`, `cc_t2l3_ike`,
-`cc_t2l4_captain`, `cc_e1l3_*`, `cc_e3l1_whittaker`); `docs/tools/gen_service_record.py`'s
-`REWARD_NAMES` for the Service Record's curated display names.
+**Named-NPC trilogy skins** — `SHIPPED-UNVERIFIED` (2026-08-07, bug-1521). 11 campaign characters
+(Ramsey, McMartin, Johnson, Cappy, Hildebrandt, Wilson, Captain Ike, Claus, Burton, Gobbs, Whittaker)
+ported from their retail AI-actor `.tik` into flattened `models/player/*.tik` armory skins, each gated
+on a real survival/completion condition from the owning map's own script state (not invented). A skin
+must be in all three of `helmet.scr`'s `coop_armorySkins[]`/`coop_cosmeticGatedTok[]` and `lobby.scr`'s
+`coop_lobbySkins[]`, or the unlock has no effect. Richards + McDevitt share Ramsey's exact model, left
+on their generic reward. ⚠️ A separate audit (`task_569adfb0`, not yet run) found ~48 *older* challenge
+rewards pointing at `models/player/*.tik` paths absent on disk — unrelated, unfixed.
+*Anchor:* `coop_mod/challenges.scr`; `gen_service_record.py`'s `REWARD_NAMES` for display names.
 
 **Pinned challenges** — `SHIPPED-UNVERIFIED` (2026-08-04). Up to **five** challenges per player,
 shown in-mission under the Secondary Objectives with live `x/y` progress and a checkbox that ticks on
@@ -601,23 +596,30 @@ A completed challenge can't be pinned (bug-1537) — three independent layers (`
 `ui/multiplayeroptions.urc`'s "Allies Player Model" button set `dm_playermodel` directly (`cl_ui.cpp:3512`),
 blind to the Armory's unlocks; `manageAliveSpawning` healed the skin back, so the menu "granted" skins
 that silently reverted. The mod overrides that one `.urc`: only that button changes, to `exec
-ui/loadout/open.cfg`. *Anchor:* `ui/multiplayeroptions.urc`. **Pins are per player throughout** — held in `self.flags["coop_pin1..5"]`/`coop_pinN`,
-saved to that player's own `coop_pins_<id>.dat` under the challenge identity, and pushed with a
-per-player `stufftext`; nothing is a `level.` var, so two players in one session keep entirely
-separate lists. Pin by **clicking a challenge row** in the Service Record (same hit box as the
-existing hover tooltip); pinned rows are marked `*` and tinted gold, and a sixth pin is refused with
-a prompt rather than silently evicting one. Storage is **cids, not catalogue indices** — the index is
-file order, so inserting one `chal_def` would re-point every saved pin (bug-1362); `chal_def` now
-maintains `level.coop_chal_idx[cid]` for the reverse lookup. Console fallback
-`set coop_chal_pin <cid>` resolves to the **host only**, never a broadcast.
-*Anchor:* `chal_pin_*` in `coop_mod/challenges.scr`; click path `coop_mod/lobbyui.scr:151`;
-widgets `ui/coop_objectives.urc` (`coop_cp1..5`), seeded in `ui/coop_objectives/obj_setup.cfg`.
-**Two pin surfaces**, both per player: the lobby Service Record (click a row — direct, instant
-feedback), and the disconnected Service Record menu, where all 281 rows are invisible full-row
-Buttons emitting `append name ,cp<catalogue index>` on the name bus (token 47) into
-`chal_pin_byIndex`. The menu is client-side and cannot know cids, so it sends the baked row index and
-the server resolves it. There is **no in-mission pin surface** — see `docs/OPEN.md`.
-*Anchor:* generator `docs/tools/gen_service_record.py` (never hand-edit `ui/coop_sr.urc`).
+ui/loadout/open.cfg`. *Anchor:* `ui/multiplayeroptions.urc`. **Pins are per player throughout** — held
+in `self.flags["coop_pin1..5"]`, saved to that player's own `coop_pins_<id>.dat` and pushed with a
+per-player `stufftext`; nothing is a `level.` var, so two players keep separate lists. Storage is
+**cids, not catalogue indices** — file order means inserting one `chal_def` would re-point every saved
+pin (bug-1362), so `chal_def` maintains `level.coop_chal_idx[cid]` for reverse lookup. **Two pin
+surfaces**, both per player: the lobby Service Record (click a row) and the disconnected menu (invisible
+full-row Buttons emit `,cp<catalogue index>` on the name bus token 47; the client cannot know cids so
+the server resolves the baked index). Sixth pin refused with a prompt. There is **no in-mission pin
+surface** — see [OPEN.md](OPEN.md). *Anchor:* `chal_pin_*` in `coop_mod/challenges.scr`; generator
+`docs/tools/gen_service_record.py` (never hand-edit `ui/coop_sr.urc`).
+
+**Modern compass bar** — `SHIPPED` (runtime-verified m1l1/m2l1/m3l3: bar, toggle, objective marker,
+MP isolation; bug-2581 area, engine commit d580485a). A top-of-screen 150-deg arc with
+ticks/labels/cardinals, a boxed heading readout, a current-objective diamond showing metres, and
+same-team chevrons; replaces the round ring while on, follows the HUD fade, hidden while
+scoped/spectating. Coop-only via `coop_isCoopSession`; toggled by a "Modern Compass" row in Field
+Settings. Design `_research/compass_bar_design.md`. Not yet verified: teammate markers, vehicle
+seats, the resolution matrix.
+
+**MP armories slice 1** — `SHIPPED-INERT` (commit 59fa75d7). Two generated MP-only armory screens
+(Allied/Axis) plus rosters and an inert dispatcher stub; not wired and not reachable in game, with
+MP/coop isolation clause 13 active so nothing leaks into coop. Slice 2 (engine hooks E1-E7, live
+dispatcher, side picker) is planned — see [OPEN.md](OPEN.md#planned) and
+`_research/mp_armories_slice1_plan.md`.
 
 **Field Settings (Coop Settings) + Host Rules sheets** - `SHIPPED-UNVERIFIED`; the 2026-09-13
 redesign (bug-2578) is deployed and **not yet opened in game**. `ui/coop_settings.urc` is a two-column
@@ -657,13 +659,11 @@ bottom-up TGAs. **⭐ The board hover widget is a 1:1 TEXEL WINDOW, not a stretc
 second camera." Terminal method is erase-first then place content on a VP-consistent quad; **adjust
 corners only, never re-measure.** (17-round saga.)
 
-**Font atlas @3x pipeline** — `REVERTED`, then rebuilt. A font swap replaced `gfx/fonts/*.tga` and was
-**silently inert**: `renderergl2/tr_font.cpp R_LoadFont_sgl` implements an HZM hi-DPI feature that
-builds `<name>@3x` and, when `fonts/<name>@3x.RitualFont` exists, loads **that** and resolves the sheet
-as `gfx/fonts/<name>@3x.tga`. The shipped @3x atlases were then found to be **ESRGAN upscales of
-low-res bitmaps** — upscaling a bitmap font invents detail and produces uneven stroke weights — and
-were regenerated by rendering a real vector font (Bahnschrift) into the existing cell rects.
-*Anchors:* bug-1182, bug-1185; cf. bug-157.
+**Font atlas @3x pipeline** — `REVERTED`, then rebuilt. A font swap was **silently inert**:
+`renderergl2/tr_font.cpp R_LoadFont_sgl` loads `fonts/<name>@3x.RitualFont` when present and resolves
+the sheet as `gfx/fonts/<name>@3x.tga`. The shipped @3x atlases were **ESRGAN upscales of low-res
+bitmaps** (invented detail, uneven strokes) and were regenerated from a real vector font (Bahnschrift)
+into the existing cell rects. *Anchors:* bug-1182, bug-1185; cf. bug-157.
 
 ---
 
@@ -690,11 +690,10 @@ show a padlock + hover requirement line.
 lobby-only extra skins stay FREE — only shared premium skins lock. Gates all three cycle paths.
 
 **Locked-cosmetic visibility** — `REVERTED` (**by design change, not defect**). Server-pushed per-page
-redirect chains **skipped** locked skins/helmets in the armory cycle rather than previewing-then-
-refusing (56+68 cvars, 112/136 init.cfg lines). Reversed pre-release at the user's request: cycle ALL
-entries again, marking locked ones with a lock icon and unlock-requirement text. All 260 redirect
-lines removed with an assertion that zero stale refs remained. **Cost: two full generator rewrites.**
-⭐ When classifying REVERTED, separate "it broke" from "the user changed their mind."
+redirect chains **skipped** locked skins/helmets in the armory cycle; reversed pre-release at the
+user's request to cycle ALL entries with a lock icon + requirement text (260 redirect lines removed,
+zero stale refs). **Cost: two full generator rewrites.** ⭐ When classifying REVERTED, separate "it
+broke" from "the user changed their mind."
 
 **Deployables skill tree** — `PLANNED` → **REJECTED**. Six branches / ~36 nodes (Combat Engineer,
 Quartermaster, Field Medic, Forward Observer, Squad Leader, Saboteur; 1 RP per 100 XP). User verdict
@@ -1076,9 +1075,12 @@ port forwarding. ⚠️ MOHAA OOB packets are `4×FF` + a **direction byte** —
 silently runs nothing (bug-1143). ⚠️ The engine-side commit records an unresolved **dedicated-server
 crash under investigation** with no follow-up found.
 
-**Stufftext filter hardening (SEC1, layer 1)** - `SHIPPED-VERIFIED` (bug-2580, runtime-verified
-2026-09-13). `cg_servercmds_filter.cpp` splits statements exactly like `Cbuf_Execute` and checks what a
-server-stuffed `vstr` would expand to, failing closed. Rules: [TRAPS T8](TRAPS.md#t8); layer 2: OPEN.md.
+**Server-command filter hardening (SEC1)** - layer 1 `SHIPPED-VERIFIED` (bug-2580, runtime-verified
+2026-09-13): `cg_servercmds_filter.cpp` splits statements exactly like `Cbuf_Execute` and checks what a
+server-stuffed `vstr` would expand to, failing closed (rules: [TRAPS T8](TRAPS.md#t8)). **Layer 2**
+(bug-2580 follow-up, commit dab3af77) is `BUILT+SELF-TESTED`, runtime covtrace pass pending: exe-side
+filtering of every server-origin command via per-byte origin tags, a shared `cmd_filter.c` with the
+cgame filter, a refuse/validate guard list, and a cgame API handshake bumped v3->4.
 
 ---
 

@@ -6,20 +6,20 @@
 
 Every defect this project has found and fixed, from the day the log was started. This is the raw engineering record rather than a changelog: it gives the cause as well as the symptom, because the cause is usually the useful part.
 
-**1861 fixes logged.**
+**1915 fixes logged.**
 
 | Area | Fixes |
 |---|---:|
 | [Stealth, disguise & contain](fixes/stealth-disguise-contain.md) | 89 |
-| [AI & enemy behaviour](fixes/ai-enemy-behaviour.md) | 520 |
-| [Engine & crashes](fixes/engine-crashes.md) | 318 |
-| [Weapons & combat](fixes/weapons-combat.md) | 134 |
-| [Audio](fixes/audio.md) | 81 |
-| [UI, HUD & menus](fixes/ui-hud-menus.md) | 232 |
+| [AI & enemy behaviour](fixes/ai-enemy-behaviour.md) | 531 |
+| [Engine & crashes](fixes/engine-crashes.md) | 331 |
+| [Weapons & combat](fixes/weapons-combat.md) | 138 |
+| [Audio](fixes/audio.md) | 86 |
+| [UI, HUD & menus](fixes/ui-hud-menus.md) | 243 |
 | [Vehicles & rides](fixes/vehicles-rides.md) | 46 |
-| [Multiplayer & networking](fixes/multiplayer-networking.md) | 56 |
-| [Maps & missions](fixes/maps-missions.md) | 174 |
-| [Build, deploy & tooling](fixes/build-deploy-tooling.md) | 22 |
-| [Other](fixes/other.md) | 189 |
+| [Multiplayer & networking](fixes/multiplayer-networking.md) | 58 |
+| [Maps & missions](fixes/maps-missions.md) | 176 |
+| [Build, deploy & tooling](fixes/build-deploy-tooling.md) | 23 |
+| [Other](fixes/other.md) | 194 |
 
 Each area links to its own page - the full log is far too large for one.

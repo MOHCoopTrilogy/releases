@@ -50,11 +50,11 @@ The authored files carry judgement, so they cannot be generated - but they can s
 |---|---:|---:|---|
 | `docs/21-user-preferences.md` | 12 KB | 12 KB | ok |
 | `docs/DECISIONS.md` | 45 KB | 45 KB | ok |
-| `docs/ENGINE.md` | 36 KB | 40 KB | ok |
+| `docs/ENGINE.md` | 38 KB | 40 KB | ok |
 | `docs/FEATURES.md` | 90 KB | 90 KB | ok |
-| `docs/HISTORY.md` | 29 KB | 30 KB | ok |
+| `docs/HISTORY.md` | 30 KB | 30 KB | ok |
 | `docs/OPEN.md` | 50 KB | 50 KB | ok |
-| `docs/SOURCE_OF_TRUTH.md` | 31 KB | 40 KB | ok |
+| `docs/SOURCE_OF_TRUTH.md` | 32 KB | 40 KB | ok |
 | `docs/TRAPS.md` | 70 KB | 70 KB | ok |
 
-Input fingerprint of this generation: `356444c08b1688444fe3652e57e1b3de10d37e8b3dabb609d6a3e5363d3ee9f3`
+Input fingerprint of this generation: `76e264091337db46323f2b2895ed2611b60205d785145fa670df637d65f6379c`

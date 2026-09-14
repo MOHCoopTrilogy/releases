@@ -60,8 +60,11 @@ DEF_ENGINE = os.path.join(ROOT, "openmohaa-hzm")
 MP = "coop_mod/mp.scr"
 AMB = "global/ambient.scr"
 FILTER = "code/cgame/cg_servercmds_filter.cpp"
-HOOKS_ANCHOR = "ENGINE_MP_HOOKS = {}"
-HOOKS_TEST = "ENGINE_MP_HOOKS = {\"test\": \"selftest\"}"
+# ENGINE_MP_HOOKS is no longer empty once real hooks (E4/E5) are registered, so the anchor is the dict
+# OPENING and HOOKS_TEST inserts a "test" entry AHEAD of the real hooks, keeping them registered (R7:
+# the first real entry retired the old `= {}` anchor - this is that rework). The opening appears once.
+HOOKS_ANCHOR = "ENGINE_MP_HOOKS = {"
+HOOKS_TEST = "ENGINE_MP_HOOKS = {\"test\": \"selftest\", "
 MP_KIT = "static const char *k = \"coop_mpaW1\";"
 RESERVED = "zzselftest"
 RX_END = re.compile(r"\bend\b")

@@ -162,12 +162,10 @@ comments claimed - a de-synchroniser, not a tactic.
 <a name="defects"></a>
 ## Requested, not yet started (2026-08-18)
 
-- **Reload magazine keeps the stock skin on a finished gun.** The gun's own `Clip` surface IS
-  reskinned (verified on the gold Thompson) and the mesh has only four surfaces, so the magazine
-  seen in hand during reload is a DIFFERENT model. `models/ammo/thompson_clip.tik` is cached by the
-  weapon tik but nothing in the content or the engine spawns it by name, and no viewmodel or
-  human_thompson animation attaches it - so its source is still unidentified. Needs a runtime
-  answer, not more static searching.
+- **Reload magazine keeps the stock skin on a finished gun** (bug-2241). The gun's own `Clip` surface
+  IS reskinned (gold Thompson, 4-surface mesh), so the in-hand reload magazine is a DIFFERENT model.
+  `models/ammo/thompson_clip.tik` is cached by the weapon tik but nothing spawns it by name and no
+  viewmodel/`human_thompson` anim attaches it - source unidentified. Needs a runtime probe.
 
 ## Awaiting the next playtest (2026-08-17)
 
@@ -177,8 +175,7 @@ comments claimed - a de-synchroniser, not a tactic.
 - **Skin system: built end-to-end, awaiting menu playtest (2026-08-18).** 357 finish variants across
   45 guns, the armory finish strip, 7 finish challenges, both unlock gates server-side, 25 imported
   model variants gated on each gun's Elite challenge. Finishes visually approved in play. STILL OPEN:
-  the in-hand reload magazine keeps the stock skin (bug-2241 - reference point unknown, needs a
-  runtime probe; the MP40 and Tommy packs ship replacement clip models); MOHPA porter unidentified.
+  the in-hand reload magazine keeps the stock skin (bug-2241, above); MOHPA porter unidentified.
 
 ## Defects with evidence
 
@@ -194,6 +191,12 @@ comments claimed - a de-synchroniser, not a tactic.
   skipped while embedded. `^~^~^ PRONEUNBURY` marks the last resort.
 - **m4l3 barn see-through** (bug-2549). `cull none` dropped from `jh_fence1`. Check the stall fences
   read from BOTH sides - the pairing scan covers all 160 maps but is a static argument, not a look.
+
+### e1l2 dedicated map-checksum residual (bug-2585)
+`PARTIAL` - the longjmp crash is fixed (a client forcing `r_largemap 1` mismatched `sv_mapChecksum`
+and now drops cleanly). **M2 is deferred:** having the client follow `sv_mapChecksum` so a client
+forcing `r_largemap 1` also matches. A client that sets `r_largemap 1` still mismatches - it just no
+longer crashes.
 
 ### global/spotlight.scr: 5 Script Errors per spotlight per map load, and a gunner that never fires
 `OPEN` · *bug-2548* — `self.gun` on an Actor is an `EV_GETTER` returning a display-name STRING
@@ -491,6 +494,12 @@ The full list is [FEATURES.md](FEATURES.md). These are the ones someone consciou
 | **Leave-map audio reset** (2573) | UNPLAYED. Leave Omaha mid-cinematic, load any map: ambience audible, music normal, `AUDIORESET` logged. Also `restart` and a crash relaunch. |
 | **Field Settings / Host Rules sheets** (2578) | UNOPENED. Check the invisible whole-row toggle first (fallback is in the `ui/coop_settings.urc` header), then fit, the two float sliders, and HOST RULES on Start Game. |
 
+### Awaiting runtime verification after the next deploy (2026-09-13)
+- **SEC1 layer 2** (bug-2580 follow-up, dab3af77) - built + self-tested; needs a runtime covtrace pass on a dedicated server.
+- **Better shadows** (69cdb4d7) - a before/after once the raised gl2 shadow cvars deploy.
+- **Modern compass bar** (2581 area) - bar/toggle/objective marker/MP isolation are verified on m1l1/m2l1/m3l3; teammate markers, vehicle seats and the resolution matrix are not.
+- **Field Settings / Host Rules** (2578) - unopened in game (row above).
+
 ---
 
 <a name="planned"></a>
@@ -512,11 +521,22 @@ The full list is [FEATURES.md](FEATURES.md). These are the ones someone consciou
 | **m3l1b FLAK objective v2** | Gun crews, back-field defenders, plant animation. | `m3l1b_cut_flak88_objective.md` |
 | **Deployables skill tree** | **REJECTED by the user** — building their own model. Doc kept, marked superseded. | `skilltree_plan.md` |
 
-**Security layer 2 - exe-side server-origin taint** (designed 2026-09-13, **APPROVED, not built**;
-layer 1 is bug-2580). Closes layer 1's residual gaps: a write and its `vstr` in separate stufftexts of
-one snapshot, and `wait`-deferred forms. User picked: filter EVERY server-origin line in the exe; a
-refuse-list for self-vstr'd cvars (no persisted taint); `globalwidgetcommand` laundering stays a residual;
-a real cgame API handshake (stamp `cgi->apiversion`, append-at-end, fall back to `Cmd_Stuff`).
+**gl2 render upgrades** (designed 2026-09-13, **APPROVED, not built**;
+`_research/gl2_render_upgrades_design.md`), in order: exposure-aware bloom (`r_ppBloomMode 1`, bug-1149,
+mode 0 kept for A/B); render-scale supersampling + AMD FSR 1; soft particles; alpha-to-coverage, then
+MSAA. Also **per-map fog** (subtle depth) and **per-map colour grade** on the ACES baseline - both need
+the daylight-reset fix (bug-2584) first. **Fog pilot harness note:** a dedicated-server test client must
+be given window focus + a real click to clear "Press Fire to join the battle"; a server-side `join_team`
+alone leaves it spectating.
+
+**MP armories slice 2** (designed 2026-09-13, **APPROVED, not built**;
+`_research/mp_armories_slice1_plan.md`) - engine hooks E1-E7, a live dispatcher, and a side picker to
+make slice 1's inert MP-only screens (committed 59fa75d7) reachable.
+
+**Security layer 2 - exe-side server-origin taint** - now **BUILT + SELF-TESTED** (2026-09-13, bug-2580
+follow-up), runtime covtrace pass pending (see Awaiting-verification above). Filters EVERY server-origin
+line in the exe; a refuse-list for self-vstr'd cvars (no persisted taint); `globalwidgetcommand`
+laundering stays a residual; a real cgame API handshake (v3->4).
 
 Reference design notes, do not duplicate here: `hzm-mohaa-coop-mod/_research/compass_bar_design.md`,
 `mp_decisions_2026-09-13.md`, `koth_source_notes.md`.
@@ -600,51 +620,33 @@ lightmap: e2l1 bridge rails (both, uniformly), e2l2 panels near the radio tower 
 panels. Script setlightstyle changes have NO effect on it (flattening all 5 styles to constant
 ramps changed nothing) -> rend2 is not sampling the style ramp; it produces its own red
 oscillation for styled lightmap slots. Fix lives in renderergl2 lightmap/style handling
-(tr_shade/tr_bsp: how MAXLIGHTMAPS style slots are merged). Supersedes an earlier, narrower
-"e2l1 rails only, source unidentified" writeup - the styled-lightmap mechanism above is the
-generalized, current answer; the per-surface elimination process that led to it is not repeated
-here.
+(tr_shade/tr_bsp: how MAXLIGHTMAPS style slots are merged).
 
 ## Deploy infrastructure: phantom file locks + a mystery .pk3 renamer (2026-08-04)
-Recurring transient locks on G:\mohaa-gl2\maintt pk3s (copies fail "in use", hashes verify
-fine after). Worse: at 13:00 the GOG maintt pk3s were found renamed to .pk3.stale by an
-unidentified actor mid-deploy (my rename-fallback only touched gl2; something else did GOG).
-Recovered from APPDATA copies, all hashes verified. Suspects: AV/indexer, or a leaked
-PowerShell child from the collided-watcher era. If it recurs, audit with Sysinternals handle.exe
-before any deploy.
+Recurring transient locks on `G:\mohaa-gl2\maintt` pk3s (copies fail "in use", hashes verify after), and
+once the GOG maintt pk3s were found renamed to `.pk3.stale` mid-deploy by an unidentified actor.
+Recovered from APPDATA copies, hashes verified. Suspects: AV/indexer or a leaked watcher child. If it
+recurs, audit with Sysinternals `handle.exe` before any deploy.
 
 ## GL2: distant objects pop out of / into fog instead of fading (user 2026-08-04, LOW priority)
-User (e2l2, night profile dist=1000 bias=450): "distant objects still pop out when clearly the
-fog should cover them". Explicitly deferred by the user - do NOT start a broad investigation
-without being asked.
-
-Leading hypothesis, cheap to test when we do pick it up: this is the **model LOD/impostor swap
-distance**, not the fog maths. gl2 was already measured swapping the oak to its flat impostor at
-~900u where gl1 does it at ~1352u. With a 1000u farplane, fog at 900u is only ~78% opaque - not
-enough to hide a swap - so the LOD change reads as a pop. Predictions that would confirm it:
-  - the pop distance tracks the MODEL, not the fog distance (raise farplane, pop stays at ~900)
-  - `r_uselod 0` (already set in PLAY-GL2.bat) does not remove it -> it is the impostor path,
-    not the LOD-level path
-  - gl1 shows the same scene without popping at the same fog values
-Second candidate if that is disproved: forward global fog not reaching full opacity at the cull
-plane for TIKI surfaces, so `farplane_cull` removes geometry that is still partly visible.
-Related family: the confirmed GL2 styled-lightmap defect (bug-1331).
+User (e2l2, night dist=1000 bias=450): "distant objects still pop out". **Explicitly deferred - do NOT
+investigate without being asked.** Leading hypothesis: the **model LOD/impostor swap distance**, not the
+fog maths - gl2 swaps the oak to its impostor at ~900u (gl1 ~1352u), and at a 1000u farplane fog is only
+~78% opaque there, so the swap reads as a pop. Confirm by: pop tracks the MODEL not the fog distance;
+`r_uselod 0` does not remove it; gl1 does not pop at the same values. Second candidate: forward global
+fog not fully opaque at the TIKI cull plane. Related: the styled-lightmap defect (bug-1331).
 
 ## Holdout mode ON HOLD (2026-08-05)
-User parked the gamemode to focus on trilogy-wide coop. Untested when parked: officer finale,
-death->spectate + wave-end respawn + wipe->missionfailed + 30s cooldown, call radio (cat 44),
-textured ladder rails + lattice ghost, native-light torture test, S93 BAR look. The 24-stop
-candidate map tour stays deployed (y_hzm_maptour.pk3 + maptour.cfg) - quarantined and inert
+User parked the gamemode for trilogy-wide coop. Untested when parked: officer finale, death->spectate +
+wave-end respawn + wipe->missionfailed + 30s cooldown, call radio (cat 44), textured ladder rails, S93
+BAR look. The 24-stop candidate map tour stays deployed (`y_hzm_maptour.pk3` + `maptour.cfg`), inert
 unless exec'd; round-2 verdicts (stops 15-24) never given. See memory holdout_gamemode.md.
 
 ## Coop spawn-point gaps (re-measured 2026-08-07)
 
-The 2026-08-05 audit here claimed **20 maps author no coop spawn sets** and listed m3l1b, m5l2a,
-m6l1a, e3l1 and others. A fresh scan of `coop_mod/spawnlocations.scr` contradicts it: **44 of 58 base
-map labels carry start coords**, and 26 maps have `_updateN` checkpoints on top. Treat the old figure
-as retired.
-
-Genuinely without start coords (14), and only three of those are real gaps:
+**44 of 58 base map labels carry start coords**, and 26 have `_updateN` checkpoints on top; the retired
+2026-08-05 audit's "20 maps author none" figure is wrong. Genuinely without start coords (14), and only
+three of those are real gaps:
 
 | Label | Status |
 |---|---|

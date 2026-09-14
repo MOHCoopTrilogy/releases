@@ -6,16 +6,18 @@
 
 Every system built for the trilogy coop mod, grouped by domain. Generated from the project's own feature record, so it stays in step with what is actually in the build - including the parts that are shipped but not yet confirmed in play.
 
-**155 systems** across **16 domains**.
+**159 systems** across **16 domains**.
 
 | Status | Count |
 |---|---:|
 | shipped, not yet confirmed in play | 71 |
-| shipped, confirmed working in play | 30 |
+| shipped, confirmed working in play | 31 |
 | planned | 8 |
-| open | 5 |
 | in the build but switched off | 5 |
 | reverted | 5 |
+| open | 4 |
+| shipped | 2 |
+| shipped inert | 1 |
 
 ## Core coop
 
@@ -99,7 +101,7 @@ Every system built for the trilogy coop mod, grouped by domain. Generated from t
 | **⭐ Headline: the auto-reverb driver was ALREADY built in the fork and forgotten** |  |  |
 | **do** |  | get reverb via sticky send-routing, so DBNO heartbeat / tinnitus could sound wet indoors. |
 | **Fresh recorded gun audio + footsteps + impacts** | shipped, confirmed working in play | (explicit user verdicts). |
-| **Warzone explosion variants + VFA wood footsteps** | reverted | Two user-rejected swaps, both |
+| **Warzone explosion variants + VFA wood footsteps** | reverted | Two user-rejected swaps backed out: |
 | **MOH Frontline PS3 asset extraction** | shipped, not yet confirmed in play | Source is the PS3 HD remaster |
 
 ## Graphics & FX
@@ -110,9 +112,11 @@ Every system built for the trilogy coop mod, grouped by domain. Generated from t
 | **renderergl2 migration** | planned | / in progress in an isolated sandbox at G:\mohaa-gl2 (own |
 | **healthy** |  | boots, renders, 0 crashes, 0 real GLSL failures; "breaks everything" was overstated. |
 | **Directional decal shadows + auto-sun bridge** | shipped, confirmed working in play | , user-approved. |
+| **Better shadows + foliage shadows** | shipped | (commit 69cdb4d7, deploy pending). |
 | **Player + AI gore** | shipped, not yet confirmed in play | (all 4 tiers built + deployed, untested in-game). |
 | **Blast decapitation / dismemberment** | reverted | (twice). |
-| **Gore intensity** | reverted | Round 4 over-cranked everything (a uniform heavy tier soaking |
+| **Gore intensity** | reverted | Round 4 over-cranked coverage (uniform heavy tier, drench blobs, |
+| **generated-asset intensity needs a user checkpoint per round, not per feature.** |  |  |
 | **Wounded-AI blood trails** | shipped, not yet confirmed in play | AI below coop_bloodTrailHealthFrac 0.5 that is |
 | **Suppression screen FX** | shipped, not yet confirmed in play | Desaturate + dark tunnel vignette when enemy rounds |
 | **Lingering gun smoke** | shipped, not yet confirmed in play | Additive client-side wisp at i_vBarrel and at |
@@ -129,11 +133,13 @@ Every system built for the trilogy coop mod, grouped by domain. Generated from t
 | **ARMORY loadout picker (69-gun URC menu)** | shipped, not yet confirmed in play | 2 primaries + 1 sidearm + 1 |
 | **Medals & Badges** | shipped, not yet confirmed in play | (2026-08-07). |
 | **Service Record / challenges** | shipped, not yet confirmed in play | 299 challenges in 11 categories including |
-| **Named-NPC trilogy skins** | shipped, not yet confirmed in play | (2026-08-07). |
+| **Named-NPC trilogy skins** | shipped, not yet confirmed in play | (2026-08-07, bug-1521). |
 | **Pinned challenges** | shipped, not yet confirmed in play | (2026-08-04). |
 | **Armory unlock-gate closes the native MP options menu** | shipped, not yet confirmed in play | (2026-08-07). |
-| **Two pin surfaces** |  | , both per player: the lobby Service Record (click a row — direct, instant |
-| **Coop Settings + Post-FX menus** | shipped, not yet confirmed in play | Coop world/gameplay toggles as linkcvar |
+| **cids, not catalogue indices** |  | file order means inserting one chal_def would re-point every saved |
+| **Modern compass bar** | shipped | (runtime-verified m1l1/m2l1/m3l3: bar, toggle, objective marker, |
+| **MP armories slice 1** | shipped inert | (commit 59fa75d7). |
+| **Field Settings (Coop Settings) + Host Rules sheets** | shipped, not yet confirmed in play | ; the 2026-09-13 |
 | **In-game Report a Bug → Discord webhook** | shipped, confirmed working in play | end-to-end. |
 | **Display mode selector** | shipped, not yet confirmed in play | Windowed / Borderless / Exclusive, setting |
 | **What's New / field-report card** | shipped, confirmed working in play | Changelog is **baked per release** into the |
@@ -141,7 +147,6 @@ Every system built for the trilogy coop mod, grouped by domain. Generated from t
 | **There is NO script access to this system at all.** |  | Known follow-up: HD upscaled icon art needs a |
 | **Menu art edit-kit + Start Game wall board** | shipped, not yet confirmed in play | Photoshop round-trip: |
 | **Font atlas @3x pipeline** | reverted | , then rebuilt. |
-| **silently inert** |  | renderergl2/tr_font.cpp R_LoadFont_sgl implements an HZM hi-DPI feature that |
 
 ## Progression
 
@@ -226,18 +231,19 @@ Every system built for the trilogy coop mod, grouped by domain. Generated from t
 | **Regression harness** | shipped, confirmed working in play | (produced bugs 1218–1220 on 2026-07-29). |
 | **Autonomous combat-verification rig** | shipped, confirmed working in play | coop_botInput 1 injects the HOST |
 | **Coop self-test suite** | shipped, not yet confirmed in play | , undocumented in every index. |
-| **Coop test menu** | planned | , the largest designed-but-unexecuted work in the project. |
+| **Coop test menu** | planned | , 94 tests across 10 subsystems; state in |
 | **`md5_2_skX` model converter** | shipped, confirmed working in play | , round-trip validated. |
-| **Blender sprint carry-pose edit** | planned | , paused by the user mid-edit at arm-bone selection. |
+| **Blender sprint carry-pose edit** | planned | , paused by the user ([OPEN.md](OPEN.md#planned)). |
 | **Installer** | planned | , **do not execute until explicitly asked**. Inno Setup 6, |
 | **Coop dev tools** | shipped, confirmed working in play | coop_dev 1 enables dev features. |
+| **MP/coop isolation gate** | shipped, confirmed working in play | (bug-2579, 2026-09-13). |
 
 ## Networking
 
 | System | Status | What it does |
 |---|---|---|
 | **NAT hole-punch rendezvous, Phase 1** | shipped, not yet confirmed in play | (signaling verified end-to-end locally; |
-| **Dedicated server on bare DM maps** | open | game.dll crashes loading non-coop maps |
+| **Server-command filter hardening (SEC1)** |  | layer 1 SHIPPED-VERIFIED (bug-2580, runtime-verified |
 
 ## m2l2a Phase C - the player-initiated CONTAIN (2026-08-10) - SHIPPED, partly verified
 

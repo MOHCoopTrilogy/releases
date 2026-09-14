@@ -3,12 +3,10 @@
 One line per item. Status codes: `V` verified · `U` unverified · `D` code-disabled · `R` reverted ·
 `O` open · `P` planned. Full detail in [FEATURES.md](FEATURES.md); open items in [OPEN.md](OPEN.md).
 
-**⚠️ Coverage boundaries.** `.wolf/buglog.json` — the only structured record — begins **2026-06-26**.
-Its first id is `bug-535`; **bugs 1–534 are not in the file**, and ~28 ids cited in source comments
-(including bug-237, bug-239, bug-241) have no entry at all. The mod's own git history is real (1,393
-commits back to 2020-01-08) but commits are enormous snapshot-shaped batches, so it cannot be
-bisected usefully. **"Since day one" in practice means since 2026-06-21.** Dates before that are
-lineage, not record.
+**⚠️ Coverage boundaries.** `.wolf/buglog.json` (the only structured record) begins **2026-06-26** at
+`bug-535`; bugs 1-534 are absent, and ~28 ids cited in source (bug-237/239/241) have no entry. Git
+history reaches 2020 but in snapshot-shaped batches, so it cannot be bisected. "Since day one" means
+since 2026-06-21; earlier dates are lineage, not record.
 
 ---
 
@@ -88,32 +86,20 @@ loadout system, the entity-pool saga, and the first ADS work.
 
 ## What the timeline shows
 
-1. **Velocity is extremely high and verification is not.** Roughly 75 systems in ~5 weeks, of which
-   ~15 have a recorded confirmation. The backlog is not features — it is playtests.
-2. **The most expensive bugs were all silent.** The entity-pool stomp, the grenade veto, the grade
-   uniform, the `Hunk_Clear` static, the snapshot discard: none of them logged anything. The project's
-   biggest wins came from *proving execution*, not from reading code.
-3. **The deploy pipeline is the current bottleneck.** The last full engine deploy was 07-21. Eight
-   days of engine work — including three protocol constants — sits built but undeployed, and a live
-   log (bug-1219) is already reporting the old limit.
-4. **Two records systems degraded predictably**: the append-only ones (`memory.md`, `cerebrum.md`)
-   became unreadable; the structured one (`buglog.json`) kept working. **Structure and a lookup key
-   are the whole difference.**
+1. **Velocity is high, verification is not** — ~75 systems in ~5 weeks, ~15 recorded confirmations; the backlog is playtests, not features.
+2. **The most expensive bugs were all silent** (entity-pool stomp, grenade veto, grade uniform, `Hunk_Clear` static, snapshot discard); the biggest wins came from *proving execution*, not reading code.
+3. **Two records systems degraded predictably**: the append-only ones (`memory.md`, `cerebrum.md`) became unreadable; the structured `buglog.json` kept working. **Structure + a lookup key is the whole difference.**
 
 ---
 
 ## 2026-08-02 — PDF defect sweep, the limp, and two gl2 rendering bugs
 
-46 buglog entries (bug-1251 -> 1296). The day's shape: **most of the damage was silent-veto**, and
-the runtime log — not static audit — found nearly all of it. RC1 detonated every watched demolition
-charge ~0.3 s into map load across 16 sites; `coop_painThread` was a latch nothing cleared, making
-every enemy a permanent bullet sponge; 11 maps were taking the armory loadout back after issuing it;
-and one `1e-5` depth epsilon in the gl2 fog pass exempted everything past 88-98% of zFar, explaining
-two separately-reported symptoms at once.
-
-*The day's three lessons — a failed `waittill` does not abort, agreement between reviewers sharing a
-source is not corroboration, and the expensive fix refuted by measurement — now live in
-[TRAPS.md](TRAPS.md) T3/T11, which is where they get read. Per-bug detail is in the buglog.*
+46 buglog entries (bug-1251 -> 1296), **most silent-veto and found by the runtime log, not static
+audit**: RC1's charges detonated ~0.3 s into load across 16 sites; `coop_painThread` was an uncleared
+bullet-sponge latch; 11 maps took the armory loadout back; one `1e-5` gl2 fog epsilon exempted
+everything past 88-98% of zFar. The three lessons (a failed `waittill` does not abort; shared-source
+reviewers are not corroboration; the expensive fix refuted by measurement) live in
+[TRAPS.md](TRAPS.md) T3/T11; per-bug detail in the buglog.
 
 - 2026-08-05: coverage sweep shipped (engine covtrace + maptest Phase 3 covwalk + diff reporter); layer-1 static scan found 170 dead alias refs on 43 trilogy maps
 - 2026-08-07: V m1l1 loading screen rebuilt as a single BSP-rendered "case file" composite (recon photo + retypeset OSS letter + 3 stock briefing-slide photos, pinned on a corkboard); single 2048x2048 POT texture replaces the old two-tile TGA pair, new explicit `coop_load_m1l1` shader (force32bit) closes the one real gap vs. vanilla UI shaders
@@ -125,7 +111,7 @@ source is not corroboration, and the expensive fix refuted by measurement — no
 - 2026-08-07 (v1.2.201 hotfix): V SFX-slider routing fixed (bug-1556) - CHAN_LOCAL/CHAN_LOCAL_SOUND were treated as menu chrome and never got the `s_sfxvolume` multiplier, so the challenge typewriter, injured cue, `snd_gasp` sprint breathing and `coop_headshot` stayed at unity while the rest of the world scaled; with the user's slider at 2.0 that read as "quieter even with the dial turned up". Diagnosed live over rcon. Same release: per-shot `COOP_BINOC_CHECK` print removed from `game.dll` (it shipped to players in 1.2.2, one console line per bullet) and the stock per-change music `DPrintf` removed so `developer 1` stays usable - it has to stay on, because build mode reports placements through `println`, which developer gates.
 - 2026-08-07: V m3l1b full coop pass - it had NO spawn coverage end to end. Start spawns + a checkpoint on the map's own `level.clear_bunker >= 6` gate; 27-strong rear garrison spawning when the FLAK 88 objective opens; 34 build-mode props baked in. Three root causes closed on the restored FLAK objective: `$88mm_weapon1/2` are class **Animate** not TurretGun so `startFiring`/`setAimTarget` had never worked (bug-1553, driven by the model's own `fire_scripted` anim now); no flak FIRE alias listed `m3l1b` in its `maps` spec so nothing was audible either (bug-1548); and `bomb_thinker` hardcodes its own `bomb_tick_time`/`bomb_set_time` over ours, giving a silent 45s fuse that read as a dud (bug-1549 - now a 15s visible stopwatch and a one-press plant).
 - 2026-08-07: O Build mode is a CAPTURE tool, not persistence - it writes `coop_mod/save/build_<map>.dat` and nothing loads it at runtime, so placements are lost on map reload until baked into a script (bug-1554). Not communicated to the user before they placed 34 objects.
-- 2026-08-08: U helmet unlock gate made wear-time, not just pick-time (bug-1578) - `helmet_apply` now range-checks and re-validates the stored index and falls back to a DETERMINISTIC index 1, and a new `helmet_lockNotice` says "locked" once per distinct item instead of on every archived `,hn` resend (every join, every armory close). Same batch: m6l1c conversation-guard pass (bug-1579) - the `waittill animdone` outside its guard in `sciencesayto` was a guaranteed strander that would have taken the whole science-chat sequence and its actor release with it; 7 of 196 sweep sites done, 189 left. Two manned MG42 nests baked into `maps/m3l2.scr` from the 08-08 build-mode capture. **None of it is deployed** - the game was running, which `build.ps1` refuses.
+- 2026-08-08: U helmet unlock gate made wear-time, not just pick-time (bug-1578) - `helmet_apply` range-checks and re-validates the stored index, falls back to a DETERMINISTIC index 1, and `helmet_lockNotice` says "locked" once per distinct item, not on every `,hn` resend. Same batch: m6l1c conversation-guard pass (bug-1579, TRAPS T16); two manned MG42 nests baked into `maps/m3l2.scr`. **None deployed** - the game was running, which `build.ps1` refuses.
 - 2026-08-08 (later): U crewed AA emplacements - all three placeable AA guns get an animated gunner; the two mannable ones hand off to a player on mount and take the crew back on dismount. Two verified mechanisms: `QueryTurretSlotEntity 0` addresses a runtime-`spawnturret` cannon (retail does the same at e2l1 `FlakGunSetup`), and the `flak88_driver`/`aagun_driver` poses are in the SHARED human anim set. Same session: 4 manned MG42 nests on t2l1, `max_health` fix in the t2l1 tank gag (268 errors/session), officer radio NIL guard.
 - 2026-08-08 (v1.2.3): U allied squads made survivable - health scales with player count and they go DOWN instead of dying, with the player's own DBNO animation, revivable by proximity at no medkit cost (allysquad.scr). That made it safe to narrow the engine blast shield to an opt-in flag (bug-1586), so mortars can finally wound and gib allies - the damage was being dropped before it, not the gore. Same release: new-objective toast, ambient barrage, crewed AA, t2l1 'keep the squad alive' objective, 29 dev prints gated, MAX_CVARS 4096->8192 (bug-1582).
 - **2026-08-10** m2l2a stealth: master plan v2 vetted in 3 adversarial rounds (40 agents, ~270 findings). **Phase A shipped** - bug-1631 freeze arm deleted (VERIFIED: the papers guard now accepts and stays animated), all six disguise anim gates made per-target and latch-free (they had been unconditionally true - `thread` in a boolean returns a handle), one aggro rule via `attackentity` instead of the one-way `attackplayer` latch, scene-actor wreckers exempted after A3 instrumentation measured `coop_apply_personality` proning the card man, a Naxos watcher and an alarm runner. Full mission, zero Script Errors.
@@ -235,8 +221,14 @@ source is not corroboration, and the expensive fix refuted by measurement — no
   (2541); the quick-draw barrel sat 37 degrees up (2542); and shells now take landing craft down,
   written fresh after the reuse design was refuted on a 277-unit pivot offset (2543).
 - **2026-09-13** - MP stops using the coop armory, which had been writing coop saves (2571). The menu theme picker had been compiled out and moved to the live sound file (2572). Cinematic audio ducks and Master volume now reset on every exit from a map (2573).
-- **2026-09-13** - Players could not damage each other in multiplayer: coop's same-team damage filter covered every player. Fixed narrowly and proven with bots on a dedicated server, before and after (2574).
-- **2026-09-13** - Main-menu theme picker: drawn 128px arrow buttons replace the stretched 16px retail icons (2575), and a theme now moves on to the next one when it ends (2576).
-- **2026-09-13** - Field Settings redesigned: a generated two-column sheet of 20 player rows, host rows on a new Host Rules sheet, float cvars on sliders, and autoexec no longer overriding player choices (2578, `U`).
-- **2026-09-13** - The MP/coop isolation gate now runs before packing, with a self-test proving it can fail; a failed build aborts the release and the watchdog relaunch (2579).
-- **2026-09-13** - Stufftext filter hardened: it splits commands exactly as the engine does and checks what a `vstr` expands to; runtime-verified on a dedicated server with a real client (2580).
+- **2026-09-13** - MP friendly fire fixed (2574): coop's same-team damage filter had covered every player; narrowed and proven with bots on a dedicated server.
+- **2026-09-13** - Main-menu theme picker: drawn 128px arrow buttons replace stretched retail icons (2575); a theme advances to the next when it ends (2576).
+- **2026-09-13** - Field Settings redesigned (2578, `U`): a generated two-column sheet of 20 player rows, host rows on a new Host Rules sheet, and autoexec no longer overriding player choices.
+- **2026-09-13** - The MP/coop isolation gate runs before packing with a self-test proving it can fail; a failed build aborts the release (2579).
+- **2026-09-13** - Stufftext filter hardened (SEC1 layer 1, 2580): splits commands as the engine does and checks `vstr` expansions; runtime-verified with a real client.
+- **2026-09-13** - SEC1 layer 2 (dab3af77): the exe filters every server-origin command by per-byte origin tag, sharing `cmd_filter.c` with cgame; API handshake v3->4; review closed 5 holes (2589-2592).
+- **2026-09-13** - Modern compass bar (`U`, engine d580485a): a coop-only top-of-screen arc with ticks, cardinals, a boxed heading and an objective marker in metres, following the HUD fade (2581). Runtime-verified m1l1/m2l1/m3l3.
+- **2026-09-13** - e1l2 dedicated map-checksum + longjmp crash fixed (2585): a client forcing `r_largemap 1` mismatched `sv_mapChecksum` and took a longjmp crash; it now drops cleanly (the client-follows-checksum path M2 is deferred).
+- **2026-09-14** - The gl2 visual queue shipped and deployed: an ACES film grade that survives every map load with exposure-aware bloom (2584, 1149), better shadows incl. foliage (69cdb4d7), 45 per-map fog profiles (subtle depth, moodier under the HD skies), render-scale supersampling + AMD FSR 1 (c01bad53), soft particles (a63fe340) and a light per-map colour grade (120c7fc0, server-published, MP-safe). The stamina arc now hard-fades with the HUD (2593).
+- **2026-09-14** - MP armories build A (2597, 2598): game.dll E4/E5 hooks (`mp_mapscript_hook` starts the framework on script-less/third-party MP maps; `mp_weaponselect_redirect` opens the side armory on team join) plus a live dispatcher (`mp_armory.scr`) that applies the kit at spawn (hp=100, bots random-class). Runtime-verified; coop airtight (zero mp leakage on m4l1); isolation clause 14 active. The always-ask chooser stays build B - it needs coop-file edits.
+- **2026-09-14** - v1.6.0 "The Long View" released to MOHCoopTrilogy/releases: the visual overhaul + compass bar + Field Settings/Host Rules + security layer 2 + the MP armory groundwork, with the Discord announcement, README and in-game What's New card refreshed.

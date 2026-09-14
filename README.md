@@ -98,32 +98,20 @@ it. **Download all five into the same folder.**
 
 Host: launch the shortcut, then **Multiplayer → Start Game → MOH Trilogy Coop**, pick a mission tile, hit Apply. Friends join over LAN/Internet via **Multiplayer → Join Game** or `connect <ip>` in the console.
 
-## Current release — v1.4.6 *"Six Things That Were Never Running"*
+## Current release — v1.6.0 *"The Long View"*
 
-Five releases have landed since v1.4.1. This one is mostly about features that were **built,
-logged as done, and never actually executed** — the failure mode this project keeps finding in
-itself. Six of them were closed at once.
+The biggest visual and quality-of-life pass yet, on top of everything the 1.5.x line added since v1.4.6 — the Omaha Beach overhaul, the undertow swim, and HD ground and gear across the landing.
 
-- **Voice commands work now — press X.** The radio wheel ("Cover me!", "Enemy spotted!") was
-  silent on every campaign map in all three games, for two independent reasons: the voice lines
-  were tagged deathmatch-only, *and* the key that opens the wheel was already taken by the rifle
-  bash. Both fixed.
-- **Squad radar was lying to you.** It reached about one room, and any teammate you could not see
-  was drawn stuck to the rim regardless of real distance — direction only, never distance.
-- **Difficulty stopped punishing you for being down a man.** Enemy numbers, accuracy and
-  reinforcement wave size counted *connected* players, so a spectator or a teammate bleeding out
-  still counted as a full fighter. It also picked enemy counts in the level's first frame while
-  people were still loading, so a four-player game often populated as if two of you turned up.
-- **The revive prompt stopped vanishing** when an objective banner popped mid-revive.
-- **Hit markers**, **objective reward drops** on nine maps, and **weapon bracing** on cover and
-  while prone.
+- **A modern compass bar** now rides the top of the coop HUD — live bearing and objective markers, replacing the old round ring. The kill feed tucks in beneath it, and the whole strip fades in and out with the rest of the HUD (and hides while you are scoped or spectating).
+- **A sharper, moodier battlefield.** Better shadows including foliage shadows; an ACES film tone curve that finally survives every map load instead of being wiped on each transition; exposure-aware bloom; per-map fog; and a light colour grade tuned map by map. The HD skies stay — the fog was re-authored to sit under them.
+- **Supersampling.** A new render-scale option (with AMD FSR 1 upscaling) renders the world above your native resolution for a crisper image, then presents at your screen size. Default 1.0 leaves everything unchanged.
+- **Soft particles**, so smoke, fire and dust blend into the world instead of cutting a hard line against it.
+- **Field Settings rebuilt** to fit the screen with 14 new options, and the host-only controls moved into their own **Host Rules** screen.
+- **Fixes:** the stamina dial now fades with the rest of the HUD; a rare crash entering the second Sicily mission (e1l2) is gone; and multiplayer friendly fire works correctly again.
 
-Since v1.4.1: **prone** (v1.4.5), **stress-driven accuracy** (v1.4.5), the **in-game bug reporter
-that had never reached us** (v1.4.2), **wall cover**, and the *notarget* root-cause fix that
-quieted the scripted truck rides across the whole trilogy (v1.4.3).
+Under the hood: a hardened dedicated server — the executable now filters every server-origin command, behind a guard list and a versioned handshake — and the first groundwork for the multiplayer modes coming next (Allied and Axis armories are in the build). Coop is kept fully isolated from all of it, enforced by an automated contract on every build.
 
-> **Straight with you:** v1.4.6's six systems load and run clean but have not had a full playtest
-> pass yet. If something misbehaves, **Report a Problem** is the fastest way to tell us.
+> **Straight with you:** these systems load and run clean, and the visual pass was checked shot by shot, but the build has not had a full end-to-end playtest. If something misbehaves, **Report a Problem** is the fastest way to tell us.
 
 Full details in the [release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest) —
 and please read [Still early](#still-early--read-before-reporting) and

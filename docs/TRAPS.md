@@ -563,8 +563,7 @@ player, separating "the maths is wrong" from "prone never engaged".
 `Binary file ... matches` and **nothing else**, so a marker was declared "never fired". **Always
 `grep -a` on logs.** *(b)* **A shell-eaten
 pattern matches everything**: `grep -c $'\r'` returned each file's TOTAL LINE COUNT, "proving" three
-pure-LF files were CRLF - and a CRLF misread is how T2 corruption starts. **Count bytes, never grep,
-for line endings.** *(c)* **A pass that cannot fail**: `node --check f | head -5 && echo OK` prints OK
+pure-LF files were CRLF. **Count bytes, never grep, for line endings.** *(c)* **A pass that cannot fail**: `node --check f | head -5 && echo OK` prints OK
 unconditionally because `head` exits 0; and a `.ps1`'s `exit 1` is not an error to a `&` caller, so a
 failed build went on to publish (bug-2579) - check `$LASTEXITCODE`, end scripts with `exit 0`. **Gate on
 the tool's own exit code, never through a pipe.**
@@ -582,9 +581,11 @@ new beat gets a `^~^~^` marker or a census reads it as missing.
 
 **Dedicated-server harness:** `script <ent> <event> <args>` needs cheats, and `SV_Map_f` forces
 `cheats 0` unless `developer` is set; a client is listed in `status` before its Player exists
-(`script *0` answers `Could not find entity *0`). **A self-test that plants violations** must write only
-reserved `zzselftest` names and find anchors in the checker's comment-stripped view - a raw-byte
-precheck blocked real builds on comment-only coop edits (bug-2579).
+(`script *0` answers `Could not find entity *0`). **And a test client boots SPECTATING** - give its
+window focus + a real click to clear "Press Fire to join the battle"; a server-side `join_team` alone
+leaves it out of the fight. **A self-test that plants violations** must write only reserved `zzselftest`
+names and find anchors in the checker's comment-stripped view - a raw-byte precheck blocked real builds
+on comment-only coop edits (bug-2579).
 
 ## T16 — Waits that never complete: failsafe recursion, missing anims, unguarded `waittill`
 
@@ -716,7 +717,7 @@ Four shapes from the m6l1c stealth route (2026-08-11); in each the symptom point
 2. **Did it run?** ([T3](#t3) - prove execution before tuning; check the gate cvar is seeded). And when a
    constant becomes a cvar, **update every reader in the same pass**: `coop_aiBuffer` converted the
    unsponge detectors but not `actorPainHandler`, so the AI pain handler detached on every actor's first
-   hit, silently (bug-1733) - and fixing it exposed a reader right only by accident (bug-1734).
+   hit, silently (bug-1733, bug-1734).
 3. **Is the binary I'm testing the one I built?** ([T10](#t10) — three binary states are live now)
 4. **Am I reading the record or the code?** ([T11](#t11) — the code wins; read the record to the END)
 5. **Am I guessing, or measuring?** (was T13) **BISECT FIRST - a cvar bisect beats any number of
@@ -874,7 +875,7 @@ Every global actor pass - the weapon-variant roll, the AI personality roll, enem
 runs on a map's SCRIPTED CAST as readily as on its garrison, and a scripted actor is defined by state
 the pass casually overwrites. `coop_variantRoll` ends in `self.weapon = <tik>` + `self unholster` and
 re-armed m1l1's truck driver **while he was holding the steering wheel**; the personality roll
-overwrites `type_attack` on ~65% of rolls and locks a prone pose on ~12%.
+overwrites `type_attack` and locks a prone pose on scripted actors.
 
 **Every fix has been correct and too narrow.** bug-1949 guarded the variant roll with `self.no_idle`,
 which appears in 19 scripts while **42 hold ler actors** - so m1l1 broke again a month later. That
