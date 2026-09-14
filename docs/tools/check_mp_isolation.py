@@ -39,6 +39,8 @@ THE CONTRACT (ISO track, 2026-09-13), and why each clause is here rather than me
      (multiplayer*.urc, coop_weaponselect_suppress.urc) are deliberately NOT locked - the user approved
      coop edits to them (Select Game Type cleanup, mod copies of the MP options screens, 2026-09-13).
   7. COOP FILES NEVER NAME A coop_mp* TOKEN (MP cvars, MP menus, ui/coop_mp*/ cfg trees).
+     EXCEPTION (user-approved 2026-09-14, CLAUSE7_MP_OPENER): coop_mod/lobbyui.scr's closet may name EXACTLY the two
+     read-only armory openers ui/coop_mpa_armory/open.cfg and ui/coop_mpx_armory/open.cfg - nothing else.
   8. THE CHALLENGE AND XP SYSTEMS STAY COOP-ONLY IN MULTIPLAYER (the coop_mpRun guards).
   9. MP MUST NEVER SET flags["coop_isHost"] (spaced or not) - it unlocks dev godmode, noclip and give_all.
  10. MP CALLS ONLY THE ALLOWLISTED COOP HELPERS, never the coop armory, progression or cosmetics.
@@ -142,17 +144,19 @@ BUILD_BAN = [c.lower() for c in SAVED_COOP_CVARS] + ["coop_lockloadout", "coop_l
 # A string held alone (no `+` after it) counts only when it is exactly one of these stubs; a longer string is a
 # whole name, which 4c and 12a judge.
 STUB_BAN = {"coop_", "coop_l", "coop_lo", "ui/", "ui/loadout", "coop_mod", "coop_mod/", "coop_mod/cfg/"}
-# ---- Clause 12: user-approved narrow exception (2026-09-14) -------------------------------------------------------
-# The user chose, over the zero-exception isolation rule, to expose all three loadout buttons in the MP "Multiplayer
-# Options" sheet - a third button beside the Allied/Axis choosers that opens the EXISTING coop loadout screen
-# READ-ONLY. That button runs `exec ui/loadout/open.cfg`, the very opener coop itself uses. This is read-only UI
-# navigation to an armory that already exists: it changes no coop file (ui/coop_loadout.urc stays checksum-locked -
-# clause 6), calls no coop script, and writes no coop cvar. The rest of clause 12 still binds coop_mpmenu.urc
-# UNCHANGED: it must NOT name a coop_lo* cvar (12a) or the coop_loadout menu directly - it goes through open.cfg.
-# The exception is scoped to EXACTLY one file and one token: ui/coop_mpmenu.urc may name the literal path
-# ui/loadout/open.cfg and nothing else. Any OTHER ui/loadout/ path, in this file or in any other MP file, still fails
-# 12b/12c - proven narrow by check_mp_isolation_selftest.py (M26o file-scope, M26t token-scope).
-CLAUSE12_COOP_OPENER = {("ui/coop_mpmenu.urc", "ui/loadout/open.cfg")}
+# ---- Clause 7: user-approved narrow exception (2026-09-14) --------------------------------------------------------
+# The lobby closet's Allied/Axis loadout chooser (coop_mod/lobbyui.scr) opens the two MP side armories with two
+# read-only, server-stuffed execs: `exec ui/coop_mpa_armory/open.cfg` (Allied) and `exec ui/coop_mpx_armory/open.cfg`
+# (Axis). Naming a coop_mpa_/coop_mpx_ token in a COOP file trips clause 7a. The user approved exposing those two
+# openers from the closet: they are read-only UI navigation to armories that already exist, the engine's stufftext
+# cmd_filter already admits ui/coop_* execs (SrvFilter_IsExecPathAllowed), and the E5 in-match redirect stufftexts
+# these exact paths. The exception is scoped to EXACTLY one file and two tokens: coop_mod/lobbyui.scr may name the
+# literal paths ui/coop_mpa_armory/open.cfg and ui/coop_mpx_armory/open.cfg, and nothing else. Any OTHER coop_mpa_/
+# coop_mpx_ token, or either opener named from any OTHER coop file, still fails 7a - proven narrow by
+# check_mp_isolation_selftest.py (M17g file-scope, M17h token-scope). The rest of clause 7 is UNCHANGED: RX_MP_TOKEN
+# and the general clause-7 path scan are NOT broadened, and the coop_mpmenu bridge special-case is untouched.
+CLAUSE7_MP_OPENER = {("coop_mod/lobbyui.scr", "ui/coop_mpa_armory/open.cfg"),
+                     ("coop_mod/lobbyui.scr", "ui/coop_mpx_armory/open.cfg")}
 # Clause 11 outside ui/ and coop_mod/. Only scripts, cfgs and menus are judged there: the stock mp40/mp44 .tik
 # files and the mp_* BT map art are coop assets (369 such paths on 2026-09-13, 0 scripts). Exact lower-case paths
 # of stock scripts whose names start with mp go in MP_NAME_ALLOW; there are none today.
@@ -166,10 +170,10 @@ RX_MP_TOKEN = re.compile(r"(?<![A-Za-z0-9])coop_mp\w*", re.I)
 RX_MPX_TOKEN = re.compile(r"(?<![A-Za-z0-9])coop_mpx_\w*", re.I)
 RX_MPA_TOKEN = re.compile(r"(?<![A-Za-z0-9])coop_mpa_\w*", re.I)
 RX_UI_LOADOUT = re.compile(r"ui[/\\]+loadout[/\\]", re.I)
-# The FULL ui/loadout path token, used ONLY by the clause-12 narrow exception to confirm a ui/loadout reference is
-# exactly the approved opener. This does NOT widen RX_UI_LOADOUT (which still matches only the prefix, so every
-# other ui/loadout/ path still trips 12b).
-RX_UI_LOADOUT_PATH = re.compile(r"ui[/\\]+loadout[/\\][A-Za-z0-9_./\\]*", re.I)
+# The FULL ui/coop_mp[ax]_armory path token, used ONLY by the clause-7 narrow exception (below) to confirm a
+# coop_mpa_/coop_mpx_ armory reference in coop_mod/lobbyui.scr is exactly an approved opener. This does NOT widen
+# RX_MP_TOKEN or the general clause-7 path scan, so every other coop_mpa_/coop_mpx_ token still trips 7a.
+RX_COOP_MP_OPENER_PATH = re.compile(r"ui[/\\]+coop_mp[ax]_armory[/\\][A-Za-z0-9_./\\]*", re.I)
 RX_COMPASS = re.compile(r"(?<![A-Za-z0-9])(?:coop_isCoopSession\b|coop_compassBar\w*)", re.I)
 RX_SAVED_NAME = re.compile(r"(?<![A-Za-z0-9])(?:" + "|".join(re.escape(c) for c in SAVED_COOP_CVARS + ["coop_lockLoadout"])
                            + r")\b", re.I)
@@ -303,32 +307,56 @@ def builds_coop_name(joined, mode):
     return False
 
 
-def _opener_ok(rel, tok):
-    """Clause 12 narrow exception: is (this MP file, this exact ui/loadout path token) the one user-approved
-    read-only opener in CLAUSE12_COOP_OPENER? Both sides normalized (lower-case, slashes collapsed)."""
-    return (norm_name(rel), norm_name(tok)) in {(norm_name(f), norm_name(t)) for f, t in CLAUSE12_COOP_OPENER}
+def _opener7_ok(rel, tok):
+    """Clause 7 narrow exception: is (this coop file, this exact ui/coop_mp[ax]_armory path token) one of the two
+    user-approved read-only armory openers in CLAUSE7_MP_OPENER? Both sides normalized (lower-case, slashes
+    collapsed)."""
+    return (norm_name(rel), norm_name(tok)) in {(norm_name(f), norm_name(t)) for f, t in CLAUSE7_MP_OPENER}
 
 
-def clause12_opener_line(rel, texts, ln):
-    """12b exception: on line `ln`, EVERY ui/loadout path token is the approved opener for `rel`. Returns False when
-    the line carries any other ui/loadout/ path, so a non-approved reference on the same line still fails."""
+def clause7_opener_line(rel, texts, ln):
+    """7a exception: on line `ln`, EVERY coop_mpa_/coop_mpx_ armory-opener path is an approved opener for `rel`.
+    Returns False when the line carries any other such armory path, so a non-approved armory reference on the same
+    line still fails."""
     toks = set()
     for t in texts:
-        for m in RX_UI_LOADOUT_PATH.finditer(t):
+        for m in RX_COOP_MP_OPENER_PATH.finditer(t):
             if line_of(t, m.start()) == ln:
                 toks.add(m.group(0))
-    return bool(toks) and all(_opener_ok(rel, tok) for tok in toks)
+    return bool(toks) and all(_opener7_ok(rel, tok) for tok in toks)
 
 
-def clause12_opener_literal(rel, t, pos):
-    """12c exception: the string literal beginning at `pos` carries a ui/loadout path and EVERY such path in it is the
-    approved opener for `rel`. Keyed on the literal itself (not the whole line), so a coop_ assembly literal - which
-    holds no ui/loadout path - can never be masked by an opener literal that happens to share its line."""
+def clause7_opener_literal(rel, t, pos):
+    """7a exception: the string literal beginning at `pos` carries a coop_mpa_/coop_mpx_ armory path and EVERY such
+    path in it is an approved opener for `rel`. Keyed on the literal itself (not the whole line), so a stray coop_mp*
+    token elsewhere on the line can never be masked by an opener literal that happens to share its line."""
     m = RX_LIT[0].match(t, pos) or RX_LIT[1].match(t, pos)
     if not m:
         return False
-    toks = [x.group(0) for x in RX_UI_LOADOUT_PATH.finditer(m.group(1))]
-    return bool(toks) and all(_opener_ok(rel, tok) for tok in toks)
+    toks = [x.group(0) for x in RX_COOP_MP_OPENER_PATH.finditer(m.group(1))]
+    return bool(toks) and all(_opener7_ok(rel, tok) for tok in toks)
+
+
+def clause7_opener_ok(rel, texts, ln, tok):
+    """7a per-hit skip: the coop_mp* hit (ln, tok) is a user-approved armory opener. True only when EVERY armory-
+    opener path on the line is approved for `rel` (clause7_opener_line) AND every occurrence of THIS token on the
+    line sits inside a string literal that is an approved opener (clause7_opener_literal) - so a stray coop_mp* token
+    sharing the line, or the same token used bare in code, is never masked. Keyed on (file, token): a different file
+    or a non-approved path still fails 7a."""
+    if not clause7_opener_line(rel, texts, ln):
+        return False
+    for t in texts:
+        for tm in RX_MP_TOKEN.finditer(t):
+            if line_of(t, tm.start()) != ln or tm.group(0).lower() != tok:
+                continue
+            enc = None
+            for lm in RX_LIT[0].finditer(t):
+                if lm.start() <= tm.start() and tm.end() <= lm.end():
+                    enc = lm
+                    break
+            if enc is None or not clause7_opener_literal(rel, t, enc.start()):
+                return False
+    return True
 
 
 def where(rel, line=None):
@@ -439,6 +467,11 @@ def run(mod_root, engine_root):
             if tok == "coop_mpmenu":
                 continue
             if tik and RX_TIK_OK.match(tok) and RX_TIK_OK.match(tok).end() == len(tok):
+                continue
+            # user-approved 2026-09-14 narrow exception: the lobby closet's Allied/Axis loadout openers,
+            # read-only server-stuffed execs the engine's cmd_filter already admits, scoped to exactly this file
+            # (coop_mod/lobbyui.scr) + these two tokens (ui/coop_mpa_armory/open.cfg, ui/coop_mpx_armory/open.cfg).
+            if clause7_opener_ok(rel, texts7, ln, tok):
                 continue
             r.fail("7a", where(rel, ln), "coop file names the MP token %s - MP cvars, menus and cfg trees stay out of coop"
                    % tok)
@@ -575,15 +608,11 @@ def run(mod_root, engine_root):
         for ln, tok in hits(texts, RX_COOP_LO):
             r.fail("12a", where(rel, ln), "MP file names the coop armory cvar %s" % tok)
         for ln, _tok in hits(texts, RX_UI_LOADOUT):
-            if clause12_opener_line(rel, texts, ln):
-                continue   # user-approved read-only coop-loadout opener, scoped to (file, token) in CLAUSE12_COOP_OPENER
             r.fail("12b", where(rel, ln), "MP file names the coop armory cfg tree ui/loadout/")
         built = set()
         for t, pos, joined, mode in literal_names(texts, ("coop", "ui")):
             if builds_coop_name(joined, mode):
                 ln = line_of(t, pos)
-                if clause12_opener_literal(rel, t, pos):
-                    continue   # same narrow exception, keyed per-literal so it can never mask a coop_ assembly
                 if ln not in built:
                     built.add(ln)
                     r.fail("12c", where(rel, ln), "MP file assembles the coop name %s at runtime (%s) - a static scan "

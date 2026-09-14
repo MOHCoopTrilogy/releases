@@ -159,6 +159,11 @@ MUTATIONS = [
     N("M17e", "ui/zzselftest_x.urc", "coop_mp18", {"7a"}),
     A("M17f", "coop_mod/player.scr",
       "local.p stufftext \"echo \\\"http://x\\\"\" ; local.p stufftext \"seta coop_mpaW1 1\"", {"7a"}),
+    # [7] the user-approved narrow exception (CLAUSE7_MP_OPENER) must NOT leak beyond its one file + two tokens.
+    # M17g file-scope: the EXACT approved opener, but in a DIFFERENT coop file, still fails 7a.
+    A("M17g", "coop_mod/player.scr", "local.player stufftext \"exec ui/coop_mpa_armory/open.cfg\"", {"7a"}),
+    # M17h token-scope: a DIFFERENT ui/coop_mpa_armory path in the excepted file itself still fails 7a.
+    A("M17h", "coop_mod/lobbyui.scr", "local.player stufftext \"exec ui/coop_mpa_armory/close.cfg\"", {"7a"}),
     # [8] challenge / xp guards
     mut("M18a", "unguard", "coop_mod/challenges.scr", None, {"8a"}, ("find", "thread chal_autosave_loop"),
         anchor="thread chal_autosave_loop", frag="chal_init"),
@@ -191,11 +196,6 @@ MUTATIONS = [
     N("M25b", "ui/coop_mpa_zzselftest/c.cfg", "seta COOP_LOW1 5", {"12a"}),
     N("M26", "ui/coop_mpx_zzselftest/a2.cfg", "exec ui/loadout/t01.cfg", {"12b"}),
     N("M26b", "ui/coop_mpx_zzselftest/a3.cfg", "exec ui\\loadout\\t01.cfg", {"12b"}),
-    # [12] the user-approved narrow exception (CLAUSE12_COOP_OPENER) must NOT leak beyond its one (file, token).
-    # M26o: the EXACT opener token in a DIFFERENT MP file still fails 12b (the exception is file-scoped).
-    N("M26o", "ui/coop_mp_zzselftest/probe_open.cfg", "exec ui/loadout/open.cfg", {"12b"}),
-    # M26t: a DIFFERENT ui/loadout token in the excepted file itself still fails 12b (the exception is token-scoped).
-    A("M26t", "ui/coop_mpmenu.urc", "stuffcommand \"exec ui/loadout/other.cfg\"", {"12b"}),
     A("M27", MP, "local.cv = \"coop_\" + \"loW1\"", {"12c"}),
     A("M27b", MP, "local.p stufftext ( \"seta coop_\" + local.n + \" 0\" )", {"12c"}),
     A("M27c", MP, "local.cv = \"coop_l\" + local.x", {"12c"}),
