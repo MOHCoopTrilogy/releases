@@ -1,0 +1,121 @@
+# grade_profiles.tsv - per-map colour-grade multipliers over the HZM ACES baseline
+#
+# Design source: hzm-mohaa-coop-mod/_research/fog_grade_research.md (section 2, 4,
+# 5.1). USER DECISION 3: per-map grade ON by default, with a player toggle off; the
+# player's own r_pp* sliders are NEVER written.
+#
+# ============================ APPLY-PLAN (NOT WIRED YET) ============================
+# This is DATA ONLY. The grade is not applied by any engine or script code yet, and
+# nothing in this change wires it. The research (2.2) specifies the shipping shape,
+# which is a LATER engine step:
+#
+#   1. gl2 (renderergl2/tr_postprocess.c, RB_ToneMap): add flags-0 (non-archived)
+#      cvars r_ppMapGrade (0/1 active) + r_ppMapExpo/Cont/Sat/Temp. After the preset
+#      switch, COMPOSE over whatever the player produced:
+#          expo *= mapExpo;  cont *= mapCont;  sat *= mapSat;  temp += mapTemp;
+#      and open the tonemap gate when r_ppMapGrade is active. NEVER write r_pp* (that
+#      stomps player settings - the bug-2165 class).
+#   2. cgame: parse ONE packed cvar  coop_mapGrade "<expo>,<cont>,<sat>,<temp>"  that
+#      the server publishes change-only (like coop_daylight), check the player's
+#      opt-out (r_ppMapGradeOn, archived, default 1 - a NON-coop_ name so a server
+#      cannot flip it), publish the r_ppMap* cvars, and RESET to neutral at CG_Init
+#      so a later MP server that never publishes carries no coop grade.
+#   3. server: publish this table's row for the current coop map at spawn/join. Keyed
+#      by level.coop_mapname (lowercase), exactly like the fog profiles.
+#
+# HARD PREREQUISITE (research 2.2 / 0.3): the CG_CoopDaylightThink first-frame reset
+# (bug-2584) must be fixed first, or the multipliers apply to a tonemap path that is
+# off. Opening the gate also switches the curve from rend2 Hable+auto-exposure to
+# ACES+fixed exposure - a global look change - so FOG COLOURS MUST BE TUNED AFTER that
+# switch, or every fog profile is retuned twice.
+#
+# MP isolation (research 6): the relay must avoid coop_mp* tokens (check_mp_isolation
+# clause 14) and reset at CG_Init (flags-0 cvars persist across server switches within
+# one client session).
+# ====================================================================================
+#
+# COLUMNS (multipliers over ACES-neutral, i.e. preset 1 = expo 1.0, cont 1.05, sat 1.0,
+# temp 0; see tr_postprocess.c:120-125 and tonemap_hzm_fp.glsl):
+#   expo  exposure multiplier   contrast  contrast multiplier   sat  saturation mult
+#   temp  ADDITIVE temperature tint (warm +, cool -), clamped [-0.12,+0.10]
+#
+# source = pilot   -> exact hand-tuned pilot value (research section 4). Six maps.
+#        = derived -> from the research 5.1 draft-grade method:
+#            temp = clamp(0.5*(R-B)/(R+G+B), -0.12, +0.10) over the map's fog/horizon
+#              colour (the value in fog_profiles.tsv, or the measured horizon on maps
+#              with no fog profile);
+#            sat  = 0.80 night/interior, 0.88 overcast, 0.90 snow, 0.95 clear/desert;
+#            cont = 1.05 night, 1.08 overcast/interior, 1.03 clear/snow, 1.05 desert;
+#            expo = 1.00 (no expo term in the method).
+#
+# EVERY derived row is a DRAFT and needs eyes (research 5.2: saturation vs gore and
+# enemy-uniform readability against snow/sand, night glow, interiors). Grades are ON
+# by default per USER DECISION 3, so this table covers ALL 65 coop maps - including the
+# no-fog maps, which still get a grade.
+#
+map	expo	contrast	sat	temp	source	class	note
+m1l1	1.00	1.05	0.80	-0.12	pilot	night	first mission; africanight
+m1l2a	1.00	1.05	0.80	-0.12	derived	night	africanight
+m1l2b	1.00	1.05	0.80	-0.12	derived	night	africanight
+m1l3a	1.00	1.05	0.80	-0.12	derived	night	mohnightfog
+m1l3b	1.00	1.05	0.80	-0.12	derived	night	mohnightfog
+m1l3c	1.00	1.05	0.80	-0.11	derived	night	lighthouse coast
+m2l1	1.00	1.03	0.90	-0.05	pilot	snow	Norway snow dawn
+m2l2a	1.00	1.08	0.88	-0.03	derived	overcast	naval base caulksky
+m2l2b	1.00	1.08	0.88	-0.03	derived	overcast	naval base
+m2l2c	1.00	1.08	0.88	-0.03	derived	overcast	naval base
+m2l3	1.00	1.03	0.90	-0.03	derived	snow	Norway snow
+m3l1a	1.00	1.08	0.80	-0.03	pilot	overcast	Omaha; gentler than bleach-bypass preset 4
+m3l1b	1.00	1.08	0.88	0.00	derived	overcast	beach bunkers
+m3l2	1.00	1.08	0.88	0.00	derived	overcast	Normandy countryside
+m3l3	1.00	1.08	0.88	0.00	derived	overcast	hedgerow town
+m4l0	1.00	1.03	0.95	-0.01	derived	clear	clear day (HD sky)
+m4l1	1.00	1.08	0.80	-0.10	pilot	interior	interior-heavy night
+m4l2	1.00	1.05	0.80	-0.03	derived	night	blue-moon night
+m4l3	1.00	1.08	0.80	-0.06	derived	interior	interior-heavy night
+m5l1a	1.00	1.08	0.88	-0.01	derived	overcast	overcast town (HD sky)
+m5l1b	1.00	1.08	0.88	-0.01	derived	overcast	overcast town (HD sky)
+m5l2a	1.00	1.08	0.88	-0.01	derived	overcast	overcast rural (HD sky)
+m5l2b	1.00	1.08	0.88	-0.01	derived	overcast	overcast rural (HD sky)
+m5l3	1.00	1.03	0.95	-0.01	derived	clear	clear day (HD sky)
+m6l1a	1.00	1.05	0.80	-0.07	derived	night	snow night forest
+m6l1b	1.00	1.05	0.80	-0.07	derived	night	snow night forest
+m6l1c	1.00	1.05	0.80	-0.07	derived	night	snow night forest
+m6l2a	1.00	1.05	0.80	-0.12	derived	night	snow night town
+m6l2b	1.00	1.05	0.80	-0.03	derived	night	snow night
+m6l3a	1.00	1.05	0.80	-0.12	derived	night	snow night fortress exterior
+m6l3b	1.00	1.05	0.80	-0.12	derived	night	night exterior
+m6l3c	1.00	1.08	0.80	0.00	derived	interior	interior, no sky (colour assumed neutral)
+m6l3d	1.00	1.08	0.80	0.00	derived	interior	interior, no sky (colour assumed neutral)
+m6l3e	1.00	1.05	0.80	-0.12	derived	night	snow night exterior (caulksky, colour assumed africanight)
+e1l1	1.00	1.05	0.95	0.10	derived	desert	desert dusk/sandstorm
+e1l2	1.02	1.05	0.95	0.08	pilot	desert	N.Africa desert day
+e1l3	1.00	1.05	0.95	-0.01	derived	desert	desert town day (HD sky)
+e1l4	1.00	1.05	0.80	-0.07	derived	night	night
+e2l1	1.00	1.05	0.80	-0.01	derived	night	Sicily night glider
+e2l2	1.00	1.05	0.80	-0.02	derived	night	Sicily night
+e2l3	1.00	1.05	0.92	-0.06	pilot	night	Sicily dusk town
+e3l1	1.00	1.08	0.88	-0.01	derived	overcast	Italy overcast (HD sky)
+e3l2	1.00	1.08	0.88	-0.02	derived	overcast	overcast, interior-heavy
+e3l3	1.00	1.05	0.80	-0.09	derived	night	night river
+e3l4	1.00	1.05	0.80	0.00	derived	night	night mountain
+e3l4_arena	1.00	1.05	0.80	0.00	derived	night	night holdout
+t1l1	1.00	1.05	0.80	-0.11	derived	night	Normandy night paradrop
+t1l2	1.00	1.05	0.80	-0.12	derived	night	night
+t1l3	1.00	1.05	0.80	-0.10	derived	night	blue dusk, interior-heavy
+t2l1	1.00	1.03	0.90	0.00	derived	snow	Bastogne snow whiteout
+t2l2	1.00	1.03	0.90	-0.01	derived	snow	snow, dim
+t2l3	1.00	1.05	0.80	-0.02	derived	night	snow night forest
+t2l4	1.00	1.05	0.80	-0.07	derived	night	snow night
+t3l1	1.00	1.05	0.80	-0.07	derived	night	city night
+t3l2	1.00	1.03	0.95	0.02	derived	clear	city day, dusty
+co_lobby1	1.00	1.03	0.95	-0.01	derived	clear	clear day (HD sky)
+co_lobby2	1.00	1.05	0.80	-0.12	derived	night	night town
+co_lobby3	1.00	1.05	0.80	-0.12	derived	night	night town
+co_lobby4	1.00	1.05	0.80	-0.11	derived	night	night coast
+co_lobby5	1.00	1.03	0.90	0.00	derived	snow	snow (HD sky)
+co_lobby6	1.00	1.03	0.90	0.00	derived	snow	snow dawn (HD sky)
+co_lobby7	1.00	1.08	0.88	-0.03	derived	overcast	Norway naval base caulksky
+co_lobby8	1.00	1.05	0.80	-0.07	derived	night	night
+test_bob_foy	1.00	1.03	0.90	-0.01	derived	snow	snow overcast (HD sky)
+training	1.00	1.03	0.95	-0.01	derived	clear	clear day (HD sky)

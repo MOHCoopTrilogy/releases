@@ -1,0 +1,104 @@
+# fog_profiles.tsv - hand-filled source for docs/tools/gen_fog_profiles.py
+#
+# One row per coop-integrated map that SHIPS a fog profile. Design: the approved
+# USER DECISIONS in hzm-mohaa-coop-mod/_research/fog_grade_research.md (2026-09-13).
+#
+#   SUBTLE DEPTH  - native fog DISTANCE preserved (no AI sight-range change, since
+#                   AI sight = dist * 0.828). Only bias (near-field clear zone) and
+#                   colour (matched to the LIVE sky horizon) are authored.
+#   colour-only   - dist 0 so fogmode's keeper (fogmode.scr:334-339, re-applies only
+#                   when dist>0) never flattens the map's scripted fog ramps. Only
+#                   colour + bias applied, once, over the first 10s. Used on the
+#                   scripted-fog maps the research names.
+#
+# COLOURS ARE NOT INVENTED. Every r,g,b is a measured value from the research
+# inventory (section 3): the LIVE sky-horizon average, using the HD sky where
+# zzzzzz_hd_skybox.pk3 replaced the retail one (bug-2583, USER DECISION 4 = keep HD,
+# re-author fog to it), the retail horizon otherwise, or the native worldspawn fog
+# colour on caulksky maps (where the sky IS the fog). Pilot rows use the exact
+# hand-tuned pilot values (research section 4).
+#
+# BIAS policy: maps whose NATIVE bias is negative (deliberate fog-at-the-eye density)
+# KEEP that native bias - clearing it would remove intended atmosphere (not subtle).
+# Maps with native bias 0/absent get ~25% of dist as a near-field clear zone.
+# Pilot rows use the pilot bias. Colour-only rows use native bias (0 or negative).
+#
+# CULL is forced to 1 on every row: fogv1 cannot express "keep native cull", and per
+# the research (risk 5) cull 1 is a net perf win and geometry past dist is invisible
+# under 100%-opaque fog anyway. The fogv2 keep-native sentinel is future work (5.3).
+# Where this flips a native cull 0 -> 1 (e3l1) the row is flagged eyes.
+#
+# SKY (skybox_farplane) is 0 except the sky-portal maps t3l1/t3l2, whose native
+# portal far distance MUST be preserved (research 0.5) or the portal view breaks.
+#
+# eyes = EYES  -> before/after screenshot review required before ship (HD-sky
+#                 re-authoring, scripted-fog maps, sky-portal maps, or maps whose
+#                 native fog colour differs sharply from the horizon we matched to).
+#      = ok     -> confident (native fog already ~= horizon; simple static map).
+#
+# NOT in this table (deliberately, so the generator never writes them):
+#   - m3l1a           grade-only; ANY profile disables its RAMPFOG lift (coopified.scr:19905)
+#   - m1l1 m1l2a m1l2b co_lobby2 co_lobby3 co_lobby4 m6l3a m6l3b m6l3c m6l3d m6l3e
+#                     no fog at runtime today; adding fog would add an AI clamp that
+#                     never existed (USER DECISION 1 - these stay no-fog)
+#   - m2l3 m3l1b m6l1c scripted fog with NO static BSP farplane (native dist = 0);
+#                     "keep native distance" = leave alone. They ramp; not in the
+#                     approved colour-only list. Grade-only for now.
+#   - co_lobby5       scripted night ramp to 1500 would fight a 14500 keeper
+#   - t1l1            sky portal with unknown native skybox_farplane; its fog
+#                     (.024) already ~= horizon (class A). Grade-only for now.
+#   - t2l1            Bastogne whiteout, heavy native bias -1500; research deferred it
+#   - e2l2 m1l3c      already have shipped profiles; left untouched. NOTE: e2l2's
+#                     existing profile is a dist-1000 keeper that per the research
+#                     fights its 7x cinematic re-fog; re-authoring it to colour-only
+#                     is recommended but deferred (do not modify a shipped file
+#                     without approval).
+#
+map	class	dist	bias	r	g	b	cull	sky	eyes	note
+# --- subtle-depth (native dist preserved) ---
+m1l3a	subtle	4600	1150	0.042	0.058	0.101	1	0	ok	mohnightfog horizon; native fog .03/.05/.09 ~= horizon
+m5l2a	subtle	5500	1375	0.36	0.39	0.45	1	0	EYES	moodier cool overcast (retail .35/.35/.38), HD sky kept
+m6l1b	subtle	1600	400	0.200	0.200	0.300	1	0	ok	caulksky, colour = native fog (sky IS fog)
+co_lobby1	subtle	13000	3250	0.55	0.55	0.55	1	0	EYES	moodier neutral haze (mohday2 darkened), HD sky kept
+co_lobby6	subtle	14500	3600	0.41	0.43	0.56	1	0	EYES	moodier cool dawn (norway_dawn retail), HD sky kept
+co_lobby7	subtle	15000	3750	0.600	0.600	0.700	1	0	ok	caulksky, colour = native fog
+co_lobby8	subtle	5000	1250	0.052	0.062	0.081	1	0	ok	e1l4sky horizon; native .03/.05/.09
+e1l1	subtle	1500	375	0.353	0.239	0.161	1	0	EYES	e1l1sky horizon; script also sets fog (.35/.24/.16 bias 50) - verify keeper
+e1l2	subtle	5000	1250	0.356	0.286	0.204	1	0	ok	PILOT #2; native fog = horizon exactly
+e1l3	subtle	4200	1050	0.52	0.49	0.44	1	0	EYES	moodier warm desert haze (retail .55/.52/.48), HD sky kept
+e1l4	subtle	5000	1250	0.052	0.062	0.081	1	0	ok	e1l4sky horizon; native .03/.05/.09
+e2l1	subtle	2300	-200	0.176	0.176	0.192	1	0	ok	horizon; native bias -200 kept (deliberate near fog)
+e3l1	subtle	2200	1000	0.30	0.33	0.40	1	0	EYES	moodier cool overcast (retail lifted), HD sky kept; native cull 0->1
+e3l2	subtle	2500	625	0.153	0.157	0.173	1	0	ok	e3l2sky horizon; native fog .16/.16/.17
+e3l4	subtle	3000	-100	0.102	0.102	0.102	1	0	ok	caulksky, colour = native fog; native bias -100 kept
+e3l4_arena	subtle	3000	-100	0.102	0.102	0.102	1	0	ok	loose e3l4 BSP copy; same values as e3l4
+m1l3b	subtle	4600	1150	0.042	0.058	0.101	1	0	ok	mohnightfog horizon; native fog .03/.05/.09
+m2l1	subtle	14500	3500	0.41	0.43	0.56	1	0	EYES	moodier cool dawn (retail .41/.41/.55), HD sky kept - grey was invisible
+m2l2a	subtle	15000	3750	0.600	0.600	0.700	1	0	ok	caulksky, colour = native fog
+m2l2b	subtle	15000	3750	0.600	0.600	0.700	1	0	EYES	caulksky; script sets separate submarine-interior fog (6000 .72/.75/.80)
+m3l2	subtle	6200	1550	0.630	0.630	0.620	1	0	ok	d-day2 DDS (rescued grey); native fog .62/.62/.61
+m4l0	subtle	13000	3250	0.58	0.57	0.53	1	0	EYES	moodier warm haze (bright day darkened), HD sky kept
+m4l1	subtle	3100	900	0.180	0.200	0.260	1	0	EYES	PILOT #5 (cooled toward moonlight sun from native .2/.2/.235)
+m4l2	subtle	3100	775	0.200	0.200	0.235	1	0	ok	caulksky, colour = native fog (blue-moon night)
+m5l1a	subtle	3500	875	0.36	0.39	0.45	1	0	EYES	moodier cool overcast (retail .35/.35/.38), HD sky kept
+m5l1b	subtle	3500	875	0.36	0.39	0.45	1	0	EYES	moodier cool overcast (retail .35/.35/.38), HD sky kept
+m5l2b	subtle	4000	1000	0.36	0.39	0.45	1	0	EYES	moodier cool overcast (retail .35/.35/.38), HD sky kept
+m5l3	subtle	15000	3750	0.62	0.57	0.49	1	0	EYES	moodier warm haze (retail .89/.81/.67 darkened), HD sky kept
+m6l1a	subtle	1500	375	0.200	0.200	0.300	1	0	ok	caulksky, colour = native fog
+m6l2b	subtle	1600	400	0.100	0.100	0.120	1	0	ok	caulksky, colour = native fog
+t1l2	subtle	3000	750	0.043	0.059	0.098	1	0	EYES	t1l2 horizon; native fog .06/.14/.23 differs sharply from horizon
+t1l3	subtle	6000	1500	0.155	0.205	0.281	1	0	ok	t1l3 horizon; native fog .13/.19/.27 ~= horizon
+t2l2	subtle	2750	-150	0.324	0.324	0.351	1	0	ok	caulksky, colour = native fog; native bias -150 kept
+t2l3	subtle	2500	-1000	0.059	0.060	0.068	1	0	ok	t2l3 horizon ~= native; native bias -1000 kept (dense forest fog)
+t2l4	subtle	3600	-1000	0.103	0.111	0.152	1	0	ok	t2l4 horizon ~= native fog; native bias -1000 kept
+t3l1	subtle	15000	500	0.058	0.081	0.090	1	4500	EYES	sky portal - skyfar 4500 preserved; native bias 500 kept
+t3l2	subtle	16000	4000	0.603	0.560	0.539	1	4000	EYES	sky portal - skyfar 4000 preserved; native fog .31/.33/.35 differs from horizon
+test_bob_foy	subtle	6500	1625	0.36	0.39	0.45	1	0	EYES	moodier cool overcast (m5l2 retail), HD sky kept
+training	subtle	13000	3250	0.60	0.57	0.52	1	0	EYES	moodier warm haze (mohday2 darkened), HD sky kept
+# --- colour-only (dist 0; leaves scripted fog ramps to the map) ---
+m3l3	colour-only	0	0	0.630	0.630	0.620	1	0	EYES	scripted near/far ramp; d-day2 DDS horizon
+e2l3	colour-only	0	-256	0.324	0.335	0.441	1	0	EYES	scripted FinalHouse re-fog; horizon (= PILOT #6 colour); native bias -256
+e3l3	colour-only	0	0	0.060	0.060	0.100	1	0	EYES	scripted fog.scr ramp; native fog ~= horizon .059/.059/.106
+m4l3	colour-only	0	0	0.100	0.100	0.140	1	0	EYES	scripted ramp (1500 .1/.1/.14); caulksky
+m6l2a	colour-only	0	0	0.100	0.100	0.200	1	0	EYES	scripted ramp (1600 .1/.1/.2); caulksky
+m2l2c	colour-only	0	0	0.600	0.600	0.700	1	0	EYES	scripted ramp; caulksky, colour = native fog
