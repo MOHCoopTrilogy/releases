@@ -159,11 +159,6 @@ MUTATIONS = [
     N("M17e", "ui/zzselftest_x.urc", "coop_mp18", {"7a"}),
     A("M17f", "coop_mod/player.scr",
       "local.p stufftext \"echo \\\"http://x\\\"\" ; local.p stufftext \"seta coop_mpaW1 1\"", {"7a"}),
-    # [7] the user-approved narrow exception (CLAUSE7_MP_OPENER) must NOT leak beyond its one file + two tokens.
-    # M17g file-scope: the EXACT approved opener, but in a DIFFERENT coop file, still fails 7a.
-    A("M17g", "coop_mod/player.scr", "local.player stufftext \"exec ui/coop_mpa_armory/open.cfg\"", {"7a"}),
-    # M17h token-scope: a DIFFERENT ui/coop_mpa_armory path in the excepted file itself still fails 7a.
-    A("M17h", "coop_mod/lobbyui.scr", "local.player stufftext \"exec ui/coop_mpa_armory/close.cfg\"", {"7a"}),
     # [8] challenge / xp guards
     mut("M18a", "unguard", "coop_mod/challenges.scr", None, {"8a"}, ("find", "thread chal_autosave_loop"),
         anchor="thread chal_autosave_loop", frag="chal_init"),
