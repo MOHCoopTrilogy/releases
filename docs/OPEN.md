@@ -394,12 +394,12 @@ direction is the **e2l2 intro camera/cinematic view setup**, not the model or re
 which newly **wired** gl2 character sun-cascade shadows — worth checking whether that wiring interacts
 with or worsens this.
 
-### Bloom is a no-op at the shipped threshold
-`OPEN` · *bug-1149* — proven working at deliberately extreme settings (m3l1a mean 123.5→171.4, near
-58.0→178.8, correct wide Gaussian) but does nothing at threshold 0.664756, because **gl2 thresholds
-the pre-tone HDR buffer while gl1 thresholds its display-referred LDR backbuffer** — same chain
-position, different numeric domain. **Open decision: re-map the threshold into HDR domain, or move
-gl2's bloom after the tone stage.**
+### Bloom reads as a flat haze on the Hable curve
+`OPEN` · *bug-1149* - the 0.664756 no-op note predates the bright-pass clamp. Now (2026-09-13 design):
+on the shipped ACES grade bloom already matches gl1; on rend2's Hable + auto-exposure the bright pass
+spans display ~0.09-0.30, so every highlight adds the same flat amount, and exposure is measured
+after bloom and dims it. **Decided:** exposure-aware `r_ppBloomMode 1` (mode 0 kept for A/B) on the
+ACES baseline. See `_research/gl2_render_upgrades_design.md`.
 
 ### Seven gl1 post-FX have no gl2 equivalent
 `PLANNED` · gl1 order is SSAO → DoF → **bloom (done)** → god rays → **grade (done)** → FXAA → sharpen

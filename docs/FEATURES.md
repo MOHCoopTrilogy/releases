@@ -425,9 +425,9 @@ shipped, ear verdict pending. Still unmined: 495 `.abkx` SFX/VO banks.
 baked (intensity 1.3, threshold 0.6); DoF, tonemap/grade and FXAA built and opt-in. **⭐ Root cause of
 two failed attempts:** the pass used raw `qgl*` calls that desynced the engine's `glState` **cache**
 — the fix was driving everything through `GL_State`/`GL_Bind`, **not** `glPushAttrib` (unlinkable in
-this DLOPEN renderer). ⚠️ **The 3D→2D hook MUST live in `Set2DWindow` (`tr_draw.c`), not
-`RB_SetGL2D`** — cgame enters 2D via the exported `re.Set2DWindow` directly. Any future effect added
-to `RB_PostFxApply` is therefore automatically HUD-safe. *Anchor:* `renderergl1/tr_postprocess_gl1.c`.
+this DLOPEN renderer). ⚠️ **gl1 only:** the 3D→2D hook lives in `Set2DWindow` (`tr_draw.c`), not
+`RB_SetGL2D` - cgame enters 2D via `re.Set2DWindow`, so `RB_PostFxApply` effects are HUD-safe on gl1.
+gl2's post chain differs; see `_research/gl2_render_upgrades_design.md`. *Anchor:* `renderergl1/tr_postprocess_gl1.c`.
 
 **renderergl2 migration** — `PLANNED` / in progress in an isolated sandbox at `G:\mohaa-gl2` (own
 binaries, junctioned game data, separate homepath, forced `cl_renderer opengl2`). Empirically gl2 is
