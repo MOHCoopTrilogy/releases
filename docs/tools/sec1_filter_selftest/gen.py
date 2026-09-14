@@ -85,12 +85,34 @@ cmdparts = [
 open(os.path.join(OUT, "real_qshared.inc"), "w", newline="\n").write("\n\n".join(qshared))
 open(os.path.join(OUT, "real_cmd.inc"), "w", newline="\n").write("\n\n".join(cmdparts))
 
+# SEC2: the working-tree filter now calls the statement rules shared with the exe (qcommon/cmd_filter.c).
+# Paste the header + implementation verbatim, with the generated guard list inlined where cmd_filter.c
+# includes it, so the patched arm links the same rule code that ships in cgame.dll and openmohaa.exe.
+flt_h = src("qcommon/cmd_filter.h")
+flt_c = src("qcommon/cmd_filter.c")
+guard = src("qcommon/cmd_srvguard.h")
+if flt_c.count('#include "cmd_srvguard.h"') != 1:
+    sys.exit("cmd_filter.c no longer includes cmd_srvguard.h exactly once")
+flt_c = flt_c.replace('#include "cmd_srvguard.h"', guard)
+srv = strip_includes(flt_h).replace("#pragma once", "") + "\n" + strip_includes(flt_c)
+open(os.path.join(OUT, "real_srvfilter.inc"), "w", newline="\n").write(srv)
+
 # working-tree filter (the patched one under test)
 open(os.path.join(OUT, "real_filter_work.inc"), "w", newline="\n").write(strip_includes(FILTER_ABS and open(FILTER_ABS, encoding="latin-1").read()))
 
-# committed HEAD filter (pre-SEC1) - via git so the delta arm always compares against what is checked in
+# pre-SEC1 filter - via git so the delta arm always compares against what was checked in. It must be the
+# filter as it was BEFORE the first bug-2580 commit, not HEAD: once SEC1 itself was committed, HEAD drops the
+# attack list too and the delta arm failed on a correct tree (found 2026-09-13 while landing SEC2).
+first = subprocess.run(
+    ["git", "-C", r"C:\mohaa-coop-dev\openmohaa-hzm", "log", "--reverse", "--format=%H", "--grep=bug-2580",
+     "--", FILTER_REL],
+    capture_output=True, text=True,
+)
+if first.returncode != 0 or not first.stdout.split():
+    sys.exit("could not find the bug-2580 commit of " + FILTER_REL + ": " + first.stderr)
+base_rev = first.stdout.split()[0] + "^"
 head = subprocess.run(
-    ["git", "-C", r"C:\mohaa-coop-dev\openmohaa-hzm", "show", "HEAD:" + FILTER_REL],
+    ["git", "-C", r"C:\mohaa-coop-dev\openmohaa-hzm", "show", base_rev + ":" + FILTER_REL],
     capture_output=True, text=True, encoding="latin-1",
 )
 if head.returncode != 0:

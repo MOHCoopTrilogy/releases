@@ -1,0 +1,1 @@
+WORK sizeof=1512 apiversion_off=0 Cmd_Stuff_off=136 R_ClearAllRagdolls_off=1496 Cmd_StuffServer_off=1504 version=4

@@ -143,6 +143,8 @@ struct {
 #ifdef FILTER_HEAD
 #include "real_filter_head.inc"
 #else
+/* SEC2: the patched filter calls the statement rules shared with the exe (qcommon/cmd_filter.c, verbatim) */
+#include "real_srvfilter.inc"
 #include "real_filter_work.inc"
 #endif
 
@@ -320,7 +322,9 @@ int main(void)
     attack("connect", "seta coop_x connect evil.host:12203;vstr coop_x", "vstr coop_x");
     attack("writecfg", "seta coop_x writeconfig hack.dat;vstr coop_x", "vstr coop_x");
     attack("bare", "coop_x connect evil:12203;vstr coop_x", "vstr coop_x");
-    attack("bare-deny", "coop_loDeny quit;vstr coop_loDeny", "vstr coop_loDeny");
+    /* SEC2: coop_loDeny is on the generated guard list (the client vstr's it), so the hostile bare write
+     * is now refused at the write itself, before the vstr is reached */
+    attack("bare-deny", "coop_loDeny quit;vstr coop_loDeny", "guard coop_loDeny");
     attack("append-new", "append coop_x quit;vstr coop_x", "vstr coop_x");
     attack("ovr-append", "seta coop_x quit;append coop_x echo;vstr coop_x", "vstr coop_x");
 

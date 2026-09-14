@@ -6,5 +6,7 @@ real_qshared.inc
 real_cmd.inc
 real_filter_work.inc
 real_filter_head.inc
+real_srvfilter.inc
 inv.inc
+inv_pairs.inc
 inv.gen1
