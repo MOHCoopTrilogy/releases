@@ -57,6 +57,16 @@ THE CONTRACT (ISO track, 2026-09-13), and why each clause is here rather than me
      The top compass bar is coop-only because only coop script (player.scr) sets that flag; an MP line writing it
      would put the coop bar on an MP map, and the compassBar prefs are saved, so an MP write would follow the player
      into coop. The same names are in BUILD_BAN, so 12c also stops MP assembling them from strings.
+ 16. MP URC MENU NAMES ARE coop_mp* OR IN MP_OWNED_MENUS, AND NEVER A STOCK/COOP MENU.
+     Every ui/*.urc loads in every session including coop, and same-named menus are keep-first
+     (uiwinman.cpp:629-659): an MP file defining SelectPrimaryWeapon*, coop_loadout or dm_main would
+     change coop. So an MP menu declaration must be coop_mp* (or the one shared name in MP_OWNED_MENUS).
+ 17. MP FILES NEVER NAME THE COOP CHARACTER-GEAR CVARS dm_playermodel, dm_playergermanmodel,
+     coop_gloveIdx, coop_helmetIdx OR coop_armorySkin* (flags included). MP dresses via its own state;
+     writing the shared coop skin/glove/helmet cvars would follow the player into coop (like clause 4).
+ 18. NO vstr IN THE MP UI TREES (ui/coop_mp*.urc, ui/coop_mp*/**) unless the cvar is listed in
+     code/qcommon/cmd_srvguard.h. A server-stuffed vstr is filtered (TRAPS T8) and the MP UI is a
+     client-origin design; keeping vstr out means slice 1 needs no stufftext-filter grammar entry.
 
 MATCHING RULES
     Every name match is case-insensitive: the engine looks cvars up with Q_stricmp (cvar.c:109).
@@ -86,7 +96,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), 
 DEFAULT_MOD = os.path.join(ROOT, "hzm-mohaa-coop-mod")
 DEFAULT_ENGINE = os.path.join(ROOT, "openmohaa-hzm")
 
-CLAUSES = [str(i) for i in range(16)]
+CLAUSES = [str(i) for i in range(19)]
 
 # ---------------------------------------------------------------- tables
 # The files that ARE multiplayer. Mod-relative, forward slashes, case-insensitive; * stays inside one
@@ -106,6 +116,11 @@ MP_COOP_ALLOW = {"main::containstext", "player::playercleanname", "player::coop_
 
 # Clause 14. Declared engine MP hooks: name -> one-line reason. Keep this on ONE line (the self-test patches it).
 ENGINE_MP_HOOKS = {}
+
+# Clause 16. The one non-coop_mp* menu name MP legitimately owns (the Multiplayer Options side picker,
+# moved out of a coop file in a later slice). A stock/coop menu an MP urc must NEVER redefine (they load
+# in coop too, keep-first dedup): SelectPrimaryWeapon*, coop_loadout, dm_main.
+MP_OWNED_MENUS = {"mpoptions"}
 
 # Clause 6. sha256 of the committed blob (LF) and of the same blob with CRLF line endings. Known writers:
 # docs/tools/gen_glove_ui.py --write rewrites ui/coop_loadout.urc (:162-163), so a legitimate run of it needs a
@@ -164,6 +179,14 @@ RX_AMB_COND = re.compile(r"\s*(?:level\.gametype\s*!=\s*0\s*&&\s*level\.coop_mai
 RX_MPRUN_GUARD = re.compile(r"if\(\s*level\.coop_mpRun\s*==\s*1\s*\)\s*\{\s*end\s*\}")
 RX_HOOK_BEGIN = re.compile(r"//\s*HZM-MP-BEGIN\(\s*(\w+)\s*\)", re.I)
 RX_HOOK_END = re.compile(r"//\s*HZM-MP-END\(\s*(\w+)\s*\)", re.I)
+# Clause 16: a `menu "<name>"` DECLARATION (the \bmenu\b word boundary keeps push/popmenu out).
+RX_MENU_DECL = re.compile(r"(?<![A-Za-z])menu\s+\"([^\"\r\n]+)\"", re.I)
+RX_MENU_BANNED = re.compile(r"\A(?:selectprimaryweapon\w*|coop_loadout|dm_main)\Z", re.I)
+# Clause 17: the coop character-gear cvars MP must never name.
+RX_GEAR = re.compile(r"(?<![A-Za-z0-9_])(dm_playermodel|dm_playergermanmodel|coop_gloveIdx|coop_helmetIdx"
+                     r"|coop_armorySkin\w*)\b", re.I)
+# Clause 18: a vstr statement and the cvar it runs (quoted or bare).
+RX_VSTR = re.compile(r"(?<![A-Za-z0-9_])vstr\s+\"?([A-Za-z0-9_]+)", re.I)
 
 # Two lexers; both keep string literals and replace a comment with its own newlines, so line numbers hold.
 LEX_ESC = re.compile(r"\"(?:[^\"\\\r\n]|\\.)*\"?|//[^\n]*|/\*.*?(?:\*/|\Z)", re.S)
@@ -548,6 +571,72 @@ def run(mod_root, engine_root):
         r.pend("15", "no MP file exists yet")
     elif len(r.fails) == mark:
         r.ok("15", "no MP file names coop_isCoopSession or a coop_compassBar* cvar")
+
+    # ------------------------------------------------------------ 16. MP urc menu names
+    mark = len(r.fails)
+    n_urc = 0
+    for rel, texts in mp_texts:
+        if not rel.lower().endswith(".urc"):
+            continue
+        n_urc += 1
+        seen = set()
+        for t in texts:
+            for m in RX_MENU_DECL.finditer(t):
+                nm = m.group(1)
+                ln = line_of(t, m.start())
+                if (ln, nm.lower()) in seen:
+                    continue
+                seen.add((ln, nm.lower()))
+                if RX_MENU_BANNED.match(nm):
+                    r.fail("16b", where(rel, ln), "MP urc declares the stock/coop menu %s - every urc loads in "
+                           "coop too (keep-first dedup), so redefining it would change coop" % nm)
+                elif not (nm.lower().startswith("coop_mp") or nm.lower() in MP_OWNED_MENUS):
+                    r.fail("16a", where(rel, ln), "MP urc declares menu %s - an MP menu name must be coop_mp* "
+                           "or one of MP_OWNED_MENUS %s" % (nm, sorted(MP_OWNED_MENUS)))
+    if n_urc == 0:
+        r.pend("16", "no MP urc exists yet")
+    elif len(r.fails) == mark:
+        r.ok("16", "MP urc menu names are coop_mp*/MP_OWNED_MENUS and never a stock/coop menu (%d urc)" % n_urc)
+
+    # ------------------------------------------------------------ 17. MP never names coop character gear
+    mark = len(r.fails)
+    for rel, texts in mp_texts:
+        for ln, tok in hits(texts, RX_GEAR):
+            r.fail("17a", where(rel, ln), "MP file names the coop character-gear cvar %s - MP dresses via its own "
+                   "state; the shared coop skin/glove/helmet cvars would follow the player into coop" % tok)
+    if not mp_texts:
+        r.pend("17", "no MP file exists yet")
+    elif len(r.fails) == mark:
+        r.ok("17", "no MP file names dm_playermodel/dm_playergermanmodel/coop_gloveIdx/coop_helmetIdx/coop_armorySkin*")
+
+    # ------------------------------------------------------------ 18. no vstr in the MP UI trees
+    guard_cvars = set()
+    ghdr = read("engine", "code/qcommon/cmd_srvguard.h")
+    if ghdr is not None:
+        for m in re.finditer(r"[A-Za-z_][A-Za-z0-9_]*", ghdr.decode("latin-1")):
+            guard_cvars.add(m.group(0).lower())
+    mark = len(r.fails)
+    n_ui = 0
+    for rel, texts in mp_texts:
+        if not rel.lower().startswith("ui/"):
+            continue
+        n_ui += 1
+        seen = set()
+        for t in texts:
+            for m in RX_VSTR.finditer(t):
+                cv = m.group(1).lower()
+                ln = line_of(t, m.start())
+                if (ln, cv) in seen:
+                    continue
+                seen.add((ln, cv))
+                if cv in guard_cvars:
+                    continue
+                r.fail("18a", where(rel, ln), "MP UI file runs `vstr %s` - a server-stuffed vstr is filtered "
+                       "(TRAPS T8) and the MP UI is client-origin; only a cvar in cmd_srvguard.h may be vstr'd" % cv)
+    if n_ui == 0:
+        r.pend("18", "no MP UI file exists yet")
+    elif len(r.fails) == mark:
+        r.ok("18", "no MP UI file runs an unguarded vstr (%d UI files, %d guarded cvars)" % (n_ui, len(guard_cvars)))
 
     # ------------------------------------------------------------ 6. shared menus are locked by checksum
     for rel in sorted(LOCKS):

@@ -1,0 +1,104 @@
+# MP armory roster - the source of truth for the two MP-only armory screens (Allied + Axis).
+# One row = one weapon TILE. Regenerate everything with: python docs/tools/gen_mp_armory.py build
+# This file feeds ONLY the MP screens. The coop armory (ui/loadout/, gen_loadout.py,
+# loadout_weapons.tsv, coop_mod/loadout*.scr) is never read for output and never touched.
+#
+# DECISIONS BAKED IN (mp_decisions_2026-09-13.md "MP armories slice 1 answers"):
+#  * Sniper = every scoped rifle that is NOT fully automatic (scoped bolt AND scoped semi-auto:
+#    Springfield, Kar98 sniper, scoped Garand, G43, SVT). Fully-automatic scoped guns (scoped StG44)
+#    count toward their base class - so coop cls "sniper" -> MP SNIPER, coop cls "heavy" stays MG.
+#  * HEAVY split into MG / SHOTGUN / ROCKET.
+#  * Allied = US/UK/USSR weapons + Trench Gun. Axis = German/Italian/Japanese + Trench Gun.
+#  * Free starters: one per class per side (P1: the stock class kit gun), Axis SNIPER = Kar98K Sniper
+#    and Axis SHOTGUN = Trench Gun (U3). Everything else ships LOCKED (real progression is a later slice).
+#  * Gewehr 98 its own Axis RIFLE tile (A1); Gewehrgranate a LOCKED Axis ROCKET tile, dmclass shotgun (U3).
+#
+# COLUMNS
+#  side     a = Allied (coop_mpa_*), x = Axis (coop_mpx_*)
+#  mpid     the tile id. == the coop weapon id where one exists; new tiles get their own (76, 77).
+#  coop_id  the docs/tools/loadout_weapons.tsv id used to DERIVE give/name/cd/xfm and, via
+#           coop_mod/loadoutroster.scr::roster_get, ammo/ammoN. "-" = a NEW tile, columns explicit.
+#  tab      RIFLE SNIPER SMG MG SHOTGUN ROCKET PISTOL NADES (SAPPER is reserved, no tiles this slice)
+#  starter  1 = free (unlocked now); 0 = locked ("Unlocks with MP progression"). Exactly one per side,tab.
+#  landmine 1 = only on landmine maps (SAPPER; none this slice)
+#  give/name/cd/ammo/ammoN/dmclass  "-" = derive from coop_id; a value overrides (used by new tiles)
+#  note     freeform
+side	mpid	coop_id	tab	starter	landmine	give	name	cd	ammo	ammoN	dmclass	note
+# ---- Allied ----------------------------------------------------------------------------------------
+a	01	01	RIFLE	1	0	-	-	-	-	-	-	US stock rifle
+a	02	02	RIFLE	0	0	-	-	-	-	-	-
+a	05	05	RIFLE	0	0	-	-	-	-	-	-
+a	06	06	RIFLE	0	0	-	-	-	-	-	-
+a	08	08	RIFLE	0	0	-	-	-	-	-	-	SVT-40 unscoped semi-auto -> RIFLE
+a	09	09	RIFLE	0	0	-	-	-	-	-	-
+a	11	11	RIFLE	0	0	-	-	-	-	-	-
+a	70	70	RIFLE	0	0	-	-	-	-	-	-
+a	12	12	SNIPER	1	0	-	-	-	-	-	-	US stock sniper (Springfield scoped)
+a	14	14	SNIPER	0	0	-	-	-	-	-	-
+a	15	15	SNIPER	0	0	-	-	-	-	-	-	scoped semi-auto Garand -> SNIPER
+a	17	17	SNIPER	0	0	-	-	-	-	-	-
+a	20	20	SNIPER	0	0	-	-	-	-	-	-
+a	21	21	SNIPER	0	0	-	-	-	-	-	-
+a	23	23	SNIPER	0	0	-	-	-	-	-	-
+a	24	24	SMG	1	0	-	-	-	-	-	-	US stock SMG
+a	25	25	SMG	0	0	-	-	-	-	-	-
+a	28	28	SMG	0	0	-	-	-	-	-	-
+a	29	29	SMG	0	0	-	-	-	-	-	-
+a	30	30	SMG	0	0	-	-	-	-	-	-
+a	31	31	SMG	0	0	-	-	-	-	-	-
+a	32	32	SMG	0	0	-	-	-	-	-	-
+a	36	36	MG	1	0	-	-	-	-	-	-	US stock automatic rifle
+a	40	40	MG	0	0	-	-	-	-	-	-
+a	42	42	MG	0	0	-	-	-	-	-	-
+a	72	72	MG	0	0	-	-	-	-	-	-
+a	44	44	SHOTGUN	1	0	-	-	-	-	-	-	Trench Gun (shotgun, both sides)
+a	45	45	ROCKET	1	0	-	-	-	-	-	-	US stock AT
+a	47	47	ROCKET	0	0	-	-	-	-	-	-
+a	48	48	PISTOL	1	0	-	-	-	-	-	-	US stock sidearm
+a	49	49	PISTOL	0	0	-	-	-	-	-	-
+a	52	52	PISTOL	0	0	-	-	-	-	-	-
+a	53	53	PISTOL	0	0	-	-	-	-	-	-
+a	54	54	PISTOL	0	0	-	-	-	-	-	-
+a	60	60	PISTOL	0	0	-	-	-	-	-	-
+a	61	61	PISTOL	0	0	-	-	-	-	-	-
+a	63	63	PISTOL	0	0	-	-	-	-	-	-
+a	75	75	PISTOL	0	0	-	-	-	-	-	-
+a	64	64	NADES	1	0	-	-	-	-	-	-	US stock grenade
+a	66	66	NADES	0	0	-	-	-	-	-	-
+a	68	68	NADES	0	0	-	-	-	-	-	-
+# ---- Axis ------------------------------------------------------------------------------------------
+x	03	03	RIFLE	1	0	-	-	-	-	-	-	German stock rifle
+x	04	04	RIFLE	0	0	-	-	-	-	-	-	G43 unscoped semi-auto -> RIFLE
+x	07	07	RIFLE	0	0	-	-	-	-	-	-
+x	10	10	RIFLE	0	0	-	-	-	-	-	-
+x	76	-	RIFLE	0	0	models/weapons/kar98_g98.tik	GEWEHR 98	7.92MM / BOLT-ACTION	rifle	70	rifle	new tile (A1)
+x	13	13	SNIPER	1	0	-	-	-	-	-	-	Axis free sniper starter (U3)
+x	16	16	SNIPER	0	0	-	-	-	-	-	-	scoped semi-auto G43 -> SNIPER
+x	18	18	SNIPER	0	0	-	-	-	-	-	-
+x	19	19	SNIPER	0	0	-	-	-	-	-	-
+x	22	22	SNIPER	0	0	-	-	-	-	-	-
+x	26	26	SMG	1	0	-	-	-	-	-	-	German stock SMG
+x	27	27	SMG	0	0	-	-	-	-	-	-
+x	33	33	SMG	0	0	-	-	-	-	-	-
+x	34	34	SMG	0	0	-	-	-	-	-	-
+x	35	35	SMG	0	0	-	-	-	-	-	-
+x	37	37	MG	1	0	-	-	-	-	-	-	German stock assault rifle (StG44)
+x	38	38	MG	0	0	-	-	-	-	-	-	scoped StG44 is full-auto -> stays MG
+x	39	39	MG	0	0	-	-	-	-	-	-
+x	41	41	MG	0	0	-	-	-	-	-	-
+x	43	43	MG	0	0	-	-	-	-	-	-
+x	44	44	SHOTGUN	1	0	-	-	-	-	-	-	Axis free shotgun starter (U3)
+x	46	46	ROCKET	1	0	-	-	-	-	-	-	German stock AT
+x	77	-	ROCKET	0	0	models/weapons/kar98_mortar.tik	GEWEHRGRANATE	7.92MM / RIFLE GRENADE	shotgun	5	shotgun	LOCKED rocket tile (U3); engine dmclass stays shotgun
+x	50	50	PISTOL	1	0	-	-	-	-	-	-	German stock sidearm
+x	51	51	PISTOL	0	0	-	-	-	-	-	-
+x	55	55	PISTOL	0	0	-	-	-	-	-	-
+x	56	56	PISTOL	0	0	-	-	-	-	-	-
+x	57	57	PISTOL	0	0	-	-	-	-	-	-
+x	58	58	PISTOL	0	0	-	-	-	-	-	-
+x	59	59	PISTOL	0	0	-	-	-	-	-	-
+x	62	62	PISTOL	0	0	-	-	-	-	-	-
+x	74	74	PISTOL	0	0	-	-	-	-	-	-
+x	65	65	NADES	1	0	-	-	-	-	-	-	German stock grenade
+x	69	69	NADES	0	0	-	-	-	-	-	-
+x	67	67	NADES	0	0	-	-	-	-	-	-

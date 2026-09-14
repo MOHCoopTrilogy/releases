@@ -58,6 +58,12 @@ if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by ads_audit" -ForegroundCo
 # nothing ran the generator's own check. `check` is read-only and exits 1 on any byte difference.
 python "C:\mohaa-coop-dev\docs\tools\gen_loadout.py" check
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_loadout check - regenerate with: python docs/tools/gen_loadout.py build" -ForegroundColor Red; exit 1 }
+# [user 2026-09-13] The two MP-only armory screens (Allied + Axis), their cfg trees and the side rosters are
+# GENERATED from docs/tools/mp_armory_roster.tsv by gen_mp_armory.py. Same discipline as gen_loadout: `check`
+# is read-only and exits 1 on any byte difference, so a hand-edit or a stale build cannot ship. This tool
+# writes ONLY coop_mp[ax]_ files and never touches the coop armory (gen_loadout stays 615/615 above).
+python "C:\mohaa-coop-dev\docs\tools\gen_mp_armory.py" check
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_mp_armory check - regenerate with: python docs/tools/gen_mp_armory.py build" -ForegroundColor Red; exit 1 }
 # [user 2026-08-18] WIRING GATE: every exec resolves to a real file (exact case), every vstr
 # in our namespaces is assigned somewhere, every bus token is registered AND dispatched.
 python "C:\mohaa-coop-dev\docs\tools\ui_wiring_audit.py"

@@ -215,6 +215,15 @@ MUTATIONS = [
     A("M36", MP, "local.p stufftext \"set coop_isCoopSession 1\"", {"15a"}),
     N("M36b", "ui/coop_mpa_zzselftest/cb.cfg", "seta COOP_COMPASSBARSCALE 0.8", {"15a"}),
     A("M36c", MP, "local.cv = \"coop_compass\" + \"Bar\"", {"12c"}),
+    # [16] MP urc menu names
+    N("M37", "ui/coop_mp_zzselftest16a.urc", "menu \"randomthing\" 640 480 NONE 1", {"16a"}),
+    N("M37b", "ui/coop_mp_zzselftest16b.urc", "menu \"SelectPrimaryWeapon_german\" 640 480 NONE 1", {"16b"}),
+    # [17] MP never names the coop character-gear cvars
+    A("M38", MP, "local.p stufftext \"seta dm_playermodel x\"", {"17a"}),
+    A("M38b", MP, "local.p stufftext \"seta coop_gloveIdx 3\"", {"17a"}),
+    # [18] no vstr in the MP UI trees (coop_mpx_zz is not in cmd_srvguard.h)
+    N("M39", "ui/coop_mpx_zzselftest/v.cfg", "vstr coop_mpx_zz", {"18a"}),
+    N("M39b", "ui/coop_mpa_zzselftest/v.cfg", "vstr \"coop_mpa_zz\"", {"18a"}),
 ]
 
 NEAR_MISSES = [
@@ -242,6 +251,13 @@ NEAR_MISSES = [
     N("N15", "models/weapons/mp40_zzselftest.tik", "// weapon skin", ()),
     # naming the compass-bar cvars in a comment is not a write
     A("N16", MP, "// only coop script sets coop_isCoopSession and the coop_compassBar prefs", ()),
+    # a coop_mp* menu name in an MP urc is legal (16a exempts coop_mp*), as is MP_OWNED_MENUS "mpoptions"
+    N("N17", "ui/coop_mp_zzselftest_ok.urc", "menu \"coop_mp_zzselftest_ok\" 640 480 NONE 1", ()),
+    N("N18", "ui/coop_mp_zzselftest_mpo.urc", "menu \"mpoptions\" 640 480 NONE 1", ()),
+    # a vstr named only in a comment is documentation, not a wire (clause 18 reads the stripped view)
+    N("N19", "ui/coop_mpa_zzselftest/vc.cfg", "// vstr coop_mpa_zz is only a comment here", ()),
+    # naming the gear cvars in a comment is not a write (clause 17 reads the stripped view)
+    A("N20", MP, "// MP never writes dm_playermodel or coop_gloveIdx", ()),
 ]
 
 

@@ -115,17 +115,27 @@ dispatched = {int(m.group(1)) for m in re.finditer(r'arrayIndex\s*==\s*(\d+)', p
 for i, tok in sorted(reg.items()):
     if i not in dispatched:
         fail.append("BUS TOKEN %d (%s) registered in variables.scr but has NO dispatch branch in player.scr" % (i, tok))
+# The MP armory uses its OWN name-bus family, ,q<side><field><data>, declared in coop_mod/mp_armory.scr
+# (NOT variables.scr/player.scr - isolation clause 7 keeps MP tokens out of coop). The coop dispatch pair
+# above is untouched; MP markers are accepted against the families that file declares.
+mp_families = []
+mp_arm = os.path.join(MOD, "coop_mod", "mp_armory.scr")
+if os.path.exists(mp_arm):
+    for m in re.finditer(r'"(,q[A-Za-z0-9]+)"', read(mp_arm)):
+        mp_families.append(m.group(1))
 sent = set()
 for p in cfgs + urcs:
     for m in re.finditer(r'append name (,[A-Za-z0-9]+)', read(p)):
         sent.add(m.group(1))
 regtoks = sorted(reg.values(), key=len, reverse=True)
+accept = regtoks + sorted(mp_families, key=len, reverse=True)
 for tok in sorted(sent):
-    if not any(tok.startswith(rt) for rt in regtoks):
-        fail.append("UNREGISTERED TOKEN sent from UI: append name %s" % tok)
+    if not any(tok.startswith(rt) for rt in accept):
+        fail.append("UNREGISTERED TOKEN sent from UI: append name %s (no coop bus token in variables.scr, "
+                    "no ,q family in coop_mod/mp_armory.scr)" % tok)
 
-print("wiring audit: %d exec refs, %d vstr names, %d bus tokens registered, %d sent from UI"
-      % (len(refs), len(used), len(reg), len(sent)))
+print("wiring audit: %d exec refs, %d vstr names, %d bus tokens registered, %d MP ,q families, %d sent from UI"
+      % (len(refs), len(used), len(reg), len(mp_families), len(sent)))
 if fail:
     print("\n%d WIRING FAILURES:" % len(fail))
     for f in fail:
