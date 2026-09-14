@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 43,499 |
+| files in the workspace | 43,504 |
 | bytes | 43.7 GB |
-| files in project scope (indexed per-file) | 18,136 |
-| source files (per-file rows with line counts) | 6,630 |
+| files in project scope (indexed per-file) | 18,141 |
+| source files (per-file rows with line counts) | 6,633 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -24,7 +24,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 13,792 | 7850.5 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 13,795 | 7850.6 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
@@ -32,7 +32,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `UBER-MODS-v8.00-MOHAA` | 2,614 | 115.5 MB | no - reference | third-party mod, reference only |
 | `moh-modelviewer` | 1,270 | 565.8 MB | no - reference | Node model preview tool (rarely touched) |
 | `original-scripts` | 915 | 1173.7 MB | no - reference | vanilla MOHAA script/asset extraction (reference) |
-| `docs` | 456 | 66.1 MB | **yes** | this documentation set (authored + generated) |
+| `docs` | 458 | 66.2 MB | **yes** | this documentation set (authored + generated) |
 | `player1_home` | 291 | 2.1 MB | no - reference | test client profile dir |
 | `scratchpad` | 269 | 45.8 MB | **yes** |  |
 | `_research` | 172 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
@@ -83,7 +83,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 |---|---:|
 | `.wav` | 14,849 |
 | `.dds` | 4,303 |
-| `.scr` | 2,531 |
+| `.scr` | 2,533 |
 | `.tga` | 2,512 |
 | `.jpg` | 2,468 |
 | `.cfg` | 2,289 |
@@ -97,13 +97,13 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.txt` | 623 |
 | `.asf` | 514 |
 | `.cpp` | 475 |
-| `.md` | 436 |
+| `.md` | 437 |
 | `.skc` | 425 |
 | `.ogg` | 376 |
 | `.skd` | 347 |
 | `.shader` | 238 |
 | `.urc` | 178 |
-| `.py` | 169 |
+| `.py` | 170 |
 | `.json` | 143 |
 | `.bsp` | 129 |
 | `.min` | 100 |
@@ -118,7 +118,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.dcl` | 49 |
 | `.lod` | 37 |
 | `.ps1` | 36 |
-| `.tsv` | 33 |
+| `.tsv` | 34 |
 | `.inc` | 31 |
 | `.exe` | 29 |
 
@@ -265,7 +265,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/public` | 6 | 0.08 MB | .md×6 |
 | `docs/public/fixes` | 11 | 1.13 MB | .md×11 |
 | `docs/reference` | 4 | 0.07 MB | .md×3, .txt×1 |
-| `docs/tools` | 110 | 1.67 MB | .py×99, .tsv×4, .tga×3, .ps1×2 |
+| `docs/tools` | 112 | 1.69 MB | .py×100, .tsv×5, .tga×3, .ps1×2 |
 | `docs/tools/sec1_filter_selftest` | 19 | 2.02 MB | .inc×7, .py×2, .exe×2, .obj×2 |
 | `docs/tools/sec2_filter_selftest` | 61 | 8.44 MB | .log×20, .inc×14, .exe×13, .txt×9 |
 | `docs/tools/sec2_filter_selftest/head` | 3 | 0.10 MB | .h×2, .c×1 |
@@ -302,7 +302,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/_notes/audio_backup_20260705/fire` | 57 | 10.35 MB | .wav×57 |
 | `hzm-mohaa-coop-mod/_notes/audio_backup_20260705/tails` | 6 | 0.96 MB | .wav×6 |
 | `hzm-mohaa-coop-mod/_notes/game` | 5 | 0.01 MB | .txt×5 |
-| `hzm-mohaa-coop-mod/_research` | 127 | 12.47 MB | .md×114, .py×4, .log×4, .json×3 |
+| `hzm-mohaa-coop-mod/_research` | 128 | 12.47 MB | .md×115, .py×4, .log×4, .json×3 |
 | `hzm-mohaa-coop-mod/_research/fontgen` | 4 | 0.25 MB | .py×3, .png×1 |
 | `hzm-mohaa-coop-mod/_research/hdfix` | 21 | 472.56 MB | .png×15, .py×4, .pk3×2 |
 | `hzm-mohaa-coop-mod/_research/hdfix/pk3/textures/wilderness` | 2 | 1.30 MB | .dds×1, .jpg×1 |
@@ -342,7 +342,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/_terrain_pack/textures/wilderness` | 13 | 24.29 MB | .dds×13 |
 | `hzm-mohaa-coop-mod/anim` | 23 | 0.17 MB | .scr×23 |
 | `hzm-mohaa-coop-mod/cmpatch` | 2 | 0.00 MB | .txt×2 |
-| `hzm-mohaa-coop-mod/coop_mod` | 130 | 4.13 MB | .scr×124, .st×3, .cfg×2, .txt×1 |
+| `hzm-mohaa-coop-mod/coop_mod` | 132 | 4.14 MB | .scr×126, .st×3, .cfg×2, .txt×1 |
 | `hzm-mohaa-coop-mod/coop_mod/alias` | 2 | 0.03 MB | .cfg×1, .scr×1 |
 | `hzm-mohaa-coop-mod/coop_mod/bp` | 5 | 0.03 MB | .dat×5 |
 | `hzm-mohaa-coop-mod/coop_mod/cache` | 1 | 0.00 MB | .scr×1 |
@@ -1276,7 +1276,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `seamesh_spawn.scr` | 39 | 2.3 KB | [user 2026-09-06, bug-2508] THE DENSE SEA - spawn recipe for maps/m3l1a/coopified.scr. |
 
-### `docs/tools/` — 102 source files
+### `docs/tools/` — 103 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -1301,7 +1301,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `check_map_anims.py` | 412 | 19.2 KB |  |
 | `check_map_compiles.py` | 103 | 4.2 KB | !/usr/bin/env python |
 | `check_mp_isolation.py` | 877 | 45.9 KB | !/usr/bin/env python |
-| `check_mp_isolation_selftest.py` | 773 | 37.7 KB | !/usr/bin/env python |
+| `check_mp_isolation_selftest.py` | 777 | 38.1 KB | !/usr/bin/env python |
 | `check_say_aliases.py` | 196 | 9.4 KB | !/usr/bin/env python |
 | `check_tik_surfaces.py` | 88 | 3.7 KB |  |
 | `config_fossils.py` | 149 | 6.3 KB | !/usr/bin/env python3 |
@@ -1344,6 +1344,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `gen_menu_fieldsettings.py` | 660 | 33.2 KB | !/usr/bin/env python |
 | `gen_metal_brushes.py` | 214 | 9.5 KB | !/usr/bin/env python |
 | `gen_mp_armory.py` | 517 | 23.2 KB | !/usr/bin/env python |
+| `gen_mp_gungame.py` | 167 | 7.7 KB | !/usr/bin/env python |
 | `gen_pain_tiers.py` | 97 | 5.1 KB | !/usr/bin/env python3 |
 | `gen_public_pages.py` | 595 | 23.8 KB | !/usr/bin/env python3 |
 | `gen_service_record.py` | 1,113 | 70.4 KB | [user 08-07] friendly display name for a challenge's reward field (chal_def's 7th arg) |
@@ -1663,7 +1664,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `runto_inopen.scr` | 122 | 3.9 KB | HZM coop [2026-08-06] extracted from maintt/pak1.pk3 (bug-1490) to add a dog branch. Retail's own |
 | `shoot.scr` | 262 | 6.7 KB | Shoot |
 
-### `hzm-mohaa-coop-mod/coop_mod/` — 129 source files
+### `hzm-mohaa-coop-mod/coop_mod/` — 131 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -1752,8 +1753,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `mom_actions.scr` | 173 | 8.7 KB | Created by chrissstrahl on 2018.07.02 - based on Multi Option Menu from Star Trek Elite Force II from 2009 fo… |
 | `mom_login.scr` | 167 | 5.5 KB | Created by chrissstrahl on 2018.07.02 - based on Multi Option Menu from Star Trek Elite Force II from 2009 fo… |
 | `morale.scr` | 94 | 4.6 KB | morale.scr - HZM coop SQUAD MORALE (ME1, coop_moraleEnable, default off) |
-| `mp.scr` | 313 | 16.7 KB | MP.SCR - the multiplayer entry point. NOT the coop framework. |
+| `mp.scr` | 385 | 20.0 KB | MP.SCR - the multiplayer entry point. NOT the coop framework. |
 | `mp_armory.scr` | 479 | 17.6 KB | MP_ARMORY.SCR - the shared MP armory dispatcher (slice 2, LIVE). |
+| `mp_gungame.scr` | 275 | 13.0 KB | MP_GUNGAME.SCR - Gun Game, the first MP game MODE (slice 1). FFA (gt1) only for v1 (decision M9). |
+| `mp_gungame_tiers.scr` | 62 | 2.4 KB | MP_GUNGAME_TIERS.SCR - GENERATED by docs/tools/gen_mp_gungame.py from |
 | `mpa_roster.scr` | 463 | 12.4 KB | GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead) |
 | `mpx_roster.scr` | 397 | 10.6 KB | GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead) |
 | `mvchal_gen.scr` | 214 | 23.6 KB | GENERATED by docs/tools/variant_challenges.py --emit DO NOT EDIT BY HAND |

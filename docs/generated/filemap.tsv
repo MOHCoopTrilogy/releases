@@ -762,10 +762,10 @@ docs/public/FEATURES.md	18447	.md	260	docs
 docs/public/MAPS.md	2742	.md	99	docs
 docs/public/ROADMAP.md	3123	.md	68	docs
 docs/public/UNLOCKABLES.md	26158	.md	328	docs
-docs/public/fixes/ai-enemy-behaviour.md	296317	.md	542	docs
+docs/public/fixes/ai-enemy-behaviour.md	297021	.md	543	docs
 docs/public/fixes/audio.md	53105	.md	98	docs
 docs/public/fixes/build-deploy-tooling.md	15020	.md	35	docs
-docs/public/fixes/engine-crashes.md	204292	.md	340	docs
+docs/public/fixes/engine-crashes.md	206132	.md	343	docs
 docs/public/fixes/maps-missions.md	104870	.md	188	docs
 docs/public/fixes/multiplayer-networking.md	34455	.md	70	docs
 docs/public/fixes/other.md	109099	.md	206	docs
@@ -802,7 +802,7 @@ docs/tools/check_empty_rhs.py	3861	.py	95	docs
 docs/tools/check_map_anims.py	19620	.py	412	docs
 docs/tools/check_map_compiles.py	4272	.py	103	docs
 docs/tools/check_mp_isolation.py	46953	.py	877	docs
-docs/tools/check_mp_isolation_selftest.py	38614	.py	773	docs
+docs/tools/check_mp_isolation_selftest.py	39044	.py	777	docs
 docs/tools/check_say_aliases.py	9602	.py	196	docs
 docs/tools/check_tik_surfaces.py	3773	.py	88	docs
 docs/tools/config_fossils.py	6498	.py	149	docs
@@ -846,6 +846,7 @@ docs/tools/gen_menu_arrows.py	10279	.py	230	docs
 docs/tools/gen_menu_fieldsettings.py	33946	.py	660	docs
 docs/tools/gen_metal_brushes.py	9760	.py	214	docs
 docs/tools/gen_mp_armory.py	23768	.py	517	docs
+docs/tools/gen_mp_gungame.py	7859	.py	167	docs
 docs/tools/gen_pain_tiers.py	5249	.py	97	docs
 docs/tools/gen_public_pages.py	24377	.py	595	docs
 docs/tools/gen_service_record.py	72061	.py	1113	docs
@@ -863,6 +864,7 @@ docs/tools/loadout_weapons.tsv	15392	.tsv	0	docs
 docs/tools/m3l1a_upscale_targets.py	12660	.py	311	docs
 docs/tools/mp_armory_roster.tsv	5237	.tsv	0	docs
 docs/tools/mp_bot_damage_test.ps1	3017	.ps1	44	docs
+docs/tools/mp_gungame_tiers.tsv	2097	.tsv	0	docs
 docs/tools/parse_playtest.py	6818	.py	149	docs
 docs/tools/probe_read.py	11993	.py	303	docs
 docs/tools/prosecheck.py	7482	.py	157	docs
@@ -1920,6 +1922,7 @@ hzm-mohaa-coop-mod/_research/mkfont.py	6007	.py	136	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_research/mohaaaa_index_2026-08-19.md	28416	.md	315	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_research/mp_armories_slice1_plan.md	53668	.md	684	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_research/mp_armories_understanding.md	120330	.md	1314	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/_research/mp_buildout_roadmap.md	3306	.md	42	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_research/mp_coexistence_plan.md	49213	.md	247	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_research/mp_decisions_2026-09-13.md	9137	.md	153	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/_research/mp_feature_buildout.md	75466	.md	336	hzm-mohaa-coop-mod
@@ -2271,8 +2274,10 @@ hzm-mohaa-coop-mod/coop_mod/missioncomplete.scr	5017	.scr	87	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/mom_actions.scr	8952	.scr	173	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/mom_login.scr	5633	.scr	167	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/morale.scr	4758	.scr	94	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/coop_mod/mp.scr	17079	.scr	313	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/mp.scr	20467	.scr	385	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/mp_armory.scr	18006	.scr	479	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/mp_gungame.scr	13295	.scr	275	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/coop_mod/mp_gungame_tiers.scr	2493	.scr	62	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/mpa_roster.scr	12733	.scr	463	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/mpx_roster.scr	10860	.scr	397	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/coop_mod/mvchal_gen.scr	24136	.scr	214	hzm-mohaa-coop-mod
@@ -14923,7 +14928,7 @@ hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	627705485	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	1298033726	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	24336399	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	24342822	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzzzzz_coop_terrain.pk3	33429489	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzzzzzz_coop_hd_m3l1a.pk3	151571146	.pk3	0	hzm-mohaa-coop-mod

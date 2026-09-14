@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1915** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1918** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -17,7 +17,7 @@
 | 2026-06 | 80 |
 | 2026-07 | 577 |
 | 2026-08 | 918 |
-| 2026-09 | 334 |
+| 2026-09 | 337 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -1933,6 +1933,9 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-2596` | 2026-09-13 | `openmohaa-hzm/code/renderergl2 (no change shipped)` | - | visual pass: alpha-to-coverage for foliage/sprite edges evaluated and DEFERRED, not shipped. On its own (no full MSAA) GL A2C is a no-op, and enablin… | No code shipped. Decision: keep A2C out until/unless full MSAA is built and the bug-1298 halo risk is retired. Soft particles + FSR/supersampling del… |
 | `bug-2597` | 2026-09-13 | `openmohaa-hzm/code/fgame/level.cpp (Level::ServerSpawned); openmohaa-…` | - | feature (MP armory slice 2, build A): the Allied/Axis MP armory screens were reachable-but-inert - no engine path opened them in-match and no kit app… | E4 mp_mapscript_hook (level.cpp ServerSpawned, HZM-MP markers): on a non-coop MP map with no coop main script / no ambient run / no coop_mpRun AND a… |
 | `bug-2598` | 2026-09-13 | `docs/tools/check_mp_isolation_selftest.py` | - | MP isolation self-test: adding the first real ENGINE_MP_HOOKS entry retired the self-test's anchor that inserted a synthetic hook into 'ENGINE_MP_HOO… | Reworked HOOKS_ANCHOR to the dict-opening 'ENGINE_MP_HOOKS = {' and HOOKS_TEST to insert a synthetic "test" hook entry ahead of the real ones. selfte… |
+| `bug-2599` | 2026-09-14 | `hzm-mohaa-coop-mod/coop_mod/mp.scr; hzm-mohaa-coop-mod/coop_mod/mp_gu…` | V | feature (MP modes slice 1): the MP framework had no game-mode dispatch and no first mode; only the armory deathmatch path existed. | mp.scr reads coop_mpMode after the refusal guard into level.coop_mpMode; three switch-on-mode dispatch labels form the seam later modes plug into (mp… |
+| `bug-2600` | 2026-09-14 | `test harness (dedicated server bot + logging)` | - | dedicated-server bot smoke: `sv_numbots` alone spawned no bots ('No bots, skipping navigation'); script println/^~^~^ lines were absent from the dedi… | Set `sv_maxbots` (>0) before map load to get bots + navigation, and `developer 1` to see script ^~^~^ probe lines in the dedicated qconsole.log. Harn… |
+| `bug-2601` | 2026-09-14 | `hzm-mohaa-coop-mod/coop_mod/mp_gungame.scr (mode_onDeath seam)` | - | Gun Game M8 (a mid-tier melee/bash kill demotes the VICTIM one tier) is not implemented; and the bash-only final tier keeps ~7 clip rounds. | Deferred with a documented seam in mode_onDeath. The final-tier bash WIN (M7) and suicide-demote both work without means-of-death. Closing M8 + true… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

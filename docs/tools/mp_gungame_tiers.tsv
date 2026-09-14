@@ -1,0 +1,31 @@
+# MP Gun Game tier ladder - the source of truth for the FFA (gt1) weapon ladder.
+# One row = one tier, in ascending order (tier 0 first). Regenerate the in-script ladder with:
+#   python docs/tools/gen_mp_gungame.py build     (writes coop_mod/mp_gungame_tiers.scr)
+#   python docs/tools/gen_mp_gungame.py check      (byte-compare, exit 1 on drift)
+#
+# WHY A SHARED LADDER: Gun Game is FFA only for v1 (decision M9). gt1 has no allies/axis sides
+# (dmteam is "freeforall"), so there is ONE ladder every player climbs, not a per-side one.
+#
+# DESIGN (mp_decisions_2026-09-13.md, authoritative):
+#  * M7  the final tier is pistol-whip / bash only: it issues a pistol with ZERO reserve ammo so
+#        the pistol-whip is the attack, and a kill scored on the final tier WINS the round.
+#  * weak -> strong: pistols/bolt rifles low, autos/MG/shotgun high, bash last.
+#  * Every give string is a REAL shipped MOHAA weapon tik (verified against docs/tools/loadout_weapons.tsv);
+#    every ammo type / ammoN mirrors coop_mod/mpa_roster.scr (rifle 70, smg 120, mg 120, shotgun 40, pistol 40).
+#
+# COLUMNS (tab-separated)
+#  tier      ascending index, 0-based. Rows MUST be 0..N-1 with no gaps.
+#  give      the weapon tik handed with `item` on spawn / on tier-up. Must be a real models/weapons/*.tik.
+#  ammo      ammo class for `ammo <class> <n>`: rifle | smg | mg | shotgun | pistol | heavy | grenade
+#  ammoN     reserve rounds granted. 0 = none (used by the bash-only final tier).
+#  name      the tier's display name (announcements only; the HUD shows the tier number in the Kills column).
+#  bashonly  1 only on the final tier (pistol-whip only, kill => win); 0 otherwise.
+tier	give	ammo	ammoN	name	bashonly
+0	models/weapons/colt45.tik	pistol	40	COLT M1911	0
+1	models/weapons/kar98.tik	rifle	70	KAR98K	0
+2	models/weapons/m1_garand.tik	rifle	70	M1 GARAND	0
+3	models/weapons/thompsonsmg.tik	smg	120	THOMPSON M1	0
+4	models/weapons/mp40.tik	smg	120	MP40	0
+5	models/weapons/bar.tik	mg	120	BAR M1918	0
+6	models/weapons/shotgun.tik	shotgun	40	TRENCH GUN	0
+7	models/weapons/colt45.tik	pistol	0	PISTOL WHIP	1

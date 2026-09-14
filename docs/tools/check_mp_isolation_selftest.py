@@ -179,6 +179,10 @@ MUTATIONS = [
     A("M23b", MP, "exec coop_mod/tinnitus.scr", {"10b"}),
     A("M23c", MP, "thread coop_mod/cache/common.scr::x", {"10c"}),
     A("M23d", MP, "waitthread COOP_MOD\\loadoutpick.scr::loadout_set", {"10a"}),
+    # [10] MP modes slice 1 (Gun Game): a mode file is judged by the MP rules like any coop_mod/mp*.scr.
+    # The standing rule is that a mode must NEVER changeGameType (it ends in setcvar g_gametype and would
+    # force gt2, killing FFA). Prove that a Gun-Game-shaped mode file calling it is caught by clause 10c.
+    N("MGG", "coop_mod/mp_zzselftest_gungame.scr", "waitthread coop_mod/main.scr::changeGameType 2 0", {"10c"}),
     # [11] manifest
     N("M24", "ui/mpzzselftest/a.cfg", "echo x", {"11a"}, loc=("file",)),
     N("M24b", "global/mp_zzselftest.scr", "end", {"11a"}, loc=("file",)),

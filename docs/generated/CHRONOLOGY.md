@@ -13,28 +13,28 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `e45a3fa 2026-09-14 manifest 1.6.0` |
-| commits | 264 |
+| HEAD | `af74572 2026-09-14 docs: v1.6.0 "The Long View" rollout - README, history, public pages, isolation clause 14` |
+| commits | 265 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **21 modified, 0 untracked** |
-| unstaged diff | 21 files changed, 306 insertions(+), 256 deletions(-) |
+| **uncommitted** | **3 modified, 0 untracked** |
 
-> Working tree is dirty. Everything in those 21 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 3 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 53 |
+| 2026-09 | 54 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (264)
+### Commits since 2026-01-01 (265)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `af74572` | 2026-09-14 | joncurry94-tech | docs: v1.6.0 "The Long View" rollout - README, history, public pages, isolation clause 14 |
 | `e45a3fa` | 2026-09-14 | joncurry94-tech | manifest 1.6.0 |
 | `9ed1e02` | 2026-09-13 | joncurry94-tech | tools: gen_mapgrade.py - emit coop_mod/cfg/mapgrade.cfg from grade_profiles.tsv (build/check) |
 | `ae49adb` | 2026-09-13 | joncurry94-tech | tools: fog profile generator + fog/grade tables |
@@ -305,8 +305,8 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `44ebfd4d 2026-09-14 mp: armory slice 2 - live dispatcher, kit applies at spawn; v1.6.0 What's New card` |
-| commits | 1,666 |
+| HEAD | `5b31d36c 2026-09-14 mp: game-mode scaffold + Gun Game (FFA) - slice 1` |
+| commits | 1,667 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
 | **uncommitted** | **0 modified, 1 untracked** |
 
@@ -316,7 +316,7 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 | month | commits |
 |---|---:|
-| 2026-09 | 75 |
+| 2026-09 | 76 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -357,10 +357,11 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (317)
+### Commits since 2026-01-01 (318)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `5b31d36c` | 2026-09-14 | joncurry94 | mp: game-mode scaffold + Gun Game (FFA) - slice 1 |
 | `44ebfd4d` | 2026-09-14 | joncurry94 | mp: armory slice 2 - live dispatcher, kit applies at spawn; v1.6.0 What's New card |
 | `60a53e4b` | 2026-09-13 | joncurry94 | research: record the moodier-HD-sky-fog decision |
 | `0e3cf4b9` | 2026-09-13 | joncurry94 | coop: wire the per-map colour grade (table + boot thread), on by default |
