@@ -1,5 +1,30 @@
 import re, os, math
 from PIL import Image, ImageDraw, ImageFilter, ImageChops, ImageFont
+import io as _io_wif
+# [bug-2610] write-if-different for .tga saves: PIL's TGA encoder is deterministic, so an unchanged
+# texture would otherwise be rewritten with a fresh mtime every build, churning the tex bucket and
+# forcing a needless ~1.3GB tex-pk3 repack (the pk3 packer's digest cache keys on mtime). Intercept
+# Image.save for .tga paths and only write when the bytes actually differ. Non-.tga saves are untouched.
+_wif_orig_save = Image.Image.save
+def _wif_save(self, fp, *a, **k):
+    if isinstance(fp, str) and fp.lower().endswith(".tga"):
+        _buf = _io_wif.BytesIO()
+        _wif_orig_save(self, _buf, "TGA")
+        _new = _buf.getvalue()
+        try:
+            with open(fp, "rb") as _f:
+                if _f.read() == _new:
+                    return
+        except OSError:
+            pass
+        _dir = os.path.dirname(fp)
+        if _dir:
+            os.makedirs(_dir, exist_ok=True)
+        with open(fp, "wb") as _f:
+            _f.write(_new)
+        return
+    return _wif_orig_save(self, fp, *a, **k)
+Image.Image.save = _wif_save
 os.chdir(r"C:\mohaa-coop-dev\hzm-mohaa-coop-mod")
 def lerp(a,b,t): return tuple(int(a[i]+(b[i]-a[i])*t) for i in range(len(a)))
 def serif(sz):
