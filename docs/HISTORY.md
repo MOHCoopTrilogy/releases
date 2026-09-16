@@ -28,40 +28,11 @@ Moved to [archive/history-2026-07-11-to-07-20.md](archive/history-2026-07-11-to-
 on 2026-09-08 to keep this file inside its ceiling. Weapons-on-back, the armory and
 loadout system, the entity-pool saga, and the first ADS work.
 
-## 2026-07-21 → 07-29
+## 2026-07-21 → 07-29 (archived)
 
-| When | What |
-|---|---|
-| 07-21 | **`openmohaa.exe` deployed to the GOG root — and never updated since.** Everything after this date is source-only for players. |
-| 07-21 | `O` **bug-1001 — build-mode blueprints render as featureless squares.** Zero `BUILD_BP_PLACE` lines in the session log. |
-| 07-21 | `O` bug-1172 — **sandbox engine constants were pushed into the real install** by routine `build.ps1` runs. Emergency revert. |
-| 07-21 | Game-accurate structures: BSP→blueprint extraction + shape kit (`bpv1`). |
-| 07-22 | `V` **Addon-spawner restore — the strongest measured win in the project.** `addon_*` markers carry their model in `$ai_model`, not `.model`, so `spawner_create` recorded NIL and the engine spawned `models/nil.tik` in a loop. Storm ~7,000+ → 25; **~550 German AI restored trilogy-wide**; t2l1 1960→0, t2l2 3045→0, t1l3 1470→0. |
-| 07-22 | `V` `$player`-array gag overrides (t2l3 14,501→0; t3l1 4766→0; t2l4_captain 20 sites). |
-| 07-23 | `V` Autonomous combat-verification rig — `coop_botInput 1` injects the host usercmd and **fires real bullets** (a script `damage` event does not acquire a target). ⭐ Its headline catch: the ET3 jink **silently never fires**. |
-| 07-23 | `D` AI dynamics step 1 (global personality) + step 2 (engine juke/hide timers) — measured, but gated on an **unseeded** cvar. |
-| 07-23 | **Engine HEAD `819a6e93`. Everything after this is uncommitted.** |
-| 07-23 | Mod HEAD `f10ac19` (v1.1.54). Everything after this is uncommitted. |
-| 07-24 | **`game.dll` deployed — and never updated since.** |
-| 07-24 | gl2 migration **rescoped** onto a fully isolated install at `G:\mohaa-gl2`. Empirically gl2 is healthy: boots, renders, 0 crashes, 0 real GLSL failures. |
-| 07-24 | `D` AI squad brain (`aisquad.scr`) built — gate cvar unseeded. |
-| 07-26 | **Manifest 1.1.55** — the current release. `openmohaa.exe` and `cgame.dll` still point at v1.1.51. |
-| 07-27 | ⚠️ **A post-write hook clobbered `buglog.json`** with its own schema. 523 entries rebuilt from ~1.2 GB of transcripts. All 8 `.bak` snapshots later diffed: **zero historical loss**. |
-| 07-27 | m3l3 groundfix pak built — **never shipped**, and built 19 minutes *after* the screenshot later cited as "the fix didn't work." |
-| 07-28 | `V` gl2 batch: gun-over-menus (depth **rejection**, not draw order), settings-apply crash, renderer-zone leak (+53 MB/apply), frozen 2D shader clock, HZM grade never executing, invisible actors (**two independent mechanisms**). |
-| 07-28 | `U` `MAX_SOUNDS` 1280→1600 + `MAX_RELIABLE_COMMANDS` 512→1024 + `MAX_CONFIGSTRINGS` 4096→8192, with a compile-time `#error` guard. |
-| 07-28 | `V` `MAX_SNAPSHOT_ENTITIES` 1024→2048 — **bug-934's missed 4th member, found 8 days later**, silently discarding every entity past the 1024th with no log line. A warning was added alongside the fix. |
-| 07-28 | `U` Headshot kill-cue hook **moved** `BulletAttack` → `ArmorDamage`; sandbox-verified 20/20. |
-| 07-28 | `U` `coop_unsponge` bullet-sponge reconciliation sweep (bug-1212). |
-| 07-28 | `R` **The +180 roll on `maps/m1l1.scr` — applied (bug-1173), reverted the same evening (bug-1184)** as an unverified guess. An in-code revert comment at line 1683 names the bug. **This is the doc set's commissioning example.** |
-| 07-28 | `O` bug-1213 — m1l1 mangled actors, **six investigations, no guess shipped**; a gated `^~^~^ POSECHK` diagnostic delivered instead. |
-| 07-28 | `V` `MAX_SKELMORPH` 12800→131072 (silent OOB write). |
-| 07-28 | `V` `cgame.dll` + `renderer_opengl1.dll` deployed (22:57). **`openmohaa.exe` was not.** |
-| 07-29 01:07–01:41 | Current binaries built in `.cmake` — **exe, game.dll and gl2 never deployed to the real install.** |
-| 07-29 | `O` **Three S0 regressions found by a brand-new harness**, all correctly marked NOT FIXED: bug-1218 (m3l2 missing `level_end_trigger` label), bug-1219 (`SV_FindIndex overflow max=1280` — the deploy gap), bug-1220 (e2l2 NULL-listener ×12). |
-| 07-29 | `U` Officer heal budget `coop_officerMaxHeals` (bug-1215). |
-| 07-29 | The regression harness at `_research/regression/` becomes **the project's only working automated verification.** |
-| 07-29 | This doc set written. |
+Moved to [archive/history-2026-07-21-to-07-29.md](archive/history-2026-07-21-to-07-29.md)
+on 2026-09-14 to keep this file inside its ceiling. Addon-spawner restore, engine constant
+limits, gl2 migration, combat-verification rig, doc set commissioning.
 
 ---
 
@@ -222,7 +193,7 @@ reviewers are not corroboration; the expensive fix refuted by measurement) live 
   written fresh after the reuse design was refuted on a 277-unit pivot offset (2543).
 - **2026-09-13** - MP stops using the coop armory, which had been writing coop saves (2571). The menu theme picker had been compiled out and moved to the live sound file (2572). Cinematic audio ducks and Master volume now reset on every exit from a map (2573).
 - **2026-09-13** - MP friendly fire fixed (2574): coop's same-team damage filter had covered every player; narrowed and proven with bots on a dedicated server.
-- **2026-09-13** - Main-menu theme picker: drawn 128px arrow buttons replace stretched retail icons (2575); a theme advances to the next when it ends (2576).
+- **2026-09-13** - Main-menu theme picker: drawn arrow buttons replace stretched retail icons (2575); a theme advances to the next when it ends (2576).
 - **2026-09-13** - Field Settings redesigned (2578, `U`): a generated two-column sheet of 20 player rows, host rows on a new Host Rules sheet, and autoexec no longer overriding player choices.
 - **2026-09-13** - The MP/coop isolation gate runs before packing with a self-test proving it can fail; a failed build aborts the release (2579).
 - **2026-09-13** - Stufftext filter hardened (SEC1 layer 1, 2580): splits commands as the engine does and checks `vstr` expansions; runtime-verified with a real client.
@@ -232,3 +203,13 @@ reviewers are not corroboration; the expensive fix refuted by measurement) live 
 - **2026-09-14** - The gl2 visual queue shipped and deployed: an ACES film grade that survives every map load with exposure-aware bloom (2584, 1149), better shadows incl. foliage (69cdb4d7), 45 per-map fog profiles (subtle depth, moodier under the HD skies), render-scale supersampling + AMD FSR 1 (c01bad53), soft particles (a63fe340) and a light per-map colour grade (120c7fc0, server-published, MP-safe). The stamina arc now hard-fades with the HUD (2593).
 - **2026-09-14** - MP armories build A (2597, 2598): game.dll E4/E5 hooks (`mp_mapscript_hook` starts the framework on script-less/third-party MP maps; `mp_weaponselect_redirect` opens the side armory on team join) plus a live dispatcher (`mp_armory.scr`) that applies the kit at spawn (hp=100, bots random-class). Runtime-verified; coop airtight (zero mp leakage on m4l1); isolation clause 14 active. The always-ask chooser stays build B - it needs coop-file edits.
 - **2026-09-14** - v1.6.0 "The Long View" released to MOHCoopTrilogy/releases: the visual overhaul + compass bar + Field Settings/Host Rules + security layer 2 + the MP armory groundwork, with the Discord announcement, README and in-game What's New card refreshed.
+- **2026-09-14** - MP speed fix (2629): autoexec.cfg's `sv_dmspeedmult 0.6` for coop leaked into MP modes (287*0.6=172 instead of 287*1.1=316). mp.scr now resets both cvars before Hardcore captures its memo; start_server.cfg restores coop values.
+- **2026-09-14** - Bot leak fix (2630): sv_maxbots/sv_numbots persisted from MP into coop. start_server.cfg now zeros them.
+- **2026-09-14** - Build-A-Base and Base Assault modes shipped: two-phase build/fight and 3-base plant/defuse respectively, with full UI infrastructure (12 bridge cfgs, settings rows, menu buttons, seam switches in mp.scr). Cvar naming mismatch between bridge cfgs and mode scripts caught and fixed pre-playtest (2631).
+- **2026-09-14** - Cheapest-wins sweep: omconfig decoy deleted, hzm_cvars typo fixed, 3 stale comments corrected, `r_globalFogDebug` restored to CVAR_CHEAT. 8/10 resolved.
+- **2026-09-14** - MP armories build B+C: cgame.dll E1/E2/E3 (carried-kit userinfo, `hzm_armory` cmd + `coop_mp_session`, glove override), side picker + defaults screens, game.dll M8 (Gun Game melee demote) + E6 (voice reads worn model). Coop untouched.
+- **2026-09-14** - GL2 styled-lightmap red pulse fixed (`U`, bug-1331): the rend2 deluxe-mapping heuristic (`renderergl2/tr_bsp.c`) misfired on MOHAA BSPs; loader now honours `r_deluxeMapping`, autoexec ships it 0. Needs playtest (e2l1/e2l2).
+- **2026-09-14** - MP Progression slice 1: `mp_progression.scr` credits team-blind class + per-weapon session counters off a generated `mp_prog_wpnmap.scr` (never coop's attribution); arch A carry. Bot-verified.
+- **2026-09-15** - Post-1.7.0 MP work (`U`, bot-verified; render/placement client-gated): MP walks at coop pace + `coop_mpFastRun`; loadout HOLDS on team-join. MP armory/SR rebuilt beat-by-beat to the coop loadout (`gen_mp_armory.py`): 3D char viewer per side, marker-free cosmetics (userinfo carry, `apply` enforces `cosUnlocked`, bug-2633), generated Service Record ladder. MP helmets fixed to coop's exact-fit recipe (bug-2634). Base Builder rebuilt as a faithful AlienX `basebuild.scr` port (bug-2635). **Push runs on the 7 SP campaign maps** (bug-2637): engine `mp_force_arena` gate (one-shot `sv_mpForceArena` blanks the map script → script-less arena → E4 starts MP), generated `mp_push_maps.scr` script-spawns frontline+chain, new `mp.scr::mp_modeInit` pre-spawn seam. (Gotcha: `omohaaded` runs no scripts without `developer 1` - TRAPS T3.)
+- **2026-09-14** - MP Progression slices 2-6 shipped (v1.7.0): **S2** `mp_sign`/`mp_verify` HMAC builtins (game.dll, vendored SHA-256; self-test good/tamper/wrong-guid); **S3** signed userinfo `coop_mpProgBlob` carrier + arch-A load/verify/push with a per-guid server high-water anti-rollback ledger; **S4** per-class unlock thresholds + rank (`coop_mpUnlockC_*`/`coop_mpRank`, verified `unlock class=mg at=2`); **S5** every armory tile commits, server enforces unlocks in `mp_armory::applyMarker`; **S6** Service Record `coop_mp_record.urc` off pushed `coop_mpCnt_*`/`coop_mpTotal`/`coop_mpRank`. Engine bot-verified; armory UX + SR render need a client.
+- **2026-09-15** - MP feature batch (`U`, all boot-verified where scriptable; interactive loops playtest-gated): **Base Assault SP treatment** (bug-2639, authored spawns+bases on 5 SP arena maps, dynamic 1-3 base count); **Spawn Protection** (bug-2640, `mp_spawnprotect.scr`, post-spawn invuln that drops on fire, default-on); **Prop Hunt** new mode (bug-2641); **Vehicle system** (bug-2643, `mp_vehicles.scr` + harvested `mp_vehicle_maps.scr`: team-aware AT pickups, mannable flak88/nebelwerfer FixedTurrets, drivable jeep/tank with native crewing, tanks rocket-only-vulnerable); **symmetric Demolition** (bug-2645, either team plants on the enemy's spawn-derived site, gt2 team board); **Freeze Tag meltgun** (bug-2644). Fix: **MP medkit exploit** (bug-2642, user-reported - heal ceiling was 9999 under DBNO so you could channel at full health and refill the pool; now capped at real max_health).

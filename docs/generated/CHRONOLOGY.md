@@ -13,27 +13,34 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `9444e0f 2026-09-14 docs: TRAPS - a call in a }end <expr> return position is not evaluated (bug-2603)` |
-| commits | 267 |
+| HEAD | `c205202 2026-09-15 manifest 1.7.0` |
+| commits | 273 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **1 modified, 0 untracked** |
+| **uncommitted** | **17 modified, 7 untracked** |
+| unstaged diff | 17 files changed, 894 insertions(+), 505 deletions(-) |
 
-> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 24 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 56 |
+| 2026-09 | 62 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (267)
+### Commits since 2026-01-01 (273)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `c205202` | 2026-09-15 | joncurry94-tech | manifest 1.7.0 |
+| `41c54b2` | 2026-09-14 | joncurry94-tech | tools: drop the clause-7 lobby-armory exception - isolation back to strict |
+| `fe82bec` | 2026-09-14 | joncurry94-tech | tools: narrow clause-7 exception for the lobby closet's MP armory openers; drop the unused clause-12 one |
+| `6c56ef3` | 2026-09-14 | joncurry94-tech | tools: gen_service_record write-if-different .tga saves - stop the tex-pk3 churn (bug-2610) |
+| `a548798` | 2026-09-14 | joncurry94-tech | tools: narrow, user-approved clause-12 exception for the coop-loadout opener in the MP options menu |
+| `6ba4fb2` | 2026-09-14 | joncurry94-tech | docs: TRAPS - EV_SETTER events are property assignments, not commands (bug-2608) |
 | `9444e0f` | 2026-09-14 | joncurry94-tech | docs: TRAPS - a call in a }end <expr> return position is not evaluated (bug-2603) |
 | `a1df8a3` | 2026-09-14 | joncurry94-tech | tools: Gun Game ladder generator + isolation self-test mutation (MP slice 1) |
 | `af74572` | 2026-09-14 | joncurry94-tech | docs: v1.6.0 "The Long View" rollout - README, history, public pages, isolation clause 14 |
@@ -307,18 +314,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `coop-wip` |
-| HEAD | `f65d8727 2026-09-14 mp: Freeze Tag - slice 5` |
-| commits | 1,671 |
+| HEAD | `7a3e3f77 2026-09-14 mp: Gun Game death-reset, Hardcore speed fix, DBNO/Medkits default ON, closet 3-way loadout` |
+| commits | 1,684 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **0 modified, 1 untracked** |
+| **uncommitted** | **113 modified, 176 untracked** |
+| unstaged diff | 113 files changed, 4934 insertions(+), 1638 deletions(-) |
 
-> Working tree is dirty. Everything in those 1 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 289 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 80 |
+| 2026-09 | 93 |
 | 2026-08 | 198 |
 | 2026-07 | 26 |
 | 2026-04 | 12 |
@@ -359,10 +367,23 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (322)
+### Commits since 2026-01-01 (335)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `7a3e3f77` | 2026-09-14 | joncurry94 | mp: Gun Game death-reset, Hardcore speed fix, DBNO/Medkits default ON, closet 3-way loadout |
+| `43cef62c` | 2026-09-14 | joncurry94 | mp: Demolition + CTF modes — the last two HZM game modes on Select Game Type |
+| `7116ed59` | 2026-09-14 | joncurry94 | mp: DBNO + Medkits MP port - the last two Host Rules realism rows |
+| `2571b55e` | 2026-09-14 | joncurry94 | mp: reframe all mode setup screens to the stock wood-board format (H9 + user) |
+| `b9989144` | 2026-09-14 | joncurry94 | mp: realism toggle script + live Host Rules rows (ADS/Prone/Cover/Third Person) |
+| `eb72aee9` | 2026-09-14 | joncurry94 | lobby: closet LOADOUT opens the coop loadout directly (revert the MP chooser) |
+| `898b6abf` | 2026-09-14 | joncurry94 | lobby: the closet LOADOUT button is now a 3-way loadout chooser (Allied/Axis/Coop) |
+| `d98aae98` | 2026-09-14 | joncurry94 | mp: relist Select Game Type with modes as buttons + a shared setup screen (redesign) |
+| `ad7be490` | 2026-09-14 | joncurry94 | mp: align the Multiplayer Options loadout buttons into a clean 3-col row |
+| `59d4c35b` | 2026-09-14 | joncurry94 | mp: bot auto-fill + Hardcore + MP Host Rules menu |
+| `ffbd092b` | 2026-09-14 | joncurry94 | mp: Multiplayer Options menu - mode picker + preset + Allied/Axis loadout chooser; Select Game Type 3x6 grid (slice 7) |
+| `16027511` | 2026-09-14 | joncurry94 | mp: Push (sequential capture-point advance) - slice 6 |
+| `0be7cb1a` | 2026-09-14 | joncurry94 | gfx: crank down the bloom default - the exposure-aware bloom over-bloomed (user) |
 | `f65d8727` | 2026-09-14 | joncurry94 | mp: Freeze Tag - slice 5 |
 | `ace020cd` | 2026-09-14 | joncurry94 | mp: King of the Hill - slice 4 |
 | `50052931` | 2026-09-14 | joncurry94 | mp: Search & Destroy + Last Man Standing on a shared round helper - slice 3 |
@@ -691,18 +712,19 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `hzm-coop-working` |
-| HEAD | `8a8c92b5 2026-09-14 sdl: in_joystick 0 skips SDL joystick init - a bad controller no longer black-screens boot (bug-2606)` |
-| commits | 5,115 |
+| HEAD | `243d8ac2 2026-09-14 engine: MP realism host toggles - ADS/Prone/Cover/Third Person off via g_mpRealismOff serverinfo` |
+| commits | 5,117 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **0 modified, 3 untracked** |
+| **uncommitted** | **11 modified, 3 untracked** |
+| unstaged diff | 11 files changed, 382 insertions(+), 7 deletions(-) |
 
-> Working tree is dirty. Everything in those 3 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 14 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 32 |
+| 2026-09 | 34 |
 | 2026-08 | 103 |
 | 2026-07 | 13 |
 | 2026-02 | 1 |
@@ -764,10 +786,12 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 
 </details>
 
-### Commits since 2026-01-01 (150)
+### Commits since 2026-01-01 (152)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `243d8ac2` | 2026-09-14 | joncurry94 | engine: MP realism host toggles - ADS/Prone/Cover/Third Person off via g_mpRealismOff serverinfo |
+| `dfaa5fcc` | 2026-09-14 | joncurry94 | cgame+fgame: Hardcore modifier - hide crosshair/health/stamina HUD on the g_mpHardcore serverinfo flag |
 | `8a8c92b5` | 2026-09-14 | joncurry94 | sdl: in_joystick 0 skips SDL joystick init - a bad controller no longer black-screens boot (bug-2606) |
 | `c2d9224b` | 2026-09-14 | joncurry94 | fgame: MP armory engine hooks (E4/E5) - reachable in-match, kit at spawn |
 | `120c7fc0` | 2026-09-13 | joncurry94 | gl2+cgame: per-map colour grade layer (server-published, MP-safe) |

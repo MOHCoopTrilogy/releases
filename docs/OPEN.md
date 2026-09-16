@@ -104,13 +104,13 @@ to the live copies in `G:\mohaa-gl2` — `openmohaa.exe`, `cgame.dll`, `renderer
 `renderer_opengl2.dll`, `omohaaded.exe`, `SDL2.dll`, `OpenAL64.dll`, `libcurl.dll`. Only `game.dll`
 differs, because it was rebuilt after v1.2.9 shipped and has not been published yet.
 
-### `renderer_opengl2.dll` has zero rollback points
-`OPEN` · *Re-counted 2026-08-15 using the real `*_bak.*` convention: `game` 80, `openmohaa` 43,
-`cgame` 25, `renderer_opengl1` 19, `omohaaded` 3, `renderer_opengl2` **0** (174 total).*
-
-**This one survives, unchanged.** The `<binary>_pre_<feature>_bak.<ext>` convention is the project's
-only binary rollback system and it is entirely manual. The module with no backup at all is the one
-whose port is still in progress, which is precisely the one most likely to need reverting.
+### `renderer_opengl2.dll` rollback is a manual convention (the "zero backups" claim was a regex miss)
+`CORRECTED 2026-09-15` · The old "0 rollback points" was an artifact of an 2026-08-15 re-count whose regex
+only matched `<binary>_pre_<feature>_bak.<ext>` and missed the ACTUAL naming in use. `G:\mohaa-gl2\` holds
+**~21 `renderer_opengl2.dll` backups** today — `renderer_opengl2.dll.bak_2026-09-13_pre_visuals` beside the
+live Sep-14 DLL, `renderer_opengl2_pre_terrainlight.dll.bak`, and ~19 `.dll.pre_<feature>_bak` files. The
+real (fair) observation that survives: binary rollback is a **manual convention**, not automated - so keep
+backing up before an engine deploy. The module is NOT unprotected.
 
 ---
 
@@ -123,59 +123,67 @@ testing `== "1"` on cvars **seeded in no shipped cfg** — `autoexec.cfg`, `coop
 string)**, not `"0"` — so records describing these as "default 0" imply a deliberate shipped default
 that does not exist.
 
-| System | Gate cvar | Gate site | Records claim |
-|---|---|---|---|
-| ~~Engine juke/hide + AI maneuver mover~~ | `coop_aiDynamic` | `main.scr:247`, `:250` | **NOW SEEDED** - g_main.cpp:307 (archived) + autoexec.cfg:583 |
-| ~~Squad brain~~ | `coop_aiSquad` | `main.scr:255` | **NOW SEEDED** - g_main.cpp:308 + autoexec.cfg:586 |
-| ~~Squad morale break~~ | `coop_moraleEnable` | `main.scr:257` | **NOW SEEDED** - autoexec.cfg:594 |
-| ~~Tactical retreat~~ | `coop_retreatEnable` | `wounded.scr` | **NOW SEEDED** - autoexec.cfg:596 |
-| Last-known search sweep | `coop_aiSearch` | `aisquad.scr:226` | was the ONLY one still unseeded - seeded 2026-08-17, **never run before that** |
-| ~~Bounding overwatch~~ | `coop_aiBound` | `aisquad.scr:112`, `actor_cover.cpp:511` | **CLOSED 2026-08-30, bug-2181** - re-gated on squad-brain OWNERSHIP, not the cvar, then seeded |
-| ~~Aggressive advance~~ | `coop_aiAggrMove` | `aimaneuver.scr:113` | **DELETED 2026-08-30, bug-2180** - would have issued the runto bug-1812 measured stalling 85% of the time |
-| ~~Objective bonus drop~~ | *(commented hook)* | `main.scr:178` | **CLOSED 2026-08-30, bug-2179** - blocker comment described a draft fixed in the same commit |
-| ~~MP voice-command wheel~~ | *(alias map scope)* | `uberdialog.scr:31116` | **CLOSED 2026-08-30, bug-2176** - DM-only scope AND V taken by the bash; both had to be fixed |
-| ~~Stealth arm-on-hurt~~ | *(no caller)* | `itemhandler.scr:1590` | **DELETED 2026-08-30, bug-2178** - wiring it to e1l3 would have made that map unwinnable |
+**Mostly resolved 2026-08-17..08-30.** Four systems NOW SEEDED (`coop_aiDynamic`/`coop_aiSquad` +
+g_main.cpp archives, `coop_moraleEnable`/`coop_retreatEnable` in autoexec); `coop_aiSearch` seeded
+2026-08-17 (never run before). Five closed in one sweep (bugs 2176-2181), and "seed the cvar" was right for
+only ONE: `coop_aiAggrMove` (bug-2180) and stealth arm-on-hurt (bug-2178) were **DELETED** as harmful
+(would ship bug-2100 / make e1l3 unwinnable), `coop_aiBound` (bug-2181) needed re-gating on squad-brain
+ownership, objective-drop (bug-2179) + MP voice-wheel (bug-2176) closed. **Residuals:** objective-drop
+pickups are `SOLID_BBOX` until taken; `coop_aiBound` ≈3.5% fewer repositions (a de-synchroniser, not a
+tactic). **⚠️ The AI maneuver mover was verified only by the bot rig (which sets the gate itself)** — never
+run for a player; see [TRAPS.md § T15](TRAPS.md#t15).
 
-**⚠️ The AI maneuver mover was verified only by the bot rig — which sets the gate cvar itself.** It
-has never run for a player. See [TRAPS.md § T15](TRAPS.md#t15).
-
-**Also unseeded** (from the 144 `coop_*` cvars seeded nowhere): `coop_aiScale`, `coop_aiScaleChance`,
-`coop_aiScaleTest`, `coop_health` (the 750 lives at `server.scr:223-227` as an *else-branch*),
-`coop_dbnoCorpseRevive`, `coop_unsponge` (its on-by-default status rests on a comment at
-`aihandler.scr:277`, "unset counts as 1" — and it is a **fresh bullet-sponge fix**, bug-1212).
-
-**Decision needed:** for each, either seed a deliberate default in `coop_defaults.cfg`, or document it
-as opt-in. Right now the shipped behaviour is whatever a fallback branch happens to do.
-
-**[2026-08-30] Five more closed in one sweep (bugs 2176-2181), and the lesson is that "seed the cvar"
-was the right answer for only ONE of them.** Two were deleted instead of enabled, because enabling
-them was actively harmful: `coop_aiAggrMove` would have shipped a twice-user-reported defect
-(bug-2100) as behaviour, and wiring the stealth watchdog to e1l3 would have zeroed `level.papers` and
-made the escape unwinnable. One (`coop_aiBound`) needed re-architecting before it could be turned on
-at all, because its gate sat in SP/SH/BT-shared code while its permissions came from a german-only
-script. **Residuals:** each objective-drop pickup is a `SOLID_BBOX` obstruction until taken; and
-`coop_aiBound`'s measured effect is ~3.5% fewer repositions, not the "half the cluster" its own
-comments claimed - a de-synchroniser, not a tactic.
+**Still unseeded** (of the 144 `coop_*` cvars seeded nowhere): `coop_aiScale`/`coop_aiScaleChance`/
+`coop_aiScaleTest`, `coop_health` (750 lives as an *else-branch* at `server.scr:223-227`),
+`coop_dbnoCorpseRevive`, `coop_unsponge` (on-by-default rests on a comment, `aihandler.scr:277`; a fresh
+bullet-sponge fix, bug-1212). **Decision needed:** seed a deliberate default in `coop_defaults.cfg` or
+document as opt-in — right now shipped behaviour is whatever a fallback branch does.
 
 ---
 
 <a name="defects"></a>
-## Requested, not yet started (2026-08-18)
+## MP Progression + Service Record — SHIPPED v1.7.0 (2026-09-14); playtest tail only (details: buglog, FEATURES)
 
-- **Reload magazine keeps the stock skin on a finished gun** (bug-2241). The gun's own `Clip` surface
-  IS reskinned (gold Thompson, 4-surface mesh), so the in-hand reload magazine is a DIFFERENT model.
-  `models/ammo/thompson_clip.tik` is cached by the weapon tik but nothing spawns it by name and no
-  viewmodel/`human_thompson` anim attaches it - source unidentified. Needs a runtime probe.
+Engine + script verified by bot boots; the **client-rendered** parts need your machine (a dedicated boot
+renders no menus): in the MP armory confirm the **3D character renders** (body + helmet at `Bip01 Head` +
+weapon at `tag_weapon_right`, hold pose, SPIN), a skin/helmet tile updates it live, a locked class denies
+then unlocks after 15 kills; pick a skin from **Multiplayer Options → APPEARANCE** and confirm it persists
+into a match; open MP SERVICE RECORD and confirm rank/counts/badges. Helmets use coop's exact-fit recipe
+(bug-2634) — confirm fit and no double on hatted skins (the charRender *preview* can double over the baked
+hat — Allied skins have `_nohat` twins, Axis don't; the live spawn is correct via the nodraw path). The MP
+framework engages on ALL dm maps (stock `mohdm1-6` included) + `obj/mp_*` (bug-2638, boards reverted to the
+stock browser + rotation builder; Push/Base-Assault keep their own Campaign-Maps pickers for the SP maps).
 
 ## Awaiting the next playtest (2026-08-17)
 
-- **Panzerfaust: REMOVED (2026-08-18)** - never fired, user called it a dead end. The live residue:
-  **armory id 73 is a permanent hole, never renumber.** The WW1 flamethrower is the candidate if a
-  launcher-slot novelty is ever wanted.
-- **Skin system: built end-to-end, awaiting menu playtest (2026-08-18).** 357 finish variants across
-  45 guns, the armory finish strip, 7 finish challenges, both unlock gates server-side, 25 imported
-  model variants gated on each gun's Elite challenge. Finishes visually approved in play. STILL OPEN:
-  the in-hand reload magazine keeps the stock skin (bug-2241, above); MOHPA porter unidentified.
+- **MP vehicle system — spawn-verified, INTERACTIVE loops need a playtest (2026-09-15, bug-2643).** Host
+  toggle `coop_mpVehicles 1` (default off), on the 5 SP arena maps (m1l3a/m1l3b/m4l1/m5l2a/m5l3). All 5
+  types boot-spawn cleanly: AT pickups (team-aware: allies→bazooka, axis→panzerschreck), flak88 +
+  nebelwerfer (mannable FixedTurrets, native use/aim/fire), drivable jeep + tank (native driver
+  `attachdriverslot 0` + gunner `attachturretslot 0`; tanks immune to all but rocket/falling, so only the
+  AT pickups kill them). **Unverified in play:** board/drive/fire, exit/eject, turret manning, PvP capture
+  (enemy holds [USE] beside an unoccupied enemy vehicle `coop_mpVehCaptureTime`s to flip it). **Wired +
+  respawn VERIFIED** (bug-2646): destroy→explode+eject→re-place after `coop_mpVehRespawn`; live crew HUD
+  (name/role, health bar, crew, exit hint). **Deferred:** crew theatre (team-kill uses `g_teamdamage`). `veh_*` in
+  `coop_mod/mp_vehicles.scr`; placements harvested from UberMod into `mp_vehicle_maps.scr` (gen script).
+  NOTE: force-arena on **m4l1** spams ~30 harmless "TriggerOnce setthread Script '' not loaded" (its BSP
+  triggers hit the blanked map script) — cosmetic log noise, not vehicles.
+- **Prop Hunt — mode shipped, human loop needs a playtest (2026-09-15, bug-2641).** AXIS=props (hide as
+  stock statics, [USE] cycles shape), ALLIES=hunters (frozen during `coop_mpPhHideTime`). Boot-verified:
+  morph, round arm 3v3, hide phase. Unverified: hunter kills a hidden-but-solid prop; full timeout win.
+- **Symmetric Demolition + Freeze Tag meltgun — need a playtest (2026-09-15, bug-2644/2645).** Demolition
+  is now two-way (either team plants on the enemy's spawn-derived site; gt2 team board now, not gt4 obj);
+  sites seed verified, plant/defuse/detonate unverified. FT gained a meltgun (aim+fire at a frozen
+  teammate to weld them free); compiles, the weld itself unverified.
+- **Spawn Protection host-rules UI toggle — deferred (2026-09-15, bug-2640).** The mechanic ships default-ON
+  in MP (`coop_mpSpawnProtect`, seeded in mp.scr::main) and is console-toggleable; a board checkbox was NOT
+  added because `coop_mphostrules.urc` is full (footer at y422) and a 3-column bottom row truncates the
+  "Down But Not Out" label. Add a row only if the board gains vertical space.
+- **Panzerfaust REMOVED (2026-08-18)** - **armory id 73 is a permanent hole, never renumber.**
+- **Skin system: built end-to-end, awaiting menu playtest (2026-08-18).** 357 finish variants / 45 guns,
+  armory finish strip, 7 finish challenges, server-side unlock gates, 25 model variants gated on each gun's
+  Elite challenge; finishes visually approved. STILL OPEN: the in-hand reload magazine keeps the stock skin
+  (bug-2241: `Clip` surface reskins but the reload-mag model doesn't; needs a probe).
 
 ## Defects with evidence
 
@@ -193,10 +201,9 @@ comments claimed - a de-synchroniser, not a tactic.
   read from BOTH sides - the pairing scan covers all 160 maps but is a static argument, not a look.
 
 ### e1l2 dedicated map-checksum residual (bug-2585)
-`PARTIAL` - the longjmp crash is fixed (a client forcing `r_largemap 1` mismatched `sv_mapChecksum`
-and now drops cleanly). **M2 is deferred:** having the client follow `sv_mapChecksum` so a client
-forcing `r_largemap 1` also matches. A client that sets `r_largemap 1` still mismatches - it just no
-longer crashes.
+`PARTIAL` - the longjmp crash is fixed (a client forcing `r_largemap 1` mismatched `sv_mapChecksum` and now
+drops cleanly instead of crashing). **M2 deferred:** having the client follow `sv_mapChecksum` so it matches
+rather than drops.
 
 ### global/spotlight.scr: 5 Script Errors per spotlight per map load, and a gunner that never fires
 `OPEN` · *bug-2548* — `self.gun` on an Actor is an `EV_GETTER` returning a display-name STRING
@@ -206,12 +213,11 @@ receiver is already a targetname in `self.spotter.turret` (`:400`), resolvable w
 `:389` does. Same family as bug-2046.
 
 
-### e3l4: jeep passenger never completes the first supply run — INSTRUMENTED, cause open
-Freezes at the jeep, never reaches a crate, spams `Path not found in Actor::MoveToPatrolCurrentNode`.
-Driver runs the same chain and succeeds; the passenger completes it at a *later* bunker, so it is not
-a missing anim or bad model. Failsafes (22s/30s) delete the parked thread and seat the crew, so the
-map completes; 12 `^~^~^ E3L4P` breadcrumbs will name the hanging call next run. Same map, possibly
-related: constant `couldn't find end node` for unrelated actors. bug-1361/1366, [TRAPS T16](TRAPS.md).
+### e3l4: jeep supply run + AISpawnPoint/PathNode — RESOLVED (verified 2026-09-15), playtest-nice-to-have
+`CLOSED (code)` · The jeep passenger freeze was fixed by a 2026-08-04 cluster in `maps/e3l4/Bunker1.scr`
+(bug-1368 `turndone`→`wait 0.5`, bug-1369 new `passengerGetInWillys`, + 1361/1366/1370). The AISpawnPoint/
+PathNode spawner death (bug-1471) was fixed hours later by bug-1480 in `global/ai.scr` (spawn-point
+classnames excluded from the chain-flattening terminal test). Would benefit from one playtest confirm.
 
 ### Pinned challenges: no in-mission pin surface
 Lobby and disconnected Service Record can pin; the in-mission `chal_menu` panel cannot — no cursor,
@@ -220,17 +226,16 @@ weapon and swing aim. Needs a `game.dll` change. Disconnected pins queue and app
 connect. bug-1362/1364. (The separate STUCK-pin defect, a finished challenge never leaving the list,
 was fixed 2026-09-09 as bug-2544.)
 
-### e2l2: 12× "applied to NULL listener"
-`OPEN` · *bug-1220* — on `origin`/`hide`/`notsolid`/`nottriggerable`/`triggereffect`/`set_respawn`/
-`notdroppable`. The known cure is [TRAPS.md § T5](TRAPS.md#t5): guard the entity refs with **BOTH**
-`NIL` and `NULL`, because they are different and coop hits both. Detected 2026-07-29.
+### e2l2: 12× "applied to NULL listener" — UNCERTAIN (may be a decoy-log phantom)
+`OPEN?` · *bug-1220* (detected 2026-07-29). No later buglog entry closes it, and `maps/e2l2.scr` still has a
+few unguarded refs (`$getvickers`/`$allhell_vehicles`/`$spawnlyndon nottriggerable`, ~lines 71/151/152) - so
+guarding them with BOTH `NIL` and `NULL` ([TRAPS T5](TRAPS.md#t5)) is a cheap win. BUT the original detection
+came from the now-**decoy `%APPDATA%` log**, so it may already be gone. Verify on the live log before fixing.
 
-### t2l2: 265 script errors on coop boot despite an A− static audit grade
-`OPEN` · *bug-1026* — 36× `Couldn't load models/nil.tik`, missing `models/vehicles/panzerwerfer42.tik`
-×4, plus "must specify explicit classname". Addon MG42 nest gunner AI and the panzerwerfer
-rocket-artillery vehicle fail to resolve → unmanned nests, missing vehicle. Map still reaches
-coop-ready, so **degraded, not dead** — which is why the read-through missed it. The fix field reads
-literally "OPEN - needs investigation." See [TRAPS.md § T14](TRAPS.md#t14).
+### t2l2: 265 boot errors — RESOLVED (verified 2026-09-15)
+`CLOSED` · *bug-1026* was split and fixed: bug-1891 ("VERIFIED zero boot errors", the 4× holster load) +
+bug-1892, and bug-1481 (mg42-on-PathNode spam). What remains is retail TIKI data noise (`surface 'inside'`
+warnings), not HZM script errors. Residual bug-1472 (3× `waittill death/drive`) is a minor diagnostic.
 
 ### Phase C stealth contain (m2l2a) — shipped, mostly unverified
 
@@ -248,30 +253,12 @@ around it on 2026-08-10 is deployed and **not** confirmed in play:
 Since confirmed in play: the contain loop, the escalation loadout (1692), the bust-time aggro
 exemption (1686).
 
-### ⚠️ m2l2a REGRESSION RISK — the attackplayer latch removal (bug-1700)
-
-**User-requested review item.** m2l2a is signed off as very playable; bug-1700 changes the aggro
-funnel *every* map uses, to make loud→quiet missions possible on m6l1c.
-
-`sentientIsSeen` now supplies `local.sentient` when the caller's target is NULL, so `attackPlayer`
-takes its `attackentity` branch instead of the latching `attackplayer`. Unmeasured consequences on
-m2l2a:
-
-- **`attackentity` is advisory, `attackplayer` was forcing.** A guard that used to commit may now
-  decline — that would make cover-blown escalation *weaker*, not stronger.
-- **The latch was also masking the disguise on m2l2a.** Without it, a guard who engaged you can be
-  fooled again by the uniform. On the papers route that is effectively a difficulty change.
-- **Phase C sits downstream** — the contain path reaches `sentientIsSeen` through
-  `anim/disguise_deny.scr` / `disguise_accept.scr`.
-- **Latch split CLOSED 2026-08-11** (bugs 1707/1708) - see `docs/archive/open-resolved-2026-08-10.md`.
-
-**Acceptance test — PASSED 2026-08-11.** Full m2l2a stealth run by the user against the whole
-day's global changes (bug-1707 engine threat gate, four attackplayer latch sites, two disguise
-retry-loop fixes, spawn-click fire lock). Log evidence: quiet Naxos sabotage, two officer
-contains offered (`canContain=1`), two body investigations armed, sentries correctly refused
-(`canContain=0`), and **zero** Script Errors, parse failures, salute-guard flips (SALATK) or
-latch restores — against 1789 restores in the broken run that started the investigation.
-The user's verdict: "m2l2a ran fine with what you asked".
+### m2l2a attackplayer-latch removal (bug-1700) — CLOSED, user-verified
+`CLOSED 2026-08-11` · bug-1700 reworked the aggro funnel (`sentientIsSeen`/`attackentity` branch); the latch
+split closed via bugs 1707/1708. **Acceptance test PASSED** - full m2l2a stealth run by the user, zero Script
+Errors / salute flips / latch restores (vs 1789 in the broken run), verdict "m2l2a ran fine". No longer a
+risk. (The line-78 array-cast that the OPEN list once cited is also gone: `$player.has_disguise` now sits in a
+`gametype==0` SP-only branch, unreachable in coop.)
 
 ### `coop_stealthArmOnHurt` is dead code — and something else may be covering for it
 
@@ -339,27 +326,13 @@ currently correct. **Needs one look.**
 
 ## gl2 open items
 
-### Non-depth-writing surfaces cannot be fogged at all — the screen-space fog's structural gap
-`OPEN` · *bug-1296 · Anchor: `renderergl2/glsl/globalfog_fp.glsl`, `renderergl2/tr_postprocess.c`*
-
-gl1 fogs **per surface during each surface's own draw** and carries a per-stage decision table
-(`renderergl1/tr_shader.c:3227-3279`: additive→BLACK, modulate→WHITE, alpha-blend→fog colour). gl2
-replaced that with a screen-space pass driven by the depth buffer. A surface with `blendfunc` and no
-`depthWrite` (~13.5% of shader defs — propeller discs, some glass/water/FX) **leaves depth at 1.0**,
-so no depth-based pass can ever reach it. Those surfaces render unfogged regardless of cvar.
-
-**The obvious fixes were all evaluated and rejected on evidence, 2026-08-02 — do not re-propose them
-without reading this:**
-
-| Idea | Why it fails |
-|---|---|
-| Make them write depth | Breaks transparency sorting outright — they would occlude each other. Also unsupported: gl1/gl2 depthmask construction is verbatim identical, and the one divergence runs the *opposite* way (gl1 clears the mask in a case gl2 does not) |
-| Stencil "is sky" mask | Fixes *which* pixels are exempt, not the *distance* they are fogged at — a non-depth-writing prop is then correctly classed as not-sky and fogged at zFar, i.e. buried. Also expensive: **no gl2 FBO has a stencil attachment**, `tr.globalFogFbo` deliberately has none to avoid a feedback loop (`tr_fbo.c:327-329`), and `FBO_Blit` unconditionally ORs `GLS_DEPTHTEST_DISABLE` (`tr_fbo.c:642`) |
-| Port gl1's per-stage fog into gl2's forward pass | **Double-fogs** every blended stage over opaque geometry — the screen-space pass fogs per *pixel* by the wall's depth, the forward pass per *surface* by its own: a tracer at 1000u renders 0.27× instead of 0.52×, halving distant tracers/flashes/explosions including this mod's own FX. Also blends in the **wrong colour space** (forward fog is pre-tonemap; the screen-space pass runs post-tonemap because `r_globalFogPreTone` is pinned to 0 until gl1's ACES grade is ported) |
-
-**Conclusion:** a coherent hybrid needs a per-pixel "already fogged" mark, which *is* the expensive
-stencil attachment. Not worth it for the residual class. Fixed instead: the epsilon (bug-1296), which
-was the dominant cause and covered all *depth-writing* geometry.
+### Non-depth-writing surfaces can't be fogged — RESOLVED (doc stale)
+`CLOSED` · The screen-space-fog structural gap (bug-1296: blended, non-depth-writing surfaces leave depth
+1.0, so a depth-based pass never reaches them) was closed by **bug-1304**, which shipped a **forward
+per-fragment global fog** — `r_globalFogForward` (default 1, `tr_init.c`) with `ApplyGlobalFog()` in
+`glsl/generic_fp.glsl` + `lightall_fp.glsl`, wired in `tr_shade.c`. That fogs per-stage in the forward pass,
+exactly the "coherent hybrid" this entry's 2026-08-02 analysis said would need an expensive stencil. (History
+of the rejected screen-space fixes: [archive](archive/).)
 
 ### The retail sky sources are 512×512
 `OPEN` · *bug-1295* — gl2 no longer DXT1-compresses them (that was ours), but the source itself is
@@ -375,41 +348,27 @@ wrong theory: the widget UI otherwise renders fine under gl2 (What's New board, 
 draw), so the "`.urc`-invisible / FBO-ordering" theory is **dead**. Next step: find what tag 12 means
 and grep `Z_TagMalloc` callers missing a size-0 guard.
 
-### Some bullet-hole decals render RED — deliberately not guessed at
-`OPEN` · *`bug-gl2-decal-red-dds`, `bug-gl2-01`* — `rgbGen` is **refuted**: gl2's default-rgbGen
-resolution (`tr_shader.c:1988-2001`) and the `CGEN_VERTEX` mark-color path are byte-identical to gl1,
-and both mark shaders (`bulletset_1`, `bullet_plasterhit`) carry explicit `rgbgen vertex` so they
-never hit the default. **Explicitly left UNFIXED:** *"a neutral texture through an rgbGen-identical
-shader cannot produce red, so the mechanism is unexplained; guessing risks regressing 2370 working
-world DDS or the mark system."* A decisive boot test was handed to the user instead. ⭐ **This
-restraint is a model entry** — see [TRAPS.md § T13](TRAPS.md#t13).
+### Bullet-hole decals render RED — RESOLVED (doc stale)
+`CLOSED` · The 2026-08-02 restraint entry (`bug-gl2-decal-red-dds`, refused to guess) was superseded by
+**bug-gl2-reddecals**, which found the real cause: gl2's `R_GetLightingForDecal` was an **empty stub**
+leaving `vLight` as uninitialised stack garbage (cgame multiplied it into red). Now fully implemented
+(`tr_light.c`, registered in `tr_init.c`). Resolved-pending a visual confirm.
 
-### Invisible briefing NPC on e2l2
-`OPEN` (accepted, low impact) · *`bug-gl2-e2l2-briefing-npc-invisible`* — `$lyndon`
-(`models/human/sc_al_brit_cmd`) is invisible during the e2l2 intro cinematic; present and targetable,
-`SKELDRAW ent=213`. **NOT the model** — the same model type renders fine in gl2 on other maps
-(user-confirmed), refuting model/skinning/composition/58-bone theories. **NOT render-state** — none of
-`r_test_forcepose`/`twosided`/`maskrfx`/`noprepass`/`forcelod0` changed it. If revisited, the recorded
-direction is the **e2l2 intro camera/cinematic view setup**, not the model or renderer.
+### Invisible briefing NPC on e2l2 — likely fixed, PLAYTEST-GATED
+`PLAYTEST` · `$lyndon` invisible in the e2l2 intro cinematic (`bug-gl2-e2l2-briefing-npc-invisible`). Very
+likely fixed as a side-effect of the later gl2 root-cause fixes for the same actor class
+(`bug-gl2-forcepose-skips-composite-ally`, `bug-gl2-invisible-live-char-depthprepass`), but never re-checked
+for the intro. One look confirms.
 
-### Shimmer on thin decorative geometry (shadow acne)
-`OPEN` · *bug-1164* — user-reported on m1l1 wall trim; not present on gl1. Same session as bug-1209,
-which newly **wired** gl2 character sun-cascade shadows — worth checking whether that wiring interacts
-with or worsens this.
+### Shimmer on thin geometry (shadow acne) — RESOLVED (doc stale)
+`CLOSED (code)` · **bug-1164** shipped `r_shadowMapBiasFactor`/`r_shadowMapBiasUnits` (CVAR_ARCHIVE, 4/4)
+applied via `qglPolygonOffset` in the shadow pass. Code-done; no logged post-fix playtest.
 
-### Bloom reads as a flat haze on the Hable curve
-`OPEN` · *bug-1149* - the 0.664756 no-op note predates the bright-pass clamp. Now (2026-09-13 design):
-on the shipped ACES grade bloom already matches gl1; on rend2's Hable + auto-exposure the bright pass
-spans display ~0.09-0.30, so every highlight adds the same flat amount, and exposure is measured
-after bloom and dims it. **Decided:** exposure-aware `r_ppBloomMode 1` (mode 0 kept for A/B) on the
-ACES baseline. See `_research/gl2_render_upgrades_design.md`.
-
-### Seven gl1 post-FX have no gl2 equivalent
-`PLANNED` · gl1 order is SSAO → DoF → **bloom (done)** → god rays → **grade (done)** → FXAA → sharpen
-→ heat haze → rain. All live in `renderergl1/tr_postprocess_gl1.c` as self-contained GLSL; **the bloom
-port is the stated template for each.** ⚠️ `coop_defaults.cfg` ships `r_ppSSAO 1`, and bug-1211 records
-that `r_ppSSAO 1` under gl2 turned the screen black until guarded — **the default config and the gl2
-renderer are on a collision course if gl2 ever becomes the default.**
+### Bloom flat haze + the seven gl1 post-FX ports — RESOLVED (doc stale)
+`CLOSED` · Exposure-aware bloom shipped (`r_ppBloomMode 1`, `RB_HZMBloom`) — see the gl2-render-upgrades entry
+above. And **all seven** gl1 post-FX are now ported + wired in `tr_postprocess.c`/`tr_init.c`: SSAO
+(`r_ppSSAO`), DoF (`r_ppDoF`), god rays (`RB_SunRays`), FXAA (`r_ppFXAA`), sharpen (`r_ppSharpen` + FSR
+RCAS), heat haze (`r_ppHeatHaze`), rain (`r_ppRain`). The "seven remaining" count is obsolete.
 
 ### `r_globalFogDebug` is still `CVAR_TEMP`
 `OPEN` · *`renderergl2/tr_init.c:1926`* — temporarily moved off `CVAR_CHEAT` because a listen server
@@ -429,38 +388,21 @@ time: the `r_globalFogDebug` flag above, and `tr_model.cpp`'s ungated
 <a name="diagnostic"></a>
 ## Diagnostic pending — a probe exists, awaiting one boot
 
-### m1l1 2nd-ranger_private actors render mangled
-`OPEN` · *bug-1213; bug-1184; bug-1214; open task #16* — limbs stretched into spikes, faces flattened,
-both in and out of the truck; the `2nd-ranger_captain` in the same truck renders correctly. **Six
-investigations.** ⭐ **The mod data is exonerated with proof** — a full TIKI setup plus a skeletor merge
-simulation of both models using the real session keyvalues was independently re-derived. **No guess
-was shipped**; instead a decisive gated diagnostic was added (`^~^~^ POSECHK` in
-`tiki/tiki_tag.cpp TIKI_GetFrameInternal`, cvar `tiki_posecheck 1`), plus two real engine defects
-found in passing (bug-1189). bug-1214 raised `MAX_SKELMORPH` 12800→131072 as a related latent silent
-OOB. **Candidates not ruled out:** corrupted retail `truck_idle`/`twitch_guy01.skc`, `MAX_SKELBONES`
-interaction with gl2 cascade shadows, or the per-frame `gettagangles` puppeteering itself.
-⚠️ Note the workaround that IS live: `maps/m1l1.scr:341` uses `truck_idle_guy02`/`truck_twitch_guy02`
-instead of the duplicate-channel guy01 retail clips (bug-1162) — a script-level workaround for a
-retail asset defect, not an asset fix. And `maps/m1l1.scr:1683` carries the bug-1184 revert.
+### m1l1 2nd-ranger_private actors render mangled — RESOLVED (doc stale)
+`CLOSED (code)` · After the bug-1213 diagnostic (`tiki_posecheck`), **bug-1228** shipped the real fix
+(removed a redundant duplicate `scale 0.52` in the TIKI setup so `radius 20` emits), and bug-1214 fixed two
+engine skeletal OOB defects, bug-1244 added a setup-truncation warning. Probe remains; the defect was fixed.
+A visual confirm would close it fully.
 
-### Reload camera dip never visible
-`OPEN` · *bug-165 (2026-06-29 — one of the oldest still-open items)* — `cg_reloadCamDip` has no visible
-effect even at 6. **The entire signal chain was source-verified**: `player_Torso.st`
-`viewmodelanim reload` ×10 → `player.cpp:11750` → `VM_ANIM_RELOAD` → `ps.iViewModelAnim` set and
-networked — **the same field the WORKING ADS off-hand-hide reads** at `cg_modelanim.c:1752` — and
-`cgame.dll` confirmed loading from the GOG root per `qconsole.log`. "PENDING runtime data": a temp
-diagnostic behind `cg_reloadCamDebug 1` prints every `iViewModelAnim` transition to determine whether
-the signal fires at all.
+### Reload camera dip never visible — RESOLVED (superseded)
+`CLOSED` · The old `cg_reloadCamDip` (bug-165/168) was replaced by the full state-driven reload-camera-sway
+rewrite (`coop_reloadSway`, 2026-08-19, `cg_view.c`) that eases the view off `ps.iViewModelAnim`. The
+never-visible dip is gone/replaced.
 
-### Mine detector possibly still lost after DBNO revive
-`OPEN` · *bug-898; bug-893; bug-919* — marked "UNRESOLVED — needs live confirmation".
-`coop_reissueMissionItems` runs on all revive/respawn paths (`dbno.scr:687`, `medkit.scr:383`,
-`itemGetAll:761`) and gives via bare `self item` under the `changeGameType`-0 wrap added by bug-893.
-**Two candidate causes remain distinguishable only in play:** present-but-holstered, versus genuinely
-absent. A diagnostic behind `coop_missionItemDebug 1` prints the gametype **during** the give (proving
-the wrap took) then does `self use <item>` + `returnActiveWeapon` per mission item to print PRESENT vs
-ABSENT. ⚠️ **bug-919 later retired `coop_missionItemDebug` to 0 in autoexec, so the probe is currently
-off.**
+### Mine detector after DBNO revive — RESOLVED (doc stale)
+`CLOSED (code)` · The DBNO revive path calls `coop_mod/main.scr::coop_reissueMissionItems` (`dbno.scr`,
+comment cites bug-620/893 "e1l2 minedetector etc."), and bug-620 added the `coop_missionItems` tier +
+`coop_selftest_keyitems.scr`. Wired into revive; resolved-pending a live confirm.
 
 ---
 
@@ -521,13 +463,12 @@ The full list is [FEATURES.md](FEATURES.md). These are the ones someone consciou
 | **m3l1b FLAK objective v2** | Gun crews, back-field defenders, plant animation. | `m3l1b_cut_flak88_objective.md` |
 | **Deployables skill tree** | **REJECTED by the user** — building their own model. Doc kept, marked superseded. | `skilltree_plan.md` |
 
-**gl2 render upgrades** (designed 2026-09-13, **APPROVED, not built**;
-`_research/gl2_render_upgrades_design.md`), in order: exposure-aware bloom (`r_ppBloomMode 1`, bug-1149,
-mode 0 kept for A/B); render-scale supersampling + AMD FSR 1; soft particles; alpha-to-coverage, then
-MSAA. Also **per-map fog** (subtle depth) and **per-map colour grade** on the ACES baseline - both need
-the daylight-reset fix (bug-2584) first. **Fog pilot harness note:** a dedicated-server test client must
-be given window focus + a real click to clear "Press Fire to join the battle"; a server-side `join_team`
-alone leaves it spectating.
+**gl2 render upgrades** (designed 2026-09-13, `_research/gl2_render_upgrades_design.md`) — **BUILT + SHIPPED**
+in `renderer_opengl2.dll`, menu-wired (`coop_postfx.urc`), seeded (`coop_defaults.cfg`). Verified in the
+engine 2026-09-15: exposure-aware bloom (`r_ppBloomMode 1` default), render-scale supersampling + FSR1
+(`r_renderScale`/`r_fsrSharpness`, 1.0 native default), soft particles (`r_softParticles 1`), MSAA
+(`r_ext_multisample`), tonemap/exposure, per-map + night colour grade. ONLY unbuilt: **alpha-to-coverage**
+(MSAA shipped as the AA path instead). **Still awaiting a PLAYTEST** to tune/confirm, not code.
 
 **MP armories slice 2** (designed 2026-09-13, **APPROVED, not built**;
 `_research/mp_armories_slice1_plan.md`) - engine hooks E1-E7, a live dispatcher, and a side picker to
@@ -580,16 +521,15 @@ files' `seta` token sets returns **17 shared names**, and `r_ppSharpenAmount` co
 (`coop_defaults` 0.779370 vs autoexec 0.35). Re-run that `comm` before trusting any disjointness claim;
 the remaining 11 shared names are not yet triaged.
 
-### 144 `coop_*` cvars are seeded nowhere
-`OPEN` · For those, `getcvar` returns `""` on a clean profile and a script fallback branch silently
-decides behaviour. **Documenting such a cvar as "default N" describes a branch, not a default.** The
-consequential ones are in [Never ran](#never-ran).
+### `coop_*` cvars seeded nowhere — the consequential count is ~278 (not 144)
+`OPEN` · Re-counted 2026-09-15 from `docs/generated/CVARS_COOP.md`: of 3380 distinct `coop_*` cvars, 1205 are
+seeded nowhere, and **278 of those are read by a script** (the bucket that matters). The old "144" is stale.
+For these, `getcvar` returns `""` on a clean profile and a script fallback branch silently decides behaviour
+- **documenting such a cvar as "default N" describes a branch, not a default.** Consequential ones: [Never ran](#never-ran).
 
-### The bug-595 0-byte `omconfig.cfg` decoy is still on disk
-`OPEN` · *`%APPDATA%\openmohaa\maintt\omconfig.cfg` — 0 bytes, 2026-07-04 10:37* — the lesson was
-recorded but **the artefact was never removed**, so the identical session-loss is still available to
-any future debugging pass. **Deleting one 0-byte file closes a documented multi-hour trap.** The same
-directory also holds 15 `boot_<map>.cfg` harness files and a 2026-07-05 `whatsnew_pending.cfg`.
+### The bug-595 0-byte `omconfig.cfg` decoy — REMOVED (verified 2026-09-15)
+`CLOSED` · `%APPDATA%\openmohaa\maintt\omconfig.cfg` no longer exists (the dir still has autoexec/boot_*.cfg).
+The 0-byte decoy is gone; the trap is closed.
 
 ---
 
@@ -599,28 +539,16 @@ directory also holds 15 `boot_<map>.cfg` harness files and a 2026-07-05 `whatsne
 Effort/impact ranking was the audit's own acknowledged gap; this is an inference from signature, not a
 measurement.
 
-1. **Delete the 0-byte `omconfig.cfg` decoy.** One file, closes a documented multi-hour trap.
-2. **Deploy the current `openmohaa.exe` + `game.dll`.** A copy. Resolves bug-1219 and the protocol
-   mismatch. Back up first.
-3. **Fix `hzm_cvars.txt:11`** `coop_lmsLifes` → `coop_lmsLives`. One character class, ships to players.
-4. **Fix the three stale in-code comments** (`main.scr:134` Director default, `q_shared.h:1680`
-   bug-866→892, `blueprint.scr:5-7` INERT header). Each will otherwise mislead a future session.
-5. **bug-1218 m3l2 label.** Add the label or drop the `setthread`. Exact site known.
-6. **bug-1027 e3l4 `outro.scr`.** Signature matches T1 exactly; a `developer 1` boot should name the
-   line. Restores the BT campaign ending.
-7. **Decide the four `SHIPPED-CODE-DISABLED` gates.** Either seed defaults or document as opt-in.
-   Nothing to build — the code exists.
-8. **Restore `r_globalFogDebug` to `CVAR_CHEAT`.** One flag.
-9. **Promote `_research/regression/` out of `_research`.** Protects the only automated verification.
-10. **Take one fresh look at the m3l3 courtyard.** The fix exists and was never evaluated.
+Most of the original 10 are resolved (2026-08/09). The two that remain:
+1. **Deploy the current `openmohaa.exe` + `game.dll`.** A copy. Resolves bug-1219 and the protocol
+   mismatch. Back up first. *(User action — binary deploy.)*
+2. **Take one fresh look at the m3l3 courtyard.** The fix exists and was never evaluated. *(Playtest.)*
 
-## GL2 RENDERER: styled-lightmap surfaces pulse red (was: e2l1 rails) - TOP GL2 VISUAL DEFECT
-CONFIRMED by user bisect 2026-08-04: GL1 clean, GL2 blinks. Affects any surface with a styled
-lightmap: e2l1 bridge rails (both, uniformly), e2l2 panels near the radio tower + scattered
-panels. Script setlightstyle changes have NO effect on it (flattening all 5 styles to constant
-ramps changed nothing) -> rend2 is not sampling the style ramp; it produces its own red
-oscillation for styled lightmap slots. Fix lives in renderergl2 lightmap/style handling
-(tr_shade/tr_bsp: how MAXLIGHTMAPS style slots are merged).
+## GL2 RENDERER: styled-lightmap surfaces pulse red (was: e2l1 rails) - FIX SHIPPED, AWAITING PLAYTEST
+Root cause + fix in bug-1331 (the rend2 deluxe parity heuristic in `tr_bsp.c` misfired on MOHAA BSPs;
+loader now honours `r_deluxeMapping`, autoexec ships it 0). **PLAYTEST: e2l1 rails + e2l2 panels no
+longer pulse; regression-check HD maps (m3l1a). If clean, flip the engine default in tr_init.c and drop
+the autoexec pin.**
 
 ## Deploy infrastructure: phantom file locks + a mystery .pk3 renamer (2026-08-04)
 Recurring transient locks on `G:\mohaa-gl2\maintt` pk3s (copies fail "in use", hashes verify after), and
@@ -663,15 +591,15 @@ three of those are real gaps:
 Its yaw also accumulates past a full turn (-422, 667), so normalise into 0..360. Build mode's `P`
 marker uses `player.origin` and needs neither correction.
 
-## Sweep-blocking maps (2026-08-06) - need dedicated sessions
-Two maps stopped the trilogy coverage sweep dead and were skipped so the other ~40 could be measured:
-- **m2l2a** - multiple independent defects. Both its raw waittills killed the main thread so NO player
-  could spawn (bug-1458, fixed); it then threw `Cannot cast 'array' to listener` at line 78 -
-  `$player.has_disguise = 1` inside a `gametype == 0` branch that is somehow entered in coop, where
-  `$player` is an array. Needs a proper pass.
-- **m3l3** - restart loop: reloaded 12 times in one run. The retail missioncomplete door (bug-1463)
-  and the force-list transition trigger (bug-1464) were both fixed and it STILL loops, so a third
-  transition path exists on this map. Investigate with covtrace on and the force pass disabled.
+## Sweep-blocking maps (2026-08-06) - RESOLVED, sweep-harness confirm outstanding
+Both maps' specific blockers are fixed (verified 2026-09-15); what's unconfirmed is a clean shared-session
+sweep, not a live defect:
+- **m2l2a** - the spawn-killing raw waittills (bug-1458) and the `Cannot cast 'array' to listener` are both
+  gone (the disguise line is now in a `gametype==0` SP-only branch; see the closed bug-1700 entry above).
+  m2l2a stealth was user-verified. Residual: bug-18390 notes a gametype-restart race exposed by disguise maps.
+- **m3l3** - the restart loop was closed by the bug-1463-1467 chain (2nd/"third" door + engine mission-fail
+  guard + phase-3 restart gate); the sweep-miss was a `Pak*.pk3` capital-P glob (bug-17348). It has had heavy
+  feature work + playtests since (church-defense objective, bugs 1806-2035) - it boots and runs normally.
 
 ### e3l4 AI spawner threads die on AISpawnPoint/PathNode (bug-1471, OPEN)
 `global/ai.scr:1037` does `self waittill trigger`, but on e3l4 that thread is started on
@@ -680,13 +608,9 @@ the spawner thread and its AI set never spawns. Confined to e3l4 across the enti
 so it is that map's spawner wiring (likely a targetname collision), not a global defect. Fix the
 collision at source rather than adding a blind skip, which would hide the wiring error.
 
-### Unwired challenges: 25 still have no producer (bugs 1596-1598, OPEN)
-`chal_def` declares them, nothing bumps their stat, and `chal_bump` early-exits when
-`level.coop_chal_statN[stat]` is NIL - a **no-op, not an error**, so they render in the Service
-Record and can never be completed. Shipped this way in v1.2.1 (commit 7410b61). 22 were wired on
-2026-08-08; the per-entry anchor, feasibility verdict and cut list for the rest live in
-[proposals/orphan_challenge_triage.md](proposals/orphan_challenge_triage.md).
-
-**Check with a whole-tree scan.** The first checker globbed `maps/*.scr`, which does not match
-`maps/<map>/*.scr`, so three already-wired challenges were miscounted as dead and the original
-figure of 49 was inflated. Walk the tree.
+### Unwired challenges — CLOSED (every challenge now has a producer)
+`CLOSED 2026-09-15` · `docs/tools/check_challenges.py` (run by `build.ps1` every build) reports
+`challenges: 445 | stat writers found: 188` → **"OK - every challenge has a writer, a reachable target and
+a real reward."** Zero unwired. The old "25/49 still have no producer" (bugs 1596-1598) was a mid-cleanup
+snapshot; the remainder were wired or cut. Caveat: the validator checks producer *existence*, not
+correctness - the bug-1597 unconditional-bump class is orthogonal and, if still live, belongs in its own entry.

@@ -10,10 +10,10 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 43,521 |
+| files in the workspace | 43,796 |
 | bytes | 43.7 GB |
-| files in project scope (indexed per-file) | 18,158 |
-| source files (per-file rows with line counts) | 6,638 |
+| files in project scope (indexed per-file) | 18,433 |
+| source files (per-file rows with line counts) | 6,882 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
 
@@ -24,7 +24,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 
 | area | files | size | indexed per-file | what it is |
 |---|---:|---:|---|---|
-| `hzm-mohaa-coop-mod` | 13,800 | 7850.7 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
+| `hzm-mohaa-coop-mod` | 14,044 | 7851.6 MB | **yes** | **the mod** - scripts, cfg, ui, tiks, assets |
 | `_frontline` | 8,721 | 3053.1 MB | no - reference | PS3 Frontline asset extraction (reference) |
 | `_hd_staging` | 8,090 | 8954.9 MB | no - reference | HD texture upscale staging (reference) |
 | `sound-browser` | 3,166 | 435.1 MB | no - reference | audio browsing scratch tool + copies |
@@ -32,19 +32,19 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `UBER-MODS-v8.00-MOHAA` | 2,614 | 115.5 MB | no - reference | third-party mod, reference only |
 | `moh-modelviewer` | 1,270 | 565.8 MB | no - reference | Node model preview tool (rarely touched) |
 | `original-scripts` | 915 | 1173.7 MB | no - reference | vanilla MOHAA script/asset extraction (reference) |
-| `docs` | 458 | 66.2 MB | **yes** | this documentation set (authored + generated) |
+| `docs` | 465 | 66.3 MB | **yes** | this documentation set (authored + generated) |
 | `player1_home` | 291 | 2.1 MB | no - reference | test client profile dir |
-| `scratchpad` | 269 | 45.8 MB | **yes** |  |
-| `_research` | 172 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
+| `scratchpad` | 270 | 45.8 MB | **yes** |  |
+| `_research` | 175 | 143.6 MB | **yes** | regression rig, audits, plans - `_research/regression/` is the one working automated verification system |
 | `_hd_m3l1a` | 145 | 305.8 MB | **yes** |  |
 | `extracted-scripts` | 99 | 2.6 MB | **yes** | extracted vanilla scripts kept for diffing |
 | `map_entities` | 92 | 10.2 MB | **yes** | per-map entity dumps |
 | `_menu_pilot` | 81 | 90.7 MB | no - reference | Photoshop menu round-trip staging |
+| `server_home` | 74 | 33.1 MB | **yes** |  |
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
 | `<root>` | 68 | 3408.7 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
 | `_hd_shadowfix` | 57 | 61.8 MB | **yes** |  |
-| `manifests` | 56 | 0.7 MB | **yes** | release manifests consumed by the auto-updater |
-| `server_home` | 55 | 30.4 MB | **yes** |  |
+| `manifests` | 57 | 0.8 MB | **yes** | release manifests consumed by the auto-updater |
 | `_psx_moh` | 49 | 426.8 MB | **yes** |  |
 | `_variant_packs` | 38 | 343.4 MB | **yes** |  |
 | `_tools` | 37 | 69.0 MB | no - reference | downloaded third-party binaries |
@@ -83,10 +83,10 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 |---|---:|
 | `.wav` | 14,849 |
 | `.dds` | 4,303 |
-| `.scr` | 2,538 |
+| `.scr` | 2,557 |
 | `.tga` | 2,512 |
+| `.cfg` | 2,495 |
 | `.jpg` | 2,468 |
-| `.cfg` | 2,289 |
 | `.tik` | 1,875 |
 | `.mp3` | 1,661 |
 | `.png` | 1,371 |
@@ -94,21 +94,21 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.pre_upscale_nobuild` | 1,252 |
 | `.h` | 961 |
 | `.c` | 727 |
-| `.txt` | 623 |
+| `.txt` | 624 |
 | `.asf` | 514 |
 | `.cpp` | 475 |
-| `.md` | 437 |
+| `.md` | 444 |
 | `.skc` | 425 |
 | `.ogg` | 376 |
 | `.skd` | 347 |
 | `.shader` | 238 |
-| `.urc` | 178 |
-| `.py` | 170 |
-| `.json` | 143 |
+| `.urc` | 194 |
+| `.py` | 173 |
+| `.json` | 147 |
 | `.bsp` | 129 |
+| `.log` | 116 |
 | `.dat` | 111 |
 | `.min` | 100 |
-| `.log` | 97 |
 | `(none)` | 64 |
 | `.class` | 64 |
 | `.pth` | 55 |
@@ -200,7 +200,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `_psx_moh` | 22 | 412.52 MB | .wav×22 |
 | `_psx_moh/stingers` | 21 | 3.71 MB | .wav×21 |
 | `_psx_moh/vb` | 6 | 10.58 MB | .wav×6 |
-| `_research` | 51 | 3.74 MB | .md×46, .png×3, .json×1, .csv×1 |
+| `_research` | 54 | 3.78 MB | .md×49, .png×3, .json×1, .csv×1 |
 | `_research/airborne_hud` | 2 | 0.00 MB | .txt×2 |
 | `_research/airborne_hud/MOHAA/main` | 1 | 0.48 MB | .pk3×1 |
 | `_research/airborne_hud/MOHAA/mainta` | 1 | 0.49 MB | .pk3×1 |
@@ -247,8 +247,8 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `autotest_home/maintt/configs` | 1 | 0.07 MB | .cfg×1 |
 | `autotest_home/maintt/coop_mod/save` | 3 | 0.00 MB | .dat×3 |
 | `autotest_results` | 2 | 0.32 MB | .tsv×1, .log×1 |
-| `docs` | 32 | 1.59 MB | .md×31, .png×1 |
-| `docs/archive` | 29 | 0.25 MB | .md×29 |
+| `docs` | 32 | 1.58 MB | .md×31, .png×1 |
+| `docs/archive` | 30 | 0.25 MB | .md×30 |
 | `docs/archive/legacy-root-2026-06` | 63 | 0.81 MB | .md×63 |
 | `docs/probe_captures` | 12 | 38.01 MB | .log×12 |
 | `docs/proposals` | 24 | 0.88 MB | .md×23, .json×1 |
@@ -263,9 +263,9 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `docs/proposals/ricochet_2026-09-06` | 1 | 0.02 MB | .md×1 |
 | `docs/proposals/water_omaha_2026-09-05` | 4 | 0.10 MB | .md×4 |
 | `docs/public` | 6 | 0.08 MB | .md×6 |
-| `docs/public/fixes` | 11 | 1.13 MB | .md×11 |
+| `docs/public/fixes` | 11 | 1.16 MB | .md×11 |
 | `docs/reference` | 4 | 0.07 MB | .md×3, .txt×1 |
-| `docs/tools` | 112 | 1.69 MB | .py×100, .tsv×5, .tga×3, .ps1×2 |
+| `docs/tools` | 118 | 1.80 MB | .py×103, .tsv×5, .json×3, .tga×3 |
 | `docs/tools/sec1_filter_selftest` | 19 | 2.02 MB | .inc×7, .py×2, .exe×2, .obj×2 |
 | `docs/tools/sec2_filter_selftest` | 61 | 8.44 MB | .log×20, .inc×14, .exe×13, .txt×9 |
 | `docs/tools/sec2_filter_selftest/head` | 3 | 0.10 MB | .h×2, .c×1 |
@@ -291,7 +291,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `extracted-scripts/mainta_ubersound` | 1 | 0.20 MB | .scr×1 |
 | `extracted-scripts/maps` | 91 | 2.29 MB | .scr×91 |
 | `fsafe_home/maintt` | 3 | 1.43 MB | .pid×1, .cfg×1, .log×1 |
-| `hzm-mohaa-coop-mod` | 45 | 2304.08 MB | .txt×12, .jpg×10, .pk3×6, .cfg×5 |
+| `hzm-mohaa-coop-mod` | 45 | 2304.28 MB | .txt×12, .jpg×10, .pk3×6, .cfg×5 |
 | `hzm-mohaa-coop-mod/__MACOSX/models` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/models/player` | 1 | 0.00 MB | .ds_store×1 |
 | `hzm-mohaa-coop-mod/__MACOSX/scripts` | 1 | 0.00 MB | .ds_store×1 |
@@ -302,7 +302,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/_notes/audio_backup_20260705/fire` | 57 | 10.35 MB | .wav×57 |
 | `hzm-mohaa-coop-mod/_notes/audio_backup_20260705/tails` | 6 | 0.96 MB | .wav×6 |
 | `hzm-mohaa-coop-mod/_notes/game` | 5 | 0.01 MB | .txt×5 |
-| `hzm-mohaa-coop-mod/_research` | 128 | 12.47 MB | .md×115, .py×4, .log×4, .json×3 |
+| `hzm-mohaa-coop-mod/_research` | 129 | 12.49 MB | .md×116, .py×4, .log×4, .json×3 |
 | `hzm-mohaa-coop-mod/_research/fontgen` | 4 | 0.25 MB | .py×3, .png×1 |
 | `hzm-mohaa-coop-mod/_research/hdfix` | 21 | 472.56 MB | .png×15, .py×4, .pk3×2 |
 | `hzm-mohaa-coop-mod/_research/hdfix/pk3/textures/wilderness` | 2 | 1.30 MB | .dds×1, .jpg×1 |
@@ -334,7 +334,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/_research/hdfix/work/stock` | 11 | 3.47 MB | .jpg×9, .dds×1, .tga×1 |
 | `hzm-mohaa-coop-mod/_research/maprender` | 7 | 22.81 MB | .png×3, .py×3, .md×1 |
 | `hzm-mohaa-coop-mod/_research/nohat` | 11 | 0.05 MB | .py×10, .txt×1 |
-| `hzm-mohaa-coop-mod/_research/release_drafts` | 13 | 0.06 MB | .md×13 |
+| `hzm-mohaa-coop-mod/_research/release_drafts` | 15 | 0.06 MB | .md×15 |
 | `hzm-mohaa-coop-mod/_terrain_pack/textures/algiers` | 2 | 2.10 MB | .dds×2 |
 | `hzm-mohaa-coop-mod/_terrain_pack/textures/central_europe_winter` | 2 | 2.10 MB | .dds×2 |
 | `hzm-mohaa-coop-mod/_terrain_pack/textures/models/items` | 2 | 2.10 MB | .dds×2 |
@@ -342,11 +342,11 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/_terrain_pack/textures/wilderness` | 13 | 24.29 MB | .dds×13 |
 | `hzm-mohaa-coop-mod/anim` | 23 | 0.17 MB | .scr×23 |
 | `hzm-mohaa-coop-mod/cmpatch` | 2 | 0.00 MB | .txt×2 |
-| `hzm-mohaa-coop-mod/coop_mod` | 137 | 4.21 MB | .scr×131, .st×3, .cfg×2, .txt×1 |
+| `hzm-mohaa-coop-mod/coop_mod` | 156 | 4.55 MB | .scr×150, .st×3, .cfg×2, .txt×1 |
 | `hzm-mohaa-coop-mod/coop_mod/alias` | 2 | 0.03 MB | .cfg×1, .scr×1 |
 | `hzm-mohaa-coop-mod/coop_mod/bp` | 5 | 0.03 MB | .dat×5 |
 | `hzm-mohaa-coop-mod/coop_mod/cache` | 1 | 0.00 MB | .scr×1 |
-| `hzm-mohaa-coop-mod/coop_mod/cfg` | 48 | 0.07 MB | .cfg×48 |
+| `hzm-mohaa-coop-mod/coop_mod/cfg` | 49 | 0.08 MB | .cfg×49 |
 | `hzm-mohaa-coop-mod/coop_mod/cov` | 1 | 0.02 MB | .txt×1 |
 | `hzm-mohaa-coop-mod/coop_mod/fog` | 47 | 0.00 MB | .dat×47 |
 | `hzm-mohaa-coop-mod/coop_mod/holdout_backup` | 4 | 0.04 MB | .dat×4 |
@@ -871,11 +871,12 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/textures/sprites` | 5 | 0.14 MB | .tga×5 |
 | `hzm-mohaa-coop-mod/textures/wilderness` | 2 | 3.72 MB | .jpg×2 |
 | `hzm-mohaa-coop-mod/ubersound` | 17 | 7.26 MB | .scr×17 |
-| `hzm-mohaa-coop-mod/ui` | 145 | 1.16 MB | .urc×107, .cfg×34, .inc×2, .scr×1 |
+| `hzm-mohaa-coop-mod/ui` | 161 | 1.44 MB | .urc×123, .cfg×34, .inc×2, .scr×1 |
 | `hzm-mohaa-coop-mod/ui/coop_fov` | 33 | 0.01 MB | .cfg×31, .bat×2 |
 | `hzm-mohaa-coop-mod/ui/coop_menumusic` | 6 | 0.00 MB | .cfg×6 |
-| `hzm-mohaa-coop-mod/ui/coop_mpa_armory` | 51 | 0.01 MB | .cfg×51 |
-| `hzm-mohaa-coop-mod/ui/coop_mpx_armory` | 45 | 0.01 MB | .cfg×45 |
+| `hzm-mohaa-coop-mod/ui/coop_mpa_armory` | 122 | 0.04 MB | .cfg×122 |
+| `hzm-mohaa-coop-mod/ui/coop_mpmenu` | 69 | 0.04 MB | .cfg×69 |
+| `hzm-mohaa-coop-mod/ui/coop_mpx_armory` | 110 | 0.03 MB | .cfg×110 |
 | `hzm-mohaa-coop-mod/ui/coop_objectives` | 46 | 0.02 MB | .cfg×46 |
 | `hzm-mohaa-coop-mod/ui/coop_start` | 14 | 0.03 MB | .cfg×14 |
 | `hzm-mohaa-coop-mod/ui/coop_tiles` | 14 | 0.79 MB | .jpg×14 |
@@ -884,7 +885,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/loadout/helm` | 48 | 0.03 MB | .cfg×48 |
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 135 | 0.13 MB | .cfg×135 |
 | `hzm-mohaa-coop-mod/ui/proto` | 11 | 0.14 MB | .urc×6, .cfg×3, .inc×2 |
-| `manifests` | 56 | 0.75 MB | .json×56 |
+| `manifests` | 57 | 0.76 MB | .json×57 |
 | `map_entities` | 92 | 10.22 MB | .txt×88, .md×4 |
 | `openmohaa-hzm` | 8 | 0.04 MB | (none)×2, .txt×2, .md×2, .ps1×1 |
 | `openmohaa-hzm/.github/ISSUE_TEMPLATE` | 1 | 0.00 MB | .md×1 |
@@ -898,11 +899,11 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/code/autoupdater` | 1 | 0.03 MB | .c×1 |
 | `openmohaa-hzm/code/autoupdater/rsa_tools` | 9 | 0.01 MB | .c×4, .sh×3, (none)×1, .h×1 |
 | `openmohaa-hzm/code/botlib` | 57 | 1.15 MB | .h×29, .c×28 |
-| `openmohaa-hzm/code/cgame` | 45 | 2.07 MB | .cpp×20, .c×13, .h×10, .txt×1 |
+| `openmohaa-hzm/code/cgame` | 45 | 2.08 MB | .cpp×20, .c×13, .h×10, .txt×1 |
 | `openmohaa-hzm/code/client` | 87 | 1.58 MB | .cpp×37, .h×33, .c×16, .txt×1 |
 | `openmohaa-hzm/code/client/new` | 3 | 0.02 MB | .h×2, .cpp×1 |
 | `openmohaa-hzm/code/curl` | 2 | 0.00 MB | .txt×1, .h×1 |
-| `openmohaa-hzm/code/fgame` | 285 | 7.24 MB | .cpp×157, .h×122, .bak_botinput×2, .pre_0905lanes_bak×2 |
+| `openmohaa-hzm/code/fgame` | 285 | 7.26 MB | .cpp×157, .h×122, .bak_botinput×2, .pre_0905lanes_bak×2 |
 | `openmohaa-hzm/code/gamespy` | 23 | 0.21 MB | .h×11, .c×10, .txt×2 |
 | `openmohaa-hzm/code/gamespy/Chat` | 15 | 0.38 MB | .h×8, .c×6, .txt×1 |
 | `openmohaa-hzm/code/gamespy/Chat/chatc` | 1 | 0.02 MB | .c×1 |
@@ -1133,7 +1134,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `openmohaa-hzm/misc/cmake` | 1 | 0.01 MB | .cmake×1 |
 | `openmohaa-hzm/misc/linux` | 4 | 0.00 MB | .in×3, .xml×1 |
 | `openmohaa-hzm/misc/setup/windows/app` | 4 | 0.01 MB | .wxs×2, .wixproj×1, .wxl×1 |
-| `scratchpad` | 9 | 0.01 MB | .txt×6, .py×2, .log×1 |
+| `scratchpad` | 10 | 0.01 MB | .txt×7, .py×2, .log×1 |
 | `scratchpad/veh_dds_reverted/textures/models/human/germanmaps/tank_commander` | 1 | 0.35 MB | .dds×1 |
 | `scratchpad/veh_dds_reverted/textures/models/submodels` | 2 | 0.13 MB | .dds×2 |
 | `scratchpad/veh_dds_reverted/textures/models/vehicles/bmwbike` | 1 | 0.00 MB | .dds×1 |
@@ -1176,10 +1177,10 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `scratchpad/veh_dds_reverted/textures/models/vehicles/veltro_fly` | 1 | 0.35 MB | .dds×1 |
 | `scratchpad_retail` | 17 | 0.18 MB | .tik×17 |
 | `server_home` | 4 | 1.38 MB | .log×4 |
-| `server_home/maintt` | 16 | 6.50 MB | .log×9, .cfg×5, .pid×1, .pre_e3l4×1 |
+| `server_home/maintt` | 20 | 7.25 MB | .log×13, .cfg×5, .pid×1, .pre_e3l4×1 |
 | `server_home/maintt/configs` | 1 | 0.02 MB | .cfg×1 |
 | `server_home/maintt/coop_mod/save` | 24 | 0.01 MB | .dat×24 |
-| `server_home/maintt/prev` | 10 | 22.45 MB | .log×10 |
+| `server_home/maintt/prev` | 25 | 24.41 MB | .log×25 |
 | `server_home_probe/maintt` | 5 | 0.30 MB | .cfg×3, .pid×1, .log×1 |
 | `tools` | 4 | 0.17 MB | .bat×1, .c×1, .exe×1, .obj×1 |
 | `tools/rendezvous` | 8 | 0.18 MB | .log×3, .md×1, .c×1, .exe×1 |
@@ -1276,7 +1277,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `seamesh_spawn.scr` | 39 | 2.3 KB | [user 2026-09-06, bug-2508] THE DENSE SEA - spawn recipe for maps/m3l1a/coopified.scr. |
 
-### `docs/tools/` — 103 source files
+### `docs/tools/` — 106 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -1300,7 +1301,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `check_empty_rhs.py` | 95 | 3.8 KB |  |
 | `check_map_anims.py` | 412 | 19.2 KB |  |
 | `check_map_compiles.py` | 103 | 4.2 KB | !/usr/bin/env python |
-| `check_mp_isolation.py` | 877 | 45.9 KB | !/usr/bin/env python |
+| `check_mp_isolation.py` | 877 | 47.3 KB | !/usr/bin/env python |
 | `check_mp_isolation_selftest.py` | 777 | 38.1 KB | !/usr/bin/env python |
 | `check_say_aliases.py` | 196 | 9.4 KB | !/usr/bin/env python |
 | `check_tik_surfaces.py` | 88 | 3.7 KB |  |
@@ -1316,6 +1317,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `fix_dds_shadowing.py` | 189 | 7.2 KB | coding: utf-8 |
 | `fix_vo_pools.py` | 132 | 5.5 KB | !/usr/bin/env python |
 | `gen_armory_bg.py` | 254 | 10.8 KB | plain: the pre-overhaul look (near-black, subtle panels, caption + stat labels only). |
+| `gen_baseassault_maps.py` | 149 | 6.2 KB | !/usr/bin/env python |
 | `gen_bloodcloud.py` | 140 | 6.3 KB |  |
 | `gen_bloodslick_tint.py` | 108 | 4.4 KB |  |
 | `gen_bloodwash.py` | 223 | 9.7 KB |  |
@@ -1343,16 +1345,18 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `gen_menu_arrows.py` | 230 | 10.0 KB | coding: utf-8 |
 | `gen_menu_fieldsettings.py` | 660 | 33.2 KB | !/usr/bin/env python |
 | `gen_metal_brushes.py` | 214 | 9.5 KB | !/usr/bin/env python |
-| `gen_mp_armory.py` | 517 | 23.2 KB | !/usr/bin/env python |
+| `gen_mp_armory.py` | 956 | 47.4 KB | !/usr/bin/env python |
 | `gen_mp_gungame.py` | 167 | 7.7 KB | !/usr/bin/env python |
 | `gen_pain_tiers.py` | 97 | 5.1 KB | !/usr/bin/env python3 |
 | `gen_public_pages.py` | 595 | 23.8 KB | !/usr/bin/env python3 |
-| `gen_service_record.py` | 1,113 | 70.4 KB | [user 08-07] friendly display name for a challenge's reward field (chal_def's 7th arg) |
+| `gen_push_maps.py` | 157 | 6.2 KB | !/usr/bin/env python |
+| `gen_service_record.py` | 1,138 | 71.4 KB | [bug-2610] write-if-different for .tga saves: PIL's TGA encoder is deterministic, so an unchanged |
 | `gen_skinbase.py` | 40 | 1.9 KB | !/usr/bin/env python |
 | `gen_skins.py` | 285 | 12.7 KB |  |
 | `gen_skysheen.py` | 345 | 14.9 KB |  |
 | `gen_surfcell.py` | 287 | 14.2 KB | coding: utf-8 |
 | `gen_swashblood.py` | 262 | 12.8 KB | coding: utf-8 |
+| `gen_vehicle_maps.py` | 145 | 5.9 KB | !/usr/bin/env python |
 | `gen_weapon_skins.py` | 189 | 8.3 KB |  |
 | `gen_wetsand.py` | 121 | 6.6 KB | coding: utf-8 |
 | `hudslots.py` | 98 | 4.0 KB | !/usr/bin/env python3 |
@@ -1568,9 +1572,9 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `autoexec.cfg` | 1,682 | 123.2 KB | HZM Extended Coop Mod |
+| `autoexec.cfg` | 1,703 | 124.9 KB | HZM Extended Coop Mod |
 | `coop.cfg` | 3 | 0.1 KB | DEVELOPER CONFIG FILE |
-| `coop_defaults.cfg` | 591 | 38.2 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
+| `coop_defaults.cfg` | 592 | 38.3 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
 | `net_cl.cfg` | 18 | 1.2 KB | HZM Coop recommended CLIENT settings. |
 | `net_sv.cfg` | 21 | 1.2 KB | HZM Coop recommended SERVER settings. |
 
@@ -1664,7 +1668,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `runto_inopen.scr` | 122 | 3.9 KB | HZM coop [2026-08-06] extracted from maintt/pak1.pk3 (bug-1490) to add a dog branch. Retail's own |
 | `shoot.scr` | 262 | 6.7 KB | Shoot |
 
-### `hzm-mohaa-coop-mod/coop_mod/` — 136 source files
+### `hzm-mohaa-coop-mod/coop_mod/` — 155 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -1680,7 +1684,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `allysquad.scr` | 382 | 17.1 KB | [user 08-08] ALLIED SQUAD SURVIVABILITY |
 | `ambience.scr` | 333 | 16.3 KB | HZM coop - AMBIENCE BEDS + COMBAT MIXING (script-only; modeled on weather.scr::coop_weather_sound). |
 | `ammobox.scr` | 273 | 12.2 KB | HZM coop - player-deployable AMMO BOX. |
-| `blueprint.scr` | 567 | 23.0 KB | HZM coop - BLUEPRINT / PLAYER STRUCTURES (build-mode extension) |
+| `blueprint.scr` | 566 | 22.9 KB | HZM coop - BLUEPRINT / PLAYER STRUCTURES (build-mode extension) |
 | `bt_playerTank.scr` | 36 | 1.6 KB | chrissstrahl - Exit Tank Script for BT-Coop |
 | `buildmode.scr` | 1,060 | 60.2 KB | HZM Coop - BUILD MODE (dev tool). Full docs: _research/build_mode.md |
 | `buildmode_actors.scr` | 411 | 21.8 KB | HZM Coop - BUILD MODE : ALLIED ACTORS + ANIMATION catalog (DATA + ghost animator). |
@@ -1736,7 +1740,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `loadoutskins.scr` | 646 | 57.6 KB | GENERATED by build_finish_strip.py + gen_skins.py - the server-side skin variant table. |
 | `loadoutskins_base.scr` | 434 | 41.1 KB | GENERATED by docs/tools/gen_skinbase.py from loadoutskins.scr - DO NOT EDIT. |
 | `lobby.scr` | 1,177 | 53.4 KB | HZM Coop - Pre-Mission Lobby module. Full spec: _research/coop_lobby1_build.md |
-| `lobbyui.scr` | 265 | 10.6 KB | [304] CLICKABLE LOBBY UI - a mouse cursor + button framework for the live |
+| `lobbyui.scr` | 285 | 11.5 KB | [304] CLICKABLE LOBBY UI - a mouse cursor + button framework for the live |
 | `m4l3_precache.scr` | 157 | 6.0 KB |  |
 | `main.scr` | 2,331 | 117.2 KB | VERSION 1.0 started by chrissstrahl on 2018.06.28 |
 | `mapgrade.scr` | 60 | 3.0 KB | HZM coop - PER-MAP COLOUR GRADE (server side). |
@@ -1753,15 +1757,34 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `mom_actions.scr` | 173 | 8.7 KB | Created by chrissstrahl on 2018.07.02 - based on Multi Option Menu from Star Trek Elite Force II from 2009 fo… |
 | `mom_login.scr` | 167 | 5.5 KB | Created by chrissstrahl on 2018.07.02 - based on Multi Option Menu from Star Trek Elite Force II from 2009 fo… |
 | `morale.scr` | 94 | 4.6 KB | morale.scr - HZM coop SQUAD MORALE (ME1, coop_moraleEnable, default off) |
-| `mp.scr` | 439 | 22.3 KB | MP.SCR - the multiplayer entry point. NOT the coop framework. |
-| `mp_armory.scr` | 522 | 19.7 KB | MP_ARMORY.SCR - the shared MP armory dispatcher (slice 2, LIVE). |
-| `mp_freezetag.scr` | 309 | 15.2 KB | MP_FREEZETAG.SCR - FREEZE TAG, an MP game MODE (slice 5). Decisions M12/M13/M14: played on Team |
-| `mp_gungame.scr` | 275 | 13.0 KB | MP_GUNGAME.SCR - Gun Game, the first MP game MODE (slice 1). FFA (gt1) only for v1 (decision M9). |
+| `mp.scr` | 626 | 32.8 KB | MP.SCR - the multiplayer entry point. NOT the coop framework. |
+| `mp_armory.scr` | 586 | 22.8 KB | MP_ARMORY.SCR - the shared MP armory dispatcher (slice 2, LIVE). |
+| `mp_baseassault.scr` | 678 | 25.2 KB | MP_BASEASSAULT.SCR - BASE ASSAULT, an MP game MODE. Decision M21: original rules - 3 bases per |
+| `mp_baseassault_maps.scr` | 713 | 21.5 KB | GENERATED by docs/tools/gen_baseassault_maps.py -- DO NOT HAND-EDIT (regenerate instead). |
+| `mp_bots.scr` | 179 | 8.9 KB | MP_BOTS.SCR - MP BOT AUTO-FILL (host-configurable bot backfill). Scales the number of engine bots |
+| `mp_buildabase.scr` | 466 | 18.2 KB | MP_BUILDABASE.SCR - BUILD-A-BASE, an MP game MODE, with the REAL AlienX base-builder mechanic. |
+| `mp_cosmetics.scr` | 294 | 15.7 KB | MP_COSMETICS.SCR - apply a MP player's chosen cosmetics (body skin / gloves / helmet) at spawn. |
+| `mp_ctf.scr` | 487 | 21.8 KB | MP_CTF.SCR - CAPTURE THE FLAG, an MP game MODE (slice 6). Decision M18: "CTF and Demolition built |
+| `mp_dbno.scr` | 591 | 24.4 KB | MP_DBNO.SCR - DOWN BUT NOT OUT, an MP host toggle (coop_mpDbno 0/1). A PORT of the coop DBNO |
+| `mp_demolition.scr` | 344 | 14.3 KB | MP_DEMOLITION.SCR - DEMOLITION, an MP game MODE. SYMMETRIC two-way bomb rounds (UberMod / Mefy |
+| `mp_freezetag.scr` | 376 | 18.1 KB | MP_FREEZETAG.SCR - FREEZE TAG, an MP game MODE (slice 5). Decisions M12/M13/M14: played on Team |
+| `mp_gungame.scr` | 282 | 13.0 KB | MP_GUNGAME.SCR - Gun Game, the first MP game MODE (slice 1). FFA (gt1) only for v1 (decision M9). |
 | `mp_gungame_tiers.scr` | 62 | 2.4 KB | MP_GUNGAME_TIERS.SCR - GENERATED by docs/tools/gen_mp_gungame.py from |
+| `mp_hardcore.scr` | 123 | 6.0 KB | MP_HARDCORE.SCR - the HARDCORE modifier (user 2026-09-14). A host toggle (coop_mpHardcore 0/1) that |
 | `mp_koth.scr` | 371 | 16.6 KB | MP_KOTH.SCR - KING OF THE HILL, an MP game MODE (slice 4). Decision M15: a MOVING hill, TEAM |
 | `mp_lms.scr` | 81 | 4.0 KB | MP_LMS.SCR - LAST MAN STANDING, an MP game MODE (slice 3). Decision M17: team elimination rounds |
+| `mp_medkits.scr` | 246 | 11.1 KB | MP_MEDKITS.SCR - MEDKITS / HEALING, an MP host toggle (coop_mpMedkits 0/1). A PORT of the coop |
+| `mp_prog_wpnmap.scr` | 241 | 5.8 KB | GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead) |
+| `mp_progression.scr` | 451 | 20.9 KB | MP_PROGRESSION.SCR - MP kill attribution -> in-session progression counters (slice 1 of the |
+| `mp_prophunt.scr` | 278 | 12.1 KB | MP_PROPHUNT.SCR - PROP HUNT, an MP game MODE. Hiders (PROPS) disguise as static map objects and try |
+| `mp_push.scr` | 453 | 22.0 KB | MP_PUSH.SCR - PUSH ("Gain Ground"), an MP game MODE (slice 6). Decision M19: sequential |
+| `mp_push_maps.scr` | 1,260 | 39.4 KB | GENERATED by docs/tools/gen_push_maps.py -- DO NOT HAND-EDIT (regenerate instead). |
+| `mp_realism.scr` | 84 | 3.8 KB | MP_REALISM.SCR - the host "realism" toggles (user 2026-09-14). Four host toggles that let a host |
 | `mp_rounds.scr` | 325 | 14.6 KB | MP_ROUNDS.SCR - the shared MP round-state helper (slice 3). Consumed by |
 | `mp_snd.scr` | 89 | 4.6 KB | MP_SND.SCR - SEARCH & DESTROY, an MP game MODE (slice 3). Decision M16: the STOCK gametype-4 |
+| `mp_spawnprotect.scr` | 130 | 5.6 KB | MP_SPAWNPROTECT.SCR - SPAWN PROTECTION, an MP host toggle (coop_mpSpawnProtect = seconds, 0 = off). |
+| `mp_vehicle_maps.scr` | 130 | 6.9 KB | GENERATED by docs/tools/gen_vehicle_maps.py -- DO NOT HAND-EDIT (regenerate instead). |
+| `mp_vehicles.scr` | 778 | 31.2 KB | MP_VEHICLES.SCR - the MP VEHICLE / EMPLACEMENT framework (host toggle coop_mpVehicles 0/1). A clean |
 | `mpa_roster.scr` | 463 | 12.4 KB | GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead) |
 | `mpx_roster.scr` | 397 | 10.6 KB | GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead) |
 | `mvchal_gen.scr` | 214 | 23.6 KB | GENERATED by docs/tools/variant_challenges.py --emit DO NOT EDIT BY HAND |
@@ -1787,7 +1810,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `sndcache.scr` | 111 | 5.2 KB | [user 2026-08-10] 633 cache lines REMOVED - deathvox (484), flvo (135), gurgle (13) and headshot |
 | `sound.scr` | 65 | 2.6 KB | [203] Smithy - we can use this for sound related code |
 | `spawnlocations.scr` | 3,617 | 171.0 KB | [200] chrissstrahl - fixed using unfiltred mapname (using now level.coop_mapname) |
-| `start_server.cfg` | 60 | 4.0 KB | used cfg to start server, executed from within game menu coop_start.urc |
+| `start_server.cfg` | 74 | 4.8 KB | used cfg to start server, executed from within game menu coop_start.urc |
 | `strings.scr` | 1,301 | 33.3 KB | [200] Smithy - this is taken from xnull. Not mine, but is used by many. Will be useful to us. |
 | `subsink.scr` | 618 | 27.1 KB | HZM coop - STAGED U-BOAT DEATH |
 | `surrender.scr` | 177 | 9.2 KB | HZM coop - SURRENDER CONVERSION [user 2026-08-19]: "when a german surrenders can you |
@@ -1818,7 +1841,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `common.scr` | 120 | 4.2 KB |  |
 
-### `hzm-mohaa-coop-mod/coop_mod/cfg/` — 48 source files
+### `hzm-mohaa-coop-mod/coop_mod/cfg/` — 49 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
@@ -1828,7 +1851,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `buildmode_stop.cfg` | 36 | 0.9 KB | HZM Coop - BUILD MODE stop. |
 | `campaign_start.cfg` | 19 | 1.1 KB | HZM Coop - "Begin Full Campaign". |
 | `coop_fielddefaults.cfg` | 27 | 1.0 KB | HZM coop - FIELD SETTINGS SHIPPING DEFAULTS. |
-| `coop_fxdefaults.cfg` | 59 | 1.6 KB | HZM coop - POST-FX SHIPPING DEFAULTS. This is the canonical post-processing look: |
+| `coop_fxdefaults.cfg` | 55 | 1.7 KB | HZM coop - POST-FX SHIPPING DEFAULTS. The DEFAULTS button in ui/coop_postfx*.urc execs this. |
+| `coop_gfxdefaults.cfg` | 22 | 0.8 KB | HZM coop - ADVANCED GRAPHICS SHIPPING DEFAULTS. The DEFAULTS button in ui/advanced_graphics.urc execs this. |
 | `coop_regression.cfg` | 69 | 3.3 KB | COOP REGRESSION GATE - arm every self-test battery at once. |
 | `coop_regression_off.cfg` | 17 | 0.4 KB | Disarm the coop regression gate (see coop_regression.cfg). |
 | `covertune.cfg` | 50 | 2.7 KB | COVER CAMERA TUNER - numpad bindings |
@@ -4411,12 +4435,12 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `uberdialog.scr` | 42,284 | 6036.4 KB | UBERDIALOG |
 | `ubersound.scr` | 5,707 | 619.1 KB | start chrissstrahl - fix sound issue |
 
-### `hzm-mohaa-coop-mod/ui/` — 142 source files
+### `hzm-mohaa-coop-mod/ui/` — 158 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
 | `BIND.SCR` | 122 | 4.9 KB |  |
-| `advanced_graphics.urc` | 552 | 12.5 KB |  |
+| `advanced_graphics.urc` | 1,218 | 21.2 KB |  |
 | `advancedoptions.urc` | 580 | 13.2 KB |  |
 | `audio options.urc` | 676 | 9.0 KB |  |
 | `briefing1a.urc` | 210 | 3.5 KB |  |
@@ -4436,12 +4460,21 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_loadout.urc` | 3,995 | 77.5 KB |  |
 | `coop_login.urc` | 280 | 5.1 KB |  |
 | `coop_mom.urc` | 287 | 5.5 KB |  |
-| `coop_mpa_armory.urc` | 1,282 | 22.7 KB |  |
-| `coop_mpx_armory.urc` | 1,120 | 19.8 KB |  |
+| `coop_mp_options.urc` | 132 | 2.3 KB |  |
+| `coop_mp_record.urc` | 562 | 8.4 KB |  |
+| `coop_mpa_appearance.urc` | 538 | 9.5 KB |  |
+| `coop_mpa_armory.urc` | 1,322 | 23.5 KB |  |
+| `coop_mpa_defaults.urc` | 1,321 | 23.5 KB |  |
+| `coop_mphostrules.urc` | 876 | 17.9 KB |  |
+| `coop_mpmenu.urc` | 535 | 13.9 KB |  |
+| `coop_mpx_appearance.urc` | 538 | 9.5 KB |  |
+| `coop_mpx_armory.urc` | 1,160 | 20.5 KB |  |
+| `coop_mpx_defaults.urc` | 1,159 | 20.5 KB |  |
 | `coop_objectives.urc` | 1,343 | 23.3 KB |  |
-| `coop_postfx.urc` | 736 | 14.0 KB |  |
-| `coop_postfx2.urc` | 390 | 7.9 KB |  |
-| `coop_postfx3.urc` | 259 | 5.6 KB |  |
+| `coop_postfx.urc` | 1,160 | 20.1 KB |  |
+| `coop_postfx2.urc` | 1,024 | 17.4 KB |  |
+| `coop_postfx3.urc` | 1,076 | 18.5 KB |  |
+| `coop_postfx4.urc` | 1,065 | 18.5 KB |  |
 | `coop_report.urc` | 152 | 2.8 KB |  |
 | `coop_settings.urc` | 1,709 | 30.0 KB |  |
 | `coop_sr.urc` | 39,573 | 672.9 KB |  |
@@ -4480,7 +4513,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `coop_sr_pinreset.cfg` | 452 | 8.3 KB | GENERATED by docs/tools/gen_service_record.py - CLEAR PINS (builtins only). |
 | `coop_start.urc` | 442 | 11.2 KB |  |
 | `coop_weaponselect_suppress.urc` | 78 | 3.0 KB |  |
-| `coop_whatsnew.urc` | 132 | 3.2 KB |  |
+| `coop_whatsnew.urc` | 132 | 3.1 KB |  |
 | `hd_texel_scale.cfg` | 56 | 2.0 KB | HZM coop - per-material HD upscale factors for tileshader UI widgets (uiwidget.cpp UI_HDTexelScale) |
 | `hud_ammo_15cmC36.urc` | 5 | 0.3 KB |  |
 | `hud_ammo_AbTurretMain.urc` | 5 | 0.3 KB |  |
@@ -4544,6 +4577,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `hud_ammo_vickers.urc` | 5 | 0.3 KB |  |
 | `hud_compass.urc` | 84 | 2.0 KB |  |
 | `hud_health.urc` | 54 | 1.5 KB |  |
+| `hzm_bamaps.urc` | 138 | 2.9 KB |  |
+| `hzm_pushmaps.urc` | 163 | 3.4 KB |  |
 | `joininternetgame.urc` | 113 | 2.4 KB |  |
 | `loading_coop_morocco.urc` | 187 | 2.7 KB |  |
 | `loading_e3l4_arena.urc` | 31 | 0.5 KB |  |
@@ -4552,9 +4587,14 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `morocco1.urc` | 22 | 0.3 KB |  |
 | `morocco2.urc` | 22 | 0.3 KB |  |
 | `morocco_missiondetails.urc` | 22 | 0.4 KB |  |
-| `multiplayer.urc` | 213 | 5.4 KB |  |
-| `multiplayeroptions.urc` | 285 | 5.9 KB |  |
-| `multiplayerstart.urc` | 274 | 6.2 KB |  |
+| `multiplayer.urc` | 213 | 5.3 KB |  |
+| `multiplayerstart.urc` | 393 | 10.1 KB |  |
+| `multiplayerstart_ffa.urc` | 832 | 17.0 KB |  |
+| `multiplayerstart_lib.urc` | 688 | 13.2 KB |  |
+| `multiplayerstart_obj.urc` | 821 | 16.8 KB |  |
+| `multiplayerstart_round.urc` | 834 | 16.5 KB |  |
+| `multiplayerstart_team.urc` | 1,376 | 28.2 KB |  |
+| `multiplayerstart_tow.urc` | 768 | 15.0 KB |  |
 | `options_main.urc` | 253 | 5.4 KB |  |
 | `video options.urc` | 557 | 14.0 KB |  |
 
@@ -4607,53 +4647,117 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `t4.cfg` | 8 | 0.4 KB | HZM coop [bug-2570] main-menu theme 5 of 6 - GENERATED by gen_menumusic.py, do not hand-edit |
 | `t5.cfg` | 8 | 0.4 KB | HZM coop [bug-2570] main-menu theme 6 of 6 - GENERATED by gen_menumusic.py, do not hand-edit |
 
-### `hzm-mohaa-coop-mod/ui/coop_mpa_armory/` — 51 source files
+### `hzm-mohaa-coop-mod/ui/coop_mpa_armory/` — 122 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `c01.cfg` | 9 | 0.3 KB |  |
-| `c02.cfg` | 5 | 0.2 KB |  |
-| `c05.cfg` | 5 | 0.2 KB |  |
-| `c06.cfg` | 5 | 0.2 KB |  |
-| `c08.cfg` | 5 | 0.2 KB |  |
-| `c09.cfg` | 5 | 0.2 KB |  |
-| `c11.cfg` | 5 | 0.2 KB |  |
-| `c12.cfg` | 9 | 0.3 KB |  |
-| `c14.cfg` | 5 | 0.2 KB |  |
-| `c15.cfg` | 5 | 0.2 KB |  |
-| `c17.cfg` | 5 | 0.2 KB |  |
-| `c20.cfg` | 5 | 0.2 KB |  |
-| `c21.cfg` | 5 | 0.2 KB |  |
-| `c23.cfg` | 5 | 0.2 KB |  |
-| `c24.cfg` | 9 | 0.3 KB |  |
-| `c25.cfg` | 5 | 0.2 KB |  |
-| `c28.cfg` | 5 | 0.2 KB |  |
-| `c29.cfg` | 5 | 0.2 KB |  |
-| `c30.cfg` | 5 | 0.2 KB |  |
-| `c31.cfg` | 5 | 0.2 KB |  |
-| `c32.cfg` | 5 | 0.2 KB |  |
-| `c36.cfg` | 9 | 0.3 KB |  |
-| `c40.cfg` | 5 | 0.2 KB |  |
-| `c42.cfg` | 5 | 0.2 KB |  |
-| `c44.cfg` | 9 | 0.3 KB |  |
-| `c45.cfg` | 9 | 0.3 KB |  |
-| `c47.cfg` | 5 | 0.2 KB |  |
-| `c48.cfg` | 9 | 0.3 KB |  |
-| `c49.cfg` | 5 | 0.2 KB |  |
-| `c52.cfg` | 5 | 0.2 KB |  |
-| `c53.cfg` | 5 | 0.2 KB |  |
-| `c54.cfg` | 5 | 0.2 KB |  |
-| `c60.cfg` | 5 | 0.2 KB |  |
-| `c61.cfg` | 5 | 0.2 KB |  |
-| `c63.cfg` | 5 | 0.2 KB |  |
-| `c64.cfg` | 9 | 0.3 KB |  |
-| `c66.cfg` | 5 | 0.2 KB |  |
-| `c68.cfg` | 5 | 0.2 KB |  |
-| `c70.cfg` | 5 | 0.2 KB |  |
-| `c72.cfg` | 5 | 0.2 KB |  |
-| `c75.cfg` | 5 | 0.2 KB |  |
+| `c01.cfg` | 10 | 0.3 KB |  |
+| `c02.cfg` | 10 | 0.4 KB |  |
+| `c05.cfg` | 10 | 0.4 KB |  |
+| `c06.cfg` | 10 | 0.4 KB |  |
+| `c08.cfg` | 10 | 0.3 KB |  |
+| `c09.cfg` | 10 | 0.4 KB |  |
+| `c11.cfg` | 10 | 0.4 KB |  |
+| `c12.cfg` | 10 | 0.3 KB |  |
+| `c14.cfg` | 10 | 0.4 KB |  |
+| `c15.cfg` | 10 | 0.4 KB |  |
+| `c17.cfg` | 10 | 0.4 KB |  |
+| `c20.cfg` | 10 | 0.4 KB |  |
+| `c21.cfg` | 10 | 0.4 KB |  |
+| `c23.cfg` | 10 | 0.4 KB |  |
+| `c24.cfg` | 10 | 0.3 KB |  |
+| `c25.cfg` | 10 | 0.4 KB |  |
+| `c28.cfg` | 10 | 0.3 KB |  |
+| `c29.cfg` | 10 | 0.3 KB |  |
+| `c30.cfg` | 10 | 0.4 KB |  |
+| `c31.cfg` | 10 | 0.4 KB |  |
+| `c32.cfg` | 10 | 0.4 KB |  |
+| `c36.cfg` | 10 | 0.3 KB |  |
+| `c40.cfg` | 10 | 0.4 KB |  |
+| `c42.cfg` | 10 | 0.4 KB |  |
+| `c44.cfg` | 10 | 0.3 KB |  |
+| `c45.cfg` | 10 | 0.3 KB |  |
+| `c47.cfg` | 10 | 0.3 KB |  |
+| `c48.cfg` | 10 | 0.3 KB |  |
+| `c49.cfg` | 10 | 0.4 KB |  |
+| `c52.cfg` | 10 | 0.4 KB |  |
+| `c53.cfg` | 10 | 0.4 KB |  |
+| `c54.cfg` | 10 | 0.4 KB |  |
+| `c60.cfg` | 10 | 0.3 KB |  |
+| `c61.cfg` | 10 | 0.4 KB |  |
+| `c63.cfg` | 10 | 0.4 KB |  |
+| `c64.cfg` | 10 | 0.3 KB |  |
+| `c66.cfg` | 10 | 0.4 KB |  |
+| `c68.cfg` | 10 | 0.4 KB |  |
+| `c70.cfg` | 10 | 0.4 KB |  |
+| `c72.cfg` | 10 | 0.3 KB |  |
+| `c75.cfg` | 10 | 0.4 KB |  |
+| `d01.cfg` | 9 | 0.3 KB |  |
+| `d02.cfg` | 9 | 0.3 KB |  |
+| `d05.cfg` | 9 | 0.3 KB |  |
+| `d06.cfg` | 9 | 0.4 KB |  |
+| `d08.cfg` | 9 | 0.3 KB |  |
+| `d09.cfg` | 9 | 0.4 KB |  |
+| `d11.cfg` | 9 | 0.4 KB |  |
+| `d12.cfg` | 9 | 0.3 KB |  |
+| `d14.cfg` | 9 | 0.3 KB |  |
+| `d15.cfg` | 9 | 0.4 KB |  |
+| `d17.cfg` | 9 | 0.4 KB |  |
+| `d20.cfg` | 9 | 0.3 KB |  |
+| `d21.cfg` | 9 | 0.4 KB |  |
+| `d23.cfg` | 9 | 0.3 KB |  |
+| `d24.cfg` | 9 | 0.3 KB |  |
+| `d25.cfg` | 9 | 0.3 KB |  |
+| `d28.cfg` | 9 | 0.3 KB |  |
+| `d29.cfg` | 9 | 0.3 KB |  |
+| `d30.cfg` | 9 | 0.4 KB |  |
+| `d31.cfg` | 9 | 0.3 KB |  |
+| `d32.cfg` | 9 | 0.4 KB |  |
+| `d36.cfg` | 9 | 0.3 KB |  |
+| `d40.cfg` | 9 | 0.3 KB |  |
+| `d42.cfg` | 9 | 0.3 KB |  |
+| `d44.cfg` | 9 | 0.3 KB |  |
+| `d45.cfg` | 9 | 0.3 KB |  |
+| `d47.cfg` | 9 | 0.3 KB |  |
+| `d48.cfg` | 9 | 0.3 KB |  |
+| `d49.cfg` | 9 | 0.4 KB |  |
+| `d52.cfg` | 9 | 0.4 KB |  |
+| `d53.cfg` | 9 | 0.3 KB |  |
+| `d54.cfg` | 9 | 0.3 KB |  |
+| `d60.cfg` | 9 | 0.3 KB |  |
+| `d61.cfg` | 9 | 0.3 KB |  |
+| `d63.cfg` | 9 | 0.3 KB |  |
+| `d64.cfg` | 9 | 0.3 KB |  |
+| `d66.cfg` | 9 | 0.3 KB |  |
+| `d68.cfg` | 9 | 0.3 KB |  |
+| `d70.cfg` | 9 | 0.4 KB |  |
+| `d72.cfg` | 9 | 0.3 KB |  |
+| `d75.cfg` | 9 | 0.4 KB |  |
 | `deploy.cfg` | 1 | 0.0 KB |  |
-| `open.cfg` | 17 | 0.4 KB |  |
+| `dopen.cfg` | 22 | 0.6 KB |  |
+| `h01.cfg` | 3 | 0.1 KB |  |
+| `h02.cfg` | 3 | 0.1 KB |  |
+| `h03.cfg` | 3 | 0.1 KB |  |
+| `h04.cfg` | 3 | 0.1 KB |  |
+| `h05.cfg` | 3 | 0.1 KB |  |
+| `h06.cfg` | 3 | 0.1 KB |  |
+| `h07.cfg` | 3 | 0.1 KB |  |
+| `h08.cfg` | 3 | 0.1 KB |  |
+| `h09.cfg` | 3 | 0.1 KB |  |
+| `h10.cfg` | 3 | 0.1 KB |  |
+| `k01.cfg` | 3 | 0.1 KB |  |
+| `k02.cfg` | 3 | 0.1 KB |  |
+| `k03.cfg` | 3 | 0.1 KB |  |
+| `k04.cfg` | 3 | 0.1 KB |  |
+| `k05.cfg` | 3 | 0.1 KB |  |
+| `k06.cfg` | 3 | 0.1 KB |  |
+| `k07.cfg` | 3 | 0.1 KB |  |
+| `k08.cfg` | 3 | 0.1 KB |  |
+| `k09.cfg` | 3 | 0.1 KB |  |
+| `k10.cfg` | 3 | 0.1 KB |  |
+| `k11.cfg` | 3 | 0.1 KB |  |
+| `k12.cfg` | 3 | 0.1 KB |  |
+| `open.cfg` | 22 | 0.6 KB |  |
 | `tab0.cfg` | 9 | 0.2 KB |  |
 | `tab1.cfg` | 9 | 0.2 KB |  |
 | `tab2.cfg` | 9 | 0.2 KB |  |
@@ -4662,48 +4766,187 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `tab5.cfg` | 9 | 0.2 KB |  |
 | `tab6.cfg` | 9 | 0.2 KB |  |
 | `tab7.cfg` | 9 | 0.2 KB |  |
+| `v0.cfg` | 2 | 0.1 KB |  |
+| `v1.cfg` | 2 | 0.1 KB |  |
+| `v2.cfg` | 2 | 0.1 KB |  |
+| `v3.cfg` | 2 | 0.1 KB |  |
+| `v4.cfg` | 2 | 0.1 KB |  |
+| `v5.cfg` | 2 | 0.1 KB |  |
+| `v6.cfg` | 2 | 0.1 KB |  |
 
-### `hzm-mohaa-coop-mod/ui/coop_mpx_armory/` — 45 source files
+### `hzm-mohaa-coop-mod/ui/coop_mpmenu/` — 69 source files
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `c03.cfg` | 9 | 0.3 KB |  |
-| `c04.cfg` | 5 | 0.2 KB |  |
-| `c07.cfg` | 5 | 0.2 KB |  |
-| `c10.cfg` | 5 | 0.2 KB |  |
-| `c13.cfg` | 9 | 0.3 KB |  |
-| `c16.cfg` | 5 | 0.2 KB |  |
-| `c18.cfg` | 5 | 0.2 KB |  |
-| `c19.cfg` | 5 | 0.2 KB |  |
-| `c22.cfg` | 5 | 0.2 KB |  |
-| `c26.cfg` | 9 | 0.3 KB |  |
-| `c27.cfg` | 5 | 0.2 KB |  |
-| `c33.cfg` | 5 | 0.2 KB |  |
-| `c34.cfg` | 5 | 0.2 KB |  |
-| `c35.cfg` | 5 | 0.2 KB |  |
-| `c37.cfg` | 9 | 0.3 KB |  |
-| `c38.cfg` | 5 | 0.2 KB |  |
-| `c39.cfg` | 5 | 0.2 KB |  |
-| `c41.cfg` | 5 | 0.2 KB |  |
-| `c43.cfg` | 5 | 0.2 KB |  |
-| `c44.cfg` | 9 | 0.3 KB |  |
-| `c46.cfg` | 9 | 0.3 KB |  |
-| `c50.cfg` | 9 | 0.3 KB |  |
-| `c51.cfg` | 5 | 0.2 KB |  |
-| `c55.cfg` | 5 | 0.2 KB |  |
-| `c56.cfg` | 5 | 0.2 KB |  |
-| `c57.cfg` | 5 | 0.2 KB |  |
-| `c58.cfg` | 5 | 0.2 KB |  |
-| `c59.cfg` | 5 | 0.2 KB |  |
-| `c62.cfg` | 5 | 0.2 KB |  |
-| `c65.cfg` | 9 | 0.3 KB |  |
-| `c67.cfg` | 5 | 0.2 KB |  |
-| `c69.cfg` | 5 | 0.2 KB |  |
-| `c74.cfg` | 5 | 0.2 KB |  |
-| `c76.cfg` | 5 | 0.2 KB |  |
-| `c77.cfg` | 5 | 0.2 KB |  |
+| `armory_allied.cfg` | 5 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `armory_axis.cfg` | 5 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `ba_fuse_30.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `ba_fuse_45.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `ba_fuse_60.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `ba_match_300.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `ba_match_480.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `ba_match_600.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `bab_build_180.cfg` | 4 | 0.3 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `bab_build_300.cfg` | 4 | 0.3 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `bab_build_420.cfg` | 4 | 0.3 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `bab_objects_100.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `bab_objects_200.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `bab_objects_300.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `bots_12.cfg` | 7 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `bots_4.cfg` | 7 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `bots_8.cfg` | 7 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `bots_off.cfg` | 6 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `ctf_caps_10.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `ctf_caps_3.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `ctf_caps_5.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `dem_time_120.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `dem_time_180.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `dem_time_90.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `ft_rad_128.cfg` | 7 | 0.6 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `ft_rad_64.cfg` | 7 | 0.6 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `ft_rad_96.cfg` | 7 | 0.6 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `ft_time_2.cfg` | 7 | 0.6 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `ft_time_3.cfg` | 7 | 0.6 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `ft_time_5.cfg` | 7 | 0.6 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `gg_tier_1.cfg` | 6 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `gg_tier_2.cfg` | 6 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `gg_tier_3.cfg` | 6 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `hardcore_off.cfg` | 6 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `hardcore_on.cfg` | 6 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `koth_imp_off.cfg` | 6 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `koth_imp_on.cfg` | 6 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `koth_limit_100.cfg` | 5 | 0.3 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `koth_limit_1000.cfg` | 6 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `koth_limit_150.cfg` | 5 | 0.3 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `koth_limit_250.cfg` | 6 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `koth_limit_500.cfg` | 6 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `launch_gt1.cfg` | 8 | 0.5 KB | HZM MP - LAUNCH an FFA server (g_gametype 1). coop_mpMode was set by the mode button and persists to the |
+| `launch_gt2.cfg` | 7 | 0.4 KB | HZM MP - LAUNCH a team-based server (g_gametype 2). Shared by King of the Hill, Last Man Standing, |
+| `launch_gt4.cfg` | 6 | 0.3 KB | HZM MP - LAUNCH an objective server (g_gametype 4) for Search & Destroy. coop_mpMode (set by the mode |
+| `lms_time_10.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `lms_time_3.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `lms_time_5.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `lms_time_off.cfg` | 4 | 0.2 KB | HZM MP bridge cfg - MP-OWNED. Sets the coop_mp* host cvar AND its ui_mp* readout mirror together. |
+| `mode_none.cfg` | 14 | 0.6 KB | HZM MP - reset the MP game mode to none (plain stock behaviour). Exec'd by the STANDARD MULTIPLAYER buttons |
+| `openrules.cfg` | 5 | 0.4 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `preset_none.cfg` | 6 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `preset_rifles.cfg` | 6 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `preset_riflesnipers.cfg` | 6 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `preset_snipers.cfg` | 6 | 0.5 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `push_time_300.cfg` | 7 | 0.6 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `push_time_420.cfg` | 7 | 0.6 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `push_time_600.cfg` | 7 | 0.6 KB | HZM MP bridge cfg - MP-OWNED (ui/coop_mp*/**), so it may set coop_mp* cvars. Named from a COOP-classified |
+| `start_baseassault.cfg` | 18 | 1.0 KB | HZM MP - open the stock-format ART_TEAM board (mod override, same menu id) with baseassault preselected. |
+| `start_buildabase.cfg` | 22 | 1.4 KB | HZM MP - open the stock-format ART_TEAM board (mod override, same menu id) with buildabase preselected. |
+| `start_ctf.cfg` | 18 | 1.0 KB | HZM MP - open the stock-format ART_TEAM board (mod override, same menu id) with ctf preselected. |
+| `start_demolition.cfg` | 20 | 1.2 KB | HZM MP - open the stock-format ART_TEAM board (mod override, same menu id) with demolition preselected. |
+| `start_freezetag.cfg` | 18 | 1.0 KB | HZM MP - open the stock-format ART_TEAM board (mod override, same menu id) with freezetag preselected. |
+| `start_gungame.cfg` | 18 | 1.0 KB | HZM MP - open the stock-format ART_FFA board (mod override, same menu id) with gungame preselected. |
+| `start_koth.cfg` | 18 | 1.0 KB | HZM MP - open the stock-format ART_TEAM board (mod override, same menu id) with koth preselected. |
+| `start_lms.cfg` | 18 | 1.0 KB | HZM MP - open the stock-format ART_TEAM board (mod override, same menu id) with lms preselected. |
+| `start_prophunt.cfg` | 20 | 1.1 KB | HZM MP - open the stock-format ART_TEAM board (mod override, same menu id) with prophunt preselected. |
+| `start_push.cfg` | 21 | 1.2 KB | HZM MP - open the stock-format ART_TEAM board (mod override, same menu id) with push preselected. |
+| `start_snd.cfg` | 18 | 0.9 KB | HZM MP - open the stock-format ART_OBJ board (mod override, same menu id) with snd preselected. |
+
+### `hzm-mohaa-coop-mod/ui/coop_mpx_armory/` — 110 source files
+
+| file | lines | size | summary |
+|---|---:|---:|---|
+| `c03.cfg` | 10 | 0.3 KB |  |
+| `c04.cfg` | 10 | 0.3 KB |  |
+| `c07.cfg` | 10 | 0.4 KB |  |
+| `c10.cfg` | 10 | 0.4 KB |  |
+| `c13.cfg` | 10 | 0.3 KB |  |
+| `c16.cfg` | 10 | 0.4 KB |  |
+| `c18.cfg` | 10 | 0.4 KB |  |
+| `c19.cfg` | 10 | 0.4 KB |  |
+| `c22.cfg` | 10 | 0.4 KB |  |
+| `c26.cfg` | 10 | 0.3 KB |  |
+| `c27.cfg` | 10 | 0.4 KB |  |
+| `c33.cfg` | 10 | 0.4 KB |  |
+| `c34.cfg` | 10 | 0.4 KB |  |
+| `c35.cfg` | 10 | 0.4 KB |  |
+| `c37.cfg` | 10 | 0.3 KB |  |
+| `c38.cfg` | 10 | 0.4 KB |  |
+| `c39.cfg` | 10 | 0.3 KB |  |
+| `c41.cfg` | 10 | 0.4 KB |  |
+| `c43.cfg` | 10 | 0.3 KB |  |
+| `c44.cfg` | 10 | 0.3 KB |  |
+| `c46.cfg` | 10 | 0.3 KB |  |
+| `c50.cfg` | 10 | 0.3 KB |  |
+| `c51.cfg` | 10 | 0.4 KB |  |
+| `c55.cfg` | 10 | 0.4 KB |  |
+| `c56.cfg` | 10 | 0.4 KB |  |
+| `c57.cfg` | 10 | 0.3 KB |  |
+| `c58.cfg` | 10 | 0.4 KB |  |
+| `c59.cfg` | 10 | 0.3 KB |  |
+| `c62.cfg` | 10 | 0.3 KB |  |
+| `c65.cfg` | 10 | 0.4 KB |  |
+| `c67.cfg` | 10 | 0.4 KB |  |
+| `c69.cfg` | 10 | 0.4 KB |  |
+| `c74.cfg` | 10 | 0.4 KB |  |
+| `c76.cfg` | 10 | 0.4 KB |  |
+| `c77.cfg` | 10 | 0.4 KB |  |
+| `d03.cfg` | 9 | 0.3 KB |  |
+| `d04.cfg` | 9 | 0.3 KB |  |
+| `d07.cfg` | 9 | 0.3 KB |  |
+| `d10.cfg` | 9 | 0.3 KB |  |
+| `d13.cfg` | 9 | 0.3 KB |  |
+| `d16.cfg` | 9 | 0.3 KB |  |
+| `d18.cfg` | 9 | 0.4 KB |  |
+| `d19.cfg` | 9 | 0.4 KB |  |
+| `d22.cfg` | 9 | 0.4 KB |  |
+| `d26.cfg` | 9 | 0.3 KB |  |
+| `d27.cfg` | 9 | 0.3 KB |  |
+| `d33.cfg` | 9 | 0.3 KB |  |
+| `d34.cfg` | 9 | 0.3 KB |  |
+| `d35.cfg` | 9 | 0.3 KB |  |
+| `d37.cfg` | 9 | 0.3 KB |  |
+| `d38.cfg` | 9 | 0.3 KB |  |
+| `d39.cfg` | 9 | 0.3 KB |  |
+| `d41.cfg` | 9 | 0.3 KB |  |
+| `d43.cfg` | 9 | 0.3 KB |  |
+| `d44.cfg` | 9 | 0.3 KB |  |
+| `d46.cfg` | 9 | 0.3 KB |  |
+| `d50.cfg` | 9 | 0.3 KB |  |
+| `d51.cfg` | 9 | 0.4 KB |  |
+| `d55.cfg` | 9 | 0.3 KB |  |
+| `d56.cfg` | 9 | 0.4 KB |  |
+| `d57.cfg` | 9 | 0.3 KB |  |
+| `d58.cfg` | 9 | 0.4 KB |  |
+| `d59.cfg` | 9 | 0.3 KB |  |
+| `d62.cfg` | 9 | 0.3 KB |  |
+| `d65.cfg` | 9 | 0.3 KB |  |
+| `d67.cfg` | 9 | 0.3 KB |  |
+| `d69.cfg` | 9 | 0.4 KB |  |
+| `d74.cfg` | 9 | 0.3 KB |  |
+| `d76.cfg` | 9 | 0.3 KB |  |
+| `d77.cfg` | 9 | 0.3 KB |  |
 | `deploy.cfg` | 1 | 0.0 KB |  |
-| `open.cfg` | 17 | 0.4 KB |  |
+| `dopen.cfg` | 22 | 0.6 KB |  |
+| `h01.cfg` | 3 | 0.1 KB |  |
+| `h02.cfg` | 3 | 0.1 KB |  |
+| `h03.cfg` | 3 | 0.1 KB |  |
+| `h04.cfg` | 3 | 0.1 KB |  |
+| `h05.cfg` | 3 | 0.1 KB |  |
+| `h06.cfg` | 3 | 0.1 KB |  |
+| `h07.cfg` | 3 | 0.1 KB |  |
+| `h08.cfg` | 3 | 0.1 KB |  |
+| `h09.cfg` | 3 | 0.1 KB |  |
+| `h10.cfg` | 3 | 0.1 KB |  |
+| `k01.cfg` | 3 | 0.1 KB |  |
+| `k02.cfg` | 3 | 0.1 KB |  |
+| `k03.cfg` | 3 | 0.1 KB |  |
+| `k04.cfg` | 3 | 0.1 KB |  |
+| `k05.cfg` | 3 | 0.1 KB |  |
+| `k06.cfg` | 3 | 0.1 KB |  |
+| `k07.cfg` | 3 | 0.1 KB |  |
+| `k08.cfg` | 3 | 0.1 KB |  |
+| `k09.cfg` | 3 | 0.1 KB |  |
+| `k10.cfg` | 3 | 0.1 KB |  |
+| `k11.cfg` | 3 | 0.1 KB |  |
+| `k12.cfg` | 3 | 0.1 KB |  |
+| `open.cfg` | 22 | 0.6 KB |  |
 | `tab0.cfg` | 9 | 0.2 KB |  |
 | `tab1.cfg` | 9 | 0.2 KB |  |
 | `tab2.cfg` | 9 | 0.2 KB |  |
@@ -4712,6 +4955,13 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `tab5.cfg` | 9 | 0.2 KB |  |
 | `tab6.cfg` | 9 | 0.2 KB |  |
 | `tab7.cfg` | 9 | 0.2 KB |  |
+| `v0.cfg` | 2 | 0.1 KB |  |
+| `v1.cfg` | 2 | 0.1 KB |  |
+| `v2.cfg` | 2 | 0.1 KB |  |
+| `v3.cfg` | 2 | 0.1 KB |  |
+| `v4.cfg` | 2 | 0.1 KB |  |
+| `v5.cfg` | 2 | 0.1 KB |  |
+| `v6.cfg` | 2 | 0.1 KB |  |
 
 ### `hzm-mohaa-coop-mod/ui/coop_objectives/` — 46 source files
 
@@ -6239,15 +6489,15 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `cg_beam.cpp` | 1,459 | 41.2 KB | DESCRIPTION: |
 | `cg_commands.cpp` | 6,475 | 170.9 KB | DESCRIPTION: |
 | `cg_commands.h` | 1,065 | 31.9 KB | DESCRIPTION: |
-| `cg_consolecmds.c` | 946 | 33.7 KB | DESCRIPTION: |
-| `cg_drawtools.cpp` | 3,827 | 141.2 KB | DESCRIPTION: |
+| `cg_consolecmds.c` | 965 | 34.5 KB | DESCRIPTION: |
+| `cg_drawtools.cpp` | 3,874 | 143.5 KB | DESCRIPTION: |
 | `cg_ents.c` | 786 | 25.0 KB | cg_ents.c -- present snapshot entities, happens every single frame |
 | `cg_event.c` | 36 | 1.2 KB | DESCRIPTION: |
 | `cg_lightstyles.cpp` | 585 | 16.8 KB | DESCRIPTION: |
-| `cg_local.h` | 1,065 | 39.1 KB | DESCRIPTION: |
-| `cg_main.c` | 1,170 | 47.1 KB | DESCRIPTION: |
+| `cg_local.h` | 1,077 | 40.2 KB | DESCRIPTION: |
+| `cg_main.c` | 1,224 | 49.9 KB | DESCRIPTION: |
 | `cg_marks.c` | 2,074 | 65.3 KB | DESCRIPTION: |
-| `cg_modelanim.c` | 3,416 | 166.6 KB | DESCRIPTION: |
+| `cg_modelanim.c` | 3,443 | 168.3 KB | DESCRIPTION: |
 | `cg_nature.cpp` | 416 | 16.2 KB | DESCRIPTION: |
 | `cg_parsemsg.cpp` | 2,516 | 92.6 KB | DESCRIPTION: |
 | `cg_parsemsg.h` | 38 | 1.2 KB | DESCRIPTION: |
@@ -6259,7 +6509,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `cg_radar.h` | 42 | 1.3 KB | DESCRIPTION: |
 | `cg_ragdoll.c` | 2,957 | 133.7 KB |  |
 | `cg_scoreboard.cpp` | 663 | 22.9 KB | DESCRIPTION: |
-| `cg_servercmds.c` | 570 | 18.9 KB | DESCRIPTION: |
+| `cg_servercmds.c` | 605 | 20.7 KB | DESCRIPTION: |
 | `cg_servercmds_filter.cpp` | 356 | 12.3 KB | DESCRIPTION: |
 | `cg_servercmds_filter.h` | 45 | 1.5 KB | DESCRIPTION: |
 | `cg_snapshot.c` | 530 | 16.7 KB | DESCRIPTION: |
@@ -6271,7 +6521,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `cg_testemitter.cpp` | 2,096 | 85.1 KB | DESCRIPTION: |
 | `cg_ui.cpp` | 292 | 8.4 KB | DESCRIPTION: |
 | `cg_vehicle.cpp` | 39 | 1.2 KB | DESCRIPTION: |
-| `cg_view.c` | 7,858 | 419.8 KB |  |
+| `cg_view.c` | 7,874 | 421.1 KB |  |
 | `cg_viewmodelanim.c` | 971 | 40.7 KB | DESCRIPTION: |
 | `cg_volumetricsmoke.cpp` | 1,370 | 44.4 KB | DESCRIPTION: |
 | `memarchiver.cpp` | 241 | 5.5 KB |  |
@@ -6518,7 +6768,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `game.h` | 56 | 1.5 KB | game.h: General Game Info |
 | `gamecmds.cpp` | 859 | 22.6 KB | gamecmds.cpp: Game commands |
 | `gamecmds.h` | 63 | 2.3 KB | gamecmds.h: Game Commands. |
-| `gamecvars.cpp` | 701 | 26.2 KB | gamecvars.cpp: Definitions for any cvars used by the game. |
+| `gamecvars.cpp` | 719 | 27.7 KB | gamecvars.cpp: Definitions for any cvars used by the game. |
 | `gamecvars.h` | 294 | 7.6 KB | gamecvars.h: Game variables |
 | `gamescript.cpp` | 1,259 | 30.3 KB | gamescript.cpp : Subclass of script that preprocesses labels |
 | `gamescript.h` | 205 | 5.8 KB | gamescript.h: Subclass of script that preprocesses labels |
@@ -6542,7 +6792,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `ipfilter.h` | 30 | 1.1 KB | ipfilter.h: DESCRIPTION: |
 | `item.cpp` | 1,006 | 22.1 KB | item.cpp: Base class for respawnable, carryable objects. |
 | `item.h` | 180 | 5.3 KB | item.h: Base class for respawnable, carryable objects. |
-| `level.cpp` | 2,913 | 78.6 KB | level.cpp : Global Level Info. |
+| `level.cpp` | 2,931 | 79.8 KB | level.cpp : Global Level Info. |
 | `level.h` | 410 | 11.6 KB | level.h: General Level Info |
 | `light.cpp` | 150 | 3.4 KB | light.cpp: Classes for creating and controlling lights. |
 | `light.h` | 37 | 1.2 KB | light.h: Classes for creating and controlling lights. |
@@ -6593,8 +6843,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `object.h` | 145 | 5.3 KB | object.h: Object (used by common TIKIs) |
 | `parm.cpp` | 164 | 3.4 KB | parm.cpp : Event parameters |
 | `parm.h` | 59 | 1.7 KB | parm.h: Event parameters |
-| `player.cpp` | 19,761 | 727.1 KB | player.h: Class definition of the player. |
-| `player.h` | 1,625 | 67.3 KB | player.h: Class definition of the player. |
+| `player.cpp` | 19,868 | 732.1 KB | player.h: Class definition of the player. |
+| `player.h` | 1,629 | 67.5 KB | player.h: Class definition of the player. |
 | `player_animation.cpp` | 640 | 23.2 KB | player_animation.cpp: Animation utility functions |
 | `player_combat.cpp` | 223 | 7.9 KB | player_combat.cpp: Player combat system and combat utility functions |
 | `player_conditionals.cpp` | 2,327 | 69.3 KB | player_combat.cpp: Player combat system and combat utility functions |
@@ -6620,8 +6870,8 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `scriptmaster.h` | 207 | 6.3 KB | scriptmaster.h: Handle events, parse scripts, spawn at the beginning of the map |
 | `scriptslave.cpp` | 2,436 | 60.5 KB | scriptslave.cpp: Standard scripted objects. Controlled by ScriptThread. These objects |
 | `scriptslave.h` | 415 | 11.1 KB | scriptslave.h: Standard scripted objects. Controlled by scriptmaster. These objects |
-| `scriptthread.cpp` | 7,748 | 179.8 KB |  |
-| `scriptthread.h` | 400 | 12.1 KB |  |
+| `scriptthread.cpp` | 7,944 | 187.4 KB |  |
+| `scriptthread.h` | 407 | 12.4 KB |  |
 | `scripttimer.cpp` | 264 | 5.3 KB | scripttimer.cpp: Scripted Timer & Fader |
 | `scripttimer.h` | 82 | 2.0 KB | ScriptTimer.cpp: Scripted Timer & Fader |
 | `sentient.cpp` | 6,370 | 232.8 KB | sentient.cpp: Base class of entity that can carry other entities, and use weapons. |
@@ -6657,7 +6907,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `vehicleturret.h` | 214 | 7.7 KB | vehicleturret.h: Vehicle Turret. |
 | `viewthing.cpp` | 845 | 21.2 KB | viewthing.cpp: Actor code for the Viewthing. |
 | `viewthing.h` | 106 | 2.9 KB | viewthing.h: Actor code for the viewthing. |
-| `weapon.cpp` | 5,848 | 183.7 KB | weapon.cpp: Source file for Weapon class. The weapon class is the base class for |
+| `weapon.cpp` | 5,854 | 184.4 KB | weapon.cpp: Source file for Weapon class. The weapon class is the base class for |
 | `weapon.h` | 658 | 27.4 KB | weapon.h: Header file for Weapon class. The weapon class is the base class for |
 | `weapturret.cpp` | 2,646 | 75.5 KB | weapturret.cpp: MOH Turret. Usable by sentients and monsters. |
 | `weapturret.h` | 264 | 10.0 KB | weapturret.h: MOH Turret. Usable by sentients and monsters. |
@@ -7592,7 +7842,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `q_math.c` | 4,347 | 110.3 KB | q_math.c -- stateless support routines that are included in each code module |
 | `q_platform.h` | 542 | 12.5 KB |  |
 | `q_shared.c` | 2,184 | 37.8 KB | q_shared.c -- stateless support routines that are included in each code dll |
-| `q_shared.h` | 2,571 | 92.9 KB | q_shared.h -- included first by ALL program modules. |
+| `q_shared.h` | 2,581 | 93.7 KB | q_shared.h -- included first by ALL program modules. |
 | `q_version.cmake` | 68 | 2.1 KB | Current branch |
 | `q_version.h` | 106 | 3.2 KB | q_version.h -- file versioning |
 | `qcommon.h` | 1,598 | 51.8 KB | qcommon.h -- definitions common between client and server, but not game.or ref modules |
@@ -7702,7 +7952,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 |---|---:|---:|---|
 | `tr_animation.c` | 523 | 14.7 KB |  |
 | `tr_backend.c` | 2,795 | 93.3 KB |  |
-| `tr_bsp.c` | 4,117 | 121.3 KB | tr_map.c |
+| `tr_bsp.c` | 4,127 | 122.2 KB | tr_map.c |
 | `tr_cmds.c` | 658 | 15.9 KB |  |
 | `tr_curve.c` | 739 | 19.3 KB |  |
 | `tr_draw.c` | 658 | 20.2 KB | tr_draw.c -- drawing |
@@ -7722,7 +7972,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `tr_gore.c` | 1,854 | 73.9 KB |  |
 | `tr_image.c` | 4,253 | 112.0 KB | tr_image.c |
 | `tr_image_dds.c` | 498 | 13.8 KB |  |
-| `tr_init.c` | 2,758 | 104.2 KB | tr_init.c -- functions that are not called every frame |
+| `tr_init.c` | 2,754 | 103.8 KB | tr_init.c -- functions that are not called every frame |
 | `tr_light.c` | 1,448 | 42.9 KB | tr_light.c |
 | `tr_local.h` | 4,046 | 123.4 KB |  |
 | `tr_main.c` | 4,093 | 121.7 KB | tr_main.c -- main control flow for each frame |
@@ -9143,10 +9393,10 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 
 | file | lines | size | summary |
 |---|---:|---:|---|
-| `autoexec.cfg` | 1,582 | 114.6 KB | HZM Extended Coop Mod |
-| `coop_defaults.cfg` | 492 | 30.9 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
+| `autoexec.cfg` | 1,703 | 124.9 KB | HZM Extended Coop Mod |
+| `coop_defaults.cfg` | 592 | 38.3 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
 | `coop_devrcon.cfg` | 7 | 0.5 KB | DEV ONLY - never packed into a pk3, never committed, never in the release manifest. |
-| `dedicated_start.cfg` | 4 | 0.1 KB |  |
+| `dedicated_start.cfg` | 14 | 0.4 KB | generated by launch_mp_bots.ps1 - MP progression bot verification |
 | `pvp_probe.cfg` | 6 | 0.1 KB |  |
 
 ### `server_home/maintt/configs/` — 1 source files

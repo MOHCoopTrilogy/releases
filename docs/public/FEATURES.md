@@ -6,18 +6,18 @@
 
 Every system built for the trilogy coop mod, grouped by domain. Generated from the project's own feature record, so it stays in step with what is actually in the build - including the parts that are shipped but not yet confirmed in play.
 
-**159 systems** across **16 domains**.
+**164 systems** across **16 domains**.
 
 | Status | Count |
 |---|---:|
-| shipped, not yet confirmed in play | 71 |
+| shipped, not yet confirmed in play | 73 |
 | shipped, confirmed working in play | 31 |
-| planned | 8 |
+| planned | 7 |
 | in the build but switched off | 5 |
 | reverted | 5 |
 | open | 4 |
 | shipped | 2 |
-| shipped inert | 1 |
+| rejected | 1 |
 
 ## Core coop
 
@@ -101,7 +101,7 @@ Every system built for the trilogy coop mod, grouped by domain. Generated from t
 | **⭐ Headline: the auto-reverb driver was ALREADY built in the fork and forgotten** |  |  |
 | **do** |  | get reverb via sticky send-routing, so DBNO heartbeat / tinnitus could sound wet indoors. |
 | **Fresh recorded gun audio + footsteps + impacts** | shipped, confirmed working in play | (explicit user verdicts). |
-| **Warzone explosion variants + VFA wood footsteps** | reverted | Two user-rejected swaps backed out: |
+| **Warzone explosion variants + VFA wood footsteps** | reverted | Bombing-run explosion variants "too |
 | **MOH Frontline PS3 asset extraction** | shipped, not yet confirmed in play | Source is the PS3 HD remaster |
 
 ## Graphics & FX
@@ -115,8 +115,7 @@ Every system built for the trilogy coop mod, grouped by domain. Generated from t
 | **Better shadows + foliage shadows** | shipped | (commit 69cdb4d7, deploy pending). |
 | **Player + AI gore** | shipped, not yet confirmed in play | (all 4 tiers built + deployed, untested in-game). |
 | **Blast decapitation / dismemberment** | reverted | (twice). |
-| **Gore intensity** | reverted | Round 4 over-cranked coverage (uniform heavy tier, drench blobs, |
-| **generated-asset intensity needs a user checkpoint per round, not per feature.** |  |  |
+| **Gore intensity** | reverted | Round 4 over-cranked coverage; user: *"way too much."* Reverted to the |
 | **Wounded-AI blood trails** | shipped, not yet confirmed in play | AI below coop_bloodTrailHealthFrac 0.5 that is |
 | **Suppression screen FX** | shipped, not yet confirmed in play | Desaturate + dark tunnel vignette when enemy rounds |
 | **Lingering gun smoke** | shipped, not yet confirmed in play | Additive client-side wisp at i_vBarrel and at |
@@ -138,7 +137,9 @@ Every system built for the trilogy coop mod, grouped by domain. Generated from t
 | **Armory unlock-gate closes the native MP options menu** | shipped, not yet confirmed in play | (2026-08-07). |
 | **cids, not catalogue indices** |  | file order means inserting one chal_def would re-point every saved |
 | **Modern compass bar** | shipped | (runtime-verified m1l1/m2l1/m3l3: bar, toggle, objective marker, |
-| **MP armories slice 1** | shipped inert | (commit 59fa75d7). |
+| **MP armories (coop-clone)** | shipped, not yet confirmed in play | (visual render playtest-gated). |
+| **parsed from `mp_cosmetics.scr`** |  | so a preview can't show what the server won't wear. |
+| **MP Service Record (coop-clone)** | shipped, not yet confirmed in play | ui/coop_mp_record.urc rebuilt as a **generated |
 | **Field Settings (Coop Settings) + Host Rules sheets** | shipped, not yet confirmed in play | ; the 2026-09-13 |
 | **In-game Report a Bug → Discord webhook** | shipped, confirmed working in play | end-to-end. |
 | **Display mode selector** | shipped, not yet confirmed in play | Windowed / Borderless / Exclusive, setting |
@@ -155,8 +156,8 @@ Every system built for the trilogy coop mod, grouped by domain. Generated from t
 | **XP / rank system Phase 1** | shipped, not yet confirmed in play | (built + deployed 2026-07-07, untested). |
 | **Weapon unlock progression** | shipped, not yet confirmed in play | Three routes: a rank table R1–R21, challenge |
 | **Cosmetic unlocks** | shipped, not yet confirmed in play | 28 armory skins + 34 helmets gated through the same |
-| **Locked-cosmetic visibility** | reverted | (**by design change, not defect**). |
-| **Deployables skill tree** | planned | → **REJECTED**. Six branches / ~36 nodes (Combat Engineer, |
+| **Locked-cosmetic visibility** | reverted | (**design change, not defect**). |
+| **Deployables skill tree** | rejected | (2026-07-13, *"do not build mine"*). |
 
 ## Items & deployables
 
@@ -245,12 +246,16 @@ Every system built for the trilogy coop mod, grouped by domain. Generated from t
 | **NAT hole-punch rendezvous, Phase 1** | shipped, not yet confirmed in play | (signaling verified end-to-end locally; |
 | **Server-command filter hardening (SEC1)** |  | layer 1 SHIPPED-VERIFIED (bug-2580, runtime-verified |
 
-## m2l2a Phase C - the player-initiated CONTAIN (2026-08-10) - SHIPPED, partly verified
+## HZM Multiplayer modes
 
 | System | Status | What it does |
 |---|---|---|
-| **VERIFIED in play:** |  | the contain loop end to end; the escalation path handing over the FULL loadout; |
-| **STILL UNVERIFIED:** |  | the 15s loiter -> cover-blown escalation, the stun-witness route, and the |
+| **Shared infrastructure:** |  | mp_bots.scr (bot seeding), mp_rounds.scr (round manager for |
+| **MP vehicle system** |  | (2026-09-15, framework SHIPPED, interactive loops playtest-gated; bug-2643) — host |
+| **flak88 + nebelwerfer** |  | (mannable FixedTurrets, native use/aim/fire), **drivable |
+| **Base Assault** |  | (2026-09-14; SP-map treatment 2026-09-15) — bases plant/defuse (USE 15s/10s) + 60s fuse, |
+| **Speed fix** |  | (bug-2629) — coop's sv_dmspeedmult 0.6 leaked into MP; mp.scr resets sv_dmspeedmult 1.1 + sv_runspeed 287, start_server.cfg restores coop on return. |
+| **Bot leak fix** |  | (bug-2630) — sv_maxbots/sv_numbots/sv_minPlayers leaked MP→coop; start_server.cfg now zeros them. |
 
 ## Ragdoll physics (v1.4.0 opt-in, v1.4.1 ON by default) - SHIPPED, NEWEST SYSTEM
 

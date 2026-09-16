@@ -98,20 +98,20 @@ it. **Download all five into the same folder.**
 
 Host: launch the shortcut, then **Multiplayer → Start Game → MOH Trilogy Coop**, pick a mission tile, hit Apply. Friends join over LAN/Internet via **Multiplayer → Join Game** or `connect <ip>` in the console.
 
-## Current release — v1.6.0 *"The Long View"*
+## Current release — v1.7.1 *"Roll Out"*
 
-The biggest visual and quality-of-life pass yet, on top of everything the 1.5.x line added since v1.4.6 — the Omaha Beach overhaul, the undertow swim, and HD ground and gear across the landing.
+More ways to fight, and now with armor — built on top of v1.7.0's multiplayer progression, modes and bots.
 
-- **A modern compass bar** now rides the top of the coop HUD — live bearing and objective markers, replacing the old round ring. The kill feed tucks in beneath it, and the whole strip fades in and out with the rest of the HUD (and hides while you are scoped or spectating).
-- **A sharper, moodier battlefield.** Better shadows including foliage shadows; an ACES film tone curve that finally survives every map load instead of being wiped on each transition; exposure-aware bloom; per-map fog; and a light colour grade tuned map by map. The HD skies stay — the fog was re-authored to sit under them.
-- **Supersampling.** A new render-scale option (with AMD FSR 1 upscaling) renders the world above your native resolution for a crisper image, then presents at your screen size. Default 1.0 leaves everything unchanged.
-- **Soft particles**, so smoke, fire and dust blend into the world instead of cutting a hard line against it.
-- **Field Settings rebuilt** to fit the screen with 14 new options, and the host-only controls moved into their own **Host Rules** screen.
-- **Fixes:** the stamina dial now fades with the rest of the HUD; a rare crash entering the second Sicily mission (e1l2) is gone; and multiplayer friendly fire works correctly again.
+- **Prop Hunt.** One team hides, disguised as ordinary map objects; the other hunts them down after a short head start. Props change shape with **USE** and can move but can't shoot back — last props standing (or the clock) win the round.
+- **A vehicle system.** Drive tanks and jeeps (one drives, a second mans the gun), man fixed **Flak 88s** and **Nebelwerfers**, and pick up anti-tank launchers — the **bazooka** for the Allies, the **panzerschreck** for the Axis, never each other's. Tanks shrug off small arms; only a rocket kills one, so those pickups matter. Destroyed vehicles blow up and respawn, and you can **capture** an enemy's by holding USE beside it.
+- **Campaign maps for Base Assault and Push.** Both modes now play on real single-player campaign maps, not just the deathmatch arenas — reached from a **Campaign Maps** button on the team setup screen.
+- **Spawn protection.** A few seconds of cover right after you respawn, dropped the instant you open fire, so you can't be farmed on the spawn.
+- **Modes tuned:** Demolition is now truly two-way — either team plants a charge on the enemy's bomb site — and Freeze Tag gains a **meltgun**: aim and fire at a frozen teammate to weld them free faster.
+- **Fix:** medkits no longer let you channel a heal at full health, and can no longer refill a Down-But-Not-Out pool (an accidental near-invincibility).
 
-Under the hood: a hardened dedicated server — the executable now filters every server-origin command, behind a guard list and a versioned handshake — and the first groundwork for the multiplayer modes coming next (Allied and Axis armories are in the build). Coop is kept fully isolated from all of it, enforced by an automated contract on every build.
+Coop is kept fully isolated from all of it — every multiplayer system is gated off on coop maps, enforced by an automated contract on every build.
 
-> **Straight with you:** these systems load and run clean, and the visual pass was checked shot by shot, but the build has not had a full end-to-end playtest. If something misbehaves, **Report a Problem** is the fastest way to tell us.
+> **Straight with you:** the new multiplayer loops load and run clean in automated testing, but the drive / fire / hide / plant interactions have not had a full human playtest yet — expect rough edges, and **Report a Problem** if something misbehaves. Coop play is unaffected.
 
 Full details in the [release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest) —
 and please read [Still early](#still-early--read-before-reporting) and

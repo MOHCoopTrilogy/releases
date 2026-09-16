@@ -28,22 +28,23 @@ give you.
 <a name="t1"></a>
 ## T1 — Morpheus parse killers: one bad token silently kills the WHOLE `.scr`
 
-**Recurred under 17 bug ids** - `grep parse docs/generated/FIX_LEDGER.md`.
+**Recurred under 17 bug ids.**
 
 **Tell:** a feature silently does nothing, with **no error at the failure site**; every `::` call into
-the file logs `Script was not properly loaded`. A whole subsystem dying at once (bug-533 took helmet +
-sandbag + medkit + emotes) means the shared bus file. The compiler is all-or-nothing: one syntax error
-kills the entire file and the map runs with no script - raw team menu, unstartable.
+the file logs `Script was not properly loaded`. A whole subsystem dying at once (bug-533) means the
+shared bus file. The compiler is all-or-nothing: one syntax error
+kills the entire file and the map runs with no script at all.
 
 > **An assignment with no value is a parse killer and the error points at the WRONG line** (bug-1908):
 > the parser takes the *next* statement as the value and dies on **that** statement's `=`. A bare
 > trailing `=` is legal continuation, so it is fatal only when the next code line is itself an
-> assignment. `docs/tools/check_empty_rhs.py` runs every build. It came from a **generator**
-> rendering an empty column: validate a generator's inputs.
+> assignment. `docs/tools/check_empty_rhs.py` runs every build (it came from a generator; validate their inputs).
 >
 > **All three scanners pass a file that cannot compile** - they check brace depth, line shape and string
-> termination, not *expression* syntax; `println "a" + x + "b"` without parens kills the file and scans
-> clean (bug-1751). **Not verified until a server has loaded the map and the log shows no `parse error`.**
+> termination, not *expression* syntax (bug-1751: unparenthesized `+` in a `println` kills the file).
+> Builtin CALL SYNTAX too (bug-2632): args are SPACE-separated not comma; a 2-arg builtin uses command
+> form `local.x = f a b`; a getter reads `p.userinfo`, not `p userinfo`.
+> **Not verified until a server has loaded the map and the log shows no `parse error`.**
 >
 > **A comment that lost its `//` scans perfectly - TWICE** (2026-09-06; then 2026-09-08, eight
 > lines at once, in the fixer that fixed the first, in the session that wrote this entry). Both times
@@ -141,21 +142,21 @@ no effect / can't be felt." Before tuning X, **prove X executes.** Instances:
 `archive/traps-t3-instances.md`, `traps-t3-archived-rows.md`;
 long narratives for the starred four in `archive/traps-pruned-2026-08-20.md`.
 
-**⭐ A guard written for one question is wrong for the neighbouring one** (bug-1687).
-**Re-read what a predicate was written to decide before reusing it; when the answers differ, SPLIT
-rather than widen.** `coop_isProtectedActor` ("leave this actor alone?") reused for "who would
-notice a corpse?" vetoed the entire m2l2a cast.
+**⭐ FALSE NEGATIVE from the test harness: a `omohaaded.exe` dedicated boot runs NO coop/MP map script
+unless `developer 1` is set** (bug-2637) - even a normal MP map shows no `MP init`. Players on listen
+servers are unaffected. Every script-verification boot MUST `set developer 1`; a non-dev dedicated boot
+that "shows nothing" is the harness, not the feature. This cost ~12 engine rebuilds chasing a phantom.
 
-**⭐ Gating one entry point is not gating the feature** (bugs 1685, 1860). **Grep every writer of the
-shared state before calling a gate complete** - papers had three writers, two guards; our own `docgen
-check` had the same shape and could never pass.
+**⭐ A guard written for one question is wrong for the neighbouring one** (bug-1687): re-read what a
+predicate was written to decide before reusing it; when the answers differ, SPLIT rather than widen.
+
+**⭐ Gating one entry point is not gating the feature** (bugs 1685, 1860): grep every writer of the
+shared state before calling a gate complete.
 
 **⭐ The same shape at the FIX end: a repair applied to one member of a set nobody enumerated.**
-**Name the set a fix belongs to and check every member.** Three flavours, one sweep
-(bugs 2171/2172/2175, 2026-08-30): a **pair** (one half of a client/server pair
-flipped on), a **list** (three of nine stomping cfg lines commented out), a **direction** (a guard
-added to one side of a two-way HUD conflict). Tell for the pair: **a cvar seeded in no cfg has no
-default but the one in code, so two `Cvar_Get` calls with different defaults ARE the bug.**
+**Name the set a fix belongs to and check every member** (bugs 2171/2172/2175): a pair, a list, a
+direction. Tell for the pair: a cvar seeded in no cfg has only its code default, so two `Cvar_Get`
+calls with different defaults ARE the bug.
 
 **⭐ Our own guard disabled the retail mechanism**, twice in one day (bugs 1671, 1669). **Ask what the
 vanilla mechanism already is before adding a guard**, and when a user says "this is how vanilla handles
@@ -462,14 +463,15 @@ four runs (bug-2496); every beach wreck carried the same box.
 
 **Tell:** a fix that is definitely in the source has no effect in play, or a log line reports a limit
 lower than the header says. Both directions happen: edited but never built/deployed (bug-089); and built
-and deployed when it shouldn't have been (bug-1172 - `build.ps1` runs during a gl2 sandbox session
-pushed sandbox-only `MAX_SOUNDS 2000` / `MAX_ENTITIES 4095` / `MAX_TIKI_ALIASES 8192` binaries into the
-user's **real install**).
+and deployed when it shouldn't have been (bug-1172 - `build.ps1` run during a gl2 sandbox session
+pushed sandbox-only limit binaries into the user's **real install**).
 
 **The deploy set is complete now (all six binaries, bug-1796/bug-1634) - verify it anyway.** **A "verified" claim must name which binaries were deployed and when, and prove it by
-hashing the deployed file against the build output** - a timestamp check misreads 12-hour times and will
-tell you a good deploy failed. `build.ps1` refuses to deploy while the game is running, so if you edited
-and did not deploy, everything the user tests is the PREVIOUS build and every conclusion is void.
+hashing the deployed file against the build output** - a bare timestamp check misreads 12-hour times.
+`build.ps1` refuses to deploy while the game is running, so if you
+did not deploy, the user tests the PREVIOUS build. A
+build can also silently no-op: a wrong `cmake --target` prints `MSB1009` but `| tail` masks the nonzero
+exit, so a stale DLL deploys.
 **Some changes must ship as a PAIR or they are worse than not shipping:** `bg_pmove.cpp` compiles into
 `game.dll` *and* `cgame.dll`, so a movement change in it desyncs client prediction from server truth if
 either ships alone (bug-2149); a protocol-constant change ships exe + cgame + game together.

@@ -40,7 +40,8 @@ protocol or exe change. game.dll + cgame.dll + pk3 ship together (the stress dam
 [Core coop](#core) · [AI](#ai) · [Player movement & combat](#movement) · [Camera](#camera) ·
 [Audio](#audio) · [Graphics & FX](#graphics) · [UI & HUD](#ui) · [Progression](#progression) ·
 [Items & deployables](#items) · [Vehicles](#vehicles) · [World & maps](#world) ·
-[Weapons & cosmetics](#weapons) · [Tooling](#tooling) · [Networking](#networking)
+[Weapons & cosmetics](#weapons) · [Tooling](#tooling) · [Networking](#networking) ·
+[HZM Multiplayer modes](#mp-modes)
 
 ---
 
@@ -403,17 +404,16 @@ impacts, whizbys, casings, thunder, artillery beds; snow bullet impacts made rea
 `LINEAR_DISTANCE_CLAMPED` at context init, restoring Miles-era map-wide gunfire falloff.
 ⚠️ **Never name the commercial source library publicly — say "fresh recorded gun audio."**
 
-**Warzone explosion variants + VFA wood footsteps** — `REVERTED`. Two user-rejected swaps backed out:
-bombing-run explosion variants "too cinematic/sub-heavy for close blasts," VFA wood footsteps "sounded
-bad in-game" (stock wood restored). Artillery beds from the same library **kept** (separate judgement).
-Close-explosion upgrades remain an open wishlist needing a brighter library.
+**Warzone explosion variants + VFA wood footsteps** — `REVERTED`. Bombing-run explosion variants "too
+cinematic/sub-heavy for close blasts" and VFA wood footsteps "sounded bad" backed out; artillery beds from
+the same library **kept**. Close-explosion upgrades remain a wishlist needing a brighter library.
 
 **MOH Frontline PS3 asset extraction** — `SHIPPED-UNVERIFIED`. Source is the PS3 HD remaster
 decrypted in RPCS3, not a PS2 ISO. **⭐ Recipe:** `main.musx` = multiple EA SCHl songs concatenated →
 split by chunk-walking → rename to `.asf` (vgmstream keys on extension) → `vgmstream-cli`. **ffmpeg's
 `adpcm_ea_r1` cannot decode these.** SSH texture format cracked (48-byte header, ARGB32, PS3 Morton
-swizzle — use OR folding, not XOR). 339 cues / 103 min + 175 ambience beds; stingers and war beds
-shipped, ear verdict pending. Still unmined: 495 `.abkx` SFX/VO banks.
+swizzle — use OR folding, not XOR). 339 cues / 103 min + 175 ambience beds shipped. Still unmined: 495
+`.abkx` SFX/VO banks.
 
 ---
 
@@ -457,17 +457,14 @@ bone-attached wound props via `CM_GetHitLocationInfo`, cap 4. T4 renderer UV wou
 colour authority is `#150200`. Ships **exe + cgame + renderer + game.dll together** (refexport/
 refimport pairing). *Anchor:* `renderergl1/tr_gore.c` (836 lines, **untracked in git**).
 
-**Blast decapitation / dismemberment** — `REVERTED` (twice). v1 pulled for "the AI went all glitchy"
-(bug-861); v2 re-added safely on the engine's own dead-gated gib discipline (`ArmorDamage health<0.1`,
-budgeted, tracked, precached, bug-866), then reverted from SOURCE during the `MAX_MODELS` rebuild
-(bug-892), inert `.tik` assets kept. Zero `CoopGoreTryDecapitate`/`HeadGibObject` symbols remain.
-⭐ **The first-revert reason no longer holds** — the glitching was the entity-pool stomp (bugs
-914–927), now fixed; bug-866's safe pattern is the re-add template.
+**Blast decapitation / dismemberment** — `REVERTED` (twice). v1 pulled "AI went all glitchy" (bug-861); v2
+re-added on the engine's dead-gated gib discipline (`ArmorDamage health<0.1`, bug-866), then reverted from
+SOURCE in the `MAX_MODELS` rebuild (bug-892), inert `.tik` kept. ⭐ The first-revert reason no longer holds —
+the glitching was the entity-pool stomp (bugs 914–927), now fixed; bug-866's pattern is the re-add template.
 
-**Gore intensity** — `REVERTED`. Round 4 over-cranked coverage (uniform heavy tier, drench blobs,
-spray/smear cast-off, a coverage top-up loop); user: *"dial the blood back… now it's way too much."*
-Reverted to the moderate earlier coverage; spray/smear primitives and coverage loop removed. ⭐ Lesson:
-**generated-asset intensity needs a user checkpoint per round, not per feature.**
+**Gore intensity** — `REVERTED`. Round 4 over-cranked coverage; user: *"way too much."* Reverted to the
+moderate earlier coverage. ⭐ Lesson: **generated-asset intensity needs a user checkpoint per round, not per
+feature.**
 
 **Wounded-AI blood trails** — `SHIPPED-UNVERIFIED`. AI below `coop_bloodTrailHealthFrac 0.5` that is
 moving drips ground decals. Throttled by time (0.45 s) **and** distance (56u) — deliberately **no
@@ -615,11 +612,26 @@ scoped/spectating. Coop-only via `coop_isCoopSession`; toggled by a "Modern Comp
 Settings. Design `_research/compass_bar_design.md`. Not yet verified: teammate markers, vehicle
 seats, the resolution matrix.
 
-**MP armories slice 1** — `SHIPPED-INERT` (commit 59fa75d7). Two generated MP-only armory screens
-(Allied/Axis) plus rosters and an inert dispatcher stub; not wired and not reachable in game, with
-MP/coop isolation clause 13 active so nothing leaks into coop. Slice 2 (engine hooks E1-E7, live
-dispatcher, side picker) is planned — see [OPEN.md](OPEN.md#planned) and
-`_research/mp_armories_slice1_plan.md`.
+**MP armories (coop-clone)** — `SHIPPED-UNVERIFIED` (visual render playtest-gated). Generated MP-only armory
+screens (Allied/Axis) + rosters, the live dispatcher (`mp_armory.scr`: name-bus poll, unlock/ban validation,
+spawn-edge kit, 25s auto-deploy, bot branch), defaults screens, side picker (`ui/coop_mp_options.urc`), and
+engine hooks E1-E6 (`HZM-MP-BEGIN/END`, in `ENGINE_MP_HOOKS`; all gate on `coop_mpRun`/`coop_mp_session` so
+coop is byte-for-byte untouched — see ENGINE.md/OPEN.md). **2026-09-15 rebuilt "beat by beat" to the coop
+loadout** (`gen_mp_armory.py`): each armory + the appearance panel carry the **3D character viewer**, a clone
+of `coop_loadout.urc`'s `charRender` with per-side cvars (`coop_mp<side>_Char` body · `_Helm` @ `Bip01 Head`
+· `_Prev` @ `tag_weapon_right` · `_CharSpin` · `_CharAnim`); a weapon tile sets the hold pose (`coop_hold_*`,
+NOT the `coop_lo*`-banned idle), a skin/helmet tile updates the model live. Skin/helmet model paths are
+**parsed from `mp_cosmetics.scr`** so a preview can't show what the server won't wear. **Cosmetics are
+marker-free** — they ride the userinfo carry alone (no `,q` bus, no name pollution), so ONE appearance panel
+works in-match AND **disconnected from Multiplayer Options** (defaults screen gained APPEARANCE); the server
+enforces the earned gate at spawn (`mp_cosmetics.scr::apply` checks `cosUnlocked` on the carried id —
+bug-2633, closing the userinfo bypass). **No vstr, no exe change.**
+
+**MP Service Record (coop-clone)** — `SHIPPED-UNVERIFIED`. `ui/coop_mp_record.urc` rebuilt as a **generated
+progression ladder** (`gen_mp_armory.py::record_urc`; thresholds parsed from the scripts so they can't
+drift): rank, each class with live `coop_mpCnt_<class>` / the N-kill unlock
++ an **UNLOCKED badge** (`enabledcvar coop_mpUnlockC_<class>`), plus the cosmetic ladder (answers "progression
+not clearly defined").
 
 **Field Settings (Coop Settings) + Host Rules sheets** - `SHIPPED-UNVERIFIED`; the 2026-09-13
 redesign (bug-2578) is deployed and **not yet opened in game**. `ui/coop_settings.urc` is a two-column
@@ -689,17 +701,13 @@ show a padlock + hover requirement line.
 `coop_chal_unlocks` haystack (42 challenge + 15 rank unlocks, thematically matched). The 48
 lobby-only extra skins stay FREE — only shared premium skins lock. Gates all three cycle paths.
 
-**Locked-cosmetic visibility** — `REVERTED` (**by design change, not defect**). Server-pushed per-page
-redirect chains **skipped** locked skins/helmets in the armory cycle; reversed pre-release at the
-user's request to cycle ALL entries with a lock icon + requirement text (260 redirect lines removed,
-zero stale refs). **Cost: two full generator rewrites.** ⭐ When classifying REVERTED, separate "it
-broke" from "the user changed their mind."
+**Locked-cosmetic visibility** — `REVERTED` (**design change, not defect**). Armory cycle first *skipped*
+locked skins/helmets; reversed pre-release to cycle ALL entries with a lock icon + requirement text (cost:
+two generator rewrites). ⭐ When classifying REVERTED, separate "it broke" from "the user changed their mind."
 
-**Deployables skill tree** — `PLANNED` → **REJECTED**. Six branches / ~36 nodes (Combat Engineer,
-Quartermaster, Field Medic, Forward Observer, Squad Leader, Saboteur; 1 RP per 100 XP). User verdict
-2026-07-13: *"Not a big fan… do not build mine"* — they are building their own model. The one durable
-finding: the engine already ships `CarryableTurret`/`PortableTurret`
-(`portableturret.cpp:65/481`), so a deployable .30cal is **wiring, not new engine work**.
+**Deployables skill tree** — `REJECTED` (2026-07-13, *"do not build mine"*). Durable finding: the engine
+ships `CarryableTurret`/`PortableTurret` (`portableturret.cpp:65/481`), so a deployable .30cal is **wiring,
+not new engine work**.
 
 ---
 
@@ -1084,24 +1092,68 @@ cgame filter, a refuse/validate guard list, and a cgame API handshake bumped v3-
 
 ---
 
+<a name="mp-modes"></a>
+## HZM Multiplayer modes
+
+Eleven competitive modes selectable from the HZM MP menu, isolated from the coop mod by the
+`check_mp_isolation.py` contract (22 clauses). All modes run under `g_gametype 2` (Team Match)
+with the engine's frag/round/time limits zeroed and the mode script driving the win condition.
+Mode selection sets `coop_mpMode` via bridge cfgs under `ui/coop_mpmenu/`; `mp.scr` dispatches
+into each mode's script through three seam labels (`mp_modeGiveKit`, `mp_modeTick`,
+`mp_modeOnDeath`). Weapon kits come from `mp_armory.scr::giveKit` (MP-isolated armory).
+
+| Mode | Script | Status | Win condition |
+|---|---|---|---|
+| Gun Game | `mp_gungame.scr` | SHIPPED | Cycle through weapon tiers on kills; first to finish wins |
+| King of the Hill | `mp_koth.scr` | SHIPPED | Hold the hill zone; first team to time threshold wins |
+| Last Man Standing | `mp_lms.scr` | SHIPPED | Limited lives; last team alive wins |
+| Freeze Tag | `mp_freezetag.scr` | SHIPPED | Freeze enemies on kill; thaw allies by standing near; win = all enemies frozen |
+| Push | `mp_push.scr` | SHIPPED | Attackers push through objective zones; defenders hold |
+| Search & Destroy | `mp_snd.scr` | SHIPPED | Round-based; plant/defuse a bomb at target sites |
+| Demolition | `mp_demolition.scr` | SHIPPED (symmetric 2026-09-15) | Either team plants on the enemy's spawn-derived site; no-respawn rounds; gt2 team board (bug-2645) |
+| Capture the Flag | `mp_ctf.scr` | SHIPPED | Carry enemy flag to your base; first to score limit wins |
+| Build-A-Base | `mp_buildabase.scr` | SHIPPED-UNVERIFIED | Real AlienX port: carry from spinning stations, USE-aim laser, FIRE to place; then FIGHT behind your cover (bug-2635) |
+| Base Assault | `mp_baseassault.scr` | SHIPPED | 3 bases/team (1-3 on SP maps) from spawns or authored; plant to destroy enemy bases, defuse yours; SP-map treatment bug-2639 |
+| Prop Hunt | `mp_prophunt.scr` | SHIPPED-UNVERIFIED | AXIS hide as statics ([USE] cycles), ALLIES hunt after a hide phase (bug-2641) |
+
+**Shared infrastructure:** `mp_bots.scr` (bot seeding), `mp_rounds.scr` (round manager for
+round-based modes), `mp_hardcore.scr` (Hardcore modifier — 200 HP, slower pace), `mp_medkits.scr`
+(medkit self-heal; ceiling fixed to real max_health, no full-health channel / DBNO-pool refill, bug-2642),
+`mp_dbno.scr` (DBNO in MP), `mp_spawnprotect.scr` (post-spawn invulnerability, drops
+on fire; default-on `coop_mpSpawnProtect`, bug-2640), `mp_vehicles.scr` (vehicle/emplacement framework,
+below), `mp_realism.scr` (realism settings). **Build-A-Base** is a faithful port of the real AlienX
+`basebuild.scr` (bug-2635, `SHIPPED-UNVERIFIED`): spinning pickup stations → carry a ghost → USE-aim a
+`func_beam` laser → FIRE to place solid cover, then FIGHT; deferred remover-laser/lifts/teleporters/turrets.
+
+**MP vehicle system** (2026-09-15, framework `SHIPPED`, interactive loops playtest-gated; bug-2643) — host
+toggle `coop_mpVehicles` (default off), 5 SP arena maps, placements harvested from UberMod (generated
+`mp_vehicle_maps.scr`). Five `veh_*`: team-aware **AT pickups** (allies→bazooka, axis→panzerschreck),
+**flak88 + nebelwerfer** (mannable `FixedTurret`s, native use/aim/fire), **drivable
+jeep + tank** (native `attachdriverslot`/`attachturretslot` crewing; tanks immune to all but rocket/falling,
+so only the AT pickups kill them). All 5 spawn-verified; board/drive/fire need a playtest. **Freeze Tag**
+gained a **meltgun** thaw (bug-2644): aim+fire to weld a frozen teammate free.
+
+**Base Assault** (2026-09-14; SP-map treatment 2026-09-15) — bases plant/defuse (USE 15s/10s) + 60s fuse,
+destroy-all-enemy-bases to win, 30-min cap. Derived from spawns on stock maps; on the 5 SP
+arena maps it script-spawns authored spawns + hand-placed bases (generated `mp_baseassault_maps.scr`, dynamic
+1-3 base count, bug-2639) via a Campaign-Maps picker.
+
+**Speed fix** (bug-2629) — coop's `sv_dmspeedmult 0.6` leaked into MP; `mp.scr` resets `sv_dmspeedmult 1.1` + `sv_runspeed 287`, `start_server.cfg` restores coop on return.
+
+**Bot leak fix** (bug-2630) — `sv_maxbots`/`sv_numbots`/`sv_minPlayers` leaked MP→coop; `start_server.cfg` now zeros them.
+
+---
+
 ## Inert-feature sweep - six built-but-never-running systems (2026-08-30)
 
-`SHIPPED, UNTESTED IN PLAY`. Bugs 2176-2182 carry the full mechanism of each. Six features built, logged
-as done and never executed; only two were fixed by turning them on - "seed the gate cvar" was the wrong
-answer four times out of six.
-
-- **MP voice-command wheel** - `SHIPPED`. Silent on every campaign map from two causes: 230 aliases
-  carried retail's deathmatch-only map scope (fixed with `always`), and V was taken by the bash.
-- **Teammate radar** - `SHIPPED`. `SV_PackNonPVSClient` normalised the delta to a unit vector, pinning
-  every out-of-PVS mate to the rim; the packer clamps now. Range 1024 -> 6144 seeded from `server.scr`.
-- **Objective bonus drop** - `SHIPPED`. Disabled since 07-01 by a comment describing a defect fixed in
-  the same commit; re-enabled with nine BSP-derived coordinates, a ground snap and the glow beacon.
-- **Bounding overwatch** (`coop_aiBound`) - `SHIPPED`, re-architected to gate on squad-brain ownership
-  (fail-open). Measured effect ~3.5% fewer repositions - a de-synchroniser, not a tactic.
-- **Aggressive advance** (`coop_aiAggrMove`) - **DELETED**; it would have issued the `runto` bug-1812
-  measured stalling 85% of the time. Replaced with `AIBEHAV` telemetry.
-- **Stealth arm-on-hurt** (`coop_stealthArmOnHurt`) - **DELETED**; no caller for its whole life, and
-  wiring it to e1l3 would have made the escape unwinnable.
+`SHIPPED, UNTESTED IN PLAY`. Bugs 2176-2182 carry the full mechanism of each. Six built-and-forgotten
+features; "seed the gate cvar" was the wrong answer four times out of six. Fixed-on: **MP voice-command
+wheel** (retail DM-only scope → `always`, V freed from the bash), **teammate radar** (`SV_PackNonPVSClient`
+now clamps instead of unit-normalising the delta; range 1024→6144), **objective bonus drop** (re-enabled,
+9 BSP coords + ground snap + beacon), **bounding overwatch** `coop_aiBound` (re-gated on squad-brain
+ownership; ~3.5% fewer repositions). Deleted-as-harmful: **aggressive advance** `coop_aiAggrMove` (would
+ship the `runto` bug-1812 stall) and **stealth arm-on-hurt** `coop_stealthArmOnHurt` (no caller ever;
+would make e1l3 unwinnable).
 ## Archived feature records (2026-08-02 to 08-07)
 
 Low-health limp, AI voice nationality, the covtrace/covwalk coverage sweep and the m1l1 corkboard
@@ -1110,78 +1162,20 @@ All four still ship; none is superseded.
 
 ## Omaha (m3l1a) 2026-09-05 -> 09-08 batch - SHIPPED, AWAITING PLAYTEST
 
-Bugs 2473-2529. Every beat has a
-kill switch (`level.coop_*On`) and a `^~^~^` marker; acceptance lines are in OPEN.md.
-
-- **Flank MG42 crews fire** - probe `FLANKGUN`/`FLANKMGSTAT`, bisect `coop_flankCrewDrive 0`, cap
-  `coop_flankCrewMax`.
-- **Radioman rework** - he is silent and shot on approach; the PLAYER transmits 036h from the set on
-  his body and 045a answers, then unused retail VO `dfr_M3L1_300f` gives the order.
-- **Underwater cinematic** - waders retimed into the swim, seven seabed corpses and kills, hull sparks
-  from a `notagaxis` metal emitter.
-- **Ocean** - `zz_coop_ocean.shader` (flap max 10 -> 1, m3l1a-only), coop Higgins at retail's -563.7,
-  six ashore boats clear of statics, seated by `droptofloor`.
-- **Obstacle wash** - surf on the 72 statics in water, five nearest a player (`coop_obstWashOn`).
-- **Quick-draw parked primary** - in view lower-left (`coop_qdrawVOfs/VAng`, probe
-  `coop_qdrawVDbg`); the left hand is not on it.
-- **Wet-sand swash + shore foam** (2485/2493) - `zz_coop_wetsand.shader`, both ragged on a 256 u
-  period; the foam's reach is baked into texture alpha because gl2 drops `alphaGen tCoord` without a
-  deform (2486, ENGINE.md 3.6).
-- **Drowning pass** (2507) - an air ramp driving the gl2 water pass (tunnel, desaturation, blur,
-  pulse), heart one-shots, bubbles, the lid from below, thrash, a real exit; caustics dimmed
-  (2509). **Sink end state** roll 30 / drop 72 (2510). **Urgency** after the smoke: seven m3l1 shouts,
-  no man twice, `URGENCY say` (2511).
-- **Ocean pass** (2508) - the sheet fades out at T 0.82 into the strip's wet line (4-param tCoord),
-  swash blood, a tint + break-foam band in two reclaimed stages, offshore froth and sky sheen, a boat
-  wake, gl2 `alphaGen dot` + a real sun (`r_hzmAlphaGenDot`), and the open-sea wave mesh behind
-  `coop_seaMeshOn`.
-- **Drowning QTE** (2528) - the drowning cinematic is now a **tap-Use fight against the current**
-  between BEAT 5 and 6, and every player must clear it to finish the beach-landing objective. Let up
-  and it drags you seaward, fades to black and kills you - **that player alone**: LMS-exempt, never
-  `missionfailed` (a map reload in coop). Bar on HUD slots 123-125 + 179; knobs in OPEN.md.
-  **Nobody has drowned yet.**
-- **Beach medics** (2522/2523/2526) - five more crouched in hedgehog cover with spinning DBNO-style
-  kits, healing on approach with a break-off animation; the map's own medics included.
-- **Ocean and surf realism** (2515-2525) - an open-sea Airy mesh, a surf-zone bore layer and a trough
-  shadow painted antiphase to the break foam (`gen_coop_sea/surf.py`, `gen_boreshade.py`), because
-  deformed water cannot be lit here at all. Boat overlaps and the shore/ocean seam closed; the smoke
-  barrage now holds until the shore party's radio exchange finishes (2529).
+Bugs 2473-2529. Every beat has a kill switch (`level.coop_*On`) and a `^~^~^` marker; acceptance
+lines in OPEN.md. Highlights: flank MG42 crews, radioman rework, underwater cinematic with a
+drowning QTE (tap-Use, per-player death, LMS-exempt, knobs in OPEN.md), ocean and surf realism
+(Airy mesh, bore layer, trough shadow, wet-sand swash), beach medics, quick-draw parked primary,
+obstacle wash, the smoke barrage holding for the shore-party radio exchange.
 
 ## m2l2a Phase C - the player-initiated CONTAIN (2026-08-10) - SHIPPED, partly verified
 
-`coop_mod/bust.scr` + `itemhandler.scr`. Gated on `coop_stealthStart`, which **ships ON from
-the next release** (bug-1698) - it was 0 in 1.2.6, so no player has reached Phase C yet.
-⚠ That gate is wider than its name: it also makes m2l2a open UNARMED, papers-only. The contain
-cannot be decoupled from it - a player holding a Weapon reads as undisguised, so guards never
-challenge them and the contain can never fire. Full design and the
-nine defects the playtest found: `docs/proposals/m2l2a_coop_stealth_master_plan_v2.md`
-("PHASE C AS PLAYED"), bugs 1682-1691.
-
-An officer stopping you is no longer a fail state - it is a fight you can win quietly, and the
-player moves FIRST. Approach an officer and you are told *"Avoid the Officer. Contain him only when
-alone."*; inside 112u, *"Press [USE] to Contain The Situation"*. USE plays the retail `punch1/2/3`
-pistol foley on him and lands a small non-lethal hit, which is the ONLY lever script has on an
-actor's think (`thinkstate` is getter-only; `Actor::EventPain` sets `THINKSTATE_PAIN` at
-`THINKLEVEL_PAIN`). He drops to his knees for 4.5s while the silenced pistol is force-drawn, given
-ammo, and HELD against the loadout arriving behind it.
-
-- **Killed unseen** -> papers back at once + *"Leave the Area Immediately."*; at +10s clean,
-  *"Situation Contained. Proceed with Caution."* and the squad is told who did it.
-- **Seen** (the stun OR the body) -> *"Situation Escalated - Weapons Free"* and the map's REAL alarm
-  via `trigger $waittrigger_alarm_master`.
-- **Not killed in time** -> he recovers and runs for the alarm, as normal.
-- **Afterwards** the corpse stays findable for the rest of the mission. Anyone who can see it reacts;
-  the first actor safe to interrupt kneels over it. Loiter within 320u on the same floor for 15s and
-  cover is blown - the timer resets when you leave.
-
-**VERIFIED in play:** the contain loop end to end; the escalation path handing over the FULL loadout;
-the bust-time aggro exemption ("solid timing"); and the body investigation - a guard walks to the
-corpse and stays with it ("hes staying near the body so I call that a win").
-**STILL UNVERIFIED:** the 15s loiter -> cover-blown escalation, the stun-witness route, and the
-Naxos room/hold prompts and sabotage bar.
-
-Status: `SHIPPED-VERIFIED` for the contain loop, escalation loadout and body investigation;
-`SHIPPED-UNVERIFIED` for the rest.
+`coop_mod/bust.scr` + `itemhandler.scr`. Gated on `coop_stealthStart` (ships ON from the next
+release, bug-1698). Full design: `docs/proposals/m2l2a_coop_stealth_master_plan_v2.md`, bugs
+1682-1691. An officer encounter is now a quiet fight: USE to stun (4.5s window), silenced pistol
+force-drawn, kill unseen = papers back + 10s clean = "Situation Contained"; seen = full alarm;
+corpse stays findable, 15s loiter = cover blown. VERIFIED: contain loop, escalation loadout, body
+investigation. UNVERIFIED: loiter escalation, stun-witness route, Naxos prompts/sabotage bar.
 
 ## m2l2a stealth foundations (v1.2.5, 2026-08-10) - SHIPPED, verified in play
 
