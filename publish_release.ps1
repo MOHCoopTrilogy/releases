@@ -318,13 +318,23 @@ if ($hook) {
 try {
     $symDir = Join-Path $dev "symbols\$Version"
     New-Item -ItemType Directory -Path $symDir -Force | Out-Null
-    $pdbs = @{
-        "game.pdb"  = "$dev\openmohaa-hzm\.cmake\code\server\fgame\Release\game.pdb"
-        "cgame.pdb" = "$dev\openmohaa-hzm\.cmake\code\client\cgame\Release\cgame.pdb"
-    }
+    $cm = "$dev\openmohaa-hzm\.cmake"
+    # every shipped binary's PDB + linker MAP (RVA->function, no debugger needed - bug-2666)
+    $srcs = @(
+        "$cm\Release\openmohaa",
+        "$cm\Release\omohaaded",
+        "$cm\code\server\fgame\Release\game",
+        "$cm\code\client\cgame\Release\cgame",
+        "$cm\code\renderercommon\renderergl1\Release\renderer_opengl1",
+        "$cm\code\renderercommon\renderergl2\Release\renderer_opengl2"
+    )
     $n = 0
-    foreach ($k in $pdbs.Keys) { if (Test-Path $pdbs[$k]) { Copy-Item $pdbs[$k] (Join-Path $symDir $k) -Force; $n++ } }
-    Write-Host "archived $n PDB(s) -> symbols\$Version (for symbolicating v$Version crash dumps)"
+    foreach ($s in $srcs) {
+        foreach ($ext in @(".pdb", ".map")) {
+            if (Test-Path "$s$ext") { Copy-Item "$s$ext" (Join-Path $symDir (Split-Path "$s$ext" -Leaf)) -Force; $n++ }
+        }
+    }
+    Write-Host "archived $n symbol file(s) -> symbols\$Version (PDBs + MAPs for symbolicating v$Version dumps)"
 } catch { Write-Host "WARNING: PDB archive step failed: $($_.Exception.Message)" -ForegroundColor Yellow }
 
 Write-Host ""
