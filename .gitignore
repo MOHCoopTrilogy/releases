@@ -17,3 +17,4 @@ installer/MOHCoop-Upgrade-*.zip
 installer/installed_manifest_seed.json
 build_out/
 __pycache__/
+symbols/

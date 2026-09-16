@@ -311,5 +311,21 @@ if ($hook) {
     Write-Host "(no AnnounceWebhook in publish_secrets.ini - Discord announcement skipped)"
 }
 
+# --- 8. Archive matching PDBs for this exact build (bug-2663). A crash dump can only be symbolicated
+# with the PDB whose GUID/age matches the shipped binary, so keep a per-version copy. These are local-
+# only (symbols/ is gitignored - PDBs are large and not for the public repo). With symbols/<version>/
+# next to a report's minidump, WinDbg/cdb turns "cgame.dll +0x159960" into a real function name.
+try {
+    $symDir = Join-Path $dev "symbols\$Version"
+    New-Item -ItemType Directory -Path $symDir -Force | Out-Null
+    $pdbs = @{
+        "game.pdb"  = "$dev\openmohaa-hzm\.cmake\code\server\fgame\Release\game.pdb"
+        "cgame.pdb" = "$dev\openmohaa-hzm\.cmake\code\client\cgame\Release\cgame.pdb"
+    }
+    $n = 0
+    foreach ($k in $pdbs.Keys) { if (Test-Path $pdbs[$k]) { Copy-Item $pdbs[$k] (Join-Path $symDir $k) -Force; $n++ } }
+    Write-Host "archived $n PDB(s) -> symbols\$Version (for symbolicating v$Version crash dumps)"
+} catch { Write-Host "WARNING: PDB archive step failed: $($_.Exception.Message)" -ForegroundColor Yellow }
+
 Write-Host ""
 Write-Host "Done. Testers on the updater get v$Version on next launch."

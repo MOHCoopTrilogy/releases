@@ -98,6 +98,63 @@ try {
     }
 } catch { $dumpNote = "crash-dump grab failed: $_" }
 
+# [2026-09-16 bug-2662/2663] INJECTED-MODULE SCAN. A huge share of "the game crashes" reports are
+# actually a third-party OVERLAY / capture / streaming DLL injected into the game process faulting on
+# its own thread (NVIDIA Share/ShadowPlay nvspcap, Steam/Discord overlays, RivaTuner, OBS hooks,
+# Parsec, anti-cheat, ...). The minidump lists every loaded module; surfacing the non-Microsoft ones -
+# and flagging the known overlays - turns a multi-hour dump dig into a one-line read. Pure struct read
+# of the MINIDUMP_MODULE_LIST stream (type 4), so no debugger/symbols needed.
+$moduleLines = @()
+try {
+    $dmpPath = if ($dump) { Join-Path $work $dump.Name } else { $null }
+    if ($dmpPath -and (Test-Path $dmpPath)) {
+        $b = [IO.File]::ReadAllBytes($dmpPath)
+        if ($b.Length -gt 32 -and $b[0] -eq 0x4D -and $b[1] -eq 0x44 -and $b[2] -eq 0x4D -and $b[3] -eq 0x50) {
+            $nStreams = [BitConverter]::ToInt32($b, 8)
+            $dirRva   = [BitConverter]::ToInt32($b, 12)
+            $modRva   = 0
+            for ($i = 0; $i -lt $nStreams; $i++) {
+                $o = $dirRva + $i * 12
+                if ([BitConverter]::ToInt32($b, $o) -eq 4) { $modRva = [BitConverter]::ToInt32($b, $o + 8); break }
+            }
+            if ($modRva -gt 0) {
+                $overlayKeys = @("nvspcap","nvsp","overlay","gameoverlayrenderer","discordhook","rtss","rivatuner",
+                                 "obs-","obs64","fraps","xsplit","easyanticheat","beclient","battleye","nahimic",
+                                 "parsec","medal","outplayed","afterburner","reshade","specialk","d3dhook","gfsdk")
+                $nMod = [BitConverter]::ToInt32($b, $modRva)
+                $p = $modRva + 4
+                $overlays = @(); $nonMs = @()
+                for ($m = 0; $m -lt $nMod -and $p + 108 -le $b.Length; $m++) {
+                    $nameRva = [BitConverter]::ToInt32($b, $p + 20)
+                    if ($nameRva -gt 0 -and $nameRva + 4 -le $b.Length) {
+                        $len  = [BitConverter]::ToInt32($b, $nameRva)
+                        if ($len -gt 0 -and $nameRva + 4 + $len -le $b.Length) {
+                            $full = [Text.Encoding]::Unicode.GetString($b, $nameRva + 4, $len)
+                            $lc   = $full.ToLower()
+                            $base = Split-Path $full -Leaf
+                            foreach ($k in $overlayKeys) { if ($lc -like "*$k*") { $overlays += $base; break } }
+                            if ($lc -notlike "*\windows\*" -and $lc -notlike "*system32*" -and $lc -notlike "*syswow64*") { $nonMs += $full }
+                        }
+                    }
+                    $p += 108
+                }
+                $moduleLines += ""
+                $moduleLines += "=== injected / overlay modules (from crash dump) ==="
+                if ($overlays.Count) {
+                    $moduleLines += "!! OVERLAY / CAPTURE / INJECTED SOFTWARE DETECTED - a frequent crash cause:"
+                    $overlays | Sort-Object -Unique | ForEach-Object { $moduleLines += "   >> $_" }
+                    $moduleLines += "   (if the game crashes, try disabling these overlays and retest)"
+                } else {
+                    $moduleLines += "(no known overlay DLLs matched)"
+                }
+                $moduleLines += ""
+                $moduleLines += "=== all non-Microsoft modules loaded at crash ==="
+                $nonMs | Sort-Object -Unique | ForEach-Object { $moduleLines += "   $_" }
+            }
+        }
+    }
+} catch { $moduleLines = @("(injected-module scan failed: $_)") }
+
 # install + game info: versions, and the full inventory of the install dir INCLUDING the
 # home content (missing pk3s are a failure mode), plus the game dir dll/pk3 inventory
 # (a stray vanilla OpenMOHAA in the game folder is a known failure mode)
@@ -155,6 +212,7 @@ foreach ($g in $gpu) { $info += "GPU: $($g.Name)  driver $($g.DriverVersion)" }
 $cpu = Get-CimInstance Win32_Processor | Select-Object -First 1
 $info += "CPU: $($cpu.Name)"
 $info += "RAM: {0:N0} MB" -f ($os.TotalVisibleMemorySize/1KB)
+if ($moduleLines.Count) { $info += $moduleLines }
 $info | Set-Content (Join-Path $work "report_info.txt") -Encoding utf8
 if ($UserDescription.Trim()) { $UserDescription | Set-Content (Join-Path $work "user_description.txt") -Encoding utf8 }
 
