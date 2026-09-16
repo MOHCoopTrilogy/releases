@@ -132,7 +132,11 @@ try {
                             $full = [Text.Encoding]::Unicode.GetString($b, $nameRva + 4, $len)
                             $lc   = $full.ToLower()
                             $base = Split-Path $full -Leaf
-                            foreach ($k in $overlayKeys) { if ($lc -like "*$k*") { $overlays += $base; break } }
+                            # match keywords against the FILE NAME only, never the full path - the install
+                            # path contains "Medal of Honor", which used to match the "medal" key and flag
+                            # every module in the game folder (bug-2665).
+                            $blc  = $base.ToLower()
+                            foreach ($k in $overlayKeys) { if ($blc -like "*$k*") { $overlays += $base; break } }
                             if ($lc -notlike "*\windows\*" -and $lc -notlike "*system32*" -and $lc -notlike "*syswow64*") { $nonMs += $full }
                         }
                     }
