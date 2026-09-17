@@ -6,7 +6,7 @@
      Regenerates automatically on Stop via .wolf/hooks/stop.js
      ============================================================ -->
 # Fix ledger (generated from `.wolf/buglog.json`)
-**1987** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
+**1993** entries. `buglog.json` is the one OpenWolf artifact that never rotted, because it is keyed, schema'd and one-entry-per-event. This ledger is a read-only view of it - fix the buglog, not this file.
 
 **Reading an entry in isolation is unsafe.** The schema has no `superseded_by` and no `status`, so a later entry can silently reverse an earlier one. Always check `FIX_INDEX.md` for the full history of the file first.
 
@@ -17,7 +17,7 @@
 | 2026-06 | 80 |
 | 2026-07 | 577 |
 | 2026-08 | 918 |
-| 2026-09 | 406 |
+| 2026-09 | 412 |
 
 ## Chronological
 Signals are keyword matches on the entry text, not a status field - `R` revert language, `V` verification language, `P` pending/untested language. An entry can carry several. They are hints for where to look, never a verdict.
@@ -2005,6 +2005,12 @@ Signals are keyword matches on the entry text, not a status field - `R` revert l
 | `bug-2669` | 2026-09-16 | `hzm-mohaa-coop-mod/coop_mod/mp_cybersnd.scr, mp_buildabase.scr, alien…` | V | ^~^~^ Script Error : invalid waittill prespawn/spawn for 'Level' when starting snd/cyberattack/buildabase on a force-arena map. | Seed synchronously at ServerSpawned like mp_push.scr does: removed the prespawn/spawn waittills from mp_cybersnd.scr::cs_boot and mp_buildabase.scr::… |
 | `bug-2670` | 2026-09-16 | `hzm-mohaa-coop-mod/coop_mod/mp.scr` | V | Playtest: Build-A-Base on an SP campaign map - 'ai are spawning in and killing me from the campaign'. | mp_clearArenaAI in mp.scr::main (coop_mpRun-gated so coop AI untouched; MP bots are 'Player' not 'Actor'): one synchronous getentbyentnum sweep delet… |
 | `bug-2671` | 2026-09-16 | `hzm-mohaa-coop-mod/coop_mod/start_server.cfg` | - | Friend crashes repeatedly starting a coop game: openmohaa.exe access violation, RIP=0x0 null call in nvgpucomp64.dll during renderer teardown. | start_server.cfg now pins `set ui_dedicated 0` + `set dedicated 0` before ui_startdmmap 2, so the in-game coop start is always a listen host and can… |
+| `bug-2672` | 2026-09-16 | `hzm-mohaa-coop-mod/coop_mod/mp_buildabase.scr` | V | Build-A-Base on the 11 SP campaign maps had no player spawns (builders spawned nowhere); found via a boot audit prompted by the user asking 'are you… | Added `waitthread coop_mod/mp_arena_spawns.scr::ensureSpawns local.map` in mp_buildabase.scr::mode_init. Verified: 'MP arena spawns injected map=m1l3… |
+| `bug-2673` | 2026-09-16 | `hzm-mohaa-coop-mod/coop_mod/mp_oneshot.scr, mp_oneammo.scr` | V | Feature: add One-Shot Kill (instagib) and Single-Round Ammo (One-in-the-Chamber) as cross-mode MODIFIERS. | mp_oneshot.scr (coop_mpOneShot 0/1): spawn-edge health=1 so any hit is lethal - composes with EVERY mode, mirrors mp_hardcore.scr, runs after Hardcor… |
+| `bug-2674` | 2026-09-16 | `hzm-mohaa-coop-mod/coop_mod/mp_domination.scr` | V | Feature: add Domination MP mode (no upstream mod exists for MOHAA - built by reusing KOTH). | mp_domination.scr = KOTH with 3 static points scored simultaneously (holding N points banks N/sec). Points DERIVED from real player spawn origins (al… |
+| `bug-2675` | 2026-09-16 | `hzm-mohaa-coop-mod/htr/*, coop_mod/mp_countdown.scr` | V | Feature: import Countdown MP mode (radio possession) coop-safely. | Imported the real countdown mod's HTR engine (setup/radio/player_radio/player_scan/camera/hud + strings/mapdesc/nagle/get_weapon/console_feedback dep… |
+| `bug-2676` | 2026-09-16 | `hzm-mohaa-coop-mod/coop_mod/mp_assassination.scr` | V | Feature: build Assassination MP mode (VIP) based on Mefy's, on our framework. | mp_assassination.scr: VIP-side team has one marked VIP (compass via set_objective_pos, +health). Hunters score on VIP kill (mode_onDeath edge -> rede… |
+| `bug-2677` | 2026-09-16 | `openmohaa-hzm/code/fgame/navigate.cpp, hzm-mohaa-coop-mod/coop_mod/mp…` | V | Feature: make MP bots play objectives in our modes, without breaking coop. | Engine: gave AttractiveNode a script-spawnable classname 'hzm_attractnode' (navigate.cpp CLASS_DECLARATION). Script: coop_mod/mp_botobj.scr (coop_mpR… |
 | `bug-535` |  | `coop_mod/helmet.scr` | - | Attached helmets (helmet switcher) land on the SIDE of the head | Use the engine `attach` event with use_angles=0 (world-upright, follows head POSITION only) via a spawned script_model + entity lifecycle mgmt. World… |
 | `bug-536` |  | `coop_mod/cover.scr` | - | Deployed sandbag not recognized as crouch cover after height raised to 64u | Set collision to 54u: < 58 (cover function recognizes it) AND covers a crouched body (protected while in cover). Pop up to shoot = exposed by design. |
 | `bug-537` |  | `coop_mod/challenges.scr` | - | Challenge completion popup re-shows already-unlocked challenges when a new one completes | Persistent coop_chalTShown high-water mark; each title shown exactly once. |

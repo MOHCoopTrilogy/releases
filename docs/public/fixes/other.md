@@ -6,10 +6,12 @@
 
 [<- back to all fixes](../BUGFIXES.md)
 
-**211 fixes**, newest first.
+**213 fixes**, newest first.
 
 | ID | Problem | Cause | Fix |
 |---|---|---|---|
+| `bug-2676` | Feature: build Assassination MP mode (VIP) based on Mefy's, on our framework. | n/a - new mode. User: 'build us an assassination game mode based on the existing one'. Mefy's Assassination needs its whole libmef framework, so built lean on our framework (like Domination from KOTH) instead of importing it. | mp_assassination.scr: VIP-side team has one marked VIP (compass via set_objective_pos, +health). Hunters score on VIP kill (mode_onDeath edge -> redesignate); VIP side scores per coop_mpAsSurvive seconds alive. First to coop_mpAsLimit wins  |
+| `bug-2675` | Feature: import Countdown MP mode (radio possession) coop-safely. | n/a - import. User: 'countdown would be nice if we can do it without breaking coop'. | Imported the real countdown mod's HTR engine (setup/radio/player_radio/player_scan/camera/hud + strings/mapdesc/nagle/get_weapon/console_feedback deps) under a private htr/ namespace, path-rewritten. Coop-safety: did NOT ship its global/amb |
 | `bug-2665` | Crash reporter's overlay-detection flagged EVERY module in the game folder as an overlay | The overlay keyword match ran against the full module PATH ($lc), and the install path contains 'Medal of Honor', which matches the 'medal' keyword (for Medal game-clip capture) - so every DLL under it was flagged. | Match keywords against the DLL basename ($base) only. Verified against a real dump: now flags only nvspcap64.dll. |
 | `bug-2656` | S&D awarded no plant/defuse stats and attacker detonation win was invisible to series+progression | S&D delegated the whole bomb to the base-pak stock gt4 recipe (global/obj_dm.scr, unreadable/unhookable) which exposes only level vars with no player ref; the detonation win ran through engine match-end, never rounds_win. | Added snd_manage bomb-edge detector: plant/defuse credited to the recent USE-holder heuristic per side; detonation SCORED into progression+series via mp_awardRoundWin (map transition left to the engine to avoid a stuffsrv race). Detonation  |
 | `bug-2654` | Demolition multi-attacker plant stalled and never armed | dem_tickPlant let any non-current planter overwrite the planter slot and reset the start time each manage pass, so two co-planting teammates flip-flopped the timer and the charge never armed. | Added an anti-steal guard: a non-current planter waits while a valid planter holds the slot (slot is released by dem_cancelPlayer on release/leave/death). |

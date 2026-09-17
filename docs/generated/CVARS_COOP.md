@@ -17,11 +17,11 @@ Union of four sources, all swept fresh:
 
 | metric | count |
 |---|---:|
-| distinct `coop_*` cvars | 3486 |
+| distinct `coop_*` cvars | 3498 |
 | registered with a default by the engine | 515 |
 | seeded by a shipped cfg | 1840 |
-| seeded nowhere at all | 1311 |
-| **&nbsp;&nbsp;of those, read by a script** | **276** |
+| seeded nowhere at all | 1323 |
+| **&nbsp;&nbsp;of those, read by a script** | **288** |
 | &nbsp;&nbsp;of those, menu-only (set at runtime by the UI) | 1035 |
 | menu-wired (`.urc`) | 1836 |
 | menu-wired but FORCED by autoexec.cfg (cannot persist) | 15 |
@@ -61,13 +61,15 @@ These literals are concatenated with a variable at the call site (`getcvar("coop
 - `coop_ki_heavy`, `coop_ki_mitem`, `coop_ki_reward`, `coop_ladderVolume`, `coop_latejoin`, `coop_latejoin_phase`
 - `coop_leakAllow`, `coop_lightBudget`, `coop_lobbyCamSway`, `coop_lobbyCountdown`, `coop_lobbyFeetDrop`, `coop_lobbyMusic`
 - `coop_lockLoadout`, `coop_loSkin`, `coop_m6EscapeFuse`, `coop_m6TowerFallYaw`, `coop_maptest_triggers`, `coop_medals`
-- `coop_mgLoaded`, `coop_moraleFrac`, `coop_mpBasDefuse`, `coop_mpBasFuse`, `coop_mpBasPlant`, `coop_mpBasRadius`
+- `coop_mgLoaded`, `coop_moraleFrac`, `coop_mpAsLimit`, `coop_mpAsScoreA`, `coop_mpAsScoreX`, `coop_mpAsSurvive`
+- `coop_mpAsVipHealth`, `coop_mpAsVipSide`, `coop_mpBasDefuse`, `coop_mpBasFuse`, `coop_mpBasPlant`, `coop_mpBasRadius`
 - `coop_mpBasScoreA`, `coop_mpBasScoreX`, `coop_mpBasTime`, `coop_mpBotMax`, `coop_mpCosTestGlove`, `coop_mpCosTestHelm`
 - `coop_mpCosTestSkin`, `coop_mpCtfBaseRadius`, `coop_mpCtfGrabRadius`, `coop_mpCtfReturnTime`, `coop_mpCtfScoreA`, `coop_mpCtfScoreX`
 - `coop_mpCtfTime`, `coop_mpDbno`, `coop_mpDbnoBleed`, `coop_mpDbnoMitigation`, `coop_mpDbnoRevivePool`, `coop_mpDbnoReviveRange`
-- `coop_mpDbnoReviveTime`, `coop_mpDbnoThreshold`, `coop_mpFastRun`, `coop_mpFastRunMult`, `coop_mpFtAutoThaw`, `coop_mpFtMeltRadius`
-- `coop_mpFtMeltTime`, `coop_mpFtTime`, `coop_mpKothMove`, `coop_mpKothRadius`, `coop_mpKothScoreA`, `coop_mpKothScoreX`
-- `coop_mpMedkitCount`, `coop_mpMedkits`, `coop_mpNo3p`, `coop_mpNoAds`, `coop_mpNoCover`, `coop_mpNoProne`
+- `coop_mpDbnoReviveTime`, `coop_mpDbnoThreshold`, `coop_mpDomLimit`, `coop_mpDomRadius`, `coop_mpDomScoreA`, `coop_mpDomScoreX`
+- `coop_mpFastRun`, `coop_mpFastRunMult`, `coop_mpFtAutoThaw`, `coop_mpFtMeltRadius`, `coop_mpFtMeltTime`, `coop_mpFtTime`
+- `coop_mpKothMove`, `coop_mpKothRadius`, `coop_mpKothScoreA`, `coop_mpKothScoreX`, `coop_mpMedkitCount`, `coop_mpMedkits`
+- `coop_mpNo3p`, `coop_mpNoAds`, `coop_mpNoCover`, `coop_mpNoProne`, `coop_mpOneAmmo`, `coop_mpOneShot`
 - `coop_mpPhHealth`, `coop_mpPhHideTime`, `coop_mpPhShotCost`, `coop_mpPhTime`, `coop_mpProgCreditBots`, `coop_mpProgFarmCooldown`
 - `coop_mpProgUnlockKills`, `coop_mpPushAttackers`, `coop_mpPushCap`, `coop_mpPushRadius`, `coop_mpPushToWin`, `coop_mpPushWinsA`
 - `coop_mpPushWinsX`, `coop_mpRndNum`, `coop_mpRndScoreA`, `coop_mpRndScoreX`, `coop_mpRndToWin`, `coop_mpSpawnProtect`
@@ -1152,6 +1154,12 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_mpa_Tab7` |  |  |  | other `0` @ `ui/coop_mpa_armory/dopen.cfg:8`<br>other `0` @ `ui/coop_mpa_armory/open.cfg:8`<br>other `0` @ `ui/coop_mpa_armory/tab0.cfg:8`<br>(+7 more) |  | `ui/coop_mpa_armory.urc` (+1) |
 | `coop_mpa_XfmC` |  |  |  | other `57 1 4 0.80 0 200 0` @ `ui/coop_mpa_armory/dopen.cfg:19`<br>other `57 1 4 0.80 0 200 0` @ `ui/coop_mpa_armory/open.cfg:19` |  | `ui/coop_mpa_appearance.urc` (+2) |
 | `coop_mpa_XfmW` |  |  |  | other `0 0 0 1.00 0 90 180` @ `ui/coop_mpa_armory/c01.cfg:2`<br>other `0 0 0 1.00 0 90 180` @ `ui/coop_mpa_armory/c02.cfg:2`<br>other `0 0 0 1.00 0 90 180` @ `ui/coop_mpa_armory/c05.cfg:2`<br>(+81 more) |  |  |
+| `coop_mpAsLimit` |  |  |  |  | `coop_mod/mp_assassination.scr:65` |  |
+| `coop_mpAsScoreA` |  |  |  |  | `coop_mod/mp_assassination.scr:85` (+2) |  |
+| `coop_mpAsScoreX` |  |  |  |  | `coop_mod/mp_assassination.scr:86` (+2) |  |
+| `coop_mpAsSurvive` |  |  |  |  | `coop_mod/mp_assassination.scr:71` |  |
+| `coop_mpAsVipHealth` |  |  |  |  | `coop_mod/mp_assassination.scr:77` |  |
+| `coop_mpAsVipSide` |  |  |  |  | `coop_mod/mp_assassination.scr:57` |  |
 | `coop_mpBabBuildTime` |  |  |  | other `180` @ `ui/coop_mpmenu/bab_build_180.cfg:3`<br>other `300` @ `ui/coop_mpmenu/bab_build_300.cfg:3`<br>other `420` @ `ui/coop_mpmenu/bab_build_420.cfg:3` |  |  |
 | `coop_mpBabMaxObjects` |  |  |  | other `100` @ `ui/coop_mpmenu/bab_objects_100.cfg:3`<br>other `200` @ `ui/coop_mpmenu/bab_objects_200.cfg:3`<br>other `300` @ `ui/coop_mpmenu/bab_objects_300.cfg:3` |  |  |
 | `coop_mpBaFuseTime` |  |  |  | other `30` @ `ui/coop_mpmenu/ba_fuse_30.cfg:3`<br>other `45` @ `ui/coop_mpmenu/ba_fuse_45.cfg:3`<br>other `60` @ `ui/coop_mpmenu/ba_fuse_60.cfg:3` |  |  |
@@ -1261,7 +1269,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_mpCtfScoreA` |  |  |  |  | `coop_mod/mp_ctf.scr:126` (+2) |  |
 | `coop_mpCtfScoreX` |  |  |  |  | `coop_mod/mp_ctf.scr:127` (+2) |  |
 | `coop_mpCtfTime` |  |  |  |  | `coop_mod/mp_ctf.scr:110` |  |
-| `coop_mpDbno` |  |  |  |  | `coop_mod/mp.scr:193` (+2) | `ui/coop_mphostrules.urc` |
+| `coop_mpDbno` |  |  |  |  | `coop_mod/mp.scr:198` (+2) | `ui/coop_mphostrules.urc` |
 | `coop_mpDbnoBleed` |  |  |  |  | `coop_mod/mp_dbno.scr:179` |  |
 | `coop_mpDbnoMitigation` |  |  |  |  | `coop_mod/mp_dbno.scr:346` |  |
 | `coop_mpDbnoRevivePool` |  |  |  |  | `coop_mod/mp_dbno.scr:530` |  |
@@ -1269,6 +1277,10 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_mpDbnoReviveTime` |  |  |  |  | `coop_mod/mp_dbno.scr:385` |  |
 | `coop_mpDbnoThreshold` |  |  |  |  | `coop_mod/mp_dbno.scr:138` |  |
 | `coop_mpDemTime` |  |  |  | other `120` @ `ui/coop_mpmenu/dem_time_120.cfg:3`<br>other `180` @ `ui/coop_mpmenu/dem_time_180.cfg:3`<br>other `90` @ `ui/coop_mpmenu/dem_time_90.cfg:3` | `coop_mod/mp_demolition.scr:68` |  |
+| `coop_mpDomLimit` |  |  |  |  | `coop_mod/mp_domination.scr:60` |  |
+| `coop_mpDomRadius` |  |  |  |  | `coop_mod/mp_domination.scr:67` |  |
+| `coop_mpDomScoreA` |  |  |  |  | `coop_mod/mp_domination.scr:89` (+2) |  |
+| `coop_mpDomScoreX` |  |  |  |  | `coop_mod/mp_domination.scr:90` (+2) |  |
 | `coop_mpFastRun` |  |  |  |  | `coop_mod/mp.scr:169` (+1) |  |
 | `coop_mpFastRunMult` |  |  |  |  | `coop_mod/mp.scr:170` |  |
 | `coop_mpFtAutoThaw` |  |  |  |  | `coop_mod/mp_freezetag.scr:99` |  |
@@ -1287,13 +1299,15 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_mpKothScoreX` |  |  |  |  | `coop_mod/mp_koth.scr:105` (+3) |  |
 | `coop_mpLmsTime` |  |  |  | other `600` @ `ui/coop_mpmenu/lms_time_10.cfg:3`<br>other `180` @ `ui/coop_mpmenu/lms_time_3.cfg:3`<br>other `300` @ `ui/coop_mpmenu/lms_time_5.cfg:3`<br>(+1 more) | `coop_mod/mp_lms.scr:50` |  |
 | `coop_mpMedkitCount` |  |  |  |  | `coop_mod/mp_medkits.scr:79` |  |
-| `coop_mpMedkits` |  |  |  |  | `coop_mod/mp.scr:194` (+2) | `ui/coop_mphostrules.urc` |
+| `coop_mpMedkits` |  |  |  |  | `coop_mod/mp.scr:199` (+2) | `ui/coop_mphostrules.urc` |
 | `coop_mpmenu` |  |  |  | FORCED `1` @ `autoexec.cfg:9`<br>other `0` @ `coop_mod/cfg/detect.cfg:8` |  |  |
-| `coop_mpMode` |  |  |  | other `none` @ `ui/coop_mpmenu/mode_none.cfg:5`<br>other `baseassault` @ `ui/coop_mpmenu/start_baseassault.cfg:6`<br>other `buildabase` @ `ui/coop_mpmenu/start_buildabase.cfg:5`<br>(+10 more) | `coop_mod/mp.scr:74` | `ui/coop_mpmenu.urc` |
+| `coop_mpMode` |  |  |  | other `none` @ `ui/coop_mpmenu/mode_none.cfg:5`<br>other `assassination` @ `ui/coop_mpmenu/start_assassination.cfg:7`<br>other `baseassault` @ `ui/coop_mpmenu/start_baseassault.cfg:6`<br>(+13 more) | `coop_mod/mp.scr:74` | `ui/coop_mpmenu.urc` |
 | `coop_mpNo3p` |  |  |  |  | `coop_mod/mp_realism.scr:72` | `ui/coop_mphostrules.urc` |
 | `coop_mpNoAds` |  |  |  |  | `coop_mod/mp_realism.scr:60` | `ui/coop_mphostrules.urc` |
 | `coop_mpNoCover` |  |  |  |  | `coop_mod/mp_realism.scr:68` | `ui/coop_mphostrules.urc` |
 | `coop_mpNoProne` |  |  |  |  | `coop_mod/mp_realism.scr:64` | `ui/coop_mphostrules.urc` |
+| `coop_mpOneAmmo` |  |  |  |  | `coop_mod/mp_oneammo.scr:39` |  |
+| `coop_mpOneShot` |  |  |  |  | `coop_mod/mp_oneshot.scr:42` |  |
 | `coop_mpPhHealth` |  |  |  |  | `coop_mod/mp_prophunt.scr:86` |  |
 | `coop_mpPhHideTime` |  |  |  |  | `coop_mod/mp_prophunt.scr:80` |  |
 | `coop_mpPhShotCost` |  |  |  |  | `coop_mod/mp_prophunt.scr:288` |  |

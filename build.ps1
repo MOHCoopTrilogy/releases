@@ -86,6 +86,10 @@ if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_arena_spawns check -
 # GENERATED from the canonical map list - the single source of truth for which maps these modes offer.
 python "C:\mohaa-coop-dev\docs\tools\gen_arenamaps_menu.py" check
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_arenamaps_menu check - regenerate with: python docs/tools/gen_arenamaps_menu.py build" -ForegroundColor Red; exit 1 }
+# [Countdown] htr/countdown_maps.scr (per-map radio spawn origins for the imported Countdown mode) is
+# GENERATED from countdown_radios.tsv (harvested from the upstream countdown mod). Byte-identical discipline.
+python "C:\mohaa-coop-dev\docs\tools\gen_countdown_maps.py" check
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_countdown_maps check - regenerate with: python docs/tools/gen_countdown_maps.py build" -ForegroundColor Red; exit 1 }
 # [user 2026-08-18] WIRING GATE: every exec resolves to a real file (exact case), every vstr
 # in our namespaces is assigned somewhere, every bus token is registered AND dispatched.
 python "C:\mohaa-coop-dev\docs\tools\ui_wiring_audit.py"
