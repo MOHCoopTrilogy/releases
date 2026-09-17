@@ -13,28 +13,36 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `c205202 2026-09-15 manifest 1.7.0` |
-| commits | 273 |
+| HEAD | `39660e9 2026-09-16 publish: archive every shipped binary's PDB + linker MAP per release (bug-2666)` |
+| commits | 281 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **17 modified, 7 untracked** |
-| unstaged diff | 17 files changed, 894 insertions(+), 505 deletions(-) |
+| **uncommitted** | **13 modified, 7 untracked** |
+| unstaged diff | 13 files changed, 365 insertions(+), 142 deletions(-) |
 
-> Working tree is dirty. Everything in those 24 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 20 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 62 |
+| 2026-09 | 70 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (273)
+### Commits since 2026-01-01 (281)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `39660e9` | 2026-09-16 | joncurry94-tech | publish: archive every shipped binary's PDB + linker MAP per release (bug-2666) |
+| `b23bf8b` | 2026-09-16 | joncurry94-tech | manifest 1.7.4 |
+| `2390245` | 2026-09-16 | joncurry94-tech | reporter: match overlay keywords against the DLL name, not the full path (bug-2665) |
+| `049e19e` | 2026-09-16 | joncurry94-tech | manifest 1.7.3 |
+| `7cb0176` | 2026-09-16 | joncurry94-tech | tooling: crash-report overlay detection + per-release PDB archiving (bug-2663) |
+| `5a69568` | 2026-09-16 | joncurry94-tech | manifest 1.7.2 |
+| `f12e045` | 2026-09-15 | joncurry94-tech | manifest 1.7.1 |
+| `360913a` | 2026-09-15 | joncurry94-tech | release v1.7.1 "Roll Out": Prop Hunt, vehicle system, campaign-map modes, spawn protection, two-way Demolition + Freeze Tag meltg… |
 | `c205202` | 2026-09-15 | joncurry94-tech | manifest 1.7.0 |
 | `41c54b2` | 2026-09-14 | joncurry94-tech | tools: drop the clause-7 lobby-armory exception - isolation back to strict |
 | `fe82bec` | 2026-09-14 | joncurry94-tech | tools: narrow clause-7 exception for the lobby closet's MP armory openers; drop the unused clause-12 one |
@@ -317,10 +325,10 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | HEAD | `7a3e3f77 2026-09-14 mp: Gun Game death-reset, Hardcore speed fix, DBNO/Medkits default ON, closet 3-way loadout` |
 | commits | 1,684 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **113 modified, 176 untracked** |
-| unstaged diff | 113 files changed, 4934 insertions(+), 1638 deletions(-) |
+| **uncommitted** | **121 modified, 203 untracked** |
+| unstaged diff | 121 files changed, 5420 insertions(+), 1718 deletions(-) |
 
-> Working tree is dirty. Everything in those 289 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 324 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
@@ -715,10 +723,10 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | HEAD | `243d8ac2 2026-09-14 engine: MP realism host toggles - ADS/Prone/Cover/Third Person off via g_mpRealismOff serverinfo` |
 | commits | 5,117 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **11 modified, 3 untracked** |
-| unstaged diff | 11 files changed, 382 insertions(+), 7 deletions(-) |
+| **uncommitted** | **17 modified, 3 untracked** |
+| unstaged diff | 17 files changed, 601 insertions(+), 21 deletions(-) |
 
-> Working tree is dirty. Everything in those 14 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 20 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 

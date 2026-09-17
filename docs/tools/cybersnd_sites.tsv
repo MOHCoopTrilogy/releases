@@ -1,0 +1,812 @@
+# Cyber Attack / Search & Destroy per-map bomb data, harvested from UberMod v8 map scripts.
+# Consumed by docs/tools/gen_cybersnd_maps.py. Do NOT hand-edit; re-harvest from source.
+# map	m1l1	modes	cyb snd
+m1l1	cyb	set	round_starttime = 8
+m1l1	cyb	set	rounds_towin = 6
+m1l1	cyb	set	changesides = 0
+m1l1	cyb	set	keepsamesides = 1
+m1l1	cyb	set	bombcamera = 1
+m1l1	cyb	bombsite	( -6623 2467 432 ) -90 axis
+m1l1	cyb	bombsite	( -2077 -3000 43 ) 180 allies
+m1l1	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( -4181 -1148 405 ) -12
+m1l1	snd	set	round_starttime = 8
+m1l1	snd	set	rounds_towin = 6
+m1l1	snd	set	changesides = 1
+m1l1	snd	set	bombcamera = 1
+m1l1	snd	bombsite	( -5200 -445 460 ) -70
+m1l1	snd	bombsite	( -3501 -119 420 ) 180
+m1l1	snd	bomb	( -1955 -3251 31 ) 180 ( -6351 1999 432 ) 90 ( 0 0 0 ) 0
+# map	m1l2a	modes	cyb snd
+m1l2a	cyb	set	round_starttime = 8
+m1l2a	cyb	set	rounds_towin = 6
+m1l2a	cyb	set	changesides = 0
+m1l2a	cyb	set	keepsamesides = 1
+m1l2a	cyb	set	bombcamera = 1
+m1l2a	cyb	bombsite	( 1794 3666 -188 ) 180 axis
+m1l2a	cyb	bombsite	( 4776 -1869 6 ) -90 allies
+m1l2a	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( 4157 -11 -167 ) -90
+m1l2a	snd	set	round_starttime = 8
+m1l2a	snd	set	rounds_towin = 6
+m1l2a	snd	set	changesides = 0
+m1l2a	snd	set	bombcamera = 1
+m1l2a	snd	bombsite	( 4866 209 -172 ) -90
+m1l2a	snd	bombsite	( 2800 -995 -127 ) 90
+m1l2a	snd	bomb	( 5960 -4428 -31 ) 90 ( 2064 3181 -193 ) 180 ( 0 0 0 ) 0
+# map	m1l2b	modes	cyb snd
+m1l2b	cyb	set	round_starttime = 8
+m1l2b	cyb	set	rounds_towin = 6
+m1l2b	cyb	set	changesides = 0
+m1l2b	cyb	set	keepsamesides = 1
+m1l2b	cyb	set	bombcamera = 1
+m1l2b	cyb	bombsite	( 2551 -4162 -327 ) 90 axis
+m1l2b	cyb	bombsite	( -3187 3496 -255 ) 180 allies
+m1l2b	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( 1528 727 -255 ) 90
+m1l2b	snd	set	round_starttime = 8
+m1l2b	snd	set	rounds_towin = 6
+m1l2b	snd	set	changesides = 0
+m1l2b	snd	set	bombcamera = 1
+m1l2b	snd	bombsite	( 2103 842 -255 ) -90
+m1l2b	snd	bombsite	( 534 1885 -255 ) 90
+m1l2b	snd	bomb	( -3175 3496 -255 ) 90 ( 1183 -2823 -191 ) 180 ( 0 0 0 ) 0
+# map	m1l3a	modes	cyb snd
+m1l3a	cyb	set	round_starttime = 8
+m1l3a	cyb	set	rounds_towin = 6
+m1l3a	cyb	set	changesides = 0
+m1l3a	cyb	set	keepsamesides = 1
+m1l3a	cyb	set	bombcamera = 1
+m1l3a	cyb	bombsite	( 3735 -257 310 ) -99 axis
+m1l3a	cyb	bombsite	( 2203 -5937 -106 ) 180 allies
+m1l3a	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( -389 -2574 145 ) 164
+m1l3a	snd	set	round_starttime = 8
+m1l3a	snd	set	rounds_towin = 6
+m1l3a	snd	set	changesides = 0
+m1l3a	snd	set	bombcamera = 1
+m1l3a	snd	bombsite	( -2459 -3254 20 ) 180
+m1l3a	snd	bombsite	( 294 -2708 60 ) 90
+m1l3a	snd	bomb	( 2594 -5684 -124 ) 180 ( 3264 -945 207 ) 180 ( 0 0 0 ) 0
+# map	m1l3b	modes	cyb snd
+m1l3b	cyb	set	round_starttime = 8
+m1l3b	cyb	set	rounds_towin = 6
+m1l3b	cyb	set	changesides = 0
+m1l3b	cyb	set	keepsamesides = 1
+m1l3b	cyb	set	bombcamera = 1
+m1l3b	cyb	bombsite	( -2492 7021 86 ) 0 axis
+m1l3b	cyb	bombsite	( -2979 -32 -23 ) 0 allies
+m1l3b	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( -582 2750 -23 ) 0
+m1l3b	snd	set	round_starttime = 8
+m1l3b	snd	set	rounds_towin = 6
+m1l3b	snd	set	changesides = 0
+m1l3b	snd	set	bombcamera = 1
+m1l3b	snd	bombsite	( -4895 1763 -23 ) -90
+m1l3b	snd	bombsite	( 1056 2268 -23 ) 90
+m1l3b	snd	bomb	( -1520 -292 41 ) 180 ( -1989 6692 -25 ) 0 ( 0 0 0 ) 0
+# map	m1l3c	modes	cyb snd
+m1l3c	cyb	set	round_starttime = 8
+m1l3c	cyb	set	rounds_towin = 6
+m1l3c	cyb	set	changesides = 0
+m1l3c	cyb	set	keepsamesides = 1
+m1l3c	cyb	set	bombcamera = 1
+m1l3c	cyb	bombsite	( 532 -1831 324 ) 180 axis
+m1l3c	cyb	bombsite	( -5715 -5565 240 ) 90 allies
+m1l3c	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( -5206 -1570 113 ) -102
+m1l3c	snd	set	round_starttime = 8
+m1l3c	snd	set	rounds_towin = 6
+m1l3c	snd	set	changesides = 0
+m1l3c	snd	set	bombcamera = 1
+m1l3c	snd	bombsite	( 532 -1831 324 ) 180
+m1l3c	snd	bombsite	( 207 -1894 1104 ) 33
+m1l3c	snd	set	cameradistance = 80
+m1l3c	snd	bombsite	( -5725 -5565 240 ) 90
+m1l3c	snd	bombsite	( -5484 -4720 716 ) 0
+m1l3c	snd	set	cameradistance = 200
+m1l3c	snd	bomb	( -5781 -5386 728 ) 180 ( 77 -1939 324 ) -158 ( 0 0 0 ) 0
+m1l3c	snd	set	bombsites = 0
+m1l3c	snd	bombsite	( 532 -1831 324 ) 180
+m1l3c	snd	bombsite	( 207 -1894 1104 ) 33
+m1l3c	snd	set	cameradistance = 80
+m1l3c	snd	bombsite	( -5725 -5565 240 ) 90
+m1l3c	snd	bombsite	( -5484 -4720 716 ) 0
+m1l3c	snd	set	cameradistance = 200
+# map	m2l1	modes	cyb snd
+m2l1	cyb	set	round_starttime = 8
+m2l1	cyb	set	rounds_towin = 6
+m2l1	cyb	set	changesides = 0
+m2l1	cyb	set	keepsamesides = 1
+m2l1	cyb	set	bombcamera = 1
+m2l1	cyb	bombsite	( 4195 5740 -48 ) 180 axis
+m2l1	cyb	bombsite	( -1407 -3763 474 ) 90 allies
+m2l1	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( 1820 920 448 ) -90
+m2l1	snd	set	round_starttime = 8
+m2l1	snd	set	rounds_towin = 6
+m2l1	snd	set	changesides = 0
+m2l1	snd	set	bombcamera = 1
+m2l1	snd	bombsite	( 1556 7363 -31 ) -90
+m2l1	snd	bombsite	( 3299 1118 474 ) 180
+m2l1	snd	bombsite	( -2454 -2732 452 ) 0
+m2l1	snd	bombsite	( 737 622 489 ) 90
+m2l1	snd	bomb	( -2342 -2934 488 ) 90 ( 3389 6515 -63 ) 180 ( 0 0 0 ) 0
+m2l1	snd	bombsite	( 1556 7363 -31 ) -90
+m2l1	snd	bombsite	( 3299 1118 474 ) 180
+m2l1	snd	bombsite	( -2454 -2732 452 ) 0
+m2l1	snd	bombsite	( 737 622 489 ) 90
+# map	m2l2a	modes	cyb snd
+m2l2a	cyb	set	round_starttime = 8
+m2l2a	cyb	set	rounds_towin = 6
+m2l2a	cyb	set	changesides = 0
+m2l2a	cyb	set	keepsamesides = 1
+m2l2a	cyb	set	bombcamera = 1
+m2l2a	cyb	set	cameradistance = 100
+m2l2a	cyb	bombsite	( -2307 -4070 -449 ) 90 axis
+m2l2a	cyb	bombsite	( -4232 -4015 -47 ) 0 allies
+m2l2a	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( -4180 -4394 -447 ) 29
+m2l2a	snd	set	round_starttime = 8
+m2l2a	snd	set	rounds_towin = 6
+m2l2a	snd	set	changesides = 0
+m2l2a	snd	set	bombcamera = 1
+m2l2a	snd	bombsite	( -3648 -7108 -319 ) 90
+m2l2a	snd	bombsite	( -2307 -4070 -449 ) 90
+m2l2a	snd	set	cameradistance = 100
+m2l2a	snd	bombsite	( -4204 -1467 -183 ) -90
+m2l2a	snd	bombsite	( -4232 -4015 -47 ) 0
+m2l2a	snd	set	cameradistance = 200
+m2l2a	snd	bomb	( -4166 -2167 -463 ) 0 ( -1158 -6473 -447 ) 0 ( 0 0 0 ) 0
+m2l2a	snd	bombsite	( -3648 -7108 -319 ) 90
+m2l2a	snd	bombsite	( -2307 -4070 -449 ) 90
+m2l2a	snd	set	cameradistance = 100
+m2l2a	snd	bombsite	( -4204 -1467 -183 ) -90
+m2l2a	snd	bombsite	( -4232 -4015 -47 ) 0
+m2l2a	snd	set	cameradistance = 200
+# map	m2l2b	modes	cyb snd
+m2l2b	cyb	set	round_starttime = 8
+m2l2b	cyb	set	rounds_towin = 6
+m2l2b	cyb	set	changesides = 0
+m2l2b	cyb	set	keepsamesides = 1
+m2l2b	cyb	set	bombcamera = 1
+m2l2b	cyb	bombsite	( -604 -6995 -511 ) 90 axis
+m2l2b	cyb	bombsite	( 6175 -6774 0 ) 90 allies
+m2l2b	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( -2705 -5209 -511 ) 0
+m2l2b	snd	set	round_starttime = 8
+m2l2b	snd	set	rounds_towin = 6
+m2l2b	snd	set	changesides = 0
+m2l2b	snd	set	bombcamera = 1
+m2l2b	snd	bombsite	( -604 -6995 -511 ) 90
+m2l2b	snd	bombsite	( -2689 -6668 -511 ) 0
+m2l2b	snd	bombsite	( -2307 -4070 -449 ) 90
+m2l2b	snd	bombsite	( 6175 -6774 0 ) 90
+m2l2b	snd	bomb	( 5156 -6825 1 ) 0 ( -702 -6452 -511 ) 0 ( 0 0 0 ) 0
+m2l2b	snd	bombsite	( -604 -6995 -511 ) 90
+m2l2b	snd	bombsite	( -2689 -6668 -511 ) 0
+m2l2b	snd	bombsite	( -2307 -4070 -449 ) 90
+m2l2b	snd	bombsite	( 6175 -6774 0 ) 90
+# map	m2l2c	modes	cyb snd
+m2l2c	cyb	set	round_starttime = 8
+m2l2c	cyb	set	rounds_towin = 6
+m2l2c	cyb	set	changesides = 0
+m2l2c	cyb	set	keepsamesides = 1
+m2l2c	cyb	set	bombcamera = 1
+m2l2c	cyb	bombsite	( 3496 -2844 -511 ) -90 axis
+m2l2c	cyb	bombsite	( -1475 -6861 -511 ) 0 allies
+m2l2c	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( 862 -6450 -511 ) 90
+m2l2c	snd	set	round_starttime = 8
+m2l2c	snd	set	rounds_towin = 6
+m2l2c	snd	set	changesides = 0
+m2l2c	snd	set	bombcamera = 1
+m2l2c	snd	bombsite	( 3613 -3548 -303 ) -90
+m2l2c	snd	bombsite	( 2755 -3534 -449 ) 90
+m2l2c	snd	bombsite	( -1475 -6861 -511 ) 0
+m2l2c	snd	bombsite	( 252 -4070 -449 ) 90
+m2l2c	snd	bomb	( -1265 -6475 -447 ) 90 ( 3347 -3065 -511 ) -90 ( 0 0 0 ) 0
+m2l2c	snd	bombsite	( 3613 -3548 -303 ) -90
+m2l2c	snd	bombsite	( 2755 -3534 -449 ) 90
+m2l2c	snd	bombsite	( -1475 -6861 -511 ) 0
+m2l2c	snd	bombsite	( 252 -4070 -449 ) 90
+# map	m2l3	modes	cyb snd
+m2l3	cyb	set	round_starttime = 8
+m2l3	cyb	set	rounds_towin = 6
+m2l3	cyb	set	changesides = 0
+m2l3	cyb	set	keepsamesides = 1
+m2l3	cyb	set	bombcamera = 1
+m2l3	cyb	bombsite	( -2644 -1342 -447 ) 0 axis
+m2l3	cyb	bombsite	( -940 5149 -255 ) 90 allies
+m2l3	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( -385 3595 -511 ) 90
+m2l3	snd	set	round_starttime = 8
+m2l3	snd	set	rounds_towin = 6
+m2l3	snd	set	changesides = 0
+m2l3	snd	set	bombcamera = 1
+m2l3	snd	bombsite	( 542 -1603 -511 ) 180
+m2l3	snd	bombsite	( 539 1260 -504 ) 180
+m2l3	snd	bombsite	( -1453 7011 -255 ) -90
+m2l3	snd	bombsite	( 1068 5597 -255 ) 90
+m2l3	snd	bomb	( -247 5950 -255 ) -90 ( -495 -143 -511 ) 90 ( 0 0 0 ) 0
+m2l3	snd	bombsite	( 542 -1603 -511 ) 180
+m2l3	snd	bombsite	( 539 1260 -504 ) 180
+m2l3	snd	bombsite	( -1453 7011 -255 ) -90
+m2l3	snd	bombsite	( 1068 5597 -255 ) 90
+# map	m3l1a	modes	cyb snd
+m3l1a	cyb	set	round_starttime = 8
+m3l1a	cyb	set	rounds_towin = 6
+m3l1a	cyb	set	changesides = 0
+m3l1a	cyb	set	keepsamesides = 1
+m3l1a	cyb	set	bombcamera = 1
+m3l1a	cyb	bombsite	( 2679 5833 -575 ) -90 axis
+m3l1a	cyb	bombsite	( 405 -1077 -508 ) -90 allies
+m3l1a	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( -1154 3288 -246 ) 79
+m3l1a	snd	set	round_starttime = 8
+m3l1a	snd	set	rounds_towin = 6
+m3l1a	snd	set	changesides = 1
+m3l1a	snd	set	bombcamera = 1
+m3l1a	snd	bombsite	( 2679 5833 -575 ) -90
+m3l1a	snd	bombsite	( -1499 4883 -208 ) 180
+m3l1a	snd	bombsite	( 1592 2930 -368 ) -90
+m3l1a	snd	bombsite	( -2921 -546 -477 ) 90
+m3l1a	snd	bomb	( 457 -312 -474 ) -90 ( 1927 4546 -503 ) 46 ( 0 0 0 ) 0
+m3l1a	snd	bombsite	( 2679 5833 -575 ) -90
+m3l1a	snd	bombsite	( -1499 4883 -208 ) 180
+m3l1a	snd	bombsite	( 1592 2930 -368 ) -90
+m3l1a	snd	bombsite	( -2921 -546 -477 ) 90
+# map	m3l1b	modes	cyb snd
+m3l1b	cyb	set	round_starttime = 8
+m3l1b	cyb	set	rounds_towin = 6
+m3l1b	cyb	set	changesides = 0
+m3l1b	cyb	set	keepsamesides = 1
+m3l1b	cyb	set	bombcamera = 1
+m3l1b	cyb	bombsite	( 611 494 320 ) 180 axis
+m3l1b	cyb	bombsite	( 272 -6855 -483 ) 90 allies
+m3l1b	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( 599 -3123 -336 ) -90
+m3l1b	snd	set	round_starttime = 8
+m3l1b	snd	set	rounds_towin = 6
+m3l1b	snd	set	changesides = 0
+m3l1b	snd	set	bombcamera = 1
+m3l1b	snd	bombsite	( 611 494 320 ) 180
+m3l1b	snd	bombsite	( 1709 -1876 256 ) -90
+m3l1b	snd	bombsite	( 272 -6855 -483 ) 90
+m3l1b	snd	bombsite	( 1572 -1357 -79 ) -90
+m3l1b	snd	bomb	( 1918 -1355 -79 ) 0 ( 2070 -1103 324 ) 0 ( 0 0 0 ) 0
+m3l1b	snd	bombsite	( 611 494 320 ) 180
+m3l1b	snd	bombsite	( 1709 -1876 256 ) -90
+m3l1b	snd	bombsite	( 272 -6855 -483 ) 90
+m3l1b	snd	bombsite	( 1572 -1357 -79 ) -90
+# map	m3l2	modes	cyb snd
+m3l2	cyb	set	round_starttime = 8
+m3l2	cyb	set	rounds_towin = 6
+m3l2	cyb	set	changesides = 0
+m3l2	cyb	set	keepsamesides = 1
+m3l2	cyb	set	bombcamera = 1
+m3l2	cyb	bombsite	( 4075 -3770 -197 ) 0 axis
+m3l2	cyb	bombsite	( -2915 2879 176 ) 180 allies
+m3l2	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( -3609 -2716 56 ) 90
+m3l2	snd	set	round_starttime = 8
+m3l2	snd	set	rounds_towin = 6
+m3l2	snd	set	changesides = 0
+m3l2	snd	set	bombcamera = 1
+m3l2	snd	bombsite	( 4075 -3770 -197 ) 0
+m3l2	snd	bombsite	( -159 -6272 -18 ) 0
+m3l2	snd	bombsite	( -2915 2879 176 ) 180
+m3l2	snd	bombsite	( -5324 -6026 -31 ) 90
+m3l2	snd	bomb	( -4102 2862 0 ) 90 ( 3550 -3498 -195 ) 180 ( 0 0 0 ) 0
+m3l2	snd	bombsite	( 4075 -3770 -197 ) 0
+m3l2	snd	bombsite	( -159 -6272 -18 ) 0
+m3l2	snd	bombsite	( -2915 2879 176 ) 180
+m3l2	snd	bombsite	( -5324 -6026 -31 ) 90
+# map	m3l3	modes	cyb snd
+m3l3	cyb	set	round_starttime = 8
+m3l3	cyb	set	rounds_towin = 6
+m3l3	cyb	set	changesides = 0
+m3l3	cyb	set	keepsamesides = 1
+m3l3	cyb	set	bombcamera = 1
+m3l3	cyb	bombsite	( -6669 -6666 -135 ) 45 axis
+m3l3	cyb	bombsite	( -6938 2947 -19 ) 0 allies
+m3l3	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( 4015 2088 -221 ) 0
+m3l3	snd	set	round_starttime = 8
+m3l3	snd	set	rounds_towin = 6
+m3l3	snd	set	changesides = 0
+m3l3	snd	set	bombcamera = 1
+m3l3	snd	bombsite	( 1355 -1998 -271 ) -90
+m3l3	snd	bombsite	( -2401 -6002 -166 ) 90
+m3l3	snd	bombsite	( -3372 4124 -93 ) 90
+m3l3	snd	bombsite	( 1508 3028 -230 ) 0
+m3l3	snd	bomb	( 1110 5123 -211 ) 225 ( 1970 -1617 -319 ) -90 ( 0 0 0 ) 0
+m3l3	snd	bombsite	( 1355 -1998 -271 ) -90
+m3l3	snd	bombsite	( -2401 -6002 -166 ) 90
+m3l3	snd	bombsite	( -3372 4124 -93 ) 90
+m3l3	snd	bombsite	( 1508 3028 -230 ) 0
+# map	m4l0	modes	cyb snd
+m4l0	cyb	set	round_starttime = 8
+m4l0	cyb	set	rounds_towin = 6
+m4l0	cyb	set	changesides = 0
+m4l0	cyb	set	keepsamesides = 1
+m4l0	cyb	set	bombcamera = 1
+m4l0	cyb	bombsite	( -991.5 7199 116 ) -90 axis
+m4l0	cyb	bombsite	( -4771.5 -945 109 ) -90 allies
+m4l0	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( 5556 2016 744 ) 0
+m4l0	snd	set	round_starttime = 8
+m4l0	snd	set	rounds_towin = 6
+m4l0	snd	set	changesides = 1
+m4l0	snd	set	bombcamera = 1
+m4l0	snd	bombsite	( 5605 2016 692 ) 0
+m4l0	snd	bombsite	( -991.5 7199 116 ) -90
+m4l0	snd	bombsite	( 5605 2016 692 ) 0
+m4l0	snd	bombsite	( -4771.5 -945 109 ) -90
+m4l0	snd	bomb	( -3412 -2496 74 ) 280 ( -1216 5960 -9 ) 151 ( 0 0 0 ) 0
+m4l0	snd	bombsite	( 5605 2016 692 ) 0
+m4l0	snd	bombsite	( -991.5 7199 116 ) -90
+m4l0	snd	bombsite	( 5605 2016 692 ) 0
+m4l0	snd	bombsite	( -4771.5 -945 109 ) -90
+# map	m4l1	modes	cyb snd
+m4l1	cyb	set	round_starttime = 8
+m4l1	cyb	set	rounds_towin = 6
+m4l1	cyb	set	changesides = 0
+m4l1	cyb	set	keepsamesides = 1
+m4l1	cyb	set	bombcamera = 1
+m4l1	cyb	bombsite	( 5664 4869 358 ) 0 axis
+m4l1	cyb	bombsite	( -3975 -5526 -470 ) -42 allies
+m4l1	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( 4866 -2893 16 ) -166
+m4l1	snd	set	round_starttime = 8
+m4l1	snd	set	rounds_towin = 6
+m4l1	snd	set	changesides = 0
+m4l1	snd	set	bombcamera = 1
+m4l1	snd	bombsite	( 5664 4869 358 ) 0
+m4l1	snd	bombsite	( 3392 2728 527 ) 126
+m4l1	snd	bombsite	( -3975 -5526 -470 ) -42
+m4l1	snd	bombsite	( -1995 -3481 -164 ) 54
+m4l1	snd	bomb	( -273 -4161 -165 ) 90 ( 3813 4037 560 ) 45 ( 0 0 0 ) 0
+m4l1	snd	bombsite	( 5664 4869 358 ) 0
+m4l1	snd	bombsite	( 3392 2728 527 ) 126
+m4l1	snd	bombsite	( -3975 -5526 -470 ) -42
+m4l1	snd	bombsite	( -1995 -3481 -164 ) 54
+# map	m4l2	modes	cyb snd
+m4l2	cyb	set	round_starttime = 8
+m4l2	cyb	set	rounds_towin = 6
+m4l2	cyb	set	changesides = 0
+m4l2	cyb	set	keepsamesides = 1
+m4l2	cyb	set	bombcamera = 1
+m4l2	cyb	bombsite	( -6668 4998 328 ) 11 axis
+m4l2	cyb	bombsite	( 5944 -556 358 ) 90 allies
+m4l2	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( -6195 -1811 0 ) 42
+m4l2	snd	set	round_starttime = 8
+m4l2	snd	set	rounds_towin = 6
+m4l2	snd	set	changesides = 0
+m4l2	snd	set	bombcamera = 1
+m4l2	snd	bombsite	( -6668 4998 328 ) 11
+m4l2	snd	bombsite	( -3234 4560 -95 ) 0
+m4l2	snd	bombsite	( 5944 -556 358 ) 90
+m4l2	snd	bombsite	( 4560 3489 278 ) -10
+m4l2	snd	bomb	( 4392 2693 311 ) 90 ( -5311 3841 0 ) 90 ( 0 0 0 ) 0
+m4l2	snd	bombsite	( -6668 4998 328 ) 11
+m4l2	snd	bombsite	( -3234 4560 -95 ) 0
+m4l2	snd	bombsite	( 5944 -556 358 ) 90
+m4l2	snd	bombsite	( 4560 3489 278 ) -10
+# map	m4l3	modes	cyb snd
+m4l3	cyb	set	round_starttime = 8
+m4l3	cyb	set	rounds_towin = 6
+m4l3	cyb	set	changesides = 0
+m4l3	cyb	set	keepsamesides = 1
+m4l3	cyb	set	bombcamera = 1
+m4l3	cyb	bombsite	( 4045 5949 6 ) -167 axis
+m4l3	cyb	bombsite	( -5594 -7018 -59 ) 0 allies
+m4l3	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( -1872 -294 232 ) 90
+m4l3	snd	set	round_starttime = 8
+m4l3	snd	set	rounds_towin = 6
+m4l3	snd	set	changesides = 0
+m4l3	snd	set	bombcamera = 1
+m4l3	snd	bombsite	( 4045 5949 6 ) -167
+m4l3	snd	bombsite	( -339 -493 0 ) -90
+m4l3	snd	bombsite	( -5594 -7018 -59 ) 0
+m4l3	snd	bombsite	( -4485 540 0 ) 160
+m4l3	snd	bomb	( -5582 -6670 -103 ) 180 ( 2441 688 -8 ) 90 ( 0 0 0 ) 0
+m4l3	snd	bombsite	( 4045 5949 6 ) -167
+m4l3	snd	bombsite	( -339 -493 0 ) -90
+m4l3	snd	bombsite	( -5594 -7018 -59 ) 0
+m4l3	snd	bombsite	( -4485 540 0 ) 160
+# map	m5l1a	modes	cyb snd
+m5l1a	cyb	set	round_starttime = 8
+m5l1a	cyb	set	rounds_towin = 6
+m5l1a	cyb	set	changesides = 0
+m5l1a	cyb	set	keepsamesides = 1
+m5l1a	cyb	set	bombcamera = 1
+m5l1a	cyb	bombsite	( -2459 360 137 ) -90 axis
+m5l1a	cyb	bombsite	( 4739 -5332 -10 ) 90 allies
+m5l1a	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( 1333 -2857 -45 ) 135
+m5l1a	snd	set	round_starttime = 8
+m5l1a	snd	set	rounds_towin = 6
+m5l1a	snd	set	changesides = 0
+m5l1a	snd	set	bombcamera = 1
+m5l1a	snd	bombsite	( -2459 360 137 ) -90
+m5l1a	snd	bombsite	( -16 -1684 168 ) 90
+m5l1a	snd	bombsite	( 4739 -5332 -10 ) 90
+m5l1a	snd	bombsite	( 1644 -3136 128 ) 0
+m5l1a	snd	bomb	( 3764 -4488 25 ) 180 ( -407 -1519 104 ) -90 ( 0 0 0 ) 0
+m5l1a	snd	bombsite	( -2459 360 137 ) -90
+m5l1a	snd	bombsite	( -16 -1684 168 ) 90
+m5l1a	snd	bombsite	( 4739 -5332 -10 ) 90
+m5l1a	snd	bombsite	( 1644 -3136 128 ) 0
+# map	m5l1b	modes	cyb snd
+m5l1b	cyb	set	round_starttime = 8
+m5l1b	cyb	set	rounds_towin = 6
+m5l1b	cyb	set	changesides = 0
+m5l1b	cyb	set	keepsamesides = 1
+m5l1b	cyb	set	bombcamera = 1
+m5l1b	cyb	bombsite	( 3907 747 464 ) 180 axis
+m5l1b	cyb	bombsite	( -16 -6035 168 ) 90 allies
+m5l1b	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( -1130 -1002 461 ) 26
+m5l1b	snd	set	round_starttime = 8
+m5l1b	snd	set	rounds_towin = 6
+m5l1b	snd	set	changesides = 1
+m5l1b	snd	set	bombcamera = 1
+m5l1b	snd	bombsite	( 3907 747 464 ) 180
+m5l1b	snd	bombsite	( 1014 724 624 ) -90
+m5l1b	snd	bombsite	( -16 -6035 168 ) 90
+m5l1b	snd	bombsite	( -2683 -2631 568 ) 180
+m5l1b	snd	bomb	( -409 -5884 104 ) 180 ( 3700 772 528 ) -90 ( 0 0 0 ) 0
+m5l1b	snd	bombsite	( 3907 747 464 ) 180
+m5l1b	snd	bombsite	( 1014 724 624 ) -90
+m5l1b	snd	bombsite	( -16 -6035 168 ) 90
+m5l1b	snd	bombsite	( -2683 -2631 568 ) 180
+# map	m5l2a	modes	cyb snd
+m5l2a	cyb	set	round_starttime = 8
+m5l2a	cyb	set	rounds_towin = 6
+m5l2a	cyb	set	changesides = 0
+m5l2a	cyb	set	keepsamesides = 1
+m5l2a	cyb	set	bombcamera = 1
+m5l2a	cyb	bombsite	( -5715 2744 235 ) 0 axis
+m5l2a	cyb	bombsite	( 4179 -988 220 ) 180 allies
+m5l2a	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( 5819 3912 320 ) -149
+m5l2a	snd	set	round_starttime = 8
+m5l2a	snd	set	rounds_towin = 6
+m5l2a	snd	set	changesides = 0
+m5l2a	snd	set	bombcamera = 1
+m5l2a	snd	bombsite	( -5715 2744 235 ) 0
+m5l2a	snd	bombsite	( -5384 5634 281 ) 41
+m5l2a	snd	bombsite	( 4179 -988 220 ) 180
+m5l2a	snd	bombsite	( 3667 -2888 199 ) 187
+m5l2a	snd	bomb	( 2539 -826 255 ) 90 ( 382 1879 259 ) 180 ( 0 0 0 ) 0
+m5l2a	snd	bombsite	( -5715 2744 235 ) 0
+m5l2a	snd	bombsite	( -5384 5634 281 ) 41
+m5l2a	snd	bombsite	( 4179 -988 220 ) 180
+m5l2a	snd	bombsite	( 3667 -2888 199 ) 187
+# map	m5l2b	modes	cyb snd
+m5l2b	cyb	set	round_starttime = 8
+m5l2b	cyb	set	rounds_towin = 6
+m5l2b	cyb	set	changesides = 0
+m5l2b	cyb	set	keepsamesides = 1
+m5l2b	cyb	set	bombcamera = 1
+m5l2b	cyb	bombsite	( -6932 459 160 ) -150 axis
+m5l2b	cyb	bombsite	( 3387 -7280 103 ) 166 allies
+m5l2b	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( 160 -135 -155 ) 0
+m5l2b	snd	set	round_starttime = 8
+m5l2b	snd	set	rounds_towin = 6
+m5l2b	snd	set	changesides = 1
+m5l2b	snd	set	bombcamera = 1
+m5l2b	snd	bombsite	( -6932 459 160 ) -150
+m5l2b	snd	bombsite	( -3228 1238 -33 ) 180
+m5l2b	snd	bombsite	( 3387 -7280 103 ) 166
+m5l2b	snd	bombsite	( 2732 -1021 -15 ) -90
+m5l2b	snd	bomb	( 2816 -4480 -87 ) 90 ( -4400 112 -51 ) -45 ( 0 0 0 ) 0
+m5l2b	snd	bombsite	( -6932 459 160 ) -150
+m5l2b	snd	bombsite	( -3228 1238 -33 ) 180
+m5l2b	snd	bombsite	( 3387 -7280 103 ) 166
+m5l2b	snd	bombsite	( 2732 -1021 -15 ) -90
+# map	m5l3	modes	cyb snd
+m5l3	cyb	set	round_starttime = 8
+m5l3	cyb	set	rounds_towin = 6
+m5l3	cyb	set	changesides = 0
+m5l3	cyb	set	keepsamesides = 1
+m5l3	cyb	set	bombcamera = 1
+m5l3	cyb	bombsite	( -6707 -4388 36 ) 90 axis
+m5l3	cyb	bombsite	( 883 5899 384 ) 0 allies
+m5l3	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( -400 768 456 ) 0
+m5l3	snd	set	round_starttime = 8
+m5l3	snd	set	rounds_towin = 6
+m5l3	snd	set	changesides = 0
+m5l3	snd	set	bombcamera = 1
+m5l3	snd	bombsite	( -6709 -4388 36 ) 90
+m5l3	snd	bombsite	( 2917 -3727 504 ) 90
+m5l3	snd	bombsite	( 883 5888 384 ) 0
+m5l3	snd	bombsite	( 3004 5156 238 ) 180
+m5l3	snd	bomb	( 832 3392 306 ) 180 ( -645 -1756 392 ) 180 ( 0 0 0 ) 0
+m5l3	snd	bombsite	( -6709 -4388 36 ) 90
+m5l3	snd	bombsite	( 2917 -3727 504 ) 90
+m5l3	snd	bombsite	( 883 5888 384 ) 0
+m5l3	snd	bombsite	( 3004 5156 238 ) 180
+# map	m6l1a	modes	cyb snd
+m6l1a	cyb	set	round_starttime = 8
+m6l1a	cyb	set	rounds_towin = 6
+m6l1a	cyb	set	changesides = 0
+m6l1a	cyb	set	keepsamesides = 1
+m6l1a	cyb	set	bombcamera = 1
+m6l1a	cyb	bombsite	( -3555 418 5455 ) -58 axis
+m6l1a	cyb	bombsite	( 6110 -6719 5422 ) 71 allies
+m6l1a	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( 4119 4075 5900 ) -90
+m6l1a	snd	set	round_starttime = 8
+m6l1a	snd	set	rounds_towin = 6
+m6l1a	snd	set	changesides = 0
+m6l1a	snd	set	bombcamera = 1
+m6l1a	snd	bombsite	( -3555 418 5455 ) -58
+m6l1a	snd	bombsite	( 4524 5226 5388 ) -105
+m6l1a	snd	bombsite	( 6110 -6719 5422 ) 71
+m6l1a	snd	bombsite	( 6379 3876 5351 ) 164
+m6l1a	snd	bomb	( 5833 -6253 5362 ) -152 ( -2537 884 5361 ) -92 ( 0 0 0 ) 0
+m6l1a	snd	bombsite	( -3555 418 5455 ) -58
+m6l1a	snd	bombsite	( 4524 5226 5388 ) -105
+m6l1a	snd	bombsite	( 6110 -6719 5422 ) 71
+m6l1a	snd	bombsite	( 6379 3876 5351 ) 164
+# map	m6l1b	modes	cyb snd
+m6l1b	cyb	set	round_starttime = 8
+m6l1b	cyb	set	rounds_towin = 6
+m6l1b	cyb	set	changesides = 0
+m6l1b	cyb	set	keepsamesides = 1
+m6l1b	cyb	set	bombcamera = 1
+m6l1b	cyb	bombsite	( -4613 -7631 1829 ) 90 axis
+m6l1b	cyb	bombsite	( 1300 2623 1785 ) 105 allies
+m6l1b	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( -5170 -908 1933 ) 55
+m6l1b	snd	set	round_starttime = 8
+m6l1b	snd	set	rounds_towin = 6
+m6l1b	snd	set	changesides = 0
+m6l1b	snd	set	bombcamera = 1
+m6l1b	snd	bombsite	( -4613 -7631 1829 ) 90
+m6l1b	snd	bombsite	( -2538 -4895 1744 ) -60
+m6l1b	snd	bombsite	( 1300 2623 1785 ) 105
+m6l1b	snd	bombsite	( -5614 3298 1744 ) 45
+m6l1b	snd	bomb	( 338 2143 1752 ) 135 ( -2783 -6191 1709 ) 21 ( 0 0 0 ) 0
+m6l1b	snd	bombsite	( -4613 -7631 1829 ) 90
+m6l1b	snd	bombsite	( -2538 -4895 1744 ) -60
+m6l1b	snd	bombsite	( 1300 2623 1785 ) 105
+m6l1b	snd	bombsite	( -5614 3298 1744 ) 45
+# map	m6l1c	modes	cyb snd
+m6l1c	cyb	set	round_starttime = 8
+m6l1c	cyb	set	rounds_towin = 6
+m6l1c	cyb	set	changesides = 0
+m6l1c	cyb	set	keepsamesides = 1
+m6l1c	cyb	set	bombcamera = 1
+m6l1c	cyb	bombsite	( 4644 4921 -719 ) 180 axis
+m6l1c	cyb	bombsite	( 1760 1418 -543 ) 180 allies
+m6l1c	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( 1954 4049 -567 ) 0
+m6l1c	snd	set	round_starttime = 8
+m6l1c	snd	set	rounds_towin = 6
+m6l1c	snd	set	changesides = 0
+m6l1c	snd	set	bombcamera = 1
+m6l1c	snd	bombsite	( 4644 4921 -719 ) 180
+m6l1c	snd	bombsite	( 4891 1870 4 ) 0
+m6l1c	snd	bombsite	( 1760 1418 -543 ) 180
+m6l1c	snd	bombsite	( 894 1228 -63 ) -90
+m6l1c	snd	bomb	( -1808 1429 25 ) -90 ( 4358 299 0 ) 0 ( 0 0 0 ) 0
+m6l1c	snd	bombsite	( 4644 4922 -719 ) 180
+m6l1c	snd	bombsite	( 4891 1870 4 ) 0
+m6l1c	snd	bombsite	( 1760 1418 -543 ) 180
+m6l1c	snd	bombsite	( 894 1228 -63 ) -90
+# map	m6l2a	modes	cyb snd
+m6l2a	cyb	set	round_starttime = 8
+m6l2a	cyb	set	rounds_towin = 6
+m6l2a	cyb	set	changesides = 0
+m6l2a	cyb	set	keepsamesides = 1
+m6l2a	cyb	set	bombcamera = 1
+m6l2a	cyb	bombsite	( 2339 -2926 128 ) 180 axis
+m6l2a	cyb	bombsite	( -6108 -5112 0 ) 180 allies
+m6l2a	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( -2928 780 0 ) -90
+m6l2a	snd	set	round_starttime = 8
+m6l2a	snd	set	rounds_towin = 6
+m6l2a	snd	set	changesides = 0
+m6l2a	snd	set	bombcamera = 1
+m6l2a	snd	bombsite	( 2339 -2926 128 ) 180
+m6l2a	snd	bombsite	( -3611 111 0 ) 180
+m6l2a	snd	bombsite	( -6108 -5112 0 ) 180
+m6l2a	snd	bombsite	( -3484 -617 0 ) 180
+m6l2a	snd	bomb	( -3845 -3344 0 ) 180 ( 1019 -2604 120 ) 135 ( 0 0 0 ) 0
+m6l2a	snd	bombsite	( 2339 -2926 128 ) 180
+m6l2a	snd	bombsite	( -3611 111 0 ) 180
+m6l2a	snd	bombsite	( -6108 -5112 0 ) 180
+m6l2a	snd	bombsite	( -3484 -617 0 ) 180
+# map	m6l2b	modes	cyb snd
+m6l2b	cyb	set	round_starttime = 8
+m6l2b	cyb	set	rounds_towin = 6
+m6l2b	cyb	set	changesides = 0
+m6l2b	cyb	set	keepsamesides = 1
+m6l2b	cyb	set	bombcamera = 1
+m6l2b	cyb	bombsite	( 4708 5953 240 ) 0 axis
+m6l2b	cyb	bombsite	( 739 -7492 284 ) 180 allies
+m6l2b	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( 7308 -18 -127 ) 0
+m6l2b	snd	set	round_starttime = 8
+m6l2b	snd	set	rounds_towin = 6
+m6l2b	snd	set	changesides = 0
+m6l2b	snd	set	bombcamera = 1
+m6l2b	snd	bombsite	( 4708 5953 240 ) 0
+m6l2b	snd	bombsite	( 6488 7225 76 ) 180
+m6l2b	snd	bombsite	( 739 -7492 284 ) 180
+m6l2b	snd	bombsite	( -1348 -4220 175 ) 0
+m6l2b	snd	bomb	( 287 -6849 136 ) 180 ( 5910 6128 -31 ) -90 ( 0 0 0 ) 0
+m6l2b	snd	bombsite	( 4708 5953 240 ) 0
+m6l2b	snd	bombsite	( 6488 7225 76 ) 180
+m6l2b	snd	bombsite	( 739 -7492 284 ) 180
+m6l2b	snd	bombsite	( -1348 -4220 175 ) 0
+# map	mohdm1	modes	cyb snd
+mohdm1	cyb	set	round_starttime = 8
+mohdm1	cyb	set	rounds_towin = 5
+mohdm1	cyb	set	changesides = 0
+mohdm1	cyb	set	bombcamera = 1
+mohdm1	cyb	bombsite	( -1210 485 168 ) -90 axis
+mohdm1	cyb	bombsite	( 1297 2461 672 ) 90 allies
+mohdm1	cyb	bomb	( -153 1445 96 ) 180 ( -153 1445 96 ) 180 ( -153 1445 96 ) -90
+mohdm1	snd	set	round_starttime = 8
+mohdm1	snd	set	rounds_towin = 5
+mohdm1	snd	set	changesides = 0
+mohdm1	snd	set	bombcamera = 1
+mohdm1	snd	bombsite	( -1210 485 168 ) -90 axis
+mohdm1	snd	bombsite	( 1297 2461 672 ) 90 allies
+mohdm1	snd	bomb	( -153 1445 96 ) 180 ( -153 1445 96 ) 180 ( -153 1445 96 ) -90
+# map	mohdm2	modes	cyb snd
+mohdm2	cyb	set	round_starttime = 8
+mohdm2	cyb	set	rounds_towin = 5
+mohdm2	cyb	set	changesides = 0
+mohdm2	cyb	set	bombcamera = 1
+mohdm2	cyb	bombsite	( -2607 1826 216 ) -90 axis
+mohdm2	cyb	bombsite	( -1780 -3450 5 ) 0 allies
+mohdm2	cyb	bomb	( -695.5 -332 169 ) 180 ( -695.5 -332 169 ) 180 ( -695.5 -332 169 ) 270
+mohdm2	snd	set	round_starttime = 8
+mohdm2	snd	set	rounds_towin = 5
+mohdm2	snd	set	changesides = 0
+mohdm2	snd	set	bombcamera = 1
+mohdm2	snd	bombsite	( -2607 1826 216 ) -90 axis
+mohdm2	snd	bombsite	( -1780 -3450 5 ) 0 allies
+mohdm2	snd	bomb	( -695.5 -332 169 ) 180 ( -695.5 -332 169 ) 180 ( -695.5 -332 169 ) 270
+# map	mohdm3	modes	cyb snd
+mohdm3	cyb	set	round_starttime = 8
+mohdm3	cyb	set	rounds_towin = 5
+mohdm3	cyb	set	changesides = 0
+mohdm3	cyb	set	bombcamera = 1
+mohdm3	cyb	bombsite	( 5025 -3268 278 ) 90 axis
+mohdm3	cyb	bombsite	( 1110 191 162 ) 180 allies
+mohdm3	cyb	bomb	( 2465 -2627.5 8 ) -90 ( 2465 -2627.5 8 ) -90 ( 2465 -2627.5 8 ) 0
+mohdm3	snd	set	round_starttime = 8
+mohdm3	snd	set	rounds_towin = 5
+mohdm3	snd	set	changesides = 0
+mohdm3	snd	set	bombcamera = 1
+mohdm3	snd	bombsite	( 5025 -3268 278 ) 90 axis
+mohdm3	snd	bombsite	( 1110 191 162 ) 180 allies
+mohdm3	snd	bomb	( 2465 -2627.5 8 ) -90 ( 2465 -2627.5 8 ) -90 ( 2465 -2627.5 8 ) 0
+# map	mohdm4	modes	cyb snd
+mohdm4	cyb	set	round_starttime = 8
+mohdm4	cyb	set	rounds_towin = 5
+mohdm4	cyb	set	changesides = 0
+mohdm4	cyb	set	bombcamera = 1
+mohdm4	cyb	bombsite	( -690 3589 652 ) 0 axis
+mohdm4	cyb	bombsite	( 400 -1299 480 ) 90 allies
+mohdm4	cyb	bomb	( 717 1134 132 ) 300 ( 717 1134 132 ) 300 ( 717 1134 132 ) 30
+mohdm4	snd	set	round_starttime = 8
+mohdm4	snd	set	rounds_towin = 5
+mohdm4	snd	set	changesides = 0
+mohdm4	snd	set	bombcamera = 1
+mohdm4	snd	bombsite	( -690 3589 652 ) 0 axis
+mohdm4	snd	bombsite	( 400 -1299 480 ) 90 allies
+mohdm4	snd	bomb	( 717 1134 132 ) 300 ( 717 1134 132 ) 300 ( 717 1134 132 ) 30
+# map	mohdm5	modes	cyb snd
+mohdm5	cyb	set	round_starttime = 8
+mohdm5	cyb	set	rounds_towin = 5
+mohdm5	cyb	set	changesides = 0
+mohdm5	cyb	set	bombcamera = 1
+mohdm5	cyb	bombsite	( 4162 -2835 182 ) 180 axis
+mohdm5	cyb	bombsite	( -1347 -6145 189 ) 0 allies
+mohdm5	cyb	bomb	( 2128 -4688 240 ) 180 ( 2128 -4688 240 ) 180 ( 2128 -4688 240 ) -90
+mohdm5	snd	set	round_starttime = 8
+mohdm5	snd	set	rounds_towin = 5
+mohdm5	snd	set	changesides = 0
+mohdm5	snd	set	bombcamera = 1
+mohdm5	snd	bombsite	( 4162 -2835 182 ) 180 axis
+mohdm5	snd	bombsite	( -1347 -6145 189 ) 0 allies
+mohdm5	snd	bomb	( 2128 -4688 240 ) 180 ( 2128 -4688 240 ) 180 ( 2128 -4688 240 ) -90
+# map	mohdm6	modes	cyb snd
+mohdm6	cyb	set	round_starttime = 8
+mohdm6	cyb	set	rounds_towin = 5
+mohdm6	cyb	set	changesides = 0
+mohdm6	cyb	set	bombcamera = 1
+mohdm6	cyb	set	cameradistance = 145
+mohdm6	cyb	bombsite	( 335 1075 512 ) -90 axis
+mohdm6	cyb	bombsite	( -573 -547 272 ) 180 allies
+mohdm6	cyb	bomb	( 251 145 87 ) 180 ( 251 145 87 ) 180 ( 251 145 87 ) -90
+mohdm6	snd	set	round_starttime = 8
+mohdm6	snd	set	rounds_towin = 5
+mohdm6	snd	set	changesides = 0
+mohdm6	snd	set	bombcamera = 1
+mohdm6	snd	set	cameradistance = 145
+mohdm6	snd	bombsite	( 335 1075 512 ) -90 axis
+mohdm6	snd	bombsite	( -573 -547 272 ) 180 allies
+mohdm6	snd	bomb	( 251 145 87 ) 180 ( 251 145 87 ) 180 ( 251 145 87 ) -90
+# map	mohdm7	modes	cyb snd
+mohdm7	cyb	set	round_starttime = 8
+mohdm7	cyb	set	rounds_towin = 5
+mohdm7	cyb	set	changesides = 0
+mohdm7	cyb	set	bombcamera = 1
+mohdm7	cyb	set	cameradistance = 185
+mohdm7	cyb	bombsite	( -3136 1116 264 ) 90 axis
+mohdm7	cyb	bombsite	( 2017 -1134 24 ) 180 allies
+mohdm7	cyb	bomb	( -1327 135 -91 ) 90 ( -1327 135 -91 ) 90 ( -1327 135 -91 ) 180
+mohdm7	snd	set	round_starttime = 8
+mohdm7	snd	set	rounds_towin = 5
+mohdm7	snd	set	changesides = 0
+mohdm7	snd	set	bombcamera = 1
+mohdm7	snd	set	cameradistance = 185
+mohdm7	snd	bombsite	( -3136 1116 264 ) 90 axis
+mohdm7	snd	bombsite	( 2017 -1134 24 ) 180 allies
+mohdm7	snd	bomb	( -1327 135 -91 ) 90 ( -1327 135 -91 ) 90 ( -1327 135 -91 ) 180
+# map	obj_team1	modes	cyb snd
+obj_team1	cyb	set	round_starttime = 8
+obj_team1	cyb	set	rounds_towin = 6
+obj_team1	cyb	set	changesides = 0
+obj_team1	cyb	set	keepsamesides = 1
+obj_team1	cyb	set	bombcamera = 1
+obj_team1	cyb	set	cameradistance = 120
+obj_team1	cyb	bombsite	( 1258 -744 -279 ) 180 axis
+obj_team1	cyb	bombsite	( 1288 4385 -224 ) 90 allies
+obj_team1	cyb	bomb	( 1102 5113 -214 ) 42 ( 2182 -325 -159 ) 134 ( 4487 2958 -239 ) -157
+obj_team1	snd	set	round_starttime = 8
+obj_team1	snd	set	rounds_towin = 6
+obj_team1	snd	set	changesides = 0
+obj_team1	snd	set	bombcamera = 1
+obj_team1	snd	set	cameradistance = 120
+obj_team1	snd	bombsite	( 4370 2202 -79 ) 180 axis
+obj_team1	snd	bombsite	( 5573 3015 -289 ) -165 allies
+obj_team1	snd	bomb	( 1102 5113 -214 ) 42 ( 2182 -325 -159 ) 134 ( 4487 2958 -239 ) -157
+# map	obj_team2	modes	cyb snd
+obj_team2	cyb	set	round_starttime = 8
+obj_team2	cyb	set	rounds_towin = 6
+obj_team2	cyb	set	changesides = 0
+obj_team2	cyb	set	keepsamesides = 1
+obj_team2	cyb	set	bombcamera = 1
+obj_team2	cyb	bombsite	( 2738 2815 0 ) 180 axis
+obj_team2	cyb	bombsite	( -728 735 -447 ) 90 allies
+obj_team2	cyb	bomb	( -1730 914 -395 ) 180 ( 1455 2834 50 ) 0 ( -153 1445 96 ) -90
+obj_team2	snd	set	round_starttime = 8
+obj_team2	snd	set	rounds_towin = 6
+obj_team2	snd	set	changesides = 0
+obj_team2	snd	set	bombcamera = 1
+obj_team2	snd	bombsite	( 53 1470 8 ) 90 axis
+obj_team2	snd	bombsite	( 1478 452 0 ) 180 allies
+obj_team2	snd	bomb	( -1730 914 -395 ) 180 ( 1455 2834 50 ) 0 ( -153 1445 96 ) -90
+# map	obj_team3	modes	cyb snd
+obj_team3	cyb	set	round_starttime = 8
+obj_team3	cyb	set	rounds_towin = 6
+obj_team3	cyb	set	changesides = 0
+obj_team3	cyb	set	keepsamesides = 1
+obj_team3	cyb	set	bombcamera = 1
+obj_team3	cyb	bombsite	( -1185 -535 256 ) -90 axis
+obj_team3	cyb	bombsite	( -1248 -4525 -459 ) -90 allies
+obj_team3	cyb	bomb	( 368 -4459 -459 ) 180 ( 727 1991 368 ) 150 ( 2481 -113 -571 ) -45
+obj_team3	snd	set	round_starttime = 8
+obj_team3	snd	set	rounds_towin = 6
+obj_team3	snd	set	changesides = 0
+obj_team3	snd	set	bombcamera = 1
+obj_team3	snd	bombsite	( 1693 -27 -127 ) 180 axis
+obj_team3	snd	bombsite	( 737 -1022 -311 ) 90 allies
+obj_team3	snd	bomb	( 368 -4459 -459 ) 180 ( 727 1991 368 ) 150 ( 2481 -113 -571 ) -45
+# map	obj_team4	modes	cyb snd
+obj_team4	cyb	set	round_starttime = 8
+obj_team4	cyb	set	rounds_towin = 6
+obj_team4	cyb	set	changesides = 0
+obj_team4	cyb	set	keepsamesides = 1
+obj_team4	cyb	set	bombcamera = 1
+obj_team4	cyb	bombsite	( -690 3589 652 ) 0 axis
+obj_team4	cyb	bombsite	( 400 -1299 480 ) 90 allies
+obj_team4	cyb	bomb	( -582 -2075 337 ) 180 ( -1714 2876 184 ) -90 ( 717 1134 132 ) 30
+obj_team4	snd	set	round_starttime = 8
+obj_team4	snd	set	rounds_towin = 6
+obj_team4	snd	set	changesides = 0
+obj_team4	snd	set	bombcamera = 1
+obj_team4	snd	bombsite	( -1214 1069 608 ) 180 axis
+obj_team4	snd	bombsite	( 1227 1362 72 ) -90 allies
+obj_team4	snd	bomb	( -582 -2075 337 ) 180 ( -1714 2876 184 ) -90 ( 717 1134 132 ) 30
+# map	training	modes	cyb snd
+training	cyb	set	round_starttime = 8
+training	cyb	set	rounds_towin = 6
+training	cyb	set	changesides = 0
+training	cyb	set	keepsamesides = 1
+training	cyb	set	bombcamera = 1
+training	cyb	bombsite	( 6163 -2850 -388 ) 180 axis
+training	cyb	bombsite	( -4935 547 -310 ) -22 allies
+training	cyb	bomb	( 0 0 0 ) 0 ( 0 0 0 ) 0 ( -826 -2604 -324 ) 180
+training	snd	set	round_starttime = 8
+training	snd	set	rounds_towin = 6
+training	snd	set	changesides = 0
+training	snd	set	bombcamera = 1
+training	snd	bombsite	( -1744 -1226 -128 ) 0
+training	snd	bombsite	( 4731 1871 -404 ) 180
+training	snd	bomb	( -4751 420 -308 ) 70 ( 2003 -2766 -339 ) 180 ( 0 0 0 ) 0
+# map	void	modes	ft

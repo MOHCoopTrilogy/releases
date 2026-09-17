@@ -42,6 +42,8 @@ import os
 import re
 import sys
 
+import gen_mp_challenges  # the MP challenge table (same dir); the Service Record renders its list
+
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 MOD = os.path.join(ROOT, "hzm-mohaa-coop-mod")
 TSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mp_armory_roster.tsv")
@@ -359,6 +361,19 @@ def cos_panel_urc(side):
             L += w_button("opt_%s%s" % (field, oid), (x, y, 150, 17), name,
                           "exec ui/%s/%s%s.cfg" % (dir_, field, oid))
             L += [""]
+    # WEAPON FINISH row (below the columns): OFF + 7 finish buttons, each gated on its earned-finish cvar
+    # (coop_mpUfin_<finish>, pushed by the challenge derivation). The server re-validates the pick.
+    L += w_label("cap_f", (156, 330, 300, 16), text="WEAPON FINISH  (earn via challenges)",
+                 fg="0.55 0.60 0.66 1.00")
+    L += [""]
+    for i, (idx, fin, lbl) in enumerate(MP_FINISH_OPTS):
+        col, r = i % 4, i // 4
+        x = 156 + col * 115
+        y = 350 + r * 22
+        enabled = None if fin == "none" else "coop_mpUfin_%s" % fin
+        L += w_button("optf_%d" % idx, (x, y, 110, 18), lbl,
+                      "exec ui/%s/f%d.cfg" % (dir_, idx), enabled=enabled)
+        L += [""]
     return "\n".join(L).rstrip("\n") + "\n"
 
 
@@ -708,29 +723,61 @@ def record_urc():
     L += val("rankVal", (192, 92, 100, 16), "coop_mpRank")
     L += cap("totCap", (300, 92, 110, 16), "TOTAL KILLS")
     L += val("totVal", (430, 92, 100, 16), "coop_mpTotal")
-    L += cap("rankNote", (96, 112, 448, 14), "Rank up every %d kills" % perrank,
-             fg="0.55 0.60 0.66 1.00", align="xcenter")
-    # weapon-unlock ladder
-    L += cap("wcap", (120, 138, 404, 16), "WEAPON UNLOCKS - %d KILLS PER CLASS" % unlock)
-    for i, tab in enumerate(TABS):
-        c = TAB_PCLASS[tab]
-        y = 162 + 22 * i
-        L += cap("c%sCap" % c, (130, y, 130, 16), PCLASS_DISPLAY[c], fg="0.84 0.82 0.76 1.00")
-        L += val("c%sVal" % c, (280, y, 40, 16), "coop_mpCnt_%s" % c)
-        L += cap("c%sThr" % c, (312, y, 60, 16), "/ %d" % unlock, fg="0.55 0.60 0.66 1.00")
-        # UNLOCKED badge - shown only once the class is earned (enabledcvar hides it while locked).
-        L += blk("Label", ['name "c%sOn"' % c, 'title "UNLOCKED"', "rect 392 %d 130 16" % y,
+    L += cap("rankNote", (96, 112, 300, 14), "Rank up every %d kills - challenges below" % perrank,
+             fg="0.55 0.60 0.66 1.00")
+
+    # --- CHALLENGE BROWSER (79 challenges, paginated) ---
+    CAT_DISP = {"rifles": "RIF", "marksman": "MRK", "smgs": "SMG", "sidearms": "PSL",
+                "support": "SUP", "feats": "FEAT", "objectives": "OBJ", "modes": "MODE",
+                "milestones": "MILE"}
+    CLASS_STATS = set(gen_mp_challenges.CLASS_STATS)
+
+    def prog_cvar(stat):
+        if stat == "total":
+            return "coop_mpTotal"
+        if stat in CLASS_STATS:
+            return "coop_mpCnt_%s" % stat
+        return "coop_mpS_%s" % stat
+
+    ch = gen_mp_challenges.all_challenges()
+    PER = 14
+    npages = (len(ch) + PER - 1) // PER
+
+    # page selector: buttons "1".."N", each sets exactly one coop_mpSrP<p> flag on
+    L += cap("pgCap", (410, 112, 40, 14), "PAGE", fg="0.55 0.60 0.66 1.00")
+    for p in range(npages):
+        sets = ";".join("set coop_mpSrP%d %d" % (q, 1 if q == p else 0) for q in range(npages))
+        L += blk("Button", ['name "pg%d"' % p, 'title "%d"' % (p + 1),
+                            "rect %d 108 22 20" % (446 + p * 24), "fgcolor 1.00 1.00 1.00 1.00",
+                            "bgcolor 0.14 0.10 0.06 0.94", 'borderstyle "3D_BORDER"', 'font "verdana-12"',
+                            "textalign center", 'clicksound "sound/menu/scroll.wav"',
+                            'stuffcommand "%s"' % sets])
+
+    # rows: all pages share the y band; each row is gated on its page flag. One row = tag + title +
+    # live progress (linkcvar) + "/ target" + DONE badge (enabledcvar coop_mpChD<i>).
+    for i, (cid, cat, title, desc, stat, tgt, rw) in enumerate(ch):
+        page = i // PER
+        row = i % PER
+        y = 132 + row * 22
+        pg = 'enabledcvar "coop_mpSrP%d"' % page
+        L += blk("Label", ['name "t%d" ' % i, 'title "%s"' % CAT_DISP.get(cat, cat[:4].upper()),
+                           "rect 104 %d 40 16" % y, "fgcolor 0.55 0.60 0.66 1.00",
+                           "bgcolor 0.00 0.00 0.00 0.00", 'borderstyle "NONE"', 'font "verdana-12"', pg])
+        L += blk("Label", ['name "n%d"' % i, 'title "%s"' % title.replace('"', "'"),
+                           "rect 146 %d 224 16" % y, "fgcolor 0.86 0.82 0.74 1.00",
+                           "bgcolor 0.00 0.00 0.00 0.00", 'borderstyle "NONE"', 'font "verdana-12"', pg])
+        L += blk("Label", ['name "v%d"' % i, "rect 372 %d 34 16" % y, "fgcolor 1.00 1.00 1.00 1.00",
+                           "bgcolor 0.00 0.00 0.00 0.00", 'borderstyle "NONE"', 'font "verdana-12"',
+                           "dontlocalize", 'linkcvar "%s"' % prog_cvar(stat), "textalign right", pg])
+        L += blk("Label", ['name "s%d"' % i, 'title "/ %d"' % tgt, "rect 410 %d 44 16" % y,
+                           "fgcolor 0.55 0.60 0.66 1.00", "bgcolor 0.00 0.00 0.00 0.00",
+                           'borderstyle "NONE"', 'font "verdana-12"', pg])
+        # DONE badge - lights only when the challenge's done cvar is set (and the page is active).
+        L += blk("Label", ['name "d%d"' % i, 'title "DONE"', "rect 458 %d 70 16" % y,
                            "fgcolor 0.55 0.80 0.45 1.00", "bgcolor 0.00 0.00 0.00 0.00",
                            'borderstyle "NONE"', 'font "verdana-12"',
-                           'enabledcvar "coop_mpUnlockC_%s"' % c])
-    # cosmetic ladder (in words - the exact per-piece gate lives in the Appearance panel + server)
-    L += cap("ccap", (120, 342, 404, 16), "COSMETICS - EARNED BY TOTAL KILLS")
-    L += cap("cline", (120, 362, 404, 16),
-             "Skins every %d kills, gloves every %d, helmets every %d"
-             % (PROG["skin_step"], PROG["glove_step"], PROG["helm_step"]),
-             fg="0.84 0.82 0.76 1.00")
-    L += cap("cline2", (120, 380, 404, 16), "Choose earned gear in the Appearance panel and class armories.",
-             fg="0.55 0.60 0.66 1.00")
+                           'enabledcvar "coop_mpChD%d"' % i])
+
     # back
     L += blk("Button", ['name "back"', "rect 8 448 96 24", "fgcolor 1.00 1.00 1.00 1.00",
                         "bgcolor 0.50 0.50 0.50 0.00", 'borderstyle "3D_BORDER"',
@@ -741,8 +788,90 @@ def record_urc():
 
 
 # ---------------------------------------------------------------- emit: the roster .scr
+MP_FINISHES = ["gold", "chrome", "blued", "bloody", "camo_woodland", "camo_winter", "camo_desert"]
+# appearance-panel finish buttons: (index, finish token, short label). Index 0 = OFF (clears the pick,
+# always available). The name-bus marker carries the numeric INDEX (grammar ,q<side>f<digits>); the server
+# maps it back to the finish name in applyMarker.
+MP_FINISH_OPTS = [(0, "none", "OFF"), (1, "gold", "GOLD"), (2, "chrome", "CHROME"), (3, "blued", "BLUED"),
+                  (4, "bloody", "BLOODY"), (5, "camo_woodland", "WOODLND"), (6, "camo_winter", "WINTER"),
+                  (7, "camo_desert", "DESERT")]
+
+
+def finish_option_cfg(side, idx):
+    """f<idx>.cfg - pick a weapon finish: append the ,q<side>f<idx> name-bus marker (numeric index) so the
+    server (mp_armory.scr::applyMarker) records + validates it. No preview (a finish is not shown live)."""
+    return "append name ,q%sf%d\n" % (side, idx)
+
+
+def _coop_variants():
+    """The set of variant tik paths coop shipped (models/weapons/<base>_<finish>.tik), from the generated
+    reverse map. Read-only mirror of DATA - MP owns a copy, it never calls coop's loadoutskins (clause 10)."""
+    p = os.path.join(MOD, "coop_mod", "loadoutskins_base.scr")
+    txt = io.open(p, encoding="latin-1").read()
+    return set(v for v, b in re.findall(r'coop_skinBase\["([^"]+)"\]\s*=\s*"([^"]+)"', txt))
+
+
+def finish_map_scr(rows):
+    """coop_mod/mp_finish_map.scr - the MP-owned weapon-FINISH map + spawn resolver. For each MP weapon
+    that has coop variant tiks, records base|finish -> variant tik. mp_armory.scr::giveKit calls resolve()
+    so a player who has EARNED a finish (fin:<finish> challenge) and PICKED it (userinfo coop_mpFinPick)
+    deploys the variant model instead of the base. Isolation: MP file, coop_mpRun-guarded, mirrors coop's
+    variant data (never calls loadoutskins), calls only mp_challenges.scr (MP->MP, clause 10)."""
+    variants = _coop_variants()
+    gives = sorted(set(w["give"] for w in rows if w.get("give")))
+    L = [
+        "//GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead).",
+        "//MP weapon-finish map: base|finish -> variant tik, for every MP weapon that has coop variants.",
+        "//mp_armory.scr::giveKit calls resolve() to deploy an earned+picked finish's variant model.",
+        "alive:{",
+        "\tend 1",
+        "}end",
+        "",
+        "mpfin_init:{",
+        "\tif( level.coop_mpFinReady == 1 ){ end }",
+        "\tlevel.coop_mpFinReady = 1",
+    ]
+    n = 0
+    for base in gives:
+        for fin in MP_FINISHES:
+            var = base.replace(".tik", "_" + fin + ".tik")
+            if var in variants:
+                L.append('\tlevel.coop_mpFinVar["%s|%s"] = "%s"' % (base, fin, var))
+                n += 1
+    L.append('\tprintln( "^~^~^ MPFIN init combos=%d" )' % n)
+    L.append("}end")
+    L.append("")
+    L += [
+        "//Resolve a weapon give to its finish variant IF the player has earned + picked that finish. Returns",
+        "//the variant tik, or the base unchanged. The pick is the server flag coop_mpFinSel (a finish name,",
+        "//e.g. gold), set by mp_armory.scr::applyMarker only after the fin:<finish> challenge is complete -",
+        "//so this is server-authoritative and needs no re-check, but we re-validate anyway (belt + braces).",
+        "resolve local.p local.base:{",
+        "\tlocal.out = local.base",
+        "\tif( local.p == NULL || local.base == NIL || local.base == \"\" ){ end local.out }",
+        "\tif( level.coop_mpRun != 1 ){ end local.out }",
+        "\twaitthread mpfin_init",
+        "\tlocal.fin = local.p.flags[\"coop_mpFinSel\"]",
+        "\tif( local.fin == NIL || local.fin == \"\" ){ end local.out }",
+        "\tif( waitthread coop_mod/mp_challenges.scr::isUnlocked local.p ( \"fin:\" + local.fin ) != 1 ){ end local.out }",
+        "\tlocal.var = level.coop_mpFinVar[( local.base + \"|\" + local.fin )]",
+        "\tif( local.var != NIL && local.var != \"\" ){ local.out = local.var }",
+        "}end local.out",
+    ]
+    return "\n".join(L) + "\n"
+
+
 def roster_scr(side, rows):
     srows = [w for w in rows if w["side"] == side]
+    # tier = 1-based index within (progression class), file order (the starter is first per class).
+    # Matches the wt:<class>:<tier> unlock tokens from gen_mp_challenges.py, so tier>=2 weapons gate on
+    # coop_mpUw_<class>_<tier> / the "wt:<class>:<tier>" challenge unlock store entry.
+    _tc = {}
+    _tier = {}
+    for w in srows:
+        c = w["pclass"]
+        _tc[c] = _tc.get(c, 0) + 1
+        _tier[id(w)] = _tc[c]
     label = "ALLIED" if side == "a" else "AXIS"
     L = [
         "//GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead)",
@@ -769,6 +898,7 @@ def roster_scr(side, rows):
             '\t\t\tlocal.r["ammo"] = "%s"' % w["ammo"],
             '\t\t\tlocal.r["ammoN"] = %s' % w["ammoN"],
             '\t\t\tlocal.r["starter"] = %d' % (1 if w["starter"] else 0),
+            '\t\t\tlocal.r["tier"] = %d' % _tier[id(w)],
             "\t\t\tbreak",
         ]
     L += ["\t}", "}end local.r", ""]
@@ -840,7 +970,11 @@ def render_all(rows):
             files[os.path.join(cdir, "h%s.cfg" % oid)] = cos_option_cfg(side, "h", oid, name, view)
         for oid, name, view in COS_GLOVES:
             files[os.path.join(cdir, "v%s.cfg" % oid)] = cos_option_cfg(side, "v", oid, name, view)
+        # weapon-finish option cfgs (OFF + 7 finishes) - commit via the ,q<side>f<idx> name-bus.
+        for idx, fin, lbl in MP_FINISH_OPTS:
+            files[os.path.join(cdir, "f%d.cfg" % idx)] = finish_option_cfg(side, idx)
     files[os.path.join(MOD, "coop_mod", "mp_prog_wpnmap.scr")] = prog_wpnmap_scr(rows)
+    files[os.path.join(MOD, "coop_mod", "mp_finish_map.scr")] = finish_map_scr(rows)
     # the MP Service Record (side-agnostic; reached from Multiplayer Options).
     files[os.path.join(MOD, "ui", "coop_mp_record.urc")] = record_urc()
     return files
@@ -853,7 +987,7 @@ def assert_clean(files):
     exec_rx = re.compile(r'exec\s+(ui/[^\s";)]+\.cfg)', re.I)
     marker_rx = re.compile(r'append name (,q[a-z0-9]+)')
     # weapons: ,q<side><1|2|3><mpid> or ,q<side>d ; cosmetics: ,q<side><k|h|v><id>
-    grammar_rx = re.compile(r'^,q[ax](?:[123]\d+|d|[khv]\d+)\Z')
+    grammar_rx = re.compile(r'^,q[ax](?:[123]\d+|d|[khvf]\d+)\Z')
     outset = set()
     for p in files:
         if p.lower().endswith(".cfg"):

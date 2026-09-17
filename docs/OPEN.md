@@ -168,17 +168,60 @@ stock browser + rotation builder; Push/Base-Assault keep their own Campaign-Maps
   `coop_mod/mp_vehicles.scr`; placements harvested from UberMod into `mp_vehicle_maps.scr` (gen script).
   NOTE: force-arena on **m4l1** spams ~30 harmless "TriggerOnce setthread Script '' not loaded" (its BSP
   triggers hit the blanked map script) — cosmetic log noise, not vehicles.
-- **Prop Hunt — mode shipped, human loop needs a playtest (2026-09-15, bug-2641).** AXIS=props (hide as
+- **Prop Hunt — mode shipped, human loop needs a playtest (2026-09-15, bug-2641/2659).** AXIS=props (hide as
   stock statics, [USE] cycles shape), ALLIES=hunters (frozen during `coop_mpPhHideTime`). Boot-verified:
   morph, round arm 3v3, hide phase. Unverified: hunter kills a hidden-but-solid prop; full timeout win.
-- **Symmetric Demolition + Freeze Tag meltgun — need a playtest (2026-09-15, bug-2644/2645).** Demolition
-  is now two-way (either team plants on the enemy's spawn-derived site; gt2 team board now, not gt4 obj);
-  sites seed verified, plant/defuse/detonate unverified. FT gained a meltgun (aim+fire at a frozen
-  teammate to weld them free); compiles, the weld itself unverified.
+  Vet added a prop-seed draft (`ph_manage` force-joins the last allies player to axis when props=0 &
+  hunters≥2, native `join_team`) and a wrong-shot HP penalty (`coop_mpPhShotCost`, default 3). **Best-effort,
+  needs a playtest:** the forced draft mid-warmup and the per-shot penalty edge.
+- **Symmetric Demolition + Freeze Tag meltgun — need a playtest (2026-09-15, bug-2644/2645/2650/2654/2655).**
+  Demolition is two-way (either team plants on the enemy's spawn-derived site; gt2 team board). Vet fixed a
+  multi-planter stall (co-planting teammates flip-flopped the timer → never armed), added the `destroy` stat
+  credit + `plantbomb`/`explode_tank`/`alarm_switch` audio + a `set_objective_pos` compass marker. FT meltgun
+  ranged weld was DEAD (progress zeroed every tick outside 96u) — fixed (bug-2650). Plant/defuse/detonate +
+  the weld still need a live playtest.
 - **Spawn Protection host-rules UI toggle — deferred (2026-09-15, bug-2640).** The mechanic ships default-ON
   in MP (`coop_mpSpawnProtect`, seeded in mp.scr::main) and is console-toggleable; a board checkbox was NOT
   added because `coop_mphostrules.urc` is full (footer at y422) and a 3-column bottom row truncates the
-  "Down But Not Out" label. Add a row only if the board gains vertical space.
+  "Down But Not Out" label. Add a row only if the board gains vertical space. (2026-09-15 vet: the documented
+  move-out early-drop is now implemented — leaving `coop_mpSpawnProtMoveDist` (256u) drops protection, bug-2658.)
+- **MP MODE FULL-FUNCTIONALITY VET (2026-09-15, bug-2649–2659).** All 12 MP modes + the rounds framework
+  vetted (8 parallel reviewers). No blockers; every mode compiles, isolation 22/22. 13 fixes shipped — the
+  cross-cutting one: round modes credited `rounds`/`win_<mode>` only to the last survivor (rounds_enforceAll
+  spectated dead players before the award); now snapshotted at round-arm via `coop_mpRndTeam` +
+  `mp_awardRoundWin` (LMS/S&D/FreezeTag/Demolition/PropHunt). Also: Gun Game `rounds` credit, KOTH `capture`,
+  Push series-score persistence + `coop_mpPushToWin`, S&D plant/defuse+detonation scoring, Build-a-Base
+  script-owned victor. **Verified:** parse/isolation/wiring/challenge gates + build. **Needs a playtest** (all
+  logic-tested only): S&D detonation credit is best-effort (base-pak bomb owns the transition, no who-planted
+  ref — USE-holder heuristic); Prop Hunt draft; Demolition audio/marker; every round-mode win credit.
+- **REAL UBERMOD BOMB MODES + BUILD-A-BASE MAP FIX — deployed, needs a playtest (2026-09-16, bug-2668/2669).**
+  UberMod v8 has only 4 special modes: bb/cyb/snd/ft. S&D and the previously-missing **Cyber Attack** now LOAD
+  the real `ubermode/cybersnd.scr` (imported + 5 custom deps under the private `ubermode/` namespace; stock
+  `global/earthquake.scr`+`string_format.scr` left to vanilla) off harvested per-map bomb data
+  (`cybersnd_sites.tsv` → `gen_cybersnd_maps.py` → `mp_cybersnd_stations.scr`). Freeze Tag stays ours (UberMod's
+  ft is logic-only). **Build-A-Base was non-functional as shipped** (bug-2668): its UI offered `dm/mp_*` maps
+  that carry no station data (data is authored for the 2001/campaign maps), and the mohdm keys lacked the
+  runtime `dm/` prefix. All three now run on **18 maps** via `sv_mpForceArena` (the Base Assault/Push pattern):
+  the 7 mohdm* DM maps (bsp spawns) + 11 SP campaign maps that REUSE Base Assault/Push team spawns
+  (`gen_arena_spawns.py` → `mp_arena_spawns.scr`). Shared 18-map picker `hzm_arenamaps.urc` (generated), gated
+  by `ui_mpIsArena`; Cyber Attack tile added to `multiplayerstart.urc`. **Verified on a dedicated boot:** all
+  three engage with zero script errors, "Running <mode> game mode" / "stations placed" on mohdm1 + m1l3a; coop
+  map m1l1 still loads coop with MP off and no `g_ubergametype` leak; isolation 22/22. **Needs a playtest with
+  real players** (0-player boot can't verify: campaign-map spawn placement, bomb plant/defuse/round flow,
+  victory). Minor: `win_snd` challenge is now orphaned (S&D uses UberMod's own scoring, not our progression).
+- **MP BOTS DO NOT PLAY OBJECTIVES — by decision, left as combat filler (2026-09-16).** Investigated from
+  the engine: MP bots (`playerbot*.cpp`) are a curious-patrol + fight AI with NO objective logic; there is
+  NO script API to give a bot a goal (only `EV_ScriptThread_IsBot`, a query); and the one attraction lever,
+  `AttractiveNode` (navigate.cpp — team-gated, priority, "use" flag), is **never instantiated anywhere**, so
+  `MoveToBestAttractivePoint()` always searches an empty list. Only KOTH partially works with bots (a bot
+  that wanders into the hill counts — `koth_countInHill` has no bot filter). **Coop is unaffected either
+  way:** coop AI is `actor.cpp`, a wholly separate system with zero overlap with `playerbot`/AttractiveNode.
+  IF ever wanted, the clean path is a small MP-only engine builtin (e.g. `bot_objective <origin> <team>
+  <priority>`) that creates/moves an AttractiveNode at each mode's live objective, letting the bot's existing
+  MoveToBestAttractivePoint steer them there, plus script proximity-actions so an arriving bot grabs/plants/
+  holds. Gating risk to verify FIRST: bot nav-mesh coverage on the target maps (this engine's DM bot nav is
+  weak — "bots barely fight on DM"; stock `mohdm*` likely OK, SP force-arena maps uncertain). User chose to
+  leave as-is 2026-09-16; do not rebuild for this without a fresh ask.
 - **Panzerfaust REMOVED (2026-08-18)** - **armory id 73 is a permanent hole, never renumber.**
 - **Skin system: built end-to-end, awaiting menu playtest (2026-08-18).** 357 finish variants / 45 guns,
   armory finish strip, 7 finish challenges, server-side unlock gates, 25 model variants gated on each gun's

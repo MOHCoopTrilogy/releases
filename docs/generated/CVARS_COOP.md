@@ -17,13 +17,13 @@ Union of four sources, all swept fresh:
 
 | metric | count |
 |---|---:|
-| distinct `coop_*` cvars | 3380 |
+| distinct `coop_*` cvars | 3486 |
 | registered with a default by the engine | 515 |
 | seeded by a shipped cfg | 1840 |
-| seeded nowhere at all | 1205 |
-| **&nbsp;&nbsp;of those, read by a script** | **278** |
-| &nbsp;&nbsp;of those, menu-only (set at runtime by the UI) | 927 |
-| menu-wired (`.urc`) | 1728 |
+| seeded nowhere at all | 1311 |
+| **&nbsp;&nbsp;of those, read by a script** | **276** |
+| &nbsp;&nbsp;of those, menu-only (set at runtime by the UI) | 1035 |
+| menu-wired (`.urc`) | 1836 |
 | menu-wired but FORCED by autoexec.cfg (cannot persist) | 15 |
 | runtime-built name prefixes (not cvars) | 8 |
 
@@ -61,154 +61,167 @@ These literals are concatenated with a variable at the call site (`getcvar("coop
 - `coop_ki_heavy`, `coop_ki_mitem`, `coop_ki_reward`, `coop_ladderVolume`, `coop_latejoin`, `coop_latejoin_phase`
 - `coop_leakAllow`, `coop_lightBudget`, `coop_lobbyCamSway`, `coop_lobbyCountdown`, `coop_lobbyFeetDrop`, `coop_lobbyMusic`
 - `coop_lockLoadout`, `coop_loSkin`, `coop_m6EscapeFuse`, `coop_m6TowerFallYaw`, `coop_maptest_triggers`, `coop_medals`
-- `coop_mgLoaded`, `coop_moraleFrac`, `coop_mpBabFraglimit`, `coop_mpBabLaserDist`, `coop_mpBabMaxObj`, `coop_mpBabTimelimit`
-- `coop_mpBasDefuse`, `coop_mpBasFuse`, `coop_mpBasPlant`, `coop_mpBasRadius`, `coop_mpBasScoreA`, `coop_mpBasScoreX`
-- `coop_mpBasTime`, `coop_mpBotMax`, `coop_mpCosTestGlove`, `coop_mpCosTestHelm`, `coop_mpCosTestSkin`, `coop_mpCtfBaseRadius`
-- `coop_mpCtfGrabRadius`, `coop_mpCtfReturnTime`, `coop_mpCtfScoreA`, `coop_mpCtfScoreX`, `coop_mpCtfTime`, `coop_mpDbno`
-- `coop_mpDbnoBleed`, `coop_mpDbnoMitigation`, `coop_mpDbnoRevivePool`, `coop_mpDbnoReviveRange`, `coop_mpDbnoReviveTime`, `coop_mpDbnoThreshold`
-- `coop_mpFastRun`, `coop_mpFastRunMult`, `coop_mpFtAutoThaw`, `coop_mpFtMeltRadius`, `coop_mpFtMeltTime`, `coop_mpFtTime`
-- `coop_mpKothMove`, `coop_mpKothRadius`, `coop_mpKothScoreA`, `coop_mpKothScoreX`, `coop_mpMedkitCount`, `coop_mpMedkits`
-- `coop_mpNo3p`, `coop_mpNoAds`, `coop_mpNoCover`, `coop_mpNoProne`, `coop_mpPhHealth`, `coop_mpPhHideTime`
-- `coop_mpPhTime`, `coop_mpProgCreditBots`, `coop_mpProgFarmCooldown`, `coop_mpProgUnlockKills`, `coop_mpPushAttackers`, `coop_mpPushCap`
-- `coop_mpPushRadius`, `coop_mpPushWinsA`, `coop_mpPushWinsX`, `coop_mpRndNum`, `coop_mpRndScoreA`, `coop_mpRndScoreX`
-- `coop_mpRndToWin`, `coop_mpSndTime`, `coop_mpSpawnProtect`, `coop_mpSpawnProtLight`, `coop_mpSpawnProtTime`, `coop_mpVehAtAmmo`
-- `coop_mpVehAtRespawn`, `coop_mpVehCapture`, `coop_mpVehCaptureTime`, `coop_mpVehicles`, `coop_mpVehRespawn`, `coop_mpVehTestKill`
-- `coop_musicFiller`, `coop_nullclosest`, `coop_objToast`, `coop_objToastTime`, `coop_officerAccPct`, `coop_officerBasePc`
-- `coop_officerBattalionPer`, `coop_officerHealthPct`, `coop_officerMaxHeals`, `coop_officerScale`, `coop_officerSquadPer`, `coop_officerWaveCooldown`
-- `coop_ownerdrop`, `coop_ownerdrop_stage`, `coop_prevMap`, `coop_prevMapList`, `coop_propArcScale`, `coop_reboot`
-- `coop_retreatChance`, `coop_retreatCooldown`, `coop_retreatDist`, `coop_retreatHpFrac`, `coop_retreatMax`, `coop_retreatReengage`
-- `coop_retreatStreak`, `coop_save`, `coop_sayProbe`, `coop_scalecheck`, `coop_sndstress`, `coop_sndstress_iters`
-- `coop_soakbeat`, `coop_spawnProtect`, `coop_squadDensity`, `coop_st_autodeploy`, `coop_st_bangtest`, `coop_st_flanktest`
-- `coop_st_obj_mc`, `coop_st_officer_iters`, `coop_st_officer_maxscalar`, `coop_st_officer_mode`, `coop_st_officer_secs`, `coop_st_vehicles_mode`
-- `coop_st_weapons_ammo`, `coop_st_weapons_ammobox`, `coop_st_weapons_blood`, `coop_st_weapons_blood_sec`, `coop_st_weapons_fire`, `coop_st_weapons_gore`
-- `coop_st_weapons_goreskin`, `coop_st_weapons_holster`, `coop_st_weapons_mg42hp`, `coop_st_weapons_smoke`, `coop_st_xp_mode`, `coop_stealthHolster`
-- `coop_stingers`, `coop_subBlizzard`, `coop_subCruise`, `coop_subCruiseSpeed`, `coop_subCruiseZoff`, `coop_subInsertFov`
-- `coop_subInsertLen`, `coop_subOilZ`, `coop_subSinkDepth`, `coop_subSinkPitch`, `coop_subSinkRoll`, `coop_subSinkStern`
-- `coop_subSinkTime`, `coop_subStartAdvance`, `coop_subYawFlip`, `coop_t2l2_reinf`, `coop_tgatest`, `coop_tgatest_tik`
-- `coop_tracescan`, `coop_ts_fix`, `coop_ts_step`, `coop_ts_x0`, `coop_ts_x1`, `coop_ts_y0`
-- `coop_ts_y1`, `coop_uwBedVol`, `coop_voidDrop`, `coop_voidGuard`, `coop_wall_cmd`, `coop_wallH`
-- `coop_wallW`, `coop_whoProbe`, `coop_wintest`, `coop_wintest_bsp`, `coop_wintest_delay`, `coop_wintest_next`
-- `coop_woundedCrawlChance`, `coop_woundedFlee`
+- `coop_mgLoaded`, `coop_moraleFrac`, `coop_mpBasDefuse`, `coop_mpBasFuse`, `coop_mpBasPlant`, `coop_mpBasRadius`
+- `coop_mpBasScoreA`, `coop_mpBasScoreX`, `coop_mpBasTime`, `coop_mpBotMax`, `coop_mpCosTestGlove`, `coop_mpCosTestHelm`
+- `coop_mpCosTestSkin`, `coop_mpCtfBaseRadius`, `coop_mpCtfGrabRadius`, `coop_mpCtfReturnTime`, `coop_mpCtfScoreA`, `coop_mpCtfScoreX`
+- `coop_mpCtfTime`, `coop_mpDbno`, `coop_mpDbnoBleed`, `coop_mpDbnoMitigation`, `coop_mpDbnoRevivePool`, `coop_mpDbnoReviveRange`
+- `coop_mpDbnoReviveTime`, `coop_mpDbnoThreshold`, `coop_mpFastRun`, `coop_mpFastRunMult`, `coop_mpFtAutoThaw`, `coop_mpFtMeltRadius`
+- `coop_mpFtMeltTime`, `coop_mpFtTime`, `coop_mpKothMove`, `coop_mpKothRadius`, `coop_mpKothScoreA`, `coop_mpKothScoreX`
+- `coop_mpMedkitCount`, `coop_mpMedkits`, `coop_mpNo3p`, `coop_mpNoAds`, `coop_mpNoCover`, `coop_mpNoProne`
+- `coop_mpPhHealth`, `coop_mpPhHideTime`, `coop_mpPhShotCost`, `coop_mpPhTime`, `coop_mpProgCreditBots`, `coop_mpProgFarmCooldown`
+- `coop_mpProgUnlockKills`, `coop_mpPushAttackers`, `coop_mpPushCap`, `coop_mpPushRadius`, `coop_mpPushToWin`, `coop_mpPushWinsA`
+- `coop_mpPushWinsX`, `coop_mpRndNum`, `coop_mpRndScoreA`, `coop_mpRndScoreX`, `coop_mpRndToWin`, `coop_mpSpawnProtect`
+- `coop_mpSpawnProtLight`, `coop_mpSpawnProtMoveDist`, `coop_mpSpawnProtTime`, `coop_mpVehAtAmmo`, `coop_mpVehAtRespawn`, `coop_mpVehCapture`
+- `coop_mpVehCaptureTime`, `coop_mpVehicles`, `coop_mpVehRespawn`, `coop_mpVehTestKill`, `coop_musicFiller`, `coop_nullclosest`
+- `coop_objToast`, `coop_objToastTime`, `coop_officerAccPct`, `coop_officerBasePc`, `coop_officerBattalionPer`, `coop_officerHealthPct`
+- `coop_officerMaxHeals`, `coop_officerScale`, `coop_officerSquadPer`, `coop_officerWaveCooldown`, `coop_ownerdrop`, `coop_ownerdrop_stage`
+- `coop_prevMap`, `coop_prevMapList`, `coop_propArcScale`, `coop_reboot`, `coop_retreatChance`, `coop_retreatCooldown`
+- `coop_retreatDist`, `coop_retreatHpFrac`, `coop_retreatMax`, `coop_retreatReengage`, `coop_retreatStreak`, `coop_save`
+- `coop_sayProbe`, `coop_scalecheck`, `coop_sndstress`, `coop_sndstress_iters`, `coop_soakbeat`, `coop_spawnProtect`
+- `coop_squadDensity`, `coop_st_autodeploy`, `coop_st_bangtest`, `coop_st_flanktest`, `coop_st_obj_mc`, `coop_st_officer_iters`
+- `coop_st_officer_maxscalar`, `coop_st_officer_mode`, `coop_st_officer_secs`, `coop_st_vehicles_mode`, `coop_st_weapons_ammo`, `coop_st_weapons_ammobox`
+- `coop_st_weapons_blood`, `coop_st_weapons_blood_sec`, `coop_st_weapons_fire`, `coop_st_weapons_gore`, `coop_st_weapons_goreskin`, `coop_st_weapons_holster`
+- `coop_st_weapons_mg42hp`, `coop_st_weapons_smoke`, `coop_st_xp_mode`, `coop_stealthHolster`, `coop_stingers`, `coop_subBlizzard`
+- `coop_subCruise`, `coop_subCruiseSpeed`, `coop_subCruiseZoff`, `coop_subInsertFov`, `coop_subInsertLen`, `coop_subOilZ`
+- `coop_subSinkDepth`, `coop_subSinkPitch`, `coop_subSinkRoll`, `coop_subSinkStern`, `coop_subSinkTime`, `coop_subStartAdvance`
+- `coop_subYawFlip`, `coop_t2l2_reinf`, `coop_tgatest`, `coop_tgatest_tik`, `coop_tracescan`, `coop_ts_fix`
+- `coop_ts_step`, `coop_ts_x0`, `coop_ts_x1`, `coop_ts_y0`, `coop_ts_y1`, `coop_uwBedVol`
+- `coop_voidDrop`, `coop_voidGuard`, `coop_wall_cmd`, `coop_wallH`, `coop_wallW`, `coop_whoProbe`
+- `coop_wintest`, `coop_wintest_bsp`, `coop_wintest_delay`, `coop_wintest_next`, `coop_woundedCrawlChance`, `coop_woundedFlee`
 
 ## Seeded nowhere, referenced only by the UI
 Menu-internal state (`enabledcvar` / `linkcvar` targets) written at runtime by the UI or the engine. Listed for completeness; an unseeded value here is normal, not a defect.
 
 - `coop_gate_active`, `coop_gate_p1`, `coop_gate_p1c`, `coop_gate_p1on`, `coop_gate_p1r`, `coop_gate_p2`, `coop_gate_p2c`, `coop_gate_p2on`
 - `coop_gate_p2r`, `coop_gate_p3`, `coop_gate_p3c`, `coop_gate_p3on`, `coop_gate_p3r`, `coop_gate_p4`, `coop_gate_p4c`, `coop_gate_p4on`
-- `coop_gate_p4r`, `coop_gate_tally`, `coop_mpCnt_mg`, `coop_mpCnt_nades`, `coop_mpCnt_pistol`, `coop_mpCnt_rifle`, `coop_mpCnt_rocket`, `coop_mpCnt_shotgun`
-- `coop_mpCnt_smg`, `coop_mpCnt_sniper`, `coop_mpRank`, `coop_mpTotal`, `coop_mpUnlockC_mg`, `coop_mpUnlockC_nades`, `coop_mpUnlockC_pistol`, `coop_mpUnlockC_rifle`
-- `coop_mpUnlockC_rocket`, `coop_mpUnlockC_shotgun`, `coop_mpUnlockC_smg`, `coop_mpUnlockC_sniper`, `coop_skill`, `coop_uiB0`, `coop_uiB1`, `coop_uiB10`
-- `coop_uiB100`, `coop_uiB101`, `coop_uiB102`, `coop_uiB103`, `coop_uiB104`, `coop_uiB105`, `coop_uiB106`, `coop_uiB107`
-- `coop_uiB108`, `coop_uiB109`, `coop_uiB11`, `coop_uiB110`, `coop_uiB111`, `coop_uiB112`, `coop_uiB113`, `coop_uiB114`
-- `coop_uiB115`, `coop_uiB116`, `coop_uiB117`, `coop_uiB118`, `coop_uiB119`, `coop_uiB12`, `coop_uiB120`, `coop_uiB121`
-- `coop_uiB122`, `coop_uiB123`, `coop_uiB124`, `coop_uiB125`, `coop_uiB126`, `coop_uiB127`, `coop_uiB128`, `coop_uiB129`
-- `coop_uiB13`, `coop_uiB130`, `coop_uiB131`, `coop_uiB132`, `coop_uiB133`, `coop_uiB134`, `coop_uiB135`, `coop_uiB136`
-- `coop_uiB137`, `coop_uiB138`, `coop_uiB139`, `coop_uiB14`, `coop_uiB140`, `coop_uiB141`, `coop_uiB142`, `coop_uiB143`
-- `coop_uiB144`, `coop_uiB145`, `coop_uiB146`, `coop_uiB147`, `coop_uiB148`, `coop_uiB149`, `coop_uiB15`, `coop_uiB150`
-- `coop_uiB151`, `coop_uiB152`, `coop_uiB153`, `coop_uiB154`, `coop_uiB155`, `coop_uiB156`, `coop_uiB157`, `coop_uiB158`
-- `coop_uiB159`, `coop_uiB16`, `coop_uiB160`, `coop_uiB161`, `coop_uiB162`, `coop_uiB163`, `coop_uiB164`, `coop_uiB165`
-- `coop_uiB166`, `coop_uiB167`, `coop_uiB168`, `coop_uiB169`, `coop_uiB17`, `coop_uiB170`, `coop_uiB171`, `coop_uiB172`
-- `coop_uiB173`, `coop_uiB174`, `coop_uiB175`, `coop_uiB176`, `coop_uiB177`, `coop_uiB178`, `coop_uiB179`, `coop_uiB18`
-- `coop_uiB180`, `coop_uiB181`, `coop_uiB182`, `coop_uiB183`, `coop_uiB184`, `coop_uiB185`, `coop_uiB186`, `coop_uiB187`
-- `coop_uiB188`, `coop_uiB189`, `coop_uiB19`, `coop_uiB190`, `coop_uiB191`, `coop_uiB192`, `coop_uiB193`, `coop_uiB194`
-- `coop_uiB195`, `coop_uiB196`, `coop_uiB197`, `coop_uiB198`, `coop_uiB199`, `coop_uiB2`, `coop_uiB20`, `coop_uiB200`
-- `coop_uiB201`, `coop_uiB202`, `coop_uiB203`, `coop_uiB204`, `coop_uiB205`, `coop_uiB206`, `coop_uiB207`, `coop_uiB208`
-- `coop_uiB209`, `coop_uiB21`, `coop_uiB210`, `coop_uiB211`, `coop_uiB212`, `coop_uiB213`, `coop_uiB214`, `coop_uiB215`
-- `coop_uiB216`, `coop_uiB217`, `coop_uiB218`, `coop_uiB219`, `coop_uiB22`, `coop_uiB220`, `coop_uiB221`, `coop_uiB222`
-- `coop_uiB223`, `coop_uiB224`, `coop_uiB225`, `coop_uiB226`, `coop_uiB227`, `coop_uiB228`, `coop_uiB229`, `coop_uiB23`
-- `coop_uiB230`, `coop_uiB231`, `coop_uiB232`, `coop_uiB233`, `coop_uiB234`, `coop_uiB235`, `coop_uiB236`, `coop_uiB237`
-- `coop_uiB238`, `coop_uiB239`, `coop_uiB24`, `coop_uiB240`, `coop_uiB241`, `coop_uiB242`, `coop_uiB243`, `coop_uiB244`
-- `coop_uiB245`, `coop_uiB246`, `coop_uiB247`, `coop_uiB248`, `coop_uiB249`, `coop_uiB25`, `coop_uiB250`, `coop_uiB251`
-- `coop_uiB252`, `coop_uiB253`, `coop_uiB254`, `coop_uiB255`, `coop_uiB256`, `coop_uiB257`, `coop_uiB258`, `coop_uiB259`
-- `coop_uiB26`, `coop_uiB260`, `coop_uiB261`, `coop_uiB262`, `coop_uiB263`, `coop_uiB264`, `coop_uiB265`, `coop_uiB266`
-- `coop_uiB267`, `coop_uiB268`, `coop_uiB269`, `coop_uiB27`, `coop_uiB270`, `coop_uiB271`, `coop_uiB272`, `coop_uiB273`
-- `coop_uiB274`, `coop_uiB275`, `coop_uiB276`, `coop_uiB277`, `coop_uiB278`, `coop_uiB279`, `coop_uiB28`, `coop_uiB280`
-- `coop_uiB281`, `coop_uiB282`, `coop_uiB283`, `coop_uiB284`, `coop_uiB285`, `coop_uiB286`, `coop_uiB287`, `coop_uiB288`
-- `coop_uiB289`, `coop_uiB29`, `coop_uiB290`, `coop_uiB291`, `coop_uiB292`, `coop_uiB293`, `coop_uiB294`, `coop_uiB295`
-- `coop_uiB296`, `coop_uiB297`, `coop_uiB298`, `coop_uiB299`, `coop_uiB3`, `coop_uiB30`, `coop_uiB300`, `coop_uiB301`
-- `coop_uiB302`, `coop_uiB303`, `coop_uiB304`, `coop_uiB305`, `coop_uiB306`, `coop_uiB307`, `coop_uiB308`, `coop_uiB309`
-- `coop_uiB31`, `coop_uiB310`, `coop_uiB311`, `coop_uiB312`, `coop_uiB313`, `coop_uiB314`, `coop_uiB315`, `coop_uiB316`
-- `coop_uiB317`, `coop_uiB318`, `coop_uiB319`, `coop_uiB32`, `coop_uiB320`, `coop_uiB321`, `coop_uiB322`, `coop_uiB323`
-- `coop_uiB324`, `coop_uiB325`, `coop_uiB326`, `coop_uiB327`, `coop_uiB328`, `coop_uiB329`, `coop_uiB33`, `coop_uiB330`
-- `coop_uiB331`, `coop_uiB332`, `coop_uiB333`, `coop_uiB334`, `coop_uiB335`, `coop_uiB336`, `coop_uiB337`, `coop_uiB338`
-- `coop_uiB339`, `coop_uiB34`, `coop_uiB340`, `coop_uiB341`, `coop_uiB342`, `coop_uiB343`, `coop_uiB344`, `coop_uiB345`
-- `coop_uiB346`, `coop_uiB347`, `coop_uiB348`, `coop_uiB349`, `coop_uiB35`, `coop_uiB350`, `coop_uiB351`, `coop_uiB352`
-- `coop_uiB353`, `coop_uiB354`, `coop_uiB355`, `coop_uiB356`, `coop_uiB357`, `coop_uiB358`, `coop_uiB359`, `coop_uiB36`
-- `coop_uiB360`, `coop_uiB361`, `coop_uiB362`, `coop_uiB363`, `coop_uiB364`, `coop_uiB365`, `coop_uiB366`, `coop_uiB367`
-- `coop_uiB368`, `coop_uiB369`, `coop_uiB37`, `coop_uiB370`, `coop_uiB371`, `coop_uiB372`, `coop_uiB373`, `coop_uiB374`
-- `coop_uiB375`, `coop_uiB376`, `coop_uiB377`, `coop_uiB378`, `coop_uiB379`, `coop_uiB38`, `coop_uiB380`, `coop_uiB381`
-- `coop_uiB382`, `coop_uiB383`, `coop_uiB384`, `coop_uiB385`, `coop_uiB386`, `coop_uiB387`, `coop_uiB388`, `coop_uiB389`
-- `coop_uiB39`, `coop_uiB390`, `coop_uiB391`, `coop_uiB392`, `coop_uiB393`, `coop_uiB394`, `coop_uiB395`, `coop_uiB396`
-- `coop_uiB397`, `coop_uiB398`, `coop_uiB399`, `coop_uiB4`, `coop_uiB40`, `coop_uiB400`, `coop_uiB401`, `coop_uiB402`
-- `coop_uiB403`, `coop_uiB404`, `coop_uiB405`, `coop_uiB406`, `coop_uiB407`, `coop_uiB408`, `coop_uiB409`, `coop_uiB41`
-- `coop_uiB410`, `coop_uiB411`, `coop_uiB412`, `coop_uiB413`, `coop_uiB414`, `coop_uiB415`, `coop_uiB416`, `coop_uiB417`
-- `coop_uiB418`, `coop_uiB419`, `coop_uiB42`, `coop_uiB420`, `coop_uiB421`, `coop_uiB422`, `coop_uiB423`, `coop_uiB424`
-- `coop_uiB425`, `coop_uiB426`, `coop_uiB427`, `coop_uiB428`, `coop_uiB429`, `coop_uiB43`, `coop_uiB430`, `coop_uiB431`
-- `coop_uiB432`, `coop_uiB433`, `coop_uiB434`, `coop_uiB435`, `coop_uiB436`, `coop_uiB437`, `coop_uiB438`, `coop_uiB439`
-- `coop_uiB44`, `coop_uiB440`, `coop_uiB441`, `coop_uiB442`, `coop_uiB443`, `coop_uiB444`, `coop_uiB45`, `coop_uiB46`
-- `coop_uiB47`, `coop_uiB48`, `coop_uiB49`, `coop_uiB5`, `coop_uiB50`, `coop_uiB51`, `coop_uiB52`, `coop_uiB53`
-- `coop_uiB54`, `coop_uiB55`, `coop_uiB56`, `coop_uiB57`, `coop_uiB58`, `coop_uiB59`, `coop_uiB6`, `coop_uiB60`
-- `coop_uiB61`, `coop_uiB62`, `coop_uiB63`, `coop_uiB64`, `coop_uiB65`, `coop_uiB66`, `coop_uiB67`, `coop_uiB68`
-- `coop_uiB69`, `coop_uiB7`, `coop_uiB70`, `coop_uiB71`, `coop_uiB72`, `coop_uiB73`, `coop_uiB74`, `coop_uiB75`
-- `coop_uiB76`, `coop_uiB77`, `coop_uiB78`, `coop_uiB79`, `coop_uiB8`, `coop_uiB80`, `coop_uiB81`, `coop_uiB82`
-- `coop_uiB83`, `coop_uiB84`, `coop_uiB85`, `coop_uiB86`, `coop_uiB87`, `coop_uiB88`, `coop_uiB89`, `coop_uiB9`
-- `coop_uiB90`, `coop_uiB91`, `coop_uiB92`, `coop_uiB93`, `coop_uiB94`, `coop_uiB95`, `coop_uiB96`, `coop_uiB97`
-- `coop_uiB98`, `coop_uiB99`, `coop_uiN0`, `coop_uiN1`, `coop_uiN10`, `coop_uiN100`, `coop_uiN101`, `coop_uiN102`
-- `coop_uiN103`, `coop_uiN104`, `coop_uiN105`, `coop_uiN106`, `coop_uiN107`, `coop_uiN108`, `coop_uiN109`, `coop_uiN11`
-- `coop_uiN110`, `coop_uiN111`, `coop_uiN112`, `coop_uiN113`, `coop_uiN114`, `coop_uiN115`, `coop_uiN116`, `coop_uiN117`
-- `coop_uiN118`, `coop_uiN119`, `coop_uiN12`, `coop_uiN120`, `coop_uiN121`, `coop_uiN122`, `coop_uiN123`, `coop_uiN124`
-- `coop_uiN125`, `coop_uiN126`, `coop_uiN127`, `coop_uiN128`, `coop_uiN129`, `coop_uiN13`, `coop_uiN130`, `coop_uiN131`
-- `coop_uiN132`, `coop_uiN133`, `coop_uiN134`, `coop_uiN135`, `coop_uiN136`, `coop_uiN137`, `coop_uiN138`, `coop_uiN139`
-- `coop_uiN14`, `coop_uiN140`, `coop_uiN141`, `coop_uiN142`, `coop_uiN143`, `coop_uiN144`, `coop_uiN145`, `coop_uiN146`
-- `coop_uiN147`, `coop_uiN148`, `coop_uiN149`, `coop_uiN15`, `coop_uiN150`, `coop_uiN151`, `coop_uiN152`, `coop_uiN153`
-- `coop_uiN154`, `coop_uiN155`, `coop_uiN156`, `coop_uiN157`, `coop_uiN158`, `coop_uiN159`, `coop_uiN16`, `coop_uiN160`
-- `coop_uiN161`, `coop_uiN162`, `coop_uiN163`, `coop_uiN164`, `coop_uiN165`, `coop_uiN166`, `coop_uiN167`, `coop_uiN168`
-- `coop_uiN169`, `coop_uiN17`, `coop_uiN170`, `coop_uiN171`, `coop_uiN172`, `coop_uiN173`, `coop_uiN174`, `coop_uiN175`
-- `coop_uiN176`, `coop_uiN177`, `coop_uiN178`, `coop_uiN179`, `coop_uiN18`, `coop_uiN180`, `coop_uiN181`, `coop_uiN182`
-- `coop_uiN183`, `coop_uiN184`, `coop_uiN185`, `coop_uiN186`, `coop_uiN187`, `coop_uiN188`, `coop_uiN189`, `coop_uiN19`
-- `coop_uiN190`, `coop_uiN191`, `coop_uiN192`, `coop_uiN193`, `coop_uiN194`, `coop_uiN195`, `coop_uiN196`, `coop_uiN197`
-- `coop_uiN198`, `coop_uiN199`, `coop_uiN2`, `coop_uiN20`, `coop_uiN200`, `coop_uiN201`, `coop_uiN202`, `coop_uiN203`
-- `coop_uiN204`, `coop_uiN205`, `coop_uiN206`, `coop_uiN207`, `coop_uiN208`, `coop_uiN209`, `coop_uiN21`, `coop_uiN210`
-- `coop_uiN211`, `coop_uiN212`, `coop_uiN213`, `coop_uiN214`, `coop_uiN215`, `coop_uiN216`, `coop_uiN217`, `coop_uiN218`
-- `coop_uiN219`, `coop_uiN22`, `coop_uiN220`, `coop_uiN221`, `coop_uiN222`, `coop_uiN223`, `coop_uiN224`, `coop_uiN225`
-- `coop_uiN226`, `coop_uiN227`, `coop_uiN228`, `coop_uiN229`, `coop_uiN23`, `coop_uiN230`, `coop_uiN231`, `coop_uiN232`
-- `coop_uiN233`, `coop_uiN234`, `coop_uiN235`, `coop_uiN236`, `coop_uiN237`, `coop_uiN238`, `coop_uiN239`, `coop_uiN24`
-- `coop_uiN240`, `coop_uiN241`, `coop_uiN242`, `coop_uiN243`, `coop_uiN244`, `coop_uiN245`, `coop_uiN246`, `coop_uiN247`
-- `coop_uiN248`, `coop_uiN249`, `coop_uiN25`, `coop_uiN250`, `coop_uiN251`, `coop_uiN252`, `coop_uiN253`, `coop_uiN254`
-- `coop_uiN255`, `coop_uiN256`, `coop_uiN257`, `coop_uiN258`, `coop_uiN259`, `coop_uiN26`, `coop_uiN260`, `coop_uiN261`
-- `coop_uiN262`, `coop_uiN263`, `coop_uiN264`, `coop_uiN265`, `coop_uiN266`, `coop_uiN267`, `coop_uiN268`, `coop_uiN269`
-- `coop_uiN27`, `coop_uiN270`, `coop_uiN271`, `coop_uiN272`, `coop_uiN273`, `coop_uiN274`, `coop_uiN275`, `coop_uiN276`
-- `coop_uiN277`, `coop_uiN278`, `coop_uiN279`, `coop_uiN28`, `coop_uiN280`, `coop_uiN281`, `coop_uiN282`, `coop_uiN283`
-- `coop_uiN284`, `coop_uiN285`, `coop_uiN286`, `coop_uiN287`, `coop_uiN288`, `coop_uiN289`, `coop_uiN29`, `coop_uiN290`
-- `coop_uiN291`, `coop_uiN292`, `coop_uiN293`, `coop_uiN294`, `coop_uiN295`, `coop_uiN296`, `coop_uiN297`, `coop_uiN298`
-- `coop_uiN299`, `coop_uiN3`, `coop_uiN30`, `coop_uiN300`, `coop_uiN301`, `coop_uiN302`, `coop_uiN303`, `coop_uiN304`
-- `coop_uiN305`, `coop_uiN306`, `coop_uiN307`, `coop_uiN308`, `coop_uiN309`, `coop_uiN31`, `coop_uiN310`, `coop_uiN311`
-- `coop_uiN312`, `coop_uiN313`, `coop_uiN314`, `coop_uiN315`, `coop_uiN316`, `coop_uiN317`, `coop_uiN318`, `coop_uiN319`
-- `coop_uiN32`, `coop_uiN320`, `coop_uiN321`, `coop_uiN322`, `coop_uiN323`, `coop_uiN324`, `coop_uiN325`, `coop_uiN326`
-- `coop_uiN327`, `coop_uiN328`, `coop_uiN329`, `coop_uiN33`, `coop_uiN330`, `coop_uiN331`, `coop_uiN332`, `coop_uiN333`
-- `coop_uiN334`, `coop_uiN335`, `coop_uiN336`, `coop_uiN337`, `coop_uiN338`, `coop_uiN339`, `coop_uiN34`, `coop_uiN340`
-- `coop_uiN341`, `coop_uiN342`, `coop_uiN343`, `coop_uiN344`, `coop_uiN345`, `coop_uiN346`, `coop_uiN347`, `coop_uiN348`
-- `coop_uiN349`, `coop_uiN35`, `coop_uiN350`, `coop_uiN351`, `coop_uiN352`, `coop_uiN353`, `coop_uiN354`, `coop_uiN355`
-- `coop_uiN356`, `coop_uiN357`, `coop_uiN358`, `coop_uiN359`, `coop_uiN36`, `coop_uiN360`, `coop_uiN361`, `coop_uiN362`
-- `coop_uiN363`, `coop_uiN364`, `coop_uiN365`, `coop_uiN366`, `coop_uiN367`, `coop_uiN368`, `coop_uiN369`, `coop_uiN37`
-- `coop_uiN370`, `coop_uiN371`, `coop_uiN372`, `coop_uiN373`, `coop_uiN374`, `coop_uiN375`, `coop_uiN376`, `coop_uiN377`
-- `coop_uiN378`, `coop_uiN379`, `coop_uiN38`, `coop_uiN380`, `coop_uiN381`, `coop_uiN382`, `coop_uiN383`, `coop_uiN384`
-- `coop_uiN385`, `coop_uiN386`, `coop_uiN387`, `coop_uiN388`, `coop_uiN389`, `coop_uiN39`, `coop_uiN390`, `coop_uiN391`
-- `coop_uiN392`, `coop_uiN393`, `coop_uiN394`, `coop_uiN395`, `coop_uiN396`, `coop_uiN397`, `coop_uiN398`, `coop_uiN399`
-- `coop_uiN4`, `coop_uiN40`, `coop_uiN400`, `coop_uiN401`, `coop_uiN402`, `coop_uiN403`, `coop_uiN404`, `coop_uiN405`
-- `coop_uiN406`, `coop_uiN407`, `coop_uiN408`, `coop_uiN409`, `coop_uiN41`, `coop_uiN410`, `coop_uiN411`, `coop_uiN412`
-- `coop_uiN413`, `coop_uiN414`, `coop_uiN415`, `coop_uiN416`, `coop_uiN417`, `coop_uiN418`, `coop_uiN419`, `coop_uiN42`
-- `coop_uiN420`, `coop_uiN421`, `coop_uiN422`, `coop_uiN423`, `coop_uiN424`, `coop_uiN425`, `coop_uiN426`, `coop_uiN427`
-- `coop_uiN428`, `coop_uiN429`, `coop_uiN43`, `coop_uiN430`, `coop_uiN431`, `coop_uiN432`, `coop_uiN433`, `coop_uiN434`
-- `coop_uiN435`, `coop_uiN436`, `coop_uiN437`, `coop_uiN438`, `coop_uiN439`, `coop_uiN44`, `coop_uiN440`, `coop_uiN441`
-- `coop_uiN442`, `coop_uiN443`, `coop_uiN444`, `coop_uiN45`, `coop_uiN46`, `coop_uiN47`, `coop_uiN48`, `coop_uiN49`
-- `coop_uiN5`, `coop_uiN50`, `coop_uiN51`, `coop_uiN52`, `coop_uiN53`, `coop_uiN54`, `coop_uiN55`, `coop_uiN56`
-- `coop_uiN57`, `coop_uiN58`, `coop_uiN59`, `coop_uiN6`, `coop_uiN60`, `coop_uiN61`, `coop_uiN62`, `coop_uiN63`
-- `coop_uiN64`, `coop_uiN65`, `coop_uiN66`, `coop_uiN67`, `coop_uiN68`, `coop_uiN69`, `coop_uiN7`, `coop_uiN70`
-- `coop_uiN71`, `coop_uiN72`, `coop_uiN73`, `coop_uiN74`, `coop_uiN75`, `coop_uiN76`, `coop_uiN77`, `coop_uiN78`
-- `coop_uiN79`, `coop_uiN8`, `coop_uiN80`, `coop_uiN81`, `coop_uiN82`, `coop_uiN83`, `coop_uiN84`, `coop_uiN85`
-- `coop_uiN86`, `coop_uiN87`, `coop_uiN88`, `coop_uiN89`, `coop_uiN9`, `coop_uiN90`, `coop_uiN91`, `coop_uiN92`
-- `coop_uiN93`, `coop_uiN94`, `coop_uiN95`, `coop_uiN96`, `coop_uiN97`, `coop_uiN98`, `coop_uiN99`
+- `coop_gate_p4r`, `coop_gate_tally`, `coop_mpChD0`, `coop_mpChD1`, `coop_mpChD10`, `coop_mpChD11`, `coop_mpChD12`, `coop_mpChD13`
+- `coop_mpChD14`, `coop_mpChD15`, `coop_mpChD16`, `coop_mpChD17`, `coop_mpChD18`, `coop_mpChD19`, `coop_mpChD2`, `coop_mpChD20`
+- `coop_mpChD21`, `coop_mpChD22`, `coop_mpChD23`, `coop_mpChD24`, `coop_mpChD25`, `coop_mpChD26`, `coop_mpChD27`, `coop_mpChD28`
+- `coop_mpChD29`, `coop_mpChD3`, `coop_mpChD30`, `coop_mpChD31`, `coop_mpChD32`, `coop_mpChD33`, `coop_mpChD34`, `coop_mpChD35`
+- `coop_mpChD36`, `coop_mpChD37`, `coop_mpChD38`, `coop_mpChD39`, `coop_mpChD4`, `coop_mpChD40`, `coop_mpChD41`, `coop_mpChD42`
+- `coop_mpChD43`, `coop_mpChD44`, `coop_mpChD45`, `coop_mpChD46`, `coop_mpChD47`, `coop_mpChD48`, `coop_mpChD49`, `coop_mpChD5`
+- `coop_mpChD50`, `coop_mpChD51`, `coop_mpChD52`, `coop_mpChD53`, `coop_mpChD54`, `coop_mpChD55`, `coop_mpChD56`, `coop_mpChD57`
+- `coop_mpChD58`, `coop_mpChD59`, `coop_mpChD6`, `coop_mpChD60`, `coop_mpChD61`, `coop_mpChD62`, `coop_mpChD63`, `coop_mpChD64`
+- `coop_mpChD65`, `coop_mpChD66`, `coop_mpChD67`, `coop_mpChD68`, `coop_mpChD69`, `coop_mpChD7`, `coop_mpChD70`, `coop_mpChD71`
+- `coop_mpChD72`, `coop_mpChD73`, `coop_mpChD74`, `coop_mpChD75`, `coop_mpChD76`, `coop_mpChD77`, `coop_mpChD78`, `coop_mpChD8`
+- `coop_mpChD9`, `coop_mpCnt_mg`, `coop_mpCnt_nades`, `coop_mpCnt_pistol`, `coop_mpCnt_rifle`, `coop_mpCnt_rocket`, `coop_mpCnt_smg`, `coop_mpCnt_sniper`
+- `coop_mpRank`, `coop_mpS_capture`, `coop_mpS_defuse`, `coop_mpS_destroy`, `coop_mpS_flagret`, `coop_mpS_ggwin`, `coop_mpS_grenade`, `coop_mpS_headshot`
+- `coop_mpS_melee`, `coop_mpS_plant`, `coop_mpS_propfind`, `coop_mpS_propsurv`, `coop_mpS_revive`, `coop_mpS_rocketk`, `coop_mpS_rounds`, `coop_mpS_win_baseassault`
+- `coop_mpS_win_buildabase`, `coop_mpS_win_ctf`, `coop_mpS_win_demolition`, `coop_mpS_win_freezetag`, `coop_mpS_win_gungame`, `coop_mpS_win_koth`, `coop_mpS_win_lms`, `coop_mpS_win_prophunt`
+- `coop_mpS_win_push`, `coop_mpS_win_snd`, `coop_mpSrP0`, `coop_mpSrP1`, `coop_mpSrP2`, `coop_mpSrP3`, `coop_mpSrP4`, `coop_mpSrP5`
+- `coop_mpTotal`, `coop_mpUfin_bloody`, `coop_mpUfin_blued`, `coop_mpUfin_camo_desert`, `coop_mpUfin_camo_winter`, `coop_mpUfin_camo_woodland`, `coop_mpUfin_chrome`, `coop_mpUfin_gold`
+- `coop_skill`, `coop_uiB0`, `coop_uiB1`, `coop_uiB10`, `coop_uiB100`, `coop_uiB101`, `coop_uiB102`, `coop_uiB103`
+- `coop_uiB104`, `coop_uiB105`, `coop_uiB106`, `coop_uiB107`, `coop_uiB108`, `coop_uiB109`, `coop_uiB11`, `coop_uiB110`
+- `coop_uiB111`, `coop_uiB112`, `coop_uiB113`, `coop_uiB114`, `coop_uiB115`, `coop_uiB116`, `coop_uiB117`, `coop_uiB118`
+- `coop_uiB119`, `coop_uiB12`, `coop_uiB120`, `coop_uiB121`, `coop_uiB122`, `coop_uiB123`, `coop_uiB124`, `coop_uiB125`
+- `coop_uiB126`, `coop_uiB127`, `coop_uiB128`, `coop_uiB129`, `coop_uiB13`, `coop_uiB130`, `coop_uiB131`, `coop_uiB132`
+- `coop_uiB133`, `coop_uiB134`, `coop_uiB135`, `coop_uiB136`, `coop_uiB137`, `coop_uiB138`, `coop_uiB139`, `coop_uiB14`
+- `coop_uiB140`, `coop_uiB141`, `coop_uiB142`, `coop_uiB143`, `coop_uiB144`, `coop_uiB145`, `coop_uiB146`, `coop_uiB147`
+- `coop_uiB148`, `coop_uiB149`, `coop_uiB15`, `coop_uiB150`, `coop_uiB151`, `coop_uiB152`, `coop_uiB153`, `coop_uiB154`
+- `coop_uiB155`, `coop_uiB156`, `coop_uiB157`, `coop_uiB158`, `coop_uiB159`, `coop_uiB16`, `coop_uiB160`, `coop_uiB161`
+- `coop_uiB162`, `coop_uiB163`, `coop_uiB164`, `coop_uiB165`, `coop_uiB166`, `coop_uiB167`, `coop_uiB168`, `coop_uiB169`
+- `coop_uiB17`, `coop_uiB170`, `coop_uiB171`, `coop_uiB172`, `coop_uiB173`, `coop_uiB174`, `coop_uiB175`, `coop_uiB176`
+- `coop_uiB177`, `coop_uiB178`, `coop_uiB179`, `coop_uiB18`, `coop_uiB180`, `coop_uiB181`, `coop_uiB182`, `coop_uiB183`
+- `coop_uiB184`, `coop_uiB185`, `coop_uiB186`, `coop_uiB187`, `coop_uiB188`, `coop_uiB189`, `coop_uiB19`, `coop_uiB190`
+- `coop_uiB191`, `coop_uiB192`, `coop_uiB193`, `coop_uiB194`, `coop_uiB195`, `coop_uiB196`, `coop_uiB197`, `coop_uiB198`
+- `coop_uiB199`, `coop_uiB2`, `coop_uiB20`, `coop_uiB200`, `coop_uiB201`, `coop_uiB202`, `coop_uiB203`, `coop_uiB204`
+- `coop_uiB205`, `coop_uiB206`, `coop_uiB207`, `coop_uiB208`, `coop_uiB209`, `coop_uiB21`, `coop_uiB210`, `coop_uiB211`
+- `coop_uiB212`, `coop_uiB213`, `coop_uiB214`, `coop_uiB215`, `coop_uiB216`, `coop_uiB217`, `coop_uiB218`, `coop_uiB219`
+- `coop_uiB22`, `coop_uiB220`, `coop_uiB221`, `coop_uiB222`, `coop_uiB223`, `coop_uiB224`, `coop_uiB225`, `coop_uiB226`
+- `coop_uiB227`, `coop_uiB228`, `coop_uiB229`, `coop_uiB23`, `coop_uiB230`, `coop_uiB231`, `coop_uiB232`, `coop_uiB233`
+- `coop_uiB234`, `coop_uiB235`, `coop_uiB236`, `coop_uiB237`, `coop_uiB238`, `coop_uiB239`, `coop_uiB24`, `coop_uiB240`
+- `coop_uiB241`, `coop_uiB242`, `coop_uiB243`, `coop_uiB244`, `coop_uiB245`, `coop_uiB246`, `coop_uiB247`, `coop_uiB248`
+- `coop_uiB249`, `coop_uiB25`, `coop_uiB250`, `coop_uiB251`, `coop_uiB252`, `coop_uiB253`, `coop_uiB254`, `coop_uiB255`
+- `coop_uiB256`, `coop_uiB257`, `coop_uiB258`, `coop_uiB259`, `coop_uiB26`, `coop_uiB260`, `coop_uiB261`, `coop_uiB262`
+- `coop_uiB263`, `coop_uiB264`, `coop_uiB265`, `coop_uiB266`, `coop_uiB267`, `coop_uiB268`, `coop_uiB269`, `coop_uiB27`
+- `coop_uiB270`, `coop_uiB271`, `coop_uiB272`, `coop_uiB273`, `coop_uiB274`, `coop_uiB275`, `coop_uiB276`, `coop_uiB277`
+- `coop_uiB278`, `coop_uiB279`, `coop_uiB28`, `coop_uiB280`, `coop_uiB281`, `coop_uiB282`, `coop_uiB283`, `coop_uiB284`
+- `coop_uiB285`, `coop_uiB286`, `coop_uiB287`, `coop_uiB288`, `coop_uiB289`, `coop_uiB29`, `coop_uiB290`, `coop_uiB291`
+- `coop_uiB292`, `coop_uiB293`, `coop_uiB294`, `coop_uiB295`, `coop_uiB296`, `coop_uiB297`, `coop_uiB298`, `coop_uiB299`
+- `coop_uiB3`, `coop_uiB30`, `coop_uiB300`, `coop_uiB301`, `coop_uiB302`, `coop_uiB303`, `coop_uiB304`, `coop_uiB305`
+- `coop_uiB306`, `coop_uiB307`, `coop_uiB308`, `coop_uiB309`, `coop_uiB31`, `coop_uiB310`, `coop_uiB311`, `coop_uiB312`
+- `coop_uiB313`, `coop_uiB314`, `coop_uiB315`, `coop_uiB316`, `coop_uiB317`, `coop_uiB318`, `coop_uiB319`, `coop_uiB32`
+- `coop_uiB320`, `coop_uiB321`, `coop_uiB322`, `coop_uiB323`, `coop_uiB324`, `coop_uiB325`, `coop_uiB326`, `coop_uiB327`
+- `coop_uiB328`, `coop_uiB329`, `coop_uiB33`, `coop_uiB330`, `coop_uiB331`, `coop_uiB332`, `coop_uiB333`, `coop_uiB334`
+- `coop_uiB335`, `coop_uiB336`, `coop_uiB337`, `coop_uiB338`, `coop_uiB339`, `coop_uiB34`, `coop_uiB340`, `coop_uiB341`
+- `coop_uiB342`, `coop_uiB343`, `coop_uiB344`, `coop_uiB345`, `coop_uiB346`, `coop_uiB347`, `coop_uiB348`, `coop_uiB349`
+- `coop_uiB35`, `coop_uiB350`, `coop_uiB351`, `coop_uiB352`, `coop_uiB353`, `coop_uiB354`, `coop_uiB355`, `coop_uiB356`
+- `coop_uiB357`, `coop_uiB358`, `coop_uiB359`, `coop_uiB36`, `coop_uiB360`, `coop_uiB361`, `coop_uiB362`, `coop_uiB363`
+- `coop_uiB364`, `coop_uiB365`, `coop_uiB366`, `coop_uiB367`, `coop_uiB368`, `coop_uiB369`, `coop_uiB37`, `coop_uiB370`
+- `coop_uiB371`, `coop_uiB372`, `coop_uiB373`, `coop_uiB374`, `coop_uiB375`, `coop_uiB376`, `coop_uiB377`, `coop_uiB378`
+- `coop_uiB379`, `coop_uiB38`, `coop_uiB380`, `coop_uiB381`, `coop_uiB382`, `coop_uiB383`, `coop_uiB384`, `coop_uiB385`
+- `coop_uiB386`, `coop_uiB387`, `coop_uiB388`, `coop_uiB389`, `coop_uiB39`, `coop_uiB390`, `coop_uiB391`, `coop_uiB392`
+- `coop_uiB393`, `coop_uiB394`, `coop_uiB395`, `coop_uiB396`, `coop_uiB397`, `coop_uiB398`, `coop_uiB399`, `coop_uiB4`
+- `coop_uiB40`, `coop_uiB400`, `coop_uiB401`, `coop_uiB402`, `coop_uiB403`, `coop_uiB404`, `coop_uiB405`, `coop_uiB406`
+- `coop_uiB407`, `coop_uiB408`, `coop_uiB409`, `coop_uiB41`, `coop_uiB410`, `coop_uiB411`, `coop_uiB412`, `coop_uiB413`
+- `coop_uiB414`, `coop_uiB415`, `coop_uiB416`, `coop_uiB417`, `coop_uiB418`, `coop_uiB419`, `coop_uiB42`, `coop_uiB420`
+- `coop_uiB421`, `coop_uiB422`, `coop_uiB423`, `coop_uiB424`, `coop_uiB425`, `coop_uiB426`, `coop_uiB427`, `coop_uiB428`
+- `coop_uiB429`, `coop_uiB43`, `coop_uiB430`, `coop_uiB431`, `coop_uiB432`, `coop_uiB433`, `coop_uiB434`, `coop_uiB435`
+- `coop_uiB436`, `coop_uiB437`, `coop_uiB438`, `coop_uiB439`, `coop_uiB44`, `coop_uiB440`, `coop_uiB441`, `coop_uiB442`
+- `coop_uiB443`, `coop_uiB444`, `coop_uiB45`, `coop_uiB46`, `coop_uiB47`, `coop_uiB48`, `coop_uiB49`, `coop_uiB5`
+- `coop_uiB50`, `coop_uiB51`, `coop_uiB52`, `coop_uiB53`, `coop_uiB54`, `coop_uiB55`, `coop_uiB56`, `coop_uiB57`
+- `coop_uiB58`, `coop_uiB59`, `coop_uiB6`, `coop_uiB60`, `coop_uiB61`, `coop_uiB62`, `coop_uiB63`, `coop_uiB64`
+- `coop_uiB65`, `coop_uiB66`, `coop_uiB67`, `coop_uiB68`, `coop_uiB69`, `coop_uiB7`, `coop_uiB70`, `coop_uiB71`
+- `coop_uiB72`, `coop_uiB73`, `coop_uiB74`, `coop_uiB75`, `coop_uiB76`, `coop_uiB77`, `coop_uiB78`, `coop_uiB79`
+- `coop_uiB8`, `coop_uiB80`, `coop_uiB81`, `coop_uiB82`, `coop_uiB83`, `coop_uiB84`, `coop_uiB85`, `coop_uiB86`
+- `coop_uiB87`, `coop_uiB88`, `coop_uiB89`, `coop_uiB9`, `coop_uiB90`, `coop_uiB91`, `coop_uiB92`, `coop_uiB93`
+- `coop_uiB94`, `coop_uiB95`, `coop_uiB96`, `coop_uiB97`, `coop_uiB98`, `coop_uiB99`, `coop_uiN0`, `coop_uiN1`
+- `coop_uiN10`, `coop_uiN100`, `coop_uiN101`, `coop_uiN102`, `coop_uiN103`, `coop_uiN104`, `coop_uiN105`, `coop_uiN106`
+- `coop_uiN107`, `coop_uiN108`, `coop_uiN109`, `coop_uiN11`, `coop_uiN110`, `coop_uiN111`, `coop_uiN112`, `coop_uiN113`
+- `coop_uiN114`, `coop_uiN115`, `coop_uiN116`, `coop_uiN117`, `coop_uiN118`, `coop_uiN119`, `coop_uiN12`, `coop_uiN120`
+- `coop_uiN121`, `coop_uiN122`, `coop_uiN123`, `coop_uiN124`, `coop_uiN125`, `coop_uiN126`, `coop_uiN127`, `coop_uiN128`
+- `coop_uiN129`, `coop_uiN13`, `coop_uiN130`, `coop_uiN131`, `coop_uiN132`, `coop_uiN133`, `coop_uiN134`, `coop_uiN135`
+- `coop_uiN136`, `coop_uiN137`, `coop_uiN138`, `coop_uiN139`, `coop_uiN14`, `coop_uiN140`, `coop_uiN141`, `coop_uiN142`
+- `coop_uiN143`, `coop_uiN144`, `coop_uiN145`, `coop_uiN146`, `coop_uiN147`, `coop_uiN148`, `coop_uiN149`, `coop_uiN15`
+- `coop_uiN150`, `coop_uiN151`, `coop_uiN152`, `coop_uiN153`, `coop_uiN154`, `coop_uiN155`, `coop_uiN156`, `coop_uiN157`
+- `coop_uiN158`, `coop_uiN159`, `coop_uiN16`, `coop_uiN160`, `coop_uiN161`, `coop_uiN162`, `coop_uiN163`, `coop_uiN164`
+- `coop_uiN165`, `coop_uiN166`, `coop_uiN167`, `coop_uiN168`, `coop_uiN169`, `coop_uiN17`, `coop_uiN170`, `coop_uiN171`
+- `coop_uiN172`, `coop_uiN173`, `coop_uiN174`, `coop_uiN175`, `coop_uiN176`, `coop_uiN177`, `coop_uiN178`, `coop_uiN179`
+- `coop_uiN18`, `coop_uiN180`, `coop_uiN181`, `coop_uiN182`, `coop_uiN183`, `coop_uiN184`, `coop_uiN185`, `coop_uiN186`
+- `coop_uiN187`, `coop_uiN188`, `coop_uiN189`, `coop_uiN19`, `coop_uiN190`, `coop_uiN191`, `coop_uiN192`, `coop_uiN193`
+- `coop_uiN194`, `coop_uiN195`, `coop_uiN196`, `coop_uiN197`, `coop_uiN198`, `coop_uiN199`, `coop_uiN2`, `coop_uiN20`
+- `coop_uiN200`, `coop_uiN201`, `coop_uiN202`, `coop_uiN203`, `coop_uiN204`, `coop_uiN205`, `coop_uiN206`, `coop_uiN207`
+- `coop_uiN208`, `coop_uiN209`, `coop_uiN21`, `coop_uiN210`, `coop_uiN211`, `coop_uiN212`, `coop_uiN213`, `coop_uiN214`
+- `coop_uiN215`, `coop_uiN216`, `coop_uiN217`, `coop_uiN218`, `coop_uiN219`, `coop_uiN22`, `coop_uiN220`, `coop_uiN221`
+- `coop_uiN222`, `coop_uiN223`, `coop_uiN224`, `coop_uiN225`, `coop_uiN226`, `coop_uiN227`, `coop_uiN228`, `coop_uiN229`
+- `coop_uiN23`, `coop_uiN230`, `coop_uiN231`, `coop_uiN232`, `coop_uiN233`, `coop_uiN234`, `coop_uiN235`, `coop_uiN236`
+- `coop_uiN237`, `coop_uiN238`, `coop_uiN239`, `coop_uiN24`, `coop_uiN240`, `coop_uiN241`, `coop_uiN242`, `coop_uiN243`
+- `coop_uiN244`, `coop_uiN245`, `coop_uiN246`, `coop_uiN247`, `coop_uiN248`, `coop_uiN249`, `coop_uiN25`, `coop_uiN250`
+- `coop_uiN251`, `coop_uiN252`, `coop_uiN253`, `coop_uiN254`, `coop_uiN255`, `coop_uiN256`, `coop_uiN257`, `coop_uiN258`
+- `coop_uiN259`, `coop_uiN26`, `coop_uiN260`, `coop_uiN261`, `coop_uiN262`, `coop_uiN263`, `coop_uiN264`, `coop_uiN265`
+- `coop_uiN266`, `coop_uiN267`, `coop_uiN268`, `coop_uiN269`, `coop_uiN27`, `coop_uiN270`, `coop_uiN271`, `coop_uiN272`
+- `coop_uiN273`, `coop_uiN274`, `coop_uiN275`, `coop_uiN276`, `coop_uiN277`, `coop_uiN278`, `coop_uiN279`, `coop_uiN28`
+- `coop_uiN280`, `coop_uiN281`, `coop_uiN282`, `coop_uiN283`, `coop_uiN284`, `coop_uiN285`, `coop_uiN286`, `coop_uiN287`
+- `coop_uiN288`, `coop_uiN289`, `coop_uiN29`, `coop_uiN290`, `coop_uiN291`, `coop_uiN292`, `coop_uiN293`, `coop_uiN294`
+- `coop_uiN295`, `coop_uiN296`, `coop_uiN297`, `coop_uiN298`, `coop_uiN299`, `coop_uiN3`, `coop_uiN30`, `coop_uiN300`
+- `coop_uiN301`, `coop_uiN302`, `coop_uiN303`, `coop_uiN304`, `coop_uiN305`, `coop_uiN306`, `coop_uiN307`, `coop_uiN308`
+- `coop_uiN309`, `coop_uiN31`, `coop_uiN310`, `coop_uiN311`, `coop_uiN312`, `coop_uiN313`, `coop_uiN314`, `coop_uiN315`
+- `coop_uiN316`, `coop_uiN317`, `coop_uiN318`, `coop_uiN319`, `coop_uiN32`, `coop_uiN320`, `coop_uiN321`, `coop_uiN322`
+- `coop_uiN323`, `coop_uiN324`, `coop_uiN325`, `coop_uiN326`, `coop_uiN327`, `coop_uiN328`, `coop_uiN329`, `coop_uiN33`
+- `coop_uiN330`, `coop_uiN331`, `coop_uiN332`, `coop_uiN333`, `coop_uiN334`, `coop_uiN335`, `coop_uiN336`, `coop_uiN337`
+- `coop_uiN338`, `coop_uiN339`, `coop_uiN34`, `coop_uiN340`, `coop_uiN341`, `coop_uiN342`, `coop_uiN343`, `coop_uiN344`
+- `coop_uiN345`, `coop_uiN346`, `coop_uiN347`, `coop_uiN348`, `coop_uiN349`, `coop_uiN35`, `coop_uiN350`, `coop_uiN351`
+- `coop_uiN352`, `coop_uiN353`, `coop_uiN354`, `coop_uiN355`, `coop_uiN356`, `coop_uiN357`, `coop_uiN358`, `coop_uiN359`
+- `coop_uiN36`, `coop_uiN360`, `coop_uiN361`, `coop_uiN362`, `coop_uiN363`, `coop_uiN364`, `coop_uiN365`, `coop_uiN366`
+- `coop_uiN367`, `coop_uiN368`, `coop_uiN369`, `coop_uiN37`, `coop_uiN370`, `coop_uiN371`, `coop_uiN372`, `coop_uiN373`
+- `coop_uiN374`, `coop_uiN375`, `coop_uiN376`, `coop_uiN377`, `coop_uiN378`, `coop_uiN379`, `coop_uiN38`, `coop_uiN380`
+- `coop_uiN381`, `coop_uiN382`, `coop_uiN383`, `coop_uiN384`, `coop_uiN385`, `coop_uiN386`, `coop_uiN387`, `coop_uiN388`
+- `coop_uiN389`, `coop_uiN39`, `coop_uiN390`, `coop_uiN391`, `coop_uiN392`, `coop_uiN393`, `coop_uiN394`, `coop_uiN395`
+- `coop_uiN396`, `coop_uiN397`, `coop_uiN398`, `coop_uiN399`, `coop_uiN4`, `coop_uiN40`, `coop_uiN400`, `coop_uiN401`
+- `coop_uiN402`, `coop_uiN403`, `coop_uiN404`, `coop_uiN405`, `coop_uiN406`, `coop_uiN407`, `coop_uiN408`, `coop_uiN409`
+- `coop_uiN41`, `coop_uiN410`, `coop_uiN411`, `coop_uiN412`, `coop_uiN413`, `coop_uiN414`, `coop_uiN415`, `coop_uiN416`
+- `coop_uiN417`, `coop_uiN418`, `coop_uiN419`, `coop_uiN42`, `coop_uiN420`, `coop_uiN421`, `coop_uiN422`, `coop_uiN423`
+- `coop_uiN424`, `coop_uiN425`, `coop_uiN426`, `coop_uiN427`, `coop_uiN428`, `coop_uiN429`, `coop_uiN43`, `coop_uiN430`
+- `coop_uiN431`, `coop_uiN432`, `coop_uiN433`, `coop_uiN434`, `coop_uiN435`, `coop_uiN436`, `coop_uiN437`, `coop_uiN438`
+- `coop_uiN439`, `coop_uiN44`, `coop_uiN440`, `coop_uiN441`, `coop_uiN442`, `coop_uiN443`, `coop_uiN444`, `coop_uiN45`
+- `coop_uiN46`, `coop_uiN47`, `coop_uiN48`, `coop_uiN49`, `coop_uiN5`, `coop_uiN50`, `coop_uiN51`, `coop_uiN52`
+- `coop_uiN53`, `coop_uiN54`, `coop_uiN55`, `coop_uiN56`, `coop_uiN57`, `coop_uiN58`, `coop_uiN59`, `coop_uiN6`
+- `coop_uiN60`, `coop_uiN61`, `coop_uiN62`, `coop_uiN63`, `coop_uiN64`, `coop_uiN65`, `coop_uiN66`, `coop_uiN67`
+- `coop_uiN68`, `coop_uiN69`, `coop_uiN7`, `coop_uiN70`, `coop_uiN71`, `coop_uiN72`, `coop_uiN73`, `coop_uiN74`
+- `coop_uiN75`, `coop_uiN76`, `coop_uiN77`, `coop_uiN78`, `coop_uiN79`, `coop_uiN8`, `coop_uiN80`, `coop_uiN81`
+- `coop_uiN82`, `coop_uiN83`, `coop_uiN84`, `coop_uiN85`, `coop_uiN86`, `coop_uiN87`, `coop_uiN88`, `coop_uiN89`
+- `coop_uiN9`, `coop_uiN90`, `coop_uiN91`, `coop_uiN92`, `coop_uiN93`, `coop_uiN94`, `coop_uiN95`, `coop_uiN96`
+- `coop_uiN97`, `coop_uiN98`, `coop_uiN99`
 
 ## Menu-wired but forced by `autoexec.cfg`
 These have a menu control, but `autoexec.cfg` re-applies the shipped value after the saved config loads, so the player's choice never survives a restart. Move the seed to `coop_defaults.cfg` to fix.
@@ -325,19 +338,19 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_blindfireRaise` | `26` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:1640` (+1) |  |  |  |
 | `coop_blindfireSpread` | `3.0` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2187` |  |  |  |
 | `coop_blindfireYaw` | `50` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2234` |  |  |  |
-| `coop_bloodDebug` | `0` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4530` (+1) | FORCED `0` @ `autoexec.cfg:457` |  |  |
+| `coop_bloodDebug` | `0` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4539` (+1) | FORCED `0` @ `autoexec.cfg:457` |  |  |
 | `coop_bloodleak` |  |  |  | FORCED `1` @ `autoexec.cfg:523` | `coop_mod/gurgle.scr:84` |  |
 | `coop_bloodleak_max` |  |  |  |  | `coop_mod/gurgle.scr:91` (+1) |  |
 | `coop_bloodleak_range` |  |  |  | FORCED `900` @ `autoexec.cfg:524` | `coop_mod/gurgle.scr:87` (+1) |  |
-| `coop_bloodPool` | `32` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2403` (+1) | FORCED `44` @ `autoexec.cfg:460` |  |  |
-| `coop_bloodSplatScale` | `1.0` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4714` |  |  |  |
+| `coop_bloodPool` | `32` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2412` (+1) | FORCED `44` @ `autoexec.cfg:460` |  |  |
+| `coop_bloodSplatScale` | `1.0` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4723` |  |  |  |
 | `coop_bloodSpurtUp` | `40` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:1356` (+2) | DEFAULT `75` @ `coop_defaults.cfg:493` |  |  |
-| `coop_bloodTrail` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4432` | DEFAULT `1` @ `coop_defaults.cfg:54` |  | `ui/coop_hostrules.urc` |
-| `coop_bloodTrailChance` | `0.8` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4507` | FORCED `0.8` @ `autoexec.cfg:449` |  |  |
-| `coop_bloodTrailDist` | `56` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4488` | FORCED `56` @ `autoexec.cfg:448` |  |  |
-| `coop_bloodTrailHealthFrac` | `0.5` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4443` | FORCED `0.5` @ `autoexec.cfg:446` |  |  |
-| `coop_bloodTrailInterval` | `0.45` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4479` | FORCED `0.45` @ `autoexec.cfg:447` |  |  |
-| `coop_bloodTrailScale` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4467` |  |  |  |
+| `coop_bloodTrail` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4441` | DEFAULT `1` @ `coop_defaults.cfg:54` |  | `ui/coop_hostrules.urc` |
+| `coop_bloodTrailChance` | `0.8` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4516` | FORCED `0.8` @ `autoexec.cfg:449` |  |  |
+| `coop_bloodTrailDist` | `56` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4497` | FORCED `56` @ `autoexec.cfg:448` |  |  |
+| `coop_bloodTrailHealthFrac` | `0.5` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4452` | FORCED `0.5` @ `autoexec.cfg:446` |  |  |
+| `coop_bloodTrailInterval` | `0.45` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4488` | FORCED `0.45` @ `autoexec.cfg:447` |  |  |
+| `coop_bloodTrailScale` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4476` |  |  |  |
 | `coop_bloomTuneArm` |  |  |  | FORCED `seta coop_bloomTuneStep…` @ `autoexec.cfg:979` |  |  |
 | `coop_bloomTuneDo` |  |  |  | FORCED `seta r_ppBloomThreshold…` @ `autoexec.cfg:980` |  |  |
 | `coop_bloomTuneNone` |  |  |  | FORCED `(empty)` @ `autoexec.cfg:978` |  |  |
@@ -443,9 +456,9 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_compassBarOpacity` | `0.9` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2544` | DEFAULT `0.9` @ `coop_defaults.cfg:153` |  |  |
 | `coop_compassBarScale` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2543` | DEFAULT `1.0` @ `coop_defaults.cfg:152` |  |  |
 | `coop_compassProbe` | `0` | `0` | `cgame/cg_drawtools.cpp:2553` |  |  |  |
-| `coop_corpseGore` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3579` | DEFAULT `1` @ `coop_defaults.cfg:446` |  |  |
-| `coop_corpseGoreBudget` | `6` | `0` | `fgame/sentient.cpp:3580` | DEFAULT `6` @ `coop_defaults.cfg:447` |  |  |
-| `coop_corpseImpulse` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3018` | DEFAULT `1` @ `coop_defaults.cfg:501` |  |  |
+| `coop_corpseGore` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3588` | DEFAULT `1` @ `coop_defaults.cfg:446` |  |  |
+| `coop_corpseGoreBudget` | `6` | `0` | `fgame/sentient.cpp:3589` | DEFAULT `6` @ `coop_defaults.cfg:447` |  |  |
+| `coop_corpseImpulse` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3027` | DEFAULT `1` @ `coop_defaults.cfg:501` |  |  |
 | `coop_corpseLife` |  |  |  | FORCED `0` @ `autoexec.cfg:383` | `coop_mod/corpse.scr:12` |  |
 | `coop_corpseShootable` | `1` | `CVAR_ARCHIVE` | `fgame/actor.cpp:12944` |  |  |  |
 | `coop_coverAuto` | `1` | `0` | `fgame/player.cpp:17541` | DEFAULT `1` @ `coop_defaults.cfg:60` |  | `ui/coop_hostrules.urc` |
@@ -519,12 +532,12 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_deathReact` |  |  |  |  | `coop_mod/officer.scr:3756` |  |
 | `coop_deathvox_farRange` |  |  |  |  | `coop_mod/coop_selftest_xp.scr:587` (+3) |  |
 | `coop_deathvox_range` |  |  |  | FORCED `1500` @ `autoexec.cfg:616` | `coop_mod/coop_selftest_xp.scr:585` (+3) |  |
-| `coop_decap` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3019` (+1) | DEFAULT `1` @ `coop_defaults.cfg:408` |  |  |
-| `coop_decapBudget` | `3` | `0` | `fgame/sentient.cpp:3021` (+1) | DEFAULT `3` @ `coop_defaults.cfg:410` |  |  |
-| `coop_decapChance` | `30` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3020` (+1) | DEFAULT `30` @ `coop_defaults.cfg:409` |  |  |
-| `coop_decapGoreProps` | `3` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4178` |  |  |  |
+| `coop_decap` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3028` (+1) | DEFAULT `1` @ `coop_defaults.cfg:408` |  |  |
+| `coop_decapBudget` | `3` | `0` | `fgame/sentient.cpp:3030` (+1) | DEFAULT `3` @ `coop_defaults.cfg:410` |  |  |
+| `coop_decapChance` | `30` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3029` (+1) | DEFAULT `30` @ `coop_defaults.cfg:409` |  |  |
+| `coop_decapGoreProps` | `3` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4187` |  |  |  |
 | `coop_decapLife` | `0` | `CVAR_ARCHIVE` | `fgame/object.cpp:577` | DEFAULT `0` @ `coop_defaults.cfg:411` |  |  |
-| `coop_decapMax` | `32` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3708` | DEFAULT `32` @ `coop_defaults.cfg:423` |  |  |
+| `coop_decapMax` | `32` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3717` | DEFAULT `32` @ `coop_defaults.cfg:423` |  |  |
 | `coop_dev` |  |  |  | other `1` @ `coop_mod/cfg/buildmode.cfg:66`<br>other `0` @ `coop_mod/server.cfg:35`<br>other `0` @ `coop_mod/start_server.cfg:35` | `coop_mod/buildmode.scr:57` (+4) |  |
 | `coop_devKeys` |  |  |  |  | `coop_mod/developer.scr:86` (+6) |  |
 | `coop_diag` |  |  |  |  | `coop_mod/server.scr:154` (+1) |  |
@@ -581,7 +594,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_exactAmmo` |  |  |  | FORCED `1` @ `autoexec.cfg:583` | `coop_mod/coop_selftest_dbno.scr:84` (+4) |  |
 | `coop_explLight` | `420` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:1447` | FORCED `420` @ `autoexec.cfg:1033` |  |  |
 | `coop_explosionShake` | `1` | `CVAR_ARCHIVE` | `fgame/explosion.cpp:131` | DEFAULT `1` @ `coop_defaults.cfg:494` |  |  |
-| `coop_eyeGib` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2977` | DEFAULT `1` @ `coop_defaults.cfg:502` |  |  |
+| `coop_eyeGib` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2986` | DEFAULT `1` @ `coop_defaults.cfg:502` |  |  |
 | `coop_fingerAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1742` |  |  |  |
 | `coop_fingerAxis` | `2` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1747` |  |  |  |
 | `coop_fingerLife` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1741` |  |  |  |
@@ -623,32 +636,32 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_gate_tally` |  |  |  |  |  | `ui/briefing1a.urc` (+8) |
 | `coop_gloveIdx` | `0` | `0` | `cgame/cg_modelanim.c:3053` |  |  |  |
 | `coop_gmboxBoldFont` | `verdana-14` | `CVAR_ARCHIVE` | `client/cl_uigmbox.cpp:331` |  |  |  |
-| `coop_goreChunkBudget` | `6` | `0` | `fgame/sentient.cpp:2933` |  |  |  |
-| `coop_goreChunkLife` | `6` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2939` | DEFAULT `6` @ `coop_defaults.cfg:412` |  |  |
-| `coop_goreChunks` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2932` | DEFAULT `1` @ `coop_defaults.cfg:500` |  |  |
+| `coop_goreChunkBudget` | `6` | `0` | `fgame/sentient.cpp:2942` |  |  |  |
+| `coop_goreChunkLife` | `6` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2948` | DEFAULT `6` @ `coop_defaults.cfg:412` |  |  |
+| `coop_goreChunks` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2941` | DEFAULT `1` @ `coop_defaults.cfg:500` |  |  |
 | `coop_goreDebug` | `0` | `0` | `cgame/cg_ents.c:432` (+7) | FORCED `0` @ `autoexec.cfg:478` |  |  |
-| `coop_goreDrip` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2581` | DEFAULT `1` @ `coop_defaults.cfg:56` |  |  |
+| `coop_goreDrip` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2590` | DEFAULT `1` @ `coop_defaults.cfg:56` |  |  |
 | `coop_goreDripCorpseTime` | `12` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:321` (+1) | FORCED `12` @ `autoexec.cfg:511` | `coop_mod/gurgle.scr:112` (+1) |  |
-| `coop_goreDripDamage` | `70` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2582` | FORCED `70` @ `autoexec.cfg:508` |  |  |
-| `coop_goreDripHealthFrac` | `0.35` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2584` | FORCED `0.35` @ `autoexec.cfg:509` |  |  |
-| `coop_goreDripWoundTime` | `20` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2585` | FORCED `20` @ `autoexec.cfg:510` |  |  |
-| `coop_goreGibSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3449` | FORCED `1` @ `autoexec.cfg:539` |  |  |
-| `coop_goreHeadshotFace` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2888` | DEFAULT `1` @ `coop_defaults.cfg:451` |  |  |
-| `coop_gorePermanent` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2753` (+1) |  |  |  |
-| `coop_gorePool` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2443` | DEFAULT `1` @ `coop_defaults.cfg:57` |  |  |
-| `coop_goreSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2704` (+1) |  |  |  |
+| `coop_goreDripDamage` | `70` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2591` | FORCED `70` @ `autoexec.cfg:508` |  |  |
+| `coop_goreDripHealthFrac` | `0.35` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2593` | FORCED `0.35` @ `autoexec.cfg:509` |  |  |
+| `coop_goreDripWoundTime` | `20` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2594` | FORCED `20` @ `autoexec.cfg:510` |  |  |
+| `coop_goreGibSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3458` | FORCED `1` @ `autoexec.cfg:539` |  |  |
+| `coop_goreHeadshotFace` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2897` | DEFAULT `1` @ `coop_defaults.cfg:451` |  |  |
+| `coop_gorePermanent` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2762` (+1) |  |  |  |
+| `coop_gorePool` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2452` | DEFAULT `1` @ `coop_defaults.cfg:57` |  |  |
+| `coop_goreSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2713` (+1) |  |  |  |
 | `coop_goreSkinSnap` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1590` (+1) |  |  |  |
 | `coop_goreSkinSnapDist` | `26` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1594` (+1) | FORCED `26` @ `autoexec.cfg:490` |  |  |
 | `coop_goreSkinWoundScale` | `1.4` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1584` (+1) |  |  |  |
-| `coop_goreTier1Dmg` | `35` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2707` | FORCED `20` @ `autoexec.cfg:532` |  |  |
-| `coop_goreTier1Frac` | `0.22` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2705` | FORCED `0.22` @ `autoexec.cfg:534` |  |  |
-| `coop_goreTier2Dmg` | `90` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2708` | FORCED `55` @ `autoexec.cfg:533` |  |  |
-| `coop_goreTier2Frac` | `0.50` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2706` | FORCED `0.50` @ `autoexec.cfg:535` |  |  |
-| `coop_goreWoundMax` | `8` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3161` | DEFAULT `8` @ `coop_defaults.cfg:457` |  |  |
-| `coop_goreWoundPivot` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3287` | DEFAULT `1` @ `coop_defaults.cfg:415` |  |  |
-| `coop_goreWoundProud` | `0.25` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3242` | DEFAULT `0.25` @ `coop_defaults.cfg:420` |  |  |
-| `coop_goreWounds` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3113` | FORCED `1` @ `autoexec.cfg:483`<br>DEFAULT `1` @ `coop_defaults.cfg:456` |  |  |
-| `coop_goreWoundScale` | `1.6` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3258` | DEFAULT `1.6` @ `coop_defaults.cfg:417` |  |  |
+| `coop_goreTier1Dmg` | `35` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2716` | FORCED `20` @ `autoexec.cfg:532` |  |  |
+| `coop_goreTier1Frac` | `0.22` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2714` | FORCED `0.22` @ `autoexec.cfg:534` |  |  |
+| `coop_goreTier2Dmg` | `90` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2717` | FORCED `55` @ `autoexec.cfg:533` |  |  |
+| `coop_goreTier2Frac` | `0.50` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2715` | FORCED `0.50` @ `autoexec.cfg:535` |  |  |
+| `coop_goreWoundMax` | `8` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3170` | DEFAULT `8` @ `coop_defaults.cfg:457` |  |  |
+| `coop_goreWoundPivot` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3296` | DEFAULT `1` @ `coop_defaults.cfg:415` |  |  |
+| `coop_goreWoundProud` | `0.25` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3251` | DEFAULT `0.25` @ `coop_defaults.cfg:420` |  |  |
+| `coop_goreWounds` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3122` | FORCED `1` @ `autoexec.cfg:483`<br>DEFAULT `1` @ `coop_defaults.cfg:456` |  |  |
+| `coop_goreWoundScale` | `1.6` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3267` | DEFAULT `1.6` @ `coop_defaults.cfg:417` |  |  |
 | `coop_grenadeKick` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:18883` |  |  |  |
 | `coop_grenDebug` | `0` | `CVAR_ARCHIVE` | `fgame/actor.cpp:10697` |  |  |  |
 | `coop_gunBlood` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:7362` |  |  |  |
@@ -667,9 +680,9 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_headLook` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:15679` |  |  |  |
 | `coop_headLookDebug` | `0` | `0` | `fgame/player.cpp:15767` |  |  |  |
 | `coop_headLookRange` | `1400` | `CVAR_ARCHIVE` | `fgame/player.cpp:15680` |  |  |  |
-| `coop_headshotFx` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2319` | FORCED `1` @ `autoexec.cfg:496` |  |  |
-| `coop_headshotFxSplatDist` | `140` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2320` | FORCED `140` @ `autoexec.cfg:497` |  |  |
-| `coop_headshotFxSplatSize` | `16` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2321` | FORCED `16` @ `autoexec.cfg:498` |  |  |
+| `coop_headshotFx` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2328` | FORCED `1` @ `autoexec.cfg:496` |  |  |
+| `coop_headshotFxSplatDist` | `140` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2329` | FORCED `140` @ `autoexec.cfg:497` |  |  |
+| `coop_headshotFxSplatSize` | `16` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2330` | FORCED `16` @ `autoexec.cfg:498` |  |  |
 | `coop_health` |  |  |  | other `750` @ `coop_mod/cfg/dedicated_example.cfg:42` | `coop_mod/main.scr:580` (+1) | `ui/coop_start.urc` |
 | `coop_heatFade` | `1.3` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5846` | FORCED `1.4` @ `autoexec.cfg:1002` |  |  |
 | `coop_heatGun` | `0.18` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:589` | FORCED `0.28` @ `autoexec.cfg:1018` |  |  |
@@ -1139,12 +1152,8 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_mpa_Tab7` |  |  |  | other `0` @ `ui/coop_mpa_armory/dopen.cfg:8`<br>other `0` @ `ui/coop_mpa_armory/open.cfg:8`<br>other `0` @ `ui/coop_mpa_armory/tab0.cfg:8`<br>(+7 more) |  | `ui/coop_mpa_armory.urc` (+1) |
 | `coop_mpa_XfmC` |  |  |  | other `57 1 4 0.80 0 200 0` @ `ui/coop_mpa_armory/dopen.cfg:19`<br>other `57 1 4 0.80 0 200 0` @ `ui/coop_mpa_armory/open.cfg:19` |  | `ui/coop_mpa_appearance.urc` (+2) |
 | `coop_mpa_XfmW` |  |  |  | other `0 0 0 1.00 0 90 180` @ `ui/coop_mpa_armory/c01.cfg:2`<br>other `0 0 0 1.00 0 90 180` @ `ui/coop_mpa_armory/c02.cfg:2`<br>other `0 0 0 1.00 0 90 180` @ `ui/coop_mpa_armory/c05.cfg:2`<br>(+81 more) |  |  |
-| `coop_mpBabBuildTime` |  |  |  | other `180` @ `ui/coop_mpmenu/bab_build_180.cfg:3`<br>other `300` @ `ui/coop_mpmenu/bab_build_300.cfg:3`<br>other `420` @ `ui/coop_mpmenu/bab_build_420.cfg:3` | `coop_mod/mp_buildabase.scr:66` |  |
-| `coop_mpBabFraglimit` |  |  |  |  | `coop_mod/mp_buildabase.scr:84` |  |
-| `coop_mpBabLaserDist` |  |  |  |  | `coop_mod/mp_buildabase.scr:78` |  |
-| `coop_mpBabMaxObj` |  |  |  |  | `coop_mod/mp_buildabase.scr:72` |  |
+| `coop_mpBabBuildTime` |  |  |  | other `180` @ `ui/coop_mpmenu/bab_build_180.cfg:3`<br>other `300` @ `ui/coop_mpmenu/bab_build_300.cfg:3`<br>other `420` @ `ui/coop_mpmenu/bab_build_420.cfg:3` |  |  |
 | `coop_mpBabMaxObjects` |  |  |  | other `100` @ `ui/coop_mpmenu/bab_objects_100.cfg:3`<br>other `200` @ `ui/coop_mpmenu/bab_objects_200.cfg:3`<br>other `300` @ `ui/coop_mpmenu/bab_objects_300.cfg:3` |  |  |
-| `coop_mpBabTimelimit` |  |  |  |  | `coop_mod/mp_buildabase.scr:88` |  |
 | `coop_mpBaFuseTime` |  |  |  | other `30` @ `ui/coop_mpmenu/ba_fuse_30.cfg:3`<br>other `45` @ `ui/coop_mpmenu/ba_fuse_45.cfg:3`<br>other `60` @ `ui/coop_mpmenu/ba_fuse_60.cfg:3` |  |  |
 | `coop_mpBaMatchTime` |  |  |  | other `300` @ `ui/coop_mpmenu/ba_match_300.cfg:3`<br>other `480` @ `ui/coop_mpmenu/ba_match_480.cfg:3`<br>other `600` @ `ui/coop_mpmenu/ba_match_600.cfg:3` |  |  |
 | `coop_mpBasDefuse` |  |  |  |  | `coop_mod/mp_baseassault.scr:67` |  |
@@ -1156,12 +1165,90 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_mpBasTime` |  |  |  |  | `coop_mod/mp_baseassault.scr:79` |  |
 | `coop_mpBotFill` |  |  |  | other `12` @ `ui/coop_mpmenu/bots_12.cfg:5`<br>other `4` @ `ui/coop_mpmenu/bots_4.cfg:5`<br>other `8` @ `ui/coop_mpmenu/bots_8.cfg:5`<br>(+1 more) |  | `ui/coop_mphostrules.urc` |
 | `coop_mpBotMax` |  |  |  |  | `coop_mod/mp_bots.scr:147` |  |
+| `coop_mpChD0` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD1` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD10` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD11` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD12` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD13` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD14` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD15` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD16` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD17` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD18` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD19` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD2` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD20` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD21` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD22` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD23` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD24` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD25` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD26` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD27` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD28` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD29` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD3` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD30` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD31` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD32` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD33` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD34` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD35` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD36` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD37` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD38` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD39` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD4` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD40` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD41` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD42` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD43` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD44` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD45` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD46` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD47` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD48` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD49` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD5` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD50` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD51` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD52` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD53` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD54` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD55` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD56` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD57` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD58` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD59` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD6` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD60` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD61` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD62` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD63` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD64` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD65` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD66` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD67` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD68` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD69` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD7` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD70` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD71` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD72` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD73` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD74` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD75` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD76` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD77` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD78` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD8` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpChD9` |  |  |  |  |  | `ui/coop_mp_record.urc` |
 | `coop_mpCnt_mg` |  |  |  |  |  | `ui/coop_mp_record.urc` |
 | `coop_mpCnt_nades` |  |  |  |  |  | `ui/coop_mp_record.urc` |
 | `coop_mpCnt_pistol` |  |  |  |  |  | `ui/coop_mp_record.urc` |
 | `coop_mpCnt_rifle` |  |  |  |  |  | `ui/coop_mp_record.urc` |
 | `coop_mpCnt_rocket` |  |  |  |  |  | `ui/coop_mp_record.urc` |
-| `coop_mpCnt_shotgun` |  |  |  |  |  | `ui/coop_mp_record.urc` |
 | `coop_mpCnt_smg` |  |  |  |  |  | `ui/coop_mp_record.urc` |
 | `coop_mpCnt_sniper` |  |  |  |  |  | `ui/coop_mp_record.urc` |
 | `coop_mpCosTestGlove` |  |  |  |  | `coop_mod/mp_cosmetics.scr:84` |  |
@@ -1177,7 +1264,7 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_mpDbno` |  |  |  |  | `coop_mod/mp.scr:193` (+2) | `ui/coop_mphostrules.urc` |
 | `coop_mpDbnoBleed` |  |  |  |  | `coop_mod/mp_dbno.scr:179` |  |
 | `coop_mpDbnoMitigation` |  |  |  |  | `coop_mod/mp_dbno.scr:346` |  |
-| `coop_mpDbnoRevivePool` |  |  |  |  | `coop_mod/mp_dbno.scr:528` |  |
+| `coop_mpDbnoRevivePool` |  |  |  |  | `coop_mod/mp_dbno.scr:530` |  |
 | `coop_mpDbnoReviveRange` |  |  |  |  | `coop_mod/mp_dbno.scr:383` (+1) |  |
 | `coop_mpDbnoReviveTime` |  |  |  |  | `coop_mod/mp_dbno.scr:385` |  |
 | `coop_mpDbnoThreshold` |  |  |  |  | `coop_mod/mp_dbno.scr:138` |  |
@@ -1202,43 +1289,75 @@ These have a menu control, but `autoexec.cfg` re-applies the shipped value after
 | `coop_mpMedkitCount` |  |  |  |  | `coop_mod/mp_medkits.scr:79` |  |
 | `coop_mpMedkits` |  |  |  |  | `coop_mod/mp.scr:194` (+2) | `ui/coop_mphostrules.urc` |
 | `coop_mpmenu` |  |  |  | FORCED `1` @ `autoexec.cfg:9`<br>other `0` @ `coop_mod/cfg/detect.cfg:8` |  |  |
-| `coop_mpMode` |  |  |  | other `none` @ `ui/coop_mpmenu/mode_none.cfg:5`<br>other `baseassault` @ `ui/coop_mpmenu/start_baseassault.cfg:6`<br>other `buildabase` @ `ui/coop_mpmenu/start_buildabase.cfg:6`<br>(+9 more) | `coop_mod/mp.scr:74` | `ui/coop_mpmenu.urc` |
+| `coop_mpMode` |  |  |  | other `none` @ `ui/coop_mpmenu/mode_none.cfg:5`<br>other `baseassault` @ `ui/coop_mpmenu/start_baseassault.cfg:6`<br>other `buildabase` @ `ui/coop_mpmenu/start_buildabase.cfg:5`<br>(+10 more) | `coop_mod/mp.scr:74` | `ui/coop_mpmenu.urc` |
 | `coop_mpNo3p` |  |  |  |  | `coop_mod/mp_realism.scr:72` | `ui/coop_mphostrules.urc` |
 | `coop_mpNoAds` |  |  |  |  | `coop_mod/mp_realism.scr:60` | `ui/coop_mphostrules.urc` |
 | `coop_mpNoCover` |  |  |  |  | `coop_mod/mp_realism.scr:68` | `ui/coop_mphostrules.urc` |
 | `coop_mpNoProne` |  |  |  |  | `coop_mod/mp_realism.scr:64` | `ui/coop_mphostrules.urc` |
 | `coop_mpPhHealth` |  |  |  |  | `coop_mod/mp_prophunt.scr:86` |  |
 | `coop_mpPhHideTime` |  |  |  |  | `coop_mod/mp_prophunt.scr:80` |  |
+| `coop_mpPhShotCost` |  |  |  |  | `coop_mod/mp_prophunt.scr:288` |  |
 | `coop_mpPhTime` |  |  |  |  | `coop_mod/mp_prophunt.scr:73` |  |
 | `coop_mpPreset` |  |  |  | other `none` @ `ui/coop_mpmenu/preset_none.cfg:5`<br>other `rifles` @ `ui/coop_mpmenu/preset_rifles.cfg:5`<br>other `riflesnipers` @ `ui/coop_mpmenu/preset_riflesnipers.cfg:5`<br>(+1 more) | `coop_mod/mp.scr:92` | `ui/coop_mpmenu.urc` |
 | `coop_mpProgBlob` |  | `CVAR_ARCHIVE \| CVAR_USERINFO` | `cgame/cg_main.c:938` |  |  |  |
-| `coop_mpProgCreditBots` |  |  |  |  | `coop_mod/mp_progression.scr:82` (+1) |  |
+| `coop_mpProgCreditBots` |  |  |  |  | `coop_mod/mp_progression.scr:116` (+1) |  |
 | `coop_mpProgFarmCooldown` |  |  |  |  | `coop_mod/mp_progression.scr:52` |  |
 | `coop_mpProgUnlockKills` |  |  |  |  | `coop_mod/mp_progression.scr:70` |  |
 | `coop_mpPushAttackers` |  |  |  |  | `coop_mod/mp_push.scr:82` |  |
 | `coop_mpPushCap` |  |  |  |  | `coop_mod/mp_push.scr:96` |  |
 | `coop_mpPushRadius` |  |  |  |  | `coop_mod/mp_push.scr:90` |  |
 | `coop_mpPushTime` |  |  |  | other `300` @ `ui/coop_mpmenu/push_time_300.cfg:6`<br>other `420` @ `ui/coop_mpmenu/push_time_420.cfg:6`<br>other `600` @ `ui/coop_mpmenu/push_time_600.cfg:6` | `coop_mod/mp_push.scr:102` |  |
-| `coop_mpPushWinsA` |  |  |  |  | `coop_mod/mp_push.scr:118` (+1) |  |
-| `coop_mpPushWinsX` |  |  |  |  | `coop_mod/mp_push.scr:119` (+1) |  |
+| `coop_mpPushToWin` |  |  |  |  | `coop_mod/mp_push.scr:122` |  |
+| `coop_mpPushWinsA` |  |  |  |  | `coop_mod/mp_push.scr:409` (+1) |  |
+| `coop_mpPushWinsX` |  |  |  |  | `coop_mod/mp_push.scr:410` (+1) |  |
 | `coop_mpRank` |  |  |  |  |  | `ui/coop_mp_record.urc` |
-| `coop_mpRndNum` |  |  |  |  | `coop_mod/mp_rounds.scr:201` (+1) |  |
-| `coop_mpRndScoreA` |  |  |  |  | `coop_mod/mp_rounds.scr:199` (+1) |  |
-| `coop_mpRndScoreX` |  |  |  |  | `coop_mod/mp_rounds.scr:200` (+1) |  |
+| `coop_mpRndNum` |  |  |  |  | `coop_mod/mp_rounds.scr:232` (+1) |  |
+| `coop_mpRndScoreA` |  |  |  |  | `coop_mod/mp_rounds.scr:230` (+1) |  |
+| `coop_mpRndScoreX` |  |  |  |  | `coop_mod/mp_rounds.scr:231` (+1) |  |
 | `coop_mpRndToWin` |  |  |  |  | `coop_mod/mp_rounds.scr:74` |  |
-| `coop_mpSndTime` |  |  |  |  | `coop_mod/mp_snd.scr:53` |  |
+| `coop_mpS_capture` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_defuse` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_destroy` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_flagret` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_ggwin` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_grenade` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_headshot` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_melee` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_plant` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_propfind` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_propsurv` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_revive` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_rocketk` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_rounds` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_win_baseassault` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_win_buildabase` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_win_ctf` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_win_demolition` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_win_freezetag` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_win_gungame` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_win_koth` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_win_lms` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_win_prophunt` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_win_push` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpS_win_snd` |  |  |  |  |  | `ui/coop_mp_record.urc` |
 | `coop_mpSpawnProtect` |  |  |  |  | `coop_mod/mp.scr:101` (+2) |  |
 | `coop_mpSpawnProtLight` |  |  |  |  | `coop_mod/mp_spawnprotect.scr:100` |  |
+| `coop_mpSpawnProtMoveDist` |  |  |  |  | `coop_mod/mp_spawnprotect.scr:116` |  |
 | `coop_mpSpawnProtTime` |  |  |  |  | `coop_mod/mp_spawnprotect.scr:55` |  |
+| `coop_mpSrP0` |  |  |  |  |  | `ui/coop_mp_options.urc` (+1) |
+| `coop_mpSrP1` |  |  |  |  |  | `ui/coop_mp_options.urc` (+1) |
+| `coop_mpSrP2` |  |  |  |  |  | `ui/coop_mp_options.urc` (+1) |
+| `coop_mpSrP3` |  |  |  |  |  | `ui/coop_mp_options.urc` (+1) |
+| `coop_mpSrP4` |  |  |  |  |  | `ui/coop_mp_options.urc` (+1) |
+| `coop_mpSrP5` |  |  |  |  |  | `ui/coop_mp_options.urc` (+1) |
 | `coop_mpTotal` |  |  |  |  |  | `ui/coop_mp_record.urc` |
-| `coop_mpUnlockC_mg` |  |  |  |  |  | `ui/coop_mp_record.urc` |
-| `coop_mpUnlockC_nades` |  |  |  |  |  | `ui/coop_mp_record.urc` |
-| `coop_mpUnlockC_pistol` |  |  |  |  |  | `ui/coop_mp_record.urc` |
-| `coop_mpUnlockC_rifle` |  |  |  |  |  | `ui/coop_mp_record.urc` |
-| `coop_mpUnlockC_rocket` |  |  |  |  |  | `ui/coop_mp_record.urc` |
-| `coop_mpUnlockC_shotgun` |  |  |  |  |  | `ui/coop_mp_record.urc` |
-| `coop_mpUnlockC_smg` |  |  |  |  |  | `ui/coop_mp_record.urc` |
-| `coop_mpUnlockC_sniper` |  |  |  |  |  | `ui/coop_mp_record.urc` |
+| `coop_mpUfin_bloody` |  |  |  |  |  | `ui/coop_mpa_appearance.urc` (+1) |
+| `coop_mpUfin_blued` |  |  |  |  |  | `ui/coop_mpa_appearance.urc` (+1) |
+| `coop_mpUfin_camo_desert` |  |  |  |  |  | `ui/coop_mpa_appearance.urc` (+1) |
+| `coop_mpUfin_camo_winter` |  |  |  |  |  | `ui/coop_mpa_appearance.urc` (+1) |
+| `coop_mpUfin_camo_woodland` |  |  |  |  |  | `ui/coop_mpa_appearance.urc` (+1) |
+| `coop_mpUfin_chrome` |  |  |  |  |  | `ui/coop_mpa_appearance.urc` (+1) |
+| `coop_mpUfin_gold` |  |  |  |  |  | `ui/coop_mpa_appearance.urc` (+1) |
 | `coop_mpVehAtAmmo` |  |  |  |  | `coop_mod/mp_vehicles.scr:84` |  |
 | `coop_mpVehAtRespawn` |  |  |  |  | `coop_mod/mp_vehicles.scr:78` |  |
 | `coop_mpVehCapture` |  |  |  |  | `coop_mod/mp_vehicles.scr:99` |  |

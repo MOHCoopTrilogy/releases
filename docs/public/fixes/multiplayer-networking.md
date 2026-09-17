@@ -6,10 +6,11 @@
 
 [<- back to all fixes](../BUGFIXES.md)
 
-**66 fixes**, newest first.
+**67 fixes**, newest first.
 
 | ID | Problem | Cause | Fix |
 |---|---|---|---|
+| `bug-2658` | Spawn protection 'move far from spawn' early-drop was documented but unimplemented | sp_monitor never recorded the spawn origin; a protected player who held fire stayed invulnerable up to 30s and could advance/body-block. | sp_monitor records spawn origin and drops protection when the player leaves coop_mpSpawnProtMoveDist (default 256u). |
 | `bug-2645` | Demolition was one-way (stock gt4 bomb, fixed attacker) - played almost identically to our S&D; UberMod's is symmetric | Old build layered mp_rounds on the stock gt4 objective bomb whose attacker/defender is baked into each map; the defining Demolition trait (BOTH teams attack) was absent | Rewrote as SYMMETRIC two-way bomb rounds: each team's bomb SITE is derived from its first spawn origin (BA pattern, sandbag+charge marker); EITHER team holds [USE] within coop_mpDemRadius of the ENEMY site to plant (coop_mpDemPlant), a coop |
 | `bug-2642` | User: MP medkits let you hold F to heal at full health, and may impact DBNO | mp_medkit_ceiling returned 9999 whenever coop_mpDbno==1 (to 'restore the DBNO absorption pool'). DBNO raises current health to a 9999 absorption pool while leaving max_health=100, so with the 9999 ceiling the self-heal start-gate (health <  | mp_medkit_ceiling now always returns the mode max_health (100/50), never 9999. A full-pool DBNO player (health 9999) now fails the start-gate (>=100) so cannot heal at full; a genuinely hurt player tops back toward 100/50. Also guarded the  |
 | `bug-2640` | No spawn protection in MP - players could be spawn-camped/farmed the instant they appeared | Feature gap vs UberMod V5 (global/spawn_protect.scr); the coop MP framework had no post-spawn invulnerability window | New MP-owned coop_mod/mp_spawnprotect.scr: on the shared mp_onSpawn edge, self nodamage + optional yellow glow for coop_mpSpawnProtTime seconds (default 3), dropped the instant the player fires (fireheld, after a 0.35s spawn-frame grace) or |

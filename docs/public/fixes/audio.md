@@ -6,10 +6,11 @@
 
 [<- back to all fixes](../BUGFIXES.md)
 
-**86 fixes**, newest first.
+**87 fixes**, newest first.
 
 | ID | Problem | Cause | Fix |
 |---|---|---|---|
+| `bug-2655` | Demolition never awarded the destroy stat; no audio/HUD | The detonation credited nobody (planter ref nulled at arm) and the mode had no sound cue or compass marker. | Store coop_mpDemPlantedBy at arm and award destroy at detonation; added dem_sound broadcast (plantbomb/explode_tank/alarm_switch) and dem_updateMarker set_objective_pos compass arrow + denser countdown. |
 | `bug-2568` | user: "Fix helmet landing sound." | HelmetObject::HelmetTouch (reached through EV_Stop when a shot-off helmet comes to rest) played grenade_bounce_metal, which the mod's ubersound.scr registers only for m1-m6/training and e1l1 e1l4 e2l1-3 e3 dm lib obj - silent on e1l2, e1l3, | The magazine's surface pick moved into one static helper, CoopPropLandSound(Entity *self, const char *family), used by CoopMagStop and HelmetTouch. The probe now runs from the origin down to (mins.z - 6) with a flat 2x2 box, because setMode |
 | `bug-2567` | found while designing bug-2566: the magazine and helmet landing clatters were silent on several coop maps, and their volume/channel arguments never took effect | (1) Entity::Sound's argstype defaults to 0 (entity.h:486), which replaces the passed volume and channel with the alias's own (entity.cpp:3752-3757) - so CoopMagStop's `Sound("grenade_bounce_metal", CHAN_BODY, 0.35f)` played at full alias vo | FIXED in two steps. Magazines (bug-2566) and helmets (bug-2568) no longer use grenade_bounce_*: both go through CoopPropLandSound in object.cpp and play coop_magland_* / coop_helmland_* aliases that carry maps "m e t dm obj train co" and ch |
 | `bug-2566` | user: "Can we make magazine drops sound based on whatever type of ground it's hitting (metal, wood, dirt, water etc)" | A dropped reload magazine is a server CoopMagObject (SOLID_NOT, MOVETYPE_BOUNCE) that runs CoopMagObject::CoopMagStop once when G_Physics_Toss fires EV_Stop (contact normal z > 0.7 and speed < 40). That handler played one fixed sound, grena | CoopMagStop re-traces 6 units straight down with the magazine's own box and clipmask, then picks a class the way retail Projectile::Touch does (weaputils.cpp:1180-1245) but with a BIT test ordered for this fork: water/slime/lava contents or |

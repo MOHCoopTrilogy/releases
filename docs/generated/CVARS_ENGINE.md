@@ -7,7 +7,7 @@
      ============================================================ -->
 # Engine cvar inventory (generated)
 Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name is a string literal. Anchors are `path:line` relative to that directory. Defaults and flags are verbatim from source.
-- **2005** distinct cvars across **2612** registration sites in **127** translation units.
+- **2006** distinct cvars across **2613** registration sites in **127** translation units.
 - **33** call sites use a computed name (a variable or `va()`) and cannot be listed here. That number is reported rather than hidden - if it grows, something is registering cvars this inventory cannot see.
 - **58** cvars are registered with **different defaults** in different files. Those are real (usually renderergl1 vs renderergl2), not transcription errors.
 
@@ -23,7 +23,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `s_` | 65 |
 | `ui_` | 61 |
 | `cl_` | 58 |
-| `com_` | 30 |
+| `com_` | 31 |
 | `lod_` | 29 |
 | `dcl_` | 23 |
 | `vm_` | 23 |
@@ -68,10 +68,10 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `cheats` | `1` | `CVAR_LATCH \| CVAR_SYSTEMINFO` | `qcommon/cvar.c:1778` |
 | `cheats` | `1` | `CVAR_LATCH \| CVAR_SYSTEMINFO` | `server/sv_init.c:1118` |
 | `cl_running` |  | `0` | `fgame/gamecvars.cpp:718` |
-| `cl_running` | `0` | `CVAR_ROM` | `qcommon/common.c:1934` |
+| `cl_running` | `0` | `CVAR_ROM` | `qcommon/common.c:1945` |
 | `com_protocol` |  | `0` | `cgame/cg_main.c:823` |
 | `com_protocol` |  | `0` | `fgame/g_main.cpp:396` |
-| `com_protocol` | `va("%i", PROTOCOL_VERSION)` | `CVAR_INIT` | `qcommon/common.c:1960` |
+| `com_protocol` | `va("%i", PROTOCOL_VERSION)` | `CVAR_INIT` | `qcommon/common.c:1971` |
 | `com_target_game` | `0` | `0` | `cgame/cg_main.c:824` |
 | `com_target_game` | `0` | `0` | `fgame/g_main.cpp:397` |
 | `com_target_game` |  | `0` | `fgame/gamecvars.cpp:542` |
@@ -83,13 +83,13 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_proneHold` | `0.5` | `CVAR_ARCHIVE` | `fgame/player.cpp:14115` |
 | `coop_proneHold` | `0.35` | `CVAR_ARCHIVE` | `fgame/player.cpp:16993` |
 | `deathmatch` | `1` | `CVAR_USERINFO \| CVAR_SERVERINFO \| CVAR_LATCH` | `fgame/gamecvars.cpp:314` |
-| `deathmatch` | `0` | `0` | `qcommon/common.c:1917` |
+| `deathmatch` | `0` | `0` | `qcommon/common.c:1928` |
 | `dedicated` | `1` | `0` | `fgame/entity.cpp:3695` |
 | `dedicated` | `1` | `CVAR_LATCH` | `fgame/gamecvars.cpp:313` |
-| `dedicated` | `1` | `CVAR_INIT` | `qcommon/common.c:1894` |
-| `dedicated` | `0` | `CVAR_LATCH` | `qcommon/common.c:1897` |
-| `dedicated` | `0` | `CVAR_LATCH` | `qcommon/common.c:1930` |
-| `dedicated` | `0` | `0` | `qcommon/common.c:2408` |
+| `dedicated` | `1` | `CVAR_INIT` | `qcommon/common.c:1905` |
+| `dedicated` | `0` | `CVAR_LATCH` | `qcommon/common.c:1908` |
+| `dedicated` | `0` | `CVAR_LATCH` | `qcommon/common.c:1941` |
+| `dedicated` | `0` | `0` | `qcommon/common.c:2419` |
 | `developer` | `0` | `0` | `cgame/cg_main.c:185` |
 | `developer` | `0` | `0` | `fgame/gamecvars.cpp:309` |
 | `developer` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1776` |
@@ -139,8 +139,8 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `net_port` | `va( "%i", PORT_SERVER )` | `CVAR_LATCH` | `qcommon/net_ip.c:1447` |
 | `pmove_msec` | `8` | `0` | `cgame/cg_main.c:180` |
 | `pmove_msec` | `0` | `CVAR_SYSTEMINFO` | `fgame/gamecvars.cpp:517` |
-| `protocol` | `com_legacyprotocol->string` | `CVAR_SERVERINFO \| CVAR_ROM` | `qcommon/common.c:1970` |
-| `protocol` | `com_protocol->string` | `CVAR_SERVERINFO \| CVAR_ROM` | `qcommon/common.c:1973` |
+| `protocol` | `com_legacyprotocol->string` | `CVAR_SERVERINFO \| CVAR_ROM` | `qcommon/common.c:1981` |
+| `protocol` | `com_protocol->string` | `CVAR_SERVERINFO \| CVAR_ROM` | `qcommon/common.c:1984` |
 | `protocol` | `va( "%i", PROTOCOL_VERSION )` | `CVAR_SERVERINFO \| CVAR_ROM` | `server/sv_init.c:1100` |
 | `r_ext_texture_env_add` | `0` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1370` |
 | `r_ext_texture_env_add` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1372` |
@@ -229,8 +229,8 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `ai_debugpath` | `0` | `0` | `fgame/navigate.cpp:2294` |
 | `ai_editmode` | `0` | `CVAR_LATCH` | `fgame/navigate.cpp:2301` |
 | `ai_fallheight` | `96` | `0` | `fgame/navigate.cpp:2293` |
-| `ai_health_kar` | `6` | `CVAR_CHEAT` | `fgame/sentient.cpp:4809` |
-| `ai_health_mp40points` | `2` | `CVAR_CHEAT` | `fgame/sentient.cpp:4810` |
+| `ai_health_kar` | `6` | `CVAR_CHEAT` | `fgame/sentient.cpp:4818` |
+| `ai_health_mp40points` | `2` | `CVAR_CHEAT` | `fgame/sentient.cpp:4819` |
 | `ai_pathcheckdist` | `4096` | `CVAR_CHEAT` | `fgame/navigate.cpp:2296` |
 | `ai_pathchecktime` | `1.5` | `CVAR_CHEAT` | `fgame/navigate.cpp:2295` |
 | `ai_showallnode` | `0` | `0` | `fgame/navigate.cpp:2291` |
@@ -239,7 +239,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `ai_showpath` | `0` | `0` | `fgame/navigate.cpp:2292` |
 | `ai_showroutes` | `0` | `0` | `fgame/navigate.cpp:2287` |
 | `ai_showroutes_distance` | `1000` | `0` | `fgame/navigate.cpp:2288` |
-| `autopaused` | `1` | `CVAR_ARCHIVE` | `qcommon/common.c:1919` |
+| `autopaused` | `1` | `CVAR_ARCHIVE` | `qcommon/common.c:1930` |
 | `bosshealth` | `0` | `0` | `fgame/gamecvars.cpp:364` |
 | `bot_manualmove` | `0` | `0` | `fgame/playerbot.cpp:102` |
 | `cam_angles_pitch` |  | `0` | `fgame/camera.cpp:2042` |
@@ -564,7 +564,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `cl_netprofileoverlay` | `0` | `CVAR_TEMP` | `client/cl_main.cpp:4135` |
 | `cl_nodelta` | `0` | `0` | `client/cl_input.cpp:1450` |
 | `cl_noprint` | `0` | `0` | `client/cl_main.cpp:4124` |
-| `cl_packetdelay` | `0` | `0` | `qcommon/common.c:1931` |
+| `cl_packetdelay` | `0` | `0` | `qcommon/common.c:1942` |
 | `cl_packetdup` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4159` |
 | `cl_pitchspeed` | `140` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4155` |
 | `cl_playintro` | `1` | `0` | `client/cl_ui.cpp:5560` |
@@ -575,7 +575,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `cl_renderer` | `opengl1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `client/cl_main.cpp:3341` |
 | `cl_run` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4161` |
 | `cl_running` |  | `0` | `fgame/gamecvars.cpp:718` |
-| `cl_running` | `0` | `CVAR_ROM` | `qcommon/common.c:1934` |
+| `cl_running` | `0` | `CVAR_ROM` | `qcommon/common.c:1945` |
 | `cl_serverStatusResendTime` | `750` | `0` | `client/cl_main.cpp:4236` |
 | `cl_showmouserate` | `0` | `0` | `client/cl_main.cpp:4173` |
 | `cl_shownet` | `0` | `CVAR_TEMP` | `client/cl_main.cpp:4133` |
@@ -593,47 +593,48 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `cm_noCurves` | `0` | `CVAR_CHEAT` | `qcommon/cm_load.c:1073` |
 | `cm_playerCurveClip` | `1` | `CVAR_ARCHIVE \| CVAR_CHEAT` | `qcommon/cm_load.c:1074` |
 | `cm_ter_usesphere` | `1` | `CVAR_CHEAT` | `qcommon/cm_load.c:1077` |
-| `com_abnormalExit` | `0` | `CVAR_ROM` | `qcommon/common.c:1943` |
-| `com_altivec` | `1` | `CVAR_ARCHIVE` | `qcommon/common.c:1915` |
+| `com_abnormalExit` | `0` | `CVAR_ROM` | `qcommon/common.c:1954` |
+| `com_altivec` | `1` | `CVAR_ARCHIVE` | `qcommon/common.c:1926` |
 | `com_altivec` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:1426` |
-| `com_ansiColor` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1937` |
-| `com_basegame` | `BASEGAME` | `CVAR_INIT` | `qcommon/common.c:1787` |
+| `com_ansiColor` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1948` |
+| `com_basegame` | `BASEGAME` | `CVAR_INIT` | `qcommon/common.c:1798` |
 | `com_blood` | `1` | `CVAR_ARCHIVE` | `fgame/gamecvars.cpp:362` |
-| `com_buildScript` | `0` | `0` | `qcommon/common.c:1935` |
-| `com_busyWait` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1944` |
-| `com_dropsim` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1924` |
-| `com_gamename` |  | `CVAR_SERVERINFO \| CVAR_INIT \| CVAR_USERINFO \| CVAR_SERVERINFO` | `qcommon/common.c:1958` |
-| `com_homepath` |  | `CVAR_INIT\|CVAR_PROTECTED` | `qcommon/common.c:1788` |
-| `com_legacyprotocol` | `va("%i", PROTOCOL_LEGACY_VERSION)` | `CVAR_INIT` | `qcommon/common.c:1962` |
-| `com_maxfps` | `85` | `CVAR_ARCHIVE` | `qcommon/common.c:1916` |
-| `com_maxfpsMinimized` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1942` |
-| `com_maxfpsUnfocused` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1940` |
-| `com_minimized` | `0` | `CVAR_ROM` | `qcommon/common.c:1941` |
-| `com_pipefile` |  | `CVAR_ARCHIVE\|CVAR_LATCH` | `qcommon/common.c:2024` |
+| `com_buildScript` | `0` | `0` | `qcommon/common.c:1946` |
+| `com_busyWait` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1955` |
+| `com_dropsim` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1935` |
+| `com_gamename` |  | `CVAR_SERVERINFO \| CVAR_INIT \| CVAR_USERINFO \| CVAR_SERVERINFO` | `qcommon/common.c:1969` |
+| `com_homepath` |  | `CVAR_INIT\|CVAR_PROTECTED` | `qcommon/common.c:1799` |
+| `com_legacyprotocol` | `va("%i", PROTOCOL_LEGACY_VERSION)` | `CVAR_INIT` | `qcommon/common.c:1973` |
+| `com_maxfps` | `85` | `CVAR_ARCHIVE` | `qcommon/common.c:1927` |
+| `com_maxfpsMinimized` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1953` |
+| `com_maxfpsUnfocused` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1951` |
+| `com_minimized` | `0` | `CVAR_ROM` | `qcommon/common.c:1952` |
+| `com_overlayGuard` | `1` | `CVAR_ARCHIVE` | `qcommon/common.c:1790` |
+| `com_pipefile` |  | `CVAR_ARCHIVE\|CVAR_LATCH` | `qcommon/common.c:2035` |
 | `com_protocol` |  | `0` | `cgame/cg_main.c:823` |
 | `com_protocol` |  | `0` | `fgame/g_main.cpp:396` |
-| `com_protocol` | `va("%i", PROTOCOL_VERSION)` | `CVAR_INIT` | `qcommon/common.c:1960` |
+| `com_protocol` | `va("%i", PROTOCOL_VERSION)` | `CVAR_INIT` | `qcommon/common.c:1971` |
 | `com_radar_range` | `1024` | `0` | `cgame/cg_drawtools.cpp:3049` |
 | `com_radar_range` | `1024` | `0` | `cgame/cg_radar.cpp:135` |
-| `com_radar_range` | `1024` | `CVAR_ARCHIVE \| CVAR_SYSTEMINFO` | `qcommon/common.c:1936` |
-| `com_showtrace` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1923` |
+| `com_radar_range` | `1024` | `CVAR_ARCHIVE \| CVAR_SYSTEMINFO` | `qcommon/common.c:1947` |
+| `com_showtrace` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1934` |
 | `com_soundMegs` | `XSTRING(DEF_COMSOUNDMEGS)` | `CVAR_LATCH \| CVAR_ARCHIVE` | `client/snd_mem.c:85` |
-| `com_speeds` | `0` | `0` | `qcommon/common.c:1928` |
-| `com_standalone` | `0` | `CVAR_ROM` | `qcommon/common.c:1786` |
+| `com_speeds` | `0` | `0` | `qcommon/common.c:1939` |
+| `com_standalone` | `0` | `CVAR_ROM` | `qcommon/common.c:1797` |
 | `com_target_demo` | `0` | `CVAR_INIT\|CVAR_PROTECTED` | `qcommon/common.c:1782` |
-| `com_target_extension` |  | `CVAR_ROM` | `qcommon/common.c:1785` |
+| `com_target_extension` |  | `CVAR_ROM` | `qcommon/common.c:1796` |
 | `com_target_game` | `0` | `0` | `cgame/cg_main.c:824` |
 | `com_target_game` | `0` | `0` | `fgame/g_main.cpp:397` |
 | `com_target_game` |  | `0` | `fgame/gamecvars.cpp:542` |
 | `com_target_game` | `0` | `CVAR_INIT\|CVAR_PROTECTED` | `qcommon/common.c:1781` |
-| `com_target_shortversion` | `0.00` | `CVAR_ROM` | `qcommon/common.c:1783` |
-| `com_target_version` |  | `CVAR_ROM` | `qcommon/common.c:1784` |
-| `com_unfocused` | `0` | `CVAR_ROM` | `qcommon/common.c:1939` |
-| `com_updatecheck_enabled` | `1` | `CVAR_ARCHIVE` | `qcommon/common.c:1964` |
-| `com_updatecheck_interval` | `15` | `0` | `qcommon/common.c:1965` |
-| `con_autochat` | `1` | `CVAR_ARCHIVE` | `qcommon/common.c:1976` |
-| `config` | `omconfig.cfg` | `0` | `qcommon/common.c:1817` |
-| `convertAnim` | `0` | `0` | `qcommon/common.c:1914` |
+| `com_target_shortversion` | `0.00` | `CVAR_ROM` | `qcommon/common.c:1794` |
+| `com_target_version` |  | `CVAR_ROM` | `qcommon/common.c:1795` |
+| `com_unfocused` | `0` | `CVAR_ROM` | `qcommon/common.c:1950` |
+| `com_updatecheck_enabled` | `1` | `CVAR_ARCHIVE` | `qcommon/common.c:1975` |
+| `com_updatecheck_interval` | `15` | `0` | `qcommon/common.c:1976` |
+| `con_autochat` | `1` | `CVAR_ARCHIVE` | `qcommon/common.c:1987` |
+| `config` | `omconfig.cfg` | `0` | `qcommon/common.c:1828` |
+| `convertAnim` | `0` | `0` | `qcommon/common.c:1925` |
 | `coop_actionFoley` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:7157` |
 | `coop_adsFloorCap` | `0.85` | `CVAR_ARCHIVE` | `fgame/player.cpp:5113` |
 | `coop_adsHeft` | `0.45` | `CVAR_ARCHIVE` | `cgame/cg_view.c:7471` |
@@ -681,20 +682,20 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_blindfireRaise` | `32` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:1710` |
 | `coop_blindfireSpread` | `3.0` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2187` |
 | `coop_blindfireYaw` | `50` | `CVAR_ARCHIVE` | `fgame/weapon.cpp:2234` |
-| `coop_bloodDebug` | `0` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4530` |
+| `coop_bloodDebug` | `0` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4539` |
 | `coop_bloodDebug` | `0` | `CVAR_ARCHIVE` | `fgame/weaputils.cpp:3008` |
-| `coop_bloodPool` | `32` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2403` |
-| `coop_bloodPool` | `32` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2508` |
-| `coop_bloodSplatScale` | `1.0` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4714` |
+| `coop_bloodPool` | `32` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2412` |
+| `coop_bloodPool` | `32` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2517` |
+| `coop_bloodSplatScale` | `1.0` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4723` |
 | `coop_bloodSpurtUp` | `40` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:1356` |
 | `coop_bloodSpurtUp` | `40` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:1379` |
 | `coop_bloodSpurtUp` | `40` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:1402` |
-| `coop_bloodTrail` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4432` |
-| `coop_bloodTrailChance` | `0.8` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4507` |
-| `coop_bloodTrailDist` | `56` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4488` |
-| `coop_bloodTrailHealthFrac` | `0.5` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4443` |
-| `coop_bloodTrailInterval` | `0.45` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4479` |
-| `coop_bloodTrailScale` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4467` |
+| `coop_bloodTrail` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4441` |
+| `coop_bloodTrailChance` | `0.8` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4516` |
+| `coop_bloodTrailDist` | `56` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4497` |
+| `coop_bloodTrailHealthFrac` | `0.5` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4452` |
+| `coop_bloodTrailInterval` | `0.45` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4488` |
+| `coop_bloodTrailScale` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4476` |
 | `coop_bobLock` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2718` |
 | `coop_boneDebug` | `0` | `0` | `fgame/player.cpp:15473` |
 | `coop_botInput` | `0` | `0` | `fgame/player.cpp:5698` |
@@ -761,9 +762,9 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_compassBarOpacity` | `0.9` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2544` |
 | `coop_compassBarScale` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_drawtools.cpp:2543` |
 | `coop_compassProbe` | `0` | `0` | `cgame/cg_drawtools.cpp:2553` |
-| `coop_corpseGore` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3579` |
-| `coop_corpseGoreBudget` | `6` | `0` | `fgame/sentient.cpp:3580` |
-| `coop_corpseImpulse` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3018` |
+| `coop_corpseGore` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3588` |
+| `coop_corpseGoreBudget` | `6` | `0` | `fgame/sentient.cpp:3589` |
+| `coop_corpseImpulse` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3027` |
 | `coop_corpseShootable` | `1` | `CVAR_ARCHIVE` | `fgame/actor.cpp:12944` |
 | `coop_coverAuto` | `1` | `0` | `fgame/player.cpp:17541` |
 | `coop_coverAutoDelay` | `0.9` | `0` | `fgame/player.cpp:17542` |
@@ -820,15 +821,15 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_dbnoView` | `0` | `0` | `cgame/cg_view.c:6428` |
 | `coop_dbnoView` | `0` | `0` | `renderergl2/tr_postprocess.c:1016` |
 | `coop_dbnoView` | `0` | `0` | `renderergl2/tr_postprocess.c:1305` |
-| `coop_decap` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3019` |
-| `coop_decap` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3794` |
-| `coop_decapBudget` | `3` | `0` | `fgame/sentient.cpp:3021` |
-| `coop_decapBudget` | `3` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3796` |
-| `coop_decapChance` | `30` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3020` |
-| `coop_decapChance` | `30` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3795` |
-| `coop_decapGoreProps` | `3` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4178` |
+| `coop_decap` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3028` |
+| `coop_decap` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3803` |
+| `coop_decapBudget` | `3` | `0` | `fgame/sentient.cpp:3030` |
+| `coop_decapBudget` | `3` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3805` |
+| `coop_decapChance` | `30` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3029` |
+| `coop_decapChance` | `30` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3804` |
+| `coop_decapGoreProps` | `3` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:4187` |
 | `coop_decapLife` | `0` | `CVAR_ARCHIVE` | `fgame/object.cpp:577` |
-| `coop_decapMax` | `32` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3708` |
+| `coop_decapMax` | `32` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3717` |
 | `coop_distantFire` | `1` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:625` |
 | `coop_distantFireDist` | `2500` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:626` |
 | `coop_dizzy` | `0` | `0` | `cgame/cg_view.c:678` |
@@ -858,7 +859,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_dynRainGlobal` | `1` | `CVAR_ARCHIVE` | `cgame/cg_nature.cpp:256` |
 | `coop_explLight` | `420` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:1447` |
 | `coop_explosionShake` | `1` | `CVAR_ARCHIVE` | `fgame/explosion.cpp:131` |
-| `coop_eyeGib` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2977` |
+| `coop_eyeGib` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2986` |
 | `coop_fingerAmount` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1742` |
 | `coop_fingerAxis` | `2` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1747` |
 | `coop_fingerLife` | `1` | `CVAR_ARCHIVE` | `cgame/cg_modelanim.c:1741` |
@@ -871,45 +872,45 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_fovPunch` | `1.0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2470` |
 | `coop_gloveIdx` | `0` | `0` | `cgame/cg_modelanim.c:3053` |
 | `coop_gmboxBoldFont` | `verdana-14` | `CVAR_ARCHIVE` | `client/cl_uigmbox.cpp:331` |
-| `coop_goreChunkBudget` | `6` | `0` | `fgame/sentient.cpp:2933` |
-| `coop_goreChunkLife` | `6` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2939` |
-| `coop_goreChunks` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2932` |
+| `coop_goreChunkBudget` | `6` | `0` | `fgame/sentient.cpp:2942` |
+| `coop_goreChunkLife` | `6` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2948` |
+| `coop_goreChunks` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2941` |
 | `coop_goreDebug` | `0` | `0` | `cgame/cg_ents.c:432` |
-| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:2322` |
-| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:2404` |
-| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:2509` |
-| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:2699` |
-| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:3451` |
-| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:3581` |
-| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:3797` |
-| `coop_goreDrip` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2581` |
+| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:2331` |
+| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:2413` |
+| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:2518` |
+| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:2708` |
+| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:3460` |
+| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:3590` |
+| `coop_goreDebug` | `0` | `0` | `fgame/sentient.cpp:3806` |
+| `coop_goreDrip` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2590` |
 | `coop_goreDripCorpseTime` | `12` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:321` |
-| `coop_goreDripCorpseTime` | `12` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2586` |
-| `coop_goreDripDamage` | `70` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2582` |
-| `coop_goreDripHealthFrac` | `0.35` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2584` |
-| `coop_goreDripWoundTime` | `20` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2585` |
-| `coop_goreGibSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3449` |
-| `coop_goreHeadshotFace` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2888` |
-| `coop_gorePermanent` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2753` |
-| `coop_gorePermanent` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3344` |
-| `coop_gorePool` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2443` |
-| `coop_goreSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2704` |
-| `coop_goreSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3450` |
+| `coop_goreDripCorpseTime` | `12` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2595` |
+| `coop_goreDripDamage` | `70` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2591` |
+| `coop_goreDripHealthFrac` | `0.35` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2593` |
+| `coop_goreDripWoundTime` | `20` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2594` |
+| `coop_goreGibSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3458` |
+| `coop_goreHeadshotFace` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2897` |
+| `coop_gorePermanent` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2762` |
+| `coop_gorePermanent` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3353` |
+| `coop_gorePool` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2452` |
+| `coop_goreSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2713` |
+| `coop_goreSkins` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3459` |
 | `coop_goreSkinSnap` | `1` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1590` |
 | `coop_goreSkinSnap` | `1` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2122` |
 | `coop_goreSkinSnapDist` | `26` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1594` |
 | `coop_goreSkinSnapDist` | `26` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2126` |
 | `coop_goreSkinWoundScale` | `1.4` | `CVAR_ARCHIVE` | `renderergl1/tr_init.c:1584` |
 | `coop_goreSkinWoundScale` | `1.4` | `CVAR_ARCHIVE` | `renderergl2/tr_init.c:2116` |
-| `coop_goreTier1Dmg` | `35` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2707` |
-| `coop_goreTier1Frac` | `0.22` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2705` |
-| `coop_goreTier2Dmg` | `90` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2708` |
-| `coop_goreTier2Frac` | `0.50` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2706` |
-| `coop_goreWoundMax` | `8` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3161` |
-| `coop_goreWoundPivot` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3287` |
-| `coop_goreWoundProud` | `0.25` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3242` |
-| `coop_goreWounds` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3113` |
-| `coop_goreWoundScale` | `1.6` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3258` |
+| `coop_goreTier1Dmg` | `35` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2716` |
+| `coop_goreTier1Frac` | `0.22` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2714` |
+| `coop_goreTier2Dmg` | `90` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2717` |
+| `coop_goreTier2Frac` | `0.50` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2715` |
+| `coop_goreWoundMax` | `8` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3170` |
+| `coop_goreWoundPivot` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3296` |
+| `coop_goreWoundProud` | `0.25` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3251` |
+| `coop_goreWounds` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3122` |
+| `coop_goreWoundScale` | `1.6` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:3267` |
 | `coop_grenadeKick` | `1` | `CVAR_ARCHIVE` | `fgame/player.cpp:18883` |
 | `coop_grenDebug` | `0` | `CVAR_ARCHIVE` | `fgame/actor.cpp:10697` |
 | `coop_gunBlood` | `1` | `CVAR_ARCHIVE` | `cgame/cg_view.c:7362` |
@@ -928,9 +929,9 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_headLook` | `0` | `CVAR_ARCHIVE` | `fgame/player.cpp:15679` |
 | `coop_headLookDebug` | `0` | `0` | `fgame/player.cpp:15767` |
 | `coop_headLookRange` | `1400` | `CVAR_ARCHIVE` | `fgame/player.cpp:15680` |
-| `coop_headshotFx` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2319` |
-| `coop_headshotFxSplatDist` | `140` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2320` |
-| `coop_headshotFxSplatSize` | `16` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2321` |
+| `coop_headshotFx` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2328` |
+| `coop_headshotFxSplatDist` | `140` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2329` |
+| `coop_headshotFxSplatSize` | `16` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:2330` |
 | `coop_heatFade` | `1.3` | `CVAR_ARCHIVE` | `cgame/cg_view.c:5846` |
 | `coop_heatGun` | `0.18` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:589` |
 | `coop_heatGunRadius` | `350` | `CVAR_ARCHIVE` | `cgame/cg_parsemsg.cpp:592` |
@@ -999,17 +1000,17 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `coop_lowAmmoTell` | `0` | `CVAR_ARCHIVE` | `cgame/cg_view.c:2928` |
 | `coop_loWpnOnChar` | `1` | `0` | `client/cl_invrender.cpp:288` |
 | `coop_magEject` | `1` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:343` |
-| `coop_magEject` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:5675` |
+| `coop_magEject` | `1` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:5684` |
 | `coop_magEjectBudget` | `4` | `0` | `fgame/g_main.cpp:346` |
-| `coop_magEjectBudget` | `4` | `0` | `fgame/sentient.cpp:5677` |
+| `coop_magEjectBudget` | `4` | `0` | `fgame/sentient.cpp:5686` |
 | `coop_magEjectDebug` | `0` | `0` | `fgame/g_main.cpp:348` |
-| `coop_magEjectDebug` | `0` | `0` | `fgame/sentient.cpp:5679` |
+| `coop_magEjectDebug` | `0` | `0` | `fgame/sentient.cpp:5688` |
 | `coop_magEjectLife` | `20` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:344` |
 | `coop_magEjectLife` | `20` | `CVAR_ARCHIVE` | `fgame/object.cpp:629` |
 | `coop_magEjectMax` | `48` | `CVAR_ARCHIVE` | `fgame/g_main.cpp:345` |
-| `coop_magEjectMax` | `48` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:5676` |
+| `coop_magEjectMax` | `48` | `CVAR_ARCHIVE` | `fgame/sentient.cpp:5685` |
 | `coop_magEjectMinGap` | `0.35` | `0` | `fgame/g_main.cpp:347` |
-| `coop_magEjectMinGap` | `0.35` | `0` | `fgame/sentient.cpp:5678` |
+| `coop_magEjectMinGap` | `0.35` | `0` | `fgame/sentient.cpp:5687` |
 | `coop_magLandSurface` | `1` | `CVAR_ARCHIVE` | `fgame/object.cpp:726` |
 | `coop_magLandSurface` | `1` | `CVAR_ARCHIVE` | `fgame/object.cpp:758` |
 | `coop_mapGrade` |  | `0` | `cgame/cg_view.c:7288` |
@@ -1334,15 +1335,15 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `dcl_widthscale` | `1` | `0` | `renderergl1/tr_marks_permanent.c:1518` |
 | `dcl_widthscale` | `1` | `0` | `renderergl2/tr_marks_permanent.c:1518` |
 | `deathmatch` | `1` | `CVAR_USERINFO \| CVAR_SERVERINFO \| CVAR_LATCH` | `fgame/gamecvars.cpp:314` |
-| `deathmatch` | `0` | `0` | `qcommon/common.c:1917` |
+| `deathmatch` | `0` | `0` | `qcommon/common.c:1928` |
 | `debuggraph` | `0` | `CVAR_CHEAT` | `client/cl_scrn.cpp:417` |
 | `debugSound` | `0` | `0` | `cgame/cg_commands.cpp:3851` |
 | `dedicated` | `1` | `0` | `fgame/entity.cpp:3695` |
 | `dedicated` | `1` | `CVAR_LATCH` | `fgame/gamecvars.cpp:313` |
-| `dedicated` | `1` | `CVAR_INIT` | `qcommon/common.c:1894` |
-| `dedicated` | `0` | `CVAR_LATCH` | `qcommon/common.c:1897` |
-| `dedicated` | `0` | `CVAR_LATCH` | `qcommon/common.c:1930` |
-| `dedicated` | `0` | `0` | `qcommon/common.c:2408` |
+| `dedicated` | `1` | `CVAR_INIT` | `qcommon/common.c:1905` |
+| `dedicated` | `0` | `CVAR_LATCH` | `qcommon/common.c:1908` |
+| `dedicated` | `0` | `CVAR_LATCH` | `qcommon/common.c:1941` |
+| `dedicated` | `0` | `0` | `qcommon/common.c:2419` |
 | `detail` | `1` | `CVAR_ARCHIVE` | `cgame/cg_tempmodels.cpp:233` |
 | `detail` | `1` | `CVAR_ARCHIVE` | `fgame/gamecvars.cpp:361` |
 | `developer` | `0` | `0` | `cgame/cg_main.c:185` |
@@ -1379,14 +1380,14 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `dm_tow_match` | `1` | `CVAR_ARCHIVE` | `client/cl_uiserverlist.cpp:1014` |
 | `dmflags` | `0` | `CVAR_SERVERINFO` | `fgame/gamecvars.cpp:332` |
 | `dmflags` | `0` | `CVAR_SERVERINFO` | `server/sv_init.c:1094` |
-| `dumploadedanims` | `0` | `0` | `qcommon/common.c:1911` |
+| `dumploadedanims` | `0` | `0` | `qcommon/common.c:1922` |
 | `filterban` | `1` | `0` | `fgame/gamecvars.cpp:330` |
-| `fixedtime` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1922` |
+| `fixedtime` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1933` |
 | `flood_msgs` | `4` | `0` | `fgame/gamecvars.cpp:357` |
 | `flood_persecond` | `4` | `0` | `fgame/gamecvars.cpp:358` |
 | `flood_waitdelay` | `10` | `0` | `fgame/gamecvars.cpp:359` |
 | `fov` | `80` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4307` |
-| `fps` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1920` |
+| `fps` | `0` | `CVAR_ARCHIVE` | `qcommon/common.c:1931` |
 | `fps` | `0` | `0` | `renderergl1/tr_init.c:1698` |
 | `fps` | `0` | `0` | `renderergl2/tr_init.c:2235` |
 | `fraglimit` | `0` | `CVAR_SERVERINFO` | `fgame/dm_manager.cpp:1069` |
@@ -1398,7 +1399,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `fs_basepath` | `Sys_DefaultInstallPath()` | `CVAR_INIT \| CVAR_PROTECTED` | `qcommon/files.cpp:3440` |
 | `fs_debug` | `0` | `0` | `qcommon/files.cpp:3439` |
 | `fs_filedir` | `FS_BuildOSPath( fs_basepath->string, fs_gamedir, "/maps/" )` | `0` | `qcommon/files.cpp:3560` |
-| `fs_game` |  | `CVAR_INIT\|CVAR_SYSTEMINFO` | `qcommon/common.c:2152` |
+| `fs_game` |  | `CVAR_INIT\|CVAR_SYSTEMINFO` | `qcommon/common.c:2163` |
 | `fs_game` |  | `CVAR_INIT\|CVAR_SYSTEMINFO` | `qcommon/files.cpp:3451` |
 | `fs_gogpath` | `Sys_GogPath()` | `CVAR_INIT\|CVAR_PROTECTED` | `qcommon/files.cpp:3481` |
 | `fs_homepath` | `homePath` | `CVAR_INIT\|CVAR_PROTECTED` | `qcommon/files.cpp:3450` |
@@ -1476,7 +1477,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `g_inactiveSpectate` | `60` | `CVAR_ARCHIVE` | `fgame/gamecvars.cpp:519` |
 | `g_instamsg_allowed` | `1` | `0` | `fgame/gamecvars.cpp:709` |
 | `g_instamsg_minDelay` | `1000` | `0` | `fgame/gamecvars.cpp:710` |
-| `g_invulnoverride` | `0` | `0` | `fgame/level.cpp:1132` |
+| `g_invulnoverride` | `0` | `0` | `fgame/level.cpp:1140` |
 | `g_invulnoverride` | `0` | `0` | `fgame/player.cpp:18410` |
 | `g_lastsave` |  | `0` | `client/cl_ui.cpp:1496` |
 | `g_lastsave` |  | `0` | `client/cl_uiloadsave.cpp:234` |
@@ -1718,9 +1719,9 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `lod_zee_val` |  | `0` | `fgame/lodthing.cpp:235` |
 | `lod_zee_val` | `0` | `CVAR_TEMP` | `renderergl1/tr_init.c:1554` |
 | `lod_zee_val` | `0` | `CVAR_TEMP` | `renderergl2/tr_init.c:2223` |
-| `logfile` | `0` | `CVAR_TEMP` | `qcommon/common.c:1926` |
-| `logfile_timestamps` | `1` | `CVAR_TEMP` | `qcommon/common.c:1927` |
-| `low_anim_memory` | `0` | `0` | `qcommon/common.c:1912` |
+| `logfile` | `0` | `CVAR_TEMP` | `qcommon/common.c:1937` |
+| `logfile_timestamps` | `1` | `CVAR_TEMP` | `qcommon/common.c:1938` |
+| `low_anim_memory` | `0` | `0` | `qcommon/common.c:1923` |
 | `m_filter` | `1` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4246` |
 | `m_filter` | `0` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4248` |
 | `m_forward` | `0.25` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4242` |
@@ -1765,13 +1766,13 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `password` |  | `CVAR_USERINFO` | `client/cl_main.cpp:4301` |
 | `password` |  | `CVAR_USERINFO` | `fgame/gamecvars.cpp:328` |
 | `paused` | `0` | `0` | `cgame/cg_main.c:164` |
-| `paused` | `0` | `64` | `qcommon/common.c:1918` |
+| `paused` | `0` | `64` | `qcommon/common.c:1929` |
 | `pmove_fixed` | `0` | `0` | `cgame/cg_main.c:179` |
 | `pmove_fixed` | `0` | `CVAR_SYSTEMINFO` | `fgame/gamecvars.cpp:516` |
 | `pmove_msec` | `8` | `0` | `cgame/cg_main.c:180` |
 | `pmove_msec` | `0` | `CVAR_SYSTEMINFO` | `fgame/gamecvars.cpp:517` |
-| `protocol` | `com_legacyprotocol->string` | `CVAR_SERVERINFO \| CVAR_ROM` | `qcommon/common.c:1970` |
-| `protocol` | `com_protocol->string` | `CVAR_SERVERINFO \| CVAR_ROM` | `qcommon/common.c:1973` |
+| `protocol` | `com_legacyprotocol->string` | `CVAR_SERVERINFO \| CVAR_ROM` | `qcommon/common.c:1981` |
+| `protocol` | `com_protocol->string` | `CVAR_SERVERINFO \| CVAR_ROM` | `qcommon/common.c:1984` |
 | `protocol` | `va( "%i", PROTOCOL_VERSION )` | `CVAR_SERVERINFO \| CVAR_ROM` | `server/sv_init.c:1100` |
 | `r_allowExtensions` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl1/tr_init.c:1364` |
 | `r_allowExtensions` | `1` | `CVAR_ARCHIVE \| CVAR_LATCH` | `renderergl2/tr_init.c:1432` |
@@ -2514,9 +2515,9 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `scoreboard_toggle2` |  | `0` | `fgame/dm_manager.cpp:996` |
 | `sensitivity` | `5` | `CVAR_ARCHIVE` | `client/cl_main.cpp:4162` |
 | `session` | `-1` | `0` | `fgame/g_session.cpp:110` |
-| `shortversion` | `PRODUCT_VERSION` | `CVAR_ROM \| CVAR_USERINFO \| CVAR_SERVERINFO` | `qcommon/common.c:1959` |
+| `shortversion` | `PRODUCT_VERSION` | `CVAR_ROM \| CVAR_USERINFO \| CVAR_SERVERINFO` | `qcommon/common.c:1970` |
 | `showdrop` | `0` | `CVAR_TEMP` | `qcommon/net_chan.c:75` |
-| `showLoad` | `0` | `0` | `qcommon/common.c:1913` |
+| `showLoad` | `0` | `0` | `qcommon/common.c:1924` |
 | `showpackets` | `0` | `CVAR_TEMP` | `qcommon/net_chan.c:74` |
 | `skill` | `1` | `CVAR_USERINFO \| CVAR_SERVERINFO \| CVAR_LATCH` | `fgame/gamecvars.cpp:315` |
 | `snaps` | `20` | `CVAR_USERINFO \| CVAR_ARCHIVE` | `client/cl_main.cpp:4300` |
@@ -2557,7 +2558,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `snd_yaw` |  | `0` | `fgame/soundman.cpp:576` |
 | `snd_yaw` |  | `0` | `fgame/soundman.cpp:669` |
 | `soundoverlay` | `0` | `0` | `client/cl_ui.cpp:5514` |
-| `spam` | `1` | `0` | `qcommon/common.c:1910` |
+| `spam` | `1` | `0` | `qcommon/common.c:1921` |
 | `subAlpha` | `0.5` | `0` | `client/cl_uiview3d.cpp:739` |
 | `sv_allowDownload` | `0` | `CVAR_SERVERINFO` | `server/sv_init.c:1143` |
 | `sv_banFile` | `serverbans.dat` | `CVAR_ARCHIVE` | `server/sv_init.c:1166` |
@@ -2605,7 +2606,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `sv_minPing` | `0` | `CVAR_ARCHIVE \| CVAR_SERVERINFO` | `server/sv_init.c:1109` |
 | `sv_minPlayers` | `0` | `0` | `fgame/gamecvars.cpp:696` |
 | `sv_minRate` | `0` | `CVAR_ARCHIVE \| CVAR_SERVERINFO` | `server/sv_init.c:1106` |
-| `sv_mpForceArena` | `0` | `0` | `fgame/level.cpp:1628` |
+| `sv_mpForceArena` | `0` | `0` | `fgame/level.cpp:1636` |
 | `sv_mpProgKey` | `hzm-mp-prog-v1-default-key` | `0` | `fgame/scriptthread.cpp:177` |
 | `sv_netoptimize` | `0` | `0` | `fgame/gamecvars.cpp:683` |
 | `sv_netoptimize` | `0` | `0` | `server/sv_init.c:1158` |
@@ -2613,7 +2614,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `sv_netprofile` | `0` | `0` | `server/sv_init.c:1156` |
 | `sv_netprofileoverlay` | `0` | `0` | `server/sv_init.c:1157` |
 | `sv_numbots` | `0` | `0` | `fgame/gamecvars.cpp:695` |
-| `sv_packetdelay` | `0` | `0` | `qcommon/common.c:1932` |
+| `sv_packetdelay` | `0` | `0` | `qcommon/common.c:1943` |
 | `sv_padPackets` | `0` | `0` | `server/sv_init.c:1151` |
 | `sv_pakNames` |  | `CVAR_SYSTEMINFO \| CVAR_ROM` | `server/sv_init.c:1130` |
 | `sv_paks` |  | `0` | `client/cl_parse.cpp:644` |
@@ -2629,7 +2630,7 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `sv_rollangle` | `2` | `0` | `fgame/gamecvars.cpp:367` |
 | `sv_rollspeed` | `2200` | `0` | `fgame/gamecvars.cpp:366` |
 | `sv_running` | `0` | `0` | `cgame/cg_main.c:244` |
-| `sv_running` | `0` | `CVAR_ROM` | `qcommon/common.c:1933` |
+| `sv_running` | `0` | `CVAR_ROM` | `qcommon/common.c:1944` |
 | `sv_running` | `0` | `0` | `renderergl1/tr_postprocess_gl1.c:726` |
 | `sv_runspeed` | `287` | `0` | `cgame/cg_view.c:7064` |
 | `sv_runspeed` | `287` | `0` | `fgame/gamecvars.cpp:402` |
@@ -2693,13 +2694,13 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `thereisnomonkey` | `0` | `CVAR_TEMP` | `fgame/entity.cpp:5488` |
 | `tiki_posecheck` | `0` | `CVAR_TEMP` | `tiki/tiki_tag.cpp:204` |
 | `timedemo` | `0` | `0` | `client/cl_main.cpp:4145` |
-| `timedemo` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1929` |
+| `timedemo` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1940` |
 | `timegraph` | `0` | `CVAR_CHEAT` | `client/cl_scrn.cpp:416` |
 | `timelimit` | `0` | `CVAR_SERVERINFO` | `fgame/dm_manager.cpp:1080` |
 | `timelimit` | `0` | `0` | `fgame/dm_manager.cpp:1184` |
 | `timelimit` | `0` | `CVAR_SERVERINFO` | `fgame/gamecvars.cpp:334` |
 | `timelimit` | `0` | `CVAR_SERVERINFO` | `server/sv_init.c:1096` |
-| `timescale` | `1` | `CVAR_CHEAT \| CVAR_SYSTEMINFO` | `qcommon/common.c:1921` |
+| `timescale` | `1` | `CVAR_CHEAT \| CVAR_SYSTEMINFO` | `qcommon/common.c:1932` |
 | `tow_allied_obj1` |  | `0` | `fgame/dm_manager.cpp:971` |
 | `tow_allied_obj2` |  | `0` | `fgame/dm_manager.cpp:972` |
 | `tow_allied_obj3` |  | `0` | `fgame/dm_manager.cpp:973` |
@@ -2742,17 +2743,17 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `ui_legalscreen_fadeout` | `1` | `0` | `client/cl_ui.cpp:5557` |
 | `ui_legalscreen_stay` | `3` | `0` | `client/cl_ui.cpp:5558` |
 | `ui_maplist_ffa` |  | `0` | `client/cl_uimaprotationsetup.cpp:76` |
-| `ui_maplist_ffa` |  | `0` | `fgame/level.cpp:2156` |
+| `ui_maplist_ffa` |  | `0` | `fgame/level.cpp:2164` |
 | `ui_maplist_lib` |  | `0` | `client/cl_uimaprotationsetup.cpp:70` |
-| `ui_maplist_lib` |  | `0` | `fgame/level.cpp:2176` |
+| `ui_maplist_lib` |  | `0` | `fgame/level.cpp:2184` |
 | `ui_maplist_obj` |  | `0` | `client/cl_uimaprotationsetup.cpp:66` |
-| `ui_maplist_obj` |  | `0` | `fgame/level.cpp:2168` |
+| `ui_maplist_obj` |  | `0` | `fgame/level.cpp:2176` |
 | `ui_maplist_round` |  | `0` | `client/cl_uimaprotationsetup.cpp:74` |
-| `ui_maplist_round` |  | `0` | `fgame/level.cpp:2164` |
+| `ui_maplist_round` |  | `0` | `fgame/level.cpp:2172` |
 | `ui_maplist_team` |  | `0` | `client/cl_uimaprotationsetup.cpp:72` |
-| `ui_maplist_team` |  | `0` | `fgame/level.cpp:2160` |
+| `ui_maplist_team` |  | `0` | `fgame/level.cpp:2168` |
 | `ui_maplist_tow` |  | `0` | `client/cl_uimaprotationsetup.cpp:68` |
-| `ui_maplist_tow` |  | `0` | `fgame/level.cpp:2172` |
+| `ui_maplist_tow` |  | `0` | `fgame/level.cpp:2180` |
 | `ui_minicon` | `0` | `1` | `client/cl_ui.cpp:5506` |
 | `ui_newvidmode` | `va("%d", r_mode)` | `CVAR_RESETSTRING` | `client/cl_ui.cpp:1555` |
 | `ui_newvidmode` | `-1` | `0` | `client/cl_ui.cpp:5523` |
@@ -2784,8 +2785,8 @@ Every `Cvar_Get` / `Cvar_Get2` call under `openmohaa-hzm/code/` whose cvar name 
 | `ui_votetype` | `0` | `0` | `fgame/bg_voteoptions.cpp:596` |
 | `ui_weaponsbar` | `1` | `1` | `client/cl_ui.cpp:5511` |
 | `ui_weaponsbartime` | `2500` | `1` | `client/cl_ui.cpp:5512` |
-| `version` | `s` | `CVAR_ROM \| CVAR_SERVERINFO` | `qcommon/common.c:1957` |
-| `viewlog` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1925` |
+| `version` | `s` | `CVAR_ROM \| CVAR_SERVERINFO` | `qcommon/common.c:1968` |
+| `viewlog` | `0` | `CVAR_CHEAT` | `qcommon/common.c:1936` |
 | `viewmodelanim` | `1` | `0` | `cgame/cg_modelanim.c:390` |
 | `viewmodelanimslot` | `1` | `0` | `cgame/cg_modelanim.c:479` |
 | `viewmodelentity` |  | `0` | `renderergl1/tr_model.cpp:753` |
