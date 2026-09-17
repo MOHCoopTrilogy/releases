@@ -10,9 +10,9 @@ This file replaces `.wolf/anatomy.md`. The difference that matters: anatomy.md w
 
 | metric | value |
 |---|---:|
-| files in the workspace | 43,857 |
-| bytes | 43.7 GB |
-| files in project scope (indexed per-file) | 18,494 |
+| files in the workspace | 43,870 |
+| bytes | 43.8 GB |
+| files in project scope (indexed per-file) | 18,507 |
 | source files (per-file rows with line counts) | 6,921 |
 
 Skipped directories (never descended, anywhere): `.claude`, `.cmake`, `.git`, `.idea`, `.vs`, `.wolf`, `CMakeFiles`, `__pycache__`, `build_out`, `dist`, `node_modules`, `obj`.
@@ -43,15 +43,15 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `server_home` | 74 | 33.1 MB | **yes** |  |
 | `wepcap_home` | 74 | 162.9 MB | no - reference | weapon-capture profile dir |
 | `<root>` | 68 | 3408.7 MB | **yes** | release pipeline: `build.ps1`, `publish_release.ps1`, pk3 build artifacts |
-| `manifests` | 61 | 0.8 MB | **yes** | release manifests consumed by the auto-updater |
+| `manifests` | 62 | 0.8 MB | **yes** | release manifests consumed by the auto-updater |
 | `_hd_shadowfix` | 57 | 61.8 MB | **yes** |  |
 | `_psx_moh` | 49 | 426.8 MB | **yes** |  |
 | `_variant_packs` | 38 | 343.4 MB | **yes** |  |
 | `_tools` | 37 | 69.0 MB | no - reference | downloaded third-party binaries |
 | `_skins` | 29 | 4.4 MB | **yes** |  |
+| `symbols` | 28 | 114.1 MB | **yes** |  |
 | `installer` | 18 | 15873.4 MB | no - reference | Inno Setup output + payload staging |
 | `scratchpad_retail` | 17 | 0.2 MB | **yes** |  |
-| `symbols` | 16 | 65.5 MB | **yes** |  |
 | `player2_home` | 13 | 0.8 MB | no - reference | test client profile dir |
 | `vanilla_audio_ref` | 13 | 15.0 MB | no - reference | vanilla audio reference |
 | `_blender_kit` | 12 | 1.1 MB | no - reference | Blender pipeline scratch |
@@ -105,7 +105,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `.shader` | 238 |
 | `.urc` | 195 |
 | `.py` | 178 |
-| `.json` | 151 |
+| `.json` | 152 |
 | `.bsp` | 129 |
 | `.log` | 116 |
 | `.dat` | 111 |
@@ -888,7 +888,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `hzm-mohaa-coop-mod/ui/loadout/helm` | 48 | 0.03 MB | .cfg×48 |
 | `hzm-mohaa-coop-mod/ui/loadout/skin` | 135 | 0.13 MB | .cfg×135 |
 | `hzm-mohaa-coop-mod/ui/proto` | 11 | 0.14 MB | .urc×6, .cfg×3, .inc×2 |
-| `manifests` | 61 | 0.83 MB | .json×61 |
+| `manifests` | 62 | 0.84 MB | .json×62 |
 | `map_entities` | 92 | 10.22 MB | .txt×88, .md×4 |
 | `openmohaa-hzm` | 8 | 0.04 MB | (none)×2, .txt×2, .md×2, .ps1×1 |
 | `openmohaa-hzm/.github/ISSUE_TEMPLATE` | 1 | 0.00 MB | .md×1 |
@@ -1188,6 +1188,7 @@ Areas marked *reference* are counted here but not indexed file-by-file: they are
 | `symbols/1.7.2` | 2 | 8.45 MB | .pdb×2 |
 | `symbols/1.7.3` | 2 | 8.45 MB | .pdb×2 |
 | `symbols/1.7.4` | 12 | 48.59 MB | .map×6, .pdb×6 |
+| `symbols/1.7.5` | 12 | 48.59 MB | .map×6, .pdb×6 |
 | `tools` | 4 | 0.17 MB | .bat×1, .c×1, .exe×1, .obj×1 |
 | `tools/rendezvous` | 8 | 0.18 MB | .log×3, .md×1, .c×1, .exe×1 |
 | `updater` | 2 | 0.02 MB | .vbs×1, .ps1×1 |
@@ -9451,7 +9452,7 @@ Line counts and summaries are derived (summary = first meaningful comment line).
 | `autoexec.cfg` | 1,703 | 124.9 KB | HZM Extended Coop Mod |
 | `coop_defaults.cfg` | 592 | 38.3 KB | HZM Coop - CURATED OPTION DEFAULTS (GENERATED: scratchpad/split_options_persist.py) |
 | `coop_devrcon.cfg` | 7 | 0.5 KB | DEV ONLY - never packed into a pk3, never committed, never in the release manifest. |
-| `dedicated_start.cfg` | 78 | 4.8 KB | used cfg to start server, executed from within game menu coop_start.urc |
+| `dedicated_start.cfg` | 91 | 5.8 KB | used cfg to start server, executed from within game menu coop_start.urc |
 | `pvp_probe.cfg` | 6 | 0.1 KB |  |
 
 ### `server_home/maintt/configs/` — 1 source files

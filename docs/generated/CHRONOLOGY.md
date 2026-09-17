@@ -13,28 +13,27 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `39660e9 2026-09-16 publish: archive every shipped binary's PDB + linker MAP per release (bug-2666)` |
-| commits | 281 |
+| HEAD | `788ddc6 2026-09-16 v1.7.5 hotfix: coop-host crash fix + real UberMod bomb modes` |
+| commits | 283 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **13 modified, 7 untracked** |
-| unstaged diff | 13 files changed, 365 insertions(+), 142 deletions(-) |
-
-> Working tree is dirty. Everything in those 20 files exists only here - a `git checkout` destroys it with no restore point.
+| **uncommitted** | **0 modified, 0 untracked** |
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 70 |
+| 2026-09 | 72 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (281)
+### Commits since 2026-01-01 (283)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `788ddc6` | 2026-09-16 | joncurry94-tech | v1.7.5 hotfix: coop-host crash fix + real UberMod bomb modes |
+| `a6d0870` | 2026-09-16 | joncurry94-tech | manifest 1.7.5 |
 | `39660e9` | 2026-09-16 | joncurry94-tech | publish: archive every shipped binary's PDB + linker MAP per release (bug-2666) |
 | `b23bf8b` | 2026-09-16 | joncurry94-tech | manifest 1.7.4 |
 | `2390245` | 2026-09-16 | joncurry94-tech | reporter: match overlay keywords against the DLL name, not the full path (bug-2665) |

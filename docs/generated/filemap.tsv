@@ -769,7 +769,7 @@ docs/public/UNLOCKABLES.md	26158	.md	328	docs
 docs/public/fixes/ai-enemy-behaviour.md	302372	.md	547	docs
 docs/public/fixes/audio.md	53493	.md	99	docs
 docs/public/fixes/build-deploy-tooling.md	15020	.md	35	docs
-docs/public/fixes/engine-crashes.md	214262	.md	356	docs
+docs/public/fixes/engine-crashes.md	214290	.md	356	docs
 docs/public/fixes/maps-missions.md	107906	.md	193	docs
 docs/public/fixes/multiplayer-networking.md	38852	.md	79	docs
 docs/public/fixes/other.md	117460	.md	223	docs
@@ -13825,7 +13825,7 @@ hzm-mohaa-coop-mod/ui/coop_tiles/t2l4.jpg	45092	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_tiles/t3l1.jpg	37884	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_tiles/t3l2.jpg	52040	.jpg	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/coop_weaponselect_suppress.urc	3061	.urc	78	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/ui/coop_whatsnew.urc	3194	.urc	132	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/ui/coop_whatsnew.urc	3186	.urc	132	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/hd_texel_scale.cfg	1999	.cfg	56	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/hud_ammo_15cmC36.urc	260	.urc	5	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/ui/hud_ammo_AbTurretMain.urc	261	.urc	5	hzm-mohaa-coop-mod
@@ -15228,7 +15228,7 @@ hzm-mohaa-coop-mod/ui/video options.urc	14288	.urc	557	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/untitled.bmp	921654	.bmp	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_snd.pk3	627705485	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_assets_tex.pk3	1298033726	.pk3	0	hzm-mohaa-coop-mod
-hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	24664643	.pk3	0	hzm-mohaa-coop-mod
+hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_code.pk3	24664620	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzz_co-op_hzm_mod_mohaa.pk3.bak	63877807	.bak	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzzzzz_coop_terrain.pk3	33429489	.pk3	0	hzm-mohaa-coop-mod
 hzm-mohaa-coop-mod/zzzzzzzzzz_coop_hd_m3l1a.pk3	151571146	.pk3	0	hzm-mohaa-coop-mod
@@ -15299,6 +15299,7 @@ manifests/manifest-1.7.1.json	16080	.json	262	manifests
 manifests/manifest-1.7.2.json	16080	.json	262	manifests
 manifests/manifest-1.7.3.json	16081	.json	262	manifests
 manifests/manifest-1.7.4.json	16081	.json	262	manifests
+manifests/manifest-1.7.5.json	16081	.json	262	manifests
 map_entities/OFFICER_SPAWN_TABLE.md	9905	.md	109	map_entities
 map_entities/OFFICER_SPAWN_TABLE_FINAL.md	17394	.md	257	map_entities
 map_entities/SUMMARY.md	19894	.md	332	map_entities
@@ -18366,7 +18367,7 @@ server_home/boot_m1l1.log	519287	.log	0	server_home
 server_home/boot_m3l2.log	194081	.log	0	server_home
 server_home/boot_m3l3.log	498996	.log	0	server_home
 server_home/boot_t2l2.log	172217	.log	0	server_home
-server_home/maintt/OpenMoHAA_server.pid	4	.pid	0	server_home
+server_home/maintt/OpenMoHAA_server.pid	5	.pid	0	server_home
 server_home/maintt/autoexec.cfg	127887	.cfg	1703	server_home
 server_home/maintt/configs/omconfig.cfg	21513	.cfg	758	server_home
 server_home/maintt/coop_defaults.cfg	39199	.cfg	592	server_home
@@ -18395,7 +18396,7 @@ server_home/maintt/coop_mod/save/xp_n_bot1.dat	1	.dat	0	server_home
 server_home/maintt/coop_mod/save/xp_n_bot2.dat	1	.dat	0	server_home
 server_home/maintt/coop_mod/save/xp_n_bot3.dat	1	.dat	0	server_home
 server_home/maintt/coop_mod/save/xp_n_bot4.dat	1	.dat	0	server_home
-server_home/maintt/dedicated_start.cfg	4953	.cfg	78	server_home
+server_home/maintt/dedicated_start.cfg	5982	.cfg	91	server_home
 server_home/maintt/prev/qconsole-20260903-234613.log	359391	.log	0	server_home
 server_home/maintt/prev/qconsole-20260904-081235.log	350452	.log	0	server_home
 server_home/maintt/prev/qconsole-20260904-082256.log	1923604	.log	0	server_home
@@ -18422,7 +18423,7 @@ server_home/maintt/prev/qconsole-20260915-074407.log	122109	.log	0	server_home
 server_home/maintt/prev/qconsole-20260915-094619.log	124533	.log	0	server_home
 server_home/maintt/prev/qconsole-20260915-102604.log	120749	.log	0	server_home
 server_home/maintt/pvp_probe.cfg	136	.cfg	6	server_home
-server_home/maintt/qconsole.log	187321	.log	0	server_home
+server_home/maintt/qconsole.log	187902	.log	0	server_home
 server_home/maintt/qconsole.log.pre_e3l4	302778	.pre_e3l4	0	server_home
 server_home/maintt/qconsole.prev.log	918609	.log	0	server_home
 server_home/maintt/qconsole.prev2.log	630655	.log	0	server_home
@@ -18463,6 +18464,18 @@ symbols/1.7.4/renderer_opengl1.map	582350	.map	0	symbols
 symbols/1.7.4/renderer_opengl1.pdb	3059712	.pdb	0	symbols
 symbols/1.7.4/renderer_opengl2.map	720010	.map	0	symbols
 symbols/1.7.4/renderer_opengl2.pdb	3870720	.pdb	0	symbols
+symbols/1.7.5/cgame.map	977315	.map	0	symbols
+symbols/1.7.5/cgame.pdb	3436544	.pdb	0	symbols
+symbols/1.7.5/game.map	4842200	.map	0	symbols
+symbols/1.7.5/game.pdb	14675968	.pdb	0	symbols
+symbols/1.7.5/omohaaded.map	775899	.map	0	symbols
+symbols/1.7.5/omohaaded.pdb	4345856	.pdb	0	symbols
+symbols/1.7.5/openmohaa.map	2276485	.map	0	symbols
+symbols/1.7.5/openmohaa.pdb	9031680	.pdb	0	symbols
+symbols/1.7.5/renderer_opengl1.map	582350	.map	0	symbols
+symbols/1.7.5/renderer_opengl1.pdb	3059712	.pdb	0	symbols
+symbols/1.7.5/renderer_opengl2.map	720010	.map	0	symbols
+symbols/1.7.5/renderer_opengl2.pdb	3870720	.pdb	0	symbols
 sync_test_configs.py	3525	.py	62	<root>
 tools/build_tool.bat	220	.bat	4	tools
 tools/minidump_scan.c	6821	.c	145	tools

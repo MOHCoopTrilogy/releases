@@ -100,6 +100,7 @@ def build():
             continue
         L.append('\tcase "%s":' % m)
         L.append("\t\twaitthread spawn_%s" % m)
+        L.append('\t\tprintln( "^~^~^ MP arena spawns injected map=%s n=%d" )' % (m, len(per_map[m])))
         L.append("\t\tbreak")
     L.append("\t}")
     L.append("}end")
