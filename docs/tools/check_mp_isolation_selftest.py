@@ -175,7 +175,10 @@ MUTATIONS = [
     # [10] coop helper calls
     N("M21", "coop_mod/mp_zzselftest_armory.scr", "waitthread coop_mod/loadoutpick.scr::loadout_set local.p", {"10a"}),
     A("M22", MP, "waitthread coop_mod/main.scr::changeGameType 0 0", {"10c"}),
-    A("M23", MP, "exec coop_mod/xp.scr", {"10a"}),
+    # [user 2026-09-17] xp is no longer wholesale-denied (shared progression): only xp::xp_award_mp is
+    # allowlisted, so a no-label call is 10b and any OTHER xp label is 10c - exactly like a normal helper.
+    A("M23", MP, "exec coop_mod/xp.scr", {"10b"}),
+    A("M23e", MP, "waitthread coop_mod/xp.scr::xp_flush local.p", {"10c"}),
     A("M23b", MP, "exec coop_mod/tinnitus.scr", {"10b"}),
     A("M23c", MP, "thread coop_mod/cache/common.scr::x", {"10c"}),
     A("M23d", MP, "waitthread COOP_MOD\\loadoutpick.scr::loadout_set", {"10a"}),

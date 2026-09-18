@@ -39,7 +39,10 @@ THE CONTRACT (ISO track, 2026-09-13), and why each clause is here rather than me
      (multiplayer*.urc, coop_weaponselect_suppress.urc) are deliberately NOT locked - the user approved
      coop edits to them (Select Game Type cleanup, mod copies of the MP options screens, 2026-09-13).
   7. COOP FILES NEVER NAME A coop_mp* TOKEN (MP cvars, MP menus, ui/coop_mp*/ cfg trees).
-  8. THE CHALLENGE AND XP SYSTEMS STAY COOP-ONLY IN MULTIPLAYER (the coop_mpRun guards).
+  8. XP IS SHARED COOP<->MP THROUGH ONE CAPPED BRIDGE (xp.scr::xp_award_mp; user 2026-09-17). The coop XP
+     *loops* (autosave/cover) still never run in MP - that coop_mpRun guard is unchanged and still checked
+     below; only earning is shared, and only via the allowlisted bridge. The CHALLENGE system stays
+     coop-only in MP (MP has its own mp_challenges progression); no other xp/challenges label is MP-callable.
   9. MP MUST NEVER SET flags["coop_isHost"] (spaced or not) - it unlocks dev godmode, noclip and give_all.
  10. MP CALLS ONLY THE ALLOWLISTED COOP HELPERS, never the coop armory, progression or cosmetics.
  11. EVERY MP-NAMED FILE IS IN THE MANIFEST: any file under ui/ or coop_mod/, and any script, cfg or menu
@@ -107,15 +110,29 @@ ALLIED_GLOBS = ["coop_mod/mpa_*.scr", "ui/coop_mpa_*.urc", "ui/coop_mpa_*/**"]
 AXIS_GLOBS = ["coop_mod/mpx_*.scr", "ui/coop_mpx_*.urc", "ui/coop_mpx_*/**"]
 
 # Clause 10. Coop scripts MP code may never call, and the only coop labels it may.
+# [user 2026-09-17] "xp" is intentionally NOT wholesale-denied: shared progression lets MP earn coop XP,
+# but ONLY through the allowlisted xp::xp_award_mp label below. Every other xp label called from an MP file
+# still fails clause 10c (not in MP_COOP_ALLOW), so this is exactly as tight as the deny entry was, minus
+# the one sanctioned bridge. challenges stays fully denied (MP has its own mp_challenges progression).
 MP_COOP_DENY = {"loadoutpick", "loadout", "loadoutroster", "loadoutskins", "loadoutskins_base", "challenges",
-                "xp", "medals", "helmet", "gloves", "itemhandler", "lobby", "lobbyui", "unlockreq_gen",
+                "medals", "helmet", "gloves", "itemhandler", "lobby", "lobbyui", "unlockreq_gen",
                 "mvchal_gen"}
 MP_COOP_ALLOW = {"main::containstext", "player::playercleanname", "player::coop_limpwarn",
                  "ads::coop_ads_monitor", "painbreath::wounded_monitor", "tinnitus::coop_tinnitus_monitor",
-                 "tinnitus::coop_injured_muffle_monitor"}
+                 "tinnitus::coop_injured_muffle_monitor",
+                 # [user 2026-09-17] SHARED PROGRESSION: MP may earn coop XP through this ONE capped bridge
+                 # (xp.scr::xp_award_mp). Rank/XP are shared coop<->MP; the coop XP *loops* stay coop-only
+                 # (clause 8 guard unchanged), and no other xp label is callable from MP. This moves an XP
+                 # number only - it touches no coop gameplay, weapon, disguise or AI state.
+                 "xp::xp_award_mp",
+                 # [user 2026-09-18] DYNAMIC WEATHER in MP: mp_weather.scr starts the SHARED coop weather
+                 # renderer (fluid-random rain/snow/sand storms) on MP maps. This ONE entry point sets only
+                 # weather/precip level vars + execs global/weather.scr; it touches no coop_mp*/coop_lo*/saved
+                 # coop gameplay state. Gated on coop_dynWeather + coop_mpWeather.
+                 "weather::coop_weather_init"}
 
 # Clause 14. Declared engine MP hooks: name -> one-line reason. Keep this on ONE line (the self-test patches it).
-ENGINE_MP_HOOKS = {"mp_mapscript_hook": "E4: Level::ServerSpawned starts MP on a non-coop map with no ambient.scr hook", "mp_weaponselect_redirect": "E5: Player::UserSelectWeapon opens the side MP armory when coop_mpRun==1", "mp_kit_userinfo": "E1: CG_Init registers carried kit cvars as CVAR_USERINFO|CVAR_ARCHIVE", "mp_armory_cmd": "E2: hzm_armory console command handler in cg_consolecmds.c", "mp_armory_session": "E2b: coop_mp_session flag zeroed in CG_Init", "mp_glove_cvar": "E3: MP glove cvar override in cg_modelanim.c glove block", "mp_getlasthitmod": "M8: Event declaration for getlasthitmod (melee-demote getter)", "mp_getlasthitmod_reg": "M8: Response table entry for getlasthitmod", "mp_getlasthitmod_impl": "M8: Player::GetLastHitMod returns pain_type", "mp_getlasthitmod_decl": "M8: player.h declaration of GetLastHitMod", "mp_voice_nationality": "E6: GetNationalityPrefix reads worn model in MP instead of dm_playermodel", "mp_signcrypto": "Slice 2: vendored SHA-256/HMAC helpers for mp_sign/mp_verify", "mp_sign_ev": "Slice 2: mp_sign/mp_verify Event declarations", "mp_sign_reg": "Slice 2: mp_sign/mp_verify response table entries", "mp_sign_impl": "Slice 2: ScriptThread::MpSign/MpVerify implementations", "mp_sign_decl": "Slice 2: scriptthread.h declarations of MpSign/MpVerify", "mp_prog_blob": "Slice 3: coop_mpProgBlob USERINFO|ARCHIVE carrier cvar in CG_Init", "mp_cos_userinfo": "MP cosmetics: coop_mp<side>_cosSkin/Helm/Glove USERINFO|ARCHIVE carrier cvars in CG_Init", "mp_force_arena": "Push SP-maps: one-shot sv_mpForceArena runs global/ambient.scr in place of a coop campaign map's script so MP engages (Level::PreSpawnSentient)"}
+ENGINE_MP_HOOKS = {"mp_mapscript_hook": "E4: Level::ServerSpawned starts MP on a non-coop map with no ambient.scr hook", "mp_weaponselect_redirect": "E5: Player::UserSelectWeapon opens the side MP armory when coop_mpRun==1", "mp_kit_userinfo": "E1: CG_Init registers carried kit cvars as CVAR_USERINFO|CVAR_ARCHIVE", "mp_armory_cmd": "E2: hzm_armory console command handler in cg_consolecmds.c", "mp_armory_session": "E2b: coop_mp_session flag zeroed in CG_Init", "mp_glove_cvar": "E3: MP glove cvar override in cg_modelanim.c glove block", "mp_getlasthitmod": "M8: Event declaration for getlasthitmod (melee-demote getter)", "mp_getlasthitmod_reg": "M8: Response table entry for getlasthitmod", "mp_getlasthitmod_impl": "M8: Player::GetLastHitMod returns pain_type", "mp_getlasthitmod_decl": "M8: player.h declaration of GetLastHitMod", "mp_voice_nationality": "E6: GetNationalityPrefix reads worn model in MP instead of dm_playermodel", "mp_signcrypto": "Slice 2: vendored SHA-256/HMAC helpers for mp_sign/mp_verify", "mp_sign_ev": "Slice 2: mp_sign/mp_verify Event declarations", "mp_sign_reg": "Slice 2: mp_sign/mp_verify response table entries", "mp_sign_impl": "Slice 2: ScriptThread::MpSign/MpVerify implementations", "mp_sign_decl": "Slice 2: scriptthread.h declarations of MpSign/MpVerify", "mp_prog_blob": "Slice 3: coop_mpProgBlob USERINFO|ARCHIVE carrier cvar in CG_Init", "mp_cos_userinfo": "MP cosmetics: coop_mp<side>_cosSkin/Helm/Glove USERINFO|ARCHIVE carrier cvars in CG_Init", "mp_force_arena": "Push SP-maps: one-shot sv_mpForceArena runs global/ambient.scr in place of a coop campaign map's script so MP engages (Level::PreSpawnSentient)", "mp_compass_reg": "Modern compass in MP: CG_CompassBarCvars registers coop_mpCompass (the MP analog of coop_isCoopSession) so CG_DrawCompassBar draws the top compass bar in multiplayer", "mp_compass_reset": "Modern compass in MP: CG_CompassBarReset zeroes coop_mpCompass on each map so the MP compass session is re-armed per spawn", "mp_pvp_campaign": "bug-2713: CoopMpPlayerHit lets MP PvP damage through on campaign-map arenas (coop_mpRun set) instead of the coop-map-name block that dropped every hit"}
 
 # Clause 16. The one non-coop_mp* menu name MP legitimately owns (the Multiplayer Options side picker,
 # moved out of a coop file in a later slice). A stock/coop menu an MP urc must NEVER redefine (they load

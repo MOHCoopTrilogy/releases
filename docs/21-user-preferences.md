@@ -80,6 +80,10 @@ into "retail never wired the asset up" in one run. Ask for it early.
   unless the difference exists to make coop work. Full entry in
   [`archive/prefs-pruned-2026-08-20.md`](archive/prefs-pruned-2026-08-20.md).
 
+- **Push = break the front through to the ENEMY SPAWN, whoever does wins — NOT capture-points** (2026-09-18).
+  One line both sides fight; axis push too. HUD minimal: `PUSH` + bar + timer.
+  A default-on feature (e.g. weather) must never ship crashing: default-off until fixed AND client-verified.
+
 ---
 
 ## Tuning workflow
@@ -90,10 +94,7 @@ into "retail never wired the asset up" in one run. Ask for it early.
 - **When re-baking from a CROUCH tuning pass, edit ONLY the 5 crouch fields per gun.** *"PLEASE ONLY
   UPDATE CROUCH"* (emphatic). `adssave` logs both stand and crouch even in a crouch pass — ignore the
   stand line. Bake via a script that keeps the first 5 stand tokens verbatim.
-- **Cvar hygiene is a TRAPS matter, not a preference.** Preferences = engine registration default +
-  `CVAR_ARCHIVE`; `coop_defaults.cfg` holds the menu-controlled options; `autoexec.cfg` `seta` is
-  only for shipped TUNING defaults deliberately re-asserted per release (it execs LAST, so it
-  clobbers the user's menu choice). Mechanism and bug ids: [TRAPS.md § T7](TRAPS.md#t7).
+- **Cvar hygiene is a TRAPS matter, not a preference** — mechanism + bug ids: [TRAPS.md § T7](TRAPS.md#t7).
 
 ---
 

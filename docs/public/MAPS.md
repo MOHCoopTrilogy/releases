@@ -18,7 +18,7 @@ Every mission in the trilogy that has a coop script, what state it is in, and ho
 | `m1l3a` | yes | 891 | 2 |
 | `m1l3b` | yes | 1445 | 2 |
 | `m1l3c` | yes | 1139 | 4 |
-| `m2l1` | yes | 655 | 7 |
+| `m2l1` | yes | 655 | 9 |
 | `m2l2a` | yes | 1936 | 51 |
 | `m2l2b` | yes | 1481 | 7 |
 | `m2l2c` | yes | 196 | 0 |
@@ -26,7 +26,7 @@ Every mission in the trilogy that has a coop script, what state it is in, and ho
 | `m3l1a` | yes | 9234 | 257 |
 | `m3l1b` | yes | 3205 | 19 |
 | `m3l2` | yes | 3740 | 10 |
-| `m3l3` | yes | 9095 | 50 |
+| `m3l3` | yes | 9095 | 51 |
 | `m4l0` | yes | 500 | 2 |
 | `m4l1` | yes | 735 | 1 |
 | `m4l2` | yes | 1473 | 0 |
@@ -83,8 +83,8 @@ Fix counts are a rough proxy for how much a map fought back. A high count usuall
 |---|---:|
 | `m3l1a` | 257 |
 | `m6l2a` | 72 |
+| `m3l3` | 51 |
 | `m2l2a` | 51 |
-| `m3l3` | 50 |
 | `e2l1` | 40 |
 | `e1l2` | 37 |
 | `e3l4` | 27 |
@@ -95,5 +95,5 @@ Fix counts are a rough proxy for how much a map fought back. A high count usuall
 | `m6l1c` | 13 |
 | `m3l2` | 10 |
 | `e2l2` | 9 |
-| `t1l3` | 9 |
+| `m2l1` | 9 |
 

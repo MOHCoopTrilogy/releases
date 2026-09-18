@@ -13,28 +13,32 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | | |
 |---|---|
 | branch | `main` |
-| HEAD | `67fdccb 2026-09-16 v1.7.6: Build-A-Base campaign-spawn fix + One-Shot / One-Ammo modifiers` |
-| commits | 285 |
+| HEAD | `07a99c6 2026-09-18 manifest 1.8.0` |
+| commits | 289 |
 | remotes | origin https://github.com/MOHCoopTrilogy/releases.git |
-| **uncommitted** | **6 modified, 2 untracked** |
-| unstaged diff | 6 files changed, 18 insertions(+), 9 deletions(-) |
+| **uncommitted** | **19 modified, 2 untracked** |
+| unstaged diff | 19 files changed, 360 insertions(+), 137 deletions(-) |
 
-> Working tree is dirty. Everything in those 8 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 21 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
 | month | commits |
 |---|---:|
-| 2026-09 | 74 |
+| 2026-09 | 78 |
 | 2026-08 | 157 |
 | 2026-07 | 54 |
 
 </details>
 
-### Commits since 2026-01-01 (285)
+### Commits since 2026-01-01 (289)
 
 | sha | date | author | subject |
 |---|---|---|---|
+| `07a99c6` | 2026-09-18 | joncurry94-tech | manifest 1.8.0 |
+| `0789744` | 2026-09-17 | joncurry94-tech | manifest 1.7.8 |
+| `17aed9a` | 2026-09-16 | joncurry94-tech | v1.7.7: Domination + Countdown + Assassination modes, objective-seeking MP bots |
+| `75230e5` | 2026-09-16 | joncurry94-tech | manifest 1.7.7 |
 | `67fdccb` | 2026-09-16 | joncurry94-tech | v1.7.6: Build-A-Base campaign-spawn fix + One-Shot / One-Ammo modifiers |
 | `8a7f07e` | 2026-09-16 | joncurry94-tech | manifest 1.7.6 |
 | `788ddc6` | 2026-09-16 | joncurry94-tech | v1.7.5 hotfix: coop-host crash fix + real UberMod bomb modes |
@@ -329,10 +333,10 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | HEAD | `7a3e3f77 2026-09-14 mp: Gun Game death-reset, Hardcore speed fix, DBNO/Medkits default ON, closet 3-way loadout` |
 | commits | 1,684 |
 | remotes | org https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod.git, origin https://github.com/HaZardModding/hzm-mohaa-coop-mod |
-| **uncommitted** | **121 modified, 213 untracked** |
-| unstaged diff | 121 files changed, 5520 insertions(+), 1726 deletions(-) |
+| **uncommitted** | **129 modified, 224 untracked** |
+| unstaged diff | 129 files changed, 7810 insertions(+), 2380 deletions(-) |
 
-> Working tree is dirty. Everything in those 334 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 353 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 
@@ -727,10 +731,10 @@ Three separate repositories. The mod and the engine are **nested repos with thei
 | HEAD | `243d8ac2 2026-09-14 engine: MP realism host toggles - ADS/Prone/Cover/Third Person off via g_mpRealismOff serverinfo` |
 | commits | 5,117 |
 | remotes | org https://github.com/MOHCoopTrilogy/openmohaa.git, origin https://github.com/joncurry94-tech/openmohaa.git, upstream https://github.com/openmoh/openmohaa.git |
-| **uncommitted** | **18 modified, 3 untracked** |
-| unstaged diff | 18 files changed, 610 insertions(+), 22 deletions(-) |
+| **uncommitted** | **29 modified, 1 untracked** |
+| unstaged diff | 29 files changed, 1416 insertions(+), 15997 deletions(-) |
 
-> Working tree is dirty. Everything in those 21 files exists only here - a `git checkout` destroys it with no restore point.
+> Working tree is dirty. Everything in those 30 files exists only here - a `git checkout` destroys it with no restore point.
 
 <details><summary>commits per month (all history)</summary>
 

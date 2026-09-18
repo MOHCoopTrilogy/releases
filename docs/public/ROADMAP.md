@@ -39,16 +39,8 @@ What is planned, in progress, or known to be broken. This is generated from the 
 - `Z_TagMalloc` zero-size spam on the main menu
 - Bullet-hole decals render RED — RESOLVED (doc stale)
 - Invisible briefing NPC on e2l2 — likely fixed, PLAYTEST-GATED
-- Shimmer on thin geometry (shadow acne) — RESOLVED (doc stale)
-- Bloom flat haze + the seven gl1 post-FX ports — RESOLVED (doc stale)
 - `r_globalFogDebug` is still `CVAR_TEMP`
 - Diagnostic scaffolding not yet stripped
-
-## Diagnostic pending — a probe exists, awaiting one boot
-
-- m1l1 2nd-ranger_private actors render mangled — RESOLVED (doc stale)
-- Reload camera dip never visible — RESOLVED (superseded)
-- Mine detector after DBNO revive — RESOLVED (doc stale)
 
 ## Awaiting playtest — `SHIPPED-UNVERIFIED`
 

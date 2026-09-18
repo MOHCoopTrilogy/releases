@@ -6,10 +6,11 @@
 
 [<- back to all fixes](../BUGFIXES.md)
 
-**87 fixes**, newest first.
+**88 fixes**, newest first.
 
 | ID | Problem | Cause | Fix |
 |---|---|---|---|
+| `bug-2716` | User: Push maps 'seriously lack their ambient tracks' -> clarified: wants ambient SOUNDS, NOT music | Misread 'ambient tracks' as the musical soundtrack. In MP the arena path DOES run global/ambient.scr -> global/ambience.scr, so the environmental ambient SOUNDS (crickets/wind/fire emitters) already play; what was absent was music/<map>.mus | First added push_startAmbient to play music/<map>.mus, then REVERTED it on user correction ('I don't really want music playing... just the ambient sounds'). Net: start no soundtrack (arena default is already empty); do NOT stopsound (would  |
 | `bug-2655` | Demolition never awarded the destroy stat; no audio/HUD | The detonation credited nobody (planter ref nulled at arm) and the mode had no sound cue or compass marker. | Store coop_mpDemPlantedBy at arm and award destroy at detonation; added dem_sound broadcast (plantbomb/explode_tank/alarm_switch) and dem_updateMarker set_objective_pos compass arrow + denser countdown. |
 | `bug-2568` | user: "Fix helmet landing sound." | HelmetObject::HelmetTouch (reached through EV_Stop when a shot-off helmet comes to rest) played grenade_bounce_metal, which the mod's ubersound.scr registers only for m1-m6/training and e1l1 e1l4 e2l1-3 e3 dm lib obj - silent on e1l2, e1l3, | The magazine's surface pick moved into one static helper, CoopPropLandSound(Entity *self, const char *family), used by CoopMagStop and HelmetTouch. The probe now runs from the origin down to (mins.z - 6) with a flat 2x2 box, because setMode |
 | `bug-2567` | found while designing bug-2566: the magazine and helmet landing clatters were silent on several coop maps, and their volume/channel arguments never took effect | (1) Entity::Sound's argstype defaults to 0 (entity.h:486), which replaces the passed volume and channel with the alias's own (entity.cpp:3752-3757) - so CoopMagStop's `Sound("grenade_bounce_metal", CHAN_BODY, 0.35f)` played at full alias vo | FIXED in two steps. Magazines (bug-2566) and helmets (bug-2568) no longer use grenade_bounce_*: both go through CoopPropLandSound in object.cpp and play coop_magland_* / coop_helmland_* aliases that carry maps "m e t dm obj train co" and ch |

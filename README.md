@@ -98,20 +98,21 @@ it. **Download all five into the same folder.**
 
 Host: launch the shortcut, then **Multiplayer → Start Game → MOH Trilogy Coop**, pick a mission tile, hit Apply. Friends join over LAN/Internet via **Multiplayer → Join Game** or `connect <ip>` in the console.
 
-## Current release — v1.7.1 *"Roll Out"*
+## Current release — v1.8.0 *"Changing Sides"*
 
-More ways to fight, and now with armor — built on top of v1.7.0's multiplayer progression, modes and bots.
+Push gets a competitive makeover, medkits come to multiplayer in full, and shadows stop leaking through the world.
 
-- **Prop Hunt.** One team hides, disguised as ordinary map objects; the other hunts them down after a short head start. Props change shape with **USE** and can move but can't shoot back — last props standing (or the clock) win the round.
-- **A vehicle system.** Drive tanks and jeeps (one drives, a second mans the gun), man fixed **Flak 88s** and **Nebelwerfers**, and pick up anti-tank launchers — the **bazooka** for the Allies, the **panzerschreck** for the Axis, never each other's. Tanks shrug off small arms; only a rocket kills one, so those pickups matter. Destroyed vehicles blow up and respawn, and you can **capture** an enemy's by holding USE beside it.
-- **Campaign maps for Base Assault and Push.** Both modes now play on real single-player campaign maps, not just the deathmatch arenas — reached from a **Campaign Maps** button on the team setup screen.
-- **Spawn protection.** A few seconds of cover right after you respawn, dropped the instant you open fire, so you can't be farmed on the spawn.
-- **Modes tuned:** Demolition is now truly two-way — either team plants a charge on the enemy's bomb site — and Freeze Tag gains a **meltgun**: aim and fire at a frozen teammate to weld them free faster.
-- **Fix:** medkits no longer let you channel a heal at full health, and can no longer refill a Down-But-Not-Out pool (an accidental near-invincibility).
+- **Push is best-of-3, and sides swap every round.** First team to two round wins takes the match, and the two teams trade ends after every round — in place, with no map reload. No more being stuck on the harder half of the map.
+- **Per-team Push compass.** Your arrow points at the fixed enemy end you're actually pushing toward, instead of drifting with the contested line.
+- **MP medkits now match co-op.** The same medkit icon and bandage count on your HUD, the same self-heal, effects and sounds — hold **USE** while hurt and standing still to bandage up.
+- **Shadows no longer bleed through the ground.** Object shadows — trees, buildings — were rendering through terrain, worst at long range; that's fixed, and it's live-tunable if you want to dial it.
+- **m3l3 opens up for Push.** The campaign tank-wall breaches are recreated so the Allies have a way forward, and bots climb the ledge they used to jam on.
+
+**Recently, in the 1.7 line:** three more multiplayer modes — **Domination**, **Countdown** and **Assassination** — plus objective-seeking bots, the **Build-A-Base** campaign-spawn fix, and **One-Shot / One-Ammo** modifiers. And v1.7.1 "Roll Out" added **Prop Hunt**, the **vehicle system** (drivable tanks and jeeps, mannable Flak 88s and Nebelwerfers, anti-tank launchers), **campaign maps** for Base Assault and Push, spawn protection, two-way Demolition and the Freeze Tag meltgun.
 
 Coop is kept fully isolated from all of it — every multiplayer system is gated off on coop maps, enforced by an automated contract on every build.
 
-> **Straight with you:** the new multiplayer loops load and run clean in automated testing, but the drive / fire / hide / plant interactions have not had a full human playtest yet — expect rough edges, and **Report a Problem** if something misbehaves. Coop play is unaffected.
+> **Straight with you:** the newest multiplayer changes load and run clean in automated testing, but some interactions still want a full human playtest — expect the occasional rough edge, and **Report a Problem** if something misbehaves. Coop play is unaffected.
 
 Full details in the [release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest) —
 and please read [Still early](#still-early--read-before-reporting) and
@@ -153,6 +154,20 @@ Everything here exists in the current build. Status honesty: systems marked *(ex
 - **Allied squads survive with you**: escort NPCs scale their health with player count and go *down* instead of dying — revive them by proximity, free
 - A pre-mission **coop lobby** with character selection and a ready-up countdown
 - Server-tunable rules via cvars: player health, DBNO on/off, LMS lives, corpse persistence, AI scaling, and more
+
+</details>
+
+<details>
+<summary><b>Multiplayer — modes, bots & PvP</b> — a full competitive layer alongside the co-op campaign</summary>
+
+- **A dozen game modes**, playable with friends *or* bots: **Push** (best-of-3 single-front tug-of-war, sides swap every round), **Base Assault / Build-A-Base** (build and hold, on real campaign maps), **Domination**, **King of the Hill**, **Capture the Flag**, **Countdown**, **Assassination**, **Demolition** (two-way — either team can plant), **Gun Game**, **Cyber Attack**, **Freeze Tag** (with a meltgun to thaw teammates), **Prop Hunt** (hide disguised as map objects), and **Last Man Standing**
+- **Match modifiers** stack on top of any mode: **One-Shot**, **One-Ammo**, **Hardcore**, and **Realism**
+- **Bots that play the objective** — fill a match to any size; they push the line, take the hill, plant and defend, and see, hear, flank and fight when engaged
+- **Campaign maps in multiplayer** — Push and Base Assault play on real single-player maps, reached from a **Campaign Maps** button on the team-setup screen, not only the deathmatch arenas
+- **Vehicles**: drive tanks and jeeps (driver + separate gunner), man fixed Flak 88s and Nebelwerfers, and pick up faction anti-tank launchers; capture an enemy's vehicle by holding USE beside it
+- **MP-native systems** ported from co-op: **medkits** (same icon, count and self-heal), **Down-But-Not-Out** with revives, and **spawn protection**
+- **Persistent XP, ranks and challenges** carry across co-op and multiplayer alike
+- Every one of these is **gated off on co-op maps** by an automated isolation contract enforced on every build — none of it can leak into the campaign
 
 </details>
 
@@ -270,7 +285,7 @@ Everything here exists in the current build. Status honesty: systems marked *(ex
 - **Persistent XP** saved across sessions — 13 authentic US Army WW2 ranks with metallic insignia on the scoreboard
 - XP for everything: kills (headshot/melee/long-range bonuses), assists, valor (saving a teammate under fire, fighting while downed), officer bounties, denied officer heals, support calls, objectives, mission completion, deathless runs, blindfire and fighting-from-cover kills
 - **Promotion ceremony** with a cinematic M1 Garand ping, an animated **end-of-match debrief**, and a small "+2" kill popup by the crosshair (toggleable)
-- **365 challenges** in 11 categories — campaign feats, weapon mastery (90 per-weapon), stealth, vehicles, Axis forces — browsable from the **Service Record** (in the lobby, and fully disconnected from the main menu), with live progress bars and per-player persistence
+- **445 challenges** in 11 categories — campaign feats, weapon mastery (90 per-weapon), stealth, vehicles, Axis forces — browsable from the **Service Record** (in the lobby, and fully disconnected from the main menu), with live progress bars and per-player persistence
 - **Medals & Badges**: 12 campaign-wide meta-achievements derived from the challenge categories
 - **Pin up to 5 challenges** to track live (from the lobby or main-menu Service Record; an in-mission pin surface is still missing — see Known bugs)
 - A few just for fun — see **Wuss.pk3**, awarded for registering enough distinct sounds in one marathon session to nearly fill the engine's sound table
@@ -315,7 +330,8 @@ Everything here exists in the current build. Status honesty: systems marked *(ex
 
 Honesty corner. These are the newest, least-settled systems — deliberately shipped so they can be played and reported on:
 
-- **Ragdolls are ON by default, and they are the newest system in the mod.** Thirty commits across six review rounds went into them and they are still the least settled thing here. Expect the occasional odd pose, a body that spins a moment too long, or one that finds geometry you would not expect. This is the system most worth reporting on. If you'd rather have a clean run, `coop_ragdoll 0` puts the retail death animations back with no other side effects.
+- **The multiplayer modes and bots are the newest layer.** A dozen modes, the match modifiers, objective-playing bots and the vehicle system have been built and verified in automated testing, but most have not had a full human playtest yet. Expect rough edges in the drive / fire / hide / plant / capture interactions, and report anything that misbehaves — co-op play is unaffected.
+- **Ragdolls are ON by default, and one of the least-settled systems.** Thirty commits across six review rounds went into them and they are still among the least settled things here. Expect the occasional odd pose, a body that spins a moment too long, or one that finds geometry you would not expect. This is the system most worth reporting on. If you'd rather have a clean run, `coop_ragdoll 0` puts the retail death animations back with no other side effects.
 - **The skin and finish system is new end to end.** 357 variants is a lot of surface area; it has been playtested, but menu edge cases under fast clicking are the likeliest rough spot.
 - **The weapon-feel pass was tuned very recently** — it got a live tuning session on release day, and the idle-inspect framing in particular was corrected very late and has not had a long soak.
 - **Third-person weapon handling foley ships inert.** The 84 recorded takes are in the package but deliberately not wired yet — they need per-class animation forks and carry a double-trigger hazard, so they are silent rather than half-connected.
@@ -335,12 +351,13 @@ The current honest list — carried in the [release notes](https://github.com/MO
 - **e2l2**: a dozen harmless-looking "NULL listener" script warnings on boot — being fixed with the established guard pattern.
 - **OpenGL2 renderer path**: surfaces lit by animated light styles (e.g. the e2l1 bridge rails) can pulse red, and distant objects can pop through fog instead of fading. The classic renderer path doesn't show either.
 - **Dedicated servers** work for coop maps but crash loading plain deathmatch maps; listen servers (the normal way to host) are unaffected.
+- **Multiplayer dynamic weather is switched off** — it can crash the client while loading some multiplayer maps, so it stays disabled until the fix is verified. Co-op weather is unaffected.
 
 If you hit something not on this list, that's exactly what the **Report a Problem** tool is for.
 
 ## Fixed — the engineering record
 
-Since the structured defect log began on 2026-06-26, **nearly 1,400 defects have been individually logged with root cause and fix** — the id counter is past bug-2000, and all but roughly 40 are closed. (Everything fixed before late June predates the log on top of that.) The bar for logging is deliberately low — real bugs, failed builds, and surprising engine behaviour all count — and the full ledger is published, by area, at **[Every fix, logged](docs/public/BUGFIXES.md)**.
+Since the structured defect log began on 2026-06-26, **over 2,000 defects have been individually logged with root cause and fix** — the id counter is past bug-2700, and all but roughly 30 are closed. (Everything fixed before late June predates the log on top of that.) The bar for logging is deliberately low — real bugs, failed builds, and surprising engine behaviour all count — and the full ledger is published, by area, at **[Every fix, logged](docs/public/BUGFIXES.md)**.
 
 Where the work went (log tags overlap): ~110 renderer entries, ~100 engine, 42 outright crashes, ~105 Armory/loadout, ~90 HUD/menus, ~55 audio, ~85 AI/officer/turrets — and every campaign map has its own trail (the m3l3 church defense alone carries 49 entries, the m2l2a stealth mission 48, the Kasserine glider map 37).
 

@@ -156,6 +156,34 @@ stock browser + rotation builder; Push/Base-Assault keep their own Campaign-Maps
 
 ## Awaiting the next playtest (2026-08-17)
 
+- **PUSH = SINGLE FRONT push-through, redesigned + verified headless (2026-09-18, bug-2711).** Replaced the
+  two-line capture model (user: read as "capturing points", axis never progressed). Now ONE front `F` (1..N):
+  allies hold zones 1..F, axis the rest. Each team's progress is a PROJECTION of its furthest living man onto
+  the allies-home→axis-home axis (`push_teamProgress`, 2D t 0..1) — robust where the `sptrg` checkpoint volumes
+  are thin/misaligned (the old "stand inside zone F" read ~0 and axis reach stuck at home). Seam = midpoint of
+  the two fronts; `F` steps 1/tick toward it (stable, no ratchet). Win = `F` reaches an end (breakthrough) else
+  higher seam vs 0.5 at `coop_mpPushTime`; series to `coop_mpPushToWin`. Both teams' bot objective + compass
+  point at the same front. HUD slimmed to `PUSH` + a green|red seam bar + timer (y6–16, clears the rank bar at
+  x253 y30). **Headless m2l1 (8 bots):** front stable at ~6/10, allies aFrac→0.57, **axis now push xMin 1.0→
+  0.625**, resolves on timer by furthest push, clean restart. Isolation 22/22. **LIMIT:** on baked-chokepoint
+  maps (m2l1 gate) bots can't path to dead centre (worldspawn navmesh; runtime notsolid doesn't re-carve), so
+  BOTS-ONLY stalemates near centre → timer; humans push fully. Real fix = bot traversal (engine, deferred).
+  **TODO:** live playtest; per-map gate openers beyond m2l1/m1l2b/m3l3/m4l2/m5l1b.
+
+- **MP DYNAMIC WEATHER — still DEFAULT OFF, client crash unresolved (bug-2710, 2026-09-18).** `coop_mpWeather`
+  (`mp_weather.scr`) crashes the listen-server client loading m2l1 Push (snow); `set coop_mpWeather 0` fixes it.
+  Client-side, load-time, NOT reproducible on the headless harness → NOT re-enabled blind. NOTE: the maps' AMBIENT
+  SOUNDS (crickets/wind/fire via `ambient.scr`→`ambience.scr`) already play in MP and are all the user wants; the
+  MUSICAL soundtrack (`music/<map>.mus`) is explicitly NOT wanted (a `push_startAmbient` that briefly added it was
+  reverted). **TODO:** short LIVE test (`coop_mpWeather 1` on one map, watch qconsole.log for the crash line)
+  before flipping default-on — do not ship blind.
+
+- **SHADOW BLEED-THROUGH — config mitigation shipped, needs visual verify (bug-2721, 2026-09-18).** Object shadows
+  (trees/buildings) render THROUGH ground, worst at long range (coarse far sun cascade); regression from the
+  2026-09-13 shadow turn-up. Shipped reversible config fix via one-shot `coop_shadowFixDo`: `r_shadowCastFoliage 0`
+  (tree case) + bias 4→8 (building/far case). Surgical ENGINE fix ready if bleed remains: per-cascade bias
+  (`tr_shade.c:2919`) + cascade-4 bounds guard (`shadowmask_fp.glsl:139`). Needs the user's eyes on a sunlit map.
+
 - **MP vehicle system — spawn-verified, INTERACTIVE loops need a playtest (2026-09-15, bug-2643).** Host
   toggle `coop_mpVehicles 1` (default off), on the 5 SP arena maps (m1l3a/m1l3b/m4l1/m5l2a/m5l3). All 5
   types boot-spawn cleanly: AT pickups (team-aware: allies→bazooka, axis→panzerschreck), flak88 +
@@ -185,15 +213,10 @@ stock browser + rotation builder; Push/Base-Assault keep their own Campaign-Maps
   added because `coop_mphostrules.urc` is full (footer at y422) and a 3-column bottom row truncates the
   "Down But Not Out" label. Add a row only if the board gains vertical space. (2026-09-15 vet: the documented
   move-out early-drop is now implemented — leaving `coop_mpSpawnProtMoveDist` (256u) drops protection, bug-2658.)
-- **MP MODE FULL-FUNCTIONALITY VET (2026-09-15, bug-2649–2659).** All 12 MP modes + the rounds framework
-  vetted (8 parallel reviewers). No blockers; every mode compiles, isolation 22/22. 13 fixes shipped — the
-  cross-cutting one: round modes credited `rounds`/`win_<mode>` only to the last survivor (rounds_enforceAll
-  spectated dead players before the award); now snapshotted at round-arm via `coop_mpRndTeam` +
-  `mp_awardRoundWin` (LMS/S&D/FreezeTag/Demolition/PropHunt). Also: Gun Game `rounds` credit, KOTH `capture`,
-  Push series-score persistence + `coop_mpPushToWin`, S&D plant/defuse+detonation scoring, Build-a-Base
-  script-owned victor. **Verified:** parse/isolation/wiring/challenge gates + build. **Needs a playtest** (all
-  logic-tested only): S&D detonation credit is best-effort (base-pak bomb owns the transition, no who-planted
-  ref — USE-holder heuristic); Prop Hunt draft; Demolition audio/marker; every round-mode win credit.
+- **MP MODE FULL-FUNCTIONALITY VET (2026-09-15, bug-2649–2659).** All 12 MP modes + rounds framework vetted;
+  13 fixes shipped (key: round-win credit snapshotted at round-arm via `coop_mpRndTeam`/`mp_awardRoundWin`,
+  not last-survivor). Verified by gates+build; **needs a playtest** — S&D detonation credit is a USE-holder
+  heuristic, Prop Hunt draft, Demolition audio/marker, round-mode win credits all logic-tested only.
 - **REAL UBERMOD BOMB MODES + BUILD-A-BASE MAP FIX — deployed, needs a playtest (2026-09-16, bug-2668/2669).**
   UberMod v8 has only 4 special modes: bb/cyb/snd/ft. S&D and the previously-missing **Cyber Attack** now LOAD
   the real `ubermode/cybersnd.scr` (imported + 5 custom deps under the private `ubermode/` namespace; stock
@@ -209,19 +232,24 @@ stock browser + rotation builder; Push/Base-Assault keep their own Campaign-Maps
   map m1l1 still loads coop with MP off and no `g_ubergametype` leak; isolation 22/22. **Needs a playtest with
   real players** (0-player boot can't verify: campaign-map spawn placement, bomb plant/defuse/round flow,
   victory). Minor: `win_snd` challenge is now orphaned (S&D uses UberMod's own scoring, not our progression).
-- **MP BOTS DO NOT PLAY OBJECTIVES — by decision, left as combat filler (2026-09-16).** Investigated from
-  the engine: MP bots (`playerbot*.cpp`) are a curious-patrol + fight AI with NO objective logic; there is
-  NO script API to give a bot a goal (only `EV_ScriptThread_IsBot`, a query); and the one attraction lever,
-  `AttractiveNode` (navigate.cpp — team-gated, priority, "use" flag), is **never instantiated anywhere**, so
-  `MoveToBestAttractivePoint()` always searches an empty list. Only KOTH partially works with bots (a bot
-  that wanders into the hill counts — `koth_countInHill` has no bot filter). **Coop is unaffected either
-  way:** coop AI is `actor.cpp`, a wholly separate system with zero overlap with `playerbot`/AttractiveNode.
-  IF ever wanted, the clean path is a small MP-only engine builtin (e.g. `bot_objective <origin> <team>
-  <priority>`) that creates/moves an AttractiveNode at each mode's live objective, letting the bot's existing
-  MoveToBestAttractivePoint steer them there, plus script proximity-actions so an arriving bot grabs/plants/
-  holds. Gating risk to verify FIRST: bot nav-mesh coverage on the target maps (this engine's DM bot nav is
-  weak — "bots barely fight on DM"; stock `mohdm*` likely OK, SP force-arena maps uncertain). User chose to
-  leave as-is 2026-09-16; do not rebuild for this without a fresh ask.
+- **MP BOT INTELLIGENCE OVERHAUL — 6 phases shipped, needs a playtest (2026-09-17).** Supersedes the old
+  "bots are combat filler" decision. The engine DOES steer bots via `AttractiveNode`; the missing half was a
+  script that spawns nodes at live objectives (`mp_botobj.scr::botobj_set`, v1.7.7) + a role layer
+  (`mp_botdirector.scr`, Phase 6). Shipped: **P1** graded perception cones (`bot_fov_acquire` 150→`_far` 90,
+  fire cone 45) so bots see off-axis threats; **P3** hearing+flank — `NoticeEvent` acquires from gunfire/impact,
+  `Pain` switch-if-better (`bot_flankreact`) so a shot-in-the-back bot turns; **P2** objective scatter
+  (`bot_objective_spread`, per-bot `m_vAttractScatterGoal` on the primary-attract fast path so they stop
+  stacking on one point); **P4a** nav reroute (`bot_nav_reroute`, `MoveNear` relax-radius before terminal
+  give-up); **P5b** aim convergence (`bot_combat_realism` — horizontal aim starts loose on a fresh enemy lock
+  and tightens over ~1.4s, killing the instant-lock tell; vertical untouched); **P6** squad director — Push
+  frontline contest (`dir_contest`, attackers push / defenders hold via team-filtered priority bands) +
+  objective wiring extended to CTF / Demolition / Base Assault (`dir_attackEnemy`, each squad hunts the enemy
+  objective). All `bot_*` cvars (default on) are live A/B/rollback toggles. **COOP-SAFE by construction:** every
+  edit is in `BotController`/`BotMovement` (coop instantiates none — `actor.cpp` is separate) or in `mp*.scr`
+  gated on `coop_mpRun`; isolation 22/22, coop untouched. Plan+vets: `hzm-mohaa-coop-mod/_research/mp_bot_ai_plan.md`.
+  **Needs a listen/dedicated playtest at `sv_numbots 8`:** verify off-axis engagement, no clumping/stuck, aim
+  feels human, and that CTF/Dem/BaseAssault/Push bots actually pursue the objective. Modes still unwired
+  (delegate to imported ubermode/htr code): Cyber S&D, Cyber Attack, Countdown.
 - **Panzerfaust REMOVED (2026-08-18)** - **armory id 73 is a permanent hole, never renumber.**
 - **Skin system: built end-to-end, awaiting menu playtest (2026-08-18).** 357 finish variants / 45 guns,
   armory finish strip, 7 finish challenges, server-side unlock gates, 25 model variants gated on each gun's
@@ -403,49 +431,21 @@ likely fixed as a side-effect of the later gl2 root-cause fixes for the same act
 (`bug-gl2-forcepose-skips-composite-ally`, `bug-gl2-invisible-live-char-depthprepass`), but never re-checked
 for the intro. One look confirms.
 
-### Shimmer on thin geometry (shadow acne) — RESOLVED (doc stale)
-`CLOSED (code)` · **bug-1164** shipped `r_shadowMapBiasFactor`/`r_shadowMapBiasUnits` (CVAR_ARCHIVE, 4/4)
-applied via `qglPolygonOffset` in the shadow pass. Code-done; no logged post-fix playtest.
-
-### Bloom flat haze + the seven gl1 post-FX ports — RESOLVED (doc stale)
-`CLOSED` · Exposure-aware bloom shipped (`r_ppBloomMode 1`, `RB_HZMBloom`) — see the gl2-render-upgrades entry
-above. And **all seven** gl1 post-FX are now ported + wired in `tr_postprocess.c`/`tr_init.c`: SSAO
-(`r_ppSSAO`), DoF (`r_ppDoF`), god rays (`RB_SunRays`), FXAA (`r_ppFXAA`), sharpen (`r_ppSharpen` + FSR
-RCAS), heat haze (`r_ppHeatHaze`), rain (`r_ppRain`). The "seven remaining" count is obsolete.
-
 ### `r_globalFogDebug` is still `CVAR_TEMP`
 `OPEN` · *`renderergl2/tr_init.c:1926`* — temporarily moved off `CVAR_CHEAT` because a listen server
 runs `sv_cheats 0` and clamped it back to 0, so the debug views could never enable (the first run
 produced 3 identical captures). **Restore it to `CVAR_CHEAT`** at scaffolding-strip time.
 
 ### Diagnostic scaffolding not yet stripped
-`OPEN` (deferred deliberately) · ~90 interleaved sites. Deferred for good reasons — `CMDTRACE`/`IMM2D`
-solved bug-1144, `r_globalFogDebug` is still in use, the heavy probes are gated behind `r_skeldiag`
-default 0, and a 90-site edit is not a safe tail-of-session change. Two loose ends to close at strip
-time: the `r_globalFogDebug` flag above, and `tr_model.cpp`'s ungated
-`SKELREG`/`SKELDIAG`/`SKELDRAW` — though those are **deduped to once per model handle**
-(`tr_model.cpp:50-51`), so "spams" overstates it; they are bounded by model count, not frame rate.
+`OPEN` (deferred deliberately) · ~90 interleaved sites, kept for cause (`CMDTRACE`/`IMM2D` solved bug-1144,
+`r_globalFogDebug` still in use, heavy probes gated behind `r_skeldiag` 0). Loose ends at strip time:
+`r_globalFogDebug`, and `tr_model.cpp`'s ungated `SKELREG`/`SKELDIAG`/`SKELDRAW` (deduped once per model
+handle, `tr_model.cpp:50-51`, so bounded by model count not frame rate).
 
 ---
 
 <a name="diagnostic"></a>
 ## Diagnostic pending — a probe exists, awaiting one boot
-
-### m1l1 2nd-ranger_private actors render mangled — RESOLVED (doc stale)
-`CLOSED (code)` · After the bug-1213 diagnostic (`tiki_posecheck`), **bug-1228** shipped the real fix
-(removed a redundant duplicate `scale 0.52` in the TIKI setup so `radius 20` emits), and bug-1214 fixed two
-engine skeletal OOB defects, bug-1244 added a setup-truncation warning. Probe remains; the defect was fixed.
-A visual confirm would close it fully.
-
-### Reload camera dip never visible — RESOLVED (superseded)
-`CLOSED` · The old `cg_reloadCamDip` (bug-165/168) was replaced by the full state-driven reload-camera-sway
-rewrite (`coop_reloadSway`, 2026-08-19, `cg_view.c`) that eases the view off `ps.iViewModelAnim`. The
-never-visible dip is gone/replaced.
-
-### Mine detector after DBNO revive — RESOLVED (doc stale)
-`CLOSED (code)` · The DBNO revive path calls `coop_mod/main.scr::coop_reissueMissionItems` (`dbno.scr`,
-comment cites bug-620/893 "e1l2 minedetector etc."), and bug-620 added the `coop_missionItems` tier +
-`coop_selftest_keyitems.scr`. Wired into revive; resolved-pending a live confirm.
 
 ---
 

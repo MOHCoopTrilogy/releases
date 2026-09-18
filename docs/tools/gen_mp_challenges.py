@@ -84,6 +84,47 @@ def reward_cvar(reward):
     raise SystemExit("gen_mp_challenges: unknown reward kind %r" % reward)
 
 
+# [user 2026-09-17] SHARED RANK: coop and MP feed one rank ladder, so a weapon-tier reward is ALSO unlocked
+# once the player's coop rank is high enough. tier T unlocks at coop rank WT_RANK_STEP*(T-1) (tier 2 @ r2,
+# tier 8 @ r14). ONLY weapon tiers follow rank; cosmetics/finishes stay challenge-only (return -1).
+WT_RANK_STEP = 2
+
+def reward_wt_rank(reward):
+    """Coop rank that also unlocks a 'wt:<class>:<tier>' reward, or -1 for a non-weapon reward."""
+    if not reward or not reward.startswith("wt:"):
+        return -1
+    parts = reward.split(":")
+    if len(parts) != 3:
+        return -1
+    try:
+        tier = int(parts[2])
+    except ValueError:
+        return -1
+    if tier < 2:
+        return -1
+    return WT_RANK_STEP * (tier - 1)
+
+
+def reward_name(reward):
+    """[user 2026-09-17] Human-readable name of a reward token, for the MP challenge-complete toast (shown
+    like coop's 'Unlocked: X'). '' when there is no item reward."""
+    if not reward:
+        return ""
+    parts = reward.split(":")
+    kind = parts[0]
+    if kind == "wt" and len(parts) == 3:
+        return "%s Tier %s weapon" % (parts[1].capitalize(), parts[2])
+    if kind == "fin":
+        return "%s weapon finish" % parts[1].upper()
+    if kind == "sk":
+        return "a uniform skin"
+    if kind == "hl":
+        return "a helmet"
+    if kind == "gl":
+        return "gloves"
+    return ""
+
+
 def weapon_challenges(byclass):
     """The mechanical ladder: one challenge per class per tier>=2, unlocking that tier on both sides."""
     out = []
@@ -226,12 +267,25 @@ derive local.p:{
 			local.p.flags[local.dkey] = local.done
 			local.p stufftext ( "seta " + local.dkey + " " + local.done )
 			if( local.done == 1 && local.pd == 0 ){
-				local.p iprint ( "MP Challenge complete: " + level.coop_mpChalTitle[local.i] ) 1
+				waitthread mpc_toast local.p level.coop_mpChalTitle[local.i] level.coop_mpChalRewardName[local.i]
 				println( "^~^~^ MPCHAL done e" + local.p.entnum + " id=" + level.coop_mpChalId[local.i] )
 			}
 		}
 
-		if( local.done == 1 ){
+		//[user 2026-09-17] SHARED RANK: the weapon UNLOCK (store + armory tile) also fires when the player's
+		//coop rank meets the reward's tier (coop_mpChalWtRank[i] >= 0; -1 = a non-weapon reward). Additive -
+		//it never revokes a challenge unlock, and the DONE badge above stays stats-only ("challenge done").
+		local.unlocked = local.done
+		if( local.unlocked == 0 ){
+			local.wr = level.coop_mpChalWtRank[local.i]
+			if( local.wr != NIL && local.wr >= 0 ){
+				local.crank = local.p.flags["coop_xp_rank"]
+				if( local.crank == NIL ){ local.crank = 0 }
+				if( local.crank >= local.wr ){ local.unlocked = 1 }
+			}
+		}
+
+		if( local.unlocked == 1 ){
 			local.rw = level.coop_mpChalReward[local.i]
 			if( local.rw != "" && local.rw != NIL ){
 				//dedupe into the store
@@ -273,6 +327,55 @@ isUnlocked local.p local.token:{
 	if( local.store == NIL ){ end local.ok }
 	if( waitthread storeHas local.store local.token == 1 ){ local.ok = 1 }
 }end local.ok
+
+
+//[user 2026-09-17] MP challenge-complete TOAST - the SAME on-screen style as coop's CHALLENGE COMPLETE toast
+//(challenges.scr::chal_toast_show): "CHALLENGE COMPLETE" + the challenge title + the unlocked item. MP-owned;
+//ihuddraw slots 76-78 are free in MP (the coop toast never runs here). Threaded hold+clear so it never blocks
+//derive. No coop code called; no coop_mp* naming issue.
+mpc_toast local.p local.title local.reward:{
+	if( local.p == NULL ){ end }
+	ihuddraw_virtualsize local.p 76 1
+	ihuddraw_align       local.p 76 center top
+	ihuddraw_font        local.p 76 "verdana-10"
+	ihuddraw_color       local.p 76 1 0.85 0.3
+	ihuddraw_rect        local.p 76 0 100 0 0
+	ihuddraw_string      local.p 76 "CHALLENGE COMPLETE"
+	ihuddraw_alpha       local.p 76 1
+
+	ihuddraw_virtualsize local.p 77 1
+	ihuddraw_align       local.p 77 center top
+	ihuddraw_font        local.p 77 "verdana-12"
+	ihuddraw_color       local.p 77 1 1 1
+	ihuddraw_rect        local.p 77 0 112 0 0
+	ihuddraw_string      local.p 77 local.title
+	ihuddraw_alpha       local.p 77 1
+
+	ihuddraw_virtualsize local.p 78 1
+	ihuddraw_align       local.p 78 center top
+	ihuddraw_font        local.p 78 "verdana-10"
+	ihuddraw_color       local.p 78 0.8 0.85 0.95
+	ihuddraw_rect        local.p 78 0 126 0 0
+	if( local.reward != "" && local.reward != NIL ){
+		ihuddraw_string  local.p 78 ( "Unlocked: " + local.reward )
+	}
+	else{
+		ihuddraw_string  local.p 78 "Recorded in your Service Record"
+	}
+	ihuddraw_alpha       local.p 78 1
+
+	thread mpc_toast_hold local.p
+}end
+
+
+//hold the toast ~4s then clear its per-client ihuddraw slots.
+mpc_toast_hold local.p:{
+	wait 4
+	if( local.p == NULL ){ end }
+	ihuddraw_alpha local.p 76 0
+	ihuddraw_alpha local.p 77 0
+	ihuddraw_alpha local.p 78 0
+}end
 '''
 
 
@@ -308,6 +411,8 @@ def render(ch):
         L.append('\tlevel.coop_mpChalTarget[%d] = %d' % (i, tgt))
         L.append('\tlevel.coop_mpChalReward[%d] = "%s"' % (i, rw))
         L.append('\tlevel.coop_mpChalRCvar[%d] = "%s"' % (i, rc))
+        L.append('\tlevel.coop_mpChalWtRank[%d] = %d' % (i, reward_wt_rank(rw)))
+        L.append('\tlevel.coop_mpChalRewardName[%d] = "%s"' % (i, reward_name(rw)))
     L.append('\tlevel.coop_mpChalN = %d' % len(ch))
     L.append('\tprintln( "^~^~^ MPCHAL init n=%d" )' % len(ch))
     L.append("}end")

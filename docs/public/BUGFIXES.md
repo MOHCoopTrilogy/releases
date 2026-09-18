@@ -6,20 +6,20 @@
 
 Every defect this project has found and fixed, from the day the log was started. This is the raw engineering record rather than a changelog: it gives the cause as well as the symptom, because the cause is usually the useful part.
 
-**1993 fixes logged.**
+**2037 fixes logged.**
 
 | Area | Fixes |
 |---|---:|
 | [Stealth, disguise & contain](fixes/stealth-disguise-contain.md) | 89 |
-| [AI & enemy behaviour](fixes/ai-enemy-behaviour.md) | 536 |
-| [Engine & crashes](fixes/engine-crashes.md) | 345 |
+| [AI & enemy behaviour](fixes/ai-enemy-behaviour.md) | 544 |
+| [Engine & crashes](fixes/engine-crashes.md) | 355 |
 | [Weapons & combat](fixes/weapons-combat.md) | 139 |
-| [Audio](fixes/audio.md) | 87 |
-| [UI, HUD & menus](fixes/ui-hud-menus.md) | 265 |
+| [Audio](fixes/audio.md) | 88 |
+| [UI, HUD & menus](fixes/ui-hud-menus.md) | 273 |
 | [Vehicles & rides](fixes/vehicles-rides.md) | 47 |
-| [Multiplayer & networking](fixes/multiplayer-networking.md) | 68 |
+| [Multiplayer & networking](fixes/multiplayer-networking.md) | 72 |
 | [Maps & missions](fixes/maps-missions.md) | 181 |
-| [Build, deploy & tooling](fixes/build-deploy-tooling.md) | 23 |
-| [Other](fixes/other.md) | 213 |
+| [Build, deploy & tooling](fixes/build-deploy-tooling.md) | 25 |
+| [Other](fixes/other.md) | 224 |
 
 Each area links to its own page - the full log is far too large for one.
