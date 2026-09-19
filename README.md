@@ -17,37 +17,20 @@ Play **Medal of Honor: Allied Assault War Chest** cooperatively — the complete
 
 Built on the [HaZardModding Coop Mod](https://github.com/HaZardModding/hzm-mohaa-coop-mod) by chrissstrahl and a custom fork of the [OpenMOHAA](https://github.com/openmoh/openmohaa) engine, then heavily extended: guns with real weight and recoil character, ragdoll physics, an unlockable Armory with hundreds of weapon finishes, enemies that take cover and fight back, a full audio overhaul, HD visuals with post-processing, and dozens of coop-specific systems. One installer, automatic updates at every launch, and your original game folder is never touched.
 
-> [!CAUTION]
-> **Not yet playtested end to end. Try it at your own risk.** Individual systems and missions get
-> live playtests as they are built — v1.4.1 itself shipped after a live tuning pass — but neither a
-> full multiplayer session nor a complete campaign run has been played through start to finish on
-> the current build, and a large share of shipped systems have not yet been confirmed in real play.
-> Expect to hit things nobody has hit yet. If you do, the Report a Problem tool below is genuinely
-> the most useful thing you can send us.
->
-> **Developer and debug tools are still switched on.** They were left in deliberately so testers
-> can get unstuck, and they have not been stripped for release. With `coop_dev 1` set you get
-> `noclip`, `god`, self-heal and heal-friendly, spawn-point inspection and marker placement,
-> position printing, a touched-entity probe, threat-bias toggling, mission-status dumps, and the
-> ability to fire an arbitrary script thread or trigger by name. Build mode (`coop_build`) lets you
-> place and save world objects live, and the map tester (`coop_maptest`) drives an automated tour
-> of every map. None of this is hidden behind anti-cheat, so on a public server treat it as an
-> honour system.
-
 > [!WARNING]
-> **Early alpha.** This project is under heavy active development: expect bugs, rough edges, and
-> frequent updates. When something breaks, please report it — either through the built-in
-> **Start menu -> "MOH Trilogy Coop - Report a Problem"** tool (one click, sends your logs straight
-> to the dev team) or by [opening an issue](https://github.com/MOHCoopTrilogy/releases/issues).
-> Bug reports are the single most helpful thing you can do for the project right now.
+> **Early alpha — expect bugs, and it hasn't been played end-to-end yet.** Systems and missions are
+> tested as they're built, but no full campaign or multiplayer session has been run start-to-finish on
+> the current build. If something breaks, the in-game **Report a Problem** tool (Start menu → *MOH
+> Trilogy Coop – Report a Problem*, one click, sends your logs) or a
+> [GitHub issue](https://github.com/MOHCoopTrilogy/releases/issues) is the most helpful thing you can send.
 
-**[⬇ Download & install (exactly which files) →](#what-to-download)**  |  **[Latest release notes →](https://github.com/MOHCoopTrilogy/releases/releases/latest)**  |  **[Join our Discord →](https://discord.gg/Br9FDB3KU)** — release announcements, find people to play with, report bugs, follow development
+<sub>**[Release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest)** · **[Discord](https://discord.gg/Br9FDB3KU)** (announcements, find players, report bugs) · <a href="#for-developers">Source & build</a></sub>
 
-| Repo | What it holds |
-|---|---|
-| [MOHCoopTrilogy/releases](https://github.com/MOHCoopTrilogy/releases) | This repo — downloads, the auto-update manifest, build & installer pipeline |
-| [MOHCoopTrilogy/hzm-mohaa-coop-mod](https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod) | Mod source (scripts, UI, configs, assets) |
-| [MOHCoopTrilogy/openmohaa](https://github.com/MOHCoopTrilogy/openmohaa) | Engine fork source (GPLv2) |
+<details>
+<summary>Heads-up: developer &amp; debug tools are left switched on</summary>
+
+Debug/cheat tools ship **enabled** so testers can get unstuck — they are not behind anti-cheat, so on a public server treat it as an honour system. `coop_dev 1` gives `noclip`, `god`, self/team heal, spawn-point inspection, marker placement, position printing, a touched-entity probe, threat-bias toggle, mission-status dumps, and firing any script thread or trigger by name. `coop_build` places and saves world objects live; `coop_maptest` runs an automated tour of every map.
+</details>
 
 ## Requirements
 
@@ -92,42 +75,24 @@ That's the whole list. The engine, renderer, runtimes, and all mod content are b
 
 Host: launch the shortcut, then **Multiplayer → Start Game → MOH Trilogy Coop**, pick a mission tile, hit Apply. Friends join over LAN/Internet via **Multiplayer → Join Game** or `connect <ip>` in the console.
 
-## Current release — v1.8.0 *"Changing Sides"*
+## What's new
 
-Push gets a competitive makeover, medkits come to multiplayer in full, and shadows stop leaking through the world.
+The mod updates itself every launch, so you're always on the newest build. Every release is written up in the **[latest release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest)**. Recent headliners: competitive **Push** (best-of-3, sides swap every round), full **MP medkits**, the **Domination / Countdown / Assassination / Freeze Tag / Prop Hunt** modes, objective-playing **bots**, a **vehicle system** (tanks, jeeps, Flak 88s, Nebelwerfers), and shadows that no longer bleed through the ground.
 
-- **Push is best-of-3, and sides swap every round.** First team to two round wins takes the match, and the two teams trade ends after every round — in place, with no map reload. No more being stuck on the harder half of the map.
-- **Per-team Push compass.** Your arrow points at the fixed enemy end you're actually pushing toward, instead of drifting with the contested line.
-- **MP medkits now match co-op.** The same medkit icon and bandage count on your HUD, the same self-heal, effects and sounds — hold **USE** while hurt and standing still to bandage up.
-- **Shadows no longer bleed through the ground.** Object shadows — trees, buildings — were rendering through terrain, worst at long range; that's fixed, and it's live-tunable if you want to dial it.
-- **m3l3 opens up for Push.** The campaign tank-wall breaches are recreated so the Allies have a way forward, and bots climb the ledge they used to jam on.
+Co-op stays fully isolated from every multiplayer system — enforced by an automated contract on each build. Before reporting, skim **Known issues** near the bottom.
 
-**Recently, in the 1.7 line:** three more multiplayer modes — **Domination**, **Countdown** and **Assassination** — plus objective-seeking bots, the **Build-A-Base** campaign-spawn fix, and **One-Shot / One-Ammo** modifiers. And v1.7.1 "Roll Out" added **Prop Hunt**, the **vehicle system** (drivable tanks and jeeps, mannable Flak 88s and Nebelwerfers, anti-tank launchers), **campaign maps** for Base Assault and Push, spawn protection, two-way Demolition and the Freeze Tag meltgun.
+<details>
+<summary><b>Full documentation</b> — generated reference (features, maps, challenges, unlockables, every fix)</summary>
 
-Coop is kept fully isolated from all of it — every multiplayer system is gated off on coop maps, enforced by an automated contract on every build.
+Generated from the project itself (bug log, challenge definitions, map scripts, feature record) by `docs/tools/gen_public_pages.py`, so they can't drift from the build:
 
-> **Straight with you:** the newest multiplayer changes load and run clean in automated testing, but some interactions still want a full human playtest — expect the occasional rough edge, and **Report a Problem** if something misbehaves. Coop play is unaffected.
-
-Full details in the [release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest) —
-and please read [Still early](#still-early--read-before-reporting) and
-[Known bugs](#known-bugs-open-right-now) below before reporting.
-
-## Full documentation
-
-The pages below are **generated from the project itself** — the bug log, the challenge
-definitions, the map scripts and the feature record — so they cannot drift from the build. They
-are regenerated by `docs/tools/gen_public_pages.py` on every change.
-
-| Page | What it holds |
-|---|---|
-| **[Features](docs/public/FEATURES.md)** | Every system built, by domain, with its status — including what is shipped but not yet confirmed in play |
-| **[Maps](docs/public/MAPS.md)** | Every mission with a coop script, whether it is integrated, and how much repair each one took |
-| **[Challenges](docs/public/CHALLENGES.md)** | All challenges, grouped exactly as the in-game Service Record groups them |
-| **[Unlockables](docs/public/UNLOCKABLES.md)** | Every weapon, perk, helmet and uniform you can earn, and the exact challenge that earns it |
-| **[Every fix, logged](docs/public/BUGFIXES.md)** | Every defect ever found and fixed, with its cause — the raw engineering record, by area |
-| **[Roadmap & known issues](docs/public/ROADMAP.md)** | What is planned, in progress, or known broken — the same list the developers work from |
-
-The summary below is the short version.
+- **[Features](docs/public/FEATURES.md)** — every system, by domain, with status
+- **[Maps](docs/public/MAPS.md)** — every mission, whether it's integrated, and how much repair it took
+- **[Challenges](docs/public/CHALLENGES.md)** — all challenges, grouped as the in-game Service Record shows them
+- **[Unlockables](docs/public/UNLOCKABLES.md)** — every weapon, perk, helmet and uniform, and the challenge that earns it
+- **[Every fix, logged](docs/public/BUGFIXES.md)** — the raw engineering record, by area
+- **[Roadmap & known issues](docs/public/ROADMAP.md)** — planned, in progress, or known broken
+</details>
 
 ## Screenshots
 
@@ -335,9 +300,12 @@ Everything here exists in the current build. Status honesty: systems marked *(ex
 
 </details>
 
-## Still early — read before reporting
+## Known issues & rough edges
 
-Honesty corner. These are the newest, least-settled systems — deliberately shipped so they can be played and reported on:
+<details>
+<summary><b>Newest / least-settled systems</b> — read before reporting</summary>
+
+Deliberately shipped so they can be played and reported on:
 
 - **The multiplayer modes and bots are the newest layer.** A dozen modes, the match modifiers, objective-playing bots and the vehicle system have been built and verified in automated testing, but most have not had a full human playtest yet. Expect rough edges in the drive / fire / hide / plant / capture interactions, and report anything that misbehaves — co-op play is unaffected.
 - **Ragdolls are ON by default, and one of the least-settled systems.** Thirty commits across six review rounds went into them and they are still among the least settled things here. Expect the occasional odd pose, a body that spins a moment too long, or one that finds geometry you would not expect. This is the system most worth reporting on. If you'd rather have a clean run, `coop_ragdoll 0` puts the retail death animations back with no other side effects.
@@ -347,7 +315,10 @@ Honesty corner. These are the newest, least-settled systems — deliberately shi
 - **Sniper scopes show the background incorrectly** around the lens. Known, and a proper fix needs renderer work that has not started yet.
 - Still settling from earlier releases: **Take Cover** (pose detection and peek transitions under active tuning), the **jeep .30cal and tank MG gunner slots** (prototypes), the **free cam**, shoulder-aim leg animations (dedicated aimed-locomotion anims are on the roadmap), and the new **AI squad behaviours** (wired in, feel still being tuned).
 
-## Known bugs (open right now)
+</details>
+
+<details>
+<summary><b>Open bugs right now</b></summary>
 
 The current honest list — carried in the [release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest) and the internal defect ledger:
 
@@ -364,7 +335,10 @@ The current honest list — carried in the [release notes](https://github.com/MO
 
 If you hit something not on this list, that's exactly what the **Report a Problem** tool is for.
 
-## Fixed — the engineering record
+</details>
+
+<details>
+<summary><b>The engineering record</b> — 2,000+ fixes logged with root causes</summary>
 
 Since the structured defect log began on 2026-06-26, **over 2,000 defects have been individually logged with root cause and fix** — the id counter is past bug-2700, and all but roughly 30 are closed. (Everything fixed before late June predates the log on top of that.) The bar for logging is deliberately low — real bugs, failed builds, and surprising engine behaviour all count — and the full ledger is published, by area, at **[Every fix, logged](docs/public/BUGFIXES.md)**.
 
@@ -382,6 +356,8 @@ Headline fixes, so you know the flavor:
 - **Officer reinforcements could spawn under the map**, battalions could spawn inside walls, and ~550 German AI across Spearhead/Breakthrough never spawned at all. All restored.
 - **The XP bar could never fill.** Now it can.
 - **You can hear the bombing run coming now.**
+
+</details>
 
 ## Roadmap
 
@@ -426,4 +402,12 @@ Found a bug, or something just feels off? Use the **Report a Problem** tool in t
 
 ---
 
-*About this repo: alongside Releases, it hosts the project pipeline — `build.ps1` (packs the mod tree into pk3s and deploys a dev install), `installer/` (Inno Setup sources + the problem reporter), `updater/` (the launch-time auto-updater), and `publish_release.ps1` (manifest generation and release publishing).*
+## For developers
+
+| Repo | What it holds |
+|---|---|
+| [MOHCoopTrilogy/releases](https://github.com/MOHCoopTrilogy/releases) | This repo — downloads, the auto-update manifest, build & installer pipeline |
+| [MOHCoopTrilogy/hzm-mohaa-coop-mod](https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod) | Mod source (scripts, UI, configs, assets) |
+| [MOHCoopTrilogy/openmohaa](https://github.com/MOHCoopTrilogy/openmohaa) | Engine fork source (GPLv2) |
+
+Alongside Releases, this repo hosts the pipeline: `build.ps1` (packs the mod tree into pk3s and deploys a dev install), `installer/` (Inno Setup sources + the problem reporter), `updater/` (the launch-time auto-updater), and `publish_release.ps1` (manifest generation + release publishing).
