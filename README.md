@@ -13,7 +13,7 @@
 </p>
 <p align="center"><sub>One ~3 MB installer. Auto-detects your GOG game, then downloads the rest on first launch. Needs a GOG copy of MOH: Allied Assault War Chest.</sub></p>
 
-Play **Medal of Honor: Allied Assault War Chest** cooperatively — the complete *Allied Assault*, *Spearhead*, and *Breakthrough* campaigns, mission by mission, with up to 16 players (4 players for the true experience).
+Play **Medal of Honor: Allied Assault War Chest** cooperatively — the complete *Allied Assault*, *Spearhead*, and *Breakthrough* campaigns, mission by mission, in co-op **built for 4** (the multiplayer modes scale up to 16).
 
 Built on the [HaZardModding Coop Mod](https://github.com/HaZardModding/hzm-mohaa-coop-mod) by chrissstrahl and a custom fork of the [OpenMOHAA](https://github.com/openmoh/openmohaa) engine, then heavily extended: guns with real weight and recoil character, ragdoll physics, an unlockable Armory with hundreds of weapon finishes, enemies that take cover and fight back, a full audio overhaul, HD visuals with post-processing, and dozens of coop-specific systems. One installer, automatic updates at every launch, and your original game folder is never touched.
 
@@ -99,13 +99,13 @@ Generated from the project itself (bug log, challenge definitions, map scripts, 
 <table>
 <tr>
 <td width="33%"><img src="docs/screenshots/06-squad2.jpg" width="100%" alt="Enemy patrol in a Normandy village"><br><sub>Enemies that take cover, flank, and surrender</sub></td>
-<td width="33%"><img src="docs/screenshots/02-squad.jpg" width="100%" alt="Allied squad pushing a bunker"><br><sub>Up to 16 players, mission by mission</sub></td>
+<td width="33%"><img src="docs/screenshots/02-squad.jpg" width="100%" alt="Allied squad pushing a bunker"><br><sub>Co-op built for 4, mission by mission</sub></td>
 <td width="33%"><img src="docs/screenshots/04-forest.jpg" width="100%" alt="HD foliage on the Ardennes front"><br><sub>HD visuals, bloom, SSAO and real sun shadows</sub></td>
 </tr>
 <tr>
-<td width="33%"><img src="docs/screenshots/armory.jpg" width="100%" alt="The Armory loadout screen"><br><sub>The Armory — 70+ weapons, live 3D previews</sub></td>
+<td width="33%"><img src="docs/screenshots/07-beach.jpg" width="100%" alt="Assault on the Normandy beaches"><br><sub>The whole trilogy — Omaha to Berlin</sub></td>
 <td width="33%"><img src="docs/screenshots/service-record.jpg" width="100%" alt="Service Record campaign challenges"><br><sub>445 challenges, XP, ranks and medals</sub></td>
-<td width="33%"><img src="docs/screenshots/team-select.jpg" width="100%" alt="Team and class select"><br><sub>13 multiplayer modes with friends or bots</sub></td>
+<td width="33%"><img src="docs/screenshots/08-village.jpg" width="100%" alt="Fighting through a Normandy village"><br><sub>50+ missions, plus 13 multiplayer modes with bots</sub></td>
 </tr>
 </table>
 
