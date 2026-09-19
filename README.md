@@ -6,6 +6,13 @@
 
 <p align="center"><img src="docs/screenshots/01-beach.jpg" width="100%" alt="Storming the beach, cooperatively"></p>
 
+<p align="center">
+<a href="https://github.com/MOHCoopTrilogy/releases/releases/latest/download/MOHCoopTrilogy-WebSetup.exe"><img src="https://img.shields.io/badge/Download%20%26%20Install-2ea44f?style=for-the-badge&logo=github&logoColor=white" alt="Download and install"></a>
+&nbsp;
+<a href="#download--install"><img src="https://img.shields.io/badge/How%20to%20install-24292f?style=for-the-badge" alt="How to install"></a>
+</p>
+<p align="center"><sub>One ~3 MB installer. Auto-detects your GOG game, then downloads the rest on first launch. Needs a GOG copy of MOH: Allied Assault War Chest.</sub></p>
+
 Play **Medal of Honor: Allied Assault War Chest** cooperatively — the complete *Allied Assault*, *Spearhead*, and *Breakthrough* campaigns, mission by mission, with up to 16 players (4 players for the true experience).
 
 Built on the [HaZardModding Coop Mod](https://github.com/HaZardModding/hzm-mohaa-coop-mod) by chrissstrahl and a custom fork of the [OpenMOHAA](https://github.com/openmoh/openmohaa) engine, then heavily extended: guns with real weight and recoil character, ragdoll physics, an unlockable Armory with hundreds of weapon finishes, enemies that take cover and fight back, a full audio overhaul, HD visuals with post-processing, and dozens of coop-specific systems. One installer, automatic updates at every launch, and your original game folder is never touched.
@@ -65,36 +72,21 @@ That's the whole list. The engine, renderer, runtimes, and all mod content are b
 > administrator rights, so it could not modify a protected location even if it tried. Uninstalling
 > removes its own folder and nothing else. You can keep playing the original campaign normally.
 
-### What to download
+### Download & install
 
-The installer is **one `.exe` plus four `.bin` payload parts**. The exe is only a couple of
-megabytes — it is a stub, and it cannot install anything without the `.bin` files sitting next to
-it. **Download all five into the same folder.**
+<p align="center">
+<a href="https://github.com/MOHCoopTrilogy/releases/releases/latest/download/MOHCoopTrilogy-WebSetup.exe"><img src="https://img.shields.io/badge/Download%20%26%20Install-MOH%20Coop%20Trilogy-2ea44f?style=for-the-badge&logo=github&logoColor=white" alt="Download and install MOH Coop Trilogy"></a>
+</p>
 
-| # | File | Size |
-|---|---|---|
-| 1 | **[MOHCoopTrilogy-Setup-1.4.6.exe](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.4.6/MOHCoopTrilogy-Setup-1.4.6.exe)** - run this one | 2 MB |
-| 2 | [MOHCoopTrilogy-Setup-1.4.6-1.bin](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.4.6/MOHCoopTrilogy-Setup-1.4.6-1.bin) | 2.0 GB |
-| 3 | [MOHCoopTrilogy-Setup-1.4.6-2.bin](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.4.6/MOHCoopTrilogy-Setup-1.4.6-2.bin) | 2.0 GB |
-| 4 | [MOHCoopTrilogy-Setup-1.4.6-3.bin](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.4.6/MOHCoopTrilogy-Setup-1.4.6-3.bin) | 2.0 GB |
-| 5 | [MOHCoopTrilogy-Setup-1.4.6-4.bin](https://github.com/MOHCoopTrilogy/releases/releases/download/v1.4.6/MOHCoopTrilogy-Setup-1.4.6-4.bin) | 989 MB |
-|   | **Total** | **~6.8 GB** |
+**One small installer is the whole download** — everything else is automatic:
 
-> [!IMPORTANT]
-> **The installer says 1.4.6 and that is correct — do not go looking for a newer one.** The full
-> installer is published every so often, not with every release, because it is ~6.8 GB while a
-> normal update is a few megabytes. Install 1.4.6 and it brings itself up to the current version
-> the first time you launch it. The newest *release* on this page is always the newest *game*; the
-> newest *installer* is just the most recent full package.
+1. **[Download the installer](https://github.com/MOHCoopTrilogy/releases/releases/latest/download/MOHCoopTrilogy-WebSetup.exe)** (~3 MB) and run it. It auto-detects your GOG game, installs into its own folder, and creates a **MOH Trilogy Coop** shortcut. No admin rights, nothing touched in your game folder.
+2. **Launch from the shortcut.** The first launch downloads the ~7 GB of game files from GitHub with a progress bar (you need your GOG game installed and an internet connection). After that, startup is instant.
+3. **Play.** Every launch quietly checks for updates and grabs only what changed — usually a few megabytes — so you always match the live servers. If a check ever fails, the game just starts with what you already have.
 
-### Then
+> That download link always points at the **newest version**, so it's the only link you ever need — bookmark it, share it, done.
 
-1. Put the exe and all four `.bin` files in the same folder and run the exe.
-2. Launch the game through the **MOH Trilogy Coop** shortcut (desktop or Start menu). Every launch quietly checks for updates and downloads only what changed — typically a few megabytes. If the check fails for any reason, the game simply starts with what you have; updates never block play.
-
-**Already on a 1.0.x test build?** Grab the small `MOHCoop-Upgrade` zip from Releases instead of the full setup — after that one patch, the auto-updater keeps you current.
-
-**Something broke?** Start menu → **MOH Trilogy Coop – Report a Problem** collects your logs and system info and sends them to us in a couple of clicks. GitHub [Issues](https://github.com/MOHCoopTrilogy/releases/issues) work too.
+**Something broke?** Start menu → **MOH Trilogy Coop – Report a Problem** sends us your logs in a couple of clicks. GitHub [Issues](https://github.com/MOHCoopTrilogy/releases/issues) work too.
 
 ### Playing
 

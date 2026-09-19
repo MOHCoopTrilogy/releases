@@ -257,6 +257,25 @@ foreach ($n in $uploads.Keys) {
 }
 & $gh release upload $tag --repo $repoSlug $manifestPath
 if ($LASTEXITCODE -ne 0) { throw "manifest upload failed" }
+
+# [2026-09-19] ALWAYS attach the from-scratch web installer, so
+# https://github.com/$repoSlug/releases/latest/download/MOHCoopTrilogy-WebSetup.exe is a PERMANENT,
+# always-current install link the README points at. bug-2734: full installers were only published
+# occasionally (last was v1.4.6), so every release since shipped ONLY updater deltas - a new player
+# following the download link landed on a release with no installer and could not install at all,
+# while hundreds had the mod. The stub is version-agnostic (it pulls releases/latest/download/
+# manifest.json and downloads the whole current game on first launch), so the SAME file is correct
+# for every release. Kept in the repo at installer/MOHCoopTrilogy-WebSetup.exe. --clobber so a
+# re-publish replaces it. A missing stub is a loud warning, never a silent release without an installer.
+$webInstaller = "$dev\installer\MOHCoopTrilogy-WebSetup.exe"
+if (Test-Path $webInstaller) {
+    & $gh release upload $tag --repo $repoSlug $webInstaller --clobber
+    if ($LASTEXITCODE -ne 0) { throw "web installer upload failed" }
+    Write-Host "from-scratch web installer attached (releases/latest/download/MOHCoopTrilogy-WebSetup.exe)"
+} else {
+    Write-Host "WARNING: $webInstaller MISSING - this release has NO from-scratch installer for new players!" -ForegroundColor Red
+}
+
 & $gh release edit $tag --repo $repoSlug --draft=false
 if ($LASTEXITCODE -ne 0) { throw "undraft failed" }
 Write-Host "release $tag is LIVE"
