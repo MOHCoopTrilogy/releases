@@ -4,7 +4,7 @@
 
 > *The MOH Trilogy Coop Mod is a love letter to the early Medal of Honor franchise.*
 
-<p align="center"><img src="docs/screenshots/01-beach.jpg" width="100%" alt="Storming the beach, cooperatively"></p>
+<p align="center"><img src="docs/screenshots/00-omaha-banner.jpg" width="100%" alt="v1.8.6 - Dog Green is Open: storm Omaha, cooperatively"></p>
 
 <p align="center">
 <a href="https://github.com/MOHCoopTrilogy/releases/releases/latest/download/MOHCoopTrilogy-WebSetup.exe"><img src="https://img.shields.io/badge/Download%20%26%20Install-2ea44f?style=for-the-badge&logo=github&logoColor=white" alt="Download and install"></a>
