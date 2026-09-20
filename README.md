@@ -24,7 +24,7 @@ Built on the [HaZardModding Coop Mod](https://github.com/HaZardModding/hzm-mohaa
 > Trilogy Coop – Report a Problem*, one click, sends your logs) or a
 > [GitHub issue](https://github.com/MOHCoopTrilogy/releases/issues) is the most helpful thing you can send.
 
-<sub>**[Release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest)** · **[Discord](https://discord.gg/Br9FDB3KU)** (announcements, find players, report bugs) · <a href="#for-developers">Source & build</a></sub>
+<sub>**[Release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest)** · **[Discord](https://discord.gg/cVjMYPBFZ)** (announcements, find players, report bugs) · <a href="#for-developers">Source & build</a></sub>
 
 <details>
 <summary>Heads-up: developer &amp; debug tools are left switched on</summary>
@@ -396,7 +396,7 @@ This project stands on a lot of other people's work. Thank you:
 
 ## Feedback & community
 
-**[Discord](https://discord.gg/Br9FDB3KU)** is the project's home — release announcements land there the moment they ship, and it's the fastest way to reach the devs, report bugs, or find a squad to play with.
+**[Discord](https://discord.gg/cVjMYPBFZ)** is the project's home — release announcements land there the moment they ship, and it's the fastest way to reach the devs, report bugs, or find a squad to play with.
 
 Found a bug, or something just feels off? Use the **Report a Problem** tool in the Start menu (it attaches the logs we need), post in Discord, or open an issue on [this repo](https://github.com/MOHCoopTrilogy/releases/issues). Mission-breaking bugs in any of the 50+ maps are the highest priority — tell us the map and what you were doing.
 
