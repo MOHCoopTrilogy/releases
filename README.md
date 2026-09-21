@@ -98,14 +98,16 @@ Generated from the project itself (bug log, challenge definitions, map scripts, 
 
 <table>
 <tr>
-<td width="33%"><img src="docs/screenshots/06-squad2.jpg" width="100%" alt="Enemy patrol in a Normandy village"><br><sub>Enemies that take cover, flank, and surrender</sub></td>
-<td width="33%"><img src="docs/screenshots/02-squad.jpg" width="100%" alt="Allied squad pushing a bunker"><br><sub>Co-op built for 4, mission by mission</sub></td>
-<td width="33%"><img src="docs/screenshots/04-forest.jpg" width="100%" alt="HD foliage on the Ardennes front"><br><sub>HD visuals, bloom, SSAO and real sun shadows</sub></td>
+<td width="50%"><img src="docs/screenshots/01-pressure.jpg" width="100%" alt="Feel the pressure of combat in a way never experienced before in MOHAA"></td>
+<td width="50%"><img src="docs/screenshots/02-cinematic.jpg" width="100%" alt="New cinematic set-pieces make an old friend feel more in-tune with 2026"></td>
 </tr>
 <tr>
-<td width="33%"><img src="docs/screenshots/07-beach.jpg" width="100%" alt="Assault on the Normandy beaches"><br><sub>The whole trilogy — Omaha to Berlin</sub></td>
-<td width="33%"><img src="docs/screenshots/service-record.jpg" width="100%" alt="Service Record campaign challenges"><br><sub>445 challenges, XP, ranks and medals</sub></td>
-<td width="33%"><img src="docs/screenshots/08-village.jpg" width="100%" alt="Fighting through a Normandy village"><br><sub>50+ missions, plus 13 multiplayer modes with bots</sub></td>
+<td width="50%"><img src="docs/screenshots/03-progression.jpg" width="100%" alt="Explore new progressions and ways to complete missions"></td>
+<td width="50%"><img src="docs/screenshots/04-officers.jpg" width="100%" alt="Complete side objectives and eliminate High Ranking Officers to win support"></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/05-challenges.jpg" width="100%" alt="Unlock new skins, weapons, variants and equipment by completing hundreds of Service Record challenges"></td>
+<td width="50%"><img src="docs/screenshots/06-hero.jpg" width="100%" alt="Build your hero through unlocks and progression"></td>
 </tr>
 </table>
 
@@ -370,6 +372,16 @@ In design and research — being built in the open, no dates promised:
 - **Holdout** — a wave-survival gamemode; a full prototype exists and is parked while trilogy work continues
 - **Between-mission staging** — the pre-mission lobby extended into a between-maps ready-up flow
 - **In-game update notifications** — an "update available" notice in the menu when a release lands while you're playing
+
+## Looking for help
+
+**We're looking for Animators, Mappers, and Artists** to help:
+
+- create new weapons and modernize skins
+- animate ADS (aim-down-sights) for the entire arsenal
+- port single-player maps and build new modern battlefields
+
+This is a passion project, so your time is respected — but no one earns a cent on it, including myself. If that sounds like your kind of thing, come say hi on **[Discord](https://discord.gg/cVjMYPBFZ)**.
 
 ## Credits
 
