@@ -77,7 +77,7 @@ Host: launch the shortcut, then **Multiplayer → Start Game → MOH Trilogy Coo
 
 ## What's new
 
-The mod updates itself every launch, so you're always on the newest build. Every release is written up in the **[latest release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest)**. Recent headliners: competitive **Push** (best-of-3, sides swap every round), full **MP medkits**, the **Domination / Countdown / Assassination / Freeze Tag / Prop Hunt** modes, objective-playing **bots**, a **vehicle system** (tanks, jeeps, Flak 88s, Nebelwerfers), and shadows that no longer bleed through the ground.
+The mod updates itself every launch, so you're always on the newest build. Every release is written up in the **[latest release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest)**. Newest in **v1.10.0**: **HD skyboxes and moving clouds** with the box seams removed, 120 textures with their **tiling lines repaired** and ground textures **colour-matched** to the original game, **dust storms** that roll in on the desert maps, **weather in multiplayer**, a **Coop Hardcore** host rule, and bots that **pair up and check corners**. Earlier headliners: competitive **Push** (best-of-3), full **MP medkits**, the **Domination / Countdown / Assassination / Freeze Tag / Prop Hunt** modes, objective-playing **bots**, a **vehicle system** (tanks, jeeps, Flak 88s, Nebelwerfers), and shadows that no longer bleed through the ground.
 
 Co-op stays fully isolated from every multiplayer system — enforced by an automated contract on each build. Before reporting, skim **Known issues** near the bottom.
 
@@ -136,7 +136,7 @@ Everything here exists in the current build. Status honesty: systems marked *(ex
 <details>
 <summary><b>Multiplayer — modes, bots & PvP</b> — a full competitive layer alongside the co-op campaign</summary>
 
-- **A dozen game modes**, playable with friends *or* bots: **Push** (best-of-3 single-front tug-of-war, sides swap every round), **Base Assault / Build-A-Base** (build and hold, on real campaign maps), **Domination**, **King of the Hill**, **Capture the Flag**, **Countdown**, **Assassination**, **Demolition** (two-way — either team can plant), **Gun Game**, **Cyber Attack**, **Freeze Tag** (with a meltgun to thaw teammates), **Prop Hunt** (hide disguised as map objects), and **Last Man Standing**
+- **A dozen game modes**, playable with friends *or* bots: **Push** (best-of-3 single-front tug-of-war), **Base Assault / Build-A-Base** (build and hold, on real campaign maps), **Domination**, **King of the Hill**, **Capture the Flag**, **Countdown**, **Assassination**, **Demolition** (two-way — either team can plant), **Gun Game**, **Cyber Attack**, **Freeze Tag** (with a meltgun to thaw teammates), **Prop Hunt** (hide disguised as map objects), and **Last Man Standing**
 - **Match modifiers** stack on top of any mode: **One-Shot**, **One-Ammo**, **Hardcore**, and **Realism**
 - **Bots that play the objective** — fill a match to any size; they push the line, take the hill, plant and defend, and see, hear, flank and fight when engaged
 - **Campaign maps in multiplayer** — Push and Base Assault play on real single-player maps, reached from a **Campaign Maps** button on the team-setup screen, not only the deathmatch arenas
@@ -234,11 +234,13 @@ Everything here exists in the current build. Status honesty: systems marked *(ex
 <summary><b>Visuals</b></summary>
 
 - Bundled **HD texture, character, world, FX, and skybox packs** (see credits), wired through a DDS override pipeline so the HD versions load reliably everywhere
+- **HD skyboxes and moving clouds** rebuilt at 2048 with the seams between sky faces removed, **tiling lines repaired** on 120 textures, and ground textures **colour-matched** back to the original game (Omaha Beach deliberately left as it is)
 - Post-processing: **bloom**, **SSAO**, **contrast-adaptive sharpening**, and suppression/low-health screen effects — each toggleable
 - Decal **shadows** under characters that follow each map's real sun direction
 - **Layered vehicle deaths**: the initial shake, staged fuel/ammo cook-offs, a burning wreck and a lingering smoke column — instead of one puff and a static husk
 - Overhead **teammate icons** so you stop shooting your friends, and boss icons over officers
-- **Dynamic weather** — rolling rainstorms and snow driven through the engine's native weather system
+- **Dynamic weather** — rolling rainstorms and snow driven through the engine's native weather system, **dust storms** that roll in over the desert maps, and weather on multiplayer maps too
+- Restored **lamp glow** on vehicle headlights and softer, lit **searchlight cones**
 - Full-detail models at all distances, HD-upscaled menus and UI art, and experimental **3D grass** (off by default)
 
 </details>
