@@ -128,6 +128,20 @@ $stage["home/maintt/zzzzzzzzz_coop_terrain.pk3"] = "$mod\zzzzzzzzz_coop_terrain.
 # out-of-band pk3 to build.ps1, ADD IT HERE IN THE SAME COMMIT.
 $stage["home/maintt/zzzzzzzzzz_coop_hd_m3l1a.pk3"]    = "$mod\zzzzzzzzzz_coop_hd_m3l1a.pk3"
 $stage["home/maintt/zzzzzzzzzz_coop_hd_shadowfix.pk3"] = "$mod\zzzzzzzzzz_coop_hd_shadowfix.pk3"
+# [2026-09-25] HD sky pak (docs/tools/gen_sky_hd.py), copied by build.ps1 the same way - added HERE in the same
+# change, per the warning above. Inert unless renderer_opengl2.dll has the r_skyHD hook and r_skyHD is on.
+$stage["home/maintt/zzzzzzzzzz_coop_hd_skies.pk3"]    = "$mod\zzzzzzzzzz_coop_hd_skies.pk3"
+# [2026-09-26] Tile-wrap seam repair pak (docs/tools/gen_tilefix_pak.py, bug-2984) - copied by build.ps1 the same way.
+$stage["home/maintt/zzzzzzzzzz_coop_hd_a_tilefix.pk3"]  = "$mod\zzzzzzzzzz_coop_hd_a_tilefix.pk3"
+# [2026-09-28, bug-3224] Foliage-shadow lightmap patches (maps/<map>.hzmlm; foliage_shadows_2026-09-28) - copied by
+# build.ps1 the same way. Inert without the renderer hook (r_hzmFoliageShadows) - ships with the v1.10.4 renderers.
+$stage["home/maintt/zzzzzzzzzz_coop_foliage_lm.pk3"]  = "$mod\zzzzzzzzzz_coop_foliage_lm.pk3"
+# [2026-09-28, bug-3251] Loading-art pool images (docs/tools/gen_loadart_pak.py) - copied by build.ps1 the same way;
+# kept out of the assets_tex pk3 so it is not re-downloaded. Inert without the v1.10.4 exe's picker (ui_loadArtOn).
+$stage["home/maintt/zzzzzzzzzz_coop_loadart.pk3"]  = "$mod\zzzzzzzzzz_coop_loadart.pk3"
+# [2026-09-28, bug-3251] Overrides pak (docs/tools/gen_fixes_pak.py) - post-release fixes of asset-bucket files, so the
+# assets_tex pk3 keeps its released sha256. Must ship WITH the matching code/tex paks; copied by build.ps1 the same way.
+$stage["home/maintt/zzzzzzzzzz_coop_fixes.pk3"]  = "$mod\zzzzzzzzzz_coop_fixes.pk3"
 $stage["home/maintt/autoexec.cfg"] = "$mod\autoexec.cfg"
 # What's New card trigger seed (constant content = constant hash = downloaded once ever).
 # Lives in installer/ (NOT the mod tree) so build.ps1 never packs it into a pk3 - a pk3 copy
@@ -161,6 +175,79 @@ $stage["home/maintt/zzzzz_xw_weapons.pk3"] = "$gog\maintt\zzzzz_xw_weapons.pk3"
 # once; auto-updates never stomp player settings.
 
 foreach ($k in $stage.Keys) { if (-not (Test-Path $stage[$k])) { throw "staged file missing: $($stage[$k])" } }
+
+# >>> GFX FLIP GUARD [2026-09-25, gl2 MSAA/shadow plan section 3.5]. That work is built in an isolated engine copy
+# (openmohaa-hzm-gfx) and tested ONLY as G:\mohaa-gl2\renderer_opengl2flip.dll. Nothing from it may ship before its
+# post-merge gate passes: (1) no staged file may be a test-named *opengl2flip* DLL; (2) a renderer_opengl2.dll that
+# carries the flip defaults (ASCII marker HZM_GFX_DEFAULTS=flip) ships only if that gate recorded its SHA-256 in
+# docs/tools/gfx_flip_gate.json ({"flip_dll_sha256": ["<hex>", ...]}); (3) menu and DLL must PAIR - an
+# advanced_graphics.urc that links r_msaa needs a flip DLL, and a flip DLL needs that urc. No marker = legacy.
+# build.ps1 runs the same pairing (3) before it deploys anything to the live install.
+function Test-GfxFlipGuard {
+    param([System.Collections.IDictionary]$Stage, [string]$GateFile)
+    $bad = New-Object System.Collections.Generic.List[string]
+    foreach ($k in @($Stage.Keys)) {
+        if ("$k" -like '*opengl2flip*' -or "$($Stage[$k])" -like '*opengl2flip*') { $bad.Add("test renderer staged: $k <- $($Stage[$k])") }
+    }
+    $latin1 = [System.Text.Encoding]::GetEncoding(28591)
+    $isFlip = $false
+    if ($Stage.Contains('renderer_opengl2.dll')) {
+        $dll = [string]$Stage['renderer_opengl2.dll']
+        $isFlip = $latin1.GetString([System.IO.File]::ReadAllBytes($dll)).Contains('HZM_GFX_DEFAULTS=flip')
+        if ($isFlip) {
+            $sha = (Get-FileHash -LiteralPath $dll -Algorithm SHA256).Hash.ToLowerInvariant()
+            $okList = @()
+            if (Test-Path -LiteralPath $GateFile) {
+                try { $okList = @((Get-Content -LiteralPath $GateFile -Raw | ConvertFrom-Json).flip_dll_sha256 | ForEach-Object { "$_".ToLowerInvariant() }) }
+                catch { $bad.Add("gate file unreadable: $GateFile") }
+            }
+            if ($okList -notcontains $sha) { $bad.Add("flip-defaults renderer_opengl2.dll $sha is not in $GateFile - its post-merge gate has not passed") }
+        }
+    }
+    # the urc exactly as it ships: inside the staged code pk3
+    $urcMsaa = $false
+    $pk3Key = 'home/maintt/zzzzzz_co-op_hzm_mod_code.pk3'
+    if ($Stage.Contains($pk3Key)) {
+        Add-Type -AssemblyName System.IO.Compression.FileSystem
+        $zip = [System.IO.Compression.ZipFile]::OpenRead([string]$Stage[$pk3Key])
+        try {
+            $e = $zip.Entries | Where-Object { $_.FullName -ieq 'ui/advanced_graphics.urc' } | Select-Object -First 1
+            if ($e) {
+                $sr = New-Object System.IO.StreamReader($e.Open(), $latin1)
+                try { $urcMsaa = ($sr.ReadToEnd() -match '\br_msaa\b') } finally { $sr.Dispose() }
+            }
+        } finally { $zip.Dispose() }
+    }
+    if ($urcMsaa -ne $isFlip) { $bad.Add("menu/renderer mismatch: advanced_graphics.urc links r_msaa=$urcMsaa but renderer_opengl2.dll flip=$isFlip") }
+    return ,$bad
+}
+$gfxBad = Test-GfxFlipGuard -Stage $stage -GateFile "$dev\docs\tools\gfx_flip_gate.json"
+if ($gfxBad.Count -gt 0) {
+    foreach ($b in $gfxBad) { Write-Host "  $b" -ForegroundColor Red }
+    throw "PUBLISH BLOCKED by the gfx flip guard ($($gfxBad.Count) problem(s))"
+}
+Write-Host "gfx flip guard: pass"
+# <<< GFX FLIP GUARD
+
+# >>> VCL TEST-DLL GUARD [2026-09-28, volumetric clouds plan 2.1]. Nothing test-named may ship: no staged
+# renderer_opengl2<anything>.dll (opengl2vcl, opengl2flip, ...), and no renderer_opengl2.dll that carries the
+# volumetric-clouds test marker HZM_VCL=test (removed only by the P4 flip commit).
+$vclBad = New-Object System.Collections.Generic.List[string]
+foreach ($k in @($stage.Keys)) {
+    $leaf = Split-Path -Leaf "$k"
+    $src  = Split-Path -Leaf "$($stage[$k])"
+    if ($leaf -like 'renderer_opengl2?*.dll' -or $src -like 'renderer_opengl2?*.dll') { $vclBad.Add("test-named renderer staged: $k <- $($stage[$k])") }
+    if (($leaf -like 'renderer_opengl2*.dll') -and (Test-Path -LiteralPath $stage[$k])) {
+        $txt = [System.Text.Encoding]::GetEncoding(28591).GetString([System.IO.File]::ReadAllBytes([string]$stage[$k]))
+        if ($txt.Contains('HZM_VCL=test')) { $vclBad.Add("volumetric-clouds TEST build staged: $k <- $($stage[$k]) (HZM_VCL=test)") }
+    }
+}
+if ($vclBad.Count -gt 0) {
+    foreach ($b in $vclBad) { Write-Host "  $b" -ForegroundColor Red }
+    throw "PUBLISH BLOCKED by the vcl test-DLL guard ($($vclBad.Count) problem(s))"
+}
+Write-Host "vcl test-DLL guard: pass"
+# <<< VCL TEST-DLL GUARD
 
 # --- 4. manifest: hash everything; carry forward URLs for unchanged assets ---
 Write-Host "== hashing $($stage.Count) files =="
