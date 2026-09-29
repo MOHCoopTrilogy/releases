@@ -1,0 +1,8 @@
+{
+  "models/human/new_generic_human.tik": {
+    "base_md5": "715cbbe13a3b9b1294f004d0247d56eb",
+    "base_ticks": 639238962846671095,
+    "base_from": "docs/tools/assets/fixes_base/models/human/new_generic_human.tik",
+    "why": "bug-3196 (t2l2 21G700_Jumpout include block, defect sweep #2 item 3) shipped here instead of assets_tex; base = the v1.10.3 assets_tex member (pak sha256 9cda0bc5), ticks recovered from copytree copies of the 2026-09-01 file"
+  }
+}
