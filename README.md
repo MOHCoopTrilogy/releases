@@ -111,6 +111,23 @@ Generated from the project itself (bug log, challenge definitions, map scripts, 
 </tr>
 </table>
 
+### New in v1.10.4 - On Target
+
+<table>
+<tr>
+<td width="50%"><img src="docs/screenshots/v1104-ironsights-garand-aim.gif" width="100%" alt="M1 Garand aiming down the sights, old on the left, new on the right"><br><sub>Iron sights now sit where the bullet goes (old left, new right)</sub></td>
+<td width="50%"><img src="docs/screenshots/v1104-ironsights-all-stances.gif" width="100%" alt="The Garand's sights lined up standing, crouched, prone and leaning"><br><sub>Lined up in every stance: standing, crouched, prone and leaning</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/v1104-ironsights-lean.jpg" width="100%" alt="Leaning left: old sight off to the side, new sight centred"><br><sub>Leaning no longer throws the gun off to the side</sub></td>
+<td width="50%"><img src="docs/screenshots/v1104-briefing-film-joiner.jpg" width="100%" alt="A joining player watching the Breakthrough briefing film under the Ready prompt"><br><sub>Briefing films now play for everyone who joins, not just the host</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/v1104-loading-cassino.jpg" width="100%" alt="New loading screen art: street fighting in Italy"><br><sub>New loading screen art, picked at random</sub></td>
+<td width="50%"><img src="docs/screenshots/v1104-loading-bastogne.jpg" width="100%" alt="New loading screen art: Bastogne"><br><sub>More new loading screen art</sub></td>
+</tr>
+</table>
+
 ### New in v1.10.3 - Storm Front
 
 <table>
