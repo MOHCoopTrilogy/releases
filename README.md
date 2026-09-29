@@ -77,7 +77,7 @@ Host: launch the shortcut, then **Multiplayer → Start Game → MOH Trilogy Coo
 
 ## What's new
 
-The mod updates itself every launch, so you're always on the newest build. Every release is written up in the **[latest release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest)**. Newest in **v1.10.2**: **116 loading tips** you can flip with LEFT/RIGHT (including how to read your injuries), the loading medal now **morphs from the original MOHAA icon** to the compass star, the **rank-up bar's gold square is fixed**, drivers keep **both hands on the wheel**, Germans shout **"Hands up!"** again, sound groups play **all their recordings**, a cleaned-up **graphics menu** (DEFAULT keeps your HD textures; new Frame Rate Limit and Menu Layout), and bots that **climb hills, jump banks and take doorways** cleanly. In **v1.10.1**: a launch tribute **in memory of Vince Zampella**, lead designer of Medal of Honor: Allied Assault; a new **loading screen** with a turning compass-star medal and 60 field tips on how the mod works; **headlights** that light the road and soldiers; five more **HD skies**; **Use opens doors** instead of bracing on the frame; and bots that **clear rooms together**. In **v1.10.0**: **HD skyboxes and moving clouds** with the box seams removed, 120 textures with their **tiling lines repaired** and ground textures **colour-matched** to the original game, **dust storms** that roll in on the desert maps, **weather in multiplayer**, a **Coop Hardcore** host rule, and bots that **pair up and check corners**. Earlier headliners: competitive **Push** (best-of-3), full **MP medkits**, the **Domination / Countdown / Assassination / Freeze Tag / Prop Hunt** modes, objective-playing **bots**, a **vehicle system** (tanks, jeeps, Flak 88s, Nebelwerfers), and shadows that no longer bleed through the ground.
+The mod updates itself every launch, so you're always on the newest build. Every release is written up in the **[latest release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest)**. Newest in **v1.10.3**: **realistic lightning** with bolts in the sky and thunder that arrives by distance, **water reflections and wet ground in rain** with puddles, **dead bodies that settle and react to blasts**, new **Lightning** and **Water & Weather** menu settings, a much **quieter console**, and fixes including the unkillable soldier by the barrels on m1l1. In **v1.10.2**: **116 loading tips** you can flip with LEFT/RIGHT (including how to read your injuries), the loading medal now **morphs from the original MOHAA icon** to the compass star, the **rank-up bar's gold square is fixed**, drivers keep **both hands on the wheel**, Germans shout **"Hands up!"** again, sound groups play **all their recordings**, a cleaned-up **graphics menu** (DEFAULT keeps your HD textures; new Frame Rate Limit and Menu Layout), and bots that **climb hills, jump banks and take doorways** cleanly. In **v1.10.1**: a launch tribute **in memory of Vince Zampella**, lead designer of Medal of Honor: Allied Assault; a new **loading screen** with a turning compass-star medal and 60 field tips on how the mod works; **headlights** that light the road and soldiers; five more **HD skies**; **Use opens doors** instead of bracing on the frame; and bots that **clear rooms together**. In **v1.10.0**: **HD skyboxes and moving clouds** with the box seams removed, 120 textures with their **tiling lines repaired** and ground textures **colour-matched** to the original game, **dust storms** that roll in on the desert maps, **weather in multiplayer**, a **Coop Hardcore** host rule, and bots that **pair up and check corners**. Earlier headliners: competitive **Push** (best-of-3), full **MP medkits**, the **Domination / Countdown / Assassination / Freeze Tag / Prop Hunt** modes, objective-playing **bots**, a **vehicle system** (tanks, jeeps, Flak 88s, Nebelwerfers), and shadows that no longer bleed through the ground.
 
 Co-op stays fully isolated from every multiplayer system — enforced by an automated contract on each build. Before reporting, skim **Known issues** near the bottom.
 
@@ -108,6 +108,27 @@ Generated from the project itself (bug log, challenge definitions, map scripts, 
 <tr>
 <td width="50%"><img src="docs/screenshots/05-challenges.jpg" width="100%" alt="Unlock new skins, weapons, variants and equipment by completing hundreds of Service Record challenges"></td>
 <td width="50%"><img src="docs/screenshots/06-hero.jpg" width="100%" alt="Build your hero through unlocks and progression"></td>
+</tr>
+</table>
+
+### New in v1.10.3 - Storm Front
+
+<table>
+<tr>
+<td width="50%"><img src="docs/screenshots/v1103-lightning-day-bolt.gif" width="100%" alt="Realistic lightning: a bolt reaches down to the skyline"><br><sub>Realistic lightning with bolts in the sky</sub></td>
+<td width="50%"><img src="docs/screenshots/v1103-lightning-night-bolt.gif" width="100%" alt="A lightning bolt at night"><br><sub>Night storms: the strike lights the clouds, thunder arrives by distance</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/v1103-lightning-before-after.gif" width="100%" alt="Old flat white flash on top, new realistic lightning below"><br><sub>Before (top): the whole sky flashed white. After (bottom): a real strike</sub></td>
+<td width="50%"><img src="docs/screenshots/v1103-rain-wet-ground.gif" width="100%" alt="Rain rolls in and the ground gets wet, then dries"><br><sub>Rain rolls in, the ground darkens and shines, then dries (time-lapse)</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/v1103-night-puddles.gif" width="100%" alt="Puddles at night, before and after"><br><sub>Puddles at night</sub></td>
+<td width="50%"><img src="docs/screenshots/v1103-harbour-water.gif" width="100%" alt="Harbour water, before and after"><br><sub>Water that picks up the sky and haze</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/v1103-ragdoll-grenade.gif" width="100%" alt="A grenade throws a body which comes to rest"><br><sub>Bodies settle and react to blasts</sub></td>
+<td width="50%"><img src="docs/screenshots/v1103-loading-medal.gif" width="100%" alt="Loading screen medal morphing from the original icon to the compass star"><br><sub>The loading medal morphs from the original MOHAA icon to the compass star</sub></td>
 </tr>
 </table>
 
