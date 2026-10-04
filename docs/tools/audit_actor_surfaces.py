@@ -398,10 +398,84 @@ def case_keys(text):
     return ks
 
 
+# [bugsweep 2026-10-04] The first cut of this check called a tik "bodiless" whenever its init weapon was
+# not a case key - 58 tiks, every one of which builds its BODY (usarmy.skd, german_worker.skd, ...) outside the
+# cases and only loses gear. What a mismatched key really costs is decided per skelmodel: a non-head/hand
+# skelmodel outside every case is an unconditional body; identity gear (helmet, cap, radio, medic bag) that
+# exists only inside cases is what an unmatched key strips. Both are derived from the setup section with
+# includes expanded in place.
+HEADISH_RE = re.compile(r"head|hand", re.I)
+IDENTITY_SURF = ("us_helmet", "officercap", "backpack", "phone", "m5bag", "helmet")
+
+
+def setup_section(vfs, path, seen=None):
+    seen = seen or set()
+    if path.lower() in seen:
+        return ""
+    seen.add(path.lower())
+    raw = vfs.read(path)
+    if raw is None:
+        return ""
+    t = strip_comments(raw.decode("latin-1"))
+    t = re.sub(r"(?im)^\s*\$include\s+(\S+)", lambda m: setup_section(vfs, m.group(1).strip('"'), seen), t)
+    if len(seen) > 1:
+        return t
+    m = re.search(r"(?is)setup\s*\{", t)
+    if not m:
+        return ""
+    i, d = m.end(), 1
+    j = i
+    while j < len(t) and d:
+        d += (t[j] == "{") - (t[j] == "}")
+        j += 1
+    return t[i:j - 1]
+
+
+def setup_scan(text):
+    """-> (skelmodels outside cases, surfaces outside cases, {case key: (skelmodels, surfaces)})"""
+    out_sk, out_sf, cases = [], set(), {}
+    depth, cdepth, ckeys = 0, None, []
+    for tok in re.findall(r"\{|\}|[^\n{}]+", text):
+        if tok == "{":
+            depth += 1
+            continue
+        if tok == "}":
+            if cdepth is not None and depth == cdepth:
+                cdepth = None
+            depth -= 1
+            continue
+        for line in tok.splitlines():
+            ln = line.strip()
+            m = re.match(r"(?i)case\s+weapon\s+(.*)", ln)
+            if m:
+                ckeys = [(a or b).lower() for a, b in re.findall(r'"([^"]+)"|(\S+)', m.group(1))]
+                cdepth = depth + 1
+                for ck in ckeys:
+                    cases.setdefault(ck, ([], set()))
+                continue
+            inside = cdepth is not None and depth >= cdepth
+            m = re.match(r"(?i)skelmodel\s+(\S+)", ln)
+            if m:
+                if inside:
+                    for ck in ckeys:
+                        cases[ck][0].append(m.group(1))
+                else:
+                    out_sk.append(m.group(1))
+            m = re.match(r"(?i)surface\s+(\S+)\s+shader", ln)
+            if m:
+                if inside:
+                    for ck in ckeys:
+                        cases[ck][1].add(m.group(1).lower())
+                else:
+                    out_sf.add(m.group(1).lower())
+    return out_sk, out_sf, cases
+
+
 def weapon_key_audit(vfs, verbose):
     fails = 0
     keys = {}
     bodiless = []
+    gear = []
     for tp in vfs.list(AI_PREFIX, ".tik"):
         text = tiki_text(vfs, tp)
         ks = case_keys(text)
@@ -409,14 +483,33 @@ def weapon_key_audit(vfs, verbose):
         if not ks:
             continue
         iw = [w.strip().lower() for w in INITW_RE.findall(text)]
-        if not iw or iw[0] not in ks:
-            bodiless.append((tp, iw[0] if iw else "<none>", vfs.where(tp)))
+        out_sk, out_sf, cases = setup_scan(setup_section(vfs, tp))
+        body_out = [x for x in out_sk if not HEADISH_RE.search(x)]
+        init = iw[0] if iw else None
+        init_body = [x for x in cases.get(init, ([], set()))[0] if not HEADISH_RE.search(x)] if init else []
+        if not body_out and not init_body:
+            bodiless.append((tp, init or "<none>", vfs.where(tp)))
+        # identity gear the model LOSES when it spawns on its own init key (or on no key at all)
+        init_sf = cases.get(init, ([], set()))[1] if init else set()
+        at_risk = sorted({sf for ck, (_sk, sfs) in cases.items() for sf in sfs
+                          if sf not in out_sf and sf not in init_sf
+                          and any(sf == g or sf.endswith(g) for g in IDENTITY_SURF)})
+        if at_risk and body_out:
+            gear.append((tp, init or "<none>", at_risk, vfs.where(tp)))
     ncase = sum(1 for k in keys.values() if k)
-    print("WEAPONKEY: %d of %d AI tiks build their body inside `case weapon` blocks" % (ncase, len(keys)))
-    print("WEAPONKEY: %d of them spawn BODILESS unless given a matching key (init weapon missing/unmatched)"
-          % len(bodiless))
+    print("WEAPONKEY: %d of %d AI tiks have `case weapon` blocks" % (ncase, len(keys)))
+    print("WEAPONKEY: %d of them spawn BODILESS unless given a matching key (no body outside the cases and the "
+          "init weapon builds none)" % len(bodiless))
     for tp, iw, src in bodiless if verbose else [b for b in bodiless if b[2].startswith("repo:")]:
         print("  bodiless-at-spawn  %-60s init=%s [%s]" % (tp, iw, src))
+    print("WEAPONKEY: %d tiks spawn WITHOUT identity gear (helmet/cap/radio/medic bag) on their own init key: it "
+          "lives only in cases the init key does not name (repo overrides FAIL)" % len(gear))
+    for tp, iw, sfs, src in gear:
+        if src.startswith("repo:"):
+            print("WEAPONKEY FAIL gear-in-case  %-52s init=%s %s" % (tp, iw, sfs))
+            fails += 1
+        elif verbose:
+            print("  gear-in-case  %-60s init=%s %s [%s]" % (tp, iw, sfs, src))
 
     for dp, _dns, fns in os.walk(os.path.join(MOD, "coop_mod")):
         for f in sorted(fns):
