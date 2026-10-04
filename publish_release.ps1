@@ -145,6 +145,9 @@ $stage["home/maintt/zzzzzzzzzz_coop_tileart.pk3"]  = "$mod\zzzzzzzzzz_coop_tilea
 # [2026-09-28, bug-3251] Overrides pak (docs/tools/gen_fixes_pak.py) - post-release fixes of asset-bucket files, so the
 # assets_tex pk3 keeps its released sha256. Must ship WITH the matching code/tex paks; copied by build.ps1 the same way.
 $stage["home/maintt/zzzzzzzzzz_coop_fixes.pk3"]  = "$mod\zzzzzzzzzz_coop_fixes.pk3"
+# [2026-09-29, m3l2 ground] m3l2 courtyard/barnyard/road ground + patched m3l2.bsp (docs/proposals/m3l2_ground_2026-09-29)
+# - copied by build.ps1 the same way. Ship it to players and servers together (pure-pak alignment; the map checksum field is unchanged).
+$stage["home/maintt/zzzzzzzzzz_coop_m3l2ground.pk3"]  = "$mod\zzzzzzzzzz_coop_m3l2ground.pk3"
 $stage["home/maintt/autoexec.cfg"] = "$mod\autoexec.cfg"
 # What's New card trigger seed (constant content = constant hash = downloaded once ever).
 # Lives in installer/ (NOT the mod tree) so build.ps1 never packs it into a pk3 - a pk3 copy

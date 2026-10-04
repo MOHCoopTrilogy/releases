@@ -453,6 +453,17 @@ foreach ($destDir in @($deployDir, $appDataDir)) {
         Copy-Item -Path $fixesPak -Destination (Join-Path $destDir 'zzzzzzzzzz_coop_fixes.pk3') -Force
         Write-Host "  Deployed overrides pak -> $destDir"
     }
+    # [2026-09-29, m3l2 ground] m3l2's courtyard / barnyard / road ground (docs/proposals/m3l2_ground_2026-09-29,
+    # built by its tools/gen_m3l2ground_pak.py). Ships maps/m3l2.bsp with a patched SHADER lump only (road faces ->
+    # textures/hzm_m3l2/road, courtyard faces -> farmyard, late-barn barnyard faces -> farmyard_b) plus those NEW-name textures and
+    # scripts/hzm_m3l2_ground.shader. The only other m3l2.bsp is retail main/Pak5.pk3, so any maintt pak wins. The BSP
+    # header checksum field is untouched (CM_Checksum returns it as-is), so an unpatched client still joins and just sees
+    # the old ground. Listed in publish_release.ps1's staging.
+    $m3l2GroundPak = Join-Path $srcDir 'zzzzzzzzzz_coop_m3l2ground.pk3'
+    if (Test-Path $m3l2GroundPak) {
+        Copy-Item -Path $m3l2GroundPak -Destination (Join-Path $destDir 'zzzzzzzzzz_coop_m3l2ground.pk3') -Force
+        Write-Host "  Deployed m3l2 ground pak -> $destDir"
+    }
     Write-Host "  Deployed 3 pk3s -> $destDir"
 }
 

@@ -1,0 +1,134 @@
+{
+ "m3l2_court_front_wide": {
+  "map": "m3l2",
+  "xy": [
+   -3330,
+   2600
+  ],
+  "yaw": 180,
+  "pitch": 5,
+  "ground": 0.0,
+  "under": "textures/wilderness/m3l3grass_bocroad"
+ },
+ "m3l2_barn_front_wide": {
+  "map": "m3l2",
+  "xy": [
+   -6160,
+   -6350
+  ],
+  "yaw": 180,
+  "pitch": 4,
+  "ground": -200.0,
+  "under": "textures/misc_outside/bocage_stevereq"
+ },
+ "m3l2_court_wide_north": {
+  "map": "m3l2",
+  "xy": [
+   -3640,
+   2170
+  ],
+  "yaw": 95,
+  "pitch": 5,
+  "ground": 0.0,
+  "under": "textures/wilderness/m3l3grass_bocroad"
+ },
+ "m3l2_court_barnfront": {
+  "map": "m3l2",
+  "xy": [
+   -3750,
+   2380
+  ],
+  "yaw": 180,
+  "pitch": 7,
+  "ground": 0.0,
+  "under": "textures/wilderness/m3l3grass_bocroad"
+ },
+ "m3l2_barnyard": {
+  "map": "m3l2",
+  "xy": [
+   -6250,
+   -6250
+  ],
+  "yaw": 180,
+  "pitch": 14,
+  "ground": -192.22569274902344,
+  "under": "textures/misc_outside/bocage_stevereq"
+ },
+ "m3l2_barnyard_wide": {
+  "map": "m3l2",
+  "xy": [
+   -6000,
+   -6980
+  ],
+  "yaw": 128,
+  "pitch": 9,
+  "ground": -232.0,
+  "under": "textures/wilderness/m3l3grass_1rough"
+ },
+ "m3l2_road_farm": {
+  "map": "m3l2",
+  "xy": [
+   -4700,
+   1440
+  ],
+  "yaw": 0,
+  "pitch": 9,
+  "ground": 0.0,
+  "under": "textures/wilderness/m3l3grass_bocroad"
+ },
+ "m3l2_road_barn": {
+  "map": "m3l2",
+  "xy": [
+   -5790,
+   -6150
+  ],
+  "yaw": 90,
+  "pitch": 9,
+  "ground": -188.27223205566406,
+  "under": "textures/wilderness/m3l3grass_bocroad"
+ },
+ "m3l2_court_house": {
+  "map": "m3l2",
+  "xy": [
+   -3600,
+   2600
+  ],
+  "yaw": 90,
+  "pitch": 12,
+  "ground": 0.0,
+  "under": "textures/wilderness/m3l3grass_bocroad"
+ },
+ "m3l2_court_gate": {
+  "map": "m3l2",
+  "xy": [
+   -3624,
+   1960
+  ],
+  "yaw": 90,
+  "pitch": 6,
+  "ground": 0.0,
+  "under": "textures/wilderness/m3l3grass_bocroad"
+ },
+ "m3l2_court_east": {
+  "map": "m3l2",
+  "xy": [
+   -3250,
+   2680
+  ],
+  "yaw": 0,
+  "pitch": 10,
+  "ground": 0.0,
+  "under": "textures/wilderness/m3l3grass_bocroad"
+ },
+ "m3l3_road": {
+  "map": "m3l3",
+  "xy": [
+   3300,
+   3680
+  ],
+  "yaw": 180,
+  "pitch": 8,
+  "ground": -270.0,
+  "under": "textures/wilderness/m3l3grass_bocroad"
+ }
+}

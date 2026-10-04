@@ -1,0 +1,401 @@
+{
+ "pak": "zzzzzzzzzz_coop_m3l2ground.pk3",
+ "sha256": "28eebd0403ea31c015d32b6875bf947f997517c6e477579bb43b7a4c3cdeb21b",
+ "size": 6650738,
+ "retail_bsp_sha256": "b94848291ae680bd63130e8058f0b74521a8e859e3c93c1be46875433d4c6f24",
+ "bsp_patch": {
+  "yard_index": 328,
+  "barn_index": 329,
+  "shader_count": 330,
+  "shader_lump_offset": 7116944,
+  "yard_surfs": [
+   4317,
+   4318,
+   4321,
+   4322,
+   4319,
+   4320,
+   1314
+  ],
+  "barn_surfs": [
+   2624,
+   2625,
+   2626,
+   2627,
+   2628,
+   2630,
+   2631,
+   2632
+  ]
+ },
+ "members": {
+  "CREDITS_m3l2ground.txt": {
+   "sha256": "9bb96c4da9e6e43f33dfc95639b4db2d95d425a203d8e7c7a57c73634eeedd2e",
+   "size": 503
+  },
+  "maps/m3l2.bsp": {
+   "sha256": "d2ff36f8dfd46c5d67b382b9ea289562711858ffb9dcde8dc113dadd60411e43",
+   "size": 7163144
+  },
+  "scripts/hzm_m3l2_ground.shader": {
+   "sha256": "d780ef066071238a3b54555e81d23b399045a1dc08012fbdb5178dd3fc312f40",
+   "size": 1921
+  },
+  "textures/hzm_m3l2/farmyard.dds": {
+   "sha256": "453d5aba647092154933a261b53a648cb54fb07bb75fe709bab12d30d4575675",
+   "size": 2796344
+  },
+  "textures/hzm_m3l2/farmyard.jpg": {
+   "sha256": "a52d9ce1b2abc46be8ea05ee3117694c79e4537d6af529484488966b3b19b5d1",
+   "size": 1956053
+  },
+  "textures/hzm_m3l2/road.dds": {
+   "sha256": "40eae119063ce8927329b948cb93d2709fffdc67ade45cbddad988721dabe195",
+   "size": 699192
+  },
+  "textures/hzm_m3l2/road.jpg": {
+   "sha256": "9f639171ab66cae1aa14e4897597f74f77c3c30b7d2f9d8f754ce88deacf7ebb",
+   "size": 609142
+  }
+ },
+ "farmyard": {
+  "exemplars": [
+   {
+    "base": "textures/wilderness/m3l3grass_bocroad_new",
+    "pak": "mainta\\pak1.pk3",
+    "ext": ".jpg",
+    "sha256": "65e9120c75567f9650316636f414bddaf4d542a5f36b0dec8601c333ad71924a",
+    "box": [
+     0,
+     165,
+     512,
+     320
+    ],
+    "units_per_px": 0.91
+   },
+   {
+    "base": "textures/wilderness/m3l3grass_bocroad",
+    "pak": "main\\Pak2.pk3",
+    "ext": ".jpg",
+    "sha256": "0666d6a1a9d9e949a8a876e1f81d4b8db89daf12e6ca0e89bb5bb0000ce07575",
+    "box": [
+     0,
+     165,
+     512,
+     285
+    ],
+    "units_per_px": 0.91
+   },
+   {
+    "base": "textures/wilderness/m3l3grass_set2",
+    "pak": "main\\Pak2.pk3",
+    "ext": ".jpg",
+    "sha256": "4002167ea123b2786a391eeb04d4d3c6f3c74356c4452e38a5b4c8d4983c85bf",
+    "box": [
+     125,
+     0,
+     256,
+     512
+    ],
+    "units_per_px": 0.9
+   },
+   {
+    "base": "textures/misc_outside/bocroad",
+    "pak": "main\\Pak2.pk3",
+    "ext": ".jpg",
+    "sha256": "50a4e3a4c0ca0d637c08a817217102c0bdf09baf2e1ca2d967e8333f3af37975",
+    "box": [
+     80,
+     0,
+     210,
+     512
+    ],
+    "units_per_px": 0.9
+   },
+   {
+    "base": "textures/wilderness/m3l3grass_set2rad",
+    "pak": "main\\Pak2.pk3",
+    "ext": ".jpg",
+    "sha256": "a31f41ceda98efe8c95ba8ece2f2f6fe2e1966f02af1bad2fb977717e7f1ee7a",
+    "box": [
+     60,
+     300,
+     330,
+     512
+    ],
+    "units_per_px": 0.84
+   },
+   {
+    "base": "textures/misc_outside/dryearth1_rd",
+    "pak": "main\\Pak2.pk3",
+    "ext": ".jpg",
+    "sha256": "dbef4a7b765af6606c9de289ec4c805a2074f769a0f6eb1c1d4d39953287323a",
+    "box": [
+     150,
+     0,
+     390,
+     512
+    ],
+    "units_per_px": 0.9
+   },
+   {
+    "base": "textures/wilderness/m3l3grass_bocroadt",
+    "pak": "mainta\\pak1.pk3",
+    "ext": ".jpg",
+    "sha256": "238ee24e667b18163bcac3cd3fa5edffc5e6c08281f0831dbe0198dc8153131f",
+    "box": [
+     60,
+     40,
+     460,
+     470
+    ],
+    "units_per_px": 0.91
+   },
+   {
+    "base": "textures/misc_outside/bocroadadam",
+    "pak": "main\\Pak2.pk3",
+    "ext": ".jpg",
+    "sha256": "3423d58f7421bf21a7ba7146e6bb44140289ec76932d0a59b4052b716e05bbc4",
+    "box": [
+     40,
+     0,
+     170,
+     512
+    ],
+    "units_per_px": 0.9
+   }
+  ],
+  "quilt": {
+   "exhausted": 18,
+   "placements": 64
+  },
+  "period_u": 512,
+  "luma_std_target": 36.42945861816406,
+  "grass_fine": 0.20966093242168427,
+  "fine_before": 0.06915696710348129,
+  "grain_amp": 0.10905482620000839
+ },
+ "road": {
+  "exemplars": [
+   {
+    "base": "textures/wilderness/m3l3grass_bocroad_new",
+    "pak": "mainta\\pak1.pk3",
+    "ext": ".jpg",
+    "sha256": "65e9120c75567f9650316636f414bddaf4d542a5f36b0dec8601c333ad71924a",
+    "box": [
+     0,
+     165,
+     512,
+     320
+    ],
+    "units_per_px": 0.91
+   },
+   {
+    "base": "textures/wilderness/m3l3grass_bocroad",
+    "pak": "main\\Pak2.pk3",
+    "ext": ".jpg",
+    "sha256": "0666d6a1a9d9e949a8a876e1f81d4b8db89daf12e6ca0e89bb5bb0000ce07575",
+    "box": [
+     0,
+     165,
+     512,
+     285
+    ],
+    "units_per_px": 0.91
+   },
+   {
+    "base": "textures/wilderness/m3l3grass_set2",
+    "pak": "main\\Pak2.pk3",
+    "ext": ".jpg",
+    "sha256": "4002167ea123b2786a391eeb04d4d3c6f3c74356c4452e38a5b4c8d4983c85bf",
+    "box": [
+     125,
+     0,
+     256,
+     512
+    ],
+    "units_per_px": 0.9
+   },
+   {
+    "base": "textures/misc_outside/bocroad",
+    "pak": "main\\Pak2.pk3",
+    "ext": ".jpg",
+    "sha256": "50a4e3a4c0ca0d637c08a817217102c0bdf09baf2e1ca2d967e8333f3af37975",
+    "box": [
+     80,
+     0,
+     210,
+     512
+    ],
+    "units_per_px": 0.9
+   },
+   {
+    "base": "textures/wilderness/m3l3grass_set2rad",
+    "pak": "main\\Pak2.pk3",
+    "ext": ".jpg",
+    "sha256": "a31f41ceda98efe8c95ba8ece2f2f6fe2e1966f02af1bad2fb977717e7f1ee7a",
+    "box": [
+     60,
+     300,
+     330,
+     512
+    ],
+    "units_per_px": 0.84
+   },
+   {
+    "base": "textures/misc_outside/dryearth1_rd",
+    "pak": "main\\Pak2.pk3",
+    "ext": ".jpg",
+    "sha256": "dbef4a7b765af6606c9de289ec4c805a2074f769a0f6eb1c1d4d39953287323a",
+    "box": [
+     150,
+     0,
+     390,
+     512
+    ],
+    "units_per_px": 0.9
+   },
+   {
+    "base": "textures/wilderness/m3l3grass_bocroadt",
+    "pak": "mainta\\pak1.pk3",
+    "ext": ".jpg",
+    "sha256": "238ee24e667b18163bcac3cd3fa5edffc5e6c08281f0831dbe0198dc8153131f",
+    "box": [
+     60,
+     40,
+     460,
+     470
+    ],
+    "units_per_px": 0.91
+   },
+   {
+    "base": "textures/misc_outside/bocroadadam",
+    "pak": "main\\Pak2.pk3",
+    "ext": ".jpg",
+    "sha256": "3423d58f7421bf21a7ba7146e6bb44140289ec76932d0a59b4052b716e05bbc4",
+    "box": [
+     40,
+     0,
+     170,
+     512
+    ],
+    "units_per_px": 0.9
+   }
+  ],
+  "across_u": 390.0,
+  "along_u": 470,
+  "gauge_u": 75
+ },
+ "gates": [
+  {
+   "name": "retail m3l2.bsp is the pinned one",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "bsp: only shader lump + yard shaderNums changed",
+   "ok": true,
+   "detail": "entries [58, 286] renamed, 2 appended, +46200 B"
+  },
+  {
+   "name": "bsp: lightmap lump identical (maps/m3l2.hzmlm still applies)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "pak order: the only other maps/m3l2.bsp is retail main/Pak5 (any maintt pak wins)",
+   "ok": true,
+   "detail": "['main\\\\Pak5.pk3']"
+  },
+  {
+   "name": "new names exist in no other pak",
+   "ok": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no player-stack BSP references textures/hzm_m3l2 (only the patched m3l2 will)",
+   "ok": true,
+   "detail": "[]"
+  },
+  {
+   "name": "Omaha maps untouched (not in this pak)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "no retail texture/shader name overridden",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "farmyard.dds: DXT1, full mip chain to 1x1, 4-colour blocks only",
+   "ok": true,
+   "detail": "2048x2048 mips 12, 3-colour blocks 0"
+  },
+  {
+   "name": "farmyard.dds: no encoder colour lean (level-0 mean within 0.75 of float)",
+   "ok": true,
+   "detail": "per-channel [0.21, 0.22, 0.38]"
+  },
+  {
+   "name": "farmyard.dds: mips down to 16 px keep the level-0 mean within 1.5",
+   "ok": true,
+   "detail": "worst 0.31"
+  },
+  {
+   "name": "road.dds: DXT1, full mip chain to 1x1, 4-colour blocks only",
+   "ok": true,
+   "detail": "1024x1024 mips 11, 3-colour blocks 0"
+  },
+  {
+   "name": "road.dds: no encoder colour lean (level-0 mean within 0.75 of float)",
+   "ok": true,
+   "detail": "per-channel [0.23, 0.21, 0.4]"
+  },
+  {
+   "name": "road.dds: mips down to 16 px keep the level-0 mean within 1.5",
+   "ok": true,
+   "detail": "worst 0.60"
+  },
+  {
+   "name": "farmyard: no wrap seam (wrap-line step <= 1.15 x interior median, both axes)",
+   "ok": true,
+   "detail": "s 1.055 t 1.044"
+  },
+  {
+   "name": "road: no wrap seam along the road (s)",
+   "ok": true,
+   "detail": "1.013"
+  },
+  {
+   "name": "farmyard: no clone / stamp (max off-peak 8-64u autocorrelation <= 0.30)",
+   "ok": true,
+   "detail": "0.097"
+  },
+  {
+   "name": "farmyard: no near-exact copy (48 u patches, best other match > 0.9 in 8 orientations: 0%)",
+   "ok": true,
+   "detail": "frac90 0.000 frac97 0.000 median 0.25"
+  },
+  {
+   "name": "farmyard: mean colour = neighbour dirt target within 2 levels",
+   "ok": true,
+   "detail": "[119.0, 96.0, 72.0] vs [119.0, 96.0, 72.0]"
+  },
+  {
+   "name": "road: centre dirt within 6 levels of the farmyard (they meet at the courtyard joins)",
+   "ok": true,
+   "detail": "[116.1, 93.7, 69.2]"
+  },
+  {
+   "name": "road: shoulder grass within 4 levels of the terrain grass it meets",
+   "ok": true,
+   "detail": "[68.5, 63.0, 36.9] vs [67.9, 62.7, 35.6]"
+  },
+  {
+   "name": "farmyard: clipped values <= 0.05%",
+   "ok": true,
+   "detail": "0.0001%"
+  }
+ ]
+}
