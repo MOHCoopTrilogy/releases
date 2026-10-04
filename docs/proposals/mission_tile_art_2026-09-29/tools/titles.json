@@ -1,0 +1,440 @@
+{
+ "_about": "AUTHORED data: the proposed caption per coop mission tile (title = the level's name, baked into the card; the round-1 'kicker' line was dropped in round 2 - the mission header names the mission - and survives here only as data). src tags: retail-ws = the BSP worldspawn 'message'; retail-save = a checkpoint name in global/savenames.scr; retail-brief = the briefing BSP's worldspawn; retail-region = no message in the briefing BSP, region from the campaign's level worldspawns; mod = coop_mod/variables.scr coop_mapDescription; authored = no retail name exists. Everything else in the inventory is SWEPT by inventory.py, not typed here.",
+ "_rules": "The retail worldspawn name wins. Retail 'Chapter - Part' names: the part is the title (the chapter is the mission header). No place, operation, date or unit appears that the game files do not name.",
+ "missions": {
+  "m0": {
+   "retail": "Training / Secret",
+   "proposed": "Training / Secret",
+   "note": "unchanged"
+  },
+  "m1": {
+   "retail": "Lighting the Torch",
+   "proposed": "Lighting the Torch",
+   "note": "retail chalk sign textures/mohmenu/mission1_sign.tga (main/Pak6EnUk.pk3, the English-language pak: other language editions may differ) - the name the retail menu shows; agrees with docs/proposals/menu_system_remaster_2026-09-29 README 'Mission names - sources' (bug-3280)"
+  },
+  "m2": {
+   "retail": "Scuttling the U-529",
+   "proposed": "Scuttling the U-529",
+   "note": "retail chalk sign textures/mohmenu/mission2_sign.tga (main/Pak6EnUk.pk3, the English-language pak: other language editions may differ) - the name the retail menu shows; agrees with docs/proposals/menu_system_remaster_2026-09-29 README 'Mission names - sources' (bug-3280)"
+  },
+  "m3": {
+   "retail": "Operation Overlord",
+   "proposed": "Operation Overlord",
+   "note": "retail chalk sign textures/mohmenu/mission3_sign.tga (main/Pak6EnUk.pk3, the English-language pak: other language editions may differ) - the name the retail menu shows; agrees with docs/proposals/menu_system_remaster_2026-09-29 README 'Mission names - sources' (bug-3280)"
+  },
+  "m4": {
+   "retail": "Behind Enemy Lines",
+   "proposed": "Behind Enemy Lines",
+   "note": "retail chalk sign textures/mohmenu/mission4_sign.tga (main/Pak6EnUk.pk3, the English-language pak: other language editions may differ) - the name the retail menu shows; agrees with docs/proposals/menu_system_remaster_2026-09-29 README 'Mission names - sources' (bug-3280)"
+  },
+  "m5": {
+   "retail": "The Day of the Tiger",
+   "proposed": "The Day of the Tiger",
+   "note": "retail chalk sign textures/mohmenu/mission5_sign.tga (main/Pak6EnUk.pk3, the English-language pak: other language editions may differ) - the name the retail menu shows; agrees with docs/proposals/menu_system_remaster_2026-09-29 README 'Mission names - sources' (bug-3280); briefing5.bsp worldspawn says 'Day of the Tiger'"
+  },
+  "m6": {
+   "retail": "Return to Schmerzen",
+   "proposed": "Return to Schmerzen",
+   "note": "retail chalk sign textures/mohmenu/mission6_sign.tga (main/Pak6EnUk.pk3, the English-language pak: other language editions may differ) - the name the retail menu shows; agrees with docs/proposals/menu_system_remaster_2026-09-29 README 'Mission names - sources' (bug-3280); briefing6.bsp worldspawn says 'The Return to Schmerzen'"
+  },
+  "e1": {
+   "retail": "Tunisia",
+   "proposed": "Tunisia",
+   "note": "today '1 Battle of Kasserine Pass & Operation Torch': Torch was the Nov 1942 landings in Morocco/Algeria; e1 is Kasserine (Feb 1943) and Bizerte (May 1943). No e1 level is Torch."
+  },
+  "e2": {
+   "retail": "Sicily",
+   "proposed": "Sicily",
+   "note": "today '2 Sicily, Operation Husky' is historically right (Husky = Sicily, Jul 1943); 'Sicily' alone matches the retail worldspawn"
+  },
+  "e3": {
+   "retail": "Italy",
+   "proposed": "Italy",
+   "note": "today '3 Operation Avalanche': Avalanche was Salerno (Sep 1943); e3 is Monte Cassino, Anzio (Shingle) and Monte Battaglia. None is Avalanche."
+  },
+  "t1": {
+   "retail": "Normandy",
+   "proposed": "Normandy",
+   "note": "today 'A Storm in the Port' appears in no retail file; retail names the mission Normandy (mainta localization + every t1 worldspawn)"
+  },
+  "t2": {
+   "retail": "Bastogne",
+   "proposed": "Bastogne",
+   "note": "today 'The Bridge' appears in no Spearhead file (it is AA m5l3's retail name)"
+  },
+  "t3": {
+   "retail": "Berlin",
+   "proposed": "Berlin",
+   "note": "today 'The Great Escape' appears in no retail file"
+  }
+ },
+ "tiles": {
+  "training": {
+   "kicker": "Training / Secret",
+   "title": "Training",
+   "src": "retail-ws",
+   "note": "mod says 'Training Camp'"
+  },
+  "m4l0": {
+   "kicker": "Training / Secret",
+   "title": "The Farmhouse",
+   "src": "authored",
+   "note": "no worldspawn title; mod says 'Secret Dog Map'. The script's own header reads 'FARM HOUSE'; objectives: find allied soldiers, take secret German documents, exfiltrate. No place named."
+  },
+  "briefing/briefing1": {
+   "kicker": "Lighting the Torch",
+   "title": "Lighting the Torch Briefing",
+   "src": "retail-brief",
+   "note": "title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT)."
+  },
+  "m1l1": {
+   "kicker": "Lighting the Torch",
+   "title": "Rangers Lead the Way",
+   "src": "retail-ws"
+  },
+  "m1l2a": {
+   "kicker": "Lighting the Torch",
+   "title": "The Rescue Mission",
+   "src": "retail-ws"
+  },
+  "m1l2b": {
+   "kicker": "Lighting the Torch",
+   "title": "Sabotage the Motorpool",
+   "src": "retail-ws"
+  },
+  "m1l3a": {
+   "kicker": "Lighting the Torch",
+   "title": "Desert Road",
+   "src": "retail-ws"
+  },
+  "m1l3b": {
+   "kicker": "Lighting the Torch",
+   "title": "Grounding the Airfield",
+   "src": "retail-ws"
+  },
+  "m1l3c": {
+   "kicker": "Lighting the Torch",
+   "title": "Lighthouse",
+   "src": "retail-ws"
+  },
+  "briefing/briefing2": {
+   "kicker": "Scuttling the U-529",
+   "title": "Scuttling the U-529 Briefing",
+   "src": "retail-brief",
+   "note": "title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT)."
+  },
+  "m2l1": {
+   "kicker": "Scuttling the U-529",
+   "title": "Secret Documents of the Kriegsmarine",
+   "src": "retail-ws"
+  },
+  "m2l2a": {
+   "kicker": "Scuttling the U-529",
+   "title": "Naxos Prototype",
+   "src": "retail-ws"
+  },
+  "m2l2b": {
+   "kicker": "Scuttling the U-529",
+   "title": "Inside the U-529",
+   "src": "retail-ws"
+  },
+  "m2l2c": {
+   "kicker": "Scuttling the U-529",
+   "title": "Cover Blown",
+   "src": "retail-ws"
+  },
+  "m2l3": {
+   "kicker": "Scuttling the U-529",
+   "title": "Escape from Trondheim",
+   "src": "retail-ws"
+  },
+  "briefing/briefing3": {
+   "kicker": "Operation Overlord",
+   "title": "Operation Overlord Briefing",
+   "src": "retail-brief",
+   "note": "title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT)."
+  },
+  "m3l1a": {
+   "kicker": "Omaha Beach",
+   "title": "The Landing",
+   "src": "retail-ws",
+   "note": "OMAHA RULE: tile art only; no m3l1a/m3l1b texture or skybox is touched"
+  },
+  "m3l1b": {
+   "kicker": "Omaha Beach",
+   "title": "Inside the Bunker",
+   "src": "retail-ws",
+   "note": "OMAHA RULE as above"
+  },
+  "m3l2": {
+   "kicker": "Operation Overlord",
+   "title": "Battle in the Bocage",
+   "src": "retail-ws"
+  },
+  "m3l3": {
+   "kicker": "Operation Overlord",
+   "title": "The Nebelwerfer Hunt",
+   "src": "retail-ws"
+  },
+  "briefing/briefing4": {
+   "kicker": "Behind Enemy Lines",
+   "title": "Behind Enemy Lines Briefing",
+   "src": "retail-brief",
+   "note": "title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT)."
+  },
+  "m4l1": {
+   "kicker": "Behind Enemy Lines",
+   "title": "Rendezvous with the Resistance",
+   "src": "retail-ws"
+  },
+  "m4l2": {
+   "kicker": "Behind Enemy Lines",
+   "title": "Diverting the Enemy",
+   "src": "retail-ws"
+  },
+  "m4l3": {
+   "kicker": "Behind Enemy Lines",
+   "title": "The Command Post",
+   "src": "retail-ws"
+  },
+  "briefing/briefing5": {
+   "kicker": "The Day of the Tiger",
+   "title": "The Day of the Tiger Briefing",
+   "src": "retail-brief",
+   "note": "title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT)."
+  },
+  "m5l1a": {
+   "kicker": "Sniper's Last Stand",
+   "title": "Outskirts",
+   "src": "retail-ws"
+  },
+  "m5l1b": {
+   "kicker": "Sniper's Last Stand",
+   "title": "City Hall",
+   "src": "retail-ws"
+  },
+  "m5l2a": {
+   "kicker": "The Hunt for the King Tiger",
+   "title": "Destroyed Village",
+   "src": "retail-ws"
+  },
+  "m5l2b": {
+   "kicker": "The Hunt for the King Tiger",
+   "title": "Country Road",
+   "src": "retail-ws"
+  },
+  "m5l3": {
+   "kicker": "The Day of the Tiger",
+   "title": "The Bridge",
+   "src": "retail-ws"
+  },
+  "briefing/briefing6": {
+   "kicker": "Return to Schmerzen",
+   "title": "Return to Schmerzen Briefing",
+   "src": "retail-brief",
+   "note": "title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT)."
+  },
+  "m6l1a": {
+   "kicker": "The Siegfried Forest",
+   "title": "Flak Guns",
+   "src": "retail-ws"
+  },
+  "m6l1b": {
+   "kicker": "The Siegfried Forest",
+   "title": "Bunker Hill",
+   "src": "retail-ws"
+  },
+  "m6l1c": {
+   "kicker": "Return to Schmerzen",
+   "title": "Das Sturmgewehr",
+   "src": "mod",
+   "note": "retail worldspawn has the article wrong ('Die Sturmgewehr'); the mod already corrected it (variables.scr:263) - Gewehr is neuter"
+  },
+  "m6l2a": {
+   "kicker": "Return to Schmerzen",
+   "title": "The Communications Blackout",
+   "src": "retail-ws"
+  },
+  "m6l2b": {
+   "kicker": "Return to Schmerzen",
+   "title": "The Schmerzen Express",
+   "src": "retail-ws"
+  },
+  "m6l3a": {
+   "kicker": "Return to Schmerzen",
+   "title": "Storming Fort Schmerzen",
+   "src": "retail-ws",
+   "note": "mod adds '- Train Platform', which no retail file says"
+  },
+  "m6l3b": {
+   "kicker": "Storming Fort Schmerzen",
+   "title": "Inner Facility",
+   "src": "retail-ws"
+  },
+  "m6l3d": {
+   "kicker": "Storming Fort Schmerzen",
+   "title": "Chemical Plant",
+   "src": "retail-ws",
+   "note": "played 3rd (m6l3b -> m6l3d -> m6l3c, per each map's missioncomplete). The mod's coop_mapDescription swaps c/d."
+  },
+  "m6l3c": {
+   "kicker": "Storming Fort Schmerzen",
+   "title": "Final Run",
+   "src": "retail-ws",
+   "note": "played 4th; see m6l3d"
+  },
+  "m6l3e": {
+   "kicker": "Storming Fort Schmerzen",
+   "title": "Conclusion",
+   "src": "retail-ws"
+  },
+  "briefing/briefinge1": {
+   "kicker": "Tunisia",
+   "title": "Tunisia Briefing",
+   "src": "retail-region",
+   "note": "the briefing BSP has no worldspawn message (it only plays the retail film); the title is the generic 'Briefing' and the region comes from the campaign's own level worldspawns; title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT)."
+  },
+  "e1l1": {
+   "kicker": "Tunisia",
+   "title": "Battle of Kasserine Pass I",
+   "src": "retail-ws"
+  },
+  "e1l2": {
+   "kicker": "Tunisia",
+   "title": "Battle of Kasserine Pass II",
+   "src": "retail-ws"
+  },
+  "e1l3": {
+   "kicker": "Tunisia",
+   "title": "Bizerte Canal",
+   "src": "retail-ws",
+   "note": "mod says 'Operation Torch - Bizerte Fort' - Torch is wrong for Bizerte (May 1943)"
+  },
+  "e1l4": {
+   "kicker": "Tunisia",
+   "title": "Bizerte Harbor",
+   "src": "retail-ws"
+  },
+  "briefing/briefinge2": {
+   "kicker": "Sicily",
+   "title": "Sicily Briefing",
+   "src": "retail-region",
+   "note": "the briefing BSP has no worldspawn message (it only plays the retail film); the title is the generic 'Briefing' and the region comes from the campaign's own level worldspawns; title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT)."
+  },
+  "e2l1": {
+   "kicker": "Sicily",
+   "title": "Glider Landing",
+   "src": "retail-ws"
+  },
+  "e2l2": {
+   "kicker": "Sicily",
+   "title": "The Airfield at Caltagirone",
+   "src": "retail-ws"
+  },
+  "e2l3": {
+   "kicker": "Sicily",
+   "title": "Gela",
+   "src": "retail-ws"
+  },
+  "briefing/briefinge3": {
+   "kicker": "Italy",
+   "title": "Italy Briefing",
+   "src": "retail-region",
+   "note": "the briefing BSP has no worldspawn message (it only plays the retail film); the title is the generic 'Briefing' and the region comes from the campaign's own level worldspawns; title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT)."
+  },
+  "e3l1": {
+   "kicker": "Italy",
+   "title": "Monte Cassino I",
+   "src": "retail-ws"
+  },
+  "e3l2": {
+   "kicker": "Italy",
+   "title": "Monte Cassino II",
+   "src": "retail-ws"
+  },
+  "e3l3": {
+   "kicker": "Italy",
+   "title": "Anzio",
+   "src": "retail-ws"
+  },
+  "e3l4": {
+   "kicker": "Italy",
+   "title": "Monte Battaglia",
+   "src": "retail-ws"
+  },
+  "briefing/briefingt1": {
+   "kicker": "Normandy",
+   "title": "Normandy Briefing",
+   "src": "retail-region",
+   "note": "the briefing BSP has no worldspawn message (it only plays the retail film); the title is the generic 'Briefing' and the region comes from the campaign's own level worldspawns; title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT)."
+  },
+  "t1l1": {
+   "kicker": "Normandy",
+   "title": "The Rendezvous",
+   "src": "retail-save",
+   "note": "retail objectives: 1 'Rendezvous With Your Allies', 2 'Destroy Tank With AA Gun', 3 'Regroup With Your Allies' - the level is the link-up with the allies; checkpoint 'The Rendezvous' names it (the other is the opening 'Welcome to France'). Today's label 'Night Drop' is mod shorthand."
+  },
+  "t1l2": {
+   "kicker": "Normandy",
+   "title": "Lock and Load",
+   "src": "retail-save",
+   "note": "retail objective (only one, set via $Objective text): 'Locate and Destroy Artillery Emplacements' - no checkpoint names it -> opening checkpoint 'Lock and Load' (others: Through the Tunnel / Assault the Compound). Today's label 'Verviers' is WRONG (Belgium; t1 is Normandy)."
+  },
+  "t1l3": {
+   "kicker": "Normandy",
+   "title": "The Hunt Begins",
+   "src": "retail-save",
+   "note": "retail objectives 1-6: track the colonel, the Tiger, the flak cannon, the air drop, charges on the bridge, 6 'Return to the Captain Before the Charges Blow' - no single checkpoint names the whole; the opening 'The Hunt Begins' names objective 1 and the level's arc (others: Destroy the Tiger Tank / Attack the Weapons Dump). Today's label 'Malmedy' is WRONG (Belgium)."
+  },
+  "briefing/briefingt2": {
+   "kicker": "Bastogne",
+   "title": "Bastogne Briefing",
+   "src": "retail-region",
+   "note": "the briefing BSP has no worldspawn message (it only plays the retail film); the title is the generic 'Briefing' and the region comes from the campaign's own level worldspawns; title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT)."
+  },
+  "t2l1": {
+   "kicker": "Bastogne",
+   "title": "Panzer Attack",
+   "src": "retail-save",
+   "note": "retail objective 'Destroy the Nebelwerfers' - no checkpoint names it -> opening checkpoint 'Panzer Attack' (other: Approaching the Compound). Today's label 'Ardennes'."
+  },
+  "t2l2": {
+   "kicker": "Bastogne",
+   "title": "Top of the Mountain",
+   "src": "retail-save",
+   "note": "the level's only checkpoint (objective: escort the supply truck). Retail's own name, odd as it reads for the Ardennes. Today's label 'Halftrack'."
+  },
+  "t2l3": {
+   "kicker": "Bastogne",
+   "title": "Defend the Front",
+   "src": "retail-save",
+   "note": "retail objectives: orders from the captain at the front line, the medic, then 4-6 'Locate and Defend the Right/Left Flank' - the level is the defence of the front; checkpoint 'Defend the Front' names it (others: Under Attack / Locate the Medic)."
+  },
+  "t2l4": {
+   "kicker": "Bastogne",
+   "title": "A Quiet Little Town",
+   "src": "retail-save",
+   "note": "the retail script sets objective 1 by number only (add_objectives 1 3, no text) - no checkpoint can name it -> opening checkpoint 'A Quiet Little Town' (other: Panzer in the Street). Today's label 'Death Zones' is dev shorthand."
+  },
+  "briefing/briefingt3": {
+   "kicker": "Berlin",
+   "title": "Berlin Briefing",
+   "src": "retail-region",
+   "note": "the briefing BSP has no worldspawn message (it only plays the retail film); the title is the generic 'Briefing' and the region comes from the campaign's own level worldspawns; title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT)."
+  },
+  "t3l1": {
+   "kicker": "Berlin",
+   "title": "Welcome to Berlin",
+   "src": "retail-save",
+   "note": "retail objectives 1-7: cross the bridge into Berlin, the downed plane and map, the Chancellery, the safe, commandeer a tank - no single checkpoint names the whole -> opening checkpoint 'Welcome to Berlin', which also names objective 1 (others: Retrieved Papers From the Plane / Entering the Chancellery Building). Today's label 'Barracks'."
+  },
+  "t3l2": {
+   "kicker": "Berlin",
+   "title": "The Last Stand",
+   "src": "retail-save",
+   "note": "retail objectives: 1 'Destroy the South Bridge', 2 'Return to the Soviet Recon Group', 3 'Defend the Bridge Until Air Support Arrives' - the level ends in the bridge defence; checkpoint 'The Last Stand' names it (other: the opening 'Half Way Home'). Today's label 'Sub Pens' is WRONG (t3l2 is Berlin; the sub pens are AA m2)."
+  }
+ },
+ "_missions_format": "'proposed' is the NAME only; the prefix (e.g. 'AA 5 ', 'BT 2 ', or today's 'Allied Assault: 5 ') is the menu's layout choice. Names match the menu-system remaster's chalk list (station_layouts.py COOPOPS) exactly.",
+ "_sh_rule": "SH levels: worldspawn is only the region, so the title is one of the level's retail checkpoint names (global/savenames.scr, mainta/pak1.pk3). RULE (a stated judgement, justified per level below): the checkpoint that names the level's central fight or goal as its RETAIL objectives describe it (retail maps/<bsp>.scr, read from the paks - the mod's objective strings are not used); if no checkpoint names it, the opening checkpoint."
+}

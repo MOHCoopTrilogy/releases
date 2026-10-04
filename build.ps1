@@ -108,6 +108,10 @@ if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_admin_menu check - r
 # matches every image scripts/coop_loadart.shader names.
 python "C:\mohaa-coop-dev\docs\tools\gen_loadart_pak.py" check
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_loadart_pak check - regenerate with: python docs/tools/gen_loadart_pak.py build" -ForegroundColor Red; exit 1 }
+# [mission tile art, bug-3274] The coop mission-select tile art ships in its own out-of-band pak (gen_tileart_pak.py,
+# sources docs/tools/assets/tileart); `check` = byte-identical to a rebuild and every image the coop_start cfgs name.
+python "C:\mohaa-coop-dev\docs\tools\gen_tileart_pak.py" check
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_tileart_pak check - regenerate with: python docs/tools/gen_tileart_pak.py build" -ForegroundColor Red; exit 1 }
 # [2026-09-28, bug-3251] OVERRIDES pak: an asset-bucket file fixed after a release ships in zzzzzzzzzz_coop_fixes.pk3
 # (source docs/tools/assets/fixes/<relpath>) while the mod tree keeps the RELEASED copy, same bytes AND mtime, so the
 # ~1.3 GB assets_tex pk3 stays a cache hit (same sha256 = no re-download). `check` fails if that pinned base copy was
@@ -432,6 +436,13 @@ foreach ($destDir in @($deployDir, $appDataDir)) {
     if (Test-Path $loadartPak) {
         Copy-Item -Path $loadartPak -Destination (Join-Path $destDir 'zzzzzzzzzz_coop_loadart.pk3') -Force
         Write-Host "  Deployed loading-art pak -> $destDir"
+    }
+    # [mission tile art, bug-3274] Coop mission-select tile art (textures/mohmenu/hzmtile/, 512 jpg). Out of the mod
+    # tree for the same reason as the loading art (bug-3251). Listed in publish_release.ps1 in the same change.
+    $tileartPak = Join-Path $srcDir 'zzzzzzzzzz_coop_tileart.pk3'
+    if (Test-Path $tileartPak) {
+        Copy-Item -Path $tileartPak -Destination (Join-Path $destDir 'zzzzzzzzzz_coop_tileart.pk3') -Force
+        Write-Host "  Deployed tile-art pak -> $destDir"
     }
     # [2026-09-28, bug-3251] Overrides pak (docs/tools/gen_fixes_pak.py): the post-release fix of an asset-bucket file
     # (today models/human/new_generic_human.tik, bug-3196). THE NAME IS LOAD-BEARING: ten z sorts it after

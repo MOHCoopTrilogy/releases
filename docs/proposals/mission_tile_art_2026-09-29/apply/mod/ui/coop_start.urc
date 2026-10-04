@@ -1,0 +1,420 @@
+menu "coop_start" 640 480 NONE 0
+bgcolor 0 0 0 1 
+borderstyle NONE
+bgfill 0 0 0.1 1 
+fullscreen 1
+virtualres 1
+
+//showcommand "set ui_dmmap nomap\n"
+//seta ui_console "1"
+
+/////////////////////////////////////NAME
+resource
+Label
+{
+	title "Server Name"
+	name "Default"
+	rect 10 10 120 24
+	fgcolor 1.00 1.00 1.00 1.00
+	bgcolor 0.50 0.50 0.50 0.00
+	borderstyle "NONE"
+	shader "textures/mohmenu/weapon_sign"
+	font facfont-20
+	textalign center
+}
+
+resource
+Field
+{
+	name "Default"
+	rect 134 10 140 24
+	fgcolor 0.00 0.00 0.00 1.00
+	bgcolor 0.80 0.90 0.10 1.00 //[202][hotfix] chrissstrahl - color changed to greenish
+	borderstyle "RAISED"
+	linkcvar "sv_hostname"
+}
+
+//[201] chrissstrahl - moved top left instead or right, because more space for password
+//put LMS lives in place
+/////////////////////////////////////PASSWORD
+resource
+Label
+{
+	title "Password"
+	name "Default"
+	rect 10 66 120 24
+	fgcolor 1.00 1.00 1.00 1.00
+	bgcolor 0.50 0.50 0.50 0.00
+	borderstyle "NONE"
+	shader "textures/mohmenu/weapon_sign"
+	font facfont-20
+	textalign center
+}
+
+resource
+Field
+{
+	name "Default"
+	rect 134 66 140 24
+	fgcolor 0.00 0.00 0.00 1.00
+	bgcolor 0.80 0.90 0.10 1.00 //[202][hotfix] chrissstrahl - color changed to greenish
+	borderstyle "RAISED"
+	linkcvar "password"
+}
+
+/////////////////////////////////////MAX PLAYERS
+resource
+Label
+{
+	title "Max Players"
+	name "Default"
+	rect 281 10 120 24
+	fgcolor 1.00 1.00 1.00 1.00
+	bgcolor 0.50 0.50 0.50 0.00
+	borderstyle "NONE"
+	shader "textures/mohmenu/weapon_sign"
+	font facfont-20
+	textalign center
+}
+resource
+Field
+{
+	name "Default"
+	rect 405 10 80 22
+	fgcolor 0.00 0.00 0.00 1.00
+	bgcolor 0.80 0.90 0.10 1.00 //[202][hotfix] chrissstrahl - color changed to greenish
+	borderstyle "RAISED"
+	linkcvar "sv_maxclients"
+}
+
+/////////////////////////////////////FRIENDLY FIRE - REMOVED [user 2026-09-25]
+// The checkbox was dead in coop at two layers: ui_startdmmap re-pushes g_teamdamage from the MP menu's
+// ui_teamdamage after start_server.cfg runs (cl_ui.cpp UI_StartDMMap_f), and the engine drops same-team
+// player hits in coop anyway (sentient.cpp ArmorDamage / CoopMpPlayerHit). Real FF would also trip
+// g_teamkillkick on drop-in servers. MP keeps its own working option.
+
+/////////////////////////////////////MISSION
+
+//[202][hotfix] chrissstrahl - disabled, space can be used for something else - this was redudant
+//resource
+//Label
+//{
+//	title "Mission"
+//	name "Default"
+//	rect 10 38 120 24
+//	fgcolor 1.00 1.00 1.00 1.00
+//	bgcolor 0.50 0.50 0.50 0.00
+//	borderstyle "NONE"
+//	shader "textures/mohmenu/weapon_sign"
+//	font facfont-20
+//	textalign center
+//}
+
+//[202][hotfix] chrissstrahl - changed selected mission info position and shader
+resource
+Label
+{
+	title "No Mission Selected"
+	name "coop_missionName"
+	rect 164 38 322 24
+	fgcolor 1.00 1.00 1.00 1.00
+	bgcolor 0.10 0.10 0.10 1.00
+	borderstyle "RAISED"
+	font facfont-20
+	shader "textures/mohmenu/weapon_sign"
+}
+
+//[202][hotfix] chrissstrahl - changed mission selection dropdown shader and position
+resource
+PulldownMenuContainer
+{
+	title "List"
+	name "coop_missionNameSel"
+	
+	rect 132 34 32 32
+	fgcolor 1.00 1.00 1.00 1.00
+	bgcolor 0.10 0.10 0.10 0.00
+	borderstyle "NONE"
+	
+	menushader "MENU" "textures/menu/pulldownarrowsmall"
+	selmenushader "MENU" "textures/menu/pulldownarrowsmall_sel"
+	
+	addpopup "MENU" "Training / Secret" command "exec ui/coop_start/m0.cfg"
+	addpopup "MENU" "Allied Assault: 1 Lighting the Torch" command "exec ui/coop_start/m1.cfg"
+	addpopup "MENU" "Allied Assault: 2 Scuttling the U-529" command "exec ui/coop_start/m2.cfg"
+	addpopup "MENU" "Allied Assault: 3 Operation Overlord" command "exec ui/coop_start/m3.cfg"
+	addpopup "MENU" "Allied Assault: 4 Behind Enemy Lines" command "exec ui/coop_start/m4.cfg"
+	addpopup "MENU" "Allied Assault: 5 The Day of the Tiger" command "exec ui/coop_start/m5.cfg"
+	addpopup "MENU" "Allied Assault: 6 Return to Schmerzen" command "exec ui/coop_start/m6.cfg"
+	addpopup "MENU" "Breakthrough: 1 Tunisia" command "exec ui/coop_start/e1.cfg"
+	addpopup "MENU" "Breakthrough: 2 Sicily" command "exec ui/coop_start/e2.cfg"
+	addpopup "MENU" "Breakthrough: 3 Italy" command "exec ui/coop_start/e3.cfg"
+	addpopup "MENU" "Spearhead: 1 Normandy" command "exec ui/coop_start/t1.cfg"
+	addpopup "MENU" "Spearhead: 2 Bastogne" command "exec ui/coop_start/t2.cfg"
+	addpopup "MENU" "Spearhead: 3 Berlin" command "exec ui/coop_start/t3.cfg"
+}
+
+/////////////////////////////////////CURRENT MAP
+//[202][hotfix] chrissstrahl - allows now input - bgcolor changed to greenish- moved up to align with the mission selection
+resource
+Field
+{
+	title ""
+	name "Default"
+	rect 490 38 142 24
+	fgcolor 0.00 0.00 0.00 1.00
+	bgcolor 0.80 0.90 0.10 1.00
+	borderstyle "RAISED"
+	//font facfont-20
+	textalign center
+	linkcvar "ui_dmmap"
+}
+
+
+/////////////////////////////////////DEDICATED
+//[202][hotfix] chrissstrahl - moved down so the mapname can align with misionsel
+resource
+Label
+{
+	title "Dedicated"
+	name "Default"
+	rect 490 66 120 24
+	fgcolor 1.00 1.00 1.00 1 //[201] chrissstrahl - full color
+	bgcolor 0.50 0.50 0.50 0.00
+	borderstyle "NONE"
+	shader "textures/mohmenu/weapon_sign"
+	font facfont-20
+	textalign center
+}
+resource
+CheckBox
+{
+	name "Default"
+	rect 610 60 192 34
+	fgcolor 1.00 1.00 1.00 1.00
+	bgcolor 0.50 0.50 0.50 0.00
+	borderstyle "NONE"
+	linkcvar "ui_dedicated" //[201] chrissstrahl - activated cvar linking
+	checked_shader "textures/menu/checkbox_checked"
+	unchecked_shader "textures/menu/checkbox_unchecked"
+}
+
+/////////////////////////////////////DIFCULTY
+//disabled so it will not show up until it is implemented
+
+// resource
+// Label
+// {
+	// title "Dificulty"
+	// name "Default"
+	// rect 10 66 120 24
+	// fgcolor 1.00 1.00 1.00 1.00
+	// bgcolor 0.50 0.50 0.50 0.00
+	// borderstyle "NONE"
+	// shader "textures/mohmenu/weapon_sign"
+	// font facfont-20
+	// textalign center
+// }
+
+// resource
+// Label
+// {
+	// title "Oi, Mate!"
+	// name "coop_missionName"
+	// rect 135 66 140 24
+	// fgcolor 1.00 1.00 1.00 1.00
+	// bgcolor 0.10 0.10 0.10 1.00
+	// borderstyle "RAISED"
+	// font facfont-20
+	// linkcvar "coop_skill"
+	// linkstring 0 "Easy"
+	// linkstring 1 "Normal"
+	// linkstring 2 "Hard"
+	// linkstring 3 "Very Hard"
+	// linkstring 4 "Just Die!"
+// }
+
+// resource
+// PulldownMenuContainer
+// {
+	// title "List"
+	// name "Default"
+	// rect 258 70 24 24
+	// fgcolor 1.00 1.00 1.00 1.00
+	// bgcolor 0.50 0.50 0.50 0.00
+	// borderstyle "NONE"
+	// menushader "MENU" "textures/mohmenu/multiarrow"
+	// selmenushader "MENU" "textures/mohmenu/multiarrow_h"
+	// addpopup "MENU" "Easy" command "seta coop_skill 0"
+	// addpopup "MENU" "Normal" command "seta coop_skill 1"
+	// addpopup "MENU" "Hard" command "seta coop_skill 2"
+	// addpopup "MENU" "Very Hard" command "seta coop_skill 3"
+	// addpopup "MENU" "Just Die!" command "seta coop_skill 4"
+// }
+
+//[201] chrissstrahl - added LMS option
+/////////////////////////////////////LAST MAN STANDING
+resource
+Label
+{
+	title "LMS Lives"
+	name "Default"
+	rect 281 66 120 24
+	fgcolor 1.00 1.00 1.00 1.00
+	bgcolor 0.50 0.50 0.50 0.00
+	borderstyle "NONE"
+	shader "textures/mohmenu/weapon_sign"
+	font facfont-20
+	textalign center
+}
+resource
+Field
+{
+	name "Default"
+	rect 405 66 80 22
+	fgcolor 0.00 0.00 0.00 1.00
+	bgcolor 0.80 0.90 0.10 1.00 //[202][hotfix] chrissstrahl - color changed to greenish
+	linkcvar "coop_lmsLives"
+	borderstyle "RAISED"
+	//shader "textures/mohmenu/coop/tafel"
+}
+
+/////////////////////////////////////HEALTH
+resource
+Label
+{
+	title "Player Health"
+	name "Default"
+	rect 281 94 120 24
+	fgcolor 1.00 1.00 1.00 1.00
+	bgcolor 0.50 0.50 0.50 0.00
+	borderstyle "NONE"
+	shader "textures/mohmenu/weapon_sign"
+	font facfont-20
+	textalign center
+}
+resource
+Field
+{
+	name "Default"
+	rect 405 94 80 22
+	fgcolor 0.00 0.00 0.00 1.00
+	bgcolor 0.80 0.90 0.10 1.00 //[202][hotfix] chrissstrahl - color changed to greenish
+	linkcvar "coop_health"
+	borderstyle "RAISED"
+	//shader "textures/mohmenu/coop/tafel"
+}
+
+//[HZM coop 2026-09-13] HOST RULES - pushes ui/coop_hostrules.urc: the host-decided settings (blood trails, auto
+//take-cover, shell shock, XP and challenge popups) that moved off the per-player FIELD SETTINGS sheet.
+//Free slot under the map-name field, clear of every coop_start rect (gated by docs/tools/gen_menu_fieldsettings.py
+//check). Same recipe as BEGIN FULL CAMPAIGN below. A pure push - never popmenu+pushmenu in one command (bug-461).
+resource
+Button
+{
+	title "HOST RULES"
+	name "hostRulesBtn"
+	rect 490 96 142 22
+	fgcolor 0.00 0.00 0.00 1.00
+	bgcolor 0.80 0.90 0.10 0.95
+	borderstyle "NONE"
+	shader "menu_button_trans"
+	hovershader "menu_button_glow"
+	clicksound "sound/menu/apply.wav"
+	stuffcommand "pushmenu coop_hostrules"
+	font facfont-20
+	textalign center
+}
+
+/////////////////////////////////////MAP SELECTION BG
+include "ui/coop_maps.inc"
+
+resource
+Button
+{
+	name "back"
+	rect 8 448 96 24
+	fgcolor 1.00 1.00 1.00 1.00
+	bgcolor 0.00 0.00 0.00 0.00
+	borderstyle "NONE"
+	shader "textures/mohmenu/back"
+	hovershader "textures/mohmenu/back_h"
+	clicksound "sound/menu/apply.wav"
+	stuffcommand "popmenu 0"
+	ordernumber 1
+}
+
+resource
+Button
+{
+	name "apply"
+	rect 536 448 96 24
+	fgcolor 1.00 1.00 1.00 1.00
+	bgcolor 0.00 0.00 0.00 0.00
+	borderstyle "NONE"
+	shader "textures/mohmenu/apply"
+	hovershader "textures/mohmenu/apply_h"
+	clicksound "sound/menu/apply.wav"
+	//stuffcommand "wait 250;set g_gametype 2;ui_startdmmap 2"
+	stuffcommand "wait 250;exec coop_mod/start_server.cfg"
+	ordernumber 2
+}
+
+resource
+Label
+{
+	title "To host you will need to forward these Ports to your hosting Computer:\n29253-29254 and 12203-12204"
+	name "coop_startPortInfo"
+	rect 0 420 640 30
+	fgcolor 1.00 1.00 1.00 1
+	bgcolor 0 0 0 0
+	borderstyle "NONE"
+	textalign center
+}
+resource
+Label
+{
+	title "MOH Trilogy Coop - based on the HaZardModding (HZM) Coop Mod"
+	name "coop_startHzmInfo"
+	rect 0 460 640 14
+	fgcolor 1.00 1.00 1.00 0.20
+	bgcolor 0 0 0 0 0
+	borderstyle "NONE"
+	textalign center
+}
+//[202] chrissstrahl - added button for quicknetwork setup
+resource
+Button
+{
+title "Load MOH Trilogy Coop Network-Server Configuration"
+name "coop_serverNetConfigurationBtn"
+rect 10 94 264 24
+fgcolor 0.00 0.00 0.00 0.00
+bgcolor 0.80 0.90 0.10 0.90
+borderstyle "NONE"
+shader "menu_button_trans"
+hovershader "menu_button_glow"
+clicksound "sound/menu/apply.wav"
+stuffcommand "exec net_sv.cfg"
+font verdana-12
+}
+
+//[HZM coop] Begin Full Campaign - launches the pre-mission lobby (co_lobby1 -> briefing1 -> m1l1).
+//Capped at 4 players; squad picks uniforms + readies up in the lobby, then a countdown starts the run.
+resource
+Button
+{
+title "BEGIN FULL CAMPAIGN"
+name "coop_beginCampaignBtn"
+rect 190 388 260 28
+fgcolor 0.00 0.00 0.00 1.00
+bgcolor 0.80 0.90 0.10 0.95
+borderstyle "NONE"
+shader "menu_button_trans"
+hovershader "menu_button_glow"
+clicksound "sound/menu/apply.wav"
+stuffcommand "wait 250;exec coop_mod/cfg/campaign_start.cfg"
+font facfont-20
+textalign center
+}
+end.

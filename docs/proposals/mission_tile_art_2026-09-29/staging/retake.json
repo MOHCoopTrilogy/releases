@@ -1,0 +1,295 @@
+{
+ "m2l2b": {
+  "subjects": [
+   {
+    "name": "uboat",
+    "at": [
+     -2306.1,
+     -4034,
+     -772
+    ],
+    "radii": [
+     520,
+     850
+    ],
+    "n": 6,
+    "eye_dz": 190,
+    "tgt_dz": 60
+   },
+   {
+    "name": "sbridge",
+    "at": [
+     -2434,
+     -4796,
+     -620
+    ],
+    "radii": [
+     420
+    ],
+    "n": 6,
+    "eye_dz": 120,
+    "tgt_dz": 60
+   }
+  ],
+  "start": null,
+  "scouts": []
+ },
+ "m5l3": {
+  "subjects": [
+   {
+    "name": "bridge",
+    "at": [
+     -943,
+     -55,
+     404
+    ],
+    "radii": [
+     600,
+     1000
+    ],
+    "n": 6,
+    "eye_dz": 220,
+    "tgt_dz": -60
+   }
+  ],
+  "start": null,
+  "scouts": []
+ },
+ "m3l3": {
+  "subjects": [
+   {
+    "name": "nebel3",
+    "at": [
+     -4173,
+     -6487,
+     -26
+    ],
+    "radii": [
+     350,
+     600
+    ],
+    "n": 6,
+    "eye_dz": 90,
+    "tgt_dz": 60
+   },
+   {
+    "name": "nebel2",
+    "at": [
+     -3454,
+     -6531,
+     -26
+    ],
+    "radii": [
+     350,
+     600
+    ],
+    "n": 6,
+    "eye_dz": 90,
+    "tgt_dz": 60
+   }
+  ],
+  "start": null,
+  "scouts": []
+ },
+ "m3l1b": {
+  "subjects": [
+   {
+    "name": "15cmcannon",
+    "at": [
+     2496.0,
+     -363.0,
+     451.0
+    ],
+    "radii": [
+     450,
+     800
+    ],
+    "n": 6,
+    "eye_dz": 110,
+    "tgt_dz": 50
+   },
+   {
+    "name": "15cmcannon",
+    "at": [
+     -1046.0,
+     -153.0,
+     450.0
+    ],
+    "radii": [
+     450,
+     800
+    ],
+    "n": 6,
+    "eye_dz": 110,
+    "tgt_dz": 50
+   }
+  ],
+  "start": null,
+  "scouts": []
+ },
+ "m6l1a": {
+  "subjects": [
+   {
+    "name": "20mmflak",
+    "at": [
+     4321.0,
+     -3675.0,
+     5584.0
+    ],
+    "radii": [
+     450,
+     800
+    ],
+    "n": 6,
+    "eye_dz": 110,
+    "tgt_dz": 50
+   },
+   {
+    "name": "20mmflak",
+    "at": [
+     1790.0,
+     3446.0,
+     5784.0
+    ],
+    "radii": [
+     450,
+     800
+    ],
+    "n": 6,
+    "eye_dz": 110,
+    "tgt_dz": 50
+   }
+  ],
+  "start": null,
+  "scouts": []
+ },
+ "m6l1b": {
+  "subjects": [
+   {
+    "name": "20mmflak",
+    "at": [
+     -2284.0,
+     2456.0,
+     2424.0
+    ],
+    "radii": [
+     450,
+     800
+    ],
+    "n": 6,
+    "eye_dz": 110,
+    "tgt_dz": 50
+   }
+  ],
+  "start": null,
+  "scouts": []
+ },
+ "m1l3b": {
+  "subjects": [
+   {
+    "name": "20mmflak",
+    "at": [
+     -875.0,
+     2157.0,
+     8.0
+    ],
+    "radii": [
+     450,
+     800
+    ],
+    "n": 6,
+    "eye_dz": 110,
+    "tgt_dz": 50
+   }
+  ],
+  "start": null,
+  "scouts": []
+ },
+ "m4l3": {
+  "subjects": [
+   {
+    "name": "radio",
+    "at": [
+     -2894,
+     -279,
+     264
+    ],
+    "radii": [
+     220,
+     380
+    ],
+    "n": 6,
+    "eye_dz": 40,
+    "tgt_dz": 0
+   },
+   {
+    "name": "officers",
+    "at": [
+     -1600,
+     -1350,
+     200
+    ],
+    "radii": [
+     260,
+     450
+    ],
+    "n": 6,
+    "eye_dz": 60,
+    "tgt_dz": 20
+   },
+   {
+    "name": "cards",
+    "at": [
+     -450,
+     -230,
+     20
+    ],
+    "radii": [
+     220,
+     380
+    ],
+    "n": 6,
+    "eye_dz": 70,
+    "tgt_dz": 20
+   }
+  ],
+  "start": null,
+  "scouts": []
+ },
+ "m6l3e": {
+  "subjects": [
+   {
+    "name": "engine",
+    "at": [
+     -6428,
+     -905,
+     -568
+    ],
+    "radii": [
+     700,
+     1100
+    ],
+    "n": 6,
+    "eye_dz": 170,
+    "tgt_dz": 40
+   },
+   {
+    "name": "rangers",
+    "at": [
+     -6440,
+     -1800,
+     -492
+    ],
+    "radii": [
+     350,
+     600
+    ],
+    "n": 6,
+    "eye_dz": 70,
+    "tgt_dz": 30
+   }
+  ],
+  "start": null,
+  "scouts": []
+ }
+}

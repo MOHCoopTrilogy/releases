@@ -1,0 +1,17 @@
+{
+ "ui/coop_maps.inc": "5597f6d1c10749326ec2e7e81e15ef08",
+ "ui/coop_start.urc": "2d60f9983727a118f77bee3859c2d921",
+ "ui/coop_start/e1.cfg": "5f535d09f5b124e787140eda8fc1bf67",
+ "ui/coop_start/e2.cfg": "cca884c0a89b0999b10700a3ab9118d3",
+ "ui/coop_start/e3.cfg": "78840216cfe62d5856980d06014aa6d4",
+ "ui/coop_start/m0.cfg": "f80446bb8964f1855b03f159937fc054",
+ "ui/coop_start/m1.cfg": "e757de27a7eb6ee3a35aa1a857da7612",
+ "ui/coop_start/m2.cfg": "a58777aa2bba0f89f0043e5a53724584",
+ "ui/coop_start/m3.cfg": "3206595c9db6fe19d57d90ef46583117",
+ "ui/coop_start/m4.cfg": "1fe78dbad9be5aec7d29946dadf1059d",
+ "ui/coop_start/m5.cfg": "e2ae4ec0bbfe256009c511805ad6dc61",
+ "ui/coop_start/m6.cfg": "9c8e0b8d1cda29f4b9a799dec4cdafb3",
+ "ui/coop_start/t1.cfg": "6ca70e0b0b2656ddb5ce561a24e02a71",
+ "ui/coop_start/t2.cfg": "82bbf8ce5ab83908bcba98d31b967919",
+ "ui/coop_start/t3.cfg": "73a07fc9a602d68eb9345c3bd28ecc57"
+}

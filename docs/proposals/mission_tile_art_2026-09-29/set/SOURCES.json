@@ -1,0 +1,2280 @@
+{
+ "briefing/briefing1": {
+  "boxes": {
+   "crop_c": [
+    12,
+    64,
+    500,
+    448
+   ],
+   "crop_s": [
+    12,
+    77,
+    500,
+    435
+   ],
+   "pcrop_c": [
+    12,
+    73,
+    500,
+    439
+   ],
+   "pcrop_s": [
+    12,
+    77,
+    500,
+    435
+   ]
+  },
+  "from": "retail pak main/Pak1.pk3/textures/mohmenu/briefing/portphoto.tga",
+  "how": "retail AA M1 briefing slide 'portphoto': the Arzew harbour from the heights",
+  "size": [
+   512,
+   512
+  ]
+ },
+ "briefing/briefing2": {
+  "boxes": {
+   "crop_c": [
+    12,
+    64,
+    500,
+    448
+   ],
+   "crop_s": [
+    12,
+    77,
+    500,
+    435
+   ],
+   "pcrop_c": [
+    12,
+    73,
+    500,
+    439
+   ],
+   "pcrop_s": [
+    12,
+    77,
+    500,
+    435
+   ]
+  },
+  "from": "retail pak main/Pak1.pk3/textures/mohmenu/briefing/subdiving.tga",
+  "how": "retail AA M2 briefing slide 'subdiving': a U-boat at sea",
+  "size": [
+   512,
+   512
+  ]
+ },
+ "briefing/briefing3": {
+  "boxes": {
+   "crop_c": [
+    12,
+    64,
+    500,
+    448
+   ],
+   "crop_s": [
+    12,
+    77,
+    500,
+    435
+   ],
+   "pcrop_c": [
+    12,
+    73,
+    500,
+    439
+   ],
+   "pcrop_s": [
+    12,
+    77,
+    500,
+    435
+   ]
+  },
+  "from": "retail pak main/Pak1.pk3/textures/mohmenu/briefing/higginsboat.tga",
+  "how": "retail AA M3 briefing slide 'higginsboat': troops in a landing craft",
+  "size": [
+   512,
+   512
+  ]
+ },
+ "briefing/briefing4": {
+  "boxes": {
+   "crop_c": [
+    12,
+    64,
+    500,
+    448
+   ],
+   "crop_s": [
+    12,
+    77,
+    500,
+    435
+   ],
+   "pcrop_c": [
+    12,
+    73,
+    500,
+    439
+   ],
+   "pcrop_s": [
+    12,
+    77,
+    500,
+    435
+   ]
+  },
+  "from": "retail pak main/Pak1.pk3/textures/mohmenu/briefing/manorhouse.tga",
+  "how": "retail AA M4 briefing slide 'manorhouse': the manor house (the command post)",
+  "size": [
+   512,
+   512
+  ]
+ },
+ "briefing/briefing5": {
+  "boxes": {
+   "crop_c": [
+    12,
+    73,
+    500,
+    457
+   ],
+   "crop_s": [
+    12,
+    86,
+    500,
+    444
+   ],
+   "pcrop_c": [
+    12,
+    82,
+    500,
+    448
+   ],
+   "pcrop_s": [
+    12,
+    86,
+    500,
+    444
+   ]
+  },
+  "from": "retail pak main/Pak1.pk3/textures/mohmenu/briefing/kingtiger.tga",
+  "how": "retail AA M5 briefing slide 'kingtiger': a King Tiger in the town",
+  "size": [
+   512,
+   512
+  ]
+ },
+ "briefing/briefing6": {
+  "boxes": {
+   "crop_c": [
+    17,
+    6,
+    439,
+    338
+   ],
+   "crop_s": [
+    10,
+    12,
+    446,
+    332
+   ],
+   "pcrop_c": [
+    12,
+    10,
+    444,
+    334
+   ],
+   "pcrop_s": [
+    10,
+    12,
+    446,
+    332
+   ]
+  },
+  "from": "retail pak main/Pak1.pk3/textures/mohmenu/briefing/schmerzenaerial.tga",
+  "how": "retail AA M6 briefing slide 'schmerzenaerial': aerial recon photo of Fort Schmerzen",
+  "size": [
+   456,
+   344
+  ]
+ },
+ "briefing/briefinge1": {
+  "boxes": {
+   "crop_c": [
+    650,
+    60,
+    1470,
+    703
+   ],
+   "crop_s": [
+    650,
+    0,
+    1920,
+    720
+   ],
+   "pcrop_c": [
+    650,
+    60,
+    1470,
+    675
+   ],
+   "pcrop_s": [
+    650,
+    20,
+    1920,
+    720
+   ]
+  },
+  "from": "C:\\mohaa-coop-dev\\docs\\proposals\\mission_tile_art_2026-09-29\\sources\\bt2_e1l3.jpg",
+  "how": "in-engine: Bizerte's Moorish horseshoe gate (e1l3, loadart scout 4_000; round-2 sample, QA'd: crates and vehicle hood boxed out)",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "briefing/briefinge2": {
+  "boxes": {
+   "crop_c": [
+    640,
+    149,
+    1760,
+    1030
+   ],
+   "crop_s": [
+    579,
+    280,
+    1821,
+    1000
+   ],
+   "pcrop_c": [
+    640,
+    190,
+    1760,
+    1030
+   ],
+   "pcrop_s": [
+    560,
+    280,
+    1840,
+    1000
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\e2l1\\gl_r650_270.tga",
+  "how": "in-engine: e2l1's own opening - glider troops beside a jeep inside the CG-4A",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "briefing/briefinge3": {
+  "boxes": {
+   "crop_c": [
+    324,
+    80,
+    1596,
+    1080
+   ],
+   "crop_s": [
+    98,
+    80,
+    1822,
+    1080
+   ],
+   "pcrop_c": [
+    293,
+    80,
+    1627,
+    1080
+   ],
+   "pcrop_s": [
+    71,
+    80,
+    1849,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_e3l1\\e3l1_sc1_270.jpg",
+  "how": "in-engine: the ruined town in the fog below Monte Cassino",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "briefing/briefingt1": {
+  "boxes": {
+   "crop_c": [
+    35,
+    28,
+    467,
+    368
+   ],
+   "crop_s": [
+    30,
+    36,
+    472,
+    360
+   ],
+   "pcrop_c": [
+    30,
+    32,
+    472,
+    364
+   ],
+   "pcrop_s": [
+    30,
+    36,
+    472,
+    360
+   ]
+  },
+  "from": "retail pak mainta/pak1.pk3/textures/mohmenu/Slideshow/Normandy/C.jpg",
+  "how": "retail SH Normandy slideshow still C: the paratroop drop (t1 opens with the jump)",
+  "size": [
+   500,
+   392
+  ]
+ },
+ "briefing/briefingt2": {
+  "boxes": {
+   "crop_c": [
+    34,
+    21,
+    460,
+    357
+   ],
+   "crop_s": [
+    30,
+    27,
+    470,
+    351
+   ],
+   "pcrop_c": [
+    30,
+    24,
+    470,
+    354
+   ],
+   "pcrop_s": [
+    30,
+    27,
+    470,
+    351
+   ]
+  },
+  "from": "retail pak mainta/pak1.pk3/textures/mohmenu/Slideshow/Bastogne/E.jpg",
+  "how": "retail SH Bastogne slideshow still E: soldiers holding the BASTOGNE town sign",
+  "size": [
+   500,
+   375
+  ]
+ },
+ "briefing/briefingt3": {
+  "boxes": {
+   "crop_c": [
+    34,
+    18,
+    466,
+    358
+   ],
+   "crop_s": [
+    26,
+    23,
+    474,
+    353
+   ],
+   "pcrop_c": [
+    26,
+    20,
+    474,
+    356
+   ],
+   "pcrop_s": [
+    26,
+    23,
+    474,
+    353
+   ]
+  },
+  "from": "retail pak mainta/pak1.pk3/textures/mohmenu/Slideshow/Berlin/M.jpg",
+  "how": "retail SH Berlin slideshow still M: a Soviet mortar crew (t3 fights beside the Red Army)",
+  "size": [
+   500,
+   375
+  ]
+ },
+ "e1l1": {
+  "boxes": {
+   "crop_c": [
+    250,
+    80,
+    1380,
+    969
+   ],
+   "crop_s": [
+    35,
+    120,
+    1380,
+    900
+   ],
+   "pcrop_c": [
+    250,
+    86,
+    1380,
+    934
+   ],
+   "pcrop_s": [
+    0,
+    122,
+    1380,
+    898
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_e1l1\\e1l1_sc2_090.jpg",
+  "how": "in-engine: the level's own Shermans in the dust under the watchtower",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "e1l2": {
+  "boxes": {
+   "crop_c": [
+    339,
+    80,
+    1611,
+    1080
+   ],
+   "crop_s": [
+    250,
+    239,
+    1700,
+    1080
+   ],
+   "pcrop_c": [
+    308,
+    80,
+    1642,
+    1080
+   ],
+   "pcrop_s": [
+    250,
+    264,
+    1700,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_e1l2\\e1l2_sc3_090.jpg",
+  "how": "in-engine: a gun turret firing from its concrete emplacement in the pass",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "e1l3": {
+  "boxes": {
+   "crop_c": [
+    324,
+    80,
+    1596,
+    1080
+   ],
+   "crop_s": [
+    98,
+    80,
+    1822,
+    1080
+   ],
+   "pcrop_c": [
+    293,
+    80,
+    1627,
+    1080
+   ],
+   "pcrop_s": [
+    71,
+    80,
+    1849,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_e1l3\\e1l3_s0canal_r900_180.jpg",
+  "how": "in-engine: the canal: its rowboats, the lift-bridge towers and the quay houses",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "e1l4": {
+  "boxes": {
+   "crop_c": [
+    324,
+    80,
+    1596,
+    1080
+   ],
+   "crop_s": [
+    98,
+    80,
+    1822,
+    1080
+   ],
+   "pcrop_c": [
+    293,
+    80,
+    1627,
+    1080
+   ],
+   "pcrop_s": [
+    71,
+    80,
+    1849,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\r2_e1l4\\r2e1l4_s0ship_r1500_120.jpg",
+  "how": "in-engine: Bizerte harbour at night: the quay cranes, the ship's deck, crates on the dock (retake C2, ride released)",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "e2l1": {
+  "boxes": {
+   "crop_c": [
+    214,
+    80,
+    1486,
+    1080
+   ],
+   "crop_s": [
+    0,
+    80,
+    1700,
+    1066
+   ],
+   "pcrop_c": [
+    183,
+    80,
+    1517,
+    1080
+   ],
+   "pcrop_s": [
+    0,
+    80,
+    1700,
+    1036
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_e2l1\\e2l1_sc2_180.jpg",
+  "how": "in-engine: a paratrooper hung up by his canopy on a pole beside the railway (checkpoint The Railway)",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "e2l2": {
+  "boxes": {
+   "crop_c": [
+    324,
+    80,
+    1596,
+    1080
+   ],
+   "crop_s": [
+    98,
+    80,
+    1822,
+    1080
+   ],
+   "pcrop_c": [
+    293,
+    80,
+    1627,
+    1080
+   ],
+   "pcrop_s": [
+    71,
+    80,
+    1849,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_e2l2\\e2l2_s1oiltanker_r800_060.jpg",
+  "how": "in-engine: the airfield's fuel trucks under the refuelling canopy at night",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "e2l3": {
+  "boxes": {
+   "crop_c": [
+    214,
+    80,
+    1486,
+    1080
+   ],
+   "crop_s": [
+    200,
+    326,
+    1500,
+    1080
+   ],
+   "pcrop_c": [
+    200,
+    105,
+    1500,
+    1080
+   ],
+   "pcrop_s": [
+    200,
+    349,
+    1500,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_e2l3\\e2l3_sc3_180.jpg",
+  "how": "in-engine: an Italian tank beside a farm cart at the edge of Gela",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "e3l1": {
+  "boxes": {
+   "crop_c": [
+    500,
+    80,
+    1700,
+    1024
+   ],
+   "crop_s": [
+    496,
+    200,
+    1704,
+    900
+   ],
+   "pcrop_c": [
+    500,
+    100,
+    1700,
+    1000
+   ],
+   "pcrop_s": [
+    478,
+    200,
+    1722,
+    900
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_e3l1\\e3l1_s1shermanbas_r450_060.jpg",
+  "how": "in-engine: a Sherman in the lane below the monastery hill",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "e3l2": {
+  "boxes": {
+   "crop_c": [
+    264,
+    80,
+    1536,
+    1080
+   ],
+   "crop_s": [
+    38,
+    80,
+    1762,
+    1080
+   ],
+   "pcrop_c": [
+    233,
+    80,
+    1567,
+    1080
+   ],
+   "pcrop_s": [
+    11,
+    80,
+    1789,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_e3l2\\e3l2_sc0_270.jpg",
+  "how": "in-engine: the town square at night: field gun, sandbags, street lamps",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "e3l3": {
+  "boxes": {
+   "crop_c": [
+    474,
+    80,
+    1746,
+    1080
+   ],
+   "crop_s": [
+    300,
+    80,
+    1920,
+    1020
+   ],
+   "pcrop_c": [
+    443,
+    80,
+    1777,
+    1080
+   ],
+   "pcrop_s": [
+    300,
+    94,
+    1920,
+    1006
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_e3l3\\e3l3_s0panzerwerf_r800_180.jpg",
+  "how": "in-engine: the level's railway gun on its flatcars at the siding",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "e3l4": {
+  "boxes": {
+   "crop_c": [
+    325,
+    80,
+    1075,
+    670
+   ],
+   "crop_s": [
+    191,
+    80,
+    1209,
+    670
+   ],
+   "pcrop_c": [
+    307,
+    80,
+    1093,
+    670
+   ],
+   "pcrop_s": [
+    176,
+    80,
+    1224,
+    670
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_e3l4\\e3l4_sc2_090.jpg",
+  "how": "in-engine: the mountain road at night: an overturned truck in the fog (PROVISIONAL)",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m1l1": {
+  "boxes": {
+   "crop_c": [
+    102,
+    60,
+    1398,
+    1080
+   ],
+   "crop_s": [
+    0,
+    80,
+    1725,
+    1080
+   ],
+   "pcrop_c": [
+    70,
+    60,
+    1430,
+    1080
+   ],
+   "pcrop_s": [
+    0,
+    80,
+    1778,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m1l1\\m1l1_st_270.jpg",
+  "how": "in-engine: the Rangers in the truck at the start of the level",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m1l2a": {
+  "boxes": {
+   "crop_c": [
+    800,
+    120,
+    1640,
+    780
+   ],
+   "crop_s": [
+    651,
+    120,
+    1789,
+    780
+   ],
+   "pcrop_c": [
+    780,
+    120,
+    1660,
+    780
+   ],
+   "pcrop_s": [
+    633,
+    120,
+    1807,
+    780
+   ]
+  },
+  "from": "G:\\mohaa-loadart\\runs\\scout\\m1l2a\\sc_m1l2a_4_180.jpg",
+  "how": "in-engine: the Arzew courtyard at night (loadart scout 4_180)",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m1l2b": {
+  "boxes": {
+   "crop_c": [
+    180,
+    184,
+    1200,
+    986
+   ],
+   "crop_s": [
+    112,
+    250,
+    1268,
+    920
+   ],
+   "pcrop_c": [
+    180,
+    202,
+    1200,
+    968
+   ],
+   "pcrop_s": [
+    94,
+    250,
+    1286,
+    920
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m1l2b\\m1l2b_s2obj_r300_120.jpg",
+  "how": "in-engine: the motor pool's Opel truck with its hood up, a mechanic behind it",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m1l3a": {
+  "boxes": {
+   "crop_c": [
+    0,
+    180,
+    890,
+    880
+   ],
+   "crop_s": [
+    0,
+    290,
+    890,
+    807
+   ],
+   "pcrop_c": [
+    0,
+    213,
+    890,
+    880
+   ],
+   "pcrop_s": [
+    0,
+    330,
+    890,
+    831
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m1l3a\\m1l3a_sc0_090.jpg",
+  "how": "in-engine: the night depot: truck, crates and lamp; cropped left of the jeep gun",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m1l3b": {
+  "boxes": {
+   "crop_c": [
+    0,
+    290,
+    890,
+    990
+   ],
+   "crop_s": [
+    0,
+    180,
+    912,
+    710
+   ],
+   "pcrop_c": [
+    0,
+    300,
+    890,
+    967
+   ],
+   "pcrop_s": [
+    0,
+    190,
+    900,
+    696
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m1l3b\\m1l3b_sthi_180.jpg",
+  "how": "in-engine: the airfield wall and gate, a truck of infantry firing; cropped clear of the jeep gun",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m1l3c": {
+  "boxes": {
+   "crop_c": [
+    400,
+    37,
+    1500,
+    903
+   ],
+   "crop_s": [
+    208,
+    40,
+    1692,
+    900
+   ],
+   "pcrop_c": [
+    377,
+    40,
+    1523,
+    900
+   ],
+   "pcrop_s": [
+    186,
+    40,
+    1714,
+    900
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m1l3c\\m1l3c_s4obj_r600_060.jpg",
+  "how": "in-engine: the lighthouse lamp room and dome above the rocks",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m2l1": {
+  "boxes": {
+   "crop_c": [
+    450,
+    206,
+    1300,
+    874
+   ],
+   "crop_s": [
+    450,
+    294,
+    1300,
+    786
+   ],
+   "pcrop_c": [
+    450,
+    221,
+    1300,
+    859
+   ],
+   "pcrop_s": [
+    448,
+    300,
+    1302,
+    780
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m2l1\\m2l1_s2obj_r300_000.jpg",
+  "how": "in-engine: German guards at the camp fence in the snow",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m2l2a": {
+  "boxes": {
+   "crop_c": [
+    350,
+    175,
+    1500,
+    1080
+   ],
+   "crop_s": [
+    287,
+    340,
+    1563,
+    1080
+   ],
+   "pcrop_c": [
+    350,
+    218,
+    1500,
+    1080
+   ],
+   "pcrop_s": [
+    267,
+    340,
+    1583,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m2l2a\\m2l2a_s2obj_r300_060.jpg",
+  "how": "in-engine: the Naxos laboratory: scientists at the blackboard",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m2l2b": {
+  "boxes": {
+   "crop_c": [
+    489,
+    80,
+    1761,
+    1080
+   ],
+   "crop_s": [
+    375,
+    80,
+    1875,
+    950
+   ],
+   "pcrop_c": [
+    458,
+    80,
+    1792,
+    1080
+   ],
+   "pcrop_s": [
+    352,
+    80,
+    1898,
+    950
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\rt_m2l2b\\rtm2l2b_s0uboat_r850_060.jpg",
+  "how": "in-engine: the U-529 itself in its pen: hull, deck rail and conning tower, from the dock",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m2l2c": {
+  "boxes": {
+   "crop_c": [
+    474,
+    80,
+    1746,
+    1080
+   ],
+   "crop_s": [
+    300,
+    141,
+    1920,
+    1080
+   ],
+   "pcrop_c": [
+    443,
+    80,
+    1777,
+    1080
+   ],
+   "pcrop_s": [
+    300,
+    169,
+    1920,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m2l2c\\m2l2c_sc0_090.jpg",
+  "how": "in-engine: the U-boat in its pen, seen from the dock",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m2l3": {
+  "boxes": {
+   "crop_c": [
+    414,
+    80,
+    1686,
+    1080
+   ],
+   "crop_s": [
+    300,
+    165,
+    1800,
+    1035
+   ],
+   "pcrop_c": [
+    383,
+    80,
+    1717,
+    1080
+   ],
+   "pcrop_s": [
+    300,
+    178,
+    1800,
+    1022
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m2l3\\m2l3_s2obj_r600_180.jpg",
+  "how": "in-engine: a boxcar on the snowy siding of the rail yard, behind the fence (review 2026-10-04: the earlier pick showed uniformed figures of unclear side in the boxcar)",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m3l1a": {
+  "boxes": {
+   "crop_c": [
+    324,
+    80,
+    1596,
+    1080
+   ],
+   "crop_s": [
+    98,
+    80,
+    1822,
+    1080
+   ],
+   "pcrop_c": [
+    293,
+    80,
+    1627,
+    1080
+   ],
+   "pcrop_s": [
+    71,
+    80,
+    1849,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m3l1a\\m3l1a_s1obj_r300_240.jpg",
+  "how": "in-engine: GIs in the landing craft, ramp up",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m3l1b": {
+  "boxes": {
+   "crop_c": [
+    324,
+    80,
+    1596,
+    1080
+   ],
+   "crop_s": [
+    98,
+    80,
+    1822,
+    1080
+   ],
+   "pcrop_c": [
+    293,
+    80,
+    1627,
+    1080
+   ],
+   "pcrop_s": [
+    71,
+    80,
+    1849,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\rt_m3l1b\\rtm3l1b_s115cmcannon_r450_060.jpg",
+  "how": "in-engine: the level's own casemated coastal gun (statweapons 15cm cannon) on its emplacement",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m3l2": {
+  "boxes": {
+   "crop_c": [
+    500,
+    157,
+    1500,
+    943
+   ],
+   "crop_s": [
+    483,
+    250,
+    1517,
+    850
+   ],
+   "pcrop_c": [
+    500,
+    175,
+    1500,
+    925
+   ],
+   "pcrop_s": [
+    467,
+    250,
+    1533,
+    850
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m3l2\\m3l2_s1panzeriveu_r450_300.jpg",
+  "how": "in-engine: a Panzer in the sunken lane between the hedgerows",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m3l3": {
+  "boxes": {
+   "crop_c": [
+    500,
+    257,
+    1500,
+    1043
+   ],
+   "crop_s": [
+    483,
+    350,
+    1517,
+    950
+   ],
+   "pcrop_c": [
+    500,
+    275,
+    1500,
+    1025
+   ],
+   "pcrop_s": [
+    467,
+    350,
+    1533,
+    950
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\rt_m3l3\\rtm3l3_s1nebel2_r350_120.jpg",
+  "how": "in-engine: the level's own Nebelwerfer (six-tube launcher on its carriage) inside the wire",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m4l0": {
+  "boxes": {
+   "crop_c": [
+    300,
+    107,
+    1300,
+    893
+   ],
+   "crop_s": [
+    283,
+    200,
+    1317,
+    800
+   ],
+   "pcrop_c": [
+    300,
+    125,
+    1300,
+    875
+   ],
+   "pcrop_s": [
+    267,
+    200,
+    1333,
+    800
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m4l0\\m4l0_sc3_000.jpg",
+  "how": "in-engine: the Normandy farm buildings on the hill, seen down the farm track",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m4l1": {
+  "boxes": {
+   "crop_c": [
+    700,
+    225,
+    1500,
+    855
+   ],
+   "crop_s": [
+    652,
+    280,
+    1548,
+    800
+   ],
+   "pcrop_c": [
+    700,
+    240,
+    1500,
+    840
+   ],
+   "pcrop_s": [
+    638,
+    280,
+    1562,
+    800
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m4l1\\m4l1_sc0_000.jpg",
+  "how": "in-engine: two figures meeting on the night path",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m4l2": {
+  "boxes": {
+   "crop_c": [
+    650,
+    81,
+    1920,
+    1080
+   ],
+   "crop_s": [
+    316,
+    150,
+    1920,
+    1080
+   ],
+   "pcrop_c": [
+    650,
+    128,
+    1920,
+    1080
+   ],
+   "pcrop_s": [
+    267,
+    150,
+    1920,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m4l2\\m4l2_s4obj_r300_000.jpg",
+  "how": "in-engine: one of the Tiger I tanks to bomb (objective 2), beside the tank-park tents",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m4l3": {
+  "boxes": {
+   "crop_c": [
+    14,
+    80,
+    1286,
+    1080
+   ],
+   "crop_s": [
+    0,
+    148,
+    1300,
+    902
+   ],
+   "pcrop_c": [
+    0,
+    80,
+    1300,
+    1055
+   ],
+   "pcrop_s": [
+    0,
+    159,
+    1300,
+    891
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\rt_m4l3\\rtm4l3_s1officers_r260_120.jpg",
+  "how": "in-engine: German officers at the command post's map tables",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m5l1a": {
+  "boxes": {
+   "crop_c": [
+    560,
+    100,
+    1704,
+    1000
+   ],
+   "crop_s": [
+    560,
+    156,
+    1920,
+    944
+   ],
+   "pcrop_c": [
+    560,
+    100,
+    1760,
+    1000
+   ],
+   "pcrop_s": [
+    560,
+    168,
+    1920,
+    932
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m5l1a\\m5l1a_s1obj_r600_060.jpg",
+  "how": "in-engine: the arched gate into the rest of the town (objective 2), rubble before it",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m5l1b": {
+  "boxes": {
+   "crop_c": [
+    549,
+    95,
+    1801,
+    1080
+   ],
+   "crop_s": [
+    450,
+    95,
+    1900,
+    936
+   ],
+   "pcrop_c": [
+    518,
+    95,
+    1832,
+    1080
+   ],
+   "pcrop_s": [
+    450,
+    95,
+    1900,
+    911
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m5l1b\\m5l1b_s0kingtank_r800_060.jpg",
+  "how": "in-engine: the town hall with a King Tiger before it",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m5l2a": {
+  "boxes": {
+   "crop_c": [
+    371,
+    90,
+    1629,
+    1080
+   ],
+   "crop_s": [
+    200,
+    152,
+    1800,
+    1080
+   ],
+   "pcrop_c": [
+    340,
+    90,
+    1660,
+    1080
+   ],
+   "pcrop_s": [
+    200,
+    175,
+    1800,
+    1075
+   ]
+  },
+  "from": "G:\\mohaa-loadart\\runs\\scout\\m5l2a\\sc_m5l2a_4_000.jpg",
+  "how": "in-engine: the destroyed village itself - rubble, gutted houses, the road (loadart scout 4_000)",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m5l2b": {
+  "boxes": {
+   "crop_c": [
+    400,
+    142,
+    1500,
+    1008
+   ],
+   "crop_s": [
+    389,
+    250,
+    1511,
+    900
+   ],
+   "pcrop_c": [
+    400,
+    162,
+    1500,
+    988
+   ],
+   "pcrop_s": [
+    372,
+    250,
+    1528,
+    900
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m5l2b\\m5l2b_s1tigertank_r450_060.jpg",
+  "how": "in-engine: a Tiger I on the country road",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m5l3": {
+  "boxes": {
+   "crop_c": [
+    214,
+    80,
+    1486,
+    1080
+   ],
+   "crop_s": [
+    0,
+    80,
+    1700,
+    1066
+   ],
+   "pcrop_c": [
+    183,
+    80,
+    1517,
+    1080
+   ],
+   "pcrop_s": [
+    0,
+    80,
+    1700,
+    1036
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\rt_m5l3\\rtm5l3_s0bridge_r1000_120.jpg",
+  "how": "in-engine: the stone bridge over the canal, a flak gun on it, the half-timbered town behind",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m6l1a": {
+  "boxes": {
+   "crop_c": [
+    270,
+    112,
+    1500,
+    1080
+   ],
+   "crop_s": [
+    83,
+    150,
+    1687,
+    1080
+   ],
+   "pcrop_c": [
+    265,
+    150,
+    1505,
+    1080
+   ],
+   "pcrop_s": [
+    58,
+    150,
+    1712,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\rt_m6l1a\\rtm6l1a_s120mmflak_r450_180.jpg",
+  "how": "in-engine: the level's own 20mm flak in its sandbag ring under camouflage net, crew in winter gear",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m6l1b": {
+  "boxes": {
+   "crop_c": [
+    450,
+    237,
+    1500,
+    1063
+   ],
+   "crop_s": [
+    450,
+    346,
+    1500,
+    954
+   ],
+   "pcrop_c": [
+    450,
+    256,
+    1500,
+    1044
+   ],
+   "pcrop_s": [
+    442,
+    350,
+    1508,
+    950
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m6l1b\\m6l1b_s0obj_r600_240.jpg",
+  "how": "in-engine: the anti-aircraft gun on the snowy bunker roof",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m6l1c": {
+  "boxes": {
+   "crop_c": [
+    324,
+    80,
+    1596,
+    1080
+   ],
+   "crop_s": [
+    98,
+    80,
+    1822,
+    1080
+   ],
+   "pcrop_c": [
+    293,
+    80,
+    1627,
+    1080
+   ],
+   "pcrop_s": [
+    71,
+    80,
+    1849,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m6l1c\\m6l1c_sc2_180.jpg",
+  "how": "in-engine: the research bunker's yard: watchtower, fence, a guard",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m6l2a": {
+  "boxes": {
+   "crop_c": [
+    334,
+    95,
+    1586,
+    1080
+   ],
+   "crop_s": [
+    111,
+    95,
+    1809,
+    1080
+   ],
+   "pcrop_c": [
+    303,
+    95,
+    1617,
+    1080
+   ],
+   "pcrop_s": [
+    84,
+    95,
+    1836,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m6l2a\\m6l2a_s0radiomilit_r450_180.jpg",
+  "how": "in-engine: the radio station's huts and mast in the snow",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m6l2b": {
+  "boxes": {
+   "crop_c": [
+    334,
+    95,
+    1586,
+    1080
+   ],
+   "crop_s": [
+    111,
+    95,
+    1809,
+    1080
+   ],
+   "pcrop_c": [
+    303,
+    95,
+    1617,
+    1080
+   ],
+   "pcrop_s": [
+    84,
+    95,
+    1836,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m6l2b\\m6l2b_s2obj_r600_240.jpg",
+  "how": "in-engine: the rail junction and signal tower",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m6l3a": {
+  "boxes": {
+   "crop_c": [
+    274,
+    0,
+    1646,
+    1080
+   ],
+   "crop_s": [
+    29,
+    0,
+    1891,
+    1080
+   ],
+   "pcrop_c": [
+    240,
+    0,
+    1680,
+    1080
+   ],
+   "pcrop_s": [
+    0,
+    0,
+    1920,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m6l3a\\m6l3a_sc3_270.jpg",
+  "how": "in-engine: the fort's yard from above: train, fence, watchtower",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m6l3b": {
+  "boxes": {
+   "crop_c": [
+    164,
+    0,
+    1536,
+    1080
+   ],
+   "crop_s": [
+    0,
+    0,
+    1863,
+    1080
+   ],
+   "pcrop_c": [
+    130,
+    0,
+    1570,
+    1080
+   ],
+   "pcrop_s": [
+    0,
+    0,
+    1920,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m6l3b\\m6l3b_sc1_090.jpg",
+  "how": "in-engine: a guard in the fort's timbered corridor",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m6l3c": {
+  "boxes": {
+   "crop_c": [
+    274,
+    0,
+    1646,
+    1080
+   ],
+   "crop_s": [
+    29,
+    0,
+    1891,
+    1080
+   ],
+   "pcrop_c": [
+    240,
+    0,
+    1680,
+    1080
+   ],
+   "pcrop_s": [
+    0,
+    0,
+    1920,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m6l3c\\m6l3c_sc3_270.jpg",
+  "how": "in-engine: two soldiers running the long service corridor",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m6l3d": {
+  "boxes": {
+   "crop_c": [
+    577,
+    100,
+    1823,
+    1080
+   ],
+   "crop_s": [
+    500,
+    194,
+    1900,
+    1006
+   ],
+   "pcrop_c": [
+    547,
+    100,
+    1853,
+    1080
+   ],
+   "pcrop_s": [
+    489,
+    200,
+    1911,
+    1000
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_m6l3d\\m6l3d_s0obj_r300_180.jpg",
+  "how": "in-engine: the plant's pipe gallery and catwalks",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "m6l3e": {
+  "boxes": {
+   "crop_c": [
+    189,
+    80,
+    1461,
+    1080
+   ],
+   "crop_s": [
+    0,
+    123,
+    1650,
+    1080
+   ],
+   "pcrop_c": [
+    158,
+    80,
+    1492,
+    1080
+   ],
+   "pcrop_s": [
+    0,
+    152,
+    1650,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\rt_m6l3e\\rtm6l3e_s1rangers_r600_000.jpg",
+  "how": "in-engine: the escape train's boxcars at the fort's platform (Escape Fort Schmerzen)",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "t1l1": {
+  "boxes": {
+   "crop_c": [
+    528,
+    80,
+    1392,
+    760
+   ],
+   "crop_s": [
+    374,
+    80,
+    1546,
+    760
+   ],
+   "pcrop_c": [
+    507,
+    80,
+    1413,
+    760
+   ],
+   "pcrop_s": [
+    356,
+    80,
+    1564,
+    760
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_t1l1\\t1l1_sc1_270.jpg",
+  "how": "in-engine: the Norman farm buildings at night",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "t1l2": {
+  "boxes": {
+   "crop_c": [
+    450,
+    97,
+    1700,
+    1080
+   ],
+   "crop_s": [
+    450,
+    288,
+    1700,
+    1012
+   ],
+   "pcrop_c": [
+    450,
+    142,
+    1700,
+    1080
+   ],
+   "pcrop_s": [
+    450,
+    298,
+    1700,
+    1002
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_t1l2\\t1l2_s2pflak88_r450_240.jpg",
+  "how": "in-engine: a German 88 and its crew at night (Locate and Destroy Artillery Emplacements)",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "t1l3": {
+  "boxes": {
+   "crop_c": [
+    150,
+    175,
+    1300,
+    1080
+   ],
+   "crop_s": [
+    121,
+    300,
+    1329,
+    1000
+   ],
+   "pcrop_c": [
+    150,
+    218,
+    1300,
+    1080
+   ],
+   "pcrop_s": [
+    103,
+    300,
+    1347,
+    1000
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_t1l3\\t1l3_s0tigertankd_r800_060.jpg",
+  "how": "in-engine: the level's knocked-out Tiger on the night road, a fire burning behind it",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "t2l1": {
+  "boxes": {
+   "crop_c": [
+    564,
+    80,
+    1836,
+    1080
+   ],
+   "crop_s": [
+    500,
+    268,
+    1900,
+    1080
+   ],
+   "pcrop_c": [
+    533,
+    80,
+    1867,
+    1080
+   ],
+   "pcrop_s": [
+    500,
+    281,
+    1900,
+    1069
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_t2l1\\t2l1_s0pz4_r420_120.jpg",
+  "how": "in-engine: the level's own Panzer IV in the snow, side-on",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "t2l2": {
+  "boxes": {
+   "crop_c": [
+    650,
+    301,
+    1600,
+    1049
+   ],
+   "crop_s": [
+    564,
+    350,
+    1686,
+    1000
+   ],
+   "pcrop_c": [
+    650,
+    319,
+    1600,
+    1031
+   ],
+   "pcrop_s": [
+    547,
+    350,
+    1703,
+    1000
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\r2_t2l2\\r2t2l2_s0panzerwerf_r450_240.jpg",
+  "how": "in-engine: the level's own Panzerwerfer (rocket launcher on its halftrack) on the wooded mountain slope (retake C2, ride released)",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "t2l3": {
+  "boxes": {
+   "crop_c": [
+    500,
+    136,
+    1700,
+    1080
+   ],
+   "crop_s": [
+    453,
+    300,
+    1747,
+    1050
+   ],
+   "pcrop_c": [
+    500,
+    180,
+    1700,
+    1080
+   ],
+   "pcrop_s": [
+    433,
+    300,
+    1767,
+    1050
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_t2l3\\t2l3_sthi_180.jpg",
+  "how": "in-engine: the foxhole line in the snowy woods at night",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "t2l4": {
+  "boxes": {
+   "crop_c": [
+    414,
+    80,
+    1686,
+    1080
+   ],
+   "crop_s": [
+    300,
+    140,
+    1800,
+    1010
+   ],
+   "pcrop_c": [
+    383,
+    80,
+    1717,
+    1080
+   ],
+   "pcrop_s": [
+    294,
+    150,
+    1806,
+    1000
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_t2l4\\t2l4_sc3_090.jpg",
+  "how": "in-engine: the snowed-in town at night: lit windows, the church spire",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "t3l1": {
+  "boxes": {
+   "crop_c": [
+    324,
+    80,
+    1596,
+    1080
+   ],
+   "crop_s": [
+    98,
+    80,
+    1822,
+    1080
+   ],
+   "pcrop_c": [
+    293,
+    80,
+    1627,
+    1080
+   ],
+   "pcrop_s": [
+    71,
+    80,
+    1849,
+    1080
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_t3l1\\t3l1_s1panzerbrow_r800_000.jpg",
+  "how": "in-engine: Berlin in the rain: rubble and gutted apartment blocks",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "t3l2": {
+  "boxes": {
+   "crop_c": [
+    929,
+    80,
+    1551,
+    570
+   ],
+   "crop_s": [
+    817,
+    80,
+    1663,
+    570
+   ],
+   "pcrop_c": [
+    913,
+    80,
+    1567,
+    570
+   ],
+   "pcrop_s": [
+    804,
+    80,
+    1676,
+    570
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_t3l2\\t3l2_s0tigerbase_r450_000.jpg",
+  "how": "in-engine: a Berlin street of rubble below an apartment block, a ruined church beyond (PROVISIONAL)",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ "training": {
+  "boxes": {
+   "crop_c": [
+    140,
+    99,
+    1260,
+    981
+   ],
+   "crop_s": [
+    140,
+    215,
+    1260,
+    865
+   ],
+   "pcrop_c": [
+    140,
+    120,
+    1260,
+    960
+   ],
+   "pcrop_s": [
+    140,
+    225,
+    1260,
+    855
+   ]
+  },
+  "from": "G:\\mohaa-tileart\\runs\\full_training\\training_s0tigertank_r450_300.jpg",
+  "how": "in-engine: the training yard's own Tiger I among the sheds",
+  "size": [
+   1920,
+   1080
+  ]
+ }
+}

@@ -1,0 +1,1890 @@
+{
+ "missions": [
+  {
+   "cfg": "m0",
+   "dropdown": "Training / Secret",
+   "header_today": "Training / Secret",
+   "retail": "Training / Secret",
+   "proposed": "Training / Secret",
+   "note": "unchanged"
+  },
+  {
+   "cfg": "m1",
+   "dropdown": "Allied Assault: 1 Lighting the Torch",
+   "header_today": "1 - Lighting the Torch",
+   "retail": "Lighting the Torch",
+   "proposed": "Lighting the Torch",
+   "note": "retail chalk sign textures/mohmenu/mission1_sign.tga (main/Pak6EnUk.pk3, the English-language pak: other language editions may differ) - the name the retail menu shows; agrees with docs/proposals/menu_system_remaster_2026-09-29 README 'Mission names - sources' (bug-3280)"
+  },
+  {
+   "cfg": "m2",
+   "dropdown": "Allied Assault: 2 Scuttling the U-529",
+   "header_today": "2 - Scuttling the U-529",
+   "retail": "Scuttling the U-529",
+   "proposed": "Scuttling the U-529",
+   "note": "retail chalk sign textures/mohmenu/mission2_sign.tga (main/Pak6EnUk.pk3, the English-language pak: other language editions may differ) - the name the retail menu shows; agrees with docs/proposals/menu_system_remaster_2026-09-29 README 'Mission names - sources' (bug-3280)"
+  },
+  {
+   "cfg": "m3",
+   "dropdown": "Allied Assault: 3 Operation Overlord",
+   "header_today": "3 - Operation Overlord",
+   "retail": "Operation Overlord",
+   "proposed": "Operation Overlord",
+   "note": "retail chalk sign textures/mohmenu/mission3_sign.tga (main/Pak6EnUk.pk3, the English-language pak: other language editions may differ) - the name the retail menu shows; agrees with docs/proposals/menu_system_remaster_2026-09-29 README 'Mission names - sources' (bug-3280)"
+  },
+  {
+   "cfg": "m4",
+   "dropdown": "Allied Assault: 4 Behind Enemy Lines",
+   "header_today": "4 - Behind Enemy Lines",
+   "retail": "Behind Enemy Lines",
+   "proposed": "Behind Enemy Lines",
+   "note": "retail chalk sign textures/mohmenu/mission4_sign.tga (main/Pak6EnUk.pk3, the English-language pak: other language editions may differ) - the name the retail menu shows; agrees with docs/proposals/menu_system_remaster_2026-09-29 README 'Mission names - sources' (bug-3280)"
+  },
+  {
+   "cfg": "m5",
+   "dropdown": "Allied Assault: 5 Day of the Tiger",
+   "header_today": "5 - Day of the Tiger",
+   "retail": "The Day of the Tiger",
+   "proposed": "The Day of the Tiger",
+   "note": "retail chalk sign textures/mohmenu/mission5_sign.tga (main/Pak6EnUk.pk3, the English-language pak: other language editions may differ) - the name the retail menu shows; agrees with docs/proposals/menu_system_remaster_2026-09-29 README 'Mission names - sources' (bug-3280); briefing5.bsp worldspawn says 'Day of the Tiger'"
+  },
+  {
+   "cfg": "m6",
+   "dropdown": "Allied Assault: 6 Return to Fort Schmerzen",
+   "header_today": "6 - Return to Fort Schmerzen",
+   "retail": "Return to Schmerzen",
+   "proposed": "Return to Schmerzen",
+   "note": "retail chalk sign textures/mohmenu/mission6_sign.tga (main/Pak6EnUk.pk3, the English-language pak: other language editions may differ) - the name the retail menu shows; agrees with docs/proposals/menu_system_remaster_2026-09-29 README 'Mission names - sources' (bug-3280); briefing6.bsp worldspawn says 'The Return to Schmerzen'"
+  },
+  {
+   "cfg": "e1",
+   "dropdown": "Breakthrough: 1 Battle of Kasserine Pass & Operation Torch",
+   "header_today": "1 Battle of Kasserine Pass & Operation Torch",
+   "retail": "Tunisia",
+   "proposed": "Tunisia",
+   "note": "today '1 Battle of Kasserine Pass & Operation Torch': Torch was the Nov 1942 landings in Morocco/Algeria; e1 is Kasserine (Feb 1943) and Bizerte (May 1943). No e1 level is Torch."
+  },
+  {
+   "cfg": "e2",
+   "dropdown": "Breakthrough: 2 Sicily, Operation Husky",
+   "header_today": "2 Sicily, Operation Husky",
+   "retail": "Sicily",
+   "proposed": "Sicily",
+   "note": "today '2 Sicily, Operation Husky' is historically right (Husky = Sicily, Jul 1943); 'Sicily' alone matches the retail worldspawn"
+  },
+  {
+   "cfg": "e3",
+   "dropdown": "Breakthrough: 3 Operation Avalanche",
+   "header_today": "3 Operation Avalanche",
+   "retail": "Italy",
+   "proposed": "Italy",
+   "note": "today '3 Operation Avalanche': Avalanche was Salerno (Sep 1943); e3 is Monte Cassino, Anzio (Shingle) and Monte Battaglia. None is Avalanche."
+  },
+  {
+   "cfg": "t1",
+   "dropdown": "Spearhead: 1 A Storm in the Port",
+   "header_today": "Spearhead 1 - A Storm in the Port",
+   "retail": "Normandy",
+   "proposed": "Normandy",
+   "note": "today 'A Storm in the Port' appears in no retail file; retail names the mission Normandy (mainta localization + every t1 worldspawn)"
+  },
+  {
+   "cfg": "t2",
+   "dropdown": "Spearhead: 2 The Bridge",
+   "header_today": "Spearhead 2 - The Bridge",
+   "retail": "Bastogne",
+   "proposed": "Bastogne",
+   "note": "today 'The Bridge' appears in no Spearhead file (it is AA m5l3's retail name)"
+  },
+  {
+   "cfg": "t3",
+   "dropdown": "Spearhead: 3 The Great Escape",
+   "header_today": "Spearhead 3 - The Great Escape",
+   "retail": "Berlin",
+   "proposed": "Berlin",
+   "note": "today 'The Great Escape' appears in no retail file"
+  }
+ ],
+ "tiles": [
+  {
+   "slot": 1,
+   "shader": "textures/mohmenu/dmloading/training",
+   "bsp": "training",
+   "label_today": "",
+   "cfg": "m0",
+   "image": "mod:textures/mohmenu/dmloading/training.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 497074,
+   "md5": "66cb957eb06d064fa828ecaf80453512",
+   "retail_title": "Training",
+   "retail_checkpoints": [
+    "Planting explosives",
+    "Firing Range"
+   ],
+   "mod_title": "Training Camp",
+   "kicker": "Training / Secret",
+   "title": "Training",
+   "src": "retail-ws",
+   "note": "mod says 'Training Camp'",
+   "facfont20_units": 52.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 2,
+   "shader": "textures/mohmenu/dmloading/m4l0",
+   "bsp": "m4l0",
+   "label_today": "",
+   "cfg": "m0",
+   "image": "mod:textures/mohmenu/dmloading/m4l0.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 503701,
+   "md5": "cd6224ab09174d153f495bac8dea1244",
+   "retail_title": "",
+   "retail_checkpoints": [],
+   "mod_title": "Secret Dog Map",
+   "kicker": "Training / Secret",
+   "title": "The Farmhouse",
+   "src": "authored",
+   "note": "no worldspawn title; mod says 'Secret Dog Map'. The script's own header reads 'FARM HOUSE'; objectives: find allied soldiers, take secret German documents, exfiltrate. No place named.",
+   "facfont20_units": 96.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 1,
+   "shader": "textures/mohmenu/dmloading/briefing/briefing1",
+   "bsp": "briefing/briefing1",
+   "label_today": "",
+   "cfg": "m1",
+   "image": "mod:textures/mohmenu/dmloading/briefing/briefing1.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 382489,
+   "md5": "72f248bdb04423b3af4112bdd70e4645",
+   "retail_title": "Briefing 1 - Lighting the Torch",
+   "retail_checkpoints": [],
+   "mod_title": "Lighting the Torch",
+   "kicker": "Lighting the Torch",
+   "title": "Lighting the Torch Briefing",
+   "src": "retail-brief",
+   "note": "title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT).",
+   "facfont20_units": 168.0,
+   "same_image_as": [
+    "briefing/briefinge1",
+    "briefing/briefinge2",
+    "briefing/briefinge3",
+    "briefing/briefingt1",
+    "briefing/briefingt2",
+    "briefing/briefingt3"
+   ]
+  },
+  {
+   "slot": 2,
+   "shader": "textures/mohmenu/dmloading/m1l1",
+   "bsp": "m1l1",
+   "label_today": "",
+   "cfg": "m1",
+   "image": "mod:textures/mohmenu/dmloading/m1l1.jpg",
+   "size": [
+    512,
+    512
+   ],
+   "bytes": 78615,
+   "md5": "f1e43ab8ee7db4ac17d5c872f642d675",
+   "retail_title": "Rangers Lead the Way",
+   "retail_checkpoints": [
+    "Ride gone bad",
+    "Ambush!"
+   ],
+   "mod_title": "Rangers Lead the Way",
+   "kicker": "Lighting the Torch",
+   "title": "Rangers Lead the Way",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 137.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 3,
+   "shader": "textures/mohmenu/dmloading/m1l2a",
+   "bsp": "m1l2a",
+   "label_today": "",
+   "cfg": "m1",
+   "image": "mod:textures/mohmenu/dmloading/m1l2a.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 281576,
+   "md5": "a928f8efdcf084b514b4ae480761fc1e",
+   "retail_title": "The Rescue Mission",
+   "retail_checkpoints": [
+    "Rescue successful",
+    "SAS on the warpath",
+    "Fortress infiltration",
+    "Goods grabbed, gone",
+    "Destroying Flak 88s"
+   ],
+   "mod_title": "The Rescue Mission",
+   "kicker": "Lighting the Torch",
+   "title": "The Rescue Mission",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 124.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 4,
+   "shader": "textures/mohmenu/dmloading/m1l2b",
+   "bsp": "m1l2b",
+   "label_today": "",
+   "cfg": "m1",
+   "image": "mod:textures/mohmenu/dmloading/m1l2b.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 297175,
+   "md5": "c719aad9ca126c8786167706b4228de5",
+   "retail_title": "Sabotage the Motorpool",
+   "retail_checkpoints": [
+    "Tank garage",
+    "Ammo storage",
+    "Exfiltrating"
+   ],
+   "mod_title": "Sabotage the Motorpool",
+   "kicker": "Lighting the Torch",
+   "title": "Sabotage the Motorpool",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 147.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 5,
+   "shader": "textures/mohmenu/dmloading/m1l3a",
+   "bsp": "m1l3a",
+   "label_today": "",
+   "cfg": "m1",
+   "image": "mod:textures/mohmenu/dmloading/m1l3a.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 243906,
+   "md5": "73ef7d4c438a16e8abd5f40fdd21128b",
+   "retail_title": "Lighting the Torch - Desert Road",
+   "retail_checkpoints": [],
+   "mod_title": "Desert Road",
+   "kicker": "Lighting the Torch",
+   "title": "Desert Road",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 75.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 6,
+   "shader": "textures/mohmenu/dmloading/m1l3b",
+   "bsp": "m1l3b",
+   "label_today": "",
+   "cfg": "m1",
+   "image": "mod:textures/mohmenu/dmloading/m1l3b.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 189005,
+   "md5": "5c973827979b5bbf5116ee80691d8219",
+   "retail_title": "Grounding the Airfield",
+   "retail_checkpoints": [],
+   "mod_title": "Grounding the Airfield",
+   "kicker": "Lighting the Torch",
+   "title": "Grounding the Airfield",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 138.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 7,
+   "shader": "textures/mohmenu/dmloading/m1l3c",
+   "bsp": "m1l3c",
+   "label_today": "",
+   "cfg": "m1",
+   "image": "mod:textures/mohmenu/dmloading/m1l3c.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 242026,
+   "md5": "04c7f91b2b123236d5bc5f82742c6664",
+   "retail_title": "Lighting The Torch - Lighthouse",
+   "retail_checkpoints": [],
+   "mod_title": "Lighthouse",
+   "kicker": "Lighting the Torch",
+   "title": "Lighthouse",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 70.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 1,
+   "shader": "textures/mohmenu/dmloading/briefing/briefing2",
+   "bsp": "briefing/briefing2",
+   "label_today": "",
+   "cfg": "m2",
+   "image": "mod:textures/mohmenu/dmloading/briefing/briefing2.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 191007,
+   "md5": "ee77de3067879fab29366ee0e683a202",
+   "retail_title": "Briefing 2 - Scuttling the U-529",
+   "retail_checkpoints": [],
+   "mod_title": "Scuttling the U-529",
+   "kicker": "Scuttling the U-529",
+   "title": "Scuttling the U-529 Briefing",
+   "src": "retail-brief",
+   "note": "title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT).",
+   "facfont20_units": 169.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 2,
+   "shader": "textures/mohmenu/dmloading/m2l1",
+   "bsp": "m2l1",
+   "label_today": "",
+   "cfg": "m2",
+   "image": "mod:textures/mohmenu/dmloading/m2l1.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 255622,
+   "md5": "586408c26606e338ba126df68ac5761d",
+   "retail_title": "Secret Documents of the Kriegsmarine",
+   "retail_checkpoints": [
+    "Inside the guardhouse",
+    "Research Building Entrance",
+    "Upstairs in the Research Building",
+    "Leaving the Research Building"
+   ],
+   "mod_title": "Secret Documents of the Kriegsmarine",
+   "kicker": "Scuttling the U-529",
+   "title": "Secret Documents of the Kriegsmarine",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 236.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 3,
+   "shader": "textures/mohmenu/dmloading/m2l2a",
+   "bsp": "m2l2a",
+   "label_today": "",
+   "cfg": "m2",
+   "image": "mod:textures/mohmenu/dmloading/m2l2a.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 266335,
+   "md5": "30c9de106bce7f4b36df75b738c4dcbb",
+   "retail_title": "Scuttling the U-529 - Naxos Prototype",
+   "retail_checkpoints": [
+    "Entering the Pen"
+   ],
+   "mod_title": "Naxos Prototype",
+   "kicker": "Scuttling the U-529",
+   "title": "Naxos Prototype",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 101.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 4,
+   "shader": "textures/mohmenu/dmloading/m2l2b",
+   "bsp": "m2l2b",
+   "label_today": "",
+   "cfg": "m2",
+   "image": "mod:textures/mohmenu/dmloading/m2l2b.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 255854,
+   "md5": "f9c02fff2eab460307d83f3663662796",
+   "retail_title": "Scuttling the U-529 - Inside the U-529",
+   "retail_checkpoints": [],
+   "mod_title": "Inside the U-529",
+   "kicker": "Scuttling the U-529",
+   "title": "Inside the U-529",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 99.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 5,
+   "shader": "textures/mohmenu/dmloading/m2l2c",
+   "bsp": "m2l2c",
+   "label_today": "",
+   "cfg": "m2",
+   "image": "mod:textures/mohmenu/dmloading/m2l2c.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 231644,
+   "md5": "75cabbc0b29dd5b002ca54dd18392e4b",
+   "retail_title": "Scuttling the U-529 - Cover Blown",
+   "retail_checkpoints": [],
+   "mod_title": "Cover Blown",
+   "kicker": "Scuttling the U-529",
+   "title": "Cover Blown",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 78.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 6,
+   "shader": "textures/mohmenu/dmloading/m2l3",
+   "bsp": "m2l3",
+   "label_today": "",
+   "cfg": "m2",
+   "image": "mod:textures/mohmenu/dmloading/m2l3.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 238300,
+   "md5": "01cae71ad9de930100223b87d6e356f5",
+   "retail_title": "Escape from Trondheim",
+   "retail_checkpoints": [
+    "Exiting the vent",
+    "Dash for the train",
+    "Escape through the garage"
+   ],
+   "mod_title": "Escape from Trondheim",
+   "kicker": "Scuttling the U-529",
+   "title": "Escape from Trondheim",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 147.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 1,
+   "shader": "textures/mohmenu/dmloading/briefing/briefing3",
+   "bsp": "briefing/briefing3",
+   "label_today": "",
+   "cfg": "m3",
+   "image": "mod:textures/mohmenu/dmloading/briefing/briefing3.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 459560,
+   "md5": "bb8f8b429d6ec0f76dc91bb4b735039f",
+   "retail_title": "Briefing 3 - Operation Overlord",
+   "retail_checkpoints": [],
+   "mod_title": "Operation Overlord",
+   "kicker": "Operation Overlord",
+   "title": "Operation Overlord Briefing",
+   "src": "retail-brief",
+   "note": "title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT).",
+   "facfont20_units": 170.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 2,
+   "shader": "textures/mohmenu/dmloading/m3l1a",
+   "bsp": "m3l1a",
+   "label_today": "",
+   "cfg": "m3",
+   "image": "mod:textures/mohmenu/dmloading/m3l1a.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 181691,
+   "md5": "fd2a39a145eb6db985b9b8a4895f958f",
+   "retail_title": "Omaha Beach - The Landing",
+   "retail_checkpoints": [
+    "About to disembark",
+    "Healed by a medic",
+    "Healed at the shingle",
+    "Base of the bunker"
+   ],
+   "mod_title": "Omaha Beach - The Landing",
+   "kicker": "Omaha Beach",
+   "title": "The Landing",
+   "src": "retail-ws",
+   "note": "OMAHA RULE: tile art only; no m3l1a/m3l1b texture or skybox is touched",
+   "facfont20_units": 78.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 3,
+   "shader": "textures/mohmenu/dmloading/m3l1b",
+   "bsp": "m3l1b",
+   "label_today": "",
+   "cfg": "m3",
+   "image": "mod:textures/mohmenu/dmloading/m3l1b.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 194296,
+   "md5": "3caab2efaf25a3a854f1fda2b008e215",
+   "retail_title": "Omaha Beach - Inside the Bunker",
+   "retail_checkpoints": [
+    "Top of the bunker"
+   ],
+   "mod_title": "Omaha Beach - Inside the Bunker",
+   "kicker": "Omaha Beach",
+   "title": "Inside the Bunker",
+   "src": "retail-ws",
+   "note": "OMAHA RULE as above",
+   "facfont20_units": 109.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 4,
+   "shader": "textures/mohmenu/dmloading/m3l2",
+   "bsp": "m3l2",
+   "label_today": "",
+   "cfg": "m3",
+   "image": "mod:textures/mohmenu/dmloading/m3l2.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 490310,
+   "md5": "8950b912e66e3d2ecaf0d9fd629da86e",
+   "retail_title": "Battle in the Bocage",
+   "retail_checkpoints": [
+    "Defending the rear",
+    "Defending the front",
+    "Leaving the house",
+    "Flak alley",
+    "In the barn",
+    "At the radio",
+    "Near the first Flak 88",
+    "Anti-aircraft gun"
+   ],
+   "mod_title": "Battle in the Bocage",
+   "kicker": "Operation Overlord",
+   "title": "Battle in the Bocage",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 124.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 5,
+   "shader": "textures/mohmenu/dmloading/m3l3",
+   "bsp": "m3l3",
+   "label_today": "",
+   "cfg": "m3",
+   "image": "mod:textures/mohmenu/dmloading/m3l3.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 368767,
+   "md5": "915998dfb16a770765da71b5838db79a",
+   "retail_title": "The Nebelwerfer Hunt",
+   "retail_checkpoints": [
+    "Paratroopers",
+    "Tiger tank",
+    "The church",
+    "Nebelwerfer field",
+    "Nebelwerfer 1",
+    "Nebelwerfer 2",
+    "Nebelwerfer 3",
+    "Nebelwerfer 4",
+    "Bocage clearing"
+   ],
+   "mod_title": "The Nebelwerfer Hunt",
+   "kicker": "Operation Overlord",
+   "title": "The Nebelwerfer Hunt",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 132.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 1,
+   "shader": "textures/mohmenu/dmloading/briefing/briefing4",
+   "bsp": "briefing/briefing4",
+   "label_today": "",
+   "cfg": "m4",
+   "image": "mod:textures/mohmenu/dmloading/briefing/briefing4.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 277609,
+   "md5": "a7f13656415b850a704ad93ee7d70ab1",
+   "retail_title": "Briefing 4 - Behind Enemy Lines",
+   "retail_checkpoints": [],
+   "mod_title": "Behind Enemy Lines",
+   "kicker": "Behind Enemy Lines",
+   "title": "Behind Enemy Lines Briefing",
+   "src": "retail-brief",
+   "note": "title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT).",
+   "facfont20_units": 180.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 2,
+   "shader": "textures/mohmenu/dmloading/m4l1",
+   "bsp": "m4l1",
+   "label_today": "",
+   "cfg": "m4",
+   "image": "mod:textures/mohmenu/dmloading/m4l1.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 217106,
+   "md5": "3f92917af801fb96e92cd58c1cc1e10a",
+   "retail_title": "Rendezvous with the Resistance",
+   "retail_checkpoints": [
+    "Downed plane",
+    "Road bend",
+    "Uphill battle"
+   ],
+   "mod_title": "Rendezvous with the Resistance",
+   "kicker": "Behind Enemy Lines",
+   "title": "Rendezvous with the Resistance",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 198.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 3,
+   "shader": "textures/mohmenu/dmloading/m4l2",
+   "bsp": "m4l2",
+   "label_today": "",
+   "cfg": "m4",
+   "image": "mod:textures/mohmenu/dmloading/m4l2.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 387598,
+   "md5": "bc43bde5a84b08535f42a71152398d8d",
+   "retail_title": "Diverting the Enemy",
+   "retail_checkpoints": [
+    "Railroad",
+    "Tunnel",
+    "Underground"
+   ],
+   "mod_title": "Diverting the Enemy",
+   "kicker": "Behind Enemy Lines",
+   "title": "Diverting the Enemy",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 124.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 4,
+   "shader": "textures/mohmenu/dmloading/m4l3",
+   "bsp": "m4l3",
+   "label_today": "",
+   "cfg": "m4",
+   "image": "mod:textures/mohmenu/dmloading/m4l3.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 248582,
+   "md5": "8c9af396d4baf91d11bea5ae5b801bf9",
+   "retail_title": "The Command Post",
+   "retail_checkpoints": [
+    "Into the lion's den",
+    "Infiltrated the perimeter",
+    "Exfiltrating",
+    "Radio Free Manor house",
+    "Troops manifested",
+    "Battles unplanned",
+    "Plans stolen"
+   ],
+   "mod_title": "The Command Post",
+   "kicker": "Behind Enemy Lines",
+   "title": "The Command Post",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 120.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 1,
+   "shader": "textures/mohmenu/dmloading/briefing/briefing5",
+   "bsp": "briefing/briefing5",
+   "label_today": "",
+   "cfg": "m5",
+   "image": "mod:textures/mohmenu/dmloading/briefing/briefing5.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 140539,
+   "md5": "b6bad7210254950040a7458e4a29c57d",
+   "retail_title": "Briefing 5 - Day of the Tiger",
+   "retail_checkpoints": [],
+   "mod_title": "Day of the Tiger",
+   "kicker": "The Day of the Tiger",
+   "title": "The Day of the Tiger Briefing",
+   "src": "retail-brief",
+   "note": "title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT).",
+   "facfont20_units": 178.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 2,
+   "shader": "textures/mohmenu/dmloading/m5l1a",
+   "bsp": "m5l1a",
+   "label_today": "",
+   "cfg": "m5",
+   "image": "mod:textures/mohmenu/dmloading/m5l1a.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 276571,
+   "md5": "8a2cf9a41b9bc513967edb1bbcb53dc5",
+   "retail_title": "Sniper's Last Stand - Outskirts",
+   "retail_checkpoints": [
+    "Rain in the eyes",
+    "Downpour",
+    "Scope soaked",
+    "Muddy depths"
+   ],
+   "mod_title": "Sniper's Last Stand - Outskirts",
+   "kicker": "Sniper's Last Stand",
+   "title": "Outskirts",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 55.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 3,
+   "shader": "textures/mohmenu/dmloading/m5l1b",
+   "bsp": "m5l1b",
+   "label_today": "",
+   "cfg": "m5",
+   "image": "mod:textures/mohmenu/dmloading/m5l1b.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 348159,
+   "md5": "85d573b07f37d260edeb606e26955909",
+   "retail_title": "Sniper's Last Stand - City Hall",
+   "retail_checkpoints": [
+    "Panzer 'Oust",
+    "Sniping from below",
+    "Bombed from above",
+    "Moving in on the King Tiger"
+   ],
+   "mod_title": "Sniper's Last Stand - City Hall",
+   "kicker": "Sniper's Last Stand",
+   "title": "City Hall",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 52.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 4,
+   "shader": "textures/mohmenu/dmloading/m5l2a",
+   "bsp": "m5l2a",
+   "label_today": "",
+   "cfg": "m5",
+   "image": "mod:textures/mohmenu/dmloading/m5l2a.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 418632,
+   "md5": "4a825c4165f28a062c58ef0bbbe08df3",
+   "retail_title": "The Hunt for the King Tiger - Destroyed Village",
+   "retail_checkpoints": [],
+   "mod_title": "The Hunt for the King Tiger - Destroyed Village",
+   "kicker": "The Hunt for the King Tiger",
+   "title": "Destroyed Village",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 108.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 5,
+   "shader": "textures/mohmenu/dmloading/m5l2b",
+   "bsp": "m5l2b",
+   "label_today": "",
+   "cfg": "m5",
+   "image": "mod:textures/mohmenu/dmloading/m5l2b.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 488220,
+   "md5": "5e085fdca5f6346dcc2429366483e35d",
+   "retail_title": "The Hunt for the King Tiger - Country Road",
+   "retail_checkpoints": [],
+   "mod_title": "The Hunt for the King Tiger - Country Road",
+   "kicker": "The Hunt for the King Tiger",
+   "title": "Country Road",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 85.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 6,
+   "shader": "textures/mohmenu/dmloading/m5l3",
+   "bsp": "m5l3",
+   "label_today": "",
+   "cfg": "m5",
+   "image": "mod:textures/mohmenu/dmloading/m5l3.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 288651,
+   "md5": "3e4170ade4d2a6578d37c75ff2e306af",
+   "retail_title": "The Bridge",
+   "retail_checkpoints": [
+    "Sniping from on high"
+   ],
+   "mod_title": "The Bridge",
+   "kicker": "The Day of the Tiger",
+   "title": "The Bridge",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 68.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 1,
+   "shader": "textures/mohmenu/dmloading/briefing/briefing6",
+   "bsp": "briefing/briefing6",
+   "label_today": "",
+   "cfg": "m6",
+   "image": "mod:textures/mohmenu/dmloading/briefing/briefing6.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 680228,
+   "md5": "7ca496d2d5089fceecf658953afc1817",
+   "retail_title": "Briefing 6 - The Return to Schmerzen",
+   "retail_checkpoints": [],
+   "mod_title": "The Return to Schmerzen",
+   "kicker": "Return to Schmerzen",
+   "title": "Return to Schmerzen Briefing",
+   "src": "retail-brief",
+   "note": "title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT).",
+   "facfont20_units": 181.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 2,
+   "shader": "textures/mohmenu/dmloading/m6l1a",
+   "bsp": "m6l1a",
+   "label_today": "",
+   "cfg": "m6",
+   "image": "mod:textures/mohmenu/dmloading/m6l1a.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 396831,
+   "md5": "d3682a856070e3508ed6db2bc641d0a8",
+   "retail_title": "The Siegfried Forest - Flak Guns",
+   "retail_checkpoints": [
+    "First flak 20"
+   ],
+   "mod_title": "The Siegfried Forest - Flak Guns",
+   "kicker": "The Siegfried Forest",
+   "title": "Flak Guns",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 62.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 3,
+   "shader": "textures/mohmenu/dmloading/m6l1b",
+   "bsp": "m6l1b",
+   "label_today": "",
+   "cfg": "m6",
+   "image": "mod:textures/mohmenu/dmloading/m6l1b.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 295891,
+   "md5": "adae8de8592d7e59c61997efc849c733",
+   "retail_title": "The Siegfried Forest - Bunker Hill",
+   "retail_checkpoints": [],
+   "mod_title": "The Siegfried Forest - Bunker Hill",
+   "kicker": "The Siegfried Forest",
+   "title": "Bunker Hill",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 69.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 4,
+   "shader": "textures/mohmenu/dmloading/m6l1c",
+   "bsp": "m6l1c",
+   "label_today": "",
+   "cfg": "m6",
+   "image": "mod:textures/mohmenu/dmloading/m6l1c.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 349815,
+   "md5": "6d72d5e304c882568eca32c39e0fdd07",
+   "retail_title": "Die Sturmgewehr",
+   "retail_checkpoints": [
+    "Exfiltrating",
+    "Bunks",
+    "On the run"
+   ],
+   "mod_title": "Das Sturmgewehr",
+   "kicker": "Return to Schmerzen",
+   "title": "Das Sturmgewehr",
+   "src": "mod",
+   "note": "retail worldspawn has the article wrong ('Die Sturmgewehr'); the mod already corrected it (variables.scr:263) - Gewehr is neuter",
+   "facfont20_units": 107.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 5,
+   "shader": "textures/mohmenu/dmloading/m6l2a",
+   "bsp": "m6l2a",
+   "label_today": "",
+   "cfg": "m6",
+   "image": "mod:textures/mohmenu/dmloading/m6l2a.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 229896,
+   "md5": "97b29bcc470be19691b569b39753f27b",
+   "retail_title": "The Communications Blackout",
+   "retail_checkpoints": [
+    "Bombs planted"
+   ],
+   "mod_title": "The Communications Blackout",
+   "kicker": "Return to Schmerzen",
+   "title": "The Communications Blackout",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 189.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 6,
+   "shader": "textures/mohmenu/dmloading/m6l2b",
+   "bsp": "m6l2b",
+   "label_today": "",
+   "cfg": "m6",
+   "image": "mod:textures/mohmenu/dmloading/m6l2b.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 178693,
+   "md5": "3c4070c7d5f1b92f784a2bbd4bd8a03f",
+   "retail_title": "The Schmerzen Express",
+   "retail_checkpoints": [
+    "The railroad tracks",
+    "The Power Shed"
+   ],
+   "mod_title": "The Schmerzen Express",
+   "kicker": "Return to Schmerzen",
+   "title": "The Schmerzen Express",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 147.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 7,
+   "shader": "textures/mohmenu/dmloading/m6l3a",
+   "bsp": "m6l3a",
+   "label_today": "",
+   "cfg": "m6",
+   "image": "mod:textures/mohmenu/dmloading/m6l3a.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 180721,
+   "md5": "fe4eea0163609dd11f69b16678194569",
+   "retail_title": "Storming Fort Schmerzen",
+   "retail_checkpoints": [
+    "Train platform",
+    "Cargo hold",
+    "Jailbreak",
+    "Fuel flow unit",
+    "Fuel valve"
+   ],
+   "mod_title": "Storming Fort Schmerzen - Train Platform",
+   "kicker": "Return to Schmerzen",
+   "title": "Storming Fort Schmerzen",
+   "src": "retail-ws",
+   "note": "mod adds '- Train Platform', which no retail file says",
+   "facfont20_units": 156.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 8,
+   "shader": "textures/mohmenu/dmloading/m6l3b",
+   "bsp": "m6l3b",
+   "label_today": "",
+   "cfg": "m6",
+   "image": "mod:textures/mohmenu/dmloading/m6l3b.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 240695,
+   "md5": "32715b1e032e15642c8e689e1d2371dc",
+   "retail_title": "Storming Fort Schmerzen - Inner Facility",
+   "retail_checkpoints": [],
+   "mod_title": "Storming Fort Schmerzen - Inner Facility",
+   "kicker": "Storming Fort Schmerzen",
+   "title": "Inner Facility",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 81.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 9,
+   "shader": "textures/mohmenu/dmloading/m6l3d",
+   "bsp": "m6l3d",
+   "label_today": "",
+   "cfg": "m6",
+   "image": "mod:textures/mohmenu/dmloading/m6l3d.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 292820,
+   "md5": "da60d706c5667db00b7c4d3172984a33",
+   "retail_title": "Storming Fort Schmerzen - Chemical Plant",
+   "retail_checkpoints": [],
+   "mod_title": "Storming Fort Schmerzen - Final Run",
+   "kicker": "Storming Fort Schmerzen",
+   "title": "Chemical Plant",
+   "src": "retail-ws",
+   "note": "played 3rd (m6l3b -> m6l3d -> m6l3c, per each map's missioncomplete). The mod's coop_mapDescription swaps c/d.",
+   "facfont20_units": 92.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 10,
+   "shader": "textures/mohmenu/dmloading/m6l3c",
+   "bsp": "m6l3c",
+   "label_today": "",
+   "cfg": "m6",
+   "image": "mod:textures/mohmenu/dmloading/m6l3c.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 277123,
+   "md5": "141ff4dba0982621b24d5b88b8ad7ce2",
+   "retail_title": "Storming Fort Schmerzen - Final Run",
+   "retail_checkpoints": [],
+   "mod_title": "Storming Fort Schmerzen - Chemical Plant",
+   "kicker": "Storming Fort Schmerzen",
+   "title": "Final Run",
+   "src": "retail-ws",
+   "note": "played 4th; see m6l3d",
+   "facfont20_units": 60.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 11,
+   "shader": "ui/coop_tiles/m6l3e",
+   "bsp": "m6l3e",
+   "label_today": "",
+   "cfg": "m6",
+   "image": "mod:ui/coop_tiles/m6l3e.jpg",
+   "size": [
+    512,
+    512
+   ],
+   "bytes": 65572,
+   "md5": "b4ae19bf808fc73469aca95b4c850c49",
+   "retail_title": "Storming Fort Schmerzen - Conclusion",
+   "retail_checkpoints": [],
+   "mod_title": "Storming Fort Schmerzen - Conclusion",
+   "kicker": "Storming Fort Schmerzen",
+   "title": "Conclusion",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 71.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 1,
+   "shader": "textures/mohmenu/dmloading/briefing/briefing1",
+   "bsp": "briefing/briefinge1",
+   "label_today": "Briefing",
+   "cfg": "e1",
+   "image": "mod:textures/mohmenu/dmloading/briefing/briefing1.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 382489,
+   "md5": "72f248bdb04423b3af4112bdd70e4645",
+   "retail_title": "",
+   "retail_checkpoints": [],
+   "mod_title": "Breakthrough - Kasserine Pass",
+   "kicker": "Tunisia",
+   "title": "Tunisia Briefing",
+   "src": "retail-region",
+   "note": "the briefing BSP has no worldspawn message (it only plays the retail film); the title is the generic 'Briefing' and the region comes from the campaign's own level worldspawns; title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT).",
+   "facfont20_units": 99.0,
+   "same_image_as": [
+    "briefing/briefing1",
+    "briefing/briefinge2",
+    "briefing/briefinge3",
+    "briefing/briefingt1",
+    "briefing/briefingt2",
+    "briefing/briefingt3"
+   ]
+  },
+  {
+   "slot": 2,
+   "shader": "textures/mohmenu/dmloading/e1l1",
+   "bsp": "e1l1",
+   "label_today": "e1l1",
+   "cfg": "e1",
+   "image": "mod:textures/mohmenu/dmloading/e1l1.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 181076,
+   "md5": "8b0ae8c1efc4110fddf9840fa0cb32f2",
+   "retail_title": "Tunisia - Battle of Kasserine Pass I",
+   "retail_checkpoints": [
+    "Tunisia - Battle of Kasserine Pass I - Battlefield",
+    "Tunisia - Battle of Kasserine Pass I - Taking Over the Panzer",
+    "Tunisia - Battle of Kasserine Pass I - The Fortified Gate",
+    "Tunisia - Battle of Kasserine Pass I - Infiltrate the Bunker"
+   ],
+   "mod_title": "Battle of Kasserine Pass - Part 1",
+   "kicker": "Tunisia",
+   "title": "Battle of Kasserine Pass I",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 157.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 3,
+   "shader": "textures/mohmenu/dmloading/e1l2",
+   "bsp": "e1l2",
+   "label_today": "e1l2",
+   "cfg": "e1",
+   "image": "mod:textures/mohmenu/dmloading/e1l2.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 222838,
+   "md5": "9fb5dd519f9f931659d1580a19515b68",
+   "retail_title": "Tunisia - Battle of Kasserine Pass II",
+   "retail_checkpoints": [
+    "Tunisia - Battle of Kasserine Pass II - In the Canyon",
+    "Tunisia - Battle of Kasserine Pass II - Destroy the Artillery",
+    "Tunisia - Battle of Kasserine Pass II - Minefield",
+    "Tunisia - Battle of Kasserine Pass II - Escort on Foot",
+    "Tunisia - Battle of Kasserine Pass II - Flush out the Bunker"
+   ],
+   "mod_title": "Battle of Kasserine Pass - Part 2",
+   "kicker": "Tunisia",
+   "title": "Battle of Kasserine Pass II",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 161.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 4,
+   "shader": "textures/mohmenu/dmloading/e1l3",
+   "bsp": "e1l3",
+   "label_today": "e1l3",
+   "cfg": "e1",
+   "image": "mod:textures/mohmenu/dmloading/e1l3.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 290998,
+   "md5": "659626fa8979a70252d5e6418b87c330",
+   "retail_title": "Tunisia - Bizerte Canal",
+   "retail_checkpoints": [
+    "Tunisia - Bizerte Canal - Arrival",
+    "Tunisia - Bizerte Canal - Inside the Fortress",
+    "Tunisia - Bizerte Canal - Rendezvous with Klaus Knefler",
+    "Tunisia - Bizerte Canal - Sneaking Across Town",
+    "Tunisia - Bizerte Canal - Final Escape"
+   ],
+   "mod_title": "Operation Torch - Bizerte Fort",
+   "kicker": "Tunisia",
+   "title": "Bizerte Canal",
+   "src": "retail-ws",
+   "note": "mod says 'Operation Torch - Bizerte Fort' - Torch is wrong for Bizerte (May 1943)",
+   "facfont20_units": 81.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 5,
+   "shader": "textures/mohmenu/dmloading/e1l4",
+   "bsp": "e1l4",
+   "label_today": "e1l4",
+   "cfg": "e1",
+   "image": "mod:textures/mohmenu/dmloading/e1l4.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 182669,
+   "md5": "7fde7e92ae2e2d109eb35febceaa98d4",
+   "retail_title": "Tunisia - Bizerte Harbor",
+   "retail_checkpoints": [
+    "Tunisia - Bizerte Harbor - Arrival",
+    "Tunisia - Bizerte Harbor - All Aboard",
+    "Tunisia - Bizerte Harbor - Scuttled",
+    "Tunisia - Bizerte Harbor - The Getaway",
+    "Tunisia - Bizerte Harbor - The Edge of Town"
+   ],
+   "mod_title": "Operation Torch - Bizerte Harbor",
+   "kicker": "Tunisia",
+   "title": "Bizerte Harbor",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 88.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 1,
+   "shader": "textures/mohmenu/dmloading/briefing/briefing1",
+   "bsp": "briefing/briefinge2",
+   "label_today": "Briefing",
+   "cfg": "e2",
+   "image": "mod:textures/mohmenu/dmloading/briefing/briefing1.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 382489,
+   "md5": "72f248bdb04423b3af4112bdd70e4645",
+   "retail_title": "",
+   "retail_checkpoints": [],
+   "mod_title": "Breakthrough - Sicily",
+   "kicker": "Sicily",
+   "title": "Sicily Briefing",
+   "src": "retail-region",
+   "note": "the briefing BSP has no worldspawn message (it only plays the retail film); the title is the generic 'Briefing' and the region comes from the campaign's own level worldspawns; title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT).",
+   "facfont20_units": 87.0,
+   "same_image_as": [
+    "briefing/briefing1",
+    "briefing/briefinge1",
+    "briefing/briefinge3",
+    "briefing/briefingt1",
+    "briefing/briefingt2",
+    "briefing/briefingt3"
+   ]
+  },
+  {
+   "slot": 2,
+   "shader": "textures/mohmenu/dmloading/e2l1",
+   "bsp": "e2l1",
+   "label_today": "e2l1 Sicily",
+   "cfg": "e2",
+   "image": "mod:textures/mohmenu/dmloading/e2l1.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 295290,
+   "md5": "0d3b2af7e31948062d741ddf117eca46",
+   "retail_title": "Sicily - Glider Landing",
+   "retail_checkpoints": [
+    "Sicily - Glider Landing - Crash",
+    "Sicily - Glider Landing - Artillery Hunt",
+    "Sicily - Glider Landing - The Railway",
+    "Sicily - Glider Landing - Reunited"
+   ],
+   "mod_title": "Sicily",
+   "kicker": "Sicily",
+   "title": "Glider Landing",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 92.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 3,
+   "shader": "textures/mohmenu/dmloading/e2l2",
+   "bsp": "e2l2",
+   "label_today": "e2l2",
+   "cfg": "e2",
+   "image": "mod:textures/mohmenu/dmloading/e2l2.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 192002,
+   "md5": "acf36b118b1975e6a9a3d487827e3464",
+   "retail_title": "Sicily - The Airfield at Caltagirone",
+   "retail_checkpoints": [
+    "Sicily - The Airfield at Caltagirone - A Peaceful Beginning",
+    "Sicily - The Airfield at Caltagirone - Stealing the Jeep",
+    "Sicily - The Airfield at Caltagirone - Infiltration",
+    "Sicily - The Airfield at Caltagirone - Sabotage"
+   ],
+   "mod_title": "Operation Husky - Caltagirone",
+   "kicker": "Sicily",
+   "title": "The Airfield at Caltagirone",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 162.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 4,
+   "shader": "textures/mohmenu/dmloading/e2l3",
+   "bsp": "e2l3",
+   "label_today": "e2l3",
+   "cfg": "e2",
+   "image": "mod:textures/mohmenu/dmloading/e2l3.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 204648,
+   "md5": "1d7168159dc1bf82456da0614d1759ba",
+   "retail_title": "Sicily - Gela",
+   "retail_checkpoints": [
+    "Sicily - Gela - Firefight",
+    "Sicily - Gela - Regroup with the 82nd Airborne",
+    "Sicily - Gela - Tank Assault"
+   ],
+   "mod_title": "Operation Husky - Gela",
+   "kicker": "Sicily",
+   "title": "Gela",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 27.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 1,
+   "shader": "textures/mohmenu/dmloading/briefing/briefing1",
+   "bsp": "briefing/briefinge3",
+   "label_today": "Briefing",
+   "cfg": "e3",
+   "image": "mod:textures/mohmenu/dmloading/briefing/briefing1.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 382489,
+   "md5": "72f248bdb04423b3af4112bdd70e4645",
+   "retail_title": "",
+   "retail_checkpoints": [],
+   "mod_title": "Breakthrough - Salerno to Monte Battaglia",
+   "kicker": "Italy",
+   "title": "Italy Briefing",
+   "src": "retail-region",
+   "note": "the briefing BSP has no worldspawn message (it only plays the retail film); the title is the generic 'Briefing' and the region comes from the campaign's own level worldspawns; title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT).",
+   "facfont20_units": 79.0,
+   "same_image_as": [
+    "briefing/briefing1",
+    "briefing/briefinge1",
+    "briefing/briefinge2",
+    "briefing/briefingt1",
+    "briefing/briefingt2",
+    "briefing/briefingt3"
+   ]
+  },
+  {
+   "slot": 2,
+   "shader": "ui/coop_tiles/e3l1",
+   "bsp": "e3l1",
+   "label_today": "e3l1",
+   "cfg": "e3",
+   "image": "mod:ui/coop_tiles/e3l1.jpg",
+   "size": [
+    512,
+    512
+   ],
+   "bytes": 88032,
+   "md5": "56809e31f906cf10652806937581c7c5",
+   "retail_title": "Italy - Monte Cassino I",
+   "retail_checkpoints": [
+    "Italy - Monte Cassino I - The Approach to the City",
+    "Italy - Monte Cassino I - British Field Headquarters",
+    "Italy - Monte Cassino I - An Unexpected Sidetrack",
+    "Italy - Monte Cassino I - Rescuing a Wounded Soldier",
+    "Italy - Monte Cassino I - Snipers in the Courtyard",
+    "Italy - Monte Cassino I - Surprise Tank Attack"
+   ],
+   "mod_title": "Invasion of Monte Cassino - Part 1",
+   "kicker": "Italy",
+   "title": "Monte Cassino I",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 99.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 3,
+   "shader": "ui/coop_tiles/e3l2",
+   "bsp": "e3l2",
+   "label_today": "e3l2",
+   "cfg": "e3",
+   "image": "mod:ui/coop_tiles/e3l2.jpg",
+   "size": [
+    512,
+    512
+   ],
+   "bytes": 81995,
+   "md5": "32a87155d0c53db1f16bc18cdc2a4800",
+   "retail_title": "Italy - Monte Cassino II",
+   "retail_checkpoints": [
+    "Italy - Monte Cassino II - Escorting the Medic",
+    "Italy - Monte Cassino II - Stop the Executioner",
+    "Italy - Monte Cassino II - Final Rescue"
+   ],
+   "mod_title": "Invasion of Monte Cassino - Part 2",
+   "kicker": "Italy",
+   "title": "Monte Cassino II",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 103.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 4,
+   "shader": "ui/coop_tiles/e3l3",
+   "bsp": "e3l3",
+   "label_today": "e3l3",
+   "cfg": "e3",
+   "image": "mod:ui/coop_tiles/e3l3.jpg",
+   "size": [
+    512,
+    512
+   ],
+   "bytes": 61921,
+   "md5": "9ce02c66f14a1b4d097917fc61af2f72",
+   "retail_title": "Italy - Anzio",
+   "retail_checkpoints": [
+    "Italy - Anzio - Ambush",
+    "Italy - Anzio - Destroying the Convoy",
+    "Italy - Anzio - Stealing the AB41"
+   ],
+   "mod_title": "Battle of Anzio",
+   "kicker": "Italy",
+   "title": "Anzio",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 35.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 5,
+   "shader": "ui/coop_tiles/e3l4",
+   "bsp": "e3l4",
+   "label_today": "e3l4",
+   "cfg": "e3",
+   "image": "mod:ui/coop_tiles/e3l4.jpg",
+   "size": [
+    512,
+    512
+   ],
+   "bytes": 63890,
+   "md5": "2e434bcb5227ddab03a35b1bfbe1b9e6",
+   "retail_title": "Italy - Monte Battaglia",
+   "retail_checkpoints": [
+    "Italy - Monte Battaglia - Invasion",
+    "Italy - Monte Battaglia - Able Bunker",
+    "Italy - Monte Battaglia - Baker Bunker",
+    "Italy - Monte Battaglia - Charlie Bunker",
+    "Italy - Monte Battaglia - The Mountain Road",
+    "Italy - Monte Battaglia - The Wine Cellar",
+    "Italy - Monte Battaglia - Into the Castle",
+    "Italy - Monte Battaglia - The Radio Tower",
+    "Italy - Monte Battaglia - Calling in the Airstrike"
+   ],
+   "mod_title": "Battle of Monte Battaglia",
+   "kicker": "Italy",
+   "title": "Monte Battaglia",
+   "src": "retail-ws",
+   "note": "",
+   "facfont20_units": 95.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 1,
+   "shader": "textures/mohmenu/dmloading/briefing/briefing1",
+   "bsp": "briefing/briefingt1",
+   "label_today": "Briefing",
+   "cfg": "t1",
+   "image": "mod:textures/mohmenu/dmloading/briefing/briefing1.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 382489,
+   "md5": "72f248bdb04423b3af4112bdd70e4645",
+   "retail_title": "",
+   "retail_checkpoints": [],
+   "mod_title": "Spearhead - Operation Overlord",
+   "kicker": "Normandy",
+   "title": "Normandy Briefing",
+   "src": "retail-region",
+   "note": "the briefing BSP has no worldspawn message (it only plays the retail film); the title is the generic 'Briefing' and the region comes from the campaign's own level worldspawns; title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT).",
+   "facfont20_units": 116.0,
+   "same_image_as": [
+    "briefing/briefing1",
+    "briefing/briefinge1",
+    "briefing/briefinge2",
+    "briefing/briefinge3",
+    "briefing/briefingt2",
+    "briefing/briefingt3"
+   ]
+  },
+  {
+   "slot": 2,
+   "shader": "ui/coop_tiles/t1l1",
+   "bsp": "t1l1",
+   "label_today": "t1l1 Night Drop",
+   "cfg": "t1",
+   "image": "mod:ui/coop_tiles/t1l1.jpg",
+   "size": [
+    512,
+    512
+   ],
+   "bytes": 32853,
+   "md5": "7f281e4d0b66aa210f3e81dd7434ed2c",
+   "retail_title": "Normandy",
+   "retail_checkpoints": [
+    "Normandy - Welcome to France",
+    "Normandy - The Rendezvous"
+   ],
+   "mod_title": "",
+   "kicker": "Normandy",
+   "title": "The Rendezvous",
+   "src": "retail-save",
+   "note": "retail objectives: 1 'Rendezvous With Your Allies', 2 'Destroy Tank With AA Gun', 3 'Regroup With Your Allies' - the level is the link-up with the allies; checkpoint 'The Rendezvous' names it (the other is the opening 'Welcome to France'). Today's label 'Night Drop' is mod shorthand.",
+   "facfont20_units": 102.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 3,
+   "shader": "ui/coop_tiles/t1l2",
+   "bsp": "t1l2",
+   "label_today": "t1l2 Verviers",
+   "cfg": "t1",
+   "image": "mod:ui/coop_tiles/t1l2.jpg",
+   "size": [
+    512,
+    512
+   ],
+   "bytes": 43113,
+   "md5": "a1f013c306ecbaaed9d217c47232ae79",
+   "retail_title": "Normandy",
+   "retail_checkpoints": [
+    "Normandy - Lock and Load",
+    "Normandy - Through the Tunnel",
+    "Normandy - Assault the Compound"
+   ],
+   "mod_title": "",
+   "kicker": "Normandy",
+   "title": "Lock and Load",
+   "src": "retail-save",
+   "note": "retail objective (only one, set via $Objective text): 'Locate and Destroy Artillery Emplacements' - no checkpoint names it -> opening checkpoint 'Lock and Load' (others: Through the Tunnel / Assault the Compound). Today's label 'Verviers' is WRONG (Belgium; t1 is Normandy).",
+   "facfont20_units": 92.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 4,
+   "shader": "ui/coop_tiles/t1l3",
+   "bsp": "t1l3",
+   "label_today": "t1l3 Malmedy",
+   "cfg": "t1",
+   "image": "mod:ui/coop_tiles/t1l3.jpg",
+   "size": [
+    512,
+    512
+   ],
+   "bytes": 31100,
+   "md5": "a3acb3ebd4f1c09181378619e2a4de37",
+   "retail_title": "Normandy",
+   "retail_checkpoints": [
+    "Normandy - The Hunt Begins",
+    "Normandy - Destroy the Tiger Tank",
+    "Normandy - Attack the Weapons Dump"
+   ],
+   "mod_title": "",
+   "kicker": "Normandy",
+   "title": "The Hunt Begins",
+   "src": "retail-save",
+   "note": "retail objectives 1-6: track the colonel, the Tiger, the flak cannon, the air drop, charges on the bridge, 6 'Return to the Captain Before the Charges Blow' - no single checkpoint names the whole; the opening 'The Hunt Begins' names objective 1 and the level's arc (others: Destroy the Tiger Tank / Attack the Weapons Dump). Today's label 'Malmedy' is WRONG (Belgium).",
+   "facfont20_units": 103.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 1,
+   "shader": "textures/mohmenu/dmloading/briefing/briefing1",
+   "bsp": "briefing/briefingt2",
+   "label_today": "Briefing",
+   "cfg": "t2",
+   "image": "mod:textures/mohmenu/dmloading/briefing/briefing1.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 382489,
+   "md5": "72f248bdb04423b3af4112bdd70e4645",
+   "retail_title": "",
+   "retail_checkpoints": [],
+   "mod_title": "Spearhead - Bastogne",
+   "kicker": "Bastogne",
+   "title": "Bastogne Briefing",
+   "src": "retail-region",
+   "note": "the briefing BSP has no worldspawn message (it only plays the retail film); the title is the generic 'Briefing' and the region comes from the campaign's own level worldspawns; title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT).",
+   "facfont20_units": 111.0,
+   "same_image_as": [
+    "briefing/briefing1",
+    "briefing/briefinge1",
+    "briefing/briefinge2",
+    "briefing/briefinge3",
+    "briefing/briefingt1",
+    "briefing/briefingt3"
+   ]
+  },
+  {
+   "slot": 2,
+   "shader": "ui/coop_tiles/t2l1",
+   "bsp": "t2l1",
+   "label_today": "t2l1 Ardennes",
+   "cfg": "t2",
+   "image": "mod:ui/coop_tiles/t2l1.jpg",
+   "size": [
+    512,
+    512
+   ],
+   "bytes": 63260,
+   "md5": "b69150896449553d809a84d1730fd387",
+   "retail_title": "Bastogne",
+   "retail_checkpoints": [
+    "Bastogne - Panzer Attack",
+    "Bastogne - Approaching the Compound"
+   ],
+   "mod_title": "",
+   "kicker": "Bastogne",
+   "title": "Panzer Attack",
+   "src": "retail-save",
+   "note": "retail objective 'Destroy the Nebelwerfers' - no checkpoint names it -> opening checkpoint 'Panzer Attack' (other: Approaching the Compound). Today's label 'Ardennes'.",
+   "facfont20_units": 83.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 3,
+   "shader": "ui/coop_tiles/t2l2",
+   "bsp": "t2l2",
+   "label_today": "t2l2 Halftrack",
+   "cfg": "t2",
+   "image": "mod:ui/coop_tiles/t2l2.jpg",
+   "size": [
+    512,
+    512
+   ],
+   "bytes": 52613,
+   "md5": "5e2ed3e2830150eb1d42774eeba354e5",
+   "retail_title": "Bastogne",
+   "retail_checkpoints": [
+    "Bastogne - Top of the Mountain"
+   ],
+   "mod_title": "",
+   "kicker": "Bastogne",
+   "title": "Top of the Mountain",
+   "src": "retail-save",
+   "note": "the level's only checkpoint (objective: escort the supply truck). Retail's own name, odd as it reads for the Ardennes. Today's label 'Halftrack'.",
+   "facfont20_units": 124.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 4,
+   "shader": "ui/coop_tiles/t2l3",
+   "bsp": "t2l3",
+   "label_today": "t2l3 Bastogne",
+   "cfg": "t2",
+   "image": "mod:ui/coop_tiles/t2l3.jpg",
+   "size": [
+    512,
+    512
+   ],
+   "bytes": 69962,
+   "md5": "2b4e2a14071ba9d30765c7aef44fb8a6",
+   "retail_title": "Bastogne",
+   "retail_checkpoints": [
+    "Bastogne - Under Attack",
+    "Bastogne - Locate the Medic",
+    "Bastogne - Defend the Front"
+   ],
+   "mod_title": "",
+   "kicker": "Bastogne",
+   "title": "Defend the Front",
+   "src": "retail-save",
+   "note": "retail objectives: orders from the captain at the front line, the medic, then 4-6 'Locate and Defend the Right/Left Flank' - the level is the defence of the front; checkpoint 'Defend the Front' names it (others: Under Attack / Locate the Medic).",
+   "facfont20_units": 103.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 5,
+   "shader": "ui/coop_tiles/t2l4",
+   "bsp": "t2l4",
+   "label_today": "t2l4 Death Zones",
+   "cfg": "t2",
+   "image": "mod:ui/coop_tiles/t2l4.jpg",
+   "size": [
+    512,
+    512
+   ],
+   "bytes": 45092,
+   "md5": "9bb8938f4718fb32f065f17ee6cb69c3",
+   "retail_title": "Bastogne",
+   "retail_checkpoints": [
+    "Bastogne - A Quiet Little Town",
+    "Bastogne - Panzer in the Street"
+   ],
+   "mod_title": "",
+   "kicker": "Bastogne",
+   "title": "A Quiet Little Town",
+   "src": "retail-save",
+   "note": "the retail script sets objective 1 by number only (add_objectives 1 3, no text) - no checkpoint can name it -> opening checkpoint 'A Quiet Little Town' (other: Panzer in the Street). Today's label 'Death Zones' is dev shorthand.",
+   "facfont20_units": 117.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 1,
+   "shader": "textures/mohmenu/dmloading/briefing/briefing1",
+   "bsp": "briefing/briefingt3",
+   "label_today": "Briefing",
+   "cfg": "t3",
+   "image": "mod:textures/mohmenu/dmloading/briefing/briefing1.jpg",
+   "size": [
+    1024,
+    1024
+   ],
+   "bytes": 382489,
+   "md5": "72f248bdb04423b3af4112bdd70e4645",
+   "retail_title": "",
+   "retail_checkpoints": [],
+   "mod_title": "Spearhead - The Rhine to Berlin",
+   "kicker": "Berlin",
+   "title": "Berlin Briefing",
+   "src": "retail-region",
+   "note": "the briefing BSP has no worldspawn message (it only plays the retail film); the title is the generic 'Briefing' and the region comes from the campaign's own level worldspawns; title = the mission's name + 'Briefing' (coordinator QA 2026-09-29: a bare 'Briefing' is not mission-specific). Mission name as in the mission header (retail chalk sign for AA, retail region for SH/BT).",
+   "facfont20_units": 90.0,
+   "same_image_as": [
+    "briefing/briefing1",
+    "briefing/briefinge1",
+    "briefing/briefinge2",
+    "briefing/briefinge3",
+    "briefing/briefingt1",
+    "briefing/briefingt2"
+   ]
+  },
+  {
+   "slot": 2,
+   "shader": "ui/coop_tiles/t3l1",
+   "bsp": "t3l1",
+   "label_today": "t3l1 Barracks",
+   "cfg": "t3",
+   "image": "mod:ui/coop_tiles/t3l1.jpg",
+   "size": [
+    512,
+    512
+   ],
+   "bytes": 37884,
+   "md5": "7ab7535b3781dd4eceb1909815a0227e",
+   "retail_title": "Berlin",
+   "retail_checkpoints": [
+    "Berlin - Welcome to Berlin",
+    "Berlin - Retrieved Papers From the Plane",
+    "Berlin - Entering the Chancellery Building"
+   ],
+   "mod_title": "",
+   "kicker": "Berlin",
+   "title": "Welcome to Berlin",
+   "src": "retail-save",
+   "note": "retail objectives 1-7: cross the bridge into Berlin, the downed plane and map, the Chancellery, the safe, commandeer a tank - no single checkpoint names the whole -> opening checkpoint 'Welcome to Berlin', which also names objective 1 (others: Retrieved Papers From the Plane / Entering the Chancellery Building). Today's label 'Barracks'.",
+   "facfont20_units": 112.0,
+   "same_image_as": []
+  },
+  {
+   "slot": 3,
+   "shader": "ui/coop_tiles/t3l2",
+   "bsp": "t3l2",
+   "label_today": "t3l2 Sub Pens",
+   "cfg": "t3",
+   "image": "mod:ui/coop_tiles/t3l2.jpg",
+   "size": [
+    512,
+    512
+   ],
+   "bytes": 52040,
+   "md5": "733afe973796486af9630546326e1dfa",
+   "retail_title": "Berlin",
+   "retail_checkpoints": [
+    "Berlin - Half Way Home",
+    "Berlin - The Last Stand"
+   ],
+   "mod_title": "",
+   "kicker": "Berlin",
+   "title": "The Last Stand",
+   "src": "retail-save",
+   "note": "retail objectives: 1 'Destroy the South Bridge', 2 'Return to the Soviet Recon Group', 3 'Defend the Bridge Until Air Support Arrives' - the level ends in the bridge defence; checkpoint 'The Last Stand' names it (other: the opening 'Half Way Home'). Today's label 'Sub Pens' is WRONG (t3l2 is Berlin; the sub pens are AA m2).",
+   "facfont20_units": 92.0,
+   "same_image_as": []
+  }
+ ]
+}

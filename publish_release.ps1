@@ -139,6 +139,9 @@ $stage["home/maintt/zzzzzzzzzz_coop_foliage_lm.pk3"]  = "$mod\zzzzzzzzzz_coop_fo
 # [2026-09-28, bug-3251] Loading-art pool images (docs/tools/gen_loadart_pak.py) - copied by build.ps1 the same way;
 # kept out of the assets_tex pk3 so it is not re-downloaded. Inert without the v1.10.4 exe's picker (ui_loadArtOn).
 $stage["home/maintt/zzzzzzzzzz_coop_loadart.pk3"]  = "$mod\zzzzzzzzzz_coop_loadart.pk3"
+# [mission tile art, bug-3274] Coop mission-select tile art (docs/tools/gen_tileart_pak.py) - copied by build.ps1 the
+# same way; out of the assets_tex pk3 so it is not re-downloaded.
+$stage["home/maintt/zzzzzzzzzz_coop_tileart.pk3"]  = "$mod\zzzzzzzzzz_coop_tileart.pk3"
 # [2026-09-28, bug-3251] Overrides pak (docs/tools/gen_fixes_pak.py) - post-release fixes of asset-bucket files, so the
 # assets_tex pk3 keeps its released sha256. Must ship WITH the matching code/tex paks; copied by build.ps1 the same way.
 $stage["home/maintt/zzzzzzzzzz_coop_fixes.pk3"]  = "$mod\zzzzzzzzzz_coop_fixes.pk3"

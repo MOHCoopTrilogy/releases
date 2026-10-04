@@ -1,0 +1,184 @@
+12:00:35 waiting for the test slot to read exactly 'tileart'
+12:20:55 slot is ours
+12:21:35 ready {'pid': 11896, 'map': 'm5l2a', 'state': 'ready', 'joined': True}
+12:22:10 pulled 24 -> G:\mohaa-tileart\runs\m5l2a
+12:22:10 done m5l2a 1.2 min
+12:23:32 pulled 40 -> G:\mohaa-tileart\runs\e1l1
+12:23:32 done e1l1 2.6 min
+12:24:39 pulled 30 -> G:\mohaa-tileart\runs\t2l1
+12:24:39 done t2l1 3.7 min
+12:26:04 pulled 48 -> G:\mohaa-tileart\runs\t3l2
+12:26:04 done t3l2 5.1 min
+12:27:05 pulled 22 -> G:\mohaa-tileart\runs\e2l1
+12:27:05 done e2l1 6.2 min
+12:27:08 ui test lines: ["[2026-09-29 12:27:05 UTC-6.000] LOCALIZATION ERROR: 'HOST RULES' does not have a localization entry", "[2026-09-29 12:27:05 UTC-6.000] LOCALIZATION ERROR: 'Load MOH Trilogy Coop Network-Server Configuration' does not have a localization entry", "[2026-09-29 12:27:05 UTC-6.000] LOCALIZATION ERROR: 'BEGIN FULL CAMPAIGN' does not have a localization entry", "[2026-09-29 12:27:07 UTC-6.000] LOCALIZATION ERROR: 'Secret Documents\\nof the Kriegsmarine' does not have a localization entry"]
+12:27:08 pulled 1 -> G:\mohaa-tileart\runs\ui
+12:27:10 client stopped, total 6.2 min
+12:27:10 slot -> free
+12:53:04 waiting for the test slot to read exactly 'tileart'
+12:57:42 waiting for the test slot to read exactly 'tileart'
+13:28:42 slot is ours
+13:29:16 ready {'pid': 11944, 'map': 'training', 'state': 'ready', 'joined': True}
+13:30:13 pulled 56 -> G:\mohaa-tileart\runs\full_training
+13:30:13 done training 1.5 min
+13:31:09 pulled 24 -> G:\mohaa-tileart\runs\full_m4l0
+13:31:09 done m4l0 2.4 min
+13:32:30 pulled 48 -> G:\mohaa-tileart\runs\full_m1l1
+13:32:30 done m1l1 3.8 min
+13:34:19 pulled 84 -> G:\mohaa-tileart\runs\full_m1l2a
+13:34:19 done m1l2a 5.6 min
+13:36:06 pulled 84 -> G:\mohaa-tileart\runs\full_m1l2b
+13:36:06 done m1l2b 7.4 min
+13:37:21 pulled 48 -> G:\mohaa-tileart\runs\full_m1l3a
+13:37:21 done m1l3a 8.6 min
+13:38:35 pulled 48 -> G:\mohaa-tileart\runs\full_m1l3b
+13:38:35 done m1l3b 9.9 min
+13:40:23 pulled 84 -> G:\mohaa-tileart\runs\full_m1l3c
+13:40:23 done m1l3c 11.7 min
+13:42:09 pulled 84 -> G:\mohaa-tileart\runs\full_m2l1
+13:42:09 done m2l1 13.5 min
+13:43:47 pulled 72 -> G:\mohaa-tileart\runs\full_m2l2a
+13:43:47 done m2l2a 15.1 min
+13:45:07 pulled 48 -> G:\mohaa-tileart\runs\full_m2l2b
+13:45:07 done m2l2b 16.4 min
+13:46:12 pulled 36 -> G:\mohaa-tileart\runs\full_m2l2c
+13:46:12 done m2l2c 17.5 min
+13:47:44 pulled 60 -> G:\mohaa-tileart\runs\full_m2l3
+13:47:44 done m2l3 19.0 min
+13:49:17 pulled 60 -> G:\mohaa-tileart\runs\full_m3l1a
+13:49:17 done m3l1a 20.6 min
+13:50:44 pulled 60 -> G:\mohaa-tileart\runs\full_m3l1b
+13:50:44 done m3l1b 22.0 min
+13:52:31 pulled 84 -> G:\mohaa-tileart\runs\full_m3l2
+13:52:31 done m3l2 23.8 min
+13:53:50 pulled 48 -> G:\mohaa-tileart\runs\full_m3l3
+13:53:50 done m3l3 25.1 min
+13:53:52 client stopped, total 25.2 min
+13:53:52 slot -> free
+13:54:22 waiting for the test slot to read exactly 'tileart'
+14:16:03 waiting for the test slot to read exactly 'tileart'
+14:35:22 waiting for the test slot to read exactly 'tileart'
+14:35:42 slot is ours
+14:36:25 ready {'pid': 10220, 'map': 'm4l1', 'state': 'ready', 'joined': True}
+14:37:25 pulled 60 -> G:\mohaa-tileart\runs\full_m4l1
+14:37:25 done m4l1 1.7 min
+14:39:13 pulled 84 -> G:\mohaa-tileart\runs\full_m4l2
+14:39:13 done m4l2 3.5 min
+14:41:03 pulled 84 -> G:\mohaa-tileart\runs\full_m4l3
+14:41:03 done m4l3 5.3 min
+14:42:20 pulled 48 -> G:\mohaa-tileart\runs\full_m5l1a
+14:42:20 done m5l1a 6.6 min
+14:44:06 pulled 84 -> G:\mohaa-tileart\runs\full_m5l1b
+14:44:06 done m5l1b 8.4 min
+14:45:32 pulled 60 -> G:\mohaa-tileart\runs\full_m5l2a
+14:45:32 done m5l2a 9.8 min
+14:46:56 pulled 60 -> G:\mohaa-tileart\runs\full_m5l2b
+14:46:56 done m5l2b 11.2 min
+14:48:10 pulled 48 -> G:\mohaa-tileart\runs\full_m5l3
+14:48:10 done m5l3 12.5 min
+14:49:33 pulled 60 -> G:\mohaa-tileart\runs\full_m6l1a
+14:49:33 done m6l1a 13.8 min
+14:50:47 pulled 48 -> G:\mohaa-tileart\runs\full_m6l1b
+14:50:47 done m6l1b 15.1 min
+14:52:03 pulled 48 -> G:\mohaa-tileart\runs\full_m6l1c
+14:52:03 done m6l1c 16.3 min
+14:53:30 pulled 60 -> G:\mohaa-tileart\runs\full_m6l2a
+14:53:30 done m6l2a 17.8 min
+14:55:17 pulled 84 -> G:\mohaa-tileart\runs\full_m6l2b
+14:55:17 done m6l2b 19.6 min
+14:56:54 pulled 72 -> G:\mohaa-tileart\runs\full_m6l3a
+14:56:54 done m6l3a 21.2 min
+14:58:09 pulled 48 -> G:\mohaa-tileart\runs\full_m6l3b
+14:58:09 done m6l3b 22.4 min
+14:59:12 pulled 36 -> G:\mohaa-tileart\runs\full_m6l3c
+14:59:12 done m6l3c 23.5 min
+15:00:27 pulled 48 -> G:\mohaa-tileart\runs\full_m6l3d
+15:00:27 done m6l3d 24.7 min
+15:01:40 pulled 48 -> G:\mohaa-tileart\runs\full_m6l3e
+15:01:40 done m6l3e 26.0 min
+15:01:42 client stopped, total 26.0 min
+15:01:42 slot -> free
+15:13:37 waiting for the test slot to read exactly 'tileart'
+15:19:17 waiting for the test slot to read exactly 'tileart'
+15:32:37 slot is ours
+15:33:22 ready {'pid': 22096, 'map': 'e1l1', 'state': 'ready', 'joined': True}
+15:34:11 pulled 48 -> G:\mohaa-tileart\runs\full_e1l1
+15:34:11 done e1l1 1.6 min
+15:35:35 pulled 48 -> G:\mohaa-tileart\runs\full_e1l2
+15:35:35 done e1l2 3.0 min
+15:37:10 pulled 60 -> G:\mohaa-tileart\runs\full_e1l3
+15:37:10 done e1l3 4.5 min
+15:38:58 pulled 72 -> G:\mohaa-tileart\runs\full_e1l4
+15:38:58 done e1l4 6.3 min
+15:40:40 pulled 72 -> G:\mohaa-tileart\runs\full_e2l1
+15:40:40 done e2l1 8.0 min
+15:42:16 pulled 48 -> G:\mohaa-tileart\runs\full_e2l2
+15:42:16 done e2l2 9.6 min
+15:43:38 pulled 48 -> G:\mohaa-tileart\runs\full_e2l3
+15:43:38 done e2l3 11.0 min
+15:45:02 pulled 48 -> G:\mohaa-tileart\runs\full_e3l1
+15:45:02 done e3l1 12.4 min
+15:46:25 pulled 48 -> G:\mohaa-tileart\runs\full_e3l2
+15:46:25 done e3l2 13.8 min
+15:47:46 pulled 48 -> G:\mohaa-tileart\runs\full_e3l3
+15:47:46 done e3l3 15.1 min
+15:49:20 pulled 60 -> G:\mohaa-tileart\runs\full_e3l4
+15:49:20 done e3l4 16.7 min
+15:50:36 pulled 48 -> G:\mohaa-tileart\runs\full_t1l1
+15:50:36 done t1l1 18.0 min
+15:52:05 pulled 60 -> G:\mohaa-tileart\runs\full_t1l2
+15:52:05 done t1l2 19.5 min
+15:53:24 pulled 48 -> G:\mohaa-tileart\runs\full_t1l3
+15:53:24 done t1l3 20.8 min
+15:55:04 pulled 72 -> G:\mohaa-tileart\runs\full_t2l1
+15:55:04 done t2l1 22.4 min
+15:56:37 pulled 60 -> G:\mohaa-tileart\runs\full_t2l2
+15:56:37 done t2l2 24.0 min
+15:58:08 pulled 48 -> G:\mohaa-tileart\runs\full_t2l3
+15:58:08 done t2l3 25.5 min
+15:59:39 pulled 60 -> G:\mohaa-tileart\runs\full_t2l4
+15:59:39 done t2l4 27.0 min
+16:01:20 pulled 72 -> G:\mohaa-tileart\runs\full_t3l1
+16:01:20 done t3l1 28.7 min
+16:02:57 pulled 72 -> G:\mohaa-tileart\runs\full_t3l2
+16:02:57 done t3l2 30.3 min
+16:03:53 pulled 18 -> G:\mohaa-tileart\runs\rt_m2l2b
+16:03:53 done m2l2b 31.3 min
+16:04:49 pulled 12 -> G:\mohaa-tileart\runs\rt_m5l3
+16:04:49 done m5l3 32.2 min
+16:05:46 pulled 24 -> G:\mohaa-tileart\runs\rt_m3l3
+16:05:46 done m3l3 33.1 min
+16:06:42 pulled 24 -> G:\mohaa-tileart\runs\rt_m3l1b
+16:06:42 done m3l1b 34.1 min
+16:07:36 pulled 24 -> G:\mohaa-tileart\runs\rt_m6l1a
+16:07:36 done m6l1a 35.0 min
+16:08:20 pulled 12 -> G:\mohaa-tileart\runs\rt_m6l1b
+16:08:20 done m6l1b 35.7 min
+16:09:05 pulled 12 -> G:\mohaa-tileart\runs\rt_m1l3b
+16:09:05 done m1l3b 36.4 min
+16:10:13 pulled 36 -> G:\mohaa-tileart\runs\rt_m4l3
+16:10:13 done m4l3 37.6 min
+16:11:12 pulled 24 -> G:\mohaa-tileart\runs\rt_m6l3e
+16:11:12 done m6l3e 38.6 min
+16:11:14 client stopped, total 38.6 min
+16:11:14 slot -> free
+10:20:59 waiting for the test slot to read exactly 'tileart'
+10:39:39 slot is ours
+10:39:42 client stopped, total 0.0 min
+10:39:42 slot -> free
+10:45:11 waiting for the test slot to read exactly 'tileart'
+11:17:31 slot is ours
+11:18:20 ready {'pid': 22796, 'map': 'e1l4', 'state': 'ready', 'joined': True}
+11:19:19 pulled 60 -> G:\mohaa-tileart\runs\r2_e1l4
+11:19:19 done e1l4 1.8 min
+11:20:50 pulled 60 -> G:\mohaa-tileart\runs\r2_e3l4
+11:20:50 done e3l4 3.3 min
+11:22:20 pulled 60 -> G:\mohaa-tileart\runs\r2_t2l2
+11:22:20 done t2l2 4.8 min
+11:23:56 pulled 72 -> G:\mohaa-tileart\runs\r2_t3l2
+11:23:56 done t3l2 6.4 min
+11:25:39 pulled 26 -> G:\mohaa-tileart\runs\r2_ui
+11:25:39 pulled 0 -> G:\mohaa-tileart\runs\r2_m1l1
+11:25:39 done m1l1 8.1 min
+11:25:41 client stopped, total 8.2 min
+11:25:41 slot -> free
