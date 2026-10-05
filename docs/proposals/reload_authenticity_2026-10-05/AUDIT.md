@@ -226,3 +226,74 @@ but it would not be authentic.
 4. C96: build the top stripper-clip load (~7 h).
 5. Scoped bolt rifles (coordinator default, not asked): historically correct single-round loading.
 Order: server routing + server-side reload fixes + renames first (they change hand/mag timing the ADS rebake depends on); new hand-keyed clips next; ADS rebakes after each fixed hip clip.
+
+---
+## PHASE A - built 2026-10-05 (server routing, server-side props/timing, renames)
+
+No hand clip, fps_anims row, viewmodel .skc or cgame viewmodel code was touched (ADS agent owns those).
+
+**Routing** (`coop_mod/player_Torso.st`, exact-name rows; `CondWeaponActive` tries the exact name before the
+skin-suffix strip, so finish skins follow their base):
+- RELOAD_WEAPON: `RELOAD_SPRINGFIELD` <- "Springfield M1903", "Silenced Kar98 Sniper"; `RELOAD_MG` <- "StG44 Scoped".
+- RELOAD_RIFLE: `kar98_reload` <- Arisaka Type 99 / Arisaka Sniper; `mosin_reload` <- Mosin-Nagant Sniper / Silenced
+  Mosin Sniper; `enfield_reload` <- Lee-Enfield Sniper; `g43_reload` <- G43 Sniper; `carcano_reload` <- Carcano Sniper;
+  `coop_reload_johnson` <- Johnson M1941.
+- RELOAD_SMG: `mp40_reload` <- Silenced MP40, M3 Grease Gun, Silenced Grease Gun, Silenced PPS-43;
+  `moschetto_reload` <- Beretta M38.
+- RELOAD_MG: `mp44_reload` <- StG44 Scoped; `coop_reload_fg42` <- FG 42 (was the BAR torso); `breda_reload` <- Breda
+  (TA's own, never selected before); `coop_reload_dp28` <- DP-28.
+- RELOAD_PISTOL: `coop_reload_m10` <- S&W M10 .38.
+- ATTACK_MG_SECONDARY: "Lewis Gun" row (its butt-stroke used to come from the "BAR" suffix match).
+
+**New torso aliases** (`models/player/base/anims_shared.txt`; times = seconds into the reload):
+- `coop_reload_fg42`: the BAR torso retimed to 2.34 s (= DaRKaNGeL's hands; new
+  `models/human/animation/viewmodel/mg/coop_tps_reload_fg42.skc`, frameTime-only copy). The FG42's own
+  `models/ammo/fg42clip.tik` is in the left hand 0.67-1.34 s, exactly while FG42.tik hides the gun's magazine
+  (measured hand-to-magazine distance: grab 0.6 s, away 0.69-1.29 s, seated 1.36 s). clip_fill 1.34 s.
+  Fixes the double magazine (BAR prop + gun magazine 1.32-1.65 s) and the 0.9 s dead time.
+- `coop_reload_johnson`: Garand torso, same f1-57 hand-off, **no** en-bloc prop; clip_fill f31.
+- `coop_reload_dp28`: BAR torso, **no** BAR magazine prop; clip_fill 2.0 s (pan seated, before the rechamber).
+- `coop_reload_m10`: Colt torso, **no** Colt magazine; clip_fill 1.87 s (cylinder closes).
+
+**Renames** (item names only; tik paths, unlock ids, challenge ids and saves unchanged): `bar_bar1918.tik`
+"BAR (M1918 WWI)" -> **"Lewis Gun"**; `colt45_colt1911w.tik` "Colt 45 (M1911 WWI)" -> **"Webley Mk VI"**. Armory
+labels via `docs/tools/wire_mv2.py` (regenerated loadoutskins MV block, reqmv/mvp cfgs), challenge text via
+`variant_challenges.py --emit`, Service Record names in `gen_service_record.py`, engine `cg_adssights.h` regenerated
+(`ironsights_2026-09-28/engine/gen_sights_header.py` over a 2-tik overlay; 2-line diff - the by-name rig-solve lookup is
+exact). Their reload is still the BAR/Colt one: the real Lewis/Webley reloads are phase B.
+
+Offline after-sheets: `sheets/after/<key>.jpg`. In-engine: run `ra1` (below).
+
+### Phase A in-engine check (run `ra2`, 2026-10-05, one batched run, slot "reloadauth")
+Install `G:\mohaa-reloadauth` (byte copies of the LIVE set: exe d23dd662, cgame d563b759, game 6f68255a, gl2
+16b8534d), overlay = the phase A files + the ironsights polling `weather.scr`; m3l2 harness spot; 22 guns, one
+screenshot every 3rd frame at fixedtime 16. Sheets: `sheets/engine/<gun>.jpg` (12 frames each, HUD on).
+- **0 `Script Error`**, no missing-animation warning for any new alias (`fg42clip.tik` cached = alias parsed). The only
+  anim warning, `carcano_rechamber` missing for the Carcano Sniper, is pre-existing and unrelated.
+- Every routed gun keeps the gun in the hands for the whole reload (no hand-swap jump, no gun across the screen);
+  StG44 Scoped / G43 Sniper / Arisaka / scoped Mosin, Enfield and Carcano / M1903 / Silenced Kar98 Sniper all coherent.
+- FG42: one magazine at all times (the gun's hides 0.66 s, the FG42 prop rides the hand, gun's returns 1.32 s).
+- Ammo: the HUD's MAGS counter (= floor(reserve/clipsize)) steps down when clip_fill runs: FG42 ~1.39 s, Johnson
+  ~1.1 s, DP-28 ~2.0 s, Breda ~4.4 s - each at its notetrack. M10 and the MP40-routed SMGs spent too few rounds
+  to move the floor, so their fill moment is not visible on the HUD (reload completed; notetracks same form).
+- Seen, NOT caused here: the **Beretta M38** (xw `moschetto.tik`) points almost straight up through idle and
+  reload: the TA moschetto hands do not fit that mesh (cgame maps "Beretta M38" -> WPREFIX_MOSCHETTO). Phase B item.
+  Breda's TA reload swings the gun low and brings a hand close to the camera (its own authored clip) - user eyeball.
+
+## PHASE B - proposed order (not started)
+1. **Type 100** (ADS agent, user-reported): fix the hip clip (left magazine out sideways), torso with
+   `models/ammo/type100_clip.tik` (it exists) at 2.43 s, then its `_ads`.
+2. **Single-round scoped bolt rifles** (Arisaka Sniper, Mosin snipers, Enfield Sniper): cgame prefix -> a single-feed
+   set + RELOAD_SPRINGFIELD rows; mostly re-timing of the existing springfield/kar98sniper split per mesh. ~5 h.
+   Cheap, removes the remaining "stripper clip under a scope".
+3. **Webley Mk VI**: exact-name -> WPREFIX_WEBLEY + RELOAD_WEBLEY (its pack ships webley_*.skc for this skeleton);
+   verify the rig in the preview first. ~1-2 h.
+4. **M1 Carbine** (still wrong, not in the phase B list): rebuild from the G43 reload + carbine magazine prop. ~5 h.
+5. **Lewis Gun**: DP-28 top-pan hands retargeted to the BAR hold, keyed to the gun's own pan bone. ~5 h.
+6. **Beretta M38 hold** (found in ra2): map to MP40 hands or re-pose. ~1-2 h.
+7. **Drum reloads**: one Thompson drum clip for Thompson 50rd + 1928 Tommy (`thompson_clip50.tik` prop exists),
+   then the **MP18** left snail drum using the fixed Type 100 left-side work as reference. ~13 h.
+8. **C96 stripper-clip top load**. ~7 h.
+9. **M1919, then MG42 belt reloads** with an opening cover (mesh re-rig + belt prop + hands). ~28 h, last: largest,
+   shares tooling, and nothing else waits on it.
+After each hip clip lands: its `_ads` rebake (ADS agent), then a batched slot run per group.

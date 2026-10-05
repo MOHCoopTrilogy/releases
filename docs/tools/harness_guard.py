@@ -172,6 +172,11 @@ HARNESSES = {
     # copy openmohaa-hzm-bugsweep, fresh home from G:\mohaa-adsanim\pristine (no qkey/saves), basepath = the GOG tree
     # read-only, test overlay pk3 in the home, net_ip 127.0.0.1, net_port 12542, queue slot "bugsweep"
     r"G:\mohaa-bugsweep": {"owner": "bugsweep", "home": r"G:\mohaa-bugsweep\home"},
+    # reload authenticity phase A 2026-10-05 (docs/proposals/reload_authenticity_2026-10-05/tools/run_reloadauth.py,
+    # reusing the ironsights harness): byte copies of the LIVE G:\mohaa-gl2 exe/cgame/game/renderers, fresh home from
+    # G:\mohaa-adsanim\pristine (no qkey/saves), basepath = the GOG tree read-only, test overlay pk3 in the home,
+    # net_ip 127.0.0.1, net_port 12571, queue slot "reloadauth"
+    r"G:\mohaa-reloadauth": {"owner": "reloadauth", "home": r"G:\mohaa-reloadauth\home"},
 }
 SLOT = os.path.join(os.environ.get("LOCALAPPDATA", r"C:\Users\Public"), "hzm_harness", "client_slot.json")
 

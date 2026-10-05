@@ -85,6 +85,17 @@ G = {
  'welrod': ('models/weapons/welrod.tik', ['pistol/reload_colt.skc'], 'lefthand', ['pistol_reload'], 'L'),
  'shotgun': ('models/weapons/shotgun.tik', ['shotgun/reload_start.skc', 'shotgun/reload_fill.skc', 'shotgun/reload_end.skc'], 'lefthand', ['shotgun_reload_start', 'shotgun_reload_loop', 'shotgun_reload_end'], 'L'),
 }
+
+AFTER = {'fg42': ['coop_reload_fg42'], 'johnson': ['coop_reload_johnson'], 'dp28': ['coop_reload_dp28'], 'm10': ['coop_reload_m10'],
+         'breda': ['breda_reload'], 'arisaka': ['kar98_reload'], 'g43sniper': ['g43_reload'], 'mp44scoped': ['mp44_reload'],
+         'enfieldsniper': ['enfield_reload'], 'nagant_sniper': ['mosin_reload'], 'kar98snsil': SPT, 'springfield_unscoped': SPT,
+         'mp40silenced': ['mp40_reload'], 'pps43s': ['mp40_reload'], 'greasegun': ['mp40_reload'], 'beretta_m38': ['moschetto_reload']}
+if os.environ.get('LOCALMOD'):
+    for k, v in AFTER.items():
+        t = list(G[k]); t[3] = v
+        if k == 'springfield_unscoped':
+            t[1] = SPR
+        G[k] = tuple(t)
 NFR = 8
 W, H = 320, 180
 TORSO = TO.parse()
@@ -126,7 +137,8 @@ def torso_events(names):
         if not a:
             parts.append(([], None)); continue
         try:
-            c = R.load(a['skc']); nf, ft = c.numFrames, c.frameTime
+            lp = os.path.join(TO.MODDIR, a['skc'])
+            c = R.load(lp if os.path.isfile(lp) else a['skc']); nf, ft = c.numFrames, c.frameTime
         except Exception:
             nf, ft = 100, 0.03333
         ev = []

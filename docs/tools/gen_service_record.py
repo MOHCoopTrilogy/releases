@@ -55,13 +55,13 @@ REWARD_NAMES = {
     # loadoutskins.scr::coop_skinMvName - the same table the armory renders - so the Service Record
     # hover and the armory can never disagree. Regenerate with docs/tools/variant_challenges.py.
     "models/weapons/bar_pabar.tik": "Bar (pacific) (moh:pa)",
-    "models/weapons/bar_bar1918.tik": "Bar M1918 (wwi) (east)",
+    "models/weapons/bar_bar1918.tik": "Lewis Gun (east)",
     "models/weapons/bar_bar1918a.tik": "M1918 Classic (stlkid)",
     "models/weapons/bar_bar1918a1.tik": "M1918a1 (stlkid)",
     "models/weapons/bar_bar1918a2.tik": "M1918a2 (stlkid)",
     "models/weapons/bazooka_guanbazooka.tik": "Realistic Bazooka (guanshire)",
     "models/weapons/colt45_coltpa.tik": "Colt 45 (pacific) (acme313)",
-    "models/weapons/colt45_colt1911w.tik": "M1911 (wwi) (east)",
+    "models/weapons/colt45_colt1911w.tik": "Webley Mk VI (east)",
     "models/weapons/colt45_covert.tik": "M1911 Covert",
     "models/weapons/colt45_drbond.tik": "1911 Classic",
     "models/weapons/colt45_bloodyeic.tik": "M1911 Bloody Eic (schutze)",

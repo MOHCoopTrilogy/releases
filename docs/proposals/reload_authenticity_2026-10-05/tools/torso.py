@@ -2,12 +2,15 @@
 import re, sys
 sys.path.insert(0, r'C:\mohaa-coop-dev\docs\proposals\ironsights_2026-09-28\tools')
 import vfs
+MODDIR = r'C:\mohaa-coop-dev\hzm-mohaa-coop-mod'
+import os
 def parse():
     out = {}
     for k in sorted(vfs.index()):
         if not (k.startswith('models/player/base/anims') and k.endswith('.txt')):
             continue
-        d = vfs.read(k).decode('latin1'); path = 'models/human/animation/'; cur = None
+        lp = os.path.join(MODDIR, k)
+        d = open(lp, 'rb').read().decode('latin1') if os.environ.get('LOCALMOD') and os.path.isfile(lp) else vfs.read(k).decode('latin1'); path = 'models/human/animation/'; cur = None
         for l in d.split('\n'):
             s = re.sub(r'//.*', '', l).strip()
             if not s: continue
