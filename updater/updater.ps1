@@ -204,6 +204,19 @@ if (-not $mp -or ($mf -and (VerKey $mf) -gt (VerKey $mp))) {
 }
 if (-not $remote -or $remote.manifestVersion -gt 1) { Log "manifest version unsupported"; LaunchGame }
 
+# [srvperf 2026-10-04] "latest seen": the newest release this updater has seen, as plain text in the game's homepath.
+# openmohaa.exe (v1.10.13+) reads it once at startup and shows "Update vX available - restart via the MOH Coop Trilogy
+# shortcut" on the main menu while the RUNNING mod (coop_modVersion) is older - e.g. the update failed or was deferred
+# below, or the game was started without this shortcut. The game makes no network call; an older exe never opens it.
+try {
+    $lsv = "$($remote.version)".Trim()
+    if ($lsv -match '^[0-9]{1,4}(\.[0-9]{1,4}){0,3}$') {
+        $lsd = Join-Path $app "home\maintt"
+        if (-not (Test-Path $lsd)) { New-Item -ItemType Directory -Path $lsd -Force | Out-Null }
+        Set-Content -Path (Join-Path $lsd "coop_latest_seen.txt") -Value $lsv -Encoding ASCII -NoNewline
+    }
+} catch { Log "latest-seen write skipped: $_" }
+
 # 2. diff against the installed manifest (never full-disk hashing)
 $installedPath = Join-Path $app "installed_manifest.json"
 $installedMap = @{}
