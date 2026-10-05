@@ -1,0 +1,6 @@
+A_retail  foreign   off          clothes.wav0                             n=1    e.g. dist=2052 max=1000
+A_retail  own/world off          cough.wav0                               n=1    e.g. dist=82 max=96
+B_fix     foreign   positional   clothes.wav0                             n=1    e.g. dist=2052 max=1000
+
+Raw: A_retail - bot (entity 8) medkit cloth at 2052u rendered 2D/full volume (heard map-wide). B_fix - the same sound from the bot at 2052u played positionally on CHAN_BODY with 120..800u falloff (inaudible at that range). Own injury cough (entity 0, playlocalsound) untouched in both phases. cgame f8b1a333 (engine e3eb3ae0), game ea7a8026.
+Run mp1 (cgame 6adb4bd7) exposed the bot-slot bug: bots sit above sv_maxclients (entity 8 with sv_maxclients 8), fixed in e3eb3ae0.
