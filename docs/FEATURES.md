@@ -907,13 +907,12 @@ a real objective that gates the exit. v2 wants gun crews, back-field defenders a
 players could never shut off the sirens. Coop leaves the switch live and routes it through a debounced
 toggle with a 3 s arm cooldown so a double-firing switch can't sound-then-silence.
 
-**Officer / paradrop bombing-run flight** — `SHIPPED-UNVERIFIED`. One shared banked diving arc used by
-**both** the officer Stuka and the player binocular strike, replacing a straight horizontal
-origin-lerp. Attitude from `vector_toangles(velocity)` each tick plus roll banking into the turn; the
-envelope **auto-scales from `$world.farplane`** so the plane stays inside each map's fog. Runtime
-`SplinePath`/`flypath` (what makes m3l2's bomber look good) was deliberately **not** used to avoid a
-static-plane risk, and remains the recommended upgrade. ⚠️ Two watch items: the `$world.farplane`
-getter is unverified in-repo, and the bank direction sign may need flipping.
+**Aircraft call-ins (C-47 drop, P-47 strike, Stuka dive)** - `SHIPPED-UNVERIFIED` (bugs 3380-3384, mod a573e8a8,
+engine 30ee0561). `coop_mod/aircraft.scr`: scaled-down planes at scaled real speed/height (look like 300-600 ft),
+moved every server frame, `+broadcast` (above-sky planes were never sent), heights from the generated
+`aircraft_envelope.scr`, C-47 V of three with jumpers from the doors, P-47 pair / 70-deg Stuka dive with
+ballistic bombs, shootable Stukas that crash. cgame: Doppler, fog see-through. In engine: smooth (0 still
+frames, was 22-61%); shoot-down, Doppler, fog maps not yet seen. Traps: `archive/traps-aircraft.md`.
 
 **Cut-content restoration wave 1** — `SHIPPED-UNVERIFIED`. Inventory of ~2,600 unused dialogue aliases,
 317 never-aliased MP voice-command wavs, 7 unused music tracks, a cut player-mannable FLAK-88, a cut BT

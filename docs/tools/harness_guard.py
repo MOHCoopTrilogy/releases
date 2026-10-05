@@ -134,6 +134,9 @@ HARNESSES = {
     # byte copies of the G:\mohaa-atsupply binaries (game 54b10f3b = LIVE), fresh home, basepath = the GOG tree read
     # only, the working-tree code pk3 + a probe overlay in the home, net_ip 127.0.0.1, net_port 12371, queue slot "paras"
     r"G:\mohaa-paras": {"owner": "paras", "home": r"G:\mohaa-paras\home"},
+    # aircraft call-ins (docs/proposals/aircraft_2026-10-05): copy of the LIVE exe/DLLs + test cgame/game in \dlls,
+    # overlay pk3 in the home, queue slot "planes"
+    r"G:\mohaa-planes": {"owner": "planes", "home": r"G:\mohaa-planes\home"},
     # server frame time on m1l1 (docs/proposals/server_perf_m1l1_2026-09-29/tools/srvperf.py): HEADLESS - private
     # omohaaded copies of the LIVE v1.10.3 set (scratchpad srvperf\ded_ship: game b044385b; srvperf\ded_prof: the
     # instrumented game.dll built in the isolated copy openmohaa-hzm-srvperf), bots as players, net_ip 127.0.0.1,

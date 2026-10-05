@@ -372,7 +372,7 @@ request after two full generator rewrites; nothing was defective.
 | **Decals on skeletal models** | **Impossible** — `R_MarkFragments` walks world nodes only. Gore uses skin-bit texture tiers + bone-attached props + renderer UV wounds instead. | `player_gore_research.md` |
 | **The deployables skill tree** (6 branches / ~36 nodes) | User verdict 2026-07-13: *"Not a big fan… do not build mine"* — they are building their own model. Doc kept, marked superseded. | `skilltree_plan.md` |
 | **Turret-swap approach to bipods** | Rejected in favour of a weapon-stance supported aim (`Player::TickCoopBipod`), ~250 LOC, no new usercmd bit / PMF / stat. | `bipod_design.md` |
-| **Runtime `SplinePath`/`flypath` for the bombing run** | Deliberately not used, to avoid a static-plane risk — even though it is what makes m3l2's bomber look good. **Remains the recommended upgrade.** | `plane_bomber_research.md` |
+| **Runtime `SplinePath`/`flypath` for coop aircraft** | Superseded 2026-10-05: `aircraft.scr` drives a sampled path every frame (same smoothness, exact position for bombs/jumpers, real bank). | `proposals/aircraft_2026-10-05` |
 | **Regional playerclip strip zones** | Wrong-grained: boundary clip and phantom-wall clip coexist in the same regions, so stripping let players out of bounds. Replaced by per-brush surgery. | bug-951 |
 | **Disabling `r_ext_compressed_textures`** | Would make ~1400 stock-`.dds`-only textures vanish. | `dds_shadowing_hd_fix.md` |
 | **Server-side `fov`/`setfov` for ADS zoom** | Dead ends. A cgame `CG_CalcFov` zoom was used instead. | `ads_ironsight_port.md` |

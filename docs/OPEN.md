@@ -258,6 +258,10 @@ stock browser + rotation builder; Push/Base-Assault keep their own Campaign-Maps
 
 ## Defects with evidence
 
+### Aircraft call-ins - awaiting playtest (2026-10-05)
+Seen in engine: smooth flight, V of three, door exits (m2l1). Not yet seen: a Stuka shot down and crashing, Doppler by ear, fog see-through (e1l1), above-sky flight (m5l1a). `proposals/aircraft_2026-10-05`.
+
+
 ### 2026-09-09 m4l3 + engine round — four fixes shipped, none seen in play yet
 - **Alarm bell** (bug-2545) now carries to 6000 u with a 0.28 floor, was 1400/0.2. `^~^~^ ALARMBELL
   range= vol=` prints while it rings: if that shows and it is still inaudible, the cause is

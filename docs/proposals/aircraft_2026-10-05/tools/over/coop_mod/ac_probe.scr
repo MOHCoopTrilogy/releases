@@ -1,0 +1,106 @@
+// TEST ONLY (aircraft call-in captures, docs/proposals/aircraft_2026-10-05). Lives only in the test overlay pk3.
+// Gated on coop_acTest 1 from the overlay copy of devprobe.scr::main. Works against the OLD and the NEW code:
+// it only calls paradrop.scr::coop_paradrop_main and officer.scr::coop_air_bombing_run, whose signatures are kept.
+// cvars: coop_acTx/Ty/Tz target, coop_acCx/Cy/Cz camera, coop_acYaw, coop_acEvents "para,binoc,stuka"
+
+run:{
+	println "^~^~^ ACP armed"
+	local.p = NIL
+	while( local.p == NIL ){
+		local.p = waitthread pickPlayer
+		if( local.p == NIL ){ wait 1 }
+	}
+	wait 12
+	local.p = waitthread pickPlayer
+	if( local.p == NIL ){ println "^~^~^ ACP abort noplayer"; end }
+	local.p nodamage
+	local.p notarget 1
+	local.p.max_health = 100000
+	local.p.health = 100000
+	local.t = ( 0 0 0 )
+	local.t[0] = float( getcvar "coop_acTx" )
+	local.t[1] = float( getcvar "coop_acTy" )
+	local.t[2] = float( getcvar "coop_acTz" )
+	local.c = ( 0 0 0 )
+	local.c[0] = float( getcvar "coop_acCx" )
+	local.c[1] = float( getcvar "coop_acCy" )
+	local.c[2] = float( getcvar "coop_acCz" )
+	local.yaw = float( getcvar "coop_acYaw" )
+	level.acp_cam = local.c + ( 0 0 16 )
+	level.acp_yaw = local.yaw
+	level.acp_pitch = 0
+	thread hold local.p
+	wait 3
+	local.ev = getcvar "coop_acEvents"
+	local.side = angles_toforward ( 0 ( local.yaw + 90 ) 0 )
+	if( waitthread coop_mod/main.scr::containsText local.ev "para" 0 ){
+		level.acp_pitch = 0 - 50
+		level.ac_lastPlane = NIL
+		level.acp_lastVa = NIL
+		level.acp_trackOn = 1
+		level.coop_smoke_player = local.p
+		println ( "^~^~^ ACCAM ev=para dur=42 t=" + local.t )
+		thread coop_mod/paradrop.scr::coop_paradrop_main local.t
+		wait 44
+	}
+	if( waitthread coop_mod/main.scr::containsText local.ev "binoc" 0 ){
+		level.acp_pitch = 0 - 28
+		level.ac_lastPlane = NIL
+		level.acp_lastVa = NIL
+		println ( "^~^~^ ACCAM ev=binoc dur=18 t=" + local.t )
+		thread coop_mod/officer.scr::coop_air_bombing_run local.t local.side 0 "models/vehicles/p47fly.tik" 5
+		wait 20
+	}
+	if( waitthread coop_mod/main.scr::containsText local.ev "stuka" 0 ){
+		level.acp_pitch = 0 - 28
+		level.ac_lastPlane = NIL
+		level.acp_lastVa = NIL
+		println ( "^~^~^ ACCAM ev=stuka dur=26 t=" + local.t )
+		thread coop_mod/officer.scr::coop_air_bombing_run local.t local.side 1 "models/vehicles/stuka_strafe.tik" 12 1
+		wait 28
+	}
+	if( waitthread coop_mod/main.scr::containsText local.ev "down" 0 ){
+		level.acp_pitch = 0 - 28
+		level.ac_lastPlane = NIL
+		level.acp_lastVa = NIL
+		local.p give "models/weapons/mp40.tik"
+		local.p ammo smg 1000
+		wait 0.5
+		local.p use "models/weapons/mp40.tik"
+		println ( "^~^~^ ACCAM ev=down dur=38 t=" + local.t )
+		thread coop_mod/officer.scr::coop_air_bombing_run local.t local.side 1 "models/vehicles/stuka_strafe.tik" 6 1
+		wait 40
+	}
+	println "^~^~^ ACP done"
+}end
+
+
+hold local.p:{
+	local.p physics_off
+	local.track = 0
+	if( getcvar( "coop_acTrack" ) == "1" ){ local.track = 1 }
+	while( local.p != NULL ){
+		local.p.origin = level.acp_cam
+		local.va = ( level.acp_pitch level.acp_yaw 0 )
+		if( local.track == 1 && level.acp_trackOn == 1 ){
+			if( level.ac_lastPlane != NIL && level.ac_lastPlane != NULL ){
+				local.va = vector_toangles ( level.ac_lastPlane.origin - ( level.acp_cam + ( 0 0 82 ) ) )
+				level.acp_lastVa = local.va
+			} else if( level.acp_lastVa != NIL ){
+				local.va = level.acp_lastVa
+			}
+		}
+		local.p.viewangles = local.va
+		local.p.velocity = ( 0 0 0 )
+		waitframe
+	}
+}end
+
+
+pickPlayer:{
+	local.r = NIL
+	for( local.i = 1; local.i <= $player.size; local.i++ ){
+		local.q = $player[local.i]
+		if( local.q != NULL && isAlive local.q && local.q.dmteam != "spectator" ){ local.r = local.q }
+	}
+}end local.r
