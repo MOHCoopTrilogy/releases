@@ -514,3 +514,10 @@ OPS.append((M, "ui/main.urc",
     'bgcolor 0.14 0.10 0.06 0.94\nborderstyle "3D_BORDER"\nfont "facfont-20"\nclicksound "sound/menu/apply.wav"\n'
     'stuffcommand "pushmenu coop_lastmission"\n}\n\n'
     'resource\nButton\n{\nname "whatsnew"\n', 1))
+
+# ================================================================ the two "onto your position" alerts: urgent but short-lived
+# (coordinator 2026-10-05: kept bold they lingered ~45 s in the old box). Amber feed alert = 6 s, shown in Hardcore too.
+OPS.append(FA("coop_mod/officer.scr", 'iprintlnbold "Recon reports the Officer has called in a Stuka dive bomber onto your position."', 0, "w_stuka",
+              '"Stuka dive bomber inbound on your position - take cover"'))
+OPS.append(FA("coop_mod/officer.scr", 'iprintlnbold "Recon reports the Officer has called in an Artillery barrage onto your position."', 0, "w_arty",
+              '"Artillery barrage inbound on your position - take cover"'))
