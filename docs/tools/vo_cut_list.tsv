@@ -1,0 +1,135 @@
+# Retail VO takes the coop pools must NOT alias (docs/proposals/chatter_prune_2026-10-05/manifest.tsv).
+# Read by gen_chatter_pools.py; coop_aivoice.scr / ubersound.scr were stripped of them once by hand-script.
+file	pools	transcript	reason
+sound/coop/radio/m3l3_340k.wav	coop_radio_airstrike,coop_radio_paradrop	Anyone there? Over.	campaign radio line asking if anyone is there - nonsense as the reply to a player-called strike/drop
+sound/coop/radio/m3l3_341k.wav	coop_radio_airstrike,coop_radio_paradrop	I repeat, is anyone there? Over!	campaign radio line asking if anyone is there - nonsense as the reply to a player-called strike/drop
+sound/coop/radio/m3l3_343k.wav	coop_radio_airstrike,coop_radio_paradrop	This is Echo Charlie, please respond, over.	campaign radio line asking if anyone is there - nonsense as the reply to a player-called strike/drop
+sound/dialogue/generic/a/cover/dfr_cover_04a_1.wav	coop_av_us_cover	Hold up here, stay on the cover.	hold-position order ('staying in position')
+sound/dialogue/generic/a/panic/dfr_panic_26a_2.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
+sound/dialogue/generic/a/panic/dfr_panic_27j_2.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
+sound/dialogue/generic/a/panic/dfr_panic_28m_2.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
+sound/dialogue/generic/a/panic/dfr_panic_28m_3.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
+sound/dialogue/generic/a/panic/dfr_panic_29e_1.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
+sound/dialogue/generic/a/panic/dfr_panic_29e_2.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
+sound/dialogue/generic/a/panic/dfr_panic_30f_1.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
+sound/dialogue/generic/a/panic/dfr_panic_31k_1.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
+sound/dialogue/generic/a/panic/dfr_panic_32o_1.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
+sound/dialogue/generic/a/panic/dfr_panic_34f_1.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
+sound/dialogue/generic/g/attack/atk_g_010a.wav	coop_av_de_attack	Eindringling!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/generic/g/attack/vic_001a.wav	coop_av_de_kill	Frist das du, Mieselspion!	spy-mission line (disguise maps only)
+sound/dialogue/generic/g/attack/vic_001b.wav	coop_av_de_kill	Frist das, du Spion!	spy-mission line (disguise maps only)
+sound/dialogue/generic/UK/DFRUK_global_BS5039xj01.mp3	coop_av_uk_reload	Hold him up, Baker! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/generic/UK/DFRUK_global_BS5039xj02.mp3	coop_av_uk_reload	I'm a half baker, I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/generic/UK/DFRUK_global_BS5039xj03.mp3	coop_av_uk_reload	Hold up, Baker! I'm reloading!	named character
+sound/dialogue/generic/uk/dfruk_reload_pc3376xg01.mp3	coop_av_uk_reload	Hold him off, Baker! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/generic/US/DFRUS_global_JP2771xb02.mp3	coop_av_us_reload	Hold them off, Baker! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/generic/US/DFRUS_global_JP2771xb03.mp3	coop_av_us_reload	Hold him off, Baker! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/generic/us/dfrus_reload_gw2062xa01.mp3	coop_av_us_reload	Hold him off, Baker! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/generic/US/DFRUS_reload_GW2062xa02.mp3	coop_av_us_reload	Hold him off, Baker! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/generic/us/dfrus_reload_lp2362xt01.mp3	coop_av_us_reload	Hold them off, Baker! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/generic/US/DFRUS_reload_LP2362xt02.mp3	coop_av_us_reload	Hold them off, Baker! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/generic/US/DFRUS_reload_LP2362xt03.mp3	coop_av_us_reload	Hold them up, Baker! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/global/GM/DENGM_global_GS8010xl01.mp3	coop_av_de_attack	Was war das?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/IT/DENIT_global_IS7110xm03.mp3	coop_av_it_attack	Cosa è stato?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/IT/DENIT_global_IS7111xm02.mp3	coop_av_it_attack	Aiuto!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/IT/DENIT_global_IS7210xn01.mp3	coop_av_it_attack	Cosa è stato?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/IT/DENIT_global_IS7210xn04.mp3	coop_av_it_attack	Cosa è stato?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/IT/DENIT_global_IS7210xn08.mp3	coop_av_it_attack	Cosa è stato?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_alert_DW3451xe01.mp3	coop_av_uk_attack	Thanks!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_alert_DW3451xe02.mp3	coop_av_uk_attack	Thanks!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_alert_DW3457xe01.mp3	coop_av_uk_attack	Good to see you sergeant.	addresses a rank (story/briefing tone)
+sound/dialogue/global/UK/DFRUK_alert_DW3457xe02.mp3	coop_av_uk_attack	Good to see you, Sergeant!	addresses a rank (story/briefing tone)
+sound/dialogue/global/UK/DFRUK_alert_DW3457xe03.mp3	coop_av_uk_attack	Good to see you, Sergeant!	addresses a rank (story/briefing tone)
+sound/dialogue/global/UK/DFRUK_alert_DW3459xe01.mp3	coop_av_uk_attack	Take your positions!	position/objective/place order
+sound/dialogue/global/UK/DFRUK_alert_DW3459xe02.mp3	coop_av_uk_attack	Thank you, Positions!	position/objective/place order
+sound/dialogue/global/UK/DFRUK_alert_TS3651xh01.mp3	coop_av_uk_attack	Thanks!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_alert_TS3651xh02.mp3	coop_av_uk_attack	Thanks!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_alert_TS3651xh03.mp3	coop_av_uk_attack	Thanks!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_alert_TS3657xh01.mp3	coop_av_uk_attack	Good to see you, Sergeant!	addresses a rank (story/briefing tone)
+sound/dialogue/global/UK/DFRUK_alert_TS3657xh02.mp3	coop_av_uk_attack	Good to see you, Sergeant!	addresses a rank (story/briefing tone)
+sound/dialogue/global/UK/DFRUK_alert_TS3657xh03.mp3	coop_av_uk_attack	Good to see you, Sergeant!	addresses a rank (story/briefing tone)
+sound/dialogue/global/UK/DFRUK_alert_TS3659xh03.mp3	coop_av_uk_attack	TAKE YOUR POSITIONS!	position/objective/place order
+sound/dialogue/global/UK/DFRUK_alert_TS3659xh04.mp3	coop_av_uk_attack	TAKE YOUR POSITIONS!	position/objective/place order
+sound/dialogue/global/UK/DFRUK_alert_TS3659xh06.mp3	coop_av_uk_attack	TAKE YOUR POSITIONS!	position/objective/place order
+sound/dialogue/global/UK/DFRUK_global_BS5010xj01.mp3	coop_av_uk_attack	What was that?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_global_BS5010xj03.mp3	coop_av_uk_attack	What was that?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_global_BS5010xj06.mp3	coop_av_uk_attack	What was that?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_global_BS5011xj01.mp3	coop_av_uk_attack	HOPE	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_global_BS5011xj02.mp3	coop_av_uk_attack	HELP!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_global_BS5011xj03.mp3	coop_av_uk_attack	HELP!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_global_BS5011xj04.mp3	coop_av_uk_attack	HELP!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_global_BS5012xj01.mp3	coop_av_uk_attack	HELLO!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_global_BS5012xj03.mp3	coop_av_uk_attack	Hello!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_global_BS5012xj04.mp3	coop_av_uk_attack	Hello?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_global_BS5012xj05.mp3	coop_av_uk_attack	Hello!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_global_BS5013xj01.mp3	coop_av_uk_attack	Hello?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_global_BS5013xj02.mp3	coop_av_uk_attack	Hello?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_global_BS5013xj03.mp3	coop_av_uk_attack	Hello?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_global_BS5014xj02.mp3	coop_av_uk_attack	IN COMING!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_global_BS5019xj03.mp3	coop_av_uk_attack	Thanks!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_global_BS5023xj01.mp3	coop_av_uk_attack	Thank you!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/UK/DFRUK_global_BS5025xj01.mp3	coop_av_uk_attack	Good to see you, Sergeant!	addresses a rank (story/briefing tone)
+sound/dialogue/global/UK/DFRUK_global_BS5025xj02.mp3	coop_av_uk_attack	Good to see you, Sergeant!	addresses a rank (story/briefing tone)
+sound/dialogue/global/UK/DFRUK_global_BS5027xj02.mp3	coop_av_uk_attack	Take your positions!	position/objective/place order
+sound/dialogue/global/UK/DFRUK_global_BS5027xj03.mp3	coop_av_uk_attack	Take your positions!	position/objective/place order
+sound/dialogue/global/US/DFRUS_global_AS6003xf03.mp3	coop_av_us_attack	AHHHHH BYE!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6010xf02.mp3	coop_av_us_attack	What was that?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6010xf03.mp3	coop_av_us_attack	WHAT WAS THAT?!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6010xf04.mp3	coop_av_us_attack	What was that?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6011xf02.mp3	coop_av_us_attack	HELP!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6012xf03.mp3	coop_av_us_attack	HELLO!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6012xf07.mp3	coop_av_us_attack	Hello!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6013xf02.mp3	coop_av_us_attack	Hello?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6013xf03.mp3	coop_av_us_attack	Hello?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6014xf01.mp3	coop_av_us_attack	INCOMING!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6014xf02.mp3	coop_av_us_attack	INCOMING!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6014xf03.mp3	coop_av_us_attack	IN COMING!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6210xb01.mp3	coop_av_us_attack	What was that?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6210xb05.mp3	coop_av_us_attack	What was that?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6211xb01.mp3	coop_av_us_attack	HELP!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6211xb02.mp3	coop_av_us_attack	HELP!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6212xb03.mp3	coop_av_us_attack	HELLO!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6212xb06.mp3	coop_av_us_attack	HELLO!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6213xb01.mp3	coop_av_us_attack	Hello?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6213xb02.mp3	coop_av_us_attack	Hello?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6214xb01.mp3	coop_av_us_attack	INCOMING!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6214xb02.mp3	coop_av_us_attack	INCOMING!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6214xb03.mp3	coop_av_us_attack	INCOMING!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6310xr01.mp3	coop_av_us_attack	What was that?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6310xr02.mp3	coop_av_us_attack	What was that?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6310xr03.mp3	coop_av_us_attack	What was that?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6311xr01.mp3	coop_av_us_attack	Help!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6311xr02.mp3	coop_av_us_attack	Help!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6311xr03.mp3	coop_av_us_attack	HELP!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6311xr04.mp3	coop_av_us_attack	HELP!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6311xr05.mp3	coop_av_us_attack	HELP!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6311xr07.mp3	coop_av_us_attack	HELP!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6312xr01.mp3	coop_av_us_attack	Hello!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6312xr02.mp3	coop_av_us_attack	Hello!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6312xr03.mp3	coop_av_us_attack	Hello!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6313xr01.mp3	coop_av_us_attack	Hello?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6313xr02.mp3	coop_av_us_attack	Hello?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6313xr03.mp3	coop_av_us_attack	Hello?	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6314xr01.mp3	coop_av_us_attack	INCOMING!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6314xr02.mp3	coop_av_us_attack	INCOMING!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/global/US/DFRUS_global_AS6314xr03.mp3	coop_av_us_attack	IN COMING!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
+sound/dialogue/m3l1/A/medic3.wav	coop_para_heal		named character (Powell)
+sound/dialogue/Mission_1/Allies/dfr_reload_BC6954ta4.mp3	coop_av_uk_reload,coop_av_us_reload	Hold him off, Barnes! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_1/Allies/dfr_reload_BC6954ta5.mp3	coop_av_uk_reload,coop_av_us_reload	Hold them off, Farns! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_1/Allies/dfr_reload_BC6954ta6.mp3	coop_av_uk_reload,coop_av_us_reload	Hold them off, Barnes! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_1/Allies/dfr_reload_BS6029tc1.mp3	coop_av_uk_reload,coop_av_us_reload	Hold it off, Bobs! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_1/Allies/dfr_reload_BS6029tc2.mp3	coop_av_uk_reload,coop_av_us_reload	Hold them off, Bards! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_1/Allies/dfr_reload_BS6128td1.mp3	coop_av_uk_reload,coop_av_us_reload	Hold them off, Barnes! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_1/Allies/dfr_reload_BS6128td2.mp3	coop_av_uk_reload,coop_av_us_reload	Hold them off, barns! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_1/Allies/dfr_reload_BS6128td3.mp3	coop_av_uk_reload,coop_av_us_reload	Hold him off, Barnes! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_2/Allies/dfr_reload_AC9067tg1.mp3	coop_av_uk_reload,coop_av_us_reload	Hold them off, barns! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_2/Allies/dfr_reload_AC9067tg2.mp3	coop_av_uk_reload,coop_av_us_reload	Hold them off, Barnes! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_2/Allies/dfr_reload_AP4353tm1.mp3	coop_av_uk_reload,coop_av_us_reload	Hold them off Barnes! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_2/Allies/dfr_reload_AP4353tm2.mp3	coop_av_uk_reload,coop_av_us_reload	HOLD THEM OFF BARDS! I'M RELOADING!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_2/Allies/dfr_reload_AP4353tm3.mp3	coop_av_uk_reload,coop_av_us_reload	HOLD THEM OFF BARDS! I'M RELOADING!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_2/Allies/dfr_reload_AS2855tw1.mp3	coop_av_uk_reload,coop_av_us_reload	Hold them off, Barnes! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_2/Allies/dfr_reload_AS2855tw2.mp3	coop_av_uk_reload,coop_av_us_reload	Hold them off, Bards! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_2/Allies/dfr_reload_AS2855tw3.mp3	coop_av_uk_reload,coop_av_us_reload	Hold him off, Barnes! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_2/Allies/dfr_reload_AS3053ty1.mp3	coop_av_uk_reload,coop_av_us_reload	Hold them off Barnes! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_2/Allies/dfr_reload_AS3053ty2.mp3	coop_av_uk_reload,coop_av_us_reload	Hold them off, Barnes! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)
+sound/dialogue/Mission_2/Allies/dfr_reload_AS3053ty3.mp3	coop_av_uk_reload,coop_av_us_reload	Hold them off, Barnes! I'm reloading!	named character (Hold them off, Baker/Barnes! I'm reloading!)

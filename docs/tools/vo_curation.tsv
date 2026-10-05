@@ -1,0 +1,213 @@
+pool	file	transcript	translation	verdict	reason
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_14a.wav	Wir sehen uns in New York!	See you in New York / America!	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_14b.wav	Wir sehen uns in Amerika!	See you in New York / America!	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_14c.wav	PESÉNO GENAMÉRICA !	See you in New York / America!	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_14d.wav	Wir sehen uns in Amerika!	See you in New York / America!	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_14i.wav	Wir sehen uns in Amerika!	See you in New York / America!	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_17a.wav	Sind euren generellen echte Soldaten ausgegangen?	Have your generals run out of real soldiers?	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_17b.wav	Sind euren Gonerälen echte Soldaten ausgegangen?	Have your generals run out of real soldiers?	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_17c.wav	Sind euren generellen echten Soldaten ausgegangen?	Have your generals run out of real soldiers?	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_17d.wav	Sind Euren Generellen echte Soldaten ausgegangen?	Have your generals run out of real soldiers?	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_17i.wav	Sind euren generellen echte Soldaten ausgegangen?	Have your generals run out of real soldiers?	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_18a.wav	Die Amis haben wohl keine echten Männer mehr.	The Yanks have no real men left!	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_18b.wav	Die Amis haben wohl keine echten Männer mehr!	The Yanks have no real men left!	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_18c.wav	Die Amis haben wohl keine echten Männer mehr!	The Yanks have no real men left!	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_18d.wav	Die Amis haben wohl keine echten Männer mehr!	The Yanks have no real men left!	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_18i.wav	Ja, ich hab wohl keine echten Männer mehr!	The Yanks have no real men left!	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_21a.wav	Französische Bauantöchter schießen besser!	French farm girls shoot better!	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_21b.wav	Französische Bauern-Töchter schießen besser!	French farm girls shoot better!	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_21c.wav	Französische Bauentöchter schießen besser!	French farm girls shoot better!	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_21d.wav	Französische Bauern-Töchter schießen besser!	French farm girls shoot better!	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_r_21i.wav	Französische Bauern-Töchter schießen besser!	French farm girls shoot better!	KEEP	jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_v_01b.wav	Gute Arbeit, Leute!	Good work, team!	CUT	team praise, not a jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_v_01d.wav	Gute Arbeit, Leute!	Good work, team!	CUT	team praise, not a jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_v_02i.wav	Der Sieg ist unser!	Victory (is ours)!	CUT	round-end victory call, wrong mid-fight
+taunt_de	sound/dialogue/Multiplayer/g/GRden_v_03c.wav	Wir haben gesiegt!	Victory (is ours)!	CUT	round-end victory call, wrong mid-fight
+taunt_de	sound/dialogue/Multiplayer/g/GRden_v_03d.wav	Wir haben gesiegt!	Victory (is ours)!	CUT	round-end victory call, wrong mid-fight
+taunt_de	sound/dialogue/Multiplayer/g/GRden_v_05a.wav	Gute Leistung!	Good effort!	KEEP	sarcastic jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_v_05b.wav	Gute Leistung!	Good effort!	KEEP	sarcastic jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_v_05c.wav	Gute Leistung!	Good effort!	KEEP	sarcastic jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_v_05d.wav	Gute Leistung!	Good effort!	KEEP	sarcastic jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_v_05i.wav	Gute Leistung!	Good effort!	KEEP	sarcastic jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_v_06c.wav	Deine Eltern wären stolz.	Your parents would be proud.	KEEP	sarcastic jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_v_06d.wav	Deine Eltern wären stolz.	Your parents would be proud.	KEEP	sarcastic jeer
+taunt_de	sound/dialogue/Multiplayer/g/GRden_v_06i.wav	Deine Eltern wären stolz.	Your parents would be proud.	KEEP	sarcastic jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_r_14a.wav	See you in Berlin!		KEEP	jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_r_14h.wav	See ya in Berlin!		KEEP	jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_r_14j.wav	We'll see you in Berlin!		KEEP	jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_r_14z.wav	See you in Berlin!		CUT	voice 'z' is the SAS (British) MP voice - wrong nationality for a US taunt
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_r_17a.wav	Have you generals run out of real soldiers?	Have your generals run out of real soldiers?	KEEP	jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_r_17h.wav	Have your generals run out of real soldiers?	Have your generals run out of real soldiers?	KEEP	jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_r_17j.wav	Have your generals run out of real soldiers?	Have your generals run out of real soldiers?	KEEP	jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_r_17z.wav	Have your generals run out of real soldiers?	Have your generals run out of real soldiers?	CUT	voice 'z' is the SAS (British) MP voice - wrong nationality for a US taunt
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_r_18a.wav	The Germans are apparently out of real men!	The Yanks have no real men left!	KEEP	jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_r_18h.wav	The Germans are apparently out of real men!	The Yanks have no real men left!	KEEP	jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_r_18j.wav	The Germans are apparently out of real men.	The Yanks have no real men left!	KEEP	jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_r_18z.wav	The Germans are apparently out of real men!	The Yanks have no real men left!	CUT	voice 'z' is the SAS (British) MP voice - wrong nationality for a US taunt
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_r_21a.wav	I've seen French farm girls shoot better!	French farm girls shoot better!	KEEP	jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_r_21h.wav	I've seen French farm girls shoot better.	French farm girls shoot better!	KEEP	jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_r_21j.wav	I've seen French farm girls shoot better.	French farm girls shoot better!	KEEP	jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_r_21z.wav	I've seen French farm girls shoot better.	French farm girls shoot better!	CUT	voice 'z' is the SAS (British) MP voice - wrong nationality for a US taunt
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_v_01z.wav	Great job team!	Good work, team!	CUT	voice 'z' is the SAS (British) MP voice - wrong nationality for a US taunt
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_v_02h.wav	Victory is ours!	Victory (is ours)!	CUT	round-end victory call, wrong mid-fight
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_v_02z.wav	Victory is ours!	Victory (is ours)!	CUT	voice 'z' is the SAS (British) MP voice - wrong nationality for a US taunt
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_v_03z.wav	Victory!	Victory (is ours)!	CUT	voice 'z' is the SAS (British) MP voice - wrong nationality for a US taunt
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_v_04a.wav	Outstanding performance!		KEEP	sarcastic jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_v_04z.wav	Outstanding performance!		CUT	voice 'z' is the SAS (British) MP voice - wrong nationality for a US taunt
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_v_05a.wav	Great effort.	Good effort!	KEEP	sarcastic jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_v_05h.wav	Great effort.	Good effort!	KEEP	sarcastic jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_v_05j.wav	Great effort!	Good effort!	KEEP	sarcastic jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_v_05z.wav	Great effort!	Good effort!	CUT	voice 'z' is the SAS (British) MP voice - wrong nationality for a US taunt
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_v_06a.wav	Your pants would be proud!	Your parents would be proud.	KEEP	sarcastic jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_v_06j.wav	Your parents would be proud.	Your parents would be proud.	KEEP	sarcastic jeer
+taunt_us	sound/dialogue/Multiplayer/a/AMdfr_v_06z.wav	Your parents would be proud.	Your parents would be proud.	CUT	voice 'z' is the SAS (British) MP voice - wrong nationality for a US taunt
+flvo_de	sound/coop_flvo/de_001.wav	Jetzt geht's los!	Here we go!	KEEP+attack	generic combat bark
+flvo_de	sound/coop_flvo/de_002.wav	Das macht Laune!	This is fun!	KEEP+taunt	generic jeer
+flvo_de	sound/coop_flvo/de_003.wav	Macht ihn fertig!	Finish him off!	KEEP+attack	generic combat order
+flvo_de	sound/coop_flvo/de_004.wav	Er ist in Deckung gegangen!	He's gone into cover!	KEEP	generic combat call-out
+flvo_de	sound/coop_flvo/de_005.wav	Lass die nicht entkommen!	Don't let them get away!	KEEP+attack	generic combat order
+flvo_de	sound/coop_flvo/de_006.wav	Er hat eine Waffe!	He has a weapon!	CUT	first-sighting alert; Germans' sighting bark is engine-driven, no trigger here
+flvo_de	sound/coop_flvo/de_007.wav	Mach die fertig!	Finish them off!	KEEP+attack	generic combat order
+flvo_de	sound/coop_flvo/de_008.wav	Verteilen Männer!	Spread out, men!	KEEP+attack	generic squad order in combat
+flvo_de	sound/coop_flvo/de_009.wav	Feind greift an!	Enemy attacking!	KEEP	generic combat call-out
+flvo_de	sound/coop_flvo/de_010.wav	Er hat ein ganzes Arsenal!	He's got a whole arsenal!	MOVE:fallback	losing-the-fight line; only when badly hurt
+flvo_de	sound/coop_flvo/de_011.wav	Er ist zu gut bewaffnet!	He's too well armed!	MOVE:fallback	losing-the-fight line; only when badly hurt
+flvo_de	sound/coop_flvo/de_012.wav	Er hat ein ganzes Arsenal!	He's got a whole arsenal!	CUT	byte-identical duplicate of sound/coop_flvo/de_010.wav
+flvo_de	sound/coop_flvo/de_013.wav	Macht ihn fertig!	Finish him off!	CUT	byte-identical duplicate of sound/coop_flvo/de_003.wav
+flvo_de	sound/coop_flvo/de_014.wav	Das war's, du alliierten Schwein!	That's it, you Allied pig!	MOVE:kill	said over a kill
+flvo_de	sound/coop_flvo/de_015.wav	Er ist in Deckung gegangen!	He's gone into cover!	CUT	byte-identical duplicate of sound/coop_flvo/de_004.wav
+flvo_de	sound/coop_flvo/de_016.wav	Lass die nicht abhauen!	Don't let them run off!	KEEP+attack	generic combat order
+flvo_de	sound/coop_flvo/de_017.wav	Ich hab ihn im Visier!	I've got him in my sights!	KEEP+attack	generic combat bark
+flvo_de	sound/coop_flvo/de_018.wav	Nehmt ihn ins Visier, Männer!	Take aim at him, men!	KEEP+attack	generic combat order
+flvo_de	sound/coop_flvo/de_019.wav	Jetzt geht's los!	Here we go!	CUT	byte-identical duplicate of sound/coop_flvo/de_001.wav
+flvo_de	sound/coop_flvo/de_020.wav	Lass die nicht abhauen!	Don't let them run off!	KEEP+attack	generic combat order
+flvo_de	sound/coop_flvo/de_021.wav	Zum Angriff!	Attack!	KEEP+attack	generic combat order
+flvo_de	sound/coop_flvo/de_022.wav	Wir sind unter Beschuss!	We're under fire!	MOVE:cover	only when actually taking fire
+flvo_de	sound/coop_flvo/de_023.wav	Stirbt, du alliierten Schwein!	Die, you Allied pig!	KEEP+taunt	generic jeer
+flvo_de	sound/coop_flvo/de_024.wav	Das macht Laune!	This is fun!	CUT	byte-identical duplicate of sound/coop_flvo/de_002.wav
+flvo_de	sound/coop_flvo/de_025.wav	Nehmt ihn von hinten!	Take him from behind!	KEEP+attack	generic flanking order
+flvo_de	sound/coop_flvo/de_026.wav	Ich hab keine Munition mehr!	I'm out of ammo!	CUT	out-of-ammo; no real reload/empty trigger exists (reload sit is a random roll)
+flvo_de	sound/coop_flvo/de_027.wav	Wir sitzen in der Falle!	We're trapped!	MOVE:fallback	losing-the-fight line
+flvo_de	sound/coop_flvo/de_028.wav	Ich hab keinen freien Schuss!	I don't have a clear shot!	KEEP	generic combat bark
+flvo_de	sound/coop_flvo/de_029.wav	Gib mir Deckung!	Cover me!	MOVE:cover	under fire
+flvo_de	sound/coop_flvo/de_030.wav	Feind greift an!	Enemy attacking!	CUT	byte-identical duplicate of sound/coop_flvo/de_009.wav
+flvo_de	sound/coop_flvo/de_031.wav	Irgendwas schleicht hier rum!	Something's sneaking around here!	CUT	suspicion/stealth line, wrong mid-combat
+flvo_de	sound/coop_flvo/de_032.wav	Ich hab was gehört!	I heard something!	CUT	suspicion/stealth line, wrong mid-combat
+flvo_de	sound/coop_flvo/de_033.wav	Verstärkung anfordern!	Call for reinforcements!	MOVE:backup	under-fire call for help
+flvo_de	sound/coop_flvo/de_034.wav	Ich hab ihn!	Got him!	MOVE:kill	said over a kill
+flvo_de	sound/coop_flvo/de_035.wav	Ich hab keinen freien Schuss!	I don't have a clear shot!	KEEP	generic combat bark
+flvo_de	sound/coop_flvo/de_036.wav	Verständigt die anderen!	Alert the others!	MOVE:backup	under-fire call for help
+flvo_de	sound/coop_flvo/de_037.wav	Achtung, Granate!	Look out, grenade!	CUT	grenade warning; engine say_grenade_sighted owns it, a random roll would lie
+flvo_de	sound/coop_flvo/de_038.wav	Bleibt an ihn dran!	Stay on him!	KEEP+attack	generic combat order
+flvo_de	sound/coop_flvo/de_039.wav	Er hat eine Waffe!	He has a weapon!	CUT	first-sighting alert; Germans' sighting bark is engine-driven, no trigger here
+flvo_de	sound/coop_flvo/de_040.wav	Eingraben!	Dig in!	CUT	hold-position order
+flvo_de	sound/coop_flvo/de_041.wav	Sie sind uns überlegen!	They outnumber us!	MOVE:fallback	losing-the-fight line
+flvo_de	sound/coop_flvo/de_042.wav	Alles absichern!	Secure everything!	CUT	post-fight order, wrong mid-combat
+flvo_de	sound/coop_flvo/de_043.wav	Nehmt ihn von hinten!	Take him from behind!	CUT	byte-identical duplicate of sound/coop_flvo/de_025.wav
+flvo_de	sound/coop_flvo/de_044.wav	Wir sitzen in der Falle!	We're trapped!	CUT	byte-identical duplicate of sound/coop_flvo/de_027.wav
+flvo_de	sound/coop_flvo/de_045.wav	Gib mir Deckung!	Cover me!	CUT	byte-identical duplicate of sound/coop_flvo/de_029.wav
+flvo_de	sound/coop_flvo/de_046.wav	Irgendwas schleicht hier rum!	Something's sneaking around here!	CUT	suspicion/stealth line, wrong mid-combat
+flvo_de	sound/coop_flvo/de_047.wav	Verstärkung anfordern!	Call for reinforcements!	CUT	byte-identical duplicate of sound/coop_flvo/de_033.wav
+flvo_de	sound/coop_flvo/de_048.wav	Ich hab ihn!	Got him!	CUT	byte-identical duplicate of sound/coop_flvo/de_034.wav
+flvo_de	sound/coop_flvo/de_049.wav	Verständigt die anderen!	Alert the others!	CUT	byte-identical duplicate of sound/coop_flvo/de_036.wav
+flvo_de	sound/coop_flvo/de_050.wav	Achtung, Granate!	Look out, grenade!	CUT	grenade warning; engine say_grenade_sighted owns it, a random roll would lie
+flvo_de	sound/coop_flvo/de_051.wav	Bleibt an ihn dran!	Stay on him!	CUT	byte-identical duplicate of sound/coop_flvo/de_038.wav
+flvo_de	sound/coop_flvo/de_052.wav	Eingraben!	Dig in!	CUT	hold-position order
+flvo_de	sound/coop_flvo/de_053.wav	Sie sind uns überlegen!	They outnumber us!	CUT	byte-identical duplicate of sound/coop_flvo/de_041.wav
+flvo_de	sound/coop_flvo/de_054.wav	Alles absichern!	Secure everything!	CUT	post-fight order, wrong mid-combat
+flvo_de	sound/coop_flvo/de_055.wav	Zum Angriff!	Attack!	CUT	byte-identical duplicate of sound/coop_flvo/de_021.wav
+flvo_de	sound/coop_flvo/de_056.wav	Wir sind unter Beschuss!	We're under fire!	CUT	byte-identical duplicate of sound/coop_flvo/de_022.wav
+flvo_de	sound/coop_flvo/de_057.wav	Wir haben ihn aus den Augen verloren!	We've lost sight of him!	CUT	lost-contact line, no trigger
+flvo_de	sound/coop_flvo/de_058.wav	Stirbt, du alliierten Schwein!	Die, you Allied pig!	CUT	byte-identical duplicate of sound/coop_flvo/de_023.wav
+flvo_de	sound/coop_flvo/de_059.wav	Rettet sich wer kann!	Every man for himself!	MOVE:fallback	rout line; only when badly hurt
+flvo_de	sound/coop_flvo/de_060.wav	Ich hab ihn im Visier!	I've got him in my sights!	CUT	byte-identical duplicate of sound/coop_flvo/de_017.wav
+flvo_de	sound/coop_flvo/de_061.wav	In unsere Richtung!	Coming our way!	MOVE:cover	incoming fire call
+flvo_de	sound/coop_flvo/de_062.wav	Nehmt ihn ins Visier, Männer!	Take aim at him, men!	CUT	byte-identical duplicate of sound/coop_flvo/de_018.wav
+flvo_de	sound/coop_flvo/de_063.wav	Feind in Sicht!	Enemy in sight!	CUT	first-sighting alert; engine-driven for Germans
+flvo_de	sound/coop_flvo/de_064.wav	Verteilen Männer!	Spread out, men!	CUT	byte-identical duplicate of sound/coop_flvo/de_008.wav
+flvo_de	sound/coop_flvo/de_065.wav	Mach die fertig!	Finish them off!	CUT	byte-identical duplicate of sound/coop_flvo/de_007.wav
+flvo_de	sound/coop_flvo/de_066.wav	Deckung geben!	Give covering fire!	MOVE:cover	under fire
+flvo_de	sound/coop_flvo/de_067.wav	Achtung! Aufgepasst!	Attention! Look out!	CUT	alert line, no trigger
+flvo_de	sound/coop_flvo/de_068.wav	So, jetzt bin ich dran!	Right, my turn now!	KEEP+taunt	generic jeer
+flvo_de	sound/coop_flvo/de_069.wav	Feind in Sicht!	Enemy in sight!	CUT	first-sighting alert; engine-driven for Germans
+flvo_de	sound/coop_flvo/de_070.wav	Ich hab keine Munition mehr!	I'm out of ammo!	CUT	out-of-ammo; no real reload/empty trigger exists (reload sit is a random roll)
+flvo_de	sound/coop_flvo/de_071.wav	Feindbewegung!	Enemy movement!	CUT	first-sighting alert
+flvo_de	sound/coop_flvo/de_072.wav	Ein Amerikaner!	An American!	CUT	first-sighting alert; also wrong vs British players
+flvo_de	sound/coop_flvo/de_073.wav	So, jetzt bin ich dran!	Right, my turn now!	KEEP+taunt	generic jeer
+flvo_de	sound/coop_flvo/de_074.wav	Das war's, du alliierten Schwein!	That's it, you Allied pig!	CUT	byte-identical duplicate of sound/coop_flvo/de_014.wav
+flvo_de	sound/coop_flvo/de_075.wav	Ich hab was gehört.	I heard something!	CUT	suspicion/stealth line, wrong mid-combat
+flvo_de	sound/coop_flvo/de_076.wav	Aufpassen!	Look out!	CUT	alert line, no trigger
+flvo_de	sound/coop_flvo/de_077.wav	Meine Waffe ist blockiert!	My weapon's jammed!	CUT	weapon jam, no trigger
+flvo_de	sound/coop_flvo/de_078.wav	Aufpassen!	Look out!	CUT	alert line, no trigger
+flvo_de	sound/coop_flvo/de_079.wav	Ein Amerikaner!	An American!	CUT	first-sighting alert; also wrong vs British players
+flvo_de	sound/coop_flvo/de_080.wav	Wir werden abgeschlachtet!	We're being slaughtered!	MOVE:fallback	losing-the-fight line
+flvo_de	sound/coop_flvo/de_081.wav	Achtung! Aufgepasst!	Attention! Look out!	CUT	alert line, no trigger
+flvo_de	sound/coop_flvo/de_082.wav	Wir haben ihn aus den Augen verloren!	We've lost sight of him!	CUT	lost-contact line, no trigger
+flvo_de	sound/coop_flvo/de_083.wav	In unsere Richtung!	Coming our way!	CUT	byte-identical duplicate of sound/coop_flvo/de_061.wav
+flvo_de	sound/coop_flvo/de_084.wav	Rettet sich wer kann!	Every man for himself!	CUT	byte-identical duplicate of sound/coop_flvo/de_059.wav
+flvo_de	sound/coop_flvo/de_085.wav	Lass die nicht entkommen!	Don't let them get away!	CUT	byte-identical duplicate of sound/coop_flvo/de_005.wav
+flvo_de	sound/coop_flvo/de_086.wav	Feindbewegung!	Enemy movement!	CUT	first-sighting alert
+flvo_de	sound/coop_flvo/de_087.wav	Meine Waffe ist blockiert!	My weapon's jammed!	CUT	weapon jam, no trigger
+flvo_de	sound/coop_flvo/de_088.wav	Wir werden abgeschlachtet!	We're being slaughtered!	CUT	byte-identical duplicate of sound/coop_flvo/de_080.wav
+flvo_de	sound/coop_flvo/de_089.wav	Deckung geben!	Give covering fire!	CUT	byte-identical duplicate of sound/coop_flvo/de_066.wav
+flvo_de	sound/coop_flvo/de_090.wav	Er ist zu gut bewaffnet!	He's too well armed!	CUT	byte-identical duplicate of sound/coop_flvo/de_011.wav
+flvo_us	sound/coop_flvo/us_001.wav	Squad, covering fire!		KEEP+attack	generic combat order
+flvo_us	sound/coop_flvo/us_002.wav	Open fire!		KEEP+attack	generic combat order
+flvo_us	sound/coop_flvo/us_003.wav	Get your head down!		MOVE:cover	under fire
+flvo_us	sound/coop_flvo/us_004.wav	Hold up here! Stay undercover!		CUT	hold-position order - the 'staying in position' complaint
+flvo_us	sound/coop_flvo/us_005.wav	Open fire!		CUT	byte-identical duplicate of sound/coop_flvo/us_002.wav
+flvo_us	sound/coop_flvo/us_006.wav	Squad, hold this position!		CUT	hold-position order - the 'staying in position' complaint
+flvo_us	sound/coop_flvo/us_007.wav	Squad, hold your position!		CUT	hold-position order - the 'staying in position' complaint
+flvo_us	sound/coop_flvo/us_008.wav	Get your head down!		CUT	byte-identical duplicate of sound/coop_flvo/us_003.wav
+flvo_us	sound/coop_flvo/us_009.wav	Squad, regroup!		CUT	squad order nobody follows
+flvo_us	sound/coop_flvo/us_010.wav	Squad, covering fire!		CUT	byte-identical duplicate of sound/coop_flvo/us_001.wav
+flvo_us	sound/coop_flvo/us_011.wav	Hold up here, stay undercover!		CUT	hold-position order - the 'staying in position' complaint
+flvo_us	sound/coop_flvo/us_012.wav	Squad, moving!		CUT	squad order nobody follows
+flvo_us	sound/coop_flvo/us_013.wav	Squad, attack right flank!		CUT	squad order nobody follows
+flvo_us	sound/coop_flvo/us_014.wav	COVERING FIRE!		KEEP+attack	generic combat order
+flvo_us	sound/coop_flvo/us_015.wav	Toss it back! Toss it back!		CUT	grenade-only line; no grenade trigger, engine owns grenade warnings
+flvo_us	sound/coop_flvo/us_016.wav	Toss it back! Toss it back!		CUT	grenade-only line; no grenade trigger, engine owns grenade warnings
+flvo_us	sound/coop_flvo/us_017.wav	Squad, regroup!		CUT	squad order nobody follows
+flvo_us	sound/coop_flvo/us_018.wav	Hold up here! Stay undercover!		CUT	hold-position order - the 'staying in position' complaint
+flvo_us	sound/coop_flvo/us_019.wav	Squad, hold this position!		CUT	hold-position order - the 'staying in position' complaint
+flvo_us	sound/coop_flvo/us_020.wav	Squad, attack, left flank!		CUT	squad order nobody follows
+flvo_us	sound/coop_flvo/us_021.wav	I'm under fire!		MOVE:cover	only when taking fire
+flvo_us	sound/coop_flvo/us_022.wav	Get down! Get down!		MOVE:cover	under fire
+flvo_us	sound/coop_flvo/us_023.wav	I NEED COVER!		MOVE:cover	under fire
+flvo_us	sound/coop_flvo/us_024.wav	Get down! Get down!		CUT	byte-identical duplicate of sound/coop_flvo/us_022.wav
+flvo_us	sound/coop_flvo/us_025.wav	I've got trouble!		MOVE:backup	call for help when hit
+flvo_us	sound/coop_flvo/us_026.wav	TAKING FIRE!		MOVE:cover	only when taking fire
+flvo_us	sound/coop_flvo/us_027.wav	Come on! Come on! Let's go!		KEEP+attack	generic push
+flvo_us	sound/coop_flvo/us_028.wav	I NEED BACKUP!		MOVE:backup	call for help when hit
+flvo_us	sound/coop_flvo/us_029.wav	TAKING FIRE!		CUT	byte-identical duplicate of sound/coop_flvo/us_026.wav
+flvo_us	sound/coop_flvo/us_030.wav	I've got trouble!		MOVE:backup	call for help when hit
+flvo_us	sound/coop_flvo/us_031.wav	I NEED COVER!		CUT	byte-identical duplicate of sound/coop_flvo/us_023.wav
+flvo_us	sound/coop_flvo/us_032.wav	Come on! Come on! Let's go!		CUT	byte-identical duplicate of sound/coop_flvo/us_027.wav
+flvo_us	sound/coop_flvo/us_033.wav	I NEED BACKUP!		MOVE:backup	call for help when hit
+flvo_us	sound/coop_flvo/us_034.wav	I'm under fire!		MOVE:cover	only when taking fire
+flvo_us	sound/coop_flvo/us_035.wav	ENEMY SNIPER!		CUT	only true if a sniper exists
+flvo_us	sound/coop_flvo/us_036.wav	Watch your back!		KEEP	generic
+flvo_us	sound/coop_flvo/us_037.wav	Keep your eyes peeled, I've got your back!		KEEP	generic
+flvo_us	sound/coop_flvo/us_038.wav	Go, go, go!		KEEP+attack	generic push
+flvo_us	sound/coop_flvo/us_039.wav	We're getting massacred!		MOVE:fallback	losing-the-fight line
+flvo_us	sound/coop_flvo/us_040.wav	Enemy Sniper!		CUT	only true if a sniper exists
+flvo_us	sound/coop_flvo/us_041.wav	He's got grenades!		CUT	grenade-only line
+flvo_us	sound/coop_flvo/us_042.wav	We're getting slaughtered!		MOVE:fallback	losing-the-fight line
+flvo_us	sound/coop_flvo/us_043.wav	Keep your eyes peeled! I've got your back!		KEEP	generic
+flvo_us	sound/coop_flvo/us_044.wav	INCOMING!		CUT	grenade/artillery-only line
+flvo_us	sound/coop_flvo/us_045.wav	Go, go, go!		KEEP+attack	generic push
+flvo_de	sound/coop_flvo/fl_de_taunt_01.wav	Da werden Köpfe rollen!	Heads will roll!	KEEP+taunt	expansion 2026-10-05: Frontline take 1_1_11load7_030.wav (-0.5 dB to pool level)
+flvo_de	sound/coop_flvo/fl_de_taunt_02.wav	Da werden Köpfe rollen!	Heads will roll!	KEEP+taunt	expansion 2026-10-05: Frontline take 2_2_22load3_033.wav (-0.3 dB to pool level)
+flvo_de	sound/coop_flvo/fl_de_taunt_03.wav	Ich will seinen Kopf!	I want his head!	KEEP+taunt	expansion 2026-10-05: Frontline take 1_2_12load2_014.wav (-0.5 dB to pool level)
+flvo_de	sound/coop_flvo/fl_de_taunt_04.wav	Ich will seinen Kopf!	I want his head!	KEEP+taunt	expansion 2026-10-05: Frontline take 3_1_31load5_022.wav (-0.3 dB to pool level)
+flvo_de	sound/coop_flvo/fl_de_fallback_01.wav	Wir können nicht siegen!	We can't win!	MOVE:fallback	expansion 2026-10-05: Frontline take 2_3_23load4_034.wav (-1.6 dB to pool level)
+flvo_de	sound/coop_flvo/fl_de_fallback_02.wav	Wir können nicht siegen!	We can't win!	MOVE:fallback	expansion 2026-10-05: Frontline take 2_2_22load7_033.wav (-0.5 dB to pool level)
+flvo_de	sound/coop_flvo/fl_de_attack_01.wav	Macht ihn fertig!	Finish him off!	KEEP+attack	expansion 2026-10-05: Frontline take 3_1_31load2_020.wav (-0.3 dB to pool level)
+flvo_de	sound/coop_flvo/fl_de_cover_01.wav	In Sicherheit bringen!	Get to safety!	MOVE:cover	expansion 2026-10-05: Frontline take 3_2_32load4_034.wav (-0.4 dB to pool level)
+flvo_de	sound/coop_flvo/fl_de_cover_02.wav	In Sicherheit bringen!	Get to safety!	MOVE:cover	expansion 2026-10-05: Frontline take 1_2_12load5_033.wav (-1.2 dB to pool level)
+flvo_de	sound/coop_flvo/fl_de_cover_03.wav	In Sicherheit bringen!	Get to safety!	MOVE:cover	expansion 2026-10-05: Frontline take 3_2_32load2_032.wav (-0.4 dB to pool level)
+flvo_de	sound/coop_flvo/fl_de_backup_01.wav	Die anderen Verständigen!	Alert the others!	MOVE:backup	expansion 2026-10-05: Frontline take 1_3_13load6_048.wav (-0.4 dB to pool level)
+flvo_de	sound/coop_flvo/fl_de_attack_02.wav	Zum Angriff!	Attack!	KEEP+attack	expansion 2026-10-05: Frontline take 2_1_21load5_019.wav (-0.4 dB to pool level)
+flvo_de	sound/coop_flvo/fl_de_taunt_05.wav	Ich mach Hackfleisch aus dir!	I'll make mincemeat of you!	KEEP+taunt	expansion 2026-10-05: Frontline take 2_3_23load3_030.wav (-0.8 dB to pool level)
+flvo_de	sound/coop_flvo/fl_de_attack_03.wav	Nehmt ihn von hinten!	Take him from behind!	KEEP+attack	expansion 2026-10-05: Frontline take 4_1_41load6_027.wav (-0.0 dB to pool level)
+flvo_de	sound/coop_flvo/fl_de_taunt_06.wav	Aus dir mache ich Hackfleisch!	I'll make mincemeat out of you!	KEEP+taunt	expansion 2026-10-05: Frontline take 2_3_23load3_033.wav (-0.5 dB to pool level)

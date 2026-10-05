@@ -1,0 +1,26 @@
+== amb_urbanwar.wav en 0.23
+== amb_countrywar.wav en 0.61
+== amb_beach.wav lang=en 0.36
+== amb_country.wav lang=en 0.36
+== amb_countrywar.wav lang=en 0.36
+== amb_industrial.wav lang=en 0.36
+== amb_port.wav lang=en 0.36
+== amb_town.wav lang=en 0.36
+== amb_urbanwar.wav lang=en 0.36
+== sting_end.wav lang=en 0.36
+== sting_objective.wav lang=en 0.36
+== sting_wave.wav lang=en 0.36
+== AMdfr_c_07a.wav lang=en 0.99
+      0.0-    1.7 nsp=0.01 lp=-0.28 Get ready to move in on my signal!
+== AMdfr_m_04a.wav lang=en 0.95
+      0.0-    0.5 nsp=0.04 lp=-0.28 I'm HIT
+== AMdfr_m_04h.wav lang=en 0.99
+      0.0-    0.5 nsp=0.02 lp=-0.46 I'M HIT!
+== AMdfr_m_04j.wav lang=en 0.36
+== AMdfr_m_04z.wav lang=en 0.36
+== AMdfr_m_05a.wav lang=en 0.36
+== AMdfr_m_05z.wav lang=en 0.36
+== FRdfr_m_04n.wav lang=en 0.99
+      0.0-    0.8 nsp=0.02 lp=-0.60 I'm HIT!
+== FRdfr_m_05n.wav lang=en 0.36
+DONE

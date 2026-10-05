@@ -1,0 +1,1275 @@
+sound/coop/german/reinf_alarm1.mp3	en	0.71	ALARM! ALARM!	
+sound/coop/german/reinf_alarm2.mp3	de	0.91	Ein Eintringling! Alarm!	An eindringling! Alarm!
+sound/coop/german/reinf_alarm3.mp3	de	0.71	Eintringlinge!	Eintrinklinge!
+sound/coop/radio/airstrike_acquired.wav	en	0.94	Roger, target acquired.	
+sound/coop/radio/airstrike_coords.wav	en	0.97	Roger, coordinates received.	
+sound/coop/radio/airstrike_done.wav	en	0.98	Roger, consider it done.	
+sound/coop/radio/airstrike_request.mp3	en	1.00	Requested an immediate airstrike on our position zero two two seven zero zero one over	
+sound/coop/radio/m3l3_337k.wav	en	0.97	Echo Charlie standing by, awaiting orders to commence close air support. Over.	
+sound/coop/radio/m3l3_338k.wav	en	0.96	Echo Charlie, standing by.	
+sound/coop/radio/m3l3_339k.wav	en	0.98	This is Echo Charlie. I'm ready.	
+sound/coop/radio/m3l3_340k.wav	en	0.96	Anyone there? Over.	
+sound/coop/radio/m3l3_341k.wav	en	0.97	I repeat, is anyone there? Over!	
+sound/coop/radio/m3l3_343k.wav	en	0.97	This is Echo Charlie, please respond, over.	
+sound/coop/radio/m3l3_348k.wav	en	0.98	Target already acquired, over.	
+sound/coop/radio/m3l3_349k.wav	en	0.98	Already en route to a target over	
+sound/coop/radio/m5l2_506k.wav	en	0.96	This is Alpha Zula standing by	
+sound/coop/radio/m5l2_508k.wav	en	0.94	Alpha Zulu, standing by.	
+sound/coop/radio/m5l2_511k.wav	en	0.96	We got it, over.	
+sound/coop/radio/m5l2_512k.wav	en	0.94	Transmission received.	
+sound/coop/radio/m5l2_515k.wav	en	0.98	Got it. Coordinates have been received.	
+sound/coop/radio/paradrop_angels.mp3	en	0.96	King 3, Roger that, castle is confirmed, angels inbound, get clear now, over.	
+sound/coop/radio/paradrop_coords1.wav	en	0.98	Roger, we have the coordinates.	
+sound/coop/radio/paradrop_coords2.wav	en	0.97	Affirmative, coordinates received.	
+sound/coop/radio/paradrop_standby.wav	en	0.92	Alpha Zulu standing by.	
+sound/coop/radio/standby_awaiting.wav	en	0.96	This is AlphaZulu. Awaiting coordinates, over.	
+sound/coop/radio/standby_givetarget.wav	en	0.97	Give me a target, over.	
+sound/coop/radio/standby_waiting.wav	en	0.98	This is AlphaZulu, waiting for a response.	
+sound/coop_flvo/de_001.wav	de	0.94	Jetzt geht's los!	Now it starts!
+sound/coop_flvo/de_002.wav	de	0.92	Das macht Laune!	THAT DOES NOTHING!
+sound/coop_flvo/de_003.wav	de	0.98	Macht ihn fertig!	Do it!
+sound/coop_flvo/de_004.wav	de	0.95	Er ist in Deckung gegangen!	He went to the ceiling!
+sound/coop_flvo/de_005.wav	de	0.95	Lass die nicht entkommen!	Don't let them get away!
+sound/coop_flvo/de_006.wav	de	0.98	Er hat eine Waffe!	He has a weapon!
+sound/coop_flvo/de_007.wav	de	0.95	Mach die fertig!	It's done!
+sound/coop_flvo/de_008.wav	de	0.93	Verteilen Männer!	Distribute men!
+sound/coop_flvo/de_009.wav	de	0.94	Feind greift an!	The enemy is attacking!
+sound/coop_flvo/de_010.wav	de	0.99	Er hat ein ganzes Arsenal!	He's got a whole arsenal!
+sound/coop_flvo/de_011.wav	de	0.96	Er ist zu gut bewaffnet!	He's too well armed!
+sound/coop_flvo/de_012.wav	de	0.99	Er hat ein ganzes Arsenal!	He's got a whole arsenal!
+sound/coop_flvo/de_013.wav	de	0.98	Macht ihn fertig!	It's done!
+sound/coop_flvo/de_014.wav	de	0.97	Das war's, du alliierten Schwein!	That was you, allied pig!
+sound/coop_flvo/de_015.wav	de	0.95	Er ist in Deckung gegangen!	
+sound/coop_flvo/de_016.wav	de	0.94	Lass die nicht abhauen!	
+sound/coop_flvo/de_017.wav	de	0.95	Ich hab ihn im Visier!	
+sound/coop_flvo/de_018.wav	de	0.93	Nehmt ihn ins Visier, Männer!	
+sound/coop_flvo/de_019.wav	de	0.94	Jetzt geht's los!	
+sound/coop_flvo/de_020.wav	de	0.96	Lass die nicht abhauen!	
+sound/coop_flvo/de_021.wav	de	0.96	Zum Angriff!	
+sound/coop_flvo/de_022.wav	de	0.90	Wir sind unter Beschuss!	
+sound/coop_flvo/de_023.wav	de	0.96	Stirbt, du alliierten Schwein!	
+sound/coop_flvo/de_024.wav	de	0.92	Das macht Laune!	
+sound/coop_flvo/de_025.wav	de	0.88	Nehmt ihn von hinten!	
+sound/coop_flvo/de_026.wav	de	0.97	Ich hab keine Munition mehr!	
+sound/coop_flvo/de_027.wav	de	0.97	Wir sitzen in der Falle!	
+sound/coop_flvo/de_028.wav	de	0.98	Ich hab keinen freien Schuss!	
+sound/coop_flvo/de_029.wav	de	0.79	Gib mir Deckung!	
+sound/coop_flvo/de_030.wav	de	0.94	Feind greift an!	
+sound/coop_flvo/de_031.wav	de	0.97	Irgendwas schleicht hier rum!	
+sound/coop_flvo/de_032.wav	de	0.96	Ich hab was gehört!	
+sound/coop_flvo/de_033.wav	de	0.88	Verstärkung anfordern!	
+sound/coop_flvo/de_034.wav	de	0.97	Ich hab ihn!	
+sound/coop_flvo/de_035.wav	de	0.97	Ich hab keinen freien Schuss!	
+sound/coop_flvo/de_036.wav	de	0.98	Verständigt die anderen!	
+sound/coop_flvo/de_037.wav	de	0.80	Achtung, Granate!	
+sound/coop_flvo/de_038.wav	de	0.95	Bleibt an ihn dran!	
+sound/coop_flvo/de_039.wav	de	0.98	Er hat eine Waffe!	
+sound/coop_flvo/de_040.wav	de	0.92	Eingraben!	
+sound/coop_flvo/de_041.wav	de	0.97	Sie sind uns überlegen!	
+sound/coop_flvo/de_042.wav	de	0.94	Alles absichern!	
+sound/coop_flvo/de_043.wav	de	0.88	Nehmt ihn von hinten!	
+sound/coop_flvo/de_044.wav	de	0.97	Wir sitzen in der Falle!	
+sound/coop_flvo/de_045.wav	de	0.79	Gib mir Deckung!	
+sound/coop_flvo/de_046.wav	de	0.97	Irgendwas schleicht hier rum!	
+sound/coop_flvo/de_047.wav	de	0.88	Verstärkung anfordern!	
+sound/coop_flvo/de_048.wav	de	0.97	Ich hab ihn!	
+sound/coop_flvo/de_049.wav	de	0.98	Verständigt die anderen!	
+sound/coop_flvo/de_050.wav	de	0.80	Achtung, Granate!	
+sound/coop_flvo/de_051.wav	de	0.95	Bleibt an ihn dran!	
+sound/coop_flvo/de_052.wav	de	0.92	Eingraben!	
+sound/coop_flvo/de_053.wav	de	0.97	Sie sind uns überlegen!	
+sound/coop_flvo/de_054.wav	de	0.94	Alles absichern!	
+sound/coop_flvo/de_055.wav	de	0.96	Zum Angriff!	
+sound/coop_flvo/de_056.wav	de	0.90	Wir sind unter Beschuss!	
+sound/coop_flvo/de_057.wav	de	1.00	Wir haben ihn aus den Augen verloren!	
+sound/coop_flvo/de_058.wav	de	0.96	Stirbt, du alliierten Schwein!	
+sound/coop_flvo/de_059.wav	de	0.94	Rettet sich wer kann!	
+sound/coop_flvo/de_060.wav	de	0.95	Ich hab ihn im Visier!	
+sound/coop_flvo/de_061.wav	de	0.97	In unsere Richtung!	
+sound/coop_flvo/de_062.wav	de	0.93	Nehmt ihn ins Visier, Männer!	
+sound/coop_flvo/de_063.wav	de	0.77	Feind in Sicht!	
+sound/coop_flvo/de_064.wav	de	0.93	Verteilen Männer!	
+sound/coop_flvo/de_065.wav	de	0.95	Mach die fertig!	
+sound/coop_flvo/de_066.wav	de	0.88	Deckung geben!	
+sound/coop_flvo/de_067.wav	de	0.92	Achtung! Aufgepasst!	
+sound/coop_flvo/de_068.wav	de	0.99	So, jetzt bin ich dran!	
+sound/coop_flvo/de_069.wav	de	0.77	Feind in Sicht!	
+sound/coop_flvo/de_070.wav	de	0.99	Ich hab keine Munition mehr!	
+sound/coop_flvo/de_071.wav	de	0.92	Feindbewegung!	
+sound/coop_flvo/de_072.wav	de	0.80	Ein Amerikaner!	
+sound/coop_flvo/de_073.wav	de	0.99	So, jetzt bin ich dran!	
+sound/coop_flvo/de_074.wav	de	0.97	Das war's, du alliierten Schwein!	
+sound/coop_flvo/de_075.wav	de	0.98	Ich hab was gehört.	
+sound/coop_flvo/de_076.wav	de	0.94	Aufpassen!	
+sound/coop_flvo/de_077.wav	de	0.94	Meine Waffe ist blockiert!	
+sound/coop_flvo/de_078.wav	de	0.94	Aufpassen!	
+sound/coop_flvo/de_079.wav	de	0.80	Ein Amerikaner!	
+sound/coop_flvo/de_080.wav	de	0.98	Wir werden abgeschlachtet!	
+sound/coop_flvo/de_081.wav	de	0.92	Achtung! Aufgepasst!	
+sound/coop_flvo/de_082.wav	de	1.00	Wir haben ihn aus den Augen verloren!	
+sound/coop_flvo/de_083.wav	de	0.97	In unsere Richtung!	
+sound/coop_flvo/de_084.wav	de	0.94	Rettet sich wer kann!	
+sound/coop_flvo/de_085.wav	de	0.95	Lass die nicht entkommen!	
+sound/coop_flvo/de_086.wav	de	0.92	Feindbewegung!	
+sound/coop_flvo/de_087.wav	de	0.94	Meine Waffe ist blockiert!	
+sound/coop_flvo/de_088.wav	de	0.98	Wir werden abgeschlachtet!	
+sound/coop_flvo/de_089.wav	de	0.88	Deckung geben!	
+sound/coop_flvo/de_090.wav	de	0.96	Er ist zu gut bewaffnet!	
+sound/coop_flvo/us_001.wav	en	0.99	Squad, covering fire!	
+sound/coop_flvo/us_002.wav	en	0.99	Open fire!	
+sound/coop_flvo/us_003.wav	en	1.00	Get your head down!	
+sound/coop_flvo/us_004.wav	en	0.99	Hold up here! Stay undercover!	
+sound/coop_flvo/us_005.wav	en	0.99	Open fire!	
+sound/coop_flvo/us_006.wav	en	0.99	Squad, hold this position!	
+sound/coop_flvo/us_007.wav	en	0.97	Squad, hold your position!	
+sound/coop_flvo/us_008.wav	en	1.00	Get your head down!	
+sound/coop_flvo/us_009.wav	en	0.99	Squad, regroup!	
+sound/coop_flvo/us_010.wav	en	0.99	Squad, covering fire!	
+sound/coop_flvo/us_011.wav	en	0.99	Hold up here, stay undercover!	
+sound/coop_flvo/us_012.wav	en	0.95	Squad, moving!	
+sound/coop_flvo/us_013.wav	en	0.99	Squad, attack right flank!	
+sound/coop_flvo/us_014.wav	en	0.98	COVERING FIRE!	
+sound/coop_flvo/us_015.wav	en	0.97	Toss it back! Toss it back!	
+sound/coop_flvo/us_016.wav	en	0.97	Toss it back! Toss it back!	
+sound/coop_flvo/us_017.wav	en	0.99	Squad, regroup!	
+sound/coop_flvo/us_018.wav	en	0.99	Hold up here! Stay undercover!	
+sound/coop_flvo/us_019.wav	en	0.99	Squad, hold this position!	
+sound/coop_flvo/us_020.wav	en	0.99	Squad, attack, left flank!	
+sound/coop_flvo/us_021.wav	en	0.98	I'm under fire!	
+sound/coop_flvo/us_022.wav	en	0.97	Get down! Get down!	
+sound/coop_flvo/us_023.wav	en	0.99	I NEED COVER!	
+sound/coop_flvo/us_024.wav	en	0.97	Get down! Get down!	
+sound/coop_flvo/us_025.wav	en	0.99	I've got trouble!	
+sound/coop_flvo/us_026.wav	en	0.98	TAKING FIRE!	
+sound/coop_flvo/us_027.wav	en	0.97	Come on! Come on! Let's go!	
+sound/coop_flvo/us_028.wav	en	0.99	I NEED BACKUP!	
+sound/coop_flvo/us_029.wav	en	0.98	TAKING FIRE!	
+sound/coop_flvo/us_030.wav	en	0.99	I've got trouble!	
+sound/coop_flvo/us_031.wav	en	0.99	I NEED COVER!	
+sound/coop_flvo/us_032.wav	en	0.97	Come on! Come on! Let's go!	
+sound/coop_flvo/us_033.wav	en	0.99	I NEED BACKUP!	
+sound/coop_flvo/us_034.wav	en	0.99	I'm under fire!	
+sound/coop_flvo/us_035.wav	en	0.97	ENEMY SNIPER!	
+sound/coop_flvo/us_036.wav	en	0.99	Watch your back!	
+sound/coop_flvo/us_037.wav	en	0.99	Keep your eyes peeled! I've got your back!	
+sound/coop_flvo/us_038.wav	en	0.96	Go! Go! Go!	
+sound/coop_flvo/us_039.wav	en	0.97	We're getting massacred!	
+sound/coop_flvo/us_040.wav	en	0.97	ENEMY SNIPER!	
+sound/coop_flvo/us_041.wav	en	0.92	He's got grenades!	
+sound/coop_flvo/us_042.wav	en	0.99	We're getting slaughtered!	
+sound/coop_flvo/us_043.wav	en	1.00	Keep your eyes peeled! I've got your back!	
+sound/coop_flvo/us_044.wav	en	0.91	INCOMING!	
+sound/coop_flvo/us_045.wav	en	0.97	Go, go, go!	
+sound/dialogue/generic/a/attack/dfr_attack_01a_2.wav	en	0.98	Open fire!	
+sound/dialogue/generic/a/attack/dfr_attack_02a_2.wav	en	0.99	Covering fire!	
+sound/dialogue/generic/a/attack/dfr_attack_04h_1.wav	en	0.97	Get em!	
+sound/dialogue/generic/a/attack/dfr_attack_09h_1.wav	en	0.88	FIRE!	
+sound/dialogue/generic/a/attack/dfr_attack_09k_1.wav	en	0.91	FIRE!	
+sound/dialogue/generic/a/attack/dfr_attack_09o_2.wav	en	0.98	FIRE!	
+sound/dialogue/generic/a/attack/dfr_attack_10a_1.wav	en	0.99	Move in!	
+sound/dialogue/generic/a/attack/dfr_attack_10a_2.wav	en	0.99	MOVE IN!	
+sound/dialogue/generic/a/attack/dfr_attack_10c_2.wav	en	0.90	Move in!	
+sound/dialogue/generic/a/attack/dfr_attack_10f.wav	en	0.99	MOVE IN!	
+sound/dialogue/generic/a/attack/dfr_attack_10h_1.wav	en	0.99	Move in.	
+sound/dialogue/generic/a/attack/dfr_attack_10j_1.wav	en	0.99	Move in!	
+sound/dialogue/generic/a/attack/dfr_attack_13a_2.wav	en	0.94	Grenade!	
+sound/dialogue/generic/a/attack/dfr_attack_13c_1.wav	en	0.95	Grenade!	
+sound/dialogue/generic/a/attack/dfr_attack_13h_2.wav	en	0.91	Grenade!	
+sound/dialogue/generic/a/attack/dfr_attack_14a_2.wav	en	0.98	FIRE IN THE HOLE!	
+sound/dialogue/generic/a/attack/dfr_attack_14c_1.wav	en	0.93	FIRE IN THE HOLE!	
+sound/dialogue/generic/a/attack/dfr_attack_14h_1.wav	en	0.99	FIRE IN THE HOLE!	
+sound/dialogue/generic/a/cover/dfr_cover_01a_1.wav	en	0.99	Take cover!	
+sound/dialogue/generic/a/cover/dfr_cover_01h_1.wav	en	0.99	Take cover!	
+sound/dialogue/multiplayer/a/amdfr_r_14a.wav	en	0.99	See you in Berlin!	
+sound/dialogue/multiplayer/a/amdfr_r_14h.wav	en	0.97	See ya in Berlin!	
+sound/dialogue/multiplayer/a/amdfr_r_14j.wav	en	0.98	We'll see you in Berlin!	
+sound/dialogue/multiplayer/a/amdfr_r_14z.wav	en	0.98	See you in Berlin!	
+sound/dialogue/multiplayer/a/amdfr_r_17a.wav	en	0.99	Have you generals run out of real soldiers?	
+sound/dialogue/multiplayer/a/amdfr_r_17h.wav	en	1.00	Have your generals run out of real soldiers?	
+sound/dialogue/multiplayer/a/amdfr_r_17j.wav	en	1.00	Have your generals run out of real soldiers?	
+sound/dialogue/multiplayer/a/amdfr_r_17z.wav	en	0.99	Have your generals run out of real soldiers?	
+sound/dialogue/multiplayer/a/amdfr_r_18a.wav	en	0.99	The Germans are apparently out of real men!	
+sound/dialogue/multiplayer/a/amdfr_r_18h.wav	en	1.00	The Germans are apparently out of real men!	
+sound/dialogue/multiplayer/a/amdfr_r_18j.wav	en	0.99	The Germans are apparently out of real men.	
+sound/dialogue/multiplayer/a/amdfr_r_18z.wav	en	0.99	The Germans are apparently out of real men!	
+sound/dialogue/multiplayer/a/amdfr_r_21a.wav	en	1.00	I've seen French farm girls shoot better!	
+sound/dialogue/multiplayer/a/amdfr_r_21h.wav	en	1.00	I've seen French farm girls shoot better.	
+sound/dialogue/multiplayer/a/amdfr_r_21j.wav	en	0.98	I've seen French farm girls shoot better.	
+sound/dialogue/multiplayer/a/amdfr_r_21z.wav	en	1.00	I've seen French farm girls shoot better.	
+sound/dialogue/multiplayer/a/amdfr_v_01z.wav	en	1.00	Great job team!	
+sound/dialogue/multiplayer/a/amdfr_v_02h.wav	en	1.00	Victory is ours!	
+sound/dialogue/multiplayer/a/amdfr_v_02z.wav	en	1.00	Victory is ours!	
+sound/dialogue/multiplayer/a/amdfr_v_03z.wav	en	0.94	Victory!	
+sound/dialogue/multiplayer/a/amdfr_v_04a.wav	en	0.99	Outstanding performance!	
+sound/dialogue/multiplayer/a/amdfr_v_04z.wav	en	1.00	Outstanding performance!	
+sound/dialogue/multiplayer/a/amdfr_v_05a.wav	en	0.99	Great effort.	
+sound/dialogue/multiplayer/a/amdfr_v_05h.wav	en	1.00	Great effort.	
+sound/dialogue/multiplayer/a/amdfr_v_05j.wav	en	0.99	Great effort!	
+sound/dialogue/multiplayer/a/amdfr_v_05z.wav	en	0.98	Great effort!	
+sound/dialogue/multiplayer/a/amdfr_v_06a.wav	en	1.00	Your pants would be proud!	
+sound/dialogue/multiplayer/a/amdfr_v_06j.wav	en	0.99	Your parents would be proud.	
+sound/dialogue/multiplayer/a/amdfr_v_06z.wav	en	1.00	Your parents would be proud.	
+sound/dialogue/multiplayer/g/grden_r_14a.wav	de	0.80	Wir sehen uns in New York!	
+sound/dialogue/multiplayer/g/grden_r_14b.wav	de	0.76	Wir sehen uns in Amerika!	
+sound/dialogue/multiplayer/g/grden_r_14c.wav	fr	0.49	PESÉNO GENAMÉRICA !	
+sound/dialogue/multiplayer/g/grden_r_14d.wav	de	0.99	Wir sehen uns in Amerika!	
+sound/dialogue/multiplayer/g/grden_r_14i.wav	de	0.88	Wir sehen uns in Amerika!	
+sound/dialogue/multiplayer/g/grden_r_17a.wav	de	0.99	Sind euren generellen echte Soldaten ausgegangen?	
+sound/dialogue/multiplayer/g/grden_r_17b.wav	de	1.00	Sind euren Gonerälen echte Soldaten ausgegangen?	
+sound/dialogue/multiplayer/g/grden_r_17c.wav	de	0.97	Sind euren generellen echten Soldaten ausgegangen?	
+sound/dialogue/multiplayer/g/grden_r_17d.wav	de	1.00	Sind Euren Generellen echte Soldaten ausgegangen?	
+sound/dialogue/multiplayer/g/grden_r_17i.wav	de	1.00	Sind euren generellen echte Soldaten ausgegangen?	
+sound/dialogue/multiplayer/g/grden_r_18a.wav	de	0.97	Die Amis haben wohl keine echten Männer mehr.	
+sound/dialogue/multiplayer/g/grden_r_18b.wav	de	1.00	Die Amis haben wohl keine echten Männer mehr!	
+sound/dialogue/multiplayer/g/grden_r_18c.wav	de	0.96	Die Amis haben wohl keine echten Männer mehr!	
+sound/dialogue/multiplayer/g/grden_r_18d.wav	de	1.00	Die Amis haben wohl keine echten Männer mehr!	
+sound/dialogue/multiplayer/g/grden_r_18i.wav	de	0.99	Ja, ich hab wohl keine echten Männer mehr!	
+sound/dialogue/multiplayer/g/grden_r_21a.wav	de	0.98	Französische Bauantöchter schießen besser!	
+sound/dialogue/multiplayer/g/grden_r_21b.wav	de	0.99	Französische Bauern-Töchter schießen besser!	
+sound/dialogue/multiplayer/g/grden_r_21c.wav	de	0.90	Französische Bauentöchter schießen besser!	
+sound/dialogue/multiplayer/g/grden_r_21d.wav	de	1.00	Französische Bauern-Töchter schießen besser!	
+sound/dialogue/multiplayer/g/grden_r_21i.wav	de	0.97	Französische Bauern-Töchter schießen besser!	
+sound/dialogue/multiplayer/g/grden_v_01b.wav	de	0.98	Gute Arbeit, Leute!	
+sound/dialogue/multiplayer/g/grden_v_01d.wav	de	0.99	Gute Arbeit, Leute!	
+sound/dialogue/multiplayer/g/grden_v_02i.wav	de	0.92	Der Sieg ist unser!	
+sound/dialogue/multiplayer/g/grden_v_03c.wav	de	0.85	Wir haben gesiegt!	
+sound/dialogue/multiplayer/g/grden_v_03d.wav	de	0.98	Wir haben gesiegt!	
+sound/dialogue/multiplayer/g/grden_v_05a.wav	de	0.65	Gute Leistung!	
+sound/dialogue/multiplayer/g/grden_v_05b.wav	de	0.99	Gute Leistung!	
+sound/dialogue/multiplayer/g/grden_v_05c.wav	de	0.44	Gute Leistung!	
+sound/dialogue/multiplayer/g/grden_v_05d.wav	de	0.97	Gute Leistung!	
+sound/dialogue/multiplayer/g/grden_v_05i.wav	de	0.91	Gute Leistung!	
+sound/dialogue/multiplayer/g/grden_v_06c.wav	de	0.95	Deine Eltern wären stolz.	
+sound/dialogue/multiplayer/g/grden_v_06d.wav	de	1.00	Deine Eltern wären stolz.	
+sound/dialogue/multiplayer/g/grden_v_06i.wav	de	0.98	Deine Eltern wären stolz.	
+sound/dialogue/multiplayer/russian/dfr_mpgm_rs7525to3.mp3	ru	0.99	ХОРОШЕЕ РОБОТА, РЕБЯТА!	
+sound/dialogue/multiplayer/russian/dfr_mpgm_rs7526to3.mp3	ru	0.99	Хорошо!	
+sound/dialogue/multiplayer/russian/dfr_mpgm_rs7527to2.mp3	ru	0.99	Мы это сделали!	
+sound/dialogue/multiplayer/russian/dfr_mpic_rs7541to3.mp3	ru	0.70	Прикрой меня!	
+sound/dialogue/multiplayer/russian/dfr_mpic_rs7542to2.mp3	ru	0.46	Я вас прикрою!	
+sound/dialogue/multiplayer/russian/dfr_mpic_rs7545to6.mp3	ru	0.83	Я под огнем нужна помощь!	
+sound/dialogue/multiplayer/russian/dfr_mpic_rs7547to2.mp3	ja	0.25	アターカー!	
+sound/dialogue/multiplayer/russian/dfr_mpic_rs7548to3.mp3	ru	0.91	Открыть огонь!	
+sound/dialogue/multiplayer/russian/dfr_mpsc_rs7533to3.mp3	ru	0.96	Рота! Вперёд!	
+sound/dialogue/multiplayer/russian/dfr_mpsc_rs7534to2.mp3	hu	0.46	RÓTA LEZÉT!	
+sound/dialogue/multiplayer/russian/dfr_mpsc_rs7538to2.mp3	ru	0.88	Рота! Прикройте!	
+sound/dialogue/multiplayer/russian/dfr_mpsc_rs7539to3.mp3	ru	0.81	Рота! Перегруппровадца!	
+sound/dialogue/multiplayer/russian/dfr_mpsr_rs7551to2.mp3	cs	0.42	Vrákap narůžem!	
+sound/dialogue/multiplayer/russian/dfr_mpsr_rs7552to2.mp3	ru	0.75	САПЕР!	
+sound/dialogue/multiplayer/russian/dfr_mpsr_rs7553to3.mp3	ru	0.82	ГРОНАТОВ УКРЫТИЕ!	
+sound/dialogue/multiplayer/russian/dfr_mpt_rs7557to4.mp3	ru	0.97	Кто хочет еще?	
+sound/dialogue/multiplayer/russian/dfr_mpt_rs7559to6.mp3	ru	0.96	Это слишком просто!	
+sound/dialogue/multiplayer/russian/dfr_mpt_rs7563to5.mp3	ru	0.96	Эвы, трусы! Выходи!	
+sound/dialogue/multiplayer/russian/dfr_mpt_rs7564to10.mp3	ru	0.97	Э-э-эй, где вы прячетесь?	
+sound/dialogue/mission_1/allies/dfr_reload_bc6952ta1.mp3	en	0.97	Reloading!	
+sound/dialogue/mission_1/allies/dfr_reload_bc6952ta2.mp3	en	0.98	Reloading!	
+sound/dialogue/mission_1/allies/dfr_reload_bc6952ta3.mp3	en	0.98	RELOADING!	
+sound/dialogue/mission_1/allies/dfr_reload_bc6953ta1.mp3	en	0.94	Cover me!	
+sound/dialogue/mission_1/allies/dfr_reload_bc6953ta2.mp3	en	0.96	Cover me!	
+sound/dialogue/mission_1/allies/dfr_reload_bc6953ta3.mp3	en	0.99	Cover me!	
+sound/dialogue/mission_1/allies/dfr_reload_bc6954ta4.mp3	en	0.98	Hold him off, Barnes! I'm reloading!	
+sound/dialogue/mission_1/allies/dfr_reload_bc6954ta5.mp3	en	0.98	Hold them off, Farns! I'm reloading!	
+sound/dialogue/mission_1/allies/dfr_reload_bc6954ta6.mp3	en	0.97	Hold them off, Barnes! I'm reloading!	
+sound/dialogue/mission_1/allies/dfr_reload_bs6027tc4.mp3	en	0.92	RELYING!	
+sound/dialogue/mission_1/allies/dfr_reload_bs6027tc6.mp3	en	0.94	Reloading!	
+sound/dialogue/mission_1/allies/dfr_reload_bs6028tc1.mp3	en	0.70	Cover me!	
+sound/dialogue/mission_1/allies/dfr_reload_bs6028tc3.mp3	en	0.50	Kappa B!	
+sound/dialogue/mission_1/allies/dfr_reload_bs6028tc4.mp3	fr	0.35	CA FAUVEZ !	
+sound/dialogue/mission_1/allies/dfr_reload_bs6029tc1.mp3	en	0.98	Hold it off, Bobs! I'm reloading!	
+sound/dialogue/mission_1/allies/dfr_reload_bs6029tc2.mp3	en	0.98	Hold them off, Bards! I'm reloading!	
+sound/dialogue/mission_1/allies/dfr_reload_bs6126td1.mp3	en	0.98	Reloading!	
+sound/dialogue/mission_1/allies/dfr_reload_bs6126td2.mp3	en	0.97	Reloading!	
+sound/dialogue/mission_1/allies/dfr_reload_bs6126td3.mp3	en	0.98	Reloading!	
+sound/dialogue/mission_1/allies/dfr_reload_bs6127td1.mp3	en	0.96	Cover me!	
+sound/dialogue/mission_1/allies/dfr_reload_bs6127td2.mp3	en	0.97	Cover me!	
+sound/dialogue/mission_1/allies/dfr_reload_bs6127td3.mp3	en	0.96	Cover me!	
+sound/dialogue/mission_1/allies/dfr_reload_bs6128td1.mp3	en	0.98	Hold them off, Barnes! I'm reloading!	
+sound/dialogue/mission_1/allies/dfr_reload_bs6128td2.mp3	en	0.98	Hold them off, barns! I'm reloading!	
+sound/dialogue/mission_1/allies/dfr_reload_bs6128td3.mp3	en	0.99	Hold him off, Barnes! I'm reloading!	
+sound/dialogue/mission_1/allies/dfr_supress_bc6947ta1.mp3	en	0.97	Covering fire!	
+sound/dialogue/mission_1/allies/dfr_supress_bc6947ta2.mp3	en	0.97	COVERING FIRE!	
+sound/dialogue/mission_1/allies/dfr_supress_bc6947ta3.mp3	en	0.98	COVERING FIRE!	
+sound/dialogue/mission_1/allies/dfr_supress_bc6948ta1.mp3	en	0.80	MOVE!	
+sound/dialogue/mission_1/allies/dfr_supress_bc6948ta2.mp3	en	0.90	MOVE!	
+sound/dialogue/mission_1/allies/dfr_supress_bc6948ta3.mp3	en	0.96	MOVE!	
+sound/dialogue/mission_1/allies/dfr_supress_bc6949ta1.mp3	en	0.91	GO! GO!	
+sound/dialogue/mission_1/allies/dfr_supress_bc6949ta2.mp3	en	0.87	Go! Go!	
+sound/dialogue/mission_1/allies/dfr_supress_bc6949ta3.mp3	en	0.96	GO! GO!	
+sound/dialogue/mission_1/allies/dfr_supress_bc6950ta2.mp3	en	0.95	I got you covered!	
+sound/dialogue/mission_1/allies/dfr_supress_bc6950ta3.mp3	en	0.98	I GOT YOU COVERED!	
+sound/dialogue/mission_1/allies/dfr_supress_bc6950ta4.mp3	en	0.98	I GOT YOU COVERED!	
+sound/dialogue/mission_1/allies/dfr_supress_bc6951ta10.mp3	en	0.99	I GOT EM! MOVE OUT!	
+sound/dialogue/mission_1/allies/dfr_supress_bc6951ta8.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/mission_1/allies/dfr_supress_bc6951ta9.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/mission_1/allies/dfr_supress_bp6724tb1.mp3	en	0.95	COVERING FIRE!	
+sound/dialogue/mission_1/allies/dfr_supress_bp6724tb2.mp3	en	0.97	Covering fire!	
+sound/dialogue/mission_1/allies/dfr_supress_bp6724tb3.mp3	en	0.98	COVERING FIRE!	
+sound/dialogue/mission_1/allies/dfr_supress_bp6725tb1.mp3	en	0.95	MOVE!	
+sound/dialogue/mission_1/allies/dfr_supress_bp6725tb2.mp3	en	0.95	BOOM!	
+sound/dialogue/mission_1/allies/dfr_supress_bp6725tb3.mp3	en	0.58	BOOM!	
+sound/dialogue/mission_1/allies/dfr_supress_bp6726tb2.mp3	en	0.97	GO GO!	
+sound/dialogue/mission_1/allies/dfr_supress_bp6726tb3.mp3	en	0.96	GO! GO!	
+sound/dialogue/mission_1/allies/dfr_supress_bp6727tb1.mp3	en	0.97	I GOT YOU COVERED!	
+sound/dialogue/mission_1/allies/dfr_supress_bp6727tb2.mp3	en	0.98	I GOT YOU COVERED!	
+sound/dialogue/mission_1/allies/dfr_supress_bp6727tb3.mp3	en	0.96	I GOT YOU COVERED!	
+sound/dialogue/mission_1/allies/dfr_supress_bp6728tb1.mp3	en	0.98	I got him! Move out!	
+sound/dialogue/mission_1/allies/dfr_supress_bp6728tb2.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/mission_1/allies/dfr_supress_bp6728tb3.mp3	en	0.98	I got him! Move out!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6022tc1.mp3	en	0.96	COVERING FOP!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6022tc2.mp3	en	0.87	Covering fire!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6022tc3.mp3	en	0.93	February 4th!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6023tc1.mp3	en	0.95	MOVE!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6023tc2.mp3	en	0.95	MOVE!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6023tc3.mp3	en	0.92	BOOF!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6024tc1.mp3	en	0.94	GO! GO!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6024tc2.mp3	en	0.89	GO GO!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6024tc3.mp3	en	0.91	GO! GO!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6025tc1.mp3	en	0.94	I got your cannon!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6025tc2.mp3	en	0.92	What are you covered?	
+sound/dialogue/mission_1/allies/dfr_supress_bs6025tc3.mp3	en	0.86	I GOT YOU COVERED!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6026tc1.mp3	en	0.94	I got him! My lap!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6026tc2.mp3	en	0.99	I gotta move out!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6121td1.mp3	en	0.96	Cover in fire!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6121td2.mp3	en	0.95	Cover in fire!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6121td3.mp3	en	0.98	COVER IN FIRE!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6122td1.mp3	en	0.78	MOVE!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6122td2.mp3	en	0.98	MOVE!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6122td3.mp3	en	0.94	MOVE!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6123td2.mp3	en	0.90	GO GO!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6123td3.mp3	en	0.91	GO GO!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6123td4.mp3	en	0.93	GO GO!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6124td1.mp3	en	0.99	I got you covered!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6124td2.mp3	en	0.98	I'VE GOT YOU COVERED!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6124td3.mp3	en	0.98	I've got you covered!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6125td1.mp3	en	0.98	I got him! Move out!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6125td2.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/mission_1/allies/dfr_supress_bs6125td3.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/mission_1/axis/den_reload_gc5610tf2.mp3	ru	0.32	ЭЛЛИЙ НАХ!	
+sound/dialogue/mission_1/axis/den_reload_gc5611tf1.mp3	en	0.45	TURN THE DIN!	
+sound/dialogue/mission_1/axis/den_reload_gg5715tu1.mp3	hi	0.25	ऐलेट नाग!	
+sound/dialogue/mission_1/axis/den_reload_gs5815tp1.mp3	fr	0.63	Élite-moi !	
+sound/dialogue/mission_1/axis/den_reload_gs5915tk1.mp3	de	0.77	Er lehnt nach!	
+sound/dialogue/mission_1/axis/den_reload_gs5916tk1.mp3	en	0.55	TURTEDEAN!	
+sound/dialogue/mission_2/allies/dfr_reload_ac9065tg1.mp3	en	0.99	Reloading!	
+sound/dialogue/mission_2/allies/dfr_reload_ac9065tg2.mp3	en	0.98	Reloading!	
+sound/dialogue/mission_2/allies/dfr_reload_ac9065tg3.mp3	en	0.97	Reloading!	
+sound/dialogue/mission_2/allies/dfr_reload_ac9066tg1.mp3	en	0.99	Cover me!	
+sound/dialogue/mission_2/allies/dfr_reload_ac9066tg2.mp3	en	0.99	Cover me!	
+sound/dialogue/mission_2/allies/dfr_reload_ac9066tg3.mp3	en	0.99	Cover me!	
+sound/dialogue/mission_2/allies/dfr_reload_ac9067tg1.mp3	en	0.99	Hold them off, barns! I'm reloading!	
+sound/dialogue/mission_2/allies/dfr_reload_ac9067tg2.mp3	en	0.99	Hold them off, Barnes! I'm reloading!	
+sound/dialogue/mission_2/allies/dfr_reload_ap4351tm1.mp3	en	0.96	Reloading!	
+sound/dialogue/mission_2/allies/dfr_reload_ap4351tm2.mp3	en	0.98	RELOADING!	
+sound/dialogue/mission_2/allies/dfr_reload_ap4351tm3.mp3	en	0.98	RELOADING!	
+sound/dialogue/mission_2/allies/dfr_reload_ap4352tm1.mp3	en	0.93	Cover me!	
+sound/dialogue/mission_2/allies/dfr_reload_ap4352tm2.mp3	en	0.99	Cover me!	
+sound/dialogue/mission_2/allies/dfr_reload_ap4352tm3.mp3	en	0.98	Cover me!	
+sound/dialogue/mission_2/allies/dfr_reload_ap4353tm1.mp3	en	0.99	Hold them off Barnes! I'm reloading!	
+sound/dialogue/mission_2/allies/dfr_reload_ap4353tm2.mp3	en	0.99	HOLD THEM OFF BARDS! I'M RELOADING!	
+sound/dialogue/mission_2/allies/dfr_reload_ap4353tm3.mp3	en	0.98	HOLD THEM OFF BARDS! I'M RELOADING!	
+sound/dialogue/mission_2/allies/dfr_reload_as2853tw1.mp3	en	0.99	Reloading!	
+sound/dialogue/mission_2/allies/dfr_reload_as2853tw2.mp3	en	0.99	Reloading!	
+sound/dialogue/mission_2/allies/dfr_reload_as2853tw3.mp3	en	0.98	Reloading!	
+sound/dialogue/mission_2/allies/dfr_reload_as2854tw1.mp3	en	0.99	Cover me!	
+sound/dialogue/mission_2/allies/dfr_reload_as2854tw2.mp3	en	0.98	Cover me!	
+sound/dialogue/mission_2/allies/dfr_reload_as2854tw3.mp3	en	0.99	Cover me!	
+sound/dialogue/mission_2/allies/dfr_reload_as2855tw1.mp3	en	0.99	Hold them off, Barnes! I'm reloading!	
+sound/dialogue/mission_2/allies/dfr_reload_as2855tw2.mp3	en	0.99	Hold them off, Bards! I'm reloading!	
+sound/dialogue/mission_2/allies/dfr_reload_as2855tw3.mp3	en	1.00	Hold him off, Barnes! I'm reloading!	
+sound/dialogue/mission_2/allies/dfr_reload_as3051ty1.mp3	en	0.99	Reloading	
+sound/dialogue/mission_2/allies/dfr_reload_as3051ty2.mp3	en	0.98	Reloading!	
+sound/dialogue/mission_2/allies/dfr_reload_as3051ty3.mp3	en	0.98	RELONING!	
+sound/dialogue/mission_2/allies/dfr_reload_as3052ty1.mp3	en	0.99	Cover me!	
+sound/dialogue/mission_2/allies/dfr_reload_as3052ty2.mp3	en	0.98	Cover me!	
+sound/dialogue/mission_2/allies/dfr_reload_as3052ty3.mp3	en	0.99	Cover me!	
+sound/dialogue/mission_2/allies/dfr_reload_as3053ty1.mp3	en	1.00	Hold them off Barnes! I'm reloading!	
+sound/dialogue/mission_2/allies/dfr_reload_as3053ty2.mp3	en	0.99	Hold them off, Barnes! I'm reloading!	
+sound/dialogue/mission_2/allies/dfr_reload_as3053ty3.mp3	en	1.00	Hold them off, Barnes! I'm reloading!	
+sound/dialogue/mission_2/allies/dfr_supress_ac9060tg1.mp3	en	0.99	Covering fire!	
+sound/dialogue/mission_2/allies/dfr_supress_ac9060tg2.mp3	en	0.98	Covering fire!	
+sound/dialogue/mission_2/allies/dfr_supress_ac9060tg3.mp3	en	0.98	COVERING FIRE!	
+sound/dialogue/mission_2/allies/dfr_supress_ac9061tg1.mp3	en	0.96	MOVE!	
+sound/dialogue/mission_2/allies/dfr_supress_ac9061tg2.mp3	en	0.98	MOVE!	
+sound/dialogue/mission_2/allies/dfr_supress_ac9061tg3.mp3	en	0.98	MOVE!	
+sound/dialogue/mission_2/allies/dfr_supress_ac9062tg1.mp3	en	0.92	Go! Go!	
+sound/dialogue/mission_2/allies/dfr_supress_ac9062tg2.mp3	en	0.78	Go! Go!	
+sound/dialogue/mission_2/allies/dfr_supress_ac9062tg3.mp3	en	0.95	GO! GO!	
+sound/dialogue/mission_2/allies/dfr_supress_ac9063tg2.mp3	en	0.98	I got you covered!	
+sound/dialogue/mission_2/allies/dfr_supress_ac9063tg3.mp3	en	0.98	I got you covered!	
+sound/dialogue/mission_2/allies/dfr_supress_ac9064tg1.mp3	en	0.99	I GOTTA MOVE OUT!	
+sound/dialogue/mission_2/allies/dfr_supress_ac9064tg2.mp3	en	0.99	I GOTTA MOVE OUT!	
+sound/dialogue/mission_2/allies/dfr_supress_ac9064tg3.mp3	en	0.98	I got him! Move out!	
+sound/dialogue/mission_2/allies/dfr_supress_am4113tj1.mp3	en	0.98	Covering fire!	
+sound/dialogue/mission_2/allies/dfr_supress_am4113tj2.mp3	en	0.99	COVERING FIRE!	
+sound/dialogue/mission_2/allies/dfr_supress_am4113tj3.mp3	en	0.97	Covering fire!	
+sound/dialogue/mission_2/allies/dfr_supress_am4114tj1.mp3	en	0.93	MOVE!	
+sound/dialogue/mission_2/allies/dfr_supress_am4115tj1.mp3	en	0.96	Go! Go!	
+sound/dialogue/mission_2/allies/dfr_supress_am4115tj3.mp3	en	0.96	GO! GO!	
+sound/dialogue/mission_2/allies/dfr_supress_am4116tj2.mp3	en	0.99	I got you covered!	
+sound/dialogue/mission_2/allies/dfr_supress_am4116tj3.mp3	en	0.99	I GOT YOU COVERED!	
+sound/dialogue/mission_2/allies/dfr_supress_am4117tj1.mp3	en	0.99	I gotta move out!	
+sound/dialogue/mission_2/allies/dfr_supress_am4117tj2.mp3	en	0.99	I GOTTA MOVE OUT!	
+sound/dialogue/mission_2/allies/dfr_supress_am4117tj3.mp3	en	0.99	I GOTTA MOVE OUT!	
+sound/dialogue/mission_2/allies/dfr_supress_ap4346tm2.mp3	en	0.98	COVERING FIRE!	
+sound/dialogue/mission_2/allies/dfr_supress_ap4346tm3.mp3	en	0.97	COVER RAID FIRE!	
+sound/dialogue/mission_2/allies/dfr_supress_ap4349tm2.mp3	en	0.98	I GOT YOU COVERED!	
+sound/dialogue/mission_2/allies/dfr_supress_ap4349tm3.mp3	en	0.97	I GOT YOU COVERED!	
+sound/dialogue/mission_2/allies/dfr_supress_ap4349tm4.mp3	en	0.98	I got you covered!	
+sound/dialogue/mission_2/allies/dfr_supress_ap4350tm1.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/mission_2/allies/dfr_supress_ap4350tm2.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/mission_2/allies/dfr_supress_ap4350tm3.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/mission_2/allies/dfr_supress_as2848tw1.mp3	en	0.97	Covering fire!	
+sound/dialogue/mission_2/allies/dfr_supress_as2848tw2.mp3	en	0.97	Covering fire!	
+sound/dialogue/mission_2/allies/dfr_supress_as2848tw3.mp3	en	0.98	Covering fire!	
+sound/dialogue/mission_2/allies/dfr_supress_as2849tw1.mp3	en	0.99	MOVE!	
+sound/dialogue/mission_2/allies/dfr_supress_as2849tw2.mp3	en	0.98	MOVE!	
+sound/dialogue/mission_2/allies/dfr_supress_as2850tw1.mp3	en	0.97	Go! Go!	
+sound/dialogue/mission_2/allies/dfr_supress_as2850tw2.mp3	en	0.95	Go, go!	
+sound/dialogue/mission_2/allies/dfr_supress_as2850tw3.mp3	en	0.92	Go! Go!	
+sound/dialogue/mission_2/allies/dfr_supress_as2851tw2.mp3	en	1.00	I got you covered!	
+sound/dialogue/mission_2/allies/dfr_supress_as2851tw3.mp3	en	0.99	I got you covered!	
+sound/dialogue/mission_2/allies/dfr_supress_as2852tw1.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/mission_2/allies/dfr_supress_as2852tw2.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/mission_2/allies/dfr_supress_as2946th2.mp3	en	0.98	COVERING FIRE!	
+sound/dialogue/mission_2/allies/dfr_supress_as2946th3.mp3	en	0.98	COVERING FIRE!	
+sound/dialogue/mission_2/allies/dfr_supress_as2948th1.mp3	en	0.95	GO! GO!	
+sound/dialogue/mission_2/allies/dfr_supress_as2948th3.mp3	en	0.96	GO! GO!	
+sound/dialogue/mission_2/allies/dfr_supress_as2949th3.mp3	en	0.99	I got you covered!	
+sound/dialogue/mission_2/allies/dfr_supress_as2950th1.mp3	en	1.00	I got him! Move out!	
+sound/dialogue/mission_2/allies/dfr_supress_as2950th2.mp3	en	0.99	I gotta move out!	
+sound/dialogue/mission_2/allies/dfr_supress_as2952th1.mp3	en	0.99	Cover me!	
+sound/dialogue/mission_2/allies/dfr_supress_as2952th2.mp3	en	0.99	Cover me!	
+sound/dialogue/mission_2/allies/dfr_supress_as2952th3.mp3	en	0.99	Cover me!	
+sound/dialogue/mission_2/allies/dfr_supress_as3046ty1.mp3	en	0.99	Covering fire!	
+sound/dialogue/mission_2/allies/dfr_supress_as3046ty2.mp3	en	0.98	Covering fire!	
+sound/dialogue/mission_2/allies/dfr_supress_as3046ty3.mp3	en	0.98	Covering fire!	
+sound/dialogue/mission_2/allies/dfr_supress_as3047ty1.mp3	en	0.95	MOVE!	
+sound/dialogue/mission_2/allies/dfr_supress_as3047ty2.mp3	en	0.88	MOVE!	
+sound/dialogue/mission_2/allies/dfr_supress_as3047ty3.mp3	en	0.92	MOVE!	
+sound/dialogue/mission_2/allies/dfr_supress_as3048ty1.mp3	en	0.95	Go! Go!	
+sound/dialogue/mission_2/allies/dfr_supress_as3048ty2.mp3	en	0.96	GO! GO!	
+sound/dialogue/mission_2/allies/dfr_supress_as3048ty3.mp3	en	0.91	GO GO!	
+sound/dialogue/mission_2/allies/dfr_supress_as3049ty2.mp3	en	0.99	I GOT YOU COVERED!	
+sound/dialogue/mission_2/allies/dfr_supress_as3049ty3.mp3	en	0.98	I GOT YOU COVERED!	
+sound/dialogue/mission_2/allies/dfr_supress_as3050ty1.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/mission_2/allies/dfr_supress_as3050ty3.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7721te1.mp3	ru	0.62	Переслежаю!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7721te2.mp3	ru	0.93	Перезаряжаю!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7721te3.mp3	ru	0.41	Перезаряжаю!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7722te1.mp3	ru	0.94	Прикрой меня!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7722te2.mp3	ru	0.97	Прикрой меня!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7722te3.mp3	ru	0.84	Прикрой меня!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7723te1.mp3	ru	0.93	Держи их подальше, я перезаряжаю!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7723te2.mp3	ru	0.95	Держи их подальше! Я перезаряжаю!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7723te4.mp3	ru	0.92	Держи их подальше, я бережу, заряжаю!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7821ts1.mp3	pt	0.53	ERIZAREJAYU!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7821ts2.mp3	pt	0.55	ERIZÁRIA JÁRIA!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7821ts3.mp3	pt	0.34	Eu lhes alejando!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7822ts2.mp3	ru	0.71	Рекрой меня!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7822ts3.mp3	en	0.31	Pre-crime me, yeah!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7822ts4.mp3	ru	0.27	Прикрой меня!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7823ts1.mp3	ru	0.88	Держи их подальше! Я перезаряжаю!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7823ts2.mp3	ru	0.83	Юржи подальше! Я перезаряжаю!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7823ts3.mp3	ru	0.90	Держи их подальше! Я перезаряжаю!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7920tr1.mp3	en	0.30	Feliz de rechario!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7920tr2.mp3	fr	0.33	T'es insolite !	
+sound/dialogue/mission_3/allies/dfr_reload_rs7920tr3.mp3	pt	0.57	PERIZERJAYO!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7921tr1.mp3	ru	0.93	Прикрой меня!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7921tr2.mp3	ru	0.98	Прикрой меня!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7921tr3.mp3	ru	0.92	Прикрой меня!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7922tr1.mp3	ru	0.91	Держи их подальше, я перезаряжаю!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7922tr2.mp3	ru	0.89	Держи их подальше! Я пересереживаю!	
+sound/dialogue/mission_3/allies/dfr_reload_rs7922tr3.mp3	ru	0.55	Держи их подальше, я перезаряжаю!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7716te1.mp3	ru	0.97	Прикрой меня!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7716te2.mp3	ru	0.97	Прикрой меня!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7716te3.mp3	ru	0.95	Прикрой меня!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7717te1.mp3	ru	0.93	Вперёд!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7717te2.mp3	ru	0.98	Вперёд!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7717te3.mp3	ru	0.74	Вперёд!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7718te3.mp3	ru	0.69	ПОШОЛ! ПОШОЛ!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7718te4.mp3	pt	0.25	PASHOU! PASHOU!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7718te5.mp3	ru	0.85	ПОШОЛ! ПОШОЛ!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7719te1.mp3	ru	0.92	Я ТЕБЯ ПРИКРЫЛ!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7719te2.mp3	ru	0.93	Я тебя прикрел!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7719te3.mp3	ru	0.93	Я тебя прикрел!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7720te1.mp3	ru	0.96	Эти мои! Иди дальше!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7720te3.mp3	ru	0.91	Эти мои, иди дальше!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7720te5.mp3	ru	0.88	ЭТИ МОЕЙ ДИДАЧЕ!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7816ts1.mp3	ru	0.94	Прикрой меня!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7816ts2.mp3	ru	0.92	Прикрой меня!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7816ts3.mp3	ru	0.95	Да прикрой же меня!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7817ts1.mp3	ru	0.37	ИРОД!!!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7817ts2.mp3	ru	0.54	ИРОТ!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7817ts3.mp3	ru	0.55	Вперёд!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7818ts1.mp3	hi	0.49	पशो!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7818ts2.mp3	ru	0.47	Давай, пошел!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7818ts3.mp3	pt	0.35	DO PASCHÃO!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7819ts1.mp3	ru	0.76	Я тебя прикрыл!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7819ts2.mp3	ru	0.86	Я тебя прикрыл!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7819ts3.mp3	ru	0.46	Я тебя приклею!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7820ts6.mp3	ru	0.79	Эти мои! И не дальше!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7820ts7.mp3	ru	0.91	Эти мои! Иди дальше!	
+sound/dialogue/mission_3/allies/dfr_supress_rs7820ts8.mp3	ru	0.73	Эти мои! Иди дальше!	
+sound/dialogue/generic/a/cover/dfr_cover_02e_1.wav	en	0.99	Move!	
+sound/dialogue/generic/a/cover/dfr_cover_03a_1.wav	en	1.00	Get your head down!	
+sound/dialogue/generic/a/cover/dfr_cover_03h_1.wav	en	0.99	Get your head down!	
+sound/dialogue/generic/a/cover/dfr_cover_04a_1.wav	en	1.00	Hold up here, stay on the cover.	
+sound/dialogue/generic/a/cover/dfr_cover_05h_1.wav	en	0.96	COVER!	
+sound/dialogue/generic/a/cover/dfr_cover_06a_1.wav	en	0.99	Get down!	
+sound/dialogue/generic/a/damage/dfr_damage_01a.wav	en	0.68	UGH!	
+sound/dialogue/generic/a/damage/dfr_damage_01c.wav	en	0.81	Oh!	
+sound/dialogue/generic/a/damage/dfr_damage_01d.wav	en	0.32	YAH!	
+sound/dialogue/generic/a/damage/dfr_damage_01e.wav	en	0.39	Oh!	
+sound/dialogue/generic/a/damage/dfr_damage_01f.wav	en	0.72	NO!	
+sound/dialogue/generic/a/damage/dfr_damage_01g.wav	en	0.81	HUH	
+sound/dialogue/generic/a/damage/dfr_damage_01i.wav	en	0.60	Eugh!	
+sound/dialogue/generic/a/damage/dfr_damage_01j.wav	en	0.69	GAH!	
+sound/dialogue/generic/a/damage/dfr_damage_01k.wav	en	0.74	Oh!	
+sound/dialogue/generic/a/damage/dfr_damage_01m.wav	en	0.70	Duh!	
+sound/dialogue/generic/a/damage/dfr_damage_01n.wav	en	0.84	Ow!	
+sound/dialogue/generic/a/damage/dfr_damage_02a.wav	en	0.76	MMM!	
+sound/dialogue/generic/a/damage/dfr_damage_02c.wav	en	0.78	Ah!	
+sound/dialogue/generic/a/damage/dfr_damage_02e.wav	en	0.66	Oh!	
+sound/dialogue/generic/a/damage/dfr_damage_02f.wav	en	0.21	DOH!	
+sound/dialogue/generic/a/damage/dfr_damage_02g.wav	ja	0.41	うっ	
+sound/dialogue/generic/a/damage/dfr_damage_02h.wav	en	0.36	MWAH!	
+sound/dialogue/generic/a/damage/dfr_damage_02i.wav	en	0.72	BOOM!	
+sound/dialogue/generic/a/damage/dfr_damage_02j.wav	en	0.72	UGH!	
+sound/dialogue/generic/a/damage/dfr_damage_02o.wav	en	0.77	Agh!	
+sound/dialogue/generic/a/damage/dfr_damage_03b.wav	en	0.60	Ah!	
+sound/dialogue/generic/a/damage/dfr_damage_04h.wav	en	0.79	Ah!	
+sound/dialogue/generic/a/damage/dfr_damage_05b.wav	en	0.71	Uh!	
+sound/dialogue/generic/a/damage/dfr_damage_08d.wav	en	0.75	Eugh!	
+sound/dialogue/generic/a/damage/dpl_damage_13i.wav	en	0.80	Ah!	
+sound/dialogue/generic/a/death/dfr_death_01a.wav	en	0.70	Oh.	
+sound/dialogue/generic/a/death/dfr_death_01b.wav	en	0.81	Augh!	
+sound/dialogue/generic/a/death/dfr_death_01c.wav	en	0.82	AAH!	
+sound/dialogue/generic/a/death/dfr_death_01e.wav	en	0.78	Oh!	
+sound/dialogue/generic/a/death/dfr_death_01h.wav	en	0.73	GAH!	
+sound/dialogue/generic/a/death/dfr_death_01i.wav	en	0.66	D'AH!	
+sound/dialogue/generic/a/death/dfr_death_01j.wav	en	0.66		
+sound/dialogue/generic/a/death/dfr_death_01k.wav	en	0.61	OOOOOOHHHHHHHHHH	
+sound/dialogue/generic/a/death/dfr_death_01m.wav	en	0.74	AHH!	
+sound/dialogue/generic/a/death/dfr_death_01n.wav	en	0.72	UGH!	
+sound/dialogue/generic/a/death/dfr_death_01o.wav	en	0.53	Yeah.	
+sound/dialogue/generic/a/death/dfr_death_02d.wav	en	0.66	Ugh.	
+sound/dialogue/generic/a/death/dfr_death_02f.wav	en	0.68	UGH!	
+sound/dialogue/generic/a/death/dfr_death_03g.wav	en	0.76	HMMMMMMMMMMMMMMMMMMMMMMMMM	
+sound/dialogue/generic/a/kill/dfr_kill_002h_1.wav	en	1.00	Got one.	
+sound/dialogue/generic/a/kill/dfr_kill_003a_1.wav	en	0.99	Got one.	
+sound/dialogue/generic/a/kill/dfr_kill_004h_1.wav	en	1.00	Got one!	
+sound/dialogue/generic/a/kill/dfr_kill_005a_1.wav	en	0.99	One down.	
+sound/dialogue/generic/a/kill/dfr_kill_006h_1.wav	en	0.99	One down.	
+sound/dialogue/generic/a/kill/dfr_kill_007h_1.wav	en	0.99	Got him.	
+sound/dialogue/generic/a/panic/dfr_panic_25j_1.wav	en	0.98	He's here!	
+sound/dialogue/generic/a/panic/dfr_panic_26a_1.wav	en	0.87	Medic!	
+sound/dialogue/generic/a/panic/dfr_panic_27j_1.wav	en	0.98	He's been hit!	
+sound/dialogue/generic/a/panic/dfr_panic_28m_1.wav	en	0.96	He's hit!	
+sound/dialogue/generic/a/panic/dfr_panic_33h_1.wav	en	0.99	HE'S HIT!	
+sound/dialogue/generic/a/panic/dfr_panic_35c_1.wav	en	0.96	He's here!	
+sound/dialogue/generic/a/panic/dfr_panic_35c_2.wav	en	0.27	He's here!	
+sound/dialogue/generic/a/panic/dfr_panic_36c_1.wav	en	0.99	Man down!	
+sound/dialogue/generic/a/panic/dfr_panic_36c_2.wav	en	0.98	MAN DOWN!	
+sound/dialogue/generic/a/sighted/dfr_sighted_01h_1.wav	en	0.93	Germans!	
+sound/dialogue/generic/a/sighted/dfr_sighted_02e_1.wav	en	0.98	Look out!	
+sound/dialogue/generic/a/sighted/dfr_sighted_03h_1.wav	en	0.98	It's them!	
+sound/dialogue/generic/a/sighted/dfr_sighted_04a_1.wav	en	0.98	Enemy Patrol!	
+sound/dialogue/generic/a/sighted/dfr_sighted_05a_1.wav	en	0.97	Jerry!	
+sound/dialogue/generic/a/sighted/dfr_sighted_06a_1.wav	en	0.99	Heads up.	
+sound/dialogue/generic/a/sighted/dfr_sighted_11h_1.wav	en	0.99	over there!	
+sound/dialogue/generic/a/sighted/dfr_sighted_11m_1.wav	en	0.99	over there	
+sound/dialogue/generic/a/sighted/dfr_sighted_12h_1.wav	en	0.99	Over there!	
+sound/dialogue/generic/a/sighted/dfr_sighted_13h_1.wav	en	0.99	We've got company!	
+sound/dialogue/generic/a/sighted/dfr_sighted_15i_1.wav	en	0.98	We've got company!	
+sound/dialogue/generic/a/sighted/dfr_sighted_16h_1.wav	en	0.93	Hostiles!	
+sound/dialogue/generic/g/attack/ang_001a.wav	en	0.83	Dwarf!	
+sound/dialogue/generic/g/attack/ang_001b.wav	en	0.56	DOO!	
+sound/dialogue/generic/g/attack/ang_001e.wav	en	0.41	D'oh!	
+sound/dialogue/generic/g/attack/ang_004a.wav	en	0.75	Rrghh!	
+sound/dialogue/generic/g/attack/ang_004g.wav	en	0.69	Rrrrrr.	
+sound/dialogue/generic/g/attack/ang_006b.wav	en	0.94	NINE!	
+sound/dialogue/generic/g/attack/ang_007a.wav	en	0.86	Bye bye. Senator!	
+sound/dialogue/generic/g/attack/ang_007g.wav	en	0.78	HAAA!	
+sound/dialogue/generic/g/attack/atk_g_001b.wav	de	0.99	Macht ihn fertig!	
+sound/dialogue/generic/g/attack/atk_g_005a.wav	en	0.46	To man-grip!	
+sound/dialogue/generic/g/attack/atk_g_005b.wav	en	0.30	UNGULP!	
+sound/dialogue/generic/g/attack/atk_g_005e.wav	de	0.90	ANGRÜP!	
+sound/dialogue/generic/g/attack/atk_g_006a.wav	de	0.67	Das ist meine!	
+sound/dialogue/generic/g/attack/atk_g_006b.wav	de	0.80	EST MEINER!	
+sound/dialogue/generic/g/attack/atk_g_006e.wav	en	0.66	That is mine now!	
+sound/dialogue/generic/g/attack/atk_g_008a.wav	en	0.71	Tootsie-Dynamee!	
+sound/dialogue/generic/g/attack/atk_g_008b.wav	en	0.21	TUTITANAMI!	
+sound/dialogue/generic/g/attack/atk_g_008e.wav	en	0.21	CHETE TENAMI!	
+sound/dialogue/generic/g/attack/atk_g_010a.wav	de	0.31	Eindringling!	
+sound/dialogue/generic/g/attack/atk_g_020a.wav	de	0.93	Ich hab ihn im Visier!	
+sound/dialogue/generic/g/attack/atk_g_020b.wav	de	0.95	Ich hab ihn im Visier!	
+sound/dialogue/generic/g/attack/atk_g_020f.wav	de	0.98	Ich hab ihn im Visier!	
+sound/dialogue/generic/g/attack/atk_o_002a.wav	en	0.83	Attain menna!	
+sound/dialogue/generic/g/attack/atk_o_002g.wav	de	0.48	Verteilen, Männer!	
+sound/dialogue/generic/g/attack/atk_o_005a.wav	en	0.79	ALEMON FIRE!	
+sound/dialogue/generic/g/attack/atk_o_005g.wav	en	0.57	ALEMAN FIRE!	
+sound/dialogue/generic/g/attack/atk_o_009a.wav	en	0.93	I WAS CRAMMING!	
+sound/dialogue/generic/g/attack/atk_o_009e.wav	en	0.62	OUTSHWAMEN!	
+sound/dialogue/generic/g/attack/atk_o_009g.wav	en	0.89	I'LL SHREEMAN!	
+sound/dialogue/generic/g/attack/atk_o_013a.wav	ar	0.35	ألام جيران	
+sound/dialogue/generic/g/attack/den_attack_014a.wav	de	0.92	Licht ihn um!	
+sound/dialogue/generic/g/attack/den_attack_075a.wav	de	0.96	Du hast meinen Freund erschossen! Ah!	
+sound/dialogue/generic/g/attack/den_attack_075b.wav	de	0.87	Das ist mein Freunderschuss!	
+sound/dialogue/generic/g/attack/den_attack_075d.wav	en	0.26	HUSBAND CAMERAS DE CHOSEN!	
+sound/dialogue/generic/g/attack/vic_001a.wav	de	0.90	Frist das du, Mieselspion!	
+sound/dialogue/generic/g/attack/vic_001b.wav	de	0.93	Frist das, du Spion!	
+sound/dialogue/generic/g/attack/vic_002a.wav	de	1.00	Du hättest nicht abhauen sollen!	
+sound/dialogue/generic/g/attack/vic_002b.wav	de	0.96	Du hättest nicht abhauen sollen!	
+sound/dialogue/generic/g/attack/vic_003a.wav	de	0.95	Jetzt hab ich dich!	
+sound/dialogue/generic/g/attack/vic_003b.wav	de	0.97	Jetzt hab ich dich!	
+sound/dialogue/generic/g/attack/vic_004a.wav	de	0.59	Zu leicht!	
+sound/dialogue/generic/g/attack/vic_004b.wav	de	0.88	Viel zu leicht!	
+sound/dialogue/generic/g/disguise/den_disguise_037a.wav	en	0.52	HENDERHOL!	
+sound/dialogue/generic/g/disguise/den_disguise_037b.wav	en	0.43	HENDERHORN!	
+sound/dialogue/generic/g/disguise/den_disguise_037f.wav	en	0.95	HENDERHOL!	
+sound/dialogue/generic/g/fear/cov_g_002b.wav	hu	0.32	SZEVEK!	
+sound/dialogue/generic/g/fear/cov_g_003b.wav	fr	0.23	S'il te plait ! S'il te plait !	
+sound/dialogue/generic/g/fear/cov_g_006a.wav	de	0.86	Aufpassen!	
+sound/dialogue/generic/g/fear/cov_g_006b.wav	en	0.85	I'LL FUSON!	
+sound/dialogue/generic/g/fear/cov_g_006e.wav	de	0.90	Aufpassen!	
+sound/dialogue/generic/g/fear/cov_g_009b.wav	de	0.87	Er ist am Rohr!	
+sound/dialogue/generic/g/fear/cov_g_011b.wav	de	0.80	Ich seh nicht mehr!	
+sound/dialogue/generic/g/fear/cov_g_011e.wav	de	0.45	Ich sehe ihn nicht mehr!	
+sound/dialogue/generic/g/fear/cov_g_011f.wav	de	0.98	Ich kann nicht sehen!	
+sound/dialogue/generic/g/fear/cov_g_014a.wav	de	0.73	Vorsicht!	
+sound/dialogue/generic/g/fear/cov_g_014b.wav	en	0.43	PORTHIC!	
+sound/dialogue/generic/g/fear/cov_o_004a.wav	nl	0.56	TECK ONZOEGEN!	
+sound/dialogue/generic/g/fear/cov_o_004e.wav	nl	0.78	Daar kan ik zochen!	
+sound/dialogue/generic/g/fear/den_fear_03a.wav	de	0.68	Entdecken gehen!	
+sound/dialogue/generic/g/fear/den_fear_03d.wav	en	0.71	IN DECK O'KEEPS!	
+sound/dialogue/generic/g/fear/den_fear_03e.wav	de	0.46	INDECKUNG!	
+sound/dialogue/generic/g/fear/den_fear_05a.wav	de	0.61	Laft um euer Leben!	
+sound/dialogue/generic/g/fear/den_fear_05d.wav	de	0.97	Rettet Eure Haut!	
+sound/dialogue/generic/g/fear/den_fear_08a.wav	de	0.46	Vorsicht, Granate!	
+sound/dialogue/generic/g/fear/den_fear_11e.wav	de	0.37	HATTAIDOIS!	
+sound/dialogue/generic/g/fear/den_fear_17d.wav	en	0.59	SADEEE	
+sound/dialogue/generic/g/fear/den_fear_18d.wav	de	0.95	Ich brauch einen Arzt!	
+sound/dialogue/generic/g/fear/den_fear_20a.wav	de	0.94	Nenn so schnell du kannst!	
+sound/dialogue/generic/g/fear/den_fear_20b.wav	de	0.97	Wenn so schnell du kannst!	
+sound/dialogue/generic/g/fear/den_fear_21b.wav	de	0.82	Wir sitzen in der Pfanne!	
+sound/dialogue/generic/g/fear/den_fear_27a.wav	de	0.93	Evakuieren!	
+sound/dialogue/generic/g/fear/den_fear_27b.wav	fi	0.39	ILAKKUIRIN!	
+sound/dialogue/generic/g/fear/den_fear_27d.wav	en	0.44	RITZUK!	
+sound/dialogue/generic/g/fear/den_fear_28a.wav	de	0.91	Wie geht die Munition aus?	
+sound/dialogue/generic/g/fear/den_fear_30b.wav	en	0.93	Come there!	
+sound/dialogue/generic/g/fear/den_fear_30d.wav	de	0.56	Sie kommt näher!	
+sound/dialogue/generic/g/fear/den_fear_32b.wav	de	0.73	Nicht schießen!	
+sound/dialogue/generic/g/fear/den_fear_32d.wav	en	0.28	Next season!	
+sound/dialogue/generic/g/fear/den_suicide_11b.wav	en	0.46	SURE!	
+sound/dialogue/generic/g/fear/den_suicide_11d.wav	en	0.50	Strike!	
+sound/dialogue/generic/g/fear/den_suicide_12a.wav	nl	0.68	RETTETEUCH!	
+sound/dialogue/generic/g/fear/den_suicide_12b.wav	ja	0.19	カットドーイ!	
+sound/dialogue/generic/g/fear/den_suicide_13a.wav	de	0.98	Auf Wiedersehen, Malene!	
+sound/dialogue/generic/g/fear/den_suicide_14a.wav	de	0.98	Es tut mir leid, Mutter!	
+sound/dialogue/generic/g/fear/den_suicide_15a.wav	de	0.78	Gott, verzei mir!	
+sound/dialogue/generic/g/fear/den_suicide_15b.wav	de	0.80	Gott, verzei mir!	
+sound/dialogue/generic/g/fear/grn_001a.wav	de	0.88	Granaten!	
+sound/dialogue/generic/g/fear/grn_001b.wav	de	0.39	Granaten!	
+sound/dialogue/generic/g/fear/grn_001g.wav	ar	0.39	كنابااااااااااااااااااااااا...	
+sound/dialogue/generic/g/fear/grn_007a.wav	de	0.33	Schnell weg!	
+sound/dialogue/generic/g/fear/grn_007b.wav	ar	0.36	شنالبك	
+sound/dialogue/generic/g/fear/grn_007e.wav	de	0.28	Schnell weg!	
+sound/dialogue/generic/g/fear/grn_007g.wav	en	0.36	SHNAME!	
+sound/dialogue/generic/g/fear/ret_g_001a.wav	de	0.73	Weg hier!	
+sound/dialogue/generic/g/fear/ret_g_001b.wav	en	0.88	Back here!	
+sound/dialogue/generic/g/fear/ret_g_001g.wav	fr	0.36	Vécu !	
+sound/dialogue/generic/g/fear/ret_g_002a.wav	de	0.97	In Sicherheit bringen!	
+sound/dialogue/generic/g/fear/ret_g_002b.wav	de	0.96	In Sicherheit bringen!	
+sound/dialogue/generic/g/fear/ret_g_002g.wav	de	0.98	In Sicherheit bringen!	
+sound/dialogue/generic/g/fear/ret_g_003a.wav	de	0.78	Nichts wie weg!	
+sound/dialogue/generic/g/fear/ret_g_003b.wav	de	0.48	Nichts wie weg!	
+sound/dialogue/generic/g/fear/ret_g_003e.wav	en	0.39	Next three back!	
+sound/dialogue/generic/g/fear/ret_g_003g.wav	de	0.25	Nichts wie weg!	
+sound/dialogue/generic/g/fear/ret_g_004a.wav	de	0.94	Wir sitzen in der Falle!	
+sound/dialogue/generic/g/fear/ret_g_004b.wav	de	0.82	Wir sitzen in der Pfanne!	
+sound/dialogue/generic/g/fear/ret_g_004e.wav	de	0.98	Wir sitzen in der Falle!	
+sound/dialogue/generic/g/fear/ret_g_004g.wav	de	0.94	Wir sitzen in der Falle!	
+sound/dialogue/generic/g/fear/ret_g_005a.wav	de	0.68	Lass das hier!	
+sound/dialogue/generic/g/fear/ret_g_005b.wav	en	0.47	Last time I saw you!	
+sound/dialogue/generic/g/fear/ret_g_005e.wav	es	0.21	¡LAS ASÍA!	
+sound/dialogue/generic/g/fear/ret_g_005g.wav	de	0.92	Lass das hier!	
+sound/dialogue/generic/g/fear/ret_g_006a.wav	en	0.58	LOOSE! LOOSE!	
+sound/dialogue/generic/g/fear/ret_g_006b.wav	en	0.45	LOSS! LOSS!	
+sound/dialogue/generic/g/fear/ret_g_006e.wav	en	0.41	LOSS! LOSS!	
+sound/dialogue/generic/g/fear/ret_g_007a.wav	de	0.96	Die werden abgeschlachtet!	
+sound/dialogue/generic/g/fear/ret_g_007b.wav	de	0.98	Wir werden abgeschlachtet!	
+sound/dialogue/generic/g/fear/ret_g_007e.wav	de	0.97	Wir werden abgeschlachtet!	
+sound/dialogue/generic/g/fear/ret_g_007g.wav	de	0.98	Die schlachten uns ab!	
+sound/dialogue/generic/g/fear/ret_g_008a.wav	de	0.98	Ich hab keinen freien Schuss!	
+sound/dialogue/generic/g/fear/ret_g_008b.wav	de	0.96	Ich hab keinen freien Schuss!	
+sound/dialogue/generic/g/fear/ret_g_008e.wav	de	0.97	Ich hab keinen freien Schuss!	
+sound/dialogue/generic/g/fear/ret_g_008f.wav	de	0.98	Ich hab keinen freien Schuss!	
+sound/dialogue/generic/g/fear/ret_g_008g.wav	de	0.99	Ich hab keinen freien Schuss!	
+sound/dialogue/generic/g/fear/ret_g_009a.wav	de	0.83	Alles vorbei!	
+sound/dialogue/generic/g/fear/ret_g_009b.wav	en	0.67	And it's for bye!	
+sound/dialogue/generic/g/fear/ret_g_009e.wav	de	0.82	Alles vorbei!	
+sound/dialogue/generic/g/fear/ret_g_009f.wav	en	0.68	All right, it's over!	
+sound/dialogue/generic/g/fear/ret_g_009g.wav	en	0.86	And it's for bye!	
+sound/dialogue/generic/g/fear/ret_g_010a.wav	de	0.98	Ich hab keine Munition mehr!	
+sound/dialogue/generic/g/fear/ret_g_010b.wav	de	0.99	Ich hab keine Munition mehr!	
+sound/dialogue/generic/g/fear/ret_g_010e.wav	de	0.95	Ich hab keine Munition mehr!	
+sound/dialogue/generic/g/fear/ret_g_011a.wav	de	0.95	Wir sind im Eimer!	
+sound/dialogue/generic/g/fear/ret_g_011b.wav	de	0.97	Wir sind verloren!	
+sound/dialogue/generic/g/fear/ret_g_011f.wav	ja	0.36	見せてもらえれば!	
+sound/dialogue/generic/g/fear/ret_g_011g.wav	de	0.90	Wir sind verloren!	
+sound/dialogue/generic/g/fear/ret_g_012a.wav	de	0.98	Sie sind uns überlegen!	
+sound/dialogue/generic/g/fear/ret_g_012b.wav	de	0.79	Sie sind tot überlegen!	
+sound/dialogue/generic/g/fear/ret_g_012f.wav	de	0.96	Die sind uns überlegen!	
+sound/dialogue/generic/g/fear/ret_g_012g.wav	de	0.96	Die sind uns überlegen!	
+sound/dialogue/generic/g/fear/ret_g_013a.wav	de	0.96	Wir können nicht siegen!	
+sound/dialogue/generic/g/fear/ret_g_013b.wav	de	0.98	Wir können nichts siegen!	
+sound/dialogue/generic/g/fear/ret_g_013f.wav	de	0.97	Wir können nicht sieben!	
+sound/dialogue/generic/g/fear/ret_g_013g.wav	de	0.99	Wir können nicht mehr siegen!	
+sound/dialogue/generic/g/fear/ret_g_014a.wav	en	0.64	To work!	
+sound/dialogue/generic/g/fear/ret_g_014b.wav	fr	0.39	TOUREC !	
+sound/dialogue/generic/g/fear/ret_g_014f.wav	en	0.17	To the next scene!	
+sound/dialogue/generic/g/fear/ret_g_014g.wav	en	0.68	So long!	
+sound/dialogue/generic/g/fear/ret_o_001a.wav	de	0.28	Rückzug!	
+sound/dialogue/generic/g/fear/ret_o_002a.wav	de	0.54	Weiter zurück, Männer!	
+sound/dialogue/generic/g/fear/ret_o_002g.wav	de	0.93	Zurück, Männer!	
+sound/dialogue/generic/g/fear/ret_o_003a.wav	de	0.99	Da werden Köpfe rollen!	
+sound/dialogue/generic/g/fear/ret_o_003g.wav	de	0.99	Da werden Kofferrollen!	
+sound/dialogue/generic/g/fear/ret_o_004a.wav	de	0.96	Rette sich wer kann!	
+sound/dialogue/generic/g/fear/ret_o_004e.wav	de	0.97	Rette sich wer kann!	
+sound/dialogue/generic/g/fear/ret_o_005a.wav	de	0.98	Hiergeblieben! Weiterkämpfen!	
+sound/dialogue/generic/g/fear/ret_o_005e.wav	de	0.95	Hier geblieben! Weiter kämpfen!	
+sound/dialogue/generic/g/fear/ret_o_006a.wav	nl	0.33	Freiklinge!	
+sound/dialogue/generic/g/fear/ret_o_006e.wav	de	0.55	Feiglinge!	
+sound/dialogue/generic/g/fear/ret_o_006g.wav	en	0.87	FAKING!	
+sound/dialogue/generic/g/fear/ret_o_007a.wav	ar	0.36	زمان!	
+sound/dialogue/generic/g/fear/ret_o_007e.wav	fr	0.54	ZAMEL !	
+sound/dialogue/generic/g/fear/ret_o_007g.wav	fr	0.59	SAMIL !	
+sound/dialogue/generic/g/fear/ret_o_009a.wav	de	0.21	MIR NACH MENNA!	
+sound/dialogue/generic/g/fear/ret_o_009e.wav	fr	0.20	MIA NACHE ! MENA !	
+sound/dialogue/generic/g/fear/ret_o_009f.wav	de	0.33	Mir nach, Männer!	
+sound/dialogue/generic/g/fear/ret_o_009g.wav	de	0.36	Miedenachmene!	
+sound/dialogue/generic/g/fear/ret_o_010a.wav	de	0.99	Von hier aus kriegen wir ihn nie!	
+sound/dialogue/generic/g/fear/ret_o_010e.wav	de	0.95	Von hier aus kriegen wir ihn nie!	
+sound/dialogue/generic/g/fear/ret_o_010f.wav	de	0.99	Von hier aus kriegen wir ihn nie!	
+sound/dialogue/generic/g/fear/ret_o_010g.wav	de	0.95	Von hier aus kriegen wir ihn nie!	
+sound/dialogue/generic/g/fear/ret_o_011a.wav	de	0.85	Kratsch, raus da!	
+sound/dialogue/generic/g/fear/ret_o_012a.wav	en	0.47	Here, here, menna!	
+sound/dialogue/generic/g/fear/ret_o_012f.wav	en	0.82	Here I am, Anna!	
+sound/dialogue/generic/g/fear/ret_o_012g.wav	en	0.71	Here, here, manna!	
+sound/dialogue/generic/g/fear/ret_o_013a.wav	sv	0.46	ZIKORÄR TOT!	
+sound/dialogue/generic/g/fear/ret_o_013f.wav	hu	0.27	ZIGANATÓT!	
+sound/dialogue/generic/g/fear/ret_o_013g.wav	de	0.18	Sieg oder Tod!	
+sound/dialogue/generic/g/fear/ret_o_014f.wav	en	0.26	BYE CHEF A RETA!	
+sound/dialogue/generic/g/fear/ret_o_014g.wav	de	0.28	Deutsche Farida!	
+sound/dialogue/generic/g/idle/jok_001a.wav	de	0.99	Aber Liebling, wir hatten doch Würstchen gestern Abend!	
+sound/dialogue/generic/g/idle/jok_001b.wav	de	1.00	Aber Süße! Wir hatten doch Würstchen gestern Abend!	
+sound/dialogue/generic/g/idle/jok_001f.wav	de	1.00	Aber kleiner, wir hatten noch ein Wurstchen gestern Abend!	
+sound/dialogue/generic/g/idle/jok_005a.wav	de	0.99	Ach, und dann kam der Hauptmann rein.	
+sound/dialogue/generic/g/idle/jok_005b.wav	de	0.97	Ja und dann, dann kam der Hauptball rein.	
+sound/dialogue/generic/g/idle/jok_005f.wav	de	0.99	Ach ja! Und dann kam die Hauptmelle rein!	
+sound/dialogue/generic/g/idle/jok_006a.wav	de	1.00	Und dann sagt sie, das ist doch gar nichts! Guck dir die mal an!	
+sound/dialogue/generic/g/idle/jok_006b.wav	de	1.00	Dann sagt sie, das ist doch gar nichts. Guck dir die mal an!	
+sound/dialogue/generic/g/idle/jok_006f.wav	de	1.00	Und dann sagt die, das ist doch gar nichts. Guck dir die Heuere. Guck dir die Heuere.	
+sound/dialogue/generic/g/idle/jok_008a.wav	de	1.00	Da kannst du aber sicher sein, dass ich das nicht mehr esse!	
+sound/dialogue/generic/g/idle/jok_008b.wav	de	0.99	Aber eins ist sicher, dass er sich nicht wieder...	
+sound/dialogue/generic/g/idle/jok_008f.wav	de	0.99	Aber uns kann ich dir sagen, das ist ich nicht mehr.	
+sound/dialogue/generic/g/idle/laf_001a.wav	de	0.43	Ehrlich?	
+sound/dialogue/generic/g/idle/laf_001b.wav	de	0.36	Ehrlich?	
+sound/dialogue/generic/g/idle/laf_001f.wav	en	0.26	hahaha hahahaha hahahaha	
+sound/dialogue/generic/g/idle/laf_002a.wav	sv	0.64	Hahahaha! Vad vart det var? Jag kring var. Jag kallade luft! Hahahaha!	
+sound/dialogue/generic/g/idle/laf_002b.wav	nl	0.67	Hahaha. Wacht even. Hahaha. Ik kreeg gewoon een lucht in. Hahaha.	
+sound/dialogue/generic/g/idle/laf_002f.wav	de	0.83	Warte mal! Warte mal! Ich krieg keine Luft! Ich krieg keine Luft!	
+sound/dialogue/generic/g/idle/laf_003a.wav	pt	0.26	Vai, vai, vai! Vai, vai!	
+sound/dialogue/generic/g/idle/laf_003b.wav	en	0.77	Oh, my bow! My bow!	
+sound/dialogue/generic/g/idle/laf_003f.wav	en	0.24	No! My ball! My ball! My ball!	
+sound/dialogue/generic/g/idle/laf_004b.wav	en	0.28	Oh, oh, oh, oh! Oh! Oh, oh, oh, oh, oh!	
+sound/dialogue/generic/g/idle/laf_004f.wav	en	0.43	Oh, no! Oh, oh, oh! Oh, oh, oh... Oh! Oh, oh, oh!	
+sound/dialogue/generic/g/idle/laf_005a.wav	en	0.65	Hahahaha Pfft Hahahaha Hahahaha Hahahaha	
+sound/dialogue/generic/g/idle/laf_005b.wav	en	0.85	Bsssssssssssssss	
+sound/dialogue/generic/g/idle/laf_005f.wav	en	0.54	Pfft! Hahahahaha hope Hahahahahah	
+sound/dialogue/generic/g/sighted/alt_g_001b.wav	de	0.68	Der ist meiner!	
+sound/dialogue/generic/g/sighted/alt_g_001e.wav	de	0.88	Hey, das ist meiner!	
+sound/dialogue/generic/g/sighted/alt_g_002b.wav	de	0.92	Jetzt geht's los!	
+sound/dialogue/generic/g/sighted/alt_g_004a.wav	de	0.90	Das macht Laune!	
+sound/dialogue/generic/g/sighted/alt_g_005a.wav	de	0.98	Er ist fast in Reichweite.	
+sound/dialogue/generic/g/sighted/alt_o_003a.wav	de	0.95	Mein Kommando abwarten!	
+sound/dialogue/generic/g/sighted/alt_o_004a.wav	de	0.80	Nehmt ihn ins Visier, Männer!	
+sound/dialogue/generic/g/sighted/alt_o_005a.wav	de	0.88	Keiner schießt aus der Reihe!	
+sound/dialogue/generic/g/sighted/den_alarm_09d.wav	de	0.92	Verstärkung anfordern!	
+sound/dialogue/generic/g/sighted/den_alarm_10a.wav	de	0.31	Hilfe anfordern!	
+sound/dialogue/generic/g/sighted/den_alarm_10d.wav	sv	0.39	Hjälp för faran!	
+sound/dialogue/generic/g/sighted/den_alarm_11a.wav	de	0.98	Verständigt die anderen!	
+sound/dialogue/generic/g/sighted/den_alarm_11d.wav	de	0.95	Ja, dann verständigen!	
+sound/dialogue/generic/g/sighted/den_alarm_12a.wav	de	0.97	Während die anderen!	
+sound/dialogue/generic/g/sighted/sig_009a.wav	de	0.80	Geradeaus!	
+sound/dialogue/generic/g/sighted/sig_009b.wav	en	0.61	C'mon out!	
+sound/dialogue/generic/g/sighted/sig_014a.wav	de	0.91	Da unten!	
+sound/dialogue/generic/g/sighted/sig_014b.wav	de	0.18	Da unten!	
+sound/dialogue/generic/g/sighted/sig_015a.wav	de	0.84	Feindbewegung!	
+sound/dialogue/generic/g/sighted/sig_015b.wav	en	0.20	FIGHT BEVIGON!	
+sound/dialogue/generic/it/attack/denit_anger_01xm01.mp3	en	0.64	Hey, you!	
+sound/dialogue/generic/it/attack/denit_anger_01xu01.mp3	it	0.36	Ehi tu!	
+sound/dialogue/generic/it/attack/denit_anger_02xm01.mp3	it	0.97	Ti faccio vedere io!	
+sound/dialogue/generic/it/curious/denit_curious_01xm01.mp3	es	0.51	¡Vete sentito!	
+sound/dialogue/generic/it/curious/denit_curious_01xu01.mp3	it	0.50	Avete sentito!	
+sound/dialogue/generic/it/curious/denit_curious_02xm01.mp3	nn	0.34		
+sound/dialogue/generic/it/fear/denit_fear_01xm01.mp3	en	0.87	NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN	
+sound/dialogue/generic/it/fear/denit_fear_02xm01.mp3	it	0.93	Ah, aspetta!	
+sound/dialogue/generic/it/fear/denit_fear_02xu01.mp3	it	0.80	Ah, ah, ah, aspetta!	
+sound/dialogue/generic/it/fear/denit_feargrn_01xm01.mp3	it	0.92	Una granata!	
+sound/dialogue/generic/it/fear/denit_feargrn_01xu04.mp3	it	0.43	Una granata!	
+sound/dialogue/generic/it/fear/denit_feargrn_02xm01.mp3	it	0.97	Ancela indietro!	
+sound/dialogue/generic/it/fear/denit_feargrn_02xu01.mp3	it	0.99	lanciamela indietro!	
+sound/dialogue/generic/it/sighted/denit_alert_is7151xm02.mp3	it	1.00	da quella parte!	
+sound/dialogue/generic/it/sighted/denit_alert_is7152xm02.mp3	it	0.98	Ho chieberti!	
+sound/dialogue/generic/it/sighted/denit_alert_is7153xm01.mp3	ar	0.49	اتوليلا	
+sound/dialogue/generic/it/sighted/denit_alert_is7154xm01.mp3	it	0.93	ALLERTA!	
+sound/dialogue/generic/uk/dfruk_alert_pc3351xg01.mp3	en	0.99	Over there!	
+sound/dialogue/generic/uk/dfruk_alert_pc3353xg01.mp3	ja	0.53	ねえだよー!	
+sound/dialogue/generic/uk/dfruk_alert_pc3355xg01.mp3	en	0.91	Look out!	
+sound/dialogue/generic/uk/dfruk_alert_pc3368xg01.mp3	en	0.98	MOVE! MOVE! MOVE!	
+sound/dialogue/generic/uk/dfruk_alert_pc3368xg02.mp3	en	0.98	MOVE! MOVE! MOVE!	
+sound/dialogue/generic/uk/dfruk_alert_pc3369xg02.mp3	en	0.92	Go! Go!	
+sound/dialogue/generic/uk/dfruk_alert_pc3370xg02.mp3	en	0.97	I've got you covered!	
+sound/dialogue/generic/uk/dfruk_alert_pc3370xg06.mp3	en	0.97	I've got you covered!	
+sound/dialogue/generic/uk/dfruk_alert_pc3371xg01.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/generic/uk/dfruk_alert_ts3662xh01.mp3	en	0.99	Over there!	
+sound/dialogue/generic/uk/dfruk_alert_ts3663xh01.mp3	en	0.90	Hades up!	
+sound/dialogue/generic/uk/dfruk_global_bs5037xj02.mp3	en	0.78	Reloading!	
+sound/dialogue/generic/uk/dfruk_global_bs5037xj03.mp3	en	0.89	Reloading!	
+sound/dialogue/generic/uk/dfruk_global_bs5038xj01.mp3	en	0.37	Cover me!	
+sound/dialogue/generic/uk/dfruk_global_bs5038xj02.mp3	en	0.94	Cover me!	
+sound/dialogue/generic/uk/dfruk_global_bs5039xj01.mp3	en	0.90	Hold him up, Baker! I'm reloading!	
+sound/dialogue/generic/uk/dfruk_global_bs5039xj02.mp3	en	0.99	I'm a half baker, I'm reloading!	
+sound/dialogue/generic/uk/dfruk_global_bs5039xj03.mp3	en	0.91	Hold up, Baker! I'm reloading!	
+sound/dialogue/generic/uk/dfruk_global_bs5042xj01.mp3	en	0.89	Go! Go!	
+sound/dialogue/generic/uk/dfruk_global_bs5042xj02.mp3	en	0.87	GO GO!	
+sound/dialogue/generic/uk/dfruk_global_bs5042xj03.mp3	en	0.94	GO! GO!	
+sound/dialogue/generic/uk/dfruk_global_bs5043xj01.mp3	en	0.93	I got you covered!	
+sound/dialogue/generic/uk/dfruk_global_bs5043xj02.mp3	en	0.88	I GOT YOU COVERED!	
+sound/dialogue/generic/uk/dfruk_global_bs5044xj01.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/generic/uk/dfruk_global_bs5044xj03.mp3	en	0.99	I've got him! Move out!	
+sound/dialogue/generic/uk/dfruk_reload_pc3374xg03.mp3	en	0.98	Reloading!	
+sound/dialogue/generic/uk/dfruk_reload_pc3374xg04.mp3	en	0.98	Reloading!	
+sound/dialogue/generic/uk/dfruk_reload_pc3375xg03.mp3	en	0.98	Cover me!	
+sound/dialogue/generic/uk/dfruk_reload_pc3376xg01.mp3	en	0.99	Hold him off, Baker! I'm reloading!	
+sound/dialogue/generic/uk/dfruk_reload_ts3671xh01.mp3	en	0.98	Reloading!	
+sound/dialogue/generic/uk/dfruk_reload_ts3671xh02.mp3	en	0.99	RELOADING!	
+sound/dialogue/generic/uk/dfruk_reload_ts3671xh03.mp3	en	0.99	RELOADING!	
+sound/dialogue/generic/uk/dfruk_reload_ts3672xh02.mp3	en	0.95	Cover me!	
+sound/dialogue/generic/uk/dfruk_reload_ts3672xh03.mp3	en	0.92	Cover me!	
+sound/dialogue/generic/uk/dfruk_reload_ts3673xh03.mp3	en	0.89	Aldermorfbiker, on reloading!	
+sound/dialogue/generic/uk/dfruk_suppress_pc3377xg02.mp3	en	0.99	COVERING FIRE!	
+sound/dialogue/generic/uk/dfruk_suppress_pc3377xg03.mp3	en	0.98	COVERING FIRE!	
+sound/dialogue/generic/uk/dfruk_suppress_ts3674xh01.mp3	en	0.98	COVERING FIRE!	
+sound/dialogue/generic/uk/dfruk_suppress_ts3674xh02.mp3	en	0.98	COVERING FIRE!	
+sound/dialogue/generic/uk/dfruk_suppress_ts3674xh03.mp3	en	0.97	COVERING FIRE!	
+sound/dialogue/generic/uk/dfruk_suppress_ts3675xh01.mp3	en	0.86	NO!	
+sound/dialogue/generic/uk/dfruk_suppress_ts3675xh02.mp3	en	0.89	NO!	
+sound/dialogue/generic/uk/dfruk_suppress_ts3675xh03.mp3	en	0.97	MOVE!	
+sound/dialogue/generic/uk/dfruk_suppress_ts3676xh01.mp3	en	0.95	GO! GO!	
+sound/dialogue/generic/uk/dfruk_suppress_ts3676xh02.mp3	en	0.96	GO! GO!	
+sound/dialogue/generic/uk/dfruk_suppress_ts3677xh01.mp3	en	0.98	I GOT YOU CAVERED!	
+sound/dialogue/generic/uk/dfruk_suppress_ts3677xh03.mp3	en	0.99	I GOT YOU, CAVERED!	
+sound/dialogue/generic/uk/dfruk_suppress_ts3678xh01.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/generic/uk/dfruk_suppress_ts3678xh02.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/generic/uk/dfruk_suppress_ts3678xh03.mp3	en	0.98	I got him! Move out!	
+sound/dialogue/generic/us/dfrus_global_jp2769xb01.mp3	en	0.99	Reloading!	
+sound/dialogue/generic/us/dfrus_global_jp2769xb02.mp3	en	0.99	Reloading!	
+sound/dialogue/generic/us/dfrus_global_jp2769xb03.mp3	en	0.98	RELOADING!	
+sound/dialogue/generic/us/dfrus_global_jp2770xb01.mp3	en	0.98	Cover me!	
+sound/dialogue/generic/us/dfrus_global_jp2770xb02.mp3	en	0.99	Cover me!	
+sound/dialogue/generic/us/dfrus_global_jp2770xb03.mp3	en	0.98	Cover me!	
+sound/dialogue/generic/us/dfrus_global_jp2771xb02.mp3	en	1.00	Hold them off, Baker! I'm reloading!	
+sound/dialogue/generic/us/dfrus_global_jp2771xb03.mp3	en	1.00	Hold him off, Baker! I'm reloading!	
+sound/dialogue/generic/us/dfrus_global_jp2772xb01.mp3	en	0.98	COVERING FIRE!	
+sound/dialogue/generic/us/dfrus_global_jp2772xb02.mp3	en	0.99	COVERING FIRE!	
+sound/dialogue/generic/us/dfrus_global_jp2772xb03.mp3	en	0.98	COVERING FIRE!	
+sound/dialogue/generic/us/dfrus_global_jp2773xb01.mp3	en	0.98	MOVE!	
+sound/dialogue/generic/us/dfrus_global_jp2773xb02.mp3	en	0.97	MOVE!	
+sound/dialogue/generic/us/dfrus_global_jp2773xb03.mp3	en	0.98	MOVE!	
+sound/dialogue/generic/us/dfrus_global_jp2774xb01.mp3	en	0.95	GO GO!	
+sound/dialogue/generic/us/dfrus_global_jp2774xb02.mp3	en	0.92	GO! GO!	
+sound/dialogue/generic/us/dfrus_global_jp2775xb02.mp3	en	0.98	I GOT YOU COVERED!	
+sound/dialogue/generic/us/dfrus_global_jp2776xb01.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/generic/us/dfrus_global_jp2776xb03.mp3	en	0.99	I GOT HIM! MOVE OUT!	
+sound/dialogue/generic/us/dfrus_reload_gw2060xa01.mp3	en	0.97	Reloading!	
+sound/dialogue/generic/us/dfrus_reload_gw2060xa02.mp3	en	0.95	Reloading!	
+sound/dialogue/generic/us/dfrus_reload_gw2060xa03.mp3	en	0.94	RELOADING!	
+sound/dialogue/generic/us/dfrus_reload_gw2061xa01.mp3	en	0.93	Cover me!	
+sound/dialogue/generic/us/dfrus_reload_gw2061xa02.mp3	en	0.88	Cover me!	
+sound/dialogue/generic/us/dfrus_reload_gw2061xa03.mp3	en	0.72	Cover me!	
+sound/dialogue/generic/us/dfrus_reload_gw2062xa01.mp3	en	0.99	Hold him off, Baker! I'm reloading!	
+sound/dialogue/generic/us/dfrus_reload_gw2062xa02.mp3	en	1.00	Hold him off, Baker! I'm reloading!	
+sound/dialogue/generic/us/dfrus_reload_lp2360xt01.mp3	en	0.97	Reloading!	
+sound/dialogue/generic/us/dfrus_reload_lp2360xt02.mp3	en	0.98	Reloading!	
+sound/dialogue/generic/us/dfrus_reload_lp2361xt01.mp3	en	0.99	Cover me!	
+sound/dialogue/generic/us/dfrus_reload_lp2361xt02.mp3	en	0.97	Cover me!	
+sound/dialogue/generic/us/dfrus_reload_lp2362xt01.mp3	en	0.99	Hold them off, Baker! I'm reloading!	
+sound/dialogue/generic/us/dfrus_reload_lp2362xt02.mp3	en	0.99	Hold them off, Baker! I'm reloading!	
+sound/dialogue/generic/us/dfrus_reload_lp2362xt03.mp3	en	0.98	Hold them up, Baker! I'm reloading!	
+sound/dialogue/generic/us/dfrus_suppress_gw2063xa01.mp3	en	0.96	COVERING FIRE!	
+sound/dialogue/generic/us/dfrus_suppress_gw2063xa02.mp3	en	0.94	COVERING FIRE!	
+sound/dialogue/generic/us/dfrus_suppress_gw2063xa03.mp3	en	0.96	COVERING FIRE!	
+sound/dialogue/generic/us/dfrus_suppress_gw2064xa01.mp3	en	0.98	MOVE!	
+sound/dialogue/generic/us/dfrus_suppress_gw2064xa02.mp3	en	0.98	MOVE!	
+sound/dialogue/generic/us/dfrus_suppress_gw2064xa03.mp3	en	0.96	MOVE!	
+sound/dialogue/generic/us/dfrus_suppress_gw2065xa01.mp3	en	0.96	GO! GO!	
+sound/dialogue/generic/us/dfrus_suppress_gw2065xa02.mp3	en	0.95	GO! GO! GO!	
+sound/dialogue/generic/us/dfrus_suppress_gw2066xa01.mp3	en	0.96	I've got you covered!	
+sound/dialogue/generic/us/dfrus_suppress_gw2066xa02.mp3	en	0.99	I've got you covered!	
+sound/dialogue/generic/us/dfrus_suppress_gw2066xa03.mp3	en	0.99	I've got you covered!	
+sound/dialogue/generic/us/dfrus_suppress_gw2067xa02.mp3	en	0.97	I've got him! Move out!	
+sound/dialogue/generic/us/dfrus_suppress_gw2067xa03.mp3	en	0.99	I've gotta move out!	
+sound/dialogue/generic/us/dfrus_suppress_lp2363xt01.mp3	en	0.97	COVERING FIRE!	
+sound/dialogue/generic/us/dfrus_suppress_lp2363xt02.mp3	en	0.98	COVERING FIRE!	
+sound/dialogue/generic/us/dfrus_suppress_lp2364xt01.mp3	en	0.92	MOVE!	
+sound/dialogue/generic/us/dfrus_suppress_lp2364xt02.mp3	en	0.98	MOVE!	
+sound/dialogue/generic/us/dfrus_suppress_lp2365xt01.mp3	en	0.94	Go! Go!	
+sound/dialogue/generic/us/dfrus_suppress_lp2365xt02.mp3	en	0.93	GO! GO!	
+sound/dialogue/generic/us/dfrus_suppress_lp2366xt01.mp3	en	0.99	I GOT YOU COVERED!	
+sound/dialogue/generic/us/dfrus_suppress_lp2366xt02.mp3	en	0.99	I GOT YOU COVERED!	
+sound/dialogue/generic/us/dfrus_suppress_lp2367xt01.mp3	en	0.97	I got him! Move out!	
+sound/dialogue/generic/us/dfrus_suppress_lp2367xt02.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/generic/us/dfrus_suppress_lp2367xt03.mp3	en	0.99	I got him! Move out!	
+sound/dialogue/global/gm/dengm_global_gs8001xl02.mp3	fr	0.58	Et dream!	
+sound/dialogue/global/gm/dengm_global_gs8001xl03.mp3	fr	0.69	HÉRE-TREM !!!	
+sound/dialogue/global/gm/dengm_global_gs8002xl01.mp3	sv	0.20	Fyra i videon!	
+sound/dialogue/global/gm/dengm_global_gs8002xl03.mp3	de	0.88	Feuer wieder!	
+sound/dialogue/global/gm/dengm_global_gs8002xl05.mp3	sv	0.83	Feuer är vidan!	
+sound/dialogue/global/gm/dengm_global_gs8003xl01.mp3	de	0.54	Ein Überfall!	
+sound/dialogue/global/gm/dengm_global_gs8003xl02.mp3	de	0.64	Ein Überfall!	
+sound/dialogue/global/gm/dengm_global_gs8003xl03.mp3	de	0.82	Ein Überfall!	
+sound/dialogue/global/gm/dengm_global_gs8004xl01.mp3	fr	0.42	Si c'est du mal !	
+sound/dialogue/global/gm/dengm_global_gs8004xl02.mp3	fr	0.43	S'il te plait !	
+sound/dialogue/global/gm/dengm_global_gs8005xl02.mp3	ja	0.45	ダイエス!	
+sound/dialogue/global/gm/dengm_global_gs8006xl01.mp3	en	0.84	That's working up!	
+sound/dialogue/global/gm/dengm_global_gs8006xl02.mp3	de	0.40	Das war knapp!	
+sound/dialogue/global/gm/dengm_global_gs8007xl02.mp3	sv	0.46	DAFANÄÄÄÄÄ	
+sound/dialogue/global/gm/dengm_global_gs8007xl03.mp3	de	0.57	Da vorne!	
+sound/dialogue/global/gm/dengm_global_gs8008xl01.mp3	en	0.55	HIT THE ONCE!	
+sound/dialogue/global/gm/dengm_global_gs8008xl02.mp3	en	0.34	HIT ONCE!	
+sound/dialogue/global/gm/dengm_global_gs8008xl03.mp3	en	0.39	HIT DUNNNNNNNNNNNNNNN!	
+sound/dialogue/global/gm/dengm_global_gs8009xl01.mp3	de	0.81	Kämpfe Soldat!	
+sound/dialogue/global/gm/dengm_global_gs8009xl02.mp3	de	0.45	Kämpfe Soldat!	
+sound/dialogue/global/gm/dengm_global_gs8009xl03.mp3	de	0.80	Kämpfe Soldat!	
+sound/dialogue/global/gm/dengm_global_gs8010xl01.mp3	de	0.81	Was war das?	
+sound/dialogue/global/gm/dengm_global_gs8010xl02.mp3	hi	0.35	वस्वारास!	
+sound/dialogue/global/gm/dengm_global_gs8010xl03.mp3	en	0.38	PASMARAS!	
+sound/dialogue/global/gm/dengm_global_gs8011xl01.mp3	en	0.29	HEADFIRE!	
+sound/dialogue/global/gm/dengm_global_gs8011xl02.mp3	en	0.33	HIFAAA!	
+sound/dialogue/global/gm/dengm_global_gs8012xl01.mp3	de	0.75	Ich bin hier!	
+sound/dialogue/global/gm/dengm_global_gs8012xl02.mp3	en	0.50	I'm here!	
+sound/dialogue/global/gm/dengm_global_gs8012xl03.mp3	en	0.82	I'm here!	
+sound/dialogue/global/gm/dengm_global_gs8013xl02.mp3	zh	0.18	表达	
+sound/dialogue/global/gm/dengm_global_gs8013xl03.mp3	zh	0.29	别打	
+sound/dialogue/global/gm/dengm_global_gs8013xl09.mp3	es	0.71	¡Esta!	
+sound/dialogue/global/gm/dengm_global_gs8013xl12.mp3	es	0.91	¡Y ahí está!	
+sound/dialogue/global/gm/dengm_global_gs8014xl02.mp3	zh	0.18	I TRIGGER	
+sound/dialogue/global/gm/dengm_global_gs8014xl04.mp3	en	0.56	I TIGER!	
+sound/dialogue/global/gm/dengm_global_gs8014xl05.mp3	en	0.54	EINZLEGGER!	
+sound/dialogue/global/it/denit_global_is7101xm01.mp3	it	1.00	Da quella parte!	
+sound/dialogue/global/it/denit_global_is7101xm02.mp3	it	0.99	Da quella parte!	
+sound/dialogue/global/it/denit_global_is7101xm03.mp3	it	0.99	da quella parte	
+sound/dialogue/global/it/denit_global_is7102xm01.mp3	fr	0.40	Respondez-t-elle foie, encore !	
+sound/dialogue/global/it/denit_global_is7102xm02.mp3	it	0.97	rispondete il fuoco!	
+sound/dialogue/global/it/denit_global_is7102xm03.mp3	it	0.79	Rispondite al fuoco!	
+sound/dialogue/global/it/denit_global_is7103xm01.mp3	it	0.95	UN IMPOSCATA!	
+sound/dialogue/global/it/denit_global_is7103xm02.mp3	it	0.88	UN INBOSCATA!	
+sound/dialogue/global/it/denit_global_is7103xm03.mp3	it	0.87	Un'imposcata!	
+sound/dialogue/global/it/denit_global_is7104xm01.mp3	it	0.97	Sono davunque!	
+sound/dialogue/global/it/denit_global_is7104xm02.mp3	ru	0.17	САРАДО ВОУУУУУУУУУУ! КУЭ!	
+sound/dialogue/global/it/denit_global_is7104xm03.mp3	fr	0.27	Salut d'avance !	
+sound/dialogue/global/it/denit_global_is7105xm01.mp3	it	0.47	E' con ora!	
+sound/dialogue/global/it/denit_global_is7105xm02.mp3	es	0.45	¡Ecorrola!	
+sound/dialogue/global/it/denit_global_is7105xm03.mp3	it	0.59	Eccolo là!	
+sound/dialogue/global/it/denit_global_is7106xm06.mp3	es	0.73	¡Pero un pelo!	
+sound/dialogue/global/it/denit_global_is7106xm11.mp3	it	0.56	PER UN SOFIO!	
+sound/dialogue/global/it/denit_global_is7107xm01.mp3	it	0.98	lì davanti!	
+sound/dialogue/global/it/denit_global_is7107xm02.mp3	it	0.98	lì davanti!	
+sound/dialogue/global/it/denit_global_is7107xm03.mp3	it	0.96	lì davanti!	
+sound/dialogue/global/it/denit_global_is7108xm01.mp3	es	0.63	¡DIETRO DE NOY!	
+sound/dialogue/global/it/denit_global_is7108xm02.mp3	it	0.71	dietro di noi!	
+sound/dialogue/global/it/denit_global_is7108xm03.mp3	it	0.98	DIETRO DI NOI!	
+sound/dialogue/global/it/denit_global_is7109xm01.mp3	it	0.87	combatti soldato	
+sound/dialogue/global/it/denit_global_is7109xm02.mp3	it	0.97	COMBATTI SOLDATO!	
+sound/dialogue/global/it/denit_global_is7109xm03.mp3	it	0.94	COMBATTI, SOLDATO!	
+sound/dialogue/global/it/denit_global_is7109xm04.mp3	it	0.90	COMBATTI SOLDATO!	
+sound/dialogue/global/it/denit_global_is7110xm01.mp3	it	0.97	Cos'è stato?	
+sound/dialogue/global/it/denit_global_is7110xm02.mp3	it	0.98	Cos'è stato?	
+sound/dialogue/global/it/denit_global_is7110xm03.mp3	it	1.00	Cosa è stato?	
+sound/dialogue/global/it/denit_global_is7111xm01.mp3	ja	0.53	アユウト!	
+sound/dialogue/global/it/denit_global_is7111xm02.mp3	it	0.44	Aiuto!	
+sound/dialogue/global/it/denit_global_is7112xm01.mp3	fr	0.27	SONU QUI !	
+sound/dialogue/global/it/denit_global_is7112xm03.mp3	en	0.34	SON OF QUEEN!	
+sound/dialogue/global/it/denit_global_is7113xm01.mp3	fr	0.40	C'est tout !	
+sound/dialogue/global/it/denit_global_is7113xm02.mp3	fr	0.37	C'EST TOUT !	
+sound/dialogue/global/it/denit_global_is7113xm03.mp3	fr	0.40	C'EST TOUT !	
+sound/dialogue/global/it/denit_global_is7114xm01.mp3	it	0.63	CI ATTACCANO!	
+sound/dialogue/global/it/denit_global_is7114xm02.mp3	it	0.81	CI ATTACANO!	
+sound/dialogue/global/it/denit_global_is7114xm03.mp3	fr	0.16	J'ATTACANON !	
+sound/dialogue/global/it/denit_global_is7201xn01.mp3	it	0.99	DA QUESTA PARTE!	
+sound/dialogue/global/it/denit_global_is7201xn02.mp3	it	0.99	D'A QUESTA PARTE!	
+sound/dialogue/global/it/denit_global_is7201xn03.mp3	it	0.99	TA QUESTA PARTE	
+sound/dialogue/global/it/denit_global_is7202xn01.mp3	it	0.91	Rispondete al fuoco!	
+sound/dialogue/global/it/denit_global_is7202xn03.mp3	it	0.98	rispondete al fuoco!	
+sound/dialogue/global/it/denit_global_is7203xn01.mp3	it	0.22	IN BOSCATA!	
+sound/dialogue/global/it/denit_global_is7203xn02.mp3	it	0.73	IMPOSCATA!	
+sound/dialogue/global/it/denit_global_is7203xn04.mp3	it	0.55	UN INBOSCATA!	
+sound/dialogue/global/it/denit_global_is7203xn06.mp3	it	0.92	UNIN BOSCATA!	
+sound/dialogue/global/it/denit_global_is7204xn01.mp3	it	0.65	SONO DOVUNQUE!	
+sound/dialogue/global/it/denit_global_is7204xn03.mp3	it	0.58	Salute ovunque!	
+sound/dialogue/global/it/denit_global_is7205xn01.mp3	it	0.75	Eccolo là!	
+sound/dialogue/global/it/denit_global_is7205xn03.mp3	es	0.19	¡Escolola!	
+sound/dialogue/global/it/denit_global_is7206xn05.mp3	pt	0.50	PERO UM SOFIO!	
+sound/dialogue/global/it/denit_global_is7206xn06.mp3	es	0.69	¡Pero un pelo!	
+sound/dialogue/global/it/denit_global_is7207xn01.mp3	it	0.91	lì davanti!	
+sound/dialogue/global/it/denit_global_is7207xn02.mp3	it	0.93	Lì davanti!	
+sound/dialogue/global/it/denit_global_is7208xn01.mp3	it	0.97	dietro di noi!	
+sound/dialogue/global/it/denit_global_is7208xn02.mp3	it	0.44	dietro di noi!	
+sound/dialogue/global/it/denit_global_is7208xn03.mp3	it	0.83	dietro di noi!	
+sound/dialogue/global/it/denit_global_is7209xn01.mp3	it	0.89	combatti soldato	
+sound/dialogue/global/it/denit_global_is7209xn02.mp3	it	0.92	COMBATTI SOLDATO!	
+sound/dialogue/global/it/denit_global_is7210xn01.mp3	it	0.94	Cosa è stato?	
+sound/dialogue/global/it/denit_global_is7210xn04.mp3	it	0.99	Cosa è stato?	
+sound/dialogue/global/it/denit_global_is7210xn06.mp3	es	0.96	¡Cos estátuo!	
+sound/dialogue/global/it/denit_global_is7210xn08.mp3	it	0.98	Cosa è stato?	
+sound/dialogue/global/it/denit_global_is7211xn01.mp3	es	0.62	¡Ayuto!	
+sound/dialogue/global/it/denit_global_is7211xn02.mp3	es	0.73	¡Ayuto!	
+sound/dialogue/global/it/denit_global_is7211xn05.mp3	ja	0.78	アイオット!	
+sound/dialogue/global/it/denit_global_is7212xn01.mp3	ja	0.38	そろこい!	
+sound/dialogue/global/it/denit_global_is7212xn02.mp3	it	0.48	EI! SONO QUI!	
+sound/dialogue/global/it/denit_global_is7212xn03.mp3	ja	0.24	ソロクイー!	
+sound/dialogue/global/it/denit_global_is7213xn01.mp3	fr	0.71	C'est tout !	
+sound/dialogue/global/it/denit_global_is7213xn03.mp3	fr	0.76	C'est tout !	
+sound/dialogue/global/it/denit_global_is7213xn04.mp3	fr	0.54	C'est tout !	
+sound/dialogue/global/it/denit_global_is7213xn06.mp3	fr	0.80	C'est trop !	
+sound/dialogue/global/it/denit_global_is7214xn01.mp3	ja	0.82	じゃったっかの!	
+sound/dialogue/global/it/denit_global_is7214xn02.mp3	ja	0.60	キャッタッカロー!	
+sound/dialogue/global/it/denit_global_is7214xn05.mp3	es	0.33	¡Qué atacano!	
+sound/dialogue/global/uk/dfruk_alert_dw3451xe01.mp3	en	0.95	Thanks!	
+sound/dialogue/global/uk/dfruk_alert_dw3451xe02.mp3	en	0.95	Thanks!	
+sound/dialogue/global/uk/dfruk_alert_dw3452xe04.mp3	en	0.92	Take cover!	
+sound/dialogue/global/uk/dfruk_alert_dw3452xe05.mp3	en	0.94	Take cover!	
+sound/dialogue/global/uk/dfruk_alert_dw3452xe06.mp3	en	0.86	Take cover!	
+sound/dialogue/global/uk/dfruk_alert_dw3453xe01.mp3	zh	0.78	真的啦	
+sound/dialogue/global/uk/dfruk_alert_dw3453xe02.mp3	zh	0.93	吃豆腐	
+sound/dialogue/global/uk/dfruk_alert_dw3454xe01.mp3	en	0.96	To the right!	
+sound/dialogue/global/uk/dfruk_alert_dw3454xe02.mp3	en	0.97	To the right!	
+sound/dialogue/global/uk/dfruk_alert_dw3454xe03.mp3	en	0.95	To the right!	
+sound/dialogue/global/uk/dfruk_alert_dw3455xe01.mp3	en	0.85	BEHIND YOU!	
+sound/dialogue/global/uk/dfruk_alert_dw3455xe03.mp3	en	0.98	Behind you!	
+sound/dialogue/global/uk/dfruk_alert_dw3456xe01.mp3	en	0.93	Germans dead ahead	
+sound/dialogue/global/uk/dfruk_alert_dw3456xe02.mp3	en	0.92	Germans, get ahead!	
+sound/dialogue/global/uk/dfruk_alert_dw3456xe03.mp3	en	0.97	Germans, get ahead!	
+sound/dialogue/global/uk/dfruk_alert_dw3457xe01.mp3	en	0.43	Good to see you sergeant.	
+sound/dialogue/global/uk/dfruk_alert_dw3457xe02.mp3	en	0.98	Good to see you, Sergeant!	
+sound/dialogue/global/uk/dfruk_alert_dw3457xe03.mp3	en	0.95	Good to see you, Sergeant!	
+sound/dialogue/global/uk/dfruk_alert_dw3458xe01.mp3	en	0.97	Let's get out of here!	
+sound/dialogue/global/uk/dfruk_alert_dw3458xe02.mp3	en	0.97	Let's get out of here!	
+sound/dialogue/global/uk/dfruk_alert_dw3458xe03.mp3	en	0.99	Let's get out of here!	
+sound/dialogue/global/uk/dfruk_alert_dw3459xe01.mp3	en	0.62	Take your positions!	
+sound/dialogue/global/uk/dfruk_alert_dw3459xe02.mp3	en	0.81	Thank you, Positions!	
+sound/dialogue/global/uk/dfruk_alert_dw3460xe01.mp3	en	0.98	MOVE! MOVE! MOVE!	
+sound/dialogue/global/uk/dfruk_alert_ts3651xh01.mp3	en	0.99	Thanks!	
+sound/dialogue/global/uk/dfruk_alert_ts3651xh02.mp3	en	0.98	Thanks!	
+sound/dialogue/global/uk/dfruk_alert_ts3651xh03.mp3	en	0.99	Thanks!	
+sound/dialogue/global/uk/dfruk_alert_ts3652xh04.mp3	en	0.96	TAKE COVER!	
+sound/dialogue/global/uk/dfruk_alert_ts3652xh05.mp3	en	0.80	CHECK COVER!	
+sound/dialogue/global/uk/dfruk_alert_ts3652xh06.mp3	en	0.76	TAKE CARE!	
+sound/dialogue/global/uk/dfruk_alert_ts3653xh01.mp3	en	0.63	To the left!	
+sound/dialogue/global/uk/dfruk_alert_ts3653xh02.mp3	en	0.97	To the left!	
+sound/dialogue/global/uk/dfruk_alert_ts3653xh03.mp3	en	0.26	To the left!	
+sound/dialogue/global/uk/dfruk_alert_ts3654xh01.mp3	en	0.99	To the right!	
+sound/dialogue/global/uk/dfruk_alert_ts3654xh02.mp3	en	0.98	To the right!	
+sound/dialogue/global/uk/dfruk_alert_ts3654xh03.mp3	en	0.98	To the right!	
+sound/dialogue/global/uk/dfruk_alert_ts3655xh01.mp3	en	0.99	BEYOND YOU!	
+sound/dialogue/global/uk/dfruk_alert_ts3655xh02.mp3	en	0.98	BEYOND YOU!	
+sound/dialogue/global/uk/dfruk_alert_ts3656xh01.mp3	en	0.80	Germans today	
+sound/dialogue/global/uk/dfruk_alert_ts3656xh02.mp3	en	0.75	GERMANS! DE-DE-DE-DE-DE-DE!	
+sound/dialogue/global/uk/dfruk_alert_ts3657xh01.mp3	en	0.99	Good to see you, Sergeant!	
+sound/dialogue/global/uk/dfruk_alert_ts3657xh02.mp3	en	0.98	Good to see you, Sergeant!	
+sound/dialogue/global/uk/dfruk_alert_ts3657xh03.mp3	en	0.96	Good to see you, Sergeant!	
+sound/dialogue/global/uk/dfruk_alert_ts3658xh01.mp3	en	0.98	Let's get outta here!	
+sound/dialogue/global/uk/dfruk_alert_ts3658xh02.mp3	en	0.97	Let's get outta here!	
+sound/dialogue/global/uk/dfruk_alert_ts3658xh03.mp3	en	0.98	Let's get outta here!	
+sound/dialogue/global/uk/dfruk_alert_ts3659xh03.mp3	en	0.98	TAKE YOUR POSITIONS!	
+sound/dialogue/global/uk/dfruk_alert_ts3659xh04.mp3	en	0.98	TAKE YOUR POSITIONS!	
+sound/dialogue/global/uk/dfruk_alert_ts3659xh06.mp3	en	0.94	TAKE YOUR POSITIONS!	
+sound/dialogue/global/uk/dfruk_alert_ts3660xh01.mp3	en	0.93	MOVE! MOVE! MOVE!	
+sound/dialogue/global/uk/dfruk_alert_ts3660xh02.mp3	en	0.99	Move! Move! Move!	
+sound/dialogue/global/uk/dfruk_alert_ts3661xh01.mp3	en	0.92	Bloody hell!	
+sound/dialogue/global/uk/dfruk_alert_ts3661xh02.mp3	en	0.96	Bloody hell!	
+sound/dialogue/global/uk/dfruk_global_bs5001xj01.mp3	en	0.93	I'M A HELL	
+sound/dialogue/global/uk/dfruk_global_bs5001xj02.mp3	en	0.83	Over here!	
+sound/dialogue/global/uk/dfruk_global_bs5002xj01.mp3	en	0.90	RETURN FOR-	
+sound/dialogue/global/uk/dfruk_global_bs5002xj02.mp3	en	0.92	RETURN FIRE!	
+sound/dialogue/global/uk/dfruk_global_bs5002xj03.mp3	en	0.98	RETURN FILE!	
+sound/dialogue/global/uk/dfruk_global_bs5003xj03.mp3	fr	0.31	Abonnez-vous !	
+sound/dialogue/global/uk/dfruk_global_bs5003xj04.mp3	en	0.42	HANBUSH!	
+sound/dialogue/global/uk/dfruk_global_bs5004xj02.mp3	en	0.98	They're everywhere!	
+sound/dialogue/global/uk/dfruk_global_bs5005xj02.mp3	en	0.96	THERE HE IS!	
+sound/dialogue/global/uk/dfruk_global_bs5005xj03.mp3	en	0.97	There he is!	
+sound/dialogue/global/uk/dfruk_global_bs5006xj01.mp3	en	0.99	That was close!	
+sound/dialogue/global/uk/dfruk_global_bs5006xj03.mp3	en	0.98	That was close!	
+sound/dialogue/global/uk/dfruk_global_bs5007xj01.mp3	en	0.70	HAPPY HEAD!	
+sound/dialogue/global/uk/dfruk_global_bs5007xj02.mp3	en	0.97	UP AHEAD!	
+sound/dialogue/global/uk/dfruk_global_bs5007xj03.mp3	en	0.94	UP AHEAD!	
+sound/dialogue/global/uk/dfruk_global_bs5008xj01.mp3	en	0.77	BEHIND US!	
+sound/dialogue/global/uk/dfruk_global_bs5008xj02.mp3	en	0.69	BEHIND US!	
+sound/dialogue/global/uk/dfruk_global_bs5008xj03.mp3	en	0.70	BEHIND US!	
+sound/dialogue/global/uk/dfruk_global_bs5009xj01.mp3	en	0.96	Fight, soldier!	
+sound/dialogue/global/uk/dfruk_global_bs5010xj01.mp3	en	0.93	What was that?	
+sound/dialogue/global/uk/dfruk_global_bs5010xj02.mp3	en	0.30	BUBBLEDOT!	
+sound/dialogue/global/uk/dfruk_global_bs5010xj03.mp3	en	0.76	What was that?	
+sound/dialogue/global/uk/dfruk_global_bs5010xj05.mp3	ja	0.66	オーバーザー!	
+sound/dialogue/global/uk/dfruk_global_bs5010xj06.mp3	en	0.93	What was that?	
+sound/dialogue/global/uk/dfruk_global_bs5011xj01.mp3	en	0.93	HOPE	
+sound/dialogue/global/uk/dfruk_global_bs5011xj02.mp3	en	0.93	HELP!	
+sound/dialogue/global/uk/dfruk_global_bs5011xj03.mp3	en	0.97	HELP!	
+sound/dialogue/global/uk/dfruk_global_bs5011xj04.mp3	en	0.93	HELP!	
+sound/dialogue/global/uk/dfruk_global_bs5012xj01.mp3	en	0.89	HELLO!	
+sound/dialogue/global/uk/dfruk_global_bs5012xj03.mp3	en	0.72	Hello!	
+sound/dialogue/global/uk/dfruk_global_bs5012xj04.mp3	en	0.85	Hello?	
+sound/dialogue/global/uk/dfruk_global_bs5012xj05.mp3	en	0.95	Hello!	
+sound/dialogue/global/uk/dfruk_global_bs5013xj01.mp3	en	0.93	Hello?	
+sound/dialogue/global/uk/dfruk_global_bs5013xj02.mp3	en	0.94	Hello?	
+sound/dialogue/global/uk/dfruk_global_bs5013xj03.mp3	en	0.86	Hello?	
+sound/dialogue/global/uk/dfruk_global_bs5014xj02.mp3	en	0.84	IN COMING!	
+sound/dialogue/global/uk/dfruk_global_bs5014xj04.mp3	en	0.92	AND COMING!	
+sound/dialogue/global/uk/dfruk_global_bs5019xj03.mp3	en	0.95	Thanks!	
+sound/dialogue/global/uk/dfruk_global_bs5020xj01.mp3	en	0.46	Take them up!	
+sound/dialogue/global/uk/dfruk_global_bs5020xj02.mp3	ja	0.64	タイカラー!	
+sound/dialogue/global/uk/dfruk_global_bs5020xj03.mp3	en	0.73	Take cover!	
+sound/dialogue/global/uk/dfruk_global_bs5021xj01.mp3	en	0.81	To the left!	
+sound/dialogue/global/uk/dfruk_global_bs5021xj02.mp3	en	0.87	To the left!	
+sound/dialogue/global/uk/dfruk_global_bs5021xj03.mp3	en	0.89	To the left!	
+sound/dialogue/global/uk/dfruk_global_bs5022xj01.mp3	en	0.98	To the right!	
+sound/dialogue/global/uk/dfruk_global_bs5022xj02.mp3	en	0.92	To the right!	
+sound/dialogue/global/uk/dfruk_global_bs5023xj01.mp3	en	0.91	Thank you!	
+sound/dialogue/global/uk/dfruk_global_bs5023xj02.mp3	en	0.94	Behind you!	
+sound/dialogue/global/uk/dfruk_global_bs5024xj01.mp3	en	0.92	GERMAN'S DEADHEAD!	
+sound/dialogue/global/uk/dfruk_global_bs5024xj03.mp3	en	0.91	JOURNALS, GET AHEAD!	
+sound/dialogue/global/uk/dfruk_global_bs5025xj01.mp3	en	0.97	Good to see you, Sergeant!	
+sound/dialogue/global/uk/dfruk_global_bs5025xj02.mp3	en	0.99	Good to see you, Sergeant!	
+sound/dialogue/global/uk/dfruk_global_bs5026xj01.mp3	en	0.97	Let's get out of here!	
+sound/dialogue/global/uk/dfruk_global_bs5027xj02.mp3	en	0.72	Take your positions!	
+sound/dialogue/global/uk/dfruk_global_bs5027xj03.mp3	en	0.77	Take your positions!	
+sound/dialogue/global/uk/dfruk_global_bs5028xj01.mp3	en	0.84	BOOM! BOOM! BOOM!	
+sound/dialogue/global/uk/dfruk_global_bs5028xj02.mp3	en	0.56	MOVE! MOVE! MOVE!	
+sound/dialogue/global/uk/dfruk_global_bs5028xj03.mp3	en	0.76	BOOM! BOOM! BOOM!	
+sound/dialogue/global/uk/dfruk_global_bs5036xj02.mp3	en	0.51	FUUUUU-	
+sound/dialogue/global/uk/dfruk_global_bs5045xj01.mp3	en	0.93	Bloody hell!	
+sound/dialogue/global/uk/dfruk_global_bs5045xj03.mp3	en	0.90	Bloody hell!	
+sound/dialogue/global/us/dfrus_global_as6001xf01.mp3	en	0.97	OVER HERE!	
+sound/dialogue/global/us/dfrus_global_as6001xf02.mp3	en	0.97	OVER HERE!	
+sound/dialogue/global/us/dfrus_global_as6002xf02.mp3	en	0.98	RETURN FIRE!	
+sound/dialogue/global/us/dfrus_global_as6002xf03.mp3	en	0.95	RETURN FIRE!	
+sound/dialogue/global/us/dfrus_global_as6003xf02.mp3	en	0.75	ABUSH!	
+sound/dialogue/global/us/dfrus_global_as6003xf03.mp3	en	0.47	AHHHHH BYE!	
+sound/dialogue/global/us/dfrus_global_as6004xf03.mp3	en	0.96	THEY'RE EVERYWHERE!	
+sound/dialogue/global/us/dfrus_global_as6005xf01.mp3	en	0.98	THERE IT IS!	
+sound/dialogue/global/us/dfrus_global_as6005xf02.mp3	en	0.99	THERE HE IS!	
+sound/dialogue/global/us/dfrus_global_as6006xf04.mp3	en	0.99	That was close!	
+sound/dialogue/global/us/dfrus_global_as6006xf05.mp3	en	0.98	That was close!	
+sound/dialogue/global/us/dfrus_global_as6006xf06.mp3	en	0.99	That was close!	
+sound/dialogue/global/us/dfrus_global_as6007xf01.mp3	en	0.95	UP AHEAD!	
+sound/dialogue/global/us/dfrus_global_as6007xf08.mp3	en	0.94	UP A HAND!	
+sound/dialogue/global/us/dfrus_global_as6008xf02.mp3	en	0.96	BEHIND US!	
+sound/dialogue/global/us/dfrus_global_as6008xf03.mp3	en	0.85	BEHIND US!	
+sound/dialogue/global/us/dfrus_global_as6009xf01.mp3	en	0.97	Bye, soldier!	
+sound/dialogue/global/us/dfrus_global_as6010xf02.mp3	en	0.99	What was that?	
+sound/dialogue/global/us/dfrus_global_as6010xf03.mp3	en	0.99	WHAT WAS THAT?!	
+sound/dialogue/global/us/dfrus_global_as6010xf04.mp3	en	0.96	What was that?	
+sound/dialogue/global/us/dfrus_global_as6011xf02.mp3	en	0.92	HELP!	
+sound/dialogue/global/us/dfrus_global_as6012xf03.mp3	en	0.92	HELLO!	
+sound/dialogue/global/us/dfrus_global_as6012xf07.mp3	en	0.96	Hello!	
+sound/dialogue/global/us/dfrus_global_as6013xf02.mp3	en	0.97	Hello?	
+sound/dialogue/global/us/dfrus_global_as6013xf03.mp3	en	0.93	Hello?	
+sound/dialogue/global/us/dfrus_global_as6014xf01.mp3	en	0.93	INCOMING!	
+sound/dialogue/global/us/dfrus_global_as6014xf02.mp3	en	0.95	INCOMING!	
+sound/dialogue/global/us/dfrus_global_as6014xf03.mp3	en	0.84	IN COMING!	
+sound/dialogue/global/us/dfrus_global_as6201xb01.mp3	en	0.99	Over here!	
+sound/dialogue/global/us/dfrus_global_as6201xb02.mp3	en	0.99	OVER HERE!	
+sound/dialogue/global/us/dfrus_global_as6201xb03.mp3	en	0.98	OVER HERE!	
+sound/dialogue/global/us/dfrus_global_as6202xb01.mp3	en	0.98	Return fire!	
+sound/dialogue/global/us/dfrus_global_as6202xb03.mp3	en	0.98	RETURN FIRE!	
+sound/dialogue/global/us/dfrus_global_as6203xb01.mp3	en	0.96	Ambush!	
+sound/dialogue/global/us/dfrus_global_as6203xb02.mp3	en	0.79	ENBUSH!	
+sound/dialogue/global/us/dfrus_global_as6203xb03.mp3	en	0.93	Ambush!	
+sound/dialogue/global/us/dfrus_global_as6204xb01.mp3	en	0.97	THEY'RE EVERYWHERE!	
+sound/dialogue/global/us/dfrus_global_as6204xb02.mp3	en	0.98	THEY'RE EVERYWHERE!	
+sound/dialogue/global/us/dfrus_global_as6205xb01.mp3	en	0.99	There he is!	
+sound/dialogue/global/us/dfrus_global_as6205xb02.mp3	en	0.99	THERE HE IS!	
+sound/dialogue/global/us/dfrus_global_as6205xb03.mp3	en	0.99	THERE HE IS!	
+sound/dialogue/global/us/dfrus_global_as6206xb06.mp3	en	0.99	That was close!	
+sound/dialogue/global/us/dfrus_global_as6207xb01.mp3	en	0.98	UP AHEAD!	
+sound/dialogue/global/us/dfrus_global_as6207xb02.mp3	en	0.98	UP AHEAD!	
+sound/dialogue/global/us/dfrus_global_as6207xb03.mp3	en	0.98	UP AHEAD!	
+sound/dialogue/global/us/dfrus_global_as6208xb01.mp3	de	0.60	Behind us!	
+sound/dialogue/global/us/dfrus_global_as6208xb02.mp3	en	0.96	BEHIND US!	
+sound/dialogue/global/us/dfrus_global_as6208xb03.mp3	en	0.97	BEHIND US!	
+sound/dialogue/global/us/dfrus_global_as6209xb01.mp3	en	0.96	FIGHT, SHOLDER!	
+sound/dialogue/global/us/dfrus_global_as6209xb02.mp3	en	0.97	FIGHT SOLDIER!	
+sound/dialogue/global/us/dfrus_global_as6209xb03.mp3	en	0.97	Fight, soldier!	
+sound/dialogue/global/us/dfrus_global_as6210xb01.mp3	en	0.94	What was that?	
+sound/dialogue/global/us/dfrus_global_as6210xb05.mp3	en	0.94	What was that?	
+sound/dialogue/global/us/dfrus_global_as6211xb01.mp3	en	0.95	HELP!	
+sound/dialogue/global/us/dfrus_global_as6211xb02.mp3	en	0.96	HELP!	
+sound/dialogue/global/us/dfrus_global_as6212xb03.mp3	en	0.93	HELLO!	
+sound/dialogue/global/us/dfrus_global_as6212xb06.mp3	en	0.94	HELLO!	
+sound/dialogue/global/us/dfrus_global_as6213xb01.mp3	en	0.95	Hello?	
+sound/dialogue/global/us/dfrus_global_as6213xb02.mp3	en	0.96	Hello?	
+sound/dialogue/global/us/dfrus_global_as6214xb01.mp3	en	0.95	INCOMING!	
+sound/dialogue/global/us/dfrus_global_as6214xb02.mp3	en	0.95	INCOMING!	
+sound/dialogue/global/us/dfrus_global_as6214xb03.mp3	en	0.91	INCOMING!	
+sound/dialogue/global/us/dfrus_global_as6301xr01.mp3	en	0.99	OVER HERE!	
+sound/dialogue/global/us/dfrus_global_as6301xr02.mp3	en	0.99	OVER HERE!	
+sound/dialogue/global/us/dfrus_global_as6301xr03.mp3	en	0.99	OVER HERE!	
+sound/dialogue/global/us/dfrus_global_as6302xr01.mp3	en	0.98	Return fire!	
+sound/dialogue/global/us/dfrus_global_as6302xr02.mp3	en	0.98	Return fire!	
+sound/dialogue/global/us/dfrus_global_as6302xr03.mp3	en	0.97	RETURN FIRE!	
+sound/dialogue/global/us/dfrus_global_as6303xr01.mp3	en	0.17	ENBUSH!	
+sound/dialogue/global/us/dfrus_global_as6303xr02.mp3	en	0.94	AMBUSH!	
+sound/dialogue/global/us/dfrus_global_as6303xr03.mp3	en	0.80	AMBUSH!	
+sound/dialogue/global/us/dfrus_global_as6304xr01.mp3	en	0.98	They're everywhere!	
+sound/dialogue/global/us/dfrus_global_as6304xr02.mp3	en	0.98	THEY'RE EVERYWHERE!	
+sound/dialogue/global/us/dfrus_global_as6304xr03.mp3	en	0.98	THEY'RE EVERYWHERE!	
+sound/dialogue/global/us/dfrus_global_as6305xr01.mp3	en	0.98	There he is!	
+sound/dialogue/global/us/dfrus_global_as6305xr02.mp3	en	0.99	THERE HE IS!	
+sound/dialogue/global/us/dfrus_global_as6305xr03.mp3	en	0.98	THERE HE IS!	
+sound/dialogue/global/us/dfrus_global_as6306xr02.mp3	en	0.98	That was close!	
+sound/dialogue/global/us/dfrus_global_as6307xr01.mp3	en	0.98	UP AHEAD!	
+sound/dialogue/global/us/dfrus_global_as6307xr02.mp3	en	0.99	UP AHEAD!	
+sound/dialogue/global/us/dfrus_global_as6307xr03.mp3	en	0.98	UP AHEAD!	
+sound/dialogue/global/us/dfrus_global_as6308xr01.mp3	en	0.60	Behind us!	
+sound/dialogue/global/us/dfrus_global_as6308xr02.mp3	en	0.93	BEHIND US!	
+sound/dialogue/global/us/dfrus_global_as6308xr03.mp3	en	0.87	BEHIND US!	
+sound/dialogue/global/us/dfrus_global_as6309xr01.mp3	en	0.97	Fight, soldier!	
+sound/dialogue/global/us/dfrus_global_as6309xr02.mp3	en	0.89	Fight, soldier!	
+sound/dialogue/global/us/dfrus_global_as6309xr03.mp3	en	0.96	Bye, soldier!	
+sound/dialogue/global/us/dfrus_global_as6310xr01.mp3	en	0.99	What was that?	
+sound/dialogue/global/us/dfrus_global_as6310xr02.mp3	en	0.99	What was that?	
+sound/dialogue/global/us/dfrus_global_as6310xr03.mp3	en	0.98	What was that?	
+sound/dialogue/global/us/dfrus_global_as6311xr01.mp3	en	0.98	Help!	
+sound/dialogue/global/us/dfrus_global_as6311xr02.mp3	en	0.98	Help!	
+sound/dialogue/global/us/dfrus_global_as6311xr03.mp3	en	0.97	HELP!	
+sound/dialogue/global/us/dfrus_global_as6311xr04.mp3	en	0.98	HELP!	
+sound/dialogue/global/us/dfrus_global_as6311xr05.mp3	en	0.97	HELP!	
+sound/dialogue/global/us/dfrus_global_as6311xr07.mp3	en	0.96	HELP!	
+sound/dialogue/global/us/dfrus_global_as6312xr01.mp3	en	0.89	Hello!	
+sound/dialogue/global/us/dfrus_global_as6312xr02.mp3	en	0.92	Hello!	
+sound/dialogue/global/us/dfrus_global_as6312xr03.mp3	en	0.96	Hello!	
+sound/dialogue/global/us/dfrus_global_as6313xr01.mp3	en	0.95	Hello?	
+sound/dialogue/global/us/dfrus_global_as6313xr02.mp3	en	0.96	Hello?	
+sound/dialogue/global/us/dfrus_global_as6313xr03.mp3	en	0.78	Hello?	
+sound/dialogue/global/us/dfrus_global_as6314xr01.mp3	en	0.99	INCOMING!	
+sound/dialogue/global/us/dfrus_global_as6314xr02.mp3	en	0.98	INCOMING!	
+sound/dialogue/global/us/dfrus_global_as6314xr03.mp3	en	0.96	IN COMING!	
+sound/mechanics/mec_radioloop_03.wav	en	0.31	Thanks for watching!	
+sound/mechanics/mec_radionoise_11.wav	nn	0.34		
+sound/mechanics/mec_switch_05.wav	en	0.47		
+sound/mechanics/shortwave3.wav	en	0.33		
+sound/mechanics/shortwave4.wav	en	0.49		
+sound/weapons/explo/explo_metalmed3.wav	en	0.62	THANKS FOR WATCHING	
+sound/weapons/explo/explo_metalmed5.wav	en	0.39	You	
