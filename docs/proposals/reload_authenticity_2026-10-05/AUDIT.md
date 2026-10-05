@@ -297,3 +297,20 @@ screenshot every 3rd frame at fixedtime 16. Sheets: `sheets/engine/<gun>.jpg` (1
 9. **M1919, then MG42 belt reloads** with an opening cover (mesh re-rig + belt prop + hands). ~28 h, last: largest,
    shares tooling, and nothing else waits on it.
 After each hip clip lands: its `_ads` rebake (ADS agent), then a batched slot run per group.
+
+## PHASE B progress (2026-10-05)
+Engine: d154f251 (cgame per-weapon reload clips `coopr_<weapon key>_<suffix>`, data in anims_shared.txt; Webley Mk VI ->
+Webley hands; test-only `coop_vmPrefixTest`), 7dbf3ca5 (ejected magazines rest on their side). Tools: `engine/apply_*.py`,
+`tools/retarget.py` (donor clip -> per-gun clip: hand offsets in the gun frame, holds, idle seams, a hand tag that
+carries a prop from the grip frame), `tools/skc_slice.py`, `tools/run_reloadauth.py` + `plan_rb1.py`, `tools/runsheets.py`
+(sheets + automatic single-frame pop scan), `tools/ab_gif.py`. In-engine run `rb1` (cgame 4e7aaae2, game 55686351):
+0 script errors, pop scores <= 0.3 (none). GIFs: `G:\mohaa-reloadauth\gifs\`.
+
+| group | status | mod |
+|---|---|---|
+| 1 scoped bolt rifles single-round | done | f742cd3a |
+| 2 Webley Mk VI break-top | done | 42cc8d19 |
+| 3 M1 Carbine box magazine | done | a0a99baf |
+| 4 Lewis pan (+ DP-28 pan, audit correction: its pan never left the gun) | DP-28 verified; Lewis pan prop rendered the WHOLE gun in rb1 ("flags nodraw" ignored on an attached model) -> fixed with a pan-only skd (`coop_lewis_pan.skd`, header lists only `drum`); needs one re-test | uncommitted |
+| 5 Beretta M38 hold | no change: identical to the TA Moschetto hold in engine (same skeleton + world anims; MP40/Thompson hands looked the same) | - |
+| 6-8 drums, MP18, C96, belts | next | - |
