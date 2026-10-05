@@ -75,6 +75,10 @@ held dry, wetness forced to full (film 1, puddles 1), identical camera poses, MS
   puddle zones, and shader eligibility. Not changed: deform water and blended `nextbundle` decals (m4l2
   `ties_decal`, the railway ties) are drawn by gl2's generic program and never get wet; static models and brush
   entities stay dry (by design).
+- The soft white ORB above the far end of the m4l2 track in some GIF frames is the watchtower SEARCHLIGHT's glow (the
+  map's own sweeping `global/spotlight.scr`), not the waterfix: at one fixed pose it shows in BEFORE and AFTER alike,
+  with wetness off and on, depending only on where the sweeping beam points at capture time
+  (`evidence/m4l2_orb_is_the_searchlight.jpg`, 6 same-pose captures from runs 2 and 4).
 - m4l2's blue "frost" on the ballast is the DRY moonlit look (dry RGB 62/83/104, wet 45/63/81) - not the wetness.
 - m3l2 courtyard: faint grey puddles remain (now darker than the dry ground's sky glare, not white).
 - The flip guard applies: `publish_release.ps1` ships a flip-marked renderer_opengl2.dll only if its sha256 is in
