@@ -311,6 +311,25 @@ carries a prop from the grip frame), `tools/skc_slice.py`, `tools/run_reloadauth
 | 1 scoped bolt rifles single-round | done | f742cd3a |
 | 2 Webley Mk VI break-top | done | 42cc8d19 |
 | 3 M1 Carbine box magazine | done | a0a99baf |
-| 4 Lewis pan (+ DP-28 pan, audit correction: its pan never left the gun) | DP-28 verified; Lewis pan prop rendered the WHOLE gun in rb1 ("flags nodraw" ignored on an attached model) -> fixed with a pan-only skd (`coop_lewis_pan.skd`, header lists only `drum`); needs one re-test | uncommitted |
+| 4 Lewis pan (+ DP-28 pan, audit correction: its pan never left the gun) | done | ad10f762 |
 | 5 Beretta M38 hold | no change: identical to the TA Moschetto hold in engine (same skeleton + world anims; MP40/Thompson hands looked the same) | - |
-| 6-8 drums, MP18, C96, belts | next | - |
+| 6 drums: Thompson 50rd, 1928 Tommy, MP18 snail drum | done (rb2 found a one-frame drum flicker -> overlap rule, fixed in rb3) | 404acd73 |
+| 7 Mauser C96 (+Trench) stripper clip from the top | done; bolt does not move yet (mesh has no bolt bone - ADS agent's split will be keyed over f12-21 / f51-56) | 806b0cf5 |
+| 8 M1919 + MG42 belt reloads, opening top cover | done (mesh: new 'cover' bone, tools/beltgun.py) | 12e9faf6 |
+| + revolver spent cases (user add-on) | done: Webleys at the break-open, M10 at the ejector rod, Nagant one per round (already) | 05d1d236 + engine fcbfbb81 |
+
+### Phase B notes (groups 4-8)
+- **Thompson drum side**: period sources found (the 1928A1 manual, FM 23-40 references, auction/collector texts) say
+  the drum is slid in "from the side" in receiver guides with the bolt back, without naming the side; the reload
+  slides it out to the shooter's LEFT (the side the left hand works). Flagged for the user.
+- **Overlap rule for every prop swap** (from rb2): the gun hides its part 2 frames AFTER the prop appears and shows it
+  2 frames BEFORE the prop goes, with the hand still at the gun - one shared frame gave a one-frame drum flicker.
+- **MP18**: the high snail drum keeps the gun low while it is handled (the MP40 donor dips it too); feed direction
+  reads correctly, but the gun is partly out of view 1.0-1.5 s. Candidate for a hand-keyed polish pass.
+- **M1919**: the box stays on the gun; there is no separate belt prop (its belt is part of the box mesh) - the hand
+  lays the belt across the tray. MG42: the belt end is a prop.
+- **Belt meshes**: `30calportable/30cal.skd` and `mg42portable/mg42.skd` are now mod overrides of the xw meshes (one
+  extra bone; cover triangles 60 / 5, vertices duplicated 30 / 9). Any later mesh work on these guns starts from them.
+- Engine: fcbfbb81 coop_ejectcases (spent cases). GIFs: `G:\mohaa-reloadauth\gifs\` (g4_lewis, rev_cases_webley,
+  g6_drum_tommy1928, g7_c96, g8_m1919, g8_mg42; each < 20 MB; the C96/belt "before" halves are offline previews,
+  those guns were never captured with their old reload in engine).

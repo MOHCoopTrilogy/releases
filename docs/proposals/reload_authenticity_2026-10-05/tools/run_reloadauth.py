@@ -51,6 +51,12 @@ GUNS = {
     "b_carbine": ("models/weapons/carbine.tik", 3, 2.93), "b_m38": ("models/weapons/moschetto.tik", 4, 2.30),
     "b_moschetto": ("models/weapons/It_W_Moschetto.tik", 4, 2.30), "b_mp40": ("models/weapons/mp40.tik", 4, 2.53),
     "b_lewis": ("models/weapons/bar_bar1918.tik", 4, 3.27), "b_dp28": ("models/weapons/dp28.tik", 4, 3.27),
+    "b_t50": ("models/weapons/thompson50.tik", 5, 2.80), "b_t1928": ("models/weapons/thompsonsmg_tommy1928d.tik", 5, 2.80),
+    "b_mp18": ("models/weapons/mp40_mp18.tik", 5, 2.53), "b_thompson": ("models/weapons/thompsonsmg.tik", 5, 2.80),
+    "b_webley6r": ("models/weapons/colt45_colt1911w.tik", 3, 3.2), "b_webley": ("models/weapons/Webley_Revolver.tik", 3, 3.2),
+    "b_nagant": ("models/weapons/Nagant_revolver.tik", 3, 3.6), "b_m10": ("models/weapons/m10_revolver.tik", 3, 2.43),
+    "b_c96": ("models/weapons/mauser_c96.tik", 3, 2.43), "b_c96t": ("models/weapons/mauser_c96_c96trench.tik", 3, 2.43),
+    "b_mg42": ("models/weapons/mg42portable.tik", 8, 3.27), "b_m1919": ("models/weapons/30calportable.tik", 8, 3.27),
 }
 PRE = {}      # gun -> console lines before its give (A/B cvars)
 POST = {}     # gun -> extra lines after its reload capture

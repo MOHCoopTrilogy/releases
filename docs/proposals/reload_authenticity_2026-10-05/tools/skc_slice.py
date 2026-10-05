@@ -46,3 +46,16 @@ if __name__ == '__main__':
     os.makedirs(os.path.dirname(dst), exist_ok=True)
     open(dst, 'wb').write(out)
     print('wrote', dst, len(parse_frames(spec)), 'frames')
+
+
+def add_to_channel(data, chan, vec):
+    """add vec (x, y, z) to every frame of a 'pos' channel (model units) - e.g. shift a whole prop with 'origin pos'"""
+    out = bytearray(data)
+    nch, ofs_names, nfr = struct.unpack_from('<3i', out, 36)
+    names = [out[ofs_names + 32 * i: ofs_names + 32 * i + 32].split(b'\0')[0].decode('latin1') for i in range(nch)]
+    ci = names.index(chan)
+    for f in range(nfr):
+        vo = struct.unpack_from('<i', out, 48 + 48 * f + 44)[0] + 16 * ci
+        x, y, z, w = struct.unpack_from('<4f', out, vo)
+        struct.pack_into('<4f', out, vo, x + vec[0], y + vec[1], z + vec[2], w)
+    return bytes(out)
