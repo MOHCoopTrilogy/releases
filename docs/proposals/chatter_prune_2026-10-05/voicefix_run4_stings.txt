@@ -1,0 +1,15 @@
+VFEV newobj: sting=['sound/frontline/sting_newobj.wav'] log=['FLSTING play coop_sting_newobj'] files=[]
+VFEV objcomplete: sting=['sound/psx/sting_psx1.wav'] log=['FLSTING play coop_sting_psx1'] files=['sound/coop_amb/artillery2.wav']
+VFEV complete_alias: sting=['sound/frontline/sting_objdone.wav'] log=['FLSTING play coop_sting_complete'] files=[]
+VFEV alarm: sting=['sound/frontline/sting_alarm.wav'] log=['FLSTING alarm edge', 'FLSTING play coop_sting_alarm'] files=[]
+VFEV stealth: sting=['sound/frontline/sting_stealth.wav'] log=['FLSTING play coop_sting_stealth'] files=[]
+VFEV cleared 1: sting=['sound/frontline/sting_clear2.wav'] log=['FLSTING play coop_sting_clear2'] files=[]
+VFEV cleared 2: sting=['sound/frontline/sting_clear3.wav'] log=['FLSTING play coop_sting_clear3'] files=[]
+VFEV cleared 3: sting=['sound/frontline/sting_clear1.wav'] log=['FLSTING play coop_sting_clear1'] files=[]
+VFEV gate: sting=[] log=['FLSTING skip coop_sting_alarm (scripted cue/cinematic)'] files=[]
+VFEV gate_loop: sting=['sound/frontline/sting_alarm.wav'] log=['FLSTING play coop_sting_alarm'] files=[]
+VFEV pain_exact: sting=[] log=[] files=['sound/coop_flvo/fl_pain_de_01.wav', 'sound/coop_flvo/fl_pain_us_01.wav']
+VFEV pain_draws_de: sting=[] log=[] files=['sound/coop_flvo/fl_pain_de_01.wav', 'sound/coop_flvo/fl_pain_de_04.wav', 'sound/coop_flvo/fl_pain_de_05.wav'] draws=60 frontline=3 wrong_nation=0
+VFEV pain_draws_us: sting=[] log=[] files=['sound/coop_flvo/fl_pain_us_03.wav', 'sound/coop_flvo/fl_pain_us_04.wav', 'sound/coop_flvo/fl_pain_us_05.wav', 'sound/coop_flvo/fl_pain_us_06.wav'] draws=60 frontline=4 wrong_nation=0
+VFEV far: sting=[] log=[] files=['sound/coop_amb/fl_far_04.wav', 'sound/coop_amb/fl_far_05.wav', 'sound/coop_amb/fl_far_06.wav', 'sound/coop_amb/fl_far_05.wav', 'sound/coop_amb/fl_far_04.wav']
+VF done: sting=[] log=[] files=['sound/dialogue/generic/a/damage/dfr_damage_01j.wav', 'sound/dialogue/generic/a/damage/dfr_damage_01k.wav', 'sound/dialogue/generic/a/damage/dfr_damage_01j.wav', 'sound/dialogue/generic/a/damage/dfr_damage_01d.wav', 'sound/dialogue/generic/a/damage/dfr_damage_01d.wav', 'sound/dialogue/generic/a/damage/dfr_damage_01d.wav']

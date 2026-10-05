@@ -53,8 +53,12 @@ def log(*a):
 def build():
     os.makedirs(VF, exist_ok=True)
     with zipfile.ZipFile(OVERLAY, "w", zipfile.ZIP_DEFLATED) as z:
+        import subprocess
         for f in FILES:
-            z.write(os.path.join(MOD, f), f)
+            # COMMITTED content only: other agents' uncommitted work-in-progress in the same files must not
+            # ride into this test (run vf3 packed a half-edited dbno.scr that does not compile).
+            data = subprocess.run(["git", "-C", MOD, "show", "HEAD:" + f], capture_output=True, check=True).stdout
+            z.writestr(f, data)
         for fn in sorted(os.listdir(os.path.join(MOD, "sound", "coop_flvo"))):
             if fn.startswith("fl_"):
                 z.write(os.path.join(MOD, "sound", "coop_flvo", fn), "sound/coop_flvo/" + fn)

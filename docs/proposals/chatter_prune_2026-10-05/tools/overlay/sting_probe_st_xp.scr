@@ -1,0 +1,103 @@
+//====================================================================
+// TEST-ONLY OVERLAY (voicefix sting run, 2026-10-05). Replaces coop_selftest_xp.scr inside the test overlay
+// pk3 only; `coop_st_xp 1` launches it. Drives every new sting EVENT through its real entry point and logs.
+//====================================================================
+st_xp_run:{
+	waitthread coop_mod/main.scr::waitForMainScript
+	local.p = waitthread coop_mod/coop_selftest.scr::selftest_findPlayer 300
+	if( local.p == NULL ){
+		println "^~^~^ VF FAIL no player"
+		end
+	}
+	while( getcvar( "vf_go" ) != "1" ){ wait 1 }
+	while( level.time < 20 ){ wait 1 }
+	println "^~^~^ VF begin sting"
+
+	// 1. NEW OBJECTIVE through the real channel (global/objectives.scr add_objectives, status 2 + text)
+	println "^~^~^ VFEV newobj"
+	waitthread global/objectives.scr::add_objectives 7 2 "Voicefix test objective" local.p.origin
+	wait 9
+
+	// 2. OBJECTIVE COMPLETE through the real channel (status 3) - one of the 5 objective stings
+	println "^~^~^ VFEV objcomplete"
+	waitthread global/objectives.scr::add_objectives 7 3 "Voicefix test objective" local.p.origin
+	wait 9
+	println "^~^~^ VFEV complete_alias"
+	waitthread coop_mod/flmusic.scr::fl_sting "coop_sting_complete"
+	wait 9
+
+	// 3. ALARM: the monitor must see the 0 -> 1 edge of level.alarm
+	println "^~^~^ VFEV alarm"
+	level.alarm = 1
+	wait 9
+	level.alarm = 0
+
+	// 4. STEALTH INTRO (the map-start monitor exited because m3l2 is not a stealth map - run it directly)
+	println "^~^~^ VFEV stealth"
+	level.coop_stealthMap = 1
+	waitthread coop_mod/flmusic.scr::fl_stealth_intro
+	level.coop_stealthMap = 0
+	wait 10
+
+	// 5. WAVE CLEARED x3 through the shared entry point (officer squad / battalion / clear monitor all call it):
+	//    rotation must not repeat back-to-back
+	for( local.k = 1; local.k <= 3; local.k++ ){
+		println( "^~^~^ VFEV cleared " + local.k )
+		level.flmusic_lastClear = 0 - 1000
+		level.flmusic_lastSting = 0 - 1000
+		waitthread coop_mod/flmusic.scr::fl_sting_clear
+		wait 9
+	}
+
+	// 6. SCRIPTED-MUSIC GATE: a sting must be skipped while a scripted track owns the channel
+	println "^~^~^ VFEV gate"
+	level.coop_musicCommand = "tmstart sound/music/test.mp3"
+	wait 1.2
+	waitthread coop_mod/flmusic.scr::fl_sting "coop_sting_alarm"
+	level.coop_musicCommand = NIL
+	wait 3
+
+	println "^~^~^ VFEV gate_loop"
+	level.coop_musicCommand = "tmstartloop sound/music/test.mp3"
+	wait 1.2
+	level.flmusic_lastSting = 0 - 100
+	waitthread coop_mod/flmusic.scr::fl_sting "coop_sting_alarm"
+	level.coop_musicCommand = NIL
+	wait 5
+
+	// 7. PAIN VARIETY: exact members first (registration + file), then 60 prefix draws per pool
+	local.g = spawn "models/human/german_wehrmact_soldier.tik"
+	local.g.origin = local.p.origin + ( 120 0 0 )
+	local.u = spawn "models/human/allied_airborne_soldier.tik"
+	local.u.origin = local.p.origin + ( 0 120 0 )
+	wait 1
+	local.g ai_off
+	local.u ai_off
+	local.g nodamage
+	local.u nodamage
+	println "^~^~^ VFEV pain_exact"
+	local.g playsound snd_den_pain_genericfl01
+	wait 1
+	local.u playsound snd_dfr_pain_genericfl01
+	wait 1
+	println "^~^~^ VFEV pain_draws_de"
+	for( local.k = 1; local.k <= 60; local.k++ ){
+		local.g playsound snd_den_pain_generic
+		wait 0.35
+	}
+	println "^~^~^ VFEV pain_draws_us"
+	for( local.k = 1; local.k <= 60; local.k++ ){
+		local.u playsound snd_dfr_pain_generic
+		wait 0.35
+	}
+	local.g remove
+	local.u remove
+
+	// 8. FAR AMBIENCE pool
+	println "^~^~^ VFEV far"
+	for( local.k = 1; local.k <= 4; local.k++ ){
+		local.p playsound coop_amb_flfar
+		wait 2
+	}
+	println "^~^~^ VF done"
+}end
