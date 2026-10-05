@@ -28,3 +28,12 @@ for g in guns:
         dr.rectangle([(k % 4) * 320, (k // 4) * 184, (k % 4) * 320 + 120, (k // 4) * 184 + 12], fill=(0, 0, 0))
         dr.text(((k % 4) * 320 + 2, (k // 4) * 184), '%s f%d' % (g, i), fill=(255, 255, 0))
     S.save(os.path.join(out, g + '.jpg'), quality=72)
+    if os.environ.get('ALL'):   # every animation frame (every 2nd capture = 1/30 s), 60 per page (10 x 6), viewmodel region
+        st = int(os.environ.get('ALL_STEP', '2')); idx = list(range(0, n, st)); per = 60; tw, th = 192, 108
+        for pg in range(0, len(idx), per):
+            P = Image.new('RGB', (10 * tw, 6 * th)); dp = ImageDraw.Draw(P)
+            for k, i in enumerate(idx[pg:pg + per]):
+                P.paste(Image.open(L[i]).convert('RGB').crop((320, 180, 1280, 720)).resize((tw, th)), ((k % 10) * tw, (k // 10) * th))
+                dp.rectangle([(k % 10) * tw, (k // 10) * th, (k % 10) * tw + 36, (k // 10) * th + 11], fill=(0, 0, 0))
+                dp.text(((k % 10) * tw + 2, (k // 10) * th), 'c%d' % i, fill=(255, 255, 0))
+            P.save(os.path.join(out, '%s_all_p%d.jpg' % (g, pg // per)), quality=72)

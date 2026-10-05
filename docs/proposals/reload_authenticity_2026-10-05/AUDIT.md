@@ -333,3 +333,38 @@ carries a prop from the grip frame), `tools/skc_slice.py`, `tools/run_reloadauth
 - Engine: fcbfbb81 coop_ejectcases (spent cases). GIFs: `G:\mohaa-reloadauth\gifs\` (g4_lewis, rev_cases_webley,
   g6_drum_tommy1928, g7_c96, g8_m1919, g8_mg42; each < 20 MB; the C96/belt "before" halves are offline previews,
   those guns were never captured with their old reload in engine).
+
+## PHASE B polish (2026-10-05, user: "make the hand animations smoother and look like they are actually working the mechanisms", "remove ammo box for 30", "hands bending all weird", "not funky/robotic")
+Every phase B magazine / belt reload is now HAND-KEYED (`tools/keyclip.py` + `tools/recipes_keyed.py`), not a re-timed donor:
+- **Moving parts on one timeline** with the hands (`tools/beltsched.py` belts, `tools/swapsched.py` drums/Lewis/C96): the
+  gun's world reload moves its cover / charging handle / bolt (`tools/beltgun.py`, `tools/worldanim.py`) on exactly the
+  frames a hand is on it; QA measures hand-to-part distance every moving frame (ads_bolt handle_qa measure, <= 2.5 u).
+- **Natural arms** (`tools/natik.py`): hinge elbows (the borrowed IK bent elbows sideways up to 90 deg - retail 0), the
+  elbow swivel chosen over the whole clip (Viterbi) to keep the wrist in range, the elbow trailing the hand by about a frame;
+  exact idle arm at both ends.
+- **Joint-limit QA** (`tools/jointqa.py`): geometric wrist flexion / deviation (window centred on the retail reload range,
+  half-widths 70 / 60 / 40), elbow off-hinge > 5 deg, forearm twist > 25 deg/frame, fingers bent back / sideways - every
+  frame. Final: 0 frames over on M1919, MG42, Thompson 50rd, 1928, MP18, Lewis; C96 one 38 deg/frame turn at f7 while the
+  hand is still below the frame edge (pitch -50 deg).
+- **Life**: eased pchip / slerp keys, fingers curl over ~4 frames (outer joints a frame behind), a slow breathing drift of
+  the gun, damped kicks where a hand strikes or a part slams home (cover slap, bolt home after a pull, drum / pan smacked in,
+  rounds stripped).
+
+| gun | what the hands do now |
+|---|---|
+| M1919 | finger on the latch f13, fingers under the cover's rear edge lift it (f15-20), flick to 75 deg, belt end pinched out to the left, a SHORT LENGTH OF BELT (prop `coop_belt_30cal.tik`, no ammo box - the crate surface is dropped from the mesh) laid on the tray and seated, palm shuts the cover, right hand pulls the charging handle twice |
+| MG42 | right hand cocks first (pull + push), latch, cover, belt prop, cover shut |
+| Thompson 50rd | left hand pulls the top knob back f11-16 (its Bolt bone follows - `Thompson/coop_tommy50_reload.skc`), drum slides out left f24, full drum in f60, smack |
+| 1928 Tommy | drum only (the mesh has no bolt bone) |
+| MP18 | drum off its sleeve and back, gun raised 1 u (no longer sits low), left hand keeps the gun by the drum while the RIGHT hand hooks the right-side handle (Bone2, `coop_mp18/coop_mp18_reload.skc` rebuilt at 1/30 s) f52-57, it flies home |
+| Lewis | pan lifted off its post, full pan lowered with a 20 deg turn to lock, smack (prop f28-60) |
+| C96 (+Trench) | pistol lowered 2.5 u and canted 35 deg; hand over the top palm down: bolt ears back f13-18, full clip into the guides f41, thumb strips the rounds f42-44, empty clip pulled f47-50 and tossed |
+
+DP-28 and the revolvers (Webley, Webley Mk VI, Nagant, M10) keep their author / retail clips (not re-keyed).
+In-engine runs: rb4 (first keyed pass: C96 hand floated palm-up beside the pistol, MP18 right hand palm-up, M1919 flick
+threw the hand into the view), rb5 (fixed those), rb6 (natural IK + life: the swivel put the right elbow up and its sleeve
+across the camera -> elbow-down / near-eye / gun-arm-in-view costs, forearm-twist continuity in the Viterbi), rb7 (all
+guns; reviewer: M1919 snapped at the end - the right hand's return ran past the clip end - and its handle hand looked
+open; Lewis pan at the frame edge), rb8 (handle gripped with wrapped fingers and back 3 frames before the end, Lewis 1.5 u
+higher). Mod commit 6cf61e58. GIFs `G:\mohaa-reloadauth\gifs\polish_*.gif` (before = last committed version). Tools added this pass: keyclip, recipes_keyed,
+natik, jointqa, swapsched, worldanim; `runsheets.py` ALL=1 writes every-frame pages.
