@@ -29,6 +29,8 @@ for sp in specs:
             assert s.count(x) == 1, (path, m, s.count(x))
             s = s.replace(x, y)
         data = s.encode('latin1')
+    if not path.lower().endswith(('.skc', '.skd', '.tga', '.jpg', '.png', '.wav', '.pk3', '.dll', '.exe')):
+        data = data.replace(b'\r\n', b'\n')     # autocrlf working copies: store LF like git add would (c5dd07d)
     blob = git('hash-object', '-w', '--stdin', inp=data).decode().strip()
     ls = git('ls-files', '-s', '--', path, env=env).decode().split()
     mode = ls[0] if ls else '100644'
