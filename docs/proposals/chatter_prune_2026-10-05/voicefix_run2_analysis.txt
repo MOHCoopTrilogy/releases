@@ -1,0 +1,107 @@
+     [] AIVOICE banter nat de alias coop_av_de_banter model models/human/german_waffenss_shutze.tik -> ['sound/dialogue/generic/g/idle/laf_002b.wav']
+     [] AIVOICE banter nat de alias coop_av_de_banter model models/human/german_waffenss_nco.tik -> ['sound/dialogue/generic/g/idle/laf_001f.wav']
+---- phase probe
+PASS actor model models/human/allied_airborne_soldier.tik team american nat us flchatDE 0 flchatUS 1 (expected nat us)
+PASS VFPLAY model models/human/allied_airborne_soldier.tik nat us sit cover alias coop_av_us_cover -> ['sound/coop_flvo/us_021.wav']
+PASS VFPLAY model models/human/allied_airborne_soldier.tik nat us sit attack alias coop_av_us_attack -> ['sound/coop_flvo/us_001.wav']
+PASS VFPLAY model models/human/allied_airborne_soldier.tik nat us sit backup alias coop_av_us_backup -> ['sound/dialogue/global/us/dfrus_global_as6001xf01.mp3']
+PASS VFPLAY model models/human/allied_airborne_soldier.tik nat us sit fallback alias coop_av_us_fallback -> ['sound/coop_flvo/us_042.wav']
+PASS VFPLAY model models/human/allied_airborne_soldier.tik nat us sit kill alias coop_av_us_kill -> ['sound/dialogue/generic/a/kill/dfr_kill_005a_1.wav']
+PASS VFPLAY model models/human/allied_airborne_soldier.tik nat us sit taunt alias coop_av_us_taunt -> ['sound/dialogue/generic/a/attack/dfr_attack_10c_2.wav']
+     [probe] AIVOICE banter nat de alias coop_av_de_banter model models/human/german_waffenss_shutze.tik -> ['sound/dialogue/generic/g/idle/laf_002f.wav']
+PASS VFPLAY model models/human/allied_airborne_soldier.tik nat us sit suppress alias coop_av_us_suppress -> ['sound/dialogue/mission_2/allies/dfr_supress_am4116tj2.mp3']
+PASS VFPLAY model models/human/allied_airborne_soldier.tik nat us sit reload alias coop_av_us_reload -> ['sound/dialogue/generic/us/dfrus_reload_gw2061xa03.mp3']
+PASS VFPLAY flchatter us alias coop_flvo_us -> ['sound/coop_flvo/us_043.wav']
+PASS VFPLAY flchatter us alias coop_taunt_us -> ['sound/dialogue/multiplayer/a/amdfr_r_14a.wav']
+PASS actor model models/human/allied_uk_paratrooper1.tik team american nat uk flchatDE 0 flchatUS 0 (expected nat uk)
+PASS VFPLAY model models/human/allied_uk_paratrooper1.tik nat uk sit cover alias coop_av_uk_cover -> ['sound/dialogue/global/uk/dfruk_alert_dw3452xe06.mp3']
+PASS VFPLAY model models/human/allied_uk_paratrooper1.tik nat uk sit attack alias -> (nothing)
+PASS VFPLAY model models/human/allied_uk_paratrooper1.tik nat uk sit backup alias coop_av_uk_backup -> ['sound/dialogue/global/uk/dfruk_global_bs5001xj01.mp3']
+PASS VFPLAY model models/human/allied_uk_paratrooper1.tik nat uk sit fallback alias coop_av_uk_cover -> ['sound/dialogue/global/uk/dfruk_alert_dw3452xe06.mp3']
+     [probe] AIVOICE banter nat de alias coop_av_de_banter model models/human/german_waffenss_nco.tik -> ['sound/dialogue/generic/g/idle/jok_001f.wav']
+PASS VFPLAY model models/human/allied_uk_paratrooper1.tik nat uk sit kill alias -> (nothing)
+PASS VFPLAY model models/human/allied_uk_paratrooper1.tik nat uk sit taunt alias -> (nothing)
+PASS VFPLAY model models/human/allied_uk_paratrooper1.tik nat uk sit suppress alias coop_av_uk_suppress -> ['sound/dialogue/mission_1/allies/dfr_supress_bc6948ta3.mp3']
+PASS VFPLAY model models/human/allied_uk_paratrooper1.tik nat uk sit reload alias coop_av_uk_reload -> ['sound/dialogue/mission_1/allies/dfr_reload_bc6953ta2.mp3']
+PASS actor model models/human/german_wehrmact_soldier.tik team german nat de flchatDE 1 flchatUS 0 (expected nat de)
+PASS VFPLAY model models/human/german_wehrmact_soldier.tik nat de sit cover alias coop_av_de_cover -> ['sound/dialogue/generic/g/fear/cov_g_006e.wav']
+PASS VFPLAY model models/human/german_wehrmact_soldier.tik nat de sit attack alias coop_av_de_attack -> ['sound/dialogue/global/gm/dengm_global_gs8003xl01.mp3']
+     [probe] AIVOICE banter nat de alias coop_av_de_banter model models/human/german_waffenss_nco.tik -> ['sound/dialogue/generic/g/idle/jok_006f.wav']
+PASS VFPLAY model models/human/german_wehrmact_soldier.tik nat de sit backup alias coop_av_de_backup -> ['sound/dialogue/generic/g/sighted/den_alarm_11a.wav']
+PASS VFPLAY model models/human/german_wehrmact_soldier.tik nat de sit fallback alias coop_av_de_fallback -> ['sound/coop_flvo/de_010.wav']
+PASS VFPLAY model models/human/german_wehrmact_soldier.tik nat de sit kill alias coop_av_de_kill -> ['sound/dialogue/generic/g/attack/vic_002a.wav']
+PASS VFPLAY model models/human/german_wehrmact_soldier.tik nat de sit taunt alias coop_av_de_taunt -> ['sound/coop_flvo/fl_de_taunt_06.wav']
+SKIP VFPLAY model models/human/german_wehrmact_soldier.tik nat de sit suppress alias coop_av_de_suppress (aivoice never asks de/it for suppress)
+FAIL VFPLAY model models/human/german_wehrmact_soldier.tik nat de sit reload alias coop_av_de_reload -> (nothing)
+     [probe] AIVOICE banter nat de alias coop_av_de_banter model models/human/german_waffenss_nco.tik -> ['sound/dialogue/mission_1/axis/den_reload_gs5915tk1.mp3']
+PASS VFPLAY flchatter de alias coop_flvo_de -> ['sound/coop_flvo/de_068.wav']
+PASS VFPLAY flchatter de alias coop_taunt_de -> ['sound/dialogue/multiplayer/g/grden_v_05i.wav']
+PASS actor model models/human/sc_ax_ital_inf.tik team german nat it flchatDE 0 flchatUS 0 (expected nat it)
+PASS VFPLAY model models/human/sc_ax_ital_inf.tik nat it sit cover alias coop_av_it_cover -> ['sound/dialogue/generic/it/fear/denit_fear_01xm01.mp3']
+     [probe] AIVOICE banter nat de alias coop_av_de_banter model models/human/german_waffenss_shutze.tik -> ['sound/dialogue/generic/g/idle/laf_005b.wav']
+PASS VFPLAY model models/human/sc_ax_ital_inf.tik nat it sit attack alias coop_av_it_taunt -> ['sound/dialogue/generic/it/attack/denit_anger_02xm01.mp3']
+PASS VFPLAY model models/human/sc_ax_ital_inf.tik nat it sit backup alias coop_av_it_contact -> ['sound/dialogue/generic/it/sighted/denit_alert_is7154xm01.mp3']
+PASS VFPLAY model models/human/sc_ax_ital_inf.tik nat it sit fallback alias coop_av_it_cover -> ['sound/dialogue/generic/it/fear/denit_fear_02xu01.mp3']
+PASS VFPLAY model models/human/sc_ax_ital_inf.tik nat it sit kill alias coop_av_it_taunt -> ['sound/dialogue/generic/it/attack/denit_anger_02xm01.mp3']
+PASS VFPLAY model models/human/sc_ax_ital_inf.tik nat it sit taunt alias coop_av_it_taunt -> ['sound/dialogue/generic/it/attack/denit_anger_01xu01.mp3']
+SKIP VFPLAY model models/human/sc_ax_ital_inf.tik nat it sit suppress alias coop_av_it_suppress (aivoice never asks de/it for suppress)
+PASS VFPLAY model models/human/sc_ax_ital_inf.tik nat it sit reload alias -> (nothing)
+     [probe] AIVOICE banter nat de alias coop_av_de_banter model models/human/german_waffenss_nco.tik -> ['sound/dialogue/generic/g/idle/laf_003a.wav']
+PASS actor model models/human/soviet_infantry1.tik team american nat ru flchatDE 0 flchatUS 0 (expected nat ru)
+PASS VFPLAY model models/human/soviet_infantry1.tik nat ru sit cover alias coop_av_ru_cover -> ['sound/dialogue/multiplayer/russian/dfr_mpic_rs7542to2.mp3']
+PASS VFPLAY model models/human/soviet_infantry1.tik nat ru sit attack alias coop_av_ru_attack -> ['sound/dialogue/multiplayer/russian/dfr_mpic_rs7547to2.mp3']
+PASS VFPLAY model models/human/soviet_infantry1.tik nat ru sit backup alias coop_av_ru_backup -> ['sound/dialogue/multiplayer/russian/dfr_mpic_rs7541to3.mp3']
+PASS VFPLAY model models/human/soviet_infantry1.tik nat ru sit fallback alias coop_av_ru_fallback -> ['sound/dialogue/multiplayer/russian/dfr_mpsc_rs7534to2.mp3']
+PASS VFPLAY model models/human/soviet_infantry1.tik nat ru sit kill alias coop_av_ru_kill -> ['sound/dialogue/multiplayer/russian/dfr_mpgm_rs7527to2.mp3']
+PASS VFPLAY model models/human/soviet_infantry1.tik nat ru sit taunt alias coop_av_ru_taunt -> ['sound/dialogue/multiplayer/russian/dfr_mpt_rs7559to6.mp3']
+PASS VFPLAY model models/human/soviet_infantry1.tik nat ru sit suppress alias coop_av_ru_suppress -> ['sound/dialogue/mission_3/allies/dfr_supress_rs7719te2.mp3']
+     [probe] AIVOICE banter nat de alias coop_av_de_banter model models/human/german_waffenss_nco.tik -> ['sound/dialogue/generic/g/idle/laf_002a.wav']
+PASS VFPLAY model models/human/soviet_infantry1.tik nat ru sit reload alias coop_av_ru_reload -> ['sound/dialogue/mission_3/allies/dfr_reload_rs7921tr1.mp3']
+PASS actor model models/human/allied_resistance.tik team american nat none flchatDE 0 flchatUS 0 (expected nat none)
+PASS VFPLAY model models/human/allied_resistance.tik nat none sit cover alias -> (nothing)
+PASS VFPLAY model models/human/allied_resistance.tik nat none sit attack alias -> (nothing)
+PASS VFPLAY model models/human/allied_resistance.tik nat none sit backup alias -> (nothing)
+PASS VFPLAY model models/human/allied_resistance.tik nat none sit fallback alias -> (nothing)
+PASS VFPLAY model models/human/allied_resistance.tik nat none sit kill alias -> (nothing)
+PASS VFPLAY model models/human/allied_resistance.tik nat none sit taunt alias -> (nothing)
+PASS VFPLAY model models/human/allied_resistance.tik nat none sit suppress alias -> (nothing)
+     [probe] AIVOICE banter nat de alias coop_av_de_banter model models/human/german_waffenss_nco.tik -> ['sound/dialogue/generic/g/idle/jok_005b.wav']
+FAIL VFPLAY model models/human/allied_resistance.tik nat none sit reload alias -> ['sound/dialogue/m3l2/a/dfr_m3l3_343k.wav']
+PASS VFPAIN male -> ['sound/dialogue/generic/a/damage/dfr_damage_01g.wav']
+PASS VFPAIN male -> ['sound/dialogue/generic/a/damage/dfr_damage_01c.wav']
+PASS VFPAIN male -> ['sound/dialogue/generic/a/damage/dfr_damage_01m.wav']
+PASS VFPAIN male -> ['sound/dialogue/generic/a/damage/dfr_damage_01f.wav']
+PASS VFPAIN male -> ['sound/dialogue/generic/a/damage/dfr_damage_01f.wav']
+PASS VFPAIN male -> ['sound/dialogue/generic/a/damage/dfr_damage_01e.wav']
+PASS VFCALL male -> ['sound/dialogue/multiplayer/a/amdfr_m_04h.wav', 'sound/dialogue/generic/g/sighted/den_alarm_11d.wav']
+PASS VFCALL male -> ['sound/dialogue/multiplayer/a/amdfr_m_04j.wav']
+PASS VFDV male -> ['sound/coop_deathvox/dv_461.wav']
+PASS VFPAIN female -> ['sound/dialogue/generic/a/damage/dfr_damage_01n.wav']
+PASS VFPAIN female -> ['sound/dialogue/generic/a/damage/dfr_damage_01n.wav']
+PASS VFPAIN female -> ['sound/dialogue/generic/a/damage/dfr_damage_01n.wav']
+FAIL VFPAIN female -> ['sound/dialogue/generic/a/damage/dfr_damage_01n.wav', 'sound/dialogue/m3l2/a/dfr_m3l3_339k.wav']
+PASS VFPAIN female -> ['sound/dialogue/generic/a/damage/dfr_damage_01n.wav']
+     [probe] AIVOICE banter nat de alias coop_av_de_banter model models/human/german_waffenss_nco.tik -> ['sound/dialogue/generic/g/idle/jok_008f.wav']
+PASS VFPAIN female -> ['sound/dialogue/generic/a/damage/dfr_damage_01n.wav']
+PASS VFCALL female -> ['sound/dialogue/multiplayer/a/frdfr_m_04n.wav']
+PASS VFCALL female -> ['sound/dialogue/multiplayer/a/frdfr_m_04n.wav']
+PASS VFDV female -> (nothing)
+PASS VFPLAY sting alias coop_sting_clear -> ['sound/frontline/sting_clear1.wav']
+PASS VFPLAY paradrop alias coop_para_land -> ['sound/dialogue/multiplayer/a/amdfr_c_07a.wav']
+PASS VFPLAY paradrop alias coop_para_combat -> ['sound/coop_flvo/us_001.wav']
+PASS VFPLAY paradrop alias coop_para_help -> ['sound/coop_flvo/us_023.wav']
+---- phase heat_only
+     [heat_only] TAUNT play de: coop_taunt_de speaker models/human/german_waffenss_nco.tik -> ['sound/dialogue/multiplayer/g/grden_r_17d.wav']
+     [heat_only] AIVOICE contact nat us alias coop_av_us_contact model models/human/2nd-ranger_captain.tik -> ['sound/dialogue/generic/a/sighted/dfr_sighted_03h_1.wav']
+---- phase combat
+     [combat] AIVOICE banter nat de alias coop_av_de_banter model models/human/german_waffenss_nco.tik -> ['sound/dialogue/generic/g/idle/jok_008a.wav']
+     [combat] AIVOICE contact nat us alias coop_av_us_contact model models/human/2nd-ranger_captain.tik -> ['sound/dialogue/generic/a/damage/dfr_damage_01n.wav']
+     [combat] AIVOICE contact nat us alias coop_av_us_contact model models/human/2nd-ranger_captain.tik -> ['sound/dialogue/generic/a/sighted/dfr_sighted_06a_1.wav']
+---- phase end
+flchatter plays during heat-only phase: 0 (must be 0)
+TOTAL FAIL 3
+
+NOTE (reviewed by hand): the 3 run-2 FAILs are analyzer attribution artifacts, not defects -
+- de reload: the German take den_reload_gs5915tk1.mp3 DID play; an AIVOICE banter marker printed between the VFPLAY marker and the OpenAL line, so the file was credited to the wrong event.
+- resistance reload (alias empty, nothing played) and female pain #4 (dfr_damage_01n.wav): the extra file is m3l2's own looping scene7 radio (dfr_m3l3_33xk), which is map noise.
+Positive in-combat flchatter firing was NOT exercised: no German engaged during the 90 s combat window. The negative (no play without engagement) is proven.
