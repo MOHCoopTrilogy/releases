@@ -1,0 +1,45 @@
+kind	file	seconds	envelope_8bins	family	proposed_use
+music	_frontline/wav/fl_1_2_05.wav	4.35	57888985	7.8s cue	candidate: area cleared (longer)
+music	_frontline/wav/fl_1_2_10.wav	3.53	64447129	3.7s hit (attack, fast decay)	candidate: AREA CLEARED hit
+music	_frontline/wav/fl_1_2_11.wav	3.53	74768952	4.1s swell then decay	candidate: TENSION (first German alert after a long calm)
+music	_frontline/wav/fl_1_2_12.wav	3.53	22339654	4.0s hit (same family as the shipped sting_wave)	already shipped family (coop_sting_wave)
+music	_frontline/wav/fl_1_2_13.wav	1.75	34654795	7.8s cue	audition
+music	_frontline/wav/fl_1_2_18.wav	3.56	65689876	8.0s cue	audition
+music	_frontline/wav/fl_1_3_05.wav	7.77	46955761	7.8s cue	candidate: area cleared (longer)
+music	_frontline/wav/fl_1_3_10.wav	3.73	97568410	3.7s hit (attack, fast decay)	candidate: AREA CLEARED hit
+music	_frontline/wav/fl_1_3_11.wav	4.14	48985210	4.1s swell then decay	candidate: TENSION (first German alert after a long calm)
+music	_frontline/wav/fl_1_3_12.wav	4.01	57595110	4.0s hit (same family as the shipped sting_wave)	already shipped family (coop_sting_wave)
+music	_frontline/wav/fl_1_3_13.wav	7.80	78716951	7.8s cue	audition
+music	_frontline/wav/fl_1_3_18.wav	7.95	65547964	8.0s cue	audition
+music	_frontline/wav/fl_2_2_13.wav	7.02	26283925	7.8s cue	audition
+music	_frontline/wav/fl_2_3_10.wav	2.58	85379435	3.7s hit (attack, fast decay)	candidate: AREA CLEARED hit
+music	_frontline/wav/fl_2_3_11.wav	2.15	93221222	4.1s swell then decay	candidate: TENSION (first German alert after a long calm)
+music	_frontline/wav/fl_2_3_12.wav	3.43	94433435	4.0s hit (same family as the shipped sting_wave)	already shipped family (coop_sting_wave)
+music	_frontline/wav/fl_2_3_13.wav	3.41	43323339	7.8s cue	audition
+music	_frontline/wav/fl_2_3_18.wav	5.99	78339500	8.0s cue	audition
+music	_frontline/wav/fl_3_2_05.wav	5.29	95434455	7.8s cue	candidate: area cleared (longer)
+music	_frontline/wav/fl_3_2_10.wav	5.17	77767679	3.7s hit (attack, fast decay)	candidate: AREA CLEARED hit
+music	_frontline/wav/fl_3_2_11.wav	5.18	86767698	4.1s swell then decay	candidate: TENSION (first German alert after a long calm)
+music	_frontline/wav/fl_3_2_13.wav	2.94	69310000	7.8s cue	audition
+music	_frontline/wav/fl_4_1_05.wav	5.90	48965433	7.8s cue	candidate: area cleared (longer)
+music	_frontline/wav/fl_4_1_10.wav	1.21	94311000	3.7s hit (attack, fast decay)	candidate: AREA CLEARED hit
+music	_frontline/wav/fl_4_1_11.wav	8.34	78889878	4.1s swell then decay	candidate: TENSION (first German alert after a long calm)
+music	_frontline/wav/fl_4_1_13.wav	8.34	95326543	7.8s cue	audition
+music	_frontline/wav/fl_4_2_13.wav	5.54	94662000	7.8s cue	audition
+music	_frontline/wav/fl_5_1_05.wav	5.54	24576972	7.8s cue	candidate: area cleared (longer)
+music	_frontline/wav/fl_5_4_05.wav	1.50	34456689	7.8s cue	candidate: area cleared (longer)
+music	_frontline/wav/fl_5_4_10.wav	1.50	78878779	3.7s hit (attack, fast decay)	candidate: AREA CLEARED hit
+music	_frontline/wav/fl_5_4_11.wav	1.50	66768897	4.1s swell then decay	candidate: TENSION (first German alert after a long calm)
+music	_frontline/wav/fl_5_4_12.wav	1.50	77677679	4.0s hit (same family as the shipped sting_wave)	already shipped family (coop_sting_wave)
+music	_frontline/wav/fl_5_4_13.wav	1.50	77689874	7.8s cue	audition
+music	_frontline/wav/fl_5_4_18.wav	1.50	67789888	8.0s cue	audition
+music	_frontline/wav/fl_6_1_05.wav	7.77	36944861	7.8s cue	candidate: area cleared (longer)
+music	_frontline/wav/fl_6_1_10.wav	3.73	98568420	3.7s hit (attack, fast decay)	candidate: AREA CLEARED hit
+music	_frontline/wav/fl_6_1_11.wav	4.14	48975210	4.1s swell then decay	candidate: TENSION (first German alert after a long calm)
+music	_frontline/wav/fl_6_1_12.wav	4.01	57595100	4.0s hit (same family as the shipped sting_wave)	already shipped family (coop_sting_wave)
+music	_frontline/wav/fl_6_1_13.wav	7.80	78716951	7.8s cue	audition
+music	_frontline/wav/fl_6_1_18.wav	7.95	65547964	8.0s cue	audition
+sfx	_frontline/sfx (sfx_audit.tsv)			thud/impact x85	audition before any swap; nothing replaced
+sfx	_frontline/sfx (sfx_audit.tsv)			short misc x12	audition before any swap; nothing replaced
+sfx	_frontline/sfx (sfx_audit.tsv)			mid (mech/foley/movement) x9	audition before any swap; nothing replaced
+sfx	_frontline/sfx (sfx_audit.tsv)			whoosh/whistle/high x4	audition before any swap; nothing replaced

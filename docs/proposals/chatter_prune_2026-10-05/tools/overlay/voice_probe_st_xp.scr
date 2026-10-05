@@ -50,6 +50,9 @@ st_xp_run:{
 		local.a thread coop_mod/aivoice.scr::aivoice_register
 		local.a thread coop_mod/flchatter.scr::flchatter_register
 		wait 0.5
+		if( local.a.coop_avNat == NIL ){
+			local.a.coop_avNat = "none"
+		}
 		local.inDE = 0
 		local.inUS = 0
 		for( local.j = 0; local.j < level.coop_flchatDEn; local.j++ ){ if( level.coop_flchatDE[local.j] == local.a ){ local.inDE = 1 } }
@@ -57,7 +60,7 @@ st_xp_run:{
 		println( "^~^~^ VF actor model " + local.a.model + " team " + local.a.team + " nat " + local.a.coop_avNat + " flchatDE " + local.inDE + " flchatUS " + local.inUS )
 		for( local.s = 1; local.s <= 8; local.s++ ){
 			local.al = ""
-			if( local.a.coop_avNat != NIL && local.a.coop_avNat != "" ){
+			if( local.a.coop_avNat != "none" && local.a.coop_avNat != "" ){
 				local.al = waitthread coop_mod/aivoice.scr::aivoice_alias local.a.coop_avNat local.sits[local.s]
 			}
 			println( "^~^~^ VFPLAY model " + local.a.model + " nat " + local.a.coop_avNat + " sit " + local.sits[local.s] + " alias " + local.al )
@@ -118,5 +121,18 @@ st_xp_run:{
 	println "^~^~^ VFDV female"
 	waitthread coop_mod/deathvox.scr::play local.p 0
 	wait 2
+	println "^~^~^ VFPLAY sting alias coop_sting_clear"
+	level.flmusic_lastSting = 0 - 100
+	thread coop_mod/flmusic.scr::fl_sting_clear
+	wait 4
+	println "^~^~^ VFPLAY paradrop alias coop_para_land"
+	local.p playsound coop_para_land
+	wait 2.5
+	println "^~^~^ VFPLAY paradrop alias coop_para_combat"
+	local.p playsound coop_para_combat
+	wait 2.5
+	println "^~^~^ VFPLAY paradrop alias coop_para_help"
+	local.p playsound coop_para_help
+	wait 2.5
 	println "^~^~^ VF done"
 }end

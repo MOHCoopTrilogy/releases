@@ -30,6 +30,7 @@ R.RUNS = "G:/mohaa-voicefix/runs"
 R.PORT = 12663
 R.MAP = "m3l2"
 QNAME = "voicefix"
+SESS = [sys.argv[2] if len(sys.argv) > 2 and not sys.argv[2].startswith("--") else "vf1"]
 SLOT = os.path.join(SCR, "test_slot.txt")
 VF = os.path.join(SCR, "voicefix")
 OVERLAY = os.path.join(VF, "zzzzzzzzzzzzzz_voicefixtest.pk3")
@@ -37,7 +38,7 @@ R.OVERLAY = "zzzzzzzzzzzzzz_voicefixtest.pk3"
 LOGF = os.path.join(VF, "run.log")
 MOD = r"C:\mohaa-coop-dev\hzm-mohaa-coop-mod"
 FILES = ["coop_mod/aivoice.scr", "coop_mod/flchatter.scr", "coop_mod/dbno.scr", "coop_mod/deathvox.scr",
-         "coop_mod/paradrop.scr", "ubersound/coop_aivoice.scr", "ubersound/coop_audio.scr", "ubersound/coop_chatter.scr",
+         "coop_mod/paradrop.scr", "coop_mod/flmusic.scr", "ubersound/coop_aivoice.scr", "ubersound/coop_audio.scr", "ubersound/coop_chatter.scr",
          "ubersound/coop_flvo.scr", "ubersound/coop_pain.scr", "ubersound/coop_paintiers.scr", "ubersound/coop_taunt.scr",
          "ubersound/ubersound.scr"]
 
@@ -58,21 +59,33 @@ def build():
             if fn.startswith("fl_"):
                 z.write(os.path.join(MOD, "sound", "coop_flvo", fn), "sound/coop_flvo/" + fn)
         z.write(os.path.join(VF, "overlay", "coop_mod", "coop_selftest_xp.scr"), "coop_mod/coop_selftest_xp.scr")
+        z.write(os.path.join(MOD, "sound", "frontline", "sting_clear1.wav"), "sound/frontline/sting_clear1.wav")
     log("overlay", OVERLAY, len(zipfile.ZipFile(OVERLAY).namelist()), "files")
 
 
+GAMEDLL = r"C:\mohaa-coop-dev\openmohaa-hzm-voicefix\.cmake\code\server\fgame\Release\game.dll"
+
+
 def run():
+    import shutil
     os.makedirs(VF, exist_ok=True)
+    live = os.path.join(R.CLIENT, "games", "game_live.dll")
+    os.makedirs(os.path.dirname(live), exist_ok=True)
+    if not os.path.exists(live):
+        shutil.copyfile(os.path.join(R.CLIENT, "game.dll"), live)
     log("waiting for slot ==", QNAME)
     while open(SLOT).read().strip() != QNAME:
         time.sleep(5)
     log("slot is ours")
     t0 = time.time()
+    if "--game" in sys.argv:
+        shutil.copyfile(GAMEDLL, os.path.join(R.CLIENT, "game.dll"))
+        log("game.dll <- voicefix build")
     rundir = notes = None
     try:
         extra = ["set g_ai 1", "set coop_st_xp 1", "set vf_go 0", "set coop_aiVoiceDebug 1", "set coop_flchatDebug 1",
                  "set s_show_sounds 1", "set coop_aiVoice 1", "set coop_flchatter 1"]
-        rundir, notes = S.boot_session("vf1", "cgame_live", 1280, 720, extra, OVERLAY)
+        rundir, notes = S.boot_session(SESS[0], "cgame_live", 1280, 720, extra, OVERLAY)
         log("booted", notes)
         R.step(["dog 0", "wait 100", "notarget 1", "wait 100", "echo ^~^~^ VFPHASE probe", "set vf_go 1"], timeout=60)
         if not R.wait_log(r"\^~\^~\^ VF done|VF FAIL", 420):
@@ -94,6 +107,10 @@ def run():
                 R.CL["proc"].kill()
         except Exception as e:
             log("end_session", repr(e))
+        if "--game" in sys.argv:
+            time.sleep(2)
+            shutil.copyfile(live, os.path.join(R.CLIENT, "game.dll"))
+            log("game.dll restored to live")
         open(SLOT, "w").write("free")
         log("slot released (free) after %.1f min" % ((time.time() - t0) / 60))
 
@@ -118,7 +135,7 @@ def load_pools():
 
 
 def analyze(path=None):
-    path = path or os.path.join(R.RUNS, "vf1", "qconsole.log")
+    path = path or os.path.join(R.RUNS, SESS[0], "qconsole.log")
     L = open(path, "rb").read().decode("latin-1").splitlines()
     pools = load_pools()
     out, fails = [], 0
@@ -126,6 +143,8 @@ def analyze(path=None):
     snd = re.compile(r"OpenAL: (?:2D - )?\d+ \(#\d+\) - (\S+)")
     events = []
     for ln in L:
+        if not ln.startswith("["):
+            continue
         m = re.search(r"\^~\^~\^ (VFPLAY|VFPAIN|VFCALL|VFDV|VFPHASE|VF actor|AIVOICE|TAUNT)\b(.*)", ln)
         if m:
             cur = [m.group(1), m.group(2).strip(), []]
@@ -140,10 +159,13 @@ def analyze(path=None):
             phase = txt
             out.append("---- phase " + txt)
             continue
-        voice = [f for f in files if "dialogue" in f or "coop_flvo" in f or "coop_deathvox" in f or "coop/radio" in f]
+        voice = [f for f in files if "dialogue" in f or "coop_flvo" in f or "coop_deathvox" in f or "coop/radio" in f or "sound/frontline/" in f]
         if kind == "VFPLAY":
             mm = re.search(r"alias (\S+)", txt)
             alias = mm.group(1).lower() if mm else ""
+            if re.search(r"nat (de|it) sit suppress", txt):
+                out.append("SKIP VFPLAY %s (aivoice never asks de/it for suppress)" % txt)
+                continue
             ok = (alias == "" and not voice) or (voice and all(alias in nation_of_file(f, pools) for f in voice[:1]))
             out.append("%s VFPLAY %s -> %s" % ("PASS" if ok else "FAIL", txt, voice[:1] or "(nothing)"))
             fails += 0 if ok else 1
@@ -162,7 +184,16 @@ def analyze(path=None):
             if "play" in txt.lower() or kind == "AIVOICE":
                 out.append("     [%s] %s %s -> %s" % (phase, kind, txt[:110], voice[:1]))
         elif kind == "VF actor":
-            out.append("     actor " + txt)
+            want = "none"
+            for key, nat in (("soviet", "ru"), ("ital", "it"), ("_uk_", "uk"), ("german", "de"), ("resistance", "none"),
+                             ("airborne", "us")):
+                if key in txt:
+                    want = nat
+                    break
+            got = re.search(r" nat (\S+)", txt).group(1)
+            ok = got == want
+            out.append("%s actor %s (expected nat %s)" % ("PASS" if ok else "FAIL", txt, want))
+            fails += 0 if ok else 1
     heat = [o for o in out if "[heat_only]" in o and "TAUNT" in o and "coop_flvo" in o]
     out.append("flchatter plays during heat-only phase: %d (must be 0)" % len(heat))
     fails += len(heat)
@@ -173,4 +204,4 @@ def analyze(path=None):
 
 
 if __name__ == "__main__":
-    {"build": build, "run": run, "analyze": lambda: analyze(sys.argv[2] if len(sys.argv) > 2 else None)}[sys.argv[1]]()
+    {"build": build, "run": run, "analyze": lambda: analyze(None)}[sys.argv[1]]()
