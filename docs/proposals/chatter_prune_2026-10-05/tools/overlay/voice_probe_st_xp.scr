@@ -1,0 +1,122 @@
+//====================================================================
+// TEST-ONLY OVERLAY (voicefix harness, 2026-10-05). Replaces coop_selftest_xp.scr inside the test
+// overlay pk3 ONLY, so `coop_st_xp 1` (already wired in main.scr) launches the voice probe below.
+// Never shipped / never committed to the mod.
+//====================================================================
+st_xp_run:{
+	waitthread coop_mod/main.scr::waitForMainScript
+	local.p = waitthread coop_mod/coop_selftest.scr::selftest_findPlayer 300
+	if( local.p == NULL ){
+		println "^~^~^ VF FAIL no player"
+		end
+	}
+	while( getcvar( "vf_go" ) != "1" ){ wait 1 }
+	local.p = waitthread coop_mod/coop_selftest.scr::selftest_findPlayer 30
+	println( "^~^~^ VF begin model " + local.p.model )
+
+	//---------------- 1. nationality: spawn one actor per nation, register, play each situation ---
+	local.models[1] = "models/human/allied_airborne_soldier.tik"
+	local.models[2] = "models/human/allied_uk_paratrooper1.tik"
+	local.models[3] = "models/human/german_wehrmact_soldier.tik"
+	local.models[4] = "models/human/sc_ax_ital_inf.tik"
+	local.models[5] = "models/human/soviet_infantry1.tik"
+	local.models[6] = "models/human/allied_resistance.tik"
+	local.teams[1] = "american"
+	local.teams[2] = "american"
+	local.teams[3] = "german"
+	local.teams[4] = "german"
+	local.teams[5] = "german"
+	local.teams[6] = "american"
+	local.sits[1] = "cover"
+	local.sits[2] = "attack"
+	local.sits[3] = "backup"
+	local.sits[4] = "fallback"
+	local.sits[5] = "kill"
+	local.sits[6] = "taunt"
+	local.sits[7] = "suppress"
+	local.sits[8] = "reload"
+	for( local.m = 1; local.m <= 6; local.m++ ){
+		local.org = local.p.origin + ( 96 0 0 )
+		local.a = spawn local.models[local.m]
+		local.a.origin = local.org
+		wait 0.5
+		if( local.a == NULL ){
+			println( "^~^~^ VF spawnfail " + local.models[local.m] )
+			continue
+		}
+		local.a.team = local.teams[local.m]
+		local.a nodamage
+		local.a ai_off
+		local.a thread coop_mod/aivoice.scr::aivoice_register
+		local.a thread coop_mod/flchatter.scr::flchatter_register
+		wait 0.5
+		local.inDE = 0
+		local.inUS = 0
+		for( local.j = 0; local.j < level.coop_flchatDEn; local.j++ ){ if( level.coop_flchatDE[local.j] == local.a ){ local.inDE = 1 } }
+		for( local.j = 0; local.j < level.coop_flchatUSn; local.j++ ){ if( level.coop_flchatUS[local.j] == local.a ){ local.inUS = 1 } }
+		println( "^~^~^ VF actor model " + local.a.model + " team " + local.a.team + " nat " + local.a.coop_avNat + " flchatDE " + local.inDE + " flchatUS " + local.inUS )
+		for( local.s = 1; local.s <= 8; local.s++ ){
+			local.al = ""
+			if( local.a.coop_avNat != NIL && local.a.coop_avNat != "" ){
+				local.al = waitthread coop_mod/aivoice.scr::aivoice_alias local.a.coop_avNat local.sits[local.s]
+			}
+			println( "^~^~^ VFPLAY model " + local.a.model + " nat " + local.a.coop_avNat + " sit " + local.sits[local.s] + " alias " + local.al )
+			if( local.al != "" ){ local.a playsound local.al }
+			wait 2.2
+		}
+		// the flchatter pools this actor would roll
+		if( local.inDE == 1 ){
+			println "^~^~^ VFPLAY flchatter de alias coop_flvo_de"
+			local.a playsound coop_flvo_de
+			wait 2.2
+			println "^~^~^ VFPLAY flchatter de alias coop_taunt_de"
+			local.a playsound coop_taunt_de
+			wait 2.2
+		}
+		if( local.inUS == 1 ){
+			println "^~^~^ VFPLAY flchatter us alias coop_flvo_us"
+			local.a playsound coop_flvo_us
+			wait 2.2
+			println "^~^~^ VFPLAY flchatter us alias coop_taunt_us"
+			local.a playsound coop_taunt_us
+			wait 2.2
+		}
+		local.a remove
+		wait 0.5
+	}
+
+	//---------------- 2. gender: male player pain x6, then Manon model pain x6 ------------------
+	println( "^~^~^ VFGENDER male model " + local.p.model )
+	for( local.k = 1; local.k <= 6; local.k++ ){
+		println "^~^~^ VFPAIN male"
+		local.p damage $world 3 $world (0 0 0) (0 0 0) (0 0 0) 0 0 0 0
+		wait 1.6
+	}
+	println "^~^~^ VFCALL male"
+	waitthread coop_mod/dbno.scr::dbno_play_random_call local.p
+	wait 2
+	println "^~^~^ VFCALL male"
+	waitthread coop_mod/dbno.scr::dbno_play_random_call local.p
+	wait 2
+	println "^~^~^ VFDV male"
+	waitthread coop_mod/deathvox.scr::play local.p 0
+	wait 2
+	local.p model "models/player/allied_manon.tik"
+	wait 1
+	println( "^~^~^ VFGENDER female model " + local.p.model )
+	for( local.k = 1; local.k <= 6; local.k++ ){
+		println "^~^~^ VFPAIN female"
+		local.p damage $world 3 $world (0 0 0) (0 0 0) (0 0 0) 0 0 0 0
+		wait 1.6
+	}
+	println "^~^~^ VFCALL female"
+	waitthread coop_mod/dbno.scr::dbno_play_random_call local.p
+	wait 2
+	println "^~^~^ VFCALL female"
+	waitthread coop_mod/dbno.scr::dbno_play_random_call local.p
+	wait 2
+	println "^~^~^ VFDV female"
+	waitthread coop_mod/deathvox.scr::play local.p 0
+	wait 2
+	println "^~^~^ VF done"
+}end
