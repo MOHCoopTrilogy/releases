@@ -1,0 +1,83 @@
+//=========================================================================
+// TEST-ONLY overlay (docs/proposals/hud_declutter_2026-10-05/tools/run_hudfeed.py) - NEVER shipped.
+// Replaces coop_selftest_xp.scr inside the harness overlay pk3 only; main.scr starts st_xp_run when coop_st_xp 1.
+// A busy, scripted HUD-text sequence identical in the BEFORE and AFTER runs: item pickups, an officer with his
+// intro and bodyguards, bodyguard kills, reinforcement waves, a paradrop, an armory lock notice, a challenge,
+// a promotion, then the player goes down (DBNO) and respawns. Phases are logged as ^~^~^ HF <phase>.
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ HF driver armed"
+	while( getcvar "hf_go" != "1" ){ wait 0.5 }
+	local.p = $player[1]
+	if( local.p == NULL ){ println "^~^~^ HF abort no player"; end }
+	setcvar "coop_officerWaveCooldown" "1"
+
+	println "^~^~^ HF phase items"
+	waitthread global/items.scr::add_item "binoculars"
+	wait 1.5
+	waitthread global/items.scr::add_item "explosives"
+	wait 3
+
+	println "^~^~^ HF phase officer"
+	local.fwd = angles_toforward local.p.angles
+	thread coop_mod/officer.scr::coop_officer_spawn ( local.p.origin + ( local.fwd * 900 ) )
+	wait 6
+
+	println "^~^~^ HF phase bodyguards"
+	for( local.i = 1; local.i <= 6; local.i++ ){
+		local.bg = level.coop_bodyguards[local.i]
+		if( local.bg != NIL && local.bg != NULL ){
+			if( isAlive local.bg ){
+				local.bg damage $world 5000 $world ( 0 0 0 ) ( 0 0 0 ) ( 0 0 0 ) 0 9 0 0
+				wait 1.6
+			}
+		}
+	}
+	wait 2
+
+	println "^~^~^ HF phase waves"
+	level.coop_officer_lastWaveTime = NIL
+	thread coop_mod/officer.scr::coop_call_reinforcements
+	wait 3
+	level.coop_officer_lastWaveTime = NIL
+	thread coop_mod/officer.scr::coop_call_reinforcements
+	wait 4
+
+	println "^~^~^ HF phase paradrop"
+	thread coop_mod/paradrop.scr::coop_paradrop_main ( local.p.origin + ( local.fwd * 300 ) )
+	wait 6
+
+	println "^~^~^ HF phase armory"
+	thread coop_mod/helmet.scr::helmet_lockNotice local.p 3
+	wait 1
+	println "^~^~^ HF phase challenge"
+	thread coop_mod/challenges.scr::chal_notify local.p "The Tell-Tale Ping"
+	wait 2
+	println "^~^~^ HF phase promotion"
+	local.p.flags["coop_xp_ceremony"] = NIL
+	thread coop_mod/xp.scr::xp_award local.p 3000 "kills" "Probe"
+	wait 6
+
+	println "^~^~^ HF phase down"
+	setcvar "hf_down" "1"
+	while( getcvar "hf_downok" != "1" ){ wait 0.25 }
+	// small hits until the DBNO state takes (one big burst kills outright - hardcore.scr notes the same)
+	local.n = 0
+	while( local.p != NULL && local.n < 40 ){
+		if( local.p.flags["coop_dbno_active"] == 1 ){ break }
+		if( !(isAlive local.p) ){ break }
+		local.p damage $world 60 $world local.p.origin ( 0 0 0 ) ( 0 0 0 ) 0 9 0 0
+		local.n++
+		wait 0.3
+	}
+	println ( "^~^~^ HF down state dbno=" + local.p.flags["coop_dbno_active"] + " hits=" + local.n )
+	wait 8
+	println "^~^~^ HF phase dead"
+	if( local.p != NULL ){ local.p damage $world 5000 $world local.p.origin ( 0 0 0 ) ( 0 0 0 ) 0 9 0 0 }
+	wait 6
+	println "^~^~^ HF phase lastmission"
+	local.p = $player[1]
+	if( local.p != NULL ){ thread coop_mod/feed.scr::feed_lastMission local.p }
+	wait 2
+	println "^~^~^ HF done"
+}end

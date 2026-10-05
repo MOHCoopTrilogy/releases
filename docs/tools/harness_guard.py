@@ -180,6 +180,11 @@ HARNESSES = {
     # G:\mohaa-adsanim\pristine (no qkey/saves), basepath = the GOG tree read-only, test overlay pk3 in the home,
     # net_ip 127.0.0.1, net_port 12571, queue slot "reloadauth"
     r"G:\mohaa-reloadauth": {"owner": "reloadauth", "home": r"G:\mohaa-reloadauth\home"},
+    # HUD declutter event feed before/after (docs/proposals/hud_declutter_2026-10-05/tools/run_hudfeed.py): byte copies of
+    # the LIVE G:\mohaa-gl2 exe/cgame/game/renderers (via the voicefix copies) + the test cgame/game built in the isolated
+    # copy openmohaa-hzm-hudfeed, fresh home from the adsanim pristine (no qkey/saves), basepath = GOG read-only, test
+    # overlay pk3 in the home, net_ip 127.0.0.1, net_port 12701, queue slot "hudfeed"
+    r"G:\mohaa-hudfeed": {"owner": "hudfeed", "home": r"G:\mohaa-hudfeed\home"},
 }
 SLOT = os.path.join(os.environ.get("LOCALAPPDATA", r"C:\Users\Public"), "hzm_harness", "client_slot.json")
 

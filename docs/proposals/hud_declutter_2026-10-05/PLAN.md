@@ -309,3 +309,29 @@ Order: (1) CUT the debug prints and the redundant lines (script-only, no cgame n
    by default?
 5. **Join messages:** hide the map-change re-joins only (proposed), or hide joins in coop completely?
 6. In **Hardcore**, should the feed show the amber "enemy wave deployed" alerts, or nothing at all?
+
+---
+
+## 6. Answers (user, 2026-10-05) and PHASE 2 - what was built
+
+Answers: (1) promotion + challenge-complete = debrief card PLUS one quiet feed line; (2) crosshair XP popups unchanged;
+(3) feed bottom-left above health/stamina; (4) hints once per profile; (5) hide only map-change re-joins, new players to
+the feed; (6) Hardcore shows only the amber threat alerts. Added later: ALL DBNO text - "You are DOWN!" is cut (the
+bleed-out ring/vignette/heartbeat carry it), teammates get one feed line; only mission failure / everyone down stays bold.
+
+Built (all edits are anchored ops: `tools/ops_engine.py`, `tools/ops_mod.py`, applied/staged by `tools/hudops.py`):
+
+| piece | where |
+|---|---|
+| event feed (3 lines, per-line fade, `xN` stacking, no sound, hints, Hardcore filter, armory/last-mission cvars) | `openmohaa-hzm/code/cgame/cg_coopfeed.c` (new) + 2 hook hunks (`cg_servercmds.c`, `cg_drawtools.cpp`) |
+| capability + old-client fallback | cgame registers `cg_hzmFeed 1` (USERINFO, ROM); `feed.scr::feed_capable` reads it; others get plain non-bold text |
+| script API | `hzm-mohaa-coop-mod/coop_mod/feed.scr` (new): `feed_player/feed_all/feed_others/feed_hint*/feed_icon/feed_itemPickup/feed_mapList/feed_chalDone/feed_lastMission` |
+| routing | ~230 print sites in 55 scripts (officer, paradrop, objective_drop, DBNO, medkit, armory, cosmetics, LMS, admin, maps) |
+| developer prints | to `println` (console/log only) |
+| "You have acquired" | `global/items.scr`: coop only, icon + one word for the picker (`parm.other`), everyone for a scripted give |
+| armory | confirmations -> `coop_armoryStatus` (not drawn); denials -> one self line. `ui/coop_loadout.urc` is checksum-LOCKED (check_mp_isolation clause 6), so no new label there; the lock reasons already show in its REQ rows |
+| promotion / challenge / medal / prestige | one quiet feed line; the debrief list is now "EARNED THIS MISSION" (+ challenges, medals, prestige); the mid-mission rank bar is off (`coop_xpRankBar 1` restores it) |
+| LAST MISSION page | `ui/coop_lastmission.urc` (new, What's New plate) + main-menu button; lines `coop_lm0..9` written by the feed at the debrief |
+| re-join hiding | game.dll `g_client.cpp` (carried-over flag) + `player.cpp` (`HZM_CoopJoinSession` = level var coop_mainScriptLoaded) |
+
+Client cvars (archived, cgame-registered, no menu yet): `coop_feed 0/1/2`, `coop_hints 0/1`, `coop_feedX/Y`, `coop_hintSeen*`.
