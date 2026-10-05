@@ -38,7 +38,7 @@ R.OVERLAY = "zzzzzzzzzzzzzz_voicefixtest.pk3"
 LOGF = os.path.join(VF, "run.log")
 MOD = r"C:\mohaa-coop-dev\hzm-mohaa-coop-mod"
 FILES = ["coop_mod/aivoice.scr", "coop_mod/flchatter.scr", "coop_mod/dbno.scr", "coop_mod/deathvox.scr",
-         "coop_mod/paradrop.scr", "coop_mod/flmusic.scr", "ubersound/coop_aivoice.scr", "ubersound/coop_audio.scr", "ubersound/coop_chatter.scr",
+         "coop_mod/paradrop.scr", "coop_mod/flmusic.scr", "coop_mod/ambience.scr", "coop_mod/officer.scr", "global/objectives.scr", "ubersound/coop_flpain.scr", "ubersound/coop_aivoice.scr", "ubersound/coop_audio.scr", "ubersound/coop_chatter.scr",
          "ubersound/coop_flvo.scr", "ubersound/coop_pain.scr", "ubersound/coop_paintiers.scr", "ubersound/coop_taunt.scr",
          "ubersound/ubersound.scr"]
 
@@ -58,8 +58,12 @@ def build():
         for fn in sorted(os.listdir(os.path.join(MOD, "sound", "coop_flvo"))):
             if fn.startswith("fl_"):
                 z.write(os.path.join(MOD, "sound", "coop_flvo", fn), "sound/coop_flvo/" + fn)
-        z.write(os.path.join(VF, "overlay", "coop_mod", "coop_selftest_xp.scr"), "coop_mod/coop_selftest_xp.scr")
-        z.write(os.path.join(MOD, "sound", "frontline", "sting_clear1.wav"), "sound/frontline/sting_clear1.wav")
+        z.write(os.path.join(VF, os.environ.get("VF_OVERLAY", "overlay"), "coop_mod", "coop_selftest_xp.scr"),
+                "coop_mod/coop_selftest_xp.scr")
+        for sub, pat in (("frontline", "sting_"), ("coop_flvo", "fl_pain_"), ("coop_amb", "fl_far_")):
+            for fn in sorted(os.listdir(os.path.join(MOD, "sound", sub))):
+                if fn.startswith(pat) and ("sound/%s/%s" % (sub, fn)) not in z.namelist():
+                    z.write(os.path.join(MOD, "sound", sub, fn), "sound/%s/%s" % (sub, fn))
     log("overlay", OVERLAY, len(zipfile.ZipFile(OVERLAY).namelist()), "files")
 
 
@@ -203,5 +207,45 @@ def analyze(path=None):
     open(os.path.join(VF, "analysis.txt"), "w", encoding="utf-8").write(txt)
 
 
+def analyze_sting():
+    path = os.path.join(R.RUNS, SESS[0], "qconsole.log")
+    L = open(path, "rb").read().decode("latin-1").splitlines()
+    snd = re.compile(r"OpenAL: (?:2D - )?\d+ \(#\d+\) - (\S+)")
+    cur, ev = None, collections.OrderedDict()
+    for ln in L:
+        if not ln.startswith("["):
+            continue
+        m = re.search(r"\^~\^~\^ (VFEV .*|VF done)$", ln)
+        if m:
+            cur = m.group(1).strip()
+            ev[cur] = {"sting": [], "files": [], "log": []}
+            continue
+        if cur is None:
+            continue
+        m = re.search(r"\^~\^~\^ (FLSTING .*)$", ln)
+        if m:
+            ev[cur]["log"].append(m.group(1).strip())
+        s = snd.search(ln)
+        if s:
+            f = s.group(1).lower()
+            if "sound/frontline/" in f or "sound/psx/" in f:
+                ev[cur]["sting"].append(f)
+            elif "fl_pain_" in f or "/pain/" in f or "/damage/" in f or "fl_far" in f or "coop_amb/" in f:
+                ev[cur]["files"].append(f)
+    out = []
+    for k, v in ev.items():
+        extra = ""
+        if k.startswith("VFEV pain_draws"):
+            n = len(v["files"])
+            fl = sum(1 for f in v["files"] if "fl_pain_" in f)
+            nat = "de" if k.endswith("de") else "us"
+            wrong = sum(1 for f in v["files"] if "fl_pain_" in f and ("fl_pain_%s_" % nat) not in f)
+            extra = " draws=%d frontline=%d wrong_nation=%d" % (n, fl, wrong)
+            v["files"] = sorted(set(f for f in v["files"] if "fl_pain_" in f))
+        out.append("%s: sting=%s log=%s files=%s%s" % (k, v["sting"], v["log"], v["files"][:6], extra))
+    txt = "\n".join(out)
+    print(txt)
+    open(os.path.join(VF, "analysis_sting.txt"), "w", encoding="utf-8").write(txt)
+
 if __name__ == "__main__":
-    {"build": build, "run": run, "analyze": lambda: analyze(None)}[sys.argv[1]]()
+    {"build": build, "run": run, "analyze": lambda: analyze(None), "analyze_sting": analyze_sting}[sys.argv[1]]()

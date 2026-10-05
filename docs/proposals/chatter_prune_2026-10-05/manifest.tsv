@@ -202,18 +202,18 @@ sound/dialogue/Multiplayer/Russian/dfr_mpt_RS7563to5.mp3	coop_av_ru_taunt3	coop_
 sound/dialogue/Multiplayer/Russian/dfr_mpt_RS7564to10.mp3	coop_av_ru_taunt4	coop_av_ru_taunt	ru	0.97	Э-э-эй, где вы прячетесь?		Where are you hiding?	KEEP		
 sound/dialogue/generic/a/panic/dfr_panic_25j_1.wav	coop_av_us_panic1	coop_av_us_panic	en	0.98	He's here!			KEEP		
 sound/dialogue/generic/a/panic/dfr_panic_26a_1.wav	coop_av_us_panic2	coop_av_us_panic	en	0.87	Medic!			KEEP		
-sound/dialogue/generic/a/panic/dfr_panic_26a_2.wav	coop_av_us_panic3	coop_av_us_panic		0.00				CUT	file does not ship in any pak or the mod tree (ghost alias, plays silence)	
+sound/dialogue/generic/a/panic/dfr_panic_26a_2.wav	coop_av_us_panic3	coop_av_us_panic		0.00				KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
 sound/dialogue/generic/a/panic/dfr_panic_27j_1.wav	coop_av_us_panic4	coop_av_us_panic	en	0.98	He's been hit!			KEEP		
-sound/dialogue/generic/a/panic/dfr_panic_27j_2.wav	coop_av_us_panic5	coop_av_us_panic		0.00				CUT	file does not ship in any pak or the mod tree (ghost alias, plays silence)	
+sound/dialogue/generic/a/panic/dfr_panic_27j_2.wav	coop_av_us_panic5	coop_av_us_panic		0.00				KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
 sound/dialogue/generic/a/panic/dfr_panic_28m_1.wav	coop_av_us_panic6	coop_av_us_panic	en	0.96	He's hit!			KEEP		
-sound/dialogue/generic/a/panic/dfr_panic_28m_2.wav	coop_av_us_panic7	coop_av_us_panic		0.00				CUT	file does not ship in any pak or the mod tree (ghost alias, plays silence)	
-sound/dialogue/generic/a/panic/dfr_panic_28m_3.wav	coop_av_us_panic8	coop_av_us_panic		0.00				CUT	file does not ship in any pak or the mod tree (ghost alias, plays silence)	
-sound/dialogue/generic/a/panic/dfr_panic_29e_1.wav	coop_av_us_panic9	coop_av_us_panic		0.00				CUT	file does not ship in any pak or the mod tree (ghost alias, plays silence)	
-sound/dialogue/generic/a/panic/dfr_panic_29e_2.wav	coop_av_us_panic10	coop_av_us_panic		0.00				CUT	file does not ship in any pak or the mod tree (ghost alias, plays silence)	
-sound/dialogue/generic/a/panic/dfr_panic_30f_1.wav	coop_av_us_panic11	coop_av_us_panic		0.00				CUT	file does not ship in any pak or the mod tree (ghost alias, plays silence)	
-sound/dialogue/generic/a/panic/dfr_panic_31k_1.wav	coop_av_us_panic12	coop_av_us_panic		0.00				CUT	file does not ship in any pak or the mod tree (ghost alias, plays silence)	
-sound/dialogue/generic/a/panic/dfr_panic_32o_1.wav	coop_av_us_panic13	coop_av_us_panic		0.00				CUT	file does not ship in any pak or the mod tree (ghost alias, plays silence)	
-sound/dialogue/generic/a/panic/dfr_panic_34f_1.wav	coop_av_us_panic14	coop_av_us_panic		0.00				CUT	file does not ship in any pak or the mod tree (ghost alias, plays silence)	
+sound/dialogue/generic/a/panic/dfr_panic_28m_2.wav	coop_av_us_panic7	coop_av_us_panic		0.00				KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/generic/a/panic/dfr_panic_28m_3.wav	coop_av_us_panic8	coop_av_us_panic		0.00				KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/generic/a/panic/dfr_panic_29e_1.wav	coop_av_us_panic9	coop_av_us_panic		0.00				KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/generic/a/panic/dfr_panic_29e_2.wav	coop_av_us_panic10	coop_av_us_panic		0.00				KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/generic/a/panic/dfr_panic_30f_1.wav	coop_av_us_panic11	coop_av_us_panic		0.00				KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/generic/a/panic/dfr_panic_31k_1.wav	coop_av_us_panic12	coop_av_us_panic		0.00				KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/generic/a/panic/dfr_panic_32o_1.wav	coop_av_us_panic13	coop_av_us_panic		0.00				KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/generic/a/panic/dfr_panic_34f_1.wav	coop_av_us_panic14	coop_av_us_panic		0.00				KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
 sound/dialogue/generic/a/panic/dfr_panic_35c_2.wav	coop_av_us_panic15	coop_av_us_panic	en	0.27	He's here!			KEEP		
 sound/dialogue/generic/a/panic/dfr_panic_36c_1.wav	coop_av_us_panic16	coop_av_us_panic	en	0.99	Man down!			KEEP		
 sound/dialogue/generic/a/panic/dfr_panic_36c_2.wav	coop_av_us_panic17	coop_av_us_panic	en	0.98	MAN DOWN!			KEEP		
@@ -1771,24 +1771,24 @@ sound/mechanics/Mec_RadioNoise_11.wav	coop_radio_off	coop_radio_off	nn	0.34				K
 sound/mechanics/Mec_RadioLoop_03.wav	coop_radio_loop	coop_radio_loop	en	0.31	Thanks for watching!			KEEP	radio reply to the player-called airstrike/paradrop (fits its trigger) / radio SFX	
 sound/mechanics/shortwave3.wav	coop_radio_chatter	coop_radio_chatter	en	0.33				KEEP	radio reply to the player-called airstrike/paradrop (fits its trigger) / radio SFX	
 sound/mechanics/shortwave4.wav	coop_radio_chatter_2	coop_radio_chatter_	en	0.49				KEEP	radio reply to the player-called airstrike/paradrop (fits its trigger) / radio SFX	
-sound/dialogue/Multiplayer/a/AMdfr_g_03a.WAV	coop_para_land	coop_para_land		0.00			Squad, attack right flank!	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
-sound/dialogue/Multiplayer/a/AMdfr_g_04a.WAV	coop_para_land#2	coop_para_land		0.00			Squad, attack left flank!	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
-sound/dialogue/Multiplayer/a/AMdfr_g_06a.WAV	coop_para_land#3	coop_para_land		0.00			Squad, covering fire!	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
-sound/dialogue/Multiplayer/a/AMdfr_c_09a.WAV	coop_para_land#4	coop_para_land		0.00			Attack!	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
-sound/dialogue/Multiplayer/a/AMdfr_c_08a.WAV	coop_para_land#5	coop_para_land		0.00			Charge!	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
-sound/dialogue/Multiplayer/a/AMdfr_g_01a.WAV	coop_para_land#6	coop_para_land		0.00			Squad, move in!	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
-sound/dialogue/Multiplayer/a/AMdfr_c_01a.WAV	coop_para_combat	coop_para_combat		0.00			Cover me!	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
-sound/dialogue/Multiplayer/a/AMdfr_c_02a.WAV	coop_para_combat#2	coop_para_combat		0.00			I'll cover you!	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
-sound/dialogue/Multiplayer/a/AMdfr_c_03a.WAV	coop_para_combat#3	coop_para_combat		0.00			Follow me!	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
-sound/dialogue/Multiplayer/a/AMdfr_r_03a.WAV	coop_para_combat#4	coop_para_combat		0.00			Enemy Spotted.	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
-sound/dialogue/Multiplayer/a/AMdfr_r_10a.WAV	coop_para_combat#5	coop_para_combat		0.00			Is that all you've got?	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
-sound/dialogue/Multiplayer/a/AMdfr_r_15a.WAV	coop_para_combat#6	coop_para_combat		0.00			Come back when you've had some target practice!	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
-sound/dialogue/Multiplayer/a/AMdfr_r_16a.WAV	coop_para_combat#7	coop_para_combat		0.00			Come prepared next time!	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
-sound/dialogue/Multiplayer/a/AMdfr_r_19a.WAV	coop_para_combat#8	coop_para_combat		0.00			Try again!	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
-sound/dialogue/Multiplayer/a/AMdfr_c_10a.WAV	coop_para_combat#9	coop_para_combat		0.00			Open fire!	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
-sound/dialogue/Multiplayer/a/AMdfr_c_06a.WAV	coop_para_help	coop_para_help		0.00			Taking Fire!  Need some help!	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
-sound/dialogue/Multiplayer/a/AMdfr_c_01a.WAV	coop_para_help#2	coop_para_help		0.00			Cover me!	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
-sound/dialogue/m3l1/A/medic1.wav	coop_para_heal	coop_para_heal		0.00			Here you go Lieutenant!	KEEP	GHOST: file does not ship (silent alias) - left for a paradrop follow-up	
+sound/dialogue/Multiplayer/a/AMdfr_g_03a.WAV	coop_para_land	coop_para_land		0.00			Squad, attack right flank!	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/Multiplayer/a/AMdfr_g_04a.WAV	coop_para_land#2	coop_para_land		0.00			Squad, attack left flank!	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/Multiplayer/a/AMdfr_g_06a.WAV	coop_para_land#3	coop_para_land		0.00			Squad, covering fire!	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/Multiplayer/a/AMdfr_c_09a.WAV	coop_para_land#4	coop_para_land		0.00			Attack!	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/Multiplayer/a/AMdfr_c_08a.WAV	coop_para_land#5	coop_para_land		0.00			Charge!	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/Multiplayer/a/AMdfr_g_01a.WAV	coop_para_land#6	coop_para_land		0.00			Squad, move in!	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/Multiplayer/a/AMdfr_c_01a.WAV	coop_para_combat	coop_para_combat		0.00			Cover me!	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/Multiplayer/a/AMdfr_c_02a.WAV	coop_para_combat#2	coop_para_combat		0.00			I'll cover you!	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/Multiplayer/a/AMdfr_c_03a.WAV	coop_para_combat#3	coop_para_combat		0.00			Follow me!	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/Multiplayer/a/AMdfr_r_03a.WAV	coop_para_combat#4	coop_para_combat		0.00			Enemy Spotted.	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/Multiplayer/a/AMdfr_r_10a.WAV	coop_para_combat#5	coop_para_combat		0.00			Is that all you've got?	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/Multiplayer/a/AMdfr_r_15a.WAV	coop_para_combat#6	coop_para_combat		0.00			Come back when you've had some target practice!	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/Multiplayer/a/AMdfr_r_16a.WAV	coop_para_combat#7	coop_para_combat		0.00			Come prepared next time!	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/Multiplayer/a/AMdfr_r_19a.WAV	coop_para_combat#8	coop_para_combat		0.00			Try again!	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/Multiplayer/a/AMdfr_c_10a.WAV	coop_para_combat#9	coop_para_combat		0.00			Open fire!	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/Multiplayer/a/AMdfr_c_06a.WAV	coop_para_help	coop_para_help		0.00			Taking Fire!  Need some help!	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/Multiplayer/a/AMdfr_c_01a.WAV	coop_para_help#2	coop_para_help		0.00			Cover me!	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
+sound/dialogue/m3l1/A/medic1.wav	coop_para_heal	coop_para_heal		0.00			Here you go Lieutenant!	KEEP	"file ships LOOSE in GOG main/sound (not in a pak) - kept; earlier ""ghost"" verdict was wrong"	
 sound/dialogue/m3l1/A/medic3.wav	coop_para_heal#2	coop_para_heal		0.00			Here you go Powell!	CUT	named character (Powell)	
 sound/weapons/explo/Explo_MetalMed3.wav	coop_radio_blast	coop_radio_blast	en	0.62	THANKS FOR WATCHING			KEEP	radio reply to the player-called airstrike/paradrop (fits its trigger) / radio SFX	
 sound/weapons/explo/Explo_MetalMed5.wav	coop_radio_blast#2	coop_radio_blast	en	0.39	You			KEEP	radio reply to the player-called airstrike/paradrop (fits its trigger) / radio SFX	

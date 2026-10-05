@@ -5,16 +5,6 @@ sound/coop/radio/m3l3_340k.wav	coop_radio_airstrike,coop_radio_paradrop	Anyone t
 sound/coop/radio/m3l3_341k.wav	coop_radio_airstrike,coop_radio_paradrop	I repeat, is anyone there? Over!	campaign radio line asking if anyone is there - nonsense as the reply to a player-called strike/drop
 sound/coop/radio/m3l3_343k.wav	coop_radio_airstrike,coop_radio_paradrop	This is Echo Charlie, please respond, over.	campaign radio line asking if anyone is there - nonsense as the reply to a player-called strike/drop
 sound/dialogue/generic/a/cover/dfr_cover_04a_1.wav	coop_av_us_cover	Hold up here, stay on the cover.	hold-position order ('staying in position')
-sound/dialogue/generic/a/panic/dfr_panic_26a_2.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
-sound/dialogue/generic/a/panic/dfr_panic_27j_2.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
-sound/dialogue/generic/a/panic/dfr_panic_28m_2.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
-sound/dialogue/generic/a/panic/dfr_panic_28m_3.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
-sound/dialogue/generic/a/panic/dfr_panic_29e_1.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
-sound/dialogue/generic/a/panic/dfr_panic_29e_2.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
-sound/dialogue/generic/a/panic/dfr_panic_30f_1.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
-sound/dialogue/generic/a/panic/dfr_panic_31k_1.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
-sound/dialogue/generic/a/panic/dfr_panic_32o_1.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
-sound/dialogue/generic/a/panic/dfr_panic_34f_1.wav	coop_av_us_panic		file does not ship in any pak or the mod tree (ghost alias, plays silence)
 sound/dialogue/generic/g/attack/atk_g_010a.wav	coop_av_de_attack	Eindringling!	not an attack bark (greeting/thanks/curious/grenade) - misfiled by the meaning-comment classifier
 sound/dialogue/generic/g/attack/vic_001a.wav	coop_av_de_kill	Frist das du, Mieselspion!	spy-mission line (disguise maps only)
 sound/dialogue/generic/g/attack/vic_001b.wav	coop_av_de_kill	Frist das, du Spion!	spy-mission line (disguise maps only)

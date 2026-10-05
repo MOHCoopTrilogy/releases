@@ -1,0 +1,56 @@
+{
+ "kept": [
+  {
+   "file": "sound/coop_amb/fl_far_01.wav",
+   "src": "amb_1_1_01.wav",
+   "at": 12.33,
+   "prominence_db": 35.8,
+   "gain": 6.3
+  },
+  {
+   "file": "sound/coop_amb/fl_far_02.wav",
+   "src": "amb_4_1_11.wav",
+   "at": 38.27,
+   "prominence_db": 24.3,
+   "gain": 6.9
+  },
+  {
+   "file": "sound/coop_amb/fl_far_03.wav",
+   "src": "amb_3_3_01.wav",
+   "at": 158.06,
+   "prominence_db": 22.4,
+   "gain": 7.6
+  },
+  {
+   "file": "sound/coop_amb/fl_far_04.wav",
+   "src": "amb_1_1_03.wav",
+   "at": 23.03,
+   "prominence_db": 20.4,
+   "gain": 4.9
+  },
+  {
+   "file": "sound/coop_amb/fl_far_05.wav",
+   "src": "amb_5_4_01.wav",
+   "at": 41.15,
+   "prominence_db": 20.1,
+   "gain": 3.6
+  },
+  {
+   "file": "sound/coop_amb/fl_far_06.wav",
+   "src": "amb_3_2_01.wav",
+   "at": 42.19,
+   "prominence_db": 19.0,
+   "gain": 12.6
+  }
+ ],
+ "dropped": [
+  {
+   "src": "amb_3_3_05.wav",
+   "why": "6.6% energy above 3 kHz - reads closer than distant"
+  },
+  {
+   "src": "amb_5_4_03.wav",
+   "why": "a second boom starts inside the 1.2 s release fade"
+  }
+ ]
+}

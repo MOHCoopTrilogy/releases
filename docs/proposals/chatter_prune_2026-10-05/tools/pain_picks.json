@@ -1,0 +1,110 @@
+[
+ {
+  "nat": "de",
+  "file": "sound/coop_flvo/fl_pain_de_01.wav",
+  "src": "1_1_11load1_006.wav",
+  "dur": 0.39,
+  "f0": 237,
+  "gain": -0.4,
+  "whisper": "oh!"
+ },
+ {
+  "nat": "us",
+  "file": "sound/coop_flvo/fl_pain_us_01.wav",
+  "src": "1_2_12load1_016.wav",
+  "dur": 0.53,
+  "f0": 108,
+  "gain": -0.5,
+  "whisper": "ahh!"
+ },
+ {
+  "nat": "de",
+  "file": "sound/coop_flvo/fl_pain_de_02.wav",
+  "src": "1_3_13load1_012.wav",
+  "dur": 0.37,
+  "f0": 170,
+  "gain": -0.5,
+  "whisper": "ahh!"
+ },
+ {
+  "nat": "us",
+  "file": "sound/coop_flvo/fl_pain_us_02.wav",
+  "src": "2_2_22load3_003.wav",
+  "dur": 0.3,
+  "f0": 242,
+  "gain": -0.3,
+  "whisper": "ugh!"
+ },
+ {
+  "nat": "de",
+  "file": "sound/coop_flvo/fl_pain_de_03.wav",
+  "src": "1_1_11load1_010.wav",
+  "dur": 0.46,
+  "f0": 127,
+  "gain": -0.2,
+  "whisper": "ahh!"
+ },
+ {
+  "nat": "us",
+  "file": "sound/coop_flvo/fl_pain_us_03.wav",
+  "src": "1_2_12load2_005.wav",
+  "dur": 0.49,
+  "f0": 247,
+  "gain": -0.9,
+  "whisper": "ah!"
+ },
+ {
+  "nat": "de",
+  "file": "sound/coop_flvo/fl_pain_de_04.wav",
+  "src": "1_3_13load2_002.wav",
+  "dur": 0.58,
+  "f0": 239,
+  "gain": -4.0,
+  "whisper": "ugh!"
+ },
+ {
+  "nat": "us",
+  "file": "sound/coop_flvo/fl_pain_us_04.wav",
+  "src": "2_2_22load5_002.wav",
+  "dur": 0.46,
+  "f0": 105,
+  "gain": -0.5,
+  "whisper": "ahh"
+ },
+ {
+  "nat": "de",
+  "file": "sound/coop_flvo/fl_pain_de_05.wav",
+  "src": "1_1_11load1_018.wav",
+  "dur": 0.62,
+  "f0": 180,
+  "gain": -0.4,
+  "whisper": "ugh!"
+ },
+ {
+  "nat": "us",
+  "file": "sound/coop_flvo/fl_pain_us_05.wav",
+  "src": "1_2_12load2_006.wav",
+  "dur": 0.3,
+  "f0": 244,
+  "gain": -0.5,
+  "whisper": "oh!"
+ },
+ {
+  "nat": "de",
+  "file": "sound/coop_flvo/fl_pain_de_06.wav",
+  "src": "1_3_13load2_009.wav",
+  "dur": 0.55,
+  "f0": 235,
+  "gain": 1.6,
+  "whisper": "oh!"
+ },
+ {
+  "nat": "us",
+  "file": "sound/coop_flvo/fl_pain_us_06.wav",
+  "src": "2_2_22load5_010.wav",
+  "dur": 0.44,
+  "f0": 225,
+  "gain": -0.5,
+  "whisper": "uh!"
+ }
+]
