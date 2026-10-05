@@ -205,6 +205,16 @@ PFX_PAGES = [
 # toggle, so the two rows always agree.
 AA = P("r_ppFXAA", ["r_ppFXAA"], [("Off", 0), ("Smooth edges", 1)], 1)
 
+# [2026-10-04 gfx flip, shadows plan P6.2] MULTISAMPLE ANTI-ALIASING is back, on its own cvar. gl2 renders the 3D
+# scene into multisample textures with shader resolves (renderergl2/tr_msaa.c: min+max depth, tone-exact colour,
+# alpha-to-coverage for cutouts, centroid lightmap coords), so the bug-1298 halos of the old path are gone.
+# r_msaa is ARCHIVE, default -1 = Auto (8x on >=10 GB VRAM when the buffers fit 5 % of it, 4x on 4-10 GB or unknown,
+# 2x below 4 GB, off on Intel iGPU / no ARB_texture_multisample / GLSL < 1.50 / render scale >= 1.5), decided at
+# every R_Init and never written back. It is READ AT R_INIT, so a pick shows from the next map load or video restart
+# (APPLY does not restart for it: not LATCH). Writes ONLY r_msaa (bug-1152); the old r_ext_multisample /
+# r_ext_framebuffer_multisample stay PINNED 0. gl1 ignores r_msaa (accepted: gl1 has no menu MSAA).
+MSAA = P("r_msaa", ["r_msaa"], [("Auto", -1), ("Off", 0), ("2x", 2), ("4x", 4), ("8x", 8)], -1)
+
 # [D3] FRAME RATE LIMIT. com_maxfps is paced in WHOLE milliseconds (qcommon/common.c:2330, minMsec = 1000/maxfps),
 # so only these values mean what they say: 62 = 16 ms, 142 = 7 ms, 166 = 6 ms, 200 = 5 ms, 250 = 4 ms; 0 = uncapped.
 # The old autoexec force of 180 really ran at 200, hence the 200 default (no change in pace for anyone).
@@ -274,7 +284,8 @@ ADV_SECTIONS = [
         ("MenuLay", "pulldown", "Menu Layout", "ui_menuCenter", MENU),
     ]),
     (1, "GEOMETRY & EFFECTS", [
-        ("AA", "pulldown", "Anti-Aliasing", "r_ppFXAA", AA),
+        ("MSAA", "pulldown", "Anti-Aliasing", "r_msaa", MSAA),
+        ("AA", "pulldown", "Edge Smoothing", "r_ppFXAA", AA),
         ("Curve", "pulldown", "Curve Detail", "r_subdivisions", CURVE),
         ("Shadow", "pulldown", "Soldier Shadows", "cg_shadows", SHADOW),
         # [bug-3117 / G3] "Draw Distance" is gone: it set r_lodscale, which does nothing while autoexec.cfg forces
@@ -300,7 +311,7 @@ PINNED = [
     ("vss_draw", "0 makes volumetric smoke invisible (cgame/cg_view.c:8852)", ("adv",)),
     ("r_drawstaticdecals", "0 hides the maps' own decals", ("adv",)),
     ("r_ext_multisample", "window MSAA: gl2 blits into it, clamps to 4 (bug-3119)", ("gfx",)),
-    ("r_ext_framebuffer_multisample", "MSAA above Off draws the bug-1298 halos (D1, until the gfx flip)", ("gfx",)),
+    ("r_ext_framebuffer_multisample", "old gl2 MSAA path (bug-1298 halos); r_msaa owns anti-aliasing since the gfx flip", ("gfx",)),
     ("r_overBrightBits", "row removed; gl2 world gain is r_mapOverBrightBits", ("gfx",)),
     ("r_drawSunRays", "row hidden: no visible sun under the coop fog, square glow on fogged skies", ("fx",)),
 ]
@@ -567,7 +578,7 @@ def sheet_pfx(page, idx, total):
 def sheet_adv():
     # [Phase 1] plain words (user 09-27): no "latched", no "vid_restart". Menu Layout is not latched, so APPLY cannot
     # restart for it; it shows when the menus realign at the next map (see MENU).
-    subtitle = "APPLY briefly reloads the picture for some rows. Menu Layout shows from the next map."
+    subtitle = "APPLY briefly reloads the picture for some rows. Anti-Aliasing and Menu Layout show from the next map."
     chrome = live_chrome(base_chrome("VIDEO", "ADVANCED GRAPHICS", "PER-PLAYER", subtitle))
     rows, g = lay_graphics(ADV_SECTIONS, COLX, TOP, COLW)
     footer = [fs.label("footRule", (44, FOOT_Y, 552, 1), bg=fs.RULE)]
