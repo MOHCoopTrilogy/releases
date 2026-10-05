@@ -293,6 +293,9 @@ ADV_SECTIONS = [
         ("FxDet", "slider", "Effect Detail", "cg_effectdetail", S("float", 0.2, 1, 0.1, 1.0, "SPARSE", "FULL")),
         ("FxMax", "slider", "Max Effects", "cg_max_tempmodels", S("integer", 256, 4096, 128, 4000, "LOW", "MAX")),
         ("Marks", "slider", "Decal Count", "cg_marks_max", S("integer", 64, 1024, 64, 487, "FEW", "MANY")),
+        # [2026-10-04, docs/proposals/footprints_2026-10-04] boot prints in snow, mud and soft dirt (cgame
+        # cg_footprints.c, CVAR_ARCHIVE, default 1). Own 200-print pool, independent of the decal slider above. Live.
+        ("Footprint", "toggle", "Footprints", "cg_footprints", T(1)),
     ]),
     (1, "WATER & WEATHER", [
         ("Water", "pulldown", "Water Reflections", "r_hzmWater", WATER),
