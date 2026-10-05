@@ -217,3 +217,12 @@ but it would not be authentic.
 - `tools/lens.py`: the duration table.
 - `tools/gunanim.py`: which gun bones move in a world reload anim.
 - `sheets/*.jpg`: 58 contact sheets, 960x540.
+
+---
+## DECISIONS (user, 2026-10-05)
+1. Rename the misnamed variants and give them their real reloads: "BAR (M1918 WWI)" -> Lewis Gun (top pan); "Colt 45 (M1911 WWI)" -> Webley revolver (break-open).
+2. Drum guns (Thompson 50rd, 1928 Tommy, MP18 left-side drum): build real drum reloads (~13 h).
+3. M1919 .30 cal + MG42: FULL belt reload with an opening top cover (model rework, ~28 h).
+4. C96: build the top stripper-clip load (~7 h).
+5. Scoped bolt rifles (coordinator default, not asked): historically correct single-round loading.
+Order: server routing + server-side reload fixes + renames first (they change hand/mag timing the ADS rebake depends on); new hand-keyed clips next; ADS rebakes after each fixed hip clip.
