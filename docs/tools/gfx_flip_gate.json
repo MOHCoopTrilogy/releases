@@ -1,0 +1,8 @@
+{
+  "flip_dll_sha256": [
+    "731f1ad5be49e821d6c2620a07654e9b3825d66903b13801295bf43db94d6cbb"
+  ],
+  "notes": {
+    "731f1ad5be49e821d6c2620a07654e9b3825d66903b13801295bf43db94d6cbb": "v1.10.13 main-tree build of engine 68bb8881 (renderer source == bc2c3072, the flip that passed G1/G5/P6.3 boots+equal with A2C off on 2026-10-04); this exact DLL boot-smoked on m2l1+m5l3: MSAA path=new n=8, 0 script errors"
+  }
+}
