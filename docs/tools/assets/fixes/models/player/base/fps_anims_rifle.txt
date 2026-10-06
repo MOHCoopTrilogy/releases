@@ -16,6 +16,7 @@ animations
 		}
 	}
 	garand_reload		viewmodel/rifle/vm_riflereload.skc				crossblend 0.05
+	garand_reload_ads		viewmodel/rifle/garand_reload_ads.skc		crossblend 0.1	// HZM coop [adsreload] reload held in ADS, with weight
 	//HZM coop [user 07-12]: UNKNOWN rifles fall back to the 'garand' viewmodel prefix
 	//(cg_viewmodelanim.c CG_GetVMAnimPrefixIndex default) - the imported bolt rifles therefore ask
 	//for 'garand_rechamber', which never existed (Garands don't bolt), the anim resolved to -1 and
@@ -43,6 +44,7 @@ animations
 	springfield_disabled 		viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
 	springfield_fire		viewmodel/rifle/fire_rifle_stand.skc			crossblend 0.05
 	springfield_rechamber		viewmodel/rifle/vm_springrecham.skc			crossblend 0.1
+	springfield_rechamber_ads	viewmodel/rifle/springfield_rechamber_ads.skc		crossblend 0.1	// HZM coop [adsbolt] bolt cycle while aiming (hand-keyed; cgame plays it only while ADS)
 	springfield_reload		viewmodel/rifle/springfield_reload_start.skc		crossblend 0.05
 	springfield_reload_single	viewmodel/rifle/springfield_reload_fill.skc		crossblend 0
 	springfield_reload_end		viewmodel/rifle/springfield_reload_end.skc		crossblend 0.0
@@ -166,6 +168,7 @@ animations
 		}
 	}
 	enfield_rechamber		viewmodel/enfield/enfield_rechamber.skc					crossblend 0.1
+	enfield_rechamber_ads		viewmodel/enfield/enfield_rechamber_ads.skc		crossblend 0.1	// HZM coop [adsbolt] bolt cycle while aiming (hand-keyed; cgame plays it only while ADS)
 	enfield_reload			viewmodel/enfield/enfield_reload.skc					//crossblend 0.05
 	enfield_pullout			viewmodel/enfield/enfield_pullout.skc					crossblend 0.1
 	{
@@ -197,6 +200,7 @@ animations
 		}
 	}
 	mosin_rechamber			viewmodel/mosin_nagant/mosin_nagant_rechamber.skc		crossblend 0.1
+	mosin_rechamber_ads		viewmodel/mosin_nagant/mosin_rechamber_ads.skc		crossblend 0.1	// HZM coop [adsbolt] bolt cycle while aiming (hand-keyed; cgame plays it only while ADS)
 	mosin_reload			viewmodel/mosin_nagant/mosin_nagant_reload.skc			crossblend 0.0
 	mosin_pullout			viewmodel/enfield/enfield_pullout.skc
 	{
