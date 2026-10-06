@@ -570,7 +570,10 @@ def main():
     else:
         jobs = [j for j in alljobs if j["cls"] == a.cls and a.only in j["stem"]]
     rp = os.path.join(BUILD, "report_%s%s.json" % ("mains" if a.mains else "cls%d" % a.cls, "" if a.variant == 0 else "_w%d" % a.variant))
-    reports = json.load(open(rp)) if os.path.exists(rp) else {}
+    try:
+        reports = json.load(open(rp)) if os.path.exists(rp) else {}
+    except ValueError:          # a crash mid-write (session restart) left it truncated: rebuild the record, the
+        reports = {}            # stage files are re-made (resumability only skips sheets with a valid record)
     log("cls %d: %d jobs (variant %d, preview %s)" % (a.cls, len(jobs), a.variant, a.preview))
     fin_cfg = json.load(open(os.path.join(HERE, "finishes.json"), encoding="utf-8"))
     for n, job in enumerate(jobs):
@@ -595,7 +598,8 @@ def main():
         log("[%d/%d] %s %s corr=%s shift=%s speck=%s guard=%s %s %ss" % (
             n + 1, len(jobs), job["stem"], "x".join(map(str, job["target"])), r.get("corr"), r.get("shift"),
             r.get("speckle_ppm"), r.get("guard"), ("FAIL " + "; ".join(r["fails"])) if r.get("fails") else "ok", r["secs"]))
-        json.dump(reports, open(rp, "w"), indent=1)
+        json.dump(reports, open(rp + ".tmp", "w"), indent=1)
+        os.replace(rp + ".tmp", rp)          # atomic: a killed session can no longer truncate the report
 
 
 if __name__ == "__main__":
