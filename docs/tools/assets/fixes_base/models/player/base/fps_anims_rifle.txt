@@ -1,0 +1,386 @@
+animations
+{
+	$path models/human/animation
+
+	//========================
+	// Garand Anims
+	//========================
+	garand_idle	 	viewmodel/rifle/idle_rifle.skc			crossblend 0.2		
+	garand_disabled 	viewmodel/unarmed/unarmed_idle.skc		crossblend 0.2
+	garand_fire		viewmodel/rifle/fire_rifle_stand.skc		crossblend 0.05
+	garand_fire_secondary	viewmodel/rifle/butt_rifle_stand.skc		crossblend 0.3
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	garand_reload		viewmodel/rifle/vm_riflereload.skc				crossblend 0.05
+	garand_reload_ads		viewmodel/rifle/garand_reload_ads.skc		crossblend 0.1	// HZM coop [adsreload] reload held in ADS, with weight
+	//HZM coop [user 07-12]: UNKNOWN rifles fall back to the 'garand' viewmodel prefix
+	//(cg_viewmodelanim.c CG_GetVMAnimPrefixIndex default) - the imported bolt rifles therefore ask
+	//for 'garand_rechamber', which never existed (Garands don't bolt), the anim resolved to -1 and
+	//the whole 1st-person weapon VANISHED during the bolt cycle. Borrow the kar98 bolt viewmodel.
+	garand_rechamber	viewmodel/rifle/kar98_rechamber.skc				crossblend 0.1
+	garand_pullout		viewmodel/rifle/raise_rifle_standplayer.skc
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	garand_putaway		viewmodel/rifle/lower_rifle_stand.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+
+	//========================
+	// Springfield Anims
+	//========================
+	springfield_idle1	 	viewmodel/rifle/idle_rifle.skc				crossblend 0.2		weight 1.0
+	springfield_disabled 		viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
+	springfield_fire		viewmodel/rifle/fire_rifle_stand.skc			crossblend 0.05
+	springfield_rechamber		viewmodel/rifle/vm_springrecham.skc			crossblend 0.1
+	springfield_rechamber_ads	viewmodel/rifle/springfield_rechamber_ads.skc		crossblend 0.1	// HZM coop [adsbolt] bolt cycle while aiming (hand-keyed; cgame plays it only while ADS)
+	springfield_reload		viewmodel/rifle/springfield_reload_start.skc		crossblend 0.05
+	springfield_reload_single	viewmodel/rifle/springfield_reload_fill.skc		crossblend 0
+	springfield_reload_end		viewmodel/rifle/springfield_reload_end.skc		crossblend 0.0
+	springfield_pullout		viewmodel/rifle/raise_rifle_standplayer.skc
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	springfield_putaway			viewmodel/rifle/lower_rifle_stand.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+
+
+	//========================
+	// KAR98 Anims
+	//========================
+	kar98_idle1	 		viewmodel/rifle/idle_rifle.skc				crossblend 0.2		weight 1.0
+	kar98_disabled 			viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
+	kar98_fire			viewmodel/rifle/fire_rifle_stand.skc			crossblend 0.05
+	kar98_fire_secondary		viewmodel/rifle/butt_rifle_stand.skc			crossblend 0.3
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	kar98_rechamber		viewmodel/rifle/kar98_rechamber.skc				crossblend 0.1
+	kar98_rechamber_ads	viewmodel/rifle/kar98_rechamber_ads.skc			crossblend 0.1	// HZM coop [adsbolt] bolt cycle while aiming (hand-keyed; cgame plays it only while ADS)
+	kar98_reload		viewmodel/rifle/kar98_reload.skc				crossblend 0.05
+	kar98_pullout		viewmodel/rifle/raise_rifle_standplayer.skc
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	kar98_putaway		viewmodel/rifle/lower_rifle_stand.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+
+	//========================
+	// KAR98 Mortar Anims
+	//========================
+	kar98mortar_idle1	 	viewmodel/rifle/idle_rifle.skc			crossblend 0.2		weight 1.0
+	kar98mortar_disabled 		viewmodel/unarmed/unarmed_idle.skc		crossblend 0.2
+	kar98mortar_fire		viewmodel/rifle/fire_rifle_stand.skc		crossblend 0.05
+	kar98mortar_fire_secondary	viewmodel/kar98grenade/kar98grenade_reload.skc	crossblend 0.3
+	kar98mortar_rechamber		viewmodel/rifle/kar98_rechamber.skc		crossblend 0.1
+	kar98mortar_reload		viewmodel/rifle/kar98_reload.skc		crossblend 0.05
+	kar98mortar_pullout		viewmodel/rifle/raise_rifle_standplayer.skc
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	kar98mortar_putaway		viewmodel/rifle/lower_rifle_stand.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+
+
+	//========================
+	// KAR98 Sniper Anims
+	//========================
+	kar98sniper_idle1	 	viewmodel/rifle/idle_rifle.skc				crossblend 0.2		weight 1.0
+	kar98sniper_disabled 		viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
+	kar98sniper_fire		viewmodel/rifle/fire_rifle_stand.skc			crossblend 0.05
+	kar98sniper_rechamber		viewmodel/rifle/kar98_rechamber.skc			crossblend 0.1
+	kar98sniper_reload		viewmodel/rifle/springfield_reload_start.skc		crossblend 0.05
+	kar98sniper_reload_single	viewmodel/rifle/springfield_reload_fill.skc		crossblend 0
+	kar98sniper_reload_end		viewmodel/rifle/springfield_reload_end.skc		crossblend 0.0
+	kar98sniper_pullout		viewmodel/rifle/raise_rifle_standplayer.skc
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	kar98sniper_putaway			viewmodel/rifle/lower_rifle_stand.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+
+	
+	/////////////////////////////
+	//=========================//
+	// 	TEAM ASSAULT	   //
+	//=========================//
+	/////////////////////////////
+
+
+	//========================
+	// Enfield Rifle
+	//========================
+	enfield_idle	 		viewmodel/enfield/enfield_idle.skc					crossblend 0.2		
+	enfield_charge	 		viewmodel/kar_stand00.skc					crossblend 0.2		
+	enfield_disabled 		viewmodel/unarmed/unarmed_idle.skc					crossblend 0.2
+	enfield_fire			viewmodel/enfield/enfield_fire.skc					crossblend 0.05
+	enfield_fire_secondary		viewmodel/enfield/enfield_butt.skc					crossblend 0.3
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	enfield_rechamber		viewmodel/enfield/enfield_rechamber.skc					crossblend 0.1
+	enfield_rechamber_ads		viewmodel/enfield/enfield_rechamber_ads.skc		crossblend 0.1	// HZM coop [adsbolt] bolt cycle while aiming (hand-keyed; cgame plays it only while ADS)
+	enfield_reload			viewmodel/enfield/enfield_reload.skc					//crossblend 0.05
+	enfield_pullout			viewmodel/enfield/enfield_pullout.skc					crossblend 0.1
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	enfield_putaway			viewmodel/rifle/lower_rifle_stand.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+	
+	//========================
+	// Mosin Nagent Rifle
+	//========================
+	mosin_idle	 		viewmodel/enfield/enfield_idle.skc					crossblend 0.2		
+	mosin_charge	 		viewmodel/kar_stand00.skc					crossblend 0.2		
+	mosin_disabled 			viewmodel/unarmed/unarmed_idle.skc					crossblend 0.2
+	mosin_fire			viewmodel/enfield/enfield_fire.skc					crossblend 0.05
+	mosin_fire_secondary		viewmodel/enfield/enfield_butt.skc					crossblend 0.3
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	mosin_rechamber			viewmodel/mosin_nagant/mosin_nagant_rechamber.skc		crossblend 0.1
+	mosin_rechamber_ads		viewmodel/mosin_nagant/mosin_rechamber_ads.skc		crossblend 0.1	// HZM coop [adsbolt] bolt cycle while aiming (hand-keyed; cgame plays it only while ADS)
+	mosin_reload			viewmodel/mosin_nagant/mosin_nagant_reload.skc			crossblend 0.0
+	mosin_pullout			viewmodel/enfield/enfield_pullout.skc
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	mosin_putaway			viewmodel/rifle/lower_rifle_stand.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+	
+	//========================
+	// SVT Rifle
+	//========================
+	SVT_idle	 		viewmodel/svt40/svt_idle.skc			crossblend 0.2		
+	SVT_charge	 		viewmodel/grnd_stand00.skc			crossblend 0.2		
+	SVT_fire			viewmodel/svt40/svt_fire.skc			crossblend 0.0
+	SVT_rechamber			viewmodel/svt40/svt_rechamber.skc		crossblend 0.1
+	SVT_reload			viewmodel/svt40/svt_reload.skc			crossblend 0.05
+	SVT_pullout			viewmodel/rifle/raise_rifle_standplayer.skc	crossblend 0.2
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	SVT_putaway			viewmodel/rifle/lower_rifle_stand.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+	
+	//========================
+	// G43 Anims
+	//========================
+	g43_idle	 	viewmodel/g43/g43_idle.skc				crossblend 0.2		
+	g43_charge	 	viewmodel/grnd_stand00.skc				crossblend 0.2		
+	g43_disabled 		viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
+	g43_fire		viewmodel/g43/g43_fire.skc				crossblend 0.05
+	g43_reload		viewmodel/g43/g43_reload.skc				crossblend 0.05
+	g43_pullout		viewmodel/g43/g43_pullout.skc				crossblend 0.1
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	g43_putaway		viewmodel/rifle/lower_rifle_stand.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+
+
+	/////////////////////////////
+	//=========================//
+	// 	TEAM TACTICS	   //
+	//=========================//
+	/////////////////////////////
+
+	//========================
+	// Enfield L42A1
+	//========================
+	enfieldl42a1_idle	 	viewmodel/enfieldsniper/A_W_enfieldsniper_idle_fps.skc		//crossblend 0.2		
+	enfieldl42a1_disabled 		viewmodel/enfieldsniper/A_W_enfieldsniper_idle_fps.skc		//crossblend 0.2
+	enfieldl42a1_fire		viewmodel/enfieldsniper/A_W_enfieldsniper_fire_fps.skc		//crossblend 0.05
+	enfieldl42a1_reload		viewmodel/enfieldsniper/A_W_enfieldsniper_reload_fps.skc	//crossblend 0.05
+	enfieldl42a1_rechamber		viewmodel/enfieldsniper/A_W_enfieldsniper_rechamber_fps.skc	//crossblend 0.1
+	enfieldl42a1_pullout		viewmodel/enfieldsniper/A_W_enfieldsniper_pullout_fps.skc	//crossblend 0.1
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	enfieldl42a1_putaway		viewmodel/enfieldsniper/A_W_enfieldsniper_putaway_fps.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+
+	//========================
+	// Carcano
+	//========================
+	carcano_idle	 		viewmodel/carcano/a_w_carcano_idle_fps.skc		//crossblend 0.2		
+	carcano_charge	 		viewmodel/kar_stand00.skc		//crossblend 0.2		
+	carcano_disabled 		viewmodel/carcano/a_w_carcano_idle_fps.skc		//crossblend 0.2
+	carcano_fire			viewmodel/carcano/a_w_carcano_fire_fps.skc		//crossblend 0.05
+	carcano_reload			viewmodel/carcano/a_w_carcano_reload_fps.skc		//crossblend 0.05
+	carcano_pullout			viewmodel/carcano/a_w_carcano_pullout_fps.skc		//crossblend 0.1
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+
+	carcano_fire_secondary		viewmodel/carcano/a_w_carcano_butt_fps.skc		//crossblend 0.3
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+
+	carcano_putaway		viewmodel/carcano/a_w_carcano_putaway_fps.skc		
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+
+	//========================
+	// Delisle
+	//========================
+	delisle_idle	 		viewmodel/delisle/a_w_delisle_idle_fps.skc		
+	delisle_charge	 		viewmodel/kar_stand00.skc		
+	delisle_disabled 		viewmodel/delisle/a_w_delisle_idle_fps.skc
+	delisle_fire			viewmodel/delisle/a_w_delisle_fire_fps.skc
+	delisle_reload			viewmodel/delisle/a_w_delisle_reload_fps.skc	
+	delisle_rechamber		viewmodel/delisle/a_w_delisle_rechamber_fps.skc	
+	delisle_pullout			viewmodel/delisle/a_w_delisle_pullout_fps.skc
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+
+	delisle_fire_secondary		viewmodel/delisle/a_w_delisle_butt_fps.skc
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	delisle_putaway			viewmodel/delisle/a_w_delisle_putaway_fps.skc	
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+
+	//=========================================================================
+	// HZM coop - ADS iron-sight aim poses. ADDITIVE aliases only (adsraise =
+	// raise-to-sights hold; adsfire = at-sights fire). Existing anims untouched.
+	//=========================================================================
+	garand_charge			viewmodel/grnd_stand00.skc		crossblend 0.2
+	garand_adsfire			viewmodel/fire_grnd_stand00.skc		crossblend 0.05
+	springfield_charge		viewmodel/sprng_stand00.skc		crossblend 0.2
+	kar98_charge			viewmodel/kar_stand00.skc		crossblend 0.3
+	kar98sniper_charge		viewmodel/karsnp_stand00.skc		crossblend 0.3
+
+	//===================== HZM coop Johnson M1941 first-person set =====================
+	//[user 2026-08-17] East shipped ONE viewmodel animation with this gun - a 91-frame reload -
+	//and it only existed as a REPLACEMENT for the Garand's. It lives under viewmodel/coop_johnson/
+	//here so it can never shadow the Garand's own. Everything else borrows the shared rifle set,
+	//exactly as garand_* does; only the reload is genuinely his.
+	johnson_idle			viewmodel/rifle/idle_rifle.skc			crossblend 0.2
+	johnson_disabled		viewmodel/unarmed/unarmed_idle.skc		crossblend 0.2
+	johnson_charge			viewmodel/grnd_stand00.skc			crossblend 0.2
+	johnson_fire			viewmodel/rifle/fire_rifle_stand.skc		crossblend 0.05
+	johnson_adsfire			viewmodel/fire_grnd_stand00.skc			crossblend 0.05
+	johnson_fire_secondary		viewmodel/rifle/butt_rifle_stand.skc		crossblend 0.3
+	johnson_reload			viewmodel/coop_johnson/johnson_reload.skc	crossblend 0.05
+	johnson_rechamber		viewmodel/rifle/kar98_rechamber.skc		crossblend 0.1
+	johnson_pullout			viewmodel/rifle/raise_rifle_standplayer.skc
+	johnson_putaway			viewmodel/rifle/lower_rifle_stand.skc
+}
+

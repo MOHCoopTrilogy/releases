@@ -9,5 +9,15 @@
     "base_md5": "b99cee9ae473abe02151477f549aa9b4",
     "base_pak": "zzzzz_xw_weapons.pk3",
     "why": "bug-3453: the xw Mosin sniper scope's cloth wrap was CoD2 art per the sheet's own modder note; replaced with an original procedural canvas wrap (docs/tools/weapon_hd/paint_weas.py), captions + unused sleeve blanked"
+  },
+  "models/player/base/fps_anims_rifle.txt": {
+    "base_md5": "a5a2aef641e2aca05591abb801d79233",
+    "base_ticks": 639268436734938910,
+    "base_from": "docs/tools/assets/fixes_base/models/player/base/fps_anims_rifle.txt",
+    "why": "bug-3451: the two Kar98-family hip-reload rows (kar98_reload, kar98mortar_reload) point at the new coop_kar98_reload.skc; base = the released mod-tree copy"
+  },
+  "models/human/animation/viewmodel/rifle/coop_kar98_reload.skc": {
+    "new": true,
+    "why": "bug-3451: retail kar98_reload.skc (Pak0, plain SKAN) with the right hand kept 8 deg below the view axis during clip f53-92 (docs/proposals/ads_bolt_2026-10-04/tools/handclear.py --max_elev -8 --window 53,92 --out_frac 0.5, arm re-solved with natik), so the stripper-clip flick no longer passes through the lens on the Kar98k, G98 and Arisaka. A NEW name because the engine loads newanim/<path> first and Pak0 ships newanim/.../kar98_reload.skc, so a same-path override never plays (ab44)"
   }
 }

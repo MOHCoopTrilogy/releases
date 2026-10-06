@@ -68,6 +68,13 @@ def load():
                 fails.append("%s does not sort after %s" % (PAKNAME, man[rel]["base_pak"]))
             members.append((rel, data))
             continue
+        if man[rel].get("new"):
+            # [2026-10-06, bug-3451] a file that exists in NO pak of the mod tree (a new name): nothing to pin or restore.
+            # It must NOT also sit in the mod tree - the assets_tex pak would carry it and re-hash for every player.
+            if os.path.isfile(os.path.join(MOD, *rel.split("/"))):
+                fails.append("%s: marked new but a copy sits in the mod tree (assets_tex would re-hash)" % rel)
+            members.append((rel, data))
+            continue
         base = os.path.join(MOD, *rel.split("/"))
         if not os.path.isfile(base):
             fails.append("%s: no base copy in the mod tree" % rel)
@@ -108,8 +115,8 @@ def render(members):
 
 def restore(man):
     for rel, pin in sorted(man.items()):
-        if "base_pak" in pin:
-            continue                    # third-party base: nothing in the mod tree to restore
+        if "base_pak" in pin or pin.get("new"):
+            continue                    # third-party base / new name: nothing in the mod tree to restore
         src = os.path.join(ROOT, *pin["base_from"].split("/"))
         data = open(src, "rb").read() if not pin["base_from"].endswith(".pk3") else None
         if data is None:
