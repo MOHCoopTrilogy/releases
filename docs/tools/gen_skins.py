@@ -268,6 +268,9 @@ def main():
         hdr = io.open(SHADER_OUT, encoding="latin-1").read().split("\ncoop_skin_")[0]
         io.open(SHADER_OUT, "w", encoding="latin-1", newline="\r\n").write(
             hdr.rstrip() + "\n" + "\n".join(blocks) + "\n")
+        # bug-3397: name every base texture exactly as the gun's own shader does (image cache is case-sensitive)
+        import fix_skin_case
+        fix_skin_case.main(write=True)
 
     for n, w, d, r, k, nb in made:
         print("  %-34s %-22s rank %-5d %-6s %d shader(s)" % (n, '"%s (%s)"' % (w, d), r, k, nb))

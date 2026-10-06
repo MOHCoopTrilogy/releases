@@ -103,6 +103,8 @@ def main():
 
     if write:
         open(OUT_SHADER, "wb").write(text.encode("ascii"))
+        import fix_skin_case            # bug-3397: canonical texture spelling (case-sensitive image cache)
+        fix_skin_case.main(write=True)
         print("\n  wrote %s (%d blocks, %d baked textures)"
               % (os.path.relpath(OUT_SHADER, REPO), len(blocks), baked))
     else:
