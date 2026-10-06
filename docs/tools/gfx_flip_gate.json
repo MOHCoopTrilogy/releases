@@ -1,10 +1,12 @@
 {
   "flip_dll_sha256": [
     "731f1ad5be49e821d6c2620a07654e9b3825d66903b13801295bf43db94d6cbb",
-    "47988f70fa288350201c0f5da3b84ee4f2972fa42023257feae0350a6ca208bd"
+    "47988f70fa288350201c0f5da3b84ee4f2972fa42023257feae0350a6ca208bd",
+    "3abc3ca9e29c7e92e8758f829779488d69b657e88ad44f4e2c7e395410950882"
   ],
   "notes": {
     "731f1ad5be49e821d6c2620a07654e9b3825d66903b13801295bf43db94d6cbb": "v1.10.13 main-tree build of engine 68bb8881 (renderer source == bc2c3072, the flip that passed G1/G5/P6.3 boots+equal with A2C off on 2026-10-04); this exact DLL boot-smoked on m2l1+m5l3: MSAA path=new n=8, 0 script errors",
-    "47988f70fa288350201c0f5da3b84ee4f2972fa42023257feae0350a6ca208bd": "v1.10.14 main-tree build of engine e26bc1d8 (flip defaults unchanged since bc2c3072; adds the waterfix 2a3132b3 which passed its own in-engine gates at MSAA 8x and off); boot-smoked after deploy"
+    "47988f70fa288350201c0f5da3b84ee4f2972fa42023257feae0350a6ca208bd": "v1.10.14 main-tree build of engine e26bc1d8 (flip defaults unchanged since bc2c3072; adds the waterfix 2a3132b3 which passed its own in-engine gates at MSAA 8x and off); boot-smoked after deploy",
+    "3abc3ca9e29c7e92e8758f829779488d69b657e88ad44f4e2c7e395410950882": "v1.10.15 main-tree build of engine a7b479c1 renderergl2 (= v1.10.14 renderer + sky fog model 2b84ab0d, in-engine gated on m5l1a/e2l3/m1l3c/m4l0/m3l2 by the clouds session; flip defaults unchanged since bc2c3072)"
   }
 }
