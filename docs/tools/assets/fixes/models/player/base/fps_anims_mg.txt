@@ -1,0 +1,189 @@
+animations
+{
+	$path models/human/animation
+
+	//========================
+	// BAR Anims
+	//========================
+	bar_idle1	 	viewmodel/mg/barpose.skc		crossblend 0.1		weight 1.0
+	bar_disabled 		viewmodel/unarmed/unarmed_idle.skc	crossblend 0.2
+	bar_fire		viewmodel/mg/barfire.skc		crossblend 0.05
+	bar_fire_secondary	viewmodel/mg/butt_bar_stand.skc		crossblend 0.3
+	{
+		client
+		{
+				entry sound pistol_whip // the swish sound. 
+		}
+	}
+	bar_reload		viewmodel/mg/reload_bar.skc		crossblend 0.3
+	bar_reload_ads		viewmodel/mg/bar_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	bar_pullout		viewmodel/mg/takeout_bar.skc
+	{
+		client
+		{
+			enter sound bar_snd_pullout
+		}
+	}
+	bar_putaway		viewmodel/mg/putaway_bar.skc
+	{
+		client
+		{
+			enter sound bar_snd_putaway
+		}
+	}
+
+	//========================
+	// MP44 Anims
+	//========================
+	mp44_idle1	 	viewmodel/mp44/mp44_idle_stand.skc		crossblend 0.1		weight 1.0
+	mp44_disabled 		viewmodel/unarmed/unarmed_idle.skc		crossblend 0.2
+	mp44_fire		viewmodel/mp44/mp44_fire.skc			crossblend 0.05
+	mp44_fire_secondary	viewmodel/mp44/butt_mp44_stand.skc		crossblend 0.3
+	{
+		client
+		{
+				entry sound pistol_whip // the swish sound. 
+		}
+	}
+	mp44_reload		viewmodel/mp44/mp44_reload.skc			crossblend 0.3
+	mp44_reload_ads		viewmodel/mp44/mp44_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	mp44_pullout		viewmodel/mp44/mp44_pullout.skc
+	{
+		client
+		{
+			enter sound mp44_snd_pullout
+		}
+	}
+	mp44_putaway		viewmodel/mp44/mp44_putaway.skc
+	{
+		client
+		{
+			enter sound mp44_snd_putaway
+		}
+	}
+
+	//========================
+	// FG 42
+	//========================
+	//[user 2026-08-17] fg42_idle/fire/reload now use DaRKaNGeL's REAL first-person animations
+	//instead of the generic rifle set they were borrowing. pullout/putaway stay generic - his
+	//mod borrows those too. Source: FG42 Add-On, moh-db.com/mods/17867.
+	fg42_idle	 	viewmodel/fg42/fg42_stand_idle.skc					crossblend 0.2		
+	fg42_disabled 		viewmodel/unarmed/unarmed_idle.skc				crossblend 0.2
+	fg42_fire		viewmodel/fg42/fg42_stand_fire.skc				crossblend 0.05
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	fg42_reload		viewmodel/fg42/fg42_stand_reload.skc				crossblend 0.05
+	fg42_pullout		viewmodel/rifle/raise_rifle_standplayer.skc
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	fg42_putaway		viewmodel/rifle/lower_rifle_stand.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+	//========================
+	// Vickers
+	//========================
+	vickers_idle	 	viewmodel/Vickers/A_W_Vickers_idle_fps.skc				crossblend 0.2		
+	vickers_charge	 	viewmodel/bar_stand00.skc				crossblend 0.2		
+	vickers_disabled 	viewmodel/Vickers/A_W_Vickers_idle_fps.skc				crossblend 0.2
+	vickers_fire		viewmodel/Vickers/A_W_Vickers_fire_fps.skc				crossblend 0.08
+	vickers_fire_secondary	viewmodel/Vickers/A_W_Vickers_butt_fps.skc				crossblend 0.00
+	{
+		server
+		{			
+				
+			4	fire mainhand secondary
+		}
+		client
+		{
+				entry sound pistol_whip // the swish sound. 
+		}
+	}
+	vickers_reload		viewmodel/Vickers/A_W_Vickers_reload_fps.skc				crossblend 0.05
+	vickers_pullout		viewmodel/Vickers/A_W_Vickers_pullout_fps.skc //crossblend 0.2
+	//vickers_pullout	        viewmodel/mg/takeout_bar.skc crossblend .1
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	vickers_putaway		viewmodel/Vickers/A_W_Vickers_putaway_fps.skc crossblend 0.2
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+	//========================
+	// Breda
+	//========================
+	breda_idle	 	viewmodel/breda/A_W_Breda_idle_fps.skc				crossblend 0.2		
+	breda_charge	 	viewmodel/bar_stand00.skc				crossblend 0.2		
+	breda_disabled 		viewmodel/breda/A_W_Breda_idle_fps.skc				crossblend 0.2
+	breda_fire		viewmodel/breda/A_W_Breda_fire_fps.skc				crossblend 0.05
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	breda_reload		viewmodel/breda/A_W_Breda_reload_fps.skc			crossblend 0.05
+	breda_pullout		viewmodel/breda/A_W_Breda_pullout_fps.skc				
+	{
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+	breda_putaway		viewmodel/rifle/lower_rifle_stand.skc
+	{
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+
+	//===================== HZM coop ADS aim poses (additive) =====================
+	bar_charge			viewmodel/bar_stand00.skc		crossblend 0.1
+	bar_adsfire			viewmodel/bar_fire00.skc		crossblend 0.05
+	//[user 2026-08-21] REVERTED. This was pointed at viewmodel/mp44/mp44_idle_stand.skc (the same
+	//file mp44_idle1 uses) on the theory that the ~45-unit viewmodel origin jump measured at the
+	//idle->charge transition was a root mismatch between two authorings of the same pose.
+	//The result: "the STG44 doesnt even properly go down sights", and the shoulder pop was
+	//UNCHANGED. So the theory was wrong twice over - this aim pose is doing real work (it IS the
+	//down-sights pose, not a redundant duplicate of the idle), and the root difference is not the
+	//cause of the pop. Do not "simplify" these two rows into one again.
+	mp44_charge			viewmodel/mp44_idle_stand.skc		crossblend 0.1
+	mp44_adsfire			viewmodel/mp44_fire.skc			crossblend 0.05
+
+	//===================== HZM coop DP-28 first-person set =====================
+	//[user 2026-08-17] Lt. Pato's own first-person animations - fire, a 161 KB reload and a
+	//pullout. He wired them by OVERWRITING bar_idle1/bar_fire/bar_reload/bar_pullout in his own
+	//copy of this file, which would have taken the BAR's animations away. They live under
+	//viewmodel/coop_dp28/ with a prefix of their own instead. He shipped no putaway, melee,
+	//charge or disabled pose, so those four borrow the BAR's exactly as his mod did.
+	dp28_idle1			viewmodel/coop_dp28/dp28_dummy.skc		crossblend 0.1		weight 1.0
+	dp28_disabled			viewmodel/unarmed/unarmed_idle.skc		crossblend 0.2
+	dp28_charge			viewmodel/bar_stand00.skc			crossblend 0.1
+	dp28_fire			viewmodel/coop_dp28/dp28_fire.skc		crossblend 0.05
+	dp28_adsfire			viewmodel/bar_fire00.skc			crossblend 0.05
+	dp28_fire_secondary		viewmodel/mg/butt_bar_stand.skc			crossblend 0.3
+	dp28_reload			viewmodel/coop_dp28/dp28_reload.skc		crossblend 0.3
+	dp28_reload_ads		viewmodel/coop_dp28/dp28_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	dp28_pullout			viewmodel/coop_dp28/dp28_up.skc
+	dp28_putaway			viewmodel/mg/putaway_bar.skc
+}
+

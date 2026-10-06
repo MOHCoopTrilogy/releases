@@ -25,5 +25,91 @@
     "base_ticks": 639268429080000000,
     "base_from": "docs/tools/assets/fixes_base/models/player/base/fps_anims_smg.txt",
     "why": "ADS reload rollout (user 2026-10-06): ppsh_reload_ads row (reviewed PASS ab32); base = the v1.10.14-RELEASED copy (md5 e0395751), thompson_reload_ads + moschetto_reload_ads rows added 2026-10-06 at the user's request as a rough first pass (cocking hand not shown / near the lens - FIX status, fine-tune next week); mp40/mp44 have no committed ADS clip"
+  },
+  "models/human/animation/viewmodel/coop_johnson/johnson_reload_ads.skc": {
+    "new": true,
+    "why": "ADS reload rollout 2026-10-06 (user request): baked aimed-reload clip johnson_reload_ads from test overlay; first pass, not reviewed (fine-tune 2026-10-11+)"
+  },
+  "models/human/animation/viewmodel/MP40/mp40_reload_ads.skc": {
+    "new": true,
+    "why": "ADS reload rollout 2026-10-06 (user request): baked aimed-reload clip mp40_reload_ads from test overlay; first pass, not reviewed (fine-tune 2026-10-11+)"
+  },
+  "models/human/animation/viewmodel/mp44/mp44_reload_ads.skc": {
+    "new": true,
+    "why": "ADS reload rollout 2026-10-06 (user request): baked aimed-reload clip mp44_reload_ads from test overlay; first pass, not reviewed (fine-tune 2026-10-11+)"
+  },
+  "models/human/animation/viewmodel/sten/sten_reload_ads.skc": {
+    "new": true,
+    "why": "ADS reload rollout 2026-10-06 (user request): baked aimed-reload clip sten_reload_ads from test overlay; first pass, not reviewed (fine-tune 2026-10-11+)"
+  },
+  "models/human/animation/viewmodel/type100/type100_reload_ads.skc": {
+    "new": true,
+    "why": "ADS reload rollout 2026-10-06 (user request): baked aimed-reload clip type100_reload_ads from test overlay; first pass, not reviewed (fine-tune 2026-10-11+)"
+  },
+  "models/human/animation/viewmodel/mg/bar_reload_ads.skc": {
+    "new": true,
+    "why": "ADS reload rollout 2026-10-06 (user request): baked aimed-reload clip bar_reload_ads from test overlay; first pass, not reviewed (fine-tune 2026-10-11+)"
+  },
+  "models/human/animation/viewmodel/coop_dp28/dp28_reload_ads.skc": {
+    "new": true,
+    "why": "ADS reload rollout 2026-10-06 (user request): baked aimed-reload clip dp28_reload_ads from test overlay; first pass, not reviewed (fine-tune 2026-10-11+)"
+  },
+  "models/human/animation/viewmodel/beretta/beretta_reload_ads.skc": {
+    "new": true,
+    "why": "ADS reload rollout 2026-10-06 (user request): baked aimed-reload clip beretta_reload_ads from test overlay; first pass, not reviewed (fine-tune 2026-10-11+)"
+  },
+  "models/human/animation/viewmodel/pistol/colt45_reload_ads.skc": {
+    "new": true,
+    "why": "ADS reload rollout 2026-10-06 (user request): baked aimed-reload clip colt45_reload_ads from test overlay; first pass, not reviewed (fine-tune 2026-10-11+)"
+  },
+  "models/human/animation/viewmodel/pistol/histandard_reload_ads.skc": {
+    "new": true,
+    "why": "ADS reload rollout 2026-10-06 (user request): baked aimed-reload clip histandard_reload_ads from test overlay; first pass, not reviewed (fine-tune 2026-10-11+)"
+  },
+  "models/human/animation/viewmodel/pistol/p38_reload_ads.skc": {
+    "new": true,
+    "why": "ADS reload rollout 2026-10-06 (user request): baked aimed-reload clip p38_reload_ads from test overlay; first pass, not reviewed (fine-tune 2026-10-11+)"
+  },
+  "models/human/animation/viewmodel/shotgun/shotgun_reload_ads.skc": {
+    "new": true,
+    "why": "ADS reload rollout 2026-10-06 (user request): baked aimed-reload clip shotgun_reload_ads from test overlay; first pass, not reviewed (fine-tune 2026-10-11+)"
+  },
+  "models/human/animation/viewmodel/shotgun/shotgun_reload_end_ads.skc": {
+    "new": true,
+    "why": "ADS reload rollout 2026-10-06 (user request): baked aimed-reload clip shotgun_reload_end_ads from test overlay; first pass, not reviewed (fine-tune 2026-10-11+)"
+  },
+  "models/human/animation/viewmodel/shotgun/shotgun_reload_single_ads.skc": {
+    "new": true,
+    "why": "ADS reload rollout 2026-10-06 (user request): baked aimed-reload clip shotgun_reload_single_ads from test overlay; first pass, not reviewed (fine-tune 2026-10-11+)"
+  },
+  "models/human/animation/viewmodel/webley/webley_reload_ads.skc": {
+    "new": true,
+    "why": "ADS reload rollout 2026-10-06 (user request): baked aimed-reload clip webley_reload_ads from test overlay; first pass, not reviewed (fine-tune 2026-10-11+)"
+  },
+  "models/human/animation/viewmodel/webley/webley_reload_end_ads.skc": {
+    "new": true,
+    "why": "ADS reload rollout 2026-10-06 (user request): baked aimed-reload clip webley_reload_end_ads from test overlay; first pass, not reviewed (fine-tune 2026-10-11+)"
+  },
+  "models/human/animation/viewmodel/webley/webley_reload_single_ads.skc": {
+    "new": true,
+    "why": "ADS reload rollout 2026-10-06 (user request): baked aimed-reload clip webley_reload_single_ads from test overlay; first pass, not reviewed (fine-tune 2026-10-11+)"
+  },
+  "models/player/base/fps_anims_mg.txt": {
+    "base_md5": "47dc0faad3d5f621389c7daaa7606a87",
+    "base_ticks": 639229579389282006,
+    "base_from": "docs/tools/assets/fixes_base/models/player/base/fps_anims_mg.txt",
+    "why": "ADS reload rollout 2026-10-06: aimed-reload rows for the guns of this file; base = the released mod-tree copy"
+  },
+  "models/player/base/fps_anims_pistol.txt": {
+    "base_md5": "4cc37862a28cfa0340e98b57867f4079",
+    "base_ticks": 639229579389292017,
+    "base_from": "docs/tools/assets/fixes_base/models/player/base/fps_anims_pistol.txt",
+    "why": "ADS reload rollout 2026-10-06: aimed-reload rows for the guns of this file; base = the released mod-tree copy"
+  },
+  "models/player/base/fps_anims_shotgun.txt": {
+    "base_md5": "08c2d2f9db1391a85188b5a0dae77061",
+    "base_ticks": 639229579389302037,
+    "base_from": "docs/tools/assets/fixes_base/models/player/base/fps_anims_shotgun.txt",
+    "why": "ADS reload rollout 2026-10-06: aimed-reload rows for the guns of this file; base = the released mod-tree copy"
   }
 }

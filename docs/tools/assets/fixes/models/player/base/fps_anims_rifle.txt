@@ -379,6 +379,7 @@ animations
 	johnson_adsfire			viewmodel/fire_grnd_stand00.skc			crossblend 0.05
 	johnson_fire_secondary		viewmodel/rifle/butt_rifle_stand.skc		crossblend 0.3
 	johnson_reload			viewmodel/coop_johnson/johnson_reload.skc	crossblend 0.05
+	johnson_reload_ads		viewmodel/coop_johnson/johnson_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
 	johnson_rechamber		viewmodel/rifle/kar98_rechamber.skc		crossblend 0.1
 	johnson_pullout			viewmodel/rifle/raise_rifle_standplayer.skc
 	johnson_putaway			viewmodel/rifle/lower_rifle_stand.skc

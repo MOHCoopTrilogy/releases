@@ -52,6 +52,7 @@ animations
 		}
 	}
 	mp40_reload		viewmodel/MP40/reload_mp40_stand.skc	crossblend 0.1
+	mp40_reload_ads		viewmodel/MP40/mp40_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
 	mp40_pullout		viewmodel/mp40/raise_mp40_stand.skc
 	{
 		client
@@ -86,6 +87,7 @@ animations
 		}
 	}
 	sten_reload			viewmodel/sten/sten_reload.skc	crossblend 0.1
+	sten_reload_ads		viewmodel/sten/sten_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
 	sten_pullout			viewmodel/sten/raise_sten_stand.skc
 	{
 		client
@@ -188,6 +190,7 @@ animations
 		}
 	}
 	type100_reload			viewmodel/type100/type100-reload.skc	crossblend 0.1
+	type100_reload_ads		viewmodel/type100/type100_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
 	type100_pullout			viewmodel/type100/type100-pullout.skc
 	{
 		client

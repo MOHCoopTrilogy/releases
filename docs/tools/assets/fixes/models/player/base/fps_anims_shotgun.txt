@@ -1,0 +1,45 @@
+animations
+{
+	$path models/human/animation
+
+	//========================
+	// Shotgun Anims
+	//========================
+	shotgun_idle1	 		viewmodel/shotgun/idle_shotgun.skc			crossblend 0.2		weight 1.0
+	//shotgun_idle2			viewmodel/idle_rifle2.skc					crossblend 0.2		weight 0.5	dontrepeate
+	//shotgun_idle3			viewmodel/idle_rifle3.skc					crossblend 0.2		weight 0.1	dontrepeate
+	shotgun_disabled 		viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
+	shotgun_fire			viewmodel/shotgun/fire_shotgun_stand.skc	crossblend 0.05
+	shotgun_fire_secondary	viewmodel/smg/butt_tommy_stand.skc			crossblend 0.3
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	shotgun_reload			viewmodel/shotgun/reload_start.skc			crossblend 0.05
+	shotgun_reload_ads		viewmodel/shotgun/shotgun_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	shotgun_reload_single	viewmodel/shotgun/reload_fill.skc			crossblend 0
+	shotgun_reload_single_ads		viewmodel/shotgun/shotgun_reload_single_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	shotgun_reload_end		viewmodel/shotgun/reload_end.skc			crossblend 0.05
+	shotgun_reload_end_ads		viewmodel/shotgun/shotgun_reload_end_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	shotgun_pullout			viewmodel/shotgun/raise_shotgun_standplayer.skc
+	{
+		client
+		{
+			enter sound snd_shotgun_pullout
+		}
+	}
+	shotgun_putaway			viewmodel/shotgun/lower_shotgun_stand.skc
+	{
+		client
+		{
+			enter sound snd_shotgun_putaway
+		}
+	}
+
+	//===================== HZM coop ADS aim poses (additive) =====================
+	shotgun_charge		viewmodel/idle_shotgun00.skc		crossblend 0.2
+	shotgun_adsfire			viewmodel/fire_shotgun_stand00.skc	crossblend 0.05
+}
+
