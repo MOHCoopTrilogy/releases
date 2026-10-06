@@ -11,10 +11,10 @@
     "why": "bug-3453: the xw Mosin sniper scope's cloth wrap was CoD2 art per the sheet's own modder note; replaced with an original procedural canvas wrap (docs/tools/weapon_hd/paint_weas.py), captions + unused sleeve blanked"
   },
   "models/player/base/fps_anims_rifle.txt": {
-    "base_md5": "a5a2aef641e2aca05591abb801d79233",
-    "base_ticks": 639268436734938910,
+    "base_md5": "d5eb6171b07dbc51cc17bbb058be4f55",
+    "base_ticks": 639268429080000000,
     "base_from": "docs/tools/assets/fixes_base/models/player/base/fps_anims_rifle.txt",
-    "why": "bug-3451: the two Kar98-family hip-reload rows (kar98_reload, kar98mortar_reload) point at the new coop_kar98_reload.skc; base = the released mod-tree copy"
+    "why": "bug-3451: the two Kar98-family hip-reload rows (kar98_reload, kar98mortar_reload) point at the new coop_kar98_reload.skc; base = the v1.10.14-RELEASED copy (md5 d5eb6171, no _ads rows; HEAD carries unverified _ads rows that must not ship)"
   },
   "models/human/animation/viewmodel/rifle/coop_kar98_reload.skc": {
     "new": true,
