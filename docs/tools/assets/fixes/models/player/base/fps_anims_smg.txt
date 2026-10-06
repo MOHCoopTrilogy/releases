@@ -16,6 +16,7 @@ animations
 		}
 	}
 	thompson_reload			viewmodel/smg/reload_tommy_stand.skc		crossblend 0.3
+	thompson_reload_ads		viewmodel/smg/thompson_reload_ads.skc		crossblend 0.1	// HZM coop [adsreload] reload held in ADS, with weight
 	thompson_pullout		viewmodel/smg/raise_tommy_stand.skc
 	{
 		client
@@ -145,6 +146,7 @@ animations
 		}
 	}
 	moschetto_reload			viewmodel/moschetto/A_W_MOD38ASMG_reload_fps.skc	        //crossblend 0.1
+	moschetto_reload_ads		viewmodel/moschetto/moschetto_reload_ads.skc		crossblend 0.1	// HZM coop [adsreload] reload held in ADS, with weight
 	moschetto_pullout			viewmodel/moschetto/A_W_MOD38ASMG_pullout_fps.skc
 	{
 		client

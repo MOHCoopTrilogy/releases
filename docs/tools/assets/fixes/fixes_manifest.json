@@ -24,6 +24,6 @@
     "base_md5": "e03957511691e905344b40a3c9f74951",
     "base_ticks": 639268429080000000,
     "base_from": "docs/tools/assets/fixes_base/models/player/base/fps_anims_smg.txt",
-    "why": "ADS reload rollout (user 2026-10-06): ppsh_reload_ads row (reviewed PASS ab32); base = the v1.10.14-RELEASED copy (md5 e0395751), HEAD also carries thompson/moschetto _reload_ads rows that FAILED review and must not ship"
+    "why": "ADS reload rollout (user 2026-10-06): ppsh_reload_ads row (reviewed PASS ab32); base = the v1.10.14-RELEASED copy (md5 e0395751), thompson_reload_ads + moschetto_reload_ads rows added 2026-10-06 at the user's request as a rough first pass (cocking hand not shown / near the lens - FIX status, fine-tune next week); mp40/mp44 have no committed ADS clip"
   }
 }
