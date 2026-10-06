@@ -36,13 +36,16 @@ PORT = 12733
 RCONPW = "pl4nesPw"
 MAGIC = b"\xff\xff\xff\xff"
 FILES = ["coop_mod/aircraft.scr", "coop_mod/aircraft_envelope.scr", "coop_mod/paradrop.scr", "coop_mod/officer.scr",
-         "coop_mod/precache.scr", "ubersound/coop_aircraft.scr"]
+         "coop_mod/precache.scr", "ubersound/coop_aircraft.scr",
+         "models/emitters/coop_planesmoke_trail.tik"]
 SITES = {  # from tools/sites.py: target T, camera C, camera yaw
     "m2l1": ((2960, 336, 496), (2392, 1288, 624), -59),
     "m6l2b": ((3200, -3656, 128), (2176, -3200, 320), -24),
     "m4l3": ((-3024, -848, 56), (-1704, -1060, 48), 170),
     "m5l1a": ((1040, -2088, 56), (-308, -1528, 112), -22),
     "e1l1": ((448, 480, 744), (688, -680, 744), 101),
+    "m1l2a": ((1296, 208, -128), (1680, 1296, -128), -109),
+    "e3l2": ((168, -688, -168), (1016, 112, -168), -136),
     "m3l3": ((1792, -1408, -288), (2336, -2392, -192), 118),
     "e1l4": ((-3520, 4048, -432), (-3480, 2928, -288), 92),
 }
@@ -121,10 +124,13 @@ def build_overlay(mode):
         z.writestr("coop_mod/devprobe.scr", dp.encode("latin-1"))
         z.write(os.path.join(HERE, "over", "coop_mod", "ac_probe.scr"), "coop_mod/ac_probe.scr")
         if mode == "after":
+            # COMMITTED versions only (git HEAD of the mod): other sessions keep uncommitted WIP in the same
+            # files (an officer.scr using a command our test game.dll lacks broke a run, 2026-10-05)
+            import subprocess
             for f in FILES:
-                p = os.path.join(MOD, f.replace("/", os.sep))
-                if os.path.exists(p):
-                    z.write(p, f)
+                r = subprocess.run(["git", "show", "HEAD:" + f], cwd=MOD, capture_output=True)
+                if r.returncode == 0:
+                    z.writestr(f, r.stdout)
     return out
 
 
@@ -212,18 +218,18 @@ def session(label, mapname, mode, events, cgame, game, fps, secs, extra):
                 ev, dur = m.group(1), int(m.group(2))
                 # frame-chained shots: one screenshotJPEG every SHOT_EVERY frames (~8/s at 60 fps), run by the
                 # engine's own command buffer, so the cadence does not depend on rcon round trips
-                n = int(dur * 60 / SHOT_EVERY)
+                n = int(dur * 2 * 60 / SHOT_EVERY)   # a screenshot frame is slow: ~2x real time per shot
                 lines = []
                 for i in range(n):
                     lines += ["screenshotJPEG ac_%s_%s_%03d" % (mapname, ev, i)] + ["wait 1"] * SHOT_EVERY
-                    if ev == "down" and i == int(13 * 60 / SHOT_EVERY):
+                    if ev == "down" and i == int(1 * 60 / SHOT_EVERY):
                         lines.append("+attackprimary")
-                    if ev == "down" and i == int(33 * 60 / SHOT_EVERY):
+                    if ev == "down" and i == int(26 * 60 / SHOT_EVERY):
                         lines.append("-attackprimary")
                 with open(os.path.join(MAINTT, "acshots.cfg"), "w", newline=chr(10)) as f:
                     f.write(chr(10).join(lines + ["-attackprimary"]) + chr(10))
                 rcon("exec acshots.cfg")
-                te = time.time() + dur + 4
+                te = time.time() + 2 * dur + 6
                 while time.time() < te and time.time() < tend:
                     guard()
                     time.sleep(0.5)

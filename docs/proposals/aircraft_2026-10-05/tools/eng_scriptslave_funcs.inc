@@ -184,11 +184,15 @@ void G_HZM_AircraftBulletHits(
         }
         to = a->origin - start;
         t  = to * d;
+        closest = start + d * t;
+        miss    = (a->origin - closest).length();
+        if (HzmAirCvar("coop_acDebug", "0") >= 2 && miss < a->m_fHzmAirRadius * 6) {
+            gi.Printf("^~^~^ AIRSHOT ent=%d t=%.0f range=%.0f miss=%.0f r=%.0f owner=%s\n", a->entnum, t, range, miss,
+                      a->m_fHzmAirRadius, owner->getClassname());
+        }
         if (t <= 0 || t > range) {
             continue;
         }
-        closest = start + d * t;
-        miss    = (a->origin - closest).length();
         if (miss > a->m_fHzmAirRadius) {
             continue;
         }

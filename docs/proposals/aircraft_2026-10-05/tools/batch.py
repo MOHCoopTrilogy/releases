@@ -18,6 +18,51 @@ PLANS = {
         # the ONE capped 125 fps run the user allowed (the b1 attempt stayed at 60: com_maxfpsUnfocused capped it)
         ("fps125b", "after", "m2l1", "binoc", "cgame_ac2", "game_ac2", 125, 120, DBG + ["set com_maxfpsUnfocused 125"]),
     ],
+    "b3": [
+        ("before3", "before", "m1l2a,e3l2", "para,binoc,stuka", "cgame_ac2", "game_live", 60, 0, ["set cg_hzmAcDebug 1"]),
+        ("after3", "after", "m1l2a,e3l2", "para,binoc,stuka", "cgame_ac2", "game_ac3", 60, 0, DBG),
+        ("down3", "after", "m2l1", "down", "cgame_ac2", "game_ac3", 60, 0,
+         DBG + ["set coop_acStukaHp 30", "set coop_acDebug 2", "set cg_drawviewmodel 1"]),
+    ],
+    "b4": [
+        ("final4", "after", "m2l1", "stuka,down", "cgame_ac2", "game_ac3", 60, 0,
+         DBG + ["set coop_acStukaHp 150", "set coop_acDebug 2", "set cg_drawviewmodel 1", "set coop_loA1 \"\"",
+                "set coop_loA2 \"\"", "set coop_loA3 \"\"", "set coop_loA4 \"\""]),
+    ],
+    "b5": [
+        ("final5", "after", "m2l1", "flak", "cgame_ac2", "game_ac3", 60, 0, DBG + ["set cg_drawviewmodel 0"]),
+        ("final5s", "after", "m2l1", "stuka", "cgame_ac2", "game_ac3", 60, 0, DBG + ["set cg_drawviewmodel 0"]),
+        ("final5d", "after", "m2l1", "down", "cgame_ac2", "game_ac3", 60, 0,
+         DBG + ["set coop_acStukaHp 150", "set coop_acDebug 2", "set cg_drawviewmodel 1"]),
+    ],
+    "b6": [
+        ("final6f", "after", "m2l1", "flak", "cgame_ac2", "game_ac3", 60, 0, DBG + ["set cg_drawviewmodel 0"]),
+        ("final6s", "after", "m2l1", "stuka", "cgame_ac2", "game_ac3", 60, 0, DBG + ["set cg_drawviewmodel 0"]),
+        ("final6d", "after", "m2l1", "down", "cgame_ac2", "game_ac3", 60, 0,
+         DBG + ["set coop_acStukaHp 150", "set coop_acDebug 2", "set cg_drawviewmodel 1"]),
+    ],
+    "b7": [
+        ("final7f", "after", "m2l1", "flak", "cgame_ac4", "game_ac4", 60, 0, DBG + ["set cg_drawviewmodel 0"]),
+        ("final7s", "after", "m2l1", "stuka", "cgame_ac4", "game_ac4", 60, 0, DBG + ["set cg_drawviewmodel 0"]),
+        ("final7d", "after", "m2l1", "down", "cgame_ac4", "game_ac4", 60, 0,
+         DBG + ["set coop_acStukaHp 150", "set coop_acDebug 2", "set cg_drawviewmodel 1"]),
+    ],
+    "b8": [
+        ("final8s", "after", "m2l1", "stuka", "cgame_ac4", "game_ac4", 60, 0, DBG + ["set cg_drawviewmodel 0"]),
+        ("final8d", "after", "m2l1", "down", "cgame_ac4", "game_ac4", 60, 0,
+         DBG + ["set coop_acStukaHp 60", "set coop_acDebug 2", "set cg_drawviewmodel 1"]),
+    ],
+    "b9": [
+        ("final9s", "after", "m2l1", "stuka", "cgame_ac4", "game_ac5", 60, 0, DBG + ["set cg_drawviewmodel 0"]),
+        ("final9d", "after", "m2l1", "down", "cgame_ac4", "game_ac5", 60, 0,
+         DBG + ["set coop_acStukaHp 60", "set coop_acDebug 2", "set cg_drawviewmodel 1"]),
+    ],
+    "b11": [("final11d", "after", "m2l1", "down", "cgame_ac4", "game_ac5", 60, 0, DBG + ["set coop_acStukaHp 35", "set coop_acDebug 2", "set cg_drawviewmodel 1"])],
+    "b12": [("final12d", "after", "m2l1", "down", "cgame_ac4", "game_ac5", 60, 0, DBG + ["set coop_acStukaHp 20", "set coop_acDebug 2", "set cg_drawviewmodel 1"])],
+    "b10": [
+        ("final10d", "after", "m2l1", "down", "cgame_ac4", "game_ac5", 60, 0,
+         DBG + ["set coop_acStukaHp 35", "set coop_acDebug 2", "set cg_drawviewmodel 1"]),
+    ],
 }
 
 

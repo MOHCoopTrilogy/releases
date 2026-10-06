@@ -29,6 +29,7 @@ run:{
 	level.acp_cam = local.c + ( 0 0 16 )
 	level.acp_yaw = local.yaw
 	level.acp_pitch = 0
+	level.acp_trackOn = 1
 	thread hold local.p
 	wait 3
 	local.ev = getcvar "coop_acEvents"
@@ -43,32 +44,67 @@ run:{
 		thread coop_mod/paradrop.scr::coop_paradrop_main local.t
 		wait 44
 	}
+	local.doFlak = waitthread coop_mod/main.scr::containsText local.ev "flak" 0
+
+	if( local.doFlak == 1 ){
+		level.acp_pitch = 0 - 40
+		level.ac_lastPlane = NIL
+		level.acp_lastVa = NIL
+		level.acp_trackOn = 1
+		level.coop_smoke_player = local.p
+		setcvar "coop_paraShootdownChance" "100"
+		println ( "^~^~^ ACCAM ev=flak dur=34 t=" + local.t )
+		thread coop_mod/paradrop.scr::coop_paradrop_main local.t
+		wait 70
+		setcvar "coop_paraShootdownChance" "0"
+	}
 	if( waitthread coop_mod/main.scr::containsText local.ev "binoc" 0 ){
 		level.acp_pitch = 0 - 28
 		level.ac_lastPlane = NIL
 		level.acp_lastVa = NIL
-		println ( "^~^~^ ACCAM ev=binoc dur=18 t=" + local.t )
 		thread coop_mod/officer.scr::coop_air_bombing_run local.t local.side 0 "models/vehicles/p47fly.tik" 5
-		wait 20
+		local.w = waitthread waitNear 6500 30
+		println ( "^~^~^ ACCAM ev=binoc dur=16 t=" + local.t )
+		wait ( 18 + 20 - local.w )
 	}
 	if( waitthread coop_mod/main.scr::containsText local.ev "stuka" 0 ){
 		level.acp_pitch = 0 - 28
 		level.ac_lastPlane = NIL
 		level.acp_lastVa = NIL
-		println ( "^~^~^ ACCAM ev=stuka dur=26 t=" + local.t )
+		level.acp_cam = local.t + ( 0 0 16 )	// the officer's Stuka goes for a seen player: stand at the target
 		thread coop_mod/officer.scr::coop_air_bombing_run local.t local.side 1 "models/vehicles/stuka_strafe.tik" 12 1
-		wait 28
+		local.w = waitthread waitNear 6500 30
+		println ( "^~^~^ ACCAM ev=stuka dur=20 t=" + local.t )
+		wait 45
 	}
 	if( waitthread coop_mod/main.scr::containsText local.ev "down" 0 ){
 		level.acp_pitch = 0 - 28
 		level.ac_lastPlane = NIL
 		level.acp_lastVa = NIL
-		local.p give "models/weapons/mp40.tik"
-		local.p ammo smg 1000
-		wait 0.5
-		local.p use "models/weapons/mp40.tik"
-		println ( "^~^~^ ACCAM ev=down dur=38 t=" + local.t )
+		local.p.flags["coop_chal_unlocks"] = "models/weapons/bar.tik"	//TEST ONLY: armory lock would re-kit it away
+		local.p give "models/weapons/bar.tik"	// an automatic rifle (weapontype mg): the full-damage class
+		local.p ammo mg 1000
+		local.p ammo rifle 1000
+		for( local.k = 1; local.k <= 4; local.k++ ){
+			wait 0.6
+			local.p use "models/weapons/bar.tik"
+		}
+		level.acp_cam = local.t + ( 0 0 16 )
 		thread coop_mod/officer.scr::coop_air_bombing_run local.t local.side 1 "models/vehicles/stuka_strafe.tik" 6 1
+		local.w = waitthread waitNear 5500 30
+		println ( "^~^~^ ACCAM ev=down dur=30 t=" + local.t )
+		// fire from script (the rcon +attackprimary never reached the weapon in two runs): the hold thread keeps the
+		// view on the Stuka, so every round goes where a player tracking it would aim
+		local.near = waitthread waitNear 2600 20
+		local.tf = level.time
+		while( level.time - local.tf < 24 ){
+			local.p fire "mainhand" "primary"
+			wait 0.12
+			if( level.ac_lastPlane != NIL && level.ac_lastPlane != NULL ){
+				if( level.ac_lastPlane.ac_dead == 1 ){ break }
+			}
+		}
+		println ( "^~^~^ ACP firing stopped t=" + ( level.time - local.tf ) )
 		wait 40
 	}
 	println "^~^~^ ACP done"
@@ -95,6 +131,23 @@ hold local.p:{
 		waitframe
 	}
 }end
+
+
+// Seconds waited until the newest coop aircraft is within dist of the camera (the old code sets no
+// level.ac_lastPlane: then it returns after 2 s so the "before" capture keeps its old timing).
+waitNear local.dist local.tmax:{
+	local.t0 = level.time
+	while( level.time - local.t0 < local.tmax ){
+		local.pl = level.ac_lastPlane
+		if( local.pl == NIL && level.time - local.t0 > 2 ){ break }
+		if( local.pl != NIL && local.pl != NULL ){
+			if( vector_length( local.pl.origin - level.acp_cam ) < local.dist ){ break }
+		}
+		waitframe
+	}
+	local.w = level.time - local.t0
+	if( local.w > 20 ){ local.w = 20 }
+}end local.w
 
 
 pickPlayer:{

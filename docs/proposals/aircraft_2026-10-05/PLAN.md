@@ -422,3 +422,49 @@ the clouds**. A plane can never fly into, behind or out of a cloud. Consequences
   20 s for 54 maps, single-threaded.
 - `tools/sky_envelope.tsv`: the raw per-map measurements: ground percentiles, sky percentiles, obstacle tops, the
   longest straight run at the chosen height, and what today's code does.
+
+---
+
+## 12. Build status (2026-10-05, same day)
+
+User decisions: real speed (no slider), shrink planes, fly above the sky on low-sky maps, a little fog see-through,
+no-sky maps sound + effects only, C-47 V of three and P-47 pairs, steep Stuka dive, Doppler; later a shoot-down
+phase for German planes.
+
+**Built and committed** (not deployed):
+- mod `a573e8a8` (coop-wip): `coop_mod/aircraft.scr` (library), generated `coop_mod/aircraft_envelope.scr`,
+  `ubersound/coop_aircraft.scr`, `paradrop.scr` / `officer.scr` switched over, `precache.scr`. Later fixes (wreck
+  `notsolid` after the model swap, dive-bomber release heights 700/800 ft) are in the working tree, next commit.
+- engine `30ee0561` (hzm-coop-working): `coop_aircraft` event + shootable planes (fgame), `cg_hzm_aircraft.c`
+  (Doppler, fog see-through, no-fog speck fade, ACLERP log). Test DLLs: cgame_ac2 `5a1cd472`, game_ac2 `0bf6cd4d`
+  (built on fae49e72 + this patch), game_ac3 `038e6c28` (+ `coop_acDebug 2` AIRSHOT print).
+- workspace `9c9024f`: generator `docs/tools/gen_aircraft_envelope.py` (+ `aircraft_bsp.py`), tools here.
+
+**In-engine results** (private client G:\mohaa-planes, runs under `G:\mohaa-planes\runs\`):
+
+| gate | result |
+|---|---|
+| G1 old judder (before) | C-47/P-47/Stuka: 22-61% of frames with no motion, frame-to-frame speed change p50 60-100%, attitude steps 13-33 deg/frame. C-47 never drawn on m2l1/e1l1 (above the sky). |
+| G2 smoothness (after, 60 fps) | 0% still frames on every pass; speed change p50 0.2-1.0%; max attitude step 0 (level) to 7 deg/frame (pull-out). p95 spikes (up to 0.5-0.9) only under heavy AI load and on every entity - server-frame hitches, not the mover (the same dive alone: p95 0.8%). |
+| G2 at 125 fps | **not measured**: two capped runs both stayed at 60 fps (16.8 ms) even with com_maxfpsUnfocused 125 - the hidden harness window seems to be capped elsewhere (vsync / minimised throttle). The lerp math is fps-independent, but this is unproven. |
+| G5 heights | AIR lines on m2l1 / e1l1 / m4l3 / m5l1a / m6l2b: C-47 H 1022-2400, s 0.2-0.25; dive bottoms 50u above the traced floor. Plane-box clip sweep not implemented. |
+| G6 visibility | m2l1: V of three plainly visible, jumpers out of the doors, chutes open; P-47 pair and Stuka visible but small (raised to 700/800 ft apparent release since). Fog/low-sky captures failed on scene grounds (e1l1 intro truck ride, m5l1a mission end, m6l2b/m4l3 forest) - rerun on m1l2a / e3l2. |
+| shoot-down | **not yet seen**: the first test produced no hits (no AIRHIT); rerun with the AIRSHOT diagnostic. |
+
+### 12.1 Later the same day (b3-b12)
+
+- Commits: mod `5caf8c1b` (readable dive bombers, C-47 lost to flak, review fixes), `85a1d34d`/`44122aaa` (puffy
+  trail, billowing wreck column), `ab60fb63`/`ce7a1891` (dive bombers scale >= 0.45-0.5, 60 deg Stuka dive, 8 g
+  pull-out, Stuka 300 hp), `b4ff997f` (downed Stuka finds a safe crash; over-the-horizon path cannot pass through
+  the ground). Engine `51b578cf` (AIRSHOT debug), `70929044` + `cd023bf5` (a player's held MG counts as MG; the
+  second commit takes back another session's carrier hunks that 70929044 swept in - bug-3439).
+- Test DLLs: cgame_ac4 `4afbfbbc`, game_ac5 `a97a80d1` (engine 51b578cf + the MG-class fix).
+- Seen in engine (m2l1): flak-downed C-47 with a puffy grey trail, wing-down roll and a crash in view with fire and a
+  smoke column; Stuka recognisable through the dive and pull-out (about 1 s at the bottom - it is a real dive);
+  shoot-down by player fire (rounds registered as AIRHIT, kill at hp 0, +50 XP "Plane Shot Down", crash on the map
+  ~1100u away, behind buildings from the test spot). Capture runs used a lowered Stuka hp (20-60) to get a kill in
+  one magazine; the shipped default is 300. The MG full-damage path is fixed in code but the test client never held
+  the BAR (the loadout kept a rifle), so only the small-arms x0.25 path is measured.
+- Not verified: Doppler by ear, cgame fog see-through on a fog map, 125 fps (harness window stays at 60).
+- GIFs: `G:\mohaa-planes\runs\gifs\` (before_/after_ for m2l1 open, e1l1 + e3l2 fog, m1l2a low sky; after_m2l1_flak,
+  after_m2l1_stuka, after_m2l1_down).
