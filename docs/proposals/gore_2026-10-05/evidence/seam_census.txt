@@ -1,0 +1,30 @@
+
+## models/human/german_wehrmact_soldier/heerprivate.skd v5 surfaces ['Wehrmact_pants', 'Wehrmact_tunic', 'Wehrmact_tunic_c']
+  L_upperarm  full=  68 seam= 28 /950  seam-partners={'Bip01 L Clavicle': 28, 'helper Lshoulder01': 14}
+  L_forearm   full=  14 seam= 54 /950  seam-partners={'helper Lelbow': 54}
+  R_upperarm  full=  68 seam= 28 /950  seam-partners={'Bip01 R Clavicle': 28, 'helper Lshoulder02': 14}
+  R_forearm   full=  14 seam= 54 /950  seam-partners={'helper Relbow': 54}
+  L_thigh     full= 185 seam=  0 /950  seam-partners={}
+  L_calf      full= 158 seam=  9 /950  seam-partners={'helper Lknee': 9}
+  R_thigh     full= 190 seam=  0 /950  seam-partners={}
+  R_calf      full= 160 seam= 10 /950  seam-partners={'helper Rknee': 10}
+
+## models/human/ALLIED_AIRBORNE/airborne.skd v5 surfaces ['shirt', 'sleeve', 'pants']
+  L_upperarm  full=  42 seam= 67 /1222  seam-partners={'Bip01 Spine2': 67, 'helper Lshoulder01': 14}
+  L_forearm   full=  42 seam= 39 /1222  seam-partners={'helper Lelbow': 39, 'Bip01 Spine2': 39}
+  R_upperarm  full=  41 seam= 70 /1222  seam-partners={'Bip01 Spine2': 70, 'helper Lshoulder02': 14}
+  R_forearm   full=  41 seam= 42 /1222  seam-partners={'helper Relbow': 42, 'Bip01 Spine2': 42}
+  L_thigh     full= 170 seam= 38 /1222  seam-partners={'helper Lhip': 38}
+  L_calf      full= 156 seam= 14 /1222  seam-partners={'helper Lknee': 14}
+  R_thigh     full= 171 seam= 36 /1222  seam-partners={'helper Rhip': 36}
+  R_calf      full= 157 seam= 14 /1222  seam-partners={'helper Rknee': 14}
+
+## models/human/HANDS/hand.skd v5 surfaces ['hand']
+  L_upperarm  full=  53 seam= 44 /604  seam-partners={'Bip01 L Finger3': 14, 'Bip01 L Finger0': 13, 'Bip01 L Finger2': 10, 'Bip01 L Finger1': 10}
+  L_forearm   full=  53 seam= 44 /604  seam-partners={'Bip01 L Finger3': 14, 'Bip01 L Finger0': 13, 'Bip01 L Finger2': 10, 'Bip01 L Finger1': 10}
+  R_upperarm  full=  60 seam= 43 /604  seam-partners={'Bip01 R Finger0': 17, 'Bip01 R Finger2': 12, 'Bip01 R Finger3': 9, 'Bip01 R Finger1': 8}
+  R_forearm   full=  60 seam= 43 /604  seam-partners={'Bip01 R Finger0': 17, 'Bip01 R Finger2': 12, 'Bip01 R Finger3': 9, 'Bip01 R Finger1': 8}
+  L_thigh     full=   0 seam=  0 /604  seam-partners={}
+  L_calf      full=   0 seam=  0 /604  seam-partners={}
+  R_thigh     full=   0 seam=  0 /604  seam-partners={}
+  R_calf      full=   0 seam=  0 /604  seam-partners={}
