@@ -38,6 +38,8 @@ def resolves(nm):
 EXPECTED = {
     "bombing run", "minedetector", "minensuchgerat", "signal smoke grenade",
     "enfield l42a1", "g43 sniper", "kar98 - sniper", "springfield '03 sniper",
+    # portable belt MGs (30calportable/mg42portable): hip-fired, never had a tune; named 2026-10-05 by the reload audit
+    "m1919 30cal", "mg42",
 }
 
 miss, ok = set(), 0
