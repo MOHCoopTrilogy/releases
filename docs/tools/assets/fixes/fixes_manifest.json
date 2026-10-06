@@ -4,5 +4,10 @@
     "base_ticks": 639238962846671095,
     "base_from": "docs/tools/assets/fixes_base/models/human/new_generic_human.tik",
     "why": "bug-3196 (t2l2 21G700_Jumpout include block, defect sweep #2 item 3) shipped here instead of assets_tex; base = the v1.10.3 assets_tex member (pak sha256 9cda0bc5), ticks recovered from copytree copies of the 2026-09-01 file"
+  },
+  "textures/models/weapons/mosin_nagant/weas.jpg": {
+    "base_md5": "b99cee9ae473abe02151477f549aa9b4",
+    "base_pak": "zzzzz_xw_weapons.pk3",
+    "why": "bug-3453: the xw Mosin sniper scope's cloth wrap was CoD2 art per the sheet's own modder note; replaced with an original procedural canvas wrap (docs/tools/weapon_hd/paint_weas.py), captions + unused sleeve blanked"
   }
 }

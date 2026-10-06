@@ -32,6 +32,7 @@ MOD = os.path.join(ROOT, "hzm-mohaa-coop-mod")
 PAKNAME = "zzzzzzzzzz_coop_fixes.pk3"
 PAK = os.path.join(MOD, PAKNAME)
 STAMP = (2026, 9, 28, 0, 0, 0)
+GOG_MAINTT = r"G:/GOG/Medal of Honor - Allied Assault War Chest/maintt"
 EPOCH_TICKS = 621355968000000000   # .NET ticks at 1970-01-01T00:00:00Z
 
 
@@ -52,6 +53,21 @@ def load():
         fails.append("sources %s != manifest %s" % (sorted(on_disk), sorted(man)))
     for rel in sorted(man):
         data = open(os.path.join(SRC, *rel.split("/")), "rb").read()
+        if "base_pak" in man[rel]:
+            # [2026-10-06, bug-3453] base is a member of a THIRD-PARTY pak (never edited in place, no mod-tree copy):
+            # pin it by md5 against that pak in the GOG maintt when it is there; the override just has to out-sort it.
+            bp = os.path.join(GOG_MAINTT, man[rel]["base_pak"])
+            if os.path.isfile(bp):
+                with zipfile.ZipFile(bp) as z:
+                    names = {n.lower(): n for n in z.namelist()}
+                    if rel.lower() not in names:
+                        fails.append("%s: not in its base pak %s" % (rel, man[rel]["base_pak"]))
+                    elif hashlib.md5(z.read(names[rel.lower()])).hexdigest() != man[rel]["base_md5"]:
+                        fails.append("%s: base pak member changed (re-derive the override)" % rel)
+            if not pathcmp_key(PAKNAME) > pathcmp_key(man[rel]["base_pak"]):
+                fails.append("%s does not sort after %s" % (PAKNAME, man[rel]["base_pak"]))
+            members.append((rel, data))
+            continue
         base = os.path.join(MOD, *rel.split("/"))
         if not os.path.isfile(base):
             fails.append("%s: no base copy in the mod tree" % rel)
@@ -92,6 +108,8 @@ def render(members):
 
 def restore(man):
     for rel, pin in sorted(man.items()):
+        if "base_pak" in pin:
+            continue                    # third-party base: nothing in the mod tree to restore
         src = os.path.join(ROOT, *pin["base_from"].split("/"))
         data = open(src, "rb").read() if not pin["base_from"].endswith(".pk3") else None
         if data is None:
