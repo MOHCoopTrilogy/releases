@@ -1,0 +1,103 @@
+{
+ "members": {
+  "textures/coop_dp28/bipod.dds": {
+   "md5": "d0e18a0bb7b804e8cfa858923228b0b2",
+   "size": 11184952
+  },
+  "textures/coop_dp28/dp28.dds": {
+   "md5": "a9f5bef3f960e2fc690b7027d51dedd6",
+   "size": 11184952
+  },
+  "textures/models/weapons/arisaka/s93_model97.dds": {
+   "md5": "2f10b1f30ad0e7cbc276c76ab83ad374",
+   "size": 11184952
+  },
+  "textures/models/weapons/bar/s93_bar.dds": {
+   "md5": "735c063c788958980677553932bbdadf",
+   "size": 11184952
+  },
+  "textures/models/weapons/bazooka/bazooka.dds": {
+   "md5": "7734de466b5b55461ddedc46cfe6fd1e",
+   "size": 11184952
+  },
+  "textures/models/weapons/colt45/colt45.dds": {
+   "md5": "d6ad5b773e4ecd1f0a4f32e8ac113f16",
+   "size": 11184952
+  },
+  "textures/models/weapons/hi_standard/hi_standard.dds": {
+   "md5": "2b967d4aa60be430051990882a26ff30",
+   "size": 11184952
+  },
+  "textures/models/weapons/k98/s93_k98sniper_stock.dds": {
+   "md5": "b1761aa8a21663dcb07a88866fc71a01",
+   "size": 11184952
+  },
+  "textures/models/weapons/kar98/kar98.dds": {
+   "md5": "0cf7c6c5447183841652797e5ae33173",
+   "size": 5592552
+  },
+  "textures/models/weapons/luger/p08.dds": {
+   "md5": "75b4518e5a8b8d6d313805d74b4559b8",
+   "size": 11184952
+  },
+  "textures/models/weapons/m1garand/garand.dds": {
+   "md5": "8934f75a6c3b897ace48be7773eda640",
+   "size": 5592552
+  },
+  "textures/models/weapons/m1garand/s93_garand.dds": {
+   "md5": "b3c525065e4d91d1dea65a645b5c19d2",
+   "size": 22369776
+  },
+  "textures/models/weapons/mp40/mp40.dds": {
+   "md5": "5c897b81b98aa5cae1c437674695f8e2",
+   "size": 11184952
+  },
+  "textures/models/weapons/mp44/mp44.dds": {
+   "md5": "1d466e18795b3237b377a150f9ce01ca",
+   "size": 11184952
+  },
+  "textures/models/weapons/mp44/mp44clip.dds": {
+   "md5": "bd9a2ae4ceb1cb5f33a967b8522aa4ae",
+   "size": 11184952
+  },
+  "textures/models/weapons/p38/p38.dds": {
+   "md5": "ec39ed46a4da844a6a91db246503693c",
+   "size": 11184952
+  },
+  "textures/models/weapons/panzerschreck/pschreck.dds": {
+   "md5": "e3fbebfef1b9c354c4c7d1f3d349954b",
+   "size": 11184952
+  },
+  "textures/models/weapons/ppk/ppk_body.dds": {
+   "md5": "29925deb007de5632296557f2208dcae",
+   "size": 11184952
+  },
+  "textures/models/weapons/ppk/ppk_slide.dds": {
+   "md5": "61311124d70213a05846b394cca0529b",
+   "size": 11184952
+  },
+  "textures/models/weapons/springfield/springfield.dds": {
+   "md5": "1a485105324415b2185fd3c2defb41f0",
+   "size": 11184952
+  },
+  "textures/models/weapons/thompson/s93_thompson.dds": {
+   "md5": "8eddaea1d30f233dcb35b47a5ebfed2d",
+   "size": 11184952
+  },
+  "textures/models/weapons/thompsonsmg/thompsonsmg.dds": {
+   "md5": "b64b72389d538be5c60e0a21864d1ae9",
+   "size": 11184952
+  },
+  "textures/models/weapons/type100/type100.dds": {
+   "md5": "ae3ba2b674e1f0562f52f38549ee3f35",
+   "size": 11184952
+  },
+  "textures/models/weapons/winchester/winchester.dds": {
+   "md5": "9ee8f41ab0805ce19825292b0311da23",
+   "size": 11184952
+  }
+ },
+ "pak": "zzzzzzzzzz_coop_hd_wpn_2hd.pk3",
+ "pak_bytes": 143645261,
+ "pak_sha256": "19c75e001fb3eb677d408397b40292095f967d9a99d4d1638747ab0a82403574"
+}

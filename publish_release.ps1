@@ -148,6 +148,12 @@ $stage["home/maintt/zzzzzzzzzz_coop_fixes.pk3"]  = "$mod\zzzzzzzzzz_coop_fixes.p
 # [2026-09-29, m3l2 ground] m3l2 courtyard/barnyard/road ground + patched m3l2.bsp (docs/proposals/m3l2_ground_2026-09-29)
 # - copied by build.ps1 the same way. Ship it to players and servers together (pure-pak alignment; the map checksum field is unchanged).
 $stage["home/maintt/zzzzzzzzzz_coop_m3l2ground.pk3"]  = "$mod\zzzzzzzzzz_coop_m3l2ground.pk3"
+# [2026-10-05, weapon HD] Weapon HD texture paks (docs/tools/weapon_hd/gen_weapon_hd_pak.py) - copied by build.ps1 the same
+# way; each staged only if it was built. Large (hundreds of MB in total): the release notes must say so.
+foreach ($wpnPakName in @('zzzzzzzzzz_coop_hd_wpn_1low.pk3', 'zzzzzzzzzz_coop_hd_wpn_2hd.pk3', 'zzzzzzzzzz_coop_hd_wpn_3var.pk3',
+                          'zzzzzzzzzz_coop_hd_wpn_4fin.pk3', 'zzzzzzzzzz_coop_hd_wpn_5wear.pk3')) {
+    if (Test-Path "$mod\$wpnPakName") { $stage["home/maintt/$wpnPakName"] = "$mod\$wpnPakName" }
+}
 $stage["home/maintt/autoexec.cfg"] = "$mod\autoexec.cfg"
 # What's New card trigger seed (constant content = constant hash = downloaded once ever).
 # Lives in installer/ (NOT the mod tree) so build.ps1 never packs it into a pk3 - a pk3 copy

@@ -1,0 +1,215 @@
+{
+  "_doc": [
+    "Per-sheet period finish for the weapon HD pass (docs/tools/weapon_hd/build_sheets.py). EVERY rule whose regex matches the",
+    "lower-case sheet stem is merged over 'default' in list order (later wins), so general rules come first. steel: blued | parkerized | painted. brown: what saturated brown",
+    "in the art is - wood | plastic (bakelite / moulded grips) | none (no wood or bakelite on this sheet: dunkelgelb paint,",
+    "rust tones). Sources: WWII service finishes - US arms parkerized from ~1941 (Garand, Carbine, M1A1 Thompson, M3,",
+    "M1911A1 with brown plastic grips, S&W Victory, Johnson, Springfield 03A3, BAR, M1919); German arms blued or",
+    "phosphated, bakelite on MP40 / MG42 / P38 / Tokarev-type grips; British No.4 / Sten / Welrod / PIAT black or green",
+    "paint; bazooka OD paint with a wooden shoulder rest; Panzerschreck painted."
+  ],
+  "default": {
+    "steel": "blued",
+    "brown": "wood"
+  },
+  "rules": [
+    [
+      "hobbscarbine/|greasegun/|thompsonsmg/|thompson/|coop_m1a1dk/|colt45/|colt/|m1garand/|springfield/|bar/|30cal/|coop_johnson/|coop_m10/|hi_standard|s93_garand",
+      {
+        "steel": "parkerized"
+      }
+    ],
+    [
+      "colt45/colt45$|colt/s93_colt|colt/colt45s2",
+      {
+        "steel": "parkerized",
+        "brown": "plastic"
+      }
+    ],
+    [
+      "mp40/|ppsh43/|p38/|tt33/|beretta/|webley|ppk/|welrod/|hi_standard",
+      {
+        "brown": "plastic"
+      }
+    ],
+    [
+      "mg42",
+      {
+        "steel": "parkerized",
+        "brown": "plastic"
+      }
+    ],
+    [
+      "fg42/",
+      {
+        "steel": "parkerized"
+      }
+    ],
+    [
+      "sten/|welrod/|enfield_l42a1|enfield/enfield$",
+      {
+        "steel": "painted"
+      }
+    ],
+    [
+      "bazooka/|panzerschreck/|piat/|minedetector/|m18_smoke_grenade|binoculars",
+      {
+        "steel": "painted",
+        "brown": "none"
+      }
+    ],
+    [
+      "bazooka/bazooka$",
+      {
+        "steel": "painted",
+        "brown": "wood"
+      }
+    ],
+    [
+      "ppsh43/",
+      {
+        "brown": "none"
+      }
+    ]
+  ],
+  "protect": {
+    "_doc": "UV points (u, v) whose texel must keep the ORIGINAL art colour: a disc (r = 0.006 of the sheet) is exempt from wear, scratches and grime. The ADS agent's added cocking knobs sample ONE texel for all their faces (docs/proposals/ads_bolt_2026-10-04/tools/add_part.py). Old points stay protected alongside the new ones until the ADS agent's mesh change is committed (harmless: a protected disc only keeps the original art).",
+    "textures/models/weapons/thompsonsmg/thompsonsmg": [
+      [
+        0.703,
+        0.143
+      ],
+      [
+        0.712,
+        0.024
+      ]
+    ],
+    "textures/models/weapons/mp40/mp40": [
+      [
+        0.521,
+        0.62
+      ],
+      [
+        0.547,
+        0.419
+      ]
+    ]
+  },
+  "erase": {
+    "_doc": "Source-art regions (u0, v0, u1, v1) erased BEFORE upscaling: each column is filled by linear interpolation between the rows just outside the rect, plus the noise of the rows above it - plain metal, the surrounding light gradient kept. For markings that are not period-plausible (the user's rule: real markings plausible and legible, or left out).",
+    "textures/hobbscarbine/mech": [
+      [
+        0.098,
+        0.842,
+        0.2125,
+        0.943
+      ],
+      [
+        0.243,
+        0.802,
+        0.3125,
+        0.947
+      ]
+    ],
+    "_why": {
+      "textures/hobbscarbine/mech": "third-party 2002 joke stampings on the M1 Carbine: 'POLYGON FURREH DLE' and an obscene 'F*** BIN LADEN' (QA card, 2026-10-05)",
+      "textures/hobbscarbine/base": "joke stamp 'FURREH' (+ two small words) on the receiver plate",
+      "textures/hobbscarbine/carbine1": "same 'FURREH' stamp (same art at 612x410)",
+      "textures/models/weapons/mosin_nagant/weas": "modder notes on the sheet: 'DaRKSTeiN was here', 'thats is from cod2' (+arrow), 'that's a Airbone sleeve' (+arrow)",
+      "textures/models/weapons/tt33/tokarev": "'MFG HUDSON SPG / 600641 1939' - not a TT-33 marking (Tula arsenal); left out rather than invented",
+      "textures/models/weapons/ppk/ppk_slide": "POST-WAR markings on a WWII PPK: 'Carl Walther Waffenfabrik Ulm/Do. / Modell PPK-L Cal.7,65 mm' (Walther moved to Ulm after 1945) and the '2/57 ... East' / '1005-12-120' date-serial line; the WALTHER banner (period-correct) is kept",
+      "textures/coop_dp28/bipod": "'AI OPTICS' ring (a modern brand) on the DP-28 bipod/cap sheet"
+    },
+    "textures/hobbscarbine/base": [
+      [
+        0.35855263157894735,
+        0.09429280397022333,
+        0.5493421052631579,
+        0.1935483870967742
+      ]
+    ],
+    "textures/hobbscarbine/carbine1": [
+      [
+        0.35855263157894735,
+        0.09429280397022333,
+        0.5493421052631579,
+        0.1935483870967742
+      ]
+    ],
+    "textures/models/weapons/mosin_nagant/weas": [
+      [
+        0.669921875,
+        0.16015625,
+        0.9921875,
+        0.3046875
+      ],
+      [
+        0.51171875,
+        0.41796875,
+        0.78515625,
+        0.650390625
+      ],
+      [
+        0.458984375,
+        0.833984375,
+        0.95703125,
+        0.96875
+      ]
+    ],
+    "textures/models/weapons/tt33/tokarev": [
+      [
+        0.6906666666666667,
+        0.148,
+        0.8746666666666667,
+        0.19466666666666665
+      ]
+    ],
+    "textures/models/weapons/ppk/ppk_slide": [
+      [
+        0.38,
+        0.084,
+        0.607,
+        0.131
+      ],
+      [
+        0.405,
+        0.277,
+        0.528,
+        0.303
+      ],
+      [
+        0.625,
+        0.277,
+        0.8,
+        0.303
+      ]
+    ],
+    "textures/coop_dp28/bipod": [
+      [
+        0.4658203125,
+        0.4365234375,
+        0.5927734375,
+        0.5634765625
+      ]
+    ]
+  },
+  "esr": {
+    "_doc": "per-sheet Real-ESRGAN weight 0..1 (rest = sharpened Lanczos) for art ESRGAN exaggerates",
+    "textures/models/weapons/30cal/30cal": 1.0
+  },
+  "source_winner": [
+    "textures/models/weapons/30cal/30cal"
+  ],
+  "skip": {
+    "textures/models/weapons/m1garand/m1clip": "today's hd_m3l1a 2048 4x upscale of the same art is cleaner than any rebuild (ESRGAN smears the cartridge brass, QA round 2); kept as is",
+    "textures/models/weapons/30cal/30cal": "the white drip / paint-chip streaks are painted into the art itself (retail and today's 1024 copy); any upscale makes them read as hallucination (coordinator QA 2026-10-05). Keep today's sheet; an HD 30cal needs a repaint, not an upscale."
+  },
+  "wear": {
+    "_doc": "per-sheet wear strength multiplier (default 1)",
+    "textures/models/weapons/30cal/30cal": 0.0
+  },
+  "tame": {
+    "_doc": "per-sheet 0..1 compression of bright local streaks on dark art (painted drips that upscale into hallucination-looking blotches)",
+    "textures/models/weapons/30cal/30cal": 0.8
+  }
+}

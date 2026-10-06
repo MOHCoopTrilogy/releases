@@ -112,6 +112,11 @@ if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_loadart_pak check - 
 # sources docs/tools/assets/tileart); `check` = byte-identical to a rebuild and every image the coop_start cfgs name.
 python "C:\mohaa-coop-dev\docs\tools\gen_tileart_pak.py" check
 if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_tileart_pak check - regenerate with: python docs/tools/gen_tileart_pak.py build" -ForegroundColor Red; exit 1 }
+# [2026-10-05, weapon HD] The weapon HD paks (zzzzzzzzzz_coop_hd_wpn_*.pk3, docs/tools/weapon_hd) are out of band like
+# the tile art; `check` = every pak present matches its committed manifest, and the wear pak's generated TIK copies
+# still match a regeneration from today's effective TIKs (so a TIK edit elsewhere can never be silently shadowed).
+python "C:\mohaa-coop-dev\docs\tools\weapon_hd\gen_weapon_hd_pak.py" check
+if ($LASTEXITCODE -ne 0) { Write-Host "BUILD BLOCKED by gen_weapon_hd_pak check - see docs/tools/weapon_hd/gen_weapon_hd_pak.py" -ForegroundColor Red; exit 1 }
 # [2026-09-28, bug-3251] OVERRIDES pak: an asset-bucket file fixed after a release ships in zzzzzzzzzz_coop_fixes.pk3
 # (source docs/tools/assets/fixes/<relpath>) while the mod tree keeps the RELEASED copy, same bytes AND mtime, so the
 # ~1.3 GB assets_tex pk3 stays a cache hit (same sha256 = no re-download). `check` fails if that pinned base copy was
@@ -463,6 +468,17 @@ foreach ($destDir in @($deployDir, $appDataDir)) {
     if (Test-Path $m3l2GroundPak) {
         Copy-Item -Path $m3l2GroundPak -Destination (Join-Path $destDir 'zzzzzzzzzz_coop_m3l2ground.pk3') -Force
         Write-Host "  Deployed m3l2 ground pak -> $destDir"
+    }
+    # [2026-10-05, weapon HD] Weapon HD texture paks (docs/tools/weapon_hd/gen_weapon_hd_pak.py): low-res class, HD class,
+    # skin variants, finishes, per-instance wear. Out of band so the assets_tex pk3 keeps its sha256. Listed in
+    # publish_release.ps1's staging. Each is optional - only the ones built are copied.
+    foreach ($wpnPakName in @('zzzzzzzzzz_coop_hd_wpn_1low.pk3', 'zzzzzzzzzz_coop_hd_wpn_2hd.pk3', 'zzzzzzzzzz_coop_hd_wpn_3var.pk3',
+                              'zzzzzzzzzz_coop_hd_wpn_4fin.pk3', 'zzzzzzzzzz_coop_hd_wpn_5wear.pk3')) {
+        $wpnPak = Join-Path $srcDir $wpnPakName
+        if (Test-Path $wpnPak) {
+            Copy-Item -Path $wpnPak -Destination (Join-Path $destDir $wpnPakName) -Force
+            Write-Host "  Deployed $wpnPakName -> $destDir"
+        }
     }
     Write-Host "  Deployed 3 pk3s -> $destDir"
 }

@@ -1,0 +1,56 @@
+[
+ {
+  "name": "kar98",
+  "rel": "textures/models/weapons/kar98/kar98.dds",
+  "bytes": 5592552,
+  "corr": 0.9937840455600899,
+  "shift": 4.28477578680031e-05,
+  "lean": [
+   0.16218948364257812,
+   0.2762107849121094,
+   0.5198459625244141
+  ],
+  "mesh": {
+   "tris": 1169,
+   "convex_edges": 276,
+   "concave_edges": 98
+  },
+  "source": "HRRTM_Pak4c tga"
+ },
+ {
+  "name": "thompsonsmg",
+  "rel": "textures/models/weapons/thompsonsmg/thompsonsmg.dds",
+  "bytes": 11184952,
+  "corr": 0.9888156792506152,
+  "shift": -0.005887634586542845,
+  "lean": [
+   -0.49687767028808594,
+   -0.32671546936035156,
+   -0.4322681427001953
+  ],
+  "mesh": {
+   "tris": 1158,
+   "convex_edges": 238,
+   "concave_edges": 98
+  },
+  "source": "HRRTM_Pak4c tga"
+ },
+ {
+  "name": "colt45",
+  "rel": "textures/models/weapons/colt45/colt45.dds",
+  "bytes": 11184952,
+  "corr": 0.9851182514880638,
+  "shift": 0.001113253296352923,
+  "lean": [
+   0.4355812072753906,
+   -0.39075469970703125,
+   0.363800048828125
+  ],
+  "mesh": {
+   "tris": 861,
+   "convex_edges": 301,
+   "concave_edges": 137
+  },
+  "source": "HRRTM_Pak4c tga"
+ }
+]

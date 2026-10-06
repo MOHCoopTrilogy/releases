@@ -1,0 +1,455 @@
+{
+ "members": {
+  "models/ammo/shell/shell.dds": {
+   "md5": "2a61377f935757b78fb4de2bcfba932c",
+   "size": 174904
+  },
+  "models/weapons/enfield/enfield.dds": {
+   "md5": "4176a970b2b2591764088c23e71aa58d",
+   "size": 5592560
+  },
+  "models/weapons/g43/g43.dds": {
+   "md5": "cd65f66cc4efea46557f192691442d5a",
+   "size": 5592560
+  },
+  "models/weapons/mosin_nagant/mosin_nagant.dds": {
+   "md5": "89600540e90da54f230f635f9e47b996",
+   "size": 11184952
+  },
+  "models/weapons/svt_rifle/svt.dds": {
+   "md5": "31bf5697d89d17b42b9c3abc98cbb458",
+   "size": 22369776
+  },
+  "textures/binoculars.dds": {
+   "md5": "c1e63df2a0ce6146302fb6f302af767b",
+   "size": 699192
+  },
+  "textures/coop_c96/aimfront.dds": {
+   "md5": "a15d9bcaab32c44efd095399ef131dc5",
+   "size": 2796344
+  },
+  "textures/coop_c96/aimrearblade.dds": {
+   "md5": "c8fa3d24f58b93711ab31460e57f2f75",
+   "size": 2796344
+  },
+  "textures/coop_c96/aimrearsup.dds": {
+   "md5": "af9d3906dbd1b099b6f14e0822e0d6c4",
+   "size": 2796344
+  },
+  "textures/coop_c96/barrel.dds": {
+   "md5": "3c5d21af605403bbcf1cf34426f5f58b",
+   "size": 2796344
+  },
+  "textures/coop_c96/body.dds": {
+   "md5": "51f7a7c30d9802a115360ac7b3082bd4",
+   "size": 2796344
+  },
+  "textures/coop_c96/grip.dds": {
+   "md5": "d404e839ae2acc8f5f1dc22c163adacd",
+   "size": 2796344
+  },
+  "textures/coop_c96/hammer.dds": {
+   "md5": "20d18c308165d6ddeee6645c3fc374b6",
+   "size": 2796344
+  },
+  "textures/coop_c96/hammer2.dds": {
+   "md5": "b49d38257d591995aac16001b6fa8c54",
+   "size": 2796344
+  },
+  "textures/coop_c96/hammerhit.dds": {
+   "md5": "d4f435c689f27a9ac68ace71ccc845a2",
+   "size": 2796344
+  },
+  "textures/coop_c96/switchblade.dds": {
+   "md5": "8709d1b3f470cddc9afbedbb3c3c6520",
+   "size": 2796344
+  },
+  "textures/coop_c96/trigger.dds": {
+   "md5": "c61fdb0d028c22e95b37b29573d7d746",
+   "size": 2796344
+  },
+  "textures/coop_c96/triguard.dds": {
+   "md5": "0f175831425503eb301ba2b67176bd74",
+   "size": 2796344
+  },
+  "textures/coop_johnson/johnson_01.dds": {
+   "md5": "eb10ece2e7d79a9f10a4c1803925c1a4",
+   "size": 2796344
+  },
+  "textures/coop_johnson/johnson_02.dds": {
+   "md5": "be00030ed31ded747e9a48f71ee8625d",
+   "size": 2796344
+  },
+  "textures/coop_johnson/johnson_03.dds": {
+   "md5": "a90eaa346663cb581c08e91b870e2d49",
+   "size": 2796344
+  },
+  "textures/coop_johnson/johnson_04.dds": {
+   "md5": "86bc7b0987f067099fe807d66ff9e3a1",
+   "size": 2796344
+  },
+  "textures/coop_johnson/johnson_05.dds": {
+   "md5": "ae87cfd2b2a842c346885e2e33c692c3",
+   "size": 2796344
+  },
+  "textures/coop_johnson/johnson_06.dds": {
+   "md5": "ef7106b0123471e01ff818d478f70bb9",
+   "size": 2796344
+  },
+  "textures/coop_johnson/johnson_07.dds": {
+   "md5": "9f7038d5d0f582d07858b569c85f3c62",
+   "size": 2796344
+  },
+  "textures/coop_johnson/johnson_08.dds": {
+   "md5": "67bb80f15fabf01e69a8f0805695acf5",
+   "size": 2796344
+  },
+  "textures/coop_johnson/johnson_09.dds": {
+   "md5": "a05d2e4c881ba913ea6cbe014b38ccec",
+   "size": 2796344
+  },
+  "textures/coop_johnson/johnson_10.dds": {
+   "md5": "cb4625b1aec3672b9c3330c32be85239",
+   "size": 2796344
+  },
+  "textures/coop_johnson/johnson_11.dds": {
+   "md5": "626d20fc3382c80ea592a48bf9a6b0c7",
+   "size": 2796344
+  },
+  "textures/coop_johnson/johnson_12.dds": {
+   "md5": "14b86bfaacfb60439e568874f8dcd5ec",
+   "size": 2796344
+  },
+  "textures/coop_johnson/johnson_13.dds": {
+   "md5": "6e92f02bf96132c99bc5fdc355993b30",
+   "size": 2796344
+  },
+  "textures/coop_johnson/johnson_14.dds": {
+   "md5": "e252b2f2d2b1581889c25a281dcd8c32",
+   "size": 2796344
+  },
+  "textures/coop_johnson/johnson_15.dds": {
+   "md5": "f20710646476c992a01293879e4c9c82",
+   "size": 2796344
+  },
+  "textures/coop_johnson/johnson_16.dds": {
+   "md5": "22b40b31e39b4d6116d57eef7993809d",
+   "size": 2796344
+  },
+  "textures/coop_m10/gun1.dds": {
+   "md5": "be8f228e42f3b2f5d92414874f5ebdc9",
+   "size": 2796344
+  },
+  "textures/coop_m10/gun10.dds": {
+   "md5": "ccfbc7f323c7eb26ea35b7dda0db3075",
+   "size": 2796344
+  },
+  "textures/coop_m10/gun11.dds": {
+   "md5": "31fc7360a4254f04e756c788e15223c8",
+   "size": 2796344
+  },
+  "textures/coop_m10/gun12.dds": {
+   "md5": "c54d20705c39b670c072c4061f05d21d",
+   "size": 2796344
+  },
+  "textures/coop_m10/gun13.dds": {
+   "md5": "186ba780fb7325ee63ca85ffa9d50841",
+   "size": 2796344
+  },
+  "textures/coop_m10/gun2.dds": {
+   "md5": "9c7e13270b907d12809558ee67a334ba",
+   "size": 2796344
+  },
+  "textures/coop_m10/gun3.dds": {
+   "md5": "e7c8f392ba48a058f2090e365f8161df",
+   "size": 2796344
+  },
+  "textures/coop_m10/gun4.dds": {
+   "md5": "fe6398f74c49158ceb1403d0bdf446dc",
+   "size": 2796344
+  },
+  "textures/coop_m10/gun5.dds": {
+   "md5": "e93f6cb3d6c2f66bea38156614348ac2",
+   "size": 2796344
+  },
+  "textures/coop_m10/gun7.dds": {
+   "md5": "4a4f7b2d1e2ef814006966d766cd97d7",
+   "size": 2796344
+  },
+  "textures/coop_m10/gun8.dds": {
+   "md5": "ba9fcd333e4cfe59bc41a6cea5302f56",
+   "size": 2796344
+  },
+  "textures/coop_m10/gun9.dds": {
+   "md5": "925a1e9c670b644f2418dc5307a86843",
+   "size": 2796344
+  },
+  "textures/fg42/fg42.dds": {
+   "md5": "06ce03bbf0448173708bfdcbb0c45a13",
+   "size": 11184952
+  },
+  "textures/hobbscarbine/base.dds": {
+   "md5": "681b92f10e9bb93791b05aeee562eede",
+   "size": 5592552
+  },
+  "textures/hobbscarbine/carbine1.dds": {
+   "md5": "c46cc8be594e4edf4a491cc6459ab161",
+   "size": 5592552
+  },
+  "textures/hobbscarbine/m1a1.dds": {
+   "md5": "0714fe3509fc99460c62049dba68605d",
+   "size": 2796344
+  },
+  "textures/hobbscarbine/mech.dds": {
+   "md5": "0ea5fd9c276360adc84af08d0809908c",
+   "size": 1398248
+  },
+  "textures/hobbscarbine/parts.dds": {
+   "md5": "753d76c493b5d72b251bd75bbc17c7e0",
+   "size": 2796344
+  },
+  "textures/hobbscarbine/receiver.dds": {
+   "md5": "f9dad9f481578c63434f48729a97b08f",
+   "size": 2796344
+  },
+  "textures/models/weapons/bar/s93_bar-bipod.dds": {
+   "md5": "0ece366c0563a4b57f2fe5520a092b28",
+   "size": 2796344
+  },
+  "textures/models/weapons/beretta/beretta.dds": {
+   "md5": "38c29100f57dab30d5d94b7ef94e03f1",
+   "size": 2796344
+  },
+  "textures/models/weapons/beretta/it_w_beretta.dds": {
+   "md5": "d4fa157df0516ee66772526b2aebfb8b",
+   "size": 2796344
+  },
+  "textures/models/weapons/breda/it_w_breda.dds": {
+   "md5": "27f9cde60e99d07e643b6abf4109a8ac",
+   "size": 11184952
+  },
+  "textures/models/weapons/carcano/carcano.dds": {
+   "md5": "bd8c7ea136413aea51dc6ffa642a6658",
+   "size": 11184952
+  },
+  "textures/models/weapons/carcano/carcano_scope.dds": {
+   "md5": "4001d6dad7161374dbfec4da98d003c5",
+   "size": 5592552
+  },
+  "textures/models/weapons/carcano/it_w_carcano.dds": {
+   "md5": "853a0a1e5c1855b46b745430bbb52b64",
+   "size": 11184952
+  },
+  "textures/models/weapons/colt/colt45s2.dds": {
+   "md5": "04a3ea1d2c98820960ddad253ad2757f",
+   "size": 2796344
+  },
+  "textures/models/weapons/colt/s93_colt.dds": {
+   "md5": "7cb58e2ce01cb10e9c27e9eb51e84263",
+   "size": 22369776
+  },
+  "textures/models/weapons/delisle/delisle.dds": {
+   "md5": "8833fe1012852f7f844c4e68dd0b6099",
+   "size": 11184952
+  },
+  "textures/models/weapons/enfield/lee-enfield.dds": {
+   "md5": "e8d1b537158bf0f33aabd4986d46b94a",
+   "size": 11184952
+  },
+  "textures/models/weapons/enfield_l42a1/uk_w_l42a1.dds": {
+   "md5": "bb5393533d786a1baf3c330a5f2acff0",
+   "size": 11184952
+  },
+  "textures/models/weapons/g43/g43_support.dds": {
+   "md5": "61ea43536e0010cec035ec7f56964bb0",
+   "size": 87528
+  },
+  "textures/models/weapons/g43/gewehr43.dds": {
+   "md5": "78e10cf26356f934083a44ce16a3c7a2",
+   "size": 11184952
+  },
+  "textures/models/weapons/greasegun/greaser.dds": {
+   "md5": "b6b651c6240e60899699c3059abe14c7",
+   "size": 11184952
+  },
+  "textures/models/weapons/k98/s93_k98sniper_metal.dds": {
+   "md5": "bf664ac609dd489561d44dcd2f0bfb1d",
+   "size": 2796344
+  },
+  "textures/models/weapons/k98/s93_k98sniper_scope.dds": {
+   "md5": "9e3f023f8a65c270655a65ab2ae2876b",
+   "size": 5592552
+  },
+  "textures/models/weapons/kar98/kar98scope.dds": {
+   "md5": "d0fced22ba185185af52beacff902709",
+   "size": 5592552
+  },
+  "textures/models/weapons/m18_smoke_grenade.dds": {
+   "md5": "e63257499e72378dc8fa821bf9cbe0a8",
+   "size": 2796344
+  },
+  "textures/models/weapons/m1garand/m1d.dds": {
+   "md5": "0ea1bf929e67973bc1880f799efca165",
+   "size": 2796344
+  },
+  "textures/models/weapons/m1garand/m1d2.dds": {
+   "md5": "095832c2eab0c49dafebb053e5c628d4",
+   "size": 1398248
+  },
+  "textures/models/weapons/mg42/mg42.dds": {
+   "md5": "aa776f1c17fcae1698c753317e837f34",
+   "size": 5592560
+  },
+  "textures/models/weapons/minedetector/gr_w_minedetector.dds": {
+   "md5": "ce72fb6cadf87f56bd3c98c9ed2f5073",
+   "size": 5592552
+  },
+  "textures/models/weapons/minedetector/us_w_minedetector.dds": {
+   "md5": "373662fae67ad95c36b20af884962b95",
+   "size": 5592552
+  },
+  "textures/models/weapons/moscheto/moscheto.dds": {
+   "md5": "e6281f7f57e8cd13e5992827a6a93bb3",
+   "size": 11184952
+  },
+  "textures/models/weapons/moschetto/it_w_moschetto.dds": {
+   "md5": "2ad6f59884369e48d00b53b8d402aad6",
+   "size": 11184952
+  },
+  "textures/models/weapons/mosin_nagant/mosin-nagant.dds": {
+   "md5": "1e47986f30cfaa7e38f631619a18c549",
+   "size": 11184952
+  },
+  "textures/models/weapons/mosin_nagant/weas.dds": {
+   "md5": "3d17a9a1d2c8f87fe7e21a11ef119c70",
+   "size": 11184952
+  },
+  "textures/models/weapons/mosin_nagant/wrapping_06.dds": {
+   "md5": "409a524d328b17bff6a82787553b0d26",
+   "size": 2796344
+  },
+  "textures/models/weapons/mp40/metal1.dds": {
+   "md5": "aa663a113a814540469e5d5656f5c228",
+   "size": 11184952
+  },
+  "textures/models/weapons/mp40/metal2.dds": {
+   "md5": "df789fa10efb7e6a191ab277534bea31",
+   "size": 11184952
+  },
+  "textures/models/weapons/mp40/metal3.dds": {
+   "md5": "a8d0a9673d9b7dca8e52617432d803bc",
+   "size": 2796344
+  },
+  "textures/models/weapons/mp44/s93_mp44.dds": {
+   "md5": "44e656fd1cf44e537cfc1750aa0ea61e",
+   "size": 11184952
+  },
+  "textures/models/weapons/mp44/s93_mp442.dds": {
+   "md5": "6f11f5212b131fe5a1fbc8b6484f8db5",
+   "size": 11184952
+  },
+  "textures/models/weapons/mp44/s93_mp443.dds": {
+   "md5": "2b9bfe55a26ba87ee4c83ae099b0dd6f",
+   "size": 11184952
+  },
+  "textures/models/weapons/nagentrevolver.dds": {
+   "md5": "bfc07ec0cb358ed879a0717cb4277863",
+   "size": 2796344
+  },
+  "textures/models/weapons/nambu/s93_nambu.dds": {
+   "md5": "c86c3f2bbf9ded239acd6f50354087ad",
+   "size": 22369776
+  },
+  "textures/models/weapons/p38/s93_p38.dds": {
+   "md5": "a5aef987f855de730237a9b7daa6bfc6",
+   "size": 2796344
+  },
+  "textures/models/weapons/p38/s93_p38_blackgrip.dds": {
+   "md5": "3cf44aebfb9fb8be29cd8c5f42609f19",
+   "size": 2796344
+  },
+  "textures/models/weapons/piat/uk_w_piat.dds": {
+   "md5": "eb8fa428deb3d86fc2976f43637ea6f0",
+   "size": 11184952
+  },
+  "textures/models/weapons/piat/uk_w_piatrocket.dds": {
+   "md5": "2710a5bbbb57e6c3f5083dde60b263e9",
+   "size": 2796344
+  },
+  "textures/models/weapons/ppk/ppk_barrel.dds": {
+   "md5": "c90f9c3130b67f8e6f4b972d3cc9e63c",
+   "size": 2796344
+  },
+  "textures/models/weapons/ppk/ppk_hammer.dds": {
+   "md5": "15fda95865e7496251d423ef7b5197c6",
+   "size": 2796344
+  },
+  "textures/models/weapons/ppk/ppk_mag.dds": {
+   "md5": "8aac9a3f13b77304d456cd44d39b66c2",
+   "size": 2796344
+  },
+  "textures/models/weapons/ppk/ppk_silencer.dds": {
+   "md5": "a7bdc3036fec781f72792d05fba9c852",
+   "size": 2796344
+  },
+  "textures/models/weapons/ppk/ppk_trigger.dds": {
+   "md5": "cf158c96a5c9f3073e5c893626acbcba",
+   "size": 2796344
+  },
+  "textures/models/weapons/ppsh43/ppsh43.dds": {
+   "md5": "6b5c5f1e4d8c7df3d9072dbdeb0577db",
+   "size": 22369776
+  },
+  "textures/models/weapons/ppsh_smg.dds": {
+   "md5": "3c2382b345ae3dcae7e86c3698fff836",
+   "size": 22369776
+  },
+  "textures/models/weapons/sten/sten.dds": {
+   "md5": "e94e0a356117424b0fbbfb6b742b41ac",
+   "size": 11184952
+  },
+  "textures/models/weapons/thompson/clip50.dds": {
+   "md5": "f3e54d8a70778b6e76169d7d03ee297d",
+   "size": 2796344
+  },
+  "textures/models/weapons/thompsonsmg/thompsite.dds": {
+   "md5": "fbeecd2cfe8971ada408dc74e995c676",
+   "size": 2796344
+  },
+  "textures/models/weapons/tt33/tokarev.dds": {
+   "md5": "84bf39aa2536115d55d666d4f4c26739",
+   "size": 2796344
+  },
+  "textures/models/weapons/vickers/uk_w_vickers.dds": {
+   "md5": "2f7e0a438578a0082d144703c2805f8a",
+   "size": 11184952
+  },
+  "textures/models/weapons/webley.dds": {
+   "md5": "3fde66080659a7055e7b55576b21a51f",
+   "size": 11184952
+  },
+  "textures/models/weapons/welrod/barrel.dds": {
+   "md5": "d0fc84e8c5bf2a619357a408817d7366",
+   "size": 2796344
+  },
+  "textures/models/weapons/welrod/bolt.dds": {
+   "md5": "98c30880e8e7b8cbf4e1165e2c7eea33",
+   "size": 2796344
+  },
+  "textures/models/weapons/welrod/clip.dds": {
+   "md5": "85cf922af2a1981e4993aac6a0122109",
+   "size": 2796344
+  },
+  "textures/models/weapons/welrod/misc.dds": {
+   "md5": "ee86ccb88d145b762b9cbf0bce8ae9c4",
+   "size": 2796344
+  },
+  "textures/models/weapons/welrod/rec.dds": {
+   "md5": "25f293f61c3343b45f7b5eebbb78cedb",
+   "size": 2796344
+  }
+ },
+ "pak": "zzzzzzzzzz_coop_hd_wpn_1low.pk3",
+ "pak_bytes": 298832267,
+ "pak_sha256": "2d42374319901236ce8a982b4af757650e7b7f6bf6510da9c5f02546691af6e7"
+}

@@ -1,0 +1,14 @@
+{
+  "models/weapons/g43/g43": {
+    "gate": "speckle",
+    "reason": "2026-10-05 crop review: no added salt dots; the metric counts the G43 art's own painted pitting and the restored parkerize-free blued grain at 2048 (QA card cls1/models__weapons__g43__g43.jpg)"
+  },
+  "textures/models/weapons/mosin_nagant/weas": {
+    "gate": "corr_today",
+    "reason": "2026-10-05 review: low only because the modder text ('DaRKSTeiN was here', 'thats is from cod2', arrows) is deliberately ERASED - every mapped part matches today (QA card cls1/textures__models__weapons__mosin_nagant__weas.jpg)"
+  },
+  "textures/hobbscarbine/mech": {
+    "gate": "speckle",
+    "reason": "2026-10-05 review: the dots are the source's own scratch/pitting pattern restored by the detail pass, same density as today; the erased stamp area is clean"
+  }
+}
