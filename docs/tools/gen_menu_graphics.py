@@ -264,6 +264,20 @@ WET = P("r_hzmWet", ["r_hzmWet"], [("Off", 0), ("On", 1)], -1, aliases=[(-1, "On
 GROUNDVAR = P("r_groundVariety", ["r_groundVariety"], [("Off", 0), ("Subtle", 1), ("Full", 2)], -1,
               aliases=[(-1, "Off (default)")])
 
+# [2026-10-11, bug-3483] DISTANT MODEL DETAIL. autoexec.cfg has forced r_uselod 0 since the HD pass: every skeletal
+# model at full polygon count at every range. Measured on Omaha (m3l1a, ~230 soldiers on the sand, com_speeds in the
+# private harness): 52 ms of work a frame with LOD off, 44 ms with it on at the shipped 28/1.0, 41 ms at the stock
+# 5/0.35 - the soldiers are skinned on the CPU, so their vertex count is the frame time. The player's call now.
+# r_uselod is CVAR_TEMP (renderergl2/tr_init.c:2267) and cannot be archived, so the pick is kept the way the frame-rate
+# pick is: in the ALIAS coop_lodRestore, which autoexec.cfg runs at every launch right after its `set r_uselod 0`.
+# The readout is r_lodscale (ARCHIVE), which is why Reduced is 24 and not 28: each option needs its own value.
+# Live - tr_model.cpp:813 reads all three every frame. Full stays the default.
+LOD_ALIAS = "coop_lodRestore"
+LOD = P("r_lodscale", ["r_lodscale"],
+        [("Full", 28, "seta r_lodcap 1 ; set r_uselod 0 ; alias coop_lodRestore set r_uselod 0"),
+         ("Reduced", 24, "seta r_lodcap 1 ; set r_uselod 1 ; alias coop_lodRestore set r_uselod 1"),
+         ("Low", 5, "seta r_lodcap 0.35 ; set r_uselod 1 ; alias coop_lodRestore set r_uselod 1")], 28)
+
 ADV_SECTIONS = [
     (0, "TEXTURES & LIGHTING", [
         ("Aniso", "toggle", "Anisotropic Filter", "r_ext_texture_filter_anisotropic", T(1)),
@@ -282,14 +296,16 @@ ADV_SECTIONS = [
         ("Vsync", "toggle", "VSync", "r_swapInterval", T(1)),
         ("Fps", "pulldown", "Frame Rate Limit", "com_maxfps", FPS),
         ("MenuLay", "pulldown", "Menu Layout", "ui_menuCenter", MENU),
+        # [bug-3483] here, not under GEOMETRY & EFFECTS: that column has no room left above the footer rule
+        ("ModelLod", "pulldown", "Model Detail", "r_lodscale", LOD),
     ]),
     (1, "GEOMETRY & EFFECTS", [
         ("MSAA", "pulldown", "Anti-Aliasing", "r_msaa", MSAA),
         ("AA", "pulldown", "Edge Smoothing", "r_ppFXAA", AA),
         ("Curve", "pulldown", "Curve Detail", "r_subdivisions", CURVE),
         ("Shadow", "pulldown", "Soldier Shadows", "cg_shadows", SHADOW),
-        # [bug-3117 / G3] "Draw Distance" is gone: it set r_lodscale, which does nothing while autoexec.cfg forces
-        # r_uselod 0 (full model detail always, tr_model.cpp:800), and draw distance is the server's fog/farplane.
+        # [bug-3117 / G3] "Draw Distance" is gone: it set r_lodscale alone, which does nothing while r_uselod is 0, and
+        # draw distance is the server's fog/farplane. [bug-3483] The Model Detail row (DISPLAY) sets the three LOD cvars together.
         ("FxDet", "slider", "Effect Detail", "cg_effectdetail", S("float", 0.2, 1, 0.1, 1.0, "SPARSE", "FULL")),
         ("FxMax", "slider", "Max Effects", "cg_max_tempmodels", S("integer", 256, 4096, 128, 4000, "LOW", "MAX")),
         ("Marks", "slider", "Decal Count", "cg_marks_max", S("integer", 64, 1024, 64, 487, "FEW", "MANY")),
@@ -1033,7 +1049,13 @@ def gate_phase1(files, seeds, problems):
     want_fps = 'alias %s "%s"' % (FPS_ALIAS, fps_default.split(" ", 2)[2]) if fps_default else None
     if not want_fps or want_fps not in dft:
         problems.append("coop_defaults.cfg must define the frame-rate default: %s" % want_fps)
-    for name in (FIX_ALIAS, FPS_ALIAS):
+    lod_default = pulldown_extra_for(LOD, seeds.get("r_lodscale", LOD["default"]))
+    want_lod = 'alias %s "%s"' % (LOD_ALIAS, lod_default.split(" alias %s " % LOD_ALIAS, 1)[1]) if lod_default else None
+    if not want_lod or want_lod not in dft:
+        problems.append("coop_defaults.cfg must define the model-detail default: %s" % want_lod)
+    if not any(st.split() == ["set", "r_uselod", "0"] for st in auto):
+        problems.append("autoexec.cfg must still `set r_uselod 0` before it runs %s (the alias only overrides it)" % LOD_ALIAS)
+    for name in (FIX_ALIAS, FPS_ALIAS, LOD_ALIAS):
         if name not in auto:
             problems.append("autoexec.cfg must invoke the alias %s on its own line" % name)
     if any(re.match(r"seta?\s+com_maxfps\b", st) for st in auto):
