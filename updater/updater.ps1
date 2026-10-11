@@ -51,11 +51,73 @@ try {
     }
 } catch { Log "updater.ini unreadable: $_" }
 
+# [user 2026-10-11, bug-3472] A FAILED FIRST INSTALL MUST SAY SO. Rule 1 ("never block play: any failure -> launch the
+# existing install") assumes there IS an install. On a first install there is none, so every failure path ended in
+# LaunchGame starting an exe that does not exist yet: no window, no error, no game - only updater.log knew.
+# Each failure site sets $script:failWhy (plain words for the player) before it calls LaunchGame; LaunchGame shows this
+# box only when openmohaa.exe is missing, so an existing player keeps today's behaviour (the game he has just starts).
+# Nothing is lost on a failure: verified files stay as .tmp and a partial one resumes (curl -C -), which the box says.
+$script:failWhy = ""
+function Show-InstallFailure {
+    $why = $script:failWhy
+    if (-not $why) { $why = "The install could not be completed." }
+    Log "first install not completed - telling the player: $why"
+    $script:failChoice = ""
+    try {
+        Add-Type -AssemblyName System.Windows.Forms
+        Add-Type -AssemblyName System.Drawing
+        $f = New-Object System.Windows.Forms.Form
+        $f.Text = "MOH Coop Trilogy - install not finished"
+        $f.Size = New-Object System.Drawing.Size(520, 250)
+        $f.StartPosition = "CenterScreen"
+        $f.FormBorderStyle = "FixedDialog"
+        $f.MaximizeBox = $false; $f.MinimizeBox = $false
+        $f.TopMost = $true
+        $l = New-Object System.Windows.Forms.Label
+        $l.Location = New-Object System.Drawing.Point(14, 14)
+        $l.Size = New-Object System.Drawing.Size(480, 140)
+        $l.Text = "The game could not be installed yet.`n`n$why`n`n" +
+                  "Nothing is lost: everything downloaded so far is saved, and the install continues where it stopped.`n`n" +
+                  "Click Retry to try again now, or Close and start MOH Trilogy Coop from your desktop later."
+        $bR = New-Object System.Windows.Forms.Button
+        $bR.Text = "Retry"; $bR.Location = New-Object System.Drawing.Point(296, 168); $bR.Size = New-Object System.Drawing.Size(92, 28)
+        $bR.Add_Click({ $script:failChoice = "retry" })
+        $bC = New-Object System.Windows.Forms.Button
+        $bC.Text = "Close"; $bC.Location = New-Object System.Drawing.Point(398, 168); $bC.Size = New-Object System.Drawing.Size(92, 28)
+        $bC.Add_Click({ $script:failChoice = "close" })
+        $f.Add_FormClosing({ if (-not $script:failChoice) { $script:failChoice = "close" } })
+        $f.Controls.Add($l); $f.Controls.Add($bR); $f.Controls.Add($bC)
+        $f.AcceptButton = $bR
+        # same hidden-launch rule as the progress window (bug-3471): the first Show() of the process is swallowed,
+        # and this box can BE the first window (offline / disk space fail before any progress window exists)
+        $f.Show()
+        $f.Visible = $false; $f.Visible = $true; $f.Activate(); $f.Refresh()
+        while (-not $script:failChoice) {
+            [System.Windows.Forms.Application]::DoEvents()
+            Start-Sleep -Milliseconds 80
+        }
+        try { $f.Close() } catch {}
+    } catch { Log "install-failure box could not open: $_"; $script:failChoice = "close" }
+    if ($script:failChoice -eq "retry") {
+        Log "player chose Retry - restarting the updater"
+        try { $updMutex.ReleaseMutex() } catch {}
+        $vbs = Join-Path $app "launch_coop.vbs"
+        if (Test-Path $vbs) {
+            Start-Process -FilePath "$env:SystemRoot\System32\wscript.exe" -ArgumentList "`"$vbs`"" -WorkingDirectory $app
+        } else {
+            Start-Process -FilePath "powershell.exe" -WindowStyle Hidden -WorkingDirectory $app `
+                -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$(Join-Path $app 'updater.ps1')`""
+        }
+    }
+}
+
 function LaunchGame {
     try {
         # never start a second copy (a game launched mid-update, or by another shortcut)
         if (Get-Process openmohaa -ErrorAction SilentlyContinue) { exit }
         $exe = Join-Path $app "openmohaa.exe"
+        # nothing to launch = a first install that did not finish: say why instead of failing in silence
+        if (-not (Test-Path $exe)) { Show-InstallFailure; exit }
         $args = $ini["LaunchArgs"]
         if (-not $args) {
             # last-resort reconstruction from install_info.txt
@@ -150,14 +212,14 @@ try {
 } catch { Log "WARN webhook seed failed: $_" }
 
 # safety net: any unexpected terminating error still launches the game (functions above are defined)
-trap { Log "UNEXPECTED: $_"; LaunchGame }
+trap { Log "UNEXPECTED: $_"; if (-not $script:failWhy) { $script:failWhy = "Something unexpected went wrong while installing." }; LaunchGame }
 
 # 0. never fight a running game
 if (Get-Process openmohaa -ErrorAction SilentlyContinue) { Log "game already running - skip update"; LaunchGame }
 
 $manifestUrl  = $ini["ManifestUrl"]
 $fallbackUrl  = $ini["ManifestUrlFallback"]
-if (-not $manifestUrl) { Log "no ManifestUrl configured"; LaunchGame }
+if (-not $manifestUrl) { Log "no ManifestUrl configured"; $script:failWhy = "The installer settings (updater.ini) are missing the download address. Please run the MOH Coop Trilogy installer again."; LaunchGame }
 
 $curl = "$env:SystemRoot\System32\curl.exe"
 if (-not (Test-Path $curl)) { $curl = "curl.exe" }
@@ -193,7 +255,7 @@ function SafeRelPath($p) {
 
 $mp = TryFetch $manifestUrl  $tmpPrimary
 $mf = TryFetch $fallbackUrl  $tmpFallback
-if (-not $mp -and -not $mf) { Log "manifest fetch failed (offline?)"; LaunchGame }
+if (-not $mp -and -not $mf) { Log "manifest fetch failed (offline?)"; $script:failWhy = "The download server could not be reached. Please check your internet connection."; LaunchGame }
 
 $remote = $mp
 Copy-Item $tmpPrimary $tmpManifest -Force -ErrorAction SilentlyContinue
@@ -202,7 +264,7 @@ if (-not $mp -or ($mf -and (VerKey $mf) -gt (VerKey $mp))) {
     Copy-Item $tmpFallback $tmpManifest -Force
     if ($mp) { Log "fallback manifest ($($mf.version)) newer than CDN ($($mp.version)) - using fallback" }
 }
-if (-not $remote -or $remote.manifestVersion -gt 1) { Log "manifest version unsupported"; LaunchGame }
+if (-not $remote -or $remote.manifestVersion -gt 1) { Log "manifest version unsupported"; $script:failWhy = "This installer is too old for the current release. Please download the newest MOH Coop Trilogy installer."; LaunchGame }
 
 # [srvperf 2026-10-04] "latest seen": the newest release this updater has seen, as plain text in the game's homepath.
 # openmohaa.exe (v1.10.13+) reads it once at startup and shows "Update vX available - restart via the MOH Coop Trilogy
@@ -258,7 +320,11 @@ Log "update to v$($remote.version): $($work.Count) file(s), $totalMB MB, $($dele
 try {
     $drive = (Get-Item $app).PSDrive
     $freeMB = [math]::Round($drive.Free / 1MB)
-    if ($freeMB -lt ($totalMB + 200)) { Log "disk space low ($freeMB MB free) - skipping update"; LaunchGame }
+    if ($freeMB -lt ($totalMB + 200)) {
+        Log "disk space low ($freeMB MB free) - skipping update"
+        $script:failWhy = "Not enough free disk space on drive $($drive.Name): the download needs about $([math]::Round(($totalMB + 200) / 1024, 1)) GB and $([math]::Round($freeMB / 1024, 1)) GB is free. Free up some space and try again."
+        LaunchGame
+    }
 } catch {}
 
 # progress UI (visible only when there is work). TopMost so it cannot open buried behind
@@ -353,6 +419,7 @@ foreach ($f in $work) {
     }
     if (-not $ok) {
         Log "download failed for $($f.path) - aborting update, launching existing install"
+        $script:failWhy = "A file could not be downloaded after several tries ($name). This is usually a dropped or slow connection."
         if ($ui) { try { $ui.form.Close() } catch {} }
         LaunchGame
     }
@@ -380,7 +447,7 @@ foreach ($f in $ordered) {
         try { Move-Item -Force $tmpPath $diskPath -ErrorAction Stop; $moved = $true; break }
         catch { Start-Sleep -Milliseconds 500 }
     }
-    if (-not $moved) { Log "SWAP FAILED for $($f.path) - next launch will retry"; if ($ui) { try { $ui.form.Close() } catch {} }; LaunchGame }
+    if (-not $moved) { Log "SWAP FAILED for $($f.path) - next launch will retry"; $script:failWhy = "A downloaded file could not be put in place ($($f.path)). Another program may be holding it open - close it and try again."; if ($ui) { try { $ui.form.Close() } catch {} }; LaunchGame }
 }
 foreach ($d in $deletes) {
     Remove-Item (Join-Path $app ($d -replace "/", "\")) -Force -ErrorAction SilentlyContinue
