@@ -304,11 +304,32 @@ PRESET_VALUES = [
     ("r_groundVariety",        0,     0,      2),
     ("r_lodscale",             5,     24,     None),
 ]
+# [bug-3484 part 2, user 2026-10-11: "shouldn't this just exist on the first graphics menu instead of advanced? And
+# shouldn't influence all settings (both Graphics and Advanced and Post FX)?"] The row left this sheet for the VIDEO
+# panel (ui/video options.urc, hand-maintained: gate_presets checks its popup and its latch watchers), and a preset now
+# also sets the COST rows of the Post-FX pages and the Video panel's texture detail. Only cost, never taste: exposure,
+# contrast, saturation, grade, the strengths and the combat-feedback rows are the player's look and no preset touches
+# them. Same rule as above - High is the seed, the tuples are the differences.
+PRESET_FX_VALUES = [
+    # cvar                         low    medium  ultra
+    ("r_ppBloom",                  0,     None,   None),
+    ("r_ppSSAO",                   0,     0,      None),
+    ("r_ppDoF",                    0,     0,      None),
+    ("r_sunShadows",               0,     None,   None),
+    ("r_softParticles",            0,     None,   None),
+    ("r_ppHeatHaze",               0,     None,   None),
+    ("r_ppChromaticAberration",    0,     None,   None),
+    ("r_renderScale",              0.85,  None,   None),
+]
+# Video-panel cvars a preset sets: (cvar, low, medium, ultra, high-if-unseeded)
+PRESET_VIDEO_VALUES = [
+    ("r_picmip",                   1,     None,   None,   0),
+]
 PRESET_SKIP = ("com_maxfps", "r_swapInterval", "ui_menuCenter", PRESET_CVAR)
-PRESET = P(PRESET_CVAR, [PRESET_CVAR],
-           [(lab, v, "exec coop_mod/cfg/gfx_preset_%s.cfg" % f) for lab, v, f in PRESET_NAMES], 3,
-           aliases=[(0, "Custom")])
-PRESET["proxy"] = True
+# CVAR_LATCH cvars a preset can change: the VIDEO panel must carry a hidden watcher Label for each, or its APPLY
+# (ui_checkrestart -> Menu::CheckRestart, uilib/uimenu.cpp:407) cannot see that a reload is due.
+PRESET_LATCHED = ("r_ext_max_anisotropy", "r_subdivisions", "r_ppSSAO", "r_ppDoF", "r_sunShadows", "r_softParticles",
+                  "r_renderScale", "r_picmip")
 
 ADV_SECTIONS = [
     (0, "TEXTURES & LIGHTING", [
@@ -325,7 +346,6 @@ ADV_SECTIONS = [
         ("GroundVar", "pulldown", "Ground Variety", "r_groundVariety", GROUNDVAR),
     ]),
     (0, "DISPLAY", [
-        ("Preset", "pulldown", "Quality Preset", PRESET_CVAR, PRESET),
         ("Vsync", "toggle", "VSync", "r_swapInterval", T(1)),
         ("Fps", "pulldown", "Frame Rate Limit", "com_maxfps", FPS),
         ("MenuLay", "pulldown", "Menu Layout", "ui_menuCenter", MENU),
@@ -382,7 +402,8 @@ VANILLA_DEFAULTS = [
 # ui_console is unseeded and its engine default 0 disables the console key: a DEFAULT press must not lock a player
 # out of the console, so it is the player's, like the view.
 DEFAULT_EXCLUDE = ("r_mode", "r_customwidth", "r_customheight", "r_fullscreen", "r_desktopfullscreen", "r_noborder",
-                   "ui_displaymode", "fov", "ui_console")
+                   "ui_displaymode", "fov", "ui_console",
+                   "coop_gfxRecommended")      # [bug-3484] read-only, set by the engine at launch
 # Not linked by any widget, but part of the page's shipped state (the terrain "Max" row sets all three ter_*).
 DEFAULT_EXTRAS = {"adv": [("ter_maxtris", "24576")]}
 
@@ -796,6 +817,22 @@ def emit_preset(label, value, fname, seeds):
             ex = pulldown_extra_for(spec, val)
             if ex:
                 L.append(ex)
+    fxrows = dict((cv, (spec, kind)) for cv, spec, kind in pfx_cvars_ordered())
+    for row in PRESET_FX_VALUES:
+        cv = row[0]
+        spec, kind = fxrows[cv]
+        if col and row[col] is not None:
+            val = fs.num(row[col])
+        else:
+            val = resolve_default(cv, spec, seeds)
+        L.append("seta %s %s" % (cv, val))
+    for row in PRESET_VIDEO_VALUES:
+        cv = row[0]
+        if col and row[col] is not None:
+            val = fs.num(row[col])
+        else:
+            val = seeds.get(cv, fs.num(row[4]))
+        L.append("seta %s %s" % (cv, val))
     L += ["seta %s %d" % (PRESET_CVAR, value), "", 'print "Graphics preset: %s. Press APPLY.\\n"' % label]
     return "\n".join(L) + "\n"
 
@@ -823,6 +860,30 @@ def gate_presets(files, seeds, problems):
                     problems.append("preset: %s %s is outside its slider range" % (cv, v))
             elif float(v) not in (0.0, 1.0):
                 problems.append("preset: toggle %s %s is not 0/1" % (cv, v))
+    fxrows = dict((cv, (spec, kind)) for cv, spec, kind in pfx_cvars_ordered())
+    for row in PRESET_FX_VALUES:
+        cv = row[0]
+        if cv not in fxrows:
+            problems.append("preset: %s is not a row on a Post-FX page" % cv)
+            continue
+        spec, kind = fxrows[cv]
+        for v in row[1:]:
+            if v is None:
+                continue
+            if kind == "slider" and not (spec["lo"] - 1e-9 <= float(v) <= spec["hi"] + 1e-9):
+                problems.append("preset: %s %s is outside its slider range" % (cv, v))
+            elif kind == "toggle" and float(v) not in (0.0, 1.0):
+                problems.append("preset: toggle %s %s is not 0/1" % (cv, v))
+    video = fs.rd(VIDEO_URC)
+    for lab, val, fname in PRESET_NAMES:
+        want = 'addpopup "MENU" "%s" command "seta %s %d ; exec coop_mod/cfg/gfx_preset_%s.cfg"' % (lab, PRESET_CVAR, val, fname)
+        if want not in video:
+            problems.append("video options.urc: the Quality knob must carry: %s" % want)
+    for cv in PRESET_LATCHED:
+        if 'linkcvar "%s"' % cv not in video:
+            problems.append("video options.urc: no widget links latched preset cvar %s - APPLY would not reload for it" % cv)
+    if 'linkcvar "%s"' % PRESET_CVAR not in video:
+        problems.append("video options.urc: no readout links %s" % PRESET_CVAR)
     gfx = {m.group(1): m.group(2) for m in fs.SETA_RE.finditer(files[GFX_CFG])}
     high = {m.group(1): m.group(2) for m in fs.SETA_RE.finditer(files[preset_cfg_path("high")])}
     for cv, v in high.items():
