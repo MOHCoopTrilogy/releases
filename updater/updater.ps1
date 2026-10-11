@@ -285,6 +285,13 @@ try {
     $bar.Maximum = [int][math]::Max([math]::Ceiling($totalBytes / 1KB), 1)
     $form.Controls.Add($label); $form.Controls.Add($bar)
     $form.Show(); $form.Refresh()
+    # [player report 2026-10-11, bug-3471] "the first install showed no progress bar, I had to open update.log to figure
+    # out it was working in the background". launch_coop.vbs starts this script with window style 0 (hidden), and Windows
+    # applies the launcher's show state to the FIRST window a process shows - so the Show() above was swallowed and the
+    # progress window never appeared, on any update (only the later "Update Complete" box did). Sandbox repro: 13 s of
+    # download with no window; with the re-show below it is up after 0.5 s. Hide + show again = a second show call,
+    # which Windows honours.
+    $form.Visible = $false; $form.Visible = $true; $form.Activate(); $form.Refresh()
     [System.Windows.Forms.Application]::DoEvents()
     $ui = @{ form = $form; label = $label; bar = $bar }
 } catch { $ui = $null }
