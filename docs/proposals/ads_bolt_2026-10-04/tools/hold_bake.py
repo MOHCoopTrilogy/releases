@@ -258,6 +258,33 @@ def bake(name, ctl):
         if rc.get('fixed_right'):                        # pistols (user 2026-10-06): the firing hand keeps its AIM grip on
             HR = relRc @ Gads                            # the gun all reload - the retail clip tips the gun in the hand, baked
                                                          # upright that reads as the gun sliding up the hand
+        wl = None
+        if rc.get('left_grip'):                          # two-handed aim pose (user 2026-10-11): the support hand
+            # starts and ends ON the gun. The retail left hand starts and ends hanging at the hip, so blending toward
+            # it throws the hand out of view within two frames. Instead the hand travels from the aim grip straight to
+            # where the retail art has it at frame `fa` (0..fa) and from frame `fb` back onto the grip (fb..n-1), on a
+            # smootherstep with a sideways bulge (`way`, gun-frame u, sin-shaped) so the fingers come off the firing
+            # hand before the hand drops. Between fa and fb: the retail relation, untouched.
+            lg = rc['left_grip']
+            fa, fb = lg['fa'], lg['fb']
+            way = np.asarray(lg.get('way', (0.0, 0.0, 0.0)), float) / R.S
+
+            def _relL(k):
+                Wk = R.evaluate(R.pose_dict(hip, k))
+                return Wk['Bip01 L Hand'] @ R.inv(Wk['tag_weapon_left' if lo <= k <= hi else 'tag_weapon_right'])
+
+            def _ss(x):
+                x = max(0.0, min(1.0, x))
+                return x * x * x * (x * (x * 6 - 15) + 10)
+            if f <= fa:
+                wl = _ss(f / float(fa)); other_ = _relL(fa)
+            elif f >= fb:
+                wl = _ss((n - 1 - lg.get('hold', 0) - f) / float(n - 1 - lg.get('hold', 0) - fb)); other_ = _relL(fb)
+            else:
+                wl = 1.0; other_ = relLh
+            rl = B.blend_H(relLc, other_, wl)
+            rl[3, 0:3] += way * math.sin(math.pi * wl)
+            HL = rl @ Gads
         HR0 = HR
         if rc.get('clear'):
             # never push a hand further out than where it rests in the aim pose itself (the charge pose's trigger hand
@@ -295,6 +322,9 @@ def bake(name, ctl):
                 pd[ch] = ph[ch].copy()
             if ' Finger' in ch:
                 pd[ch] = R.qslerp(pc.get(ch, ph[ch]), ph[ch], w)
+                if wl is not None and ch.startswith('Bip01 L '):   # left_grip: the support hand's fingers open on its
+                    kf = lg['fa'] if f <= lg['fa'] else (lg['fb'] if f >= lg['fb'] else f)   # own track (faster: off
+                    pd[ch] = R.qslerp(pc.get(ch, ph[ch]), R.pose_dict(hip, kf)[ch], min(1.0, wl * lg.get('finger_lead', 2.0)))
         pb = None
         if rc.get('elbow_down'):                         # {side: [(frame, weight), ...]} - elbow swung down (camera -z)
             dm = (np.array([0.0, 0.0, -1.0]) @ R.inv(Mcam)[0:3, 0:3])

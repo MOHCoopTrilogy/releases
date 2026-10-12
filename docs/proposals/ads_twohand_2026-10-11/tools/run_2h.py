@@ -1,0 +1,126 @@
+"""Two-handed pistol aim: harness runs on G:\\mohaa-adsanim (slot word "adsbolt", run_adsbolt's own boot / steps).
+
+    python run_2h.py <session> --overlay <pk3> [--cgame cgame_1022d] [--guns colt45] [--parts demo,stills,reloads,yaw,fire]
+
+parts
+  demo     ONE continuous capture per gun, standing: hip idle, raise, two aimed shots, aimed reload, lower.
+  stills   settled aim in every stance (stand, crouch, prone, lean L/R, crouch-lean L/R), 4 frames each, ADSFRAME on.
+  reloads  aimed reload (NEW only) in crouch and prone.
+  fire     run_adsbolt's per-shot capture, aimed, 3 shots.
+  yaw      settled-aim stills at other view yaws (looking for a light backdrop).
+Frames are one engine `screenshotJPEG` per 16 ms of game time (coop_isFixed 16), as every adsbolt run.
+"""
+import os, sys, time, argparse
+T = r"C:\mohaa-coop-dev\docs\proposals\ads_bolt_2026-10-04\tools"
+sys.path.insert(0, T)
+os.chdir(T)
+import run_adsbolt as A
+S, R = A.S, A.R
+STANCES = ("stand", "crouch", "prone", "standL", "standR", "crouchL", "crouchR")
+
+
+def demo(sess, gun, tagst="stand"):
+    tag = "ab__%s__%s__%s__demo__after" % (sess, gun, tagst)
+    i = [0]
+    L = S.RELEASE + S.TO_STAND + A.MODE["after"] + ["wait 600", "set cg_adsSightDebug 2",
+                                                    "echo ^~^~^ ABSCEN begin %s" % tag]
+    L += A.frames(tag, 8, i)
+    L += ["+button13", "echo ^~^~^ DEMO raise %d" % i[0]] + A.frames(tag, 50, i)
+    for _ in range(2):
+        L += ["+attackprimary", "echo ^~^~^ DEMO fire %d" % i[0]] + A.frames(tag, 3, i) + ["-attackprimary"] + A.frames(tag, 27, i)
+    L += ["reload", "echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, 170, i)
+    L += ["-button13", "echo ^~^~^ DEMO lower %d" % i[0]] + A.frames(tag, 50, i)
+    L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1"] + S.RELEASE
+    R.step(L, timeout=1800)
+
+
+def still(sess, gun, st, name=None):
+    tag = "ab__%s__%s__%s__aim__after" % (sess, gun, name or st)
+    i = [0]
+    L = S.RELEASE + S.TO_STAND + S.APPLY[st] + A.MODE["after"] + ["wait 400", "+button13", "wait 1900",
+                                                                 "set cg_adsSightDebug 2", "echo ^~^~^ ABSCEN begin %s" % tag]
+    L += A.frames(tag, 4, i) + ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1"] + S.RELEASE + A.UNAPPLY[st]
+    R.step(L, timeout=600)
+
+
+def yawstill(sess, gun, yaw):
+    x, y, z, w = R.SPOT
+    R.SPOT = (x, y, z, yaw)
+    tag = "ab__%s__%s__yaw%d__aim__after" % (sess, gun, yaw)
+    i = [0]
+    try:
+        L = S.RELEASE + S.TO_STAND + R.face(0.0) + ["wait 900"] + A.MODE["after"] + ["+button13", "wait 1900"]
+        L += A.frames(tag, 2, i) + S.RELEASE + ["wait 500"]
+        R.step(L, timeout=600)
+    finally:
+        R.SPOT = (x, y, z, w)
+        R.step(R.face(0.0) + ["wait 600"], timeout=120)
+
+
+def run(a):
+    extra = ["set cg_drawviewmodel 2", "set cg_weaponBreath 1", "set cg_adsSway 0.1"] + a.set
+    rundir, notes = S.boot_session(a.session, a.cgame, 1280, 720, extra, a.overlay)
+    try:
+        R.step(["set coop_isFixed 16", "wait 300"], timeout=30)
+        for gun in a.guns:
+            A.log("[%s] 2h %s" % (a.session, gun))
+            R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+            if "demo" in a.parts:
+                demo(a.session, gun)
+            if "demoy" in a.parts:                      # the same demo against a lighter backdrop (other view yaw)
+                x, y, z, w = R.SPOT
+                R.SPOT = (x, y, z, a.demoyaw)
+                try:
+                    R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+                    demo(a.session, gun, tagst="yaw%d" % a.demoyaw)
+                finally:
+                    R.SPOT = (x, y, z, w)
+                    R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+            if "fire" in a.parts:
+                A.firecap(a.session, gun, "stand", ads=True)
+            if "stills" in a.parts:
+                for st in STANCES:
+                    still(a.session, gun, st)
+            if "reloads" in a.parts:
+                for st in a.rstances:
+                    R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+                    A.reload(a.session, gun, st, "after", n=a.rframes)
+            if "yaw" in a.parts:
+                for yw in a.yaws:
+                    yawstill(a.session, gun, yw)
+        R.step(["set coop_isFixed 0", "wait 300"], timeout=30)
+    finally:
+        S.end_session(rundir, notes)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("session"); ap.add_argument("--overlay", required=True); ap.add_argument("--cgame", default="cgame_1022d")
+    ap.add_argument("--guns", default="colt45"); ap.add_argument("--parts", default="demo,stills,reloads,yaw")
+    ap.add_argument("--rstances", default="crouch,prone"); ap.add_argument("--rframes", type=int, default=190)
+    ap.add_argument("--yaws", default="185,265,135,315"); ap.add_argument("--demoyaw", type=int, default=160); ap.add_argument("--set", action="append", default=[])
+    a = ap.parse_args()
+    a.guns = [g for g in a.guns.split(",") if g]; a.parts = a.parts.split(",")
+    a.rstances = [s for s in a.rstances.split(",") if s]; a.yaws = [int(v) for v in a.yaws.split(",") if v]
+    os.makedirs(os.path.dirname(A.LOGF), exist_ok=True)
+    A.log("preflight", a.session, "2h", "waiting for slot ==", A.QNAME)
+    while open(A.SLOT).read().strip() != A.QNAME:
+        time.sleep(5)
+    A.log("slot is ours")
+    t0 = time.time()
+    try:
+        run(a)
+    except Exception as e:
+        A.log("FAILED", repr(e))
+    finally:
+        try:
+            if R.CL["proc"] is not None and R.CL["proc"].poll() is None:
+                R.CL["proc"].kill()
+        except Exception:
+            pass
+        open(A.SLOT, "w").write("free")
+        A.log("slot released (free) after %.1f min" % ((time.time() - t0) / 60))
+
+
+if __name__ == "__main__":
+    main()
