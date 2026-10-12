@@ -1,0 +1,278 @@
+{
+ "models/weapons/bar.tik": {
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   }
+  },
+  "qa": "ha2: aim pose with the support hand in the hip relation (handpose.py); 8 stances incl. braced looked at, sight line 0.00 deg; before / after pair evidence/bar_aimhand_before_after.jpg"
+ },
+ "models/weapons/dp28.tik": {
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   }
+  },
+  "qa": "ha2: aim pose with the support hand in the hip relation (handpose.py); 8 stances incl. braced looked at, sight line 0.00 deg; before / after pair evidence/dp28_aimhand_before_after.jpg"
+ },
+ "models/weapons/it_w_breda.tik": {
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   }
+  },
+  "qa": "ha2: aim pose with the support hand in the hip relation (handpose.py); 8 stances incl. braced looked at, sight line 0.00 deg; before / after pair evidence/breda_aimhand_before_after.jpg"
+ },
+ "models/weapons/uk_w_vickers.tik": {
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "ha2"
+   }
+  },
+  "qa": "ha2: aim pose with the support hand in the hip relation (handpose.py); 8 stances incl. braced looked at, sight line 0.00 deg; before / after pair evidence/vickers_aimhand_before_after.jpg"
+ }
+}
