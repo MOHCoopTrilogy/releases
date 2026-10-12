@@ -1,5 +1,6 @@
 {
  "models/weapons/colt45.tik": {
+  "action": "support hand swaps the magazine below the screen edge (not shown, by the on-target rule); loaded reload: nothing to charge; empty reload: firing thumb presses the slide stop (keyed, clip f52-64) - NOT yet run empty",
   "aim": {
    "crouch": {
     "dev": 0.0,
@@ -246,6 +247,7 @@
   }
  },
  "models/weapons/m10_revolver.tik": {
+  "action": "support hand pushes the cylinder out, ejector rod, one round per loop - shown, but the gun leaves the aim",
   "aim": {
    "crouch": {
     "dev": 0.0,
@@ -348,6 +350,7 @@
   }
  },
  "models/weapons/nagant_revolver.tik": {
+  "action": "firing-side hand feeds through the loading gate, support hand holds the gun - shown, but the gun leaves the aim",
   "aim": {
    "crouch": {
     "dev": 0.0,
@@ -608,6 +611,7 @@
   }
  },
  "models/weapons/webley_revolver.tik": {
+  "action": "support hand, one round per loop into the open cylinder; top-break opened by both hands - shown, but the gun leaves the aim",
   "aim": {
    "crouch": {
     "dev": 0.0,

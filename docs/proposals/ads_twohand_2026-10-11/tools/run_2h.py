@@ -19,6 +19,8 @@ S, R = A.S, A.R
 STANCES = ("stand", "crouch", "prone", "standL", "standR", "crouchL", "crouchR")
 DEMO_RELOAD = [170]
 SHOTS = [2]
+INTR = [4, 95, 170]      # shots before the reload, capture frame of the interruption, frames captured
+KINDS = ["fire", "switch", "sprint"]
 
 
 def demo(sess, gun, tagst="stand"):
@@ -30,6 +32,10 @@ def demo(sess, gun, tagst="stand"):
     L += ["+button13", "echo ^~^~^ DEMO raise %d" % i[0]] + A.frames(tag, 50, i)
     for _ in range(SHOTS[0]):
         L += ["+attackprimary", "echo ^~^~^ DEMO fire %d" % i[0]] + A.frames(tag, 3, i) + ["-attackprimary"] + A.frames(tag, 27, i)
+    L += A.frames(tag, 50, i)          # the muzzle smoke clears (it polluted the centre-box measure: run tc1)
+    # the same view WITHOUT the first-person model: the reference for the centre-box measure (centrebox.py)
+    L += ["set cg_drawviewmodel 0", "wait 1", "wait 1", "wait 1", "screenshotJPEG %s__ref" % tag, "wait 1", "wait 1",
+          "set cg_drawviewmodel 2", "wait 1", "wait 1"]
     L += ["reload", "echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, DEMO_RELOAD[0], i)
     L += ["-button13", "echo ^~^~^ DEMO lower %d" % i[0]] + A.frames(tag, 50, i)
     L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1"] + S.RELEASE
@@ -51,10 +57,11 @@ def demohip(sess, gun, tagst="hip", shots=None):
     R.step(L, timeout=1800)
 
 
-def interrupt(sess, gun, kind, ads=True, shots=4, at=95, n=170):
+def interrupt(sess, gun, kind, ads=True, shots=None, at=None, n=None):
     """a reload broken off mid-loop: `shots` fired, reload, after `at` capture frames the interruption
     (fire = a trigger press, switch = next weapon, sprint = run forward), every 2nd frame captured"""
     tag = "ab__%s__%s__%s__intr__after" % (sess, gun, kind + ("A" if ads else "H"))
+    shots = shots or INTR[0]; at = at or INTR[1]; n = n or INTR[2]
     L = S.RELEASE + S.TO_STAND + A.MODE["after"] + ["wait 600"] + (["+button13", "wait 1500"] if ads else [])
     for _ in range(shots):
         L += ["+attackprimary", "wait 60", "-attackprimary", "wait 420"]
@@ -66,6 +73,11 @@ def interrupt(sess, gun, kind, ads=True, shots=4, at=95, n=170):
         if k == at + 6 and kind == "fire":
             L += ["-attackprimary"]
         L += (["screenshotJPEG %s__%04d" % (tag, k // 2)] if k % 2 == 0 else []) + ["wait 1", "wait 1"]
+    if kind == "fire":          # then empty the gun one press at a time: the trace shows how many rounds were really in
+        for j in range(4):
+            L += ["+attackprimary", "echo ^~^~^ DEMO press %d" % j]
+            for k in range(45):
+                L += (["-attackprimary"] if k == 4 else []) + (["screenshotJPEG %s__%04d" % (tag, n // 2 + j * 23 + k // 2)] if k % 2 == 0 else []) + ["wait 1", "wait 1"]
     L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1", "-forward", "-speed"] + S.RELEASE
     if kind == "switch":
         L += ["wait 1200", "weapprev", "wait 2500"]
@@ -143,8 +155,8 @@ def run(a):
                 R.SPOT = (x, y, z, a.demoyaw)
                 try:
                     R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS["colt45"]) + S.give(A.GUNS[gun]), timeout=120)
-                    for kind in ("fire", "switch", "sprint"):
-                        interrupt(a.session, gun, kind, ads=(kind != "sprint"))
+                    for kind in KINDS:
+                        interrupt(a.session, gun, kind.rstrip("H"), ads=(kind not in ("sprint", "fireH")))
                         R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
                 finally:
                     R.SPOT = (x, y, z, w)
@@ -199,10 +211,11 @@ def main():
     ap.add_argument("session"); ap.add_argument("--overlay", required=True); ap.add_argument("--cgame", default="cgame_1022d")
     ap.add_argument("--guns", default="colt45"); ap.add_argument("--parts", default="demo,stills,reloads,yaw")
     ap.add_argument("--rstances", default="crouch,prone"); ap.add_argument("--rframes", type=int, default=190)
-    ap.add_argument("--yaws", default="185,265,135,315"); ap.add_argument("--demoyaw", type=int, default=160); ap.add_argument("--demoreload", type=int, default=170); ap.add_argument("--braced", action="store_true"); ap.add_argument("--shots", type=int, default=2); ap.add_argument("--set", action="append", default=[])
+    ap.add_argument("--yaws", default="185,265,135,315"); ap.add_argument("--demoyaw", type=int, default=160); ap.add_argument("--demoreload", type=int, default=170); ap.add_argument("--braced", action="store_true"); ap.add_argument("--shots", type=int, default=2); ap.add_argument("--intr", default="4,95,170"); ap.add_argument("--kinds", default="fire,switch,sprint"); ap.add_argument("--set", action="append", default=[])
     a = ap.parse_args()
     DEMO_RELOAD[0] = a.demoreload
     SHOTS[0] = a.shots
+    INTR[:] = [int(x) for x in a.intr.split(",")]; KINDS[:] = a.kinds.split(",")
     a.guns = [g for g in a.guns.split(",") if g]; a.parts = a.parts.split(",")
     a.rstances = [s for s in a.rstances.split(",") if s]; a.yaws = [int(v) for v in a.yaws.split(",") if v]
     os.makedirs(os.path.dirname(A.LOGF), exist_ok=True)

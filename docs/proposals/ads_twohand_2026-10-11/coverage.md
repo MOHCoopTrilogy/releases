@@ -25,120 +25,120 @@ Clip state over the weapons that aim:
 
 ## pistol
 
-| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | aim tested | reload tested | bolt tested | QA | status |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 48 | Colt 45 | `colt45.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | stand crouch prone lean (th3, max 0.0 deg) | stand crouch prone lean (th3, max 1.3 deg) | - | th3: pose approved by the user 2026-10-12; sheets, GIF checked | **DONE but braced** |
-| 49 | Silenced Colt .45 | `colt_silenced.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| 50 | Walther P38 | `p38.tik` | p38 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | stand crouch prone lean (th4, max 0.0 deg) | stand crouch prone lean (th4, max 1.3 deg) | - | th4: sheet + GIF checked | **DONE but braced** |
-| 51 | Silenced Walther P38 | `p38silenced.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| 52 | Hi-Standard Silenced | `silencedpistol.tik` | histandard | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | stand crouch prone lean (th4, max 0.0 deg) | stand crouch prone lean (th4, max 1.3 deg) | - | th4: sheet + GIF checked | **DONE but braced** |
-| 53 | Webley Revolver | `webley_revolver.tik` | webley | yes | two-handed staged | staged (re-baked, replaces the shipped clip)/staged/staged (re-baked, replaces the shipped clip) (3 parts) | no cycle row | stand crouch prone lean (ts1, max 0.0 deg) | stand crouch prone (ts1; gun lowered by design, ends 0.0 deg) | - | - / OPEN: ts1: aim + aimed reload at the chosen pace in stand / crouch / prone / lean (ends 0.0 deg), switch + sprint interruptions clean; a fire press does not cut the loop (existing state rule); open: cuff, Mk VI finger fit, braced | **PARTIAL** |
-| 54 | Nagant Revolver | `nagant_revolver.tik` | nagantrev | yes | two-handed staged | staged (3 parts) | no cycle row | stand crouch prone lean (ts1, max 0.0 deg) | stand crouch prone lean!FAIL (th5,ts1; gun lowered by design, ends 99.0 deg) | - | - / OPEN: ts1 / tu1: aim + aimed reload (0.9 s per round) in stand / crouch / prone / lean, switch + sprint interruptions clean; case pops from the gate per round; open: cradling hand still large, braced | **PARTIAL** |
-| 55 | Beretta | `it_w_beretta.tik` | beretta | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | stand crouch prone lean (th4, max 0.0 deg) | stand crouch prone lean (th4, max 1.3 deg) | - | th4: sheet + GIF checked; rack skipped by the support hand | **DONE but braced** |
-| 56 | Silenced Beretta | `berettasilenced.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| 57 | Luger P08 | `lugerp08.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| 58 | Silenced Luger P08 | `lugerp08silenced.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| 59 | Walther PPK | `ppk.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| 60 | TT-33 Tokarev | `tt33.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| 61 | Silenced TT-33 | `tt33silenced.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| 62 | Nambu Type 14 | `nambu.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| 63 | Welrod | `welrod.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| 74 | Mauser C96 | `mauser_c96.tik` | p38 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| 75 | S&W M10 .38 | `m10_revolver.tik` | m10 | yes | two-handed staged | staged (3 parts) | no cycle row | stand crouch prone lean (ts1, max 0.0 deg) | stand crouch prone lean!FAIL (th5,ts1; gun lowered by design, ends 99.0 deg) | - | - / OPEN: ts1 / tu1: swing-out reload with a real cylinder face (chamber mouths, case heads hidden while empty), readable case dump, 6 rounds, stand / crouch / prone / lean, switch + sprint interruptions; open: a cartridge flies off when the loop is cut by a weapon switch, ejector rod does not move, braced | **PARTIAL** |
-| v | Webley Mk VI | `colt45_colt1911w.tik` | webley | yes | two-handed staged | staged (re-baked, replaces the shipped clip)/staged/staged (re-baked, replaces the shipped clip) (3 parts) | no cycle row | stand crouch prone lean (tx3, max 0.0 deg) | crouch prone (tx3; gun lowered by design, ends 0.0 deg) | - | - / OPEN: tx3: the Webley choreography plays on this mesh in 4 stances; chamber / barrel points are the Webley's, not fitted to this cylinder | **PARTIAL** |
-| v | Colt 45 (Pacific) | `colt45_coltpa.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| v | Mauser C96 (Trench C96) | `mauser_c96_c96trench.tik` | p38 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| s | Bombing Run | `coop_binoculars.tik` | colt45 | NO | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
+| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | per-shot cycle | action worked by (hand / control / shown) | on target: max sight dev / centre box covered | aim tested | reload tested | bolt tested | QA | status |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 48 | Colt 45 | `colt45.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | self-loading / none | support hand swaps the magazine below the screen edge (not shown, by the on-target rule); loaded reload: nothing to charge; empty reload: firing thumb presses the slide stop (keyed, clip f52-64) - NOT yet run empty | 0.1 deg / 3.8 % of frames (base 8 %, max 14 %; tc2) | stand crouch prone lean (th3, max 0.0 deg) | stand crouch prone lean (th3, max 1.3 deg) | - | th3: pose approved by the user 2026-10-12; sheets, GIF checked | **DONE but braced** |
+| 49 | Silenced Colt .45 | `colt_silenced.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 50 | Walther P38 | `p38.tik` | p38 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | self-loading / none | not recorded | - | stand crouch prone lean (th4, max 0.0 deg) | stand crouch prone lean (th4, max 1.3 deg) | - | th4: sheet + GIF checked | **DONE but braced** |
+| 51 | Silenced Walther P38 | `p38silenced.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 52 | Hi-Standard Silenced | `silencedpistol.tik` | histandard | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | HAND-CYCLED per shot (fire delay 1.0 s): aimed clip missing | not recorded | - | stand crouch prone lean (th4, max 0.0 deg) | stand crouch prone lean (th4, max 1.3 deg) | - | th4: sheet + GIF checked | **DONE but braced** |
+| 53 | Webley Revolver | `webley_revolver.tik` | webley | yes | two-handed staged | staged (re-baked, replaces the shipped clip)/staged/staged (re-baked, replaces the shipped clip) (3 parts) | no cycle row | self-loading / none | support hand, one round per loop into the open cylinder; top-break opened by both hands - shown, but the gun leaves the aim | 35.0 deg / 55.8 % of frames (base 11 %, max 87 %; tc2) | stand crouch prone lean (ts1, max 0.0 deg) | stand crouch prone (ts1; gun lowered by design, ends 0.0 deg) | - | - / OPEN: ts1: aim + aimed reload at the chosen pace in stand / crouch / prone / lean (ends 0.0 deg), switch + sprint interruptions clean; a fire press does not cut the loop (existing state rule); open: cuff, Mk VI finger fit, braced | **PARTIAL** |
+| 54 | Nagant Revolver | `nagant_revolver.tik` | nagantrev | yes | two-handed staged | staged (3 parts) | no cycle row | self-loading / none | firing-side hand feeds through the loading gate, support hand holds the gun - shown, but the gun leaves the aim | 23.7 deg / 29.6 % of frames (base 13 %, max 37 %; tc2) | stand crouch prone lean (ts1, max 0.0 deg) | stand crouch prone lean!FAIL (th5,ts1; gun lowered by design, ends 99.0 deg) | - | - / OPEN: ts1 / tu1: aim + aimed reload (0.9 s per round) in stand / crouch / prone / lean, switch + sprint interruptions clean; case pops from the gate per round; open: cradling hand still large, braced | **PARTIAL** |
+| 55 | Beretta | `it_w_beretta.tik` | beretta | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | self-loading / none | not recorded | - | stand crouch prone lean (th4, max 0.0 deg) | stand crouch prone lean (th4, max 1.3 deg) | - | th4: sheet + GIF checked; rack skipped by the support hand | **DONE but braced** |
+| 56 | Silenced Beretta | `berettasilenced.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 57 | Luger P08 | `lugerp08.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 58 | Silenced Luger P08 | `lugerp08silenced.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 59 | Walther PPK | `ppk.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 60 | TT-33 Tokarev | `tt33.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 61 | Silenced TT-33 | `tt33silenced.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 62 | Nambu Type 14 | `nambu.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 63 | Welrod | `welrod.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | HAND-CYCLED per shot (fire delay 0.9 s): aimed clip missing | not recorded | - | - | - | - | - | **PARTIAL** |
+| 74 | Mauser C96 | `mauser_c96.tik` | p38 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 75 | S&W M10 .38 | `m10_revolver.tik` | m10 | yes | two-handed staged | staged (3 parts) | no cycle row | self-loading / none | support hand pushes the cylinder out, ejector rod, one round per loop - shown, but the gun leaves the aim | 8.1 deg / 20.8 % of frames (base 13 %, max 67 %; tc2) | stand crouch prone lean (ts1, max 0.0 deg) | stand crouch prone lean!FAIL (th5,ts1; gun lowered by design, ends 99.0 deg) | - | - / OPEN: ts1 / tu1: swing-out reload with a real cylinder face (chamber mouths, case heads hidden while empty), readable case dump, 6 rounds, stand / crouch / prone / lean, switch + sprint interruptions; open: a cartridge flies off when the loop is cut by a weapon switch, ejector rod does not move, braced | **PARTIAL** |
+| v | Webley Mk VI | `colt45_colt1911w.tik` | webley | yes | two-handed staged | staged (re-baked, replaces the shipped clip)/staged/staged (re-baked, replaces the shipped clip) (3 parts) | no cycle row | self-loading / none | not recorded | - | stand crouch prone lean (tx3, max 0.0 deg) | crouch prone (tx3; gun lowered by design, ends 0.0 deg) | - | - / OPEN: tx3: the Webley choreography plays on this mesh in 4 stances; chamber / barrel points are the Webley's, not fitted to this cylinder | **PARTIAL** |
+| v | Colt 45 (Pacific) | `colt45_coltpa.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| v | Mauser C96 (Trench C96) | `mauser_c96_c96trench.tik` | p38 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| s | Bombing Run | `coop_binoculars.tik` | colt45 | NO | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
 
 ## rifle
 
-| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | aim tested | reload tested | bolt tested | QA | status |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 01 | M1 Garand | `m1_garand.tik` | garand | yes | shipped | shipped | missing | - | - | - | - | **TODO** |
-| 02 | M1 Carbine | `carbine.tik` | garand | yes | shipped | shipped | missing | - | - | - | - | **TODO** |
-| 03 | Mauser KAR 98K | `kar98.tik` | kar98 | yes | shipped | missing | shipped | - | - | - | - | **TODO** |
-| 04 | G 43 | `g43.tik` | g43 | NO | shipped | missing | no cycle row | - | - | - | - | **TODO** |
-| 05 | Lee-Enfield | `enfield.tik` | enfield | yes | shipped | missing | shipped | - | - | - | - | **TODO** |
-| 06 | Springfield M1903 | `springfield_unscoped.tik` | springfield | yes | shipped | missing (3 parts) | shipped | - | - | - | - | **TODO** |
-| 07 | Carcano | `it_w_carcano.tik` | carcano | yes | shipped | missing | no cycle row | - | - | - | - | **TODO** |
-| 08 | SVT 40 | `svt_rifle.tik` | svt | yes | shipped | missing | missing | - | - | - | - | **TODO** |
-| 09 | Mosin Nagant Rifle | `mosin_nagant_rifle.tik` | mosin | yes | shipped | missing | shipped | - | - | - | - | **TODO** |
-| 10 | Arisaka Type 99 | `arisaka.tik` | kar98 | yes | shipped | missing | shipped but GUARDED OFF (authored on Mauser KAR 98K) | - | - | - | - | **TODO** |
-| 11 | Silenced M1 Garand | `garand_silenced.tik` | garand | yes | shipped | shipped | missing | - | - | - | - | **TODO** |
-| 12 | Springfield '03 Sniper | `springfield.tik` | springfield | NO | does not aim (Torso AIM excludes it) | n/a | n/a | - | - | - | - | **N/A** |
-| 13 | KAR98 - Sniper | `kar98sniper.tik` | kar98sniper | NO | does not aim (Torso AIM excludes it) | n/a | n/a | - | - | - | - | **N/A** |
-| 14 | Enfield L42A1 | `uk_w_l42a1.tik` | enfieldl42a1 | NO | does not aim (Torso AIM excludes it) | n/a | n/a | - | - | - | - | **N/A** |
-| 15 | M1 Garand Sniper | `garand_scoped.tik` | garand | NO | shipped | shipped | missing | - | - | - | - | **TODO** |
-| 16 | G43 Sniper | `g43sniper.tik` | g43 | NO | shipped | missing | no cycle row | - | - | - | - | **TODO** |
-| 17 | Lee-Enfield Sniper | `enfieldsniper.tik` | enfield | NO | shipped | missing | shipped but GUARDED OFF (authored on Lee-Enfield) | - | - | - | - | **TODO** |
-| 18 | Carcano Sniper | `carcanosniper.tik` | carcano | NO | shipped | missing | no cycle row | - | - | - | - | **TODO** |
-| 19 | Arisaka Sniper | `arisakasniper.tik` | kar98 | NO | shipped | missing | shipped but GUARDED OFF (authored on Mauser KAR 98K) | - | - | - | - | **TODO** |
-| 20 | Mosin-Nagant Sniper | `nagant_sniper.tik` | mosin | NO | shipped | missing | shipped but GUARDED OFF (authored on Mosin Nagant Rifle) | - | - | - | - | **TODO** |
-| 21 | Silenced Mosin Sniper | `nagant_snipersilenced.tik` | mosin | NO | shipped | missing | shipped but GUARDED OFF (authored on Mosin Nagant Rifle) | - | - | - | - | **TODO** |
-| 22 | Silenced Kar98 Sniper | `kar98snipersilenced.tik` | kar98sniper | NO | shipped | missing (3 parts) | missing | - | - | - | - | **TODO** |
-| 23 | DeLisle | `delisle.tik` | delisle | yes | shipped | missing | missing | - | - | - | - | **TODO** |
-| 38 | StG44 Scoped | `mp44scoped.tik` | mp44 | NO | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| 70 | Johnson M1941 | `johnson_m1941.tik` | johnson | yes | shipped | shipped | missing | - | - | - | - | **TODO** |
-| v | Lee-Enfield (P14 Enfield) | `enfield_p14.tik` | enfield | yes | shipped | missing | shipped | - | - | - | - | **TODO** |
-| v | Mauser KAR 98K (Gewehr 98) | `kar98_g98.tik` | kar98 | yes | shipped | missing | shipped | - | - | - | - | **TODO** |
-| v | M1 Garand (Pacific) | `m1_garand_pagarand.tik` | garand | yes | shipped | shipped | missing | - | - | - | - | **TODO** |
+| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | per-shot cycle | action worked by (hand / control / shown) | on target: max sight dev / centre box covered | aim tested | reload tested | bolt tested | QA | status |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 01 | M1 Garand | `m1_garand.tik` | garand | yes | shipped | shipped | missing | bolt / action per shot (row: aimed clip missing) | not recorded | - | - | - | - | - | **TODO** |
+| 02 | M1 Carbine | `carbine.tik` | garand | yes | shipped | shipped | missing | bolt / action per shot (row: aimed clip missing) | not recorded | - | - | - | - | - | **TODO** |
+| 03 | Mauser KAR 98K | `kar98.tik` | kar98 | yes | shipped | missing | shipped | bolt / action per shot (row: aimed clip shipped) | not recorded | - | - | - | - | - | **TODO** |
+| 04 | G 43 | `g43.tik` | g43 | NO | shipped | missing | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **TODO** |
+| 05 | Lee-Enfield | `enfield.tik` | enfield | yes | shipped | missing | shipped | bolt / action per shot (row: aimed clip shipped) | not recorded | - | - | - | - | - | **TODO** |
+| 06 | Springfield M1903 | `springfield_unscoped.tik` | springfield | yes | shipped | missing (3 parts) | shipped | bolt / action per shot (row: aimed clip shipped) | not recorded | - | - | - | - | - | **TODO** |
+| 07 | Carcano | `it_w_carcano.tik` | carcano | yes | shipped | missing | no cycle row | HAND-CYCLED per shot (fire delay 1.5 s): aimed clip missing | not recorded | - | - | - | - | - | **TODO** |
+| 08 | SVT 40 | `svt_rifle.tik` | svt | yes | shipped | missing | missing | bolt / action per shot (row: aimed clip missing) | not recorded | - | - | - | - | - | **TODO** |
+| 09 | Mosin Nagant Rifle | `mosin_nagant_rifle.tik` | mosin | yes | shipped | missing | shipped | bolt / action per shot (row: aimed clip shipped) | not recorded | - | - | - | - | - | **TODO** |
+| 10 | Arisaka Type 99 | `arisaka.tik` | kar98 | yes | shipped | missing | shipped but GUARDED OFF (authored on Mauser KAR 98K) | bolt / action per shot (row: aimed clip shipped) | not recorded | - | - | - | - | - | **TODO** |
+| 11 | Silenced M1 Garand | `garand_silenced.tik` | garand | yes | shipped | shipped | missing | bolt / action per shot (row: aimed clip missing) | not recorded | - | - | - | - | - | **TODO** |
+| 12 | Springfield '03 Sniper | `springfield.tik` | springfield | NO | does not aim (Torso AIM excludes it) | n/a | n/a | n/a | not recorded | - | - | - | - | - | **N/A** |
+| 13 | KAR98 - Sniper | `kar98sniper.tik` | kar98sniper | NO | does not aim (Torso AIM excludes it) | n/a | n/a | n/a | not recorded | - | - | - | - | - | **N/A** |
+| 14 | Enfield L42A1 | `uk_w_l42a1.tik` | enfieldl42a1 | NO | does not aim (Torso AIM excludes it) | n/a | n/a | n/a | not recorded | - | - | - | - | - | **N/A** |
+| 15 | M1 Garand Sniper | `garand_scoped.tik` | garand | NO | shipped | shipped | missing | bolt / action per shot (row: aimed clip missing) | not recorded | - | - | - | - | - | **TODO** |
+| 16 | G43 Sniper | `g43sniper.tik` | g43 | NO | shipped | missing | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **TODO** |
+| 17 | Lee-Enfield Sniper | `enfieldsniper.tik` | enfield | NO | shipped | missing | shipped but GUARDED OFF (authored on Lee-Enfield) | bolt / action per shot (row: aimed clip shipped) | not recorded | - | - | - | - | - | **TODO** |
+| 18 | Carcano Sniper | `carcanosniper.tik` | carcano | NO | shipped | missing | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **TODO** |
+| 19 | Arisaka Sniper | `arisakasniper.tik` | kar98 | NO | shipped | missing | shipped but GUARDED OFF (authored on Mauser KAR 98K) | bolt / action per shot (row: aimed clip shipped) | not recorded | - | - | - | - | - | **TODO** |
+| 20 | Mosin-Nagant Sniper | `nagant_sniper.tik` | mosin | NO | shipped | missing | shipped but GUARDED OFF (authored on Mosin Nagant Rifle) | bolt / action per shot (row: aimed clip shipped) | not recorded | - | - | - | - | - | **TODO** |
+| 21 | Silenced Mosin Sniper | `nagant_snipersilenced.tik` | mosin | NO | shipped | missing | shipped but GUARDED OFF (authored on Mosin Nagant Rifle) | bolt / action per shot (row: aimed clip shipped) | not recorded | - | - | - | - | - | **TODO** |
+| 22 | Silenced Kar98 Sniper | `kar98snipersilenced.tik` | kar98sniper | NO | shipped | missing (3 parts) | missing | bolt / action per shot (row: aimed clip missing) | not recorded | - | - | - | - | - | **TODO** |
+| 23 | DeLisle | `delisle.tik` | delisle | yes | shipped | missing | missing | bolt / action per shot (row: aimed clip missing) | not recorded | - | - | - | - | - | **TODO** |
+| 38 | StG44 Scoped | `mp44scoped.tik` | mp44 | NO | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 70 | Johnson M1941 | `johnson_m1941.tik` | johnson | yes | shipped | shipped | missing | bolt / action per shot (row: aimed clip missing) | not recorded | - | - | - | - | - | **TODO** |
+| v | Lee-Enfield (P14 Enfield) | `enfield_p14.tik` | enfield | yes | shipped | missing | shipped | bolt / action per shot (row: aimed clip shipped) | not recorded | - | - | - | - | - | **TODO** |
+| v | Mauser KAR 98K (Gewehr 98) | `kar98_g98.tik` | kar98 | yes | shipped | missing | shipped | bolt / action per shot (row: aimed clip shipped) | not recorded | - | - | - | - | - | **TODO** |
+| v | M1 Garand (Pacific) | `m1_garand_pagarand.tik` | garand | yes | shipped | shipped | missing | bolt / action per shot (row: aimed clip missing) | not recorded | - | - | - | - | - | **TODO** |
 
 ## smg
 
-| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | aim tested | reload tested | bolt tested | QA | status |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 24 | Thompson | `thompsonsmg.tik` | thompson | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| 25 | Thompson 50rd | `thompson50.tik` | thompson | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| 26 | MP40 | `mp40.tik` | mp40 | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| 27 | Silenced MP40 | `mp40silenced.tik` | mp40 | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| 28 | Sten Mark II | `sten.tik` | sten | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| 29 | PPSH SMG | `ppsh_smg.tik` | ppsh | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| 30 | Silenced PPS-43 | `ppsh43silenced.tik` | mp40 | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| 31 | M3 Grease Gun | `greasegun.tik` | mp40 | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| 32 | Silenced Grease Gun | `greasegun_silenced.tik` | mp40 | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| 33 | Moschetto | `it_w_moschetto.tik` | moschetto | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| 34 | Beretta M38 | `moschetto.tik` | moschetto | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| 35 | Type 100 SMG | `type100smg.tik` | type100 | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| 71 | Thompson (Gold) | `thompsonsmg_gold.tik` | thompson | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| v | MP40 (MP18) | `mp40_mp18.tik` | mp40 | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| v | MP40 (Reactivated) | `mp40_mp40r2.tik` | mp40 | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| v | Thompson (M1A1 Remodel) | `thompsonsmg_m1a1dk.tik` | thompson | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| v | Thompson (1928 Tommy) | `thompsonsmg_tommy1928d.tik` | thompson | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| v | Thompson (M1928) | `thompsonsmg_tommy28.tik` | thompson | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
+| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | per-shot cycle | action worked by (hand / control / shown) | on target: max sight dev / centre box covered | aim tested | reload tested | bolt tested | QA | status |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 24 | Thompson | `thompsonsmg.tik` | thompson | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 25 | Thompson 50rd | `thompson50.tik` | thompson | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 26 | MP40 | `mp40.tik` | mp40 | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 27 | Silenced MP40 | `mp40silenced.tik` | mp40 | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 28 | Sten Mark II | `sten.tik` | sten | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 29 | PPSH SMG | `ppsh_smg.tik` | ppsh | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 30 | Silenced PPS-43 | `ppsh43silenced.tik` | mp40 | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 31 | M3 Grease Gun | `greasegun.tik` | mp40 | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 32 | Silenced Grease Gun | `greasegun_silenced.tik` | mp40 | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 33 | Moschetto | `it_w_moschetto.tik` | moschetto | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 34 | Beretta M38 | `moschetto.tik` | moschetto | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 35 | Type 100 SMG | `type100smg.tik` | type100 | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 71 | Thompson (Gold) | `thompsonsmg_gold.tik` | thompson | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| v | MP40 (MP18) | `mp40_mp18.tik` | mp40 | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| v | MP40 (Reactivated) | `mp40_mp40r2.tik` | mp40 | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| v | Thompson (M1A1 Remodel) | `thompsonsmg_m1a1dk.tik` | thompson | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| v | Thompson (1928 Tommy) | `thompsonsmg_tommy1928d.tik` | thompson | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| v | Thompson (M1928) | `thompsonsmg_tommy28.tik` | thompson | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
 
 ## mg
 
-| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | aim tested | reload tested | bolt tested | QA | status |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 36 | BAR | `bar.tik` | bar | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| 37 | StG 44 | `mp44.tik` | mp44 | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| 39 | FG 42 | `fg42.tik` | fg42 | NO | NO aim row | missing | no cycle row | - | - | - | - | **TODO** |
-| 40 | Vickers-Berthier | `uk_w_vickers.tik` | vickers | yes | shipped | missing | no cycle row | - | - | - | - | **TODO** |
-| 41 | Breda | `it_w_breda.tik` | breda | yes | shipped | missing | no cycle row | - | - | - | - | **TODO** |
-| 42 | M1919 30cal | `30calportable.tik` | bar | NO | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| 43 | MG42 | `mg42portable.tik` | bar | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| 72 | DP-28 | `dp28.tik` | dp28 | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| v | Lewis Gun | `bar_bar1918.tik` | bar | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| v | BAR (M1918 Classic) | `bar_bar1918a.tik` | bar | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| v | StG 44 (Strapped) | `mp44_mp44strap.tik` | mp44 | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| s | MG42 | `mg42_gun.tik` | bar | yes | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
-| s | Portable MG42 | `mg42portable_placed.tik` | bar | NO | shipped | shipped | no cycle row | - | - | - | - | **PARTIAL** |
+| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | per-shot cycle | action worked by (hand / control / shown) | on target: max sight dev / centre box covered | aim tested | reload tested | bolt tested | QA | status |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 36 | BAR | `bar.tik` | bar | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 37 | StG 44 | `mp44.tik` | mp44 | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 39 | FG 42 | `fg42.tik` | fg42 | NO | NO aim row | missing | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **TODO** |
+| 40 | Vickers-Berthier | `uk_w_vickers.tik` | vickers | yes | shipped | missing | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **TODO** |
+| 41 | Breda | `it_w_breda.tik` | breda | yes | shipped | missing | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **TODO** |
+| 42 | M1919 30cal | `30calportable.tik` | bar | NO | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 43 | MG42 | `mg42portable.tik` | bar | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 72 | DP-28 | `dp28.tik` | dp28 | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| v | Lewis Gun | `bar_bar1918.tik` | bar | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| v | BAR (M1918 Classic) | `bar_bar1918a.tik` | bar | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| v | StG 44 (Strapped) | `mp44_mp44strap.tik` | mp44 | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| s | MG42 | `mg42_gun.tik` | bar | yes | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| s | Portable MG42 | `mg42portable_placed.tik` | bar | NO | shipped | shipped | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
 
 ## heavy
 
-| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | aim tested | reload tested | bolt tested | QA | status |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 44 | Shotgun | `shotgun.tik` | shotgun | yes | shipped | shipped (3 parts) | no cycle row | - | - | - | - | **PARTIAL** |
-| 45 | Bazooka | `bazooka.tik` | bazooka | yes | does not aim (Torso AIM excludes it) | n/a | n/a | - | - | - | - | **N/A** |
-| 46 | Panzerschreck | `panzerschreck.tik` | panzerschreck | yes | does not aim (Torso AIM excludes it) | n/a | n/a | - | - | - | - | **N/A** |
-| 47 | PIAT | `uk_w_piat.tik` | PIAT | yes | does not aim (Torso AIM excludes it) | n/a | n/a | - | - | - | - | **N/A** |
-| s | Gewehrgranate | `kar98_mortar.tik` | kar98mortar | NO | NO aim row | missing | missing | - | - | - | - | **TODO** |
+| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | per-shot cycle | action worked by (hand / control / shown) | on target: max sight dev / centre box covered | aim tested | reload tested | bolt tested | QA | status |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 44 | Shotgun | `shotgun.tik` | shotgun | yes | shipped | shipped (3 parts) | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **PARTIAL** |
+| 45 | Bazooka | `bazooka.tik` | bazooka | yes | does not aim (Torso AIM excludes it) | n/a | n/a | n/a | not recorded | - | - | - | - | - | **N/A** |
+| 46 | Panzerschreck | `panzerschreck.tik` | panzerschreck | yes | does not aim (Torso AIM excludes it) | n/a | n/a | n/a | not recorded | - | - | - | - | - | **N/A** |
+| 47 | PIAT | `uk_w_piat.tik` | PIAT | yes | does not aim (Torso AIM excludes it) | n/a | n/a | n/a | not recorded | - | - | - | - | - | **N/A** |
+| s | Gewehrgranate | `kar98_mortar.tik` | kar98mortar | NO | NO aim row | missing | missing | bolt / action per shot (row: aimed clip missing) | not recorded | - | - | - | - | - | **TODO** |
 
 ## ?
 
-| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | aim tested | reload tested | bolt tested | QA | status |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| s | Packed MG42 Turret | `mg42carryable.tik` | ? | NO | NO aim row | no reload row | no cycle row | - | - | - | - | **TODO** |
+| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | per-shot cycle | action worked by (hand / control / shown) | on target: max sight dev / centre box covered | aim tested | reload tested | bolt tested | QA | status |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| s | Packed MG42 Turret | `mg42carryable.tik` | ? | NO | NO aim row | no reload row | no cycle row | self-loading / none | not recorded | - | - | - | - | - | **TODO** |
 
 id `v` = own-mesh variant taken from the sight table (a finish whose sight geometry differs from every Armory
 weapon); id `s` = a weapon tik a script hands out that is in neither. Plain re-skins (same sight geometry as

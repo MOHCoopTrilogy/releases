@@ -1,0 +1,38 @@
+{
+ "colt45": {
+  "base": 8.3,
+  "dev": 0.12,
+  "end": 0.01,
+  "frames": 260,
+  "max": 13.7,
+  "over": 3.8,
+  "run": "tc2"
+ },
+ "m10_revolver": {
+  "base": 13.4,
+  "dev": 8.1,
+  "end": 0.01,
+  "frames": 260,
+  "max": 66.9,
+  "over": 20.8,
+  "run": "tc2"
+ },
+ "nagantrev": {
+  "base": 12.9,
+  "dev": 23.72,
+  "end": 0.01,
+  "frames": 260,
+  "max": 36.7,
+  "over": 29.6,
+  "run": "tc2"
+ },
+ "webley": {
+  "base": 11.0,
+  "dev": 35.02,
+  "end": 0.01,
+  "frames": 260,
+  "max": 86.8,
+  "over": 55.8,
+  "run": "tc2"
+ }
+}

@@ -2776,6 +2776,7 @@ state RELOAD_WEBLEY
 	states
 	{
 		STAND	 				: KILLED
+		RELOAD_WEBLEY_START_ARMED	      : +ATTACK_PRIMARY
 		RELOAD_WEBLEY_SINGLE	      : ANIMDONE_TORSO
 		RELOAD_INTERUPTED		      : NEW_WEAPON
 		
@@ -2783,35 +2784,147 @@ state RELOAD_WEBLEY
 		RELOAD_INTERUPTED		      : IS_USING_TURRET
 	}
 }
+state RELOAD_WEBLEY_START_ARMED
+{
+	movetype legs
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_WEBLEY_BREAK_END	: ANIMDONE_TORSO HAS_AMMO_IN_CLIP "mainhand"
+		RELOAD_WEBLEY_FETCH_FORCED	: ANIMDONE_TORSO
+	}
+}
 
 // loads in a single webley revolver bullet
+// HZM coop [revolver reload 2026-10-12] one round = FETCH (hand to the pouch) + SEAT (round in, counted);
+// a fire press breaks the reload off: at once from FETCH, after the round is in from SEAT; then close and fire.
 state RELOAD_WEBLEY_SINGLE
 {
 	movetype legs
-	
 	entrycommands
 	{
 		viewmodelanim reload_single 1
 	}
-	
 	action
 	{
-		WEBLEY_reload_loop		: default
+		coop_reload_webley_fetch	: default
 	}
-	
 	states
 	{
-		STAND	 				: KILLED
-		RELOAD_WEBLEY_END			: NEW_WEAPON
-		
+		STAND	: KILLED
+		RELOAD_WEBLEY_END	: NEW_WEAPON
 		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
 		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
-
-		// allow early out
-		RELOAD_WEBLEY_END			: +ATTACK_PRIMARY HAS_AMMO_IN_CLIP "mainhand" !RELOAD
-		RELOAD_WEBLEY_END			: PUTAWAYMAIN
-		
+		RELOAD_WEBLEY_BREAK_END	: +ATTACK_PRIMARY HAS_AMMO_IN_CLIP "mainhand"
+		RELOAD_WEBLEY_FETCH_ARMED	: +ATTACK_PRIMARY
+		RELOAD_WEBLEY_END	: PUTAWAYMAIN
+		RELOAD_WEBLEY_SEAT	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_WEBLEY_FETCH_ARMED
+{
+	movetype legs
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_WEBLEY_SEAT_FORCED	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_WEBLEY_FETCH_FORCED
+{
+	movetype legs
+	entrycommands
+	{
+		viewmodelanim reload_single 1
+	}
+	action
+	{
+		coop_reload_webley_fetch	: default
+	}
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_WEBLEY_SEAT_FORCED	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_WEBLEY_SEAT
+{
+	movetype legs
+	action
+	{
+		coop_reload_webley_seat	: default
+	}
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_WEBLEY_SEAT_ARMED	: +ATTACK_PRIMARY
 		RELOAD_WEBLEY_CHECK_CONTINUE	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_WEBLEY_SEAT_ARMED
+{
+	movetype legs
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_WEBLEY_BREAK_END	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_WEBLEY_SEAT_FORCED
+{
+	movetype legs
+	action
+	{
+		coop_reload_webley_seat	: default
+	}
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_WEBLEY_BREAK_END	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_WEBLEY_BREAK_END
+{
+	movetype legs
+	entrycommands
+	{
+		viewmodelanim reload_end
+	}
+	action
+	{
+		WEBLEY_reload_end	: default
+	}
+	states
+	{
+		STAND	: KILLED
+		RELOAD_WEBLEY_BREAK_FIRE	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_WEBLEY_BREAK_FIRE
+{
+	movetype legs
+	action
+	{
+		none	: default
+	}
+	states
+	{
+		STAND	: KILLED
+		ATTACK_PISTOL_PRIMARY_AIM	: COOP_ADS HAS_AMMO_IN_CLIP "mainhand"
+		ATTACK_PISTOL_PRIMARY	: HAS_AMMO_IN_CLIP "mainhand"
+		STAND	: default
 	}
 }
 
@@ -2819,22 +2932,20 @@ state RELOAD_WEBLEY_SINGLE
 state RELOAD_WEBLEY_CHECK_CONTINUE
 {
 	movetype legs
-
 	entrycommands
 	{
 		reload // this makes the weapon want to continue reloading if it can
 	}
-	
 	action
 	{
-		none					: default
+		none	: default
 	}
-	
 	states
 	{
-		RELOAD_WEBLEY_SINGLE	      : RELOAD
-		
-		RELOAD_WEBLEY_END			: default
+		RELOAD_WEBLEY_END	: NEW_WEAPON
+		RELOAD_WEBLEY_END	: PUTAWAYMAIN
+		RELOAD_WEBLEY_SINGLE	: RELOAD
+		RELOAD_WEBLEY_END	: default
 	}
 }
 
@@ -2882,6 +2993,7 @@ state RELOAD_M10
 	states
 	{
 		STAND	 				: KILLED
+		RELOAD_M10_START_ARMED	      : +ATTACK_PRIMARY
 		RELOAD_M10_SINGLE	      : ANIMDONE_TORSO
 		RELOAD_INTERUPTED		      : NEW_WEAPON
 		
@@ -2889,35 +3001,147 @@ state RELOAD_M10
 		RELOAD_INTERUPTED		      : IS_USING_TURRET
 	}
 }
+state RELOAD_M10_START_ARMED
+{
+	movetype legs
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_M10_BREAK_END	: ANIMDONE_TORSO HAS_AMMO_IN_CLIP "mainhand"
+		RELOAD_M10_FETCH_FORCED	: ANIMDONE_TORSO
+	}
+}
 
 // loads in a single webley revolver bullet
+// HZM coop [revolver reload 2026-10-12] one round = FETCH (hand to the pouch) + SEAT (round in, counted);
+// a fire press breaks the reload off: at once from FETCH, after the round is in from SEAT; then close and fire.
 state RELOAD_M10_SINGLE
 {
 	movetype legs
-	
 	entrycommands
 	{
 		viewmodelanim reload_single 1
 	}
-	
 	action
 	{
-		coop_reload_m10_loop		: default
+		coop_reload_m10_fetch	: default
 	}
-	
 	states
 	{
-		STAND	 				: KILLED
-		RELOAD_M10_END			: NEW_WEAPON
-		
+		STAND	: KILLED
+		RELOAD_M10_END	: NEW_WEAPON
 		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
 		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
-
-		// allow early out
-		RELOAD_M10_END			: +ATTACK_PRIMARY HAS_AMMO_IN_CLIP "mainhand" !RELOAD
-		RELOAD_M10_END			: PUTAWAYMAIN
-		
+		RELOAD_M10_BREAK_END	: +ATTACK_PRIMARY HAS_AMMO_IN_CLIP "mainhand"
+		RELOAD_M10_FETCH_ARMED	: +ATTACK_PRIMARY
+		RELOAD_M10_END	: PUTAWAYMAIN
+		RELOAD_M10_SEAT	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_M10_FETCH_ARMED
+{
+	movetype legs
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_M10_SEAT_FORCED	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_M10_FETCH_FORCED
+{
+	movetype legs
+	entrycommands
+	{
+		viewmodelanim reload_single 1
+	}
+	action
+	{
+		coop_reload_m10_fetch	: default
+	}
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_M10_SEAT_FORCED	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_M10_SEAT
+{
+	movetype legs
+	action
+	{
+		coop_reload_m10_seat	: default
+	}
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_M10_SEAT_ARMED	: +ATTACK_PRIMARY
 		RELOAD_M10_CHECK_CONTINUE	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_M10_SEAT_ARMED
+{
+	movetype legs
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_M10_BREAK_END	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_M10_SEAT_FORCED
+{
+	movetype legs
+	action
+	{
+		coop_reload_m10_seat	: default
+	}
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_M10_BREAK_END	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_M10_BREAK_END
+{
+	movetype legs
+	entrycommands
+	{
+		viewmodelanim reload_end
+	}
+	action
+	{
+		coop_reload_m10_end	: default
+	}
+	states
+	{
+		STAND	: KILLED
+		RELOAD_M10_BREAK_FIRE	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_M10_BREAK_FIRE
+{
+	movetype legs
+	action
+	{
+		none	: default
+	}
+	states
+	{
+		STAND	: KILLED
+		ATTACK_PISTOL_PRIMARY_AIM	: COOP_ADS HAS_AMMO_IN_CLIP "mainhand"
+		ATTACK_PISTOL_PRIMARY	: HAS_AMMO_IN_CLIP "mainhand"
+		STAND	: default
 	}
 }
 
@@ -2925,22 +3149,20 @@ state RELOAD_M10_SINGLE
 state RELOAD_M10_CHECK_CONTINUE
 {
 	movetype legs
-
 	entrycommands
 	{
 		reload // this makes the weapon want to continue reloading if it can
 	}
-	
 	action
 	{
-		none					: default
+		none	: default
 	}
-	
 	states
 	{
-		RELOAD_M10_SINGLE	      : RELOAD
-		
-		RELOAD_M10_END			: default
+		RELOAD_M10_END	: NEW_WEAPON
+		RELOAD_M10_END	: PUTAWAYMAIN
+		RELOAD_M10_SINGLE	: RELOAD
+		RELOAD_M10_END	: default
 	}
 }
 
@@ -2985,6 +3207,7 @@ state RELOAD_NAGANTREV
 	states
 	{
 		STAND	 				: KILLED
+		RELOAD_NAGANTREV_START_ARMED	      : +ATTACK_PRIMARY
 		RELOAD_NAGANTREV_SINGLE	      : ANIMDONE_TORSO
 		RELOAD_INTERUPTED		      : NEW_WEAPON
 		
@@ -2994,37 +3217,147 @@ state RELOAD_NAGANTREV
 		//RELOAD_INTERUPTED_SECONDARYATTACK	: +ATTACK_SECONDARY
 	}
 }
+state RELOAD_NAGANTREV_START_ARMED
+{
+	movetype legs
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_NAGANTREV_BREAK_END	: ANIMDONE_TORSO HAS_AMMO_IN_CLIP "mainhand"
+		RELOAD_NAGANTREV_FETCH_FORCED	: ANIMDONE_TORSO
+	}
+}
 
 // loads in a single nagant revolver bullet
+// HZM coop [revolver reload 2026-10-12] one round = FETCH (hand to the pouch) + SEAT (round in, counted);
+// a fire press breaks the reload off: at once from FETCH, after the round is in from SEAT; then close and fire.
 state RELOAD_NAGANTREV_SINGLE
 {
 	movetype legs
-	
 	entrycommands
 	{
 		viewmodelanim reload_single 1
 	}
-	
 	action
 	{
-		nagantrev_reload_loop		: default
+		coop_reload_nagantrev_fetch	: default
 	}
-	
 	states
 	{
-		STAND	 				: KILLED
-		RELOAD_NAGANTREV_END		: NEW_WEAPON
-		
+		STAND	: KILLED
+		RELOAD_NAGANTREV_END	: NEW_WEAPON
 		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
 		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
-
-		//RELOAD_INTERUPTED_CORRECT_ATTACHMENTS_SECONDARYATTACK	: +ATTACK_SECONDARY
-
-		// allow early out
-		RELOAD_NAGANTREV_END		: +ATTACK_PRIMARY HAS_AMMO_IN_CLIP "mainhand" !RELOAD
-		RELOAD_NAGANTREV_END		: PUTAWAYMAIN
-		
+		RELOAD_NAGANTREV_BREAK_END	: +ATTACK_PRIMARY HAS_AMMO_IN_CLIP "mainhand"
+		RELOAD_NAGANTREV_FETCH_ARMED	: +ATTACK_PRIMARY
+		RELOAD_NAGANTREV_END	: PUTAWAYMAIN
+		RELOAD_NAGANTREV_SEAT	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_NAGANTREV_FETCH_ARMED
+{
+	movetype legs
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_NAGANTREV_SEAT_FORCED	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_NAGANTREV_FETCH_FORCED
+{
+	movetype legs
+	entrycommands
+	{
+		viewmodelanim reload_single 1
+	}
+	action
+	{
+		coop_reload_nagantrev_fetch	: default
+	}
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_NAGANTREV_SEAT_FORCED	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_NAGANTREV_SEAT
+{
+	movetype legs
+	action
+	{
+		coop_reload_nagantrev_seat	: default
+	}
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_NAGANTREV_SEAT_ARMED	: +ATTACK_PRIMARY
 		RELOAD_NAGANTREV_CHECK_CONTINUE	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_NAGANTREV_SEAT_ARMED
+{
+	movetype legs
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_NAGANTREV_BREAK_END	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_NAGANTREV_SEAT_FORCED
+{
+	movetype legs
+	action
+	{
+		coop_reload_nagantrev_seat	: default
+	}
+	states
+	{
+		STAND	: KILLED
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_VEHICLE
+		RELOAD_INTERUPTED_CORRECT_ATTACHMENTS	: IS_USING_TURRET
+		RELOAD_NAGANTREV_BREAK_END	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_NAGANTREV_BREAK_END
+{
+	movetype legs
+	entrycommands
+	{
+		viewmodelanim reload_end
+	}
+	action
+	{
+		nagantrev_reload_end	: default
+	}
+	states
+	{
+		STAND	: KILLED
+		RELOAD_NAGANTREV_BREAK_FIRE	: ANIMDONE_TORSO
+	}
+}
+state RELOAD_NAGANTREV_BREAK_FIRE
+{
+	movetype legs
+	action
+	{
+		none	: default
+	}
+	states
+	{
+		STAND	: KILLED
+		ATTACK_PISTOL_PRIMARY_AIM	: COOP_ADS HAS_AMMO_IN_CLIP "mainhand"
+		ATTACK_PISTOL_PRIMARY	: HAS_AMMO_IN_CLIP "mainhand"
+		STAND	: default
 	}
 }
 
@@ -3032,21 +3365,20 @@ state RELOAD_NAGANTREV_SINGLE
 state RELOAD_NAGANTREV_CHECK_CONTINUE
 {
 	movetype legs
-
 	entrycommands
 	{
 		reload // this makes the weapon want to continue reloading if it can
 	}
-	
 	action
 	{
-		none					: default
+		none	: default
 	}
-	
 	states
 	{
-		RELOAD_NAGANTREV_SINGLE		: RELOAD		
-		RELOAD_NAGANTREV_END		: default
+		RELOAD_NAGANTREV_END	: NEW_WEAPON
+		RELOAD_NAGANTREV_END	: PUTAWAYMAIN
+		RELOAD_NAGANTREV_SINGLE	: RELOAD
+		RELOAD_NAGANTREV_END	: default
 	}
 }
 

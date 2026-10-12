@@ -5,7 +5,7 @@ animations
 	//========================
 	// Colt Anims
 	//========================
-	colt45_idle	 		viewmodel/pistol/coltpose.skc				crossblend 0.3
+	colt45_idle	 		viewmodel/pistol/coop_colt45_idle2h.skc				crossblend 0.3
 	colt45_disabled 		viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
 	colt45_fire			viewmodel/pistol/fire_colt.skc				crossblend 0.05	
 	colt45_fire_secondary1		viewmodel/pistol/pistolwhip1.skc	random
@@ -43,7 +43,7 @@ animations
 	//========================
 	// P38 Anims
 	//========================
-	p38_idle	 		viewmodel/pistol/coltpose.skc				crossblend 0.3
+	p38_idle	 		viewmodel/pistol/coop_p38_idle2h.skc				crossblend 0.3
 	p38_disabled 			viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
 	p38_fire			viewmodel/pistol/fire_colt.skc				crossblend 0.05	
 	p38_fire_secondary1		viewmodel/pistol/pistolwhip1.skc	random
@@ -80,7 +80,7 @@ animations
 	//========================
 	// Hi-Standard Anims
 	//========================
-	histandard_idle	 			viewmodel/pistol/coltpose.skc				crossblend 0.3
+	histandard_idle	 			viewmodel/pistol/coop_histandard_idle2h.skc				crossblend 0.3
 	histandard_fire				viewmodel/pistol/fire_hp.skc				crossblend 0.05	
 	histandard_fire_secondary1		viewmodel/pistol/pistolwhip1.skc	random
 	{
@@ -115,7 +115,7 @@ animations
 	//========================
 	// Nagant Revolver Anims
 	//========================
-	nagantrev_idle	 			viewmodel/nagantrev/idle.skc				crossblend 0.2
+	nagantrev_idle	 			viewmodel/nagantrev/coop_nagantrev_idle2h.skc				crossblend 0.2
 	nagantrev_charge	 			viewmodel/nagantrev/nagantrev_ads2h.skc				crossblend 0.2
 	nagantrev_disabled 			viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
 	nagantrev_fire				viewmodel/nagantrev/fire.skc				crossblend 0.0	
@@ -154,7 +154,7 @@ animations
 	//========================
 	// Beretta Anims
 	//========================
-	beretta_idle	 		viewmodel/beretta/A_W_MOD34Pistol_idle_fps.skc			crossblend 0.2
+	beretta_idle	 		viewmodel/beretta/coop_beretta_idle2h.skc			crossblend 0.2
 	beretta_charge	 		viewmodel/beretta/beretta_ads2h.skc			crossblend 0.2
 	beretta_disabled 		viewmodel/unarmed/unarmed_idle.skc				crossblend 0.2
 	beretta_fire			viewmodel/beretta/A_W_MOD34Pistol_fire_fps.skc			crossblend 0.0	
@@ -192,7 +192,7 @@ animations
 	//========================
 	// Webley Revolver Anims
 	//========================
-	webley_idle	 			viewmodel/nagantrev/idle.skc				crossblend 0.2
+	webley_idle	 			viewmodel/webley/coop_webley_idle2h.skc				crossblend 0.2
 	webley_charge	 			viewmodel/webley/webley_ads2h.skc				crossblend 0.2
 	webley_disabled 			viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
 	webley_fire				viewmodel/nagantrev/fire.skc				crossblend 0.0	
@@ -247,7 +247,7 @@ animations
 	m10_fire			viewmodel/pistol/fire_colt.skc
 	m10_fire_secondary1			viewmodel/pistol/pistolwhip1.skc
 	m10_fire_secondary2			viewmodel/pistol/pistolwhip2.skc
-	m10_idle			viewmodel/pistol/coltpose.skc
+	m10_idle			viewmodel/coop_m10/coop_m10_idle2h.skc
 	m10_pullout			viewmodel/pistol/pullout_colt.skc
 	m10_putaway			viewmodel/pistol/putaway_colt.skc
 	m10_reload			viewmodel/coop_m10/coop_m10_reload.skc	crossblend 0.1

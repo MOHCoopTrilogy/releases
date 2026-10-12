@@ -24,6 +24,7 @@ MOD = os.path.join(ROOT, 'hzm-mohaa-coop-mod')
 FIX = os.path.join(ROOT, 'docs', 'tools', 'assets', 'fixes')
 STAGE = os.path.join(HERE, '..', 'assets')
 STATUS = os.path.join(HERE, 'coverage_status.json')
+CBOX = {}
 OUT = os.path.join(HERE, '..', 'coverage.md')
 sys.path.insert(0, os.path.join(ROOT, 'docs', 'proposals', 'ironsights_2026-09-28', 'blender'))
 for _p in glob.glob(os.path.join(ROOT, 'docs', 'proposals', 'ironsights_2026-09-28', '**', 'vfs.py'), recursive=True):
@@ -99,6 +100,9 @@ def rows_of(base):
     return out, have
 
 
+TIKFACT = {}
+
+
 def tik_info(tik):
     d = vfs.read(tik)
     if d is None:
@@ -109,6 +113,8 @@ def tik_info(tik):
     s = d.decode('latin-1')
     n = re.search(r'(?m)^\s*name\s+"([^"]+)"', s)
     w = re.search(r'(?m)^\s*weapontype\s+(\w+)', s)
+    fd = re.search(r'(?m)^\s*(?:sp |dm )?firedelay\s+([\d.]+)', s)
+    TIKFACT[tik] = dict(firedelay=float(fd.group(1)) if fd else None, semi=bool(re.search(r'(?m)^\s*semiauto\b', s)))
     return (n.group(1) if n else None), (w.group(1).lower() if w else None)
 
 
@@ -252,6 +258,18 @@ def build():
                 live_rows[t[0].lower()] = t[1]
     st = load_status()
     arm, var, scr, nsight = weapons(sights)
+    global CBOX
+    CBOX = {}
+    cbp = os.path.join(HERE, 'centrebox.json')
+    if os.path.isfile(cbp):
+        km = {}
+        try:
+            src_ = read(os.path.join(ROOT, 'docs', 'proposals', 'ads_bolt_2026-10-04', 'tools', 'run_adsbolt.py'))
+            km = {k: v.lower() for k, v in re.findall(r'"(\w+)": "(models/weapons/[^"]+)"', src_)}
+        except OSError:
+            pass
+        for g_, v_ in json.load(open(cbp)).items():
+            CBOX[km.get(g_, 'models/weapons/%s.tik' % g_)] = v_
 
     def has_clip(tree, clip):
         return os.path.isfile(os.path.join(tree, 'models', 'human', 'animation', clip.replace('/', os.sep)))
@@ -339,7 +357,19 @@ def build():
             status = 'PARTIAL'
         else:
             status = 'TODO'
-        table.append(dict(id=wid, tik=tik, name=name or '?', cls=cls, pfx=pfx, sight=sight, aim=aim, rel=rel, bolt=bolt,
+        tf = TIKFACT.get(tik, {})
+        if not aims:
+            cyc = 'n/a'
+        elif row_state(pfx + '_rechamber')[0] != 'missing':
+            cyc = 'bolt / action per shot (row: aimed clip %s)' % bolt.split(' but')[0]
+        elif tf.get('firedelay') and tf['firedelay'] >= 0.8 and cls in ('pistol', 'rifle') and sight == 'yes':
+            cyc = 'HAND-CYCLED per shot (fire delay %.1f s): aimed clip %s' % (tf['firedelay'], row_state(pfx + '_cycle_ads')[0])
+        else:
+            cyc = 'self-loading / none'
+        cb = CBOX.get(tik) or {}
+        cbt = ('%.1f deg / %.1f %% of frames (base %.0f %%, max %.0f %%; %s)' % (cb['dev'], cb['over'], cb['base'], cb['max'], cb['run'])) if cb else '-'
+        act = st.get(tik, {}).get('action', 'not recorded')
+        table.append(dict(id=wid, tik=tik, name=name or '?', cls=cls, pfx=pfx, sight=sight, aim=aim, rel=rel, bolt=bolt, cyc=cyc, cbt=cbt, act=act,
                           ta=ta, tr=tr, tb=tb, qa=qa, status=status, src=src, aims=aims))
         counts[(cls, status)] += 1
     # ------------------------------------------------------------------ write
@@ -373,10 +403,10 @@ def build():
         if r['cls'] != cur:
             cur = r['cls']
             L += ['', '## %s' % cur, '',
-                  '| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | aim tested | reload tested | bolt tested | QA | status |',
-                  '|---|---|---|---|---|---|---|---|---|---|---|---|---|']
-        L.append('| %s | %s | `%s` | %s | %s | %s | %s | %s | %s | %s | %s | %s | **%s** |' % (
-            r['id'], r['name'], r['tik'].replace('models/weapons/', ''), r['pfx'], r['sight'], r['aim'], r['rel'], r['bolt'],
+                  '| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | per-shot cycle | action worked by (hand / control / shown) | on target: max sight dev / centre box covered | aim tested | reload tested | bolt tested | QA | status |',
+                  '|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|']
+        L.append('| %s | %s | `%s` | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | **%s** |' % (
+            r['id'], r['name'], r['tik'].replace('models/weapons/', ''), r['pfx'], r['sight'], r['aim'], r['rel'], r['bolt'], r['cyc'], r['act'], r['cbt'],
             r['ta'], r['tr'], r['tb'], (r['qa'] or '-') + (' / OPEN: ' + st[r['tik']]['note'] if st.get(r['tik'], {}).get('note') else ''), r['status']))
     L += ['', 'id `v` = own-mesh variant taken from the sight table (a finish whose sight geometry differs from every Armory',
           'weapon); id `s` = a weapon tik a script hands out that is in neither. Plain re-skins (same sight geometry as',
@@ -397,6 +427,12 @@ if __name__ == '__main__':
         tik = sys.argv[2].lower()
         tik = tik if tik.startswith('models/') else 'models/weapons/%s.tik' % tik
         s.setdefault(tik, {})['lowered'] = True
+        json.dump(s, open(STATUS, 'w'), indent=1, sort_keys=True)
+    elif cmd == 'action':                     # which hand works which control, and whether it is shown (judgement, by hand)
+        s = load_status()
+        tik = sys.argv[2].lower()
+        tik = tik if tik.startswith('models/') else 'models/weapons/%s.tik' % tik
+        s.setdefault(tik, {})['action'] = ' '.join(sys.argv[3:])
         json.dump(s, open(STATUS, 'w'), indent=1, sort_keys=True)
     elif cmd == 'note':                       # an open remark on a weapon: shown, never counted as QA
         s = load_status()

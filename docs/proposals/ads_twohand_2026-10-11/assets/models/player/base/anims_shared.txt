@@ -1205,6 +1205,55 @@ animations
 			first weaponcommand mainhand anim reload_end
 		}
 	}
+	// HZM coop [revolver reload 2026-10-12] the one-round loop in two halves (player_Torso.st RELOAD_*_SINGLE / _SEAT)
+	coop_reload_webley_fetch	viewmodel/webley/coop_webley_tp_fetch.skc	crossblend 0
+	{
+		server
+		{
+			first weaponcommand mainhand anim reload_single
+		}
+	}
+	coop_reload_webley_seat	viewmodel/webley/coop_webley_tp_seat.skc	crossblend 0
+	{
+		server
+		{
+			0 attachmodel models/ammo/nagant_pistol_shell.tik tag_weapon_left
+			10 weaponcommand mainhand clip_add 1
+			10 removeattachedmodel tag_weapon_left 0 models/ammo/nagant_pistol_shell.tik
+		}
+	}
+	coop_reload_m10_fetch	viewmodel/coop_m10/coop_m10_tp_fetch.skc	crossblend 0
+	{
+		server
+		{
+			first weaponcommand mainhand anim reload_single
+		}
+	}
+	coop_reload_m10_seat	viewmodel/coop_m10/coop_m10_tp_seat.skc	crossblend 0
+	{
+		server
+		{
+			0 attachmodel models/ammo/nagant_pistol_shell.tik tag_weapon_left
+			10 weaponcommand mainhand clip_add 1
+			10 removeattachedmodel tag_weapon_left 0 models/ammo/nagant_pistol_shell.tik
+		}
+	}
+	coop_reload_nagantrev_fetch	viewmodel/nagantrev/coop_nagant_tp_fetch.skc	crossblend 0
+	{
+		server
+		{
+			first weaponcommand mainhand anim reload_single
+		}
+	}
+	coop_reload_nagantrev_seat	viewmodel/nagantrev/coop_nagant_tp_seat.skc	crossblend 0
+	{
+		server
+		{
+			0 attachmodel models/ammo/nagant_pistol_shell.tik tag_weapon_right
+			14 weaponcommand mainhand clip_add 1
+			14 removeattachedmodel tag_weapon_right 0 models/ammo/nagant_pistol_shell.tik
+		}
+	}
 	coop_reload_m10	viewmodel/pistol/reload_colt.skc	crossblend 0.3
 	{
 		server

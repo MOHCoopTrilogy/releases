@@ -417,7 +417,10 @@ def bake(name, ctl):
                 pd[ch] = R.qslerp(pc.get(ch, ph[ch]), ph[ch], w)
                 if wl is not None and ch.startswith('Bip01 L '):   # left_grip: the support hand's fingers open on its
                     kf = lg['fa'] if (lg['fa'] is not None and f <= lg['fa']) else (lg['fb'] if (lg['fb'] is not None and f >= lg['fb']) else f)   # own track (faster: off
-                    pd[ch] = R.qslerp(pc.get(ch, ph[ch]), R.pose_dict(hip, kf)[ch], min(1.0, wl * lg.get('finger_lead', 2.0)))
+                    fw_ = min(1.0, wl * lg.get('finger_lead', 2.0))
+                    if lg['fb'] is not None and f >= lg['fb'] and lg.get('finger_in_pow'):   # returning to the grip: the fingers
+                        fw_ = wl ** lg['finger_in_pow']                                       # are closed BEFORE the hand lands
+                    pd[ch] = R.qslerp(pc.get(ch, ph[ch]), R.pose_dict(hip, kf)[ch], fw_)
                 for pk_, sd_, rk_ in ((lpk, 'L', 'left_ref'), (rpk, 'R', 'right_ref')):
                     if pk_ is None or not ch.startswith('Bip01 %s ' % sd_):
                         continue
@@ -434,6 +437,11 @@ def bake(name, ctl):
                             return R.qslerp(base_, R.pose_dict(hip, spec_[1])[ch], spec_[2])
                         return R.pose_dict(hip, spec_)[ch]
                     pd[ch] = R.qslerp(_fq(pk_[0]), _fq(pk_[1]), pk_[2])
+        for ch_, keys_ in (rc.get('finger_add') or {}).items():      # extra flexion (deg about the joint's own z) by frame:
+            kk_ = [k for k, _ in keys_]                                # e.g. the firing thumb pressing a slide release
+            dg_ = K.pchip(kk_, [v for _, v in keys_], f)
+            if abs(dg_) > 1e-4 and ch_ in pd:
+                pd[ch_] = R.rows_to_quat(R.axis_angle_rows((0, 0, 1), dg_) @ R.quat_to_rows(pd[ch_]))
         pb = None
         if rc.get('elbow_down'):                         # {side: [(frame, weight), ...]} - elbow swung down (camera -z)
             pb = {}
