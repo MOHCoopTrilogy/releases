@@ -1,3 +1,9 @@
 	//===================== HZM coop magazine pistols: reload of an EMPTY gun (cgame picks <row>_empty when the clip is 0) =====================
 	colt45_reload_empty			viewmodel/pistol/reload_colt.skc			crossblend 0.3
 	colt45_reload_empty_ads		viewmodel/pistol/colt45_reload_empty_ads.skc		crossblend 0.1
+	p38_reload_empty			viewmodel/pistol/reload_p38.skc			crossblend 0.3
+	p38_reload_empty_ads		viewmodel/pistol/p38_reload_empty_ads.skc		crossblend 0.1
+	histandard_reload_empty			viewmodel/pistol/reload_hp.skc			crossblend 0.3
+	histandard_reload_empty_ads		viewmodel/pistol/histandard_reload_empty_ads.skc		crossblend 0.1
+	beretta_reload_empty			viewmodel/beretta/A_W_MOD34Pistol_reload_fps.skc			crossblend 0.3
+	beretta_reload_empty_ads		viewmodel/beretta/beretta_reload_empty_ads.skc		crossblend 0.1

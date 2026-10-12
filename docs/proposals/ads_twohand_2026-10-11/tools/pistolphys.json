@@ -1,0 +1,42 @@
+{
+ "beretta": {
+  "empty": {
+   "peak_deg": 2.14,
+   "settle_s": 0.23
+  },
+  "loaded": {
+   "peak_deg": 2.14,
+   "settle_s": 0.17
+  }
+ },
+ "colt45": {
+  "empty": {
+   "peak_deg": 2.13,
+   "settle_s": 0.23
+  },
+  "loaded": {
+   "peak_deg": 2.13,
+   "settle_s": 0.17
+  }
+ },
+ "histandard": {
+  "empty": {
+   "peak_deg": 2.16,
+   "settle_s": 0.23
+  },
+  "loaded": {
+   "peak_deg": 2.16,
+   "settle_s": 0.17
+  }
+ },
+ "p38": {
+  "empty": {
+   "peak_deg": 2.16,
+   "settle_s": 0.23
+  },
+  "loaded": {
+   "peak_deg": 2.16,
+   "settle_s": 0.17
+  }
+ }
+}

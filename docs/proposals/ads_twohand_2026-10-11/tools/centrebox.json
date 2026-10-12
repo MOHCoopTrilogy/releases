@@ -1,4 +1,22 @@
 {
+ "beretta": {
+  "base": 13.1,
+  "dev": 2.23,
+  "end": 0.01,
+  "frames": 180,
+  "max": 16.9,
+  "over": 0.0,
+  "run": "te6"
+ },
+ "beretta_empty": {
+  "base": 16.0,
+  "dev": 2.25,
+  "end": 0.0,
+  "frames": 160,
+  "max": 16.4,
+  "over": 0.0,
+  "run": "te7"
+ },
  "colt45": {
   "base": 8.2,
   "dev": 2.18,
@@ -17,6 +35,24 @@
   "over": 0.0,
   "run": "td9"
  },
+ "histandard": {
+  "base": 9.2,
+  "dev": 2.25,
+  "end": 0.01,
+  "frames": 190,
+  "max": 9.3,
+  "over": 0.0,
+  "run": "te1"
+ },
+ "histandard_empty": {
+  "base": 9.6,
+  "dev": 2.27,
+  "end": 0.0,
+  "frames": 260,
+  "max": 14.5,
+  "over": 0.0,
+  "run": "te5"
+ },
  "m10_revolver": {
   "base": 13.4,
   "dev": 8.1,
@@ -34,6 +70,24 @@
   "max": 36.7,
   "over": 29.6,
   "run": "tc2"
+ },
+ "p38": {
+  "base": 10.6,
+  "dev": 2.26,
+  "end": 0.01,
+  "frames": 190,
+  "max": 12.5,
+  "over": 0.0,
+  "run": "te1"
+ },
+ "p38_empty": {
+  "base": 11.5,
+  "dev": 2.27,
+  "end": 0.0,
+  "frames": 180,
+  "max": 18.8,
+  "over": 5.0,
+  "run": "te2"
  },
  "webley": {
   "base": 11.0,

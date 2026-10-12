@@ -510,6 +510,16 @@ def bake(name, ctl):
             pp = (1 - g) * lh[3, 0:3] + g * lg[3, 0:3]
             pd[tg + ' rot'] = q
             pd[tg + ' pos'] = np.array([pp[0], pp[1], pp[2], 0.0])
+        # tag_park = dict(tag=..., ranges=[(f0, f1), ...]): a prop the server keeps attached while it should not be seen
+        # (TT Beretta: the magazine is on tag_weapon_left from frame 0 to the LAST frame - rigid in the hand, so it is
+        # still there after it was pushed into the gun and while the hand is on the grip) is parked 90 u under the view
+        if rc.get('tag_park') and any(a_ <= f <= b_ for a_, b_ in rc['tag_park']['ranges']):
+            tgp = rc['tag_park']['tag']
+            Hh = HR if tgp == 'tag_weapon_right' else HL
+            Tw = Hh.copy()
+            Tw[3, 0:3] = (np.r_[np.array([4.0, 0.0, -90.0]), 1.0] @ R.inv(Mcam))[0:3] / R.S
+            lgp = Tw @ R.inv(Hh)
+            pd[tgp + ' pos'] = np.array([lgp[3, 0], lgp[3, 1], lgp[3, 2], 0.0])
         for tk_, sd_, tg_ in (('ltag', 'L', 'tag_weapon_left'), ('rtag', 'R', 'tag_weapon_right')):
             if not rc.get(tk_):
                 continue

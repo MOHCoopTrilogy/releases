@@ -150,7 +150,7 @@ animations
 {
 	idle		colt45.skc
 	idle_empty	colt45_empty.skc
-	// HZM coop [aimed reload 2026-10-12] shown by the cgame instead of `reload` while the AIMED reload clip plays
+	// HZM coop [aimed reload 2026-10-12] shown by the cgame instead of `reload` (aimed; hip when empty)
 	reload_ads_loaded	coop_colt45_reload_ads_loaded.skc
 	{
 		client

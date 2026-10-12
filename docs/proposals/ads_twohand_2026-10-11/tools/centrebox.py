@@ -63,8 +63,8 @@ for tag in marks:
         # the reload starts by itself after the last shot, inside that shot's flash and smoke (run td3: 30 % 'cover'
         # for 16 frames with the hands exactly as before): skip them, and take the baseline from the settled aim
         # at the end of the capture as well as before the first shot (the aim sways by a few points)
-        base = max(float(np.median([cov(i) for i in range(fire0 - 6, fire0 - 1)])),
-                   float(np.median([cov(i) for i in range(min(low, len(fs)) - 8, min(low, len(fs)) - 2)])))
+        # (not before the first shot: a long string of shots walks the view up, run te4)
+        base = float(np.median([cov(i) for i in range(min(low, len(fs)) - 8, min(low, len(fs)) - 2)]))
         rel = rel + 20
     else:
         base = float(np.median([cov(i) for i in range(rel - 6, rel - 1)]))  # the settled aim just before the reload
