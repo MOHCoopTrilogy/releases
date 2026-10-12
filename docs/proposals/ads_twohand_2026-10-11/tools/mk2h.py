@@ -25,12 +25,42 @@ CTL = json.load(open(os.path.join(T, '..', 'assets', 'ctl_stand.json')))
 FINGERS = ['Finger0', 'Finger01', 'Finger02', 'Finger1', 'Finger11', 'Finger12', 'Finger2', 'Finger21', 'Finger22',
            'Finger3', 'Finger31', 'Finger32', 'Finger4', 'Finger41', 'Finger42']
 
-RECIPES = {
-    # d = (fwd, right, down) u in the gun frame, added to the mirrored wrist; rot = (roll about bore, pitch, yaw) deg
-    # about the mirrored wrist; curl = per-finger extra flexion (deg, + = more closed) at (knuckle, mid, tip)
-    'colt45': dict(src='viewmodel/coltpose00.skc', sight='colt_45', yc=None, d=(0.0, -0.8, 0.3), rot=(0.0, 0.0, 0.0),
-                   curl={}, thumb=None, clav=None, pole=(0.0, 0.0, 0.0)),
+# The APPROVED Colt .45 grip (user 2026-10-12). Every other handgun takes the SAME support-hand-to-firing-hand
+# relation (the firing hand's pose is the same in every pistol aim clip; the support hand wraps the HAND), then only
+# what its own mesh needs (thumb, guard height) is overridden per gun.
+BASE = {"d": [0.7, -0.5, 1.4], "copy": {"Finger1": "Finger2"},
+        "curl": {"Finger1": -12, "Finger2": -12, "Finger3": -12, "Finger4": -6, "Finger11": -25, "Finger21": -25,
+                 "Finger31": -25, "Finger41": -15, "Finger12": -15, "Finger22": -15, "Finger32": -15, "Finger42": -10},
+        "aim": {}, "pole": [0, 1.4, 0], "rot": [0, 0, 25], "pivot": [5.1, 1.75, 0.8], "shoulder": [-6, 6, -3],
+        "aimpt": {"Finger0": [-0.8, -2.4, 0.2], "Finger01": [1.3, -2.1, -0.5], "Finger02": [2.8, -1.9, -0.6]}}
+REF = dict(src='viewmodel/coltpose00.skc', sight='colt_45')      # the frame the grip numbers are written in
+GUNS = {
+    'colt45': dict(src='viewmodel/coltpose00.skc', sight='colt_45'),
+    'p38': dict(src='viewmodel/p38pose00.skc', sight='walther_p38'),
+    'histandard': dict(src='viewmodel/hs_pistol00.skc', sight='hi_standard_silenced'),
+    'beretta': dict(src='viewmodel/coltpose00.skc', sight='beretta'),
+    'webley': dict(src='viewmodel/coltpose00.skc', sight='webley_revolver'),
+    'nagantrev': dict(src='viewmodel/coltpose00.skc', sight='nagant_revolver'),
+    'm10': dict(src='viewmodel/coltpose00.skc', sight='s_w_m10_38'),
 }
+RECIPES = {k: dict(BASE, **v) for k, v in GUNS.items()}
+# REVOLVERS (coordinator 2026-10-12: "no slide, mind the thumb"): the support thumb must not lie forward beside the
+# cylinder (Nagant: the cylinder's left face starts 2.5 u ahead of the tag, 1.7 u left). It is tucked: laid along the
+# grip's top under the firing thumb, its tip turned down onto the frame behind the recoil shield.
+_REV = {"Finger0": [-0.9, -2.5, 0.7], "Finger01": [0.9, -2.05, 0.55], "Finger02": [1.9, -1.8, 1.1]}
+for _g in ('webley', 'nagantrev', 'm10'):
+    RECIPES[_g] = dict(RECIPES[_g], aimpt=_REV)
+
+
+def aim_frame(sight):
+    """rows = the sight line's axes in the weapon-tag frame: x rear->front sight, z down, y right"""
+    sfx = '_root' if (PR.gungeo.ROOT_APPLY and sight.get('frame_used') == 'root' and 'F_root' in sight) else ''
+    Fg, Rg, Ug = (np.array(sight[k + sfx], float) for k in ('F', 'R', 'up'))
+    ax = (Fg - Rg) / np.linalg.norm(Fg - Rg)
+    up = Ug - (Ug @ ax) * ax; up /= np.linalg.norm(up)
+    az = -up; ay = np.cross(az, ax)
+    A = np.eye(4); A[0:3, 0:3] = np.array([ax, ay, az])
+    return A, float(Rg @ ay)
 
 
 def rot_gun(deg3):
@@ -45,18 +75,16 @@ def build(rc):
     W0 = R.evaluate(pd)
     G0 = W0['tag_weapon_right']
     sight = V.SIGHTS[rc['sight']]
-    # AIM FRAME: x = the sight line (rear -> front sight), z = down (the sight row's up, squared to x), y = right,
-    # origin at the weapon tag. Every gun's own tag frame differs (the Breakthrough pistols are root-frame meshes with
-    # other axes); the sight line and its up are what the eye sees, so the grip is described in that frame.
-    sfx = '_root' if (PR.gungeo.ROOT_APPLY and sight.get('frame_used') == 'root' and 'F_root' in sight) else ''
-    Fg, Rg, Ug = (np.array(sight[k + sfx], float) for k in ('F', 'R', 'up'))
-    ax = (Fg - Rg) / np.linalg.norm(Fg - Rg)
-    up = Ug - (Ug @ ax) * ax; up /= np.linalg.norm(up)
-    az = -up; ay = np.cross(az, ax)
-    A = np.eye(4); A[0:3, 0:3] = np.array([ax, ay, az])
-    G = A @ G0
-    ysight = float(Rg @ ay)
-    yc = rc['yc'] if rc.get('yc') is not None else ysight + rc.get('yc_off', 0.29)             # grip centre plane (aim y, u)
+    # GRIP FRAME = the reference (Colt) sight-line frame carried by the FIRING HAND: x along the Colt's sight line,
+    # z down, y right, origin where the Colt's weapon tag sits relative to the hand. Defined from the hand, so the
+    # support hand lands on the firing hand identically whatever the gun's own tag frame is (the Breakthrough pistols
+    # are root-frame meshes with other axes; the Hi-Standard pose holds its tag 0.6 u elsewhere).
+    ref = R.load(R.ANIM + REF['src'])
+    Wr = R.evaluate(R.pose_dict(ref, ref.numFrames - 1))
+    Ar, ysight = aim_frame(V.SIGHTS[REF['sight']])
+    X = (Ar @ Wr['tag_weapon_right']) @ R.inv(Wr['Bip01 R Hand'])
+    G = X @ W0['Bip01 R Hand']
+    yc = rc['yc'] if rc.get('yc') is not None else ysight + rc.get('yc_off', 0.29)             # grip centre plane (y, u)
     relR = W0['Bip01 R Hand'] @ R.inv(G)                                                      # hand in the gun frame
     My = np.diag([1.0, -1.0, 1.0])
     rot = F @ relR[0:3, 0:3] @ My

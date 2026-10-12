@@ -17,9 +17,9 @@ R = H.R
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('row'); ap.add_argument('out'); ap.add_argument('--charge'); ap.add_argument('--set', action='append', default=[])
+    ap.add_argument('row'); ap.add_argument('out'); ap.add_argument('--charge'); ap.add_argument('--set', action='append', default=[]); ap.add_argument('--nofixed', action='store_true')
     a = ap.parse_args()
-    kw = dict(fixed_right=True)
+    kw = {} if a.nofixed else dict(fixed_right=True)
     for s in a.set:
         k, v = s.split('=', 1)
         kw[k] = json.loads(v)

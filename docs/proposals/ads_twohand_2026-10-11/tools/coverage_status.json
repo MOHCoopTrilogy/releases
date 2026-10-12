@@ -1,0 +1,81 @@
+{
+ "models/weapons/colt45.tik": {
+  "aim": {
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th3"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th3"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th3"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th3"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th3"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th3"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th3"
+   }
+  },
+  "qa": "th3: pose approved by the user 2026-10-12; sheets, GIF checked",
+  "reload": {
+   "crouch": {
+    "dev": 1.29,
+    "edge": 0.59,
+    "ok": true,
+    "run": "th3"
+   },
+   "prone": {
+    "dev": 1.28,
+    "edge": 0.6,
+    "ok": true,
+    "run": "th3"
+   },
+   "stand": {
+    "dev": 1.29,
+    "edge": 0.58,
+    "ok": true,
+    "run": "th3"
+   },
+   "standL": {
+    "dev": 1.29,
+    "edge": 0.63,
+    "ok": true,
+    "run": "th3"
+   },
+   "standR": {
+    "dev": 1.3,
+    "edge": 0.6,
+    "ok": true,
+    "run": "th3"
+   }
+  }
+ }
+}

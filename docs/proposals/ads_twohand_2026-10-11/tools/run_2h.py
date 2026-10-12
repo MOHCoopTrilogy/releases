@@ -17,6 +17,7 @@ os.chdir(T)
 import run_adsbolt as A
 S, R = A.S, A.R
 STANCES = ("stand", "crouch", "prone", "standL", "standR", "crouchL", "crouchR")
+DEMO_RELOAD = [170]
 
 
 def demo(sess, gun, tagst="stand"):
@@ -28,7 +29,7 @@ def demo(sess, gun, tagst="stand"):
     L += ["+button13", "echo ^~^~^ DEMO raise %d" % i[0]] + A.frames(tag, 50, i)
     for _ in range(2):
         L += ["+attackprimary", "echo ^~^~^ DEMO fire %d" % i[0]] + A.frames(tag, 3, i) + ["-attackprimary"] + A.frames(tag, 27, i)
-    L += ["reload", "echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, 170, i)
+    L += ["reload", "echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, DEMO_RELOAD[0], i)
     L += ["-button13", "echo ^~^~^ DEMO lower %d" % i[0]] + A.frames(tag, 50, i)
     L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1"] + S.RELEASE
     R.step(L, timeout=1800)
@@ -41,6 +42,24 @@ def still(sess, gun, st, name=None):
                                                                  "set cg_adsSightDebug 2", "echo ^~^~^ ABSCEN begin %s" % tag]
     L += A.frames(tag, 4, i) + ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1"] + S.RELEASE + A.UNAPPLY[st]
     R.step(L, timeout=600)
+
+
+def reload_sparse(sess, gun, st, n=190, every=4):
+    """aimed reload in a stance for the NUMBERS: the ADSFRAME probe on every frame, a screenshot every `every` frames"""
+    tag = "ab__%s__%s__%s__reload__after" % (sess, gun, st)
+    L = S.RELEASE + S.TO_STAND + S.APPLY[st] + A.MODE["after"] + ["wait 400", "+button13", "wait 1700",
+                                                                 "+attackprimary", "wait 90", "-attackprimary", "wait 2200"]
+    L += ["coop_braceView"] if st == "braced" else []
+    L += ["set cg_adsSightDebug 2", "echo ^~^~^ ABSCEN begin %s" % tag]
+    for k in range(6):
+        L += ["wait 1", "wait 1"]
+    L += ["reload"]
+    for k in range(n):
+        L += (["screenshotJPEG %s__%04d" % (tag, k)] if k % every == 0 else []) + ["wait 1", "wait 1"]
+    L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1"]
+    L += ["coop_braceView"] if st == "braced" else []
+    L += S.RELEASE + A.UNAPPLY[st]
+    R.step(L, timeout=1800)
 
 
 def yawstill(sess, gun, yaw):
@@ -63,6 +82,7 @@ def run(a):
     try:
         R.step(["set coop_isFixed 16", "wait 300"], timeout=30)
         for gun in a.guns:
+            A.GUNS.setdefault(gun, "models/weapons/%s.tik" % gun)
             A.log("[%s] 2h %s" % (a.session, gun))
             R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
             if "demo" in a.parts:
@@ -79,12 +99,12 @@ def run(a):
             if "fire" in a.parts:
                 A.firecap(a.session, gun, "stand", ads=True)
             if "stills" in a.parts:
-                for st in STANCES:
+                for st in STANCES + (("braced",) if a.braced else ()):
                     still(a.session, gun, st)
             if "reloads" in a.parts:
                 for st in a.rstances:
                     R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
-                    A.reload(a.session, gun, st, "after", n=a.rframes)
+                    reload_sparse(a.session, gun, st, n=a.rframes)
             if "yaw" in a.parts:
                 for yw in a.yaws:
                     yawstill(a.session, gun, yw)
@@ -93,13 +113,42 @@ def run(a):
         S.end_session(rundir, notes)
 
 
+def other_test_games():
+    """test game / dedicated-server processes of OTHER harnesses (never the user's own installs, never ours)"""
+    import subprocess
+    try:
+        o = subprocess.run(["powershell", "-NoProfile", "-Command",
+                            "Get-CimInstance Win32_Process | Where-Object { $_.Name -match 'openmohaa|omohaaded' } | "
+                            "ForEach-Object { $_.ExecutablePath }"], capture_output=True, text=True, timeout=60).stdout
+    except Exception:
+        return []
+    out = []
+    for ln in o.splitlines():
+        l = ln.strip().lower().replace("/", chr(92))
+        if not l or l.startswith("g:" + chr(92) + "mohaa-adsanim") or l.startswith("g:" + chr(92) + "mohaa-gl2" + chr(92))                 or l.startswith("g:" + chr(92) + "gog" + chr(92)):
+            continue
+        out.append(l)
+    return out
+
+
+def refresh_lock():
+    """keep our heavy lock fresh while we hold it (heavy_lock.sh treats a 30 min old lock as abandoned)"""
+    f = os.path.join(A.SCR, "heavy_lock.d", "owner")
+    try:
+        if open(f).read().split()[0] == "adsanim":
+            open(f, "w", newline=chr(10)).write("adsanim %d %s%s" % (int(time.time()), time.strftime("%H:%M:%S"), chr(10)))
+    except Exception:
+        pass
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("session"); ap.add_argument("--overlay", required=True); ap.add_argument("--cgame", default="cgame_1022d")
     ap.add_argument("--guns", default="colt45"); ap.add_argument("--parts", default="demo,stills,reloads,yaw")
     ap.add_argument("--rstances", default="crouch,prone"); ap.add_argument("--rframes", type=int, default=190)
-    ap.add_argument("--yaws", default="185,265,135,315"); ap.add_argument("--demoyaw", type=int, default=160); ap.add_argument("--set", action="append", default=[])
+    ap.add_argument("--yaws", default="185,265,135,315"); ap.add_argument("--demoyaw", type=int, default=160); ap.add_argument("--demoreload", type=int, default=170); ap.add_argument("--braced", action="store_true"); ap.add_argument("--set", action="append", default=[])
     a = ap.parse_args()
+    DEMO_RELOAD[0] = a.demoreload
     a.guns = [g for g in a.guns.split(",") if g]; a.parts = a.parts.split(",")
     a.rstances = [s for s in a.rstances.split(",") if s]; a.yaws = [int(v) for v in a.yaws.split(",") if v]
     os.makedirs(os.path.dirname(A.LOGF), exist_ok=True)
@@ -109,6 +158,19 @@ def main():
     A.log("slot is ours")
     t0 = time.time()
     try:
+        # ONE heavy job at a time: the lock can be taken over as stale while another harness is still running its
+        # batch - never start beside another test game. Wait up to 45 min, then give up (the run is simply not done).
+        w0 = time.time()
+        while True:
+            og = other_test_games()
+            if not og:
+                break
+            if time.time() - w0 > 2700:
+                raise RuntimeError("another test game is still running: %s" % og[:2])
+            A.log("waiting: another test game runs (%s)" % og[0])
+            time.sleep(30)
+            refresh_lock()
+        refresh_lock()
         run(a)
     except Exception as e:
         A.log("FAILED", repr(e))

@@ -276,9 +276,11 @@ def bake(name, ctl):
             def _ss(x):
                 x = max(0.0, min(1.0, x))
                 return x * x * x * (x * (x * 6 - 15) + 10)
-            if f <= fa:
+            # fa / fb may be None: a START / LOAD / END split reload leaves the grip in its first clip only
+            # (fa, no return) and comes back in its last clip only (fb, no leaving)
+            if fa is not None and f <= fa:
                 wl = _ss(f / float(fa)); other_ = _relL(fa)
-            elif f >= fb:
+            elif fb is not None and f >= fb:
                 wl = _ss((n - 1 - lg.get('hold', 0) - f) / float(n - 1 - lg.get('hold', 0) - fb)); other_ = _relL(fb)
             else:
                 wl = 1.0; other_ = relLh
@@ -323,7 +325,7 @@ def bake(name, ctl):
             if ' Finger' in ch:
                 pd[ch] = R.qslerp(pc.get(ch, ph[ch]), ph[ch], w)
                 if wl is not None and ch.startswith('Bip01 L '):   # left_grip: the support hand's fingers open on its
-                    kf = lg['fa'] if f <= lg['fa'] else (lg['fb'] if f >= lg['fb'] else f)   # own track (faster: off
+                    kf = lg['fa'] if (lg['fa'] is not None and f <= lg['fa']) else (lg['fb'] if (lg['fb'] is not None and f >= lg['fb']) else f)   # own track (faster: off
                     pd[ch] = R.qslerp(pc.get(ch, ph[ch]), R.pose_dict(hip, kf)[ch], min(1.0, wl * lg.get('finger_lead', 2.0)))
         pb = None
         if rc.get('elbow_down'):                         # {side: [(frame, weight), ...]} - elbow swung down (camera -z)

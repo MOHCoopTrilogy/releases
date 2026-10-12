@@ -35,6 +35,17 @@ def main():
         rows = [l for l in txt.splitlines() if l.split('//')[0].split()[:1] == ['%s_charge' % gun]]
         assert len(rows) == 1 and clip in rows[0], (gun, rows)
         print('row:', rows[0].strip())
+    emit = os.environ.get('MKOV_EMIT')            # also write the staged tree (rows file + clips) for the proposal
+    if emit:
+        import shutil
+        d = os.path.join(emit, 'models', 'player', 'base'); os.makedirs(d, exist_ok=True)
+        open(os.path.join(d, 'fps_anims_pistol.txt'), 'wb').write(txt.encode('latin-1'))
+        for dd, _, fs in os.walk(os.path.join(HERE, 'stage', 'models')):
+            for f in fs:
+                src = os.path.join(dd, f)
+                dst = os.path.join(emit, os.path.relpath(src, os.path.join(HERE, 'stage')))
+                os.makedirs(os.path.dirname(dst), exist_ok=True); shutil.copyfile(src, dst)
+        print('emitted staged tree to', emit)
     n = 0
     with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED) as z:
         b = zipfile.ZipFile(os.path.join(HERE, 'ovbase_1021.pk3'))
