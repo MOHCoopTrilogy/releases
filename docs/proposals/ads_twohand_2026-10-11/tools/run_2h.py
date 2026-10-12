@@ -19,6 +19,7 @@ S, R = A.S, A.R
 STANCES = ("stand", "crouch", "prone", "standL", "standR", "crouchL", "crouchR")
 DEMO_RELOAD = [170]
 SHOTS = [2]
+EMPTY = [False]
 INTR = [4, 95, 170]      # shots before the reload, capture frame of the interruption, frames captured
 KINDS = ["fire", "switch", "sprint"]
 
@@ -30,13 +31,21 @@ def demo(sess, gun, tagst="stand"):
                                                     "echo ^~^~^ ABSCEN begin %s" % tag]
     L += A.frames(tag, 8, i)
     L += ["+button13", "echo ^~^~^ DEMO raise %d" % i[0]] + A.frames(tag, 50, i)
-    for _ in range(SHOTS[0]):
-        L += ["+attackprimary", "echo ^~^~^ DEMO fire %d" % i[0]] + A.frames(tag, 3, i) + ["-attackprimary"] + A.frames(tag, 27, i)
-    L += A.frames(tag, 50, i)          # the muzzle smoke clears (it polluted the centre-box measure: run tc1)
-    # the same view WITHOUT the first-person model: the reference for the centre-box measure (centrebox.py)
-    L += ["set cg_drawviewmodel 0", "wait 1", "wait 1", "wait 1", "screenshotJPEG %s__ref" % tag, "wait 1", "wait 1",
-          "set cg_drawviewmodel 2", "wait 1", "wait 1"]
-    L += ["reload", "echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, DEMO_RELOAD[0], i)
+    REF = ["set cg_drawviewmodel 0", "wait 1", "wait 1", "wait 1", "screenshotJPEG %s__ref" % tag, "wait 1", "wait 1",
+           "set cg_drawviewmodel 2", "wait 1", "wait 1", "wait 1", "wait 1"]
+    if EMPTY[0]:
+        # fired EMPTY: the gun reloads by itself after the last shot, so the reference is taken before the shots
+        L += REF + A.frames(tag, 6, i) + ["echo ^~^~^ DEMO empty %d" % i[0]]
+    for k in range(SHOTS[0]):
+        last = EMPTY[0] and k == SHOTS[0] - 1
+        L += ["+attackprimary", "echo ^~^~^ DEMO fire %d" % i[0]] + A.frames(tag, 3, i) + ["-attackprimary"] + A.frames(tag, 11 if last else 27, i)
+    if EMPTY[0]:
+        L += ["echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, DEMO_RELOAD[0], i)
+    else:
+        L += A.frames(tag, 50, i)          # the muzzle smoke clears (it polluted the centre-box measure: run tc1)
+        # the same view WITHOUT the first-person model: the reference for the centre-box measure (centrebox.py)
+        L += REF
+        L += ["reload", "echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, DEMO_RELOAD[0], i)
     L += ["-button13", "echo ^~^~^ DEMO lower %d" % i[0]] + A.frames(tag, 50, i)
     L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1"] + S.RELEASE
     R.step(L, timeout=1800)
@@ -211,10 +220,11 @@ def main():
     ap.add_argument("session"); ap.add_argument("--overlay", required=True); ap.add_argument("--cgame", default="cgame_1022d")
     ap.add_argument("--guns", default="colt45"); ap.add_argument("--parts", default="demo,stills,reloads,yaw")
     ap.add_argument("--rstances", default="crouch,prone"); ap.add_argument("--rframes", type=int, default=190)
-    ap.add_argument("--yaws", default="185,265,135,315"); ap.add_argument("--demoyaw", type=int, default=160); ap.add_argument("--demoreload", type=int, default=170); ap.add_argument("--braced", action="store_true"); ap.add_argument("--shots", type=int, default=2); ap.add_argument("--intr", default="4,95,170"); ap.add_argument("--kinds", default="fire,switch,sprint"); ap.add_argument("--set", action="append", default=[])
+    ap.add_argument("--yaws", default="185,265,135,315"); ap.add_argument("--demoyaw", type=int, default=160); ap.add_argument("--demoreload", type=int, default=170); ap.add_argument("--braced", action="store_true"); ap.add_argument("--shots", type=int, default=2); ap.add_argument("--demoempty", action="store_true"); ap.add_argument("--intr", default="4,95,170"); ap.add_argument("--kinds", default="fire,switch,sprint"); ap.add_argument("--set", action="append", default=[])
     a = ap.parse_args()
     DEMO_RELOAD[0] = a.demoreload
     SHOTS[0] = a.shots
+    EMPTY[0] = a.demoempty
     INTR[:] = [int(x) for x in a.intr.split(",")]; KINDS[:] = a.kinds.split(",")
     a.guns = [g for g in a.guns.split(",") if g]; a.parts = a.parts.split(",")
     a.rstances = [s for s in a.rstances.split(",") if s]; a.yaws = [int(v) for v in a.yaws.split(",") if v]

@@ -52,17 +52,31 @@ for tag in marks:
     rel, low = mk['reload'][0], mk['lower'][0]
 
     def cov(i):
+        # covered = clearly not the background: a big change (dark steel, sleeve), or a smaller one that is NOT grey
+        # (skin). Muzzle smoke is a small grey shift and no longer counts (an emptied gun reloads in its own smoke).
         Fm = np.asarray(Image.open(fs[i]).convert('RGB')).astype(np.int16)[y0:y1, x0:x1]
-        return float((np.abs(Fm - Rb).sum(axis=2) > 60).mean())
-    base = float(np.median([cov(i) for i in range(rel - 6, rel - 1)]))      # the settled aim just before the reload
+        d = Fm - Rb
+        sm = np.abs(d).sum(axis=2)
+        return float(((sm > 300) | ((sm > 60) & ((d.max(axis=2) - d.min(axis=2)) > 25))).mean())
+    empty = 'empty' in mk
+    if empty:                                                               # the settled aim before the first shot;
+        # the reload starts by itself after the last shot, inside that shot's flash and smoke (run td3: 30 % 'cover'
+        # for 16 frames with the hands exactly as before): skip them, and take the baseline from the settled aim
+        # at the end of the capture as well as before the first shot (the aim sways by a few points)
+        base = max(float(np.median([cov(i) for i in range(fire0 - 6, fire0 - 1)])),
+                   float(np.median([cov(i) for i in range(min(low, len(fs)) - 8, min(low, len(fs)) - 2)])))
+        rel = rel + 20
+    else:
+        base = float(np.median([cov(i) for i in range(rel - 6, rel - 1)]))  # the settled aim just before the reload
     cv = [cov(i) for i in range(rel, min(low, len(fs)))]
     s = sight[tag]
     r0 = s[mk['fire'][1] - 1] if 'fire' in mk else s[0]
     r0 = s[[si for n, f, si in marks[tag] if n == 'fire'][0] - 1]
-    seg = s[mk['reload'][1]: mk['lower'][1]]
+    seg = s[mk['reload'][1] + (6 if empty else 0): mk['lower'][1]]
     dev = max(((a - r0[0]) ** 2 + (b - r0[1]) ** 2) ** 0.5 for a, b in seg) if seg else float('nan')
     end = max(((a - r0[0]) ** 2 + (b - r0[1]) ** 2) ** 0.5 for a, b in seg[-5:]) if seg else float('nan')
     over = float(np.mean([c > base + 0.05 for c in cv]))
+    gun = gun + ('_empty' if empty else '')
     out[gun] = dict(run=sess, base=round(100 * base, 1), max=round(100 * max(cv), 1), over=round(100 * over, 1), dev=round(dev, 2), end=round(end, 2), frames=len(cv))
     print('%-14s centre box: base %5.1f %%  max %5.1f %%  frames over base+5: %5.1f %%   sight dev max %6.2f deg, ends %.2f   (%d frames)' % (
         gun, 100 * base, 100 * max(cv), 100 * over, dev, end, len(cv)))

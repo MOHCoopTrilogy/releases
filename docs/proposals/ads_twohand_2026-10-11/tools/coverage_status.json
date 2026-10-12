@@ -1,6 +1,6 @@
 {
  "models/weapons/colt45.tik": {
-  "action": "support hand swaps the magazine below the screen edge (not shown, by the on-target rule); loaded reload: nothing to charge; empty reload: firing thumb presses the slide stop (keyed, clip f52-64) - NOT yet run empty",
+  "action": "support hand: magazine out / in below the screen edge (pushed up into the grip; the magazine itself only peeks); EMPTY: slide locked back, SUPPORT THUMB sweeps the slide stop as the hand closes on the grip, slide runs forward - shown; loaded: no slide action",
   "aim": {
    "crouch": {
     "dev": 0.0,
@@ -77,6 +77,12 @@
     "ok": true,
     "run": "th3"
    }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "td8 (loaded) td9 (empty)",
+   "target": "yes"
   }
  },
  "models/weapons/colt45_colt1911w.tik": {
@@ -347,6 +353,12 @@
     "ok": false,
     "run": "th5"
    }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "no",
+   "run": "tc2",
+   "target": "no"
   }
  },
  "models/weapons/nagant_revolver.tik": {
@@ -450,6 +462,12 @@
     "ok": false,
     "run": "th5"
    }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "no",
+   "run": "tc2",
+   "target": "no"
   }
  },
  "models/weapons/p38.tik": {
@@ -705,6 +723,12 @@
     "pmin": 1.0,
     "run": "ts1"
    }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "no",
+   "run": "tc2",
+   "target": "no"
   }
  }
 }

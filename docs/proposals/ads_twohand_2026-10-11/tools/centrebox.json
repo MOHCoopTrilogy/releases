@@ -1,12 +1,21 @@
 {
  "colt45": {
-  "base": 8.3,
-  "dev": 0.12,
+  "base": 8.2,
+  "dev": 2.18,
   "end": 0.01,
-  "frames": 260,
-  "max": 13.7,
-  "over": 3.8,
-  "run": "tc2"
+  "frames": 190,
+  "max": 10.7,
+  "over": 0.0,
+  "run": "td8"
+ },
+ "colt45_empty": {
+  "base": 13.1,
+  "dev": 2.18,
+  "end": 0.0,
+  "frames": 180,
+  "max": 18.0,
+  "over": 0.0,
+  "run": "td9"
  },
  "m10_revolver": {
   "base": 13.4,

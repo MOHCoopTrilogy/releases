@@ -269,7 +269,9 @@ def build():
         except OSError:
             pass
         for g_, v_ in json.load(open(cbp)).items():
-            CBOX[km.get(g_, 'models/weapons/%s.tik' % g_)] = v_
+            e_ = g_.endswith('_empty')
+            g_ = g_[:-6] if e_ else g_
+            CBOX[km.get(g_, 'models/weapons/%s.tik' % g_) + ('#empty' if e_ else '')] = v_
 
     def has_clip(tree, clip):
         return os.path.isfile(os.path.join(tree, 'models', 'human', 'animation', clip.replace('/', os.sep)))
@@ -357,6 +359,14 @@ def build():
             status = 'PARTIAL'
         else:
             status = 'TODO'
+        # the user's acceptance rule (2026-10-12): (1) on target, centre clear (2) the weapon reacts to each action
+        # (3) the slide / bolt / handle really works on the model, worked by the arm that makes sense. Judged by hand
+        # after a run (`coverage.py rule <tik> yes|no yes|no yes|no <run>`); not recorded = no. Not DONE without all three.
+        rl = st.get(tik, {}).get('rule') or {}
+        r1, r2, r3 = [(rl.get(k) or 'no') if aims else 'n/a' for k in ('target', 'reacts', 'action')]
+        if aims and status in ('DONE', 'DONE but braced') and (r1, r2, r3) != ('yes', 'yes', 'yes'):
+            status = 'PARTIAL'
+        rrun = rl.get('run', '')
         tf = TIKFACT.get(tik, {})
         if not aims:
             cyc = 'n/a'
@@ -366,10 +376,10 @@ def build():
             cyc = 'HAND-CYCLED per shot (fire delay %.1f s): aimed clip %s' % (tf['firedelay'], row_state(pfx + '_cycle_ads')[0])
         else:
             cyc = 'self-loading / none'
-        cb = CBOX.get(tik) or {}
-        cbt = ('%.1f deg / %.1f %% of frames (base %.0f %%, max %.0f %%; %s)' % (cb['dev'], cb['over'], cb['base'], cb['max'], cb['run'])) if cb else '-'
+        cbt = ' ; '.join(('%s%.1f deg / %.1f %% of frames (base %.0f %%, max %.0f %%; %s)' % (lab, cb['dev'], cb['over'], cb['base'], cb['max'], cb['run']))
+                         for lab, cb in (('', CBOX.get(tik)), ('EMPTY: ', CBOX.get(tik + '#empty'))) if cb) or '-'
         act = st.get(tik, {}).get('action', 'not recorded')
-        table.append(dict(id=wid, tik=tik, name=name or '?', cls=cls, pfx=pfx, sight=sight, aim=aim, rel=rel, bolt=bolt, cyc=cyc, cbt=cbt, act=act,
+        table.append(dict(id=wid, tik=tik, name=name or '?', cls=cls, pfx=pfx, sight=sight, aim=aim, rel=rel, bolt=bolt, cyc=cyc, cbt=cbt, act=act, r1=r1, r2=r2, r3=r3, rrun=rrun,
                           ta=ta, tr=tr, tb=tb, qa=qa, status=status, src=src, aims=aims))
         counts[(cls, status)] += 1
     # ------------------------------------------------------------------ write
@@ -403,10 +413,11 @@ def build():
         if r['cls'] != cur:
             cur = r['cls']
             L += ['', '## %s' % cur, '',
-                  '| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | per-shot cycle | action worked by (hand / control / shown) | on target: max sight dev / centre box covered | aim tested | reload tested | bolt tested | QA | status |',
-                  '|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|']
-        L.append('| %s | %s | `%s` | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | **%s** |' % (
-            r['id'], r['name'], r['tik'].replace('models/weapons/', ''), r['pfx'], r['sight'], r['aim'], r['rel'], r['bolt'], r['cyc'], r['act'], r['cbt'],
+                  '| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | per-shot cycle | 1 on target | 2 weapon reacts | 3 action works | rule run | action worked by (hand / control / shown) | on target: max sight dev / centre box covered | aim tested | reload tested | bolt tested | QA | status |',
+                  '|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|']
+        L.append('| %s | %s | `%s` | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | **%s** |' % (
+            r['id'], r['name'], r['tik'].replace('models/weapons/', ''), r['pfx'], r['sight'], r['aim'], r['rel'], r['bolt'], r['cyc'],
+            r['r1'], r['r2'], r['r3'], r['rrun'] or '-', r['act'], r['cbt'],
             r['ta'], r['tr'], r['tb'], (r['qa'] or '-') + (' / OPEN: ' + st[r['tik']]['note'] if st.get(r['tik'], {}).get('note') else ''), r['status']))
     L += ['', 'id `v` = own-mesh variant taken from the sight table (a finish whose sight geometry differs from every Armory',
           'weapon); id `s` = a weapon tik a script hands out that is in neither. Plain re-skins (same sight geometry as',
@@ -427,6 +438,13 @@ if __name__ == '__main__':
         tik = sys.argv[2].lower()
         tik = tik if tik.startswith('models/') else 'models/weapons/%s.tik' % tik
         s.setdefault(tik, {})['lowered'] = True
+        json.dump(s, open(STATUS, 'w'), indent=1, sort_keys=True)
+    elif cmd == 'rule':                       # coverage.py rule <tik stem> <on target> <reacts> <action works> <run id>
+        s = load_status()
+        tik = sys.argv[2].lower()
+        tik = tik if tik.startswith('models/') else 'models/weapons/%s.tik' % tik
+        assert all(v in ('yes', 'no') for v in sys.argv[3:6])
+        s.setdefault(tik, {})['rule'] = dict(target=sys.argv[3], reacts=sys.argv[4], action=sys.argv[5], run=' '.join(sys.argv[6:]))
         json.dump(s, open(STATUS, 'w'), indent=1, sort_keys=True)
     elif cmd == 'action':                     # which hand works which control, and whether it is shown (judgement, by hand)
         s = load_status()

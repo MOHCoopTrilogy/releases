@@ -354,5 +354,8 @@ animations
 			)
 		}
 	}
+	//===================== HZM coop magazine pistols: reload of an EMPTY gun (cgame picks <row>_empty when the clip is 0) =====================
+	colt45_reload_empty			viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	colt45_reload_empty_ads		viewmodel/pistol/colt45_reload_empty_ads.skc		crossblend 0.1
 }
 
