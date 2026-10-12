@@ -19,6 +19,10 @@ EDITS = {
         ('dp28_charge', 'viewmodel/coop_dp28/coop_dp28_ads_hand.skc', None, 'support hand on the forend as at the hip'),
         ('vickers_charge', 'viewmodel/Vickers/coop_vickers_ads_hand.skc', None, 'support hand on the forend as at the hip'),
         ('breda_charge', 'viewmodel/breda/coop_breda_ads_hand.skc', None, 'support hand under the receiver as at the hip'),
+        # step 2: BAR aimed reload to the three rules (heavybake.py); an EMPTY gun gets the handle work
+        ('bar_reload_ads', 'viewmodel/mg/bar_reload_ads.skc', None, 'aimed, rounds left: magazine only'),
+        ('bar_reload_empty', 'viewmodel/mg/reload_bar.skc', 0.3, 'retail: hip reload of an empty gun (the retail clip; the row lets cgame find _empty_ads)'),
+        ('bar_reload_empty_ads', 'viewmodel/mg/bar_reload_empty_ads.skc', 0.1, 'aimed, empty: magazine, then the left hand works the operating handle'),
     ],
     'shotgun': [],
 }
@@ -50,7 +54,7 @@ def build(cls, without=()):
         txt = txt[:k] + '\t//===================== HZM coop ADS heavy lane (staged 2026-10-12) =====================' + nl + nl.join(new) + nl + txt[k:]
     # every clip a row of ours names must exist in the staging tree
     for row, clip, xb, why in EDITS[cls]:
-        if row not in without:
+        if row not in without and not why.startswith('retail:'):
             assert os.path.isfile(hv.staged('models/human/animation/' + clip)), 'missing staged clip ' + clip
     dst = hv.staged(rel)
     os.makedirs(os.path.dirname(dst), exist_ok=True)

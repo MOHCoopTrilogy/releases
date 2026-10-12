@@ -27,4 +27,21 @@ A.GUNS.update({"30cal": "models/weapons/30calportable.tik", "mg42": "models/weap
 
 if __name__ == "__main__":
     assert R.CLIENT.lower().endswith("adsanim4") and R.PORT == 12598
+    # lane extras (taken out before the shared parser sees them):  --map <name> --spot x,y,z,yaw   another map / spot,
+    # e.g. the night map m4l1 at its player start: --map m4l1 --spot -3904,-6120,-456,45
+    # --pitch <deg, + = down>: the view pitch every `give` sets. 20 rounds of automatic fire walk the view up 8.5 deg
+    # (run hb4: the centre box ended on the dark timber beam, where a dark gun cannot be told from the background and
+    # the box measure is void) - start that much lower and the emptied gun reloads on the light wall.
+    for opt in ("--map", "--spot", "--pitch"):
+        if opt in sys.argv:
+            k = sys.argv.index(opt)
+            val = sys.argv[k + 1]
+            del sys.argv[k:k + 2]
+            if opt == "--map":
+                R.MAP = val
+            elif opt == "--spot":
+                R.SPOT = tuple(float(x) for x in val.split(","))
+            else:
+                _give, _p = R.give, float(val)
+                R.give = lambda tik, pitch=0.0: _give(tik, _p if pitch == 0.0 else pitch)
     T2.main()

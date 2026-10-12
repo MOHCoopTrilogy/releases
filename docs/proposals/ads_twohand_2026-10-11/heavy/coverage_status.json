@@ -1,5 +1,6 @@
 {
  "models/weapons/bar.tik": {
+  "action": "left hand: magazine stripped down the well, shown bottom-left out and in, seated, palm slap; EMPTY: left hand across onto the left-side operating handle, hauled back and run forward, bolt bone keyed in the same frames (gun clip reload_ads_empty) - shown; loaded (open bolt, still cocked): no handle work",
   "aim": {
    "braced": {
     "dev": 0.0,
@@ -66,7 +67,59 @@
     "run": "ha2"
    }
   },
-  "qa": "ha2: aim pose with the support hand in the hip relation (handpose.py); 8 stances incl. braced looked at, sight line 0.00 deg; before / after pair evidence/bar_aimhand_before_after.jpg"
+  "note": "lowered: the gun leaves the sights on purpose (sag 4.6 deg + cant, 6.1 deg) for the declared work phase and returns to 0.01-0.02 deg",
+  "qa": "ha2: aim pose with the support hand in the hip relation (handpose.py); 8 stances incl. braced looked at, sight line 0.00 deg; before / after pair evidence/bar_aimhand_before_after.jpg",
+  "reload": {
+   "braced": {
+    "dev": 6.16,
+    "edge": 4.13,
+    "end": 0.02,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hb8"
+   },
+   "crouch": {
+    "dev": 6.16,
+    "edge": 4.43,
+    "end": 0.02,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hb8"
+   },
+   "prone": {
+    "dev": 6.16,
+    "edge": 4.45,
+    "end": 0.02,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hb8"
+   },
+   "stand": {
+    "dev": 5.99,
+    "edge": 5.99,
+    "end": 0.09,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hb9"
+   },
+   "standL": {
+    "dev": 6.14,
+    "edge": 4.42,
+    "end": 0.02,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hb8"
+   },
+   "standR": {
+    "dev": 6.17,
+    "edge": 4.44,
+    "end": 0.02,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hb8"
+   }
+  },
+  "rule": "1 on target: loaded 1.4 % max box (hb7, engine), back to 0.01 deg; empty 2-3 % for 0.26 s at the return (hb9) = the ADS rig solve held from mid-recoil of the last shot, clip itself 0.5 % offline. 2 reacts: gunphys class bar (sag 4.6 deg, lg_* actions). 3 action: see action. Stances loaded: stand, crouch, prone, lean L/R, braced run (hb8); empty: stand only"
  },
  "models/weapons/dp28.tik": {
   "aim": {

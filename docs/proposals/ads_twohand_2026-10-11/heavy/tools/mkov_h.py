@@ -11,6 +11,7 @@ import hv
 def main():
     out = sys.argv[1]
     before = '--before' in sys.argv
+    skip = sys.argv[sys.argv.index('--skip') + 1].split(',') if '--skip' in sys.argv else []
     base = os.path.join(hv.SCR, 'ovbase_1021.pk3')
     n = 0
     with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED) as z:
@@ -27,6 +28,8 @@ def main():
                     p = os.path.join(d, f)
                     arc = os.path.relpath(p, hv.ASSETS).replace(os.sep, '/')
                     if arc.split('/')[0] not in ('models', 'scripts', 'sound', 'textures', 'coop_mod', 'ui', 'global'):
+                        continue
+                    if arc.split('/')[0] in skip:          # --skip textures : e.g. the BEFORE of the BAR skin lift
                         continue
                     z.write(p, arc); n += 1
     print('wrote', out, n, 'files', '(BEFORE: released rows)' if before else '')

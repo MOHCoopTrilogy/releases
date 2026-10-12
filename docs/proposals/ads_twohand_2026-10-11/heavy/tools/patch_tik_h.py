@@ -1,0 +1,78 @@
+"""Stage weapon tiks of the heavy lane with the aimed gun-side rows (apply-on-top of the CURRENT mod tree copy; the
+mod tree itself is never written). Idempotent: the staged copy is rebuilt from the mod tree each run.
+
+BAR family on the S93 mesh (path models/weapons/bar_lmg): bar.tik + its finishes
+  * animations: `reload_ads_empty` (cgame shows it instead of `reload` when an aimed reload starts on an EMPTY gun):
+    the retail reload with the `bolt` bone hauled back and run forward in the left hand's frames, the retail sound
+  * `reload_ads_loaded`: the retail gun clip (the bolt does not move), with the reload sound cut before the handle
+  * init client: aliascache bar_snd_reload_loaded (the retail BARReload1.wav faded out before the handle, f60)
+
+    python patch_tik_h.py bar          -> assets/models/weapons/<tik> for every tik on that mesh, + the cut sound
+"""
+import sys, os, re, io, glob, wave
+import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import hv
+MOD = r'C:\mohaa-coop-dev\hzm-mohaa-coop-mod'
+TAG0, TAG1 = '// HZM coop [ads heavy rows]', '// HZM coop [ads heavy rows end]'
+
+SETS = {
+    'bar': dict(mesh_path='models/weapons/bar_lmg', empty_clip='coop_reload_ads_empty.skc', loaded_clip='reload_bar.skc',
+                snd='bar_snd_reload', snd_loaded='bar_snd_reload_loaded',
+                wav='sound/weapons/foley/BARReload1.wav', wav_out='sound/weapons/foley/coop_bar_reload_loaded.wav',
+                cut=(58, 64),                       # clip frames: fade the retail sound out over these (the handle is f67-73)
+                parms='soundparms 0.9 0.2 1.0 0.0 160 1000 auto loaded always maps "dm obj lib m e t"'),
+}
+
+
+def cut_wav(s):
+    H, R, V, CTL = hv.lib()
+    raw = R.vfs.read(s['wav'])
+    w = wave.open(io.BytesIO(raw))
+    sr, n, ch, sw = w.getframerate(), w.getnframes(), w.getnchannels(), w.getsampwidth()
+    assert sw == 2
+    d = np.frombuffer(w.readframes(n), dtype=np.int16).astype(np.float64).reshape(-1, ch)
+    a, b = int(s['cut'][0] / 30.0 * sr), int(s['cut'][1] / 30.0 * sr)
+    d = d[:b].copy()
+    k = np.linspace(1.0, 0.0, b - a)
+    d[a:b] *= (k * k * (3 - 2 * k))[:, None]
+    dst = hv.staged(s['wav_out'])
+    os.makedirs(os.path.dirname(dst), exist_ok=True)
+    o = wave.open(dst, 'wb')
+    o.setnchannels(ch); o.setsampwidth(2); o.setframerate(sr)
+    o.writeframes(d.round().astype(np.int16).tobytes()); o.close()
+    print('sound ->', s['wav_out'], '%.2f s of %.2f s' % (b / sr, n / sr))
+
+
+def patch(name):
+    s = SETS[name]
+    n = 0
+    for p in sorted(glob.glob(os.path.join(MOD, 'models', 'weapons', '*.tik'))):
+        t = open(p, 'rb').read().decode('latin-1')
+        m = re.search(r'(?mi)^\s*path\s+(\S+)', t)
+        if not m or m.group(1).lower().rstrip('/') != s['mesh_path'].lower():
+            continue
+        nl = '\r\n' if '\r\n' in t else '\n'
+        assert TAG0 not in t
+        r = re.search(r'(?m)^\treload\s+\S+', t)
+        assert r, p
+        blk = ['\t%s the gun worked under the centre box: an EMPTY gun shows the handle hauled back and run forward' % TAG0,
+               '\treload_ads_empty\t%s' % s['empty_clip'], '\t{', '\t\tclient', '\t\t{', '\t\t\tentry sound %s' % s['snd'], '\t\t}', '\t}',
+               '\treload_ads_loaded\t%s' % s['loaded_clip'], '\t{', '\t\tclient', '\t\t{', '\t\t\tentry sound %s' % s['snd_loaded'], '\t\t}', '\t}',
+               '\t%s' % TAG1, '']
+        t = t[:r.start()] + nl.join(blk) + t[r.start():]
+        c = re.search(r'(?ms)^init\s*\{.*?^\tclient\s*\{\s*?(\r?\n)', t)
+        assert c, p
+        t = t[:c.end()] + '\t\taliascache %s %s %s%s' % (s['snd_loaded'], s['wav_out'], s['parms'], nl) + t[c.end():]
+        assert t.count('{') == t.count('}')
+        dst = hv.staged('models/weapons/' + os.path.basename(p))
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        open(dst, 'wb').write(t.encode('latin-1'))
+        n += 1
+        print('tik ->', os.path.basename(p))
+    assert n, 'no tik on ' + s['mesh_path']
+    cut_wav(s)
+
+
+if __name__ == '__main__':
+    patch(sys.argv[1])

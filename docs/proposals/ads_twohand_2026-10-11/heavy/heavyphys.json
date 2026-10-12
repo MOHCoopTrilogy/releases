@@ -1,0 +1,12 @@
+{
+ "bar": {
+  "empty": {
+   "peak_deg": 5.25,
+   "settle_s": 0.37
+  },
+  "loaded": {
+   "peak_deg": 5.25,
+   "settle_s": 0.47
+  }
+ }
+}
