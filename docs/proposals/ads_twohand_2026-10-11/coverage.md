@@ -8,13 +8,13 @@ still needs its own in-engine check: a row is DONE only with clips + every stanc
 
 | class | weapons | DONE | DONE but braced | PARTIAL | TODO | N/A (does not aim) | no sight row |
 |---|---|---|---|---|---|---|---|
-| pistol | 22 | 0 | 1 | 19 | 2 | 0 | 1 |
+| pistol | 22 | 0 | 4 | 18 | 0 | 0 | 1 |
 | rifle | 28 | 0 | 0 | 1 | 24 | 3 | 13 |
 | smg | 18 | 0 | 0 | 18 | 0 | 0 | 0 |
 | mg | 13 | 0 | 0 | 10 | 3 | 0 | 3 |
 | heavy | 5 | 0 | 0 | 1 | 1 | 3 | 1 |
 | ? | 1 | 0 | 0 | 0 | 1 | 0 | 1 |
-| **all** | 87 | 0 | 1 | 49 | 31 | 6 | 19 |
+| **all** | 87 | 0 | 4 | 48 | 29 | 6 | 19 |
 
 Clip state over the weapons that aim:
 
@@ -29,12 +29,12 @@ Clip state over the weapons that aim:
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 48 | Colt 45 | `colt45.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | stand crouch prone lean (th3, max 0.0 deg) | stand crouch prone lean (th3, max 1.3 deg) | - | th3: pose approved by the user 2026-10-12; sheets, GIF checked | **DONE but braced** |
 | 49 | Silenced Colt .45 | `colt_silenced.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| 50 | Walther P38 | `p38.tik` | p38 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
+| 50 | Walther P38 | `p38.tik` | p38 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | stand crouch prone lean (th4, max 0.0 deg) | stand crouch prone lean (th4, max 1.3 deg) | - | th4: sheet + GIF checked | **DONE but braced** |
 | 51 | Silenced Walther P38 | `p38silenced.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| 52 | Hi-Standard Silenced | `silencedpistol.tik` | histandard | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| 53 | Webley Revolver | `webley_revolver.tik` | webley | yes | two-handed staged | staged (re-baked, replaces the shipped clip) (3 parts) | no cycle row | - | - | - | - | **PARTIAL** |
-| 54 | Nagant Revolver | `nagant_revolver.tik` | nagantrev | yes | two-handed staged | missing (3 parts) | no cycle row | - | - | - | - | **TODO** |
-| 55 | Beretta | `it_w_beretta.tik` | beretta | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
+| 52 | Hi-Standard Silenced | `silencedpistol.tik` | histandard | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | stand crouch prone lean (th4, max 0.0 deg) | stand crouch prone lean (th4, max 1.3 deg) | - | th4: sheet + GIF checked | **DONE but braced** |
+| 53 | Webley Revolver | `webley_revolver.tik` | webley | yes | two-handed staged | staged (re-baked, replaces the shipped clip) (3 parts) | no cycle row | stand crouch prone lean (th5, max 0.0 deg) | stand!FAIL crouch!FAIL prone!FAIL lean!FAIL (th5, max 1.6 deg) | - | - / OPEN: th5: two-handed aim checked (sheet); aimed reload is a plain re-bake where the break-open does not read - to be hand-keyed (user 2026-10-12) | **PARTIAL** |
+| 54 | Nagant Revolver | `nagant_revolver.tik` | nagantrev | yes | two-handed staged | missing (3 parts) | no cycle row | stand crouch prone lean (th5, max 0.0 deg) | stand!FAIL crouch!FAIL prone!FAIL lean!FAIL (th5, max 53.9 deg) | - | - / OPEN: th5: two-handed aim checked (sheet); no aimed reload yet - the hip reload hands the gun to the left hand (anims_pistol nagantrev_reload_start f11), needs its own choreography | **PARTIAL** |
+| 55 | Beretta | `it_w_beretta.tik` | beretta | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | stand crouch prone lean (th4, max 0.0 deg) | stand crouch prone lean (th4, max 1.3 deg) | - | th4: sheet + GIF checked; rack skipped by the support hand | **DONE but braced** |
 | 56 | Silenced Beretta | `berettasilenced.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
 | 57 | Luger P08 | `lugerp08.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
 | 58 | Silenced Luger P08 | `lugerp08silenced.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
@@ -44,7 +44,7 @@ Clip state over the weapons that aim:
 | 62 | Nambu Type 14 | `nambu.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
 | 63 | Welrod | `welrod.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
 | 74 | Mauser C96 | `mauser_c96.tik` | p38 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| 75 | S&W M10 .38 | `m10_revolver.tik` | m10 | yes | two-handed staged | missing | no cycle row | - | - | - | - | **TODO** |
+| 75 | S&W M10 .38 | `m10_revolver.tik` | m10 | yes | two-handed staged | missing | no cycle row | stand crouch prone lean (th5, max 0.0 deg) | stand!FAIL crouch!FAIL prone!FAIL lean!FAIL (th5, max 119.2 deg) | - | - / OPEN: th5: two-handed aim checked (sheet); the only reload row tips the gun 94 deg in the firing hand - an aimed reload needs new choreography | **PARTIAL** |
 | v | Webley Mk VI | `colt45_colt1911w.tik` | webley | yes | two-handed staged | staged (re-baked, replaces the shipped clip) (3 parts) | no cycle row | - | - | - | - | **PARTIAL** |
 | v | Colt 45 (Pacific) | `colt45_coltpa.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
 | v | Mauser C96 (Trench C96) | `mauser_c96_c96trench.tik` | p38 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |

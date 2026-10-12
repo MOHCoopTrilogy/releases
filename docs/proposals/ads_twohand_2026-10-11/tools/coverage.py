@@ -14,6 +14,7 @@ the sight table knows + every weapon tik a script hands out that is not in the t
     python coverage.py build            -> ../coverage.md
     python coverage.py scan th4 th5     -> merge those sessions' results into coverage_status.json
     python coverage.py qa p38 th4 "sheet + gif checked"
+    python coverage.py note webley_revolver "reload is a plain re-bake"
 """
 import os, re, sys, json, glob, collections
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -366,7 +367,7 @@ def build():
                   '|---|---|---|---|---|---|---|---|---|---|---|---|---|']
         L.append('| %s | %s | `%s` | %s | %s | %s | %s | %s | %s | %s | %s | %s | **%s** |' % (
             r['id'], r['name'], r['tik'].replace('models/weapons/', ''), r['pfx'], r['sight'], r['aim'], r['rel'], r['bolt'],
-            r['ta'], r['tr'], r['tb'], r['qa'] or '-', r['status']))
+            r['ta'], r['tr'], r['tb'], (r['qa'] or '-') + (' / OPEN: ' + st[r['tik']]['note'] if st.get(r['tik'], {}).get('note') else ''), r['status']))
     L += ['', 'id `v` = own-mesh variant taken from the sight table (a finish whose sight geometry differs from every Armory',
           'weapon); id `s` = a weapon tik a script hands out that is in neither. Plain re-skins (same sight geometry as',
           'their base gun) are not listed: they share the base gun\'s row.', '']
@@ -381,6 +382,12 @@ if __name__ == '__main__':
     cmd = sys.argv[1] if len(sys.argv) > 1 else 'build'
     if cmd == 'scan':
         scan(sys.argv[2:])
+    elif cmd == 'note':                       # an open remark on a weapon: shown, never counted as QA
+        s = load_status()
+        tik = sys.argv[2].lower()
+        tik = tik if tik.startswith('models/') else 'models/weapons/%s.tik' % tik
+        s.setdefault(tik, {})['note'] = ' '.join(sys.argv[3:])
+        json.dump(s, open(STATUS, 'w'), indent=1, sort_keys=True)
     elif cmd == 'qa':
         s = load_status()
         tik = sys.argv[2].lower()

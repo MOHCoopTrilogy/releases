@@ -152,25 +152,11 @@ def main():
     a.guns = [g for g in a.guns.split(",") if g]; a.parts = a.parts.split(",")
     a.rstances = [s for s in a.rstances.split(",") if s]; a.yaws = [int(v) for v in a.yaws.split(",") if v]
     os.makedirs(os.path.dirname(A.LOGF), exist_ok=True)
-    A.log("preflight", a.session, "2h", "waiting for slot ==", A.QNAME)
-    while open(A.SLOT).read().strip() != A.QNAME:
-        time.sleep(5)
-    A.log("slot is ours")
+    # 2026-10-12 (coordinator): this harness no longer takes the shared heavy lock or the shared test slot - the
+    # install and its home are ours alone; other harnesses run their own games beside it.
+    A.log("start", a.session, "2h")
     t0 = time.time()
     try:
-        # ONE heavy job at a time: the lock can be taken over as stale while another harness is still running its
-        # batch - never start beside another test game. Wait up to 45 min, then give up (the run is simply not done).
-        w0 = time.time()
-        while True:
-            og = other_test_games()
-            if not og:
-                break
-            if time.time() - w0 > 2700:
-                raise RuntimeError("another test game is still running: %s" % og[:2])
-            A.log("waiting: another test game runs (%s)" % og[0])
-            time.sleep(30)
-            refresh_lock()
-        refresh_lock()
         run(a)
     except Exception as e:
         A.log("FAILED", repr(e))
@@ -180,8 +166,7 @@ def main():
                 R.CL["proc"].kill()
         except Exception:
             pass
-        open(A.SLOT, "w").write("free")
-        A.log("slot released (free) after %.1f min" % ((time.time() - t0) / 60))
+        A.log("run ended after %.1f min" % ((time.time() - t0) / 60))
 
 
 if __name__ == "__main__":

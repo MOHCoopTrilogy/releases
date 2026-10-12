@@ -77,5 +77,479 @@
     "run": "th3"
    }
   }
+ },
+ "models/weapons/it_w_beretta.tik": {
+  "aim": {
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   }
+  },
+  "qa": "th4: sheet + GIF checked; rack skipped by the support hand",
+  "reload": {
+   "crouch": {
+    "dev": 1.26,
+    "edge": 1.26,
+    "ok": true,
+    "run": "th4"
+   },
+   "prone": {
+    "dev": 1.26,
+    "edge": 1.26,
+    "ok": true,
+    "run": "th4"
+   },
+   "stand": {
+    "dev": 1.25,
+    "edge": 1.25,
+    "ok": true,
+    "run": "th4"
+   },
+   "standL": {
+    "dev": 1.26,
+    "edge": 1.26,
+    "ok": true,
+    "run": "th4"
+   },
+   "standR": {
+    "dev": 1.27,
+    "edge": 1.27,
+    "ok": true,
+    "run": "th4"
+   }
+  }
+ },
+ "models/weapons/m10_revolver.tik": {
+  "aim": {
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   }
+  },
+  "note": "th5: two-handed aim checked (sheet); the only reload row tips the gun 94 deg in the firing hand - an aimed reload needs new choreography",
+  "reload": {
+   "crouch": {
+    "dev": 119.17,
+    "edge": 17.02,
+    "ok": false,
+    "run": "th5"
+   },
+   "prone": {
+    "dev": 119.15,
+    "edge": 16.95,
+    "ok": false,
+    "run": "th5"
+   },
+   "stand": {
+    "dev": 119.15,
+    "edge": 43.35,
+    "ok": false,
+    "run": "th5"
+   },
+   "standL": {
+    "dev": 95.29,
+    "edge": 19.61,
+    "ok": false,
+    "run": "th5"
+   },
+   "standR": {
+    "dev": 116.22,
+    "edge": 17.77,
+    "ok": false,
+    "run": "th5"
+   }
+  }
+ },
+ "models/weapons/nagant_revolver.tik": {
+  "aim": {
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   }
+  },
+  "note": "th5: two-handed aim checked (sheet); no aimed reload yet - the hip reload hands the gun to the left hand (anims_pistol nagantrev_reload_start f11), needs its own choreography",
+  "reload": {
+   "crouch": {
+    "dev": 52.21,
+    "edge": 0.67,
+    "ok": false,
+    "run": "th5"
+   },
+   "prone": {
+    "dev": 49.67,
+    "edge": 0.67,
+    "ok": false,
+    "run": "th5"
+   },
+   "stand": {
+    "dev": 48.95,
+    "edge": 0.89,
+    "ok": false,
+    "run": "th5"
+   },
+   "standL": {
+    "dev": 53.88,
+    "edge": 1.79,
+    "ok": false,
+    "run": "th5"
+   },
+   "standR": {
+    "dev": 45.8,
+    "edge": 1.44,
+    "ok": false,
+    "run": "th5"
+   }
+  }
+ },
+ "models/weapons/p38.tik": {
+  "aim": {
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   }
+  },
+  "qa": "th4: sheet + GIF checked",
+  "reload": {
+   "crouch": {
+    "dev": 1.29,
+    "edge": 0.64,
+    "ok": true,
+    "run": "th4"
+   },
+   "prone": {
+    "dev": 1.28,
+    "edge": 0.62,
+    "ok": true,
+    "run": "th4"
+   },
+   "stand": {
+    "dev": 1.29,
+    "edge": 0.6,
+    "ok": true,
+    "run": "th4"
+   },
+   "standL": {
+    "dev": 1.3,
+    "edge": 0.62,
+    "ok": true,
+    "run": "th4"
+   },
+   "standR": {
+    "dev": 1.31,
+    "edge": 0.63,
+    "ok": true,
+    "run": "th4"
+   }
+  }
+ },
+ "models/weapons/silencedpistol.tik": {
+  "aim": {
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th4"
+   }
+  },
+  "qa": "th4: sheet + GIF checked",
+  "reload": {
+   "crouch": {
+    "dev": 1.29,
+    "edge": 0.63,
+    "ok": true,
+    "run": "th4"
+   },
+   "prone": {
+    "dev": 1.29,
+    "edge": 0.65,
+    "ok": true,
+    "run": "th4"
+   },
+   "stand": {
+    "dev": 1.3,
+    "edge": 0.66,
+    "ok": true,
+    "run": "th4"
+   },
+   "standL": {
+    "dev": 1.3,
+    "edge": 0.65,
+    "ok": true,
+    "run": "th4"
+   },
+   "standR": {
+    "dev": 1.3,
+    "edge": 0.62,
+    "ok": true,
+    "run": "th4"
+   }
+  }
+ },
+ "models/weapons/webley_revolver.tik": {
+  "aim": {
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "ok": true,
+    "run": "th5"
+   }
+  },
+  "note": "th5: two-handed aim checked (sheet); aimed reload is a plain re-bake where the break-open does not read - to be hand-keyed (user 2026-10-12)",
+  "reload": {
+   "crouch": {
+    "dev": 1.56,
+    "edge": 1.56,
+    "ok": false,
+    "run": "th5"
+   },
+   "prone": {
+    "dev": 1.56,
+    "edge": 1.56,
+    "ok": false,
+    "run": "th5"
+   },
+   "stand": {
+    "dev": 1.56,
+    "edge": 1.56,
+    "ok": false,
+    "run": "th5"
+   },
+   "standL": {
+    "dev": 1.55,
+    "edge": 1.55,
+    "ok": false,
+    "run": "th5"
+   },
+   "standR": {
+    "dev": 1.55,
+    "edge": 1.55,
+    "ok": false,
+    "run": "th5"
+   }
+  }
  }
 }
