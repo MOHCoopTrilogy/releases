@@ -412,7 +412,10 @@ VANILLA_DEFAULTS = [
 # out of the console, so it is the player's, like the view.
 DEFAULT_EXCLUDE = ("r_mode", "r_customwidth", "r_customheight", "r_fullscreen", "r_desktopfullscreen", "r_noborder",
                    "ui_displaymode", "fov", "ui_console",
-                   "coop_gfxRecommended")      # [bug-3484] read-only, set by the engine at launch
+                   "coop_gfxRecommended",      # [bug-3484] read-only, set by the engine at launch
+                   # [bug-3536] the Video panel's memory gauge (docs/tools/gen_vram_panel.py): read-only lines the
+                   # renderer publishes, nothing a DEFAULT press could or should set
+                   "r_vramShortGame", "r_vramShortOther", "r_vramShortLimit")
 # Not linked by any widget, but part of the page's shipped state (the terrain "Max" row sets all three ter_*).
 DEFAULT_EXTRAS = {"adv": [("ter_maxtris", "24576")]}
 
@@ -673,6 +676,10 @@ def sheet_pfx(page, idx, total):
 # the block is, and nowhere else. Do not reuse it.
 # Placement: the plan puts the block at the TOP of this sheet. It is at the BOTTOM instead, because the feature
 # ships dormant and an empty band under the title would read as a hole; above the footer it is ordinary margin.
+# [user 2026-10-12] "Video panel only": the readout lives on the Options > Video panel (docs/tools/gen_vram_panel.py).
+# This copy on the Advanced Graphics sheet is OFF: no block, no art, and the sheet keeps the standard row pitch.
+# One switch brings it back (it would then need its r_vramText* cvars published by the renderer again).
+VRAM_ON_ADVANCED = False
 VRAM_Y = 392
 VRAM_BAR = (148, VRAM_Y + 1, 448, 7)
 VRAM_DIR = "textures/hud/vram/"
@@ -696,6 +703,8 @@ def _tga(w, h, px):
 
 
 def vram_art():
+    if not VRAM_ON_ADVANCED:
+        return {}
     flat = lambda c: _tga(8, 8, lambda x, y: c)
     amber, dark = (250, 184, 51, 255), (41, 31, 23, 255)
     return {
@@ -756,6 +765,10 @@ def gate_vram(sheets, problems, fonts, notes):
     """the block fits its band, its longest texts fit their Labels, and every cvar it links is registered"""
     widgets = sheets["advanced_graphics"][0]
     blk = [w for w in widgets if w["name"].startswith("vram")]
+    if not VRAM_ON_ADVANCED:
+        if blk:
+            problems.append("advanced_graphics: VIDEO MEMORY widgets present although VRAM_ON_ADVANCED is off")
+        return
     if not blk:
         problems.append("advanced_graphics: the VIDEO MEMORY block is missing")
         return
@@ -790,8 +803,12 @@ def sheet_adv():
     chrome = live_chrome(base_chrome("VIDEO", "ADVANCED GRAPHICS", "PER-PLAYER", subtitle))
     # [P2.1] rows 2 px closer than the other graphics sheets (22 = the Coop Settings pitch): that frees the band
     # above the footer rule for the VIDEO MEMORY block
-    rows, g = lay_graphics(ADV_SECTIONS, COLX, TOP, COLW, t_pitch=T_PITCH - 2, s_pitch=fs.S_PITCH - 2)
-    footer = [fs.label("footRule", (44, FOOT_Y, 552, 1), bg=fs.RULE)] + vram_block()
+    if VRAM_ON_ADVANCED:
+        rows, g = lay_graphics(ADV_SECTIONS, COLX, TOP, COLW, t_pitch=T_PITCH - 2, s_pitch=fs.S_PITCH - 2)
+        footer = [fs.label("footRule", (44, FOOT_Y, 552, 1), bg=fs.RULE)] + vram_block()
+    else:
+        rows, g = lay_graphics(ADV_SECTIONS, COLX, TOP, COLW)
+        footer = [fs.label("footRule", (44, FOOT_Y, 552, 1), bg=fs.RULE)]
     specs = [
         ("defaultsBtn", "DEFAULTS", PFX_APPLY, "exec coop_mod/cfg/coop_gfxdefaults.cfg", 44, 92),
         ("backBtn", "BACK", PFX_BACK, "popmenu 0", 236, 78),
