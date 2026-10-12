@@ -31,6 +31,8 @@ DOF = ('drop', 'roll', 'pitch', 'side', 'back')
 CLASSES = {
     #           mass  f2 Hz  f1 Hz  damping  one-handed sag (drop, roll, pitch, side, back)   magazine share  tremor (one-handed amplitude)
     'pistol': dict(m=1.0, f2=4.6, f1=3.1, z=0.42, sag=(0.16, -1.4, 0.9, 0.05, 0.0), magw=0.22, tr=(0.020, 0.22, 0.16, 0.020, 0.008), tr2=0.30),
+    # revolvers: heavier than the pistols (Webley Mk VI 1.1 kg, held far out and low while it is loaded)
+    'revolver': dict(m=1.7, f2=3.9, f1=2.7, z=0.50, sag=(0.22, -1.0, 1.4, 0.05, 0.0), magw=0.0, tr=(0.022, 0.20, 0.18, 0.020, 0.008), tr2=0.35),
     'smg':    dict(m=3.6, f2=3.0, f1=2.1, z=0.50, sag=(0.38, -1.0, 1.9, 0.08, 0.0), magw=0.16, tr=(0.030, 0.20, 0.20, 0.025, 0.010), tr2=0.25),
     'rifle':  dict(m=4.2, f2=2.8, f1=1.9, z=0.52, sag=(0.45, -0.8, 2.2, 0.08, 0.0), magw=0.06, tr=(0.030, 0.18, 0.20, 0.025, 0.010), tr2=0.25),
     'lmg':    dict(m=8.5, f2=1.9, f1=1.3, z=0.58, sag=(0.70, -0.6, 3.0, 0.10, 0.0), magw=0.12, tr=(0.035, 0.14, 0.18, 0.025, 0.010), tr2=0.25),
@@ -44,6 +46,12 @@ ACTIONS = {
     'slide_back':  ((-1.0, 0.0, -30.0, 0.0, 10.0), 2.0),
     'thumb_press': ((1.2, 6.0, 5.0, -0.5, 0.0), 2.0),      # a lever pushed down on the left side
     'hand_on':     ((-3.0, 4.0, -9.0, -1.0, 1.2), 3.0),    # the support hand lands from the left and below
+    'break_open':  ((16.0, 0.0, 230.0, 0.0, -18.0), 2.5),     # top-break: barrel and cylinder swing down and forward, the frame kicks
+    'snap_shut':   ((-18.0, 0.0, -210.0, 0.0, 14.0), 2.0),    # swung shut and latched
+    'round_seat':  ((20.0, 0.0, 75.0, 0.0, 0.0), 1.5),      # a cartridge pushed home into the chamber
+    'cyl_out':     ((0.0, -75.0, 20.0, -12.0, 0.0), 2.0),    # swing-out cylinder pushed out to the left
+    'cyl_in':      ((0.0, 85.0, -20.0, 14.0, 0.0), 2.0),     # ...and slapped shut
+    'rod_push':    ((16.0, 0.0, -90.0, 0.0, 18.0), 2.0),     # ejector rod struck with the muzzle up
     'bolt_up':     ((-2.0, 14.0, -6.0, -0.6, 0.0), 2.0),   # right-hand bolt lifted: the rifle rolls toward the hand
     'bolt_back':   ((0.0, 6.0, -12.0, -0.5, 14.0), 2.0),   # pulled rearward into the shoulder
     'bolt_fwd':    ((0.0, -4.0, 10.0, 0.4, -14.0), 2.0),
@@ -105,14 +113,22 @@ def _run(n, ft, c, support, mag, events, strength, tremor, hand=1.0, sub=10, pos
     return out
 
 
-def simulate(n, ft, cls, support, events, mag=None, strength=1.0, fade=6, hand=1.0, pose=None):
+def simulate(n, ft, cls, support, events, mag=None, strength=1.0, fade=6, hand=1.0, pose=None, loop=False):
+    if loop:                                 # a seamless loop: three passes back to back, the last one kept
+        sup3 = [(k + i * n, v) for i in range(3) for k, v in support]
+        ev3 = [(e[0] + i * n,) + tuple(e[1:]) for i in range(3) for e in events]
+        r = simulate(3 * n, ft, cls, sup3, ev3, strength=strength, fade=0, hand=hand)
+        X = r['X'][2 * n:3 * n] - (r['X'][3 * n - 1] - r['X'][2 * n - 1]) * (np.arange(n)[:, None] / float(n))
+        pk = float(np.abs(X[:, 2] - X[:, 2].mean()).max())
+        return dict(dip={f: tuple(float(v) for v in X[f]) for f in range(n)}, peak_deg=pk, settle_s=0.0, X=X,
+                    report='loop, class %s: pitch swing %.2f deg' % (cls, pk))
     """n frames of frame time ft; returns dict(dip, peak_deg, settle_s, residual, report)"""
     c = CLASSES[cls] if isinstance(cls, str) else cls
     # pose: where the shooter HOLDS the gun over time (e.g. brought down for a rack) - the spring follows it
     X = _run(n, ft, c, support, mag, events, strength, True, hand, pose=pose)
     X0 = _run(n, ft, c, support, mag, events, strength, False, hand, pose=pose)
     res = X[n - 1].copy()
-    for f in range(n):                                                # the exact aim on the first and the last frame
+    for f in range(n if fade else 0):                                 # the exact aim on the first and the last frame
         u = min(1.0, (n - 1 - f) / float(fade))
         X[f] *= u * u * (3 - 2 * u)
     X[0] = 0.0

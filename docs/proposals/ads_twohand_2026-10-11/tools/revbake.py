@@ -108,7 +108,7 @@ def webley(kind, slow=False):
     rows = {
         # OPEN: grip -> the barrel, from the left and below (7) -> tips it down with the gun's own animation (11-15;
         # the weapon's clip is started 3 frames into the torso clip). The loop row blends in over 0.1 s from here.
-        'webley_reload': dict(out=out('reload'), **ga({0: 0.0, 2: 0.0, 9: 1.0, 15: 1.0}),
+        'webley_reload': dict(out=out('reload'), **ga({0: 0.0, 1: 0.0, 12: 1.0, 15: 1.0} if kind == 'ads' else {0: 0.0, 2: 0.0, 9: 1.0, 15: 1.0}),
                               left_path={0: dict(aim=1), 7: ONB, 11: ONB, 15: ONBO},
                               elbow_down={'L': [(0, 0.0), (5, ELB), (15, ELB)]},
                               **sh([(0, 0.0), (6, 1.0), (15, 1.0)])),
@@ -237,7 +237,7 @@ def m10(kind, empty=False, slow=False):
     EK = [float(x) for x in os.environ.get('M10_EK', '3,3').split(',')]
     common = dict(gun='s_w_m10_38', fixed_right=True)
     if empty:
-        common['elbow_vec'] = {'L': tuple(float(x) for x in os.environ.get('M10_ELBL', '0,1,0.3').split(','))}
+        common['elbow_vec'] = {'L': tuple(float(x) for x in os.environ.get('M10_ELBL', '0,1,-0.7' if kind == 'ads' else '0,1,0.3').split(','))}
     if kind == 'ads':
         common.update(charge=aim2h)
         sh = lambda keys: dict(shoulder_ref=dict(clip=REFAIM, keys=keys))
@@ -310,6 +310,24 @@ def main():
             continue
         kw = dict(st['common']); kw.update({k: v for k, v in rc0.items() if k != 'out'})
         rc = H.auto_recipe(row, **kw)
+        if '_ads' in a.set:                         # the gun REACTS: open / each round / close, by gunphys (class revolver)
+            import gunphys
+            n_ = R.load(R.ANIM + rc['hip']).numFrames
+            fam = a.set.split('_')[0]
+            part = 'single' if row.endswith('_single') else ('end' if row.endswith('_end') else 'open')
+            OPEN = dict(webley='break_open', m10='cyl_out', nagant='hand_on')[fam]
+            SHUT = dict(webley='snap_shut', m10='cyl_in', nagant='hand_on')[fam]
+            F = lambda x: int(round(x * (n_ - 1)))
+            if part == 'open':
+                ev = [(F(0.42), 'hand_on'), (F(0.70), OPEN)] + ([(F(0.52), 'rod_push')] if 'empty' in a.set else [])
+                ph = gunphys.simulate(n_, 1 / 30.0, 'revolver', [(0, 1), (n_ - 1, 1)], ev, fade=0)
+            elif part == 'single':
+                ph = gunphys.simulate(n_, 1 / 30.0, 'revolver', [(0, 0.35), (F(0.2), 0.0), (F(0.7), 0.0), (F(0.85), 0.45), (n_ - 1, 0.35)],
+                                      [(F(0.84), 'round_seat')], loop=True)
+            else:
+                ph = gunphys.simulate(n_, 1 / 30.0, 'revolver', [(0, 0.35), (F(0.25), 1), (n_ - 1, 1)], [(F(0.25), 'hand_on'), (F(0.62), SHUT)])
+            rc['dip'] = ph['dip']; rc['dip_after'] = True
+            print('   physics', row, ph['report'][:110])
         H.RECIPES[row] = rc
         sk, rep = H.bake(row, CTL)
         b = R.skc_io.write(sk)

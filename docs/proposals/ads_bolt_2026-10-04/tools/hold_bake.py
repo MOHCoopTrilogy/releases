@@ -251,7 +251,7 @@ def bake(name, ctl):
             Pi = np.eye(4); Pi[3, 0:3] = (pv - dback, dside, -dp[0])
             D = P @ Q @ Pi @ D
         Dm = Mcam @ D @ R.inv(Mcam); Dm[3, 0:3] /= R.S
-        Gads = track[f][0] @ Gc @ Dm                     # weight (gun-local) on the aim gun, then the sight-line slide
+        Gads = track[f][0] @ Gc @ (np.eye(4) if rc.get('dip_after') else Dm)   # weight (gun-local) on the aim gun, then the sight-line slide
         if rc.get('gun_abs'):
             # gun_abs = dict(T=4x4 gun-in-camera (rows, u), keys={frame: weight}): the hip and the aimed version of
             # a hand-keyed reload bring the gun to the SAME place in the view, so one choreography serves both
@@ -263,6 +263,8 @@ def bake(name, ctl):
                     Gt = np.asarray(ga['T'], float) @ R.inv(Mcam)
                     Gt[3, 0:3] /= R.S
                     Gads = B.blend_H(Gads, Gt, wg)
+        if rc.get('dip_after'):                          # physics motion on top of the keyed work pose (revolvers):
+            Gads = Gads @ Dm                             # gun_abs blends to an absolute pose and would discard it
         relRh = Wh['Bip01 R Hand'] @ R.inv(Gh)
         relLh = Wh['Bip01 L Hand'] @ R.inv(Gh)
         if rc.get('support_aim'):                        # cock.py clips: after the magazine the hip art's left hand is on
