@@ -1,3 +1,80 @@
+# HANDOVER (2026-10-12 evening) - read this first, the rest of the file is the history
+
+**State: step A of the list is done and committed (docs `main` 02f39db, engine `ads-next` 94bb3dca). B, C, D and
+everything after them are NOT started.** Nothing is in the mod tree or the fixes pak; all of it is staged here.
+
+## The standard (every aimed reload / cycle, all three)
+1. ON TARGET - centre box (middle 20 % of the screen) covered beyond the settled aim under 2 % in every frame; where
+   the mechanism cannot be worked on the sights the gun comes DOWN under the box and returns to within 0.05 deg.
+2. THE WEAPON REACTS with weight - every motion from a cause, through `tools/gunphys.py`, never decorative keys.
+3. THE ACTION REALLY WORKS on the model, by the hand that suits the real control; reproduce the hip technique.
+
+## What passes now (revolvers, aimed, runs tk11-tk13 on cgame_adsnext7 + `G:\mohaa-adsanim\ov_revolvers_default.pk3`)
+| gun | engine box max | offline box max (every frame) | back to | per round | GIF (20 fps, centre box drawn) |
+|---|---|---|---|---|---|
+| Webley | 0.2 % (empty tk13, 3 rounds tk4) | 0.2 % | 0.00 deg | 2.5 deg swing | `evidence/webley_reload_aimed_low_small.gif` |
+| S&W M10 | 1.6 % (tk11), 0.3 % (3 rounds tk4) | 0.2 % | 0.00 deg | 2.5 deg swing | `evidence/m10_reload_aimed_low_small.gif` |
+| Nagant | 0.4 % (tk12) | 0.0 % | 0.00 deg | 0.8 u shove + 1.1 deg (from the clip) | `evidence/nagant_reload_aimed_low_small.gif` |
+
+M10 run tk13 read 4.5 % in its first five measured frames: that is the last shot's smoke over the brown door (the
+model is outside the box there - offline 0.2 %, partial reload 0.3 %). The hip reloads were not touched.
+
+Known weak points, seen in playback (tell the user, do not hide them):
+* Webley close: the gun turns upright in about 0.1 s (two GIF frames) - brisk; the support hand lands on the grip in
+  the last two frames of the rise. Open: the barrel still tips in about 0.1 s (eased, was 3 frames linear).
+* M10: cases are in view for about 0.16 s, low left, in front of the sleeve; the dump's cylinder sits at the bottom edge.
+* Nagant: the whole work is at the bottom edge of the frame (gate just in view); during the hand-over the left
+  forearm comes in large from the left edge for about 0.2 s.
+* The break-off states (fire press during a reload) were NOT re-run with the new clips (loop seat frames unchanged).
+
+## How A was done (reuse this for every other gun)
+* `tools/revbake.py`: aimed sets now use a list of `gun_abs` poses - `Tlo` (the aim dropped straight down, aligned)
+  then the work pose. Leaving: Tlo weight 0->1 first, work pose after; returning: work pose off first, then Tlo->aim.
+  A gun that rises / falls aligned stays inside the aim's own silhouette, so the box cover is zero by construction.
+  `curl()` = finger_add for a hand on a thin part. Physics event frames per family in the set's `phys` dict;
+  `REV_SEAT` (default 2.0) scales the per-round reaction; `gate_seat` / `cyl_turn` are the Nagant's actions.
+* Gun-side clips: `tools/retime.py ... warp new:old,...` moves / eases a part of a gun clip; the staged tiks carry
+  `reload_ads_loaded` / `reload_ads_empty` (aimed open), `reload_end_ads`, `reload_single_ads`
+  (`tools/patch_tik_ads.py`, `patch_tik_nagant_single.py`); cgame ads-next shows them in an aimed reload.
+* Check OFFLINE first: `sh tools/rev.sh <webley|m10|nagant> [sheet.jpg]` bakes, builds `_ov_wip.pk3` and runs
+  `tools/offbox.py` (box cover over EVERY clip frame; needs `IRONSIGHT_EXTRA_PAKS=<overlay>` for staged gun clips).
+  The engine measure (`centrebox.py`) skips the first 20 capture frames of an emptied gun and still counts smoke.
+* Engine run (the working copies live in `SCRATCH\ads2h`, synced into `tools/` at each commit; no lock / slot needed):
+  `sh build_ov.sh ov_x.pk3` then
+  `python run_2h.py <id> --overlay <abs path>\ov_x.pk3 --cgame cgame_adsnext7 --guns webley,m10_revolver --parts demoy --demoempty --demoreload 450 --shots 6`
+  (Nagant: `--guns nagantrev --shots 7 --demoreload 500`; partial reload: drop `--demoempty`, `--shots 3 --demoreload 260`).
+  Never give 7 shots to a 6-round gun: the 7th press is a break-off. Then `python centrebox.py <id> --dump`,
+  `python loopreact.py <id>`, `python animmarks.py <id>` (ADSFRAME `anim` / `sight` do not describe a gun on the
+  off-hand tag: the Nagant reads 6 -> 8 and 0.00 deg while its loop plays).
+* GIF: `python dgif.py <id> <gun> out.gif --frames a:b:3 --w 400 --crop 240,120,1040,720 --box` (delta frames, about
+  2 MB for 130 frames), then `python gifsheet.py out.gif sheet.jpg a:b:1` and LOOK at every frame of the transitions.
+* Python patch scripts are written with the file tool - a heredoc mangled `\t` / `\s` again today (bug-3581).
+
+## The list from here (order given by the coordinator; report at B, C, D)
+   **B, found but NOT fixed - why the Hi-Standard rack does not play in prone:** it is not a different first-person
+   row. `coop_mod/player_Torso.st` `RELOAD_PISTOL` picks the torso animation `coop_prone_reload_pistol`
+   (`weapon_pistol/prone/pistol_prone_reload.skc`, 1.50 s) for EVERY pistol when `POSITION_TYPE "prone"`, listed first,
+   and the state leaves on `ANIMDONE_TORSO`. The first-person aimed reload clips are all 73 frames = 2.43 s (the
+   standing torso length), so in prone the server ends the reload 0.93 s early and the view clip is cut - for the
+   Hi-Standard exactly the rack at the end (every other pistol loses its last 0.9 s too: the hand coming back on).
+   The per-shot rack is client-only on `viewmodelanim charge` and is not stance-dependent. Options: (a) a prone torso
+   alias resampled to 73 frames (`retime.py <clip> <out> 73`) used by the prone line - pistol reloads in prone then
+   take 2.43 s like standing (a gameplay timing change: ask the user); (b) a 1.5 s first-person variant per pistol
+   for prone (needs cgame to know the stance, and a rack does not fit in 1.5 s). (a) is the honest one. Staging it
+   means a staged copy of player_Torso.st + anims_shared.txt in `assets/` - the mod tree is not to be written.
+B. Hi-Standard prone (the rack does not play there - a different reload row is used in prone: find which, fix), the
+   splayed open hand on release (relax it), the matrix scan's pass bar (sights may leave during a declared rack /
+   open-cylinder phase, must return within 0.05 deg, box under 2 %); break-off verified from a SECOND client (recipe:
+   `SCRATCH\lms\lms_test.py`, copy launch_joiner) and with two or more rounds in - and re-run with the new clips.
+C. Hand-position mismatches of the matrix, largest first: DP-28, Vickers, PPSh, then the 2-3 u group (G43, Moschetto,
+   SVT, MP40 family, Breda, Carcano, De Lisle), BAR family, Type 100's residual 2 u. Before / after still pair each.
+D. Welrod (bolt knob at the rear on the sight line) and Carcano per-shot cycles.
+Then: trim Colt / P38 empty and Beretta loaded reloads (each over 2 % for a few frames - `offbox.py` works for them
+too), the 15 pistols sharing the Colt / P38 clips in the engine, braced and vehicle stances, the Beretta reading
+near-black, the P38 open-slide gap; then every other row of `coverage.md`.
+
+---
+
 # Two-handed pistol aim (2026-10-11)
 
 User: *"We were supposed to also have two hands holding handguns in ads btw"* - part of the "everything under aimed
