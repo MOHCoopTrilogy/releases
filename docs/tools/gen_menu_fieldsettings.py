@@ -75,7 +75,8 @@ SLIDER_SHADER = "textures/menu/slider"          # retail; coop_postfx.urc slider
 PLATE_W, PLATE_H, COLW = 46, 18, 256
 SLIDER_X, SLIDER_W, SLIDER_H = 110, 146, 16
 ARROW_W, THUMB_W = 15, 10                       # uislider.cpp internals, for the default tick position
-T_PITCH, S_PITCH, ROW_H = 24, 34, 20
+# [2026-09-25] T_PITCH 24 -> 22: both columns were exactly full (260px) and HUD & FEEDBACK gained Hide Objective Cards
+T_PITCH, S_PITCH, ROW_H = 22, 34, 20
 CANVAS_W, CANVAS_H = 640, 480
 
 
@@ -105,6 +106,8 @@ SETTINGS_SECTIONS = [
         ("Compass", "toggle", "Modern Compass", "coop_compassBar", T(1), CG + "cg_drawtools.cpp"),
         ("HudFade", "toggle", "Auto-Hide HUD", "coop_hudFade", T(1), CG + "cg_drawtools.cpp"),
         ("HudTime", "slider", "Hide HUD After", "coop_hudFadeTime", S("integer", 2, 15, 1, 5, "2 SEC", "15 SEC"), CG + "cg_drawtools.cpp"),
+        # [user 2026-09-25] per-player: rides userinfo to the server's card (objectives.scr); registered in cl_keys.cpp
+        ("HideObj", "toggle", "Hide Objective Cards", "coop_hideObjCards", T(0), "openmohaa-hzm/code/client/cl_keys.cpp"),
     ]),
     (1, "CAMERA & WEAPON", [
         ("CamMotion", "slider", "Camera Motion", "coop_camMotion", S("float", 0, 2, 0.1, 1, "STEADY", "STRONG"), CG + "cg_view.c"),
@@ -131,7 +134,22 @@ HOST_SECTIONS = [
         ("Tinnitus", "toggle", "Shell Shock Effects", "coop_tinnitus", T(1), "hzm-mohaa-coop-mod/coop_mod/tinnitus.scr"),
         ("XpPopup", "toggle", "XP Gain Popups", "coop_xpKillPopup", T(1), "hzm-mohaa-coop-mod/coop_mod/xp.scr"),
         ("ChalPopup", "toggle", "Pinned Challenge Progress", "coop_chalPopup", T(1), "hzm-mohaa-coop-mod/coop_mod/challenges.scr"),
+        # [user 2026-10-12] Last Man Standing (LMS Lives on the start screen): may a player who is NEW to the mission
+        # spawn when they join late? Read in coop_mod/main.scr::lmsRestoreLives (bug-3518). A returning player always
+        # gets the lives they left with, whatever this says. In this section, not its own: the sheet has no room for
+        # another header (CLOSE is pinned above the start button underneath).
+        ("LmsLate", "toggle", "LMS: Late Joiners Can Spawn", "coop_lmsLateJoin", T(1), "hzm-mohaa-coop-mod/coop_mod/main.scr"),
     ]),
+    # [user 2026-09-25] Coop HARDCORE - one row; every rule lives in coop_mod/hardcore.scr (latched per map).
+    (0, "HARDCORE", [
+        ("Hardcore", "toggle", "Hardcore", "coop_hardcore", T(0), "hzm-mohaa-coop-mod/coop_mod/hardcore.scr"),
+    ]),
+]
+# Help lines printed under the host rows (verdana-12, MUTED; each must fit the 464px note width - gate_sheet measures).
+HOST_NOTES = [
+    "Health capped at 250. No crosshair, health bar, stamina or hit markers; ammo on reload.",
+    "Half the bleed-out, no self-revive while a teammate is up, 1 medkit, no enemy health drops.",
+    "Respawns come in 20s waves. Takes effect on the next map. +100 XP on completion.",
 ]
 
 # The HOST RULES opener on coop_start.urc (hand-edited file; verified here, not written).
@@ -254,20 +272,27 @@ def sheet_settings():
 
 
 def sheet_host():
+    # [2026-09-25] grown for the HARDCORE section + its three help lines: folder/paper 100px taller, footer below the notes
     chrome = [
-        label("folder", (104, 96, 528, 272), bg=FOLDER, border="3D_BORDER"),
-        text_label("foldertab", (124, 76, 140, 24), "HOST RULES", "facfont-20", TABINK, "center", bg=TAB, border="3D_BORDER"),
-        label("paper", (116, 108, 504, 250), bg=PAPER, border="3D_BORDER"),
-        label("titlePlate", (128, 118, 480, 26), bg=PLATE, border="3D_BORDER"),
-        text_label("titleText", (140, 121, 220, 20), "WHEN YOU HOST", "facfont-20", BEIGE, "left"),
-        text_label("scopeBadge", (436, 124, 160, 14), "HOST ONLY", "verdana-12", HOSTRED, "right", dontlocalize=True),
-        text_label("scopeNote", (136, 150, 464, 14), "Applies to everyone on your server. Ignored when you join someone else's.",
+        # [2026-10-12] top edge up 18 px (folder / paper 18 taller, bottoms unchanged) for the LMS row: CLOSE cannot move
+        # down, the start button of coop_start is right under it (gate_fallthrough)
+        label("folder", (104, 78, 528, 390), bg=FOLDER, border="3D_BORDER"),
+        text_label("foldertab", (124, 58, 140, 24), "HOST RULES", "facfont-20", TABINK, "center", bg=TAB, border="3D_BORDER"),
+        label("paper", (116, 90, 504, 368), bg=PAPER, border="3D_BORDER"),
+        label("titlePlate", (128, 100, 480, 26), bg=PLATE, border="3D_BORDER"),
+        text_label("titleText", (140, 103, 220, 20), "WHEN YOU HOST", "facfont-20", BEIGE, "left"),
+        text_label("scopeBadge", (436, 106, 160, 14), "HOST ONLY", "verdana-12", HOSTRED, "right", dontlocalize=True),
+        text_label("scopeNote", (136, 132, 464, 14), "Applies to everyone on your server. Ignored when you join someone else's.",
                    "verdana-12", MUTED, "left"),
     ]
-    rows, g = lay_sheet(HOST_SECTIONS, {0: 128}, 172, 480)
-    footer = [label("footRule", (128, 318, 480, 1), bg=RULE)]
-    buttons = [plate_button("closeBtn", (530, 326, 78, 24), "CLOSE", "sound/menu/back.wav", "popmenu 0")]
-    return rows, ordered(chrome, g, footer, buttons), (116, 108, 620, 358)
+    rows, g = lay_sheet(HOST_SECTIONS, {0: 128}, 154, 480)
+    notes_y = max(r[1] for r in rows) + 24
+    footer = [text_label("hcNote%d" % (i + 1), (136, notes_y + 14 * i, 464, 14), t, "verdana-12", MUTED, "left")
+              for i, t in enumerate(HOST_NOTES)]
+    foot = notes_y + 14 * len(HOST_NOTES) + 8
+    footer.append(label("footRule", (128, foot, 480, 1), bg=RULE))
+    buttons = [plate_button("closeBtn", (530, foot + 8, 78, 24), "CLOSE", "sound/menu/back.wav", "popmenu 0")]
+    return rows, ordered(chrome, g, footer, buttons), (116, 90, 620, 458)
 
 
 # ---------------------------------------------------------------- emit

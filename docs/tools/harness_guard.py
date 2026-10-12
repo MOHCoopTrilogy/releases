@@ -30,7 +30,7 @@ CLI:
     python harness_guard.py status     prints every client/server process with its class, and the slot holder
     python harness_guard.py window     prints the displays and the chosen test display
 """
-import json, os, subprocess, sys, time
+import json, os, re, subprocess, sys, time
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 if _HERE not in sys.path:
@@ -134,9 +134,22 @@ HARNESSES = {
     # byte copies of the G:\mohaa-atsupply binaries (game 54b10f3b = LIVE), fresh home, basepath = the GOG tree read
     # only, the working-tree code pk3 + a probe overlay in the home, net_ip 127.0.0.1, net_port 12371, queue slot "paras"
     r"G:\mohaa-paras": {"owner": "paras", "home": r"G:\mohaa-paras\home"},
+    # loading-tip verification (docs/proposals/tips_officer_ai_2026-10-05, scratchpad tipverify/tv_ingame.py): byte
+    # copies of the LIVE G:\mohaa-gl2 exe/DLLs (game 6f68255a), fresh home, HEAD code pk3 + test-only tv_probe overlay,
+    # net_ip 127.0.0.1, net_port 12391, queue slot "tipverify"
+    r"G:\mohaa-tipverify": {"owner": "tipverify", "home": r"G:\mohaa-tipverify\home"},
+    # modern scope view before/after (docs/proposals/scopes_2026-10-05/tools/run_scopes.py, bug-3462): byte copies of
+    # the LIVE G:\mohaa-gl2 exe/DLLs (read only, never written) + the test cgame/gl2 swapped in from cgames\ and
+    # renderers\, fresh home (no qkey/saves), basepath = the GOG tree read-only, the ironsights harness overlay + the
+    # staged scope textures in the home, net_ip 127.0.0.1, net_port 12561, queue slot "scopes"
+    r"G:\mohaa-scopes": {"owner": "scopes", "home": r"G:\mohaa-scopes\home"},
     # aircraft call-ins (docs/proposals/aircraft_2026-10-05): copy of the LIVE exe/DLLs + test cgame/game in \dlls,
     # overlay pk3 in the home, queue slot "planes"
     r"G:\mohaa-planes": {"owner": "planes", "home": r"G:\mohaa-planes\home"},
+    # truck riders standing? (scratchpad trucks/trucks_run.py): byte copies of the LIVE v1.10.14 G:\mohaa-gl2 exe/DLLs
+    # (read only), fresh home (no qkey/saves), basepath = the GOG tree read-only (deployed v1.10.14 paks), g_ai 1,
+    # net_ip 127.0.0.1, net_port 12611, queue slot "trucks"
+    r"G:\mohaa-trucks": {"owner": "trucks", "home": r"G:\mohaa-trucks\home"},
     # server frame time on m1l1 (docs/proposals/server_perf_m1l1_2026-09-29/tools/srvperf.py): HEADLESS - private
     # omohaaded copies of the LIVE v1.10.3 set (scratchpad srvperf\ded_ship: game b044385b; srvperf\ded_prof: the
     # instrumented game.dll built in the isolated copy openmohaa-hzm-srvperf), bots as players, net_ip 127.0.0.1,
@@ -175,24 +188,65 @@ HARNESSES = {
     # copy openmohaa-hzm-bugsweep, fresh home from G:\mohaa-adsanim\pristine (no qkey/saves), basepath = the GOG tree
     # read-only, test overlay pk3 in the home, net_ip 127.0.0.1, net_port 12542, queue slot "bugsweep"
     r"G:\mohaa-bugsweep": {"owner": "bugsweep", "home": r"G:\mohaa-bugsweep\home"},
+    # footprints 2026-10-04 (docs/proposals/footprints_2026-10-04/tools/run_footprints.py): byte copies of the LIVE
+    # v1.10.12 exe/game/renderers (read from G:\mohaa-gl2, never written) + the test cgame built in the isolated copy
+    # openmohaa-hzm-footprints, fresh home from G:\mohaa-adsanim\pristine (no qkey/saves), basepath = the GOG tree
+    # read-only, test overlay pk3 in the home, net_ip 127.0.0.1, net_port 12551, queue slot "footprints"
+    r"G:\mohaa-footprints": {"owner": "footprints", "home": r"G:\mohaa-footprints\home"},
+    # sprintfix 2026-10-05 (SCRATCH/sprintfix/run_sprintfix.py): byte copies of the G:\mohaa-footprints exe/renderers + the
+    # LIVE game.dll/cgame.dll (before, read from G:\mohaa-gl2, never written) or the game.dll/cgame built in the isolated copy
+    # SCRATCH/sprintfix/src (after), fresh home from G:\mohaa-adsanim\pristine (no qkey/saves), basepath = the GOG tree
+    # read-only, test overlay pk3 in the home, net_ip 127.0.0.1, net_port 12557, queue slot "sprintfix"
+    r"G:\mohaa-sprintfix": {"owner": "sprintfix", "home": r"G:\mohaa-sprintfix\home"},
+    # quick-draw motion 2026-10-05 (docs/proposals/quickdraw_motion_2026-10-05/tools/run_qdraw.py, reusing the
+    # ironsights/adsbolt harness): byte copies of the G:\mohaa-adsanim exe/renderers + its game_install_orig (54b10f3b)
+    # + the test cgame built in the isolated copy openmohaa-hzm-qdraw, fresh home from G:\mohaa-adsanim\pristine (no
+    # qkey/saves), basepath = the GOG tree read-only, test overlay pk3 in the home, net_ip 127.0.0.1, net_port 12563,
+    # queue slot "quickdraw"
+    r"G:\mohaa-qdraw": {"owner": "quickdraw", "home": r"G:\mohaa-qdraw\home"},
     # reload authenticity phase A 2026-10-05 (docs/proposals/reload_authenticity_2026-10-05/tools/run_reloadauth.py,
     # reusing the ironsights harness): byte copies of the LIVE G:\mohaa-gl2 exe/cgame/game/renderers, fresh home from
     # G:\mohaa-adsanim\pristine (no qkey/saves), basepath = the GOG tree read-only, test overlay pk3 in the home,
     # net_ip 127.0.0.1, net_port 12571, queue slot "reloadauth"
     r"G:\mohaa-reloadauth": {"owner": "reloadauth", "home": r"G:\mohaa-reloadauth\home"},
-    # HUD declutter event feed before/after (docs/proposals/hud_declutter_2026-10-05/tools/run_hudfeed.py): byte copies of
-    # the LIVE G:\mohaa-gl2 exe/cgame/game/renderers (via the voicefix copies) + the test cgame/game built in the isolated
-    # copy openmohaa-hzm-hudfeed, fresh home from the adsanim pristine (no qkey/saves), basepath = GOG read-only, test
-    # overlay pk3 in the home, net_ip 127.0.0.1, net_port 12701, queue slot "hudfeed"
-    r"G:\mohaa-hudfeed": {"owner": "hudfeed", "home": r"G:\mohaa-hudfeed\home"},
     # weapon HD textures 2026-10-05 (pilot: docs/proposals/weapon_hd_2026-10-05/tools/run_weaponhd.py; full set:
     # docs/tools/weapon_hd/run_ingame.py), reusing the
     # ironsights harness): byte copies of the LIVE G:\mohaa-gl2 exe/cgame/game/renderers, fresh home from
     # G:\mohaa-adsanim\pristine (no qkey/saves), basepath = the GOG tree read-only, test overlay + the staged HD weapons
     # pk3 in the home, net_ip 127.0.0.1, net_port 12597, queue slot "weaponhd"
     r"G:\mohaa-weaponhd": {"owner": "weaponhd", "home": r"G:\mohaa-weaponhd\home"},
+    # voice-pool proof run 2026-10-05 (docs/proposals/chatter_prune_2026-10-05/tools/run_voicefix.py, reusing the
+    # ironsights harness): byte copies of the LIVE G:\mohaa-gl2 exe/cgame/game/renderers, fresh home from the
+    # adsanim pristine (no qkey/saves), basepath = GOG read-only, test overlay pk3 (changed voice scripts + probe) in
+    # the home, net_ip 127.0.0.1, net_port 12663, queue slot "voicefix"
+    r"G:\mohaa-voicefix": {"owner": "voicefix", "home": r"G:\mohaa-voicefix\home"},
+    # bleed-out ring + teammate medic icon + surrender icon (docs/proposals/bleedout_2026-10-05/tools/bleed_run.py):
+    # byte copies of the LIVE G:\mohaa-gl2 exe/cgame/game/renderers + test DLLs in \dlls, fresh home (no qkey/saves),
+    # basepath = GOG read-only, test overlay pk3 in the home, net_ip 127.0.0.1, net_port 12681, queue slot "bleedout"
+    r"G:\mohaa-bleedout": {"owner": "bleedout", "home": r"G:\mohaa-bleedout\home"},
+    # HUD declutter event feed before/after (docs/proposals/hud_declutter_2026-10-05/tools/run_hudfeed.py): byte copies of
+    # the LIVE G:\mohaa-gl2 exe/cgame/game/renderers (via the voicefix copies) + the test cgame/game built in the isolated
+    # copy openmohaa-hzm-hudfeed, fresh home from the adsanim pristine (no qkey/saves), basepath = GOG read-only, test
+    # overlay pk3 in the home, net_ip 127.0.0.1, net_port 12701, queue slot "hudfeed"
+    r"G:\mohaa-hudfeed": {"owner": "hudfeed", "home": r"G:\mohaa-hudfeed\home"},
+    # gore expansion phases 2026-10-05 (docs/proposals/gore_2026-10-05/tools/run_gore.py): byte copies of the LIVE
+    # G:\mohaa-gl2 exe/cgame/game/renderers (read, never written) + test DLLs built in the isolated copy
+    # openmohaa-hzm-gore, fresh home from the adsanim pristine (no qkey/saves), basepath = GOG read-only, test overlay
+    # pk3 in the home, net_ip 127.0.0.1, net_port 12721, queue slot "gore"
+    r"G:\mohaa-gore": {"owner": "gore", "home": r"G:\mohaa-gore\home"},
+    # 2026-10-12: two copies of G:\mohaa-hudfeed (released v1.10.21 ship DLLs, same layout) so agents can test side by
+    # side: hudfeed2 = the smaller-items agent (net_port 12721), hudfeed3 = the coordinator (net_port 12741)
+    r"G:\mohaa-hudfeed2": {"owner": "hudfeed2", "home": r"G:\mohaa-hudfeed2\home"},
+    r"G:\mohaa-hudfeed3": {"owner": "hudfeed3", "home": r"G:\mohaa-hudfeed3\home"},
 }
-SLOT = os.path.join(os.environ.get("LOCALAPPDATA", r"C:\Users\Public"), "hzm_harness", "client_slot.json")
+# [2026-10-12] one slot PER OWNER (= per harness folder), no longer one for the whole PC: the user lifted the quiet rule
+# ("It's fine to hear the fans now"), so different harnesses run at the same time. Two clients of the SAME harness
+# still exclude each other, which is what protects its home folder and log.
+SLOT_DIR = os.path.join(os.environ.get("LOCALAPPDATA", r"C:\Users\Public"), "hzm_harness")
+
+
+def _slot(owner):
+    return os.path.join(SLOT_DIR, "client_slot_%s.json" % re.sub(r"[^A-Za-z0-9_-]", "_", owner or "none"))
 
 
 class SlotBusy(Exception):
@@ -239,9 +293,15 @@ def user_game_running():
     return [r["pid"] for r in classify() if r["cls"] == "USER"]
 
 
-def slot_holder():
+def slot_holder(owner=None):
+    if owner is None:
+        # older callers ask "is any private client up": the first live slot of any owner
+        for o in sorted({h["owner"] for h in HARNESSES.values()}):
+            if slot_holder(o):
+                return slot_holder(o)
+        return None
     try:
-        s = json.load(open(SLOT))
+        s = json.load(open(_slot(owner)))
     except (OSError, ValueError):
         return None
     alive = s.get("pid") is None or any(r["pid"] == s.get("pid") for r in classify())
@@ -251,40 +311,42 @@ def slot_holder():
 
 
 def acquire_slot(owner, exe, home, ports, minutes=60):
-    os.makedirs(os.path.dirname(SLOT), exist_ok=True)
-    cur = slot_holder()
-    if cur and cur.get("owner") != owner:
-        raise SlotBusy("client slot held by %s until %s" % (cur.get("owner"), time.ctime(cur.get("expires", 0))))
+    os.makedirs(SLOT_DIR, exist_ok=True)
+    cur = slot_holder(owner)
+    if cur and cur.get("pid") is not None and cur.get("pid") != os.getpid():
+        raise SlotBusy("client slot %s is in use by pid %s until %s" % (owner, cur.get("pid"), time.ctime(cur.get("expires", 0))))
     rec = {"owner": owner, "exe": exe, "home": home, "ports": ports, "pid": None, "since": time.time(),
            "expires": time.time() + minutes * 60}
-    tmp = SLOT + ".%d.tmp" % os.getpid()
+    tmp = _slot(owner) + ".%d.tmp" % os.getpid()
     json.dump(rec, open(tmp, "w"), indent=1)
-    os.replace(tmp, SLOT)
+    os.replace(tmp, _slot(owner))
     return rec
 
 
 def set_slot_pid(owner, pid):
-    s = json.load(open(SLOT))
+    s = json.load(open(_slot(owner)))
     if s.get("owner") != owner:
         raise SlotBusy("slot is not ours")
     s["pid"] = pid
-    json.dump(s, open(SLOT, "w"), indent=1)
+    json.dump(s, open(_slot(owner), "w"), indent=1)
 
 
 def release_slot(owner):
     try:
-        s = json.load(open(SLOT))
+        s = json.load(open(_slot(owner)))
     except (OSError, ValueError):
         return
     if s.get("owner") == owner:
-        os.remove(SLOT)
+        os.remove(_slot(owner))
 
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "status":
         for r in classify():
             print("%-7s %-8s pid=%-6s %s owner=%s" % (r["cls"], r["name"], r["pid"], r["path"], r["owner"]))
-        print("slot:", slot_holder())
+        for o in sorted({h["owner"] for h in HARNESSES.values()}):
+            if slot_holder(o):
+                print("slot %s: %s" % (o, slot_holder(o)))
     elif len(sys.argv) > 1 and sys.argv[1] == "window":
         for m in window.monitors():
             print(m)
