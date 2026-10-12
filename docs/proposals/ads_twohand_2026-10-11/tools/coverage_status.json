@@ -280,7 +280,7 @@
   }
  },
  "models/weapons/m10_revolver.tik": {
-  "action": "support hand pushes the cylinder out, ejector rod, one round per loop - shown, but the gun leaves the aim",
+  "action": "worked LOW: straight down, support hand pushes the cylinder out; EMPTY: gun canted muzzle-up 16 deg, ejector rod struck, six cases jump out to the lower left; one round per loop from the pouch; cylinder pushed shut low (reload_end_ads), straight up into the aim - shown",
   "aim": {
    "crouch": {
     "dev": 0.0,
@@ -384,12 +384,12 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "tj1: physics in (about 1 deg); the dump still puts the muzzle through the box: max 21.5 %, 3.3 % of frames",
-   "target": "no"
+   "run": "tk11 (empty: box 1.6 %) tk4 (3 rounds: 0.3 %); offline 0.2 %; tk13 read 4.5 % in 5 frames = the last shot's smoke over the door, model outside the box; per round 2.5 deg swing",
+   "target": "yes"
   }
  },
  "models/weapons/nagant_revolver.tik": {
-  "action": "firing-side hand feeds through the loading gate, support hand holds the gun - shown, but the gun leaves the aim",
+  "action": "worked LOW: straight down, rolled onto its left side in the support hand (gate up), firing-side hand feeds one round per loop through the gate, the fired case nudged out per round (reload_single_ads), rolled upright and straight up into the aim - shown; the gun sits at the bottom edge of the frame",
   "aim": {
    "crouch": {
     "dev": 0.0,
@@ -493,8 +493,8 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "tj2: physics in but small (0.1-0.7 deg); box max 3.4 %, 3.6 % of frames",
-   "target": "no"
+   "run": "tk12 (empty: box 0.4 %) tk10 (3 rounds: 1.7 %, with the old high case throw); offline 0.0 %; per round 0.8 u shove + 1.1 deg in the clip (the engine probe does not read a gun on the off-hand tag)",
+   "target": "yes"
   }
  },
  "models/weapons/p38.tik": {
@@ -698,7 +698,7 @@
   }
  },
  "models/weapons/webley_revolver.tik": {
-  "action": "support hand, one round per loop into the open cylinder; top-break opened by both hands - shown, but the gun leaves the aim",
+  "action": "worked LOW under the centre box: gun straight down out of the aim, support hand tips the barrel open (gun clip eased, reload_ads_*), six cases kicked up and across the lower frame when empty, one round per loop from the pouch (0.77 s), barrel swung shut low (reload_end_ads), hand back on the grip, straight up into the aim - shown",
   "aim": {
    "crouch": {
     "dev": 0.0,
@@ -796,8 +796,8 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "tj1: physics in (open 2.7 deg, close 1.7, per round 0.5-0.6); box covered beyond the aim max 11.6 % in 1.1 % of frames - over the 2 % bar",
-   "target": "no"
+   "run": "tk13 (empty: box 0.2 %, back to 0.00 deg) tk4 (3 rounds: 0.2 %); offline offbox.py 0.2 % over every clip frame; per round 2.5 deg swing",
+   "target": "yes"
   }
  }
 }

@@ -26,14 +26,14 @@
 	{
 		client
 		{
-			14 tagspawn tag_weapon_right
+			13 tagspawn tag_weapon_right	// aimed: kicked up and across the lower frame by the extractor
 			(
 				count 6
 				model models/ammo/pistolshell.tik
 				spawnrange 1024
 				scale 1.0
 				offsetalongaxis 9.5 -0.8 -4.6
-				randvelaxis range -45 -12 crandom 26 range -28 8
+				randvelaxis range -10 -12 crandom 40 range -30 -16
 				avelocity crandom 360 crandom 360 crandom 180
 				accel 0 0 -800
 				physicsrate 20

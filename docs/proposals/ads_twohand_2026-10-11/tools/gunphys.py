@@ -49,6 +49,8 @@ ACTIONS = {
     'break_open':  ((16.0, 0.0, 230.0, 0.0, -18.0), 2.5),     # top-break: barrel and cylinder swing down and forward, the frame kicks
     'snap_shut':   ((-18.0, 0.0, -210.0, 0.0, 14.0), 2.0),    # swung shut and latched
     'round_seat':  ((20.0, 0.0, 75.0, 0.0, 0.0), 1.5),      # a cartridge pushed home into the chamber
+    'gate_seat':   ((5.0, 34.0, 30.0, -7.0, -24.0), 1.5),    # gate loader: the round shoved forward into the chamber from the rear right
+    'cyl_turn':    ((0.0, -30.0, 6.0, 2.0, 0.0), 2.0),       # the thumb indexes the cylinder to the next chamber
     'cyl_out':     ((0.0, -75.0, 20.0, -12.0, 0.0), 2.0),    # swing-out cylinder pushed out to the left
     'cyl_in':      ((0.0, 85.0, -20.0, 14.0, 0.0), 2.0),     # ...and slapped shut
     'rod_push':    ((16.0, 0.0, -90.0, 0.0, 18.0), 2.0),     # ejector rod struck with the muzzle up

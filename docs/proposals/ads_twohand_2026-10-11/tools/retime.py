@@ -5,6 +5,7 @@ slow loop drew an exploded arm in the engine).
 
     python retime.py <game path or file> <out.skc> <frames>
     python retime.py <game path or file> <out.skc> slice <first> <last>
+    python retime.py <game path or file> <out.skc> warp <new:old,new:old,...>
 """
 import sys, os, copy, struct
 import numpy as np
@@ -23,6 +24,34 @@ if sys.argv[3] == 'slice':
     Vn = a.V[f0:f1 + 1].copy()
     fr = [copy.deepcopy(a.frames[k]) for k in range(f0, f1 + 1)]
     what = 'sliced %d..%d of %d' % (f0, f1, m)
+elif sys.argv[3] == 'warp':
+    # warp <new:old,new:old,...>: same frame count, new frame f shows the source at a remapped (fractional) frame -
+    # smoothstep between the keys, so a part of the motion can be moved earlier / stretched and eased
+    keys = [tuple(float(x) for x in kv.split(':')) for kv in sys.argv[4].split(',')]
+    n = m
+    Vn = np.zeros((n, a.numChannels, 4))
+    def _map(f):
+        if f <= keys[0][0]:
+            return keys[0][1]
+        for (a0, b0), (a1, b1) in zip(keys, keys[1:]):
+            if f <= a1:
+                u = (f - a0) / (a1 - a0); u = u * u * (3 - 2 * u)
+                return b0 + (b1 - b0) * u
+        return keys[-1][1]
+    for f in range(n):
+        x = max(0.0, min(m - 1.0, _map(f)))
+        i = min(m - 2, int(x)); u = x - i
+        for c, name in enumerate(a.names):
+            p, q = a.V[i, c], a.V[i + 1, c]
+            if name.endswith(' rot'):
+                if p @ q < 0:
+                    q = -q
+                v = (1 - u) * p + u * q
+                Vn[f, c] = v / np.linalg.norm(v)
+            else:
+                Vn[f, c] = (1 - u) * p + u * q
+    fr = [copy.deepcopy(a.frames[min(m - 1, int(round(_map(f))))]) for f in range(n)]
+    what = 'warped %s' % sys.argv[4]
 else:
     n = int(sys.argv[3])
     Vn = np.zeros((n, a.numChannels, 4))

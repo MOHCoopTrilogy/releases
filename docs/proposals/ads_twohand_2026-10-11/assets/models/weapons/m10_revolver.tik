@@ -190,6 +190,15 @@ animations
 			12 sound webley_snd_reload_single
 		}
 	}
+	// HZM coop [aimed revolver rows] the gun worked LOW under the centre box: its own open / close eased and earlier
+	reload_end_ads	coop_m10_close_ads.skc
+	{
+		client
+		{
+			5 sound webley_snd_reload_end
+		}
+	}
+	// HZM coop [aimed revolver rows end]
 	reload_end	coop_m10_close.skc
 	{
 		server

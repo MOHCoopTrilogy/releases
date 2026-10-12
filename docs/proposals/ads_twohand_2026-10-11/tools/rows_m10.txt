@@ -38,7 +38,7 @@
 				spawnrange 1024
 				scale 1.0
 				offsetalongaxis 3.2 -2.2 -1.5
-				randvelaxis range -60 -25 crandom 18 crandom 18
+				randvelaxis range -14 -10 range -6 -12 range -44 -20
 				avelocity crandom 360 crandom 360 crandom 180
 				accel 0 0 -800
 				physicsrate 20

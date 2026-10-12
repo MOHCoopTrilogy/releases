@@ -87,6 +87,8 @@ for tag in marks:
     aimmask = grow(np.mean([mask(i) for i in bf], axis=0) > 0.3)
     ex = [float((mask(i) & ~aimmask).mean()) for i in range(rel, min(low, len(fs)))]
     xmax, xfr = 100 * max(ex), 100 * float(np.mean([e > 0.02 for e in ex]))
+    if '--dump' in sys.argv:
+        print(gun, 'reload starts at capture frame', rel, '| frames over 2 %:', ' '.join('%d:%.0f' % (rel + k, 100 * e) for k, e in enumerate(ex) if e > 0.02))
     s = sight[tag]
     r0 = s[mk['fire'][1] - 1] if 'fire' in mk else s[0]
     r0 = s[[si for n, f, si in marks[tag] if n == 'fire'][0] - 1]

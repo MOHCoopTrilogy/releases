@@ -175,6 +175,31 @@ animations
 			)
 		}
 	}
+	// HZM coop [aimed loop row] aimed: the case is only nudged out (see patch_tik_nagant_single.py)
+	reload_single_ads 	nagant_reload_loop_slow.skc
+	{
+		client
+		{
+				entry sound mnrevolver_snd_reload_single item
+			1 tagspawn tag_eject	// HZM coop [revolver reload] one fired case per round, out of the gate
+			(
+				count 1
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				scale 1.0
+				randvel crandom 10 crandom 10 range 30 16
+				avelocity crandom 240 crandom 240 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}
+	// HZM coop [aimed loop row end]
 	reload_end	 	nagant_reload_end.skc
 	{
 		server

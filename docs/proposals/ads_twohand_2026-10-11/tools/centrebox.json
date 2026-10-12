@@ -64,44 +64,48 @@
   "run": "te5"
  },
  "m10_revolver": {
-  "base": 13.4,
-  "dev": 8.1,
+  "base": 14.4,
+  "dev": 11.02,
   "end": 0.01,
   "frames": 260,
-  "max": 66.9,
-  "over": 20.8,
-  "run": "tc2"
+  "max": 14.6,
+  "over": 0.0,
+  "run": "tk4",
+  "xfr": 0.0,
+  "xmax": 0.3
  },
  "m10_revolver_empty": {
-  "base": 13.7,
-  "dev": 50.96,
+  "base": 13.8,
+  "dev": 16.87,
   "end": 0.0,
-  "frames": 450,
-  "max": 35.8,
-  "over": 1.8,
-  "run": "tj1",
-  "xfr": 3.3,
-  "xmax": 21.5
+  "frames": 430,
+  "max": 13.9,
+  "over": 0.0,
+  "run": "tk11",
+  "xfr": 0.0,
+  "xmax": 1.6
  },
  "nagantrev": {
-  "base": 12.9,
-  "dev": 23.72,
+  "base": 11.8,
+  "dev": 21.11,
   "end": 0.01,
-  "frames": 260,
-  "max": 36.7,
-  "over": 29.6,
-  "run": "tc2"
- },
- "nagantrev_empty": {
-  "base": 12.2,
-  "dev": 23.41,
-  "end": 0.0,
-  "frames": 500,
+  "frames": 300,
   "max": 13.5,
   "over": 0.0,
-  "run": "tj2",
-  "xfr": 3.6,
-  "xmax": 3.4
+  "run": "tk10",
+  "xfr": 0.0,
+  "xmax": 1.7
+ },
+ "nagantrev_empty": {
+  "base": 13.1,
+  "dev": 20.49,
+  "end": 0.0,
+  "frames": 480,
+  "max": 13.5,
+  "over": 0.0,
+  "run": "tk12",
+  "xfr": 0.0,
+  "xmax": 0.4
  },
  "p38": {
   "base": 10.6,
@@ -126,23 +130,25 @@
   "xmax": 4.0
  },
  "webley": {
-  "base": 11.0,
-  "dev": 35.02,
+  "base": 10.3,
+  "dev": 30.07,
   "end": 0.01,
   "frames": 260,
-  "max": 86.8,
-  "over": 55.8,
-  "run": "tc2"
+  "max": 11.6,
+  "over": 0.0,
+  "run": "tk4",
+  "xfr": 0.0,
+  "xmax": 0.2
  },
  "webley_empty": {
-  "base": 12.1,
-  "dev": 30.02,
+  "base": 12.4,
+  "dev": 30.06,
   "end": 0.0,
-  "frames": 450,
-  "max": 25.0,
-  "over": 0.7,
-  "run": "tj1",
-  "xfr": 1.1,
-  "xmax": 11.6
+  "frames": 430,
+  "max": 12.4,
+  "over": 0.0,
+  "run": "tk13",
+  "xfr": 0.0,
+  "xmax": 0.2
  }
 }

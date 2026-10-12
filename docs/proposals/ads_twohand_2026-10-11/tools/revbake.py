@@ -74,6 +74,16 @@ ONBO = dict(gunpt=WEB_BO, off=(-3.0, 3.4, -2.0), rot='aim')
 TIME = lambda d: d        # the slow variant re-times the loop keys (see webley_slow)
 
 
+def curl(keys, deg=(22.0, 34.0, 24.0), side='L'):
+    """finger_add for the four fingers: extra flexion (knuckle, middle, tip) x the keyed weight - a hand that closes on
+    a thin part (a barrel, a cylinder) instead of holding the wide grip's curl"""
+    out = {}
+    for fi in (1, 2, 3, 4):
+        for j, sfx in enumerate(('', '1', '2')):
+            out['Bip01 %s Finger%d%s rot' % (side, fi, sfx)] = [(k, w * deg[j]) for k, w in keys]
+    return out
+
+
 def webley(kind, slow=False):
     """slow: the loop lasts 24 frames (0.8 s) instead of 16 (0.53 s) - the hand has time to go to the pouch and back"""
     aim2h = 'viewmodel/webley/webley_ads2h.skc'
@@ -82,7 +92,7 @@ def webley(kind, slow=False):
     # The hip reload keeps the approved work pose.
     if kind == 'ads':
         Tw = work_T(aim2h, 'webley_revolver', tuple(float(x) for x in os.environ.get('WEB_AD', '0,-28,-30,0').split(',')),
-                    [float(x) for x in os.environ.get('WEB_ATAG', '12.0,-3.5,-13.5').split(',')], WEB_C)
+                    [float(x) for x in os.environ.get('WEB_ATAG', '12.0,-3.5,-12.3').split(',')], WEB_C)
     else:
         Tw = work_T(aim2h, 'webley_revolver', WEB_D, [float(x) for x in os.environ.get('WEB_TAG', '13.5,-4.2,-6.0').split(',')], WEB_C)
     common = dict(gun='webley_revolver', fixed_right=True, elbow_vec=tuple(float(x) for x in os.environ.get('WEB_ELB', '0,0,-1').split(',')))
@@ -97,9 +107,25 @@ def webley(kind, slow=False):
         out = lambda part: 'viewmodel/webley/coop_webley_%s%s.skc' % (part, sfx if part == 'reload_single' else '')
     ga = lambda keys: dict(gun_abs=dict(T=Tw, keys=keys))
     PO = dict(cam=POUCH, rot='aim', fing='aim')
+    if kind == 'ads':
+        # ON TARGET (2 % centre-box bar): the gun leaves and re-enters the aim STRAIGHT DOWN / UP, still aligned (its
+        # silhouette then stays inside the settled aim's own), and turns to the work pose only once it is under the
+        # box; the support hand works the barrel down there and is back on the grip before the gun comes up.
+        CW = float(os.environ.get('WEB_CURL', '1.0'))
+        Tlo = work_T(aim2h, 'webley_revolver', (float(os.environ.get('WEB_LOW', '4.5')), 0.0, 0.0, 0.0))
+        WAY = dict(gunpt=WEB_B, off=tuple(float(x) for x in os.environ.get('WEB_WAY', '-4.5,4.6,-3.4').split(',')), rot='aim')
+        ONB2 = dict(gunpt=WEB_B, off=tuple(float(x) for x in os.environ.get('WEB_ONB', '-3.0,3.4,-2.4').split(',')), rot='aim')
+        ONBO2 = dict(gunpt=WEB_BO, off=tuple(float(x) for x in os.environ.get('WEB_ONBO', '-3.0,3.4,-2.0').split(',')), rot='aim')
+        ads_open = dict(gun_abs=[dict(T=Tlo, keys={0: 0.0, 5: 1.0, 15: 1.0}), dict(T=Tw, keys={0: 0.0, 3: 0.0, 9: 1.0, 15: 1.0})],
+                        left_path={0: dict(aim=1), 4: WAY, 7: ONB2, 8: ONB2, 13: ONBO2, 15: ONBO2},
+                        elbow_down={'L': [(0, 0.0), (5, ELB), (15, ELB)]}, finger_add=curl([(0, 0.0), (4, 0.0), (7, CW), (15, CW)]))
+        ads_end = dict(gun_abs=[dict(T=Tlo, keys={0: 1.0, 10: 1.0, 15: 0.0}), dict(T=Tw, keys={0: 1.0, 5: 1.0, 10: 0.0, 15: 0.0})],
+                       left_path={0: REST, 3: ONBO2, 4: ONBO2, 8: ONB2, 9: ONB2, 11: WAY, 14: dict(aim=1), 15: dict(aim=1)},
+                       elbow_down={'L': [(0, ELB), (9, ELB), (14, 0.0), (15, 0.0)]}, finger_add=curl([(0, 0.0), (1, 0.0), (3, CW), (9, CW), (12, 0.0), (15, 0.0)]))
+    LIFTK = dict(LIFT, above=float(os.environ.get('WEB_LIFT', '1.9'))) if kind == 'ads' else LIFT      # aimed: the hand stays under the centre box
     if slow:
         N = 23
-        loop = {0: REST, 6: PO, 12: PO, 17: LIFT, 20: SEAT, 21: SEAT, 23: REST}
+        loop = {0: REST, 6: PO, 12: PO, 17: LIFTK, 20: SEAT, 21: SEAT, 23: REST}
         lsrc = dict(hip='viewmodel/webley/coop_webley_tp_single_slow.skc')      # the retail loop resampled to 24 frames
     else:
         N = 15
@@ -123,9 +149,13 @@ def webley(kind, slow=False):
                                              15: dict(aim=1)},
                                   elbow_down={'L': [(0, ELB), (10, ELB), (15, 0.0)]}, **sh([(0, 1.0), (9, 1.0), (15, 0.0)])),
     }
+    if kind == 'ads':
+        rows['webley_reload'].update(ads_open)
+        rows['webley_reload_end'].update(ads_end)
     if slow:
         rows = {'webley_reload_single': rows['webley_reload_single']}
-    return dict(common=common, rows=rows)
+    # physics events (clip frames): the support hand lands on the barrel, the barrel hits its stop / latches shut
+    return dict(common=common, rows=rows, phys=dict(open=[(6, 'hand_on'), (12, 'break_open')], end=[(3, 'hand_on'), (8, 'snap_shut')]) if kind == 'ads' else None)
 
 
 # ------------------------------------------------------------------------------------------------ Nagant (gate loader)
@@ -151,16 +181,16 @@ def nagant(kind, slow=False):
     # aimed: worked LOW, under the centre box (user 2026-10-12 "rework revolvers"); the hip reload keeps its pose
     if kind == 'ads':
         Tw = work_T(aim2h, 'nagant_revolver', tuple(float(x) for x in os.environ.get('NAG_AD', '0,-85,0,0,25').split(',')),
-                    [float(x) for x in os.environ.get('NAG_ATAG', '15.0,-1.0,-5.8').split(',')], NAG_C)
+                    [float(x) for x in os.environ.get('NAG_ATAG', '15.0,-1.0,-7.4').split(',')], NAG_C)
     else:
         Tw = work_T(aim2h, 'nagant_revolver', NAG_D, NAG_TAG, NAG_C)
     NE = float(os.environ.get('NAG_ELB', '3.0'))
     common = dict(gun='nagant_revolver', weight=dict(on=False),
-                  elbow_vec={'R': tuple(float(x) for x in os.environ.get('NAG_ELBR', '0,-1,-0.3').split(',')), 'L': (0.0, 0.0, -1.0)})
+                  elbow_vec={'R': tuple(float(x) for x in os.environ.get('NAG_ELBR', '0,-1,-0.3').split(',')), 'L': tuple(float(x) for x in os.environ.get('NAG_ELBL', '0,1,-0.4').split(','))})
     if kind == 'ads':
         common.update(charge=aim2h)
         out = lambda part: 'viewmodel/nagantrev/nagantrev_%s_ads.skc' % part
-        lg0 = dict(left_grip=dict(fa=9, fb=None, way=(0.0, -1.5, -1.0)))
+        lg0 = dict(left_grip=dict(fa=int(os.environ.get('NAG_FA', '11')), fb=None, way=tuple(float(x) for x in os.environ.get('NAG_WAY', '0,-1.5,-2.5').split(','))))
         lg1 = dict(left_grip=dict(fa=None, fb=9, way=(0.0, -1.5, -1.0), hold=2))
     else:
         common.update(charge='viewmodel/nagantrev/idle.skc', hip_cam=True)
@@ -178,12 +208,14 @@ def nagant(kind, slow=False):
     tmap = {0: 6, 6: 0, 10: 0, 16: 6, 17: 6}
     ER = {'R': [(0, NE), (17, NE)], 'L': [(0, NE), (17, NE)]}      # both elbows under: hand and wrist in view, not sleeve
     READY = dict(rel=30)                                           # the right hand beside the gate, as the retail start ends
+    if kind == 'ads':                                              # ...but lower: the retail place is in the centre box
+        READY = dict(rel=30, cam_add=tuple(float(x) for x in os.environ.get('NAG_READY', '0,0,-1.5').split(',')))
     rows = {
         # HAND-OVER: the left hand takes the gun over the frame, the right hand lets go and waits beside the gate (the
         # retail start sends it to the pouch here; the loop does that now, with the round visible)
         'nagantrev_reload': dict(out=out('reload'), offhand=(11, 30), free_tag=False, **ga({0: 0.0, 3: 0.0, 13: 1.0, 30: 1.0}),
                                  right_path={0: dict(aim=1), 16: dict(aim=1), 28: READY, 30: READY},   # no waiting at the gate: it lets go late and goes straight on
-                                 elbow_down={'L': [(0, 0.0), (8, NE), (30, NE)], 'R': [(0, 0.0), (18, 0.0), (28, NE), (30, NE)]}, **lg0),
+                                 elbow_down={'L': [(0, 0.0), (5 if kind == 'ads' else 8, NE), (30, NE)], 'R': [(0, 0.0), (18, 0.0), (28, NE), (30, NE)]}, **lg0),
         'nagantrev_reload_single': dict(out=out('reload_single'), offhand=(0, 17), **ga({0: 1.0, 17: 1.0}), right_path=loopR,
                                         tag_map=tmap, elbow_down=ER),
         # CLOSE, one motion: the right hand goes back to the grip first (0-7), then the left hand rolls the gun upright
@@ -192,6 +224,17 @@ def nagant(kind, slow=False):
                                      right_path={0: dict(rel=6), 7: dict(aim=1), 22: dict(aim=1)},
                                      elbow_down={'L': [(0, NE), (10, NE), (18, 0.0), (22, 0.0)], 'R': [(0, NE), (7, 0.0), (22, 0.0)]}, **lg1),
     }
+    SHW = float(os.environ.get('NAG_SH', '0.0'))
+    if kind == 'ads':
+        Tlo = work_T(aim2h, 'nagant_revolver', (float(os.environ.get('NAG_LOW', '6.0')), 0.0, 0.0, 0.0))
+        rows['nagantrev_reload']['gun_abs'] = [dict(T=Tlo, keys={0: 0.0, 5: 1.0, 30: 1.0}), dict(T=Tw, keys={0: 0.0, 5: 0.0, 14: 1.0, 30: 1.0})]
+        rows['nagantrev_reload_end']['gun_abs'] = [dict(T=Tlo, keys={0: 1.0, 17: 1.0, 22: 0.0}), dict(T=Tw, keys={0: 1.0, 7: 1.0, 16: 0.0, 22: 0.0})]
+        # NAG shoulder: the two-handed aim's left shoulder is turned back beside the head - with the hand going over the
+        # frame that puts the sleeve across the left of the centre box; eased to the retail aim's low shoulder for the work
+        SHW = float(os.environ.get('NAG_SH', '0.0'))
+        rows['nagantrev_reload']['shoulder_ref'] = dict(clip=REFAIM, keys=[(0, 0.0), (int(os.environ.get('NAG_SHF', '5')), SHW), (30, SHW)])
+        rows['nagantrev_reload_single']['shoulder_ref'] = dict(clip=REFAIM, keys=[(0, SHW), (17, SHW)])
+        rows['nagantrev_reload_end']['shoulder_ref'] = dict(clip=REFAIM, keys=[(0, SHW), (15, SHW), (22, 0.0)])
     if slow:
         # 27 frames (0.9 s): the retail loop resampled x1.5 is the `hip` clip, so the feed (retail 0-6) is its frames 0-9
         NS = 26
@@ -201,7 +244,8 @@ def nagant(kind, slow=False):
         rows = {'nagantrev_reload_single': dict(out=out('reload_single_slow'), hip='viewmodel/nagantrev/coop_nagant_tp_loop_slow.skc',
                                                 offhand=(0, NS), **ga({0: 1.0, NS: 1.0}), right_path=lp,
                                                 tag_map={0: 9, 10: 0, 16: 0, 25: 9, NS: 9},
-                                                elbow_down={'R': [(0, NE), (NS, NE)], 'L': [(0, NE), (NS, NE)]})}
+                                                elbow_down={'R': [(0, NE), (NS, NE)], 'L': [(0, NE), (NS, NE)]},
+                                                **(dict(shoulder_ref=dict(clip=REFAIM, keys=[(0, SHW), (NS, SHW)])) if kind == 'ads' else {}))}
     return dict(common=common, rows=rows)
 
 
@@ -228,8 +272,10 @@ def m10(kind, empty=False, slow=False):
     aim2h = 'viewmodel/coop_m10/m10_ads2h.skc'
     # aimed: worked LOW, under the centre box (user 2026-10-12 "rework revolvers"); the hip reload keeps its poses
     if kind == 'ads':
-        Tl = work_T(aim2h, 's_w_m10_38', M10_DL, [float(x) for x in os.environ.get('M10_ATAG', '13.0,-1.0,-6.0').split(',')], M10_CH)
-        Td = work_T(aim2h, 's_w_m10_38', M10_DD, [float(x) for x in os.environ.get('M10_ADTAG', '13.0,-2.5,-13.0').split(',')], M10_ROD)
+        Tl = work_T(aim2h, 's_w_m10_38', M10_DL, [float(x) for x in os.environ.get('M10_ATAG', '13.0,-1.0,-6.4').split(',')], M10_CH)
+        # the aimed dump is flatter than the hip one (muzzle up 50 put the barrel through the centre box)
+        Td = work_T(aim2h, 's_w_m10_38', tuple(float(x) for x in os.environ.get('M10_ADD', '0,-20,-16,0,0').split(',')),
+                    [float(x) for x in os.environ.get('M10_ADTAG', '13.0,-2.5,-9.0').split(',')], M10_ROD)
     else:
         Tl = work_T(aim2h, 's_w_m10_38', M10_DL, M10_TAG, M10_CH)
         Td = work_T(aim2h, 's_w_m10_38', M10_DD, [float(x) for x in os.environ.get('M10_DTAG', '13.5,-3.0,-6.0').split(',')], M10_ROD)
@@ -284,11 +330,32 @@ def m10(kind, empty=False, slow=False):
                                              15: dict(aim=1)},
                                   elbow_down={'L': [(0, ELB), (10, ELB), (15, 0.0)]}, **sh([(0, 1.0), (9, 1.0), (15, 0.0)])),
     }
+    phys = None
+    if kind == 'ads':
+        # ON TARGET (2 % centre-box bar), as the Webley: straight down out of the aim and straight back up into it,
+        # every turn of the gun made under the box; the cylinder is shut (gun clip reload_end_ads, earlier) and the
+        # support hand back on the grip before the gun rises
+        Tlo = work_T(aim2h, 's_w_m10_38', (float(os.environ.get('M10_LOW', '4.5')), 0.0, 0.0, 0.0))
+        if empty:
+            g0 = [dict(T=Tlo, keys={0: 0.0, 5: 1.0, 29: 1.0}), dict(T=Tl, keys={0: 0.0, 4: 0.0, 10: 1.0, 29: 1.0}),
+                  dict(T=Td, keys={0: 0.0, 12: 0.0, 18: 1.0, 23: 1.0, 28: 0.0, 29: 0.0})]
+        else:
+            g0 = [dict(T=Tlo, keys={0: 0.0, 5: 1.0, 29: 1.0}), dict(T=Tl, keys={0: 0.0, 4: 0.0, 12: 1.0, 29: 1.0})]
+        rows['webley_reload']['gun_abs'] = g0
+        CM = float(os.environ.get('M10_CURL', '0.7'))
+        rows['webley_reload']['finger_add'] = curl([(0, 0.0), (4, 0.0), (8, CM), (26, CM), (29, 0.0)] if empty else [(0, 0.0), (4, 0.0), (8, CM), (22, CM), (27, 0.0), (29, 0.0)])
+        rows['webley_reload_end'].update(
+            gun_abs=[dict(T=Tlo, keys={0: 1.0, 10: 1.0, 15: 0.0}), dict(T=Tl, keys={0: 1.0, 5: 1.0, 10: 0.0, 15: 0.0})],
+            left_path={0: REST, 2: OPENF, 3: OPENF, 7: PUSH, 8: PUSH, 10: dict(gunpt=M10_PUSH, off=(-3.4, 4.2, -3.2), rot='aim'),
+                       14: dict(aim=1), 15: dict(aim=1)},
+            elbow_down={'L': [(0, ELB), (9, ELB), (14, 0.0), (15, 0.0)]},
+            finger_add=curl([(0, 0.0), (2, CM), (8, CM), (12, 0.0), (15, 0.0)]))
+        phys = dict(open=[(9, 'hand_on'), (16, 'cyl_out')] + ([(21, 'rod_push')] if empty else []), end=[(2, 'hand_on'), (7, 'cyl_in')])
     if empty:
         rows = {'webley_reload': rows['webley_reload']}
     if slow:
         rows = {'webley_reload_single': rows['webley_reload_single']}
-    return dict(common=common, rows=rows)
+    return dict(common=common, rows=rows, phys=phys)
 
 
 SETS = {'webley_ads': lambda: webley('ads'), 'webley_hip': lambda: webley('hip'),
@@ -318,14 +385,18 @@ def main():
             OPEN = dict(webley='break_open', m10='cyl_out', nagant='hand_on')[fam]
             SHUT = dict(webley='snap_shut', m10='cyl_in', nagant='hand_on')[fam]
             F = lambda x: int(round(x * (n_ - 1)))
+            PH = st.get('phys') or {}
+            SEATK = float(os.environ.get('REV_SEAT', '2.0'))          # strength of the per-round reaction
             if part == 'open':
-                ev = [(F(0.42), 'hand_on'), (F(0.70), OPEN)] + ([(F(0.52), 'rod_push')] if 'empty' in a.set else [])
+                ev = PH.get('open') or ([(F(0.42), 'hand_on'), (F(0.70), OPEN)] + ([(F(0.52), 'rod_push')] if 'empty' in a.set else []))
                 ph = gunphys.simulate(n_, 1 / 30.0, 'revolver', [(0, 1), (n_ - 1, 1)], ev, fade=0)
             elif part == 'single':
                 ph = gunphys.simulate(n_, 1 / 30.0, 'revolver', [(0, 0.35), (F(0.2), 0.0), (F(0.7), 0.0), (F(0.85), 0.45), (n_ - 1, 0.35)],
-                                      [(F(0.84), 'round_seat')], loop=True)
+                                      PH.get('single') or ([(F(0.06), 'cyl_turn', SEATK), (F(0.84), 'gate_seat', SEATK)] if fam == 'nagant'
+                                                           else [(F(0.84), 'round_seat', SEATK)]), loop=True)
             else:
-                ph = gunphys.simulate(n_, 1 / 30.0, 'revolver', [(0, 0.35), (F(0.25), 1), (n_ - 1, 1)], [(F(0.25), 'hand_on'), (F(0.62), SHUT)])
+                ph = gunphys.simulate(n_, 1 / 30.0, 'revolver', [(0, 0.35), (F(0.25), 1), (n_ - 1, 1)],
+                                      PH.get('end') or [(F(0.25), 'hand_on'), (F(0.62), SHUT)])
             rc['dip'] = ph['dip']; rc['dip_after'] = True
             print('   physics', row, ph['report'][:110])
         H.RECIPES[row] = rc
