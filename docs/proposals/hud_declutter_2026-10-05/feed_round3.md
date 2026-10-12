@@ -119,6 +119,30 @@ objective (M1L3c:295 "Equipment Destroyed", m2l2b:1144 "Manifest stolen"). m3l1a
    could instead hold a line until the HUD is back; that is a change to the feed itself, not made here. M3L3's
    bazooka hint (4 s after map start) is the other round 3 line near a map start; M3L3 does not hide the HUD.
 
+## Answers (user 2026-10-12: "whatever makes most sense"; coordinator's calls) and what changed
+
+Mod coop-wip 5e4f3ed2, engine small-next 2a5dfd6c. Where a table row above disagrees with this section, this section
+is the current state.
+
+| # | Call | Done |
+|---|---|---|
+| 1 | cover-blown lines stay bold | nothing changed |
+| 2 | exit refusal: amber feed line, one wording, to the player at the exit | `coop_mod/feed.scr::feed_exitRefused <player>`: "You have not completed all your objectives yet", key `exit_refused`. 15 sites on 13 maps (M6L1b, m1l2b, m2l2b, m3l2, m4l0, m4l1, m4l3, m6l1a, m6l1c, m6l2a, m6l3b x2, m6l3d x2, t2l1). The toucher is `parm.other` of the trigger (or `local.toucher` on m3l2); m6l2a polls "is anyone touching", so there it goes to everyone. Seven retail wordings became one |
+| 3 | killed in action: feed where the mission goes on | feed (team): M3L3 Ramsey / Harrison / Tomlin, m1l1 Richards / Wilson / Thomas / Allen, m1l2a Jury, m3l2 Durden / Cobb, m5l1b Glenn / Hammon / Campbell, e2l1 "A squadmate ..."; t2l1 "One of your squadmates ..." in amber (losing them all fails the mission). Kept bold, mission-failed moment: m1l2a Grillo / SAS Agent, m4l1 Baylor, e2l1 Phillips, e1l3 and e3l2 POW lines, e3l2 medic |
+| 4 | refusal reasons must reach a Hardcore player | they are amber (category 0, the one Hardcore draws) instead of team / self: m1l2a `m1l2a_hint`, m2l2a `m2l2a_papers`, m2l2b `m2l2b_manifest`, m3l2 `m3l2_air`, m6l1c / m6l2a `_alarm`, `_uniform`, `_radio`, m6l2a `_bombgate`, `_sabrefuse`. No engine change, and nothing informational was re-enabled in Hardcore |
+| 5 | m6l2a "Out of time - the charges are going" back, amber | feed, `m6l2a_late`. t2l1 squadmate name and the e1l4 duplicate stay removed |
+| 6 | e3l1 "Approach the jeep" | untouched |
+| 7 | retail one-liners at a ticked objective | kept |
+| 8 | the feed holds a line while the HUD is hidden | `cg_coopfeed.c`: under `drawhud 0` or the cinematic HUD suppression every clock stands still; when the HUD returns the held lines start together, in arrival order. At most 6 are held (3 rows + 3 waiting): a newer line pushes out the oldest that is not an alert, an alert is never pushed out. Also: a waiting informational line no longer takes an alert's row after 1.5 s (found on the first test run - the held alert came back and was gone 1.5 s later). e3l3 "Stealth phase - weapons are secured until the ambush is sprung" is an amber feed line again (`e3l3_stealth`) |
+
+Proof for 2, 4, 8 (harness G:\mohaa-hudfeed4, cgame aa2c2fad, 1280x720, left message box on):
+- 21 touched scripts (20 maps + feed.scr) compile, marker method 21 of 21; scanners clean; check_mp_isolation 22 of 22.
+- 2: `media/round3_q2_exit_refusal_m6l1a.jpg` - m6l1a's exit thread run with the player in `parm.other`: amber line, left side empty.
+- 4: `media/round3_q4_hardcore_refusals_m6l2a.jpg` - Hardcore on: "Too exposed ..." and "Not yet - you still need the train schedule" are drawn, an informational test line sent just before them is not.
+- 8: `media/round3_q8_hold_sequence.jpg` (four moments), `round3_q8_hold_1_hud_hidden.jpg`, `round3_q8_hold_2_hud_back.jpg` - e3l3, `drawhud 0`, then the real stealth line, seven informational test lines and one more amber line. Hidden: nothing drawn. 7.8 s later the HUD is back: the stealth line (older than its own 6 s) comes up with the second amber line and the newest informational one, both amber lines stay their full time, the three waiting lines follow 1.5 s apart. Log: two older rows and test lines 1-3 dropped, no amber line dropped.
+- Not tested: a real cinematic (only `drawhud 0`), two clients (per-player delivery of the exit line is by code, one client cannot show it), the killed-in-action lines in play.
+- Seen in the test, not looked into: the HUD came back about 2 s before the driver's own `drawhud 1`; something else on e3l3 turns it back on.
+
 ## Proof
 
 - Compile: every touched script, working-tree copy, loaded on a test server and asked for a label that does not
