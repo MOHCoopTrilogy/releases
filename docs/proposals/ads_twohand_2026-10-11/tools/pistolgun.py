@@ -78,15 +78,20 @@ def rack_pose(pull, fwd, n):
     return [(0, z), (max(1, pull[0] - 9), z), (pull[0] - 3, RACK_DOWN), (fwd[1] + 2, RACK_DOWN), (min(n - 3, fwd[1] + 10), z), (n, z)]
 
 
-def rack_hand(name, reach, pull, fwd, travel, fing):
+def rack_hand(name, reach, pull, fwd, travel, fing, fing_open=None):
     """left_path keys {frame: spec} from the hand arriving over the slide to it leaving; `fing` = the finger pose
     (a frame of the hip clip being baked, or a spec)"""
     T = rack_rel(name)
     ON = dict(relT=T, fing=fing)
     BACK = dict(relT=T, gun_add=(-travel * RACK_PULL, 0.0, 0.0), fing=fing)
-    return {reach: ON, pull[0]: ON, pull[1]: BACK, fwd[0]: BACK,
-            fwd[1]: dict(relT=T, gun_add=(-0.6, 0.0, 0.0), cam_add=(0.0, 0.3, 0.5), fing=fing),   # opens, the slide runs out from under it
-            fwd[1] + 3: dict(relT=T, cam_add=(-0.4, 1.4, 0.6), fing=fing)}
+    OPEN = fing_open if fing_open is not None else fing
+    back = (-travel * RACK_PULL, 0.0, 0.0)
+    # release: the fingers are already open and the hand is lifting when the slide starts forward, and it stays back
+    # there - the slide is seen running out from under it
+    return {reach: ON, pull[0]: ON, pull[1]: BACK, fwd[0] - 2: BACK,
+            fwd[0]: dict(relT=T, gun_add=back, cam_add=(0.0, 0.25, 0.55), fing=OPEN),
+            fwd[1]: dict(relT=T, gun_add=back, cam_add=(0.0, 0.5, 1.1), fing=OPEN),
+            fwd[1] + 3: dict(relT=T, cam_add=(-0.4, 1.6, 0.9), fing=OPEN)}
 
 
 def rack_slide(f, pull, fwd):

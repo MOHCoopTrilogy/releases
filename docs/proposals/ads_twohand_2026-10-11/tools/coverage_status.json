@@ -642,50 +642,50 @@
   "qa": "th4: sheet + GIF checked",
   "reload": {
    "crouch": {
-    "dev": 2.96,
+    "dev": 28.55,
     "edge": 0.89,
     "end": 0.01,
-    "ok": true,
+    "ok": false,
     "pmin": 1.0,
-    "run": "tg4"
+    "run": "ti3"
    },
    "prone": {
-    "dev": 2.26,
-    "edge": 0.81,
+    "dev": 4.25,
+    "edge": 0.82,
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "tg4"
+    "run": "ti3"
    },
    "stand": {
-    "dev": 2.97,
-    "edge": 0.8,
+    "dev": 28.53,
+    "edge": 0.87,
     "end": 0.01,
-    "ok": true,
+    "ok": false,
     "pmin": 1.0,
-    "run": "tg4"
+    "run": "ti3"
    },
    "standL": {
-    "dev": 2.95,
-    "edge": 0.87,
+    "dev": 28.54,
+    "edge": 0.89,
     "end": 0.0,
-    "ok": true,
+    "ok": false,
     "pmin": 1.0,
-    "run": "tg4"
+    "run": "ti3"
    },
    "standR": {
-    "dev": 2.93,
-    "edge": 0.83,
-    "end": 0.0,
-    "ok": true,
+    "dev": 28.53,
+    "edge": 0.81,
+    "end": 0.01,
+    "ok": false,
     "pmin": 1.0,
-    "run": "tg4"
+    "run": "ti3"
    }
   },
   "rule": {
-   "action": "no",
+   "action": "yes",
    "reacts": "yes",
-   "run": "ti1: overhand rack, gun pitched down; NOT done until the user accepts the grasp reading",
+   "run": "ti2 (shots, overhand cock, reload + rack) ti3 (stances)",
    "target": "yes"
   }
  },

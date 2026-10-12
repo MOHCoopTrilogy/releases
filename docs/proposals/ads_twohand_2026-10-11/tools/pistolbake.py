@@ -74,7 +74,7 @@ def spec(name, empty):
     if rack:                                 # ... and on up to the slide: the shared rack, then down onto the grip
         import json as _j
         trav = _j.load(open(os.path.join(HERE, 'slide_%s.json' % name)))['travel']
-        lp.update(pistolgun.rack_hand(name, rack['reach'], rack['pull'], rack['fwd'], trav, ('mix', hold, 0.3)))
+        lp.update(pistolgun.rack_hand(name, rack['reach'], rack['pull'], rack['fwd'], trav, ('mix', hold, 0.3), fing_open='pose'))
     for f in range(o1, n + 1):
         lp[f] = AIM
     # the magazine prop (server: on tag_weapon_left from frame 0 to the hand-over frame) sits in the keyed hand as the

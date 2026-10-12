@@ -44,15 +44,15 @@
   "xmax": 3.2
  },
  "histandard": {
-  "base": 8.3,
-  "dev": 28.56,
+  "base": 8.5,
+  "dev": 28.53,
   "end": 0.01,
   "frames": 200,
-  "max": 11.4,
+  "max": 11.3,
   "over": 0.0,
-  "run": "ti1",
+  "run": "ti2",
   "xfr": 0.0,
-  "xmax": 1.9
+  "xmax": 1.3
  },
  "histandard_empty": {
   "base": 9.6,

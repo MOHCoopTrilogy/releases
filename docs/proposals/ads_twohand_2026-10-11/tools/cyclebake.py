@@ -42,7 +42,7 @@ def bake(name, root):
     # sights (offline previews). Aimed, the support hand slides UP from its grip along the left side of the gun to the
     # slide, takes it there and pulls - it stays left of the sight line
     lp = {0: AIM, a0: AIM}
-    lp.update(pistolgun.rack_hand(name, g['reach'], g['pull'], g['fwd'], trav, g['rel']))       # the ONE rack motion (also the reload's end)
+    lp.update(pistolgun.rack_hand(name, g['reach'], g['pull'], g['fwd'], trav, g['rel'], fing_open=g.get('open', 6)))       # the ONE rack motion (also the reload's end)
     for f in range(o1, n + 1):
         lp[f] = AIM
     rc = H.auto_recipe(g['row'], gun=pg['sight'], charge=pg['aim'], hip=hipc, enter=0, exit=0, fixed_right=True, dip=ph['dip'],
