@@ -1,6 +1,7 @@
 import re, sys
+RUNS_DIR = __import__('os').environ.get('ADS_RUNS', 'G:/mohaa-adsanim/runs').rstrip('/')   # another lane's harness: set ADS_RUNS
 cur=None; i=0; last=None; out={}
-for ln in open('G:/mohaa-adsanim/runs/%s/qconsole.log' % sys.argv[1], encoding='latin-1'):
+for ln in open(RUNS_DIR + '/%s/qconsole.log' % sys.argv[1], encoding='latin-1'):
     m=re.search(r'ABSCEN (begin|end) (\S+)',ln)
     if m and 'echo' not in ln:
         cur=m.group(2) if m.group(1)=='begin' else None; i=0; last=None; continue

@@ -1,8 +1,9 @@
 """Hi-Standard GIF: the rack zoomed on the gun first, then the normal view (shot - cock, reload ending in the rack)."""
 import sys, glob
+RUNS_DIR = __import__('os').environ.get('ADS_RUNS', 'G:/mohaa-adsanim/runs').rstrip('/')   # another lane's harness: set ADS_RUNS
 from PIL import Image, ImageDraw
 sess, out = sys.argv[1], sys.argv[2]
-fs = sorted(glob.glob('G:/mohaa-adsanim/runs/%s/ab__%s__histandard__yaw160__demo__after__[0-9][0-9][0-9][0-9].jpg' % (sess, sess)))
+fs = sorted(glob.glob(RUNS_DIR + '/%s/ab__%s__histandard__yaw160__demo__after__[0-9][0-9][0-9][0-9].jpg' % (sess, sess)))
 S = 320
 segs = [('ZOOM: gun down, left hand over the slide, pull, release', list(range(66, 112, 3)), (440, 400, 840, 720), 130),
         ('shot - overhand cock', list(range(52, 130, 5)), (380, 200, 900, 720), 80),

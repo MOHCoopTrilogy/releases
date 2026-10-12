@@ -4,6 +4,7 @@ length (reload press -> back on the aim clip, from the engine's ADSFRAME anim id
     python webcmp.py <sessA> <sessB> <tag substring> <out.gif> [--step 5] [--w 300] [--labels "a|b"] [--crop x0,y0,x1,y1]
 """
 import sys, re, glob, os, argparse
+RUNS_DIR = __import__('os').environ.get('ADS_RUNS', 'G:/mohaa-adsanim/runs').rstrip('/')   # another lane's harness: set ADS_RUNS
 from PIL import Image, ImageDraw
 ap = argparse.ArgumentParser()
 ap.add_argument('a'); ap.add_argument('b'); ap.add_argument('sub'); ap.add_argument('out')
@@ -15,9 +16,9 @@ crop = [int(x) for x in a.crop.split(',')]
 
 
 def load(sess):
-    fs = sorted(glob.glob('G:/mohaa-adsanim/runs/%s/*%s*__[0-9][0-9][0-9][0-9].jpg' % (sess, a.sub)))
+    fs = sorted(glob.glob(RUNS_DIR + '/%s/*%s*__[0-9][0-9][0-9][0-9].jpg' % (sess, a.sub)))
     tag = os.path.basename(fs[0]).rsplit('__', 1)[0]
-    log = open('G:/mohaa-adsanim/runs/%s/qconsole.log' % sess, encoding='latin-1', errors='replace').read().splitlines()
+    log = open(RUNS_DIR + '/%s/qconsole.log' % sess, encoding='latin-1', errors='replace').read().splitlines()
     on, rel, t0, t1, seen = False, None, None, None, False
     for ln in log:
         m = re.search(r'ABSCEN (begin|end) (\S+)', ln)

@@ -1,10 +1,11 @@
 """per-round reaction of the gun in an aimed revolver reload: peak-to-peak of the engine's sight / bore probe over the
 loop part of the capture (run_2h demo, --demoempty).   python loopreact.py <session> [first] [last]  (capture frames after the reload mark)"""
 import re, sys
+RUNS_DIR = __import__('os').environ.get('ADS_RUNS', 'G:/mohaa-adsanim/runs').rstrip('/')   # another lane's harness: set ADS_RUNS
 import numpy as np
 sess = sys.argv[1]; a = int(sys.argv[2]) if len(sys.argv) > 2 else 110; b = int(sys.argv[3]) if len(sys.argv) > 3 else 260
 cur = None; rows = {}; mark = {}
-for ln in open('G:/mohaa-adsanim/runs/%s/qconsole.log' % sess, encoding='latin-1'):
+for ln in open(RUNS_DIR + '/%s/qconsole.log' % sess, encoding='latin-1'):
     m = re.search(r'ABSCEN (begin|end) (\S+)', ln)
     if m and 'echo' not in ln:
         cur = m.group(2) if m.group(1) == 'begin' else None; continue

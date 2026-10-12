@@ -4,11 +4,12 @@
     python sheet.py gif   <session> <tag substring> <out.gif> [--frames a:b:step] [--w 640] [--ms 48] [--crop ...] [--labels f0=txt,f58=txt]
 """
 import sys, os, glob, argparse
+RUNS_DIR = __import__('os').environ.get('ADS_RUNS', 'G:/mohaa-adsanim/runs').rstrip('/')   # another lane's harness: set ADS_RUNS
 from PIL import Image, ImageDraw
 
 
 def frames_of(sess, sub):
-    fs = sorted(glob.glob('G:/mohaa-adsanim/runs/%s/*%s*__[0-9][0-9][0-9][0-9].jpg' % (sess, sub)))
+    fs = sorted(glob.glob(RUNS_DIR + '/%s/*%s*__[0-9][0-9][0-9][0-9].jpg' % (sess, sub)))
     assert fs, 'no frames for %s %s' % (sess, sub)
     tags = {os.path.basename(f).rsplit('__', 1)[0] for f in fs}
     assert len(tags) == 1, tags

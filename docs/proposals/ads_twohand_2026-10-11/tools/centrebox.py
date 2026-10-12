@@ -12,11 +12,12 @@ part of the box (the sights sit on the aim point), so the numbers are:
     python centrebox.py <session> [gun ...] [--json out.json]
 """
 import sys, os, re, glob, json
+RUNS_DIR = __import__('os').environ.get('ADS_RUNS', 'G:/mohaa-adsanim/runs').rstrip('/')   # another lane's harness: set ADS_RUNS
 import numpy as np
 from PIL import Image
 args = [a for a in sys.argv[1:] if not a.startswith('--')]
 sess, guns = args[0], args[1:]
-RUN = 'G:/mohaa-adsanim/runs/%s/' % sess
+RUN = RUNS_DIR + '/%s/' % sess
 log = open(RUN + 'qconsole.log', encoding='latin-1', errors='replace').read().splitlines()
 marks, sight, cur = {}, {}, None
 for ln in log:

@@ -43,10 +43,11 @@ import vfs  # noqa: E402  (read-only view of the installed paks)
 #   python coverage.py build                               -> ../coverage.md, base + every lane file that exists
 LANES = {
     'rifles': dict(classes=('rifle',), runs='G:/mohaa-adsanim2/runs'),
-    'smg': dict(classes=('smg', 'mg', 'heavy'), runs='G:/mohaa-adsanim3/runs'),
+    'smg': dict(classes=('smg',), runs='G:/mohaa-adsanim3/runs'),
+    'heavy': dict(classes=('mg', 'heavy'), runs='G:/mohaa-adsanim4/runs'),
 }
 LANE = None                                    # set by --lane
-RUNS = os.environ.get('COVERAGE_RUNS', 'G:/mohaa-adsanim/runs')
+RUNS = os.environ.get('COVERAGE_RUNS') or os.environ.get('ADS_RUNS') or 'G:/mohaa-adsanim/runs'   # the pistol lane's harness
 
 
 def lane_dir(name):
@@ -262,13 +263,28 @@ def scan(sessions):
     print('status:', STATUS, len(st), 'weapons')
 
 
-def tested(st, tik, kind):
+END_BAR = 0.05      # deg: a gun that leaves the sights for a DECLARED phase must be back this close when the clip ends
+BOX_BAR = 2.0       # %: centre box covered beyond the settled aim, any frame (centrebox.py's xmax)
+
+
+def tested(st, tik, kind, cbx=None):
+    """-> (text, stance groups that pass). The pass bar (user's standard, 2026-10-12):
+    plain reload / cycle: the sights stay (max deviation <= 6 deg, <= 1.5 deg at both ends, pose >= 0.9) - scan()'s `ok`.
+    DECLARED phase (`coverage.py lowered <tik>`: a rack, an open cylinder - the mechanism cannot be worked on the
+    sights, so the gun comes down under the centre box): the sights MAY leave during it; the capture must end within
+    END_BAR of the aim, the pose weight stays >= 0.9, and the centre box (cbx: centrebox.json, loaded and empty runs)
+    must be under BOX_BAR in every frame. No box figure = not passed (it has not been measured)."""
     e = st.get(tik, {}).get(kind, {})
     if not e:
         return '-', 0
-    low = bool(st.get(tik, {}).get('lowered')) and kind == 'reload'
+    low = bool(st.get(tik, {}).get('lowered')) and kind in ('reload', 'bolt')
+    box = None
     if low:
-        e = {k: dict(v, ok=(v.get('pmin', 1.0) >= 0.9 and v.get('end', 99.0) <= 1.5)) for k, v in e.items()}
+        cbx = CBOX if cbx is None else cbx
+        xs = [c['xmax'] for c in (cbx.get(tik), cbx.get(tik + '#empty')) if c and 'xmax' in c]
+        box = max(xs) if xs else None
+        boxok = box is not None and box <= BOX_BAR
+        e = {k: dict(v, ok=(v.get('pmin', 1.0) >= 0.9 and v.get('end', 99.0) <= END_BAR and boxok)) for k, v in e.items()}
     out, n = [], 0
     for g, sts in GROUPS:
         got = [e[s] for s in sts if s in e]
@@ -280,7 +296,9 @@ def tested(st, tik, kind):
     runs = sorted({x['run'] for x in e.values()})
     worst = max(x['dev'] for x in e.values())
     if low:
-        return '%s (%s; gun lowered by design, ends %.1f deg)' % (' '.join(out) or 'none pass', ','.join(runs), max(x.get('end', 99.0) for x in e.values())), n
+        return '%s (%s; declared phase - sights leave by design, max %.1f deg; ends %.2f deg (bar %.2f), centre box %s (bar %.0f %%))' % (
+            ' '.join(out) or 'none pass', ','.join(runs), worst, max(x.get('end', 99.0) for x in e.values()), END_BAR,
+            ('max %.1f %%' % box) if box is not None else 'NOT MEASURED', BOX_BAR), n
     return '%s (%s, max %.1f deg)' % (' '.join(out) or 'none pass', ','.join(runs), worst), n
 
 
@@ -422,9 +440,9 @@ def build():
             bolt = row_state(pfx + '_rechamber_ads')[0]
             if pfx in guard and bolt != 'missing' and (name or '').lower() != guard[pfx].lower() and look != guard[pfx].lower():
                 bolt += ' but GUARDED OFF (authored on %s)' % guard[pfx]
-        ta, na = tested(st, tik, 'aim')
-        tr, nr = tested(st, tik, 'reload')
-        tb, nb = tested(st, tik, 'bolt')
+        ta, na = tested(st, tik, 'aim', cbx)
+        tr, nr = tested(st, tik, 'reload', cbx)
+        tb, nb = tested(st, tik, 'bolt', cbx)
         qa = st.get(tik, {}).get('qa', '')
         need_bolt = bolt not in ('n/a', 'no cycle row')
         clips_ok = aims and aim not in ('NO aim row',) and not aim.startswith('one-handed') and \
@@ -540,7 +558,7 @@ if __name__ == '__main__':
         os.makedirs(lane_dir(LANE), exist_ok=True)
         STATUS = os.path.join(lane_dir(LANE), 'coverage_status.json')
         OUT = os.path.join(lane_dir(LANE), 'coverage.md')
-        RUNS = os.environ.get('COVERAGE_RUNS', LANES[LANE]['runs'])
+        RUNS = os.environ.get('COVERAGE_RUNS') or os.environ.get('ADS_RUNS') or LANES[LANE]['runs']
     cmd = sys.argv[1] if len(sys.argv) > 1 else 'build'
     if cmd == 'scan':
         scan(sys.argv[2:])

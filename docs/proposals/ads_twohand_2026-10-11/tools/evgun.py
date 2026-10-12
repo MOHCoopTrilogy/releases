@@ -5,6 +5,7 @@ Sheet: aim on the light backdrop, aim on the dark one, the seven stances, then t
 lower as rows of cropped frames (frame numbers from the capture's own ^~^~^ DEMO markers).
 """
 import sys, os, re, glob, argparse
+RUNS_DIR = __import__('os').environ.get('ADS_RUNS', 'G:/mohaa-adsanim/runs').rstrip('/')   # another lane's harness: set ADS_RUNS
 from PIL import Image, ImageDraw
 
 ap = argparse.ArgumentParser()
@@ -12,7 +13,7 @@ ap.add_argument('sess'); ap.add_argument('gun'); ap.add_argument('out'); ap.add_
 ap.add_argument('--gifw', type=int, default=320); ap.add_argument('--gifstep', type=int, default=4)
 ap.add_argument('--colors', type=int, default=28); ap.add_argument('--label', default='')
 a = ap.parse_args()
-RUN = 'G:/mohaa-adsanim/runs/%s/' % a.sess
+RUN = RUNS_DIR + '/%s/' % a.sess
 tag = 'ab__%s__%s__yaw%d__demo__after' % (a.sess, a.gun, a.yaw)
 fs = sorted(glob.glob(RUN + tag + '__*.jpg'))
 assert fs, tag
