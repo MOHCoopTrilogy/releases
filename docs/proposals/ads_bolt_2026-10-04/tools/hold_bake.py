@@ -331,6 +331,8 @@ def bake(name, ctl):
                 sp = lp[k]
                 rk = sp.get('rel', sp.get('rot'))
                 relk = relc if (sp.get('aim') or rk == 'aim' or rk is None) else _rel2(rk)
+                if 'relT' in sp:                             # an explicit hand-to-gun relation (another clip's grasp)
+                    relk = np.asarray(sp['relT'], float)
                 if ref and not sp.get('aim') and (rk == 'aim' or rk is None):
                     if '_rel' not in ref:                    # e.g. hip clips: the base pose's left hand hangs at the side
                         rf = R.load(R.ANIM + ref['clip'])

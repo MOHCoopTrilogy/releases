@@ -35,13 +35,14 @@ def bake(name, root):
     trav = sp['travel']
     p0, p1 = g['pull']; f0, f1 = g['fwd']; o0, o1 = g['on']; a0, a1 = g['off']
     ph = gunphys.simulate(n + 1, 1 / 30.0, g['cls'], support=[(0, 1), (a0, 1), (a1, 0), (o0, 0), (o1, 1)],
-                          events=[(p0, 'slide_back'), (f1 - 1, 'slide_fwd'), (o1 - 4, 'hand_on')])
+                          events=[(p0, 'slide_back'), (f1 - 1, 'slide_fwd'), (o1 - 4, 'hand_on')],
+                          pose=pistolgun.rack_pose(g['pull'], g['fwd'], n))
     AIM = dict(aim=1, fing='aim')
     # the retail grasp goes OVER the slide and a pinch from behind sits between the eye and the gun: both cover the
     # sights (offline previews). Aimed, the support hand slides UP from its grip along the left side of the gun to the
     # slide, takes it there and pulls - it stays left of the sight line
     lp = {0: AIM, a0: AIM}
-    lp.update(pistolgun.rack_hand(g['reach'], g['pull'], g['fwd'], trav, g['rel']))       # the ONE rack motion (also the reload's end)
+    lp.update(pistolgun.rack_hand(name, g['reach'], g['pull'], g['fwd'], trav, g['rel']))       # the ONE rack motion (also the reload's end)
     for f in range(o1, n + 1):
         lp[f] = AIM
     rc = H.auto_recipe(g['row'], gun=pg['sight'], charge=pg['aim'], hip=hipc, enter=0, exit=0, fixed_right=True, dip=ph['dip'],

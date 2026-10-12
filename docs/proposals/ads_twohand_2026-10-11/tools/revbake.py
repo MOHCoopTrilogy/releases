@@ -77,7 +77,14 @@ TIME = lambda d: d        # the slow variant re-times the loop keys (see webley_
 def webley(kind, slow=False):
     """slow: the loop lasts 24 frames (0.8 s) instead of 16 (0.53 s) - the hand has time to go to the pouch and back"""
     aim2h = 'viewmodel/webley/webley_ads2h.skc'
-    Tw = work_T(aim2h, 'webley_revolver', WEB_D, [float(x) for x in os.environ.get('WEB_TAG', '13.5,-4.2,-6.0').split(',')], WEB_C)
+    # [2026-10-12, user: "rework revolvers" to the on-target rule] AIMED: the gun is worked LOW - the open cylinder under
+    # the centre box, the grip below the bottom edge, the hands coming up from below - so the target stays in view.
+    # The hip reload keeps the approved work pose.
+    if kind == 'ads':
+        Tw = work_T(aim2h, 'webley_revolver', tuple(float(x) for x in os.environ.get('WEB_AD', '0,-28,-30,0').split(',')),
+                    [float(x) for x in os.environ.get('WEB_ATAG', '12.0,-3.5,-13.5').split(',')], WEB_C)
+    else:
+        Tw = work_T(aim2h, 'webley_revolver', WEB_D, [float(x) for x in os.environ.get('WEB_TAG', '13.5,-4.2,-6.0').split(',')], WEB_C)
     common = dict(gun='webley_revolver', fixed_right=True, elbow_vec=tuple(float(x) for x in os.environ.get('WEB_ELB', '0,0,-1').split(',')))
     sfx = '_slow' if slow else ''
     if kind == 'ads':
@@ -141,7 +148,12 @@ def nagant(kind, slow=False):
     to the gun; what is keyed here is the GUN (eased to a work pose where the gate side faces the eye), the support
     hand's way from / to the two-handed grip, and a trip to the pouch between rounds."""
     aim2h = 'viewmodel/nagantrev/nagantrev_ads2h.skc'
-    Tw = work_T(aim2h, 'nagant_revolver', NAG_D, NAG_TAG, NAG_C)
+    # aimed: worked LOW, under the centre box (user 2026-10-12 "rework revolvers"); the hip reload keeps its pose
+    if kind == 'ads':
+        Tw = work_T(aim2h, 'nagant_revolver', tuple(float(x) for x in os.environ.get('NAG_AD', '0,-85,0,0,25').split(',')),
+                    [float(x) for x in os.environ.get('NAG_ATAG', '15.0,-1.0,-5.8').split(',')], NAG_C)
+    else:
+        Tw = work_T(aim2h, 'nagant_revolver', NAG_D, NAG_TAG, NAG_C)
     NE = float(os.environ.get('NAG_ELB', '3.0'))
     common = dict(gun='nagant_revolver', weight=dict(on=False),
                   elbow_vec={'R': tuple(float(x) for x in os.environ.get('NAG_ELBR', '0,-1,-0.3').split(',')), 'L': (0.0, 0.0, -1.0)})
@@ -214,8 +226,13 @@ M10_LTAG = dict(pinch=(10.0, 3.0, -2.6), hold_vec=(0.3, 0.0, 0.0), axes=[[0, 0, 
 
 def m10(kind, empty=False, slow=False):
     aim2h = 'viewmodel/coop_m10/m10_ads2h.skc'
-    Tl = work_T(aim2h, 's_w_m10_38', M10_DL, M10_TAG, M10_CH)
-    Td = work_T(aim2h, 's_w_m10_38', M10_DD, [float(x) for x in os.environ.get('M10_DTAG', '13.5,-3.0,-6.0').split(',')], M10_ROD)
+    # aimed: worked LOW, under the centre box (user 2026-10-12 "rework revolvers"); the hip reload keeps its poses
+    if kind == 'ads':
+        Tl = work_T(aim2h, 's_w_m10_38', M10_DL, [float(x) for x in os.environ.get('M10_ATAG', '13.0,-1.0,-6.0').split(',')], M10_CH)
+        Td = work_T(aim2h, 's_w_m10_38', M10_DD, [float(x) for x in os.environ.get('M10_ADTAG', '13.0,-2.5,-13.0').split(',')], M10_ROD)
+    else:
+        Tl = work_T(aim2h, 's_w_m10_38', M10_DL, M10_TAG, M10_CH)
+        Td = work_T(aim2h, 's_w_m10_38', M10_DD, [float(x) for x in os.environ.get('M10_DTAG', '13.5,-3.0,-6.0').split(',')], M10_ROD)
     RO = tuple(float(x) for x in os.environ.get('M10_ROFF', '-1.5,3.5,2.5').split(','))
     EK = [float(x) for x in os.environ.get('M10_EK', '3,3').split(',')]
     common = dict(gun='s_w_m10_38', fixed_right=True)

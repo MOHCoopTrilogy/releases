@@ -63,7 +63,14 @@ def _smooth(keys, f):
     return keys[-1][1]
 
 
-def _run(n, ft, c, support, mag, events, strength, tremor, hand=1.0, sub=10):
+def _pose(pose, t):
+    """keyed gun pose (frame, 5-vector), smooth between keys"""
+    if not pose:
+        return 0.0
+    return np.array([_smooth([(k, v[j]) for k, v in pose], t) for j in range(5)])
+
+
+def _run(n, ft, c, support, mag, events, strength, tremor, hand=1.0, sub=10, pose=None):
     m = c['m']
     sag = np.array(c['sag'], float) * strength
     tr = np.array(c['tr'], float) * (1.0 if tremor else 0.0)
@@ -82,7 +89,7 @@ def _run(n, ft, c, support, mag, events, strength, tremor, hand=1.0, sub=10):
             wob = (np.sin(2 * math.pi * 0.83 * ts + ph) +0.6 * np.sin(2 * math.pi * 1.71 * ts + 2.3 * ph) + 0.35 * np.sin(2 * math.pi * 2.63 * ts + 0.7 * ph)) / 1.95 \
                 if tremor else 0.0
             ramp = min(1.0, t / 4.0)                                  # nothing moves before the reload starts
-            xeq = sag * (1.0 - s) * load + tr * wob * (c['tr2'] + (1.0 - c['tr2']) * (1.0 - s)) * ramp
+            xeq = sag * (1.0 - s) * load + tr * wob * (c['tr2'] + (1.0 - c['tr2']) * (1.0 - s)) * ramp + _pose(pose, t)
             a = -2 * c['z'] * w * v - w * w * (x - xeq)
             for ev in events:
                 f0, kind = ev[0], ev[1]
@@ -98,11 +105,12 @@ def _run(n, ft, c, support, mag, events, strength, tremor, hand=1.0, sub=10):
     return out
 
 
-def simulate(n, ft, cls, support, events, mag=None, strength=1.0, fade=6, hand=1.0):
+def simulate(n, ft, cls, support, events, mag=None, strength=1.0, fade=6, hand=1.0, pose=None):
     """n frames of frame time ft; returns dict(dip, peak_deg, settle_s, residual, report)"""
     c = CLASSES[cls] if isinstance(cls, str) else cls
-    X = _run(n, ft, c, support, mag, events, strength, True, hand)
-    X0 = _run(n, ft, c, support, mag, events, strength, False, hand)
+    # pose: where the shooter HOLDS the gun over time (e.g. brought down for a rack) - the spring follows it
+    X = _run(n, ft, c, support, mag, events, strength, True, hand, pose=pose)
+    X0 = _run(n, ft, c, support, mag, events, strength, False, hand, pose=pose)
     res = X[n - 1].copy()
     for f in range(n):                                                # the exact aim on the first and the last frame
         u = min(1.0, (n - 1 - f) / float(fade))

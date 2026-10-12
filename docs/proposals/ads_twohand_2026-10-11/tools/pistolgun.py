@@ -54,22 +54,37 @@ GUNS = {
 PARMS = '0.9 0.2 1.0 0.0 160 1000 item loaded always maps "dm obj lib"'      # `always`: without it a tik alias is dropped (bLoadForMap)
 
 
-# ---- the ONE rack motion of a hand-cycled pistol (per-shot cycle and reload end): the support hand slides UP from
-# its grip along the left side of the gun to the slide (it stays left of the sight line - an overhand grasp or a
-# pinch from behind covers the sights), takes it, pulls it back by the slide's travel and lets it run forward
-RACK_UP = (0.3, 0.5, 1.7)          # camera frame (fwd, left, up) from the aim grip to the slide
+# ---- the ONE rack motion of a hand-cycled pistol (per-shot cycle and reload end) = the HIP technique (user
+# 2026-10-12: "left hand over the slide, refer to how it is cocked now when not in ads"): the retail OVERHAND
+# grasp, taken from the hip fire clip's own hand-to-gun relation. Overhand at the eye covers the sights, so the gun
+# is brought DOWN under the centre box for it (rack_pose) and back onto the sights after - the target stays in view.
 RACK_PULL = 0.92                   # of the slide's travel
+RACK_DOWN = (3.6, 0.0, 4.0, 0.0, 0.6)      # gun pose for the rack: drop u, roll, pitch deg (muzzle down), side, back u (toward the chest)
+RACK_HIP = dict(histandard=('viewmodel/pistol/fire_hp.skc', 10))      # hip clip + frame with the hand on the slide
 
 
-def rack_hand(reach, pull, fwd, travel, fing):
-    """left_path keys {frame: spec} from the hand arriving at the slide to it leaving; `fing` = a curled-finger
-    reference frame of the hip clip being baked"""
-    FG = ('mix', fing, 0.35)
-    ON = dict(aim=1, cam_add=RACK_UP, fing=FG)
-    BACK = dict(aim=1, cam_add=RACK_UP, gun_add=(-travel * RACK_PULL, 0.0, 0.0), fing=FG)
+def rack_rel(name):
+    c, f = RACK_HIP[name]
+    a = R.load('models/human/animation/' + c)
+    W = R.evaluate(R.pose_dict(a, f))
+    return W['Bip01 L Hand'] @ R.inv(W['tag_weapon_right'])
+
+
+def rack_pose(pull, fwd, n):
+    """keyed gun pose for gunphys.simulate(pose=): down before the pull, held through the rack, back up after"""
+    z = (0.0,) * 5
+    return [(0, z), (max(1, pull[0] - 9), z), (pull[0] - 3, RACK_DOWN), (fwd[1] + 2, RACK_DOWN), (min(n - 3, fwd[1] + 10), z), (n, z)]
+
+
+def rack_hand(name, reach, pull, fwd, travel, fing):
+    """left_path keys {frame: spec} from the hand arriving over the slide to it leaving; `fing` = the finger pose
+    (a frame of the hip clip being baked, or a spec)"""
+    T = rack_rel(name)
+    ON = dict(relT=T, fing=fing)
+    BACK = dict(relT=T, gun_add=(-travel * RACK_PULL, 0.0, 0.0), fing=fing)
     return {reach: ON, pull[0]: ON, pull[1]: BACK, fwd[0]: BACK,
-            fwd[1]: dict(aim=1, cam_add=RACK_UP, gun_add=(-0.5, 0.0, 0.0), fing=FG),          # the slide leaves the fingers
-            fwd[1] + 3: dict(aim=1, cam_add=tuple(0.5 * x for x in RACK_UP), fing='aim')}
+            fwd[1]: dict(relT=T, gun_add=(-0.6, 0.0, 0.0), cam_add=(0.0, 0.3, 0.5), fing=fing),   # opens, the slide runs out from under it
+            fwd[1] + 3: dict(relT=T, cam_add=(-0.4, 1.4, 0.6), fing=fing)}
 
 
 def rack_slide(f, pull, fwd):

@@ -384,8 +384,8 @@
   "rule": {
    "action": "yes",
    "reacts": "no",
-   "run": "tc2",
-   "target": "no"
+   "run": "th3: worked low; 1.3 % of frames over at the dump",
+   "target": "yes"
   }
  },
  "models/weapons/nagant_revolver.tik": {
@@ -493,8 +493,8 @@
   "rule": {
    "action": "yes",
    "reacts": "no",
-   "run": "tc2",
-   "target": "no"
+   "run": "th2: worked low; the loading hand crosses the box's upper right for a few frames at the hand-over",
+   "target": "yes"
   }
  },
  "models/weapons/p38.tik": {
@@ -594,7 +594,7 @@
   }
  },
  "models/weapons/silencedpistol.tik": {
-  "action": "HAND-CYCLED, no lock-back: the support hand slides up the left side of the gun, pulls the slide and lets it run - after every aimed shot (histandard_cycle_ads) and at the end of every aimed reload (same motion); magazine out / in below the screen edge",
+  "action": "HAND-CYCLED, no lock-back: the hip technique - the gun comes down under the centre box, the left hand goes OVER the slide (retail hip relation), pulls and releases, gun back on the sights - after every aimed shot and at the end of every aimed reload (one shared motion)",
   "aim": {
    "crouch": {
     "dev": 0.0,
@@ -685,7 +685,7 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "tg2 (shots, cycle, reload) tg4 (stances)",
+   "run": "th8 (shots, overhand cock, reload + rack) tg4 (stances, earlier rack)",
    "target": "yes"
   }
  },
@@ -796,8 +796,8 @@
   "rule": {
    "action": "yes",
    "reacts": "no",
-   "run": "tc2",
-   "target": "no"
+   "run": "th1: worked low, centre clear; gun poses hand-keyed, no physics reaction yet",
+   "target": "yes"
   }
  }
 }
