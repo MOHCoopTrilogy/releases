@@ -40,13 +40,8 @@ def bake(name, root):
     # the retail grasp goes OVER the slide and a pinch from behind sits between the eye and the gun: both cover the
     # sights (offline previews). Aimed, the support hand slides UP from its grip along the left side of the gun to the
     # slide, takes it there and pulls - it stays left of the sight line
-    UP = tuple(float(x) for x in os.environ.get('CY_UP', '0.3,0.5,1.7').split(','))      # camera frame: fwd, left, up
-    FG = ('mix', g['rel'], float(os.environ.get('CY_FG', '0.35')))
-    ON = dict(aim=1, cam_add=UP, fing=FG)
-    BACK = dict(aim=1, cam_add=UP, gun_add=(-trav * 0.92, 0.0, 0.0), fing=FG)
-    lp = {0: AIM, a0: AIM, g['reach']: ON, p0: ON, p1: BACK, f0: BACK,
-          f1: dict(aim=1, cam_add=UP, gun_add=(-0.5, 0.0, 0.0), fing=FG),                 # the slide leaves the fingers
-          f1 + 3: dict(aim=1, cam_add=tuple(0.5 * x for x in UP), fing='aim')}
+    lp = {0: AIM, a0: AIM}
+    lp.update(pistolgun.rack_hand(g['reach'], g['pull'], g['fwd'], trav, g['rel']))       # the ONE rack motion (also the reload's end)
     for f in range(o1, n + 1):
         lp[f] = AIM
     rc = H.auto_recipe(g['row'], gun=pg['sight'], charge=pg['aim'], hip=hipc, enter=0, exit=0, fixed_right=True, dip=ph['dip'],
@@ -67,15 +62,7 @@ def bake(name, root):
     back = np.array(sp['back']) * trav
     tr = np.zeros((m, 4))
     for f in range(m):
-        if f <= p0:
-            u = 0.0
-        elif f <= p1:
-            u = (f - p0) / float(p1 - p0); u = u * u * (3 - 2 * u)
-        elif f <= f0:
-            u = 1.0
-        else:
-            u = max(0.0, 1.0 - ((f - f0) / float(f1 - f0)) ** 2)
-        tr[f, :3] = back * u * 0.92
+        tr[f, :3] = back * pistolgun.rack_slide(f, g['pull'], g['fwd'])
     keyed = {nm: [list(a.V[0, c]) for _ in range(m)] for c, nm in enumerate(a.names)}
     for nm in keyed:
         if nm.endswith(' pos'):
@@ -107,6 +94,8 @@ def bake(name, root):
             if d == 0:
                 break
         blk = '%sfire_ads%s%s\n%s%s\n' % (mm.group(1), mm.group(2), fn, mm.group(1), s[i:j])
+        # the case leaves when the slide is pulled, not with the shot
+        blk = re.sub(r'commanddelay\s+0\.1(\s+tagspawn\s+tag_eject)', r'commanddelay %.2f\1' % ((p0 + 1) / 30.0), blk)
         s = s[:mm.start()] + '%s// HZM coop [aimed per-shot cycle 2026-10-12] shown by the cgame instead of `fire` while aiming: the slide is racked\n' % mm.group(1) + blk + s[mm.start():]
         dp = 0
         for ln in s.split('\n'):

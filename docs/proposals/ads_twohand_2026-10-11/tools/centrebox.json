@@ -36,13 +36,13 @@
   "run": "td9"
  },
  "histandard": {
-  "base": 9.2,
-  "dev": 2.25,
+  "base": 8.3,
+  "dev": 2.94,
   "end": 0.01,
-  "frames": 190,
-  "max": 9.3,
+  "frames": 200,
+  "max": 13.3,
   "over": 0.0,
-  "run": "te1"
+  "run": "tg2"
  },
  "histandard_empty": {
   "base": 9.6,

@@ -142,7 +142,6 @@ holsterScale			1.0
 	}
 	client
 	{
-		aliascache silencer_snd_reload_loaded sound/weapons/foley/coop_histandard_reload_loaded.wav soundparms 0.9 0.2 1.0 0.0 160 1000 item loaded always maps "dm obj lib"
 		cache tracer.spr
 		cache muzsprite.spr
 		cache models/ammo/pistolshell.tik
@@ -157,7 +156,7 @@ animations
 	{
 		client
 		{
-			entry sound silencer_snd_reload_loaded item
+			entry sound silencer_snd_reload item
 		}
 	}
 	reload_ads_empty	coop_histandard_reload_ads_empty.skc
@@ -167,14 +166,6 @@ animations
 			entry sound silencer_snd_reload item
 		}
 	}
-	reload_empty	coop_histandard_reload_empty.skc
-	{
-		client
-		{
-			entry sound silencer_snd_reload item
-		}
-	}
-	idle_empty	coop_histandard_idle_empty.skc
 	reload 	hs_pistol_reload.skc
 	{
 		server
@@ -267,7 +258,7 @@ animations
 //			)
 
 			// shell eject
-			entry commanddelay 0.1 tagspawn tag_eject
+			entry commanddelay 0.40 tagspawn tag_eject
 			(
 				count 1
 				model models/ammo/pistolshell.tik
@@ -287,7 +278,7 @@ animations
 			)
 
 			// shell eject puff
-			entry commanddelay 0.1 tagspawn tag_eject
+			entry commanddelay 0.40 tagspawn tag_eject
 			(
 				count 2
 				model vsssource.spr

@@ -39,6 +39,10 @@ GUNS = {
     'histandard': dict(row='histandard_reload', sight='hi_standard_silenced', aim='viewmodel/pistol/histandard_ads2h.skc', cls='pistol',
                        vdir='viewmodel/pistol', dir='models/weapons/highstandard', clip='hs_pistol_reload.skc', empty=None, slide='coop_slide',
                        mag='clip', magup=(0.5, 0.0, -1.9), snd='silencer_snd_reload', wav='sound/weapons/foley/SilencerReload1.wav', cut=43, rel=40,
+                       # HAND-CYCLED (fire delay 1.0 s; the retail hip fire and hip reload both rack it, the reload sound's
+                       # rack is at frames 50-54): no lock-back, no slide stop - the reload ENDS in the same rack as the
+                       # per-shot cycle (cyclebake.py). rack: hand at the slide / slide back over / forward over / on the grip
+                       rack=dict(reach=46, pull=(49, 51), fwd=(53, 54), on=64),
                        t=dict(off=(3, 9), rel=9, out=(12, 18), seat=(30, 33), on=(40, 47), press=47, fwd=(49, 51))),
     'beretta': dict(row='beretta_reload', sight='beretta', aim='viewmodel/beretta/beretta_ads2h.skc', cls='pistol', vdir='viewmodel/beretta',
                     dir='models/weapons/Beretta', clip='A_W_MOD34Pistol_reload_W.skc', empty='A_W_MOD34Pistol_empty_W.skc', slide='Rechamber',
@@ -48,6 +52,37 @@ GUNS = {
                     t=dict(off=(2, 7), rel=9, out=(10, 14), seat=(29, 32), on=(38, 45), press=45, fwd=(47, 49))),
 }
 PARMS = '0.9 0.2 1.0 0.0 160 1000 item loaded always maps "dm obj lib"'      # `always`: without it a tik alias is dropped (bLoadForMap)
+
+
+# ---- the ONE rack motion of a hand-cycled pistol (per-shot cycle and reload end): the support hand slides UP from
+# its grip along the left side of the gun to the slide (it stays left of the sight line - an overhand grasp or a
+# pinch from behind covers the sights), takes it, pulls it back by the slide's travel and lets it run forward
+RACK_UP = (0.3, 0.5, 1.7)          # camera frame (fwd, left, up) from the aim grip to the slide
+RACK_PULL = 0.92                   # of the slide's travel
+
+
+def rack_hand(reach, pull, fwd, travel, fing):
+    """left_path keys {frame: spec} from the hand arriving at the slide to it leaving; `fing` = a curled-finger
+    reference frame of the hip clip being baked"""
+    FG = ('mix', fing, 0.35)
+    ON = dict(aim=1, cam_add=RACK_UP, fing=FG)
+    BACK = dict(aim=1, cam_add=RACK_UP, gun_add=(-travel * RACK_PULL, 0.0, 0.0), fing=FG)
+    return {reach: ON, pull[0]: ON, pull[1]: BACK, fwd[0]: BACK,
+            fwd[1]: dict(aim=1, cam_add=RACK_UP, gun_add=(-0.5, 0.0, 0.0), fing=FG),          # the slide leaves the fingers
+            fwd[1] + 3: dict(aim=1, cam_add=tuple(0.5 * x for x in RACK_UP), fing='aim')}
+
+
+def rack_slide(f, pull, fwd):
+    """how far back the slide is at frame f (0..RACK_PULL of its travel)"""
+    if f <= pull[0]:
+        u = 0.0
+    elif f <= pull[1]:
+        u = (f - pull[0]) / float(pull[1] - pull[0]); u = u * u * (3 - 2 * u)
+    elif f <= fwd[0]:
+        u = 1.0
+    else:
+        u = max(0.0, 1.0 - ((f - fwd[0]) / float(fwd[1] - fwd[0])) ** 2)
+    return u * RACK_PULL
 
 
 def read_game(p):
@@ -118,13 +153,17 @@ def build(name, root):
         print(name, '->', g['dir'] + '/' + fn, frames, 'frames')
         return fn
     still = np.zeros((n, 4)); still[:, :3] = F['fwd_v'][:3]
+    rack = g.get('rack')
+    if rack:                                     # hand-cycled: the slide is forward, and racked at the end - always
+        for f in range(n):
+            still[f, :3] = F['fwd_v'][:3] + (F['back_v'][:3] - F['fwd_v'][:3]) * rack_slide(f, rack['pull'], rack['fwd'])
     rot = {} if g['slide'] != 'coop_slide' else {g['slide'] + ' rot': np.tile(np.array([0, 0, 0, 1.0]), (n, 1))}
     outs = {}
     k = dict(chans); k.update(rot); k[sl] = still
     outs['reload_ads_loaded'] = write('coop_%s_reload_ads_loaded.skc' % name, k)
-    k = dict(chans); k.update(rot); k[sl] = slide_track(*t['fwd'])
+    k = dict(chans); k.update(rot); k[sl] = still if rack else slide_track(*t['fwd'])
     outs['reload_ads_empty'] = write('coop_%s_reload_ads_empty.skc' % name, k)
-    if g['slide'] == 'coop_slide':
+    if g['slide'] == 'coop_slide' and not rack:
         # the retail clips of these guns have no slide channel: an emptied gun needs its own idle and hip reload
         k = {nm: a.V[:, c].copy() for c, nm in enumerate(a.names)}; k.update(rot)
         k[sl] = slide_track(n - 16, n - 14)                                   # hip: forward right after the retail magazine seats
@@ -162,7 +201,7 @@ def build(name, root):
         ind = m.group(1)
         own = re.search(r'entry\s+sound\s+(\S+)', s[m.end():m.end() + 400])
         own = own.group(1) if own else g['snd']                               # this tik's own reload sound
-        lsnd = (g['snd'] + '_loaded') if own.lower() == g['snd'].lower() else own
+        lsnd = (g['snd'] + '_loaded') if (own.lower() == g['snd'].lower() and not rack) else own
         blk = '%s// HZM coop [aimed reload 2026-10-12] shown by the cgame instead of `reload` (aimed; hip when empty)\n' % ind
         for an in ('reload_ads_loaded', 'reload_ads_empty', 'reload_empty'):
             if an in outs:

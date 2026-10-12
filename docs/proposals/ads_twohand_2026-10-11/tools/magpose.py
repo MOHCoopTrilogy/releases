@@ -19,7 +19,9 @@ H = RB.H; R = RB.R
 GUNS = {
     # prefix: sight gun, hip idle row, out clip
     'sten': dict(sight='sten_mark_ii', out='viewmodel/sten/coop_sten_ads_mag.skc'),
-    'type100': dict(sight='type_100_smg', out='viewmodel/sten/coop_type100_ads_mag.skc'),
+    # lower: the hip relation puts the hand's top inside the left edge of the centre box (offline preview); the hand
+    # takes the magazine from underneath instead (camera frame: fwd, left, up)
+    'type100': dict(sight='type_100_smg', out='viewmodel/sten/coop_type100_ads_mag.skc', lower=(0.0, 1.0, -1.7)),
 }
 
 
@@ -38,6 +40,9 @@ def bake(name, root):
                        # the elbow hangs under the hand: the forearm comes up from the lower left, not straight at the eye
                        elbow_vec={'L': tuple(float(x) for x in os.environ.get('MP_ELB', '0,0.5,-1').split(','))},
                        elbow_down={'L': [(0, float(os.environ.get('MP_ELBW', '4.0')))]})
+    if g.get('lower'):
+        k = dict(rel=0, cam_add=g['lower'], fing=0)
+        rc['left_path'] = {0: k, R.load(R.ANIM + hip).numFrames - 1: k}
     H.RECIPES[name + '_idle'] = rc
     sk, _ = H.bake(name + '_idle', RB.CTL)
     tmp = os.path.join(HERE, 'magpose_tmp.skc')

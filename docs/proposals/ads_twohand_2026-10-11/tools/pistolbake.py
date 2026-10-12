@@ -33,6 +33,10 @@ POUCH = (5.0, 9.0, -15.0)              # camera frame (fwd, left, up): the belt,
 
 def events(g, empty):
     t = g['t']
+    if g.get('rack'):                       # hand-cycled: magazine in, then the rack - pulled back, slammed forward
+        r = g['rack']
+        return [(t['rel'], 'mag_release'), (t['out'][0], 'mag_out'), (t['seat'][1] - 1, 'mag_seat'),
+                (r['pull'][0], 'slide_back'), (r['fwd'][1] - 1, 'slide_fwd'), (r['on'] - 4, 'hand_on')]
     ev = [(t['rel'], 'mag_release'), (t['out'][0], 'mag_out'), (t['seat'][1] - 1, 'mag_seat'), (t['on'][1] - 4, 'hand_on')]
     if empty:
         ev += [(t['press'], 'thumb_press'), (t['fwd'][1] - 1, 'slide_fwd')]
@@ -44,12 +48,16 @@ def spec(name, empty):
     t = g['t']
     n = R.load(R.ANIM + H.fps_rows()[g['row']]).numFrames - 1
     ph = gunphys.simulate(n + 1, 1 / 30.0, g['cls'],
-                          support=[(0, 1), (t['off'][0], 1), (t['off'][1], 0), (t['on'][0], 0), (t['on'][1], 1)],
+                          support=[(0, 1), (t['off'][0], 1), (t['off'][1], 0)] + ([(g['rack']['on'] - 6, 0), (g['rack']['on'], 1)] if g.get('rack')
+                                                                                  else [(t['on'][0], 0), (t['on'][1], 1)]),
                           mag=[(0, 1), (t['out'][0], 1), (t['out'][1], 0), (t['seat'][0], 0), (t['seat'][1], 1)],
                           events=events(g, empty), strength=STRENGTH)
     a0, a1 = t['off']
     s0, s1 = t['seat']
     o0, o1 = t['on']
+    rack = g.get('rack')
+    if rack:
+        o1 = rack['on']
     hold = g['rel']                         # retail frame: the hand holds the new magazine just under the well
     magup = pistolgun.gun_facts(name)['magup']
     UP = dict(rel=hold, gun_add=magup, fing=hold)           # the same hand pushed up the well by the magazine's travel
@@ -62,6 +70,10 @@ def spec(name, empty):
     for f in range(s1, o0 + 1):                                                           # the palm stays on the magazine as the gun gives
         lp[f] = UP
     lp[o0 + 4] = dict(aim=1, cam_add=(-0.6, 1.5, -1.8), fing=('mix', hold, 0.5))          # up the left side of the grip
+    if rack:                                 # ... and on up to the slide: the shared rack, then down onto the grip
+        import json as _j
+        trav = _j.load(open(os.path.join(HERE, 'slide_%s.json' % name)))['travel']
+        lp.update(pistolgun.rack_hand(rack['reach'], rack['pull'], rack['fwd'], trav, hold))
     for f in range(o1, n + 1):
         lp[f] = AIM
     # the magazine prop (server: on tag_weapon_left from frame 0 to the hand-over frame) sits in the keyed hand as the
@@ -72,7 +84,7 @@ def spec(name, empty):
     if g.get('park'):
         kw['tag_park'] = dict(tag='tag_weapon_left', ranges=[(0, a1 + 3), (s1, n)])
         kw['tag_map'] = {0: hold, n: hold}
-    if empty:
+    if empty and not rack:
         p = t['press']
         # the support thumb rides high as the hand closes on the grip and sweeps the slide stop down over p..p+2;
         # the slide starts forward on p+2 (pistolgun: fwd[0])
