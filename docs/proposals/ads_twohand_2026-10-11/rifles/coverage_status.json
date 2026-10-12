@@ -1,0 +1,200 @@
+{
+ "models/weapons/enfield.tik": {
+  "bolt": {
+   "stand": {
+    "dev": 3.53,
+    "edge": 2.48,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra7"
+   }
+  },
+  "note": "ra7 stand only: bolt cycle rebuilt on gunphys; the working hand is almost entirely below the frame (defect: hand not shown); engine box 7 % for 2 frames at the return; other stances and the aimed reload NOT done",
+  "reload": {
+   "stand": {
+    "dev": 6.01,
+    "edge": 4.25,
+    "end": 4.25,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra7"
+   }
+  },
+  "rule": {
+   "action": "no",
+   "reacts": "yes",
+   "run": "ra7",
+   "target": "no"
+  }
+ },
+ "models/weapons/kar98.tik": {
+  "action": "right hand on the bolt knob (right side): lift / back / forward / down ride the gun's bolt bone, shown lower right; reload: bolt opened on the sights, charger thumbed in with the rifle lowered under the centre box, bolt closed on the way up - shown",
+  "bolt": {
+   "braced": {
+    "dev": 3.44,
+    "edge": 2.23,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra5"
+   },
+   "crouch": {
+    "dev": 3.44,
+    "edge": 2.48,
+    "end": 0.01,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra5"
+   },
+   "prone": {
+    "dev": 3.44,
+    "edge": 2.48,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra5"
+   },
+   "stand": {
+    "dev": 3.44,
+    "edge": 2.48,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra7"
+   },
+   "standL": {
+    "dev": 3.43,
+    "edge": 2.48,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra5"
+   },
+   "standR": {
+    "dev": 3.44,
+    "edge": 2.48,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra5"
+   }
+  },
+  "lowered": true,
+  "note": "ra5-ra7: bolt cycle + aimed reload in stand / crouch / prone / lean L / lean R / braced, ends 0.00-0.02 deg; engine centre box 3-6 % for 2-6 frames at the two ends of each clip (prone, braced under 2 %), offline 0.5 % / 0.0 %; rifle sits 3.4 deg low for about 1 s per cycle; reload: 0.9 s with the rifle low and no hand in view (pouch trip)",
+  "reload": {
+   "braced": {
+    "dev": 5.67,
+    "edge": 4.32,
+    "end": 2.24,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra5"
+   },
+   "crouch": {
+    "dev": 5.92,
+    "edge": 4.23,
+    "end": 2.49,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra5"
+   },
+   "prone": {
+    "dev": 5.72,
+    "edge": 4.04,
+    "end": 2.3,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra5"
+   },
+   "stand": {
+    "dev": 5.68,
+    "edge": 4.01,
+    "end": 2.26,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra7"
+   },
+   "standL": {
+    "dev": 5.91,
+    "edge": 4.22,
+    "end": 2.49,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra5"
+   },
+   "standR": {
+    "dev": 5.92,
+    "edge": 4.32,
+    "end": 2.49,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra5"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "ra7",
+   "target": "no"
+  }
+ },
+ "models/weapons/mosin_nagant_rifle.tik": {
+  "bolt": {
+   "stand": {
+    "dev": 3.6,
+    "edge": 2.48,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra7"
+   }
+  },
+  "note": "ra7 stand only: bolt cycle rebuilt on gunphys (offline box 0.0 %), engine 3.5-7 % for 3-10 frames at the two ends; other stances and the aimed reload NOT done",
+  "reload": {
+   "stand": {
+    "dev": 5.9,
+    "edge": 4.68,
+    "end": 2.29,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra7"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "ra7",
+   "target": "no"
+  }
+ },
+ "models/weapons/springfield_unscoped.tik": {
+  "bolt": {
+   "stand": {
+    "dev": 3.42,
+    "edge": 2.48,
+    "end": 0.16,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra7"
+   }
+  },
+  "note": "ra7 stand only: bolt cycle rebuilt on gunphys (offline box 0.0 %), engine 3.5-7 % for 3-10 frames at the two ends; other stances and the aimed reload NOT done",
+  "reload": {
+   "stand": {
+    "dev": 6.44,
+    "edge": 5.28,
+    "end": 2.48,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ra7"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "ra7",
+   "target": "no"
+  }
+ }
+}

@@ -1,0 +1,67 @@
+{
+ "gun": "kar98",
+ "hold": {
+  "drop": 1.2,
+  "roll": 3.0,
+  "pitch": 2.3,
+  "side": 0.0,
+  "back": -3.0
+ },
+ "scale": 4.0,
+ "events": [
+  [
+   8,
+   "rb_up",
+   4.0
+  ],
+  [
+   13,
+   "rb_back",
+   4.0
+  ],
+  [
+   15,
+   "rb_stop",
+   4.0
+  ],
+  [
+   23,
+   "rb_fwd",
+   4.0
+  ],
+  [
+   27,
+   "rb_down",
+   4.0
+  ],
+  [
+   39,
+   "rb_grip",
+   4.0
+  ]
+ ],
+ "cls": {
+  "m": 4.1,
+  "f2": 2.6,
+  "f1": 2.0,
+  "z": 0.62,
+  "sag": [
+   0.1,
+   1.1,
+   0.35,
+   -0.05,
+   -0.06
+  ],
+  "magw": 0.0,
+  "tr": [
+   0.012,
+   0.1,
+   0.07,
+   0.01,
+   0.004
+  ],
+  "tr2": 0.5
+ },
+ "report": "class custom x1.00: peak pitch 3.49 deg at f30, roll 5.44 deg, drop 1.42 u, back 3.46 u; settles 0.35 s after the last action; left at the last frame before the fade: pitch -0.00 deg",
+ "md5": "50954d0ca70047de102c3c5dadbc5f9e"
+}

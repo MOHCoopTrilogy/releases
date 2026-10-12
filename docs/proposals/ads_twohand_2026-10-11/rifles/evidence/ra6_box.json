@@ -1,0 +1,92 @@
+{
+ "ab__ra6__kar98__crouch__bolt__after": {
+  "anims": [
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 8.2,
+  "dev": 3.43,
+  "end": 0.01,
+  "frames": 84,
+  "over": 5,
+  "start": 28,
+  "xmax": 3.7
+ },
+ "ab__ra6__kar98__crouch__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "2"
+  ],
+  "base": 2.4,
+  "dev": 1.8,
+  "end": 0.01,
+  "frames": 240,
+  "over": 4,
+  "start": 8,
+  "xmax": 4.8
+ },
+ "ab__ra6__kar98__standR__bolt__after": {
+  "anims": [
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 11.7,
+  "dev": 3.44,
+  "end": 0.0,
+  "frames": 84,
+  "over": 6,
+  "start": 28,
+  "xmax": 6.1
+ },
+ "ab__ra6__kar98__standR__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "2"
+  ],
+  "base": 3.7,
+  "dev": 1.8,
+  "end": 0.01,
+  "frames": 240,
+  "over": 3,
+  "start": 8,
+  "xmax": 4.0
+ },
+ "ab__ra6__kar98__stand__bolt__after": {
+  "anims": [
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 5.9,
+  "dev": 3.43,
+  "end": 0.0,
+  "frames": 84,
+  "over": 6,
+  "start": 28,
+  "xmax": 5.8
+ },
+ "ab__ra6__kar98__stand__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "2"
+  ],
+  "base": 5.5,
+  "dev": 1.83,
+  "end": 0.02,
+  "frames": 240,
+  "over": 6,
+  "start": 8,
+  "xmax": 5.6
+ }
+}
