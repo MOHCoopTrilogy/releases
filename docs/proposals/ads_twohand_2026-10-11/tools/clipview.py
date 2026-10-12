@@ -20,7 +20,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('clip'); ap.add_argument('aim'); ap.add_argument('gun'); ap.add_argument('out')
     ap.add_argument('--frames', required=True); ap.add_argument('--gunanim', default='idle'); ap.add_argument('--cu', action='store_true')
-    ap.add_argument('--w', type=int, default=480); ap.add_argument('--cols', type=int, default=4)
+    ap.add_argument('--prop'); ap.add_argument('--w', type=int, default=480); ap.add_argument('--cols', type=int, default=4)
     a = ap.parse_args()
     from PIL import Image, ImageDraw
     c = R.load(a.clip); aim = R.load(a.aim)
@@ -29,6 +29,9 @@ def main():
     W, H = a.w, a.w * 9 // 16
     fov = V.weapon_fov()
     th = math.tan(math.radians(fov / 2)); tv = th * H / W
+    if a.prop:
+        sp = a.prop.split(':')
+        V.PROP.update(tik=sp[0], t0=float(sp[1]) * c.frameTime, t1=float(sp[2]) * c.frameTime, tag='tag_weapon_left')
     fr = [int(x) for x in a.frames.split(',')] if ',' in a.frames or a.frames.isdigit() else \
         list(range(*[int(x) for x in a.frames.split(':')]))
     ims = []

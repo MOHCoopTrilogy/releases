@@ -518,7 +518,7 @@
     "run": "th5"
    }
   },
-  "note": "th5: two-handed aim checked (sheet); aimed reload is a plain re-bake where the break-open does not read - to be hand-keyed (user 2026-10-12)",
+  "note": "tw6: HAND-KEYED hip + aimed reload (open, one round from the pouch per loop with a cartridge in the fingers, close) - GIFs in evidence; fired cases are thrown by the server but hidden from the shooter (first-person dump pending, cgame); stances not run yet",
   "reload": {
    "crouch": {
     "dev": 1.56,

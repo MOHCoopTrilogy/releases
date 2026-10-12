@@ -35,6 +35,21 @@ def demo(sess, gun, tagst="stand"):
     R.step(L, timeout=1800)
 
 
+def demohip(sess, gun, tagst="hip", shots=2):
+    """ONE continuous HIP capture: idle, `shots` hip shots, the hip reload, idle"""
+    tag = "ab__%s__%s__%s__demohip__after" % (sess, gun, tagst)
+    i = [0]
+    L = S.RELEASE + S.TO_STAND + A.MODE["after"] + ["wait 600", "set cg_adsSightDebug 2",
+                                                    "echo ^~^~^ ABSCEN begin %s" % tag]
+    L += A.frames(tag, 8, i)
+    for _ in range(shots):
+        L += ["+attackprimary", "echo ^~^~^ DEMO fire %d" % i[0]] + A.frames(tag, 3, i) + ["-attackprimary"] + A.frames(tag, 27, i)
+    L += ["reload", "echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, DEMO_RELOAD[0], i)
+    L += ["echo ^~^~^ DEMO lower %d" % i[0]] + A.frames(tag, 20, i)
+    L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1"] + S.RELEASE
+    R.step(L, timeout=1800)
+
+
 def still(sess, gun, st, name=None):
     tag = "ab__%s__%s__%s__aim__after" % (sess, gun, name or st)
     i = [0]
@@ -93,6 +108,9 @@ def run(a):
                 try:
                     R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
                     demo(a.session, gun, tagst="yaw%d" % a.demoyaw)
+                    if "demohip" in a.parts:
+                        R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+                        demohip(a.session, gun, tagst="yaw%d" % a.demoyaw)
                 finally:
                     R.SPOT = (x, y, z, w)
                     R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)

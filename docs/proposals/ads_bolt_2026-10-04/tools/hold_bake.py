@@ -196,6 +196,9 @@ def bake(name, ctl):
     if rc['gun'] in V.SIGHTS:
         Wcc = V.evaluate_ctl(pc, ctl)
         corr = V.rig_target(Wcc, V.SIGHTS[rc['gun']])
+        if rc.get('hip_cam'):                              # a HIP clip: the eye is the pose's eyes bone, no rig solve
+            corr = dict(ax=np.array([0, 0, 1.0]), ang=0.0, T=np.zeros(3), cant=0.0, relief=0.0,
+                        E=Wcc['eyes bone'][3, 0:3] * R.S, F=corr['F'], R=corr['R'])
         C = R.inv(Wc['Bip01 Spine1']) @ Wcc['Bip01 Spine1']
         C[3, 0:3] *= R.S
         Mcam = C @ V.model_to_cam(corr)
@@ -239,13 +242,26 @@ def bake(name, ctl):
         if rc.get('dip'):                                # small-dip (user option (c), as the bolt clips): camera-frame
             ks = sorted(rc['dip'])                       # drop (u, -z), roll (deg about +x), pitch (deg about +y),
             dp = [K.pchip(ks, [rc['dip'][k][j] for k in ks], f) for j in range(3)]   # pivot 12 u down the sight line
+            # optional 4th / 5th value: sideways shift (u, + = to the LEFT of the view) and pull toward the eye (u)
+            dside = K.pchip(ks, [(rc['dip'][k][3] if len(rc['dip'][k]) > 3 else 0.0) for k in ks], f)
+            dback = K.pchip(ks, [(rc['dip'][k][4] if len(rc['dip'][k]) > 4 else 0.0) for k in ks], f)
             Rr = R.axis_angle_rows((1, 0, 0), dp[1]) @ R.axis_angle_rows((0, 1, 0), dp[2])
             pv = rc.get('dip_pivot', 12.0); P = np.eye(4); P[3, 0:3] = (-pv, 0, 0)
             Q = np.eye(4); Q[0:3, 0:3] = Rr
-            Pi = np.eye(4); Pi[3, 0:3] = (pv, 0, -dp[0])
+            Pi = np.eye(4); Pi[3, 0:3] = (pv - dback, dside, -dp[0])
             D = P @ Q @ Pi @ D
         Dm = Mcam @ D @ R.inv(Mcam); Dm[3, 0:3] /= R.S
         Gads = track[f][0] @ Gc @ Dm                     # weight (gun-local) on the aim gun, then the sight-line slide
+        if rc.get('gun_abs'):
+            # gun_abs = dict(T=4x4 gun-in-camera (rows, u), keys={frame: weight}): the hip and the aimed version of
+            # a hand-keyed reload bring the gun to the SAME place in the view, so one choreography serves both
+            ga = rc['gun_abs']
+            kg = sorted(ga['keys'])
+            wg = max(0.0, min(1.0, K.pchip(kg, [ga['keys'][k] for k in kg], f)))
+            if wg > 1e-6:
+                Gt = np.asarray(ga['T'], float) @ R.inv(Mcam)
+                Gt[3, 0:3] /= R.S
+                Gads = B.blend_H(Gads, Gt, wg)
         relRh = Wh['Bip01 R Hand'] @ R.inv(Gh)
         relLh = Wh['Bip01 L Hand'] @ R.inv(Gh)
         if rc.get('support_aim'):                        # cock.py clips: after the magazine the hip art's left hand is on
@@ -287,6 +303,73 @@ def bake(name, ctl):
             rl = B.blend_H(relLc, other_, wl)
             rl[3, 0:3] += way * math.sin(math.pi * wl)
             HL = rl @ Gads
+        lpk = None
+        if rc.get('left_path'):                          # HAND-KEYED support hand (user 2026-10-12: "pull each bullet
+            # out of your pouch and put it in"). Keys {frame: spec}; between keys the hand's place is a monotone cubic
+            # in the CAMERA frame and its rotation a slerp. A spec gives
+            #   rel=k      the retail hand-to-gun relation of clip frame k (place AND rotation, riding the keyed gun)
+            #   aim=1      the aim pose's support grip
+            #   cam=(x fwd, y left, z up) u in the camera frame (eye at 0) - e.g. the pouch, below the frame;
+            #              its rotation / fingers come from rot=k (a retail frame) or 'aim'
+            #   fing=k     finger pose of retail frame k ('aim' = the grip's), default = the rot / rel frame
+            lp = rc['left_path']
+            ks = sorted(lp)
+
+            def _relL2(k):
+                Wk = R.evaluate(R.pose_dict(hip, k))
+                return Wk['Bip01 L Hand'] @ R.inv(Wk['tag_weapon_left' if lo <= k <= hi else 'tag_weapon_right'])
+
+            def _key(k):
+                sp = lp[k]
+                rk = sp.get('rel', sp.get('rot'))
+                relk = relLc if (sp.get('aim') or rk == 'aim' or rk is None) else _relL2(rk)
+                if rc.get('left_ref') and not sp.get('aim') and (rk == 'aim' or rk is None):
+                    if '_rel' not in rc['left_ref']:           # hip clips: the base pose's left hand hangs at the side
+                        rf = R.load(R.ANIM + rc['left_ref']['clip'])
+                        Wrf = R.evaluate(R.pose_dict(rf, rf.numFrames - 1))
+                        rc['left_ref']['_rel'] = Wrf['Bip01 L Hand'] @ R.inv(Wrf['tag_weapon_right'])
+                        rc['left_ref']['_pd'] = R.pose_dict(rf, rf.numFrames - 1)
+                    relk = rc['left_ref']['_rel']
+                Hk = relk @ Gads
+                if 'cam' in sp:
+                    pos = (np.r_[np.asarray(sp['cam'], float), 1.0] @ R.inv(Mcam))[0:3] / R.S
+                    Hk = Hk.copy(); Hk[3, 0:3] = pos
+                if 'gunpt' in sp:
+                    # the hand WORKS A POINT OF THE GUN (a chamber, the barrel): gunpt = that point in the weapon-tag
+                    # frame (u); the wrist sits `off` (camera frame, u) from it and the hand's long axis points at it
+                    # (minimal turn from the base rotation, then `roll` deg about that axis); `reach` u = how far short
+                    # of the point the wrist-to-knuckle line stops is not modelled - choose `off` for it
+                    gp = (np.r_[np.asarray(sp['gunpt'], float) / R.S, 1.0] @ Gads)[0:3]
+                    pcam = (np.r_[gp * R.S, 1.0] @ Mcam)[0:3] + np.asarray(sp.get('off', (0, 0, 0)), float)
+                    pos = (np.r_[pcam, 1.0] @ R.inv(Mcam))[0:3] / R.S
+                    Hk = Hk.copy(); Hk[3, 0:3] = pos
+                    if sp.get('point', True):
+                        x_ = Hk[0, 0:3] / np.linalg.norm(Hk[0, 0:3]); t_ = gp - pos; t_ = t_ / np.linalg.norm(t_)
+                        ax_ = np.cross(x_, t_); sn_ = np.linalg.norm(ax_)
+                        if sn_ > 1e-6:
+                            Hk[0:3, 0:3] = Hk[0:3, 0:3] @ R.axis_angle_rows(ax_ / sn_, math.degrees(math.atan2(sn_, x_ @ t_)))
+                        if sp.get('roll'):
+                            Hk[0:3, 0:3] = Hk[0:3, 0:3] @ R.axis_angle_rows(t_, sp['roll'])
+                    if sp.get('pinch_at') and rc.get('ltag'):
+                        # the round held between thumb and forefinger (ltag.pinch, hand-local) lands ON the point
+                        # (+ `above` u out along the gun's up): the hand is moved, its rotation kept
+                        pl = np.asarray(rc['ltag']['pinch'], float)
+                        tgt = gp - (sp.get('above', 0.0) / R.S) * Gads[2, 0:3]
+                        Hk[3, 0:3] = tgt - pl @ Hk[0:3, 0:3]
+                fk = sp.get('fing', ('pose' if sp.get('aim') else 'aim') if (sp.get('aim') or rk == 'aim' or rk is None) else rk)
+                return Hk, fk
+            keysH = [_key(k) for k in ks]
+            # camera-frame positions for the cubic (so 'out of frame' means the same whatever the gun does)
+            pc_ = np.array([(np.r_[Hk[3, 0:3] * R.S, 1.0] @ Mcam)[0:3] for Hk, _ in keysH])
+            posc = np.array([K.pchip(ks, list(pc_[:, j]), f) for j in range(3)])
+            i1 = max(0, min(len(ks) - 2, int(np.searchsorted(ks, f, side='right')) - 1))
+            a0, a1 = ks[i1], ks[i1 + 1]
+            u = 0.0 if a1 == a0 else max(0.0, min(1.0, (f - a0) / float(a1 - a0)))
+            u = u * u * (3 - 2 * u)
+            Hb = B.blend_H(keysH[i1][0], keysH[i1 + 1][0], u)
+            Hb[3, 0:3] = (np.r_[posc, 1.0] @ R.inv(Mcam))[0:3] / R.S
+            HL = Hb
+            lpk = (keysH[i1][1], keysH[i1 + 1][1], u)
         HR0 = HR
         if rc.get('clear'):
             # never push a hand further out than where it rests in the aim pose itself (the charge pose's trigger hand
@@ -327,6 +410,20 @@ def bake(name, ctl):
                 if wl is not None and ch.startswith('Bip01 L '):   # left_grip: the support hand's fingers open on its
                     kf = lg['fa'] if (lg['fa'] is not None and f <= lg['fa']) else (lg['fb'] if (lg['fb'] is not None and f >= lg['fb']) else f)   # own track (faster: off
                     pd[ch] = R.qslerp(pc.get(ch, ph[ch]), R.pose_dict(hip, kf)[ch], min(1.0, wl * lg.get('finger_lead', 2.0)))
+                if lpk is not None and ch.startswith('Bip01 L '):   # left_path: fingers of the two neighbouring keys
+                    def _fq(spec_):                    # 'aim' | retail frame k | ('mix', k, w): aim grip -> frame k by w
+                        base_ = pc.get(ch, ph[ch])
+                        if rc.get('left_ref') and '_pd' in rc['left_ref'] and spec_ != 'pose':
+                            base_ = rc['left_ref']['_pd'].get(ch, base_)   # the reference grip's fingers
+                        if spec_ == 'pose':
+                            return pc.get(ch, ph[ch])
+                        if spec_ == 'aim':
+                            return base_
+                        if isinstance(spec_, (tuple, list)):
+                            return R.qslerp(base_, R.pose_dict(hip, spec_[1])[ch], spec_[2])
+                        return R.pose_dict(hip, spec_)[ch]
+                    qa_, qb_ = _fq(lpk[0]), _fq(lpk[1])
+                    pd[ch] = R.qslerp(qa_, qb_, lpk[2])
         pb = None
         if rc.get('elbow_down'):                         # {side: [(frame, weight), ...]} - elbow swung down (camera -z)
             dm = (np.array([0.0, 0.0, -1.0]) @ R.inv(Mcam)[0:3, 0:3])
@@ -334,7 +431,24 @@ def bake(name, ctl):
             for side, keys in rc['elbow_down'].items():
                 ks = [k for k, _ in keys]
                 pb[side] = dm / np.linalg.norm(dm) * K.pchip(ks, [v for _, v in keys], f)
-        K.solve_arms(pd, Wc, HR, HL, Gads, pb)
+        Wc_f = Wc
+        if rc.get('shoulder_ref'):
+            # the two-handed aim pose turns the LEFT shoulder back (beside the head) so the support wrist sits straight.
+            # For hand WORK in front of the gun that shoulder puts the whole upper sleeve across the left of the view
+            # and shortens the reach down to the belt. So during the work the left clavicle eases to a reference
+            # pose's (the retail aim clip: shoulder low and forward) and back - keys [(frame, weight)].
+            sr = rc['shoulder_ref']
+            if '_q' not in sr:
+                ref = R.load(R.ANIM + sr['clip'])
+                sr['_q'] = R.pose_dict(ref, ref.numFrames - 1)['Bip01 L Clavicle rot']
+            ksr = sr['keys']
+            wsr = K.pchip([k for k, _ in ksr], [v for _, v in ksr], f)
+            wsr = max(0.0, min(1.0, wsr))
+            if wsr > 1e-6:
+                pd['Bip01 L Clavicle rot'] = R.qslerp(pc['Bip01 L Clavicle rot'], sr['_q'], wsr)
+                pcx = dict(pc); pcx['Bip01 L Clavicle rot'] = pd['Bip01 L Clavicle rot']
+                Wc_f = R.evaluate(pcx)
+        K.solve_arms(pd, Wc_f, HR, HL, Gads, pb)
         # the tag the server does NOT carry the gun on keeps the hip art's value: it holds the ammo prop
         # (rifle_reload: garand_clip_reload.tik on tag_weapon_right 4-42 while the gun is on the left hand)
         other = 'tag_weapon_right' if lo <= f <= hi else 'tag_weapon_left'
@@ -371,6 +485,21 @@ def bake(name, ctl):
             pp = (1 - g) * lh[3, 0:3] + g * lg[3, 0:3]
             pd[tg + ' rot'] = q
             pd[tg + ' pos'] = np.array([pp[0], pp[1], pp[2], 0.0])
+        if rc.get('ltag'):
+            # a ROUND in the support hand's fingers (the server attaches models/ammo/* to tag_weapon_left for part of the
+            # loop): the tag rides the hand's pinch point, is turned like the GUN (the cartridge stays in line with
+            # the chamber it is going into) and is pushed `push` u down the gun's own z as it seats (keys by frame)
+            lt = rc['ltag']
+            Wn = R.evaluate(pd)
+            HLn = Wn['Bip01 L Hand']
+            pw = np.asarray(lt['pinch'], float) @ HLn[0:3, 0:3] + HLn[3, 0:3] + (lt.get('hold', 0.0) / R.S) * Gads[2, 0:3]
+            if lt.get('push'):
+                kp = sorted(lt['push'])
+                pw = pw + (K.pchip(kp, [lt['push'][k] for k in kp], f) / R.S) * Gads[2, 0:3]
+            Tw = np.eye(4); Tw[0:3, 0:3] = Gads[0:3, 0:3]; Tw[3, 0:3] = pw
+            tl = Tw @ R.inv(HLn)
+            pd['tag_weapon_left rot'] = R.rows_to_quat(tl[0:3, 0:3])
+            pd['tag_weapon_left pos'] = np.array([tl[3, 0], tl[3, 1], tl[3, 2], 0.0])
         pin = rc.get('prop_pin')
         if pin and pin['pin'] <= f <= pin['until']:
             # user 2026-10-05 "the random clip that pops up near the gun for a frame or so": the retail hand lifts the

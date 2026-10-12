@@ -1,0 +1,1319 @@
+// These are player animations shared between the
+// 3rd persons models, and first person models.
+animations
+{
+	$path models/human/animation
+
+	//========================
+	// Player model selection screen idle animations
+	//========================
+	americanselectionidle1			misc/00A100_idle.skc					weight	0.25
+	americanselectionidle2			misc/00A101_salute.skc					weight	0.25
+	americanselectionidle3			misc/00A102_cleanshoes.skc				weight	0.25
+	americanselectionidle4			misc/00A103_pullups.skc					weight	0.25
+	americanselectionidle5			misc/00A104_stretches.skc				weight	0.55 dontrepeate
+	americanselectionidle6			misc/00A105_pushups.skc					weight	0.25
+	americanselectionidle7			misc/00A106_jumpingjacks.skc				weight	0.25
+
+	// [user 07-16] ARMORY: a SINGLE clean standing idle (no salute/pullups/pushups/jacks) for the
+	// loadout operator render - the random selectionidle pool had the soldier doing pull-ups on
+	// nothing. One alias = no random pick.
+	coop_loadout_idle			misc/00A100_idle.skc
+
+	germanselectionidle1			misc/00G100_Axis_idle.skc				weight	0.25
+	germanselectionidle2			misc/00G101_Axis_Attention.skc				weight	0.25
+	germanselectionidle3			misc/00G102_Axis_Primping.skc				weight	0.25
+	germanselectionidle4			misc/00G103_Axis_Lookaround.skc				weight	0.25
+	germanselectionidle5			misc/00G104_Axis_Shoeshine.skc				weight	0.25 dontrepeate
+	germanselectionidle6			misc/00G105_Axis_lean.skc				weight	0.25
+	germanselectionidle7			misc/00G106_Axis_pushup.skc				weight	0.25
+	germanselectionidle8			misc/00G108_Axis_milling_1.skc				weight	0.25
+	germanselectionidle9			misc/00G109_Axis_milling_2.skc				weight	0.25
+
+	zzamericanspecialidle1			misc/00EGG1_Allied_Sitar.skc				weight	0.25 crossblend 0.3
+	zzgermanspecialidle1			misc/00EGG2_Axis_Sitar.skc				weight	0.25  crossblend 0.3
+
+	//===========================
+	//	Player Mountable Artillery
+	//===========================
+
+	aagun_idle			misc/aagun_driver.skc
+	flak88_idle			misc/flak88_driver.skc
+	nebelwerfer_idle		misc/nebelwerfer_driver.skc
+	granatwerfer_idle		misc/granatwerfer_driver.skc
+
+	$path models/human/animation
+
+	//========================
+	// Idle animation for model bounds
+	//========================
+//	idle 				viewmodel/pistol/coltpose.skc		crossblend 0.2
+	idle				scripted/flak88/offic_idle.skc
+
+	//========================
+	// Death
+	//========================
+	death1			deaths/death_fall_back.skc		default_angles crossblend 0.1 weight 1.0
+	{
+		server
+		{
+			last dead
+		}
+		client
+		{
+			12 bodyfall 0.8
+			14 landing 0.5
+		}
+	}
+	death2			deaths/death_fall_to_knees.skc	default_angles crossblend 0.1 weight 1.0
+	{
+		server
+		{
+			last dead
+		}
+		client
+		{
+			5 bodyfall 0.7
+			13 bodyfall 0.5
+		}
+	}
+	death3			deaths/death_headpistol.skc		default_angles crossblend 0.1 weight 1.0
+	{
+		server
+		{
+			last dead
+		}
+	}
+	death_crouch					deaths/death_frontcrouch.skc	default_angles crossblend 0.1
+	{
+		server
+		{
+			last dead
+		}
+	}
+	death_explosion_small 			deaths/death_upgrenade.skc		default_angles crossblend 0.1
+	{
+		server
+		{
+			last dead
+		}
+	}
+	death_explosion_large 			deaths/death_grenade.skc	default_angles crossblend 0.1
+	{
+		server
+		{
+			last dead
+		}
+	}
+	death_explosion_left 			deaths/death_left.skc			default_angles crossblend 0.1
+	{
+		server
+		{
+			last dead
+		}
+	}
+	death_explosion_right 			deaths/death_right.skc			default_angles crossblend 0.1
+	{
+		server
+		{
+			last dead
+		}
+	}
+	death_explosion_back 			deaths/death_backgrenade.skc	default_angles crossblend 0.1
+	{
+		server
+		{
+			last dead
+		}
+	}
+	death_explosion_front 			deaths/death_chest.skc			default_angles crossblend 0.1
+	{
+		server
+		{
+			last dead
+		}
+	}
+
+
+
+	//////////////////////////////////
+	// 
+	// Deaths copied from single-player game (new_generic_human.tik)
+	// 
+	//////////////////////////////////
+
+	// Fall to knees and then forward.
+	death_fall_to_knees		deaths/death_fall_to_knees.skc
+	{
+		client
+		{
+			6  bodyfall   //knees
+			24 bodyfall   //face
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Weak-looking slow falling back animation.  Doesn't look very dead...
+	death_fall_back			deaths/death_fall_back.skc
+	{	
+		client
+		{
+			13 bodyfall	.7 //butt
+			14 bodyfall	   //back
+			last bodyfall	.1 //feet
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Shot in chest, reaches up with right hand, falls to hands and knees and dies.
+	death_chest				deaths/death_chest.skc
+	{	
+		client
+		{
+			9 bodyfall  .8 //knees
+			last bodyfall  .1
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Falls back (1-2 meters) clutching neck.
+	death_choke				deaths/death_choke.skc		
+	{
+		client
+		{
+			4 bodyfall //back
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Shot in crotch/stomach, fall kind of sideways.
+	death_crotch			deaths/stomach_death.skc
+	{	
+		client
+		{
+			25 bodyfall
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Fall/fly forward from a crouching position.  Could also work for running death.  Very simple.	
+	death_frontcrouch		deaths/death_frontcrouch.skc
+	{
+		client
+		{
+			2  bodyfall //face
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Fall to knees and then flat, execution-style.  Good for headshots.
+	death_headpistol		deaths/death_headpistol.skc
+	{
+		client
+		{
+			9 bodyfall 	.6 //knees
+			19 bodyfall    //face
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Actually a running death.  Looks good for shot in the back of the head.
+	death_head_flyforward			deaths/death_run03.skc
+	{
+		client
+		{
+			3 bodyfall      //face
+			6 bodyfall .05  //Left Leg
+			7 bodyfall .05  //Right Leg
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Die while moving forward fast.
+	death_run01				deaths/death_run01.skc				random
+	{
+		client
+		{
+			3  bodyfall	.5//knees
+			7  bodyfall //face
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Die while moving forward fast.
+	death_run02				deaths/death_run02.skc				random
+	{
+		client
+		{
+			7  bodyfall	//knees
+			
+		}	
+		server
+		{
+			last dead
+		}
+	}
+	// Die while moving forward fast.
+	death_run03				deaths/death_run03.skc				random
+	{
+		client
+		{
+			3 bodyfall      //face
+			6 bodyfall .05  //Left Leg
+			7 bodyfall .05  //Right Leg
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Flies back a meter or two, lands, legs go in the air
+	death_back1				deaths/back_death01.skc				random
+	{
+		client
+		{
+			8  bodyfall //back
+			24  bodyfall .2 //Right Leg
+			30  bodyfall .2 //Left Leg
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Flies back a meter or so, lands, legs go in the air a little
+	death_back2				deaths/back_death02.skc				random
+	{
+		client
+		{
+			8 bodyfall     //back
+			13 bodyfall .3 //Right Leg
+			17 bodyfall .2 //Left leg
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Flies back a meter or so, lands.  Very fast.
+	death_back3				deaths/death_back3.skc				random
+	{
+		client
+		{
+			7 bodyfall //back
+			9 bodyfall .2
+			11 bodyfall .2
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Fall/fly left and slightly back, 1-2 meters.  Looks like it's a bit slow.
+	death_left				deaths/death_left.skc
+	{
+		client
+		{
+			11 bodyfall //back
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Fall/fly right and slightly back, 1-2 meters.  Looks like it's a bit slow.
+	death_right				deaths/death_right.skc
+	{
+		client
+		{
+			12 bodyfall //back
+		}
+		server
+		{
+			last dead
+		}
+	}
+
+	// Hit hard in face or lower back.  Good for shotgun to upper chest or face.
+	death_knockedup				deaths/death_knockedup.skc
+	{
+		client
+		{
+			8 bodyfall
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Choking, fall forward.  Very painfull...
+	death_frontchoke		deaths/death_gassing02.skc
+	{
+		client
+		{
+			10 bodyfall //face
+			22 bodyfall //face
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Slowly fall forward while spinning to the left (counter-clockwise)
+	death_twist				deaths/death_twist.skc
+	{
+		client
+		{
+			14 bodyfall //face
+			18 bodyfall //face
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Fall to knees and then sideways.  Instant death sort of thing.
+	death_collapse			deaths/death_collapse.skc
+	{
+		client
+		{
+			7 bodyfall //face
+			18 bodyfall //face
+		}
+		server
+		{
+			last dead
+		}
+	}
+	// Collapse and fall back & right.  Good for headshots most likely.
+	death_shoot				deaths/death_shoot.skc
+	{
+		client
+		{
+			13 bodyfall //face
+			18 bodyfall //face
+		}
+		server
+		{
+			last dead
+		}
+	}
+	death_prone				deaths/death_prone1.skc
+	{
+		client
+		{
+			7 bodyfall //face
+		}
+		server
+		{
+			last dead
+		}
+	}
+
+	rifle_pain_kneestodeath			weapon_mp44/major_pain/mp44_pain_kneestodeath.skc
+	{
+		server
+		{
+			last dead
+		}
+	}
+
+
+
+	//========================
+	// HZM coop [211] - append-only additions (this file overrides maintt/pak1; see
+	// _research/player_actor_anims.md). Injured-walk aliases restore the DBNO crawl
+	// overlay (dbno.scr testplayeranim "walk_injured_forward" was a silent no-op -
+	// the old anims_injured.txt include was .bak-disabled).
+	//========================
+	// [user 2026-08-02] bug-1291 - POINT THE DIRECTIONAL ALIASES AT THE DIRECTIONAL CLIPS.
+	// _back/_left/_right previously all pointed at walk_injured.skc, the FORWARD clip, so any
+	// non-forward injured movement played a forward-facing cycle while travelling sideways or
+	// backwards - the same "animation disagrees with travel direction" skating this project has
+	// already paid for twice (bugs 319/554). The real clips ship in retail Pak0.pk3 and were simply
+	// never referenced; verified present by reading the pk3 directory, so this costs no new assets.
+	walk_injured_forward	walks_runs/walk_injured.skc			autosteps_walk	//[user 2026-08-03] bug-1325 REVISED: user wants the walk sound - autosteps_walk = surface sample at WALK volume (0.25, cg_specialfx.cpp); the objectionable part was the sprint bursts, fixed engine-side (bug-1324)
+	walk_injured_back		walks_runs/walk_injured_back.skc	autosteps_walk	//[user 2026-08-03] bug-1325 REVISED: user wants the walk sound - autosteps_walk = surface sample at WALK volume (0.25, cg_specialfx.cpp); the objectionable part was the sprint bursts, fixed engine-side (bug-1324)
+	walk_injured_left		walks_runs/walk_injured_left.skc	autosteps_walk	//[user 2026-08-03] bug-1325 REVISED: user wants the walk sound - autosteps_walk = surface sample at WALK volume (0.25, cg_specialfx.cpp); the objectionable part was the sprint bursts, fixed engine-side (bug-1324)
+	walk_injured_right		walks_runs/walk_injured_right.skc	autosteps_walk	//[user 2026-08-03] bug-1325 REVISED: user wants the walk sound - autosteps_walk = surface sample at WALK volume (0.25, cg_specialfx.cpp); the objectionable part was the sprint bursts, fixed engine-side (bug-1324)
+	walk_injured_step		walks_runs/walk_injured_step.skc	autosteps_walk	//[user 2026-08-03] bug-1325 REVISED: user wants the walk sound - autosteps_walk = surface sample at WALK volume (0.25, cg_specialfx.cpp); the objectionable part was the sprint bursts, fixed engine-side (bug-1324)
+
+	// [user 2026-08-02] bug-1291 - ARMED injured gait. walk_injured.skc is an UNARMED clip, and a
+	// STAND torso takes its animation from the legs (player_Torso.st:14-22), so driving an armed
+	// player with it would strip their weapon posture and swing an empty arm while still holding the
+	// rifle. Retail ships exactly one armed injured cycle - rifle_run_injured.skc - so the rifle
+	// class gets a limp that keeps the weapon up; every other armed class keeps its normal walk clip
+	// in the statemap and sells the limp through the camera + speed only.
+	rifle_walk_injured_forward	weapon_rifle/walks_runs/rifle_run_injured.skc	autosteps_walk	//[user 2026-08-03] bug-1325 REVISED: user wants the walk sound - autosteps_walk = surface sample at WALK volume (0.25, cg_specialfx.cpp); the objectionable part was the sprint bursts, fixed engine-side (bug-1324)
+
+	// HZM coop [211] EMOTES - weight-free DIRECT aliases. The vanilla selection idles use the
+	// 'weight' flag, which POOLS them under the digit-stripped base name (americanselectionidle)
+	// for random pick - the numbered names are NOT addressable (bug-260, engine-probed). These
+	// names are deterministic and used by the EMOTE_* states in coop_mod/player_legs.st.
+	coop_emote_salute		misc/salute.skc
+	coop_emote_atease		misc/00A100_idle.skc					crossblend 0.4
+	coop_emote_stretch		misc/00A104_stretches.skc
+
+	// HZM coop lobby DEV pose-finder: candidate standing idles cycled by the engine 'coop_lobbycycleanim'
+	// command (numpad +/-) to visually identify the hands-on-hips pose. Weight-free = individually addressable.
+	coop_pose_offic			scripted/flak88/offic_idle.skc
+	coop_pose_g100			misc/00G100_Axis_idle.skc
+	coop_pose_g101			misc/00G101_Axis_Attention.skc
+	coop_pose_stand1		idle/standidle01.skc
+	coop_pose_stand2		idle/standidle02.skc
+	coop_pose_stand3		idle/standidle03.skc
+	coop_pose_stand4		idle/standidle04.skc
+	coop_pose_stand5		idle/standidle05.skc
+	coop_pose_generic		idle/generic_idle_B.skc
+	coop_pose_neutral1		misc/neutralidle01.skc
+	coop_pose_neutral2		misc/neutralidle02.skc
+	coop_pose_a100			misc/00A100_idle.skc
+	coop_pose_atease		idle/atease.skc
+
+	// HZM coop lobby - DIRECT MIMIC of the MP skin-select screen's idle cycling. The menu plays a SINGLE
+	// weight-pooled anim name ('americanselectionidle' / 'germanselectionidle'): the anim system pools all
+	// the numbered variations under the digit-stripped base name, plays a weighted-random one, and on
+	// ANIMDONE picks another - blending at the anim BOUNDARY (a settled pose), which is why it reads fluid.
+	// (Forcing state changes mid-anim, like the old lobbyIdleRotate did, cuts from a random in-between frame
+	// and looks like a jump-cut even WITH crossblend - that was the bug.) So we do the same: one pool named
+	// 'coop_lobbyselect', played by the EMOTE_LOBBY_SELECT legs state, self-looping on ANIMDONE.
+	// Curated from BOTH the allied 00a1xx and axis 00g1xx selection sets (user: "use the axis ones too").
+	// EXCLUDED per user: 00A103 pullups (needs a bar), 00G105 lean + 00G104 shoeshine (lean on a wall).
+	// Neutral idles weighted HIGH so it mostly stands at ease with occasional PT/downtime, like the menu.
+	// Paths RELATIVE to '$path models/human/animation' (line 5) - bug-381. Smoking + canteen (with real
+	// cigarette/canteen props + smoke, SP-style) are a follow-on and get added to this pool later.
+	// EXCLUDED (prop-dependent, no guaranteed geometry in the lobby): 00A103 pullups (needs a bar),
+	// 00A102 cleanshoes + 00G104 shoeshine + 00G105 lean (all lean on a wall). Keep only self-contained,
+	// ground/standing anims. Pushups read fine (on the ground, no prop).
+	coop_lobbyselect1		misc/00A100_idle.skc			weight 0.60	crossblend 0.5
+	coop_lobbyselect2		misc/00G100_Axis_idle.skc		weight 0.40	crossblend 0.5
+	coop_lobbyselect3		misc/00G101_Axis_Attention.skc	weight 0.30	crossblend 0.5
+	coop_lobbyselect4		misc/00A104_stretches.skc		weight 0.30	crossblend 0.5 dontrepeate
+	coop_lobbyselect5		misc/00A105_pushups.skc			weight 0.20	crossblend 0.5
+	coop_lobbyselect6		misc/00A106_jumpingjacks.skc	weight 0.20	crossblend 0.5
+	coop_lobbyselect7		misc/00G102_Axis_Primping.skc	weight 0.25	crossblend 0.5
+	coop_lobbyselect8		misc/00G103_Axis_Lookaround.skc	weight 0.30	crossblend 0.5
+	coop_lobbyselect9		misc/00G106_Axis_pushup.skc		weight 0.20	crossblend 0.5
+	coop_lobbyselect10		misc/00G108_Axis_milling_1.skc	weight 0.25	crossblend 0.5
+	coop_lobbyselect11		misc/00G109_Axis_milling_2.skc	weight 0.25	crossblend 0.5
+
+	// HZM coop [212] SPRINT: real sprint cycle for the coop sprint (Shift). alert_sprint.skc is
+	// the AI dash (0.53s loop) - distinct from alert_run (0.8s). Driven by the SPRINT_FORWARD
+	// legs state via the COOP_SPRINTING engine condition.
+	coop_sprint_forward		walks_runs/alert_sprint.skc		autosteps_run
+
+	// HZM coop [213] DBNO cinematics: the engine's own collapse/crawl/die pain sequence +
+	// ground writhe + medic kneel. Driven by the DBNO_* legs states (coop_mod/player_legs.st)
+	// from coop_mod/dbno.scr. coop_dbno_medic is pre-staged for the future teammate-revive.
+	coop_dbno_collapse		weapon_rifle/major_pain/riflep_crawltofloor.skc
+	coop_dbno_crawl			weapon_rifle/major_pain/riflep_floorcrawl.skc
+	coop_dbno_bleedout		weapon_mp40/major_pain/mp40_pain_crawldeath.skc
+	coop_dbno_idle			scripted/t2l3/23A825_InjuredCycle.skc
+	//[user 2026-08-10] SELF-REVIVE GET-UP CHAIN. The user asked whether an iteration of our DBNO
+	//animation exists where "you actually slowly get back up on your feet". It does, and it is in
+	//weapon_rifle/major_pain - the SAME family coop_dbno_collapse and coop_dbno_crawl already come
+	//from, so it blends with what the downed player is already doing. The retail set is a complete
+	//authored recovery chain: flooridle -> floortoknees -> kneesidle -> kneestostand.
+	//NOTE riflep_kneestostand carries real root translation (~74-93 units), so the player will
+	//travel forward as he rises. If that reads badly, the fix is to clamp origin during the rise,
+	//not to swap the clip - nothing else in the trilogy depicts standing up wounded.
+	coop_dbno_floortoknees	weapon_rifle/major_pain/riflep_floortoknees.skc
+	coop_dbno_kneesidle		weapon_rifle/major_pain/riflep_kneesidle.skc
+	coop_dbno_kneestostand	weapon_rifle/major_pain/riflep_kneestostand.skc
+	//[user 2026-08-10] REVIVE ANIMATION AUDITION #1: A_11_cot_medic.
+	//Was scripted/level_m3l1/medic01.skc - REVERT TO THAT LINE IF THIS LOOKS WRONG.
+	//The user disliked the old one, and there is a concrete reason it reads thin: medic01 is the
+	//D-Day beach medic from maps/m3l1a.scr, a standing-to-kneel TORSO FUSS authored to play
+	//alongside a separate upper-body canteen-pass. It was never a full-body treat animation - and
+	//the AI paratrooper medic plays the same clip (paradrop.scr:521), so reviver and medic looked
+	//identical.
+	//A_11_cot_medic is the longest medical animation in the trilogy (274 KB, BT maintt, spawned
+	//paired with A_11_cot_injured in maps/e1l1/introSpawnGuys.scr) - a sustained field-hospital
+	//medic working a casualty.
+	//KNOWN RISK, WATCH FOR IT: it is authored against a patient on a RAISED COT, so over a
+	//floor-level downed player the hands may work ~16-24 units too high. If that reads badly, the
+	//alternative is scripted/t2l3/23A828_HealingCycle.skc - the only clip in the trilogy actually
+	//named "healing", authored crouched over a casualty lying on the GROUND (gags/t2l3_medic.scr
+	//loops it 3x over 23A825_InjuredCycle, which is already our coop_dbno_idle above - so the
+	//patient pose is a proven match).
+	//AUDITION #2: 23A828_HealingCycle. #1 (A_11_cot_medic) played NOTHING visible - user: "no healing
+	//animation is working". It shipped fine and threw no load error; the likely reason is size. At
+	//274 KB it is by far the longest clip in the trilogy, a sustained field-hospital sequence, and a
+	//revive lasts ~5s - so we were almost certainly watching a near-static opening.
+	//This one is 12 KB and purpose-built to LOOP (gags/t2l3_medic.scr plays it 3x over a casualty).
+	//Strongest evidence for it: coop_dbno_idle two dozen lines up is scripted/t2l3/23A825_InjuredCycle,
+	//which is THIS CLIP'S AUTHORED PARTNER - the shipped SH script plays 23A828 over a man lying in
+	//23A825. So the medic pose and the patient pose were built for each other, and the patient half is
+	//already proven on the player skeleton in this very file.
+	//crossblend 0.3 matches the other t2l3 aliases below (coop_act_standcycle/kneel).
+	//FALLBACK IF THIS ALSO FAILS: scripted/level_m3l1/medic01.skc (the original; user dislikes it but
+	//it demonstrably works, and a working animation beats a missing one).
+	coop_dbno_medic			scripted/t2l3/23a828_healingcycle.skc	crossblend 0.3
+
+	//[user 2026-08-10] SELF-HEAL, upper body only. The trilogy contains NO animation of a soldier
+	//treating himself - an exhaustive sweep of all three games, 197 animation directories and 3798
+	//clips found nothing. This is the closest thing that exists: a paratrooper working at his own
+	//chest webbing. The devs evidently agreed it reads as injury, because they declared the SAME
+	//file a second time as AA_para_pain and paraBattle.scr plays it as the wounded reaction.
+	//Its problem is the LEGS: it is authored for a body glued to a pole (paraBattle.scr does
+	//physics_off + glue $playerspot_pole), so the legs dangle. Which is exactly why it is driven
+	//from a TORSO state (COOP_SELFHEAL in player_Torso.st, movetype legs) - the clip animates the
+	//upper body and the legs keep doing whatever they were already doing. Precedent: ladder.scr
+	//has used forcetorsostate for the same split since long before this.
+	coop_selfheal		scripted/e2l1/aa_para_loosen.skc	crossblend 0.3
+
+
+	// HZM coop [214] TAKE COVER - weapon-agnostic donor set from the AI cornering family
+	// (_research/npc_animation_catalog.md section 4; skc paths verified in main/Pak0.pk3
+	// models/human/animation/human_mp40.tik / human_rifle.tik). Holds are LOOP-flagged skcs
+	// (no ANIMDONE churn); blind-fire anims are one-shots whose "N fire" server frame
+	// commands are copied VERBATIM from the vanilla AI aliases - the anim pulls the trigger,
+	// the COVER_*_FIRE statemap states just play it. No 'weight' flag anywhere (bug-260).
+	// Driven by the COVER_* legs states (coop_mod/player_legs.st) via COOP_COVER conditions.
+
+	// HZM coop [user 2026-08-24] PRONE. Same borrow pattern as the cover set directly above, and the
+	// same reason it is safe: these live in models/human/animation/weapon_rifle/prone/, a SIBLING of
+	// the weapon_rifle/cornering/ directory the cover anims already come from - proven in play to bind
+	// to the player skeleton. (There is also a newanim/ copy of these paths; the non-newanim one is
+	// what the cover aliases resolve to, so keep the two consistent.)
+	//
+	// RIFLE SET FOR EVERY WEAPON CLASS, per the user: only rifle/pistol/mp40/mp44 have prone anims at
+	// all, and mp40 has just 4 (no crawl). An SMG will therefore be held rifle-style while prone -
+	// a coherent full-body pose rather than a broken one.
+	// [user 2026-08-25] The ONLY body-space prone reload the game ships is the pistol one - there is no
+	// rifle/SMG/MG equivalent in any pak. Used for EVERY weapon while prone, with the user's approval,
+	// because a wrong-but-lying-down reload reads better than the torso standing up off the ground.
+	// NOTE: RELOAD_* exits on ANIMDONE_TORSO, so this animation's LENGTH becomes the reload duration
+	// for every gun while prone. That is a real balance change and it is deliberate, not incidental.
+	coop_prone_reload	weapon_pistol/prone/pistol_prone_reload.skc
+	// [user 2026-08-26] SUPINE (lying on back) candidates - EYEBALL PROTOTYPE ONLY, reached via
+	// coop_supineTest. The user asked to lie on your back and fire behind you from prone; these are
+	// the on-back assets that actually ship. 23A825_InjuredCycle is the DBNO idle - already proven on
+	// the player skeleton in this mod. pose_c(back) is retail's static on-back pose. Bare aliases are
+	// SAFE here because an idle pose does no work - no fire, no reload, no weaponcommand (the
+	// notetrack trap applies to ACTION anims; TRAPS, bare-alias entry).
+	// [user 2026-08-26, bug-2119] PRONE PAIN - one shared set for every weapon group (the engine's
+	// prone branch replaces the weapon prefix with coop_prone_). Same suffix collapse the AI tik uses:
+	// head->helmet skc, everything torso-ish->torso skc, leg->legs skc. Verified notetrack-free.
+	// [spec P1, 2026-08-26] SUPINE pain + death - the prone sets FLIPPED (skc_flip.py, c=19).
+	// The prone hit files are MOVEMENT-class (root pos+rot), so unflipped they wrenched a supine
+	// body toward its side at pain weight for up to 2.7s per hit; the engine pain picker routes
+	// coop_supine_ while m_bCoopSupine, and KILLED_SUPINE plays the flipped death via the
+	// COOP_DIED_SUPINE latch (set before the death path wipes the stance flags).
+	coop_supine_hit_head		coop_supine/supine_hit_helmet.skc
+	coop_supine_hit_uppertorso	coop_supine/supine_hit_torso.skc
+	coop_supine_hit_lowertorso	coop_supine/supine_hit_torso.skc
+	coop_supine_hit_rarm		coop_supine/supine_hit_torso.skc
+	coop_supine_hit_larm		coop_supine/supine_hit_torso.skc
+	coop_supine_hit_back		coop_supine/supine_hit_torso.skc
+	coop_supine_hit_leg		coop_supine/supine_hit_legs.skc
+	coop_supine_death		coop_supine/supine_death.skc
+	coop_prone_hit_head		weapon_rifle/minor_pain/rifle_prone_hit_helmet.skc
+	coop_prone_hit_uppertorso	weapon_rifle/minor_pain/rifle_prone_hit_torso.skc
+	coop_prone_hit_lowertorso	weapon_rifle/minor_pain/rifle_prone_hit_torso.skc
+	coop_prone_hit_rarm		weapon_rifle/minor_pain/rifle_prone_hit_torso.skc
+	coop_prone_hit_larm		weapon_rifle/minor_pain/rifle_prone_hit_torso.skc
+	coop_prone_hit_back		weapon_rifle/minor_pain/rifle_prone_hit_torso.skc
+	coop_prone_hit_leg		weapon_rifle/minor_pain/rifle_prone_hit_legs.skc
+	// [user 2026-08-26] SUPINE = the prone anims FLIPPED ONTO THEIR BACK, generated byte-level by
+	// docs/tools/skc_flip.py (the user's own suggestion: 'is it not possible to just flip the
+	// existing prone animation upside down?'). Root+feet quats POST-multiplied 180 about the model long axis (bug-2122).
+	// Notetracks live in the ALIAS, not the skc - so the flipped shoot fires exactly like the
+	// original. Regenerate: python docs/tools/skc_flip.py <src-in-pak> <dst> [lift]
+	coop_supine_idle	coop_supine/supine_idle.skc
+	coop_supine_aim		coop_supine/supine_aim.skc
+	coop_supine_shoot	coop_supine/supine_shoot.skc
+	{
+		server
+		{
+			first fire
+		}
+	}
+	coop_supine_pose	deaths/pose_c(back).skc
+	coop_supine_drag	scripted/level_m3l1/drag_beingdragged.skc
+	coop_prone_idle		weapon_rifle/prone/rifle_prone_idle.skc
+	coop_prone_legs		weapon_rifle/prone/rifle_prone_legs.skc
+	coop_prone_in		weapon_rifle/crouch/rifle_crouch_prone.skc
+	coop_prone_out		weapon_rifle/prone/rifle_prone_crouch.skc
+	// [user 2026-08-26] P1 fluidity - body turn-in-place while the eased yaw catches the view.
+	// Verified notetrack-free in the AI tik before aliasing (the four-time trap).
+	// [user 2026-08-26] PRONE BATCH 2 - every alias below that performs an ACTION carries its retail
+	// notetrack block RETIMED to this animation's real frame count (the bare-alias trap has five
+	// scars now). Timing sources: rifle_stand_lower deactivates at 75% of its length; pistol_reload
+	// clip_fills at ~55%; grenade_stand_fire releasefires at frame 2 with retail's own warning that
+	// it cannot come later or the weapon is unresponsive.
+
+	// weapon switching while prone (rifle_prone_putaway = 12f, pullout = 11f)
+	coop_prone_lower	weapon_rifle/prone/rifle_prone_putaway.skc
+	{
+		server
+		{
+			9 deactivateweapon righthand
+		}
+		client
+		{
+			enter sound snd_rifle_putaway
+		}
+	}
+	coop_prone_raise	weapon_rifle/prone/rifle_prone_pullout.skc
+	{
+		server
+		{
+			0 activatenewweapon garandhand
+		}
+		client
+		{
+			enter sound snd_rifle_pullout
+		}
+	}
+
+	// grenade from prone: charge holds the takeout pose; throw releasefires at frame 2 (retail rule)
+	// [pass2 CRITICAL, bug-2125] `first charge` is the ONLY code path that sets charge_start_time
+	// (Sentient::ChargeWeapon runs from the frame command, nothing else) - as a bare alias this
+	// hard-locked a prone grenadier in the charge state until killed: MIN_CHARGE_TIME could never be
+	// met and the state has no other exit. The bare-alias trap's SIXTH scar. The secondary pair
+	// exists because the notetrack lives in the alias: one shared throw released every underhand
+	// toss as a full-strength PRIMARY.
+	coop_gren_prone_charge	weapon_grenade/prone/grenade_prone_takeout.skc
+	{
+		server
+		{
+			first charge
+		}
+	}
+	coop_gren_prone_charge2	weapon_grenade/prone/grenade_prone_takeout.skc
+	{
+		server
+		{
+			first charge mainhand secondary
+		}
+	}
+	coop_gren_prone_throw2	weapon_grenade/prone/grenade_prone_throw_straight.skc
+	{
+		server
+		{
+			2 releasefire mainhand secondary
+		}
+	}
+	coop_gren_prone_throw	weapon_grenade/prone/grenade_prone_throw_straight.skc
+	{
+		server
+		{
+			2 releasefire
+		}
+	}
+	coop_gren_prone_lower	weapon_grenade/prone/grenade_prone_putaway.skc
+	{
+		server
+		{
+			9 deactivateweapon righthand
+		}
+		client
+		{
+			enter sound snd_grenade_putaway // [pass3, bug-2126] stock client block, was dropped
+		}
+	}
+	coop_gren_prone_raise	weapon_grenade/prone/grenade_prone_takeout.skc
+	{
+		server
+		{
+			0 activatenewweapon garandhand
+		}
+		client
+		{
+			enter sound snd_grenade_pullout // [pass3, bug-2126] stock client block, was dropped
+		}
+	}
+
+	// per-class prone fire - burst frames copied verbatim from the AI tik definitions
+	// [pass2 HIGH, bug-2125] single `entry fire`, NOT the AI tik's burst frames. Those frames are AI
+	// cadence: on a player, the attack state exits only on ANIMDONE, so a TAP discharged up to 4-5
+	// live rounds - most AFTER the trigger was released (each 0.13s-spaced frame command outlasts
+	// every SMG/MG firedelay and passes ReadyToFire). Retail player fire aliases are all single-fire
+	// for exactly this reason; the full-auto redispatch loop supplies the rate while held. This is
+	// the same lesson the cover blindfire already paid for ('one click produced a G43 triple-tap').
+	coop_prone_shoot_smg	weapon_mp40/prone/mp40_prone_shoot.skc
+	{
+		server
+		{
+			entry fire
+		}
+	}
+	coop_prone_shoot_mg	weapon_mp44/prone/mp44_prone_shoot.skc
+	{
+		server
+		{
+			entry fire
+		}
+	}
+
+	// the pistol's NATIVE prone set - the one class whose real prone reload ships (15f @ 1.50s).
+	// clip_fill retimed 25/45 -> 9/15; clip model attach copied from the standing alias.
+	coop_prone_shoot_pistol	weapon_pistol/prone/pistol_prone_shoot_straight.skc
+	{
+		server
+		{
+			first fire
+		}
+	}
+	coop_prone_aim_pistol	weapon_pistol/prone/pistol_prone_aim.skc
+	coop_prone_reload_pistol	weapon_pistol/prone/pistol_prone_reload.skc
+	{
+		server
+		{
+			first reloadweapon
+			0 attachmodel models/ammo/colt_clip.tik tag_weapon_left
+			9 weaponcommand mainhand clip_fill
+			13 removeattachedmodel tag_weapon_left 0 models/ammo/colt_clip.tik
+		}
+	}
+
+	// evasive rolls (9f) and dying flat (14f) - locomotion/death class, verified bare in retail
+	coop_prone_rolll	weapon_rifle/prone/rifle_prone_roll_left.skc
+	coop_prone_rollr	weapon_rifle/prone/rifle_prone_roll_right.skc
+	coop_prone_death	deaths/death_prone1.skc
+	coop_prone_turnl	weapon_rifle/prone/rifle_prone_turn_left.skc
+	coop_prone_turnr	weapon_rifle/prone/rifle_prone_turn_right.skc
+	coop_prone_fwd		weapon_rifle/prone/rifle_prone_walk.skc
+	coop_prone_back		weapon_rifle/prone/rifle_prone_walk_back.skc
+	coop_prone_left		weapon_rifle/prone/rifle_prone_walk_left.skc
+	coop_prone_right	weapon_rifle/prone/rifle_prone_walk_right.skc
+	coop_prone_turn_l	weapon_rifle/prone/rifle_prone_turn_left.skc
+	coop_prone_turn_r	weapon_rifle/prone/rifle_prone_turn_right.skc
+	coop_prone_aim		weapon_rifle/prone/rifle_prone_aim_up.skc
+	// FIRE NOTETRACK COPIED VERBATIM from human_rifle.tik. Without it the animation plays and the
+	// weapon never discharges - "I go down ADS and firing does nothing, but I can fire if not in ads",
+	// because hip-fire uses a different torso state that has its own fire command. Same rule the cover
+	// blindfire aliases record: the ANIM pulls the trigger, the statemap only plays it.
+	coop_prone_shoot	weapon_rifle/prone/rifle_prone_shoot.skc
+	{
+		server
+		{
+			first fire
+		}
+	}
+	coop_prone_shoot_up	weapon_rifle/prone/rifle_prone_shoot_up.skc
+	{
+		server
+		{
+			first fire
+		}
+	}
+	coop_prone_shoot_dn	weapon_rifle/prone/rifle_prone_shoot_down.skc
+	{
+		server
+		{
+			first fire
+		}
+	}
+
+	// [pass3, bug-2126] the 08-25 prone sweep covered the five gun classes only; bazooka,
+	// rifle-mortar, landmine and melee bash still popped the torso standing (prone) or rolled
+	// the flipped body sideways (supine). Notetracks copied VERBATIM from the stock aliases
+	// (anims_bazooka/anims_rifle/anims_mine/anims_smg.txt) - the alias owns the notetrack, the
+	// statemap only plays the anim (the coop_gren_prone lesson, 6 scars now). The stock mine
+	// lay fired at frame 15; these skcs are 7 frames, so placement moved to 'first'.
+	coop_prone_shoot_sec	weapon_rifle/prone/rifle_prone_shoot.skc
+	{
+		server
+		{
+			first fire mainhand secondary
+		}
+	}
+	coop_supine_shoot_sec	coop_supine/supine_shoot.skc
+	{
+		server
+		{
+			first fire mainhand secondary
+		}
+	}
+	coop_mine_prone_charge	weapon_rifle/prone/rifle_prone_aim_up.skc
+	{
+		server
+		{
+			first charge mainhand secondary
+		}
+	}
+	coop_mine_supine_charge	coop_supine/supine_aim.skc
+	{
+		server
+		{
+			first charge mainhand secondary
+		}
+	}
+	coop_mine_prone_fire	weapon_rifle/prone/rifle_prone_shoot.skc
+	{
+		server
+		{
+			first releasefire
+		}
+	}
+	coop_mine_supine_fire	coop_supine/supine_shoot.skc
+	{
+		server
+		{
+			first releasefire
+		}
+	}
+	coop_mine_prone_fire_sec	weapon_rifle/prone/rifle_prone_shoot.skc
+	{
+		server
+		{
+			first releasefire mainhand secondary
+		}
+	}
+	coop_mine_supine_fire_sec	coop_supine/supine_shoot.skc
+	{
+		server
+		{
+			first releasefire mainhand secondary
+		}
+	}
+	coop_butt_prone	weapon_rifle/prone/rifle_prone_shoot.skc
+	{
+		server
+		{
+			4 fire mainhand secondary
+		}
+		client
+		{
+			entry sound pistol_whip
+		}
+	}
+	coop_butt_supine	coop_supine/supine_shoot.skc
+	{
+		server
+		{
+			4 fire mainhand secondary
+		}
+		client
+		{
+			entry sound pistol_whip
+		}
+	}
+
+	// HZM coop [user 2026-08-27] MOUNTED (gun braced on a surface) - the 3P pose other players see.
+	// Retail already animated this exact thing and we were only using half the set: the mod ships
+	// crate_alert (low-cover idle) and crate_blindfire (firing over cover blind), while crate_AIM and
+	// crate_SHOOT - crouched behind cover with the weapon up and aimed OVER it - sat unused. That is
+	// the mounted pose, authored by the original animators. Fire notetrack copied from the shoot
+	// aliases (the anim pulls the trigger; the statemap only plays it).
+	// STANDING mounted: the wall-corner braced set. A soldier standing at a sill, a doorway jamb or a
+	// building corner with the weapon up and aimed - retail animated this per weapon class and the mod
+	// was only using the BLINDFIRE half of it. peek = the aim hold, shoot = firing from it.
+	coop_brace_stand_aim	weapon_rifle/cornering/rifle_wall_peek_right.skc
+	coop_brace_stand_shoot	weapon_rifle/cornering/rifle_wall_shoot_right.skc
+	{
+		server
+		{
+			entry fire
+		}
+	}
+	coop_brace_stand_aim_smg	weapon_mp40/cornering/mp40_wall_peek_right.skc
+	coop_brace_stand_shoot_smg	weapon_mp40/cornering/mp40_wall_shoot_right.skc
+	{
+		server
+		{
+			entry fire
+		}
+	}
+	coop_brace_stand_aim_pistol	weapon_pistol/cornering/pistol_wall_peek_right.skc
+	coop_brace_stand_shoot_pistol	weapon_pistol/cornering/pistol_wall_shoot_right.skc
+	{
+		server
+		{
+			entry fire
+		}
+	}
+	coop_brace_stand_shoot_mg	weapon_mp44/cornering/mp44_wall_shoot_right.skc
+	{
+		server
+		{
+			entry fire
+		}
+	}
+
+	// CROUCHED mounted, now PER CLASS - retail ships a crate set for every weapon class and the first
+	// cut handed the MP40 pose to everyone, so a rifleman mounted with an SMG stance.
+	coop_brace_aim_rifle	weapon_rifle/cornering/rifle_crate_aim.skc
+	coop_brace_shoot_rifle	weapon_rifle/cornering/rifle_crate_shoot.skc
+	{
+		server
+		{
+			entry fire
+		}
+	}
+	coop_brace_aim_pistol	weapon_pistol/cornering/pistol_crate_aim.skc
+	coop_brace_shoot_pistol	weapon_pistol/cornering/pistol_crate_shoot.skc
+	{
+		server
+		{
+			entry fire
+		}
+	}
+
+	coop_brace_aim		weapon_mp40/cornering/mp40_crate_aim.skc
+	coop_brace_shoot	weapon_mp40/cornering/mp40_crate_shoot.skc
+	{
+		server
+		{
+			entry fire
+		}
+	}
+	coop_brace_shoot_mg	weapon_bar/cornering/bar_crate_shoot.skc
+	{
+		server
+		{
+			entry fire
+		}
+	}
+
+	coop_cover_wall		weapon_rifle/cornering/rifle_wall_alert_left.skc
+	coop_cover_low		weapon_mp40/cornering/mp40_crate_alert.skc
+	coop_blindfire_wall		weapon_mp40/cornering/mp40_wall_blindfire_left.skc
+	{
+		server
+		{
+			1 fire
+			3 fire
+			5 fire
+			7 fire
+		}
+	}
+	coop_blindfire_low		weapon_mp40/cornering/mp40_crate_blindfire.skc
+	{
+		server
+		{
+			1 fire
+			3 fire
+			5 fire
+			7 fire
+			9 fire
+			11 fire
+			13 fire
+		}
+	}
+	// HZM coop [215] - manned-turret 3P pose (jeep .30cal / MG42 nests): standing hands-on-grips
+	coop_turret_stand_idle		weapon_mg42/MG42_stand_idle_a(loop).skc
+	coop_turret_stand_fire		weapon_mg42/MG42_stand_firing.skc
+
+	// HZM coop [224] - TRUE shouldered AIM HOLDS (AI aiming anims, same skeleton): barrel level
+	// at the view. Used by the cover-peek torso (stand_idle was a muzzle-up patrol CARRY).
+	coop_aim_rifle		weapon_rifle/rifle_aim.skc
+	coop_aim_smg		weapon_mp40/mp40_aim_action.skc
+	coop_aim_mg			weapon_mp44/mp44_aim.skc
+	coop_aim_pistol		weapon_pistol/pistol_aim.skc
+
+	// HZM coop [user 07-17] - ARMORY OPERATOR STANCES: relaxed standing weapon-HELD idles, one per
+	// weapon class, so the loadout operator grips the inspected weapon naturally (driven by the
+	// engine 'modelanimcvar coop_loCharAnim'; p<id>.cfg sets it per weapon). Loop-flagged low-ready
+	// carries (research: lobby_idle_anims_catalog.md 2i). MG/heavy + grenade reuse the rifle carry
+	// (no verified relaxed portable-MG carry pose exists in the mounted paks).
+	coop_hold_rifle		idle/rifle_idle_normal01(loop).skc		crossblend 0.3
+	coop_hold_smg		idle/thompson_idle_stand1.skc			crossblend 0.3
+	coop_hold_pistol	weapon_pistol/idles/pistol_stand_bored.skc	crossblend 0.3
+
+	// HZM coop [230] - CoD2 pb_sprint retarget SMOKE TEST (private experiment - never ship)
+	coop_test_sprint	coop/coop_test_sprint.skc
+	coop_sprint_rifle_a	coop/coop_sprint_rifle_a.skc
+	coop_sprint_rifle_b	walks_runs/beachrun01.skc //[user 2026-08-18] Omaha beach charge - fastest of the set (533u/s), retail never even aliased it. Test bay B.
+	coop_sprint_rifle_c	walks_runs/thompson_beachrun1.skc //[user 2026-08-18] Thompson-specific beach charge, zero retail references. Test bay C.
+	coop_sprint_2h		walks_runs/thompson_beachrun1.skc	autosteps_run //[user 2026-08-18] "the thompson sprint should be used for all two handed weapons" - SHIPPED as the sprint cycle for every non-pistol/non-grenade class (SPRINT_FORWARD legs).
+	coop_ads_walk_f		coop/coop_ads_walk_f.skc
+	coop_ads_walk_b		coop/coop_ads_walk_b.skc
+	coop_ads_walk_l		coop/coop_ads_walk_l.skc
+	coop_ads_walk_r		coop/coop_ads_walk_r.skc
+	coop_blindfire_wall_r		weapon_mp44/cornering/mp44_wall_blindfire_right.skc
+	{
+		server
+		{
+			1 fire
+			3 fire
+			5 fire
+			7 fire
+		}
+	}
+
+	// HZM coop [240] BUILD-MODE ACTORS - directly-addressable downtime/idle aliases used by the
+	// in-game build mode (coop_mod/buildmode_actors.scr) to animate placed allied player-model
+	// script_models, and by the lobby scene importer (coop_mod/lobby.scr::coop_sceneActorAnimate).
+	// Weight-free = individually addressable (bug-260). Paths RELATIVE to '$path models/human/animation'
+	// (line 5, bug-381). All .skc verified present in main/mainta/maintt paks (2026-07-08).
+	// PROP anims: the cigarette / canteen / binoculars are NOT baked into these aliases (no frame
+	// commands) - build mode + the importer attach them explicitly with 'attachmodel <tik> <tag>'
+	// (cigarette -> "Bip01 L Finger11", canteen/binoculars -> tag_weapon_left; tags exist on the
+	// bip01 player rig). See _research/build_actor_anims.md for the full prop table.
+	coop_act_idle			idle/generic_idle_a01(loop).skc		crossblend 0.3
+	coop_act_relax			scripted/lean/relax01(loop).skc		crossblend 0.3
+	coop_act_stand			idle/standidle02.skc			crossblend 0.3
+	coop_act_neutral		misc/neutralidle01.skc			crossblend 0.3
+	coop_act_lookaround		misc/00G103_Axis_Lookaround.skc		crossblend 0.3
+	coop_act_lean			misc/00G105_Axis_lean.skc		crossblend 0.3
+	coop_act_primping		misc/00G102_Axis_Primping.skc		crossblend 0.3
+	coop_act_milling		misc/00G108_Axis_milling_1.skc		crossblend 0.3
+	coop_act_attention		misc/00G101_Axis_Attention.skc		crossblend 0.3
+	coop_act_salute			misc/salute.skc				crossblend 0.3
+	coop_act_stretch		misc/00A104_stretches.skc		crossblend 0.3
+	coop_act_cleanshoes		misc/00A102_cleanshoes.skc		crossblend 0.3
+	coop_act_pushups		misc/00A105_pushups.skc			crossblend 0.3
+	coop_act_jacks			misc/00A106_jumpingjacks.skc		crossblend 0.3
+	coop_act_point			misc/point.skc				crossblend 0.3
+	coop_act_talk1			idle/chatter01.skc			crossblend 0.3
+	coop_act_talk2			idle/chatter02.skc			crossblend 0.3
+	coop_act_smoke			scripted/smoking/inhale.skc		crossblend 0.3
+	coop_act_smoke_light		scripted/smoking/lightup.skc		crossblend 0.3
+	coop_act_drink			scripted/pickup_obj/pass_canteen_drink.skc	crossblend 0.3
+	coop_act_canteen		scripted/pickup_obj/pass_canteen_idle.skc	crossblend 0.3
+	coop_act_binoc			scripted/pickup_obj/pass_canteen_idle.skc	crossblend 0.3
+
+	// HZM coop [241] BUILD-MODE ACTORS batch 2 - more STANDING + proper KNEELING/CROUCHING downtime.
+	// Extends the [240] set. FIXES the "kneel reads as a weird crouch" gap: [240] had no true kneel,
+	// so a placed soldier meant to kneel only had crouch-ish/bend poses. 23a820/23a827_kneelingcycle
+	// are dedicated full-body kneeling idle LOOPS; aa_soldier1_kneel_idle (AA-gun kneel) + woundedknee
+	// (kneel holding knee) add variety; unarmed_crouch_alert = a clean crouch; a_32_cowering = crouch
+	// cower. All .skc verified present in main/mainta/maintt (2026-07-08); the coop launch
+	// (com_target_game 2 = BT) mounts all three pak sets so AA/SH/BT anims all resolve at runtime.
+	// Weight-free = individually addressable (bug-260). Paths RELATIVE to '$path models/human/animation'
+	// (line 5, bug-381). Parens in filenames are fine (coop_act_idle/relax above already use them).
+	// STANDING downtime:
+	coop_act_atease			idle/atease.skc				crossblend 0.3
+	coop_act_idle2			idle/generic_idle_b.skc			crossblend 0.3
+	coop_act_weightshift		idle/generic_idle_a02(weight_shift).skc	crossblend 0.3
+	coop_act_stand2			idle/standidle01.skc			crossblend 0.3
+	coop_act_stand3			idle/standidle03.skc			crossblend 0.3
+	coop_act_stand4			idle/standidle04.skc			crossblend 0.3
+	coop_act_neutral2		misc/neutralidle02.skc			crossblend 0.3
+	coop_act_standcycle		scripted/t2l3/23a824_standcycle.skc	crossblend 0.3
+	coop_act_talk3			idle/chatter03.skc			crossblend 0.3
+	coop_act_talk4			idle/chatter04.skc			crossblend 0.3
+	coop_act_scratch		scripted/scientist/scientist_scratch.skc	crossblend 0.3
+	coop_act_surrender		scripted/scientist/scientist_surrender.skc	crossblend 0.3
+	coop_act_watch			scripted/sledgehammer/watching_idle.skc	crossblend 0.3
+	coop_act_salute_hold		idle/salute_idle.skc			crossblend 0.3
+	coop_act_smoke_stand		idle/smoking01.skc			crossblend 0.3
+	coop_act_smoke_stand2		idle/smoking03.skc			crossblend 0.3
+	coop_act_welding		scripted/welding/welding_idle.skc	crossblend 0.3
+	// KNEELING / CROUCHING (fills the missing-kneel gap):
+	coop_act_kneel			scripted/t2l3/23a820_kneelingcycle.skc	crossblend 0.3
+	coop_act_kneel2			scripted/t2l3/23a827_kneelingcycle.skc	crossblend 0.3
+	coop_act_kneel_aa		scripted/e2l1/aa_soldier1_kneel_idle.skc	crossblend 0.3
+	coop_act_kneel_wounded		scripted/e1l1/a_11_woundedknee_idle.skc	crossblend 0.3
+	coop_act_crouch			idle/unarmed_crouch_alert.skc		crossblend 0.3
+	coop_act_cower			scripted/e3l2/a_32_cowering.skc		crossblend 0.3
+	//===================== [reload audit 2026-10-05] torso reloads of our own =====================
+	// The torso alias IS the reload on the server: its length is how long the player cannot fire,
+	// its attachmodel frames put the ammo prop in a hand, its clip_fill frame is when the ammo
+	// arrives. These replace class defaults that belonged to other guns (proposals/
+	// reload_authenticity_2026-10-05/AUDIT.md). Times below are seconds into the reload.
+	//
+	// FG42 - DaRKaNGeL's 2.34 s hands. Body = the BAR torso retimed to 2.34 s (frameTime only,
+	// coop_tps_reload_fg42.skc). The left hand pulls the magazine at 0.66 s and seats it at 1.36 s
+	// (measured, hand-to-magazine distance) - the frames FG42.tik hides fg42clip (20-40, 0.66-1.32 s), so the
+	// FG42's OWN magazine (models/ammo/fg42clip.tik) rides the hand exactly while the gun's is hidden.
+	coop_reload_fg42	viewmodel/mg/coop_tps_reload_fg42.skc	crossblend 0.3
+	{
+		server
+		{
+			first reloadweapon
+			28	attachmodel models/ammo/fg42clip.tik tag_weapon_left
+			56	weaponcommand mainhand clip_fill
+			56	removeattachedmodel tag_weapon_left 0 models/ammo/fg42clip.tik
+		}
+	}
+	// Johnson M1941 - East's 2.00 s hands load the right-side port with the gun's own stripper clip
+	// (johnson.tik material4/5, 0.59-1.0 s). Same hand swap as the Garand torso (the clip was
+	// authored under it) but NO Garand en-bloc clip in the right hand.
+	coop_reload_johnson	viewmodel/rifle/tps_garand_reload.skc	crossblend 0.05
+	{
+		server
+		{
+			first reloadweapon
+			1	weaponcommand mainhand attachtohand offhand
+			31	weaponcommand mainhand clip_fill
+			57	weaponcommand mainhand attachtohand mainhand
+		}
+	}
+	// DP-28 - Lt. Pato's 3.20 s pan reload. [phase B] His hands take the pan OFF (grip 0.79-0.89 s, away 0.99-1.39 s,
+	// seated 1.48 s, tag_weapon_left on the pan): his own pan prop rides the hand while dp28.tik hides the gun's
+	// pan (both f29-f45 = 0.96-1.48 s). Ammo when the new pan is seated.
+	coop_reload_dp28	viewmodel/mg/tps_reload_bar.skc	crossblend 0.3
+	{
+		server
+		{
+			first reloadweapon
+			29	attachmodel models/ammo/coop_dp28_clip.tik tag_weapon_left
+			45	weaponcommand mainhand clip_fill
+			45	removeattachedmodel tag_weapon_left 0 models/ammo/coop_dp28_clip.tik
+		}
+	}
+	// Lewis Gun - the DP-28 pan reload retargeted to the Lewis (coopr_lewis_gun_reload); the Lewis pan prop rides the
+	// hand while bar_bar1918.tik hides the gun's pan (prop f28-f60, hidden f30-f58; polish: hand-keyed, keyclip.py).
+	coop_reload_lewis	viewmodel/mg/tps_reload_bar.skc	crossblend 0.3
+	{
+		server
+		{
+			first reloadweapon
+			28	attachmodel models/ammo/coop_lewis_pan.tik tag_weapon_left
+			60	weaponcommand mainhand clip_fill
+			60	removeattachedmodel tag_weapon_left 0 models/ammo/coop_lewis_pan.tik
+		}
+	}
+	// S&W M10 - East's revolver hands. No Colt magazine prop. Ammo when the cylinder closes
+	// (m10 reload_colt45.skc: chamber out 0.13 s, back 1.87-2.0 s).
+	coop_reload_m10	viewmodel/pistol/reload_colt.skc	crossblend 0.3
+	{
+		server
+		{
+			first reloadweapon
+			16	coop_ejectcases models/ammo/pistolshell.tik tag_weapon_right 6	// [phase B] ejector rod: fired cases
+			56	weaponcommand mainhand clip_fill
+		}
+	}
+	// [phase B 2026-10-05] SPENT CASES (engine apply_ejectcases.py: coop_ejectcases drops clip size minus rounds left,
+	// capped; brass, owner-hidden while falling, land on their side). Top-break Webleys (both): the star extractor
+	// throws every fired case at once as the gun breaks open (gun fully open ~0.38-0.43 s). The Nagant already drops
+	// one case per round (nagant_pistol_shell.tik is on the engine's eject list, once per reload_loop); the M10 drops
+	// its fired cases at the ejector-rod push (0.53 s, above).
+	coop_reload_webley_start	viewmodel/webley/webley_reload_start.skc	crossblend 0.1
+	{
+		server
+		{
+			3 reloadweapon		// HZM coop [revolver reload] the gun's own opening clip is 13 frames: started 3 frames in, it ends as the
+							// first round starts (it used to end 3 frames early and the gun snapped shut for those frames)
+			15	coop_ejectcases models/ammo/pistolshell.tik tag_weapon_right 6
+		}
+	}
+	// [phase B 2026-10-05] DRUM reloads: the drum prop (gun skeleton, drum surface only) rides tag_weapon_left while
+	// the gun hides its drum; ammo when the new drum is seated. Thompsons: the SMG torso (1/15 s frames) - polish: prop
+	// 0.733-2.0 s (hand f22-60; Thompson 50rd 0.8-2.0 s, f24-60, after its left hand has pulled the cocking knob back f11-16).
+	coop_reload_tommydrum50	multiplayer/mp_thompson_reload.skc	crossblend 0.15
+	{
+		server
+		{
+			first reloadweapon
+			12	attachmodel models/ammo/coop_tommy50_drum.tik tag_weapon_left
+			30	weaponcommand mainhand clip_fill
+			30	removeattachedmodel tag_weapon_left 0 models/ammo/coop_tommy50_drum.tik
+		}
+	}
+	coop_reload_tommydrum1928	multiplayer/mp_thompson_reload.skc	crossblend 0.15
+	{
+		server
+		{
+			first reloadweapon
+			11	attachmodel models/ammo/coop_tommy1928_drum.tik tag_weapon_left
+			30	weaponcommand mainhand clip_fill
+			30	removeattachedmodel tag_weapon_left 0 models/ammo/coop_tommy1928_drum.tik
+		}
+	}
+	// MP18: the MP40 torso (0.333 s / 1.533 s).
+	coop_reload_mp18	viewmodel/MP40/reload_mp40_stand.skc	crossblend 0.1
+	{
+		server
+		{
+			first reloadweapon
+			10	attachmodel models/ammo/coop_mp18_drum.tik tag_weapon_left
+			46	weaponcommand mainhand clip_fill
+			46	removeattachedmodel tag_weapon_left 0 models/ammo/coop_mp18_drum.tik
+		}
+	}
+	// [phase B 2026-10-05] Mauser C96 (+Trench): stripper clip from the TOP (hands coopr_mauser_c96_reload). The full
+	// clip rides the left hand in (f28-41), sits in the guides on the gun while the thumb strips the rounds down (f41-44,
+	// ammo at f44), the empty clip sits there until the hand takes it (f47) and tosses it (f56). Attach before remove on
+	// a shared frame, so the clip is never missing for a frame.
+	coop_reload_c96	viewmodel/pistol/reload_colt.skc	crossblend 0.3
+	{
+		server
+		{
+			first reloadweapon
+			28	attachmodel models/ammo/coop_c96_stripper_full.tik tag_weapon_left
+			41	attachmodel models/ammo/coop_c96_stripper_full.tik tag_weapon_right
+			41	removeattachedmodel tag_weapon_left 0 models/ammo/coop_c96_stripper_full.tik
+			44	attachmodel models/ammo/coop_c96_stripper_empty.tik tag_weapon_right
+			44	removeattachedmodel tag_weapon_right 0 models/ammo/coop_c96_stripper_full.tik
+			44	weaponcommand mainhand clip_fill
+			47	attachmodel models/ammo/coop_c96_stripper_empty.tik tag_weapon_left
+			47	removeattachedmodel tag_weapon_right 0 models/ammo/coop_c96_stripper_empty.tik
+			56	removeattachedmodel tag_weapon_left 0 models/ammo/coop_c96_stripper_empty.tik
+		}
+	}
+	// [phase B 2026-10-05, polish] BELT-FED guns (M1919 .30 cal, MG42): hand-keyed hands (keyclip.py) on one timeline
+	// with the guns' world reload (beltsched.py): cover and charging handle are their own bones. Body = the BAR torso.
+	// The belt prop rides the hand while the gun's belt is hidden (2-frame overlap each side); ammo once the cover is shut.
+	coop_reload_mg42	viewmodel/mg/tps_reload_bar.skc	crossblend 0.3
+	{
+		server
+		{
+			first reloadweapon
+			43	attachmodel models/ammo/coop_belt_mg42.tik tag_weapon_left
+			69	removeattachedmodel tag_weapon_left 0 models/ammo/coop_belt_mg42.tik
+			82	weaponcommand mainhand clip_fill
+		}
+	}
+	coop_reload_m1919	viewmodel/mg/tps_reload_bar.skc	crossblend 0.3
+	{
+		server
+		{
+			first reloadweapon
+			32	attachmodel models/ammo/coop_belt_30cal.tik tag_weapon_left
+			58	removeattachedmodel tag_weapon_left 0 models/ammo/coop_belt_30cal.tik
+			72	weaponcommand mainhand clip_fill
+		}
+	}
+	//===================== [reload audit phase B 2026-10-05] per-weapon FIRST-PERSON reload clips =====================
+	// coopr_<weapon key>_reload / _reload_single / _reload_end: cgame (apply_reloadclips.py) plays these instead of
+	// the prefix's clip for that one gun (key = weapon name lower case, non-alphanumerics -> '_'; finishes follow).
+	// Scoped bolt rifles: the kar98sniper one-round-at-a-time set (torso RELOAD_SPRINGFIELD). Pose seam into these
+	// from the guns' own idles: <= 0.47 u (measured), inside the 0.05 s crossblend.
+	coopr_arisaka_sniper_reload		viewmodel/rifle/springfield_reload_start.skc		crossblend 0.05
+	coopr_arisaka_sniper_reload_single	viewmodel/rifle/springfield_reload_fill.skc		crossblend 0
+	coopr_arisaka_sniper_reload_end	viewmodel/rifle/springfield_reload_end.skc		crossblend 0.0
+	coopr_mosin_nagant_sniper_reload		viewmodel/rifle/springfield_reload_start.skc		crossblend 0.05
+	coopr_mosin_nagant_sniper_reload_single	viewmodel/rifle/springfield_reload_fill.skc		crossblend 0
+	coopr_mosin_nagant_sniper_reload_end	viewmodel/rifle/springfield_reload_end.skc		crossblend 0.0
+	coopr_silenced_mosin_sniper_reload		viewmodel/rifle/springfield_reload_start.skc		crossblend 0.05
+	coopr_silenced_mosin_sniper_reload_single	viewmodel/rifle/springfield_reload_fill.skc		crossblend 0
+	coopr_silenced_mosin_sniper_reload_end	viewmodel/rifle/springfield_reload_end.skc		crossblend 0.0
+	coopr_lee_enfield_sniper_reload		viewmodel/rifle/springfield_reload_start.skc		crossblend 0.05
+	coopr_lee_enfield_sniper_reload_single	viewmodel/rifle/springfield_reload_fill.skc		crossblend 0
+	coopr_lee_enfield_sniper_reload_end	viewmodel/rifle/springfield_reload_end.skc		crossblend 0.0
+	// M1 Carbine: the G43 bottom-box reload retargeted to the carbine (retarget.py 'carbine': left hand +2.5 u back
+	// onto the carbine's well while it carries the magazine, the G43's LEFT-side cocking reach held out, 10/12-frame
+	// seams to the Garand idle the carbine wears). Torso g43_reload (same frame count and time).
+	coopr_m1_carbine_reload	viewmodel/coop_reload/carbine_reload.skc	crossblend 0.05
+	// [polish 2026-10-05] Lewis, drums, C96: HAND-KEYED (keyclip.py, recipes_keyed 'lewis' / 'tommy50' / 'tommy1928' /
+	// 'mp18' / 'c96'; moving parts on the swapsched.py timeline). Lewis: pan lifted off its post, a full one turned on.
+	// Torso coop_reload_lewis.
+	coopr_lewis_gun_reload	viewmodel/coop_reload/lewis_reload.skc	crossblend 0.05
+	// Drums slide out SIDEWAYS to the shooter's left and back in. Thompson 50rd: the left hand first pulls the cocking
+	// knob back (its own clip; the 1928 mesh has no bolt bone). MP18: the right hand cocks the right-side handle.
+	coopr_thompson_50rd_reload	viewmodel/coop_reload/tommydrum_reload.skc	crossblend 0.1
+	coopr_thompson_1928_tommy_reload	viewmodel/coop_reload/tommydrum1928_reload.skc	crossblend 0.1
+	coopr_mp40_mp18_reload	viewmodel/coop_reload/mp18_reload.skc	crossblend 0.1
+	// Mauser C96 (both): top stripper-clip load - bolt ears back, clip into the guides, thumb strips the rounds, empty
+	// clip out and tossed; the pistol comes down 5 u and cants for it. Torso coop_reload_c96.
+	coopr_mauser_c96_reload	viewmodel/coop_reload/c96_reload.skc	crossblend 0.3
+	// Belt-fed guns: HAND-KEYED (keyclip.py recipes_keyed 'mg42' / 'm1919'): latch, lift and flick the cover, strip the old
+	// belt end out to the left, lay a new one on the feed tray and seat it, pull the cover shut and slap it home, charging
+	// handle on the right with the right hand (MG42 first, pulled and pushed; M1919 last, pulled twice).
+	coopr_mg42_reload	viewmodel/coop_reload/mg42_reload.skc	crossblend 0.3
+	coopr_m1919_30cal_reload	viewmodel/coop_reload/m1919_reload.skc	crossblend 0.3
+}

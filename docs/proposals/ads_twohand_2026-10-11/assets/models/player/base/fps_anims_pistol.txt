@@ -211,11 +211,11 @@ animations
 			entry sound pistol_whip // the swish sound. 
 		}
 	}
-	webley_reload			viewmodel/webley/webley_reload_start.skc		crossblend 0.1
+	webley_reload			viewmodel/webley/coop_webley_reload.skc		crossblend 0.1
 	webley_reload_ads		viewmodel/webley/webley_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
-	webley_reload_single		viewmodel/webley/webley_reload_single.skc		crossblend 0.0
+	webley_reload_single		viewmodel/webley/coop_webley_reload_single.skc		crossblend 0.1
 	webley_reload_single_ads		viewmodel/webley/webley_reload_single_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
-	webley_reload_end		viewmodel/webley/webley_reload_end.skc			crossblend 0.2
+	webley_reload_end		viewmodel/webley/coop_webley_reload_end.skc			crossblend 0.2
 	webley_reload_end_ads		viewmodel/webley/webley_reload_end_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
 	webley_pullout			viewmodel/nagantrev/pullout.skc
 	{

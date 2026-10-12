@@ -24,15 +24,23 @@ def main():
     txt = open(FX, 'rb').read().decode('latin-1')
     nl = '\r\n' if '\r\n' in txt else '\n'
     for gun, clip in pairs:
-        rx = re.compile(r'(?m)^(\s*%s_charge\s+)(\S+)([^\r\n]*)' % re.escape(gun))
+        rowname = gun[4:] if gun.startswith('row:') else gun + '_charge'      # row:<name>=clip repoints any row
+        xb = None
+        if '@' in clip:                                   # clip@0.1 also sets the row's crossblend
+            clip, xb = clip.split('@')
+        rx = re.compile(r'(?m)^(\s*%s\s+)(\S+)([^\r\n]*)' % re.escape(rowname))
         m = rx.search(txt)
         if m:
-            txt = txt[:m.start()] + m.group(1) + clip + m.group(3) + txt[m.end():]
+            rest = m.group(3)
+            if xb is not None:
+                rest2 = re.sub(r'crossblend\s+[\d.]+', 'crossblend ' + xb, rest)
+                rest = rest2 if rest2 != rest or ('crossblend ' + xb) in rest else rest + '\tcrossblend ' + xb
+            txt = txt[:m.start()] + m.group(1) + clip + rest + txt[m.end():]
         else:
             anchor = '//===================== HZM coop ADS aim poses (additive) ====================='
             assert anchor in txt
-            txt = txt.replace(anchor, anchor + nl + '\t%s_charge\t\t\t%s\t\tcrossblend %s' % (gun, clip, blend), 1)
-        rows = [l for l in txt.splitlines() if l.split('//')[0].split()[:1] == ['%s_charge' % gun]]
+            txt = txt.replace(anchor, anchor + nl + '\t%s\t\t\t%s\t\tcrossblend %s' % (rowname, clip, blend), 1)
+        rows = [l for l in txt.splitlines() if l.split('//')[0].split()[:1] == [rowname]]
         assert len(rows) == 1 and clip in rows[0], (gun, rows)
         print('row:', rows[0].strip())
     emit = os.environ.get('MKOV_EMIT')            # also write the staged tree (rows file + clips) for the proposal
@@ -60,7 +68,7 @@ def main():
                 z.write(p, arc); n += 1
                 print('file:', arc, os.path.getsize(p))
     for gun, clip in pairs:
-        assert 'models/human/animation/' + clip in zipfile.ZipFile(out).namelist(), clip
+        assert 'models/human/animation/' + clip.split('@')[0] in zipfile.ZipFile(out).namelist(), clip
     print('wrote', out, n, 'staged files')
 
 
