@@ -70,7 +70,7 @@ def main():
         print('emitted staged tree to', emit)
     n = 0
     with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED) as z:
-        b = zipfile.ZipFile(os.path.join(HERE, 'ovbase_1021.pk3'))
+        b = zipfile.ZipFile(os.path.join(HERE, os.environ.get('MKOV_BASE', 'ovbase_1021.pk3')))
         for i in b.infolist():
             z.writestr(i.filename, b.read(i.filename))
         z.writestr('models/player/base/fps_anims_pistol.txt', txt.encode('latin-1'))

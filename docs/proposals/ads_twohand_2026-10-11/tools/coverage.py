@@ -281,7 +281,7 @@ def tested(st, tik, kind, cbx=None):
     box = None
     if low:
         cbx = CBOX if cbx is None else cbx
-        xs = [c['xmax'] for c in (cbx.get(tik), cbx.get(tik + '#empty')) if c and 'xmax' in c]
+        xs = [c['xmax'] for c in (cbx.get(tik), cbx.get(tik + '#empty'), cbx.get(tik + '#cycle')) if c and 'xmax' in c]
         box = max(xs) if xs else None
         boxok = box is not None and box <= BOX_BAR
         e = {k: dict(v, ok=(v.get('pmin', 1.0) >= 0.9 and v.get('end', 99.0) <= END_BAR and boxok)) for k, v in e.items()}
@@ -352,8 +352,9 @@ def build():
         out = {}
         for g_, v_ in d.items():
             e_ = g_.endswith('_empty')
-            g_ = g_[:-6] if e_ else g_
-            out[km.get(g_, 'models/weapons/%s.tik' % g_) + ('#empty' if e_ else '')] = v_
+            c_ = g_.endswith('_cycle')            # the per-shot segment (centrebox.py --cycle)
+            g_ = g_[:-6] if (e_ or c_) else g_
+            out[km.get(g_, 'models/weapons/%s.tik' % g_) + ('#empty' if e_ else '#cycle' if c_ else '')] = v_
         return out
     if os.path.isfile(cbp):
         CBOX = cbox_keys(json.load(open(cbp)))
@@ -487,7 +488,7 @@ def build():
             cyc = 'self-loading / none'
         cbt = ' ; '.join((('%s%.1f deg / covered beyond the aim: max %.1f %%, %.1f %% of frames (%s)' % (lab, cb['dev'], cb['xmax'], cb['xfr'], cb['run'])) if 'xmax' in cb else
                           ('%s%.1f deg / old measure %.1f %% of frames (%s)' % (lab, cb['dev'], cb['over'], cb['run'])))
-                         for lab, cb in (('', cbx.get(tik)), ('EMPTY: ', cbx.get(tik + '#empty'))) if cb) or '-'
+                         for lab, cb in (('', cbx.get(tik)), ('EMPTY: ', cbx.get(tik + '#empty')), ('PER-SHOT CYCLE: ', cbx.get(tik + '#cycle'))) if cb) or '-'
         act = st.get(tik, {}).get('action', 'not recorded')
         table.append(dict(id=wid, tik=tik, name=name or '?', cls=cls, pfx=pfx, sight=sight, aim=aim, rel=rel, bolt=bolt, cyc=cyc, cbt=cbt, act=act, r1=r1, r2=r2, r3=r3, rrun=rrun, hs=hs,
                           ta=ta, tr=tr, tb=tb, qa=qa, status=status, src=src, aims=aims))

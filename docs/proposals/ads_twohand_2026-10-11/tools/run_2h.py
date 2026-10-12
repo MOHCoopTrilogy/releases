@@ -109,11 +109,12 @@ def still(sess, gun, st, name=None):
     R.step(L, timeout=600)
 
 
-def reload_sparse(sess, gun, st, n=190, every=4):
+def reload_sparse(sess, gun, st, n=190, every=4, ads=True, shots=1):
     """aimed reload in a stance for the NUMBERS: the ADSFRAME probe on every frame, a screenshot every `every` frames"""
-    tag = "ab__%s__%s__%s__reload__after" % (sess, gun, st)
-    L = S.RELEASE + S.TO_STAND + S.APPLY[st] + A.MODE["after"] + ["wait 400", "+button13", "wait 1700",
-                                                                 "+attackprimary", "wait 90", "-attackprimary", "wait 2200"]
+    tag = "ab__%s__%s__%s__%s__after" % (sess, gun, st, "reload" if ads else "hipreload")
+    L = S.RELEASE + S.TO_STAND + S.APPLY[st] + A.MODE["after"] + ["wait 400"] + (["+button13", "wait 1700"] if ads else ["wait 600"])
+    for _ in range(shots):
+        L += ["+attackprimary", "wait 90", "-attackprimary", "wait 2200" if _ == shots - 1 else "wait 1300"]
     L += ["coop_braceView"] if st == "braced" else []
     L += ["set cg_adsSightDebug 2", "echo ^~^~^ ABSCEN begin %s" % tag]
     for k in range(6):
@@ -183,7 +184,10 @@ def run(a):
             if "reloads" in a.parts:
                 for st in a.rstances:
                     R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
-                    reload_sparse(a.session, gun, st, n=a.rframes)
+                    reload_sparse(a.session, gun, st, n=a.rframes, every=a.revery, shots=a.rshots)
+                    if a.rhip:
+                        R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+                        reload_sparse(a.session, gun, st, n=a.rframes, every=a.revery, ads=False, shots=a.rshots)
             if "yaw" in a.parts:
                 for yw in a.yaws:
                     yawstill(a.session, gun, yw)
@@ -225,7 +229,7 @@ def main():
     ap.add_argument("session"); ap.add_argument("--overlay", required=True); ap.add_argument("--cgame", default="cgame_1022d")
     ap.add_argument("--guns", default="colt45"); ap.add_argument("--parts", default="demo,stills,reloads,yaw")
     ap.add_argument("--rstances", default="crouch,prone"); ap.add_argument("--rframes", type=int, default=190)
-    ap.add_argument("--yaws", default="185,265,135,315"); ap.add_argument("--demoyaw", type=int, default=160); ap.add_argument("--demoreload", type=int, default=170); ap.add_argument("--braced", action="store_true"); ap.add_argument("--shots", type=int, default=2); ap.add_argument("--demoempty", action="store_true"); ap.add_argument("--shotgap", type=int, default=27); ap.add_argument("--intr", default="4,95,170"); ap.add_argument("--kinds", default="fire,switch,sprint"); ap.add_argument("--set", action="append", default=[])
+    ap.add_argument("--yaws", default="185,265,135,315"); ap.add_argument("--demoyaw", type=int, default=160); ap.add_argument("--demoreload", type=int, default=170); ap.add_argument("--braced", action="store_true"); ap.add_argument("--shots", type=int, default=2); ap.add_argument("--demoempty", action="store_true"); ap.add_argument("--shotgap", type=int, default=27); ap.add_argument("--intr", default="4,95,170"); ap.add_argument("--kinds", default="fire,switch,sprint"); ap.add_argument("--set", action="append", default=[]); ap.add_argument("--revery", type=int, default=4); ap.add_argument("--rhip", action="store_true"); ap.add_argument("--rshots", type=int, default=1)
     a = ap.parse_args()
     DEMO_RELOAD[0] = a.demoreload
     SHOTS[0] = a.shots

@@ -97,8 +97,23 @@ for tag in marks:
     dev = max(((a - r0[0]) ** 2 + (b - r0[1]) ** 2) ** 0.5 for a, b in seg) if seg else float('nan')
     end = max(((a - r0[0]) ** 2 + (b - r0[1]) ** 2) ** 0.5 for a, b in seg[-5:]) if seg else float('nan')
     over = float(np.mean([c > base + 0.05 for c in cv]))
+    if '--cycle' in sys.argv and not empty:
+        # the PER-SHOT segment (a hand-cycled gun racks / bolts after every shot): first fire marker to the reload
+        # marker, the first frames of each shot left out (flash); same aim mask, same bar. Key <gun>_cycle.
+        fires = [f for n, f, si in marks[tag] if n == 'fire']
+        skip = set(k for f in fires for k in range(f, f + 5))
+        idx = [i for i in range(fires[0], min(mk['reload'][0], len(fs))) if i not in skip]
+        exc = [float((mask(i) & ~aimmask).mean()) for i in idx]
+        sc = s[[si for n, f, si in marks[tag] if n == 'fire'][0]: mk['reload'][1]]
+        devc = max(((a - r0[0]) ** 2 + (b - r0[1]) ** 2) ** 0.5 for a, b in sc) if sc else float('nan')
+        endc = max(((a - r0[0]) ** 2 + (b - r0[1]) ** 2) ** 0.5 for a, b in sc[-5:]) if sc else float('nan')
+        out[gun + '_cycle'] = dict(xmax=round(100 * max(exc), 1), xfr=round(100 * float(np.mean([e > 0.02 for e in exc])), 1), run=sess,
+                                   dev=round(devc, 2), end=round(endc, 2), frames=len(exc), shots=len(fires))
+        print('%-16s PER-SHOT cycle (%d shots): centre box covered beyond the aim: max %4.1f %%, in %4.1f %% of frames | sight dev max %5.2f deg, back to %.2f (%d frames)%s' % (
+            gun, len(fires), 100 * max(exc), out[gun + '_cycle']['xfr'], devc, endc, len(exc),
+            (' | over 2 %: ' + ' '.join('%d:%.0f' % (i, 100 * e) for i, e in zip(idx, exc) if e > 0.02)) if '--dump' in sys.argv else ''))
     gun = gun + ('_empty' if empty else '')
-    out[gun] = dict(xmax=round(xmax, 1), xfr=round(xfr, 1), run=sess, base=round(100 * base, 1), max=round(100 * max(cv), 1), over=round(100 * over, 1), dev=round(dev, 2), end=round(end, 2), frames=len(cv))
+    out[gun] =dict(xmax=round(xmax, 1), xfr=round(xfr, 1), run=sess, base=round(100 * base, 1), max=round(100 * max(cv), 1), over=round(100 * over, 1), dev=round(dev, 2), end=round(end, 2), frames=len(cv))
     print('%-16s centre box COVERED beyond the aim: max %4.1f %%, in %4.1f %% of frames (>2 %%) | total cover base %4.1f max %4.1f | sight dev max %5.2f deg, ends %.2f (%d frames)' % (
         gun, xmax, xfr, 100 * base, 100 * max(cv), dev, end, len(cv)))
 for a in sys.argv[1:]:

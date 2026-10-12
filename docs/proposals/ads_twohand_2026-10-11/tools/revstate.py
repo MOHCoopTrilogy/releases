@@ -81,7 +81,7 @@ for fam, d in FAM.items():
         + state(X + '_SEAT_ARMED', [], None, '\t\tSTAND\t: KILLED\n' + INT + '\t\t%s_BREAK_END\t: ANIMDONE_TORSO\n' % X)
         + state(X + '_SEAT_FORCED', [], seat, '\t\tSTAND\t: KILLED\n' + INT + '\t\t%s_BREAK_END\t: ANIMDONE_TORSO\n' % X)
         + state(X + '_BREAK_END', ['viewmodelanim reload_end'], d['end'], '\t\tSTAND\t: KILLED\n\t\t%s_BREAK_FIRE\t: ANIMDONE_TORSO\n' % X)
-        + state(X + '_BREAK_FIRE', [], 'none',
+        + state(X + '_BREAK_FIRE', ['// the reload was broken off: drop the "wants to go on reloading" latch (CHECK_CONTINUE sets it, only a seated round', '// clears it) or the gun opens again right after the owed shot (second-client run tl6)', 'weaponcommand mainhand donereloading'], 'none',
                 '\t\tSTAND\t: KILLED\n\t\tATTACK_PISTOL_PRIMARY_AIM\t: COOP_ADS HAS_AMMO_IN_CLIP "mainhand"\n'
                 '\t\tATTACK_PISTOL_PRIMARY\t: HAS_AMMO_IN_CLIP "mainhand"\n\t\tSTAND\t: default\n'))
     chk = state(X + '_CHECK_CONTINUE', ['reload // this makes the weapon want to continue reloading if it can'], 'none',

@@ -22,7 +22,7 @@ MOD = pistolgun.MOD
 
 GUNS = {
     # rel: hip fire clip frame with the hand on the slide; pull / fwd: frames the slide moves back / forward over
-    'histandard': dict(row='histandard_fire', rel=10, off=(2, 5), reach=9, pull=(11, 13), fwd=(16, 17), on=(21, 27), cls='pistol',
+    'histandard': dict(row='histandard_fire', rel=10, off=(5, 8), open=('mix', 0, 0.6), reach=9, pull=(11, 13), fwd=(16, 17), on=(21, 27), cls='pistol',
                        fireclip='hs_pistol_fire.skc'),
 }
 
@@ -34,6 +34,8 @@ def bake(name, root):
     sp = json.load(open(os.path.join(HERE, 'slide_%s.json' % name)))
     trav = sp['travel']
     p0, p1 = g['pull']; f0, f1 = g['fwd']; o0, o1 = g['on']; a0, a1 = g['off']
+    if os.environ.get('CB_OFF'):
+        a0, a1 = [int(x) for x in os.environ['CB_OFF'].split(',')]
     ph = gunphys.simulate(n + 1, 1 / 30.0, g['cls'], support=[(0, 1), (a0, 1), (a1, 0), (o0, 0), (o1, 1)],
                           events=[(p0, 'slide_back'), (f1 - 1, 'slide_fwd'), (o1 - 4, 'hand_on')],
                           pose=pistolgun.rack_pose(g['pull'], g['fwd'], n))
@@ -42,7 +44,7 @@ def bake(name, root):
     # sights (offline previews). Aimed, the support hand slides UP from its grip along the left side of the gun to the
     # slide, takes it there and pulls - it stays left of the sight line
     lp = {0: AIM, a0: AIM}
-    lp.update(pistolgun.rack_hand(name, g['reach'], g['pull'], g['fwd'], trav, g['rel'], fing_open=g.get('open', 6)))       # the ONE rack motion (also the reload's end)
+    lp.update(pistolgun.rack_hand(name, g['reach'], g['pull'], g['fwd'], trav, g['rel'], fing_open=(tuple(json.loads(os.environ['CB_OPEN'])) if os.environ.get('CB_OPEN') else g.get('open', 6))))       # the ONE rack motion (also the reload's end)
     for f in range(o1, n + 1):
         lp[f] = AIM
     rc = H.auto_recipe(g['row'], gun=pg['sight'], charge=pg['aim'], hip=hipc, enter=0, exit=0, fixed_right=True, dip=ph['dip'],

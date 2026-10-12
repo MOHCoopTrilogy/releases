@@ -6,6 +6,8 @@ slow loop drew an exploded arm in the engine).
     python retime.py <game path or file> <out.skc> <frames>
     python retime.py <game path or file> <out.skc> slice <first> <last>
     python retime.py <game path or file> <out.skc> warp <new:old,new:old,...>
+  options (anywhere): --ft <seconds>  write this frame time (a 10 fps body clip resampled to 30 fps frames)
+                      --frames <n>    with warp: the new frame count (default: the source's)
 """
 import sys, os, copy, struct
 import numpy as np
@@ -14,6 +16,10 @@ sys.path.insert(0, T); _c = os.getcwd(); os.chdir(T)
 import vmcam as V
 os.chdir(_c)
 R = V.R
+OPT = {}
+for _o in ('--ft', '--frames'):
+    if _o in sys.argv:
+        _i = sys.argv.index(_o); OPT[_o] = sys.argv[_i + 1]; del sys.argv[_i:_i + 2]
 src, out = sys.argv[1], sys.argv[2]
 a = R.load(src)                      # vmcam's loader: v14 -> v13, .V = [frame, channel, 4]
 m = a.numFrames
@@ -28,7 +34,7 @@ elif sys.argv[3] == 'warp':
     # warp <new:old,new:old,...>: same frame count, new frame f shows the source at a remapped (fractional) frame -
     # smoothstep between the keys, so a part of the motion can be moved earlier / stretched and eased
     keys = [tuple(float(x) for x in kv.split(':')) for kv in sys.argv[4].split(',')]
-    n = m
+    n = int(OPT.get('--frames', m))
     Vn = np.zeros((n, a.numChannels, 4))
     def _map(f):
         if f <= keys[0][0]:
@@ -74,7 +80,7 @@ ofs_vals = 48 + 48 * n
 ofs_ch = ofs_vals + n * nch * 16
 end = ofs_ch + 32 * nch
 buf = bytearray(end)
-struct.pack_into('<4s3if3ff3i', buf, 0, b'SKAN', 13, a.flags, end, a.frameTime, *a.totalDelta, a.totalAngleDelta, nch, ofs_ch, n)
+struct.pack_into('<4s3if3ff3i', buf, 0, b'SKAN', 13, a.flags, end, float(OPT.get('--ft', a.frameTime)), *a.totalDelta, a.totalAngleDelta, nch, ofs_ch, n)
 for f in range(n):
     frm = fr[f]
     struct.pack_into('<6ff3ffi', buf, 48 + 48 * f, *frm['bounds'], frm['radius'], *frm['delta'], frm['unknown'], ofs_vals + f * nch * 16)

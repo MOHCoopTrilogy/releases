@@ -21,12 +21,12 @@
  },
  "histandard": {
   "empty": {
-   "peak_deg": 2.16,
-   "settle_s": 0.23
+   "peak_deg": 28.44,
+   "settle_s": 0.4
   },
   "loaded": {
-   "peak_deg": 2.16,
-   "settle_s": 0.17
+   "peak_deg": 28.44,
+   "settle_s": 0.4
   }
  },
  "p38": {

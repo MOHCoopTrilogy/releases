@@ -775,16 +775,67 @@ animations
 		}
 	}
 	coop_prone_aim_pistol	weapon_pistol/prone/pistol_prone_aim.skc
-	coop_prone_reload_pistol	weapon_pistol/prone/pistol_prone_reload.skc
+	// HZM coop [prone pistol reload 2026-10-12] the prone body clip retimed to the STANDING reload's length (73 f = 2.43 s, Beretta 63 f =
+	// 2.10 s; hand off the gun / back on it at the standing clip's frames) with the standing alias's own commands: the
+	// reload lasts as long lying down as standing, so the first-person clip (hip and aimed) is no longer cut 0.93 s
+	// short (the Hi-Standard lost its rack), and each pistol shows its own magazine. Was: one 1.50 s alias for all.
+	coop_prone_reload_beretta	weapon_pistol/prone/coop_pistol_prone_reload_63.skc
+	{
+		server
+		{
+			first reloadweapon
+			0 attachmodel models/ammo/It_W_Beretta_clip.tik tag_weapon_left
+			last weaponcommand mainhand clip_fill
+			last removeattachedmodel tag_weapon_left 0 models/ammo/It_W_Beretta_clip.tik
+		}
+	}
+	coop_prone_reload_p38	weapon_pistol/prone/coop_pistol_prone_reload_73.skc
+	{
+		server
+		{
+			first reloadweapon
+			0 attachmodel models/ammo/p38_clip.tik tag_weapon_left
+			25 weaponcommand mainhand clip_fill
+			40 removeattachedmodel tag_weapon_left 0 models/ammo/p38_clip.tik
+		}
+	}
+	coop_prone_reload_histandard	weapon_pistol/prone/coop_pistol_prone_reload_73.skc
+	{
+		server
+		{
+			first reloadweapon
+			0 attachmodel models/ammo/silencedpistol_clip.tik tag_weapon_left
+			25 weaponcommand mainhand clip_fill
+			40 removeattachedmodel tag_weapon_left 0 models/ammo/silencedpistol_clip.tik
+		}
+	}
+	coop_prone_reload_c96	weapon_pistol/prone/coop_pistol_prone_reload_73.skc
+	{
+		server
+		{
+			first reloadweapon
+			28 attachmodel models/ammo/coop_c96_stripper_full.tik tag_weapon_left
+			41 attachmodel models/ammo/coop_c96_stripper_full.tik tag_weapon_right
+			41 removeattachedmodel tag_weapon_left 0 models/ammo/coop_c96_stripper_full.tik
+			44 attachmodel models/ammo/coop_c96_stripper_empty.tik tag_weapon_right
+			44 removeattachedmodel tag_weapon_right 0 models/ammo/coop_c96_stripper_full.tik
+			44 weaponcommand mainhand clip_fill
+			47 attachmodel models/ammo/coop_c96_stripper_empty.tik tag_weapon_left
+			47 removeattachedmodel tag_weapon_right 0 models/ammo/coop_c96_stripper_empty.tik
+			56 removeattachedmodel tag_weapon_left 0 models/ammo/coop_c96_stripper_empty.tik
+		}
+	}
+	coop_prone_reload_pistol	weapon_pistol/prone/coop_pistol_prone_reload_73.skc
 	{
 		server
 		{
 			first reloadweapon
 			0 attachmodel models/ammo/colt_clip.tik tag_weapon_left
-			9 weaponcommand mainhand clip_fill
-			13 removeattachedmodel tag_weapon_left 0 models/ammo/colt_clip.tik
+			25 weaponcommand mainhand clip_fill
+			40 removeattachedmodel tag_weapon_left 0 models/ammo/colt_clip.tik
 		}
 	}
+	// end HZM coop [prone pistol reload 2026-10-12]
 
 	// evasive rolls (9f) and dying flat (14f) - locomotion/death class, verified bare in retail
 	coop_prone_rolll	weapon_rifle/prone/rifle_prone_roll_left.skc

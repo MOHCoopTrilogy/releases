@@ -2732,9 +2732,14 @@ state RELOAD_PISTOL
 
 	action
 	{
+		// HZM coop [prone pistol reload 2026-10-12] per pistol, each as long as its standing reload (anims_shared.txt); first match wins
+		coop_prone_reload_beretta	: POSITION_TYPE "prone" IS_WEAPON_ACTIVE "mainhand" "Beretta"
+		coop_prone_reload_p38	: POSITION_TYPE "prone" IS_WEAPON_ACTIVE "mainhand" "Walther P38"
+		coop_prone_reload_histandard	: POSITION_TYPE "prone" IS_WEAPON_ACTIVE "mainhand" "Hi-Standard Silenced"
+		coop_prone_reload_c96	: POSITION_TYPE "prone" IS_WEAPON_ACTIVE "mainhand" "Mauser C96"
+		coop_prone_reload_pistol	: POSITION_TYPE "prone"
 		// [user 2026-08-26] the one class with a NATIVE prone reload. Duration honestly changes to
 		// the animation's real 1.50s (standing colt reload is ~1.5s too - net wash, stated anyway).
-		coop_prone_reload_pistol	: POSITION_TYPE "prone"
 	      beretta_reload			  : IS_WEAPON_ACTIVE "mainhand" "Beretta"
 		p38_reload			        : IS_WEAPON_ACTIVE "mainhand" "Walther P38"
 		histandard_reload	              : IS_WEAPON_ACTIVE "mainhand" "Hi-Standard Silenced"
@@ -2915,6 +2920,12 @@ state RELOAD_WEBLEY_BREAK_END
 state RELOAD_WEBLEY_BREAK_FIRE
 {
 	movetype legs
+	entrycommands
+	{
+		// HZM coop [revolver reload 2026-10-12] the reload was broken off: drop the "wants to go on reloading" latch
+		// (set by CHECK_CONTINUE, cleared only by a seated round) or the gun opens again right after the owed shot
+		weaponcommand mainhand donereloading
+	}
 	action
 	{
 		none	: default
@@ -3132,6 +3143,12 @@ state RELOAD_M10_BREAK_END
 state RELOAD_M10_BREAK_FIRE
 {
 	movetype legs
+	entrycommands
+	{
+		// HZM coop [revolver reload 2026-10-12] the reload was broken off: drop the "wants to go on reloading" latch
+		// (set by CHECK_CONTINUE, cleared only by a seated round) or the gun opens again right after the owed shot
+		weaponcommand mainhand donereloading
+	}
 	action
 	{
 		none	: default
@@ -3348,6 +3365,12 @@ state RELOAD_NAGANTREV_BREAK_END
 state RELOAD_NAGANTREV_BREAK_FIRE
 {
 	movetype legs
+	entrycommands
+	{
+		// HZM coop [revolver reload 2026-10-12] the reload was broken off: drop the "wants to go on reloading" latch
+		// (set by CHECK_CONTINUE, cleared only by a seated round) or the gun opens again right after the owed shot
+		weaponcommand mainhand donereloading
+	}
 	action
 	{
 		none	: default

@@ -75,7 +75,7 @@ def main():
                 ims.append(im)
         worst = max(worst, max(ex))
         print('%-44s %2d frames  max extra %5.1f %%  over 2 %%: %s' % (os.path.basename(sp[0]), c.numFrames, 100 * max(ex),
-              ' '.join('%d:%.0f' % (k, 100 * e) for k, e in enumerate(ex) if e > 0.02) or '-'))
+              ' '.join('%d:%.0f' % (k, 100 * e) for k, e in enumerate(ex) if e > 0.02) or '-') + (('  | over %s %%: ' % os.environ['OFFBOX_SHOW'] + ' '.join('%d:%.1f' % (k, 100 * e) for k, e in enumerate(ex) if 100 * e > float(os.environ['OFFBOX_SHOW']))) if os.environ.get('OFFBOX_SHOW') else ''))
     print('WORST %.1f %%  %s' % (100 * worst, 'PASS' if worst <= 0.02 else 'over the bar'))
     if a.sheet and ims:
         cols = min(a.cols, len(ims))

@@ -1,7 +1,23 @@
-# HANDOVER (2026-10-12 evening) - read this first, the rest of the file is the history
+# HANDOVER (2026-10-12 late evening, PISTOL lane) - read this first, the rest of the file is the history
 
-**State: step A of the list is done and committed (docs `main` 02f39db, engine `ads-next` 94bb3dca). B, C, D and
-everything after them are NOT started.** Nothing is in the mod tree or the fixes pak; all of it is staged here.
+**State: A and B of the list are done and committed (engine `ads-next` e889e68c = test cgame `cgame_adsnext8`).
+C, D, E are NOT started.** Nothing is in the mod tree or the fixes pak; all of it is staged here.
+The work is split into four lanes since 2026-10-12: this folder's root is the PISTOL lane (pistols + revolvers) and it
+OWNS `tools/` and `coverage.md`; `rifles/`, `smg/`, `heavy/` are the other lanes (own harness copies, own
+`coverage_status.json`, merged by `tools/coverage.py build`; they read `tools/` as a library - keep changes there
+backward compatible; the runs folder of every shared tool comes from `ADS_RUNS`).
+
+## B, done (runs tl1-tl8)
+| what | result | evidence |
+|---|---|---|
+| Prone pistol reloads | full length now: `tools/patch_prone_reload.py` - one prone torso alias per standing alias (Colt + sharers, P38, Hi-Standard, Beretta, C96) on the prone body clip retimed to the standing length (`coop_pistol_prone_reload_73.skc` / `_63.skc`) with the standing alias's own commands. View reload in prone: 150 frames for Colt / P38 / Hi-Standard (was 88), Beretta 129; hip AND aimed (the hip reload had the same cut). Revolvers have no prone line, unchanged. GAMEPLAY: prone pistol reload 1.50 s -> 2.43 s (Beretta 2.10 s). | `evidence/histandard_prone_reload_aimed.gif`, `histandard_reload_stances_tl8.jpg` |
+| Hi-Standard rack | the releasing hand is a relaxed curl coming off to the left (was a splayed hand lifting straight up); the PER-SHOT rack is now inside the bar - it had never been measured: 7.9 % / 13.5 % of frames in run ti2, 25 % offline. Now engine tl8: per-shot max 0.5 %, reload max 0.3 %, back to 0.01 deg; offline 0.0 % / 0.2 %. | `evidence/histandard_aimed_cycle_reload.gif` |
+| Pass bar | `coverage.py`: a weapon flagged `lowered` (declared rack / open-cylinder phase) passes a stance when the capture ends within 0.05 deg, pose >= 0.9 and the centre box (loaded, empty, per-shot cycle) is <= 2 %; no box figure = not passed. `centrebox.py --cycle` measures the per-shot segment. | `coverage.md` |
+| Revolver break-off, second client | `tools/run_break2.py` (host serves, a joiner of the same install is driven by posted keys in real time and captured; overlay on `ovbase_1021_p2.pk3` = `MKOV_BASE`), `tools/breakmarks.py` (animation + `clip=` trace). FOUND AND FIXED: a press in FETCH closed, fired - and the gun opened again by itself 0.1-0.2 s later (the `reload` latch of CHECK_CONTINUE; `tools/patch_breakfire.py`: `donereloading` in `RELOAD_*_BREAK_FIRE`). Run tl7, Webley / M10 / Nagant, press in FETCH and in SEAT with 4 rounds in: close, owed shot, no restart, every round accounted for. Loopback only (no real latency). A second press DURING the close is absorbed into the one owed shot. | `evidence/breakoff_2nd_client_*.gif` |
+
+Harness facts learned in B: a cfg `wait N` is only N ms under fixedtime (the host with `coop_isFixed 16`); on a free
+running client time the capture from Python and post keys (run_break2.py). ADSFRAME carries `clip=` / `ammo=` from
+cgame_adsnext8 on. `run_2h.py --parts reloads --rstances prone --rhip --revery 3` = aimed + hip reload in a stance.
 
 ## The standard (every aimed reload / cycle, all three)
 1. ON TARGET - centre box (middle 20 % of the screen) covered beyond the settled aim under 2 % in every frame; where
@@ -25,7 +41,7 @@ Known weak points, seen in playback (tell the user, do not hide them):
 * M10: cases are in view for about 0.16 s, low left, in front of the sleeve; the dump's cylinder sits at the bottom edge.
 * Nagant: the whole work is at the bottom edge of the frame (gate just in view); during the hand-over the left
   forearm comes in large from the left edge for about 0.2 s.
-* The break-off states (fire press during a reload) were NOT re-run with the new clips (loop seat frames unchanged).
+* Break-off states: re-run from a second client with the new clips in B (below) - one defect found and fixed.
 
 ## How A was done (reuse this for every other gun)
 * `tools/revbake.py`: aimed sets now use a list of `gun_abs` poses - `Tlo` (the aim dropped straight down, aligned)
@@ -50,28 +66,22 @@ Known weak points, seen in playback (tell the user, do not hide them):
   2 MB for 130 frames), then `python gifsheet.py out.gif sheet.jpg a:b:1` and LOOK at every frame of the transitions.
 * Python patch scripts are written with the file tool - a heredoc mangled `\t` / `\s` again today (bug-3581).
 
-## The list from here (order given by the coordinator; report at B, C, D)
-   **B, found but NOT fixed - why the Hi-Standard rack does not play in prone:** it is not a different first-person
-   row. `coop_mod/player_Torso.st` `RELOAD_PISTOL` picks the torso animation `coop_prone_reload_pistol`
-   (`weapon_pistol/prone/pistol_prone_reload.skc`, 1.50 s) for EVERY pistol when `POSITION_TYPE "prone"`, listed first,
-   and the state leaves on `ANIMDONE_TORSO`. The first-person aimed reload clips are all 73 frames = 2.43 s (the
-   standing torso length), so in prone the server ends the reload 0.93 s early and the view clip is cut - for the
-   Hi-Standard exactly the rack at the end (every other pistol loses its last 0.9 s too: the hand coming back on).
-   The per-shot rack is client-only on `viewmodelanim charge` and is not stance-dependent. Options: (a) a prone torso
-   alias resampled to 73 frames (`retime.py <clip> <out> 73`) used by the prone line - pistol reloads in prone then
-   take 2.43 s like standing (a gameplay timing change: ask the user); (b) a 1.5 s first-person variant per pistol
-   for prone (needs cgame to know the stance, and a rack does not fit in 1.5 s). (a) is the honest one. Staging it
-   means a staged copy of player_Torso.st + anims_shared.txt in `assets/` - the mod tree is not to be written.
-B. Hi-Standard prone (the rack does not play there - a different reload row is used in prone: find which, fix), the
-   splayed open hand on release (relax it), the matrix scan's pass bar (sights may leave during a declared rack /
-   open-cylinder phase, must return within 0.05 deg, box under 2 %); break-off verified from a SECOND client (recipe:
-   `SCRATCH\lms\lms_test.py`, copy launch_joiner) and with two or more rounds in - and re-run with the new clips.
-C. Hand-position mismatches of the matrix, largest first: DP-28, Vickers, PPSh, then the 2-3 u group (G43, Moschetto,
-   SVT, MP40 family, Breda, Carcano, De Lisle), BAR family, Type 100's residual 2 u. Before / after still pair each.
-D. Welrod (bolt knob at the rear on the sight line) and Carcano per-shot cycles.
-Then: trim Colt / P38 empty and Beretta loaded reloads (each over 2 % for a few frames - `offbox.py` works for them
-too), the 15 pistols sharing the Colt / P38 clips in the engine, braced and vehicle stances, the Beretta reading
-near-black, the P38 open-slide gap; then every other row of `coverage.md`.
+## The list from here (PISTOL lane; order given by the coordinator; report at each letter)
+C. Revolver polish (the weak points above): Webley close and open are brisk (0.1 s) - give them time and weight;
+   M10 cases in view for only 0.16 s and its chambers do not fill one by one (cheap: per-round surface / texture
+   swap); Nagant works at the very bottom edge with the gate barely in frame (and in PRONE its hands lie along the
+   bottom edge, run tl3) - raise it as far as the 2 % bar allows, shrink the forearm on hand-over.
+   After C: fresh stance runs for the three revolvers (their `coverage.md` reload cells read `ends 99.00` = old
+   captures without an end figure; the new pass bar wants one).
+D. Welrod (bolt action after EVERY shot and after the reload; knob at the rear on the sight line: lower / roll the
+   gun as for the Hi-Standard). Then Mauser C96 (stripper clip from the top), Luger, PPK, TT-33, Nambu, the silenced
+   variants: each needs its own in-engine run (the 15 pistols sharing the Colt / P38 clips were only checked
+   offline; add harness keys). Silencers must not meet the support hand or the box.
+E. Trim the Colt and P38 empty reloads and the Beretta loaded one (each a few frames over 2 %); the Beretta reads
+   near-black (seen again in run tl3, prone); the P38 open slide shows a dark gap from behind; braced and
+   vehicle-seat stances for every pistol; every stance LOOKED AT.
+A pistol row is DONE only with: aim pose, aimed reload (loaded + empty), per-shot cycle where the gun has one, all
+stances run and looked at, the three yes columns, a run id. Hi-Standard: all of that except braced / vehicle seats.
 
 ---
 

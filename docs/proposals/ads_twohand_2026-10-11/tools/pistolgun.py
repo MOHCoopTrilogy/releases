@@ -42,7 +42,7 @@ GUNS = {
                        # HAND-CYCLED (fire delay 1.0 s; the retail hip fire and hip reload both rack it, the reload sound's
                        # rack is at frames 50-54): no lock-back, no slide stop - the reload ENDS in the same rack as the
                        # per-shot cycle (cyclebake.py). rack: hand at the slide / slide back over / forward over / on the grip
-                       rack=dict(reach=46, pull=(49, 51), fwd=(53, 54), on=64),
+                       rack=dict(reach=46, pull=(49, 51), fwd=(53, 54), on=64, open=('mix', 0, 0.6)),   # open: the releasing hand's fingers - a relaxed curl (the hip idle's), not the flat base pose (read as a splayed hand)
                        t=dict(off=(3, 9), rel=9, out=(12, 18), seat=(30, 33), on=(40, 47), press=47, fwd=(49, 51))),
     'beretta': dict(row='beretta_reload', sight='beretta', aim='viewmodel/beretta/beretta_ads2h.skc', cls='pistol', vdir='viewmodel/beretta',
                     dir='models/weapons/Beretta', clip='A_W_MOD34Pistol_reload_W.skc', empty='A_W_MOD34Pistol_empty_W.skc', slide='Rechamber',
@@ -58,6 +58,7 @@ PARMS = '0.9 0.2 1.0 0.0 160 1000 item loaded always maps "dm obj lib"'      # `
 # 2026-10-12: "left hand over the slide, refer to how it is cocked now when not in ads"): the retail OVERHAND
 # grasp, taken from the hip fire clip's own hand-to-gun relation. Overhand at the eye covers the sights, so the gun
 # is brought DOWN under the centre box for it (rack_pose) and back onto the sights after - the target stays in view.
+RACK_UP = int(os.environ.get('RACK_UP', '12'))      # frames from the slide home to the gun back on the sights
 RACK_PULL = 0.92                   # of the slide's travel
 RACK_DOWN = (3.3, 8.0, 24.0, 0.0, 0.8)      # muzzle well down + a little cant: the eye looks onto the TOP of the gun and sees the grasp
 # (was 3.6 / 0 / 4: from behind the back of the hand hid the slide - user: "make sure the hand is actually over the slide")
@@ -75,7 +76,10 @@ def rack_rel(name):
 def rack_pose(pull, fwd, n):
     """keyed gun pose for gunphys.simulate(pose=): down before the pull, held through the rack, back up after"""
     z = (0.0,) * 5
-    return [(0, z), (max(1, pull[0] - 9), z), (pull[0] - 3, RACK_DOWN), (fwd[1] + 2, RACK_DOWN), (min(n - 3, fwd[1] + 10), z), (n, z)]
+    return [(0, z), (max(1, pull[0] - 9), z), (pull[0] - 3, RACK_DOWN), (fwd[1] + 2, RACK_DOWN), (min(n - 3, fwd[1] + RACK_UP), z), (n, z)]
+
+
+RACK_LIFT = [float(x) for x in os.environ.get('RACK_LIFT', '0.55,0.2,1.1,0.45,1.7,0.5').split(',')]   # camera (left, up) at fwd0, fwd1, fwd1+3
 
 
 def rack_hand(name, reach, pull, fwd, travel, fing, fing_open=None):
@@ -89,9 +93,9 @@ def rack_hand(name, reach, pull, fwd, travel, fing, fing_open=None):
     # release: the fingers are already open and the hand is lifting when the slide starts forward, and it stays back
     # there - the slide is seen running out from under it
     return {reach: ON, pull[0]: ON, pull[1]: BACK, fwd[0] - 2: BACK,
-            fwd[0]: dict(relT=T, gun_add=back, cam_add=(0.0, 0.25, 0.55), fing=OPEN),
-            fwd[1]: dict(relT=T, gun_add=back, cam_add=(0.0, 0.5, 1.1), fing=OPEN),
-            fwd[1] + 3: dict(relT=T, cam_add=(-0.4, 1.6, 0.9), fing=OPEN)}
+            fwd[0]: dict(relT=T, gun_add=back, cam_add=(0.0, RACK_LIFT[0], RACK_LIFT[1]), fing=OPEN),
+            fwd[1]: dict(relT=T, gun_add=back, cam_add=(0.0, RACK_LIFT[2], RACK_LIFT[3]), fing=OPEN),
+            fwd[1] + 3: dict(relT=T, cam_add=(-0.4, RACK_LIFT[4], RACK_LIFT[5]), fing=OPEN)}
 
 
 def rack_slide(f, pull, fwd):

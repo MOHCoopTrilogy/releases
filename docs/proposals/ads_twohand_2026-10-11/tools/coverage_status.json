@@ -599,93 +599,108 @@
    "crouch": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "tl8"
    },
    "crouchL": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "tl8"
    },
    "crouchR": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "tl8"
    },
    "prone": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "tl8"
    },
    "stand": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "tl8"
    },
    "standL": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "tl8"
    },
    "standR": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "tl8"
    }
   },
-  "qa": "th4: sheet + GIF checked",
+  "lowered": true,
+  "qa": "tl8: GIF played back frame by frame (rack clear of the centre box, relaxed release hand), stance sheet looked at; braced and vehicle seats not run",
   "reload": {
    "crouch": {
-    "dev": 28.55,
-    "edge": 0.89,
+    "dev": 28.53,
+    "edge": 0.8,
     "end": 0.01,
     "ok": false,
     "pmin": 1.0,
-    "run": "ti3"
+    "run": "tl8"
    },
    "prone": {
-    "dev": 4.25,
-    "edge": 0.82,
+    "dev": 28.55,
+    "edge": 0.89,
     "end": 0.0,
-    "ok": true,
+    "ok": false,
     "pmin": 1.0,
-    "run": "ti3"
+    "run": "tl8"
    },
    "stand": {
     "dev": 28.53,
-    "edge": 0.87,
-    "end": 0.01,
-    "ok": false,
-    "pmin": 1.0,
-    "run": "ti3"
-   },
-   "standL": {
-    "dev": 28.54,
-    "edge": 0.89,
+    "edge": 0.83,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "ti3"
+    "run": "tl8"
    },
-   "standR": {
-    "dev": 28.53,
-    "edge": 0.81,
-    "end": 0.01,
+   "standL": {
+    "dev": 28.52,
+    "edge": 0.82,
+    "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "ti3"
+    "run": "tl8"
+   },
+   "standR": {
+    "dev": 28.5,
+    "edge": 0.81,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "tl8"
    }
   },
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "ti2 (shots, overhand cock, reload + rack) ti3 (stances)",
+   "run": "tl8 (2 shots + rack each, reload + rack, stand / crouch / prone / both leans; prone now full length)",
    "target": "yes"
   }
  },
