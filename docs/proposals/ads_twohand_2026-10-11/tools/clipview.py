@@ -20,7 +20,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('clip'); ap.add_argument('aim'); ap.add_argument('gun'); ap.add_argument('out')
     ap.add_argument('--frames', required=True); ap.add_argument('--gunanim', default='idle'); ap.add_argument('--cu', action='store_true')
-    ap.add_argument('--prop'); ap.add_argument('--w', type=int, default=480); ap.add_argument('--cols', type=int, default=4)
+    ap.add_argument('--prop'); ap.add_argument('--offhand'); ap.add_argument('--w', type=int, default=480); ap.add_argument('--cols', type=int, default=4)
     a = ap.parse_args()
     from PIL import Image, ImageDraw
     c = R.load(a.clip); aim = R.load(a.aim)
@@ -31,7 +31,7 @@ def main():
     th = math.tan(math.radians(fov / 2)); tv = th * H / W
     if a.prop:
         sp = a.prop.split(':')
-        V.PROP.update(tik=sp[0], t0=float(sp[1]) * c.frameTime, t1=float(sp[2]) * c.frameTime, tag='tag_weapon_left')
+        V.PROP.update(tik=sp[0], t0=float(sp[1]) * c.frameTime, t1=float(sp[2]) * c.frameTime, tag=(sp[3] if len(sp) > 3 else 'tag_weapon_left'))
     fr = [int(x) for x in a.frames.split(',')] if ',' in a.frames or a.frames.isdigit() else \
         list(range(*[int(x) for x in a.frames.split(':')]))
     ims = []
@@ -39,7 +39,11 @@ def main():
     for f in fr:
         if f >= c.numFrames:
             continue
-        surfs, E, Wb = V.scene2(R.pose_dict(c, f), a.gun, sight['tik'], a.gunanim, f * c.frameTime, CTL, corr)
+        oh = None
+        if a.offhand:
+            o0, o1 = [float(x) for x in a.offhand.split(',')]
+            oh = (o0 * c.frameTime, o1 * c.frameTime)
+        surfs, E, Wb = V.scene2(R.pose_dict(c, f), a.gun, sight['tik'], a.gunanim, f * c.frameTime, CTL, corr, oh)
         lh = [s for s in surfs if s['name'] == 'lefthand'][0]['P'] - E
         inv = (lh[:, 0] > 0.05) & (np.abs(lh[:, 1]) < lh[:, 0] * th) & (np.abs(lh[:, 2]) < lh[:, 0] * tv)
         near = float(np.linalg.norm(lh[inv], axis=1).min()) if inv.any() else -1

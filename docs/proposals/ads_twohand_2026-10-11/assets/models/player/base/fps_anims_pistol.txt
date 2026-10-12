@@ -134,9 +134,31 @@ animations
 			entry sound pistol_whip // the swish sound. 
 		}
 	}
-	nagantrev_reload		viewmodel/nagantrev/reload_start.skc			crossblend 0.1
-	nagantrev_reload_single		viewmodel/nagantrev/reload_loop.skc			crossblend 0
-	nagantrev_reload_end		viewmodel/nagantrev/reload_end.skc			crossblend 0.2
+	nagantrev_reload		viewmodel/nagantrev/coop_nagant_reload.skc			crossblend 0.1
+	nagantrev_reload_single		viewmodel/nagantrev/coop_nagant_reload_single.skc			crossblend 0
+	{
+		client
+		{
+			1 tagspawn tag_weapon_left	// HZM coop [revolver reload] the fired case of this chamber drops out of the gate (first person)
+			(
+				count 1
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				scale .7
+				offsetalongaxis 3.0 0.4 -0.9
+				randvelaxis range -30 -10 range 12 30 range 5 25
+				avelocity crandom 300 crandom 300 crandom 150
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}
+	nagantrev_reload_end		viewmodel/nagantrev/coop_nagant_reload_end.skc			crossblend 0.2
 	nagantrev_pullout		viewmodel/nagantrev/pullout.skc
 	{
 		client
@@ -298,5 +320,31 @@ animations
 			)
 		}
 	}
+	//===================== HZM coop Nagant revolver: aimed reload (gate loader, hand-keyed gun + retail hand relations) =====================
+	nagantrev_reload_ads		viewmodel/nagantrev/nagantrev_reload_ads.skc		crossblend 0.1
+	nagantrev_reload_single_ads		viewmodel/nagantrev/nagantrev_reload_single_ads.skc		crossblend 0
+	{
+		client
+		{
+			1 tagspawn tag_weapon_left	// HZM coop [revolver reload] the fired case of this chamber drops out of the gate (first person)
+			(
+				count 1
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				scale .7
+				offsetalongaxis 3.0 0.4 -0.9
+				randvelaxis range -30 -10 range 12 30 range 5 25
+				avelocity crandom 300 crandom 300 crandom 150
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}
+	nagantrev_reload_end_ads		viewmodel/nagantrev/nagantrev_reload_end_ads.skc		crossblend 0.2
 }
 

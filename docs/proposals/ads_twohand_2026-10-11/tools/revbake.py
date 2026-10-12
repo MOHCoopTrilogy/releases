@@ -25,9 +25,10 @@ ELB = float(os.environ.get('WEB_ELBW', '3.0'))                              # su
 ROUND = 'models/ammo/nagant_pistol_shell.tik'
 
 
-def work_T(aim_clip, gun, D):
+def work_T(aim_clip, gun, D, tag=None, ref_pt=None):
     """gun-in-camera (rows, u) at the open-action work pose: the AIMED gun dropped D[0] u, rolled D[1], pitched D[2]
-    deg (negative = muzzle up) about a point 12 u down the sight line, shifted D[3] u to the left"""
+    deg (negative = muzzle up) about a point 12 u down the sight line, shifted D[3] u to the left, yawed D[4] deg about
+    the view's up axis; tag = explicit place of the weapon tag in the camera frame (fwd, left, up)"""
     a = R.load(R.ANIM + aim_clip)
     pc = R.pose_dict(a, a.numFrames - 1)
     Wc = R.evaluate(pc)
@@ -36,17 +37,19 @@ def work_T(aim_clip, gun, D):
     C = R.inv(Wc['Bip01 Spine1']) @ Wcc['Bip01 Spine1']; C[3, 0:3] *= R.S
     Mcam = C @ V.model_to_cam(corr)
     Rr = R.axis_angle_rows((1, 0, 0), D[1]) @ R.axis_angle_rows((0, 1, 0), D[2])
+    if len(D) > 4:
+        Rr = Rr @ R.axis_angle_rows((0, 0, 1), D[4])
     pv = 12.0
     P = np.eye(4); P[3, 0:3] = (-pv, 0, 0)
     Q = np.eye(4); Q[0:3, 0:3] = Rr
     Pi = np.eye(4); Pi[3, 0:3] = (pv, D[3] if len(D) > 3 else 0.0, -D[0])
     Gs = Wc['tag_weapon_right'].copy(); Gs[3, 0:3] *= R.S
     Tm = Gs @ Mcam @ (P @ Q @ Pi)
-    tagt = os.environ.get('WEB_TAG', '13.5,-4.2,-6.0')   # explicit place of the weapon tag in the camera frame (fwd, left, up)
-    if tagt:
-        Tm[3, 0:3] = [float(x) for x in tagt.split(',')]
-    cyl = np.r_[np.array(WEB_C), 1.0] @ Tm
-    print('work pose: tag cam %s  chamber cam %s' % (np.round(Tm[3, 0:3], 1), np.round(cyl[0:3], 1)))
+    if tag:
+        Tm[3, 0:3] = tag
+    if ref_pt is not None:
+        cyl = np.r_[np.array(ref_pt), 1.0] @ Tm
+        print('work pose: tag cam %s  ref point cam %s  gun x in cam %s' % (np.round(Tm[3, 0:3], 1), np.round(cyl[0:3], 1), np.round(Tm[0, 0:3], 2)))
     return Tm
 
 
@@ -74,7 +77,7 @@ TIME = lambda d: d        # the slow variant re-times the loop keys (see webley_
 def webley(kind, slow=False):
     """slow: the loop lasts 24 frames (0.8 s) instead of 16 (0.53 s) - the hand has time to go to the pouch and back"""
     aim2h = 'viewmodel/webley/webley_ads2h.skc'
-    Tw = work_T(aim2h, 'webley_revolver', WEB_D)
+    Tw = work_T(aim2h, 'webley_revolver', WEB_D, [float(x) for x in os.environ.get('WEB_TAG', '13.5,-4.2,-6.0').split(',')], WEB_C)
     common = dict(gun='webley_revolver', fixed_right=True, elbow_vec=tuple(float(x) for x in os.environ.get('WEB_ELB', '0,0,-1').split(',')))
     sfx = '_slow' if slow else ''
     if kind == 'ads':
@@ -118,7 +121,52 @@ def webley(kind, slow=False):
     return dict(common=common, rows=rows)
 
 
+# ------------------------------------------------------------------------------------------------ Nagant (gate loader)
+# The gun is handed to the LEFT hand (the server's attachtohand offhand, torso frame 11 of the start clip) and the
+# RIGHT hand loads through the gate on the right of the frame, one round at a time; a fired case drops out of the gate
+# at the start of every loop (there is no group ejection on this gun). Both weapon tags stay on the gun in the start
+# and end clips, so the hand-off frame does not show; in the loop the right tag carries the cartridge.
+NAG_C = (2.75, 0.10, -1.05)     # mouth of the chamber behind the open gate (rear face of the cylinder, right side)
+NAG_D = tuple(float(x) for x in os.environ.get('NAG_D', '0,-85,0,0,25').split(','))
+NAG_TAG = [float(x) for x in os.environ.get('NAG_TAG', '13.5,0.5,-2.5').split(',')]
+NAG_HOLD = tuple(float(x) for x in os.environ.get('NAG_HOLD', '2.4,0.0,-1.3').split(','))
+NAG_OFF = tuple(float(x) for x in os.environ.get('NAG_OFF', '-3.0,-3.5,-2.5').split(','))
+POUCH_R = (5.0, -9.0, -15.0)
+RTAG = dict(pinch=(10.0, 3.0, 2.6), hold_vec=(0.3, 0.0, 0.0), axes=[[0, 0, 1], [0, 1, 0], [-1, 0, 0]])
+
+
+def nagant(kind):
+    """The retail clips already hold the gun the right way for a gate loader: the LEFT hand over the top of the frame
+    (its thumb turns the cylinder), the RIGHT hand feeds a round into the gate. Both hands keep that retail relation
+    to the gun; what is keyed here is the GUN (eased to a work pose where the gate side faces the eye), the support
+    hand's way from / to the two-handed grip, and a trip to the pouch between rounds."""
+    aim2h = 'viewmodel/nagantrev/nagantrev_ads2h.skc'
+    Tw = work_T(aim2h, 'nagant_revolver', NAG_D, NAG_TAG, NAG_C)
+    NE = float(os.environ.get('NAG_ELB', '3.0'))
+    common = dict(gun='nagant_revolver', weight=dict(on=False))
+    if kind == 'ads':
+        common.update(charge=aim2h)
+        out = lambda part: 'viewmodel/nagantrev/nagantrev_%s_ads.skc' % part
+        lg0 = dict(left_grip=dict(fa=9, fb=None, way=(0.0, -1.5, -1.0)))
+        lg1 = dict(left_grip=dict(fa=None, fb=6, way=(0.0, -1.5, -1.0), hold=2))
+    else:
+        common.update(charge='viewmodel/nagantrev/idle.skc', hip_cam=True)
+        out = lambda part: 'viewmodel/nagantrev/coop_nagant_%s.skc' % part
+        lg0 = lg1 = {}
+    ga = lambda keys: dict(gun_abs=dict(T=Tw, keys=keys))
+    POR = dict(cam=POUCH_R, rot=17, fing=17)
+    loopR = {k: dict(rel=k) for k in range(0, 8)}                 # the retail feed, frame for frame (round in at 6)
+    loopR.update({10: POR, 13: POR, 17: dict(rel=17)})            # then down to the pouch and back for the next
+    rows = {
+        'nagantrev_reload': dict(out=out('reload'), offhand=(11, 30), free_tag=False, **ga({0: 0.0, 3: 0.0, 13: 1.0, 30: 1.0}), elbow_down={'L': [(0, 0.0), (8, NE), (30, NE)]}, **lg0),
+        'nagantrev_reload_single': dict(out=out('reload_single'), offhand=(0, 17), **ga({0: 1.0, 17: 1.0}), right_path=loopR, elbow_down={'L': [(0, NE), (17, NE)]}),
+        'nagantrev_reload_end': dict(out=out('reload_end'), offhand=(0, 9), free_tag=False, **ga({0: 1.0, 7: 1.0, 19: 0.0, 22: 0.0}), elbow_down={'L': [(0, NE), (8, NE), (16, 0.0), (22, 0.0)]}, **lg1),
+    }
+    return dict(common=common, rows=rows)
+
+
 SETS = {'webley_ads': lambda: webley('ads'), 'webley_hip': lambda: webley('hip'),
+        'nagant_ads': lambda: nagant('ads'), 'nagant_hip': lambda: nagant('hip'),
         'webley_ads_slow': lambda: webley('ads', True), 'webley_hip_slow': lambda: webley('hip', True)}
 
 

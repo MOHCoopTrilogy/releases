@@ -49,6 +49,14 @@ def main():
         k = txt.rstrip().rfind('}')              # before the file's closing brace
         txt = txt[:k] + et.replace('\n', nl) + nl + txt[k:]
         print('extra rows from', os.path.basename(ef))
+    blocks = os.environ.get('MKOV_BLOCK')        # row=file;row=file : a { } block inserted right after that row's line
+    for item in ([x for x in blocks.split(';') if x] if blocks else []):
+        rn, bf = item.split('=')
+        bt = open(bf, 'rb').read().decode('latin-1').replace('\r\n', '\n').rstrip('\n')
+        m = re.search(r'(?m)^\s*%s\s+\S+[^\r\n]*(\r?\n)' % re.escape(rn), txt)
+        assert m, rn
+        txt = txt[:m.end()] + bt.replace('\n', nl) + nl + txt[m.end():]
+        print('block after row', rn)
     emit = os.environ.get('MKOV_EMIT')            # also write the staged tree (rows file + clips) for the proposal
     if emit:
         import shutil

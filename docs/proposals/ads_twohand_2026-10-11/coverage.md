@@ -19,7 +19,7 @@ still needs its own in-engine check: a row is DONE only with clips + every stanc
 Clip state over the weapons that aim:
 
 - **aim**: shipped 56, two-handed staged 22, NO aim row 3
-- **reload**: shipped 36, missing 24, staged 20, no reload row 1
+- **reload**: shipped 36, missing 23, staged 21, no reload row 1
 - **bolt**: no cycle row 60, shipped 11, missing 10
 
 
@@ -33,7 +33,7 @@ Clip state over the weapons that aim:
 | 51 | Silenced Walther P38 | `p38silenced.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
 | 52 | Hi-Standard Silenced | `silencedpistol.tik` | histandard | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | stand crouch prone lean (th4, max 0.0 deg) | stand crouch prone lean (th4, max 1.3 deg) | - | th4: sheet + GIF checked | **DONE but braced** |
 | 53 | Webley Revolver | `webley_revolver.tik` | webley | yes | two-handed staged | staged (re-baked, replaces the shipped clip) (3 parts) | no cycle row | stand crouch prone lean (tx3, max 0.0 deg) | crouch prone (tx3; gun lowered by design, ends 0.0 deg) | - | - / OPEN: tx1-tx3: HAND-KEYED hip + aimed reload (open / six-case dump when empty / one round from the pouch per loop / close); full six-round reload, crouch, prone, lean, weapon-switch and sprint interruptions run; loop speed (0.50 vs 0.77 s per round) awaits the user's choice; braced not run | **PARTIAL** |
-| 54 | Nagant Revolver | `nagant_revolver.tik` | nagantrev | yes | two-handed staged | missing (3 parts) | no cycle row | stand crouch prone lean (th5, max 0.0 deg) | stand!FAIL crouch!FAIL prone!FAIL lean!FAIL (th5, max 53.9 deg) | - | - / OPEN: th5: two-handed aim checked (sheet); no aimed reload yet - the hip reload hands the gun to the left hand (anims_pistol nagantrev_reload_start f11), needs its own choreography | **PARTIAL** |
+| 54 | Nagant Revolver | `nagant_revolver.tik` | nagantrev | yes | two-handed staged | staged (3 parts) | no cycle row | stand crouch prone lean (th5, max 0.0 deg) | stand!FAIL crouch!FAIL prone!FAIL lean!FAIL (th5; gun lowered by design, ends 99.0 deg) | - | - / OPEN: tn1: hip + aimed reload on a KEYED GUN (cradled on its left side in the left hand, gate up) with the retail hand-to-gun relations, a pouch trip between rounds and a case dropping from the gate per round; GIFs in evidence; standing only, 3 rounds; right sleeve large while feeding | **PARTIAL** |
 | 55 | Beretta | `it_w_beretta.tik` | beretta | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | stand crouch prone lean (th4, max 0.0 deg) | stand crouch prone lean (th4, max 1.3 deg) | - | th4: sheet + GIF checked; rack skipped by the support hand | **DONE but braced** |
 | 56 | Silenced Beretta | `berettasilenced.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
 | 57 | Luger P08 | `lugerp08.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |

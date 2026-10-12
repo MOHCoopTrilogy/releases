@@ -369,7 +369,8 @@
     "run": "th5"
    }
   },
-  "note": "th5: two-handed aim checked (sheet); no aimed reload yet - the hip reload hands the gun to the left hand (anims_pistol nagantrev_reload_start f11), needs its own choreography",
+  "lowered": true,
+  "note": "tn1: hip + aimed reload on a KEYED GUN (cradled on its left side in the left hand, gate up) with the retail hand-to-gun relations, a pouch trip between rounds and a case dropping from the gate per round; GIFs in evidence; standing only, 3 rounds; right sleeve large while feeding",
   "reload": {
    "crouch": {
     "dev": 52.21,
