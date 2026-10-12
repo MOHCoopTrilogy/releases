@@ -1,0 +1,372 @@
+animations
+{
+	$path models/human/animation
+
+	//========================
+	// Reload
+	//========================
+	pistol_reload		viewmodel/pistol/reload_colt.skc	crossblend 0.3
+	{
+		server
+		{
+			first reloadweapon													// tell the weapon that we're reloading
+			0	attachmodel models/ammo/colt_clip.tik tag_weapon_left			// put the ammo clip in the left hand
+			25	weaponcommand mainhand clip_fill								// put the clip ammo into the gun
+			40	removeattachedmodel tag_weapon_left 0 models/ammo/colt_clip.tik	// remove the clip model from the left hand
+		}
+	}
+	
+	p38_reload			viewmodel/pistol/reload_p38.skc	crossblend 0.3
+	{
+		server
+		{
+			first reloadweapon													// tell the weapon that we're reloading
+			0	attachmodel models/ammo/p38_clip.tik tag_weapon_left			// put the ammo clip in the left hand
+			25	weaponcommand mainhand clip_fill								// put the clip ammo into the gun
+			40	removeattachedmodel tag_weapon_left 0 models/ammo/p38_clip.tik	// remove the clip model from the left hand
+		}
+	}
+	
+	histandard_reload	viewmodel/pistol/reload_hp.skc	crossblend 0.3
+	{
+		server
+		{
+			first reloadweapon									// tell the weapon that we're reloading
+			0	attachmodel models/ammo/silencedpistol_clip.tik tag_weapon_left			// put the ammo clip in the left hand
+			25	weaponcommand mainhand clip_fill						// put the clip ammo into the gun
+			40	removeattachedmodel tag_weapon_left 0 models/ammo/silencedpistol_clip.tik	// remove the clip model from the left hand
+		}
+	}
+
+
+	//========================
+	// Webley Revolver
+	//========================
+
+	webley_reload_start			viewmodel/webley/webley_reload_start.skc			crossblend 0.1
+	{
+		server
+		{
+			first reloadweapon								// tell the weapon that we're reloading
+		}
+	}
+	webley_reload_loop			viewmodel/webley/coop_webley_tp_single_slow.skc			crossblend 0
+	{
+		server
+		{
+			first weaponcommand mainhand anim reload_single
+			8 weaponcommand mainhand anim reload_single			// HZM coop [revolver reload, slow loop] the gun's own clip is 16 frames: re-issued so it ends with this 24-frame loop
+			10 attachmodel models/ammo/nagant_pistol_shell.tik tag_weapon_left			// a round in the support hand, from the pouch
+			20 weaponcommand mainhand clip_add 1					// counted when it seats
+			20 removeattachedmodel tag_weapon_left 0 models/ammo/nagant_pistol_shell.tik
+		}
+	}
+	webley_reload_end			viewmodel/webley/webley_reload_end.skc			crossblend 0.0
+	{
+		server
+		{
+			first	weaponcommand mainhand anim reload_end
+		}
+	}
+
+
+	//========================
+	// Nagant Revolver
+	//========================
+
+	nagantrev_reload_start			viewmodel/nagantrev/reload_start.skc			crossblend 0.1
+	{
+		server
+		{
+			first reloadweapon								// tell the weapon that we're reloading
+			11	weaponcommand mainhand attachtohand offhand				// attach the weapon to the left hand
+		}
+	}
+	nagantrev_reload_loop			viewmodel/nagantrev/reload_loop.skc			crossblend 0
+	{
+		server
+		{
+			first weaponcommand mainhand anim reload_single
+			0 attachmodel models/ammo/nagant_pistol_shell.tik tag_weapon_right
+			6 weaponcommand mainhand clip_add 1						// put a single shell into the gun
+			6 removeattachedmodel tag_weapon_right 0 models/ammo/nagant_pistol_shell.tik	// remove the clip model from the right hand
+		}
+	}
+	nagantrev_reload_end			viewmodel/nagantrev/reload_end.skc			crossblend 0.0
+	{
+		server
+		{
+			first	weaponcommand mainhand anim reload_end
+			9	weaponcommand mainhand attachtohand mainhand		// reattach the weapon to the right hand
+		}
+	}
+
+	//========================
+	// Beretta
+	//========================
+
+	//beretta_reload			viewmodel/beretta/A_W_MOD34Pistol_reload.skc	crossblend 0.3
+	//{
+	//	server
+	//	{
+	//		first reloadweapon													
+	//		0	attachmodel models/weapons/It_W_Beretta_clip.tik tag_weapon_left			
+	//		6	weaponcommand mainhand clip_fill								
+	//		16	removeattachedmodel tag_weapon_left 0 models/weapons/It_W_Beretta_clip.tik	
+	//	}
+	//}
+
+	//========================
+	// Walking/Cautious
+	//========================
+	pistol_stand_walk_fwd		weapon_pistol/walks_runs/pistol_alert_walk_forward.skc			deltadriven	crossblend 0.2 //autosteps_walk
+	pistol_stand_walk_back		weapon_pistol/walks_runs/pistol_alert_walk_backwards.skc		deltadriven	crossblend 0.2 //autosteps_walk
+	pistol_stand_walk_left		weapon_pistol/walks_runs/pistol_alert_walk_left.skc			deltadriven	crossblend 0.2 //autosteps_walk
+	pistol_stand_walk_right		weapon_pistol/walks_runs/pistol_alert_walk_right.skc			deltadriven	crossblend 0.2 //autosteps_walk
+
+	//========================
+	// Jogging/Relaxed
+	//========================
+	pistol_stand_run_fwd		weapon_pistol/walks_runs/jog_pistol.skc				deltadriven	crossblend 0.2 autosteps_run
+	pistol_stand_run_back		weapon_pistol/walks_runs/pistol_run_back.skc			deltadriven	crossblend 0.2 autosteps_run
+	pistol_stand_run_left		weapon_pistol/walks_runs/pistol_run_left.skc			deltadriven	crossblend 0.2 autosteps_run
+	pistol_stand_run_right		weapon_pistol/walks_runs/pistol_run_right.skc			deltadriven	crossblend 0.2 autosteps_run
+
+	//========================
+	// Standing
+	//========================
+
+//	pistol_stand_idle	 		viewmodel/pistol/coltpose.skc			crossblend 0.3
+	pistol_stand_idle1	 		weapon_pistol/curious/pistol_stand_curious(basic_loop).skc	weight 1			crossblend 0.2		weight 1.0
+	pistol_stand_idle2	 		weapon_pistol/curious/pistol_stand_curious(twitch).skc	weight 1 dontrepeate
+
+	//========================
+	// Crouching
+	//========================
+//	pistol_crouch_idle		viewmodel/pistol/crouch_coltpose.skc	crossblend 0.2
+	pistol_crouch_idle		weapon_pistol/pistol_crouch_idle.skc			crossblend 0.2
+	
+	pistol_crouch_walk_fwd		weapon_pistol/walks_runs/pistol_crouch_walk_forward.skc	 //autosteps_walk
+	pistol_crouch_walk_back		weapon_pistol/pistol_crouch_walk_backwards.skc		 //autosteps_walk
+	pistol_crouch_walk_left		weapon_pistol/walks_runs/pistol_crouch_walk_left.skc	 //autosteps_walk
+	pistol_crouch_walk_right	weapon_pistol/walks_runs/pistol_crouch_walk_right.skc	 //autosteps_walk
+
+	pistol_crouch_run_fwd		weapon_pistol/walks_runs/pistol_crouch_run.skc		crossblend 0.2 autosteps_run
+	pistol_crouch_run_back		weapon_pistol/walks_runs/pistol_crouch_run_back.skc	crossblend 0.2 autosteps_run
+	pistol_crouch_run_left		weapon_pistol/walks_runs/pistol_crouch_run_left.skc	crossblend 0.2 autosteps_run
+	pistol_crouch_run_right		weapon_pistol/walks_runs/pistol_crouch_run_right.skc	crossblend 0.2 autosteps_run
+		
+	//========================
+	// Pistol Firing
+	//========================
+	pistol_stand_fire		viewmodel/pistol/tps_fire_colt.skc		crossblend 0.05	
+	{
+		server
+		{
+			entry fire
+		}
+	}
+	pistol_stand_run_fire		viewmodel/pistol/tps_fire_colt.skc			crossblend 0.05
+	{
+		server
+		{
+			entry fire
+		}
+	}
+	pistol_crouch_fire		viewmodel/pistol/tps_fire_colt.skc		crossblend 0.05
+	{
+		server
+		{
+			entry fire
+		}
+	}
+	pistol_crouch_run_fire		viewmodel/pistol/tps_fire_colt.skc		crossblend 0.05
+	{
+		server
+		{
+			entry fire
+		}
+	}
+		
+	//========================
+	// Silenced Pistol Firing
+	//========================
+	pistol_silenced_stand_fire			viewmodel/pistol/tps_fire_hp.skc		crossblend 0.05	
+	{
+		server
+		{
+			entry fire
+		}
+	}
+	pistol_silenced_stand_run_fire		viewmodel/pistol/tps_fire_hp.skc				crossblend 0.05
+	{
+		server
+		{
+			entry fire
+		}
+	}
+	pistol_silenced_crouch_fire			viewmodel/pistol/tps_fire_hp.skc		crossblend 0.05
+	{
+		server
+		{
+			entry fire
+		}
+	}
+	pistol_silenced_crouch_run_fire		viewmodel/pistol/tps_fire_hp.skc			crossblend 0.05
+	{
+		server
+		{
+			entry fire
+		}
+	}
+
+	//========================
+	// Pistol Whip
+	//========================
+	pistol_butt1				viewmodel/pistol/pistolwhip1.skc		random
+	{
+		server
+		{
+			// moved to match the animation
+//			3 fire mainhand secondary
+			6 fire mainhand secondary
+		}
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+
+	pistol_butt2				viewmodel/pistol/pistolwhip2.skc	random
+	{
+		server
+		{
+			// moved to match the animation
+//			3 fire mainhand secondary
+			6 fire mainhand secondary
+		}
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+
+	//========================
+	// Raise
+	//========================
+	pistol_stand_raise		viewmodel/pistol/tps_pullout_colt.skc
+	{
+		server
+		{
+			first activatenewweapon lefthand
+		}
+		client
+		{
+			enter sound snd_pistol_pullout
+		}
+	}
+	pistol_crouch_raise		viewmodel/pistol/tps_pullout_colt.skc
+	{
+		server
+		{
+			first activatenewweapon lefthand
+		}
+		client
+		{
+			enter sound snd_pistol_pullout
+		}
+	}
+
+	//========================
+	// Lower
+	//========================
+	pistol_stand_lower	viewmodel/pistol/tps_putaway_colt.skc
+	{
+		server
+		{
+			last deactivateweapon righthand
+		}
+		client
+		{
+			enter sound snd_pistol_putaway
+		}
+	}
+	pistol_crouch_lower	viewmodel/pistol/tps_putaway_colt.skc
+	{
+		server
+		{
+			last deactivateweapon righthand
+		}
+		client
+		{
+			enter sound snd_pistol_putaway
+		}
+	}
+
+	//========================
+	// Jumping & Falling
+	//========================
+	pistol_jump_takeoff			viewmodel/pistol/pistol_jump_start.skc		crossblend 0.1
+	{
+		server
+		{
+			first ai_event	footstep
+		}
+		client
+		{
+			first footstep	"Bip01 R Foot" run
+		}
+	}
+	pistol_jump_run_takeoff		viewmodel/pistol/pistol_jump_start.skc			crossblend 0.1
+	{
+		server
+		{
+			first ai_event	footstep
+		}
+		client
+		{
+			first footstep	"Bip01 R Foot" run
+		}
+	}
+	pistol_fall			viewmodel/pistol/pistol_jump_loop.skc			crossblend 0.2
+	pistol_land			viewmodel/pistol/pistol_jump_end.skc		crossblend 0.1
+	{
+		client
+		{
+			first landing
+		}
+	}
+	pistol_land_hard		viewmodel/pistol/pistol_jump_end.skc		crossblend 0.1
+	{
+		client
+		{
+			first landing
+		}
+	}
+	
+	
+	//------------------
+	// PAIN ANIMATIONS//
+	//------------------
+	$path models/human/animation
+
+	//Stand//
+	pistol_stand_hit_head			weapon_pistol/minor_pain/pistol_stand_hit_head.skc				autosteps_walk
+	pistol_stand_hit_uppertorso01		weapon_pistol/minor_pain/pistol_stand_hit_head.skc		random		autosteps_walk
+	pistol_stand_hit_uppertorso02		weapon_pistol/minor_pain/pistol_stand_hit_torso.skc		random		autosteps_walk
+	pistol_stand_hit_lowertorso		weapon_pistol/minor_pain/pistol_stand_hit_lowertorso.skc			autosteps_walk
+	pistol_stand_hit_back			weapon_pistol/minor_pain/pistol_stand_hit_lowerback.skc				autosteps_walk
+	pistol_stand_hit_rarm			weapon_pistol/minor_pain/pistol_stand_hit_rarm.skc				autosteps_walk
+	pistol_stand_hit_larm			weapon_pistol/minor_pain/pistol_stand_hit_head.skc				autosteps_walk
+	pistol_stand_hit_leg			weapon_pistol/minor_pain/pistol_stand_hit_leg.skc					autosteps_walk
+
+	//Crouch//
+	pistol_crouch_hit_head			weapon_pistol/minor_pain/pistol_crouch_hit_head.skc				autosteps_walk
+	pistol_crouch_hit_uppertorso01		weapon_pistol/minor_pain/pistol_crouch_hit_torso.skc			random	autosteps_walk
+	pistol_crouch_hit_uppertorso02		weapon_pistol/minor_pain/pistol_crouch_hit_front.skc			random	autosteps_walk
+	pistol_crouch_hit_lowertorso		weapon_pistol/minor_pain/pistol_crouch_hit_torso.skc				autosteps_walk
+	pistol_crouch_hit_back			weapon_pistol/minor_pain/pistol_crouch_hit_torso.skc				autosteps_walk
+	pistol_crouch_hit_rarm			weapon_pistol/minor_pain/pistol_crouch_hit_front.skc				autosteps_walk
+	pistol_crouch_hit_larm			weapon_pistol/minor_pain/pistol_crouch_hit_front.skc				autosteps_walk
+	pistol_crouch_hit_leg			weapon_pistol/minor_pain/pistol_crouch_hit_front.skc				autosteps_walk
+}

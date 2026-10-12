@@ -18,6 +18,7 @@ import run_adsbolt as A
 S, R = A.S, A.R
 STANCES = ("stand", "crouch", "prone", "standL", "standR", "crouchL", "crouchR")
 DEMO_RELOAD = [170]
+SHOTS = [2]
 
 
 def demo(sess, gun, tagst="stand"):
@@ -27,7 +28,7 @@ def demo(sess, gun, tagst="stand"):
                                                     "echo ^~^~^ ABSCEN begin %s" % tag]
     L += A.frames(tag, 8, i)
     L += ["+button13", "echo ^~^~^ DEMO raise %d" % i[0]] + A.frames(tag, 50, i)
-    for _ in range(2):
+    for _ in range(SHOTS[0]):
         L += ["+attackprimary", "echo ^~^~^ DEMO fire %d" % i[0]] + A.frames(tag, 3, i) + ["-attackprimary"] + A.frames(tag, 27, i)
     L += ["reload", "echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, DEMO_RELOAD[0], i)
     L += ["-button13", "echo ^~^~^ DEMO lower %d" % i[0]] + A.frames(tag, 50, i)
@@ -35,18 +36,41 @@ def demo(sess, gun, tagst="stand"):
     R.step(L, timeout=1800)
 
 
-def demohip(sess, gun, tagst="hip", shots=2):
+def demohip(sess, gun, tagst="hip", shots=None):
     """ONE continuous HIP capture: idle, `shots` hip shots, the hip reload, idle"""
     tag = "ab__%s__%s__%s__demohip__after" % (sess, gun, tagst)
     i = [0]
     L = S.RELEASE + S.TO_STAND + A.MODE["after"] + ["wait 600", "set cg_adsSightDebug 2",
                                                     "echo ^~^~^ ABSCEN begin %s" % tag]
     L += A.frames(tag, 8, i)
-    for _ in range(shots):
+    for _ in range(shots or SHOTS[0]):
         L += ["+attackprimary", "echo ^~^~^ DEMO fire %d" % i[0]] + A.frames(tag, 3, i) + ["-attackprimary"] + A.frames(tag, 27, i)
     L += ["reload", "echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, DEMO_RELOAD[0], i)
     L += ["echo ^~^~^ DEMO lower %d" % i[0]] + A.frames(tag, 20, i)
     L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1"] + S.RELEASE
+    R.step(L, timeout=1800)
+
+
+def interrupt(sess, gun, kind, ads=True, shots=4, at=95, n=170):
+    """a reload broken off mid-loop: `shots` fired, reload, after `at` capture frames the interruption
+    (fire = a trigger press, switch = next weapon, sprint = run forward), every 2nd frame captured"""
+    tag = "ab__%s__%s__%s__intr__after" % (sess, gun, kind + ("A" if ads else "H"))
+    L = S.RELEASE + S.TO_STAND + A.MODE["after"] + ["wait 600"] + (["+button13", "wait 1500"] if ads else [])
+    for _ in range(shots):
+        L += ["+attackprimary", "wait 60", "-attackprimary", "wait 420"]
+    L += ["set cg_adsSightDebug 2", "echo ^~^~^ ABSCEN begin %s" % tag, "reload"]
+    act = {"fire": ["+attackprimary"], "switch": ["weapnext"], "sprint": ["+speed", "+forward"]}[kind]
+    for k in range(n):
+        if k == at:
+            L += act + ["echo ^~^~^ DEMO intr %d" % (k // 2)]
+        if k == at + 6 and kind == "fire":
+            L += ["-attackprimary"]
+        L += (["screenshotJPEG %s__%04d" % (tag, k // 2)] if k % 2 == 0 else []) + ["wait 1", "wait 1"]
+    L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1", "-forward", "-speed"] + S.RELEASE
+    if kind == "switch":
+        L += ["wait 1200", "weapprev", "wait 2500"]
+    if kind == "sprint":
+        L += ["+back", "wait 1300", "-back", "wait 400"]
     R.step(L, timeout=1800)
 
 
@@ -114,6 +138,17 @@ def run(a):
                 finally:
                     R.SPOT = (x, y, z, w)
                     R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+            if "interrupt" in a.parts:
+                x, y, z, w = R.SPOT
+                R.SPOT = (x, y, z, a.demoyaw)
+                try:
+                    R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS["colt45"]) + S.give(A.GUNS[gun]), timeout=120)
+                    for kind in ("fire", "switch", "sprint"):
+                        interrupt(a.session, gun, kind, ads=(kind != "sprint"))
+                        R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+                finally:
+                    R.SPOT = (x, y, z, w)
+                    R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
             if "fire" in a.parts:
                 A.firecap(a.session, gun, "stand", ads=True)
             if "stills" in a.parts:
@@ -164,9 +199,10 @@ def main():
     ap.add_argument("session"); ap.add_argument("--overlay", required=True); ap.add_argument("--cgame", default="cgame_1022d")
     ap.add_argument("--guns", default="colt45"); ap.add_argument("--parts", default="demo,stills,reloads,yaw")
     ap.add_argument("--rstances", default="crouch,prone"); ap.add_argument("--rframes", type=int, default=190)
-    ap.add_argument("--yaws", default="185,265,135,315"); ap.add_argument("--demoyaw", type=int, default=160); ap.add_argument("--demoreload", type=int, default=170); ap.add_argument("--braced", action="store_true"); ap.add_argument("--set", action="append", default=[])
+    ap.add_argument("--yaws", default="185,265,135,315"); ap.add_argument("--demoyaw", type=int, default=160); ap.add_argument("--demoreload", type=int, default=170); ap.add_argument("--braced", action="store_true"); ap.add_argument("--shots", type=int, default=2); ap.add_argument("--set", action="append", default=[])
     a = ap.parse_args()
     DEMO_RELOAD[0] = a.demoreload
+    SHOTS[0] = a.shots
     a.guns = [g for g in a.guns.split(",") if g]; a.parts = a.parts.split(",")
     a.rstances = [s for s in a.rstances.split(",") if s]; a.yaws = [int(v) for v in a.yaws.split(",") if v]
     os.makedirs(os.path.dirname(A.LOGF), exist_ok=True)

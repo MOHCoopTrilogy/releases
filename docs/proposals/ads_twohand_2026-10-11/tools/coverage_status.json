@@ -78,6 +78,94 @@
    }
   }
  },
+ "models/weapons/colt45_colt1911w.tik": {
+  "aim": {
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "tx3"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "tx3"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "tx3"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "tx3"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "tx3"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "tx3"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "tx3"
+   }
+  },
+  "lowered": true,
+  "note": "tx3: the Webley choreography plays on this mesh in 4 stances; chamber / barrel points are the Webley's, not fitted to this cylinder",
+  "reload": {
+   "crouch": {
+    "dev": 34.92,
+    "edge": 34.82,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "tx3"
+   },
+   "prone": {
+    "dev": 34.92,
+    "edge": 34.82,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "tx3"
+   },
+   "standL": {
+    "dev": 34.92,
+    "edge": 34.82,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "tx3"
+   }
+  }
+ },
  "models/weapons/it_w_beretta.tik": {
   "aim": {
    "crouch": {
@@ -478,77 +566,86 @@
    "crouch": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "tx3"
    },
    "crouchL": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "tx3"
    },
    "crouchR": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "tx3"
    },
    "prone": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "tx3"
    },
    "stand": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "tx3"
    },
    "standL": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "tx3"
    },
    "standR": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "tx3"
    }
   },
-  "note": "tw6: HAND-KEYED hip + aimed reload (open, one round from the pouch per loop with a cartridge in the fingers, close) - GIFs in evidence; fired cases are thrown by the server but hidden from the shooter (first-person dump pending, cgame); stances not run yet",
+  "lowered": true,
+  "note": "tx1-tx3: HAND-KEYED hip + aimed reload (open / six-case dump when empty / one round from the pouch per loop / close); full six-round reload, crouch, prone, lean, weapon-switch and sprint interruptions run; loop speed (0.50 vs 0.77 s per round) awaits the user's choice; braced not run",
   "reload": {
    "crouch": {
-    "dev": 1.56,
-    "edge": 1.56,
+    "dev": 35.01,
+    "edge": 34.91,
+    "end": 0.0,
     "ok": false,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "tx3"
    },
    "prone": {
-    "dev": 1.56,
-    "edge": 1.56,
+    "dev": 35.01,
+    "edge": 34.92,
+    "end": 0.0,
     "ok": false,
-    "run": "th5"
-   },
-   "stand": {
-    "dev": 1.56,
-    "edge": 1.56,
-    "ok": false,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "tx3"
    },
    "standL": {
-    "dev": 1.55,
-    "edge": 1.55,
+    "dev": 35.01,
+    "edge": 34.92,
+    "end": 0.0,
     "ok": false,
-    "run": "th5"
-   },
-   "standR": {
-    "dev": 1.55,
-    "edge": 1.55,
-    "ok": false,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "tx3"
    }
   }
  }

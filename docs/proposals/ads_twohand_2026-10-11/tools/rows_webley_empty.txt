@@ -1,0 +1,47 @@
+	//===================== HZM coop revolver reloads: EMPTY cylinder (cgame picks <row>_empty when the clip is 0) =====================
+	webley_reload_empty		viewmodel/webley/coop_webley_reload.skc		crossblend 0.1
+	{
+		client
+		{
+			14 tagspawn tag_weapon_right	// the top-break throws its six cases as it opens (first person; the server drops the world ones)
+			(
+				count 6
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				scale .75
+				offsetalongaxis 9.5 -0.8 -4.6
+				randvelaxis range -45 -12 crandom 26 range -28 8
+				avelocity crandom 360 crandom 360 crandom 180
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}
+	webley_reload_empty_ads		viewmodel/webley/webley_reload_ads.skc		crossblend 0.1
+	{
+		client
+		{
+			14 tagspawn tag_weapon_right
+			(
+				count 6
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				scale .75
+				offsetalongaxis 9.5 -0.8 -4.6
+				randvelaxis range -45 -12 crandom 26 range -28 8
+				avelocity crandom 360 crandom 360 crandom 180
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}

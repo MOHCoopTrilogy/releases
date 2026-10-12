@@ -30,11 +30,23 @@ m = re.search(r'(?m)^\s*webley_reload_loop\s[^\n]*\n\s*\{\n\s*server\n\s*\{\n(.*
 assert m, 'webley_reload_loop block'
 body = m.group(1)
 assert 'clip_add 1' in body and 'attachmodel' not in body, body
-new_body = ('\t\t\tfirst weaponcommand mainhand anim reload_single\n'
-            '\t\t\t8 attachmodel %s tag_weapon_left\t\t\t// HZM coop [revolver reload] a round in the support hand, from the pouch\n'
-            '\t\t\t13 weaponcommand mainhand clip_add 1\t\t\t\t\t// counted when it seats\n'
-            '\t\t\t13 removeattachedmodel tag_weapon_left 0 %s' % (ROUND, ROUND))
+SLOW = '--slow' in sys.argv
+if SLOW:
+    new_body = ('\t\t\tfirst weaponcommand mainhand anim reload_single\n'
+                '\t\t\t8 weaponcommand mainhand anim reload_single\t\t\t// HZM coop [revolver reload, slow loop] the gun\'s own clip is 16 frames: re-issued so it ends with this 24-frame loop\n'
+                '\t\t\t10 attachmodel %s tag_weapon_left\t\t\t// a round in the support hand, from the pouch\n'
+                '\t\t\t20 weaponcommand mainhand clip_add 1\t\t\t\t\t// counted when it seats\n'
+                '\t\t\t20 removeattachedmodel tag_weapon_left 0 %s' % (ROUND, ROUND))
+else:
+    new_body = ('\t\t\tfirst weaponcommand mainhand anim reload_single\n'
+                '\t\t\t6 attachmodel %s tag_weapon_left\t\t\t// HZM coop [revolver reload] a round in the support hand, from the pouch\n'
+                '\t\t\t12 weaponcommand mainhand clip_add 1\t\t\t\t\t// counted when it seats\n'
+                '\t\t\t12 removeattachedmodel tag_weapon_left 0 %s' % (ROUND, ROUND))
 s = s[:m.start(1)] + new_body + s[m.end(1):]
+if SLOW:
+    a0 = s.index('webley_reload_loop')
+    assert 'viewmodel/webley/webley_reload_single.skc' in s[a0:a0 + 120]
+    s = s[:a0] + s[a0:a0 + 120].replace('viewmodel/webley/webley_reload_single.skc', 'viewmodel/webley/coop_webley_tp_single_slow.skc') + s[a0 + 120:]
 put('models/player/base/anims_pistol.txt', s, crlf)
 
 # ---- webley_revolver.tik
@@ -49,9 +61,9 @@ assert m, 'tagspawn block'
 spawn_body = m.group(1)
 blk2 = blk[:m.start()] + blk[m.end():]
 blk2 = blk2.replace('\t\t\t2\tsurface shellmetal_cull -nodraw\n\t\t\t8\tsurface shellmetal_cull +nodraw\n',
-                    '\t\t\t10\tsurface shellmetal_cull +nodraw\n\t\t\t13\tsurface shellmetal_cull -nodraw\t// HZM coop [revolver reload] shows as the round seats\n')
+                    '\t\t\t9\tsurface shellmetal_cull +nodraw\n\t\t\t12\tsurface shellmetal_cull -nodraw\t// HZM coop [revolver reload] shows as the round seats\n')
 assert blk2 != blk and 'tagspawn' not in blk2
-blk2 = blk2.replace('3 sound webley_snd_reload_single', '13 sound webley_snd_reload_single')
+blk2 = blk2.replace('3 sound webley_snd_reload_single', '12 sound webley_snd_reload_single')
 t = t[:a] + blk2 + t[b:]
 # the open: the cases are thrown by the server's coop_ejectcases (anims_shared.txt, exact count) - no client spawn here
 # closing: the chamber marker off again

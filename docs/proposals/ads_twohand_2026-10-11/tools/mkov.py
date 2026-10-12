@@ -43,6 +43,12 @@ def main():
         rows = [l for l in txt.splitlines() if l.split('//')[0].split()[:1] == [rowname]]
         assert len(rows) == 1 and clip in rows[0], (gun, rows)
         print('row:', rows[0].strip())
+    extra = os.environ.get('MKOV_EXTRA')         # ;-separated files of whole rows (with their { } blocks) to append
+    for ef in ([x for x in extra.split(';') if x] if extra else []):
+        et = open(ef, 'rb').read().decode('latin-1').replace('\r\n', '\n').rstrip('\n')
+        k = txt.rstrip().rfind('}')              # before the file's closing brace
+        txt = txt[:k] + et.replace('\n', nl) + nl + txt[k:]
+        print('extra rows from', os.path.basename(ef))
     emit = os.environ.get('MKOV_EMIT')            # also write the staged tree (rows file + clips) for the proposal
     if emit:
         import shutil

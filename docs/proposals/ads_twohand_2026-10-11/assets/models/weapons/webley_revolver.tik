@@ -160,12 +160,12 @@ animations
 	{
 		server
 		{
-			10	surface shellmetal_cull +nodraw
-			13	surface shellmetal_cull -nodraw	// HZM coop [revolver reload] shows as the round seats
+			9	surface shellmetal_cull +nodraw
+			12	surface shellmetal_cull -nodraw	// HZM coop [revolver reload] shows as the round seats
 		}
 		client
 		{
-			13 sound webley_snd_reload_single
+			12 sound webley_snd_reload_single
 
 
 		}

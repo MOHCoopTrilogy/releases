@@ -356,6 +356,10 @@ def bake(name, ctl):
                         pl = np.asarray(rc['ltag']['pinch'], float)
                         tgt = gp - (sp.get('above', 0.0) / R.S) * Gads[2, 0:3]
                         Hk[3, 0:3] = tgt - pl @ Hk[0:3, 0:3]
+                if 'cam_add' in sp:                              # a last nudge in the camera frame (u): e.g. a rest
+                    Mi_ = R.inv(Mcam)                            # place a little down-left of a gun point
+                    Hk = Hk.copy()
+                    Hk[3, 0:3] += (np.asarray(sp['cam_add'], float) @ Mi_[0:3, 0:3]) / R.S
                 fk = sp.get('fing', ('pose' if sp.get('aim') else 'aim') if (sp.get('aim') or rk == 'aim' or rk is None) else rk)
                 return Hk, fk
             keysH = [_key(k) for k in ks]
@@ -426,7 +430,7 @@ def bake(name, ctl):
                     pd[ch] = R.qslerp(qa_, qb_, lpk[2])
         pb = None
         if rc.get('elbow_down'):                         # {side: [(frame, weight), ...]} - elbow swung down (camera -z)
-            dm = (np.array([0.0, 0.0, -1.0]) @ R.inv(Mcam)[0:3, 0:3])
+            dm = (np.asarray(rc.get('elbow_vec', (0.0, 0.0, -1.0)), float) @ R.inv(Mcam)[0:3, 0:3])   # camera-frame direction (default: down)
             pb = {}
             for side, keys in rc['elbow_down'].items():
                 ks = [k for k, _ in keys]

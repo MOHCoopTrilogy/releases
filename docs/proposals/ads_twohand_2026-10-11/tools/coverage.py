@@ -203,7 +203,10 @@ def scan(sessions):
             edge = max(devs[:k] + devs[-k:])
             ok = min(x[0] for x in r) > 0.9 and max(devs) <= 6.0 and edge <= 1.5
             e = st.setdefault(tik, {}).setdefault(kind, {})
-            e[stance] = dict(run=sess, ok=bool(ok), dev=round(max(devs), 2), edge=round(edge, 2))
+            # `end` = how far off the sights the capture ENDS: a hand-keyed reload that lowers the gun on purpose
+            # (status `lowered`, set with `coverage.py lowered <tik>`) is judged on pose >= 0.9 and end <= 1.5 deg
+            e[stance] = dict(run=sess, ok=bool(ok), dev=round(max(devs), 2), edge=round(edge, 2),
+                             end=round(max(devs[-5:]), 2), pmin=round(min(x[0] for x in r), 2))
     json.dump(st, open(STATUS, 'w'), indent=1, sort_keys=True)
     print('status:', STATUS, len(st), 'weapons')
 
@@ -212,6 +215,9 @@ def tested(st, tik, kind):
     e = st.get(tik, {}).get(kind, {})
     if not e:
         return '-', 0
+    low = bool(st.get(tik, {}).get('lowered')) and kind == 'reload'
+    if low:
+        e = {k: dict(v, ok=(v.get('pmin', 1.0) >= 0.9 and v.get('end', 99.0) <= 1.5)) for k, v in e.items()}
     out, n = [], 0
     for g, sts in GROUPS:
         got = [e[s] for s in sts if s in e]
@@ -222,6 +228,8 @@ def tested(st, tik, kind):
             out.append(g + '!FAIL')
     runs = sorted({x['run'] for x in e.values()})
     worst = max(x['dev'] for x in e.values())
+    if low:
+        return '%s (%s; gun lowered by design, ends %.1f deg)' % (' '.join(out) or 'none pass', ','.join(runs), max(x.get('end', 99.0) for x in e.values())), n
     return '%s (%s, max %.1f deg)' % (' '.join(out) or 'none pass', ','.join(runs), worst), n
 
 
@@ -382,6 +390,12 @@ if __name__ == '__main__':
     cmd = sys.argv[1] if len(sys.argv) > 1 else 'build'
     if cmd == 'scan':
         scan(sys.argv[2:])
+    elif cmd == 'lowered':                    # this weapon's aimed reload lowers the gun on purpose (hand-keyed)
+        s = load_status()
+        tik = sys.argv[2].lower()
+        tik = tik if tik.startswith('models/') else 'models/weapons/%s.tik' % tik
+        s.setdefault(tik, {})['lowered'] = True
+        json.dump(s, open(STATUS, 'w'), indent=1, sort_keys=True)
     elif cmd == 'note':                       # an open remark on a weapon: shown, never counted as QA
         s = load_status()
         tik = sys.argv[2].lower()
