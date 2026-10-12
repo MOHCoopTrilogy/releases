@@ -3,12 +3,14 @@
     "731f1ad5be49e821d6c2620a07654e9b3825d66903b13801295bf43db94d6cbb",
     "47988f70fa288350201c0f5da3b84ee4f2972fa42023257feae0350a6ca208bd",
     "3abc3ca9e29c7e92e8758f829779488d69b657e88ad44f4e2c7e395410950882",
-    "846482213ba2193f1260dae6b04946e0e95e8fc875fc34b5c21d5248decf671c"
+    "846482213ba2193f1260dae6b04946e0e95e8fc875fc34b5c21d5248decf671c",
+    "680ad70361f0b862d21251e095e96c48c2419d7f82b109902940ec5a33779c53"
   ],
   "notes": {
     "731f1ad5be49e821d6c2620a07654e9b3825d66903b13801295bf43db94d6cbb": "v1.10.13 main-tree build of engine 68bb8881 (renderer source == bc2c3072, the flip that passed G1/G5/P6.3 boots+equal with A2C off on 2026-10-04); this exact DLL boot-smoked on m2l1+m5l3: MSAA path=new n=8, 0 script errors",
     "47988f70fa288350201c0f5da3b84ee4f2972fa42023257feae0350a6ca208bd": "v1.10.14 main-tree build of engine e26bc1d8 (flip defaults unchanged since bc2c3072; adds the waterfix 2a3132b3 which passed its own in-engine gates at MSAA 8x and off); boot-smoked after deploy",
     "3abc3ca9e29c7e92e8758f829779488d69b657e88ad44f4e2c7e395410950882": "v1.10.15 main-tree build of engine a7b479c1 renderergl2 (= v1.10.14 renderer + sky fog model 2b84ab0d, in-engine gated on m5l1a/e2l3/m1l3c/m4l0/m3l2 by the clouds session; flip defaults unchanged since bc2c3072)",
-    "846482213ba2193f1260dae6b04946e0e95e8fc875fc34b5c21d5248decf671c": "v1.10.20 release-branch build (openmohaa-hzm-rel, 0e33dedd) = v1.10.15 renderer + tess stream + skin cache (bug-3483; flip defaults unchanged since bc2c3072). In-engine 2026-10-11: m4l3 off/on diff on the noise floor, m1l1 alternated 4x with no correlation, m3l1a 52 -> 39 ms a frame, 0 GL errors, menus drawn through the same path"
+    "846482213ba2193f1260dae6b04946e0e95e8fc875fc34b5c21d5248decf671c": "v1.10.20 release-branch build (openmohaa-hzm-rel, 0e33dedd) = v1.10.15 renderer + tess stream + skin cache (bug-3483; flip defaults unchanged since bc2c3072). In-engine 2026-10-11: m4l3 off/on diff on the noise floor, m1l1 alternated 4x with no correlation, m3l1a 52 -> 39 ms a frame, 0 GL errors, menus drawn through the same path",
+    "680ad70361f0b862d21251e095e96c48c2419d7f82b109902940ec5a33779c53": "v1.10.21 release-branch build (openmohaa-hzm-rel, release-1.10.22 @ 05d99f95) = v1.10.20 renderer + worker-thread skinning, skeletal view cull, bone-hash memo, learned shader preload, persistently mapped tess stream, light-direction / terrain memos, pose LOD, fast normal pack, GPU wound compositor, frame generation (default off); flip defaults unchanged since bc2c3072. In-engine 2026-10-11: m3l1a avg 12.5 ms a frame (was 32), m3l1b fight 1 frame >= 25 ms in 4 min, two-player m2l2b clean, picture checks on t1l1 / m5l3 / m1l1 on the noise floor, 0 GL errors polled every frame, vid_restart and map change clean"
   }
 }

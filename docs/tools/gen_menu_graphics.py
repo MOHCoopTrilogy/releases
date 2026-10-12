@@ -66,7 +66,8 @@ def _find_root():
 
 ROOT = _find_root()
 MOD = os.path.join(ROOT, "hzm-mohaa-coop-mod")
-ENG = os.path.join(ROOT, "openmohaa-hzm", "code")
+# HZM_MENU_ENG = another engine checkout to scan (a release worktree whose commits are not in the main tree yet)
+ENG = os.environ.get("HZM_MENU_ENG") or os.path.join(ROOT, "openmohaa-hzm", "code")
 # fs.Font / fs.rd / fs.urc_resources read fs's module globals at call time; point them at the real tree.
 fs.ROOT, fs.MOD, fs.ENG = ROOT, MOD, ENG
 
@@ -215,16 +216,20 @@ AA = P("r_ppFXAA", ["r_ppFXAA"], [("Off", 0), ("Smooth edges", 1)], 1)
 # r_ext_framebuffer_multisample stay PINNED 0. gl1 ignores r_msaa (accepted: gl1 has no menu MSAA).
 MSAA = P("r_msaa", ["r_msaa"], [("Auto", -1), ("Off", 0), ("2x", 2), ("4x", 4), ("8x", 8)], -1)
 
-# [D3] FRAME RATE LIMIT. com_maxfps is paced in WHOLE milliseconds (qcommon/common.c:2330, minMsec = 1000/maxfps),
-# so only these values mean what they say: 62 = 16 ms, 142 = 7 ms, 166 = 6 ms, 200 = 5 ms, 250 = 4 ms; 0 = uncapped.
+# [D3] FRAME RATE LIMIT. Until bug-3494 com_maxfps was paced in WHOLE milliseconds (minMsec = 1000/maxfps), so only
+# 62 / 125 / 142 / 166 / 200 / 250 meant what they said and the row offered exactly those. The engine now paces in
+# microseconds (com_preciseFps 1, qcommon/common.c Com_Frame; measured 144 -> 144.9, 177 -> 178.6, old code 167.8
+# and 203.3), so the row offers what displays need: the refresh rate itself, and 3 under it for G-Sync / FreeSync
+# (117, 141, 162, 177, 237). A saved 62 / 125 / 142 / 166 / 250 from the old row still works and is now exact.
 # The old autoexec force of 180 really ran at 200, hence the 200 default (no change in pace for anyone).
 # The player's pick is ALSO stored in the alias coop_fpsRestore, which autoexec.cfg runs at every launch: hosting
 # caps a session at 125 (coop_mod/start_server.cfg, bug-1673 host pacing) and that 125 lands in the saved config,
 # but it can no longer outlive the session. An alias, not a cvar, on purpose: the server filter has no `alias`
 # verb and layer 2 drops a server line that names one (qcommon/cmd_filter.c ~485), so unlike a vstr'd cvar a
 # hostile server cannot plant a command in it - no SEC2 guard-list (cmd_srvguard.h) entry, no engine change.
-FPS_CHOICES = [("62 fps", 62), ("125 fps", 125), ("142 fps", 142), ("166 fps", 166), ("200 fps", 200),
-               ("250 fps", 250), ("Unlimited", 0)]
+FPS_CHOICES = [("60 fps", 60), ("90 fps", 90), ("117 fps", 117), ("120 fps", 120), ("141 fps", 141), ("144 fps", 144),
+               ("162 fps", 162), ("165 fps", 165), ("177 fps", 177), ("200 fps", 200), ("237 fps", 237),
+               ("Unlimited", 0)]
 FPS = P("com_maxfps", ["com_maxfps"],
         [(lab, v, "alias coop_fpsRestore seta com_maxfps %d" % v) for lab, v in FPS_CHOICES], 200)
 
@@ -325,7 +330,7 @@ PRESET_FX_VALUES = [
 PRESET_VIDEO_VALUES = [
     ("r_picmip",                   1,     None,   None,   0),
 ]
-PRESET_SKIP = ("com_maxfps", "r_swapInterval", "ui_menuCenter", PRESET_CVAR)
+PRESET_SKIP = ("com_maxfps", "r_swapInterval", "ui_menuCenter", "r_hzmFrameGen", PRESET_CVAR)
 # CVAR_LATCH cvars a preset can change: the VIDEO panel must carry a hidden watcher Label for each, or its APPLY
 # (ui_checkrestart -> Menu::CheckRestart, uilib/uimenu.cpp:407) cannot see that a reload is due.
 PRESET_LATCHED = ("r_ext_max_anisotropy", "r_subdivisions", "r_ppSSAO", "r_ppDoF", "r_sunShadows", "r_softParticles",
@@ -351,6 +356,10 @@ ADV_SECTIONS = [
         ("MenuLay", "pulldown", "Menu Layout", "ui_menuCenter", MENU),
         # [bug-3483] here, not under GEOMETRY & EFFECTS: that column has no room left above the footer rule
         ("ModelLod", "pulldown", "Model Detail", "r_lodscale", LOD),
+        # [user 2026-10-11: "Off by default option for now"] frame generation prototype (renderergl2 tr_hzm_framegen.c):
+        # a present thread shows a camera-reprojected picture between every two real frames. Live, not latched.
+        # Never part of a preset. Verified on one NVIDIA card at 720p only, hence "beta" in the label.
+        ("FrameGen", "toggle", "Frame Generation (beta)", "r_hzmFrameGen", T(0)),
     ]),
     (1, "GEOMETRY & EFFECTS", [
         ("MSAA", "pulldown", "Anti-Aliasing", "r_msaa", MSAA),
