@@ -422,7 +422,9 @@ FPS_ALIAS = "coop_fpsRestore"
 
 
 # ---------------------------------------------------------------- layout (forked from fs.lay_sheet, + pulldown)
-def lay_graphics(sections, colx, top, colw):
+def lay_graphics(sections, colx, top, colw, t_pitch=None, s_pitch=None):
+    t_pitch = T_PITCH if t_pitch is None else t_pitch
+    s_pitch = fs.S_PITCH if s_pitch is None else s_pitch
     rows, heads, bottoms = [], [], {}
     for col, title, items in sections:
         y = bottoms.get(col, top - 8) + 8
@@ -432,12 +434,12 @@ def lay_graphics(sections, colx, top, colw):
             rows.append((col, ry, i) + tuple(it))
             tall = it[1] == "slider"
             bottoms[col] = ry + (32 if tall else fs.ROW_H)
-            ry += fs.S_PITCH if tall else T_PITCH
+            ry += s_pitch if tall else t_pitch
     g = dict(stripes=[], headers=[], labels=[], plates=[], lamps=[], notches=[], captions=[],
              displays=[], sliders=[], checkboxes=[], pulldowns=[])
     for col, y, i, key, kind, text, cvar, spec in rows:
         if i % 2 == 1:
-            g["stripes"].append(fs.label("stripe" + key, (colx[col], y - 2, colw, fs.S_PITCH if kind == "slider" else T_PITCH), bg=fs.STRIPE))
+            g["stripes"].append(fs.label("stripe" + key, (colx[col], y - 2, colw, s_pitch if kind == "slider" else t_pitch), bg=fs.STRIPE))
     for col, title, y in heads:
         tag = re.sub(r"[^A-Za-z]", "", title.title())
         g["headers"].append(fs.text_label("hdr" + tag, (colx[col], y, colw, 18), title, "facfont-20", fs.RUST, "left"))
@@ -657,13 +659,139 @@ def sheet_pfx(page, idx, total):
     return rows, ordered(chrome, g, footer, buttons), PAPER_BOX
 
 
+# ---------------------------------------------------------------- VIDEO MEMORY block (plan section 4, P2.1)
+# The renderer (renderergl2/tr_hzm_vram.c) publishes ROM cvars; this block only shows them. Everything is gated on
+# r_vramCardMB > 0, which the renderer leaves at 0 while the feature is dormant (r_hzmVramBar) or the card size is
+# unknown - then the band is simply empty paper above the footer rule.
+#   bar   a dark track; "all" (khaki: game + pending + other programs), "after Apply" (pale amber), "this game" (amber,
+#         rust when r_vramHot) - each a `statbar horizontal 0 100` Label linked to a 0-100 cvar and filled with a
+#         tiled flat texture (a statbar draws white without a material, cl_uistd.cpp); the Windows limit is a tick
+#         (`statbar_shader_marker`) on a transparent bar
+#   text  Labels linked to pre-formatted text cvars (a Label shows a cvar's raw string). Hot: the warning takes the
+#         place of the other-programs and limit texts.
+# The TRACK texture is also the renderer's "the block is on screen" mark (VRAM_MARK_IMAGE): it is drawn whenever
+# the block is, and nowhere else. Do not reuse it.
+# Placement: the plan puts the block at the TOP of this sheet. It is at the BOTTOM instead, because the feature
+# ships dormant and an empty band under the title would read as a hole; above the footer it is ordinary margin.
+VRAM_Y = 392
+VRAM_BAR = (148, VRAM_Y + 1, 448, 7)
+VRAM_DIR = "textures/hud/vram/"
+VRAM_ON = "r_vramCardMB>0"
+VRAM_CVARS = ("r_vramCardMB", "r_vramBarAll", "r_vramBarPending", "r_vramBarGame", "r_vramBarBudget", "r_vramHot",
+              "r_vramTextGame", "r_vramTextOther", "r_vramTextLimit", "r_vramTextWarn")
+# the longest strings the renderer can publish (R_HzmVramPublish) - the fit gate measures these
+VRAM_LONGEST = {"vramTxtGame": "After Apply: about 15.9 GB", "vramTxtOther": "Other programs: 15.9 GB",
+                "vramTxtLimit": "Windows limit: about 15.9 GB",
+                "vramTxtWarn": "Close to the limit - lower Anti-Aliasing or Texture Quality."}
+
+
+def _tga(w, h, px):
+    """uncompressed 32-bit TGA, bottom-up (the loaders ignore the top-down bit); px(x, y) -> (r, g, b, a), y down"""
+    out = bytearray([0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, w & 255, w >> 8, h & 255, h >> 8, 32, 8])
+    for y in range(h - 1, -1, -1):
+        for x in range(w):
+            r, g, bl, a = px(x, y)
+            out += bytes((bl, g, r, a))
+    return bytes(out)
+
+
+def vram_art():
+    flat = lambda c: _tga(8, 8, lambda x, y: c)
+    amber, dark = (250, 184, 51, 255), (41, 31, 23, 255)
+    return {
+        VRAM_DIR + "track.tga": flat(dark),
+        VRAM_DIR + "other.tga": flat((140, 128, 97, 255)),
+        VRAM_DIR + "game.tga": flat(amber),
+        VRAM_DIR + "hot.tga": flat((219, 82, 33, 255)),
+        # "after Apply": a paler amber, flat. A hatch tile reads as a glitch at this height (tried: two thin lines).
+        VRAM_DIR + "pending.tga": flat((252, 222, 150, 255)),
+        VRAM_DIR + "clear.tga": flat((0, 0, 0, 0)),
+        VRAM_DIR + "tick.tga": _tga(3, 20, lambda x, y: (26, 15, 5, 255)),
+    }
+
+
+def vram_block():
+    def bar(name, shader, cvar=None, gate=VRAM_ON, marker=None):
+        w = fs.W(name, "Label", VRAM_BAR)
+        body = ['\tname "%s"' % name, "\trect %d %d %d %d" % VRAM_BAR, "\tfgcolor " + fs.c4(fs.WHITE),
+                "\tbgcolor " + fs.c4(fs.CLEAR), '\tborderstyle "NONE"']
+        if cvar is None:
+            body.append('\tshader "%s"' % shader)
+        else:
+            body += ["\tstatbar horizontal 0 100", '\tstatbar_tileshader "%s"' % shader, '\tlinkcvar "%s"' % cvar]
+            if marker:
+                body.append('\tstatbar_shader_marker "%s"' % marker)
+        body.append('\tenabledcvar "%s"' % gate)
+        w["raw_body"] = body
+        return w
+
+    def txt(name, rect, cvar, align, fg, gate):
+        w = fs.W(name, "Label", rect)
+        w["raw_body"] = ['\tname "%s"' % name, "\tdontlocalize", "\trect %d %d %d %d" % tuple(rect),
+                         "\tfgcolor " + fs.c4(fg), "\tbgcolor " + fs.c4(fs.CLEAR), '\tborderstyle "NONE"',
+                         '\tfont "verdana-12"', "\ttextalign " + align, '\tlinkcvar "%s"' % cvar,
+                         '\tenabledcvar "%s"' % gate]
+        w["vram_font"] = "verdana-12"
+        return w
+
+    y2 = VRAM_Y + 9
+    cool, hot = VRAM_ON + " r_vramHot==0", VRAM_ON + " r_vramHot==1"
+    return [
+        fs.text_label("vramTitle", (52, VRAM_Y, 92, 12), "VIDEO MEMORY", "verdana-12", fs.RUST, "left",
+                      dontlocalize=True, enabledcvar=VRAM_ON),
+        bar("vramTrack", VRAM_DIR + "track"),
+        bar("vramAll", VRAM_DIR + "other", "r_vramBarAll"),
+        bar("vramPending", VRAM_DIR + "pending", "r_vramBarPending"),
+        bar("vramGame", VRAM_DIR + "game", "r_vramBarGame", gate=cool),
+        bar("vramGameHot", VRAM_DIR + "hot", "r_vramBarGame", gate=hot),
+        bar("vramBudget", VRAM_DIR + "clear", "r_vramBarBudget", marker=VRAM_DIR + "tick"),
+        txt("vramTxtGame", (148, y2, 146, 12), "r_vramTextGame", "left", fs.INK, VRAM_ON),
+        txt("vramTxtOther", (298, y2, 132, 12), "r_vramTextOther", "left", fs.MUTED, cool),
+        txt("vramTxtLimit", (434, y2, 162, 12), "r_vramTextLimit", "right", fs.MUTED, cool),
+        txt("vramTxtWarn", (298, y2, 298, 12), "r_vramTextWarn", "left", (0.72, 0.22, 0.08, 1.0), hot),
+    ]
+
+
+def gate_vram(sheets, problems, fonts, notes):
+    """the block fits its band, its longest texts fit their Labels, and every cvar it links is registered"""
+    widgets = sheets["advanced_graphics"][0]
+    blk = [w for w in widgets if w["name"].startswith("vram")]
+    if not blk:
+        problems.append("advanced_graphics: the VIDEO MEMORY block is missing")
+        return
+    rowmax = max(w["rect"][1] + w["rect"][3] for w in widgets if any(w["name"].startswith(p) for p in ROW_PREFIXES))
+    top = min(w["rect"][1] for w in blk)
+    bot = max(w["rect"][1] + w["rect"][3] for w in blk)
+    if top < rowmax + 2:
+        problems.append("VIDEO MEMORY block starts at y=%d but the rows end at y=%d" % (top, rowmax))
+    if bot > FOOT_Y:
+        problems.append("VIDEO MEMORY block ends at y=%d, past the footer rule %d" % (bot, FOOT_Y))
+    for w in blk:
+        s = VRAM_LONGEST.get(w["name"])
+        if s and fonts["verdana-12"].width(s) > w["rect"][2]:
+            problems.append("VIDEO MEMORY text too wide: %s %.0f > %d (%r)"
+                            % (w["name"], fonts["verdana-12"].width(s), w["rect"][2], s))
+    reg = registered_cvars()
+    missing = [cv for cv in VRAM_CVARS if cv not in reg]
+    if len(missing) == len(VRAM_CVARS):
+        # an engine tree from before renderergl2/tr_hzm_vram.c: every gate reads 0 there and the block stays hidden,
+        # so the menu is safe to ship ahead of the renderer. Said, not failed.
+        notes.append("VIDEO MEMORY block: the scanned engine tree registers none of its r_vram* cvars - the block "
+                     "is inert (hidden) on that engine")
+    else:
+        for cv in missing:
+            problems.append("DEAD WIRE: %s (VIDEO MEMORY block) is not registered in the engine" % cv)
+
+
 def sheet_adv():
     # [Phase 1] plain words (user 09-27): no "latched", no "vid_restart". Menu Layout is not latched, so APPLY cannot
     # restart for it; it shows when the menus realign at the next map (see MENU).
     subtitle = "APPLY briefly reloads the picture for some rows. Anti-Aliasing and Menu Layout show from the next map."
     chrome = live_chrome(base_chrome("VIDEO", "ADVANCED GRAPHICS", "PER-PLAYER", subtitle))
-    rows, g = lay_graphics(ADV_SECTIONS, COLX, TOP, COLW)
-    footer = [fs.label("footRule", (44, FOOT_Y, 552, 1), bg=fs.RULE)]
+    # [P2.1] rows 2 px closer than the other graphics sheets (22 = the Coop Settings pitch): that frees the band
+    # above the footer rule for the VIDEO MEMORY block
+    rows, g = lay_graphics(ADV_SECTIONS, COLX, TOP, COLW, t_pitch=T_PITCH - 2, s_pitch=fs.S_PITCH - 2)
+    footer = [fs.label("footRule", (44, FOOT_Y, 552, 1), bg=fs.RULE)] + vram_block()
     specs = [
         ("defaultsBtn", "DEFAULTS", PFX_APPLY, "exec coop_mod/cfg/coop_gfxdefaults.cfg", 44, 92),
         ("backBtn", "BACK", PFX_BACK, "popmenu 0", 236, 78),
@@ -1260,13 +1388,24 @@ def main():
         return 2
     files, sheets, seeds = render_all()
 
+    art = dict((os.path.join(MOD, rel.replace("/", os.sep)), data) for rel, data in vram_art().items())
     if mode == "build":
         for p, text in sorted(files.items()):
             data = text.encode("ascii")
             io.open(p, "wb").write(data)
             print("wrote %s (%d bytes, LF)" % (os.path.relpath(p, ROOT), len(data)))
+        for p, data in sorted(art.items()):
+            if not os.path.isdir(os.path.dirname(p)):
+                os.makedirs(os.path.dirname(p))
+            io.open(p, "wb").write(data)
+            print("wrote %s (%d bytes, tga)" % (os.path.relpath(p, ROOT), len(data)))
 
     problems, notes, drift = [], [], []
+    for p, data in sorted(art.items()):
+        # *.tga is gitignored in the mod repo by design: generated art lives in the working tree, and this check is
+        # what proves it is there and current before a build packs it
+        if not os.path.exists(p) or io.open(p, "rb").read() != data:
+            problems.append("DRIFT: %s (VIDEO MEMORY art) missing or stale - run build" % os.path.relpath(p, ROOT))
     for p, text in sorted(files.items()):
         rel = os.path.relpath(p, ROOT)
         if not os.path.exists(p):
@@ -1296,6 +1435,7 @@ def main():
     gate_live_audit(problems)
     gate_ranges(problems)
     gate_footer(sheets, problems)
+    gate_vram(sheets, problems, fonts, notes)
     gate_wire(problems, notes)
     gate_defaults(files, seeds, problems, notes)
     gate_fallthrough(sheets, problems, notes)
