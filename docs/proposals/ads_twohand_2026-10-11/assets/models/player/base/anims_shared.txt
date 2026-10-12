@@ -1178,6 +1178,33 @@ animations
 	}
 	// S&W M10 - East's revolver hands. No Colt magazine prop. Ammo when the cylinder closes
 	// (m10 reload_colt45.skc: chamber out 0.13 s, back 1.87-2.0 s).
+	// HZM coop [revolver reload 2026-10-12] S&W M10 as a real swing-out: start (1.0 s: cylinder out, fired cases dumped
+	// with the ejector rod), one round from the pouch per loop, close. Torso states RELOAD_M10* (player_Torso.st).
+	coop_reload_m10_start	viewmodel/coop_m10/coop_m10_tp_start.skc	crossblend 0.1
+	{
+		server
+		{
+			first reloadweapon
+			21	coop_ejectcases models/ammo/pistolshell.tik tag_weapon_right 6
+		}
+	}
+	coop_reload_m10_loop	viewmodel/webley/webley_reload_single.skc	crossblend 0
+	{
+		server
+		{
+			first weaponcommand mainhand anim reload_single
+			6 attachmodel models/ammo/nagant_pistol_shell.tik tag_weapon_left
+			12 weaponcommand mainhand clip_add 1
+			12 removeattachedmodel tag_weapon_left 0 models/ammo/nagant_pistol_shell.tik
+		}
+	}
+	coop_reload_m10_end	viewmodel/webley/webley_reload_end.skc	crossblend 0.0
+	{
+		server
+		{
+			first weaponcommand mainhand anim reload_end
+		}
+	}
 	coop_reload_m10	viewmodel/pistol/reload_colt.skc	crossblend 0.3
 	{
 		server

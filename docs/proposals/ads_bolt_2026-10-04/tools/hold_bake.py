@@ -255,13 +255,14 @@ def bake(name, ctl):
         if rc.get('gun_abs'):
             # gun_abs = dict(T=4x4 gun-in-camera (rows, u), keys={frame: weight}): the hip and the aimed version of
             # a hand-keyed reload bring the gun to the SAME place in the view, so one choreography serves both
-            ga = rc['gun_abs']
-            kg = sorted(ga['keys'])
-            wg = max(0.0, min(1.0, K.pchip(kg, [ga['keys'][k] for k in kg], f)))
-            if wg > 1e-6:
-                Gt = np.asarray(ga['T'], float) @ R.inv(Mcam)
-                Gt[3, 0:3] /= R.S
-                Gads = B.blend_H(Gads, Gt, wg)
+            # a list = several poses applied one after the other (e.g. muzzle up to dump the cases, then down to load)
+            for ga in (rc['gun_abs'] if isinstance(rc['gun_abs'], (list, tuple)) else [rc['gun_abs']]):
+                kg = sorted(ga['keys'])
+                wg = max(0.0, min(1.0, K.pchip(kg, [ga['keys'][k] for k in kg], f)))
+                if wg > 1e-6:
+                    Gt = np.asarray(ga['T'], float) @ R.inv(Mcam)
+                    Gt[3, 0:3] /= R.S
+                    Gads = B.blend_H(Gads, Gt, wg)
         relRh = Wh['Bip01 R Hand'] @ R.inv(Gh)
         relLh = Wh['Bip01 L Hand'] @ R.inv(Gh)
         if rc.get('support_aim'):                        # cock.py clips: after the magazine the hip art's left hand is on

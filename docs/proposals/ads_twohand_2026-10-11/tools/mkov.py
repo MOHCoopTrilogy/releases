@@ -62,7 +62,7 @@ def main():
         import shutil
         d = os.path.join(emit, 'models', 'player', 'base'); os.makedirs(d, exist_ok=True)
         open(os.path.join(d, 'fps_anims_pistol.txt'), 'wb').write(txt.encode('latin-1'))
-        for dd, _, fs in os.walk(os.path.join(HERE, 'stage', 'models')):
+        for dd, _, fs in os.walk(os.path.join(HERE, 'stage')):
             for f in fs:
                 src = os.path.join(dd, f)
                 dst = os.path.join(emit, os.path.relpath(src, os.path.join(HERE, 'stage')))
@@ -75,7 +75,7 @@ def main():
             z.writestr(i.filename, b.read(i.filename))
         z.writestr('models/player/base/fps_anims_pistol.txt', txt.encode('latin-1'))
         root = os.path.join(HERE, 'stage')
-        for d, _, fs in os.walk(os.path.join(root, 'models')):
+        for d, _, fs in os.walk(root):
             for f in fs:
                 p = os.path.join(d, f)
                 arc = os.path.relpath(p, root).replace(os.sep, '/')

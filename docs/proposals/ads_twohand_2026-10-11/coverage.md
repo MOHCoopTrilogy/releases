@@ -19,7 +19,7 @@ still needs its own in-engine check: a row is DONE only with clips + every stanc
 Clip state over the weapons that aim:
 
 - **aim**: shipped 56, two-handed staged 22, NO aim row 3
-- **reload**: shipped 36, missing 23, staged 21, no reload row 1
+- **reload**: shipped 36, staged 22, missing 22, no reload row 1
 - **bolt**: no cycle row 60, shipped 11, missing 10
 
 
@@ -44,7 +44,7 @@ Clip state over the weapons that aim:
 | 62 | Nambu Type 14 | `nambu.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
 | 63 | Welrod | `welrod.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
 | 74 | Mauser C96 | `mauser_c96.tik` | p38 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
-| 75 | S&W M10 .38 | `m10_revolver.tik` | m10 | yes | two-handed staged | missing | no cycle row | stand crouch prone lean (th5, max 0.0 deg) | stand!FAIL crouch!FAIL prone!FAIL lean!FAIL (th5, max 119.2 deg) | - | - / OPEN: th5: two-handed aim checked (sheet); the only reload row tips the gun 94 deg in the firing hand - an aimed reload needs new choreography | **PARTIAL** |
+| 75 | S&W M10 .38 | `m10_revolver.tik` | m10 | yes | two-handed staged | staged (3 parts) | no cycle row | stand crouch prone lean (th5, max 0.0 deg) | stand!FAIL crouch!FAIL prone!FAIL lean!FAIL (th5; gun lowered by design, ends 99.0 deg) | - | - / OPEN: tm3: HAND-KEYED swing-out reload, hip + aimed: the cylinder + crane + ejector rod were split onto their own bone and swing out in the gun's own clips; empty: muzzle up, rod pushed, cases dumped; one round from the pouch per loop; new torso states RELOAD_M10*; GIFs in evidence; standing only; clip size is 7 in the tik (a real M10 holds 6) | **PARTIAL** |
 | v | Webley Mk VI | `colt45_colt1911w.tik` | webley | yes | two-handed staged | staged (re-baked, replaces the shipped clip) (3 parts) | no cycle row | stand crouch prone lean (tx3, max 0.0 deg) | crouch prone (tx3; gun lowered by design, ends 0.0 deg) | - | - / OPEN: tx3: the Webley choreography plays on this mesh in 4 stances; chamber / barrel points are the Webley's, not fitted to this cylinder | **PARTIAL** |
 | v | Colt 45 (Pacific) | `colt45_coltpa.tik` | colt45 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |
 | v | Mauser C96 (Trench C96) | `mauser_c96_c96trench.tik` | p38 | yes | two-handed staged | staged (re-baked, replaces the shipped clip) | no cycle row | - | - | - | - | **PARTIAL** |

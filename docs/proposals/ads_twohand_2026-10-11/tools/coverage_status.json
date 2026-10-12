@@ -290,7 +290,8 @@
     "run": "th5"
    }
   },
-  "note": "th5: two-handed aim checked (sheet); the only reload row tips the gun 94 deg in the firing hand - an aimed reload needs new choreography",
+  "lowered": true,
+  "note": "tm3: HAND-KEYED swing-out reload, hip + aimed: the cylinder + crane + ejector rod were split onto their own bone and swing out in the gun's own clips; empty: muzzle up, rod pushed, cases dumped; one round from the pouch per loop; new torso states RELOAD_M10*; GIFs in evidence; standing only; clip size is 7 in the tik (a real M10 holds 6)",
   "reload": {
    "crouch": {
     "dev": 119.17,
