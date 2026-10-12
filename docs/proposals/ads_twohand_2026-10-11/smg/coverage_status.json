@@ -1,0 +1,440 @@
+{
+ "models/weapons/greasegun.tik": {
+  "aim": {
+   "stand": {
+    "box": 22.2,
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa3",
+    "sight_abs": 0.0
+   }
+  }
+ },
+ "models/weapons/greasegun_silenced.tik": {
+  "aim": {
+   "stand": {
+    "box": 23.7,
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa3",
+    "sight_abs": 0.0
+   }
+  }
+ },
+ "models/weapons/it_w_moschetto.tik": {
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   }
+  }
+ },
+ "models/weapons/moschetto.tik": {
+  "aim": {
+   "stand": {
+    "box": 8.1,
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa3",
+    "sight_abs": 0.0
+   }
+  }
+ },
+ "models/weapons/mp40.tik": {
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   }
+  }
+ },
+ "models/weapons/mp40_mp18.tik": {
+  "aim": {
+   "stand": {
+    "box": 14.9,
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa3",
+    "sight_abs": 0.0
+   }
+  }
+ },
+ "models/weapons/mp40_mp40r2.tik": {
+  "aim": {
+   "stand": {
+    "box": 14.4,
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa3",
+    "sight_abs": 0.0
+   }
+  }
+ },
+ "models/weapons/mp40silenced.tik": {
+  "aim": {
+   "stand": {
+    "box": 16.3,
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa3",
+    "sight_abs": 0.0
+   }
+  }
+ },
+ "models/weapons/ppsh43silenced.tik": {
+  "aim": {
+   "stand": {
+    "box": 12.6,
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa3",
+    "sight_abs": 0.0
+   }
+  }
+ },
+ "models/weapons/ppsh_smg.tik": {
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   }
+  }
+ },
+ "models/weapons/sten.tik": {
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   }
+  }
+ },
+ "models/weapons/type100smg.tik": {
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sa2"
+   }
+  }
+ }
+}

@@ -1,0 +1,252 @@
+{
+ "moschetto": {
+  "braced": {
+   "box": 2.5,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "crouch": {
+   "box": 7.1,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "crouchL": {
+   "box": 5.2,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "crouchR": {
+   "box": 5.9,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "prone": {
+   "box": 5.9,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "stand": {
+   "box": 7.6,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "standL": {
+   "box": 4.0,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "standR": {
+   "box": 5.5,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  }
+ },
+ "mp40": {
+  "braced": {
+   "box": 2.1,
+   "dev": 0.57,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "crouch": {
+   "box": 11.8,
+   "dev": 0.57,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "crouchL": {
+   "box": 7.5,
+   "dev": 0.57,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "crouchR": {
+   "box": 11.0,
+   "dev": 0.57,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "prone": {
+   "box": 4.7,
+   "dev": 0.57,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "stand": {
+   "box": 11.4,
+   "dev": 0.57,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "standL": {
+   "box": 9.6,
+   "dev": 0.57,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "standR": {
+   "box": 13.0,
+   "dev": 0.57,
+   "frames": 4,
+   "pose": 1.0
+  }
+ },
+ "ppsh": {
+  "braced": {
+   "box": 3.3,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "crouch": {
+   "box": 21.3,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "crouchL": {
+   "box": 19.1,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "crouchR": {
+   "box": 19.6,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "prone": {
+   "box": 16.8,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "stand": {
+   "box": 17.1,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "standL": {
+   "box": 20.7,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "standR": {
+   "box": 18.8,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  }
+ },
+ "sten": {
+  "braced": {
+   "box": 4.0,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "crouch": {
+   "box": 18.1,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "crouchL": {
+   "box": 22.7,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "crouchR": {
+   "box": 8.4,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "prone": {
+   "box": 11.5,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "stand": {
+   "box": 14.9,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "standL": {
+   "box": 16.3,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "standR": {
+   "box": 14.6,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  }
+ },
+ "type100": {
+  "braced": {
+   "box": 7.3,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "crouch": {
+   "box": 19.0,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "crouchL": {
+   "box": 21.6,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "crouchR": {
+   "box": 18.0,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "prone": {
+   "box": 16.0,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "stand": {
+   "box": 21.2,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "standL": {
+   "box": 17.1,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  },
+  "standR": {
+   "box": 19.0,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  }
+ }
+}

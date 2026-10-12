@@ -1,0 +1,30 @@
+[
+ {
+  "error_message": "PPSh aim pose with the support hand at the exact hip place: the thumb and the fingertips stand up on both sides of the rear sight (9.8 % of the centre box is hand; Type 100: 11.8 %)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgpose.py",
+  "root_cause": "The hip idle holds the PPSh right behind the drum with the thumb up the receiver's left side, 4.4 u ahead of the weapon tag - that is about 3 u in front of the eye in the aim, so a hand that is unremarkable at the hip flanks the sights. The Type 100's hip hand lies on its side magazine at sight height.",
+  "fix": "Per-gun nudge of the hip relation in the camera frame, kept inside the matrix's 1.5 u: PPSh 1.2 u lower (hand cups the back of the drum, 0.1 % of the box), Type 100 (0, 1.05, -0.95) = 1.4 u (1.9 % against 0.9 % released; the pistol lane's first pose was 2.0 u off). Engine run sa2: box cover of the settled aim is LOWER than with the released pose for both (PPSh 17.1 vs 20.1 %, Type 100 21.2 vs 26.1 %).",
+  "tags": ["ads", "aim-pose", "ppsh", "type100", "centre-box", "support-hand", "smg", "staged"]
+ },
+ {
+  "error_message": "Sten: with the taken-over hand-on-magazine aim pose the gun is drawn about 45 px lower than with the released pose (the front sight shows above the receiver cap; the released picture hides it behind the cap), while the engine probe reads the same sight line (0.00 deg) and relief (4.27) for both",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/assets/models/human/animation/viewmodel/sten/coop_sten_ads_mag.skc",
+  "root_cause": "OPEN - not found. The pose was baked on the Sten hip idle's channel layout (58 channels: no bone-length `pos` channels, plus Sten_SMG / Sten_Clip / Box01 channels the hands skeleton may or may not have); the released aim clip has 116. The same technique on MP40 / PPSh / Moschetto / Type 100 leaves the gun's silhouette identical before and after, so it is specific to the Sten clip. The offline preview shows no shift either (box 34.6 % both).",
+  "fix": "None yet: recorded so the Sten reload work starts by settling which picture is the right one (stills evidence/aim_sten_before_after.jpg, runs sa1 / sa2). The pose itself is the pistol lane's (run tg1), taken over unchanged.",
+  "tags": ["ads", "aim-pose", "sten", "rig-solve", "open", "smg"]
+ },
+ {
+  "error_message": "PPSh and Moschetto in the aim: the firing hand holds air under the stock",
+  "file": "hzm-mohaa-coop-mod/models/player/base/fps_anims_smg.txt",
+  "root_cause": "Released state, found while surveying the support hand: ppsh_charge and moschetto_charge borrow the MP40's aim clip, whose firing hand is closed on a pistol grip that neither rifle-stocked gun has. Hidden from the eye by the stock in the settled aim; it will show in any reload baked with the firing hand fixed.",
+  "fix": "None yet (open): the aim pose needs the firing hand in the gun's own hip relation as well - smgpose.py already moves the support hand that way; the firing arm needs the same with the weapon tag re-keyed. To be done with the PPSh / Moschetto reload work.",
+  "tags": ["ads", "aim-pose", "ppsh", "moschetto", "firing-hand", "open", "smg"]
+ },
+ {
+  "error_message": "takeover.py written through a shell heredoc: SyntaxError, unterminated string literal - the patch's \\n arrived as real newlines",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/takeover.py",
+  "root_cause": "Known trap, repeated (bug-3581): backslash escapes in python source do not survive a Git-Bash heredoc.",
+  "fix": "Repaired with the file-edit tool; lane scripts are written and patched with the file tools only.",
+  "tags": ["tooling", "heredoc", "backslash", "repeat"]
+ }
+]

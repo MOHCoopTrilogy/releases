@@ -1,0 +1,58 @@
+{
+ "greasegun": {
+  "stand": {
+   "box": 22.2,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  }
+ },
+ "greaseguns": {
+  "stand": {
+   "box": 23.7,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  }
+ },
+ "m38": {
+  "stand": {
+   "box": 8.1,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  }
+ },
+ "mp18": {
+  "stand": {
+   "box": 14.9,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  }
+ },
+ "mp40r": {
+  "stand": {
+   "box": 14.4,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  }
+ },
+ "mp40s": {
+  "stand": {
+   "box": 16.3,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  }
+ },
+ "pps43": {
+  "stand": {
+   "box": 12.6,
+   "dev": 0.0,
+   "frames": 4,
+   "pose": 1.0
+  }
+ }
+}
