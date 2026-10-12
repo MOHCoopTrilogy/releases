@@ -6,7 +6,9 @@
   "frames": 180,
   "max": 16.9,
   "over": 0.0,
-  "run": "te6"
+  "run": "te6",
+  "xfr": 9.4,
+  "xmax": 2.1
  },
  "beretta_empty": {
   "base": 16.0,
@@ -15,7 +17,9 @@
   "frames": 160,
   "max": 16.4,
   "over": 0.0,
-  "run": "te7"
+  "run": "te7",
+  "xfr": 0.0,
+  "xmax": 1.6
  },
  "colt45": {
   "base": 8.2,
@@ -24,7 +28,9 @@
   "frames": 190,
   "max": 10.7,
   "over": 0.0,
-  "run": "td8"
+  "run": "td8",
+  "xfr": 0.0,
+  "xmax": 1.6
  },
  "colt45_empty": {
   "base": 13.1,
@@ -33,16 +39,20 @@
   "frames": 180,
   "max": 18.0,
   "over": 0.0,
-  "run": "td9"
+  "run": "td9",
+  "xfr": 6.7,
+  "xmax": 3.2
  },
  "histandard": {
-  "base": 8.4,
-  "dev": 6.88,
+  "base": 8.3,
+  "dev": 28.56,
   "end": 0.01,
   "frames": 200,
-  "max": 10.4,
+  "max": 11.4,
   "over": 0.0,
-  "run": "th8"
+  "run": "ti1",
+  "xfr": 0.0,
+  "xmax": 1.9
  },
  "histandard_empty": {
   "base": 9.6,
@@ -69,7 +79,9 @@
   "frames": 450,
   "max": 32.8,
   "over": 1.3,
-  "run": "th3"
+  "run": "th3",
+  "xfr": 3.8,
+  "xmax": 20.3
  },
  "nagantrev": {
   "base": 12.9,
@@ -87,7 +99,9 @@
   "frames": 500,
   "max": 13.3,
   "over": 0.0,
-  "run": "th2"
+  "run": "th2",
+  "xfr": 4.2,
+  "xmax": 4.2
  },
  "p38": {
   "base": 10.6,
@@ -96,7 +110,9 @@
   "frames": 190,
   "max": 12.5,
   "over": 0.0,
-  "run": "te1"
+  "run": "te1",
+  "xfr": 0.0,
+  "xmax": 0.7
  },
  "p38_empty": {
   "base": 11.5,
@@ -105,7 +121,9 @@
   "frames": 180,
   "max": 18.8,
   "over": 5.0,
-  "run": "te2"
+  "run": "te2",
+  "xfr": 3.9,
+  "xmax": 4.0
  },
  "webley": {
   "base": 11.0,
@@ -123,6 +141,8 @@
   "frames": 410,
   "max": 20.0,
   "over": 0.5,
-  "run": "th1"
+  "run": "th1",
+  "xfr": 1.0,
+  "xmax": 8.2
  }
 }

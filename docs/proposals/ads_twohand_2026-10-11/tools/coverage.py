@@ -387,7 +387,8 @@ def build():
             cyc = 'HAND-CYCLED per shot (fire delay %.1f s): aimed clip %s' % (tf['firedelay'], row_state(pfx + '_cycle_ads')[0])
         else:
             cyc = 'self-loading / none'
-        cbt = ' ; '.join(('%s%.1f deg / %.1f %% of frames (base %.0f %%, max %.0f %%; %s)' % (lab, cb['dev'], cb['over'], cb['base'], cb['max'], cb['run']))
+        cbt = ' ; '.join((('%s%.1f deg / covered beyond the aim: max %.1f %%, %.1f %% of frames (%s)' % (lab, cb['dev'], cb['xmax'], cb['xfr'], cb['run'])) if 'xmax' in cb else
+                          ('%s%.1f deg / old measure %.1f %% of frames (%s)' % (lab, cb['dev'], cb['over'], cb['run'])))
                          for lab, cb in (('', CBOX.get(tik)), ('EMPTY: ', CBOX.get(tik + '#empty'))) if cb) or '-'
         act = st.get(tik, {}).get('action', 'not recorded')
         table.append(dict(id=wid, tik=tik, name=name or '?', cls=cls, pfx=pfx, sight=sight, aim=aim, rel=rel, bolt=bolt, cyc=cyc, cbt=cbt, act=act, r1=r1, r2=r2, r3=r3, rrun=rrun, hs=hs,

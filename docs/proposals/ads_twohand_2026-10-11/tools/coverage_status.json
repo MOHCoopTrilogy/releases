@@ -683,9 +683,9 @@
    }
   },
   "rule": {
-   "action": "yes",
+   "action": "no",
    "reacts": "yes",
-   "run": "th8 (shots, overhand cock, reload + rack) tg4 (stances, earlier rack)",
+   "run": "ti1: overhand rack, gun pitched down; NOT done until the user accepts the grasp reading",
    "target": "yes"
   }
  },

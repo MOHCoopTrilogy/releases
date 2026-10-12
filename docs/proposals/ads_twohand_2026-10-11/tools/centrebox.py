@@ -58,6 +58,18 @@ for tag in marks:
         d = Fm - Rb
         sm = np.abs(d).sum(axis=2)
         return float(((sm > 300) | ((sm > 60) & ((d.max(axis=2) - d.min(axis=2)) > 25))).mean())
+    def mask(i):
+        Fm = np.asarray(Image.open(fs[i]).convert('RGB')).astype(np.int16)[y0:y1, x0:x1]
+        d = Fm - Rb
+        sm = np.abs(d).sum(axis=2)
+        return (sm > 300) | ((sm > 60) & ((d.max(axis=2) - d.min(axis=2)) > 25))
+
+    def grow(m, r=6):                       # the aim sways a few pixels: its own mask, widened
+        o = m.copy()
+        for dy in range(-r, r + 1, 2):
+            for dx in range(-r, r + 1, 2):
+                o |= np.roll(np.roll(m, dy, axis=0), dx, axis=1)
+        return o
     empty = 'empty' in mk
     if empty:                                                               # the settled aim before the first shot;
         # the reload starts by itself after the last shot, inside that shot's flash and smoke (run td3: 30 % 'cover'
@@ -69,6 +81,12 @@ for tag in marks:
     else:
         base = float(np.median([cov(i) for i in range(rel - 6, rel - 1)]))  # the settled aim just before the reload
     cv = [cov(i) for i in range(rel, min(low, len(fs)))]
+    # EXTRA cover: box pixels covered by hand / gun that the settled aim does NOT cover (its sights sit in the
+    # box). This is the figure for 'is the centre clear': it does not go down when the gun leaves the aim.
+    bf = list(range(min(low, len(fs)) - 8, min(low, len(fs)) - 2)) if empty else list(range(rel - 6, rel - 1))
+    aimmask = grow(np.mean([mask(i) for i in bf], axis=0) > 0.3)
+    ex = [float((mask(i) & ~aimmask).mean()) for i in range(rel, min(low, len(fs)))]
+    xmax, xfr = 100 * max(ex), 100 * float(np.mean([e > 0.02 for e in ex]))
     s = sight[tag]
     r0 = s[mk['fire'][1] - 1] if 'fire' in mk else s[0]
     r0 = s[[si for n, f, si in marks[tag] if n == 'fire'][0] - 1]
@@ -77,9 +95,9 @@ for tag in marks:
     end = max(((a - r0[0]) ** 2 + (b - r0[1]) ** 2) ** 0.5 for a, b in seg[-5:]) if seg else float('nan')
     over = float(np.mean([c > base + 0.05 for c in cv]))
     gun = gun + ('_empty' if empty else '')
-    out[gun] = dict(run=sess, base=round(100 * base, 1), max=round(100 * max(cv), 1), over=round(100 * over, 1), dev=round(dev, 2), end=round(end, 2), frames=len(cv))
-    print('%-14s centre box: base %5.1f %%  max %5.1f %%  frames over base+5: %5.1f %%   sight dev max %6.2f deg, ends %.2f   (%d frames)' % (
-        gun, 100 * base, 100 * max(cv), 100 * over, dev, end, len(cv)))
+    out[gun] = dict(xmax=round(xmax, 1), xfr=round(xfr, 1), run=sess, base=round(100 * base, 1), max=round(100 * max(cv), 1), over=round(100 * over, 1), dev=round(dev, 2), end=round(end, 2), frames=len(cv))
+    print('%-16s centre box COVERED beyond the aim: max %4.1f %%, in %4.1f %% of frames (>2 %%) | total cover base %4.1f max %4.1f | sight dev max %5.2f deg, ends %.2f (%d frames)' % (
+        gun, xmax, xfr, 100 * base, 100 * max(cv), dev, end, len(cv)))
 for a in sys.argv[1:]:
     if a.startswith('--json='):
         p = a[7:]

@@ -59,7 +59,9 @@ PARMS = '0.9 0.2 1.0 0.0 160 1000 item loaded always maps "dm obj lib"'      # `
 # grasp, taken from the hip fire clip's own hand-to-gun relation. Overhand at the eye covers the sights, so the gun
 # is brought DOWN under the centre box for it (rack_pose) and back onto the sights after - the target stays in view.
 RACK_PULL = 0.92                   # of the slide's travel
-RACK_DOWN = (3.6, 0.0, 4.0, 0.0, 0.6)      # gun pose for the rack: drop u, roll, pitch deg (muzzle down), side, back u (toward the chest)
+RACK_DOWN = (3.3, 8.0, 24.0, 0.0, 0.8)      # muzzle well down + a little cant: the eye looks onto the TOP of the gun and sees the grasp
+# (was 3.6 / 0 / 4: from behind the back of the hand hid the slide - user: "make sure the hand is actually over the slide")
+_RACK_DOWN_OLD = (3.6, 0.0, 4.0, 0.0, 0.6)      # gun pose for the rack: drop u, roll, pitch deg (muzzle down), side, back u (toward the chest)
 RACK_HIP = dict(histandard=('viewmodel/pistol/fire_hp.skc', 10))      # hip clip + frame with the hand on the slide
 
 
