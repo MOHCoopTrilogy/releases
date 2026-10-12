@@ -47,7 +47,10 @@ def demo(sess, gun, tagst="stand"):
         L += A.frames(tag, 50, i)          # the muzzle smoke clears (it polluted the centre-box measure: run tc1)
         # the same view WITHOUT the first-person model: the reference for the centre-box measure (centrebox.py)
         L += REF
-        L += ["reload", "echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, DEMO_RELOAD[0], i)
+        if DEMO_RELOAD[0] > 0:             # --demoreload 0: raise - fire - lower only (aim pose checks)
+            L += ["reload", "echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, DEMO_RELOAD[0], i)
+        else:
+            L += A.frames(tag, 20, i)
     L += ["-button13", "echo ^~^~^ DEMO lower %d" % i[0]] + A.frames(tag, 50, i)
     L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1"] + S.RELEASE
     R.step(L, timeout=1800)

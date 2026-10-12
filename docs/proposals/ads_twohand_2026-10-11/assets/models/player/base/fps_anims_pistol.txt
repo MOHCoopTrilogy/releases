@@ -363,5 +363,7 @@ animations
 	histandard_reload_empty_ads		viewmodel/pistol/histandard_reload_empty_ads.skc		crossblend 0.1
 	beretta_reload_empty			viewmodel/beretta/A_W_MOD34Pistol_reload_fps.skc			crossblend 0.3
 	beretta_reload_empty_ads		viewmodel/beretta/beretta_reload_empty_ads.skc		crossblend 0.1
+	//===================== HZM coop aimed per-shot cycle (cgame plays <prefix>_cycle_ads on a clip-ammo drop while aiming) =====================
+	histandard_cycle_ads		viewmodel/pistol/histandard_cycle_ads.skc		crossblend 0.08
 }
 

@@ -24,6 +24,7 @@ MOD = os.path.join(ROOT, 'hzm-mohaa-coop-mod')
 FIX = os.path.join(ROOT, 'docs', 'tools', 'assets', 'fixes')
 STAGE = os.path.join(HERE, '..', 'assets')
 STATUS = os.path.join(HERE, 'coverage_status.json')
+HSURV = json.load(open(os.path.join(HERE, 'handsurvey.json'))) if os.path.isfile(os.path.join(HERE, 'handsurvey.json')) else {}
 CBOX = {}
 OUT = os.path.join(HERE, '..', 'coverage.md')
 sys.path.insert(0, os.path.join(ROOT, 'docs', 'proposals', 'ironsights_2026-09-28', 'blender'))
@@ -362,6 +363,16 @@ def build():
         # the user's acceptance rule (2026-10-12): (1) on target, centre clear (2) the weapon reacts to each action
         # (3) the slide / bolt / handle really works on the model, worked by the arm that makes sense. Judged by hand
         # after a run (`coverage.py rule <tik> yes|no yes|no yes|no <run>`); not recorded = no. Not DONE without all three.
+        # support hand: its wrist in the gun frame (x fwd, y right, z down; u) in the hip idle and in the aim pose
+        # (handsurvey.py; user 2026-10-12: in ADS the hand stays where the hip pose braces the gun, e.g. on a magazine)
+        hv = HSURV.get(pfx)
+        if not aims or not hv:
+            hs = 'n/a' if not aims else 'not surveyed'
+        elif cls == 'pistol':
+            hs = 'one-handed at the hip (hand hangs); two-handed in ADS by design'
+        else:
+            hs = 'hip (%.1f, %.1f, %.1f) / ADS (%.1f, %.1f, %.1f) / %.1f u apart: %s%s' % (
+                tuple(hv['hip']) + tuple(hv['aim']) + (hv['d'], 'yes' if hv['match'] else 'NO', ' (staged pose)' if hv.get('staged') else ''))
         rl = st.get(tik, {}).get('rule') or {}
         r1, r2, r3 = [(rl.get(k) or 'no') if aims else 'n/a' for k in ('target', 'reacts', 'action')]
         if aims and status in ('DONE', 'DONE but braced') and (r1, r2, r3) != ('yes', 'yes', 'yes'):
@@ -379,7 +390,7 @@ def build():
         cbt = ' ; '.join(('%s%.1f deg / %.1f %% of frames (base %.0f %%, max %.0f %%; %s)' % (lab, cb['dev'], cb['over'], cb['base'], cb['max'], cb['run']))
                          for lab, cb in (('', CBOX.get(tik)), ('EMPTY: ', CBOX.get(tik + '#empty'))) if cb) or '-'
         act = st.get(tik, {}).get('action', 'not recorded')
-        table.append(dict(id=wid, tik=tik, name=name or '?', cls=cls, pfx=pfx, sight=sight, aim=aim, rel=rel, bolt=bolt, cyc=cyc, cbt=cbt, act=act, r1=r1, r2=r2, r3=r3, rrun=rrun,
+        table.append(dict(id=wid, tik=tik, name=name or '?', cls=cls, pfx=pfx, sight=sight, aim=aim, rel=rel, bolt=bolt, cyc=cyc, cbt=cbt, act=act, r1=r1, r2=r2, r3=r3, rrun=rrun, hs=hs,
                           ta=ta, tr=tr, tb=tb, qa=qa, status=status, src=src, aims=aims))
         counts[(cls, status)] += 1
     # ------------------------------------------------------------------ write
@@ -413,10 +424,10 @@ def build():
         if r['cls'] != cur:
             cur = r['cls']
             L += ['', '## %s' % cur, '',
-                  '| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | per-shot cycle | 1 on target | 2 weapon reacts | 3 action works | rule run | action worked by (hand / control / shown) | on target: max sight dev / centre box covered | aim tested | reload tested | bolt tested | QA | status |',
-                  '|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|']
-        L.append('| %s | %s | `%s` | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | **%s** |' % (
-            r['id'], r['name'], r['tik'].replace('models/weapons/', ''), r['pfx'], r['sight'], r['aim'], r['rel'], r['bolt'], r['cyc'],
+                  '| id | weapon | tik | prefix | sight row | aim pose | aimed reload | aimed bolt / action | per-shot cycle | support hand in aim: hip / ADS / matches | 1 on target | 2 weapon reacts | 3 action works | rule run | action worked by (hand / control / shown) | on target: max sight dev / centre box covered | aim tested | reload tested | bolt tested | QA | status |',
+                  '|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|']
+        L.append('| %s | %s | `%s` | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | **%s** |' % (
+            r['id'], r['name'], r['tik'].replace('models/weapons/', ''), r['pfx'], r['sight'], r['aim'], r['rel'], r['bolt'], r['cyc'], r['hs'],
             r['r1'], r['r2'], r['r3'], r['rrun'] or '-', r['act'], r['cbt'],
             r['ta'], r['tr'], r['tb'], (r['qa'] or '-') + (' / OPEN: ' + st[r['tik']]['note'] if st.get(r['tik'], {}).get('note') else ''), r['status']))
     L += ['', 'id `v` = own-mesh variant taken from the sight table (a finish whose sight geometry differs from every Armory',

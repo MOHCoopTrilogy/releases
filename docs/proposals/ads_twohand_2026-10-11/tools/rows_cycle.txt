@@ -1,0 +1,2 @@
+	//===================== HZM coop aimed per-shot cycle (cgame plays <prefix>_cycle_ads on a clip-ammo drop while aiming) =====================
+	histandard_cycle_ads		viewmodel/pistol/histandard_cycle_ads.skc		crossblend 0.08

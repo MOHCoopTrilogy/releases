@@ -1,0 +1,1 @@
+sten=viewmodel/sten/coop_sten_ads_mag.skc type100=viewmodel/sten/coop_type100_ads_mag.skc
