@@ -1,0 +1,95 @@
+//=========================================================================
+// TEST-ONLY overlay driver (scratchpad scopes) - NEVER shipped. main.scr starts st_xp_run when coop_st_xp 1.
+// Place + face + give for the scope harness, polled from cvars (same contract as the ironsights coop_is_test):
+//   coop_isSeq changes -> teleport to coop_isX/Y/Z, face coop_isPitch/coop_isYaw, hand over coop_isTik
+//   coop_isMode "pick" -> the weapon is NOT given: the kit is taken and the tik is spawned on the ground at the feet
+//   coop_isFixed       -> fixedtime
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ SC driver armed"
+	local.last = ""
+	local.last2 = ""
+	local.lastF = ""
+	while( 1 ){
+		local.f = getcvar( "coop_isFixed" )
+		if( local.f != "" && local.f != local.lastF ){
+			local.lastF = local.f
+			setcvar "fixedtime" local.f
+			println( "^~^~^ ISTEST fixedtime=" + local.f )
+		}
+		local.s = getcvar( "coop_isSeq" )
+		if( local.s != "" && local.s != local.last && $player != NULL && $player.size >= 1 ){
+			local.last = local.s
+			local.p = $player[1]
+			local.p nodamage
+			local.p notarget 1
+			local.x = float( getcvar( "coop_isX" ) )
+			local.y = float( getcvar( "coop_isY" ) )
+			local.z = float( getcvar( "coop_isZ" ) )
+			local.pi = float( getcvar( "coop_isPitch" ) )
+			local.w = float( getcvar( "coop_isYaw" ) )
+			local.t = getcvar( "coop_isTik" )
+			local.m = getcvar( "coop_isMode" )
+			if( local.m != "here" ){
+				local.p.origin = ( local.x local.y local.z )
+				local.p.viewangles = ( local.pi local.w 0 )
+				local.p.velocity = ( 0 0 0 )
+			}
+			if( local.t != "" && local.t != "none" ){
+				if( local.m == "pick" ){
+					local.p takeall
+					wait 0.5
+					local.g = spawn local.t
+					local.g.origin = local.p.origin + ( 0 0 12 )
+					println( "^~^~^ ISTEST dropped " + local.t + " at " + local.g.origin )
+					wait 2
+					local.p use local.t
+					wait 0.7
+					local.p use local.t
+				}else{
+					local.p.flags["coop_chal_unlocks"] = local.t
+					local.p give local.t
+					local.p ammo smg 400
+					local.p ammo mg 400
+					local.p ammo rifle 400
+					local.p ammo pistol 400
+					wait 0.3
+					local.p use local.t
+					for( local.k = 1; local.k <= 3; local.k++ ){
+						wait 0.7
+						local.p use local.t
+					}
+				}
+			}
+			println( "^~^~^ ISTEST seq=" + local.s + " tik=" + local.t + " at " + local.p.origin + " ang " + local.p.viewangles )
+		}
+		local.s2 = getcvar( "coop_isSeq2" )
+		if( local.s2 != "" && local.s2 != local.last2 && $player != NULL && $player.size >= 2 ){
+			local.last2 = local.s2
+			local.q = $player[2]
+			local.q nodamage
+			local.q notarget 1
+			local.x = float( getcvar( "coop_isX2" ) )
+			local.y = float( getcvar( "coop_isY2" ) )
+			local.z = float( getcvar( "coop_isZ2" ) )
+			local.w = float( getcvar( "coop_isYaw2" ) )
+			local.t = getcvar( "coop_isTik" )
+			local.q.origin = ( local.x local.y local.z )
+			local.q.viewangles = ( 0 local.w 0 )
+			local.q.velocity = ( 0 0 0 )
+			if( local.t != "" && local.t != "none" ){
+				local.q.flags["coop_chal_unlocks"] = local.t
+				local.q give local.t
+				local.q ammo rifle 400
+				wait 0.3
+				local.q use local.t
+				for( local.k = 1; local.k <= 3; local.k++ ){
+					wait 0.7
+					local.q use local.t
+				}
+			}
+			println( "^~^~^ ISTEST2 seq=" + local.s2 + " tik=" + local.t + " at " + local.q.origin + " ang " + local.q.viewangles + " name " + local.q.netname )
+		}
+		waitframe
+	}
+}end
