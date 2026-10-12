@@ -436,9 +436,12 @@ def bake(name, ctl):
                     pd[ch] = R.qslerp(_fq(pk_[0]), _fq(pk_[1]), pk_[2])
         pb = None
         if rc.get('elbow_down'):                         # {side: [(frame, weight), ...]} - elbow swung down (camera -z)
-            dm = (np.asarray(rc.get('elbow_vec', (0.0, 0.0, -1.0)), float) @ R.inv(Mcam)[0:3, 0:3])   # camera-frame direction (default: down)
             pb = {}
             for side, keys in rc['elbow_down'].items():
+                ev = rc.get('elbow_vec', (0.0, 0.0, -1.0))           # camera-frame direction (default: down); a dict
+                if isinstance(ev, dict):                             # gives each arm its own ({'R': (0, -1, 0)} = out right)
+                    ev = ev.get(side, (0.0, 0.0, -1.0))
+                dm = (np.asarray(ev, float) @ R.inv(Mcam)[0:3, 0:3])
                 ks = [k for k, _ in keys]
                 pb[side] = dm / np.linalg.norm(dm) * K.pchip(ks, [v for _, v in keys], f)
         Wc_f = Wc
@@ -464,10 +467,14 @@ def bake(name, ctl):
         other = 'tag_weapon_right' if lo <= f <= hi else 'tag_weapon_left'
         # every inner frame, also inside the enter/exit blend (review ab14: MP44 magazine floated upright beside the gun
         # at the start - the prop was already attached while the tag still held the aim pose's gun value)
-        if rc.get('free_tag', True) and (0 < f < n - 1 or lo < 0):   # no hand-off: the endpoints too (ab17 MP44)
+        if rc.get('free_tag', True) and (0 < f < n - 1 or lo < 0 or rc.get('tag_map')):   # no hand-off: the endpoints too (ab17 MP44)
+            src_ = ph
+            if rc.get('tag_map'):                        # a hand-keyed loop re-times the retail feed: the prop tag takes
+                km = sorted(rc['tag_map'])               # the retail frame the hand's `rel` key uses ({frame: retail frame})
+                src_ = R.pose_dict(hip, int(round(K.pchip(km, [rc['tag_map'][k] for k in km], f))))
             for ch in (other + ' rot', other + ' pos'):
                 if ch in ph:
-                    pd[ch] = ph[ch].copy()
+                    pd[ch] = src_[ch].copy()
         # HAND-OVER (user 2026-10-05: "the random clip that pops up near the gun for a frame or so"): the retail art
         # attaches/removes a prop where it coincides with the gun's own mesh, relative to a hand that is in the retail
         # hand-to-gun relation. Our hand is not (enter/exit blend from the aim grip, clearance), so a hand-relative

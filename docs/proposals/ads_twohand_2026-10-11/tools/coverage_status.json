@@ -291,7 +291,7 @@
    }
   },
   "lowered": true,
-  "note": "tm3: HAND-KEYED swing-out reload, hip + aimed: the cylinder + crane + ejector rod were split onto their own bone and swing out in the gun's own clips; empty: muzzle up, rod pushed, cases dumped; one round from the pouch per loop; new torso states RELOAD_M10*; GIFs in evidence; standing only; clip size is 7 in the tik (a real M10 holds 6)",
+  "note": "tr1: hand-keyed swing-out reload, 0.77 s per round (6.1 s for six from empty); clip size 6 (user 2026-10-12); open: cylinder rear face is a flat dark disc, the hand covers the chamber, the aimed case dump hides behind the cuff; standing only",
   "reload": {
    "crouch": {
     "dev": 119.17,
@@ -371,7 +371,7 @@
    }
   },
   "lowered": true,
-  "note": "tn1: hip + aimed reload on a KEYED GUN (cradled on its left side in the left hand, gate up) with the retail hand-to-gun relations, a pouch trip between rounds and a case dropping from the gate per round; GIFs in evidence; standing only, 3 rounds; right sleeve large while feeding",
+  "note": "tr2: hip + aimed gate-loader reload, 0.9 s per round (7.8 s for seven): keyed gun, retail hand relations, round in the fingers from the pouch, one case pops out of the gate per round; standing only",
   "reload": {
    "crouch": {
     "dev": 52.21,
@@ -623,7 +623,7 @@
    }
   },
   "lowered": true,
-  "note": "tx1-tx3: HAND-KEYED hip + aimed reload (open / six-case dump when empty / one round from the pouch per loop / close); full six-round reload, crouch, prone, lean, weapon-switch and sprint interruptions run; loop speed (0.50 vs 0.77 s per round) awaits the user's choice; braced not run",
+  "note": "tr1: hand-keyed hip + aimed reload at the user's chosen pace (0.77 s per round, 5.6 s for six); six-case dump when empty; tx3: crouch / prone / lean, switch + sprint interruptions (fast loop); open: remaining cuff, Mk VI fit, fire press, braced",
   "reload": {
    "crouch": {
     "dev": 35.01,

@@ -9,7 +9,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument('a'); ap.add_argument('b'); ap.add_argument('sub'); ap.add_argument('out')
 ap.add_argument('--step', type=int, default=5); ap.add_argument('--w', type=int, default=300)
 ap.add_argument('--labels', default='A|B'); ap.add_argument('--crop', default='300,170,1020,720')
-ap.add_argument('--colors', type=int, default=32); ap.add_argument('--tail', type=int, default=14)
+ap.add_argument('--at', type=int); ap.add_argument('--lens'); ap.add_argument('--colors', type=int, default=32); ap.add_argument('--tail', type=int, default=14)
 a = ap.parse_args()
 crop = [int(x) for x in a.crop.split(',')]
 
@@ -42,6 +42,9 @@ def load(sess):
 
 
 A, B = load(a.a), load(a.b)
+if a.at is not None:      # explicit: first frame of the reload and the two lengths in seconds (guns the probe cannot time)
+    la_, lb_ = [float(x) for x in a.lens.split(',')]
+    A, B = (A[0], a.at + 20, la_), (B[0], a.at + 20, lb_)
 la, lb = a.labels.split('|')
 print('reload lengths (s):', A[2], B[2])
 nA = int((A[2] or 4.3) / 0.016) + a.tail

@@ -1,0 +1,4 @@
+	//===================== HZM coop Nagant revolver: aimed reload (gate loader; keyed gun, retail hand relations, pouch trip per round) =====================
+	nagantrev_reload_ads		viewmodel/nagantrev/nagantrev_reload_ads.skc		crossblend 0.1
+	nagantrev_reload_single_ads		viewmodel/nagantrev/nagantrev_reload_single_ads.skc		crossblend 0.1
+	nagantrev_reload_end_ads		viewmodel/nagantrev/nagantrev_reload_end_ads.skc		crossblend 0.2

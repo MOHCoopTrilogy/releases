@@ -11,7 +11,7 @@ import sys, os, re, glob
 sys.path.insert(0, glob.glob(r'C:\mohaa-coop-dev\docs\proposals\ironsights_2026-09-28\batches\heavy\tools')[0])
 import vfs
 root = sys.argv[1]
-SLOW = '--slow' in sys.argv
+SLOW = '--fast' not in sys.argv      # user 2026-10-12: the slower loop is the default
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROUND = 'models/ammo/nagant_pistol_shell.tik'
 
@@ -92,6 +92,7 @@ dump = ('\t{\n\t\tclient\n\t\t{\n\t\t\t21 tagspawn tag_weapon_right\t// the ejec
         '\t\t\t\tavelocity crandom 360 crandom 360 crandom 180\n\t\t\t\taccel 0 0 -800\n\t\t\t\tphysicsrate 20\n\t\t\t\tlife 2.0\n'
         '\t\t\t\tfadedelay 1.7\n\t\t\t\tcollision\n\t\t\t\tbouncefactor 0.2\n\t\t\t\tbouncesoundonce snd_pistol_shell\n\t\t\t)\n\t\t}\n\t}\n')
 sl = '_slow' if SLOW else ''
+RNAME = 'rows_m10.txt' if SLOW else 'rows_m10_fast.txt'
 rows = ('\t//===================== HZM coop S&W M10: swing-out reload (hand-keyed), hip + aimed + empty-cylinder start =====================\n'
         '\tm10_reload_single\t\tviewmodel/coop_m10/coop_m10_reload_single%s.skc\t\tcrossblend 0.1\n' % sl +
         '\tm10_reload_end\t\tviewmodel/coop_m10/coop_m10_reload_end.skc\t\tcrossblend 0.2\n'
@@ -100,5 +101,5 @@ rows = ('\t//===================== HZM coop S&W M10: swing-out reload (hand-keye
         '\tm10_reload_single_ads\t\tviewmodel/coop_m10/m10_reload_single%s_ads.skc\t\tcrossblend 0.1\n' % sl +
         '\tm10_reload_end_ads\t\tviewmodel/coop_m10/m10_reload_end_ads.skc\t\tcrossblend 0.1\n'
         '\tm10_reload_empty_ads\t\tviewmodel/coop_m10/m10_reload_empty_ads.skc\t\tcrossblend 0.1\n' + dump)
-open(os.path.join(HERE, 'rows_m10%s.txt' % sl), 'w', newline='\n').write(rows)
-print('wrote rows_m10%s.txt' % sl)
+open(os.path.join(HERE, RNAME), 'w', newline='\n').write(rows)
+print('wrote', RNAME)

@@ -123,9 +123,15 @@ assert old in t
 new = ("\t// HZM coop [revolver reload 2026-10-12] the cylinder + crane + ejector rod swing out on their own bone (coop_cyl,\n"
        "\t// split out of the mesh): open / one round at a time / close, as the Webley's start / single / end.\n"
        "\treload\t\tcoop_m10_open.skc\n\t{\n\t\tclient\n\t\t{\n\t\t\t\tentry sound colt45_snd_reload item\n\t\t}\n\t}\n"
-       "\treload_single\tcoop_m10_single.skc\n"
-       "\treload_end\tcoop_m10_close.skc\n\t{\n\t\tserver\n\t\t{\n\t\t\tlast idle\n\t\t}\n\t}\n")
+       "\treload_single\tcoop_m10_single.skc\n\t{\n\t\tclient\n\t\t{\n\t\t\t12 sound webley_snd_reload_single\n\t\t}\n\t}\n"
+       "\treload_end\tcoop_m10_close.skc\n\t{\n\t\tserver\n\t\t{\n\t\t\tlast idle\n\t\t}\n"
+       "\t\tclient\n\t\t{\n\t\t\t8 sound webley_snd_reload_end\n\t\t}\n\t}\n")
 t = t.replace(old, new, 1)
+# user 2026-10-12 '6 for m10': a Model 10 has six chambers (was 7; start ammo that was counted in cylinders follows)
+import re as _re
+for a_, b_ in (('clipsize\t\t7', 'clipsize\t\t6'), ('dm startammo\t28', 'dm startammo\t24'), ('dmrealism startammo\t14', 'dmrealism startammo\t12')):
+    assert t.count(a_) == 1, a_
+    t = t.replace(a_, b_ + '\t// HZM coop [2026-10-12] six chambers', 1)
 p = os.path.join(STAGE, 'models', 'weapons', 'm10_revolver.tik')
 open(p, 'wb').write((t.replace('\n', '\r\n') if crlf else t).encode('latin-1'))
 print('wrote', p)

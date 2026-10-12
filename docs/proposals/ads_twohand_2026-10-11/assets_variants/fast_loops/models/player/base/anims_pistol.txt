@@ -50,15 +50,14 @@ animations
 			first reloadweapon								// tell the weapon that we're reloading
 		}
 	}
-	webley_reload_loop			viewmodel/webley/coop_webley_tp_single_slow.skc			crossblend 0
+	webley_reload_loop			viewmodel/webley/webley_reload_single.skc			crossblend 0
 	{
 		server
 		{
 			first weaponcommand mainhand anim reload_single
-			8 weaponcommand mainhand anim reload_single			// HZM coop [revolver reload, slow loop] the gun's own clip is 16 frames: re-issued so it ends with this 24-frame loop
-			10 attachmodel models/ammo/nagant_pistol_shell.tik tag_weapon_left			// a round in the support hand, from the pouch
-			20 weaponcommand mainhand clip_add 1					// counted when it seats
-			20 removeattachedmodel tag_weapon_left 0 models/ammo/nagant_pistol_shell.tik
+			6 attachmodel models/ammo/nagant_pistol_shell.tik tag_weapon_left			// HZM coop [revolver reload] a round in the support hand, from the pouch
+			12 weaponcommand mainhand clip_add 1					// counted when it seats
+			12 removeattachedmodel tag_weapon_left 0 models/ammo/nagant_pistol_shell.tik
 		}
 	}
 	webley_reload_end			viewmodel/webley/webley_reload_end.skc			crossblend 0.0
@@ -87,9 +86,9 @@ animations
 		server
 		{
 			first weaponcommand mainhand anim reload_single
-			0 attachmodel models/ammo/nagant_pistol_shell.tik tag_weapon_right
-			6 weaponcommand mainhand clip_add 1						// put a single shell into the gun
-			6 removeattachedmodel tag_weapon_right 0 models/ammo/nagant_pistol_shell.tik	// remove the clip model from the right hand
+			7 attachmodel models/ammo/nagant_pistol_shell.tik tag_weapon_right	// HZM coop [revolver reload] from the pouch, in the fingers
+			16 weaponcommand mainhand clip_add 1
+			16 removeattachedmodel tag_weapon_right 0 models/ammo/nagant_pistol_shell.tik
 		}
 	}
 	nagantrev_reload_end			viewmodel/nagantrev/reload_end.skc			crossblend 0.0

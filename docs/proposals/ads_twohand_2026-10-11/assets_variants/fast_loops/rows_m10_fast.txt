@@ -1,0 +1,52 @@
+	//===================== HZM coop S&W M10: swing-out reload (hand-keyed), hip + aimed + empty-cylinder start =====================
+	m10_reload_single		viewmodel/coop_m10/coop_m10_reload_single.skc		crossblend 0.1
+	m10_reload_end		viewmodel/coop_m10/coop_m10_reload_end.skc		crossblend 0.2
+	m10_reload_empty		viewmodel/coop_m10/coop_m10_reload_empty.skc		crossblend 0.1
+	{
+		client
+		{
+			21 tagspawn tag_weapon_right	// the ejector rod pushes the six fired cases out of the open cylinder (first person)
+			(
+				count 6
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				scale .75
+				offsetalongaxis 3.2 -2.2 -1.5
+				randvelaxis range -60 -25 crandom 18 crandom 18
+				avelocity crandom 360 crandom 360 crandom 180
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}
+	m10_reload_ads		viewmodel/coop_m10/m10_reload_ads.skc		crossblend 0.1
+	m10_reload_single_ads		viewmodel/coop_m10/m10_reload_single_ads.skc		crossblend 0.1
+	m10_reload_end_ads		viewmodel/coop_m10/m10_reload_end_ads.skc		crossblend 0.1
+	m10_reload_empty_ads		viewmodel/coop_m10/m10_reload_empty_ads.skc		crossblend 0.1
+	{
+		client
+		{
+			21 tagspawn tag_weapon_right	// the ejector rod pushes the six fired cases out of the open cylinder (first person)
+			(
+				count 6
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				scale .75
+				offsetalongaxis 3.2 -2.2 -1.5
+				randvelaxis range -60 -25 crandom 18 crandom 18
+				avelocity crandom 360 crandom 360 crandom 180
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}

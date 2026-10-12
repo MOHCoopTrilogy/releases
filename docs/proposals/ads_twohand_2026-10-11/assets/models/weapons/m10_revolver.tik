@@ -111,13 +111,13 @@ init
 		meansofdeath	bullet
 		semiauto
 		bulletcount		1
-		clipsize		7
+		clipsize		6	// HZM coop [2026-10-12] six chambers
 		ammorequired	1
 
 		sp startammo	8
-		dm startammo	28
+		dm startammo	24	// HZM coop [2026-10-12] six chambers
 		sprealism startammo	8
-		dmrealism startammo	14
+		dmrealism startammo	12	// HZM coop [2026-10-12] six chambers
 
 	//========================================//
 	//		CROSSHAIR, ZOOM, TRACERS  //
@@ -177,12 +177,22 @@ animations
 				entry sound colt45_snd_reload item
 		}
 	}
-	reload_single	coop_m10_single.skc
+	reload_single	coop_m10_single_slow.skc
+	{
+		client
+		{
+			12 sound webley_snd_reload_single
+		}
+	}
 	reload_end	coop_m10_close.skc
 	{
 		server
 		{
 			last idle
+		}
+		client
+		{
+			8 sound webley_snd_reload_end
 		}
 	}
 	secondaryfire     m10.skc

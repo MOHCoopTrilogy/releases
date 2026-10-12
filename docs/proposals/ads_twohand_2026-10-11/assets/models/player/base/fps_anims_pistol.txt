@@ -135,29 +135,7 @@ animations
 		}
 	}
 	nagantrev_reload		viewmodel/nagantrev/coop_nagant_reload.skc			crossblend 0.1
-	nagantrev_reload_single		viewmodel/nagantrev/coop_nagant_reload_single.skc			crossblend 0
-	{
-		client
-		{
-			1 tagspawn tag_weapon_left	// HZM coop [revolver reload] the fired case of this chamber drops out of the gate (first person)
-			(
-				count 1
-				model models/ammo/pistolshell.tik
-				spawnrange 1024
-				scale .7
-				offsetalongaxis 3.0 0.4 -0.9
-				randvelaxis range -30 -10 range 12 30 range 5 25
-				avelocity crandom 300 crandom 300 crandom 150
-				accel 0 0 -800
-				physicsrate 20
-				life 2.0
-				fadedelay 1.7
-				collision
-				bouncefactor 0.2
-				bouncesoundonce snd_pistol_shell
-			)
-		}
-	}
+	nagantrev_reload_single		viewmodel/nagantrev/coop_nagant_reload_single_slow.skc			crossblend 0.1
 	nagantrev_reload_end		viewmodel/nagantrev/coop_nagant_reload_end.skc			crossblend 0.2
 	nagantrev_pullout		viewmodel/nagantrev/pullout.skc
 	{
@@ -235,8 +213,8 @@ animations
 	}
 	webley_reload			viewmodel/webley/coop_webley_reload.skc		crossblend 0.1
 	webley_reload_ads		viewmodel/webley/webley_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
-	webley_reload_single		viewmodel/webley/coop_webley_reload_single.skc		crossblend 0.1
-	webley_reload_single_ads		viewmodel/webley/webley_reload_single_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	webley_reload_single		viewmodel/webley/coop_webley_reload_single_slow.skc		crossblend 0.1
+	webley_reload_single_ads		viewmodel/webley/webley_reload_single_ads_slow.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
 	webley_reload_end		viewmodel/webley/coop_webley_reload_end.skc			crossblend 0.2
 	webley_reload_end_ads		viewmodel/webley/webley_reload_end_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
 	webley_pullout			viewmodel/nagantrev/pullout.skc
@@ -320,34 +298,12 @@ animations
 			)
 		}
 	}
-	//===================== HZM coop Nagant revolver: aimed reload (gate loader, hand-keyed gun + retail hand relations) =====================
+	//===================== HZM coop Nagant revolver: aimed reload (gate loader; keyed gun, retail hand relations, pouch trip per round) =====================
 	nagantrev_reload_ads		viewmodel/nagantrev/nagantrev_reload_ads.skc		crossblend 0.1
-	nagantrev_reload_single_ads		viewmodel/nagantrev/nagantrev_reload_single_ads.skc		crossblend 0
-	{
-		client
-		{
-			1 tagspawn tag_weapon_left	// HZM coop [revolver reload] the fired case of this chamber drops out of the gate (first person)
-			(
-				count 1
-				model models/ammo/pistolshell.tik
-				spawnrange 1024
-				scale .7
-				offsetalongaxis 3.0 0.4 -0.9
-				randvelaxis range -30 -10 range 12 30 range 5 25
-				avelocity crandom 300 crandom 300 crandom 150
-				accel 0 0 -800
-				physicsrate 20
-				life 2.0
-				fadedelay 1.7
-				collision
-				bouncefactor 0.2
-				bouncesoundonce snd_pistol_shell
-			)
-		}
-	}
+	nagantrev_reload_single_ads		viewmodel/nagantrev/nagantrev_reload_single_slow_ads.skc		crossblend 0.1
 	nagantrev_reload_end_ads		viewmodel/nagantrev/nagantrev_reload_end_ads.skc		crossblend 0.2
 	//===================== HZM coop S&W M10: swing-out reload (hand-keyed), hip + aimed + empty-cylinder start =====================
-	m10_reload_single		viewmodel/coop_m10/coop_m10_reload_single.skc		crossblend 0.1
+	m10_reload_single		viewmodel/coop_m10/coop_m10_reload_single_slow.skc		crossblend 0.1
 	m10_reload_end		viewmodel/coop_m10/coop_m10_reload_end.skc		crossblend 0.2
 	m10_reload_empty		viewmodel/coop_m10/coop_m10_reload_empty.skc		crossblend 0.1
 	{
@@ -373,7 +329,7 @@ animations
 		}
 	}
 	m10_reload_ads		viewmodel/coop_m10/m10_reload_ads.skc		crossblend 0.1
-	m10_reload_single_ads		viewmodel/coop_m10/m10_reload_single_ads.skc		crossblend 0.1
+	m10_reload_single_ads		viewmodel/coop_m10/m10_reload_single_slow_ads.skc		crossblend 0.1
 	m10_reload_end_ads		viewmodel/coop_m10/m10_reload_end_ads.skc		crossblend 0.1
 	m10_reload_empty_ads		viewmodel/coop_m10/m10_reload_empty_ads.skc		crossblend 0.1
 	{

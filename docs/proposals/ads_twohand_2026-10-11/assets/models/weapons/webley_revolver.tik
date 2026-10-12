@@ -156,16 +156,16 @@ animations
 
 	}
 
-	reload_single 	webley_revolver_reload_single.skc
+	reload_single 	webley_revolver_reload_single_slow.skc
 	{
 		server
 		{
-			9	surface shellmetal_cull +nodraw
-			12	surface shellmetal_cull -nodraw	// HZM coop [revolver reload] shows as the round seats
+			14	surface shellmetal_cull +nodraw
+			20	surface shellmetal_cull -nodraw	// HZM coop [revolver reload] shows as the round seats
 		}
 		client
 		{
-			12 sound webley_snd_reload_single
+			20 sound webley_snd_reload_single
 
 
 		}

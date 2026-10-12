@@ -128,14 +128,14 @@ def webley(kind, slow=False):
 # and end clips, so the hand-off frame does not show; in the loop the right tag carries the cartridge.
 NAG_C = (2.75, 0.10, -1.05)     # mouth of the chamber behind the open gate (rear face of the cylinder, right side)
 NAG_D = tuple(float(x) for x in os.environ.get('NAG_D', '0,-85,0,0,25').split(','))
-NAG_TAG = [float(x) for x in os.environ.get('NAG_TAG', '13.5,0.5,-2.5').split(',')]
+NAG_TAG = [float(x) for x in os.environ.get('NAG_TAG', '13.5,-2.0,-3.0').split(',')]
 NAG_HOLD = tuple(float(x) for x in os.environ.get('NAG_HOLD', '2.4,0.0,-1.3').split(','))
 NAG_OFF = tuple(float(x) for x in os.environ.get('NAG_OFF', '-3.0,-3.5,-2.5').split(','))
 POUCH_R = (5.0, -9.0, -15.0)
 RTAG = dict(pinch=(10.0, 3.0, 2.6), hold_vec=(0.3, 0.0, 0.0), axes=[[0, 0, 1], [0, 1, 0], [-1, 0, 0]])
 
 
-def nagant(kind):
+def nagant(kind, slow=False):
     """The retail clips already hold the gun the right way for a gate loader: the LEFT hand over the top of the frame
     (its thumb turns the cylinder), the RIGHT hand feeds a round into the gate. Both hands keep that retail relation
     to the gun; what is keyed here is the GUN (eased to a work pose where the gate side faces the eye), the support
@@ -143,25 +143,53 @@ def nagant(kind):
     aim2h = 'viewmodel/nagantrev/nagantrev_ads2h.skc'
     Tw = work_T(aim2h, 'nagant_revolver', NAG_D, NAG_TAG, NAG_C)
     NE = float(os.environ.get('NAG_ELB', '3.0'))
-    common = dict(gun='nagant_revolver', weight=dict(on=False))
+    common = dict(gun='nagant_revolver', weight=dict(on=False),
+                  elbow_vec={'R': tuple(float(x) for x in os.environ.get('NAG_ELBR', '0,-1,-0.3').split(',')), 'L': (0.0, 0.0, -1.0)})
     if kind == 'ads':
         common.update(charge=aim2h)
         out = lambda part: 'viewmodel/nagantrev/nagantrev_%s_ads.skc' % part
         lg0 = dict(left_grip=dict(fa=9, fb=None, way=(0.0, -1.5, -1.0)))
-        lg1 = dict(left_grip=dict(fa=None, fb=6, way=(0.0, -1.5, -1.0), hold=2))
+        lg1 = dict(left_grip=dict(fa=None, fb=9, way=(0.0, -1.5, -1.0), hold=2))
     else:
         common.update(charge='viewmodel/nagantrev/idle.skc', hip_cam=True)
         out = lambda part: 'viewmodel/nagantrev/coop_nagant_%s.skc' % part
         lg0 = lg1 = {}
     ga = lambda keys: dict(gun_abs=dict(T=Tw, keys=keys))
-    POR = dict(cam=POUCH_R, rot=17, fing=17)
-    loopR = {k: dict(rel=k) for k in range(0, 8)}                 # the retail feed, frame for frame (round in at 6)
-    loopR.update({10: POR, 13: POR, 17: dict(rel=17)})            # then down to the pouch and back for the next
+    POR = dict(cam=POUCH_R, rot=0, fing=0)
+    POR9 = dict(cam=POUCH_R, rot=0, fing=0)
+    # ONE ROUND (re-timed; the choreography is ours now): the hand leaves the gate, goes down out of frame to the pouch
+    # (3-6), comes up WITH the round (the prop is attached at 7) and feeds it as the retail art does (retail frames
+    # 0-6 on 10-16)
+    loopR = {0: dict(rel=6), 3: POR, 6: POR}
+    loopR.update({10 + k: dict(rel=k) for k in range(0, 7)})
+    loopR[17] = dict(rel=6)
+    tmap = {0: 6, 6: 0, 10: 0, 16: 6, 17: 6}
+    ER = {'R': [(0, NE), (17, NE)], 'L': [(0, NE), (17, NE)]}      # both elbows under: hand and wrist in view, not sleeve
+    READY = dict(rel=30)                                           # the right hand beside the gate, as the retail start ends
     rows = {
-        'nagantrev_reload': dict(out=out('reload'), offhand=(11, 30), free_tag=False, **ga({0: 0.0, 3: 0.0, 13: 1.0, 30: 1.0}), elbow_down={'L': [(0, 0.0), (8, NE), (30, NE)]}, **lg0),
-        'nagantrev_reload_single': dict(out=out('reload_single'), offhand=(0, 17), **ga({0: 1.0, 17: 1.0}), right_path=loopR, elbow_down={'L': [(0, NE), (17, NE)]}),
-        'nagantrev_reload_end': dict(out=out('reload_end'), offhand=(0, 9), free_tag=False, **ga({0: 1.0, 7: 1.0, 19: 0.0, 22: 0.0}), elbow_down={'L': [(0, NE), (8, NE), (16, 0.0), (22, 0.0)]}, **lg1),
+        # HAND-OVER: the left hand takes the gun over the frame, the right hand lets go and waits beside the gate (the
+        # retail start sends it to the pouch here; the loop does that now, with the round visible)
+        'nagantrev_reload': dict(out=out('reload'), offhand=(11, 30), free_tag=False, **ga({0: 0.0, 3: 0.0, 13: 1.0, 30: 1.0}),
+                                 right_path={0: dict(aim=1), 12: dict(aim=1), 22: READY, 30: READY},
+                                 elbow_down={'L': [(0, 0.0), (8, NE), (30, NE)], 'R': [(0, 0.0), (14, 0.0), (22, NE), (30, NE)]}, **lg0),
+        'nagantrev_reload_single': dict(out=out('reload_single'), offhand=(0, 17), **ga({0: 1.0, 17: 1.0}), right_path=loopR,
+                                        tag_map=tmap, elbow_down=ER),
+        # CLOSE, one motion: the right hand goes back to the grip first (0-7), then the left hand rolls the gun upright
+        # into it (8-18) and returns to the support grip
+        'nagantrev_reload_end': dict(out=out('reload_end'), offhand=(0, 9), free_tag=False, **ga({0: 1.0, 8: 1.0, 18: 0.0, 22: 0.0}),
+                                     right_path={0: dict(rel=6), 7: dict(aim=1), 22: dict(aim=1)},
+                                     elbow_down={'L': [(0, NE), (10, NE), (18, 0.0), (22, 0.0)], 'R': [(0, NE), (7, 0.0), (22, 0.0)]}, **lg1),
     }
+    if slow:
+        # 27 frames (0.9 s): the retail loop resampled x1.5 is the `hip` clip, so the feed (retail 0-6) is its frames 0-9
+        NS = 26
+        lp = {0: dict(rel=9), 4: POR9, 10: POR9}
+        lp.update({16 + j: dict(rel=j) for j in range(0, 10)})
+        lp[NS] = dict(rel=9)
+        rows = {'nagantrev_reload_single': dict(out=out('reload_single_slow'), hip='viewmodel/nagantrev/coop_nagant_tp_loop_slow.skc',
+                                                offhand=(0, NS), **ga({0: 1.0, NS: 1.0}), right_path=lp,
+                                                tag_map={0: 9, 10: 0, 16: 0, 25: 9, NS: 9},
+                                                elbow_down={'R': [(0, NE), (NS, NE)], 'L': [(0, NE), (NS, NE)]})}
     return dict(common=common, rows=rows)
 
 
@@ -246,6 +274,7 @@ def m10(kind, empty=False, slow=False):
 
 SETS = {'webley_ads': lambda: webley('ads'), 'webley_hip': lambda: webley('hip'),
         'nagant_ads': lambda: nagant('ads'), 'nagant_hip': lambda: nagant('hip'),
+        'nagant_ads_slow': lambda: nagant('ads', True), 'nagant_hip_slow': lambda: nagant('hip', True),
         'm10_ads': lambda: m10('ads'), 'm10_hip': lambda: m10('hip'),
         'm10_ads_empty': lambda: m10('ads', empty=True), 'm10_hip_empty': lambda: m10('hip', empty=True),
         'm10_ads_slow': lambda: m10('ads', slow=True), 'm10_hip_slow': lambda: m10('hip', slow=True),
