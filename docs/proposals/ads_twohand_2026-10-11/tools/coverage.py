@@ -24,6 +24,7 @@ MOD = os.path.join(ROOT, 'hzm-mohaa-coop-mod')
 FIX = os.path.join(ROOT, 'docs', 'tools', 'assets', 'fixes')
 STAGE = os.path.join(HERE, '..', 'assets')
 STATUS = os.path.join(HERE, 'coverage_status.json')
+STATUS_BASE = STATUS                           # the pistol lane's file: always the base of the shared table
 HSURV = json.load(open(os.path.join(HERE, 'handsurvey.json'))) if os.path.isfile(os.path.join(HERE, 'handsurvey.json')) else {}
 CBOX = {}
 OUT = os.path.join(HERE, '..', 'coverage.md')
@@ -31,6 +32,47 @@ sys.path.insert(0, os.path.join(ROOT, 'docs', 'proposals', 'ironsights_2026-09-2
 for _p in glob.glob(os.path.join(ROOT, 'docs', 'proposals', 'ironsights_2026-09-28', '**', 'vfs.py'), recursive=True):
     sys.path.insert(0, os.path.dirname(_p)); break
 import vfs  # noqa: E402  (read-only view of the installed paks)
+
+# The work is split into lanes (2026-10-12). The pistol lane owns this tool, coverage_status.json and ../coverage.md.
+# Each other lane keeps its OWN status file (same schema) in its folder; `build` merges them so the matrix stays one
+# table. A lane's entry is used only for weapons of that lane's classes (anything else in its file is reported and
+# ignored), and wins over the base file key by key (aim / reload / bolt: per stance; qa / rule / action / note: whole).
+#   python coverage.py --lane rifles scan <session> ...   -> ../rifles/coverage_status.json, from that lane's harness
+#   python coverage.py --lane rifles qa|rule|action|note|lowered ...   (same file)
+#   python coverage.py --lane rifles build                 -> ../rifles/coverage.md (a lane preview; never the shared one)
+#   python coverage.py build                               -> ../coverage.md, base + every lane file that exists
+LANES = {
+    'rifles': dict(classes=('rifle',), runs='G:/mohaa-adsanim2/runs'),
+    'smg': dict(classes=('smg', 'mg', 'heavy'), runs='G:/mohaa-adsanim3/runs'),
+}
+LANE = None                                    # set by --lane
+RUNS = os.environ.get('COVERAGE_RUNS', 'G:/mohaa-adsanim/runs')
+
+
+def lane_dir(name):
+    return os.path.join(HERE, '..', name)
+
+
+def load_json_safe(path):
+    """a lane may be writing its file while the table is built: a missing / half-written file is skipped, not fatal"""
+    if not os.path.isfile(path):
+        return None
+    try:
+        return json.load(open(path, encoding='utf-8'))
+    except (ValueError, OSError) as e:
+        print('WARNING: %s not readable (%s) - skipped' % (path, e))
+        return None
+
+
+def merge_entry(base, lane):
+    out = json.loads(json.dumps(base or {}))
+    for k, v in (lane or {}).items():
+        if k in ('aim', 'reload', 'bolt') and isinstance(v, dict) and isinstance(out.get(k), dict):
+            out[k].update(v)
+        else:
+            out[k] = v
+    return out
+
 
 CLASSFILES = ('rifle', 'smg', 'mg', 'pistol', 'shotgun', 'bazooka')
 GROUPS = [('stand', ('stand',)), ('crouch', ('crouch',)), ('prone', ('prone',)),
@@ -170,7 +212,7 @@ def scan(sessions):
     except OSError:
         pass
     for sess in sessions:
-        log = open('G:/mohaa-adsanim/runs/%s/qconsole.log' % sess, encoding='latin-1', errors='replace').read().splitlines()
+        log = open('%s/%s/qconsole.log' % (RUNS, sess), encoding='latin-1', errors='replace').read().splitlines()
         cur, rows, seg, fref = None, {}, {}, {}
         for ln in log:
             m = re.search(r'ABSCEN (begin|end) (\S+)', ln)
@@ -250,6 +292,25 @@ def build():
     noaim_names, noaim_classes = no_aim()
     mod_rows, _ = rows_of(MOD)
     stg_rows, stg_have = rows_of(STAGE)
+    # the other lanes: their staged trees (<lane>/assets), status, centre-box and hand-survey files, where they exist
+    lane_rows, lane_st, lane_hs, lane_cb = {}, {}, {}, {}
+    for ln_, cfg_ in sorted(LANES.items()):
+        d_ = lane_dir(ln_)
+        if not os.path.isdir(d_):
+            continue
+        lane_rows[ln_] = rows_of(os.path.join(d_, 'assets'))[0]
+        s_ = load_json_safe(os.path.join(d_, 'coverage_status.json'))
+        if isinstance(s_, dict):
+            lane_st[ln_] = {k.lower(): v for k, v in s_.items() if isinstance(v, dict)}
+        hs_ = load_json_safe(os.path.join(d_, 'handsurvey.json'))
+        if isinstance(hs_, dict):
+            lane_hs[ln_] = hs_
+        cb_ = load_json_safe(os.path.join(d_, 'centrebox.json'))
+        if isinstance(cb_, dict):
+            lane_cb[ln_] = cb_
+    lane_of = {c: ln_ for ln_, cfg_ in LANES.items() for c in cfg_['classes']}
+    lane_used = collections.defaultdict(set)
+    cur_lane = [None]                          # the lane of the weapon being judged (row_state looks at its tree first)
     live_rows = {}
     for c in CLASSFILES:                       # what is LIVE: the installed paks, in engine priority order
         d = vfs.read('models/player/base/fps_anims_%s.txt' % c)
@@ -257,22 +318,28 @@ def build():
             t = ln.split('//')[0].split()
             if len(t) >= 2 and t[1].lower().endswith('.skc') and t[0].lower() not in live_rows:
                 live_rows[t[0].lower()] = t[1]
-    st = load_status()
+    st = load_json_safe(STATUS_BASE) or {}
     arm, var, scr, nsight = weapons(sights)
     global CBOX
     CBOX = {}
     cbp = os.path.join(HERE, 'centrebox.json')
-    if os.path.isfile(cbp):
-        km = {}
-        try:
-            src_ = read(os.path.join(ROOT, 'docs', 'proposals', 'ads_bolt_2026-10-04', 'tools', 'run_adsbolt.py'))
-            km = {k: v.lower() for k, v in re.findall(r'"(\w+)": "(models/weapons/[^"]+)"', src_)}
-        except OSError:
-            pass
-        for g_, v_ in json.load(open(cbp)).items():
+    km = {}
+    try:
+        src_ = read(os.path.join(ROOT, 'docs', 'proposals', 'ads_bolt_2026-10-04', 'tools', 'run_adsbolt.py'))
+        km = {k: v.lower() for k, v in re.findall(r'"(\w+)": "(models/weapons/[^"]+)"', src_)}
+    except OSError:
+        pass
+
+    def cbox_keys(d):
+        out = {}
+        for g_, v_ in d.items():
             e_ = g_.endswith('_empty')
             g_ = g_[:-6] if e_ else g_
-            CBOX[km.get(g_, 'models/weapons/%s.tik' % g_) + ('#empty' if e_ else '')] = v_
+            out[km.get(g_, 'models/weapons/%s.tik' % g_) + ('#empty' if e_ else '')] = v_
+        return out
+    if os.path.isfile(cbp):
+        CBOX = cbox_keys(json.load(open(cbp)))
+    lane_cb = {k: cbox_keys(v) for k, v in lane_cb.items()}
 
     def has_clip(tree, clip):
         return os.path.isfile(os.path.join(tree, 'models', 'human', 'animation', clip.replace('/', os.sep)))
@@ -282,6 +349,12 @@ def build():
         shipped = row and clip in the installed paks; tree-only = a row in the mod working tree that no installed pak
         has (unverified work in progress, held out of releases); missing"""
         n = name.lower()
+        lr = lane_rows.get(cur_lane[0]) or {}
+        if n in lr and has_clip(os.path.join(lane_dir(cur_lane[0]), 'assets'), lr[n]):
+            if lr[n] != live_rows.get(n, ''):
+                return 'staged', lr[n]
+            if n in live_rows:
+                return 'staged (re-baked, replaces the shipped clip)', lr[n]
         if n in stg_rows and has_clip(STAGE, stg_rows[n]) and stg_rows[n] != live_rows.get(n, ''):
             return 'staged', stg_rows[n]
         if n in stg_rows and has_clip(STAGE, stg_rows[n]) and n in live_rows:
@@ -307,6 +380,13 @@ def build():
         sight = 'yes' if (name or '').lower() in by_sname else 'NO'
         aims = not ((name or '').lower() in noaim_names or look in noaim_names or cls in noaim_classes)
         key = weapon_key(name or '')
+        # this weapon's lane: its status entry (over the base file's), staged tree, centre-box and hand-survey numbers
+        cur_lane[0] = lane_of.get(cls) if lane_of.get(cls) in lane_rows else None
+        if cur_lane[0] and tik in lane_st.get(cur_lane[0], {}):
+            st[tik] = merge_entry(st.get(tik), lane_st[cur_lane[0]][tik])
+            lane_used[cur_lane[0]].add(tik)
+        cbx = dict(CBOX, **lane_cb.get(cur_lane[0], {}))
+        hsv = dict(HSURV, **lane_hs.get(cur_lane[0], {}))
         # aim pose
         cstate, cclip = row_state(pfx + '_charge')
         if not aims:
@@ -365,7 +445,7 @@ def build():
         # after a run (`coverage.py rule <tik> yes|no yes|no yes|no <run>`); not recorded = no. Not DONE without all three.
         # support hand: its wrist in the gun frame (x fwd, y right, z down; u) in the hip idle and in the aim pose
         # (handsurvey.py; user 2026-10-12: in ADS the hand stays where the hip pose braces the gun, e.g. on a magazine)
-        hv = HSURV.get(pfx)
+        hv = hsv.get(pfx)
         if not aims or not hv:
             hs = 'n/a' if not aims else 'not surveyed'
         elif cls == 'pistol':
@@ -389,7 +469,7 @@ def build():
             cyc = 'self-loading / none'
         cbt = ' ; '.join((('%s%.1f deg / covered beyond the aim: max %.1f %%, %.1f %% of frames (%s)' % (lab, cb['dev'], cb['xmax'], cb['xfr'], cb['run'])) if 'xmax' in cb else
                           ('%s%.1f deg / old measure %.1f %% of frames (%s)' % (lab, cb['dev'], cb['over'], cb['run'])))
-                         for lab, cb in (('', CBOX.get(tik)), ('EMPTY: ', CBOX.get(tik + '#empty'))) if cb) or '-'
+                         for lab, cb in (('', cbx.get(tik)), ('EMPTY: ', cbx.get(tik + '#empty'))) if cb) or '-'
         act = st.get(tik, {}).get('action', 'not recorded')
         table.append(dict(id=wid, tik=tik, name=name or '?', cls=cls, pfx=pfx, sight=sight, aim=aim, rel=rel, bolt=bolt, cyc=cyc, cbt=cbt, act=act, r1=r1, r2=r2, r3=r3, rrun=rrun, hs=hs,
                           ta=ta, tr=tr, tb=tb, qa=qa, status=status, src=src, aims=aims))
@@ -401,6 +481,16 @@ def build():
          'GENERATED by `tools/coverage.py build` - do not edit; re-run it. Sources and rules are in that file\'s header.',
          'Engine tree: `openmohaa-hzm-ads` (ads-next). Sight table rows: %d. A variant that shares its base gun\'s clips' % nsight,
          'still needs its own in-engine check: a row is DONE only with clips + every stance group tested + a QA run id.', '']
+    for ln_ in sorted(LANES):
+        if ln_ in lane_st:
+            stray = sorted(set(lane_st[ln_]) - lane_used[ln_])
+            L.insert(-1, 'Lane `%s` (%s): %d status entries merged from `%s/coverage_status.json`%s.' % (
+                ln_, ' / '.join(LANES[ln_]['classes']), len(lane_used[ln_]), ln_,
+                (', %d ignored (not a weapon of that lane: %s)' % (len(stray), ', '.join(x.replace('models/weapons/', '') for x in stray[:6]))) if stray else ''))
+            if stray:
+                print('lane %s: ignored' % ln_, stray)
+        elif ln_ in lane_rows:
+            L.insert(-1, 'Lane `%s` (%s): no status file yet.' % (ln_, ' / '.join(LANES[ln_]['classes'])))
     cls_tot = collections.Counter(r['cls'] for r in table)
     L += ['## Summary', '', '| class | weapons | DONE | DONE but braced | PARTIAL | TODO | N/A (does not aim) | no sight row |', '|---|---|---|---|---|---|---|---|']
     for c in sorted(cls_tot, key=lambda c: order.get(c, 9)):
@@ -442,6 +532,15 @@ def build():
 
 
 if __name__ == '__main__':
+    if '--lane' in sys.argv:
+        i_ = sys.argv.index('--lane')
+        LANE = sys.argv[i_ + 1]
+        assert LANE in LANES, 'unknown lane %r (known: %s)' % (LANE, ', '.join(sorted(LANES)))
+        del sys.argv[i_:i_ + 2]
+        os.makedirs(lane_dir(LANE), exist_ok=True)
+        STATUS = os.path.join(lane_dir(LANE), 'coverage_status.json')
+        OUT = os.path.join(lane_dir(LANE), 'coverage.md')
+        RUNS = os.environ.get('COVERAGE_RUNS', LANES[LANE]['runs'])
     cmd = sys.argv[1] if len(sys.argv) > 1 else 'build'
     if cmd == 'scan':
         scan(sys.argv[2:])
