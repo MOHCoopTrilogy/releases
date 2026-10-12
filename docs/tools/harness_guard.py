@@ -186,6 +186,7 @@ HARNESSES = {
     # 2026-10-12: two copies for the split ADS work - adsanim2 = rifles (net_port 12558), adsanim3 = SMGs / MGs (12578)
     r"G:\mohaa-adsanim2": {"owner": "adsanim2", "home": r"G:\mohaa-adsanim2\home"},
     r"G:\mohaa-adsanim3": {"owner": "adsanim3", "home": r"G:\mohaa-adsanim3\home"},
+    r"G:\mohaa-adsanim4": {"owner": "adsanim4", "home": r"G:\mohaa-adsanim4\home"},	# MGs / heavy lane, net_port 12598
     # bugsweep 2026-10-04 (prone eye ease bug-3317, AI tik identity gear, deaths while physics_off): byte copies of
     # the LIVE v1.10.11 exe/renderers (read from G:\mohaa-gl2, never written) + game.dll/cgame built in the isolated
     # copy openmohaa-hzm-bugsweep, fresh home from G:\mohaa-adsanim\pristine (no qkey/saves), basepath = the GOG tree
