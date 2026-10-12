@@ -37,9 +37,12 @@ GUNS = {
                  # slot measured on the mesh render (gunside.py): z -4.25, front end x 12.0, rear end x 4.3 (+ the notch)
                  # uv_at lands on uv (0.547, 0.4185): plain dark receiver steel - the point the weapon-HD lane already
                  # holds as wear-protected for an MP40 knob (ads_bolt README 8.2)
-                 back=(5.0, -2.2, -4.25), size=(0.5, 0.9, 0.5), travel=6.5, uv_at=(9.0, -0.9, -5.3), side='L',
+                 back=(5.0, -2.15, -4.25), size=(0.36, 0.8, 0.36), travel=6.5,       # 0.5 x 0.9 x 0.5 read as a black brick 9 u from the eye (run sb1)
+                 uv_at=(9.0, -0.9, -5.3), side='L',
                  # frames (1/30 s, the reload clips' clock): the handle is pulled over pull[0]..pull[1]
-                 hip_pull=(60.0, 63.6), ads_pull=(55.0, 61.0)),
+                 # HIP, empty: the handle follows the retail cocking hand's index fingertip along the gun (hip_row = the
+                 # retail first-person clip), so hand and handle cannot drift apart; AIMED: this lane's keyed pull
+                 hip_row='viewmodel/MP40/reload_mp40_stand.skc', hip_tip_off=0.3, ads_pull=(55.0, 61.0)),
 }
 FIRE = [0.0, 0.55, 1.0, 0.6, 0.2, 0.0]          # forward fraction per 1/60 s frame
 FIRE_EMPTY = [0.0, 0.55, 1.0, 1.0]
@@ -62,6 +65,32 @@ def pull_curve(n, a, b, over=0.06):
         else:
             u = (f - a) / float(b - a)
             v = 1.0 - (1 - (1 - u) ** 2)
+        out.append(v)
+    return out
+
+
+def hip_curve(g, n):
+    """forward fraction per frame for the HIP empty reload: the handle is at the retail hand's index fingertip (minus
+    hip_tip_off) along the gun, clamped to the slot; forward before the hand arrives, back once it has been pulled"""
+    R = V.R
+    c = R.load(R.ANIM + g['hip_row'])
+    xs = []
+    for f in range(c.numFrames):
+        W = R.evaluate(R.pose_dict(c, f))
+        xs.append(float(((W['Bip01 L Finger12'] @ R.inv(W['tag_weapon_right']))[3, 0]) * R.S) - g['hip_tip_off'])
+    fwd, back = g['back'][0] + g['travel'], g['back'][0]
+    # the pull = the frames after the magazine in which the fingertip passes from ahead of the forward place to behind it
+    cand = [f for f in range(40, c.numFrames - 1) if xs[f] >= fwd and xs[f + 1] < fwd]
+    f0 = cand[-1]
+    out, done = [], False
+    for f in range(n):
+        if f <= f0 or f >= c.numFrames:
+            v = 1.0 if f <= f0 else 0.0
+        elif done:
+            v = 0.0
+        else:
+            v = max(0.0, min(1.0, (xs[f] - back) / (fwd - back)))
+            done = v <= 0.0
         out.append(v)
     return out
 
@@ -177,9 +206,11 @@ def build(name, root, ads_pull=None):
             vals.append(fr)
         return GF.build_skc(sk, vals, ft)
     nrel = GF.read_skc_any(G._res(t, t['anims']['reload'])).numFrames
+    hcurve = hip_curve(g, nrel)
+    print('   hip handle curve (forward fraction) f56..f68:', ' '.join('%.2f' % v for v in hcurve[56:69]))
     files = {'coop_fire.skc': clip(FIRE, 1 / 60.0), 'coop_fire_empty.skc': clip(FIRE_EMPTY, 1 / 60.0),
              'coop_idle_empty.skc': clip([1.0], 1 / 30.0),
-             'coop_reload_empty.skc': clip(pull_curve(nrel, *g['hip_pull']), idle.frameTime),
+             'coop_reload_empty.skc': clip(hcurve, idle.frameTime),
              'coop_reload_ads_empty.skc': clip(pull_curve(nrel, *g['ads_pull']), idle.frameTime)}
     for fn, b in files.items():
         open(os.path.join(gdir, fn), 'wb').write(b)
@@ -195,7 +226,7 @@ def build(name, root, ads_pull=None):
         open(dst, 'wb').write(new.encode('latin-1'))
     print('   tiks patched (%d): %s' % (len(tiks), ' '.join(os.path.basename(p) for p in tiks)))
     json.dump(dict(gun=name, tiks=tiks, back=g['back'], travel=g['travel'], forward=[g['back'][0] + g['travel'], g['back'][1], g['back'][2]],
-                   hip_pull=g['hip_pull'], ads_pull=g['ads_pull'], uv=info if not isinstance(info, (bytes, bytearray)) else None),
+                   hip_curve=hcurve, ads_pull=g['ads_pull'], surface=g['surface'], uv=info if not isinstance(info, (bytes, bytearray)) else None),
               open(os.path.join(HERE, 'smggun_%s.json' % name), 'w'), indent=1, default=str)
 
 

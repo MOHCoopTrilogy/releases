@@ -110,6 +110,7 @@
   }
  },
  "models/weapons/mp40.tik": {
+  "action": "left hand: magazine down the well and out low-left, new one shown beside the gun and driven up; EMPTY (open bolt, bolt forward): left index hooks the added handle from below-left and pulls it back to the sear - shown, handle stays back; rounds left: no cock; hip tells the same story",
   "aim": {
    "braced": {
     "dev": 0.0,
@@ -175,6 +176,75 @@
     "pmin": 1.0,
     "run": "sa2"
    }
+  },
+  "qa": "sb4: every stance + braced run; 9 GIFs decoded and looked at; AI firing not yet seen",
+  "reload": {
+   "braced": {
+    "box": 0.2,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.087,
+    "end": 0.055,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sb4"
+   },
+   "crouch": {
+    "box": 0.1,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.08,
+    "end": 0.058,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sb4"
+   },
+   "prone": {
+    "box": 0.7,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.085,
+    "end": 0.063,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sb4"
+   },
+   "stand": {
+    "box": 1.2,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.082,
+    "end": 0.061,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sb4"
+   },
+   "standL": {
+    "box": 1.3,
+    "case": "empty",
+    "dev": 1.37,
+    "edge": 0.083,
+    "end": 0.058,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sb4"
+   },
+   "standR": {
+    "box": 0.5,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.089,
+    "end": 0.053,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sb4"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "sb4",
+   "target": "yes"
   }
  },
  "models/weapons/mp40_mp18.tik": {
@@ -241,7 +311,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "sa2"
+    "run": "sa7"
    },
    "crouch": {
     "dev": 0.0,
@@ -249,7 +319,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "sa2"
+    "run": "sa7"
    },
    "crouchL": {
     "dev": 0.0,
@@ -257,7 +327,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "sa2"
+    "run": "sa7"
    },
    "crouchR": {
     "dev": 0.0,
@@ -265,7 +335,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "sa2"
+    "run": "sa7"
    },
    "prone": {
     "dev": 0.0,
@@ -273,7 +343,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "sa2"
+    "run": "sa7"
    },
    "stand": {
     "dev": 0.0,
@@ -281,7 +351,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "sa2"
+    "run": "sa7"
    },
    "standL": {
     "dev": 0.0,
@@ -289,7 +359,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "sa2"
+    "run": "sa7"
    },
    "standR": {
     "dev": 0.0,
@@ -297,7 +367,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "sa2"
+    "run": "sa7"
    }
   }
  },
@@ -309,7 +379,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "sa2"
+    "run": "sa7"
    },
    "crouch": {
     "dev": 0.0,
@@ -317,7 +387,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "sa2"
+    "run": "sa7"
    },
    "crouchL": {
     "dev": 0.0,
@@ -325,7 +395,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "sa2"
+    "run": "sa7"
    },
    "crouchR": {
     "dev": 0.0,
@@ -333,7 +403,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "sa2"
+    "run": "sa7"
    },
    "prone": {
     "dev": 0.0,
@@ -341,7 +411,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "sa2"
+    "run": "sa7"
    },
    "stand": {
     "dev": 0.0,
@@ -349,7 +419,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "sa2"
+    "run": "sa7"
    },
    "standL": {
     "dev": 0.0,
@@ -357,7 +427,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "sa2"
+    "run": "sa7"
    },
    "standR": {
     "dev": 0.0,
@@ -365,7 +435,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "sa2"
+    "run": "sa7"
    }
   }
  },

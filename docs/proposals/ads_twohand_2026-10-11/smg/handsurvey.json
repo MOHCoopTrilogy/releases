@@ -36,18 +36,18 @@
  "ppsh": {
   "aim": [
    4.4,
-   -3.0,
-   2.5
+   -4.2,
+   2.7
   ],
   "aim_clip": "viewmodel/ppsh/coop_ppsh_ads_mag.skc",
-  "d": 1.2,
+  "d": 1.8,
   "hip": [
    4.4,
    -3.0,
    1.3
   ],
   "hip_clip": "viewmodel/ppsh/ppsh_idle.skc",
-  "match": true,
+  "match": false,
   "staged": true
  },
  "sten": {

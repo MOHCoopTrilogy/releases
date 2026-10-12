@@ -51,8 +51,10 @@ animations
 			entry sound pistol_whip // the swish sound. 
 		}
 	}
-	mp40_reload		viewmodel/MP40/reload_mp40_stand.skc	crossblend 0.1
-	mp40_reload_ads		viewmodel/MP40/mp40_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	mp40_reload		viewmodel/mp40/coop_mp40_reload_hip.skc	crossblend 0.1
+	mp40_reload_empty		viewmodel/mp40/coop_mp40_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	mp40_reload_ads		viewmodel/mp40/mp40_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	mp40_reload_empty_ads		viewmodel/mp40/mp40_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
 	mp40_pullout		viewmodel/mp40/raise_mp40_stand.skc
 	{
 		client

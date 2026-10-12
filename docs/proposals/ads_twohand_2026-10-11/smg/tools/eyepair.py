@@ -32,6 +32,12 @@ def eye(gun, clip, W, corr_clip=None):
     for i in np.unique(sid[sid >= 0]):
         nm = surfs[int(i)]['name']
         names[nm] = round(names.get(nm, 0.0) + 100.0 * float((sid == i).mean()), 1)
+    # support hand / left sleeve pixels to the RIGHT of the screen centre, as a share of the frame (a left hand showing
+    # on the right of the gun reads wrong from the eye)
+    full = np.where(ids >= 0, ids // 1000000, -1)
+    lh = [i for i, s in enumerate(surfs) if s['name'] in ('lefthand', 'leftsleeve', 'leftarm')]
+    names['_left_hand_right_of_centre_px'] = int(np.isin(full[:, W // 2 + 2:], lh).sum())
+    names['_surfs'] = sorted(set(s['name'] for s in surfs if not s['name'].lower().startswith(gun.split('_')[0][:4])))[:8]
     im = Image.fromarray(rgb.astype(np.uint8))
     ImageDraw.Draw(im).rectangle((x0, y0, x1, y1), outline=(255, 230, 0), width=2)
     return im, float((box >= 0).mean()), names

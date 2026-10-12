@@ -65,5 +65,19 @@ s = s.replace(old, '    L += A.frames(tag, 4, i) + ["set cg_drawviewmodel 0", "w
 s = s.replace('ap.add_argument("--yaw", type=int, default=None)', 'ap.add_argument("--yaw", type=int, default=None); ap.add_argument("--stances", default=None)')
 s = s.replace("        R.SPOT = R.SPOT[:3] + (a.yaw,)\n", "        R.SPOT = R.SPOT[:3] + (a.yaw,)\n    if a.stances:\n        globals()['STANCES'] = tuple(x for x in a.stances.split(',') if x)\n", 1)
 assert "globals()['STANCES']" in s
+# the SMG lane's own captures (smg_block.py), dispatched per gun from run()
+blk = open(os.path.join(HERE, 'smg_block.py'), encoding='latin-1').read()
+assert s.count('\ndef run(a):\n') == 1
+s = s.replace('\ndef run(a):\n', '\n' + blk + 'def run(a):\n')
+hook = '            if "fire" in a.parts:\n'
+assert s.count(hook) == 1
+s = s.replace(hook, '            smg_parts(a, gun)\n' + hook)
+s = s.replace('ap.add_argument("--stances", default=None)',
+              'ap.add_argument("--stances", default=None); ap.add_argument("--sstances", default="stand"); '
+              'ap.add_argument("--aitik", default="models/human/german_wehrmact_nco.tik"); ap.add_argument("--hold", type=int, default=175); '
+              'ap.add_argument("--rel", type=int, default=200); ap.add_argument("--cheats", action="store_true")')
+s = s.replace("    if a.stances:\n", "    a.sstances = [x for x in a.sstances.split(',') if x]\n    SMG_HOLD[0] = a.hold; SMG_REL[0] = a.rel\n"
+              "    if a.cheats:\n        cheats_on()\n    if a.stances:\n", 1)
+assert 'SMG_HOLD[0] = a.hold' in s
 open(os.path.join(HERE, 'run_smg.py'), 'w', encoding='latin-1', newline='\n').write(s)
 print('wrote run_smg.py')

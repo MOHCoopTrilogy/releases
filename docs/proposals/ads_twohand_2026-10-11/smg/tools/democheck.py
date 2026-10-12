@@ -5,9 +5,10 @@ far the sight line strays (deg) from the settled aim just before the first shot.
     python democheck.py <session> [tag substring]
 """
 import sys, re
+RUNS_DIR = __import__('os').environ.get('ADS_RUNS', 'G:/mohaa-adsanim3/runs').rstrip('/')   # another lane's harness: set ADS_RUNS
 sess = sys.argv[1]
 sub = sys.argv[2] if len(sys.argv) > 2 else '__demo__'
-log = open('G:/mohaa-adsanim3/runs/%s/qconsole.log' % sess, encoding='latin-1', errors='replace').read().splitlines()
+log = open(RUNS_DIR + '/%s/qconsole.log' % sess, encoding='latin-1', errors='replace').read().splitlines()
 cur, seg, rows, order = None, None, {}, {}
 for ln in log:
     m = re.search(r'ABSCEN (begin|end) (\S+)', ln)

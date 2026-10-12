@@ -1,0 +1,28 @@
+{
+ "repoint": [
+  [
+   "mp40_reload",
+   "viewmodel/mp40/coop_mp40_reload_hip.skc"
+  ]
+ ],
+ "add": [
+  [
+   "mp40_reload_empty",
+   "viewmodel/mp40/coop_mp40_reload_empty_hip.skc",
+   "0.1",
+   "mp40_reload"
+  ],
+  [
+   "mp40_reload_ads",
+   "viewmodel/mp40/mp40_reload_ads.skc",
+   "0.1",
+   "mp40_reload_empty"
+  ],
+  [
+   "mp40_reload_empty_ads",
+   "viewmodel/mp40/mp40_reload_empty_ads.skc",
+   "0.1",
+   "mp40_reload_ads"
+  ]
+ ]
+}

@@ -1,0 +1,117 @@
+[
+ {
+  "error_message": "bug-3585 settled: the Sten 'drawn 45 px lower' with the hand-on-magazine aim pose was the aim SWAY, not the pose",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/aimpair.py",
+  "root_cause": "The stills of runs sa1 / sa2 were taken with the harness's cg_adsSway 0.1 + cg_weaponBreath 1 on. The sway moves the gun sideways / up and down by a fraction of a unit; the probe's `sight` field excludes it, its F / R fields (screen place of the front and rear sight) show it. The Sten's rear sight is 4.27 u from the eye (relief), so the same sway moves its receiver cap 6-7 times further on screen than the front sight: R ranged from (-24, -11) to (+16, +22) px between captures of the SAME pose, and the released-pose still happened to catch (-17, -27).",
+  "fix": "Runs sa6 (released pose) and sa7 (new pose) with sway and breath off: F, R and the gun's tag point are identical to 0.1 px (G = 77.4, 621.2 in both), centre box 18.2 vs 18.3 %. Both poses draw the gun in the same place; the released sight picture is kept. Aim-pose still pairs are taken with sway off from now on (run_smg --set).",
+  "tags": [
+   "ads",
+   "aim-pose",
+   "sten",
+   "sway",
+   "harness",
+   "probe",
+   "smg"
+  ],
+  "related_bugs": [
+   "bug-3585"
+  ]
+ },
+ {
+  "error_message": "PPSh aim pose: part of the support hand shows at the lower RIGHT of the receiver (coordinator: a left hand on the right of the gun reads wrong from the eye)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgpose.py",
+  "root_cause": "The hip hand wraps a stock that is narrower than the hand: its fingertips reach 3 u up the right side. From the eye, 3 u away, that is in plain view. Turning the hand about the gun's axis only moves the fingers round the right side (tried 30 / 55 / 80 deg).",
+  "fix": "Same hand, same place ALONG the gun, 1.2 u to the left and 1.4 u lower (1.8 u off the hip place): the fingertips end under the stock, palm and thumb on its left. Offline 0 hand pixels right of the centre line (eyepair.py now counts them); engine run sa7 in 8 stances, new still pair.",
+  "tags": [
+   "ads",
+   "aim-pose",
+   "ppsh",
+   "support-hand",
+   "smg",
+   "staged"
+  ],
+  "related_bugs": [
+   "bug-3584"
+  ]
+ },
+ {
+  "error_message": "MP18 looks flat brown and untextured in the aim",
+  "file": "hzm-mohaa-coop-mod/textures/coop_mp18/body.jpg",
+  "root_cause": "Not a missing texture or shader: the imported pack's own textures are near-uniform colour fields (body.jpg mean RGB 42/36/27 with a standard deviation of 6; stuff.jpg 55/46/38, sd 11) on a low-polygon stock that sits 3 u from the eye. Same picture with the released files and pose (run sa5). No load warnings in the log.",
+  "fix": "None in this lane (open): it needs real textures for coop_mp18 body / stuff - a weapon-HD job. Reported to the coordinator; the MP18 keeps its released look until then.",
+  "tags": [
+   "mp18",
+   "texture",
+   "variant",
+   "open",
+   "weapon-hd"
+  ]
+ },
+ {
+  "error_message": "First MP40 'emptied' captures never reloaded: the trigger was held 175 frames and the gun still had rounds",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smg_block.py",
+  "root_cause": "Hold time computed from the tik's dm firedelay 0.08 s; the coop game runs the sp line (0.095 s): 32 rounds take 3.04 s = 190 frames of 16 ms.",
+  "fix": "--hold 235 (the reload starts by itself when the gun runs dry with the trigger still down); reloadbox.py finds the reload from the probe's anim field instead of trusting the harness mark.",
+  "tags": [
+   "harness",
+   "smg",
+   "mp40",
+   "firedelay"
+  ]
+ },
+ {
+  "error_message": "Engine centre-box measure read 2-7 % 'cover' through a whole emptied-gun reload with only the sights in the box",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/reloadbox.py",
+  "root_cause": "After a 32-round burst the VIEW is still creeping back for seconds; the wall behind the gun is then up to 10 px off the reference frame (taken at the end), and every timber edge differs from the reference.",
+  "fix": "reloadbox.py shifts the reference to each frame's background before differencing (best match of two strips the first-person model never reaches). Run sb2 emptied: 11.9 % -> 1.5 %; rounds-left unchanged at 0.3-0.5 %. The shared centrebox.py does not do this (told the coordinator).",
+  "tags": [
+   "measure",
+   "centre-box",
+   "harness",
+   "recoil",
+   "smg"
+  ]
+ },
+ {
+  "error_message": "MP40 cock, first engine look: the cocking hand's fingertips came out on the RIGHT side of the receiver, and the first handle read as a black brick beside the rear sight",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py",
+  "root_cause": "The hook was built with the palm facing the shooter and the fingers up: for a LEFT hand the index -> little finger direction then points INTO the gun, so three fingers passed through the receiver. A second try with the palm on the wall and the fingers straight up put the forearm under the gun (sleeve on both sides). The handle box was 0.5 x 0.9 x 0.5 u, 9 u from the eye when back.",
+  "fix": "Hook = fingers up and IN toward the gun from a wrist at the lower left, palm on the receiver's wall turned down with them (fdir 0.15, 0.6, -0.8; pdir 0, 0.8, 0.6), contact = the index's last joint on the handle's front face, hand 0.3 u outboard so the thumb is not in the wall. Handle 0.36 x 0.8 x 0.36 u. Offline: 0.5 % of the box at worst, nothing right of the gun.",
+  "tags": [
+   "ads",
+   "reload",
+   "mp40",
+   "cock",
+   "hand",
+   "smg",
+   "staged"
+  ]
+ },
+ {
+  "error_message": "Hip empty reload: a built hook could not reach the handle (IK clamp, hand 2-3 u short), and the retail mime is 3 u out to the left of the receiver",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py",
+  "root_cause": "At the hip the gun is at arm's length: the retail cocking hand already uses 25.9 of the arm's 26.8 u. Any wrist place other than the retail one is out of reach.",
+  "fix": "The retail hand is kept, wrist and all, and turned about its wrist by the smallest rotation that puts its index fingertip on the handle's front face; the handle follows that fingertip along the gun frame by frame (smggun.py hip_curve), so they cannot drift apart (0.00 u at worst, offline). The hip reload with rounds left = the retail clip to the seat frame, then its own end pose: no cock.",
+  "tags": [
+   "hip",
+   "reload",
+   "mp40",
+   "cock",
+   "ik",
+   "smg",
+   "staged"
+  ]
+ },
+ {
+  "error_message": "`spawn` and `notarget` refused in the harness: You must run the server with '+set cheats 1'",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/mkov_smg.py",
+  "root_cause": "The mod's server start leaves cheats off; neither `set cheats 1` in the boot cfg nor on the client's command line survives it (runs sb2, sb3). The harness's own `dog 1` has been a no-op for the same reason (notes.json dog: false) - the test thread's `nodamage` is what protects the player.",
+  "fix": "The test overlay's own script thread spawns the AI (cvar coop_isAi, spliced into the plumbing's weather.scr by mkov_smg.py with a brace-depth check). The NCO spawns with his MP40 (runs sb4, sb5), but the map's friendly NPC kills him within a second both times (turret attack type and 20000 health did not hold him): an AI MP40 firing has NOT been seen yet.",
+  "tags": [
+   "harness",
+   "cheats",
+   "ai",
+   "smg"
+  ]
+ }
+]

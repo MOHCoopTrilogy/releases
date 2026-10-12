@@ -22,8 +22,12 @@ GUNS = {
     # hip relation where it would put the hand inside the centre box
     'mp40': dict(sight='mp40', idle='mp40_idle1', out='viewmodel/mp40/coop_mp40_ads_mag.skc'),
     # PPSh: at the exact hip place the thumb and the fingertips stand up on both sides of the rear sight (9.8 % of the
-    # centre box); 1.2 u lower the hand still cups the back of the drum and is out of the box (0.1 %)
-    'ppsh': dict(sight='ppsh_smg', idle='ppsh_idle', out='viewmodel/ppsh/coop_ppsh_ads_mag.skc', lower=(0.0, 0.0, -1.2)),
+    # centre box). 1.2 u lower cleared the box but left the fingertips showing on the RIGHT of the receiver (run sa2;
+    # coordinator: a left hand on the right of the gun reads wrong from the eye). The hip hand wraps a stock that is
+    # narrower than the hand, so turning it about the gun's axis only moves the fingers round the right side; what
+    # clears it is the same hand, same place ALONG the gun, 1.2 u to the left and 1.4 u lower: the fingertips end under
+    # the stock, the palm and thumb lie on its left (0 px right of the centre line, 0.1 % of the box). 1.8 u off.
+    'ppsh': dict(sight='ppsh_smg', idle='ppsh_idle', out='viewmodel/ppsh/coop_ppsh_ads_mag.skc', lower=(0.0, 1.2, -1.4)),
     'moschetto': dict(sight='moschetto', idle='moschetto_idle', out='viewmodel/moschetto/coop_moschetto_ads_mag.skc'),
     # Type 100 (side magazine): the exact hip place covers 11.8 % of the box with the hand; the pistol lane's first
     # pose took the magazine from underneath (0, 1.0, -1.7): 2.0 u off, 1.5 % hand in the box. (0, 1.05, -0.95) is
@@ -67,8 +71,22 @@ def bake(name, root, lower=None, elb=None, elbw=None):
                        elbow_vec={'L': tuple(elb or g.get('elb', (0, 0.5, -1)))},
                        elbow_down={'L': [(0, float(elbw if elbw is not None else g.get('elbw', 4.0)))]})
     rc['hip'] = hip
-    if lower:
-        k = dict(rel=0, cam_add=tuple(lower), fing=0)
+    roll = float(os.environ['SP_ROLL']) if os.environ.get('SP_ROLL') else g.get('roll')
+    if lower or roll:
+        k = dict(rel=0, cam_add=tuple(lower or (0, 0, 0)), fing=0)
+        if roll:
+            # the hand turned about the gun's long axis through `pivot` (gun frame, u): the same place ALONG the gun,
+            # the palm brought round to the gun's left / underside so no finger comes up on its right
+            hc = R.load(R.ANIM + hip)
+            Wh = R.evaluate(R.pose_dict(hc, 0))
+            rel0 = Wh['Bip01 L Hand'] @ R.inv(Wh['tag_weapon_right'])
+            pv = np.asarray(tuple(float(x) for x in os.environ['SP_PIVOT'].split(',')) if os.environ.get('SP_PIVOT') else g['pivot'], float) / R.S
+            Tm = np.eye(4); Tm[3, 0:3] = -pv
+            Rm = np.eye(4); Rm[0:3, 0:3] = R.axis_angle_rows((1, 0, 0), roll)
+            Tp = np.eye(4); Tp[3, 0:3] = pv
+            k['relT'] = rel0 @ Tm @ Rm @ Tp
+        if g.get('fing_open') or os.environ.get('SP_OPEN'):
+            pass
         rc['left_path'] = {0: k, R.load(R.ANIM + hip).numFrames - 1: k}
     H.RECIPES[g['idle']] = rc
     sk, _ = H.bake(g['idle'], RB.CTL)

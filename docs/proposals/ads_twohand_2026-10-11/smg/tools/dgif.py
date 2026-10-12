@@ -8,6 +8,7 @@ times smaller than sheet.py's gif at the same size, which buys frame rate (pops 
 --box draws the centre box (middle 20 % of the screen). Prints the size; the budget is 3 MB.
 """
 import sys, os, glob, argparse
+RUNS_DIR = __import__('os').environ.get('ADS_RUNS', 'G:/mohaa-adsanim3/runs').rstrip('/')   # another lane's harness: set ADS_RUNS
 import numpy as np
 from PIL import Image, ImageDraw
 
@@ -19,7 +20,7 @@ def main():
     ap.add_argument('--colors', type=int, default=96); ap.add_argument('--thr', type=int, default=26); ap.add_argument('--box', action='store_true')
     ap.add_argument('--labels', default=''); ap.add_argument('--hold', type=int, default=12)
     a = ap.parse_args()
-    fs = sorted(glob.glob('G:/mohaa-adsanim3/runs/%s/*%s*__[0-9][0-9][0-9][0-9].jpg' % (a.sess, a.sub)))
+    fs = sorted(glob.glob(RUNS_DIR + '/%s/*%s*__[0-9][0-9][0-9][0-9].jpg' % (a.sess, a.sub)))
     assert fs, 'no frames'
     p = [int(x) for x in a.frames.split(':')]
     idx = list(range(p[0], min(p[1], len(fs)), p[2] if len(p) > 2 else 1))
