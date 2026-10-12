@@ -10,7 +10,7 @@
 				count 6
 				model models/ammo/pistolshell.tik
 				spawnrange 1024
-				scale .75
+				scale 1.0
 				offsetalongaxis 3.2 -2.2 -1.5
 				randvelaxis range -60 -25 crandom 18 crandom 18
 				avelocity crandom 360 crandom 360 crandom 180
@@ -36,7 +36,7 @@
 				count 6
 				model models/ammo/pistolshell.tik
 				spawnrange 1024
-				scale .75
+				scale 1.0
 				offsetalongaxis 3.2 -2.2 -1.5
 				randvelaxis range -60 -25 crandom 18 crandom 18
 				avelocity crandom 360 crandom 360 crandom 180

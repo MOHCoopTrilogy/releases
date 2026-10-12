@@ -164,7 +164,7 @@ def scan(sessions):
         pass
     for sess in sessions:
         log = open('G:/mohaa-adsanim/runs/%s/qconsole.log' % sess, encoding='latin-1', errors='replace').read().splitlines()
-        cur, rows, seg = None, {}, {}
+        cur, rows, seg, fref = None, {}, {}, {}
         for ln in log:
             m = re.search(r'ABSCEN (begin|end) (\S+)', ln)
             if m:
@@ -176,10 +176,12 @@ def scan(sessions):
             # standing aimed reload - re-tagged here so the same verdict rule applies
             m = re.search(r'\^~\^~\^ DEMO (\w+) (\d+)', ln)
             if cur and m and 'echo' not in ln and '__demo__after' in cur:
-                if m.group(1) == 'reload':
+                if m.group(1) == 'fire' and cur not in fref:
+                    fref[cur] = rows[cur][-4:]           # the settled aim BEFORE the first shot: an emptied gun starts
+                if m.group(1) == 'reload':               # its reload by itself, before the harness's reload marker
                     g = cur.split('__')[2]
                     seg[cur] = 'ab__%s__%s__stand__reload__after' % (sess, g)
-                    rows[seg[cur]] = rows[cur][-4:]          # settled aim just before the reload = the reference
+                    rows[seg[cur]] = list(fref.get(cur) or rows[cur][-4:])     # the reference samples
                 elif cur in seg:
                     del seg[cur]
                 continue

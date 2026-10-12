@@ -87,7 +87,7 @@ put('models/player/base/anims_shared.txt', u, crlf)
 
 # ---------------------------------------------------------------- fps rows
 dump = ('\t{\n\t\tclient\n\t\t{\n\t\t\t21 tagspawn tag_weapon_right\t// the ejector rod pushes the six fired cases out of the open cylinder (first person)\n'
-        '\t\t\t(\n\t\t\t\tcount 6\n\t\t\t\tmodel models/ammo/pistolshell.tik\n\t\t\t\tspawnrange 1024\n\t\t\t\tscale .75\n'
+        '\t\t\t(\n\t\t\t\tcount 6\n\t\t\t\tmodel models/ammo/pistolshell.tik\n\t\t\t\tspawnrange 1024\n\t\t\t\tscale 1.0\n'
         '\t\t\t\toffsetalongaxis 3.2 -2.2 -1.5\n\t\t\t\trandvelaxis range -60 -25 crandom 18 crandom 18\n'
         '\t\t\t\tavelocity crandom 360 crandom 360 crandom 180\n\t\t\t\taccel 0 0 -800\n\t\t\t\tphysicsrate 20\n\t\t\t\tlife 2.0\n'
         '\t\t\t\tfadedelay 1.7\n\t\t\t\tcollision\n\t\t\t\tbouncefactor 0.2\n\t\t\t\tbouncesoundonce snd_pistol_shell\n\t\t\t)\n\t\t}\n\t}\n')

@@ -110,6 +110,12 @@ rod = P[29]['Cylinder5']
 pts = dict(c_closed=c0.tolist(), c_open=co.tolist(), radius=rad, rear_x=float(P[29]['Cylinder4'][:, 0].min()),
            front_x=float(P[29]['Cylinder4'][:, 0].max()), rod_tip=[float(rod[:, 0].max()), float(rod[:, 1].mean()), float(rod[:, 2].mean())],
            frame_left_y=float(P[0]['Cube1'][:, 1].min()))
+_fj = os.path.join(HERE, 'm10_face.json')
+if os.path.isfile(_fj):
+    ch = [(np.array(c) - Pg) @ Rg_open + Pg for c in json.load(open(_fj))['chambers']]
+    feed = max(ch, key=lambda c: -c[1] + 0.6 * c[2])          # gun y = right, z = down
+    pts['feed'] = [float(pts['rear_x']), float(feed[1]), float(feed[2])]
+    pts['chambers_open'] = [[float(x) for x in c] for c in ch]
 json.dump(pts, open(os.path.join(HERE, 'm10_points.json'), 'w'), indent=1)
 print(pts)
 
@@ -127,6 +133,16 @@ new = ("\t// HZM coop [revolver reload 2026-10-12] the cylinder + crane + ejecto
        "\treload_end\tcoop_m10_close.skc\n\t{\n\t\tserver\n\t\t{\n\t\t\tlast idle\n\t\t}\n"
        "\t\tclient\n\t\t{\n\t\t\t8 sound webley_snd_reload_end\n\t\t}\n\t}\n")
 t = t.replace(old, new, 1)
+import m10face
+_a = 'surface Cylinder2 shader coop_m10_cyopen1\n'
+assert t.count(_a) == 1
+t = t.replace(_a, _a + m10face.tik_lines(), 1)
+_o = '\treload\t\tcoop_m10_open.skc\n\t{\n'
+assert _o in t
+t = t.replace(_o, _o + '\t\tserver\n\t\t{\n\t\t\t21 surface coop_m10_heads +nodraw\t// the cylinder is emptied\n\t\t}\n', 1)
+_o = '\treload_end\tcoop_m10_close.skc\n\t{\n\t\tserver\n\t\t{\n'
+assert _o in t
+t = t.replace(_o, _o + '\t\t\tfirst surface coop_m10_heads -nodraw\t// loaded\n', 1)
 # user 2026-10-12 '6 for m10': a Model 10 has six chambers (was 7; start ammo that was counted in cylinders follows)
 import re as _re
 for a_, b_ in (('clipsize\t\t7', 'clipsize\t\t6'), ('dm startammo\t28', 'dm startammo\t24'), ('dmrealism startammo\t14', 'dmrealism startammo\t12')):

@@ -25,6 +25,8 @@ setup
 	//drew untextured. The real shader is coop_m10_cyopen1 (coop_m10_cyopen2 is its unreferenced
 	//twin; the pack ships 13 textures for 12 surfaces).
 	surface Cylinder2 shader coop_m10_cyopen1
+	surface coop_m10_face shader coop_m10_face
+	surface coop_m10_heads shader coop_m10_heads
 }
 $define sounddir sound/weapons
 
@@ -172,6 +174,10 @@ animations
 	// split out of the mesh): open / one round at a time / close, as the Webley's start / single / end.
 	reload		coop_m10_open.skc
 	{
+		server
+		{
+			21 surface coop_m10_heads +nodraw	// the cylinder is emptied
+		}
 		client
 		{
 				entry sound colt45_snd_reload item
@@ -188,6 +194,7 @@ animations
 	{
 		server
 		{
+			first surface coop_m10_heads -nodraw	// loaded
 			last idle
 		}
 		client

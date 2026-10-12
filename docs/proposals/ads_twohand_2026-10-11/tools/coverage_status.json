@@ -250,72 +250,94 @@
    "crouch": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "crouchL": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "crouchR": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "prone": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "stand": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "standL": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "standR": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    }
   },
   "lowered": true,
-  "note": "tr1: hand-keyed swing-out reload, 0.77 s per round (6.1 s for six from empty); clip size 6 (user 2026-10-12); open: cylinder rear face is a flat dark disc, the hand covers the chamber, the aimed case dump hides behind the cuff; standing only",
+  "note": "ts1 / tu1: swing-out reload with a real cylinder face (chamber mouths, case heads hidden while empty), readable case dump, 6 rounds, stand / crouch / prone / lean, switch + sprint interruptions; open: a cartridge flies off when the loop is cut by a weapon switch, ejector rod does not move, braced",
   "reload": {
    "crouch": {
-    "dev": 119.17,
-    "edge": 17.02,
+    "dev": 8.11,
+    "edge": 4.89,
+    "end": 0.0,
     "ok": false,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "prone": {
-    "dev": 119.15,
-    "edge": 16.95,
+    "dev": 8.11,
+    "edge": 4.7,
+    "end": 0.0,
     "ok": false,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "stand": {
-    "dev": 119.15,
-    "edge": 43.35,
+    "dev": 49.93,
+    "edge": 49.93,
+    "end": 0.01,
     "ok": false,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "standL": {
-    "dev": 95.29,
-    "edge": 19.61,
+    "dev": 8.11,
+    "edge": 5.5,
+    "end": 0.0,
     "ok": false,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "standR": {
     "dev": 116.22,
@@ -330,72 +352,94 @@
    "crouch": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "crouchL": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "crouchR": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "prone": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "stand": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "standL": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "standR": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    }
   },
   "lowered": true,
-  "note": "tr2: hip + aimed gate-loader reload, 0.9 s per round (7.8 s for seven): keyed gun, retail hand relations, round in the fingers from the pouch, one case pops out of the gate per round; standing only",
+  "note": "ts1 / tu1: aim + aimed reload (0.9 s per round) in stand / crouch / prone / lean, switch + sprint interruptions clean; case pops from the gate per round; open: cradling hand still large, braced",
   "reload": {
    "crouch": {
-    "dev": 52.21,
-    "edge": 0.67,
+    "dev": 23.67,
+    "edge": 0.0,
+    "end": 0.0,
     "ok": false,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "prone": {
-    "dev": 49.67,
-    "edge": 0.67,
+    "dev": 23.72,
+    "edge": 0.01,
+    "end": 0.0,
     "ok": false,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "stand": {
-    "dev": 48.95,
-    "edge": 0.89,
+    "dev": 24.07,
+    "edge": 21.55,
+    "end": 0.01,
     "ok": false,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "standL": {
-    "dev": 53.88,
-    "edge": 1.79,
+    "dev": 23.53,
+    "edge": 0.0,
+    "end": 0.0,
     "ok": false,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "ts1"
    },
    "standR": {
     "dev": 45.8,
@@ -571,7 +615,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "tx3"
+    "run": "ts1"
    },
    "crouchL": {
     "dev": 0.0,
@@ -579,7 +623,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "tx3"
+    "run": "ts1"
    },
    "crouchR": {
     "dev": 0.0,
@@ -587,7 +631,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "tx3"
+    "run": "ts1"
    },
    "prone": {
     "dev": 0.0,
@@ -595,7 +639,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "tx3"
+    "run": "ts1"
    },
    "stand": {
     "dev": 0.0,
@@ -603,7 +647,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "tx3"
+    "run": "ts1"
    },
    "standL": {
     "dev": 0.0,
@@ -611,7 +655,7 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "tx3"
+    "run": "ts1"
    },
    "standR": {
     "dev": 0.0,
@@ -619,35 +663,43 @@
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "tx3"
+    "run": "ts1"
    }
   },
   "lowered": true,
-  "note": "tr1: hand-keyed hip + aimed reload at the user's chosen pace (0.77 s per round, 5.6 s for six); six-case dump when empty; tx3: crouch / prone / lean, switch + sprint interruptions (fast loop); open: remaining cuff, Mk VI fit, fire press, braced",
+  "note": "ts1: aim + aimed reload at the chosen pace in stand / crouch / prone / lean (ends 0.0 deg), switch + sprint interruptions clean; a fire press does not cut the loop (existing state rule); open: cuff, Mk VI finger fit, braced",
   "reload": {
    "crouch": {
+    "dev": 35.02,
+    "edge": 34.91,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "ts1"
+   },
+   "prone": {
     "dev": 35.01,
     "edge": 34.91,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "tx3"
+    "run": "ts1"
    },
-   "prone": {
-    "dev": 35.01,
-    "edge": 34.92,
-    "end": 0.0,
+   "stand": {
+    "dev": 35.02,
+    "edge": 34.98,
+    "end": 0.01,
     "ok": false,
     "pmin": 1.0,
-    "run": "tx3"
+    "run": "ts1"
    },
    "standL": {
     "dev": 35.01,
-    "edge": 34.92,
+    "edge": 34.91,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "tx3"
+    "run": "ts1"
    }
   }
  }

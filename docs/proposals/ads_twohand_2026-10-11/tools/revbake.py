@@ -128,7 +128,7 @@ def webley(kind, slow=False):
 # and end clips, so the hand-off frame does not show; in the loop the right tag carries the cartridge.
 NAG_C = (2.75, 0.10, -1.05)     # mouth of the chamber behind the open gate (rear face of the cylinder, right side)
 NAG_D = tuple(float(x) for x in os.environ.get('NAG_D', '0,-85,0,0,25').split(','))
-NAG_TAG = [float(x) for x in os.environ.get('NAG_TAG', '13.5,-2.0,-3.0').split(',')]
+NAG_TAG = [float(x) for x in os.environ.get('NAG_TAG', '16.0,-2.2,-3.6').split(',')]
 NAG_HOLD = tuple(float(x) for x in os.environ.get('NAG_HOLD', '2.4,0.0,-1.3').split(','))
 NAG_OFF = tuple(float(x) for x in os.environ.get('NAG_OFF', '-3.0,-3.5,-2.5').split(','))
 POUCH_R = (5.0, -9.0, -15.0)
@@ -170,8 +170,8 @@ def nagant(kind, slow=False):
         # HAND-OVER: the left hand takes the gun over the frame, the right hand lets go and waits beside the gate (the
         # retail start sends it to the pouch here; the loop does that now, with the round visible)
         'nagantrev_reload': dict(out=out('reload'), offhand=(11, 30), free_tag=False, **ga({0: 0.0, 3: 0.0, 13: 1.0, 30: 1.0}),
-                                 right_path={0: dict(aim=1), 12: dict(aim=1), 22: READY, 30: READY},
-                                 elbow_down={'L': [(0, 0.0), (8, NE), (30, NE)], 'R': [(0, 0.0), (14, 0.0), (22, NE), (30, NE)]}, **lg0),
+                                 right_path={0: dict(aim=1), 16: dict(aim=1), 28: READY, 30: READY},   # no waiting at the gate: it lets go late and goes straight on
+                                 elbow_down={'L': [(0, 0.0), (8, NE), (30, NE)], 'R': [(0, 0.0), (18, 0.0), (28, NE), (30, NE)]}, **lg0),
         'nagantrev_reload_single': dict(out=out('reload_single'), offhand=(0, 17), **ga({0: 1.0, 17: 1.0}), right_path=loopR,
                                         tag_map=tmap, elbow_down=ER),
         # CLOSE, one motion: the right hand goes back to the grip first (0-7), then the left hand rolls the gun upright
@@ -202,23 +202,25 @@ _M = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'm1
 M10_CC = tuple(_M['c_closed']); M10_CO = tuple(_M['c_open']); M10_R = _M['radius']
 M10_PUSH = (M10_CC[0], M10_CC[1] - M10_R, M10_CC[2])                 # left face of the closed cylinder
 M10_OPENF = (M10_CO[0], M10_CO[1] - M10_R, M10_CO[2])                # outer face of the open cylinder
-M10_CH = (_M['rear_x'], M10_CO[1], M10_CO[2] - 0.62 * M10_R)         # mouth of the top chamber, open (rear face)
+M10_CH = tuple(_M['feed']) if 'feed' in _M else (_M['rear_x'], M10_CO[1], M10_CO[2] - 0.62 * M10_R)   # mouth of the lower-left chamber of the open cylinder (m10build)
 M10_ROD = tuple(_M['rod_tip'])
 M10_DL = tuple(float(x) for x in os.environ.get('M10_DL', '0,0,8,0,0').split(','))      # load: muzzle down, left side up
 M10_DD = tuple(float(x) for x in os.environ.get('M10_DD', '0,0,-50,0,0').split(','))     # dump: muzzle up
 M10_TAG = [float(x) for x in os.environ.get('M10_TAG', '13.5,-1.2,-4.2').split(',') if x] or None
 M10_OFF = tuple(float(x) for x in os.environ.get('M10_OFF', '-3.0,3.4,-2.4').split(','))
-M10_SO = tuple(float(x) for x in os.environ.get('M10_SO', '-1.5,4.5,-3.5').split(','))
+M10_SO = tuple(float(x) for x in os.environ.get('M10_SO', '-1.0,5.0,-3.5').split(','))
 M10_LTAG = dict(pinch=(10.0, 3.0, -2.6), hold_vec=(0.3, 0.0, 0.0), axes=[[0, 0, 1], [0, 1, 0], [-1, 0, 0]])
 
 
 def m10(kind, empty=False, slow=False):
     aim2h = 'viewmodel/coop_m10/m10_ads2h.skc'
     Tl = work_T(aim2h, 's_w_m10_38', M10_DL, M10_TAG, M10_CH)
-    Td = work_T(aim2h, 's_w_m10_38', M10_DD, [float(x) for x in os.environ.get('M10_DTAG', '13.5,-1.2,-6.0').split(',')], M10_ROD)
-    RO = tuple(float(x) for x in os.environ.get('M10_ROFF', '-2.5,3.0,-2.5').split(','))
+    Td = work_T(aim2h, 's_w_m10_38', M10_DD, [float(x) for x in os.environ.get('M10_DTAG', '13.5,-3.0,-6.0').split(',')], M10_ROD)
+    RO = tuple(float(x) for x in os.environ.get('M10_ROFF', '-1.5,3.5,2.5').split(','))
     EK = [float(x) for x in os.environ.get('M10_EK', '3,3').split(',')]
     common = dict(gun='s_w_m10_38', fixed_right=True)
+    if empty:
+        common['elbow_vec'] = {'L': tuple(float(x) for x in os.environ.get('M10_ELBL', '0,1,0.3').split(','))}
     if kind == 'ads':
         common.update(charge=aim2h)
         sh = lambda keys: dict(shoulder_ref=dict(clip=REFAIM, keys=keys))
@@ -232,7 +234,7 @@ def m10(kind, empty=False, slow=False):
     ROD = dict(gunpt=M10_ROD, off=RO, rot='aim')
     RODIN = dict(gunpt=(M10_ROD[0] - 1.3, M10_ROD[1], M10_ROD[2]), off=RO, rot='aim')
     SEAT = dict(gunpt=M10_CH, off=M10_SO, rot='aim', fing=PINCH, pinch_at=1, above_vec=(-0.4, 0.0, 0.0))
-    LIFT = dict(gunpt=M10_CH, off=M10_SO, rot='aim', fing=PINCH, pinch_at=1, above_vec=(-2.8, 0.0, -0.3))
+    LIFT = dict(gunpt=M10_CH, off=M10_SO, rot='aim', fing=PINCH, pinch_at=1, above_vec=(-2.2, 0.0, 0.0), cam_add=(-0.5, 2.2, -2.2))
     REST = dict(gunpt=M10_CH, off=M10_SO, rot='aim', fing=PINCH, pinch_at=1, above_vec=(-1.8, 0.0, -0.2), cam_add=(-0.5, 1.8, -2.2))
     PO = dict(cam=POUCH, rot='aim', fing='aim')
     start = 'viewmodel/coop_m10/coop_m10_tp_start.skc'              # the retail Webley start resampled to 30 frames (1.0 s)
@@ -246,7 +248,7 @@ def m10(kind, empty=False, slow=False):
         name0 = 'reload'
     if slow:
         N = 23
-        loop = {0: REST, 6: PO, 12: PO, 17: LIFT, 20: SEAT, 21: SEAT, 23: REST}
+        loop = {0: REST, 5: PO, 9: PO, 15: LIFT, 20: SEAT, 21: SEAT, 23: REST}     # in view from ~11: the hand is SEEN arriving with the round
         lsrc = dict(hip='viewmodel/webley/coop_webley_tp_single_slow.skc')
         lname = 'reload_single_slow'
     else:
