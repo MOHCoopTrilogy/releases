@@ -83,8 +83,11 @@ Test = `tools/run_unlock.py` (a measure-only script probe in the overlay; the ra
 
 Stills: `../evidence/g43irons/g43irons_unlock_path_rb46.jpg` (nine moments), `g43irons_variant_label_rb47.jpg`.
 NOT tested: a kill made WITH the irons counting on the G43's counter (the harness has no enemies; by the code:
-`challenges.scr::chal_widFromModel` `containsText "g43"`), a second client / dedicated server, the MP armory, finishes
-unlocking on the shared counter (the finish gate is keyed by the same weapon id).
+`challenges.scr::chal_widFromModel` `containsText "g43"`), a second client / dedicated server, the MP armory.
+CORRECTED 2026-10-13 (heavy lane, checked in the code): the seven standard FINISHES (gold ... desert) are GLOBAL
+unlocks, one challenge each (`challenges.scr` `fin_gold` ... -> stat `finish_<key>`, `loadoutskins.scr`
+`coop_skinFinStat`; `loadoutpick.scr::loadout_finUnlocked` asks only for the finish id) - NOT per-gun kill counters.
+A new gun's finish tiks need no challenge of their own; only its model VARIANTS ride a weapon counter.
 **The Service Record does not list rank rewards at all** (it lists challenges; `gen_service_record.py` never reads
 `xp.scr`), so there is no row where "Unlocks: Gewehr 43 (Iron Sights)" could appear today. The rank-2 reward is
 named in: the armory lock line, the lobby's NEW UNLOCKS list and the debrief card's EARNED THIS MISSION (both take

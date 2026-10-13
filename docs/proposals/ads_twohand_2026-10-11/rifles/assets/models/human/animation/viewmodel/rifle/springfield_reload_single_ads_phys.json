@@ -1,0 +1,74 @@
+{
+ "gun": "springfield_single",
+ "holds": {
+  "push": {
+   "drop": 2.4,
+   "roll": 16.0,
+   "pitch": 1.1,
+   "side": 0.9,
+   "back": -3.2
+  }
+ },
+ "pose": [
+  [
+   0,
+   "push"
+  ],
+  [
+   27,
+   "push"
+  ]
+ ],
+ "scale": 2.5,
+ "events": [
+  [
+   3,
+   "clip_set",
+   3.0
+  ],
+  [
+   5,
+   "clip_push",
+   4.0
+  ],
+  [
+   8,
+   "hand_off",
+   1.25
+  ],
+  [
+   15,
+   "body_reach",
+   2.0
+  ],
+  [
+   22,
+   "body_back",
+   2.0
+  ]
+ ],
+ "cls": {
+  "m": 4.1,
+  "f2": 2.6,
+  "f1": 2.0,
+  "z": 0.62,
+  "sag": [
+   0.04,
+   0.8,
+   0.1,
+   -0.03,
+   -0.04
+  ],
+  "magw": 0.0,
+  "tr": [
+   0.012,
+   0.1,
+   0.07,
+   0.01,
+   0.004
+  ],
+  "tr2": 0.5
+ },
+ "report": "chain loop: class custom x1.00: peak pitch 0.46 deg at f9, roll 0.90 deg, drop 0.42 u, back 0.08 u; settles 0.20 s after the last action; left at the last frame before the fade: pitch 0.10 deg",
+ "md5": "c3271512c27d4a750856af1bff983777"
+}

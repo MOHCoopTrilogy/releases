@@ -16,7 +16,7 @@ A, S, R = RR.A, RR.S, RR.R
 SHOT = ["+attackprimary", "wait 90", "-attackprimary"]
 
 
-def part(gun, name, shots, after):
+def part(gun, name, shots, after, shotwait=450):
     ads = name.startswith("ads")
     L = S.RELEASE + S.TO_STAND + ["wait 400"] + (["+button13", "wait 1900"] if ads else ["wait 700"])
     L += ["echo ^~^~^ RT begin %s %s" % (gun, name), "set coop_rtOn 1", "wait 300"]
@@ -24,7 +24,7 @@ def part(gun, name, shots, after):
         L += SHOT + ["wait 1500", "echo ^~^~^ RT cmd reload", "reload", "wait %d" % after]
     else:
         for k in range(shots):
-            L += SHOT + ["wait 450"]
+            L += SHOT + ["wait %d" % shotwait]        # a bolt rifle needs its cycle between shots: --shotwait 1800
         L += ["echo ^~^~^ RT cmd lastshot", "wait %d" % after]
     L += ["set coop_rtOn 0", "wait 200", "echo ^~^~^ RT end %s %s" % (gun, name)] + S.RELEASE + ["wait 500"]
     return L
@@ -35,6 +35,7 @@ def main():
     ap.add_argument("session"); ap.add_argument("--overlay", required=True); ap.add_argument("--cgame", default="cgame_rifle7")
     ap.add_argument("--guns", default="coop_g43_irons,g43"); ap.add_argument("--parts", default="hip,hipempty,ads,adsempty")
     ap.add_argument("--clip", type=int, default=10); ap.add_argument("--after", type=int, default=5500)
+    ap.add_argument("--shotwait", type=int, default=450)
     a = ap.parse_args()
     os.makedirs(os.path.dirname(A.LOGF), exist_ok=True)
     A.log("start", a.session, "srvtime")
@@ -48,7 +49,7 @@ def main():
                 A.log("[%s] srvtime %s %s" % (a.session, gun, p))
                 # a fresh weapon for every part: full magazine, full reserve
                 R.step(S.RELEASE + S.TO_STAND + S.give(tik), timeout=90)
-                R.step(part(gun, p, a.clip if p.endswith("empty") else 1, a.after), timeout=300)
+                R.step(part(gun, p, a.clip if p.endswith("empty") else 1, a.after, a.shotwait), timeout=300)
         R.step(["set coop_isFixed 0", "wait 300"], timeout=30)
     except Exception as e:
         A.log("FAILED", repr(e))

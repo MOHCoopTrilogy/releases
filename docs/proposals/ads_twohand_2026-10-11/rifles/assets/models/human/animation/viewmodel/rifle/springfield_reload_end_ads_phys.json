@@ -1,0 +1,94 @@
+{
+ "gun": "springfield_end",
+ "holds": {
+  "push": {
+   "drop": 2.4,
+   "roll": 16.0,
+   "pitch": 1.1,
+   "side": 0.9,
+   "back": -3.2
+  },
+  "close": {
+   "drop": 1.9,
+   "roll": 8.0,
+   "pitch": 0.6,
+   "side": 0.3,
+   "back": -3.2
+  },
+  "down": {
+   "drop": 1.9,
+   "roll": 0.0,
+   "pitch": 0.6,
+   "side": 0.0,
+   "back": -0.6
+  }
+ },
+ "pose": [
+  [
+   0,
+   "push"
+  ],
+  [
+   5,
+   "close"
+  ],
+  [
+   15,
+   "close"
+  ],
+  [
+   20,
+   "down"
+  ],
+  [
+   26,
+   null
+  ],
+  [
+   31,
+   null
+  ]
+ ],
+ "scale": 2.5,
+ "events": [
+  [
+   9,
+   "rb_fwd",
+   2.5
+  ],
+  [
+   12,
+   "rb_down",
+   2.5
+  ],
+  [
+   24,
+   "rb_grip",
+   2.5
+  ]
+ ],
+ "cls": {
+  "m": 4.1,
+  "f2": 2.6,
+  "f1": 2.0,
+  "z": 0.62,
+  "sag": [
+   0.04,
+   0.8,
+   0.1,
+   -0.03,
+   -0.04
+  ],
+  "magw": 0.0,
+  "tr": [
+   0.012,
+   0.1,
+   0.07,
+   0.01,
+   0.004
+  ],
+  "tr2": 0.5
+ },
+ "report": "chain end: class custom x1.00: peak pitch 1.26 deg at f9, roll 18.10 deg, drop 2.64 u, back 3.55 u; settles 0.27 s after the last action; left at the last frame before the fade: pitch -0.02 deg",
+ "md5": "b89f54fd27bed6699fd3114945cb8ad7"
+}

@@ -1,0 +1,141 @@
+{
+ "gun": "springfield",
+ "holds": {
+  "bolt": {
+   "drop": 1.9,
+   "roll": 7.0,
+   "pitch": 0.6,
+   "side": 0.3,
+   "back": -3.2
+  },
+  "low": {
+   "drop": 2.5,
+   "roll": 13.0,
+   "pitch": 1.2,
+   "side": 0.7,
+   "back": -3.2
+  },
+  "reach": {
+   "drop": 3.9,
+   "roll": 25.0,
+   "pitch": 2.8,
+   "side": -0.7,
+   "back": -2.2
+  },
+  "push": {
+   "drop": 2.4,
+   "roll": 16.0,
+   "pitch": 1.1,
+   "side": 0.9,
+   "back": -3.2
+  },
+  "down": {
+   "drop": 1.9,
+   "roll": 0.0,
+   "pitch": 0.6,
+   "side": 0.0,
+   "back": -0.6
+  }
+ },
+ "pose": [
+  [
+   0,
+   null
+  ],
+  [
+   5,
+   "down"
+  ],
+  [
+   9,
+   "bolt"
+  ],
+  [
+   16,
+   "bolt"
+  ],
+  [
+   21,
+   "low"
+  ],
+  [
+   26,
+   "reach"
+  ],
+  [
+   43,
+   "push"
+  ],
+  [
+   48,
+   "push"
+  ]
+ ],
+ "scale": 2.5,
+ "events": [
+  [
+   8,
+   "rb_up",
+   2.5
+  ],
+  [
+   14,
+   "rb_back",
+   2.5
+  ],
+  [
+   15,
+   "rb_stop",
+   2.5
+  ],
+  [
+   19,
+   "hand_off",
+   2.5
+  ],
+  [
+   23,
+   "body_reach",
+   5.0
+  ],
+  [
+   27,
+   "pouch_tug",
+   2.5
+  ],
+  [
+   31,
+   "pouch_tug",
+   3.25
+  ],
+  [
+   40,
+   "body_back",
+   5.0
+  ]
+ ],
+ "cls": {
+  "m": 4.1,
+  "f2": 2.6,
+  "f1": 2.0,
+  "z": 0.62,
+  "sag": [
+   0.04,
+   0.8,
+   0.1,
+   -0.03,
+   -0.04
+  ],
+  "magw": 0.0,
+  "tr": [
+   0.012,
+   0.1,
+   0.07,
+   0.01,
+   0.004
+  ],
+  "tr2": 0.5
+ },
+ "report": "chain start: class custom x1.00: peak pitch 3.04 deg at f31, roll 26.24 deg, drop 3.99 u, back 3.36 u; settles 0.30 s after the last action; left at the last frame before the fade: pitch 1.03 deg",
+ "md5": "a6e3648ae09c327d1d4e563326c80539"
+}

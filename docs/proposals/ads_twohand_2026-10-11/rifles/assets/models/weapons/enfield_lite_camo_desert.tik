@@ -158,6 +158,32 @@ animations
 			last idle
 		}
 	}
+	// HZM coop [ads rifles 2026-10-13] reload_ads_loaded / reload_ads_empty: the reload as shown while AIMING (cgame, client only; chargerclip.py) - the bolt is opened 4 frames later (the rifle is still coming down off the sights before that); same length and sound as `reload`
+	reload_ads_loaded	enfield_reload_ads.skc
+	{
+		client
+		{
+			entry sound enfield_snd_reload item
+		}
+		server
+		{
+	
+			last idle
+		}
+	}
+	reload_ads_empty	enfield_reload_ads.skc
+	{
+		client
+		{
+			entry sound enfield_snd_reload item
+		}
+		server
+		{
+	
+			last idle
+		}
+	}
+	// HZM coop [ads rifles 2026-10-13] reload_ads end
 	reload_single enfield_reload.skc // this is the reload loop that loads in a single shell
 	{
 		client

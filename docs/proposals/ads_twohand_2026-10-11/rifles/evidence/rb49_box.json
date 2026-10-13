@@ -1,0 +1,96 @@
+{
+ "ab__rb49__kar98__standL__empty__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "6",
+   "2"
+  ],
+  "base": 13.0,
+  "dev": 3.17,
+  "end": 0.0,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 334,
+  "hands": 0.7,
+  "hands_at": 506,
+  "over": 29,
+  "start": 470,
+  "xmax": 10.0
+ },
+ "ab__rb49__kar98__standL__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "2"
+  ],
+  "base": 1.2,
+  "dev": 3.17,
+  "end": 0.0,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 360,
+  "hands": 1.2,
+  "hands_at": 214,
+  "over": 15,
+  "start": 8,
+  "xmax": 5.7
+ },
+ "ab__rb49__kar98__stand__empty__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "6",
+   "2"
+  ],
+  "base": 15.2,
+  "dev": 3.19,
+  "end": 0.0,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 334,
+  "hands": 0.6,
+  "hands_at": 506,
+  "over": 25,
+  "start": 470,
+  "xmax": 9.4
+ },
+ "ab__rb49__kar98__stand__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "2"
+  ],
+  "base": 3.5,
+  "dev": 3.18,
+  "end": 0.0,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 360,
+  "hands": 0.2,
+  "hands_at": 215,
+  "over": 13,
+  "start": 8,
+  "xmax": 5.7
+ }
+}

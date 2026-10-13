@@ -1,0 +1,5 @@
+gun	part	torso reload in (level.time)	weapon row starts	magazine filled	weapon row last frame	weapon row left (WEAPON_RELOADING ends)	torso leaves the reload	first state after	shots before
+kar98	hip	51.75	0.00	1.67	2.88	-	3.35	STAND	1
+kar98	hipempty	77.78	0.00	1.67	2.88	-	3.35	STAND	5
+kar98	ads	97.97	0.00	1.68	2.88	-	3.35	STAND	1
+kar98	adsempty	125.20	0.00	1.67	2.87	-	3.35	STAND	5

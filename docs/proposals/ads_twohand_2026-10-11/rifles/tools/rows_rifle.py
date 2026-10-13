@@ -24,6 +24,17 @@ ROWS = [
      'iron-sight G43, aimed reload with rounds left: magazine out, in and struck home under the centre box, back to the aim'),
     ('coopr_g_43_irons_reload_empty_ads', 'viewmodel/g43/coop_g43_irons_reload_empty_ads.skc', '0.1', 'g43_reload',
      'iron-sight G43, aimed reload of an emptied rifle: magazine out and in, the left hand racks the cocking handle, back to the aim'),
+    ('mosin_reload_ads', 'viewmodel/mosin_nagant/mosin_reload_ads.skc', '0.1', 'mosin_reload',
+     'aimed reload (2026-10-13): bolt opened under the centre box with a closed grip, the charger stood in the guides and thumbed down, bolt shut, back to the aim'),
+    ('enfield_reload_ads', 'viewmodel/enfield/enfield_reload_ads.skc', '0.1', 'enfield_reload',
+     'aimed reload (2026-10-13): bolt opened under the centre box with a closed grip, both chargers thumbed in low, bolt shut, back to the aim'),
+    # Springfield M1903 (iron sights): loaded one round at a time - three chained aimed clips (riflereload.py chain=)
+    ('springfield_reload_ads', 'viewmodel/rifle/springfield_reload_ads.skc', '0.1', 'springfield_reload',
+     'aimed reload, start (2026-10-13): rifle down under the centre box, bolt opened with a closed grip, hand to the pouch and up again'),
+    ('springfield_reload_single_ads', 'viewmodel/rifle/springfield_reload_single_ads.skc', '0', 'springfield_reload_single',
+     'aimed reload, one round (re-timed so the round is seen): up beside the action, laid in, thumbed down, back to the pouch'),
+    ('springfield_reload_end_ads', 'viewmodel/rifle/springfield_reload_end_ads.skc', '0.0', 'springfield_reload_end',
+     'aimed reload, end: bolt shut with a closed grip, back up to the aim'),
     # NOT staged: kar98mortar_rechamber_ads / kar98mortar_reload_ads. The rifle-grenade Kar98 (kar98_mortar.tik,
     # 'Gewehrgranate', prefix kar98mortar) has NO aim at all - no ironsight row (`ADSSIGHT norow wpn='Gewehrgranate'`)
     # and no `kar98mortar_charge` row (run rb12: "Couldn't find view model animation kar98mortar_charge", the gun

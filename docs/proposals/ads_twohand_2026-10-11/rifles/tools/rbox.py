@@ -124,7 +124,9 @@ def measure(sess, sub='', dump=False, zoomdir=None):
         if '__empty' in tag:
             # the automatic reload of an emptied gun: the mark sits 4 frames after the LAST SHOT - its recoil
             # (0.4 s, the whole rifle kicked through the box) is the shot's, not the reload's
-            segs = [(start + 26, end)]
+            # RBOX_EMPTY_SKIP=100: a BOLT rifle cycles its bolt once more after the last shot (the between-shot clip, on
+            # the sights, its own bolt in the box) before the automatic reload starts - skip it to read the reload alone
+            segs = [(start + int(os.environ.get('RBOX_EMPTY_SKIP', '26')), end)]
         if '__bolt' in tag and anims.get(tag):
             # the cycle clip, not the shot: from the capture frame the view anim leaves the fire / aim row for the
             # cycle row (the first NEW anim id after the fire mark), + 4 frames (the 0.06 s blend out of the recoil).
@@ -156,6 +158,37 @@ def measure(sess, sub='', dump=False, zoomdir=None):
         exm = {i: (mask(i) & ~aimmask) for i in fr}
         ex = [float(exm[i].mean()) for i in fr]
         hx = [float((exm[i] & skin[i]).mean()) for i in fr]
+        # SWAY ENVELOPE (the lanes' standard since 2026-10-13, ..\..	ools\swayenv.py): a reload capture that runs on
+        # after the rifle is back on the aim (`run_rifle.py --rframes` = the clip + a whole sway period, 5.7 s = 357
+        # frames) is judged against EVERYTHING the settled aim covers through that tail (every 4th frame) and the
+        # frames before the first mark - an emptied capture gets its proper settled reference this way. RBOX_ENV =
+        # capture frames from the reload mark to the settled aim, per part (the tail starts there).
+        envd = {}
+        part = tag.split('__')[-2]
+        t0 = dict(kv.split(':') for kv in os.environ.get('RBOX_ENV', 'reload:226,empty:330').split(',')).get(part.rstrip('D'))
+        if t0 and '__bolt' not in tag:
+            tail = list(range(start + int(t0), min(end, len(fs)), 4))
+            if len(tail) >= 20:
+                sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'tools'))
+                import swayenv
+                clipf = [i for i in fr if i < start + int(t0)]
+                pre_ = [mask(i) for i in range(max(0, first - 8), first)] if '__empty' not in tag else []
+                am = np.any(pre_, axis=0) if pre_ else np.zeros_like(exm[fr[0]])
+                mcache = {}
+
+                def mof(i):
+                    if i not in mcache:
+                        mcache[i] = mask(i)
+                    return mcache[i]
+                env = swayenv.envelope(mof, tail, am)
+                envg = grow(env)
+                ee = {i: (mof(i) & ~envg) for i in clipf}
+                ea = [float(ee[i].mean()) for i in clipf]
+                eh = [float((ee[i] & skin[i]).mean()) for i in clipf]
+                envd = dict(env_all=round(100 * max(ea), 1), env_all_at=clipf[int(np.argmax(ea))], env_hands=round(100 * max(eh), 1),
+                            env_hands_at=clipf[int(np.argmax(eh))], env_over=sum(1 for e in ea if e > 0.02), env_frames=len(ea),
+                            env_cover=round(100 * float(env.mean()), 1), env_tail=len(tail),
+                            env_over_list=[(clipf[k], round(100 * e, 1)) for k, e in enumerate(ea) if e > 0.02])
         s = sight.get(tag, [])
         dev = endd = fdev = fdev2 = float('nan')
         if s:
@@ -207,6 +240,11 @@ def measure(sess, sub='', dump=False, zoomdir=None):
         out[tag] = dict(start=start, xmax=round(100 * max(ex), 1), hands=round(100 * max(hx), 1), hands_at=fr[int(np.argmax(hx))], over=len(over), frames=len(ex), base=round(100 * base, 1), dev=round(dev, 2), fdev=round(fdev, 2), fdev2=round(fdev2, 2), end=round(endd, 2), anims=seq[:12])
         print('%-52s from f%d' % (tag[4:-7], start), 'box beyond the aim: HANDS (skin) max %4.1f %% at f%d, all %4.1f %%, %d of %d frames over 2 %% | aim covers %4.1f %% | rear sight vs front (sight dev) max %5.2f deg, ends %.2f | FRONT sight off the target max %.2f deg (%.2f after the recoil) | anims %s' % (
             100 * max(hx), fr[int(np.argmax(hx))], 100 * max(ex), len(over), len(ex), 100 * base, dev, endd, fdev, fdev2, ' '.join(seq[:8])))
+        out[tag].update(envd)
+        if envd:
+            print('    BEYOND THE SWAY ENVELOPE (tail %d frames, envelope covers %.1f %%): hands max %.1f %% at f%d, everything max %.1f %% at f%d, %d of %d frames over 2 %%%s' % (
+                envd['env_tail'], envd['env_cover'], envd['env_hands'], envd['env_hands_at'], envd['env_all'], envd['env_all_at'], envd['env_over'], envd['env_frames'],
+                ('  [' + ' '.join('%d:%.1f' % o for o in envd['env_over_list'][:40]) + ']') if envd['env_over'] else ''))
         if dump:
             print('    largest view shift (px):', max((abs(v[0]) for v in kick.values()), default=0))
         if dump and over:

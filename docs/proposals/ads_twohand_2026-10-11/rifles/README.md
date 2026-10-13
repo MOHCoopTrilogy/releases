@@ -5,7 +5,164 @@ the method are the pistol lane's). Rows: the `## rifle` section of `../coverage.
 the fixes pak; everything is staged in this folder and on engine branch `ads-rifle-next`
 (worktree `C:\mohaa-coop-dev\openmohaa-hzm-ads-rifle`, build dir `.cmake`, test build `cgames\cgame_rifle4.dll`).
 
-# HANDOVER (2026-10-13 late morning, seventh stretch) - read this first
+# HANDOVER (2026-10-13 midday, eighth stretch) - read this first
+
+**Done this stretch: the aimed RELOADS of the Kar98 (redone), the Mosin and the Lee-Enfield - closed grip on the bolt
+knob, charger visible, rounds thumbed down, six stances each, GIFs. The Springfield's three aimed clips are baked and
+staged; it ran in the engine standing and leaning left (rb58, looked at); the other four stances and the box figures are run rb59 (see section 4).** NOT started: the semi-autos (Garand family, Carbine, SVT, Johnson),
+Carcano / De Lisle / Arisaka, `kar98_g98` / `enfield_p14`, the scoped sample.
+* Engine: **unchanged**, `ads-rifle-next` c7ce5e86 = `cgames\cgame_rifle8.dll`. The gun rows are shown by the cgame's
+  existing `reload` -> `reload_ads_loaded` / `reload_ads_empty` swap (cg_modelanim.c, the pistols' mechanism).
+* Run ids used: rb49-rb58 (rb57 spent on a failed boot). **rb59 is next.** rb48 / rb49 are in `H:\hzm_archive\rifles\`;
+  rb50-rb58 are still in `G:\mohaa-adsanim2\runs` (move them when their write-up is accepted).
+* Overlays: `ov_rifle_h6m.pk3` = the staged state + measure tiks (`mkov_rifle.py <pk3> --armgen --measure`; re-run
+  `nosmoke.py kar98.tik enfield.tik mosin_nagant_rifle.tik springfield_unscoped.tik` first).
+* **AFTER THE 11:02 DEPLOY (integrated build in the GOG paks):** the private harness needed the released game DLL -
+  with its old `game.dll` the listen server died at map load (`player_Legs.st: Unknown condition 'COOP_TURRET_LOW'`,
+  run rb57, bug in `bugs_rifles8.json`). `G:\mohaa-adsanim2\game.dll` and `games\game_install_orig.dll` are now the
+  released 6b515fbf (copied FROM `G:\mohaa-gl2`, nothing written there); the old one is kept as
+  `games\game_install_orig_until_20261013_689d0db1.dll`. The released paks now carry the bolt cycles
+  (`rechamber_ads`) but NOT the reload gun rows - the overlay supplies them. `rowlen.py` still compares against
+  "released": its `new rows` count now excludes `rechamber_ads` where the pak has it.
+* FROZEN, untouched this stretch: the bolt-cycle clips / rows (the tik changes are INSERT ONLY: `git diff --numstat`
+  over the 37 touched tiks = +1228 -0), every G 43 Irons file. `wire/README.md` got one correction asked for by the
+  coordinator: the seven standard finishes are GLOBAL unlocks (one challenge each), not per-gun counters.
+
+## 1. What an aimed reload is now (all three rifles; `tools/riflereload.py`, `tools/chargerclip.py`)
+The rifle comes straight down under the centre box (frames 0-5), the bolt is opened there, the rifle sags to the
+reaching side while the hand is at the pouch and takes two small knocks (`pouch_tug`: flap, charger pulled free), the
+charger is brought up IN the hand, stood in the guides and thumbed down in two pushes that push the rifle down, the
+bolt is shut, the rifle returns to the exact aim.
+* **Grip (rule 3):** the hand on the knob is the bolt cycle's closed fist (`kar98_rechamber` frame 12 - relation,
+  knob point and fingers; `bolt.src`), carried by the reload's own bolt bone, knob in the curl of the fingers
+  (`off` 0.3 / 0.1). On the Mosin / Enfield the same fist is carried over to their knob (`src.tik`).
+* **Thumb:** the retail hand lies flat over the receiver with the index straight (from the aimed eye: a pointing
+  hand). `rhand.keys` + `pivot`: that hand turned about its own thumb tip (22 deg Kar98, 48 deg Mosin / Enfield) so
+  the wrist is beside the stock, four fingers curled (`finger_add`), the thumb going down 2.9-3.0 u with the rounds.
+* **Charger, Kar98:** the gun mesh has the rounds (surface material7, bone Clip01) and the charger (material8,
+  Object01); the released clip only switches them on / parks them. Aim-only gun clip `reload_KAR98_ads.skc`: the
+  rounds sink by the thumb's keys, the charger is rigid to the baked thumb joint from frame 55 and tumbles away to the
+  right and down (never upward through the centre). Rows `reload_ads_loaded` / `reload_ads_empty` in 19 tiks.
+  The server still hides the rounds at frame 53 and the charger at 62 (its own `reload` row).
+* **Charger, Mosin / Enfield:** no charger on the gun; the server's prop (`enfield_clip1.tik` on tag_weapon_right)
+  is PINNED in the guides (`prop_pin`: the retail tag-to-gun relation of one frame, lowered by the thumb's keys) while
+  the turned hand presses it. It is ONE model (charger + rounds) and the server removes it at the push: **no empty
+  charger is shown or flicked on these two** (no model for it). Enfield: two chargers, the same prop both times; it
+  is hidden in the receiver while the hand goes out of the frame between them.
+* **Enfield bolt:** its released gun clip opens the bolt at frames 4-11, before an aimed rifle is down. Aim-only clip
+  `enfield_reload_ads.skc` = the bolt bone 4 frames later (`chargerclip.py retime`); rows in 18 tiks.
+
+## 2. RESULTS (sway on, as played; six stances: stand, crouch, prone, lean L, lean R, braced)
+Box cover BEYOND THE SETTLED AIM'S SWAY ENVELOPE (`rbox.py`, new: the union of the settled aim over a whole sway
+period after the reload, `..\tools\swayenv.py`), worst frame, per cent. "Emptied" = the reload after the rifle's
+last-shot bolt cycle (that cycle is the frozen between-shot clip; `RBOX_EMPTY_SKIP=100`).
+
+| | hands, rounds left | everything, rounds left | hands, emptied | everything, emptied | back to |
+|---|---|---|---|---|---|
+| Kar98 (rb50) | 0.0 0.0 0.0 0.1 0.1 0.0 | **2.7** 1.8 0.0 0.8 1.4 2.0 | 0.0 0.0 0.0 0.2 0.2 0.0 | 0.0 0.0 0.0 0.8 0.6 0.0 | 0.00 deg |
+| Mosin (rb53) | 0.1 0.0 0.0 0.1 0.1 0.0 | 0.3 0.1 0.1 0.6 0.8 1.0 | 0.0 0.0 0.0 0.1 0.1 0.0 | 0.0 0.2 0.0 0.7 0.6 0.0 | 0.00 deg |
+| Enfield (rb56) | 0.5 0.3 1.0 1.1 0.1 0.1 | **4.3 3.3 2.8 5.7 3.0** 0.4 | 0.0 0.0 0.0 0.1 0.1 0.0 | 0.0 0.0 0.0 0.4 0.4 0.0 | 0.00 deg |
+
+* HANDS are under the bar in every stance of every rifle.
+* **NOT met, "everything":** the rifle's OWN body reads over 2 % for a few frames as it leaves the aim and again as it
+  returns - Kar98 stand 3 frames (2.7 %), Enfield 5-12 frames in five stances (up to 5.7 %, lean left; capture
+  frames 17-24 and 242-246 = clip frames 4-8 and the last 4). Nothing was changed for it: the muzzle end has to pass
+  through the lower half of the box to get under it. Levers not tried: a faster first / last five frames
+  (`pose` key `down` at frame 4, deeper), and the engine's blend from the aim solve into the clip (the fourth
+  stretch's note). The emptied captures read 0.0 because their envelope is large (Kar98 20-24 %, Enfield 51-57 % of
+  the box: ten shots walk the view) - a weak figure, stated as such.
+* The Enfield's settled aim alone covers 33-41 % of the box (the rear sight sits just ahead of the eye).
+
+**SERVER TIMING.** `rowlen.py` (re-run on the paks of the 11:02 deploy): 68 staged tiks, 447 rows that the released
+tik has - **0 differ in length** (Kar98, Mosin, Enfield, Springfield all equal); new rows the server has no name for:
+`reload_ads_loaded` in 37 tiks, `reload_ads_empty` in 49. Every aimed hands clip has its hip clip's length (Kar98 102, Mosin 92, Enfield 116,
+Springfield 49 / 28 / 32 frames). Measured on the listen server for the **Kar98** (`run_srvtime.py --clip 5
+--shotwait 1900`; rb51 staged, rb52 released; seconds after the torso enters the reload; hip / hip emptied / aimed /
+aimed emptied all read the same):
+
+| | weapon row starts | magazine filled | weapon row's frame N-2 | torso leaves the reload = can fire |
+|---|---|---|---|---|
+| Kar98 released (rb52) | 0.00 | 1.67-1.68 | 2.87-2.88 | 3.35 |
+| Kar98 staged (rb51) | 0.00 | 1.67-1.68 | 2.88 | 3.35 |
+
+Mosin / Enfield / Springfield: NOT measured in the engine (no server-read row or torso clip is touched; the row check
+above is the evidence).
+
+**LOOKED AT:** every stance sheet below (six moments x six stances per rifle, opened); the charger phase of each rifle
+frame by frame in the engine at 2x (stand); the bolt grip close up (Kar98, Mosin); the GIFs decoded (Kar98: every
+4th frame + three full-size frames each; Mosin / Enfield: five frames each - first, the contacts, last).
+Only measured: the emptied reload in the stances (the stance sheets are of the rounds-left reload).
+
+**Weak points seen, not hidden**
+* Kar98: the rounds on the gun are the retail blue-grey block (shader `m1clip`), not five brass cartridges; the
+  charger in the HAND (the prop) shows the cartridges. For two frames at the hand-over both are drawn (as at the hip).
+* The thumb stands up toward the front sight while it presses (its tip is just under the box).
+* Mosin / Enfield: the charger goes down whole and is gone - no empty strip, no flick.
+* Enfield: the fist on the knob is large (the knob is at the rear, 4 u from the eye).
+* The pouch half second: the rifle sinks about 25 px and rolls to the reaching side, with two knocks - visible, slight.
+
+## 3. Coverage (rule 4)
+| rifle | gun rows in | hands rows reach | NOT covered |
+|---|---|---|---|
+| Kar98 | 19 tiks: base, 7 finishes, `kar98_lite` + its 7, `hobbskarwood`, `hobbskarworn`, `lv_ttkar98` | every tik named "Mauser KAR 98K" | `kar98_g98` (own mesh), `kar98sniper*`, the Gewehrgranate (no aim) |
+| Mosin | none needed | every tik named "Mosin Nagant Rifle" (18) | the scoped Mosins |
+| Enfield | 18 tiks: base, 7 finishes, `enfield_lite` + its 7, `hobbsenfurb`, `lv_ttenfield` | every tik named "Lee-Enfield" | `enfield_p14` (own mesh), the scoped Enfields |
+| Springfield | none needed | "Springfield M1903" (`springfield_unscoped.tik`; it has no finish tiks) | the scoped Springfield |
+
+Run in the engine: `kar98_camo_winter`, `kar98_lite` (rb54: fist, thumb on the rounds - the charger takes the finish's
+skin - and the pluck; `evidence/kar98_reload_variant_tiks_rb54.jpg`, looked at). No Mosin / Enfield variant tik run.
+
+## 4. Springfield M1903 (iron sights): staged, run rb58 looked at, rb59 = the other four stances
+The game loads it ONE ROUND AT A TIME (torso state RELOAD_SPRINGFIELD: start, one loop per round, end) - that is its
+hip technique; there is no charger for it in this game. Three chained aimed clips (`riflereload.py chain=`):
+`springfield_reload_ads` (rifle down, bolt opened, hand to the pouch and up), `springfield_reload_single_ads` (RE-TIMED
+so the round is seen: the hand is already beside the action with the round at frame 0 - the server draws the round
+prop for frames 0-5 only -, round laid in at 3, thumbed down 4-6, to the pouch and back), `springfield_reload_end_ads`
+(bolt shut with the closed grip, back to the aim). The rifle stays in its loading hold across the clip boundaries
+(drop 2.4 u: the single-round hand works beside the stock, lower than a charger hand). Offline (`rpart.py`): hands
+0.0 % in all three.
+Engine, run rb58 (stand, lean left; the released game DLL, the new paks): the three clips play in order and the
+rifle keeps its hold across the boundaries (front sight 57-70 px under the centre through the loop, back to 0 at the
+end; the cgame's ADSFRAME track). LOOKED AT (stand, the rounds-left reload every 6th capture frame and the loop every
+2nd at 2x): fist on the knob, the hand comes up from the lower right with ONE cartridge, lays it in and presses it
+down as a closed hand beside the receiver, goes back down, the fist shuts the bolt, back on the aim.
+Weak points seen: the round is on screen for about 0.1 s (the server draws it for the loop's first five frames only);
+the loading is at the lower edge of the frame; the front sight's tip stands just inside the box's lower edge through
+the loading; the 1.1 s before the first round has no hand in the picture (the start clip's trip to the pouch).
+NOT done at this commit: box figures, six-stance sheet, GIFs (rb59 was running).
+
+## 5. Tools (new / changed this stretch)
+`riflereload.py`: `bolt.src` (another clip's / rifle's grasp), `rhand.keys` with `pivot` (a retail hand turned about
+one of its joints) and `clip` (another clip's hand), several `rel` ranges, `prop_pin` (one or more windows: the prop
+tag in the gun's frame, with a sink), `chain` (start / loop / end holds), `pouch_tug`.
+`chargerclip.py <gun>`: the aim-only gun clip (rounds sink, charger follows the baked hand; `retime`) + the two tik
+rows (insert only). `rview.py <gun> out.jpg --frames ..`: offline close look with the gun's frame-keyed surfaces and
+the server's prop. `surfinfo.py`: where a gun's surfaces are per frame. `rbox.py`: `BEYOND THE SWAY ENVELOPE`
+(`RBOX_ENV=reload:<frames>,empty:<frames>`), `RBOX_EMPTY_SKIP`. `run_srvtime.py --shotwait`. Bugs: `bugs_rifles8.json`.
+Engine run: `python tools/run_rifle.py rb59 --overlay G:\mohaa-adsanim2\ov_rifle_h6m.pk3 --cgame cgame_rifle8 --yaw 172
+--guns <gun> --parts reload,empty --stances stand,crouch,prone,standL,standR,braced --rframes 600 --shots 5 --gap 110
+--set "set vss_draw 0"`, then `RBOX_EMPTY_SKIP=100 python -u tools/rbox.py rb59 --json=evidence/rb59_box.json` as its
+own background call (about 1.5 min per capture).
+
+## 6. Evidence (this stretch, `evidence/`)
+* `kar98_reload_aimed_rb50.gif` (rounds left, stand - finished), `kar98_reload_aimed_empty_rb50.gif` (emptied - finished),
+  `kar98_reload_stances_rb50_a.jpg` / `_b.jpg` (six moments x six stances), `kar98_reload_variant_tiks_rb54.jpg`.
+  These replace `kar98_reload_aimed_rb23.gif`, `kar98_reload_aimed_empty_rb48.gif`, `kar98_reload_stances_rb23.jpg`.
+* `mosin_reload_aimed_rb53.gif`, `mosin_reload_aimed_empty_rb53.gif` (finished), `mosin_reload_stances_rb53_a.jpg` / `_b.jpg`.
+* `enfield_reload_aimed_rb56.gif`, `enfield_reload_aimed_empty_rb56.gif` (finished except the transit figure above),
+  `enfield_reload_stances_rb56_a.jpg` / `_b.jpg`.
+* `rb49_box.json`, `rb50_box.json`, `rb50_box_empty_reload_only.json`, `rb53_box.json`, `rb56_box.json`,
+  `srvtime_rb51.tsv`, `srvtime_rb52.tsv`, `rowlen_staged_vs_released.tsv`.
+
+## 7. Next, in the coordinator's order
+1. Springfield: see section 4.
+2. Semi-autos: M1 Garand (+ `garand_silenced.tik`, `m1_garand_pagarand.tik`), M1 Carbine, SVT-40, Johnson - none
+   started. The Garand's en-bloc clip is the server's prop `garand_clip_reload.tik` on tag_weapon_right (torso frames
+   4-42): `prop_pin` is the tool for "clip from the top with the rounds visible".
+3. Carcano, De Lisle, Arisaka (bolt cycle + reload), `kar98_g98`, `enfield_p14`; then the ONE scoped sample.
+4. Decision for the user: the rifle's own body in the box while it leaves / returns (section 2) - accept, or speed it up.
+
+# HANDOVER (2026-10-13 late morning, seventh stretch) - current except where the eighth says otherwise
 
 **Done this stretch: the G 43 Irons is closed** - server timing equal to the scoped G43, the unlock path through the
 generators and tested with a real promotion, the 4 pack skins as variants on the shared G43 challenges, loot picture,

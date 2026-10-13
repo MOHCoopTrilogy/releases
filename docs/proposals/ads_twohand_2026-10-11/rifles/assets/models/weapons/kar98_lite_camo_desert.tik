@@ -177,6 +177,46 @@ animations
 			last idle
 		}
 	}
+	// HZM coop [ads rifles 2026-10-13] reload_ads_loaded / reload_ads_empty: the reload as shown while AIMING (cgame, client only) - the rounds go down under the thumb, the empty charger leaves with the hand (chargerclip.py); same length, sound and bolt as `reload`
+	reload_ads_loaded	reload_KAR98_ads.skc
+	{
+		client
+		{
+			entry sound kar98_snd_reload item
+		}
+		server
+		{
+			entry surface material7 +nodraw
+			entry surface material8 +nodraw
+			43 surface material7 -nodraw
+			43 surface material8 -nodraw
+			53 surface material7 +nodraw
+			62 surface material8 +nodraw
+			last surface material7 +nodraw
+			last surface material8 +nodraw
+			last idle
+		}
+	}
+	reload_ads_empty	reload_KAR98_ads.skc
+	{
+		client
+		{
+			entry sound kar98_snd_reload item
+		}
+		server
+		{
+			entry surface material7 +nodraw
+			entry surface material8 +nodraw
+			43 surface material7 -nodraw
+			43 surface material8 -nodraw
+			53 surface material7 +nodraw
+			62 surface material8 +nodraw
+			last surface material7 +nodraw
+			last surface material8 +nodraw
+			last idle
+		}
+	}
+	// HZM coop [ads rifles 2026-10-13] reload_ads end
 	reload_single KAR98.skc // this is the reload loop that loads in a single shell
 	{
 		client

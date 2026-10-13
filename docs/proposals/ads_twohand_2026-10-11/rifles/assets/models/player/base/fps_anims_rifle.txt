@@ -46,8 +46,11 @@ animations
 	springfield_rechamber		viewmodel/rifle/vm_springrecham.skc			crossblend 0.1
 	springfield_rechamber_ads	viewmodel/rifle/springfield_rechamber_ads.skc		crossblend 0.1	// HZM coop [adsbolt] bolt cycle while aiming (hand-keyed; cgame plays it only while ADS)
 	springfield_reload		viewmodel/rifle/springfield_reload_start.skc		crossblend 0.05
+	springfield_reload_ads	viewmodel/rifle/springfield_reload_ads.skc		crossblend 0.1	// HZM coop [ads rifles 2026-10-12] aimed reload, start (2026-10-13): rifle down under the centre box, bolt opened with a closed grip, hand to the pouch and up again
 	springfield_reload_single	viewmodel/rifle/springfield_reload_fill.skc		crossblend 0
+	springfield_reload_single_ads	viewmodel/rifle/springfield_reload_single_ads.skc		crossblend 0	// HZM coop [ads rifles 2026-10-12] aimed reload, one round (re-timed so the round is seen): up beside the action, laid in, thumbed down, back to the pouch
 	springfield_reload_end		viewmodel/rifle/springfield_reload_end.skc		crossblend 0.0
+	springfield_reload_end_ads	viewmodel/rifle/springfield_reload_end_ads.skc		crossblend 0.0	// HZM coop [ads rifles 2026-10-12] aimed reload, end: bolt shut with a closed grip, back up to the aim
 	springfield_pullout		viewmodel/rifle/raise_rifle_standplayer.skc
 	{
 		client
@@ -171,6 +174,7 @@ animations
 	enfield_rechamber		viewmodel/enfield/enfield_rechamber.skc					crossblend 0.1
 	enfield_rechamber_ads		viewmodel/enfield/enfield_rechamber_ads.skc		crossblend 0.1	// HZM coop [adsbolt] bolt cycle while aiming (hand-keyed; cgame plays it only while ADS)
 	enfield_reload			viewmodel/enfield/enfield_reload.skc					//crossblend 0.05
+	enfield_reload_ads	viewmodel/enfield/enfield_reload_ads.skc		crossblend 0.1	// HZM coop [ads rifles 2026-10-12] aimed reload (2026-10-13): bolt opened under the centre box with a closed grip, both chargers thumbed in low, bolt shut, back to the aim
 	enfield_pullout			viewmodel/enfield/enfield_pullout.skc					crossblend 0.1
 	{
 		client
@@ -203,6 +207,7 @@ animations
 	mosin_rechamber			viewmodel/mosin_nagant/mosin_nagant_rechamber.skc		crossblend 0.1
 	mosin_rechamber_ads		viewmodel/mosin_nagant/mosin_rechamber_ads.skc		crossblend 0.1	// HZM coop [adsbolt] bolt cycle while aiming (hand-keyed; cgame plays it only while ADS)
 	mosin_reload			viewmodel/mosin_nagant/mosin_nagant_reload.skc			crossblend 0.0
+	mosin_reload_ads	viewmodel/mosin_nagant/mosin_reload_ads.skc		crossblend 0.1	// HZM coop [ads rifles 2026-10-12] aimed reload (2026-10-13): bolt opened under the centre box with a closed grip, the charger stood in the guides and thumbed down, bolt shut, back to the aim
 	mosin_pullout			viewmodel/enfield/enfield_pullout.skc
 	{
 		client

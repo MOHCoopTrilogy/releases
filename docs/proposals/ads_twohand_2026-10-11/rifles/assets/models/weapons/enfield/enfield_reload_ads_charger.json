@@ -1,0 +1,35 @@
+{
+ "gun": "enfield",
+ "clip": "models/weapons/enfield/enfield_reload_ads.skc",
+ "frames": 100,
+ "md5": "0ec22f2186ab16e5fa241ec817a2d7d5",
+ "sink": null,
+ "grab": null,
+ "gone": null,
+ "retime": {
+  "bone": "enfield_bolt",
+  "shift": 4,
+  "until": 40
+ },
+ "tiks": [
+  "enfield",
+  "enfield_bloody",
+  "enfield_blued",
+  "enfield_camo_desert",
+  "enfield_camo_winter",
+  "enfield_camo_woodland",
+  "enfield_chrome",
+  "enfield_gold",
+  "enfield_hobbsenfurb",
+  "enfield_lite",
+  "enfield_lite_bloody",
+  "enfield_lite_blued",
+  "enfield_lite_camo_desert",
+  "enfield_lite_camo_winter",
+  "enfield_lite_camo_woodland",
+  "enfield_lite_chrome",
+  "enfield_lite_gold",
+  "enfield_lv_ttenfield"
+ ],
+ "rounds_u_per_channel": null
+}

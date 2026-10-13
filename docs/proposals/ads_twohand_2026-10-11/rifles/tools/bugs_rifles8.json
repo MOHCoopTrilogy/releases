@@ -1,0 +1,96 @@
+[
+ {
+  "error_message": "Kar98 aimed reload (rb23 stance sheet): the right hand at the bolt knob is a large OPEN, cupped hand in all six stances, not a grip",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/riflereload.py",
+  "root_cause": "the reload's bolt strokes took the hand-to-knob relation AND the finger pose from the reload hip clip's own frame 12, which is an open hand beside the knob; the bolt-cycle clips take theirs from kar98_rechamber frame 12 (a closed fist) - the two tools never shared the grasp",
+  "fix": "riflereload.py bolt spec `src` = another clip's grasp (kar98_rechamber frame 12: hand-to-gun relation, knob point, bolt bone and fingers via hold_bake's ('clip', path, frame)), carried by the reload's bolt bone; knob_off (0, 0.3, 0.1) so the knob sits in the curl of the fingers. A source clip of another rifle (`tik`) is moved onto the target's knob at frame gref (Mosin, Enfield). Engine runs rb49 / rb50, six stances looked at",
+  "tags": [
+   "ads",
+   "rifles",
+   "kar98",
+   "reload",
+   "grip",
+   "hold_bake"
+  ]
+ },
+ {
+  "error_message": "Kar98 aimed reload: at the push the hand lies flat over the receiver, no charger is seen, the rounds stand still and vanish; a wide open hand flies up past the lens to throw the charger",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/chargerclip.py",
+  "root_cause": "the aimed clip kept the retail hand-to-gun relation frame by frame (made for the hip camera, where the hand is seen from the side) and the released gun clip, whose rounds bone Clip01 and charger bone Object01 only switch between 'on the gun' and 'parked' (the server hides material7 at frame 53 and material8 at 62)",
+  "fix": "hands: riflereload.py hand-keyed frames (`keys`, `pivot` = the retail hand of frame 48 turned 22 deg about its thumb tip so the wrist is beside the stock, fingers curled by finger_add, the thumb going down 3.0 u in two pushes; the charger plucked off to the right and down). Gun: chargerclip.py writes an aim-only clip reload_KAR98_ads.skc (Clip01 sinks by the same keys, Object01 rigid to the baked thumb joint from frame 55, tumbling) and adds tik rows reload_ads_loaded / reload_ads_empty, which the cgame already shows instead of `reload` while aiming (cg_modelanim.c, the pistols' mechanism) - no engine change, the server row is untouched",
+  "tags": [
+   "ads",
+   "rifles",
+   "kar98",
+   "reload",
+   "charger",
+   "gun clip",
+   "tik rows"
+  ]
+ },
+ {
+  "error_message": "rbox.py: an emptied Kar98 reload reads 9-12 % 'everything in the box' for 24 frames in every stance",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/rbox.py",
+  "root_cause": "the measured window of an `empty` capture starts 26 frames after the last shot, so it contains the between-shot bolt cycle the rifle makes before its automatic reload (locked on the sights, its own bolt in the box - the exempt, frozen clip); and the figure was taken against the eight frames before the first shot, not against the settled aim's sway envelope",
+  "fix": "RBOX_EMPTY_SKIP (frames after the last shot's mark; 100 = after a bolt rifle's cycle) and a SWAY ENVELOPE figure per capture: the union of the settled aim over the capture's tail (every 4th frame from RBOX_ENV = reload:226,empty:330 frames after the mark; run_rifle.py --rframes 600 gives a whole 5.7 s period) through ..\\tools\\swayenv.py - printed as `BEYOND THE SWAY ENVELOPE` and written to the json (env_hands, env_all, env_over)",
+  "tags": [
+   "ads",
+   "rifles",
+   "measure",
+   "rbox",
+   "sway envelope"
+  ]
+ },
+ {
+  "error_message": "rb50 box measure started as `( python rbox.py ... & )` inside a tool call produced an empty output file",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/README.md",
+  "root_cause": "a subshell backgrounded inside a Bash tool call is killed when the call returns",
+  "fix": "long measures are started as their own background tool call (`python -u ... > file`); nothing in the repository changed",
+  "tags": [
+   "harness",
+   "tooling",
+   "background"
+  ]
+ },
+ {
+  "error_message": "Mosin aimed reload, first bake: the charger prop jumped to the lower left of the frame for one frame as it was handed to the guides",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/riflereload.py",
+  "root_cause": "prop_pin blends from the tag's previous value, and prop_until (45) had already put tag_weapon_right back ON THE GUN for frames 46-47 - the blend ran between the gun's origin and the guides instead of between the hand and the guides",
+  "fix": "prop_until 47 (the tag rides the hand through the blend), blend 3 frames; looked at offline (rview.py) and in the engine (rb53)",
+  "tags": [
+   "ads",
+   "rifles",
+   "mosin",
+   "reload",
+   "prop",
+   "charger"
+  ]
+ },
+ {
+  "error_message": "Lee-Enfield reload while aiming: the released gun clip has the bolt lifted at frame 4 and back by frame 11, while the aimed rifle is still coming down off the sights",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/chargerclip.py",
+  "root_cause": "enfield_reload.skc opens the bolt 0.13 s after the reload starts (the Kar98 and the Mosin at 0.27-0.3 s); an aimed reload first lowers the rifle under the centre box (frames 0-5)",
+  "fix": "chargerclip.py `retime`: aim-only clip enfield_reload_ads.skc = the released clip with the bolt bone's channels 4 frames later (up 8-9, back 14-15), rows reload_ads_loaded / reload_ads_empty in the 18 staged Enfield tiks (insert only; server rows unchanged, rowlen.py: 0 differ)",
+  "tags": [
+   "ads",
+   "rifles",
+   "enfield",
+   "reload",
+   "gun clip",
+   "tik rows"
+  ]
+ },
+ {
+  "error_message": "harness boot after the 11:02 deploy: 'map never became ready' (run rb57) - Server crashed: coop_mod/player_Legs.st: Unknown condition 'COOP_TURRET_LOW' on line 1445",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/README.md",
+  "root_cause": "the private test install G:\\mohaa-adsanim2 reads the mod paks from the GOG folder but runs its OWN game.dll; the deploy put a mod tree (02405cef) there whose state file uses a condition only the released game DLL of the same day knows",
+  "fix": "G:\\mohaa-adsanim2\\game.dll and games\\game_install_orig.dll replaced by the released DLL (md5 6b515fbf, copied from G:\\mohaa-gl2; nothing written there), the old one kept as games\\game_install_orig_until_20261013_689d0db1.dll; run rb58 boots and plays. Other lanes' private installs need the same after a deploy that changes game-side conditions",
+  "tags": [
+   "harness",
+   "deploy",
+   "game.dll",
+   "state file",
+   "boot"
+  ]
+ }
+]

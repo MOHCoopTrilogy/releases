@@ -1,0 +1,54 @@
+{
+ "gun": "kar98",
+ "clip": "models/weapons/KAR98/reload_KAR98_ads.skc",
+ "frames": 88,
+ "md5": "34d91d0e24fdab446b43e8bfd592bea5",
+ "sink": {
+  "46": 0.0,
+  "47": 0.9,
+  "48": 1.5,
+  "49": 1.5,
+  "50": 2.3,
+  "51": 3.0
+ },
+ "grab": 55,
+ "gone": 64,
+ "tiks": [
+  "kar98",
+  "kar98_bloody",
+  "kar98_blued",
+  "kar98_camo_desert",
+  "kar98_camo_winter",
+  "kar98_camo_woodland",
+  "kar98_chrome",
+  "kar98_gold",
+  "kar98_hobbskarwood",
+  "kar98_hobbskarworn",
+  "kar98_lite",
+  "kar98_lite_bloody",
+  "kar98_lite_blued",
+  "kar98_lite_camo_desert",
+  "kar98_lite_camo_winter",
+  "kar98_lite_camo_woodland",
+  "kar98_lite_chrome",
+  "kar98_lite_gold",
+  "kar98_lv_ttkar98"
+ ],
+ "rounds_u_per_channel": [
+  [
+   0.52,
+   0.0,
+   -0.0063
+  ],
+  [
+   -0.0,
+   0.52,
+   0.0003
+  ],
+  [
+   0.0063,
+   -0.0003,
+   0.52
+  ]
+ ]
+}
