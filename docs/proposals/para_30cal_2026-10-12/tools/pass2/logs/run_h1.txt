@@ -1,0 +1,24 @@
+19:32:44 h1 ['P2 purge removed=27']
+19:33:19 h1 PSQ t=76.825 mg nosite aim=advance ground=5 passed=0 tried=0 bags=1 refused: tall=1 not_level=2 not_world=1 secs=0.025
+19:33:29 h1 PSQ t=87.375 mg site how=1 mode=C gun=( -3786.296 2408.153 40.125 ) yaw=35.903 top=0 fire=advance:1.352 arc=45 seat=( -3839.645 2380.349 0.125 ) walk=135.937 path=318.855 of=1
+19:33:39 h1 PSQ t=90.675 mg setup k=1 mode=C gun=( -3786.296 2408.153 40.125 ) yaw=35.903 arc=45 top=0 seat=( -3838.489 2381.108 0.125 ) hp=40.000 pos=crouch
+19:33:39     P2 WHO k=3 alive=1 at=( -3838.489 2381.108 0.125 ) mounted=1 busy=0 pos=crouch mode=C gun=( -3786.296 2408.153 40.125 ) fails=0 holding=1 model=models/human/allied_usa_c47-paratrooper1.tik
+19:33:39     P2 MEM k=1 alive=1 at=( -3823.120 2281.531 0.125 ) d=221.470 pathdist=0.000 think=idle
+19:33:39     P2 MEM k=2 alive=1 at=( -3585.340 2402.001 0.125 ) d=388.422 pathdist=0.000 think=idle
+19:33:39     P2 MEM k=3 alive=1 at=( -3838.489 2381.108 0.125 ) d=147.842 pathdist=0.000 think=idle
+19:33:39     P2 MEM k=4 alive=1 at=( -3602.699 1936.549 -191.875 ) d=657.579 pathdist=0.000 think=idle
+19:33:39     P2 MEM k=5 alive=1 at=( -3951.945 1886.980 -191.875 ) d=591.558 pathdist=0.000 think=idle
+19:34:00 h1 PSQ t=115.675 mg left for the players belt=241 fired=9.600 gun=( -3786.296 2408.153 40.125 )
+19:34:04 h1 ['P2 belt set 40 gun=( -3786.296 2408.153 40.125 ) angles=( -45.562 40.739 0.000 )']
+19:34:07 h1 after Use: ['P2 PST at=( -3838.140 2370.627 0.125 ) ang=( 0.000 35.898 0.000 ) hp=100000.000 turret=( -3786.296 2408.153 40.125 )']
+19:34:41 h1 after second Use: ['P2 PST at=( -3838.140 2370.627 0.125 ) ang=( 0.000 35.898 0.000 ) hp=100000.000 turret=none']
+19:34:42 h1 after walking on: ['P2 PST at=( -3754.369 2431.263 0.125 ) ang=( 0.000 35.898 0.000 ) hp=100000.000 turret=none']
+19:34:42 script errors: 0 []
+19:34:42     PSQ t=76.825 mg nosite aim=advance ground=5 passed=0 tried=0 bags=1 refused: tall=1 not_level=2 not_world=1 secs=0.025
+19:34:42     PSQ t=87.375 mg site how=1 mode=C gun=( -3786.296 2408.153 40.125 ) yaw=35.903 top=0 fire=advance:1.352 arc=45 seat=( -3839.645 2380.349 0.125 ) walk=135.937 path=318.855 of=1
+19:34:42     PSQ t=87.375 mg plan aim=advance ground=42 passed=1 tried=1 bags=1 refused: tall=6 not_world=1 seat=3 arc=4 gap=4 crowded=4 player_in_front=1 squad_in_front=2 bag_ground=4 lane=3 secs=0.550
+19:34:42     PSQ t=88.375 mg walk how=1 left=7.655 ok=1
+19:34:42     PSQ t=90.675 mg setup k=1 mode=C gun=( -3786.296 2408.153 40.125 ) yaw=35.903 arc=45 top=0 seat=( -3838.489 2381.108 0.125 ) hp=40.000 pos=crouch
+19:34:42     PSQ t=110.425 mg hold fire=friend_in_front
+19:34:42     PSQ t=113.675 mg hold fire=clear
+19:34:42     PSQ t=115.675 mg left for the players belt=241 fired=9.600 gun=( -3786.296 2408.153 40.125 )

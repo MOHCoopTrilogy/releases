@@ -1,0 +1,2 @@
+m1l1 spawn  2566.344 109.913 937.192  probes 56 sites 0
+refusals over the map: {'tall': 316, 'not_world': 17, 'not_level': 101, 'top_blocked': 76, 'height': 48, 'nofire': 4, 'seatground': 1}

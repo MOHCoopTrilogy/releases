@@ -1,0 +1,17 @@
+19:29:36 g1 ['P2 purge removed=27']
+19:30:12 g1 PSQ t=79.175 mg site how=1 mode=C gun=( -3800.187 2769.172 40.125 ) yaw=20.173 top=0 fire=advance:1.214 arc=45 seat=( -3859.076 2756.872 0.125 ) walk=345.034 path=812.049 of=2
+19:30:22 g1 PSQ t=85.475 mg setup k=1 mode=C gun=( -3800.187 2769.172 40.125 ) yaw=20.173 arc=45 top=0 seat=( -3857.757 2757.289 0.125 ) hp=40.000 pos=crouch
+19:30:23     P2 WHO k=3 alive=1 at=( -3857.757 2757.289 0.125 ) mounted=1 busy=0 pos=crouch mode=C gun=( -3800.187 2769.172 40.125 ) fails=0 holding=1 model=models/human/allied_usa_c47-paratrooper1.tik
+19:30:23     P2 MEM k=1 alive=1 at=( -3820.792 2292.854 0.125 ) d=581.959 pathdist=0.000 think=idle
+19:30:23     P2 MEM k=2 alive=1 at=( -3688.292 2274.464 0.125 ) d=645.183 pathdist=0.000 think=idle
+19:30:23     P2 MEM k=3 alive=1 at=( -3857.757 2757.289 0.125 ) d=147.842 pathdist=0.000 think=idle
+19:30:23     P2 MEM k=4 alive=1 at=( -3607.157 2728.365 128.125 ) d=403.467 pathdist=0.000 think=idle
+19:30:23     P2 MEM k=5 alive=1 at=( -3970.848 2610.042 0.125 ) d=245.888 pathdist=0.000 think=idle
+19:30:47 g1 packup: True
+19:30:47 script errors: 1 ["[2026-10-12 19:30:25 UTC-6.000] ^~^~^ Script Error : command 'exec' applied to NULL listener"]
+19:30:47     PSQ t=79.175 mg site how=1 mode=C gun=( -3800.187 2769.172 40.125 ) yaw=20.173 top=0 fire=advance:1.214 arc=45 seat=( -3859.076 2756.872 0.125 ) walk=345.034 path=812.049 of=2
+19:30:47     PSQ t=79.175 mg plan aim=advance ground=36 passed=2 tried=1 bags=1 refused: tall=3 nofire=19 squad_in_front=2 lane=3 secs=0.525
+19:30:47     PSQ t=83.175 mg walk how=1 left=6.746 ok=1
+19:30:47     PSQ t=85.475 mg setup k=1 mode=C gun=( -3800.187 2769.172 40.125 ) yaw=20.173 arc=45 top=0 seat=( -3857.757 2757.289 0.125 ) hp=40.000 pos=crouch
+19:30:47     PSQ t=108.475 mg leave why=squad_moved_on
+19:30:47     PSQ t=109.675 mg packup k=1

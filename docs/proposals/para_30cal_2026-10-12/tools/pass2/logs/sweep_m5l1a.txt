@@ -1,0 +1,7 @@
+m5l1a spawn  4973.000 -5289.000 0.547  probes 88 sites 7
+SITE s2_0 ( -24.000 -992.000 264.125 ) yaw=0 aim=enemy mode=A gun=( 264.402 -1131.038 332.625 ) yaw=18.665 top=50.000 fof=1.500 arc=45 seat=( 202.322 -1141.305 264.125 ) score=6321.609
+SITE s4_180 ( 3007.000 -3601.000 188.125 ) yaw=180 aim=e mode=A gun=( 2951.128 -3617.211 242.625 ) yaw=178.558 top=36.000 fof=1.500 arc=45 seat=( 3011.702 -3628.202 188.125 ) score=2570.007
+SITE s11_180 ( 1256.000 -2268.000 192.125 ) yaw=180 aim=e mode=A gun=( 1231.128 -2284.991 246.625 ) yaw=178.558 top=38.082 fof=1.494 arc=45 seat=( 1291.744 -2296.005 191.664 ) score=4745.352
+SITE s12_270 ( -3104.000 -560.000 64.125 ) yaw=270 aim=en mode=A gun=( -3161.375 -664.833 130.625 ) yaw=275.506 top=48.000 fof=1.500 arc=45 seat=( -3157.319 -602.236 64.125 ) score=9384.447
+SITE s16_180 ( 2612.000 -2447.000 176.125 ) yaw=180 aim=e mode=A gun=( 2583.128 -2463.890 226.625 ) yaw=178.558 top=32.000 fof=1.500 arc=45 seat=( 2643.345 -2474.679 176.125 ) score=3653.449
+refusals over the map: {'tall': 866, 'nofire': 52, 'top_blocked': 258, 'not_world': 10, 'not_level': 419, 'height': 38, 'gap': 2, 'seatground': 4, 'headroom': 1, 'arc': 2}

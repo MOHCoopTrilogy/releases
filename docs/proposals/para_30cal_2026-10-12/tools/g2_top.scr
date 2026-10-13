@@ -1,0 +1,38 @@
+//=========================================================================
+// TEST-ONLY overlay driver (scratchpad game1) - NEVER shipped. bug-3562: where is the sandbag mesh relative to
+// its origin? The bag, a bipod at the same origin and an ammo can 40u along +X (yaw 0), seen from straight above.
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ G2 top armed"
+	setcvar "g2_cmd" "0"
+	while( 1 ){
+		local.c = getcvar( "g2_cmd" )
+		if( local.c == "go" ){
+			setcvar "g2_cmd" "0"
+			local.p = $player[1]
+			local.o = ( -3608 2303 0.125 )
+			local.bag = spawn script_model
+			local.bag model "models/static/sandbag_link_topcap.tik"
+			local.bag notsolid
+			local.bag scale 0.65
+			local.bag.origin = local.o
+			local.bag.angles = ( 0 0 0 )
+			local.bp = spawn script_model
+			local.bp model "models/statweapons/mg42_bipod.tik"
+			local.bp notsolid
+			local.bp.origin = local.o + ( 0 0 48.3 )
+			local.bp.angles = ( 0 0 0 )
+			local.cr = spawn script_model
+			local.cr model "models/static/30cal_crate.tik"
+			local.cr notsolid
+			local.cr.origin = local.o + ( 40 0 0 )
+			waitframe
+			println ( "^~^~^ G2 TOP bag mins=" + local.bag.getmins + " maxs=" + local.bag.getmaxs )
+			local.p origin ( local.o + ( 0 0 4 ) )
+			local.p.viewangles = ( 89 0 0 )
+			local.p nodamage
+			println "^~^~^ G2 did go"
+		}
+		waitframe
+	}
+}end

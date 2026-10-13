@@ -1,0 +1,16 @@
+19:38:36 om1 the player's own position: 352.015 -7440.838 -496.152
+19:39:12 om1 PSQ t=76.300 mg nosite aim=advance ground=47 passed=0 tried=0 bags=0 refused: secs=0.275
+19:39:36 om1 PSQ t=100.575 mg nosite aim=advance ground=45 passed=0 tried=0 bags=0 refused: secs=0.275
+19:40:09 om1 PSQ t=133.850 mg nosite aim=advance ground=47 passed=0 tried=0 bags=0 refused: secs=0.275
+19:40:46 om1 PSQ t=170.125 mg nosite aim=advance ground=45 passed=0 tried=0 bags=0 refused: secs=0.275
+19:41:07     P2 WHO k=3 alive=1 at=( 299.586 -5293.482 -665.953 ) mounted=0 busy=1 pos=run mode=- gun=none fails=4 holding=1 model=models/human/allied_usa_c47-paratrooper1.tik
+19:41:07     P2 MEM k=1 alive=1 at=( 470.994 -4905.717 -651.854 ) d=1771.370 pathdist=0.000 think=idle
+19:41:07     P2 MEM k=2 alive=1 at=( 320.635 -6146.040 -666.169 ) d=3013.610 pathdist=0.000 think=noclip
+19:41:07     P2 MEM k=3 alive=1 at=( 299.586 -5293.482 -665.953 ) d=2166.730 pathdist=0.000 think=idle
+19:41:07     P2 MEM k=4 alive=1 at=( 480.783 -3163.266 -482.888 ) d=21.181 pathdist=0.000 think=idle
+19:41:07     P2 MEM k=5 alive=1 at=( 601.192 -2975.954 -581.680 ) d=226.162 pathdist=0.000 think=idle
+19:41:07 script errors: 0 []
+19:41:07     PSQ t=76.300 mg nosite aim=advance ground=47 passed=0 tried=0 bags=0 refused: secs=0.275
+19:41:07     PSQ t=100.575 mg nosite aim=advance ground=45 passed=0 tried=0 bags=0 refused: secs=0.275
+19:41:07     PSQ t=133.850 mg nosite aim=advance ground=47 passed=0 tried=0 bags=0 refused: secs=0.275
+19:41:07     PSQ t=170.125 mg nosite aim=advance ground=45 passed=0 tried=0 bags=0 refused: secs=0.275

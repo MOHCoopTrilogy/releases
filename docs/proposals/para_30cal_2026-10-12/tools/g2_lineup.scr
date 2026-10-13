@@ -1,0 +1,70 @@
+//=========================================================================
+// TEST-ONLY overlay driver (scratchpad game1) - NEVER shipped. main.scr starts st_xp_run when coop_st_xp 1.
+// bug-3562: line the candidate support models up in front of the player and print their bounds.
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ G2 lineup armed"
+	setcvar "g2_cmd" "0"
+	while( 1 ){
+		local.c = getcvar( "g2_cmd" )
+		if( local.c != "0" && local.c != "" ){
+			setcvar "g2_cmd" "0"
+			waitthread g2_do local.c
+			println ( "^~^~^ G2 did " + local.c )
+		}
+		waitframe
+	}
+}end
+
+g2_do local.c:{
+	local.p = $player[1]
+	if( local.p == NULL ){ end }
+	if( local.c == "tp" ){
+		local.o = ( 0 0 0 )
+		local.o[0] = float( getcvar( "g2_x" ) )
+		local.o[1] = float( getcvar( "g2_y" ) )
+		local.o[2] = float( getcvar( "g2_z" ) )
+		local.yaw = float( getcvar( "g2_yaw" ) )
+		local.pit = float( getcvar( "g2_pitch" ) )
+		local.p origin local.o
+		local.p.viewangles = ( local.pit local.yaw 0 )
+		println ( "^~^~^ G2 at " + local.p.origin )
+	}
+	if( local.c == "line" ){
+		local.m[1] = "models/statweapons/30cal.tik"
+		local.m[2] = "models/statweapons/mg42_bipod.tik"
+		local.m[3] = "models/weapons/mg42portable_placed_base.tik"
+		local.m[4] = "models/static/sandbag_link_topcap.tik"
+		local.m[5] = "models/static/sandbag_link_bottomcap.tik"
+		local.m[6] = "models/static/sandbag_link_main.tik"
+		local.m[7] = "models/static/sandbag_small_semicircle.tik"
+		local.m[8] = "models/coop_build/box_sandbag.tik"
+		local.m[9] = "models/static/30cal_crate.tik"
+		local.m[10] = "models/posed/30cal_posed.tik"
+		local.m[11] = "models/weapons/30calportable.tik"
+		local.m[12] = "models/static/sandbag_rightangle.tik"
+		local.yaw = local.p.viewangles[1]
+		local.fwd = angles_toforward ( 0 local.yaw 0 )
+		local.rgt = angles_toforward ( 0 ( local.yaw - 90 ) 0 )
+		local.row = int( getcvar( "g2_row" ) )
+		for( local.i = 1; local.i <= 6; local.i++ ){
+			local.k = local.i + local.row * 6
+			local.e = spawn script_model
+			local.e model local.m[local.k]
+			local.e notsolid
+			local.pos = local.p.origin + ( vector_scale local.fwd 150 ) + ( vector_scale local.rgt ( ( local.i - 3.5 ) * 62 ) )
+			local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 40 ) )
+			if( local.g != NIL ){ local.pos = local.g }
+			local.e.origin = local.pos
+			local.e.angles = ( 0 local.yaw 0 )
+			waitframe
+			println ( "^~^~^ G2 MODEL " + local.k + " " + local.m[local.k] + " mins=" + local.e.getmins + " maxs=" + local.e.getmaxs + " at=" + local.e.origin )
+			level.g2_e[local.k] = local.e
+		}
+	}
+	if( local.c == "clear" ){
+		for( local.k = 1; local.k <= 12; local.k++ ){
+			if( level.g2_e[local.k] != NIL && level.g2_e[local.k] != NULL ){ level.g2_e[local.k] remove }
+		}
+	}
+}end

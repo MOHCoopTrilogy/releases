@@ -1,0 +1,22 @@
+19:26:30 a7 ['P2 purge removed=18']
+19:27:07 a7 P2 bring k=3 to=( 3096.000 4054.000 -39.875 )
+19:27:11 a7 PSQ t=83.200 mg nosite aim=enemy ground=34 passed=0 tried=0 bags=1 refused: tall=17 not_level=5 nofire=6 bag_ground=2 lane=2 secs=0.200
+19:27:22 a7 PSQ t=93.400 mg nosite aim=last ground=34 passed=0 tried=0 bags=1 refused: tall=13 not_level=6 nofire=7 bag_ground=1 lane=2 secs=0.200
+19:27:32 a7 PSQ t=103.600 mg site how=2 mode=A gun=( 3077.058 3959.126 26.625 ) yaw=270.923 top=48.000 fire=advance:1.259 arc=45 seat=( 3086.103 4021.200 -39.875 ) walk=34.299 path=0 of=1
+19:27:42 a7 PSQ t=106.050 mg setup k=1 mode=A gun=( 3077.058 3959.126 26.625 ) yaw=270.923 arc=45 top=48.000 seat=( 3085.662 4019.036 -39.875 ) hp=66.500 pos=stand
+19:27:42     P2 WHO k=3 alive=1 at=( 3085.662 4019.036 -39.875 ) mounted=1 busy=0 pos=stand mode=A gun=( 3077.058 3959.126 26.625 ) fails=0 holding=1 model=models/human/allied_usa_c47-paratrooper1.tik
+19:27:42     P2 MEM k=1 alive=1 at=( 2870.264 3954.529 -242.881 ) d=341.835 pathdist=0.000 think=idle
+19:27:42     P2 MEM k=2 alive=1 at=( 3276.829 4020.182 -39.875 ) d=234.985 pathdist=0.000 think=idle
+19:27:42     P2 MEM k=3 alive=1 at=( 3085.662 4019.036 -39.875 ) d=120.617 pathdist=0.000 think=idle
+19:27:42     P2 MEM k=4 alive=1 at=( 2856.780 4265.840 -240.460 ) d=321.791 pathdist=0.000 think=idle
+19:27:42     P2 MEM k=5 alive=1 at=( 3372.995 4344.669 -39.875 ) d=362.714 pathdist=0.000 think=idle
+19:28:06 a7 packup: True
+19:28:06 script errors: 0 []
+19:28:06     PSQ t=83.200 mg nosite aim=enemy ground=34 passed=0 tried=0 bags=1 refused: tall=17 not_level=5 nofire=6 bag_ground=2 lane=2 secs=0.200
+19:28:06     PSQ t=93.400 mg nosite aim=last ground=34 passed=0 tried=0 bags=1 refused: tall=13 not_level=6 nofire=7 bag_ground=1 lane=2 secs=0.200
+19:28:06     PSQ t=103.600 mg site how=2 mode=A gun=( 3077.058 3959.126 26.625 ) yaw=270.923 top=48.000 fire=advance:1.259 arc=45 seat=( 3086.103 4021.200 -39.875 ) walk=34.299 path=0 of=1
+19:28:06     PSQ t=103.600 mg plan aim=advance ground=34 passed=1 tried=1 bags=1 refused: tall=19 not_level=4 nofire=5 gap=1 bag_ground=1 lane=2 secs=0.200
+19:28:06     PSQ t=104.100 mg walk how=2 left=4.352 ok=1
+19:28:06     PSQ t=106.050 mg setup k=1 mode=A gun=( 3077.058 3959.126 26.625 ) yaw=270.923 arc=45 top=48.000 seat=( 3085.662 4019.036 -39.875 ) hp=66.500 pos=stand
+19:28:06     PSQ t=133.050 mg leave why=squad_moved_on
+19:28:06     PSQ t=133.950 mg packup k=1

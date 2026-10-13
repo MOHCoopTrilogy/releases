@@ -1,0 +1,4 @@
+m3l2 spawn  -3894.000 2160.000 0.125  probes 72 sites 3
+SITE s2_0 ( -6760.000 -6448.000 -191.875 ) yaw=0 aim=e sky=253 mode=A gun=( -6727.244 -6338.562 -141.375 ) yaw=350.686 top=32.000 fof=1.500 arc=45 seat=( -6785.416 -6319.627 -191.875 ) score=8959.037
+SITE s9_90 ( -2946.000 3624.000 176.125 ) yaw=90 aim=en sky=99 mode=A gun=( -2877.381 3652.849 226.625 ) yaw=95.838 top=32.000 fof=1.500 arc=45 seat=( -2880.453 3591.750 176.125 ) score=1754.191
+refusals over the map: {'tall': 504, 'top_blocked': 87, 'height': 74, 'not_level': 208, 'headroom': 4, 'nofire': 39, 'not_world': 27, 'seatground': 2, 'seat': 1}
