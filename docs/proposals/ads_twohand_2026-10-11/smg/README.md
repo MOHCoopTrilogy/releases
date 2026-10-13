@@ -6,13 +6,16 @@ tree or the fixes pak. Engine: worktree `openmohaa-hzm-ads-smg`, branch `ads-smg
 generated rows of `cg_adssights.h`, see the handover; `cgame_smg3.dll` in `G:\mohaa-adsanim3\cgames` has both).
 Test game: `G:\mohaa-adsanim3` (owner adsanim3, port 12578).
 
-## HANDOVER (2026-10-13 morning, runs se20 - se22) - read this first
+## HANDOVER (2026-10-13 morning, runs se20 - se24) - read this first
 
 Engine unchanged: `ads-smg-next` **9ae4d1b0**, test build `cgame_smg4.dll`. Overlay of these runs:
-`SCRATCH\adssmg\ov_g8.pk3` = `mkov_smg.py <out> --extra ..\..\..\mp18_skin_2026-10-12\assets` (the APPROVED MP18 skin is in it).
-Run ids used: sa1-sd2, se1-se22. **Next: se23.** FROZEN (integration agent is shipping them from this folder): the staged
+`SCRATCH\adssmg\ov_g8.pk3` (se20-22), `ov_h3.pk3` (se24, + the M1A1 remodel) = `mkov_smg.py <out> --extra ..\..\..\mp18_skin_2026-10-12\assets`
+(the APPROVED MP18 skin is in it). Run ids used: sa1-sd2, se1-se24. **Next: se25.** FROZEN (integration agent is shipping them from this folder): the staged
 files, rows and README sections of MP40, Silenced MP40, MP40 R2 - do not touch; `fps_anims_smg.txt` is byte-identical to
-the commit before (only clips changed); new rows for other guns go in separate blocks, never reorder the MP40 rows.
+commit 11743da but for ONE appended block (the M1A1 remodel's four rows, before the closing brace).
+**Do NOT run `stage_rows.py` any more** (bug-3807): it regenerates the file from `docs/tools/assets/fixes/...`, which the
+integration now changes, and moved eight MP40-family rows here (caught in the diff, restored from HEAD, never committed).
+New rows: `cd assets; python ../tools/append_rows.py <weapon key> "<block title>"` (`--keep` for a second gun before a commit).
 
 | gun | state |
 |---|---|
@@ -20,7 +23,40 @@ the commit before (only clips changed); new rows for other guns go in separate b
 | Thompson, retail mesh (12 tiks) | finished (section below); rows held until all five meshes are built |
 | **MP18** | the three open points done and run in all eight stances (below); waits for the user's eyes |
 | **Sten** | cocking hand redone, prone now passes; all eight stances (below); waits for the user's eyes |
-| Thompson remodel / M1928 / 1928 Tommy / 50rd, PPSh, grease guns, PPS-43, Type 100, Moschetto | NOT started |
+| **Thompson (M1A1 Remodel)** | built on its own handle, all eight stances run (below) |
+| Thompson M1928 / 1928 Tommy / 50rd / 27A1 Commando, PPSh, grease guns, PPS-43, Type 100, Moschetto | NOT started |
+
+### Thompson (M1A1 Remodel), `thompsonsmg_m1a1dk` - built (run se24)
+
+`smggun.OWN['thompson_m1a1']` (its own bone `chamber`: a handle on the right, forward x 3.57, travel 6.1; open-bolt gun
+clips for its one tik, the handle rests BACK when cocked) + `smgbake.GUNS['thompson_m1a1']` = the retail-mesh Thompson's
+choreography on this gun's sight line (`thompson_m1a1`) and handle, the firing hand with the SIDE hook (closed fist from
+below; `y` 1.6, `front` 0.8, `over` -0.2), hip = the retail technique (left hand over the top onto the handle).
+**THE ROW KEY IS THE WEAPON'S NAME, NOT THE SIGHT KEY** (bug-3806): the tik says "Thompson (M1A1 Remodel)" -> rows
+`coopr_thompson_m1a1_remodel_reload[_empty][_ads]`. Run se23 had them as `coopr_thompson_m1a1_...`: the engine never
+asked for them and played the prefix rows (the retail-mesh hand, straight fingers from behind) - its box figures passed
+on the wrong clips. Kept as `evidence/thompson_m1a1_PREFIX_rows_played_wrong_key_se23.jpg`. Keys of the others (from
+their tiks): 1928 Tommy = `thompson_1928_tommy`, 50rd = `thompson_50rd`, M1928 = `thompson_m1928`, and a SIXTH tik the
+survey missed: `thompsonsmg_tommy27a1` "Thompson (27A1 Commando)" = `thompson_27a1_commando` (mesh not looked at yet).
+
+| stance (se24, sway ON, beyond the envelope, no dry reference) | rounds left | emptied, after 0.64 s |
+|---|---|---|
+| stand | 0.01 % | 0.01 % |
+| crouch / prone | 0.00 / 0.00 % | **1.27** / 0.00 % |
+| lean left / right | 0.00 / 0.03 % | 0.01 / 0.12 % |
+| crouch + lean left / right | 0.00 (whole window 0.34) / 0.80 % | 0.01 / 0.06 % |
+| braced | 0.02 % | 0.02 % (whole window 0.56) |
+| back on the aim | 0.069-0.077 deg | 0.070-0.076 |
+
+Offline box 2.0 % (emptied, one frame, f64) / 0.7 %; gun between the keys: aimed empty 0.021 u / 0.012 deg; HIP empty
+0.22 u / 1.28 deg (the retail hip clip's own motion - not looked into, the same family as the retail mesh's hip row).
+LOOKED AT: twelve full-size engine frames of the cocking (`thompson_m1a1_cocking_hand_contact_frames_se24.jpg`: closed fist
+up the right side, handle back, home - the eye sits so close to this receiver that most of the hand is hidden behind it),
+twelve hip emptied frames at 62 % (`thompson_m1a1_hip_empty_contact_frames_se24.jpg`). ONLY MEASURED: the stance sheets
+(`thompson_m1a1_reload_aimed_{empty,roundsleft}_stances_se24.jpg`), the four GIFs (`thompson_m1a1_reload_{aimed,hip}_{empty,roundsleft}_se24.gif`)
+were not played back. Break-offs: run in se23 only (on the prefix rows; the engine side is the same), not re-run. Not
+listened to (rounds-left sound = the Thompson's cut one). Finishes: this mesh has ONE tik - covered. NOT done on this
+gun: a close look at the index on the handle in the engine (hidden behind the receiver from the eye), third person, AI.
 
 ### MP18 + Sten, what changed in se20 / se21 (the user's three points)
 
@@ -99,10 +135,12 @@ the eye at the end of the 8.8 u pull - accept, or let the hand stop short and th
 the offline sheets, one in the engine; bug-3801); `eyezoom.py --w` does not scale the render (crop in 1280 x 720 terms only);
 `sidehold.py` re-orders `rows_extra.json` (content the same); the bake reads the released `mp40_charge` clip with
 `IRONSIGHT_EXTRA_PAKS` unset and the staged one with it set - they differ only in the left arm, which the hold replaces.
-Raw frames: se20 / se21 / se22 moved to `H:\hzm_archive\smg\` after the evidence was made (se10 - se19 are there too).
+Raw frames: se20 - se24 moved to `H:\hzm_archive\smg\` after the evidence was made (se10 - se19 are there too). From Git-Bash
+`robocopy //E` does nothing (the switches arrive as paths): run the move from PowerShell.
 
-**Next, in this order:** the four other Thompson meshes (survey in the earlier handover; M1928-type = actuator on TOP, left hand
-over as the retail hip clip; drum variant = the drum slides in from the side), PPSh, both grease guns, PPS-43, Type 100,
+**Next, in this order:** the other Thompson meshes - 1928 Tommy (its own mesh, no handle bone, prop window f22-60), M1928 and
+50rd (actuator on TOP, on the sight line: left hand over as the retail hip clip, gun dipped just under the box; the 50rd's drum
+slides in from the side), 27A1 Commando (survey it first) - each with rows under its NAME key; then PPSh, both grease guns, PPS-43, Type 100,
 Moschetto; a finish sheet per changed gun.
 
 ## Earlier handover (2026-10-13 night, runs se10 - se19) - the MP18 / Sten hook, hold and OPEN-points paragraphs here are superseded by the above

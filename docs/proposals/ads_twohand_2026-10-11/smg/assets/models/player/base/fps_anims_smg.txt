@@ -227,5 +227,10 @@ animations
 			enter sound snd_rifle_putaway
 		}
 	}
+	//===================== ads-smg lane: Thompson (M1A1 Remodel), thompsonsmg_m1a1dk - per-weapon reload rows on its own handle =====================
+	coopr_thompson_m1a1_remodel_reload		viewmodel/smg/coop_thompson_m1a1_reload_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_m1a1_remodel_reload_empty		viewmodel/smg/coop_thompson_m1a1_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_m1a1_remodel_reload_ads		viewmodel/smg/thompson_m1a1_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_m1a1_remodel_reload_empty_ads		viewmodel/smg/thompson_m1a1_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
 }
 

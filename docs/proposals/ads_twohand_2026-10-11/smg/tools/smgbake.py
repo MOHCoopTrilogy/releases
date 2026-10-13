@@ -221,6 +221,15 @@ GUNS['thompson'] = dict(row='thompson_reload', sight='thompson', aim='viewmodel/
                                   # the index's middle joint 0.62 over and ahead of its centre
                                   hookpose={**_HOOK_BEHIND, 1: _envf('SB_HP1', _THOMPSON_HP1), 2: _envf('SB_HP1', _THOMPSON_HP1)},
                                   grab=dict(_GRAB_BEHIND, y=_envf('SB_GY', (-0.1,))[0], over=_envf('SB_GO', (0.62,))[0], front=_envf('SB_GF', (0.62,))[0])))
+# Thompson M1A1 remodel: the Thompson's choreography on its OWN handle (smggun OWN, bone `chamber`) and sight line -
+# per-weapon rows coopr_thompson_m1a1_remodel_reload[_empty][_ads]; the firing hand's SIDE hook (se24)
+GUNS['thompson_m1a1'] = _variant('thompson', 'thompson_m1a1', tik='models/weapons/thompsonsmg_m1a1dk.tik',
+                                 # the ROW key is the cgame's CoopWeaponKey of the weapon's NAME, "Thompson (M1A1 Remodel)" -> thompson_m1a1_remodel
+                                 # (run se23: rows named after the SIGHT key thompson_m1a1 were never asked for - the prefix rows played)
+                                 out='coopr_thompson_m1a1_remodel_reload',
+                                 hook=dict(hookpose={**_HOOK_SIDE, 1: _envf('SB_HP1', (18.0, 43.0, 30.0))},
+                                           grab=dict(_GRAB_SIDE, y=_envf('SB_GY', (1.6,))[0], front=_envf('SB_GF', (0.8,))[0], over=_envf('SB_GO', (-0.2,))[0]),
+                                           approach_r=((-0.3, 0.5, 1.1), 3), let_add=(0.0, -1.0, -0.4)))
 GUNS['silenced_pps_43'] = _variant('mp40', 'silenced_pps_43', tik='models/weapons/ppsh43silenced.tik', **_UNDER)
 # Sten (retail TA): held by its side magazine (the released aim pose coop_sten_ads_mag = the hip idle's own hold). The
 # PREFIX rows sten_reload[_empty][_ads] (only the Sten and its finishes are on the prefix). Retail clip (91 frames; the

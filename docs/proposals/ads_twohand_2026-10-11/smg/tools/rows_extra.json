@@ -163,6 +163,30 @@
    "viewmodel/mp40/mp40_mp18_reload_empty_ads.skc",
    "0.1",
    "coopr_mp40_mp18_reload_ads"
+  ],
+  [
+   "coopr_thompson_m1a1_remodel_reload",
+   "viewmodel/smg/coop_thompson_m1a1_reload_hip.skc",
+   "0.1",
+   "thompson_reload_empty_ads"
+  ],
+  [
+   "coopr_thompson_m1a1_remodel_reload_empty",
+   "viewmodel/smg/coop_thompson_m1a1_reload_empty_hip.skc",
+   "0.1",
+   "coopr_thompson_m1a1_remodel_reload"
+  ],
+  [
+   "coopr_thompson_m1a1_remodel_reload_ads",
+   "viewmodel/smg/thompson_m1a1_reload_ads.skc",
+   "0.1",
+   "coopr_thompson_m1a1_remodel_reload_empty"
+  ],
+  [
+   "coopr_thompson_m1a1_remodel_reload_empty_ads",
+   "viewmodel/smg/thompson_m1a1_reload_empty_ads.skc",
+   "0.1",
+   "coopr_thompson_m1a1_remodel_reload_ads"
   ]
  ],
  "shared": [

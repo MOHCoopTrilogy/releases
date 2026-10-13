@@ -420,6 +420,10 @@ OWN = {
                  # (bug-3725 corrected) - the aimed pull sits on the retail sound's own clacks (f68-74) and the hand
                  # has until f90 to get home: no `snd_tight` (the option stays in the tool, unused)
                  snd_cut=(61.0, 66.0)),
+    # Thompson M1A1 remodel (pack mesh coop_m1a1dk/thompson.skd): its own `chamber` bone, a handle on the RIGHT (forward x 3.2,
+    # travel 6.1). The Thompson's timing: aimed pull f59-65 (firing hand), hip f63.5-66.5 (the retail left hand over the top)
+    'thompson_m1a1': dict(tik='models/weapons/thompsonsmg_m1a1dk.tik', bone='chamber', side='R', pull_soft=0.6,
+                          hip_pull=(63.5, 66.5), ads_pull=(59.0, 65.0), snd_cut=(51.0, 56.0)),
 }
 OWN_DEFAULTS = dict(hip_pull=(58.0, 63.5), ads_pull=(55.0, 61.0), snd_cut=(51.0, 56.0),
                     snd_parms='soundparms 1.5 0.0 1.0 0.05 160 1000 item loaded always maps "m e t dm obj lib"')
