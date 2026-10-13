@@ -250,6 +250,41 @@ GUNS = {
         rhand=dict(aim=[(26, 31)], rel=[], keys={0: dict(clip=('viewmodel/rifle/springfield_reload_fill.skc', 3))}),
         support=[(0, 0), (20, 0), (26, 1)],
         events=[(9, 'rb_fwd'), (12, 'rb_down'), (24, 'rb_grip')]),
+    # M1 GARAND (hands vm_riflereload.skc, 61 frames = 2.03 s; gun clip 60 frames). Retail: the hand is away at the
+    # pouch 8-20, comes up with the en-bloc clip at 24 (the server's prop garand_clip_reload.tik on tag_weapon_right,
+    # torso frames 4-42), holds it on the open action 26-33 (the gun's OWN clip surface material8 is drawn 28-48, in the
+    # same place), thumbs it down 2.8 u at 34-35 (gun bone `gun clip`), snatches the thumb away 38-42, lays the hand on
+    # the operating-rod handle 46-48 and rides it forward as the bolt closes 49-52, grip at 56. No bolt work at the
+    # start (the bolt stays back; an emptied Garand is already locked open, `idle_empty`, and has pinged on its last
+    # shot - `fire_empty`, untouched).
+    # Aimed: rifle down under the centre box at once, the pouch trip with the body's reach, the clip stood on the
+    # action (prop PINNED in the gun's frame so the turned hand does not turn it; it sinks with the gun's own clip),
+    # the thumb presses it down with the wrist beside the stock and comes clear to the right, the retail hand on the
+    # operating-rod handle runs forward with the bolt, back to the aim.
+    'garand': dict(
+        gun='garand', hip='viewmodel/rifle/vm_riflereload.skc', charge='viewmodel/grnd_stand00.skc', offhand=(1, 57),
+        out='viewmodel/rifle/coop_garand_reload_ads.skc', enter=5, exit=5,
+        holds=dict(reach=dict(drop=3.9, roll=25.0, pitch=2.8, side=-0.7, back=-2.2),
+                   push=dict(drop=3.5, roll=13.0, pitch=1.6, side=0.7, back=-3.2),
+                   close=dict(drop=2.2, roll=9.0, pitch=0.8, side=0.4, back=-3.2),
+                   down=dict(drop=1.9, roll=0.0, pitch=0.6, side=0.0, back=-0.6)),
+        pose=[(0, None), (4, 'down'), (9, 'reach'), (19, 'reach'), (25, 'push'), (40, 'push'), (45, 'close'), (52, 'close'),
+              (56, 'down'), (59, None), (60, None)],
+        prop_until=27, prop_from=6,
+        prop_pin={'at': 30, 'from': 26, 'until': 44, 'blend': 2, 'sink': {33: 0.0, 34: 1.42, 35: 2.83}},
+        rhand=dict(aim=[(0, 2), (58, 60)], rel=[(4, 26), (44, 54)],
+                   keys=dict([(f, dict(pivot=(30, 'Bip01 R Finger02', (20.0, 0.0, 0.0)), gun_add=(0.0, 0.0, z)))
+                              for f, z in {28: 0.0, 33: 0.0, 34: 1.42, 35: 2.83, 37: 2.83}.items()] +
+                             # THUMB CLEAR: out from under the bolt's path, to the right and back, before the hand goes to the handle
+                             [(40, dict(pivot=(30, 'Bip01 R Finger02', (20.0, 0.0, 0.0)), gun_add=(-1.0, 3.0, 2.0)))])),
+        # fingers curled while the thumb presses, and kept half closed on the operating-rod handle (the retail hand there
+        # is an open hand with spread fingers)
+        rc=dict(finger_add=dict([('Bip01 R Finger%s rot' % j, [(26, 0.0), (28, d), (40, d), (44, 0.6 * d), (53, 0.6 * d), (56, 0.0)])
+                                 for j, d in {'1': 50, '11': 60, '2': 50, '21': 60, '3': 50, '31': 60, '4': 50, '41': 60}.items()])),
+        support=[(0, 1), (2, 1), (4, 0), (54, 0), (58, 1)],
+        events=[(3, 'hand_off'), (7, 'body_reach', 2.0), (13, 'pouch_tug', 1.2), (19, 'body_back', 2.0),
+                (27, 'clip_set', 2.0), (34, 'clip_push', 3.0), (39, 'hand_off', 0.8), (46, 'rb_grip', 0.6),
+                (50, 'rb_fwd', 1.2), (52, 'rb_stop', 1.0), (57, 'rb_grip')]),
 }
 
 

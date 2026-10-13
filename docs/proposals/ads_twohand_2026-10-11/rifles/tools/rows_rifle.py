@@ -35,6 +35,19 @@ ROWS = [
      'aimed reload, one round (re-timed so the round is seen): up beside the action, laid in, thumbed down, back to the pouch'),
     ('springfield_reload_end_ads', 'viewmodel/rifle/springfield_reload_end_ads.skc', '0.0', 'springfield_reload_end',
      'aimed reload, end: bolt shut with a closed grip, back up to the aim'),
+    # M1 Garand family: PER-WEAPON rows (the `garand` prefix is the fallback of every rifle without hands of its own, so a
+    # bare garand_reload_ads would reach them all). The cgame composes coopr_<weapon key>_reload -> ..._ads while aiming;
+    # the hip row is the retail clip.
+    ('coopr_m1_garand_reload', 'viewmodel/rifle/vm_riflereload.skc', '0.05', 'garand_reload',
+     'M1 Garand, hip reload: the retail clip (per-weapon row so that the aimed row below reaches this gun only)'),
+    ('coopr_m1_garand_reload_ads', 'viewmodel/rifle/coop_garand_reload_ads.skc', '0.1', 'garand_reload',
+     'M1 Garand, aimed reload (2026-10-13): en-bloc clip stood on the open action under the centre box, thumbed down, thumb clear, hand on the operating-rod handle as the bolt runs forward, back to the aim'),
+    # NOT staged: the Silenced M1 Garand (garand_silenced.tik) - it is a SCOPED rifle in this game (run rb61: its aim is the scope
+    # picture, which stays up through the reload); it waits with the other scoped rifles for the user's decision.
+    ('coopr_m1_garand_pacific_reload', 'viewmodel/rifle/vm_riflereload.skc', '0.05', 'garand_reload',
+     'M1 Garand (Pacific), hip reload: the retail clip'),
+    ('coopr_m1_garand_pacific_reload_ads', 'viewmodel/rifle/coop_garand_reload_ads.skc', '0.1', 'garand_reload',
+     'M1 Garand (Pacific), aimed reload: the M1 Garand clip'),
     # NOT staged: kar98mortar_rechamber_ads / kar98mortar_reload_ads. The rifle-grenade Kar98 (kar98_mortar.tik,
     # 'Gewehrgranate', prefix kar98mortar) has NO aim at all - no ironsight row (`ADSSIGHT norow wpn='Gewehrgranate'`)
     # and no `kar98mortar_charge` row (run rb12: "Couldn't find view model animation kar98mortar_charge", the gun

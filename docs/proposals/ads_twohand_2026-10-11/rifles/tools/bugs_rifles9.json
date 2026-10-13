@@ -1,0 +1,55 @@
+[
+ {
+  "error_message": "Springfield M1903 (iron sights) has no aimed reload: it is loaded one round at a time by three chained clips, and the retail loop shows its round for about two frames from the aimed eye",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/riflereload.py",
+  "root_cause": "riflereload.py baked ONE clip that starts and ends on the aim; a round-by-round reload (torso RELOAD_SPRINGFIELD: start, reload_single per round, end) needs the rifle to stay in its loading hold across the clip boundaries; the server draws the round prop for the loop's first five frames only, while the retail hand is still on its way up from the pouch",
+  "fix": "chain='start'|'loop'|'end' (the hold carried over the boundaries: start ends exactly in it, the loop's strokes are a zero-ended excursion on it, end begins in it), hand keys from a neighbour clip (clip=(path, frame)), the loop RE-TIMED (frame 0 = the retail hand of frame 4, already beside the action with the round; tag_map keeps the round in the fingers); rows springfield_reload_ads / _reload_single_ads / _reload_end_ads; runs rb58 / rb59, six stances looked at",
+  "tags": [
+   "ads",
+   "rifles",
+   "springfield",
+   "reload",
+   "chain",
+   "single round"
+  ]
+ },
+ {
+  "error_message": "the Springfield start clip was keyed for 40 frames; the clip has 49",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/riflereload.py",
+  "root_cause": "the frame count was read from a clipinfo.py listing cut with head; clipinfo prints every second frame",
+  "fix": "pose / hand keys moved to the real length (hand back up at 45-48); the bake prints the frame count - read it there",
+  "tags": [
+   "ads",
+   "rifles",
+   "springfield",
+   "tooling"
+  ]
+ },
+ {
+  "error_message": "a bare garand_reload_ads row would give every rifle that falls back to the Garand's hands the Garand's aimed reload; and the Silenced M1 Garand got aimed-reload rows although it is a scoped rifle",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/rows_rifle.py",
+  "root_cause": "the cgame's mesh guard CoopAdsClipFitsHeldGun lists only the four bolt rifles (prefixes not listed: no guard), and 'garand' is the view-model prefix of every rifle without hands of its own; garand_silenced.tik aims through a scope picture that stays up through the reload (run rb61)",
+  "fix": "PER-WEAPON rows coopr_m1_garand_reload(_ads) and coopr_m1_garand_pacific_reload(_ads) (the hip row is the retail clip; the cgame composes ..._ads while aiming); the silenced Garand's rows removed - it waits with the scoped rifles",
+  "tags": [
+   "ads",
+   "rifles",
+   "garand",
+   "rows",
+   "per-weapon",
+   "scoped"
+  ]
+ },
+ {
+  "error_message": "aimed reloads: the rifle's own body reads 2.6-5.7 % of the centre box beyond the sway envelope for 1-12 frames as it leaves the aim and as it returns (Kar98 stand, Enfield five stances, Springfield crouch / lean left, Garand lean right) - the 2 % bar is not met there",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/README.md",
+  "root_cause": "NOT fixed, not fully explained: the muzzle end has to pass through the lower half of the box to get under it and the top of the rifle fans out below the front sight as the eye comes above the sight line; the same clip reads 0.0 in another stance (it depends on the sway phase at the reload's start); the engine's blend from the aim solve into the clip was not looked into",
+  "fix": "none - reported as a decision (accept, or speed up the first / last five frames: pose key 'down' at frame 4, deeper); hands are under the bar in every stance of every rifle (max 1.1 %)",
+  "tags": [
+   "ads",
+   "rifles",
+   "measure",
+   "centre box",
+   "open"
+  ]
+ }
+]

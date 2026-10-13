@@ -1,0 +1,161 @@
+{
+ "gun": "garand",
+ "holds": {
+  "reach": {
+   "drop": 3.9,
+   "roll": 25.0,
+   "pitch": 2.8,
+   "side": -0.7,
+   "back": -2.2
+  },
+  "push": {
+   "drop": 3.5,
+   "roll": 13.0,
+   "pitch": 1.6,
+   "side": 0.7,
+   "back": -3.2
+  },
+  "close": {
+   "drop": 2.2,
+   "roll": 9.0,
+   "pitch": 0.8,
+   "side": 0.4,
+   "back": -3.2
+  },
+  "down": {
+   "drop": 1.9,
+   "roll": 0.0,
+   "pitch": 0.6,
+   "side": 0.0,
+   "back": -0.6
+  }
+ },
+ "pose": [
+  [
+   0,
+   null
+  ],
+  [
+   4,
+   "down"
+  ],
+  [
+   9,
+   "reach"
+  ],
+  [
+   19,
+   "reach"
+  ],
+  [
+   25,
+   "push"
+  ],
+  [
+   40,
+   "push"
+  ],
+  [
+   45,
+   "close"
+  ],
+  [
+   52,
+   "close"
+  ],
+  [
+   56,
+   "down"
+  ],
+  [
+   59,
+   null
+  ],
+  [
+   60,
+   null
+  ]
+ ],
+ "scale": 2.5,
+ "events": [
+  [
+   3,
+   "hand_off",
+   2.5
+  ],
+  [
+   7,
+   "body_reach",
+   5.0
+  ],
+  [
+   13,
+   "pouch_tug",
+   3.0
+  ],
+  [
+   19,
+   "body_back",
+   5.0
+  ],
+  [
+   27,
+   "clip_set",
+   5.0
+  ],
+  [
+   34,
+   "clip_push",
+   7.5
+  ],
+  [
+   39,
+   "hand_off",
+   2.0
+  ],
+  [
+   46,
+   "rb_grip",
+   1.5
+  ],
+  [
+   50,
+   "rb_fwd",
+   3.0
+  ],
+  [
+   52,
+   "rb_stop",
+   2.5
+  ],
+  [
+   57,
+   "rb_grip",
+   2.5
+  ]
+ ],
+ "cls": {
+  "m": 4.1,
+  "f2": 2.6,
+  "f1": 2.0,
+  "z": 0.62,
+  "sag": [
+   0.04,
+   0.8,
+   0.1,
+   -0.03,
+   -0.04
+  ],
+  "magw": 0.0,
+  "tr": [
+   0.012,
+   0.1,
+   0.07,
+   0.01,
+   0.004
+  ],
+  "tr2": 0.5
+ },
+ "report": "class custom x1.00: peak pitch 3.14 deg at f16, roll 27.90 deg, drop 4.18 u, back 3.52 u; settles 0.13 s after the last action; left at the last frame before the fade: pitch 0.37 deg",
+ "md5": "9e61ba186cacf6808cf2e56af553280d"
+}

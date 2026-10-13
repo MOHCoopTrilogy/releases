@@ -33,6 +33,9 @@ VIEW = {
     'springfield_single': dict(sight='springfield_unscoped', aim='viewmodel/sprng_stand00.skc', clip='viewmodel/rifle/springfield_reload_single_ads.skc',
                                anim='reload_single', oh=(0, 28), prop=dict(tik='models/ammo/springfield_clip_reload.tik', tag='tag_weapon_right', f0=0, f1=6)),
     'springfield_end': dict(sight='springfield_unscoped', aim='viewmodel/sprng_stand00.skc', clip='viewmodel/rifle/springfield_reload_end_ads.skc', anim='reload_end', oh=(0, 32)),
+    'garand': dict(sight='garand', aim='viewmodel/grnd_stand00.skc', clip='viewmodel/rifle/coop_garand_reload_ads.skc', anim='reload',
+                   oh=(1, 57), vis={'material8': [(28, 47)]},
+                   prop=dict(tik='models/ammo/garand_clip_reload.tik', tag='tag_weapon_right', f0=4, f1=42)),
 }
 
 

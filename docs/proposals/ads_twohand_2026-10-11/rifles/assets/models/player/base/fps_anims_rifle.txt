@@ -16,6 +16,10 @@ animations
 		}
 	}
 	garand_reload		viewmodel/rifle/vm_riflereload.skc				crossblend 0.05
+	coopr_m1_garand_pacific_reload_ads	viewmodel/rifle/coop_garand_reload_ads.skc		crossblend 0.1	// HZM coop [ads rifles 2026-10-12] M1 Garand (Pacific), aimed reload: the M1 Garand clip
+	coopr_m1_garand_pacific_reload	viewmodel/rifle/vm_riflereload.skc		crossblend 0.05	// HZM coop [ads rifles 2026-10-12] M1 Garand (Pacific), hip reload: the retail clip
+	coopr_m1_garand_reload_ads	viewmodel/rifle/coop_garand_reload_ads.skc		crossblend 0.1	// HZM coop [ads rifles 2026-10-12] M1 Garand, aimed reload (2026-10-13): en-bloc clip stood on the open action under the centre box, thumbed down, thumb clear, hand on the operating-rod handle as the bolt runs forward, back to the aim
+	coopr_m1_garand_reload	viewmodel/rifle/vm_riflereload.skc		crossblend 0.05	// HZM coop [ads rifles 2026-10-12] M1 Garand, hip reload: the retail clip (per-weapon row so that the aimed row below reaches this gun only)
 	garand_reload_ads		viewmodel/rifle/garand_reload_ads.skc		crossblend 0.1	// HZM coop [adsreload] reload held in ADS, with weight
 	//HZM coop [user 07-12]: UNKNOWN rifles fall back to the 'garand' viewmodel prefix
 	//(cg_viewmodelanim.c CG_GetVMAnimPrefixIndex default) - the imported bolt rifles therefore ask
