@@ -1,5 +1,6 @@
 {
  "models/weapons/enfield.tik": {
+  "action": "right hand on the bolt knob (fingers on the knob), lift / back / forward / down ride the gun's bolt bone - hand and handle shown at the right, all stances; aimed reload NOT built",
   "bolt": {
    "stand": {
     "dev": 3.53,
@@ -10,7 +11,7 @@
     "run": "ra7"
    }
   },
-  "note": "ra7 stand only: bolt cycle rebuilt on gunphys; the working hand is almost entirely below the frame (defect: hand not shown); engine box 7 % for 2 frames at the return; other stances and the aimed reload NOT done",
+  "note": "rb13, six stances: cycle fully LOCKED on the sights (ease 0) - sight line 0.36-0.64 deg, front sight 0.57-0.82 deg, ends 0.00; working hand now in view at the right (was below the frame); engine box 2.6-11.9 % (handle along the bottom edge of the box, bolt body under it; the rifle goes 3.3 u forward and back, which reads as a pump) - bar NOT met; no pops; aimed reload not built",
   "reload": {
    "stand": {
     "dev": 6.01,
@@ -22,9 +23,9 @@
    }
   },
   "rule": {
-   "action": "no",
+   "action": "yes",
    "reacts": "yes",
-   "run": "ra7",
+   "run": "rb13",
    "target": "no"
   }
  },
@@ -140,6 +141,7 @@
   }
  },
  "models/weapons/mosin_nagant_rifle.tik": {
+  "action": "right hand on the bolt knob (fingers on the knob), lift / back / forward / down ride the gun's bolt bone - hand and handle shown at the right, all stances; aimed reload NOT built",
   "bolt": {
    "stand": {
     "dev": 3.6,
@@ -150,7 +152,7 @@
     "run": "ra7"
    }
   },
-  "note": "ra7 stand only: bolt cycle rebuilt on gunphys (offline box 0.0 %), engine 3.5-7 % for 3-10 frames at the two ends; other stances and the aimed reload NOT done",
+  "note": "rb13, six stances: on-target cycle (receiver eased 0.5 u) - front sight within 0.61-0.80 deg, sight line 1.15 deg, ends 0.00; engine box 3.0-6.6 % (straight handle through the lower right corner of the box while open) - bar NOT met; no pops; aimed reload not built",
   "reload": {
    "stand": {
     "dev": 5.9,
@@ -164,11 +166,12 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "ra7",
+   "run": "rb13",
    "target": "no"
   }
  },
  "models/weapons/springfield_unscoped.tik": {
+  "action": "right hand on the bolt knob (fingers on the knob), lift / back / forward / down ride the gun's bolt bone - hand and handle shown at the right, all stances; aimed reload NOT built",
   "bolt": {
    "stand": {
     "dev": 3.42,
@@ -179,7 +182,7 @@
     "run": "ra7"
    }
   },
-  "note": "ra7 stand only: bolt cycle rebuilt on gunphys (offline box 0.0 %), engine 3.5-7 % for 3-10 frames at the two ends; other stances and the aimed reload NOT done",
+  "note": "rb13, six stances: on-target cycle (receiver eased 0.5 u) - front sight within 0.57-0.81 deg, sight line 1.13 deg, ends 0.00; engine box 3.0-11.8 % (the handle passes the lower right corner of the box, plus the rifle's own barrel) - bar NOT met; no pops; aimed reload not built",
   "reload": {
    "stand": {
     "dev": 6.44,
@@ -193,7 +196,7 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "ra7",
+   "run": "rb13",
    "target": "no"
   }
  }

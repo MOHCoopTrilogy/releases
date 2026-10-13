@@ -91,6 +91,26 @@ Playback, frame by frame (every GIF decoded with `rsheet.py --gif`):
   find view model animation kar98mortar_charge"). No aimed rows are staged for it; whether a grenade rifle gets an aim
   is a decision, not a missing row.
 
+## RESULTS-2: Springfield, Mosin, Lee-Enfield bolt cycles (run rb13, overlay `ov_rifle_b4.pk3`, two shots each)
+| rifle (hold) | front sight off target, six stances | sight line | back to | centre box beyond the aim (frames over, of 170) |
+|---|---|---|---|---|
+| Springfield (receiver eased 0.5 u) | 0.57-0.81 deg | 1.13 deg | 0.00 | stand 11.8 % (100), crouch 3.0 (42), prone 4.6 (1), lean L 4.6 (4), lean R 3.9 (4), braced 6.5 (2) |
+| Mosin (0.5 u) | 0.61-0.80 deg | 1.15 deg | 0.00 | 6.6 (5), 4.7 (40), 4.6 (2), 3.0 (10), 4.2 (2), 5.4 (2) |
+| Lee-Enfield (LOCKED, 0) | 0.57-0.82 deg | 0.36-0.64 deg | 0.00 | 6.4 (94), 10.9 (41), 6.3 (24), 11.9 (50), 7.4 (27), 2.6 (1) |
+
+All three stay on the target and none meets the 2 % bar in the engine (offline said 0.6 / 1.3 / 1.1 %: not to be
+trusted here either). Playback of each GIF (`evidence/<gun>_bolt_aimed_rb13.gif`, frames 8-37 decoded): no pops on any.
+* Springfield: sight picture nearly unchanged; the open handle lies along the bottom of the box and passes its lower
+  right corner, knob just outside; with the bolt back handle and hand are below the box.
+* Mosin: the straight handle rises through the lower right corner of the box while open; the bolt body comes back as
+  a long silver tube from the lower left; hand far lower right.
+* Lee-Enfield: aperture locked on the target for the whole cycle; the working hand is in view at the right during the
+  lift and the turn-down (it was below the frame), off the right edge of the GIF crop while the bolt is back; the
+  rifle goes 3.3 u forward and back (the aperture visibly shrinks and grows - reads as a pump; try 2 u).
+The box numbers swing with the capture ("aim covers" 3-19 % for the same pose): the settled-aim mask comes from six
+frames of a breathing aim. A steadier reference (more frames, or `cg_weaponBreath 0` for the measure) is the next
+thing to do before tuning any of these against the bar.
+
 ## How it is built (reuse for every bolt rifle)
 * **Bolt cycle** - `cd assets; python ../tools/boltphys.py <gun>[,<gun>]`: hands = `ads_bolt_2026-10-04/tools/key_bolt.py`
   (right hand rides the gun's bolt bone) + `knob_off` (grip on the fingers); gun = `gunphys.simulate`, class `RIFLE`
@@ -120,9 +140,9 @@ Playback, frame by frame (every GIF decoded with `rsheet.py --gif`):
 ## Next (the coordinator's order)
 1. Kar98: the user's choice A / C; then merge ads-next when told (bug-3597) and re-measure the front sight; the
    reload's no-hand half second still looks static; the receiver's 0.1 s drop at the start is brisk.
-2. Springfield, Mosin, Enfield: cycles baked with the per-gun ease (offline box 0.6 / 1.3 / 1.1 %, hand visible on all
-   three, the Enfield's now too) and run in all stances as **rb13** (overlay `ov_rifle_b4.pk3`; measure with rbox, look,
-   GIF each - see RESULTS-2 below if filled in). Their aimed reloads: add `riflereload.GUNS` entries (events from
+2. Springfield, Mosin, Enfield: cycles run in all stances (RESULTS-2 above) - on target, bar not met; raise the
+   Springfield / Mosin ease until the handle clears the box corner (or accept, by the user's choice for the Kar98);
+   shorten the Enfield's slide. Their aimed reloads: add `riflereload.GUNS` entries (events from
    `tools/clipinfo.py <tik> reload <view clip> lo,hi`). Arisaka + G98: kar98 prefix, own meshes - the cgame mesh guard
    (`CoopAdsClipFitsHeldGun`) keeps them on the hip clip; they need own clips (own knob positions) under own row
    names, or a guard table entry per mesh - not decided.
@@ -139,4 +159,5 @@ Playback, frame by frame (every GIF decoded with `rsheet.py --gif`):
 `tools/` boltphys.py, riflereload.py, rows_rifle.py, mkov_rifle.py (+ ovbase_1021.pk3), run_rifle.py, rbox.py, rpart.py,
 rsheet.py, rgif.py, rgif2.py, clipinfo.py, nosmoke.py (+ measure_ov/, measure only). `assets/` staged clips +
 `*_phys.json` + `models/player/base/fps_anims_rifle.txt`. `coverage_status.json` this lane's rows.
-Runs: `G:\mohaa-adsanim2\runs\ra1..ra7` (first session), `rb1..rb13` (this one; rb1-rb3 = before the engine fix).
+Runs: `G:\mohaa-adsanim2\runs\ra1..ra7` (first session), `rb1..rb13` (this one; rb1-rb3 = before the engine fix;
+rb7 Kar98 cycle, rb8 variant A, rb9 reload, rb10 break-off, rb11 hip reload, rb12 Gewehrgranate, rb13 the other three).
