@@ -136,7 +136,7 @@ animations
 
 	idle	g43.skc
 
-	reload	coop_g43_irons_reload.skc 
+	reload	g43_reload.skc 
 	{
 		server
 		{

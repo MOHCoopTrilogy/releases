@@ -5,7 +5,78 @@ the method are the pistol lane's). Rows: the `## rifle` section of `../coverage.
 the fixes pak; everything is staged in this folder and on engine branch `ads-rifle-next`
 (worktree `C:\mohaa-coop-dev\openmohaa-hzm-ads-rifle`, build dir `.cmake`, test build `cgames\cgame_rifle4.dll`).
 
-# HANDOVER (2026-10-13 morning, sixth stretch) - read this first
+# HANDOVER (2026-10-13 late morning, seventh stretch) - read this first
+
+**Done this stretch: the G 43 Irons is closed** - server timing equal to the scoped G43, the unlock path through the
+generators and tested with a real promotion, the 4 pack skins as variants on the shared G43 challenges, loot picture,
+AI alias, dev lists; and a sample of the 52 variant bolt tiks run in the engine. NOT done: everything from the Kar98
+reload leftovers on (order unchanged, list in the sixth stretch below).
+* Engine `ads-rifle-next` **c7ce5e86** = `G:\mohaa-adsanim2\cgames\cgame_rifle8.dll` (60e00829 + the client clip
+  clock). The bolt cycles being integrated are at 60e00829 (`cgame_rifle7`) and need nothing from c7ce5e86.
+* Overlays: `ov_rifle_g4.pk3` (`mkov_rifle.py <pk3> --armgen` = staged assets + the generator-made armory entry),
+  `ov_rifle_g3m.pk3` (the same with the measure tiks), `ov_rifle_g4y.pk3` (+ the script probes of `srvtime_ov.py`).
+  `--armory` (the hand-made entry) is superseded.
+* Run ids used: rb39-rb47. **rb48 is next.** Finished run folders are in `H:\hzm_archive\rifles\`.
+* **FROZEN (coordinator, 2026-10-13): the between-shot bolt cycles** - the capped `rechamber_ads` clips, their rows
+  and the 56 variant tiks are being taken into the release build from this folder. Do not change those clips, rows or
+  tiks; a later aimed-RELOAD row goes into the same tiks as a SEPARATE row, the bolt rows byte-identical. A defect
+  found in them is reported to the coordinator, not edited.
+
+## 1a. Server timing (runs rb39-rb42; listen server; `tools/run_srvtime.py`, `srvtime_ov.py`, `srvtime_report.py`)
+A server script prints level.time and the reserve ammunition every server frame, the weapon tik's own `reload` row
+prints at its entry and on frame (frames - 2), `coop_fireDebug 1` prints the torso state hops. Seconds after the torso
+enters the reload; hip and aimed, one round fired and emptied all read the same:
+
+| | weapon row starts | magazine filled | weapon row's frame N-2 (row ends +0.07 s) | torso leaves the reload = can fire |
+|---|---|---|---|---|
+| scoped G43 (released tik) | 0.00 | 1.70 | 1.80 | 2.90 |
+| G 43 Irons as staged before (88-frame `reload` clip, rb41) | 0.00 | 1.70 | **2.88** | 2.90 |
+| G 43 Irons now (rb42) | 0.00 | 1.70 | 1.80 | 2.90 |
+
+The reload itself (fire-ready 2.90 s, magazine at 1.70 s) was never longer - both come from the TORSO clip. What the
+88-frame gun clip changed was the server's `WEAPON_RELOADING` window: 2.95 s instead of 1.87 s, ending after the torso
+had already left the reload (read by the quick-draw logic and `Sentient::AttachToOwner`). Fixed the way the pistol
+lane planned it: the 12 tiks' `reload` row is the released `g43_reload.skc` again (`tools/g43srvrow.py`; `g43tik.py`
+writes the same), and the aim-only row `reload_ads_empty` (88 frames, the rack at 62-69) is kept by the cgame on its
+own clock after the server's row has ended (`coop_vmGunClipClock`, default 1; the pistol lane's uncommitted change of
+`ads-next` ported, without its revolver lines). `coop_g43_irons_reload.skc` is no longer referenced (left in place).
+**All staged rifle tiks** (`tools/rowlen.py` -> `evidence/rowlen_staged_vs_released.tsv`): 68 tiks, 391 rows that
+exist in the released tik - **0 differ in length**; 68 new rows the server has no name for (`rechamber_ads` in 56
+tiks, `reload_ads_empty` in 12).
+Re-run with the new cgame (rb43, six stances, sway on): the rack plays after the server's row has ended in every
+stance (`GUNCLOCK start ... clip 2.90 s (server row 1.83 s)` / `end ... (clip over)`, 6 of 6).
+
+| rb43 | hands-only box max per stance (stand crouch prone leanL leanR braced) | back to | the rifle's own body in the box |
+|---|---|---|---|
+| rounds left | 0.1 0.0 0.0 0.1 0.1 0.0 % | 0.01 deg | 0.6-4.2 % for 0-9 frames |
+| emptied | 0.0 0.0 0.0 0.2 0.1 0.1 % | 0.02 deg | 0.1-1.0 % |
+
+LOOKED AT: the rack frames stand, new against old (identical action); the frames around the server row's end, hip and
+aimed (no pop); the six-stance sheet of the emptied reload. Only measured: the rounds-left reload in five stances.
+The emptied capture still has only an end reference (bug-3742 stands).
+
+## 1b / 1c. Unlock path, variants, names -> `wire/README.md` (the recipe; start there for the next new gun)
+`wire/stage_armory_gen.py` runs patched COPIES of the generators over a scratch copy of the repo. Rank 2 stands.
+Tested with a real promotion (rb46): locked at rank 0 and 1, unlocked by the `xp_award` that crosses 1200 XP, the
+record keeps what it had, pick + restart spawn it, the Flecktarn variant locked until the scoped G43's own challenge
+(225 kills on the shared counter) is done, then applied and spawned. The scoped G43's ACC bar is staged as 9.
+
+## 1d. Variant bolt tiks in the engine (rb45, `cgame_rifle7` = the integrated commit)
+`kar98_lite`, `kar98_camo_winter`, `mosin_nagant_rifle_gold`, `mosin_nagant_rifle_lite`, `enfield_blued`,
+`enfield_lite_chrome`: each loads, fires an aimed shot and cycles, no script or load error.
+`evidence/bolt_capped_variant_tiks_rb45.jpg` (looked at). `tools/boltsame.py` (model silhouette on the frames where
+the base rifle's capped and uncapped captures differ most): all six are nearer the capped base capture - Kar98 0.85 /
+0.74 against 0.77 / 0.65, Mosin 0.84 / 0.80 against 0.72 / 0.73, Enfield 0.82 / 0.55 against 0.78 / 0.51 (the
+Enfield margin is small; chrome on a white wall reads badly). The other 46 added tiks are not run.
+
+New tools: `rowlen.py`, `run_srvtime.py`, `srvtime_ov.py`, `srvtime_report.py`, `g43srvrow.py`, `run_unlock.py`,
+`lootpic.py`, `boltsame.py`, `append_bugs.py`; `mkov_rifle.py --armgen`. Bugs: bug-3789..3797.
+Evidence: `evidence/srvtime_rb39.tsv` .. `srvtime_rb42.tsv`, `rowlen_staged_vs_released.tsv`, `rb43_box.json`,
+`rb45_box.json`, `bolt_capped_variant_tiks_rb45.jpg`; `evidence/g43irons/g43irons_reload_empty_ads_rb43.gif`,
+`g43irons_reload_empty_stances_rb43.jpg`, `g43irons_unlock_path_rb46.jpg`, `g43irons_variant_label_rb47.jpg`,
+`loot_w_g43irons.png`.
+
+# HANDOVER (2026-10-13 morning, sixth stretch) - current except where the seventh says otherwise
 
 **Done this stretch: the iron-sight G43 is finished as a weapon - gripping support hand, dark-steel hood ring and sight
 base, 1080p aim capture, a shot and the hip reload captured, and its AIMED RELOAD (rounds left and emptied, six

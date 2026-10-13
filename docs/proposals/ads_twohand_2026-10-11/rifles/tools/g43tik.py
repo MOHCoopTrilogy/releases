@@ -70,15 +70,16 @@ def make(src, fin):
     t, n = re.subn(r'addon_playerweapon_german_g43\b', 'addon_playerweapon_german_g43_irons', t)
     t = t.replace('German sniper rifle - G43.', 'German semi-automatic rifle - G43 with iron sights (no scope).')
     assert 'zoom' not in re.sub(r'//[^\n]*', '', t).lower().replace('zoomspreadmult', '').replace('zoommovement', '') or True
-    # the reload: an 88-frame gun clip of its own (the hands' and the torso's length; the retail g43_reload.skc is 56
-    # frames and has no bolt) in which the carrier is racked where the hand racks it, and the two rows the cgame shows
-    # instead while AIMING (g43reload.py)
+    # the reload: the row the SERVER reads stays the released one (`reload g43_reload.skc`, 56 frames - its length is
+    # how long the server holds WEAPON_RELOADING; an 88-frame clip there held it 1.08 s longer, runs rb39-rb41). The
+    # aim-only row `reload_ads_empty` (88 frames: the carrier is racked where the hand racks it, g43reload.py) is shown
+    # by the cgame on its own clock after the server's row has ended (coop_vmGunClipClock)
     m = re.search(r'(\n[ \t]*reload[ \t]+)g43_reload\.skc([^\n]*\n[ \t]*\{.*?\n\t\}[^\n]*\n)', t, re.S); assert m, src
     snd = re.search(r'entry\s+sound\s+(\S+)', m.group(2)); assert snd, src
     extra = ''.join('\t%s\t%s%s\t{%s\t\tclient%s\t\t{%s\t\t\tentry sound %s%s\t\t}%s\t}%s' % (row, clip, nl, nl, nl, nl, snd.group(1), nl, nl, nl)
                     for row, clip in (('reload_ads_empty', 'coop_g43_irons_reload_ads_empty.skc'),))
     note = '\t//[g43 irons 2026-10-13] shown by the cgame instead of `reload` when an EMPTIED rifle is reloaded while aiming: the carrier is racked' + nl
-    t = t[:m.start()] + m.group(1) + 'coop_g43_irons_reload.skc' + m.group(2) + note + extra + t[m.end():]
+    t = t[:m.start()] + m.group(1) + 'g43_reload.skc' + m.group(2) + note + extra + t[m.end():]
     code = re.sub(r'//[^\n]*', '', t)
     assert not re.search(r'\bzoom\b|zoomspreadmult|zoommovement|svt_lens', code) and 'coop_sight' in code, src
     d = 0

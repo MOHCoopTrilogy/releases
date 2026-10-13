@@ -1,0 +1,88 @@
+stage_armory_gen.py 20261013_092721   scratch: C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\armgen\20261013_092721
+--- BASE (mod tree as it is)
+gen_loadout.py build         exit 0  wrote 622 files + the unlock roster, for 74 weapons
+wire_mv2.py                  exit 0  giveall: +0 variants
+variant_challenges.py --emit exit 0  variants gated: 77 across 23 guns
+gen_loadout.py build         exit 0  wrote 622 files + the unlock roster, for 74 weapons
+gen_skinbase.py              exit 0  loadoutskins_base.scr: 427 variant->base entries
+armory_unlocks.py --emit     exit 0  wrote C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\armgen\20261013_092721\base\hzm-mohaa
+gen_loadout.py check         exit 0    -> EXACT REPRODUCTION
+--- NEW (sources edited, generators patched)
+gen_loadout.py build         exit 0  wrote 634 files + the unlock roster, for 75 weapons
+wire_mv2.py                  exit 0  giveall: +5 variants
+variant_challenges.py --emit exit 0  variants gated: 81 across 24 guns
+gen_loadout.py build         exit 0  wrote 634 files + the unlock roster, for 75 weapons
+gen_skinbase.py              exit 0  loadoutskins_base.scr: 438 variant->base entries
+armory_unlocks.py --emit     exit 0  wrote C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\armgen\20261013_092721\new\hzm-mohaa-
+gen_loadout.py check         exit 0    -> EXACT REPRODUCTION
+
+generator drift already in the tree (BASE differs from the real file; NOT staged): 1
+   hzm-mohaa-coop-mod/coop_mod/unlockreq_gen.scr
+
+changed by this weapon: 26
+   docs/tools/gen_loadout.py
+   docs/tools/gen_service_record.py
+   docs/tools/loadout_weapons.tsv
+   docs/tools/variant_challenges.py
+   docs/tools/wire_mv2.py
+   hzm-mohaa-coop-mod/coop_mod/buildmode_catalog.scr
+   hzm-mohaa-coop-mod/coop_mod/developer.scr
+   hzm-mohaa-coop-mod/coop_mod/itemhandler.scr
+   hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr
+   hzm-mohaa-coop-mod/coop_mod/loadoutskins.scr
+   hzm-mohaa-coop-mod/coop_mod/loadoutskins_base.scr
+   hzm-mohaa-coop-mod/coop_mod/mvchal_gen.scr
+   hzm-mohaa-coop-mod/coop_mod/recoil_table.txt
+   hzm-mohaa-coop-mod/coop_mod/unlockreq_gen.scr
+   hzm-mohaa-coop-mod/coop_mod/xp.scr
+   hzm-mohaa-coop-mod/global/giveall.scr
+   hzm-mohaa-coop-mod/global/weapon.scr
+   hzm-mohaa-coop-mod/ubermode/get_player_weaponclass.scr
+   hzm-mohaa-coop-mod/ui/coop_loadout.urc
+   hzm-mohaa-coop-mod/ui/loadout/lktab0.cfg
+   hzm-mohaa-coop-mod/ui/loadout/lktab1.cfg
+   hzm-mohaa-coop-mod/ui/loadout/lktab2.cfg
+   hzm-mohaa-coop-mod/ui/loadout/lktab3.cfg
+   hzm-mohaa-coop-mod/ui/loadout/lktab4.cfg
+   hzm-mohaa-coop-mod/ui/loadout/lktab5.cfg
+   hzm-mohaa-coop-mod/ui/loadout/p04.cfg
+
+new files: 34
+   hzm-mohaa-coop-mod/ui/hud_ammo_G43Irons.urc
+   hzm-mohaa-coop-mod/ui/loadout/finp78_1.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp78_2.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp78_3.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp78_4.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp78_5.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp78_6.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp78_7.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_0_s1.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_0_s2.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_0_s3.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_0_s4.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_1_s1.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_1_s2.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_1_s3.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_1_s4.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_2_s1.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_2_s2.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_2_s3.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_2_s4.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_3_s1.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_3_s2.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_3_s3.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_3_s4.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_4_s1.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_4_s2.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_4_s3.cfg
+   hzm-mohaa-coop-mod/ui/loadout/mvp78_4_s4.cfg
+   hzm-mohaa-coop-mod/ui/loadout/p78.cfg
+   hzm-mohaa-coop-mod/ui/loadout/req78.cfg
+   hzm-mohaa-coop-mod/ui/loadout/reqmv78.cfg
+   hzm-mohaa-coop-mod/ui/loadout/t78.cfg
+   hzm-mohaa-coop-mod/ui/loadout/w78_s1.cfg
+   hzm-mohaa-coop-mod/ui/loadout/w78_s2.cfg
+
+overlay files whose mod-tree original is NOT the released file (check before a harness run): 0
+
+files in armory_gen_ov that this run did not write (stale): 0

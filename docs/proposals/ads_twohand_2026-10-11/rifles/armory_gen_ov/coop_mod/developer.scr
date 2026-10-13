@@ -1,0 +1,1659 @@
+//chrissstrahl - since the game refuses to let me use cheats in multiplayer
+//I am fucking gonna use this shitt, ya, screw you bitch! I WIN!!!1111
+//
+//Contains developer related commands that are needed for proper map testing
+//
+
+//[203] chrissstrahl - updated and changed
+//commands that are extracted from netname, see player.scr::manageNamechange
+//=========================================================================
+devcommand local.data:{
+//=========================================================================
+	if(!local.data){ iprintlnbold_noloc("GO SLEEP! YOU ARE SLIPPING.");end }
+	
+	//show developer menu
+	if(waitthread game.main::containsText local.data "ui" game.false){
+		self stufftext ("pushmenu coopdev\n")
+		end
+	}
+	
+	//println("COOPDEBUG: devcommand")
+	local.devCommand["lgn"] = "login"			//log developer in
+	
+	local.devCommand["stst"] = "spawnpoints"	//test if existing spawns are working
+	local.devCommand["sexs"] = "spawnpointsshow"	//test if existing spawns are working
+	
+	local.devCommand["snew"] = "spawnmarkers"	//spawns markers for every player spawn based on current player pos to show if it could work
+	local.devCommand["stry"] = "testmarkers"	//?
+	local.devCommand["sprt"] = "printmarkers"	//prints consoleoutput based on current status of spawnmarkers
+												//used to copy them out of the logfile and put them into spawnlocations.scr
+	local.devCommand["tch"] = "showtouch"		//print info of object touched by developer
+	local.devCommand["ncl"] = "noclip"			//toggels noclip
+	local.devCommand["tht"] = "threatbias"		//toggels threatbias
+	
+	local.devCommand["heal"] = "heal"			//heal self
+	local.devCommand["fhea"] = "healfriendly"	//heal friendly
+	
+	local.devCommand["msts"] = "printmissionstatus"	//prints consoleoutput with all mission relevant statusinfos
+	
+	local.devCommand["acti"] = "threadorentity"	//runs script thread or fires a trigger given by name
+	
+	local.devCommand["pos"] = "printposandshowmarker"	//runs script thread or fires a trigger given by name
+	
+	//if the command was found execute it
+	if(local.devCommand[local.data] != NIL){
+		if(self.flags["coop_isHost"] == 1){
+			self.flags["coopDeveloperVerified"] = 1
+		}
+		else if(	local.devCommand[local.data] != "login" &&
+			thread game.main::checkCoopDeveloper local.devCommand["lgn"])
+		{
+			end
+		}
+	
+		self stufftext ("popmenu 0;cg_3rd_Person 0")
+		self thread (local.devCommand[local.data])
+	}else{
+		self iprint ("devcommand unsupported command: "+local.data) 1
+	}
+}end
+
+//[203] chrissstrahl - login developer
+//=========================================================================
+loginPlayer local.oldToken:{
+//=========================================================================
+	if(self && self.flags["coopDeveloperVerified"] == 1){
+		self iprint ( "You are now logged in as Developer!" )
+		local.playerCleanName = waitthread game.player::playerCleanName self.netname
+		waitthread devauthsetcvar
+		iprintlnbold_noloc("[Developer/Tester Logged in]: "+local.playerCleanName)
+		println("[Developer/Tester] logged in: "+local.playerCleanName)
+		wait 0.1
+		if(self){ self thread devgiveauthkey local.oldToken }
+	}else{
+		self stufftext ("say I was trying to hack developer login")
+		wait 0.1
+		//punish the bitch
+		self stufftext ("disconnect;wait 30000")
+	}
+}end
+	
+//[203] chrissstrahl - allow admin to login with a key
+//the key is set on amin game cvar and executed on connect by coop mod
+//=========================================================================
+devauth local.data:{
+//=========================================================================
+	local.devKeys = getCvar("coop_devKeys")	
+	if(local.devKeys && local.devKeys != ""){
+		if((self.flags["coop_joinedGameAt"] + 10) > level.time && waitexec game.main::containsText local.devKeys local.data){
+			self.flags["coopDeveloperVerified"] = 1
+			self waitthread loginPlayer local.data
+		}else{
+			println("[login-auth] failed for: "+self.netname)
+		}
+	}
+}end
+
+//[203] chrissstrahl - gives admin new authkey on login
+//the key is set on amin game cvar and executed on connect by coop mod
+//=========================================================================
+devgiveauthkey local.oldToken:{
+//=========================================================================
+	local.authKeys = getcvar "coop_devKeys"
+	if(local.authKeys != NIL){
+		//remove tokens that are in use from cvarlist
+		for(local.authKeyIndex=1;local.authKeyIndex<=level.coop_authTokens;local.authKeyIndex++){
+			local.usedAuthKey = $world.flags["coopAuthTokenUsed"+local.authKeyIndex]
+			if(local.usedAuthKey){
+				local.authKeys = waitthread coop_mod/strings.scr::replace local.authKeys (":"+local.usedAuthKey) ""
+				//println("devgiveauthkey TOKEN already reserved: :"+local.usedAuthKey)
+			}
+		}
+		//if there are no tokens left
+		if(local.authKeys == ""){
+			self iprint "Sorry, no free Authkey left." 1
+			end
+		}
+		//there are tokens left check if give player a new token
+		else{
+			local.authToken = waitthread game.player::playerExtract local.authKeys ":"
+			self.flags["coopDeveloperAuthKeyToken"] = local.authToken
+			self stufftext ("set g_m1l3 append name ,5"+local.authToken+"\n")
+			
+			//check if old token is in list, then replace it
+			for(local.authKeyIndex=1;local.authKeyIndex<=level.coop_authTokens;local.authKeyIndex++){
+				local.usedAuthKey = $world.flags["coopAuthTokenUsed"+local.authKeyIndex]
+				if(local.usedAuthKey != NIL && local.usedAuthKey == local.oldToken){
+					$world.flags["coopAuthTokenUsed"+local.authKeyIndex] = local.authToken
+					//println("devgiveauthkey TOKEN: "+local.usedAuthKey+" OVERWRITEN WITH: "+local.authToken)
+					end
+				}
+			}
+			//if token was not preset set on free slot as used
+			for(local.authKeyIndex=1;local.authKeyIndex<=level.coop_authTokens;local.authKeyIndex++){
+				local.usedAuthKey = $world.flags["coopAuthTokenUsed"+local.authKeyIndex]
+				if(local.usedAuthKey == NIL){
+					$world.flags["coopAuthTokenUsed"+local.authKeyIndex] = local.authToken
+					//println("devgiveauthkey TOKEN REGISTRED new: "+local.authToken)
+					end
+				}
+			}
+		}
+	}else{
+		self iprint "Sorry, no Authkeys generated, login for Autogen." 1
+	}
+}end
+
+//[203] chrissstrahl - populates unpolulated cvar with dev authkey for easy login
+//=========================================================================
+devauthsetcvar:{
+//=========================================================================
+	local.devKeyz = getcvar "coop_devKeys"
+	if(local.devKeyz == NIL || local.devKeyz.size < 2){
+		local.devKeyz=""
+		for(local.sauerkraut=1;local.sauerkraut<=level.coop_authTokens;local.sauerkraut++){
+			local.devKeyz += (waitthread devkeygen)
+		}
+		setcvar "coop_devKeys" local.devKeyz
+		//println("New Keys Generated: "+local.devKeyz)			
+		end
+	}
+	//println("devauthsetcvar: Tookens did already exist.")
+}end
+
+//[203] chrissstrahl - generate a random login-auth key with specific length
+//=========================================================================
+devkeygen:{
+//=========================================================================
+	local.key = ":"
+	for(local.sauerkraut=1;local.sauerkraut<=level.coop_authTokenLenth;local.sauerkraut++){
+		local.key = (local.key + waitthread devkeygenRandom)
+	}
+}end local.key
+
+//[203] chrissstrahl - generate a random number or letter
+//=========================================================================
+devkeygenRandom:{
+//=========================================================================
+	local.char = ""
+	//set the list of availabe letters or chars
+	local.charRandom = makeArray
+		"a"
+		"b"
+		"c"
+		"d"
+		"e"
+		"f"
+		"f"
+		"g"
+		"i"
+		"j"
+		"k"
+		"l"
+		"m"
+		"n"
+		"o"
+		"p"
+		"q"
+		"r"
+		"s"
+		"t"
+		"u"
+		"v"
+		"w"
+		"x"
+		"y"
+		"z"
+		"A"
+		"B"
+		"C"
+		"D"
+		"E"
+		"F"
+		"F"
+		"G"
+		"I"
+		"J"
+		"K"
+		"L"
+		"M"
+		"N"
+		"O"
+		"P"
+		"Q"
+		"R"
+		"S"
+		"T"
+		"U"
+		"V"
+		"W"
+		"X"
+		"Y"
+		"Z"
+	endArray
+	
+	local.random = randomint((local.charRandom.size + -1) + 10)
+	if(local.random < 10){ local.char = local.random }
+	else{ local.random -= 9;local.char = local.charRandom[local.random + 1][1] }
+}end local.char
+
+//[203] chrissstrahl - place a marker and print pos and angle to console
+//this is used 
+//=========================================================================
+printposandshowmarker:{
+//=========================================================================
+	if(level.printMarkerIndex == NIL){
+		level.printMarkerIndex = 0
+	}
+	level.printMarkerIndex++
+	self iprint ( "Marker ["+level.printMarkerIndex+"] set and print to console") 1 NIL
+	local.originz = self.origin
+	local.originz[2] += 10
+	local.anglez = ( 0 0 0 )
+	local.anglez[1] = self.angle
+	local.ent = spawn script_model model "models/vehicles/uboat.tik" origin local.originz notsolid 1 scale 0.04 angles local.anglez
+	
+	local.originz = self.origin
+	local.originz[2] += 80
+	local.ent = spawn script_model model "models/vehicles/c47fly.tik" origin local.originz notsolid 1 scale 0.08 angles local.anglez
+	
+	local.playerCleanName = waitthread game.player::playerCleanName self.netname
+	waitthread printtoserverandclient ("==HZM Coop Dev: MARKER "+local.playerCleanName+" @ "+level.coop_mapname+" ["+level.printMarkerIndex+"] "+local.originz+" - "+local.anglez) self
+}end
+
+//[203] chrissstrahl - execut a script thread or activate a entity (trigger)
+//=========================================================================
+threadorentity:{
+//=========================================================================
+	self iprint ( "threadorentity") 1 NIL
+	if(level.coopThreadorEntity){
+		self iprint ( "Allready Running!") 1 NIL
+		end
+	}
+	if(level.coopThreadorEntityIndex==NIL){level.coopThreadorEntityIndex=1}
+	level.coopThreadorEntity=1
+	
+	local.playerCleanName = waitthread game.player::playerCleanName self.netname
+	
+	println ( "EXECUTE THREAD OR TRIGGER "+level.coopThreadorEntityIndex+" for "+local.playerCleanName)
+	self iprint ( "EXECUTE THREAD OR TRIGGER "+level.coopThreadorEntityIndex+" for "+local.playerCleanName) 1 NIL
+	
+	wait 1
+	
+	if(!self){
+		goto threadorentity_end
+	}
+	
+	self iprint ( "Set your playername to the thread or targetname to activate.") 0 NIL
+	self iprint ( "example: objective123") 1 NIL
+	self iprint ( "example: $spawnenemy5") 1 NIL
+	
+	//wait for player to rename
+	local.playerCleanName = self.netname
+	local.timeout=600 //600=30 sec with sv_fps 20
+	while(self && local.playerCleanName == self.netname && local.timeout > 0){
+		waitframe
+		local.timeout--
+	}
+	
+	if(!local.timeout){
+		self iprint ( "Execute Entity or Thread timmed out, you took to long to rename") 1 NIL
+		goto threadorentity_end
+	}
+	
+	local.name = self.netname
+	if(!local.name || local.name == "" || local.name.size < 2){
+		goto threadorentity_end
+	}
+	
+	//developer wants to trigger a entity
+	if(local.name[0] == "$"){
+		local.targetname = waitthread game.main::cleanText local.name "$" NIL
+		
+		local.entity = $(""+local.targetname)
+		if(local.entity){
+			println ( "ENTITY TRIGGERED: "+local.name+" for "+local.playerCleanName)
+			self iprint ( "ENTITY TRIGGERED: "+local.name) 1 NIL
+			self trigger local.entity
+		}else{
+			println ( "ENTITY NOT FOUND: "+local.name+" for "+local.playerCleanName)
+			self iprint ( "ENTITY NOT FOUND: "+local.name) 1 NIL
+		}
+	}
+	//developer wants to start a thread
+	else{
+		self iprint ( "STARTING THREAD: "+("maps/"+level.coop_mapname+".scr::"+local.name)) 1 NIL
+		print ( "STARTING THREAD: "+("maps/"+level.coop_mapname+".scr::"+local.name)+" for "+local.playerCleanName)
+		thread game.main::startThread ( ("maps/"+level.coop_mapname+".scr::"+local.name) ) self
+	}
+	
+	//rename player back
+	wait 1
+	if(self){
+		self stufftext ("name "+local.playerCleanName)
+	}
+	
+	threadorentity_end:
+	
+	level.coopThreadorEntity=0
+}end
+
+//[203] chrissstrahl - print the missionstatus to server log
+//=========================================================================
+printtoserverandclient local.text local.player:{
+//=========================================================================
+	println(local.text)
+	////[204] chrissstrahl - always send command to player, just top be sure (listen sv)
+	//if( level.coop_dedicated &&  local.player ){
+	if( local.player ){
+		local.player stufftext ("echo "+local.text+"\n")
+	}
+}end
+
+//[203] chrissstrahl - print the missionstatus to server log
+//=========================================================================
+returnObjectiveStatusDescr local.status:{
+//=========================================================================
+	local.status = int(local.status)
+	if(local.status==1){
+		end "DONOTDRAW"
+	}else if(local.status==2){
+		end "INPROGRESS"
+	}else if(local.status==3){
+		end "COMPLETED"
+	}else{
+		end "UNHANDLED"
+	}
+}end
+
+//[203] chrissstrahl - print the missionstatus to server log
+//executed by developer
+//=========================================================================
+printmissionstatus:{
+//=========================================================================
+	thread printstatus self
+}end
+
+//[203] chrissstrahl - print the missionstatus to server log
+//can be executed on a player(dev) or is executed when a new player joins
+//=========================================================================
+printstatus local.player:{
+//=========================================================================
+	if(level.coopPrintMissionStatus){ end }
+	if(level.coopMissionStatusIndex==NIL){level.coopMissionStatusIndex=0}
+	level.coopPrintMissionStatus=1
+	level.coopMissionStatusIndex++
+	
+	//print only if executed by a developer - if not there is no local.player
+	if(local.player){
+		local.playerCleanName = waitthread game.player::playerCleanName local.player.netname
+		local.player iprint ( "Printed Missions Status "+level.coopMissionStatusIndex+" into Server console for "+local.playerCleanName) 1 NIL
+	}
+	
+	//[204] chrissstrahl - use standard handle
+	if(local.player){ local.logWasActive = local.player waitthread developerLogfileActivate }
+
+	waitframe
+	if(local.player){ waitthread printtoserverandclient ("==HZM Coop Dev: "+local.playerCleanName+" @ "+level.coop_mapname+" Status "+level.coopMissionStatusIndex) local.player }
+	
+	println("-")
+	if(!local.player){waitthread printtoserverandclient ("==-----"+level.coop_mapname) local.player }
+	waitthread printtoserverandclient ("==-----------------PLAYERS") local.player
+	for (local.pl = 1;local.pl <= $player.size;local.pl++){
+		local.playerOther =  $player[local.pl]
+		if(local.playerOther){
+			local.playerCleanName = waitthread game.player::playerCleanName local.playerOther.netname
+			waitthread printtoserverandclient (local.playerCleanName+" E:"+local.playerOther.entnum+" H:"+int(local.playerOther.health)+" T:"+local.playerOther.dmteam+" O:"+(waitthread game.main::getCleanVectorString local.playerOther.origin)) local.player
+			if(local.player){
+				waitthread printtoserverandclient ("level.flags[coop_spawn"+local.pl+"origin] = ( "+(waitthread game.main::getCleanVectorString local.playerOther.origin)+" )") local.player
+				waitthread printtoserverandclient ("level.flags[coop_spawn"+local.pl+"angles] = ( 0 "+int(local.playerOther.angle)+" 0 )") local.player
+			}
+		}
+	}
+	
+	if(local.player){
+		waitthread printtoserverandclient ("==-----------------FRIENDLIES")
+		if(level.friendly1){
+			waitthread printtoserverandclient ("level.friendly1 "+level.friendly1.targetname+" E:"+level.friendly1.entnum+" H:"+int(level.friendly1.health)+" O:"+waitthread game.main::getCleanVectorString level.friendly1.origin+" A:"+int(level.friendly1.angle)+" T:"+level.friendly1.friendtype) local.player
+		}
+		if(level.friendly2){
+			waitthread printtoserverandclient ("level.friendly2 "+level.friendly2.targetname+" E:"+level.friendly2.entnum+" H:"+int(level.friendly2.health)+" O:"+waitthread game.main::getCleanVectorString level.friendly2.origin+" A:"+int(level.friendly2.angle)+" T:"+level.friendly2.friendtype) local.player
+		}
+		if(level.friendly3){
+			waitthread printtoserverandclient ("level.friendly3 "+level.friendly3.targetname+" E:"+level.friendly3.entnum+" H:"+int(level.friendly3.health)+" O:"+waitthread game.main::getCleanVectorString level.friendly3.origin+" A:"+int(level.friendly3.angle)+" T:"+level.friendly3.friendtype) local.player
+		}
+		if(level.friendly4){
+			waitthread printtoserverandclient ("level.friendly4 "+level.friendly4.targetname+" E:"+level.friendly4.entnum+" H:"+int(level.friendly4.health)+" O:"+waitthread game.main::getCleanVectorString level.friendly4.origin+" A:"+int(level.friendly4.angle)+" T:"+level.friendly4.friendtype) local.player
+		}
+		if(level.friendly5){
+			waitthread printtoserverandclient ("level.friendly5 "+level.friendly5.targetname+" E:"+level.friendly5.entnum+" H:"+int(level.friendly5.health)+" O:"+waitthread game.main::getCleanVectorString level.friendly5.origin+" A:"+int(level.friendly5.angle)+" T:"+level.friendly5.friendtype) local.player
+		}
+		if(level.friendly6){
+			waitthread printtoserverandclient ("level.friendly6 "+level.friendly6.targetname+" E:"+level.friendly6.entnum+" H:"+int(level.friendly6.health)+" O:"+waitthread game.main::getCleanVectorString level.friendly6.origin+" A:"+int(level.friendly6.angles)+" T:"+level.friendly6.friendtype) local.player
+		}
+	}
+	
+	waitthread printtoserverandclient ("==-----------------OBJECTIVES")
+	if(level.coopObjective1Text != NIL){ waitthread printtoserverandclient ( "Objective 1: ["+waitthread returnObjectiveStatusDescr level.coopObjective1+"] "+level.coopObjective1Text) local.player }
+	if(level.coopObjective2Text != NIL){ waitthread printtoserverandclient ( "Objective 2: ["+waitthread returnObjectiveStatusDescr level.coopObjective2+"] "+level.coopObjective2Text) local.player }
+	if(level.coopObjective3Text != NIL){ waitthread printtoserverandclient ( "Objective 3: ["+waitthread returnObjectiveStatusDescr level.coopObjective3+"] "+level.coopObjective3Text) local.player }
+	if(level.coopObjective4Text != NIL){ waitthread printtoserverandclient ( "Objective 4: ["+waitthread returnObjectiveStatusDescr level.coopObjective4+"] "+level.coopObjective4Text) local.player }
+	if(level.coopObjective5Text != NIL){ waitthread printtoserverandclient ( "Objective 5: ["+waitthread returnObjectiveStatusDescr level.coopObjective5+"] "+level.coopObjective5Text) local.player }
+	if(level.coopObjective6Text != NIL){ waitthread printtoserverandclient ( "Objective 6: ["+waitthread returnObjectiveStatusDescr level.coopObjective6+"] "+level.coopObjective6Text) local.player }
+	if(level.coopObjective7Text != NIL){ waitthread printtoserverandclient ( "Objective 7: ["+waitthread returnObjectiveStatusDescr level.coopObjective7+"] "+level.coopObjective7Text) local.player }
+	if(level.coopObjective8Text != NIL){ waitthread printtoserverandclient ( "Objective 8: ["+waitthread returnObjectiveStatusDescr level.coopObjective8+"] "+level.coopObjective8Text) local.player }
+	println("-")
+	waitthread printtoserverandclient ("==---------end of MISSION Status") local.player
+	
+	
+	waitframe
+	
+	//[204] chrissstrahl - use standard handle
+	//if(local.player){ local.player waitthread developerLogfileDectivate local.logWasActive }
+	
+	level.coopPrintMissionStatus=0
+}end
+
+//[203] chrissstrahl - login developer
+//=========================================================================
+login:{
+//=========================================================================
+	if(self.flags["coopDeveloperVerified"] == 1){
+		self iprint ("You are already logged in!") 1 NIL
+		end
+	}
+	else if(self.flags["coop_isHost"] == 1){
+		self.flags["coopDeveloperVerified"] = 1
+		self thread loginPlayer
+		end
+	}
+	else{
+		if(self.dmteam == "spectator"){
+			self iprint ("Can not login as Spectator!") 1 NIL
+			self stufftext("popmenu 0\n")
+			end
+		}
+		level.momLoginDeveloperIndex = 0;
+		level.developerLoginCode = ""
+		self thread mom/mom.scr::setup "coop_mod/mom_login.scr" NIL coop_login 1
+		self thread mom/mom.scr::momManagePlayer
+	}
+}end
+
+//[202] chrissstrahl
+//used for developer to spot relevant objects while testplaying (makeing them blink)
+//=========================================================================
+timescale local.timeScale:{
+//=========================================================================
+	if(level.coop_devTimescaleOn){
+		setcvar "timescale" local.timeScale
+	}
+}end
+
+//[202] chrissstrahl
+//used for developer to spot relevant objects while testplaying (makeing them blink)
+//=========================================================================
+blinkMe local.pulseTime:{
+//=========================================================================
+	if(!local.pulseTime){
+		local.pulseTime = 0.05
+	}
+	while(self){
+		self hide
+		wait local.pulseTime
+		if(!self){ end }
+		self show
+		wait 2
+	}
+}end
+
+
+//this was specifically desiged to test ohama beach without coop mod
+//=========================================================================
+spawnUpdater:{
+//=========================================================================
+//chrissstrahl - temp fixme
+	while($player == NULL || $player.size < 1){
+		waitframe
+	}
+	//make sure the player will respawn where he died during this test phase, so the script does not brake
+	local.lastpos = (0 0 0)
+	while($player.size < 2){
+		if($player.dmteam != "spectator"){
+			if($player.health == 100 && $player.flags["chrissstrahlMove"] != NIL && local.lastpos != (0.000000 0.000000 0.000000)){
+				$player origin local.lastpos
+				$player.flags["chrissstrahlMove"] = NIL
+				//iprintlnbold_noloc("DEV: You have been moved to your last safe pos("+local.lastpos+").")
+			}else if($player.health < 100){
+				if($player.health <= 0){
+					$player.flags["chrissstrahlMove"] = 1
+					waitframe
+					//iprintlnbold_noloc("DEV: dead.")
+				}else{
+					//iprintlnbold_noloc("DEV: lastpos.")
+					local.lastpos = $player.origin				
+				}
+			}
+		}
+		wait 0.25
+	}
+	println("DEV: spawnupdater ENDED more than 1 player!!!")
+}end
+
+
+//MOM related
+//=========================================================================
+noclip:{
+//=========================================================================
+	if( self == NULL || self.health <= 0 ){
+		end
+	}
+	
+	//self iprint ( "[NOCLIP] Currently disabled!" ) 1 NIL
+	//end
+	
+	//[203] chrissstrahl - added code to prevent ai picking up on player
+	self noclip
+	if(self.flags["coopDevNoclip"] != NIL){
+		self.flags["coopDevNoclip"] = NIL
+		self iprint ( "[NOCLIP] off" ) 1 NIL
+		self notsolid
+		self.flags["mom_coopThreatbias"] = NIL
+		self threatbias 1
+		thread game.main::playerMakeSolidAsap self
+	}else{
+		self iprint ( "[NOCLIP] ON" ) 1 NIL
+		self.flags["coopDevNoclip"] = 1
+		self.flags["mom_coopThreatbias"] = 1
+		self threatbias ignoreme
+	}
+}end
+
+//MOM related
+//=========================================================================
+heal:{
+//=========================================================================
+	//[200] chrissstrahl - check if developer needs to be on
+	if(thread game.main::checkCoopDeveloper "Heal command"){ end }
+	
+	if( self == NULL || self.health <= 0 ){
+		end
+	}
+	
+	self iprint ( "[HEAL] You are healed to: "+self.health ) 1 NIL
+	self heal 1
+}end
+
+//MOM related
+//=========================================================================
+healfriendly:{
+//=========================================================================
+	//[200] chrissstrahl - check if developer needs to be on
+	if(thread game.main::checkCoopDeveloper "Heal friendly command"){ end }
+
+	self iprint ( "[HEAL] You healed your friendlies" ) 1 NIL
+	
+	if(level.friendly1)
+		level.friendly1 heal 1
+		
+	if(level.friendly2)
+		level.friendly2 heal 1
+	
+	if(level.friendly3)
+		level.friendly3 heal 1
+	
+	if(level.friendly4)
+		level.friendly4 heal 1
+	
+	if(level.friendly5)
+		level.friendly5 heal 1
+	
+	if(level.friendly6)
+		level.friendly6 heal 1
+	
+	self heal 1
+}end
+
+//moves developer trough spawnpoint locations, waiting for dev to move away
+//=========================================================================
+spawnpoints:{
+//=========================================================================
+	//[200] chrissstrahl - check if developer needs to be on
+	if(thread game.main::checkCoopDeveloper "Test Spawnpoints command"){ end }
+	
+	if( self == NULL || self.health <= 0 || self.dmteam == "spectator"){
+		end
+	}
+	
+	if(self.flags["coopDevSpawnpointsTest"] != NIL){
+		self.flags["coopDevSpawnpointsTest"] = NIL
+		end
+	}
+	self.flags["coopDevSpawnpointsTest"] = 1
+	
+	self iprint ( "Test is spawnpoints active for you!" ) 1
+	self nodamage
+	
+	for(local.i=1;local.i<=8;local.i++){
+		if( self == NULL ){ end }
+		
+		if( self.flags["coopDevSpawnpointsTest"] == NIL  || self.health <= 0 ){
+			self iprint ( "Testing spawnpoints was STOPPED!" ) 1
+			self takedamage
+			end
+		}
+
+		local.vec = level.flags["coop_spawn"+local.i+"origin"]
+		
+		if(local.vec == NIL){
+			self iprint ( "coop_spawn"+local.i+"origin was NIL!" ) 1
+			continue
+		}
+		
+		self forcelegsstate STAND
+		self tele local.vec
+		
+		//if no angle defined use default
+		local.viewang = level.flags["coop_spawn"+local.i+"angles"]
+		if(local.viewang == NIL){
+			local.viewang = level.flags["coop_spawn1angles"]
+		}
+		self thread game.main::playerFace local.viewang
+		
+		self iprint ( "You are testing spawnpoint ["+local.i+"]. Move away now!" ) 1
+		
+		while( self != NULL && self.health > 0 &&
+				vector_length( local.vec - self.origin) < 100 &&
+				local.i<8 && self.dmteam != "spectator" &&
+				self.flags["coopDevSpawnpointsTest"] != NIL){
+			waitframe
+		}
+		if(local.i<8){
+			wait 1
+		}
+	}
+	self iprint ( "Spawnpoint Test complete" ) 1 NIL
+	self takedamage
+}end
+
+//=========================================================================
+spawnpointsshow:{
+//=========================================================================
+	self iprint ("TOGGLE spawnpointsshow") 1
+	
+	//remove markers
+	if(level.coopShowExistingSpawnpoints != NIL){
+		for(local.i=1;local.i<=8;local.i++){
+			local.entityMarker = $("coopEMkr"+local.i)
+			if(local.entityMarker){
+				local.entityMarker delete
+			}
+		}
+		level.coopShowExistingSpawnpoints=NIL
+		end
+	}
+	level.coopShowExistingSpawnpoints=1
+	
+	//add markers
+	for(local.i=1;local.i<=8;local.i++){
+		local.vec = level.flags["coop_spawn"+local.i+"origin"]
+		
+		if(!(local.vec)){
+			self iprint ("coop_spawn"+local.i+"origin was EMPTY/NIL") 1
+			local.vec = level.flags["coop_spawn1origin"]
+		}
+		//local.vec_z += 20
+		
+		local.angles = level.flags["coop_spawn"+local.i+"angles"]
+		if(!(local.angles)){
+			local.angles = level.flags["coop_spawn1angles"]
+			if(!(local.angles)){
+				local.angles = "( 0 0 0 )"
+			}
+		}
+		
+		//spawn script_model model "models/items/torpedo.tik" origin (local.vec) notsolid 1 targetname ("coopEMkr"+local.i) scale 1 angle -1
+		local.ent = spawn script_model model "models/player/german_Worker.tik" origin (local.vec) notsolid 1 targetname ("coopEMkr"+local.i) scale 1 angles local.angles
+		waitframe
+		local.ent anim "unarmed_stand_walk_fwd"
+	}
+	
+	//update location if it has changed
+	while(level.coopShowExistingSpawnpoints){
+		for(local.i=1;local.i<=8;local.i++){
+			local.entityMarker = $("coopEMkr"+local.i)
+			if(local.entityMarker != NULL){
+				local.vec = level.flags["coop_spawn"+local.i+"origin"]
+				if(!(local.vec)){
+					local.vec = level.flags["coop_spawn1origin"]
+					//no valid spawns, end it here
+					if(!(local.vec)){
+						for(local.i=1;local.i<=8;local.i++){
+							$("coopEMkr"+local.i) remove
+						}
+						level.coopShowExistingSpawnpoints=0
+						end
+					}
+				}
+				if(local.vec != local.entityMarker.origin){
+					local.angles = level.flags["coop_spawn"+local.i+"angles"]
+					if(!(local.angles)){
+						local.angles = level.flags["coop_spawn1angles"]
+						if(!(local.angles)){
+							local.angles = "( 0 0 0 )"
+						}
+					}
+					local.entityMarker origin local.vec
+					local.entityMarker angles local.angles
+				}
+			}
+		}
+		wait 1
+	}
+}end
+
+
+//MOM related
+//=========================================================================
+makeweak:{
+//=========================================================================	
+	iprintlnbold_noloc ( "developer make enemies weak" )
+	iprintlnbold_noloc ( "incomplete" )
+}end
+
+
+//MOM related
+//=========================================================================
+showtouch:{
+//=========================================================================
+	//end touch
+	if(self.flags["coop_momShowTouch"] != NIL){
+		self.flags["coop_momShowTouch"] = NIL
+		exec game.main::printInfo self ( "Show TOUCH OFF" ) 1 NIL
+		end
+	}
+
+	exec game.main::printInfo self ("Show TOUCH ON" ) 1 NIL
+	self.flags["coop_momShowTouch"] = 1
+	
+//prints out a message what the player is touching
+//this is used for debugging objects that are hard to find otherwise
+	while(self != NULL && self.flags["coop_momShowTouch"] != NIL){
+		local.maxentities = int(getcvar("maxentities"))	
+		//check every entity
+		local.ent = NULL
+		for (local.i = 0; local.i < local.maxentities; local.i++) {
+			local.ent = getentbyentnum local.i
+			//exists and has a model (is a tiki)
+			
+			if(local.ent != NULL && self istouching local.ent && local.ent.model != NIL && local.ent.model.size > 6){
+				//filter weapons and player (current weapon and playermodel)
+				if(waitexec game.main::containsText local.ent.model "weapons/" ||
+					local.ent.entnum == self.entnum){
+					//waitexec game.main::containsText local.ent.model "player/"){
+					//exec game.main::printInfo $player[1] "touching a weapon" 1 NIL
+				}else{// if(waitexec game.main::containsText local.ent.model "/"){
+					local.vec = local.ent.origin
+					local.model = waitexec coop_mod/strings.scr::remove local.ent.model "models/"
+					exec game.main::printInfo self ("[touching] @ "+level.coop_mapname+" $"+local.ent.targetname+": "+local.model+" at "+int(local.vec[0])+" "+int(local.vec[1])+" "+int(local.vec[2])) 1 NIL 10
+					local.ent thread dev_blink self 0.5
+				}
+			}
+		}
+		wait 1		
+	}
+}end
+
+
+//MOM related
+//=========================================================================
+notarget:{
+//=========================================================================
+	self notarget
+	self iprint "toggled notarget" 1
+}end
+
+// ===== DEBUG GOD MODE - REMOVE BEFORE RELEASE =====
+godmode_toggle:{
+	//[2026-08-30 SECURITY] AUTHENTICATION, and it belongs HERE rather than at the call site.
+	//This label is reachable from the name-command bus (player.scr playerNameCommand), which
+	//authenticates NOTHING - it extracts a marker from the player's NAME and dispatches straight
+	//to the table, so ANY client on ANY server could take god mode, noclip and every weapon just
+	//by renaming. Guarding only the dispatch line would leave the next caller exposed, so the
+	//test lives in the function. Silent end on failure: do not advertise the channel.
+	if( self == NULL ){ end }
+	//[user 2026-09-01, bug-2245] THE HOST IS ALWAYS A DEVELOPER, and it has to be asserted HERE.
+	//The 2026-08-30 authentication below is correct and stays, but the flag it tests was only ever
+	//written by TWO things: the ,dev name-command dispatcher (line ~44) and an explicit devauth
+	//login. The four BINDABLE labels - noclip, god, give-all, give-next - are reached from
+	//player.scr::playerNameCommand directly and pass through neither, so on a fresh map the host's
+	//bound key hit this test with the flag unset and silently ended. It looked exactly like the
+	//feature had been switched off. admin.scr:39 already grants the host the same way, so this is
+	//the established rule and not a new hole: a remote client still has to log in.
+	if( self.flags["coop_isHost"] == 1 ){ self.flags["coopDeveloperVerified"] = 1 }
+	if( self.flags["coopDeveloperVerified"] != 1 ){
+		println( "^~^~^ DEVDENY " + self.netname + " tried a developer command without login" )
+		end
+	}
+	if( self.flags["coop_debug_godmode"] == NIL ){
+		self.flags["coop_debug_godmode"] = 1
+		self nodamage
+		self thread godmode_infinite_ammo
+		self iprint "GOD MODE: ON (infinite ammo)" 1
+	} else {
+		self.flags["coop_debug_godmode"] = NIL
+		self takedamage
+		self iprint "GOD MODE: OFF" 1
+	}
+}end
+
+
+// Tops off every ammo type each second while god mode is active.
+godmode_infinite_ammo:{
+	while( self != NULL && self.flags["coop_debug_godmode"] == 1 ){
+		self ammo pistol 200
+		self ammo rifle 200
+		self ammo smg 300
+		self ammo mg 500
+		self ammo grenade 10
+		self ammo heavy 10
+		self ammo shotgun 50
+		wait 1
+	}
+}end
+// ===== END DEBUG GOD MODE =====
+
+// Coop noclip toggle (bindable via "Coop Noclip" in Options>Controls -> append name ,ncx).
+// Player::NoclipCheat just flips the movetype (NOCLIP<->WALK) and does NOT itself check
+// cheats - the cheat gate lives in Entity::CheckEventFlags, which only runs on the
+// console/clientcommand path (fgame/gamecmds.cpp). Calling "self noclip" from script goes
+// straight through ProcessEvent to the handler, so it works WITHOUT sv_cheats (which is
+// latched off on the coop server). Same reason god mode is scripted instead of using "god".
+//=========================================================================
+noclip_toggle:{
+//=========================================================================
+	//[2026-08-30 SECURITY] AUTHENTICATION, and it belongs HERE rather than at the call site.
+	//This label is reachable from the name-command bus (player.scr playerNameCommand), which
+	//authenticates NOTHING - it extracts a marker from the player's NAME and dispatches straight
+	//to the table, so ANY client on ANY server could take god mode, noclip and every weapon just
+	//by renaming. Guarding only the dispatch line would leave the next caller exposed, so the
+	//test lives in the function. Silent end on failure: do not advertise the channel.
+	if( self == NULL ){ end }
+	//[user 2026-09-01, bug-2245] THE HOST IS ALWAYS A DEVELOPER, and it has to be asserted HERE.
+	//The 2026-08-30 authentication below is correct and stays, but the flag it tests was only ever
+	//written by TWO things: the ,dev name-command dispatcher (line ~44) and an explicit devauth
+	//login. The four BINDABLE labels - noclip, god, give-all, give-next - are reached from
+	//player.scr::playerNameCommand directly and pass through neither, so on a fresh map the host's
+	//bound key hit this test with the flag unset and silently ended. It looked exactly like the
+	//feature had been switched off. admin.scr:39 already grants the host the same way, so this is
+	//the established rule and not a new hole: a remote client still has to log in.
+	if( self.flags["coop_isHost"] == 1 ){ self.flags["coopDeveloperVerified"] = 1 }
+	if( self.flags["coopDeveloperVerified"] != 1 ){
+		println( "^~^~^ DEVDENY " + self.netname + " tried a developer command without login" )
+		end
+	}
+	self noclip
+}end
+
+//[208] HZM coop - DEBUG: give the calling player EVERY gun at once so you can SCROLL through them all
+//normally. The engine holds multiple weapons per category (the coop give wrapper does NOT, which is why
+//the old per-category cycle existed). "self give all" runs the engine GiveCheat -> reads our coop
+//global/giveall.scr (lists all 31 guns) -> bypasses the coop one-per-class wrapper AND the cheat gate
+//(script ProcessEvent path, like god/noclip). One key, then scroll with the weapon wheel / number keys.
+//=========================================================================
+give_all_weapons:{
+//=========================================================================
+	//[2026-08-30 SECURITY] AUTHENTICATION, and it belongs HERE rather than at the call site.
+	//This label is reachable from the name-command bus (player.scr playerNameCommand), which
+	//authenticates NOTHING - it extracts a marker from the player's NAME and dispatches straight
+	//to the table, so ANY client on ANY server could take god mode, noclip and every weapon just
+	//by renaming. Guarding only the dispatch line would leave the next caller exposed, so the
+	//test lives in the function. Silent end on failure: do not advertise the channel.
+	if( self == NULL ){ end }
+	//[user 2026-09-01, bug-2245] THE HOST IS ALWAYS A DEVELOPER, and it has to be asserted HERE.
+	//The 2026-08-30 authentication below is correct and stays, but the flag it tests was only ever
+	//written by TWO things: the ,dev name-command dispatcher (line ~44) and an explicit devauth
+	//login. The four BINDABLE labels - noclip, god, give-all, give-next - are reached from
+	//player.scr::playerNameCommand directly and pass through neither, so on a fresh map the host's
+	//bound key hit this test with the flag unset and silently ended. It looked exactly like the
+	//feature had been switched off. admin.scr:39 already grants the host the same way, so this is
+	//the established rule and not a new hole: a remote client still has to log in.
+	if( self.flags["coop_isHost"] == 1 ){ self.flags["coopDeveloperVerified"] = 1 }
+	if( self.flags["coopDeveloperVerified"] != 1 ){
+		println( "^~^~^ DEVDENY " + self.netname + " tried a developer command without login" )
+		end
+	}
+	if(!self){ end }
+	// The coop itemhandler.scr DEDUPES held weapons by AMMO TYPE (notStartGrenade lets it apply to
+	// rifles/pistols/smg/mg too, not just grenades) AND DELETES the vanilla M18/RDG-1/Nebel smokes.
+	// That's the coop LOADOUT rule (carry one per slot), but it collapses this DEBUG give-all to one
+	// gun per ammo type + strips the smoke. Turn the itemhandler OFF around the give so we actually
+	// KEEP every gun + all smoke variants, then turn it back on.
+	local.savedIH = level.coop_itemHandler
+	level.coop_itemHandler = 0
+	self takeall 			// clean slate first
+	wait 0.05
+	self give all 			// engine give-all -> global/giveall.scr (guns + grenades + smoke + Gewehrgranate)
+	wait 0.5 			// let every per-item handler see itemHandler=0 and bail (no dedup / no delete)
+	// grenades/smoke ship with startammo 0 - hand out ammo so the given grenades are throwable
+	self ammo agrenade 10		// US / British frag
+	self ammo grenade 10		// German stick / Russian / Italian
+	self ammo smokegrenade 10	// all smoke variants
+	self ammo riflegrenade 10	// Gewehrgranate rifle-grenade
+	if( local.savedIH == NIL ){ local.savedIH = 1 }
+	level.coop_itemHandler = local.savedIH
+	self iprint "DEBUG: all guns + grenades given - scroll with the weapon wheel / number keys" 1
+	self thread coop_wpnNameDisplay		// show the name of each gun as you switch to it
+}end
+
+
+//[user 07-10] DEBUG weapon-name readout: after a give-all, print the tik name of the gun you're
+//holding each time you switch weapons, so you can identify every gun (esp. odd imported/invisible
+//ones). Started from give_all_weapons; ends on death and restarts on the next give-all.
+//=========================================================================
+coop_wpnNameDisplay:{
+//=========================================================================
+	if( self.coop_wpnNameLoop == 1 ){ end }
+	self.coop_wpnNameLoop = 1
+	local.last = "?"
+	while( self != NULL && isAlive self ){
+		local.item = waitthread coop_mod/itemhandler.scr::returnActiveWeapon self
+		local.m = ""
+		if( local.item != NULL && local.item != NIL ){
+			if( local.item.classname == "Weapon" ){ local.m = local.item.model }
+		}
+		if( local.m != local.last ){
+			local.last = local.m
+			if( local.m != "" && local.m != NIL ){
+				local.slash = 0
+				for( local.i = 0; local.i < local.m.size; local.i++ ){
+					if( local.m[local.i] == "/" ){ local.slash = local.i + 1 }
+				}
+				local.nm = ""
+				for( local.i = local.slash; local.i < local.m.size; local.i++ ){
+					if( local.m[local.i] == "." ){ break }
+					local.nm += local.m[local.i]
+				}
+				self iprint ( "^5Equipped: ^7" + local.nm ) 1
+			}
+		}
+		wait 0.1
+	}
+	self.coop_wpnNameLoop = NIL
+}end
+
+//[208] HZM coop - DEBUG: cycle to the NEXT gun within a category (bindable per category in
+//Options>Controls). Each press gives + equips the next gun in that category; the engine holds one
+//weapon per category so it swaps. Lets you test every gun's ADS by tapping through a category.
+//self.flags["coop_dbg_cyc_<cat>"] holds the per-player index. cat = rifle|smg|pistol|mg|other.
+//=========================================================================
+give_next_weapon local.cat:{
+//=========================================================================
+	//[2026-08-30 SECURITY] AUTHENTICATION, and it belongs HERE rather than at the call site.
+	//This label is reachable from the name-command bus (player.scr playerNameCommand), which
+	//authenticates NOTHING - it extracts a marker from the player's NAME and dispatches straight
+	//to the table, so ANY client on ANY server could take god mode, noclip and every weapon just
+	//by renaming. Guarding only the dispatch line would leave the next caller exposed, so the
+	//test lives in the function. Silent end on failure: do not advertise the channel.
+	if( self == NULL ){ end }
+	//[user 2026-09-01, bug-2245] THE HOST IS ALWAYS A DEVELOPER, and it has to be asserted HERE.
+	//The 2026-08-30 authentication below is correct and stays, but the flag it tests was only ever
+	//written by TWO things: the ,dev name-command dispatcher (line ~44) and an explicit devauth
+	//login. The four BINDABLE labels - noclip, god, give-all, give-next - are reached from
+	//player.scr::playerNameCommand directly and pass through neither, so on a fresh map the host's
+	//bound key hit this test with the flag unset and silently ended. It looked exactly like the
+	//feature had been switched off. admin.scr:39 already grants the host the same way, so this is
+	//the established rule and not a new hole: a remote client still has to log in.
+	if( self.flags["coop_isHost"] == 1 ){ self.flags["coopDeveloperVerified"] = 1 }
+	if( self.flags["coopDeveloperVerified"] != 1 ){
+		println( "^~^~^ DEVDENY " + self.netname + " tried a developer command without login" )
+		end
+	}
+	if(!self){ end }
+	local.count = 0
+	if(local.cat == "rifle"){
+		local.list[0]="weapons/m1_garand.tik"
+		local.list[1]="weapons/kar98.tik"
+		local.list[2]="weapons/enfield.tik"
+		local.list[3]="weapons/g43.tik"
+		local.list[4]="weapons/svt_rifle.tik"
+		local.list[5]="weapons/Mosin_Nagant_Rifle.tik"
+		local.list[6]="weapons/It_W_Carcano.tik"
+		local.list[7]="weapons/It_W_Moschetto.tik"
+		local.list[8]="weapons/DeLisle.tik"
+		local.list[9]="weapons/springfield.tik"
+		local.list[10]="weapons/KAR98sniper.tik"
+		local.list[11]="weapons/Uk_W_L42A1.tik"
+		local.list[12]="weapons/mp44.tik"
+		local.list[13]="weapons/arisaka.tik"
+		local.list[14]="weapons/springfield_unscoped.tik"
+		local.list[15]="weapons/garand_scoped.tik"
+		local.list[16]="weapons/Nagant_sniper.tik"
+		local.list[17]="weapons/carcanosniper.tik"
+		local.list[18]="weapons/arisakasniper.tik"
+		local.list[19]="weapons/g43sniper.tik"
+		local.list[20]="weapons/mp44scoped.tik"
+		local.list[21]="weapons/coop_g43_irons.tik"	//[g43 irons 2026-10-13]
+		local.count = 22
+	}
+	else if(local.cat == "smg"){
+		local.list[0]="weapons/thompsonsmg.tik"
+		local.list[1]="weapons/mp40.tik"
+		local.list[2]="weapons/sten.tik"
+		local.list[3]="weapons/ppsh_smg.tik"
+		local.list[4]="weapons/greasegun.tik"
+		local.list[5]="weapons/thompson50.tik"
+		local.list[6]="weapons/type100smg.tik"
+		local.list[7]="weapons/moschetto.tik"
+		local.count = 8
+	}
+	else if(local.cat == "pistol"){
+		local.list[0]="weapons/colt45.tik"
+		local.list[1]="weapons/p38.tik"
+		local.list[2]="weapons/Webley_Revolver.tik"
+		local.list[3]="weapons/Nagant_revolver.tik"
+		local.list[4]="weapons/It_W_Beretta.tik"
+		local.list[5]="weapons/silencedpistol.tik"
+		local.list[6]="weapons/welrod.tik"
+		local.list[7]="weapons/LugerP08.tik"
+		local.list[8]="weapons/ppk.tik"
+		local.list[9]="weapons/tt33.tik"
+		local.list[10]="weapons/nambu.tik"
+		local.count = 11
+	}
+	else if(local.cat == "mg"){
+		local.list[0]="weapons/bar.tik"
+		local.list[1]="weapons/Uk_W_Vickers.tik"
+		local.list[2]="weapons/It_W_Breda.tik"
+		local.list[3]="weapons/mg42carryable.tik"
+		local.list[4]="weapons/30calportable.tik"
+		local.count = 5
+	}
+	else if(local.cat == "other"){
+		local.list[0]="weapons/shotgun.tik"
+		local.list[1]="weapons/bazooka.tik"
+		local.list[2]="weapons/panzerschreck.tik"
+		local.list[3]="weapons/Uk_W_Piat.tik"
+		local.list[4]="weapons/kar98_mortar.tik"		// Gewehrgranate (BT rifle-grenade)
+		local.count = 5
+	}
+	if(local.count <= 0){ end }
+
+	local.idx = self.flags["coop_dbg_cyc_"+local.cat]
+	if(local.idx == NIL){ local.idx = -1 }
+	local.idx++
+	if(local.idx >= local.count){ local.idx = 0 }
+	self.flags["coop_dbg_cyc_"+local.cat] = local.idx
+
+	local.gun = local.list[local.idx]
+	self takeall 			// free all class slots first - the engine rejects a same-class give otherwise
+	thread coop_mod/replace.scr::givePlayerWeapon local.gun self "one" 0
+	self ammo riflegrenade 10	// so the Gewehrgranate's rifle-grenade secondary can fire when cycled
+	self iprint ("DBG "+local.cat+" ["+(local.idx+1)+"/"+local.count+"]: "+local.gun) 1
+}end
+
+
+//MOM related
+//=========================================================================
+threatbias:{
+//=========================================================================
+	if(self.flags["mom_coopThreatbias"] == NIL){
+		self.flags["mom_coopThreatbias"] = 1
+		self threatbias ignoreme
+		self iprint "threatbias ignoreme" 1
+	}else{
+		self.flags["mom_coopThreatbias"]= NIL
+		self threatbias 1
+		self iprint "threatbias 1" 1
+	}
+}end
+
+//[202] chrissstrahl - changed with [203]
+//creates a preview of how spawnspots would look at this clocation
+//=========================================================================
+spawnmarkers:{
+//=========================================================================
+	local.angles = self.viewangles
+	local.angles[0] = 0
+	local.angles[2] = 0
+	
+	//[203] chrissstrahl - if cycle is already active wait exit until it is ended
+	if(level.spawnmarkersManage){
+		self iprint "Markers are already active, move away and press use to stop." 1
+		end
+	}
+	level.spawnmarkersManage = 1
+	self iprint "Press use to cycle placement options." 1
+	
+	//make sure markers are spawned
+	self waitthread spawnmarkers_spawn
+	
+	//set viewangle
+	for(local.i=1;local.i<=8;local.i++){
+		$("coopSMkr"+local.i) angles local.angles
+	}
+	
+	self thread spawnmarkersManage
+}end
+
+//[203] chrissstrahl
+//allows the developer to step away and cycle the spawnlocation pattern
+//=========================================================================
+spawnmarkersManage:{
+//=========================================================================
+	local.origin = self.origin
+	local.angles = self.viewangles
+	local.angles[0] = 0
+	local.angles[2] = 0
+	self thread spawnmarkersCycle local.origin local.angles
+	while(self && self.health > 0 && level.spawnmarkersManage){
+		if(self.useheld){
+			if(vector_length(local.origin - self.origin) > 400){
+				level.spawnmarkersManage = 0
+			}else{
+				self thread spawnmarkersCycle local.origin local.angles
+				wait 0.5			
+			}
+		}
+		waitframe
+	}
+	if(self){
+		self iprint "Markers cycle function has stopped." 1
+	}
+	
+	level.spawnmarkersManage = 0
+	for(local.i=1;local.i<=8;local.i++){
+		$("coopSMkr"+local.i) remove
+	}
+	$world.flag["coop_dev_spawnmarkers"] = NIL
+}end
+
+//[203] chrissstrahl
+//cycles the spawnlocation pattern
+//=========================================================================
+spawnmarkersCycle local.origin local.angles:{
+//=========================================================================
+	local.maxcombinations = 15
+	local.devcoopspawnmarkers = $world.flag["coop_dev_spawnmarkers"]
+	if(local.devcoopspawnmarkers == NIL || local.devcoopspawnmarkers >= local.maxcombinations){
+		$world.flag["coop_dev_spawnmarkers"] = 1
+		local.devcoopspawnmarkers = 1
+	}else{
+		$world.flag["coop_dev_spawnmarkers"] = (local.devcoopspawnmarkers + 1)
+		local.devcoopspawnmarkers++
+	}
+	
+	self iprint ("Spawn Markers Cycle "+local.devcoopspawnmarkers+"") 1
+	
+	local.testorigin = local.origin
+	
+	$coopSMkr1 scale 0.5
+	waitframe
+	
+	//place spawns as straight line with the player in the center +x and -x
+	//////////////////////////////////////////
+	if(local.devcoopspawnmarkers == 1){		
+		for(local.i=1;local.i<=4;local.i++){
+			$("coopSMkr"+local.i) origin local.testorigin
+			local.testorigin[0] += 40
+		}
+		local.testorigin = local.origin
+		local.testorigin[0] -= 40
+		for(local.i=5;local.i<=8;local.i++){
+			$("coopSMkr"+local.i) origin local.testorigin
+			local.testorigin[0] -= 40
+		}
+	}
+	//place spawns as straight line with the player in the center +y and -y
+	//////////////////////////////////////////
+	else if(local.devcoopspawnmarkers == 2){
+		for(local.i=1;local.i<=4;local.i++){
+			$("coopSMkr"+local.i) origin local.testorigin
+			local.testorigin[1] += 40
+		}
+		local.testorigin = local.origin
+		local.testorigin[1] -= 40
+		for(local.i=5;local.i<=8;local.i++){
+			$("coopSMkr"+local.i) origin local.testorigin
+			local.testorigin[1] -= 40
+		}
+	}
+	//place spawns as straight line with the player in the center +y+x and -y-x
+	//////////////////////////////////////////
+	else if(local.devcoopspawnmarkers == 3){
+		for(local.i=1;local.i<=4;local.i++){
+			$("coopSMkr"+local.i) origin local.testorigin
+			local.testorigin[0] += 40
+			local.testorigin[1] += 40
+		}
+		local.testorigin = local.origin
+		local.testorigin[0] -= 40
+		local.testorigin[1] -= 40
+		for(local.i=5;local.i<=8;local.i++){
+			$("coopSMkr"+local.i) origin local.testorigin
+			local.testorigin[0] -= 40
+			local.testorigin[1] -= 40
+		}
+	}
+	//place spawns as straight line with the player in the center +y+x and -y-x
+	//////////////////////////////////////////
+	else if(local.devcoopspawnmarkers == 4){
+		for(local.i=1;local.i<=4;local.i++){
+			$("coopSMkr"+local.i) origin local.testorigin
+			local.testorigin[0] -= 40
+			local.testorigin[1] += 40
+		}
+		local.testorigin = local.origin
+		local.testorigin[0] += 40
+		local.testorigin[1] -= 40
+		for(local.i=5;local.i<=8;local.i++){
+			$("coopSMkr"+local.i) origin local.testorigin
+			local.testorigin[0] += 40
+			local.testorigin[1] -= 40
+		}
+	}
+	//place spawns like a 8th-pack with player in the center
+	//////////////////////////////////////////
+	else if(local.devcoopspawnmarkers == 5){
+		//Row 1 1+2
+		for(local.i=1;local.i<=2;local.i++){
+			$("coopSMkr"+local.i) origin local.testorigin
+			local.testorigin[0] += 40
+		}
+		//Row 1 3+4
+		local.testorigin = local.origin
+		local.testorigin[0] -= 40
+		for(local.i=3;local.i<=4;local.i++){
+			$("coopSMkr"+local.i) origin local.testorigin
+			local.testorigin[0] -= 40
+		}
+		
+		//row 2 - 5 to 8
+		local.testorigin = local.origin
+		
+		local.testorigin[0] -= ( 40 * 2 )
+		local.testorigin[1] -= 50
+		for(local.i=5;local.i<=8;local.i++){
+			$("coopSMkr"+local.i) origin local.testorigin
+			local.testorigin[0] += 40
+		}
+	}
+	//place spawns like a x pattern player in the center
+	//////////////////////////////////////////
+	else if(local.devcoopspawnmarkers == 6){
+		local.testorigin[0] -= ( 40 * 2 )
+		local.testorigin[1] -= ( 40 * 2 )
+		
+		local.originBaseline = local.testorigin
+	
+		for(local.i=1;local.i<=4;local.i++){
+			$("coopSMkr"+local.i) origin local.testorigin
+			local.testorigin[0] += 40
+			local.testorigin[1] += 40
+			if(local.i==2){
+				local.testorigin[0] += 40
+				local.testorigin[1] += 40
+			}
+		}
+		
+		local.testorigin = local.originBaseline
+		local.testorigin[0] += (40 * 4)	
+
+		for(local.i=5;local.i<=8;local.i++){
+			$("coopSMkr"+local.i) origin local.testorigin
+			local.testorigin[0] -= 40
+			local.testorigin[1] += 40
+			if(local.i==6){
+				local.testorigin[0] -= 40
+				local.testorigin[1] += 40
+			}
+		}
+	}
+	//place spawns two per row, center player
+	//////////////////////////////////////////
+	else if(local.devcoopspawnmarkers == 7){
+		local.rowNum = 1
+		local.testorigin[0] -= 20
+		local.testorigin[1] -= 80
+		local.originBaseline = local.testorigin
+		
+		for(local.i=1;local.i<=8;local.i++){
+			$("coopSMkr"+local.i) origin local.testorigin
+			local.testorigin[0] += 40
+			if(!(local.i % 2)){
+				local.testorigin = local.originBaseline
+				local.testorigin[1] += (40 * local.rowNum)		
+				local.rowNum++
+			}
+		}
+	}
+	//place spawns two per row, center player
+	//////////////////////////////////////////
+	else if(local.devcoopspawnmarkers == 8){
+		$coopSMkr1 origin local.testorigin
+		
+		local.baseOrigin = local.testorigin
+		
+		local.baseOrigin[0] -= 20
+		local.baseOrigin[1] += 40
+		for(local.i=2;local.i<=3;local.i++){
+			$("coopSMkr"+local.i) origin local.baseOrigin
+			local.baseOrigin[0] += 40
+		}
+		
+		local.baseOrigin = local.testorigin
+		local.baseOrigin[0] -= 60
+		local.baseOrigin[1] += 80
+		for(local.i=4;local.i<=6;local.i++){
+			$("coopSMkr"+local.i) origin local.baseOrigin
+			local.baseOrigin[0] += 40
+		}
+		
+		local.baseOrigin = local.testorigin
+		local.baseOrigin[0] -= 20
+		local.baseOrigin[1] += 120
+		for(local.i=7;local.i<=8;local.i++){
+			$("coopSMkr"+local.i) origin local.baseOrigin
+			local.baseOrigin[0] += 40
+		}
+	}
+	//place spawns two per row, center player
+	//////////////////////////////////////////
+	else if(local.devcoopspawnmarkers == 9){
+		$coopSMkr1 origin local.testorigin
+		
+		local.baseOrigin = local.testorigin
+		
+		local.baseOrigin[1] -= 20
+		local.baseOrigin[0] += 40
+		for(local.i=2;local.i<=3;local.i++){
+			$("coopSMkr"+local.i) origin local.baseOrigin
+			local.baseOrigin[1] += 40
+		}
+		
+		local.baseOrigin = local.testorigin
+		local.baseOrigin[1] -= 60
+		local.baseOrigin[0] += 80
+		for(local.i=4;local.i<=6;local.i++){
+			$("coopSMkr"+local.i) origin local.baseOrigin
+			local.baseOrigin[1] += 40
+		}
+		
+		local.baseOrigin = local.testorigin
+		local.baseOrigin[1] -= 20
+		local.baseOrigin[0] += 120
+		for(local.i=7;local.i<=8;local.i++){
+			$("coopSMkr"+local.i) origin local.baseOrigin
+			local.baseOrigin[1] += 40
+		}
+	}
+	//place spawns behind player
+	//////////////////////////////////////////
+	else if(local.devcoopspawnmarkers == 10){
+		local.origin = local.testorigin
+		local.forwardAngle = angles_toforward(local.angles)
+		
+		for(local.i=1;local.i<=8;local.i++){
+			$("coopSMkr"+local.i) origin local.origin
+			local.origin += local.forwardAngle * -50 
+		}
+	}
+	//place spawns in front player
+	//////////////////////////////////////////
+	else if(local.devcoopspawnmarkers == 11){
+		local.origin = local.testorigin
+		local.forwardAngle = angles_toforward(local.angles)
+		
+		for(local.i=1;local.i<=8;local.i++){
+			$("coopSMkr"+local.i) origin local.origin
+			local.origin += local.forwardAngle * 50 
+		}
+	}
+	//place spawns in two per row aligned to player angle in front
+	//////////////////////////////////////////
+	else if(local.devcoopspawnmarkers == 12){
+		local.numRow=1
+		local.origin = local.testorigin
+		
+		local.forwardAngle = angles_toforward(local.angles)
+		local.leftAngle = angles_toleft(local.angles)
+		
+		for(local.i=1;local.i<=8;local.i++){
+			if(!(local.i % 2)){
+				local.origin += local.leftAngle * 40 
+			}
+			
+			$("coopSMkr"+local.i) origin local.origin
+			
+			if(!(local.i % 2)){
+				local.origin = local.testorigin
+				local.origin += local.forwardAngle * (50 * local.numRow)
+				local.numRow++
+			}
+		}
+	}
+	//place spawns in two per row aligned to player angle behind
+	//////////////////////////////////////////
+	else if(local.devcoopspawnmarkers == 13){
+		local.numRow=1
+		local.origin = local.testorigin
+		
+		local.forwardAngle = angles_toforward(local.angles)
+		local.leftAngle = angles_toleft(local.angles)
+		
+		for(local.i=1;local.i<=8;local.i++){
+			if(!(local.i % 2)){
+				local.origin += local.leftAngle * 40 
+			}
+			
+			$("coopSMkr"+local.i) origin local.origin
+			
+			if(!(local.i % 2)){
+				local.origin = local.testorigin
+				local.origin += local.forwardAngle * ( -50 * local.numRow )
+				local.numRow++
+			}
+		}
+	}
+	//place spawns in four per row aligned left to player angle behind
+	//////////////////////////////////////////
+	else if(local.devcoopspawnmarkers == 14){
+		local.origin = local.testorigin
+		
+		local.forwardAngle = angles_toforward(local.angles)
+		local.leftAngle = angles_toleft(local.angles)
+		
+		for(local.i=1;local.i<=8;local.i++){
+			local.origin += (local.leftAngle * 40)
+			$("coopSMkr"+local.i) origin local.origin
+			if(!(local.i % 4)){
+				local.origin = local.testorigin
+				local.origin += (local.forwardAngle * -50 )
+			}
+		}
+	}
+	//place spawns in four per row aligned right to player angle behind
+	//////////////////////////////////////////
+	else if(local.devcoopspawnmarkers == 15){
+		local.origin = local.testorigin
+		
+		local.forwardAngle = angles_toforward(local.angles)
+		local.leftAngle = angles_toleft(local.angles)
+		
+		for(local.i=1;local.i<=8;local.i++){
+			local.origin += (local.leftAngle * -40)
+			$("coopSMkr"+local.i) origin local.origin
+			if(!(local.i % 4)){
+				local.origin = local.testorigin
+				local.origin += (local.forwardAngle * -50 )
+			}
+		}
+	}
+}end
+
+
+
+//[202] chrissstrahl - move player to each new marker and wait for him to move away
+//=========================================================================
+testmarkers:{
+//=========================================================================
+	if( self == NULL || self.health <= 0 || level.coopDevtestNewSpawn == 1){
+		end
+	}
+	if(!$coopSMkr1){
+		self iprint ( "TEST NEW SPAWNS - ERROR: No spawns found!" ) 1 NIL
+		end
+	}
+	level.coopDevtestNewSpawn = 1
+	
+	self iprint ( "TEST NEW SPAWNS - MOVE AWAY TO CONTINUE!" ) 1 NIL
+	self nodamage
+	
+	for(local.i=1;local.i<=8;local.i++){
+		if(self.health <= 0 || self.dmteam == "spectator"){
+			if(self){
+				self takedamage
+			}
+			level.coopDevtestNewSpawn = 0
+			end
+		}
+
+		local.vec = $("coopSMkr"+local.i).origin
+		
+		if(local.vec == NIL){
+			self iprint ( "coop_spawn"+local.i+"origin was NIL!" ) 1 NIL
+			continue
+		}
+		local.ang = $("coopSMkr"+local.i).angles
+		
+		self forcelegsstate STAND
+		self tele local.vec
+		self face local.ang
+		
+		while( self != NULL && self.health > 0 && vector_length( local.vec - self.origin) < 100 && local.i<8 && self.dmteam != "spectator"){
+			waitframe
+		}
+		if(local.i<8){
+			self iprint ( "TEST NEW SPAWN: "+local.i ) 1 NIL
+			wait 1
+		}
+	}
+	if(self){
+		self iprint ( "TEST NEW SPAWN: Complete" ) 1 NIL
+		self takedamage
+	}
+	level.coopDevtestNewSpawn = 0
+}end
+
+//=========================================================================
+printmarkers local.markernames:{
+//=========================================================================
+	if(level.coopMarkersIndex==NIL){
+		level.coopMarkersIndex=0
+	}
+	level.coopMarkersIndex++
+	
+	local.playerCleanName = waitthread game.player::playerCleanName self.netname
+	self iprint ( "Printed markers"+level.coopMarkersIndex+" locations into Server console for "+local.playerCleanName) 1 NIL
+	println ( "Printed markers"+level.coopMarkersIndex+" locations into Server console for "+local.playerCleanName)
+	
+	//[204] chrissstrahl - use standard handle
+	local.logWasActive = self waitthread developerLogfileActivate
+	
+	waitthread printtoserverandclient ("==HZM Coop Dev: printmarkers "+local.playerCleanName+" @ "+level.coop_mapname+" "+level.coopMarkersIndex) self
+	
+	for(local.i=1;local.i<9;local.i++){
+		local.marker = $("coopSMkr"+local.i)
+		if(local.marker){
+			local.temporigin = ""
+			local.origin = local.marker.origin
+			local.angles = local.marker.angles
+			local.angles =  " 0 "+local.angles[1]+" 0 "
+			for(local.j=0;local.j<3;local.j++){
+				local.temporigin += " "
+				local.temporigin += int(local.origin[local.j])
+			}
+			local.temporigin += " "
+			local.origin = local.temporigin
+			
+			//print only the first angle, they are all the same, the hzm coop mod uses angle 1 if others are NIL, why create more code as we need?
+			if(local.i == 1){ waitthread printtoserverandclient ("level.flags[coop_spawn"+local.i+"angles] = ("+local.angles+")") self }
+			waitthread printtoserverandclient ("level.flags[coop_spawn"+local.i+"origin] = ("+local.origin+")") self
+		}
+	}
+	waitthread printtoserverandclient ("==end of markers") self
+	
+	waitframe
+	
+	//[204] chrissstrahl - use standard handle
+	//self waitthread developerLogfileDectivate local.logWasActive
+}end
+
+//=========================================================================
+dev_blink local.player local.rate:{
+//=========================================================================
+	if(self.flags["coopBlinking"] != NIL){ end }
+	self.flags["coopBlinking"] = 1
+	
+	while(self && self.flags["coopBlinking"] && local.player && self istouching local.player ){
+		if(!self){ end }
+		self hide
+		wait local.rate
+		
+		if(!self){ end }
+		self show		
+		wait (2 *local.rate)
+	}
+	if(self){ self.flags["coopBlinking"] = NIL }
+}end
+
+//creates a preview of how spawnspots would look at this clocation
+//=========================================================================
+spawnmarkers_spawn:{
+//=========================================================================
+	for(local.i=1;local.i<9;local.i++){
+		local.marker = $("coopSMkr"+local.i)
+		
+		local.angles = "0 "
+		local.angles += int(self.viewangles[1])
+		local.angles += " 0"
+		
+		if(!local.marker){
+			//spawn script_model model "models/items/Af_P_Lantern.tik" origin (local.origin) notsolid 1 targetname ("coopSMkr"+local.i) scale 3
+			spawn script_model model "models/player/german_Scientist.tik" origin ( 0 0 -999 ) notsolid 1 targetname ("coopSMkr"+local.i) scale 1
+		}
+	}
+}end
+
+//creates a preview of how spawnspots would look at this clocation
+//=========================================================================
+spawnmarkers_remove:{
+//=========================================================================
+	for(local.i=1;local.i<9;local.i++){
+		local.marker = $("coopSMkr"+local.i)
+		if(local.marker){
+			$("coopSMkr"+local.i) remove
+		}
+	}
+}end
+
+//[204] chrissstrahl - activate logfile, have a standard way of doing this
+//=========================================================================
+developerLogfileActivate:{ //level.coop_dedicated
+//=========================================================================
+	local.logWasActive = int(getcvar("logfile"))
+	if(local.logWasActive != game.true){
+		setcvar ( "logfile 1" )
+	}
+	self stufftext "logfile 1"
+}end local.logWasActive
+
+//[204] chrissstrahl - deactivate logfile, have a standard way of doing this
+//=========================================================================
+developerLogfileDeactivate local.logWasActive:{
+//=========================================================================
+	if(!local.logWasActive){
+		setcvar ( "logfile 0" )
+	}
+	//self stufftext "logfile 1"
+}end

@@ -1,0 +1,393 @@
+//[200] Smithy - this script is called by the engine whenever a weapon is given to an actor
+//[200] Smithy - so i now use this to store their weapons. it is more robust (100% accurate).
+//[200] Smithy - see bottom of the file for my addition.
+start local.name:
+
+	//[user 2026-08-19 / bug-1952] ARMORY VARIANTS: coop_variantRoll hands AI variant tiks
+	//("models/weapons/mp40_mp18.tik" etc.) that this switch has never heard of - 495 "setting
+	//to none!!" hits in one session, which is what actually produced weaponless enemies. Map
+	//any variant back to its BASE give first via the generated reverse map (regenerates every
+	//build, so future variants are covered automatically). Keys are lowercased - run the name
+	//through the same normalizer its other consumers use.
+	waitthread coop_mod/loadoutskins_base.scr::main
+	local.coop_vn = waitthread coop_mod/itemhandler.scr::makeWeaponStringValid local.name
+	if( local.coop_vn != NIL && level.coop_skinBase[local.coop_vn] != NIL ){
+		local.name = level.coop_skinBase[local.coop_vn]
+	}
+
+	// Check if local.name is an alias.
+	// Make sure these names are all lower case.
+	switch (local.name)
+	{
+	//********************************************
+	//*** ALLIED WEAPONS
+	//********************************************
+	case "high standard":
+		//*** added on 7-18-2001
+		//*** FIX ME - need to make a highstandard.tik
+		local.name = models/weapons/silencedpistol.tik
+		self defaultnonvislevel 0.75
+		self suppresschance 50
+		break
+
+	case "colt 45":
+		local.name = models/weapons/colt45.tik
+		self defaultnonvislevel 0.75
+		self suppresschance 50
+		break
+
+	case "m1 garand":
+		local.name = models/weapons/m1_garand.tik
+		self defaultnonvislevel 0.5
+		self suppresschance 75
+		break
+
+	case "springfield '03 sniper":
+		local.name = models/weapons/springfield.tik
+		self defaultnonvislevel 0.5
+		self suppresschance 25
+		break
+
+	case "thompson":
+		local.name = models/weapons/thompsonsmg.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+	case "bar":
+		local.name = models/weapons/bar.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+	case "bazooka":
+		//*** added on 7-18-2001
+		local.name = models/weapons/bazooka.tik
+		self defaultnonvislevel 0.5
+		self suppresschance 100
+		break
+
+	case "shotgun":
+		//*** added on 7-18-2001
+		local.name = models/weapons/shotgun.tik
+		self defaultnonvislevel 0.75
+		self suppresschance 75
+		break
+
+
+	//********************************************
+	//*** GERMAN WEAPONS
+	//********************************************
+	case "walther p38":	//[bug-1960] alias (retail typo kept beside it)
+	case "walter p38":
+		local.name = models/weapons/p38.tik
+		self defaultnonvislevel 0.75
+		self suppresschance 50
+		break
+
+	case "mauser kar 98k":
+		local.name = models/weapons/kar98.tik
+		self defaultnonvislevel 0.5
+		self suppresschance 75
+		break
+
+	case "mauser kar 98d sniper":
+		//*** added on 7-18-2001
+		local.name = models/weapons/kar98sniper.tik
+		self defaultnonvislevel 0.5
+		self suppresschance 25
+		break
+
+	case "mp40":
+		local.name = models/weapons/mp40.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+	case "stg 44":		//[bug-1960] tik display name (lowercased getter) alias
+	case "stg44":
+		//*** added on 7-18-2001
+		local.name = models/weapons/mp44.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+	case "panzerschrek":
+		//*** added on 7-18-2001
+		//*** yes the .tik file is named incorrectly, but I didn't change it because
+		//*** code is probably relying on it somewhere with the current spelling
+		local.name = models/weapons/panzerschreck.tik
+		self defaultnonvislevel 0.5
+		self suppresschance 100
+		break
+
+	case "mg42":
+		//*** added on 7-18-2001
+		
+		// Modified for Americans on 6-24-03 by JP
+		// Modified for the Italian on 7-29-03 by JP
+		if(self.team == "german")
+		{
+			// I think this is never ever used
+			if(self.nationality == "it")
+				local.name = models/weapons/It_W_Moschetto.tik
+			else
+				local.name = models/weapons/mp40.tik		
+		}
+		else if(self.team == "american")
+			local.name = models/weapons/thompsonsmg.tik
+		self defaultnonvislevel 0.1
+		self suppresschance 100
+		break
+
+
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// weapons added for SPEARHEAD
+	//
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// British weapons
+	//
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	case "lee-enfield":	//[bug-1960] alias
+	case "enfield":
+		local.name = models/weapons/enfield.tik
+		self defaultnonvislevel 0.5
+		self suppresschance 70
+		break
+	case "webley":
+	case "webley revolver":
+		local.name = models/weapons/webley_revolver.tik
+		self defaultnonvislevel 0.75
+		self suppresschance 50
+		break
+
+	case "sten":
+		local.name = models/weapons/sten.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Russian weapons
+	//
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	case "nagant rifle":
+		local.name = models/weapons/mosin_nagant_rifle.tik
+		self defaultnonvislevel 0.5
+		self suppresschance 75
+		break
+
+	case "svt":
+		local.name = models/weapons/svt_rifle.tik
+		self defaultnonvislevel 0.5
+		self suppresschance 25
+		break
+
+	case "nagant revolver":
+		local.name = models/weapons/nagant_revolver.tik
+		self defaultnonvislevel 0.75
+		self suppresschance 50
+		break
+
+	case "ppsh":
+		local.name = models/weapons/ppsh_smg.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// New German weapons
+	//
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	case "g 43":		//[bug-1960] alias
+	case "g43":
+		local.name = models/weapons/g43.tik
+		self defaultnonvislevel 0.5
+		self suppresschance 25
+		break
+	case "g 43 irons":	//[g43 irons 2026-10-13] the iron-sight G43 by its weapon name
+	case "g43 irons":
+	case "g43irons":
+		local.name = models/weapons/coop_g43_irons.tik
+		self defaultnonvislevel 0.5
+		self suppresschance 25
+		break
+
+	case "portable mg42":
+		local.name = models/weapons/mg42carryable.tik
+		self defaultnonvislevel 0.1
+		self suppresschance 100
+		break
+
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// </end> weapons added for SPEARHEAD
+	//
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+//***********************************************************************************
+//***********************************************************************************
+
+
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//       Weapons added for TEAM TACTICS
+	//
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// New Italian weapons
+	//
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	case "moschetto":
+		local.name = models/weapons/It_W_Moschetto.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+	case "beretta":
+		local.name = models/weapons/It_W_Beretta.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+	case "bomba":
+		local.name = models/weapons/It_W_Bomba.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+	case "bomba breda":
+		local.name = models/weapons/It_W_BombaBreda.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+	case "carcano":
+		local.name = models/weapons/It_W_Carcano.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+	case "breda":
+		local.name = models/weapons/It_W_Breda.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// New British weapons
+	//
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	case "l42a1":
+		local.name = models/weapons/Uk_W_L42A1.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+	case "piat":
+		local.name = models/weapons/Uk_W_Piat.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+	case "vickers":
+		local.name = models/weapons/Uk_W_Vickers.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+	case "delisle":
+		local.name = models/weapons/delisle.tik
+		self defaultnonvislevel 0.5
+		self suppresschance 25
+		break
+
+
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Multiplayer
+	//
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	case "landmine":
+		local.name = models/weapons/Landmine.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+	case "minedetector":
+		local.name = models/weapons/US_W_MineDetector.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+	case "Minensuchgerat":
+		local.name = models/weapons/Gr_W_MineDetector.tik
+		self defaultnonvislevel 0.25
+		self suppresschance 100
+		break
+
+
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// </end> weapons added for TEAM TACTICS
+	//
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+	//[user 2026-09-27, bug-3051] RETAIL'S OTHER DISARM WORDS. Retail seats a driver or a gun
+	//operator with `gun holster` (global/jeepanim.scr::DriverGetInJeep, e2l1/aaguns.scr::StartAAGun,
+	//e3l1/BritHQ.scr) and m5l1b uses `gun "weaponless"`. Neither is a weapon: they fall to default
+	//below, become an EMPTY give, and retail's Actor::EventGiveWeaponInternal stripped the actor on an
+	//empty give. This build strips on an empty give only when the loadout string is literally "none"
+	//(bug-2450), so these two became no-ops and the seated man kept his rifle in his hands on the
+	//wheel. Hand the engine the literal "none" instead: EventGiveWeaponInternal strips on that name
+	//outright (its bExplicitNone test), in the game.dll that already ships. The dismount recipes that
+	//follow re-arm with an ordinary give (aaguns.scr AAGunExit: gun "beretta"), so nothing changes there.
+	case "holster":
+	case "weaponless":
+		local.name = "none"
+		break
+
+	case "none":
+	case "":
+		local.name = ""
+		break
+
+	default:
+		//[user 2026-08-19 / bug-1959] IMPORTED GUNS: this switch predates the S93/WW1/variant
+		//imports, so an actor given "models/weapons/g43.tik" fell to default -> weapons already
+		//REMOVED, give of "" fails -> the actor stands holstered and UNARMED (the exact failure
+		//Actor::EventGiveWeaponInternal's WEAPDBG comment predicts). Any name that is already a
+		//tik path passes straight through - giveItem loads any valid weapon tik - which makes
+		//every current and future import work without touching this switch again.
+		if( waitthread coop_mod/main.scr::containsText local.name ".tik" 0 ){
+			break
+		}
+		println "^~^~^ weapon '" local.name "' is not handled in weapon.scr... setting to none!!"
+		local.name = "" //[200] Smithy
+		break
+	}
+	self weapon_internal local.name
+
+	//[200] Smithy - OK, this is much better
+	if (level.gametype != 0){
+		thread coop_mod/itemhandler.scr::storeActorWeapon
+		thread coop_mod/itemhandler.scr::restoreNadeCount //storenadecount
+	}
+end
+

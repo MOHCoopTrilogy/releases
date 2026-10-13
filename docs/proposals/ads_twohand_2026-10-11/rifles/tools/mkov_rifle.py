@@ -45,6 +45,16 @@ def main():
                     assert arc not in z.namelist(), arc + ': staged AND measure-only - derive the measure tik from the staged one (nosmoke.py does)'
                     z.write(p, arc)
                     print('MEASURE-ONLY file:', arc)
+        if '--armgen' in sys.argv:
+            # the same entry made THROUGH THE GENERATORS (wire/stage_armory_gen.py -> ../armory_gen_ov): roster, pages,
+            # unlock text, model variants, dev lists. Use this OR --armory, never both.
+            assert '--armory' not in sys.argv
+            ar = os.path.normpath(os.path.join(HERE, '..', 'armory_gen_ov'))
+            want = open(os.path.join(ar, 'MANIFEST.txt')).read().split()
+            for arc in want:
+                assert arc.lower() not in [x.lower() for x in z.namelist()], arc
+                z.write(os.path.join(ar, arc.replace('/', os.sep)), arc)
+            print('ARMGEN files:', len(want))
         if '--armory' in sys.argv:
             # the iron-sight G43's own armory entry: wire/stage_armory_g43irons.py's copies of the RELEASED scripts / menus
             ar = os.path.normpath(os.path.join(HERE, '..', 'armory_ov'))

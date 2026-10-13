@@ -1,0 +1,7 @@
+gun	part	torso reload in (level.time)	weapon row starts	magazine filled	weapon row last frame	weapon row left (WEAPON_RELOADING ends)	torso leaves the reload	first state after	shots before
+coop_g43_irons	hip	52.10	0.00	1.70	-	-	2.90	STAND	1
+coop_g43_irons	hipempty	72.72	0.00	1.70	-	-	2.90	STAND	10
+coop_g43_irons	adsempty	95.05	0.00	1.70	-	-	2.90	STAND	10
+g43	hip	112.78	0.00	1.70	-	-	2.90	STAND	1
+g43	hipempty	133.43	0.00	1.70	-	-	2.90	STAND	10
+g43	adsempty	155.78	0.00	1.70	-	-	2.90	STAND	10

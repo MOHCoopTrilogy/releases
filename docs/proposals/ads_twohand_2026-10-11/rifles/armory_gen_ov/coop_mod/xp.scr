@@ -1,0 +1,2442 @@
+// [302] HZM XP SYSTEM - Phase 1 (tracking + persistence + end-of-map debrief + own-rank HUD)
+// Design doc: _research/xp_system.md. Every award funnels through xp_award (single entry point).
+//
+// Identity:    cl_guid userinfo (persistent per install; autoexec ships cl_guidServerUniq 0),
+//              fallback "n_"+netname for clients with no guid.
+// Persistence: write-through server cvar coop_xp_<id> (survives map transitions) +
+//              fs_write_content file coop_mod/save/xp_<id>.dat (survives server restarts).
+//              NEVER park XP in game.* - the coop transition wipes it.
+// Per-player:  self.flags["coop_xp_id" / "coop_xp_total" / "coop_xp_map" / "coop_xp_rank" /
+//              "coop_xp_join" / "coop_xp_rankmapstart"] + breakdown buckets
+//              self.flags["coop_xp_b_kills" / _valor / _objective / _support / _revive / _mission].
+// HUD slots:   62 emblem, 63 rank text (persistent own-rank HUD);
+//              64 bar bg, 65 bar fill, 66-68 breakdown lines, 69 toast (debrief card only).
+
+//=========================================================================
+// Init - threaded from main.scr::main right after server.scr::main.
+//=========================================================================
+xp_init:{
+	if( level.coop_xp_init == 1 ){ end }
+	level.coop_xp_init = 1
+
+	local.en = getcvar "coop_xp"
+	level.coop_xp_enabled = 1
+	if( local.en == "0" ){ level.coop_xp_enabled = 0 }
+
+	level.coop_xp_scale = 1
+	local.sc = getcvar "coop_xp_scale"
+	if( local.sc != "" && local.sc != "0" ){ level.coop_xp_scale = float( local.sc ) }
+
+	// [235] seed the kill-popup toggle so the coop-settings checkbox reflects the real default (ON)
+	if( getcvar "coop_xpKillPopup" == "" ){ setcvar "coop_xpKillPopup" "1" }
+
+	// [user 07-10] 22-rank ladder (US Army WW2, Technician grades + generals to 5-star). Thresholds are
+	// LOCKED once players have XP on file. level.coop_xp_rankMax is the top index - use it, never a literal.
+	level.coop_xp_rankMax = 21
+
+	//[user 07-16] WEAPON UNLOCKS per rank (give-tik). Skill-tree ids (30cal/mg42/rockets) absent;
+	//variants come from challenge kill-chains; HDM pinned R2 (guaranteed before the m2 U-boat map).
+	level.coop_xp_rankUnlockCnt[1] = 2
+	level.coop_xp_rankUnlock[1][0] = "models/weapons/carbine.tik"
+	level.coop_xp_rankUnlock[1][1] = "models/weapons/p38.tik"
+	level.coop_xp_rankUnlockCnt[2] = 3
+	level.coop_xp_rankUnlock[2][0] = "models/weapons/silencedpistol.tik"
+	level.coop_xp_rankUnlock[2][1] = "models/weapons/steilhandgranate_start.tik"
+	level.coop_xp_rankUnlock[2][2] = "models/weapons/coop_g43_irons.tik"	//[g43 irons 2026-10-13] early rifle unlock: after the carbine (rank 1), before the Kar98 (3) and the scoped G43 (5)
+	level.coop_xp_rankUnlockCnt[3] = 2
+	level.coop_xp_rankUnlock[3][0] = "models/weapons/kar98.tik"
+	level.coop_xp_rankUnlock[3][1] = "models/weapons/mills_grenade_sp_start.tik"
+	level.coop_xp_rankUnlockCnt[4] = 2
+	level.coop_xp_rankUnlock[4][0] = "models/weapons/sten.tik"
+	level.coop_xp_rankUnlock[4][1] = "models/weapons/lugerp08.tik"
+	level.coop_xp_rankUnlockCnt[5] = 2
+	level.coop_xp_rankUnlock[5][0] = "models/weapons/g43.tik"
+	level.coop_xp_rankUnlock[5][1] = "models/weapons/m18_smoke_grenade_start.tik"
+	level.coop_xp_rankUnlockCnt[6] = 2
+	level.coop_xp_rankUnlock[6][0] = "models/weapons/ppsh_smg.tik"
+	level.coop_xp_rankUnlock[6][1] = "models/weapons/webley_revolver.tik"
+	level.coop_xp_rankUnlockCnt[7] = 2
+	level.coop_xp_rankUnlock[7][0] = "models/weapons/enfield.tik"
+	level.coop_xp_rankUnlock[7][1] = "models/weapons/nambu.tik"
+	level.coop_xp_rankUnlockCnt[8] = 2
+	level.coop_xp_rankUnlock[8][0] = "models/weapons/greasegun.tik"
+	level.coop_xp_rankUnlock[8][1] = "models/weapons/nagant_revolver.tik"
+	level.coop_xp_rankUnlockCnt[9] = 2
+	level.coop_xp_rankUnlock[9][0] = "models/weapons/springfield_unscoped.tik"
+	level.coop_xp_rankUnlock[9][1] = "models/weapons/nebelhandgranate_start.tik"
+	level.coop_xp_rankUnlockCnt[10] = 2
+	level.coop_xp_rankUnlock[10][0] = "models/weapons/it_w_carcano.tik"
+	level.coop_xp_rankUnlock[10][1] = "models/weapons/it_w_beretta.tik"
+	level.coop_xp_rankUnlockCnt[11] = 1
+	level.coop_xp_rankUnlock[11][0] = "models/weapons/ppk.tik"
+	level.coop_xp_rankUnlockCnt[12] = 2
+	level.coop_xp_rankUnlock[12][0] = "models/weapons/svt_rifle.tik"
+	level.coop_xp_rankUnlock[12][1] = "models/weapons/tt33.tik"
+	level.coop_xp_rankUnlockCnt[13] = 2
+	level.coop_xp_rankUnlock[13][0] = "models/weapons/mosin_nagant_rifle.tik"
+	level.coop_xp_rankUnlock[13][1] = "models/weapons/it_w_bomba_sp_start.tik"
+	level.coop_xp_rankUnlockCnt[14] = 1
+	level.coop_xp_rankUnlock[14][0] = "models/weapons/it_w_moschetto.tik"
+	level.coop_xp_rankUnlockCnt[15] = 2
+	level.coop_xp_rankUnlock[15][0] = "models/weapons/arisaka.tik"
+	level.coop_xp_rankUnlock[15][1] = "models/weapons/moschetto.tik"
+	level.coop_xp_rankUnlockCnt[16] = 0
+	level.coop_xp_rankUnlockCnt[17] = 1
+	level.coop_xp_rankUnlock[17][0] = "models/weapons/type100smg.tik"
+	level.coop_xp_rankUnlockCnt[18] = 0
+	level.coop_xp_rankUnlockCnt[19] = 1
+	level.coop_xp_rankUnlock[19][0] = "models/weapons/fg42.tik"
+
+	//[user 2026-08-23, bug-2080] ARMORY GLOVES by rank. Appended with the running count so they
+	//sit alongside whatever that rank already grants rather than overwriting index 0.
+	level.coop_xp_rankUnlock[6][ level.coop_xp_rankUnlockCnt[6] ] = "glv_uswinter"
+	level.coop_xp_rankUnlockCnt[6] = level.coop_xp_rankUnlockCnt[6] + 1
+	level.coop_xp_rankUnlock[12][ level.coop_xp_rankUnlockCnt[12] ] = "glv_seaman"
+	level.coop_xp_rankUnlockCnt[12] = level.coop_xp_rankUnlockCnt[12] + 1
+	level.coop_xp_rankUnlock[18][ level.coop_xp_rankUnlockCnt[18] ] = "glv_alpine"
+	level.coop_xp_rankUnlockCnt[18] = level.coop_xp_rankUnlockCnt[18] + 1
+	level.coop_xp_rankUnlockCnt[20] = 0
+	level.coop_xp_rankUnlockCnt[21] = 0
+
+
+
+
+	//[user 07-16] COSMETIC rank rewards (skins + helmets) appended after the weapon table; index via live count so it never collides.
+	//[user 2026-08-04] bug-1358 - community skins earned by RANK. Appended with the live-count
+	//idiom (never a literal index) so this can never collide with the weapon table above.
+	level.coop_xp_rankUnlock[3][ level.coop_xp_rankUnlockCnt[3] ] = "models/player/american_1st_rangers_engineer.tik"
+	level.coop_xp_rankUnlockCnt[3] = level.coop_xp_rankUnlockCnt[3] + 1
+	level.coop_xp_rankUnlock[4][ level.coop_xp_rankUnlockCnt[4] ] = "models/player/american_1st_rangers_lieutenant.tik"
+	level.coop_xp_rankUnlockCnt[4] = level.coop_xp_rankUnlockCnt[4] + 1
+	level.coop_xp_rankUnlock[5][ level.coop_xp_rankUnlockCnt[5] ] = "models/player/american_1st_rangers_sergeant.tik"
+	level.coop_xp_rankUnlockCnt[5] = level.coop_xp_rankUnlockCnt[5] + 1
+	level.coop_xp_rankUnlock[6][ level.coop_xp_rankUnlockCnt[6] ] = "models/player/american_1st_rangers_private.tik"
+	level.coop_xp_rankUnlockCnt[6] = level.coop_xp_rankUnlockCnt[6] + 1
+	level.coop_xp_rankUnlock[7][ level.coop_xp_rankUnlockCnt[7] ] = "models/player/american_1st_rangers_captain.tik"
+	level.coop_xp_rankUnlockCnt[7] = level.coop_xp_rankUnlockCnt[7] + 1
+	level.coop_xp_rankUnlock[8][ level.coop_xp_rankUnlockCnt[8] ] = "models/player/american_1st_rangers_medic.tik"
+	level.coop_xp_rankUnlockCnt[8] = level.coop_xp_rankUnlockCnt[8] + 1
+	level.coop_xp_rankUnlock[9][ level.coop_xp_rankUnlockCnt[9] ] = "models/player/american_28th_private.tik"
+	level.coop_xp_rankUnlockCnt[9] = level.coop_xp_rankUnlockCnt[9] + 1
+	level.coop_xp_rankUnlock[10][ level.coop_xp_rankUnlockCnt[10] ] = "models/player/34th_Infantery_Division_private.tik"
+	level.coop_xp_rankUnlockCnt[10] = level.coop_xp_rankUnlockCnt[10] + 1
+	level.coop_xp_rankUnlock[11][ level.coop_xp_rankUnlockCnt[11] ] = "models/player/34th_Infantery_Division_radio.tik"
+	level.coop_xp_rankUnlockCnt[11] = level.coop_xp_rankUnlockCnt[11] + 1
+	level.coop_xp_rankUnlock[12][ level.coop_xp_rankUnlockCnt[12] ] = "models/player/34th_Infantery_Division_sergeant.tik"
+	level.coop_xp_rankUnlockCnt[12] = level.coop_xp_rankUnlockCnt[12] + 1
+	level.coop_xp_rankUnlock[13][ level.coop_xp_rankUnlockCnt[13] ] = "models/player/34th_Infantery_Division_sniper.tik"
+	level.coop_xp_rankUnlockCnt[13] = level.coop_xp_rankUnlockCnt[13] + 1
+	level.coop_xp_rankUnlock[14][ level.coop_xp_rankUnlockCnt[14] ] = "models/player/american_8thUrbanRangerSniper.tik"
+	level.coop_xp_rankUnlockCnt[14] = level.coop_xp_rankUnlockCnt[14] + 1
+	level.coop_xp_rankUnlock[15][ level.coop_xp_rankUnlockCnt[15] ] = "models/player/american_8thUrbanRanger.tik"
+	level.coop_xp_rankUnlockCnt[15] = level.coop_xp_rankUnlockCnt[15] + 1
+	level.coop_xp_rankUnlock[16][ level.coop_xp_rankUnlockCnt[16] ] = "models/player/american_8thUrbanRangerBar.tik"
+	level.coop_xp_rankUnlockCnt[16] = level.coop_xp_rankUnlockCnt[16] + 1
+	level.coop_xp_rankUnlock[18][ level.coop_xp_rankUnlockCnt[18] ] = "models/player/american_8thUrbanRangeradio.tik"
+	level.coop_xp_rankUnlockCnt[18] = level.coop_xp_rankUnlockCnt[18] + 1
+	level.coop_xp_rankUnlock[20][ level.coop_xp_rankUnlockCnt[20] ] = "models/player/american_8thUrbanRangerMG.tik"
+	level.coop_xp_rankUnlockCnt[20] = level.coop_xp_rankUnlockCnt[20] + 1
+	level.coop_xp_rankUnlock[1][ level.coop_xp_rankUnlockCnt[1] ] = "models/player/allied_airborne_82nd_1.tik"
+	level.coop_xp_rankUnlockCnt[1] = level.coop_xp_rankUnlockCnt[1] + 1
+	level.coop_xp_rankUnlock[1][ level.coop_xp_rankUnlockCnt[1] ] = "models/player/american_army_hbt.tik"
+	level.coop_xp_rankUnlockCnt[1] = level.coop_xp_rankUnlockCnt[1] + 1
+	level.coop_xp_rankUnlock[2][ level.coop_xp_rankUnlockCnt[2] ] = "models/player/allied_airborne_82nd_2.tik"
+	level.coop_xp_rankUnlockCnt[2] = level.coop_xp_rankUnlockCnt[2] + 1
+	level.coop_xp_rankUnlock[2][ level.coop_xp_rankUnlockCnt[2] ] = "models/player/american_army_29id.tik"
+	level.coop_xp_rankUnlockCnt[2] = level.coop_xp_rankUnlockCnt[2] + 1
+	level.coop_xp_rankUnlock[3][ level.coop_xp_rankUnlockCnt[3] ] = "models/player/allied_russian_corporal.tik"
+	level.coop_xp_rankUnlockCnt[3] = level.coop_xp_rankUnlockCnt[3] + 1
+	level.coop_xp_rankUnlock[3][ level.coop_xp_rankUnlockCnt[3] ] = "models/player/allied_british_tank_corporal.tik"
+	level.coop_xp_rankUnlockCnt[3] = level.coop_xp_rankUnlockCnt[3] + 1
+	level.coop_xp_rankUnlock[4][ level.coop_xp_rankUnlockCnt[4] ] = "models/player/allied_technician.tik"
+	level.coop_xp_rankUnlockCnt[4] = level.coop_xp_rankUnlockCnt[4] + 1
+	level.coop_xp_rankUnlock[4][ level.coop_xp_rankUnlockCnt[4] ] = "models/player/american_army_29id_radioman.tik"
+	level.coop_xp_rankUnlockCnt[4] = level.coop_xp_rankUnlockCnt[4] + 1
+	level.coop_xp_rankUnlock[5][ level.coop_xp_rankUnlockCnt[5] ] = "models/coop_helmets/coop_helmet_sergeant.tik"
+	level.coop_xp_rankUnlockCnt[5] = level.coop_xp_rankUnlockCnt[5] + 1
+	level.coop_xp_rankUnlock[5][ level.coop_xp_rankUnlockCnt[5] ] = "models/player/american_army_29id_sgt.tik"
+	level.coop_xp_rankUnlockCnt[5] = level.coop_xp_rankUnlockCnt[5] + 1
+	level.coop_xp_rankUnlock[6][ level.coop_xp_rankUnlockCnt[6] ] = "models/player/allied_airborne_82nd_3.tik"
+	level.coop_xp_rankUnlockCnt[6] = level.coop_xp_rankUnlockCnt[6] + 1
+	level.coop_xp_rankUnlock[6][ level.coop_xp_rankUnlockCnt[6] ] = "models/player/american_army_29id_bar.tik"
+	level.coop_xp_rankUnlockCnt[6] = level.coop_xp_rankUnlockCnt[6] + 1
+	level.coop_xp_rankUnlock[7][ level.coop_xp_rankUnlockCnt[7] ] = "models/player/allied_airborne_82nd_sgt.tik"
+	level.coop_xp_rankUnlockCnt[7] = level.coop_xp_rankUnlockCnt[7] + 1
+	level.coop_xp_rankUnlock[7][ level.coop_xp_rankUnlockCnt[7] ] = "models/player/american_army_sergeant.tik"
+	level.coop_xp_rankUnlockCnt[7] = level.coop_xp_rankUnlockCnt[7] + 1
+	level.coop_xp_rankUnlock[8][ level.coop_xp_rankUnlockCnt[8] ] = "models/coop_helmets/coop_helmet_brit_tankhat.tik"
+	level.coop_xp_rankUnlockCnt[8] = level.coop_xp_rankUnlockCnt[8] + 1
+	level.coop_xp_rankUnlock[8][ level.coop_xp_rankUnlockCnt[8] ] = "models/player/american_army_m43.tik"
+	level.coop_xp_rankUnlockCnt[8] = level.coop_xp_rankUnlockCnt[8] + 1
+	level.coop_xp_rankUnlock[8][ level.coop_xp_rankUnlockCnt[8] ] = "models/player/allied_us_mask.tik"
+	level.coop_xp_rankUnlockCnt[8] = level.coop_xp_rankUnlockCnt[8] + 1
+	level.coop_xp_rankUnlock[9][ level.coop_xp_rankUnlockCnt[9] ] = "models/player/allied_airborne_101st_2.tik"
+	level.coop_xp_rankUnlockCnt[9] = level.coop_xp_rankUnlockCnt[9] + 1
+	level.coop_xp_rankUnlock[9][ level.coop_xp_rankUnlockCnt[9] ] = "models/player/american_ranger2.tik"
+	level.coop_xp_rankUnlockCnt[9] = level.coop_xp_rankUnlockCnt[9] + 1
+	level.coop_xp_rankUnlock[9][ level.coop_xp_rankUnlockCnt[9] ] = "models/player/american_army_medic.tik"
+	level.coop_xp_rankUnlockCnt[9] = level.coop_xp_rankUnlockCnt[9] + 1
+	level.coop_xp_rankUnlock[10][ level.coop_xp_rankUnlockCnt[10] ] = "models/coop_helmets/coop_helmet_soviet_hat.tik"
+	level.coop_xp_rankUnlockCnt[10] = level.coop_xp_rankUnlockCnt[10] + 1
+	level.coop_xp_rankUnlock[10][ level.coop_xp_rankUnlockCnt[10] ] = "models/player/american_ranger_assault_sergeant.tik"
+	level.coop_xp_rankUnlockCnt[10] = level.coop_xp_rankUnlockCnt[10] + 1
+	level.coop_xp_rankUnlock[10][ level.coop_xp_rankUnlockCnt[10] ] = "models/player/american_navy_beach_radioman.tik"
+	level.coop_xp_rankUnlockCnt[10] = level.coop_xp_rankUnlockCnt[10] + 1
+	level.coop_xp_rankUnlock[11][ level.coop_xp_rankUnlockCnt[11] ] = "models/coop_helmets/coop_helmet_ltnt.tik"
+	level.coop_xp_rankUnlockCnt[11] = level.coop_xp_rankUnlockCnt[11] + 1
+	level.coop_xp_rankUnlock[11][ level.coop_xp_rankUnlockCnt[11] ] = "models/player/american_army_lieutenant.tik"
+	level.coop_xp_rankUnlockCnt[11] = level.coop_xp_rankUnlockCnt[11] + 1
+	level.coop_xp_rankUnlock[12][ level.coop_xp_rankUnlockCnt[12] ] = "models/player/allied_501st_pir_soldier.tik"
+	level.coop_xp_rankUnlockCnt[12] = level.coop_xp_rankUnlockCnt[12] + 1
+	level.coop_xp_rankUnlock[12][ level.coop_xp_rankUnlockCnt[12] ] = "models/player/american_ranger_lieutenant.tik"
+	level.coop_xp_rankUnlockCnt[12] = level.coop_xp_rankUnlockCnt[12] + 1
+	level.coop_xp_rankUnlock[12][ level.coop_xp_rankUnlockCnt[12] ] = "models/player/allied_russian_crazy_boris.tik"
+	level.coop_xp_rankUnlockCnt[12] = level.coop_xp_rankUnlockCnt[12] + 1
+	level.coop_xp_rankUnlock[13][ level.coop_xp_rankUnlockCnt[13] ] = "models/player/allied_101st_captain.tik"
+	level.coop_xp_rankUnlockCnt[13] = level.coop_xp_rankUnlockCnt[13] + 1
+	level.coop_xp_rankUnlock[13][ level.coop_xp_rankUnlockCnt[13] ] = "models/player/american_army_captain.tik"
+	level.coop_xp_rankUnlockCnt[13] = level.coop_xp_rankUnlockCnt[13] + 1
+	level.coop_xp_rankUnlock[14][ level.coop_xp_rankUnlockCnt[14] ] = "models/player/allied_501st_pir_scout.tik"
+	level.coop_xp_rankUnlockCnt[14] = level.coop_xp_rankUnlockCnt[14] + 1
+	level.coop_xp_rankUnlock[14][ level.coop_xp_rankUnlockCnt[14] ] = "models/player/american_army_major.tik"
+	level.coop_xp_rankUnlockCnt[14] = level.coop_xp_rankUnlockCnt[14] + 1
+	level.coop_xp_rankUnlock[14][ level.coop_xp_rankUnlockCnt[14] ] = "models/player/american_major.tik"
+	level.coop_xp_rankUnlockCnt[14] = level.coop_xp_rankUnlockCnt[14] + 1
+	level.coop_xp_rankUnlock[15][ level.coop_xp_rankUnlockCnt[15] ] = "models/player/american_ranger_assault_captain.tik"
+	level.coop_xp_rankUnlockCnt[15] = level.coop_xp_rankUnlockCnt[15] + 1
+	level.coop_xp_rankUnlock[15][ level.coop_xp_rankUnlockCnt[15] ] = "models/player/allied_tanker2.tik"
+	level.coop_xp_rankUnlockCnt[15] = level.coop_xp_rankUnlockCnt[15] + 1
+	level.coop_xp_rankUnlock[16][ level.coop_xp_rankUnlockCnt[16] ] = "models/coop_helmets/coop_helmet_ger_offhat_sh.tik"
+	level.coop_xp_rankUnlockCnt[16] = level.coop_xp_rankUnlockCnt[16] + 1
+	level.coop_xp_rankUnlock[16][ level.coop_xp_rankUnlockCnt[16] ] = "models/player/allied_wheathers.tik"
+	level.coop_xp_rankUnlockCnt[16] = level.coop_xp_rankUnlockCnt[16] + 1
+	level.coop_xp_rankUnlock[16][ level.coop_xp_rankUnlockCnt[16] ] = "models/player/allied_us_tank.tik"
+	level.coop_xp_rankUnlockCnt[16] = level.coop_xp_rankUnlockCnt[16] + 1
+	level.coop_xp_rankUnlock[17][ level.coop_xp_rankUnlockCnt[17] ] = "models/player/american_ranger_winter_m41.tik"
+	level.coop_xp_rankUnlockCnt[17] = level.coop_xp_rankUnlockCnt[17] + 1
+	level.coop_xp_rankUnlock[17][ level.coop_xp_rankUnlockCnt[17] ] = "models/player/american_winter_m41.tik"
+	level.coop_xp_rankUnlockCnt[17] = level.coop_xp_rankUnlockCnt[17] + 1
+	level.coop_xp_rankUnlock[18][ level.coop_xp_rankUnlockCnt[18] ] = "models/player/american_ranger_winter_sgt.tik"
+	level.coop_xp_rankUnlockCnt[18] = level.coop_xp_rankUnlockCnt[18] + 1
+	level.coop_xp_rankUnlock[18][ level.coop_xp_rankUnlockCnt[18] ] = "models/player/american_winter_sgt.tik"
+	level.coop_xp_rankUnlockCnt[18] = level.coop_xp_rankUnlockCnt[18] + 1
+	level.coop_xp_rankUnlock[19][ level.coop_xp_rankUnlockCnt[19] ] = "models/player/american_ranger_winter_m43.tik"
+	level.coop_xp_rankUnlockCnt[19] = level.coop_xp_rankUnlockCnt[19] + 1
+	level.coop_xp_rankUnlock[20][ level.coop_xp_rankUnlockCnt[20] ] = "models/player/american_winter_specengineer.tik"
+	level.coop_xp_rankUnlockCnt[20] = level.coop_xp_rankUnlockCnt[20] + 1
+	level.coop_xp_rankUnlock[21][ level.coop_xp_rankUnlockCnt[21] ] = "models/player/american_ranger_winter_m43_lt.tik"
+	level.coop_xp_rankUnlockCnt[21] = level.coop_xp_rankUnlockCnt[21] + 1
+
+	level.coop_xp_rankXP[0]  = 0
+	level.coop_xp_rankXP[1]  = 500
+	level.coop_xp_rankXP[2]  = 1200
+	level.coop_xp_rankXP[3]  = 2200
+	level.coop_xp_rankXP[4]  = 3600
+	level.coop_xp_rankXP[5]  = 5500
+	level.coop_xp_rankXP[6]  = 8000
+	level.coop_xp_rankXP[7]  = 11500
+	level.coop_xp_rankXP[8]  = 16000
+	level.coop_xp_rankXP[9]  = 22000
+	level.coop_xp_rankXP[10] = 30000
+	level.coop_xp_rankXP[11] = 41000
+	level.coop_xp_rankXP[12] = 55000
+	level.coop_xp_rankXP[13] = 73000
+	level.coop_xp_rankXP[14] = 95000
+	level.coop_xp_rankXP[15] = 122000
+	level.coop_xp_rankXP[16] = 155000
+	level.coop_xp_rankXP[17] = 200000
+	level.coop_xp_rankXP[18] = 260000
+	level.coop_xp_rankXP[19] = 330000
+	level.coop_xp_rankXP[20] = 410000
+	level.coop_xp_rankXP[21] = 500000
+	//[user 2026-09-17] PRESTIGE: the 22-rank Army ladder tops out at rank 21 (GA, 500k XP). Once shared
+	//coop+MP earning is in play that ceiling is reachable, so above it players earn UNCAPPED prestige
+	//stars - one per coop_xp_prestigeStep XP beyond the rank-21 threshold. This only ADDS above the top
+	//(rankXP[0..21] are untouched), so no existing save is ever re-ranked (thresholds stay LOCKED).
+	level.coop_xp_prestigeStep = 100000
+
+	level.coop_xp_rankName[0]  = "Private"
+	level.coop_xp_rankName[1]  = "Private First Class"
+	level.coop_xp_rankName[2]  = "Technician Fifth Grade"
+	level.coop_xp_rankName[3]  = "Corporal"
+	level.coop_xp_rankName[4]  = "Technician Fourth Grade"
+	level.coop_xp_rankName[5]  = "Sergeant"
+	level.coop_xp_rankName[6]  = "Technician Third Grade"
+	level.coop_xp_rankName[7]  = "Staff Sergeant"
+	level.coop_xp_rankName[8]  = "Technical Sergeant"
+	level.coop_xp_rankName[9]  = "First Sergeant"
+	level.coop_xp_rankName[10] = "Master Sergeant"
+	level.coop_xp_rankName[11] = "Second Lieutenant"
+	level.coop_xp_rankName[12] = "First Lieutenant"
+	level.coop_xp_rankName[13] = "Captain"
+	level.coop_xp_rankName[14] = "Major"
+	level.coop_xp_rankName[15] = "Lieutenant Colonel"
+	level.coop_xp_rankName[16] = "Colonel"
+	level.coop_xp_rankName[17] = "Brigadier General"
+	level.coop_xp_rankName[18] = "Major General"
+	level.coop_xp_rankName[19] = "Lieutenant General"
+	level.coop_xp_rankName[20] = "General"
+	level.coop_xp_rankName[21] = "General of the Army"
+
+	level.coop_xp_rankAbbr[0]  = "Pvt"
+	level.coop_xp_rankAbbr[1]  = "Pfc"
+	level.coop_xp_rankAbbr[2]  = "T/5"
+	level.coop_xp_rankAbbr[3]  = "Cpl"
+	level.coop_xp_rankAbbr[4]  = "T/4"
+	level.coop_xp_rankAbbr[5]  = "Sgt"
+	level.coop_xp_rankAbbr[6]  = "T/3"
+	level.coop_xp_rankAbbr[7]  = "SSgt"
+	level.coop_xp_rankAbbr[8]  = "TSgt"
+	level.coop_xp_rankAbbr[9]  = "1Sgt"
+	level.coop_xp_rankAbbr[10] = "MSgt"
+	level.coop_xp_rankAbbr[11] = "2Lt"
+	level.coop_xp_rankAbbr[12] = "1Lt"
+	level.coop_xp_rankAbbr[13] = "Cpt"
+	level.coop_xp_rankAbbr[14] = "Maj"
+	level.coop_xp_rankAbbr[15] = "LtCol"
+	level.coop_xp_rankAbbr[16] = "Col"
+	level.coop_xp_rankAbbr[17] = "BGen"
+	level.coop_xp_rankAbbr[18] = "MGen"
+	level.coop_xp_rankAbbr[19] = "LtGen"
+	level.coop_xp_rankAbbr[20] = "Gen"
+	level.coop_xp_rankAbbr[21] = "GA"
+
+	// kill-XP soft cap counter (anti farm, design doc 6): after 40 x players team kills the
+	// kill-derived XP halves, after 80 x players it quarters. Objectives/support unaffected.
+	level.coop_xp_teamkills = 0
+	// paratrooper survival roster
+	level.coop_xp_paraN = 0
+
+	//[user 2026-09-13, bug-2564] MULTIPLAYER: the XP identity and rank table only, never the loops. chal_ensure ->
+	//xp_identify reaches here on a stock MP map when coop_mod/mp.scr commits armory picks; the autosave writes the
+	//coop XP save and the cover loop pays coop XP, and neither may be earned in a deathmatch. level.coop_mpRun is
+	//set only by mp.scr, which refuses to run when coop is loaded, and level vars reset per map - so on every coop
+	//map this is never true and xp_init is unchanged. Enforced by docs/tools/check_mp_isolation.py.
+	if( level.coop_mpRun == 1 ){ end }
+	thread xp_autosave_loop
+	thread xp_cover_used_loop
+}end
+
+
+//=========================================================================
+// 60s autosave (plus flushes on rank-up, mission complete and maptest transitions).
+//=========================================================================
+xp_autosave_loop:{
+	if( level.coop_xp_autosave == 1 ){ end }
+	level.coop_xp_autosave = 1
+	while( 1 ){
+		wait 60
+		waitthread xp_flush_staggered
+	}
+}end
+
+
+//=========================================================================
+//[srvperf 2026-10-04] the 60 s autosave's flush, ONE player per server frame. Each synchronous
+//fs_write_content costs ~1 ms; xp_flush does every player in the same frame (~4.6 ms with 4 players,
+//measured on m1l1). Same skip-unchanged gate as xp_flush. Event flushes (rank-up, mission complete,
+//maptest) keep the immediate xp_flush.
+//=========================================================================
+xp_flush_staggered:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	local.i = 1
+	while( local.i <= $player.size ){
+		local.p = $player[local.i]
+		if( local.p != NULL && local.p.flags["coop_xp_id"] != NIL ){
+			local.xs = "" + local.p.flags["coop_xp_total"]
+			if( local.p.flags["coop_xp_flushed"] != local.xs ){
+				fs_write_content ( "coop_mod/save/xp_" + local.p.flags["coop_xp_id"] + ".dat" ) local.xs
+				local.p.flags["coop_xp_flushed"] = local.xs
+				waitframe
+			}
+		}
+		local.i++
+	}
+}end
+
+
+//=========================================================================
+// Identity + restore. Called from player.scr::manageSetup for every new player.
+//=========================================================================
+xp_identify local.player:{
+	if( level.coop_xp_init != 1 ){ waitthread xp_init }
+	if( level.coop_xp_enabled != 1 ){ end }
+	if( local.player == NULL ){ end }
+	if( local.player.flags["coop_xp_id"] != NIL ){ end }
+	// singleton: a kill can race the connect-time identify (both call here). Second caller
+	// just waits for the first to finish so awards never see half-initialized totals (NIL HUD bug).
+	if( local.player.flags["coop_xp_identifying"] == 1 ){
+		while( local.player != NULL && local.player.flags["coop_xp_identifying"] == 1 ){
+			wait 0.25
+		}
+		end
+	}
+	local.player.flags["coop_xp_identifying"] = 1
+
+	// cl_guid is pushed onto the player entity by the ENGINE (g_client.cpp
+	// G_ClientUserinfoChanged -> self.coop_guid); there is NO script userinfo getter.
+	// It can land a moment after connect, so wait briefly before falling back.
+	local.tries = 0
+	while( (local.player.coop_guid == NIL || local.player.coop_guid == "") && local.tries < 10 ){
+		wait 0.5
+		if( local.player == NULL ){ end }
+		local.tries++
+	}
+	local.id = local.player.coop_guid
+	if( local.id == NIL || local.id == "" ){
+		// no guid (vanilla client / missing qkey) - spoofable, LAN-grade netname identity
+		local.id = "n_" + local.player.netname
+	}
+
+	local.total = 0
+	// 1) session cache (survives map transitions instantly)
+	local.cv = getcvar( "coop_xp_" + local.id )
+	if( local.cv != "" ){
+		local.total = int( local.cv )
+	} else {
+		// 2) file (survives server restarts). Content = plain number.
+		local.data = fs_read_content ( "coop_mod/save/xp_" + local.id + ".dat" )
+		if( local.data != NIL && local.data != "" ){
+			local.total = int( local.data )
+		}
+	}
+	if( local.total == NIL ){ local.total = 0 }
+	if( local.total < 0 ){ local.total = 0 }
+
+	local.player.flags["coop_xp_id"]    = local.id
+	local.player.flags["coop_xp_total"] = local.total
+	local.player.flags["coop_xp_map"]   = 0
+	local.player.flags["coop_xp_join"]  = level.time
+	local.rank = waitthread xp_rankForTotal local.total
+	local.player.flags["coop_xp_rank"]  = local.rank
+	local.player.flags["coop_xp_rankmapstart"] = local.rank
+	//[user 2026-09-17] prestige stars above the top rank (re-derived from total, like rank).
+	local.prestige = waitthread xp_prestigeForTotal local.total
+	local.player.flags["coop_xp_prestige"] = local.prestige
+	waitthread xp_push_own_cvars local.player
+	//[user 07-16] rank is re-derived from total on connect (never stored) - re-apply all rank unlocks
+	//so they survive reconnects. Idempotent (chal_add_unlock dedups).
+	thread xp_rank_unlock local.player 0 local.rank
+
+	setcvar ( "coop_xp_" + local.id ) ( "" + local.total )
+	local.player.flags["coop_xp_identifying"] = NIL
+
+	local.srline = ( "Service record: " + level.coop_xp_rankAbbr[local.rank] + " - " + local.total + " XP" )
+	if( local.prestige > 0 ){ local.srline = ( local.srline + " (Prestige " + local.prestige + ")" ) }
+	if( !(waitthread coop_mod/menumirror.scr::coop_quietNotices) ){	//bug-3234 no armory/unlock toasts over a briefing
+		println ( "^~^~^ XP " + local.srline )
+	}
+}end
+
+
+//=========================================================================
+// Rank index (0-12) for a cumulative total.
+//=========================================================================
+xp_rankForTotal local.total:{
+	if( level.coop_xp_rankMax == NIL ){ level.coop_xp_rankMax = 21 }		// defensive: an unset max makes the loop return rank 0 -> bar reads full
+	local.r = 0
+	local.i = 1
+	while( local.i <= level.coop_xp_rankMax ){
+		if( local.total >= level.coop_xp_rankXP[local.i] ){ local.r = local.i }
+		local.i++
+	}
+}end(local.r)
+
+
+//=========================================================================
+// Prestige stars earned above the top rank. 0 until the rank-21 threshold is reached, then one star
+// per coop_xp_prestigeStep XP beyond it. Uncapped, so maxed players always have a next target.
+//=========================================================================
+xp_prestigeForTotal local.total:{
+	if( level.coop_xp_rankMax == NIL ){ level.coop_xp_rankMax = 21 }
+	if( level.coop_xp_prestigeStep == NIL || level.coop_xp_prestigeStep <= 0 ){ level.coop_xp_prestigeStep = 100000 }
+	local.p = 0
+	local.top = level.coop_xp_rankXP[level.coop_xp_rankMax]
+	if( local.total >= local.top ){
+		local.p = int( ( local.total - local.top ) / level.coop_xp_prestigeStep )
+	}
+}end(local.p)
+
+
+//=========================================================================
+// [user 2026-09-17] Push the OWNING player's SHARED rank identity to display cvars, so MP menus/HUD show the
+// same coop rank the player earns everywhere (coop and MP now feed one ladder). Display-only coop_xp_* cvars
+// (not saved gameplay cvars); rankAbbr has no spaces, safe for a bare seta. Called on identify + every award.
+//=========================================================================
+xp_push_own_cvars local.player:{
+	if( local.player == NULL || local.player == NIL ){ end }
+	if( local.player.flags["coop_xp_total"] == NIL ){ end }
+	local.total = local.player.flags["coop_xp_total"]
+	local.rank = local.player.flags["coop_xp_rank"]
+	if( local.rank == NIL ){ local.rank = 0 }
+	local.pres = local.player.flags["coop_xp_prestige"]
+	if( local.pres == NIL ){ local.pres = 0 }
+	//XP remaining to the next milestone: next rank while on the ladder, else next prestige star.
+	local.next = 0
+	if( local.rank < level.coop_xp_rankMax ){
+		local.next = ( level.coop_xp_rankXP[local.rank + 1] - local.total )
+	} else {
+		local.next = ( level.coop_xp_prestigeStep - ( ( local.total - level.coop_xp_rankXP[level.coop_xp_rankMax] ) % level.coop_xp_prestigeStep ) )
+	}
+	//emblem index is the rank, zero-padded to 2 digits (coop_rank_00..21) - same map as the XP HUD bar.
+	local.rn = local.rank
+	if( local.rn < 10 ){ local.rn = ( "0" + local.rn ) }
+	local.player stufftext ( "seta coop_xp_rankIdx " + local.rank )
+	local.player stufftext ( "seta coop_xp_rankName " + level.coop_xp_rankAbbr[local.rank] )
+	local.player stufftext ( "seta coop_xp_rankShader textures/hud/coop_rank_" + local.rn )
+	local.player stufftext ( "seta coop_xp_totalOwn " + local.total )
+	local.player stufftext ( "seta coop_xp_next " + local.next )
+	local.player stufftext ( "seta coop_xp_prestige " + local.pres )
+
+	//[2026-09-27, bug-3076] the MP Service Record's rank bar (ui/coop_mp_record.urc rankBarFill,
+	//linkcvartoshader "coop_xp_barMark", bug-2790) had never drawn: its generator says the cvar is
+	//"pushed by xp.scr", but nothing ever set it - the only coop_xp_barMark here is a per-player FLAG
+	//(the 100-XP popup mark in xp_award), a different namespace. Push the in-rank progress as the
+	//0..10 bucket of the coop_bf bar art, the rule chal_ui_export uses; only when the bucket moves,
+	//because this label runs after every award and the reliable-command budget is finite.
+	local.bf = 10
+	if( local.rank < level.coop_xp_rankMax ){
+		local.bfl = level.coop_xp_rankXP[local.rank]
+		local.bfc = level.coop_xp_rankXP[local.rank + 1]
+		if( local.bfc > local.bfl ){ local.bf = int( 10 * ( local.total - local.bfl ) / ( local.bfc - local.bfl ) ) }
+	} else if( level.coop_xp_prestigeStep > 0 ){
+		local.bf = int( 10 * ( level.coop_xp_prestigeStep - local.next ) / level.coop_xp_prestigeStep )
+	}
+	if( local.bf < 0 ){ local.bf = 0 }
+	if( local.bf > 10 ){ local.bf = 10 }
+	if( local.player.flags["coop_xp_bfSent"] != local.bf ){
+		local.player.flags["coop_xp_bfSent"] = local.bf
+		local.player stufftext ( "seta coop_xp_barMark textures/hud/coop_bf" + local.bf )
+	}
+
+	//[user 2026-09-17] SCOREBOARD FEED: publish this player's rank into a per-slot SERVER cvar so the engine
+	//scoreboard (dm_manager.cpp reads coop_sbRank<clientnum>, exactly like tow_allied_obj*) can show the
+	//shared rank in the Rank column. For a PLAYER entity, entnum IS the client number (clients occupy
+	//entities 0..maxclients-1; engine: entity.cpp "entnum IS the client number", player.cpp clientNum =
+	//edict->s.number). The old "entnum - 1" wrote the wrong slot, so every cell read empty -> "-" (bug-2699).
+	//One token, no spaces; prestige as "ABBR+N".
+	local.cn = local.player.entnum
+	local.rlabel = level.coop_xp_rankAbbr[local.rank]
+	if( local.pres > 0 ){ local.rlabel = ( local.rlabel + "+" + local.pres ) }
+	setcvar ( "coop_sbRank" + local.cn ) local.rlabel
+}end
+
+
+//=========================================================================
+// THE award entry point. reason buckets: kills valor objective support revive mission
+//=========================================================================
+// [user 07-12] RANK-UP FOCUS DUCK: while the cinematic M1 ping rings, this client's world audio dips
+// hard and then eases back up - the ping owns the moment. Same per-client s_volume recipe as the
+// tinnitus duck; restores to the shared coop_tinnitusBaseVol baseline.
+//=========================================================================
+xp_ping_duck local.p:{
+	if( local.p == NULL ){ end }
+	local.p stufftext "s_volume 0.20"
+	wait 1.4
+	if( local.p == NULL ){ end }
+	local.p stufftext "s_volume 0.45"
+	wait 0.5
+	if( local.p == NULL ){ end }
+	local.p stufftext "s_volume 0.70"
+	wait 0.5
+	if( local.p == NULL ){ end }
+	local.p stufftext ( "s_volume " + getcvar( "coop_tinnitusBaseVol" ) )
+}end
+
+//=========================================================================
+xp_award local.player local.amount local.reason local.label:{
+	//[user 2026-08-10] PROBE, first statement on purpose. The previous placement anchored on a line
+	//that occurs EARLIER in this file too, so replace(...,1) put it in a different label entirely and
+	//the resulting "0 entry lines" measured nothing. Anchor on the unique label line instead.
+	//Gated + scoped to reason==revive so the other ~13 award sites stay quiet.
+	if( local.reason == "revive" && getcvar( "coop_aggroDebug" ) == "1" ){
+		local.dOk = 0
+		local.dCls = "none"
+		if( local.player != NULL && local.player != NIL ){ local.dOk = 1; local.dCls = local.player.classname }
+		local.dAmt = local.amount
+		if( local.dAmt == NIL ){ local.dAmt = -1 }
+		local.dIni = level.coop_xp_init
+		if( local.dIni == NIL ){ local.dIni = -1 }
+		local.dEn = level.coop_xp_enabled
+		if( local.dEn == NIL ){ local.dEn = -1 }
+		println( "^~^~^ XPPROBE entry playerOk=" + local.dOk + " cls=" + local.dCls + " amt=" + local.dAmt + " init=" + local.dIni + " enabled=" + local.dEn )
+	}
+	if( level.coop_xp_init != 1 ){ waitthread xp_init }
+	if( level.coop_xp_enabled != 1 ){ end }
+	// guard BOTH NULL (freed entity) and NIL (unset var, e.g. an early DBNO team-revive when
+	// level.coop_smoke_player was never set) - either would cast 'none' on the .classname deref.
+	if( local.player == NULL || local.player == NIL ){ end }
+	if( local.player.classname != "Player" ){ end }
+	if( local.player.flags["coop_xp_id"] == NIL ){
+		waitthread xp_identify local.player
+		if( local.player == NULL || local.player.flags["coop_xp_id"] == NIL ){ end }
+	}
+	if( local.amount == NIL ){ end }
+
+	local.amount = int( local.amount * level.coop_xp_scale )
+	if( local.amount <= 0 ){ end }
+
+	//[user 2026-08-10] bug-1668 probe #3. Entry now proven reachable with playerOk=1 cls=Player
+	//amt=10 init=1 enabled=1, so the award dies BELOW that. This guard is the prime suspect and it
+	//ends the label silently. Report the two flags identify is supposed to set. NOT fixed blind:
+	//defaulting a NIL total to 0 could ZERO a real saved total if identify simply had not loaded
+	//yet, so measure first and choose the repair afterwards.
+	if( local.reason == "revive" && getcvar( "coop_aggroDebug" ) == "1" ){
+		local.dTot = local.player.flags["coop_xp_total"]
+		if( local.dTot == NIL ){ local.dTot = "NIL" }
+		local.dId = local.player.flags["coop_xp_id"]
+		if( local.dId == NIL ){ local.dId = "NIL" }
+		local.dMap = local.player.flags["coop_xp_map"]
+		if( local.dMap == NIL ){ local.dMap = "NIL" }
+		println( "^~^~^ XPPROBE totalcheck total=" + local.dTot + " id=" + local.dId + " map=" + local.dMap )
+	}
+	if( local.player.flags["coop_xp_total"] == NIL ){ end }
+
+	local.player.flags["coop_xp_total"] = local.player.flags["coop_xp_total"] + local.amount
+	local.player.flags["coop_xp_map"]   = local.player.flags["coop_xp_map"] + local.amount
+
+	// [235] tiny "+N <label>" by the crosshair on EVERY gain (coop_xpKillPopup 0 disables)
+	// [239] local.label carries the SPECIFIC name ("Headshot", "Blindfire", ...) per award
+	thread xp_micro_popup local.player local.amount local.reason local.label
+
+	// [235] the PROGRESS BAR now pops only when a 100-XP boundary is crossed (user: "after you
+	// get 100 points, the progress bar will pop up" - was: on every gain)
+	local.mark = int( local.player.flags["coop_xp_total"] / 100 )
+	if( local.player.flags["coop_xp_barMark"] == NIL ){ local.player.flags["coop_xp_barMark"] = local.mark }
+	if( local.mark > local.player.flags["coop_xp_barMark"] ){
+		local.player.flags["coop_xp_barMark"] = local.mark
+		if( local.player.flags["coop_xp_popupGain"] == NIL ){ local.player.flags["coop_xp_popupGain"] = 0 }
+		local.player.flags["coop_xp_popupGain"]  = local.player.flags["coop_xp_popupGain"] + local.amount
+		local.player.flags["coop_xp_popupUntil"] = level.time + 3
+		//[user 2026-10-05] HUD declutter: the mid-mission rank bar is gone - rank and XP are on the debrief card and the
+		//Service Record. coop_xpRankBar 1 brings the bar back. The crosshair "+N" micro popups are unchanged.
+		if( getcvar( "coop_xpRankBar" ) == "1" ){ thread xp_hud_popup local.player }
+		else { local.player.flags["coop_xp_popupGain"] = 0 }	//nothing shows the accumulated gain - do not let it grow
+	}
+	if( local.reason == NIL ){ local.reason = "kills" }
+	local.bkey = "coop_xp_b_" + local.reason
+	if( local.player.flags[local.bkey] == NIL ){ local.player.flags[local.bkey] = 0 }
+	local.player.flags[local.bkey] = local.player.flags[local.bkey] + local.amount
+
+	// write-through cache: there is NO per-player disconnect hook, so the cvar must always be hot
+	setcvar ( "coop_xp_" + local.player.flags["coop_xp_id"] ) ( "" + local.player.flags["coop_xp_total"] )
+
+	// promotion? [235] NO chat spam (user) - the on-screen ceremony is the announcement
+	local.newrank = waitthread xp_rankForTotal local.player.flags["coop_xp_total"]
+	if( local.newrank > local.player.flags["coop_xp_rank"] ){
+		local.prevrank = local.player.flags["coop_xp_rank"]		//[user 07-16] capture before overwrite
+		local.player.flags["coop_xp_rank"] = local.newrank
+		thread xp_promo_ceremony local.player local.newrank
+		//[user 07-16] unlock the weapons for every rank crossed (covers multi-rank lump jumps)
+		thread xp_rank_unlock local.player ( local.prevrank + 1 ) local.newrank
+		waitthread xp_flush
+	}
+
+	//[user 2026-09-17] prestige-crossing: at the top rank the block above never fires again, so award the
+	//prestige star here. Announce only on a real increase; push the client cvar + flush like a rank-up.
+	local.newprestige = waitthread xp_prestigeForTotal local.player.flags["coop_xp_total"]
+	if( local.player.flags["coop_xp_prestige"] == NIL ){ local.player.flags["coop_xp_prestige"] = local.newprestige }
+	if( local.newprestige > local.player.flags["coop_xp_prestige"] ){
+		local.player.flags["coop_xp_prestige"] = local.newprestige
+		local.player stufftext ( "seta coop_xp_prestige " + local.newprestige )
+		waitthread coop_mod/feed.scr::feed_player local.player 2 "promo" ( "Prestige star " + local.newprestige )
+		waitthread coop_mod/feed.scr::feed_mapList local.player ( "Prestige star " + local.newprestige )
+		waitthread xp_flush
+	}
+
+	//refresh the shared rank display cvars (rank/emblem/total/next/prestige) so the MP + coop menus/HUD
+	//always read the current identity - one ladder, shown everywhere.
+	waitthread xp_push_own_cvars local.player
+}end
+
+
+//=========================================================================
+// [user 2026-09-17] MULTIPLAYER XP BRIDGE - the ONE coop label MP code (coop_mod/mp_progression.scr) may
+// call to earn coop XP. Progression is now SHARED across coop and MP: an MP kill/objective adds to the
+// same per-GUID coop XP total and rank as coop does. Sanctioned in check_mp_isolation.py (MP_COOP_ALLOW
+// "xp::xp_award_mp"); clause 8's coop-only LOOP guard is unchanged - the autosave/cover loops still never
+// run in MP, so this bridge flushes to disk itself (throttled). This only moves an XP number: it touches
+// no coop gameplay, weapon, disguise or AI state, and is a hard no-op outside MP (coop_mpRun != 1).
+//
+// A per-player PER-MATCH cap (coop_xp_mpMatchCap, default 2000) keeps MP grinding from trivializing the
+// coop rank ladder. The cap resets every map load (a level epoch; level vars wipe on load).
+//=========================================================================
+xp_award_mp local.player local.amount local.reason local.label:{
+	//MP-only, by construction. Written as the masked `== 1` guard idiom (isolation clause 7a exempts a
+	//coop file's `level.coop_mpRun == 1` read); outside MP the whole body is skipped and this no-ops.
+	if( level.coop_mpRun == 1 ){
+		if( local.player == NULL || local.player == NIL ){ end }
+		if( local.amount == NIL || local.amount <= 0 ){ end }
+
+		if( level.coop_xp_mpMatchCap == NIL ){
+			level.coop_xp_mpMatchCap = 2000
+			local.cv = getcvar( "coop_xp_mpMatchCap" )
+			if( local.cv != "" ){ level.coop_xp_mpMatchCap = int( local.cv ) }
+		}
+		//per-MATCH cap resets each map load: stamp a level epoch, zero the running total on first earn under it.
+		if( level.coop_xp_mpEpoch == NIL ){ level.coop_xp_mpEpoch = ( level.time + 1 ) }
+		if( local.player.flags["coop_xp_mpEpoch"] != level.coop_xp_mpEpoch ){
+			local.player.flags["coop_xp_mpEpoch"] = level.coop_xp_mpEpoch
+			local.player.flags["coop_xp_mpMatch"] = 0
+		}
+		if( local.player.flags["coop_xp_mpMatch"] == NIL ){ local.player.flags["coop_xp_mpMatch"] = 0 }
+		local.room = ( level.coop_xp_mpMatchCap - local.player.flags["coop_xp_mpMatch"] )
+		if( local.room <= 0 ){ end }
+		if( local.amount > local.room ){ local.amount = local.room }
+		local.player.flags["coop_xp_mpMatch"] = ( local.player.flags["coop_xp_mpMatch"] + local.amount )
+
+		//[bug-2751] PER-ROUND accumulator for the MP end-of-round card. xp_mp_roundcard reads this to show
+		//"+N XP this round" and to animate the bar from the round-start total, then zeroes it. Tracks the
+		//ACTUAL (post-cap) amount earned, so a capped-out player's card honestly shows the smaller gain.
+		if( local.player.flags["coop_xp_mpRnd"] == NIL ){ local.player.flags["coop_xp_mpRnd"] = 0 }
+		local.player.flags["coop_xp_mpRnd"] = ( local.player.flags["coop_xp_mpRnd"] + local.amount )
+
+		waitthread xp_award local.player local.amount local.reason local.label
+
+		//persist: the 60s autosave loop is coop-only (clause 8), so MP relies on the write-through cvar
+		//(done inside xp_award, survives map transitions) plus this THROTTLED file flush (server-restart
+		//durability). Throttled so a busy PvP server does not write a file per kill.
+		if( level.coop_xp_mpLastFlush == NIL ){ level.coop_xp_mpLastFlush = 0 }
+		if( ( level.time - level.coop_xp_mpLastFlush ) >= 30 ){
+			level.coop_xp_mpLastFlush = level.time
+			waitthread xp_flush
+		}
+	}
+}end
+
+
+//=========================================================================
+// [user 2026-09-20, bug-2751] MULTIPLAYER END-OF-ROUND CARD - the SECOND sanctioned MP->coop bridge label
+// (allowlisted in check_mp_isolation.py as xp::xp_mp_roundcard, exactly like xp_award_mp). MP round/match
+// code (mp_push.scr::push_win, mp_rounds.scr::rounds_win) calls this in the pause before the next round/map
+// to show every player a compact debrief: the round result headline, their SHARED coop rank emblem + name,
+// the XP they earned this round, a progress bar toward the next rank, and a PROMOTED banner if they ranked
+// up. It mirrors the coop debrief (xp_summary_card) but is LEANER (static bar, no squad freeze) and MP-owned.
+//
+// ISOLATION: this is a coop-file label, so it may freely read the coop rank tables (level.coop_xp_rankName/
+// rankXP) and the per-player coop_xp_* flags - none of that is coop_mp* state. It is a hard no-op outside MP
+// (level.coop_mpRun != 1, the clause-7a idiom). It draws on an MP-OWNED HUD slot block (160-167), clear of
+// the top gain bar (62-69), the promo ceremony (70-73) and the MP challenge toast (76-78), so nothing it
+// draws can collide. It ALWAYS holds the window (even if it drew no card) so round pacing is unchanged when
+// XP is disabled. local.headline is the round-result line the caller passes (already MP-side text).
+//=========================================================================
+xp_mp_roundcard local.headline:{
+	//MP-only guard in the sanctioned clause-7a form (a coop file may read `level.coop_mpRun == 1`).
+	if( level.coop_mpRun == 1 ){ local.isMp = 1 }else{ end }
+	if( level.coop_xp_init != 1 ){ waitthread xp_init }		//ensure the rank tables exist even if no XP was earned this round
+	if( level.coop_xp_rankMax == NIL ){ level.coop_xp_rankMax = 21 }
+	if( local.headline == NIL ){ local.headline = "ROUND OVER" }
+
+	local.hold = getcvar( "coop_xp_mpRoundCardTime" )
+	if( local.hold == "" ){ local.hold = "5" }
+	local.hold = float( local.hold )
+	if( local.hold <= 0 ){ local.hold = 5 }
+
+	//DRAW for every connected player (walked live, bug-1679 lesson). alive-or-dead both get it - the round
+	//is over, so a corpse-state player still deserves the debrief. Slots 160-167, virtualres 1, >=100 so the
+	//idle HUD fade cannot dim it while players stand between rounds (TRAPS T18).
+	local.i = 1
+	while( local.i <= $player.size ){
+		local.p = $player[local.i]
+		if( local.p != NULL && local.p != NIL ){
+			if( local.p.classname == "Player" && local.p.flags["coop_xp_rank"] != NIL ){
+				local.rank = local.p.flags["coop_xp_rank"]
+				local.total = local.p.flags["coop_xp_total"]
+				if( local.total == NIL ){ local.total = 0 }
+				local.gained = local.p.flags["coop_xp_mpRnd"]
+				if( local.gained == NIL ){ local.gained = 0 }
+				local.from = ( local.total - local.gained )
+
+				//rank at round START (from the pre-round total) -> did they get promoted THIS round?
+				local.rank0 = waitthread xp_rankForTotal local.from
+
+				//within-rank fill fraction toward the NEXT rank (prestige past the top uses the step).
+				local.floor = level.coop_xp_rankXP[local.rank]
+				if( local.floor == NIL ){ local.floor = 0 }
+				local.ceil = ( local.floor + 1 )
+				if( local.rank < level.coop_xp_rankMax ){
+					local.ceil = level.coop_xp_rankXP[local.rank + 1]
+				}else{
+					local.step = level.coop_xp_prestigeStep
+					if( local.step == NIL || local.step <= 0 ){ local.step = 100000 }
+					local.ceil = ( local.floor + local.step )
+				}
+				if( local.ceil <= local.floor ){ local.ceil = ( local.floor + 1 ) }
+				local.w = int( 194 * ( local.total - local.floor ) / ( local.ceil - local.floor ) )
+				if( local.w < 0 ){ local.w = 0 }
+				if( local.w > 194 ){ local.w = 194 }
+
+				local.rn = local.rank
+				if( local.rn < 10 ){ local.rn = "0" + local.rn }
+				local.rname = level.coop_xp_rankName[local.rank]
+				if( local.rname == NIL ){ local.rname = "" }
+
+				//[2026-09-25, bug-2906] claim on show, re-send the hide (coop_mod/hudresend.scr, TRAPS T8)
+				waitthread coop_mod/hudresend.scr::claim local.p 160 167
+				//headline
+				ihuddraw_virtualsize local.p 160 1
+				ihuddraw_align       local.p 160 center top
+				ihuddraw_font        local.p 160 "facfont-20"
+				ihuddraw_color       local.p 160 0.95 0.9 0.7
+				ihuddraw_rect        local.p 160 0 56 0 0
+				ihuddraw_string      local.p 160 local.headline
+				ihuddraw_alpha       local.p 160 1
+
+				//"+N XP this round"
+				ihuddraw_virtualsize local.p 161 1
+				ihuddraw_align       local.p 161 center top
+				ihuddraw_font        local.p 161 "verdana-12"
+				ihuddraw_color       local.p 161 0.86 0.74 0.44
+				ihuddraw_rect        local.p 161 0 82 0 0
+				ihuddraw_string      local.p 161 ( "+" + local.gained + " XP this round" )
+				ihuddraw_alpha       local.p 161 1
+
+				//glow + emblem (centered above the bar)
+				ihuddraw_virtualsize local.p 162 1
+				ihuddraw_align       local.p 162 left top
+				ihuddraw_shader      local.p 162 "textures/hud/xpbar/xpbar_glow"
+				ihuddraw_rect        local.p 162 272 128 96 96
+				ihuddraw_alpha       local.p 162 0.45
+
+				ihuddraw_virtualsize local.p 163 1
+				ihuddraw_align       local.p 163 left top
+				ihuddraw_shader      local.p 163 ( "textures/hud/coop_rank_" + local.rn )
+				ihuddraw_rect        local.p 163 292 148 56 56
+				ihuddraw_alpha       local.p 163 1
+
+				//rank name
+				ihuddraw_virtualsize local.p 164 1
+				ihuddraw_align       local.p 164 center top
+				ihuddraw_font        local.p 164 "facfont-20"
+				ihuddraw_color       local.p 164 0.92 0.86 0.62
+				ihuddraw_rect        local.p 164 0 210 0 0
+				ihuddraw_string      local.p 164 local.rname
+				ihuddraw_alpha       local.p 164 1
+
+				//progress bar base + fill (brass-on-steel, same art as the coop bar; fill inset baked in art)
+				ihuddraw_virtualsize local.p 165 1
+				ihuddraw_align       local.p 165 left top
+				ihuddraw_shader      local.p 165 "textures/hud/xpbar/xpbar_base"
+				ihuddraw_rect        local.p 165 212 234 216 14
+				ihuddraw_alpha       local.p 165 0.92
+
+				ihuddraw_virtualsize local.p 166 1
+				ihuddraw_align       local.p 166 left top
+				ihuddraw_shader      local.p 166 "textures/hud/xpbar/xpbar_fill"
+				//[2026-09-27, bug-3076] a width-0 quad is drawn at the texture's NATIVE size (the giant
+				//gold square): a round that just promoted leaves w at 0. Hide it instead of sending 0.
+				local.fillA = 1
+				if( local.w < 1 ){
+					local.w = 1
+					local.fillA = 0
+				}
+				ihuddraw_rect        local.p 166 228 238 local.w 6
+				ihuddraw_alpha       local.p 166 local.fillA
+
+				//PROMOTED banner (only if the round crossed a rank boundary)
+				if( local.rank > local.rank0 ){
+					ihuddraw_virtualsize local.p 167 1
+					ihuddraw_align       local.p 167 center top
+					ihuddraw_font        local.p 167 "facfont-20"
+					ihuddraw_color       local.p 167 1 0.85 0.3
+					ihuddraw_rect        local.p 167 0 316 0 0
+					ihuddraw_string      local.p 167 ( "PROMOTED TO " + local.rname )
+					ihuddraw_alpha       local.p 167 1
+					local.p playsound coop_rankup_cine volume 3
+				}
+				//round accumulator consumed - zero it so the NEXT round's card counts only the next round
+				local.p.flags["coop_xp_mpRnd"] = 0
+			}
+		}
+		local.i++
+	}
+
+	wait local.hold
+
+	//tear the card down off every HUD (re-walk $player, bug-1679).
+	local.i = 1
+	while( local.i <= $player.size ){
+		local.p = $player[local.i]
+		if( local.p != NULL && local.p != NIL ){
+			ihuddraw_alpha local.p 160 0
+			ihuddraw_alpha local.p 161 0
+			ihuddraw_alpha local.p 162 0
+			ihuddraw_alpha local.p 163 0
+			ihuddraw_alpha local.p 164 0
+			ihuddraw_alpha local.p 165 0
+			ihuddraw_alpha local.p 166 0
+			ihuddraw_alpha local.p 167 0
+			ihuddraw_string local.p 160 ""
+			ihuddraw_string local.p 161 ""
+			ihuddraw_string local.p 164 ""
+			ihuddraw_string local.p 167 ""
+			//only the push side-swap path has no map reload after this card to wipe a lost teardown;
+			//alpha alone is enough to hide every layer, so one thread covers the whole card
+			thread coop_mod/hudresend.scr::resend local.p 160 167 0
+		}
+		local.i++
+	}
+	println( "^~^~^ MPROUNDCARD shown headline='" + local.headline + "'" )
+}end
+
+
+//=========================================================================
+// [239] micro gain popup: tiny "+N <specific label>" beside the crosshair, one
+// line PER award (Headshot / Blindfire / Long Shot... never lumped), stacked up
+// to three lines (slots 73-75). Crosshair-sized (verdana-12) so it is never
+// obnoxious; a fourth simultaneous award is dropped rather than spamming.
+// coop_xpKillPopup 0 disables (coop settings).
+//=========================================================================
+xp_micro_popup local.player local.amount local.reason local.label:{
+	//[user 2026-08-10] bug-1668 SOLVED, and it was never the award. Measured: xp_award runs to
+	//completion for a revive (probe: playerOk=1 amt=10 init=1 enabled=1 total=96) and the saved total
+	//really did go 96 -> 106. The XP was always granted; only this POPUP was invisible, because it
+	//drew on slots 73-75 and the engine fades every slot BELOW 100 by s_hudFadeAlpha when the player
+	//is calm (cg_drawtools.cpp:651-653). Reviving means standing still holding USE for ~5s, which is
+	//exactly "calm" - so the text rendered at alpha ~0. Kill XP popped fine only because shooting
+	//keeps the HUD awake. Moved to 142-144, the fade-exempt block (141 = blueprint ack).
+	//Same trap as the revive HUD at 21-26 earlier the same day - third sighting, see hud_slot_map.md.
+	if( local.player == NULL ){ end }
+	if( getcvar "coop_xpKillPopup" == "0" ){ end }
+	if( level.coop_xp_summaryActive == 1 ){ end }		// [fix] no crosshair micro-popups while the debrief card is up
+	if( local.label == NIL ){
+		if( local.reason == NIL ){ local.reason = "kills" }
+		local.label = "XP"
+		if( local.reason == "kills" ){ local.label = "Kill" }
+		else if( local.reason == "valor" ){ local.label = "Valor" }
+		else if( local.reason == "objective" ){ local.label = "Objective" }
+		else if( local.reason == "support" ){ local.label = "Support" }
+		else if( local.reason == "revive" ){ local.label = "Revive" }
+		else if( local.reason == "mission" ){ local.label = "Mission" }
+	}
+
+	local.slot = 0
+	if( local.player.flags["coop_xp_mp142"] != 1 ){ local.slot = 142 }
+	else if( local.player.flags["coop_xp_mp143"] != 1 ){ local.slot = 143 }
+	else if( local.player.flags["coop_xp_mp144"] != 1 ){ local.slot = 144 }
+	if( local.slot == 0 ){ end }
+	local.player.flags["coop_xp_mp" + local.slot] = 1
+	//[user 2026-08-10] bug-1668: slots moved 73-75 -> 142-144, so the row offset rebases too.
+	local.ly = 254 + ((local.slot - 142) * 13)
+
+	//[2026-09-25, bug-2906] claim on show, re-send the hide (coop_mod/hudresend.scr, TRAPS T8)
+	waitthread coop_mod/hudresend.scr::claim local.player local.slot local.slot
+	ihuddraw_virtualsize local.player local.slot 1
+	ihuddraw_align       local.player local.slot center top
+	ihuddraw_font        local.player local.slot "verdana-12"
+	ihuddraw_color       local.player local.slot 0.95 0.85 0.45
+	ihuddraw_rect        local.player local.slot 16 local.ly 0 0
+	ihuddraw_string      local.player local.slot ( "+" + local.amount + " " + local.label )
+	ihuddraw_alpha       local.player local.slot 0.9
+
+	wait 1
+	local.a = 6
+	while( local.a > 0 && local.player != NULL ){
+		ihuddraw_alpha local.player local.slot (local.a * 0.13)
+		local.a--
+		wait 0.05
+	}
+	if( local.player != NULL ){
+		ihuddraw_alpha  local.player local.slot 0
+		ihuddraw_string local.player local.slot ""
+		local.player.flags["coop_xp_mp" + local.slot] = NIL
+		thread coop_mod/hudresend.scr::resend local.player local.slot local.slot 1
+	}
+}end
+
+
+//=========================================================================
+// Soft-cap factor for kill-derived income (kills, kill bonuses, assists).
+//=========================================================================
+xp_killcap_factor:{
+	local.f = 1
+	local.np = 0
+	local.i = 1
+	while( local.i <= $player.size ){
+		if( $player[local.i] != NULL && $player[local.i].flags["coop_isActive"] == 1 ){ local.np++ }
+		local.i++
+	}
+	if( local.np < 1 ){ local.np = 1 }
+	// [307] softened anti-farm cap: full-value kills for much longer (was 40/80 per player, which
+	// crushed a normal map to 1 XP/kill). Now you keep full value until ~90 kills/player, half after,
+	// quarter only past ~180/player (true reinforcement farming).
+	if( level.coop_xp_teamkills > (180 * local.np) ){
+		local.f = 0.25
+	} else if( level.coop_xp_teamkills > (90 * local.np) ){
+		local.f = 0.5
+	}
+}end(local.f)
+
+
+// [307] behind-cover check for the Cover Kill XP bonus. True if the killer is standing at one of
+// their OWN deployed sandbags (cover.scr level.coop_cover_visual), so a kill made from behind a
+// placed sandbag also earns the bonus - not just the take-cover peek system (coop_incover).
+xp_nearDeployedCover local.player:{
+	local.r = 0
+	if( local.player == NULL ){ end local.r }
+	if( level.coop_cover_count == NIL ){ end local.r }
+	local.i = 1
+	while( local.i <= level.coop_cover_count ){
+		local.vis = level.coop_cover_visual[local.i]
+		if( local.vis != NIL && local.vis != NULL ){
+			if( vector_length( local.player.origin - local.vis.origin ) < 96 ){ local.r = 1; end local.r }
+		}
+		local.i++
+	}
+	end local.r
+}end
+
+
+//=========================================================================
+// AI kill award. Threaded from aihandler.scr::addKillToPlayer (attacker verified Player).
+// Reads the victim's pain facts (fact.location/meansofdeath/enemyAtPain), the assist ledger
+// (coop_xp_dmg/coop_xp_dmgT per attacker entnum, coop_xp_hp0) and the class tag (coop_xpClass).
+//=========================================================================
+xp_ai_killed local.victim local.killer:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	if( local.killer == NULL || local.killer == NIL || local.killer.classname != "Player" ){ end }
+	if( local.victim == NULL ){ end }
+
+	if( level.coop_xp_teamkills == NIL ){ level.coop_xp_teamkills = 0 }
+	level.coop_xp_teamkills = level.coop_xp_teamkills + 1
+	local.factor = waitthread xp_killcap_factor
+
+	// [239] ITEMIZED awards - the crosshair popup reads "+5 Headshot" / "+5 Blindfire", never a
+	// lumped "+12 Kill" (user). Buckets stay coarse (kills/valor) for the debrief categories.
+	// [user 08-07] EXACTLY ONE bonus pays per kill now. Every condition below used to be an
+	// independent if-block that could co-fire with any other (a long-range headshot on a
+	// reinforcement paid Headshot + Long Shot + Reinforcement all at once) - all conditions are
+	// now evaluated as flags first, then a single priority chain picks the best-matching one.
+	local.killPaid = 0		// still governs the base-kill fallback below
+
+	local.isHeadshot = 0
+	local.isWallbang = 0
+	local.isMelee = 0
+	local.isSavior = 0
+	local.isLongShot = 0
+	local.isReinf = 0
+	local.isGuard = 0
+	local.isMG = 0
+	local.isBlindfire = 0
+	local.isCoverKill = 0
+	local.isDowned = 0
+	local.isGuardian = 0
+
+	if( local.victim.fact != NIL && local.victim.fact != NULL ){
+		// headshot: location 0/1/2 = head/helmet/neck (dbno.scr classification precedent)
+		if( local.victim.fact.location != NIL && local.victim.fact.location >= 0 && local.victim.fact.location <= 2 ){
+			local.isHeadshot = 1
+		}
+		// [user 07-08] WALLBANG: the killing round reached the victim THROUGH a solid (engine sets
+		// coop_wallbang in weaputils.cpp BulletAttack).
+		if( local.victim.coop_wallbang == 1 ){ local.isWallbang = 1 }
+		// melee / bash
+		if( local.victim.fact.meansofdeath == 26 ){ local.isMelee = 1 }
+		// savior (a): the AI was actively engaging a DIFFERENT player when it died
+		if( local.victim.fact.enemyAtPain != NIL && local.victim.fact.enemyAtPain != NULL ){
+			if( local.victim.fact.enemyAtPain != local.killer && local.victim.fact.enemyAtPain.classname == "Player" ){
+				local.isSavior = 1
+			}
+		}
+	}
+
+	// long-range kill
+	if( vector_length( local.killer.origin - local.victim.origin ) > 2000 ){ local.isLongShot = 1 }
+
+	// class bonuses (tagged at spawn in officer.scr / paradrop counts as reinf)
+	if( local.victim.coop_xpClass == "reinf" ){ local.isReinf = 1 }
+	if( local.victim.coop_xpClass == "guard" ){ local.isGuard = 1 }
+
+	// [user 08-07] MG Gunner: reuses aihandler.scr's own turret-machinegunner classification
+	// (type_attack/idle/disguise/grenade all "machinegunner" + self.turret) rather than a new tag.
+	// Static classification fields, unaffected by the victim already being dead here.
+	if( local.victim waitthread coop_mod/aihandler.scr::isMachineGunner ){
+		local.isMG = 1
+	}
+
+	// [235/307] cover-system kills: blindfire OR killing FROM cover, never both.
+	// "From cover" = the take-cover peek pose (coop_incover) OR standing at a deployed sandbag.
+	local.nearCover = 0
+	//[user 2026-08-07] Was `== 1`, which is the ONE value meaning NOT in cover. takecover.scr's
+	//own header defines coop_incover as 0 none / 1 requested-no-pose / 2 standing back-to-wall /
+	//3 crouched low cover, so the real poses (2, 3) never qualified and a cover kill always paid
+	//plain kill XP. >= 2 is the actual "in a validated cover pose" test.
+	if( local.killer.coop_incover >= 2 ){ local.nearCover = 1 }
+	else { local.nearCover = waitthread xp_nearDeployedCover local.killer }
+	if( local.killer.coop_bf_t != NIL && (level.time - local.killer.coop_bf_t) < 0.75 ){ local.isBlindfire = 1 }
+	else if( local.nearCover == 1 ){ local.isCoverKill = 1 }
+
+	// fighting from the ground: killer is DBNO
+	if( local.killer.flags["coop_dbno_active"] == 1 ){ local.isDowned = 1 }
+
+	// savior (b): guarding a downed teammate - only checked if (a) didn't already qualify
+	if( local.isSavior != 1 ){
+		local.i = 1
+		while( local.i <= $player.size ){
+			local.p = $player[local.i]
+			if( local.p != NULL && local.p != local.killer && local.p.flags["coop_dbno_active"] == 1 ){
+				if( vector_length( local.p.origin - local.victim.origin ) < 512 ){
+					local.isGuardian = 1
+					break
+				}
+			}
+			local.i++
+		}
+	}
+
+	// pay exactly one - highest value / most specific first
+	if( local.isSavior == 1 ){
+		local.b = int( 15 * local.factor )
+		if( local.b > 0 ){ thread xp_award local.killer local.b "valor" "Savior"; local.killPaid = 1 }
+	} else if( local.isGuardian == 1 ){
+		local.b = int( 15 * local.factor )
+		if( local.b > 0 ){ thread xp_award local.killer local.b "valor" "Guardian"; local.killPaid = 1 }
+	} else if( local.isGuard == 1 ){
+		local.b = int( 10 * local.factor )
+		if( local.b > 0 ){ thread xp_award local.killer local.b "kills" "Bodyguard"; local.killPaid = 1 }
+	} else if( local.isHeadshot == 1 ){
+		local.b = int( 5 * local.factor )
+		if( local.b > 0 ){ thread xp_award local.killer local.b "kills" "Headshot"; local.killPaid = 1 }
+	} else if( local.isWallbang == 1 ){
+		local.b = int( 5 * local.factor )
+		if( local.b > 0 ){ thread xp_award local.killer local.b "kills" "Wallbang"; local.killPaid = 1 }
+	} else if( local.isMelee == 1 ){
+		local.b = int( 5 * local.factor )		// [user 07-09] 20 -> 5 (a melee kill isn't worth that much)
+		if( local.b > 0 ){ thread xp_award local.killer local.b "kills" "Melee Kill"; local.killPaid = 1 }
+	} else if( local.isLongShot == 1 ){
+		local.b = int( 5 * local.factor )
+		if( local.b > 0 ){ thread xp_award local.killer local.b "kills" "Long Shot"; local.killPaid = 1 }
+	} else if( local.isReinf == 1 ){
+		local.b = int( 5 * local.factor )
+		if( local.b > 0 ){ thread xp_award local.killer local.b "kills" "Reinforcement"; local.killPaid = 1 }
+	} else if( local.isMG == 1 ){
+		local.b = int( 5 * local.factor )		// [user 08-07] new
+		if( local.b > 0 ){ thread xp_award local.killer local.b "kills" "MG Gunner"; local.killPaid = 1 }
+	} else if( local.isBlindfire == 1 ){
+		local.b = int( 5 * local.factor )
+		if( local.b > 0 ){ thread xp_award local.killer local.b "kills" "Blindfire"; local.killPaid = 1 }
+	} else if( local.isCoverKill == 1 ){
+		local.b = int( 5 * local.factor )
+		if( local.b > 0 ){ thread xp_award local.killer local.b "kills" "Cover Kill"; local.killPaid = 1 }
+	} else if( local.isDowned == 1 ){
+		local.b = int( 5 * local.factor )		// [user 08-07] 15 -> 5
+		if( local.b > 0 ){ thread xp_award local.killer local.b "valor" "Downed Fight"; local.killPaid = 1 }
+	}
+
+	// [user 07-08] BASE kill: pays ONLY when nothing special above fired (a plain kill = +3).
+	if( local.killPaid != 1 ){
+		local.b = int( 3 * local.factor )		// [307] plain kill 2 -> 3 (with the softer cap, a normal kill now reliably pays 3, not the old capped 1)
+		if( local.b > 0 ){ thread xp_award local.killer local.b "kills" "Kill" }
+	}
+
+	// assists: any OTHER player who dealt >=25% of the victim's starting health within the
+	// last 10 seconds (accumulated at the pain-fact sites; gaps over 10s reset the ledger)
+	local.hp0 = local.victim.coop_xp_hp0
+	if( local.hp0 == NIL || local.hp0 <= 0 ){ end }
+	local.need = local.hp0 * 0.25
+	local.i = 1
+	while( local.i <= $player.size ){
+		local.p = $player[local.i]
+		if( local.p != NULL && local.p != local.killer ){
+			local.dmg = local.victim.coop_xp_dmg[local.p.entnum]
+			local.dt  = local.victim.coop_xp_dmgT[local.p.entnum]
+			if( local.dmg != NIL && local.dt != NIL ){
+				if( local.dmg >= local.need && (level.time - local.dt) <= 10 ){
+					local.as = int( 2 * local.factor )		// [user 07-10] assist 5 -> 2
+					if( local.as > 0 ){ thread xp_award local.p local.as "kills" "Assist" }
+				}
+			}
+		}
+		local.i++
+	}
+
+	//[user 2026-08-17] These pay ALONGSIDE the one-bonus-per-kill chain above, exactly as
+	//assists already do - they are event bonuses, not kill classifications, so they must not
+	//compete with Headshot/Savior/etc for the single slot.
+	thread xp_first_blood local.killer
+	thread xp_streak_kill local.killer
+	//stamp for 'Wave Broken' - xp_wave_watch pays whoever downed the last reinforcement
+	if( local.victim.coop_xpClass == "reinf" ){ level.coop_xp_lastReinfKiller = local.killer }
+}end
+
+
+//=========================================================================
+// Officer death: killer award + share for the squad + heal-denied bonus.
+// Threaded from officer.scr::coop_officer_death_monitor.
+//=========================================================================
+xp_officer_killed local.officer:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	local.killer = NULL
+	if( local.officer != NULL && local.officer.fact != NIL && local.officer.fact != NULL ){
+		if( local.officer.fact.attacker != NULL && local.officer.fact.attacker.classname == "Player" ){
+			local.killer = local.officer.fact.attacker
+		}
+	}
+
+	if( local.killer != NULL ){
+		thread xp_award local.killer 50 "valor" "Officer Down"		// [user 08-07] 75 -> 50
+		// denied the heal retreat ("stop him before he heals!" paid off)
+		if( level.coop_xp_heal_pending == 1 ){
+			thread xp_award local.killer 25 "valor" "Heal Denied"
+		}
+	}
+	level.coop_xp_heal_pending = 0
+
+	// every other active player shares the wave relief
+	local.i = 1
+	while( local.i <= $player.size ){
+		local.p = $player[local.i]
+		if( local.p != NULL && local.p != local.killer && local.p.flags["coop_isActive"] == 1 ){
+			thread xp_award local.p 25 "kills" "Officer Assist"		// [user 08-07] 50 -> 25
+		}
+		local.i++
+	}
+}end
+
+
+//=========================================================================
+// [user 08-07] a player shot out an enemy searchlight. Threaded from global/spotlight.scr and
+// global/searchlight.scr - both trigger-touch damage systems already resolve parm.other, the
+// same attribution pattern global/turret.scr and global/ai.scr already trust.
+//=========================================================================
+xp_searchlightDisabled local.player:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	if( local.player == NULL ){ end }
+	thread xp_award local.player 5 "kills" "Searchlight Disabled"
+}end
+
+
+//=========================================================================
+// [303] HZM XP - a drivable vehicle (tank/halftrack/armored car) was destroyed by a player.
+// Threaded per kill from challenges.scr::coop_vehKill_monitor.
+// [user 08-07] was team-wide (every active player got it, no individual attribution) - now
+// attributed to whoever actually dealt the kill (vehicle.cpp now hands the attacker through).
+// If attribution genuinely failed to resolve, nobody is awarded rather than falling back to
+// the old team-wide behavior.
+//=========================================================================
+xp_vehicle_killed local.killer:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	if( local.killer == NULL ){ end }
+	thread xp_award local.killer 10 "kills" "Vehicle Destroyed"
+}end
+
+
+//=========================================================================
+// [user 2026-08-17] XP SOURCE PACK. Four requested sources ALREADY EXISTED and are not duplicated
+// here: MG Gunner, damage assists and Guardian (killing an enemy engaging a downed teammate) all
+// live in xp_ai_killed's priority chain, and ammo-box resupply already pays the box owner in
+// ammobox.scr. What follows is only what was genuinely missing.
+//=========================================================================
+
+// Team deaths THIS MAP - the level-wide counter player.scr::manageDead bumps on every true death (2026-09-25).
+// The old sum of per-player coop_deaths only moved with LMS on, and forgot anyone who disconnected.
+xp_teamDeaths:{
+	local.n = level.coop_xp_teamDeaths
+	if( local.n == NIL ){ local.n = 0 }
+	end local.n
+}end
+
+xp_playersAlive:{
+	local.n = 0
+	if( $player == NULL ){ end local.n }
+	local.i = 1
+	while( local.i <= $player.size ){
+		local.p = $player[local.i]
+		local.i = local.i + 1
+		if( local.p == NIL ){ continue }
+		if( local.p == NULL ){ continue }
+		if( !isAlive local.p ){ continue }
+		if( local.p.dmteam == "spectator" ){ continue }
+		local.n = local.n + 1
+	}
+	end local.n
+}end
+
+// FIRST BLOOD - once per map, to whoever opens the account.
+xp_first_blood local.killer:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	if( local.killer == NULL ){ end }
+	if( level.coop_xp_firstBlood == 1 ){ end }
+	level.coop_xp_firstBlood = 1
+	thread xp_award local.killer 15 "valor" "First Blood"
+}end
+
+// KILL STREAK - kills without being hurt, paid at milestones only (paying every kill would just be
+// a second kill award). Deliberately NO new damage subscription: the streak breaks when health is
+// LOWER than at the previous kill, or when the death count moves. That misses a hit healed off
+// between kills - an accepted trade for zero per-frame cost and no new hook.
+xp_streak_kill local.killer:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	if( local.killer == NULL ){ end }
+	local.hp = local.killer.health
+	local.dd = local.killer.flags["coop_xpDeaths"]
+	if( local.dd == NIL ){ local.dd = 0 }
+	if( local.killer.coop_xp_streak == NIL ){ local.killer.coop_xp_streak = 0 }
+	if( local.killer.coop_xp_streakHp != NIL && local.hp < local.killer.coop_xp_streakHp ){
+		local.killer.coop_xp_streak = 0
+	}
+	if( local.killer.coop_xp_streakD != NIL && local.dd != local.killer.coop_xp_streakD ){
+		local.killer.coop_xp_streak = 0
+	}
+	local.killer.coop_xp_streakHp = local.hp
+	local.killer.coop_xp_streakD  = local.dd
+	local.killer.coop_xp_streak   = local.killer.coop_xp_streak + 1
+	local.n = local.killer.coop_xp_streak
+	if( local.n != 5 && local.n != 10 && local.n != 15 && local.n != 20 && local.n != 25 ){ end }
+	local.lbl = "Killstreak x" + local.n
+	thread xp_award local.killer local.n "valor" local.lbl
+}end
+
+// REVIVING UNDER FIRE - a multiplier on the existing revive award, not a replacement. Called from
+// dbno.scr alongside the flat +10; pays only when live enemies are close enough to be shooting.
+xp_revive_underfire local.reviver:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	if( local.reviver == NULL ){ end }
+	local.arr = level.coop_actorArray["german"]
+	if( local.arr == NIL ){ end }
+	local.near = 0
+	local.i = 1
+	while( local.i <= local.arr.size ){
+		local.a = local.arr[local.i]
+		local.i = local.i + 1
+		if( local.a == NIL ){ continue }
+		if( local.a == NULL ){ continue }
+		if( !isAlive local.a ){ continue }
+		if( vector_length( local.a.origin - local.reviver.origin ) > 700 ){ continue }
+		local.near = local.near + 1
+		if( local.near >= 2 ){ break }
+	}
+	if( local.near < 2 ){ end }
+	thread xp_award local.reviver 15 "revive" "Revive Under Fire"
+}end
+
+// PLACED COVER USED BY TEAMMATES - pays the DEPLOYER when someone else fights from their sandbags.
+// xp_nearDeployedCover answers a different question (is the KILLER near any cover, for Cover Kill),
+// so this walks the registry on coop_cover_owner instead. Capped per map, and one payment per
+// owner/user pair, so a teammate parked behind a bag is not an income stream.
+xp_cover_used_loop:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	while( 1 ){
+		wait 6
+		if( level.coop_cover_count == NIL ){ continue }
+		if( level.coop_xp_coverPay == NIL ){ level.coop_xp_coverPay = 0 }
+		if( level.coop_xp_coverPay >= 8 ){ continue }
+		if( $player == NULL ){ continue }
+		local.pi = 1
+		while( local.pi <= $player.size ){
+			local.p = $player[local.pi]
+			local.pi = local.pi + 1
+			if( local.p == NIL ){ continue }
+			if( local.p == NULL ){ continue }
+			if( !isAlive local.p ){ continue }
+			local.ci = 1
+			while( local.ci <= level.coop_cover_count ){
+				local.vis = level.coop_cover_visual[local.ci]
+				local.own = level.coop_cover_owner[local.ci]
+				local.ci = local.ci + 1
+				if( local.vis == NIL ){ continue }
+				if( local.vis == NULL ){ continue }
+				if( local.own == NIL ){ continue }
+				if( local.own == NULL ){ continue }
+				if( local.own == local.p ){ continue }
+				if( vector_length( local.p.origin - local.vis.origin ) > 96 ){ continue }
+				local.key = "" + local.own.entnum + "_" + local.p.entnum
+				if( level.coop_xp_coverSeen[local.key] == 1 ){ continue }
+				level.coop_xp_coverSeen[local.key] = 1
+				level.coop_xp_coverPay = level.coop_xp_coverPay + 1
+				thread xp_award local.own 10 "support" "Cover Used"
+			}
+		}
+	}
+}end
+
+// SQUAD BONUS - scaled by players ALIVE when an objective completes (user's call). A full squad
+// crossing the line together is worth more than one survivor dragging it over.
+xp_squad_bonus:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	local.alive = waitthread xp_playersAlive
+	if( local.alive < 1 ){ end }
+	local.b = local.alive * 5
+	local.lbl = "Squad Bonus x" + local.alive
+	waitthread xp_team_award local.b "objective" local.lbl
+}end
+
+// OFFICER WAVE WINDOW. officer.scr has no wave-boundary event by design - its own header notes the
+// waves "merge into the general population" - so one is created here: opened at dispatch, closed
+// when the reinf population that appeared has drained to zero. reinf actors are already tagged
+// coop_xpClass = "reinf" at spawn, so no new tagging is needed.
+xp_countReinf:{
+	local.n = 0
+	local.arr = level.coop_actorArray["german"]
+	if( local.arr == NIL ){ end local.n }
+	local.i = 1
+	while( local.i <= local.arr.size ){
+		local.a = local.arr[local.i]
+		local.i = local.i + 1
+		if( local.a == NIL ){ continue }
+		if( local.a == NULL ){ continue }
+		if( !isAlive local.a ){ continue }
+		if( local.a.coop_xpClass != "reinf" ){ continue }
+		local.n = local.n + 1
+	}
+	end local.n
+}end
+
+xp_wave_begin:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	if( level.coop_xp_waveOpen == 1 ){ end }
+	level.coop_xp_waveOpen = 1
+	level.coop_xp_waveDeaths = waitthread xp_teamDeaths
+	level.coop_xp_lastReinfKiller = NULL
+	thread xp_wave_watch
+}end
+
+xp_wave_watch:{
+	// let the wave actually arrive before counting, or it "clears" instantly at zero
+	wait 10
+	local.seen = 0
+	local.t = 0
+	while( local.t < 420 ){
+		wait 3
+		local.t = local.t + 3
+		local.n = waitthread xp_countReinf
+		if( local.n > 0 ){ local.seen = 1 }
+		if( local.seen == 1 && local.n == 0 ){ break }
+	}
+	level.coop_xp_waveOpen = 0
+	if( local.seen != 1 ){ end }
+	if( level.coop_xp_lastReinfKiller != NULL && level.coop_xp_lastReinfKiller != NIL ){
+		thread xp_award level.coop_xp_lastReinfKiller 15 "valor" "Wave Broken"
+	}
+	local.d = waitthread xp_teamDeaths
+	if( local.d == level.coop_xp_waveDeaths ){
+		waitthread xp_team_award 20 "valor" "Flawless Wave"
+	}
+}end
+
+// MISSION-END BONUSES - called from xp_summary so they land on the debrief card with everything
+// else. Par time is opt-in per map via coop_xp_parTime (seconds); 0/unset = no par, no bonus.
+xp_mission_bonuses:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	if( level.coop_xp_missionPaid == 1 ){ end }
+	level.coop_xp_missionPaid = 1
+
+	local.d = waitthread xp_teamDeaths
+	if( local.d == 0 ){
+		waitthread xp_team_award 50 "mission" "No Casualties"
+	}
+	if( level.coop_xp_dbnoEver != 1 && local.d == 0 ){	//a true death that skipped DBNO is still "went down"
+		waitthread xp_team_award 30 "mission" "Nobody Went Down"
+	}
+	if( level.coop_alarmEver != 1 ){
+		waitthread xp_team_award 30 "mission" "No Alarms Raised"
+	}
+	local.par = getcvar "coop_xp_parTime"
+	if( local.par != "" ){
+		local.par = int( local.par )
+		if( local.par > 0 && level.time < local.par ){
+			waitthread xp_team_award 40 "mission" "Ahead of Schedule"
+		}
+	}
+	//[user 2026-09-25] HARDCORE: +100 XP. Latched at map start (cannot be ticked at the exit); a vote-skipped map pays
+	//nothing; the team award already excludes players who joined in the second half of the map.
+	if( level.coop_hardcore == 1 && level.coop_voteSkipped != 1 ){
+		waitthread xp_team_award 100 "mission" "Hardcore"
+	}
+}end
+
+//=========================================================================
+// [user 2026-08-17] STEALTH / INFILTRATION AWARDS - deliberately ONE label, not five.
+// The user flagged that the system is already complicated, so these share a single entry point
+// with the amount and bucket selected by a kind string. Adding the sixth stealth act later is one
+// `else if` here plus one call at the site, not a new label and a new wiring decision.
+//
+// Call sites (all four already existed as detected events; none of them paid anything):
+//   "contain"   bust.scr::coop_bustContained        - a body hidden and nobody saw it
+//   "papers"    itemhandler.scr                     - a guard accepted the squad's papers
+//   "radio"     maps/m6l2a.scr::coop_m6l2aRadioPlay - a sentry pulled off his post by the radio
+//   "blueprint" collectible.scr                     - a hidden blueprint recovered
+//=========================================================================
+xp_stealth_act local.player local.kind:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	if( local.player == NULL ){ end }
+	local.b   = 10
+	local.bkt = "support"
+	local.lbl = "Infiltration"
+	if( local.kind == "contain" ){
+		local.b = 25
+		local.bkt = "valor"
+		local.lbl = "Situation Contained"
+	} else if( local.kind == "papers" ){
+		local.b = 20
+		local.bkt = "support"
+		local.lbl = "Papers Accepted"
+	} else if( local.kind == "radio" ){
+		local.b = 15
+		local.bkt = "support"
+		local.lbl = "Radio Distraction"
+	} else if( local.kind == "papers2" ){
+		local.b = 30
+		local.bkt = "objective"
+		local.lbl = "Level 2 Papers"
+	} else if( local.kind == "blueprint" ){
+		local.b = 20
+		local.bkt = "objective"
+		local.lbl = "Blueprint Recovered"
+	}
+	thread xp_award local.player local.b local.bkt local.lbl
+}end
+
+//=========================================================================
+// [user 2026-08-17] ATTRIBUTION FALLBACK. Kill credit hung entirely on self.fact, which is written
+// ONLY by actorPainHandler - the PAIN hook. A blow that kills without raising pain leaves fact
+// absent or holding the PREVIOUS attacker, and the kill silently pays nothing. Measured live: of 26
+// kills, 20 paid and 6 did not (4 attributed to an Actor, 1 to World, 1 with no fact at all).
+//
+// The cure needs no new bookkeeping: actorPainHandler ALREADY keeps a per-player damage ledger on
+// the victim (coop_xp_dmg[entnum] / coop_xp_dmgT[entnum], and coop_xp_hp0 = health before the first
+// ledgered hit) for the assist system. So when fact fails, ask the ledger who actually did the work.
+//
+// The 34% share gate is what stops this stealing credit: a genuine ally or world kill, where a
+// player merely grazed the target, still pays nothing. 10s recency matches the assist window.
+//=========================================================================
+xp_resolveKiller local.victim:{
+	local.best = NULL
+	if( local.victim == NULL ){ end local.best }
+	if( $player == NULL ){ end local.best }
+	local.bestDmg = 0
+	local.i = 1
+	while( local.i <= $player.size ){
+		local.p = $player[local.i]
+		local.i = local.i + 1
+		if( local.p == NIL ){ continue }
+		if( local.p == NULL ){ continue }
+		local.e = local.p.entnum
+		local.d = local.victim.coop_xp_dmg[local.e]
+		if( local.d == NIL ){ continue }
+		local.t = local.victim.coop_xp_dmgT[local.e]
+		if( local.t == NIL ){ continue }
+		if( (level.time - local.t) > 10 ){ continue }
+		if( local.d <= local.bestDmg ){ continue }
+		local.bestDmg = local.d
+		local.best = local.p
+	}
+	if( local.best == NULL ){ end local.best }
+	local.hp0 = local.victim.coop_xp_hp0
+	if( local.hp0 != NIL && local.hp0 > 0 ){
+		local.share = (local.bestDmg * 100) / local.hp0
+		if( local.share < 34 ){
+			local.best = NULL
+		}
+	}
+	end local.best
+}end
+
+//=========================================================================
+// [user 08-07] +5 per enemy killed by a player-called air strike. self = the dead actor,
+// called from aihandler.scr::addKillToPlayer for deaths NOT already attributed to a Player
+// (radiusdamage - what the bomb blast uses - always attributes to `world` at the engine
+// level, so this can never double-pay through the normal xp_ai_killed path; mutually
+// exclusive by construction, not by a flag).
+// Window: 20s covers the ~11s VO+flight lead-in plus the ~1.2s bomb stick and its aftermath,
+// with margin. Radius: 1200 covers the bomb stick's spread (offsets up to 450u either way
+// along the run) plus the 900u blast radius itself, with margin.
+//=========================================================================
+xp_airstrike_kill local.victim:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	if( local.victim == NULL ){ end }
+	if( level.coop_airstrike_caller == NULL || level.coop_airstrike_caller == NIL ){ end }
+	if( level.coop_airstrike_time == NIL ){ end }
+	//[2026-08-21] TWO-SIDED. The stamp is taken when the strike is CALLED, but the bombs do not
+	//land until ~19s later (7.5 + 3.5 VO, 5s approach leg, ~1.75s to the crossing, then the fall).
+	//With only an upper bound, every second before impact was paying out for deaths the strike had
+	//nothing to do with - and aihandler.scr credits this for ANY death not attributed to a player.
+	//The cleaner fix is to re-stamp at bomb release, but that timestamp is shared with the German
+	//officer Stuka run, which would then credit a player for the enemy plane. A window is safe.
+	local.since = level.time - level.coop_airstrike_time
+	if( local.since < 15 || local.since > 32 ){ end }
+	if( vector_length( local.victim.origin - level.coop_airstrike_pos ) > 1200 ){ end }
+	thread xp_award level.coop_airstrike_caller 5 "kills" "Air Strike Kill"
+}end
+
+
+//=========================================================================
+// Support calls: +15 to the caller (binoc bombing run / signal-smoke paradrop).
+//=========================================================================
+xp_support_call local.player local.kind:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	if( local.player == NULL ){ end }
+	local.label = "Support Call"
+	if( local.kind == "bombing" ){ local.label = "Air Strike" }
+	else if( local.kind == "paradrop" ){ local.label = "Paradrop" }
+	thread xp_award local.player 15 "support" local.label
+}end
+
+
+//=========================================================================
+// Paratrooper roster: register at spawn; each one still alive at mission end
+// pays its caller +10 (escort the squad instead of spending it).
+//=========================================================================
+xp_para_register local.actor local.owner:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	if( local.actor == NULL || local.owner == NULL ){ end }
+	local.n = level.coop_xp_paraN
+	level.coop_xp_para[local.n]    = local.actor
+	level.coop_xp_paraOwn[local.n] = local.owner
+	level.coop_xp_paraN = local.n + 1
+}end
+
+
+//=========================================================================
+// Team-wide objective awards. Gate: active for >=50% of elapsed map time
+// (stops join-at-the-end freeloading without punishing mid-map joiners hard).
+//=========================================================================
+xp_team_award local.amount local.reason local.label:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	local.i = 1
+	while( local.i <= $player.size ){
+		local.p = $player[local.i]
+		if( local.p != NULL && local.p.flags["coop_isActive"] == 1 && local.p.flags["coop_xp_join"] != NIL ){
+			if( local.p.flags["coop_xp_join"] <= (level.time * 0.5) ){
+				thread xp_award local.p local.amount local.reason local.label
+			}
+		}
+		local.i++
+	}
+}end
+
+// radio side objective destroyed
+xp_radio_done:{
+	if( level.coop_xp_radioPaid == 1 ){ end }
+	level.coop_xp_radioPaid = 1
+	waitthread xp_team_award 20 "objective" "Radio Destroyed"		// [user 07-08] objectives are worth 20 XP
+}end
+
+// a primary map objective flipped to completed (global/objectives.scr status==3).
+// level.coop_xp_sideObjPush guards out the coop side-objective pushes (they pay separately).
+xp_primary_done local.index:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	if( level.coop_xp_sideObjPush == 1 ){ end }
+	if( local.index == NIL ){ local.index = 0 }
+	if( level.coop_xp_objPaid[local.index] == 1 ){ end }
+	level.coop_xp_objPaid[local.index] = 1
+	waitthread xp_team_award 20 "objective" "Objective"		// [user 07-08] objectives are worth 20 XP
+	//[user 2026-08-17] squad bonus, scaled by who is still ON THEIR FEET at the moment it lands
+	waitthread xp_squad_bonus
+}end
+
+
+//=========================================================================
+// XP GAIN POPUP (slots 62 emblem, 63 gain text, 64 bar bg, 65 bar fill).
+// Top-center, appears ONLY when XP lands (xp_award pokes popupGain/popupUntil
+// and threads this; singleton per player). The bar shows progress INTO the
+// current rank bracket and eases toward the new value; more XP while visible
+// extends the hold and accumulates the "+N XP" readout. Fades out after 2.5s.
+//=========================================================================
+xp_hud_popup local.player:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	if( local.player == NULL ){ end }
+	if( level.coop_xp_summaryActive == 1 ){ end }		// [fix] the debrief card owns slots 62-69 at mission end - no top gain popup on top of it
+	if( local.player.flags["coop_xp_popupOn"] == 1 ){ end }
+	if( local.player.flags["coop_xp_rank"] == NIL ){ end }
+	if( level.coop_xp_rankMax == NIL ){ level.coop_xp_rankMax = 21 }		// defensive: unset max -> ceil=floor+1 -> bar reads full
+	local.player.flags["coop_xp_popupOn"] = 1
+
+	local.rank = local.player.flags["coop_xp_rank"]
+	local.rn = local.rank
+	if( local.rn < 10 ){ local.rn = "0" + local.rn }
+
+	// [217] modern brass-on-steel layered bar (design + assets: _research/ui_modernization.md 1.2-1.4)
+	// slots: 62 base plate, 63 fill, 64 shine sweep, 65 head glint, 66 rank-up halo,
+	//        67 emblem plate, 68 emblem, 69 gain text. Higher slot = drawn on top.
+	//[2026-09-25, bug-2906] claim on show, re-send the hide (coop_mod/hudresend.scr, TRAPS T8)
+	waitthread coop_mod/hudresend.scr::claim local.player 62 69
+	ihuddraw_virtualsize local.player 62 1
+	ihuddraw_align       local.player 62 left top
+	ihuddraw_shader      local.player 62 "textures/hud/xpbar/xpbar_base"
+	ihuddraw_rect        local.player 62 253 30 134 12
+	ihuddraw_alpha       local.player 62 0.92
+
+	ihuddraw_virtualsize local.player 63 1
+	ihuddraw_align       local.player 63 left top
+	ihuddraw_shader      local.player 63 "textures/hud/xpbar/xpbar_fill"
+	// [user 2026-08-20] THE FILL NEVER FITS THE BAR - reported repeatedly, "fixed" repeatedly
+	// by nudging these numbers, and it kept coming back. The rect math was never wrong: the
+	// groove measures rows 28..99 of the 128-tall plate art (fractions 0.219..0.781) and a
+	// y33 h5 fill sits inside that. The RENDERED result disagreed with the arithmetic, so
+	// tuning the arithmetic could never converge. The inset is now baked into the ARTWORK
+	// (xpbar_fill/xpbar_shine are 128 tall with gold only on rows 28..99, transparent
+	// elsewhere) and the fill is drawn with the IDENTICAL rect as the plate - so whatever
+	// the scaler does it does to both, and the gold physically cannot leave the channel.
+	//[2026-09-27, bug-3076] THE ACTUAL CAUSE of the recurring "giant gold square on promotion":
+	//a huddraw quad with WIDTH 0 is not invisible. Both renderers' Draw_StretchPic (gl1 and gl2
+	//tr_draw.c: "if (w <= 0) { w = image->width; h = image->height; }") substitute the texture's
+	//NATIVE PIXEL SIZE - xpbar_fill 64x128 (gold 64x72 px), xpbar_shine 256x128 - at any
+	//resolution. A promotion restarts the bar in the new bracket with XP barely over the
+	//threshold, so the fill width rounds to 0 for most or all of the popup. So: NEVER send a
+	//fill width below 1 - hide the layer with alpha instead (local.fillOn below).
+	ihuddraw_rect        local.player 63 253 30 1 12
+	ihuddraw_alpha       local.player 63 0
+
+	ihuddraw_virtualsize local.player 64 1
+	ihuddraw_align       local.player 64 left top
+	ihuddraw_shader      local.player 64 "textures/hud/xpbar/xpbar_shine"
+	ihuddraw_rect        local.player 64 253 30 1 12
+	ihuddraw_alpha       local.player 64 0
+
+	ihuddraw_virtualsize local.player 65 1
+	ihuddraw_align       local.player 65 left top
+	ihuddraw_shader      local.player 65 "textures/hud/xpbar/xpbar_head"
+	ihuddraw_rect        local.player 65 263 33 8 5		// [user 07-18 bug-819] y32 h7 -> y33 h5: the glint was TALLER than the ~6px groove (tex y21..96 vs channel y27..94), poking out top AND bottom of the frame; seat it in the channel like the fill (263 33 w 5)
+	ihuddraw_alpha       local.player 65 0
+
+	ihuddraw_virtualsize local.player 66 1
+	ihuddraw_align       local.player 66 left top
+	ihuddraw_shader      local.player 66 "textures/hud/xpbar/xpbar_glow"
+	ihuddraw_rect        local.player 66 236 21 32 32
+	ihuddraw_alpha       local.player 66 0
+
+	ihuddraw_virtualsize local.player 67 1
+	ihuddraw_align       local.player 67 left top
+	ihuddraw_shader      local.player 67 "textures/hud/xpbar/xpbar_plate"
+	ihuddraw_rect        local.player 67 244 28 17 17
+	ihuddraw_alpha       local.player 67 0.95
+
+	ihuddraw_virtualsize local.player 68 1
+	ihuddraw_align       local.player 68 left top
+	ihuddraw_shader      local.player 68 ( "textures/hud/coop_rank_" + local.rn )
+	ihuddraw_rect        local.player 68 246 30 13 13
+	ihuddraw_alpha       local.player 68 1
+
+	ihuddraw_virtualsize local.player 69 1
+	ihuddraw_align       local.player 69 left top
+	ihuddraw_font        local.player 69 "verdana-12"
+	ihuddraw_color       local.player 69 0.95 0.85 0.45
+	ihuddraw_rect        local.player 69 392 31 0 0
+	ihuddraw_alpha       local.player 69 1
+
+	local.shownW = -1
+	local.shownGain = -1
+	local.glowA = 0
+	local.fillOn = 0	//[bug-3076] fill+shine (63/64) start hidden; shown only once their width is >= 1
+
+	while( local.player != NULL && level.time < local.player.flags["coop_xp_popupUntil"] && level.coop_xp_summaryActive != 1 ){
+		local.total = local.player.flags["coop_xp_total"]
+		if( local.total == NIL ){ break }
+
+		// rank-up while visible: swap emblem, restart the bar in the new bracket, pulse the halo
+		if( local.player.flags["coop_xp_rank"] != local.rank ){
+			local.rank = local.player.flags["coop_xp_rank"]
+			local.rn = local.rank
+			if( local.rn < 10 ){ local.rn = "0" + local.rn }
+			ihuddraw_shader local.player 68 ( "textures/hud/coop_rank_" + local.rn )
+			local.shownW = 0
+			local.glowA = 0.9
+		}
+
+		local.floor = level.coop_xp_rankXP[local.rank]
+		local.ceil  = local.floor + 1
+		if( local.rank < level.coop_xp_rankMax ){ local.ceil = level.coop_xp_rankXP[local.rank + 1] }
+		local.target = 120 * (local.total - local.floor) / (local.ceil - local.floor)
+		if( local.target > 120 ){ local.target = 120 }
+		if( local.target < 0 ){ local.target = 0 }
+
+		if( local.shownW < 0 ){
+			local.shownW = local.target - 15
+			if( local.shownW < 0 ){ local.shownW = 0 }
+		}
+		local.shownW = local.shownW + ((local.target - local.shownW) * 0.25)
+		local.w = int( local.shownW )
+		// [user 07-18 bug-805] hard integer clamp to the plate groove (channel = x263..x383, w 120):
+		// the fill and its glint must NEVER paint the frame bevel
+		if( local.w < 0 ){ local.w = 0 }
+		//[2026-08-21] the fill RECT was rebased to the 134-wide plate but local.w still derived
+		//from the old 120 basis, so the clamp below was dead and the gold could only ever reach
+		//89.6% - a player exactly on a rank threshold saw a permanently short bar. Scale onto the
+		//plate width. Written as a FLOAT multiply, not (w * 134 / 120): integer division would
+		//collapse 134/120 to 1 if the expression associated right, and that is not worth assuming.
+		local.w = int( local.w * 1.11667 )
+		if( local.w > 134 ){ local.w = 134 }	// the fill rect is now the PLATE rect (134 wide)
+		//[bug-3076] width 0 = the renderer draws the texture at NATIVE size (the giant gold square
+		//every promotion showed). Hide below 1 instead; re-show (rect first, then alpha) when it grows.
+		if( local.w < 1 ){
+			if( local.fillOn != 0 ){
+				ihuddraw_alpha local.player 63 0
+				ihuddraw_alpha local.player 64 0
+				local.fillOn = 0
+			}
+		} else {
+			ihuddraw_rect local.player 63 253 30 local.w 12
+			ihuddraw_rect local.player 64 253 30 local.w 12
+			if( local.fillOn != 1 ){
+				ihuddraw_alpha local.player 63 1
+				ihuddraw_alpha local.player 64 0.85
+				local.fillOn = 1
+			}
+		}
+		// head glint rides the fill edge (x = 263 + w - 4, precomputed: parse rules)
+		local.hx = local.w + 249	// glint rides the fill edge, rebased to the plate origin
+		// [user 07-18 bug-805] cap the glint at the groove right edge: at full bar (w 120) it sat at
+		// x379..387 = brass painted over the bevel out to the plate edge (387); channel ends x383
+		if( local.hx > 375 ){ local.hx = 375 }
+		ihuddraw_rect local.player 65 local.hx 33 8 5		// [user 07-18 bug-819] y32 h7 -> y33 h5: seat the leading-edge glint INSIDE the channel (was taller than the groove, bulging out top/bottom of the frame)
+		if( local.w < 4 ){
+			ihuddraw_alpha local.player 65 0
+		} else {
+			ihuddraw_alpha local.player 65 0.9
+		}
+
+		// rank-up halo decay
+		if( local.glowA > 0.02 ){
+			ihuddraw_alpha local.player 66 local.glowA
+			local.glowA = local.glowA * 0.90
+		} else if( local.glowA != 0 ){
+			local.glowA = 0
+			ihuddraw_alpha local.player 66 0
+		}
+
+		local.gain = local.player.flags["coop_xp_popupGain"]
+		if( local.gain != NIL && local.gain != local.shownGain ){
+			local.shownGain = local.gain
+			ihuddraw_string local.player 69 ( "+" + local.gain + " XP" )
+		}
+		waitframe
+	}
+
+	// fade out (scale every layer toward 0)
+	// [user 07-18 bug-804] snap out INSTANTLY when the debrief card takes the slots: the timed fade
+	// tail (9 x 0.04 frame-quantized to ~0.5s) ended only ONE frame before the card's first draw, so
+	// any mission-end hitch (xp_flush file writes / challenge award loops) landed these alpha writes
+	// and the slot-69 string-clear ON TOP of the card - the debrief bar dimmed/blanked while filling.
+	local.a = 9
+	while( local.a > 0 && local.player != NULL && level.coop_xp_summaryActive != 1 ){
+		local.f = local.a * 0.1
+		local.s = 62
+		while( local.s <= 69 ){
+			//[bug-3076] a hidden fill stays hidden: fading it back up would re-show its last (stale) width
+			if( local.fillOn == 1 || ( local.s != 63 && local.s != 64 ) ){
+				ihuddraw_alpha local.player local.s local.f
+			}
+			local.s++
+		}
+		local.a--
+		wait 0.04
+	}
+	if( local.player != NULL ){
+		local.s = 62
+		while( local.s <= 69 ){
+			ihuddraw_alpha local.player local.s 0
+			local.s++
+		}
+		ihuddraw_string local.player 69 ""
+		local.player.flags["coop_xp_popupOn"]   = NIL
+		local.player.flags["coop_xp_popupGain"] = NIL
+		//not when the debrief card is taking these slots over (bug-553/804): the map change after it
+		//wipes the HUD anyway, and the card claims 62-71 as it draws, but it draws ~0.5s from now
+		if( level.coop_xp_summaryActive != 1 ){
+			thread coop_mod/hudresend.scr::resend local.player 62 68 0
+			thread coop_mod/hudresend.scr::resend local.player 69 69 1
+		}
+	}
+}end
+
+
+//=========================================================================
+// End-of-map debrief card (slots 62-69). Called with waitthread from
+// missioncomplete.scr BEFORE the transition; blocks ~coop_xpSummaryTime sec.
+// Also pays the mission / no-death / paratrooper-survival awards first.
+//=========================================================================
+xp_summary:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	// [user 07-18 bug-804] singleton: a double mission-complete fire (end trigger touched by two
+	// players the same frame) ran TWO debrief sequences interleaved on the SAME slots - the fill
+	// width flip-flopped between both animations every tick. One debrief per map, period.
+	if( level.coop_xp_summaryRun == 1 ){ end }
+	level.coop_xp_summaryRun = 1
+
+	//[user 2026-08-17] no-casualties / nobody-downed / no-alarms / par-time land BEFORE the card
+	//is built, so the debrief totals include them instead of showing a number that grows after.
+	waitthread xp_mission_bonuses
+	local.t = getcvar "coop_xpSummaryTime"
+	if( local.t == "" ){ local.t = 28 }		// [user 07-11] even longer - the bar should linger well after it fills to this map's XP (was 16/18)
+	local.t = int( local.t )
+	if( local.t > 0 ){ level.coop_xp_summaryActive = 1 }		// [fix] the card owns the mission-end HUD: suppress the top gain popup / micro popup / promo ceremony that share its slots (62-73). Only when the card actually shows.
+
+	// mission complete + no-death bonuses (awarded even when the card is disabled)
+	waitthread xp_team_award 100 "mission" "Mission Complete"		// [user 07-10] 200 -> 100
+	local.i = 1
+	while( local.i <= $player.size ){
+		local.p = $player[local.i]
+		if( local.p != NULL && local.p.flags["coop_isActive"] == 1 ){
+			//[2026-09-25] the XP death counter (not LMS's coop_deaths), and only for a player here since the first half of
+			//the map - a disconnect + rejoin resets per-player flags, and must not wipe a death.
+			local.xdz = local.p.flags["coop_xpDeaths"]
+			if( local.xdz == NIL ){ local.xdz = 0 }
+			if( local.xdz == 0 && local.p.flags["coop_xp_join"] != NIL ){
+				if( local.p.flags["coop_xp_join"] <= ( level.time * 0.5 ) ){
+					thread xp_award local.p 50 "mission" "Deathless"
+				}
+			}
+		}
+		local.i++
+	}
+	// [user 07-12] "MADE IT" bonus: reward players who are ALIVE AT THE END POINT when the mission
+	// completes - pays off sticking together and pushing to the exit instead of lagging behind.
+	// Anchor = level.coop_xp_endPoint (captured in global/missioncomplete.scr from the end trigger's
+	// inherited self). If no anchor was recorded (mission ended without a positional trigger), every
+	// alive active player counts as having made it. Tunables: coop_xpEndBonus / coop_xpEndRadius.
+	local.bXP = getcvar "coop_xpEndBonus"
+	if( local.bXP == "" ){ local.bXP = 75 }
+	local.bXP = int( local.bXP )
+	local.bR = getcvar "coop_xpEndRadius"
+	if( local.bR == "" ){ local.bR = 2500 }
+	local.bR = int( local.bR )
+	if( local.bXP > 0 ){
+		local.i = 1
+		while( local.i <= $player.size ){
+			local.p = $player[local.i]
+			if( local.p != NULL && local.p.flags["coop_isActive"] == 1 && isAlive local.p && local.p.dmteam != "spectator" ){
+				if( level.coop_xp_endPoint == NIL || vector_length( local.p.origin - level.coop_xp_endPoint ) < local.bR ){
+					thread xp_award local.p local.bXP "mission" "Made It To The End"
+				}
+			}
+			local.i++
+		}
+	}
+
+	// paratrooper survival: +10 to the caller per trooper still standing
+	local.n = 0
+	while( local.n < level.coop_xp_paraN ){
+		local.a = level.coop_xp_para[local.n]
+		local.o = level.coop_xp_paraOwn[local.n]
+		if( local.a != NULL && local.o != NULL ){
+			if( isAlive local.a ){
+				thread xp_award local.o 10 "support" "Paratrooper Alive"
+			}
+		}
+		local.n++
+	}
+	waitframe
+
+	if( local.t <= 0 ){ end }
+
+	wait 0.5		// [fix] let any in-flight gain popup from a pre-mission-end kill finish fading + clear slots 62-69 before the card draws over them
+
+	// ---- the card ----
+	local.i = 1
+	while( local.i <= $player.size ){
+		local.p = $player[local.i]
+		if( local.p != NULL && local.p.flags["coop_isActive"] == 1 && local.p.flags["coop_xp_id"] != NIL ){
+			thread xp_summary_card local.p
+		}
+		local.i++
+	}
+	// [user 07-12] FREEZE the squad for the whole debrief - no running around during the rank/score
+	// ceremony. freezecontrols is re-asserted in the 2s loop below (m_bFrozen can reset on player
+	// churn - the bug-367 lobby lesson) and released the moment the card ends.
+	local.pj = 1
+	while( local.pj <= $player.size ){
+		local.pk = $player[local.pj]
+		if( local.pk != NULL && local.pk.flags["coop_isActive"] == 1 ){ local.pk freezecontrols 1 }
+		local.pj++
+	}
+
+	// [user 07-11] keep the HUD AWAKE for the whole debrief. The HUD-fade multiplies EVERY huddraw slot < 100
+	// (the debrief card is 62-73), so after ~5 quiet seconds it faded the card + rank bar off. Poke
+	// coop_hudPoke on each player every 2s so s_hudFadeAlpha stays 1 while the card is up (cgame watches the
+	// cvar for a change - cg_drawtools.cpp CG_UpdateHudFade).
+	local.held = 0
+	while( local.held < local.t ){
+		local.pj = 1
+		while( local.pj <= $player.size ){
+			local.pk = $player[local.pj]
+			if( local.pk != NULL ){
+				local.pk stufftext ( "seta coop_hudPoke " + level.time )
+				if( local.pk.flags["coop_isActive"] == 1 ){ local.pk freezecontrols 1 }	// re-assert the debrief freeze
+			}
+			local.pj++
+		}
+		wait 2
+		local.held = local.held + 2
+	}
+
+	// [user 07-12] release the debrief freeze (unfreeze EVERYONE, not just actives - safe either way;
+	// the map transition follows right after)
+	local.pj = 1
+	while( local.pj <= $player.size ){
+		local.pk = $player[local.pj]
+		if( local.pk != NULL ){ local.pk freezecontrols 0 }
+		local.pj++
+	}
+	level.coop_xp_summaryActive = 0		// [fix] restore normal gain/micro popups + promo ceremony after the card
+}end
+
+// [235] per-player ANIMATED debrief (user design): enlarged insignia centered above a
+// center-screen bar; the bar fills from where the match STARTED to where it ENDED, rolling
+// through every rank crossed (cinematic M1 ping + insignia swap per rank-up); category
+// totals reveal one at a time under the bar with a click, synced to the fill.
+xp_summary_card local.p:{
+	if( local.p == NULL ){ end }
+	if( local.p.flags["coop_xp_cardOn"] == 1 ){ end }		// [user 07-18 bug-804] one card per player - a second thread on the same slots is the glitch machine
+	local.p.flags["coop_xp_cardOn"] = 1
+	thread coop_mod/feed.scr::feed_lastMission local.p	//[user 2026-10-05] the LAST MISSION page (main menu) gets this debrief
+	if( level.coop_xp_rankMax == NIL ){ level.coop_xp_rankMax = 21 }		// defensive: unset max -> ceil=floor+1 -> fill reads full (matches xp_hud_popup / xp_rankForTotal)
+	//[2026-09-25, bug-2906] the card (and xp_card_categories, which draws 62/66-68 later) takes over the
+	//gain popup's and ceremony's slots: claim them all now, so no late re-send of their teardowns lands on it
+	waitthread coop_mod/hudresend.scr::claim local.p 62 73
+
+	local.rank0 = local.p.flags["coop_xp_rankmapstart"]
+	local.rank1 = local.p.flags["coop_xp_rank"]
+	if( local.rank0 == NIL ){ local.rank0 = local.rank1 }
+	local.total = local.p.flags["coop_xp_total"]
+	local.map   = local.p.flags["coop_xp_map"]
+	local.from  = local.total - local.map
+
+	// title (top center)
+	ihuddraw_virtualsize local.p 63 1
+	ihuddraw_align       local.p 63 center top
+	ihuddraw_font        local.p 63 "facfont-20"
+	ihuddraw_color       local.p 63 0.95 0.9 0.7
+	ihuddraw_rect        local.p 63 0 56 0 0
+	local.cardTitle = "SQUAD DEBRIEF  -  +"
+	if( level.coop_hardcore == 1 ){ local.cardTitle = "HARDCORE DEBRIEF  -  +" }	//[user 2026-09-25]
+	ihuddraw_string      local.p 63 ( local.cardTitle + local.map + " XP" )
+	ihuddraw_alpha       local.p 63 1
+
+	// enlarged insignia CENTERED above the bar (halo behind), starting at the MATCH-START rank
+	local.rn = local.rank0
+	if( local.rn < 10 ){ local.rn = "0" + local.rn }
+	ihuddraw_virtualsize local.p 70 1
+	ihuddraw_align       local.p 70 left top
+	ihuddraw_shader      local.p 70 "textures/hud/xpbar/xpbar_glow"
+	ihuddraw_rect        local.p 70 272 148 96 96
+	ihuddraw_alpha       local.p 70 0.45
+
+	ihuddraw_virtualsize local.p 71 1
+	ihuddraw_align       local.p 71 left top
+	ihuddraw_shader      local.p 71 ( "textures/hud/coop_rank_" + local.rn )
+	ihuddraw_rect        local.p 71 292 168 56 56
+	ihuddraw_alpha       local.p 71 1
+
+	// [user 07-08] center-screen bar = the SAME clean brass-on-steel xpbar used at the top of the screen
+	// (xpbar_base plate + xpbar_fill), not the old flat coop_bar_white. Fill is inset in the plate like the HUD bar.
+	ihuddraw_virtualsize local.p 64 1
+	ihuddraw_align       local.p 64 left top
+	ihuddraw_shader      local.p 64 "textures/hud/xpbar/xpbar_base"
+	ihuddraw_color       local.p 64 1 1 1
+	ihuddraw_rect        local.p 64 212 234 216 14
+	ihuddraw_alpha       local.p 64 0.92
+
+	ihuddraw_virtualsize local.p 65 1
+	ihuddraw_align       local.p 65 left top
+	ihuddraw_shader      local.p 65 "textures/hud/xpbar/xpbar_fill"
+	ihuddraw_color       local.p 65 1 1 1
+	//[2026-09-27, bug-3076] never width 0: the renderer draws a width-0 quad at the texture's
+	//NATIVE size (the giant gold square at every promotion). Start hidden; local.fillA tracks it.
+	ihuddraw_rect        local.p 65 228 238 1 6
+	ihuddraw_alpha       local.p 65 0
+	local.fillA = 0
+
+	// category totals reveal in parallel, clicks synced under the fill
+	thread xp_card_categories local.p
+
+	// [user 07-18 debrief-unlock-list] "UNLOCKED THIS MISSION" list under the card (slots 127-134,
+	// fade-exempt free block). Draws nothing when this map unlocked nothing.
+	thread xp_card_unlocks local.p
+
+	// multi-bracket fill: from -> total, ping + insignia swap + bar reset per rank crossing
+	local.r = local.rank0
+	local.cur = local.from
+	local.guard = 0
+	while( local.p != NULL && local.guard < 24 ){
+		local.floor = level.coop_xp_rankXP[local.r]
+		local.ceil  = local.floor + 1
+		if( local.r < level.coop_xp_rankMax ){ local.ceil = level.coop_xp_rankXP[local.r + 1] }
+		if( local.cur < local.floor ){ local.cur = local.floor }
+		local.segEnd = local.total
+		if( local.segEnd > local.ceil ){ local.segEnd = local.ceil }
+
+		// [user 07-18 bug-804] re-assert the card layers at each bracket: a straggler alpha write from
+		// a retiring gain-popup fade would otherwise stick (invisible/dimmed bar) for the whole fill
+		ihuddraw_alpha local.p 63 1
+		ihuddraw_alpha local.p 64 0.92
+		ihuddraw_alpha local.p 65 local.fillA		//[bug-3076] re-assert the fill's CURRENT state (hidden while its width is 0)
+
+		local.steps = 70		// [user 07-08] slower fill so you can actually read it (was 40 @ waitframe = ~1s)
+		local.s = 0
+		while( local.s <= local.steps ){
+			if( local.p == NULL ){ end }
+			local.v = local.cur + ((local.segEnd - local.cur) * local.s / local.steps)
+			local.w = int( 194 * (local.v - local.floor) / (local.ceil - local.floor) )	// [user 07-18] 184->194: match the base-plate groove (was under-reaching the channel)
+			if( local.w < 0 ){ local.w = 0 }
+			if( local.w > 194 ){ local.w = 194 }
+			//[bug-3076] hide below width 1 instead of sending 0 (= native-size draw)
+			if( local.w < 1 ){
+				if( local.fillA != 0 ){
+					ihuddraw_alpha local.p 65 0
+					local.fillA = 0
+				}
+			} else {
+				ihuddraw_rect local.p 65 228 238 local.w 6
+				if( local.fillA != 1 ){
+					ihuddraw_alpha local.p 65 1
+					local.fillA = 1
+				}
+			}
+			local.s++
+			wait 0.035
+		}
+		local.cur = local.segEnd
+
+		local.remain = local.total - local.cur
+		if( local.remain <= 0 ){ break }
+
+		// crossed a rank boundary with more to fill: THE moment (ping + swap + reset)
+		if( local.r < level.coop_xp_rankMax ){
+			local.r = local.r + 1
+			local.rn = local.r
+			if( local.rn < 10 ){ local.rn = "0" + local.rn }
+			// [user 07-18] REMOVED xp_ping_duck: it dipped s_volume (the MASTER volume) to 0.20, which
+			// lowered the M1 PING itself too (s_volume is not selective) - the ping sounded cut/quiet.
+			// [user 08-02] same s_sfxduck treatment as the ceremony site - see the note there.
+			local.p stufftext "s_sfxduck 0.25"
+			local.p playsound coop_rankup_cine volume 3
+			thread xp_ping_unduck local.p
+			ihuddraw_alpha  local.p 70 0.95
+			ihuddraw_shader local.p 71 ( "textures/hud/coop_rank_" + local.rn )
+			//[bug-3076] the bar reset: this line WAS "ihuddraw_rect 65 228 238 0 6", which drew the
+			//gold fill at its native 64x128 px for the whole 0.8 s - the square, on every promotion
+			ihuddraw_alpha  local.p 65 0
+			local.fillA = 0
+			wait 0.8
+			ihuddraw_alpha  local.p 70 0.45
+		} else {
+			break
+		}
+		local.guard++
+	}
+
+	// promotion toast (no chat - on-card only)
+	if( local.p != NULL && local.rank1 > local.rank0 ){
+		ihuddraw_virtualsize local.p 69 1
+		ihuddraw_align       local.p 69 center top
+		ihuddraw_font        local.p 69 "facfont-20"		// [user 07-10] smaller than handle-23 so long rank names don't run off screen
+		ihuddraw_color       local.p 69 1 0.85 0.3
+		ihuddraw_rect        local.p 69 0 316 0 0
+		ihuddraw_string      local.p 69 ( "PROMOTED TO " + level.coop_xp_rankName[local.rank1] )
+		ihuddraw_alpha       local.p 69 1
+	}
+	if( local.p != NULL ){ local.p.flags["coop_xp_cardOn"] = NIL }		// [user 07-18 bug-804]
+}end
+
+// [235] category totals under the debrief bar, one at a time, each with a click
+xp_card_categories local.p:{
+	if( local.p == NULL ){ end }
+	local.keys[0] = "kills"
+	local.keys[1] = "valor"
+	local.keys[2] = "objective"
+	local.keys[3] = "support"
+	local.keys[4] = "revive"
+	local.keys[5] = "mission"
+	local.names[0] = "Kills"
+	local.names[1] = "Valor"
+	local.names[2] = "Objectives"
+	local.names[3] = "Support"
+	local.names[4] = "Revives"
+	local.names[5] = "Mission"
+	local.slots[0] = 62
+	local.slots[1] = 66
+	local.slots[2] = 67
+	local.slots[3] = 68
+	local.line = 0
+	local.k = 0
+	wait 1.2		// [user 07-08] let the bar start filling before the tally reveals
+	while( local.k < 6 && local.line < 4 ){
+		if( local.p == NULL ){ end }
+		local.v = local.p.flags["coop_xp_b_" + local.keys[local.k]]
+		if( local.v != NIL && local.v > 0 ){
+			local.slot = local.slots[local.line]
+			local.ly = (local.line * 14) + 254
+			ihuddraw_virtualsize local.p local.slot 1
+			ihuddraw_align       local.p local.slot center top
+			ihuddraw_font        local.p local.slot "verdana-12"
+			ihuddraw_color       local.p local.slot 0.85 0.85 0.85
+			ihuddraw_rect        local.p local.slot 0 local.ly 0 0
+			ihuddraw_string      local.p local.slot ( local.names[local.k] + "     " + local.v + " XP" )
+			ihuddraw_alpha       local.p local.slot 0.9
+			local.p playsound coop_ui_click
+			local.line++
+			wait 1.4		// [user 07-08] one category at a time, slow enough to read
+		}
+		local.k++
+	}
+}end
+
+//=========================================================================
+// [user 07-18 debrief-unlock-list] "UNLOCKED THIS MISSION:" list under the debrief card.
+// Fed by the PER-MAP, PER-PLAYER accumulator in challenges.scr::chal_add_unlock
+// (player.flags["coop_mapUnlockList"], a "~"-joined display-name string, stamped with the map
+// name so a stale carry-over from a prior map reads as empty). Slots 127-134 sit in the free,
+// fade-exempt (>=100) block - clear of the card's 62-73 and the lobby list's 117-126, and they
+// never co-display (lobby vs mission-end). Empty list => draws nothing (no header). Centered
+// below the category tally / promotion toast so it can't overlap the rank bar or insignia.
+//=========================================================================
+xp_card_unlocks local.p:{
+	if( local.p == NULL ){ end }
+
+	// only THIS map's unlocks: a stale stamp means the list is left over from a prior map -> treat empty
+	local.pd = ""
+	if( local.p.flags["coop_mapUnlockStamp"] == level.coop_mapname ){
+		local.pd = local.p.flags["coop_mapUnlockList"]
+	}
+	if( local.pd == NIL ){ local.pd = "" }
+
+	// split the "~"-separated names into up to 6 lines + an overflow count
+	// (lobby.scr::lobbyUnlockList parse pattern - no engine split helper exists)
+	local.n = 0
+	local.extra = 0
+	local.field = ""
+	local.i = 0
+	while( local.i <= local.pd.size ){
+		local.done = 0
+		if( local.i == local.pd.size ){ local.done = 1 }
+		else if( local.pd[local.i] == "~" ){ local.done = 1 }
+		if( local.done == 1 ){
+			if( local.field != "" ){
+				if( local.n < 6 ){ local.line[local.n] = local.field; local.n++ }
+				else { local.extra++ }
+			}
+			local.field = ""
+		} else {
+			local.field += local.pd[local.i]
+		}
+		local.i++
+	}
+
+	// nothing unlocked this map -> draw NOTHING (no header) and make sure the block is clear
+	if( local.n <= 0 ){
+		for( local.s = 127; local.s <= 134; local.s++ ){ ihuddraw_alpha local.p local.s 0 }
+		end
+	}
+
+	// header (center, tucked below the category tally y254-296 and promotion toast y316)
+	ihuddraw_virtualsize local.p 127 1
+	ihuddraw_align       local.p 127 center top
+	ihuddraw_rect        local.p 127 0 340 0 0
+	ihuddraw_font        local.p 127 "verdana-12"
+	ihuddraw_string      local.p 127 "EARNED THIS MISSION:"	//[user 2026-10-05] + challenges, medals, prestige (feed.scr::feed_mapList)
+	ihuddraw_color       local.p 127 1 0.85 0.4
+	ihuddraw_alpha       local.p 127 0.95
+
+	for( local.j = 0; local.j < 6; local.j++ ){
+		local.s = 128 + local.j
+		if( local.j < local.n ){
+			local.ly = 356 + ( local.j * 14 )
+			ihuddraw_virtualsize local.p local.s 1
+			ihuddraw_align       local.p local.s center top
+			ihuddraw_rect        local.p local.s 0 local.ly 0 0
+			ihuddraw_font        local.p local.s "verdana-12"
+			ihuddraw_string      local.p local.s local.line[local.j]
+			ihuddraw_color       local.p local.s 0.85 0.95 0.85
+			ihuddraw_alpha       local.p local.s 0.95
+		} else {
+			ihuddraw_alpha local.p local.s 0
+		}
+	}
+
+	if( local.extra > 0 ){
+		ihuddraw_virtualsize local.p 134 1
+		ihuddraw_align       local.p 134 center top
+		ihuddraw_rect        local.p 134 0 440 0 0
+		ihuddraw_font        local.p 134 "verdana-12"
+		ihuddraw_string      local.p 134 ( "+" + local.extra + " more" )
+		ihuddraw_color       local.p 134 0.7 0.8 0.7
+		ihuddraw_alpha       local.p 134 0.9
+	} else {
+		ihuddraw_alpha local.p 134 0
+	}
+
+	// hold for the debrief, then wipe the block. Slots >=100 are fade-exempt (never faded by the
+	// HUD-fade), so unlike the card's 62-73 they MUST be cleared explicitly when the card ends.
+	while( level.coop_xp_summaryActive == 1 && local.p != NULL ){ wait 1 }
+	for( local.s = 127; local.s <= 134; local.s++ ){
+		if( local.p != NULL ){ ihuddraw_alpha local.p local.s 0 }
+	}
+}end
+
+
+//=========================================================================
+// PROMOTION CEREMONY [222] - COD-style rank-up moment (slots 70-72, clear of
+// the gain popup's 62-69): gold halo + the NEW emblem front and center + rank
+// title, scored with the M1 Garand ping (snd_ping - the most satisfying sound
+// this war produced). ~3s, then fades.
+//=========================================================================
+xp_promo_ceremony local.player local.rank:{
+	if( local.player == NULL ){ end }
+	//[user 2026-10-05] HUD declutter: mid-mission a promotion is ONE quiet feed line (no ceremony, no ping, no duck).
+	//The debrief card still rolls every rank crossed with the full moment (xp_summary_card). An older cgame keeps
+	//the ceremony below.
+	if( level.coop_xp_summaryActive != 1 ){
+		if( waitthread coop_mod/feed.scr::feed_capable local.player ){
+			waitthread coop_mod/feed.scr::feed_player local.player 2 "promo" ( "Promoted: " + level.coop_xp_rankName[local.rank] )
+			end
+		}
+	}
+	if( level.coop_xp_summaryActive == 1 ){ end }		// [fix] at mission end the debrief card rolls the rank-up itself (insignia swap + ping + promo toast) - don't also fire the standalone ceremony over it
+	if( local.player.flags["coop_xp_ceremony"] == 1 ){ end }
+	local.player.flags["coop_xp_ceremony"] = 1
+
+	local.rn = local.rank
+	if( local.rn < 10 ){ local.rn = "0" + local.rn }
+
+	// [235] CINEMATIC ping: M1 Garand ping with a reverb tail, then played in REVERSE (user
+	// design). Generated asset sound/coop/coop_rankup_cine.wav, aliased in ubersound.
+	// [user 07-18] REMOVED xp_ping_duck (s_volume master duck lowered the ping itself - sounded cut/quiet).
+	// [user 08-02] Promotion audio, take two. The earlier attempt (xp_ping_duck, removed 07-18)
+	// dipped s_volume - the MASTER - which quieted the ping itself, so it was abandoned. The right
+	// lever is s_sfxduck: applied per-channel in the engine's openal_channel::set_gain, with MUSIC
+	// EXPLICITLY EXEMPT, so the bed drops while the ceremony music does not. It is on the client
+	// server-command whitelist, so a per-player stufftext is not dropped.
+	// Ducked to 0.25 and the ping given "volume 3" on top (parse path: entity.cpp argstype=1
+	// MULTIPLIES the alias volume; AL_MAX_GAIN is 8.0, so 1.4 * 3 is in range) - net effect the
+	// ping sits far above the ducked bed instead of fighting it.
+	// Per-player, NOT coop_setClientCvar/coop_cvarFade: those broadcast to every $player.
+	local.player stufftext "s_sfxduck 0.25"
+	local.player playsound coop_rankup_cine volume 3
+	thread xp_ping_unduck local.player
+
+	//[2026-09-25, bug-2906] claim on show, re-send the hide (coop_mod/hudresend.scr, TRAPS T8)
+	waitthread coop_mod/hudresend.scr::claim local.player 70 73
+	ihuddraw_virtualsize local.player 70 1
+	ihuddraw_align       local.player 70 left top
+	ihuddraw_shader      local.player 70 "textures/hud/xpbar/xpbar_glow"
+	ihuddraw_rect        local.player 70 256 60 128 128
+	ihuddraw_alpha       local.player 70 0.9
+
+	ihuddraw_virtualsize local.player 71 1
+	ihuddraw_align       local.player 71 left top
+	ihuddraw_shader      local.player 71 ( "textures/hud/coop_rank_" + local.rn )
+	ihuddraw_rect        local.player 71 288 92 64 64
+	ihuddraw_alpha       local.player 71 1
+
+	ihuddraw_virtualsize local.player 72 1
+	ihuddraw_align       local.player 72 center top
+	ihuddraw_font        local.player 72 "handle-23"
+	ihuddraw_color       local.player 72 1 0.87 0.35
+	ihuddraw_rect        local.player 72 0 162 0 0
+	ihuddraw_string      local.player 72 "PROMOTED"
+	ihuddraw_alpha       local.player 72 1
+
+	// [user 07-10] rank name on its OWN line in a smaller font so long names (e.g. "General of the
+	// Army", "Technician Fifth Grade") don't run off the screen when appended after "PROMOTED".
+	ihuddraw_virtualsize local.player 73 1
+	ihuddraw_align       local.player 73 center top
+	ihuddraw_font        local.player 73 "facfont-20"
+	ihuddraw_color       local.player 73 1 0.87 0.35
+	ihuddraw_rect        local.player 73 0 190 0 0
+	ihuddraw_string      local.player 73 level.coop_xp_rankName[local.rank]
+	ihuddraw_alpha       local.player 73 1
+
+	// halo breathes while the emblem holds (no modulo - unverified operator, bug-302 lesson)
+	local.t = 0
+	local.pulse = 0
+	while( local.t < 22 && local.player != NULL ){
+		local.a = 0.55 + (local.pulse * 0.07)
+		ihuddraw_alpha local.player 70 local.a
+		local.pulse++
+		if( local.pulse > 5 ){ local.pulse = 0 }
+		wait 0.12
+		local.t++
+	}
+
+	local.a = 9
+	while( local.a > 0 && local.player != NULL ){
+		local.f = local.a * 0.1
+		ihuddraw_alpha local.player 70 local.f
+		ihuddraw_alpha local.player 71 local.f
+		ihuddraw_alpha local.player 72 local.f
+		ihuddraw_alpha local.player 73 local.f
+		local.a--
+		wait 0.05
+	}
+	if( local.player != NULL ){
+		ihuddraw_alpha  local.player 70 0
+		ihuddraw_alpha  local.player 71 0
+		ihuddraw_alpha  local.player 72 0
+		ihuddraw_alpha  local.player 73 0
+		ihuddraw_string local.player 72 ""
+		ihuddraw_string local.player 73 ""
+		local.player.flags["coop_xp_ceremony"] = NIL
+		//not once the debrief has begun: its card owns 70/71 and a map change follows it
+		if( level.coop_xp_summaryRun != 1 ){
+			thread coop_mod/hudresend.scr::resend local.player 70 71 0
+			thread coop_mod/hudresend.scr::resend local.player 72 73 1
+		}
+	}
+}end
+
+
+//=========================================================================
+// Persist every known player's total to file. Called on rank-ups, mission
+// complete, maptest transitions and the 60s autosave.
+//=========================================================================
+xp_flush:{
+	if( level.coop_xp_enabled != 1 ){ end }
+	local.i = 1
+	while( local.i <= $player.size ){
+		local.p = $player[local.i]
+		if( local.p != NULL && local.p.flags["coop_xp_id"] != NIL ){
+			//[srvperf 2026-10-04] skip the write when this player's total is what we last wrote: the file
+			//writes are synchronous and cost up to ~4.6 ms in one server frame (measured on m1l1), every
+			//60 s autosave, even for players whose XP had not moved. A changed total always writes.
+			local.xs = "" + local.p.flags["coop_xp_total"]
+			if( local.p.flags["coop_xp_flushed"] != local.xs ){
+				fs_write_content ( "coop_mod/save/xp_" + local.p.flags["coop_xp_id"] + ".dat" ) local.xs
+				local.p.flags["coop_xp_flushed"] = local.xs
+			}
+		}
+		local.i++
+	}
+}end
+
+
+//=========================================================================
+//[user 07-16] Grant the weapon unlocks for ranks fromRank..toRank (inclusive).
+//Funnels through challenges.scr::chal_add_unlock (dedups + persists), then refreshes the armory UI.
+//=========================================================================
+xp_rank_unlock local.player local.fromRank local.toRank:{
+	if( local.player == NULL ){ end }
+	if( local.fromRank < 1 ){ local.fromRank = 1 }
+	if( local.toRank > level.coop_xp_rankMax ){ local.toRank = level.coop_xp_rankMax }
+	local.r = local.fromRank
+	while( local.r <= local.toRank ){
+		local.k = level.coop_xp_rankUnlockCnt[local.r]
+		if( local.k != NIL && local.k > 0 ){
+			local.j = 0
+			while( local.j < local.k ){
+				waitthread coop_mod/challenges.scr::chal_add_unlock local.player level.coop_xp_rankUnlock[local.r][local.j]
+				local.j++
+			}
+		}
+		local.r++
+	}
+	thread coop_mod/loadoutpick.scr::loadout_ui_exportUnlocks local.player
+}end
+
+//=========================================================================
+// [user 08-02] Restore s_sfxduck in steps after a promotion ping.
+// MUST be guarded against disconnect at every wait: s_sfxduck is CVAR_ARCHIVE, so a player who
+// leaves mid-ceremony would otherwise keep a permanently ducked mix in their SAVED config.
+//=========================================================================
+xp_ping_unduck local.player:{
+//=========================================================================
+	wait 1.6
+	if( local.player == NULL ){ end }
+	local.player stufftext "s_sfxduck 0.55"
+	wait 0.35
+	if( local.player == NULL ){ end }
+	local.player stufftext "s_sfxduck 0.8"
+	wait 0.35
+	if( local.player == NULL ){ end }
+	local.player stufftext "s_sfxduck 1"
+}end

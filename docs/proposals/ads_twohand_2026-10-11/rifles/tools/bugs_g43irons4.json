@@ -1,0 +1,65 @@
+[
+ {
+  "error_message": "iron-sight G43: the server held WEAPON_RELOADING for 2.95 s per reload instead of the scoped G43's 1.87 s - 0.05 s past the end of the torso's reload state (runs rb39-rb41, listen server, script + tik-command probe)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/g43tik.py",
+  "root_cause": "the 12 staged tiks pointed the SERVER-read row `reload` at an 88-frame gun clip (coop_g43_irons_reload.skc) so that the cgame's swapped aim-only row reload_ads_empty (88 frames, the rack at 62-69) was not cut when the server's 56-frame row ended. Weapon::StartReloading holds WEAPON_RELOADING until that row's clip ends (weapon.cpp); the state is read by the quick-draw logic (player.cpp) and Sentient::AttachToOwner. Reload start -> fire-ready (2.90 s) and the magazine fill (+1.70 s) come from the TORSO clip and were equal all along.",
+  "fix": "`reload` back to the released g43_reload.skc in all 12 tiks (g43srvrow.py; g43tik.py writes the same); the long aim-only clip is kept by the cgame on its own clock after the server's row has ended (coop_vmGunClipClock, the pistol lane's in-flight change of ads-next ported to ads-rifle-next c7ce5e86). Re-measured rb42: row start 0.00 / magazine 1.70 / row mark 1.80 / torso out 2.90 s for both rifles, hip and aimed, rounds left and emptied. rowlen.py: 0 of 391 rows of the 68 staged rifle tiks differ in length from the released row.",
+  "tags": ["ads", "rifles-lane", "g43-irons", "server-timing", "WEAPON_RELOADING", "reload"]
+ },
+ {
+  "error_message": "a weapon tik's `last` and `exit` SERVER commands on the `reload` row never ran (run rb40: 6 reloads, `entry exec` printed 6 times, `last exec` and `exit exec` 0 times); a numbered frame command (`54 exec`) does run",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/srvtime_ov.py",
+  "root_cause": "the weapon's row is ended by the animation-done event (EV_Weapon_DoneReloading -> SetWeaponIdleAnim) before the last frame's commands are dispatched. So the retail `last idle` in a weapon tik's reload row is dead text, and a probe / gameplay command placed on `last` or `exit` of a weapon row silently does nothing.",
+  "fix": "the timing probe marks frame (frames - 2) of the row's clip; the row ends 2 frames (0.067 s) later. Do not put a command that must run on `last` / `exit` of a weapon row.",
+  "tags": ["tiki", "frame-commands", "weapon", "probe", "rifles-lane"]
+ },
+ {
+  "error_message": "Game (Event: 'exec', Object: 'Weapon') : Can't find 'coop_mod/coop_rt.scr::wentry' (run rb39)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/srvtime_ov.py",
+  "root_cause": "the Listener `exec` EVENT (what a tik frame command calls) takes a script FILE; the `file::label` form only exists in script source.",
+  "fix": "one script file per mark (coop_rt_wentry.scr / coop_rt_wlast.scr), each a bare main.",
+  "tags": ["tiki", "exec", "script", "probe", "rifles-lane"]
+ },
+ {
+  "error_message": "coop_mod/unlockreq_gen.scr in the mod tree is STALE: `armory_unlocks.py --emit` over the unchanged tree rewrites 5 requirement strings (29th net helmet: another challenge; 101st infantry 2500 -> 500 kills; SAS 5000 -> 750; army3 1000 -> 250; Col. Sink 1000 -> 750 Wehrmacht)",
+  "file": "hzm-mohaa-coop-mod/coop_mod/unlockreq_gen.scr",
+  "root_cause": "challenge targets / rewards were changed in challenges.scr without re-emitting the generated requirement text; nothing in the build runs armory_unlocks.py --emit or checks it (gen_loadout.py check covers the hover pages only).",
+  "fix": "NOT fixed in the tree (the rifle lane may not edit it). Found by stage_armory_gen.py's BASE pass; the lane's staged unlockreq_gen.scr is a fresh emit and therefore carries the 5 corrected lines with the new rifle's line. Open: run the emit in the tree, and add it to build.ps1's drift checks.",
+  "tags": ["armory", "generated-files", "drift", "unlock-text", "open"]
+ },
+ {
+  "error_message": "wire_mv2.py: AssertionError: no roster give for coop_g43_irons (a NEW variant host)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/wire/stage_armory_gen.py",
+  "root_cause": "wire_mv2.py finds a host by its row in loadoutroster.scr::roster_ids, which gen_loadout.py build writes from the TSV; and gen_loadout.py's VARIANT arming reads MV_HOSTS, which wire_mv2.py rewrites. A new host therefore needs gen_loadout BEFORE and AFTER wire_mv2.",
+  "fix": "generator order for a new weapon with variants: gen_loadout.py build -> wire_mv2.py -> variant_challenges.py --emit -> gen_loadout.py build -> gen_skinbase.py -> armory_unlocks.py --emit -> gen_loadout.py check (wire/README.md).",
+  "tags": ["armory", "generators", "order", "model-variants", "rifles-lane"]
+ },
+ {
+  "error_message": "a second weapon given the scoped G43's elite id in wire_mv2.py would have (a) overwritten level.coop_skinMvByElite / coop_skinMvPseudo of the G43 with its own name and (b) made variant_challenges.py emit chal_defs wpn_g43_mv8..11 a second time with other rewards (duplicate challenge ids)",
+  "file": "docs/tools/wire_mv2.py",
+  "root_cause": "both generators assume one host per elite challenge id; a gun that SHARES another gun's kill counter (the iron-sight G43, coordinator's decision) was not a case they knew.",
+  "fix": "STAGED generator patches (wire/gen/generators.patch): wire_mv2.py MV entries take an optional 4th value = the host shared with (emits level.coop_skinMvShare, skips the two elite-keyed name rows); variant_challenges.py emits NO chal_def for a sharing gun and points each of its variants at the host's challenge of the same skin key (irons fid 8-11 -> wpn_g43_mv9..12). Run rb46.",
+  "tags": ["armory", "generators", "model-variants", "shared-counter", "g43-irons"]
+ },
+ {
+  "error_message": "unlock test rb44 wrote the text NIL into the test player's xp_<id>.dat and unlocks_<id>.dat (private test install only)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/srvtime_ov.py",
+  "root_cause": "the measure-only probe kept its snapshot of the player's XP / unlock record in level variables and restored from them after two map restarts - level variables do not survive a map change, so it restored NIL.",
+  "fix": "the probe no longer restores anything; run_unlock.py copies the save files before the boot and puts them back after the game has quit (what the run wrote is moved into the run folder). The damaged files were moved to runs/rb44/save_after.",
+  "tags": ["harness", "probe", "save-files", "level-variables", "rifles-lane"]
+ },
+ {
+  "error_message": "armory hover of a VARIANT button names the gun's ELITE challenge (reqmv<id>.cfg: 'UNLOCK: Get 120 kills with the Gewehr 43 (Elite)') although each variant has had its own challenge since 2026-08-26 (wpn_g43_mv9 = 225 kills for the Flecktarn)",
+  "file": "docs/tools/wire_mv2.py",
+  "root_cause": "wire_mv2.py still writes the reqmv pages from the elite challenge's description; variant_challenges.py moved the gate to per-variant challenges without touching that text. All 23 hosts, not only the new one.",
+  "fix": "NOT fixed (outside the rifle lane). The new host's page is written the same way as the others.",
+  "tags": ["armory", "model-variants", "hover-text", "open"]
+ },
+ {
+  "error_message": "armory stat table: SVT-40 and FG 42 have ACC 0 (an empty accuracy bar), the same defect as the scoped G43's row",
+  "file": "docs/tools/loadout_weapons.tsv",
+  "root_cause": "hand-entered stat columns; three rows were left at 0.",
+  "fix": "the scoped G43's ACC is staged as 9 (the G43 Sniper's value; both carry a scope) in wire/gen/generators.patch. SVT-40 and FG 42 NOT touched - a value for the user / coordinator.",
+  "tags": ["armory", "stat-bars", "tsv", "open"]
+ }
+]

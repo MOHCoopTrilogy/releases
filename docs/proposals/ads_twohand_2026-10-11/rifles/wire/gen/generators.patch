@@ -1,0 +1,106 @@
+--- a/docs/tools/gen_loadout.py
++++ b/docs/tools/gen_loadout.py
+@@ -74,5 +74,5 @@
+     # gun with an imported model variant is previewed. Host tile ids are pinned here; the actual
+     # variant + its unlock live in loadoutskins.scr, keyed on the give path.
+-    MV_HOSTS = ("01", "03", "04", "05", "07", "08", "09", "12", "13", "14", "23", "24", "26", "36", "37", "44", "45", "46", "48", "50", "53", "55", "74")
++    MV_HOSTS = ("01", "03", "04", "05", "07", "08", "09", "12", "13", "14", "23", "24", "26", "36", "37", "44", "45", "46", "48", "50", "53", "55", "74", "78")
+     mv_on = "1" if w["id"] in MV_HOSTS else "0"
+     mv_req = ("exec ui/loadout/reqmv%s.cfg" % w["id"]) if w["id"] in MV_HOSTS else "exec ui/loadout/reqclear.cfg"
+--- a/docs/tools/gen_service_record.py
++++ b/docs/tools/gen_service_record.py
+@@ -74,4 +74,5 @@
+     "models/weapons/enfield_lv_ttenfield.tik": "Team Tactics (leon)",
+     "models/weapons/kar98_g98.tik": "Gewehr 98 (bolt) (east)",
++    "models/weapons/coop_g43_irons.tik": "Gewehr 43 (Iron Sights)",
+     "models/weapons/G43_dhg43fleck.tik": "Flecktarn G43 (dirtyharry)",
+     "models/weapons/G43_hobbsg43wood.tik": "Woodland G43 (hobbs)",
+--- a/docs/tools/loadout_weapons.tsv
++++ b/docs/tools/loadout_weapons.tsv
+@@ -18,5 +18,5 @@
+ 02	models/weapons/carbine.tik	models/weapons/carbine.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	M1 CARBINE	.30 CARBINE / SEMI-AUTO	4	5	8	8	15	15	carbine	12
+ 03	models/weapons/kar98.tik	models/weapons/kar98.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	KAR98K	7.92MM / BOLT-ACTION	10	1	8	10	5	5	kar98	12
+-04	models/weapons/g43.tik	models/weapons/g43.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	GEWEHR 43	7.92MM / SEMI-AUTO	5	4	0	5	10	10	g43	12
++04	models/weapons/g43.tik	models/weapons/g43.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	GEWEHR 43	7.92MM / SEMI-AUTO	5	4	9	5	10	10	g43	12
+ 05	models/weapons/enfield.tik	models/weapons/enfield.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	LEE-ENFIELD NO.4	.303 / BOLT-ACTION	9	1	8	10	10	10	enfield	12
+ 06	models/weapons/springfield_unscoped.tik	models/weapons/springfield_unscoped.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	SPRINGFIELD M1903	.30-06 / BOLT-ACTION	8	1	8	8	5	5	springfield_unscoped	12
+@@ -89,2 +89,3 @@
+ 74	models/weapons/mauser_c96.tik		0 0 0 1.60 0 90 180	coop_hold_pistol		4	MAUSER C96	7.63MM / SEMI-AUTO / 10 RD	3	5	9	9	10	10	p38	3
+ 75	models/weapons/m10_revolver.tik		0 0 0 1.60 0 90 180	coop_hold_pistol		4	S&W M10 .38	.38 SPECIAL / REVOLVER / 6 RD	3	5	8	9	6	6	nagant_revolver	3
++78	models/weapons/coop_g43_irons.tik	models/weapons/coop_g43_irons.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	GEWEHR 43 (IRON SIGHTS)	7.92MM / SEMI-AUTO / IRON SIGHTS	5	4	8	10	10	10	g43	12
+--- a/docs/tools/variant_challenges.py
++++ b/docs/tools/variant_challenges.py
+@@ -105,5 +105,9 @@
+     for r in rows:
+         per.setdefault(r["gun"], []).append(r)
++    share = dict(re.findall(r'level\.coop_skinMvShare\["([^"]+)"\]\s*=\s*"([^"]+)"', read(SKINS)))
++    skey = lambda r: os.path.basename(r["path"]).lower()[len(os.path.basename(r["gun"])) - 3:-4]   # "<stem>_<key>.tik" -> key
+     for gun in sorted(per):
++        if gun in share:
++            continue
+         vs = per[gun]
+         L.append("\t//---- %s ----" % gun.replace("models/weapons/", ""))
+@@ -123,4 +127,14 @@
+             L.append('\tlevel.coop_skinMvChal["%s"][%d] = "%s"' % (gun, r["fid"], cid))
+         L.append("")
++    for gun in sorted(share):
++        # SHARED: this gun has no kill stat and no challenges of its own - each variant is unlocked by the host's
++        # challenge for the same skin (same key), so one unlock covers the skin on both rifles
++        L.append("\t//---- %s : shares the variant challenges of %s ----" % (gun.replace("models/weapons/", ""), share[gun].replace("models/weapons/", "")))
++        host = dict((skey(r), r) for r in per.get(share[gun], []))
++        for r in sorted(per.get(gun, []), key=lambda x: x["fid"]):
++            assert skey(r) in host, "no host variant for %s" % r["path"]
++            h = host[skey(r)]
++            L.append('\tlevel.coop_skinMvChal["%s"][%d] = "%s_mv%d"' % (gun, r["fid"], h["bcid"], h["fid"]))
++        L.append("")
+     L.append("}end")
+     L.append("")
+--- a/docs/tools/wire_mv2.py
++++ b/docs/tools/wire_mv2.py
+@@ -45,4 +45,7 @@
+                       ("dhg43fleck", "FLECKTARN G43 (DIRTYHARRY)"), ("hobbsg43wood", "WOODLAND G43 (HOBBS)"),
+                       ("hobbsg43urb", "URBAN G43 (HOBBS)"), ("lv_ttg43", "TEAM TACTICS (LEON)")], "wpn_g43_e"),
++    # the iron-sight G43 (its own armory entry, id 78): the same four pack skins on its own mesh. 4th value = the host
++    # whose kill counter and per-variant challenges it SHARES (no challenges of its own; variant_challenges.py maps them).
++    ("coop_g43_irons", [("dhg43fleck", "FLECKTARN G43 (DIRTYHARRY)"), ("hobbsg43wood", "WOODLAND G43 (HOBBS)"), ("hobbsg43urb", "URBAN G43 (HOBBS)"), ("lv_ttg43", "TEAM TACTICS (LEON)")], "wpn_g43_e", "G43"),
+     ("KAR98sniper",  [("g98scope", "G98 SCOPED (EAST)"), ("lv_ttkar98sn", "TEAM TACTICS (LEON)"),
+                       ("lv_98ks", "MAUSER 98 KS (LEON)")], "wpn_kar98sniper_e"),
+@@ -92,5 +95,7 @@
+ 
+ resolved = []   # (give, tile, elite, basename, [(fid, key, label, variantpath), ...])
+-for stem, variants, elite in MV:
++SHARE = {}   # give -> the give of the host it shares variant challenges with
++for _ent in MV:
++    stem, variants, elite = _ent[:3]
+     give = rgives.get("models/weapons/%s.tik" % stem.lower())
+     assert give, "no roster give for %s" % stem
+@@ -109,4 +114,6 @@
+         vlist.append((8 + i, key, label, vpath))
+     resolved.append((give, tile, elite, base_name, vlist))
++    if len(_ent) > 3:
++        SHARE[give] = rgives["models/weapons/%s.tik" % _ent[3].lower()]
+     print("  %-34s tile %-3s %-22s %d variant(s)" % (give, tile, elite, len(vlist)))
+ 
+@@ -127,4 +134,7 @@
+     B.append('\tlevel.coop_skinMvMax["%s"] = %d' % (give, vlist[-1][0]))
+     B.append('\tlevel.coop_skinMvElite["%s"] = "%s"' % (give, elite))
++    if give in SHARE:      # the elite id is the HOST's: its announce names stay the host's
++        B.append('\tlevel.coop_skinMvShare["%s"] = "%s"' % (give, SHARE[give]))
++        continue
+     B.append('\tlevel.coop_skinMvByElite["%s"] = "%s MODEL VARIANTS"' % (elite, base_name.upper()))
+     B.append('\tlevel.coop_skinMvPseudo["mv_%s"] = "%s MODEL VARIANTS"' % (elite, base_name.upper()))
+@@ -237,4 +247,5 @@
+            "springfield_dhspdesert", "springfield_dhspdigital", "springfield_dhsptiger", "springfield_dhspwinter", "springfield_guansplight", "springfield_guansp2", "springfield_hobbsspwood", "springfield_hobbsspurban", "G43_dhg43fleck", "G43_hobbsg43wood", "G43_hobbsg43urb", "mp44_dhstg44ss", "mp44_guanmp44", "kar98_hobbskarworn", "kar98_hobbskarwood", "thompsonsmg_hobbstomworn", "thompsonsmg_guantommy", "colt45_guancolt", "m1_garand_guangarand", "mp40_guanmp40", "mp40_guanmp40s", "enfield_hobbsenfurb", "shotgun_dhshotblack", "shotgun_dhshotchrome", "shotgun_hobbsshotty", "shotgun_guanshotty", "p38_guanp38", "bazooka_guanbazooka", "mosin_nagant_rifle_hobbsmosinur", "svt_rifle_hobbssvtwood", "uk_w_l42a1_dhl42camo",
+            "enfield_lv_ttenfield", "G43_lv_ttg43", "mosin_nagant_rifle_lv_ttmosin", "it_w_beretta_lv_ttberetta", "it_w_carcano_lv_ttcarcano", "colt45_lv_ttcolt", "delisle_lv_ttdelisle", "kar98_lv_ttkar98", "KAR98sniper_lv_ttkar98sn", "m1_garand_lv_ttgarand", "p38_lv_ttp38", "thompsonsmg_lv_tttommy", "mp44_lv_ttmp44", "springfield_lv_ttspring", "webley_revolver_lv_ttwebley", "shotgun_lv_ttshotgun", "panzerschreck_lv_ofenrohr", "KAR98sniper_lv_98ks", "delisle_lv_wdelisle", "thompsonsmg_lv_famastommy", "mp40_lv_mp75"]
++newtiks += ["coop_g43_irons", "coop_g43_irons_dhg43fleck", "coop_g43_irons_hobbsg43wood", "coop_g43_irons_hobbsg43urb", "coop_g43_irons_lv_ttg43"]
+ added = 0
+ anchor = "weapon weapons/m1_garand_pagarand.tik"
+--- a/docs/tools/armory_unlocks.py
++++ b/docs/tools/armory_unlocks.py
+@@ -39,5 +39,5 @@
+ import sys
+ 
+-MOD = r'C:\mohaa-coop-dev\hzm-mohaa-coop-mod'
++MOD = os.environ.get('HZM_MOD') or r'C:\mohaa-coop-dev\hzm-mohaa-coop-mod'   # HZM_MOD: a scratch / staged tree (as gen_loadout.py)
+ CO = os.path.join(MOD, 'coop_mod')
+ 

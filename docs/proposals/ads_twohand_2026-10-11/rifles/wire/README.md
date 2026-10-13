@@ -1,58 +1,114 @@
-# Wiring the iron-sight G43 ("G 43 Irons") - STAGED, nothing applied
+# A new armory weapon the mod's way - the recipe (worked example: the iron-sight G43, "G 43 Irons")
 
-User decision 2026-10-13: its OWN armory entry with an early unlock, not a model variant of the scoped G43.
-`wire_mv2_g43irons.patch` (variant 13 of roster id 04) is **SUPERSEDED** - kept for the record, do not apply.
+STAGED, nothing applied. Written to be followed for the next new guns (FG 42 Irons, double-barrel shotgun).
+One tool does all of it: **`stage_armory_gen.py`** (this folder). It makes a scratch copy of the repo, edits the
+hand-authored SOURCES, patches the GENERATORS, runs them, and stages only what the new weapon changed.
 
-## What to apply, in this order
-| step | what | file here |
+    python stage_armory_gen.py     ->  gen/generators.patch   patches to docs/tools (generators + the TSV row)
+                                       gen/armory_gen.patch   every changed mod-tree file (21)
+                                       gen/new/               every new mod-tree file (34)
+                                       gen/report.txt         what ran, what changed, generator drift found
+                                       ../armory_gen_ov/      the same game files for the private test install
+                                                              (tools/mkov_rifle.py <pk3> --armgen)
+
+**Superseded, kept for the record, do not apply:** `stage_armory_g43irons.py` + `armory_g43irons.patch` +
+`armory_new/` + `../armory_ov/` (they wrote the GENERATED files `unlockreq_gen.scr`, `loadoutskins_base.scr`, the
+`roster_ids` block and the `ui/loadout` pages by hand; the new tool reuses only their hand-authored transforms) and
+`wire_mv2_g43irons.patch` (the irons as a variant of the scoped G43).
+
+## 1. What you author (the sources)
+
+| what | where | the irons |
 |---|---|---|
-| 1 | game files: 12 tiks, mesh, sight shader + texture, gun clips, aim pose, aimed reload clips | `../assets/` except `coop_mod/` and `models/player/base/` (-> the mod tree / fixes pak, same paths) |
-| 2 | the hands rows (5 rows `coopr_g_43_irons_*`) | `../tools/rows_rifle.py` writes `../assets/models/player/base/fps_anims_rifle.txt` from the released fixes copy |
-| 3 | torso state row - WITHOUT IT THE HIP RELOAD IS BROKEN (the rifle is handed to the left hand and leaves the picture) | `player_torso_g43irons.patch` (`../tools/g43state.py`) |
-| 4 | the armory entry: 14 files changed + the generator's TSV row | `armory_g43irons.patch` |
-| 5 | the armory entry: 13 new files (`ui/loadout/p78 t78 w78_s1 w78_s2 req78 finp78_1..7 .cfg`, `ui/hud_ammo_G43Irons.urc`) | `armory_new/` |
-| 6 | regenerate, then check | `python docs/tools/gen_loadout.py build` (rewrites the `ui/loadout/*78*` files and the `roster_ids` block from the TSV row - compare with step 5), `gen_skinbase.py`, `armory_unlocks.py`, `gen_service_record.py build`; `gen_loadout.py check` must pass (build.ps1 blocks on drift) |
-| 7 | the cgame: `ads-rifle-next` 60e00829 (weapon name, sight rows, per-weapon aim / reload rows) | engine worktree `C:\mohaa-coop-dev\openmohaa-hzm-ads-rifle` |
+| the armory row: tile name, description, stat bars, slots | `docs/tools/loadout_weapons.tsv` (one row) | id **78**, "GEWEHR 43 (IRON SIGHTS)", DMG 5 / RPM 4 / ACC 8 / MOB 10 |
+| **the unlock rule** | `coop_mod/xp.scr` `coop_xp_rankUnlock[rank][n]` (a rank) or a `chal_def` reward in `coop_mod/challenges.scr` (a challenge) | **rank 2** (Technician Fifth Grade, 1200 XP), `coop_xp_rankUnlock[2][2]` |
+| name / give / slot / ammo of the roster entry | `coop_mod/loadoutroster.scr` `roster_get` `case "<id>"` | a copy of the scoped G43's `case "04"` |
+| finishes fid 1-7 | `coop_mod/loadoutskins.scr` `coop_skinGive[<give>][1..7]` | the 7 staged finish tiks |
+| MODEL VARIANTS (pack skins), and whose challenges they use | `docs/tools/wire_mv2.py` `MV` (generator input) | fleck / hobbs wood / hobbs urban / Team Tactics, **sharing the scoped G43's** (4th value `"G43"`) |
+| the tile + its lock label on the tab | `ui/coop_loadout.urc`, `ui/loadout/lktab0-5.cfg` | between the M1 Carbine and the Kar98k (the tab is in unlock order) |
+| ammo lists, AI grenade count by gun name | `coop_mod/itemhandler.scr` | beside every `g43.tik` / `"g 43"` case |
+| recoil rows | `coop_mod/recoil_table.txt` | 12 rows (`recoil_table_g43irons.txt`) |
+| ammo HUD menu (keyed by weapon NAME) | `ui/hud_ammo_<Name>.urc` | `hud_ammo_G 43 Irons` |
+| AI alias (a map script arming an actor by name) | `global/weapon.scr` | `"g 43 irons"`, `"g43 irons"`, `"g43irons"` |
+| dev lists | `global/giveall.scr` (through `wire_mv2.py`), `coop_mod/developer.scr`, `coop_mod/buildmode_catalog.scr`, `ubermode/get_player_weaponclass.scr` | base + the 4 variants; class "rifle" (the scoped one is "sniper") |
+| Service Record reward name | `docs/tools/gen_service_record.py` `REWARD_NAMES` | "Gewehr 43 (Iron Sights)" |
+| torso state row - WITHOUT IT THE HIP RELOAD IS BROKEN | `coop_mod/player_torso.st` | `player_torso_g43irons.patch` (`../tools/g43state.py`) |
+| loot-feed / use-prompt picture | cgame table `cg_coopfeed_loot.h` (GENERATED by the use_pickup lane's `build_icons.py`) + `textures/hud/loot/` | `cg_coopfeed_loot_g43irons.txt` + `../assets/textures/hud/loot/w_g43irons.tga` (`../tools/lootpic.py`) |
 
-`stage_armory_g43irons.py` makes steps 4 and 5 (re-run it when the mod tree changes; it asserts every anchor) and the
-harness copies `../armory_ov/` from the RELEASED pak (`mkov_rifle.py <pk3> --armory`). On 2026-10-13 the 27 files came
-out identical from the mod tree and from the released pak.
+## 2. What the generators write (never by hand), in THIS order
 
-## The entry
-* Roster id **78** (73 is free in coop, 76 / 77 are the MP roster's), give `models/weapons/coop_g43_irons.tik`, tile
-  **"GEWEHR 43 (IRON SIGHTS)"** on the RIFLE tab between the M1 Carbine and the Kar98k (the list is in unlock order; the rows from the Kar98k down move one row lower), slot / ammo / class as the scoped
-  G43 (primary, rifle, 70 rounds). The scoped one keeps "GEWEHR 43". Finish previews are named "GEWEHR 43 IRONS (GOLD)" ...
-* **Unlock: RANK 2** (Technician Fifth Grade, 1200 XP), `coop_mod/xp.scr` `coop_xp_rankUnlock[2][2]`. Around it:
-  M1 Garand free; M1 Carbine rank 1 (500 XP); **G 43 Irons rank 2 (1200)**, with the silenced pistol and the stick
-  grenade; Kar98k rank 3 (2200); Sten + Luger rank 4 (3600); scoped Gewehr 43 rank 5 (5500, Sergeant); Lee-Enfield 7;
-  Springfield 9; Carcano 10; SVT 12; Mosin 13; Arisaka 15. To move it: `RANK` / `RANK_NAME` at the top of the script.
-* **Finishes**: fid 1-7 (gold, chrome, blued, bloody, woodland, winter, desert) -> the 7 staged finish tiks, with the
-  generated reverse map (`loadoutskins_base.scr`). They unlock as the G43's do: the kill counter is the G43's (weapon id
-  by `containsText "g43"` in `challenges.scr`), so irons kills and scoped kills count together.
-* Recoil: the 12 rows of `recoil_table_g43irons.txt` appended to `coop_mod/recoil_table.txt`.
-* `coop_mod/itemhandler.scr`: the base tik added to the two rifle-ammo lists.
-* `ui/hud_ammo_G43Irons.urc`: the (empty) ammo HUD menu `hud_ammo_G 43 Irons` - menus are keyed by weapon name.
+    gen_loadout.py build        ui/loadout p<id> t<id> w<id>_s1/2 req<id> finp<id>_1..7 + loadoutroster.scr::roster_ids
+    wire_mv2.py                 loadoutskins.scr MODEL VARIANTS block, ui/loadout/reqmv<id>.cfg + mvp<id>_*.cfg,
+                                MV_HOSTS inside gen_loadout.py, global/giveall.scr
+    variant_challenges.py --emit    coop_mod/mvchal_gen.scr  (which challenge unlocks which variant)
+    gen_loadout.py build        again - the page now arms the VARIANT button (MV_HOSTS)
+    gen_skinbase.py             coop_mod/loadoutskins_base.scr
+    armory_unlocks.py --emit    coop_mod/unlockreq_gen.scr  (the requirement text of every gated item)
+    gen_loadout.py check        must say EXACT REPRODUCTION (build.ps1 blocks on drift)
 
-## Run once (rb35, private test install, overlay `ov_rifle_f1.pk3`)
-Tile shows; locked for the test player (rank 0) with a lock icon and "UNLOCK: Rank: Technician Fifth Grade"; a click
-while locked opens the inspect page and the pick is refused (`coop_lo1` stays empty); with the gate off
-(`coop_lockLoadout 0` - the test install has no way to grant XP from the console) the lock goes, the click puts it in
-PRIMARY 1 (`coop_lo1` = 78, `coop_loS1` = the tik); after a map restart the player spawns holding it; finish 6
-(Winter) applies and survives a second map restart. Stills: `../evidence/g43irons/g43irons_armory_rb35.jpg`,
-`g43irons_armory_tile_rb35.jpg`.
-NOT tested: the rank-2 grant itself (reaching 1200 XP) - only the lock state it feeds and the requirement text;
-a second client / dedicated server; the MP armory.
+`wire_mv2.py` finds a host by its `roster_ids` row, which only `gen_loadout.py` writes - a NEW host needs gen_loadout
+first, and again afterwards. `gen_service_record.py build` is NOT needed for this gun: no challenge changes, so no
+Service Record row changes.
 
-## NOT staged (each is a row keyed on the NAME "G 43" or on `g43.tik` that the new weapon does not have)
-* the 4 pack skins (`coop_g43_irons_dhg43fleck / hobbsg43wood / hobbsg43urb / lv_ttg43.tik`): on the scoped G43 they
-  are MODEL VARIANTS (fid 9-12, `wire_mv2.py`, each behind a kill challenge). For the irons they need an entry in
-  `wire_mv2.py` (`("coop_g43_irons", [...], "<elite challenge id>")`) and base + elite challenges - the tiks are staged
-  and unused until then;
-* loot-feed picture: `cg_coopfeed_loot.h` matches the exact name "G 43" - "G 43 Irons" shows no picture (cgame row);
-* its own kill statistic / challenges (it shares the G43's);
-* `itemhandler.scr` grenade-count list by weapon name (`case "g 43":`), `global/weapon.scr` AI alias,
-  `ubermode/get_player_weaponclass.scr`, `global/giveall.scr`, `developer.scr`, `buildmode_catalog.scr`;
-* the MP armory (`gen_mp_armory.py`, `mp_armory_roster.tsv`);
-* German riflemen carrying it (`coop_aiG43Chance` in `aihandler.scr` arms a share of Kar98 soldiers with `g43.tik`;
-  the irons tik there would put it on the ground for pick-up) - a separate option, not staged;
-* stat bars: DMG / RPM are the scoped G43's (5 / 4), ACC / MOB the M1 Garand's (8 / 10: the tik carries the Garand's accuracy and movement rows). The scoped G43's own TSV row has ACC 0 - its panel shows an empty ACC bar today (not touched).
+## 3. The generator patches (`gen/generators.patch`)
+* `armory_unlocks.py`: its mod root was a constant; it now honours `HZM_MOD` like `gen_loadout.py` (so it can emit
+  into a scratch / staged tree).
+* `wire_mv2.py`: an `MV` entry may carry a 4th value = the host whose kill counter and per-variant challenges the gun
+  SHARES. Such a gun gets `level.coop_skinMvShare[<give>] = <host give>` and does not overwrite the host's
+  elite-keyed announce names. The irons' entry; base + variants added to giveall.
+* `variant_challenges.py`: a sharing gun gets NO `chal_def`; each of its variants points at the host's challenge of
+  the same skin (irons fid 8-11 -> `wpn_g43_mv9..12`). Without this the tool would have emitted `wpn_g43_mv8..11` a
+  second time with other rewards.
+* `gen_loadout.py`: `MV_HOSTS` + "78" (written by `wire_mv2.py`).
+* `gen_service_record.py`: `REWARD_NAMES["models/weapons/coop_g43_irons.tik"] = "Gewehr 43 (Iron Sights)"`.
+* `loadout_weapons.tsv`: the irons' row; and the scoped G43's ACC bar 0 -> **9** (it was an empty bar; 9 = the G43
+  Sniper's, both carry a scope). SVT-40 and FG 42 also have ACC 0 - not touched.
+
+## 4. The unlock rule, and what was tested (run rb46, private test install, the mod's own XP path)
+**Rank 2.** `xp.scr` grants a rank's rewards through `xp_rank_unlock` -> `challenges.scr::chal_add_unlock` at the
+promotion, and again for every rank up to the player's own at each connect (the backfill in `xp_identify`) - so a
+player who is ALREADY rank 2 or higher gets the rifle the next time he joins, nothing else is needed.
+Test = `tools/run_unlock.py` (a measure-only script probe in the overlay; the rank is set the way
+`coop_selftest_xp.scr`'s promo test does, then a REAL `xp_award`):
+
+| step | state | result |
+|---|---|---|
+| as found | rank 0, 0 XP, empty record | tile locked, "UNLOCK: Rank: Technician Fifth Grade", a click is refused (`coop_lo1` empty) |
+| two unrelated unlocks granted, rank 1, 1192 XP | record = BAR, Kar98 sniper | still locked, click refused |
+| `xp_award` 10 "kills" | the game promotes: rank 2, 1202 XP | unlocked; record = BAR, Kar98 sniper + rank 2's rewards (silenced pistol, stick grenade, **the irons**, 2 uniforms) - nothing it had was lost |
+| click the tile | | PRIMARY 1 = GEWEHR 43 (IRON SIGHTS) (`coop_lo1` 78) |
+| the map again | rank 2 read back from the save, connect backfill | spawns holding it; record unchanged |
+| VARIANT with no G43 kills | | server: "This variant is locked - see CHALLENGES" |
+| 225 kills on the scoped G43's counter (`chal_bump "wpn_g43"`) | "Challenge complete: G43 Variant 2" | VARIANT applies the Flecktarn; the map again: spawns with the Flecktarn rifle |
+
+Stills: `../evidence/g43irons/g43irons_unlock_path_rb46.jpg` (nine moments), `g43irons_variant_label_rb47.jpg`.
+NOT tested: a kill made WITH the irons counting on the G43's counter (the harness has no enemies; by the code:
+`challenges.scr::chal_widFromModel` `containsText "g43"`), a second client / dedicated server, the MP armory, finishes
+unlocking on the shared counter (the finish gate is keyed by the same weapon id).
+**The Service Record does not list rank rewards at all** (it lists challenges; `gen_service_record.py` never reads
+`xp.scr`), so there is no row where "Unlocks: Gewehr 43 (Iron Sights)" could appear today. The rank-2 reward is
+named in: the armory lock line, the lobby's NEW UNLOCKS list and the debrief card's EARNED THIS MISSION (both take
+the roster name). The `REWARD_NAMES` entry is staged for the day a challenge rewards the rifle. A rank-rewards page
+in the Service Record would be a new feature - a decision for the user.
+
+## 5. Found on the way (not this lane's to fix)
+* `coop_mod/unlockreq_gen.scr` in the mod tree is STALE: a fresh `armory_unlocks.py --emit` over the unchanged tree
+  rewrites 5 requirement strings (challenge targets were changed without re-emitting). The staged file is a fresh
+  emit, so `gen/armory_gen.patch` carries those 5 lines too.
+* The VARIANT hover text (`reqmv<id>.cfg`, every host) still names the gun's ELITE challenge; the real gate has been
+  one challenge per variant since 2026-08-26.
+* The name line of the armory clips after about 27 characters: variant labels must stay short (rb46: a 32-character
+  label was cut on both sides; the irons' variants now use the scoped G43's own labels).
+
+## 6. Apply list for the irons
+1. game files: `../assets/` except `coop_mod/` and `models/player/base/` (12 tiks, mesh, sight shader + texture, gun
+   clips, aim pose, aimed reload clips, the loot picture) -> the mod tree / fixes pak, same paths;
+2. the hands rows: `../tools/rows_rifle.py` (5 rows `coopr_g_43_irons_*`);
+3. `player_torso_g43irons.patch`;
+4. `gen/generators.patch`, then the sources of `gen/armory_gen.patch` + `gen/new/` - or simply re-run section 2's
+   generator order in the tree after applying the SOURCE hunks (the generated hunks then come out by themselves);
+5. the cgame: `ads-rifle-next` **c7ce5e86** (weapon name, sight rows, per-weapon rows, and the client clip clock the
+   emptied aimed reload needs - see `../README.md`), plus the loot-feed row `cg_coopfeed_loot_g43irons.txt`.
+
+NOT staged: the MP armory (`gen_mp_armory.py`, `mp_armory_roster.tsv`); German riflemen carrying it
+(`coop_aiG43Chance` in `aihandler.scr`); its own kill statistic (it shares the G43's - coordinator's decision).

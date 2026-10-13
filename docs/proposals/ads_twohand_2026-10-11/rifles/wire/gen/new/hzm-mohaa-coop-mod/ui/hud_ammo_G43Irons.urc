@@ -1,0 +1,5 @@
+// HZM coop - stripped ammo HUD (no bullet icons / round counters). bgcolor transparent so the empty
+// menu draws NOTHING (without it the menu rendered its solid background = a square on screen).
+menu "hud_ammo_G 43 Irons" 288 231 NONE 1
+bgcolor 0 0 0 0
+end.
