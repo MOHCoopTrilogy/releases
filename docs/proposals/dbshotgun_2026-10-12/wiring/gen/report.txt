@@ -1,0 +1,143 @@
+stage_armory_dbs.py 20261013_095403   scratch: C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\dbs\armgen\20261013_095403
+--- BASE (mod tree as it is)
+gen_loadout.py build         exit 0  wrote 622 files + the unlock roster, for 74 weapons
+gen_skinbase.py              exit 0  loadoutskins_base.scr: 427 variant->base entries
+armory_unlocks.py --emit     exit 0  wrote C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\dbs\armgen\20261013_095403\base\hzm-m
+gen_loadout.py check         exit 0    -> EXACT REPRODUCTION
+gen_service_record.py build  exit 0    P28  STEALTH      WEAPON FINISHES      7 rows  rowh=84
+--- NEW (sources edited, generators patched)
+tile80 at y 251 on the heavy tab; moved one row down: 45 46 47 72
+gen_loadout.py build         exit 0  wrote 634 files + the unlock roster, for 75 weapons
+gen_skinbase.py              exit 0  loadoutskins_base.scr: 434 variant->base entries
+armory_unlocks.py --emit     exit 0  wrote C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\dbs\armgen\20261013_095403\new\hzm-mo
+gen_loadout.py check         exit 0    -> EXACT REPRODUCTION
+gen_service_record.py build  exit 0    P28  STEALTH      WEAPON FINISHES      7 rows  rowh=84
+
+generator drift already in the tree (BASE differs from the real file; NOT staged): 1
+   hzm-mohaa-coop-mod/coop_mod/unlockreq_gen.scr
+
+changed by this weapon: 20
+   docs/tools/gen_service_record.py
+   docs/tools/loadout_weapons.tsv
+   hzm-mohaa-coop-mod/coop_defaults.cfg
+   hzm-mohaa-coop-mod/coop_mod/challenges.scr
+   hzm-mohaa-coop-mod/coop_mod/itemhandler.scr
+   hzm-mohaa-coop-mod/coop_mod/loadoutpick.scr
+   hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr
+   hzm-mohaa-coop-mod/coop_mod/loadoutskins.scr
+   hzm-mohaa-coop-mod/coop_mod/loadoutskins_base.scr
+   hzm-mohaa-coop-mod/coop_mod/recoil_table.txt
+   hzm-mohaa-coop-mod/coop_mod/unlockreq_gen.scr
+   hzm-mohaa-coop-mod/global/giveall.scr
+   hzm-mohaa-coop-mod/ubermode/get_player_weaponclass.scr
+   hzm-mohaa-coop-mod/ui/coop_loadout.urc
+   hzm-mohaa-coop-mod/ui/loadout/lktab0.cfg
+   hzm-mohaa-coop-mod/ui/loadout/lktab1.cfg
+   hzm-mohaa-coop-mod/ui/loadout/lktab2.cfg
+   hzm-mohaa-coop-mod/ui/loadout/lktab3.cfg
+   hzm-mohaa-coop-mod/ui/loadout/lktab4.cfg
+   hzm-mohaa-coop-mod/ui/loadout/lktab5.cfg
+
+new files: 12
+   hzm-mohaa-coop-mod/ui/loadout/finp80_1.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp80_2.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp80_3.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp80_4.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp80_5.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp80_6.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp80_7.cfg
+   hzm-mohaa-coop-mod/ui/loadout/p80.cfg
+   hzm-mohaa-coop-mod/ui/loadout/req80.cfg
+   hzm-mohaa-coop-mod/ui/loadout/t80.cfg
+   hzm-mohaa-coop-mod/ui/loadout/w80_s1.cfg
+   hzm-mohaa-coop-mod/ui/loadout/w80_s2.cfg
+
+Service Record output that differs (test install only; build.ps1 regenerates it): 85
+   coop_mod/gen_sr_stamp.scr
+   textures/mohmenu/coop_sr_p11.tga
+   textures/mohmenu/coop_sr_reward/r100.tga
+   textures/mohmenu/coop_sr_reward/r101.tga
+   textures/mohmenu/coop_sr_reward/r102.tga
+   textures/mohmenu/coop_sr_reward/r368.tga
+   textures/mohmenu/coop_sr_reward/r369.tga
+   textures/mohmenu/coop_sr_reward/r370.tga
+   textures/mohmenu/coop_sr_reward/r371.tga
+   textures/mohmenu/coop_sr_reward/r372.tga
+   textures/mohmenu/coop_sr_reward/r373.tga
+   textures/mohmenu/coop_sr_reward/r374.tga
+   textures/mohmenu/coop_sr_reward/r375.tga
+   textures/mohmenu/coop_sr_reward/r376.tga
+   textures/mohmenu/coop_sr_reward/r377.tga
+   textures/mohmenu/coop_sr_reward/r378.tga
+   textures/mohmenu/coop_sr_reward/r379.tga
+   textures/mohmenu/coop_sr_reward/r380.tga
+   textures/mohmenu/coop_sr_reward/r381.tga
+   textures/mohmenu/coop_sr_reward/r382.tga
+   textures/mohmenu/coop_sr_reward/r383.tga
+   textures/mohmenu/coop_sr_reward/r384.tga
+   textures/mohmenu/coop_sr_reward/r385.tga
+   textures/mohmenu/coop_sr_reward/r386.tga
+   textures/mohmenu/coop_sr_reward/r387.tga
+   textures/mohmenu/coop_sr_reward/r388.tga
+   textures/mohmenu/coop_sr_reward/r389.tga
+   textures/mohmenu/coop_sr_reward/r390.tga
+   textures/mohmenu/coop_sr_reward/r393.tga
+   textures/mohmenu/coop_sr_reward/r394.tga
+   textures/mohmenu/coop_sr_reward/r395.tga
+   textures/mohmenu/coop_sr_reward/r396.tga
+   textures/mohmenu/coop_sr_reward/r397.tga
+   textures/mohmenu/coop_sr_reward/r398.tga
+   textures/mohmenu/coop_sr_reward/r399.tga
+   textures/mohmenu/coop_sr_reward/r400.tga
+   textures/mohmenu/coop_sr_reward/r401.tga
+   textures/mohmenu/coop_sr_reward/r402.tga
+   textures/mohmenu/coop_sr_reward/r403.tga
+   textures/mohmenu/coop_sr_reward/r404.tga
+   textures/mohmenu/coop_sr_reward/r405.tga
+   textures/mohmenu/coop_sr_reward/r406.tga
+   textures/mohmenu/coop_sr_reward/r407.tga
+   textures/mohmenu/coop_sr_reward/r408.tga
+   textures/mohmenu/coop_sr_reward/r409.tga
+   textures/mohmenu/coop_sr_reward/r410.tga
+   textures/mohmenu/coop_sr_reward/r411.tga
+   textures/mohmenu/coop_sr_reward/r412.tga
+   textures/mohmenu/coop_sr_reward/r413.tga
+   textures/mohmenu/coop_sr_reward/r414.tga
+   textures/mohmenu/coop_sr_reward/r415.tga
+   textures/mohmenu/coop_sr_reward/r416.tga
+   textures/mohmenu/coop_sr_reward/r417.tga
+   textures/mohmenu/coop_sr_reward/r418.tga
+   textures/mohmenu/coop_sr_reward/r419.tga
+   textures/mohmenu/coop_sr_reward/r420.tga
+   textures/mohmenu/coop_sr_reward/r421.tga
+   textures/mohmenu/coop_sr_reward/r422.tga
+   textures/mohmenu/coop_sr_reward/r423.tga
+   textures/mohmenu/coop_sr_reward/r424.tga
+   textures/mohmenu/coop_sr_reward/r425.tga
+   textures/mohmenu/coop_sr_reward/r426.tga
+   textures/mohmenu/coop_sr_reward/r427.tga
+   textures/mohmenu/coop_sr_reward/r428.tga
+   textures/mohmenu/coop_sr_reward/r429.tga
+   textures/mohmenu/coop_sr_reward/r430.tga
+   textures/mohmenu/coop_sr_reward/r431.tga
+   textures/mohmenu/coop_sr_reward/r432.tga
+   textures/mohmenu/coop_sr_reward/r433.tga
+   textures/mohmenu/coop_sr_reward/r434.tga
+   textures/mohmenu/coop_sr_reward/r435.tga
+   textures/mohmenu/coop_sr_reward/r436.tga
+   textures/mohmenu/coop_sr_reward/r437.tga
+   textures/mohmenu/coop_sr_reward/r438.tga
+   textures/mohmenu/coop_sr_reward/r439.tga
+   textures/mohmenu/coop_sr_reward/r440.tga
+   textures/mohmenu/coop_sr_reward/r441.tga
+   textures/mohmenu/coop_sr_reward/r442.tga
+   textures/mohmenu/coop_sr_reward/r443.tga
+   textures/mohmenu/coop_sr_reward/r444.tga
+   textures/mohmenu/coop_sr_reward/r445.tga
+   ui/coop_sr.urc
+   ui/coop_sr_cids.cfg
+   ui/coop_sr_pinclear.cfg
+   ui/coop_sr_pinreset.cfg
+
+overlay files whose mod-tree original is NOT the released file (check before a harness run): 1
+   coop_defaults.cfg (the mod tree is ahead of the release)

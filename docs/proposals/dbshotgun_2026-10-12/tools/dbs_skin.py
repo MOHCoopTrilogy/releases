@@ -382,6 +382,9 @@ def paint(preview=False):
     img.save(os.path.join(L.BUILD, 'dbs_diffuse.png'))
     os.makedirs(TDIR, exist_ok=True)
     img.save(os.path.join(TDIR, NAME + '.jpg'), quality=93, subsampling=0)
+    # the region masks of this sheet, for the finish set (tools/dbs_finish.py): what must stay readable on every finish
+    np.savez_compressed(os.path.join(L.BUILD, 'skin_masks.npz'), mask=mask, wood=wd, recv=recv, bore=bore, muz=muz, bre=bre, sbre=sbre, chk=chk > 0,
+                        part=part.astype(np.int8), dist=dist.astype(np.float16), idx=idx.astype(np.int16))
     for nm, m in (('wood', wd), ('blued', mask & ~wd & ~recv), ('receiver', recv)):
         print('%-9s mean rgb %s  %.1f %% of the sheet' % (nm, out[m].mean(0).round(1), 100 * m.mean()))
     print('checkered texels %.2f %%, bore %.2f %%, muzzle faces %.3f %%, breech faces %.3f %%, standing breech %.3f %%' % (

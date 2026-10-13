@@ -1,0 +1,1372 @@
+//=========================================================================
+// [310] HZM coop ARMORY - per-player loadout picks (Phase 1).
+//
+// The client picks 2 primaries + 1 sidearm + 1 grenade in ui/coop_loadout.urc
+// (opened from the main menu ARMORY button or the lobby LOADOUT button). Each
+// assign click setas archived cvars (coop_lo1..4/coop_loN1..4/coop_loA1..4)
+// and fires a name-bus token ,w1<id>..,w4<id> (variables.scr 42-45; dispatch
+// player.scr::playerNameCommand). On every map join detectCoop re-requests the
+// picks via "vstr coop_loA1..4" (the FOV recipe) - the client cvars are the
+// persistent store, the server holds them only for the current map.
+//
+// Application: itemhandler.scr::spawnInventory tier 2 - picks replace the map
+// default kit (level.coop_weaponLoadout) on first spawn; the retain-inventory
+// respawn path then carries them like any other registered weapon. Objective
+// grants (replace.scr::givePlayerWeapon) run post-spawn and are untouched.
+// Maps with scripted kits can set level.coop_loadoutLocked = 1 to disable.
+//
+// Roster data: coop_mod/loadoutroster.scr (GENERATED - regen via
+// scratchpad/gen_loadout.py, do not hand-edit).
+//=========================================================================
+
+//self-insert for thread debug prints (level.cMTE_coop_loadoutpick = 1)
+//=========================================================================
+// Store one pick. local.slot: 1/2 = primary, 3 = sidearm, 4 = grenade.
+// local.data = 2-digit roster id from the name bus.
+//[user 07-17] SERIALIZED per player (defect #2): loadout_set is `thread`ed per
+// bus token (player.scr 575-578), so a resend volley / deny replay / fast
+// double-click could interleave two picks mid-validation - each read the OTHER
+// primary slot while it was still empty and BOTH committed, beating the
+// one-per-class rule. The guard is held HERE around the waitthread so every
+// exit path of the body releases it.
+//=========================================================================
+// [user 2026-08-10] local.quiet (optional, 1 = on): commit the pick WITHOUT the player-facing tail -
+// no "X equipped" iprint and no debounced kit re-issue. Everything that keeps state consistent
+// (validation, the slot flags, loadout_rebuild) still runs, because that is the whole point of
+// routing a server-side seed through this label instead of writing the array directly. Callers that
+// omit it leave local.quiet unset (NIL), which is falsy - so every existing call site is unchanged.
+//=========================================================================
+loadout_set local.player local.slot local.data local.quiet:{
+//=========================================================================
+if(level.cMTE_coop_loadoutpick){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread loadoutpick/loadout_set->"+level.cMTE+"" )}
+	if(local.player == NULL){ end }
+	if(level.gametype == 0){ end }
+
+	while(local.player.flags["coop_loSetBusy"] == 1){
+		waitframe
+		if(local.player == NULL){ end }
+	}
+	local.player.flags["coop_loSetBusy"] = 1
+	waitthread loadout_setBody local.player local.slot local.data local.quiet
+	if(local.player != NULL){ local.player.flags["coop_loSetBusy"] = NIL }
+}end
+
+//=========================================================================
+loadout_setBody local.player local.slot local.data local.quiet:{
+//=========================================================================
+	if(local.player == NULL){ end }
+
+	//[user 2026-08-18] IDEMPOTENT-QUIET: re-committing the gun the slot already holds is a
+	//silent no-op - the join volleys and the new close-commit replay re-send every archived pick,
+	//and without this every one of them toasted "equipped" and kicked a pointless regive.
+	if(local.player.flags["coop_loSlotId" + local.slot] == local.data){ end }
+	local.r = waitthread coop_mod/loadoutroster.scr::roster_get local.data
+	if(local.r["give"] == ""){
+		waitthread loadout_deny local.player local.slot ("Armory: unknown weapon id '" + local.data + "'")
+		end
+	}
+
+	//[dbshotgun 2026-10-13] the server's master switch: coop_dbShotgun 0 = the double barrel cannot be put in a slot. keepArchive: the
+	//client keeps its archived pick, so it comes back by itself on a server that allows the gun.
+	if(local.r["give"] == "models/weapons/coop_dbshotgun.tik" && getcvar("coop_dbShotgun") == "0"){
+		waitthread loadout_deny local.player local.slot ("Armory: " + local.r["name"] + " is switched off on this server") 1
+		end
+	}
+	//slot legality (the menu enforces this too - re-check server-side)
+	local.want = "p"
+	if(local.slot == 3){ local.want = "s" }
+	if(local.slot == 4){ local.want = "g" }
+	if(local.r["slot"] != local.want){
+		waitthread loadout_deny local.player local.slot ("Armory: " + local.r["name"] + " does not fit that slot")
+		end
+	}
+
+	//[user 07-17] IDEMPOTENT RE-PICK (defect #1): the join resend volleys (t+4s AND t+15s) and the
+	//deny-revert replay re-deliver picks that are ALREADY committed. Re-running the commit re-fired
+	//loadout_rebuild + the debounced regive, and the weapon re-give replays the equip/raise sound -
+	//the "equip sound over and over" 07-17 report. An identical pick is a no-op apart from releasing
+	//the deny-revert loop guard (a successful replay must unlatch it exactly like a fresh valid
+	//pick). Safe to skip the unlock gate: a locked pick is never stored in coop_loSlotId, so a match
+	//here means this exact pick already passed validation.
+	if(local.player.flags["coop_loSlotId" + local.slot] == local.data){
+		local.player.flags["coop_loRevert" + local.slot] = NIL
+		end
+	}
+
+	//NOTE: duplicate picks across the two primary slots are ALLOWED here - the client cfg
+	//has already seta'd its chip cvars by the time we validate; loadout_rebuild collapses a
+	//duplicate to a single copy instead. (Denies now REVERT the chips - loadout_deny.)
+
+	//unlock gate - ARMED by default (server.scr seeds coop_lockLoadout=1). The unlock
+	//record is challenges.scr::chal_add_unlock's pipe-list of reward tik paths.
+	if(getcvar("coop_lockLoadout") != "0"){
+		//[user 07-17] REVIEW-CRITICAL: the unlock record loads LAZILY (first kill / challenges menu) -
+		//without this ensure, the join-time resend validated earned guns against a NIL record, denied
+		//them, and the deny wiped the archived pick. Load it BEFORE the gate ever reads it.
+		waitthread coop_mod/challenges.scr::chal_ensure local.player
+		if(!(waitthread loadout_isUnlocked local.player local.r["give"])){
+			//keepArchive=1: a locked deny must NEVER destroy the archived resend recipe (coop_loA) -
+			//the gun may be earned-but-unresolved; only structurally invalid picks clear it.
+			//[user 2026-08-23, bug-2078] name the requirement instead of pointing at a panel
+			//that did not know it either. Table is generated - see challenges.scr::chal_reqText.
+			local.req = waitthread coop_mod/challenges.scr::chal_reqText local.r["give"]
+			waitthread loadout_deny local.player local.slot ("Armory: " + local.r["name"] + " is LOCKED - " + local.req) 1
+			end
+		}
+	}
+
+	//[user 07-16] ONE-PER-CLASS PRIMARIES: the two primary slots (1,2) can't hold the same weapon
+	//CLASS (rifle/sniper/smg/heavy). Picking a class already in the OTHER primary slot bumps that
+	//other slot to empty so you never carry two of a kind. (Sidearm/grenade unaffected.)
+	if(local.slot == 1 || local.slot == 2){
+		local.other = 2
+		if(local.slot == 2){ local.other = 1 }
+		local.otherId = local.player.flags["coop_loSlotId" + local.other]
+		if(local.otherId != NIL && local.otherId != ""){
+			local.otherR = waitthread coop_mod/loadoutroster.scr::roster_get local.otherId
+			if(local.otherR["class"] == local.r["class"]){
+				local.player.flags["coop_loSlot" + local.other]   = NIL
+				local.player.flags["coop_loSlotId" + local.other] = NIL
+				//bug-758 (bug-736 pattern): embedded \" in a stufftext value truncates at the first quote on
+				//the wire (player.cpp wraps the whole command in quotes; no escape exists), and ;-joined
+				//stufftext are unsafe - so ""-clears must ride a CLIENT cfg (exec is whitelisted for
+				//ui/loadout/*) and every push is ONE unquoted statement per stufftext. clrP<other>.cfg does
+				//exactly this clear (chips+archive+registry) with proper local quoting.
+				local.player stufftext ( "exec ui/loadout/clrP" + local.other + ".cfg" )
+				//[user 07-17] bug-716: keep the CLIENT one-per-class registry in sync with this server-side clear
+				// (the join resend clears server-side WITHOUT running the client commit cfg, so the archived
+				// registry would go stale). The class now lives in local.slot; the other slot's registry entry
+				// was cleared by clrP<other> above. Values mirror the client commit cfg exactly, so this is a
+				// harmless no-op on the normal menu path. Unquoted multi-word values arrive whole: the client
+				// Cvar_Set_f rejoins argv 2.. (Cmd_ArgsFrom) - the bug-736 recipe.
+				local.player stufftext ( "seta coop_loWho_" + local.r["class"] + " exec ui/loadout/clrP" + local.slot + ".cfg" )
+				local.player stufftext ( "seta coop_loUnregP" + local.slot + " exec ui/loadout/unreg_" + local.r["class"] + ".cfg" )
+				waitthread coop_mod/feed.scr::feed_player local.player 2 "armory" ("Armory: cleared " + local.other + " (one " + local.r["class"] + " per loadout)")
+			}
+		}
+	}
+
+	local.player.flags["coop_loSlot" + local.slot]   = local.r["give"]
+	local.player.flags["coop_loSlotId" + local.slot] = local.data
+	local.player.flags["coop_loRevert" + local.slot] = NIL	//[user 07-17] valid pick landed - release the deny-revert loop guard
+	//[user 2026-08-18] deep-trace F11: a finish/variant fid used to survive a gun RE-PICK and
+	//silently transfer to the new gun (fids 9-19 = a model lottery). A new gun starts standard;
+	//re-applying a finish is a deliberate click. The commit cfg cleared the client archives.
+	local.player.flags["coop_loFin" + local.slot] = NIL
+	local.player stufftext ( "seta coop_loS" + local.slot + "F 0" )
+
+	waitthread loadout_rebuild local.player
+
+	//[user 2026-08-10] QUIET COMMIT (loadout_seedDefaults). The state above is unconditional; only
+	//the player-facing tail below is skipped. A seed must not announce itself three times at spawn,
+	//and it must NOT trigger the debounced regive: that path runs managePlayerInventory, which on the
+	//m2l2a stealth start would hand weapons to a squad the map has deliberately left unarmed.
+	if(local.quiet == 1){ end }
+
+	//[user 2026-09-28, bug-3208] no per-slot toast inside the JOIN window. The listen host's seed
+	//(loadout_hostSeed) and a remote client's join resend both RE-DELIVER picks that were chosen earlier,
+	//and four "X equipped" lines on every map load read as "it gave me my loadout again". The commit and
+	//the debounced regive below still run - only the sentence is dropped. A deliberate armory click after
+	//the join window (loadout_resend clears coop_loJoinResend) toasts exactly as before.
+	if(local.player.flags["coop_loJoinResend"] == NIL){
+		if( !(waitthread coop_mod/menumirror.scr::coop_quietNotices) ){	//bug-3234 no armory/unlock toasts over a briefing
+			waitthread coop_mod/feed.scr::feed_player local.player 5 "armory" ("Armory: " + local.r["name"] + " equipped")
+		}
+	}
+
+	//[310] the first spawn usually happens BEFORE the join-time resend delivers the picks
+	//(m1l1 spawn at +10s vs resend at +5..10s) - re-issue the kit once the pick burst
+	//settles so picks apply to THIS map, not just the next one. Debounced: the 4 resend
+	//tokens arrive staggered and must trigger only ONE regive.
+	local.player.flags["coop_loDirty"] = level.time
+	if(local.player.flags["coop_loRegivePending"] != 1){
+		local.player.flags["coop_loRegivePending"] = 1
+		thread loadout_regiveWatch local.player
+	}
+}end
+
+//=========================================================================
+//[user 07-17] AUTHORITY: a denied pick must REVERT the client's already-seta'd chip cvars back to the
+// server's last VALID pick (or empty) - without this the menu lies (locked guns showed equipped, the
+// 07-17 screenshot bug). Replays the old pick's commit cfg (exec ui/loadout/w<id>_s<n>.cfg - the exec
+// path is cg_servercmds_filter-whitelisted for ui/loadout/*), which re-validates through the bus.
+// Loop-guarded via coop_loRevert<slot>: if the replay itself denies, clear the slot outright.
+// Always re-pushes fresh padlock state so the UI matches server truth.
+//=========================================================================
+loadout_deny local.player local.slot local.msg local.keepArchive:{
+//=========================================================================
+	if(local.player == NULL){ end }
+	if( !(waitthread coop_mod/menumirror.scr::coop_quietNotices) ){	//bug-3234 no armory/unlock toasts over a briefing
+		waitthread coop_mod/feed.scr::feed_player local.player 2 "armory" local.msg
+	}
+	local.oldId = local.player.flags["coop_loSlotId" + local.slot]
+	if(local.player.flags["coop_loRevert" + local.slot] == 1){ local.oldId = NIL }	//replay denied too -> just clear
+	if(local.oldId != NIL && local.oldId != ""){
+		local.player.flags["coop_loRevert" + local.slot] = 1
+		local.player stufftext ( "exec ui/loadout/w" + local.oldId + "_s" + local.slot + ".cfg" )
+	} else {
+		local.player.flags["coop_loRevert" + local.slot] = NIL
+		if(local.keepArchive == 1){
+			//[user 07-17] LOCKED deny (gun may be earned but the unlock record unresolved): blank the
+			//visible chip only - KEEP coop_loA (the archived resend recipe) so a later join, when the
+			//record IS loaded, restores the pick. Wiping it here was permanent data loss (review-critical).
+			//bug-758: ""-clears can't cross the stufftext wire (embedded quotes truncate, bug-736) -
+			//exec the client-side clear cfg instead (ui/loadout/* exec is whitelisted).
+			local.player stufftext ( "exec ui/loadout/clrk" + local.slot + ".cfg" )
+		} else {
+			//structurally invalid (unknown id / wrong slot): full clear including the archive.
+			//bug-758: via client cfg (see above). Primaries reuse clrP<slot> (also unregisters the
+			//slot's class from the one-per-class registry - correct, the slot is now empty);
+			//sidearm/grenade have no registry, clr<slot>.cfg is chips+archive only.
+			if(local.slot == 1 || local.slot == 2){
+				local.player stufftext ( "exec ui/loadout/clrP" + local.slot + ".cfg" )
+			} else {
+				local.player stufftext ( "exec ui/loadout/clr" + local.slot + ".cfg" )
+			}
+		}
+	}
+	thread loadout_ui_exportUnlocks local.player
+}end
+
+//=========================================================================
+// Debounced kit re-issue: wait for the pick burst to go quiet, then run the
+// player back through the fresh-kit spawn path (clearing the registered
+// inventory forces managePlayerInventory's default branch, where the picks
+// tier lives). Gated to the join window / the lobby so a mid-mission pick
+// can't be used as an anywhere-resupply.
+//=========================================================================
+loadout_regiveWatch local.player:{
+//=========================================================================
+	//[user 2026-08-22, bug-2067] ALSO WAIT OUT THE JOIN RESEND, not just the 1.5s debounce.
+	//loadout_resend fires its two volleys 11s apart, which is far wider than this debounce, so
+	//without the extra term volley 1 applies a kit and volley 2 applies it again. Reusing the
+	//existing coop_loRegivePending latch means volley 2's commits simply re-dirty the ONE watch
+	//that is already parked here, and a single apply lands when the burst is genuinely over.
+	//BOUNDED: a stuck flag would mean the picks NEVER apply, which is worse than applying twice,
+	//so it is only honoured for 45s - comfortably past the ~20s resend and self-healing if the
+	//clear is ever missed (a disconnect mid-resend, a future edit adding an early exit).
+	local.jrGuard = 90
+	while(local.player != NULL && local.jrGuard > 0){
+		local.jr = local.player.flags["coop_loJoinResend"]
+		if(local.jr == NIL){ break }
+		if((level.time - local.jr) > 45){ break }
+		local.jrGuard--
+		wait 0.5
+	}
+	while(local.player != NULL && (level.time - local.player.flags["coop_loDirty"]) < 1.5){
+		wait 0.5
+	}
+	if(local.player == NULL){ end }
+	local.player.flags["coop_loRegivePending"] = NIL
+
+	//[user 2026-08-18] apply-trace F4: `.size == 0` was DEAD CODE - an unset/empty array is
+	//NIL/-1 (bug-909), so a picks-less rebuild slipped through, stripped the registry and handed
+	//out the MAP DEFAULT kit under an "applied" toast. Proven idiom (replace.scr): NIL first,
+	//only a positive size means real picks.
+	local.lw = local.player.flags["coop_loWeapons"]
+	if(local.lw == NIL){ end }
+	if(!(local.lw.size > 0)){ end }
+	if(level.coop_loadoutLocked == 1){
+		//[user 2026-08-18] apply-trace F10: this died silently AFTER a success toast - say why
+		waitthread coop_mod/feed.scr::feed_player local.player 2 "armory" "Armory: kits are scripted on this mission - picks apply from the next map"
+		end
+	}
+	//[user 2026-08-18] apply-trace F3: a dead/DBNO apply used to vanish - the revive re-gave the
+	//OLD registered kit and nothing re-kicked. QUEUE it; dbno.scr re-kicks on revive, and a full
+	//respawn clears the queue because the spawn path reads the same rebuilt list anyway.
+	if(!(isAlive local.player)){
+		local.player.flags["coop_loRegiveQueued"] = 1
+		end
+	}
+	if(local.player.flags["coop_dbno_active"] == 1){
+		local.player.flags["coop_loRegiveQueued"] = 1
+		end
+	}
+	local.player.flags["coop_loRegiveQueued"] = NIL
+	//[user 2026-09-28, bug-3208] SPECTATORS ARE NOT GIVEN A KIT. isAlive is TRUE for a spectator, so a
+	//host still in the team menu when the join window closed was handed the whole kit AS A SPECTATOR
+	//("Picked Up" x4, live log 09-28 14:51:05 on m3l1a) and given it again at the real team spawn two
+	//minutes later. The team spawn reads this same rebuilt picks list, so nothing is lost by stopping.
+	if(local.player.dmteam == "spectator"){ end }
+	//[user 2026-09-28, bug-3208] IDEMPOTENT APPLY - "in coop you are given your loadout several times ...
+	//it actually lags when it happens, a few seconds after spawn". The join burst (loadout_hostSeed, the
+	//resend volleys) arms this watch even when the picks it commits are exactly the kit the spawn ALREADY
+	//issued, so every map load gave the listen host the kit at spawn and again ~24s later (live log 09-28:
+	//KITSPAWN 12:46:29 then 12:46:53 + "Armory: your loadout has been applied"; 13:15:29 then 13:15:53).
+	//Each re-issue is a takeall, four pickup spawns, two g_gametype flips and a weapon re-raise (the
+	//EF_UNARMED blank of bug-2066), mid-fight. spawnInventory stamps coop_loGivenSig with the picks list
+	//it issued; when the rebuilt list is unchanged AND every gun in it is still carried there is nothing
+	//to apply. A pick that CHANGED the list (new gun, finish variant) still regives, and so does a kit that
+	//went missing (a stealth strip, a revive that dropped a gun) - loadout_kitHeld checks the inventory.
+	local.sig = waitthread loadout_kitSig local.player
+	if(local.player == NULL){ end }
+	if(local.sig != "" && local.sig == local.player.flags["coop_loGivenSig"]){
+		if(waitthread loadout_kitHeld local.player){
+			println ( "^~^~^ LOADOUT regive skip player=" + local.player.netname + " (identical kit already held)" )
+			end
+		}
+	}
+	if(local.player == NULL){ end }
+	//[user 2026-08-18] the 120s mid-mission gate is GONE: it blocked every deliberate armory
+	//pick past two minutes while protecting nothing - no map ever set the documented opt-out
+	//(coop_loadoutLocked), which is the real mechanism for scripted-kit/stealth maps and which
+	//m2l2a now actually sets. Deliberate picks apply live; locked maps stay locked.
+
+	local.player.flags["coop_inventoryWeapons"] = NIL
+	local.player waitthread coop_mod/itemhandler.scr::managePlayerInventory
+	//[user 07-16] bug-625: mirror the real spawn pipeline (player.scr::manageAliveSpawning runs
+	//managePlayerInventory THEN main.scr::itemGetAll). The takeall inside managePlayerInventory
+	//strips registered map items (papers/binoculars/camera via replace.scr::item ->
+	//level.coop_playerItem1..6) and this regive path never re-gave them, so an armory pick made
+	//after a papers pickup silently cost the player their physical papers until the next respawn.
+	//Mission items (level.coop_missionItems) are already covered inside spawnInventory.
+	local.player thread coop_mod/main.scr::itemGetAll
+	if( !(waitthread coop_mod/menumirror.scr::coop_quietNotices) ){	//bug-3234 no armory/unlock toasts over a briefing
+		waitthread coop_mod/feed.scr::feed_player local.player 5 "armory" "Armory: your loadout has been applied"
+	}
+}end
+
+//=========================================================================
+//[user 2026-09-28, bug-3208] The picks list as one string ("tik|tik|..."), NIL-safe. MUST stay
+// byte-identical to the inline stamp in itemhandler.scr::spawnInventory (coop_loGivenSig), which is
+// written inline there only to avoid adding a suspension point inside the shared-`group` give.
+//=========================================================================
+loadout_kitSig local.player:{
+//=========================================================================
+	local.s = ""
+	if(local.player == NULL){ end local.s }
+	local.lw = local.player.flags["coop_loWeapons"]
+	if(local.lw == NIL){ end local.s }
+	for(local.i = 1; local.i <= local.lw.size; local.i++){
+		if(local.lw[local.i] != NIL){ local.s = local.s + local.lw[local.i] + "|" }
+	}
+}end local.s
+
+//=========================================================================
+//[user 2026-09-28, bug-3208] 1 when every PRIMARY and SIDEARM of the picks list is in the inventory.
+// Same class filter and the same inventory read (coop_hasitem, Sentient::FindItem - it never touches
+// the hands) as itemhandler.scr::coop_backfillPrimaries. Grenades are not checked: a thrown grenade must
+// not turn an idempotent re-commit into a full re-issue (the regive is not a resupply).
+//=========================================================================
+loadout_kitHeld local.player:{
+//=========================================================================
+	if(local.player == NULL){ end 0 }
+	local.lw = local.player.flags["coop_loWeapons"]
+	if(local.lw == NIL){ end 0 }
+	for(local.i = 1; local.i <= local.lw.size; local.i++){
+		local.w = local.lw[local.i]
+		if(local.w != NIL){
+			if(waitthread coop_mod/itemhandler.scr::notStartGrenade local.w){
+				local.c = waitthread coop_mod/itemhandler.scr::getAmmoType local.w
+				local.chk = 0
+				if(waitthread coop_mod/itemhandler.scr::coop_isPrimaryClass local.c){ local.chk = 1 }
+				if(local.c == "pistol"){ local.chk = 1 }
+				if(local.chk == 1){
+					if(local.player == NULL){ end 0 }
+					local.have = local.player coop_hasitem local.w
+					if(local.have != 1){ end 0 }
+				}
+			}
+		}
+	}
+}end 1
+
+//=========================================================================
+//[user 2026-09-28, bug-3208] The digits after local.tag in an archived bus recipe, e.g.
+// ("append name ,sn37", ",sn") -> "37". "" when the tag is absent (an unset cvar, the cleared "0").
+//=========================================================================
+loadout_tokNum local.s local.tag:{
+//=========================================================================
+	local.out = ""
+	if(local.s == NIL || local.s == ""){ end local.out }
+	local.n = local.s.size
+	local.m = local.tag.size
+	local.last = local.n - local.m
+	for(local.i = 0; local.i <= local.last; local.i++){
+		local.hit = 1
+		for(local.j = 0; local.j < local.m; local.j++){
+			local.k = local.i + local.j
+			if(local.s[local.k] != local.tag[local.j]){ local.hit = 0 }
+		}
+		if(local.hit == 1){
+			local.out = ""
+			local.from = local.i + local.m
+			for(local.k = local.from; local.k < local.n; local.k++){ local.out = local.out + local.s[local.k] }
+		}
+	}
+}end local.out
+
+//=========================================================================
+// Per-join pick re-request (launched from player.scr next to detectCoop so
+// nothing upstream can strangle it). The client's archived coop_loA1..4
+// cvars hold "append name ,wN<id>" commands; fire them staggered so the
+// name bus digests one token at a time. Clients without picks have no such
+// cvars - the vstr is a harmless no-op there.
+//=========================================================================
+loadout_resend local.player:{
+//=========================================================================
+	//TWO volleys: t+4s and t+15s. Server->client commands sent while the client is
+	//still LOADING the map appear to be dropped silently (bug-595 diagnosis run: zero
+	//detect.cfg/obj_setup execs client-side all boot) - the late volley lands after the
+	//client is fully active. Double delivery is harmless: loadout_set is idempotent and
+	//the regive is debounced.
+	//[user 2026-08-22, bug-2067] ...EXCEPT THE DEBOUNCE CANNOT REACH ACROSS THE TWO VOLLEYS.
+	//The debounce window is 1.5s (loadout_regiveWatch) and the volleys are ELEVEN SECONDS apart,
+	//so volley 1 goes quiet, fires a full kit re-issue, and volley 2 then fires a second one.
+	//That is the user's "I get my inventory twice, once when I spawn, and then again a few
+	//seconds later" - measured on m1l1 as two "Armory: your loadout has been applied" toasts 24s
+	//apart, with a KITSPAWN/KITGIVE pair under each. It is not free: every re-issue runs a takeall
+	//plus the engine's Holster/RemoveWeapons/give/Unholster sequence, which sets EF_UNARMED for a
+	//frame or two - measured at 141ms and 168ms of blanked viewmodel and arms (bug-2066, the
+	//"my gun briefly disappears" report). So: hold the regive off for the whole resend window and
+	//let ONE fire at the end. The watch already loops on this flag, and clearing it is what
+	//releases it - so the clear must be unconditional, which is why it sits on every exit below.
+	if(local.player == NULL){ end }
+	local.player.flags["coop_loJoinResend"] = level.time
+	wait 4
+	waitthread loadout_resendVolley local.player 1
+	if(local.player == NULL){ end }
+	wait 11
+	waitthread loadout_resendVolley local.player 2
+	if(local.player == NULL){ end }
+	//[user 07-17] ARMORY SKIN: capture the persisted skin (archived coop_loSkin) into the server-side
+	//flag the spawn re-force reads (player.scr::manageAliveSpawning), mirroring the weapon-slot capture
+	//above. Only fills in when nothing is set yet AND the value is a real armory roster skin, so a
+	//stale/empty server cvar (dedicated) can never overwrite a live in-session pick or corrupt the model.
+	//[user 07-17] bug-715: coop_loSkin is SERVER-GLOBAL (the host client's skin). Only capture it for the
+	// HOST, else a skinless remote player on a listen server inherits the host's skin.
+	if( ( local.player.flags["coop_armorySkin"] == NIL || local.player.flags["coop_armorySkin"] == "" ) && local.player.flags["coop_isHost"] == 1 ){
+		local.skin = getcvar "coop_loSkin"
+		if( local.skin != NIL && local.skin != "" ){
+			if( waitthread coop_mod/helmet.scr::armory_skin_isValid local.skin ){
+				//[user 07-18] bug-803 LOCKED-SKIN LEAK: the pre-fix armory PREVIEW pages seta'd
+				//coop_loSkin on every page visit, so it can hold a skin the host never earned - gate
+				//the capture on the unlock record (armory_skin_set's exact gate), else the spawn
+				//re-force would wear it. (Pages no longer write it - only the gated server apply
+				//armory_skin_applyIdx does - but a stale pre-fix archive can still carry one.)
+				if( waitthread coop_mod/helmet.scr::cosmetic_isUnlocked local.player ("models/player/" + local.skin + ".tik") ){
+					local.player.flags["coop_armorySkin"] = local.skin
+				}
+			}
+		}
+	}
+	//[user 07-18] bug-B: ask the client to fire its archived ABSOLUTE skin pick (coop_loASkin holds
+	//"append name ,sn<NN>", seta'd by ui/loadout/skin/sNN.cfg on every preview page). Works for EVERY
+	//client (host + remote), so a main-menu armory pick applies on join; in the lobby the dispatch
+	//(helmet.scr::armory_skin_set) also re-models the mannequin, which never respawns. Wait for a
+	//token-free name first (same rule as the volleys). Harmless no-op for clients without a pick.
+	for(local.t = 10; local.t > 0; local.t--){
+		if(local.player == NULL){ end }
+		if(!(waitthread coop_mod/main.scr::containsText local.player.netname " ," 0)){ break }
+		wait 0.5
+	}
+	local.player stufftext ( "vstr coop_loASkin" )
+	//[user 07-18] bug-772: same for the archived ABSOLUTE helmet pick (coop_loAHelm holds
+	//"append name ,hn<NN>", seta'd by ui/loadout/helm/hNN.cfg on every preview page) - a main-menu
+	//armory helmet pick applies on join. STAGGERED behind the skin token exactly like
+	//loadout_resendVolley staggers the slot tokens (playerNameCommand dispatches only the FIRST
+	//token on a name - two at once would drop the second): wait out the round-trip, then wait for
+	//a token-free name. Harmless no-op for clients without a pick.
+	wait 0.75
+	for(local.t = 10; local.t > 0; local.t--){
+		if(local.player == NULL){ end }
+		if(!(waitthread coop_mod/main.scr::containsText local.player.netname " ," 0)){ break }
+		wait 0.5
+	}
+	local.player stufftext ( "vstr coop_loAHelm" )
+	//[user 2026-08-18] FINISH picks from the COLD MAIN MENU: the ,f token had no server to
+	//land on, and finishes had no resend recipe - so a variant picked at the main menu was
+	//never equipped in game. coop_loFA1..4 are the archived absolute picks (seta'd by the
+	//fin cfgs); replay them staggered exactly like the skin/helmet tokens above. Slots that
+	//never picked a finish hold no cvar and the vstr is a harmless no-op (init seeds empty).
+	for(local.fs = 1; local.fs <= 4; local.fs++){
+		wait 0.75
+		for(local.t = 10; local.t > 0; local.t--){
+			if(local.player == NULL){ end }
+			if(!(waitthread coop_mod/main.scr::containsText local.player.netname " ," 0)){ break }
+			wait 0.5
+		}
+		local.player stufftext ( "vstr coop_loFA" + local.fs )
+	}
+	//[user 07-18 pre-release] SHOW-ALL-WITH-LOCK: push the per-page cosmetic LOCK STATE on join
+	//(seta-archived client-side, so this player's DISCONNECTED main-menu armory shows correct
+	//lock icons too). Repurposed from the retired bug-759/772 locked-skip redirect chains.
+	waitthread coop_mod/helmet.scr::armory_skin_exportLocks local.player
+	waitthread coop_mod/helmet.scr::armory_helmet_exportLocks local.player
+	waitthread coop_mod/gloves.scr::armory_glove_exportLocks local.player	//[bug-2080]
+	//[bug-2067] release the held regive - one apply for the whole join burst
+	if(local.player != NULL){ local.player.flags["coop_loJoinResend"] = NIL }
+}end
+
+//=========================================================================
+loadout_resendVolley local.player local.volley:{
+//=========================================================================
+	if(local.player == NULL){ end }
+	for(local.s = 1; local.s <= 4; local.s++){
+		for(local.t = 10; local.t > 0; local.t--){
+			if(local.player == NULL){ end }
+			if(!(waitthread coop_mod/main.scr::containsText local.player.netname " ," 0)){ break }
+			wait 0.5
+		}
+		if(local.player == NULL){ end }
+		local.player stufftext ( "vstr coop_loA" + local.s )
+		wait 0.75
+	}
+}end
+
+//=========================================================================
+//[user 07-18] bug-802 INSTANT HOST LOADOUT: on a LISTEN server the host's archived pick
+// cvars (coop_lo1..4 = 2-digit roster ids, seta'd by the client commit cfgs
+// ui/loadout/w<id>_s<n>.cfg) are readable server-side IMMEDIATELY via getcvar - no need
+// to wait for the t+4s/t+15s name-bus resend volleys (which land long after the first
+// spawn and caused a visible map-default-then-armory weapon swap). Replay them through
+// the NORMAL validated pipeline (loadout_set: roster + slot legality + unlock gate +
+// one-per-class + idempotent re-pick skip) so the pick flags are committed before the
+// first real team spawn -> spawnInventory hands out the picked kit directly, zero swap.
+// Launched from player.scr::manageSetup: the first spawn event is the forced-spectator
+// pass, the actual team spawn comes seconds later (menu clicks) - plenty of time for
+// chal_ensure's identity wait inside the unlock gate. The later resend volleys then
+// re-deliver the same picks and no-op via loadout_setBody's idempotent skip.
+// HOST-GATED (the bug-715 rule): these cvars are SERVER-GLOBAL = the host client's own
+// archive; a remote player must never inherit them. Remote clients keep the resend.
+//=========================================================================
+loadout_hostSeed local.player:{
+//=========================================================================
+if(level.cMTE_coop_loadoutpick){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread loadoutpick/loadout_hostSeed->"+level.cMTE+"" )}
+	if(local.player == NULL){ end }
+	if(level.gametype == 0){ end }
+	if(level.coop_loadoutLocked == 1){ end }	//scripted-kit map - picks are not applied there
+	if(local.player.flags["coop_isHost"] != 1){ end }
+	if(local.player.flags["coop_loSeedDone"] == 1){ end }
+	local.player.flags["coop_loSeedDone"] = 1
+	for(local.s = 1; local.s <= 4; local.s++){
+		if(local.player == NULL){ end }
+		local.id = getcvar ("coop_lo" + local.s)
+		if(local.id != NIL && local.id != ""){
+			waitthread loadout_set local.player local.s local.id
+		}
+	}
+	//[user 2026-09-28, bug-3208] HOST COSMETICS, SAME RECIPE AS THE PICKS ABOVE. The armory skin and
+	//helmet reached the host only through loadout_resend's ,sn/,hn tokens at ~t+20s - AFTER the first team
+	//spawn - so the host spawned in the old look and was re-modelled mid-fight with a RUNTIME model load
+	//(live log 09-28 13:15:48: "cache models/coop_helmets/coop_std_us_helmet_29th_net.tik" + "Skin:",
+	//five seconds before the redundant kit). The archived recipes coop_loASkin / coop_loAHelm ("append
+	//name ,sn37") are server-readable on a listen server exactly like coop_lo1..4. Record them as the flags
+	//the SPAWN reads (player.scr skin re-force, helmet_apply hook) so the first team spawn wears them and
+	//the later tokens change nothing. Flags only - no live model is touched here - behind the same gates
+	//the token path runs. Skipped when the unlock record is not loaded: the tokens then apply as before.
+	if(local.player == NULL){ end }
+	if(local.player.flags["coop_chal_loaded"] != 1){ end }
+	local.tok = getcvar "coop_loASkin"
+	local.num = waitthread loadout_tokNum local.tok ",sn"
+	if(local.num != ""){
+		local.si = int( local.num )
+		waitthread coop_mod/helmet.scr::armory_skin_build
+		if(local.player == NULL){ end }
+		if(local.si >= 1 && local.si <= level.coop_armorySkins.size){
+			local.skn = level.coop_armorySkins[local.si]
+			if(waitthread coop_mod/helmet.scr::cosmetic_isUnlocked local.player ("models/player/" + local.skn + ".tik")){
+				if(local.player != NULL){
+					local.player.flags["coop_armorySkin"] = local.skn
+					local.player.flags["coop_armorySkinIdx"] = local.si
+				}
+			}
+		}
+	}
+	if(local.player == NULL){ end }
+	local.tok = getcvar "coop_loAHelm"
+	local.num = waitthread loadout_tokNum local.tok ",hn"
+	if(local.num != ""){
+		local.hi = int( local.num )
+		waitthread coop_mod/helmet.scr::helmet_initList
+		if(local.player == NULL){ end }
+		//bug-2085: 30/31/32 are the hidden full-skeleton hats - armory_helmet_set maps them to Standard Issue
+		if(local.hi == 30 || local.hi == 31 || local.hi == 32){ local.hi = 1 }
+		if(local.hi >= 1 && local.hi <= level.coop_helmetCount){
+			if(waitthread coop_mod/helmet.scr::cosmetic_isUnlocked local.player level.coop_helmetTik[local.hi]){
+				if(local.player != NULL){
+					local.player.flags["coop_helmetIdx"] = local.hi
+					local.player.flags["coop_helmetTouched"] = 1
+				}
+			}
+		}
+	}
+}end
+
+//=========================================================================
+// Rebuild the give-array (same shape as level.coop_weaponLoadout: start
+// grenades at the low indexes, then guns). A custom kit needs at least one
+// picked PRIMARY - otherwise fall back to the map default (never spawn a
+// player without a main weapon).
+//=========================================================================
+loadout_rebuild local.player:{
+//=========================================================================
+if(level.cMTE_coop_loadoutpick){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread loadoutpick/loadout_rebuild->"+level.cMTE+"" )}
+	local.player.flags["coop_loWeapons"] = NIL
+
+	local.p1 = local.player.flags["coop_loSlot1"]
+	local.p2 = local.player.flags["coop_loSlot2"]
+	local.sc = local.player.flags["coop_loSlot3"]
+	local.gr = local.player.flags["coop_loSlot4"]
+
+	//[user 2026-08-18] FINISH STRIP: swap each slot's give for its finished variant when one
+	//is picked AND still earned - loadout_finResolve re-runs both unlock gates, so this is
+	//the authority; the client cvars are cosmetic. Falls back to the base gun untouched.
+	if(local.p1 != NIL){ local.p1 = waitthread loadout_finResolve local.player 1 local.p1 }
+	if(local.p2 != NIL){ local.p2 = waitthread loadout_finResolve local.player 2 local.p2 }
+	if(local.sc != NIL){ local.sc = waitthread loadout_finResolve local.player 3 local.sc }
+	if(local.gr != NIL){ local.gr = waitthread loadout_finResolve local.player 4 local.gr }
+
+	if(local.p1 == NIL && local.p2 == NIL){ end }
+
+	local.n = 0
+	if(local.gr != NIL){
+		local.n++
+		local.arr[local.n] = local.gr
+	}else{
+		//keep the map's default start grenades (loadout.scr always seeds [1] and [2])
+		if(level.coop_weaponLoadout[1] != NIL && !(waitthread coop_mod/itemhandler.scr::notStartGrenade level.coop_weaponLoadout[1])){
+			local.n++
+			local.arr[local.n] = level.coop_weaponLoadout[1]
+		}
+		if(level.coop_weaponLoadout[2] != NIL && !(waitthread coop_mod/itemhandler.scr::notStartGrenade level.coop_weaponLoadout[2])){
+			local.n++
+			local.arr[local.n] = level.coop_weaponLoadout[2]
+		}
+	}
+	if(local.sc != NIL){
+		local.n++
+		local.arr[local.n] = local.sc
+	}
+	if(local.p1 != NIL){
+		local.n++
+		local.arr[local.n] = local.p1
+	}
+	if(local.p2 != NIL && local.p2 != local.p1){ //same gun in both slots collapses to one copy
+		local.n++
+		local.arr[local.n] = local.p2
+	}
+	local.player.flags["coop_loWeapons"] = local.arr
+}end
+
+//=========================================================================
+// Clear all picks (client sent ,w0c via the USE MAP DEFAULT button).
+//=========================================================================
+loadout_clear local.player:{
+//=========================================================================
+	if(local.player == NULL){ end }
+	local.player.flags["coop_loSlot1"]   = NIL
+	local.player.flags["coop_loSlot2"]   = NIL
+	local.player.flags["coop_loSlot3"]   = NIL
+	local.player.flags["coop_loSlot4"]   = NIL
+	local.player.flags["coop_loSlotId1"] = NIL
+	local.player.flags["coop_loSlotId2"] = NIL
+	local.player.flags["coop_loSlotId3"] = NIL
+	local.player.flags["coop_loSlotId4"] = NIL
+	local.player.flags["coop_loWeapons"] = NIL
+	//[user 2026-08-18] deep-trace F11: the finish fids survived USE MAP DEFAULT - the archived
+	//replay then denied ("Pick a weapon for that slot first") at every join, and a later gun
+	//pick inherited the stale finish. Clear them with the rest; reset.cfg clears the client half.
+	local.player.flags["coop_loFin1"] = NIL
+	local.player.flags["coop_loFin2"] = NIL
+	local.player.flags["coop_loFin3"] = NIL
+	local.player.flags["coop_loFin4"] = NIL
+	waitthread coop_mod/feed.scr::feed_player local.player 5 "armory" "Armory: picks cleared - using the standard mission kit"
+}end
+
+//=========================================================================
+// ,w0 menu-control token. data "x" = menu closed (hand the lobby cursor
+// back), data "c" = clear picks (menu stays open), data "o" = menu opened
+// (refresh the persistent per-gun lock cvars coop_loLkA*), data "t0".."t5" =
+// tab switched (NO server work - the client execs ui/loadout/lktab<t>.cfg).
+//=========================================================================
+loadout_menuCtl local.player local.data:{
+//=========================================================================
+	if(local.player == NULL){ end }
+	if(local.data == "c"){
+		waitthread loadout_clear local.player
+		end
+	}
+	//[user 07-17 v3.2] menu open -> refresh the persistent per-gun lock cvars (coop_loLkA<id>). Tab
+	//gating is now 100% client-side (ui/loadout/lktab<t>.cfg via the tab buttons + slot cards +
+	//init.cfg), so the ,w0t0..t5 tab tokens need no server work and coop_loTab is retired.
+	if(local.data == "o"){
+		thread loadout_ui_exportUnlocks local.player
+		//[user 07-18 pre-release] SHOW-ALL-WITH-LOCK: also refresh the per-page cosmetic lock state
+		//(diff-only; re-asserts current truth for the freshly-opened menu - the pages' baked
+		//fail-LOCKED defaults + archived replays already cover the no-server case).
+		//[user 07-28] bug-1205: these two were written with a BACKSLASH separator. The script loader
+		//swallows it, so both resolved to 'coop_modhelmet.scr' and threw "Can't find" / "was not
+		//properly loaded" on every armory OPEN (qconsole 07-28 21:29) - the cosmetic padlocks were
+		//never refreshed. Every other call site in this file already uses a forward slash.
+		thread coop_mod/helmet.scr::armory_skin_exportLocks local.player
+		thread coop_mod/helmet.scr::armory_helmet_exportLocks local.player
+		thread coop_mod/gloves.scr::armory_glove_exportLocks local.player	//[bug-2080]
+		end
+	}
+	//menu closed - restore the clickable-lobby cursor if that UI is running
+	if(local.data == "x"){
+		//[user 07-18] bug-B: apply the FINAL skin shown on the armory's client-side preview pages -
+		//the pages only seta cvars (coop_loSkin + coop_loASkin), they can't reach the server on their
+		//own. Firing the archived pick token here makes CLOSE commit the choice (player model, lobby
+		//mannequin, coop_armorySkin flag) even if individual NEXT/PREV clicks were missed.
+		local.player stufftext ( "vstr coop_loASkin" )
+		//[user 07-18] bug-773: HELMET close-commit - the missing half of the bug-B skin recipe
+		//above. Rapid armory NEXT/PREV clicks stack multiple ,hn tokens on the name and
+		//playerNameCommand dispatches only the FIRST (playerCleanName then strips the rest), so
+		//the FINAL shown helmet often never reached the server (qconsole 07-18 10:45: five h-page
+		//execs, server applies only for h02). Threaded (not inline) so the lobby cursor restore
+		//below stays immediate; the helper staggers behind the ,sn + ,w0x tokens.
+		thread loadout_closeHelmCommit local.player
+		//[user 2026-08-18] deep-trace F4/F6(sync): the name bus dispatches ONE token per batch and
+		//destroys the rest - rapid armory clicking silently dropped weapon/finish applies, and
+		//only helmets/skins had a close-time commit. CLOSE now replays every archived pick;
+		//idempotent-quiet server paths make the un-dropped ones silent no-ops.
+		thread loadout_closeLoadoutCommit local.player
+		if(local.player.coop_lobbyUiOn == 1){
+			local.player coop_lobbycursor 1
+		}
+		end
+	}
+	//,w0t0..t5 (tab switch) and any other token: no server-side action.
+}end
+
+//=========================================================================
+//[user 07-18] bug-773: fire the archived ABSOLUTE helmet pick (coop_loAHelm holds
+//"append name ,hn<NN>", seta'd by ui/loadout/helm/hNN.cfg on every preview page) when the
+//armory CLOSES, so CLOSE commits the FINAL shown helmet even if individual NEXT/PREV click
+//tokens were dropped. STAGGERED exactly like loadout_resend staggers its helmet token behind
+//the skin token: playerNameCommand dispatches only the FIRST token on a name - firing while
+//,sn/,w0x are still pending would drop the helmet token. Harmless no-op without a pick.
+//=========================================================================
+//=========================================================================
+//[user 2026-08-18] Close-commit for WEAPONS + FINISHES - the bug-773 helmet recipe
+//generalized. Replays the archived recipes (coop_loA1-4, then coop_loFA1-4) staggered
+//behind token-free-name polls, so whatever rapid clicking dropped mid-session converges
+//at menu close instead of at the next map. Server-side idempotent-quiet exits keep the
+//already-applied replays silent (no toast spam, no pointless regive).
+//=========================================================================
+loadout_closeLoadoutCommit local.player:{
+//=========================================================================
+	wait 1.5
+	local.s = 1
+	while(local.s <= 8){
+		for(local.t = 10; local.t > 0; local.t--){
+			if(local.player == NULL){ end }
+			if(!(waitthread coop_mod/main.scr::containsText local.player.netname " ," 0)){ break }
+			wait 0.5
+		}
+		if(local.player == NULL){ end }
+		if(local.s <= 4){
+			local.player stufftext ( "vstr coop_loA" + local.s )
+		}else{
+			local.player stufftext ( "vstr coop_loFA" + (local.s - 4) )
+		}
+		wait 0.75
+		local.s++
+	}
+}end
+
+loadout_closeHelmCommit local.player:{
+//=========================================================================
+	wait 0.75
+	for(local.t = 10; local.t > 0; local.t--){
+		if(local.player == NULL){ end }
+		if(!(waitthread coop_mod/main.scr::containsText local.player.netname " ," 0)){ break }
+		wait 0.5
+	}
+	if(local.player == NULL){ end }
+	local.player stufftext ( "vstr coop_loAHelm" )
+}end
+
+//=========================================================================
+// Is this (lowercase, makeWeaponStringValid'd) model one of the player's
+// picks? Used by itemhandler.scr::addWeaponToInventory to let two PICKED
+// weapons share an ammo class (two rifles etc.).
+//=========================================================================
+loadout_isPicked local.player local.model:{
+//=========================================================================
+	local.arr = local.player.flags["coop_loWeapons"]
+	for(local.i = 1; local.i <= local.arr.size; local.i++){
+		if(local.arr[local.i] == local.model){ end 1 }
+	}
+}end 0
+
+//=========================================================================
+// Top up the ammo classes of picked weapons. Runs INSIDE giveInventory's
+// changeGameType-0 window right after the map ammo table is applied - some
+// maps zero whole classes (m1l1 smg=0) and would hand out a dry picked gun.
+// Never lowers a map value ("max(map, standard)").
+//=========================================================================
+loadout_ammoTopup local.player:{
+//=========================================================================
+if(level.cMTE_coop_loadoutpick){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread loadoutpick/loadout_ammoTopup->"+level.cMTE+"" )}
+	if(local.player == NULL){ end }
+	for(local.s = 1; local.s <= 4; local.s++){
+		local.id = local.player.flags["coop_loSlotId" + local.s]
+		if(local.id != NIL){
+			local.r = waitthread coop_mod/loadoutroster.scr::roster_get local.id
+			if(local.r["give"] != ""){
+				local.aType = local.r["ammo"]
+				local.aN    = local.r["ammoN"]
+				local.have  = level.coop_ammoLoadout[local.aType]
+				if(local.have == NIL){ local.have = 0 }
+				if(local.have < local.aN){
+					local.player ammo local.aType local.aN
+				}
+			}
+		}
+	}
+}end
+
+//=========================================================================
+// Unlock membership test against challenges.scr's pipe-list of reward tik
+// paths (player.flags["coop_chal_unlocks"], e.g. "|models/weapons/x.tik|").
+//=========================================================================
+//=========================================================================
+//[user 07-17 v3.2] Push each weapon's PERSISTENT LOCK SNAPSHOT to a client's armory so padlocks work
+//from the COLD MAIN MENU (no server) as well as the lobby. The engine draws enabledcvar widgets
+//purely by cvar (uiwidget.cpp:1986) and a widget takes exactly ONE enabledcvar, so the padlock reads
+//coop_loLkV<id> = "locked AND on the active tab". That tab-AND is now computed CLIENT-side by the
+//generated ui/loadout/lktab<t>.cfg (the server no longer tracks the active tab). Here we archive, per
+//gun, a persistent command cvar that encodes ONLY raw lock state (tab-independent, so it never goes
+//stale the way a persisted compound did):
+//  coop_loLkA<id> = "set coop_loLkV<id> 1"  (LOCKED)  or  "set coop_loLkV<id> 0"  (unlocked)
+//`seta` (archived) so it survives to the main menu; the lktab cfgs `vstr coop_loLkA<id>` to apply it.
+//Re-runs on: menu open (,w0o), deny, chal_grant, rank-up, join. Tab switches need no server work.
+//[user 07-17] DIFF-ONLY push (defect #4, the padlock "fade"): each pushed lock is remembered per
+//player (flags coop_loLkALast<id>) and only CHANGES are stufftext'd; the waitframe pacing (reliable-
+//command budget) only engages on the first full export, when every Last flag is NIL. Player flags die
+//with the entity/map, so a fresh client / map load always force-writes everything once (re-seeding
+//the client's archived coop_loLkA to current truth). A generation stamp (coop_loLkGen) makes late
+//runs abort instead of overwriting a newer run's values with stale ones.
+//=========================================================================
+//[user 2026-09-29] LOCKS DEFAULT ON: a BLANK coop_lockLoadout (export ran before server.scr seeded it) used to
+//read as "gate off" and archived every padlock as UNLOCKED on the client. Only an explicit "0" disables locks now.
+loadout_ui_exportUnlocks local.player:{
+	if(local.player == NULL){ end }
+	waitthread coop_mod/loadoutroster.scr::roster_ids		//populate the ordered id/give arrays once
+	if(local.player.flags["coop_loLkGen"] == NIL){ local.player.flags["coop_loLkGen"] = 0 }
+	local.player.flags["coop_loLkGen"] = local.player.flags["coop_loLkGen"] + 1
+	local.gen = local.player.flags["coop_loLkGen"]
+	local.gateOn = 0
+	if(getcvar("coop_lockLoadout") != "0"){ local.gateOn = 1 }
+	//[user 07-17] load the lazily-loaded unlock record BEFORE reading it, or every earned gun padlocks
+	//until the player's first kill of the map (review finding, merged with the resend-wipe critical).
+	if(local.gateOn){ waitthread coop_mod/challenges.scr::chal_ensure local.player }
+	if(local.player == NULL){ end }
+	if(local.player.flags["coop_loLkGen"] != local.gen){ end }	//superseded while chal_ensure waited
+	local.n = level.coop_loRosterN
+	if(local.n == NIL){ end }
+	local.i = 0
+	local.w = 0
+	while(local.i < local.n){
+		//raw locked-ness only - the tab-AND is applied client-side by the lktab cfgs.
+		local.lk = 0
+		if(local.gateOn){
+			if(!(waitthread loadout_isUnlocked local.player level.coop_loRosterGive[local.i])){ local.lk = 1 }
+		}
+		//[dbshotgun 2026-10-13] master switch off: no padlock on a tile that is not drawn
+		if(level.coop_loRosterGive[local.i] == "models/weapons/coop_dbshotgun.tik" && getcvar("coop_dbShotgun") == "0"){ local.lk = 0 }
+		local.id = level.coop_loRosterId[local.i]
+		if(local.player.flags["coop_loLkALast" + local.id] != local.lk){
+			local.player.flags["coop_loLkALast" + local.id] = local.lk
+			//archive the per-gun padlock COMMAND: coop_loLkA<id> = "set coop_loLkV<id> <lk>".
+			//bug-758: UNQUOTED on the wire - embedded \" truncated the value (bug-736), the seta arrived
+			//valueless and the cvar was never created ("Cvar coop_loLkA.. does not exist" log spam).
+			//Client Cvar_Set_f rejoins argv 2.. (Cmd_ArgsFrom), so the multi-word value arrives whole.
+			local.player stufftext ( "seta coop_loLkA" + local.id + " set coop_loLkV" + local.id + " " + local.lk )
+			local.w++
+			//[user 07-17] CLIENT-SIDE LOCK GATE companion: also archive the per-gun COMMIT command the weapon
+			//tile fires (t<id>.cfg runs `vstr coop_loCmt<id>`) - earned = commit into the active slot, locked =
+			//deny beep. Archived so the DISCONNECTED main-menu armory enforces locks with NO server (the
+			//server-side gate in loadout_setBody can't run there). bug-758: unquoted on the wire (see above).
+			if(local.lk == 0){
+				local.player stufftext ( "seta coop_loCmt" + local.id + " vstr coop_loCcur" )
+			} else {
+				local.player stufftext ( "seta coop_loCmt" + local.id + " vstr coop_loDeny" )
+			}
+			local.w++	//count the 2nd stufftext so the reliable-command flush (below) stays under the ring
+			if(local.w >= 8){
+				local.w = 0
+				waitframe
+				if(local.player == NULL){ end }
+				if(local.player.flags["coop_loLkGen"] != local.gen){ end }	//a newer export took over
+			}
+		}
+		local.i++
+	}
+	//[user 2026-08-18] FINISH STRIP locks - same archived-seta + diff-guard pattern as the gun
+	//padlocks above (bug-758 rules: unquoted stufftext, multi-word value arrives via Cmd_ArgsFrom).
+	//coop_loLkF<fid>  = "set coop_loLkFV<fid> 0|1"            (the padlock)
+	//coop_loFcmtA<fid> = "set coop_loFcmt<fid> vstr coop_loFgo<fid>|coop_loDeny"  (the commit gate)
+	//[user 2026-08-18] SELF-HEALING slot registrations: picks committed before the slot-card
+	//preview existed have no archived inspect page, so slot clicks showed nothing (user: 'the 3d
+	//model player is still holding just the m1 garand'). The server knows every slot's id -
+	//push the registration on every export, so one join fixes all legacy picks forever.
+	local.sl = 1
+	while(local.sl <= 4){
+		local.sid = local.player.flags["coop_loSlotId" + local.sl]
+		if(local.sid != NIL){
+			local.player stufftext ( "seta coop_loInspectS" + local.sl + " exec ui/loadout/p" + local.sid + ".cfg" )
+		}
+		local.sl++
+	}
+	//[dbshotgun 2026-10-13] the double barrel's tile is lit by coop_loP3d = the heavy tab AND the server's master switch: the heavy
+	//tab's cfg (ui/loadout/lktab3.cfg) runs `vstr coop_loDbT`, archived here like the padlock commands above
+	//(unquoted on the wire, bug-758). Default (coop_defaults.cfg) = shown.
+	local.dbOn = 1
+	if(getcvar("coop_dbShotgun") == "0"){ local.dbOn = 0 }
+	if(local.player.flags["coop_loDbTLast"] != local.dbOn){
+		local.player.flags["coop_loDbTLast"] = local.dbOn
+		local.player stufftext ( "seta coop_loDbT set coop_loP3d " + local.dbOn )
+	}
+	waitthread coop_mod/loadoutskins.scr::skin_init
+	local.f = 1
+	while(local.f <= 7){
+		local.flk = 0
+		if(local.gateOn){
+			if(!(waitthread loadout_finUnlocked local.player local.f)){ local.flk = 1 }
+		}
+		if(local.player == NULL){ end }
+		if(local.player.flags["coop_loLkFLast" + local.f] != local.flk){
+			local.player.flags["coop_loLkFLast" + local.f] = local.flk
+			local.player stufftext ( "seta coop_loLkF" + local.f + " set coop_loLkFV" + local.f + " " + local.flk )
+			if(local.flk == 0){
+				local.player stufftext ( "seta coop_loFcmtA" + local.f + " set coop_loFcmt" + local.f + " vstr coop_loFgo" + local.f )
+			} else {
+				local.player stufftext ( "seta coop_loFcmtA" + local.f + " set coop_loFcmt" + local.f + " vstr coop_loDeny" )
+			}
+			//archived only: lkfin.cfg replays these when the strip appears (slot click), so lock
+			//state can never paint before the strip exists
+		}
+		local.f++
+	}
+
+}end
+
+loadout_isUnlocked local.player local.tik:{
+//=========================================================================
+	//[user 07-16] FREE STARTERS - always available, never gated (matches the armory design).
+	if(local.tik == "models/weapons/m1_garand.tik"){ end 1 }
+	if(local.tik == "models/weapons/thompsonsmg.tik"){ end 1 }
+	if(local.tik == "models/weapons/colt45.tik"){ end 1 }
+	if(local.tik == "models/weapons/m2frag_grenade_sp_start.tik"){ end 1 }
+
+	local.u = local.player.flags["coop_chal_unlocks"]
+	if(local.u == NIL || local.u == ""){ end 0 }
+	//[user 07-16] G2 fix: the store (chal_add_unlock) is pipe-SEPARATED without outer pipes, so
+	//the "|tik|" probe missed the FIRST and LAST entries. Wrap the haystack like chal_add_unlock does.
+	local.hay = "|" + local.u + "|"
+	if(waitthread coop_mod/main.scr::containsText local.hay ("|" + local.tik + "|") 0){ end 1 }
+}end 0
+
+
+//=========================================================================
+// Seed a NEW player with the starting unlocks, so "no picks yet" is not "no loadout".
+//=========================================================================
+// User 2026-08-10: "anyone that starts new like Player1 and Player2 did, their default loadout should
+// just be whats unlocked already... M1 Garand, and Colt 45 and Grenade. When I checked my loadout it
+// was all empty. Thats why I was getting the guns you start with in the mission by default."
+//
+// Exactly right, and the cause is narrow: coop_loWeapons is ONLY ever written by loadout_commit
+// (:394) and cleared by loadout_clear (:358/:411). NOTHING seeds it, so a player who has never opened
+// the armory has an empty array - and giveWeaponLoadout then correctly falls through to the map
+// default kit. That is also why the cover-blown re-arm looked like it was handing out mission
+// weapons: it was, because there were no picks to honour.
+//
+// [user 2026-08-10 round 2] THE GUNS WERE RIGHT IN PLAY AND THE LOADOUT TAB STILL RENDERED EMPTY.
+// The first cut wrote flags["coop_loWeapons"] directly. That array is only ONE of the three things a
+// real pick maintains, and the other two are what the screen is actually made of:
+//   1. flags["coop_loWeapons"]        - the give-array the spawn path honours   (was set)
+//   2. flags["coop_loSlot<n>/Id<n>"]  - per-slot authority, read by DBNO (:248), spawnWeaponAssert's
+//                                       desired gun (itemhandler :1572) and loadout_ammoTopup (:510)
+//   3. the client's archived chip cvars (coop_lo<n>/coop_loN<n>/coop_loS<n>/coop_loA<n>) - the ONLY
+//                                       thing the armory UI draws from
+// So the fix is not "also set 2 and 3", it is "stop having a second way to commit a pick at all":
+// this now runs the SAME path a real click runs, and the three can no longer drift apart.
+//   server side -> loadout_set (quiet), which validates against the roster, writes the slot flags and
+//                  calls loadout_rebuild - the single writer of coop_loWeapons
+//   client side -> exec ui/loadout/w<id>_s<n>.cfg, the exact cfg the weapon tile execs. It setas the
+//                  chips AND the coop_loA<n> resend recipe, so the pick now survives to the next map
+//                  the same way a real one does. loadout_deny:165 already uses this to restore a chip,
+//                  so it is a proven server->client route, and ui/loadout/* exec is whitelisted past
+//                  cg_servercmds_filter (bug-597).
+// bug-758 is satisfied by construction: nothing here is a quoted stufftext. One unquoted `exec` per
+// stufftext, and every quote lives INSIDE the shipped cfg where it is local and cannot be truncated
+// on the wire.
+//
+// GRENADE - deliberately NOT seeded, and the bug-1675 scope note saying grenades "are not part of"
+// the pick system is WRONG: slot 4 IS the grenade slot (roster slot "g", ui/loadout/w64_s4.cfg,
+// honoured at loadout_rebuild:368, and m2frag is in loadout_isUnlocked's free-starter list). The real
+// reason is that seeding it would be a silent cross-map REGRESSION: loadout_rebuild uses a picked
+// grenade INSTEAD of the map's defaults, and maps ship TWO start grenades (loadout.scr:16-24 frag +
+// stielhandgranate/bomba, :68-69 mills + M18 smoke). Seeding "64" would quietly delete everybody's
+// second grenade type on every map. That is a design call for the user, not a fix to slip in.
+//=========================================================================
+loadout_seedDefaults local.player:{
+	if( local.player == NULL ){ end }
+	//coop_loSeeded is what separates "never opened the armory" (seed) from "pressed USE MAP DEFAULT"
+	//(loadout_clear wiped the picks ON PURPOSE - never undo that). Once per life, either way.
+	if( local.player.flags["coop_loSeeded"] == 1 ){ end }
+	local.player.flags["coop_loSeeded"] = 1
+
+	//NIL first: .size on an unset flag is not safe (replace.scr:1248 guards the same way)
+	if( local.player.flags["coop_loWeapons"] != NIL ){
+		if( local.player.flags["coop_loWeapons"].size > 0 ){ end }	//they already chose - never overwrite
+	}
+	//...and if any SLOT already holds a pick, the join-time resend volley got here first (it fires at
+	//t+4s, first spawn is usually ~t+10s). Honour exactly what they picked - now that the seed writes
+	//the slot flags too, a seeded slot 1 would otherwise survive a real pick that only filled slot 2.
+	if( local.player.flags["coop_loSlotId1"] != NIL ){ end }
+	if( local.player.flags["coop_loSlotId2"] != NIL ){ end }
+	if( local.player.flags["coop_loSlotId3"] != NIL ){ end }
+	if( local.player.flags["coop_loSlotId4"] != NIL ){ end }
+
+	//roster ids: "01" = M1 GARAND (slot p), "48" = COLT M1911 (slot s). Both are unconditional
+	//free starters in loadout_isUnlocked:604/606, so the unlock gate inside loadout_setBody passes
+	//for a brand-new profile with no unlock record at all.
+	waitthread loadout_set local.player 1 "01" 1
+	if( local.player == NULL ){ end }
+	waitthread loadout_set local.player 3 "48" 1
+	if( local.player == NULL ){ end }
+
+	thread loadout_seedPushUI local.player
+	println( "^~^~^ LOADOUT seeded defaults for e" + local.player.entnum + " (garand slot1 + colt45 slot3, via commit path)" )
+}end
+
+//=========================================================================
+// Push the seeded picks to the CLIENT's armory chips, so the loadout tab shows what the player has.
+//=========================================================================
+// TWO VOLLEYS, t+5s and t+16s, copied from loadout_resend's proven timing rather than invented:
+// server->client commands sent while the client is still LOADING the map are dropped silently
+// (bug-595 diagnosis run found zero client-side execs for the whole boot), and per-player setup runs
+// well before the client is active. Double delivery is harmless - loadout_setBody:75 early-exits on
+// an identical re-pick, so the token the cfg fires back is a no-op the second time.
+//
+// The exec'd cfg ends in `vstr coop_loA<n>`, i.e. it re-sends the pick through the normal name bus.
+// That is intentional: it is the same round trip a real click makes, so if this half lands and the
+// server half somehow did not, the client's own token repairs it.
+//=========================================================================
+loadout_seedPushUI local.player:{
+	wait 5
+	if( local.player == NULL ){ end }
+	if( local.player.flags["coop_loSeeded"] != 1 ){ end }
+	//[user 2026-08-18] deep-trace F9(sync): this exec'd the FULL commit cfgs, whose setas
+	//OVERWROTE the client's archived real picks with the Garand/Colt seed - permanent pick
+	//loss for a slow-loading returning player. The seed cfgs are chips-only `set` (display,
+	//never archived, no replay recipe, no re-commit vstr), and BOTH pushes carry the guard.
+	if( local.player.flags["coop_loSlotId1"] != "01" ){ end }
+	local.player stufftext ( "exec ui/loadout/seed_s1.cfg" )
+	local.player stufftext ( "exec ui/loadout/seed_s3.cfg" )
+
+	wait 11
+	if( local.player == NULL ){ end }
+	if( local.player.flags["coop_loSlotId1"] != "01" ){ end }
+	local.player stufftext ( "exec ui/loadout/seed_s1.cfg" )
+	local.player stufftext ( "exec ui/loadout/seed_s3.cfg" )
+	println( "^~^~^ LOADOUT seed UI pushed for e" + local.player.entnum )
+}end
+
+//=========================================================================
+//[user 2026-08-18] FINISH STRIP - apply a skin finish to a committed slot.
+// Fired by the ,f<slot><fid> name-bus token from ui/loadout/fin<fid>_s<slot>.cfg.
+// Two gates, both server-side: the finish must be UNLOCKED (its challenge's reward string
+// "finish_<key>" is in the pipe store - same probe as loadout_isUnlocked), and the slot's gun
+// must be MASTERED (its base per-weapon challenge "wpn_<wid>" is complete; a gun with no such
+// challenge is ungated). The client cvars are convenience for the cold main menu - the same two
+// checks run again at spawn in loadout_finResolve, so a spoofed cvar gives nothing.
+//=========================================================================
+//=========================================================================
+//[user 2026-08-18] "you still dont get the updated weapons or weapons variants": the kick
+//spawned the regive but NOTHING REBAKED the resolved kit - coop_loWeapons is built by
+//loadout_rebuild (where loadout_finResolve swaps each slot to its finished variant), and
+//loadout_finish never re-ran it after changing the fid. The regive then faithfully re-issued
+//the STALE list: toast said applied, hands got the same guns. Rebuild first, then kick.
+//=========================================================================
+loadout_finKick local.player:{
+//=========================================================================
+	if(local.player == NULL){ end }
+	waitthread loadout_rebuild local.player
+	local.player.flags["coop_loDirty"] = level.time
+	if(local.player.flags["coop_loRegivePending"] != 1){
+		local.player.flags["coop_loRegivePending"] = 1
+		thread loadout_regiveWatch local.player
+	}
+}end
+
+//=========================================================================
+//[user 2026-08-18] deep-trace F7: a DENIED finish/variant left the client's already-seta'd
+//chips standing - the menu claimed a finish the server refused, forever, and the archived
+//recipe re-denied at every join. Weapon denies always reverted (loadout_deny); finishes now
+//do too: push the server's CURRENT fid back into both archived cvars (bug-758 wire rules:
+//unquoted, multi-word value arrives whole via Cmd_ArgsFrom).
+//=========================================================================
+loadout_finRevert local.player local.slot:{
+//=========================================================================
+	if(local.player == NULL){ end }
+	local.f = local.player.flags["coop_loFin" + local.slot]
+	if(local.f == NIL || local.f == ""){ local.f = 0 }
+	local.player stufftext ( "seta coop_loS" + local.slot + "F " + local.f )
+	local.player stufftext ( "seta coop_loFA" + local.slot + " append name ,f" + local.slot + local.f )
+}end
+
+loadout_finish local.player local.slot local.fid:{
+//=========================================================================
+if(level.cMTE_coop_loadoutpick){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread loadoutpick/loadout_finish->"+level.cMTE+"" )}
+	if(local.player == NULL){ end }
+	if(local.fid == NIL || local.fid == ""){ end }
+	local.fid = int(local.fid)
+	if(local.fid < 0 || local.fid > 19){ end }	//[2026-08-19] MV wave 3: springfield hosts 10 variants (fids 8-17)
+	//[user 2026-08-18] deep-trace F7.3(sync): serialize behind weapon picks - an FA replay used
+	//to read coop_loSlotId while the same slot's pick replay was still inside its unlock gates
+	//(chal_ensure identity wait), earning a false "Pick a weapon for that slot first" at join.
+	while(local.player.flags["coop_loSetBusy"] == 1){
+		waitframe
+		if(local.player == NULL){ end }
+	}
+	//[user 2026-08-18] IDEMPOTENT-QUIET: a direct fid the slot already holds is a silent no-op
+	//(join replays + close-commit re-send archives). CYCLE (8) always advances.
+	if(local.fid != 8){
+		local.coop_curF = local.player.flags["coop_loFin" + local.slot]
+		if(local.coop_curF == NIL || local.coop_curF == ""){ local.coop_curF = 0 }
+		if(local.coop_curF == local.fid){ end }
+	}
+	waitthread coop_mod/loadoutskins.scr::skin_init
+
+	// standard = clear; always allowed
+	if(local.fid == 0){
+		local.player.flags["coop_loFin" + local.slot] = 0
+		local.player stufftext ( "seta coop_loS" + local.slot + "F 0" )
+		local.player stufftext ( "seta coop_loFA" + local.slot + " append name ,f" + local.slot + "0" )
+		local.coop_sid0 = local.player.flags["coop_loSlotId" + local.slot]
+		if(local.coop_sid0 != NIL && local.coop_sid0 != ""){
+			local.player stufftext ( "seta coop_loFinPrevS" + local.slot + " exec ui/loadout/p" + local.coop_sid0 + ".cfg" )
+		}
+		waitthread loadout_finKick local.player
+		waitthread coop_mod/feed.scr::feed_player local.player 5 "armory" "Standard finish"
+		end
+	}
+
+	local.id = local.player.flags["coop_loSlotId" + local.slot]
+	if(local.id == NIL){
+		local.player stufftext "vstr coop_loDeny"
+		waitthread coop_mod/feed.scr::feed_player local.player 2 "armory" "Pick a weapon for that slot first"
+	waitthread loadout_finRevert local.player local.slot
+		waitthread loadout_finRevert local.player local.slot
+		end
+	}
+	local.r = waitthread coop_mod/loadoutroster.scr::roster_get local.id
+	local.give = local.r["give"]
+
+	//---------------- finishes (1-7): unchanged gates -------------------------------------------
+	if(local.fid <= 7){
+		local.variant = level.coop_skinGive[local.give][local.fid]
+		if(local.variant == NIL || local.variant == ""){
+			local.player stufftext "vstr coop_loDeny"
+			waitthread coop_mod/feed.scr::feed_player local.player 2 "armory" ( "No " + level.coop_skinFinName[local.fid] + " finish for this weapon" )
+	waitthread loadout_finRevert local.player local.slot
+		waitthread loadout_finRevert local.player local.slot
+			end
+		}
+		if(!(waitthread loadout_finUnlocked local.player local.fid)){
+			local.player stufftext "vstr coop_loDeny"
+			waitthread coop_mod/feed.scr::feed_player local.player 2 "armory" ( level.coop_skinFinName[local.fid] + " is locked - see CHALLENGES" )
+	waitthread loadout_finRevert local.player local.slot
+		waitthread loadout_finRevert local.player local.slot
+			end
+		}
+		if(!(waitthread loadout_finMastered local.player local.give)){
+			local.player stufftext "vstr coop_loDeny"
+			waitthread coop_mod/feed.scr::feed_player local.player 2 "armory" "Master this weapon first (its kill challenge)"
+	waitthread loadout_finRevert local.player local.slot
+		waitthread loadout_finRevert local.player local.slot
+			end
+		}
+		local.player.flags["coop_loFin" + local.slot] = local.fid
+		local.player stufftext ( "seta coop_loS" + local.slot + "F " + local.fid )
+		local.player stufftext ( "seta coop_loFA" + local.slot + " append name ,f" + local.slot + local.fid )
+		//[user 2026-08-18] deep-trace F6(viewer): re-entering a slot always showed the BASE gun -
+		//nothing could re-preview an applied finish (cfgs cannot read a cvar value). The server
+		//knows gun AND fid: arm the slot's re-preview at the exact page; s<n>sel replays it last.
+		local.player stufftext ( "seta coop_loFinPrevS" + local.slot + " exec ui/loadout/finp" + local.id + "_" + local.fid + ".cfg" )
+		waitthread loadout_finKick local.player
+		waitthread coop_mod/feed.scr::feed_player local.player 5 "armory" ( level.coop_skinFinName[local.fid] + " finish applied" )
+		end
+	}
+
+	//---------------- model variants (8 = cycle, 9-19 = direct from the join replay) -------------
+	local.max = level.coop_skinMvMax[local.give]
+	if(local.max == NIL){
+		local.player stufftext "vstr coop_loDeny"
+		waitthread coop_mod/feed.scr::feed_player local.player 2 "armory" "No model variants for this weapon"
+	waitthread loadout_finRevert local.player local.slot
+		waitthread loadout_finRevert local.player local.slot
+		end
+	}
+	// both gates are per-GUN, so check once whichever variant lands
+	if(!(waitthread loadout_mvUnlocked local.player local.give local.fid)){
+		local.player stufftext "vstr coop_loDeny"
+		waitthread coop_mod/feed.scr::feed_player local.player 2 "armory" "This variant is locked - see CHALLENGES"
+	waitthread loadout_finRevert local.player local.slot
+		waitthread loadout_finRevert local.player local.slot
+		end
+	}
+	if(!(waitthread loadout_finMastered local.player local.give)){
+		local.player stufftext "vstr coop_loDeny"
+		waitthread coop_mod/feed.scr::feed_player local.player 2 "armory" "Master this weapon first (its kill challenge)"
+	waitthread loadout_finRevert local.player local.slot
+		waitthread loadout_finRevert local.player local.slot
+		end
+	}
+
+	local.cur = local.player.flags["coop_loFin" + local.slot]
+	if(local.cur == NIL || local.cur < 8 || local.cur > local.max){ local.cur = 7 }
+	if(local.fid == 8){
+		// CYCLE: next existing variant after the current one; past the last -> standard
+		local.next = local.cur + 1
+		while(local.next <= local.max && (level.coop_skinGive[local.give][local.next] == NIL)){
+			local.next++
+		}
+		if(local.next > local.max){
+			// wrap to standard
+			local.player.flags["coop_loFin" + local.slot] = 0
+			local.player stufftext ( "seta coop_loS" + local.slot + "F 0" )
+			local.player stufftext ( "seta coop_loFA" + local.slot + " append name ,f" + local.slot + "0" )
+			local.player stufftext ( "seta coop_loFinPrevS" + local.slot + " exec ui/loadout/p" + local.id + ".cfg" )
+			//[user 2026-08-18] deep-trace F8.2: the wrap branch skipped the chain-position echo -
+			//the one mechanism that re-syncs the client ring - exactly when a desync existed. After
+			//a wrap the next VARIANT click should preview entry 1, so point the ring there.
+			local.coop_wtile = level.coop_skinMvTile[local.give]
+			if(local.coop_wtile != NIL && local.coop_wtile != ""){
+				local.player stufftext ( "set coop_loMvPN_s" + local.slot + " exec ui/loadout/mvp" + local.coop_wtile + "_1_s" + local.slot + ".cfg" )
+			}
+			waitthread loadout_finKick local.player
+				waitthread coop_mod/feed.scr::feed_player local.player 5 "armory" "Standard model"
+			end
+		}
+		local.fid = local.next
+	}
+	local.variant = level.coop_skinGive[local.give][local.fid]
+	if(local.variant == NIL || local.variant == ""){
+		//[user 2026-08-18] deep-trace F9: this ended SILENTLY - a stale archived fid from a
+		//previous gun in this slot replayed at join and just vanished, leaving the menu chip
+		//claiming a variant the gun does not have. Revert the chips to server truth instead.
+		waitthread loadout_finRevert local.player local.slot
+		end
+	}
+
+	//[user 2026-08-18] the server no longer touches menu VISUALS at all: `exec` APPENDS to the
+	//command buffer, so a page re-exec always ran after any preview override regardless of send
+	//order - the click's own client-side chain (finp/mvp cfgs) is the single source of menu
+	//truth, exact and instant. The server owns state (setas, chain echo, regive) and the toast.
+	local.player.flags["coop_loFin" + local.slot] = local.fid
+	local.player stufftext ( "seta coop_loS" + local.slot + "F " + local.fid )
+	local.player stufftext ( "seta coop_loFA" + local.slot + " append name ,f" + local.slot + local.fid )
+	//[user 2026-08-18] FOOLPROOF: echo the offline chain position so the client's next
+	//VARIANT click previews exactly what the server will apply - rapid clicking can never
+	//desync the two. next entry = (fid-7)+1, wrapping to the standard entry (0) past the last.
+	local.tile = level.coop_skinMvTile[local.give]
+	if(local.tile != NIL && local.tile != ""){
+		local.k = local.fid - 7 + 1
+		if((local.fid + 1) > level.coop_skinMvMax[local.give]){ local.k = 0 }
+		local.player stufftext ( "set coop_loMvPN_s" + local.slot + " exec ui/loadout/mvp" + local.tile + "_" + local.k + "_s" + local.slot + ".cfg" )
+		//[user 2026-08-18] deep-trace F6: slot re-entry re-shows THIS variant (the ring entry that
+		//displays it also re-points the ring correctly - its setas are idempotent).
+		local.coop_kk = local.fid - 7
+		local.player stufftext ( "seta coop_loFinPrevS" + local.slot + " exec ui/loadout/mvp" + local.tile + "_" + local.coop_kk + "_s" + local.slot + ".cfg" )
+	}
+	waitthread loadout_finKick local.player
+	if( !(waitthread coop_mod/menumirror.scr::coop_quietNotices) ){	//bug-3234 no armory/unlock toasts over a briefing
+		waitthread coop_mod/feed.scr::feed_player local.player 5 "armory" ( level.coop_skinMvName[local.give][local.fid] + " equipped" )
+	}
+}end
+
+//=========================================================================
+// Finish unlocked = its challenge's reward string sits in the same pipe store every weapon
+// unlock uses (player.flags["coop_chal_unlocks"], probed exactly like loadout_isUnlocked).
+//=========================================================================
+loadout_finUnlocked local.player local.fid:{
+//=========================================================================
+	if(getcvar("coop_lockLoadout") == "0"){ end 1 }
+	waitthread coop_mod/challenges.scr::chal_ensure local.player
+	if(local.player == NULL){ end 0 }
+	local.u = local.player.flags["coop_chal_unlocks"]
+	if(local.u == NIL || local.u == ""){ end 0 }
+	local.hay = "|" + local.u + "|"
+	if(waitthread coop_mod/main.scr::containsText local.hay ("|" + level.coop_skinFinStat[local.fid] + "|") 0){ end 1 }
+}end 0
+
+//=========================================================================
+// Mastered = the gun's base per-weapon challenge is COMPLETE (flags coop_chalD_wpn_<wid>).
+// The wid comes from the same model->wid resolver every kill-stat writer uses, so a finish
+// can never gate on a different spelling than the challenge that unlocks it. A gun whose wid
+// has no wpn_ challenge is ungated (grenades, specials).
+//=========================================================================
+loadout_finMastered local.player local.give:{
+//=========================================================================
+	if(getcvar("coop_lockLoadout") == "0"){ end 1 }
+	local.wid = waitthread coop_mod/challenges.scr::chal_widFromModel local.give
+	if(local.wid == NIL || local.wid == ""){ end 1 }
+	local.cid = "wpn_" + local.wid
+	//does that challenge exist at all?
+	local.found = 0
+	local.i = 0
+	while(local.i < level.coop_chal_count){
+		if(level.coop_chal_id[local.i] == local.cid){ local.found = 1; break }
+		local.i++
+	}
+	if(local.found == 0){ end 1 }
+	waitthread coop_mod/challenges.scr::chal_ensure local.player
+	if(local.player == NULL){ end 0 }
+	if(local.player.flags["coop_chalD_" + local.cid] == 1){ end 1 }
+}end 0
+
+//=========================================================================
+// Spawn-time resolution: the ONLY authority. Returns the tik to actually give for a slot -
+// the variant when a finish is picked, exists and both gates still hold; the base otherwise.
+//=========================================================================
+loadout_finResolve local.player local.slot local.give:{
+//=========================================================================
+	local.fid = local.player.flags["coop_loFin" + local.slot]
+	if(local.fid == NIL || local.fid == 0){ end local.give }
+	waitthread coop_mod/loadoutskins.scr::skin_init
+	local.variant = level.coop_skinGive[local.give][local.fid]
+	if(local.variant == NIL || local.variant == ""){ end local.give }
+	if(local.fid >= 8){
+		if(!(waitthread loadout_mvUnlocked local.player local.give local.fid)){ end local.give }
+	}
+	else if(!(waitthread loadout_finUnlocked local.player local.fid)){ end local.give }
+	if(!(waitthread loadout_finMastered local.player local.give)){ end local.give }
+}end local.variant
+
+//=========================================================================
+// Model variant (fid 8) unlock = the host gun's ELITE challenge is complete. Table-driven:
+// loadoutskins.scr::skin_init stores the elite cid per give path, so this can never drift from
+// the challenge definitions.
+//=========================================================================
+loadout_mvUnlocked local.player local.give local.fid:{
+//=========================================================================
+	if(getcvar("coop_lockLoadout") == "0"){ end 1 }
+	waitthread coop_mod/challenges.scr::chal_ensure local.player
+	if(local.player == NULL){ end 0 }
+
+	//[user 2026-08-26] PER-VARIANT. This used to read coop_skinMvElite and return unlocked for the
+	//gun's WHOLE cycle, so one elite challenge handed over all eight Thompsons at once. Each variant
+	//now carries its own cid on an accelerating kill curve (mvchal_gen.scr).
+	if(local.fid != NIL && local.fid != ""){
+		local.mv = level.coop_skinMvChal[local.give][int(local.fid)]
+		if(local.mv != NIL && local.mv != ""){
+			if(local.player.flags["coop_chalD_" + local.mv] == 1){ end 1 }
+			end 0
+		}
+	}
+
+	//FALL BACK to the old per-gun elite gate for any variant with no generated challenge (a gun whose
+	//base challenge has no kill stat cannot be put on a kill curve). Fail CLOSED here would lock a
+	//variant behind a challenge that does not exist.
+	local.cid = level.coop_skinMvElite[local.give]
+	if(local.cid == NIL || local.cid == ""){ end 0 }
+	if(local.player.flags["coop_chalD_" + local.cid] == 1){ end 1 }
+}end 0
+

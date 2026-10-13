@@ -1,6 +1,6 @@
 """Test overlay pk3 for the private harness copy (never shipped): harness plumbing + every file under assets/.
 
-    python tools/mkov_dbs.py <out.pk3>
+    python tools/mkov_dbs.py <out.pk3> [--armory] [--notps]
 
 Plumbing = the ADS lanes' ovbase_1021.pk3 (marker shader + the RELEASED coop_mod/weather.scr with the coop_isPoll test
 thread, built by ads_twohand_2026-10-11/tools/mkbase.py) with two test-only additions to that thread:
@@ -53,18 +53,80 @@ DROP = (
     '\t\t\tprintln( "^~^~^ DBSCAM " + local.c )\n'
     '\t\t}\n')
 
+# armory tests: challenge progress through the mod's own chal_bump (what a kill calls), a status line, one test AI
+# armed through the mod's AI weapon path (aihandler.scr::coop_actorArm) and killed on a second command
+HOOKS = (
+    '\t\tlocal.b = getcvar( "coop_dbsBump" )\n'
+    '\t\tif( local.b != "" && local.b != local.lastB && $player != NULL && $player.size >= 1 ){\n'
+    '\t\t\tlocal.lastB = local.b\n'
+    '\t\t\tlocal.bs = getcvar( "coop_dbsBumpStat" )\n'
+    '\t\t\tlocal.bn = int( getcvar( "coop_dbsBumpN" ) )\n'
+    '\t\t\twaitthread coop_mod/challenges.scr::chal_bump $player[1] local.bs local.bn\n'
+    '\t\t\tprintln( "^~^~^ DBSBUMP " + local.b + " " + local.bs + " " + local.bn )\n'
+    '\t\t}\n'
+    '\t\tlocal.q = getcvar( "coop_dbsStat" )\n'
+    '\t\tif( local.q != "" && local.q != local.lastQ && $player != NULL && $player.size >= 1 ){\n'
+    '\t\t\tlocal.lastQ = local.q\n'
+    '\t\t\tlocal.p = $player[1]\n'
+    '\t\t\twaitthread coop_mod/challenges.scr::chal_ensure local.p\n'
+    '\t\t\tlocal.v1 = local.p.flags["coop_chal_unlocks"]\n'
+    '\t\t\tif( local.v1 == NIL ){ local.v1 = "NIL" }\n'
+    '\t\t\tlocal.v2 = local.p.flags["coop_loSlot1"]\n'
+    '\t\t\tif( local.v2 == NIL ){ local.v2 = "NIL" }\n'
+    '\t\t\tlocal.v3 = local.p.flags["coop_loSlotId1"]\n'
+    '\t\t\tif( local.v3 == NIL ){ local.v3 = "NIL" }\n'
+    '\t\t\tlocal.v4 = local.p.flags["coop_loFin1"]\n'
+    '\t\t\tif( local.v4 == NIL ){ local.v4 = "NIL" }\n'
+    '\t\t\tlocal.v5 = local.p.flags["coop_chalP_wpn_shotgun_v"]\n'
+    '\t\t\tif( local.v5 == NIL ){ local.v5 = "NIL" }\n'
+    '\t\t\tlocal.v6 = local.p.flags["coop_chalP_wpn_shotgun"]\n'
+    '\t\t\tif( local.v6 == NIL ){ local.v6 = "NIL" }\n'
+    '\t\t\tprintln( "^~^~^ DBSSTAT " + local.q + " slot1=" + local.v2 + " id1=" + local.v3 + " fin1=" + local.v4 + " v=" + local.v5 + " base=" + local.v6 + " lock=" + getcvar( "coop_lockLoadout" ) + " sw=" + getcvar( "coop_dbShotgun" ) )\n'
+    '\t\t\tprintln( "^~^~^ DBSUNLOCKS " + local.q + " " + local.v1 )\n'
+    '\t\t}\n'
+    '\t\tlocal.m = getcvar( "coop_dbsMortal" )\n'
+    '\t\tif( local.m != "" && local.m != local.lastM && $player != NULL && $player.size >= 1 ){\n'
+    '\t\t\tlocal.lastM = local.m\n'
+    '\t\t\t$player[1] takedamage\n'
+    '\t\t\tprintln( "^~^~^ DBSMORTAL " + local.m )\n'
+    '\t\t}\n'
+    '\t\tlocal.a = getcvar( "coop_dbsAI" )\n'
+    '\t\tif( local.a != "" && local.a != local.lastA && $player != NULL && $player.size >= 1 ){\n'
+    '\t\t\tlocal.lastA = local.a\n'
+    '\t\t\tlocal.p = $player[1]\n'
+    '\t\t\tlocal.fw = angles_toforward ( 0 local.p.viewangles[1] 0 )\n'
+    '\t\t\tif( local.a == "kill" ){\n'
+    '\t\t\t\tif( level.coop_dbsAI != NIL && level.coop_dbsAI != NULL ){\n'
+    '\t\t\t\t\tlevel.coop_dbsAI takedamage\n'
+    '\t\t\t\t\tlevel.coop_dbsAI kill\n'
+    '\t\t\t\t\tprintln( "^~^~^ DBSAI killed" )\n'
+    '\t\t\t\t}\n'
+    '\t\t\t}else{\n'
+    '\t\t\t\tlevel.coop_dbsAI = spawn models/human/german_wehrmact_soldier.tik "origin" ( local.p.origin + local.fw * 120.0 )\n'
+    '\t\t\t\tlevel.coop_dbsAI.angles = ( 0 ( local.p.viewangles[1] + 180.0 ) 0 )\n'
+    '\t\t\t\twait 1\n'
+    '\t\t\t\tlevel.coop_dbsAI waitthread coop_mod/aihandler.scr::coop_actorArm "models/weapons/coop_dbshotgun.tik"\n'
+    '\t\t\t\tprintln( "^~^~^ DBSAI armed " + local.a )\n'
+    '\t\t\t}\n'
+    '\t\t}\n'
+)
 
-def weather(src):
+
+def weather(src, keepunlocks=False):
     s = src.replace('\r\n', '\n')
     a = '\tlocal.lastF = ""\n'
     assert s.count(a) == 1
-    s = s.replace(a, a + '\tlocal.lastD = ""\n\tlocal.lastC = ""\n\tlocal.hasCam = 0\n')
+    s = s.replace(a, a + '\tlocal.lastD = ""\n\tlocal.lastC = ""\n\tlocal.hasCam = 0\n\tlocal.lastB = ""\n\tlocal.lastQ = ""\n\tlocal.lastA = ""\n\tlocal.lastM = ""\n')
     b = '\t\t\t\tlocal.p ammo pistol 400\n'
     assert s.count(b) == 1
     s = s.replace(b, b + '\t\t\t\tlocal.p ammo shotgun 400\n')
     k = s.index('coop_is_test:')
     w = s.index('\t\twaitframe\n', k)
-    s = s[:w] + DROP + s[w:]
+    s = s[:w] + DROP + HOOKS + s[w:]
+    if keepunlocks:                      # armory runs: the test `give` must not overwrite the player's unlock record
+        u = '\t\t\t\tlocal.p.flags["coop_chal_unlocks"] = local.t'
+        assert s.count(u) == 1
+        s = s.replace(u, '\t\t\t\t//' + u.strip())
     d = 0                                   # running-depth brace scan (TRAPS: never negative, 0 at column-0 labels)
     for i, l in enumerate(s.splitlines()):
         c = l.split('//')[0]
@@ -85,7 +147,7 @@ def main():
         for i in b.infolist():
             data = b.read(i.filename)
             if i.filename == 'coop_mod/weather.scr':
-                data = weather(data.decode('latin-1')).encode('latin-1')
+                data = weather(data.decode('latin-1'), '--armory' in sys.argv).encode('latin-1')
             z.writestr(i.filename, data)
         for d, _, fs in os.walk(L.ASSETS):
             for f in fs:
@@ -117,22 +179,23 @@ def main():
             st = HV.read('coop_mod/player_Torso.st').decode('latin-1')
             z.writestr('coop_mod/player_Torso.st', PT.patch(st).encode('latin-1'))
             print('third person: alias rows + torso state rows added')
-        # --wire: the INSTALLED mod files with the option-A wiring patch (wiring/patch_wiring_dbs.py) + its new cfgs
-        if '--wire' in sys.argv:
+        # --armory: the own armory entry (wiring/stage_armory_dbs.py -> armory_ov/: the mod-tree files edited + what the
+        # generators wrote). coop_defaults.cfg is ahead of the release in the mod tree: the INSTALLED file + the same edit.
+        if '--armory' in sys.argv:
             import importlib.util
             sp = importlib.util.spec_from_file_location('weapon_hd_vfs', os.path.join(L.DOCS, 'tools', 'weapon_hd', 'vfs.py'))
             HV2 = importlib.util.module_from_spec(sp); sp.loader.exec_module(HV2)
-            sp = importlib.util.spec_from_file_location('patch_wiring_dbs', os.path.join(L.PROP, 'wiring', 'patch_wiring_dbs.py'))
-            PW = importlib.util.module_from_spec(sp); sp.loader.exec_module(PW)
-
-            def rd(rel):
-                d = HV2.read(rel)
-                return d.decode('latin-1') if d is not None else None
-            pages = sorted(k[len('ui/loadout/p'):-4] for k in HV2.index() if re.match(r'ui/loadout/p\d\d\.cfg$', k))
-            wired = PW.patched(rd, pages)
-            for rel, txt in wired.items():
-                z.writestr(rel, txt.encode('latin-1'))
-            print('wiring: %d files from the installed mod, patched (%d pages)' % (len(wired), len(pages)))
+            sys.path.insert(0, os.path.join(L.PROP, 'wiring'))
+            import stage_armory_dbs as SA
+            ov = os.path.join(L.PROP, 'armory_ov')
+            k3 = 0
+            for rel in open(os.path.join(ov, 'MANIFEST.txt')).read().split():
+                if rel == 'coop_defaults.cfg':
+                    z.writestr(rel, SA.defaults(HV2.read(rel).decode('latin-1')).encode('latin-1'))
+                else:
+                    z.write(os.path.join(ov, rel.replace('/', os.sep)), rel)
+                k3 += 1
+            print('armory: %d files from armory_ov' % k3)
         # --var s46=0.46 ... : TEST-ONLY copies of the tik at another scale (models/weapons/coop_dbshotgun_<tag>.tik)
         base = open(os.path.join(L.ASSETS, 'models', 'weapons', 'coop_dbshotgun.tik')).read()
         for v in [x for x in sys.argv[2:] if '=' in x]:

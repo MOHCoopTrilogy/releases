@@ -29,7 +29,7 @@ init
 		weapontype		heavy
 		weaponsubtype		2
 		name			"Shotgun (Double Barrel)"
-		rank			640 640
+		rank			645 645
 
 		sp bulletrange		650
 		sp bulletspread		115 115 135 135

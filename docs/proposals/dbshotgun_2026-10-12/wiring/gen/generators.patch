@@ -1,0 +1,30 @@
+--- a/docs/tools/gen_service_record.py
++++ b/docs/tools/gen_service_record.py
+@@ -26,5 +26,5 @@
+     return _wif_orig_save(self, fp, *a, **k)
+ Image.Image.save = _wif_save
+-os.chdir(r"C:\mohaa-coop-dev\hzm-mohaa-coop-mod")
++os.chdir(os.environ.get("HZM_MOD") or r"C:\mohaa-coop-dev\hzm-mohaa-coop-mod")   # HZM_MOD: a scratch / staged tree (as gen_loadout.py)
+ def lerp(a,b,t): return tuple(int(a[i]+(b[i]-a[i])*t) for i in range(len(a)))
+ def serif(sz):
+@@ -55,4 +55,5 @@
+     # loadoutskins.scr::coop_skinMvName - the same table the armory renders - so the Service Record
+     # hover and the armory can never disagree. Regenerate with docs/tools/variant_challenges.py.
++    "models/weapons/coop_dbshotgun.tik": "Double Barrel Shotgun",   # [dbshotgun 2026-10-13]
+     "models/weapons/bar_pabar.tik": "Bar (pacific) (moh:pa)",
+     "models/weapons/bar_bar1918.tik": "Lewis Gun (east)",
+--- a/docs/tools/loadout_weapons.tsv
++++ b/docs/tools/loadout_weapons.tsv
+@@ -89,2 +89,3 @@
+ 74	models/weapons/mauser_c96.tik		0 0 0 1.60 0 90 180	coop_hold_pistol		4	MAUSER C96	7.63MM / SEMI-AUTO / 10 RD	3	5	9	9	10	10	p38	3
+ 75	models/weapons/m10_revolver.tik		0 0 0 1.60 0 90 180	coop_hold_pistol		4	S&W M10 .38	.38 SPECIAL / REVOLVER / 6 RD	3	5	8	9	6	6	nagant_revolver	3
++80	models/weapons/coop_dbshotgun.tik	models/weapons/coop_dbshotgun.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	3	DOUBLE BARREL	12 GAUGE / BREAK-ACTION	10	3	6	10	2	2	shotgun	12
+--- a/docs/tools/armory_unlocks.py
++++ b/docs/tools/armory_unlocks.py
+@@ -39,5 +39,5 @@
+ import sys
+ 
+-MOD = r'C:\mohaa-coop-dev\hzm-mohaa-coop-mod'
++MOD = os.environ.get('HZM_MOD') or r'C:\mohaa-coop-dev\hzm-mohaa-coop-mod'   # HZM_MOD: a scratch / staged tree (as gen_loadout.py)
+ CO = os.path.join(MOD, 'coop_mod')
+ 

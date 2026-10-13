@@ -43,7 +43,9 @@ def patch(text):
     assert len(rx_fire.findall(s)) == 2, 'expected the pump gun\'s crouch-fire row in two states, found %d' % len(rx_fire.findall(s))
     s = rx_fire.sub(lambda m: FIRE + m.group(0), s)
     rx_end = re.compile(r'^[ \t]*shotgun_reload_end[ \t]+: default[ \t]*\n', re.M)
-    assert len(rx_end.findall(s)) == 1
+    # the released file plays shotgun_reload_end in ONE state (RELOAD_SHOTGUN_END); the mod tree of 2026-10-13 has a second
+    # (RELOAD_SHOTGUN_BREAK_END, a reload broken off to fire): our row goes in front of each
+    assert len(rx_end.findall(s)) in (1, 2), len(rx_end.findall(s))
     s = rx_end.sub(lambda m: END + m.group(0), s)
     rx_aim = re.compile(r'(^state ATTACK_SHOTGUN_PRIMARY_AIM[ \t]*\n\{.*?^\tstates[ \t]*\n\t\{[ \t]*\n[ \t]*STAND[ \t]+: KILLED[ \t]*\n)', re.M | re.S)
     assert len(rx_aim.findall(s)) == 1

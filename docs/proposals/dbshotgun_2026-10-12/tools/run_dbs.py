@@ -76,6 +76,34 @@ def part_look(a, pre="dbs_look", tik=None):
     R.step(["set cg_drawviewmodel 2"] + R.give("none", 0.0) + ["wait 600"])
 
 
+FINS = ("", "_gold", "_chrome", "_blued", "_bloody", "_camo_woodland", "_camo_winter", "_camo_desert")
+
+
+def part_fin(a):
+    """the FINISH SET: every finish tik at the hip, in the aim, in third person (script camera, right side) and OPEN
+    at the hip (both barrels fired, the reload's first second: the chambers and the breech faces); then the pump
+    gun's standard / gold / winter / bloody tiks in the same three views, for the look of the same recipe"""
+    refs = [("models/weapons/shotgun%s.tik" % f, "fin_ref_pump%s" % f) for f in ("", "_gold", "_camo_winter", "_bloody")]
+    only = os.environ.get("DBS_FIN_OPEN")       # "base,blued,..." = retake only the open-gun shot of these
+    if only:
+        refs = []
+    for tik, pre in [("models/weapons/coop_dbshotgun%s.tik" % f, "fin%s" % (f or "_base")) for f in FINS] + refs:
+        if only and pre[4:] not in only.split(","):
+            continue
+        R.step(RELEASE + R.give(tik) + ["wait 4500"], timeout=90)
+        R.step(["set cg_fov 90", "set cg_drawviewmodel 2", "wait 600"])
+        if not only:
+            shot(pre + "_hip")
+            R.step(["+button13", "wait 1900"]); shot(pre + "_ads")
+            R.step(["-button13", "wait 700"] + cam(-90, 40, 6, 62)); shot(pre + "_third")
+            R.step(CAMOFF)
+        if "ref_pump" in pre:
+            continue
+        fire = ["+attackprimary", "wait 1", "wait 1", "-attackprimary"]
+        R.step(fire + ["wait 700"] + fire + ["wait 1400", "reload", "wait %d" % a.openwait], timeout=60); shot(pre + "_open")
+        R.step(["wait 4000"], timeout=60)
+
+
 def part_var(a):
     """hip + aim of every --vars tik (scale / placement variants built into the overlay only)"""
     for v in a.vars:
@@ -239,7 +267,7 @@ def part_menu(a):
     R.step(["popmenu 0", "wait 800"], timeout=60)
 
 
-PARTS = {'loot': part_loot, 'menu': part_menu, 'wire': part_wire, 'look': part_look, 'pump': part_pump, 'var': part_var, 'action': part_action, 'third': part_third, 'misc': part_misc}
+PARTS = {'fin': part_fin, 'loot': part_loot, 'menu': part_menu, 'wire': part_wire, 'look': part_look, 'pump': part_pump, 'var': part_var, 'action': part_action, 'third': part_third, 'misc': part_misc}
 
 
 def run(a):
@@ -320,6 +348,7 @@ def main():
     ap.add_argument("--spot", default=None)
     ap.add_argument("--tik", default=TIK)
     ap.add_argument("--vars", default="", help="comma list of variant tiks for the `var` part")
+    ap.add_argument("--openwait", type=int, default=820, help="fin part: ms after `reload` at which the open gun is shot")
     ap.add_argument("--w", type=int, default=1280)
     ap.add_argument("--h", type=int, default=720)
     ap.add_argument("--set", action="append", default=[], help='extra boot line, e.g. --set "set cg_adsSway 1"')

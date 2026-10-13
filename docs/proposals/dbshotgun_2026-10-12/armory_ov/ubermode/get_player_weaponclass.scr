@@ -1,0 +1,102 @@
+// This script serves as a local.player.getcurrentdmweapontype or a local.player.dmweaponclass module for developers to return a player's current DM weapon class/type after the map has loaded.
+// Any time the player is holding a pistol, grenade, holstering weapon, or holds nothing, the current DM weapon class is NIL.
+// If using this script inside of a $player.size for-loop, make sure to keep running the "main" thread until $player[local.i].mef_weaponclass is no longer NIL.
+// Once not NIL, make another player variable = 1 (such as $player[local.i].weapcheck = 1) to stop checking the player's weaponclass. This prevents mef_weaponclass from becoming NIL when the player dies.
+// For Freeze Tag or Cyber Attack in particular, melting a player does not give their weapons back. Thus, mef_weaponclass is needed to keep memory of the dead player's previous DM weapon class.
+// Once melted/respawned, make $player[local.i].weapcheck = 0 and begin checking with "$player[local.i].mef_weaponclass = waitthread global/get_player_weaponclass.scr::main $player[local.i]" again.
+// The "give_weapons" thread replaces the "primarydmweapon" command to remove the "your weapon will change when you respawn" message, running when the player is melted.
+// Make sure to run "level.mef_weaponclasses = waitthread global/get_player_weaponclass.scr::setup_weapon_classes" in the map's main script, after "level waittill spawn".
+
+main local.player: // $player[local.i].mef_weaponclass = waitthread global/get_player_weaponclass.scr::main $player[local.i]
+
+	local.team = local.player.dmteam
+	local.maxframes = 30
+	local.numframes = 0
+	local.weapon = NULL
+	local.tname = "mefgun" + local.player.entnum
+
+	while(local.player != NULL && local.player.dmteam == local.team)
+	{
+		local.player weaponcommand dual targetname local.tname
+		local.weapon = $(local.tname)
+
+		if(local.weapon != NULL || local.numframes > local.maxframes)
+		{
+			break
+		}
+		waitframe
+		local.numframes++
+	}
+	if(local.weapon != NULL)
+	{
+		local.weapon.targetname = NIL
+		local.weaponclass = level.mef_weaponclasses[local.weapon.model]
+	}
+end local.weaponclass
+
+//-----------------------------------------------------------------------------
+
+setup_weapon_classes: // after level waittill spawn: level.mef_weaponclasses = waitthread global/get_player_weaponclass.scr::setup_weapon_classes
+
+	// Allied Assault
+	local.classes["models/weapons/m1_garand.tik"] = "rifle"
+	local.classes["models/weapons/kar98.tik"] = "rifle"
+	local.classes["models/weapons/thompsonsmg.tik"] = "smg"
+	local.classes["models/weapons/mp40.tik"] = "smg"
+	local.classes["models/weapons/bar.tik"] = "mg"
+	local.classes["models/weapons/mp44.tik"] = "mg"
+	local.classes["models/weapons/springfield.tik"] = "sniper"
+	local.classes["models/weapons/kar98sniper.tik"] = "sniper"
+	local.classes["models/weapons/bazooka.tik"] = "heavy"
+	local.classes["models/weapons/panzerschreck.tik"] = "heavy"
+	local.classes["models/weapons/shotgun.tik"] = "shotgun"
+	local.classes["models/weapons/coop_dbshotgun.tik"] = "shotgun"	//[dbshotgun 2026-10-13]
+
+	// Spearhead
+	local.classes["models/weapons/fg42.tik"] = "rifle"
+	local.classes["models/weapons/mosin_nagant_rifle.tik"] = "rifle"
+	local.classes["models/weapons/enfield.tik"] = "rifle"
+	local.classes["models/weapons/svt_rifle.tik"] = "sniper"
+	local.classes["models/weapons/g43.tik"] = "sniper"
+	local.classes["models/weapons/ppsh_smg.tik"] = "smg"
+	local.classes["models/weapons/sten.tik"] = "smg"
+	local.classes["models/weapons/kar98_mortar.tik"] = "shotgun"
+
+	// Breakthrough
+	local.classes["models/weapons/delisle.tik"] = "shotgun"
+	local.classes["models/weapons/it_w_carcano.tik"] = "rifle"
+	local.classes["models/weapons/uk_w_l42a1.tik"] = "sniper"
+	local.classes["models/weapons/it_w_moschetto.tik"] = "smg"
+	local.classes["models/weapons/it_w_breda.tik"] = "mg"
+	local.classes["models/weapons/uk_w_vickers.tik"] = "mg"
+	local.classes["models/weapons/uk_w_piat.tik"] = "heavy"
+	local.classes["models/weapons/us_w_minedetector.tik"] = "landmine"
+	local.classes["models/weapons/gr_w_minedetector.tik"] = "landmine"
+end local.classes
+
+//-----------------------------------------------------------------------------
+
+give_weapons local.mef_weaponclass: // replaces $player[local.i] primarydmweapon local.mef_weaponclass
+
+	waitframe
+	if(self.dmteam == "allies") // give them weapons, then do stufftext command "useweaponclass" to pull out a weapon.
+	{
+		if(local.mef_weaponclass == "rifle") { self give models/weapons/m1_garand.tik; self give models/weapons/colt45.tik; self give models/weapons/m2frag_grenade.tik; self stufftext "useweaponclass rifle" }
+		if(local.mef_weaponclass == "sniper") { self give models/weapons/springfield.tik; self give models/weapons/colt45.tik; self give models/weapons/m2frag_grenade.tik; self stufftext "useweaponclass rifle" }
+		if(local.mef_weaponclass == "smg") { self give models/weapons/thompsonsmg.tik; self give models/weapons/colt45.tik; self give models/weapons/m2frag_grenade.tik; self stufftext "useweaponclass smg" }
+		if(local.mef_weaponclass == "mg") { self give models/weapons/bar.tik; self give models/weapons/colt45.tik; self give models/weapons/m2frag_grenade.tik; self stufftext "useweaponclass mg" }
+		if(local.mef_weaponclass == "heavy") { self give models/weapons/bazooka.tik; self give models/weapons/colt45.tik; self give models/weapons/m2frag_grenade.tik; self stufftext "useweaponclass heavy" }
+		if(local.mef_weaponclass == "shotgun") { self give models/weapons/shotgun.tik; self give models/weapons/colt45.tik; self give models/weapons/m2frag_grenade.tik; self stufftext "useweaponclass heavy" }
+		if(local.mef_weaponclass == NIL) { self give models/weapons/bar.tik; self give models/weapons/colt45.tik; self give models/weapons/m2frag_grenade.tik; self stufftext "useweaponclass mg" }
+	}
+	if(self.dmteam == "axis")
+	{
+		if(local.mef_weaponclass == "rifle") { self give models/weapons/kar98.tik; self give models/weapons/p38.tik; self give models/weapons/steilhandgranate.tik; self stufftext "useweaponclass rifle" }
+		if(local.mef_weaponclass == "sniper") { self give models/weapons/kar98sniper.tik; self give models/weapons/p38.tik; self give models/weapons/steilhandgranate.tik; self stufftext "useweaponclass rifle" }
+		if(local.mef_weaponclass == "smg") { self give models/weapons/mp40.tik; self give models/weapons/p38.tik; self give models/weapons/steilhandgranate.tik; self stufftext "useweaponclass smg" }
+		if(local.mef_weaponclass == "mg") { self give models/weapons/mp44.tik; self give models/weapons/p38.tik; self give models/weapons/steilhandgranate.tik; self stufftext "useweaponclass mg" }
+		if(local.mef_weaponclass == "heavy") { self give models/weapons/panzerschreck.tik; self give models/weapons/p38.tik; self give models/weapons/steilhandgranate.tik; self stufftext "useweaponclass heavy" }
+		if(local.mef_weaponclass == "shotgun") { self give models/weapons/shotgun.tik; self give models/weapons/p38.tik; self give models/weapons/steilhandgranate.tik; self stufftext "useweaponclass heavy" }
+		if(local.mef_weaponclass == NIL) { self give models/weapons/mp44.tik; self give models/weapons/p38.tik; self give models/weapons/steilhandgranate.tik; self stufftext "useweaponclass mg" }
+	}
+end

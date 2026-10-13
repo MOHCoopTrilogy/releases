@@ -1,9 +1,12 @@
 # Sawn-off double-barrel shotgun (`coop_dbshotgun`) - proposal, STAGED
 
-**Status 2026-10-13 (second pass).** Own texture, own first-person hold and aim, a rebuilt reload (hip and aimed,
-measured in six stances), third-person clips without the pump stroke, wiring option A as patches run in an overlay.
+**Status 2026-10-13 (third pass: the armory side).** The weapon itself (own texture, hold, aim, reloads, third person)
+is as the second pass left it. New: the mod's full FINISH SET (7 finishes, sec. 13), its OWN ARMORY ENTRY with an
+unlock path through the generators (id 80, sec. 8 - wiring option A is superseded), the pick and the finish proven
+over a map restart and a map change. World behaviour (sec. 14) is only partly verified.
 Everything is staged in this folder and on engine branch `dbshotgun-next` (worktree
-`C:\mohaa-coop-dev\openmohaa-hzm-dbs`, cgame only). Nothing is in the mod tree, the fixes pak or the live install.
+`C:\mohaa-coop-dev\openmohaa-hzm-dbs`, cgame only, unchanged this pass: 96c32bd9 = harness `cgame_dbs8`). Nothing is
+in the mod tree, the fixes pak, `docs/tools` or the live install.
 
 ## 1. State per item
 
@@ -17,8 +20,11 @@ Everything is staged in this folder and on engine branch `dbshotgun-next` (workt
 | 3d | Weight (`gunphys`) | **done** | in every clip; looked at in the GIFs |
 | 3e | Raise, lower, sprint, second barrel right after the first | **done** | looked at (GIFs / sheet); aimed second shot needed a statemap row (sec. 7) |
 | 4 | Third person without the pump stroke | **done** (fire stand / crouch, reload end) | looked at (sheet + GIF); needs the two staged patches |
-| 5 | Wiring option A + world behaviour | **patches staged and run; NOT finished**: the pick is lost at a map change (sec. 8) | select / spawn with it / switch off / death-drop log line: run and looked at; pick across a map restart: FAILS; use-to-loot: not verified |
-| 6 | Engine minimal + merge note | **done** | sec. 6 |
+| 5a | Finish set: gold, chrome, blued, bloody, woodland, winter, desert | **done** | looked at in engine: every finish at the hip, in the aim, in third person, open (runs f1-f3, a2) |
+| 5b | Own armory entry + unlock path (challenge "Both Barrels", 60 shotgun kills) | **done, staged** | run a1 / a2: every step of sec. 8 looked at + log |
+| 5c | The pick lost at a map change (the second pass's open defect) | **fixed** by 5b | run a1: slot + finish after a map restart AND a map change, looked at |
+| 5d | World behaviour | **NOT finished** (sec. 14) | a double barrel lying on the ground: looked at; death-drop log line; touch pickup, use-to-loot, shell sharing: NOT verified |
+| 6 | Engine minimal + merge note | **done** (unchanged this pass) | sec. 6 |
 | 7 | Sounds | aliases resolve (no alias error in `developer 1` logs), **not heard** | sec. 9 |
 
 ## 2. Source and licence
@@ -46,8 +52,13 @@ python tools/dbs_tps.py          # 3 third-person torso clips (pump stroke taken
 python tools/dbs_icon.py         # use-to-loot picture w_dbshotgun.tga
 python tools/sightrow_dbs.py C:\mohaa-coop-dev\openmohaa-hzm-dbs\code\cgame\cg_adssights.h
 cmake --build .cmake --config Release --target cgame -- -m:4 -v:m       (in the worktree)
-python tools/mkov_dbs.py build/ov.pk3 [--wire] [--notps]                # test overlay; --wire = the armory patch
-python tools/run_dbs.py  <id> --overlay <abs pk3> --cgame cgame_dbs8 --parts look,pump,action,third,misc,wire,loot,menu
+python tools/dbs_finish.py       # the 7 finishes: 4 baked sheets + bore mask, coop_dbshotgun_finish.shader, 7 tiks ; `view` = offline
+python tools/dbs_clip.py         # textures/hud/clip/clip_2.tga (the armory's 2-round picture)
+python wiring/stage_armory_dbs.py --sr                                  # the armory entry through the generators -> wiring/gen, armory_ov
+python tools/mkov_dbs.py build/ov.pk3 [--armory] [--notps]              # test overlay; --armory = armory_ov + the test hooks
+python tools/run_dbs.py  <id> --overlay <abs pk3> --cgame cgame_dbs8 --parts look,pump,action,third,misc,fin
+python tools/run_arm.py  <id> --overlay <abs pk3> --cgame cgame_dbs8 --parts arm[,armq,world] --set "set coop_lockLoadout 1"
+python tools/fin_sheet.py <run> <out prefix>                            # finish contact sheets
 python tools/run_dbsh.py <id> --overlay <abs pk3> --cgame cgame_dbs8 --guns dbs --parts yaw --stdemo stand,crouch,prone,standL,standR,braced --tail 360:4 --shots 1 --demoreload 175 --demoyaw 165
         emptied gun: --shots 2 --demoempty --demoreload 290        hip: add --sthip (one stance)
 python tools/box_dbs.py <id> dbs --sway [--empty]      (emptied: set BOXENG_AFTER=66 = from the reload's start)
@@ -63,6 +74,7 @@ session: `...\scratchpad\dbs\runs\`, 8.9 GB) - G: filled up on 2026-10-13 (bug-3
 
 2 shells; one barrel per pull, 0.30 s between; 26 x 14 = 364 per barrel (pump: 20 x 14); spread 115 115 135 135; pellet
 range 650; move speed 1.00; view kick -23 -26 / +-2 / recentre 12; start ammo 40. Name `"Shotgun (Double Barrel)"`.
+Rank **645** (was 640 = the pump gun's: a shared rank hides a gun on the weapon wheel; bug-3810).
 
 ## 5. First person - `tools/dbs_hands.py` (numbers at its top)
 
@@ -129,28 +141,42 @@ the second shell must then play the plain row). Do not keep two blocks: each wou
   `RELOAD_SHOTGUN_END`; plus one exit row + routing state `COOP_DBS_REFIRE_AIM`: **the second barrel while aiming**
   was blocked for 1.2 s (the aimed fire state leaves only when the pump clip is done; bug-3775) - now at 0.30 s.
   Reload start / per-shell rows are kept (the gun's own model shows the barrels dropped for everyone).
+  2026-10-13: the mod TREE's state file gained `RELOAD_SHOTGUN_BREAK_END` (a reload broken off to fire), which also plays
+  `shotgun_reload_end`: the patch now puts the row in front of each (1 state in the released file, 2 in the tree);
+  `--check` passes on both. The tree's new shotgun states were NOT run with this gun (the test install is the release).
 
-## 8. Wiring option A - `wiring/patch_wiring_dbs.py` (exact list in its header; `--check <mod root>` passes: 85 files)
+## 8. Armory: own entry, own unlock path - `wiring/stage_armory_dbs.py` (details: `wiring/WIRING.md`)
 
-Switch on the trench gun's armory page ("DOUBLE BARREL: OFF / ON"), per player, carried by the armory's name bus
-(token ` ,db1` / ` ,db0`, command 53), read at one place (`loadout_finResolve`), server gate `coop_dbShotgun` (seta 1).
-Files: `variables.scr`, `player.scr`, `loadoutpick.scr` (3 places), `itemhandler.scr` (2 lists), `coop_defaults.cfg`,
-`ui/coop_loadout.urc` (2 buttons; this file has NO generator and is checksum-locked in
-`docs/tools/check_mp_isolation.py` - update the checksum), `ui/loadout/init.cfg`, all 74 `ui/loadout/pNN.cfg` (the
-lines `docs/tools/gen_loadout.py` emits once `patch_gen_loadout()` is applied to it), 4 new cfgs under
-`assets/ui/loadout/`. `coop_mod/recoil_table.txt` is generated: re-run its extractor.
+Roster id **80**, tile **DOUBLE BARREL** on the HEAVY tab under the TRENCH GUN, DMG 10 / RPM 3 / ACC 6 / MOB 10, 2 rounds.
+**Unlock rule: challenge "Both Barrels" - Get 60 kills with the Shotgun** (`wpn_shotgun_v`, on the pump gun's existing
+kill statistic; the mod's own pattern for a gun's sibling - drum Thompson, silenced MP40, scoped StG - sits between the
+base and the elite kill challenge, here 30 and 90). **Finishes** unlock as the pump gun's do (the finish by its own
+account-wide challenge; the gun takes finishes once `wpn_shotgun`, 30 shotgun kills, is done) - shared with the pump
+gun, no statistic of its own. **Master switch** `coop_dbShotgun` (0 = tile hidden, pick refused).
+Made the mod's way: sources edited in a scratch copy of the repo, then `gen_loadout.py build`, `gen_skinbase.py`,
+`armory_unlocks.py --emit`, `gen_loadout.py check` (EXACT REPRODUCTION) and, for the test install, the patched
+`gen_service_record.py` - as patched COPIES; `docs/tools` and the mod tree are untouched.
 
-Run in the overlay (`mkov_dbs.py --wire`, installed mod files patched; test profile with `coop_lockLoadout 0` - its
-trench gun is locked behind the "Shadow Hunter" challenge):
+Run a1 (private test install, released mod + overlay `mkov_dbs.py --armory`, `coop_lockLoadout 1`, cgame_dbs8, 0 script
+errors) and a2; progress was made with the mod's own `chal_bump` (the function a kill calls), not by editing a record:
 
-| Step | Result |
-|---|---|
-| page shows the switch on the trench gun's page only, toggles | looked at (`dbs_loadout_switch.jpg`) |
-| switch ON -> `DBSPICK 0 1`, respawn -> `cache models/weapons/coop_dbshotgun.tik`, the gun in hand | run w3 / w4, looked at |
-| die with it -> `DEATHDROP e0 models/weapons/coop_dbshotgun.tik` | log line (run w3 / w4); the item on the ground not looked at |
-| switch OFF, respawn -> the trench gun | looked at |
-| pick kept across a map restart (`ui_startdmmap 2`) | **NOT WORKING YET.** The client keeps the pick (`coop_loDbsA` = `append name ,db1`, read back after the restart) and the same replay sent by hand AFTER the spawn lands (`DBSPICK 0 1`, runs w4 / w6 / w7). The automatic replay in `loadout_resend` is lost every time: one send (w3 / w4), four sends 4 s apart (w6), four sends behind an `isAlive` / not-spectator wait (w7 - that wait passes before the player's first spawn, so it gates nothing). After a restart the player spawns with the TRENCH GUN until he toggles the switch again (looked at). Next step: send the replay from where the spawn kit is issued (the `KITGIVE` site), not from the join thread. |
-| picked up with Use | **NOT verified, and by design not for this case**: use-to-loot is for guns an AI dropped (`weapon.cpp` `m_bCoopUseLoot`), a player's drop keeps touch pickup; no AI carries this gun, so the prompt and the new picture were not seen. A script-spawned copy on the ground shows no prompt (looked at). |
+| Step | Result | Checked by |
+|---|---|---|
+| fresh record: tile with padlock, hover text "UNLOCK: 60 kills w/ Shotgun (Both Barrels)" | yes | looked at (`dbs_armory_unlock_path.jpg` 1) |
+| click while locked | inspect page only, `coop_lo1` stays empty | looked at (2) + cvar |
+| an existing record (the pump gun unlocked through ITS challenge) + 59 shotgun kills | still locked (`v=59`) | log |
+| the 60th kill | `models/weapons/coop_dbshotgun.tik` added to the record; the record kept everything it had (compared before / after) | log; tile without padlock looked at (3) |
+| click | PRIMARY 1 = DOUBLE BARREL, `coop_lo1` = 80, server slot = the tik | looked at (4) + log |
+| respawn in the map | in the kit (4 items); in the hand after `useweaponclass heavy` - the game brought up PRIMARY 2 first | looked at (5) |
+| finish WINTER (its challenge + `,f16`) | "WINTER finish applied", `coop_loS1F` = 6 | log |
+| map RESTART (m3l2) | spawns with the winter double barrel in the hand, slot + finish intact | looked at (6) + log |
+| map CHANGE (m3l2 -> m2l1) | the same | looked at (7) + log |
+| Service Record | SUPPORT WEAPONS 12/12: "Both Barrels 60/60"; baked hover "Unlocks: Double Barrel Shotgun" | page looked at in game (8); the hover picture looked at as a file - the hover itself not exercised (no mouse in the harness) |
+| `coop_dbShotgun 0` | tile gone from the heavy tab (its row stays empty); after a restart "DOUBLE BARREL is switched off on this server", slot empty, spawns without it | looked at (9, 10) + log |
+
+NOT tested: a second client / a dedicated server; the disconnected (main menu) armory; the mod TREE's newer files
+(the test install runs the released mod - `player_Torso.st` in the tree has new shotgun reload states since 08:54
+today, the torso patch's check passes on it but nothing was run against it); the MP armory (not wired, on purpose).
 
 ## 9. Sounds (not heard - the harness is muted). No alias error line in the `developer 1` logs of runs w3-w5.
 
@@ -166,35 +192,74 @@ trench gun is locked behind the "Shadow Hunter" challenge):
 
 ## 10. Files for integration
 
-* `assets/models/weapons/coop_dbshotgun.tik`, `assets/models/weapons/coop_dbshotgun/` (skd + 8 gun clips)
+* `assets/models/weapons/coop_dbshotgun.tik` + 7 finish tiks `coop_dbshotgun_{gold,chrome,blued,bloody,camo_woodland,camo_winter,camo_desert}.tik`
+* `assets/models/weapons/coop_dbshotgun/` (skd + 8 gun clips)
 * `assets/models/human/animation/viewmodel/coop_dbshotgun/` : 16 hand clips `dbs_*.skc`, 3 torso clips `coop_dbs_tps_*.skc`
-* `assets/textures/models/weapons/coop_dbshotgun/*.jpg`, `assets/scripts/coop_dbshotgun.shader`
-* `assets/textures/hud/loot/w_dbshotgun.tga`, `assets/ui/loadout/dbs_*.cfg` (4)
+* `assets/textures/models/weapons/coop_dbshotgun/` : `coop_dbshotgun.jpg`, `_parts.jpg`, `_bloody.jpg`, `_camo_woodland.jpg`, `_camo_winter.jpg`, `_camo_desert.jpg`, `_fmask.jpg`
+* `assets/scripts/coop_dbshotgun.shader`, `assets/scripts/coop_dbshotgun_finish.shader` (uses the mod's `textures/coop_skins/env_sheen.tga`)
+* `assets/textures/hud/loot/w_dbshotgun.tga`, `assets/textures/hud/clip/clip_2.tga`
 * `rows/fps_rows_coop_dbshotgun.txt` -> inside `models/player/base/fps_anims_shotgun.txt` (fixes pak copy)
 * `rows/tps_rows_coop_dbshotgun.txt` -> inside `models/player/base/anims_shotgun.txt`
-* patches: `wiring/patch_torso_dbs.py`, `wiring/patch_wiring_dbs.py` (+ `patch_gen_loadout`), `wiring/patch_cgame_loot_dbs.py` (already on the branch)
-* engine: `dbshotgun-next`; `sights_override.json` + `tools/sightrow_dbs.py`
+* patches: `wiring/patch_torso_dbs.py`; `wiring/gen/armory_dbs.patch` (18 mod files) + `wiring/gen/new/` (12 cfgs) +
+  `wiring/gen/generators.patch` (TSV row, `armory_unlocks.py` HZM_MOD, `gen_service_record.py` HZM_MOD + REWARD_NAMES);
+  then the generators and the `ui/coop_loadout.urc` checksum (`wiring/WIRING.md` steps 6-7);
+  `wiring/patch_cgame_loot_dbs.py` (already on the branch)
+* engine: `dbshotgun-next` 96c32bd9; `sights_override.json` + `tools/sightrow_dbs.py`
+* NOT for integration: `armory_ov/` (test install), `wiring/superseded/` (option A), `build/`
 
 ## 11. Open points (honest list)
 
-0. **The armory pick does not come back after a map change** (sec. 8) - the one known defect of the wiring.
-1. The aimed reload plays low on the screen (chambers at about 85 % of the height): the price of staying under the
-   centre box with the hand above the shell. It is readable; it is not a showcase.
-2. Hip reload: the loading hand is large when it crosses to the left chamber.
-3. Use-to-loot of an AI-dropped copy, touch pickup of a player's drop, the item lying after a death: not looked at.
-4. The armory button sits at the bottom right corner next to the footer line; `ui/coop_loadout.urc` has no generator.
-5. Third person: the hold / aim poses are the pump gun's (left hand at 16 u = the front half of this gun's forend).
-6. The raise clamps the left arm in 5 frames, the lower in 8 - all below the view.
-7. Sounds chosen by file, never heard. The recoil table row comes from re-running the extractor.
-8. Aimed fire keeps the `charge` hands (as every gun); the kick there is the view kick only.
+1. World behaviour, sec. 14: touch pickup, use-to-loot, shell sharing are not verified; one unexplained log line.
+2. The aimed reload plays low on the screen (chambers at about 85 % of the height). NOT raised this pass.
+3. Hip reload: the loading hand is large when it crosses to the left chamber. NOT changed this pass.
+4. Stage finishes (gold / chrome / blued) read flat on this dark sheet - the same look as the pump gun's (side by side:
+   `build/_f2_refs.jpg`), the wood is tinted too, as on every gun. The winter "open" still has the loading hand in it.
+5. With the master switch off the tile's row is an empty gap and the PRIMARY card keeps the archived name.
+6. A respawn in the map brings up PRIMARY 2 first when the double barrel is PRIMARY 1 (after a map load it is in the
+   hand); not looked into - may be the same for any pair of guns.
+7. Third person: the hold / aim poses are the pump gun's; the raise clamps the left arm in 5 frames, the lower in 8.
+8. Sounds chosen by file, never heard.
+9. Recoil table: 8 rows written from the tik's own viewkick line by the staging script (the extractor named in the
+   table's header was not found under docs/tools).
+10. Not wired (as for the other new guns): `global/weapon.scr` AI alias, `developer.scr` / `buildmode_catalog.scr`
+    lists, the MP armory, model variants (pack skins).
 
 ## 12. Handover
 
 Knobs: `dbs_hands.py` HOLD / AIM / WORK / LOWERED / PHYS / `GP.ACTIONS` / WRIST_VIEW / BELT_VIEW / LEVER_SHIFT;
-`dbs_anim.py` THETA_OPEN / THETA_CLOSE / EJECT_F / EJECT_DIR / SHUT_F; `dbs_skin.py` top block; `dbs_tps.py` JOBS.
-Traps met this pass: bug-3774 .. bug-3781. Runs (in `dbslib.RUNS`): skin1, hold1-3, rl1, rm1 (one left, six stances),
-re2, re3, re5 (emptied, six stances), rh5 / rh6 (hip), tp2 (third person, misc), w3-w7 (wiring; w5 also loot + menu).
-Next, in order: (a) the join replay from the spawn-kit site (sec. 8), then re-run `--parts wire`; (b) an AI-dropped
-copy for the use-to-loot prompt and picture; (c) listen to the sounds; (d) raise the aimed work pose if the user
-prefers seeing more of the reload over the 2 % box rule. Someone's
-`zzzzzzzzzzzzzzzz_memorialtest.pk3` in `G:\mohaa-hudfeed4\home\maintt` was left alone.
+`dbs_anim.py` THETA_OPEN / THETA_CLOSE / EJECT_F / EJECT_DIR / SHUT_F; `dbs_skin.py` top block; `dbs_tps.py` JOBS;
+`dbs_finish.py` FINISHES / BLOTCH_CM / BORE_MASK; `stage_armory_dbs.py` ID / BARS / CHAL / XFM (env DBS_XFM).
+Traps: bug-3774 .. bug-3781 (second pass), bug-3808 .. bug-3813 (this pass).
+Runs: finished ones are in `H:\hzm_archive\dbs\<run>\` (f1-f3 finishes, a1 armory, a2 armq + world v1, a3 world v2;
+second pass: re2-re5, rh1-rh6, rl1, rm1-rm4). **Loss, bug-3808:** this pass's first archive move put the second pass's
+28 run folders into one folder; the 15,117 `ab__<run>__` frames were sorted back, 511 files without a run id in their
+names (per-run qconsole.log / notes.json / wire stills / tp, act, ms frames) collided - one copy of each survives in
+`H:\hzm_archive\dbs\_merged_no_run_id\`. The media made from them is intact in `media/` and `build/`.
+The harness home keeps the test player's unlock record and armory picks between runs (a2 started with 7 unlocks).
+Next, in order: (a) world behaviour: kill the test AI another way (shoot it), use-to-loot prompt + picture, touch
+pickup by a player who carries no shotgun, shells with readable counts, and the `cannot be picked up` line (bug-3813);
+(b) raise the aimed work pose (`WORK['ads']`, six-stance box runs); (c) the hip loading hand; (d) listen to the sounds.
+Someone's `zzzzzzzzzzzzzzzz_memorialtest.pk3` in `G:\mohaa-hudfeed4\home\maintt` and the old `runs` folders there were left alone.
+
+## 13. The finish set - `tools/dbs_finish.py`
+
+The seven the pump gun has, by the mod's recipe (`gen_skins.py` / `bake_skins.py` / `gen_weapon_skins.py`, read, not
+run): gold / chrome / blued = shader stages over OUR sheet with the mod's tint and sheen numbers; bloody / woodland /
+winter / desert = sheets baked from OUR sheet with the mod's colour maths and palettes. Different from the mod, on
+purpose: the pattern is laid out in gun space (this atlas has many islands - a UV-space pattern breaks at every seam);
+the bores, breech faces, standing breech and muzzle faces keep the base sheet on the baked finishes, and a mask stage
+keeps the bores dark under the stage finishes; the bead and the shells are the untouched second surface.
+**All eight tiks carry the name "Shotgun (Double Barrel)"** - a second " (Finish)" suffix would resolve to the pump
+gun's hands, torso rows and sight row (bug-3809); the armory tells them apart by tik path. Ranks 3000-3006.
+`gen_skins.py` skips this gun by itself (a name with " (" is "already a variant"), so it will not overwrite them.
+
+## 14. World behaviour (NOT finished) - runs a2, a3
+
+| Item | State |
+|---|---|
+| death drop | log `DEATHDROP e0 models/weapons/coop_dbshotgun.tik` at every death with it; a double barrel lying on the ground looked at (`dbs_world_unfinished.jpg`, right) |
+| touch pickup of a player's drop | NOT verified: the test player's kit already held the gun (the armory pick persists in the harness home), so "in the hand afterwards" proves nothing |
+| `cannot be picked up` | 3 x in run a3: `(itemhandler.scr::handleWeaponPickup) *ERROR*: Weapon with model models/weapons/coop_dbshotgun.tik cannot be picked up by <player>`, each right after a respawn at the place of the own death drop. Cause not established (bug-3813) |
+| AI with the gun | armed through `aihandler.scr::coop_actorArm` (log `DBSAI armed`; the AI stands with a long gun at its side, looked at, not close enough to name it) |
+| use-to-loot prompt + picture | NOT verified: the script-spawned AI could not be killed by script (`damage 5000`, then `takedamage` + `kill`: it stayed up), so there was no AI drop |
+| shells shared with the pump gun | NOT verified by a run. By the tiks: both declare `ammotype "shotgun"` (one pool in the engine); `itemhandler.scr::getAmmoType` answers "shotgun" for the tik (staged) |

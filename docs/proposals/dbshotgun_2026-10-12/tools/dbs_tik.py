@@ -179,7 +179,7 @@ init
 		weapontype		heavy
 		weaponsubtype		2
 		name			"%(name)s"
-		rank			640 640
+		rank			645 645
 
 		sp bulletrange		%(brange)d
 		sp bulletspread		%(spread)s
