@@ -35,8 +35,12 @@ earlier steps has to change). A step is a list of ops:
                                the CURRENT mod-tree copy (which then becomes the pinned base). A conflict fails the run.
   G(rel, lane, src, rev, gun)  the same 3-way merge ONTO A MOD-TREE FILE of the code pak (coop_mod/...): written only
                                with --mod-patches; the dry run says whether the mod tree already carries it
+  E(rel, old, new, gun)        EDIT of a fixes source that an earlier (shipped) step owns: exactly ONE line matching
+                               the regex `old` is rewritten to `new` (or the line is already `new`) - a correction
+                               decided after the step shipped; the step itself stays frozen
 A lane name that starts with `@` is a folder beside the lane folders that holds game paths directly (`@ship` = the
-pistol lane's frozen ship cut), not `<lane>/assets/`.
+pistol lane's frozen ship cut), not `<lane>/assets/`. `<lane>@<docs rev>` reads the lane's staged file from the docs
+repo at that commit (a FROZEN cut whose folder has moved on since).
 Entry kinds (docs/tools/gen_fixes_pak.py): a path already in the manifest keeps its entry; a path the mod tree carries
 = `base` (mod-tree copy saved under docs/tools/assets/fixes_base, pinned by md5 + mtime ticks); a path only a
 retail / third-party pak carries = `base_pak`; a path nothing carries = `new`. A path that a pak sorting ABOVE the
@@ -51,8 +55,8 @@ import intlib as L
 MARK = '\t//===================== HZM coop ADS rollout (integrate_ads.py; rows taken from the lane folders) ====================='
 
 
-def F(lane, rel, gun, dst=None, tga_flag=False):
-    return dict(op='F', lane=lane, rel=rel, gun=gun, dst=dst, tga_flag=tga_flag)
+def F(lane, rel, gun, dst=None, tga_flag=False, md5=None):
+    return dict(op='F', lane=lane, rel=rel, gun=gun, dst=dst, tga_flag=tga_flag, md5=md5)
 
 
 def T(lane, rel, gun, allow=(), strip=None):
@@ -77,6 +81,10 @@ def P(lane, tool, gun):
 
 def M(rel, lane, base, gun, src=None):
     return dict(op='M', rel=rel, lane=lane, base=base, gun=gun, src=src or rel)
+
+
+def E(rel, old, new, gun):
+    return dict(op='E', rel=rel, old=old, new=new, gun=gun)
 
 
 def G(rel, lane, src, rev, gun):
@@ -335,7 +343,29 @@ def step5():
     return ops
 
 
-STEPS = {1: step1, 2: step2, 3: step3, 4: step4, 5: step5}
+def step7():
+    """SHOTGUN PUMP IN THE AIM (coordinator addition 2026-10-13 after the user's report on the deployed pass-1 build:
+    "the shotgun doesnt have the pumping action when in ads"; heavy lane SHOTGUN_PUMP_FIX.md, cut FROZEN at docs
+    a78fd3f - the lane folder now holds a re-timed clip that must NOT ship, so the files are read from that commit).
+    (Step 6 is the FG 42 pair's number; it is not in.)
+      * the aimed pump clip coop_shotgun_cycle_ads.skc (md5 4f95c41b: the support hand rides the forend frame for frame)
+      * 4 ADDED per-weapon rows coopr_shotgun_cycle / _cycle_ads / _cyclelast / _cyclelast_ads (weapon key "shotgun":
+        the pump gun and its finishes; the cgame's same-mesh guard keeps a later "Shotgun (Double Barrel)" off them)
+      * coordinator's decision: in the gun's `fire` row of all 14 shotgun tiks the hull leaves 0.35 s after the shot
+        instead of 0.2 s (ONE client command; the forend reaches the rear at 0.33-0.37 s, hip and aim alike)
+    No state file, no server-read row. Engine: heavy/tools/apply_cyclewpn.py (cgame)."""
+    h = 'heavy@a78fd3f'
+    sg = ['shotgun'] + ['shotgun_' + x for x in ('authwinch', 'dhshotblack', 'dhshotchrome', 'guanshotty', 'hobbsshotty', 'lv_ttshotgun') + FINISH]
+    ops = [F(h, VM + 'shotgun/coop_shotgun_cycle_ads.skc', 'Shotgun (pump in the aim)', md5='4f95c41b7a32d8fef3c2fa9c025f570e')]
+    ops += [R('models/player/base/fps_anims_shotgun.txt', h, ['coopr_shotgun_cycle', 'coopr_shotgun_cycle_ads', 'coopr_shotgun_cyclelast',
+                                                              'coopr_shotgun_cyclelast_ads'], 'Shotgun (pump in the aim)')]
+    ops += [E(W + t + '.tik', r'^(\s*)entry commanddelay 0\.2 tagspawn tag_eject(\s*)$', r'\1entry commanddelay 0.35 tagspawn tag_eject\2',
+              'Shotgun (hull leaves with the pump)') for t in sg]
+    ops += [C('Shotgun', 'Shotgun', sg)]
+    return ops
+
+
+STEPS = {1: step1, 2: step2, 3: step3, 4: step4, 5: step5, 7: step7}
 
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -343,6 +373,23 @@ def lane_file(lane, rel):
     if lane.startswith('@'):
         return os.path.join(L.PROP, lane[1:], *rel.split('/'))
     return os.path.join(L.PROP, lane, 'assets', *rel.split('/'))
+
+
+def lane_read(lane, rel):
+    """bytes of a lane's staged file, or None; `<lane>@<rev>` = from the docs repo at that commit"""
+    if '@' in lane and not lane.startswith('@'):
+        ln, rev = lane.split('@')
+        r = subprocess.run(['git', '-C', L.ROOT, 'show', '%s:docs/proposals/ads_twohand_2026-10-11/%s/assets/%s' % (rev, ln, rel)], capture_output=True)
+        if r.returncode:
+            return None
+        data = r.stdout
+        if rel.lower().endswith(('.txt', '.tik', '.shader', '.scr', '.st')):     # autocrlf: the blob is LF, the staged file was CRLF
+            wc = lane_file(ln, rel)
+            if os.path.isfile(wc) and b'\r\n' in open(wc, 'rb').read() and b'\r\n' not in data:
+                data = data.replace(b'\n', b'\r\n')
+        return data
+    src = lane_file(lane, rel)
+    return open(src, 'rb').read() if os.path.isfile(src) else None
 
 
 def merge3(ours, base, theirs):
@@ -541,12 +588,34 @@ def main():
                     res = 'NOT in the mod tree yet (give --mod-patches)'
                 report.append((st, o['gun'], 'mod merge', mp + ' <= %s/%s (snapshot of mod %s)' % (o['lane'], o['src'], o['rev']), res))
                 continue
+            if o['op'] == 'E':
+                k = key_of(o['rel'])
+                cur = out[k] if k in out else open(os.path.join(L.FIX, *k.split('/')), 'rb').read()
+                nl_ = b'\r\n' if b'\r\n' in cur else b'\n'
+                lines_ = [x.decode('latin-1') for x in cur.split(nl_)]
+                hit = [i for i, x in enumerate(lines_) if re.search(o['old'], x)]
+                want = [re.sub(o['old'], o['new'], lines_[i]) for i in hit]
+                if len(hit) == 1:
+                    lines_[hit[0]] = want[0]
+                    act = 'EDIT line %d: %s' % (hit[0] + 1, want[0].strip())
+                elif not hit and sum(1 for x in lines_ if 'commanddelay 0.35 tagspawn tag_eject' in x) == 1:
+                    act = 'same (already edited)'
+                else:
+                    fails.append('%s: the line to edit is there %d times' % (o['rel'], len(hit)))
+                    continue
+                data = nl_.join(x.encode('latin-1') for x in lines_)
+                out[k] = data
+                owner[k] = (o['gun'], st, 'manifest (base)')
+                report.append((st, o['gun'], 'edit', k, act))
+                continue
             if o['op'] in ('F', 'T'):
-                src = lane_file(o['lane'], o['rel'])
-                if not os.path.isfile(src):
+                data = lane_read(o['lane'], o['rel'])
+                if data is None:
                     fails.append('%s: not staged in lane %s' % (o['rel'], o['lane']))
                     continue
-                data = open(src, 'rb').read()
+                if o.get('md5') and L.md5(data) != o['md5']:
+                    fails.append('%s: md5 %s is not the frozen cut\'s %s' % (o['rel'], L.md5(data), o['md5']))
+                    continue
                 if o.get('dst'):
                     o = dict(o, rel=o['dst'], src_rel=o['rel'])
                 tganote = ''
@@ -614,7 +683,7 @@ def main():
                 report.append((st, o['gun'], kind, k + (' <= lane file ' + o['src_rel'] if o.get('src_rel') else ''), ('same' if os.path.isfile(os.path.join(L.FIX, *k.split('/'))) and
                                open(os.path.join(L.FIX, *k.split('/')), 'rb').read() == data else 'WRITE') + note))
             elif o['op'] == 'R':
-                src = open(lane_file(o['lane'], o['rel']), 'rb').read().decode('latin-1').splitlines()
+                src = lane_read(o['lane'], o['rel']).decode('latin-1').splitlines()
                 for row in o['rows']:
                     hit = [l for l in src if row_of(l) == row]
                     if len(hit) != 1:

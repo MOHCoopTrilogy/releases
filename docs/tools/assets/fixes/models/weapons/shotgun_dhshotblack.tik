@@ -317,7 +317,7 @@ animations
 			)
 
 			// shell eject
-			entry commanddelay 0.2 tagspawn tag_eject
+			entry commanddelay 0.35 tagspawn tag_eject
 			(
 				count 1
 				model models/ammo/shotgunshell.tik

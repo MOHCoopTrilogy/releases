@@ -1852,5 +1852,8 @@
   },
   "textures/hud/loot/w_g43irons.tga": {
     "new": "True"
+  },
+  "models/human/animation/viewmodel/shotgun/coop_shotgun_cycle_ads.skc": {
+    "new": "True"
   }
 }

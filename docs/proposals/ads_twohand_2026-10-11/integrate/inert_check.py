@@ -37,6 +37,7 @@ OWNERS = [
     (r'^coopr_walther_ppk_(reload_ads|reload_empty|reload_empty_ads)$', 'step 4 PPK'),
     (r'^coopr_mauser_c96_(charge|idle)$|^coopr_bombing_run_(charge|idle)$', 'step 4 pin: C96 / Bombing Run keep the released aim pose and hip idle'),
     (r'^coopr_g_43_irons_(charge|reload_ads|reload_empty|reload_empty_ads)$', 'step 5 G 43 Irons'),
+    (r'^coopr_shotgun_(cycle|cyclelast)(_ads)?$', 'step 7 Shotgun: the pump stroke in the aim (same-mesh guard in the cgame)'),
     (r'^coopr_[a-z0-9_]+_reload(_single|_end)?$', 'RELEASED per-weapon reload row (looked up by the released cgame too)'),
 ]
 PISTOL_TIKS = (r'^models/weapons/(colt45|colt45_(?!m10)[a-z0-9_]+|colt_silenced|dbno_pistol[a-z0-9_]*|p38|p38_[a-z0-9_]+|p38silenced|it_w_beretta[a-z0-9_]*'

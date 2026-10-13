@@ -102,12 +102,26 @@ def scenario(key, shot):
     burst = 2 if cls != 'auto' else 3
     m = lambda ph: ['echo ^~^~^ INTM %s %s' % (key, ph)]
     Lc = ['set coop_intAmmo %s' % ammo]
+    if cls == 'pump' and '--pumpsheet' in sys.argv:
+        # step 7, the look the coordinator asked for: a picture 0.45 s after aimed shots 1, 3 and 5 (the LAST shell) and
+        # after three hip shots - hull in the air, support hand at the rear of its stroke
+        one = lambda tag: ['+attackprimary', 'wait 70', '-attackprimary', 'wait 380', 'screenshot pump_%s' % tag, 'wait %d' % (GAP[cls] - 380)]
+        two = ['+attackprimary', 'wait 70', '-attackprimary', 'wait %d' % GAP[cls]]
+        Lc += m('aim') + ['+button13', 'wait 1900', 'screenshot pump_aim0', 'wait 200']
+        Lc += m('aimempty') + one('aim1') + two + one('aim3') + two + one('aim5_last') + ['wait 6500', '-button13', 'wait 900', 'screenshot pump_hip0', 'wait 200']
+        Lc += m('hipfire') + one('hip1') + one('hip2') + one('hip3') + ['wait 1300'] + m('end')
+        return Lc
     Lc += m('hipfire') + fire(cls, burst, clip) + ['wait 1300']
     Lc += m('hipreload') + ['reload', 'wait %d' % rw]
     Lc += m('aim') + ['+button13', 'wait 1900']
     if shot:
         Lc += ['screenshot int_%s' % key, 'wait 150']
-    Lc += m('aimfire') + ['set cg_adsSightDebug 2'] + fire(cls, burst, clip) + ['wait 1300']
+    if cls == 'pump' and shot:
+        # step 7: ONE picture 0.45 s after an aimed shot (the hull leaves at 0.35 s, the forend / hand are at the rear)
+        Lc += m('aimfire') + ['set cg_adsSightDebug 2', '+attackprimary', 'wait 70', '-attackprimary', 'wait 380', 'screenshot int_%s_pump' % key,
+                              'wait %d' % (GAP[cls] - 380)] + fire(cls, burst - 1, clip) + ['wait 1300']
+    else:
+        Lc += m('aimfire') + ['set cg_adsSightDebug 2'] + fire(cls, burst, clip) + ['wait 1300']
     Lc += m('aimreload') + ['reload', 'wait %d' % rw]
     Lc += m('aimempty') + fire(cls, clip, clip) + ['wait 700', 'reload', 'wait %d' % (rw + 1500), 'set cg_adsSightDebug 1']
     Lc += m('crouch') + ['set coop_proneHold 999', '+movedown', 'wait 1200'] + fire(cls, burst, clip) + ['wait 1300', 'reload',
@@ -534,7 +548,9 @@ def unlock(sess, bins, code, fixes, wid='78'):
         time.sleep(6)
         R.step(xt('state') + menu + ['exec ui/loadout/req%s.cfg' % wid, 'wait 400'] + click + ['popmenu 0', 'wait 400', 'echo ^~^~^ UNLOCK rank0_click:'] + cv, timeout=120)
         R.step(xt('seed', 2500) + xt('under2', 2500) + xt('state') + menu + click + ['popmenu 0', 'wait 400', 'echo ^~^~^ UNLOCK rank1_click:'] + cv, timeout=120)
-        R.step(xt('award', 1000) + ['wait 9000'] + xt('state') + menu + click + ['screenshot int_unlock_%s' % sess, 'wait 300', 'popmenu 0', 'wait 400',
+        # the armory's own unlock export after a promotion takes a few seconds (75 roster entries, restarted by every menu
+        # open): run u5b clicked 1.5 s after the tab was up and the tile was still padlocked on the CLIENT - wait for it
+        R.step(xt('award', 1000) + ['wait 9000'] + xt('state') + menu + ['wait 8000', 'exec ui/loadout/lktab0.cfg', 'wait 1500'] + click + ['screenshot int_unlock_%s' % sess, 'wait 300', 'popmenu 0', 'wait 400',
                                                                                  'echo ^~^~^ UNLOCK rank2_click:'] + cv, timeout=120)
         restart('after_restart')
         R.step(menu + ['exec ui/loadout/s1sel.cfg', 'wait 200', 'exec ui/loadout/p%s.cfg' % wid, 'wait 600', 'exec ui/loadout/fin8_s1.cfg', 'wait 1800',
