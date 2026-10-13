@@ -106,6 +106,7 @@ semiauto		// HZM coop [user 07-12]: semiauto restored - without it the engine tr
 	client
 	{
 		aliascache P38_snd_reload_loaded sound/weapons/foley/coop_p38_reload_loaded.wav soundparms 0.9 0.2 1.0 0.0 160 1000 item loaded always maps "dm obj lib"
+		aliascache welrod_snd_bolt sound/weapons/foley/Spring_Bolt.wav soundparms 0.55 0.05 1.15 0.05 160 800 item loaded always maps "dm obj lib"
 		cache tracer.spr
 		cache muzsprite.spr
 		cache models/fx/muzflash.tik
@@ -128,6 +129,7 @@ animations
 	{
 		client
 		{
+			51 sound welrod_snd_bolt item	// HZM coop [pistol lane 2026-10-13] the bolt is pulled here
 			entry sound P38_snd_reload item
 		}
 	}
@@ -163,6 +165,7 @@ animations
 		}
 		client
 		{
+			10 sound welrod_snd_bolt item	// HZM coop [pistol lane 2026-10-13] the bolt is pulled here
 			entry stopaliaschannel welrod_fire
 			entry sound welrod_fire
 

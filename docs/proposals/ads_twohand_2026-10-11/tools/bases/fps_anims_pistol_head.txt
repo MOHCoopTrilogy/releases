@@ -1,0 +1,255 @@
+animations
+{
+	$path models/human/animation
+
+	//========================
+	// Colt Anims
+	//========================
+	colt45_idle	 		viewmodel/pistol/coltpose.skc				crossblend 0.3
+	colt45_disabled 		viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
+	colt45_fire			viewmodel/pistol/fire_colt.skc				crossblend 0.05	
+	colt45_fire_secondary1		viewmodel/pistol/pistolwhip1.skc	random
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+
+	colt45_fire_secondary2		viewmodel/pistol/pistolwhip2.skc	random
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	colt45_reload			viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	colt45_reload_ads		viewmodel/pistol/colt45_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	colt45_pullout			viewmodel/pistol/pullout_colt.skc
+	{
+		client
+		{
+			enter sound snd_pistol_pullout
+		}
+	}
+	colt45_putaway			viewmodel/pistol/putaway_colt.skc
+	{
+		client
+		{
+			enter sound snd_pistol_putaway
+		}
+	}
+	
+	//========================
+	// P38 Anims
+	//========================
+	p38_idle	 		viewmodel/pistol/coltpose.skc				crossblend 0.3
+	p38_disabled 			viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
+	p38_fire			viewmodel/pistol/fire_colt.skc				crossblend 0.05	
+	p38_fire_secondary1		viewmodel/pistol/pistolwhip1.skc	random
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	p38_fire_secondary2		viewmodel/pistol/pistolwhip2.skc	random
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	p38_reload			viewmodel/pistol/reload_p38.skc				crossblend 0.3
+	p38_reload_ads		viewmodel/pistol/p38_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	p38_pullout			viewmodel/pistol/pullout_colt.skc
+	{
+		client
+		{
+			enter sound snd_pistol_pullout
+		}
+	}
+	p38_putaway			viewmodel/pistol/putaway_colt.skc
+	{
+		client
+		{
+			enter sound snd_pistol_putaway
+		}
+	}
+	
+	//========================
+	// Hi-Standard Anims
+	//========================
+	histandard_idle	 			viewmodel/pistol/coltpose.skc				crossblend 0.3
+	histandard_fire				viewmodel/pistol/fire_hp.skc				crossblend 0.05	
+	histandard_fire_secondary1		viewmodel/pistol/pistolwhip1.skc	random
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	histandard_fire_secondary2		viewmodel/pistol/pistolwhip2.skc	random
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	histandard_reload			viewmodel/pistol/reload_hp.skc				crossblend 0.3
+	histandard_reload_ads		viewmodel/pistol/histandard_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	histandard_pullout			viewmodel/pistol/pullout_colt.skc
+	{
+		client
+		{
+			enter sound snd_pistol_pullout
+		}
+	}
+	histandard_putaway			viewmodel/pistol/putaway_colt.skc
+	{
+		client
+		{
+			enter sound snd_pistol_putaway
+		}
+	}
+	//========================
+	// Nagant Revolver Anims
+	//========================
+	nagantrev_idle	 			viewmodel/nagantrev/idle.skc				crossblend 0.2
+	nagantrev_charge	 			viewmodel/coltpose00.skc				crossblend 0.2
+	nagantrev_disabled 			viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
+	nagantrev_fire				viewmodel/nagantrev/fire.skc				crossblend 0.0	
+	nagantrev_fire_secondary1		viewmodel/pistol/pistolwhip1.skc				random
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+
+	nagantrev_fire_secondary2		viewmodel/pistol/pistolwhip2.skc				random
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	nagantrev_reload		viewmodel/nagantrev/reload_start.skc			crossblend 0.1
+	nagantrev_reload_single		viewmodel/nagantrev/reload_loop.skc			crossblend 0
+	nagantrev_reload_end		viewmodel/nagantrev/reload_end.skc			crossblend 0.2
+	nagantrev_pullout		viewmodel/nagantrev/pullout.skc
+	{
+		client
+		{
+			enter sound snd_pistol_pullout
+		}
+	}
+	nagantrev_putaway			viewmodel/nagantrev/putaway.skc
+	{
+		client
+		{
+			enter sound snd_pistol_putaway
+		}
+	}
+	//========================
+	// Beretta Anims
+	//========================
+	beretta_idle	 		viewmodel/beretta/A_W_MOD34Pistol_idle_fps.skc			crossblend 0.2
+	beretta_charge	 		viewmodel/coltpose00.skc			crossblend 0.2
+	beretta_disabled 		viewmodel/unarmed/unarmed_idle.skc				crossblend 0.2
+	beretta_fire			viewmodel/beretta/A_W_MOD34Pistol_fire_fps.skc			crossblend 0.0	
+	beretta_fire_secondary1		viewmodel/beretta/A_W_MOD34Pistol_butt_fps.skc		        random
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+
+	//beretta_fire_secondary2		viewmodel/beretta/A_W_MOD34Pistol_butt_fps.skc			random
+	//{
+	//	client
+	//	{
+	//		entry sound pistol_whip // the swish sound. 
+	//	}
+	//}
+	beretta_reload		        viewmodel/beretta/A_W_MOD34Pistol_reload_fps.skc		crossblend 0.1
+	beretta_reload_ads		viewmodel/beretta/beretta_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	beretta_pullout		        viewmodel/beretta/A_W_MOD34Pistol_pullout_fps.skc
+        {
+		client
+		{
+			enter sound snd_pistol_pullout
+		}
+	}
+	beretta_putaway			viewmodel/beretta/A_W_MOD34Pistol_putaway_fps.skc
+	{
+		client
+		{
+			enter sound snd_pistol_putaway
+		}
+	}
+	//========================
+	// Webley Revolver Anims
+	//========================
+	webley_idle	 			viewmodel/nagantrev/idle.skc				crossblend 0.2
+	webley_charge	 			viewmodel/coltpose00.skc				crossblend 0.2
+	webley_disabled 			viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
+	webley_fire				viewmodel/nagantrev/fire.skc				crossblend 0.0	
+	webley_fire_secondary1			viewmodel/pistol/pistolwhip1.skc	random
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+
+	webley_fire_secondary2	viewmodel/pistol/pistolwhip2.skc	random
+	{
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}
+	webley_reload			viewmodel/webley/webley_reload_start.skc		crossblend 0.1
+	webley_reload_ads		viewmodel/webley/webley_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	webley_reload_single		viewmodel/webley/webley_reload_single.skc		crossblend 0.0
+	webley_reload_single_ads		viewmodel/webley/webley_reload_single_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	webley_reload_end		viewmodel/webley/webley_reload_end.skc			crossblend 0.2
+	webley_reload_end_ads		viewmodel/webley/webley_reload_end_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	webley_pullout			viewmodel/nagantrev/pullout.skc
+	{
+		client
+		{
+			enter sound snd_pistol_pullout
+		}
+	}
+	webley_putaway			viewmodel/nagantrev/putaway.skc
+	{
+		client
+		{
+			enter sound snd_pistol_putaway
+		}
+	}
+
+	//===================== HZM coop ADS aim poses (additive) =====================
+	colt45_charge			viewmodel/coltpose00.skc		crossblend 0.3
+	p38_charge			viewmodel/p38pose00.skc			crossblend 0.3
+	histandard_charge		viewmodel/hs_pistol00.skc		crossblend 0.3
+
+	//===================== HZM coop S&W M10 .38 first-person set =====================
+	//[user 2026-08-17] East shipped a real 141 KB first-person RELOAD with this gun and
+	//wired it by overwriting our fps_anims_pistol.txt wholesale. Only the reload is his;
+	//everything else mirrors the Colt's, which is what his mod borrowed anyway. Kept under
+	//viewmodel/coop_m10/ so it can never shadow the Colt's own.
+	m10_charge			viewmodel/coltpose00.skc
+	m10_disabled			viewmodel/unarmed/unarmed_idle.skc
+	m10_fire			viewmodel/pistol/fire_colt.skc
+	m10_fire_secondary1			viewmodel/pistol/pistolwhip1.skc
+	m10_fire_secondary2			viewmodel/pistol/pistolwhip2.skc
+	m10_idle			viewmodel/pistol/coltpose.skc
+	m10_pullout			viewmodel/pistol/pullout_colt.skc
+	m10_putaway			viewmodel/pistol/putaway_colt.skc
+	m10_reload			viewmodel/coop_m10/m10_reload.skc
+}
+

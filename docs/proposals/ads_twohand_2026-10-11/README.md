@@ -1,4 +1,99 @@
-# HANDOVER (2026-10-13 morning, PISTOL lane, after the server-side fix and the SHIP CUT) - read this first
+# HANDOVER (2026-10-13 afternoon, PISTOL lane, stopped on the coordinator's BUDGET STOP) - read this first
+
+**Done and cut: the Mauser C96 + Trench C96 -> `PISTOLS_SHIP2.md`, folder `ship2/` (27 files, FROZEN, additive to
+`ship/`; engine e8e199be is enough).** Everything else of the brief was stopped: some of it is STAGED AND NOT RUN, some
+was run and NOT LOOKED AT. Nothing of that is in a cut. **pa35 is the next run id** (pa31 = aborted by me on purpose,
+pa33 = captured, not looked at).
+
+## What is where
+
+* Engine: `ads-next` **f8d0f895** = `G:\mohaa-adsanim\cgames\cgame_adsnext14.dll` (md5 6465d10e) - ONE commit on top of
+  e8e199be, cgame only, both parts behind cvars and inert without the surface / row, **neither verified**:
+  `coop_vmRoundOthers` (another player's M10 counts its chamber heads from the rows it plays: all outside a reload,
+  none after the dump, one more per `reload_single` pass; `coop_vmRoundSurfaces 2` = test, the local gun driven the
+  same way) and `coop_vmFireLast` (`fire_last` shown instead of `fire` for the shot that empties the gun).
+  Patchers: `tools/patch_cg_roundothers.py`, `tools/patch_cg_firelast.py`. e8e199be itself is untouched.
+* Harness: `G:\mohaa-adsanim\game.dll` is now the released DLL (6b515fbf; the old one is in `games\` under
+  `..._until_20261013_689d0db1.dll`) - the deployed mod paks need it (bug-3877). `mkov.py` builds the overlay on
+  `tools/bases/fps_anims_pistol_head.txt` (the fixes working copy already carries the integrated cut). The staged
+  `anims_shared.txt` / `player_Torso.st` were 3-way merged onto mod **99ba8027** (`srvrows.py` BASES). Run `srvrows.py`
+  with `IRONSIGHT_EXTRA_PAKS` UNSET (bug-3878).
+* Working copies: `SCRATCH\ads2h` (tools synced BY NAME into `tools/`); overlays `ov_s4.pk3` = the C96 as cut,
+  `ov_s5.pk3` = the same + the unverified stage below. `assets/` = the staged tree as of this commit.
+* Runs: pa29-pa34 moved to `H:\hzm_archive\pistols\` (log: `SCRATCH\pistols\archive_move_pa29_34.log`).
+  pa29 emptied figures are invalid (10 shots on a clip of 8, bug-3879). The run logs print "Couldn't find image file
+  for shader coop_c96_case / _bullet / _strip" once per boot: that is the install's shader PRELOAD list from
+  yesterday's runs, no staged file names those shaders any more.
+
+## 1. C96 + Trench C96: DONE (runs pa30, pa32, pa34) - see `PISTOLS_SHIP2.md`
+
+Not verified there (the list is in its section E): braced, crouch-leans, seat, interruptions, the finish tiks, the
+Trench emptied stances with the final bolt travel, the hip bolt up close, the lean-left 4.33 % as smoke.
+Next steps if it is picked up again: `run_2h.py pa35 ... --guns mauser_c96 --dstances standL --nostand --epause 150`
+(the smoke), `run_chk.py` items `mauser_c96:sprint,unaim,fire,switch` and `mauser_c96_gold:hipl`, the Trench
+`--dstances`, then braced / `--ride`.
+
+## 2. S&W M10: engine part WRITTEN, NOT VERIFIED
+
+The code for other players' guns is in f8d0f895 (above). Run **pa33** (`run_chk.py`, cgame 14, `ov_s5.pk3`) captured
+`m10_revolver:tp:6` (third-person camera, local count), `tpo:6` and `tpo:3` (the estimate, `ROUNDOTHER` lines in the
+log with `coop_vmRoundOthers 2`), `hipe:6`, `hipl`, `fire:95` and `fireh:95` (break-off aimed / hip) -
+**1205 frames in `H:\hzm_archive\pistols\pa33`, not one of them looked at.** Next: `grep ROUNDOTHER` in its
+qconsole.log (the count must go 99 -> 0 -> 1..6 -> 99), sheets of `__tp__` / `__tpo__` (is the cylinder's rear seen at
+all from the third-person camera?), then the hip and break-off frames. Whether `cg_3rd_person 1` took effect in the
+harness is unknown. No second client was run. The M10 stays held out.
+
+## 3. Luger toggle flick: STAGED, NOT VERIFIED
+
+`tools/lugerflick.py` (after `luger.py`): `fire` = `coop_luger_fire.skc` (50 x 0.025 s = the released row's 1.25 s; the
+toggle breaks open and shuts inside 0.125 s), `fire_last` = `coop_luger_fire_last.skc` (stays up; needs f8d0f895).
+Both Luger tiks in the stage carry it; `srvrows.py`: 0 FAIL. Offline the gun states are right (looked at). In the
+engine: pa33 captured `lugerp08:hipe:8`, `lugerp08:cyc:3`, `lugerp08silenced:cyc:2` - not looked at. Front link: not
+started (the link is inside the breech block's island; it needs a vertex split and a third bone - not cheap).
+**The Luger tiks in `assets/` therefore differ from the frozen `ship/` ones.**
+
+## 4. Checks on the shipped pistols: NOT RUN, with two exceptions
+
+* `tools/run_chk.py` is written for them (plan items: `hipe`, `hipl`, `sprint`, `unaim`, `fire`, `fireh`, `switch`,
+  `sprinte`, `unaime`, `tp`, `tpo`, `shot2`, `cyc`, `still`); used once for the C96 hip (pa34) and once for pa33.
+  `run_2h.py` got `--lstances` (the LOADED demo in stances) and `--epause N` (frames before the emptying shot).
+* **P38 hip `fire` row 587 vs 175 ms - explained, no defect.** The `fire` row is the same file (`P38.skc`, 5 x 0.25 s)
+  in the released, the staged and the old staged tik. `dedcmp.py` takes the median of FOUR samples per arm, of two
+  kinds: 175 ms (the shot that empties the gun, the reload follows) and 1000 ms (a shot followed by a gap in the
+  pulse). Released and staged hip: [1000, 175, 175, 1000] -> 587; old staged hip: [1000, 175, 175, 175] -> 175. It is
+  which shots happened to be followed by a gap, not a row.
+* **Welrod bolt sound: STAGED, NOT RUN, NOT HEARD** (`tools/welsnd.py`: alias `welrod_snd_bolt` = the WAV of the
+  existing alias `springfield_snd_bolt`, quieter; frame 10 of `fire_ads`, frame 51 of `reload_ads_empty`; the eight
+  Welrod tiks in the stage carry it and so differ from `ship/`). Nothing for the hip side.
+* Not started: sprint / aim dropped, hip view of emptied guns, Hi-Standard, Welrod second shot / hip side, the
+  silenced Colt's lean-left smoke, Webley Mk VI hand points, braced / crouch-leans / seat / loaded stances.
+  Planned sessions: `colt45:sprint,colt45:unaim,tt33:sprint,tt33:unaim,welrod:sprinte:6,welrod:unaime:6,p38:sprinte:8`;
+  `p38:hipe:8,p38silenced:hipe:8,berettasilenced:hipe:8,lugerp08:hipe:8,nambu:hipe:8,tt33:hipe:8,colt45:hipe:7`
+  (read each clip size from the tik first); `welrod:shot2:20,welrod:hipl,welrod:hipe:6,silencedpistol:cyc:3`;
+  `run_2h.py --guns colt_silenced --lstances standL --dstances standL --nostand --epause 150`.
+
+## 5. Texture lifts for the finishes: STAGED, NOT SEEN IN THE ENGINE, no before / after sheets
+
+`tools/finlift.py` -> `assets/textures/coop_skins/welrod/*_bloody.jpg` (5) and `it_w_beretta/it_w_beretta_bloody.jpg`:
+the base sheets' curves on the steel, blood kept (mean 7-8 -> 27-40 of 255; Beretta 28 -> 53). The camo sheets are NOT
+dark (mean 47-143, at most 17 % of texels under 20) and were left alone. The silenced Beretta already has its own
+lifted sheet: `textures/models/weapons/beretta/beretta.jpg` is drawn by shader `Beretta` only, and
+`berettasilenced.tik` is the only tik with that shader. `shipcut.py` would move these into
+`ship_awaiting_approval/` - it was NOT run (the cut is frozen), so they exist only in `assets/`.
+
+## Awaiting the user (unchanged, plus)
+
+Welrod and Luger aim poses; the base texture lifts; the D2 server-side decisions; whether the M10 may ship with six
+heads for others (the code above would make that question moot once verified). New: whether the C96's two-handed aim
+should get a pose fitted to its grip (today the P38's, under its own name).
+
+Bugs of this session: bug-3875 (C96 hip row re-declared as the P38 clip - fixed), 3876 (three C96 reload defects -
+fixed), 3877 (harness baseline after the deploy), 3878 (srvrows false pass with the overlay variable set), 3879
+(pa29 shot count; junk copied into tools/, removed), 3880 (JPEG noise in the finish lift).
+
+---
+
+# HANDOVER (2026-10-13 morning, PISTOL lane, after the server-side fix and the SHIP CUT) - SUPERSEDED by the section above; history from here on
 
 **SHIP CUT v2 (later the same morning):** `webley_revolver_lv_ttwebley.tik` staged (`finishclone.py --also`), the Webley Mk VI `colt45_colt1911w.tik` staged on the Webley's rows with its own gun clips retimed (`tools/mk6.py`), a sample of the finish tiks and three model variants run in the engine (pa25, pa27, pa28; pa26 = an empty folder, started by mistake while pa25 was still running - the wait loop had matched the previous run's `run ended` line; the second runner stopped at the busy log file and nothing was lost). **pa29 is next.** The coordinator's calls: the decided server-side changes stay in, Welrod / Luger ship on their new aim poses for the user's test, texture lifts stay out. Runs pa18-pa24 were moved to `H:\hzm_archive\pistols\`; pa25-pa28 are still in `G:\mohaa-adsanim\runs`.
 

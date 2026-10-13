@@ -1,0 +1,98 @@
+{
+ "mauser_c96": {
+  "aim_cover": 9.7,
+  "alone": 0.8,
+  "base": 8.4,
+  "dev": 36.51,
+  "dry": false,
+  "end": 0.01,
+  "env": true,
+  "env_cover": 12.6,
+  "env_n": 98,
+  "frames": 190,
+  "max": 9.2,
+  "over": 0.0,
+  "run": "pa29",
+  "shift": [
+   3,
+   0
+  ],
+  "x6fr": 0.0,
+  "x6max": 0.6,
+  "xat": 305,
+  "xfr": 0.0,
+  "xmax": 0.0
+ },
+ "mauser_c96_c96trench": {
+  "aim_cover": 10.8,
+  "alone": 0.1,
+  "base": 8.3,
+  "dev": 34.89,
+  "dry": false,
+  "end": 0.01,
+  "env": true,
+  "env_cover": 12.6,
+  "env_n": 98,
+  "frames": 190,
+  "max": 10.0,
+  "over": 0.0,
+  "run": "pa29",
+  "shift": [
+   3,
+   0
+  ],
+  "x6fr": 0.0,
+  "x6max": 0.0,
+  "xat": 310,
+  "xfr": 0.0,
+  "xmax": 0.0
+ },
+ "mauser_c96_c96trench_empty": {
+  "aim_cover": 7.0,
+  "alone": 1.3,
+  "base": 6.9,
+  "dev": 34.89,
+  "dry": true,
+  "end": 0.0,
+  "env": true,
+  "env_cover": 13.0,
+  "env_n": 98,
+  "frames": 160,
+  "max": 9.8,
+  "over": 0.0,
+  "run": "pa29",
+  "shift": [
+   3,
+   0
+  ],
+  "x6fr": 0.0,
+  "x6max": 1.9,
+  "xat": 442,
+  "xfr": 0.0,
+  "xmax": 0.7
+ },
+ "mauser_c96_empty": {
+  "aim_cover": 8.5,
+  "alone": 0.1,
+  "base": 8.3,
+  "dev": 36.52,
+  "dry": true,
+  "end": 0.0,
+  "env": true,
+  "env_cover": 12.3,
+  "env_n": 98,
+  "frames": 160,
+  "max": 8.8,
+  "over": 0.0,
+  "run": "pa29",
+  "shift": [
+   3,
+   0
+  ],
+  "x6fr": 0.0,
+  "x6max": 0.2,
+  "xat": 423,
+  "xfr": 0.0,
+  "xmax": 0.0
+ }
+}

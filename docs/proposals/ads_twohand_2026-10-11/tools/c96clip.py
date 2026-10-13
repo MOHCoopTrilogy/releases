@@ -37,8 +37,10 @@ CG = np.array([X0, CY, TOPZ - 0.05])          # the clip's reference point when 
 CREST = CG + np.array([0.0, 0.0, PRESS])      # ... at rest (hidden)
 BOLT = 2.0
 BAR = dict(x=(1.15, 1.15 + BOLT + 0.25), y=(-1.06, -0.48), z=(-3.66, -2.96))
-SHADERS = dict(coop_c96_case=(184, 150, 72), coop_c96_bullet=(176, 104, 62), coop_c96_strip=(128, 104, 50),
+KEEP = ('coop_c96_boltbar', 'coop_c96_port')      # 2026-10-13 pm: the clip and its rounds are the SERVER's prop (models/ammo/coop_c96_stripper_*), not gun surfaces
+SHADERS_ALL = dict(coop_c96_case=(184, 150, 72), coop_c96_bullet=(176, 104, 62), coop_c96_strip=(128, 104, 50),
                coop_c96_boltbar=(74, 84, 96), coop_c96_port=(7, 8, 10))
+SHADERS = {k: v for k, v in SHADERS_ALL.items() if k in KEEP}
 
 
 def _orient(verts, tris):
@@ -171,9 +173,9 @@ def append_surface(data, name, verts, tris, bone, M, sc):
 
 def add_to_skd(skd_file, tik):
     data = open(skd_file, 'rb').read()
-    if any(s.name == 'coop_c96_case' for s in SK.read_skd(data).surfaces):
+    if any(s.name == 'coop_c96_port' for s in SK.read_skd(data).surfaces):
         print('c96 clip parts already in the skd'); return
-    for b in ('coop_rounds', 'coop_clip', 'coop_port'):
+    for b in ('coop_port',):
         data = add_bone(data, b, 'origin')
     m = SK.read_skd(data)
     names = [b.name for b in m.bones]
@@ -183,7 +185,7 @@ def add_to_skd(skd_file, tik):
     mats, _ = G.bone_world(m, skc, 0)
     Mo = mats[names.index('origin')]                    # the new bones sit at identity under `origin`
     nv = 0
-    for sname, (bone, V, T) in geometry().items():
+    for sname, (bone, V, T) in ((k, v) for k, v in geometry().items() if k in KEEP):
         data = append_surface(data, sname, V, T, names.index(bone), Mo, sc)
         nv += len(V)
     open(skd_file, 'wb').write(data)
@@ -209,14 +211,15 @@ def textures(root):
 
 
 def tik_lines(s):
-    """the five `surface <new> shader <new>` lines after the last surface line of the setup block"""
+    """the `surface <new> shader <new>` lines after the last surface line of the setup block"""
     import re
-    if 'coop_c96_case' in s:
-        return s
+    # idempotent, and a tik read back through the wip overlay may still carry the earlier five lines (case / bullet / strip)
+    s = re.sub(r'(?im)^[ \t]*// HZM coop \[pistol lane 2026-10-13\]: [^\n]*(bolt bar|open port)[^\n]*\n', '', s)
+    s = re.sub(r'(?im)^[ \t]*surface[ \t]+coop_c96_\w+[ \t]+shader[ \t]+coop_c96_\w+[^\n]*\n', '', s)
     ms = list(re.finditer(r'(?im)^([ \t]*)surface[ \t]+\S+[ \t]+shader[ \t]+\S+[^\n]*\n', s[:s.index('}')]))
     assert ms, 'no surface line in the setup block'
     ind = ms[-1].group(1)
-    add = ind + '// HZM coop [pistol lane 2026-10-13]: stripper clip, its rounds, the bolt bar and the open port (hidden at rest)\n'
+    add = ind + '// HZM coop [pistol lane 2026-10-13]: the bolt bar and the open port (hidden at rest)\n'
     add += ''.join('%ssurface %s shader %s\n' % (ind, n, n) for n in SHADERS)
     return s[:ms[-1].end()] + add + s[ms[-1].end():]
 
@@ -293,8 +296,6 @@ def clip_channels(A, o, hands_file, K, n, bolt_state):
 def port_only(A, o, n, state):
     ch = {}
     idp, idq = BF.chan(A, o, np.eye(3), (0, 0, 0), (0, 0, 0))
-    for nm in ('coop_clip', 'coop_rounds'):
-        ch[nm + ' pos'] = [idp] * n; ch[nm + ' rot'] = [idq] * n
     pq = [BF.chan(A, o, np.eye(3), (0, 0, 0), (0.0, 0.0, -0.24 if state(f) > 0.5 else 0.0)) for f in range(n)]
     ch['coop_port pos'] = [p for p, q in pq]; ch['coop_port rot'] = [q for p, q in pq]
     return ch

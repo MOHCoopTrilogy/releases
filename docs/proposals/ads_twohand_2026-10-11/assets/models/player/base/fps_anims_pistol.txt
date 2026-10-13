@@ -365,10 +365,12 @@ animations
 	beretta_reload_empty_ads		viewmodel/beretta/beretta_reload_empty_ads.skc		crossblend 0.1
 	//===================== HZM coop aimed per-shot cycle (cgame plays <prefix>_cycle_ads on a clip-ammo drop while aiming) =====================
 	histandard_cycle_ads		viewmodel/pistol/histandard_cycle_ads.skc		crossblend 0.08
-	//===================== HZM coop Mauser C96: its own aimed reload (stripper clip from the top, gun kept up under the centre box) =====================
-	coopr_mauser_c96_reload			viewmodel/pistol/reload_p38.skc			crossblend 0.3
+	//===================== HZM coop Mauser C96 (+ Trench C96): two-handed aim, aimed reload on the stripper-clip prop =====================
+	// the HIP rows stay the released ones: coopr_mauser_c96_reload = viewmodel/coop_reload/c96_reload.skc is declared in anims_shared.txt.
+	// _reload_empty repeats that clip only so that the cgame finds _reload_empty_ads for a reload that starts on an empty gun.
+	coopr_mauser_c96_charge			viewmodel/pistol/coop_c96_ads2h.skc		crossblend 0.3
 	coopr_mauser_c96_reload_ads		viewmodel/pistol/coop_c96_reload_ads.skc		crossblend 0.1
-	coopr_mauser_c96_reload_empty		viewmodel/pistol/reload_p38.skc			crossblend 0.3
+	coopr_mauser_c96_reload_empty		viewmodel/coop_reload/c96_reload.skc		crossblend 0.3
 	coopr_mauser_c96_reload_empty_ads	viewmodel/pistol/coop_c96_reload_empty_ads.skc		crossblend 0.1
 	//===================== HZM coop Luger P08: own aim pose (gun 2.2 u further out) and aimed reloads on it; the toggle works =====================
 	coopr_luger_p08_charge			viewmodel/pistol/coop_luger_ads2h.skc		crossblend 0.3

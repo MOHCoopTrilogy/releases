@@ -44,8 +44,8 @@ DECLARED = [
 # staged text files that are SNAPSHOTS of a mod-tree file: (staged path, mod path, mod commit the snapshot was taken from).
 # The mod file may have moved on since; shipping = a 3-way merge, and the merged text is what gets checked.
 BASES = {
-    'models/player/base/anims_shared.txt': ('models/player/base/anims_shared.txt', '6cf61e58'),
-    'coop_mod/player_Torso.st': ('coop_mod/player_torso.st', '12e9faf6'),
+    'models/player/base/anims_shared.txt': ('models/player/base/anims_shared.txt', '99ba8027'),
+    'coop_mod/player_Torso.st': ('coop_mod/player_torso.st', '99ba8027'),
 }
 
 

@@ -23,10 +23,7 @@ setup
 	surface Tube2      shader coop_skin_mauser_c96_camo_desert_11
 	surface Tube1      shader coop_skin_mauser_c96_camo_desert_3
 	surface Tube5      shader coop_skin_mauser_c96_camo_desert_0
-	// HZM coop [pistol lane 2026-10-13]: stripper clip, its rounds, the bolt bar and the open port (hidden at rest)
-	surface coop_c96_case shader coop_c96_case
-	surface coop_c96_bullet shader coop_c96_bullet
-	surface coop_c96_strip shader coop_c96_strip
+	// HZM coop [pistol lane 2026-10-13]: the bolt bar and the open port (hidden at rest)
 	surface coop_c96_boltbar shader coop_c96_boltbar
 	surface coop_c96_port shader coop_c96_port
 }
@@ -204,7 +201,7 @@ animations
 		}
 	}
 	idle_empty	coop_c96_idle_empty.skc
-	reload		P38_reload.skc
+	reload		coop_c96_reload_hip.skc
 	{
 		server
 		{

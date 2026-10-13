@@ -1,0 +1,11 @@
+info  models/weapons/mauser_c96.tik: new idle_empty (coop_c96_idle_empty.skc) - an idle, no done event
+info  models/weapons/mauser_c96_bloody.tik: new idle_empty (coop_c96_idle_empty.skc) - an idle, no done event
+info  models/weapons/mauser_c96_blued.tik: new idle_empty (coop_c96_idle_empty.skc) - an idle, no done event
+info  models/weapons/mauser_c96_c96trench.tik: new idle_empty (coop_c96t_idle_empty.skc) - an idle, no done event
+info  models/weapons/mauser_c96_camo_desert.tik: new idle_empty (coop_c96_idle_empty.skc) - an idle, no done event
+info  models/weapons/mauser_c96_camo_winter.tik: new idle_empty (coop_c96_idle_empty.skc) - an idle, no done event
+info  models/weapons/mauser_c96_camo_woodland.tik: new idle_empty (coop_c96_idle_empty.skc) - an idle, no done event
+info  models/weapons/mauser_c96_chrome.tik: new idle_empty (coop_c96_idle_empty.skc) - an idle, no done event
+info  models/weapons/mauser_c96_gold.tik: new idle_empty (coop_c96_idle_empty.skc) - an idle, no done event
+info  client-picked new rows: reload_ads_empty x9, reload_ads_loaded x9, reload_empty x9
+9 weapon tiks checked, 0 declared server-side changes, 0 FAIL

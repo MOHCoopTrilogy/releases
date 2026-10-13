@@ -8,7 +8,7 @@ asserted (a silently missing row would test the old pose).
 import sys, os, re, zipfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 STAGE = os.environ.get('MKOV_STAGE') or os.path.join(HERE, 'stage')      # shipcut.py points this at its filtered copy
-FX = r"C:\mohaa-coop-dev\docs\tools\assets\fixes\models\player\base\fps_anims_pistol.txt"
+FX = os.environ.get("MKOV_FX") or os.path.join(HERE, "bases", "fps_anims_pistol_head.txt")   # the RELEASED file (git HEAD copy): the working fixes file already carries the integrated ship cut
 
 
 def main():

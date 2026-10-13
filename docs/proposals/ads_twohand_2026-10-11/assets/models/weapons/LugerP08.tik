@@ -160,7 +160,105 @@ animations
 			entry shoot secondary
 		}
 	}
-	fire     luger.skc
+	// HZM coop [toggle flick, pistol lane 2026-10-13] fire = the toggle breaks open and snaps shut (same 1.25 s as the released row);
+	// fire_last = shown by the cgame instead of `fire` for the shot that empties the gun: the toggle stays up
+	fire_last     coop_luger_fire_last.skc
+	{
+		server
+		{
+			entry shoot primary
+		}
+		client
+		{
+			entry stopaliaschannel LugerP08_fire
+			entry sound LugerP08_fire
+
+			// By now, the server has already fired the weapon, so it's
+			// ok to apply the view kick apon entry to avoid problems
+			// with multiple application on single frame animations.
+
+			////////////////////////////////////////////////////////////////////////////////////////
+			// View Kick Controls
+			//
+			// View Kicking works based on the assumptions that every weapon has its own tendencies to kick in
+			// a paticular fashion. In MOH we call then scatter patterns. Currently we have 2 scatter patterns which
+			// will be explained.
+			// Scatter Patterns:
+			// "V" - the cone. The longer you shoot the more random your shots will be in the horizontal axis.
+			// "T" - the T shape. The gun has a tendancy to push in a paticular direction. //not used much...too artificial looking
+			//
+			//
+			//             		+-------------------------------------------- Scatter Pitch Min
+			//              		|    +--------------------------------------- Scatter Pitch Max
+			//              		|    |       +------------------------------- Scatter Yaw Min
+			//             		|    |       |   +--------------------------- Scatter Yaw Max
+			//             		|    |       |   |     +--------------------- The Recentering speed in fraction per second
+			//              		|    |       |   |     |    +---------------- The Scatter Pattern
+			//              		|    |       |   |     |    |     +---------- The absolute pitch min/max
+			//              		|    |       |   |     |    |     |  +------- The absolute yaw min/max
+			//              		|    |       |   |     |    |     |  | +----- This is the pitch at which you loose all
+			//              		|    |       |   |     |    |     |  | |      control of the weapon and its behavior is
+			//             	 	|    |       |   |     |    |     |  | |      purely random.
+			//				V    V       V   V     V    V     V  V V
+			entry viewkick 	    -1.0 -1.0    -0.16 0.16  1.2 "V"  2.8 0.8 1.2
+
+			//entry viewkick 	    -1.2 -1.2    -0.2 0.2    1   "V"  3.0 1.0 1.6 (Colt .45 stats)
+
+			// muzzle flash
+			entry tagdlight tag_barrel 0.25 0.2 0.15 120 0.11
+			entry tagspawn tag_barrel
+			(
+				scale 0.2
+				offsetalongaxis 2 0 0
+				count 1
+				scale 0.30
+				model muzsprite.spr
+				life 0.06
+			)
+			entry tagspawn tag_barrel
+			(
+				count 1
+				scalemin 0.15
+				scalemax 0.25
+				model models/fx/muzflash.tik
+				randomroll
+				life 0.04
+			)
+
+			// smoke puff
+//			entry commanddelay 0.05 tagspawn tag_barrel
+//			(
+//				volumetric
+//				model gun	// sets the type of smoke
+//				life 10		// amount of smoke
+//				scale 1.0	// radius
+//				alpha 0.3	// density
+//				color 0.7 0.7 0.7	// RBG color of the smoke
+//				velocity 2	// base velocity away from the surface
+//				randvelaxis random 6 0 0	// velocity offset
+//				offsetalongaxis random 4 0 0	// positional offset
+//			)
+
+			// shell eject
+			entry commanddelay 0.1 tagspawn tag_eject
+			(
+				count 1
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				velocity 50
+				randvel crandom 10 crandom 10 random 20
+				avelocity crandom 90 crandom 90 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}
+	fire     coop_luger_fire.skc
 	{
 		server
 		{

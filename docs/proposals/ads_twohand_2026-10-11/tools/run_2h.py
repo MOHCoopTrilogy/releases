@@ -23,6 +23,7 @@ EMPTY = [False]
 GAP = [27]          # frames between shots in the demo (a slow gun needs more: Hi-Standard fire delay 1.0 s)
 INTR = [4, 95, 170]      # shots before the reload, capture frame of the interruption, frames captured
 KINDS = ["fire", "switch", "sprint"]
+EPAUSE = [0]
 TAIL = [0, 4]       # --tail N[:step]: the settled aim for N more game frames after the reload, every step-th captured
 
 
@@ -44,6 +45,8 @@ def demo(sess, gun, tagst="stand", stance=None):
         L += A.frames(tag, 6, i) + ["echo ^~^~^ DEMO empty %d" % i[0]]
     for k in range(SHOTS[0]):
         last = EMPTY[0] and k == SHOTS[0] - 1
+        if last and EPAUSE[0]:               # --epause N: N frames before the emptying shot, so that the smoke of the others has cleared
+            L += A.frames(tag, EPAUSE[0], i)
         L += ["+attackprimary", "echo ^~^~^ DEMO fire %d" % i[0]] + A.frames(tag, 3, i) + ["-attackprimary"] + A.frames(tag, 11 if last else GAP[0], i)
     if EMPTY[0]:
         L += ["echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, DEMO_RELOAD[0], i)
@@ -199,6 +202,9 @@ def run(a):
                             demo(a.session, gun, tagst="%s_yaw%de" % (st, a.demoyaw), stance=st)
                         finally:
                             EMPTY[0], SHOTS[0], DEMO_RELOAD[0] = sv
+                    for st in [s for s in a.lstances.split(",") if s]:   # the LOADED demo (two shots, the smoke cleared, reload) in each stance: tag <st>_yaw<N>
+                        R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+                        demo(a.session, gun, tagst="%s_yaw%d" % (st, a.demoyaw), stance=st)
                     if "demohip" in a.parts:
                         R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
                         demohip(a.session, gun, tagst="yaw%d" % a.demoyaw)
@@ -279,7 +285,7 @@ def main():
     ap.add_argument("--demoreload_e", type=int, default=0)
     ap.add_argument("--rempty", action="store_true"); ap.add_argument("--remptyonly", action="store_true")
     ap.add_argument("--tail", default="")
-    ap.add_argument("--dstances", default=""); ap.add_argument("--nostand", action="store_true")
+    ap.add_argument("--dstances", default=""); ap.add_argument("--nostand", action="store_true"); ap.add_argument("--lstances", default=""); ap.add_argument("--epause", type=int, default=0)
     ap.add_argument("--ride", action="store_true"); ap.add_argument("--seat", type=int, default=2)
     a = ap.parse_args()
     if os.path.isdir(os.path.join(R.RUNS, a.session)) and not a.force:
@@ -290,7 +296,7 @@ def main():
     DEMO_RELOAD[0] = a.demoreload
     if a.tail:
         TAIL[:] = [int(v) for v in (a.tail.split(":") + ["4"])[:2]]
-    SHOTS[0] = a.shots
+    SHOTS[0] = a.shots; EPAUSE[0] = a.epause
     EMPTY[0] = a.demoempty
     GAP[0] = a.shotgap
     INTR[:] = [int(x) for x in a.intr.split(",")]; KINDS[:] = a.kinds.split(",")

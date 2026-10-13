@@ -1,0 +1,12 @@
+// FOLLOW-UP CUT (ship2), models/player/base/fps_anims_pistol.txt - apply to the file that carries cut v2:
+//   1. REMOVE the two pin rows of the held-out C96:  coopr_mauser_c96_charge, coopr_mauser_c96_idle
+//   2. ADD the rows below before the file's closing brace.
+// Nothing else in any player table changes: the hip row coopr_mauser_c96_reload (anims_shared.txt) and the torso row
+// coop_reload_c96 with its stripper-clip attach timeline are the RELEASED ones.
+	//===================== HZM coop Mauser C96 (+ Trench C96): two-handed aim, aimed reload on the stripper-clip prop =====================
+	// the HIP rows stay the released ones: coopr_mauser_c96_reload = viewmodel/coop_reload/c96_reload.skc is declared in anims_shared.txt.
+	// _reload_empty repeats that clip only so that the cgame finds _reload_empty_ads for a reload that starts on an empty gun.
+	coopr_mauser_c96_charge			viewmodel/pistol/coop_c96_ads2h.skc		crossblend 0.3
+	coopr_mauser_c96_reload_ads		viewmodel/pistol/coop_c96_reload_ads.skc		crossblend 0.1
+	coopr_mauser_c96_reload_empty		viewmodel/coop_reload/c96_reload.skc		crossblend 0.3
+	coopr_mauser_c96_reload_empty_ads	viewmodel/pistol/coop_c96_reload_empty_ads.skc		crossblend 0.1

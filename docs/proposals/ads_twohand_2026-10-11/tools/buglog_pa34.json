@@ -1,0 +1,45 @@
+[
+ {
+  "error_message": "Staged Mauser C96: the hip reload was re-declared as the P38 magazine clip (rows_p12_c96.txt: coopr_mauser_c96_reload / _reload_empty -> viewmodel/pistol/reload_p38.skc) although the released game loads the C96 from the top with a stripper clip (anims_shared.txt: coopr_mauser_c96_reload -> viewmodel/coop_reload/c96_reload.skc, torso row coop_reload_c96 with the prop attach timeline 28 / 41 / 44 / 47 / 56). The aimed clips parked tag_weapon_left under the view, so the server's stripper prop was never seen and a second clip was drawn on the gun's own mesh",
+  "file": "docs/proposals/ads_twohand_2026-10-11/tools/c96.py",
+  "root_cause": "the first C96 pass was written from the P38 rows the gun borrows for its aim, before the phase-B stripper reload (2026-10-05) was found; a duplicate row name in fps_anims_pistol.txt and anims_shared.txt leaves it to the loader which one is played",
+  "fix": "c96.py rewritten: no hip row is re-declared (coopr_mauser_c96_reload_empty repeats the RELEASED clip only so that the cgame finds _reload_empty_ads); the aimed hands are keyed on the server's timeline and tag_weapon_left is rigid to the support hand with the transform that equals tag_weapon_right at frames 41 and 47 (carry_clip, asserted), so the server's own prop is carried, stands in the guides and leaves; c96clip.py keeps only the bolt bar and the open-port patch. Hip reload looked at in the engine (run pa34): the released stripper reload",
+  "tags": ["pistols", "c96", "stripper-clip", "rows", "duplicate-row", "ads"]
+ },
+ {
+  "error_message": "C96 aimed reload, three defects found in the engine / offline before the follow-up cut: (1) emptied gun rolled 60 deg while still high swept through the centre box (offline 4.9 %, frames 24-26); (2) rounds-left reload left the lowered gun alone at the bottom of the frame for 0.5 s between the bolt draw and the clip (run pa30); (3) Trench C96 hold-open used its rack clip's travel (9.03 raw = 4.7 u): the bolt's black block came toward the eye and filled the dry aim (run pa30, emptied stand 1.86 %)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/tools/c96.py",
+  "root_cause": "(1) one pose key from the aim to the turned work pose; (2) the server shows the clip in the hand at frame 28, the bolt was drawn at 10-13; (3) the variant's own two clips move its bolt bone by different amounts",
+  "fix": "(1) DOWN_E: straight down first (19-25), turned only under the box (25-32): offline 0.5 %, engine 0.01 %; (2) bolt drawn at 16-20, the hand is away 0.2 s (K draw / pouch_l / DOWN2), run pa32; (3) the travel of the gun's own fire clip (4.93 raw = 2.56 u), run pa32 emptied stand 0.00 %",
+  "tags": ["pistols", "c96", "trench", "centre-box", "ads"]
+ },
+ {
+  "error_message": "Pistol harness after the 2026-10-13 deploy and integration: (a) mkov.py read docs/tools/assets/fixes/.../fps_anims_pistol.txt as 'the released file' - the working copy already carried the integrated ship cut (pins + every lane row), an overlay built from it would have declared every row twice; (b) G:\\mohaa-adsanim still ran its old game.dll (689d0db1) against the deployed mod paks (the rifle lane's bug-3839 on its own install); (c) the staged snapshots of anims_shared.txt / player_Torso.st were based on mod commits the tree has left",
+  "file": "docs/proposals/ads_twohand_2026-10-11/tools/mkov.py",
+  "root_cause": "tools that name a working-tree file as their 'released' base move when another agent integrates into that tree; private installs keep their own game DLL",
+  "fix": "(a) mkov.py FX = tools/bases/fps_anims_pistol_head.txt (git HEAD copy; MKOV_FX overrides); (b) game.dll and games/game_install_orig.dll = the released 6b515fbf (copied from G:\\mohaa-gl2, read only), the old one kept as games/game_install_orig_until_20261013_689d0db1.dll; (c) both snapshots 3-way merged onto mod 99ba8027 (clean), srvrows.py BASES = 99ba8027",
+  "tags": ["pistols", "harness", "baseline", "deploy", "mkov", "srvrows"],
+  "related_bugs": ["bug-3839", "bug-3788"]
+ },
+ {
+  "error_message": "srvrows.py printed 90 declared changes instead of 93 with 0 FAIL when IRONSIGHT_EXTRA_PAKS (the wip overlay) was still set in the shell: 'released' rows were read through the overlay, i.e. the staged file was compared with itself",
+  "file": "docs/proposals/ads_twohand_2026-10-11/tools/srvrows.py",
+  "root_cause": "the checker reads released files through the lane's VFS, which mounts the overlay named in that environment variable",
+  "fix": "run srvrows.py with the variable unset (the committed figures - stage 115 tiks / 93 declared / 0 FAIL, ship2 9 / 0 / 0 - were); not guarded in the code yet",
+  "tags": ["pistols", "srvrows", "checker", "false-pass", "environment"]
+ },
+ {
+  "error_message": "Run pa29: the emptied C96 demo was started with --eshots 10 on a clip of 8 - the gun reloaded by itself after the 8th shot and the 'DEMO reload' mark sat in the middle of that reload; its emptied centre-box figures are invalid. A second mistake of the same session: a sync loop copied 135 old scratch files into tools/ (removed again before the commit)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/tools/run_2h.py",
+  "root_cause": "clip size not read from the tik before the run; a glob over the scratch folder instead of a list",
+  "fix": "pa30 re-run with --eshots 8 (clipsize is in the tik: grep it first); tools/ synced by name",
+  "tags": ["pistols", "harness", "operator-error", "eshots"]
+ },
+ {
+  "error_message": "Finish texture lift (finlift.py, Welrod bloody sheets): the first pass turned the JPEG chroma noise of the near-black sheets into a brown cast (levels 0-10 amplified ten times)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/tools/finlift.py",
+  "root_cause": "the base lift's per-channel curve applied to JPEG sheets; the base sheets are TGA",
+  "fix": "the curve is applied to the grey level, the texel's own hue returns only above the noise (grey 6 -> 30). Staged only, NOT seen in the engine, awaiting approval like the base lifts",
+  "tags": ["pistols", "textures", "jpeg", "finishes", "unverified"]
+ }
+]

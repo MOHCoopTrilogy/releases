@@ -1065,6 +1065,9 @@ animations
 	// HZM coop [215] - manned-turret 3P pose (jeep .30cal / MG42 nests): standing hands-on-grips
 	coop_turret_stand_idle		weapon_mg42/MG42_stand_idle_a(loop).skc
 	coop_turret_stand_fire		weapon_mg42/MG42_stand_firing.skc
+	// HZM coop [bug-3658] the same on a LOW gun (engine condition COOP_TURRET_LOW): the AI gunner's crouched clips
+	coop_turret_crouch_idle		weapon_mg42/MG42_crouch_idle_a(loop).skc
+	coop_turret_crouch_fire		weapon_mg42/MG42_crouch_shooting.skc
 
 	// HZM coop [224] - TRUE shouldered AIM HOLDS (AI aiming anims, same skeleton): barrel level
 	// at the view. Used by the cover-peek torso (stand_idle was a muzzle-up patrol CARRY).
