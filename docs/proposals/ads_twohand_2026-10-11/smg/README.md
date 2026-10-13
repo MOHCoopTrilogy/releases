@@ -6,7 +6,142 @@ tree or the fixes pak. Engine: worktree `openmohaa-hzm-ads-smg`, branch `ads-smg
 generated rows of `cg_adssights.h`, see the handover; `cgame_smg3.dll` in `G:\mohaa-adsanim3\cgames` has both).
 Test game: `G:\mohaa-adsanim3` (owner adsanim3, port 12578).
 
-## HANDOVER (2026-10-13 morning, runs se20 - se24) - read this first
+## HANDOVER (2026-10-13 early afternoon, runs se25 - se29; stopped by the coordinator's BUDGET STOP) - read this first
+
+Engine unchanged: `ads-smg-next` **9ae4d1b0**, test build `cgame_smg4.dll`. Run ids used: sa1-sd2, se1-se29 (se25 = failed
+boot, se29 = stopped part-way; se30-se32 were queued and never started). **Next: se30.** Nothing is deployed; everything is
+staged under this folder. Bugs of this session: bug-3861 .. bug-3869.
+
+**Two things that changed under the lane - do both before the first run:**
+1. **The harness needs the RELEASED game DLL** (bug-3861). After the 11:02 deploy the old `G:\mohaa-adsanim3\game.dll` died at
+   map load (`player_Legs.st: Unknown condition 'COOP_TURRET_LOW'`; the run sits at the main menu, 0 captures). It is now
+   6b515fbf = `G:\mohaa-gl2\game.dll` (copied FROM there); the old one is `games\game_install_orig_until_20261013_689d0db1.dll`.
+   After any later deploy compare the two md5s first.
+2. **Build the overlay with `--integ`** (bug-3862): `python ../tools/mkov_smg.py <out.pk3> --integ --extra ..\..\..\mp18_skin_2026-10-12\assets`.
+   The game paks now hold the integrated MP40 family (per-weapon rows `coopr_mp40_*`, generic `mp40_*` rows as released).
+   `--integ` = the LIVE `fps_anims_smg.txt` + every lane row except the generic `mp40_*` ones, and without the staged
+   `mp40/mp40_reload_ads.skc`. So the Grease Guns / Silenced PPS-43 see the RELEASED generic rows: build each of them on
+   per-weapon rows `coopr_<weapon NAME key>_<row>` (also `_charge` / `_idle` if its aim pose changes). Current overlay:
+   `SCRATCH\adssmg\ov_i4.pk3`. Offline loop: `SCRATCH\adssmg\it2.sh <gun> <tag> <frames> <crop> [which] [cols]`;
+   a run: `sh run_one.sh ov_i4.pk3 <id> <harness gun> <hold> <rel> [parts]` (a full eight-stance set takes 17 min).
+
+### Thompson family - where each mesh stands
+
+| mesh (tiks) | rows (hands) | state |
+|---|---|---|
+| retail `ThompsonSMG.skd` (12 tiks: plain, Bloody, Blued, Desert, Winter, Woodland, Chrome, **Gold, Guanshire, Worn, FAMAS II, Team Tactics** - all five named variants are on this mesh) | PREFIX rows `thompson_reload[_empty][_ads]` (to become per-weapon rows at integration, as the MP40's) | done (se10 / se12), not reopened. Its firing hand is still the OVERHAND hook from behind (se12), not the closed-fist side hook the other right-knob meshes have - decision 1 |
+| M1A1 Remodel `coop_m1a1dk` (1) | `coopr_thompson_m1a1_remodel_reload[_empty][_ads][_empty_ads]` | done: break-offs re-run on the right rows (se26), GIFs decoded and looked at |
+| **27A1 Commando** `coop_tommy27a1` (1) | `coopr_thompson_27a1_commando_...` (4) | **built and run, all eight stances pass (se27)** |
+| **M1928** `coop_tommy28` (1) | `coopr_thompson_m1928_...` (4) | **built and run (se28): emptied passes in all eight; ROUNDS LEFT fails leaning left (3.71 %) and crouch + lean left (2.93 %); the cocking hand reads partly OPEN in the engine. NOT finished** |
+| 50rd `Thompson50.skd` (1) | `coopr_thompson_50rd_reload_empty / _ads / _empty_ads` + the hip row repointed in anims_shared.txt | built and staged, checked OFFLINE only (box 0.5 %); run se29 was stopped - **not run in the engine** |
+| 1928 Tommy `coop_tommy1928d` (1) | `coopr_thompson_1928_tommy_reload_empty / _ads / _empty_ads` + the hip row repointed in anims_shared.txt | built and staged, OFFLINE only (box 1.5 % / 1.4 %) - **not run in the engine** |
+
+**The Thompson rows are still HELD: two meshes are not run and one is not finished.** Server rows of the five staged
+non-retail tiks (`python tools/rowlen_smg.py --tiks ... --intended fire,fire_empty,idle_empty` ->
+`evidence/rowlen_thompson_family_staged_vs_released.txt`): `reload` and `idle` are other clips of the SAME LENGTH in all
+five (27A1 / M1A1 71 fr 2.343 s, M1928 84 fr 2.688 s, 50rd 84 fr 2.800 s, 1928 Tommy 71 fr 2.367 s); changed: `fire`
+(6 frames, was 71) + new `fire_empty` / `idle_empty` = the open-bolt recipe the MP40 shipped with; the reload rows
+`reload_empty` / `reload_ads_empty` are client-only. Not measured in the engine against a released run (only the reload
+lengths below: 162-163 capture frames, the retail mesh's figure).
+
+### Thompson (27A1 Commando) - built, run se27
+
+The retail mesh's own surfaces in its own model directory (same sight geometry, the SAME sheet `ThompsonSMG.dds`, so the
+slot repaint reaches it) + a sling. `smggun.GUNS['thompson_27a1']` = the retail recipe (round knob added on the right,
+back = cocked, clips `coop_thompson_27a1_*`); `smgbake.GUNS['thompson_27a1']` = the retail choreography with the firing
+hand's SIDE hook (`y` 1.0, `front` 0.6, `over` -0.15).
+
+| stance (se27, sway ON, beyond the envelope, no dry reference) | rounds left | emptied, after 0.64 s |
+|---|---|---|
+| stand | 0.31 % | 0.02 % |
+| crouch / prone | 0.04 / 0.68 % | 0.00 / 1.56 % |
+| lean left / right | 1.10 / 0.25 % | 1.38 / 0.01 % |
+| crouch + lean left / right | 0.07 / 1.66 % | 0.01 / 0.10 % |
+| braced | 0.37 % | 0.03 % |
+| back on the aim | 0.070-0.077 deg | 0.074-0.079 |
+
+Reload 162-163 capture frames in every capture. Offline box 1.1 % both; gun between the keys: aimed empty 0.02 u / 0.01 deg,
+hip empty 0.22 u / 1.28 deg (the retail hip clip's own first frames). Break-off of an emptied gun at 60 / 125 frames
+(se27): trigger and sprint - the reload runs to its end in the aim; next weapon - down at once; aim let go - the framing
+goes to the hip while the row runs on. LOOKED AT: the emptied stance sheet (all eight: magazine at the lower left, the
+firing hand at the right, same in every stance), eight full-size frames of the cocking
+(`thompson_27a1_cocking_hand_contact_frames_se27.jpg`: as on the other right-knob Thompsons the receiver's rear hides the
+knob and all but a wedge of the fist from the eye), an offline close-up of the fist under the knob, the side still (knob
+back, no painted ring). ONLY MEASURED: the rounds-left stance sheet, the four GIFs (made, not played back), the break-offs.
+Not done: third person, AI, sound.
+
+### Thompson (M1928) - built, run se28, NOT finished
+
+Knob on TOP of the receiver on its own bone `Bolt` (`smggun.OWN['thompson_m1928']`, side 'T', `rest='back'`), standing in
+the sight line. **New in `smgbake`: `cock='T'` + `work`** - after the magazine is seated the gun comes straight DOWN
+2.4 u (`work=dict(drop, t=(start, down, hold until, back up))`, added to the physics' drop), the LEFT hand leaves the
+magazine, closes, comes in from the left at knob height, hooks the index in front of the knob (`_TOP`: `flex` = the
+fore-grip grip closed further, `flex_pose`), pulls it back on the sound's clacks (f59-65), lets go, the gun comes back up
+(f66-74), hand on the fore-grip by f76. Physics `smg_top_on / _pull / _stop / _sear` (muzzle up, into the shoulder, no
+cant). Hip = the retail clip, its left hand turned onto the knob.
+
+| stance (se28, sway ON, beyond the envelope, no dry reference) | rounds left | emptied, after 0.64 s |
+|---|---|---|
+| stand | 0.01 % | 0.06 % |
+| crouch / prone | 0.02 / 0.02 % | 0.02 / 0.01 % |
+| lean left / right | **3.71 % (15 frames over 2 %)** / 0.01 % | 1.44 / 0.06 % |
+| crouch + lean left / right | **2.93 % (5 frames over)** / 0.01 % | 0.01 / 0.01 % |
+| braced | 0.11 % | 0.02 % |
+| back on the aim | 0.072-0.080 deg | 0.069-0.079 |
+
+Offline 0.3 % / 0.0 %; gun between the keys 0.002 u. Break-off IN the pull, gun lowered (emptied, 125 frames): as the others.
+LOOKED AT: eight engine frames of the cocking at 60 % (`thompson_m1928_cocking_hand_contact_frames_se28.jpg`). What they
+show: the gun is under the box for the whole pull, the hand never enters the box, the index is in front of the knob and the
+knob travels back with it, the gun returns. **And: the hand is NOT a clear closed fist in the engine** - it comes up open
+(palm seen, f53), lies on the knob with index and thumb reaching and the other fingers only part folded, and leaves open
+(f68). The offline render of the same clip shows a closed hand, so either the borrowed-fingers key is not what the engine
+plays for the left hand or the offline hand hides it. Rule 3 is not met as seen. ONLY MEASURED: both stance sheets, the
+four GIFs, the hip clips. **Open: (a) the two lean-left rounds-left figures (bug-3869: `reloadbox.py --dump` on the standL
+capture, then this gun's own `show` points); (b) the hand's fingers in the engine; (c) third person, AI, sound.**
+
+### Thompson 50rd and Thompson (1928 Tommy) - staged, OFFLINE only
+
+Both are DRUM guns with the top knob (50rd: bone `Bolt`; 1928 Tommy: the knob = 41 vertices of `Skin3`, split onto
+`coop_bolt` by a box - `split_box`, after `unify_parents` re-hung 6 of them; bug-3863 / 3864). A Thompson drum goes in and
+out only with the bolt held back, and the 50rd's own audit hip clip cocks first: an EMPTIED gun is cocked FIRST
+(`cock_first`: gun down f0-7, left hand over the top, pull f10-16, gun back up by f24-25), then the hand goes down the left
+side to the drum, slides it out to the LEFT inside the server's window (the gun's drum hidden f26-58 / f24-58), pouch, the
+new one in from the left, a tug, fore-grip by f71. One story at the hip and in the aim (`hip_proc`): the audit's hip rows
+are repointed (the 50rd's pulled a knob that is already back with rounds left, bug-3868). Sound: `tools/drumsound.py`
+re-lays the stick Thompson's recording to these frames (run it AFTER `smggun.py` for these two; bug-3867).
+Offline box: 50rd 0.5 % both, 1928 Tommy 1.5 % / 1.4 % (its 9.7 u drum stands 38 px under the box; `magk` 0.45, bug-3866).
+Looked at offline: the cock and the drum leaving / arriving at six frames each (closed hand on the knob; the thumb lies
+on the drum's rear face). **Nothing of these two has been run in the engine**: expect the M1928's open-hand finding here too.
+
+### Evidence of this session (`evidence/`)
+
+| file | what | state |
+|---|---|---|
+| `thompson_27a1_reload_{aimed,hip}_{empty,roundsleft}_se27.gif` | the four reloads, full frame (0.9-2.9 MB) | finished gun; GIFs not played back |
+| `thompson_27a1_reload_aimed_{empty,roundsleft}_stances_se27.jpg` | eight stances | emptied looked at |
+| `thompson_27a1_cocking_hand_contact_frames_se27.jpg` | eight engine frames of the pull | looked at |
+| `thompson_27a1_mesh_knob_added_back_side.jpg` | the mesh with the knob resting back | looked at |
+| `thompson_m1928_reload_{aimed,hip}_{empty,roundsleft}_se28.gif` | the four reloads (0.9-2.8 MB) | NOT finished gun; not played back |
+| `thompson_m1928_reload_aimed_{empty,roundsleft}_stances_se28.jpg` | eight stances | not looked at |
+| `thompson_m1928_cocking_hand_contact_frames_se28.jpg` | the lowered gun and the left hand on the knob | looked at: hand partly open |
+| `thompson_1928_tommy_mesh_knob_split_forward_side.jpg` | the split knob at the front of its slot | looked at |
+| `rowlen_thompson_family_staged_vs_released.txt` | server rows of the five staged tiks | pass with the intended rows |
+
+Not made: third-person stills of the four new meshes, the per-finish aim sheet of the retail Thompson (runs se31 / se32 were
+queued and cancelled: `SCRATCH\adssmg\queue2.sh` has both command lines), any evidence of the 50rd / 1928 Tommy.
+Raw frames: se26-se28 moved to `H:\hzm_archive\smg\`, the stopped se29's captures to `H:\hzm_archive\smg\se29_partial`
+(`SCRATCH\adssmg\archive_se26_29.ps1`, log beside it).
+
+**Decisions for the user:** (1) the retail-mesh Thompson's firing hand is still the overhand hook of se12; the M1A1 Remodel
+and the 27A1 have the closed-fist side hook - convert the retail mesh too (one rebake + one run)? (2) top-knob guns come
+2.4-3.0 u down under the box for the pull - accept the drop? (3) drum guns cock FIRST when emptied (real drill; the 50rd's
+hip clip already did) and their hip rows are replaced by the lane's own - accept?
+
+**Next, in this order:** M1928 (a) and (b) above; then `sh run_one.sh ov_i4.pk3 se30 thompson50 310 200
+"sdemoE,sdemol,shipdemo,sbreak:fire+switch+sprint+drop:25+110:E"` and the same for `thompson1928d 190 200`; the two cancelled
+runs; the family's final row list; then PPSh, both Grease Guns, Silenced PPS-43, Type 100, Moschetto (none started).
+
+## Earlier handover (2026-10-13 morning, runs se20 - se24) - its "Next" list and state table are superseded by the above
 
 Engine unchanged: `ads-smg-next` **9ae4d1b0**, test build `cgame_smg4.dll`. Overlay of these runs:
 `SCRATCH\adssmg\ov_g8.pk3` (se20-22), `ov_h3.pk3` (se24, + the M1A1 remodel) = `mkov_smg.py <out> --extra ..\..\..\mp18_skin_2026-10-12\assets`

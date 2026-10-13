@@ -143,6 +143,102 @@
    "clip": "viewmodel/smg/coop_thompson_reload_hip.skc"
   }
  },
+ "thompson_1928_tommy": {
+  "ads_empty": {
+   "back": 0.99,
+   "clip": "viewmodel/smg/thompson_1928_tommy_reload_empty_ads.skc",
+   "drop": 0.31,
+   "peak_deg": 1.27,
+   "roll": 0.64,
+   "settle_s": 0.23
+  },
+  "ads_loaded": {
+   "back": 0.03,
+   "clip": "viewmodel/smg/thompson_1928_tommy_reload_ads.skc",
+   "drop": 0.17,
+   "peak_deg": 0.91,
+   "roll": 0.64,
+   "settle_s": 0.23
+  },
+  "hip_empty": {
+   "clip": "viewmodel/smg/coop_thompson_1928_tommy_reload_empty_hip.skc"
+  },
+  "hip_loaded": {
+   "clip": "viewmodel/smg/coop_thompson_1928_tommy_reload_hip.skc"
+  }
+ },
+ "thompson_27a1": {
+  "ads_empty": {
+   "back": 0.24,
+   "clip": "viewmodel/smg/thompson_27a1_reload_empty_ads.skc",
+   "drop": 0.39,
+   "peak_deg": 1.26,
+   "roll": 0.76,
+   "settle_s": 0.2
+  },
+  "ads_loaded": {
+   "back": 0.04,
+   "clip": "viewmodel/smg/thompson_27a1_reload_ads.skc",
+   "drop": 0.39,
+   "peak_deg": 1.26,
+   "roll": 0.76,
+   "settle_s": 0.23
+  },
+  "hip_empty": {
+   "clip": "viewmodel/smg/coop_thompson_27a1_reload_empty_hip.skc"
+  },
+  "hip_loaded": {
+   "clip": "viewmodel/smg/coop_thompson_27a1_reload_hip.skc"
+  }
+ },
+ "thompson_50rd": {
+  "ads_empty": {
+   "back": 0.99,
+   "clip": "viewmodel/smg/thompson_50rd_reload_empty_ads.skc",
+   "drop": 0.31,
+   "peak_deg": 1.29,
+   "roll": 0.7,
+   "settle_s": 0.23
+  },
+  "ads_loaded": {
+   "back": 0.04,
+   "clip": "viewmodel/smg/thompson_50rd_reload_ads.skc",
+   "drop": 0.18,
+   "peak_deg": 0.88,
+   "roll": 0.76,
+   "settle_s": 0.23
+  },
+  "hip_empty": {
+   "clip": "viewmodel/smg/coop_thompson_50rd_reload_empty_hip.skc"
+  },
+  "hip_loaded": {
+   "clip": "viewmodel/smg/coop_thompson_50rd_reload_hip.skc"
+  }
+ },
+ "thompson_m1928": {
+  "ads_empty": {
+   "back": 0.97,
+   "clip": "viewmodel/smg/thompson_m1928_reload_empty_ads.skc",
+   "drop": 0.39,
+   "peak_deg": 1.26,
+   "roll": 0.76,
+   "settle_s": 0.18
+  },
+  "ads_loaded": {
+   "back": 0.04,
+   "clip": "viewmodel/smg/thompson_m1928_reload_ads.skc",
+   "drop": 0.39,
+   "peak_deg": 1.26,
+   "roll": 0.76,
+   "settle_s": 0.23
+  },
+  "hip_empty": {
+   "clip": "viewmodel/smg/coop_thompson_m1928_reload_empty_hip.skc"
+  },
+  "hip_loaded": {
+   "clip": "viewmodel/smg/coop_thompson_m1928_reload_hip.skc"
+  }
+ },
  "thompson_m1a1": {
   "ads_empty": {
    "back": 0.24,

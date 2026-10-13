@@ -187,12 +187,104 @@
    "viewmodel/smg/thompson_m1a1_reload_empty_ads.skc",
    "0.1",
    "coopr_thompson_m1a1_remodel_reload_ads"
+  ],
+  [
+   "coopr_thompson_27a1_commando_reload",
+   "viewmodel/smg/coop_thompson_27a1_reload_hip.skc",
+   "0.1",
+   "thompson_reload_empty_ads"
+  ],
+  [
+   "coopr_thompson_27a1_commando_reload_empty",
+   "viewmodel/smg/coop_thompson_27a1_reload_empty_hip.skc",
+   "0.1",
+   "coopr_thompson_27a1_commando_reload"
+  ],
+  [
+   "coopr_thompson_27a1_commando_reload_ads",
+   "viewmodel/smg/thompson_27a1_reload_ads.skc",
+   "0.1",
+   "coopr_thompson_27a1_commando_reload_empty"
+  ],
+  [
+   "coopr_thompson_27a1_commando_reload_empty_ads",
+   "viewmodel/smg/thompson_27a1_reload_empty_ads.skc",
+   "0.1",
+   "coopr_thompson_27a1_commando_reload_ads"
+  ],
+  [
+   "coopr_thompson_m1928_reload",
+   "viewmodel/smg/coop_thompson_m1928_reload_hip.skc",
+   "0.1",
+   "thompson_reload_empty_ads"
+  ],
+  [
+   "coopr_thompson_m1928_reload_empty",
+   "viewmodel/smg/coop_thompson_m1928_reload_empty_hip.skc",
+   "0.1",
+   "coopr_thompson_m1928_reload"
+  ],
+  [
+   "coopr_thompson_m1928_reload_ads",
+   "viewmodel/smg/thompson_m1928_reload_ads.skc",
+   "0.1",
+   "coopr_thompson_m1928_reload_empty"
+  ],
+  [
+   "coopr_thompson_m1928_reload_empty_ads",
+   "viewmodel/smg/thompson_m1928_reload_empty_ads.skc",
+   "0.1",
+   "coopr_thompson_m1928_reload_ads"
+  ],
+  [
+   "coopr_thompson_50rd_reload_empty",
+   "viewmodel/smg/coop_thompson_50rd_reload_empty_hip.skc",
+   "0.1",
+   "mp40_reload_empty_ads"
+  ],
+  [
+   "coopr_thompson_50rd_reload_ads",
+   "viewmodel/smg/thompson_50rd_reload_ads.skc",
+   "0.1",
+   "coopr_thompson_50rd_reload_empty"
+  ],
+  [
+   "coopr_thompson_50rd_reload_empty_ads",
+   "viewmodel/smg/thompson_50rd_reload_empty_ads.skc",
+   "0.1",
+   "coopr_thompson_50rd_reload_ads"
+  ],
+  [
+   "coopr_thompson_1928_tommy_reload_empty",
+   "viewmodel/smg/coop_thompson_1928_tommy_reload_empty_hip.skc",
+   "0.1",
+   "mp40_reload_empty_ads"
+  ],
+  [
+   "coopr_thompson_1928_tommy_reload_ads",
+   "viewmodel/smg/thompson_1928_tommy_reload_ads.skc",
+   "0.1",
+   "coopr_thompson_1928_tommy_reload_empty"
+  ],
+  [
+   "coopr_thompson_1928_tommy_reload_empty_ads",
+   "viewmodel/smg/thompson_1928_tommy_reload_empty_ads.skc",
+   "0.1",
+   "coopr_thompson_1928_tommy_reload_ads"
   ]
  ],
  "shared": [
   [
    "coopr_mp40_mp18_reload",
    "viewmodel/mp40/coop_mp40_mp18_reload_hip.skc"
+  ],
+  [
+   "coopr_thompson_50rd_reload",
+   "viewmodel/smg/coop_thompson_50rd_reload_hip.skc"
+  ],
+  [
+   "coopr_thompson_1928_tommy_reload",
+   "viewmodel/smg/coop_thompson_1928_tommy_reload_hip.skc"
   ]
  ]
 }

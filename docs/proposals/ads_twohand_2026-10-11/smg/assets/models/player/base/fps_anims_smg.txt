@@ -232,5 +232,23 @@ animations
 	coopr_thompson_m1a1_remodel_reload_empty		viewmodel/smg/coop_thompson_m1a1_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
 	coopr_thompson_m1a1_remodel_reload_ads		viewmodel/smg/thompson_m1a1_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
 	coopr_thompson_m1a1_remodel_reload_empty_ads		viewmodel/smg/thompson_m1a1_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	//===================== ads-smg lane: Thompson (27A1 Commando): the retail recipe on its own mesh =====================
+	coopr_thompson_27a1_commando_reload		viewmodel/smg/coop_thompson_27a1_reload_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_27a1_commando_reload_empty		viewmodel/smg/coop_thompson_27a1_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_27a1_commando_reload_ads		viewmodel/smg/thompson_27a1_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_27a1_commando_reload_empty_ads		viewmodel/smg/thompson_27a1_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	//===================== ads-smg lane: Thompson (M1928): top knob, left hand over the lowered gun =====================
+	coopr_thompson_m1928_reload		viewmodel/smg/coop_thompson_m1928_reload_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_m1928_reload_empty		viewmodel/smg/coop_thompson_m1928_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_m1928_reload_ads		viewmodel/smg/thompson_m1928_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_m1928_reload_empty_ads		viewmodel/smg/thompson_m1928_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	//===================== ads-smg lane: Thompson 50rd: drum, cocked first =====================
+	coopr_thompson_50rd_reload_empty		viewmodel/smg/coop_thompson_50rd_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_50rd_reload_ads		viewmodel/smg/thompson_50rd_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_50rd_reload_empty_ads		viewmodel/smg/thompson_50rd_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	//===================== ads-smg lane: Thompson (1928 Tommy): drum, cocked first =====================
+	coopr_thompson_1928_tommy_reload_empty		viewmodel/smg/coop_thompson_1928_tommy_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_1928_tommy_reload_ads		viewmodel/smg/thompson_1928_tommy_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_thompson_1928_tommy_reload_empty_ads		viewmodel/smg/thompson_1928_tommy_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
 }
 

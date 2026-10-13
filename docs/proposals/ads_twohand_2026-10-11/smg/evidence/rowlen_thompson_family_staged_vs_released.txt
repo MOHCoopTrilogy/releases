@@ -1,0 +1,44 @@
+released = fixes @ HEAD | integrated = working copy | 5 file(s)
+file | row | released | integrated | verdict
+models/weapons/thompsonsmg_tommy27a1.tik | fire | ThompsonSMG.skc 71f 2.367s | coop_thompson_27a1_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/thompsonsmg_tommy27a1.tik | fire_empty | - | coop_thompson_27a1_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/thompsonsmg_tommy27a1.tik | idle_empty | - | coop_thompson_27a1_idle_empty.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/thompsonsmg_tommy27a1.tik | reload_ads_empty | - | coop_thompson_27a1_reload_ads_empty.skc 84f 2.800s | new row, client-only (no server name)
+models/weapons/thompsonsmg_tommy27a1.tik | reload_empty | - | coop_thompson_27a1_reload_empty.skc 84f 2.800s | new row, client-only (no server name)
+models/weapons/thompsonsmg_tommy28.tik | fire | ThompsonSMG_fire.skc 71f 2.343s | coop_thompson_m1928_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/thompsonsmg_tommy28.tik | fire_empty | - | coop_thompson_m1928_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/thompsonsmg_tommy28.tik | idle | ThompsonSMG.skc 71f 2.343s | coop_thompson_m1928_held_ThompsonSMG.skc 71f 2.343s | other clip, SAME LENGTH (server-read)
+models/weapons/thompsonsmg_tommy28.tik | idle_empty | - | coop_thompson_m1928_idle_empty.skc 1f 0.017s | new row, SERVER-READ - INTENDED
+models/weapons/thompsonsmg_tommy28.tik | reload | ThompsonSMG_reload.skc 84f 2.688s | coop_thompson_m1928_reload.skc 84f 2.688s | other clip, SAME LENGTH (server-read)
+models/weapons/thompsonsmg_tommy28.tik | reload_ads_empty | - | coop_thompson_m1928_reload_ads_empty.skc 84f 2.688s | new row, client-only (no server name)
+models/weapons/thompsonsmg_tommy28.tik | reload_empty | - | coop_thompson_m1928_reload_empty.skc 84f 2.688s | new row, client-only (no server name)
+models/weapons/thompsonsmg_tommy28.tik | secondaryfire | ThompsonSMG.skc 71f 2.343s | coop_thompson_m1928_held_ThompsonSMG.skc 71f 2.343s | other clip, SAME LENGTH (server-read)
+models/weapons/thompson50.tik | fire | ThompsonSMG_fire.skc 71f 2.343s | coop_thompson_50rd_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/thompson50.tik | fire_empty | - | coop_thompson_50rd_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/thompson50.tik | idle | ThompsonSMG.skc 71f 2.343s | coop_thompson_50rd_held_ThompsonSMG.skc 71f 2.343s | other clip, SAME LENGTH (server-read)
+models/weapons/thompson50.tik | idle_empty | - | coop_thompson_50rd_idle_empty.skc 1f 0.017s | new row, SERVER-READ - INTENDED
+models/weapons/thompson50.tik | reload | coop_tommy50_reload.skc 84f 2.800s | coop_thompson_50rd_reload.skc 84f 2.800s | other clip, SAME LENGTH (server-read)
+models/weapons/thompson50.tik | reload_ads_empty | - | coop_thompson_50rd_reload_ads_empty.skc 84f 2.800s | new row, client-only (no server name)
+models/weapons/thompson50.tik | reload_empty | - | coop_thompson_50rd_reload_empty.skc 84f 2.800s | new row, client-only (no server name)
+models/weapons/thompsonsmg_tommy1928d.tik | fire | ThompsonSMG.skc 71f 2.367s | coop_thompson_1928_tommy_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/thompsonsmg_tommy1928d.tik | fire_empty | - | coop_thompson_1928_tommy_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/thompsonsmg_tommy1928d.tik | idle | ThompsonSMG.skc 71f 2.367s | coop_thompson_1928_tommy_reload.skc 71f 2.367s | other clip, SAME LENGTH (server-read)
+models/weapons/thompsonsmg_tommy1928d.tik | idle_empty | - | coop_thompson_1928_tommy_idle_empty.skc 1f 0.017s | new row, SERVER-READ - INTENDED
+models/weapons/thompsonsmg_tommy1928d.tik | reload | ThompsonSMG.skc 71f 2.367s | coop_thompson_1928_tommy_reload.skc 71f 2.367s | other clip, SAME LENGTH (server-read)
+models/weapons/thompsonsmg_tommy1928d.tik | reload_ads_empty | - | coop_thompson_1928_tommy_reload_ads_empty.skc 71f 2.367s | new row, client-only (no server name)
+models/weapons/thompsonsmg_tommy1928d.tik | reload_empty | - | coop_thompson_1928_tommy_reload_empty.skc 71f 2.367s | new row, client-only (no server name)
+models/weapons/thompsonsmg_tommy1928d.tik | secondaryfire | ThompsonSMG.skc 71f 2.367s | coop_thompson_1928_tommy_reload.skc 71f 2.367s | other clip, SAME LENGTH (server-read)
+models/weapons/thompsonsmg_m1a1dk.tik | fire | thompson_fire.skc 71f 2.343s | coop_thompson_m1a1_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/thompsonsmg_m1a1dk.tik | fire_empty | - | coop_thompson_m1a1_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/thompsonsmg_m1a1dk.tik | idle | thompson.skc 71f 2.343s | coop_thompson_m1a1_reload.skc 71f 2.343s | other clip, SAME LENGTH (server-read)
+models/weapons/thompsonsmg_m1a1dk.tik | idle_empty | - | coop_thompson_m1a1_idle_empty.skc 1f 0.017s | new row, SERVER-READ - INTENDED
+models/weapons/thompsonsmg_m1a1dk.tik | reload | thompson.skc 71f 2.343s | coop_thompson_m1a1_reload.skc 71f 2.343s | other clip, SAME LENGTH (server-read)
+models/weapons/thompsonsmg_m1a1dk.tik | reload_ads_empty | - | coop_thompson_m1a1_reload_ads_empty.skc 71f 2.343s | new row, client-only (no server name)
+models/weapons/thompsonsmg_m1a1dk.tik | reload_empty | - | coop_thompson_m1a1_reload_empty.skc 71f 2.343s | new row, client-only (no server name)
+---
+38 rows in 5 files: 3 untouched
+     5  LENGTH CHANGED, SERVER-READ - INTENDED
+    10  new row, SERVER-READ - INTENDED
+    10  new row, client-only (no server name)
+    10  other clip, SAME LENGTH (server-read)
+GATE: pass - no server-read row changed length except the intended rows

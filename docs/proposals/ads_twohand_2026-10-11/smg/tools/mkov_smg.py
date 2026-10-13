@@ -49,9 +49,47 @@ def ai_poll(src):
     return new
 
 
+ROWS = 'models/player/base/fps_anims_smg.txt'
+# --integ: files of the lane tree that the integration did NOT ship under these names (it shipped the MP40's aimed clip
+# as coop_mp40_reload_ads.skc; this one would replace the RELEASED clip the generic mp40_reload_ads row still names)
+INTEG_SKIP = {'models/human/animation/viewmodel/mp40/mp40_reload_ads.skc'}
+
+
+def integ_rows():
+    """fps_anims_smg.txt for a run ON TOP OF THE INTEGRATED GAME (2026-10-13: MP40 / Silenced MP40 / MP40 R2 are live with
+    per-weapon rows coopr_mp40_*; the generic mp40_* rows are the RELEASED ones again and the Grease Guns, the Silenced
+    PPS-43 and the MP18 read them): the live file, every generic mp40_* row left as it is, every other row of the lane
+    file put on top (changed clip in place, new row before the closing brace)."""
+    import re
+    sys.path.insert(0, os.path.normpath(os.path.join(HERE, '..', '..', '..', 'ironsights_2026-09-28', 'tools')))
+    import vfs
+    live = vfs.read(ROWS).decode('latin-1')
+    nl = '\r\n' if '\r\n' in live else '\n'
+    lane = open(os.path.join(ASSETS, ROWS.replace('/', os.sep)), encoding='latin-1').read()
+    rx = r'(?m)^[ \t]+(\S+)[ \t]+(\S+\.skc)[^\r\n]*'
+    have = dict(re.findall(rx.replace('[^\\r\\n]*', ''), live))
+    new, chg, kept = [], 0, 0
+    for m in re.finditer(rx, lane):
+        row, clip = m.group(1), m.group(2)
+        if row.startswith('mp40_'):
+            kept += int(have.get(row) != clip)
+            continue
+        if row not in have:
+            new.append(m.group(0))
+        elif have[row] != clip:
+            live, k = re.subn(r'(?m)^([ \t]+%s[ \t]+)\S+\.skc' % re.escape(row), lambda q: q.group(1) + clip, live)
+            assert k == 1, (row, k)
+            chg += 1
+    k = live.rstrip().rfind('}')
+    live = live[:k] + '\t// ads-smg lane rows on the integrated file (mkov_smg --integ)' + nl + nl.join(new) + nl + live[k:]
+    print('--integ: live rows %d, lane rows added %d, repointed %d, generic mp40_* rows left as live %d' % (len(have), len(new), chg, kept))
+    return live
+
+
 def main():
     out = sys.argv[1]
     base_only = '--base' in sys.argv
+    integ = '--integ' in sys.argv
     n = 0
     with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED) as z:
         b = zipfile.ZipFile(BASE)
@@ -65,7 +103,11 @@ def main():
                 for f in fs:
                     p = os.path.join(d, f)
                     arc = os.path.relpath(p, ASSETS).replace(os.sep, '/')
+                    if integ and (arc.lower() == ROWS or arc.lower() in INTEG_SKIP):
+                        continue
                     z.write(p, arc); n += 1
+            if integ:
+                z.writestr(ROWS, integ_rows().encode('latin-1')); n += 1
             # rows that live in anims_shared.txt (rows_extra.json 'shared'): the live pak's own copy with those rows
             # repointed goes into the overlay; NOT staged under assets (a staged copy of a shared file goes stale)
             import json, re
@@ -86,11 +128,15 @@ def main():
                         z.write(p, os.path.relpath(p, xd).replace(os.sep, '/')); n += 1
     names = set(x.lower() for x in zipfile.ZipFile(out).namelist())
     if not base_only:
-        rows = open(os.path.join(ASSETS, 'models', 'player', 'base', 'fps_anims_smg.txt'), encoding='latin-1').read().splitlines()
+        rows = zipfile.ZipFile(out).read(ROWS).decode('latin-1').splitlines()
         staged = 0
         for l in rows:
             t = l.split('//')[0].split()
             if len(t) >= 2 and '/coop_' in t[1].lower() or (len(t) >= 2 and 'ads-smg' in l):
+                if integ and ('models/human/animation/' + t[1]).lower() not in names:
+                    import vfs                  # a row the integration shipped: its clip is in the live pak
+                    assert vfs.read('models/human/animation/' + t[1]) is not None, ('row names a clip that is neither staged nor live', t)
+                    continue
                 assert ('models/human/animation/' + t[1]).lower() in names or 'coop_dp28' in t[1].lower() or 'coop_johnson' in t[1].lower(), ('row names a clip that is not staged', t)
                 staged += 1
         print('rows naming staged clips:', staged)

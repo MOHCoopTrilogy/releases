@@ -90,6 +90,15 @@ for _k in [k for k in gunphys.ACTIONS if k.startswith('smg_side_')]:
 for _k in ('smg_handle_on', 'smg_bolt_pull', 'smg_bolt_stop', 'smg_bolt_sear'):
     _v, _d = gunphys.ACTIONS[_k]
     gunphys.ACTIONS[_k + '_r'] = ((_v[0], -_v[1], _v[2], -_v[3], _v[4]), _d)
+# A knob on TOP of the receiver (Thompson M1928 type), pulled straight back by the LEFT hand lying over the gun: the
+# force acts above the bore and above the shoulder, so the pull tips the muzzle UP and brings the gun into the shoulder -
+# no cant; the hand's weight comes down on the gun as it lands. (No roll / side: nothing to reverse for hand=-1.)
+gunphys.ACTIONS.update({
+    'smg_top_on':   ((7.0, 0.0, 6.0, 0.0, 2.0), 2.0),          # the hand lands on the receiver top
+    'smg_top_pull': ((5.0, 0.0, -52.0, 0.0, 120.0), 5.0),      # pulled back against the spring: muzzle up, into the shoulder
+    'smg_top_stop': ((0.0, 0.0, -30.0, 0.0, 60.0), 1.5),       # the actuator hits the end of its slot
+    'smg_top_sear': ((-4.0, 0.0, 44.0, 0.0, -66.0), 1.5),      # let go: the bolt settles forward onto the sear
+})
 
 GUNS = {
     'mp40': dict(row='mp40_reload', sight='mp40', aim='viewmodel/mp40/coop_mp40_ads_mag.skc', cls='smg', vdir='viewmodel/mp40',
@@ -230,6 +239,54 @@ GUNS['thompson_m1a1'] = _variant('thompson', 'thompson_m1a1', tik='models/weapon
                                  hook=dict(hookpose={**_HOOK_SIDE, 1: _envf('SB_HP1', (18.0, 43.0, 30.0))},
                                            grab=dict(_GRAB_SIDE, y=_envf('SB_GY', (1.6,))[0], front=_envf('SB_GF', (0.8,))[0], over=_envf('SB_GO', (-0.2,))[0]),
                                            approach_r=((-0.3, 0.5, 1.1), 3), let_add=(0.0, -1.0, -0.4)))
+# Thompson (27A1 Commando): the retail mesh's geometry in its own model directory (smggun GUNS['thompson_27a1']: the same
+# added round knob, 0.8 u across, standing out of the right wall y 0.54 .. 1.24) - the retail choreography with the
+# firing hand's SIDE hook (closed fist from below, the index across the knob's front at its outer end). Rows by NAME.
+GUNS['thompson_27a1'] = _variant('thompson', 'thompson_27a1', tik='models/weapons/thompsonsmg_tommy27a1.tik',
+                                 out='coopr_thompson_27a1_commando_reload',
+                                 hook=dict(hookpose={**_HOOK_SIDE, 1: _envf('SB_HP1', (18.0, 43.0, 30.0))},
+                                           grab=dict(_GRAB_SIDE, y=_envf('SB_GY', (1.0,))[0], front=_envf('SB_GF', (0.6,))[0], over=_envf('SB_GO', (-0.15,))[0]),
+                                           approach_r=((-0.3, 0.5, 1.1), 3), let_add=(0.0, -1.0, -0.4)))
+# ---- the three Thompsons with the actuator knob on TOP (smggun OWN, side 'T', the knob rests BACK) ----
+# hook (left hand over the gun): fingers point across the top to the right and a little forward and down, the palm
+# looks down and to the rear (the pull), the index's last joint in front of the knob's front face; fingers = the
+# fore-grip's own closed grip (`mix` toward the row's frame `ref`)
+_TOP = dict(ref=64, mix=_envf('SB_TMIX', (0.15,))[0], curl=0.0, fdir=_envf('SB_TF', (0.35, 0.9, 0.25)), pdir=_envf('SB_TP', (-0.55, 0.0, 0.85)),
+            add=_envf('SB_TA', (0.3, 0.0, 0.0)), thick=0.3,
+            flex={0: _envf('SB_TX0', (0.0, 10.0, 15.0)), 1: _envf('SB_TX1', (8.0, 22.0, 18.0)), 2: _envf('SB_TX2', (28.0, 44.0, 30.0)),
+                  3: _envf('SB_TX2', (28.0, 44.0, 30.0)), 4: _envf('SB_TX2', (28.0, 44.0, 30.0))}, add_hip=_envf('SB_HADDH', (0.3, 0.0, 0.0)), hip_mix=0.75, hip_close=4,
+            fdir_hip=(0.35, 0.9, 0.25), pdir_hip=(-0.55, 0.0, 0.85))
+# Thompson (M1928): stick magazine = the Thompson's own swap; EMPTY: after the seat the gun comes down (work), the left
+# hand over the top pulls the knob on the sound's clacks (f59-65), gun back up, hand home by f76. HIP: the retail clip,
+# its left hand turned onto the knob (hip_cock='L').
+GUNS['thompson_m1928'] = dict(GUNS['thompson'], sight='thompson_m1928', out='coopr_thompson_m1928_reload', tik='models/weapons/thompsonsmg_tommy28.tik',
+                              cock='T', hip_cock='L', hook=dict(_TOP),
+                              t=dict(GUNS['thompson']['t'], reach=(49, 57), pull=(59, 65), let=67, on_e=(69, 76)),
+                              work=dict(drop=2.4, t=(47, 55, 66, 74)))
+# Thompson 50rd / Thompson (1928 Tommy): DRUM guns. Rows of their own exist in anims_shared.txt (the reload audit's hip
+# clips): EXTRA_ROWS. One story at the hip and in the aim (hip_proc): an EMPTIED gun is cocked FIRST (left hand over the
+# top, as the 50rd's audit clip does), then the hand goes down the left side to the drum, slides it out to the LEFT
+# along its grooves, pouch, the new one in from the left, a tug, back to the fore-grip. Rounds left: the same without
+# the pull (the audit's 50rd clip pulls a knob that is already back).
+EXTRA_ROWS.update({'coopr_thompson_50rd_reload': 'viewmodel/coop_reload/tommydrum_reload.skc',
+                   'coopr_thompson_1928_tommy_reload': 'viewmodel/coop_reload/tommydrum1928_reload.skc'})
+_DRUMSHOW = dict(out1=_envf('SB_OUT1', (0.0, 0.0, -0.2)), out2=_envf('SB_OUT2', (-0.4, 1.5, -1.6)), out3=_envf('SB_OUT3', (-1.0, 2.0, -4.5)),
+                 in1=_envf('SB_IN1', (-0.6, 2.2, -3.0)), in1b=_envf('SB_IN1B', (-0.4, 1.6, -1.6)), in2=_envf('SB_IN2', (-0.2, 0.2, -0.3)))
+GUNS['thompson_50rd'] = dict(GUNS['thompson'], row='coopr_thompson_50rd_reload', sight='thompson_50rd', out=None, tik='models/weapons/thompson50.tik',
+                             prop='models/ammo/coop_tommy50_drum.tik', propwin=(24, 60), out_rel=25, in_rel=59, well=(0.0, -1.0, 0.0),
+                             magphys='smg_side', magk=0.7, shoulder=0.5, show=_DRUMSHOW,
+                             cock='T', cock_first=1, hook=dict(_TOP, ref=12, mix=_envf('SB_TMIX', (0.0,))[0]),
+                             t=dict(down=(18, 23), catch=24, out=(26, 30), outshow=33, outgo=36, gone=39, back=43, show=47, hold=49, under=52,
+                                    seat=(54, 58), tug=61.5, on=(64, 71), reach=(2, 9), pull=(10, 16), let=18),
+                             end=79, work=dict(drop=3.0, t=(0, 7, 17, 25)),
+                             hip_proc=dict(pose='viewmodel/smg/idle_tommy_stand.skc'))
+GUNS['thompson_1928_tommy'] = dict(GUNS['thompson_50rd'], row='coopr_thompson_1928_tommy_reload', sight='thompson_1928', tik='models/weapons/thompsonsmg_tommy1928d.tik',
+                                   prop='models/ammo/coop_tommy1928_drum.tik', propwin=(22, 60), out_rel=22, in_rel=59, magk=0.45,
+                                   hook=dict(_TOP, ref=22, mix=_envf('SB_TMIX', (0.0,))[0]),
+                                   t=dict(down=(16, 21), catch=22, out=(24, 28), outshow=31, outgo=34, gone=37, back=42, show=46, hold=48, under=51,
+                                          seat=(54, 58), tug=61.5, on=(64, 71), reach=(2, 9), pull=(10, 16), let=18),
+                                   work=dict(drop=3.0, t=(0, 7, 17, 24)))
+del GUNS['thompson_50rd']['out']
 GUNS['silenced_pps_43'] = _variant('mp40', 'silenced_pps_43', tik='models/weapons/ppsh43silenced.tik', **_UNDER)
 # Sten (retail TA): held by its side magazine (the released aim pose coop_sten_ads_mag = the hip idle's own hold). The
 # PREFIX rows sten_reload[_empty][_ads] (only the Sten and its finishes are on the prefix). Retail clip (91 frames; the
@@ -294,6 +351,18 @@ def hook_pose(pd, hand, spec):
         for sfx, dg in zip(('', '1', '2'), degs):
             ch = 'Bip01 %s Finger%d%s rot' % (hand, fi, sfx)
             if ch in pd:
+                pd[ch] = R.rows_to_quat(R.axis_angle_rows((0, 0, 1), dg) @ R.quat_to_rows(pd[ch]))
+    return pd
+
+
+def flex_pose(pd, hand, spec):
+    """a copy of the pose with fingers of `hand` flexed FURTHER: spec[finger 0-4] = (deg, deg, deg) at its three joints,
+    on top of what the pose has (a grip closed into a fist; hook_pose instead starts from a straight finger)"""
+    pd = dict(pd)
+    for fi, degs in spec.items():
+        for sfx, dg in zip(('', '1', '2'), degs):
+            ch = 'Bip01 %s Finger%d%s rot' % (hand, fi, sfx)
+            if ch in pd and dg:
                 pd[ch] = R.rows_to_quat(R.axis_angle_rows((0, 0, 1), dg) @ R.quat_to_rows(pd[ch]))
     return pd
 
@@ -480,7 +549,61 @@ def ads_spec(name, empty, hip=False):
             lp[sl] = onm(i, fi)
             lp[sl + 2] = onm(i, fi)
             ev.append((sl - 0.5, mp + '_seat', 0.6 * mk))
-    if empty and g.get('cock') == 'R':
+    if empty and g.get('cock') == 'T':
+        # A knob on TOP of the receiver, standing in the sight line (Thompson M1928 / 50rd / 1928 Tommy). Neither hand
+        # can work it on the sights: the left hand has to lie over the gun (the retail hip technique). So the gun comes
+        # straight DOWN under the centre box (`work`, added to the physics below), the left hand goes over its top onto
+        # the knob - a closed hand, the index hooked in front of the knob - pulls it back to the sear and lets go, and
+        # the gun comes back up to the exact aim. `cock_first` (drum guns: a Thompson drum goes in and out only with the
+        # bolt held back, and the 50rd's own hip clip cocks first): the pull is the FIRST thing, then the hand goes down
+        # the left side to the drum; otherwise it follows the seated magazine.
+        hk = g['hook']
+        r0, r1 = [int(v) for v in t['reach']]; p0, p1 = [int(v) for v in t['pull']]; lt = int(t['let'])
+        # the hand: the fore-grip's own grip closed further into a fist (`flex`), the index a hook - never an open hand
+        hpL = flex_pose(aim_pose(g), 'L', hk['flex']) if hk.get('flex') else None
+        T = hook_rel(g, hipclip, fwd, pose=hpL)
+        fg = ('clip', 'coop_hook_L', 0) if hpL else ('mix', hk['ref'], hk['mix'])
+        if hpL:
+            kw['_fc'] = {('coop_hook_L', 0): hpL}
+        soft = knob(name)[2].get('pull_soft', 0.0)
+        first = bool(g.get('cock_first'))
+        if first:
+            for k_ in [k_ for k_ in lp if 0 < k_ < d1]:
+                del lp[k_]
+        lp[r0] = AIM if first else onm(i, fi)
+        if first:                          # off the fore-grip: back, left and down, CLOSING (not across the box's corner)
+            lp[r0 + 2] = dict(aim=1, cam_add=tuple(_envf('SB_TVIA1', hk.get('via_first', (-1.0, 1.8, -1.6)))), fing=fg)
+        if not first:                      # off the magazine: down-left of it, CLOSING, before it goes up over the gun
+            lp[r0 + 3] = dict(aim=1, cam_add=tuple(_envf('SB_TVIA', hk.get('via_t', (-1.5, 2.2, -1.6)))), fing=fg)
+        lp[r1 - 3] = dict(relT=T, gun_add=tuple(_envf('SB_TAP', hk.get('approach_t', (-0.4, -2.2, -0.5)))), fing=fg)   # from above-left
+        lp[r1] = dict(relT=T, fing=fg)
+        for f in range(p0, p1 + 1):
+            lp[f] = dict(relT=T, gun_add=(-travel * pull_u(f, p0, p1, soft), 0.0, 0.0), fing=fg)
+        lv = np.asarray(_envf('SB_TLV', hk.get('leave_t', (-0.2, -1.2, -1.0))), float)
+        lp[lt] = dict(relT=T, gun_add=tuple(np.array([-travel, 0.0, 0.0]) + lv), fing=fg)
+        tk = g.get('topk', 1.0)
+        if first:
+            sup = sorted([(0, 1), (r0, 1), (r1, 0.45), (p1, 0.45), (lt + 2, 0.5)] + [x for x in sup if x[0] >= d1])
+        else:
+            e0, e1 = [int(v) for v in t['on_e']]
+            lp[e0] = dict(aim=1, cam_add=hk.get('home_t', (-1.0, 2.0, -1.0)), fing=fg)
+            for f in range(e1, n + 1):
+                lp[f] = AIM
+            sup += [(r0, 0.6), (r1, 0.45), (p1, 0.45), (e0, 0.45), (e1, 1.0), (n, 1.0)]
+            ev += [(e1 - 3.5, 'smg_hand_on', 0.6)]
+        ev += [(r1 - 1.0, 'smg_top_on'), (p0, 'smg_top_pull', tk), (p1 - 0.5, 'smg_top_stop', tk), (lt - 1.0, 'smg_top_sear', tk)]
+        if not first:
+            pass
+        elif t.get('tug') is not None:
+            # (the drum case ends like a rounds-left reload: a tug on the seated drum, back to the fore-grip)
+            a0, a1 = t['on']
+            lp[a0] = dict(rel=i, fing=fi)
+            lp[a0 + 3] = dict(aim=1, cam_add=home, fing=('mix', i, 0.5))
+            for f in range(a1, n + 1):
+                lp[f] = AIM
+            sup += [(a0, 0.75), (a1, 1.0), (n, 1.0)]
+            ev += [(t['tug'], mp + '_tug'), (a1 - 3.0, 'smg_hand_on')]
+    elif empty and g.get('cock') == 'R':
         # A handle on the RIGHT (step 3): the left hand seats the magazine and goes straight back to its grip (it and
         # the shoulder hold the gun), then the FIRING hand leaves the grip, hooks the handle from below-right, pulls it
         # back to the sear and returns - the mirror image of the left-hand pull, same physics with the roll reversed.
@@ -573,6 +696,17 @@ def ads_spec(name, empty, hip=False):
                           mag=[(0, 1), (o0, 1), (o0 + 3, 0), (s0, 0), (s1, 1)], events=ev, strength=STRENGTH, hand=-1.0)
     for f in range(ne + 1, n + 1):
         ph['dip'][f] = tuple(0.0 for _ in ph['dip'][ne])
+    work = None if hip else g.get('work')
+    if empty and work:
+        # the lowered WORK POSE: the gun straight down (camera frame; it stays parallel to its aim, so nothing of it
+        # crosses the box on the way), held while the hand is on the knob, straight back up
+        w0, w1, w2, w3 = work['t']
+        D = _envf('SB_WORK', (work['drop'],))[0]; Pw = _envf('SB_WORKP', (work.get('pitch', 0.0),))[0]
+        for f in list(ph['dip']):
+            u = min(ease_((f - w0) / float(w1 - w0)), ease_((w3 - f) / float(w3 - w2)))
+            if u > 0.0:
+                d_ = list(ph['dip'][f]); d_[0] += D * u; d_[2] += Pw * u
+                ph['dip'][f] = tuple(d_)
     if os.environ.get('SB_TRACE'):
         X = ph['X']; a_, b_ = [int(v) for v in os.environ['SB_TRACE'].split(':')]
         print('    f   drop   roll  pitch   side   back   | per-frame step: drop u, pitch deg')

@@ -66,6 +66,10 @@ GUNS = {
                      frames=84, pull_soft=0.6, snd_cut=(51.0, 56.0),
                      snd_parms='soundparms 1.5 0.0 1.0 0.05 160 1000 item loaded always maps "m e t dm obj lib"'),
 }
+# Thompson (27A1 Commando), pack mesh coop_tommy27a1/ThompsonSMG.skd: the retail mesh's own surfaces (same names, same
+# vertex counts, same sight geometry, the SAME texture sheet ThompsonSMG.dds - so stage_slot's repaint reaches it) + a
+# sling surface. One tik. The retail recipe on it: the round knob added on the right, back = cocked.
+GUNS['thompson_27a1'] = dict(GUNS['thompson'], tik='models/weapons/thompsonsmg_tommy27a1.tik', _pre='thompson_27a1_')
 FIRE = [0.0, 0.55, 1.0, 0.6, 0.2, 0.0]          # forward fraction per 1/60 s frame
 FIRE_EMPTY = [0.0, 0.55, 1.0, 1.0]
 
@@ -424,6 +428,24 @@ OWN = {
     # travel 6.1). The Thompson's timing: aimed pull f59-65 (firing hand), hip f63.5-66.5 (the retail left hand over the top)
     'thompson_m1a1': dict(tik='models/weapons/thompsonsmg_m1a1dk.tik', bone='chamber', side='R', pull_soft=0.6,
                           hip_pull=(63.5, 66.5), ads_pull=(59.0, 65.0), snd_cut=(51.0, 56.0)),
+    # Thompson (M1928), pack mesh coop_tommy28: the actuator knob on TOP of the receiver on its own bone `Bolt`; the
+    # pack's clips rest it BACK and run it forward (+5.05) in fire and reload - rest='back'. Stick magazine, the
+    # Thompson's timing: aimed pull f59-65, hip f63.5-66.5 (the retail left hand over the top).
+    'thompson_m1928': dict(tik='models/weapons/thompsonsmg_tommy28.tik', bone='Bolt', side='T', rest='back', pull_soft=0.6,
+                           hip_pull=(63.5, 66.5), ads_pull=(59.0, 65.0), snd_cut=(51.0, 56.0)),
+    # Thompson 50rd (Thompson50.skd): the same top knob on `Bolt`, rests back. DRUM: a Thompson drum goes in and out
+    # only with the bolt held back, so an EMPTIED gun is cocked FIRST (f10-16, hip and aimed: one story, smgbake
+    # hip_proc), then the drum is changed inside the server's window (the gun's drum hidden f26-58, prop f24-60).
+    'thompson_50rd': dict(tik='models/weapons/thompson50.tik', bone='Bolt', side='T', rest='back', pull_soft=0.6,
+                          hip_pull=(10.0, 16.0), ads_pull=(10.0, 16.0), hip_as_ads=1, snd_cut=(51.0, 56.0)),
+    # Thompson (1928 Tommy), pack mesh coop_tommy1928d: the top knob is modelled (surface Skin5: 146 vertices, x -1.65 ..
+    # -0.87, top z -5.48) at the BACK of its slot but hangs on the gun's main bone: split onto coop_bolt, travel 5.0
+    # forward (the slot is on the mesh: x -2.2 .. 3.4). Drum: cocked first, as the 50rd (drum hidden f24-58, prop f22-60).
+    # (Correction, same day: Skin5 is a plate on the receiver's LEFT wall. The knob is 41 vertices of Skin3 - a ball
+    # x -2.62 .. -1.85, y -1.19 .. -0.41, top z -5.15 - found by height over the receiver top: split_box.)
+    'thompson_1928_tommy': dict(tik='models/weapons/thompsonsmg_tommy1928d.tik', bone='coop_bolt', side='T', rest='back',
+                                split=('Skin3',), split_box=('Skin3', -2.75, -1.3, -5.3, -1.7, -0.3, -4.66), travel=5.0, pull_soft=0.6, hip_pull=(10.0, 16.0), ads_pull=(10.0, 16.0),
+                                hip_as_ads=1, snd_cut=(51.0, 56.0)),
 }
 OWN_DEFAULTS = dict(hip_pull=(58.0, 63.5), ads_pull=(55.0, 61.0), snd_cut=(51.0, 56.0),
                     snd_parms='soundparms 1.5 0.0 1.0 0.05 160 1000 item loaded always maps "m e t dm obj lib"')
@@ -448,6 +470,53 @@ def moving_part(tik, anim, frame, side):
                 kn_lo=kn.min(0), kn_hi=kn.max(0))
 
 
+def unify_parents(raw, t, pick):
+    """split_bone wants every selected vertex on ONE bone. The 1928 Tommy's knob has 20 vertices on `origin` and 6 on
+    `tommy gun new` (single weights; neither bone moves in any clip of the gun). The minority's weight records are
+    rewritten IN PLACE onto the majority bone: offset and normal carried over by the two bones' rest transforms (idle,
+    frame 0), so every vertex stays where it is (asserted to 1e-4 u). Bytes, counts and order unchanged."""
+    import struct
+    from collections import Counter
+    m = SK.read_skd(raw)
+    skc = SK.read_skc(vfs.read(G._res(t, t['anims']['idle'])))
+    mats, _ = G.bone_world(m, skc, 0, keep_root=True)
+    cnt = Counter()
+    for s_ in m.surfaces:
+        for vi, v in enumerate(s_.verts):
+            if pick(s_, vi):
+                assert len(v[2]) == 1, 'a selected vertex has several weights'
+                cnt[v[2][0][0]] += 1
+    if len(cnt) <= 1:
+        return raw
+    p0 = cnt.most_common(1)[0][0]
+    Mp = np.asarray(mats[p0], float)
+    out = bytearray(raw)
+    moved, worst = 0, 0.0
+    for s_ in m.surfaces:
+        base = s_.raw_off
+        voff = base + struct.unpack_from('<8i', raw, base + 68)[4]
+        for vi in range(s_.numVerts):
+            nrm = np.array(struct.unpack_from('<3f', raw, voff))
+            nw, nm = struct.unpack_from('<2i', raw, voff + 20)
+            woff = voff + 28 + 16 * nm
+            if pick(s_, vi):
+                bi, bw = struct.unpack_from('<if', raw, woff)
+                if bi != p0:
+                    Mb = np.asarray(mats[bi], float)
+                    off = np.array(struct.unpack_from('<3f', raw, woff + 8))
+                    w = off @ Mb[:3] + Mb[3]
+                    off2 = (w - Mp[3]) @ np.linalg.inv(Mp[:3])
+                    n2 = nrm @ Mb[:3] @ np.linalg.inv(Mp[:3])
+                    worst = max(worst, float(np.abs(off2 @ Mp[:3] + Mp[3] - w).max()))
+                    struct.pack_into('<3f', out, voff, *[float(x) for x in n2])
+                    struct.pack_into('<if3f', out, woff, p0, bw, *[float(x) for x in off2])
+                    moved += 1
+            voff = woff + 20 * nw
+    assert worst < 1e-4, worst
+    print('   %d of %d selected vertices re-hung from their own bone onto %s (rest place kept to %.1e u)' % (moved, sum(cnt.values()), m.bones[p0].name, worst))
+    return bytes(out)
+
+
 def build_own(name, root):
     g = dict(OWN_DEFAULTS); g.update(OWN[name])
     bone, ch = g['bone'], g['bone'] + ' pos'
@@ -457,7 +526,7 @@ def build_own(name, root):
     clip = {r: GF.read_skc_any(G._res(t, c)) for r, c in rows.items() if r in ('idle', 'fire', 'reload')}
     idle, rel = clip['idle'], clip['reload']
     back_rest = g.get('rest') == 'back'
-    if g.get('split'):
+    if g.get('split') or g.get('split_box'):
         # the handle is modelled on the mesh but hangs on the gun's main bone: its vertices get their OWN bone
         # (ads_bolt split_bone.py: weights re-pointed in place, nothing else changes; no channel = where they are)
         import split_bone as SPL
@@ -465,20 +534,33 @@ def build_own(name, root):
         raw = vfs.read(skd_path)
         if bone in [b_.name for b_ in SK.read_skd(raw).bones]:
             raise SystemExit('the VFS mesh already has %s - build with IRONSIGHT_EXTRA_PAKS unset' % bone)
-        new, parent, nsel = SPL.split(raw, bone, lambda s_, vi, p_: s_.name in g['split'])
+        g0 = G.load_gun(g['tik'], anim='idle', frame=0)
+        if g.get('split_box'):             # a PART of a surface, by a box in the gun frame (surface, x0, y0, z0, x1, y1, z1)
+            bx = g['split_box']; lo, hi = np.array(bx[1:4], float), np.array(bx[4:7], float)
+            Ps = [s_['P'] for s_ in g0['surfs'] if s_['name'] == bx[0]][0]
+            chosen = set(int(i) for i in np.nonzero(np.all((Ps >= lo) & (Ps <= hi), axis=1))[0])
+            sel = lambda s_, vi: s_.name == bx[0] and vi in chosen
+            Pm = Ps[sorted(chosen)]
+        else:
+            sel = lambda s_, vi: s_.name in g['split']
+            Pm = np.vstack([s_['P'] for s_ in g0['surfs'] if s_['name'] in g['split']])
+        raw = unify_parents(raw, t, sel)
+        new, parent, nsel = SPL.split(raw, bone, lambda s_, vi, p_: sel(s_, vi))
         gdir0 = os.path.join(root, t['path'].replace('/', os.sep))
         os.makedirs(gdir0, exist_ok=True)
         open(os.path.join(gdir0, os.path.basename(skd_path)), 'wb').write(new)
         one0 = copy.deepcopy(idle); one0.values = [idle.values[0]]; one0.frames = [idle.frames[0]]; one0.numFrames = 1
         _, pf, d = GF.solve_delta(SK.read_skd(new), GF.add_channels(one0, bone), bone, g['travel'] / t['scale'])
         pb = pf + d
-        g0 = G.load_gun(g['tik'], anim='idle', frame=0)
-        Pm = np.vstack([s_['P'] for s_ in g0['surfs'] if s_['name'] in g['split']])
+        if back_rest:                      # modelled at the BACK of its travel (1928 Tommy): the bind place is `back`
+            _, pb, d = GF.solve_delta(SK.read_skd(new), GF.add_channels(one0, bone), bone, -g['travel'] / t['scale'])
+            pf = pb + d
         ax, sg = {'L': (1, -1.0), 'R': (1, 1.0), 'T': (2, -1.0)}[g['side']]
         kn = Pm[(Pm[:, ax] * sg) > (Pm[:, ax] * sg).max() - 0.45]
-        part = dict(n=len(Pm), travel=np.array([-g['travel'], 0.0, 0.0]), knob=kn.mean(0), front=float(kn[:, 0].max()), kn_lo=kn.min(0), kn_hi=kn.max(0))
+        # (as moving_part: `travel` = from the rest place to the other end)
+        part = dict(n=len(Pm), travel=np.array([g['travel'] if back_rest else -g['travel'], 0.0, 0.0]), knob=kn.mean(0), front=float(kn[:, 0].max()), kn_lo=kn.min(0), kn_hi=kn.max(0))
         srow, kb = 'split', 0
-        print('%s: %d vertices of %s split from bone %s onto %s (%d -> %d bytes)' % (name, nsel, g['split'], parent, bone, len(raw), len(new)))
+        print('%s: %d vertices of %s split from bone %s onto %s (%d -> %d bytes); they span %s .. %s' % (name, nsel, g.get('split_box', g['split']), parent, bone, len(raw), len(new), np.round(Pm.min(0), 2), np.round(Pm.max(0), 2)))
     else:
         pf, pb, part, srow, kb = _own_travel(g, clip, ch, back_rest)
     if part is None:
@@ -529,7 +611,7 @@ def _build_own_clips(name, root, g, t, rows, clip, pf, pb, part, back_rest):
     files = {'coop_%sfire.skc' % pre: with_bone(one, FIRE), 'coop_%sfire_empty.skc' % pre: with_bone(one, FIRE_EMPTY),
              'coop_%sidle_empty.skc' % pre: with_bone(one, [1.0]),
              'coop_%sreload.skc' % pre: with_bone(rel, [0.0] * rel.numFrames),
-             'coop_%sreload_empty.skc' % pre: with_bone(rel, on_clock(rel, hip_curve(g, n30))),
+             'coop_%sreload_empty.skc' % pre: with_bone(rel, on_clock(rel, pull_curve(n30, *g['ads_pull'], soft=g.get('pull_soft', 0.0)) if g.get('hip_as_ads') else hip_curve(g, n30))),
              'coop_%sreload_ads_empty.skc' % pre: with_bone(rel, on_clock(rel, pull_curve(n30, *g['ads_pull'], soft=g.get('pull_soft', 0.0))))}
     repoint = {rows['reload']: 'coop_%sreload.skc' % pre}
     for c_ in sorted(set(rows.values())):               # every other clip the tik shows the gun with: the bolt held BACK
