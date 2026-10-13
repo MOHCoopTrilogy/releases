@@ -12,7 +12,9 @@ base, 1080p aim capture, a shot and the hip reload captured, and its AIMED RELOA
 stances).** NOT done: everything after it on the list (Kar98 reload leftovers, Springfield / Mosin / Enfield reloads,
 the semi-autos, Carcano / De Lisle / Arisaka / G98, the scoped sample). Engine `ads-rifle-next` is unchanged
 (**60e00829** = `cgames\cgame_rifle7.dll`: the rows and the gun-row swap it needs were already there). Overlay of the
-staged state: `G:\mohaa-adsanim2\ov_rifle_e5.pk3`. Run ids used: rb28-rb33 (rb29 spent on a failed boot); **rb34 is next**.
+staged state: `G:\mohaa-adsanim2\ov_rifle_f3.pk3` (`mkov_rifle.py <pk3> --armory`; `ov_rifle_e5.pk3` = without the
+armory entry, with the measure tiks). Neither holds the 52 finish tiks of `boltcap_variants.py` - rebuild before the
+next run. Run ids used: rb28-rb38 (rb29 spent on a failed boot); **rb39 is next**.
 Run folders ra1-ra7 and rb1-rb13 were MOVED off G: (disk full) to
 `C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\rifles\runs\`
 (set `ADS_RUNS` to it to re-read them); rb14 and later are still in `G:\mohaa-adsanim2\runs`.
