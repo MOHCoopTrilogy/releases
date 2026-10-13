@@ -1,0 +1,21 @@
+== hands rows the merged cgame newly reacts to (integrated row files)
+  RELEASED per-weapon reload row (looked up by the released cgame too)   20 row(s): coopr_arisaka_sniper_reload coopr_arisaka_sniper_reload_end coopr_arisaka_sniper_reload_single coopr_lee_enfield_sniper_reload coopr_lee_enfield_sniper_reload_end coopr_lee_enfield_sniper_reload_single ...
+  step 1 BAR                                                             5 row(s): bar_reload_adsb bar_reload_empty bar_reload_empty_ads bar_reload_empty_adsb coopr_bar_charge
+  step 1 DP-28                                                           4 row(s): dp28_reload_adsb dp28_reload_empty dp28_reload_empty_ads dp28_reload_empty_adsb
+  step 1 Shotgun                                                         4 row(s): shotgun_reload_end_break shotgun_reload_end_break_ads shotgun_reload_end_loaded shotgun_reload_end_loaded_ads
+  step 1 Shotgun (the TORSO row of the quick break-off, anims_shotgun.txt - played by the state file) 1 row(s): shotgun_reload_break
+  step 1 StG 44                                                          4 row(s): mp44_reload_adsb mp44_reload_empty mp44_reload_empty_ads mp44_reload_empty_adsb
+  step 2 MP40                                                            5 row(s): coopr_mp40_charge coopr_mp40_reload coopr_mp40_reload_ads coopr_mp40_reload_empty coopr_mp40_reload_empty_ads
+  step 2 MP40 R2                                                         4 row(s): coopr_mp40_reactivated_reload coopr_mp40_reactivated_reload_ads coopr_mp40_reactivated_reload_empty coopr_mp40_reactivated_reload_empty_ads
+  step 2 Silenced MP40                                                   5 row(s): coopr_silenced_mp40_charge coopr_silenced_mp40_reload coopr_silenced_mp40_reload_ads coopr_silenced_mp40_reload_empty coopr_silenced_mp40_reload_empty_ads
+  step 2 pin: MP18 keeps the released aim pose                           1 row(s): coopr_mp40_mp18_charge
+== gun rows the merged cgame newly shows (every weapon tik the game can load)
+  step 1           reload_ads_empty   in 32 tik(s)
+  step 1           reload_ads_loaded  in 32 tik(s)
+  step 1           reload_empty       in 12 tik(s)
+  step 1 Shotgun   reload_end_loaded  in 14 tik(s)
+  step 2           reload_ads_empty   in 13 tik(s)
+  step 2           reload_empty       in 13 tik(s)
+  step 3           rechamber_ads      in 56 tik(s)
+552 weapon tiks scanned
+GATE: pass - every name the merged cgame reacts to belongs to a rollout gun (or was released)

@@ -1,0 +1,347 @@
+=== released/reference session b1 against f1
+gun phase | b1 | f1 | verdict
+bar hipfire | reload None refill  | ATTACK_MG_PRIMARY:0.275 | reload None refill  | ATTACK_MG_PRIMARY:0.275 | equal
+bar hipreload | reload 3.25 refill 2@+1.575 |  | reload 3.25 refill 2@+1.575 |  | equal
+bar aim | reload None refill  |  | reload None refill  |  | equal
+bar aimfire | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.25 | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.25 | equal
+bar aimreload | reload 3.25 refill 2@+1.575 |  | reload 3.25 refill 2@+1.575 |  | equal
+bar aimempty | reload 3.25 refill 20@+1.575 | ATTACK_MG_PRIMARY_AIM:4.075 | reload 3.25 refill 20@+1.575 | ATTACK_MG_PRIMARY_AIM:4.075 | equal
+bar crouch | reload 3.25 refill 2@+1.575 | ATTACK_MG_PRIMARY_AIM:0.25 | reload 3.25 refill 2@+1.575 | ATTACK_MG_PRIMARY_AIM:0.225 | equal (within one 25 ms server frame)
+bar hipempty | reload 3.25 refill 20@+1.575 | ATTACK_MG_PRIMARY:2.55 | reload 3.25 refill 20@+1.575 | ATTACK_MG_PRIMARY:2.55 | equal
+mp44 hipfire | reload None refill  | ATTACK_MG_PRIMARY:0.375 | reload None refill  | ATTACK_MG_PRIMARY:0.375 | equal
+mp44 hipreload | reload 2.75 refill 3@+1.350 |  | reload 2.75 refill 3@+1.350 |  | equal
+mp44 aim | reload None refill  |  | reload None refill  |  | equal
+mp44 aimfire | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.25 | equal (within one 25 ms server frame)
+mp44 aimreload | reload 2.75 refill 3@+1.350 |  | reload 2.75 refill 3@+1.350 |  | equal
+mp44 aimempty | reload 2.75 refill 30@+1.350 | ATTACK_MG_PRIMARY_AIM:5.675 | reload 2.75 refill 30@+1.350 | ATTACK_MG_PRIMARY_AIM:5.675 | equal
+mp44 crouch | reload 2.75 refill 3@+1.350 | ATTACK_MG_PRIMARY_AIM:0.25 | reload 2.75 refill 3@+1.350 | ATTACK_MG_PRIMARY_AIM:0.225 | equal (within one 25 ms server frame)
+mp44 hipempty | reload 2.75 refill 30@+1.350 | ATTACK_MG_PRIMARY:3.075 | reload 2.75 refill 30@+1.350 | ATTACK_MG_PRIMARY:3.075 | equal
+shotgun hipfire | reload None refill  | ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 | reload None refill  | ATTACK_SHOTGUN_PRIMARY:1.15 ATTACK_SHOTGUN_PRIMARY:1.15 | equal (within one 25 ms server frame)
+shotgun hipreload | reload 3.225 refill 1@+0.900,1@+1.550 |  | reload 3.225 refill 1@+1.200,1@+1.850 |  | DIFFERENT
+shotgun aim | reload None refill  |  | reload None refill  |  | equal
+shotgun aimfire | reload None refill  | ATTACK_SHOTGUN_PRIMARY_AIM:1.175 ATTACK_SHOTGUN_PRIMARY_AIM:1.175 | reload None refill  | ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 | equal (within one 25 ms server frame)
+shotgun aimreload | reload 3.225 refill 1@+0.900,1@+1.550 |  | reload 3.225 refill 1@+1.200,1@+1.850 |  | DIFFERENT
+shotgun aimempty | reload 5.175 refill 1@+0.900,1@+1.550,1@+2.200,1@+2.850,1@+3.500 | ATTACK_SHOTGUN_PRIMARY_AIM:1.175 ATTACK_SHOTGUN_PRIMARY_AIM:1.175 ATTACK_SHOTGUN_PRIMARY_AIM:1.175 ATTACK_SHOTGUN_PRIMARY_AIM:1.175 ATTACK_SHOTGUN_PRIMARY_AIM:1.175 | reload 5.175 refill 1@+1.200,1@+1.850,1@+2.500,1@+3.150,1@+3.800 | ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 | DIFFERENT
+shotgun crouch | reload 3.225 refill 1@+0.900,1@+1.550 | ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 | reload 3.225 refill 1@+1.200,1@+1.850 | ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 | DIFFERENT
+shotgun hipempty | reload 5.175 refill 1@+0.900,1@+1.550,1@+2.200,1@+2.850,1@+3.500 | ATTACK_SHOTGUN_PRIMARY:1.15 ATTACK_SHOTGUN_PRIMARY:1.15 ATTACK_SHOTGUN_PRIMARY:1.15 ATTACK_SHOTGUN_PRIMARY:1.15 ATTACK_SHOTGUN_PRIMARY:1.15 | reload 5.175 refill 1@+1.200,1@+1.850,1@+2.500,1@+3.150,1@+3.800 | ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 | DIFFERENT
+colt45 hipfire | reload None refill  | ATTACK_PISTOL_PRIMARY:0.175 ATTACK_PISTOL_PRIMARY:0.175 | reload None refill  | ATTACK_PISTOL_PRIMARY:0.175 ATTACK_PISTOL_PRIMARY:0.175 | equal
+colt45 hipreload | reload 2.4 refill 2@+0.825 |  | reload 2.4 refill 2@+0.825 |  | equal
+colt45 aim | reload None refill  |  | reload None refill  |  | equal
+colt45 aimfire | reload None refill  | ATTACK_PISTOL_PRIMARY_AIM:0.175 ATTACK_PISTOL_PRIMARY_AIM:0.175 | reload None refill  | ATTACK_PISTOL_PRIMARY_AIM:0.175 ATTACK_PISTOL_PRIMARY_AIM:0.175 | equal
+colt45 aimreload | reload 2.4 refill 2@+0.825 |  | reload 2.4 refill 2@+0.825 |  | equal
+colt45 aimempty | reload 2.4 refill 7@+0.825 | ATTACK_PISTOL_PRIMARY_AIM:0.175 ATTACK_PISTOL_PRIMARY_AIM:0.175 ATTACK_PISTOL_PRIMARY_AIM:0.175 ATTACK_PISTOL_PRIMARY_AIM:0.175 ATTACK_PISTOL_PRIMARY_AIM:0.175 ATTACK_PISTOL_PRIMARY_AIM:0.175 ATTACK_PISTOL_PRIMARY_AIM:0.175 | reload 2.4 refill 7@+0.825 | ATTACK_PISTOL_PRIMARY_AIM:0.175 ATTACK_PISTOL_PRIMARY_AIM:0.175 ATTACK_PISTOL_PRIMARY_AIM:0.175 ATTACK_PISTOL_PRIMARY_AIM:0.175 ATTACK_PISTOL_PRIMARY_AIM:0.175 ATTACK_PISTOL_PRIMARY_AIM:0.175 ATTACK_PISTOL_PRIMARY_AIM:0.175 | equal
+colt45 crouch | reload 2.4 refill 2@+0.825 | ATTACK_PISTOL_PRIMARY_AIM:0.175 ATTACK_PISTOL_PRIMARY_AIM:0.175 | reload 2.4 refill 2@+0.825 | ATTACK_PISTOL_PRIMARY_AIM:0.175 ATTACK_PISTOL_PRIMARY_AIM:0.175 | equal
+colt45 hipempty | reload 2.4 refill 7@+0.825 | ATTACK_PISTOL_PRIMARY:0.175 ATTACK_PISTOL_PRIMARY:0.175 ATTACK_PISTOL_PRIMARY:0.175 ATTACK_PISTOL_PRIMARY:0.175 ATTACK_PISTOL_PRIMARY:0.175 ATTACK_PISTOL_PRIMARY:0.175 ATTACK_PISTOL_PRIMARY:0.175 | reload 2.4 refill 7@+0.825 | ATTACK_PISTOL_PRIMARY:0.175 ATTACK_PISTOL_PRIMARY:0.175 ATTACK_PISTOL_PRIMARY:0.175 ATTACK_PISTOL_PRIMARY:0.175 ATTACK_PISTOL_PRIMARY:0.175 ATTACK_PISTOL_PRIMARY:0.175 ATTACK_PISTOL_PRIMARY:0.175 | equal
+thompson hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.6 | reload None refill  | ATTACK_SMG_PRIMARY:0.6 | equal
+thompson hipreload | reload 2.6 refill 3@+2.125 |  | reload 2.6 refill 3@+2.125 |  | equal
+thompson aim | reload None refill  |  | reload None refill  |  | equal
+thompson aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | equal
+thompson aimreload | reload 2.6 refill 3@+2.125 |  | reload 2.6 refill 3@+2.125 |  | equal
+thompson aimempty | reload 2.6 refill 30@+2.125 | ATTACK_SMG_PRIMARY_AIM:5.7 | reload 2.6 refill 30@+2.125 | ATTACK_SMG_PRIMARY_AIM:5.675 | equal (within one 25 ms server frame)
+thompson crouch | reload 2.6 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | reload 2.6 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | equal
+thompson hipempty | reload 2.6 refill 30@+2.125 | ATTACK_SMG_PRIMARY:3.3 | reload 2.6 refill 30@+2.125 | ATTACK_SMG_PRIMARY:3.3 | equal
+sten hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.65 | reload None refill  | ATTACK_SMG_PRIMARY:0.725 | DIFFERENT
+sten hipreload | reload 3.0 refill 3@+2.350 |  | reload 3.0 refill 4@+2.350 |  | DIFFERENT
+sten aim | reload None refill  |  | reload None refill  |  | equal
+sten aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.25 | equal (within one 25 ms server frame)
+sten aimreload | reload 3.0 refill 3@+2.350 |  | reload 3.0 refill 4@+2.350 |  | DIFFERENT
+sten aimempty | reload 3.0 refill 30@+2.350 | ATTACK_SMG_PRIMARY_AIM:5.675 | reload 3.0 refill 30@+2.350 | ATTACK_SMG_PRIMARY_AIM:5.7 | equal (within one 25 ms server frame)
+sten crouch | reload 3.0 refill 3@+2.350 | ATTACK_SMG_PRIMARY_AIM:0.225 | reload 3.0 refill 4@+2.350 | ATTACK_SMG_PRIMARY_AIM:0.25 | DIFFERENT
+sten hipempty | reload 3.0 refill 30@+2.350 | ATTACK_SMG_PRIMARY:2.675 | reload 6.7 refill 30@+2.350,1@+6.050 | ATTACK_SMG_PRIMARY:2.675 ATTACK_SMG_PRIMARY:0.5 | DIFFERENT
+garand hipfire | reload None refill  | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_PRIMARY:0.2 | reload None refill  | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_PRIMARY:0.2 | equal
+garand hipreload | reload 2.0 refill 2@+1.125 |  | reload 2.0 refill 2@+1.125 |  | equal
+garand aim | reload None refill  |  | reload None refill  |  | equal
+garand aimfire | reload None refill  | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 | reload None refill  | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 | equal
+garand aimreload | reload 2.0 refill 2@+1.125 |  | reload 2.0 refill 2@+1.125 |  | equal
+garand aimempty | reload 2.0 refill 8@+1.125 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 | reload 2.0 refill 8@+1.125 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 | equal
+garand crouch | reload 2.0 refill 2@+1.125 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 | reload 2.0 refill 2@+1.125 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_PRIMARY_AIM:0.2 | equal
+garand hipempty | reload 2.0 refill 8@+1.125 | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_PRIMARY:0.2 | reload 2.0 refill 8@+1.125 | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_PRIMARY:0.2 | equal
+fg42 hipfire | reload None refill  | ATTACK_MG_PRIMARY:0.375 | reload None refill  | ATTACK_MG_PRIMARY:0.35 | equal (within one 25 ms server frame)
+fg42 hipreload | reload 2.325 refill 3@+1.325 |  | reload 2.325 refill 3@+1.325 |  | equal
+fg42 aim | reload None refill  |  | reload None refill  |  | equal
+fg42 aimfire | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.25 | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.25 | equal
+fg42 aimreload | reload 2.325 refill 3@+1.325 |  | reload 2.325 refill 3@+1.325 |  | equal
+fg42 aimempty | reload 2.325 refill 20@+1.325 | ATTACK_MG_PRIMARY_AIM:4.075 | reload 2.325 refill 20@+1.325 | ATTACK_MG_PRIMARY_AIM:4.1 | equal (within one 25 ms server frame)
+fg42 crouch | reload 2.325 refill 3@+1.325 | ATTACK_MG_PRIMARY_AIM:0.25 | reload 2.325 refill 3@+1.325 | ATTACK_MG_PRIMARY_AIM:0.225 | equal (within one 25 ms server frame)
+fg42 hipempty | reload 2.325 refill 20@+1.325 | ATTACK_MG_PRIMARY:2.05 | reload 2.325 refill 20@+1.325 | ATTACK_MG_PRIMARY:2.075 | equal (within one 25 ms server frame)
+10 phase(s) differ
+=== released/reference session b2 against f1
+gun phase | b2 | f1 | verdict
+lewis hipfire | reload None refill  | ATTACK_MG_PRIMARY:0.3 | reload None refill  | ATTACK_MG_PRIMARY:0.3 | equal
+lewis hipreload | reload 3.25 refill 2@+1.975 |  | reload 3.25 refill 2@+1.975 |  | equal
+lewis aim | reload None refill  |  | reload None refill  |  | equal
+lewis aimfire | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.225 | equal
+lewis aimreload | reload 3.25 refill 2@+1.975 |  | reload 3.25 refill 2@+1.975 |  | equal
+lewis aimempty | reload 3.25 refill 20@+1.975 | ATTACK_MG_PRIMARY_AIM:4.1 | reload 3.25 refill 20@+1.975 | ATTACK_MG_PRIMARY_AIM:4.1 | equal
+lewis crouch | reload 3.25 refill 2@+1.975 | ATTACK_MG_PRIMARY_AIM:0.225 | reload 3.25 refill 2@+1.975 | ATTACK_MG_PRIMARY_AIM:0.25 | equal (within one 25 ms server frame)
+lewis hipempty | reload 3.25 refill 20@+1.975 | ATTACK_MG_PRIMARY:2.525 | reload 3.25 refill 20@+1.975 | ATTACK_MG_PRIMARY:2.525 | equal
+dp28 hipfire | reload None refill  | ATTACK_MG_PRIMARY:0.275 | reload None refill  | ATTACK_MG_PRIMARY:0.275 | equal
+dp28 hipreload | reload 3.25 refill 2@+1.475 |  | reload 3.25 refill 2@+1.475 |  | equal
+dp28 aim | reload None refill  |  | reload None refill  |  | equal
+dp28 aimfire | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.25 | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.225 | equal (within one 25 ms server frame)
+dp28 aimreload | reload 3.25 refill 2@+1.475 |  | reload 3.25 refill 2@+1.475 |  | equal
+dp28 aimempty | reload 3.25 refill 20@+1.475 | ATTACK_MG_PRIMARY_AIM:4.1 | reload 3.25 refill 20@+1.475 | ATTACK_MG_PRIMARY_AIM:4.075 | equal (within one 25 ms server frame)
+dp28 crouch | reload 3.25 refill 2@+1.475 | ATTACK_MG_PRIMARY_AIM:0.225 | reload 3.25 refill 2@+1.475 | ATTACK_MG_PRIMARY_AIM:0.225 | equal
+dp28 hipempty | reload 3.25 refill 20@+1.475 | ATTACK_MG_PRIMARY:2.55 | reload 3.25 refill 20@+1.475 | ATTACK_MG_PRIMARY:2.55 | equal
+0 phase(s) differ
+=== released/reference session b1 against f2
+gun phase | b1 | f2 | verdict
+mp40 hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.7 | reload None refill  | ATTACK_SMG_PRIMARY:0.7 | equal
+mp40 hipreload | reload 2.5 refill 3@+2.125 |  | reload 2.5 refill 3@+2.125 |  | equal
+mp40 aim | reload None refill  |  | reload None refill  |  | equal
+mp40 aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | equal
+mp40 aimreload | reload 2.5 refill 3@+2.125 |  | reload 2.5 refill 3@+2.125 |  | equal
+mp40 aimempty | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.025 | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.0 | equal (within one 25 ms server frame)
+mp40 crouch | reload 2.5 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | reload 2.5 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.225 | equal (within one 25 ms server frame)
+mp40 hipempty | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY:3.6 | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY:3.6 | equal
+kar98 hipfire | reload None refill  | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | reload None refill  | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | equal
+kar98 hipreload | reload 3.35 refill 2@+1.650 |  | reload 3.35 refill 2@+1.650 |  | equal
+kar98 aim | reload None refill  |  | reload None refill  |  | equal
+kar98 aimfire | reload None refill  | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | reload None refill  | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | equal
+kar98 aimreload | reload 3.35 refill 2@+1.650 |  | reload 3.35 refill 2@+1.650 |  | equal
+kar98 aimempty | reload 3.35 refill 5@+1.650 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | reload 3.35 refill 5@+1.650 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | equal
+kar98 crouch | reload 3.35 refill 2@+1.650 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | reload 3.35 refill 2@+1.650 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | equal
+kar98 hipempty | reload 3.35 refill 5@+1.650 | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | reload 3.35 refill 5@+1.650 | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | equal
+0 phase(s) differ
+=== released/reference session b2 against f2
+gun phase | b2 | f2 | verdict
+mp18 hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.7 | reload None refill  | ATTACK_SMG_PRIMARY:0.7 | equal
+mp18 hipreload | reload 2.5 refill 3@+1.525 |  | reload 2.5 refill 3@+1.525 |  | equal
+mp18 aim | reload None refill  |  | reload None refill  |  | equal
+mp18 aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | equal
+mp18 aimreload | reload 2.5 refill 3@+1.525 |  | reload 2.5 refill 3@+1.525 |  | equal
+mp18 aimempty | reload 2.5 refill 32@+1.525 | ATTACK_SMG_PRIMARY_AIM:6.0 | reload 2.5 refill 32@+1.525 | ATTACK_SMG_PRIMARY_AIM:6.025 | equal (within one 25 ms server frame)
+mp18 crouch | reload 2.5 refill 3@+1.525 | ATTACK_SMG_PRIMARY_AIM:0.25 | reload 2.5 refill 3@+1.525 | ATTACK_SMG_PRIMARY_AIM:0.225 | equal (within one 25 ms server frame)
+mp18 hipempty | reload 2.5 refill 32@+1.525 | ATTACK_SMG_PRIMARY:3.6 | reload 2.5 refill 32@+1.525 | ATTACK_SMG_PRIMARY:3.6 | equal
+grease hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.525 | reload None refill  | ATTACK_SMG_PRIMARY:0.525 | equal
+grease hipreload | reload 2.5 refill 2@+2.125 |  | reload 2.5 refill 2@+2.125 |  | equal
+grease aim | reload None refill  |  | reload None refill  |  | equal
+grease aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.25 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | equal (within one 25 ms server frame)
+grease aimreload | reload 2.5 refill 2@+2.125 |  | reload 2.5 refill 2@+2.125 |  | equal
+grease aimempty | reload 2.5 refill 30@+2.125 | ATTACK_SMG_PRIMARY_AIM:5.675 | reload 2.5 refill 30@+2.125 | ATTACK_SMG_PRIMARY_AIM:5.675 | equal
+grease crouch | reload 2.5 refill 2@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | reload 2.5 refill 2@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | equal
+grease hipempty | reload 2.5 refill 30@+2.125 | ATTACK_SMG_PRIMARY:4.025 | reload 2.5 refill 30@+2.125 | ATTACK_SMG_PRIMARY:4.025 | equal
+springfield hipfire | reload None refill  | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 | reload None refill  | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 | equal
+springfield hipreload | reload 3.95 refill 1@+1.850,1@+2.500 |  | reload 3.95 refill 1@+1.850,1@+2.500 |  | equal
+springfield aim | reload None refill  |  | reload None refill  |  | equal
+springfield aimfire | reload None refill  | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 | reload None refill  | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 | equal
+springfield aimreload | reload 3.95 refill 1@+1.850,1@+2.500 |  | reload 3.95 refill 1@+1.850,1@+2.500 |  | equal
+springfield aimempty | reload 5.9 refill 1@+1.850,1@+2.500,1@+3.150,1@+3.800,1@+4.450 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 | reload 5.9 refill 1@+1.850,1@+2.500,1@+3.150,1@+3.800,1@+4.450 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 | equal
+springfield crouch | reload 3.95 refill 1@+1.850,1@+2.500 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 | reload 3.95 refill 1@+1.850,1@+2.500 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 | equal
+springfield hipempty | reload 5.9 refill 1@+1.850,1@+2.500,1@+3.150,1@+3.800,1@+4.450 | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 | reload 5.9 refill 1@+1.850,1@+2.500,1@+3.150,1@+3.800,1@+4.450 | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_SPRINGFIELD_RECHAMBER:1.85 | equal
+mosin hipfire | reload None refill  | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | reload None refill  | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | equal
+mosin hipreload | reload 3.05 refill 2@+2.475 |  | reload 3.05 refill 2@+2.475 |  | equal
+mosin aim | reload None refill  |  | reload None refill  |  | equal
+mosin aimfire | reload None refill  | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | reload None refill  | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | equal
+mosin aimreload | reload 3.05 refill 2@+2.475 |  | reload 3.05 refill 2@+2.475 |  | equal
+mosin aimempty | reload 3.05 refill 5@+2.475 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | reload 3.05 refill 5@+2.475 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | equal
+mosin crouch | reload 3.05 refill 2@+2.475 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | reload 3.05 refill 2@+2.475 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | equal
+mosin hipempty | reload 3.05 refill 5@+2.475 | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | reload 3.05 refill 5@+2.475 | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | equal
+enfield hipfire | reload None refill  | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | reload None refill  | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | equal
+enfield hipreload | reload 3.85 refill 2@+2.650 |  | reload 3.85 refill 2@+2.650 |  | equal
+enfield aim | reload None refill  |  | reload None refill  |  | equal
+enfield aimfire | reload None refill  | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | reload None refill  | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | equal
+enfield aimreload | reload 3.85 refill 2@+2.650 |  | reload 3.85 refill 2@+2.650 |  | equal
+enfield aimempty | reload 3.85 refill 10@+2.650 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | reload 3.85 refill 10@+2.650 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | equal
+enfield crouch | reload 3.85 refill 2@+2.650 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | reload 3.85 refill 2@+2.650 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | equal
+enfield hipempty | reload 3.85 refill 10@+2.650 | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | reload 3.85 refill 10@+2.650 | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.475 | equal
+mp40sil hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.525 | reload None refill  | ATTACK_SMG_PRIMARY:0.525 | equal
+mp40sil hipreload | reload 2.5 refill 2@+2.125 |  | reload 2.5 refill 2@+2.125 |  | equal
+mp40sil aim | reload None refill  |  | reload None refill  |  | equal
+mp40sil aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.25 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.25 | equal
+mp40sil aimreload | reload 2.5 refill 2@+2.125 |  | reload 2.5 refill 2@+2.125 |  | equal
+mp40sil aimempty | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.025 | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.025 | equal
+mp40sil crouch | reload 2.5 refill 2@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | reload 2.5 refill 2@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | equal
+mp40sil hipempty | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY:4.275 | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY:4.275 | equal
+mp40r2 hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.7 | reload None refill  | ATTACK_SMG_PRIMARY:0.7 | equal
+mp40r2 hipreload | reload 2.5 refill 3@+2.125 |  | reload 2.5 refill 3@+2.125 |  | equal
+mp40r2 aim | reload None refill  |  | reload None refill  |  | equal
+mp40r2 aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | equal
+mp40r2 aimreload | reload 2.5 refill 3@+2.125 |  | reload 2.5 refill 3@+2.125 |  | equal
+mp40r2 aimempty | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.025 | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.0 | equal (within one 25 ms server frame)
+mp40r2 crouch | reload 2.5 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | reload 2.5 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | equal
+mp40r2 hipempty | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY:3.6 | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY:3.6 | equal
+0 phase(s) differ
+=== released/reference session b1 against i1
+gun phase | b1 | i1 | verdict
+bar hipfire | reload None refill  | ATTACK_MG_PRIMARY:0.275 | reload None refill  | ATTACK_MG_PRIMARY:0.275 | equal
+bar hipreload | reload 3.25 refill 2@+1.575 |  | reload 3.25 refill 2@+1.575 |  | equal
+bar aim | reload None refill  |  | reload None refill  |  | equal
+bar aimfire | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.25 | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.225 | equal (within one 25 ms server frame)
+bar aimreload | reload 3.25 refill 2@+1.575 |  | reload 3.25 refill 2@+1.575 |  | equal
+bar aimempty | reload 3.25 refill 20@+1.575 | ATTACK_MG_PRIMARY_AIM:4.075 | reload 3.25 refill 20@+1.575 | ATTACK_MG_PRIMARY_AIM:4.1 | equal (within one 25 ms server frame)
+bar crouch | reload 3.25 refill 2@+1.575 | ATTACK_MG_PRIMARY_AIM:0.25 | reload 3.25 refill 2@+1.575 | ATTACK_MG_PRIMARY_AIM:0.25 | equal
+bar hipempty | reload 3.25 refill 20@+1.575 | ATTACK_MG_PRIMARY:2.55 | reload 3.25 refill 20@+1.575 | ATTACK_MG_PRIMARY:2.55 | equal
+mp44 hipfire | reload None refill  | ATTACK_MG_PRIMARY:0.375 | reload None refill  | ATTACK_MG_PRIMARY:0.375 | equal
+mp44 hipreload | reload 2.75 refill 3@+1.350 |  | reload 2.75 refill 3@+1.350 |  | equal
+mp44 aim | reload None refill  |  | reload None refill  |  | equal
+mp44 aimfire | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.225 | equal
+mp44 aimreload | reload 2.75 refill 3@+1.350 |  | reload 2.75 refill 3@+1.350 |  | equal
+mp44 aimempty | reload 2.75 refill 30@+1.350 | ATTACK_MG_PRIMARY_AIM:5.675 | reload 2.75 refill 30@+1.350 | ATTACK_MG_PRIMARY_AIM:5.675 | equal
+mp44 crouch | reload 2.75 refill 3@+1.350 | ATTACK_MG_PRIMARY_AIM:0.25 | reload 2.75 refill 3@+1.350 | ATTACK_MG_PRIMARY_AIM:0.225 | equal (within one 25 ms server frame)
+mp44 hipempty | reload 2.75 refill 30@+1.350 | ATTACK_MG_PRIMARY:3.075 | reload 2.75 refill 30@+1.350 | ATTACK_MG_PRIMARY:3.075 | equal
+shotgun hipfire | reload None refill  | ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 | reload None refill  | ATTACK_SHOTGUN_PRIMARY:1.15 ATTACK_SHOTGUN_PRIMARY:1.15 | equal (within one 25 ms server frame)
+shotgun hipreload | reload 3.225 refill 1@+0.900,1@+1.550 |  | reload 3.225 refill 1@+1.200,1@+1.850 |  | DIFFERENT
+shotgun aim | reload None refill  |  | reload None refill  |  | equal
+shotgun aimfire | reload None refill  | ATTACK_SHOTGUN_PRIMARY_AIM:1.175 ATTACK_SHOTGUN_PRIMARY_AIM:1.175 | reload None refill  | ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 | equal (within one 25 ms server frame)
+shotgun aimreload | reload 3.225 refill 1@+0.900,1@+1.550 |  | reload 3.225 refill 1@+1.200,1@+1.850 |  | DIFFERENT
+shotgun aimempty | reload 5.175 refill 1@+0.900,1@+1.550,1@+2.200,1@+2.850,1@+3.500 | ATTACK_SHOTGUN_PRIMARY_AIM:1.175 ATTACK_SHOTGUN_PRIMARY_AIM:1.175 ATTACK_SHOTGUN_PRIMARY_AIM:1.175 ATTACK_SHOTGUN_PRIMARY_AIM:1.175 ATTACK_SHOTGUN_PRIMARY_AIM:1.175 | reload 5.175 refill 1@+1.200,1@+1.850,1@+2.500,1@+3.150,1@+3.800 | ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 | DIFFERENT
+shotgun crouch | reload 3.225 refill 1@+0.900,1@+1.550 | ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 | reload 3.225 refill 1@+1.200,1@+1.850 | ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 | DIFFERENT
+shotgun hipempty | reload 5.175 refill 1@+0.900,1@+1.550,1@+2.200,1@+2.850,1@+3.500 | ATTACK_SHOTGUN_PRIMARY:1.15 ATTACK_SHOTGUN_PRIMARY:1.15 ATTACK_SHOTGUN_PRIMARY:1.15 ATTACK_SHOTGUN_PRIMARY:1.15 ATTACK_SHOTGUN_PRIMARY:1.15 | reload 5.175 refill 1@+1.200,1@+1.850,1@+2.500,1@+3.150,1@+3.800 | ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 | DIFFERENT
+fg42 hipfire | reload None refill  | ATTACK_MG_PRIMARY:0.375 | reload None refill  | ATTACK_MG_PRIMARY:0.375 | equal
+fg42 hipreload | reload 2.325 refill 3@+1.325 |  | reload 2.325 refill 3@+1.325 |  | equal
+fg42 aim | reload None refill  |  | reload None refill  |  | equal
+fg42 aimfire | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.25 | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.25 | equal
+fg42 aimreload | reload 2.325 refill 3@+1.325 |  | reload 2.325 refill 3@+1.325 |  | equal
+fg42 aimempty | reload 2.325 refill 20@+1.325 | ATTACK_MG_PRIMARY_AIM:4.075 | reload 2.325 refill 20@+1.325 | ATTACK_MG_PRIMARY_AIM:4.1 | equal (within one 25 ms server frame)
+fg42 crouch | reload 2.325 refill 3@+1.325 | ATTACK_MG_PRIMARY_AIM:0.25 | reload 2.325 refill 3@+1.325 | ATTACK_MG_PRIMARY_AIM:0.25 | equal
+fg42 hipempty | reload 2.325 refill 20@+1.325 | ATTACK_MG_PRIMARY:2.05 | reload 2.325 refill 20@+1.325 | ATTACK_MG_PRIMARY:2.05 | equal
+5 phase(s) differ
+=== released/reference session b2 against i1
+gun phase | b2 | i1 | verdict
+lewis hipfire | reload None refill  | ATTACK_MG_PRIMARY:0.3 | reload None refill  | ATTACK_MG_PRIMARY:0.275 | equal (within one 25 ms server frame)
+lewis hipreload | reload 3.25 refill 2@+1.975 |  | reload 3.25 refill 2@+1.975 |  | equal
+lewis aim | reload None refill  |  | reload None refill  |  | equal
+lewis aimfire | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.25 | equal (within one 25 ms server frame)
+lewis aimreload | reload 3.25 refill 2@+1.975 |  | reload 3.25 refill 2@+1.975 |  | equal
+lewis aimempty | reload 3.25 refill 20@+1.975 | ATTACK_MG_PRIMARY_AIM:4.1 | reload 3.25 refill 20@+1.975 | ATTACK_MG_PRIMARY_AIM:4.075 | equal (within one 25 ms server frame)
+lewis crouch | reload 3.25 refill 2@+1.975 | ATTACK_MG_PRIMARY_AIM:0.225 | reload 3.25 refill 2@+1.975 | ATTACK_MG_PRIMARY_AIM:0.225 | equal
+lewis hipempty | reload 3.25 refill 20@+1.975 | ATTACK_MG_PRIMARY:2.525 | reload 3.25 refill 20@+1.975 | ATTACK_MG_PRIMARY:2.55 | equal (within one 25 ms server frame)
+dp28 hipfire | reload None refill  | ATTACK_MG_PRIMARY:0.275 | reload None refill  | ATTACK_MG_PRIMARY:0.3 | equal (within one 25 ms server frame)
+dp28 hipreload | reload 3.25 refill 2@+1.475 |  | reload 3.25 refill 2@+1.475 |  | equal
+dp28 aim | reload None refill  |  | reload None refill  |  | equal
+dp28 aimfire | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.25 | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.25 | equal
+dp28 aimreload | reload 3.25 refill 2@+1.475 |  | reload 3.25 refill 2@+1.475 |  | equal
+dp28 aimempty | reload 3.25 refill 20@+1.475 | ATTACK_MG_PRIMARY_AIM:4.1 | reload 3.25 refill 20@+1.475 | ATTACK_MG_PRIMARY_AIM:4.075 | equal (within one 25 ms server frame)
+dp28 crouch | reload 3.25 refill 2@+1.475 | ATTACK_MG_PRIMARY_AIM:0.225 | reload 3.25 refill 2@+1.475 | ATTACK_MG_PRIMARY_AIM:0.225 | equal
+dp28 hipempty | reload 3.25 refill 20@+1.475 | ATTACK_MG_PRIMARY:2.55 | reload 3.25 refill 20@+1.475 | ATTACK_MG_PRIMARY:2.525 | equal (within one 25 ms server frame)
+0 phase(s) differ
+=== released/reference session b1 against i2
+gun phase | b1 | i2 | verdict
+mp40 hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.7 | reload None refill  | ATTACK_SMG_PRIMARY:0.7 | equal
+mp40 hipreload | reload 2.5 refill 3@+2.125 |  | reload 2.5 refill 3@+2.125 |  | equal
+mp40 aim | reload None refill  |  | reload None refill  |  | equal
+mp40 aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.25 | equal (within one 25 ms server frame)
+mp40 aimreload | reload 2.5 refill 3@+2.125 |  | reload 2.5 refill 3@+2.125 |  | equal
+mp40 aimempty | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.025 | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.025 | equal
+mp40 crouch | reload 2.5 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | reload 2.5 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | equal
+mp40 hipempty | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY:3.6 | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY:3.6 | equal
+thompson hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.6 | reload None refill  | ATTACK_SMG_PRIMARY:0.6 | equal
+thompson hipreload | reload 2.6 refill 3@+2.125 |  | reload 2.6 refill 3@+2.125 |  | equal
+thompson aim | reload None refill  |  | reload None refill  |  | equal
+thompson aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | equal
+thompson aimreload | reload 2.6 refill 3@+2.125 |  | reload 2.6 refill 3@+2.125 |  | equal
+thompson aimempty | reload 2.6 refill 30@+2.125 | ATTACK_SMG_PRIMARY_AIM:5.7 | reload 2.6 refill 30@+2.125 | ATTACK_SMG_PRIMARY_AIM:5.7 | equal
+thompson crouch | reload 2.6 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | reload 2.6 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.225 | equal (within one 25 ms server frame)
+thompson hipempty | reload 2.6 refill 30@+2.125 | ATTACK_SMG_PRIMARY:3.3 | reload 2.6 refill 30@+2.125 | ATTACK_SMG_PRIMARY:3.3 | equal
+sten hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.65 | reload None refill  | ATTACK_SMG_PRIMARY:0.65 | equal
+sten hipreload | reload 3.0 refill 3@+2.350 |  | reload 3.0 refill 3@+2.350 |  | equal
+sten aim | reload None refill  |  | reload None refill  |  | equal
+sten aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | equal
+sten aimreload | reload 3.0 refill 3@+2.350 |  | reload 3.0 refill 3@+2.350 |  | equal
+sten aimempty | reload 3.0 refill 30@+2.350 | ATTACK_SMG_PRIMARY_AIM:5.675 | reload 3.0 refill 30@+2.350 | ATTACK_SMG_PRIMARY_AIM:5.675 | equal
+sten crouch | reload 3.0 refill 3@+2.350 | ATTACK_SMG_PRIMARY_AIM:0.225 | reload 3.0 refill 3@+2.350 | ATTACK_SMG_PRIMARY_AIM:0.225 | equal
+sten hipempty | reload 3.0 refill 30@+2.350 | ATTACK_SMG_PRIMARY:2.675 | reload 3.0 refill 30@+2.350 | ATTACK_SMG_PRIMARY:2.675 | equal
+0 phase(s) differ
+=== released/reference session b2 against i2
+gun phase | b2 | i2 | verdict
+mp18 hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.7 | reload None refill  | ATTACK_SMG_PRIMARY:0.7 | equal
+mp18 hipreload | reload 2.5 refill 3@+1.525 |  | reload 2.5 refill 3@+1.525 |  | equal
+mp18 aim | reload None refill  |  | reload None refill  |  | equal
+mp18 aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.25 | equal (within one 25 ms server frame)
+mp18 aimreload | reload 2.5 refill 3@+1.525 |  | reload 2.5 refill 3@+1.525 |  | equal
+mp18 aimempty | reload 2.5 refill 32@+1.525 | ATTACK_SMG_PRIMARY_AIM:6.0 | reload 2.5 refill 32@+1.525 | ATTACK_SMG_PRIMARY_AIM:6.0 | equal
+mp18 crouch | reload 2.5 refill 3@+1.525 | ATTACK_SMG_PRIMARY_AIM:0.25 | reload 2.5 refill 3@+1.525 | ATTACK_SMG_PRIMARY_AIM:0.225 | equal (within one 25 ms server frame)
+mp18 hipempty | reload 2.5 refill 32@+1.525 | ATTACK_SMG_PRIMARY:3.6 | reload 2.5 refill 32@+1.525 | ATTACK_SMG_PRIMARY:3.6 | equal
+grease hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.525 | reload None refill  | ATTACK_SMG_PRIMARY:0.525 | equal
+grease hipreload | reload 2.5 refill 2@+2.125 |  | reload 2.5 refill 2@+2.125 |  | equal
+grease aim | reload None refill  |  | reload None refill  |  | equal
+grease aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.25 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | equal (within one 25 ms server frame)
+grease aimreload | reload 2.5 refill 2@+2.125 |  | reload 2.5 refill 2@+2.125 |  | equal
+grease aimempty | reload 2.5 refill 30@+2.125 | ATTACK_SMG_PRIMARY_AIM:5.675 | reload 2.5 refill 30@+2.125 | ATTACK_SMG_PRIMARY_AIM:5.7 | equal (within one 25 ms server frame)
+grease crouch | reload 2.5 refill 2@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | reload 2.5 refill 2@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | equal
+grease hipempty | reload 2.5 refill 30@+2.125 | ATTACK_SMG_PRIMARY:4.025 | reload 2.5 refill 30@+2.125 | ATTACK_SMG_PRIMARY:4.025 | equal
+pps43 hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.6 | reload None refill  | ATTACK_SMG_PRIMARY:0.6 | equal
+pps43 hipreload | reload 2.5 refill 3@+2.125 |  | reload 2.5 refill 3@+2.125 |  | equal
+pps43 aim | reload None refill  |  | reload None refill  |  | equal
+pps43 aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | equal
+pps43 aimreload | reload 2.5 refill 3@+2.125 |  | reload 2.5 refill 3@+2.125 |  | equal
+pps43 aimempty | reload 2.5 refill 35@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.5 | reload 2.5 refill 35@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.475 | equal (within one 25 ms server frame)
+pps43 crouch | reload 2.5 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | reload 2.5 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | equal
+pps43 hipempty | reload 5.875 refill 35@+2.125,2@+5.500 | ATTACK_SMG_PRIMARY:3.8 ATTACK_SMG_PRIMARY:0.5 | reload 5.875 refill 35@+2.125,2@+5.500 | ATTACK_SMG_PRIMARY:3.8 ATTACK_SMG_PRIMARY:0.5 | equal
+mp40sil hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.525 | reload None refill  | ATTACK_SMG_PRIMARY:0.525 | equal
+mp40sil hipreload | reload 2.5 refill 2@+2.125 |  | reload 2.5 refill 2@+2.125 |  | equal
+mp40sil aim | reload None refill  |  | reload None refill  |  | equal
+mp40sil aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.25 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.25 | equal
+mp40sil aimreload | reload 2.5 refill 2@+2.125 |  | reload 2.5 refill 2@+2.125 |  | equal
+mp40sil aimempty | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.025 | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.0 | equal (within one 25 ms server frame)
+mp40sil crouch | reload 2.5 refill 2@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | reload 2.5 refill 2@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | equal
+mp40sil hipempty | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY:4.275 | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY:4.275 | equal
+mp40r2 hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.7 | reload None refill  | ATTACK_SMG_PRIMARY:0.7 | equal
+mp40r2 hipreload | reload 2.5 refill 3@+2.125 |  | reload 2.5 refill 3@+2.125 |  | equal
+mp40r2 aim | reload None refill  |  | reload None refill  |  | equal
+mp40r2 aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.25 | equal (within one 25 ms server frame)
+mp40r2 aimreload | reload 2.5 refill 3@+2.125 |  | reload 2.5 refill 3@+2.125 |  | equal
+mp40r2 aimempty | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.025 | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.025 | equal
+mp40r2 crouch | reload 2.5 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | reload 2.5 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.225 | equal (within one 25 ms server frame)
+mp40r2 hipempty | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY:3.6 | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY:3.6 | equal
+0 phase(s) differ
+=== released/reference session f1 against d2
+gun phase | f1 | d2 | verdict
+bar hipfire | reload None refill  | ATTACK_MG_PRIMARY:0.275 | reload None refill  | ATTACK_MG_PRIMARY:0.275 | equal
+bar hipreload | reload 3.25 refill 2@+1.575 |  | reload 3.25 refill 2@+1.575 |  | equal
+bar aim | reload None refill  |  | reload None refill  |  | equal
+bar aimfire | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.25 | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.25 | equal
+bar aimreload | reload 3.25 refill 2@+1.575 |  | reload 3.25 refill 2@+1.575 |  | equal
+bar aimempty | reload 3.25 refill 20@+1.575 | ATTACK_MG_PRIMARY_AIM:4.075 | reload 3.25 refill 20@+1.575 | ATTACK_MG_PRIMARY_AIM:4.075 | equal
+bar crouch | reload 3.25 refill 2@+1.575 | ATTACK_MG_PRIMARY_AIM:0.225 | reload 3.25 refill 2@+1.575 | ATTACK_MG_PRIMARY_AIM:0.25 | equal (within one 25 ms server frame)
+bar hipempty | reload 3.25 refill 20@+1.575 | ATTACK_MG_PRIMARY:2.55 | reload 3.25 refill 20@+1.575 | ATTACK_MG_PRIMARY:2.55 | equal
+shotgun hipfire | reload None refill  | ATTACK_SHOTGUN_PRIMARY:1.15 ATTACK_SHOTGUN_PRIMARY:1.15 | reload None refill  | ATTACK_SHOTGUN_PRIMARY:1.15 ATTACK_SHOTGUN_PRIMARY:1.15 | equal
+shotgun hipreload | reload 3.225 refill 1@+1.200,1@+1.850 |  | reload 3.225 refill 1@+1.200,1@+1.850 |  | equal
+shotgun aim | reload None refill  |  | reload None refill  |  | equal
+shotgun aimfire | reload None refill  | ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 | reload None refill  | ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 | equal
+shotgun aimreload | reload 3.225 refill 1@+1.200,1@+1.850 |  | reload 3.225 refill 1@+1.200,1@+1.850 |  | equal
+shotgun aimempty | reload 5.175 refill 1@+1.200,1@+1.850,1@+2.500,1@+3.150,1@+3.800 | ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 | reload 5.175 refill 1@+1.200,1@+1.850,1@+2.500,1@+3.150,1@+3.800 | ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 | equal
+shotgun crouch | reload 3.225 refill 1@+1.200,1@+1.850 | ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 | reload 3.225 refill 1@+1.200,1@+1.850 | ATTACK_SHOTGUN_PRIMARY_AIM:1.15 ATTACK_SHOTGUN_PRIMARY_AIM:1.15 | equal
+shotgun hipempty | reload 5.175 refill 1@+1.200,1@+1.850,1@+2.500,1@+3.150,1@+3.800 | ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 | reload 5.175 refill 1@+1.200,1@+1.850,1@+2.500,1@+3.150,1@+3.800 | ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 | equal
+shotgun breakoff | reload 8.275 refill 1@+1.200,1@+6.250,1@+6.900 | ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 | reload 8.25 refill 1@+1.200,1@+6.225,1@+6.875 | ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 | equal (within one 25 ms server frame)
+shotgun breakempty | reload 10.025 refill 1@+1.200,1@+1.850,1@+2.500,1@+3.150,1@+8.000,1@+8.650 | ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 | reload 10.025 refill 1@+1.200,1@+1.850,1@+2.500,1@+3.150,1@+8.000,1@+8.650 | ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 ATTACK_SHOTGUN_PRIMARY:1.175 | equal
+0 phase(s) differ
+=== released/reference session f2 against d2
+gun phase | f2 | d2 | verdict
+kar98 hipfire | reload None refill  | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | reload None refill  | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | equal
+kar98 hipreload | reload 3.35 refill 2@+1.650 |  | reload 3.35 refill 2@+1.650 |  | equal
+kar98 aim | reload None refill  |  | reload None refill  |  | equal
+kar98 aimfire | reload None refill  | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | reload None refill  | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | equal
+kar98 aimreload | reload 3.35 refill 2@+1.650 |  | reload 3.35 refill 2@+1.650 |  | equal
+kar98 aimempty | reload 3.35 refill 5@+1.650 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | reload 3.35 refill 5@+1.650 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | equal
+kar98 crouch | reload 3.35 refill 2@+1.650 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | reload 3.35 refill 2@+1.650 | ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY_AIM:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | equal
+kar98 hipempty | reload 3.35 refill 5@+1.650 | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | reload 3.35 refill 5@+1.650 | ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 ATTACK_RIFLE_PRIMARY:0.2 ATTACK_RIFLE_RECHAMBER:1.1 | equal
+mp40 hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.7 | reload None refill  | ATTACK_SMG_PRIMARY:0.7 | equal
+mp40 hipreload | reload 2.5 refill 3@+2.125 |  | reload 2.5 refill 3@+2.125 |  | equal
+mp40 aim | reload None refill  |  | reload None refill  |  | equal
+mp40 aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.25 | equal (within one 25 ms server frame)
+mp40 aimreload | reload 2.5 refill 3@+2.125 |  | reload 2.5 refill 3@+2.125 |  | equal
+mp40 aimempty | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.0 | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.0 | equal
+mp40 crouch | reload 2.5 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.225 | reload 2.5 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | equal (within one 25 ms server frame)
+mp40 hipempty | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY:3.6 | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY:3.6 | equal
+0 phase(s) differ
+=== DEDICATED: released build d0 against integrated d2
+gun phase | d0 | d2 | verdict
+bar hipfire | reload None refill  | ATTACK_MG_PRIMARY:0.275 | reload None refill  | ATTACK_MG_PRIMARY:0.275 | equal
+bar hipreload | reload 3.25 refill 2@+1.575 |  | reload 3.25 refill 2@+1.575 |  | equal
+bar aim | reload None refill  |  | reload None refill  |  | equal
+bar aimfire | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.25 | reload None refill  | ATTACK_MG_PRIMARY_AIM:0.25 | equal
+bar aimreload | reload 3.25 refill 2@+1.575 |  | reload 3.25 refill 2@+1.575 |  | equal
+bar aimempty | reload 3.25 refill 20@+1.575 | ATTACK_MG_PRIMARY_AIM:4.075 | reload 3.25 refill 20@+1.575 | ATTACK_MG_PRIMARY_AIM:4.075 | equal
+bar crouch | reload 3.25 refill 2@+1.575 | ATTACK_MG_PRIMARY_AIM:0.225 | reload 3.25 refill 2@+1.575 | ATTACK_MG_PRIMARY_AIM:0.25 | equal (within one 25 ms server frame)
+bar hipempty | reload 3.25 refill 20@+1.575 | ATTACK_MG_PRIMARY:2.55 | reload 3.25 refill 20@+1.575 | ATTACK_MG_PRIMARY:2.55 | equal
+mp40 hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.7 | reload None refill  | ATTACK_SMG_PRIMARY:0.7 | equal
+mp40 hipreload | reload 2.5 refill 3@+2.125 |  | reload 2.5 refill 3@+2.125 |  | equal
+mp40 aim | reload None refill  |  | reload None refill  |  | equal
+mp40 aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.25 | equal (within one 25 ms server frame)
+mp40 aimreload | reload 2.5 refill 3@+2.125 |  | reload 2.5 refill 3@+2.125 |  | equal
+mp40 aimempty | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.025 | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY_AIM:6.0 | equal (within one 25 ms server frame)
+mp40 crouch | reload 2.5 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.225 | reload 2.5 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | equal (within one 25 ms server frame)
+mp40 hipempty | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY:3.6 | reload 2.5 refill 32@+2.125 | ATTACK_SMG_PRIMARY:3.6 | equal
+0 phase(s) differ

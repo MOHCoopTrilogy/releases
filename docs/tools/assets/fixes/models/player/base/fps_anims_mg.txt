@@ -45,7 +45,7 @@ animations
 				entry sound pistol_whip // the swish sound. 
 		}
 	}
-	mp44_reload		viewmodel/mp44/mp44_reload.skc			crossblend 0.3
+	mp44_reload		viewmodel/mp44/coop_mp44_reload_hip.skc			crossblend 0.3
 	mp44_reload_ads		viewmodel/mp44/mp44_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
 	mp44_pullout		viewmodel/mp44/mp44_pullout.skc
 	{
@@ -177,7 +177,7 @@ animations
 	//charge or disabled pose, so those four borrow the BAR's exactly as his mod did.
 	dp28_idle1			viewmodel/coop_dp28/dp28_dummy.skc		crossblend 0.1		weight 1.0
 	dp28_disabled			viewmodel/unarmed/unarmed_idle.skc		crossblend 0.2
-	dp28_charge			viewmodel/bar_stand00.skc			crossblend 0.1
+	dp28_charge			viewmodel/coop_dp28/coop_dp28_ads_hand.skc			crossblend 0.1
 	dp28_fire			viewmodel/coop_dp28/dp28_fire.skc		crossblend 0.05
 	dp28_adsfire			viewmodel/bar_fire00.skc			crossblend 0.05
 	dp28_fire_secondary		viewmodel/mg/butt_bar_stand.skc			crossblend 0.3
@@ -185,5 +185,19 @@ animations
 	dp28_reload_ads		viewmodel/coop_dp28/dp28_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
 	dp28_pullout			viewmodel/coop_dp28/dp28_up.skc
 	dp28_putaway			viewmodel/mg/putaway_bar.skc
+	//===================== HZM coop ADS rollout (integrate_ads.py; rows taken from the lane folders) =====================
+	bar_reload_empty		viewmodel/mg/reload_bar.skc		crossblend 0.3	// HZM coop [ads heavy] retail: hip reload of an empty gun (the retail clip; the row lets cgame find _empty_ads)
+	bar_reload_empty_ads		viewmodel/mg/bar_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads heavy] aimed, empty: magazine, then the left hand works the operating handle
+	bar_reload_adsb		viewmodel/mg/bar_reload_adsb.skc		crossblend 0.1	// HZM coop [ads heavy] aimed + braced, rounds left
+	bar_reload_empty_adsb		viewmodel/mg/bar_reload_empty_adsb.skc		crossblend 0.1	// HZM coop [ads heavy] aimed + braced, empty
+	coopr_bar_charge		viewmodel/mg/coop_bar_ads_hand.skc		crossblend 0.1	// HZM coop [ads heavy, integrate_ads.py] BAR only (per-weapon row): aim pose, support hand on the forearm as at the hip; bar_charge stays the fallback MGs' released pose
+	mp44_reload_empty		viewmodel/mp44/mp44_reload.skc		crossblend 0.3	// HZM coop [ads heavy] retail: hip reload of an empty gun (the retail clip; the row lets cgame find _empty_ads)
+	mp44_reload_empty_ads		viewmodel/mp44/mp44_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads heavy] aimed, empty: magazine, then the left hand cocks the handle and lets it fly
+	mp44_reload_adsb		viewmodel/mp44/mp44_reload_adsb.skc		crossblend 0.1	// HZM coop [ads heavy] aimed + braced, rounds left
+	mp44_reload_empty_adsb		viewmodel/mp44/mp44_reload_empty_adsb.skc		crossblend 0.1	// HZM coop [ads heavy] aimed + braced, empty
+	dp28_reload_empty		viewmodel/coop_dp28/dp28_reload.skc		crossblend 0.3	// HZM coop [ads heavy] retail: hip reload of an empty gun (the pack clip; the row lets cgame find _empty_ads)
+	dp28_reload_empty_ads		viewmodel/coop_dp28/dp28_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads heavy] aimed, empty: the pan, then the left hand hauls the handle and lets it fly
+	dp28_reload_adsb		viewmodel/coop_dp28/dp28_reload_adsb.skc		crossblend 0.1	// HZM coop [ads heavy] aimed + braced, rounds left
+	dp28_reload_empty_adsb		viewmodel/coop_dp28/dp28_reload_empty_adsb.skc		crossblend 0.1	// HZM coop [ads heavy] aimed + braced, empty
 }
 

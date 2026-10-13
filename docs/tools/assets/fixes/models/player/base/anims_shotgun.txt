@@ -1,0 +1,268 @@
+animations
+{
+	$path models/human/animation
+
+	//========================
+	// Reload Garand
+	//========================
+	shotgun_reload_start		viewmodel/shotgun/tps_reload_start.skc		crossblend 0.05
+	{
+		server
+		{
+			first reloadweapon											// tell the weapon that we're reloading
+		}
+	}
+	shotgun_reload_loop			viewmodel/shotgun/tps_reload_fill.skc		crossblend 0
+	{
+		server
+		{
+			first weaponcommand mainhand anim reload_single
+			first attachmodel models/ammo/shotgunshell.tik tag_weapon_left		// HZM coop [heavy lane] a shell in the support hand, from the pouch (stage_sgreload.py)
+			14 weaponcommand mainhand clip_add 1		// counted when it is IN the gate (retail: frame 5, the hand still at the pouch)
+			15 removeattachedmodel tag_weapon_left 0 models/ammo/shotgunshell.tik
+		}
+	}
+	shotgun_reload_end			viewmodel/shotgun/tps_reload_end.skc		crossblend 0.05
+	{
+		server
+		{
+			first weaponcommand mainhand anim reload_end
+			first removeattachedmodel tag_weapon_left 0 models/ammo/shotgunshell.tik	// HZM coop [heavy lane] a reload broken off with the shell still in the hand
+		}
+	}
+	shotgun_reload_break			viewmodel/shotgun/coop_tps_reload_break.skc		crossblend 0.05	// HZM coop [heavy lane] the reload broken off by the trigger with a round chambered: no pump (stage_sgreload.py)
+	{
+		server
+		{
+			first weaponcommand mainhand anim idle
+			first removeattachedmodel tag_weapon_left 0 models/ammo/shotgunshell.tik
+		}
+	}
+
+	
+	//========================
+	// Walking/Cautious
+	//========================
+	shotgun_stand_walk_fwd		multiplayer/mp_rifle_curious_walk_forward.skc	deltadriven crossblend 0.2 //autosteps_walk
+	shotgun_stand_walk_back		multiplayer/mp_rifle_curious_walk_backwards.skc	deltadriven crossblend 0.2 //autosteps_walk
+	shotgun_stand_walk_left		multiplayer/mp_rifle_curious_walk_left.skc	deltadriven crossblend 0.2 //autosteps_walk
+	shotgun_stand_walk_right	multiplayer/mp_rifle_curious_walk_right.skc	deltadriven crossblend 0.2 //autosteps_walk
+
+	//========================
+	// Jogging/Relaxed
+	//========================
+
+	shotgun_stand_run_fwd		weapon_rifle/walks_runs/rifle_jog.skc				autosteps_run
+	shotgun_stand_run_back		multiplayer/mp_rifle_jog_back.skc			autosteps_run
+	shotgun_stand_run_left		multiplayer/mp_rifle_run_left.skc				autosteps_run
+	shotgun_stand_run_right		multiplayer/mp_rifle_run_right.skc				autosteps_run
+	
+	//========================
+	// Standing
+	//========================
+	
+	shotgun_stand_idle	 		multiplayer/mp_rifle_stand_curious.skc			crossblend 0.2	
+
+	//========================
+	// Crouching
+	//========================
+	shotgun_crouch_idle			weapon_rifle/crouch/rifle_crouch.skc			crossblend 0.2
+	shotgun_crouch_walk_fwd		multiplayer/mp_rifle_crouch_walk_forwards.skc		crossblend 0.1 //autosteps_walk
+	shotgun_crouch_walk_back	multiplayer/mp_rifle_crouch_walk_back.skc		crossblend 0.1 //autosteps_walk
+	shotgun_crouch_walk_left	multiplayer/mp_rifle_crouch_walk_left.skc		crossblend 0.1 //autosteps_walk
+	shotgun_crouch_walk_right	multiplayer/mp_rifle_crouch_walk_right.skc		crossblend 0.1 //autosteps_walk
+
+	shotgun_crouch_run_fwd		multiplayer/mp_rifle_crouchrun.skc				crossblend 0.1 autosteps_run
+	shotgun_crouch_run_back		multiplayer/mp_rifle_crouch_run_backwards.skc		crossblend 0.1 autosteps_run
+	shotgun_crouch_run_left		weapon_rifle/walks_runs/rifle_crouchrun_left.skc				crossblend 0.1 autosteps_run
+	shotgun_crouch_run_right	weapon_rifle/walks_runs/rifle_crouchrun_right.skc				crossblend 0.1 autosteps_run
+	
+	//========================
+	// Rifle Firing
+	//========================
+	
+	shotgun_butt			weapon_thompson/misc/thompson_butt_stand.skc		
+	{
+		server
+		{			
+			4 fire mainhand secondary
+		}
+		client
+		{
+			entry sound pistol_whip // the swish sound. 
+		}
+	}	
+
+	shotgun_stand_fire		viewmodel/shotgun/tps_fire_shotgun_idle.skc		crossblend 0.05
+	{
+		server
+		{
+			entry fire
+		}
+	}
+
+	$path models/human/protoanimations
+
+	shotgun_stand_run_fire	fire_rifle_trot.skc			crossblend 0.05
+	{
+		server
+		{
+			entry fire
+		}
+	}
+
+	$path models/human/animation
+
+	shotgun_stand_walk_fire		viewmodel/shotgun/walk_player_shotgun.skc			crossblend 0.05
+	{
+		server
+		{
+			entry fire
+		}
+	}
+	shotgun_crouch_fire		viewmodel/shotgun/tps_fire_shotgun_stand.skc	crossblend 0.05
+	{
+		server
+		{
+			entry fire
+		}
+	}
+	shotgun_crouch_run_fire		viewmodel/rifle/rifle_fire_crouch.skc		crossblend 0.05
+	{
+		server
+		{
+			entry fire
+		}
+	}
+
+	
+	//========================
+	// Raise Animations
+	//========================
+	// THESE ARE ALL PLACEHOLDER ANIMATIONS!!!!!
+	shotgun_stand_raise		viewmodel/shotgun/raise_shotgun_standplayer.skc
+	{
+		server
+		{
+			0 activatenewweapon mainhand
+		}
+		client
+		{
+			enter sound snd_shotgun_pullout
+		}
+	}
+	shotgun_crouch_raise		viewmodel/shotgun/raise_shotgun_standplayer.skc
+	{
+		server
+		{
+			0 activatenewweapon mainhand
+		}
+		client
+		{
+			enter sound snd_shotgun_pullout
+		}
+	}
+
+	//========================
+	// Lower
+	//========================
+	// THESE ARE ALL PLACEHOLDER ANIMATIONS!!!!!
+	shotgun_stand_lower		viewmodel/shotgun/lower_shotgun_stand.skc
+	{
+		server
+		{
+			16 deactivateweapon righthand
+		}
+		client
+		{
+			enter sound snd_shotgun_putaway
+		}
+	}
+	shotgun_crouch_lower	viewmodel/shotgun/lower_shotgun_stand.skc
+	{
+		server
+		{
+			16 deactivateweapon righthand
+		}
+		client
+		{
+			enter sound snd_shotgun_putaway
+		}
+	}
+	
+	//========================
+	// Jumping & Falling
+	//========================
+
+	$path models/human/protoanimations
+
+	shotgun_jump_takeoff		jump_takeoff.skc			crossblend 0.1
+	{
+		server
+		{
+			first ai_event	footstep
+		}
+		client
+		{
+			first footstep	"Bip01 R Foot" run
+		}
+	}
+	shotgun_jump_run_takeoff		jump_takeoff.skc		crossblend 0.1
+	{
+		server
+		{
+			first ai_event	footstep
+		}
+		client
+		{
+			first footstep	"Bip01 R Foot" run
+		}
+	}
+	shotgun_fall					jump_stretch_loop.skc	crossblend 0.2
+	shotgun_land					jump_land.skc			crossblend 0.1
+	{
+		client
+		{
+			first landing
+		}
+	}
+	shotgun_land_hard				jump_land.skc			crossblend 0.1
+	{
+		client
+		{
+			first landing
+		}
+	}
+	
+
+	//----------------
+	// PAIN ANIMATIONS
+	//----------------
+	$path models/human/animation
+
+	//Stand//
+	shotgun_stand_hit_head01	weapon_rifle/minor_pain/rifle_stand_hit_head.skc		random	autosteps_walk
+	shotgun_stand_hit_head02	weapon_rifle/minor_pain/rifle_stand_hit_head01.skc		random	autosteps_walk
+	shotgun_stand_hit_uppertorso	weapon_rifle/minor_pain/rifle_stand_hit_torso.skc			autosteps_walk
+	shotgun_stand_hit_lowertorso	weapon_rifle/minor_pain/rifle_stand_hit_torso.skc			autosteps_walk
+	shotgun_stand_hit_back		weapon_rifle/minor_pain/rifle_stand_hit_lower_back.skc			autosteps_walk
+	shotgun_stand_hit_rarm		weapon_rifle/minor_pain/rifle_stand_hit_Rshoulder.skc			autosteps_walk
+	//shotgun_stand_hit_rarm02	weapon_rifle/major_pain/riflep_stand_rarm.skc			random	autosteps_walk
+	shotgun_stand_hit_larm		weapon_rifle/minor_pain/rifle_stand_hit_torso.skc			autosteps_walk
+	shotgun_stand_hit_leg		weapon_rifle/minor_pain/rifle_stand_hit_leg.skc				autosteps_walk
+
+	//Crouch//
+	shotgun_crouch_hit_head		weapon_rifle/minor_pain/rifle_crouch_hit_torso.skc			autosteps_walk
+	shotgun_crouch_hit_uppertorso01	weapon_rifle/minor_pain/rifle_crouch_hit_torso.skc		random	autosteps_walk
+	shotgun_crouch_hit_uppertorso02	weapon_rifle/minor_pain/rifle_crouch_hit_back02.skc		random	autosteps_walk
+	shotgun_crouch_hit_uppertorso03	weapon_rifle/minor_pain/rifle_crouch_hit_front.skc		random	autosteps_walk
+	shotgun_crouch_hit_uppertorso04	weapon_rifle/minor_pain/rifle_crouch_hit_front.skc		random	autosteps_walk
+	shotgun_crouch_hit_lowertorso01	weapon_rifle/minor_pain/rifle_crouch_hit_torso.skc		random	autosteps_walk
+	shotgun_crouch_hit_lowertorso02	weapon_rifle/minor_pain/rifle_crouch_hit_back02.skc		random	autosteps_walk
+	shotgun_crouch_hit_lowertorso03	weapon_rifle/minor_pain/rifle_crouch_hit_front.skc		random	autosteps_walk
+	shotgun_crouch_hit_back		weapon_rifle/minor_pain/rifle_crouch_hit_back.skc			autosteps_walk
+	shotgun_crouch_hit_rarm01	weapon_rifle/minor_pain/rifle_crouch_hit_Rshoulder.skc		random	autosteps_walk
+	shotgun_crouch_hit_rarm02	weapon_rifle/minor_pain/rifle_crouch_hit_rarm.skc		random	autosteps_walk
+	shotgun_crouch_hit_larm		weapon_rifle/minor_pain/rifle_crouch_hit_torso.skc			autosteps_walk
+	shotgun_crouch_hit_leg		weapon_rifle/minor_pain/rifle_crouch_hit_front.skc			autosteps_walk
+}

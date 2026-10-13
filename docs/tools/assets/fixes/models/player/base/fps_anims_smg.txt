@@ -205,5 +205,21 @@ animations
 			enter sound snd_rifle_putaway
 		}
 	}
+	//===================== HZM coop ADS rollout (integrate_ads.py; rows taken from the lane folders) =====================
+	coopr_mp40_charge		viewmodel/mp40/coop_mp40_ads_mag.skc		crossblend 0.25	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only (per-weapon row): aim pose, support hand on the magazine housing
+	coopr_mp40_reload		viewmodel/mp40/coop_mp40_reload_hip.skc		crossblend 0.1	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only: hip reload, rounds left (no cocking)
+	coopr_mp40_reload_empty		viewmodel/mp40/coop_mp40_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only: hip reload of an emptied gun
+	coopr_mp40_reload_ads		viewmodel/mp40/coop_mp40_reload_ads.skc		crossblend 0.1	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only: aimed reload, rounds left (the lane clip mp40_reload_ads.skc under its own name; the released file stays for the other mp40-prefix guns)
+	coopr_mp40_reload_empty_ads		viewmodel/mp40/mp40_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads smg, integrate_ads.py] MP40 + finishes only: aimed reload of an emptied gun
+	coopr_mp40_mp18_charge		viewmodel/mp40_stand_idle00.skc		crossblend 0.25	// HZM coop [ads smg, integrate_ads.py] PIN: the MP18 ("MP40 (MP18)") is not part of the rollout and keeps the RELEASED aim pose
+	coopr_silenced_mp40_reload		viewmodel/mp40/coop_silenced_mp40_reload_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_silenced_mp40_reload_empty		viewmodel/mp40/coop_silenced_mp40_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_silenced_mp40_reload_ads		viewmodel/mp40/silenced_mp40_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_silenced_mp40_reload_empty_ads		viewmodel/mp40/silenced_mp40_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_silenced_mp40_charge		viewmodel/mp40/coop_mp40_ads_mag.skc		crossblend 0.25	// HZM coop [ads smg, integrate_ads.py] Silenced MP40 (its own weapon key): the MP40 aim pose
+	coopr_mp40_reactivated_reload		viewmodel/mp40/coop_mp40_reactivated_reload_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_mp40_reactivated_reload_empty		viewmodel/mp40/coop_mp40_reactivated_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_mp40_reactivated_reload_ads		viewmodel/mp40/mp40_reactivated_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_mp40_reactivated_reload_empty_ads		viewmodel/mp40/mp40_reactivated_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
 }
 

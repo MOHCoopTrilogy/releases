@@ -1,0 +1,13 @@
+error-like lines (Script Error, missing / not found / unknown / failed / WARNING ...) of each integrated session,
+compared with the union of the two released-build sessions b1 + b2 (numbers and addresses normalised)
+i1/qconsole.log: 67 distinct error-like lines, 2 not in the released sessions b1+b2
+    1x WARNING: 'textures/coop_wpn/shotgun_bead.tga' TGA file header declares top-down image, ignoring
+    1x WARNING: 'textures/coop_wpn/shotgun_groove.tga' TGA file header declares top-down image, ignoring
+i2/qconsole.log: 67 distinct error-like lines, 0 not in the released sessions b1+b2
+f1/qconsole.log: 65 distinct error-like lines, 0 not in the released sessions b1+b2
+f2/qconsole.log: 66 distinct error-like lines, 0 not in the released sessions b1+b2
+d2/qconsole.log: 19 distinct error-like lines, 1 not in the released sessions b1+b2
+    1x Hitch warning: # msec frame time
+d2/client.log: 63 distinct error-like lines, 1 not in the released sessions b1+b2
+    1x Tiki:LoadFile Couldn't load models/player/american_army_nohat_fps.tik
+d0 (released build, dedicated + client): the two lines above that d2 has and b1+b2 do not - 'Hitch warning' (server) and 'Tiki:LoadFile Couldn't load models/player/american_army_nohat_fps.tik' (client) - are in d0 as well: released behaviour of a dedicated join

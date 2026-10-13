@@ -1,0 +1,13 @@
+{
+ "note": "line endings of the released WORKING copies of the text sources under docs/tools/assets/fixes (core.autocrlf is on: git cannot say which ending a file had on disk, and the pak is built from the bytes on disk)",
+ "released_rev": "806c4ae",
+ "style": {
+  "fixes_manifest.json": "lf",
+  "models/human/new_generic_human.tik": "crlf",
+  "models/player/base/fps_anims_mg.txt": "lf",
+  "models/player/base/fps_anims_pistol.txt": "lf",
+  "models/player/base/fps_anims_rifle.txt": "crlf",
+  "models/player/base/fps_anims_shotgun.txt": "lf",
+  "models/player/base/fps_anims_smg.txt": "lf"
+ }
+}

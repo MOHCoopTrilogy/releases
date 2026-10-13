@@ -1,0 +1,246 @@
+step 0 | row file     | manifest (base)                    | models/player/base/fps_anims_mg.txt | same
+step 0 | row file     | manifest (base)                    | models/player/base/fps_anims_shotgun.txt | same
+step 0 | row file     | manifest (base)                    | models/player/base/fps_anims_smg.txt | same
+step 1 | BAR          | manifest (new)                     | models/human/animation/viewmodel/mg/bar_reload_ads.skc | same
+step 1 | BAR          | manifest (new)                     | models/human/animation/viewmodel/mg/bar_reload_adsb.skc | same
+step 1 | BAR          | manifest (new)                     | models/human/animation/viewmodel/mg/bar_reload_empty_ads.skc | same
+step 1 | BAR          | manifest (new)                     | models/human/animation/viewmodel/mg/bar_reload_empty_adsb.skc | same
+step 1 | BAR          | manifest (new)                     | models/human/animation/viewmodel/mg/coop_bar_ads_hand.skc | same
+step 1 | BAR          | row                                | models/player/base/fps_anims_mg.txt :: bar_reload_adsb | same (lane heavy)
+step 1 | BAR          | row                                | models/player/base/fps_anims_mg.txt :: bar_reload_empty | same (lane heavy)
+step 1 | BAR          | row                                | models/player/base/fps_anims_mg.txt :: bar_reload_empty_ads | same (lane heavy)
+step 1 | BAR          | row                                | models/player/base/fps_anims_mg.txt :: bar_reload_empty_adsb | same (lane heavy)
+step 1 | BAR          | row                                | models/player/base/fps_anims_mg.txt :: coopr_bar_charge | same (integration)
+step 1 | BAR          | manifest (base)                    | models/weapons/bar.tik | same [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | BAR          | manifest (new)                     | models/weapons/BAR/coop_reload_ads_empty.skc | same
+step 1 | BAR          | manifest (base)                    | models/weapons/bar_bar1918a.tik | same [line endings made uniform CRLF] [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | BAR          | manifest (base)                    | models/weapons/bar_bar1918a1.tik | same [line endings made uniform CRLF] [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | BAR          | manifest (base)                    | models/weapons/bar_bar1918a2.tik | same [line endings made uniform CRLF] [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | BAR          | manifest (base)                    | models/weapons/bar_bloody.tik | same [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | BAR          | manifest (base)                    | models/weapons/bar_blued.tik | same [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | BAR          | manifest (base)                    | models/weapons/bar_camo_desert.tik | same [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | BAR          | manifest (base)                    | models/weapons/bar_camo_winter.tik | same [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | BAR          | manifest (base)                    | models/weapons/bar_camo_woodland.tik | same [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | BAR          | manifest (base)                    | models/weapons/bar_chrome.tik | same [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | BAR          | manifest (base)                    | models/weapons/bar_gold.tik | same [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | BAR          | manifest (new)                     | models/weapons/bar_lmg/coop_reload_ads_empty.skc | same
+step 1 | BAR          | manifest (base)                    | models/weapons/bar_pabar.tik | same [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | BAR          | manifest (new)                     | models/weapons/coop_pabar/coop_reload_ads_empty.skc | same
+step 1 | BAR          | coverage                           | 12 tiks named "BAR" / "BAR (...)" | all covered
+step 1 | BAR + DP-28  | manifest (new)                     | sound/weapons/foley/coop_bar_reload_loaded.wav | same
+step 1 | DP-28        | manifest (new)                     | models/human/animation/viewmodel/coop_dp28/coop_dp28_ads_hand.skc | same
+step 1 | DP-28        | manifest (new)                     | models/human/animation/viewmodel/coop_dp28/dp28_reload_ads.skc | same
+step 1 | DP-28        | manifest (new)                     | models/human/animation/viewmodel/coop_dp28/dp28_reload_adsb.skc | same
+step 1 | DP-28        | manifest (new)                     | models/human/animation/viewmodel/coop_dp28/dp28_reload_empty_ads.skc | same
+step 1 | DP-28        | manifest (new)                     | models/human/animation/viewmodel/coop_dp28/dp28_reload_empty_adsb.skc | same
+step 1 | DP-28        | row                                | models/player/base/fps_anims_mg.txt :: dp28_charge | same (lane heavy)
+step 1 | DP-28        | row                                | models/player/base/fps_anims_mg.txt :: dp28_reload_adsb | same (lane heavy)
+step 1 | DP-28        | row                                | models/player/base/fps_anims_mg.txt :: dp28_reload_empty | same (lane heavy)
+step 1 | DP-28        | row                                | models/player/base/fps_anims_mg.txt :: dp28_reload_empty_ads | same (lane heavy)
+step 1 | DP-28        | row                                | models/player/base/fps_anims_mg.txt :: dp28_reload_empty_adsb | same (lane heavy)
+step 1 | DP-28        | manifest (new)                     | models/weapons/coop_dp28/coop_reload_ads_empty.skc | same
+step 1 | DP-28        | manifest (new)                     | models/weapons/coop_dp28/coop_reload_ads_loaded.skc | same
+step 1 | DP-28        | manifest (base)                    | models/weapons/dp28.tik | same [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | DP-28        | manifest (base)                    | models/weapons/dp28_bloody.tik | same [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | DP-28        | manifest (base)                    | models/weapons/dp28_blued.tik | same [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | DP-28        | manifest (base)                    | models/weapons/dp28_camo_desert.tik | same [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | DP-28        | manifest (base)                    | models/weapons/dp28_camo_winter.tik | same [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | DP-28        | manifest (base)                    | models/weapons/dp28_camo_woodland.tik | same [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | DP-28        | manifest (base)                    | models/weapons/dp28_chrome.tik | same [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | DP-28        | manifest (base)                    | models/weapons/dp28_gold.tik | same [released tik + 17 lane lines, 0 released lines replaced]
+step 1 | DP-28        | coverage                           | 8 tiks named "DP-28" / "DP-28 (...)" | all covered
+step 1 | Shotgun      | mod patch                          | heavy/tools/patch_sgbreak.py <mod tree> | not run (give --mod-patches)
+step 1 | Shotgun      | manifest (new)                     | models/human/animation/viewmodel/shotgun/coop_shotgun_reload_end_break.skc | same
+step 1 | Shotgun      | manifest (new)                     | models/human/animation/viewmodel/shotgun/coop_shotgun_reload_end_loaded.skc | same
+step 1 | Shotgun      | manifest (new)                     | models/human/animation/viewmodel/shotgun/coop_tps_reload_break.skc | same
+step 1 | Shotgun      | manifest (new)                     | models/human/animation/viewmodel/shotgun/shotgun_reload_ads.skc | same
+step 1 | Shotgun      | manifest (new)                     | models/human/animation/viewmodel/shotgun/shotgun_reload_end_ads.skc | same
+step 1 | Shotgun      | manifest (new)                     | models/human/animation/viewmodel/shotgun/shotgun_reload_end_break_ads.skc | same
+step 1 | Shotgun      | manifest (new)                     | models/human/animation/viewmodel/shotgun/shotgun_reload_end_loaded_ads.skc | same
+step 1 | Shotgun      | manifest (new)                     | models/human/animation/viewmodel/shotgun/shotgun_reload_single_ads.skc | same
+step 1 | Shotgun      | manifest (base_pak)                | models/player/base/anims_shotgun.txt | same
+step 1 | Shotgun      | row                                | models/player/base/fps_anims_shotgun.txt :: shotgun_reload_end_break | same (lane heavy)
+step 1 | Shotgun      | row                                | models/player/base/fps_anims_shotgun.txt :: shotgun_reload_end_break_ads | same (lane heavy)
+step 1 | Shotgun      | row                                | models/player/base/fps_anims_shotgun.txt :: shotgun_reload_end_loaded | same (lane heavy)
+step 1 | Shotgun      | row                                | models/player/base/fps_anims_shotgun.txt :: shotgun_reload_end_loaded_ads | same (lane heavy)
+step 1 | Shotgun      | manifest (base)                    | models/weapons/shotgun.tik | same [released tik + 3 lane lines, 0 released lines replaced]
+step 1 | Shotgun      | manifest (new)                     | models/weapons/shotgun/coop_shotgun_still32.skc | same
+step 1 | Shotgun      | manifest (base_pak)                | models/weapons/shotgun/shotgun.skd | same
+step 1 | Shotgun      | manifest (base)                    | models/weapons/shotgun_authwinch.tik | same [released tik + 3 lane lines, 0 released lines replaced]
+step 1 | Shotgun      | manifest (base)                    | models/weapons/shotgun_bloody.tik | same [released tik + 3 lane lines, 0 released lines replaced]
+step 1 | Shotgun      | manifest (base)                    | models/weapons/shotgun_blued.tik | same [released tik + 3 lane lines, 0 released lines replaced]
+step 1 | Shotgun      | manifest (base)                    | models/weapons/shotgun_camo_desert.tik | same [released tik + 3 lane lines, 0 released lines replaced]
+step 1 | Shotgun      | manifest (base)                    | models/weapons/shotgun_camo_winter.tik | same [released tik + 3 lane lines, 0 released lines replaced]
+step 1 | Shotgun      | manifest (base)                    | models/weapons/shotgun_camo_woodland.tik | same [released tik + 3 lane lines, 0 released lines replaced]
+step 1 | Shotgun      | manifest (base)                    | models/weapons/shotgun_chrome.tik | same [released tik + 3 lane lines, 0 released lines replaced]
+step 1 | Shotgun      | manifest (base)                    | models/weapons/shotgun_dhshotblack.tik | same [released tik + 3 lane lines, 0 released lines replaced]
+step 1 | Shotgun      | manifest (base)                    | models/weapons/shotgun_dhshotchrome.tik | same [released tik + 3 lane lines, 0 released lines replaced]
+step 1 | Shotgun      | manifest (base)                    | models/weapons/shotgun_gold.tik | same [released tik + 3 lane lines, 0 released lines replaced]
+step 1 | Shotgun      | manifest (base)                    | models/weapons/shotgun_guanshotty.tik | same [released tik + 3 lane lines, 0 released lines replaced]
+step 1 | Shotgun      | manifest (base)                    | models/weapons/shotgun_hobbsshotty.tik | same [released tik + 3 lane lines, 0 released lines replaced]
+step 1 | Shotgun      | manifest (base)                    | models/weapons/shotgun_lv_ttshotgun.tik | same [released tik + 3 lane lines, 0 released lines replaced]
+step 1 | Shotgun      | manifest (new)                     | scripts/coop_shotgun_sight.shader | same
+step 1 | Shotgun      | manifest (new)                     | textures/coop_wpn/shotgun_bead.tga | same [tga top-down flag cleared]
+step 1 | Shotgun      | manifest (new)                     | textures/coop_wpn/shotgun_groove.tga | same [tga top-down flag cleared]
+step 1 | Shotgun      | coverage                           | 14 tiks named "Shotgun" / "Shotgun (...)" | all covered
+step 1 | StG 44       | manifest (new)                     | models/human/animation/viewmodel/mp44/coop_mp44_reload_hip.skc | same
+step 1 | StG 44       | manifest (new)                     | models/human/animation/viewmodel/mp44/mp44_reload_ads.skc | same
+step 1 | StG 44       | manifest (new)                     | models/human/animation/viewmodel/mp44/mp44_reload_adsb.skc | same
+step 1 | StG 44       | manifest (new)                     | models/human/animation/viewmodel/mp44/mp44_reload_empty_ads.skc | same
+step 1 | StG 44       | manifest (new)                     | models/human/animation/viewmodel/mp44/mp44_reload_empty_adsb.skc | same
+step 1 | StG 44       | row                                | models/player/base/fps_anims_mg.txt :: mp44_reload | same (lane heavy)
+step 1 | StG 44       | row                                | models/player/base/fps_anims_mg.txt :: mp44_reload_adsb | same (lane heavy)
+step 1 | StG 44       | row                                | models/player/base/fps_anims_mg.txt :: mp44_reload_empty | same (lane heavy)
+step 1 | StG 44       | row                                | models/player/base/fps_anims_mg.txt :: mp44_reload_empty_ads | same (lane heavy)
+step 1 | StG 44       | row                                | models/player/base/fps_anims_mg.txt :: mp44_reload_empty_adsb | same (lane heavy)
+step 1 | StG 44       | manifest (new)                     | models/weapons/coop_mp44strap/coop_reload_ads_empty.skc | same
+step 1 | StG 44       | manifest (new)                     | models/weapons/coop_mp44strap/coop_reload_ads_loaded.skc | same
+step 1 | StG 44       | manifest (base)                    | models/weapons/mp44.tik | same [released tik + 26 lane lines, 2 released lines replaced]
+step 1 | StG 44       | manifest (new)                     | models/weapons/mp44/coop_reload_ads_empty.skc | same
+step 1 | StG 44       | manifest (new)                     | models/weapons/mp44/coop_reload_ads_loaded.skc | same
+step 1 | StG 44       | manifest (base)                    | models/weapons/mp44_bloody.tik | same [released tik + 26 lane lines, 2 released lines replaced]
+step 1 | StG 44       | manifest (base)                    | models/weapons/mp44_blued.tik | same [released tik + 26 lane lines, 2 released lines replaced]
+step 1 | StG 44       | manifest (base)                    | models/weapons/mp44_camo_desert.tik | same [released tik + 26 lane lines, 2 released lines replaced]
+step 1 | StG 44       | manifest (base)                    | models/weapons/mp44_camo_winter.tik | same [released tik + 26 lane lines, 2 released lines replaced]
+step 1 | StG 44       | manifest (base)                    | models/weapons/mp44_camo_woodland.tik | same [released tik + 26 lane lines, 2 released lines replaced]
+step 1 | StG 44       | manifest (base)                    | models/weapons/mp44_chrome.tik | same [released tik + 26 lane lines, 2 released lines replaced]
+step 1 | StG 44       | manifest (base)                    | models/weapons/mp44_dhstg44ss.tik | same [released tik + 26 lane lines, 2 released lines replaced]
+step 1 | StG 44       | manifest (base)                    | models/weapons/mp44_gold.tik | same [released tik + 26 lane lines, 2 released lines replaced]
+step 1 | StG 44       | manifest (base)                    | models/weapons/mp44_guanmp44.tik | same [released tik + 26 lane lines, 2 released lines replaced]
+step 1 | StG 44       | manifest (base)                    | models/weapons/mp44_lv_ttmp44.tik | same [released tik + 26 lane lines, 2 released lines replaced]
+step 1 | StG 44       | manifest (base)                    | models/weapons/mp44_mp44strap.tik | same [released tik + 26 lane lines, 2 released lines replaced]
+step 1 | StG 44       | manifest (new)                     | sound/weapons/foley/coop_mp44_reload_loaded.wav | same
+step 1 | StG 44       | coverage                           | 12 tiks named "StG 44" / "StG 44 (...)" | all covered
+step 2 | MP18 pin     | row                                | models/player/base/fps_anims_smg.txt :: coopr_mp40_mp18_charge | same (integration)
+step 2 | MP40         | manifest (new)                     | models/human/animation/viewmodel/MP40/coop_mp40_ads_mag.skc | same
+step 2 | MP40         | manifest (new)                     | models/human/animation/viewmodel/MP40/coop_mp40_reload_ads.skc <= lane file models/human/animation/viewmodel/mp40/mp40_reload_ads.skc | same
+step 2 | MP40         | manifest (new)                     | models/human/animation/viewmodel/MP40/coop_mp40_reload_empty_hip.skc | same
+step 2 | MP40         | manifest (new)                     | models/human/animation/viewmodel/MP40/coop_mp40_reload_hip.skc | same
+step 2 | MP40         | manifest (new)                     | models/human/animation/viewmodel/MP40/mp40_reload_empty_ads.skc | same
+step 2 | MP40         | row                                | models/player/base/fps_anims_smg.txt :: coopr_mp40_charge | same (integration)
+step 2 | MP40         | row                                | models/player/base/fps_anims_smg.txt :: coopr_mp40_reload | same (integration)
+step 2 | MP40         | row                                | models/player/base/fps_anims_smg.txt :: coopr_mp40_reload_ads | same (integration)
+step 2 | MP40         | row                                | models/player/base/fps_anims_smg.txt :: coopr_mp40_reload_empty | same (integration)
+step 2 | MP40         | row                                | models/player/base/fps_anims_smg.txt :: coopr_mp40_reload_empty_ads | same (integration)
+step 2 | MP40         | manifest (base)                    | models/weapons/mp40.tik | same [released tik + 193 lane lines, 1 released lines replaced]
+step 2 | MP40         | manifest (new)                     | models/weapons/mp40/coop_fire.skc | same
+step 2 | MP40         | manifest (new)                     | models/weapons/mp40/coop_fire_empty.skc | same
+step 2 | MP40         | manifest (new)                     | models/weapons/mp40/coop_idle_empty.skc | same
+step 2 | MP40         | manifest (new)                     | models/weapons/mp40/coop_reload_ads_empty.skc | same
+step 2 | MP40         | manifest (new)                     | models/weapons/mp40/coop_reload_empty.skc | same
+step 2 | MP40         | manifest (base_pak)                | models/weapons/mp40/mp40.skd | same
+step 2 | MP40         | manifest (base)                    | models/weapons/mp40_bloody.tik | same [released tik + 193 lane lines, 1 released lines replaced]
+step 2 | MP40         | manifest (base)                    | models/weapons/mp40_blued.tik | same [released tik + 193 lane lines, 1 released lines replaced]
+step 2 | MP40         | manifest (base)                    | models/weapons/mp40_camo_desert.tik | same [released tik + 193 lane lines, 1 released lines replaced]
+step 2 | MP40         | manifest (base)                    | models/weapons/mp40_camo_winter.tik | same [released tik + 193 lane lines, 1 released lines replaced]
+step 2 | MP40         | manifest (base)                    | models/weapons/mp40_camo_woodland.tik | same [released tik + 193 lane lines, 1 released lines replaced]
+step 2 | MP40         | manifest (base)                    | models/weapons/mp40_chrome.tik | same [released tik + 193 lane lines, 1 released lines replaced]
+step 2 | MP40         | manifest (base)                    | models/weapons/mp40_gold.tik | same [released tik + 193 lane lines, 1 released lines replaced]
+step 2 | MP40         | manifest (base)                    | models/weapons/mp40_guanmp40.tik | same [released tik + 193 lane lines, 1 released lines replaced]
+step 2 | MP40         | manifest (base)                    | models/weapons/mp40_guanmp40s.tik | same [released tik + 193 lane lines, 1 released lines replaced]
+step 2 | MP40         | manifest (base)                    | models/weapons/mp40_lv_mp75.tik | same [released tik + 193 lane lines, 1 released lines replaced]
+step 2 | MP40         | coverage                           | 12 tiks named "MP40" / "MP40 (...)" | all covered, left as released on purpose: ['mp40_mp18']
+step 2 | MP40 R2      | manifest (new)                     | models/human/animation/viewmodel/MP40/coop_mp40_reactivated_reload_empty_hip.skc | same
+step 2 | MP40 R2      | manifest (new)                     | models/human/animation/viewmodel/MP40/coop_mp40_reactivated_reload_hip.skc | same
+step 2 | MP40 R2      | manifest (new)                     | models/human/animation/viewmodel/MP40/mp40_reactivated_reload_ads.skc | same
+step 2 | MP40 R2      | manifest (new)                     | models/human/animation/viewmodel/MP40/mp40_reactivated_reload_empty_ads.skc | same
+step 2 | MP40 R2      | row                                | models/player/base/fps_anims_smg.txt :: coopr_mp40_reactivated_reload | same (lane smg)
+step 2 | MP40 R2      | row                                | models/player/base/fps_anims_smg.txt :: coopr_mp40_reactivated_reload_ads | same (lane smg)
+step 2 | MP40 R2      | row                                | models/player/base/fps_anims_smg.txt :: coopr_mp40_reactivated_reload_empty | same (lane smg)
+step 2 | MP40 R2      | row                                | models/player/base/fps_anims_smg.txt :: coopr_mp40_reactivated_reload_empty_ads | same (lane smg)
+step 2 | MP40 R2      | manifest (new)                     | models/weapons/coop_mp40r2/coop_mp40_reactivated_fire.skc | same
+step 2 | MP40 R2      | manifest (new)                     | models/weapons/coop_mp40r2/coop_mp40_reactivated_fire_empty.skc | same
+step 2 | MP40 R2      | manifest (new)                     | models/weapons/coop_mp40r2/coop_mp40_reactivated_held_idle_mp40.skc | same
+step 2 | MP40 R2      | manifest (new)                     | models/weapons/coop_mp40r2/coop_mp40_reactivated_held_mp40.skc | same
+step 2 | MP40 R2      | manifest (new)                     | models/weapons/coop_mp40r2/coop_mp40_reactivated_idle_empty.skc | same
+step 2 | MP40 R2      | manifest (new)                     | models/weapons/coop_mp40r2/coop_mp40_reactivated_reload.skc | same
+step 2 | MP40 R2      | manifest (new)                     | models/weapons/coop_mp40r2/coop_mp40_reactivated_reload_ads_empty.skc | same
+step 2 | MP40 R2      | manifest (new)                     | models/weapons/coop_mp40r2/coop_mp40_reactivated_reload_empty.skc | same
+step 2 | MP40 R2      | manifest (base)                    | models/weapons/mp40_mp40r2.tik | same [released tik + 198 lane lines, 6 released lines replaced]
+step 2 | MP40 family  | manifest (new)                     | sound/weapons/foley/coop_mp40_snd_reload_loaded.wav | same
+step 2 | Silenced MP40 | manifest (new)                     | models/human/animation/viewmodel/MP40/coop_silenced_mp40_reload_empty_hip.skc | same
+step 2 | Silenced MP40 | manifest (new)                     | models/human/animation/viewmodel/MP40/coop_silenced_mp40_reload_hip.skc | same
+step 2 | Silenced MP40 | manifest (new)                     | models/human/animation/viewmodel/MP40/silenced_mp40_reload_ads.skc | same
+step 2 | Silenced MP40 | manifest (new)                     | models/human/animation/viewmodel/MP40/silenced_mp40_reload_empty_ads.skc | same
+step 2 | Silenced MP40 | row                                | models/player/base/fps_anims_smg.txt :: coopr_silenced_mp40_charge | same (integration)
+step 2 | Silenced MP40 | row                                | models/player/base/fps_anims_smg.txt :: coopr_silenced_mp40_reload | same (lane smg)
+step 2 | Silenced MP40 | row                                | models/player/base/fps_anims_smg.txt :: coopr_silenced_mp40_reload_ads | same (lane smg)
+step 2 | Silenced MP40 | row                                | models/player/base/fps_anims_smg.txt :: coopr_silenced_mp40_reload_empty | same (lane smg)
+step 2 | Silenced MP40 | row                                | models/player/base/fps_anims_smg.txt :: coopr_silenced_mp40_reload_empty_ads | same (lane smg)
+step 2 | Silenced MP40 | manifest (new)                     | models/weapons/mp40/coop_silenced_mp40_fire.skc | same
+step 2 | Silenced MP40 | manifest (new)                     | models/weapons/mp40/coop_silenced_mp40_fire_empty.skc | same
+step 2 | Silenced MP40 | manifest (new)                     | models/weapons/mp40/coop_silenced_mp40_held_mp40.skc | same
+step 2 | Silenced MP40 | manifest (new)                     | models/weapons/mp40/coop_silenced_mp40_idle_empty.skc | same
+step 2 | Silenced MP40 | manifest (new)                     | models/weapons/mp40/coop_silenced_mp40_reload.skc | same
+step 2 | Silenced MP40 | manifest (new)                     | models/weapons/mp40/coop_silenced_mp40_reload_ads_empty.skc | same
+step 2 | Silenced MP40 | manifest (new)                     | models/weapons/mp40/coop_silenced_mp40_reload_empty.skc | same
+step 2 | Silenced MP40 | manifest (base_pak)                | models/weapons/mp40/mp40silenced.skd | same
+step 2 | Silenced MP40 | manifest (base_pak)                | models/weapons/mp40silenced.tik | same [released tik + 197 lane lines, 5 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/human/animation/viewmodel/rifle/kar98_rechamber_ads.skc | same
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (new)                     | models/weapons/KAR98/rechamber_kar98_ads.skc | same
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_bloody.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_blued.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_camo_desert.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_camo_winter.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_camo_woodland.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_chrome.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_gold.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_hobbskarwood.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_hobbskarworn.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_lite.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_lite_bloody.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_lite_blued.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_lite_camo_desert.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_lite_camo_winter.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_lite_camo_woodland.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_lite_chrome.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_lite_gold.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | manifest (base)                    | models/weapons/kar98_lv_ttkar98.tik | same [lane block cut out: 40 lines, Kar98 aimed reload gun rows] [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Kar98        | coverage                           | 19 tiks named "Mauser KAR 98K" / "Mauser KAR 98K (...)" | all covered, left as released on purpose: ['kar98_g98']
+step 3 | Lee-Enfield  | manifest (base)                    | models/human/animation/viewmodel/enfield/enfield_rechamber_ads.skc | same
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | manifest (new)                     | models/weapons/enfield/enfield_rechamber_ads.skc | same
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield_bloody.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield_blued.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield_camo_desert.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield_camo_winter.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield_camo_woodland.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield_chrome.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield_gold.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield_hobbsenfurb.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield_lite.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield_lite_bloody.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield_lite_blued.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield_lite_camo_desert.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield_lite_camo_winter.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield_lite_camo_woodland.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield_lite_chrome.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield_lite_gold.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | manifest (base)                    | models/weapons/enfield_lv_ttenfield.tik | WRITE [released tik + 53 lane lines, 0 released lines replaced]
+step 3 | Lee-Enfield  | coverage                           | 18 tiks named "Lee-Enfield" / "Lee-Enfield (...)" | all covered, left as released on purpose: ['enfield_p14']
+step 3 | Mosin        | manifest (base)                    | models/human/animation/viewmodel/mosin_nagant/mosin_rechamber_ads.skc | same
+step 3 | Mosin        | manifest (new)                     | models/weapons/mosin_nagant/mosin_nagant_rechamber_ads.skc | same
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle_bloody.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle_blued.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle_camo_desert.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle_camo_winter.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle_camo_woodland.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle_chrome.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle_gold.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle_hobbsmosinur.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle_lite.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle_lite_bloody.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle_lite_blued.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle_lite_camo_desert.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle_lite_camo_winter.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle_lite_camo_woodland.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle_lite_chrome.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle_lite_gold.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | manifest (base)                    | models/weapons/mosin_nagant_rifle_lv_ttmosin.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+step 3 | Mosin        | coverage                           | 18 tiks named "Mosin Nagant Rifle" / "Mosin Nagant Rifle (...)" | all covered
+step 3 | Springfield  | manifest (base)                    | models/human/animation/viewmodel/rifle/springfield_rechamber_ads.skc | same
+step 3 | Springfield  | manifest (new)                     | models/weapons/springfield/spring_recham_ads.skc | same
+step 3 | Springfield  | manifest (base_pak)                | models/weapons/springfield_unscoped.tik | same [released tik + 27 lane lines, 0 released lines replaced]
+dry run: 202 files, nothing written

@@ -1,0 +1,243 @@
+released = fixes @ 806c4ae | integrated = working copy | 116 file(s)
+file | row | released | integrated | verdict
+models/player/base/anims_shotgun.txt | shotgun_reload_break | - | coop_tps_reload_break.skc 11f 0.367s | new row, SERVER-READ - INTENDED
+models/weapons/bar.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar.tik | reload_ads_loaded | - | reload_bar.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_bar1918a.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_bar1918a.tik | reload_ads_loaded | - | reload_bar.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_bar1918a1.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_bar1918a1.tik | reload_ads_loaded | - | reload_bar.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_bar1918a2.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_bar1918a2.tik | reload_ads_loaded | - | reload_bar.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_bloody.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_bloody.tik | reload_ads_loaded | - | reload_bar.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_blued.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_blued.tik | reload_ads_loaded | - | reload_bar.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_camo_desert.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_camo_desert.tik | reload_ads_loaded | - | reload_bar.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_camo_winter.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_camo_winter.tik | reload_ads_loaded | - | reload_bar.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_camo_woodland.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_camo_woodland.tik | reload_ads_loaded | - | reload_bar.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_chrome.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_chrome.tik | reload_ads_loaded | - | reload_bar.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_gold.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_gold.tik | reload_ads_loaded | - | reload_bar.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_pabar.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/bar_pabar.tik | reload_ads_loaded | - | reload_bar.skc 97f 3.233s | new row, client-only (no server name)
+models/weapons/dp28.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.201s | new row, client-only (no server name)
+models/weapons/dp28.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 97f 3.201s | new row, client-only (no server name)
+models/weapons/dp28_bloody.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.201s | new row, client-only (no server name)
+models/weapons/dp28_bloody.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 97f 3.201s | new row, client-only (no server name)
+models/weapons/dp28_blued.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.201s | new row, client-only (no server name)
+models/weapons/dp28_blued.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 97f 3.201s | new row, client-only (no server name)
+models/weapons/dp28_camo_desert.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.201s | new row, client-only (no server name)
+models/weapons/dp28_camo_desert.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 97f 3.201s | new row, client-only (no server name)
+models/weapons/dp28_camo_winter.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.201s | new row, client-only (no server name)
+models/weapons/dp28_camo_winter.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 97f 3.201s | new row, client-only (no server name)
+models/weapons/dp28_camo_woodland.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.201s | new row, client-only (no server name)
+models/weapons/dp28_camo_woodland.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 97f 3.201s | new row, client-only (no server name)
+models/weapons/dp28_chrome.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.201s | new row, client-only (no server name)
+models/weapons/dp28_chrome.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 97f 3.201s | new row, client-only (no server name)
+models/weapons/dp28_gold.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 97f 3.201s | new row, client-only (no server name)
+models/weapons/dp28_gold.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 97f 3.201s | new row, client-only (no server name)
+models/weapons/enfield.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/enfield_bloody.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/enfield_blued.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/enfield_camo_desert.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/enfield_camo_winter.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/enfield_camo_woodland.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/enfield_chrome.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/enfield_gold.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/enfield_hobbsenfurb.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/enfield_lite.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/enfield_lite_bloody.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/enfield_lite_blued.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/enfield_lite_camo_desert.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/enfield_lite_camo_winter.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/enfield_lite_camo_woodland.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/enfield_lite_chrome.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/enfield_lite_gold.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/enfield_lv_ttenfield.tik | rechamber_ads | - | enfield_rechamber_ads.skc 28f 0.933s | new row, client-only (no server name)
+models/weapons/kar98.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_bloody.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_blued.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_camo_desert.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_camo_winter.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_camo_woodland.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_chrome.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_gold.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_hobbskarwood.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_hobbskarworn.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_lite.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_lite_bloody.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_lite_blued.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_lite_camo_desert.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_lite_camo_winter.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_lite_camo_woodland.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_lite_chrome.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_lite_gold.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/kar98_lv_ttkar98.tik | rechamber_ads | - | rechamber_kar98_ads.skc 31f 0.765s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle_bloody.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle_blued.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle_camo_desert.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle_camo_winter.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle_camo_woodland.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle_chrome.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle_gold.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle_hobbsmosinur.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle_lite.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle_lite_bloody.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle_lite_blued.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle_lite_camo_desert.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle_lite_camo_winter.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle_lite_camo_woodland.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle_lite_chrome.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle_lite_gold.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mosin_nagant_rifle_lv_ttmosin.tik | rechamber_ads | - | mosin_nagant_rechamber_ads.skc 45f 1.500s | new row, client-only (no server name)
+models/weapons/mp40.tik | fire | mp40.skc 91f 3.033s | coop_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/mp40.tik | fire_empty | - | coop_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/mp40.tik | idle_empty | - | coop_idle_empty.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/mp40.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40.tik | reload_empty | - | coop_reload_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_bloody.tik | fire | mp40.skc 91f 3.033s | coop_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/mp40_bloody.tik | fire_empty | - | coop_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_bloody.tik | idle_empty | - | coop_idle_empty.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_bloody.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_bloody.tik | reload_empty | - | coop_reload_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_blued.tik | fire | mp40.skc 91f 3.033s | coop_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/mp40_blued.tik | fire_empty | - | coop_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_blued.tik | idle_empty | - | coop_idle_empty.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_blued.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_blued.tik | reload_empty | - | coop_reload_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_camo_desert.tik | fire | mp40.skc 91f 3.033s | coop_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/mp40_camo_desert.tik | fire_empty | - | coop_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_camo_desert.tik | idle_empty | - | coop_idle_empty.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_camo_desert.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_camo_desert.tik | reload_empty | - | coop_reload_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_camo_winter.tik | fire | mp40.skc 91f 3.033s | coop_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/mp40_camo_winter.tik | fire_empty | - | coop_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_camo_winter.tik | idle_empty | - | coop_idle_empty.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_camo_winter.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_camo_winter.tik | reload_empty | - | coop_reload_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_camo_woodland.tik | fire | mp40.skc 91f 3.033s | coop_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/mp40_camo_woodland.tik | fire_empty | - | coop_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_camo_woodland.tik | idle_empty | - | coop_idle_empty.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_camo_woodland.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_camo_woodland.tik | reload_empty | - | coop_reload_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_chrome.tik | fire | mp40.skc 91f 3.033s | coop_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/mp40_chrome.tik | fire_empty | - | coop_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_chrome.tik | idle_empty | - | coop_idle_empty.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_chrome.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_chrome.tik | reload_empty | - | coop_reload_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_gold.tik | fire | mp40.skc 91f 3.033s | coop_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/mp40_gold.tik | fire_empty | - | coop_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_gold.tik | idle_empty | - | coop_idle_empty.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_gold.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_gold.tik | reload_empty | - | coop_reload_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_guanmp40.tik | fire | mp40.skc 91f 3.033s | coop_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/mp40_guanmp40.tik | fire_empty | - | coop_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_guanmp40.tik | idle_empty | - | coop_idle_empty.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_guanmp40.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_guanmp40.tik | reload_empty | - | coop_reload_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_guanmp40s.tik | fire | mp40.skc 91f 3.033s | coop_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/mp40_guanmp40s.tik | fire_empty | - | coop_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_guanmp40s.tik | idle_empty | - | coop_idle_empty.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_guanmp40s.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_guanmp40s.tik | reload_empty | - | coop_reload_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_lv_mp75.tik | fire | mp40.skc 91f 3.033s | coop_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/mp40_lv_mp75.tik | fire_empty | - | coop_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_lv_mp75.tik | idle_empty | - | coop_idle_empty.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_lv_mp75.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_lv_mp75.tik | reload_empty | - | coop_reload_empty.skc 91f 3.033s | new row, client-only (no server name)
+models/weapons/mp40_mp40r2.tik | fire | fire_mp40.skc 91f 2.912s | coop_mp40_reactivated_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/mp40_mp40r2.tik | fire_empty | - | coop_mp40_reactivated_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_mp40r2.tik | guardfire_a | mp40.skc 1f 0.033s | coop_mp40_reactivated_held_mp40.skc 1f 0.033s | other clip, SAME LENGTH
+models/weapons/mp40_mp40r2.tik | guardfire_b | mp40.skc 1f 0.033s | coop_mp40_reactivated_held_mp40.skc 1f 0.033s | other clip, SAME LENGTH
+models/weapons/mp40_mp40r2.tik | idle | idle_mp40.skc 1f 0.032s | coop_mp40_reactivated_held_idle_mp40.skc 1f 0.032s | other clip, SAME LENGTH (server-read)
+models/weapons/mp40_mp40r2.tik | idle_empty | - | coop_mp40_reactivated_idle_empty.skc 1f 0.017s | new row, SERVER-READ - INTENDED
+models/weapons/mp40_mp40r2.tik | reload | reload_mp40.skc 91f 2.912s | coop_mp40_reactivated_reload.skc 91f 2.912s | other clip, SAME LENGTH (server-read)
+models/weapons/mp40_mp40r2.tik | reload_ads_empty | - | coop_mp40_reactivated_reload_ads_empty.skc 91f 2.912s | new row, client-only (no server name)
+models/weapons/mp40_mp40r2.tik | reload_empty | - | coop_mp40_reactivated_reload_empty.skc 91f 2.912s | new row, client-only (no server name)
+models/weapons/mp40_mp40r2.tik | secondaryfire | idle_mp40.skc 1f 0.032s | coop_mp40_reactivated_held_idle_mp40.skc 1f 0.032s | other clip, SAME LENGTH (server-read)
+models/weapons/mp40silenced.tik | fire | mp40_fire.skc 5f 0.165s | coop_silenced_mp40_fire.skc 6f 0.100s | LENGTH CHANGED, SERVER-READ - INTENDED
+models/weapons/mp40silenced.tik | fire_empty | - | coop_silenced_mp40_fire_empty.skc 4f 0.067s | new row, SERVER-READ - INTENDED
+models/weapons/mp40silenced.tik | guardfire_a | mp40.skc 91f 3.033s | coop_silenced_mp40_held_mp40.skc 91f 3.033s | other clip, SAME LENGTH
+models/weapons/mp40silenced.tik | guardfire_b | mp40.skc 91f 3.033s | coop_silenced_mp40_held_mp40.skc 91f 3.033s | other clip, SAME LENGTH
+models/weapons/mp40silenced.tik | idle | mp40.skc 91f 3.033s | coop_silenced_mp40_held_mp40.skc 91f 3.033s | other clip, SAME LENGTH (server-read)
+models/weapons/mp40silenced.tik | idle_empty | - | coop_silenced_mp40_idle_empty.skc 1f 0.017s | new row, SERVER-READ - INTENDED
+models/weapons/mp40silenced.tik | reload | mp40_reload.skc 73f 2.409s | coop_silenced_mp40_reload.skc 73f 2.409s | other clip, SAME LENGTH (server-read)
+models/weapons/mp40silenced.tik | reload_ads_empty | - | coop_silenced_mp40_reload_ads_empty.skc 73f 2.409s | new row, client-only (no server name)
+models/weapons/mp40silenced.tik | reload_empty | - | coop_silenced_mp40_reload_empty.skc 73f 2.409s | new row, client-only (no server name)
+models/weapons/mp44.tik | reload | mp44_reload.skc 83f 2.767s | coop_reload_ads_loaded.skc 83f 2.767s | other clip, SAME LENGTH (server-read)
+models/weapons/mp44.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44.tik | reload_empty | - | mp44_reload.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_bloody.tik | reload | mp44_reload.skc 83f 2.767s | coop_reload_ads_loaded.skc 83f 2.767s | other clip, SAME LENGTH (server-read)
+models/weapons/mp44_bloody.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_bloody.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_bloody.tik | reload_empty | - | mp44_reload.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_blued.tik | reload | mp44_reload.skc 83f 2.767s | coop_reload_ads_loaded.skc 83f 2.767s | other clip, SAME LENGTH (server-read)
+models/weapons/mp44_blued.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_blued.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_blued.tik | reload_empty | - | mp44_reload.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_camo_desert.tik | reload | mp44_reload.skc 83f 2.767s | coop_reload_ads_loaded.skc 83f 2.767s | other clip, SAME LENGTH (server-read)
+models/weapons/mp44_camo_desert.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_camo_desert.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_camo_desert.tik | reload_empty | - | mp44_reload.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_camo_winter.tik | reload | mp44_reload.skc 83f 2.767s | coop_reload_ads_loaded.skc 83f 2.767s | other clip, SAME LENGTH (server-read)
+models/weapons/mp44_camo_winter.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_camo_winter.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_camo_winter.tik | reload_empty | - | mp44_reload.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_camo_woodland.tik | reload | mp44_reload.skc 83f 2.767s | coop_reload_ads_loaded.skc 83f 2.767s | other clip, SAME LENGTH (server-read)
+models/weapons/mp44_camo_woodland.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_camo_woodland.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_camo_woodland.tik | reload_empty | - | mp44_reload.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_chrome.tik | reload | mp44_reload.skc 83f 2.767s | coop_reload_ads_loaded.skc 83f 2.767s | other clip, SAME LENGTH (server-read)
+models/weapons/mp44_chrome.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_chrome.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_chrome.tik | reload_empty | - | mp44_reload.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_dhstg44ss.tik | reload | mp44_reload.skc 83f 2.767s | coop_reload_ads_loaded.skc 83f 2.767s | other clip, SAME LENGTH (server-read)
+models/weapons/mp44_dhstg44ss.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_dhstg44ss.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_dhstg44ss.tik | reload_empty | - | mp44_reload.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_gold.tik | reload | mp44_reload.skc 83f 2.767s | coop_reload_ads_loaded.skc 83f 2.767s | other clip, SAME LENGTH (server-read)
+models/weapons/mp44_gold.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_gold.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_gold.tik | reload_empty | - | mp44_reload.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_guanmp44.tik | reload | mp44_reload.skc 83f 2.767s | coop_reload_ads_loaded.skc 83f 2.767s | other clip, SAME LENGTH (server-read)
+models/weapons/mp44_guanmp44.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_guanmp44.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_guanmp44.tik | reload_empty | - | mp44_reload.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_lv_ttmp44.tik | reload | mp44_reload.skc 83f 2.767s | coop_reload_ads_loaded.skc 83f 2.767s | other clip, SAME LENGTH (server-read)
+models/weapons/mp44_lv_ttmp44.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_lv_ttmp44.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_lv_ttmp44.tik | reload_empty | - | mp44_reload.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_mp44strap.tik | reload | mp44_reload.skc 83f 2.767s | coop_reload_ads_loaded.skc 83f 2.767s | other clip, SAME LENGTH (server-read)
+models/weapons/mp44_mp44strap.tik | reload_ads_empty | - | coop_reload_ads_empty.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_mp44strap.tik | reload_ads_loaded | - | coop_reload_ads_loaded.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/mp44_mp44strap.tik | reload_empty | - | mp44_reload.skc 83f 2.767s | new row, client-only (no server name)
+models/weapons/shotgun.tik | reload_end_loaded | - | coop_shotgun_still32.skc 32f 1.067s | new row, client-only (no server name)
+models/weapons/shotgun_authwinch.tik | reload_end_loaded | - | coop_shotgun_still32.skc 32f 1.067s | new row, client-only (no server name)
+models/weapons/shotgun_bloody.tik | reload_end_loaded | - | coop_shotgun_still32.skc 32f 1.067s | new row, client-only (no server name)
+models/weapons/shotgun_blued.tik | reload_end_loaded | - | coop_shotgun_still32.skc 32f 1.067s | new row, client-only (no server name)
+models/weapons/shotgun_camo_desert.tik | reload_end_loaded | - | coop_shotgun_still32.skc 32f 1.067s | new row, client-only (no server name)
+models/weapons/shotgun_camo_winter.tik | reload_end_loaded | - | coop_shotgun_still32.skc 32f 1.067s | new row, client-only (no server name)
+models/weapons/shotgun_camo_woodland.tik | reload_end_loaded | - | coop_shotgun_still32.skc 32f 1.067s | new row, client-only (no server name)
+models/weapons/shotgun_chrome.tik | reload_end_loaded | - | coop_shotgun_still32.skc 32f 1.067s | new row, client-only (no server name)
+models/weapons/shotgun_dhshotblack.tik | reload_end_loaded | - | coop_shotgun_still32.skc 32f 1.067s | new row, client-only (no server name)
+models/weapons/shotgun_dhshotchrome.tik | reload_end_loaded | - | coop_shotgun_still32.skc 32f 1.067s | new row, client-only (no server name)
+models/weapons/shotgun_gold.tik | reload_end_loaded | - | coop_shotgun_still32.skc 32f 1.067s | new row, client-only (no server name)
+models/weapons/shotgun_guanshotty.tik | reload_end_loaded | - | coop_shotgun_still32.skc 32f 1.067s | new row, client-only (no server name)
+models/weapons/shotgun_hobbsshotty.tik | reload_end_loaded | - | coop_shotgun_still32.skc 32f 1.067s | new row, client-only (no server name)
+models/weapons/shotgun_lv_ttshotgun.tik | reload_end_loaded | - | coop_shotgun_still32.skc 32f 1.067s | new row, client-only (no server name)
+models/weapons/springfield_unscoped.tik | rechamber_ads | - | spring_recham_ads.skc 34f 1.133s | new row, client-only (no server name)
+---
+889 rows in 116 files: 656 untouched
+    13  LENGTH CHANGED, SERVER-READ - INTENDED
+    27  new row, SERVER-READ - INTENDED
+   172  new row, client-only (no server name)
+     4  other clip, SAME LENGTH
+    17  other clip, SAME LENGTH (server-read)
+GATE: pass - no server-read row changed length except the intended rows
