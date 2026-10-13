@@ -1,0 +1,32 @@
+[
+ {
+  "error_message": "Silenced MP40 aimed reload does not pass the 2 % centre-box bar with aim sway ON (run sc2: 2.4-4.0 % in three stances), although it passes with sway off (0.0-0.8 %)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/assets/models/weapons/mp40/mp40silenced.skd",
+  "root_cause": "Not the clip and not the eye relief. Aim sway + breath translate the whole first-person rig (+-0.175 u up/down, +-0.14 u sideways), so a part moves on screen by 572 px x shift / distance from the eye. On the xw mp40silenced mesh the rear leaf stands only 0.3-0.45 u over the receiver's rear (retail MP40 0.7 u) and the receiver is 3.2 u wide (retail 2.1): from the aiming eye the receiver's top is INSIDE the centre box (3.5-4.9 deg under the sight line, box edge 7.2 deg) at 5-7 u from the eye, where the sway moves it 15-20 px. Offline, settled aim alone, worst pair of sway states: 6.3 % (MP40 1.8 %). An eye relief of -3..+4 u gives 3.6-6.6 % (never under the bar).",
+  "fix": "Staged, needs the user's yes: both sights raised 0.45 u on a staged copy of the mesh (tools/sightraise.py, 112 vertices of metal3), sight points in smg/sights_override.json, the gun's row of cg_adssights.h rewritten in the ads-smg-next worktree (tools/patch_sights_row.py, cgame_smg2). The rig solve then seats the gun 0.45 u lower. Run se1, sway on: 0.0-1.0 % in all eight stances, settled aim alone 0.0-0.6 %. Mesh and header row must ship together.",
+  "tags": ["ads", "smg", "silenced-mp40", "aim-sway", "centre-box", "sights", "mesh", "staged"],
+  "related_bugs": ["bug-3632"]
+ },
+ {
+  "error_message": "swaybox.py read the settled aim after a reload as 3.6-5.0 % over its own mask with cg_adsRigReliefBias 2.0 (run sd1) - taken as 'the relief move re-eases after a held clip'",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/swaybox.py",
+  "root_cause": "Tool fault. swaybox compared the frames with the UNSHIFTED reference frame; after a 32-round burst the view is still creeping back, so the backdrop counted as cover (the plain MP40 read 3.2-6.3 % by the same tool). The probe's relief is constant (15.11 u +-0.01) from the end of the burst to the lower: nothing re-eases in CG_AdsRigSolve.",
+  "fix": "swaybox.py uses reloadbox's background-shifted reference (reloadbox.make_shifter, moved out of measure()). Re-read: sd1 0.0 / 0.3 %, MP40 sc1 0.2 %. The old figures in the README were replaced.",
+  "tags": ["ads", "smg", "tools", "measure", "false-finding"],
+  "related_bugs": ["bug-3632"]
+ },
+ {
+  "error_message": "smgbake / stage_rows: AssertionError ('coopr_mp40_mp18_reload_empty_ads', 0) when the MP18 was added as a per-weapon variant",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py",
+  "root_cause": "The MP18's hip reload row (coopr_mp40_mp18_reload) lives in anims_shared.txt, not in a fps_anims file: H.fps_rows() does not list it, and rows_extra() tried to ADD a row of the same name after a row that does not exist yet.",
+  "fix": "smgbake EXTRA_ROWS (H.fps_rows wrapped), rows_extra() writes such a row into rows_extra.json 'shared' and adds only the three new rows; mkov_smg.py patches the pak's own anims_shared.txt into the test overlay (no staged copy of the shared file). The MP18 itself is NOT staged yet.",
+  "tags": ["ads", "smg", "mp18", "tools", "rows"]
+ },
+ {
+  "error_message": "MP18 right-hand cock, first offline bake: 'IK clamp R' three times (the firing arm would drag the gun)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py",
+  "root_cause": "The mirrored MP40 hook (_RIGHT: fdir 0.55,-0.7,-0.45, pdir 0,-0.5,0.85) puts the right wrist at 106 % of the arm from the aim (reachcheck.py); the handover's 94 % was the hip direction.",
+  "fix": "GUNS['mp40_mp18'] hook fdir (0.8,-0.5,-0.3), pdir (-0.3,-0.6,0.75): wrist at 93 %, no clamp (env SB_RF / SB_RP to try others). The hand's finger pose and the side-drum physics are still open - the first pass was taken out of the staged tree.",
+  "tags": ["ads", "smg", "mp18", "ik", "reach"]
+ }
+]

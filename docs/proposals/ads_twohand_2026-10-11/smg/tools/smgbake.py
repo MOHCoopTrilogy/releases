@@ -29,6 +29,12 @@ sys.path.insert(0, SHARED)
 import revbake as RB
 import gunphys
 H = RB.H; R = RB.R; V = RB.V; K = H.K; B = H.B
+# lane-local sight points for meshes this lane stages with changed sights (sights_override.json; the shared table is
+# the ironsights lane's and is only changed together with the mesh). Updated IN PLACE: every tool reads V.SIGHTS.
+_SO = os.path.join(HERE, '..', 'sights_override.json')
+if os.path.isfile(_SO) and not os.environ.get('SMG_NO_SIGHT_OVERRIDE'):
+    for _k, _v in json.load(open(_SO)).items():
+        V.SIGHTS[_k].update({a: b for a, b in _v.items() if a in ('F', 'R', 'up', 'relief', 'delta_mrad')})
 
 STRENGTH = float(os.environ.get('SB_STRENGTH', '1.0'))
 SHOULDER = float(os.environ.get('SB_SHOULDER', '0.3'))   # run sb2: with 0 the muzzle hung 1.9 deg low for 1.2 s
@@ -112,6 +118,19 @@ _RIGHT = dict(cock='R', hook=dict(fdir=(0.55, -0.7, -0.45), pdir=(0.0, -0.5, 0.8
 _UNDER = dict(handle='R', hook=dict(fdir=_envf('SB_UF', (0.5, -0.1, -0.85)), pdir=_envf('SB_UP', (-1.0, 0.0, -0.5)), add=_envf('SB_UA', (0.45, 0.0, 0.1)),
                                     approach=_envf('SB_UAP', (-0.6, 0.6, -2.2)), leave=(0.0, 0.3, -1.2), home=(-1.0, 1.0, -2.5),
                                     hip_built=1, fdir_hip=_envf('SB_UFH', (0.2, 0.7, 0.7)), pdir_hip=_envf('SB_UPH', (-0.9, 0.0, 0.4)), add_hip=(0.45, 0.0, -0.1)))
+# MP18: side drum on the LEFT (the well points left: the drum leaves sideways, outside the centre box by its own place),
+# handle on the RIGHT within the firing hand's reach (94 % of the arm). Its hands row lives in anims_shared.txt, not in
+# the fps_anims files the shared bake reads: EXTRA_ROWS. Retail clip: hand on the drum f8-12, out f14-22, in f36-44
+# (server: drum surface hidden f12-44, prop f10-46). The pull sits on the reload sound's clacks like the MP40's.
+EXTRA_ROWS = {'coopr_mp40_mp18_reload': 'viewmodel/coop_reload/mp18_reload.skc'}
+_fps_rows0 = H.fps_rows
+H.fps_rows = lambda: dict(_fps_rows0(), **EXTRA_ROWS)
+GUNS['mp40_mp18'] = _variant('mp40', 'mp40_mp18', row='coopr_mp40_mp18_reload', tik='models/weapons/mp40_mp18.tik',
+                             prop='models/ammo/coop_mp18_drum.tik', propwin=(10, 46), out_rel=12, in_rel=44, well=(0.0, -1.0, 0.0),
+                             t=dict(down=(2, 8), catch=10, out=(13, 17), outshow=20, outgo=23, gone=26, back=29, show=33, hold=35, under=38, seat=(40, 44),
+                                    tug=47.5, on=(51, 58), on_r=(46, 53), reach_r=(49, 55), pull=(55, 61), let=63, on_er=(65, 71)),
+                             hip_blend=(44, 68), cock='R',
+                             hook=dict(_RIGHT['hook'], fdir=_envf('SB_RF', (0.8, -0.5, -0.3)), pdir=_envf('SB_RP', (-0.3, -0.6, 0.75)), add=_envf('SB_RA', (0.18, 0.3, 0.05))))
 GUNS['silenced_pps_43'] = _variant('mp40', 'silenced_pps_43', tik='models/weapons/ppsh43silenced.tik', **_UNDER)
 
 
@@ -502,6 +521,18 @@ def rows_extra(name, rep):
     p = os.path.join(HERE, 'rows_extra.json')
     e = json.load(open(p)) if os.path.isfile(p) else {'repoint': [], 'add': []}
     row = g['row']
+    if row in EXTRA_ROWS:
+        # the hip rounds-left row EXISTS, in anims_shared.txt (not a fps_anims file): it is repointed THERE (rows_extra
+        # 'shared': mkov_smg.py patches the pak's own copy into the test overlay; for a release the same hunk goes
+        # into the mod's anims_shared.txt), and only the three new rows are added to fps_anims_smg.txt
+        e['shared'] = [x for x in e.get('shared', []) if x[0] != row] + [[row, rep['hip_loaded']['clip']]]
+        names = (row + '_empty', row + '_ads', row + '_empty_ads')
+        e['add'] = [x for x in e['add'] if x[0] not in names and x[0] != row]
+        e['add'] += [[row + '_empty', rep['hip_empty']['clip'], '0.1', 'mp40_reload_empty_ads'],
+                     [row + '_ads', rep['ads_loaded']['clip'], '0.1', row + '_empty'],
+                     [row + '_empty_ads', rep['ads_empty']['clip'], '0.1', row + '_ads']]
+        json.dump(e, open(p, 'w'), indent=1)
+        return
     if g.get('out'):                         # per-weapon rows: all four are new rows, after the prefix's own block
         o_ = g['out']
         names = (o_, o_ + '_empty', o_ + '_ads', o_ + '_empty_ads')

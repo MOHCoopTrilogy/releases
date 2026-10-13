@@ -1,7 +1,7 @@
 """SMG lane test overlay: the harness plumbing (ovbase_1021.pk3, built by ..\\..\\tools\\mkbase.py - marker shader +
 coop_mod/weather.scr with the test thread) + every file under ../assets (the staged tree, game paths).
 
-    python mkov_smg.py <out.pk3> [--base]        --base = plumbing only (the RELEASED rows and clips: a "before" run)
+    python mkov_smg.py <out.pk3> [--base] [--extra <other assets dir>]        --base = plumbing only (the RELEASED rows and clips: a "before" run)
 Asserts that every clip a staged fps_anims row names and that lives under viewmodel/coop_* or is staged is in the pak.
 """
 import sys, os, zipfile
@@ -66,6 +66,24 @@ def main():
                     p = os.path.join(d, f)
                     arc = os.path.relpath(p, ASSETS).replace(os.sep, '/')
                     z.write(p, arc); n += 1
+            # rows that live in anims_shared.txt (rows_extra.json 'shared'): the live pak's own copy with those rows
+            # repointed goes into the overlay; NOT staged under assets (a staged copy of a shared file goes stale)
+            import json, re
+            ex = json.load(open(os.path.join(HERE, 'rows_extra.json')))
+            if ex.get('shared'):
+                sys.path.insert(0, os.path.normpath(os.path.join(HERE, '..', '..', '..', 'ironsights_2026-09-28', 'tools')))
+                import vfs
+                txt = vfs.read('models/player/base/anims_shared.txt').decode('latin-1')
+                for row, clip in ex['shared']:
+                    txt, k = re.subn(r'(?m)^(\s*%s\s+)\S+' % re.escape(row), lambda m: m.group(1) + clip, txt)
+                    assert k == 1, (row, k)
+                    print('anims_shared.txt: %s -> %s' % (row, clip))
+                z.writestr('models/player/base/anims_shared.txt', txt.encode('latin-1')); n += 1
+            for xd in [sys.argv[i + 1] for i, v in enumerate(sys.argv) if v == '--extra']:
+                for d, _, fs in os.walk(xd):          # another proposal's staged tree (e.g. the approved MP18 skin)
+                    for f in fs:
+                        p = os.path.join(d, f)
+                        z.write(p, os.path.relpath(p, xd).replace(os.sep, '/')); n += 1
     names = set(x.lower() for x in zipfile.ZipFile(out).namelist())
     if not base_only:
         rows = open(os.path.join(ASSETS, 'models', 'player', 'base', 'fps_anims_smg.txt'), encoding='latin-1').read().splitlines()

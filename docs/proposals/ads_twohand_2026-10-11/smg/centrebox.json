@@ -44,25 +44,25 @@
   "xmax": 0.6
  },
  "silenced_mp40": {
-  "base": 14.2,
+  "base": 12.0,
   "dev": 1.38,
-  "end": 0.057,
+  "end": 0.059,
   "frames": 157,
-  "max": 0.0,
-  "over": 0.0,
-  "run": "sc6",
-  "xfr": 0.0,
-  "xmax": 0.0
- },
- "silenced_mp40_empty": {
-  "base": 10.5,
-  "dev": 1.38,
-  "end": 0.056,
-  "frames": 156,
   "max": 0.6,
   "over": 0.0,
-  "run": "sc6",
+  "run": "se1",
   "xfr": 0.0,
   "xmax": 0.6
+ },
+ "silenced_mp40_empty": {
+  "base": 6.9,
+  "dev": 1.37,
+  "end": 0.06,
+  "frames": 156,
+  "max": 0.5,
+  "over": 0.0,
+  "run": "se1",
+  "xfr": 0.0,
+  "xmax": 0.5
  }
 }

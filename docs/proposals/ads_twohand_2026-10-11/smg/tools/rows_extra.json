@@ -25,30 +25,6 @@
    "mp40_reload_ads"
   ],
   [
-   "coopr_silenced_mp40_reload",
-   "viewmodel/mp40/coop_silenced_mp40_reload_hip.skc",
-   "0.1",
-   "mp40_reload_empty_ads"
-  ],
-  [
-   "coopr_silenced_mp40_reload_empty",
-   "viewmodel/mp40/coop_silenced_mp40_reload_empty_hip.skc",
-   "0.1",
-   "coopr_silenced_mp40_reload"
-  ],
-  [
-   "coopr_silenced_mp40_reload_ads",
-   "viewmodel/mp40/silenced_mp40_reload_ads.skc",
-   "0.1",
-   "coopr_silenced_mp40_reload_empty"
-  ],
-  [
-   "coopr_silenced_mp40_reload_empty_ads",
-   "viewmodel/mp40/silenced_mp40_reload_empty_ads.skc",
-   "0.1",
-   "coopr_silenced_mp40_reload_ads"
-  ],
-  [
    "coopr_mp40_reactivated_reload",
    "viewmodel/mp40/coop_mp40_reactivated_reload_hip.skc",
    "0.1",
@@ -71,6 +47,30 @@
    "viewmodel/mp40/mp40_reactivated_reload_empty_ads.skc",
    "0.1",
    "coopr_mp40_reactivated_reload_ads"
+  ],
+  [
+   "coopr_silenced_mp40_reload",
+   "viewmodel/mp40/coop_silenced_mp40_reload_hip.skc",
+   "0.1",
+   "mp40_reload_empty_ads"
+  ],
+  [
+   "coopr_silenced_mp40_reload_empty",
+   "viewmodel/mp40/coop_silenced_mp40_reload_empty_hip.skc",
+   "0.1",
+   "coopr_silenced_mp40_reload"
+  ],
+  [
+   "coopr_silenced_mp40_reload_ads",
+   "viewmodel/mp40/silenced_mp40_reload_ads.skc",
+   "0.1",
+   "coopr_silenced_mp40_reload_empty"
+  ],
+  [
+   "coopr_silenced_mp40_reload_empty_ads",
+   "viewmodel/mp40/silenced_mp40_reload_empty_ads.skc",
+   "0.1",
+   "coopr_silenced_mp40_reload_ads"
   ]
  ]
 }

@@ -54,6 +54,28 @@ def grow(m, r=6):
     return o
 
 
+def make_shifter(Rf, box):
+    """reference crop shifted to a frame's own background (two strips the first-person model never reaches)"""
+    Rg = Rf.sum(axis=2).astype(np.float32)
+    strips = ((slice(20, 200), slice(40, 440)), (slice(20, 200), slice(840, 1240)))
+
+    def shifted_ref(f):
+        Fg = np.asarray(Image.open(f).convert('RGB')).astype(np.int16).sum(axis=2).astype(np.float32)
+        best = (1e18, 0, 0)
+        for dy in range(-10, 11):
+            for dx in range(-6, 7):
+                e = 0.0
+                for ys, xs in strips:
+                    a = Fg[ys, xs]
+                    b = Rg[ys.start - dy:ys.stop - dy, xs.start - dx:xs.stop - dx]
+                    e += float(np.abs(a[::2, ::2] - b[::2, ::2]).mean())
+                if e < best[0]:
+                    best = (e, dy, dx)
+        _, dy, dx = best
+        return Rf[box[2] - dy:box[3] - dy, box[0] - dx:box[1] - dx], (dy, dx)
+    return shifted_ref
+
+
 def measure(sess, sub, skip=0, dump=False):
     run, tag, marks, rows, fs = load(sess, sub)
     mk = {n: (f, si) for n, f, si in marks}
@@ -84,23 +106,7 @@ def measure(sess, sub, skip=0, dump=False):
     # off the reference and every timber edge counts as cover (run sb2: 7 % with nothing but the sights in the box).
     # The reference is therefore shifted to each frame's background first - the shift that best matches two strips of
     # the frame the first-person model never reaches (top left / top right).
-    Rg = Rf.sum(axis=2).astype(np.float32)
-    strips = ((slice(20, 200), slice(40, 440)), (slice(20, 200), slice(840, 1240)))
-
-    def shifted_ref(f):
-        Fg = np.asarray(Image.open(f).convert('RGB')).astype(np.int16).sum(axis=2).astype(np.float32)
-        best = (1e18, 0, 0)
-        for dy in range(-10, 11):
-            for dx in range(-6, 7):
-                e = 0.0
-                for ys, xs in strips:
-                    a = Fg[ys, xs]
-                    b = Rg[ys.start - dy:ys.stop - dy, xs.start - dx:xs.stop - dx]
-                    e += float(np.abs(a[::2, ::2] - b[::2, ::2]).mean())
-                if e < best[0]:
-                    best = (e, dy, dx)
-        _, dy, dx = best
-        return Rf[box[2] - dy:box[3] - dy, box[0] - dx:box[1] - dx], (dy, dx)
+    shifted_ref = make_shifter(Rf, box)
     ex, shifts = [], []
     for i in range(i0, i1 + 1):
         Rs, sh = shifted_ref(fs[i])

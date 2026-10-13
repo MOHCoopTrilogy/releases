@@ -309,7 +309,8 @@ OWN = {
     'silenced_grease_gun': dict(tik='models/weapons/greasegun_silenced.tik', bone='Bone1', side='R'),
     # MP18: the pack's own first-person reload (coopr_mp40_mp18_reload) works the right-side handle with the RIGHT hand
     # at f52-58 - the handle keeps those frames (hip and aimed), so that clip's hand stays on it
-    'mp40_mp18': dict(tik='models/weapons/mp40_mp18.tik', bone='Bone2', side='R', hip_pull=(52.5, 57.5), ads_pull=(52.5, 57.5)),
+    # (2026-10-13: both hands clips are rebuilt now - smgbake GUNS['mp40_mp18'] - so the handle takes the default frames, on the sound)
+    'mp40_mp18': dict(tik='models/weapons/mp40_mp18.tik', bone='Bone2', side='R'),
     # the pack's own clips already tell the open-bolt story (rest BACK, forward on the shot; its reload runs the bolt
     # forward at once and pulls it back at the end = the EMPTY case): rest='back'
     # PPS-43: the handle is a surface of its own on the right of the receiver (x 9.6-10.6, forward), on the main bone

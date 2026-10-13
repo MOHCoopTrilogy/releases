@@ -1,0 +1,7 @@
+{
+ "silenced_mp40": {
+  "F": [28.263, -1.082, -6.0254],
+  "R": [6.7486, -0.9251, -6.341],
+  "why": "staged mp40silenced.skd has both sights raised 0.45 u (tools/sightraise.py); hunk for ironsights_2026-09-28/sights.json + the regenerated cg_adssights.h - apply ONLY together with the staged mesh"
+ }
+}
