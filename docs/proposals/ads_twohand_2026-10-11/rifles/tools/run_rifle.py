@@ -12,7 +12,8 @@ parts (each = ONE continuous capture per gun and stance, one engine screenshot p
   empty      settled aim, `--shots` aimed shots `--gap` frames apart (the last one empties the gun), then `--rframes`
   hipreload  the same from the hip (no aim) - one shot, the cycle, then the reload
   breakfire / breakswitch / breaksprint   one aimed shot + cycle, `reload`, broken off --breakat frames in, --bframes more
-  stills     settled aim, 4 frames
+  stills     settled aim, 4 frames;  hipstills  the hip view, 4 frames;  <part>D  the same part facing --darkyaw
+             (stance tag <stance>D);  tpc  third person, close: 4 camera places, hip then the aim held
 Tags: ab__<sess>__<gun>__<stance>__<part>__after ; marks `^~^~^ RIFLE <name> <capture frame>` in the log.
 """
 import os, sys, time, argparse
@@ -54,17 +55,21 @@ def post(st):
     return (["coop_braceView"] if st == "braced" else []) + S.RELEASE + A.UNAPPLY[st]
 
 
-def cap(sess, gun, st, part, a):
-    tag = "ab__%s__%s__%s__%s__after" % (sess, gun, st, part)
+def cap(sess, gun, st, part, a, sfx=""):
+    tag = "ab__%s__%s__%s__%s__after" % (sess, gun, st + sfx, part)
     i = [0]
     mark = lambda n: ["echo ^~^~^ RIFLE %s %d" % (n, i[0])]
-    ads = part != "hipreload"
+    ads = part not in ("hipreload", "hipstills")
     # a bolt capture spends a round: top the magazine up first (a no-op when full) - run ra3 emptied the Kar98 on the
     # fifth stance and the capture ran into the automatic reload
     top = (S.RELEASE + ["reload", "wait 4300"]) if part in ("bolt", "bolt2") else []
     L = top + pre(st, ads) + ["set cg_adsSightDebug 2", "echo ^~^~^ ABSCEN begin %s" % tag]
-    if part == "stills":
+    if part in ("stills", "hipstills"):
         L += F(tag, 4, i)
+    elif part == "relief":      # the settled aim at three eye reliefs (cg_adsRigReliefBias 0 / 1.5 / 3 u further back), 2 frames each
+        for b in ("0", "1.5", "3"):
+            L += ["set cg_adsRigReliefBias %s" % b, "wait 1200"] + F(tag, 2, i)
+        L += ["set cg_adsRigReliefBias 0", "wait 300"]
     elif part == "bolt":
         L += REF(tag, "ref") + F(tag, 8, i) + mark("fire") + ["+attackprimary"] + F(tag, 4, i) + ["-attackprimary"] + F(tag, a.after, i)
         L += mark("end") + REF(tag, "ref2")
@@ -97,6 +102,25 @@ def cap(sess, gun, st, part, a):
     R.step(L, timeout=2400)
 
 
+def tpc(sess, gun):
+    """third person, close: the held gun from outside (the world model = the same mesh) - left, right, behind / above,
+    further off; hip, then the aim held. ONE engine screenshot per step."""
+    tag = "ab__%s__%s__stand__tpc__after" % (sess, gun)
+    R.step(S.RELEASE + S.TO_STAND + ["wait 400", "set cg_3rd_person 1", "echo ^~^~^ ABSCEN begin %s" % tag], timeout=60)
+    k = 0
+    try:
+        for aim in (0, 1):
+            if aim:
+                R.step(["+button13", "wait 900"], timeout=60)
+            for dist, hgt, side in ((34, 2, -30), (34, 2, 30), (26, 12, -8), (46, 4, -40)):
+                R.step(["set cg_cameradist %d" % dist, "set cg_cameraheight %d" % hgt, "set cg_camerasideoffset %d" % side, "wait 500",
+                        "screenshotJPEG %s__%04d" % (tag, k), "wait 1", "wait 1", "wait 1", "wait 1"], timeout=60)
+                k += 1
+    finally:
+        R.step(["-button13", "echo ^~^~^ ABSCEN end %s" % tag, "set cg_3rd_person 0", "set cg_camerasideoffset 18", "set cg_cameradist 120",
+                "set cg_cameraheight 18", "wait 400"] + S.RELEASE, timeout=60)
+
+
 def run(a):
     # --steady: breath and sway off - the measure then reads the clip, not the breathing aim (rbox.py)
     extra = ["set cg_drawviewmodel 2"] + (["set cg_weaponBreath 0", "set cg_adsSway 0"] if a.steady else
@@ -110,10 +134,20 @@ def run(a):
             R.SPOT = (x, y, z, a.yaw)
             try:
                 for part in a.parts:
-                    for st in (a.stances if (part != "hipreload" or a.hipall) else a.stances[:1]):
-                        A.log("[%s] rifle %s %s %s" % (a.session, gun, part, st))
+                    if part == "tpc":
+                        A.log("[%s] rifle %s tpc" % (a.session, gun))
                         R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
-                        cap(a.session, gun, st, part, a)
+                        tpc(a.session, gun)
+                        continue
+                    if part.endswith("D"):          # <part>D = the same part on the dark backdrop (--darkyaw)
+                        part = part[:-1]
+                        R.SPOT = (x, y, z, a.darkyaw)
+                    else:
+                        R.SPOT = (x, y, z, a.yaw)
+                    for st in (a.stances if (part != "hipreload" or a.hipall) else a.stances[:1]):
+                        A.log("[%s] rifle %s %s %s yaw %s" % (a.session, gun, part, st, R.SPOT[3]))
+                        R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+                        cap(a.session, gun, st, part, a, "D" if R.SPOT[3] == a.darkyaw and a.darkyaw != a.yaw else "")
             finally:
                 R.SPOT = (x, y, z, w)
         R.step(["set coop_isFixed 0", "wait 300"], timeout=30)
@@ -129,6 +163,7 @@ def main():
     ap.add_argument("--rframes", type=int, default=230); ap.add_argument("--cyclems", type=int, default=2200)
     ap.add_argument("--shots", type=int, default=5); ap.add_argument("--gap", type=int, default=110)
     ap.add_argument("--hipall", action="store_true"); ap.add_argument("--steady", action="store_true"); ap.add_argument("--breakat", type=int, default=70); ap.add_argument("--bframes", type=int, default=150)
+    ap.add_argument("--darkyaw", type=int, default=160)
     ap.add_argument("--yaw", type=int, default=160); ap.add_argument("--set", action="append", default=[])
     a = ap.parse_args()
     a.guns = [g for g in a.guns.split(",") if g]; a.parts = a.parts.split(","); a.stances = a.stances.split(",")

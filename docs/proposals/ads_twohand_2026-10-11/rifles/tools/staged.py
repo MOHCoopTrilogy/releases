@@ -36,4 +36,15 @@ def off():
     STATE['on'] = False
 
 
+_winner = vfs.winner
+
+
+def winner(p, root=vfs.ROOT):
+    """a staged file that is in no pak (a NEW mesh: coop_g43_irons.skd) still has a 'winner' - its own path"""
+    if STATE['on'] and os.path.isfile(path(p)):
+        return (path(p), p)
+    return _winner(p, root)
+
+
 vfs.read = read
+vfs.winner = winner
