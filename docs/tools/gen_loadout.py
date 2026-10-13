@@ -14,28 +14,46 @@ is the evidence that the format is understood well enough to extend it.
     python docs/tools/gen_loadout.py extract   # re-derive the table from the live files
     python docs/tools/gen_loadout.py check     # regenerate in memory + byte-compare (exit 1 = drift)
     python docs/tools/gen_loadout.py build     # write the files
+    python docs/tools/gen_loadout.py hovers    # print the derived unlock hover text, one page a line
 
 THE DATA
 docs/tools/loadout_weapons.tsv is the source of truth. Adding a weapon to the armory is one row.
 Columns are described in its header. The preview transform (xfm) is hand-dialled per gun the same
 way the ADS table is - `extract` preserves whatever is there, and a new row starts from a sane
 default that the user then tunes in-game.
+
+The one thing that is NOT in the table is the hover unlock line (req<id>.cfg, reqf<fid>.cfg): it
+is derived from the scripts that actually grant the unlock - see unlock_hovers() below.
+
+HZM_MOD=<dir> points every read and write at another copy of hzm-mohaa-coop-mod (a scratch tree,
+or the base checkout from a worktree). Default: <repo>/hzm-mohaa-coop-mod.
 """
 import io
 import os
 import re
 import sys
 
+import armory_unlocks as au
+
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-UI = os.path.join(ROOT, "hzm-mohaa-coop-mod", "ui", "loadout")
+MOD = os.environ.get("HZM_MOD") or os.path.join(ROOT, "hzm-mohaa-coop-mod")
+# [ADS rollout step 5] a NEW gun's tiks ship in zzzzzzzzzz_coop_fixes.pk3 (docs/tools/assets/fixes) and are NOT in the
+# mod tree (a new file under models/ re-hashes the 1.3 GB assets pak): look in both places.
+FIXES_WEAPONS = os.path.join(ROOT, "docs", "tools", "assets", "fixes", "models", "weapons")
+
+
+def _tik_exists(name):
+    return os.path.exists(os.path.join(MOD, "models", "weapons", name)) or os.path.exists(os.path.join(FIXES_WEAPONS, name))
+
+UI = os.path.join(MOD, "ui", "loadout")
 TSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "loadout_weapons.tsv")
 
 COLS = ["id", "tik", "give", "xfm", "charanim", "cls", "tab", "name", "cd", "b0", "b1", "b2", "b3",
-        "clip", "clipn", "recoil", "slots", "req1", "req2"]
+        "clip", "clipn", "recoil", "slots"]
 
 # The server-side unlock roster. Absent from it, a weapon draws in the grid and does nothing
 # when clicked - no commit command, no padlock, no unlock text.
-ROSTER = os.path.join(ROOT, "hzm-mohaa-coop-mod", "coop_mod", "loadoutroster.scr")
+ROSTER = os.path.join(MOD, "coop_mod", "loadoutroster.scr")
 
 # The class token in the wNN_sN "unreg" / "who" lines is INDEPENDENT of the hold pose, which the
 # first reconstruction got wrong: weapon 12 uses coop_hold_rifle but belongs to the sniper class,
@@ -44,6 +62,12 @@ ROSTER = os.path.join(ROOT, "hzm-mohaa-coop-mod", "coop_mod", "loadoutroster.scr
 
 def _read(p):
     return io.open(p, "r", encoding="latin-1", newline="").read()
+
+
+def _eol(p):
+    """A page keeps its own line endings: the generated pages are LF, but the reqf*.cfg that were
+    hand-written before this generator owned them are CRLF. New files are LF."""
+    return "\r\n" if os.path.exists(p) and "\r\n" in _read(p) else "\n"
 
 
 # ---------------------------------------------------------------- render ---------------------
@@ -57,7 +81,7 @@ def preview(w):
     # [user 2026-08-18] finish strip, fid 8: the generic VARIANT button lights up only while a
     # gun with an imported model variant is previewed. Host tile ids are pinned here; the actual
     # variant + its unlock live in loadoutskins.scr, keyed on the give path.
-    MV_HOSTS = ("01", "03", "04", "05", "07", "08", "09", "12", "13", "14", "23", "24", "26", "36", "37", "44", "45", "46", "48", "50", "53", "55", "74")
+    MV_HOSTS = ("01", "03", "04", "05", "07", "08", "09", "12", "13", "14", "23", "24", "26", "36", "37", "44", "45", "46", "48", "50", "53", "55", "74", "78")
     mv_on = "1" if w["id"] in MV_HOSTS else "0"
     mv_req = ("exec ui/loadout/reqmv%s.cfg" % w["id"]) if w["id"] in MV_HOSTS else "exec ui/loadout/reqclear.cfg"
     # [user 2026-08-18] deep-trace F5(viewer): this used to hard-code the ACTIVE pointer to
@@ -77,8 +101,7 @@ def preview(w):
     _fk = ["gold", "chrome", "blued", "bloody", "camo_woodland", "camo_winter", "camo_desert"]
     finp = []
     for _i, _k in enumerate(_fk):
-        _vt = _os.path.join(ROOT, "hzm-mohaa-coop-mod", "models", "weapons", "%s_%s.tik" % (_stem, _k))
-        finp.append("exec ui/loadout/finp%s_%d.cfg" % (w["id"], _i + 1) if _os.path.exists(_vt) else "")
+        finp.append("exec ui/loadout/finp%s_%d.cfg" % (w["id"], _i + 1) if _tik_exists("%s_%s.tik" % (_stem, _k)) else "")
     L = [
         'set coop_loMvOn %s' % mv_on,
         'set coop_loMvReqCur "%s"' % mv_req,
@@ -158,12 +181,116 @@ def tile(w):
             "vstr coop_loCmt%s\n" % (w["id"], w["id"]))
 
 
-def req(w):
-    """reqNN.cfg - the hover unlock line. Absent entirely for weapons unlocked from the start."""
-    if not w["req1"]:
-        return None
+def req(lines):
+    """req<id>.cfg / reqf<fid>.cfg - the two-line hover unlock text."""
     return ('set coop_loReq "%s"\n'
-            'set coop_loReq2 "%s"\n' % (w["req1"], w["req2"]))
+            'set coop_loReq2 "%s"\n' % lines)
+
+
+# ---------------------------------------------------------------- unlock hover text ----------
+# [user 2026-09-28] The hover line under a padlocked tile (req<id>.cfg) and a finish chip
+# (reqf<fid>.cfg) used to be typed by hand - into loadout_weapons.tsv and into the reqf files - and
+# drifted from what the server enforces: MP40 said "Locked" (code: 50 MP40 kills), the .30 Cal,
+# MG42 and the three launchers said "Skill Tree (coming soon)" (code: 40 / 15 kills), four sniper
+# rows named the wrong gun or no count, and GOLD said 2500 kills (code: 250). It is now derived
+# from the scripts that GRANT the unlock - challenges.scr rewards, xp.scr rank grants, the
+# loadout_isUnlocked free list and the loadout_finish gates - through the same parsers
+# armory_unlocks.py audits with. A challenge target that moves without the pages being rebuilt now
+# fails `check`, and build.ps1 refuses to deploy.
+
+# wreq/wreq2 in coop_loadout.urc are 152px of verdana-12, centred, so an overflow clips BOTH ends
+# (bug-2785 was that on the MP armory). gen_cos_reqs.py measured the 130px cosReq labels (same
+# font) at a little over 40 characters, which scales to ~46 here; 42 keeps a wide-glyph margin.
+REQ_COLS = 42
+
+
+def _script(name):
+    return au.strip_comments(_read(os.path.join(MOD, "coop_mod", name)))
+
+
+def _cond(desc):
+    """A challenge description as a hover condition: 'Get 50 kills with the MP40' -> '50 kills w/ MP40'."""
+    d = au.sanitise(desc)
+    d = re.sub(r"\s+to unlock\b.*$", "", d)     # the tile under the cursor already says what it is
+    d = re.sub(r"^Get\s+", "", d)
+    return d.replace(" with the ", " w/ ")
+
+
+def _fit(line, tail, clipped, key):
+    """Lay a hover out on the two REQ_COLS label lines. The condition is what the player has to do,
+    so it always wins; `tail` (challenge title, other ways, extra gates) keeps line 2 only if it fits.
+    Anything dropped or cut is recorded in `clipped` so `check` can say so."""
+    if len(line) <= REQ_COLS:
+        if len(tail) > REQ_COLS:
+            clipped.append(key)
+            tail = ""
+        return line, tail
+    words, a = line.split(" "), ""
+    while words and len((a + " " + words[0]).strip()) <= REQ_COLS:
+        a = (a + " " + words.pop(0)).strip()
+    b = " ".join(words)
+    if tail and len(b + " " + tail) <= REQ_COLS:
+        b += " " + tail
+    elif tail:
+        clipped.append(key)
+    if len(b) > REQ_COLS:
+        b = b[:REQ_COLS - 3].rsplit(" ", 1)[0] + "..."
+        if key not in clipped:
+            clipped.append(key)
+    return a, b
+
+
+def _other_ways(n):
+    return "+%d other way%s" % (n, "" if n == 1 else "s") if n else ""
+
+
+def unlock_hovers(rows):
+    """{page name: cfg text} for every req<id>.cfg and reqf<fid>.cfg, plus the clipped keys."""
+    xp, chal, lp = _script("xp.scr"), _script("challenges.scr"), _script("loadoutpick.scr")
+    skins = _script("loadoutskins.scr")
+    rnames = au.rank_names(xp)
+    rewards = au.chal_rewards(chal)
+    free = {t.lower() for t in au.free_guns(lp)}
+    out, clipped = {}, []
+
+    # guns - the earliest rank that grants it (a later grant of the same gun is unreachable first),
+    # then every challenge that rewards it. Rank first, as armory_unlocks.requirement_text does.
+    rank = {}
+    for r, tok in au.rank_grants(xp):
+        rank[tok.lower()] = min(r, rank.get(tok.lower(), r))
+    for w in rows:
+        give = (w["give"] or w["tik"]).lower()
+        if give in free:
+            continue                            # no hover at all for a free starter
+        ways = []
+        if give in rank:
+            ways.append(("Rank: %s" % au.sanitise(rnames.get(rank[give], str(rank[give]))), ""))
+        ways += [(_cond(d), "(%s)" % au.sanitise(t)) for _c, t, d, rw in rewards if rw.lower() == give]
+        if not ways:
+            ways = [("not currently obtainable", "")]
+        cond, tail = ways[0]
+        tail = " ".join(x for x in (tail, _other_ways(len(ways) - 1)) if x)
+        out["req%s.cfg" % w["id"]] = req(_fit("UNLOCK: " + cond, tail, clipped, w["id"]))
+
+    # finishes - loadout_finish applies fid 1-7 only when BOTH gates hold: loadout_finUnlocked (the
+    # account-wide finish_* reward, looked up through coop_skinFinStat) and loadout_finMastered (the
+    # gun's own wpn_ kill challenge). The second gate is per gun, so the chip can only name it - in
+    # the words of the server's own refusal, "Master this weapon first (its kill challenge)".
+    stat = {int(f): t for f, t in re.findall(r'coop_skinFinStat\[(\d+)\]\s*=\s*"([^"]+)"', skins)}
+    fin = re.search(r"(?ms)^loadout_finish\b[^\n]*:\{(.*?)^\}end", lp)
+    assert stat and fin, "coop_skinFinStat (loadoutskins.scr) or loadout_finish (loadoutpick.scr) not found"
+    mastery = "+ master this gun" if "loadout_finMastered" in fin.group(1) else ""
+    for fid in sorted(stat):
+        src = [(t, d) for _c, t, d, rw in rewards if rw == stat[fid]]
+        if src:
+            cond = _cond(src[0][1])
+            tail = " ".join(x for x in ("(%s)" % au.sanitise(src[0][0]), _other_ways(len(src) - 1)) if x)
+        else:
+            cond, tail = "not currently obtainable", ""
+        if mastery:
+            tail = (tail + " " + mastery) if tail and len(tail + " " + mastery) <= REQ_COLS else mastery
+        out["reqf%d.cfg" % fid] = req(_fit("FINISH: " + cond, tail, clipped, "f%d" % fid))
+    return out, clipped
 
 
 def roster(rows):
@@ -209,19 +336,16 @@ def render_all(rows):
                                          ("blued", "BLUED"), ("bloody", "BLOODY"),
                                          ("camo_woodland", "WOODLAND"), ("camo_winter", "WINTER"),
                                          ("camo_desert", "DESERT")]):
-            _vt = os.path.join(ROOT, "hzm-mohaa-coop-mod", "models", "weapons",
-                               "%s_%s.tik" % (_stem2, _k))
-            if os.path.exists(_vt):
+            if _tik_exists("%s_%s.tik" % (_stem2, _k)):
                 out["finp%s_%d.cfg" % (w["id"], _i + 1)] = (
                     'set coop_loPrev "models/weapons/%s_%s.tik"\n' % (_stem2, _k)
                     + 'set coop_loNm "%s (%s)"\n' % (w["name"], _lab))
         out["t%s.cfg" % w["id"]] = tile(w)
         for s in w["slots"]:
             out["w%s_s%s.cfg" % (w["id"], s)] = slotfile(w, s)
-        r = req(w)
-        if r is not None:
-            out["req%s.cfg" % w["id"]] = r
-    return out
+    hovers, clipped = unlock_hovers(rows)
+    out.update(hovers)
+    return out, clipped
 
 
 # ---------------------------------------------------------------- extract --------------------
@@ -261,13 +385,6 @@ def extract():
             gv = re.search(r'coop_loRosterGive\[%s\] = "([^"]+)"' % tm.group(1), rt_)
             give = gv.group(1) if gv else ""
 
-        rq = os.path.join(UI, "req%s.cfg" % wid)
-        r1 = r2 = ""
-        if os.path.exists(rq):
-            rt = _read(rq)
-            m1 = re.search(r'(?m)^set coop_loReq\s+"([^"]*)"', rt)
-            m2 = re.search(r'(?m)^set coop_loReq2\s+"([^"]*)"', rt)
-            r1, r2 = (m1.group(1) if m1 else ""), (m2.group(1) if m2 else "")
         rows.append({
             "id": wid, "tik": g("coop_loPrev"), "give": give, "xfm": g("coop_loXfmW"),
             "charanim": g("coop_loCharAnim"), "cls": cls, "tab": tab,
@@ -279,7 +396,7 @@ def extract():
             "clip": g("coop_loClip").rsplit("clip_", 1)[-1],
             "clipn": g("coop_loClipN"),
             "recoil": g("coop_loRecoil").rsplit("rec_", 1)[-1],
-            "slots": slots, "req1": r1, "req2": r2,
+            "slots": slots,
         })
     hdr = ("# Armory weapon table - the source of truth for ui/loadout/. One row = one weapon in\n"
            "# the picker. Regenerate the pages with: python docs/tools/gen_loadout.py build\n"
@@ -294,7 +411,8 @@ def extract():
            "# clip     clip_<n> texture; clipn the printed round count\n"
            "# recoil   rec_<id> recoil curve texture\n"
            "# slots    which inventory slots accept it: 1,2 primary  3 pistol  4 heavy\n"
-           "# req1/2   hover unlock text, split over two lines. Empty = unlocked from the start.\n"
+           "# The hover unlock text (req<id>.cfg) is NOT a column: gen_loadout derives it from the\n"
+           "# scripts that grant the unlock (challenges.scr, xp.scr, loadoutpick.scr).\n"
            + "\t".join(COLS) + "\n")
     body = "".join("\t".join(w[c] for c in COLS) + "\n" for w in rows)
     io.open(TSV, "w", encoding="utf-8", newline="\n").write(hdr + body)
@@ -320,11 +438,20 @@ def main():
         return 0
 
     rows = load()
-    files = render_all(rows)
+    files, clipped = render_all(rows)
+
+    if mode == "hovers":
+        # the derived unlock text, one page per line, for reading before a build
+        for name in sorted(n for n in files if n.startswith("req")):
+            v = re.findall(r'"([^"]*)"', files[name])
+            print("%-11s %-46s %s" % (name, v[0], v[1]))
+        return 0
 
     if mode == "build":
         for name, text in sorted(files.items()):
-            io.open(os.path.join(UI, name), "w", encoding="latin-1", newline="").write(text)
+            p = os.path.join(UI, name)
+            text = text.replace("\n", _eol(p))
+            io.open(p, "w", encoding="latin-1", newline="").write(text)
         # Compute BEFORE opening for write. open(..., "w") truncates immediately, and the
         # argument is evaluated after - so reading the file inside the write call reads the empty
         # file it just destroyed, and any failure leaves nothing behind. That emptied
@@ -339,24 +466,37 @@ def main():
         p = os.path.join(UI, name)
         if not os.path.exists(p):
             missing.append(name)
-        elif _read(p) != text:
+        elif _read(p) != text.replace("\n", _eol(p)):
             bad.append(name)
     rtext = _read(ROSTER)
     roster_ok = splice_roster(rows, rtext) == rtext
 
     orphan = [f for f in os.listdir(UI)
-              if re.match(r"(p|t|req)\d+\.cfg$|w\d+_s\d\.cfg$", f) and f not in files]
+              if re.match(r"(p|t|reqf?)\d+\.cfg$|w\d+_s\d\.cfg$", f) and f not in files]
+    hover_bad = [n for n in bad if n.startswith("req")]
     print("%d weapons -> %d generated files" % (len(rows), len(files)))
     print("  byte-identical : %d" % (len(files) - len(bad) - len(missing)))
     if bad:
         print("  DIFFERENT      : %d  %s" % (len(bad), bad[:8]))
+    if hover_bad:
+        print("  hover text     : %d page(s) no longer say what challenges.scr / xp.scr enforce  %s"
+              % (len(hover_bad), hover_bad[:8]))
     if missing:
         print("  MISSING        : %d  %s" % (len(missing), missing[:8]))
     if orphan:
         print("  on disk only   : %d  %s" % (len(orphan), orphan[:8]))
+    if clipped:
+        # not a failure: the condition always survives, only a title/other-ways tail was dropped or cut
+        print("  hover clipped  : %d to fit %d cols  %s" % (len(clipped), REQ_COLS, clipped[:8]))
     print("  unlock roster  : %s" % ("in sync" if roster_ok else "OUT OF SYNC - weapons will not equip"))
     ok = not bad and not missing and not orphan and roster_ok
-    print("  -> %s" % ("EXACT REPRODUCTION" if ok else "MISMATCH - format not fully understood"))
+    if ok:
+        verdict = "EXACT REPRODUCTION"
+    elif bad and bad == hover_bad and not missing and not orphan and roster_ok:
+        verdict = "HOVER TEXT DRIFTED from the unlock rules - rebuild the pages"
+    else:
+        verdict = "MISMATCH - format not fully understood"
+    print("  -> %s" % verdict)
     return 0 if ok else 1
 
 

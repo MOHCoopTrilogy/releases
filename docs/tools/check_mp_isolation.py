@@ -154,7 +154,7 @@ MP_OWNED_MENUS = {"mpoptions"}
 # ONLY this file: the MP-facing menus are left unlocked on purpose - the user approved coop edits to them
 # (Select Game Type cleanup, mod copies of the MP options screens, 2026-09-13).
 LOCKS = {
-    "ui/coop_loadout.urc": {"sha256_lf": "0e74a2f09dd05730afcd795888bf15edc6dc2f4d3444e76b52476a36b9d14ebe", "sha256_crlf": "46e106da9dc1c5b68322fe80054d75b4da9e1e0134580410c0a119e8bbd62cd3", "lf_bytes": 75406, "blob": "1d608297", "eol": "crlf", "commit": "9a7a5e50", "locked": "2026-09-13 ISO track"},
+    "ui/coop_loadout.urc": {"sha256_lf": "c79b53376495f9e790dea1ce88a6c76221cf0e42539e62fb69cc0a8bee344126", "sha256_crlf": "7a4f6870a128a67c925f0b1749cfc93a62cba57a5fa608256ce922547f3c31f2", "lf_bytes": 76091, "blob": "89be4290", "eol": "crlf", "commit": "17761c3a", "locked": "2026-10-13 ADS rollout step 5: the G 43 Irons' armory tile (id 78) between the M1 Carbine and the Kar98k, the tiles below it moved down one row (rifles lane stage_armory_gen.py OLD.urc, applied by integrate/apply_armory5.py); was blob 1d608297 @ 9a7a5e50"},
 }
 
 # Clauses 4/5. Every saved coop cvar MP could plausibly touch [bug-2564]; each would follow the player into coop.

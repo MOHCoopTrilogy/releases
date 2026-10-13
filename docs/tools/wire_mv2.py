@@ -13,6 +13,14 @@ import io
 import re
 
 MOD = "hzm-mohaa-coop-mod/"
+# [ADS rollout step 5] a NEW gun's tiks ship in the fixes pak (docs/tools/assets/fixes), not in the mod tree
+FIXES = "docs/tools/assets/fixes/"
+
+
+def _tik_path(rel):
+    import os
+    return MOD + rel if os.path.exists(MOD + rel) else FIXES + rel
+
 UI = MOD + "ui/loadout/"
 
 # per-gun ordered variant lists: (base stem, [(key, LABEL), ...]) -> fids 8, 9, 10...
@@ -44,6 +52,9 @@ MV = [
     ("G43",          [("g98", "GEWEHR 98 (BOLT) (EAST)", "models/weapons/kar98_g98.tik"),
                       ("dhg43fleck", "FLECKTARN G43 (DIRTYHARRY)"), ("hobbsg43wood", "WOODLAND G43 (HOBBS)"),
                       ("hobbsg43urb", "URBAN G43 (HOBBS)"), ("lv_ttg43", "TEAM TACTICS (LEON)")], "wpn_g43_e"),
+    # the iron-sight G43 (its own armory entry, id 78): the same four pack skins on its own mesh. 4th value = the host
+    # whose kill counter and per-variant challenges it SHARES (no challenges of its own; variant_challenges.py maps them).
+    ("coop_g43_irons", [("dhg43fleck", "FLECKTARN G43 (DIRTYHARRY)"), ("hobbsg43wood", "WOODLAND G43 (HOBBS)"), ("hobbsg43urb", "URBAN G43 (HOBBS)"), ("lv_ttg43", "TEAM TACTICS (LEON)")], "wpn_g43_e", "G43"),
     ("KAR98sniper",  [("g98scope", "G98 SCOPED (EAST)"), ("lv_ttkar98sn", "TEAM TACTICS (LEON)"),
                       ("lv_98ks", "MAUSER 98 KS (LEON)")], "wpn_kar98sniper_e"),
     ("springfield",  [("smlescope", "SMLE SCOPED (EAST)"), ("m1903", "M1903 SPRINGFIELD (EAST)"),
@@ -91,7 +102,9 @@ roster = io.open(MOD + "coop_mod/loadoutroster.scr", encoding="latin-1").read()
 rgives = {g.lower(): g for g in re.findall(r'coop_loRosterGive\[\d+\] = "([^"]+)"', roster)}
 
 resolved = []   # (give, tile, elite, basename, [(fid, key, label, variantpath), ...])
-for stem, variants, elite in MV:
+SHARE = {}   # give -> the give of the host it shares variant challenges with
+for _ent in MV:
+    stem, variants, elite = _ent[:3]
     give = rgives.get("models/weapons/%s.tik" % stem.lower())
     assert give, "no roster give for %s" % stem
     m = re.search(r"(?m)^(\d+)\t" + re.escape(give), tsv)
@@ -99,15 +112,17 @@ for stem, variants, elite in MV:
     tile = m.group(1)
     assert ('"%s"' % elite) in chal, "elite %s missing" % elite
     base_name = re.search(r'(?mi)^\s*name\s+"([^"]+)"',
-                          io.open(MOD + "models/weapons/%s.tik" % stem, encoding="latin-1").read()).group(1)
+                          io.open(_tik_path("models/weapons/%s.tik" % stem), encoding="latin-1").read()).group(1)
     vlist = []
     for i, v in enumerate(variants):
         key, label = v[0], v[1]
         vpath = v[2] if len(v) > 2 else "models/weapons/%s_%s.tik" % (stem, key)
         import os
-        assert os.path.exists(MOD + vpath), "variant tik missing: " + vpath
+        assert os.path.exists(_tik_path(vpath)), "variant tik missing: " + vpath
         vlist.append((8 + i, key, label, vpath))
     resolved.append((give, tile, elite, base_name, vlist))
+    if len(_ent) > 3:
+        SHARE[give] = rgives["models/weapons/%s.tik" % _ent[3].lower()]
     print("  %-34s tile %-3s %-22s %d variant(s)" % (give, tile, elite, len(vlist)))
 
 # --- 1. regenerate the MV block in loadoutskins.scr wholesale -----------------------------------
@@ -126,6 +141,9 @@ for give, tile, elite, base_name, vlist in resolved:
         B.append('\tlevel.coop_skinMvName["%s"][%d] = "%s"' % (give, fid, label))
     B.append('\tlevel.coop_skinMvMax["%s"] = %d' % (give, vlist[-1][0]))
     B.append('\tlevel.coop_skinMvElite["%s"] = "%s"' % (give, elite))
+    if give in SHARE:      # the elite id is the HOST's: its announce names stay the host's
+        B.append('\tlevel.coop_skinMvShare["%s"] = "%s"' % (give, SHARE[give]))
+        continue
     B.append('\tlevel.coop_skinMvByElite["%s"] = "%s MODEL VARIANTS"' % (elite, base_name.upper()))
     B.append('\tlevel.coop_skinMvPseudo["mv_%s"] = "%s MODEL VARIANTS"' % (elite, base_name.upper()))
 txt = txt[:m.start()] + nl.join(B) + nl + txt[m.end():]
@@ -236,6 +254,7 @@ newtiks = ["mp44_mp44strap", "colt45_coltpa", "mp40_mp18", "enfield_p14", "sprin
            "thompsonsmg_tommy1928d", "thompsonsmg_tommy27a1",
            "springfield_dhspdesert", "springfield_dhspdigital", "springfield_dhsptiger", "springfield_dhspwinter", "springfield_guansplight", "springfield_guansp2", "springfield_hobbsspwood", "springfield_hobbsspurban", "G43_dhg43fleck", "G43_hobbsg43wood", "G43_hobbsg43urb", "mp44_dhstg44ss", "mp44_guanmp44", "kar98_hobbskarworn", "kar98_hobbskarwood", "thompsonsmg_hobbstomworn", "thompsonsmg_guantommy", "colt45_guancolt", "m1_garand_guangarand", "mp40_guanmp40", "mp40_guanmp40s", "enfield_hobbsenfurb", "shotgun_dhshotblack", "shotgun_dhshotchrome", "shotgun_hobbsshotty", "shotgun_guanshotty", "p38_guanp38", "bazooka_guanbazooka", "mosin_nagant_rifle_hobbsmosinur", "svt_rifle_hobbssvtwood", "uk_w_l42a1_dhl42camo",
            "enfield_lv_ttenfield", "G43_lv_ttg43", "mosin_nagant_rifle_lv_ttmosin", "it_w_beretta_lv_ttberetta", "it_w_carcano_lv_ttcarcano", "colt45_lv_ttcolt", "delisle_lv_ttdelisle", "kar98_lv_ttkar98", "KAR98sniper_lv_ttkar98sn", "m1_garand_lv_ttgarand", "p38_lv_ttp38", "thompsonsmg_lv_tttommy", "mp44_lv_ttmp44", "springfield_lv_ttspring", "webley_revolver_lv_ttwebley", "shotgun_lv_ttshotgun", "panzerschreck_lv_ofenrohr", "KAR98sniper_lv_98ks", "delisle_lv_wdelisle", "thompsonsmg_lv_famastommy", "mp40_lv_mp75"]
+newtiks += ["coop_g43_irons", "coop_g43_irons_dhg43fleck", "coop_g43_irons_hobbsg43wood", "coop_g43_irons_hobbsg43urb", "coop_g43_irons_lv_ttg43"]
 added = 0
 anchor = "weapon weapons/m1_garand_pagarand.tik"
 assert txt.count(anchor) == 1

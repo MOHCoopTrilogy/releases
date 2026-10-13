@@ -73,6 +73,7 @@ REWARD_NAMES = {
     "models/weapons/enfield_hobbsenfurb.tik": "Urban Enfield (hobbs)",
     "models/weapons/enfield_lv_ttenfield.tik": "Team Tactics (leon)",
     "models/weapons/kar98_g98.tik": "Gewehr 98 (bolt) (east)",
+    "models/weapons/coop_g43_irons.tik": "Gewehr 43 (Iron Sights)",
     "models/weapons/G43_dhg43fleck.tik": "Flecktarn G43 (dirtyharry)",
     "models/weapons/G43_hobbsg43wood.tik": "Woodland G43 (hobbs)",
     "models/weapons/G43_hobbsg43urb.tik": "Urban G43 (hobbs)",

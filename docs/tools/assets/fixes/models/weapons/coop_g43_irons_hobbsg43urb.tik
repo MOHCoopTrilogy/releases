@@ -1,0 +1,275 @@
+TIKI
+
+setup
+{
+	scale 0.52			// Set default scale to 16/30.5 since world is in 16 units per foot and model is in cm's
+	path models/weapons/g43
+	skelmodel coop_g43_irons.skd
+	surface g43cull 	shader g43cull
+	surface g43 		shader coop_v3_hobbsg43urb_g43
+	surface coop_sight 	shader coop_g43_sight
+	surface g43_clip 	shader coop_v3_hobbsg43urb_g43
+}
+$define sounddir sound/weapons
+
+init
+{
+	server
+	{
+	//========================================//
+	//		WEAPON NAME		  //
+	//========================================//
+		classname		Weapon
+		weapontype		rifle
+		name			"G 43 Irons (Urban Camo)"
+		rank			271 271
+
+	//========================================//
+	//		WEAPON ACCURACY 	  //
+	//========================================//
+		//HZM coop [g43 irons 2026-10-12] iron-sighted G43: the M1 Garand's accuracy rows (no zoom, no zoom multiplier)
+		sp bulletrange			4000
+		sp bulletspread			10 10 60 60
+		sp firespreadmult		0.7 0.6 200 0.8
+
+		dm bulletrange			4000
+		dm bulletspread			10 10 80 80
+		dm firespreadmult		0.75 0.6 200 0.8
+
+		realism bulletrange		4000
+		realism bulletspread		4 4 60 60
+		realism firespreadmult		0.75 0.6 200 0.8
+
+	//========================================//
+	//		DAMAGE / RATE OF FIRE	  //
+	//========================================//
+		sp bulletdamage			100
+		dm bulletdamage			50	
+		sprealism bulletdamage		100	
+		dmrealism bulletdamage		75	
+
+		//[user 07-17] semi-auto cadence pass (bug-648 family): the G43 is a semi-auto - it should fire as
+		//fast as the trigger, like the Garand (sp 0.15 / dm 0.18). The old 0.65 made the BASE G43 slower
+		//than its own SNIPER variant after that got the same pass. SP kept slightly slower than Garand.
+		sp firedelay			0.18
+		dm firedelay			0.18
+		realism firedelay		0.18
+
+		realism throughwood		24
+		realism throughmetal		8
+
+	//========================================//
+	//		PLAYER MOVEMENT		  //
+	//========================================//
+		sp movementspeed		1.0
+		dm movementspeed		1.05
+		realism movementspeed		1.05
+
+	//========================================//
+	//	RIFLE BUTT / SECONDARY FIRE	  //
+	//========================================//
+
+	//========================================//
+	//		AMMO			  //
+	//========================================//
+		firetype			bullet
+		ammotype			"rifle"
+		meansofdeath			bullet
+		semiauto
+		clipsize			10
+		ammorequired			1
+		bulletlarge			1
+
+		sp startammo			10
+		dm startammo			30
+		sprealism startammo		10
+		dmrealism startammo		30
+
+		// Additional DM Loadout
+		dm additionalstartammo "grenade" 1
+//		dm additionalstartammo "smokegrenade" 1
+
+		// Additional DM Loadout
+		dmrealism additionalstartammo "grenade" 1
+//		dmrealism additionalstartammo "smokegrenade" 1
+
+	//========================================//
+	//		TRACERS, CROSSHAIR, ZOOM  //
+	//========================================//
+		crosshair			1
+
+	//========================================//
+	//		SOUND, AI, OTHER	  //
+	//========================================//
+		// Holstering info (HZM coop 07-13: standard long-gun back position, kar98 template)
+holstertag				"Bip01 Spine2"
+holsteroffset			"8.0 -7.75 6.5"
+holsterangles			"0 185 -25"
+holsterScale			1.0
+
+		// AI animation group info
+		weapongroup			rifle
+		airange				long
+
+		pickupsound			springfield_snd_pickup
+		ammopickupsound			springfield_snd_pickup_ammo
+		noammosound			springfield_snd_noammo
+
+		//[200] Smithy - get handled
+		exec coop_mod/itemhandler.scr "initialiseItem" "rifle" "G 43"
+	}
+	client
+	{
+		// this is attached to the player during reload
+		cache models/ammo/springfield_clip_reload.tik
+
+		cache muzsprite.spr
+		cache vsssource.spr	
+		cache models/fx/muzflash.tik
+		cache model models/fx/snipesmoke.tik
+		cache vsssource.spr
+	}
+}
+
+animations
+{
+
+	idle	g43.skc
+
+	reload	g43_reload.skc 
+	{
+		server
+		{
+			16 surface g43_Clip +nodraw
+			50 surface g43_Clip -nodraw
+			last idle
+		}
+		client
+		{
+			entry sound gewehr43_snd_reload
+		}
+	}
+	//[g43 irons 2026-10-13] shown by the cgame instead of `reload` when an EMPTIED rifle is reloaded while aiming: the carrier is racked
+	reload_ads_empty	coop_g43_irons_reload_ads_empty.skc
+	{
+		client
+		{
+			entry sound gewehr43_snd_reload
+		}
+	}
+	fire	g43.skc
+	{
+		server
+		{
+			entry shoot
+		}
+		client
+		{
+			entry stopaliaschannel gewehr43_snd_fire
+			entry sound gewehr43_snd_fire
+
+			// By now, the server has already fired the weapon, so it's
+			// ok to apply the view kick apon entry to avoid problems
+			// with multiple application on single frame animations.
+
+			////////////////////////////////////////////////////////////////////////////////////////
+			// View Kicking
+			//
+			// View Kicking works based on the assumptions that every weapon has its own tendencies to kick in
+			// a paticular fashion. In MOH we call then scatter patterns. Currently we have 2 scatter patterns which
+			// will be explained.
+			// Scatter Patterns:
+			// "V" - the cone. The longer you shoot the more random your shots will be in the horizontal axis.
+			// "T" - the T shape. The gun has a tendancy to push in a paticular direction.
+			//
+			//
+			//             		+-------------------------------------------- Scatter Pitch Min
+			//              	|    +--------------------------------------- Scatter Pitch Max
+			//              	|    |       +------------------------------- Scatter Yaw Min
+			//             		|    |       |   +--------------------------- Scatter Yaw Max
+			//             		|    |       |   |     +--------------------- The Recentering speed in degrees per second
+			//              	|    |       |   |     |    +---------------- The Scatter Pattern
+			//             		|    |       |   |     |    |     +---------- The absolute pitch min/max
+			//             		|    |       |   |     |    |     |  +------- The absolute yaw min/max
+			//             		|    |       |   |     |    |     |  | +----- This is the pitch at which you loose all
+			//             		|    |       |   |     |    |     |  | |      control of the weapon and its behavior is
+			//             	 	|    |       |   |     |    |     |  | |      purely random.
+			//			V    V       V   V     V    V     V  V V
+			entry viewkick 	     -4.5 -5.0    -1.0 1.0   6  "T"     8  8 8
+
+			// muzzle flash
+			entry tagdlight tag_barrel 0.3 0.20 0.175 300 0.25 -1.0 -0.75 -0.2
+
+			entry tagspawnlinked tag_barrel
+			(
+				count 1
+				model models/fx/muzflash.tik
+				color 0.00 0.00 1.00
+				scale 0.07
+				life 0.01
+				velocity 300.00
+				offsetalongaxis 3 0 0
+				alignstretch 0.08
+				randomroll
+			)
+
+			entry tagspawnlinked tag_barrel
+			(
+				count 1
+				model muzsprite.spr
+				color 1.00 1.00 1.00
+				scale 0.09
+				life 0.04
+				offsetalongaxis 4 0 0
+			)
+
+			entry commanddelay 0.020 tagspawn tag_barrel
+			(
+				spawnrate 1.00
+				model vsssource.spr
+				count 1
+				alpha 0.10
+				color 1.00 1.00 1.00
+				spritegridlighting
+				scale 0.09
+				life .9
+				scalerate 23.00
+				velocity 429.00
+				accel 0.00 20.00 30.00
+				friction 2.00
+				fade
+				offsetalongaxis random 4 0 0
+			)
+
+			entry tagspawn tag_barrel
+			(
+				count 1
+				scale .7
+				model models/fx/snipesmoke.tik
+			)
+
+			entry tagspawn tag_eject 1024
+			(
+				spawnrange 2048
+				count 1
+				model models/ammo/rifleshell.tik
+				scale 1.0
+				velocity 70
+				randvel crandom 10 crandom 10 random 20
+				emitterangles 0 0 0
+				avelocity crandom 90 crandom 90 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_rifle_shell
+			)
+		}
+	}
+}
+
+/*QUAKED addon_playerweapon_german_g43_irons (0.0 0.0 1.0) (-8 -8 -8) (8 8 8)
+German semi-automatic rifle - G43 with iron sights (no scope).
+*/

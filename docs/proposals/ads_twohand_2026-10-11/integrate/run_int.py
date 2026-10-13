@@ -68,7 +68,7 @@ GUNS = {
     # held out by the pistol lane (must stay as released)
     'c96': ('mauser_c96.tik', 'semi', 5500), 'm10': ('m10_revolver.tik', 'rev', 6000),
     # ---- pass 2, step 5
-    'g43': ('g43.tik', 'semi', 5000), 'g43irons': ('coop_g43_irons.tik', 'semi', 5000), 'g43irons_gold': ('coop_g43_irons_gold.tik', 'semi', 5000),
+    'g43': ('g43.tik', 'semi', 5000), 'g43irons': ('coop_g43_irons.tik', 'semi', 5000), 'g43irons_gold': ('coop_g43_irons_gold.tik', 'semi', 5000), 'g43irons_fleck': ('coop_g43_irons_dhg43fleck.tik', 'semi', 5000),
 }
 GAP = {'semi': 450, 'bolt': 2100, 'pump': 1600, 'rev': 800}
 PRONE = ('colt45', 'p38', 'beretta', 'tt33', 'welrod', 'histd', 'webley', 'nagant', 'luger', 'c96', 'm10', 'coltsil', 'ppk', 'nambu')    # + a prone phase
@@ -130,6 +130,7 @@ def scenario(key, shot):
 
 HOOK = '''	if( getcvar( "coop_isPoll" ) == "1" ){ thread coop_is_test }	//TEST OVERLAY ONLY
 	if( getcvar( "coop_isPoll" ) == "1" ){ thread coop_int_probe }	//TEST OVERLAY ONLY
+	if( getcvar( "coop_isPoll" ) == "1" ){ thread coop_int_xt }	//TEST OVERLAY ONLY
 '''
 FUNCS = '''
 //TEST OVERLAY ONLY (integrate/run_int.py): place + face + give, and the server-side timing probe.
@@ -200,6 +201,63 @@ coop_int_probe:{
 '''
 
 
+FUNCS += '''
+//TEST OVERLAY ONLY - the UNLOCK PATH probe (the rifles lane's srvtime_ov.py xpprobe, run_unlock.py): coop_xtCmd = one word
+coop_int_xt:{
+	while( 1 ){
+		local.c = getcvar( "coop_xtCmd" )
+		if( local.c != "" && $player != NULL && $player.size >= 1 ){
+			setcvar "coop_xtCmd" ""
+			local.p = $player[1]
+			if( local.p.flags["coop_xp_id"] == NIL ){ waitthread coop_mod/xp.scr::xp_identify local.p }
+			waitthread coop_mod/challenges.scr::chal_ensure local.p
+			if( local.c == "seed" ){
+				waitthread coop_mod/challenges.scr::chal_add_unlock local.p "models/weapons/bar.tik"
+				waitthread coop_mod/challenges.scr::chal_add_unlock local.p "models/weapons/kar98sniper.tik"
+				println "^~^~^ XT seed done"
+			}
+			if( local.c == "under2" ){
+				local.thr = level.coop_xp_rankXP[2]
+				local.gain = int( 10 * level.coop_xp_scale )
+				local.pre = local.thr + 2 - local.gain
+				local.p.flags["coop_xp_total"] = local.pre
+				local.p.flags["coop_xp_rank"] = 1
+				local.p.flags["coop_xp_barMark"] = int( local.pre / 100 )
+				local.p.flags["coop_xp_popupOn"] = NIL
+				local.p.flags["coop_xp_ceremony"] = NIL
+				thread coop_mod/loadoutpick.scr::loadout_ui_exportUnlocks local.p
+				println ( "^~^~^ XT under2 thr=" + local.thr + " gain=" + local.gain + " pre=" + local.pre )
+			}
+			if( local.c == "award" ){
+				println "^~^~^ XT award 10 kills"
+				thread coop_mod/xp.scr::xp_award local.p 10 "kills" "Rank probe"
+			}
+			if( local.c == "g43kills" ){
+				waitthread coop_mod/challenges.scr::chal_bump local.p "wpn_g43" 225
+				thread coop_mod/loadoutpick.scr::loadout_ui_exportUnlocks local.p
+				println "^~^~^ XT g43kills 225 (wpn_g43)"
+			}
+			if( local.c == "held" ){
+				local.w = local.p getactiveweap 0
+				local.m = "none"
+				if( local.w != NULL && local.w != NIL ){ local.m = local.w.model }
+				println ( "^~^~^ XT held=" + local.m )
+			}
+			if( local.c == "state" || local.c == "seed" || local.c == "g43kills" ){
+				local.u = local.p.flags["coop_chal_unlocks"]
+				if( local.u == NIL ){ local.u = "" }
+				local.k = waitthread coop_mod/loadoutpick.scr::loadout_isUnlocked local.p "models/weapons/coop_g43_irons.tik"
+				local.v = waitthread coop_mod/loadoutpick.scr::loadout_mvUnlocked local.p "models/weapons/coop_g43_irons.tik" 8
+				println ( "^~^~^ XT state rank=" + local.p.flags["coop_xp_rank"] + " total=" + local.p.flags["coop_xp_total"] + " irons=" + local.k + " ironsFleck=" + local.v )
+				println ( "^~^~^ XT record=" + local.u )
+			}
+		}
+		wait 0.2
+	}
+}end
+'''
+
+
 def git_mod(*a, **kw):
     return subprocess.run(['git', '-C', L.MOD] + list(a), capture_output=True, check=True, **kw).stdout
 
@@ -216,7 +274,7 @@ def code_pak(rev):
 
 def plumbing_pak(rev):
     full = git_mod('rev-parse', rev).decode().strip()
-    out = os.path.join(SCR, 'plumb_%s.pk3' % full[:10])
+    out = os.path.join(SCR, 'plumb2_%s.pk3' % full[:10])
     w = git_mod('show', full + ':coop_mod/weather.scr').decode('latin-1').replace('\r\n', '\n')
     anchor = '\twaitthread coop_mod/duststorm.scr::coop_dust_boot\n'
     assert w.count(anchor) == 1
@@ -415,6 +473,123 @@ def run(sess, bins, code, fixes, guns, shot, ded=False):
         except Exception as e:
             log('release_slot:', e)
         log('[%s] done: %s window %s' % (sess, 'ok' if notes.get('ok') else notes.get('error'), notes.get('window')))
+
+
+def unlock(sess, bins, code, fixes, wid='78'):
+    """the G 43 Irons' UNLOCK PATH on the integrated build + the real fixes pak (the rifles lane's run_unlock.py steps,
+    with the mod's own xp_award): locked at rank 0 and 1, unlocked by the promotion to rank 2, picked, kept over a map
+    restart, the Flecktarn variant behind the scoped G43's shared challenge. ONE screenshot. The test player's save
+    files are put back as found after the game has quit (the run's own are MOVED into the run folder)."""
+    import run_ironsights as R
+    R.OWNER, R.CLIENT, R.PORT, R.MAP = 'hudfeed', CLIENT, 12701, 'm3l2'
+    R.EXE = os.path.join(CLIENT, EXE)
+    R.HOME = os.path.join(CLIENT, 'home')
+    R.MAINTT = os.path.join(R.HOME, 'maintt')
+    R.LOG = os.path.join(R.MAINTT, 'qconsole.log')
+    R.SHOTS = os.path.join(R.MAINTT, 'screenshots')
+    R.PRISTINE = os.path.join(CLIENT, 'pristine')
+    rundir = os.path.join(RUNS, sess)
+    assert not os.path.isdir(rundir), 'session id used: ' + sess
+    os.makedirs(rundir)
+    notes = {'session': sess, 'bins': bins, 'md5': seed(R, bins, code, fixes, sess)}
+    log('seeded', notes['md5'])
+    save = os.path.join(R.MAINTT, 'coop_mod', 'save')
+    before = {f: open(os.path.join(save, f), 'rb').read() for f in (os.listdir(save) if os.path.isdir(save) else []) if os.path.isfile(os.path.join(save, f))}
+    if '--fresh' in sys.argv:      # an EMPTY profile (rank 0, no unlock record): the save files are moved into the run folder for the run
+        os.makedirs(os.path.join(rundir, 'save_before'), exist_ok=True)
+        for f in before:
+            shutil.move(os.path.join(save, f), os.path.join(rundir, 'save_before', f))
+    xt = lambda cmd, wait=1500: ['set coop_xtCmd %s' % cmd, 'wait %d' % wait]
+    menu = ['exec ui/loadout/open.cfg', 'wait 4000', 'pushmenu coop_loadout', 'wait 500', 'exec ui/loadout/init.cfg', 'wait 500',
+            'exec ui/loadout/lktab0.cfg', 'wait 1500']
+    cv = ['coop_lo1', 'coop_loS1', 'coop_loS1F', 'coop_loLkA%s' % wid, 'coop_lockLoadout', 'wait 200']
+    click = ['exec ui/loadout/s1sel.cfg', 'wait 200', 'exec ui/loadout/t%s.cfg' % wid, 'wait 1800']
+
+    def spawn_in():
+        time.sleep(8)
+        R.join()
+        time.sleep(22)
+        for _k in range(4):
+            t_click = len(R.read_log())
+            R.step(['popmenu 0', 'wait 20', '+attackprimary', 'wait 60', '-attackprimary', 'wait 200'])
+            if R.wait_log(r'\^~\^~\^ KITGIVE', 15, t_click):
+                return True
+        return False
+
+    def restart(tag):
+        t1 = len(R.read_log())
+        R.step(['popmenu 0', 'wait 300', 'exec coop_mod/start_server.cfg'], timeout=60)
+        if not R.wait_log(r'Detected Coop for', 300, t1):
+            raise RuntimeError('the map did not come back')
+        if not spawn_in():
+            raise RuntimeError('no spawn after the restart')
+        R.step(['wait 6000', 'useweaponclass rifle', 'wait 3000', 'echo ^~^~^ UNLOCK %s:' % tag] + xt('held') + xt('state'), timeout=120)
+    try:
+        R.launch(1280, 720, extra=['set coop_reloadDebug 0', 'set cg_drawviewmodel 2', 'set ui_hud 1'])
+        m = R.wait_log(r'Could not load[^\r\n]*|Detected Coop for', 600)
+        if not m or m.group(0).startswith('Could not load'):
+            raise RuntimeError('map never became ready')
+        if not spawn_in():
+            raise RuntimeError('player never spawned')
+        time.sleep(6)
+        R.step(xt('state') + menu + ['exec ui/loadout/req%s.cfg' % wid, 'wait 400'] + click + ['popmenu 0', 'wait 400', 'echo ^~^~^ UNLOCK rank0_click:'] + cv, timeout=120)
+        R.step(xt('seed', 2500) + xt('under2', 2500) + xt('state') + menu + click + ['popmenu 0', 'wait 400', 'echo ^~^~^ UNLOCK rank1_click:'] + cv, timeout=120)
+        R.step(xt('award', 1000) + ['wait 9000'] + xt('state') + menu + click + ['screenshot int_unlock_%s' % sess, 'wait 300', 'popmenu 0', 'wait 400',
+                                                                                 'echo ^~^~^ UNLOCK rank2_click:'] + cv, timeout=120)
+        restart('after_restart')
+        R.step(menu + ['exec ui/loadout/s1sel.cfg', 'wait 200', 'exec ui/loadout/p%s.cfg' % wid, 'wait 600', 'exec ui/loadout/fin8_s1.cfg', 'wait 1800',
+                       'popmenu 0', 'wait 400', 'echo ^~^~^ UNLOCK variant_locked:'] + cv, timeout=120)
+        R.step(xt('g43kills', 4000) + xt('state') + menu + ['exec ui/loadout/s1sel.cfg', 'wait 200', 'exec ui/loadout/p%s.cfg' % wid, 'wait 600',
+                                                            'exec ui/loadout/fin8_s1.cfg', 'wait 1800', 'popmenu 0', 'wait 400',
+                                                            'echo ^~^~^ UNLOCK variant_unlocked:'] + cv, timeout=120)
+        restart('after_variant_restart')
+        notes['ok'] = True
+    except Exception as e:
+        notes['error'] = repr(e)
+        log('ERROR', e)
+    finally:
+        proc = R.CL['proc']
+        if proc is not None and proc.poll() is None:
+            try:
+                open(os.path.join(R.MAINTT, 'isstep.cfg'), 'w', newline='\n').write('quit\n')
+                R.CL['c'].post_key(0x7B)
+                proc.wait(40)
+            except Exception:
+                pass
+        c = R.CL['c']
+        if c is not None:
+            c.close()
+            wrep = c.report()
+            notes['window'] = {'clean': wrep['clean'], 'violations': wrep['violations']}
+        time.sleep(3)
+        if os.path.isdir(R.SHOTS):
+            for fn in sorted(os.listdir(R.SHOTS)):
+                src = os.path.join(R.SHOTS, fn)
+                if fn.lower().endswith('.tga'):
+                    from PIL import Image
+                    Image.open(src).save(os.path.join(rundir, fn[:-4] + '.jpg'), quality=88)
+                shutil.move(src, os.path.join(rundir, fn))
+        after = os.path.join(rundir, 'save_after')
+        os.makedirs(after, exist_ok=True)
+        for f in (os.listdir(save) if os.path.isdir(save) else []):
+            if os.path.isfile(os.path.join(save, f)):
+                shutil.move(os.path.join(save, f), os.path.join(after, f))
+        os.makedirs(save, exist_ok=True)
+        for f, bb in before.items():
+            open(os.path.join(save, f), 'wb').write(bb)
+        notes['save_files'] = 'put back as found: %d; the run\'s own moved to save_after' % len(before)
+        if os.path.exists(R.LOG):
+            shutil.copyfile(R.LOG, os.path.join(rundir, 'qconsole.log'))
+        json.dump(notes, open(os.path.join(rundir, 'notes.json'), 'w'), indent=1)
+        try:
+            R.hg.release_slot(R.OWNER)
+        except Exception as e:
+            log('release_slot:', e)
+        log('[%s] done: %s window %s' % (sess, 'ok' if notes.get('ok') else notes.get('error'), notes.get('window')))
+    lg = open(os.path.join(rundir, 'qconsole.log'), 'rb').read().decode('latin-1')
+    for ln in lg.splitlines():
+        if re.search(r'\^~\^~\^ (XT|UNLOCK)|"coop_lo(1|S1|S1F|LkA%s)" is|"coop_lockLoadout" is|LOCKED|locked - see|Script Error|KITGIVE' % wid, ln):
+            print(ln[33:260])
 
 
 SRVPORT = 12702
@@ -661,6 +836,8 @@ if __name__ == '__main__':
     guns = arg('--guns').split(',') if arg('--guns') else []
     if cmd in ('run', 'ded'):
         run(sys.argv[2], arg('--bins'), arg('--code', 'HEAD'), arg('--fixes'), guns, '--shot' in sys.argv, ded=(cmd == 'ded'))
+    elif cmd == 'unlock':
+        unlock(sys.argv[2], arg('--bins'), arg('--code', 'HEAD'), arg('--fixes'))
     elif cmd == 'show':
         show(sys.argv[2], guns)
     elif cmd == 'cmp':

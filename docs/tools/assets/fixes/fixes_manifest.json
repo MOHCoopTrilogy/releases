@@ -1792,5 +1792,65 @@
   },
   "sound/weapons/foley/coop_p38_reload_loaded.wav": {
     "new": "True"
+  },
+  "models/human/animation/viewmodel/g43/coop_g43_irons_aim.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/g43/coop_g43_irons_reload_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/g43/coop_g43_irons_reload_empty_ads.skc": {
+    "new": "True"
+  },
+  "models/weapons/coop_g43_irons.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_g43_irons_bloody.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_g43_irons_blued.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_g43_irons_camo_desert.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_g43_irons_camo_winter.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_g43_irons_camo_woodland.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_g43_irons_chrome.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_g43_irons_dhg43fleck.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_g43_irons_gold.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_g43_irons_hobbsg43urb.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_g43_irons_hobbsg43wood.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_g43_irons_lv_ttg43.tik": {
+    "new": "True"
+  },
+  "models/weapons/g43/coop_g43_irons.skd": {
+    "new": "True"
+  },
+  "models/weapons/g43/coop_g43_irons_reload_ads_empty.skc": {
+    "new": "True"
+  },
+  "scripts/coop_g43_sight.shader": {
+    "new": "True"
+  },
+  "textures/coop_wpn/g43_sight.tga": {
+    "new": "True"
+  },
+  "textures/hud/loot/w_g43irons.tga": {
+    "new": "True"
   }
 }

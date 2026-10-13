@@ -38,7 +38,7 @@ import os
 import re
 import sys
 
-MOD = r'C:\mohaa-coop-dev\hzm-mohaa-coop-mod'
+MOD = os.environ.get('HZM_MOD') or r'C:\mohaa-coop-dev\hzm-mohaa-coop-mod'   # HZM_MOD: a scratch / staged tree (as gen_loadout.py)
 CO = os.path.join(MOD, 'coop_mod')
 
 # loadoutpick.scr::loadout_isUnlocked - hardcoded free starters
@@ -110,6 +110,19 @@ def collect():
     gated = set(re.findall(r'coop_cosmeticGatedTok\["([^"]+)"\]\s*=\s*1', helmet))
 
     src = {}
+    for rank, tok in rank_grants(xp):
+        src.setdefault(tok, []).append('Reach rank %s' % rank)
+    for cid, title, desc, reward in chal_rewards(chal):
+        src.setdefault(reward, []).append('%s - %s  [%s]' % (title, desc, cid))
+
+    return helmets, skins, guns, gated, src, gloves
+
+
+# The three parsers below are shared with gen_loadout.py, which derives the armory's hover unlock
+# text (ui/loadout/req*.cfg) from them - so the hover and this audit cannot read the scripts two
+# different ways. Each takes comment-stripped script TEXT, so a caller can point it at any tree.
+def rank_grants(xp):
+    """[(rank, token)] in xp.scr order, from level.coop_xp_rankUnlock."""
     # NOTE the greedy .* on the second subscript. xp.scr writes rank grants TWO ways:
     #   coop_xp_rankUnlock[1][0]                              = "..."
     #   coop_xp_rankUnlock[3][ level.coop_xp_rankUnlockCnt[3] ] = "..."
@@ -117,9 +130,26 @@ def collect():
     # granted that way - which is all 16 of them, and they then read as UNOBTAINABLE. Caught by
     # noticing the tool's own output contradicted xp.scr, not by the tool. Greedy .* to the last
     # ']' before the '=' handles both.
-    for m in re.finditer(r'coop_xp_rankUnlock\[(\d+)\]\[.*\]\s*=\s*"([^"]+)"', xp):
-        src.setdefault(m.group(2), []).append('Reach rank %s' % m.group(1))
+    return [(int(m.group(1)), m.group(2))
+            for m in re.finditer(r'coop_xp_rankUnlock\[(\d+)\]\[.*\]\s*=\s*"([^"]+)"', xp)]
 
+
+def rank_names(xp):
+    """{rank: display name} from level.coop_xp_rankName."""
+    return {int(m.group(1)): m.group(2)
+            for m in re.finditer(r'coop_xp_rankName\[(\d+)\]\s*=\s*"([^"]+)"', xp)}
+
+
+def free_guns(loadoutpick):
+    """The hardcoded free starters in loadoutpick.scr::loadout_isUnlocked (FREE_GUNS mirrors it)."""
+    m = re.search(r'(?ms)^loadout_isUnlocked\b[^\n]*:\{(.*?)^\}end', loadoutpick)
+    assert m, 'loadout_isUnlocked not found in loadoutpick.scr'
+    return set(re.findall(r'local\.tik == "([^"]+)"', m.group(1)))
+
+
+def chal_rewards(chal):
+    """[(cid, title, desc, reward)] for every chal_def that pays out an unlock token."""
+    out = []
     # chal_def <id> <cat> <title> <desc> <stat> <target> <reward>
     for line in chal.splitlines():
         if 'chal_def' not in line:
@@ -136,9 +166,8 @@ def collect():
         rw = q[-1]
         reward = rw if ('/' in rw or rw.startswith(('glv_', 'perk_', 'finish_'))) else ''
         if reward:
-            src.setdefault(reward, []).append('%s - %s  [%s]' % (title, desc, cid))
-
-    return helmets, skins, guns, gated, src, gloves
+            out.append((cid, title, desc, reward))
+    return out
 
 
 def build_rows(helmets, skins, guns, gated, src, gloves):

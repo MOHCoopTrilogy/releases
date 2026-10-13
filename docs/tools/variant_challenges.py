@@ -104,7 +104,11 @@ def emit(rows):
     per = {}
     for r in rows:
         per.setdefault(r["gun"], []).append(r)
+    share = dict(re.findall(r'level\.coop_skinMvShare\["([^"]+)"\]\s*=\s*"([^"]+)"', read(SKINS)))
+    skey = lambda r: os.path.basename(r["path"]).lower()[len(os.path.basename(r["gun"])) - 3:-4]   # "<stem>_<key>.tik" -> key
     for gun in sorted(per):
+        if gun in share:
+            continue
         vs = per[gun]
         L.append("\t//---- %s ----" % gun.replace("models/weapons/", ""))
         ordered = sorted(vs, key=lambda x: x["fid"])
@@ -121,6 +125,16 @@ def emit(rows):
             L.append('\twaitthread coop_mod/challenges.scr::chal_def "%s" "%s" "%s" "%s" "%s" %d "%s"'
                      % (cid, r["cat"], title, desc, r["stat"], tgt, r["path"]))
             L.append('\tlevel.coop_skinMvChal["%s"][%d] = "%s"' % (gun, r["fid"], cid))
+        L.append("")
+    for gun in sorted(share):
+        # SHARED: this gun has no kill stat and no challenges of its own - each variant is unlocked by the host's
+        # challenge for the same skin (same key), so one unlock covers the skin on both rifles
+        L.append("\t//---- %s : shares the variant challenges of %s ----" % (gun.replace("models/weapons/", ""), share[gun].replace("models/weapons/", "")))
+        host = dict((skey(r), r) for r in per.get(share[gun], []))
+        for r in sorted(per.get(gun, []), key=lambda x: x["fid"]):
+            assert skey(r) in host, "no host variant for %s" % r["path"]
+            h = host[skey(r)]
+            L.append('\tlevel.coop_skinMvChal["%s"][%d] = "%s_mv%d"' % (gun, r["fid"], h["bcid"], h["fid"]))
         L.append("")
     L.append("}end")
     L.append("")

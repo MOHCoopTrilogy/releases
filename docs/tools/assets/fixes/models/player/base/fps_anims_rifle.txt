@@ -383,5 +383,11 @@ animations
 	johnson_rechamber		viewmodel/rifle/kar98_rechamber.skc		crossblend 0.1
 	johnson_pullout			viewmodel/rifle/raise_rifle_standplayer.skc
 	johnson_putaway			viewmodel/rifle/lower_rifle_stand.skc
+	//===================== HZM coop ADS rollout (integrate_ads.py; rows taken from the lane folders) =====================
+	coopr_g_43_irons_charge	viewmodel/g43/coop_g43_irons_aim.skc		crossblend 0.2	// HZM coop [ads rifles 2026-10-12] iron-sight G43 (weapon name G 43 Irons): its own aim pose = the Garand pose with the support hand 1.1 u left / 1.6 u lower (no fingers right of the receiver); per-weapon row, the scoped G43 keeps g43_charge
+	coopr_g_43_irons_reload	viewmodel/g43/g43_reload.skc		crossblend 0.05	// HZM coop [ads rifles 2026-10-12] iron-sight G43, hip reload: the retail clip (per-weapon row so the aimed forms below reach this gun only)
+	coopr_g_43_irons_reload_empty	viewmodel/g43/g43_reload.skc		crossblend 0.05	// HZM coop [ads rifles 2026-10-12] iron-sight G43, hip reload of an emptied rifle: the retail clip (no rack at the hip - not made)
+	coopr_g_43_irons_reload_ads	viewmodel/g43/coop_g43_irons_reload_ads.skc		crossblend 0.1	// HZM coop [ads rifles 2026-10-12] iron-sight G43, aimed reload with rounds left: magazine out, in and struck home under the centre box, back to the aim
+	coopr_g_43_irons_reload_empty_ads	viewmodel/g43/coop_g43_irons_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads rifles 2026-10-12] iron-sight G43, aimed reload of an emptied rifle: magazine out and in, the left hand racks the cocking handle, back to the aim
 }
 
