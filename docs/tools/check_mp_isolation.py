@@ -154,7 +154,7 @@ MP_OWNED_MENUS = {"mpoptions"}
 # ONLY this file: the MP-facing menus are left unlocked on purpose - the user approved coop edits to them
 # (Select Game Type cleanup, mod copies of the MP options screens, 2026-09-13).
 LOCKS = {
-    "ui/coop_loadout.urc": {"sha256_lf": "c79b53376495f9e790dea1ce88a6c76221cf0e42539e62fb69cc0a8bee344126", "sha256_crlf": "7a4f6870a128a67c925f0b1749cfc93a62cba57a5fa608256ce922547f3c31f2", "lf_bytes": 76091, "blob": "89be4290", "eol": "crlf", "commit": "17761c3a", "locked": "2026-10-13 ADS rollout step 5: the G 43 Irons' armory tile (id 78) between the M1 Carbine and the Kar98k, the tiles below it moved down one row (rifles lane stage_armory_gen.py OLD.urc, applied by integrate/apply_armory5.py); was blob 1d608297 @ 9a7a5e50"},
+    "ui/coop_loadout.urc": {"sha256_lf": "462a8a4568f0b4ca5135bf75cc7ef1f10ef05caa4656cad41c9f70ede1c15697", "sha256_crlf": "67f089273e907e2d753ea2cf9443c7df2a7bbdd8c60cda47710f841b9f72a98e", "lf_bytes": 76913, "blob": "0ba78fc0", "eol": "crlf", "commit": "f58e211c", "locked": "2026-10-13 integration pass 3 step B: the double-barrel shotgun's armory tile (id 80), the LAST tile of the heavy tab, no other tile moved (dbshotgun lane wiring/gen/armory_dbs.patch, re-made on the tree with id 78); was blob 89be4290 @ 17761c3a (step 5, G 43 Irons id 78)"},
 }
 
 # Clauses 4/5. Every saved coop cvar MP could plausibly touch [bug-2564]; each would follow the player into coop.

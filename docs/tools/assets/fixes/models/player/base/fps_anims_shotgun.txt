@@ -50,5 +50,36 @@ animations
 	coopr_shotgun_cycle_ads		viewmodel/shotgun/coop_shotgun_cycle_ads.skc		crossblend 0.05	// HZM coop [ads heavy] aimed, after a shot with rounds left: the support hand racks the forend, the gun stays on target (sgpump.py)
 	coopr_shotgun_cyclelast		viewmodel/shotgun/fire_shotgun_stand.skc		crossblend 0.05	// HZM coop [ads heavy] retail: as coopr_shotgun_cycle, after the last round
 	coopr_shotgun_cyclelast_ads		viewmodel/shotgun/coop_shotgun_cycle_ads.skc		crossblend 0.05	// HZM coop [ads heavy] aimed, after the LAST round: the same stroke (the hip clip pumps after every shot)
+	//===================== HZM coop: double-barrel shotgun ("Shotgun (Double Barrel)") =====================
+	// per-weapon rows (cg_viewmodelanim.c CoopPerWeaponReloadAnim; idle / fire / charge / pullout / putaway need the
+	// dbshotgun-next cgame, the three reload rows work on any build). Clips: docs/proposals/dbshotgun_2026-10-12
+	coopr_shotgun_double_barrel_idle			viewmodel/coop_dbshotgun/dbs_idle.skc			crossblend 0.2
+	coopr_shotgun_double_barrel_fire			viewmodel/coop_dbshotgun/dbs_fire.skc			crossblend 0.03
+	coopr_shotgun_double_barrel_charge			viewmodel/coop_dbshotgun/dbs_charge.skc			crossblend 0.2
+	coopr_shotgun_double_barrel_reload			viewmodel/coop_dbshotgun/dbs_reload.skc			crossblend 0.05
+	coopr_shotgun_double_barrel_reload_single	viewmodel/coop_dbshotgun/dbs_reload_single.skc	crossblend 0
+	coopr_shotgun_double_barrel_reload_end		viewmodel/coop_dbshotgun/dbs_reload_end.skc		crossblend 0.05
+	// the first shell of an emptied gun goes into the LEFT chamber (cgame picks `_l` on an empty clip; alias names
+	// hold 47 characters: `..._reload_single_first_ads` was 51 and was never found - bug-3776)
+	coopr_shotgun_double_barrel_reload_single_l	viewmodel/coop_dbshotgun/dbs_reload_single_l.skc	crossblend 0
+	// aimed: the same reload worked under the centre of the view, back to the exact aim
+	coopr_shotgun_double_barrel_reload_ads		viewmodel/coop_dbshotgun/dbs_reload_ads.skc		crossblend 0.05
+	coopr_shotgun_double_barrel_reload_single_ads	viewmodel/coop_dbshotgun/dbs_reload_single_ads.skc	crossblend 0
+	coopr_shotgun_double_barrel_reload_single_l_ads	viewmodel/coop_dbshotgun/dbs_reload_single_l_ads.skc	crossblend 0
+	coopr_shotgun_double_barrel_reload_end_ads	viewmodel/coop_dbshotgun/dbs_reload_end_ads.skc	crossblend 0.05
+	coopr_shotgun_double_barrel_pullout			viewmodel/coop_dbshotgun/dbs_pullout.skc
+	{
+		client
+		{
+			enter sound snd_shotgun_putaway		// (snd_shotgun_pullout is the pump run forward: not this gun)
+		}
+	}
+	coopr_shotgun_double_barrel_putaway			viewmodel/coop_dbshotgun/dbs_putaway.skc
+	{
+		client
+		{
+			enter sound snd_shotgun_putaway
+		}
+	}
 }
 

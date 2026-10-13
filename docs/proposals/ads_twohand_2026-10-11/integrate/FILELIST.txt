@@ -1,3 +1,4 @@
+step 0 | row file     | manifest (base)                    | models/player/base/anims_shotgun.txt | same
 step 0 | row file     | manifest (base)                    | models/player/base/fps_anims_mg.txt | same
 step 0 | row file     | manifest (base)                    | models/player/base/fps_anims_pistol.txt | same
 step 0 | row file     | manifest (base)                    | models/player/base/fps_anims_rifle.txt | same
@@ -60,7 +61,7 @@ step 1 | Shotgun      | manifest (new)                     | models/human/animat
 step 1 | Shotgun      | manifest (new)                     | models/human/animation/viewmodel/shotgun/shotgun_reload_end_break_ads.skc | same
 step 1 | Shotgun      | manifest (new)                     | models/human/animation/viewmodel/shotgun/shotgun_reload_end_loaded_ads.skc | same
 step 1 | Shotgun      | manifest (new)                     | models/human/animation/viewmodel/shotgun/shotgun_reload_single_ads.skc | same
-step 1 | Shotgun      | manifest (base_pak)                | models/player/base/anims_shotgun.txt | same
+step 1 | Shotgun      | manifest (base_pak)                | models/player/base/anims_shotgun.txt | same [SHIPPED step: the lane file has changed since pass 1 - the shipped copy is KEPT]
 step 1 | Shotgun      | row                                | models/player/base/fps_anims_shotgun.txt :: shotgun_reload_end_break | same (lane heavy)
 step 1 | Shotgun      | row                                | models/player/base/fps_anims_shotgun.txt :: shotgun_reload_end_break_ads | same (lane heavy)
 step 1 | Shotgun      | row                                | models/player/base/fps_anims_shotgun.txt :: shotgun_reload_end_loaded | same (lane heavy)
@@ -523,4 +524,51 @@ step 7 | Shotgun (pump in the aim) | row                                | models
 step 7 | Shotgun (pump in the aim) | row                                | models/player/base/fps_anims_shotgun.txt :: coopr_shotgun_cycle_ads | same (lane heavy@a78fd3f)
 step 7 | Shotgun (pump in the aim) | row                                | models/player/base/fps_anims_shotgun.txt :: coopr_shotgun_cyclelast | same (lane heavy@a78fd3f)
 step 7 | Shotgun (pump in the aim) | row                                | models/player/base/fps_anims_shotgun.txt :: coopr_shotgun_cyclelast_ads | same (lane heavy@a78fd3f)
-dry run: 443 files, nothing written
+step 8 | Silencer (shared sheet, six guns) | manifest (new)                     | textures/models/weapons/colt/colt45s2.dds | same
+step 9 | Double barrel | manifest (new)                     | models/human/animation/viewmodel/coop_dbshotgun/coop_dbs_tps_fire.skc | same
+step 9 | Double barrel | manifest (new)                     | models/human/animation/viewmodel/coop_dbshotgun/coop_dbs_tps_fire_crouch.skc | same
+step 9 | Double barrel | manifest (new)                     | models/human/animation/viewmodel/coop_dbshotgun/coop_dbs_tps_reload_end.skc | same
+step 9 | Double barrel | manifest (new)                     | models/human/animation/viewmodel/coop_dbshotgun/dbs_charge.skc | same
+step 9 | Double barrel | manifest (new)                     | models/human/animation/viewmodel/coop_dbshotgun/dbs_fire.skc | same
+step 9 | Double barrel | manifest (new)                     | models/human/animation/viewmodel/coop_dbshotgun/dbs_idle.skc | same
+step 9 | Double barrel | manifest (new)                     | models/human/animation/viewmodel/coop_dbshotgun/dbs_pullout.skc | same
+step 9 | Double barrel | manifest (new)                     | models/human/animation/viewmodel/coop_dbshotgun/dbs_putaway.skc | same
+step 9 | Double barrel | manifest (new)                     | models/human/animation/viewmodel/coop_dbshotgun/dbs_reload.skc | same
+step 9 | Double barrel | manifest (new)                     | models/human/animation/viewmodel/coop_dbshotgun/dbs_reload_ads.skc | same
+step 9 | Double barrel | manifest (new)                     | models/human/animation/viewmodel/coop_dbshotgun/dbs_reload_end.skc | same
+step 9 | Double barrel | manifest (new)                     | models/human/animation/viewmodel/coop_dbshotgun/dbs_reload_end_ads.skc | same
+step 9 | Double barrel | manifest (new)                     | models/human/animation/viewmodel/coop_dbshotgun/dbs_reload_single.skc | same
+step 9 | Double barrel | manifest (new)                     | models/human/animation/viewmodel/coop_dbshotgun/dbs_reload_single_ads.skc | same
+step 9 | Double barrel | manifest (new)                     | models/human/animation/viewmodel/coop_dbshotgun/dbs_reload_single_l.skc | same
+step 9 | Double barrel | manifest (new)                     | models/human/animation/viewmodel/coop_dbshotgun/dbs_reload_single_l_ads.skc | same
+step 9 | Double barrel | block                              | models/player/base/anims_shotgun.txt :: 3 rows of rows/tps_rows_coop_dbshotgun.txt | same
+step 9 | Double barrel | block                              | models/player/base/fps_anims_shotgun.txt :: 13 rows of rows/fps_rows_coop_dbshotgun.txt | same
+step 9 | Double barrel | manifest (new)                     | models/weapons/coop_dbshotgun.tik | same
+step 9 | Double barrel | manifest (new)                     | models/weapons/coop_dbshotgun/coop_dbs_fire.skc | same
+step 9 | Double barrel | manifest (new)                     | models/weapons/coop_dbshotgun/coop_dbs_fire_empty.skc | same
+step 9 | Double barrel | manifest (new)                     | models/weapons/coop_dbshotgun/coop_dbs_idle.skc | same
+step 9 | Double barrel | manifest (new)                     | models/weapons/coop_dbshotgun/coop_dbs_reload.skc | same
+step 9 | Double barrel | manifest (new)                     | models/weapons/coop_dbshotgun/coop_dbs_reload_empty.skc | same
+step 9 | Double barrel | manifest (new)                     | models/weapons/coop_dbshotgun/coop_dbs_reload_end.skc | same
+step 9 | Double barrel | manifest (new)                     | models/weapons/coop_dbshotgun/coop_dbs_reload_single.skc | same
+step 9 | Double barrel | manifest (new)                     | models/weapons/coop_dbshotgun/coop_dbs_reload_single_first.skc | same
+step 9 | Double barrel | manifest (new)                     | models/weapons/coop_dbshotgun/coop_dbshotgun.skd | same
+step 9 | Double barrel | manifest (new)                     | models/weapons/coop_dbshotgun_bloody.tik | same
+step 9 | Double barrel | manifest (new)                     | models/weapons/coop_dbshotgun_blued.tik | same
+step 9 | Double barrel | manifest (new)                     | models/weapons/coop_dbshotgun_camo_desert.tik | same
+step 9 | Double barrel | manifest (new)                     | models/weapons/coop_dbshotgun_camo_winter.tik | same
+step 9 | Double barrel | manifest (new)                     | models/weapons/coop_dbshotgun_camo_woodland.tik | same
+step 9 | Double barrel | manifest (new)                     | models/weapons/coop_dbshotgun_chrome.tik | same
+step 9 | Double barrel | manifest (new)                     | models/weapons/coop_dbshotgun_gold.tik | same
+step 9 | Double barrel | manifest (new)                     | scripts/coop_dbshotgun.shader | same
+step 9 | Double barrel | manifest (new)                     | scripts/coop_dbshotgun_finish.shader | same
+step 9 | Double barrel | manifest (new)                     | textures/hud/clip/clip_2.tga | same
+step 9 | Double barrel | manifest (new)                     | textures/hud/loot/w_dbshotgun.tga | same
+step 9 | Double barrel | manifest (new)                     | textures/models/weapons/coop_dbshotgun/coop_dbshotgun.jpg | same
+step 9 | Double barrel | manifest (new)                     | textures/models/weapons/coop_dbshotgun/coop_dbshotgun_bloody.jpg | same
+step 9 | Double barrel | manifest (new)                     | textures/models/weapons/coop_dbshotgun/coop_dbshotgun_camo_desert.jpg | same
+step 9 | Double barrel | manifest (new)                     | textures/models/weapons/coop_dbshotgun/coop_dbshotgun_camo_winter.jpg | same
+step 9 | Double barrel | manifest (new)                     | textures/models/weapons/coop_dbshotgun/coop_dbshotgun_camo_woodland.jpg | same
+step 9 | Double barrel | manifest (new)                     | textures/models/weapons/coop_dbshotgun/coop_dbshotgun_fmask.jpg | same
+step 9 | Double barrel | manifest (new)                     | textures/models/weapons/coop_dbshotgun/coop_dbshotgun_parts.jpg | same
+dry run: 488 files, nothing written

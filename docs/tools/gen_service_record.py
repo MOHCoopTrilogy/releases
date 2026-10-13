@@ -25,7 +25,7 @@ def _wif_save(self, fp, *a, **k):
         return
     return _wif_orig_save(self, fp, *a, **k)
 Image.Image.save = _wif_save
-os.chdir(r"C:\mohaa-coop-dev\hzm-mohaa-coop-mod")
+os.chdir(os.environ.get("HZM_MOD") or r"C:\mohaa-coop-dev\hzm-mohaa-coop-mod")   # HZM_MOD: a scratch / staged tree (as gen_loadout.py)
 def lerp(a,b,t): return tuple(int(a[i]+(b[i]-a[i])*t) for i in range(len(a)))
 def serif(sz):
     try: return ImageFont.truetype("C:/Windows/Fonts/georgiab.ttf",sz)
@@ -54,6 +54,7 @@ REWARD_NAMES = {
     # [user 2026-08-26] MODEL VARIANT rewards. Names are lifted verbatim from
     # loadoutskins.scr::coop_skinMvName - the same table the armory renders - so the Service Record
     # hover and the armory can never disagree. Regenerate with docs/tools/variant_challenges.py.
+    "models/weapons/coop_dbshotgun.tik": "Double Barrel Shotgun",   # [dbshotgun 2026-10-13]
     "models/weapons/bar_pabar.tik": "Bar (pacific) (moh:pa)",
     "models/weapons/bar_bar1918.tik": "Lewis Gun (east)",
     "models/weapons/bar_bar1918a.tik": "M1918 Classic (stlkid)",

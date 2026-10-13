@@ -1,0 +1,6 @@
+u10c: 68 distinct error-like lines (5 not in u5c)
+     1x [#-#-# #:#:# UTC-#.#]  Loaded symbol alGetError (#FFCA#CC#A#)
+     1x [#-#-# #:#:# UTC-#.#]  Loaded symbol alcGetError (#FFCA#CF#C#)
+     1x [#-#-# #:#:# UTC-#.#] ******* WARNING - (coop_mod/replace.scr::playsound_wait): sound with alias 'dfr_m#l#_add#' has a length of NIL. Add it to coop_mod/sound.scr!!!
+     1x [#-#-# #:#:# UTC-#.#] LOCALIZATION ERROR: 'DOUBLE BARREL' does not have a localization entry
+     1x [#-#-# #:#:# UTC-#.#] LOCALIZATION ERROR: 'TRENCH GUN' does not have a localization entry

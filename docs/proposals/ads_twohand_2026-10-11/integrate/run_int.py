@@ -69,8 +69,10 @@ GUNS = {
     'c96': ('mauser_c96.tik', 'semi', 5500), 'm10': ('m10_revolver.tik', 'rev', 6000),
     # ---- pass 2, step 5
     'g43': ('g43.tik', 'semi', 5000), 'g43irons': ('coop_g43_irons.tik', 'semi', 5000), 'g43irons_gold': ('coop_g43_irons_gold.tik', 'semi', 5000), 'g43irons_fleck': ('coop_g43_irons_dhg43fleck.tik', 'semi', 5000),
+    # ---- pass 3, step B: the double barrel (class dbl = 2 shells, loaded one by one)
+    'dbs': ('coop_dbshotgun.tik', 'dbl', 4500), 'dbs_gold': ('coop_dbshotgun_gold.tik', 'dbl', 4500), 'dbs_winter': ('coop_dbshotgun_camo_winter.tik', 'dbl', 4500),
 }
-GAP = {'semi': 450, 'bolt': 2100, 'pump': 1600, 'rev': 800}
+GAP = {'semi': 450, 'bolt': 2100, 'pump': 1600, 'rev': 800, 'dbl': 450}
 PRONE = ('colt45', 'p38', 'beretta', 'tt33', 'welrod', 'histd', 'webley', 'nagant', 'luger', 'c96', 'm10', 'coltsil', 'ppk', 'nambu')    # + a prone phase
 
 
@@ -102,6 +104,23 @@ def scenario(key, shot):
     burst = 2 if cls != 'auto' else 3
     m = lambda ph: ['echo ^~^~^ INTM %s %s' % (key, ph)]
     Lc = ['set coop_intAmmo %s' % ammo]
+    if cls == 'dbl':
+        # pass 3, the double barrel: one barrel + reload with a shell left, both barrels (the gun opens by itself 1.2 s
+        # after the last shell), the same aimed, a reload broken off by the trigger. ONE picture (aim) with --shot.
+        one = ['+attackprimary', 'wait 70', '-attackprimary']
+        both = one + ['wait 450'] + one
+        Lc += m('hipfire') + one + ['wait 1500']
+        Lc += m('hipreload') + ['reload', 'wait 4500']
+        Lc += m('hipempty') + both + ['wait 6500']
+        Lc += m('aim') + ['+button13', 'wait 1900']
+        if '--shot' in sys.argv and key == 'dbs':
+            Lc += ['screenshot int_%s' % key, 'wait 150']
+        Lc += m('aimfire') + ['set cg_adsSightDebug 2'] + one + ['wait 1500']
+        Lc += m('aimreload') + ['reload', 'wait 4500']
+        Lc += m('aimempty') + both + ['wait 6500', 'set cg_adsSightDebug 1', '-button13', 'wait 900']
+        Lc += m('breakoff') + one + ['wait 1500', 'reload', 'wait 600'] + one + ['wait 3500', 'reload', 'wait 4500']
+        Lc += m('end')
+        return Lc
     if cls == 'pump' and '--pumpsheet' in sys.argv:
         # step 7, the look the coordinator asked for: a picture 0.45 s after aimed shots 1, 3 and 5 (the LAST shell) and
         # after three hip shots - hull in the air, support hand at the rear of its stroke
@@ -253,6 +272,28 @@ coop_int_xt:{
 				waitthread coop_mod/challenges.scr::chal_bump local.p "wpn_g43" 225
 				thread coop_mod/loadoutpick.scr::loadout_ui_exportUnlocks local.p
 				println "^~^~^ XT g43kills 225 (wpn_g43)"
+			}
+			if( local.c == "sg59" ){
+				waitthread coop_mod/challenges.scr::chal_bump local.p "wpn_shotgun" 59
+				println "^~^~^ XT sg59 (wpn_shotgun +59)"
+			}
+			if( local.c == "sg1" ){
+				waitthread coop_mod/challenges.scr::chal_bump local.p "wpn_shotgun" 1
+				println "^~^~^ XT sg1 (wpn_shotgun +1)"
+			}
+			if( local.c == "snow150" ){
+				waitthread coop_mod/challenges.scr::chal_bump local.p "kill_snow" 150
+				println "^~^~^ XT snow150 (kill_snow +150)"
+			}
+			if( local.c == "dbstate" || local.c == "sg59" || local.c == "sg1" || local.c == "snow150" ){
+				local.k = waitthread coop_mod/loadoutpick.scr::loadout_isUnlocked local.p "models/weapons/coop_dbshotgun.tik"
+				local.v2 = local.p.flags["coop_loSlot1"]
+				if( local.v2 == NIL ){ local.v2 = "NIL" }
+				local.v3 = local.p.flags["coop_loSlotId1"]
+				if( local.v3 == NIL ){ local.v3 = "NIL" }
+				local.v4 = local.p.flags["coop_loFin1"]
+				if( local.v4 == NIL ){ local.v4 = "NIL" }
+				println ( "^~^~^ XT dbstate dbs=" + local.k + " slot1=" + local.v2 + " id1=" + local.v3 + " fin1=" + local.v4 )
 			}
 			if( local.c == "held" ){
 				local.w = local.p getactiveweap 0
@@ -445,6 +486,8 @@ def run(sess, bins, code, fixes, guns, shot, ded=False):
             st = R.step(rc(R.give(W + GUNS[g][0])) + ['wait 4500'], timeout=60)
             notes.setdefault('gave', {})[g] = re.findall(r'\^~\^~\^ ISTEST[^\r\n]*', (open(slog, 'rb').read().decode('latin-1') if ded else R.read_log()[st:]))[-1:]
             R.step(rc(scenario(g, shot and first)), timeout=240)
+            if first and '--imagelist' in sys.argv:      # pass 3 step A: which picture FILE the renderer holds for a texture
+                R.step(['imagelist', 'wait 2500'], timeout=60)
             first = False
         notes['ok'] = True
     except Exception as e:
@@ -543,27 +586,63 @@ def unlock(sess, bins, code, fixes, wid='78'):
         if not spawn_in():
             raise RuntimeError('no spawn after the restart')
         R.step(['wait 6000', 'useweaponclass rifle', 'wait 3000', 'echo ^~^~^ UNLOCK %s:' % tag] + xt('held') + xt('state'), timeout=120)
+    def respawn(tag):
+        R.step(['kill', 'wait 3500'], timeout=60)
+        ok = False
+        for _k in range(5):
+            t_click = len(R.read_log())
+            R.step(['popmenu 0', 'wait 20', '+attackprimary', 'wait 60', '-attackprimary', 'wait 200'])
+            if R.wait_log(r'\^~\^~\^ KITGIVE', 15, t_click):
+                ok = True
+                break
+        R.step(['wait 5000', 'useweaponclass heavy', 'wait 3000', 'echo ^~^~^ UNLOCK %s: respawned=%s' % (tag, ok)] + xt('held') + xt('dbstate'), timeout=120)
+
+    def change(mapname, tag):
+        t1 = len(R.read_log())
+        R.step(['popmenu 0', 'wait 300', 'set ui_dmmap %s' % mapname, 'ui_startdmmap 2'], timeout=60)
+        if not R.wait_log(r'Detected Coop for', 400, t1):
+            raise RuntimeError('the map %s did not come up' % mapname)
+        if not spawn_in():
+            raise RuntimeError('no spawn on %s' % mapname)
+        R.step(['wait 6000', 'useweaponclass heavy', 'wait 3000', 'echo ^~^~^ UNLOCK %s:' % tag] + xt('held') + xt('dbstate'), timeout=120)
+    heavy = ['exec ui/loadout/open.cfg', 'wait 6000',
+             'set coop_loNP0 1', 'set coop_loP1 0', 'set coop_loP2 0', 'set coop_loP3 1', 'set coop_loP4 0', 'set coop_loP5 0', 'append name ,w0t3',
+             'wait 2500', 'exec ui/loadout/lktab3.cfg', 'wait 1500']
     try:
-        R.launch(1280, 720, extra=['set coop_reloadDebug 0', 'set cg_drawviewmodel 2', 'set ui_hud 1'])
+        R.launch(1280, 720, extra=['set coop_reloadDebug 0', 'set cg_drawviewmodel 2', 'set ui_hud 1'] + (['set coop_lockLoadout 1'] if wid == '80' else []))
         m = R.wait_log(r'Could not load[^\r\n]*|Detected Coop for', 600)
         if not m or m.group(0).startswith('Could not load'):
             raise RuntimeError('map never became ready')
         if not spawn_in():
             raise RuntimeError('player never spawned')
         time.sleep(6)
-        R.step(xt('state') + menu + ['exec ui/loadout/req%s.cfg' % wid, 'wait 400'] + click + ['popmenu 0', 'wait 400', 'echo ^~^~^ UNLOCK rank0_click:'] + cv, timeout=120)
-        R.step(xt('seed', 2500) + xt('under2', 2500) + xt('state') + menu + click + ['popmenu 0', 'wait 400', 'echo ^~^~^ UNLOCK rank1_click:'] + cv, timeout=120)
-        # the armory's own unlock export after a promotion takes a few seconds (75 roster entries, restarted by every menu
-        # open): run u5b clicked 1.5 s after the tab was up and the tile was still padlocked on the CLIENT - wait for it
-        R.step(xt('award', 1000) + ['wait 9000'] + xt('state') + menu + ['wait 8000', 'exec ui/loadout/lktab0.cfg', 'wait 1500'] + click + ['screenshot int_unlock_%s' % sess, 'wait 300', 'popmenu 0', 'wait 400',
-                                                                                 'echo ^~^~^ UNLOCK rank2_click:'] + cv, timeout=120)
-        restart('after_restart')
-        R.step(menu + ['exec ui/loadout/s1sel.cfg', 'wait 200', 'exec ui/loadout/p%s.cfg' % wid, 'wait 600', 'exec ui/loadout/fin8_s1.cfg', 'wait 1800',
-                       'popmenu 0', 'wait 400', 'echo ^~^~^ UNLOCK variant_locked:'] + cv, timeout=120)
-        R.step(xt('g43kills', 4000) + xt('state') + menu + ['exec ui/loadout/s1sel.cfg', 'wait 200', 'exec ui/loadout/p%s.cfg' % wid, 'wait 600',
-                                                            'exec ui/loadout/fin8_s1.cfg', 'wait 1800', 'popmenu 0', 'wait 400',
-                                                            'echo ^~^~^ UNLOCK variant_unlocked:'] + cv, timeout=120)
-        restart('after_variant_restart')
+        if wid == '80':
+            # pass 3 step B, the double barrel: locked -> 59 Shotgun kills (still locked) -> the 60th -> unlocked -> picked
+            # -> respawn holding it -> the winter finish (its own challenge) -> a map CHANGE keeps the pick and the finish
+            R.step(['coop_dbShotgun', 'wait 200'] + xt('dbstate') + heavy + ['exec ui/loadout/req80.cfg', 'wait 400'] + click + ['popmenu 0', 'wait 400', 'echo ^~^~^ UNLOCK locked_click:'] + cv, timeout=120)
+            R.step(xt('sg59', 5000) + heavy + click + ['popmenu 0', 'wait 400', 'echo ^~^~^ UNLOCK at59_click:'] + cv, timeout=120)
+            click80 = ['exec ui/loadout/t80.cfg', 'wait 6000']
+            R.step(xt('sg1', 6000) + heavy + ['coop_loLkA80', 'wait 200'] + click80 + ['popmenu 0', 'wait 800', 'echo ^~^~^ UNLOCK at60_click:'] + cv + xt('dbstate'), timeout=180)
+            respawn('spawn_after_click_1')
+            R.step(heavy + ['coop_loLkA80', 'wait 200'] + click80 + ['popmenu 0', 'wait 800', 'echo ^~^~^ UNLOCK click_2_after_respawn:'] + cv + xt('dbstate'), timeout=180)
+            respawn('spawn_with_pick')
+            R.step(xt('snow150', 5000) + ['append name ,f16', 'wait 7000', 'echo ^~^~^ UNLOCK finish_winter:'] + cv + xt('dbstate'), timeout=120)
+            respawn('spawn_with_finish')
+            change('m1l1', 'after_map_change')
+        else:
+            R.step(xt('state') + menu + ['exec ui/loadout/req%s.cfg' % wid, 'wait 400'] + click + ['popmenu 0', 'wait 400', 'echo ^~^~^ UNLOCK rank0_click:'] + cv, timeout=120)
+            R.step(xt('seed', 2500) + xt('under2', 2500) + xt('state') + menu + click + ['popmenu 0', 'wait 400', 'echo ^~^~^ UNLOCK rank1_click:'] + cv, timeout=120)
+            # the armory's own unlock export after a promotion takes a few seconds (75 roster entries, restarted by every menu
+            # open): run u5b clicked 1.5 s after the tab was up and the tile was still padlocked on the CLIENT - wait for it
+            R.step(xt('award', 1000) + ['wait 9000'] + xt('state') + menu + ['wait 8000', 'exec ui/loadout/lktab0.cfg', 'wait 1500'] + click + ['screenshot int_unlock_%s' % sess, 'wait 300', 'popmenu 0', 'wait 400',
+                                                                                     'echo ^~^~^ UNLOCK rank2_click:'] + cv, timeout=120)
+            restart('after_restart')
+            R.step(menu + ['exec ui/loadout/s1sel.cfg', 'wait 200', 'exec ui/loadout/p%s.cfg' % wid, 'wait 600', 'exec ui/loadout/fin8_s1.cfg', 'wait 1800',
+                           'popmenu 0', 'wait 400', 'echo ^~^~^ UNLOCK variant_locked:'] + cv, timeout=120)
+            R.step(xt('g43kills', 4000) + xt('state') + menu + ['exec ui/loadout/s1sel.cfg', 'wait 200', 'exec ui/loadout/p%s.cfg' % wid, 'wait 600',
+                                                                'exec ui/loadout/fin8_s1.cfg', 'wait 1800', 'popmenu 0', 'wait 400',
+                                                                'echo ^~^~^ UNLOCK variant_unlocked:'] + cv, timeout=120)
+            restart('after_variant_restart')
         notes['ok'] = True
     except Exception as e:
         notes['error'] = repr(e)
@@ -678,7 +757,10 @@ def launch_client(R, Wd, Hd, extra):
 # ---------------------------------------------------------------------------------------------------- analysis
 def parse(sess):
     """{gun: {phase: dict(states=[(state, dur)], am=[(dt, reserve)], wfeel=[(id, len)])}}"""
-    lg = open(os.path.join(RUNS, sess, 'qconsole.log'), 'rb').read().decode('latin-1')
+    lp = os.path.join(RUNS, sess, 'qconsole.log')
+    if not os.path.isfile(lp):          # a finished run lives in the archive
+        lp = os.path.join(r'H:\hzm_archive\integrate', sess, 'qconsole.log')
+    lg = open(lp, 'rb').read().decode('latin-1')
     out, gun, ph, t0, cur = {}, None, None, None, None
     last_state, last_t, last_am = None, None, None
     for ln in lg.splitlines():
@@ -836,7 +918,10 @@ ERR = re.compile(r"Script Error|\^1|ERROR|Couldn't|couldn't|not found|Cannot|can
 
 def errs(sess, base=None):
     def lines(s):
-        lg = open(os.path.join(RUNS, s, 'qconsole.log'), 'rb').read().decode('latin-1')
+        lp = os.path.join(RUNS, s, 'qconsole.log')
+        if not os.path.isfile(lp):
+            lp = os.path.join('H:/hzm_archive/integrate', s, 'qconsole.log')
+        lg = open(lp, 'rb').read().decode('latin-1')
         out = {}
         for ln in lg.splitlines():
             if ERR.search(ln) and '^~^~^' not in ln:
@@ -858,7 +943,7 @@ if __name__ == '__main__':
     if cmd in ('run', 'ded'):
         run(sys.argv[2], arg('--bins'), arg('--code', 'HEAD'), arg('--fixes'), guns, '--shot' in sys.argv, ded=(cmd == 'ded'))
     elif cmd == 'unlock':
-        unlock(sys.argv[2], arg('--bins'), arg('--code', 'HEAD'), arg('--fixes'))
+        unlock(sys.argv[2], arg('--bins'), arg('--code', 'HEAD'), arg('--fixes'), wid='80' if '--dbs' in sys.argv else '78')
     elif cmd == 'show':
         show(sys.argv[2], guns)
     elif cmd == 'cmp':

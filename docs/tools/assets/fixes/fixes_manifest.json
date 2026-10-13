@@ -1855,5 +1855,140 @@
   },
   "models/human/animation/viewmodel/shotgun/coop_shotgun_cycle_ads.skc": {
     "new": "True"
+  },
+  "textures/models/weapons/colt/colt45s2.dds": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/coop_dbs_tps_fire.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/coop_dbs_tps_fire_crouch.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/coop_dbs_tps_reload_end.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/dbs_charge.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/dbs_fire.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/dbs_idle.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/dbs_pullout.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/dbs_putaway.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/dbs_reload.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/dbs_reload_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/dbs_reload_end.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/dbs_reload_end_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/dbs_reload_single.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/dbs_reload_single_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/dbs_reload_single_l.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_dbshotgun/dbs_reload_single_l_ads.skc": {
+    "new": "True"
+  },
+  "models/weapons/coop_dbshotgun.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_dbshotgun/coop_dbs_fire.skc": {
+    "new": "True"
+  },
+  "models/weapons/coop_dbshotgun/coop_dbs_fire_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/coop_dbshotgun/coop_dbs_idle.skc": {
+    "new": "True"
+  },
+  "models/weapons/coop_dbshotgun/coop_dbs_reload.skc": {
+    "new": "True"
+  },
+  "models/weapons/coop_dbshotgun/coop_dbs_reload_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/coop_dbshotgun/coop_dbs_reload_end.skc": {
+    "new": "True"
+  },
+  "models/weapons/coop_dbshotgun/coop_dbs_reload_single.skc": {
+    "new": "True"
+  },
+  "models/weapons/coop_dbshotgun/coop_dbs_reload_single_first.skc": {
+    "new": "True"
+  },
+  "models/weapons/coop_dbshotgun/coop_dbshotgun.skd": {
+    "new": "True"
+  },
+  "models/weapons/coop_dbshotgun_bloody.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_dbshotgun_blued.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_dbshotgun_camo_desert.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_dbshotgun_camo_winter.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_dbshotgun_camo_woodland.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_dbshotgun_chrome.tik": {
+    "new": "True"
+  },
+  "models/weapons/coop_dbshotgun_gold.tik": {
+    "new": "True"
+  },
+  "scripts/coop_dbshotgun.shader": {
+    "new": "True"
+  },
+  "scripts/coop_dbshotgun_finish.shader": {
+    "new": "True"
+  },
+  "textures/hud/clip/clip_2.tga": {
+    "new": "True"
+  },
+  "textures/hud/loot/w_dbshotgun.tga": {
+    "new": "True"
+  },
+  "textures/models/weapons/coop_dbshotgun/coop_dbshotgun.jpg": {
+    "new": "True"
+  },
+  "textures/models/weapons/coop_dbshotgun/coop_dbshotgun_bloody.jpg": {
+    "new": "True"
+  },
+  "textures/models/weapons/coop_dbshotgun/coop_dbshotgun_camo_desert.jpg": {
+    "new": "True"
+  },
+  "textures/models/weapons/coop_dbshotgun/coop_dbshotgun_camo_winter.jpg": {
+    "new": "True"
+  },
+  "textures/models/weapons/coop_dbshotgun/coop_dbshotgun_camo_woodland.jpg": {
+    "new": "True"
+  },
+  "textures/models/weapons/coop_dbshotgun/coop_dbshotgun_fmask.jpg": {
+    "new": "True"
+  },
+  "textures/models/weapons/coop_dbshotgun/coop_dbshotgun_parts.jpg": {
+    "new": "True"
   }
 }

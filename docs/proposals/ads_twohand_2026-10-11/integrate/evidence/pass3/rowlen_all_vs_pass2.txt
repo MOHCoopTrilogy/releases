@@ -1,0 +1,90 @@
+released = fixes @ 02ded3f | integrated = working copy | 236 file(s)
+file | row | released | integrated | verdict
+models/player/base/anims_shotgun.txt | coop_dbs_crouch_fire | - | coop_dbs_tps_fire_crouch.skc 35f 1.167s | new row, SERVER-READ - INTENDED
+models/player/base/anims_shotgun.txt | coop_dbs_reload_end | - | coop_dbs_tps_reload_end.skc 36f 1.200s | new row, SERVER-READ - INTENDED
+models/player/base/anims_shotgun.txt | coop_dbs_stand_fire | - | coop_dbs_tps_fire.skc 36f 1.200s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun.tik | fire | - | coop_dbs_fire.skc 10f 0.333s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun.tik | fire_empty | - | coop_dbs_fire_empty.skc 10f 0.333s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun.tik | idle | - | coop_dbs_idle.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun.tik | reload | - | coop_dbs_reload.skc 23f 0.767s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun.tik | reload_ads_empty | - | coop_dbs_reload_empty.skc 23f 0.767s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun.tik | reload_empty | - | coop_dbs_reload_empty.skc 23f 0.767s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun.tik | reload_end | - | coop_dbs_reload_end.skc 32f 1.067s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun.tik | reload_single | - | coop_dbs_reload_single.skc 20f 0.667s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun.tik | reload_single_first | - | coop_dbs_reload_single_first.skc 20f 0.667s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun.tik | secondaryfire | - | coop_dbs_idle.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_bloody.tik | fire | - | coop_dbs_fire.skc 10f 0.333s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_bloody.tik | fire_empty | - | coop_dbs_fire_empty.skc 10f 0.333s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_bloody.tik | idle | - | coop_dbs_idle.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_bloody.tik | reload | - | coop_dbs_reload.skc 23f 0.767s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_bloody.tik | reload_ads_empty | - | coop_dbs_reload_empty.skc 23f 0.767s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_bloody.tik | reload_empty | - | coop_dbs_reload_empty.skc 23f 0.767s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_bloody.tik | reload_end | - | coop_dbs_reload_end.skc 32f 1.067s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_bloody.tik | reload_single | - | coop_dbs_reload_single.skc 20f 0.667s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_bloody.tik | reload_single_first | - | coop_dbs_reload_single_first.skc 20f 0.667s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_bloody.tik | secondaryfire | - | coop_dbs_idle.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_blued.tik | fire | - | coop_dbs_fire.skc 10f 0.333s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_blued.tik | fire_empty | - | coop_dbs_fire_empty.skc 10f 0.333s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_blued.tik | idle | - | coop_dbs_idle.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_blued.tik | reload | - | coop_dbs_reload.skc 23f 0.767s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_blued.tik | reload_ads_empty | - | coop_dbs_reload_empty.skc 23f 0.767s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_blued.tik | reload_empty | - | coop_dbs_reload_empty.skc 23f 0.767s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_blued.tik | reload_end | - | coop_dbs_reload_end.skc 32f 1.067s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_blued.tik | reload_single | - | coop_dbs_reload_single.skc 20f 0.667s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_blued.tik | reload_single_first | - | coop_dbs_reload_single_first.skc 20f 0.667s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_blued.tik | secondaryfire | - | coop_dbs_idle.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_desert.tik | fire | - | coop_dbs_fire.skc 10f 0.333s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_desert.tik | fire_empty | - | coop_dbs_fire_empty.skc 10f 0.333s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_desert.tik | idle | - | coop_dbs_idle.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_desert.tik | reload | - | coop_dbs_reload.skc 23f 0.767s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_desert.tik | reload_ads_empty | - | coop_dbs_reload_empty.skc 23f 0.767s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_camo_desert.tik | reload_empty | - | coop_dbs_reload_empty.skc 23f 0.767s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_camo_desert.tik | reload_end | - | coop_dbs_reload_end.skc 32f 1.067s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_desert.tik | reload_single | - | coop_dbs_reload_single.skc 20f 0.667s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_desert.tik | reload_single_first | - | coop_dbs_reload_single_first.skc 20f 0.667s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_camo_desert.tik | secondaryfire | - | coop_dbs_idle.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_winter.tik | fire | - | coop_dbs_fire.skc 10f 0.333s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_winter.tik | fire_empty | - | coop_dbs_fire_empty.skc 10f 0.333s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_winter.tik | idle | - | coop_dbs_idle.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_winter.tik | reload | - | coop_dbs_reload.skc 23f 0.767s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_winter.tik | reload_ads_empty | - | coop_dbs_reload_empty.skc 23f 0.767s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_camo_winter.tik | reload_empty | - | coop_dbs_reload_empty.skc 23f 0.767s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_camo_winter.tik | reload_end | - | coop_dbs_reload_end.skc 32f 1.067s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_winter.tik | reload_single | - | coop_dbs_reload_single.skc 20f 0.667s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_winter.tik | reload_single_first | - | coop_dbs_reload_single_first.skc 20f 0.667s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_camo_winter.tik | secondaryfire | - | coop_dbs_idle.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_woodland.tik | fire | - | coop_dbs_fire.skc 10f 0.333s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_woodland.tik | fire_empty | - | coop_dbs_fire_empty.skc 10f 0.333s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_woodland.tik | idle | - | coop_dbs_idle.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_woodland.tik | reload | - | coop_dbs_reload.skc 23f 0.767s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_woodland.tik | reload_ads_empty | - | coop_dbs_reload_empty.skc 23f 0.767s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_camo_woodland.tik | reload_empty | - | coop_dbs_reload_empty.skc 23f 0.767s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_camo_woodland.tik | reload_end | - | coop_dbs_reload_end.skc 32f 1.067s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_woodland.tik | reload_single | - | coop_dbs_reload_single.skc 20f 0.667s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_camo_woodland.tik | reload_single_first | - | coop_dbs_reload_single_first.skc 20f 0.667s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_camo_woodland.tik | secondaryfire | - | coop_dbs_idle.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_chrome.tik | fire | - | coop_dbs_fire.skc 10f 0.333s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_chrome.tik | fire_empty | - | coop_dbs_fire_empty.skc 10f 0.333s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_chrome.tik | idle | - | coop_dbs_idle.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_chrome.tik | reload | - | coop_dbs_reload.skc 23f 0.767s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_chrome.tik | reload_ads_empty | - | coop_dbs_reload_empty.skc 23f 0.767s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_chrome.tik | reload_empty | - | coop_dbs_reload_empty.skc 23f 0.767s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_chrome.tik | reload_end | - | coop_dbs_reload_end.skc 32f 1.067s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_chrome.tik | reload_single | - | coop_dbs_reload_single.skc 20f 0.667s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_chrome.tik | reload_single_first | - | coop_dbs_reload_single_first.skc 20f 0.667s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_chrome.tik | secondaryfire | - | coop_dbs_idle.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_gold.tik | fire | - | coop_dbs_fire.skc 10f 0.333s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_gold.tik | fire_empty | - | coop_dbs_fire_empty.skc 10f 0.333s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_gold.tik | idle | - | coop_dbs_idle.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_gold.tik | reload | - | coop_dbs_reload.skc 23f 0.767s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_gold.tik | reload_ads_empty | - | coop_dbs_reload_empty.skc 23f 0.767s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_gold.tik | reload_empty | - | coop_dbs_reload_empty.skc 23f 0.767s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_gold.tik | reload_end | - | coop_dbs_reload_end.skc 32f 1.067s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_gold.tik | reload_single | - | coop_dbs_reload_single.skc 20f 0.667s | new row, SERVER-READ - INTENDED
+models/weapons/coop_dbshotgun_gold.tik | reload_single_first | - | coop_dbs_reload_single_first.skc 20f 0.667s | new row, client-only (no server name)
+models/weapons/coop_dbshotgun_gold.tik | secondaryfire | - | coop_dbs_idle.skc 1f 0.033s | new row, SERVER-READ - INTENDED
+---
+2215 rows in 236 files: 2132 untouched
+    59  new row, SERVER-READ - INTENDED
+    24  new row, client-only (no server name)
+GATE: pass - no server-read row changed length except the intended rows

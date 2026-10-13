@@ -366,7 +366,60 @@ def step7():
     return ops
 
 
-STEPS = {1: step1, 2: step2, 3: step3, 4: step4, 5: step5, 7: step7}
+def step8():
+    """SILENCER REPAINT (pass 3, coordinator addition; docs/proposals/gun_repaint_2026-10-13 item 1): the shared
+    silencer sheet `colt45s2` of six silenced guns, repainted by script on the same UVs - ONE texture, 2048 DXT1 .dds.
+    The released picture is colt45s2.tga in the third-party zzzzz_xw_weapons.pk3; a .dds of the same stem wins from
+    any pak, so the file is a NEW name (in no pak, not in the mod tree). No tik, mesh, shader or row changes."""
+    return [F('@../gun_repaint_2026-10-13/assets', 'textures/models/weapons/colt/colt45s2.dds', 'Silencer (shared sheet, six guns)',
+              md5='36c3ef79ecb5db730a6d936370055c63')]
+
+
+def step9():
+    """DOUBLE-BARREL SHOTGUN - a NEW weapon (pass 3; frozen ship cut docs/proposals/dbshotgun_2026-10-12/DBS_SHIP.md,
+    docs 3b892df; `tools/ship_manifest.py --check` must pass): 8 tiks `coop_dbshotgun*` (base + 7 finishes, item name
+    "Shotgun (Double Barrel)"), own mesh, 8 gun clips, 13 hands clips, 3 third-person torso clips, 7 textures, 2
+    shaders, the loot picture, the armory's 2-round picture. Every file is `new` (as the G 43 Irons: nothing of it in
+    the mod tree). The two alias blocks are APPENDED to the fixes copies of fps_anims_shotgun.txt / anims_shotgun.txt
+    (op B: the lane's block as it is, before the closing brace; the files themselves carry pass-1 / pass-2 rows).
+    Code-pak side (state file rows, armory id 80, generators): integrate/apply_armory9.py.
+    Engine: integ-ads merge of dbshotgun-next 1dc10936 (cgame only)."""
+    d = '@../dbshotgun_2026-10-12/assets'
+    g = 'Double barrel'
+    fin = ('gold', 'chrome', 'blued', 'bloody', 'camo_woodland', 'camo_winter', 'camo_desert')
+    tiks = ['coop_dbshotgun'] + ['coop_dbshotgun_' + s for s in fin]
+    wdir = os.path.join(L.PROP, '..', 'dbshotgun_2026-10-12', 'assets', 'models', 'weapons')
+    staged = sorted(f[:-4].lower() for f in os.listdir(wdir) if f.lower().endswith('.tik'))
+    assert staged == sorted(tiks), ('double barrel: staged tiks and the list differ', staged)
+    for t in tiks:
+        n = L.tik_name(open(os.path.join(wdir, t + '.tik'), 'rb').read().decode('latin-1'))
+        assert n == 'Shotgun (Double Barrel)', (t, n)
+    ops = [F(d, W + t + '.tik', g) for t in tiks]
+    ops += [F(d, W + 'coop_dbshotgun/coop_dbshotgun.skd', g)]
+    ops += [F(d, W + 'coop_dbshotgun/coop_dbs_' + c + '.skc', g) for c in ('idle', 'fire', 'fire_empty', 'reload', 'reload_empty', 'reload_single',
+                                                                             'reload_single_first', 'reload_end')]
+    ops += [F(d, VM + 'coop_dbshotgun/dbs_' + c + '.skc', g) for c in ('idle', 'fire', 'charge', 'pullout', 'putaway', 'reload', 'reload_single',
+                                                                        'reload_single_l', 'reload_end', 'reload_ads', 'reload_single_ads',
+                                                                        'reload_single_l_ads', 'reload_end_ads')]
+    ops += [F(d, VM + 'coop_dbshotgun/coop_dbs_tps_' + c + '.skc', g) for c in ('fire', 'fire_crouch', 'reload_end')]
+    ops += [F(d, 'textures/models/weapons/coop_dbshotgun/coop_dbshotgun' + s + '.jpg', g) for s in ('', '_parts', '_bloody', '_camo_woodland', '_camo_winter',
+                                                                                                    '_camo_desert', '_fmask')]
+    ops += [F(d, 'scripts/coop_dbshotgun.shader', g), F(d, 'scripts/coop_dbshotgun_finish.shader', g),
+            F(d, 'textures/hud/loot/w_dbshotgun.tga', g, tga_flag=True), F(d, 'textures/hud/clip/clip_2.tga', g, tga_flag=True)]
+    ops += [B('models/player/base/fps_anims_shotgun.txt', '@../dbshotgun_2026-10-12', 'rows/fps_rows_coop_dbshotgun.txt', 13, g),
+            B('models/player/base/anims_shotgun.txt', '@../dbshotgun_2026-10-12', 'rows/tps_rows_coop_dbshotgun.txt', 3, g)]
+    return ops
+
+
+def B(rowfile, lane, src, nrows, gun):
+    """BLOCK APPEND into the fixes copy of an alias file: the lane's text block `src` (rows with their own { } command
+    blocks and comments) is inserted as it is before the file's closing brace, in the file's line ending. Found again
+    by its first line: identical = same, different = replaced. `nrows` = the number of alias rows it must define; none
+    of them may exist outside the block."""
+    return dict(op='B', rel=rowfile, lane=lane, src=src, nrows=nrows, gun=gun)
+
+
+STEPS = {1: step1, 2: step2, 3: step3, 4: step4, 5: step5, 7: step7, 8: step8, 9: step9}
 
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -693,6 +746,41 @@ def main():
                     put_row(o['rel'], row, hit[0], o['gun'], st, 'lane ' + o['lane'])
             elif o['op'] == 'RL':
                 put_row(o['rel'], o['row'], o['line'], o['gun'], st, 'integration')
+            elif o['op'] == 'B':
+                blk = [l.encode('latin-1') for l in lane_read(o['lane'], o['src']).decode('latin-1').splitlines()]
+                while blk and not blk[-1].strip():
+                    blk.pop()
+                lines, nl = rowfile(o['rel'])
+                # alias rows of the block = depth-0 lines `name clip.skc ...`
+                depth, names = 0, []
+                for l in blk:
+                    t = l.decode('latin-1').split('//')[0]
+                    if depth == 0 and row_of(t) and '.skc' in t:
+                        names.append((row_of(t), t.split()[1]))
+                    depth += t.count('{') - t.count('}')
+                if depth or len(names) != o['nrows']:
+                    fails.append('%s: block %s defines %d rows (want %d), brace depth %d' % (o['rel'], o['src'], len(names), o['nrows'], depth))
+                    continue
+                at = [i for i, l in enumerate(lines) if l == blk[0]]
+                if len(at) > 1:
+                    fails.append('%s: block %s is there %d times' % (o['rel'], o['src'], len(at)))
+                    continue
+                if at and lines[at[0]:at[0] + len(blk)] == blk:
+                    act = 'same'
+                else:
+                    if at:                  # an older copy of the block: cut it out up to the closing brace
+                        close = max(i for i, l in enumerate(lines) if l.strip() == b'}')
+                        del lines[at[0]:close]
+                    close = max(i for i, l in enumerate(lines) if l.strip() == b'}')
+                    lines[close:close] = blk
+                    act = 'REPLACE' if at else 'ADD'
+                start = [i for i, l in enumerate(lines) if l == blk[0]][0]
+                for nm, clip in names:
+                    hit = [i for i, l in enumerate(lines) if row_of(l.decode('latin-1')) == nm]
+                    if len(hit) != 1 or not start <= hit[0] < start + len(blk):
+                        fails.append('%s: row %s is defined %d times / outside the block' % (o['rel'], nm, len(hit)))
+                    owner.setdefault(('rowclip', 'models/human/animation/' + clip), (o['gun'], st, o['rel'] + ' :: ' + nm))
+                report.append((st, o['gun'], 'block', o['rel'] + ' :: %d rows of %s' % (len(names), o['src']), act))
             elif o['op'] == 'C':
                 have = set()
                 wdir = os.path.join(L.MOD, 'models', 'weapons')

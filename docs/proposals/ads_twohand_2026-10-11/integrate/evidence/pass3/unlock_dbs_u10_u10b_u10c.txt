@@ -1,0 +1,173 @@
+===== run u10
+Armory: STG 44 is LOCKED - Challenge: First of Its Kind - Enter the armory and steal an StG44 (+1 other way
+"coop_dbShotgun" is:"", the default
+^~^~^ XT dbstate dbs=0 slot1=NIL id1=NIL fin1=NIL
+^~^~^ UNLOCK locked_click:
+"coop_lo1" is:"", the default
+"coop_loS1" is:"" default:"models/weapons/mp44.tik"
+"coop_loS1F" is:"0", the default
+"coop_loLkA80" is:"set coop_loLkV80 1", the default
+"coop_lockLoadout" is:"1" default:""
+^~^~^ XT sg59 (wpn_shotgun +59)
+^~^~^ XT dbstate dbs=0 slot1=NIL id1=NIL fin1=NIL
+^~^~^ UNLOCK at59_click:
+"coop_lo1" is:"", the default
+"coop_loS1" is:"" default:"models/weapons/mp44.tik"
+"coop_loS1F" is:"0", the default
+"coop_loLkA80" is:"set coop_loLkV80 1", the default
+"coop_lockLoadout" is:"1" default:""
+^~^~^ XT sg1 (wpn_shotgun +1)
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+^~^~^ UNLOCK at60_click:
+"coop_lo1" is:"", the default
+"coop_loS1" is:"" default:"models/weapons/mp44.tik"
+"coop_loS1F" is:"0", the default
+"coop_loLkA80" is:"set coop_loLkV80 1", the default
+"coop_lockLoadout" is:"1" default:""
+^~^~^ UNLOCK spawn_with_pick: respawned=True
+^~^~^ XT held=models/weapons/thompsonsmg.tik
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+^~^~^ XT snow150 (kill_snow +150)
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+^~^~^ UNLOCK finish_winter:
+"coop_lo1" is:"", the default
+"coop_loS1" is:"" default:"models/weapons/mp44.tik"
+"coop_loS1F" is:"0", the default
+"coop_loLkA80" is:"set coop_loLkV80 0" default:"set coop_loLkV80 1"
+"coop_lockLoadout" is:"1" default:""
+Pick a weapon for that slot first
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+Pick a weapon for that slot first
+^~^~^ UNLOCK spawn_with_finish: respawned=True
+^~^~^ XT held=models/weapons/thompsonsmg.tik
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+^~^~^ UNLOCK after_map_change:
+^~^~^ XT held=models/weapons/thompsonsmg.tik
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+===== run u10b
+Armory: STG 44 is LOCKED - Challenge: First of Its Kind - Enter the armory and steal an StG44 (+1 other way
+"coop_dbShotgun" is:"", the default
+^~^~^ XT dbstate dbs=0 slot1=NIL id1=NIL fin1=NIL
+^~^~^ UNLOCK locked_click:
+"coop_lo1" is:"", the default
+"coop_loS1" is:"" default:"models/weapons/mp44.tik"
+"coop_loS1F" is:"0", the default
+"coop_loLkA80" is:"set coop_loLkV80 1", the default
+"coop_lockLoadout" is:"1" default:""
+^~^~^ XT sg59 (wpn_shotgun +59)
+^~^~^ XT dbstate dbs=0 slot1=NIL id1=NIL fin1=NIL
+^~^~^ UNLOCK at59_click:
+"coop_lo1" is:"", the default
+"coop_loS1" is:"" default:"models/weapons/mp44.tik"
+"coop_loS1F" is:"0", the default
+"coop_loLkA80" is:"set coop_loLkV80 1", the default
+"coop_lockLoadout" is:"1" default:""
+^~^~^ XT sg1 (wpn_shotgun +1)
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+"coop_loLkA80" is:"set coop_loLkV80 1", the default
+^~^~^ UNLOCK at60_click:
+"coop_lo1" is:"", the default
+"coop_loS1" is:"" default:"models/weapons/mp44.tik"
+"coop_loS1F" is:"0", the default
+"coop_loLkA80" is:"set coop_loLkV80 1", the default
+"coop_lockLoadout" is:"1" default:""
+^~^~^ UNLOCK spawn_with_pick: respawned=True
+^~^~^ XT held=models/weapons/thompsonsmg.tik
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+^~^~^ XT snow150 (kill_snow +150)
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+^~^~^ UNLOCK finish_winter:
+"coop_lo1" is:"", the default
+"coop_loS1" is:"" default:"models/weapons/mp44.tik"
+"coop_loS1F" is:"0", the default
+"coop_loLkA80" is:"set coop_loLkV80 0" default:"set coop_loLkV80 1"
+"coop_lockLoadout" is:"1" default:""
+Pick a weapon for that slot first
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+Pick a weapon for that slot first
+^~^~^ UNLOCK spawn_with_finish: respawned=True
+^~^~^ XT held=models/weapons/thompsonsmg.tik
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+^~^~^ UNLOCK after_map_change:
+^~^~^ XT held=models/weapons/thompsonsmg.tik
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+===== run u10c
+Armory: STG 44 is LOCKED - Challenge: First of Its Kind - Enter the armory and steal an StG44 (+1 other way
+"coop_dbShotgun" is:"", the default
+^~^~^ XT dbstate dbs=0 slot1=NIL id1=NIL fin1=NIL
+^~^~^ UNLOCK locked_click:
+"coop_lo1" is:"", the default
+"coop_loS1" is:"" default:"models/weapons/mp44.tik"
+"coop_loS1F" is:"0", the default
+"coop_loLkA80" is:"set coop_loLkV80 1", the default
+"coop_lockLoadout" is:"1" default:""
+^~^~^ XT sg59 (wpn_shotgun +59)
+^~^~^ XT dbstate dbs=0 slot1=NIL id1=NIL fin1=NIL
+^~^~^ UNLOCK at59_click:
+"coop_lo1" is:"", the default
+"coop_loS1" is:"" default:"models/weapons/mp44.tik"
+"coop_loS1F" is:"0", the default
+"coop_loLkA80" is:"set coop_loLkV80 1", the default
+"coop_lockLoadout" is:"1" default:""
+^~^~^ XT sg1 (wpn_shotgun +1)
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+"coop_loLkA80" is:"set coop_loLkV80 1", the default
+^~^~^ UNLOCK at60_click:
+"coop_lo1" is:"", the default
+"coop_loS1" is:"" default:"models/weapons/mp44.tik"
+"coop_loS1F" is:"0", the default
+"coop_loLkA80" is:"set coop_loLkV80 1", the default
+"coop_lockLoadout" is:"1" default:""
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+^~^~^ UNLOCK spawn_after_click_1: respawned=True
+^~^~^ XT held=models/weapons/thompsonsmg.tik
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+"coop_loLkA80" is:"set coop_loLkV80 0" default:"set coop_loLkV80 1"
+^~^~^ UNLOCK click_2_after_respawn:
+"coop_lo1" is:"80" default:""
+"coop_loS1" is:"models/weapons/coop_dbshotgun.tik" default:"models/weapons/mp44.tik"
+"coop_loS1F" is:"0", the default
+"coop_loLkA80" is:"set coop_loLkV80 0" default:"set coop_loLkV80 1"
+"coop_lockLoadout" is:"1" default:""
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+^~^~^ UNLOCK spawn_with_pick: respawned=True
+^~^~^ XT held=models/weapons/thompsonsmg.tik
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+^~^~^ XT snow150 (kill_snow +150)
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+Pick a weapon for that slot first
+^~^~^ UNLOCK finish_winter:
+"coop_lo1" is:"80" default:""
+"coop_loS1" is:"models/weapons/coop_dbshotgun.tik" default:"models/weapons/mp44.tik"
+"coop_loS1F" is:"0", the default
+"coop_loLkA80" is:"set coop_loLkV80 0" default:"set coop_loLkV80 1"
+"coop_lockLoadout" is:"1" default:""
+Pick a weapon for that slot first
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+Pick a weapon for that slot first
+^~^~^ UNLOCK spawn_with_finish: respawned=True
+^~^~^ XT held=models/weapons/thompsonsmg.tik
+^~^~^ XT dbstate dbs=1 slot1=NIL id1=NIL fin1=NIL
+^~^~^ UNLOCK after_map_change:
+^~^~^ XT held=models/weapons/coop_dbshotgun.tik
+^~^~^ XT dbstate dbs=1 slot1=models/weapons/coop_dbshotgun.tik id1=80 fin1=NIL

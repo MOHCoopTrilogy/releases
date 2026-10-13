@@ -1,0 +1,376 @@
+TIKI
+// HZM coop: sawn-off double-barrel shotgun. Mesh: "Double Barrel Shotgun" by Jean PFP (CC0, opengameart.org),
+// converted by docs/proposals/dbshotgun_2026-10-12/tools (dbs_tik.py writes this file - edit the numbers THERE).
+setup
+{
+	scale 0.52
+	path models/weapons/coop_dbshotgun
+	skelmodel coop_dbshotgun.skd
+	surface dbs1 shader coop_dbshotgun
+	surface dbs2 shader coop_dbshotgun
+	surface dbs3 shader coop_dbshotgun
+	surface dbs4 shader coop_dbshotgun
+	surface dbs5 shader coop_dbshotgun
+	surface dbs6 shader coop_dbshotgun
+	surface dbs7 shader coop_dbshotgun
+	surface dbs8 shader coop_dbshotgun
+	surface dbs9 shader coop_dbshotgun
+	surface dbs10 shader coop_dbshotgun
+	surface dbs11 shader coop_dbshotgun
+	surface dbs12 shader coop_dbshotgun
+	surface dbsx1 shader coop_dbshotgun_parts
+}
+
+init
+{
+	server
+	{
+		classname		Weapon
+		weapontype		heavy
+		weaponsubtype		2
+		name			"Shotgun (Double Barrel)"
+		rank			645 645
+
+		sp bulletrange		650
+		sp bulletspread		115 115 135 135
+		dm bulletrange		650
+		dm bulletspread		115 115 135 135
+		realism bulletrange		650
+		realism bulletspread		115 115 135 135
+
+		sp bulletcount		38
+		sp bulletdamage		10
+		dm bulletcount		26
+		dm bulletdamage		14
+		realism bulletcount		26
+		realism bulletdamage		17
+
+		sp firedelay		0.30
+		dm firedelay		0.30
+		realism firedelay		0.30
+
+		sp movementspeed	1.00
+		dm movementspeed 	1.00
+		realism movementspeed 	1.00
+
+		secondary firetype		melee
+		secondary ammotype		none
+		secondary ammorequired		0
+		secondary meansofdeath		bash
+		secondary bulletknockback	50
+		secondary quiet
+		sp secondary bulletrange	64
+		sp secondary bulletdamage	60
+		dm secondary bulletrange	96
+		dm secondary bulletdamage	60
+		realism secondary bulletrange	96
+		realism secondary bulletdamage	60
+
+		firetype		bullet
+		ammotype		"shotgun"
+		meansofdeath	shotgun
+		semiauto
+		clipsize		2
+		ammorequired	1
+
+		sp startammo	10
+		dm startammo	40
+		sprealism startammo	10
+		dmrealism startammo	40
+
+		dm additionalstartammo "grenade" 2
+		dm additionalstartammo "smokegrenade" 1
+		dmrealism additionalstartammo "grenade" 2
+		dmrealism additionalstartammo "smokegrenade" 1
+
+		tracerfrequency 0
+		crosshair		1
+
+		pickupsound		shotgun_snd_pickup
+		ammopickupsound	shotgun_snd_pickup_ammo
+		noammosound		shotgun_snd_noammo
+
+		holstertag				"Bip01 Spine2"
+		holsteroffset			"8.0 -7.75 6.5"
+		holsterangles			"0 185 -25"
+		holsterScale			1.0
+
+		weapongroup		rifle
+		airange			short
+
+		exec coop_mod/itemhandler.scr "initialiseItem" "shotgun" "Shotgun"
+	}
+	client
+	{
+		cache tracer.spr
+		cache muzsprite.spr
+		cache model models/fx/bh_metal_fastpiece.tik
+		cache models/ammo/shotgunshell.tik
+		aliascache coop_dbs_snd_fire sound/weapons/fire/ShotgunFire1.wav soundparms 2.2 0.0 0.70 0.05 540 8000 weapon loaded maps "m e t dm obj lib"
+		aliascache coop_dbs_snd_open sound/weapons/foley/wpn_Webley_reloadstart.wav soundparms 1.7 0.0 0.85 0.05 160 1000 item loaded maps "m e t dm obj lib"
+		aliascache coop_dbs_snd_shell sound/weapons/foley/ShotgunFill1.wav soundparms 1.2 0.01 0.90 0.06 160 1000 item loaded maps "m e t dm obj lib"
+		aliascache coop_dbs_snd_close sound/weapons/foley/coop_wpn_action_heavy.wav soundparms 1.1 0.05 0.85 0.05 160 1000 item loaded maps "m e t dm obj lib"
+	}
+}
+
+animations
+{
+	idle	coop_dbs_idle.skc
+	fire	coop_dbs_fire.skc
+	{
+		server
+		{
+			entry shoot
+		}
+		client
+		{
+			entry stopaliaschannel coop_dbs_snd_fire
+			entry sound coop_dbs_snd_fire
+			entry viewkick -23.0 -26.0  -2.0 2.0  12.0  "T"  14.0 6.0 12.0
+			entry tagdlight tag_dbs_r 0.25 0.2 0.15 150 0.11
+			entry tagspawnlinked tag_dbs_r
+			(
+				scale 0.45
+				offsetalongaxis 1.5 0 0
+				count 1
+				model muzsprite.spr
+				angles 0 0 crandom 25
+				life 0.06
+			)
+			entry tagspawn tag_dbs_r
+			(
+				spawnrate 1.00
+				model models/fx/bh_metal_fastpiece.tik
+				count 3
+				color 1.00 1.00 1.00
+				scale 0.20
+				life 0.30
+				radius 3.00
+				velocity 100.00
+				randvel 100 0 0
+				accel 0.00 0.00 -120.00
+				offsetalongaxis 4 0 0
+				fade
+				align
+			)
+			entry tagspawnlinked tag_dbs_r
+			(
+				spawnrate 1.00
+				model muzsprite.spr
+				color 1.00 1.00 1.00
+				scale 0.70
+				life 0.09
+				scalerate 12.00
+				velocity 33.00
+				offsetalongaxis 4 0 0
+				fade
+				randomroll
+			)
+			entry commanddelay 0.010 originspawn
+			(
+				model vsssource.spr
+				count 6
+				alpha 0.30
+				color 1.00 1.00 1.00
+				spritegridlighting
+				scale 0.80
+				life 0.55
+				scalerate 6.00
+				cone 8.00 2.00
+				velocity 300.00
+				radialvelocity 11.00 60.00 120.00
+				accel 0.00 0.00 -30.00
+				friction 5.00
+				offset crandom -5 crandom -5 crandom -5
+				offsetalongaxis 22 0 0
+				fade
+				randomroll
+			)
+		}
+	}
+	fire_empty	coop_dbs_fire_empty.skc
+	{
+		server
+		{
+			entry shoot
+		}
+		client
+		{
+			entry stopaliaschannel coop_dbs_snd_fire
+			entry sound coop_dbs_snd_fire
+			entry viewkick -23.0 -26.0  -2.0 2.0  12.0  "T"  14.0 6.0 12.0
+			entry tagdlight tag_dbs_l 0.25 0.2 0.15 150 0.11
+			entry tagspawnlinked tag_dbs_l
+			(
+				scale 0.45
+				offsetalongaxis 1.5 0 0
+				count 1
+				model muzsprite.spr
+				angles 0 0 crandom 25
+				life 0.06
+			)
+			entry tagspawn tag_dbs_l
+			(
+				spawnrate 1.00
+				model models/fx/bh_metal_fastpiece.tik
+				count 3
+				color 1.00 1.00 1.00
+				scale 0.20
+				life 0.30
+				radius 3.00
+				velocity 100.00
+				randvel 100 0 0
+				accel 0.00 0.00 -120.00
+				offsetalongaxis 4 0 0
+				fade
+				align
+			)
+			entry tagspawnlinked tag_dbs_l
+			(
+				spawnrate 1.00
+				model muzsprite.spr
+				color 1.00 1.00 1.00
+				scale 0.70
+				life 0.09
+				scalerate 12.00
+				velocity 33.00
+				offsetalongaxis 4 0 0
+				fade
+				randomroll
+			)
+			entry commanddelay 0.010 originspawn
+			(
+				model vsssource.spr
+				count 6
+				alpha 0.30
+				color 1.00 1.00 1.00
+				spritegridlighting
+				scale 0.80
+				life 0.55
+				scalerate 6.00
+				cone 8.00 2.00
+				velocity 300.00
+				radialvelocity 11.00 60.00 120.00
+				accel 0.00 0.00 -30.00
+				friction 5.00
+				offset crandom -5 crandom -5 crandom -5
+				offsetalongaxis 22 0 0
+				fade
+				randomroll
+			)
+		}
+	}
+	reload	coop_dbs_reload.skc
+	{
+		client
+		{
+			entry sound coop_dbs_snd_open
+			10 tagspawn tag_eject
+			(
+				count 1
+				model models/ammo/shotgunshell.tik
+				spawnrange 1024
+				scale 1.0
+				velocity 90
+				randvel crandom 14 crandom 14 random 20
+				emitterangles 0 0 0
+				avelocity crandom 120 crandom 120 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_shotgun_shell
+			)
+		}
+	}
+	reload_empty	coop_dbs_reload_empty.skc
+	{
+		client
+		{
+			entry sound coop_dbs_snd_open
+			10 tagspawn tag_eject
+			(
+				count 2
+				model models/ammo/shotgunshell.tik
+				spawnrange 1024
+				scale 1.0
+				velocity 90
+				randvel crandom 14 crandom 14 random 20
+				emitterangles 0 0 0
+				avelocity crandom 120 crandom 120 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_shotgun_shell
+			)
+		}
+	}
+	reload_ads_empty	coop_dbs_reload_empty.skc
+	{
+		client
+		{
+			entry sound coop_dbs_snd_open
+			10 tagspawn tag_eject
+			(
+				count 2
+				model models/ammo/shotgunshell.tik
+				spawnrange 1024
+				scale 1.0
+				velocity 90
+				randvel crandom 14 crandom 14 random 20
+				emitterangles 0 0 0
+				avelocity crandom 120 crandom 120 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_shotgun_shell
+			)
+		}
+	}
+	reload_single	coop_dbs_reload_single.skc
+	{
+		client
+		{
+			12 stopaliaschannel coop_dbs_snd_shell
+			12 sound coop_dbs_snd_shell
+		}
+	}
+	reload_single_first	coop_dbs_reload_single_first.skc
+	{
+		client
+		{
+			12 stopaliaschannel coop_dbs_snd_shell
+			12 sound coop_dbs_snd_shell
+		}
+	}
+	reload_end	coop_dbs_reload_end.skc
+	{
+		server
+		{
+			last idle
+		}
+		client
+		{
+			12 sound coop_dbs_snd_close
+		}
+	}
+	secondaryfire	coop_dbs_idle.skc
+	{
+		server
+		{
+			entry shoot secondary
+		}
+	}
+}
+
+/*QUAKED addon_playerweapon_coop_dbshotgun (0.0 0.0 1.0) (-8 -8 -8) (8 8 8)
+Weapon - sawn-off double-barrel shotgun (HZM coop)
+*/

@@ -1,0 +1,5 @@
+released = fixes @ 02ded3f | integrated = working copy | 14 file(s)
+file | row | released | integrated | verdict
+---
+98 rows in 14 files: 98 untouched
+GATE: pass - no server-read row changed length

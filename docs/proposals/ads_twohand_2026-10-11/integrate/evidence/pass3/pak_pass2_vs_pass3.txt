@@ -1,0 +1,9 @@
+deployed (pass 2) pak md5 3a071f44ef7f6e44a87f47c1efde43ce 455 members
+pass 3 pak md5 60c9ea21a01f7fc37ab12b959654f8bd 500 members
+removed: []
+added: 45
+   added (not a double-barrel name): textures/hud/clip/clip_2.tga
+   added (not a double-barrel name): textures/models/weapons/colt/colt45s2.dds
+changed: models/player/base/anims_shotgun.txt | pass-2 text up to its closing brace is a prefix of the new file: True | +1052 bytes
+changed: models/player/base/fps_anims_shotgun.txt | pass-2 text up to its closing brace is a prefix of the new file: True | +2087 bytes
+identical members: 453

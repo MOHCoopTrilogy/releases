@@ -265,4 +265,30 @@ animations
 	shotgun_crouch_hit_rarm02	weapon_rifle/minor_pain/rifle_crouch_hit_rarm.skc		random	autosteps_walk
 	shotgun_crouch_hit_larm		weapon_rifle/minor_pain/rifle_crouch_hit_torso.skc			autosteps_walk
 	shotgun_crouch_hit_leg		weapon_rifle/minor_pain/rifle_crouch_hit_front.skc			autosteps_walk
+	//===================== HZM coop: double-barrel shotgun, THIRD-PERSON torso rows =====================
+	// append inside models/player/base/anims_shotgun.txt (its last $path is models/human/animation). The pump gun's
+	// clips with the pump stroke taken out, same frame counts (docs/proposals/dbshotgun_2026-10-12 tools/dbs_tps.py);
+	// used by the state rows of wiring/patch_torso_dbs.py for "Shotgun (Double Barrel)" only.
+	coop_dbs_stand_fire		viewmodel/coop_dbshotgun/coop_dbs_tps_fire.skc		crossblend 0.05
+	{
+		server
+		{
+			entry fire
+		}
+	}
+	coop_dbs_crouch_fire		viewmodel/coop_dbshotgun/coop_dbs_tps_fire_crouch.skc	crossblend 0.05
+	{
+		server
+		{
+			entry fire
+		}
+	}
+	coop_dbs_reload_end		viewmodel/coop_dbshotgun/coop_dbs_tps_reload_end.skc	crossblend 0.05
+	{
+		server
+		{
+			first weaponcommand mainhand anim reload_end
+			first removeattachedmodel tag_weapon_left 0 models/ammo/shotgunshell.tik	// as the pump gun's end row (heavy lane): a reload broken off with the third-person shell still in the hand
+		}
+	}
 }

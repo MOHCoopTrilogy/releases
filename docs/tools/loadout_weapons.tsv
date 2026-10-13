@@ -89,3 +89,4 @@ id	tik	give	xfm	charanim	cls	tab	name	cd	b0	b1	b2	b3	clip	clipn	recoil	slots
 74	models/weapons/mauser_c96.tik		0 0 0 1.60 0 90 180	coop_hold_pistol		4	MAUSER C96	7.63MM / SEMI-AUTO / 10 RD	3	5	9	9	10	10	p38	3
 75	models/weapons/m10_revolver.tik		0 0 0 1.60 0 90 180	coop_hold_pistol		4	S&W M10 .38	.38 SPECIAL / REVOLVER / 6 RD	3	5	8	9	6	6	nagant_revolver	3
 78	models/weapons/coop_g43_irons.tik	models/weapons/coop_g43_irons.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	GEWEHR 43 (IRON SIGHTS)	7.92MM / SEMI-AUTO / IRON SIGHTS	5	4	8	10	10	10	g43	12
+80	models/weapons/coop_dbshotgun.tik	models/weapons/coop_dbshotgun.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	heavy	3	DOUBLE BARREL	12 GAUGE / BREAK-ACTION	10	3	6	10	2	2	shotgun	12

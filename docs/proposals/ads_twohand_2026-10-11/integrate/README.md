@@ -1,3 +1,109 @@
+# Integration PASS 3 (2026-10-13): the silencer repaint + the double-barrel shotgun
+
+**State: step A (silencer sheet, script step 8) and step B (double-barrel shotgun, script step 9) are IN on top of
+pass 2 (which is what the user's install runs). Step C (FG 42 pair, the script's step 6) is entirely OUT - nothing of
+it is in the engine branch, the fixes sources or the mod tree (not started: budget). Nothing is deployed, nothing is
+published.** Pass 2's and pass 1's text is kept below, unchanged.
+
+| what | where | id |
+|---|---|---|
+| engine | `C:\mohaa-coop-dev\openmohaa-hzm-integads`, branch `integ-ads` (cgame only) | **0206e3c9** = merge of `dbshotgun-next` 1dc10936 onto 14fb0dde (clean, 75 lines in 5 cgame files) |
+| binaries | `<scratchpad>\built_integ10\` = `built_integ9` + the new `cgame.dll` (copy also in `built_integ10_stepB\`) | cgame **b4b5c4e2**1c05df607517b6d9b32bf7c0; unchanged: game 6b515fbf, exe 5cd827eb, ded 9ebd2043, gl1 a15882c4, gl2 8296bf86 |
+| mod (code pak) | `hzm-mohaa-coop-mod`, branch `coop-wip` | **f58e211c** (36 files: state file, armory through the generators, Service Record) |
+| fixes pak | `hzm-mohaa-coop-mod\zzzzzzzzzz_coop_fixes.pk3` - **500 members, 21 324 420 bytes** | md5 **60c9ea21**a01f7fc37ab12b959654f8bd (after step A alone: 456 members, bd88b463) |
+| baseline | pass 2: `built_integ9` (cgame e81f6925) + mod 17761c3a + the deployed fixes pak 3a071f44 (455 members) | docs 02ded3f |
+
+`evidence/pass3/pak_pass2_vs_pass3.txt`: the new pak = the deployed pak with **453 members byte-identical, 0 removed,
+45 added** (44 double-barrel files + `colt45s2.dds`) **and 2 changed** (`fps_anims_shotgun.txt`, `anims_shotgun.txt`:
+the deployed text up to its closing brace is a prefix of the new file - blocks appended, nothing else).
+
+## Step A - silencer repaint (script step 8)
+`textures/models/weapons/colt/colt45s2.dds` (2048 DXT1, 2 796 344 bytes, md5 36c3ef79, pinned in the step) from
+`docs/proposals/gun_repaint_2026-10-13/assets/`, manifest kind `new` (in no pak, not in the mod tree). It wins over
+`colt45s2.tga` of `zzzzz_xw_weapons.pk3` on six silenced guns (Colt, Beretta, Garand, grease gun, Kar98 sniper,
+Nagant sniper). `gen_fixes_pak.py restore / build / check`: OK. Engine (run a10, the REAL pak): `imagelist` holds
+`2048x2048 DXT1 3Mb textures/models/weapons/Colt/colt45s2.tga` (`silencer_imagelist_a10.txt`; the old sheet was
+256x128). The one still (`stepA_silenced_colt_aim_a10.jpg`, looked at) is the aimed view, where the slide hides the
+tube - **the repainted tube itself was not seen in this pass** (the repaint lane's own engine stills stand).
+Silenced Colt timing: 8 of 8 phases equal to pass 2's run p4.
+
+## Step B - double-barrel shotgun, a NEW weapon (script step 9), 8 tiks
+Frozen ship cut `docs/proposals/dbshotgun_2026-10-12/DBS_SHIP.md` (`ship_manifest.py --check`: 65 frozen files, all as
+frozen). Tiks: `coop_dbshotgun` + `_gold`, `_chrome`, `_blued`, `_bloody`, `_camo_woodland`, `_camo_winter`,
+`_camo_desert` (item name "Shotgun (Double Barrel)"). In the fixes pak, all `new`: the 8 tiks, the mesh, 8 gun clips,
+13 hands clips, 3 third-person torso clips, 7 textures, 2 shaders, `w_dbshotgun.tga`, `clip_2.tga`; the two alias
+blocks appended to the fixes copies of `fps_anims_shotgun.txt` (13 rows) and `anims_shotgun.txt` (3 rows) by the new
+op `B` (a lane BLOCK inserted before the closing brace; the files keep their pass-1 / pass-2 rows - bug-3894).
+Code pak (mod f58e211c), in the ship doc's order, every `--check` passed first: `patch_torso_dbs.py` on the CURRENT
+`coop_mod/player_Torso.st` (6 torso rows, the aimed-refire row + `COOP_DBS_REFIRE_AIM`, 2 break-off routing rows; rows
+inserted only), `generators.patch` on the real `docs/tools` (TSV row id 80, `armory_unlocks.py`,
+`gen_service_record.py`), `armory_dbs.patch` (18 mod files), the 12 new `ui/loadout/*80*.cfg`, then the real
+generators: `gen_loadout.py build` (646 files, 76 weapons), `gen_skinbase.py`, `armory_unlocks.py --emit`,
+`gen_loadout.py check` = EXACT REPRODUCTION, `gen_service_record.py build` (446 rows; build.ps1 runs it too).
+`ui/coop_loadout.urc` is re-locked in `check_mp_isolation.py` (blob 0ba78fc0 @ mod f58e211c; its sha256 is the ship
+doc's reference value).
+
+**Unlock rules as shipped:** roster id **80**, tile DOUBLE BARREL, the LAST tile of the HEAVY tab (no other tile
+moved); unlocked by the challenge **"Both Barrels" = 60 kills with the Shotgun** (`wpn_shotgun_v`); the 7 finishes
+gated as the pump gun's; master switch **`coop_dbShotgun`** (default 1 in `coop_defaults.cfg`; 0 = tile hidden, pick
+refused). Shells are the pump gun's pool. (Pass 2, unchanged: G 43 Irons id 78, rank 2.)
+
+Engine: the merge leaves ONE `reload_single -> reload_single_first` block after the aimed-reload block (ship doc
+sec. 6), the hands `<row>_l` lookup, the sight row, the loot picture by the full name; the pump patch's same-mesh
+guard is untouched, so the double barrel does not take the pump stroke.
+
+## Gates (`evidence/pass3/`)
+| gate | result |
+|---|---|
+| row lengths, the 14 pump tiks against docs 02ded3f (`rowlen_pump14_vs_pass2.txt`) | 98 rows, 98 untouched |
+| row lengths, everything (`rowlen_all_vs_pass2.txt`) | 2215 rows in 236 files, 2132 untouched; 59 new server-read rows = 7 x 8 double-barrel tiks + the 3 torso aliases (declared with `--intended`; lengths = ship doc sec. 7), 24 new client-only rows. GATE: pass |
+| server timing, pass 2 (run r9, cgame e81f6925) against pass 3 (run a10, listen server, 25 ms frames) - `timing_r9_vs_a10.txt` | pump shotgun, Colt 45, G 43 Irons: **27 of 27 phases equal**, 0 differ |
+| double barrel, measured (run a10, `per_gun_dbs_a10.txt`; base and gold identical) | below |
+| unlock path (runs u10, u10b, u10c; `unlock_dbs_u10_u10b_u10c.txt`) | below - partly open |
+| Script Error | 0 in a10, u10, u10b, u10c. Error-like lines of a10 not in r9: 0. u10c against pass 2's unlock run u5c: OpenAL symbol addresses, one m1l1 sound-length warning, "LOCALIZATION ERROR" notices for the tile names DOUBLE BARREL / TRENCH GUN (every tile name prints one when first drawn) |
+| build checks | `check_mp_isolation.py --engine openmohaa-hzm-integads` 22 passed / 0 FAILED + selftest ok (91 mutations), `scrlint` 876 clean, `check_empty_rhs`, `check_tik_surfaces`, `unlock_audit` 76/76, `ads_audit`, `ui_wiring_audit`, `gen_mp_armory.py check` EXACT, `check_challenges` OK (after the pak rebuild, bug-3895), `gen_fixes_pak.py check` OK, full `integrate_ads.py --dry-run`: 488 files, every earlier step "same". `build.ps1` was NOT run |
+
+### Pump shotgun, pass 2 against pass 3 (s of server time)
+Reload 5 shells 5.175 / 5.175, shells counted +1.200 ... +3.800 / the same, shot to shot 1.15-1.175 / the same, both
+break-offs as pass 2 - every phase equal. The hands clips the client reported in the reload phases are the same list
+in r9 and a10. **The pump stroke in the aim was not looked at again in this pass**: its code path, its 4 rows and its
+clip are byte-identical to the deployed set (pak comparison; `git diff 14fb0dde 0206e3c9` adds lines elsewhere only).
+
+### Double barrel, measured (= ship doc sec. 7 to the frame)
+| what | hip | aimed |
+|---|---|---|
+| one barrel, then reload with a shell left: start -> shell counted -> ready | 2.575 s, shell at +1.200 | 2.575 s, +1.200 |
+| both barrels (second pull 0.52 s after the first), the gun opens by itself, both shells | fire state 1.675 s, reload 3.225 s, shells at +1.200 / +1.850 | 1.700 s, 3.225 s, +1.200 / +1.850 |
+| reload broken off by the trigger with a shell in the gun | RELOAD_SHOTGUN_BREAK_END 1.175 s, then the shot, then the emptied reload 3.225 s | not run |
+
+`stepB_double_barrel_aim_a10.jpg` (looked at): the gun from the real pak in the aim - rib, bead, wood, both hands.
+
+### Unlock path (empty profile, `coop_lockLoadout 1`, the mod's own `chal_bump`)
+* 0 kills and 59 kills: server locked, tile padlocked, a click is refused. 60th kill: the SERVER has it unlocked at once.
+* **Open (bug-3898 = bug-3888's symptom, not from this pass):** in the SAME life the client's tile stayed padlocked
+  (15 s, 23 s, 60 s after the kill; menu opened again in between); after the next respawn the padlock was off and the
+  click was accepted (`coop_lo1` 80, `coop_loS1` the tik). The server slot stayed empty in THAT map (respawn handed
+  the Thompson, the finish token answered "Pick a weapon for that slot first"); **after a map change (m3l2 -> m1l1)
+  the player spawned holding `coop_dbshotgun.tik`, slot 1, id 80.** Cause not determined; the lane's run a4 (profile
+  with a record, same tree) picked and respawned with it in the same map.
+* NOT verified here: pick + respawn in the same map on a fresh profile; a finish through the armory (the gold tik was
+  run directly: 8 of 8 phases as the base gun); Service Record page; `coop_dbShotgun 0`; dedicated server; a second
+  client; sounds; third person; the loot picture in game. The lane's own evidence (DBS_SHIP.md sec. 9) stands for those.
+
+## Rebuild / back out (pass 3)
+```
+python integrate_ads.py --steps 8,9        # fixes sources + manifest (idempotent)
+python ../../../tools/gen_fixes_pak.py restore ; build ; check ; git -C hzm-mohaa-coop-mod checkout -- models/player/base/
+```
+Back out step B: `git revert f58e211c` (mod) + `git revert -m 1 0206e3c9` (engine, rebuild cgame or use
+`built_integ9`) + the docs commit of this pass (generators, TSV, lock line, fixes sources), rebuild the pak. Back
+out step A alone: remove the `colt45s2.dds` source + its manifest entry (MOVE the file aside), rebuild the pak.
+Step C later: the FG 42 Irons is id 79 - re-run ITS staging script on the tree that now has 78 and 80, then re-run
+`stage_armory_dbs.py --sr` only if the double barrel must stay the last tile; re-lock `ui/coop_loadout.urc` again.
+Runs: a10 (guns), u10 / u10b / u10c (unlock) in `H:\hzm_archive\integrate\`. Bugs: bug-3894 .. bug-3898.
+
+---
+
 # ADS / aimed-reload ROLLOUT - integration PASS 2 (2026-10-13): pistols, G 43 Irons, the shotgun's pump in the aim, + the rain fix
 
 **State: steps 4, 5 and 7 are IN and verified on top of pass 1 (steps 1-3, which is what the user's install runs),
