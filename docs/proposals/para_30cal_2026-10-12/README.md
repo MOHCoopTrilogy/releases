@@ -527,3 +527,123 @@ player on the guns), `p3_grease.py`, `p3_drv.scr` (the overlay driver: cameras, 
 (harness glue; the binaries are read from the session scratchpad: `built_integ7`, `built_leftgun`), `tracks.py`
 (the plots), `scan.py` (the project's parse scanners on single files), `edits/ed1..ed16.py` + `edlib.py` (how the
 scripts were changed; the mod files are the truth), `logs/run_*.txt` (every session quoted above).
+
+---
+
+# FOURTH PASS (2026-10-12 / 13, mod `coop-wip` `b8c330ff` + `e277c9bb` + `60bc2ca7` + `237adcc2`) - and the HANDOVER
+
+Not deployed. **Mod only, no engine change**: `coop_mod/parasquad.scr`, `coop_mod/parasquad_gun.scr`,
+`coop_mod/paradrop.scr`. Game DLL used: `built_integ7/game.dll` md5 `6b515fbf` (harness name `game_p4`), unchanged.
+bug-3746..3754. User, new and binding: **"when no one is using that 30 cal it should be facing upward"**.
+
+## What changed, in plain words
+
+**1. Hands on the grips under pitch (`mgPivot`).** The third pass had this wrong: the engine's pose DOES follow the
+pitch - it holds the hands 39 u behind the pivot on the gun's pitched line and blends stand / crouch to reach them.
+But the crouched pose is the floor (hands 38.7 u over his feet), and a gun 39.3 u high pitched up takes its grips under
+it: 8 u at 12 degrees, 13 u at 20. Now, every frame while somebody is on the gun, the gun is lifted by what is missing
+(7.2 u at 12, 12.2 u at 20, 15.3 u at 25): he raises the muzzle with the grips where they are, and the bipod, fast to
+the barrel, comes off its rest with it. Pitched down, or on a gun high enough for the blend (a sill), nothing moves -
+the engine's pose follows by itself. Script only: it works on an older game.dll too. `pitchCaps -25 / 12` (was 12 / 12);
+the planner takes targets up to 22 degrees up; a mate up to 27 degrees above the muzzle counts as "in front of it".
+A PLAYER has one crouched clip and no blend: on the lowest guns (the bags) the gun follows him both ways (up to 9 u
+down: the bipod's feet press into the bags).
+
+**2. The unmanned gun lies back on its butt (`mgRest`, `mgRestSet`, `mgMount`).** The pitch at which the underside of
+the gun (pivot to the stock's lowest corner: 63.4 u back, 8.2 u under the bore, `tools/pass4/gun_profile.py`) meets the
+world: **30 degrees on the sandbags, 44 on a 48 u sill** (there the receiver meets the sill's near edge; the butt
+hangs ~12 u over the floor), 60 at most. The engine's own drop is not used: it tests a point 56 u back on the bore
+line and buries this model's stock 11 u in the ground. `cooprestpitch` (eased, ~0.6 s) through
+`parasquad_gun.scr::rest`; `maxIdlePitch` on an older game.dll. The bipod stays planted. **The tip only exists while
+nobody holds it**: the gun is level for the whole set-down (its butt would come down where he stands) and before a
+trooper takes it; a player's Use snaps it to his view in one frame, as on every MG42 in the game (`P_SetTargetAngles`;
+read 0.4 s after Use: pitch 0.0). It goes back to its rest when he dies, packs up, or a player gets off.
+
+**3. Grenades (`nadeWatch`, `mgFlee`, `nadeRun`, `mgGiveUp`).** One thread a squad looks through the entity table (64
+slots a frame) for a projectile at rest within 300 u of a man. The mounted gunner lets go, gets 300 u away over
+looked-at ground, waits for it, walks back - the gun is levelled before his last steps, its stock lies where he
+kneels - and takes it again; a gun he cannot get back to, or that a player took, is the players' and he stays a
+rifleman. A man on foot runs. The squad's own grenade, for 6 s, only moves a man it came back to within 150 u.
+(In the harness the engine's own grenade think, `gren_awareness 90`, did not move a man on foot.)
+
+**4. Landings where there is no path network (`coop_para_lz`).** A man without a path-connected point gets one that
+passed everything else. m2l1's first road: before, `lz plan n=0`, four of five on the cliff tops (154-662 u up), one
+rescue teleport; after, five landings within 8 u of the call height.
+
+**5. Two rules found by accident.** A spectator is not the squad's "nearest player" (a man 1200 u under a flying
+player read as "fell out of the world": 18 teleports in 45 s with the test's player 3000 u up). The seat of an
+unmanned gun is kept free (`mgSeatClear`): a mate standing on it made a player stand upright behind the sandbag gun.
+
+## Shown in the harness (G:/mohaa-hudfeed5, game.dll 6b515fbf, real C-47 sticks)
+
+Test set-up that is NOT the game, as before: the squad's anchor is a fixed hold point (`pin`), the player is the
+camera (notarget, no damage). `purge` = the map's Germans removed; `bring` = the gunner stood in the pathnode-less
+room; `aimp` / `pcap` = the test aims the AI gun / pins the pitch of the gun a player is on; `fireon`, `mbelt`,
+`nade` = the test makes it fire, cuts the belt, lays a stick grenade; `others` = the rest of the squad hidden.
+
+| item | map, set-up | what happened |
+|---|---|---|
+| pitch, AI, bags | m3l2, `purge`, `aimp` (t7) | 0 / +12 / +20 (+ firing) / +25 / -10: hands on in every side still; gun lifted 7.2 / 12.2 / 15.3 u |
+| pitch, player, bags | m3l2, `pcap` (t7) | kneeling, hands on at 0 / +12 / +20 (+ firing) / +25 / -10 (gun 6.8 u down); grips up to 2.4 u ahead of his hands at 20 (his seat is flat behind the gun) |
+| pitch, AI, sill 48 u | m3l3, `bring` `purge` (u2) | hands on at 0 / +12 / +20 / +25, he goes lower by himself (engine blend); no lift |
+| pitch, player, sill | m3l3 (u2) | **hands ~10 u over the grips at 0, more pitched up - as before this pass** (item 1 below) |
+| rest | m3l2 (t7), m3l3 (u2) | -30 on the bags, butt on the ground, bipod on the top bag; -44 on the sill; after the gunner's death and after a player got off |
+| the take | m3l2 (t7) | gun level through the set-down, he kneels onto it; GIF |
+| barrel hot | m3l2 `fireon` (e1); m4l3 unassisted (c2) | e1: stopped at 45.4 heat, bled to 12 in 4.5 s, fired again. c2, a real fight: two `barrel_hot` holds |
+| belt | m3l2 `mbelt` (e3, e4) | 12 rounds: `mg newbelt`, silent 4 s, 250 again. 10 rounds, no belt more: `leave why=belt_out`, pack-up, no new site in 15 s |
+| grenade, mounted gunner | m3l2 `nade` 110 u (e3, e5); m4l3 unassisted (c2) | e3 / e5: he and the men within 300 u ran, it went off, he came back, `back=1`. c2: a grenade came to rest 90 u from him in the fight - left, back on the gun 8.4 s later |
+| room clear | m3l2 unassisted (r1) | two: `clear stack` -> `enter` -> `done` (one `timeout`, one `cleared`). **Not looked at on camera**; who went through the door first was not measured |
+| player far away | m3l2 (e5) | 8000 u away at the squad's height, 45 s: 0 teleports, 0 rescues |
+| walkOut | m4l3 r2 (1), m5l1a r3 (8), f3 (6), m3l2 f1 (1) | every one `goal=1 lost=0`, no rescue. On m5l1a one man walked out 8 times in 30 s - the slot he is sent to has no path |
+| cover under 24.7 u | all maps | `refused: height=` 4 (m3l2), 20 (m4l3), 26 (m5l1a) in the plan lines. **No crouched cover site (24.7-35 u) came up in any run** |
+| cover site firing | m4l3, only cover sites planned (`force A`), else unassisted (c2, c4) | wall 46-48 u, standing; c4: walk-up at t=112, track and bursts, pack-up; GIF. Unforced (c1) he took the bags there |
+| older game.dll | m3l2, `game_ship` 689d0db1 (o1) | `parasquad_gun.scr` does not compile (1 compile error + 4 "not properly loaded" lines, by design), `parasquad.scr` has none; set-up, `mg suppress`, gun lifted 5.1 u at 8.4 degrees up, pack-up, 0 teleports, 5 alive 3200 hp. Its rest (maxIdlePitch) was not looked at |
+
+### Regression, final commit `237adcc2`, one drop a map, the map's own Germans, 165 s
+
+| map | script errors | teleports / rescues | alive, health of 3200 | from the hold point at the end | landings |
+|---|---|---|---|---|---|
+| m3l2 (f1) | 0 | 0 / 0 | 5, 3080 | 95-173 u | all at ground level |
+| m4l3 (f2) | 0 | 0 / 0 | 5, 3200 | 110-232 u | within 18 u of the call height |
+| m5l1a (f3) | 0 | 0 / 0 | **0 - all five killed by t=165** (the first man as the fight began, script time 86 s; then 129, 152, 155 s and the last before the end; 18 Germans) | - | on the street below the ledge |
+| m2l1 (f4), at the players' spawn, no enemy near | 0 | 0 / 0 | 5, 3200 | 118-427 u (no path network: they stay where they land) | within 8 u |
+
+One commit earlier (`e277c9bb`: r1 m3l2, r2 m4l3, r3 m5l1a): 0 errors, 0 teleports, 0 rescues; alive 5 / 5 / 4, health
+3200 / 3137 / 1830. Single runs; on m5l1a the squad fights 17-18 Germans alone (the test's player does not fight).
+
+## Media of this pass (`media/p4_*`)
+
+- `p4_pitch_sandbag_ai_side.jpg` - finished. AI gunner at 0 / +12 / +20 / +20 firing / +25 / -10, from his left (t7).
+- `p4_pitch_sandbag_player_side.jpg` - finished. A player on the left gun, same angles, from his right (t7).
+- `p4_pitch_sill_ai_side.jpg` - finished. AI at the 48 u sill, 0 / +12 / +20 firing / +25 (u2).
+- `p4_pitch_sill_player_side_OPEN.jpg` - evidence of the open item: a player at the sill, hands over the gun (u2).
+- `p4_rest_unmanned.jpg` - finished. The gun at rest: bags from the side and from behind, the sill. The dark patch on the ground in the bag stills is the blood of the gunner the test killed.
+- `p4_take_ai_sandbag_setdown_level_take.gif` - evidence, not a showcase: bags, bipod, can, gun (level), he kneels onto it; squad mates in the background (t7).
+- `p4_rest_after_player_gets_off.gif` - short: the player gets off, the gun lies back (t7).
+- `p4_cover_wall_m4l3_walkup_fire_packup.gif` - finished, with two things to know: m4l3 is a night map (dark), and a squad mate fires from beyond the wall left of the gun's line. Walk-up, bipod on the wall, bursts at the map's Germans, pack-up (c4).
+- `p4_grenade_m3l2_frames.jpg` - evidence sheet, not finished media: the squad scatters, the blast, the gunner walks back and takes the gun (e3). A man runs past the camera in the first frames.
+
+## NOT done / not verified - the handover
+
+1. **A player on a mid-height gun (45-66 u: every cover site above ~31 u of cover).** One clip, no blend: crouched
+   under 55.25 u, standing over it; at the 48 u sill his hands are ~10 u over the grips, and pitching up takes the
+   grips further away. Not changed here. Script cannot fix it without lifting the gun 10 u off the sill at level.
+   Engine: a player pose that follows the gun height. **Choice for the user** (below).
+2. `mgSeatClear` never fired in a session (no mate stood on the seat in t7): not shown by a positive case.
+3. A crouched cover site (24.7-35 u); a second client; a dedicated server; a real spectator; the click by ear.
+4. Room clear: counted in the log (r1, f2), not filmed, and "no man through a door ahead of the players" not measured.
+5. m5l1a: the squad alone was wiped out in f3. Not looked into (attrition from the first second; no single event).
+6. Old game.dll: the unmanned rest by `maxIdlePitch` was not looked at.
+7. The grenade test lays a grenade and calls `ai_event grenade`; a thrown one was only seen once, by chance (c2).
+8. The in-game before / after tactics GIF of the third pass: still a plot.
+9. `docs/TRAPS.md` / `docs/OPEN.md`: at their ceilings, nothing added. Candidates: *a TurretGun's unmanned butt drop
+   tests the bore line 56 u back, not the model - a stock that hangs lower is buried*; *the engine's gunner pose
+   follows pitch (hands on the pitched line), its floor is the crouch pose at 38.7 u*; *with a script camera cued the
+   client's command angles follow the camera: a test cannot pitch a player's turret, pin its pitch caps instead*.
+
+**Disk:** G: ran full twice. Nothing was deleted. The run folders of `G:/mohaa-hudfeed5/runs` and of this pass (107 folders, pass 2 / 3 / 4, about 3.9 GB of frames, logs and json) were moved to the session scratchpad `...\scratchpad\_delete_me\para\` (the coordinator moves that on to `H:\hzm_archive\para\`); `p3_c1` is in `H:\hzm_archive\para\` already. `G:/mohaa-hudfeed5/runs` is empty. `tools/pass4/p3lib.py` writes new runs to `<its folder>/runs`.
+
+Tools: `tools/pass4/` - `p4_pitch.py` (pitch / rest / take stills, AI and player), `p4_ev.py` (hot, belt, beltout,
+nade, nadefoot, far), `p3_sess.py` (+ `here`, `force=A`), `p3_drv.scr` (+ aimp gst mbelt nade others nocorpse pcap
+paim hurt), `p3lib.py` (game DLL by `GAMEDLL=`: `game_p4` default, `game_ship` = the older one), `regsum.py`,
+`gun_profile.py`, `mkgif.py`, `edits/` (ed17-ed20 = the script edits, fix_* = the test tools), `logs/run_*.txt`.

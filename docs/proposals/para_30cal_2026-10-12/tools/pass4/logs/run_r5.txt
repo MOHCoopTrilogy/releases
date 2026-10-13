@@ -1,0 +1,46 @@
+call at the player's spawn: -6519.0 -3558.0 468.196 9.998
+germans within 3000 : ['P3 GERN 0']
+    P3 SQ k=1 alive=1 hp=550.000 at=( -6110.286 -3682.457 465.879 ) pos=crouch think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=2 alive=1 hp=550.000 at=( -6569.918 -3795.378 476.374 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=3 alive=1 hp=550.000 at=( -6407.181 -3533.501 466.192 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=4 alive=1 hp=550.000 at=( -6423.730 -3798.395 476.527 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=5 alive=1 hp=1000.000 at=( -6318.600 -3701.472 466.382 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 LAND k=1 at=( -6513.641 -3678.382 468.440 ) dref=120 dz=0 sky=1500 t=88.400
+    P3 LAND k=3 at=( -6406.058 -3516.751 466.668 ) dref=120 dz=-1 sky=1500 t=88.650
+    P3 LAND k=5 at=( -6313.461 -3682.222 465.143 ) dref=240 dz=-3 sky=1500 t=88.900
+    P3 LAND k=2 at=( -6573.696 -3792.115 476.246 ) dref=240 dz=8 sky=1500 t=89.150
+    P3 LAND k=4 at=( -6425.809 -3779.583 474.230 ) dref=240 dz=6 sky=1500 t=89.400
+    P3 METER t=5 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=0 ger0=0 far=0 farAvg=0 farMax=0
+    P3 METER t=20 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=0 ger0=0 far=0 farAvg=0 farMax=0
+    P3 METER t=35 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=0 ger0=0 far=0 farAvg=0 farMax=0
+    P3 METER t=50 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=0 ger0=0 far=427 farAvg=387 farMax=427
+    P3 METER t=65 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=0 ger0=0 far=427 farAvg=418 farMax=427
+    P3 METER t=80 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=0 ger0=0 far=427 farAvg=422 farMax=427
+    P3 METER t=94 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=0 ger0=0 far=427 farAvg=423 farMax=427
+    P3 METER t=109 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=0 ger0=0 far=427 farAvg=424 farMax=427
+    P3 METER t=124 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=0 ger0=0 far=427 farAvg=425 farMax=427
+    P3 METER t=140 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=0 ger0=0 far=427 farAvg=425 farMax=427
+    P3 METER t=150 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=0 ger0=0 far=427 farAvg=425 farMax=427
+script errors: 0 []
+    PSQ t=62.550 lz plan n=5 ground_only=5 tests=21 secs=18.950 ref=( -6519.000 -3558.000 468.184 )
+    PSQ t=77.350 lz steer k=1 to=( -6513.975 -3677.895 468.388 ) door=( -5940.291 -3101.876 1928.184 )
+    PSQ t=77.350 lz steer k=3 to=( -6406.526 -3516.171 466.685 ) door=( -5897.877 -2642.387 1953.016 )
+    PSQ t=77.750 lz steer k=5 to=( -6313.712 -3682.327 465.125 ) door=( -5651.743 -3311.971 1953.016 )
+    PSQ t=78.150 lz steer k=2 to=( -6573.804 -3791.659 476.192 ) door=( -6269.958 -3350.299 1928.184 )
+    PSQ t=78.150 lz steer k=4 to=( -6425.996 -3779.247 474.077 ) door=( -6227.546 -2890.810 1953.016 )
+    PSQ t=88.200 land k=1 at=( -6513.778 -3677.648 469.524 ) lzoff=1.179
+    PSQ t=88.400 land k=3 at=( -6406.362 -3515.694 467.518 ) lzoff=0.974
+    PSQ t=88.800 land k=5 at=( -6313.461 -3682.222 466.269 ) lzoff=1.176
+    PSQ t=88.975 land k=2 at=( -6573.786 -3791.477 477.336 ) lzoff=1.158
+    PSQ t=89.175 land k=4 at=( -6426.063 -3778.695 475.984 ) lzoff=1.986
+    PSQ t=95.750 mg nosite aim=advance ground=58 passed=0 tried=0 bags=1 refused: tall=2 seatground=1 height=10 bag_slope=9 lane=16 secs=0.350
+    PSQ t=106.100 mg nosite aim=advance ground=58 passed=0 tried=0 bags=1 refused: tall=2 height=10 bag_ground=1 bag_slope=9 lane=15 secs=0.350
+    PSQ t=116.450 mg nosite aim=advance ground=58 passed=0 tried=0 bags=1 refused: tall=1 height=10 bag_slope=9 lane=16 secs=0.350
+    PSQ t=126.800 mg nosite aim=advance ground=58 passed=0 tried=0 bags=1 refused: tall=2 height=10 bag_ground=1 bag_slope=8 lane=16 secs=0.350
+    PSQ t=137.150 mg nosite aim=advance ground=58 passed=0 tried=0 bags=1 refused: tall=2 seatground=1 height=10 bag_slope=9 lane=16 secs=0.350
+    PSQ t=147.500 mg nosite aim=advance ground=57 passed=0 tried=0 bags=1 refused: tall=2 seatground=1 height=9 bag_slope=9 lane=17 secs=0.350
+    PSQ t=157.850 mg nosite aim=advance ground=56 passed=0 tried=0 bags=1 refused: tall=2 seatground=1 height=8 bag_slope=9 lane=17 secs=0.350
+    PSQ t=168.175 mg nosite aim=advance ground=55 passed=0 tried=0 bags=1 refused: tall=2 seatground=1 height=8 bag_slope=9 lane=17 secs=0.325
+    PSQ t=178.525 mg nosite aim=advance ground=58 passed=0 tried=0 bags=1 refused: tall=3 seatground=1 height=9 bag_slope=9 lane=17 secs=0.350
+    PSQ t=188.875 mg nosite aim=advance ground=58 passed=0 tried=0 bags=1 refused: tall=3 seatground=1 height=9 bag_slope=9 lane=17 secs=0.350
+PSQ line kinds: [('mg nosite', 10), ('lz steer', 5), ('lz plan', 1), ('brain start', 1), ('land k=1', 1), ('land k=3', 1), ('land k=5', 1), ('land k=2', 1), ('land k=4', 1), ('grease k=2', 1)]

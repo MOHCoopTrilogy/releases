@@ -1,0 +1,122 @@
+germans within 3000 : ['P3 GERN 11']
+    P3 GER d=864 at=( -3191.846 3056.000 0.125 ) think=idle hp=1000.000
+    P3 GER d=1085 at=( -3952.154 3328.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1089 at=( -3032.000 3224.154 0.125 ) think=idle hp=1000.000
+    P3 GER d=1160 at=( -3216.000 3392.000 0.125 ) think=idle hp=1000.000
+    P3 GER d=1233 at=( -4115.200 3424.062 176.125 ) think=idle hp=1000.000
+    P3 GER d=1247 at=( -3504.000 3544.000 16.125 ) think=idle hp=1000.000
+    P3 GER d=1320 at=( -4184.000 3488.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1392 at=( -3424.000 3680.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1459 at=( -3464.000 3752.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1504 at=( -2824.000 3584.000 0.125 ) think=idle hp=1000.000
+    P3 GER d=1561 at=( -3472.000 3856.000 0.125 ) think=idle hp=1000.000
+PSQ t=70.325 mg site how=1 mode=C gun=( -3416.274 2327.518 39.425 ) yaw=114.676 top=0 fire=advance:1.500 arc=45 seat=( -3399.385 2269.848 0.125 ) walk=96.990 path=230.287 of=6
+P3 camg at=( -3489.582 2153.517 0.125 ) off=0 look=( -342.777 59.676 0.000 )
+PSQ t=73.425 mg setup k=1 mode=C gun=( -3416.274 2327.518 39.425 ) yaw=114.676 arc=45 top=0 seat=( -3399.385 2269.848 0.125 ) hp=39.300 pos=crouch
+P3 camg at=( -3476.025 2198.271 0.125 ) off=0 look=( -337.140 54.676 0.000 )
+fire trigger: PSQ t=75.325 mg suppress at=( -3892.546 3283.525 202.534 ) age=12.300
+P3 camg at=( -3476.025 2198.271 0.125 ) off=0 look=( -337.140 54.676 0.000 )
+['P3 GUN at=( -3416.087 2327.142 44.530 ) ang=( 351.588 116.482 0.000 )']
+P3 camg at=( -3489.582 2153.517 0.125 ) off=0 look=( -342.777 59.676 0.000 )
+packup: True
+    P3 SQ k=1 alive=1 hp=550.000 at=( -3884.211 2184.789 0.125 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=2 alive=1 hp=550.000 at=( -3821.272 2181.083 0.125 ) pos=run think=idle busy=1 mnt=0 enemy=none
+    P3 SQ k=3 alive=1 hp=550.000 at=( -3664.334 2240.629 0.125 ) pos=run think=idle busy=1 mnt=0 enemy=none
+    P3 SQ k=4 alive=1 hp=550.000 at=( -3745.759 2217.250 0.125 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=5 alive=1 hp=1000.000 at=( -3718.686 2368.280 0.125 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 LAND k=1 at=( -3612.959 2423.593 0.125 ) dref=120 dz=-83 sky=1061 t=61.375
+    P3 LAND k=3 at=( -3496.484 2346.490 0.125 ) dref=119 dz=-83 sky=1061 t=61.625
+    P3 LAND k=5 at=( -3532.743 2210.255 0.125 ) dref=119 dz=-83 sky=1061 t=61.875
+    P3 LAND k=2 at=( -3723.338 2335.131 0.125 ) dref=119 dz=-83 sky=1061 t=62.125
+    P3 LAND k=4 at=( -3675.039 2204.066 0.125 ) dref=119 dz=-83 sky=1061 t=62.375
+    P3 METER t=5 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=11 ger0=11 far=0 farAvg=0 farMax=0
+    P3 METER t=20 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=11 ger0=11 far=120 farAvg=120 farMax=120
+    P3 METER t=35 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=11 ger0=11 far=212 farAvg=177 farMax=265
+    P3 METER t=50 landed=5 alive=5 hp=3200 seenAny=3.000 seenStand=2.250 tgtStand=0 tele=0 ger=10 ger0=11 far=212 farAvg=194 farMax=265
+    P3 METER t=65 landed=5 alive=5 hp=3200 seenAny=10.500 seenStand=9.750 tgtStand=0.500 tele=0 ger=9 ger0=11 far=252 farAvg=221 farMax=326
+    P3 METER t=80 landed=5 alive=5 hp=3200 seenAny=10.500 seenStand=9.750 tgtStand=0.500 tele=0 ger=9 ger0=11 far=314 farAvg=228 farMax=326
+    P3 METER t=95 landed=5 alive=5 hp=3200 seenAny=10.500 seenStand=9.750 tgtStand=0.500 tele=0 ger=9 ger0=11 far=307 farAvg=233 farMax=326
+    P3 METER t=110 landed=5 alive=5 hp=3200 seenAny=10.500 seenStand=9.750 tgtStand=0.500 tele=0 ger=9 ger0=11 far=249 farAvg=239 farMax=326
+    P3 METER t=120 landed=5 alive=5 hp=3200 seenAny=10.500 seenStand=9.750 tgtStand=0.500 tele=0 ger=9 ger0=11 far=301 farAvg=239 farMax=326
+script errors: 2 ["[2026-10-13 07:42:36 UTC-6.000] ^~^~^ Script Error : Script 'coop_mod/parasquad_gun.scr' was not properly loaded", "[2026-10-13 07:42:36 UTC-6.000] ^~^~^ Script file compile error:  Couldn't compile 'coop_mod/parasquad_gun.scr'"]
+    PSQ t=45.050 lz plan n=5 ground_only=0 tests=5 secs=1.500 ref=( -3608.000 2303.000 0.125 )
+    PSQ t=53.225 lz steer k=1 to=( -3613.025 2422.895 0.125 ) door=( -3547.355 3033.070 1056.926 )
+    PSQ t=53.225 lz steer k=3 to=( -3495.526 2344.829 0.125 ) door=( -3854.479 3377.459 1081.758 )
+    PSQ t=53.625 lz steer k=5 to=( -3533.462 2208.957 0.125 ) door=( -3196.914 3100.810 1081.758 )
+    PSQ t=54.025 lz steer k=2 to=( -3723.580 2335.271 0.125 ) door=( -3590.504 2622.529 1056.926 )
+    PSQ t=54.025 lz steer k=4 to=( -3674.407 2203.050 0.125 ) door=( -3897.628 2966.918 1081.758 )
+    PSQ t=61.200 land k=1 at=( -3612.950 2423.567 0.125 ) lzoff=0.677
+    PSQ t=61.375 land k=3 at=( -3496.475 2346.464 0.125 ) lzoff=1.891
+    PSQ t=61.775 land k=5 at=( -3532.743 2210.255 0.125 ) lzoff=1.484
+    PSQ t=62.000 land k=2 at=( -3723.330 2335.106 0.125 ) lzoff=0.299
+    PSQ t=62.175 land k=4 at=( -3675.031 2204.041 0.125 ) lzoff=1.171
+    PSQ t=63.025 tac contact thr=( -3882.399 3270.552 176.125 )
+    PSQ t=64.025 tac bound k=1 back=1 cover=0 base=0 dist=300.000
+    PSQ t=70.325 mg site how=1 mode=C gun=( -3416.274 2327.518 39.425 ) yaw=114.676 top=0 fire=advance:1.500 arc=45 seat=( -3399.385 2269.848 0.125 ) walk=96.990 path=230.287 of=6
+    PSQ t=70.325 mg plan aim=advance ground=52 passed=6 tried=1 bags=1 refused: not_level=2 height=4 nofire=16 seat=2 arc=1 gap=3 crowded=4 bag_ground=2 bag_slope=2 lane=40 secs=0.950
+    PSQ t=71.075 mg walk how=1 left=4.438 ok=1
+    PSQ t=72.825 mg watch
+    PSQ t=73.425 mg setup k=1 mode=C gun=( -3416.274 2327.518 39.425 ) yaw=114.676 arc=45 top=0 seat=( -3399.385 2269.848 0.125 ) hp=39.300 pos=crouch
+    PSQ t=75.325 mg suppress at=( -3892.546 3283.525 202.534 ) age=12.300
+    PSQ t=93.425 mg leave why=squad_moved_on
+    PSQ t=94.625 mg packup k=1
+    PSQ t=96.025 walkout k=1 goal=1 left=11.773 lost=0
+    PSQ t=96.025 walkout k=2 goal=1 left=27.373 lost=0
+    PSQ t=98.025 walkout k=3 goal=1 left=28.803 lost=0
+    PSQ t=99.275 walkout k=4 goal=1 left=15.939 lost=0
+    PSQ t=100.775 walkout k=3 goal=1 left=32.887 lost=0
+    PSQ t=102.775 walkout k=1 goal=1 left=39.634 lost=0
+    PSQ t=103.025 walkout k=2 goal=1 left=8.423 lost=0
+    PSQ t=104.525 walkout k=3 goal=1 left=10.478 lost=0
+    PSQ t=104.650 mg nosite aim=advance ground=6 passed=0 tried=0 bags=1 refused: tall=3 not_world=1 bag_ground=1 secs=0.025
+    PSQ t=105.275 walkout k=4 goal=1 left=8.780 lost=0
+    PSQ t=105.525 walkout k=1 goal=1 left=29.463 lost=0
+    PSQ t=106.025 walkout k=2 goal=1 left=35.084 lost=0
+    PSQ t=109.025 walkout k=1 goal=1 left=10.240 lost=0
+    PSQ t=110.525 walkout k=3 goal=1 left=22.029 lost=0
+    PSQ t=111.275 walkout k=4 goal=1 left=15.878 lost=0
+    PSQ t=113.025 walkout k=2 goal=1 left=44.498 lost=0
+    PSQ t=114.525 walkout k=3 goal=1 left=27.615 lost=0
+    PSQ t=114.675 mg nosite aim=advance ground=6 passed=0 tried=0 bags=1 refused: tall=3 not_world=1 bag_ground=1 secs=0.025
+    PSQ t=116.775 walkout k=1 goal=1 left=33.627 lost=0
+    PSQ t=116.775 walkout k=2 goal=1 left=25.759 lost=0
+    PSQ t=117.025 walkout k=4 goal=1 left=18.767 lost=0
+    PSQ t=120.525 walkout k=3 goal=1 left=11.153 lost=0
+    PSQ t=121.025 walkout k=1 goal=1 left=13.313 lost=0
+    PSQ t=122.525 walkout k=2 goal=1 left=23.323 lost=0
+    PSQ t=123.025 walkout k=4 goal=1 left=39.686 lost=0
+    PSQ t=124.775 walkout k=3 goal=1 left=3.791 lost=0
+    PSQ t=125.700 mg nosite aim=advance ground=5 passed=0 tried=0 bags=1 refused: tall=3 not_world=1 secs=0.025
+    PSQ t=129.025 walkout k=1 goal=1 left=27.975 lost=0
+    PSQ t=129.025 walkout k=2 goal=1 left=18.062 lost=0
+    PSQ t=129.025 walkout k=4 goal=1 left=15.411 lost=0
+    PSQ t=130.775 walkout k=3 goal=1 left=22.756 lost=0
+    PSQ t=133.025 walkout k=2 goal=1 left=19.644 lost=0
+    PSQ t=133.775 walkout k=1 goal=1 left=43.112 lost=0
+    PSQ t=134.525 walkout k=3 goal=1 left=32.945 lost=0
+    PSQ t=135.025 walkout k=4 goal=1 left=34.158 lost=0
+    PSQ t=135.725 mg nosite aim=advance ground=6 passed=0 tried=0 bags=1 refused: tall=3 not_world=2 secs=0.025
+    PSQ t=138.775 walkout k=2 goal=1 left=45.120 lost=0
+    PSQ t=140.775 walkout k=3 goal=1 left=22.137 lost=0
+    PSQ t=141.025 walkout k=1 goal=1 left=16.395 lost=0
+    PSQ t=141.025 walkout k=4 goal=1 left=40.165 lost=0
+    PSQ t=142.025 walkout k=2 goal=1 left=25.449 lost=0
+    PSQ t=144.525 walkout k=3 goal=1 left=31.475 lost=0
+    PSQ t=145.750 mg nosite aim=advance ground=5 passed=0 tried=0 bags=1 refused: tall=3 not_world=1 secs=0.025
+    PSQ t=146.025 walkout k=1 goal=1 left=16.193 lost=0
+    PSQ t=147.025 walkout k=2 goal=1 left=9.186 lost=0
+    PSQ t=147.275 walkout k=4 goal=1 left=4.106 lost=0
+    PSQ t=150.025 walkout k=2 goal=1 left=12.193 lost=0
+    PSQ t=150.775 walkout k=3 goal=1 left=19.793 lost=0
+    PSQ t=152.775 walkout k=1 goal=1 left=28.418 lost=0
+    PSQ t=153.275 walkout k=4 goal=1 left=25.628 lost=0
+    PSQ t=154.525 walkout k=3 goal=1 left=37.422 lost=0
+    PSQ t=155.025 walkout k=2 goal=1 left=23.677 lost=0
+    PSQ t=155.525 walkout k=1 goal=1 left=28.646 lost=0
+    PSQ t=155.775 mg nosite aim=advance ground=6 passed=0 tried=0 bags=1 refused: tall=3 not_level=1 not_world=1 secs=0.025
+    PSQ t=159.025 walkout k=2 goal=1 left=24.077 lost=0
+    PSQ t=159.025 walkout k=4 goal=1 left=26.204 lost=0
+    PSQ t=159.525 walkout k=1 goal=1 left=3.106 lost=0
+    PSQ t=160.775 walkout k=3 goal=1 left=22.472 lost=0
+    PSQ t=163.275 walkout k=4 goal=1 left=6.501 lost=0
+PSQ line kinds: [('walkout k=2', 14), ('walkout k=3', 14), ('walkout k=1', 13), ('walkout k=4', 12), ('mg nosite', 6), ('lz steer', 5), ('lz plan', 1), ('land k=1', 1), ('land k=3', 1), ('land k=5', 1), ('land k=2', 1), ('brain start', 1), ('land k=4', 1), ('tac contact', 1), ('tac bound', 1), ('move k=1', 1), ('mg site', 1), ('mg plan', 1), ('mg walk', 1), ('mg watch', 1), ('mg setup', 1), ('mg suppress', 1), ('mg leave', 1), ('mg packup', 1)]

@@ -1,0 +1,13 @@
+['P3 purge removed=27']
+PSQ t=82.100 mg setup k=1 mode=C gun=( -3642.891 2498.642 39.425 ) yaw=36.466 arc=45 top=0 seat=( -3695.893 2470.325 0.125 ) hp=39.300 pos=crouch
+['P3 camg at=( -3809.237 2528.491 0.125 ) off=0 look=( -340.642 341.466 0.000 )']
+HOT (test: fireon at t=0): 0.3s heat=8.0 belt=248 | 0.9s heat=21.4 belt=244 | 1.5s heat=16.8 belt=244 | 2.1s heat=12.2 belt=244 | 2.6s heat=20.6 belt=241 | 3.2s heat=38.8 belt=236 | 3.8s heat=34.2 belt=236 | 4.4s heat=29.6 belt=236 | 5.0s heat=33.4 belt=234 | 5.5s heat=45.4 belt=230 | 6.1s heat=40.8 belt=230 | 6.7s heat=36.2 belt=230 | 7.3s heat=31.6 belt=230 | 7.9s heat=27.0 belt=230 | 8.4s heat=22.4 belt=230 | 9.0s heat=17.8 belt=230
+HOT lines: ['PSQ t=90.000 mg hold fire=barrel_hot', 'PSQ t=94.500 mg hold fire=clear', 'PSQ t=94.500 mg watch']
+['P3 camg at=( -3866.190 2578.991 30.125 ) off=0 look=( -338.505 326.466 0.000 )']
+['P3 nade at=( -3664.713 2364.836 3.125 ) class=Projectile from=( -3695.893 2470.325 0.125 )']
+NADE: PSQ t=106.575 mg nade back=0
+NADE lines: ['PSQ t=100.025 mg nade at=( -3664.713 2364.836 2.125 ) d=110.018', 'PSQ t=106.575 mg nade back=0', 'PSQ t=106.575 mg left for the players belt=230 fired=0 gun=( -3642.891 2498.642 39.425 )', 'PSQ t=106.575 mg given up']
+['P3 SQ k=1 alive=1 hp=550.000 at=( -3610.080 2417.175 0.125 ) pos=stand think=idle busy=0 mnt=0 enemy=none', 'P3 SQ k=2 alive=1 hp=391.773 at=( -3607.533 2213.431 0.125 ) pos=stand think=idle busy=0 mnt=0 enemy=none', 'P3 SQ k=3 alive=1 hp=442.419 at=( -3885.997 2548.865 0.125 ) pos=stand think=idle busy=0 mnt=0 enemy=none', 'P3 SQ k=4 alive=1 hp=390.228 at=( -3687.087 2185.657 0.125 ) pos=stand think=idle busy=0 mnt=0 enemy=none', 'P3 SQ k=5 alive=1 hp=800.000 at=( -3726.190 2380.501 0.125 ) pos=stand think=idle busy=0 mnt=0 enemy=none']
+gun after: P3 GST at=( -3642.891 2498.642 39.425 ) ang=( -30.000 36.466 0.000 ) base=( -3642.891 2498.642 39.425 ) rest=-30 sup=( -3642.891 2498.642 38.725 ) ( 0.000 36.466 0.000 ) who=k3 at=( -3885.997 2548.865 0.125 ) pos=stand mnt=0 pl=( -3866.190 2578.991 0.125 ) P3 
+TELE: []
+script errors: []
