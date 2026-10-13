@@ -1,5 +1,7 @@
 # HANDOVER (2026-10-13 morning, PISTOL lane, after the server-side fix and the SHIP CUT) - read this first
 
+**SHIP CUT v2 (later the same morning):** `webley_revolver_lv_ttwebley.tik` staged (`finishclone.py --also`), the Webley Mk VI `colt45_colt1911w.tik` staged on the Webley's rows with its own gun clips retimed (`tools/mk6.py`), a sample of the finish tiks and three model variants run in the engine (pa25, pa27, pa28; pa26 = an empty folder, started by mistake while pa25 was still running - the wait loop had matched the previous run's `run ended` line; the second runner stopped at the busy log file and nothing was lost). **pa29 is next.** The coordinator's calls: the decided server-side changes stay in, Welrod / Luger ship on their new aim poses for the user's test, texture lifts stay out. Runs pa18-pa24 were moved to `H:\hzm_archive\pistols\`; pa25-pa28 are still in `G:\mohaa-adsanim\runs`.
+
 **`PISTOLS_SHIP.md` is the ship cut; the folder `ship/` is FROZEN** (an integration agent reads it). Rebuild it only
 with `tools/shipcut.py` and only when told to. `assets/` stays the lane's full working image (C96, M10 included).
 

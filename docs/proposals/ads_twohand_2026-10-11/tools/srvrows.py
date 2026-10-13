@@ -33,6 +33,8 @@ DECLARED = [
      'S&W M10 loads round by round (revolver list A-C, 2026-10-12; listen-server runs tn2 / pa5 / pa12) - a per-round reload cannot be client-only'),
     ('webley_revolver.tik', r'reload|reload_end|reload_single',
      'Webley: open / close 0.53 -> 0.8 s, one round 0.53 -> 0.8 s (coordinator 2026-10-12, list item C "give them time and weight"; webslow.py; runs tl9 tn1 ts1)'),
+    ('colt45_colt1911w.tik', r'reload|reload_end|reload_single',
+     'Webley Mk VI: its own gun clips retimed onto the Webley decision (it wears the Webley hands and reload states; mk6.py, 2026-10-13)'),
     ('nagant_revolver.tik', r'reload_single', 'Nagant: one round 0.53 -> 0.9 s (same decision; runs tn3 tu1)'),
     ('anims_pistol.txt', r'nagantrev_reload_loop|webley_reload_end|webley_reload_loop', 'the torso rows of the two revolver decisions above'),
     ('anims_shared.txt', r'coop_reload_webley_start', 'the torso row of the Webley decision above'),

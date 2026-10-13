@@ -1,0 +1,16 @@
+[
+ {
+  "error_message": "Ship cut v1 of the pistols carried two guns as jank: the Webley Mk VI (colt45_colt1911w.tik) and webley_revolver_lv_ttwebley.tik played the Webley's slowed 0.8 s hands and torso rows over their own released 0.4 / 0.53 / 0.3 s gun clips - barrel open and cylinder turned long before the hands arrived.",
+  "file": "docs/proposals/ads_twohand_2026-10-11/tools/mk6.py; tools/finishclone.py; ship/models/weapons/colt45_colt1911w.tik; ship/models/weapons/webley_revolver_lv_ttwebley.tik",
+  "root_cause": "The Webley rework (webslow.py) staged only webley_revolver.tik; every tik that wears the `webley` hands prefix and the RELOAD_WEBLEY states inherits the slowed hands whether its own tik was staged or not.",
+  "fix": "lv_ttwebley: finishclone.py --also (the staged Webley tik with that skin's shader / name lines). Mk VI: mk6.py retimes ITS OWN gun clips with retime.py warp onto the Webley's frames (break bone Bone1 found in the clip: open 0..10 of 13 -> frames 8-19 hip / 6-18 aimed; close 2..5 of 10 -> 11-20 / 5-15; cylinder turn 5..16 of 17 -> 15-23 of 24) and gives its tik the Webley's row set. First try warped to the clip's LAST frame and shut the barrel 0.2 s early (run pa25) - the break bone's own stop frame is the end pose. Run pa28: opens and shuts in step with the Webley at the same capture frames.",
+  "tags": ["ads", "pistol-lane", "ship-cut", "webley", "variants", "retime"]
+ },
+ {
+  "error_message": "A second harness run (pa26) was started while pa25 was still booting; it stopped at once with PermissionError on the live qconsole.log and left an empty run folder.",
+  "file": "(agent wait loop, not a tool)",
+  "root_cause": "The wait loop tested `tail -2 run.log | grep 'run ended'`: right after a start the last two lines are the PREVIOUS run's `run ended` and the new `start` line, so the loop fell through at once.",
+  "fix": "Wait for the run's own artefact (runs/<id>/qconsole.log, written by end_session) or for `run ended` as the LAST line. seed_home happens to fail on the busy log before it clears the screenshots, so pa25 lost nothing - that is luck, not a guard; run ids pa22 and pa26 are burned (empty folders).",
+  "tags": ["harness", "wait", "run-id"]
+ }
+]

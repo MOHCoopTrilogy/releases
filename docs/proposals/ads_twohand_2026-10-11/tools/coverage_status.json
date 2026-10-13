@@ -375,7 +375,8 @@
     "pmin": 1.0,
     "run": "tx3"
    }
-  }
+  },
+  "qa": "pa28 (2026-10-13): staged on the Webley rows with ITS OWN gun clips retimed onto the Webley's frames (mk6.py); aimed + hip reload, standing: opens and shuts in step with the Webley at the same capture frames (sheet looked at); hand points still the Webley's; no stance other than standing, no centre-box figure"
  },
  "models/weapons/colt45_coltpa.tik": {
   "action": "support hand: magazine out / in below the screen edge; EMPTY: slide locked back, the support thumb sweeps the stop as the hand closes on the grip, it runs forward - shown; loaded: no action",

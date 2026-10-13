@@ -25,8 +25,10 @@ def main():
     sl = sb.replace('\r\n', '\n').split('\n')
     rb = p12.rd('models/weapons/%s.tik' % real[base.lower()]).decode('latin-1').replace('\r\n', '\n').split('\n')
     done = []
-    for f in FIN:
-        st = '%s_%s' % (base.lower(), f)
+    # --also a,b : more tiks of the same kind (a skin on the base's mesh: webley_revolver_lv_ttwebley), full stems
+    also = sys.argv[sys.argv.index('--also') + 1].split(',') if '--also' in sys.argv else []
+    for f in list(FIN) + also:
+        st = f.lower() if f in also else '%s_%s' % (base.lower(), f)
         if st not in real:
             continue
         rf = p12.rd('models/weapons/%s.tik' % real[st]).decode('latin-1').replace('\r\n', '\n').split('\n')

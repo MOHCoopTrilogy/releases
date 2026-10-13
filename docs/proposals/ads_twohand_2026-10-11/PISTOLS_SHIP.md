@@ -1,6 +1,12 @@
-# PISTOLS - SHIP CUT (2026-10-13, pistol lane)
+# PISTOLS - SHIP CUT v2 (2026-10-13, pistol lane)
 
-**The files of this cut are FROZEN from the commit that adds this file.** The cut is the folder `ship/` beside this
+**v2** (after the coordinator's review of v1, commit a4764af): the two guns that v1 shipped "in a partial state" are
+staged and run - `webley_revolver_lv_ttwebley.tik` (the Webley tik with that skin's lines) and the Webley Mk VI
+`colt45_colt1911w.tik` (its own gun clips retimed onto the Webley's frames, `tools/mk6.py`); a sample of the finish
+tiks written by rule and three model variants were run in the engine (runs pa25, pa27, pa28). Nothing else changed.
+The coordinator's calls on v1 are recorded in D2 and E.
+
+**The files of this cut are FROZEN from the commit that adds this version.** The cut is the folder `ship/` beside this
 file, built by `tools/shipcut.py` from the lane's staged tree (`assets/` is the lane's full working tree and goes on
 changing - do not read the shipped pistols from there). Engine: branch `ads-next` at **e8e199be**.
 
@@ -34,6 +40,7 @@ EMPTIED gun's own locked-back pose counted as part of the reference (the lanes' 
 | Hi-Standard Silenced | 0.3 (tl8) | 0.5 at most in the five stances (tl8) | tl8 | measured with the EARLIER fixed-reference measure, not the sway envelope; racked by hand after every aimed shot and after a reload; not re-checked today |
 | Webley Revolver | 0.2 (tk4) | 0.3 at most in the five stances (tn1) | tn1, ts1 | earlier measure; carries a decided server-side pace change (section D2) |
 | Nagant Revolver | 1.7 (tk10) | 1.7 at most in the five stances (tn3) | tn3, tu1 | earlier measure; the cradling forearm is large for 0.1 s at the hand-over; carries a decided server-side pace change (section D2) |
+| Webley Mk VI | not measured | not measured | pa28 (stand: aimed + hip, looked at) | v2: on the Webley's rows with its own gun clips retimed; see "Variants and finishes" below |
 
 Not measured against the sway envelope for ANY pistol: the LOADED reload in the stances, braced, crouch-leans, the
 vehicle seat (those were run and looked at on stance sheets with the earlier measure: runs pa9, pa13-pa15, pa17).
@@ -41,18 +48,27 @@ Not run for any pistol: sprint / aim-dropped out of the aimed reload, the hip vi
 clips, third person. Run today (pa21, Welrod / TT-33 / silenced TT-33): a fire press during the aimed reload changes
 nothing, a weapon switch drops the gun clip with the hands within a frame.
 
-### Ships in a partial state (cannot be separated - they share a hands prefix with a shipped gun)
+### Variants and finishes (v2: staged and sampled in the engine)
 
-* **Webley Mk VI** (`colt45_colt1911w.tik`) and **`webley_revolver_lv_ttwebley.tik`**: Webley prefix. Their tiks are NOT
-  staged, so they play the Webley's new hands and the slower torso rows with their own released gun clips (0.53 s
-  loop under 0.8 s hands). The Mk VI was run once (tx3): the choreography plays, the hand points are the Webley's, not
-  fitted to its cylinder. Holding them out would mean holding the Webley out.
-* **Colt / P38 / Beretta model variants** (`colt45_guancolt`, `_drbond`, `_bloodyeic`, `_covert`, `_lv_ttcolt`,
-  `p38_guanp38`, `p38_lv_ttp38`, `it_w_beretta_lv_ttberetta`, `dbno_pistol` + its finishes): staged tiks with the same
-  rows and clips as their base gun; none of them was run in the engine on its own mesh.
-* **Finish tiks** (bloody, blued, three camos, chrome, gold): all staged; the 21 revolver finish tiks were written
-  today by rule (`tools/finishclone.py`: the staged base with the released finish's shader / name / rank lines) and
-  were not run. Coverage per tik: `evidence/variants_coverage_ship.md`.
+Run on the cut's own overlay, each gun: two aimed shots + aimed reload, then two hip shots + hip reload; no script
+error and no failed animation load in any of the three logs; frames looked at on sheets.
+
+| tik | what it is | run | seen |
+|---|---|---|---|
+| `colt45_colt1911w` (Webley Mk VI) | its own break-top mesh on the Webley hands and states | pa28 | NEW in v2. Its own gun clips retimed onto the Webley's frames: barrel tips over frames 8-19 (hip) / 6-18 (aimed), shuts over 11-20 / 5-15, cylinder turns over 15-23 of the 24-frame loop. Side by side with the Webley at the same capture frames (`evidence/mk6_vs_webley_open_close_pa28.jpg`) the two open and shut in step. The hands still reach for the Webley's barrel and chambers - the gun side is fitted, the hand points are not (as in run tx3). Its first try (pa25, warped to the clip's last frame) shut the barrel 0.2 s early and was replaced |
+| `webley_revolver_lv_ttwebley` | a skin on the Webley's mesh | pa25 | NEW in v2 (`finishclone.py --also`): the staged Webley tik with that skin's shader and name lines; plays as the Webley, skin shows |
+| `webley_revolver_gold`, `_camo_desert` | finish tiks written by rule | pa25 | play as the Webley, finish shows |
+| `nagant_revolver_blued`, `_bloody` | finish tiks written by rule | pa25, pa27 | play as the Nagant, finish shows |
+| `colt45_guancolt` | model variant of the Colt | pa27 | two-handed aim, aimed reload stays in the aim, hip reload as released |
+| `p38_lv_ttp38` | model variant of the P38 | pa27 | same |
+| `dbno_pistol` | the downed-state pistol (Colt rows) | pa27 | same |
+
+Sheets: `evidence/variants_aimed_pa25.jpg` (the Mk VI row there is the replaced first try), `variants_hip_pa25.jpg`,
+`variants_aimed_hip_pa27.jpg`, `mk6_aimed_hip_pa28.jpg`. GIF: `evidence/mk6_aimed_reload_pa28.gif`.
+NOT run: the other 17 revolver finish tiks (same text as the sampled ones apart from the shader lines), `colt45_drbond`,
+`_bloodyeic`, `_covert`, `_lv_ttcolt`, `p38_guanp38`, `it_w_beretta_lv_ttberetta`, the `dbno_pistol` finishes, and no
+variant in any stance other than standing. The Mk VI has no measured centre-box figure; on the sheet its aimed reload
+is worked under the box like the Webley's. Coverage per tik: `evidence/variants_coverage_ship.md`.
 
 ### Held OUT (they ship exactly as released; checked in the engine, run pa24, sheet `evidence/shipcut_heldout_m10_c96_trench_pa24.jpg`)
 
@@ -69,7 +85,7 @@ nothing, a weapon switch drops the gun clip with the hands within a frame.
 
 ## B. Files, rows and tiks per pistol
 
-`ship/` holds 214 files (5.4 MB); `ship/LEFT_OUT.txt` lists what the cut leaves out of the staged tree.
+`ship/` holds 221 files (5.4 MB); `ship/LEFT_OUT.txt` lists what the cut leaves out of the staged tree.
 Shared files - **apply by 3-way merge, never by copying**: they are snapshots of mod-tree files that other lanes also
 edit, and the mod tree has moved since (low-turret rows, the heavy lane's shotgun lines):
 
@@ -97,8 +113,9 @@ edit, and the mod tree has moved since (low-turret rows, the heavy lane's shotgu
 | Silenced TT-33 | `tt33silenced.tik`; 7 finishes (bloody blued camo_desert camo_winter camo_woodland chrome gold); variants: - | reload_ads_loaded reload_ads_empty reload_empty idle_empty | `models/weapons/tt33/`: coop_tt33_idle_empty.skc, coop_tt33_reload_ads_empty.skc, coop_tt33_reload_ads_loaded.skc, coop_tt33_reload_empty.skc | colt45_charge colt45_idle colt45_reload colt45_reload_ads colt45_reload_empty colt45_reload_empty_ads |
 | Welrod | `welrod.tik`; 7 finishes (bloody blued camo_desert camo_winter camo_woodland chrome gold); variants: - | reload_ads_loaded reload_ads_empty fire_ads | `models/weapons/welrod/`: coop_welrod_fire_ads.skc, coop_welrod_reload_ads_empty.skc, coop_welrod_reload_hip.skc, welrod_pistol.skd (mesh) | colt45_charge colt45_idle colt45_reload colt45_reload_ads colt45_reload_empty colt45_reload_empty_ads coopr_welrod_charge coopr_welrod_cycle coopr_welrod_cycle_ads coopr_welrod_reload coopr_welrod_reload_ads coopr_welrod_reload_empty coopr_welrod_reload_empty_ads |
 | Hi-Standard Silenced | `silencedpistol.tik`; 7 finishes (bloody blued camo_desert camo_winter camo_woodland chrome gold); variants: - | reload_ads_loaded reload_ads_empty fire_ads | `models/weapons/highstandard/`: coop_histandard_fire_ads.skc, coop_histandard_reload_ads_empty.skc, coop_histandard_reload_ads_loaded.skc, hs_pistol.skd (mesh) | histandard_charge histandard_cycle_ads histandard_idle histandard_reload histandard_reload_ads histandard_reload_empty histandard_reload_empty_ads |
-| Webley Revolver | `webley_revolver.tik`; 7 finishes (bloody blued camo_desert camo_winter camo_woodland chrome gold); variants: - | reload_ads_loaded reload_ads_empty reload_end_ads | `models/weapons/webley_revolver/`: coop_webley_close_ads.skc, coop_webley_open_ads.skc | webley_charge webley_idle webley_reload webley_reload_ads webley_reload_empty webley_reload_empty_ads webley_reload_end webley_reload_end_ads webley_reload_single webley_reload_single_ads |
+| Webley Revolver | `webley_revolver.tik`; 7 finishes (bloody blued camo_desert camo_winter camo_woodland chrome gold); variants: `webley_revolver_lv_ttwebley` | reload_ads_loaded reload_ads_empty reload_end_ads | `models/weapons/webley_revolver/`: coop_webley_close_ads.skc, coop_webley_open_ads.skc | webley_charge webley_idle webley_reload webley_reload_ads webley_reload_empty webley_reload_empty_ads webley_reload_end webley_reload_end_ads webley_reload_single webley_reload_single_ads |
 | Nagant Revolver | `nagant_revolver.tik`; 7 finishes (bloody blued camo_desert camo_winter camo_woodland chrome gold); variants: - | reload_single_ads | `models/weapons/nagent_revolver/`: nagant_reload_loop_slow.skc | nagantrev_charge nagantrev_idle nagantrev_reload nagantrev_reload_ads nagantrev_reload_end nagantrev_reload_end_ads nagantrev_reload_single nagantrev_reload_single_ads |
+| Webley Mk VI | `colt45_colt1911w.tik`; 0 finishes; variants: - | reload_ads_loaded reload_ads_empty idle_empty reload_end_ads | `models/weapons/coop_colt1911w/`: coop_mk6_close_ads.skc, coop_mk6_open_ads.skc | webley_charge webley_idle webley_reload webley_reload_ads webley_reload_empty webley_reload_empty_ads webley_reload_end webley_reload_end_ads webley_reload_single webley_reload_single_ads |
 
 Other staged tiks in the cut (same rows as their family, not listed above): `dbno_pistol`, `dbno_pistol_bloody`, `dbno_pistol_blued`, `dbno_pistol_camo_desert`, `dbno_pistol_camo_winter`, `dbno_pistol_camo_woodland`, `dbno_pistol_chrome`, `dbno_pistol_gold`
 
@@ -130,8 +147,8 @@ tiks (8 Welrod, 16 TT-33), and the long clips are client rows played on the cgam
 
 Checker - `python tools/srvrows.py ship` compares every row of every staged weapon tik and of the player tables with
 the released file (frames x frame time from the clip headers, and the `server { }` block of each row). Result on the
-cut: **96 weapon tiks checked, 0 FAIL**, 53 lines of decided changes (D2). On the tree of the lane's previous commit (0910dd4) the same
-checker gives 33 FAIL. Full output: `evidence/srvrows_ship_pa21.txt`.
+cut: **98 weapon tiks checked, 61 declared server-side changes, 0 FAIL** (the declared ones are D2). On the tree of the lane's commit 0910dd4 (before the fix) the same
+checker gives 33 FAIL. Full output: `evidence/srvrows_ship_v2.txt`.
 
 Dedicated server (`omohaaded` + the install's game.dll on 127.0.0.1, one client of the lane's build, run pa21b; three
 arms: the released files, the staged tree after the fix, the staged tree before it). The trigger is pulsed every
@@ -188,11 +205,16 @@ bolt cycle on that one shot (released arm too).
 ### D2. Server-side changes that are DECIDED and are in the cut
 
 These change what the server does, on purpose. They were decided on 2026-10-12 (coordinator, list item C and the
-prone decision) and run on a listen server only. If the user wants "exactly as released" for these too, the Webley
-and the Nagant have to be held out and the prone rows reverted - say so before integrating.
+prone decision) and run on a listen server only. **Coordinator's call on v1 (2026-10-13): they STAY in the cut; the
+user is told about them explicitly.** The Webley Mk VI rows are new in v2: the same decision applied to the gun that
+wears the Webley's hands and states.
 
 | file | row: released -> staged |
 |---|---|
+| `colt45_colt1911w.tik` | row `reload` webley_reload_start.skc 13 fr 0.416 s -> coop_mk6_open_hip.skc 20 fr 0.667 s |
+| | *Webley Mk VI: its own gun clips retimed onto the Webley decision (it wears the Webley hands and reload states; mk6.py, 2026-10-13)* |
+| `colt45_colt1911w.tik` | row `reload_end` webley_reload_end.skc 10 fr 0.320 s -> coop_mk6_close_hip.skc 21 fr 0.700 s |
+| `colt45_colt1911w.tik` | row `reload_single` webley_reload_single.skc 17 fr 0.544 s -> coop_mk6_single_slow.skc 24 fr 0.800 s |
 | `nagant_revolver.tik` | row `reload_single` nagant_reload_loop.skc 16 fr 0.533 s -> nagant_reload_loop_slow.skc 27 fr 0.900 s |
 | | *Nagant: one round 0.53 -> 0.9 s (same decision; runs tn3 tu1)* |
 | `webley_revolver.tik` | row `reload` webley_revolver_reload_start.skc 13 fr 0.433 s -> coop_webley_open_hip.skc 20 fr 0.667 s |
@@ -210,12 +232,15 @@ and the Nagant have to be held out and the prone rows reverted - say so before i
 | `anims_shared.txt` | row `coop_reload_webley_start` viewmodel/webley/webley_reload_start.skc 16 fr 0.533 s -> viewmodel/webley/coop_webley_tp_start24.skc 24 fr 0.800 s |
 | | *the torso row of the Webley decision above* |
 
-The 14 Webley / Nagant finish tiks carry the same rows as their base tik.
+The 14 Webley / Nagant finish tiks and `webley_revolver_lv_ttwebley.tik` carry the same rows as their base tik.
 
 `player_Torso.st` carries the states for the above (revolver loops with break-off, per-pistol prone reload aliases):
 618 changed lines against the released file.
 
 ## E. In the cut and not approved by the user yet
+
+Coordinator's call on v1 (2026-10-13): the Welrod and the Luger ship on their new aim poses, to the user's own
+install for testing, marked as awaiting approval; the texture lifts stay out.
 
 | what | separable? | where |
 |---|---|---|

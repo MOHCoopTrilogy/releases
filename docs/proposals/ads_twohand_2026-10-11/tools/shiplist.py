@@ -13,7 +13,7 @@ GUNS = [('colt45', 'Colt 45', 'colt45', None), ('colt45_coltpa', 'Colt 45 (Pacif
         ('nambu', 'Nambu Type 14', 'colt45', None), ('ppk', 'Walther PPK', 'colt45', 'walther_ppk'),
         ('tt33', 'TT-33 Tokarev', 'colt45', None), ('tt33silenced', 'Silenced TT-33', 'colt45', None),
         ('welrod', 'Welrod', 'colt45', 'welrod'), ('silencedpistol', 'Hi-Standard Silenced', 'histandard', None),
-        ('webley_revolver', 'Webley Revolver', 'webley', None), ('nagant_revolver', 'Nagant Revolver', 'nagantrev', None)]
+        ('webley_revolver', 'Webley Revolver', 'webley', None), ('nagant_revolver', 'Nagant Revolver', 'nagantrev', None), ('colt45_colt1911w', 'Webley Mk VI', 'webley', None)]
 ROWS = ('reload_ads_loaded', 'reload_ads_empty', 'reload_empty', 'idle_empty', 'fire_ads', 'reload_end_ads', 'reload_single_ads')
 tiks = {fn[:-4].lower(): fn for fn in os.listdir(wd) if fn.lower().endswith('.tik')}
 staged = set()
