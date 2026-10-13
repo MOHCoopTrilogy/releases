@@ -1,0 +1,88 @@
+class	weapon	tik	mesh	bones	tris	surfaces	main_sheet	px	fmt	won_by	all_sheets_px
+pistol	Colt 45	colt45.tik	colt45.skd	6	861	2	~/colt45/colt45.dds	2048x2048	dds/DXT5	zzzzzz-HRRTM_Pak4_Weapons.pk3	2048
+pistol	Silenced Colt .45	colt_silenced.tik	colt45_silenced.skd	12	3452	11	~/colt/colt45s2.tga	320x240	tga/RGBA	zzzzz_xw_weapons.pk3	100,320
+pistol	Walther P38	p38.tik	P38.skd	5	1114	3	~/p38/p38.dds	2048x2048	dds/DXT5	zzzzzz-HRRTM_Pak4_Weapons.pk3	2048
+pistol	Silenced Walther P38	p38silenced.tik	P38silenced.skd	14	1908	4	~/p38/s93_p38_blackgrip.tga	600x600	tga/RGBA	zzzzz_xw_weapons.pk3	600,600,2048,500
+pistol	Hi-Standard Silenced	silencedpistol.tik	hs_pistol.skd	6	684	3	~/hi_standard/hi_standard.dds	1024x1024	dds/DXT5	zzzzzz-HRRTM_Pak4_Weapons.pk3	1024
+pistol	Webley Revolver	webley_revolver.tik	webley_revolver.skd	7	823	2	~/webley.dds	1024x1024	dds/DXT1	zzzzzzz_dds_override.pk3	1024,64
+pistol	Nagant Revolver	nagant_revolver.tik	nagent_revolver.skd	8	566	2	~/nagentrevolver.dds	1024x1024	dds/DXT1	zzzzzzz_dds_override.pk3	1024
+pistol	Beretta	it_w_beretta.tik	It_W_Beretta.skd	8	868	3	~/beretta/it_w_beretta.dds	1024x1024	dds/DXT1	zzzzzzz_dds_hdmem.pk3	1024
+pistol	Silenced Beretta	berettasilenced.tik	berettaSilenced.skd	14	1204	4	~/beretta/beretta.jpg	256x256	jpg/RGB	zzzzz_xw_weapons.pk3	256,320
+pistol	Luger P08	lugerp08.tik	luger.skd	5	1399	4	~/luger/p08.jpg	1024x1024	jpg/RGB	zzzzz_xw_weapons.pk3	1024
+pistol	Silenced Luger P08	lugerp08silenced.tik	lugerSilenced.skd	14	1567	5	~/luger/p08.jpg	1024x1024	jpg/RGB	zzzzz_xw_weapons.pk3	1024,500
+pistol	Walther PPK	ppk.tik	PPK.skd	9	4926	9	~/ppk/ppk_slide.tga	1000x1000	tga/RGB	zzzzz_xw_weapons.pk3	500,1000,500,1000,500,500,500
+pistol	TT-33 Tokarev	tt33.tik	tt33.skd	6	853	3	~/tt33/tokarev.tga	750x750	tga/RGB	zzzzz_xw_weapons.pk3	750,2048
+pistol	Silenced TT-33	tt33silenced.tik	tt33silenced.skd	15	1021	4	~/tt33/tokarev.tga	750x750	tga/RGB	zzzzz_xw_weapons.pk3	750,2048,500
+pistol	Nambu Type 14	nambu.tik	nambu.skd	5	3180	5	textures/effects/s93_gloss2.tga	100x100	tga/RGB	zzzzz_xw_weapons.pk3	100
+pistol	Welrod	welrod.tik	welrod_pistol.skd	7	2452	5	~/welrod/rec.tga	620x540	tga/RGBA	zzzzz_xw_weapons.pk3	620,620,620,620,620
+pistol	Mauser C96	mauser_c96.tik	c96.skd	5	4788	12	textures/coop_c96/body.tga	640x480	tga/RGB	zzzzzz_co-op_hzm_mod_assets_tex.pk3	640,640,640,640,640,640,640,640,640,640,640,640
+pistol	S&W M10 .38	m10_revolver.tik	m10.skd	5	3288	13	textures/coop_m10/gun11.tga	640x480	tga/RGB	zzzzzz_co-op_hzm_mod_assets_tex.pk3	640,640,640,640,640,640,640,640,640,640,640,640
+pistol	Webley Mk VI	colt45_colt1911w.tik	colt45.skd	8	4064	5	textures/coop_colt1911w/body.jpg	1000x1000	jpg/RGB	zzzzzz_co-op_hzm_mod_assets_tex.pk3	1000,1000,1100,1100,1000
+pistol	Colt 45 (Pacific)	colt45_coltpa.tik	colt45.skd	6	3116	10	textures/coop_coltpa/colt.jpg	1024x1024	jpg/RGB	zzzzzz_co-op_hzm_mod_assets_tex.pk3	1024
+pistol	Mauser C96 (Trench C96)	mauser_c96_c96trench.tik	c96.skd	7	3578	5	textures/coop_c96trench/body.jpg	1000x1000	jpg/RGB	zzzzzz_co-op_hzm_mod_assets_tex.pk3	1000,1000,1100,2048,1000
+pistol	Bombing Run	coop_binoculars.tik	binoculars.skd	1	592	1	textures/binoculars.dds	128x128	dds/DXT1	zzzzzzz_dds_hdmem.pk3	128
+rifle	M1 Garand	m1_garand.tik	garand.skd	7	2007	6	~/m1garand/garand.dds	2048x1024	dds/DXT5	zzzzzz-HRRTM_Pak4_Weapons.pk3	2048,2048
+rifle	M1 Carbine	carbine.tik	carbine.skd	12	1738	6	textures/hobbscarbine/base.jpg	608x403	jpg/RGB	zzzzz_xw_weapons.pk3	500,480,608,500,510,612
+rifle	Mauser KAR 98K	kar98.tik	KAR98.skd	7	1457	4	~/kar98/kar98.dds	2048x1024	dds/DXT5	zzzzzz-HRRTM_Pak4_Weapons.pk3	2048,2048
+rifle	G 43	g43.tik	g43.skd	5	925	4	models/weapons/g43/g43.tga	512x512	tga/RGBA	pak1.pk3	512
+rifle	Lee-Enfield	enfield.tik	enfield.skd	5	782	3	models/weapons/enfield/enfield.tga	512x512	tga/RGBA	pak1.pk3	512
+rifle	Springfield M1903	springfield_unscoped.tik	springfield_unscoped.skd	6	763	6	textures/effects/s93_gloss2.tga	100x100	tga/RGB	zzzzz_xw_weapons.pk3	100
+rifle	Carcano	it_w_carcano.tik	It_W_Carcano.skd	5	1386	2	~/carcano/it_w_carcano.dds	1024x1024	dds/DXT1	zzzzzzz_dds_hdmem.pk3	1024
+rifle	SVT 40	svt_rifle.tik	svt_rifle.skd	4	802	3	models/weapons/svt_rifle/svt.tga	512x512	tga/RGBA	pak1.pk3	512
+rifle	Mosin Nagant Rifle	mosin_nagant_rifle.tik	mosin_nagant.skd	5	667	1	models/weapons/mosin_nagant/mosin_nagant.jpg	512x512	jpg/RGB	pak1.pk3	512
+rifle	Arisaka Type 99	arisaka.tik	arisaka.skd	6	3006	9	~/arisaka/s93_model97.tga	1024x1024	tga/RGBA	zzzzz_xw_weapons.pk3	1024,2048
+rifle	Silenced M1 Garand	garand_silenced.tik	garand_silenced.skd	26	6099	13	~/m1garand/m1d.tga	320x240	tga/RGB	zzzzz_xw_weapons.pk3	100,2048,512,320,320
+rifle	Springfield '03 Sniper	springfield.tik	springfield.skd	6	1201	3	~/springfield/springfield.dds	2048x2048	dds/DXT5	zzzzzz-HRRTM_Pak4_Weapons.pk3	2048
+rifle	KAR98 - Sniper	kar98sniper.tik	KAR98sniper.skd	6	1483	4	~/kar98/kar98.dds	2048x1024	dds/DXT5	zzzzzz-HRRTM_Pak4_Weapons.pk3	2048,1024
+rifle	Enfield L42A1	uk_w_l42a1.tik	Uk_W_enfieldsniper.skd	6	1611	4	~/enfield_l42a1/uk_w_l42a1.dds	1024x1024	dds/DXT1	zzzzzzz_dds_hdmem.pk3	1024
+rifle	M1 Garand Sniper	garand_scoped.tik	garand_scoped.skd	20	5763	12	~/m1garand/m1d.tga	320x240	tga/RGB	zzzzz_xw_weapons.pk3	100,2048,512,320
+rifle	G43 Sniper	g43sniper.tik	g43sniper.skd	5	916	3	~/g43/gewehr43.jpg	512x512	jpg/RGB	zzzzz_xw_weapons.pk3	512
+rifle	Lee-Enfield Sniper	enfieldsniper.tik	enfield_sniper2.skd	17	2514	7	~/m1garand/m1d.tga	320x240	tga/RGB	zzzzz_xw_weapons.pk3	512,512,320
+rifle	Carcano Sniper	carcanosniper.tik	scoped_carcano.skd	5	2159	4	~/carcano/carcano_scope.tga	256x512	tga/RGBA	zzzzz_xw_weapons.pk3	512,512
+rifle	Arisaka Sniper	arisakasniper.tik	model97.skd	6	3762	10	~/arisaka/s93_model97.tga	1024x1024	tga/RGBA	zzzzz_xw_weapons.pk3	1024,2048
+rifle	Mosin-Nagant Sniper	nagant_sniper.tik	nagantsniper.skd	10	1372	3	~/mosin_nagant/mosin-nagant.jpg	512x512	jpg/RGB	zzzzz_xw_weapons.pk3	512,512
+rifle	Silenced Mosin Sniper	nagant_snipersilenced.tik	nagantsniperSilenced.skd	28	1804	5	~/mosin_nagant/mosin-nagant.jpg	512x512	jpg/RGB	zzzzz_xw_weapons.pk3	512,512,256,320
+rifle	Silenced Kar98 Sniper	kar98snipersilenced.tik	KAR98sniperSilenced.skd	12	1247	4	~/k98/s93_k98sniper_metal.tga	512x512	tga/RGBA	zzzzz_xw_weapons.pk3	512,1024,768,320
+rifle	DeLisle	delisle.tik	delisle.skd	6	908	1	~/delisle/delisle.dds	1024x1024	dds/DXT1	zzzzzzz_dds_override.pk3	1024
+rifle	StG44 Scoped	mp44scoped.tik	scopedmp44.skd	7	4190	7	~/mp44/s93_mp442.tga	600x600	tga/RGB	zzzzz_xw_weapons.pk3	600,600,600,124,512
+rifle	Johnson M1941	johnson_m1941.tik	johnson.skd	13	12506	18	textures/coop_johnson/johnson_07.jpg	640x480	jpg/RGB	zzzzzz_co-op_hzm_mod_assets_tex.pk3	640,640,640,640,640,640,640,640,640,640,640,640,640,640,640,640,2048
+rifle	Lee-Enfield (P14 Enfield)	enfield_p14.tik	p14.skd	9	5571	11	textures/coop_p14/p14stuff.tga	1100x1100	tga/RGBA	zzzzzz_co-op_hzm_mod_assets_tex.pk3	1100,1100,1100,257,1100,1000,1100,1100,1000,2048
+rifle	Mauser KAR 98K (Gewehr 98)	kar98_g98.tik	KAR98.skd	7	4800	9	textures/coop_g98/body.jpg	1000x1000	jpg/RGB	zzzzzz_co-op_hzm_mod_assets_tex.pk3	1100,1100,1000,1000,257,1100,1000,2048
+rifle	M1 Garand (Pacific)	m1_garand_pagarand.tik	garand.skd	6	4469	9	~/m1garand/m1clip.dds	2048x2048	dds/DXT1	zzzzzzzzzz_coop_hd_m3l1a.pk3	1024,2048
+smg	Thompson	thompsonsmg.tik	ThompsonSMG.skd	4	1166	4	~/thompsonsmg/thompsonsmg.dds	2048x2048	dds/DXT5	zzzzzz-HRRTM_Pak4_Weapons.pk3	2048,512
+smg	Thompson 50rd	thompson50.tik	Thompson50.skd	7	2667	6	~/thompson/clip50.tga	496x482	tga/RGB	zzzzz_xw_weapons.pk3	1024,496
+smg	MP40	mp40.tik	mp40.skd	5	1509	6	~/mp40/mp40.dds	2048x2048	dds/DXT5	zzzzzz-HRRTM_Pak4_Weapons.pk3	2048
+smg	Silenced MP40	mp40silenced.tik	mp40silenced.skd	14	1242	6	~/mp40/metal1.tga	512x512	tga/RGBA	zzzzz_xw_weapons.pk3	512,512,402,500
+smg	Sten Mark II	sten.tik	sten_smg.skd	6	591	2	~/sten/sten.tga	512x512	tga/RGBA	zzzzz_xw_weapons.pk3	512
+smg	PPSH SMG	ppsh_smg.tik	ppsh_smg.skd	4	620	3	~/ppsh_smg.dds	1024x1024	dds/DXT5	zzzzzzz_dds_override.pk3	1024
+smg	Silenced PPS-43	ppsh43silenced.tik	ppsh43silenced.skd	13	1094	5	~/ppk/ppk_silencer.tga	500x500	tga/RGB	zzzzz_xw_weapons.pk3	800,500
+smg	M3 Grease Gun	greasegun.tik	greaser.skd	5	2567	5	~/greasegun/greaser.jpg	512x512	jpg/RGB	zzzzz_xw_weapons.pk3	512
+smg	Silenced Grease Gun	greasegun_silenced.tik	greasegun_silenced.skd	11	2903	6	~/colt/colt45s2.tga	320x240	tga/RGBA	zzzzz_xw_weapons.pk3	512,320
+smg	Moschetto	it_w_moschetto.tik	It_W_Moschetto.skd	6	1100	3	~/moschetto/it_w_moschetto.dds	1024x1024	dds/DXT1	zzzzzzz_dds_hdmem.pk3	1024
+smg	Beretta M38	moschetto.tik	moscheto.skd	6	1100	3	~/moscheto/moscheto.jpg	512x512	jpg/RGB	zzzzz_xw_weapons.pk3	512
+smg	Type 100 SMG	type100smg.tik	type100.skd	5	3798	12	~/type100/type100.tga	1024x1024	tga/RGB	zzzzz_xw_weapons.pk3	1024
+smg	Thompson (Gold)	thompsonsmg_gold.tik	ThompsonSMG.skd	4	1166	4	~/thompsonsmg/thompsonsmg.dds	2048x2048	dds/DXT5	zzzzzz-HRRTM_Pak4_Weapons.pk3	2048,512
+smg	MP40 (MP18)	mp40_mp18.tik	mp18.skd	6	3281	5	textures/coop_mp18/stuff.jpg	1000x1000	jpg/RGB	zzzzzz_co-op_hzm_mod_assets_tex.pk3	1000,1000,1100,1100,1100
+smg	MP40 (Reactivated)	mp40_mp40r2.tik	mp40.skd	5	1756	4	textures/coop_mp40r2/mp2.jpg	1200x1200	jpg/RGB	zzzzzz_co-op_hzm_mod_assets_tex.pk3	1200,1200,640
+smg	Thompson (M1A1 Remodel)	thompsonsmg_m1a1dk.tik	thompson.skd	5	1694	4	textures/coop_m1a1dk/thompsonsmg.tga	1024x1024	tga/RGBA	zzzzzz_co-op_hzm_mod_assets_tex.pk3	1024,256
+smg	Thompson (1928 Tommy)	thompsonsmg_tommy1928d.tik	ThompsonSMG.skd	4	2200	8	textures/coop_tommy1928d/gangt3.tga	1016x998	tga/RGBA	zzzzzz_co-op_hzm_mod_assets_tex.pk3	1208,512,1016,904,680,1224,1176,992
+smg	Thompson (M1928)	thompsonsmg_tommy28.tik	ThompsonSMG.skd	5	2815	6	textures/coop_tommy28/thompson.jpg	1024x1024	jpg/RGB	zzzzzz_co-op_hzm_mod_assets_tex.pk3	1024
+mg	BAR	bar.tik	bar.skd	9	4838	12	~/bar/s93_bar-bipod.dds	2048x2048	dds/DXT1	zzzzzzzzzz_coop_hd_m3l1a.pk3	2048,2048
+mg	StG 44	mp44.tik	mp44.skd	5	1400	4	~/mp44/mp44.dds	2048x2048	dds/DXT5	zzzzzz-HRRTM_Pak4_Weapons.pk3	2048,1024
+mg	FG 42	fg42.tik	fg42.skd	4	920	4	textures/fg42/fg42.jpg	512x512	jpg/RGB	zzzzzz_co-op_hzm_mod_assets_tex.pk3	512
+mg	Vickers-Berthier	uk_w_vickers.tik	Uk_W_Vickers.skd	5	1568	3	~/vickers/uk_w_vickers.dds	1024x1024	dds/DXT1	zzzzzzz_dds_hdmem.pk3	1024
+mg	Breda	it_w_breda.tik	It_W_Breda.skd	7	1893	3	~/breda/it_w_breda.dds	1024x1024	dds/DXT1	zzzzzzz_dds_hdmem.pk3	1024
+mg	M1919 30cal	30calportable.tik	30cal.skd	5	848	3	~/30cal/30cal.dds	1024x1024	dds/DXT5	zzzzzzz_dds_override.pk3	1024,2048
+mg	MG42	mg42portable.tik	mg42.skd	5	1495	3	~/mg42/mg42.dds	2048x2048	dds/DXT5	zzzzzzzzzz_coop_hd_m3l1a.pk3	2048,512
+mg	DP-28	dp28.tik	dp28.skd	6	1912	9	textures/coop_dp28/bipod.jpg	1024x1024	jpg/RGB	zzzzzz_co-op_hzm_mod_assets_tex.pk3	1024,1024
+mg	Lewis Gun	bar_bar1918.tik	BAR.skd	7	3109	6	textures/coop_bar1918/lewis1.jpg	1100x736	jpg/RGB	zzzzzz_co-op_hzm_mod_assets_tex.pk3	1100,1100,1100,2048,1100,1000
+mg	BAR (M1918 Classic)	bar_bar1918a.tik	BAR.skd	5	1332	3	textures/coop_bar1918a/bar.tga	1024x1024	tga/RGB	zzzzzz_co-op_hzm_mod_assets_tex.pk3	1024,512
+mg	StG 44 (Strapped)	mp44_mp44strap.tik	mp44.skd	5	2656	7	textures/coop_mp44strap/mp44.tga	1024x1024	tga/RGB	zzzzzz_co-op_hzm_mod_assets_tex.pk3	1024,512,400
+mg	MG42	mg42_gun.tik	mg42.skd	4	1481	2	~/mg42/mg42.dds	2048x2048	dds/DXT5	zzzzzzzzzz_coop_hd_m3l1a.pk3	2048
+mg	Portable MG42	mg42portable_placed.tik	mg42_mounted_3rdperson.skd	5	2049	2	~/mg42.dds	1024x1024	dds/DXT5	zzzzzzz_dds_override.pk3	1024,1024
+heavy	Shotgun	shotgun.tik	shotgun.skd	5	762	3	~/winchester/winchester.dds	2048x2048	dds/DXT5	zzzzzz-HRRTM_Pak4_Weapons.pk3	2048
+heavy	Bazooka	bazooka.tik	bazooka.skd	5	1110	5	~/bazooka/bazooka.dds	1024x1024	dds/DXT5	zzzzzz-HRRTM_Pak4_Weapons.pk3	1024,1024,2048
+heavy	Panzerschreck	panzerschreck.tik	panzerschreck.skd	5	842	2	~/panzerschreck/pschreck.dds	2048x2048	dds/DXT5	zzzzzz-HRRTM_Pak4_Weapons.pk3	2048,2048
+heavy	PIAT	uk_w_piat.tik	Uk_W_Piat.skd	3	1332	2	~/piat/uk_w_piat.dds	1024x1024	dds/DXT1	zzzzzzz_dds_hdmem.pk3	1024,1024
+heavy	Gewehrgranate	kar98_mortar.tik	KAR98grenade.skd	7	1712	8	models/weapons/kar98grenade/kar98gren_01.tga	512x256	tga/RGB	pak1.pk3	512,256,256,256,2048,256
+?	Packed MG42 Turret	mg42carryable.tik	mg42_complete.skd	6	2049	2	~/mg42.dds	1024x1024	dds/DXT5	zzzzzzz_dds_override.pk3	1024,1024
