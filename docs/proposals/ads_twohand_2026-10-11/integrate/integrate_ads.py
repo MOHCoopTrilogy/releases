@@ -93,7 +93,7 @@ def G(rel, lane, src, rev, gun):
 
 # Steps that are SHIPPED (pass 1, on the user's install): their lanes go on working in the same folders (the rifles lane
 # rewrote its staged Enfield tiks for the aimed reload the day after), so a re-run must not take a changed lane file -
-# the copy in docs/tools/assets/fixes is kept and the line says so (bug-3833). After a --reset these steps can only be
+# the copy in docs/tools/assets/fixes is kept and the line says so (bug-3885). After a --reset these steps can only be
 # rebuilt from the docs commit (git show PASS1_REV), not from the lane folders.
 FROZEN = (1, 2, 3)
 PASS1_REV = '76f7b15'       # docs commit of integration pass 1 (steps 1-3) = what is on the user's install
@@ -154,7 +154,8 @@ def step1():
                                                          'dp28_reload_adsb', 'dp28_reload_empty_adsb'], 'DP-28')]
     ops += [C('DP-28', 'DP-28', dp28)]
     # ---- pump shotgun
-    ops += [T(h, W + t + '.tik', 'Shotgun') for t in sg]
+    # (the one released line step 7 rewrites - the hull's eject delay - may be missing from the shipped copy)
+    ops += [T(h, W + t + '.tik', 'Shotgun', allow=(r'^\s*entry commanddelay 0\.2 tagspawn tag_eject\s*$',)) for t in sg]
     ops += [F(h, VM + 'shotgun/' + c + '.skc', 'Shotgun') for c in (
         'shotgun_reload_ads', 'shotgun_reload_single_ads', 'shotgun_reload_end_ads', 'shotgun_reload_end_loaded_ads',
         'shotgun_reload_end_break_ads', 'coop_shotgun_reload_end_loaded', 'coop_shotgun_reload_end_break', 'coop_tps_reload_break')]

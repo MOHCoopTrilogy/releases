@@ -1,0 +1,107 @@
+tik | swapped row | server row | allowed because
+coop_g43_irons.tik | reload_ads_empty coop_g43_irons_reload_ads_empty.skc | reload g43_reload.skc | step 5 G 43 Irons: reload_ads_empty (the carrier racked) over the released 56-frame reload
+coop_g43_irons_bloody.tik | reload_ads_empty coop_g43_irons_reload_ads_empty.skc | reload g43_reload.skc | step 5 G 43 Irons: reload_ads_empty (the carrier racked) over the released 56-frame reload
+coop_g43_irons_blued.tik | reload_ads_empty coop_g43_irons_reload_ads_empty.skc | reload g43_reload.skc | step 5 G 43 Irons: reload_ads_empty (the carrier racked) over the released 56-frame reload
+coop_g43_irons_camo_desert.tik | reload_ads_empty coop_g43_irons_reload_ads_empty.skc | reload g43_reload.skc | step 5 G 43 Irons: reload_ads_empty (the carrier racked) over the released 56-frame reload
+coop_g43_irons_camo_winter.tik | reload_ads_empty coop_g43_irons_reload_ads_empty.skc | reload g43_reload.skc | step 5 G 43 Irons: reload_ads_empty (the carrier racked) over the released 56-frame reload
+coop_g43_irons_camo_woodland.tik | reload_ads_empty coop_g43_irons_reload_ads_empty.skc | reload g43_reload.skc | step 5 G 43 Irons: reload_ads_empty (the carrier racked) over the released 56-frame reload
+coop_g43_irons_chrome.tik | reload_ads_empty coop_g43_irons_reload_ads_empty.skc | reload g43_reload.skc | step 5 G 43 Irons: reload_ads_empty (the carrier racked) over the released 56-frame reload
+coop_g43_irons_dhg43fleck.tik | reload_ads_empty coop_g43_irons_reload_ads_empty.skc | reload g43_reload.skc | step 5 G 43 Irons: reload_ads_empty (the carrier racked) over the released 56-frame reload
+coop_g43_irons_gold.tik | reload_ads_empty coop_g43_irons_reload_ads_empty.skc | reload g43_reload.skc | step 5 G 43 Irons: reload_ads_empty (the carrier racked) over the released 56-frame reload
+coop_g43_irons_hobbsg43urb.tik | reload_ads_empty coop_g43_irons_reload_ads_empty.skc | reload g43_reload.skc | step 5 G 43 Irons: reload_ads_empty (the carrier racked) over the released 56-frame reload
+coop_g43_irons_hobbsg43wood.tik | reload_ads_empty coop_g43_irons_reload_ads_empty.skc | reload g43_reload.skc | step 5 G 43 Irons: reload_ads_empty (the carrier racked) over the released 56-frame reload
+coop_g43_irons_lv_ttg43.tik | reload_ads_empty coop_g43_irons_reload_ads_empty.skc | reload g43_reload.skc | step 5 G 43 Irons: reload_ads_empty (the carrier racked) over the released 56-frame reload
+it_w_beretta.tik | reload_ads_loaded coop_beretta_reload_ads_loaded.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+it_w_beretta.tik | reload_ads_empty coop_beretta_reload_ads_empty.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+it_w_beretta_bloody.tik | reload_ads_loaded coop_beretta_reload_ads_loaded.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+it_w_beretta_bloody.tik | reload_ads_empty coop_beretta_reload_ads_empty.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+it_w_beretta_blued.tik | reload_ads_loaded coop_beretta_reload_ads_loaded.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+it_w_beretta_blued.tik | reload_ads_empty coop_beretta_reload_ads_empty.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+it_w_beretta_camo_desert.tik | reload_ads_loaded coop_beretta_reload_ads_loaded.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+it_w_beretta_camo_desert.tik | reload_ads_empty coop_beretta_reload_ads_empty.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+it_w_beretta_camo_winter.tik | reload_ads_loaded coop_beretta_reload_ads_loaded.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+it_w_beretta_camo_winter.tik | reload_ads_empty coop_beretta_reload_ads_empty.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+it_w_beretta_camo_woodland.tik | reload_ads_loaded coop_beretta_reload_ads_loaded.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+it_w_beretta_camo_woodland.tik | reload_ads_empty coop_beretta_reload_ads_empty.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+it_w_beretta_chrome.tik | reload_ads_loaded coop_beretta_reload_ads_loaded.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+it_w_beretta_chrome.tik | reload_ads_empty coop_beretta_reload_ads_empty.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+it_w_beretta_gold.tik | reload_ads_loaded coop_beretta_reload_ads_loaded.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+it_w_beretta_gold.tik | reload_ads_empty coop_beretta_reload_ads_empty.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+it_w_beretta_lv_ttberetta.tik | reload_ads_loaded coop_beretta_reload_ads_loaded.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+it_w_beretta_lv_ttberetta.tik | reload_ads_empty coop_beretta_reload_ads_empty.skc | reload A_W_MOD34Pistol_reload_W.skc | step 4 Beretta: the released reload row is a packed Breakthrough clip (length not readable here; the engine decides)
+ppk.tik | reload_ads_loaded 2.433 s | reload 2.336 s | step 4 PPK: its released reload row is 0.10 s shorter than the aimed clips (in the cut, run by the lane with the clock on)
+ppk.tik | reload_ads_empty 2.433 s | reload 2.336 s | step 4 PPK: its released reload row is 0.10 s shorter than the aimed clips (in the cut, run by the lane with the clock on)
+tt33.tik | reload_ads_loaded 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33.tik | reload_ads_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33.tik | reload_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_bloody.tik | reload_ads_loaded 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_bloody.tik | reload_ads_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_bloody.tik | reload_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_blued.tik | reload_ads_loaded 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_blued.tik | reload_ads_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_blued.tik | reload_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_camo_desert.tik | reload_ads_loaded 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_camo_desert.tik | reload_ads_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_camo_desert.tik | reload_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_camo_winter.tik | reload_ads_loaded 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_camo_winter.tik | reload_ads_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_camo_winter.tik | reload_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_camo_woodland.tik | reload_ads_loaded 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_camo_woodland.tik | reload_ads_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_camo_woodland.tik | reload_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_chrome.tik | reload_ads_loaded 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_chrome.tik | reload_ads_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_chrome.tik | reload_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_gold.tik | reload_ads_loaded 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_gold.tik | reload_ads_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33_gold.tik | reload_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced.tik | reload_ads_loaded 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced.tik | reload_ads_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced.tik | reload_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_bloody.tik | reload_ads_loaded 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_bloody.tik | reload_ads_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_bloody.tik | reload_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_blued.tik | reload_ads_loaded 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_blued.tik | reload_ads_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_blued.tik | reload_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_camo_desert.tik | reload_ads_loaded 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_camo_desert.tik | reload_ads_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_camo_desert.tik | reload_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_camo_winter.tik | reload_ads_loaded 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_camo_winter.tik | reload_ads_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_camo_winter.tik | reload_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_camo_woodland.tik | reload_ads_loaded 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_camo_woodland.tik | reload_ads_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_camo_woodland.tik | reload_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_chrome.tik | reload_ads_loaded 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_chrome.tik | reload_ads_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_chrome.tik | reload_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_gold.tik | reload_ads_loaded 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_gold.tik | reload_ads_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+tt33silenced_gold.tik | reload_empty 2.433 s | reload 1.750 s | step 4 TT-33 + silenced: server reload row 7 frames
+welrod.tik | reload_ads_loaded 2.433 s | reload 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod.tik | reload_ads_empty 2.433 s | reload 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod.tik | fire_ads 0.867 s | fire 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_bloody.tik | reload_ads_loaded 2.433 s | reload 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_bloody.tik | reload_ads_empty 2.433 s | reload 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_bloody.tik | fire_ads 0.867 s | fire 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_blued.tik | reload_ads_loaded 2.433 s | reload 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_blued.tik | reload_ads_empty 2.433 s | reload 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_blued.tik | fire_ads 0.867 s | fire 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_camo_desert.tik | reload_ads_loaded 2.433 s | reload 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_camo_desert.tik | reload_ads_empty 2.433 s | reload 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_camo_desert.tik | fire_ads 0.867 s | fire 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_camo_winter.tik | reload_ads_loaded 2.433 s | reload 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_camo_winter.tik | reload_ads_empty 2.433 s | reload 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_camo_winter.tik | fire_ads 0.867 s | fire 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_camo_woodland.tik | reload_ads_loaded 2.433 s | reload 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_camo_woodland.tik | reload_ads_empty 2.433 s | reload 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_camo_woodland.tik | fire_ads 0.867 s | fire 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_chrome.tik | reload_ads_loaded 2.433 s | reload 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_chrome.tik | reload_ads_empty 2.433 s | reload 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_chrome.tik | fire_ads 0.867 s | fire 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_gold.tik | reload_ads_loaded 2.433 s | reload 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_gold.tik | reload_ads_empty 2.433 s | reload 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+welrod_gold.tik | fire_ads 0.867 s | fire 0.032 s | step 4 Welrod: server rows reload / fire are 1 frame, the aimed reload and the bolt cycle run on the clock
+564 weapon tiks scanned, the clock engages on 74 row pair(s)
+GATE: pass - the client clip clock only runs on the guns it was made for

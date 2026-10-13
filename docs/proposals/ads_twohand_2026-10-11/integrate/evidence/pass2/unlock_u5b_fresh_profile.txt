@@ -1,0 +1,54 @@
+~^~^ XT state rank=0 total=0 irons=0 ironsFleck=0
+~^~^ XT record=
+~^~^ UNLOCK rank0_click:
+coop_lo1" is:"", the default
+coop_loS1" is:"" default:"models/weapons/mp44.tik"
+coop_loS1F" is:"0", the default
+coop_loLkA78" is:"set coop_loLkV78 1", the default
+coop_lockLoadout" is:"1" default:""
+~^~^ XT seed done
+~^~^ XT state rank=0 total=0 irons=0 ironsFleck=0
+~^~^ XT record=models/weapons/bar.tik|models/weapons/kar98sniper.tik
+~^~^ XT under2 thr=1200 gain=10 pre=1192
+~^~^ XT state rank=1 total=1192 irons=0 ironsFleck=0
+~^~^ XT record=models/weapons/bar.tik|models/weapons/kar98sniper.tik
+~^~^ UNLOCK rank1_click:
+coop_lo1" is:"", the default
+coop_loS1" is:"" default:"models/weapons/mp44.tik"
+coop_loS1F" is:"0", the default
+coop_loLkA78" is:"set coop_loLkV78 1", the default
+coop_lockLoadout" is:"1" default:""
+~^~^ XT award 10 kills
+~^~^ XT state rank=2 total=1202 irons=1 ironsFleck=0
+~^~^ XT record=models/weapons/bar.tik|models/weapons/kar98sniper.tik|models/weapons/silencedpistol.tik|models/weapons/steilhandgranate_start.tik|models/weapons/coop_g43_irons.tik|models/player/allied_
+~^~^ UNLOCK rank2_click:
+coop_lo1" is:"", the default
+coop_loS1" is:"" default:"models/weapons/mp44.tik"
+coop_loS1F" is:"0", the default
+coop_loLkA78" is:"set coop_loLkV78 1", the default
+coop_lockLoadout" is:"1" default:""
+~^~^ UNLOCK after_restart:
+~^~^ XT held=models/weapons/thompsonsmg.tik
+~^~^ XT state rank=2 total=1202 irons=1 ironsFleck=0
+~^~^ XT record=models/weapons/bar.tik|models/weapons/kar98sniper.tik|models/weapons/silencedpistol.tik|models/weapons/steilhandgranate_start.tik|models/weapons/coop_g43_irons.tik|models/player/allied_
+~^~^ UNLOCK variant_locked:
+coop_lo1" is:"", the default
+coop_loS1" is:"" default:"models/weapons/mp44.tik"
+coop_loS1F" is:"8" default:"0"
+coop_loLkA78" is:"set coop_loLkV78 0" default:"set coop_loLkV78 1"
+coop_lockLoadout" is:"1" default:""
+~^~^ XT g43kills 225 (wpn_g43)
+~^~^ XT state rank=2 total=1202 irons=1 ironsFleck=1
+~^~^ XT record=models/weapons/bar.tik|models/weapons/kar98sniper.tik|models/weapons/silencedpistol.tik|models/weapons/steilhandgranate_start.tik|models/weapons/coop_g43_irons.tik|models/player/allied_
+~^~^ XT state rank=2 total=1202 irons=1 ironsFleck=1
+~^~^ XT record=models/weapons/bar.tik|models/weapons/kar98sniper.tik|models/weapons/silencedpistol.tik|models/weapons/steilhandgranate_start.tik|models/weapons/coop_g43_irons.tik|models/player/allied_
+~^~^ UNLOCK variant_unlocked:
+coop_lo1" is:"", the default
+coop_loS1" is:"" default:"models/weapons/mp44.tik"
+coop_loS1F" is:"8" default:"0"
+coop_loLkA78" is:"set coop_loLkV78 0" default:"set coop_loLkV78 1"
+coop_lockLoadout" is:"1" default:""
+~^~^ UNLOCK after_variant_restart:
+~^~^ XT held=models/weapons/thompsonsmg.tik
+~^~^ XT state rank=2 total=1202 irons=1 ironsFleck=1
+~^~^ XT record=models/weapons/bar.tik|models/weapons/kar98sniper.tik|models/weapons/silencedpistol.tik|models/weapons/steilhandgranate_start.tik|models/weapons/coop_g43_irons.tik|models/player/allied_

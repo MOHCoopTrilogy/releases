@@ -1,0 +1,18 @@
+gun phase | b3 | f9b | verdict
+thompson hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.6 | reload None refill  | ATTACK_SMG_PRIMARY:0.6 | equal
+thompson hipreload | reload 2.6 refill 3@+2.125 |  | reload 2.6 refill 3@+2.125 |  | equal
+thompson aim | reload None refill  |  | reload None refill  |  | equal
+thompson aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.25 | equal (within one 25 ms server frame)
+thompson aimreload | reload 2.6 refill 3@+2.125 |  | reload 2.6 refill 3@+2.125 |  | equal
+thompson aimempty | reload 2.6 refill 30@+2.125 | ATTACK_SMG_PRIMARY_AIM:5.675 | reload 2.6 refill 30@+2.125 | ATTACK_SMG_PRIMARY_AIM:5.675 | equal
+thompson crouch | reload 2.6 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.225 | reload 2.6 refill 3@+2.125 | ATTACK_SMG_PRIMARY_AIM:0.25 | equal (within one 25 ms server frame)
+thompson hipempty | reload 2.6 refill 30@+2.125 | ATTACK_SMG_PRIMARY:3.125 | reload 2.6 refill 30@+2.125 | ATTACK_SMG_PRIMARY:3.1 | equal (within one 25 ms server frame)
+sten hipfire | reload None refill  | ATTACK_SMG_PRIMARY:0.65 | reload None refill  | ATTACK_SMG_PRIMARY:0.65 | equal
+sten hipreload | reload 3.0 refill 3@+2.350 |  | reload 3.0 refill 3@+2.350 |  | equal
+sten aim | reload None refill  |  | reload None refill  |  | equal
+sten aimfire | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.225 | reload None refill  | ATTACK_SMG_PRIMARY_AIM:0.25 | equal (within one 25 ms server frame)
+sten aimreload | reload 3.0 refill 3@+2.350 |  | reload 3.0 refill 4@+2.350 |  | DIFFERENT
+sten aimempty | reload 3.0 refill 30@+2.350 | ATTACK_SMG_PRIMARY_AIM:5.675 | reload 3.0 refill 30@+2.350 | ATTACK_SMG_PRIMARY_AIM:5.675 | equal
+sten crouch | reload 3.0 refill 3@+2.350 | ATTACK_SMG_PRIMARY_AIM:0.225 | reload 3.0 refill 3@+2.350 | ATTACK_SMG_PRIMARY_AIM:0.225 | equal
+sten hipempty | reload 3.0 refill 30@+2.350 | ATTACK_SMG_PRIMARY:2.675 | reload 3.0 refill 30@+2.350 | ATTACK_SMG_PRIMARY:2.675 | equal
+1 phase(s) differ

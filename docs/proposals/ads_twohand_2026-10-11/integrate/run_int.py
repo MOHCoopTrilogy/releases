@@ -138,6 +138,9 @@ def scenario(key, shot):
                                                        'reload', 'wait %d' % rw]
         Lc += m('breakempty') + fire(cls, clip, clip) + ['wait 700', 'reload', 'wait 2100', '+attackprimary', 'wait 70', '-attackprimary', 'wait 3500',
                                                         'reload', 'wait %d' % rw]
+    if shot and '--weather' in sys.argv:
+        # rain fix (rainfix-next 5376f59e): ONE level picture at the hip with the weather pinned, a minute into the session
+        Lc += ['wait 800', 'screenshot int_rain', 'wait 300']
     Lc += m('end')
     return Lc
 
@@ -391,6 +394,8 @@ def run(sess, bins, code, fixes, guns, shot, ded=False):
                          else ('rcon ' + l) if l.startswith('set coop_') else l for l in lines]) if ded else (lambda lines: lines)
     try:
         extra = ['set coop_reloadDebug 1', 'set cg_adsSightDebug 0', 'set cg_drawviewmodel 2']
+        if '--weather' in sys.argv:        # e.g. --weather 4 = the downpour pinned (docs/proposals/rainfix_2026-10-13)
+            extra += ['set coop_weatherPin %s' % sys.argv[sys.argv.index('--weather') + 1]]
         if ded:
             srv, slog = start_server(R, bins)
             notes['server'] = {'pid': srv.pid, 'port': SRVPORT}

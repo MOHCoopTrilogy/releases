@@ -1,0 +1,80 @@
+== per gun: phases compared with the baseline (or with the base gun of the same run for a variant)
+colt45         vs b3               server: 8 phases equal, 1 differ | hands clips: same in every phase
+      SERVER prone: reload 1.4 -> 2.4, refill [2@+0.875] -> [2@+0.825], shots 2 -> 2 [0.25] -> [0.25]
+colt45_gold    vs base gun colt45  server: 8 phases equal, 0 differ | hands clips: same in every phase
+guancolt       vs base gun colt45  server: 8 phases equal, 0 differ | hands clips: same in every phase
+coltpa         vs base gun colt45  server: 8 phases equal, 0 differ | hands clips: same in every phase
+coltsil        vs b3               server: 8 phases equal, 1 differ | hands clips: same in every phase
+      SERVER prone: reload 1.4 -> 2.4, refill [2@+0.875] -> [2@+0.825], shots 2 -> 2 [0.25] -> [0.25]
+dbno           vs base gun colt45  server: 8 phases equal, 0 differ | hands clips: same in every phase
+p38            vs b3               server: 8 phases equal, 1 differ | hands clips: same in every phase
+      SERVER prone: reload 1.4 -> 2.4, refill [2@+0.875] -> [2@+0.825], shots 2 -> 2 [0.25] -> [0.25]
+p38tt          vs base gun p38     server: 8 phases equal, 0 differ | hands clips: same in every phase
+p38sil         vs b3               server: 8 phases equal, 0 differ | hands clips: same in every phase
+beretta        vs b3               server: 8 phases equal, 1 differ | hands clips: same in every phase
+      SERVER prone: reload 1.4 -> 2.075, refill [2@+0.875] -> [2@+2.050], shots 2 -> 2 [0.25] -> [0.25]
+berettasil     vs b3               server: 8 phases equal, 0 differ | hands clips: same in every phase
+luger          vs b3               server: 8 phases equal, 1 differ | hands clips: same in every phase
+      SERVER prone: reload 1.4 -> 2.4, refill [2@+0.875] -> [2@+0.825], shots 2 -> 2 [0.25] -> [0.25]
+lugersil       vs b3               server: 8 phases equal, 0 differ | hands clips: same in every phase
+nambu          vs b3               server: 8 phases equal, 1 differ | hands clips: same in every phase
+      SERVER prone: reload 1.4 -> 2.4, refill [2@+0.875] -> [2@+0.825], shots 2 -> 2 [0.25] -> [0.25]
+ppk            vs b3               server: 8 phases equal, 1 differ | hands clips: same in every phase
+      SERVER prone: reload 1.4 -> 2.4, refill [2@+0.875] -> [2@+0.825], shots 2 -> 2 [0.25] -> [0.25]
+tt33           vs b3               server: 8 phases equal, 1 differ | hands clips: same in every phase
+      SERVER prone: reload 1.4 -> 2.4, refill [2@+0.875] -> [2@+0.825], shots 2 -> 2 [0.25] -> [0.25]
+tt33sil        vs b3               server: 8 phases equal, 0 differ | hands clips: same in every phase
+welrod         vs b3               server: 8 phases equal, 1 differ | hands clips: same in every phase
+      SERVER prone: reload 1.4 -> 2.4, refill [2@+0.875] -> [2@+0.825], shots 2 -> 2 [0.25] -> [0.25]
+histd          vs b3               server: 8 phases equal, 1 differ | hands clips: same in every phase
+      SERVER prone: reload 1.4 -> 2.4, refill [2@+0.875] -> [2@+0.825], shots 2 -> 2 [0.25] -> [0.25]
+webley         vs b3               server: 3 phases equal, 6 differ | hands clips: 6 phases differ
+      SERVER hipreload: reload 2.0 -> 3.05, refill [1@+0.650,1@+1.150] -> [1@+1.400,1@+2.150], shots 0 -> 0 [] -> []
+      SERVER aimreload: reload 2.0 -> 3.05, refill [1@+0.650,1@+1.150] -> [1@+1.400,1@+2.150], shots 0 -> 0 [] -> []
+      SERVER aimempty: reload 4.0 -> 6.05, refill [1@+0.650,1@+1.150,1@+1.650,1@+2.150,1@+2.650,1@+3.150] -> [1@+1.400,1@+2.150,1@+2.900,1@+3.650,1@+4.400,1@+5.150], shots 6 -> 6 [0.175] -> [0.175]
+      SERVER crouch: reload 2.0 -> 3.05, refill [1@+0.650,1@+1.150] -> [1@+1.400,1@+2.150], shots 2 -> 2 [0.175] -> [0.175]
+      SERVER prone: reload 2.0 -> 3.05, refill [1@+0.650,1@+1.150] -> [1@+1.400,1@+2.150], shots 2 -> 2 [0.25] -> [0.25]
+      SERVER hipempty: reload 4.0 -> 6.05, refill [1@+0.650,1@+1.150,1@+1.650,1@+2.150,1@+2.650,1@+3.150] -> [1@+1.400,1@+2.150,1@+2.900,1@+3.650,1@+4.400,1@+5.150], shots 6 -> 6 [0.175] -> [0.175]
+webley_gold    vs base gun webley  server: 8 phases equal, 0 differ | hands clips: same in every phase
+webley_desert  vs base gun webley  server: 8 phases equal, 0 differ | hands clips: same in every phase
+webleytt       vs base gun webley  server: 8 phases equal, 0 differ | hands clips: same in every phase
+mk6            vs b3               server: 3 phases equal, 5 differ | hands clips: 5 phases differ
+      SERVER hipreload: reload 2.0 -> 3.05, refill [1@+0.650,1@+1.150] -> [1@+1.400,1@+2.150], shots 0 -> 0 [] -> []
+      SERVER aimreload: reload 2.0 -> 3.05, refill [1@+0.650,1@+1.150] -> [1@+1.400,1@+2.150], shots 0 -> 0 [] -> []
+      SERVER aimempty: reload 4.0 -> 6.05, refill [1@+0.650,1@+1.150,1@+1.650,1@+2.150,1@+2.650,1@+3.150] -> [1@+1.400,1@+2.150,1@+2.900,1@+3.650,1@+4.400,1@+5.150], shots 6 -> 6 [0.175] -> [0.175]
+      SERVER crouch: reload 2.0 -> 3.05, refill [1@+0.650,1@+1.150] -> [1@+1.400,1@+2.150], shots 2 -> 2 [0.175] -> [0.175]
+      SERVER hipempty: reload 4.0 -> 6.05, refill [1@+0.650,1@+1.150,1@+1.650,1@+2.150,1@+2.650,1@+3.150] -> [1@+1.400,1@+2.150,1@+2.900,1@+3.650,1@+4.400,1@+5.150], shots 6 -> 6 [0.175] -> [0.175]
+nagant         vs b3               server: 3 phases equal, 6 differ | hands clips: 6 phases differ
+      SERVER hipreload: reload 2.9 -> 3.45, refill [1@+1.175,1@+1.750] -> [1@+1.800,1@+2.650], shots 0 -> 0 [] -> []
+      SERVER aimreload: reload 2.9 -> 3.45, refill [1@+1.175,1@+1.750] -> [1@+1.800,1@+2.650], shots 0 -> 0 [] -> []
+      SERVER aimempty: reload 5.775 -> 7.7, refill [1@+1.175,1@+1.750,1@+2.325,1@+2.900,1@+3.475,1@+4.050,1@+4.625] -> [1@+1.800,1@+2.650,1@+3.500,1@+4.350,1@+5.200,1@+6.050,1@+6.900], shots 7 -> 7 [0.175] -> [0.175]
+      SERVER crouch: reload 2.9 -> 3.45, refill [1@+1.175,1@+1.750] -> [1@+1.800,1@+2.650], shots 2 -> 2 [0.175] -> [0.175]
+      SERVER prone: reload 2.9 -> 3.45, refill [1@+1.175,1@+1.750] -> [1@+1.800,1@+2.650], shots 2 -> 2 [0.25] -> [0.25]
+      SERVER hipempty: reload 5.775 -> 7.7, refill [1@+1.175,1@+1.750,1@+2.325,1@+2.900,1@+3.475,1@+4.050,1@+4.625] -> [1@+1.800,1@+2.650,1@+3.500,1@+4.350,1@+5.200,1@+6.050,1@+6.900], shots 7 -> 7 [0.175] -> [0.175]
+nagant_blued   vs base gun nagant  server: 8 phases equal, 0 differ | hands clips: same in every phase
+nagant_bloody  vs base gun nagant  server: 8 phases equal, 0 differ | hands clips: same in every phase
+c96            vs b3               server: 8 phases equal, 1 differ | hands clips: same in every phase
+      SERVER prone: reload 1.4 -> 2.4, refill [2@+0.875] -> [2@+1.450], shots 2 -> 2 [0.25] -> [0.25]
+m10            vs b3               server: 8 phases equal, 1 differ | hands clips: same in every phase
+      SERVER prone: reload 1.4 -> 2.4, refill [2@+0.875] -> [2@+0.825], shots 2 -> 2 [0.25] -> [0.25]
+bar            vs b3               server: 3 phases equal, 5 differ | hands clips: same in every phase
+      SERVER hipfire: reload None -> None, refill [] -> [], shots 1 -> 1 [0.275] -> [0.3]
+      SERVER aimfire: reload None -> None, refill [] -> [], shots 1 -> 1 [0.25] -> [0.225]
+      SERVER aimempty: reload 3.25 -> 3.25, refill [20@+1.575] -> [20@+1.575], shots 1 -> 1 [4.1] -> [4.075]
+      SERVER crouch: reload 3.25 -> 3.25, refill [2@+1.575] -> [2@+1.575], shots 1 -> 1 [0.225] -> [0.25]
+      SERVER hipempty: reload 3.25 -> 3.25, refill [20@+1.575] -> [20@+1.575], shots 1 -> 1 [2.55] -> [2.525]
+shotgun        vs b3               server: 4 phases equal, 6 differ | hands clips: same in every phase
+      SERVER hipfire: reload None -> None, refill [] -> [], shots 2 -> 2 [1.15] -> [1.175]
+      SERVER aimfire: reload None -> None, refill [] -> [], shots 2 -> 2 [1.15] -> [1.175]
+      SERVER aimempty: reload 5.175 -> 5.175, refill [1@+1.200,1@+1.850,1@+2.500,1@+3.150,1@+3.800] -> [1@+1.200,1@+1.850,1@+2.500,1@+3.150,1@+3.800], shots 5 -> 5 [1.15] -> [1.175]
+      SERVER hipempty: reload 5.175 -> 5.175, refill [1@+1.200,1@+1.850,1@+2.500,1@+3.150,1@+3.800] -> [1@+1.200,1@+1.850,1@+2.500,1@+3.150,1@+3.800], shots 5 -> 5 [1.175] -> [1.15]
+      SERVER breakoff: reload 8.25 -> 8.25, refill [1@+1.200,1@+6.225,1@+6.875] -> [1@+1.200,1@+6.225,1@+6.875], shots 3 -> 3 [1.175] -> [1.15]
+      SERVER breakempty: reload 10.05 -> 10.025, refill [1@+1.200,1@+1.850,1@+2.500,1@+3.150,1@+8.025,1@+8.675] -> [1@+1.200,1@+1.850,1@+2.500,1@+3.150,1@+8.000,1@+8.650], shots 6 -> 6 [1.175] -> [1.15]
+mp40           vs b3               server: 7 phases equal, 1 differ | hands clips: same in every phase
+      SERVER aimempty: reload 2.5 -> 2.5, refill [32@+2.125] -> [32@+2.125], shots 1 -> 1 [6.025] -> [6.0]
+kar98          vs b3               server: 8 phases equal, 0 differ | hands clips: same in every phase
+thompson       vs b3               server: 5 phases equal, 3 differ | hands clips: same in every phase
+      SERVER aimfire: reload None -> None, refill [] -> [], shots 1 -> 1 [0.225] -> [0.25]
+      SERVER aimempty: reload 2.6 -> 2.6, refill [30@+2.125] -> [30@+2.125], shots 1 -> 1 [5.675] -> [5.7]
+      SERVER crouch: reload 2.6 -> 2.6, refill [3@+2.125] -> [3@+2.125], shots 1 -> 1 [0.225] -> [0.25]
+garand         vs b3               server: 8 phases equal, 0 differ | hands clips: same in every phase

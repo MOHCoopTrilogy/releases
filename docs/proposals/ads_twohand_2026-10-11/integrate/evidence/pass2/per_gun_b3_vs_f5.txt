@@ -1,0 +1,8 @@
+== per gun: phases compared with the baseline (or with the base gun of the same run for a variant)
+g43irons       vs base gun g43     server: 8 phases equal, 0 differ | hands clips: same in every phase
+g43irons_gold  vs base gun g43     server: 8 phases equal, 0 differ | hands clips: same in every phase
+g43irons_fleck vs base gun g43     server: 8 phases equal, 0 differ | hands clips: same in every phase
+g43            vs b3               server: 8 phases equal, 0 differ | hands clips: same in every phase
+fg42           vs b3               server: 7 phases equal, 1 differ | hands clips: same in every phase
+      SERVER aimempty: reload 2.325 -> 2.325, refill [20@+1.325] -> [20@+1.325], shots 1 -> 1 [4.1] -> [4.075]
+garand         vs b3               server: 8 phases equal, 0 differ | hands clips: same in every phase

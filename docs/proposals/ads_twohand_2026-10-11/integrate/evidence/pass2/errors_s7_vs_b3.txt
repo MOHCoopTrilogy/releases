@@ -1,0 +1,2 @@
+s7: 65 distinct error-like lines (1 not in b3)
+     1x [#-#-# #:#:# UTC-#.#]  Loaded symbol alGetError (#FFC#D#A#)

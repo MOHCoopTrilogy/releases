@@ -1,0 +1,3 @@
+r9: 64 distinct error-like lines (2 not in b3)
+     1x [#-#-# #:#:# UTC-#.#]  Loaded symbol alGetError (#FFCA#CC#A#)
+     1x [#-#-# #:#:# UTC-#.#]  Loaded symbol alcGetError (#FFCA#CF#C#)

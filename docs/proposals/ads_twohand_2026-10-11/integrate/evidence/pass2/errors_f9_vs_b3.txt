@@ -1,0 +1,4 @@
+f9: 68 distinct error-like lines (3 not in b3)
+     1x [#-#-# #:#:# UTC-#.#]  Loaded symbol alGetError (#FFCA#CC#A#)
+     1x [#-#-# #:#:# UTC-#.#]  Loaded symbol alcGetError (#FFCA#CF#C#)
+     1x [#-#-# #:#:# UTC-#.#] TIKI: TIKI_ParseSetup: unknown setup command '************************************************' in 'models/weapons/mp#silenced.tik' on line #, skipping line.

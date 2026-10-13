@@ -1,3 +1,194 @@
+# ADS / aimed-reload ROLLOUT - integration PASS 2 (2026-10-13): pistols, G 43 Irons, the shotgun's pump in the aim, + the rain fix
+
+**State: steps 4, 5 and 7 are IN and verified on top of pass 1 (steps 1-3, which is what the user's install runs),
+and the cgame also carries the rain fix (`rainfix-next` 5376f59e, coordinator addition, last engine step).
+Step 6 (FG 42 pair) and the double-barrel shotgun are NOT in - nothing of either is in the engine branch, the fixes
+sources or the mod tree. Nothing is deployed, nothing is published.** Pass 1's text is kept below, unchanged.
+
+| what | where | id |
+|---|---|---|
+| engine | `C:\mohaa-coop-dev\openmohaa-hzm-integads`, branch `integ-ads` (cgame only) | **14fb0dde** |
+| binaries | `<scratchpad>\built_integ9\` = `built_integ8` + the new `cgame.dll` | cgame **e81f6925**8419c4a01ea414de042110e5 |
+| mod (code pak) | `hzm-mohaa-coop-mod`, branch `coop-wip` | **17761c3a** (step 4: 99ba8027) |
+| fixes pak | `hzm-mohaa-coop-mod\zzzzzzzzzz_coop_fixes.pk3` - 455 members, 12 290 502 bytes | md5 **3a071f44**ef7f6e44a87f47c1efde43ce |
+| baseline ("released") | pass 1: `built_integ8` (cgame a7c8c1e6) + mod 02405cef + the deployed fixes pak d1b75d08 (223 members) | docs 76f7b15 |
+
+`built_integ9`, unchanged files: `game.dll` 6b515fbf, `openmohaa.exe` 5cd827eb, `omohaaded.exe` 9ebd2043,
+`renderer_opengl1.dll` a15882c4, `renderer_opengl2.dll` 8296bf86. Per-step cgames are kept beside it:
+`built_integ9_step4\cgame.dll` a4274429 (pistols only), `built_integ9_step5\cgame.dll` 3a47895e (+ G 43 Irons),
+`built_integ9_step7\cgame.dll` d3832aeb (+ shotgun pump = every ADS step, without the rain fix).
+
+| step | engine commits on `integ-ads` | mod commit | docs commit |
+|---|---|---|---|
+| 4 pistols | 37e5dde8 (merge of `ads-next` e8e199be) | 99ba8027 (state file) | ff293d1 |
+| 5 G 43 Irons | 47acac77 (merge of `ads-rifle-next` c7ce5e86, strategy ours), 8327e12b (loot row) | 17761c3a (armory, generators' output) | fb469d7 |
+| 7 shotgun pump in the aim | e7860c83 (`heavy/tools/apply_cyclewpn.py`) | none | d2d8295 |
+| rain reaches the ground (not an ADS step) | 14fb0dde (merge of `rainfix-next` 5376f59e: `cg_nature.cpp`, `cg_beam.cpp`, `cg_commands.h`; clean, no ADS file touched) | none | none (`docs/proposals/rainfix_2026-10-13/README.md`) |
+
+## What ships, per gun (`FILELIST.txt` = `python integrate_ads.py --dry-run`, 443 files; regenerate, do not edit)
+### Step 4 - pistols: the pistol lane's frozen ship cut v2 (`../PISTOLS_SHIP.md`, folder `../ship/`), 98 tiks
+Two-handed aim pose, aimed reload rounds-left / emptied, working action; what each pistol gets is the lane's table B.
+
+| pistol | tiks covered |
+|---|---|
+| Colt 45 | 22: `colt45` + 7 finishes, `colt45_bloodyeic`, `_covert`, `_drbond`, `_guancolt`, `_lv_ttcolt`, `colt45_coltpa` (Pacific), `dbno_pistol` + 7 finishes |
+| Silenced Colt .45, Silenced Walther P38, Silenced Beretta, Luger P08, Silenced Luger P08, Nambu Type 14, Walther PPK | 1 each (`colt_silenced`, `p38silenced`, `berettasilenced`, `lugerp08`, `lugerp08silenced`, `nambu`, `ppk` - these 7 tiks live in `zzzzz_xw_weapons.pk3`; none has a finish tik) |
+| Walther P38 | 10: `p38` + 7 finishes, `p38_guanp38`, `p38_lv_ttp38` |
+| Beretta | 9: `it_w_beretta` + 7 finishes, `it_w_beretta_lv_ttberetta` |
+| TT-33 Tokarev / Silenced TT-33 | 8 + 8 (base + 7 finishes each) |
+| Welrod | 8 |
+| Hi-Standard Silenced | 8 (`silencedpistol` + 7 finishes) |
+| Webley Revolver | 9: `webley_revolver` + 7 finishes, `webley_revolver_lv_ttwebley` |
+| Nagant Revolver | 8 |
+| Webley Mk VI | 1: `colt45_colt1911w` |
+
+Coverage is proved by the script (op `C`: every mod-tree tik of that weapon name). NOT covered, on purpose (held out
+by the lane, ship as released): **Mauser C96** + 7 finishes + Trench C96, **S&W M10** + 7 finishes. Not covered and
+not a real gun: `p38 - copy.tik` (a stray copy in `zzzzzz-HRRTM_Pak4_Weapons.pk3`). The texture lifts
+(`../ship_awaiting_approval/`) are OUT. The Welrod and Luger aim poses ship although the user has not approved them
+yet (coordinator's call, lane doc section E).
+
+### Step 5 - G 43 Irons (NEW weapon), 12 tiks
+`coop_g43_irons` + 7 finishes + 4 pack skins (`_dhg43fleck`, `_hobbsg43urb`, `_hobbsg43wood`, `_lv_ttg43`), own
+mesh with a sight surface, aim pose, aimed reloads, the aim-only gun row `reload_ads_empty`, loot picture - all `new`
+members of the fixes pak (nothing of it in the mod tree). Armory: roster id 78 "GEWEHR 43 (IRON SIGHTS)" between the
+M1 Carbine and the Kar98k, **rank 2**, 7 finishes on the global finish unlocks, the 4 pack skins as model variants
+that share the scoped G43's variant challenges; state-file row, 12 recoil rows, ammo HUD menu, AI alias, dev lists;
+the scoped G43's ACC bar 0 -> 9. Applied by `apply_armory5.py` = the rifles lane's `stage_armory_gen.py` transforms
+on the real tree + the real generators; **byte-identical to the lane tool's own scratch result** (1355 files).
+
+### Step 7 - shotgun: the pump stroke in the aim (coordinator addition; user: "the shotgun doesnt have the pumping action when in ads")
+Heavy lane `../heavy/SHOTGUN_PUMP_FIX.md`, cut frozen at docs a78fd3f and READ FROM THAT COMMIT (the lane folder
+holds a re-timed clip 8b09ccff that must not ship): clip `coop_shotgun_cycle_ads.skc` (md5 4f95c41b), 4 added rows
+`coopr_shotgun_cycle` / `_cycle_ads` / `_cyclelast` / `_cyclelast_ads`, the cgame patch (same-mesh guard,
+last-round row); and the coordinator's decision: in the `fire` row of **all 14 shotgun tiks** the hull leaves 0.35 s
+after the shot (was 0.2 s) - one client command, hip and aim alike. No state file, no server-read row.
+
+## What the integration does differently from the lane folders
+1. **Pistol-class weapons outside the cut are pinned** (the instruction was "ship per-weapon rows for the colt45
+   fallback"; done from the other side, which leaves the lane's tested rows as they are). A scan of every tik the
+   game can load (552 in `models/weapons`, 4797 elsewhere) for `weapontype pistol` gives exactly three users that
+   are not in the cut: Mauser C96 (+ finishes, Trench; prefix `p38`), S&W M10 (own prefix `m10`, rows untouched)
+   and **"Bombing Run" = the coop binoculars** (+ 7 finishes; no named prefix, so the FALLBACK prefix `colt45`).
+   Pins: the lane's `coopr_mauser_c96_charge` + the integration's `coopr_mauser_c96_idle`,
+   `coopr_bombing_run_idle`, `coopr_bombing_run_charge` (released clips). Proof: `rowpick.py` - C96, Trench, M10,
+   Bombing Run resolve to the same clip BYTES in every case (the binoculars have no magazine, their reload cases are
+   not compared).
+2. **Shared tables are merged, never copied**: `fps_anims_pistol.txt` and `anims_shared.txt` by `git merge-file`
+   (op `M`; `anims_shared.txt` = the lane's snapshot of mod 6cf61e58 onto the CURRENT mod-tree file with the
+   low-turret rows, shipped in the fixes pak over the pinned mod-tree copy), `coop_mod/player_torso.st` by op `G`
+   onto the current file (turret rows + shotgun break-off kept; equal to the lane's `ship_merged/` reference).
+3. **ONE client clip clock.** `ads-rifle-next` c7ce5e86 is one commit: the rifles lane's port of the pistol lane's
+   clock. Its added lines are the original's (e8e199be) line for line (diff of the two patches: one blank line), so
+   it is merged with strategy `ours` - nothing taken, the G 43 Irons' rack clip runs on the pistols' implementation.
+   `clock_scope.py`: the clock engages only on Welrod, TT-33 (+ silenced), PPK, Beretta (packed released clip,
+   length not readable offline) and the G 43 Irons - on no pass-1 gun.
+4. **Shipped steps are frozen** (bug-3885): the rifles lane had rewritten its staged Enfield tiks after pass 1; a
+   re-run of step 3 took them. Put back byte-for-byte from the deployed pak; `FROZEN = (1, 2, 3)` keeps the shipped
+   copy from now on. Step 7 reads its lane at a commit for the same reason.
+5. **A new gun's tiks are looked for in the fixes sources too** (`docs/tools/gen_loadout.py`, `wire_mv2.py`): they
+   are not in the mod tree, and `gen_loadout.py check` (build.ps1) would drift without it.
+6. **Loot-feed row**: `cg_coopfeed_loot.h` could not be regenerated whole (the use_pickup generator's cached
+   silhouettes `tools/sil` are not in the tree); the row is the one the rifles lane computed with that generator's
+   own code, inserted where the generator sorts it, and the generator's inputs (`weapons.json`, `SHORT`) carry the
+   gun now. `docs/proposals/use_pickup_2026-10-05/` is untracked - those two edits are on disk only.
+7. `armory_unlocks.py --emit` rewrote 5 stale requirement TEXTS besides adding the irons (challenge targets had been
+   changed without re-emitting - the lane README says so). `ui/coop_loadout.urc` is re-locked in
+   `check_mp_isolation.py` (blob 89be4290 @ mod 17761c3a). `gen_loadout.py`, `armory_unlocks.py`,
+   `loadout_weapons.tsv` already carried other sessions' uncommitted changes; docs fb469d7 took them along.
+
+## Gates and their evidence (`evidence/pass2/`)
+| gate | result |
+|---|---|
+| 1a server timing, static: `rowlen_check.py --intended <D2 list> --like "coop_g43_irons*.tik=G43.tik"` -> `rowlen_table.txt` | 2132 rows in 228 files, 1555 untouched; every server-read change is a declared one (below); the 12 irons tiks against the released `G43.tik`: only the client-only row `reload_ads_empty` is new. Step 7: the 14 shotgun tiks against docs fb469d7 - 0 rows changed |
+| 1b server timing, measured (listen server, 25 ms frames): runs b3 (pass-1 build) / p4 / f5 / s7 / f9 -> `timing_*.txt`, `per_gun_*.txt` | table below |
+| 2 regression: `rowpick.py`, `inert_check.py`, `clock_scope.py`, runs f9 / f9b / r9 | all pass; f9 / r9 lines below |
+| rain fix: run r9 (`--weather 4` = the downpour pinned, m3l2 yard) | the merged cgame builds; `rainfix_downpour_level_view_r9.jpg` (looked at): streaks down to the ground across the lower half of a level view; 0 Script Error, no new error line. Indoors NOT run here (the lane's run rf19 stands) |
+| 3 each gun from the REAL pak: p4 (29 pistol tiks incl. 10 variants / finishes), f5, s7, s7b | hip + aim, fire, hip + aimed reload rounds-left + emptied, crouched; prone for 14 pistols; 0 `Script Error`; error-like lines not in the baseline log: only OpenAL symbol addresses (`errors_*_vs_b3.txt`) |
+| 4 dedicated server + one client: run d3 (final build) | boots, mission starts, client joins and spawns; Colt 45, Welrod, TT-33, Webley, G 43 Irons, shotgun (incl. both break-offs): **54 of 54 phases equal to the listen runs**, same shot counts, 0 Script Error on server and client |
+| 5 `inert_check.py` | every name the merged cgame reacts to belongs to a rollout gun (or was released) |
+| build checks | `check_mp_isolation.py --engine openmohaa-hzm-integads` 22 passed / 0 FAILED (+ selftest), `scrlint`, `check_empty_rhs`, `check_tik_surfaces`, `unlock_audit` (75/75), `ads_audit`, `gen_loadout.py check` EXACT REPRODUCTION, `gen_mp_armory.py check`, `ui_wiring_audit`, `gen_fixes_pak.py check`. `build.ps1` was NOT run |
+
+### Server timing, pass-1 build against integrated (s of server time)
+| gun | reload start -> done | magazine filled at | fire state | verdict |
+|---|---|---|---|---|
+| Colt 45 (+ gold, Guanshire, Pacific, silenced, DBNO pistol) | 2.4 / 2.4 | +0.825 / +0.825 | 0.175 / 0.175 | equal |
+| P38 (+ Team Tactics, silenced), Luger (+ silenced), Nambu, PPK | 2.4 / 2.4 | +0.825 / +0.825 | equal | equal |
+| TT-33 (+ silenced) | 2.4 / 2.4 | +0.825 / +0.825 | 0.175 / 0.175 | equal |
+| Welrod | 2.4 / 2.4 | +0.825 / +0.825 | 0.175 / 0.175 | equal |
+| Hi-Standard | 2.4 / 2.4 | +0.825 / +0.825 | 1.05 / 1.05 | equal |
+| Beretta (+ silenced) | 2.075 / 2.075 | +2.050 / +2.050 | equal | equal |
+| **Webley, Webley Mk VI** (DECLARED) | 2 rounds 2.0 -> **3.05**; 6 rounds 4.0 -> **6.05** | +0.65, then every 0.5 -> **+1.40, then every 0.75** | 0.175 / 0.175 | open 0.5 -> 0.775, one round 0.5 -> 0.75, close 0.5 -> 0.775 |
+| **Nagant** (DECLARED) | 2 rounds 2.9 -> **3.45**; 7 rounds 5.775 -> **7.7** | +1.175, then every 0.575 -> **+1.80, then every 0.85** | 0.175 / 0.175 | one round 0.575 -> 0.85 |
+| **prone pistol reload** (DECLARED; every pistol incl. the held-out C96 and M10) | 1.4 -> **2.4** (Beretta **2.075**) | +0.875 -> +0.825 (Beretta +2.050, C96 +1.450 = their standing values) | equal | as long as standing |
+| Mauser C96, S&W M10 (held out), standing / crouched | 2.4 / 2.4 | +1.450 / +1.850, unchanged | equal | equal; hands clips and sight trace identical to the baseline |
+| G 43 Irons (+ gold, Flecktarn) against the scoped G43 | 2.9 / 2.9 | +1.675 / +1.675 | 0.2 / 0.2 | equal (the lane's 1.70 / 2.90) |
+| Shotgun (+ gold, winter) with step 7 | 5 shells 5.175 / 5.175; break-offs as pass 1 | +1.200 ... +3.800 / the same | shot to shot 1.15-1.175 / 1.15-1.175 | equal, 18 of 18 phases |
+| pass-1 guns and out-of-scope guns, ADS-final cgame d3832aeb (run f9) | BAR 3.25, StG 44 2.75, DP-28 3.25, Silenced MP40 2.5, Kar98 3.35, Mosin 3.05, Thompson 2.6, Sten 3.0, MP18 2.5, Garand 2.0, FG 42 2.325, scoped G43 2.9 | the pass-1 figures | equal | 104 phases equal to b3; the 14 others = the declared prone (5) and Nagant (6) changes, the Sten's burst of 4 instead of 3 (2; pass 1 saw the same jitter) and one Thompson trigger hold 3.3 s against 3.125 (re-run f9b: 3.1, equal) |
+| the FINAL cgame e81f6925 (ADS steps + rain fix), downpour pinned (run r9) | Colt 45, Welrod, G 43 Irons, shotgun | | | 36 of 36 phases equal to the step runs p4 / f5 / s7 |
+
+Variants and finishes run: each equals its base gun in all 8 phases (`per_gun_b3_vs_p4.txt`).
+**Declared server-side changes - say them to the user** (lane doc D2, coordinator-approved): the Webley / Mk VI /
+Nagant per-round pace and the prone pistol reload, numbers above. New in the weapon tiks and server-visible but
+without a timing effect (measured): `idle_empty` (1 frame) for P38, TT-33, Luger, Nambu, Silenced Beretta.
+
+### Client side
+* Aimed trace (`aimed_client_trace_*.txt`): the new clips are in effect (Colt: the sight line leaves the eye line by
+  1.76 deg during the aimed reload, was 1.29; back to 0.00 at the end for every pistol); the revolvers,
+  Hi-Standard, emptied Luger / Welrod work the action low by design (14-30 deg, back to 0.00). C96 and M10: the
+  baseline's figures to the hundredth. The client's round count matches the server's everywhere.
+* G 43 Irons: 3.01 deg during the aimed reload, back to 0.00; `step5_g43irons_aim_f5_and_armory_u5.jpg` (looked at:
+  front post in the rear notch; armory tile, name, bars, PRIMARY 1).
+* Shotgun: `step7_shotgun_pump_aim_and_hip_s7b.jpg` (looked at) - 0.45 s after aimed shots 1, 3 and 5 (the last
+  shell) the hull is in the air and the support hand is at the rear of its stroke; the same after three hip shots.
+* Unlock path of the irons (`unlock_*.txt`): empty profile - locked at rank 0 and at rank 1 (1192 XP), a click is
+  refused; a real `xp_award` promotes to rank 2 and the server has it unlocked. Rank-5 profile (the connect
+  backfill grants it): tile picked (`coop_lo1` 78), the map again: spawns holding `coop_g43_irons.tik`; Flecktarn
+  variant locked, then 225 kills on the scoped G43's counter, the map again: spawns holding
+  `coop_g43_irons_dhg43fleck.tik`.
+
+## Not verified / open
+* **G 43 Irons, the tile right after an in-map promotion (bug-3888):** on the empty profile the CLIENT's padlock
+  stayed on for at least 28 s after the promotion (`coop_loLkA78` still locked, click refused) although the server
+  had the rifle unlocked; after the next map load the padlock was off. The lane's run rb46 saw the click accepted in
+  the same map. Not determined whether the armory's unlock export after a promotion is at fault for every rank
+  reward or the harness; nothing in that path was changed. A finish applied through the armory: not run (finishes
+  are global challenge unlocks; the gold tik was run directly). Loot picture: not seen in game (no enemy drop in
+  the harness).
+* Shotgun pump: stills only (shots 1, 3, 5 aimed; 3 at the hip) - the harness cannot trace the client-only cycle
+  id on this branch (bug-3889); sprint / weapon switch / aim let go in mid-pump not run; third person not looked at.
+* Pistols: leans, braced rows, the vehicle seat, third person, a second client were not run here (the lane's own
+  evidence stands); 29 of 98 tiks were run in the engine (all covered by file and row length); sounds not listened
+  to. The dedicated run compares server-side phases; the client's own trace was not read for it.
+* d3, f9, s7 ran the cgame d3832aeb (every ADS step); the rain-fix merge after them touches three weather files
+  only, and r9 re-ran four guns on the final DLL - the dedicated server was not re-run on e81f6925.
+* `models/weapons/mp40silenced.tik` (a pass-1 file, as deployed) prints `TIKI_ParseSetup: unknown setup command
+  '****...'` on load (9 lines in f9, 8 in pass 1's own run f1) - not from this pass, not fixed here.
+* A client WITHOUT this cgame on a server with the new pak; the MP armory for the irons (not staged by the lane).
+* Step 6 (FG 42 pair) and the double barrel (`docs/proposals/dbshotgun_2026-10-12/DBS_SHIP.md`): not started.
+  `integ-ads` is at 14fb0dde (beyond 8327e12b), so `dbshotgun-next` 1dc10936 is a normal merge now.
+
+## Rebuild / back out
+```
+python integrate_ads.py --dry-run                 # every file, entry kind, gun (steps 1-3 report "kept" - frozen)
+python integrate_ads.py --steps 4,5,7             # fixes sources + manifest (idempotent); --mod-patches for step 4's state file
+python apply_armory5.py                           # step 5, code-pak side (idempotent; --verify <lane scratch new tree>)
+python ../../../tools/gen_fixes_pak.py restore ; build ; check
+git -C hzm-mohaa-coop-mod checkout -- models/player/base/
+```
+Back out one step (each is separate commits): step 7 = `git revert d2d8295` (docs) + `git revert e7860c83`
+(engine), rebuild the pak; step 5 = `git revert 17761c3a` (mod) + docs fb469d7 + engine 8327e12b (47acac77 is an
+empty merge); step 4 = mod 99ba8027 + docs ff293d1 + engine merge 37e5dde8 (`git revert -m 1`) - the state file and
+the pak's `anims_shared.txt` / `anims_pistol.txt` rows go together. Never `git checkout` a fixes source (autocrlf).
+
+## Engine runs of pass 2 (`run_int.py`, harness `G:\mohaa-hudfeed`, port 12701; dedicated 12702)
+b3 = pass-1 build; p4 = step 4; f5 = step 5; u5 / u5b / u5c = unlock path (`run_int.py unlock [--fresh]`);
+s7 / s7b = step 7 (`--pumpsheet`); d3 = dedicated (cgame d3832aeb); f9 / f9b = regression (d3832aeb);
+r9 = the final cgame e81f6925 with the downpour pinned (`--weather 4`). Run folders:
+`H:\hzm_archive\integrate\`.
+
+---
+
 # ADS / aimed-reload ROLLOUT - integration of the finished guns (2026-10-13)
 
 **State: steps 1, 2 and 3 are IN and verified. Nothing is deployed, nothing is published.** The set is staged for the

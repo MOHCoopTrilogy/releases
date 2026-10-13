@@ -1,0 +1,82 @@
+gun phase | frames | sight line off the eye line: max during view anims reload(6,7,8) / rechamber(5), deg | at the end, deg | clip as the client saw it
+colt45 aimfire | 138 | reload - / bolt - | 0.00 | 7 6 5
+colt45 aimreload | 269 | reload 1.29 / bolt - | 0.00 | 5 7
+colt45 aimempty | 613 | reload 1.29 / bolt - | 0.00 | 7 6 5 4 3 2 1 0 7
+coltsil aimfire | 138 | reload - / bolt - | 0.00 | 7 6 5
+coltsil aimreload | 269 | reload 1.30 / bolt - | 0.00 | 5 7
+coltsil aimempty | 613 | reload 1.30 / bolt - | 0.00 | 7 6 5 4 3 2 1 0 7
+p38 aimfire | 137 | reload - / bolt - | 0.00 | 8 7 6
+p38 aimreload | 269 | reload 1.30 / bolt - | 0.00 | 6 8
+p38 aimempty | 641 | reload 1.29 / bolt - | 0.00 | 8 7 6 5 4 3 2 1 0 8
+p38sil aimfire | 137 | reload - / bolt - | 0.00 | 8 7 6
+p38sil aimreload | 269 | reload 1.29 / bolt - | 0.00 | 6 8
+p38sil aimempty | 642 | reload 1.30 / bolt - | 0.00 | 8 7 6 5 4 3 2 1 0 8
+beretta aimfire | 138 | reload - / bolt - | 0.00 | 15 14 13
+beretta aimreload | 269 | reload 0.93 / bolt - | 0.00 | 13 15
+beretta aimempty | 853 | reload 0.93 / bolt - | 0.00 | 15 14 13 12 11 10 .. 4 3 2 1 0 15
+berettasil aimfire | 137 | reload - / bolt - | 0.00 | 8 7 6
+berettasil aimreload | 269 | reload 1.30 / bolt - | 0.00 | 6 8
+berettasil aimempty | 645 | reload 1.28 / bolt - | 0.00 | 8 7 6 5 4 3 2 1 0 8
+luger aimfire | 137 | reload - / bolt - | 0.00 | 8 7 6
+luger aimreload | 269 | reload 1.29 / bolt - | 0.00 | 6 8
+luger aimempty | 640 | reload 1.30 / bolt - | 0.00 | 8 7 6 5 4 3 2 1 0 8
+lugersil aimfire | 138 | reload - / bolt - | 0.00 | 8 7 6
+lugersil aimreload | 270 | reload 1.29 / bolt - | 0.00 | 6 8
+lugersil aimempty | 642 | reload 1.30 / bolt - | 0.00 | 8 7 6 5 4 3 2 1 0 8
+nambu aimfire | 138 | reload - / bolt - | 0.00 | 8 7 6
+nambu aimreload | 269 | reload 1.30 / bolt - | 0.00 | 6 8
+nambu aimempty | 643 | reload 1.30 / bolt - | 0.00 | 8 7 6 5 4 3 2 1 0 8
+ppk aimfire | 137 | reload - / bolt - | 0.00 | 8 7 6
+ppk aimreload | 269 | reload 1.29 / bolt - | 0.00 | 6 8
+ppk aimempty | 642 | reload 1.30 / bolt - | 0.00 | 8 7 6 5 4 3 2 1 0 8
+tt33 aimfire | 137 | reload - / bolt - | 0.00 | 8 7 6
+tt33 aimreload | 269 | reload 1.30 / bolt - | 0.00 | 6 8
+tt33 aimempty | 642 | reload 1.29 / bolt - | 0.00 | 8 7 6 5 4 3 2 1 0 8
+tt33sil aimfire | 138 | reload - / bolt - | 0.00 | 8 7 6
+tt33sil aimreload | 269 | reload 1.29 / bolt - | 0.00 | 6 8
+tt33sil aimempty | 644 | reload 1.30 / bolt - | 0.00 | 8 7 6 5 4 3 2 1 0 8
+welrod aimfire | 336 | reload - / bolt - | 0.00 | 6 5 4
+welrod aimreload | 269 | reload 1.29 / bolt - | 0.00 | 4 6
+welrod aimempty | 1177 | reload 1.30 / bolt - | 0.00 | 6 5 4 3 2 1 0 6
+histd aimfire | 337 | reload - / bolt - | 0.00 | 8 7 6
+histd aimreload | 269 | reload 1.30 / bolt - | 0.00 | 6 8
+histd aimempty | 1434 | reload 1.30 / bolt - | 0.00 | 8 7 6 5 4 3 2 1 0 8
+webley aimfire | 179 | reload - / bolt - | 0.00 | 6 5 4
+webley aimreload | 540 | reload 1.07 / bolt - | 0.00 | 4 5 6
+webley aimempty | 977 | reload 1.07 / bolt - | 0.00 | 6 5 4 3 2 1 0 1 2 3 4 5 6
+mk6 aimfire | 179 | reload - / bolt - | 0.00 | 6 5 4
+mk6 aimreload | 539 | reload 1.07 / bolt - | 0.00 | 4 5 6
+mk6 aimempty | 977 | reload 1.06 / bolt - | 0.00 | 6 5 4 3 2 1 0 1 2 3 4 5 6
+nagant aimfire | 181 | reload - / bolt - | 0.00 | 7 6 5
+nagant aimreload | 630 | reload 54.57 / bolt - | 0.00 | 5 6 7
+nagant aimempty | 1120 | reload 54.57 / bolt - | 0.00 | 7 6 5 4 3 2 .. 2 3 4 5 6 7
+c96 aimfire | 137 | reload - / bolt - | 0.00 | 8 7 6
+c96 aimreload | 330 | reload 4.52 / bolt - | 0.00 | 6 8
+c96 aimempty | 703 | reload 4.52 / bolt - | 0.00 | 8 7 6 5 4 3 2 1 0 8
+m10 aimfire | 179 | reload - / bolt - | 0.00 | 7 6 5
+m10 aimreload | 359 | reload 119.15 / bolt - | 0.00 | 5 7
+m10 aimempty | 847 | reload 119.15 / bolt - | 0.00 | 7 6 5 4 3 2 1 0 7
+bar aimfire | 91 | reload - / bolt - | 0.00 | 20 19 18
+bar aimreload | 329 | reload 6.17 / bolt - | 0.00 | 18 20
+bar aimempty | 706 | reload 6.16 / bolt - | 0.00 | 20 19 18 17 16 15 .. 4 3 2 1 0 20
+shotgun aimfire | 276 | reload - / bolt - | 0.72 | 5 4 3
+shotgun aimreload | 449 | reload 6.85 / bolt - | 0.72 | 3 4 5
+shotgun aimempty | 1077 | reload 6.86 / bolt - | 0.72 | 5 4 3 2 1 0 1 2 3 4 5
+mp40 aimfire | 91 | reload - / bolt - | 0.57 | 32 31 30 29
+mp40 aimreload | 299 | reload 0.81 / bolt - | 0.57 | 29 32
+mp40 aimempty | 791 | reload 0.82 / bolt - | 0.57 | 32 31 30 29 28 27 .. 4 3 2 1 0 32
+kar98 aimfire | 336 | reload - / bolt 1.21 | 0.40 | 5 4 3
+kar98 aimreload | 329 | reload 22.65 / bolt - | 0.40 | 3 5
+kar98 aimempty | 1106 | reload 22.61 / bolt 1.21 | 0.40 | 5 4 3 2 1 0 5
+thompson aimfire | 91 | reload - / bolt - | 0.00 | 30 29 28 27
+thompson aimreload | 300 | reload 0.91 / bolt - | 0.00 | 27 30
+thompson aimempty | 772 | reload 0.90 / bolt - | 0.00 | 30 29 28 27 26 25 .. 4 3 2 1 0 30
+sten aimfire | 91 | reload - / bolt - | 0.00 | 30 29 28 27
+sten aimreload | 300 | reload 0.97 / bolt - | 0.00 | 27 30
+sten aimempty | 772 | reload 0.97 / bolt - | 0.00 | 30 29 28 27 26 25 .. 4 3 2 1 0 30
+mp18 aimfire | 91 | reload - / bolt - | 0.00 | 32 31 30 29
+mp18 aimreload | 329 | reload 2.94 / bolt - | 0.00 | 29 32
+mp18 aimempty | 821 | reload 2.95 / bolt - | 0.00 | 32 31 30 29 28 27 .. 4 3 2 1 0 32
+garand aimfire | 138 | reload - / bolt - | 0.00 | 8 7 6
+garand aimreload | 299 | reload 4.46 / bolt - | 0.00 | 6 8
+garand aimempty | 649 | reload 4.46 / bolt - | 0.00 | 8 7 6 5 4 3 2 1 0 8

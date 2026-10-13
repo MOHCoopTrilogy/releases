@@ -1,0 +1,13 @@
+gun phase | frames | sight line off the eye line: max during view anims reload(6,7,8) / rechamber(5), deg | at the end, deg | clip as the client saw it
+g43irons aimfire | 137 | reload - / bolt - | 0.00 | 10 9 8
+g43irons aimreload | 300 | reload 3.01 / bolt - | 0.00 | 8 10
+g43irons aimempty | 733 | reload 3.01 / bolt - | 0.00 | 10 9 8 7 6 5 4 3 2 1 0 10
+g43irons_gold aimfire | 137 | reload - / bolt - | 0.00 | 10 9 8
+g43irons_gold aimreload | 299 | reload 3.00 / bolt - | 0.00 | 8 10
+g43irons_gold aimempty | 731 | reload 3.02 / bolt - | 0.00 | 10 9 8 7 6 5 4 3 2 1 0 10
+g43irons_fleck aimfire | 138 | reload - / bolt - | 0.00 | 10 9 8
+g43irons_fleck aimreload | 300 | reload 3.02 / bolt - | 0.00 | 8 10
+g43irons_fleck aimempty | 733 | reload 3.01 / bolt - | 0.00 | 10 9 8 7 6 5 4 3 2 1 0 10
+garand aimfire | 137 | reload - / bolt - | 0.00 | 8 7 6
+garand aimreload | 300 | reload 4.44 / bolt - | 0.00 | 6 8
+garand aimempty | 672 | reload 4.41 / bolt - | 0.00 | 8 7 6 5 4 3 2 1 0 8

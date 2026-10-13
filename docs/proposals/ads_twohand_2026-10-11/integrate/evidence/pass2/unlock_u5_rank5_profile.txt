@@ -1,0 +1,54 @@
+~^~^ XT state rank=5 total=7638 irons=1 ironsFleck=0
+~^~^ XT record=models/weapons/carbine.tik|models/weapons/p38.tik|models/player/allied_airborne_82nd_1.tik|models/player/american_army_hbt.tik|models/weapons/silencedpistol.tik|models/weapons/steilhand
+~^~^ UNLOCK rank0_click:
+coop_lo1" is:"78" default:""
+coop_loS1" is:"models/weapons/coop_g43_irons.tik" default:"models/weapons/mp44.tik"
+coop_loS1F" is:"0", the default
+coop_loLkA78" is:"set coop_loLkV78 0", the default
+coop_lockLoadout" is:"1" default:""
+~^~^ XT seed done
+~^~^ XT state rank=5 total=7638 irons=1 ironsFleck=0
+~^~^ XT record=models/weapons/carbine.tik|models/weapons/p38.tik|models/player/allied_airborne_82nd_1.tik|models/player/american_army_hbt.tik|models/weapons/silencedpistol.tik|models/weapons/steilhand
+~^~^ XT under2 thr=1200 gain=10 pre=1192
+~^~^ XT state rank=1 total=1192 irons=1 ironsFleck=0
+~^~^ XT record=models/weapons/carbine.tik|models/weapons/p38.tik|models/player/allied_airborne_82nd_1.tik|models/player/american_army_hbt.tik|models/weapons/silencedpistol.tik|models/weapons/steilhand
+~^~^ UNLOCK rank1_click:
+coop_lo1" is:"78" default:""
+coop_loS1" is:"models/weapons/coop_g43_irons.tik" default:"models/weapons/mp44.tik"
+coop_loS1F" is:"0", the default
+coop_loLkA78" is:"set coop_loLkV78 0", the default
+coop_lockLoadout" is:"1" default:""
+~^~^ XT award 10 kills
+~^~^ XT state rank=2 total=1202 irons=1 ironsFleck=0
+~^~^ XT record=models/weapons/carbine.tik|models/weapons/p38.tik|models/player/allied_airborne_82nd_1.tik|models/player/american_army_hbt.tik|models/weapons/silencedpistol.tik|models/weapons/steilhand
+~^~^ UNLOCK rank2_click:
+coop_lo1" is:"78" default:""
+coop_loS1" is:"models/weapons/coop_g43_irons.tik" default:"models/weapons/mp44.tik"
+coop_loS1F" is:"0", the default
+coop_loLkA78" is:"set coop_loLkV78 0", the default
+coop_lockLoadout" is:"1" default:""
+~^~^ UNLOCK after_restart:
+~^~^ XT held=models/weapons/coop_g43_irons.tik
+~^~^ XT state rank=2 total=1202 irons=1 ironsFleck=0
+~^~^ XT record=models/weapons/carbine.tik|models/weapons/p38.tik|models/player/allied_airborne_82nd_1.tik|models/player/american_army_hbt.tik|models/weapons/silencedpistol.tik|models/weapons/steilhand
+~^~^ UNLOCK variant_locked:
+coop_lo1" is:"78" default:""
+coop_loS1" is:"models/weapons/coop_g43_irons.tik" default:"models/weapons/mp44.tik"
+coop_loS1F" is:"8" default:"0"
+coop_loLkA78" is:"set coop_loLkV78 0", the default
+coop_lockLoadout" is:"1" default:""
+~^~^ XT g43kills 225 (wpn_g43)
+~^~^ XT state rank=2 total=1202 irons=1 ironsFleck=1
+~^~^ XT record=models/weapons/carbine.tik|models/weapons/p38.tik|models/player/allied_airborne_82nd_1.tik|models/player/american_army_hbt.tik|models/weapons/silencedpistol.tik|models/weapons/steilhand
+~^~^ XT state rank=2 total=1202 irons=1 ironsFleck=1
+~^~^ XT record=models/weapons/carbine.tik|models/weapons/p38.tik|models/player/allied_airborne_82nd_1.tik|models/player/american_army_hbt.tik|models/weapons/silencedpistol.tik|models/weapons/steilhand
+~^~^ UNLOCK variant_unlocked:
+coop_lo1" is:"78" default:""
+coop_loS1" is:"models/weapons/coop_g43_irons.tik" default:"models/weapons/mp44.tik"
+coop_loS1F" is:"8" default:"0"
+coop_loLkA78" is:"set coop_loLkV78 0", the default
+coop_lockLoadout" is:"1" default:""
+~^~^ UNLOCK after_variant_restart:
+~^~^ XT held=models/weapons/coop_g43_irons_dhg43fleck.tik
+~^~^ XT state rank=2 total=1202 irons=1 ironsFleck=1
+~^~^ XT record=models/weapons/carbine.tik|models/weapons/p38.tik|models/player/allied_airborne_82nd_1.tik|models/player/american_army_hbt.tik|models/weapons/silencedpistol.tik|models/weapons/steilhand

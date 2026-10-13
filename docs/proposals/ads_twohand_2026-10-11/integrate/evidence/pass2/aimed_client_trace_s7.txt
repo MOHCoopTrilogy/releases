@@ -1,0 +1,19 @@
+gun phase | frames | sight line off the eye line: max during view anims reload(6,7,8) / rechamber(5), deg | at the end, deg | clip as the client saw it
+shotgun aimfire | 277 | reload - / bolt - | 0.72 | 5 4 3
+shotgun aimreload | 449 | reload 6.86 / bolt - | 0.72 | 3 4 5
+shotgun aimempty | 1076 | reload 6.86 / bolt - | 0.72 | 5 4 3 2 1 0 1 2 3 4 5
+sggold aimfire | 275 | reload - / bolt - | 0.72 | 5 4 3
+sggold aimreload | 449 | reload 6.86 / bolt - | 0.72 | 3 4 5
+sggold aimempty | 1076 | reload 6.86 / bolt - | 0.72 | 5 4 3 2 1 0 1 2 3 4 5
+sgcamo aimfire | 275 | reload - / bolt - | 0.72 | 5 4 3
+sgcamo aimreload | 449 | reload 6.85 / bolt - | 0.72 | 3 4 5
+sgcamo aimempty | 1078 | reload 6.85 / bolt - | 0.72 | 5 4 3 2 1 0 1 2 3 4 5
+welrod aimfire | 336 | reload - / bolt - | 0.00 | 6 5 4
+welrod aimreload | 269 | reload 1.76 / bolt - | 0.00 | 4 6
+welrod aimempty | 1177 | reload 15.89 / bolt - | 0.00 | 6 5 4 3 2 1 0 6
+histd aimfire | 335 | reload - / bolt - | 0.00 | 8 7 6
+histd aimreload | 270 | reload 28.55 / bolt - | 0.00 | 6 8
+histd aimempty | 1434 | reload 28.57 / bolt - | 0.00 | 8 7 6 5 4 3 2 1 0 8
+mp40 aimfire | 91 | reload - / bolt - | 0.57 | 32 31 30 29
+mp40 aimreload | 300 | reload 0.82 / bolt - | 0.57 | 29 32
+mp40 aimempty | 791 | reload 0.82 / bolt - | 0.57 | 32 31 30 29 28 27 .. 4 3 2 1 0 32
