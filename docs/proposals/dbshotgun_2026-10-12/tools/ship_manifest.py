@@ -25,9 +25,7 @@ def listing():
     for rel in sorted(rows):
         data = open(os.path.join(PROP, rel.replace('/', os.sep)), 'rb').read()
         if rel.rsplit('.', 1)[-1].lower() in TEXT:          # git's autocrlf may rewrite line ends on a checkout: not a change
-            data = data.replace(b'
-', b'
-')
+            data = data.replace(b'\r\n', b'\n')
         out.append('%s\t%d\t%s' % (rel, len(data), hashlib.sha256(data).hexdigest()))
     return out
 
