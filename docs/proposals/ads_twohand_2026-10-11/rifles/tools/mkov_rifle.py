@@ -45,6 +45,17 @@ def main():
                     assert arc not in z.namelist(), arc + ': staged AND measure-only - derive the measure tik from the staged one (nosmoke.py does)'
                     z.write(p, arc)
                     print('MEASURE-ONLY file:', arc)
+        if '--armory' in sys.argv:
+            # the iron-sight G43's own armory entry: wire/stage_armory_g43irons.py's copies of the RELEASED scripts / menus
+            ar = os.path.normpath(os.path.join(HERE, '..', 'armory_ov'))
+            assert os.path.isdir(ar), 'run wire/stage_armory_g43irons.py first'
+            for d, _, fs in os.walk(ar):
+                for f in sorted(fs):
+                    p = os.path.join(d, f)
+                    arc = os.path.relpath(p, ar).replace(os.sep, '/')
+                    assert arc.lower() not in [x.lower() for x in z.namelist()], arc
+                    z.write(p, arc)
+                    print('ARMORY file:', arc)
     print('wrote', out, n, 'staged files')
 
 

@@ -1,0 +1,346 @@
+--- a/hzm-mohaa-coop-mod/coop_mod/itemhandler.scr
++++ b/hzm-mohaa-coop-mod/coop_mod/itemhandler.scr
+@@ -3478,4 +3478,5 @@
+ 		case "models/weapons/mosin_nagant_rifle.tik":
+ 		case "models/weapons/g43.tik":
++		case "models/weapons/coop_g43_irons.tik":
+ 		case "models/weapons/enfield.tik":
+ 		case "models/weapons/uk_w_l42a1.tik":
+@@ -3616,4 +3617,5 @@
+ 		case "models/weapons/enfield.tik":
+ 		case "models/weapons/g43.tik":
++		case "models/weapons/coop_g43_irons.tik":
+ 		case "models/weapons/mosin_nagant_rifle.tik":
+ 		case "models/weapons/ppsh_smg.tik":
+--- a/hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr
++++ b/hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr
+@@ -37,4 +37,12 @@
+ 			local.r["class"] = "rifle"
+ 			break
++		case "78":	//[g43 irons 2026-10-13] the iron-sight G43, its own entry
++			local.r["give"] = "models/weapons/coop_g43_irons.tik"
++			local.r["name"] = "GEWEHR 43 (IRON SIGHTS)"
++			local.r["slot"] = "p"
++			local.r["ammo"] = "rifle"
++			local.r["ammoN"] = 70
++			local.r["class"] = "rifle"
++			break
+ 		case "05":
+ 			local.r["give"] = "models/weapons/enfield.tik"
+@@ -607,5 +615,5 @@
+ roster_ids:{
+ 	if( level.coop_loRosterN != NIL ){ end }
+-	level.coop_loRosterN = 74
++	level.coop_loRosterN = 75
+ 	level.coop_loRosterId[0] = "01"
+ 	level.coop_loRosterGive[0] = "models/weapons/m1_garand.tik"
+@@ -830,4 +838,7 @@
+ 	level.coop_loRosterGive[73] = "models/weapons/m10_revolver.tik"
+ 	level.coop_loRosterTab[73] = 4
++	level.coop_loRosterId[74] = "78"
++	level.coop_loRosterGive[74] = "models/weapons/coop_g43_irons.tik"
++	level.coop_loRosterTab[74] = 0
+ }end
+ 
+--- a/hzm-mohaa-coop-mod/coop_mod/loadoutskins.scr
++++ b/hzm-mohaa-coop-mod/coop_mod/loadoutskins.scr
+@@ -6,5 +6,5 @@
+ skin_init:{
+ 	if( level.coop_skinN != NIL ){ end }
+-	level.coop_skinN = 350
++	level.coop_skinN = 357
+ 	level.coop_skinFinStat[1] = "finish_gold"
+ 	level.coop_skinFinName[1] = "GOLD"
+@@ -42,4 +42,11 @@
+ 	level.coop_skinGive["models/weapons/g43.tik"][6] = "models/weapons/g43_camo_winter.tik"
+ 	level.coop_skinGive["models/weapons/g43.tik"][7] = "models/weapons/g43_camo_desert.tik"
++	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][1] = "models/weapons/coop_g43_irons_gold.tik"
++	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][2] = "models/weapons/coop_g43_irons_chrome.tik"
++	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][3] = "models/weapons/coop_g43_irons_blued.tik"
++	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][4] = "models/weapons/coop_g43_irons_bloody.tik"
++	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][5] = "models/weapons/coop_g43_irons_camo_woodland.tik"
++	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][6] = "models/weapons/coop_g43_irons_camo_winter.tik"
++	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][7] = "models/weapons/coop_g43_irons_camo_desert.tik"
+ 	level.coop_skinGive["models/weapons/Gr_W_MineDetector.tik"][1] = "models/weapons/gr_w_minedetector_gold.tik"
+ 	level.coop_skinGive["models/weapons/Gr_W_MineDetector.tik"][2] = "models/weapons/gr_w_minedetector_chrome.tik"
+--- a/hzm-mohaa-coop-mod/coop_mod/loadoutskins_base.scr
++++ b/hzm-mohaa-coop-mod/coop_mod/loadoutskins_base.scr
+@@ -26,4 +26,11 @@
+ 	level.coop_skinBase["models/weapons/g43_camo_winter.tik"] = "models/weapons/g43.tik"
+ 	level.coop_skinBase["models/weapons/g43_camo_desert.tik"] = "models/weapons/g43.tik"
++	level.coop_skinBase["models/weapons/coop_g43_irons_gold.tik"] = "models/weapons/coop_g43_irons.tik"
++	level.coop_skinBase["models/weapons/coop_g43_irons_chrome.tik"] = "models/weapons/coop_g43_irons.tik"
++	level.coop_skinBase["models/weapons/coop_g43_irons_blued.tik"] = "models/weapons/coop_g43_irons.tik"
++	level.coop_skinBase["models/weapons/coop_g43_irons_bloody.tik"] = "models/weapons/coop_g43_irons.tik"
++	level.coop_skinBase["models/weapons/coop_g43_irons_camo_woodland.tik"] = "models/weapons/coop_g43_irons.tik"
++	level.coop_skinBase["models/weapons/coop_g43_irons_camo_winter.tik"] = "models/weapons/coop_g43_irons.tik"
++	level.coop_skinBase["models/weapons/coop_g43_irons_camo_desert.tik"] = "models/weapons/coop_g43_irons.tik"
+ 	level.coop_skinBase["models/weapons/gr_w_minedetector_gold.tik"] = "models/weapons/gr_w_minedetector.tik"
+ 	level.coop_skinBase["models/weapons/gr_w_minedetector_chrome.tik"] = "models/weapons/gr_w_minedetector.tik"
+--- a/hzm-mohaa-coop-mod/coop_mod/recoil_table.txt
++++ b/hzm-mohaa-coop-mod/coop_mod/recoil_table.txt
+@@ -478,2 +478,15 @@
+ welrod_chrome -1.0 -1.0 -0.16 0.16 1.2 V 2.8 0.8 1.2 12.0 25.0
+ welrod_gold -1.0 -1.0 -0.16 0.16 1.2 V 2.8 0.8 1.2 12.0 25.0
++// [g43 irons 2026-10-13] iron-sight G43: the G43's rows under its own tik names (coop_g43_irons resolves to no g43 row)
++coop_g43_irons -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
++coop_g43_irons_bloody -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
++coop_g43_irons_blued -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
++coop_g43_irons_camo_desert -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
++coop_g43_irons_camo_winter -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
++coop_g43_irons_camo_woodland -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
++coop_g43_irons_chrome -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
++coop_g43_irons_dhg43fleck -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
++coop_g43_irons_gold -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
++coop_g43_irons_hobbsg43urb -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
++coop_g43_irons_hobbsg43wood -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
++coop_g43_irons_lv_ttg43 -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+--- a/hzm-mohaa-coop-mod/coop_mod/unlockreq_gen.scr
++++ b/hzm-mohaa-coop-mod/coop_mod/unlockreq_gen.scr
+@@ -15,4 +15,5 @@
+ 	level.coop_unlockReqBuilt = 1
+ 	level.coop_unlockReq["models/weapons/carbine.tik"] = "Reach rank 1"
++	level.coop_unlockReq["models/weapons/coop_g43_irons.tik"] = "Reach rank 2"
+ 	level.coop_unlockReq["models/weapons/kar98.tik"] = "Reach rank 3"
+ 	level.coop_unlockReq["models/weapons/g43.tik"] = "Reach rank 5"
+--- a/hzm-mohaa-coop-mod/coop_mod/xp.scr
++++ b/hzm-mohaa-coop-mod/coop_mod/xp.scr
+@@ -40,7 +40,8 @@
+ 	level.coop_xp_rankUnlock[1][0] = "models/weapons/carbine.tik"
+ 	level.coop_xp_rankUnlock[1][1] = "models/weapons/p38.tik"
+-	level.coop_xp_rankUnlockCnt[2] = 2
++	level.coop_xp_rankUnlockCnt[2] = 3
+ 	level.coop_xp_rankUnlock[2][0] = "models/weapons/silencedpistol.tik"
+ 	level.coop_xp_rankUnlock[2][1] = "models/weapons/steilhandgranate_start.tik"
++	level.coop_xp_rankUnlock[2][2] = "models/weapons/coop_g43_irons.tik"	//[g43 irons 2026-10-13] early rifle unlock: after the carbine (rank 1), before the Kar98 (3) and the scoped G43 (5)
+ 	level.coop_xp_rankUnlockCnt[3] = 2
+ 	level.coop_xp_rankUnlock[3][0] = "models/weapons/kar98.tik"
+--- a/hzm-mohaa-coop-mod/ui/coop_loadout.urc
++++ b/hzm-mohaa-coop-mod/ui/coop_loadout.urc
+@@ -746,5 +746,5 @@
+ name "tile03"
+ title "KAR98K"
+-rect 306 118 162 16
++rect 306 137 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -763,5 +763,5 @@
+ ordernumber 8
+ name "tilelk03"
+-rect 452 119 14 14
++rect 452 138 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+@@ -776,5 +776,5 @@
+ name "tile04"
+ title "GEWEHR 43"
+-rect 306 137 162 16
++rect 306 156 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -793,5 +793,5 @@
+ ordernumber 8
+ name "tilelk04"
+-rect 452 138 14 14
++rect 452 157 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+@@ -806,5 +806,5 @@
+ name "tile05"
+ title "LEE-ENFIELD NO.4"
+-rect 306 156 162 16
++rect 306 175 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -823,5 +823,5 @@
+ ordernumber 8
+ name "tilelk05"
+-rect 452 157 14 14
++rect 452 176 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+@@ -836,5 +836,5 @@
+ name "tile06"
+ title "SPRINGFIELD M1903"
+-rect 306 175 162 16
++rect 306 194 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -853,5 +853,5 @@
+ ordernumber 8
+ name "tilelk06"
+-rect 452 176 14 14
++rect 452 195 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+@@ -866,5 +866,5 @@
+ name "tile07"
+ title "CARCANO M91/38"
+-rect 306 194 162 16
++rect 306 213 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -883,5 +883,5 @@
+ ordernumber 8
+ name "tilelk07"
+-rect 452 195 14 14
++rect 452 214 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+@@ -896,5 +896,5 @@
+ name "tile08"
+ title "SVT-40"
+-rect 306 213 162 16
++rect 306 232 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -913,5 +913,5 @@
+ ordernumber 8
+ name "tilelk08"
+-rect 452 214 14 14
++rect 452 233 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+@@ -926,5 +926,5 @@
+ name "tile09"
+ title "MOSIN-NAGANT"
+-rect 306 232 162 16
++rect 306 251 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -943,5 +943,5 @@
+ ordernumber 8
+ name "tilelk09"
+-rect 452 233 14 14
++rect 452 252 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+@@ -956,5 +956,5 @@
+ name "tile10"
+ title "ARISAKA TYPE 99"
+-rect 306 251 162 16
++rect 306 270 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -973,5 +973,5 @@
+ ordernumber 8
+ name "tilelk10"
+-rect 452 252 14 14
++rect 452 271 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+@@ -986,5 +986,5 @@
+ name "tile11"
+ title "M1 GARAND SILENCED"
+-rect 306 270 162 16
++rect 306 289 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -1003,5 +1003,5 @@
+ ordernumber 8
+ name "tilelk11"
+-rect 452 271 14 14
++rect 452 290 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+@@ -2756,5 +2756,5 @@
+ name "tile70"
+ title "JOHNSON M1941"
+-rect 306 289 162 16
++rect 306 308 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -2773,9 +2773,40 @@
+ ordernumber 8
+ name "tilelk70"
+-rect 452 290 14 14
++rect 452 309 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+ borderstyle "NONE"
+ enabledcvar "coop_loLkV70"
++shader "textures/mohmenu/coop_lo_lock.tga"
++}
++
++// [g43 irons 2026-10-13] the iron-sight G43, its own tile, between the M1 Carbine and the Kar98k
++resource
++Button
++{
++name "tile78"
++title "GEWEHR 43 (IRON SIGHTS)"
++rect 306 118 162 16
++fgcolor 0.84 0.82 0.76 1.00
++bgcolor 0.09 0.10 0.13 0.90
++borderstyle "3D_BORDER"
++font "verdana-12"
++clicksound "sound/menu/apply.wav"
++enabledcvar "!coop_loNP0"
++stuffcommand "exec ui/loadout/t78.cfg"
++hovercommand "exec ui/loadout/req78.cfg"
++mouseawaycommand "exec ui/loadout/reqclear.cfg"
++}
++
++resource
++Label
++{
++ordernumber 8
++name "tilelk78"
++rect 452 119 14 14
++fgcolor 1.00 1.00 1.00 1.00
++bgcolor 0.00 0.00 0.00 0.00
++borderstyle "NONE"
++enabledcvar "coop_loLkV78"
+ shader "textures/mohmenu/coop_lo_lock.tga"
+ }
+--- a/hzm-mohaa-coop-mod/ui/loadout/lktab0.cfg
++++ b/hzm-mohaa-coop-mod/ui/loadout/lktab0.cfg
+@@ -96,4 +96,6 @@
+ set coop_loLkV74 0
+ set coop_loLkV75 0
++set coop_loLkV78 0
+ vstr coop_loLkA11
+ vstr coop_loLkA70
++vstr coop_loLkA78
+--- a/hzm-mohaa-coop-mod/ui/loadout/lktab1.cfg
++++ b/hzm-mohaa-coop-mod/ui/loadout/lktab1.cfg
+@@ -98,3 +98,4 @@
+ set coop_loLkV74 0
+ set coop_loLkV75 0
++set coop_loLkV78 0
+ vstr coop_loLkA23
+--- a/hzm-mohaa-coop-mod/ui/loadout/lktab2.cfg
++++ b/hzm-mohaa-coop-mod/ui/loadout/lktab2.cfg
+@@ -98,4 +98,5 @@
+ set coop_loLkV74 0
+ set coop_loLkV75 0
++set coop_loLkV78 0
+ vstr coop_loLkA35
+ vstr coop_loLkA71
+--- a/hzm-mohaa-coop-mod/ui/loadout/lktab3.cfg
++++ b/hzm-mohaa-coop-mod/ui/loadout/lktab3.cfg
+@@ -98,4 +98,5 @@
+ set coop_loLkV74 0
+ set coop_loLkV75 0
++set coop_loLkV78 0
+ vstr coop_loLkA47
+ vstr coop_loLkA72
+--- a/hzm-mohaa-coop-mod/ui/loadout/lktab4.cfg
++++ b/hzm-mohaa-coop-mod/ui/loadout/lktab4.cfg
+@@ -106,4 +106,5 @@
+ set coop_loLkV74 0
+ set coop_loLkV75 0
++set coop_loLkV78 0
+ vstr coop_loLkA63
+ vstr coop_loLkA74
+--- a/hzm-mohaa-coop-mod/ui/loadout/lktab5.cfg
++++ b/hzm-mohaa-coop-mod/ui/loadout/lktab5.cfg
+@@ -86,3 +86,4 @@
+ set coop_loLkV74 0
+ set coop_loLkV75 0
++set coop_loLkV78 0
+ vstr coop_loLkA69
+--- a/docs/tools/loadout_weapons.tsv
++++ b/docs/tools/loadout_weapons.tsv
+@@ -90 +90,2 @@
+ 75	models/weapons/m10_revolver.tik		0 0 0 1.60 0 90 180	coop_hold_pistol		4	S&W M10 .38	.38 SPECIAL / REVOLVER / 6 RD	3	5	8	9	6	6	nagant_revolver	3
++78	models/weapons/coop_g43_irons.tik	models/weapons/coop_g43_irons.tik	0 0 0 1.00 0 90 180	coop_hold_rifle	rifle	0	GEWEHR 43 (IRON SIGHTS)	7.92MM / SEMI-AUTO / IRON SIGHTS	5	4	8	10	10	10	g43	12
