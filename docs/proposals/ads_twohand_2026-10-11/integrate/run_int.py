@@ -561,6 +561,27 @@ def unlock(sess, bins, code, fixes, wid='78'):
         os.makedirs(os.path.join(rundir, 'save_before'), exist_ok=True)
         for f in before:
             shutil.move(os.path.join(save, f), os.path.join(rundir, 'save_before', f))
+    # [bug-3902] no long `wait` may sit in the client's command buffer while the server answers: `wait` holds the WHOLE
+    # buffer and a server stufftext (the armory's lock push, the name-bus acknowledgement `set name <clean>`) is appended
+    # BEHIND it - runs u5b / u5c / u10* read that as "tile stays padlocked" and "pick dropped" (bug-3888, bug-3898).
+    # Every wait > 250 ms is cut out of the step and slept here, between two short steps.
+    raw_step = R.step
+
+    def step_nowait(lines, timeout=240):
+        chunk, start = [], None
+        for ln in list(lines) + [None]:
+            m = re.fullmatch(r'wait (\d+)', ln) if ln is not None else None
+            if ln is None or (m and int(m.group(1)) > 250):
+                if chunk:
+                    s = raw_step(chunk, timeout)
+                    start = s if start is None else start
+                    chunk = []
+                if m:
+                    time.sleep(int(m.group(1)) / 1000.0)
+            else:
+                chunk.append(ln)
+        return start
+    R.step = step_nowait
     xt = lambda cmd, wait=1500: ['set coop_xtCmd %s' % cmd, 'wait %d' % wait]
     menu = ['exec ui/loadout/open.cfg', 'wait 4000', 'pushmenu coop_loadout', 'wait 500', 'exec ui/loadout/init.cfg', 'wait 500',
             'exec ui/loadout/lktab0.cfg', 'wait 1500']
@@ -648,6 +669,7 @@ def unlock(sess, bins, code, fixes, wid='78'):
         notes['error'] = repr(e)
         log('ERROR', e)
     finally:
+        R.step = raw_step
         proc = R.CL['proc']
         if proc is not None and proc.poll() is None:
             try:
