@@ -2,7 +2,7 @@
 
 **State: A, B and C of the list are done and committed (engine `ads-next` d2a6d31b = test cgame `cgame_adsnext10`).
 D and E are NOT started.** Nothing is in the mod tree or the fixes pak; all of it is staged here.
-RUN IDS: use the prefix `pa` (pa1-pa5 used; pa6 is next). `boot_session` deletes an existing run folder - ids tm1-tm3 and tn1 of
+RUN IDS: use the prefix `pa` (pa1-pa6 used; pa7 is next). `boot_session` deletes an existing run folder - ids tm1-tm3 and tn1 of
 earlier sessions were lost that way on 2026-10-12; `run_2h.py` / `run_break2.py` now refuse an existing id.
 The work is split into four lanes since 2026-10-12: this folder's root is the PISTOL lane (pistols + revolvers) and it
 OWNS `tools/` and `coverage.md`; `rifles/`, `smg/`, `heavy/` are the other lanes (own harness copies, own
@@ -95,6 +95,18 @@ Known weak points, seen in playback (tell the user, do not hide them):
 * GIF: `python dgif.py <id> <gun> out.gif --frames a:b:3 --w 400 --crop 240,120,1040,720 --box` (delta frames, about
   2 MB for 130 frames), then `python gifsheet.py out.gif sheet.jpg a:b:1` and LOOK at every frame of the transitions.
 * Python patch scripts are written with the file tool - a heredoc mangled `\t` / `\s` again today (bug-3581).
+
+## D, first pass only (run pa6: the 12 pistols on shared clips, standing, two aimed shots + aimed loaded reload)
+Measured in the engine for the first time (`tools/centrebox.json`, `evidence/pistols_shared_pa6.jpg` = settled aim and
+mid-reload of each). All return to 0.01 deg. Centre box max: p38silenced 0.3, lugerp08 0.5, welrod 0.5 (reload only),
+lugerp08silenced 0.6, nambu 1.1, tt33 1.3, ppk 1.7, berettasilenced 1.8, colt_silenced 1.9 - under the bar;
+**tt33silenced 2.7 % (3 frames), colt45_coltpa 3.1 % (11 frames), mauser_c96 7.2 % (18 frames)** - over it.
+Seen in the frames: the Luger (both) sits large and close - its toggle block fills the lower half of the centre box
+in the settled aim (base cover 16-18 %); the Welrod's rear is a near-black disc under tiny sights (base 17 %); the
+Beretta silenced reads near-black like the Beretta; the C96's reload takes the gun right out of the aim (it runs the
+P38-prefix re-bake, not its stripper-clip technique). No silencer met the support hand in these frames.
+NOT done in D: the Welrod's bolt cycle (per shot and after the reload), the C96's own aimed stripper-clip reload, the
+empty reloads and the stances of these twelve, the trims of the three over the bar, a pose for the Luger.
 
 ## The list from here (PISTOL lane; order given by the coordinator; report at each letter)
 D. Welrod (bolt action after EVERY shot and after the reload; knob at the rear on the sight line: lower / roll the

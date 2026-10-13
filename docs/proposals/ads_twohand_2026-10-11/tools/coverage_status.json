@@ -1,4 +1,7 @@
 {
+ "models/weapons/berettasilenced.tik": {
+  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
+ },
  "models/weapons/colt45.tik": {
   "action": "support hand: magazine out / in below the screen edge (pushed up into the grip; the magazine itself only peeks); EMPTY: slide locked back, SUPPORT THUMB sweeps the slide stop as the hand closes on the grip, slide runs forward - shown; loaded: no slide action",
   "aim": {
@@ -183,6 +186,12 @@
    }
   }
  },
+ "models/weapons/colt45_coltpa.tik": {
+  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
+ },
+ "models/weapons/colt_silenced.tik": {
+  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
+ },
  "models/weapons/it_w_beretta.tik": {
   "action": "support hand: magazine out / in below the screen edge; EMPTY: slide locked back, support thumb sweeps the slide stop as the hand closes on the grip, slide runs forward - shown; loaded: no slide action",
   "aim": {
@@ -278,6 +287,12 @@
    "run": "te6 (loaded) te7 (empty)",
    "target": "yes"
   }
+ },
+ "models/weapons/lugerp08.tik": {
+  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
+ },
+ "models/weapons/lugerp08silenced.tik": {
+  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
  },
  "models/weapons/m10_revolver.tik": {
   "action": "worked LOW: straight down, support hand pushes the cylinder out; EMPTY: gun canted muzzle-up 16 deg, ejector rod struck, six cases jump out to the lower left; one round per loop from the pouch; cylinder pushed shut low (reload_end_ads), straight up into the aim - shown",
@@ -391,6 +406,9 @@
    "target": "yes"
   }
  },
+ "models/weapons/mauser_c96.tik": {
+  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
+ },
  "models/weapons/nagant_revolver.tik": {
   "action": "worked LOW: straight down, rolled onto its left side in the support hand (gate up), firing-side hand feeds one round per loop through the gate, the fired case nudged out per round (reload_single_ads), rolled upright and straight up into the aim - shown; the gun sits at the bottom edge of the frame",
   "aim": {
@@ -503,6 +521,9 @@
    "target": "yes"
   }
  },
+ "models/weapons/nambu.tik": {
+  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
+ },
  "models/weapons/p38.tik": {
   "action": "support hand: magazine out / in below the screen edge; EMPTY: slide locked back, support thumb sweeps the slide stop as the hand closes on the grip, slide runs forward - shown; loaded: no slide action",
   "aim": {
@@ -598,6 +619,12 @@
    "run": "te1 (loaded) te2 (empty)",
    "target": "yes"
   }
+ },
+ "models/weapons/p38silenced.tik": {
+  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
+ },
+ "models/weapons/ppk.tik": {
+  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
  },
  "models/weapons/silencedpistol.tik": {
   "action": "HAND-CYCLED, no lock-back: the hip technique - the gun comes down under the centre box, the left hand goes OVER the slide (retail hip relation), pulls and releases, gun back on the sights - after every aimed shot and at the end of every aimed reload (one shared motion)",
@@ -718,6 +745,12 @@
    "target": "no"
   }
  },
+ "models/weapons/tt33.tik": {
+  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
+ },
+ "models/weapons/tt33silenced.tik": {
+  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
+ },
  "models/weapons/webley_revolver.tik": {
   "action": "worked LOW under the centre box: gun straight down out of the aim, support hand tips the barrel open (gun clip eased, reload_ads_*), six cases kicked up and across the lower frame when empty, one round per loop from the pouch (0.77 s), barrel swung shut low (reload_end_ads), hand back on the grip, straight up into the aim - shown",
   "aim": {
@@ -829,5 +862,8 @@
    "run": "tn1 (emptied gun + 2-round reloads in stand / crouch / prone / both leans; open and close 0.8 s)",
    "target": "yes"
   }
+ },
+ "models/weapons/welrod.tik": {
+  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
  }
 }
