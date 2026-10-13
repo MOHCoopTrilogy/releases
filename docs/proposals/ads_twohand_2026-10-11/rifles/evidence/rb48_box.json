@@ -1,0 +1,56 @@
+{
+ "ab__rb48__kar98__standL__empty__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "6",
+   "2"
+  ],
+  "base": 17.8,
+  "dev": 2.82,
+  "end": 0.0,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 334,
+  "hands": 0.9,
+  "hands_at": 663,
+  "over": 25,
+  "start": 470,
+  "xmax": 8.7
+ },
+ "ab__rb48__kar98__stand__empty__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "6",
+   "2"
+  ],
+  "base": 14.5,
+  "dev": 2.81,
+  "end": 0.0,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 334,
+  "hands": 0.6,
+  "hands_at": 519,
+  "over": 25,
+  "start": 470,
+  "xmax": 8.9
+ }
+}

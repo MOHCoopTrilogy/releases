@@ -69,6 +69,19 @@ the base rifle's capped and uncapped captures differ most): all six are nearer t
 0.74 against 0.77 / 0.65, Mosin 0.84 / 0.80 against 0.72 / 0.73, Enfield 0.82 / 0.55 against 0.78 / 0.51 (the
 Enfield margin is small; chrome on a white wall reads badly). The other 46 added tiks are not run.
 
+## 2. Kar98 reload leftovers: STARTED, NOT DONE (run rb48; nothing staged was changed)
+* Emptied capture, full length (`--parts empty --shots 5 --gap 110 --rframes 360`, stand + lean left): the capture
+  now runs to the settled aim (sights back to 0.00 deg). `evidence/kar98_reload_aimed_empty_rb48.gif` replaces the
+  `_rb23` one (decoded every 7th frame and looked at). Hands-only box: stand 0.6 %, lean left **0.9 %** - the 2.2 %
+  one-frame figure of rb23 did not come back in this run (same clips; the sway phase differs), so nothing was changed
+  for it. The rifle's own body: 8.7-8.9 %, 25 frames over 2 % as it leaves / re-enters the aim. `evidence/rb48_box.json`.
+* `kar98_reload_stances_rb23.jpg` JUDGED: nothing is in the centre box in any of the 18 tiles and the six stances
+  show the same action. **Not acceptable by rule 3:** at "bolt opened" and "bolt closed" the right hand is a large
+  OPEN, cupped hand beside the bolt knob (fingers spread, not closed round the knob), in all six stances; at "charger
+  pushed" the hand is flat over the receiver and no charger is seen; the full-length GIF also shows a wide open palm
+  at the right edge for about a quarter second on the way back from the pouch. To do: a closed grip on the knob, the
+  pouch half second, the clip pushes as a visible jolt - the hands rows only; the Kar98 tiks' bolt rows are frozen.
+
 New tools: `rowlen.py`, `run_srvtime.py`, `srvtime_ov.py`, `srvtime_report.py`, `g43srvrow.py`, `run_unlock.py`,
 `lootpic.py`, `boltsame.py`, `append_bugs.py`; `mkov_rifle.py --armgen`. Bugs: bug-3789..3797.
 Evidence: `evidence/srvtime_rb39.tsv` .. `srvtime_rb42.tsv`, `rowlen_staged_vs_released.tsv`, `rb43_box.json`,
