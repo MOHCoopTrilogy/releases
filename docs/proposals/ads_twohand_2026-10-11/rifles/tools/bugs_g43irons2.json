@@ -1,0 +1,51 @@
+[
+ {
+  "error_message": "iron-sight G43 ('G 43 Irons'), hip reload, run rb28: the rifle swings muzzle-up, leaves the right hand and drops out of the picture for about a second, both hands wait open, then it comes back",
+  "file": "hzm-mohaa-coop-mod/coop_mod/player_torso.st",
+  "root_cause": "the torso state file picks the reload's torso animation BY WEAPON NAME (g43_reload : IS_WEAPON_ACTIVE \"mainhand\" \"G 43\"). 'G 43 Irons' is a base name of its own (so the scope table does not catch it, bug-3713) and fell through to the generic rifle_reload = the Garand torso clip, which hands the gun to the LEFT hand tag; the G43's first-person clip takes that hand down to the pouch, and the rifle with it.",
+  "fix": "STAGED, not applied to the mod tree: one line under the G 43's (g43_reload : IS_WEAPON_ACTIVE \"mainhand\" \"G 43 Irons\") - rifles/tools/g43state.py writes rifles/wire/player_torso_g43irons.patch and the harness copy rifles/assets/coop_mod/player_torso.st. Run rb30: the hip reload is the G43's own again. Any NEW weapon name needs its row in every name-keyed table (torso state, hud_ammo menu, loot table, itemhandler ammo lists).",
+  "tags": ["g43-irons", "state-file", "weapon-name", "reload", "rifles-lane"]
+ },
+ {
+  "error_message": "harness run rb29: 'map never became ready' after 20 minutes - Server crashed: coop_mod/player_Torso.st: Unknown condition 'COOP_TURRET_LOW' on line 4120",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/g43state.py",
+  "root_cause": "the overlay carried a copy of the MOD TREE's player_torso.st (plus one line). The mod tree is ahead of the released pak the private test install mounts: its state file already uses a condition the test install's game dll does not know, and an unknown condition is fatal to the server.",
+  "fix": "g43state.py builds the harness copy from the RELEASED file (read from the GOG pak zzzzzz_co-op_hzm_mod_code.pk3, where it is named coop_mod/player_Torso.st) and only the wiring patch from the mod tree. Rule: an overlay copy of a mod file is always made from what the test install mounts, never from the working tree. Run id rb29 is spent.",
+  "tags": ["harness", "overlay", "state-file", "rifles-lane", "g43-irons"]
+ },
+ {
+  "error_message": "iron-sight G43, aimed reload, run rb31: a magazine stands out of the right side of the receiver for the whole time the left hand is away",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/g43reload.py",
+  "root_cause": "the server hangs the magazine prop on tag_weapon_left during the reload; riflereload.py bakes with both weapon tags on the gun (free_tag False) unless `prop_until` is given, so the prop sat on the gun.",
+  "fix": "prop_from=0, prop_until=87 in the G43 entries: tag_weapon_left keeps the hip art's place in the left hand for the whole clip (run rb32: gone in six stances).",
+  "tags": ["g43-irons", "aimed-reload", "prop", "tag_weapon_left", "rifles-lane"]
+ },
+ {
+  "error_message": "rbox.py read 'aim covers 19-46 %' on every emptied-gun capture of the G43 (run rb32) - a settled-aim mask over a third of the centre box, under which a hand would not be counted",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/rbox.py",
+  "root_cause": "an `empty` capture has only the END reference picture (no model), and ten quick shots walk the view up the wall; the frames before the first shot are then in front of a different piece of wall than the reference, and their difference from it is wall, not rifle.",
+  "fix": "for `__empty` tags the settled aim is the union of the capture's LAST eight frames (rifle back on the aim, same wall as the reference); env RBOX_EMPTY_REF=start gives the old behaviour. Still 9-13 % in five stances (the view is not fully back) - the hands figure of an emptied capture is weaker than a rounds-left one's.",
+  "tags": ["rbox", "measure", "centre-box", "rifles-lane"]
+ },
+ {
+  "error_message": "the retail G43 has no working bolt and its gun clip g43_reload.skc is 56 frames while the hands clip and the torso clip are 88 (2.93 s): after 1.87 s the gun is back in `idle` although the reload runs another second",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/g43reload.py",
+  "root_cause": "retail art: mesh bones are origin / G43 / G43_Clip / two tags; the first-person clip never touches the cocking handle (the palm strikes the magazine's foot at frames 64-66 - clipinfo's hand columns read like a rack, the finger joints show the hand under the magazine).",
+  "fix": "iron-sight G43 only (staged): g43irons.py puts the bolt carrier (51 tris) and its handle (32 tris) on a new bone coop_bolt; the 12 tiks use an 88-frame `reload` clip (retail clip held) and a row reload_ads_empty in which the carrier is racked 4.2 u at frames 62-69; the aimed emptied hands clip wraps the left hand on the handle for it. The hip reload stays the retail clip (no rack).",
+  "tags": ["g43-irons", "bolt", "split-bone", "reload", "rifles-lane"]
+ },
+ {
+  "error_message": "G: ran out of space twice in one night (mkov_rifle.py: OSError 28 writing a 200 KB overlay; the coordinator: a capture died at 07:46)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/run_rifle.py",
+  "root_cause": "every lane keeps every capture frame of every run on G: (this lane alone: 40 run folders, 0.4-1.2 GB each).",
+  "fix": "finished run folders ra1-ra7 / rb1-rb23 MOVED (verified copy, then removed from G:) to the scratchpad on C: (scratchpad\\rifles\\runs); capture only the stances / frames a run needs; nothing deleted.",
+  "tags": ["disk-space", "harness", "runs", "rifles-lane"]
+ },
+ {
+  "error_message": "a Python patch script written with a Git-Bash heredoc failed again: SyntaxWarning invalid escape sequence, then the replace anchor was not found (the doubled backslashes of a Windows path had become single)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/g43irons.py",
+  "root_cause": "the known heredoc gotcha (third time in this lane): backslashes in a heredoc body do not arrive as written. The script asserted before writing, so nothing was damaged.",
+  "fix": "edited with the Edit tool instead; patch scripts that carry backslashes go through the Write tool.",
+  "tags": ["heredoc", "git-bash", "tooling", "rifles-lane"]
+ }
+]

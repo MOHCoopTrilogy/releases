@@ -136,7 +136,7 @@ animations
 
 	idle	g43.skc
 
-	reload	g43_reload.skc 
+	reload	coop_g43_irons_reload.skc 
 	{
 		server
 		{
@@ -144,6 +144,14 @@ animations
 			50 surface g43_Clip -nodraw
 			last idle
 		}
+		client
+		{
+			entry sound gewehr43_snd_reload
+		}
+	}
+	//[g43 irons 2026-10-13] shown by the cgame instead of `reload` when an EMPTIED rifle is reloaded while aiming: the carrier is racked
+	reload_ads_empty	coop_g43_irons_reload_ads_empty.skc
+	{
 		client
 		{
 			entry sound gewehr43_snd_reload

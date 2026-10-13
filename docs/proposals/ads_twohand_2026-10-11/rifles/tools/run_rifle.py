@@ -125,7 +125,7 @@ def run(a):
     # --steady: breath and sway off - the measure then reads the clip, not the breathing aim (rbox.py)
     extra = ["set cg_drawviewmodel 2"] + (["set cg_weaponBreath 0", "set cg_adsSway 0"] if a.steady else
                                            ["set cg_weaponBreath 1", "set cg_adsSway 0.1"]) + a.set
-    rundir, notes = S.boot_session(a.session, a.cgame, 1280, 720, extra, a.overlay)
+    rundir, notes = S.boot_session(a.session, a.cgame, a.w, a.h, extra, a.overlay)
     try:
         R.step(["set coop_isFixed 16", "wait 300"], timeout=30)
         for gun in a.guns:
@@ -163,7 +163,7 @@ def main():
     ap.add_argument("--rframes", type=int, default=230); ap.add_argument("--cyclems", type=int, default=2200)
     ap.add_argument("--shots", type=int, default=5); ap.add_argument("--gap", type=int, default=110)
     ap.add_argument("--hipall", action="store_true"); ap.add_argument("--steady", action="store_true"); ap.add_argument("--breakat", type=int, default=70); ap.add_argument("--bframes", type=int, default=150)
-    ap.add_argument("--darkyaw", type=int, default=160)
+    ap.add_argument("--darkyaw", type=int, default=160); ap.add_argument("--w", type=int, default=1280); ap.add_argument("--h", type=int, default=720)
     ap.add_argument("--yaw", type=int, default=160); ap.add_argument("--set", action="append", default=[])
     a = ap.parse_args()
     a.guns = [g for g in a.guns.split(",") if g]; a.parts = a.parts.split(","); a.stances = a.stances.split(",")

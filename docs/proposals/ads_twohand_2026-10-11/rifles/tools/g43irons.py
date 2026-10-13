@@ -39,18 +39,29 @@ DROP = [(180, -1.1, 6.8, -7.1, -5.1), (58, 1.0, 4.7, -6.2, -3.6), (22, 2.3, 3.3,
         (12, 11.965, 12.204, -5.267, -4.772),        # rear notch plate
         (10, 41.742, 42.158, -4.388, -4.155)]        # front post
 DROP_SURF = ['svt_lens']
+# coordinator 2026-10-12 (decision 4): the hood ring and the rear sight's base are dark steel on EVERY finish, like the
+# leaf - these components leave their surface and come back, same triangles, in `coop_sight` (flat shaded, dark column).
+# (surface name, its triangle count) -> [(tris, xmin, xmax, zmin, zmax)]
+MOVE = {('g43', 288): [(70, 11.5, 16.5, -5.1, -3.4),       # rear sight base
+                       (10, 12.2, 16.4, -5.1, -4.5)],      # the leaf on it
+        ('g43', 559): [(20, 12.4, 12.9, -5.2, -4.7),       # the slider
+                       (10, 40.5, 42.5, -4.2, -3.2)],      # the post's foot inside the hood
+        ('g43cull', 58): [(28, 41.4, 42.5, -5.1, -4.0)]}   # the hood ring (two-sided: the shader is cull none)
 YC = -1.1565                      # the front post's centre line (y); the notch is cut on it
 PLATE = dict(x0=11.965, x1=12.204, half=0.475, zb=-4.78, zt=-5.33, cham=0.12)
 NOTCH = dict(top=0.15, foot=0.10, depth=0.19)
 BAND = 0.04                       # worn edge band on the eye's side (u)
 POST = dict(x0=41.742, x1=42.158, zb=-4.155, zt=-4.388, top=0.095, foot=0.11)
-UV_DARK, UV_EDGE = 0.25, 0.75     # texture columns: dark steel | worn edge
+BOLT_BONE = 'coop_bolt'
+BOLT_PARTS = [(51, 7.2, 12.0, -4.7, -3.4), (32, 7.4, 7.9, -5.2, -4.3)]     # of the 559-tri g43 surface: carrier, handle
+UV_DARK, UV_EDGE = 0.25, 0.75    # texture columns: dark steel | worn edge
 SHADER = """// HZM coop [rifle lane 2026-10-12] iron-sight G43 (tools/g43irons.py): the tangent sight's notch plate and the front
 // post, dark steel on every finish. rgbGen lightingSpherical is what every model shader of the mod uses (lightingDiffuse
 // draws BLACK on a model in this engine, bug-3696); the unlit floor keeps the sights from going black in a dark room.
 // rgbGen const takes three bare numbers - NO parentheses (bug-1913).
 coop_g43_sight
 {
+	cull none
 	{
 		map textures/coop_wpn/g43_sight.tga
 		rgbGen const 0.30 0.30 0.30
@@ -132,6 +143,18 @@ class Mesh:
                 t = (t[0], t[2], t[1])
             self.t.append(t)
 
+    def tri(self, a, b, c, u, v=0.5):
+        """a retail triangle taken over as it is wound; flat normal (outward = -cross, the retail winding)"""
+        a, b, c = (np.asarray(q, float) for q in (a, b, c))
+        n = -np.cross(b - a, c - a)
+        if np.linalg.norm(n) < 1e-12:
+            return
+        n = n / np.linalg.norm(n)
+        base = len(self.v)
+        for q in (a, b, c):
+            self.v.append((q, n, (u, v)))
+        self.t.append((base, base + 1, base + 2))
+
     def prism(self, poly, x0, x1, u, top_u=None):
         """a convex (y, z) polygon extruded along x; side faces that look UP (z negative) take top_u"""
         cy = sum(q[0] for q in poly) / len(poly); cz = sum(q[1] for q in poly) / len(poly)
@@ -155,8 +178,10 @@ class Mesh:
             self.face([(x0, ya, za), (x1, ya, za), (x1, yb, zb), (x0, yb, zb)], nn, uu)
 
 
-def sight_mesh():
+def sight_mesh(moved=()):
     m = Mesh()
+    for a, b, c in moved:
+        m.tri(a, b, c, UV_DARK)
     p, n = PLATE, NOTCH
     W, c, zt, zb = p['half'], p['cham'], p['zt'], p['zb']
     zn = zt + n['depth']
@@ -215,12 +240,37 @@ def main():
     staged.off()
     g = gungeo.load_gun(SRC_TIK, 'idle', 0)
     data = vfs.read(SRC_SKD)
+    BOLT = r"C:\mohaa-coop-dev\docs\proposals\ads_bolt_2026-10-04\tools"
+    sys.path.insert(0, BOLT)
+    _c = os.getcwd(); os.chdir(BOLT)
+    import split_bone as SB
+    import add_bead as AB
+    os.chdir(_c)
+    # the BOLT CARRIER and its cocking handle (on the carrier's left) go onto a new bone `coop_bolt` (child of G43, at
+    # identity: every retail clip leaves it where it is) - the emptied reload pulls the handle, the carrier runs home
+    want = set()
+    for si, s in enumerate(g['surfs']):
+        if s['name'].lower() == 'g43' and len(s['tri']) == 559:
+            cs = comps(s['P'], s['tri'])
+            for cnt, x0, x1, z0, z1 in BOLT_PARTS:
+                hit = []
+                for tl in cs:
+                    pts = s['P'][np.unique(s['tri'][tl])]
+                    if len(tl) == cnt and abs(pts[:, 0].min() - x0) < 0.06 and abs(pts[:, 0].max() - x1) < 0.06 \
+                            and abs(pts[:, 2].min() - z0) < 0.06 and abs(pts[:, 2].max() - z1) < 0.06:
+                        hit.append(tl)
+                assert len(hit) == 1, ('bolt', cnt, x0, len(hit))
+                want |= {(si, int(v)) for v in np.unique(s['tri'][hit[0]])}
+    data, parent, nsel = SB.split(data, BOLT_BONE, lambda sf, vi, pt: (sf.index, vi) in want)
+    assert nsel == len(want), (nsel, len(want))
+    print('bone %s (child of %s): %d vertices - the bolt carrier and its handle' % (BOLT_BONE, parent, nsel))
     blocks, (numS, numB, ofsB, ofsS, ofsE) = surf_blocks(data)
     assert [b['name'].lower() for b in blocks] == [s['name'].lower() for s in g['surfs']], 'surface order differs'
     last_end = blocks[-1]['off'] + blocks[-1]['oEnd']
     assert last_end == len(data) == ofsE
     out = bytearray(data[:ofsS])
     shift_total, nsurf, bone = 0, 0, None
+    moved = []
     import skdlib
     m0 = skdlib.read_skd(data)
     for b, s, sv in zip(blocks, g['surfs'], m0.surfaces):
@@ -229,10 +279,26 @@ def main():
             shift_total += b['oEnd']
             continue
         blk = data[b['off']:b['off'] + b['oEnd']]
-        if b['name'].lower() == 'g43' and b['nt'] == 559:
+        mv = MOVE.get((b['name'].lower(), b['nt']), [])
+        if (b['name'].lower() == 'g43' and b['nt'] == 559) or mv:
             cs = comps(s['P'], s['tri'])
             kill = set()
-            for cnt, x0, x1, z0, z1 in DROP:
+            for cnt, x0, x1, z0, z1 in mv:
+                hit = []
+                for tl in cs:
+                    pts = s['P'][np.unique(s['tri'][tl])]
+                    if len(tl) == cnt and abs(pts[:, 0].min() - x0) < 0.06 and abs(pts[:, 0].max() - x1) < 0.06                             and abs(pts[:, 2].min() - z0) < 0.06 and abs(pts[:, 2].max() - z1) < 0.06:
+                        hit.append(tl)
+                assert len(hit) == 1, ('move', b['name'], cnt, x0, len(hit))
+                kill |= set(hit[0])
+                vi = np.unique(s['tri'][hit[0]])
+                bs = {sv.verts[int(v)][2][0][0] for v in vi}
+                assert all(len(sv.verts[int(v)][2]) == 1 for v in vi), 'blended vertex'
+                assert len(bs) == 1 and (bone is None or bone in bs), ('bone', cnt, x0, bs, bone)
+                bone = bs.pop()
+                moved += [tuple(s['P'][int(k)] for k in s['tri'][ti]) for ti in hit[0]]
+                print('  -> coop_sight: %d tris of %s (x %.1f..%.1f)' % (cnt, b['name'], x0, x1))
+            for cnt, x0, x1, z0, z1 in (DROP if (b['name'].lower() == 'g43' and b['nt'] == 559) else []):
                 hit = []
                 for tl in cs:
                     pts = s['P'][np.unique(s['tri'][tl])]
@@ -262,7 +328,7 @@ def main():
     _c = os.getcwd(); os.chdir(BOLT)
     import add_bead as AB
     os.chdir(_c)
-    sm = sight_mesh()
+    sm = sight_mesh(moved)
     res = AB.add_surface(bytes(out), SRC_TIK, 'coop_sight', sm.v, sm.t, bone)
     dst = OUT
     if '--out' in sys.argv:

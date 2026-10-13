@@ -21,7 +21,8 @@ TIK = 'models/weapons/coop_g43_irons.tik'
 AIM = 'viewmodel/grnd_stand00.skc'
 IDLE = 'viewmodel/g43/g43_idle.skc'
 OUT = 'viewmodel/g43/coop_g43_irons_aim.skc'
-LOWER = (0.0, 1.1, -1.6)        # the staged value: the hand 1.1 u to the left and 1.6 u lower (0.9 / 1.1 left one fingertip showing)
+LOWER = (0.0, 0.3, -2.0)        # the staged value (rb28): the G43's OWN hip grip (--aimgrip = the Garand aim pose's hand instead), 0.3 u left / 2.0 u lower: a hand cupped
+                                # under the fore-end, fingers wrapped (rb27's Garand hand 1.1 u left / 1.6 u lower read as an open palm left of the fore-end)
 
 
 def register():
@@ -46,7 +47,7 @@ def picture(clip, out, W=960):
     return float(m.mean())
 
 
-def bake(root, lower, roll=None, pivot=None):
+def bake(root, lower, roll=None, pivot=None, hip=False, curl=None, out=None):
     rc = H.auto_recipe('g43_charge', gun=KEY, charge=AIM, enter=0, exit=0, fixed_right=True, weight=dict(on=False),
                        handover=False, free_tag=False, elbow_vec={'L': (0, 0.5, -1)}, elbow_down={'L': [(0, 4.0)]})
     # the baker needs a clip of several frames as its time line: the hip idle. The support hand's relation to the gun
@@ -56,6 +57,9 @@ def bake(root, lower, roll=None, pivot=None):
     hc = R.load(R.ANIM + IDLE)
     Wh = R.evaluate(R.pose_dict(ac, ac.numFrames - 1))
     rel = Wh['Bip01 L Hand'] @ R.inv(Wh['tag_weapon_right'])
+    if hip:          # the G43's OWN hip grip: the hand under the fore-end as the hip idle holds it, its fingers wrapped
+        Wi = R.evaluate(R.pose_dict(hc, 0))
+        rel = Wi['Bip01 L Hand'] @ R.inv(Wi['tag_weapon_right'])
     if roll:
         pv = np.asarray(pivot, float) / R.S
         Tm = np.eye(4); Tm[3, 0:3] = -pv
@@ -69,12 +73,12 @@ def bake(root, lower, roll=None, pivot=None):
     pa = R.pose_dict(ac, ac.numFrames - 1)
     cm = R.chanmap(sk)
     for ch, i in cm.items():         # both hands' fingers stay the AIM pose's (the baker takes them from the hip clip)
-        if ch.startswith('Bip01 ') and ' Finger' in ch and ch in pa:
+        if ch.startswith('Bip01 ') and ' Finger' in ch and ch in pa and not (hip and ch.startswith('Bip01 L ')):
             sk.V[:, i] = pa[ch]
     sk.values = [[[float(np.float32(x)) for x in sk.V[f, c]] for c in range(sk.numChannels)] for f in range(sk.numFrames)]
     tmp = os.path.join(HERE, '_g43pose_tmp.skc')
     open(tmp, 'wb').write(R.skc_io.write(sk))
-    dst = os.path.join(root, 'models', 'human', 'animation', OUT.replace('/', os.sep))
+    dst = out or os.path.join(root, 'models', 'human', 'animation', OUT.replace('/', os.sep))
     os.makedirs(os.path.dirname(dst), exist_ok=True)
     subprocess.run([sys.executable, os.path.join(SHARED, 'retime.py'), tmp, dst, 'slice', '0', '0'], check=True, capture_output=True)
     os.remove(tmp)
@@ -96,11 +100,11 @@ def bake(root, lower, roll=None, pivot=None):
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('root'); ap.add_argument('--lower'); ap.add_argument('--roll', type=float); ap.add_argument('--pivot', default='14,-1.15,-1.5')
-    ap.add_argument('--pic')
+    ap.add_argument('--pic'); ap.add_argument('--aimgrip', action='store_true'); ap.add_argument('--out')
     a = ap.parse_args()
     register()
     lower = tuple(float(x) for x in a.lower.split(',')) if a.lower else LOWER
-    dst = bake(a.root, lower, a.roll, tuple(float(x) for x in a.pivot.split(',')))
+    dst = bake(a.root, lower, a.roll, tuple(float(x) for x in a.pivot.split(',')), not a.aimgrip, None, a.out)
     if a.pic:
         c0 = picture(AIM, a.pic[:-4] + '_old.jpg'); c1 = picture(dst, a.pic)
         print('centre box covered by the first-person model, offline: old pose %.1f %%  new pose %.1f %%' % (100 * c0, 100 * c1))

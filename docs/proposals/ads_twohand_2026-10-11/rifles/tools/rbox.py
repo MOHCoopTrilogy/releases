@@ -144,6 +144,12 @@ def measure(sess, sub='', dump=False, zoomdir=None):
         # capture to the next and the rifle's own breathing counted as cover (2026-10-12). For a figure of the CLIP
         # alone capture with `run_rifle.py --steady` (breath and sway off).
         pre = [mask(i) for i in range(max(0, first - 8), first)]
+        if '__empty' in tag and os.environ.get('RBOX_EMPTY_REF', 'end') == 'end':
+            # an emptied capture has only the END reference picture, and several quick shots walk the view up the wall:
+            # against it the frames before the first shot differ over a third of the box (run rb32: 'aim covers'
+            # 19-46 %, a mask that hides whatever is under it). The settled aim is taken from the capture's LAST
+            # eight frames instead - the rifle is back on the aim there, in front of the same wall as the reference
+            pre = [mask(i) for i in range(max(0, min(end, len(fs)) - 8), min(end, len(fs)))]
         aimmask = grow(np.any(pre, axis=0))
         base = float(np.mean([m_.mean() for m_ in pre]))
         fr = [i for a_, b_ in segs for i in range(a_, min(b_, len(fs)))]

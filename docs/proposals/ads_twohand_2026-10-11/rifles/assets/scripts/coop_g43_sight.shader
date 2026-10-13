@@ -4,6 +4,7 @@
 // rgbGen const takes three bare numbers - NO parentheses (bug-1913).
 coop_g43_sight
 {
+	cull none
 	{
 		map textures/coop_wpn/g43_sight.tga
 		rgbGen const 0.30 0.30 0.30

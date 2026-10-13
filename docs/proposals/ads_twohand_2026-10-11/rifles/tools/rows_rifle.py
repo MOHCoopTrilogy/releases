@@ -14,6 +14,16 @@ ROWS = [
      'aimed reload: bolt worked on the sights, charger thumbed in with the rifle lowered under the centre, back to the aim'),
     ('coopr_g_43_irons_charge', 'viewmodel/g43/coop_g43_irons_aim.skc', '0.2', 'g43_charge',
      'iron-sight G43 (weapon name G 43 Irons): its own aim pose = the Garand pose with the support hand 1.1 u left / 1.6 u lower (no fingers right of the receiver); per-weapon row, the scoped G43 keeps g43_charge'),
+    # iron-sight G43 reloads (g43reload.py). The cgame composes: per-weapon row coopr_<weapon key>_reload -> `_empty` when the
+    # magazine is empty -> `_ads` while aiming; all four rows must exist for that chain. The two hip rows are the retail clip.
+    ('coopr_g_43_irons_reload', 'viewmodel/g43/g43_reload.skc', '0.05', 'g43_reload',
+     'iron-sight G43, hip reload: the retail clip (per-weapon row so the aimed forms below reach this gun only)'),
+    ('coopr_g_43_irons_reload_empty', 'viewmodel/g43/g43_reload.skc', '0.05', 'g43_reload',
+     'iron-sight G43, hip reload of an emptied rifle: the retail clip (no rack at the hip - not made)'),
+    ('coopr_g_43_irons_reload_ads', 'viewmodel/g43/coop_g43_irons_reload_ads.skc', '0.1', 'g43_reload',
+     'iron-sight G43, aimed reload with rounds left: magazine out, in and struck home under the centre box, back to the aim'),
+    ('coopr_g_43_irons_reload_empty_ads', 'viewmodel/g43/coop_g43_irons_reload_empty_ads.skc', '0.1', 'g43_reload',
+     'iron-sight G43, aimed reload of an emptied rifle: magazine out and in, the left hand racks the cocking handle, back to the aim'),
     # NOT staged: kar98mortar_rechamber_ads / kar98mortar_reload_ads. The rifle-grenade Kar98 (kar98_mortar.tik,
     # 'Gewehrgranate', prefix kar98mortar) has NO aim at all - no ironsight row (`ADSSIGHT norow wpn='Gewehrgranate'`)
     # and no `kar98mortar_charge` row (run rb12: "Couldn't find view model animation kar98mortar_charge", the gun

@@ -5,7 +5,74 @@ the method are the pistol lane's). Rows: the `## rifle` section of `../coverage.
 the fixes pak; everything is staged in this folder and on engine branch `ads-rifle-next`
 (worktree `C:\mohaa-coop-dev\openmohaa-hzm-ads-rifle`, build dir `.cmake`, test build `cgames\cgame_rifle4.dll`).
 
-# HANDOVER (2026-10-12 late night, fifth stretch) - read this first
+# HANDOVER (2026-10-13 morning, sixth stretch) - read this first
+
+**Done this stretch: the iron-sight G43 is finished as a weapon - gripping support hand, dark-steel hood ring and sight
+base, 1080p aim capture, a shot and the hip reload captured, and its AIMED RELOAD (rounds left and emptied, six
+stances).** NOT done: everything after it on the list (Kar98 reload leftovers, Springfield / Mosin / Enfield reloads,
+the semi-autos, Carcano / De Lisle / Arisaka / G98, the scoped sample). Engine `ads-rifle-next` is unchanged
+(**60e00829** = `cgames\cgame_rifle7.dll`: the rows and the gun-row swap it needs were already there). Overlay of the
+staged state: `G:\mohaa-adsanim2\ov_rifle_e5.pk3`. Run ids used: rb28-rb33 (rb29 spent on a failed boot); **rb34 is next**.
+Run folders ra1-ra7 and rb1-rb13 were MOVED off G: (disk full) to
+`C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\rifles\runs\`
+(set `ADS_RUNS` to it to re-read them); rb14 and later are still in `G:\mohaa-adsanim2\runs`.
+
+## G 43 Irons - what changed (supersedes the matching points of the fifth stretch below)
+* **Support hand** (`tools/g43pose.py`, default now): the G43's OWN hip grip (`viewmodel/g43/g43_idle.skc`: palm under
+  the fore-end, fingers wrapped up its far side, thumb up the near side) moved 0.3 u left / 2.0 u down - a hand cupped
+  under the wood, thumb edge at the left, knuckles at the right of the receiver. `--aimgrip` = the old Garand-pose hand.
+* **Dark steel on every finish** (`tools/g43irons.py` `MOVE`): rear sight base 70 tris + leaf 10 + slider 20, the post's
+  foot 10 and the hood ring 28 (out of `g43cull`) leave their surfaces and come back, same triangles, flat shaded, in
+  `coop_sight` (216 tris now; shader `cull none` for the ring). Seen on wood and Winter at 1080p.
+* **Bolt**: the carrier (51 tris) and its cocking handle (32 tris, on the carrier's LEFT) are on a new bone `coop_bolt`
+  (child of `G43`, identity in every retail clip).
+* **Post / notch size**: stays. At 1920x1080 the post is 5 px wide and the notch about 20 px, both read
+  (`evidence/g43irons/g43irons_aim_1080p_rb33.jpg`).
+* **Torso state row** - a blocker found by the first hip reload (rb28, bug-3739): the state file picks the reload's
+  torso clip by weapon NAME; "G 43 Irons" fell to the Garand's, which hands the gun to the left hand - the rifle left
+  the right hand and dropped out of the picture. STAGED: `wire/player_torso_g43irons.patch` (one line) and the harness
+  copy `assets/coop_mod/player_torso.st`, built from the RELEASED pak (`tools/g43state.py`; the mod tree's file crashed
+  the test server, bug-3740).
+* **Reload, the facts** (`tools/g43reload.py`, its docstring is the reference): the torso clip (88 frames, 2.93 s)
+  ends the reload, not the gun's 56-frame clip. The retail hands never touch the cocking handle - the left hand takes
+  the magazine out below (10-18), brings the new one (50-56), strikes its foot with the palm (64-66) and returns
+  (74-82); the firing hand never leaves the grip. The staged tiks use an 88-frame gun clip
+  `coop_g43_irons_reload.skc` (retail clip held) and a row `reload_ads_empty` (carrier racked 4.2 u, frames 62-69),
+  which the cgame shows when an EMPTIED rifle is reloaded while aiming.
+* **Aimed reloads** (`riflereload.py` machinery: holds `down` 1.9 u / `low` 2.7 u, 12 deg top-right / `reach` 3.1 u):
+  rounds left = the retail technique under the centre box, back to the aim at clip frame 83; emptied = magazine out
+  and in, then the left hand wraps the handle from the rifle's left (the hip grip turned 62 deg about the rifle, fingers
+  closed, thumb laid down), hauls the carrier back and lets it go; back to the aim at 84. Rows
+  `coopr_g_43_irons_reload` / `_reload_empty` (both the retail clip) / `_reload_ads` / `_reload_empty_ads`.
+
+RESULTS, run rb32 (sway on, six stances: stand, crouch, prone, lean L, lean R, braced):
+| | hands-only box max per stance | back to | the rifle's own body in the box |
+|---|---|---|---|
+| rounds left (one shot, `reload`) | 0.1 0.1 0.0 0.1 0.2 0.0 % | 0.01 deg | 0.5-4.9 % for 0-12 frames as it leaves / re-enters the aim |
+| emptied (ten shots, automatic reload) | 0.0 0.0 0.0 0.1 0.1 0.1 % | 0.02 deg | 0.4-0.9 % |
+
+The emptied figures are weaker than they look: that capture has only an end reference and the settled-aim mask still
+covers 9-13 % of the box (`rbox.py`, bug-3742). Offline (`g43rpart.py`): hands 0.0 %, the gun's surfaces 0.5 %.
+LOOKED AT: the 1080p aim (light, dark, Winter); the shot strip; the hip reload sheet (rb30 / rb31); the rounds-left
+reload every 9th capture frame (rb31) and the emptied one every 7th + the rack enlarged (rb31); the six-stance sheet
+(six moments, rb32); the emptied GIF decoded every 3rd frame. Only measured: the rounds-left GIF of rb32 itself, the
+other stances' full playback.
+Weak points seen, not hidden:
+* the magazine change itself is under the rifle and below the picture (as on the SMGs): what shows is the hand
+  leaving, the rifle sagging and jolting, the hand coming back;
+* the racking hand is LARGE (the handle is 8-12 u from the eye) and for two capture frames on each side of the rack it
+  is an open, pointing hand (the fingers close / open on the way);
+* the left hand returns to the fore-end with spread fingers (the retail return, frames 74-82);
+* an emptied G43 shows its carrier shut until the rack (the gun has no hold-open state; `fire` is the idle clip);
+* the HIP reload of an emptied rifle does not rack (retail clip; a hip clip with the rack was not made);
+* the rear sight base is flat mid-grey (no texture detail) beside a near-black receiver.
+Evidence (`evidence/g43irons/`): `g43irons_aim_1080p_rb33.jpg`, `g43irons_shot_recoil_rb33.jpg`,
+`g43irons_reload_hip_rb31.gif`, `g43irons_reload_ads_rb32.gif`, `g43irons_reload_empty_ads_rb32.gif`,
+`g43irons_reload_stances_rb32.jpg`. The `_rb27` aim stills show the old open-palm hand and the finish-coloured hood.
+New tools: `g43reload.py`, `g43state.py`, `g43rpart.py` (rpart for this gun); `run_rifle.py --w --h`;
+`rbox.py` settled aim of an emptied capture from its last frames. Bugs: bug-3739..3745.
+
+# HANDOVER (2026-10-12 late night, fifth stretch) - the iron-sight G43's build; current except where the sixth says otherwise
 
 **This stretch did ONE thing: the IRON-SIGHT G43 is built and its look test is delivered (and refined once on the
 coordinator's notes). NOT done: its aimed reload, its reload stance sheets, and everything after it on the list

@@ -250,6 +250,10 @@ animations
 	g43_disabled 		viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
 	g43_fire		viewmodel/g43/g43_fire.skc				crossblend 0.05
 	g43_reload		viewmodel/g43/g43_reload.skc				crossblend 0.05
+	coopr_g_43_irons_reload_empty_ads	viewmodel/g43/coop_g43_irons_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads rifles 2026-10-12] iron-sight G43, aimed reload of an emptied rifle: magazine out and in, the left hand racks the cocking handle, back to the aim
+	coopr_g_43_irons_reload_ads	viewmodel/g43/coop_g43_irons_reload_ads.skc		crossblend 0.1	// HZM coop [ads rifles 2026-10-12] iron-sight G43, aimed reload with rounds left: magazine out, in and struck home under the centre box, back to the aim
+	coopr_g_43_irons_reload_empty	viewmodel/g43/g43_reload.skc		crossblend 0.05	// HZM coop [ads rifles 2026-10-12] iron-sight G43, hip reload of an emptied rifle: the retail clip (no rack at the hip - not made)
+	coopr_g_43_irons_reload	viewmodel/g43/g43_reload.skc		crossblend 0.05	// HZM coop [ads rifles 2026-10-12] iron-sight G43, hip reload: the retail clip (per-weapon row so the aimed forms below reach this gun only)
 	g43_pullout		viewmodel/g43/g43_pullout.skc				crossblend 0.1
 	{
 		client

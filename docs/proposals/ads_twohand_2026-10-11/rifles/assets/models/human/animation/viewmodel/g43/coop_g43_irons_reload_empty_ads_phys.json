@@ -1,0 +1,149 @@
+{
+ "gun": "g43i_e",
+ "holds": {
+  "down": {
+   "drop": 1.9,
+   "roll": 0.0,
+   "pitch": 0.6,
+   "side": 0.0,
+   "back": -0.6
+  },
+  "low": {
+   "drop": 2.7,
+   "roll": 12.0,
+   "pitch": 1.0,
+   "side": 0.5,
+   "back": -1.2
+  },
+  "reach": {
+   "drop": 3.1,
+   "roll": 9.0,
+   "pitch": 2.6,
+   "side": 0.2,
+   "back": -1.0
+  }
+ },
+ "pose": [
+  [
+   0,
+   null
+  ],
+  [
+   5,
+   "down"
+  ],
+  [
+   10,
+   "low"
+  ],
+  [
+   18,
+   "low"
+  ],
+  [
+   24,
+   "reach"
+  ],
+  [
+   44,
+   "reach"
+  ],
+  [
+   49,
+   "low"
+  ],
+  [
+   72,
+   "low"
+  ],
+  [
+   77,
+   "down"
+  ],
+  [
+   84,
+   null
+  ],
+  [
+   87,
+   null
+  ]
+ ],
+ "scale": 2.5,
+ "events": [
+  [
+   11,
+   "rb_grip",
+   1.25
+  ],
+  [
+   17,
+   "mag_out_r",
+   3.75
+  ],
+  [
+   20,
+   "hand_off",
+   2.5
+  ],
+  [
+   50,
+   "mag_in_r",
+   3.75
+  ],
+  [
+   57,
+   "hand_off",
+   1.5
+  ],
+  [
+   64,
+   "rb_back",
+   3.25
+  ],
+  [
+   66,
+   "rb_stop",
+   2.5
+  ],
+  [
+   68,
+   "rb_fwd",
+   3.5
+  ],
+  [
+   70,
+   "hand_off",
+   1.5
+  ],
+  [
+   82,
+   "rb_grip",
+   2.5
+  ]
+ ],
+ "cls": {
+  "m": 4.1,
+  "f2": 2.6,
+  "f1": 2.0,
+  "z": 0.62,
+  "sag": [
+   0.04,
+   0.8,
+   0.1,
+   -0.03,
+   -0.04
+  ],
+  "magw": 0.0,
+  "tr": [
+   0.012,
+   0.1,
+   0.07,
+   0.01,
+   0.004
+  ],
+  "tr2": 0.5
+ },
+ "report": "class custom x1.00: peak pitch 2.84 deg at f31, roll 13.84 deg, drop 3.17 u, back 1.51 u; settles 0.20 s after the last action; left at the last frame before the fade: pitch -0.03 deg",
+ "md5": "6174dcf2c42d5b38e6dd1a465bbacf7f"
+}
