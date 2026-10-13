@@ -44,8 +44,11 @@ def scan(sessions):
                     fref[cur] = rows[cur][-4:]
                 if m.group(1) == 'reload':
                     g = cur.split('__')[2]
-                    seg[cur] = 'ab__%s__%s__stand__reload__after' % (sess, g)
-                    rows[seg[cur]] = list(fref.get(cur) or rows[cur][-4:])
+                    stn = cur.split('__')[3]                      # run_h.py --stdemo: the stance is in the tag
+                    lane = not stn.startswith('yaw') and cur not in fref
+                    seg[cur] = 'ab__%s__%s__%s__reload__after' % (sess, g, 'stand' if stn.startswith('yaw') else stn)
+                    # stdemo has no `fire` mark: its first frames are the settled aim before the shots
+                    rows[seg[cur]] = list(fref.get(cur) or (rows[cur][:4] if lane else rows[cur][-4:]))
                 elif cur in seg:
                     del seg[cur]
                 continue

@@ -23,6 +23,9 @@ EDITS = {
         ('bar_reload_ads', 'viewmodel/mg/bar_reload_ads.skc', None, 'aimed, rounds left: magazine only'),
         ('bar_reload_empty', 'viewmodel/mg/reload_bar.skc', 0.3, 'retail: hip reload of an empty gun (the retail clip; the row lets cgame find _empty_ads)'),
         ('bar_reload_empty_ads', 'viewmodel/mg/bar_reload_empty_ads.skc', 0.1, 'aimed, empty: magazine, then the left hand works the operating handle'),
+        # 2b: braced variants (cgame ads-heavy-next picks <row>_adsb when the brace envelope is up): half the sag
+        ('bar_reload_adsb', 'viewmodel/mg/bar_reload_adsb.skc', 0.1, 'aimed + braced, rounds left'),
+        ('bar_reload_empty_adsb', 'viewmodel/mg/bar_reload_empty_adsb.skc', 0.1, 'aimed + braced, empty'),
     ],
     'shotgun': [],
 }

@@ -67,59 +67,65 @@
     "run": "ha2"
    }
   },
-  "note": "lowered: the gun leaves the sights on purpose (sag 4.6 deg + cant, 6.1 deg) for the declared work phase and returns to 0.01-0.02 deg",
-  "qa": "ha2: aim pose with the support hand in the hip relation (handpose.py); 8 stances incl. braced looked at, sight line 0.00 deg; before / after pair evidence/bar_aimhand_before_after.jpg",
+  "lowered": true,
+  "note": "lowered: the gun leaves the sights on purpose (sag 4.1 deg + cant, 6.1 deg; braced 4.3 deg) for the declared work phase and returns to 0.01 deg. Box figures with cg_adsSway 0 / cg_weaponBreath 0 and the view aligned to the reference (boxeng.py --align 6): with sway and breath on the AIM itself wanders more than 2 % of the box during the 4 s of a reload.",
+  "qa": "hc1-hd3: aimed reload loaded + empty run AND looked at in stand, crouch, prone, lean L, lean R, braced; GIFs played back frame by frame (evidence/bar_reload_aimed_loaded.gif hc4, _empty.gif hd2); weak: handle hand is a pale fist a quarter of the screen wide (knob seen only in the reach frames), return to the aim takes 0.2 s, hip reload untouched, break-offs not run",
   "reload": {
    "braced": {
-    "dev": 6.16,
-    "edge": 4.13,
-    "end": 0.02,
+    "dev": 4.32,
+    "edge": 4.32,
+    "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "hb8"
+    "run": "hd1"
    },
    "crouch": {
-    "dev": 6.16,
-    "edge": 4.43,
-    "end": 0.02,
+    "dev": 6.07,
+    "edge": 6.03,
+    "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "hb8"
+    "run": "hd3"
    },
    "prone": {
-    "dev": 6.16,
-    "edge": 4.45,
-    "end": 0.02,
+    "dev": 6.06,
+    "edge": 6.06,
+    "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "hb8"
+    "run": "hd3"
    },
    "stand": {
-    "dev": 5.99,
-    "edge": 5.99,
-    "end": 0.09,
+    "dev": 6.07,
+    "edge": 6.04,
+    "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "hb9"
+    "run": "hd1"
    },
    "standL": {
-    "dev": 6.14,
-    "edge": 4.42,
-    "end": 0.02,
+    "dev": 6.04,
+    "edge": 6.01,
+    "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "hb8"
+    "run": "hd3"
    },
    "standR": {
-    "dev": 6.17,
-    "edge": 4.44,
-    "end": 0.02,
+    "dev": 6.07,
+    "edge": 6.07,
+    "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "hb8"
+    "run": "hd3"
    }
   },
-  "rule": "1 on target: loaded 1.4 % max box (hb7, engine), back to 0.01 deg; empty 2-3 % for 0.26 s at the return (hb9) = the ADS rig solve held from mid-recoil of the last shot, clip itself 0.5 % offline. 2 reacts: gunphys class bar (sag 4.6 deg, lg_* actions). 3 action: see action. Stances loaded: stand, crouch, prone, lean L/R, braced run (hb8); empty: stand only"
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "hd1+hd3 (empty) hc6+hc7 (loaded)",
+   "target": "yes"
+  }
  },
  "models/weapons/dp28.tik": {
   "aim": {

@@ -1,126 +1,116 @@
-# HEAVY lane (MGs / shotgun) - HANDOVER, 2026-10-12 evening. Read this first.
+# HEAVY lane (MGs / shotgun) - HANDOVER, 2026-10-12 night (second agent). Read this first.
 
 Lane of the aimed-animation work: the `## mg` and `## heavy` rows of `../coverage.md`. The method is the pistol
-lane's (`../README.md` top section); this file only says what is different here, what is done and what is next.
-**Everything is STAGED** in this folder and on engine branch `ads-heavy-next` (no cgame change yet: the lane cgame
-`cgame_heavy0` is ads-next 94bb3dca rebuilt). Nothing is in the mod tree, the fixes pak or a live install.
+lane's (`../README.md` top section); this file says what is different here, what is done and what is next.
+**Everything is STAGED** in this folder and on engine branch `ads-heavy-next` (worktree
+`C:\mohaa-coop-dev\openmohaa-hzm-ads-heavy`, build dir `.cmake` - NOT `build`). Nothing is in the mod tree, the fixes
+pak or a live install.
 
 ## State by numbered point of the brief
 | point | state |
 |---|---|
-| (1) aim poses with the support hand as at the hip: BAR, DP-28, Vickers-Berthier, Breda | **done**, runs ha1 (before) / ha2 (after), 8 stances incl. braced, sight line 0.00 deg. `evidence/<gun>_aimhand_before_after.jpg`, `<gun>_aimhand_stances_ha2.jpg` |
-| (2) BAR aimed reload to the three rules, loaded + empty | **built and run standing; see "BAR" below for the numbers and the honest weak points**. Stances run = see the table there |
-| BAR skin "slightly brighter" (user 2026-10-12) | **staged**, `tools/barskin.py`, sheet `evidence/bar_skin_lift_before_after.jpg` |
+| (1) aim poses, support hand as at the hip: BAR, DP-28, Vickers-Berthier, Breda | **done** (ha1 / ha2), `evidence/<gun>_aimhand_*.jpg` |
+| (2) + (2b) BAR aimed reload, loaded + empty, all six stances incl. a braced variant | **done to the three rules - see "BAR" for the numbers and the honest weak points** |
+| BAR skin lift + magazine prop tone | **staged** (`tools/barskin.py`, `tools/clipskin.py`) - see "Skins" for the shipping note |
 | (3) MP44, FG42 (sight row first), DP-28 | **not started** |
-| (4) Breda, Vickers, portable .30 cal / MG42 | **not started** (aim poses of Breda / Vickers done under (1)) |
+| (4) Breda, Vickers, portable .30 cal / MG42 | **not started**; two findings from run hc9 / hc10 below |
 | (5) shotgun: bead sight, shells, pump | **not started** |
-| launchers (bazooka, Panzerschreck, PIAT) | not re-checked by a run; `player_Torso.st` AIM excludes them per the matrix - leave N/A |
+| launchers | not re-checked by a run; Torso AIM excludes them per the matrix - N/A |
+
+## Engine branch `ads-heavy-next` (this lane's cgame)
+* ef1e7934: a braced aimed reload / bolt picks the hands row `<row>_adsb` when fps_anims has it (`CG_CoopBrace() > 0.5`,
+  the recipe of `../../ads_bolt_2026-10-04/engine/apply_adsbrace.py`); no row = `<row>_ads` as before.
+* 01e2460b: merge of ads-next 191f1879 (ADSSETTLE diagnostic, `cg_adsRigSettle`, default off - no behaviour change).
+* Test DLLs in `G:\mohaa-adsanim4\cgames`: `cgame_heavy1` (ef1e7934), **`cgame_heavy2` (01e2460b, current)**.
 
 ## How this lane runs (all tools in `tools/`, run from `assets/` unless said)
-* `hv.py` paths + guns; `hv.lib()` = hold_bake / rig / vmcam with the bolt tools importable. The pistol lane's tools
-  are used as a LIBRARY; those that hard-code `G:/mohaa-adsanim/runs` go through `python ../tools/sh.py <tool> args`
-  (swaps the literal for `G:/mohaa-adsanim4/runs` at load, no copy).
-* Engine runs: `python tools/run_h.py <id> --overlay <abs pk3> --cgame cgame_heavy0 --guns bar --parts ...` = the
-  shared run_2h.py repointed to `G:\mohaa-adsanim4`, owner `adsanim4`, net_port 12598. Lane extras: `--map m4l1
-  --spot x,y,z,yaw` (night map at its player start: -3904,-6120,-456,45), `--pitch 8.5` (start the view lower: 20
-  rounds of automatic fire walk it up 8.5 deg and the box ends on the dark beam, where a dark gun cannot be measured).
-  One game at a time in the copy; a session is 2-6 min. Log `SCRATCH/adsheavy/run.log`, frames `G:/mohaa-adsanim4/runs/<id>/`.
-* Overlay: `python ../tools/stage_rows.py` (fps_anims_mg / _shotgun = the RELEASED fixes-pak copy + the declarative
-  EDITS in that file - both files are this lane's), then `python ../tools/mkov_h.py <out.pk3> [--skip textures] [--before]`
-  (plumbing `SCRATCH/adsheavy/ovbase_1021.pk3` + everything under `assets/`).
-* Offline first: `python ../../tools/offbox.py bar <aim.skc> "<clip.skc>|<gun anim>" --w 320 [--sheet x.jpg]` with
-  `IRONSIGHT_EXTRA_PAKS=<overlay>` for staged gun rows; `python ../tools/trypose.py bar out.jpg roll=32,pitch=4.6,mv=3/0.4/0`
-  tries gun work poses (eye view, box cover); `heavylib.py bar <gun pt> ...` prints where points of the gun sit in the
-  aim camera frame (deg below / left of the sight line).
-* Engine measure: `python tools/boxeng.py <id> --dump`. NOT the shared centrebox.py for automatic guns: its baseline
-  is the aim just before the reload, which after a burst has not recovered from the recoil (the BAR then reads
-  4-5 % "extra" for every frame after it is back). boxeng compares with the settled aim at the END of the reload
-  capture, as offbox does. The first ~13 capture frames of an EMPTIED gun are the last shot's kick and smoke.
-* Sheets / GIFs: `tools/fsheet.py <id> demo a:b:step out.jpg --crop 240,120,1040,720`; `python tools/sh.py dgif <id> demo out.gif
-  --frames a:b:3 --w 400 --crop 240,120,1040,720 --box`, then `python ../tools/gifsheet.py out.gif sheet.jpg a:b:1` and LOOK.
-* Status: `tools/cov_h.py scan <id>` -> `coverage_status.json` (same schema as the pistol lane's). **`../tools/coverage.py`
-  does not know this lane yet** (LANES has 'rifles' and 'smg' only and gives mg + heavy to 'smg') - reported, bug-3591.
-* Bugs: `python tools/buglog_add.py entries.json` appends to `.wolf/buglog.json` without rewriting it (bug-3588..3591 are this lane's).
+* `hv.py` paths + guns; `hv.lib()` = hold_bake / rig / vmcam. Shared tools that need the runs folder: `ADS_RUNS=G:/mohaa-adsanim4/runs`
+  (or `python tools/sh.py <tool> ...`).
+* Engine runs: `python tools/run_h.py <id> --overlay <abs pk3> --cgame cgame_heavy2 --guns bar --parts ...` (the shared
+  run_2h.py repointed to `G:\mohaa-adsanim4`, owner `adsanim4`, port 12598). Lane extras: `--map`, `--spot`, `--pitch 8.5`
+  (20 rounds of automatic fire walk the view up 8.5 deg), and **`--stdemo stand,crouch,prone,standL,standR,braced`** =
+  the aimed reload in each stance as a DENSE capture on the light wall (`--demoyaw 165`) that `boxeng.py` can measure
+  (`--parts none --stdemo ...`; with `--demoempty --shots 20 --shotgap 8 --demoreload 240` the gun is emptied first,
+  without it `--shots 1 --demoreload 240` and 200 frames pass before the reload so the recoil is out).
+  A session is 2-4 min; log `SCRATCH/adsheavy/run.log`, frames `G:/mohaa-adsanim4/runs/<id>/`.
+* **Box numbers are taken with `--set "set cg_adsSway 0" --set "set cg_weaponBreath 0"` and `boxeng.py <id> bar --align 6`**
+  (bug-3619): with sway / breath on the AIM itself wanders 15-45 px during a 4 s reload and reads 3-7 % by itself;
+  braced / prone views sit up to 6 px off the reference (over 20 bullet holes that read 4-6 % with no model in the box).
+  `--cbx [--empty] [--add]` writes `centrebox.json` in the shared coverage.py schema (an emptied gun: the first 20
+  capture frames are the last shot's kick). Measure on the DARK skin (`mkov_h.py out.pk3 --skip textures`): the lifted
+  BAR on the brown door is under-detected. LOOK at the lifted-skin runs.
+* Overlay: `python ../tools/stage_rows.py` then `python ../tools/mkov_h.py <out.pk3> [--skip textures] [--before]`.
+* Offline first: `../../tools/offbox.py` (box over every clip frame, `IRONSIGHT_EXTRA_PAKS=<overlay>`);
+  `tools/eyeview.py` (frames large / zoomed / with outside views), `tools/hktry.py` (bake `--set` variants into scratch
+  and draw them in one sheet - nothing staged is touched), `tools/trypose.py`, `heavylib.py`.
+* Sheets / GIFs: `tools/fsheet.py`, `tools/stsheet.py <out> sess:tag:+N:label ...` (chosen engine frames, `+N` from the
+  reload mark), `../tools/dgif.py` + `../tools/gifsheet.py` and LOOK.
+* Status: `tools/cov_h.py scan <id>` (stance from the stdemo tag), `python ../tools/coverage.py --lane heavy rule bar yes yes yes "<runs>"`
+  (writes the lane's own status; `--lane heavy show` writes `heavy/coverage.md`, a lane-local preview - `../coverage.md`
+  is the pistol lane's to build).
+* Bugs: `python tools/buglog_add.py entries.json` (bug-3588..3591, 3597 predecessor; 3619-3623 this session).
+* Patch scripts: write them as FILES. A Git-Bash heredoc turned a backslash-n into a line break again (bug-3621).
 
-## (1) Aim poses - `tools/handpose.py`
-All four `<prefix>_charge` rows borrowed the BAR aim clip `viewmodel/bar_stand00.skc`: the support hand hung open
-1.5-5 u under the gun (on the Vickers visible from the eye as an empty palm). New one-frame clips
-`viewmodel/<dir>/coop_<prefix>_ads_hand.skc` = the same aim (trunk, eye, firing arm, weapon tag untouched) with the
-left hand in the hip idle's hand-to-gun relation. Open: `bar_charge` is also the aim row of the M1919 / MG42 / Lewis
-(prefix `bar`): they now get the BAR-forearm hand on other meshes - not looked at. `tools/posecmp.py` / `pair_h.py` =
-the side views that prove what the hand holds (from the eye the change is mostly hidden behind the gun).
+## BAR - `tools/heavybake.py bar` (+ `--braced`), `tools/patch_tik_h.py bar`
+At the cheek weld nothing of the BAR's mechanism can be seen (handle 14 deg below / 9 deg left behind the comb, well
+18-36 deg below the sight line), so for the work the gun SAGS 4.1 deg about the butt when the support hand leaves
+(gunphys class `bar`, 9 kg) and the firing hand holds it canted 32 deg, 3 u forward, 0.7 u down (the WORK pose,
+`gun_abs`); magazine stripped down the well and shown bottom-left out and in, seated, slapped; an EMPTY gun then gets
+the left hand on the operating handle, hauled back and run forward with the gun's `bolt` bone keyed in the same
+frames (gun clip `coop_reload_ads_empty.skc`, tik rows `reload_ads_empty` / `reload_ads_loaded` on bar.tik + 7 finishes,
+cut loaded sound). Rows: `bar_reload_ads`, `bar_reload_empty` (retail hip clip), `bar_reload_empty_ads`, and the braced
+`bar_reload_adsb` / `bar_reload_empty_adsb` (`braced=` in the gun entry: support 0.3, strength 0.8 -> 2.4 deg sag, butt
+end 0.7 u lower instead; a shallower sag put the front sight ears into the box, run hc2).
 
-## (2) BAR aimed reload - `tools/heavybake.py bar` (approach approved by the user via the coordinator, 2026-10-12)
-Facts that shape it (`heavylib.py bar ...`): at the cheek weld the stock hides the left-side operating handle
-(14 deg below, 9 deg left of the sight line, behind the comb) and the magazine well is 18-36 deg below the sight
-line - the frame edge is 26 deg. Nothing of the work can be seen on the sights, and a hand BEHIND the knob ends the
-5.75 u pull 4 u from the eye. A strong cant (55-90 deg) swings the firing hand into the lens. So:
-* **Gun**: the support hand leaving lets the muzzle SAG 4.6 deg about the butt (gunphys class `bar`: 9 kg, 1.25 Hz
-  one-handed, damping 0.62 - physics, `dip_pivot` = the butt 10.8 u behind the eye); the firing hand holds it in a
-  WORK pose on top of that (`gun_abs`: canted 32 deg top-right about the butt, yawed 3 deg, let 3 u forward out of
-  the cheek weld), `dip_after` puts the spring motion on top. Actions `lg_*` (magazine tug / free / in / slap,
-  handle grab / back / stop / forward, hand on) are defined in heavybake.py for a shouldered long gun. One-sided
-  clamp: the gun never rides ABOVE its aim (the return overshoot put 5 % of gun into the box).
-* **Hands**: firing hand fixed on the grip. Left hand keyed (`left_path`): forearm -> the seated magazine (retail
-  hand-to-gun relation of frame 15) -> stripped 5.8 u down the well's axis -> swung out LEFT through the bottom-left
-  of the view (the magazine is SEEN there, out f24-27 and in f36-39; the well itself is below the frame) -> pouch ->
-  back, seated f46, palm slap f53 -> (EMPTY only) across from the left onto the knob (`gunpt` key, wrist straight
-  left of the knob, fingers closed round it), hauled back f66-69, run forward f71-73 -> forearm.
-* **Gun side**: `models/weapons/bar_lmg/coop_reload_ads_empty.skc` = the retail gun reload with `bolt pos` y keyed
-  0 -> 11.06 -> 0 by the same `bolt_u()` the hand follows. `tools/patch_tik_h.py bar` stages bar.tik + its 7 finishes
-  with `reload_ads_empty` (that clip, retail sound) and `reload_ads_loaded` (retail gun clip, sound
-  `bar_snd_reload_loaded` = BARReload1.wav faded out before the handle, tik-local aliascache). Hands rows:
-  `bar_reload_ads` (rounds left: magazine only - an open-bolt gun still cocked), `bar_reload_empty` (hip: retail
-  clip, so cgame finds the next one), `bar_reload_empty_ads`. Frames follow the retail sound (out f12-16, in f40-44,
-  click f52, handle f67-73) and the server's prop window (bar_clip on tag_weapon_left f15-50, gun Clip hidden f18-46).
+Final clips: loaded 0e1d9d7d, empty 703e4870, braced 33486b6d / cad69914, gun clip 4a5edd0c; cgame_heavy2.
+| what | runs | engine box extra vs the settled aim (aligned, sway off) | offline | sight line |
+|---|---|---|---|---|
+| loaded: stand, crouch, prone, lean L, lean R, braced | hc6, hc7 | 0.1 / 0.1 / 0.2 / 0.1 / 0.1 / **1.3 %**, 0 frames over 2 % (not aligned: max 1.8 %, prone) | 0.0 % | leaves 6.2 deg (braced 4.3), back to 0.01 deg |
+| EMPTY: the same six | hd1, hd3 | first 6-15 capture frames = the last shot's kick (6-20 %); after them **max 0.8 %**, 0 frames over | 0.0 % | back to 0.00 deg |
+| EMPTY, standing, sway + breath ON, lifted skin (what the player sees) | hd2 | work 0 %; **2-3 % for 16 capture frames at the return** | - | clip end within 0.02 deg |
 
-Numbers and evidence: see the table at the end of this file (filled from the last runs).
+bug-3597 as it stands (bug-3620): the rig-solve target does not freeze (ADSSETTLE 0.0000 rad / 0.000 u on the emptied
+BAR, hd1 / hd2); the clip's tail was tight and is now closed (support hand back f77-82, the last four frames are the
+aim pose). The 2-3 % at the return appears ONLY with `cg_adsSway` / `cg_weaponBreath` on - the aim's own sway / breath
+offset while the clip plays against where it is afterwards. A cgame question for the ads-next owner; re-measure when it lands.
 
-Known weak points (seen in playback - say them, do not hide them):
-* The magazine exchange at the WELL is below the frame; what is seen is the magazine in the hand going out and
-  coming in bottom-left. The retail prop `models/ammo/bar_clip.tik` is light grey against the dark S93 gun.
-* The handle hand is a closed fist against the left of the receiver, about a quarter of the screen wide at the end
-  of the pull (it is 7 u from the eye); the knob itself cannot be made out on the dark gun, so "fingers round the
-  knob" was judged on offline renders only. The bolt bone moves (gun clip) but was not verified in a zoomed engine crop.
-* The firing hand / wrist shows under the gun in the work pose (pink at the bottom edge) - it is the hand on the grip.
-* Only the S93-mesh BAR (bar.tik + finishes). `bar_bar1918a*` / `bar_pabar` (stock mesh, other handle point), the
-  Lewis, M1919 and MG42 play their own `coopr_*` hip clips in an aimed reload - untouched.
-* Break-off states (fire / switch / sprint during the reload) not run. Hip reload untouched (retail mime pull).
+Evidence: `evidence/bar_reload_aimed_loaded.gif` (hc4), `bar_reload_aimed_empty.gif` (hd2) - both lifted skin, played
+back frame by frame, no pop; `bar_handle_engine_crops_hc1.jpg` (the ribbed knob forward, fingers round it, GONE from
+the front at full pull); `bar_reload_aimed_loaded_stances_hc4.jpg`, `bar_reload_aimed_empty_stances_hd1_hd3.jpg` (dark skin).
 
-## BAR skin - `tools/barskin.py`
-Cause of "very dark": the TEXTURE (S93_bar mean 19 / 255; on screen the gun read 9 where DP-28 / Breda read 44-47),
-one plain lightingSpherical stage. Lift = a monotone luminance curve (19 -> 44), chroma grown only with gain ** 0.25
-(a plain multiply turned the crushed yellow darks mustard / camo - first try, rejected on the sheet). Both files per
-sheet are staged: `.dds` (the weapon-HD pak `zzzzzzzzzz_coop_hd_m3l1a.pk3` member, what the engine shows) and `.tga`
-(`zzzzz_xw_weapons.pk3`, shown without the HD pak). Read by bar.tik only (one tik for first person, world, pickup,
-Armory) and multiplied by the blued / chrome / gold finishes; bloody / camo finishes have their own JPGs (untouched,
-so they may now read DARKER than the base gun - not checked). **Shipping: the lifted .dds must replace the HD pak's
-member or sort above it, or that pak hides it.**
+Weak points, seen in playback - say them:
+* The handle hand is the back of a pale fist / forearm about a quarter of the screen wide, 7 u from the eye at the end
+  of the pull. The knob is seen in the reach frames (0.1 s) and not while it is gripped. Eight other grips / work
+  poses were tried offline (`hktry.py`: from below, edge-on, gun pushed forward, gun yawed): every one was larger or
+  brought the firing arm into view. It reads by the hand's travel, the gun's roll into the shoulder and the sound.
+* The return from the work pose to the aim takes 0.2 s (brisk for 9 kg). The magazine is in view 0.2 s each way.
+* Stock-mesh BARs (`bar_bar1918a*`, `bar_pabar`) share the rows: rounds left is fine (hc10), an EMPTY one would grip
+  the S93 handle point with no gun-side row - **not run, open** (bug-3623). Lewis / MG42 keep their own `coopr_*` hip
+  clips while aiming (box clear in the sampled frames, not rebuilt). Break-offs not run. Hip reload untouched.
+* M1919 portable: aiming shows a black receiver wall over the lower half of the screen into the box, and its reload
+  swings the barrel up through the box (hc9 / hc10, bug-3622) - item 4, sight row first.
+
+## Skins
+* `tools/barskin.py`: S93_bar / S93_bar-bipod lifted (mean 19 -> 45), `.dds` + `.tga` both staged.
+* `tools/clipskin.py`: the magazine prop `textures/models/weapons/bar/barclip` toned down from light grey (84) onto the
+  lifted gun (47, its warm cast), `.dds` + `.tga`. It is the retail prop's texture: the hip reload shows it too.
+* Finishes against the lifted base (run hc9, aimed, same wall): desert / winter / woodland camo are all LIGHTER than
+  the base; bloody is a dark red and darker than the base (its own art, as intended); the stock-mesh `bar_bar1918a` is
+  near black and `bar_pabar` pale grey - their own skins, not part of the lift.
+* **Shipping: the texture the engine shows is `S93_bar.dds` inside `zzzzzzzzzz_coop_hd_m3l1a.pk3`, which is off limits.
+  The lifted `.dds` files (and `barclip.dds` if that pak carries it - check `vfs.winner`) must ship in a pak that sorts
+  ABOVE it.** This lane ships nothing.
 
 ## Next, in the brief's order
-1. BAR: re-read the weak points above with the lifted skin on (the knob shows then); stock-mesh BAR variants
-   (`heavybake` needs a second gun entry: handle point from `gunview.py models/weapons/bar_bar1918a.tik`); break-offs.
-2. MP44 (shipped clip: 4.5 deg drift, cocking hand out of view), FG42 (no sight row: add it to the cgame sight table
-   first - that is this lane's cgame change), DP-28 (pan off / on, charge) - the same reasoning (sag + work pose)
-   applies wherever the control sits out of view at the cheek weld; say which in the report.
-3. Breda, Vickers, portable .30 cal / MG42 (belt: cover up, belt in, cover down, charge).
-4. Shotgun: sight delta 18-20 mrad + brass bead (`../../ads_bolt_2026-10-04/README.md` 8.5), shells one at a time,
-   pump after the last; aimed fire plays `viewmodelanim charge` (player_Torso.st ATTACK_SHOTGUN_PRIMARY_AIM), so the
-   pump between aimed shots shows NO hand motion today - it needs a `shotgun_cycle_ads` row (cgame per-shot cycle hook).
+3. MP44 (left handle, magazine under; shipped clip drifts 4.5 deg and hides the cocking hand): a second `heavybake`
+   gun entry - the `lg_*` actions, `spec()` and the braced path are generic; needs `handle`, `butt`, `mag_rel`, timing
+   from its sound. FG42: sight row in `cg_adssights.h` first (generated from `../../ironsights_2026-09-28/sights.json`),
+   side magazine. DP-28: the pan is in the sight picture, the gun comes down for it.
+4. Breda, Vickers, portable .30 cal / MG42 (belt: cover up, belt, cover down, charge). M1919 needs its sight row.
+5. Shotgun: sight delta 18-20 mrad + brass bead (`../../ads_bolt_2026-10-04/README.md` 8.5), shells one at a time,
+   pump after the last; aimed fire plays `viewmodelanim charge`, so the pump between aimed shots shows no hand motion
+   today - a `shotgun_cycle_ads` row (cgame per-shot cycle hook of ads-next 4b6be659).
+Also open for the BAR: stock-mesh empty reload, break-offs, a slower return.
 
-## BAR numbers (final clips: loaded a8221414, empty f668a1ff, gun clip 4a5edd0c; cgame_heavy0; yaw 165 light wall)
-| what | run | engine box extra vs the settled aim (`boxeng.py`) | offline box (`offbox.py`, every frame) | sight line | evidence |
-|---|---|---|---|---|---|
-| loaded, standing | hb7 | max 1.4 %, 0 of 240 frames over 2 % | 0.5 % | leaves 6.2 deg (declared sag + cant), back to 0.01 deg | `evidence/bar_reload_aimed_loaded.gif` (70 frames, 1.2 MB) |
-| loaded: crouch, prone, lean L, lean R, braced | hb8 | not measured (sparse capture, dark backdrop) | - | 6.1-6.2 deg, back to 0.02 deg, pose factor 1.00 | `evidence/bar_reload_aimed_loaded_stances_hb8.jpg` |
-| EMPTY, standing | hb9 | f287-296: the last shot's kick (21 % -> 2 %); work phase 0 %; **2-3 % for 16 capture frames (0.26 s) at the return** | 0.5 % | back to 0.00 deg | `evidence/bar_reload_aimed_empty.gif` (68 frames, 1.2 MB) |
-
-The 2-3 % of the EMPTY return is not the clip (the loaded clip has the same return and reads 1.4 %): an emptied gun
-starts its reload by itself in the middle of the last shot's recoil; the ADS rig solve is HELD while the client-only
-aimed clip plays (ads-next 940420bf), so it is held in the kicked state, the whole reload plays about 0.6 deg high and
-the gun sinks 15 px to the true aim after the clip ends (crops: capture f462 / f470 against f520). A general cgame
-point for every emptied-gun aimed reload (pistols too) - reported, bug-3597; NOT changed on `ads-heavy-next`.
-Not done for the BAR: EMPTY in the other stances; a braced variant (the braced gun sags the full 4.6 deg although the
-rest carries it - wants the `_adsb` reduction of `../../ads_bolt_2026-10-04/tools/bake_class.py`); break-offs.
-Runs of the day: ha1 / ha2 (aim poses), hb1-hb9 (BAR reload iterations; hb7 / hb8 / hb9 are the final clips),
-hs1 / hs3 and hn1 / hn3 (skin before / after, day m3l2 and night m4l1; hs2 / hn2 = the rejected first lift).
+Runs: ha1 / ha2 (aim poses), hb1-hb9 (predecessor's BAR iterations), hs / hn (skin), hc1-hc10 (2b: stances, braced,
+variants, finishes), hd1-hd3 (final clips, settle diagnostics).

@@ -188,5 +188,7 @@ animations
 	//===================== HZM coop ADS heavy lane (staged 2026-10-12) =====================
 	bar_reload_empty		viewmodel/mg/reload_bar.skc		crossblend 0.3	// HZM coop [ads heavy] retail: hip reload of an empty gun (the retail clip; the row lets cgame find _empty_ads)
 	bar_reload_empty_ads		viewmodel/mg/bar_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads heavy] aimed, empty: magazine, then the left hand works the operating handle
+	bar_reload_adsb		viewmodel/mg/bar_reload_adsb.skc		crossblend 0.1	// HZM coop [ads heavy] aimed + braced, rounds left
+	bar_reload_empty_adsb		viewmodel/mg/bar_reload_empty_adsb.skc		crossblend 0.1	// HZM coop [ads heavy] aimed + braced, empty
 }
 

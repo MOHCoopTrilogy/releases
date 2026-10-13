@@ -1,0 +1,94 @@
+{
+ "models/weapons/bar.tik": {
+  "align": 6,
+  "dev": 6.17,
+  "note": "cg_adsSway 0, cg_weaponBreath 0; vs the settled aim after the reload",
+  "run": "hc6+hc7",
+  "stances": {
+   "braced": {
+    "end": 0.01,
+    "run": "hc7",
+    "xfr": 0.0,
+    "xmax": 1.29
+   },
+   "crouch": {
+    "end": 0.01,
+    "run": "hc6",
+    "xfr": 0.0,
+    "xmax": 0.11
+   },
+   "prone": {
+    "end": 0.01,
+    "run": "hc7",
+    "xfr": 0.0,
+    "xmax": 0.19
+   },
+   "stand": {
+    "end": 0.01,
+    "run": "hc6",
+    "xfr": 0.0,
+    "xmax": 0.11
+   },
+   "standL": {
+    "end": 0.01,
+    "run": "hc7",
+    "xfr": 0.0,
+    "xmax": 0.08
+   },
+   "standR": {
+    "end": 0.01,
+    "run": "hc7",
+    "xfr": 0.0,
+    "xmax": 0.11
+   }
+  },
+  "xfr": 0.0,
+  "xmax": 1.29
+ },
+ "models/weapons/bar.tik#empty": {
+  "align": 6,
+  "dev": 6.07,
+  "note": "cg_adsSway 0, cg_weaponBreath 0; vs the settled aim after the reload; first 20 capture frames (last shot) skipped",
+  "run": "hd1+hd3",
+  "stances": {
+   "braced": {
+    "end": 0.0,
+    "run": "hd1",
+    "xfr": 0.0,
+    "xmax": 0.8
+   },
+   "crouch": {
+    "end": 0.0,
+    "run": "hd3",
+    "xfr": 0.0,
+    "xmax": 0.06
+   },
+   "prone": {
+    "end": 0.0,
+    "run": "hd3",
+    "xfr": 0.0,
+    "xmax": 0.56
+   },
+   "stand": {
+    "end": 0.0,
+    "run": "hd1",
+    "xfr": 0.0,
+    "xmax": 0.2
+   },
+   "standL": {
+    "end": 0.0,
+    "run": "hd3",
+    "xfr": 0.0,
+    "xmax": 0.08
+   },
+   "standR": {
+    "end": 0.0,
+    "run": "hd3",
+    "xfr": 0.0,
+    "xmax": 0.09
+   }
+  },
+  "xfr": 0.0,
+  "xmax": 0.8
+ }
+}

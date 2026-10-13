@@ -14,7 +14,7 @@
 Frames follow the retail sound (BARReload1.wav: magazine out f12-16, in f40-44, click f52, handle back f67-69,
 forward f71-73) and the server's prop window (bar_clip on tag_weapon_left f15-50, the gun's own Clip hidden f18-46).
 
-    cd heavy/assets; python ../tools/heavybake.py bar [--only loaded|empty] [--set k=v ...]
+    cd heavy/assets; python ../tools/heavybake.py bar [--only loaded|empty] [--braced] [--set k=v ...]
 """
 import sys, os, json, hashlib, argparse
 import numpy as np
@@ -63,7 +63,13 @@ BAR = dict(
     # the WORK pose the firing hand holds the gun in (on top of the sag): canted, top to the right, and let down out
     # of the cheek weld - 5 u forward, 1.5 u lower. At the cheek the left-side handle ends its travel 5 u from the eye
     # (run hb2: the pulling hand filled the lower left of the view) and the well is under the frame's edge.
-    cant=dict(roll=32.0, pitch=0.0, yaw=-3.0, move=(3.0, 0.4, 0.0)),
+    # 0.7 u lower since run hc1: the firing wrist showed pink under the canted gun along the bottom edge (hb7-hb9)
+    cant=dict(roll=32.0, pitch=0.0, yaw=-3.0, move=(3.0, 0.4, -0.7)),
+    # BRACED (<row>_adsb): the rest carries part of the front - the muzzle dips 2.6 deg where the free gun dips 4.1
+    # and every reaction is 0.8 of the free gun's; the firer lowers the BUTT end a little more instead to get the work
+    # under the box. A shallower sag does not clear it: with 1.3 deg the front sight ears stood in the bottom of the
+    # box for the whole work (run hc2, 3-4 %), and the firing forearm showed in the lower left of the view.
+    braced={'sup': 0.3, 'strength': 0.8, 'cant.move': [3.0, 0.4, -1.4]},
     mag_rel=15,                        # retail frame: the left hand holds the SEATED magazine (wrist behind it, fingers round the front)
     mag_out=5.8,                       # u down the well's own axis until the magazine is clear
     handle=(4.63, -2.75, -1.67),       # weapon-tag frame (fwd, right, DOWN): the operating handle's knob, forward
@@ -74,7 +80,9 @@ BAR = dict(
            well=43, seat=46, hold=50,
            slap=(51, 53),
            # empty: the handle (sound: back 67-69, forward 71-73)
-           reach=(57, 64), pull=(66, 69), fwd=(71, 73), leave=75, on=(78, 84), cant_out=(70, 78),
+           # the support hand is back by f82: the sag is out by f87 and the last frames ARE the aim pose (with on = 78-84
+           # the gun was still rising at f87 and reached the aim two frames before the clip ended - coordinator 2026-10-12)
+           reach=(57, 64), pull=(66, 69), fwd=(71, 73), leave=74, on=(77, 82), cant_out=(70, 77),
            # loaded: straight back to the forearm
            l_leave=55, l_on=(58, 66), l_cant_out=(56, 68)),
 )
@@ -107,7 +115,10 @@ def spec(g, empty, o):
     if empty:
         ev += [(t['pull'][0] - 2, 'lg_handle_grab'), (t['pull'][0], 'lg_handle_back'), (t['pull'][1] - 1, 'lg_handle_stop'),
                (t['fwd'][1] - 1, 'lg_handle_fwd')]
-    ph = gunphys.simulate(n + 1, 1 / 30.0, o.get('cls', g['cls']), support=[(0, 1), (t['off'][0], 1), (t['off'][1], 0), (on[0], 0), (on[1], 1)],
+    # BRACED (clip <row>_adsb, picked by cgame when the brace envelope is up): the rest carries most of the gun, so
+    # the support hand leaving takes only `sup` of the hold away (sup 0 = free-standing) and every reaction is smaller
+    sup = float(o.get('sup', 0.0))
+    ph = gunphys.simulate(n + 1, 1 / 30.0, o.get('cls', g['cls']), support=[(0, 1), (t['off'][0], 1), (t['off'][1], sup), (on[0], sup), (on[1], 1)],
                           mag=[(0, 1), (t['out'][0], 1), (t['out'][1], 0), (t['well'], 0), (t['seat'], 1)],
                           events=sorted(ev), strength=float(o.get("strength", 1.0)), fade=12)
     # one-sided near the aim: the cheek and the support hand are a stop, gravity is not - the gun does not ride ABOVE its
@@ -121,6 +132,14 @@ def spec(g, empty, o):
     Tc = HL.work_T(g['aim'], g['sight'], cant, g['butt'])
     ci = t['cant_in']
     gun_abs = [dict(T=Tc, keys={0: 0.0, ci[0]: 0.0, ci[1]: 1.0, co[0]: 1.0, co[1]: 0.0, n: 0.0})]
+    if empty and (g.get('hcant') or any(k.startswith('hcant.') for k in o)):
+        # the HANDLE pose: while the left hand hauls the handle back the firing hand shoves the gun forward against it
+        # (and turns the handle side to the eye) - at the cheek the pull ends 7 u from the eye and the hand on the
+        # knob is a quarter of the screen (runs hb4-hb9)
+        hc = dict(cant); hc.update(g.get('hcant') or {})
+        hc.update({k[6:]: (tuple(v) if isinstance(v, list) else float(v)) for k, v in o.items() if k.startswith('hcant.')})
+        Th = HL.work_T(g['aim'], g['sight'], hc, g['butt'])
+        gun_abs.append(dict(T=Th, keys={0: 0.0, t['reach'][0] - 2: 0.0, t['reach'][1] - 1: 1.0, t['fwd'][1]: 1.0, co[1] - 2: 0.0, n: 0.0}))
     MR = g['mag_rel']
 
     def M(dz, **kw):
@@ -186,19 +205,23 @@ def gun_clip(g, root):
     print('gun clip ->', g['gun_path'] + '/' + g['gun_out'], n, 'frames', hashlib.md5(open(dst, 'rb').read()).hexdigest()[:8])
 
 
-def bake(name, root, only=None, o=None):
+def bake(name, root, only=None, o=None, braced=False):
     g = GUNS[name]
     rep = {}
+    o = dict(o or {})
+    if braced:
+        for k, v in g.get('braced', {}).items():
+            o.setdefault(k, v)
     for empty in (False, True):
         key = 'empty' if empty else 'loaded'
         if only and only != key:
             continue
-        kw, ph = spec(g, empty, o or {})
+        kw, ph = spec(g, empty, o)
         rc = H.auto_recipe(g['row'], **kw)
         H.RECIPES[g['row']] = rc
         sk, _ = H.bake(g['row'], CTL)
         bts = R.skc_io.write(sk)
-        out = '%s/%s_reload_%sads.skc' % (g['vdir'], name, 'empty_' if empty else '')
+        out = '%s/%s_reload_%sads%s.skc' % (g['vdir'], name, 'empty_' if empty else '', 'b' if braced else '')
         dst = os.path.join(root, 'models', 'human', 'animation', out.replace('/', os.sep))
         os.makedirs(os.path.dirname(dst), exist_ok=True)
         open(dst, 'wb').write(bts)
@@ -207,8 +230,8 @@ def bake(name, root, only=None, o=None):
         X = ph['X']
         print('    sag at the work: pitch %.1f deg, drop %.2f u; roll swing %.1f deg; back %.2f u' % (
             float(np.median(X[30:40, 2])), float(np.median(X[30:40, 0])), float(np.abs(X[:, 1]).max()), float(np.abs(X[:, 4]).max())))
-        rep[key] = dict(peak_deg=round(ph['peak_deg'], 2), settle_s=round(ph['settle_s'], 2))
-    if not only or only == 'empty':
+        rep[key + ('_braced' if braced else '')] = dict(peak_deg=round(ph['peak_deg'], 2), settle_s=round(ph['settle_s'], 2))
+    if (not only or only == 'empty') and not braced:
         gun_clip(g, root)
     return rep
 
@@ -218,6 +241,7 @@ GUNS = {'bar': BAR}
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('gun'); ap.add_argument('--only'); ap.add_argument('--set', action='append', default=[])
+    ap.add_argument('--braced', action='store_true', help='bake ONLY the braced <row>_adsb clips')
     a = ap.parse_args()
     o = {}
     for kv in a.set:
@@ -226,7 +250,7 @@ if __name__ == '__main__':
             o[k] = json.loads(v)
         except ValueError:
             o[k] = v
-    rep = bake(a.gun, '.', a.only, o)
+    rep = bake(a.gun, '.', a.only, o, a.braced)
     p = os.path.join(hv.LANE, 'heavyphys.json')
     d = json.load(open(p)) if os.path.isfile(p) else {}
     d.setdefault(a.gun, {}).update(rep)
