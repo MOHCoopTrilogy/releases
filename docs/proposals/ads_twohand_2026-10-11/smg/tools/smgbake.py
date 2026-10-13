@@ -373,13 +373,21 @@ def bake_hip(name, root):
     # from THAT finger pose.
     pf, pl = dict(R.pose_dict(hip, p1)), R.pose_dict(hip, n - 1)
     fch = [ch for ch in hip.names if ch.startswith('Bip01 L Finger') and ch.endswith(' rot')]
-    hmix = g['hook'].get('hip_mix', 0.5)
+    # Runs sc4 / sc6 (coordinator): with the closing spread over the reach (f52-58, half way) the hand still FLOATED to
+    # the knob open. It now closes as it leaves the magazine: three quarters to the hip grip by the frame the reach
+    # starts (`hip_close` frames before r0), and stays so through the pull.
+    hmix = g['hook'].get('hip_mix', 0.75)
+    hclose = g['hook'].get('hip_close', 4)
 
     def hooked(pd, f):
-        u = hmix * ease_((f - r0) / float(max(1, r1 - r0)))
+        u = hmix * ease_((f - (r0 - hclose)) / float(hclose))
         for ch in fch:
             pd[ch] = R.qslerp(np.asarray(pd[ch], float), np.asarray(pl[ch], float), u)
     hooked(pf, p1)
+    for f in range(r0 - hclose, r0):         # the frames before the reach: only the fingers change
+        pd = dict(R.pose_dict(hip, f))
+        hooked(pd, f)
+        K.write_frame(out, hip, cm, f, pd)
 
     def relax(pd, f):
         u = ease_((f - p1) / 10.0)

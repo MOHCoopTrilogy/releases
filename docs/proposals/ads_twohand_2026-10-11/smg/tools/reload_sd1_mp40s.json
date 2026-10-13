@@ -1,0 +1,82 @@
+{
+ "crouchL_empty": {
+  "anim": 6,
+  "back": 0.058,
+  "base": 8.2,
+  "dev_end": 0.078,
+  "dev_max": 1.38,
+  "extra_first": 0.9,
+  "extra_frames_over": 0,
+  "extra_max": 1.1,
+  "frames": 157,
+  "pose_min": 1.0,
+  "reload": [
+   361,
+   517
+  ],
+  "run": "sd1",
+  "settled": 2,
+  "skip": 8,
+  "tag": "ab__sd1__mp40s__crouchLadsE__demo__after"
+ },
+ "crouch_empty": {
+  "anim": 6,
+  "back": 0.06,
+  "base": 15.5,
+  "dev_end": 0.089,
+  "dev_max": 1.37,
+  "extra_first": 0.5,
+  "extra_frames_over": 0,
+  "extra_max": 0.8,
+  "frames": 156,
+  "pose_min": 1.0,
+  "reload": [
+   361,
+   516
+  ],
+  "run": "sd1",
+  "settled": 2,
+  "skip": 8,
+  "tag": "ab__sd1__mp40s__crouchadsE__demo__after"
+ },
+ "stand_empty": {
+  "anim": 6,
+  "back": 0.06,
+  "base": 9.6,
+  "dev_end": 0.08,
+  "dev_max": 1.38,
+  "extra_first": 2.9,
+  "extra_frames_over": 10,
+  "extra_max": 2.9,
+  "frames": 156,
+  "pose_min": 1.0,
+  "reload": [
+   361,
+   516
+  ],
+  "run": "sd1",
+  "settled": 2,
+  "skip": 8,
+  "tag": "ab__sd1__mp40s__adsE__demo__after"
+ },
+ "stand_loaded": {
+  "anim": 6,
+  "back": 0.061,
+  "base": 15.5,
+  "dev_end": 0.091,
+  "dev_max": 1.39,
+  "extra_first": 0,
+  "extra_frames_over": 0,
+  "extra_max": 0.0,
+  "frames": 156,
+  "pose_min": 1.0,
+  "reload": [
+   176,
+   331
+  ],
+  "run": "sd1",
+  "settled": 2,
+  "skip": 0,
+  "tag": "ab__sd1__mp40s__adsL__demo__after"
+ }
+}

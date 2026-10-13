@@ -1,7 +1,7 @@
 {
  "models/weapons/mp40.tik": {
   "action": "left hand: magazine down the well, seen leaving low-left, new one shown beside the gun and driven up; EMPTY (open bolt, bolt forward): left index hooks the added handle (palm down, knuckles toward the eye) and pulls it back to the sear - shown, handle stays back; rounds left: no cock, a tug on the magazine, the sound cut before the handle; hip tells the same story",
-  "qa": "sc1-sc3: stand / crouch / prone / leans / crouch-leans / braced run; 4 GIFs decoded and looked at (sc3), every stance on a sheet (sc1), cock close-up at full size; break-off (fire / sprint / switch / aim dropped, rounds left + empty) run and traced; an AI NCO seen firing, reloading and firing again on m6l1a (sc5), nothing detached - the handle is under a pixel there; open: 0.06 deg at the row's end (bug-3597)",
+  "qa": "sc1-sc3: stand / crouch / prone / leans / crouch-leans / braced run; 4 GIFs decoded and looked at (sc3), every stance on a sheet (sc1), cock close-up at full size; break-off (fire / sprint / switch / aim dropped, rounds left + empty) run and traced; an AI NCO seen firing, reloading and firing again on m6l1a (sc5), nothing detached - the handle is under a pixel there; hip-empty hand closes before the reach (sd2); open: 0.06 deg at the row's end - the clip itself ends on the aim to 0.000 deg (endpose.py), an engine item",
   "rule": {
    "target": "yes",
    "reacts": "yes",
@@ -11,7 +11,7 @@
  },
  "models/weapons/mp40_mp40r2.tik": {
   "action": "the MP40 choreography on its own sight line and its own handle (bone Bone1, a knob on a stem, left): rests back, forward on empty, the left index pulls it back after an EMPTY reload; rounds left: no cock; hip the same (retail hand turned onto the handle)",
-  "qa": "sc4: stand / crouch / prone / leans / crouch-leans / braced run (box 0.0-0.7 %); 4 GIFs decoded, every stance on a sheet, cock close-up at full size; per-shot handle travel not looked at in the engine; open: 0.06 deg at the row's end (bug-3597)",
+  "qa": "sc4: stand / crouch / prone / leans / crouch-leans / braced run (box 0.0-0.7 %); 4 GIFs decoded, every stance on a sheet, cock close-up at full size; per-shot handle travel not looked at in the engine; hip-empty hand closes before the reach (sd2); open: 0.06 deg at the row's end - the clip itself ends on the aim to 0.000 deg (endpose.py), an engine item",
   "rule": {
    "target": "yes",
    "reacts": "yes",
@@ -21,9 +21,9 @@
  },
  "models/weapons/mp40silenced.tik": {
   "action": "the MP40 choreography on its own sight line and its own handle (the mesh's knob, bone eject, left): rests back, forward on empty, the left index pulls it back after an EMPTY reload; rounds left: no cock, sound cut before the handle; hip the same (retail hand turned onto the knob)",
-  "qa": "sc6 (aim sway off, trigger held 300 frames - fire delay 0.12 s): stand / crouch / prone / leans / crouch-leans / braced run (box 0.0-0.8 %); with sway on three stances read 2.4-4.0 % from the sway alone (sc2); 4 GIFs decoded, every stance on a sheet, cock looked at in full-size crops; open: 0.06 deg at the row's end (bug-3597)",
+  "qa": "sc6 (aim sway OFF, trigger held 300 frames - fire delay 0.12 s): every stance 0.0-0.8 % of the box. WITH aim sway on (the bar): 2.4-4.0 % in three stances (sc2) - the gun is bulky in the box, the sway alone uncovers it; cg_adsRigReliefBias 2.0 tried (sd1): 0.0-1.1 % mid-reload, 2.9 % in the first 18 frames of the emptied stand capture, and the settled aim after the clip then reads 3.6-5.0 % - not solved, no engine change. 4 GIFs decoded, every stance on a sheet, cock looked at in full-size crops; hip-empty hand closes before the reach (sd2); open: 0.06 deg at the row's end (engine, not the clip)",
   "rule": {
-   "target": "yes",
+   "target": "no",
    "reacts": "yes",
    "action": "yes",
    "run": "sc6"

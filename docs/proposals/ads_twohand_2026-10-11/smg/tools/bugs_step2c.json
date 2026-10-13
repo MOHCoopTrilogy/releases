@@ -1,0 +1,44 @@
+[
+ {
+  "error_message": "Silenced MP40 aimed reload reads 2.4-4.0 % of the centre box with aim sway on (0.0-0.8 % with it off)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/swaybox.py",
+  "root_cause": "Not the reload and not a gun nearer the eye (eye relief 13.10 u, MP40 13.35): the mesh is bulkier inside the centre box, so the same sway shift uncovers more of it beyond the settled aim's mask (grown 6 px). The settled aim alone, after the clip, reads 0.9-2.8 % with sway on.",
+  "fix": "OPEN (coordinator: it must pass with sway on - move the aim away from the eye / lower). Tried without a rebuild: cg_adsRigReliefBias 2.0 (run sd1) - mid-reload 0.0 / 0.8 / 1.1 %, but 2.9 % in the first 18 frames of the emptied stand capture and the settled aim after the clip at 3.6-5.0 %: a relief set this way seems to re-ease after a held clip. Relief is a weak lever (20 % further = 17 % less shift). The per-weapon relief is in cg_adssights.h, generated from ironsights_2026-09-28/sights.json.",
+  "tags": [
+   "ads",
+   "smg",
+   "silenced-mp40",
+   "sway",
+   "centre-box",
+   "open"
+  ]
+ },
+ {
+  "error_message": "0.06 deg left on the sight line when an aimed SMG reload row ends: is it the clip's own physics tail?",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/endpose.py",
+  "root_cause": "No. endpose.py: the baked clip's gun axis is 0.000 deg off the aim pose in frames 0-1 and 73-75 (0.004 at f72, 0.017 at f70; the gunphys fade forces the spring and the tremor to zero over the last 14 frames). The engine shows 0.08-0.09 deg in the row's last 5 capture frames and 0.06 deg for 0.8 s after it - the same with sway off, for all three guns, rounds left and empty.",
+  "fix": "Nothing to blend in the clip. Stays with the engine (the held rig solve, bug-3597).",
+  "related_bugs": [
+   "bug-3597"
+  ],
+  "tags": [
+   "ads",
+   "smg",
+   "rig-solve",
+   "engine",
+   "open"
+  ]
+ },
+ {
+  "error_message": "Hip, empty (silenced MP40, MP40 R2, MP40): an open hand floats to the handle",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py",
+  "root_cause": "The fingers closed over the reach itself (f52-58) and only half way to the hip grip; the retail clip opens the hand wide right after the magazine.",
+  "fix": "hip_mix 0.75 / hip_close 4: the hand closes as it leaves the magazine, three quarters to the hip grip by the frame the reach starts; the fingertip the hand is turned onto the handle by is taken from that pose. Run sd2, all three guns looked at in full-size crops.",
+  "tags": [
+   "ads",
+   "smg",
+   "hip",
+   "reload"
+  ]
+ }
+]
