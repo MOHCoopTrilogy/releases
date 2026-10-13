@@ -20,7 +20,7 @@ never reuse one; next free: `hj3`.
 | hand on the handle (BAR, StG 44) | re-posed: wrist from below, fingers and knuckles readable (bug-3671); the knob is still hidden while gripped |
 | FG 42 | **scoped weapon, no iron-sight aim** (bug-3673; coordinator confirmed). Reload while scoped today: the scope picture stays, no viewmodel (hh9). Its HIP reload on the model is **not started** |
 | DP-28, aimed, rounds left + emptied, six stances + braced rows | **done to the three rules** (hi1 / hi2), weak points listed below |
-| shotgun sight (bead) | **staged, NOT finished** (bug-3677): bead mesh + 14 tiks + shader + row 18 mrad on `ads-heavy-next` (`cgame_heavy3`); the barrel end now shows above the receiver, the bead itself does not read yet - see "Next" 1 |
+| shotgun sight (bead) | **staged, NOT finished** (bug-3681): bead mesh + 14 tiks + shader + row 18 mrad on `ads-heavy-next` (`cgame_heavy3`); the barrel end now shows above the receiver, the bead itself does not read yet - see "Next" 1 |
 | belt-feds (M1919 portable, Breda, Vickers, MG42), shotgun reload, FG 42 hip reload | **not started** |
 
 ### Centre box AS PLAYED (cg_adsSway 0.1, cg_weaponBreath 1 = the runner's defaults), `centrebox.json`
@@ -221,7 +221,7 @@ reload is untouched (retail cocks even with rounds left); break-offs and the sco
   ABOVE it.** This lane ships nothing.
 
 ## Next
-1. **Shotgun sight (user 2026-10-12: "that shotgun needs some kind of sights") - staged, not finished (bug-3677).**
+1. **Shotgun sight (user 2026-10-12: "that shotgun needs some kind of sights") - staged, not finished (bug-3681).**
    What was wrong: the retail M1897 mesh has no bead and no rear sight; the brass bead approved on 2026-10-05 existed
    only as a tool and art; `sights.json` has said 18 mrad since then but `cg_adssights.h` still had 4 mrad in all 14
    shotgun rows, so the receiver crest hid the barrel end. All 14 shotgun tiks load the ONE retail skd - no other
@@ -251,6 +251,6 @@ Runs: ha1 / ha2 (aim poses), hb1-hb9 (predecessor's BAR iterations), hs / hn (sk
 variants, finishes), hd1-hd3 (final BAR clips, settle diagnostics), he1-he7 (StG 44; he6 / he7 final), hf1 (StG 44 aim
 stills), hf2 (strapped variant). `centrebox.json` keys are GUN names (`bar`, `bar_empty`, ...) as coverage.py reads
 them; `python ../tools/coverage.py --lane heavy build` writes the lane preview `heavy/coverage.md` (BAR and StG 44: DONE).
-Bugs: 3619-3623, 3646-3649 (second agent); 3667-3677 (third agent).
+Bugs: 3619-3623, 3646-3649 (second agent); 3667-3676, 3681 (third agent).
 Tools added by the third agent: `boxeng.py --sway`, `swayshow.py`, `run_h.py --tail / --brk / --hipdemo / --hold / --rel`,
 `heavybake.py --hip` + `feed='top'`, `patch_tik_h.py` `more_paths` for the BAR, `hip=True`, the `dp28` set.
