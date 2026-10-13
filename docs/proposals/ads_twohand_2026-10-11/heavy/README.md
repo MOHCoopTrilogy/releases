@@ -184,6 +184,32 @@ released baseline is the integrated version from then on (`stage_rows.py` PIN ma
    the MG42 and the Lewis play the BAR's hands prefix: their own rows are `coopr_<weapon key>_reload...`.
    A new mechanism part = `fg42handle.py`'s recipe (a surface on a new bone, `add_bead.add_surface` then
    `split_bone.split`); a hands row longer than the torso reload needs its name in `apply_reloadfinish.py`'s opt-in.
+   **M1919 - what is there today (read from the files 2026-10-13, NOTHING staged, nothing run):**
+   * `30calportable.tik` (name "M1919 30cal", weapontype mg, clipsize 120): surfaces `weapon`, `weapon1`, `belt`; the
+     reload audit of 2026-10-05 already gave it a gun clip `coop_30cal_reload.skc` (98 frames, 3.27 s) with a `cover`
+     bone (open f16-69, 74 deg) and a `chandle` bone (pulled f75-86), `belt` hidden f34-56; hands row
+     `coopr_m1919_30cal_reload` -> `viewmodel/coop_reload/m1919_reload.skc` (97 frames, 3.2 s; MG42 and Lewis have
+     the same kind of row - they are in the mod tree's `anims_shared.txt`, not in `fps_anims_mg.txt`); torso row
+     `coop_reload_m1919` (`tps_reload_bar.skc`, 98 frames 3.27 s: belt prop `coop_belt_30cal.tik` on the off-hand tag
+     frames 32-58, `clip_fill` at 72). So the HIP reload already opens the cover, lays the belt, closes it and works
+     the handle (offline sheet `fgview.py ... --hip --sight m1919 --pose viewmodel/mg/barpose.skc --tik
+     models/weapons/30calportable.tik --prop models/ammo/coop_belt_30cal.tik:32:58 --hide belt:34:56`): the open
+     cover stands straight up through the middle of the screen.
+   * AIM: the cgame's `cg_adssights.h` has NO row for it (the shared `sights.json` key `m1919` is a synthetic line at
+     z +1.49, UNDER the receiver, `verified` false) - that is the black receiver wall of bug-3622. The mesh HAS a rear
+     leaf: a frame of two uprights (x -0.55, y -0.51..-0.24 and 0.23..0.50, z -8.7..-6.4) with a 0.48 u window, on a
+     base block (x -1.0..2.6, z -6.9..-1.5); it has NO front sight; receiver top z -4.9, front block x 15.95..17.52
+     top z -5.02. Proposed (the FG 42 Irons recipe: `fg42irons.py` for the surface, `apply_fg42irons.py` for the new
+     cgame rows, `sights_override.json` `"new": true`): a notch slider across the leaf's window (top z -7.9) and a
+     front blade on the front block (x 16.6..17.3, tip z -7.9, 0.24 u wide) as surface `coop_sight` on the weapon
+     bone of a new `coop_30cal_sights.skd`; row F (16.95, 0, -7.9) R (-0.55, 0, -7.9), relief about 10; its own aim
+     pose row `coopr_m1919_30cal_charge` (the gun has a pistol grip and no stock).
+   * AIMED RELOAD: the open cover is 12 u tall - under the box it only fits with the gun far down or rolled on its
+     side. The cheap, honest recipe is hold_bake's `gun_abs` = the HIP clip's own gun place (one choreography serves
+     hip and aim: down to the hip work pose, the audit clip's hands, back to the exact aim), row
+     `coopr_m1919_30cal_reload_ads`; the hands of the audit clip must be LOOKED AT first (open hands?). The row is
+     3.2 s against a 3.27 s torso reload: no `apply_reloadfinish.py` needed. Ammo type for the timing probe: check
+     the tik (`--ammo mg`).
 3. Leftovers: BAR A1 / A2 tiks run; BAR and DP-28 return to aim with more weight inside the server's reload time; BAR
    hip reload; the BAR skin lift for its other finish sheets (new files only) - those guns are FROZEN: new files only.
 4. Shotgun leftovers that need a way round the harness: the hip break row capture, the ground pickup look, a

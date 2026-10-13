@@ -5,6 +5,7 @@ and the gun's own magazine hidden in the same frames (what FG42.tik's `reload` r
     cd heavy/assets; python ../tools/fgview.py <clip.skc> <gun anim> <f,f,..|a:b:step> <out.jpg> [--hip] [--w 480]
           [--cols 6] [--zoom x0,y0,x1,y1] [--tik models/weapons/coop_fg42_irons.tik] [--right]  (--right: an outside
           view of the gun's right side beside each frame)
+          another gun: [--sight <sight key>] [--pose <aim or hip pose clip>] [--prop tik:f0:f1] [--hide surface:f0:f1]
 IRONSIGHT_EXTRA_PAKS=<overlay> so that the staged tik / mesh / gun clip are found.
 """
 import sys, os, argparse
@@ -31,10 +32,15 @@ def main():
     ap.add_argument('clip'); ap.add_argument('anim'); ap.add_argument('frames'); ap.add_argument('out')
     ap.add_argument('--hip', action='store_true'); ap.add_argument('--w', type=int, default=480); ap.add_argument('--cols', type=int, default=6)
     ap.add_argument('--zoom'); ap.add_argument('--tik', default='models/weapons/coop_fg42_irons.tik'); ap.add_argument('--right', action='store_true')
+    ap.add_argument('--sight', default=FB.SIGHT); ap.add_argument('--pose'); ap.add_argument('--prop', default='models/ammo/fg42clip.tik:20.3:40.5')
+    ap.add_argument('--hide', default='fg42clip:20:40', help='surface:f0:f1 of the gun hidden in those clip frames (the tik row nodraw)')
     a = ap.parse_args()
-    pose = FB.HIPPOSE if a.hip else FB.AIMPOSE
+    pose = a.pose or (FB.HIPPOSE if a.hip else FB.AIMPOSE)
+    SIGHT = a.sight
+    hs, h0, h1 = a.hide.split(':'); h0, h1 = int(h0), int(h1)
+    pt, p0, p1 = a.prop.split(':')
     aim = R.load(R.ANIM + pose)
-    sight = V.SIGHTS[FB.SIGHT]
+    sight = V.SIGHTS[SIGHT]
     pc = R.pose_dict(aim, aim.numFrames - 1)
     Wcc = V.evaluate_ctl(pc, CTL)
     corr = V.rig_target(Wcc, sight)
@@ -42,15 +48,15 @@ def main():
         corr = dict(ax=np.array([0, 0, 1.0]), ang=0.0, T=np.zeros(3), cant=0.0, relief=0.0, E=Wcc['eyes bone'][3, 0:3] * R.S, F=corr['F'], R=corr['R'])
     c = R.load(a.clip if os.path.isfile(a.clip) else R.ANIM + a.clip)
     V.PROP.clear()
-    V.PROP.update(tik='models/ammo/fg42clip.tik', t0=20.3 * c.frameTime, t1=40.5 * c.frameTime, tag='tag_weapon_left')
+    V.PROP.update(tik=pt, t0=float(p0) * c.frameTime, t1=float(p1) * c.frameTime, tag='tag_weapon_left')
     W = a.w; Hh = W * 9 // 16
     fov = V.weapon_fov()
     z = [float(x) for x in a.zoom.split(',')] if a.zoom else None
     ims = []
     for f in frames(a.frames, c.numFrames):
-        surfs, E, Wb = V.scene2(R.pose_dict(c, f), FB.SIGHT, a.tik, a.anim, f * c.frameTime, CTL, corr, None)
-        if 20 <= f < 40:
-            surfs = [s for s in surfs if not (s.get('gun') and s['name'].lower() == 'fg42clip')]
+        surfs, E, Wb = V.scene2(R.pose_dict(c, f), SIGHT, a.tik, a.anim, f * c.frameTime, CTL, corr, None)
+        if h0 <= f < h1:
+            surfs = [s for s in surfs if not (s.get('gun') and s['name'].lower() == hs)]
         if z:
             k = 1.0 / (z[2] - z[0])
             BW = int(W * k); BH = BW * 9 // 16
