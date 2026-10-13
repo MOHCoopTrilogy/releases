@@ -17,6 +17,56 @@ Run folders ra1-ra7 and rb1-rb13 were MOVED off G: (disk full) to
 `C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\rifles\runs\`
 (set `ADS_RUNS` to it to re-read them); rb14 and later are still in `G:\mohaa-adsanim2\runs`.
 
+## Later the same stretch (commits e0d918e and the one after): armory entry, finishes, variant coverage
+* **Its own armory entry** (user: "its own rifle you unlock honestly and pretty early on"), STAGED:
+  `wire/README.md` is the apply list and the recipe (written for the FG 42 Irons / double-barrel lanes too);
+  `wire/stage_armory_g43irons.py` makes the patch against the mod tree and the harness copy from the released pak.
+  Roster id 78, tile "GEWEHR 43 (IRON SIGHTS)" between the M1 Carbine and the Kar98k (the rifle tab is in unlock
+  order), **unlock = rank 2** (1200 XP; Carbine rank 1, Kar98k rank 3, scoped G43 rank 5), finishes fid 1-7, stat bars
+  DMG 5 / RPM 4 / ACC 8 / MOB 10. Run once (rb34-rb37, overlay `ov_rifle_f3.pk3`, `tools/run_armory.py`): tile, lock
+  icon + requirement text, pick refused while locked, with the gate off the pick lands in PRIMARY 1, the rifle is in
+  the hands after a map restart, the Winter finish applies and survives a second restart.
+  Stills: `evidence/g43irons/g43irons_armory_tile_rb37.jpg` (final), `g43irons_armory_rb35.jpg` (six moments; the
+  tile still at the bottom of the list there).
+* **All 12 tiks in the engine** (rb38): each loads its own sheet, leaf / hood / post dark steel on every one -
+  `evidence/g43irons/g43irons_finishes_rb38.jpg` (hip + aim). Selectable in the armory: STD + the 7 finishes.
+  The 4 pack skins (`dhg43fleck`, `hobbsg43wood`, `hobbsg43urb`, `lv_ttg43`) exist and load but have NO armory path yet.
+* **Bolt rifles, variant coverage** (`tools/boltcap_variants.py`, bug-3764): the aim-only gun row `rechamber_ads` was
+  in the four base tiks only; it is now staged in every tik that shares the mesh - Kar98 19 (base, 7 finishes,
+  `kar98_lite` + its 7, `hobbskarwood`, `hobbskarworn`, `lv_ttkar98`), Springfield 1 (`springfield_unscoped`; it has no
+  finish tiks on that mesh), Mosin 18, Enfield 18. NOT covered: `kar98_g98` and `enfield_p14` (own meshes: the cgame's
+  mesh guard keeps them on the hip clips), the Gewehrgranate family (no aim), every scoped family. **None of the 52
+  added tiks has been run in the engine** - the next bolt run should carry one finish and one `_lite` per rifle.
+
+**NOT DONE - the coordinator's open orders, in order (nothing below is started unless it says so):**
+1. G 43 Irons, the user's two rules for every new gun:
+   a. *"unlock paths, the way we already do it"* - generated, not hand-written: the requirement text comes from
+      `docs/tools/armory_unlocks.py --emit` (-> `coop_mod/unlockreq_gen.scr`; the staging edits that generated file by
+      hand - replace by a generator patch), challenges in `coop_mod/challenges.scr`, the Service Record rows and
+      "Unlocks: X" names from `docs/tools/gen_service_record.py` (`REWARD_NAMES`); read `docs/FEATURES.md` about lines
+      510-570 first (trap: an EMPTY `coop_mod/save/unlocks_<hash>.dat` denies every pick). Test with the mod's own
+      grant path `coop_mod/coop_selftest_xp.scr` (the rank-2 grant itself was NOT tested - only the lock it feeds):
+      locked -> requirement met -> unlocked -> spawn -> Service Record row; an existing unlock record keeps what it
+      had. Stills wanted: the locked tile, the Service Record row. Patches to the generators go in `wire/`.
+   b. *"camo / variants too"* - the 4 pack skins as model variants of roster id 78: an entry in
+      `docs/tools/wire_mv2.py` (`("coop_g43_irons", [dhg43fleck, hobbsg43wood, hobbsg43urb, lv_ttg43], "<elite cid>")`
+      -> fid 8-11, `ui/loadout/mvp78_*`, `reqmv78.cfg`) + base and elite `chal_def`s (else `variant_challenges.py`
+      skips the gun), its own weapon id in `challenges.scr` (today its kills count as the G43's).
+2. Kar98 reload leftovers (emptied capture `--rframes 360`, lean-left 2.2 %, judge `kar98_reload_stances_rb23.jpg`,
+   the pouch half second and the clip pushes as a visible jolt).
+3. Springfield / Mosin / Enfield aimed reloads (stripper clips, under the centre box, back to the exact aim); the
+   variants P14 Enfield (`enfield_p14.tik`) and Gewehr 98 (`kar98_g98.tik`) ride with their base rifles' clips but
+   each needs its own in-engine check (and its own capped `rechamber_ads` clip: `boltcap.GUNS`).
+4. Semi-autos, in this order: M1 Garand (+ `garand_silenced.tik` + Pacific `m1_garand_pagarand.tik`), M1 Carbine
+   (`carbine.tik`), SVT, Johnson. Then Carcano, De Lisle, Arisaka. Then ONE scoped-rifle sample with two options for
+   the user; the thirteen scoped rifles and the scoped StG 44 wait for that decision.
+For every aimed row made from here on: list which finish / variant tiks it reaches.
+
+**Storage** (2026-10-13): G: filled up. Finished run folders are MOVED, never deleted: ra1-ra7 + rb1-rb13 are in
+`...\scratchpad\rifles\runs\` on C: (path above); rb14-rb31 go to `H:\hzm_archive\rifles\` (`scratchpad\move_runs_h.py`,
+verified copy, then the source folder is removed); rb32-rb38 are still in `G:\mohaa-adsanim2\runs`. From now on a
+finished, written-up run goes to H:. Live captures stay on G:.
+
 ## G 43 Irons - what changed (supersedes the matching points of the fifth stretch below)
 * **Support hand** (`tools/g43pose.py`, default now): the G43's OWN hip grip (`viewmodel/g43/g43_idle.skc`: palm under
   the fore-end, fingers wrapped up its far side, thumb up the near side) moved 0.3 u left / 2.0 u down - a hand cupped
@@ -70,7 +120,7 @@ Evidence (`evidence/g43irons/`): `g43irons_aim_1080p_rb33.jpg`, `g43irons_shot_r
 `g43irons_reload_hip_rb31.gif`, `g43irons_reload_ads_rb32.gif`, `g43irons_reload_empty_ads_rb32.gif`,
 `g43irons_reload_stances_rb32.jpg`. The `_rb27` aim stills show the old open-palm hand and the finish-coloured hood.
 New tools: `g43reload.py`, `g43state.py`, `g43rpart.py` (rpart for this gun); `run_rifle.py --w --h`;
-`rbox.py` settled aim of an emptied capture from its last frames. Bugs: bug-3739..3745.
+`rbox.py` settled aim of an emptied capture from its last frames. Bugs: bug-3739..3745, bug-3764..3768.
 
 # HANDOVER (2026-10-12 late night, fifth stretch) - the iron-sight G43's build; current except where the sixth says otherwise
 

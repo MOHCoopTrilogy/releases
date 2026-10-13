@@ -1,0 +1,37 @@
+[
+ {
+  "error_message": "aimed bolt cycle on a FINISHED / lite / pack-skin Kar98, Mosin or Enfield: the hands play the aimed clip but the gun runs its FULL retail stroke (the bolt 0.0-0.9 u from the eye again) - found by inventory, not yet seen in a capture",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/boltcap.py",
+  "root_cause": "boltcap.py staged the aim-only gun row `rechamber_ads` in the four BASE tiks only (kar98, springfield_unscoped, mosin_nagant_rifle, enfield). The hands' aimed rows are per prefix and reach every finish; the cgame shows `rechamber_ads` only if the HELD gun's tik has it. 18 + 17 + 17 tiks share those meshes.",
+  "fix": "tools/boltcap_variants.py: every released tik with the same path + skelmodel gets the same row (boltcap.tik_with_row, the base's clip) and is staged under assets/ - 56 tiks carry it now (kar98 19, springfield_unscoped 1, mosin 18, enfield 18). NOT covered (own meshes): kar98_g98, enfield_p14, the Gewehrgranate family, every scoped family. No finish tik has been run in the engine yet.",
+  "tags": ["bolt-cycle", "rechamber_ads", "finishes", "variants", "coverage", "rifles-lane"]
+ },
+ {
+  "error_message": "armory test run rb35: (coop_mod/itemhandler.scr::getAmmoType): *WARNING* - models/weapons/coop_g43_irons_camo_winter.tik not on list. Add it! (four times per spawn)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/wire/stage_armory_g43irons.py",
+  "root_cause": "getAmmoType classifies a finished gun as its BASE through the generated reverse map coop_mod/loadoutskins_base.scr (gen_skinbase.py from loadoutskins.scr); the staging added the finish rows to loadoutskins.scr but not to the generated map, so a finished irons rifle was 'unknown' (the 2026-08-18 note there: such a primary can be lost for a life).",
+  "fix": "the staging also adds the 7 reverse-map rows (run rb36: no warning). In the real wiring gen_skinbase.py re-emits the file; a hand-made overlay must carry every GENERATED file a table change feeds (loadoutskins_base, unlockreq_gen, ui/loadout/*).",
+  "tags": ["armory", "g43-irons", "generated-files", "itemhandler", "rifles-lane"]
+ },
+ {
+  "error_message": "armory test run rb34: after `set coop_lockLoadout 0` every tile still showed its lock and the pick was refused; the first still of the menu showed NO locks although everything was locked",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/run_armory.py",
+  "root_cause": "the test pushed the menu with a bare `pushmenu coop_loadout`. The lock cvars are exported by the server only on the menu's own open token (ui/loadout/open.cfg: `append name ,w0o`), paced over several seconds, and applied to the visible tab by ui/loadout/lktab<n>.cfg; a bare pushmenu shows whatever the last export left.",
+  "fix": "the test opens the menu the menu's way: exec ui/loadout/open.cfg, wait 4 s, pushmenu, exec init.cfg, exec lktab0.cfg (runs rb35-rb37: locked / unlocked / pick all as expected). `kill` does not bring a respawn in the test install either - the spawn checks use a map restart.",
+  "tags": ["armory", "harness", "menu", "lock-export", "rifles-lane"]
+ },
+ {
+  "error_message": "the armory panel of the new 'GEWEHR 43 (IRON SIGHTS)' showed an EMPTY accuracy bar (coordinator, on the rb35 still)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/wire/stage_armory_g43irons.py",
+  "root_cause": "the four stat bars are hand-entered columns of docs/tools/loadout_weapons.tsv (b0-b3 = DMG RPM ACC MOB -> ui/loadout/p<id>.cfg coop_loB0-3); the staging copied the scoped G43's row, whose ACC is 0.",
+  "fix": "ACC / MOB = the M1 Garand's 8 / 10 (the irons tik carries the Garand's accuracy and movement rows), DMG / RPM stay 5 / 4 (run rb37). The scoped G43's own row still has ACC 0 - its panel shows an empty bar today; not touched.",
+  "tags": ["armory", "g43-irons", "stat-bars", "tsv", "rifles-lane"]
+ },
+ {
+  "error_message": "wire/stage_armory_g43irons.py: SyntaxError unterminated string literal after a patch script inserted a function into it",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/wire/stage_armory_g43irons.py",
+  "root_cause": "the heredoc gotcha once more, this time DAMAGING the target: the patch script (written with a Git-Bash heredoc) carried a regex with doubled backslashes inside a normal Python string; the heredoc halved them, so the inserted regex contained real newlines. The script's own anchors matched, so it wrote the broken text.",
+  "fix": "repaired with the Edit tool. Rule kept from here on: code that carries backslashes is written with Write / Edit only.",
+  "tags": ["heredoc", "git-bash", "tooling", "rifles-lane"]
+ }
+]
