@@ -1,11 +1,11 @@
-# HEAVY lane (MGs / shotgun) - HANDOVER, 2026-10-12 late night (third agent). Read this first.
+# HEAVY lane (MGs / shotgun) - HANDOVER, 2026-10-12 23:45 (fourth agent). Read this first.
 
 Lane of the aimed-animation work: the `## mg` and `## heavy` rows of `../coverage.md`. The method is the pistol
 lane's (`../README.md` top section); this file says what is different here, what is done and what is next.
 **Everything is STAGED** in this folder and on engine branch `ads-heavy-next` (worktree
 `C:\mohaa-coop-dev\openmohaa-hzm-ads-heavy`, build dir `.cmake` - NOT `build`). Nothing is in the mod tree, the fixes
-pak or a live install. Run ids used: ha hb hc hd he hf hn hs (earlier), hg1-hg3, hh1-hh9, hi1, hi2, hj1, hj2 (third agent), **hj3-hj5 (fourth agent)** -
-never reuse one; next free: `hj6`.
+pak or a live install. Run ids used: ha hb hc hd he hf hn hs (earlier), hg1-hg3, hh1-hh9, hi1, hi2, hj1, hj2 (third agent), **hj3-hj14 (fourth agent)** -
+never reuse one; next free: `hj15`.
 
 ## State (third agent, runs hg / hh / hi / hj1-hj2; engine: cgame_heavy2 for every reload figure, cgame_heavy3 = + the shotgun row)
 | item | state |
@@ -21,7 +21,11 @@ never reuse one; next free: `hj6`.
 | FG 42 | **scoped weapon, no iron-sight aim** (bug-3673; coordinator confirmed). Reload while scoped today: the scope picture stays, no viewmodel (hh9). Its HIP reload on the model is **not started** |
 | DP-28, aimed, rounds left + emptied, six stances + braced rows | **done to the three rules** (hi1 / hi2), weak points listed below |
 | shotgun sight | **DONE (fourth agent, runs hj3-hj5, bug-3696 / 3697)**: brass bead r 0.27 u (surface `coop_bead`) + the receiver's matted sighting groove (surface `coop_groove`), row delta 30 mrad + relief 14.11 u on `ads-heavy-next` 5e351620 (`cgame_heavy4`). `evidence/shotgun_aim_before_after_hj5.jpg`; see "Shotgun sight" below |
-| belt-feds (M1919 portable, Breda, Vickers, MG42), shotgun reload, FG 42 hip reload | **not started** |
+| shotgun reload, aimed (rounds left + emptied, six stances) | **done to the three rules (fourth agent, runs hj9-hj12)** - see "Shotgun reload"; weak points listed there |
+| shotgun: the pump only when the gun was empty | **done** - cgame `ads-heavy-next` 0cef28a7 (`cgame_heavy5`, `tools/apply_sgpump.py`), aimed and hip (bug-3729) |
+| shotgun: firing breaks off the reload | **done** - `tools/patch_sgbreak.py` (state file PATCH), run hj14: stops at once, end row, the owed shot (bug-3728) |
+| shotgun hip reload | checked: shells one by one (retail), no pump with rounds left (hj13), pump when emptied (hj14); NOT rebuilt - the retail hip clip swings the muzzle up through the centre of the screen, as before |
+| belt-feds (M1919 portable, Breda, Vickers, MG42), FG 42 hip reload, BAR A1 / A2 run, BAR / DP-28 heavier return, BAR hip reload | **not started** |
 
 ### Centre box AS PLAYED (cg_adsSway 0.1, cg_weaponBreath 1 = the runner's defaults), `centrebox.json`
 `xmax` = share of the box covered beyond the settled aim's SWAY ENVELOPE (everything the settled aim covers during one
@@ -118,19 +122,85 @@ the mod uses `lightingSpherical` (bug-3696).
   eye); the stock wrist under it shows the retail texture's mirror seam; on the gold finish the brass bead is gold on
   gold (reads against the backdrop, not against the gun); the groove stays blued steel on every finish.
 
+## Shotgun reload - `tools/sgbake.py`, `tools/stage_sgreload.py`, `tools/patch_sgbreak.py`, `tools/apply_sgpump.py`
+What the shipped aimed clips did (run hj6): the gun stayed on the sights, the hand went under it and NOTHING was seen -
+the M1897's gate is under the receiver, and no shell prop existed. Staged now (all in `assets/`, engine on the branch):
+* **Clips** (`sgbake.py`; hold_bake through the pistol lane's `revbake.py` as a library; the three aimed rows keep their
+  SHIPPED paths, the staged files replace them): start 23 frames, one shell 20 frames (seamless loop), end 32 frames in
+  two versions. The gun PITCHES DOWN ABOUT THE BUTT 4.6 deg (the muzzle goes under the centre box, the receiver stays
+  in the frame), cants 20 deg, 3 u out along the view. The support hand goes down to the pouch and brings every shell
+  up beside the receiver's left flank IN VIEW (the "show" beat), rolls it under to the gate (the retail hand-to-gun
+  relation, `rel`) and thumbs it forward; the gun takes each shell (gunphys class `shotgun` 3.6 kg, actions
+  `sg_shell_gate` / `sg_shell_home`, 0.6 deg). End, gun WAS EMPTY (`shotgun_reload_end_ads`): hand to the forend, the
+  pump under the box with the gun's own slide (retail timing: back f10-11, forward f20-21; `sg_pump_back` / `_fwd`),
+  then up into the aim. End, rounds were left (`shotgun_reload_end_loaded_ads`): hand to the forend, up, no pump.
+  Clips: start 627e9043, single (SG_SEAT 3) see `sgbake.py` output, end 73ecf09b, loaded end c9b6f74f.
+* **Why not turn the gate to the eye**: a straight drop that clears the box takes the receiver out of the bottom of the
+  frame; a roll of 95 deg (the real "inverted" load), and already 30-40 deg, throws the firing arm's elbow up through
+  the view (the firing hand keeps the grip). Tried offline (`sgtry.py`), bug-3732.
+* **Shell prop + count** (`stage_sgreload.py` -> `models/player/base/anims_shotgun.txt` = retail pak3 + edits):
+  `models/ammo/shotgunshell.tik` on the support hand's tag, loop frames 7-15; the shell is COUNTED AT FRAME 14 (retail:
+  frame 5, hand still at the pouch) - a loop broken off before that no longer keeps its shell (GAMEPLAY, bug-3730);
+  the end row removes a shell left in the hand. Tik row `reload_end_loaded coop_shotgun_still32.skc` in the 14 tiks.
+* **Pump only when empty** (`apply_sgpump.py`, cgame): the clip count is remembered when the `reload` row is chosen;
+  rounds were left -> hands `<row>_loaded` (+ `_ads`), gun `reload_end_loaded` (still clip, no pump sound). Display
+  only. Other players still see / hear the server's `reload_end` (the pump) - not changed. Hip: the retail end with the
+  pump frames cut (`sgbake.py --hipend`, row `shotgun_reload_end_loaded`).
+* **Fire breaks the reload off** (`patch_sgbreak.py <tree>`): the retail early-out waited for the weapon's reload latch
+  and lost early presses; now start / loop -> `RELOAD_SHOTGUN_BREAK_END` (end row, `donereloading`) ->
+  `RELOAD_SHOTGUN_BREAK_FIRE` -> the owed shot. `assets/coop_mod/player_Torso.st` is the PISTOL lane's staged file +
+  this patch, for the test overlay only: the state file is shared - **apply the patch to the final tree, do not copy
+  the file**. From press to shot: 1.18 s (the end row; with the pump when the gun was empty).
+* Stage order: `stage_sgsight.py`, `sgbake.py --hipend` (needs `IRONSIGHT_EXTRA_PAKS=<pk3 with the staged mesh>`, e.g.
+  `SCRATCH/adsheavy/sg_p2.pk3` from `sgpak.py`), `stage_sgreload.py` and `stage_rows.py` (both WITHOUT the overlay
+  variable), `patch_sgbreak.py assets` on a fresh copy of the state file, `mkov_h.py`.
+
+### Centre box AS PLAYED (sway + breath on), beyond the settled aim's sway envelope, `centrebox.json`
+| run | stand / crouch / prone / lean L / lean R / braced, % | frames over 2 % | back to |
+|---|---|---|---|
+| rounds left (2 shells), hj12 | 0.46 / 0.18 / 0.32 / 0.72 / 0.53 / 0.93 | 0 | 0.00 deg |
+| emptied (5 shells + pump), hj11, from the reload's start (`BOXENG_AFTER=64`) | 0.19 / 0.07 / 0.01 / 0.46 / 0.62 / 0.16 | 0 | 0.00 deg |
+The emptied capture's first 51 frames read 20-30 %: the last shot's kick, a second of smoke and the pellet marks; the
+reload starts 74 frames after the shot (prone: 13 - its fire state is shorter). Offline (`offbox.py` through
+`hv.lib()`): 0.0 / 0.0 / 0.0 / 0.9 %. The sight line leaves 7.6 deg and is back within 0.00 deg.
+Harness: a pump gun needs `--shotgap 85` (presses under 1.4 s apart are lost) and fires once on a held trigger -
+`--sthip` = the stdemo capture from the hip, press by press (bug-3731).
+
+Evidence: `evidence/shotgun_reload_aimed_partial.gif` (hj12), `shotgun_reload_aimed_full.gif` (hj11),
+`shotgun_reload_aimed_breakoff_fire.gif` (hj14), `shotgun_reload_hip_roundsleft.gif` (hj13),
+`shotgun_reload_hip_empty.gif` (hj14), `shotgun_reload_aimed_empty_stances_hj11.jpg`. Decoded and looked at: the
+break-off GIF, the full GIF round the first shell and the pump, both hip ends (small); the partial GIF and the stance
+sheet as sheets. NOT stepped frame by frame.
+**Weak points, say them:** the shell is in view for about 0.1-0.15 s per round (two GIF frames) - the loop is 0.67 s
+and the hand goes to the pouch each time; the gate itself is never seen (the shell goes in under the receiver); the
+shown hand has its forefinger out along the shell (the forend grip's fingers), the shell sits beside it rather than
+in a closed pinch; nothing happens in view for 0.6 s between the gun coming down and the first shell; the pump under
+the box is small in the picture; braced uses the same clips (no `_adsb` row); prone reload starts 1 s sooner after the
+last shot than the other stances (state timing, not looked into); a break-off costs 1.18 s before the owed shot; the
+sounds were not listened to; second-client / third-person view of the shell prop not captured; coverage rows not
+updated (`cov_h.py scan` reads "not ok" because the sight line leaves by design - needs the `lowered` flag).
+
 ## FG 42 - what the still shows
 `evidence/mp44_gold_and_fg42_aim_hh6_hh9.jpg`: top row the gold StG 44's emptied aimed reload (same mesh, plays the
 new clips); bottom row the FG 42 with the aim key held, sway on - **the scope picture** (`zoom 20`, lens surface; the
 scopes system draws it), through 20 rounds and the whole reload: the scope stays up, no viewmodel is drawn, the reload
 passes unseen. Nothing was staged for an iron-sight aim. To do: its HIP reload on the model (the mesh is one static
 surface set on one bone - a charging handle needs its own bone first, as the SMG lane added one to the MP40); the
-reload-while-scoped design follows the rifle lane's sample.
+reload-while-scoped design follows the rifle lane's sample. Fourth agent: the hh9 LOG cannot say whether a reload
+played - the ADSFRAME probe (clip / anim) prints nothing while the FG 42's scope is up (56 lines, all before the gun
+was given); the 245 frames show the unchanged scope picture from the first to the last. Needs a run with a clip trace.
 
 ## Engine branch `ads-heavy-next` (this lane's cgame)
 * ef1e7934: a braced aimed reload / bolt picks the hands row `<row>_adsb` when fps_anims has it (`CG_CoopBrace() > 0.5`,
   the recipe of `../../ads_bolt_2026-10-04/engine/apply_adsbrace.py`); no row = `<row>_ads` as before.
 * 01e2460b: merge of ads-next 191f1879 (ADSSETTLE diagnostic, `cg_adsRigSettle`, default off - no behaviour change).
-* Test DLLs in `G:\mohaa-adsanim4\cgames`: `cgame_heavy1` (ef1e7934), **`cgame_heavy2` (01e2460b, current)**.
+* 89c08278 / 5e351620: the 14 shotgun sight rows (`sightrow_h.py`): delta 30 mrad, relief 14.11 u. Ships only with the
+  staged shotgun mesh.
+* 0cef28a7: the pump only when the gun was empty (`apply_sgpump.py`): `CG_CoopReloadFromEmpty()`, hands `<row>_loaded`
+  for the end row, gun `reload_end_loaded`. No row = as before, so every other gun is untouched.
+* Test DLLs in `G:\mohaa-adsanim4\cgames`: `cgame_heavy1` (ef1e7934), `cgame_heavy2` (01e2460b: every BAR / StG 44 /
+  DP-28 figure), `cgame_heavy3` (89c08278), `cgame_heavy4` (5e351620: shotgun sight), **`cgame_heavy5` (0cef28a7,
+  current: shotgun reload)**. Build: `cmake --build .cmake --config Release --target cgame` in the worktree.
 
 ## How this lane runs (all tools in `tools/`, run from `assets/` unless said)
 * `hv.py` paths + guns; `hv.lib()` = hold_bake / rig / vmcam. Shared tools that need the runs folder: `ADS_RUNS=G:/mohaa-adsanim4/runs`
@@ -248,11 +318,11 @@ reload is untouched (retail cocks even with rounds left); break-offs and the sco
 
 ## Next
 1. Shotgun sight: done, see "Shotgun sight".
-2. FG 42 hip reload on the model (above).
+2. FG 42 hip reload on the model (above); a run that proves whether a scoped reload plays at all (clip trace).
 3. Belt-feds: M1919 portable first (sight row; bug-3622), Breda, Vickers, MG42.
-4. Shotgun reload: shells one at a time on target or just under the box, break off on fire, pump only when the chamber
-   was empty; aimed fire plays `viewmodelanim charge`, so a `shotgun_cycle_ads` row is needed for the pump between
-   aimed shots (cgame per-shot cycle hook of ads-next 4b6be659).
+4. Shotgun leftovers: a `shotgun_cycle_ads` look at the pump between aimed shots (it stayed at the aim in hj11, not
+   measured apart from the smoke); a longer "show" of the shell; a short end row for a break-off with a round
+   chambered; the hip reload rebuilt off the centre of the screen if the user wants it.
 5. A new gun = a `heavybake` entry (copy DP28 for a top feed, MP44 for a well): `clipinfo.py <row> <gun clip>` and
    `gunmove.py <tik> reload` give the retail timeline, the bolt channel and the handle point; `heavylib.py <prefix>
    <points>` where they sit at the aim; then `hktry.py` / `eyeview.py` (set `IRONSIGHT_EXTRA_PAKS=<overlay>` or the
@@ -264,6 +334,6 @@ Runs: ha1 / ha2 (aim poses), hb1-hb9 (predecessor's BAR iterations), hs / hn (sk
 variants, finishes), hd1-hd3 (final BAR clips, settle diagnostics), he1-he7 (StG 44; he6 / he7 final), hf1 (StG 44 aim
 stills), hf2 (strapped variant). `centrebox.json` keys are GUN names (`bar`, `bar_empty`, ...) as coverage.py reads
 them; `python ../tools/coverage.py --lane heavy build` writes the lane preview `heavy/coverage.md` (BAR and StG 44: DONE).
-Bugs: 3619-3623, 3646-3649 (second agent); 3667-3676, 3681 (third agent).
+Bugs: 3619-3623, 3646-3649 (second agent); 3667-3676, 3681 (third agent); 3696-3698, 3727-3732 (fourth agent).
 Tools added by the third agent: `boxeng.py --sway`, `swayshow.py`, `run_h.py --tail / --brk / --hipdemo / --hold / --rel`,
 `heavybake.py --hip` + `feed='top'`, `patch_tik_h.py` `more_paths` for the BAR, `hip=True`, the `dp28` set.
