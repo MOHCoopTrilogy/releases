@@ -41,7 +41,12 @@ EDITS = {
         ('dp28_reload_adsb', 'viewmodel/coop_dp28/dp28_reload_adsb.skc', 0.1, 'aimed + braced, rounds left'),
         ('dp28_reload_empty_adsb', 'viewmodel/coop_dp28/dp28_reload_empty_adsb.skc', 0.1, 'aimed + braced, empty'),
     ],
-    'shotgun': [],
+    'shotgun': [
+        # shotgun reload (sgbake.py): the three aimed rows keep their SHIPPED paths - the staged clips replace them.
+        # The pump only when the gun was empty (cgame ads-heavy-next, apply_sgpump.py): `_loaded` end rows
+        ('shotgun_reload_end_loaded', 'viewmodel/shotgun/coop_shotgun_reload_end_loaded.skc', 0.05, 'hip, rounds were left: the retail end with the pump cut out'),
+        ('shotgun_reload_end_loaded_ads', 'viewmodel/shotgun/shotgun_reload_end_loaded_ads.skc', 0.1, 'aimed, rounds were left: back up into the aim, no pump'),
+    ],
 }
 
 

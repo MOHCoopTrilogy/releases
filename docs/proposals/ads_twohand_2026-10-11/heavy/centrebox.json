@@ -364,5 +364,127 @@
   },
   "xfr": 0.0,
   "xmax": 1.95
+ },
+ "shotgun": {
+  "align": 0,
+  "dev": 7.63,
+  "note": "AS PLAYED (cg_adsSway 0.1, cg_weaponBreath 1): xmax = beyond the settled aim's sway envelope; mask6 = vs the six-frame aim mask (SMG rule), alone = the settled aim alone vs that mask",
+  "run": "hj12",
+  "stances": {
+   "braced": {
+    "alone": 0.02,
+    "end": 0.0,
+    "mask6": 1.51,
+    "run": "hj12",
+    "xfr": 0.0,
+    "xmax": 0.93
+   },
+   "crouch": {
+    "alone": 0.01,
+    "end": 0.0,
+    "mask6": 0.46,
+    "run": "hj12",
+    "xfr": 0.0,
+    "xmax": 0.18
+   },
+   "prone": {
+    "alone": 0.51,
+    "end": 0.0,
+    "mask6": 2.05,
+    "run": "hj12",
+    "xfr": 0.0,
+    "xmax": 0.32
+   },
+   "stand": {
+    "alone": 0.01,
+    "end": 0.0,
+    "mask6": 1.28,
+    "run": "hj12",
+    "xfr": 0.0,
+    "xmax": 0.46
+   },
+   "standL": {
+    "alone": 0.1,
+    "end": 0.0,
+    "mask6": 1.32,
+    "run": "hj12",
+    "xfr": 0.0,
+    "xmax": 0.72
+   },
+   "standR": {
+    "alone": 0.21,
+    "end": 0.0,
+    "mask6": 1.07,
+    "run": "hj12",
+    "xfr": 0.0,
+    "xmax": 0.53
+   }
+  },
+  "xfr": 0.0,
+  "xmax": 0.93
+ },
+ "shotgun_empty": {
+  "align": 0,
+  "dev": 7.63,
+  "note": "AS PLAYED (cg_adsSway 0.1, cg_weaponBreath 1): xmax = beyond the settled aim's sway envelope; mask6 = vs the six-frame aim mask (SMG rule), alone = the settled aim alone vs that mask; first 20 capture frames (last shot) skipped",
+  "run": "hj11",
+  "stances": {
+   "braced": {
+    "after40": 0.16,
+    "alone": 0.02,
+    "end": 0.0,
+    "mask6": 10.1,
+    "run": "hj11",
+    "xfr": 1.7,
+    "xmax": 9.99
+   },
+   "crouch": {
+    "after40": 0.07,
+    "alone": 0.04,
+    "end": 0.0,
+    "mask6": 5.57,
+    "run": "hj11",
+    "xfr": 1.2,
+    "xmax": 4.78
+   },
+   "prone": {
+    "after40": 0.01,
+    "alone": 0.06,
+    "end": 0.0,
+    "mask6": 4.3,
+    "run": "hj11",
+    "xfr": 2.1,
+    "xmax": 3.17
+   },
+   "stand": {
+    "after40": 0.19,
+    "alone": 0.03,
+    "end": 0.0,
+    "mask6": 2.64,
+    "run": "hj11",
+    "xfr": 0.0,
+    "xmax": 1.93
+   },
+   "standL": {
+    "after40": 0.46,
+    "alone": 0.0,
+    "end": 0.0,
+    "mask6": 2.13,
+    "run": "hj11",
+    "xfr": 0.0,
+    "xmax": 1.9
+   },
+   "standR": {
+    "after40": 0.62,
+    "alone": 0.09,
+    "end": 0.0,
+    "mask6": 2.28,
+    "run": "hj11",
+    "xfr": 0.0,
+    "xmax": 1.96
+   }
+  },
+  "xfr": 2.1,
+  "xmax": 9.99
  }
 }

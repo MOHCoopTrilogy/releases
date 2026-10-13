@@ -42,6 +42,13 @@ def lib():
     finally:
         os.chdir(c)
     CTL = json.load(open(os.path.join(BOLT, '..', 'assets', 'ctl_stand.json')))
+    # the lane's sight rows (sights_override.json -> cg_adssights.h on ads-heavy-next) are what the engine aims with:
+    # the offline tools must aim the same way (the shared sights.json is not ours to edit)
+    ov = os.path.join(LANE, 'sights_override.json')
+    if os.path.isfile(ov):
+        for k, o in json.load(open(ov)).items():
+            if k in H.V.SIGHTS:
+                H.V.SIGHTS[k].update({kk: o[kk] for kk in ('delta_mrad', 'relief', 'F', 'R') if kk in o})
     return H, H.R, H.V, CTL
 
 

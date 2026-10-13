@@ -36,9 +36,11 @@ def stdemo(sess, gun, st, shots, gap, nrel, empty):  # TAIL: see below
     shared `reloads` part is sparse and cannot empty the gun (an emptied gun reloads by itself during its wait).
     Tag ab__<sess>__<gun>__<st>__demo__after, marks DEMO reload / lower, the model-less reference `__ref`; the
     firing phase is NOT captured (frame index = file index from the reload on)."""
-    tag = "ab__%s__%s__%s__demo__after" % (sess, gun, st)
+    tag = "ab__%s__%s__%s%s__demo__after" % (sess, gun, st, "hip" if STHIP else "")
     i = [0]
-    L = S.RELEASE + S.TO_STAND + S.APPLY[st] + A.MODE["after"] + ["wait 400", "+button13", "wait 1700"]
+    # --sthip: the same capture from the HIP (no aim key) - a hand-cycled gun emptied press by press (the SMG lane's
+    # hip demo holds the trigger, which fires a pump gun once)
+    L = S.RELEASE + S.TO_STAND + S.APPLY[st] + A.MODE["after"] + ["wait 400"] + ([] if STHIP else ["+button13"]) + ["wait 1700"]
     L += ["coop_braceView"] if st == "braced" else []
     L += ["wait 300", "set cg_adsSightDebug 2", "echo ^~^~^ ABSCEN begin %s" % tag]
     REF = ["set cg_drawviewmodel 0", "wait 1", "wait 1", "wait 1", "screenshotJPEG %s__ref" % tag, "wait 1", "wait 1",
@@ -80,6 +82,7 @@ TAIL = [0, 4]
 BRK = []            # --brk fire+switch+sprint+drop:50+105[:E]
 HIPDEMO = []        # --hipdemo L,E
 WALLSTILL = []      # --wallstill stand,crouch,prone : the settled aim on the light wall (--demoyaw), tag <st>W
+STHIP = []          # --sthip : --stdemo from the hip
 TPC = []            # --tpc : third_close (smg_block) = the held gun from outside, close, hip + aim
 
 
@@ -126,6 +129,8 @@ if __name__ == "__main__":
         k = sys.argv.index("--stdemo")
         STDEMO[:] = sys.argv[k + 1].split(",")
         del sys.argv[k:k + 2]
+    if "--sthip" in sys.argv:
+        sys.argv.remove("--sthip"); STHIP.append(1)
     if "--tpc" in sys.argv:
         sys.argv.remove("--tpc"); TPC.append(1)
     for opt, lst in (("--brk", BRK), ("--hipdemo", HIPDEMO), ("--wallstill", WALLSTILL)):

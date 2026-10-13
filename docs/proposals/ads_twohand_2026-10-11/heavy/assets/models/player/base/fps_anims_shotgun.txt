@@ -41,5 +41,8 @@ animations
 	//===================== HZM coop ADS aim poses (additive) =====================
 	shotgun_charge		viewmodel/idle_shotgun00.skc		crossblend 0.2
 	shotgun_adsfire			viewmodel/fire_shotgun_stand00.skc	crossblend 0.05
+	//===================== HZM coop ADS heavy lane (staged 2026-10-12) =====================
+	shotgun_reload_end_loaded		viewmodel/shotgun/coop_shotgun_reload_end_loaded.skc		crossblend 0.05	// HZM coop [ads heavy] hip, rounds were left: the retail end with the pump cut out
+	shotgun_reload_end_loaded_ads		viewmodel/shotgun/shotgun_reload_end_loaded_ads.skc		crossblend 0.1	// HZM coop [ads heavy] aimed, rounds were left: back up into the aim, no pump
 }
 

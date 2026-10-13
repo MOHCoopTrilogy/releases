@@ -450,6 +450,64 @@
    "target": "yes"
   }
  },
+ "models/weapons/shotgun.tik": {
+  "reload": {
+   "braced": {
+    "dev": 7.62,
+    "edge": 7.21,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hj12"
+   },
+   "crouch": {
+    "dev": 7.61,
+    "edge": 7.2,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hj12"
+   },
+   "prone": {
+    "dev": 7.63,
+    "edge": 7.22,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hj12"
+   },
+   "stand": {
+    "dev": 7.61,
+    "edge": 7.19,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hj12"
+   },
+   "standL": {
+    "dev": 7.61,
+    "edge": 7.19,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hj12"
+   },
+   "standR": {
+    "dev": 7.6,
+    "edge": 7.21,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hj12"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "hj11 hj12 (aimed, six stances), hj13 hj14 (hip, break-off)",
+   "target": "yes"
+  }
+ },
  "models/weapons/uk_w_vickers.tik": {
   "aim": {
    "braced": {

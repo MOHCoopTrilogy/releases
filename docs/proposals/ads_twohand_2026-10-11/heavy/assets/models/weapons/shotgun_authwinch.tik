@@ -184,6 +184,7 @@ animations
 			entry sound shotgun_snd_reload_end
 		}
 	}
+	reload_end_loaded coop_shotgun_still32.skc	// HZM coop [heavy lane] end of a reload that began with rounds in the gun: no pump, no pump sound (stage_sgreload.py; cgame shows it in place of reload_end)
 	secondaryfire     shotgun.skc
 	{
 		server

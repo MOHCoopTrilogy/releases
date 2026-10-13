@@ -151,8 +151,11 @@ for tag in marks:
             # the skip rule ends where the cover first stays under the bar, so the figure after it sits just under 2 %
             # by construction when 20-30 rounds of smoke are still drifting off (looked at, run hg3: grey puffs over the
             # door and backdrop edges in the leans, the gun has left the box by capture frame 18). After 40 frames:
-            print('      after the first 40 capture frames (0.64 s; the smoke is gone): max %.2f %%' % (100 * max(exe[40:])))
-            SWL = round(100 * max(exe[40:]), 2)
+            # BOXENG_AFTER=N (default 40): a hand-cycled gun's last shot is followed by its own pump and a second of smoke
+            # before the reload starts (shotgun: the reload begins 74 frames after the shot = capture frame 63)
+            AFT = int(os.environ.get('BOXENG_AFTER', '40'))
+            print('      after the first %d capture frames (%.2f s; the smoke is gone): max %.2f %%' % (AFT, AFT * 0.016, 100 * max(exe[AFT:])))
+            SWL = round(100 * max(exe[AFT:]), 2)
         else:
             SWL = None
         if '--dump' in sys.argv:
