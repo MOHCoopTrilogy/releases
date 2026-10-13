@@ -154,6 +154,9 @@ foreach ($wpnPakName in @('zzzzzzzzzz_coop_hd_wpn_1low.pk3', 'zzzzzzzzzz_coop_hd
                           'zzzzzzzzzz_coop_hd_wpn_4fin.pk3', 'zzzzzzzzzz_coop_hd_wpn_5wear.pk3')) {
     if (Test-Path "$mod\$wpnPakName") { $stage["home/maintt/$wpnPakName"] = "$mod\$wpnPakName" }
 }
+# [2026-10-13, v1.10.22, bug-3462] Modern scope view assets (docs/tools/gen_scope_reticles.py) - copied by build.ps1 the
+# same way, added HERE in the same change. Inert without the v1.10.22 cgame (it probes for the pak).
+$stage["home/maintt/zzzzzzzzzz_coop_scopes.pk3"]  = "$mod\zzzzzzzzzz_coop_scopes.pk3"
 $stage["home/maintt/autoexec.cfg"] = "$mod\autoexec.cfg"
 # What's New card trigger seed (constant content = constant hash = downloaded once ever).
 # Lives in installer/ (NOT the mod tree) so build.ps1 never packs it into a pk3 - a pk3 copy

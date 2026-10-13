@@ -480,6 +480,15 @@ foreach ($destDir in @($deployDir, $appDataDir)) {
             Write-Host "  Deployed $wpnPakName -> $destDir"
         }
     }
+    # [2026-10-13, v1.10.22, bug-3462] Modern scope view assets (docs/tools/gen_scope_reticles.py): reticles, aperture and
+    # eyebox masks, scripts/coop_scope.shader. Out of band so the assets_tex pk3 keeps its sha256. cgame probes for it
+    # (cg_hzmscope.c CG_HzmScopeOn): without the pak the scope view is the retail one, whole. Listed in
+    # publish_release.ps1's staging in the same change.
+    $scopesPak = Join-Path $srcDir 'zzzzzzzzzz_coop_scopes.pk3'
+    if (Test-Path $scopesPak) {
+        Copy-Item -Path $scopesPak -Destination (Join-Path $destDir 'zzzzzzzzzz_coop_scopes.pk3') -Force
+        Write-Host "  Deployed scopes pak -> $destDir"
+    }
     Write-Host "  Deployed 3 pk3s -> $destDir"
 }
 
