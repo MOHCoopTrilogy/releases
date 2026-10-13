@@ -11,7 +11,7 @@ generated row of `cg_adssights.h`, see the handover; `cgame_smg1.dll` = without 
 Engine: `ads-smg-next` is at f1802d87 = 94bb3dca + ONE commit: the Silenced MP40's row of
 `cg_adssights.h` (F / R z 0.45 u higher, `tools/patch_sights_row.py` from `sights_override.json`), built as
 `G:\mohaa-adsanim3\cgames\cgame_smg2.dll`. It belongs TOGETHER with the staged `mp40silenced.skd` - never one
-without the other (the eye would look over or under the sights). Run ids used: sa1-sd2, se1, se2. Next: se3.
+without the other (the eye would look over or under the sights). Run ids used: sa1-sd2, se1, se2, se3. Next: se4.
 
 | gun | state |
 |---|---|
@@ -87,7 +87,16 @@ For a release: the staged skd + this hunk in `ironsights_2026-09-28/sights.json`
   brown). The receiver's rear is a large flat dark face low in the centre, 31 % of the screen wide: the eye is only
   8.34 u behind the rear sight (probe `relief`; the MP40 has 13.35). First thing to try: `relief` in
   `sights_override.json` for `mp40_mp18` (the rig clamps the move at +4 u = 12.3) via `--set "set
-  cg_adsRigReliefBias 4"` in a `sdemo` run, then judge the picture; not tried.
+  cg_adsRigReliefBias 4"` in a `sdemo` run, then judge the picture.
+  TRIED (run se3, probe relief 12.34 u, `evidence/mp18_aim_relief_se2_se3.jpg`): the flat face becomes a readable
+  receiver end with the wooden stock under it, about two thirds the size - clearly better; the receiver's top then
+  reaches the bottom edge of the centre box. Not staged (it is `"mp40_mp18": {"relief": 12.3}` in
+  `sights_override.json` + its header row; the user should see the picture first).
+* SWAY, before any MP18 reload is judged (`swayoff.py mp40_mp18 0,2,4`, settled aim alone, worst pair of sway
+  states): 7.7 % as released, 5.4 % at +2 u, **4.0 % at +4 u** (from rest 2.3 / 1.1 / 0.7 %). Its rear sight stands
+  only 0.2-0.3 u over the receiver top just behind it (`topprof.py`), and the magazine housing crosses the box: with
+  sway on the MP18 will NOT pass by a relief alone - it needs the silenced MP40's cure as well (taller sights,
+  `sightraise.py`), offline first.
 
 **Next, in this order.** (a) MP18: the three hand faults above, the relief, then engine + GIFs. (b) Thompson family,
 Sten (support hand stays on the magazine in the aim), PPSh, grease guns (cover + bolt to build), then the three
