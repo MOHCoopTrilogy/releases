@@ -7,11 +7,19 @@
 	coopr_shotgun_double_barrel_reload			viewmodel/coop_dbshotgun/dbs_reload.skc			crossblend 0.05
 	coopr_shotgun_double_barrel_reload_single	viewmodel/coop_dbshotgun/dbs_reload_single.skc	crossblend 0
 	coopr_shotgun_double_barrel_reload_end		viewmodel/coop_dbshotgun/dbs_reload_end.skc		crossblend 0.05
+	// the first shell of an emptied gun goes into the LEFT chamber (cgame picks `_l` on an empty clip; alias names
+	// hold 47 characters: `..._reload_single_first_ads` was 51 and was never found - bug-3776)
+	coopr_shotgun_double_barrel_reload_single_l	viewmodel/coop_dbshotgun/dbs_reload_single_l.skc	crossblend 0
+	// aimed: the same reload worked under the centre of the view, back to the exact aim
+	coopr_shotgun_double_barrel_reload_ads		viewmodel/coop_dbshotgun/dbs_reload_ads.skc		crossblend 0.05
+	coopr_shotgun_double_barrel_reload_single_ads	viewmodel/coop_dbshotgun/dbs_reload_single_ads.skc	crossblend 0
+	coopr_shotgun_double_barrel_reload_single_l_ads	viewmodel/coop_dbshotgun/dbs_reload_single_l_ads.skc	crossblend 0
+	coopr_shotgun_double_barrel_reload_end_ads	viewmodel/coop_dbshotgun/dbs_reload_end_ads.skc	crossblend 0.05
 	coopr_shotgun_double_barrel_pullout			viewmodel/coop_dbshotgun/dbs_pullout.skc
 	{
 		client
 		{
-			enter sound snd_shotgun_pullout
+			enter sound snd_shotgun_putaway		// (snd_shotgun_pullout is the pump run forward: not this gun)
 		}
 	}
 	coopr_shotgun_double_barrel_putaway			viewmodel/coop_dbshotgun/dbs_putaway.skc

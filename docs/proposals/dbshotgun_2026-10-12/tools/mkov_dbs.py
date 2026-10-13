@@ -101,6 +101,38 @@ def main():
         nl = '\r\n' if '\r\n' in fx else '\n'
         k = fx.rstrip().rfind('}')
         z.writestr('models/player/base/fps_anims_shotgun.txt', (fx[:k] + rows.replace('\n', nl) + fx[k:]).encode('latin-1'))
+        # third person: the INSTALLED alias file + our rows, the INSTALLED torso state file + our five rows
+        # (rows/tps_rows_coop_dbshotgun.txt, wiring/patch_torso_dbs.py). --notps leaves both out.
+        if '--notps' not in sys.argv:
+            import importlib.util
+            sp = importlib.util.spec_from_file_location('weapon_hd_vfs', os.path.join(L.DOCS, 'tools', 'weapon_hd', 'vfs.py'))
+            HV = importlib.util.module_from_spec(sp); sp.loader.exec_module(HV)
+            sp = importlib.util.spec_from_file_location('patch_torso_dbs', os.path.join(L.PROP, 'wiring', 'patch_torso_dbs.py'))
+            PT = importlib.util.module_from_spec(sp); sp.loader.exec_module(PT)
+            al = HV.read('models/player/base/anims_shotgun.txt').decode('latin-1')
+            trow = open(os.path.join(L.PROP, 'rows', 'tps_rows_coop_dbshotgun.txt'), 'rb').read().decode('latin-1').replace('\r\n', '\n')
+            nl2 = '\r\n' if '\r\n' in al else '\n'
+            k2 = al.rstrip().rfind('}')
+            z.writestr('models/player/base/anims_shotgun.txt', (al[:k2] + trow.replace('\n', nl2) + al[k2:]).encode('latin-1'))
+            st = HV.read('coop_mod/player_Torso.st').decode('latin-1')
+            z.writestr('coop_mod/player_Torso.st', PT.patch(st).encode('latin-1'))
+            print('third person: alias rows + torso state rows added')
+        # --wire: the INSTALLED mod files with the option-A wiring patch (wiring/patch_wiring_dbs.py) + its new cfgs
+        if '--wire' in sys.argv:
+            import importlib.util
+            sp = importlib.util.spec_from_file_location('weapon_hd_vfs', os.path.join(L.DOCS, 'tools', 'weapon_hd', 'vfs.py'))
+            HV2 = importlib.util.module_from_spec(sp); sp.loader.exec_module(HV2)
+            sp = importlib.util.spec_from_file_location('patch_wiring_dbs', os.path.join(L.PROP, 'wiring', 'patch_wiring_dbs.py'))
+            PW = importlib.util.module_from_spec(sp); sp.loader.exec_module(PW)
+
+            def rd(rel):
+                d = HV2.read(rel)
+                return d.decode('latin-1') if d is not None else None
+            pages = sorted(k[len('ui/loadout/p'):-4] for k in HV2.index() if re.match(r'ui/loadout/p\d\d\.cfg$', k))
+            wired = PW.patched(rd, pages)
+            for rel, txt in wired.items():
+                z.writestr(rel, txt.encode('latin-1'))
+            print('wiring: %d files from the installed mod, patched (%d pages)' % (len(wired), len(pages)))
         # --var s46=0.46 ... : TEST-ONLY copies of the tik at another scale (models/weapons/coop_dbshotgun_<tag>.tik)
         base = open(os.path.join(L.ASSETS, 'models', 'weapons', 'coop_dbshotgun.tik')).read()
         for v in [x for x in sys.argv[2:] if '=' in x]:

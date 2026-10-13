@@ -265,7 +265,7 @@ animations
 		client
 		{
 			entry sound coop_dbs_snd_open
-			8 tagspawn tag_eject
+			10 tagspawn tag_eject
 			(
 				count 1
 				model models/ammo/shotgunshell.tik
@@ -290,7 +290,7 @@ animations
 		client
 		{
 			entry sound coop_dbs_snd_open
-			8 tagspawn tag_eject
+			10 tagspawn tag_eject
 			(
 				count 2
 				model models/ammo/shotgunshell.tik
@@ -334,7 +334,7 @@ animations
 		}
 		client
 		{
-			10 sound coop_dbs_snd_close
+			12 sound coop_dbs_snd_close
 		}
 	}
 	secondaryfire	coop_dbs_idle.skc

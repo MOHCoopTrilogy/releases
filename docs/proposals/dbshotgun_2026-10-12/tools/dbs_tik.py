@@ -62,12 +62,12 @@ def anims():
               '\t\t\tentry viewkick %s' % N['kick'], _flash(tag), '\t\t}', '\t}']
     for nm, count in (('reload', 1), ('reload_empty', 2)):
         a += ['\t%s\tcoop_dbs_%s.skc' % (nm, nm), '\t{', '\t\tclient', '\t\t{', '\t\t\tentry sound coop_dbs_snd_open',
-              _eject(8, count), '\t\t}', '\t}']
+              _eject(10, count), '\t\t}', '\t}']
     for nm in ('reload_single', 'reload_single_first'):
         a += ['\t%s\tcoop_dbs_%s.skc' % (nm, nm), '\t{', '\t\tclient', '\t\t{', '\t\t\t12 stopaliaschannel coop_dbs_snd_shell',
               '\t\t\t12 sound coop_dbs_snd_shell', '\t\t}', '\t}']
     a += ['\treload_end\tcoop_dbs_reload_end.skc', '\t{', '\t\tserver', '\t\t{', '\t\t\tlast idle', '\t\t}', '\t\tclient', '\t\t{',
-          '\t\t\t10 sound coop_dbs_snd_close', '\t\t}', '\t}']
+          '\t\t\t12 sound coop_dbs_snd_close', '\t\t}', '\t}']
     a += ['\tsecondaryfire\tcoop_dbs_idle.skc', '\t{', '\t\tserver', '\t\t{', '\t\t\tentry shoot secondary', '\t\t}', '\t}', '}']
     return '\n'.join(a)
 

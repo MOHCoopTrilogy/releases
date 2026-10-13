@@ -87,6 +87,25 @@ def key(keys, f):
 
 
 PIN = W0['dbs_barrels']
+# the action's timeline (frames at 30 a second) - dbs_hands.py keys the hands on the same numbers
+# (run rl1: the rows play 0.75 s / 0.66 s / 1.17 s in the engine; with the barrels down by frame 13 the open gun
+# stood still for 0.45 s - the lever and the drop are slower now and the eject is at frame 10)
+EJECT_F = 10
+THETA_OPEN = {0: 0.0, 5: 0.0, 11: OPEN * 1.04, 13: OPEN * 0.985, 15: OPEN}      # falls, checks on the stop
+LEVER_OPEN = {0: 0.0, 2: 0.0, 5: LEVER, 23: LEVER}
+SHUT_F = 12                                                                     # the frame the action latches
+THETA_CLOSE = {0: OPEN, 7: OPEN, 10: OPEN * 0.5, 12: 0.0, 32: 0.0}
+LEVER_CLOSE = {0: LEVER, 11: LEVER, 13: 0.0, 32: 0.0}
+# the fired cases leave back, up and to the RIGHT of the gun (past the shooter's right side; never through the middle
+# of the view): the emitter throws along the tag's x axis
+EJECT_DIR = (-0.22, 0.86, -0.46)      # (run rm1: at -0.45 back the case passed 3 u from the eye and drew 100 px wide)
+
+
+def frame_x(d):
+    """rotation rows whose first row (the x axis) is the direction d"""
+    x = np.asarray(d, float); x = x / np.linalg.norm(x)
+    y = np.cross((0.0, 0.0, 1.0), x); y = y / np.linalg.norm(y)
+    return np.array([x, y, np.cross(x, y)])
 
 
 def barrels_R(theta):
@@ -106,7 +125,7 @@ def pose(theta=0.0, lever=0.0, tf=0.0, tr=0.0, shells=None):
     P['dbs_barrels'] = (Rb, PIN.copy())
     for b in ('tag_barrel', 'tag_dbs_r', 'tag_dbs_l'):
         P[b] = (Rb, (W0[b] - PIN) @ Rb + PIN)
-    P['tag_eject'] = (rot((0, 1, 0), 150.0), W0['tag_eject'])          # x axis up and back: where the cases go
+    P['tag_eject'] = (frame_x(EJECT_DIR), W0['tag_eject'])
     P['dbs_lever'] = (rot((0, 0, 1), lever), W0['dbs_lever'])
     P['dbs_trig_f'] = (rot((0, 1, 0), tf), W0['dbs_trig_f'])
     P['dbs_trig_r'] = (rot((0, 1, 0), tr), W0['dbs_trig_r'])
@@ -153,38 +172,24 @@ def write(name, frames):
     print('%-22s %2d frames %6d bytes' % (name, len(frames), len(data)))
 
 
-def insert_path(bone, f, n=20, hand=None):
-    """a shell on its way into its chamber (barrels open): -> (R, t) or 'park' / 'in'
-    f < 5: not in view; 5..11 carried from below-left to behind the chamber (the hand's pinch path when the hands
-    bake has written one - build/hand_paths.json); 11..15 pushed home"""
-    Rb, c = chambered(bone, OPEN)
-    ax = Rb[0]                                         # the chamber axis in gun space (unit, toward the muzzle)
-    if f < 5:
-        return 'park'
-    if f >= 15:
-        return 'in'
-    behind = c - ax * 9.0                              # the whole shell (8.9 skd units long incl. play) out of the chamber
-    if f >= 11:
-        w = ease((f - 11) / 4.0)
-        return (Rb, behind + (c - behind) * w)
-    if hand is not None:
-        return hand[f]
-    start = behind + np.array([-14.0, -16.0 if bone.endswith('_l') else -22.0, 20.0])     # below, left, behind
-    w = ease((f - 5) / 6.0)
-    up = (1 - w) * w * 4 * np.array([0.0, 0.0, -3.0])                            # an arc over the standing breech
-    Rs = rot((0, 1, 0), -OPEN * w - 20 * (1 - w)) @ rot((0, 0, 1), 25 * (1 - w))
-    return (Rs, start + (behind - start) * w + up)
+def insert_path(bone, f, hand=None):
+    """a shell on its way into its chamber (barrels open): -> (R, t) or 'park' / 'in'. The whole path is the loading
+    hand's (build/hand_paths.json, written by dbs_hands.py: the shell rides the finger pinch, is let go of at the
+    breech face and thumbed home); without that file: parked, then in from frame 15"""
+    if hand is None:
+        return 'park' if f < 15 else 'in'
+    v = hand[f]
+    return v if isinstance(v, str) else (np.array(v[0]), np.array(v[1]))
 
 
 def clips():
-    theta_open = {0: 0.0, 3: 0.0, 9: OPEN * 1.04, 11: OPEN * 0.985, 13: OPEN}       # falls, checks on the stop
-    lever_open = {0: 0.0, 1: 0.0, 3: LEVER, 23: LEVER}
+    theta_open, lever_open = THETA_OPEN, LEVER_OPEN
     out = {}
     out['idle'] = [pose()]
     pull = [0.0, 0.7, 1.0, 1.0, 0.6, 0.3, 0.1, 0.0, 0.0, 0.0]
     out['fire'] = [pose(tf=TRIG * p) for p in pull]
     out['fire_empty'] = [pose(tr=TRIG * p) for p in pull]
-    EJ = 8                                                                      # the frame the ejectors trip
+    EJ = EJECT_F                                                                # the frame the ejectors trip
     for nm, gone in (('reload', ('dbs_shell_r',)), ('reload_empty', ('dbs_shell_r', 'dbs_shell_l'))):
         fr = []
         for f in range(23):
@@ -196,13 +201,12 @@ def clips():
     for nm, bone, other in (('reload_single', 'dbs_shell_r', 'in'), ('reload_single_first', 'dbs_shell_l', 'park')):
         fr = []
         h = hand.get(nm)
-        h = {int(k): (np.array(v[0]), np.array(v[1])) for k, v in h.items()} if h else None
+        h = {int(k): v for k, v in h.items()} if h else None
         ob = 'dbs_shell_l' if bone == 'dbs_shell_r' else 'dbs_shell_r'
         for f in range(20):
             fr.append(pose(theta=OPEN, lever=LEVER, shells={bone: insert_path(bone, f, hand=h), ob: other}))
         out[nm] = fr
-    theta_close = {0: OPEN, 6: OPEN, 9: OPEN * 0.6, 11: 0.0, 32: 0.0}
-    lever_close = {0: LEVER, 10: LEVER, 12: 0.0, 32: 0.0}
+    theta_close, lever_close = THETA_CLOSE, LEVER_CLOSE
     out['reload_end'] = [pose(theta=key(theta_close, f), lever=key(lever_close, f)) for f in range(32)]
     return out
 

@@ -23,7 +23,9 @@ R.MAINTT = os.path.join(R.HOME, "maintt")
 R.LOG = os.path.join(R.MAINTT, "qconsole.log")
 R.SHOTS = os.path.join(R.MAINTT, "screenshots")
 R.PRISTINE = os.path.join(CLIENT, "pristine")
-R.RUNS = "G:/mohaa-hudfeed4/runs"
+sys.path.insert(0, HERE)
+import dbslib as _L      # noqa: E402
+R.RUNS = _L.RUNS
 R.PORT = 12761
 TIK = "models/weapons/coop_dbshotgun.tik"
 RELEASE = ["-button13", "-movedown", "-leanleft", "-leanright", "-attackprimary", "wait 250"]
@@ -110,7 +112,134 @@ def part_action(a):
     R.step(["+attackprimary", "wait 1", "wait 1", "-attackprimary"] + frames("act_aimfire", 8, i, 1) + ["wait 900", "-button13", "wait 600"], timeout=120)
 
 
-PARTS = {'look': part_look, 'pump': part_pump, 'var': part_var, 'action': part_action}
+def part_third(a):
+    """THIRD PERSON through the script camera (front right, far enough to hold the whole upper body and the gun): a
+    shot standing, the second shot and the reload of the emptied gun, a shot crouched; then the pump gun's standing
+    shot for comparison. Every capture starts from a fresh `give` (it re-faces the player) and its own camera.
+    (run tp1: one camera at 52 u for all of it - the gun was out of the frame, the pump gun's player not in it at all)"""
+    FIRE = ["+attackprimary", "wait 1", "wait 1", "-attackprimary"]
+    CAM = cam(-62, 92, 10, 50)
+    R.step(RELEASE + R.give(a.tik) + ["wait 4500"] + CAM, timeout=90)
+    i = [0]
+    R.step(FIRE + frames("tp_fire", 34, i, 2) + ["wait 600"], timeout=120)
+    i = [0]
+    R.step(FIRE + frames("tp_reload", 76, i, 3) + ["wait 1500"] + CAMOFF, timeout=240)
+    R.step(RELEASE + R.give(a.tik) + ["wait 4500", "set coop_proneHold 999", "+movedown", "wait 1100"] + cam(-62, 92, 10, 36), timeout=90)
+    i = [0]
+    R.step(FIRE + frames("tp_cfire", 30, i, 2) + ["wait 600", "-movedown", "wait 900"] + CAMOFF, timeout=120)
+    R.step(RELEASE + R.give("models/weapons/shotgun.tik") + ["wait 4500"] + cam(-62, 92, 10, 50), timeout=90)
+    i = [0]
+    R.step(FIRE + frames("tp_pumpfire", 34, i, 2) + ["wait 600"] + CAMOFF, timeout=120)
+
+
+def part_misc(a):
+    """first person, hip: the second barrel right after the first, raise, lower (holster), sprint"""
+    FIRE = ["+attackprimary", "wait 1", "wait 1", "-attackprimary"]
+    R.step(RELEASE + R.give(a.tik) + ["wait 4500", "set cg_fov 90", "set cg_drawviewmodel 2", "wait 300"], timeout=90)
+    i = [0]
+    R.step(FIRE + frames("ms_fire", 8, i, 1) + ["wait 4"] + FIRE + frames("ms_fire", 22, i, 1) + ["wait 5000"], timeout=120)
+    i = [0]
+    R.step(RELEASE + R.give("models/weapons/shotgun.tik") + ["wait 4500"] + R.give(a.tik) + frames("ms_raise", 24, i, 3) + ["wait 2500"], timeout=180)
+    i = [0]
+    R.step(["holster"] + frames("ms_lower", 20, i, 3) + ["wait 1500"], timeout=180)
+    R.step(RELEASE + R.give(a.tik) + ["wait 4500"], timeout=90)
+    i = [0]
+    R.step(["+forward", "+speed"] + frames("ms_sprint", 26, i, 3) + ["-speed", "-forward"] + frames("ms_sprint", 12, i, 3) + ["wait 1200"], timeout=180)
+
+
+def _respawn(tag):
+    """die, click to respawn, wait for the spawn kit; -> the log lines of interest since the kill"""
+    t0 = len(R.read_log())
+    R.step(["kill", "wait 3500"], timeout=60)
+    ok = False
+    for k in range(5):
+        t = len(R.read_log())
+        R.step(["popmenu 0", "wait 20", "+attackprimary", "wait 60", "-attackprimary", "wait 200"])
+        if R.wait_log(r"\^~\^~\^ KITGIVE", 15, t):
+            ok = True
+            break
+    time.sleep(5)
+    lg = R.read_log()[t0:]
+    hits = [l.strip()[-150:] for l in lg.splitlines() if re.search(r"KITGIVE|DBSPICK|coop_dbshotgun|Script Error|not on list", l) and "echo" not in l]
+    R.log("[wire] %s: respawned=%s  %s" % (tag, ok, hits[-6:]))
+    return ok, hits
+
+
+def part_wire(a):
+    """the WIRING (overlay built with --wire): the trench gun in slot 1, the page switch ON by the token its button
+    sends, spawn with it, die with it (death drop), respawn with the switch OFF and pick the dropped gun up with Use,
+    switch ON again and restart the map (the pick must come back by itself). One screenshot per step; log lines in
+    notes.json."""
+    out = {}
+    R.step(RELEASE + ["set cg_fov 90", "set cg_drawviewmodel 2", "exec ui/loadout/w44_s1.cfg", "wait 8000"], timeout=60)
+    R.step(["exec ui/loadout/dbs_on.cfg", "wait 8000"], timeout=60)
+    out['pick_on'] = [l.strip()[-120:] for l in R.read_log().splitlines() if "DBSPICK" in l and "echo" not in l][-2:]
+    out['spawn1'] = _respawn("spawn with the switch on")
+    R.step(["wait 1500"]); shot("wire_1_spawned_with_it")
+    R.step(R.face(0.0) + ["wait 2500"], timeout=60); shot("wire_2_at_the_spot")
+    out['spawn2'] = _respawn("died with it at the spot")                         # the death drop lies at the spot now
+    R.step(["exec ui/loadout/dbs_off.cfg", "wait 8000"], timeout=60)
+    out['spawn3'] = _respawn("switch off")                                        # kit = the trench gun again
+    R.step(["wait 1500"]); shot("wire_3_switch_off_trench_gun")
+    R.step(["+back", "wait 450", "-back", "wait 600", "set coop_isPitch 62", "wait 100"], timeout=60)
+    R.step(["+lookdown", "wait 900", "-lookdown", "wait 800"], timeout=60); shot("wire_4_death_drop_on_the_ground")
+    t = len(R.read_log())
+    R.step(["+use", "wait 900", "-use", "wait 2500"], timeout=60); shot("wire_5_after_use")
+    R.step(R.face(0.0) + ["wait 1500", "useweaponclass shotgun", "wait 2500"], timeout=60); shot("wire_6_picked_up_in_hand")
+    out['use'] = [l.strip()[-150:] for l in R.read_log()[t:].splitlines() if re.search(r"loot|LOOT|pick|coop_dbshotgun|Shotgun", l) and "echo" not in l][-8:]
+    # the pick across a map restart: switch on, restart the map the mod's own way, join, spawn
+    R.step(["exec ui/loadout/dbs_on.cfg", "wait 8000"], timeout=60)
+    t = len(R.read_log())
+    R.step(["set ui_dmmap %s" % R.MAP, "ui_startdmmap 2"], timeout=60)
+    m = R.wait_log(r"Could not load[^\r\n]*|Detected Coop for", 600, t)
+    out['restart'] = m.group(0) if m else None
+    time.sleep(8)
+    out['rejoined'] = R.join()
+    time.sleep(45)                 # the join replay of the archived picks is staggered over ~20 s
+    ok = False
+    for k in range(5):
+        tc = len(R.read_log())
+        R.step(["popmenu 0", "wait 20", "+attackprimary", "wait 60", "-attackprimary", "wait 200"])
+        if R.wait_log(r"\^~\^~\^ KITGIVE", 15, tc):
+            ok = True
+            break
+    time.sleep(30)                 # the replay now waits for the spawn, then needs a few seconds
+    tq = len(R.read_log())
+    R.step(["coop_loDbsA", "wait 300", "coop_loDbsShow", "wait 300"], timeout=30)
+    out['cvars_after_restart'] = [l.strip()[-110:] for l in R.read_log()[tq:].splitlines() if "coop_loDbs" in l and "isstep" not in l][-4:]
+    out['after_restart'] = (ok, [l.strip()[-150:] for l in R.read_log()[t:].splitlines() if re.search(r"KITGIVE|DBSPICK|DBSRESEND|Script Error", l) and "echo" not in l][-8:])
+    R.step(["set cg_fov 90", "set cg_drawviewmodel 2", "wait 1500"]); shot("wire_7_after_map_restart")
+    tq = len(R.read_log())
+    R.step(["vstr coop_loDbsA", "wait 9000"], timeout=60)                       # the replay by hand, to tell the cvar from the timing
+    out['manual_replay'] = [l.strip()[-60:] for l in R.read_log()[tq:].splitlines() if "DBSPICK" in l and "echo" not in l][-2:]
+    json.dump(out, open(os.path.join(R.RUNS, a.session, "wire.json"), "w"), indent=1, default=str)
+    R.log("[wire] %s" % json.dumps(out, default=str)[:1500])
+
+
+def part_loot(a):
+    """USE-TO-LOOT: another gun in hand, the double barrel lying 46 u ahead (the overlay's coop_dbsDrop), look at it
+    (the prompt with its picture), press Use, bring it up"""
+    R.step(RELEASE + R.give("models/weapons/colt45.tik") + ["wait 4500", "set cg_fov 90", "set cg_drawviewmodel 2",
+                                                            "set coop_dbsDropTik %s" % a.tik, "set coop_dbsDropDist 46", "set coop_dbsDropYaw 80",
+                                                            "set coop_dbsDrop 71", "wait 2500"], timeout=90)
+    R.step(R.give("none", 58.0) + ["wait 2000"], timeout=60); shot("loot_1_item_and_prompt")
+    t = len(R.read_log())
+    R.step(["+use", "wait 900", "-use", "wait 2500"], timeout=60); shot("loot_2_after_use")
+    R.step(R.give("none", 0.0) + ["wait 1500", "useweaponclass shotgun", "wait 3000"], timeout=60); shot("loot_3_in_hand")
+    hits = [l.strip()[-140:] for l in R.read_log()[t:].splitlines() if re.search(r"LOOT|loot|Shotgun|coop_dbshotgun|pick", l) and "echo" not in l and "screenshots" not in l][-8:]
+    R.log("[loot] %s" % hits)
+
+
+def part_menu(a):
+    """the armory page of the trench gun with the switch (overlay built with --wire): off, then on"""
+    R.step(RELEASE + ["exec ui/loadout/dbs_off.cfg", "wait 6000", "pushmenu coop_loadout", "wait 2500", "exec ui/loadout/p44.cfg", "wait 1500"], timeout=60)
+    shot("menu_1_trench_gun_page_switch_off")
+    R.step(["exec ui/loadout/dbs_on.cfg", "wait 6000"], timeout=60); shot("menu_2_trench_gun_page_switch_on")
+    R.step(["exec ui/loadout/p01.cfg", "wait 1500"], timeout=60); shot("menu_3_other_page_no_switch")
+    R.step(["popmenu 0", "wait 800"], timeout=60)
+
+
+PARTS = {'loot': part_loot, 'menu': part_menu, 'wire': part_wire, 'look': part_look, 'pump': part_pump, 'var': part_var, 'action': part_action, 'third': part_third, 'misc': part_misc}
 
 
 def run(a):
