@@ -8,6 +8,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PROP = os.path.dirname(HERE)
 OUT = os.path.join(PROP, 'DBS_SHIP.manifest.tsv')
 DIRS = ['assets', 'rows', os.path.join('wiring', 'gen', 'new')]
+TEXT = ('tik', 'txt', 'cfg', 'py', 'patch', 'shader', 'json', 'scr', 'tsv', 'md', 'urc')
 FILES = [os.path.join('wiring', 'patch_torso_dbs.py'), os.path.join('wiring', 'patch_cgame_loot_dbs.py'), os.path.join('wiring', 'stage_armory_dbs.py'),
          os.path.join('wiring', 'gen', 'armory_dbs.patch'), os.path.join('wiring', 'gen', 'generators.patch'), 'sights_override.json',
          os.path.join('tools', 'sightrow_dbs.py')]
@@ -23,6 +24,10 @@ def listing():
     out = []
     for rel in sorted(rows):
         data = open(os.path.join(PROP, rel.replace('/', os.sep)), 'rb').read()
+        if rel.rsplit('.', 1)[-1].lower() in TEXT:          # git's autocrlf may rewrite line ends on a checkout: not a change
+            data = data.replace(b'
+', b'
+')
         out.append('%s\t%d\t%s' % (rel, len(data), hashlib.sha256(data).hexdigest()))
     return out
 
