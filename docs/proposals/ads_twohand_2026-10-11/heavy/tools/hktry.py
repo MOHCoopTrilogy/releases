@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw
 
 ap = argparse.ArgumentParser()
 ap.add_argument('gun'); ap.add_argument('which'); ap.add_argument('frames'); ap.add_argument('out')
-ap.add_argument('--zoom'); ap.add_argument('--w', type=int, default=420); ap.add_argument('--side', action='store_true')
+ap.add_argument('--zoom'); ap.add_argument('--w', type=int, default=420); ap.add_argument('--side', action='store_true'); ap.add_argument('--box', action='store_true')
 ap.add_argument('variants', nargs='+')
 a = ap.parse_args()
 import heavybake as HB
@@ -37,12 +37,24 @@ for k, v in enumerate(a.variants):
         cmd += ['--zoom', a.zoom]
     if a.side:
         cmd += ['--side']
+    if not os.path.isfile(hv.staged('models/human/animation/' + g['aim'])):
+        cmd += ['--aim', g['aim']]                       # a retail aim clip (no staged aim pose for this gun)
     if g.get('prop'):
         cmd += ['--prop', g['prop']]
+    if a.box:                                            # the offline centre-box figure of the variant (every frame)
+        aimp = hv.staged('models/human/animation/' + g['aim'])
+        r = subprocess.run([sys.executable, os.path.join(hv.SHARED, 'offbox.py'), g['sight'],
+                            aimp if os.path.isfile(aimp) else 'models/human/animation/' + g['aim'], '%s|%s' % (clip, ganim), '--w', '320'],
+                           capture_output=True, text=True)
+        print('BOX', v, '|', ' '.join(l.split('frames', 1)[1].strip() for l in r.stdout.splitlines() if ' frames ' in l))
+        if a.frames == 'none':
+            continue
     subprocess.check_call(cmd, stdout=subprocess.DEVNULL)
     im = Image.open(out).convert('RGB')
     ImageDraw.Draw(im).text((60, 4), v[:110], fill=(255, 255, 0))
     rows.append(im)
+if not rows:
+    sys.exit(0)
 W = max(r.size[0] for r in rows)
 S = Image.new('RGB', (W, sum(r.size[1] for r in rows)), 'white')
 y = 0

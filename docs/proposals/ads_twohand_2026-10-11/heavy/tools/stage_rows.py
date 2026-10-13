@@ -26,6 +26,12 @@ EDITS = {
         # 2b: braced variants (cgame ads-heavy-next picks <row>_adsb when the brace envelope is up): half the sag
         ('bar_reload_adsb', 'viewmodel/mg/bar_reload_adsb.skc', 0.1, 'aimed + braced, rounds left'),
         ('bar_reload_empty_adsb', 'viewmodel/mg/bar_reload_empty_adsb.skc', 0.1, 'aimed + braced, empty'),
+        # step 3: StG 44 (heavybake.py mp44). mp44_reload_ads keeps its path: the staged clip REPLACES the shipped one
+        ('mp44_reload_ads', 'viewmodel/mp44/mp44_reload_ads.skc', None, 'aimed, rounds left: magazine only (closed bolt, one in the chamber)'),
+        ('mp44_reload_empty', 'viewmodel/mp44/mp44_reload.skc', 0.3, 'retail: hip reload of an empty gun (the retail clip; the row lets cgame find _empty_ads)'),
+        ('mp44_reload_empty_ads', 'viewmodel/mp44/mp44_reload_empty_ads.skc', 0.1, 'aimed, empty: magazine, then the left hand cocks the handle and lets it fly'),
+        ('mp44_reload_adsb', 'viewmodel/mp44/mp44_reload_adsb.skc', 0.1, 'aimed + braced, rounds left'),
+        ('mp44_reload_empty_adsb', 'viewmodel/mp44/mp44_reload_empty_adsb.skc', 0.1, 'aimed + braced, empty'),
     ],
     'shotgun': [],
 }

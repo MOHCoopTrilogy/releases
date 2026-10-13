@@ -265,6 +265,134 @@
   },
   "qa": "ha2: aim pose with the support hand in the hip relation (handpose.py); 8 stances incl. braced looked at, sight line 0.00 deg; before / after pair evidence/breda_aimhand_before_after.jpg"
  },
+ "models/weapons/mp44.tik": {
+  "action": "left hand: magazine stripped down the well, shown bottom-left out and in, seated, palm slap; EMPTY: the same hand onto the left-side cocking handle, pulled back 6.2 u and LET GO (no hold-open: the spring runs it home), cock bone keyed in the same frames (gun clip reload_ads_empty) - shown; rounds left (closed bolt, one in the chamber): no cocking, gun clip reload_ads_loaded with the handle still and the sound cut before it",
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "hf1"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "hf1"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "hf1"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "hf1"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "hf1"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "hf1"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "hf1"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "hf1"
+   }
+  },
+  "lowered": true,
+  "note": "lowered: the gun leaves the sights on purpose (sag 2.9 deg + cant, 5.2 deg; braced 3.9) and returns to 0.01 deg. Replaces the shipped mp44_reload_ads (4.5 deg drift, cocking hand out of view). Box figures with cg_adsSway 0 / cg_weaponBreath 0, view aligned (boxeng.py --align 6): loaded max 0.8 %, empty max 1.96 % after the last shot's kick and smoke (up to 29 capture frames, braced at the wall).",
+  "qa": "he1-he7: aimed reload loaded + empty run AND looked at in stand, crouch, prone, lean L, lean R, braced (final clips he6 empty / he7 loaded); GIFs played back (evidence/mp44_reload_aimed_loaded.gif he7, _empty.gif he6); handle crops evidence/mp44_handle_engine_crops_he6.jpg; weak: the hand on the handle is the back of a pale hand a third of the screen wide for 0.7 s, the handle is seen only before the hand closes; empty left lean 1.96 % (on the bar); strapped variant staged, not run; hip reload untouched (retail cocks even with rounds left); break-offs not run",
+  "reload": {
+   "braced": {
+    "dev": 3.86,
+    "edge": 3.86,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "he6"
+   },
+   "crouch": {
+    "dev": 5.0,
+    "edge": 5.0,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "he6"
+   },
+   "prone": {
+    "dev": 5.01,
+    "edge": 5.01,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "he6"
+   },
+   "stand": {
+    "dev": 5.02,
+    "edge": 5.02,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "he6"
+   },
+   "standL": {
+    "dev": 5.01,
+    "edge": 5.01,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "he6"
+   },
+   "standR": {
+    "dev": 5.01,
+    "edge": 5.01,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "he6"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "he6 (empty) he7 (loaded)",
+   "target": "yes"
+  }
+ },
  "models/weapons/uk_w_vickers.tik": {
   "aim": {
    "braced": {

@@ -16,5 +16,23 @@
    "peak_deg": 2.98,
    "settle_s": 0.4
   }
+ },
+ "mp44": {
+  "empty": {
+   "peak_deg": 4.16,
+   "settle_s": 0.3
+  },
+  "empty_braced": {
+   "peak_deg": 2.34,
+   "settle_s": 0.3
+  },
+  "loaded": {
+   "peak_deg": 4.16,
+   "settle_s": 0.37
+  },
+  "loaded_braced": {
+   "peak_deg": 2.34,
+   "settle_s": 0.33
+  }
  }
 }

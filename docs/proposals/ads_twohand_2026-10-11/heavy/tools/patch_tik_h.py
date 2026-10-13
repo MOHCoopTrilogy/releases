@@ -22,6 +22,15 @@ SETS = {
                 wav='sound/weapons/foley/BARReload1.wav', wav_out='sound/weapons/foley/coop_bar_reload_loaded.wav',
                 cut=(58, 64),                       # clip frames: fade the retail sound out over these (the handle is f67-73)
                 parms='soundparms 0.9 0.2 1.0 0.0 160 1000 auto loaded always maps "dm obj lib m e t"'),
+    # StG 44 (mesh path models/weapons/mp44: mp44.tik, its finishes, the scoped / skin variants on the same mesh).
+    # The RETAIL gun clip cocks the handle in every reload; aimed, an EMPTY gun shows our re-keyed pull (the hand's
+    # frames), a gun with rounds left a clip with the handle left alone and the sound cut before the cocking
+    'mp44': dict(mesh_path='models/weapons/mp44', empty_clip='coop_reload_ads_empty.skc', loaded_clip='coop_reload_ads_loaded.skc',
+                 snd='mp44_snd_reload', snd_loaded='mp44_snd_reload_loaded',
+                 more_paths=('models/weapons/coop_mp44strap',),      # StG 44 (Strapped): the same mesh with a sling
+                 wav='sound/weapons/foley/MP44Reload1.wav', wav_out='sound/weapons/foley/coop_mp44_reload_loaded.wav',
+                 cut=(56, 62),
+                 parms='soundparms 0.9 0.2 1.0 0.0 160 1000 item loaded always maps "dm obj lib m e t"'),
 }
 
 
@@ -50,8 +59,18 @@ def patch(name):
     for p in sorted(glob.glob(os.path.join(MOD, 'models', 'weapons', '*.tik'))):
         t = open(p, 'rb').read().decode('latin-1')
         m = re.search(r'(?mi)^\s*path\s+(\S+)', t)
-        if not m or m.group(1).lower().rstrip('/') != s['mesh_path'].lower():
+        mp = m.group(1).lower().rstrip('/') if m else ''
+        if mp != s['mesh_path'].lower() and mp not in [x.lower() for x in s.get('more_paths', ())]:
             continue
+        if mp != s['mesh_path'].lower():
+            # a twin mesh on its own path (same handle geometry, byte-identical retail reload clip - checked with
+            # gunmove.py): its tik reads the gun clips from ITS path, so they are staged there too
+            for k in ('empty_clip', 'loaded_clip'):
+                src = hv.staged(s['mesh_path'] + '/' + s[k])
+                if os.path.isfile(src):
+                    dstc = hv.staged(mp + '/' + s[k])
+                    os.makedirs(os.path.dirname(dstc), exist_ok=True)
+                    open(dstc, 'wb').write(open(src, 'rb').read())
         nl = '\r\n' if '\r\n' in t else '\n'
         assert TAG0 not in t
         r = re.search(r'(?m)^\treload\s+\S+', t)

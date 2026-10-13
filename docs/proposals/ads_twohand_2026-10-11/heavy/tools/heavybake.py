@@ -14,7 +14,7 @@
 Frames follow the retail sound (BARReload1.wav: magazine out f12-16, in f40-44, click f52, handle back f67-69,
 forward f71-73) and the server's prop window (bar_clip on tag_weapon_left f15-50, the gun's own Clip hidden f18-46).
 
-    cd heavy/assets; python ../tools/heavybake.py bar [--only loaded|empty] [--braced] [--set k=v ...]
+    cd heavy/assets; python ../tools/heavybake.py bar|mp44 [--only loaded|empty] [--braced] [--set k=v ...]
 """
 import sys, os, json, hashlib, argparse
 import numpy as np
@@ -31,6 +31,9 @@ gunphys.CLASSES.update({
     #  BAR M1918A2 8.8 kg empty, 20-round magazine 0.72 kg: a slow hold, a deep one-handed sag, a long settle
     'bar': dict(m=9.0, f2=2.0, f1=1.25, z=0.62, sag=(0.15, 0.0, 4.6, 0.0, 0.0), magw=0.08,
                 tr=(0.030, 0.10, 0.14, 0.020, 0.010), tr2=0.25),
+    #  StG 44 4.6 kg empty, 30-round magazine 0.9 kg: between the rifles and the light machine guns
+    'stg': dict(m=5.4, f2=2.5, f1=1.7, z=0.56, sag=(0.10, 0.0, 3.4, 0.0, 0.0), magw=0.16,
+                tr=(0.030, 0.14, 0.17, 0.022, 0.010), tr2=0.25),
 })
 gunphys.ACTIONS.update({
     # velocity change for mass 1 in (drop, roll, pitch, side, back) and the pulse length in frames; + roll = top right,
@@ -39,6 +42,9 @@ gunphys.ACTIONS.update({
     'lg_mag_free':    ((-30.0, 0.0, -110.0, 0.0, 0.0), 3.0),  # it lets go: 0.7 kg lighter, the front springs up
     'lg_mag_in':      ((-14.0, 0.0, -60.0, 0.0, 3.0), 4.0),   # pushed up the well, ahead of the firing hand: the front lifts
     'lg_mag_slap':    ((-34.0, -25.0, -150.0, 0.0, 8.0), 1.5),  # the palm strikes the floor plate
+    # ... of a gun half the BAR's weight: the same blow threw the StG 44 1.7 x as far and its front sight touched the
+    # box in the left lean (run he2, 2.02 % for two frames) - a lighter magazine is seated with a lighter palm
+    'lg_mag_slap_light': ((-22.0, -16.0, -95.0, 0.0, 5.0), 1.5),
     'lg_handle_grab': ((4.0, -40.0, 10.0, 3.0, 0.0), 2.0),    # the hand closes on the left-side handle
     'lg_handle_back': ((8.0, -110.0, 30.0, 14.0, 150.0), 3.5),  # hauled back against the recoil spring: into the shoulder, rolls to the hand
     'lg_handle_stop': ((0.0, -40.0, -55.0, 0.0, 70.0), 1.5),   # the slide hits the rear stop
@@ -111,7 +117,7 @@ def spec(g, empty, o):
     else:
         leave, on, co = t['l_leave'], t['l_on'], t['l_cant_out']
     ev = [(t['out'][0] - 2, 'lg_mag_tug'), (t['out'][0] + 1, 'lg_mag_free'), (t['well'] + 1, 'lg_mag_in'),
-          (t['slap'][1] - 1, 'lg_mag_slap'), (on[1] - 4, 'lg_hand_on')]
+          (t['slap'][1] - 1, g.get('slap_action', 'lg_mag_slap')), (on[1] - 4, 'lg_hand_on')]
     if empty:
         ev += [(t['pull'][0] - 2, 'lg_handle_grab'), (t['pull'][0], 'lg_handle_back'), (t['pull'][1] - 1, 'lg_handle_stop'),
                (t['fwd'][1] - 1, 'lg_handle_fwd')]
@@ -172,11 +178,16 @@ def spec(g, empty, o):
                              roll=hroll, fing=MR), **kw)
         lp[t['reach'][0]] = Hd(0.0, (-1.0, 2.5, -3.5), fing=('mix', MR, 0.5))                 # round from below-left
         lp[t['reach'][1]] = Hd(0.0, (-0.3, 0.5, -0.4))
-        for f in range(t['pull'][0], t['fwd'][1] + 1):                # ON the knob: the hand and the bolt bone share bolt_u
+        rel = bool(g.get('release'))
+        # ON the knob: the hand and the bolt bone share bolt_u. A handle that is RELEASED (StG 44: no hold-open, the
+        # spring runs it home) leaves the hand at the rear - the hand does not ride it forward.
+        for f in range(t['pull'][0], (t['fwd'][0] if rel else t['fwd'][1]) + 1):
             lp[f] = Hd(g['travel'] * bolt_u(g, f))
-        lp[leave] = Hd(0.0, (0.5, 1.5, -1.5), fing=('mix', MR, 0.5))
+        if rel:
+            lp[t['fwd'][1] + 1] = Hd(g['travel'], (0.2, 0.9, -0.5), fing=('mix', MR, 0.5))     # opens, the handle is gone
+        lp[leave] = Hd(g['travel'] * (0.6 if rel else 0.0), (0.5, 1.5, -1.5), fing=('mix', MR, 0.5))
         # the fingers close round the knob while the hand is on it (run hb4: a flat hand lay against the receiver)
-        c0, c1, c2, c3 = t['reach'][1] - 3, t['pull'][0] - 1, t['fwd'][1], leave
+        c0, c1, c2, c3 = t['reach'][1] - 3, t['pull'][0] - 1, (t['fwd'][0] if rel else t['fwd'][1]), leave
         cs = float(o.get('hk_curl', 1.0))
         for fg in (1, 2, 3, 4):
             for seg, dg in (('', 26.0), ('1', 48.0), ('2', 30.0)):
@@ -186,7 +197,12 @@ def spec(g, empty, o):
     for f in range(on[1], n + 1):
         lp[f] = AIM
     lp[on[1] - 3] = dict(aim=1, cam_add=(-0.5, 0.5, -1.2), fing=('mix', MR, 0.3))            # comes up under the forearm
-    kw = dict(gun=g['sight'], charge=g['aim'], fixed_right=True, weight=dict(on=False), handover=False,
+    # handover / prop_hold (hold_bake): a prop the server attaches BEFORE the hand has it (StG 44: mp44_clip on the
+    # off-hand tag from frame 0) stays in the gun's own magazine until the hand is on it - run-less offline find: the
+    # magazine rode the hand off the forend through the centre box (5.6 % at f5-8)
+    kw = dict(gun=g['sight'], charge=g['aim'], fixed_right=True, weight=dict(on=False), handover=bool(g.get('handover', False)),
+              **({'prop_hold': g['prop_hold']} if g.get('prop_hold') else {}))
+    kw.update(
               dip=ph['dip'], dip_pivot=g['butt'][0], dip_after=True, gun_abs=gun_abs, left_path=lp,
               tag_map={0: MR, n: MR}, elbow_vec={'L': (0.0, 0.4, -1.0)}, elbow_down={'L': [(0, 0.0), (t['grab'], 2.5), (on[0], 2.5), (n, 0.0)]})
     if fa:
@@ -195,14 +211,23 @@ def spec(g, empty, o):
 
 
 def gun_clip(g, root):
-    """the gun's own reload with the bolt bone hauled back and run forward in the hand's frames"""
+    """the gun's own reload with the bolt bone hauled back and run forward in the hand's frames (EMPTY), and - where
+    the retail gun clip works the handle in EVERY reload (StG 44) - a second one with the handle left alone (rounds left)"""
     raw = R.vfs.read(g['gun_path'] + '/' + g['gun_reload'])
     a = R.skc_io.read(raw)
     n = a.numFrames
-    keyed = {'bolt pos': [[0.0, 11.06 * bolt_u(g, f), 0.0, 0.0] for f in range(n)]}
-    dst = os.path.join(root, (g['gun_path'] + '/' + g['gun_out']).replace('/', os.sep))
-    gunskc.write(dst, raw, n, keyed)
-    print('gun clip ->', g['gun_path'] + '/' + g['gun_out'], n, 'frames', hashlib.md5(open(dst, 'rb').read()).hexdigest()[:8])
+    b = g.get('bolt') or dict(chan='bolt pos', rest=(0.0, 0.0, 0.0, 0.0), axis=1, units=11.06)
+
+    def key(u):
+        v = list(b['rest']); v[b['axis']] += b['units'] * u
+        return v
+    for out, fn in ((g['gun_out'], lambda f: bolt_u(g, f)), (g.get('gun_out_loaded'), lambda f: 0.0)):
+        if not out:
+            continue
+        dst = os.path.join(root, (g['gun_path'] + '/' + out).replace('/', os.sep))
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        gunskc.write(dst, raw, n, {b['chan']: [key(fn(f)) for f in range(n)]})
+        print('gun clip ->', g['gun_path'] + '/' + out, n, 'frames', hashlib.md5(open(dst, 'rb').read()).hexdigest()[:8])
 
 
 def bake(name, root, only=None, o=None, braced=False):
@@ -236,7 +261,40 @@ def bake(name, root, only=None, o=None, braced=False):
     return rep
 
 
-GUNS = {'bar': BAR}
+# ---------------------------------------------------------------------------------------------------------- StG 44
+# heavylib.py mp44: at the cheek weld the magazine hangs 33-50 deg below the sight line (frame edge 26) and the
+# left-side cocking handle, 15 deg below at rest, ends its 6.2 u pull 37 deg below, 4 u from the eye. The same answer
+# as the BAR: sag about the butt + the canted WORK pose, the magazine shown bottom-left, the handle worked by the left
+# hand. Retail technique (clipinfo.py): left hand strips the magazine (gun's own hidden f13-42, prop on the off-hand
+# tag f0-42), pouch, seats, then the same hand cocks (retail gun clip: handle back in ONE frame f66-67, home f71).
+# A closed-bolt gun with rounds left has one in the chamber: NO cocking (gun clip coop_reload_ads_loaded, handle still).
+MP44 = dict(
+    row='mp44_reload', sight='stg44', cls='stg', aim='viewmodel/mp44_idle_stand.skc', vdir='viewmodel/mp44',
+    gun_path='models/weapons/mp44', gun_reload='mp44_reload.skc', gun_out='coop_reload_ads_empty.skc',
+    gun_out_loaded='coop_reload_ads_loaded.skc', gun_anim_loaded='reload_ads_loaded',
+    bolt=dict(chan='Box02 pos', rest=(7.6, -7.4, -0.1, 0.0), axis=1, units=12.0),
+    butt=(-11.8, -0.9, -5.1),
+    # 1.2 u down (the BAR: 0.7): after a 30-round burst the gun rides a little higher through the reload than a
+    # settled one - the same clip read 0.4 % loaded and 2.0-2.5 % emptied at the cant-in and at the slap (run he5)
+    cant=dict(roll=32.0, pitch=0.0, yaw=-3.0, move=(3.0, 0.4, -1.2)),
+    braced={'sup': 0.3, 'strength': 0.8, 'cant.move': [3.0, 0.4, -1.9]},
+    mag_rel=12, mag_out=5.0,
+    handle=(4.0, -2.2, -4.8), travel=6.24, release=True, slap_action='lg_mag_slap_light',
+    hk_off=(0.3, 3.9, -0.6), hk_roll=180.0,
+    prop='models/ammo/mp44_clip.tik:0:42', handover=True, prop_hold={'tag_weapon_left': 12},
+    # the gun sags first and cants after (cant 7-15): canted while still high it left the aim's own silhouette
+    # through the box (5.6 % at f5-8 offline with cant 3-12)
+    t=dict(off=(2, 6), cant_in=(7, 15), grab=11, out=(13, 16), show_out=(19, 22), pouch=(25, 28), show_in=(31, 34),
+           well=38, seat=41, hold=44, slap=(46, 48),
+           # empty: the handle (retail gun clip / sound: back f66-67, home f71)
+           reach=(52, 60), pull=(63, 67), fwd=(69, 71), leave=73, on=(74, 78), cant_out=(68, 75),
+           # the return mirrors the entry: the cant comes off while the gun is still low (52-60), THEN it rises
+           # (support back 56-64) - risen while canted it read 1.7-2.0 % in every stance (run he1), 0.7 % this way
+           l_leave=50, l_on=(56, 64), l_cant_out=(52, 60)),
+    show=(12.0, 7.0, -6.4),            # the long magazine a little higher than the BAR's: in run he1 only its top showed
+)
+
+GUNS = {'bar': BAR, 'mp44': MP44}
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()

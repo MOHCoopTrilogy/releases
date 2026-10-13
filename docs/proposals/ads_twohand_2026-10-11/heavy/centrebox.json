@@ -1,5 +1,5 @@
 {
- "models/weapons/bar.tik": {
+ "bar": {
   "align": 6,
   "dev": 6.17,
   "note": "cg_adsSway 0, cg_weaponBreath 0; vs the settled aim after the reload",
@@ -45,7 +45,7 @@
   "xfr": 0.0,
   "xmax": 1.29
  },
- "models/weapons/bar.tik#empty": {
+ "bar_empty": {
   "align": 6,
   "dev": 6.07,
   "note": "cg_adsSway 0, cg_weaponBreath 0; vs the settled aim after the reload; first 20 capture frames (last shot) skipped",
@@ -90,5 +90,97 @@
   },
   "xfr": 0.0,
   "xmax": 0.8
+ },
+ "mp44": {
+  "align": 6,
+  "dev": 5.21,
+  "note": "cg_adsSway 0, cg_weaponBreath 0; vs the settled aim after the reload",
+  "run": "he7",
+  "stances": {
+   "braced": {
+    "end": 0.01,
+    "run": "he7",
+    "xfr": 0.0,
+    "xmax": 0.26
+   },
+   "crouch": {
+    "end": 0.01,
+    "run": "he7",
+    "xfr": 0.0,
+    "xmax": 0.81
+   },
+   "prone": {
+    "end": 0.01,
+    "run": "he7",
+    "xfr": 0.0,
+    "xmax": 0.71
+   },
+   "stand": {
+    "end": 0.01,
+    "run": "he7",
+    "xfr": 0.0,
+    "xmax": 0.22
+   },
+   "standL": {
+    "end": 0.01,
+    "run": "he7",
+    "xfr": 0.0,
+    "xmax": 0.39
+   },
+   "standR": {
+    "end": 0.01,
+    "run": "he7",
+    "xfr": 0.0,
+    "xmax": 0.18
+   }
+  },
+  "xfr": 0.0,
+  "xmax": 0.81
+ },
+ "mp44_empty": {
+  "align": 6,
+  "dev": 5.02,
+  "note": "cg_adsSway 0, cg_weaponBreath 0; vs the settled aim after the reload; first 20 capture frames (last shot) skipped",
+  "run": "he6",
+  "stances": {
+   "braced": {
+    "end": 0.0,
+    "run": "he6",
+    "xfr": 0.0,
+    "xmax": 1.6
+   },
+   "crouch": {
+    "end": 0.0,
+    "run": "he6",
+    "xfr": 0.0,
+    "xmax": 0.95
+   },
+   "prone": {
+    "end": 0.0,
+    "run": "he6",
+    "xfr": 0.0,
+    "xmax": 1.62
+   },
+   "stand": {
+    "end": 0.0,
+    "run": "he6",
+    "xfr": 0.0,
+    "xmax": 0.93
+   },
+   "standL": {
+    "end": 0.0,
+    "run": "he6",
+    "xfr": 0.0,
+    "xmax": 1.96
+   },
+   "standR": {
+    "end": 0.0,
+    "run": "he6",
+    "xfr": 0.0,
+    "xmax": 1.68
+   }
+  },
+  "xfr": 0.0,
+  "xmax": 1.96
  }
 }

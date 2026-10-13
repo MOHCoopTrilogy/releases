@@ -99,6 +99,12 @@ for tag in marks:
     # the WORST stance of the session. An emptied gun: the first 20 capture frames are the last shot's kick and smoke
     # (the shared centrebox.py rule) and are not the reload.
     k0 = 20 if '--empty' in sys.argv else 0
+    if k0:
+        # 30 rounds of muzzle smoke hang longer than 20 frames (StG 44 braced at the wall: 8 % decaying to 2 % by f32,
+        # run he2): the tail of the LAST SHOT ends where the cover first drops under the bar, 40 frames at most
+        # (under for five frames running: a puff drifting back over the box at f20-21 read 2.02 % in the left lean)
+        under = [i for i in range(len(ex) - 5) if max(ex[i:i + 5]) <= 0.02]
+        k0 = min(40, max(k0, under[0] if under else 0))
     exr = ex[k0:]
     CBX.append(dict(st=tag.split('__')[3], xmax=round(100 * max(exr), 2), xfr=round(100.0 * sum(1 for e in exr if e > 0.02) / len(exr), 1), dev=round(dev, 2), end=round(tail, 2)))
 if '--json' in sys.argv:
@@ -108,10 +114,10 @@ if '--json' in sys.argv:
     json.dump(d, open(p, 'w', newline='\n'), indent=1, sort_keys=True)
 if '--cbx' in sys.argv and CBX:
     import cov_h
-    tik = cov_h.KEY.get(guns[0] if guns else 'bar')
     p = os.path.join(hv.LANE, 'centrebox.json')
     d = json.load(open(p)) if os.path.isfile(p) else {}
-    key = tik + ('#empty' if '--empty' in sys.argv else '')
+    # the shared coverage.py reads GUN keys (the harness name, `<gun>_empty` for the emptied gun) and maps them to tiks
+    key = (guns[0] if guns else 'bar') + ('_empty' if '--empty' in sys.argv else '')
     old = d.get(key, {}) if '--add' in sys.argv else {}
     per = dict(old.get('stances', {}))
     for c in CBX:
