@@ -1,0 +1,66 @@
+['P3 purge removed=18']
+germans within 3000 : ['P3 GERN 0']
+PSQ t=74.350 mg nosite aim=advance ground=34 passed=0 tried=0 bags=1 refused: tall=35 not_level=7 nofire=13 squad_in_front=1 bag_ground=4 lane=4 secs=0.400
+PSQ t=84.750 mg nosite aim=advance ground=35 passed=0 tried=0 bags=1 refused: tall=38 not_level=8 nofire=10 arc=1 squad_in_front=1 bag_ground=8 lane=2 secs=0.400
+PSQ t=95.150 mg nosite aim=advance ground=34 passed=0 tried=0 bags=1 refused: tall=35 not_level=7 nofire=12 arc=1 squad_in_front=1 bag_ground=4 lane=4 secs=0.400
+PSQ t=105.350 mg nosite aim=advance ground=35 passed=0 tried=0 bags=1 refused: tall=18 not_level=6 nofire=4 squad_in_front=1 bag_ground=2 lane=2 secs=0.200
+PSQ t=115.550 mg nosite aim=advance ground=34 passed=0 tried=0 bags=1 refused: tall=18 not_level=5 nofire=5 squad_in_front=1 bag_ground=2 lane=2 secs=0.200
+PSQ t=125.750 mg nosite aim=advance ground=33 passed=0 tried=0 bags=1 refused: tall=16 not_level=4 nofire=6 squad_in_front=1 bag_ground=2 lane=2 secs=0.200
+PSQ t=135.950 mg nosite aim=advance ground=34 passed=0 tried=0 bags=1 refused: tall=17 not_level=6 nofire=5 squad_in_front=1 bag_ground=2 lane=2 secs=0.200
+PSQ t=146.150 mg nosite aim=advance ground=35 passed=0 tried=0 bags=1 refused: tall=18 not_level=6 nofire=4 squad_in_front=1 bag_ground=2 lane=2 secs=0.200
+PSQ t=156.350 mg nosite aim=advance ground=34 passed=0 tried=0 bags=1 refused: tall=19 not_level=4 nofire=5 squad_in_front=1 bag_ground=2 lane=2 secs=0.200
+PSQ t=166.550 mg nosite aim=advance ground=34 passed=0 tried=0 bags=1 refused: tall=17 not_level=6 nofire=5 squad_in_front=1 bag_ground=2 lane=2 secs=0.200
+PSQ t=176.750 mg nosite aim=advance ground=35 passed=0 tried=0 bags=1 refused: tall=17 not_level=7 nofire=4 squad_in_front=1 bag_ground=3 lane=1 secs=0.200
+PSQ t=186.950 mg nosite aim=advance ground=34 passed=0 tried=0 bags=1 refused: tall=18 not_level=5 nofire=5 squad_in_front=1 bag_ground=2 lane=2 secs=0.200
+    P3 SQ k=1 alive=1 hp=550.000 at=( 3045.710 3939.904 -239.875 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=2 alive=1 hp=550.000 at=( 3089.564 3986.091 -239.875 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=3 alive=1 hp=550.000 at=( 3094.273 4054.942 -39.875 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=4 alive=1 hp=550.000 at=( 3089.849 3933.925 -243.985 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=5 alive=1 hp=1000.000 at=( 3174.696 3784.384 -255.305 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 LAND k=5 at=( 3188.398 3761.942 -256.341 ) dref=240 dz=-224 sky=1500 t=66.825
+    P3 LAND k=2 at=( 2919.325 3831.397 -250.560 ) dref=233 dz=-218 sky=1500 t=67.075
+    P3 LAND k=3 at=( 3028.780 3886.100 -243.678 ) dref=118 dz=-211 sky=1500 t=67.075
+    P3 LAND k=1 at=( 3168.631 3890.573 -244.380 ) dref=118 dz=-212 sky=1500 t=67.325
+    P3 LAND k=4 at=( 3047.410 3768.942 -254.465 ) dref=220 dz=-222 sky=1500 t=67.325
+    P3 TELE k=3 from=( 3004.000 3932.000 -243.553 ) to=( 3096.000 4054.000 -39.875 ) t=72.075
+    P3 METER t=5 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=2 ger0=2
+    P3 METER t=20 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=2 ger0=2
+    P3 METER t=34 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=1 ger=2 ger0=2
+    P3 METER t=49 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=1 ger=2 ger0=2
+    P3 METER t=65 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=1 ger=2 ger0=2
+    P3 METER t=80 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=1 ger=2 ger0=2
+    P3 METER t=95 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=1 ger=2 ger0=2
+    P3 METER t=110 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=1 ger=2 ger0=2
+    P3 METER t=125 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=1 ger=2 ger0=2
+    P3 METER t=140 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=1 ger=2 ger0=2
+    P3 METER t=145 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=1 ger=2 ger0=2
+script errors: 0 []
+    PSQ t=48.225 lz plan n=5 tests=5 secs=4.225 ref=( 3096.000 3984.000 -39.875 )
+    PSQ t=50.200 lz steer k=1 to=( 3170.538 3889.957 -244.390 ) door=( 3384.717 4745.538 2094.302 )
+    PSQ t=50.200 lz steer k=3 to=( 3029.593 3884.050 -243.682 ) door=( 3164.596 5202.379 2121.591 )
+    PSQ t=50.600 lz steer k=5 to=( 3189.004 3762.753 -257.075 ) door=( 3775.437 4710.943 2121.591 )
+    PSQ t=51.000 lz steer k=2 to=( 2914.321 3827.179 -251.427 ) door=( 3214.777 4324.920 2094.302 )
+    PSQ t=51.000 lz steer k=4 to=( 3041.196 3750.341 -255.882 ) door=( 2994.655 4781.761 2121.591 )
+    PSQ t=66.700 land k=5 at=( 3188.398 3761.942 -256.341 ) lzoff=1.250
+    PSQ t=66.900 land k=2 at=( 2914.122 3827.000 -250.673 ) lzoff=0.800
+    PSQ t=66.950 land k=3 at=( 3029.588 3884.603 -243.607 ) lzoff=0.558
+    PSQ t=67.000 tac contact thr=( 3042.875 3153.931 -71.875 )
+    PSQ t=67.000 tac bound k=2 back=1 cover=1 base=0 dist=313.606
+    PSQ t=67.100 land k=4 at=( 3041.448 3749.448 -255.161 ) lzoff=1.175
+    PSQ t=67.200 land k=1 at=( 3170.519 3889.822 -244.315 ) lzoff=0.156
+    PSQ t=69.000 tac bound k=2 back=1 cover=1 base=0 dist=310.412
+    PSQ t=70.000 tac bound k=2 back=1 cover=1 base=0 dist=310.412
+    PSQ t=71.250 walkout k=2 goal=1 left=40.307 lost=0
+    PSQ t=74.350 mg nosite aim=advance ground=34 passed=0 tried=0 bags=1 refused: tall=35 not_level=7 nofire=13 squad_in_front=1 bag_ground=4 lane=4 secs=0.400
+    PSQ t=84.750 mg nosite aim=advance ground=35 passed=0 tried=0 bags=1 refused: tall=38 not_level=8 nofire=10 arc=1 squad_in_front=1 bag_ground=8 lane=2 secs=0.400
+    PSQ t=95.150 mg nosite aim=advance ground=34 passed=0 tried=0 bags=1 refused: tall=35 not_level=7 nofire=12 arc=1 squad_in_front=1 bag_ground=4 lane=4 secs=0.400
+    PSQ t=105.350 mg nosite aim=advance ground=35 passed=0 tried=0 bags=1 refused: tall=18 not_level=6 nofire=4 squad_in_front=1 bag_ground=2 lane=2 secs=0.200
+    PSQ t=115.550 mg nosite aim=advance ground=34 passed=0 tried=0 bags=1 refused: tall=18 not_level=5 nofire=5 squad_in_front=1 bag_ground=2 lane=2 secs=0.200
+    PSQ t=125.750 mg nosite aim=advance ground=33 passed=0 tried=0 bags=1 refused: tall=16 not_level=4 nofire=6 squad_in_front=1 bag_ground=2 lane=2 secs=0.200
+    PSQ t=135.950 mg nosite aim=advance ground=34 passed=0 tried=0 bags=1 refused: tall=17 not_level=6 nofire=5 squad_in_front=1 bag_ground=2 lane=2 secs=0.200
+    PSQ t=146.150 mg nosite aim=advance ground=35 passed=0 tried=0 bags=1 refused: tall=18 not_level=6 nofire=4 squad_in_front=1 bag_ground=2 lane=2 secs=0.200
+    PSQ t=156.350 mg nosite aim=advance ground=34 passed=0 tried=0 bags=1 refused: tall=19 not_level=4 nofire=5 squad_in_front=1 bag_ground=2 lane=2 secs=0.200
+    PSQ t=166.550 mg nosite aim=advance ground=34 passed=0 tried=0 bags=1 refused: tall=17 not_level=6 nofire=5 squad_in_front=1 bag_ground=2 lane=2 secs=0.200
+    PSQ t=176.750 mg nosite aim=advance ground=35 passed=0 tried=0 bags=1 refused: tall=17 not_level=7 nofire=4 squad_in_front=1 bag_ground=3 lane=1 secs=0.200
+    PSQ t=186.950 mg nosite aim=advance ground=34 passed=0 tried=0 bags=1 refused: tall=18 not_level=5 nofire=5 squad_in_front=1 bag_ground=2 lane=2 secs=0.200
+PSQ line kinds: [('mg nosite', 12), ('lz steer', 5), ('tac bound', 3), ('move k=2', 2), ('lz plan', 1), ('brain start', 1), ('land k=5', 1), ('land k=2', 1), ('land k=3', 1), ('tac contact', 1), ('land k=4', 1), ('land k=1', 1), ('nade k=2', 1), ('walkout k=2', 1)]

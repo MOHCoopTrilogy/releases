@@ -1,0 +1,58 @@
+['P3 purge removed=18']
+germans within 3000 : ['P3 GERN 0']
+PSQ t=74.150 mg site how=2 mode=A gun=( 3078.919 3959.126 21.625 ) yaw=270.833 top=48.000 fire=advance:1.259 arc=45 seat=( 3087.827 4020.729 -39.875 ) walk=34.061 path=0 of=1
+P3 camg at=( 3127.219 4076.443 -39.875 ) off=0 look=( -343.038 240.833 0.000 )
+PSQ t=76.350 mg setup k=1 mode=A gun=( 3078.919 3959.126 21.625 ) yaw=270.833 arc=45 top=48.000 seat=( 3087.923 4020.861 -39.875 ) hp=61.500 pos=stand
+['P3 enemy at=( 3090.837 3139.213 -71.875 )']
+P3 camg at=( 3127.219 4076.443 -39.875 ) off=0 look=( -343.038 240.833 0.000 )
+fire trigger: None
+P3 camg at=( 3127.219 4076.443 -39.875 ) off=0 look=( -343.038 240.833 0.000 )
+['P3 GUN at=( 3078.919 3959.126 21.625 ) ang=( -0.000 270.833 0.000 )']
+P3 camg at=( 3127.219 4076.443 -39.875 ) off=0 look=( -343.038 240.833 0.000 )
+fire trigger: None
+P3 camg at=( 3127.219 4076.443 -39.875 ) off=0 look=( -343.038 240.833 0.000 )
+packup: True
+    P3 SQ k=1 alive=1 hp=550.000 at=( 3141.806 3887.137 -244.246 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=2 alive=1 hp=550.000 at=( 2952.709 4625.800 -220.661 ) pos=run think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=3 alive=1 hp=550.000 at=( 3087.827 4020.729 -39.875 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=4 alive=1 hp=550.000 at=( 3049.283 3832.935 -251.976 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=5 alive=1 hp=1000.000 at=( 3183.342 3749.410 -256.775 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 LAND k=2 at=( 2914.127 3827.008 -250.673 ) dref=240 dz=-218 sky=1500 t=66.950
+    P3 LAND k=5 at=( 3188.385 3761.978 -256.340 ) dref=240 dz=-224 sky=1500 t=66.950
+    P3 LAND k=1 at=( 3170.517 3889.834 -244.315 ) dref=120 dz=-212 sky=1500 t=67.200
+    P3 LAND k=3 at=( 3029.603 3884.569 -243.682 ) dref=119 dz=-211 sky=1500 t=67.200
+    P3 LAND k=4 at=( 3041.407 3749.119 -255.174 ) dref=241 dz=-223 sky=1500 t=67.200
+    P3 TELE k=3 from=( 3029.601 3888.443 -243.682 ) to=( 3096.103 4054.141 -39.875 ) t=72.200
+    P3 METER t=5 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=0 ger0=0
+    P3 METER t=20 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=0 ger0=0
+    P3 METER t=34 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=1 ger=0 ger0=0
+    P3 METER t=49 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=1 ger=1 ger0=0
+    P3 METER t=65 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=1 ger=1 ger0=0
+    P3 METER t=80 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=1 ger=1 ger0=0
+    P3 METER t=95 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=1 ger=1 ger0=0
+    P3 METER t=110 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=1 ger=1 ger0=0
+    P3 METER t=120 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=1 ger=1 ger0=0
+script errors: 0 []
+    PSQ t=48.100 lz plan n=5 tests=5 secs=4.225 ref=( 3096.000 3984.000 -39.875 )
+    PSQ t=50.200 lz steer k=1 to=( 3170.538 3889.957 -244.390 ) door=( 3407.934 4727.845 2094.302 )
+    PSQ t=50.200 lz steer k=3 to=( 3029.593 3884.050 -243.682 ) door=( 3203.890 5192.090 2121.591 )
+    PSQ t=50.600 lz steer k=5 to=( 3189.004 3762.753 -257.075 ) door=( 3797.208 4679.635 2121.591 )
+    PSQ t=51.000 lz steer k=2 to=( 2914.321 3827.179 -251.427 ) door=( 3223.417 4313.414 2094.302 )
+    PSQ t=51.000 lz steer k=4 to=( 3041.196 3750.341 -255.882 ) door=( 3019.374 4777.658 2121.591 )
+    PSQ t=66.700 land k=5 at=( 3188.385 3761.978 -256.340 ) lzoff=1.234
+    PSQ t=66.900 land k=2 at=( 2914.127 3827.008 -250.673 ) lzoff=0.797
+    PSQ t=66.950 land k=3 at=( 3029.603 3884.569 -243.607 ) lzoff=0.525
+    PSQ t=67.100 land k=4 at=( 3041.432 3749.446 -255.161 ) lzoff=1.174
+    PSQ t=67.175 land k=1 at=( 3170.517 3889.834 -244.315 ) lzoff=0.146
+    PSQ t=72.500 walkout k=4 goal=1 left=42.931 lost=0
+    PSQ t=74.150 mg site how=2 mode=A gun=( 3078.919 3959.126 21.625 ) yaw=270.833 top=48.000 fire=advance:1.259 arc=45 seat=( 3087.827 4020.729 -39.875 ) walk=34.061 path=0 of=1
+    PSQ t=74.150 mg plan aim=advance ground=35 passed=1 tried=1 bags=1 refused: tall=18 not_level=5 nofire=5 bag_ground=2 lane=2 secs=0.200
+    PSQ t=74.250 walkout k=2 goal=1 left=45.625 lost=0
+    PSQ t=74.400 mg walk how=2 left=13.447 ok=1
+    PSQ t=76.350 mg setup k=1 mode=A gun=( 3078.919 3959.126 21.625 ) yaw=270.833 arc=45 top=48.000 seat=( 3087.923 4020.861 -39.875 ) hp=61.500 pos=stand
+    PSQ t=76.350 mg watch
+    PSQ t=159.350 mg leave why=squad_moved_on
+    PSQ t=160.250 mg packup k=1
+    PSQ t=161.000 walkout k=1 goal=0 left=-1 lost=0
+    PSQ t=163.300 walkout k=1 goal=0 left=-1 lost=0
+PSQ line kinds: [('lz steer', 5), ('walkout k=1', 2), ('lz plan', 1), ('brain start', 1), ('land k=5', 1), ('land k=2', 1), ('land k=3', 1), ('land k=4', 1), ('land k=1', 1), ('walkout k=4', 1), ('mg site', 1), ('mg plan', 1), ('walkout k=2', 1), ('mg walk', 1), ('mg setup', 1), ('mg watch', 1), ('mg leave', 1), ('mg packup', 1)]

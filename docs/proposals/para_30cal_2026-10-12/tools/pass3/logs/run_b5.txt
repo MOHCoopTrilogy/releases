@@ -1,0 +1,53 @@
+germans within 3000 : ['P3 GERN 39']
+    P3 GER d=5 at=( 704.000 -1128.000 -70.345 ) think=idle hp=1000.000
+    P3 GER d=651 at=( 112.000 -1184.000 208.125 ) think=idle hp=1000.000
+    P3 GER d=672 at=( 112.000 -1304.000 208.125 ) think=idle hp=1000.000
+    P3 GER d=722 at=( 184.000 -1552.000 208.125 ) think=idle hp=1000.000
+    P3 GER d=807 at=( 599.681 -327.276 -45.875 ) think=idle hp=1000.000
+    P3 GER d=840 at=( 559.878 -299.073 -45.875 ) think=idle hp=1000.000
+    P3 GER d=1287 at=( -112.000 -168.000 208.125 ) think=idle hp=1000.000
+    P3 GER d=1439 at=( -463.111 -281.832 0.788 ) think=idle hp=2.000
+    P3 GER d=1439 at=( -409.648 -212.971 0.788 ) think=idle hp=2.000
+    P3 GER d=1449 at=( -696.000 -1408.000 208.125 ) think=idle hp=1000.000
+    P3 GER d=1512 at=( -485.178 -189.302 0.277 ) think=idle hp=2.000
+    P3 GER d=1518 at=( -458.000 -184.000 208.125 ) think=idle hp=1000.000
+    P3 GER d=1520 at=( -784.000 -1312.000 208.125 ) think=idle hp=1000.000
+    P3 GER d=1684 at=( -736.000 -290.000 208.125 ) think=idle hp=1000.000
+    P3 SQ k=1 alive=0 hp=0.000 at=( -5031.894 916.318 -9.697 ) pos=dead think=killed busy=0 mnt=0 enemy=none
+    P3 SQ k=2 alive=1 hp=386.787 at=( -4347.704 1390.920 2.291 ) pos=run think=idle busy=1 mnt=0 enemy=none
+    P3 SQ k=3 alive=1 hp=389.200 at=( -5251.736 769.803 -30.365 ) pos=run think=attack busy=0 mnt=0 enemy=d=618,see=1,at=( -5424.000 176.000 -46.279 )
+    P3 SQ k=4 alive=1 hp=197.200 at=( -5055.725 1079.168 -9.560 ) pos=run think=idle busy=1 mnt=0 enemy=none
+    P3 SQ k=5 alive=1 hp=1000.000 at=( -4205.210 -2697.768 -71.280 ) pos=prone think=idle busy=0 mnt=0 enemy=none
+    P3 LAND k=5 at=( 267.651 -1451.609 622.186 ) dref=539 dz=692 sky=341 t=57.575
+    P3 LAND k=1 at=( 624.758 -1446.826 -64.893 ) dref=327 dz=5 sky=1028 t=60.575
+    P3 LAND k=3 at=( 867.583 -1836.800 -92.069 ) dref=728 dz=-22 sky=1055 t=60.825
+    P3 LAND k=2 at=( 738.601 -1047.303 -65.801 ) dref=89 dz=4 sky=1029 t=61.325
+    P3 LAND k=4 at=( 981.375 -1440.016 -91.171 ) dref=420 dz=-21 sky=1055 t=61.575
+    P3 TELE k=2 from=( 495.604 -789.929 -63.875 ) to=( -3976.966 -4369.297 -314.435 ) t=81.325
+    P3 TELE k=5 from=( 336.452 -1467.235 608.164 ) to=( -3681.689 -4109.040 -317.875 ) t=81.575
+    P3 TELE k=1 from=( 342.155 -1879.409 17.423 ) to=( -3961.619 -4412.867 -313.050 ) t=84.575
+    P3 TELE k=2 from=( -4244.399 -3059.756 -233.347 ) to=( -3743.175 -4541.831 -297.875 ) t=97.325
+    P3 TELE k=4 from=( -150.046 -856.567 -30.247 ) to=( -3506.239 -4455.591 -302.642 ) t=97.575
+    P3 TELE k=1 from=( -4360.810 -2786.887 -93.903 ) to=( -3689.861 -4560.492 -298.037 ) t=100.575
+    P3 TELE k=3 from=( 472.000 -1552.000 -61.875 ) to=( -3932.315 -4361.922 -310.529 ) t=100.825
+    P3 METER t=5 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=39 ger0=39 far=0 farAvg=0 farMax=0
+    P3 METER t=20 landed=5 alive=5 hp=3200 seenAny=8.750 seenStand=8.750 tgtStand=2.000 tele=0 ger=38 ger0=39 far=708 farAvg=703 farMax=727
+    P3 METER t=34 landed=5 alive=5 hp=3200 seenAny=22.750 seenStand=22.500 tgtStand=7.250 tele=0 ger=35 ger0=39 far=831 farAvg=815 farMax=831
+    P3 METER t=49 landed=5 alive=5 hp=3200 seenAny=22.750 seenStand=22.500 tgtStand=7.250 tele=3 ger=35 ger0=39 far=5404 farAvg=2551 farMax=5701
+    P3 METER t=65 landed=5 alive=5 hp=3181 seenAny=24.250 seenStand=24.000 tgtStand=8.000 tele=7 ger=35 ger0=39 far=5475 farAvg=3496 farMax=5701
+    P3 METER t=80 landed=5 alive=5 hp=3142 seenAny=37.250 seenStand=37.000 tgtStand=13.750 tele=7 ger=35 ger0=39 far=5343 farAvg=3967 farMax=5701
+    P3 METER t=95 landed=5 alive=5 hp=3046 seenAny=59.250 seenStand=55.250 tgtStand=23.750 tele=7 ger=35 ger0=39 far=5628 farAvg=4235 farMax=5701
+    P3 METER t=110 landed=5 alive=5 hp=2571 seenAny=99.000 seenStand=95.000 tgtStand=51.750 tele=7 ger=35 ger0=39 far=5973 farAvg=4499 farMax=6124
+    P3 METER t=125 landed=5 alive=4 hp=1973 seenAny=154.000 seenStand=150.000 tgtStand=83.250 tele=7 ger=35 ger0=39 far=6196 farAvg=4742 farMax=6466
+    P3 METER t=125 landed=5 alive=4 hp=1973 seenAny=154.000 seenStand=150.000 tgtStand=83.250 tele=7 ger=35 ger0=39 far=6196 farAvg=4742 farMax=6466
+script errors: 0 []
+    PSQ t=63.200 cover k=2 from=( 694.822 -958.945 -66.693 ) to=( 480.010 -1065.979 -64.939 )
+    PSQ t=69.175 mg site how=1 mode=C gun=( 759.747 -1564.060 -40.987 ) yaw=82.127 top=0 fire=enemy:1.500 arc=45 seat=( 742.963 -1621.749 -80.174 ) walk=235.345 path=503.086 of=1
+    PSQ t=69.175 mg plan aim=enemy ground=26 passed=1 tried=1 bags=1 refused: tall=1 seatground=1 height=10 nofire=2 arc=1 gap=4 bag_ground=1 secs=0.450
+    PSQ t=70.675 mg walk how=1 left=10.701 ok=1
+    PSQ t=72.975 mg setup k=1 mode=C gun=( 759.747 -1564.060 -40.987 ) yaw=82.127 arc=45 top=0 seat=( 742.995 -1621.690 -78.333 ) hp=37.346 pos=crouch
+    PSQ t=87.975 mg leave why=enemy_out_of_arc
+    PSQ t=89.175 mg packup k=1
+    PSQ t=93.325 mg nosite aim=last ground=26 passed=0 tried=0 bags=1 refused: not_level=11 nofire=9 secs=0.150
+    PSQ t=159.200 cover k=2 from=( -4959.418 339.842 -18.352 ) to=( -4823.463 537.619 1.592 )
+PSQ line kinds: [('overwatch movingTeam=0', 33), ('overwatch movingTeam=1', 30), ('move k=2', 17), ('move k=1', 17), ('move k=4', 16), ('move k=3', 13), ('cover k=2', 2), ('nade k=1', 2), ('nade k=4', 2), ('brain start', 1), ('mg site', 1), ('mg plan', 1), ('mg walk', 1), ('mg setup', 1), ('mg leave', 1), ('mg packup', 1), ('nade k=3', 1), ('mg nosite', 1)]

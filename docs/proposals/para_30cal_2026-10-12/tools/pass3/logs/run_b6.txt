@@ -1,0 +1,69 @@
+germans within 3000 : ['P3 GERN 11']
+    P3 GER d=7 at=( 3096.000 3984.000 -39.875 ) think=idle hp=1000.000
+    P3 GER d=192 at=( 3288.000 3992.000 -39.875 ) think=idle hp=1000.000
+    P3 GER d=763 at=( 2895.857 3279.091 -247.875 ) think=idle hp=1000.000
+    P3 GER d=813 at=( 2768.000 3272.000 -247.875 ) think=idle hp=1000.000
+    P3 GER d=921 at=( 2328.724 3522.820 -251.025 ) think=idle hp=500.000
+    P3 GER d=930 at=( 2318.927 3520.693 -250.894 ) think=idle hp=273.000
+    P3 GER d=1005 at=( 2351.000 3343.000 -244.424 ) think=idle hp=1000.000
+    P3 GER d=1263 at=( 2072.173 3272.487 -239.019 ) think=idle hp=1000.000
+    P3 GER d=1879 at=( 4920.000 3616.000 -294.561 ) think=idle hp=1000.000
+    P3 GER d=2111 at=( 1263.000 5015.000 -216.450 ) think=idle hp=1000.000
+    P3 GER d=2169 at=( 1383.000 5303.000 -214.186 ) think=idle hp=1000.000
+    P3 SQ k=1 alive=1 hp=550.000 at=( 3413.151 4302.328 216.125 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=2 alive=1 hp=550.000 at=( 3034.876 3892.885 -243.708 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=3 alive=1 hp=550.000 at=( 3099.199 3983.125 -39.875 ) pos=prone think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=4 alive=1 hp=550.000 at=( 2918.977 4378.167 -242.629 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=5 alive=1 hp=1000.000 at=( 3621.815 4222.273 -249.875 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 LAND k=1 at=( 3240.254 4297.815 410.799 ) dref=345 dz=442 sky=1500 t=62.900
+    P3 LAND k=3 at=( 3056.613 4771.942 -208.884 ) dref=788 dz=-176 sky=1500 t=65.400
+    P3 LAND k=5 at=( 3622.298 4229.140 -249.875 ) dref=580 dz=-217 sky=1500 t=65.900
+    P3 LAND k=2 at=( 3030.050 3892.961 -243.684 ) dref=112 dz=-211 sky=1500 t=66.150
+    P3 LAND k=4 at=( 2850.570 4366.625 -240.931 ) dref=454 dz=-208 sky=1500 t=66.400
+    P3 TELE k=3 from=( 3038.896 4768.200 -207.819 ) to=( 3096.000 3984.000 -39.875 ) t=85.400
+    P3 METER t=5 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=11 ger0=11 far=0 farAvg=0 farMax=0
+    P3 METER t=20 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=11 ger0=11 far=0 farAvg=0 farMax=0
+    P3 METER t=35 landed=5 alive=5 hp=3200 seenAny=1.000 seenStand=1.000 tgtStand=0 tele=0 ger=9 ger0=11 far=786 farAvg=782 farMax=789
+    P3 METER t=50 landed=5 alive=5 hp=3200 seenAny=8.250 seenStand=1.000 tgtStand=0 tele=1 ger=8 ger0=11 far=449 farAvg=691 farMax=789
+    P3 METER t=65 landed=5 alive=5 hp=3200 seenAny=23.250 seenStand=1.000 tgtStand=0 tele=1 ger=8 ger0=11 far=451 farAvg=603 farMax=789
+    P3 METER t=80 landed=5 alive=5 hp=3200 seenAny=38.250 seenStand=1.000 tgtStand=0 tele=1 ger=8 ger0=11 far=448 farAvg=563 farMax=789
+    P3 METER t=94 landed=5 alive=5 hp=3200 seenAny=53.250 seenStand=1.000 tgtStand=0 tele=1 ger=8 ger0=11 far=451 farAvg=539 farMax=789
+    P3 METER t=109 landed=5 alive=5 hp=3200 seenAny=68.250 seenStand=1.000 tgtStand=0 tele=1 ger=8 ger0=11 far=449 farAvg=524 farMax=789
+    P3 METER t=124 landed=5 alive=5 hp=3200 seenAny=83.250 seenStand=1.000 tgtStand=0 tele=1 ger=8 ger0=11 far=449 farAvg=513 farMax=789
+    P3 METER t=140 landed=5 alive=5 hp=3200 seenAny=98.250 seenStand=1.000 tgtStand=0 tele=1 ger=8 ger0=11 far=449 farAvg=505 farMax=789
+    P3 METER t=140 landed=5 alive=5 hp=3200 seenAny=98.250 seenStand=1.000 tgtStand=0 tele=1 ger=8 ger0=11 far=449 farAvg=505 farMax=789
+script errors: 0 []
+    PSQ t=85.425 mg nosite aim=last ground=28 passed=0 tried=0 bags=1 refused: tall=11 not_level=5 height=1 nofire=1 bag_ground=3 lane=2 secs=0.175
+    PSQ t=91.150 walkout k=1 goal=0 left=-1
+    PSQ t=95.150 walkout k=1 goal=0 left=-1
+    PSQ t=95.600 mg nosite aim=advance ground=28 passed=0 tried=0 bags=1 refused: tall=13 not_level=6 nofire=4 crowded=1 bag_ground=2 secs=0.175
+    PSQ t=99.150 walkout k=1 goal=0 left=-1
+    PSQ t=103.150 walkout k=1 goal=0 left=-1
+    PSQ t=105.750 mg nosite aim=advance ground=27 passed=0 tried=0 bags=1 refused: tall=13 not_level=6 nofire=4 crowded=1 bag_ground=2 secs=0.150
+    PSQ t=107.150 walkout k=1 goal=0 left=-1
+    PSQ t=111.150 walkout k=1 goal=0 left=-1
+    PSQ t=115.150 walkout k=1 goal=0 left=-1
+    PSQ t=115.900 mg nosite aim=advance ground=27 passed=0 tried=0 bags=1 refused: tall=13 not_level=6 nofire=4 crowded=1 bag_ground=2 secs=0.150
+    PSQ t=119.150 walkout k=1 goal=0 left=-1
+    PSQ t=123.150 walkout k=1 goal=0 left=-1
+    PSQ t=126.075 mg nosite aim=advance ground=28 passed=0 tried=0 bags=1 refused: tall=12 not_level=6 nofire=4 crowded=1 bag_ground=3 secs=0.175
+    PSQ t=127.150 walkout k=1 goal=0 left=-1
+    PSQ t=131.150 walkout k=1 goal=0 left=-1
+    PSQ t=135.150 walkout k=1 goal=0 left=-1
+    PSQ t=136.250 mg nosite aim=advance ground=28 passed=0 tried=0 bags=1 refused: tall=12 not_level=6 nofire=4 crowded=1 bag_ground=3 secs=0.175
+    PSQ t=139.150 walkout k=1 goal=0 left=-1
+    PSQ t=143.150 walkout k=1 goal=0 left=-1
+    PSQ t=146.425 mg nosite aim=advance ground=28 passed=0 tried=0 bags=1 refused: tall=12 not_level=6 nofire=4 crowded=1 bag_ground=3 secs=0.175
+    PSQ t=147.150 walkout k=1 goal=0 left=-1
+    PSQ t=151.150 walkout k=1 goal=0 left=-1
+    PSQ t=155.150 walkout k=1 goal=0 left=-1
+    PSQ t=156.600 mg nosite aim=advance ground=28 passed=0 tried=0 bags=1 refused: tall=13 not_level=5 nofire=4 crowded=1 bag_ground=3 secs=0.175
+    PSQ t=159.150 walkout k=1 goal=0 left=-1
+    PSQ t=163.150 walkout k=1 goal=0 left=-1
+    PSQ t=166.775 mg nosite aim=advance ground=28 passed=0 tried=0 bags=1 refused: tall=13 not_level=5 nofire=4 crowded=1 bag_ground=3 secs=0.175
+    PSQ t=167.150 walkout k=1 goal=0 left=-1
+    PSQ t=171.150 walkout k=1 goal=0 left=-1
+    PSQ t=175.150 walkout k=1 goal=0 left=-1
+    PSQ t=176.950 mg nosite aim=advance ground=28 passed=0 tried=0 bags=1 refused: tall=13 not_level=5 nofire=4 crowded=1 bag_ground=3 secs=0.175
+    PSQ t=179.150 walkout k=1 goal=0 left=-1
+PSQ line kinds: [('walkout k=1', 23), ('mg nosite', 10), ('brain start', 1), ('clear stack', 1), ('move k=1', 1), ('nade k=1', 1), ('clear enter', 1), ('clear done', 1)]

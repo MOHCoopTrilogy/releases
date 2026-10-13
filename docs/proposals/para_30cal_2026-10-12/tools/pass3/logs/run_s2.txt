@@ -1,0 +1,41 @@
+germans within 3000 : ['P3 GERN 11']
+    P3 GER d=861 at=( -3196.932 3055.869 0.125 ) think=idle hp=1000.000
+    P3 GER d=1085 at=( -3952.000 3328.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1085 at=( -3031.869 3219.068 0.125 ) think=idle hp=1000.000
+    P3 GER d=1160 at=( -3216.000 3392.000 0.125 ) think=idle hp=1000.000
+    P3 GER d=1233 at=( -4115.065 3424.131 176.125 ) think=idle hp=1000.000
+    P3 GER d=1247 at=( -3504.000 3544.000 16.125 ) think=idle hp=1000.000
+    P3 GER d=1320 at=( -4184.000 3488.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1392 at=( -3424.000 3680.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1459 at=( -3464.000 3752.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1504 at=( -2824.000 3584.000 0.125 ) think=idle hp=1000.000
+    P3 GER d=1561 at=( -3472.000 3856.000 0.125 ) think=idle hp=1000.000
+PSQ t=79.575 mg nosite aim=enemy ground=5 passed=0 tried=0 bags=1 refused: not_world=2 secs=0.025
+PSQ t=89.825 mg nosite aim=last ground=40 passed=0 tried=0 bags=1 refused: tall=4 seatground=2 nofire=18 bag_ground=1 bag_slope=2 lane=6 secs=0.250
+PSQ t=202.050 mg nosite aim=enemy ground=37 passed=0 tried=0 bags=1 refused: tall=2 not_level=1 nofire=12 seat=2 arc=2 bag_slope=1 lane=8 secs=0.225
+    P3 SQ k=1 alive=1 hp=506.180 at=( -3558.708 1967.243 0.125 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=2 alive=1 hp=511.600 at=( -3328.584 3114.194 16.125 ) pos=run think=idle busy=1 mnt=0 enemy=none
+    P3 SQ k=3 alive=1 hp=550.000 at=( -3795.417 3381.960 0.125 ) pos=run think=attack busy=0 mnt=0 enemy=d=331,see=0,at=( -3503.894 3538.722 16.125 )
+    P3 SQ k=4 alive=1 hp=550.000 at=( -3775.396 3503.044 0.125 ) pos=stand think=idle busy=1 mnt=0 enemy=none
+    P3 SQ k=5 alive=1 hp=1000.000 at=( -4041.627 1977.681 -191.875 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 LAND k=1 at=( -3705.783 2003.618 48.125 ) dref=314 dz=-35 sky=1013 t=71.400
+    P3 LAND k=3 at=( -3498.257 1591.542 0.125 ) dref=719 dz=-83 sky=1061 t=71.650
+    P3 LAND k=2 at=( -3557.852 2389.207 0.125 ) dref=99 dz=-83 sky=1061 t=72.400
+    P3 LAND k=5 at=( -4061.809 2028.898 -191.875 ) dref=530 dz=-275 sky=1253 t=72.900
+    P3 LAND k=4 at=( -3350.320 1976.929 -191.875 ) dref=415 dz=-275 sky=1253 t=73.150
+    P3 TELE k=4 from=( -3344.450 1982.844 -191.875 ) to=( -3703.807 2545.010 0.125 ) t=85.150
+    P3 TELE k=3 from=( -3354.869 1686.861 0.125 ) to=( -3966.961 2305.220 0.125 ) t=87.650
+    P3 METER t=5 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=11 ger0=11
+    P3 METER t=30 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=11 ger0=11
+    P3 METER t=55 landed=5 alive=5 hp=3176 seenAny=14.000 seenStand=10.500 tgtStand=2.000 tele=2 ger=11 ger0=11
+    P3 METER t=80 landed=5 alive=5 hp=3156 seenAny=19.500 seenStand=16.000 tgtStand=2.000 tele=2 ger=10 ger0=11
+    P3 METER t=104 landed=5 alive=5 hp=3117 seenAny=20.750 seenStand=17.250 tgtStand=2.500 tele=2 ger=9 ger0=11
+    P3 METER t=130 landed=5 alive=5 hp=3117 seenAny=20.750 seenStand=17.250 tgtStand=2.500 tele=2 ger=9 ger0=11
+    P3 METER t=155 landed=5 alive=5 hp=3117 seenAny=20.750 seenStand=17.250 tgtStand=2.500 tele=2 ger=9 ger0=11
+    P3 METER t=180 landed=5 alive=5 hp=3117 seenAny=20.750 seenStand=17.250 tgtStand=2.500 tele=2 ger=9 ger0=11
+    P3 METER t=200 landed=5 alive=5 hp=3117 seenAny=20.750 seenStand=17.250 tgtStand=2.500 tele=2 ger=9 ger0=11
+script errors: 0 []
+    PSQ t=79.575 mg nosite aim=enemy ground=5 passed=0 tried=0 bags=1 refused: not_world=2 secs=0.025
+    PSQ t=89.825 mg nosite aim=last ground=40 passed=0 tried=0 bags=1 refused: tall=4 seatground=2 nofire=18 bag_ground=1 bag_slope=2 lane=6 secs=0.250
+    PSQ t=202.050 mg nosite aim=enemy ground=37 passed=0 tried=0 bags=1 refused: tall=2 not_level=1 nofire=12 seat=2 arc=2 bag_slope=1 lane=8 secs=0.225
+PSQ line kinds: [('overwatch movingTeam=0', 72), ('move k=4', 65), ('move k=3', 9), ('move k=2', 9), ('clear stack', 6), ('move k=1', 6), ('clear enter', 6), ('overwatch movingTeam=1', 6), ('nade k=2', 5), ('clear done', 5), ('mg nosite', 3), ('nade k=4', 3), ('brain start', 1), ('cover k=3', 1), ('nade k=1', 1)]

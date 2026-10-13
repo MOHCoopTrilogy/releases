@@ -1,0 +1,174 @@
+germans within 3000 : ['P3 GERN 11']
+    P3 GER d=864 at=( -3192.129 3056.023 0.125 ) think=idle hp=1000.000
+    P3 GER d=1085 at=( -3952.309 3328.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1089 at=( -3032.059 3223.678 0.125 ) think=idle hp=1000.000
+    P3 GER d=1160 at=( -3216.000 3392.000 0.125 ) think=idle hp=1000.000
+    P3 GER d=1235 at=( -4120.145 3424.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1247 at=( -3504.000 3544.000 16.125 ) think=idle hp=1000.000
+    P3 GER d=1320 at=( -4184.000 3488.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1392 at=( -3424.000 3680.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1459 at=( -3464.000 3752.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1504 at=( -2824.000 3584.000 0.125 ) think=idle hp=1000.000
+    P3 GER d=1561 at=( -3472.000 3856.000 0.125 ) think=idle hp=1000.000
+PSQ t=71.600 mg refuse why=unreachable mode=C gun=( -3678.787 2589.103 40.125 ) yaw=31.458 top=0 fire=advance:1.108 arc=30 seat=( -3734.131 2565.517 0.125 ) walk=100.755 path=0.000
+PSQ t=71.900 mg refuse why=unreachable mode=C gun=( -3747.069 2710.283 40.125 ) yaw=24.074 top=0 fire=advance:1.161 arc=45 seat=( -3804.984 2694.005 0.125 ) walk=115.516 path=0.000
+PSQ t=72.200 mg refuse why=unreachable mode=C gun=( -3716.055 2589.493 40.125 ) yaw=30.436 top=0 fire=advance:1.155 arc=45 seat=( -3771.810 2566.898 0.125 ) walk=121.632 path=0.000
+PSQ t=72.800 mg refuse why=unreachable mode=C gun=( -3766.041 2678.203 40.125 ) yaw=25.185 top=0 fire=advance:1.193 arc=45 seat=( -3823.630 2660.806 0.125 ) walk=129.187 path=0.000
+PSQ t=73.100 mg refuse why=unreachable mode=C gun=( -3748.135 2608.465 40.125 ) yaw=28.780 top=0 fire=advance:1.190 arc=45 seat=( -3804.520 2587.491 0.125 ) walk=131.528 path=0.000
+PSQ t=73.700 mg refuse why=unreachable mode=C gun=( -3766.431 2640.935 40.125 ) yaw=26.888 top=0 fire=advance:1.204 arc=45 seat=( -3823.478 2621.833 0.125 ) walk=132.347 path=0.000
+PSQ t=73.700 mg nosite aim=advance ground=52 passed=16 tried=6 bags=1 refused: tall=2 nofire=16 arc=1 lane=7 secs=2.725
+PSQ t=83.700 mg nosite aim=last ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+PSQ t=93.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+PSQ t=103.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+PSQ t=113.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+PSQ t=123.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+PSQ t=133.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+PSQ t=143.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+PSQ t=153.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+PSQ t=163.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+PSQ t=173.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+PSQ t=183.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+PSQ t=193.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+PSQ t=203.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+    P3 SQ k=1 alive=1 hp=550.000 at=( -3863.389 2108.758 -191.875 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=2 alive=1 hp=550.000 at=( -3605.875 2225.338 0.125 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=3 alive=1 hp=550.000 at=( -3673.796 2664.167 128.125 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=4 alive=1 hp=550.000 at=( -3712.950 2484.285 0.125 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=5 alive=1 hp=1000.000 at=( -3931.511 2335.410 0.125 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 LAND k=5 at=( -4136.886 2329.279 451.022 ) dref=529 dz=367 sky=610 t=57.500
+    P3 LAND k=3 at=( -3914.555 1651.994 48.125 ) dref=719 dz=-35 sky=1013 t=59.000
+    P3 LAND k=1 at=( -3856.105 2109.741 -191.875 ) dref=314 dz=-275 sky=1253 t=59.750
+    P3 LAND k=2 at=( -3517.996 2346.487 0.125 ) dref=99 dz=-83 sky=1061 t=59.750
+    P3 LAND k=4 at=( -3576.405 1888.768 0.125 ) dref=415 dz=-83 sky=1061 t=60.000
+    P3 TELE k=3 from=( -3909.731 1647.786 192.125 ) to=( -3696.693 2658.841 0.125 ) t=71.000
+    P3 TELE k=4 from=( -3563.194 1885.570 0.125 ) to=( -3736.018 2688.680 128.125 ) t=76.000
+    P3 METER t=5 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=11 ger0=11
+    P3 METER t=25 landed=5 alive=5 hp=3200 seenAny=1.250 seenStand=1.250 tgtStand=0 tele=0 ger=10 ger0=11
+    P3 METER t=45 landed=5 alive=5 hp=3200 seenAny=3.500 seenStand=3.500 tgtStand=0 tele=2 ger=9 ger0=11
+    P3 METER t=65 landed=5 alive=5 hp=3200 seenAny=3.500 seenStand=3.500 tgtStand=0 tele=2 ger=9 ger0=11
+    P3 METER t=85 landed=5 alive=5 hp=3200 seenAny=3.500 seenStand=3.500 tgtStand=0 tele=2 ger=9 ger0=11
+    P3 METER t=105 landed=5 alive=5 hp=3200 seenAny=3.500 seenStand=3.500 tgtStand=0 tele=2 ger=9 ger0=11
+    P3 METER t=125 landed=5 alive=5 hp=3200 seenAny=3.500 seenStand=3.500 tgtStand=0 tele=2 ger=9 ger0=11
+    P3 METER t=145 landed=5 alive=5 hp=3200 seenAny=3.500 seenStand=3.500 tgtStand=0 tele=2 ger=9 ger0=11
+    P3 METER t=165 landed=5 alive=5 hp=3200 seenAny=3.500 seenStand=3.500 tgtStand=0 tele=2 ger=9 ger0=11
+    P3 METER t=170 landed=5 alive=5 hp=3200 seenAny=3.500 seenStand=3.500 tgtStand=0 tele=2 ger=9 ger0=11
+script errors: 0 []
+    PSQ t=60.625 brain start sid=1
+    PSQ t=63.625 walkout k=3 goal=0 left=-1
+    PSQ t=65.625 walkout k=1 goal=0 left=-1
+    PSQ t=65.625 walkout k=3 goal=0 left=-1
+    PSQ t=67.625 walkout k=3 goal=0 left=-1
+    PSQ t=69.625 walkout k=1 goal=0 left=-1
+    PSQ t=69.625 walkout k=3 goal=0 left=-1
+    PSQ t=71.600 mg refuse why=unreachable mode=C gun=( -3678.787 2589.103 40.125 ) yaw=31.458 top=0 fire=advance:1.108 arc=30 seat=( -3734.131 2565.517 0.125 ) walk=100.755 path=0.000
+    PSQ t=71.900 mg refuse why=unreachable mode=C gun=( -3747.069 2710.283 40.125 ) yaw=24.074 top=0 fire=advance:1.161 arc=45 seat=( -3804.984 2694.005 0.125 ) walk=115.516 path=0.000
+    PSQ t=72.200 mg refuse why=unreachable mode=C gun=( -3716.055 2589.493 40.125 ) yaw=30.436 top=0 fire=advance:1.155 arc=45 seat=( -3771.810 2566.898 0.125 ) walk=121.632 path=0.000
+    PSQ t=72.625 tac contact thr=( -3823.473 3100.137 176.125 )
+    PSQ t=72.625 cover k=4 from=( -3558.595 1887.250 0.125 ) to=( -3616.216 1915.105 0.125 )
+    PSQ t=72.800 mg refuse why=unreachable mode=C gun=( -3766.041 2678.203 40.125 ) yaw=25.185 top=0 fire=advance:1.193 arc=45 seat=( -3823.630 2660.806 0.125 ) walk=129.187 path=0.000
+    PSQ t=73.100 mg refuse why=unreachable mode=C gun=( -3748.135 2608.465 40.125 ) yaw=28.780 top=0 fire=advance:1.190 arc=45 seat=( -3804.520 2587.491 0.125 ) walk=131.528 path=0.000
+    PSQ t=73.375 move k=4 why=cover left=60.748
+    PSQ t=73.700 mg refuse why=unreachable mode=C gun=( -3766.431 2640.935 40.125 ) yaw=26.888 top=0 fire=advance:1.204 arc=45 seat=( -3823.478 2621.833 0.125 ) walk=132.347 path=0.000
+    PSQ t=73.700 mg nosite aim=advance ground=52 passed=16 tried=6 bags=1 refused: tall=2 nofire=16 arc=1 lane=7 secs=2.725
+    PSQ t=74.025 nade k=2 why=fight nopath
+    PSQ t=74.625 tac bound k=3 back=1 cover=0 base=0 dist=326.166
+    PSQ t=75.375 move k=3 why=bound left=326.139
+    PSQ t=75.625 tac bound k=3 back=1 cover=0 base=0 dist=326.166
+    PSQ t=76.375 move k=3 why=bound left=326.600
+    PSQ t=76.625 tac bound k=3 back=1 cover=0 base=0 dist=326.166
+    PSQ t=76.625 tac bound k=4 back=1 cover=0 base=0 dist=326.166
+    PSQ t=77.375 move k=3 why=bound left=324.473
+    PSQ t=77.625 tac bound k=3 back=1 cover=0 base=0 dist=326.166
+    PSQ t=77.875 move k=4 why=bound left=321.486
+    PSQ t=78.375 move k=3 why=bound left=326.551
+    PSQ t=78.625 tac bound k=3 back=1 cover=0 base=0 dist=326.166
+    PSQ t=78.625 tac bound k=4 back=1 cover=0 base=0 dist=326.166
+    PSQ t=79.375 move k=3 why=bound left=326.232
+    PSQ t=79.375 move k=4 why=bound left=324.488
+    PSQ t=79.625 tac bound k=3 back=1 cover=0 base=0 dist=326.165
+    PSQ t=79.625 tac bound k=4 back=1 cover=0 base=0 dist=326.166
+    PSQ t=80.375 move k=3 why=bound left=326.165
+    PSQ t=80.375 move k=4 why=bound left=326.166
+    PSQ t=80.625 tac bound k=3 back=1 cover=0 base=0 dist=326.166
+    PSQ t=80.625 tac bound k=4 back=1 cover=0 base=0 dist=326.166
+    PSQ t=81.375 move k=3 why=bound left=325.891
+    PSQ t=81.375 move k=4 why=bound left=326.182
+    PSQ t=81.625 walkout k=1 goal=0 left=-1
+    PSQ t=83.700 mg nosite aim=last ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+    PSQ t=85.625 walkout k=1 goal=0 left=-1
+    PSQ t=85.625 walkout k=3 goal=0 left=-1
+    PSQ t=89.625 walkout k=1 goal=0 left=-1
+    PSQ t=89.625 walkout k=3 goal=0 left=-1
+    PSQ t=93.625 walkout k=1 goal=0 left=-1
+    PSQ t=93.625 walkout k=3 goal=0 left=-1
+    PSQ t=93.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+    PSQ t=97.625 walkout k=1 goal=0 left=-1
+    PSQ t=97.625 walkout k=3 goal=0 left=-1
+    PSQ t=101.625 walkout k=1 goal=0 left=-1
+    PSQ t=101.625 walkout k=3 goal=0 left=-1
+    PSQ t=103.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+    PSQ t=105.625 walkout k=1 goal=0 left=-1
+    PSQ t=105.625 walkout k=3 goal=0 left=-1
+    PSQ t=109.625 walkout k=1 goal=0 left=-1
+    PSQ t=109.625 walkout k=3 goal=0 left=-1
+    PSQ t=113.625 walkout k=1 goal=0 left=-1
+    PSQ t=113.625 walkout k=3 goal=0 left=-1
+    PSQ t=113.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+    PSQ t=117.625 walkout k=1 goal=0 left=-1
+    PSQ t=117.625 walkout k=3 goal=0 left=-1
+    PSQ t=121.625 walkout k=1 goal=0 left=-1
+    PSQ t=121.625 walkout k=3 goal=0 left=-1
+    PSQ t=123.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+    PSQ t=125.625 walkout k=1 goal=0 left=-1
+    PSQ t=125.625 walkout k=3 goal=0 left=-1
+    PSQ t=129.625 walkout k=1 goal=0 left=-1
+    PSQ t=129.625 walkout k=3 goal=0 left=-1
+    PSQ t=133.625 walkout k=1 goal=0 left=-1
+    PSQ t=133.625 walkout k=3 goal=0 left=-1
+    PSQ t=133.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+    PSQ t=137.625 walkout k=1 goal=0 left=-1
+    PSQ t=137.625 walkout k=3 goal=0 left=-1
+    PSQ t=141.625 walkout k=1 goal=0 left=-1
+    PSQ t=141.625 walkout k=3 goal=0 left=-1
+    PSQ t=143.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+    PSQ t=145.625 walkout k=1 goal=0 left=-1
+    PSQ t=145.625 walkout k=3 goal=0 left=-1
+    PSQ t=149.625 walkout k=1 goal=0 left=-1
+    PSQ t=149.625 walkout k=3 goal=0 left=-1
+    PSQ t=153.625 walkout k=1 goal=0 left=-1
+    PSQ t=153.625 walkout k=3 goal=0 left=-1
+    PSQ t=153.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+    PSQ t=157.625 walkout k=1 goal=0 left=-1
+    PSQ t=157.625 walkout k=3 goal=0 left=-1
+    PSQ t=161.625 walkout k=1 goal=0 left=-1
+    PSQ t=161.625 walkout k=3 goal=0 left=-1
+    PSQ t=163.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+    PSQ t=165.625 walkout k=1 goal=0 left=-1
+    PSQ t=165.625 walkout k=3 goal=0 left=-1
+    PSQ t=169.625 walkout k=1 goal=0 left=-1
+    PSQ t=169.625 walkout k=3 goal=0 left=-1
+    PSQ t=173.625 walkout k=1 goal=0 left=-1
+    PSQ t=173.625 walkout k=3 goal=0 left=-1
+    PSQ t=173.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+    PSQ t=177.625 walkout k=1 goal=0 left=-1
+    PSQ t=177.625 walkout k=3 goal=0 left=-1
+    PSQ t=181.625 walkout k=1 goal=0 left=-1
+    PSQ t=181.625 walkout k=3 goal=0 left=-1
+    PSQ t=183.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+    PSQ t=185.625 walkout k=1 goal=0 left=-1
+    PSQ t=185.625 walkout k=3 goal=0 left=-1
+    PSQ t=189.625 walkout k=1 goal=0 left=-1
+    PSQ t=189.625 walkout k=3 goal=0 left=-1
+    PSQ t=193.625 walkout k=1 goal=0 left=-1
+    PSQ t=193.625 walkout k=3 goal=0 left=-1
+    PSQ t=193.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+    PSQ t=197.625 walkout k=1 goal=0 left=-1
+    PSQ t=197.625 walkout k=3 goal=0 left=-1
+    PSQ t=201.625 walkout k=1 goal=0 left=-1
+    PSQ t=201.625 walkout k=3 goal=0 left=-1
+    PSQ t=203.700 mg nosite aim=advance ground=0 passed=0 tried=0 bags=1 refused: secs=0.000
+    PSQ t=205.625 walkout k=1 goal=0 left=-1
+    PSQ t=205.625 walkout k=3 goal=0 left=-1
+    PSQ t=209.625 walkout k=1 goal=0 left=-1
+    PSQ t=209.625 walkout k=3 goal=0 left=-1
+PSQ line kinds: [('walkout k=3', 36), ('walkout k=1', 35), ('mg nosite', 14), ('tac bound', 11), ('move k=3', 7), ('mg refuse', 6), ('move k=4', 5), ('brain start', 1), ('tac contact', 1), ('cover k=4', 1), ('nade k=2', 1)]

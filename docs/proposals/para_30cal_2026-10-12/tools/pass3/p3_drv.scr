@@ -1,0 +1,734 @@
+//=========================================================================
+// TEST-ONLY overlay driver (scratchpad para2) - NEVER shipped. main.scr starts st_xp_run when coop_st_xp 1.
+// bug-3562 second pass: call a paratrooper stick, pin where it holds, probe the ground for gun sites,
+// put the player beside the gunner as a camera.
+// p3_cmd: tp here call hold unhold force who cam enemy ents probe kill  (args in p3_x p3_y p3_z p3_yaw p3_pitch p3_tag p3_n)
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ P3 para armed"
+	setcvar "p3_cmd" "0"
+	setcvar "coop_paraDebug" "1"
+	while( 1 ){
+		local.c = getcvar( "p3_cmd" )
+		if( local.c != "0" && local.c != "" ){
+			setcvar "p3_cmd" "0"
+			waitthread p3_do local.c
+			println ( "^~^~^ P3 did " + local.c )
+		}
+		waitframe
+	}
+}end
+
+p3_vec:{
+	local.o = ( 0 0 0 )
+	local.o[0] = float( getcvar( "p3_x" ) )
+	local.o[1] = float( getcvar( "p3_y" ) )
+	local.o[2] = float( getcvar( "p3_z" ) )
+}end local.o
+
+// the man with the gun on his back (or on its mount)
+p3_gunner:{
+	local.r = NIL
+	if( level.coop_psqN == NIL ){ end local.r }
+	for( local.k = 1; local.k <= 5; local.k++ ){
+		local.m = level.coop_psqM[level.coop_psqN][local.k]
+		if( local.m == NIL || local.m == NULL ){ continue }
+		if( local.m.coop_psqProp != NIL ){ local.r = local.m; break }
+	}
+}end local.r
+
+p3_do local.c:{
+	local.p = $player[1]
+	if( local.p == NULL ){ end }
+	local.yaw = float( getcvar( "p3_yaw" ) )
+	if( local.c == "tp" ){
+		local.o = waitthread p3_vec
+		local.pit = float( getcvar( "p3_pitch" ) )
+		local.p origin local.o
+		local.p.viewangles = ( local.pit local.yaw 0 )
+		println ( "^~^~^ P3 at " + local.p.origin )
+	}
+	if( local.c == "here" ){
+		println ( "^~^~^ P3 here " + local.p.origin + " ang=" + local.p.viewangles )
+	}
+	if( local.c == "call" ){
+		local.o = waitthread p3_vec
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.o + ( 0 0 48 ) )
+		if( local.g != NIL ){ local.o = local.g }
+		if( getcvar( "p3_tag" ) != "free" ){
+			level.coop_paraHoldPos = local.o
+			level.coop_paraHoldYaw = local.yaw
+		}
+		level.coop_smoke_player = local.p
+		local.p.max_health = 100000
+		local.p.health = 100000
+		local.p nodamage
+		println ( "^~^~^ P3 call at=" + local.o + " yaw=" + local.yaw )
+		thread coop_mod/paradrop.scr::coop_paradrop_main local.o
+	}
+	if( local.c == "hold" ){
+		local.o = waitthread p3_vec
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.o + ( 0 0 48 ) )
+		if( local.g != NIL ){ local.o = local.g }
+		level.coop_paraHoldPos = local.o
+		level.coop_paraHoldYaw = local.yaw
+		println ( "^~^~^ P3 hold at=" + local.o + " yaw=" + local.yaw )
+	}
+	if( local.c == "unhold" ){
+		level.coop_paraHoldPos = NIL
+		level.coop_paraHoldYaw = NIL
+	}
+	if( local.c == "force" ){
+		local.t = getcvar( "p3_tag" )
+		if( local.t == "0" ){ level.coop_psqMgForce = NIL } else { level.coop_psqMgForce = local.t }
+		println ( "^~^~^ P3 force " + local.t )
+	}
+	local.k1 = waitthread p3_gunner
+	if( local.c == "who" ){
+		if( local.k1 == NIL ){
+			println "^~^~^ P3 WHO none"
+		} else {
+			local.gs = "none"
+			if( local.k1.coop_psqGun != NIL && local.k1.coop_psqGun != NULL ){ local.gs = local.k1.coop_psqGun.origin }
+			local.md = local.k1.coop_psqMgMode
+			if( local.md == NIL ){ local.md = "-" }
+			println ( "^~^~^ P3 WHO k=" + local.k1.coop_psqK + " alive=" + ( isAlive local.k1 ) + " at=" + local.k1.origin + " mounted=" + local.k1.coop_psqMounted + " busy=" + local.k1.coop_psqBusy + " pos=" + local.k1.position + " mode=" + local.md + " gun=" + local.gs + " fails=" + local.k1.coop_psqMgFails + " holding=" + level.coop_psqHolding[level.coop_psqN] + " model=" + local.k1.model )
+		}
+		for( local.k = 1; local.k <= 5; local.k++ ){
+			local.m = level.coop_psqM[level.coop_psqN][local.k]
+			if( local.m == NIL || local.m == NULL ){ continue }
+			local.pd = local.m.pathdist
+			println ( "^~^~^ P3 MEM k=" + local.k + " alive=" + ( isAlive local.m ) + " at=" + local.m.origin + " d=" + ( vector_length( local.m.origin - local.p.origin ) ) + " pathdist=" + local.pd + " think=" + local.m.thinkstate )
+		}
+	}
+	if( local.c == "cam" ){
+		// beside the planned gun: p3_n units out, p3_yaw degrees round from the gun's facing, p3_z up
+		if( local.k1 == NIL ){ end }
+		local.gp = local.k1.coop_psqMgGun
+		local.gy = local.k1.coop_psqMgYaw
+		if( local.gp == NIL ){ end }
+		local.dir = angles_toforward ( 0 local.gy 0 )
+		local.tgt = local.gp - ( vector_scale local.dir 30 )
+		local.tgt[2] = local.tgt[2] - 12
+		local.dist = float( getcvar( "p3_n" ) )
+		local.cdir = angles_toforward ( 0 ( local.gy + local.yaw ) 0 )
+		local.cp = local.tgt + ( vector_scale local.cdir local.dist )
+		local.cg = waitthread coop_mod/officer.scr::coop_find_ground ( local.cp + ( 0 0 60 ) )
+		if( local.cg != NIL ){ local.cp = local.cg }
+		local.up = float( getcvar( "p3_z" ) )
+		local.cp[2] = local.cp[2] + local.up
+		local.p origin local.cp
+		local.eye = local.cp + ( 0 0 82 )
+		local.va = vector_toangles ( local.tgt - local.eye )
+		local.p.viewangles = ( local.va[0] local.va[1] 0 )
+		println ( "^~^~^ P3 cam at=" + local.cp + " look=" + local.va )
+	}
+	if( local.c == "ents" ){
+		local.n = 0
+		for( local.i = 1; local.i < 1024; local.i++ ){
+			local.e = getentbyentnum local.i
+			if( local.e == NULL ){ continue }
+			if( local.e.classname != "Actor" ){ continue }
+			println ( "^~^~^ P3 ENT " + local.i + " at=" + local.e.origin + " model=" + local.e.model )
+			local.n++
+			if( local.n >= 70 ){ break }
+		}
+	}
+	if( local.c == "probe" ){
+		// would a gunner standing where the player is find a place? p3_yaw = the way the squad faces,
+		// p3_n > 0 = an enemy that far ahead. No stick needed: the reach test is not run.
+		waitthread p3_probe1 local.p.origin local.yaw ( getcvar( "p3_tag" ) ) ( int( getcvar( "p3_pitch" ) ) ) ( float( getcvar( "p3_n" ) ) ) local.p
+	}
+	if( local.c == "flood" ){
+		// the ground a man can WALK to from where the player stands (300u steps, each one a straight walk that
+		// parasquad's mgLine accepts), up to 90 points; at each, four facings: what cover is there?
+		local.np = 1
+		local.pt[1] = local.p.origin
+		local.head = 1
+		while( local.head <= local.np && local.np < 90 ){
+			local.o = local.pt[local.head]
+			local.head++
+			for( local.d = 0; local.d < 360; local.d = local.d + 60 ){
+				if( local.np >= 90 ){ break }
+				local.q = local.o + ( vector_scale ( angles_toforward ( 0 local.d 0 ) ) 300 )
+				local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.q + ( 0 0 48 ) )
+				if( local.g == NIL ){ continue }
+				local.far = 1
+				for( local.k = 1; local.k <= local.np; local.k++ ){
+					if( vector_length( local.g - local.pt[local.k] ) < 200 ){ local.far = 0; break }
+				}
+				if( local.far != 1 ){ continue }
+				if( !( waitthread coop_mod/parasquad.scr::mgLine local.o local.g ) ){ continue }
+				local.np++
+				local.pt[local.np] = local.g
+			}
+			waitframe
+		}
+		println ( "^~^~^ P3 FLOOD points=" + local.np )
+		for( local.k = 1; local.k <= local.np; local.k++ ){
+			local.sk = local.pt[local.k] + ( 0 0 60 )
+			local.tr = traced local.sk ( local.sk + ( 0 0 1500 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+			println ( "^~^~^ P3 FPT " + local.k + " at=" + local.pt[local.k] + " sky=" + int( local.tr["fraction"] * 1500 ) )
+			for( local.y = 0; local.y < 360; local.y = local.y + 90 ){
+				waitthread p3_probe1 local.pt[local.k] local.y ( "f" + local.k + "_" + local.y ) 0 700 local.p
+			}
+		}
+	}
+	if( local.c == "sweep" ){
+		// the same at every AI actor of the map (300u apart, up to 45), four facings each
+		local.np = 0
+		for( local.i = 1; local.i < 1024; local.i++ ){
+			local.e = getentbyentnum local.i
+			if( local.e == NULL ){ continue }
+			if( local.e.classname != "Actor" ){ continue }
+			local.far = 1
+			for( local.k = 1; local.k <= local.np; local.k++ ){
+				if( vector_length( local.e.origin - local.pt[local.k] ) < 300 ){ local.far = 0; break }
+			}
+			if( local.far != 1 ){ continue }
+			local.np++
+			local.pt[local.np] = local.e.origin
+			if( local.np >= 45 ){ break }
+		}
+		println ( "^~^~^ P3 SWEEP points=" + local.np )
+		for( local.k = 1; local.k <= local.np; local.k++ ){
+			for( local.y = 0; local.y < 360; local.y = local.y + 90 ){
+				waitthread p3_probe1 local.pt[local.k] local.y ( "s" + local.k + "_" + local.y ) 0 700 local.p
+			}
+		}
+	}
+	if( local.c == "enemy" ){
+		// three riflemen 800-1040u down the gun's line, standing their ground
+		if( local.k1 == NIL ){ end }
+		local.gp = local.k1.coop_psqMgGun
+		local.gy = local.k1.coop_psqMgYaw
+		if( local.gp == NIL ){ end }
+		local.dir = angles_toforward ( 0 local.gy 0 )
+		local.d0 = float( getcvar( "p3_n" ) )
+		if( local.d0 < 300 ){ local.d0 = 800 }
+		for( local.i = 0; local.i < 3; local.i++ ){
+			local.ep = local.gp + ( vector_scale local.dir ( local.d0 + local.i * 120 ) ) + ( vector_scale ( angles_toforward ( 0 ( local.gy + 90 ) 0 ) ) ( ( local.i - 1 ) * 110 ) )
+			local.eg = waitthread coop_mod/officer.scr::coop_find_ground ( local.ep + ( 0 0 80 ) )
+			if( local.eg == NIL ){ continue }
+			local.e = spawn "models/human/german_wehrmact_soldier.tik"
+			local.e.origin = local.eg
+			local.e.angles = ( 0 ( local.gy + 180 ) 0 )
+			local.e.health = 300
+			local.e.leash = 0
+			local.e.fixedleash = 1
+			local.e type_attack "turret"
+			local.e attackentity local.k1
+			println ( "^~^~^ P3 enemy at=" + local.eg )
+		}
+	}
+	if( local.c == "foe" ){
+		// three riflemen round p3_x/y/z facing p3_yaw, standing their ground (p3_n = their health)
+		local.o = waitthread p3_vec
+		local.hp = float( getcvar( "p3_n" ) )
+		if( local.hp < 1 ){ local.hp = 300 }
+		for( local.i = 0; local.i < 3; local.i++ ){
+			local.ep = local.o + ( vector_scale ( angles_toforward ( 0 ( local.yaw + 90 ) 0 ) ) ( ( local.i - 1 ) * 120 ) )
+			local.eg = waitthread coop_mod/officer.scr::coop_find_ground ( local.ep + ( 0 0 80 ) )
+			if( local.eg == NIL ){ continue }
+			local.e = spawn "models/human/german_wehrmact_soldier.tik"
+			local.e.origin = local.eg
+			local.e.angles = ( 0 local.yaw 0 )
+			local.e.health = local.hp
+			local.e.leash = 0
+			local.e.fixedleash = 1
+			local.e type_attack "turret"
+			level.p3_foe[local.i] = local.e
+			println ( "^~^~^ P3 foe at=" + local.eg )
+		}
+	}
+	if( local.c == "nofoe" ){
+		for( local.i = 0; local.i < 3; local.i++ ){
+			if( level.p3_foe[local.i] != NIL && level.p3_foe[local.i] != NULL ){ level.p3_foe[local.i] remove }
+		}
+	}
+	if( local.c == "put" ){
+		// a model (p3_tag) on the ground at p3_x/y/z facing p3_yaw, not solid: something to walk round
+		local.o = waitthread p3_vec
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.o + ( 0 0 48 ) )
+		if( local.g != NIL ){ local.o = local.g }
+		if( level.p3_put != NIL && level.p3_put != NULL ){ level.p3_put remove }
+		level.p3_put = spawn script_model
+		level.p3_put model ( getcvar( "p3_tag" ) )
+		level.p3_put notsolid
+		local.sc = float( getcvar( "p3_n" ) )
+		if( local.sc > 0 ){ level.p3_put scale local.sc }
+		level.p3_put.origin = local.o
+		level.p3_put.angles = ( 0 local.yaw 0 )
+		level.p3_tgt = local.o
+		println ( "^~^~^ P3 put at=" + local.o )
+	}
+	if( local.c == "orbit" ){
+		// the player p3_n out from level.p3_tgt, p3_yaw round, looking at a point p3_z over it
+		if( level.p3_tgt == NIL ){ end }
+		local.dist = float( getcvar( "p3_n" ) )
+		local.cp = level.p3_tgt + ( vector_scale ( angles_toforward ( 0 local.yaw 0 ) ) local.dist )
+		local.cg = waitthread coop_mod/officer.scr::coop_find_ground ( local.cp + ( 0 0 60 ) )
+		if( local.cg != NIL ){ local.cp = local.cg }
+		local.p origin local.cp
+		local.eh = float( getcvar( "p3_pitch" ) )
+		local.eye = local.cp + ( 0 0 local.eh )
+		local.t2 = level.p3_tgt + ( 0 0 ( float( getcvar( "p3_z" ) ) ) )
+		local.va = vector_toangles ( local.t2 - local.eye )
+		local.p.viewangles = ( local.va[0] local.va[1] 0 )
+	}
+	if( local.c == "bring" ){
+		// TEST SET-UP: stand the man with the gun at p3_x/y/z (the stick came down wherever it did); p3_n > 0 =
+		// his health, so that the map's own enemies do not end the session
+		if( local.k1 != NIL ){
+			local.o = waitthread p3_vec
+			local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.o + ( 0 0 48 ) )
+			if( local.g != NIL ){ local.o = local.g }
+			local.k1.origin = local.o
+			local.hp = float( getcvar( "p3_n" ) )
+			if( local.hp > 0 ){ local.k1.health = local.hp }
+			println ( "^~^~^ P3 bring k=" + local.k1.coop_psqK + " to=" + local.o )
+		} else {
+			println "^~^~^ P3 bring nobody"
+		}
+	}
+	if( local.c == "purge" ){
+		// TEST SET-UP: the map's own German actors go, so that the only enemies are the ones this driver places
+		local.n = 0
+		for( local.i = 1; local.i < 1024; local.i++ ){
+			local.e = getentbyentnum local.i
+			if( local.e == NULL ){ continue }
+			if( local.e.classname != "Actor" ){ continue }
+			if( local.e.team != "german" ){ continue }
+			local.e remove
+			local.n++
+		}
+		println ( "^~^~^ P3 purge removed=" + local.n )
+	}
+	if( local.c == "belt" ){
+		// TEST SET-UP: shorten the belt of the gun that was left for the players (p3_n rounds)
+		if( level.coop_psqLeftN != NIL ){
+			local.g = level.coop_psqLeftGun[level.coop_psqLeftN]
+			if( local.g != NULL ){
+				local.g coopammo ( int( getcvar( "p3_n" ) ) )
+				println ( "^~^~^ P3 belt set " + getcvar( "p3_n" ) + " gun=" + local.g.origin + " angles=" + local.g.angles )
+			}
+		}
+	}
+	if( local.c == "pst" ){
+		local.tu = local.p.turret
+		local.ts = "none"
+		if( local.tu != NIL && local.tu != NULL ){ local.ts = local.tu.origin }
+		println ( "^~^~^ P3 PST at=" + local.p.origin + " ang=" + local.p.viewangles + " hp=" + local.p.health + " turret=" + local.ts )
+	}
+	if( local.c == "kill" ){
+		if( local.k1 != NIL ){ local.k1 kill }
+	}
+	if( local.c == "camg" ){
+		// like cam, but the first angle (p3_yaw, then 20 degree steps either side) from which the gun is not hidden by
+		// the world or by a squad mate. p3_n out, p3_z up. The gun: the planned one, else the one left for the players.
+		local.tgt = NIL
+		local.gy = 0
+		if( local.k1 != NIL ){
+			if( local.k1.coop_psqMgGun != NIL ){ local.tgt = local.k1.coop_psqMgGun; local.gy = local.k1.coop_psqMgYaw }
+		}
+		if( local.tgt == NIL && level.p3_gunAt != NIL ){ local.tgt = level.p3_gunAt; local.gy = level.p3_gunYaw }
+		if( local.tgt == NIL ){ println "^~^~^ P3 camg notarget"; end }
+		level.p3_gunAt = local.tgt
+		level.p3_gunYaw = local.gy
+		local.dir = angles_toforward ( 0 local.gy 0 )
+		local.aim = local.tgt - ( vector_scale local.dir ( float( getcvar( "p3_pitch" ) ) ) )
+		local.aim[2] = local.aim[2] - 10
+		local.dist = float( getcvar( "p3_n" ) )
+		local.up = float( getcvar( "p3_z" ) )
+		local.done = 0
+		for( local.i = 0; local.i < 13; local.i++ ){
+			local.h = int( ( local.i + 1 ) / 2 ) * 20
+			if( ( local.i - ( int( local.i / 2 ) * 2 ) ) == 0 ){ local.h = 0 - local.h }
+			local.cy = local.gy + local.yaw + local.h
+			local.cp = local.aim + ( vector_scale ( angles_toforward ( 0 local.cy 0 ) ) local.dist )
+			local.cg = waitthread coop_mod/officer.scr::coop_find_ground ( local.cp + ( 0 0 60 ) )
+			if( local.cg == NIL ){ continue }
+			local.cg[2] = local.cg[2] + local.up
+			local.eye = local.cg + ( 0 0 82 )
+			local.tr = traced local.eye local.aim 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+			if( local.tr["fraction"] < 0.96 ){ continue }
+			local.seg = local.aim - local.eye
+			local.seg[2] = 0
+			local.sl = vector_length local.seg
+			if( local.sl < 30 ){ continue }
+			local.sd = vector_scale local.seg ( 1.0 / local.sl )
+			local.blk = 0
+			for( local.k = 1; local.k <= 5; local.k++ ){
+				local.m = level.coop_psqM[level.coop_psqN][local.k]
+				if( local.m == NIL || local.m == NULL ){ continue }
+				if( local.k1 != NIL ){ if( local.m == local.k1 ){ continue } }
+				if( !isAlive local.m ){ continue }
+				local.v = local.m.origin - local.eye
+				local.v[2] = 0
+				local.al = vector_dot local.v local.sd
+				if( local.al < ( 0 - 90 ) || local.al > ( local.sl + 60 ) ){ continue }
+				local.lat = vector_length( local.v - ( vector_scale local.sd local.al ) )
+				if( local.lat < 85 ){ local.blk = 1; break }
+			}
+			if( local.blk == 1 ){ continue }
+			local.p origin local.cg
+			local.va = vector_toangles ( local.aim - local.eye )
+			local.p.viewangles = ( local.va[0] local.va[1] 0 )
+			println ( "^~^~^ P3 camg at=" + local.cg + " off=" + local.h + " look=" + local.va )
+			local.done = 1
+			break
+		}
+		if( local.done != 1 ){ println "^~^~^ P3 camg blocked" }
+	}
+	if( local.c == "camat" ){
+		// the player at p3_x/y/z looking at p3_tx/ty/tz
+		local.o = waitthread p3_vec
+		local.t2 = ( 0 0 0 )
+		local.t2[0] = float( getcvar( "p3_tx" ) )
+		local.t2[1] = float( getcvar( "p3_ty" ) )
+		local.t2[2] = float( getcvar( "p3_tz" ) )
+		local.p origin local.o
+		local.eye = local.o + ( 0 0 82 )
+		local.va = vector_toangles ( local.t2 - local.eye )
+		local.p.viewangles = ( local.va[0] local.va[1] 0 )
+		println ( "^~^~^ P3 camat " + local.o )
+	}
+	if( local.c == "sq" ){
+		if( level.coop_psqN == NIL ){ println "^~^~^ P3 SQ none"; end }
+		for( local.k = 1; local.k <= 5; local.k++ ){
+			local.m = level.coop_psqM[level.coop_psqN][local.k]
+			if( local.m == NIL || local.m == NULL ){ println ( "^~^~^ P3 SQ k=" + local.k + " gone" ); continue }
+			local.es = "none"
+			local.e = local.m.enemy
+			if( local.e != NIL && local.e != NULL ){
+				local.es = "d=" + int( vector_length( local.e.origin - local.m.origin ) ) + ",see=" + ( local.m cansee local.e ) + ",at=" + local.e.origin
+			}
+			println ( "^~^~^ P3 SQ k=" + local.k + " alive=" + ( isAlive local.m ) + " hp=" + local.m.health + " at=" + local.m.origin + " pos=" + local.m.position + " think=" + local.m.thinkstate + " busy=" + local.m.coop_psqBusy + " mnt=" + local.m.coop_psqMounted + " enemy=" + local.es )
+		}
+	}
+	if( local.c == "ger" ){
+		// the living Germans within p3_n of p3_x/y/z
+		local.o = waitthread p3_vec
+		local.rr = float( getcvar( "p3_n" ) )
+		local.n = 0
+		local.arr = level.coop_actorArray["german"]
+		if( local.arr != NIL ){
+			for( local.i = 1; local.i <= local.arr.size; local.i++ ){
+				local.g = local.arr[local.i]
+				if( local.g == NIL || local.g == NULL ){ continue }
+				if( !isAlive local.g ){ continue }
+				local.d = vector_length( local.g.origin - local.o )
+				if( local.d > local.rr ){ continue }
+				local.n++
+				if( local.n <= 40 ){ println ( "^~^~^ P3 GER d=" + int( local.d ) + " at=" + local.g.origin + " think=" + local.g.thinkstate + " hp=" + local.g.health ) }
+			}
+		}
+		println ( "^~^~^ P3 GERN " + local.n )
+	}
+	if( local.c == "meter" ){
+		level.p3_mOn = 0
+		wait 0.6
+		level.p3_mRef = waitthread p3_vec
+		thread p3_meter
+	}
+	if( local.c == "meteroff" ){
+		level.p3_mOn = 0
+	}
+	if( local.c == "turrets" ){
+		// the map's emplaced guns: where, and how high over the ground a man behind them stands on
+		for( local.i = 1; local.i < 1024; local.i++ ){
+			local.e = getentbyentnum local.i
+			if( local.e == NULL ){ continue }
+			if( local.e.classname != "TurretGun" ){ continue }
+			local.dir = angles_toforward ( 0 local.e.angles[1] 0 )
+			local.b = local.e.origin - ( vector_scale local.dir 64 )
+			local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.b + ( 0 0 8 ) )
+			local.h = "?"
+			if( local.g != NIL ){ local.h = local.e.origin[2] - local.g[2] }
+			println ( "^~^~^ P3 turret num=" + local.i + " at=" + local.e.origin + " yaw=" + local.e.angles[1] + " model=" + local.e.model + " h=" + local.h + " tn=" + local.e.targetname )
+		}
+	}
+	if( local.c == "behind" ){
+		// the player 52u behind gun entity number p3_n (0 = the gun left for the players), facing down its barrel
+		local.gg = NIL
+		local.gi = int( getcvar( "p3_n" ) )
+		if( local.gi > 0 ){
+			local.gg = getentbyentnum local.gi
+		} else {
+			if( level.coop_psqLeftN != NIL ){ local.gg = level.coop_psqLeftGun[level.coop_psqLeftN] }
+		}
+		if( local.gg != NIL && local.gg != NULL ){
+			local.gy = local.gg.angles[1]
+			local.dir = angles_toforward ( 0 local.gy 0 )
+			local.b = local.gg.origin - ( vector_scale local.dir 52 )
+			local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.b + ( 0 0 8 ) )
+			if( local.g == NIL ){ local.g = local.b }
+			local.p origin ( local.g + ( 0 0 4 ) )
+			local.p.viewangles = ( 0 local.gy 0 )
+			level.p3_gunAt = local.gg.origin
+			level.p3_gunYaw = local.gy
+			level.p3_gunEnt = local.gg
+			println ( "^~^~^ P3 behind gun=" + local.gg.origin + " yaw=" + local.gy + " feet=" + local.g + " h=" + ( local.gg.origin[2] - local.g[2] ) + " model=" + local.gg.model )
+		} else {
+			println "^~^~^ P3 behind nogun"
+		}
+	}
+	if( local.c == "arc" ){
+		local.av = float( getcvar( "p3_n" ) )
+		if( level.p3_gunEnt != NIL && level.p3_gunEnt != NULL ){ level.p3_gunEnt maxYawOffset local.av }
+	}
+	if( local.c == "sidecam" ){
+		// TEST VIEW (the engine agent's recipe): a script camera whose ANGLES point across the gun (p3_yaw degrees
+		// round from its facing, p3_pitch down). In third person on a turret the client chases the player along the
+		// camera's angles, so this frames the mounted player from his side.
+		if( level.p3_cam == NIL || level.p3_cam == NULL ){ level.p3_cam = spawn Camera }
+		level.p3_cam.origin = local.p.origin + ( 0 0 60 )
+		level.p3_cam.angles = ( ( float( getcvar( "p3_pitch" ) ) ) ( level.p3_gunYaw + local.yaw ) 0 )
+		cuecamera level.p3_cam
+	}
+	if( local.c == "nocam" ){
+		cueplayer
+	}
+	if( local.c == "camk" ){
+		// the camera on squad member p3_tag: p3_n out, p3_yaw degrees round from the way he faces, looking at his chest
+		local.mk = int( getcvar( "p3_tag" ) )
+		local.m = level.coop_psqM[level.coop_psqN][local.mk]
+		if( local.m != NIL && local.m != NULL ){
+			local.dist = float( getcvar( "p3_n" ) )
+			local.done = 0
+			for( local.i = 0; local.i < 8; local.i++ ){
+				local.cy = local.m.angles[1] + local.yaw + ( local.i * 45 )
+				local.cp = local.m.origin + ( vector_scale ( angles_toforward ( 0 local.cy 0 ) ) local.dist )
+				local.cg = waitthread coop_mod/officer.scr::coop_find_ground ( local.cp + ( 0 0 60 ) )
+				if( local.cg == NIL ){ continue }
+				local.eye = local.cg + ( 0 0 82 )
+				local.t2 = local.m.origin + ( 0 0 48 )
+				local.tr = traced local.eye local.t2 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+				if( local.tr["fraction"] < 0.97 ){ continue }
+				local.p origin local.cg
+				local.va = vector_toangles ( local.t2 - local.eye )
+				local.p.viewangles = ( local.va[0] local.va[1] 0 )
+				local.done = 1
+				break
+			}
+			println ( "^~^~^ P3 camk k=" + local.mk + " ok=" + local.done + " at=" + local.m.origin + " weapon=" + local.m.weapon + " think=" + local.m.thinkstate )
+		} else {
+			println "^~^~^ P3 camk nobody"
+		}
+	}
+	if( local.c == "fly" ){
+		// TEST VIEW: the player hangs in the air at p3_x/y/z looking p3_pitch down, p3_yaw round (noclip, once)
+		if( level.p3_fly != 1 ){
+			level.p3_fly = 1
+			local.p noclip
+		}
+		local.o = waitthread p3_vec
+		local.p origin local.o
+		local.p.viewangles = ( ( float( getcvar( "p3_pitch" ) ) ) local.yaw 0 )
+		println ( "^~^~^ P3 fly at=" + local.p.origin )
+	}
+	if( local.c == "fireon" ){
+		// TEST'S DOING (said in the report): the manned gun fires a burst down the middle of its arc, level
+		if( local.k1 != NIL ){
+			local.gg = local.k1.coop_psqGun
+			if( local.gg != NIL && local.gg != NULL ){
+				if( level.p3_ft == NIL || level.p3_ft == NULL ){ level.p3_ft = spawn script_origin }
+				level.p3_ft.origin = local.gg.origin + ( vector_scale ( angles_toforward ( 0 local.k1.coop_psqMgYaw 0 ) ) 700 )
+				local.gg targettype "none"
+				local.gg setAimTarget level.p3_ft
+				local.gg startFiring
+				println "^~^~^ P3 fireon"
+			}
+		}
+	}
+	if( local.c == "fireoff" ){
+		if( local.k1 != NIL ){
+			local.gg = local.k1.coop_psqGun
+			if( local.gg != NIL && local.gg != NULL ){ local.gg stopFiring }
+		}
+	}
+	if( local.c == "gunpos" ){
+		// the gun: where it is and how it points (the manned one, else the left one)
+		local.gg = NIL
+		if( local.k1 != NIL ){ local.gg = local.k1.coop_psqGun }
+		if( local.gg == NIL || local.gg == NULL ){
+			if( level.coop_psqLeftN != NIL ){ local.gg = level.coop_psqLeftGun[level.coop_psqLeftN] }
+		}
+		if( local.gg != NIL && local.gg != NULL ){
+			println ( "^~^~^ P3 GUN at=" + local.gg.origin + " ang=" + local.gg.angles )
+		} else {
+			println "^~^~^ P3 GUN none"
+		}
+	}
+}end
+
+// the fight in numbers, four times a second: who is alive, what health the squad has left, how long its men were
+// in plain view of an awake German (traced, solid only) - standing, and standing while they were his target -, how
+// often a man jumped more than 220u between two samples (= he was teleported), and where each man came down.
+p3_meter:{
+	level.p3_mOn = 1
+	local.expS = 0
+	local.expA = 0
+	local.tgtS = 0
+	local.tele = 0
+	local.t0 = level.time
+	local.next = level.time + 5
+	local.pnext = level.time
+	local.g0 = 0 - 1
+	local.farMax = 0
+	local.farSum = 0
+	local.farN = 0
+	println ( "^~^~^ P3 METER start ref=" + level.p3_mRef )
+	while( level.p3_mOn == 1 ){
+		wait 0.25
+		if( level.coop_psqN == NIL ){ continue }
+		local.sid = level.coop_psqN
+		local.arr = level.coop_actorArray["german"]
+		local.alive = 0
+		local.hp = 0
+		local.landed = 0
+		local.far = 0
+		for( local.k = 1; local.k <= 5; local.k++ ){
+			local.m = level.coop_psqM[local.sid][local.k]
+			if( local.m == NIL || local.m == NULL ){ continue }
+			local.landed++
+			if( !isAlive local.m ){ continue }
+			local.alive++
+			local.hp = local.hp + local.m.health
+			if( local.seen0[local.k] != 1 ){
+				local.seen0[local.k] = 1
+				local.sk = local.m.origin + ( 0 0 60 )
+				local.tr = traced local.sk ( local.sk + ( 0 0 1500 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+				local.fl = local.m.origin - level.p3_mRef
+				local.dz = local.fl[2]
+				local.fl[2] = 0
+				println ( "^~^~^ P3 LAND k=" + local.k + " at=" + local.m.origin + " dref=" + int( vector_length local.fl ) + " dz=" + int( local.dz ) + " sky=" + int( local.tr["fraction"] * 1500 ) + " t=" + level.time )
+			} else {
+				local.d = vector_length( local.m.origin - local.last[local.k] )
+				if( local.d > 220 ){
+					local.tele++
+					println ( "^~^~^ P3 TELE k=" + local.k + " from=" + local.last[local.k] + " to=" + local.m.origin + " t=" + level.time )
+				}
+			}
+			local.last[local.k] = local.m.origin
+			if( local.k <= 4 ){
+				local.fv = local.m.origin - level.p3_mRef
+				local.fv[2] = 0
+				local.fd = vector_length local.fv
+				if( local.fd > local.far ){ local.far = local.fd }
+			}
+			if( local.m.coop_psqMounted == 1 ){ continue }
+			local.seen = 0
+			local.tgt = 0
+			if( local.arr != NIL ){
+				for( local.i = 1; local.i <= local.arr.size; local.i++ ){
+					local.g = local.arr[local.i]
+					if( local.g == NIL || local.g == NULL ){ continue }
+					if( !isAlive local.g ){ continue }
+					if( vector_length( local.g.origin - local.m.origin ) > 1600 ){ continue }
+					if( local.g.thinkstate != "attack" ){ continue }
+					local.tr = traced ( local.g.origin + ( 0 0 64 ) ) ( local.m.origin + ( 0 0 44 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+					if( local.tr["fraction"] < 1.0 ){ continue }
+					local.seen = 1
+					if( local.g.enemy == local.m ){ local.tgt = 1; break }
+				}
+			}
+			local.stand = 1
+			if( local.m.position == "crouch" || local.m.position == "prone" ){ local.stand = 0 }
+			if( local.seen == 1 ){
+				local.expA = local.expA + 0.25
+				if( local.stand == 1 ){ local.expS = local.expS + 0.25 }
+			}
+			if( local.tgt == 1 && local.stand == 1 ){ local.tgtS = local.tgtS + 0.25 }
+		}
+		if( local.landed >= 5 ){
+			local.farSum = local.farSum + local.far
+			local.farN++
+			if( local.far > local.farMax ){ local.farMax = local.far }
+		}
+		if( level.time >= local.pnext ){
+			local.pnext = level.time + 1
+			local.ps = ""
+			for( local.k = 1; local.k <= 5; local.k++ ){
+				local.m = level.coop_psqM[local.sid][local.k]
+				if( local.m == NIL || local.m == NULL ){ continue }
+				if( !isAlive local.m ){ continue }
+				local.ps = local.ps + " " + local.k + ":" + int( local.m.origin[0] ) + "," + int( local.m.origin[1] )
+			}
+			local.gs = ""
+			local.gc = 0
+			if( local.arr != NIL ){
+				for( local.i = 1; local.i <= local.arr.size; local.i++ ){
+					local.g = local.arr[local.i]
+					if( local.g == NIL || local.g == NULL ){ continue }
+					if( !isAlive local.g ){ continue }
+					if( vector_length( local.g.origin - level.p3_mRef ) > 1800 ){ continue }
+					local.gc++
+					if( local.gc <= 14 ){ local.gs = local.gs + " g:" + int( local.g.origin[0] ) + "," + int( local.g.origin[1] ) }
+				}
+			}
+			println ( "^~^~^ P3 POS t=" + int( level.time - local.t0 ) + local.ps + local.gs )
+		}
+		if( level.time >= local.next ){
+			local.next = level.time + 5
+			local.favg = 0
+			if( local.farN > 0 ){ local.favg = local.farSum / local.farN }
+			local.gn = 0
+			if( local.arr != NIL ){
+				for( local.i = 1; local.i <= local.arr.size; local.i++ ){
+					local.g = local.arr[local.i]
+					if( local.g == NIL || local.g == NULL ){ continue }
+					if( !isAlive local.g ){ continue }
+					if( vector_length( local.g.origin - level.p3_mRef ) < 3000 ){ local.gn++ }
+				}
+			}
+			if( local.g0 < 0 ){ local.g0 = local.gn }
+			println ( "^~^~^ P3 METER t=" + int( level.time - local.t0 ) + " landed=" + local.landed + " alive=" + local.alive + " hp=" + int( local.hp ) + " seenAny=" + local.expA + " seenStand=" + local.expS + " tgtStand=" + local.tgtS + " tele=" + local.tele + " ger=" + local.gn + " ger0=" + local.g0 + " far=" + int( local.far ) + " farAvg=" + int( local.favg ) + " farMax=" + int( local.farMax ) )
+		}
+	}
+	println "^~^~^ P3 METER off"
+}end
+
+p3_probe1 local.ctr local.yaw local.tag local.bags local.en local.p:{
+	level.coop_psqApos[9] = local.ctr
+	level.coop_psqAyaw[9] = local.yaw
+	level.coop_psqThreat[9] = NIL
+	level.coop_psqLastThr[9] = NIL
+	if( local.en > 0 ){ level.coop_psqThreat[9] = local.ctr + ( vector_scale ( angles_toforward ( 0 local.yaw 0 ) ) local.en ) }
+	local.aim = waitthread coop_mod/parasquad.scr::mgAim 9
+	local.kind = level.coop_psqAimKind
+	level.coop_psqCn = 0
+	level.coop_psqR = NIL
+	level.coop_psqR["tested"] = 0
+	local.wd = $world
+	level.coop_psqWorldNum = local.wd.entnum
+	for( local.r = 0; local.r <= 432; local.r = local.r + 72 ){
+		for( local.j = 0; local.j < 12; local.j++ ){
+			if( local.r == 0 && local.j > 0 ){ break }
+			local.cc = local.ctr + ( vector_scale ( angles_toforward ( 0 ( ( local.j * 30 ) + ( local.r * 0.2 ) ) 0 ) ) local.r )
+			local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.cc + ( 0 0 48 ) )
+			if( local.g == NIL ){ continue }
+			level.coop_psqR["tested"] = level.coop_psqR["tested"] + 1
+			local.b = local.bags
+			if( local.r > 300 ){ local.b = 0 }
+			waitthread coop_mod/parasquad.scr::mgTry local.p 9 local.g local.aim local.kind local.b 0
+		}
+		waitframe
+	}
+	for( local.i = 1; local.i <= level.coop_psqCn; local.i++ ){
+		local.sk = level.coop_psqCt[local.i] + ( 0 0 60 )
+		local.tr = traced local.sk ( local.sk + ( 0 0 1500 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+		local.room = int( local.tr["fraction"] * 1500 )
+		println ( "^~^~^ P3 SITE " + local.tag + " sky=" + local.room + " mode=" + level.coop_psqCm[local.i] + " gun=" + level.coop_psqCg[local.i] + " yaw=" + level.coop_psqCy[local.i] + " top=" + level.coop_psqCh[local.i] + " fof=" + level.coop_psqCf[local.i] + " arc=" + level.coop_psqCx[local.i] + " seat=" + level.coop_psqCt[local.i] + " score=" + level.coop_psqCs[local.i] )
+	}
+	local.w2[1] = "tall"; local.w2[2] = "not_level"; local.w2[3] = "top_blocked"; local.w2[4] = "not_world"; local.w2[5] = "headroom"
+	local.w2[6] = "seatground"; local.w2[7] = "height"; local.w2[8] = "nofire"; local.w2[9] = "seat"; local.w2[10] = "arc"
+	local.w2[11] = "reach"; local.w2[12] = "gap"; local.w2[13] = "crowded"; local.w2[14] = "player_in_front"; local.w2[15] = "squad_in_front"
+	local.w2[16] = "bag_ground"; local.w2[17] = "bag_slope"; local.w2[18] = "lane"
+	local.s = ""
+	for( local.i = 1; local.i <= 18; local.i++ ){
+		local.cn = level.coop_psqR[local.w2[local.i]]
+		if( local.cn != NIL ){ local.s = local.s + " " + local.w2[local.i] + "=" + local.cn }
+	}
+	println ( "^~^~^ P3 PROBE " + local.tag + " from=" + local.ctr + " yaw=" + local.yaw + " aim=" + local.kind + " ground=" + level.coop_psqR["tested"] + " passed=" + level.coop_psqCn + " refused:" + local.s )
+}end

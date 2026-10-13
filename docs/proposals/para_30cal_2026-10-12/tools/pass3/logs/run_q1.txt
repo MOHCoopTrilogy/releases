@@ -1,0 +1,17 @@
+grease k=2 weapon=thompson
+look 0 ['P3 camk k=2 ok=1 at=( -3723.332 2335.121 0.125 ) weapon=thompson think=attack']
+look 1 ['P3 camk k=2 ok=1 at=( -3784.703 2287.200 0.125 ) weapon=thompson think=idle']
+look 2 ['P3 camk k=2 ok=1 at=( -3786.232 2284.425 0.125 ) weapon=thompson think=idle']
+look 3 ['P3 camk k=2 ok=1 at=( -3787.092 2287.477 0.125 ) weapon=thompson think=idle']
+look 4 ['P3 camk k=2 ok=1 at=( -3786.677 2287.160 0.125 ) weapon=thompson think=idle']
+look 5 ['P3 camk k=2 ok=1 at=( -3785.276 2284.701 0.125 ) weapon=thompson think=idle']
+look 6 ['P3 camk k=2 ok=1 at=( -3785.539 2283.922 0.125 ) weapon=thompson think=idle']
+    P3 SQ k=1 alive=1 hp=550.000 at=( -3728.807 2250.611 0.125 ) pos=stand think=attack busy=0 mnt=0 enemy=none
+    P3 SQ k=2 alive=1 hp=550.000 at=( -3785.166 2284.434 0.125 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=3 alive=1 hp=550.000 at=( -3397.534 2270.513 0.125 ) pos=crouch think=idle busy=0 mnt=1 enemy=none
+    P3 SQ k=4 alive=1 hp=550.000 at=( -3671.620 2209.736 0.125 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=5 alive=1 hp=1000.000 at=( -3541.185 2243.061 0.125 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+script errors: []
+    PSQ t=41.500 lz plan n=5 tests=5 secs=1.500 ref=( -3608.000 2303.000 0.125 )
+    PSQ t=58.725 grease k=2 weapon=thompson
+   LOG [2026-10-12 21:27:34 UTC-6.000] cache models/weapons/coop_greasegun_ai.tik

@@ -1,0 +1,19 @@
+['P3 purge removed=18']
+PSQ t=76.125 mg setup k=1 mode=A gun=( 3078.030 3959.126 21.625 ) yaw=270.876 arc=45 top=48.000 seat=( 3086.988 4020.868 -39.875 ) hp=61.500 pos=stand
+ai side 0 ['P3 camg at=( 3155.593 3988.315 -39.875 ) off=0 look=( -338.643 180.876 0.000 )'] ['P3 GUN at=( 3078.030 3959.126 21.625 ) ang=( -0.000 270.876 0.000 )']
+ai side 1 ['P3 camg at=( 2999.611 3985.930 0.875 ) off=0 look=( -317.590 0.876 0.000 )'] ['P3 GUN at=( 3078.030 3959.126 21.625 ) ang=( -0.000 270.876 0.000 )']
+ai side 2 ['P3 camg at=( 3137.804 4015.046 -39.875 ) off=0 look=( -336.457 210.876 0.000 )'] ['P3 GUN at=( 3078.030 3959.126 21.625 ) ang=( -0.000 270.876 0.000 )']
+ai side 3 ['P3 camg at=( 3121.405 4065.744 -39.875 ) off=0 look=( -341.279 240.876 0.000 )'] ['P3 GUN at=( 3078.030 3959.126 21.625 ) ang=( -0.000 270.876 0.000 )']
+PSQ t=90.125 mg left for the players belt=236 fired=0 gun=( 3078.030 3959.126 21.625 )
+left gun: ['P3 GUN at=( 3078.030 3959.126 21.625 ) ang=( 3.000 270.876 0.000 )']
+leftgun ['P3 behind gun=( 3078.030 3959.126 21.625 ) yaw=270.876 feet=( 3077.235 4011.120 -39.875 ) h=61.500 model=models/statweapons/coop_30cal_para.tik']
+leftgun after Use: ['P3 PST at=( 3077.049 4023.118 -39.875 ) ang=( 0.000 -89.121 0.000 ) hp=100000.000 turret=( 3078.030 3959.126 21.625 )']
+leftgun after second Use: ['P3 PST at=( 3077.052 4023.118 -39.875 ) ang=( 0.000 -89.121 0.000 ) hp=100000.000 turret=none']
+script errors: []
+    PSQ t=46.675 lz plan n=5 tests=5 secs=4.225 ref=( 3096.000 3984.000 -39.875 )
+    PSQ t=73.925 mg site how=2 mode=A gun=( 3078.030 3959.126 21.625 ) yaw=270.876 top=48.000 fire=advance:1.259 arc=45 seat=( 3086.891 4020.735 -39.875 ) walk=34.847 path=0 of=1
+    PSQ t=73.925 mg plan aim=advance ground=35 passed=1 tried=1 bags=1 refused: tall=19 not_level=4 nofire=5 bag_ground=2 lane=2 secs=0.200
+    PSQ t=74.175 mg walk how=2 left=13.768 ok=1
+    PSQ t=76.125 mg setup k=1 mode=A gun=( 3078.030 3959.126 21.625 ) yaw=270.876 arc=45 top=48.000 seat=( 3086.988 4020.868 -39.875 ) hp=61.500 pos=stand
+    PSQ t=76.125 mg watch
+    PSQ t=90.125 mg left for the players belt=236 fired=0 gun=( 3078.030 3959.126 21.625 )

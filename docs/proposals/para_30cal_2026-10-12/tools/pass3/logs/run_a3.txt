@@ -1,0 +1,86 @@
+germans within 3000 : ['P3 GERN 17']
+    P3 GER d=0 at=( 2612.000 -2447.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=829 at=( 3054.000 -1751.000 84.960 ) think=idle hp=1000.000
+    P3 GER d=954 at=( 1660.544 -2372.099 192.125 ) think=idle hp=1000.000
+    P3 GER d=965 at=( 1978.392 -3173.415 128.125 ) think=idle hp=1000.000
+    P3 GER d=1037 at=( 1632.000 -2108.000 192.125 ) think=idle hp=1000.000
+    P3 GER d=1056 at=( 3465.000 -3024.000 410.077 ) think=idle hp=1000.000
+    P3 GER d=1132 at=( 1703.000 -3121.000 128.125 ) think=idle hp=1000.000
+    P3 GER d=1219 at=( 3007.000 -3601.000 188.125 ) think=idle hp=1000.000
+    P3 GER d=1367 at=( 1256.000 -2268.000 192.125 ) think=idle hp=1000.000
+    P3 GER d=1670 at=( 1536.000 -1176.000 312.125 ) think=idle hp=1000.000
+    P3 GER d=1945 at=( 1976.000 -4264.000 456.125 ) think=idle hp=1000.000
+    P3 GER d=2001 at=( 1512.000 -776.000 116.000 ) think=idle hp=1000.000
+    P3 GER d=2002 at=( 709.000 -3069.000 200.125 ) think=idle hp=1000.000
+    P3 GER d=2222 at=( 668.000 -1380.000 25.987 ) think=idle hp=1000.000
+    P3 SQ k=1 alive=0 hp=0.000 at=( 2376.249 -2715.789 -7.337 ) pos=dead think=killed busy=1 mnt=0 enemy=none
+    P3 SQ k=2 alive=1 hp=550.000 at=( 2420.514 -2132.381 -38.034 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=3 alive=1 hp=550.000 at=( 2244.598 -2365.079 -28.005 ) pos=crouch think=idle busy=0 mnt=1 enemy=d=1706,see=0,at=( 704.933 -3064.232 200.125 )
+    P3 SQ k=4 alive=1 hp=550.000 at=( 2782.577 -1902.225 20.122 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=5 alive=1 hp=900.000 at=( 2344.860 -2059.422 -41.454 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 LAND k=1 at=( 2556.740 -2680.693 32.124 ) dref=240 dz=-143 sky=867 t=68.500
+    P3 LAND k=3 at=( 2405.338 -2322.550 -37.932 ) dref=241 dz=-213 sky=937 t=69.000
+    P3 LAND k=5 at=( 2388.892 -2020.336 -38.971 ) dref=481 dz=-214 sky=938 t=69.250
+    P3 LAND k=2 at=( 2365.282 -2184.289 -40.544 ) dref=360 dz=-216 sky=940 t=69.500
+    P3 LAND k=4 at=( 2681.620 -1971.892 26.332 ) dref=480 dz=-149 sky=873 t=69.500
+    P3 METER t=5 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=17 ger0=17 far=0 farAvg=0 farMax=0
+    P3 METER t=25 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=17 ger0=17 far=0 farAvg=0 farMax=0
+    P3 METER t=45 landed=5 alive=4 hp=2450 seenAny=28.250 seenStand=28.250 tgtStand=12.250 tele=0 ger=16 ger0=17 far=521 farAvg=510 farMax=521
+    P3 METER t=65 landed=5 alive=4 hp=2550 seenAny=29.250 seenStand=29.250 tgtStand=12.250 tele=0 ger=15 ger0=17 far=523 farAvg=517 farMax=526
+    P3 METER t=85 landed=5 alive=4 hp=2550 seenAny=36.000 seenStand=34.500 tgtStand=12.250 tele=0 ger=15 ger0=17 far=541 farAvg=521 farMax=541
+    P3 METER t=105 landed=5 alive=4 hp=2550 seenAny=36.000 seenStand=34.500 tgtStand=12.250 tele=0 ger=15 ger0=17 far=562 farAvg=529 farMax=562
+    P3 METER t=125 landed=5 alive=4 hp=2550 seenAny=36.000 seenStand=34.500 tgtStand=12.250 tele=0 ger=15 ger0=17 far=563 farAvg=535 farMax=567
+    P3 METER t=145 landed=5 alive=4 hp=2550 seenAny=36.000 seenStand=34.500 tgtStand=12.250 tele=0 ger=15 ger0=17 far=571 farAvg=541 farMax=574
+    P3 METER t=160 landed=5 alive=4 hp=2550 seenAny=36.000 seenStand=34.500 tgtStand=12.250 tele=0 ger=15 ger0=17 far=573 farAvg=545 farMax=575
+script errors: 0 []
+    PSQ t=47.925 lz plan n=5 tests=5 secs=4.275 ref=( 2612.000 -2447.000 176.000 )
+    PSQ t=51.525 lz steer k=1 to=( 2557.196 -2680.659 31.614 ) door=( 3452.323 -2834.601 2603.625 )
+    PSQ t=51.525 lz steer k=3 to=( 2406.713 -2322.674 -37.948 ) door=( 3988.151 -2621.084 2634.665 )
+    PSQ t=51.925 lz steer k=5 to=( 2389.618 -2021.622 -39.620 ) door=( 3382.068 -3275.194 2634.665 )
+    PSQ t=52.325 lz steer k=2 to=( 2365.563 -2184.571 -40.713 ) door=( 2988.545 -2608.402 2603.625 )
+    PSQ t=52.325 lz steer k=4 to=( 2682.120 -1972.149 26.309 ) door=( 3524.375 -2394.885 2634.665 )
+    PSQ t=68.375 land k=1 at=( 2556.740 -2680.693 33.424 ) lzoff=1.866
+    PSQ t=68.825 land k=3 at=( 2405.338 -2322.550 -37.122 ) lzoff=1.609
+    PSQ t=69.225 land k=5 at=( 2388.892 -2020.336 -38.971 ) lzoff=1.613
+    PSQ t=69.325 tac contact thr=( 2760.177 -2337.382 -127.875 )
+    PSQ t=69.375 land k=4 at=( 2681.620 -1971.892 26.793 ) lzoff=0.742
+    PSQ t=69.425 land k=2 at=( 2365.282 -2184.289 -40.044 ) lzoff=0.779
+    PSQ t=72.325 tac pinned k=1 hp=450.000
+    PSQ t=76.825 mg site how=1 mode=C gun=( 2286.955 -2335.554 0.786 ) yaw=247.046 top=0 fire=advance:1.456 arc=45 seat=( 2318.308 -2284.108 -40.124 ) walk=144.981 path=290.299 of=2
+    PSQ t=76.825 mg plan aim=advance ground=57 passed=2 tried=1 bags=1 refused: tall=8 not_level=2 height=35 nofire=10 arc=1 squad_in_front=1 bag_ground=6 bag_slope=19 lane=8 secs=1.000
+    PSQ t=77.825 mg walk how=1 left=8.348 ok=1
+    PSQ t=79.325 tac mandown alive=4
+    PSQ t=80.125 mg setup k=1 mode=C gun=( 2286.955 -2335.554 0.786 ) yaw=247.046 arc=45 top=0 seat=( 2316.912 -2284.373 -39.243 ) hp=40.029 pos=crouch
+    PSQ t=85.625 mg hold fire=barrel_hot
+    PSQ t=90.875 mg hold fire=clear
+    PSQ t=96.125 mg hold fire=barrel_hot
+    PSQ t=100.625 mg hold fire=clear
+    PSQ t=102.125 mg suppress at=( 723.847 -3093.488 232.877 ) age=0.800
+    PSQ t=117.125 mg leave why=enemy_out_of_arc
+    PSQ t=118.325 mg packup k=1
+    PSQ t=123.225 mg site how=1 mode=C gun=( 2186.432 -2465.478 16.271 ) yaw=335.251 top=0 fire=advance:1.500 arc=45 seat=( 2135.883 -2432.383 -26.417 ) walk=194.715 path=548.075 of=1
+    PSQ t=123.225 mg plan aim=advance ground=51 passed=1 tried=1 bags=1 refused: tall=10 not_level=12 top_blocked=10 height=10 nofire=28 gap=1 bag_ground=2 bag_slope=12 lane=2 secs=0.900
+    PSQ t=124.475 mg walk how=1 left=3.849 ok=1
+    PSQ t=126.775 mg setup k=1 mode=C gun=( 2186.432 -2465.478 16.271 ) yaw=335.251 arc=45 top=0 seat=( 2135.925 -2432.397 -24.479 ) hp=40.751 pos=crouch
+    PSQ t=126.775 mg watch
+    PSQ t=141.775 mg leave why=enemy_out_of_arc
+    PSQ t=142.975 mg packup k=1
+    PSQ t=147.725 mg site how=1 mode=C gun=( 2187.447 -2382.167 8.175 ) yaw=211.202 top=0 fire=advance:1.250 arc=30 seat=( 2243.199 -2358.812 -34.794 ) walk=88.244 path=310.365 of=3
+    PSQ t=147.725 mg plan aim=advance ground=36 passed=3 tried=1 bags=1 refused: not_level=5 height=4 nofire=5 seat=1 arc=1 bag_ground=4 bag_slope=15 lane=12 secs=0.750
+    PSQ t=148.475 mg walk how=1 left=7.495 ok=1
+    PSQ t=150.775 mg setup k=1 mode=C gun=( 2187.447 -2382.167 8.175 ) yaw=211.202 arc=30 top=0 seat=( 2242.814 -2358.859 -29.448 ) hp=37.623 pos=crouch
+    PSQ t=150.775 mg watch
+    PSQ t=153.275 mg suppress at=( 668.817 -3078.654 237.536 ) age=11.950
+    PSQ t=153.325 tac contact thr=( 704.933 -3064.232 200.125 )
+    PSQ t=156.775 mg suppress at=( 680.695 -3072.111 249.363 ) age=0.450
+    PSQ t=160.275 mg suppress at=( 706.103 -3101.437 227.927 ) age=0.950
+    PSQ t=165.525 mg suppress at=( 721.891 -3098.183 232.784 ) age=0.200
+    PSQ t=171.275 mg suppress at=( 677.663 -3099.411 242.125 ) age=0.950
+    PSQ t=176.275 mg suppress at=( 719.010 -3074.342 226.541 ) age=0.950
+    PSQ t=180.525 mg suppress at=( 740.255 -3092.917 224.842 ) age=0.200
+    PSQ t=186.025 mg suppress at=( 690.409 -3067.736 252.043 ) age=0.700
+    PSQ t=192.025 mg suppress at=( 706.386 -3072.057 242.868 ) age=0.700
+    PSQ t=196.275 mg suppress at=( 667.050 -3095.021 228.049 ) age=0.950
+    PSQ t=200.775 mg suppress at=( 722.917 -3081.095 227.696 ) age=0.450
+    PSQ t=205.525 mg suppress at=( 739.704 -3058.261 234.687 ) age=0.200
+PSQ line kinds: [('mg suppress', 13), ('lz steer', 5), ('mg hold', 4), ('mg site', 3), ('mg plan', 3), ('mg walk', 3), ('mg setup', 3), ('tac contact', 2), ('mg leave', 2), ('mg packup', 2), ('mg watch', 2), ('lz plan', 1), ('brain start', 1), ('land k=1', 1), ('land k=3', 1), ('land k=5', 1), ('land k=4', 1), ('land k=2', 1), ('grease k=2', 1), ('clear stack', 1), ('move k=1', 1), ('move k=2', 1), ('tac pinned', 1), ('nade k=2', 1), ('clear enter', 1), ('tac mandown', 1), ('clear done', 1)]

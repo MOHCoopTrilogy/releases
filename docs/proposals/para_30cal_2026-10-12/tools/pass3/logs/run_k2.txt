@@ -1,0 +1,19 @@
+['P3 purge removed=27']
+PSQ t=72.725 mg setup k=1 mode=C gun=( -3644.349 2503.019 39.425 ) yaw=36.237 arc=45 top=0 seat=( -3697.628 2474.916 0.125 ) hp=39.300 pos=crouch
+ai side 0 ['P3 camg at=( -3737.868 2583.257 0.125 ) off=0 look=( -336.291 306.237 0.000 )'] ['P3 GUN at=( -3644.349 2503.019 39.425 ) ang=( -0.000 36.237 0.000 )']
+ai side 1 ['P3 camg blocked'] ['P3 GUN at=( -3644.349 2503.019 39.425 ) ang=( -0.000 36.237 0.000 )']
+ai side 2 ['P3 camg at=( -3711.798 2571.368 0.125 ) off=0 look=( -330.981 306.237 0.000 )'] ['P3 GUN at=( -3644.349 2503.019 39.425 ) ang=( -0.000 36.237 0.000 )']
+ai side 3 ['P3 camg at=( -3775.649 2503.226 0.125 ) off=0 look=( -334.401 351.237 0.000 )'] ['P3 GUN at=( -3644.349 2503.019 39.425 ) ang=( -0.000 36.237 0.000 )']
+PSQ t=85.725 mg left for the players belt=235 fired=0 gun=( -3644.349 2503.019 39.425 )
+left gun: ['P3 GUN at=( -3644.349 2503.019 39.425 ) ang=( 3.000 36.237 0.000 )']
+leftgun ['P3 behind gun=( -3644.349 2503.019 39.425 ) yaw=36.237 feet=( -3686.291 2472.280 0.125 ) h=39.300 model=models/statweapons/coop_30cal_para.tik']
+leftgun after Use: ['P3 PST at=( -3697.465 2474.918 0.125 ) ang=( 0.000 36.233 0.000 ) hp=100000.000 turret=( -3644.349 2503.019 39.425 )']
+leftgun after second Use: ['P3 PST at=( -3697.022 2474.097 0.125 ) ang=( 0.000 36.233 0.000 ) hp=100000.000 turret=none']
+script errors: []
+    PSQ t=43.575 lz plan n=5 tests=5 secs=1.500 ref=( -3608.000 2303.000 0.125 )
+    PSQ t=68.925 mg site how=1 mode=C gun=( -3644.349 2503.019 39.425 ) yaw=36.237 top=0 fire=advance:1.145 arc=45 seat=( -3697.463 2474.914 0.125 ) walk=208.897 path=361.899 of=2
+    PSQ t=68.925 mg plan aim=advance ground=51 passed=2 tried=1 bags=1 refused: tall=4 not_level=1 not_world=1 nofire=9 arc=1 gap=1 crowded=1 squad_in_front=2 bag_ground=1 bag_slope=1 lane=16 secs=0.600
+    PSQ t=70.425 mg walk how=1 left=10.633 ok=1
+    PSQ t=72.725 mg setup k=1 mode=C gun=( -3644.349 2503.019 39.425 ) yaw=36.237 arc=45 top=0 seat=( -3697.628 2474.916 0.125 ) hp=39.300 pos=crouch
+    PSQ t=72.725 mg watch
+    PSQ t=85.725 mg left for the players belt=235 fired=0 gun=( -3644.349 2503.019 39.425 )

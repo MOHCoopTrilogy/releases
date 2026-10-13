@@ -1,0 +1,90 @@
+germans within 3000 : ['P3 GERN 11']
+    P3 GER d=864 at=( -3191.846 3056.000 0.125 ) think=idle hp=1000.000
+    P3 GER d=1085 at=( -3952.000 3328.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1089 at=( -3032.000 3224.463 0.125 ) think=idle hp=1000.000
+    P3 GER d=1160 at=( -3216.000 3392.000 0.125 ) think=idle hp=1000.000
+    P3 GER d=1235 at=( -4120.000 3424.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1247 at=( -3504.000 3544.000 16.125 ) think=idle hp=1000.000
+    P3 GER d=1320 at=( -4184.000 3488.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1392 at=( -3424.000 3680.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1459 at=( -3464.000 3752.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=1504 at=( -2824.000 3584.000 0.125 ) think=idle hp=1000.000
+    P3 GER d=1561 at=( -3472.000 3856.000 0.125 ) think=idle hp=1000.000
+    P3 SQ k=1 alive=1 hp=550.000 at=( -3862.227 2101.804 -191.875 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=2 alive=1 hp=550.000 at=( -3504.000 3096.000 16.125 ) pos=stand think=attack busy=0 mnt=0 enemy=d=315,see=0,at=( -3191.575 3056.026 0.125 )
+    P3 SQ k=3 alive=1 hp=454.000 at=( -3789.184 2580.612 0.125 ) pos=crouch think=curious busy=0 mnt=1 enemy=d=763,see=0,at=( -3191.575 3056.026 0.125 )
+    P3 SQ k=4 alive=1 hp=550.000 at=( -3226.519 3215.828 16.125 ) pos=run think=attack busy=0 mnt=0 enemy=d=164,see=1,at=( -3191.575 3056.026 0.125 )
+    P3 SQ k=5 alive=1 hp=1000.000 at=( -3735.627 3280.115 16.125 ) pos=run think=attack busy=0 mnt=0 enemy=d=588,see=0,at=( -3191.575 3056.026 0.125 )
+    P3 LAND k=5 at=( -4138.045 2337.375 452.506 ) dref=531 dz=368 sky=609 t=57.800
+    P3 LAND k=3 at=( -3927.548 1656.313 102.125 ) dref=721 dz=18 sky=959 t=59.550
+    P3 LAND k=1 at=( -3861.118 2112.970 -191.875 ) dref=316 dz=-275 sky=1253 t=60.050
+    P3 LAND k=2 at=( -3510.208 2353.142 0.125 ) dref=109 dz=-83 sky=1061 t=60.300
+    P3 LAND k=4 at=( -3585.318 1887.149 0.125 ) dref=416 dz=-83 sky=1061 t=60.300
+    P3 TELE k=3 from=( -3921.775 1652.242 192.125 ) to=( -3719.958 2541.609 0.125 ) t=71.550
+    P3 TELE k=4 from=( -3551.190 1798.153 0.125 ) to=( -4062.847 2249.238 0.125 ) t=104.300
+    P3 TELE k=2 from=( -3349.756 3070.659 16.125 ) to=( -3721.709 2607.128 0.125 ) t=108.050
+    P3 METER t=5 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=11 ger0=11 far=0 farAvg=0 farMax=0
+    P3 METER t=25 landed=5 alive=5 hp=3200 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=11 ger0=11 far=720 farAvg=720 farMax=721
+    P3 METER t=45 landed=5 alive=5 hp=3200 seenAny=3.250 seenStand=3.250 tgtStand=0 tele=1 ger=11 ger0=11 far=654 farAvg=661 farMax=751
+    P3 METER t=65 landed=5 alive=5 hp=3200 seenAny=5.750 seenStand=5.750 tgtStand=0 tele=3 ger=10 ger0=11 far=458 farAvg=647 farMax=809
+    P3 METER t=85 landed=5 alive=5 hp=3104 seenAny=6.750 seenStand=6.750 tgtStand=0 tele=3 ger=9 ger0=11 far=773 farAvg=596 farMax=809
+    P3 METER t=105 landed=5 alive=5 hp=3104 seenAny=6.750 seenStand=6.750 tgtStand=0 tele=3 ger=9 ger0=11 far=956 farAvg=635 farMax=983
+    P3 METER t=125 landed=5 alive=5 hp=3104 seenAny=6.750 seenStand=6.750 tgtStand=0 tele=3 ger=8 ger0=11 far=821 farAvg=684 farMax=1014
+    P3 METER t=145 landed=5 alive=5 hp=3104 seenAny=6.750 seenStand=6.750 tgtStand=0 tele=3 ger=8 ger0=11 far=955 farAvg=724 farMax=1014
+    P3 METER t=165 landed=5 alive=5 hp=3104 seenAny=6.750 seenStand=6.750 tgtStand=0 tele=3 ger=8 ger0=11 far=980 farAvg=749 farMax=1014
+    P3 METER t=165 landed=5 alive=5 hp=3104 seenAny=6.750 seenStand=6.750 tgtStand=0 tele=3 ger=8 ger0=11 far=980 farAvg=749 farMax=1014
+script errors: 0 []
+    PSQ t=72.075 mg site how=1 mode=C gun=( -3737.647 2611.354 40.125 ) yaw=39.153 top=0 fire=enemy:1.367 arc=45 seat=( -3789.334 2580.570 0.125 ) walk=56.009 path=129.705 of=6
+    PSQ t=72.075 mg plan aim=enemy ground=58 passed=6 tried=1 bags=1 refused: tall=2 nofire=21 seat=4 arc=1 crowded=1 bag_ground=1 lane=11 secs=0.650
+    PSQ t=72.575 mg walk how=1 left=3.533 ok=1
+    PSQ t=74.875 mg setup k=1 mode=C gun=( -3737.647 2611.354 40.125 ) yaw=39.153 arc=45 top=0 seat=( -3788.223 2581.394 0.125 ) hp=40.000 pos=crouch
+    PSQ t=74.875 mg hold fire=friend_in_front
+    PSQ t=75.375 mg hold fire=clear
+    PSQ t=76.875 mg suppress at=( -3152.008 3058.129 31.862 ) age=0.800
+    PSQ t=77.375 mg hold fire=friend_in_front
+    PSQ t=77.875 mg hold fire=clear
+    PSQ t=79.375 mg suppress at=( -3156.012 3023.688 30.069 ) age=0.300
+    PSQ t=82.375 mg hold fire=friend_in_front
+    PSQ t=83.375 mg hold fire=clear
+    PSQ t=88.125 mg hold fire=friend_in_front
+    PSQ t=89.125 mg hold fire=clear
+    PSQ t=95.625 mg hold fire=friend_in_front
+    PSQ t=97.075 cover k=4 from=( -3578.655 1875.134 0.125 ) to=( -3532.311 1773.172 0.125 )
+    PSQ t=99.375 mg hold fire=clear
+    PSQ t=109.625 mg hold fire=friend_in_front
+    PSQ t=111.125 mg hold fire=clear
+    PSQ t=125.875 mg hold fire=friend_in_front
+    PSQ t=129.375 mg hold fire=clear
+    PSQ t=135.625 mg hold fire=friend_in_front
+    PSQ t=138.375 mg hold fire=clear
+    PSQ t=139.375 mg hold fire=friend_in_front
+    PSQ t=141.125 mg hold fire=clear
+    PSQ t=147.375 mg hold fire=friend_in_front
+    PSQ t=147.875 mg hold fire=clear
+    PSQ t=149.375 mg hold fire=friend_in_front
+    PSQ t=150.875 mg hold fire=clear
+    PSQ t=151.875 mg hold fire=friend_in_front
+    PSQ t=152.375 mg hold fire=clear
+    PSQ t=153.375 mg hold fire=friend_in_front
+    PSQ t=157.375 mg hold fire=clear
+    PSQ t=163.875 mg hold fire=friend_in_front
+    PSQ t=165.625 mg hold fire=clear
+    PSQ t=167.125 mg hold fire=friend_in_front
+    PSQ t=169.125 mg hold fire=clear
+    PSQ t=175.625 mg hold fire=friend_in_front
+    PSQ t=177.125 mg hold fire=clear
+    PSQ t=179.375 mg hold fire=friend_in_front
+    PSQ t=181.125 mg hold fire=clear
+    PSQ t=184.125 mg hold fire=friend_in_front
+    PSQ t=184.875 mg hold fire=clear
+    PSQ t=186.125 mg hold fire=friend_in_front
+    PSQ t=188.375 mg hold fire=clear
+    PSQ t=197.625 mg hold fire=friend_in_front
+    PSQ t=199.125 mg hold fire=clear
+    PSQ t=200.125 mg hold fire=friend_in_front
+    PSQ t=200.875 mg hold fire=clear
+    PSQ t=206.375 mg hold fire=friend_in_front
+    PSQ t=206.875 mg hold fire=clear
+    PSQ t=208.375 mg hold fire=friend_in_front
+    PSQ t=209.125 mg hold fire=clear
+PSQ line kinds: [('mg hold', 46), ('move k=4', 21), ('overwatch movingTeam=0', 21), ('move k=2', 8), ('clear stack', 5), ('clear enter', 5), ('clear done', 5), ('nade k=2', 3), ('mg suppress', 2), ('move k=1', 2), ('brain start', 1), ('mg site', 1), ('mg plan', 1), ('mg walk', 1), ('mg setup', 1), ('cover k=4', 1)]

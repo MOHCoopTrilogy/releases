@@ -1,0 +1,105 @@
+germans within 3000 : ['P3 GERN 17']
+    P3 GER d=0 at=( 2612.000 -2447.000 176.125 ) think=idle hp=1000.000
+    P3 GER d=742 at=( 2772.000 -1727.000 94.314 ) think=idle hp=1000.000
+    P3 GER d=829 at=( 3054.000 -1751.000 84.960 ) think=idle hp=1000.000
+    P3 GER d=951 at=( 1664.000 -2372.000 192.125 ) think=idle hp=1000.000
+    P3 GER d=970 at=( 1974.893 -3177.104 128.125 ) think=idle hp=1000.000
+    P3 GER d=1037 at=( 1632.000 -2108.000 192.125 ) think=idle hp=1000.000
+    P3 GER d=1056 at=( 3465.000 -3024.000 410.077 ) think=idle hp=1000.000
+    P3 GER d=1103 at=( 2007.115 -3368.922 128.125 ) think=idle hp=1000.000
+    P3 GER d=1133 at=( 1699.499 -3117.642 128.125 ) think=idle hp=1000.000
+    P3 GER d=1219 at=( 3007.000 -3601.000 188.125 ) think=idle hp=1000.000
+    P3 GER d=1367 at=( 1256.000 -2268.000 192.125 ) think=idle hp=1000.000
+    P3 GER d=1670 at=( 1536.000 -1176.000 312.125 ) think=idle hp=1000.000
+    P3 GER d=1945 at=( 1976.000 -4264.000 456.125 ) think=idle hp=1000.000
+    P3 GER d=2001 at=( 1512.000 -776.000 116.000 ) think=idle hp=1000.000
+PSQ t=77.275 mg nosite aim=advance ground=43 passed=0 tried=0 bags=1 refused: tall=4 not_level=7 height=40 nofire=2 bag_ground=1 bag_slope=20 lane=2 secs=0.500
+PSQ t=87.825 mg nosite aim=advance ground=47 passed=0 tried=0 bags=1 refused: tall=4 not_level=5 top_blocked=4 seatground=1 height=22 nofire=18 seat=1 gap=1 squad_in_front=6 bag_ground=3 bag_slope=13 lane=4 secs=0.550
+PSQ t=98.375 mg nosite aim=advance ground=46 passed=0 tried=0 bags=1 refused: tall=4 not_level=5 top_blocked=4 seatground=1 height=20 nofire=18 seat=1 gap=1 squad_in_front=6 bag_ground=3 bag_slope=13 lane=4 secs=0.550
+PSQ t=108.925 mg site how=2 mode=C gun=( 2309.685 -2296.510 -1.336 ) yaw=251.225 top=0 fire=advance:1.465 arc=45 seat=( 2337.185 -2242.935 -41.971 ) walk=17.677 path=0 of=4
+P3 camg at=( 2448.963 -2230.385 -36.922 ) off=0 look=( -337.321 196.225 0.000 )
+PSQ t=112.925 mg setup abort=not_reached left=44.387
+PSQ t=125.425 mg nosite aim=advance ground=43 passed=0 tried=0 bags=1 refused: tall=6 not_level=8 seatground=2 height=24 bag_ground=2 bag_slope=14 lane=16 secs=0.500
+PSQ t=135.975 mg nosite aim=advance ground=45 passed=0 tried=0 bags=1 refused: tall=6 not_level=10 seatground=2 height=24 bag_ground=2 bag_slope=14 lane=16 secs=0.550
+PSQ t=146.525 mg nosite aim=advance ground=44 passed=0 tried=0 bags=1 refused: tall=5 not_level=9 seatground=2 height=23 bag_ground=2 bag_slope=14 lane=16 secs=0.550
+PSQ t=156.825 mg nosite aim=enemy ground=48 passed=0 tried=0 bags=1 refused: tall=9 not_level=4 top_blocked=1 height=1 nofire=11 bag_ground=1 bag_slope=3 lane=7 secs=0.300
+PSQ t=167.100 mg nosite aim=enemy ground=47 passed=0 tried=0 bags=1 refused: tall=9 not_level=5 top_blocked=1 height=1 nofire=11 bag_slope=2 lane=8 secs=0.275
+    P3 SQ k=1 alive=1 hp=525.000 at=( 1929.067 -2326.808 -7.523 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=2 alive=1 hp=550.000 at=( 2550.120 -2164.544 -27.945 ) pos=stand think=idle busy=0 mnt=0 enemy=d=120108,see=0,at=( 2756.723 -2455.483 -120135.875 )
+    P3 SQ k=3 alive=1 hp=450.000 at=( 2513.925 -2184.783 -33.954 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=4 alive=1 hp=550.000 at=( 2644.864 -1907.294 30.617 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 SQ k=5 alive=1 hp=1000.000 at=( 2226.527 -2292.662 -39.592 ) pos=stand think=idle busy=0 mnt=0 enemy=none
+    P3 LAND k=1 at=( 2556.779 -2680.637 32.143 ) dref=240 dz=-143 sky=867 t=69.525
+    P3 LAND k=3 at=( 2405.356 -2322.377 -37.942 ) dref=241 dz=-213 sky=937 t=70.025
+    P3 LAND k=5 at=( 2389.026 -2020.280 -39.465 ) dref=481 dz=-215 sky=939 t=70.275
+    P3 LAND k=2 at=( 2365.285 -2184.297 -40.544 ) dref=360 dz=-216 sky=940 t=70.525
+    P3 LAND k=4 at=( 2681.592 -1971.804 26.333 ) dref=480 dz=-149 sky=873 t=70.525
+    P3 METER t=5 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=18 ger0=18
+    P3 METER t=20 landed=0 alive=0 hp=0 seenAny=0 seenStand=0 tgtStand=0 tele=0 ger=18 ger0=18
+    P3 METER t=35 landed=5 alive=5 hp=3000 seenAny=17.500 seenStand=17.000 tgtStand=3.250 tele=0 ger=19 ger0=18
+    P3 METER t=50 landed=5 alive=5 hp=2900 seenAny=25.000 seenStand=24.500 tgtStand=4.750 tele=0 ger=17 ger0=18
+    P3 METER t=65 landed=5 alive=5 hp=2900 seenAny=25.000 seenStand=24.500 tgtStand=4.750 tele=0 ger=17 ger0=18
+    P3 METER t=80 landed=5 alive=5 hp=3000 seenAny=51.000 seenStand=48.500 tgtStand=8.250 tele=0 ger=15 ger0=18
+    P3 METER t=94 landed=5 alive=5 hp=3000 seenAny=51.000 seenStand=48.500 tgtStand=8.250 tele=0 ger=15 ger0=18
+    P3 METER t=109 landed=5 alive=5 hp=3075 seenAny=51.000 seenStand=48.500 tgtStand=8.250 tele=0 ger=12 ger0=18
+    P3 METER t=124 landed=5 alive=5 hp=3075 seenAny=51.000 seenStand=48.500 tgtStand=8.250 tele=0 ger=12 ger0=18
+    P3 METER t=124 landed=5 alive=5 hp=3075 seenAny=51.000 seenStand=48.500 tgtStand=8.250 tele=0 ger=12 ger0=18
+script errors: 0 []
+    PSQ t=47.975 lz plan n=5 tests=5 secs=4.275 ref=( 2612.000 -2447.000 176.000 )
+    PSQ t=52.475 lz steer k=1 to=( 2557.196 -2680.659 31.614 ) door=( 3374.393 -2956.418 2603.625 )
+    PSQ t=52.475 lz steer k=3 to=( 2406.713 -2322.674 -37.948 ) door=( 3937.026 -2829.351 2634.665 )
+    PSQ t=52.875 lz steer k=5 to=( 2389.618 -2021.622 -39.620 ) door=( 3236.081 -3380.598 2634.665 )
+    PSQ t=53.275 lz steer k=2 to=( 2365.563 -2184.571 -40.713 ) door=( 2951.711 -2660.453 2603.625 )
+    PSQ t=53.275 lz steer k=4 to=( 2682.120 -1972.149 26.309 ) door=( 3514.344 -2533.386 2634.665 )
+    PSQ t=69.325 land k=1 at=( 2556.779 -2680.637 33.443 ) lzoff=1.875
+    PSQ t=69.775 land k=3 at=( 2405.356 -2322.377 -37.132 ) lzoff=1.611
+    PSQ t=70.175 land k=5 at=( 2389.026 -2020.280 -38.965 ) lzoff=1.607
+    PSQ t=70.275 tac contact thr=( 1711.909 -2672.233 -55.113 )
+    PSQ t=70.275 cover k=1 from=( 2556.779 -2680.637 32.143 ) to=( 2744.155 -2638.753 -23.875 )
+    PSQ t=70.325 land k=4 at=( 2681.592 -1971.804 26.794 ) lzoff=0.796
+    PSQ t=70.375 land k=2 at=( 2365.285 -2184.297 -40.044 ) lzoff=0.775
+    PSQ t=71.275 tac pinned k=1 hp=450.000
+    PSQ t=71.275 tac pinned k=3 hp=450.000
+    PSQ t=71.275 tac bound k=2 back=1 cover=1 base=1 dist=452.220
+    PSQ t=71.275 tac nocover k=3
+    PSQ t=72.275 tac bound k=2 back=1 cover=1 base=1 dist=392.453
+    PSQ t=76.275 tac bound k=1 back=0 cover=1 base=1 dist=333.035
+    PSQ t=77.275 mg nosite aim=advance ground=43 passed=0 tried=0 bags=1 refused: tall=4 not_level=7 height=40 nofire=2 bag_ground=1 bag_slope=20 lane=2 secs=0.500
+    PSQ t=79.275 tac bound k=2 back=1 cover=0 base=1 dist=300.496
+    PSQ t=80.275 tac pinned k=2 hp=450.000
+    PSQ t=84.275 tac bound k=2 back=1 cover=1 base=1 dist=298.197
+    PSQ t=85.275 tac bound k=2 back=1 cover=1 base=1 dist=298.211
+    PSQ t=86.025 walkout k=2 goal=0 left=-1 lost=0
+    PSQ t=86.275 tac bound k=2 back=1 cover=1 base=1 dist=298.710
+    PSQ t=87.275 tac bound k=2 back=1 cover=1 base=1 dist=298.754
+    PSQ t=87.825 mg nosite aim=advance ground=47 passed=0 tried=0 bags=1 refused: tall=4 not_level=5 top_blocked=4 seatground=1 height=22 nofire=18 seat=1 gap=1 squad_in_front=6 bag_ground=3 bag_slope=13 lane=4 secs=0.550
+    PSQ t=88.325 walkout k=2 goal=0 left=-1 lost=0
+    PSQ t=89.275 tac bound k=2 back=1 cover=1 base=1 dist=286.148
+    PSQ t=90.275 tac bound k=2 back=1 cover=1 base=1 dist=285.856
+    PSQ t=91.025 walkout k=2 goal=0 left=-1 lost=0
+    PSQ t=91.275 tac bound k=2 back=1 cover=1 base=1 dist=285.856
+    PSQ t=92.275 tac bound k=2 back=1 cover=1 base=1 dist=286.298
+    PSQ t=93.325 walkout k=2 goal=0 left=-1 lost=0
+    PSQ t=94.275 tac bound k=2 back=1 cover=1 base=1 dist=274.733
+    PSQ t=95.275 tac bound k=2 back=1 cover=1 base=1 dist=275.103
+    PSQ t=96.025 walkout k=2 goal=0 left=-1 lost=0
+    PSQ t=96.275 tac bound k=2 back=1 cover=0 base=0 dist=330.982
+    PSQ t=97.275 tac bound k=2 back=1 cover=0 base=0 dist=331.098
+    PSQ t=98.325 walkout k=2 goal=0 left=-1 lost=0
+    PSQ t=98.375 mg nosite aim=advance ground=46 passed=0 tried=0 bags=1 refused: tall=4 not_level=5 top_blocked=4 seatground=1 height=20 nofire=18 seat=1 gap=1 squad_in_front=6 bag_ground=3 bag_slope=13 lane=4 secs=0.550
+    PSQ t=108.925 mg site how=2 mode=C gun=( 2309.685 -2296.510 -1.336 ) yaw=251.225 top=0 fire=advance:1.465 arc=45 seat=( 2337.185 -2242.935 -41.971 ) walk=17.677 path=0 of=4
+    PSQ t=108.925 mg plan aim=advance ground=44 passed=4 tried=1 bags=1 refused: tall=2 not_level=4 top_blocked=2 height=36 nofire=5 seat=1 bag_ground=2 bag_slope=16 lane=6 secs=0.550
+    PSQ t=112.275 tac bound k=1 back=0 cover=1 base=1 dist=296.325
+    PSQ t=112.925 mg walk how=2 left=44.387 ok=0
+    PSQ t=112.925 mg setup abort=not_reached left=44.387
+    PSQ t=115.275 tac lane k=1 to=( 2285.863 -2133.447 -44.336 )
+    PSQ t=125.425 mg nosite aim=advance ground=43 passed=0 tried=0 bags=1 refused: tall=6 not_level=8 seatground=2 height=24 bag_ground=2 bag_slope=14 lane=16 secs=0.500
+    PSQ t=131.275 tac bound k=2 back=1 cover=1 base=1 dist=318.716
+    PSQ t=132.525 walkout k=2 goal=1 left=22.340 lost=0
+    PSQ t=135.975 mg nosite aim=advance ground=45 passed=0 tried=0 bags=1 refused: tall=6 not_level=10 seatground=2 height=24 bag_ground=2 bag_slope=14 lane=16 secs=0.550
+    PSQ t=146.525 mg nosite aim=advance ground=44 passed=0 tried=0 bags=1 refused: tall=5 not_level=9 seatground=2 height=23 bag_ground=2 bag_slope=14 lane=16 secs=0.550
+    PSQ t=147.275 tac pinned k=1 hp=350.000
+    PSQ t=149.275 tac bound k=3 back=0 cover=1 base=1 dist=300.815
+    PSQ t=156.825 mg nosite aim=enemy ground=48 passed=0 tried=0 bags=1 refused: tall=9 not_level=4 top_blocked=1 height=1 nofire=11 bag_ground=1 bag_slope=3 lane=7 secs=0.300
+    PSQ t=167.100 mg nosite aim=enemy ground=47 passed=0 tried=0 bags=1 refused: tall=9 not_level=5 top_blocked=1 height=1 nofire=11 bag_slope=2 lane=8 secs=0.275
+PSQ line kinds: [('tac bound', 19), ('move k=2', 18), ('mg nosite', 8), ('walkout k=2', 7), ('move k=1', 6), ('lz steer', 5), ('tac pinned', 4), ('clear stack', 3), ('clear enter', 3), ('clear done', 3), ('nade k=2', 3), ('nade k=3', 2), ('lz plan', 1), ('brain start', 1), ('land k=1', 1), ('land k=3', 1), ('land k=5', 1), ('tac contact', 1), ('cover k=1', 1), ('land k=4', 1), ('land k=2', 1), ('tac nocover', 1), ('mg site', 1), ('mg plan', 1), ('mg walk', 1), ('mg setup', 1), ('tac lane', 1), ('move k=3', 1)]

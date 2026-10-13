@@ -1,0 +1,34 @@
+['P3 purge removed=27']
+PSQ t=73.775 mg setup k=1 mode=C gun=( -3639.642 2512.563 39.425 ) yaw=35.978 arc=45 top=0 seat=( -3693.047 2484.702 0.125 ) hp=39.300 pos=crouch
+ai side 0 ['P3 camg at=( -3732.798 2593.223 0.125 ) off=0 look=( -336.291 305.978 0.000 )'] ['P3 GUN at=( -3639.642 2512.563 39.425 ) ang=( -0.000 35.978 0.000 )']
+ai side 1 ['P3 camg at=( -3591.804 2399.005 0.125 ) off=0 look=( -336.290 125.978 0.000 )'] ['P3 GUN at=( -3639.642 2512.563 39.425 ) ang=( -0.000 35.978 0.000 )']
+ai side 2 ['P3 camg at=( -3706.781 2581.217 0.125 ) off=0 look=( -330.981 305.978 0.000 )'] ['P3 GUN at=( -3639.642 2512.563 39.425 ) ang=( -0.000 35.978 0.000 )']
+ai side 3 ['P3 camg at=( -3770.940 2513.364 0.125 ) off=0 look=( -334.401 350.978 0.000 )'] ['P3 GUN at=( -3639.642 2512.563 39.425 ) ang=( -0.000 35.978 0.000 )']
+PSQ t=83.775 mg left for the players belt=250 fired=0 gun=( -3639.642 2512.563 39.425 )
+left gun: ['P3 GUN at=( -3639.642 2512.563 39.425 ) ang=( 3.000 35.978 0.000 )']
+leftgun ['P3 behind gun=( -3639.642 2512.563 39.425 ) yaw=35.978 feet=( -3681.723 2482.015 0.125 ) h=39.300 model=models/statweapons/coop_30cal_para.tik']
+leftgun after Use: ['P3 PST at=( -3692.885 2484.702 0.125 ) ang=( 0.000 35.975 0.000 ) hp=100000.000 turret=( -3639.642 2512.563 39.425 )']
+leftgun after second Use: ['P3 PST at=( -3692.436 2483.860 0.125 ) ang=( 0.000 35.975 0.000 ) hp=100000.000 turret=none']
+   P3 turret num=17 at=( -6728.000 -6250.000 -130.000 ) yaw=25.000 model=models/statweapons/mg42_gun.tik h=61.875 tn=scene7_mg1
+   P3 turret num=118 at=( 2437.000 -4811.000 -31.000 ) yaw=90.000 model=models/statweapons/mg42_gun.tik h=54.875 tn=scene11_mg2
+   P3 turret num=120 at=( -3647.000 3082.000 55.000 ) yaw=270.000 model=models/statweapons/mg42_gun.tik h=38.875 tn=scene4_mg42
+   P3 turret num=168 at=( 3968.000 -3419.000 -171.000 ) yaw=90.000 model=models/statweapons/mg42_gun.tik h=84.875 tn=scene11_mg1
+   P3 turret num=370 at=( 4602.309 -3535.558 -125.334 ) yaw=112.000 model=models/statweapons/mg42_gun.tik h=4.234 tn=coop_mgnest1
+   P3 turret num=374 at=( -4356.048 -6794.864 -284.634 ) yaw=202.000 model=models/statweapons/mg42_gun.tik h=4.234 tn=coop_mgnest2
+   P3 turret num=457 at=( -3639.642 2512.563 39.425 ) yaw=36.885 model=models/statweapons/coop_30cal_para.tik h=39.300 tn=
+scene4_mg42 ['P3 behind gun=( -3647.000 3082.000 55.000 ) yaw=270.000 feet=( -3647.000 3134.000 16.125 ) h=38.875 model=models/statweapons/mg42_gun.tik']
+scene4_mg42 after Use: ['P3 PST at=( -3638.292 3141.416 16.125 ) ang=( 0.000 -90.000 0.000 ) hp=100000.000 turret=( -3647.000 3082.000 55.000 )']
+scene4_mg42 after second Use: ['P3 PST at=( -3638.801 3141.488 16.125 ) ang=( 0.000 -90.000 0.000 ) hp=100000.000 turret=none']
+scene11_mg2 ['P3 behind gun=( 2437.000 -4811.000 -31.000 ) yaw=90.000 feet=( 2437.000 -4863.000 -86.030 ) h=55.030 model=models/statweapons/mg42_gun.tik']
+scene11_mg2 after Use: ['P3 PST at=( 2437.000 -4863.000 -82.030 ) ang=( 0.000 90.000 0.000 ) hp=100000.000 turret=( 2437.000 -4811.000 -31.000 )']
+scene11_mg2 after second Use: ['P3 PST at=( 2437.000 -4863.000 -82.030 ) ang=( 0.000 90.000 0.000 ) hp=100000.000 turret=none']
+script errors: []
+    PSQ t=44.075 lz plan n=5 tests=5 secs=1.500 ref=( -3608.000 2303.000 0.125 )
+    PSQ t=69.975 mg site how=1 mode=C gun=( -3639.642 2512.563 39.425 ) yaw=35.978 top=0 fire=advance:1.128 arc=45 seat=( -3692.883 2484.699 0.125 ) walk=215.181 path=362.690 of=2
+    PSQ t=69.975 mg plan aim=advance ground=52 passed=2 tried=1 bags=1 refused: tall=3 not_world=1 seatground=1 nofire=9 gap=2 crowded=3 bag_ground=1 lane=18 secs=0.625
+    PSQ t=71.475 mg walk how=1 left=0.721 ok=1
+    PSQ t=73.775 mg setup k=1 mode=C gun=( -3639.642 2512.563 39.425 ) yaw=35.978 arc=45 top=0 seat=( -3693.047 2484.702 0.125 ) hp=39.300 pos=crouch
+    PSQ t=73.775 mg watch
+    PSQ t=83.775 mg left for the players belt=250 fired=0 gun=( -3639.642 2512.563 39.425 )
+    PSQ t=107.550 rescue k=5 why=medic_stuck from=( -3734.380 2374.218 0.125 ) to=( -3599.223 3027.954 16.125 ) vetted=0 n=1
+    PSQ t=119.850 rescue k=5 why=medic_stuck from=( -3595.551 3028.933 128.125 ) to=( 2599.560 -4748.898 -95.875 ) vetted=1 n=2
