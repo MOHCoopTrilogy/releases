@@ -245,7 +245,9 @@ def bake(name, ctl):
             # optional 4th / 5th value: sideways shift (u, + = to the LEFT of the view) and pull toward the eye (u)
             dside = K.pchip(ks, [(rc['dip'][k][3] if len(rc['dip'][k]) > 3 else 0.0) for k in ks], f)
             dback = K.pchip(ks, [(rc['dip'][k][4] if len(rc['dip'][k]) > 4 else 0.0) for k in ks], f)
-            Rr = R.axis_angle_rows((1, 0, 0), dp[1]) @ R.axis_angle_rows((0, 1, 0), dp[2])
+            # optional 6th value (pistol lane 2026-10-13, C96): yaw, deg about the camera's up axis (absent = 0, as before)
+            dyaw = K.pchip(ks, [(rc['dip'][k][5] if len(rc['dip'][k]) > 5 else 0.0) for k in ks], f)
+            Rr = R.axis_angle_rows((1, 0, 0), dp[1]) @ R.axis_angle_rows((0, 1, 0), dp[2]) @ R.axis_angle_rows((0, 0, 1), dyaw)
             pv = rc.get('dip_pivot', 12.0); P = np.eye(4); P[3, 0:3] = (-pv, 0, 0)
             Q = np.eye(4); Q[0:3, 0:3] = Rr
             Pi = np.eye(4); Pi[3, 0:3] = (pv - dback, dside, -dp[0])

@@ -23,15 +23,20 @@ EMPTY = [False]
 GAP = [27]          # frames between shots in the demo (a slow gun needs more: Hi-Standard fire delay 1.0 s)
 INTR = [4, 95, 170]      # shots before the reload, capture frame of the interruption, frames captured
 KINDS = ["fire", "switch", "sprint"]
+TAIL = [0, 4]       # --tail N[:step]: the settled aim for N more game frames after the reload, every step-th captured
 
 
-def demo(sess, gun, tagst="stand"):
+def demo(sess, gun, tagst="stand", stance=None):
+    """stance (--dstances): the same demo in a stance (crouch, prone, standL, standR, crouchL, crouchR, braced) - the
+    centre-box / sway-envelope measure needs the model-less reference and the settle tail, which reload_sparse has not"""
     tag = "ab__%s__%s__%s__demo__after" % (sess, gun, tagst)
     i = [0]
-    L = S.RELEASE + S.TO_STAND + A.MODE["after"] + ["wait 600", "set cg_adsSightDebug 2",
+    L = S.RELEASE + S.TO_STAND + (S.APPLY[stance] if stance else []) + A.MODE["after"] + ["wait 600", "set cg_adsSightDebug 2",
                                                     "echo ^~^~^ ABSCEN begin %s" % tag]
     L += A.frames(tag, 8, i)
     L += ["+button13", "echo ^~^~^ DEMO raise %d" % i[0]] + A.frames(tag, 50, i)
+    if stance == "braced":
+        L += ["coop_braceView"] + A.frames(tag, 20, i)
     REF = ["set cg_drawviewmodel 0", "wait 1", "wait 1", "wait 1", "screenshotJPEG %s__ref" % tag, "wait 1", "wait 1",
            "set cg_drawviewmodel 2", "wait 1", "wait 1", "wait 1", "wait 1"]
     if EMPTY[0]:
@@ -51,8 +56,15 @@ def demo(sess, gun, tagst="stand"):
             L += ["reload", "echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, DEMO_RELOAD[0], i)
         else:
             L += A.frames(tag, 20, i)
+    if TAIL[0]:
+        # one whole sway / breath period (5.7 s = 357 game frames) of the settled aim, sparsely captured, then 10 dense
+        # frames (the aim mask's own): the reference of the sway-envelope measure (swayenv.py, centrebox.py)
+        L += ["echo ^~^~^ DEMO settle %d" % i[0]]
+        for k in range(TAIL[0] // TAIL[1]):
+            L += A.frames(tag, 1, i) + ["wait 1", "wait 1"] * (TAIL[1] - 1)
+        L += A.frames(tag, 10, i)
     L += ["-button13", "echo ^~^~^ DEMO lower %d" % i[0]] + A.frames(tag, 50, i)
-    L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1"] + S.RELEASE
+    L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1"] + (["coop_braceView"] if stance == "braced" else []) + S.RELEASE + (A.UNAPPLY[stance] if stance else [])
     R.step(L, timeout=1800)
 
 
@@ -169,13 +181,22 @@ def run(a):
                 try:
                     R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
                     GAP[0] = a.gungap.get(gun, a.shotgap)
-                    demo(a.session, gun, tagst="yaw%d" % a.demoyaw)
+                    if not a.nostand:
+                        demo(a.session, gun, tagst="yaw%d" % a.demoyaw)
                     if a.both:                      # the same gun fired EMPTY (its clip size) and reloaded: tag yaw<N>e
                         R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
                         sv = (EMPTY[0], SHOTS[0], DEMO_RELOAD[0])
                         EMPTY[0] = True; SHOTS[0] = a.eshots.get(gun, 8); DEMO_RELOAD[0] = a.demoreload_e or a.demoreload
                         try:
                             demo(a.session, gun, tagst="yaw%de" % a.demoyaw)
+                        finally:
+                            EMPTY[0], SHOTS[0], DEMO_RELOAD[0] = sv
+                    for st in a.dstances:           # the emptied demo in each stance: tag <st>_yaw<N>e
+                        R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+                        sv = (EMPTY[0], SHOTS[0], DEMO_RELOAD[0])
+                        EMPTY[0] = True; SHOTS[0] = a.eshots.get(gun, 8); DEMO_RELOAD[0] = a.demoreload_e or a.demoreload
+                        try:
+                            demo(a.session, gun, tagst="%s_yaw%de" % (st, a.demoyaw), stance=st)
                         finally:
                             EMPTY[0], SHOTS[0], DEMO_RELOAD[0] = sv
                     if "demohip" in a.parts:
@@ -257,6 +278,8 @@ def main():
     ap.add_argument("--both", action="store_true"); ap.add_argument("--eshots", default=""); ap.add_argument("--gungap", default="")
     ap.add_argument("--demoreload_e", type=int, default=0)
     ap.add_argument("--rempty", action="store_true"); ap.add_argument("--remptyonly", action="store_true")
+    ap.add_argument("--tail", default="")
+    ap.add_argument("--dstances", default=""); ap.add_argument("--nostand", action="store_true")
     ap.add_argument("--ride", action="store_true"); ap.add_argument("--seat", type=int, default=2)
     a = ap.parse_args()
     if os.path.isdir(os.path.join(R.RUNS, a.session)) and not a.force:
@@ -265,11 +288,14 @@ def main():
     a.gungap = {k: int(v) for k, v in (x.split("=") for x in a.gungap.split(",") if x)}
     SLOWGUNS.update(a.gungap)
     DEMO_RELOAD[0] = a.demoreload
+    if a.tail:
+        TAIL[:] = [int(v) for v in (a.tail.split(":") + ["4"])[:2]]
     SHOTS[0] = a.shots
     EMPTY[0] = a.demoempty
     GAP[0] = a.shotgap
     INTR[:] = [int(x) for x in a.intr.split(",")]; KINDS[:] = a.kinds.split(",")
     a.guns = [g for g in a.guns.split(",") if g]; a.parts = a.parts.split(",")
+    a.dstances = [s for s in a.dstances.split(",") if s]
     a.rstances = [s for s in a.rstances.split(",") if s]; a.yaws = [int(v) for v in a.yaws.split(",") if v]
     os.makedirs(os.path.dirname(A.LOGF), exist_ok=True)
     # 2026-10-12 (coordinator): this harness no longer takes the shared heavy lock or the shared test slot - the

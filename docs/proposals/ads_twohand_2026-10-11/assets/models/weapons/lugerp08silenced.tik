@@ -107,10 +107,6 @@ semiauto		// HZM coop [user 07-12]: semiauto restored - without it the engine tr
 	client
 	{
 		aliascache P38_snd_reload_loaded sound/weapons/foley/coop_p38_reload_loaded.wav soundparms 0.9 0.2 1.0 0.0 160 1000 item loaded always maps "dm obj lib"
-		aliascache P38_snd_reload_loaded sound/weapons/foley/coop_p38_reload_loaded.wav soundparms 0.9 0.2 1.0 0.0 160 1000 item loaded always maps "dm obj lib"
-		aliascache P38_snd_reload_loaded sound/weapons/foley/coop_p38_reload_loaded.wav soundparms 0.9 0.2 1.0 0.0 160 1000 item loaded always maps "dm obj lib"
-		aliascache P38_snd_reload_loaded sound/weapons/foley/coop_p38_reload_loaded.wav soundparms 0.9 0.2 1.0 0.0 160 1000 item loaded always maps "dm obj lib"
-		aliascache P38_snd_reload_loaded sound/weapons/foley/coop_p38_reload_loaded.wav soundparms 0.9 0.2 1.0 0.0 160 1000 item loaded always maps "dm obj lib"
 		cache tracer.spr
 		cache muzsprite.spr
 		cache models/fx/muzflash.tik
@@ -144,94 +140,6 @@ animations
 		}
 	}
 	idle_empty	coop_luger_idle_empty.skc
-	// HZM coop [aimed reload, pistol lane 2026-10-12] shown by the cgame instead of `reload` (aimed; hip when empty): the toggle works
-	reload_ads_loaded	coop_luger_reload_ads_loaded.skc
-	{
-		client
-		{
-			entry sound P38_snd_reload_loaded item
-		}
-	}
-	reload_ads_empty	coop_luger_reload_ads_empty.skc
-	{
-		client
-		{
-			entry sound P38_snd_reload item
-		}
-	}
-	reload_empty	coop_luger_reload_empty.skc
-	{
-		client
-		{
-			entry sound P38_snd_reload item
-		}
-	}
-	// HZM coop [aimed reload, pistol lane 2026-10-12] shown by the cgame instead of `reload` (aimed; hip when empty): the toggle works
-	reload_ads_loaded	coop_luger_reload_ads_loaded.skc
-	{
-		client
-		{
-			entry sound P38_snd_reload_loaded item
-		}
-	}
-	reload_ads_empty	coop_luger_reload_ads_empty.skc
-	{
-		client
-		{
-			entry sound P38_snd_reload item
-		}
-	}
-	reload_empty	coop_luger_reload_empty.skc
-	{
-		client
-		{
-			entry sound P38_snd_reload item
-		}
-	}
-	// HZM coop [aimed reload, pistol lane 2026-10-12] shown by the cgame instead of `reload` (aimed; hip when empty): the toggle works
-	reload_ads_loaded	coop_luger_reload_ads_loaded.skc
-	{
-		client
-		{
-			entry sound P38_snd_reload_loaded item
-		}
-	}
-	reload_ads_empty	coop_luger_reload_ads_empty.skc
-	{
-		client
-		{
-			entry sound P38_snd_reload item
-		}
-	}
-	reload_empty	coop_luger_reload_empty.skc
-	{
-		client
-		{
-			entry sound P38_snd_reload item
-		}
-	}
-	// HZM coop [aimed reload, pistol lane 2026-10-12] shown by the cgame instead of `reload` (aimed; hip when empty): the toggle works
-	reload_ads_loaded	coop_luger_reload_ads_loaded.skc
-	{
-		client
-		{
-			entry sound P38_snd_reload_loaded item
-		}
-	}
-	reload_ads_empty	coop_luger_reload_ads_empty.skc
-	{
-		client
-		{
-			entry sound P38_snd_reload item
-		}
-	}
-	reload_empty	coop_luger_reload_empty.skc
-	{
-		client
-		{
-			entry sound P38_snd_reload item
-		}
-	}
 	reload 	luger_reload.skc
 	{
 		server

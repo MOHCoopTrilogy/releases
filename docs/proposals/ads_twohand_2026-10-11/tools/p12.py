@@ -43,7 +43,8 @@ SIDE = {
     # meshes with NO slide / bolt bone: the part is cut out onto `coop_slide` (bonefit.split; islands from _meshsurvey.py)
     # silenced P38 (S93 remodel, not the retail P38 mesh pistolgun.py splits): slide body + rear sight; the barrel stays
     'p38s': dict(hands='colt45', dir='models/weapons/P38', clip='P38_reload.skc', idle='P38.skc', empty=None, slide='coop_slide', mag='p38clip',
-                 only=['p38silenced'], split=dict(skd='P38silenced.skd', parent='Box01', back=2.3, parts=[('1', 236, -0.5), ('1', 72, 0.23)])),
+                 only=['p38silenced'], split=dict(skd='P38silenced.skd', parent='Box01', back=2.3, parts=[('1', 236, -0.5), ('1', 72, 0.23)],
+                                                    fill=dict(surf='1', c=(1.0, -0.63, -2.57), s=(1.0, 0.44, 1.46), uv_at=(1.5, -1.39, -2.9), park=0.9))),
     # Nambu Type 14: a BOLT with a round cocking knob at the rear (surface Regroup02: knob + bolt body), it comes straight back
     'nambu': dict(hands='colt45', dir='models/weapons/P38', clip='P38_reload.skc', idle='P38.skc', empty=None, slide='coop_slide', mag='p38clip',
                   only=['nambu'], split=dict(skd='nambu.skd', parent='Box01', back=1.9, parts=[('Regroup02', 325, -2.48), ('Regroup02', 78, -1.59)])),
@@ -73,6 +74,10 @@ def smooth(u):
 
 def patch_tik(stem, s, clips, ind_note, sound_cut=True):
     """insert the aimed / empty animations before the tik's `reload` line; returns the new text"""
+    # IDEMPOTENT (2026-10-13): a tik that lives only in a pak is read back through the wip overlay, i.e. already
+    # patched - every earlier block (they stack right before the `reload` line) and alias line goes first
+    s = re.sub(r'(?ims)^[ \t]*// HZM coop \[aimed reload, pistol lane 2026-10-12\].*?(?=^[ \t]*reload[ \t]+\S+\.skc)', '', s)
+    s = re.sub(r'(?im)^[ \t]*aliascache[ \t]+\S+_loaded[ \t]+\S+[ \t]+soundparms[^\n]*\n', '', s)
     m = re.search(r'(?im)^(\s*)reload\s+\S+\.skc[^\n]*\n', s)
     ind = m.group(1)
     own = re.search(r'entry\s+sound\s+(\S+)', s[m.end():m.end() + 900])
@@ -146,6 +151,14 @@ def build(name, root):
         tik = 'models/weapons/%s.tik' % g['only'][0]
         BF.split(tik, g['dir'] + '/' + sp['skd'], {'coop_slide': sp['parts']}, os.path.join(root, (g['dir'] + '/' + sp['skd']).replace('/', os.sep)))
         A_, o_ = BF.fit(tik, sp['parent'])
+        if sp.get('fill'):                 # a steel block inside the cut-out slide's open rear (it rides with the slide): no dark slot when it is back
+            import add_part as AP
+            fl = sp['fill']; skf = os.path.join(root, (g['dir'] + '/' + sp['skd']).replace('/', os.sep))
+            d_ = open(skf, 'rb').read()
+            d_ = d_[:AP.SK.read_skd(d_).ofsEnd]              # split_bone leaves a few padding bytes after ofsEnd; add() wants none
+            out_, info_ = AP.add(d_, tik, 'coop_fill', 'coop_slide', fl['surf'], fl['c'], fl['s'], fl.get('uv_at'))
+            open(skf, 'wb').write(out_)
+            print('   fill', name, info_)
         fwd_v = np.zeros(4)
         back_v = np.r_[np.array([-sp['back'], 0.0, 0.0]) @ np.linalg.inv(A_), 0.0]
     else:
@@ -170,7 +183,12 @@ def build(name, root):
     def write(fn, keyed, frames=N):
         dst = os.path.join(root, (g['dir'] + '/' + fn).replace('/', os.sep))
         os.makedirs(os.path.dirname(dst), exist_ok=True)
-        gunskc.write(dst, raw, frames, {k: [list(v[f]) for f in range(frames)] for k, v in keyed.items()}, frame_time=1 / 30.0)
+        kd = {k: [list(v[f]) for f in range(frames)] for k, v in keyed.items()}
+        if sp and sp.get('fill') and sl in kd:      # the filler block comes flush with the slide's rear only as the slide goes back
+            pv = np.r_[np.array([-sp['fill']['park'], 0.0, 0.0]) @ np.linalg.inv(A_), 0.0]
+            tot = float(np.linalg.norm((back_v - fwd_v)[:3])) or 1.0
+            kd['coop_fill pos'] = [list(pv * min(1.0, float(np.linalg.norm((np.asarray(kd[sl][f]) - fwd_v)[:3])) / tot)) for f in range(frames)]
+        gunskc.write(dst, raw, frames, kd, frame_time=1 / 30.0)
         return fn
 
     def slide_track(f0, f1, n=N):

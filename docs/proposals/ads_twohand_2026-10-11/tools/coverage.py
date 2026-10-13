@@ -493,7 +493,7 @@ def build():
             cyc = 'HAND-CYCLED per shot (fire delay %.1f s): aimed clip %s' % (tf['firedelay'], row_state(pfx + '_cycle_ads')[0])
         else:
             cyc = 'self-loading / none'
-        cbt = ' ; '.join((('%s%.1f deg / covered beyond the aim: max %.1f %%, %.1f %% of frames (%s)' % (lab, cb['dev'], cb['xmax'], cb['xfr'], cb['run'])) if 'xmax' in cb else
+        cbt = ' ; '.join((('%s%.1f deg / covered beyond the aim%s: max %.1f %%, %.1f %% of frames (%s)' % (lab, cb['dev'], "'s sway envelope" if cb.get('env') else '', cb['xmax'], cb['xfr'], cb['run'])) if 'xmax' in cb else
                           ('%s%.1f deg / old measure %.1f %% of frames (%s)' % (lab, cb['dev'], cb['over'], cb['run'])))
                          for lab, cb in (('', cbx.get(tik)), ('EMPTY: ', cbx.get(tik + '#empty')), ('PER-SHOT CYCLE: ', cbx.get(tik + '#cycle'))) if cb) or '-'
         act = st.get(tik, {}).get('action', 'not recorded')

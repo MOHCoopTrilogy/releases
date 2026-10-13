@@ -38,6 +38,7 @@ LOW1 = tuple(float(x) for x in os.environ.get('LUG_LOW1', '2.4,0,0,0,0').split('
 LOW2 = tuple(float(x) for x in os.environ.get('LUG_LOW2', '4.3,5,12,0,0.4').split(','))    # the hand over the knobs under it
 GRASP_D = tuple(float(x) for x in os.environ.get('LUG_GRASP', '0.6,0.0,-1.0').split(','))  # the Hi-Standard overhand grasp moved onto the raised knobs
 GRASP_F = ('clip', 'viewmodel/pistol/fire_hp.skc', 10)
+DOWN_BY = int(os.environ.get('LUG_DOWN', '5'))
 
 
 def back_of(th):
@@ -110,7 +111,9 @@ def build_gun(root):
 
 def pose_keys(n):
     z = (0.0,) * 5
-    return [(0, z), (1, z), (7, LOW1), (REL['reach'] - 9, LOW1), (REL['reach'] - 3, LOW2), (REL['fwd'][1] + 2, LOW2), (REL['fwd'][1] + 12, z), (n, z)]
+    # the gun starts down on the reload's first frame and is under the box by frame 5 (was 1 -> 7): the open toggle
+    # stands in the centre box only while the gun travels
+    return [(0, z), (DOWN_BY, LOW1), (REL['reach'] - 9, LOW1), (REL['reach'] - 3, LOW2), (REL['fwd'][1] + 2, LOW2), (REL['fwd'][1] + 12, z), (n, z)]
 
 
 def toggle_hand(fing_open):
