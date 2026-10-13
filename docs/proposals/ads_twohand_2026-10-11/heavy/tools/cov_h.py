@@ -15,7 +15,7 @@ STATUS = os.path.join(hv.LANE, 'coverage_status.json')
 KEY = {"bar": "models/weapons/bar.tik", "breda": "models/weapons/it_w_breda.tik", "vickers": "models/weapons/uk_w_vickers.tik",
        "dp28": "models/weapons/dp28.tik", "fg42": "models/weapons/fg42.tik", "mp44": "models/weapons/mp44.tik",
        "shotgun": "models/weapons/shotgun.tik", "30cal": "models/weapons/30calportable.tik",
-       "mg42": "models/weapons/mg42portable.tik", "mp44scope": "models/weapons/mp44_scoped.tik"}
+       "mg42": "models/weapons/mg42portable.tik"}
 
 
 def load():

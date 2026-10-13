@@ -1,186 +1,368 @@
 {
  "bar": {
-  "align": 6,
-  "dev": 6.17,
-  "note": "cg_adsSway 0, cg_weaponBreath 0; vs the settled aim after the reload",
-  "run": "hc6+hc7",
+  "align": 0,
+  "dev": 6.18,
+  "note": "AS PLAYED (cg_adsSway 0.1, cg_weaponBreath 1): xmax = beyond the settled aim's sway envelope; mask6 = vs the six-frame aim mask (SMG rule), alone = the settled aim alone vs that mask",
+  "run": "hg1",
   "stances": {
    "braced": {
-    "end": 0.01,
-    "run": "hc7",
+    "alone": 0.05,
+    "end": 0.0,
+    "mask6": 0.11,
+    "run": "hg1",
     "xfr": 0.0,
-    "xmax": 1.29
+    "xmax": 0.03
    },
    "crouch": {
-    "end": 0.01,
-    "run": "hc6",
+    "alone": 7.56,
+    "end": 0.0,
+    "mask6": 5.44,
+    "run": "hg1",
     "xfr": 0.0,
-    "xmax": 0.11
+    "xmax": 0.0
    },
    "prone": {
-    "end": 0.01,
-    "run": "hc7",
+    "alone": 5.6,
+    "end": 0.0,
+    "mask6": 4.6,
+    "run": "hg1",
     "xfr": 0.0,
-    "xmax": 0.19
+    "xmax": 0.0
    },
    "stand": {
-    "end": 0.01,
-    "run": "hc6",
+    "alone": 6.79,
+    "end": 0.0,
+    "mask6": 3.19,
+    "run": "hg1",
     "xfr": 0.0,
-    "xmax": 0.11
+    "xmax": 0.04
    },
    "standL": {
-    "end": 0.01,
-    "run": "hc7",
+    "alone": 10.05,
+    "end": 0.0,
+    "mask6": 6.26,
+    "run": "hg1",
     "xfr": 0.0,
-    "xmax": 0.08
+    "xmax": 0.05
    },
    "standR": {
-    "end": 0.01,
-    "run": "hc7",
+    "alone": 6.05,
+    "end": 0.0,
+    "mask6": 4.58,
+    "run": "hg1",
     "xfr": 0.0,
-    "xmax": 0.11
+    "xmax": 0.04
    }
   },
   "xfr": 0.0,
-  "xmax": 1.29
+  "xmax": 0.05
  },
  "bar_empty": {
-  "align": 6,
+  "align": 0,
   "dev": 6.07,
-  "note": "cg_adsSway 0, cg_weaponBreath 0; vs the settled aim after the reload; first 20 capture frames (last shot) skipped",
-  "run": "hd1+hd3",
+  "note": "AS PLAYED (cg_adsSway 0.1, cg_weaponBreath 1): xmax = beyond the settled aim's sway envelope; mask6 = vs the six-frame aim mask (SMG rule), alone = the settled aim alone vs that mask; first 20 capture frames (last shot) skipped",
+  "run": "hh1",
   "stances": {
    "braced": {
+    "after40": 0.43,
+    "alone": 0.07,
     "end": 0.0,
-    "run": "hd1",
+    "mask6": 2.43,
+    "run": "hh1",
     "xfr": 0.0,
-    "xmax": 0.8
+    "xmax": 1.87
    },
    "crouch": {
+    "after40": 0.01,
+    "alone": 6.94,
     "end": 0.0,
-    "run": "hd3",
+    "mask6": 5.27,
+    "run": "hh1",
     "xfr": 0.0,
-    "xmax": 0.06
+    "xmax": 0.18
    },
    "prone": {
+    "after40": 0.03,
+    "alone": 7.22,
     "end": 0.0,
-    "run": "hd3",
+    "mask6": 2.21,
+    "run": "hh1",
     "xfr": 0.0,
-    "xmax": 0.56
+    "xmax": 0.15
    },
    "stand": {
+    "after40": 0.0,
+    "alone": 6.23,
     "end": 0.0,
-    "run": "hd1",
+    "mask6": 3.17,
+    "run": "hh1",
     "xfr": 0.0,
-    "xmax": 0.2
+    "xmax": 0.11
    },
    "standL": {
+    "after40": 0.05,
+    "alone": 4.54,
     "end": 0.0,
-    "run": "hd3",
+    "mask6": 1.19,
+    "run": "hh1",
+    "xfr": 0.0,
+    "xmax": 0.05
+   },
+   "standR": {
+    "after40": 0.06,
+    "alone": 6.75,
+    "end": 0.0,
+    "mask6": 3.02,
+    "run": "hh1",
+    "xfr": 0.0,
+    "xmax": 1.1
+   }
+  },
+  "xfr": 0.0,
+  "xmax": 1.87
+ },
+ "dp28": {
+  "align": 0,
+  "dev": 5.67,
+  "note": "AS PLAYED (cg_adsSway 0.1, cg_weaponBreath 1): xmax = beyond the settled aim's sway envelope; mask6 = vs the six-frame aim mask (SMG rule), alone = the settled aim alone vs that mask",
+  "run": "hi1",
+  "stances": {
+   "braced": {
+    "alone": 0.6,
+    "end": 0.0,
+    "mask6": 0.05,
+    "run": "hi1",
+    "xfr": 0.0,
+    "xmax": 0.01
+   },
+   "crouch": {
+    "alone": 4.21,
+    "end": 0.0,
+    "mask6": 3.27,
+    "run": "hi1",
+    "xfr": 0.0,
+    "xmax": 0.0
+   },
+   "prone": {
+    "alone": 3.15,
+    "end": 0.0,
+    "mask6": 1.13,
+    "run": "hi1",
+    "xfr": 0.0,
+    "xmax": 0.0
+   },
+   "stand": {
+    "alone": 5.67,
+    "end": 0.0,
+    "mask6": 0.03,
+    "run": "hi1",
+    "xfr": 0.0,
+    "xmax": 0.0
+   },
+   "standL": {
+    "alone": 7.27,
+    "end": 0.0,
+    "mask6": 1.69,
+    "run": "hi1",
+    "xfr": 0.0,
+    "xmax": 0.07
+   },
+   "standR": {
+    "alone": 5.02,
+    "end": 0.0,
+    "mask6": 4.33,
+    "run": "hi1",
+    "xfr": 0.0,
+    "xmax": 0.04
+   }
+  },
+  "xfr": 0.0,
+  "xmax": 0.07
+ },
+ "dp28_empty": {
+  "align": 0,
+  "dev": 5.68,
+  "note": "AS PLAYED (cg_adsSway 0.1, cg_weaponBreath 1): xmax = beyond the settled aim's sway envelope; mask6 = vs the six-frame aim mask (SMG rule), alone = the settled aim alone vs that mask; first 20 capture frames (last shot) skipped",
+  "run": "hi2",
+  "stances": {
+   "braced": {
+    "after40": 0.04,
+    "alone": 0.01,
+    "end": 0.0,
+    "mask6": 0.3,
+    "run": "hi2",
+    "xfr": 0.0,
+    "xmax": 0.3
+   },
+   "crouch": {
+    "after40": 0.04,
+    "alone": 2.7,
+    "end": 0.0,
+    "mask6": 2.11,
+    "run": "hi2",
+    "xfr": 0.0,
+    "xmax": 0.31
+   },
+   "prone": {
+    "after40": 0.04,
+    "alone": 5.5,
+    "end": 0.0,
+    "mask6": 0.35,
+    "run": "hi2",
+    "xfr": 0.0,
+    "xmax": 0.27
+   },
+   "stand": {
+    "after40": 0.01,
+    "alone": 3.05,
+    "end": 0.0,
+    "mask6": 1.44,
+    "run": "hi2",
+    "xfr": 0.0,
+    "xmax": 1.17
+   },
+   "standL": {
+    "after40": 0.05,
+    "alone": 1.57,
+    "end": 0.0,
+    "mask6": 0.81,
+    "run": "hi2",
+    "xfr": 0.0,
+    "xmax": 0.19
+   },
+   "standR": {
+    "after40": 0.03,
+    "alone": 5.28,
+    "end": 0.0,
+    "mask6": 0.56,
+    "run": "hi2",
+    "xfr": 0.0,
+    "xmax": 0.03
+   }
+  },
+  "xfr": 0.0,
+  "xmax": 1.17
+ },
+ "mp44": {
+  "align": 0,
+  "dev": 5.22,
+  "note": "AS PLAYED (cg_adsSway 0.1, cg_weaponBreath 1): xmax = beyond the settled aim's sway envelope; mask6 = vs the six-frame aim mask (SMG rule), alone = the settled aim alone vs that mask",
+  "run": "hg1",
+  "stances": {
+   "braced": {
+    "alone": 0.01,
+    "end": 0.0,
+    "mask6": 0.14,
+    "run": "hg1",
     "xfr": 0.0,
     "xmax": 0.08
    },
-   "standR": {
+   "crouch": {
+    "alone": 1.15,
     "end": 0.0,
-    "run": "hd3",
+    "mask6": 0.47,
+    "run": "hg1",
+    "xfr": 0.0,
+    "xmax": 0.2
+   },
+   "prone": {
+    "alone": 0.31,
+    "end": 0.0,
+    "mask6": 0.49,
+    "run": "hg1",
+    "xfr": 0.0,
+    "xmax": 0.13
+   },
+   "stand": {
+    "alone": 0.75,
+    "end": 0.0,
+    "mask6": 0.6,
+    "run": "hg1",
+    "xfr": 0.0,
+    "xmax": 0.09
+   },
+   "standL": {
+    "alone": 0.5,
+    "end": 0.0,
+    "mask6": 0.67,
+    "run": "hg1",
+    "xfr": 0.0,
+    "xmax": 0.17
+   },
+   "standR": {
+    "alone": 0.37,
+    "end": 0.0,
+    "mask6": 0.4,
+    "run": "hg1",
     "xfr": 0.0,
     "xmax": 0.09
    }
   },
   "xfr": 0.0,
-  "xmax": 0.8
- },
- "mp44": {
-  "align": 6,
-  "dev": 5.21,
-  "note": "cg_adsSway 0, cg_weaponBreath 0; vs the settled aim after the reload",
-  "run": "he7",
-  "stances": {
-   "braced": {
-    "end": 0.01,
-    "run": "he7",
-    "xfr": 0.0,
-    "xmax": 0.26
-   },
-   "crouch": {
-    "end": 0.01,
-    "run": "he7",
-    "xfr": 0.0,
-    "xmax": 0.81
-   },
-   "prone": {
-    "end": 0.01,
-    "run": "he7",
-    "xfr": 0.0,
-    "xmax": 0.71
-   },
-   "stand": {
-    "end": 0.01,
-    "run": "he7",
-    "xfr": 0.0,
-    "xmax": 0.22
-   },
-   "standL": {
-    "end": 0.01,
-    "run": "he7",
-    "xfr": 0.0,
-    "xmax": 0.39
-   },
-   "standR": {
-    "end": 0.01,
-    "run": "he7",
-    "xfr": 0.0,
-    "xmax": 0.18
-   }
-  },
-  "xfr": 0.0,
-  "xmax": 0.81
+  "xmax": 0.2
  },
  "mp44_empty": {
-  "align": 6,
+  "align": 0,
   "dev": 5.02,
-  "note": "cg_adsSway 0, cg_weaponBreath 0; vs the settled aim after the reload; first 20 capture frames (last shot) skipped",
-  "run": "he6",
+  "note": "AS PLAYED (cg_adsSway 0.1, cg_weaponBreath 1): xmax = beyond the settled aim's sway envelope; mask6 = vs the six-frame aim mask (SMG rule), alone = the settled aim alone vs that mask; first 20 capture frames (last shot) skipped",
+  "run": "hh2",
   "stances": {
    "braced": {
+    "after40": 0.28,
+    "alone": 0.03,
     "end": 0.0,
-    "run": "he6",
+    "mask6": 1.96,
+    "run": "hh2",
     "xfr": 0.0,
-    "xmax": 1.6
+    "xmax": 1.95
    },
    "crouch": {
+    "after40": 0.06,
+    "alone": 0.12,
     "end": 0.0,
-    "run": "he6",
+    "mask6": 0.66,
+    "run": "hh2",
     "xfr": 0.0,
-    "xmax": 0.95
+    "xmax": 0.56
    },
    "prone": {
+    "after40": 0.05,
+    "alone": 0.86,
     "end": 0.0,
-    "run": "he6",
+    "mask6": 1.24,
+    "run": "hh2",
     "xfr": 0.0,
-    "xmax": 1.62
+    "xmax": 1.23
    },
    "stand": {
+    "after40": 0.04,
+    "alone": 0.29,
     "end": 0.0,
-    "run": "he6",
+    "mask6": 0.35,
+    "run": "hh2",
     "xfr": 0.0,
-    "xmax": 0.93
+    "xmax": 0.35
    },
    "standL": {
+    "after40": 0.11,
+    "alone": 0.49,
     "end": 0.0,
-    "run": "he6",
+    "mask6": 2.8,
+    "run": "hh2",
     "xfr": 0.0,
-    "xmax": 1.96
+    "xmax": 0.42
    },
    "standR": {
+    "after40": 0.08,
+    "alone": 0.58,
     "end": 0.0,
-    "run": "he6",
+    "mask6": 0.52,
+    "run": "hh2",
     "xfr": 0.0,
-    "xmax": 1.68
+    "xmax": 0.08
    }
   },
   "xfr": 0.0,
-  "xmax": 1.96
+  "xmax": 1.95
  }
 }

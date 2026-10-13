@@ -28,10 +28,18 @@ EDITS = {
         ('bar_reload_empty_adsb', 'viewmodel/mg/bar_reload_empty_adsb.skc', 0.1, 'aimed + braced, empty'),
         # step 3: StG 44 (heavybake.py mp44). mp44_reload_ads keeps its path: the staged clip REPLACES the shipped one
         ('mp44_reload_ads', 'viewmodel/mp44/mp44_reload_ads.skc', None, 'aimed, rounds left: magazine only (closed bolt, one in the chamber)'),
+        # hip, rounds left (heavybake.py mp44 --hip): the retail clip cocked in EVERY reload - now only an empty gun does
+        ('mp44_reload', 'viewmodel/mp44/coop_mp44_reload_hip.skc', None, 'hip, rounds left: magazine only, no cock (closed bolt, one in the chamber)'),
         ('mp44_reload_empty', 'viewmodel/mp44/mp44_reload.skc', 0.3, 'retail: hip reload of an empty gun (the retail clip; the row lets cgame find _empty_ads)'),
         ('mp44_reload_empty_ads', 'viewmodel/mp44/mp44_reload_empty_ads.skc', 0.1, 'aimed, empty: magazine, then the left hand cocks the handle and lets it fly'),
         ('mp44_reload_adsb', 'viewmodel/mp44/mp44_reload_adsb.skc', 0.1, 'aimed + braced, rounds left'),
         ('mp44_reload_empty_adsb', 'viewmodel/mp44/mp44_reload_empty_adsb.skc', 0.1, 'aimed + braced, empty'),
+        # step 4: DP-28 (heavybake.py dp28). dp28_reload_ads keeps its path: the staged clip REPLACES the shipped one
+        ('dp28_reload_ads', 'viewmodel/coop_dp28/dp28_reload_ads.skc', None, 'aimed, rounds left: the pan swapped under the box (open bolt held by the sear: no handle)'),
+        ('dp28_reload_empty', 'viewmodel/coop_dp28/dp28_reload.skc', 0.3, 'retail: hip reload of an empty gun (the pack clip; the row lets cgame find _empty_ads)'),
+        ('dp28_reload_empty_ads', 'viewmodel/coop_dp28/dp28_reload_empty_ads.skc', 0.1, 'aimed, empty: the pan, then the left hand hauls the handle and lets it fly'),
+        ('dp28_reload_adsb', 'viewmodel/coop_dp28/dp28_reload_adsb.skc', 0.1, 'aimed + braced, rounds left'),
+        ('dp28_reload_empty_adsb', 'viewmodel/coop_dp28/dp28_reload_empty_adsb.skc', 0.1, 'aimed + braced, empty'),
     ],
     'shotgun': [],
 }

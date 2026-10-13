@@ -34,6 +34,9 @@ gunphys.CLASSES.update({
     #  StG 44 4.6 kg empty, 30-round magazine 0.9 kg: between the rifles and the light machine guns
     'stg': dict(m=5.4, f2=2.5, f1=1.7, z=0.56, sag=(0.10, 0.0, 3.4, 0.0, 0.0), magw=0.16,
                 tr=(0.030, 0.14, 0.17, 0.022, 0.010), tr2=0.25),
+    #  DP-28 9.1 kg empty, a loaded 47-round pan 2.8 kg ON TOP: heavier than the BAR, and a quarter of it is the pan
+    'dp': dict(m=11.5, f2=1.9, f1=1.2, z=0.64, sag=(0.17, 0.0, 4.2, 0.0, 0.0), magw=0.22,
+               tr=(0.030, 0.10, 0.14, 0.020, 0.010), tr2=0.25),
 })
 gunphys.ACTIONS.update({
     # velocity change for mass 1 in (drop, roll, pitch, side, back) and the pulse length in frames; + roll = top right,
@@ -50,6 +53,11 @@ gunphys.ACTIONS.update({
     'lg_handle_stop': ((0.0, -40.0, -55.0, 0.0, 70.0), 1.5),   # the slide hits the rear stop
     'lg_handle_fwd':  ((6.0, 70.0, 95.0, -8.0, -190.0), 2.0),  # run forward: the mass stops in the front, muzzle dips
     'lg_hand_on':     ((-22.0, 0.0, -80.0, -4.0, 4.0), 4.0),   # the support hand comes up under the forearm and lifts
+    # a PAN on top (DP-28): thumbed off its catch and lifted - the gun comes up with it a little, then is let go
+    'lg_pan_lift':    ((-14.0, 0.0, -45.0, 0.0, 0.0), 3.0),
+    'lg_pan_free':    ((10.0, 0.0, 30.0, 0.0, 0.0), 3.0),
+    'lg_pan_on':      ((24.0, 0.0, 75.0, 0.0, 2.0), 4.0),      # 2.8 kg set down on the receiver, ahead of the firing hand
+    'lg_pan_press':   ((30.0, 8.0, 115.0, 0.0, 4.0), 1.5),     # the palm drives it down onto its catch
 })
 
 POUCH = (4.0, 10.0, -16.0)             # camera frame (fwd, left, up): the belt, well under the frame
@@ -80,7 +88,11 @@ BAR = dict(
     mag_out=5.8,                       # u down the well's own axis until the magazine is clear
     handle=(4.63, -2.75, -1.67),       # weapon-tag frame (fwd, right, DOWN): the operating handle's knob, forward
     travel=5.75,                       # u; bolt bone 'bolt pos' y 0 -> 11.06 skd units
-    hk_off=(0.3, 3.9, -0.6),           # camera frame (fwd, left, up): the wrist from the knob - straight out to the LEFT (a hand behind the knob ends 4 u from the eye)
+    # camera frame (fwd, left, up): the wrist from the knob. Until run hg3 it was straight out to the LEFT (0.3, 3.9,
+    # -0.6): from the eye the back of a flat pale hand a quarter to a third of the screen wide, no finger to be seen.
+    # Now the wrist comes up from BELOW the handle: the eye looks down on the knuckles and four fingers closed round
+    # the knob, the forearm runs down out of the frame (hktry.py sheets hk_a / hk_b / hk_c; box unchanged offline)
+    hk_off=(0.2, 1.0, -3.8),
     hk_roll=180.0,                       # deg about the hand's long axis (which points at the knob)
     t=dict(off=(3, 9), cant_in=(4, 15), grab=13, out=(18, 21), show_out=(24, 27), pouch=(31, 33), show_in=(36, 39),
            well=43, seat=46, hold=50,
@@ -116,8 +128,11 @@ def spec(g, empty, o):
         leave, on, co = t['leave'], t['on'], t['cant_out']
     else:
         leave, on, co = t['l_leave'], t['l_on'], t['l_cant_out']
-    ev = [(t['out'][0] - 2, 'lg_mag_tug'), (t['out'][0] + 1, 'lg_mag_free'), (t['well'] + 1, 'lg_mag_in'),
-          (t['slap'][1] - 1, g.get('slap_action', 'lg_mag_slap')), (on[1] - 4, 'lg_hand_on')]
+    top = g.get('feed') == 'top'           # a pan lifted UP off the receiver (DP-28): the well keys with the axis turned round
+    sgn = -1.0 if top else 1.0
+    ev = [(t['out'][0] - 2, 'lg_pan_lift' if top else 'lg_mag_tug'), (t['out'][0] + 1, 'lg_pan_free' if top else 'lg_mag_free'),
+          (t['well'] + 1, 'lg_pan_on' if top else 'lg_mag_in'),
+          (t['slap'][1] - 1, g.get('slap_action', 'lg_pan_press' if top else 'lg_mag_slap')), (on[1] - 4, 'lg_hand_on')]
     if empty:
         ev += [(t['pull'][0] - 2, 'lg_handle_grab'), (t['pull'][0], 'lg_handle_back'), (t['pull'][1] - 1, 'lg_handle_stop'),
                (t['fwd'][1] - 1, 'lg_handle_fwd')]
@@ -154,7 +169,7 @@ def spec(g, empty, o):
     SHOW = tuple(o.get('show', g.get('show', (12.0, 7.5, -7.6))))      # camera frame (fwd, left, up): bottom-left of the view
     SHOW2 = (SHOW[0] - 0.5, SHOW[1] + 1.0, SHOW[2] - 0.8)              # ... a little further out and down (the way to the pouch)
     lp = {0: AIM, t['off'][0]: AIM,
-          t['off'][0] + 3: dict(aim=1, cam_add=(-0.8, 0.8, -1.6), fing=('mix', MR, 0.6)),   # comes off the forearm, down
+          t['off'][0] + 3: dict(aim=1, cam_add=tuple(g.get('off_add', (-0.8, 0.8, -1.6))), fing=('mix', MR, 0.6)),   # comes off the forearm, down
           t['grab']: M(0.0), t['out'][0]: M(0.0),
           t['out'][1]: M(out),                                                               # stripped down the well's axis
           # the well of a shouldered BAR is below the frame (18-36 deg under the sight line): the magazine is SEEN in
@@ -162,10 +177,10 @@ def spec(g, empty, o):
           t['show_out'][0]: dict(rot=MR, cam=SHOW, fing=MR), t['show_out'][1]: dict(rot=MR, cam=SHOW2, fing=MR),
           t['pouch'][0]: dict(rot=MR, cam=POUCH, fing=MR), t['pouch'][1]: dict(rot=MR, cam=POUCH, fing=MR),
           t['show_in'][0]: dict(rot=MR, cam=SHOW2, fing=MR), t['show_in'][1]: dict(rot=MR, cam=SHOW, fing=MR),
-          t['well']: M(out - 0.4), t['seat']: M(0.0), t['hold']: M(0.0),
-          t['slap'][0]: M(1.3, fing=('mix', MR, 0.4)),                                       # lets go, the palm drops ...
-          t['slap'][1]: M(-0.15, fing=('mix', MR, 0.4)),                                     # ... and strikes the floor plate
-          t['slap'][1] + 2: M(0.3, fing=('mix', MR, 0.4))}
+          t['well']: M(out - 0.4 * sgn), t['seat']: M(0.0), t['hold']: M(0.0),
+          t['slap'][0]: M(1.3 * sgn, fing=('mix', MR, 0.4)),                                 # lets go, the palm drops (a pan: lifts) ...
+          t['slap'][1]: M(-0.15 * sgn, fing=('mix', MR, 0.4)),                               # ... and strikes the floor plate (the pan's top)
+          t['slap'][1] + 2: M(0.3 * sgn, fing=('mix', MR, 0.4))}
     fa = {}
     if empty:
         hoff = np.array(o.get('hk_off', g['hk_off']), float); hroll = float(o.get('hk_roll', g['hk_roll']))
@@ -193,7 +208,7 @@ def spec(g, empty, o):
             for seg, dg in (('', 26.0), ('1', 48.0), ('2', 30.0)):
                 fa['Bip01 L Finger%d%s rot' % (fg, seg)] = [(c0, 0.0), (c1, dg * cs), (c2, dg * cs), (c3, 0.0)]
     else:
-        lp[leave] = dict(aim=1, cam_add=(-1.5, 1.5, -3.0), fing=('mix', MR, 0.5))
+        lp[leave] = dict(aim=1, cam_add=tuple(g.get('leave_add', (-1.5, 1.5, -3.0))), fing=('mix', MR, 0.5))
     for f in range(on[1], n + 1):
         lp[f] = AIM
     lp[on[1] - 3] = dict(aim=1, cam_add=(-0.5, 0.5, -1.2), fing=('mix', MR, 0.3))            # comes up under the forearm
@@ -261,6 +276,39 @@ def bake(name, root, only=None, o=None, braced=False):
     return rep
 
 
+def bake_hip(name, root):
+    """HIP, rounds left, of a gun whose retail hip clip cocks in EVERY reload (StG 44): the retail clip to the seat
+    frame, the palm stays under the magazine `hold` frames, then the whole pose eases to the clip's own end pose - no
+    mimed cock (the SMG lane's recipe for the MP40, smgbake.bake_hip). The EMPTY gun keeps the retail clip
+    (row <row>_empty)."""
+    g = GUNS[name]
+    K = H.K
+    src = H.fps_rows()[g['row']]
+    hip = R.load(R.ANIM + src)
+    out = R.load(R.ANIM + src)
+    n = hip.numFrames
+    cm = R.chanmap(hip)
+    b0, b1 = g['hip_blend']
+    hold = g.get('hip_hold', 3)
+    pe, pa = R.pose_dict(hip, n - 1), R.pose_dict(hip, b0)
+    for f in range(b0, n):
+        w = ease((f - b0 - hold) / float(b1 - b0 - hold))
+        pd = {}
+        for ch in hip.names:
+            if ch.endswith(' rot'):
+                pd[ch] = R.qslerp(np.asarray(pa[ch], float), np.asarray(pe[ch], float), w)
+            else:
+                pd[ch] = (1 - w) * np.asarray(pa[ch], float) + w * np.asarray(pe[ch], float)
+        K.write_frame(out, hip, cm, f, pd)
+    out.values = [[[float(np.float32(x)) for x in out.V[f, c]] for c in range(out.numChannels)] for f in range(n)]
+    bts = R.skc_io.write(out)
+    o1 = '%s/coop_%s_reload_hip.skc' % (g['vdir'], name)
+    dst = os.path.join(root, 'models', 'human', 'animation', o1.replace('/', os.sep))
+    os.makedirs(os.path.dirname(dst), exist_ok=True)
+    open(dst, 'wb').write(bts)
+    print(name, 'hip loaded ->', o1, n, 'frames', hashlib.md5(bts).hexdigest()[:8], '(retail to f%d, its end pose by f%d: no cock)' % (b0, b1))
+
+
 # ---------------------------------------------------------------------------------------------------------- StG 44
 # heavylib.py mp44: at the cheek weld the magazine hangs 33-50 deg below the sight line (frame edge 26) and the
 # left-side cocking handle, 15 deg below at rest, ends its 6.2 u pull 37 deg below, 4 u from the eye. The same answer
@@ -280,7 +328,7 @@ MP44 = dict(
     braced={'sup': 0.3, 'strength': 0.8, 'cant.move': [3.0, 0.4, -1.9]},
     mag_rel=12, mag_out=5.0,
     handle=(4.0, -2.2, -4.8), travel=6.24, release=True, slap_action='lg_mag_slap_light',
-    hk_off=(0.3, 3.9, -0.6), hk_roll=180.0,
+    hk_off=(0.2, 1.0, -3.8), hk_roll=180.0,     # wrist from below, as the BAR
     prop='models/ammo/mp44_clip.tik:0:42', handover=True, prop_hold={'tag_weapon_left': 12},
     # the gun sags first and cants after (cant 7-15): canted while still high it left the aim's own silhouette
     # through the box (5.6 % at f5-8 offline with cant 3-12)
@@ -292,15 +340,65 @@ MP44 = dict(
            # (support back 56-64) - risen while canted it read 1.7-2.0 % in every stance (run he1), 0.7 % this way
            l_leave=50, l_on=(56, 64), l_cant_out=(52, 60)),
     show=(12.0, 7.0, -6.4),            # the long magazine a little higher than the BAR's: in run he1 only its top showed
+    # hip, rounds left: the retail hand holds the seated magazine f42-45 and leaves for its cock at f46 (clipinfo.py)
+    hip_blend=(45, 68),
 )
 
-GUNS = {'bar': BAR, 'mp44': MP44}
+# ----------------------------------------------------------------------------------------------------------- DP-28
+# heavylib.py dp28: at the aim the pan (8.4 u across, top z -5.0) lies 8-17 u from the eye, 1-3 deg under the sight line
+# and 18 deg to either side - it IS the lower half of the settled aim's picture. Nothing of it may leave that
+# silhouette upward, so for the swap the gun comes DOWN under the box (sag by class `dp`, then the work pose lower and
+# a little canted) and the pan is lifted off there, swung out bottom-left, the new one brought in the same way and
+# pressed home. The pack's hip technique (clipinfo.py): the LEFT hand does all of it - thumb-turn at f10-20 (gun clip
+# `drum1 rot`), on the pan f24-28, away f32-40, seated f44-48, pressed f52-60, then the SAME hand hauls the handle
+# (on this mesh a knob on the LEFT, surface Cylinder2 / bone `rechamb`, 2.7 u, gun clip f74-81).
+# The server shows the pan prop on the off-hand tag f29-45 and hides the gun's own (`surface drum`) for exactly those
+# frames: the lift starts AT f29 and the new pan is down AT f45 - 0.5 s for the whole swap, the server's window.
+# OPEN BOLT: with rounds left the bolt is held back by the sear - no handle work; an emptied gun's bolt is forward.
+# The gun's reload sound is the BAR's (handle at f67-73): the hand's pull is keyed to it (the pack's own was 0.25 s late).
+DP28 = dict(
+    row='dp28_reload', sight='dp_28', cls='dp', aim='viewmodel/coop_dp28/coop_dp28_ads_hand.skc', vdir='viewmodel/coop_dp28',
+    gun_path='models/weapons/coop_dp28', gun_reload='dp28_reload.skc', gun_out='coop_reload_ads_empty.skc',
+    gun_out_loaded='coop_reload_ads_loaded.skc', gun_anim_loaded='reload_ads_loaded',
+    bolt=dict(chan='rechamb pos', rest=(15.0, -4.5, -1.5, 0.0), axis=0, units=-5.2),
+    butt=(-10.4, 0.0, -6.5),
+    feed='top',
+    # 2.6 u down: with 3.6 the pan sat on the frame's bottom edge in the engine (run hh7 - the engine's gun rides lower
+    # than the offline eye view shows) and the work was half out of view
+    cant=dict(roll=14.0, pitch=0.0, yaw=-2.0, move=(1.5, 0.3, -2.6)),
+    # the HANDLE pose: with the pan 3.6 u down the knob's side is under the frame's bottom edge (offline sheet dp_b: no
+    # hand to be seen at all). For the pull the gun is most of the way back up - the pan inside the part of the
+    # picture the settled aim covers anyway - and the forearm is seen going in under the pan's left rim
+    hcant=dict(roll=8.0, pitch=0.0, yaw=-2.0, move=(1.0, 0.0, -1.5)),
+    braced={'sup': 0.3, 'strength': 0.8, 'cant.move': [1.5, 0.3, -3.2]},
+    mag_rel=46,                        # retail frame: the left hand on the seated pan
+    mag_out=-1.1,                      # u: UP off the spigot (weapon z is down)
+    off_add=(-0.4, 2.2, -0.8), leave_add=(-1.0, 1.5, -2.0),
+    handle=(7.6, -2.0, -2.05), travel=2.7, release=True,
+    # the knob sits UNDER the pan, 2.6 u inboard of its rim (no cant short of 56 deg shows it from the eye): the hand
+    # goes in under the rim from the LEFT, by feel, as on the real gun - a wrist from below put the fingers up
+    # through the pan (offline sheet dp_a)
+    hk_off=(0.0, 3.6, -1.0), hk_roll=180.0,
+    prop='models/ammo/coop_dp28_clip.tik:29:45',
+    show=(13.5, 5.5, -3.0),            # the WRIST: the pan hangs 2.5 u under the hand and is 8.4 u across (centre 27 deg left, 25 deg down)
+    t=dict(off=(3, 9), cant_in=(5, 16), grab=22, out=(29, 31), show_out=(32, 34), pouch=(36, 38), show_in=(39, 41),
+           well=43, seat=45, hold=49, slap=(50, 52),
+           reach=(56, 63), pull=(66, 69), fwd=(71, 73), leave=75, on=(80, 88), cant_out=(74, 86),
+           # rounds left: 11 kg does not jump back - the cant comes off over 0.47 s, the support hand is under it by f72
+           l_leave=54, l_on=(60, 72), l_cant_out=(56, 70)),
+)
+
+GUNS = {'bar': BAR, 'mp44': MP44, 'dp28': DP28}
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('gun'); ap.add_argument('--only'); ap.add_argument('--set', action='append', default=[])
     ap.add_argument('--braced', action='store_true', help='bake ONLY the braced <row>_adsb clips')
+    ap.add_argument('--hip', action='store_true', help='bake ONLY the hip rounds-left clip (no cock)')
     a = ap.parse_args()
+    if a.hip:
+        bake_hip(a.gun, '.')
+        sys.exit(0)
     o = {}
     for kv in a.set:
         k, v = kv.split('=', 1)

@@ -23,9 +23,13 @@ R.RUNS = hv.RUNS
 R.PORT = hv.PORT
 A.LOGF = os.path.join(hv.SCR, "run.log")
 A.GUNS.update({"30cal": "models/weapons/30calportable.tik", "mg42": "models/weapons/mg42portable.tik",
-               "mp44scope": "models/weapons/mp44_scoped.tik"})
+               "mp44gold": "models/weapons/mp44_gold.tik",
+               "mp44strap": "models/weapons/mp44_mp44strap.tik",
+               # the other BAR meshes (bug-3623): retail mesh / the Pacific pack's S93 skeleton on its own path
+               "dp28": "models/weapons/dp28.tik", "fg42": "models/weapons/FG42.tik",
+               "bar1918a": "models/weapons/bar_bar1918a.tik", "barpa": "models/weapons/bar_pabar.tik"})
 
-def stdemo(sess, gun, st, shots, gap, nrel, empty):
+def stdemo(sess, gun, st, shots, gap, nrel, empty):  # TAIL: see below
     """LANE part (--stdemo st,st,..): the aimed reload in a stance as a DENSE capture that boxeng.py can measure - the
     shared `reloads` part is sparse and cannot empty the gun (an emptied gun reloads by itself during its wait).
     Tag ab__<sess>__<gun>__<st>__demo__after, marks DEMO reload / lower, the model-less reference `__ref`; the
@@ -49,6 +53,13 @@ def stdemo(sess, gun, st, shots, gap, nrel, empty):
     L += ["echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, nrel, i)
     if empty:
         L += REF
+    if TAIL[0]:
+        # --tail N[:step] (sway-on runs): the settled aim for N more game frames, every step-th captured, then 10 dense
+        # ones (the aim mask's own frames) - one whole sway / breath period (5.7 s = 357 frames) for boxeng.py --sway
+        L += ["echo ^~^~^ DEMO settle %d" % i[0]]
+        for k in range(TAIL[0] // TAIL[1]):
+            L += A.frames(tag, 1, i) + ["wait 1", "wait 1"] * (TAIL[1] - 1)
+        L += A.frames(tag, 10, i)
     L += ["-button13", "echo ^~^~^ DEMO lower %d" % i[0]] + A.frames(tag, 24, i)
     L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1"]
     L += ["coop_braceView"] if st == "braced" else []
@@ -56,12 +67,20 @@ def stdemo(sess, gun, st, shots, gap, nrel, empty):
     R.step(L, timeout=2400)
 
 
+# The SMG lane's captures as they are (smg/tools/smg_block.py is source that its runner inlines; executed here it binds
+# to OUR S / A / R): sbreak = an aimed reload broken off (fire / switch / sprint / drop), sdemo(ads=False) = the hip
+# reload, rounds left (L) or emptied (E; SMG_HOLD = frames the trigger is held, --hold).
+exec(compile(open(os.path.join(hv.LANE, '..', 'smg', 'tools', 'smg_block.py'), encoding='latin-1').read(), 'smg_block.py', 'exec'), globals())
+
 _run0 = T2.run
 STDEMO = []
+TAIL = [0, 4]
+BRK = []            # --brk fire+switch+sprint+drop:50+105[:E]
+HIPDEMO = []        # --hipdemo L,E
 
 
 def _run(a):
-    if not STDEMO:
+    if not (STDEMO or BRK or HIPDEMO):
         return _run0(a)
     # our part runs inside the shared session: hook the per-gun loop through the (otherwise unused here) "yaw" part
     def ys(sess, gun, yaw):
@@ -71,6 +90,16 @@ def _run(a):
             for st in STDEMO:
                 R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
                 stdemo(sess, gun, st, a.shots, a.shotgap, a.demoreload, a.demoempty)
+            for c in HIPDEMO:
+                R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+                sdemo(sess, gun, c, ads=False)
+            for spec in BRK:
+                sp = spec.split(":")
+                for kind in sp[0].split("+"):
+                    for at in [int(x) for x in sp[1].split("+")]:
+                        # a second weapon in the inventory, or `weapnext` has nowhere to go
+                        R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS["colt45"]) + S.give(A.GUNS[gun]), timeout=120)
+                        sbreak(sess, gun, kind, at, case=(sp[2] if len(sp) > 2 else "L"), n=int(sp[3]) if len(sp) > 3 else 170)
         finally:
             R.SPOT = (x, y, z, w)
             R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
@@ -87,6 +116,24 @@ if __name__ == "__main__":
     if "--stdemo" in sys.argv:
         k = sys.argv.index("--stdemo")
         STDEMO[:] = sys.argv[k + 1].split(",")
+        del sys.argv[k:k + 2]
+    for opt, lst in (("--brk", BRK), ("--hipdemo", HIPDEMO)):
+        if opt in sys.argv:
+            k = sys.argv.index(opt)
+            lst[:] = sys.argv[k + 1].split(",")
+            del sys.argv[k:k + 2]
+    if "--hold" in sys.argv:
+        k = sys.argv.index("--hold")
+        SMG_HOLD[0] = int(sys.argv[k + 1])
+        del sys.argv[k:k + 2]
+    if "--rel" in sys.argv:
+        k = sys.argv.index("--rel")
+        SMG_REL[0] = int(sys.argv[k + 1])
+        del sys.argv[k:k + 2]
+    if "--tail" in sys.argv:
+        k = sys.argv.index("--tail")
+        v = sys.argv[k + 1].split(":")
+        TAIL[:] = [int(v[0]), int(v[1]) if len(v) > 1 else 4]
         del sys.argv[k:k + 2]
     # lane extras (taken out before the shared parser sees them):  --map <name> --spot x,y,z,yaw   another map / spot,
     # e.g. the night map m4l1 at its player start: --map m4l1 --spot -3904,-6120,-456,45

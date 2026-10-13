@@ -184,8 +184,15 @@ animations
 			entry sound mp44_snd_reload_loaded
 		}
 	}
+	reload_empty	mp44_reload.skc
+	{
+		client
+		{
+			entry sound mp44_snd_reload
+		}
+	}
 	// HZM coop [ads heavy rows end]
-	reload	mp44_reload.skc
+	reload	coop_reload_ads_loaded.skc
 	{
 		server
 		{
@@ -195,7 +202,7 @@ animations
 		}
 		client
 		{
-			entry sound mp44_snd_reload item
+			entry sound mp44_snd_reload_loaded item
 		}
 	}
 	secondaryfire     mp44.skc

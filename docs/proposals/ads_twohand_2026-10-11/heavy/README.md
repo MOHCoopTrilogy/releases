@@ -1,22 +1,104 @@
-# HEAVY lane (MGs / shotgun) - HANDOVER, 2026-10-12 night (second agent). Read this first.
+# HEAVY lane (MGs / shotgun) - HANDOVER, 2026-10-12 late night (third agent). Read this first.
 
 Lane of the aimed-animation work: the `## mg` and `## heavy` rows of `../coverage.md`. The method is the pistol
 lane's (`../README.md` top section); this file says what is different here, what is done and what is next.
 **Everything is STAGED** in this folder and on engine branch `ads-heavy-next` (worktree
 `C:\mohaa-coop-dev\openmohaa-hzm-ads-heavy`, build dir `.cmake` - NOT `build`). Nothing is in the mod tree, the fixes
-pak or a live install.
+pak or a live install. Run ids used: ha hb hc hd he hf hn hs (earlier), **hg1-hg3, hh1-hh9, hi1, hi2 (this session)** -
+never reuse one; next free prefix `hj`.
 
-## State by numbered point of the brief
-| point | state |
+## State (third agent, runs hg / hh / hi; engine unchanged: cgame_heavy2)
+| item | state |
 |---|---|
-| (1) aim poses, support hand as at the hip: BAR, DP-28, Vickers-Berthier, Breda | **done** (ha1 / ha2), `evidence/<gun>_aimhand_*.jpg` |
-| (2) + (2b) BAR aimed reload, loaded + empty, all six stances incl. a braced variant | **done to the three rules - see "BAR" for the numbers and the honest weak points** |
-| BAR skin lift + magazine prop tone | **staged** (`tools/barskin.py`, `tools/clipskin.py`) - see "Skins" for the shipping note |
-| (3) MP44 | **done to the three rules, six stances, loaded + empty** - see "StG 44" |
-| (3) FG42 (sight row first), DP-28 | **not started** (FG42: no `fg42` entry in `sights.json`, no `fg42_charge` row) |
-| (4) Breda, Vickers, portable .30 cal / MG42 | **not started**; two findings from run hc9 / hc10 below |
-| (5) shotgun: bead sight, shells, pump | **not started** |
-| launchers | not re-checked by a run; Torso AIM excludes them per the matrix - N/A |
+| 1 measurement AS PLAYED (sway + breath on) | **done** - `boxeng.py --sway` (the SMG lane's reloadbox code as a library) + `run_h.py --tail 360:4`; bug-3620 answered: a measuring artefact (bug-3667) |
+| BAR, aimed, rounds left + emptied, six stances | **done**, re-read with sway on (table below) |
+| BAR other meshes (M1918 Classic / A1 / A2, Pacific): emptied row (bug-3623) | **done** - they carry the same `bolt` bone; rows staged, run hh4 (bug-3670) |
+| BAR / StG 44 break-offs (fire, sprint, switch, aim dropped) | **run and looked at** (hh3, hh5) |
+| StG 44, aimed, six stances | **done**, re-read with sway on; the "left lean on the bar" was the tool's skip rule (bug-3668) |
+| StG 44 hip reload: no cocking with rounds left | **done** (hh5, bug-3672) |
+| StG 44 finishes | gold run and looked at (hh6); **there is no scoped StG 44 tik in the mod** (bug-3674) |
+| hand on the handle (BAR, StG 44) | re-posed: wrist from below, fingers and knuckles readable (bug-3671); the knob is still hidden while gripped |
+| FG 42 | **scoped weapon, no iron-sight aim** (bug-3673; coordinator confirmed). Reload while scoped today: the scope picture stays, no viewmodel (hh9). Its HIP reload on the model is **not started** |
+| DP-28, aimed, rounds left + emptied, six stances + braced rows | **done to the three rules** (hi1 / hi2), weak points listed below |
+| shotgun sight (bead) | **not staged** - findings in "Next" (the tool, shader and texture exist, nothing ever shipped; the engine row still says 4 mrad) |
+| belt-feds (M1919 portable, Breda, Vickers, MG42), shotgun reload, FG 42 hip reload | **not started** |
+
+### Centre box AS PLAYED (cg_adsSway 0.1, cg_weaponBreath 1 = the runner's defaults), `centrebox.json`
+`xmax` = share of the box covered beyond the settled aim's SWAY ENVELOPE (everything the settled aim covers during one
+whole sway period after the reload, grown 6 px); `mask6` = against the six-frame aim mask (the SMG lane's figure);
+`alone` = the settled aim ALONE against that mask (what the aim does by itself). Emptied guns: the first 20-35 capture
+frames are the last shot's kick and smoke; `after 40` = the maximum after 0.64 s.
+
+| gun, run | stand / crouch / prone / lean L / lean R / braced, % beyond the envelope | emptied: after 40 frames | settled aim alone vs its own six-frame mask |
+|---|---|---|---|
+| BAR rounds left, hg1 | 0.04 / 0.00 / 0.00 / 0.05 / 0.04 / 0.03 | - | 6.8 / 7.6 / 5.6 / 10.1 / 6.1 / 0.1 |
+| BAR emptied, hh1 (new grip) | 0.11 / 0.18 / 0.15 / 0.05 / 1.10 / 1.87 | 0.00 / 0.01 / 0.03 / 0.05 / 0.06 / 0.43 | 6.2 / 6.9 / 7.2 / 4.5 / 6.8 / 0.1 |
+| StG 44 rounds left, hg1 | 0.09 / 0.20 / 0.13 / 0.17 / 0.09 / 0.08 | - | 0.8 / 1.1 / 0.3 / 0.5 / 0.4 / 0.0 |
+| StG 44 emptied, hh2 (new grip) | 0.35 / 0.56 / 1.23 / 0.42 / 0.08 / 1.95 | 0.04 / 0.06 / 0.05 / 0.11 / 0.08 / 0.28 | 0.3 / 0.1 / 0.9 / 0.5 / 0.6 / 0.0 |
+| DP-28 rounds left, hi1 | 0.00 / 0.00 / 0.00 / 0.07 / 0.04 / 0.01 | - | 5.7 / 4.2 / 3.2 / 7.3 / 5.0 / 0.6 |
+| DP-28 emptied, hi2 | 1.17 / 0.31 / 0.27 / 0.19 / 0.03 / 0.30 | 0.01 / 0.04 / 0.04 / 0.05 / 0.03 / 0.04 | 3.1 / 2.7 / 5.5 / 1.6 / 5.3 / 0.0 |
+
+0 frames over 2 % in every row; every clip ends within 0.00 deg of the aim. **Read with care:** the figures of 1-2 % on
+emptied guns are the last shot (kick at capture f24-26, smoke of 20-30 rounds over the dark door) - looked at with
+`tools/swayshow.py` (run hg3), the model is out of the box by capture frame 18. Against the six-frame mask the BAR
+and the DP-28 read 2-6 % in the free stances for the same reason their settled aim does: **the aim of a gun whose rear
+is 6-8 u from the eye wanders 15-25 px with the sway** (bug-3669: BAR 4-10 %, DP-28 3-7 % by itself; StG 44 under
+1.2 %). That is the aim, not the reload - a decision for the user (relief / taller sights / less sway near the eye).
+bug-3620 (the BAR's "2-3 % for 16 frames at the return", run hd2) was exactly this (bug-3667).
+
+### What was done to the two finished guns
+* Hand on the handle: `hk_off (0.2, 1.0, -3.8)` - the wrist comes up from below, the eye looks down on knuckles and
+  fingers closed round the knob (`evidence/bar_handle_engine_crops_hh3.jpg`, `mp44_handle_engine_crops_hh5.jpg`).
+  About a fifth of the screen wide on the StG 44, still about a quarter on the BAR at full pull. The loaded clips are
+  byte-identical to the previous agent's (0e1d9d7d, 72239c8c, 33486b6d, 80d8c375); empty: BAR 260f44d6 / 1095f963
+  (braced), StG 44 cdc28061 / 2c4ec8e8.
+* BAR other meshes: `patch_tik_h.py bar` `more_paths` = `models/weapons/BAR` (retail mesh: 36 vertices of `bar3` on
+  the `bolt` bone, the knob 0.7 u higher than the S93's) + `models/weapons/coop_pabar`; 12 tiks. Not confirmed by eye:
+  the retail knob's travel (the hand covers it). `bar_bar1918.tik` is the Lewis gun - untouched.
+* StG 44 hip: `heavybake.py mp44 --hip` -> `coop_mp44_reload_hip.skc` (row `mp44_reload`), tik `reload` = handle-still
+  clip + cut sound, `reload_empty` = retail clip + retail sound (`patch_tik_h` `hip=True`). Other players hear the cut
+  sound for every reload. Not listened to.
+* Break-offs, both guns alike (`run_h.py --brk`, the SMG lane's `sbreak`; `evidence/*_breakoffs_*.jpg`): trigger and
+  sprint do nothing, the reload runs to its end in the aim; next weapon: the gun goes down at once, nothing left
+  behind; aim let go: the framing goes to the hip in 0.7 s while the row hands over to the hip clip, ends as the hip
+  clip does. Rounds left only, 0.8 s and 1.7 s into the reload; looked at on sheets, not as GIFs.
+* Still open on these two: the BAR's return from the work pose takes 0.2 s (brisk for 9 kg); hip reload of the BAR
+  untouched; Lewis / MG42 keep their hip clips while aiming.
+
+## DP-28 - `tools/heavybake.py dp28` (+ `--braced`), `tools/patch_tik_h.py dp28`
+Facts (`heavylib.py dp28`, `clipinfo.py`, `gunmove.py`): at the aim the pan (8.4 u across) lies 8-17 u from the eye,
+1-3 deg under the sight line - it is the lower half of the aim's own picture (the aim covers 36 % of the box). The
+pack's hip clip: the LEFT hand does everything - on the pan f24-28, away f32-40, seated f44-48, pressed f52-60, then
+the same hand hauls the knob, which on THIS mesh is on the LEFT (surface `Cylinder2`, bone `rechamb`, 2.7 u) and sits
+UNDER the pan, 2.6 u inboard of its rim. **In this mod the DP-28 holds 20 rounds** (`clipsize 20`).
+* `feed='top'` in the gun entry: the magazine keys of `spec()` with the well's axis turned round (lift, press), pan
+  physics `lg_pan_*`, class `dp` (11.5 kg, a quarter of it the pan).
+* The server shows the pan prop on the off-hand tag f29-45 and hides the gun's own for exactly those frames: the lift
+  starts AT f29, the new pan is down AT f45 - the swap is 0.5 s, the server's window (torso state, mod tree).
+* Work pose 2.6 u down, 14 deg cant (3.6 u put the pan on the frame's bottom edge in the engine, run hh7 - the
+  engine's gun rides lower than `eyeview.py` shows). EMPTY: a second pose `hcant` (1.5 u down) for the pull, the hand
+  goes in under the pan's left rim FROM THE SIDE (`hk_off (0.0, 3.6, -1.0)`; from below the fingers came up through
+  the pan) and hauls the knob, released; keyed to the BAR sound the gun plays (handle f66-73 - the pack's own pull was
+  0.25 s late against it). Rounds left = open bolt held by the sear: no handle work, gun clip
+  `coop_reload_ads_loaded.skc` + the cut BAR sound (tik rows `reload_ads_loaded` / `reload_ads_empty`, 8 tiks).
+* Rows: `dp28_reload_ads` (same path as the SHIPPED clip - replaced), `dp28_reload_empty` (pack hip clip),
+  `dp28_reload_empty_ads`, `dp28_reload_adsb`, `dp28_reload_empty_adsb`. Clips: loaded 11b8861d, empty 8d91082a,
+  braced a45e0877 / 36f01ecc; gun clips 1012388b / 95da2b8e. Offline box 0.0 % (the prop is not in that figure).
+Evidence: `evidence/dp28_reload_aimed_loaded.gif` (hi1), `dp28_reload_aimed_empty.gif` (hi2) - decoded and
+looked at every fourth frame at small size (no pop seen), NOT stepped frame by frame;
+`dp28_reload_aimed_empty_stances_hi2.jpg` (six stances: pan away, new pan in, pan on for the pull - looked at);
+`dp28_pan_and_handle_engine_crops_hi2.jpg` (looked at). **Weak points:** the knob and most of the hand are hidden under the pan during the pull
+(a pale shape under the left rim); the pan is out of the gun for 0.5 s; the return takes 0.3-0.4 s; the brief says
+"charging handle on the right" - the real gun's is, this mesh has it on the left and the pack's hip clip works it with
+the left hand, which is what was reproduced. Break-offs and the hip reload not run.
+
+## FG 42 - what the still shows
+`evidence/mp44_gold_and_fg42_aim_hh6_hh9.jpg`: top row the gold StG 44's emptied aimed reload (same mesh, plays the
+new clips); bottom row the FG 42 with the aim key held, sway on - **the scope picture** (`zoom 20`, lens surface; the
+scopes system draws it), through 20 rounds and the whole reload: the scope stays up, no viewmodel is drawn, the reload
+passes unseen. Nothing was staged for an iron-sight aim. To do: its HIP reload on the model (the mesh is one static
+surface set on one bone - a charging handle needs its own bone first, as the SMG lane added one to the MP40); the
+reload-while-scoped design follows the rifle lane's sample.
 
 ## Engine branch `ads-heavy-next` (this lane's cgame)
 * ef1e7934: a braced aimed reload / bolt picks the hands row `<row>_adsb` when fps_anims has it (`CG_CoopBrace() > 0.5`,
@@ -34,8 +116,8 @@ pak or a live install.
   (`--parts none --stdemo ...`; with `--demoempty --shots 20 --shotgap 8 --demoreload 240` the gun is emptied first,
   without it `--shots 1 --demoreload 240` and 200 frames pass before the reload so the recoil is out).
   A session is 2-4 min; log `SCRATCH/adsheavy/run.log`, frames `G:/mohaa-adsanim4/runs/<id>/`.
-* **Box numbers are taken with `--set "set cg_adsSway 0" --set "set cg_weaponBreath 0"` and `boxeng.py <id> bar --align 6`**
-  (bug-3619): with sway / breath on the AIM itself wanders 15-45 px during a 4 s reload and reads 3-7 % by itself;
+* **Box numbers AS PLAYED: `run_h.py ... --tail 360:4` (sway on, the runner's default) and `boxeng.py <id> <gun> --sway [--empty] [--cbx]`.**
+  The earlier sway-off measure (`--set "set cg_adsSway 0" --set "set cg_weaponBreath 0"`, `boxeng.py --align 6`, bug-3619) stays for old runs: with sway / breath on the AIM itself wanders 15-45 px during a 4 s reload and reads 3-7 % by itself;
   braced / prone views sit up to 6 px off the reference (over 20 bullet holes that read 4-6 % with no model in the box).
   `--cbx [--empty] [--add]` writes `centrebox.json` in the shared coverage.py schema (an emptied gun: the first 20
   capture frames are the last shot's kick). Measure on the DARK skin (`mkov_h.py out.pk3 --skip textures`): the lifted
@@ -52,7 +134,7 @@ pak or a live install.
 * Bugs: `python tools/buglog_add.py entries.json` (bug-3588..3591, 3597 predecessor; 3619-3623 this session).
 * Patch scripts: write them as FILES. A Git-Bash heredoc turned a backslash-n into a line break again (bug-3621).
 
-## BAR - `tools/heavybake.py bar` (+ `--braced`), `tools/patch_tik_h.py bar`
+## BAR (second agent's notes; the sway-off table below is superseded by the one above) - `tools/heavybake.py bar` (+ `--braced`), `tools/patch_tik_h.py bar`
 At the cheek weld nothing of the BAR's mechanism can be seen (handle 14 deg below / 9 deg left behind the comb, well
 18-36 deg below the sight line), so for the work the gun SAGS 4.1 deg about the butt when the support hand leaves
 (gunphys class `bar`, 9 kg) and the firing hand holds it canted 32 deg, 3 u forward, 0.7 u down (the WORK pose,
@@ -91,7 +173,7 @@ Weak points, seen in playback - say them:
 * M1919 portable: aiming shows a black receiver wall over the lower half of the screen into the box, and its reload
   swings the barrel up through the box (hc9 / hc10, bug-3622) - item 4, sight row first.
 
-## StG 44 - `tools/heavybake.py mp44` (+ `--braced`), `tools/patch_tik_h.py mp44`
+## StG 44 (second agent's notes; figures superseded above) - `tools/heavybake.py mp44` (+ `--braced`), `tools/patch_tik_h.py mp44`
 The second `heavybake` gun entry; `spec()` is shared with the BAR. Facts (`heavylib.py mp44`, `clipinfo.py`,
 `gunmove.py`): at the cheek the magazine hangs 33-50 deg below the sight line (frame edge 26) and the left-side cocking
 handle, 15 deg below at rest, ends its 6.2 u pull 37 deg below, 4 u from the eye - the same answer as the BAR (sag
@@ -138,23 +220,36 @@ reload is untouched (retail cocks even with rounds left); break-offs and the sco
   The lifted `.dds` files (and `barclip.dds` if that pak carries it - check `vfs.winner`) must ship in a pak that sorts
   ABOVE it.** This lane ships nothing.
 
-## Next, in the brief's order
-3. FG42: sight row first - `sights.json` has no `fg42` entry (F = front post tip, R = rear aperture, picked from the
-   mesh as the other 70 were: `../../ironsights_2026-09-28`, then `engine/gen_sights_header.py` -> `cg_adssights.h` on
-   `ads-heavy-next`, rebuild) and there is no `fg42_charge` aim row either (`handpose.py` from `fg42_idle`); its
-   reload is 71 frames, prop `fg42clip` on the off-hand tag f28-56, side magazine (check from the eye whether it shows
-   without a cant). DP-28: the pan is in the sight picture, the gun comes down for it; prop `coop_dp28_clip` f29-45,
-   97 frames. A new gun = a `heavybake` entry (copy MP44's): `clipinfo.py <row> <gun clip>` and `gunmove.py <tik> reload`
-   give the retail timeline, the bolt channel and the handle point; `heavylib.py <prefix> <points>` where they sit at
-   the aim; then `hktry.py <gun> loaded none x.jpg --box "<k=v;...>"` until the box passes offline, THEN the engine.
-4. Breda, Vickers, portable .30 cal / MG42 (belt: cover up, belt, cover down, charge). M1919 needs its sight row.
-5. Shotgun: sight delta 18-20 mrad + brass bead (`../../ads_bolt_2026-10-04/README.md` 8.5), shells one at a time,
-   pump after the last; aimed fire plays `viewmodelanim charge`, so the pump between aimed shots shows no hand motion
-   today - a `shotgun_cycle_ads` row (cgame per-shot cycle hook of ads-next 4b6be659).
-Also open for the BAR: stock-mesh empty reload, break-offs, a slower return.
+## Next
+1. **Shotgun sight (user 2026-10-12: "that shotgun needs some kind of sights")** - found, not staged: `sights.json`
+   HAS a `shotgun` row (F = barrel end ridge, R virtual on the receiver top, delta 18 mrad since 2026-10-05), but
+   `cg_adssights.h` on `ads-next` / `ads-heavy-next` still carries **4 mrad** for all 14 shotgun rows (never
+   regenerated), the retail M1897 mesh has no bead and no rear sight, and the brass bead approved on 2026-10-05 exists
+   only as a tool and art: `../../ads_bolt_2026-10-04/tools/add_bead.py shotgun <out.skd>` (own surface `coop_bead`),
+   `../../weapon_hd_2026-10-05/bead/` (shader `coop_shotgun_bead` + texture). To stage here: the skd with the bead
+   under `assets/models/weapons/shotgun/`, `surface coop_bead shader coop_shotgun_bead` in every shotgun tik on that
+   mesh (check each tik's `path`: authwinch, dhshotblack / chrome, guanshotty, hobbsshotty, lv_ttshotgun may be on
+   their own), shader + texture, a lane `sights_override.json` (delta 18 mrad, F = the bead's top that add_bead
+   prints) and the 14 header rows (the SMG lane's `patch_sights_row.py` rewrites F / R / relief only - delta needs a
+   lane tool), cgame rebuild -> `cgame_heavy3`, before / after aim stills (`run_h.py --parts yaw,stills --yaws 165`,
+   `mkov_h.py --before`), third person (`third_close` of smg_block is already bound in run_h.py). The groove on the
+   receiver top and other shotguns in the mod: not looked at.
+2. FG 42 hip reload on the model (above).
+3. Belt-feds: M1919 portable first (sight row; bug-3622), Breda, Vickers, MG42.
+4. Shotgun reload: shells one at a time on target or just under the box, break off on fire, pump only when the chamber
+   was empty; aimed fire plays `viewmodelanim charge`, so a `shotgun_cycle_ads` row is needed for the pump between
+   aimed shots (cgame per-shot cycle hook of ads-next 4b6be659).
+5. A new gun = a `heavybake` entry (copy DP28 for a top feed, MP44 for a well): `clipinfo.py <row> <gun clip>` and
+   `gunmove.py <tik> reload` give the retail timeline, the bolt channel and the handle point; `heavylib.py <prefix>
+   <points>` where they sit at the aim; then `hktry.py` / `eyeview.py` (set `IRONSIGHT_EXTRA_PAKS=<overlay>` or the
+   staged gun rows are not found), THEN the engine. Read `clipsize` from the tik before an emptied run.
+Carry-forward for the coordinator: the lifted BAR `.dds` must ship in a pak sorting above
+`zzzzzzzzzz_coop_hd_m3l1a.pk3` (see "Skins"); never touch that pak.
 
 Runs: ha1 / ha2 (aim poses), hb1-hb9 (predecessor's BAR iterations), hs / hn (skin), hc1-hc10 (2b: stances, braced,
 variants, finishes), hd1-hd3 (final BAR clips, settle diagnostics), he1-he7 (StG 44; he6 / he7 final), hf1 (StG 44 aim
 stills), hf2 (strapped variant). `centrebox.json` keys are GUN names (`bar`, `bar_empty`, ...) as coverage.py reads
 them; `python ../tools/coverage.py --lane heavy build` writes the lane preview `heavy/coverage.md` (BAR and StG 44: DONE).
-Bugs this session: 3619-3623, 3646-3649.
+Bugs: 3619-3623, 3646-3649 (second agent); 3667-3676 (third agent).
+Tools added by the third agent: `boxeng.py --sway`, `swayshow.py`, `run_h.py --tail / --brk / --hipdemo / --hold / --rel`,
+`heavybake.py --hip` + `feed='top'`, `patch_tik_h.py` `more_paths` for the BAR, `hip=True`, the `dp28` set.

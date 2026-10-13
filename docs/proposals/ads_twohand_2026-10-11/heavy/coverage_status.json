@@ -73,51 +73,51 @@
   "reload": {
    "braced": {
     "dev": 4.32,
-    "edge": 4.32,
+    "edge": 4.31,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "hd1"
+    "run": "hh1"
    },
    "crouch": {
-    "dev": 6.07,
-    "edge": 6.03,
-    "end": 0.0,
-    "ok": false,
-    "pmin": 1.0,
-    "run": "hd3"
-   },
-   "prone": {
-    "dev": 6.06,
-    "edge": 6.06,
-    "end": 0.0,
-    "ok": false,
-    "pmin": 1.0,
-    "run": "hd3"
-   },
-   "stand": {
-    "dev": 6.07,
-    "edge": 6.04,
-    "end": 0.0,
-    "ok": false,
-    "pmin": 1.0,
-    "run": "hd1"
-   },
-   "standL": {
-    "dev": 6.04,
-    "edge": 6.01,
-    "end": 0.0,
-    "ok": false,
-    "pmin": 1.0,
-    "run": "hd3"
-   },
-   "standR": {
     "dev": 6.07,
     "edge": 6.07,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "hd3"
+    "run": "hh1"
+   },
+   "prone": {
+    "dev": 6.06,
+    "edge": 6.01,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hh1"
+   },
+   "stand": {
+    "dev": 6.06,
+    "edge": 6.02,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hh1"
+   },
+   "standL": {
+    "dev": 6.05,
+    "edge": 6.05,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hh1"
+   },
+   "standR": {
+    "dev": 6.07,
+    "edge": 6.04,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hh1"
    }
   },
   "rule": {
@@ -194,7 +194,64 @@
     "run": "ha2"
    }
   },
-  "qa": "ha2: aim pose with the support hand in the hip relation (handpose.py); 8 stances incl. braced looked at, sight line 0.00 deg; before / after pair evidence/dp28_aimhand_before_after.jpg"
+  "lowered": true,
+  "qa": "ha2: aim pose with the support hand in the hip relation (handpose.py); 8 stances incl. braced looked at, sight line 0.00 deg; before / after pair evidence/dp28_aimhand_before_after.jpg",
+  "reload": {
+   "braced": {
+    "dev": 3.75,
+    "edge": 3.28,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hi2"
+   },
+   "crouch": {
+    "dev": 5.66,
+    "edge": 4.9,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hi2"
+   },
+   "prone": {
+    "dev": 5.66,
+    "edge": 4.86,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hi2"
+   },
+   "stand": {
+    "dev": 5.66,
+    "edge": 4.85,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hi2"
+   },
+   "standL": {
+    "dev": 5.63,
+    "edge": 4.85,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hi2"
+   },
+   "standR": {
+    "dev": 5.68,
+    "edge": 4.85,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hi2"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "hi1 (rounds left) + hi2 (emptied), six stances, sway on: 0.00-1.17 % beyond the aim's sway envelope, back to 0.00 deg",
+   "target": "yes"
+  }
  },
  "models/weapons/it_w_breda.tik": {
   "aim": {
@@ -343,7 +400,7 @@
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "he6"
+    "run": "hh2"
    },
    "crouch": {
     "dev": 5.0,
@@ -351,39 +408,39 @@
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "he6"
+    "run": "hh2"
    },
    "prone": {
-    "dev": 5.01,
-    "edge": 5.01,
+    "dev": 5.0,
+    "edge": 5.0,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "he6"
+    "run": "hh2"
    },
    "stand": {
-    "dev": 5.02,
-    "edge": 5.02,
+    "dev": 5.01,
+    "edge": 5.01,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "he6"
+    "run": "hh2"
    },
    "standL": {
-    "dev": 5.01,
-    "edge": 5.01,
+    "dev": 5.0,
+    "edge": 5.0,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "he6"
+    "run": "hh2"
    },
    "standR": {
-    "dev": 5.01,
-    "edge": 5.01,
+    "dev": 5.0,
+    "edge": 5.0,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "he6"
+    "run": "hh2"
    }
   },
   "rule": {
