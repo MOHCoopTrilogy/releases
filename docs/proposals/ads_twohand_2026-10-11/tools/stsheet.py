@@ -19,7 +19,7 @@ th = a.w * (y1 - y0) // (x1 - x0)
 sh = Image.new('RGB', (a.w * len(fr), th * len(sts)), (40, 40, 40))
 miss = 0
 for r, st in enumerate(sts):
-    fs = sorted(glob.glob('%s/%s/ab__%s__%s__%s%s__reload__after__*.jpg' % (RUNS_DIR, a.sess, a.sess, a.gun, st, 'E' if a.empty else '')))
+    fs = sorted(glob.glob('%s/ab__%s__%s__%s%s__reload__after__*.jpg' % (os.environ.get('STS_DIR') or (RUNS_DIR + '/' + a.sess), a.sess, a.gun, st, 'E' if a.empty else '')))
     idx = {int(os.path.basename(f)[:-4].rsplit('__', 1)[1]): f for f in fs}
     for c, k in enumerate(fr):
         if not idx:

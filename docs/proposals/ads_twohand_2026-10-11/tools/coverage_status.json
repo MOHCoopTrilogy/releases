@@ -1,101 +1,292 @@
 {
  "models/weapons/berettasilenced.tik": {
-  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
- },
- "models/weapons/colt45.tik": {
-  "action": "support hand: magazine out / in below the screen edge (pushed up into the grip; the magazine itself only peeks); EMPTY: slide locked back, SUPPORT THUMB sweeps the slide stop as the hand closes on the grip, slide runs forward - shown; loaded: no slide action",
+  "action": "support hand: magazine out / in below the screen edge; EMPTY: slide locked back, the support thumb sweeps the stop as the hand closes on the grip, it runs forward - shown; loaded: no action",
   "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
    "crouch": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th3"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "crouchL": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th3"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "crouchR": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th3"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "prone": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th3"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "stand": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th3"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "standL": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th3"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "standR": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th3"
+    "pmin": 1.0,
+    "run": "pa17"
    }
   },
-  "qa": "th3: pose approved by the user 2026-10-12; sheets, GIF checked",
+  "qa": "pa10: GIF decoded and looked at, stance sheet pa9 and seat sheet pa14 looked at; sheet gamma-lifted (readable); on target NO: emptied 1.7 % in pa8, 3.1 % in pa10",
   "reload": {
-   "crouch": {
-    "dev": 2.21,
-    "edge": 0.84,
-    "end": 0.01,
+   "braced": {
+    "dev": 1.77,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "tg5"
+    "run": "pa9"
+   },
+   "crouch": {
+    "dev": 1.74,
+    "edge": 1.0,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
    },
    "prone": {
-    "dev": 2.24,
-    "edge": 0.84,
+    "dev": 1.74,
+    "edge": 0.99,
+    "emptied": true,
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "tg5"
+    "run": "pa9"
+   },
+   "ride": {
+    "dev": 1.74,
+    "edge": 1.0,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa14"
    },
    "stand": {
-    "dev": 2.2,
-    "edge": 0.82,
+    "dev": 1.75,
+    "edge": 1.0,
     "end": 0.01,
     "ok": true,
     "pmin": 1.0,
-    "run": "tg5"
+    "run": "pa10"
    },
    "standL": {
-    "dev": 2.21,
-    "edge": 0.83,
-    "end": 0.01,
-    "ok": true,
-    "pmin": 1.0,
-    "run": "tg5"
-   },
-   "standR": {
-    "dev": 2.23,
-    "edge": 0.84,
+    "dev": 1.74,
+    "edge": 0.99,
+    "emptied": true,
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "tg5"
+    "run": "pa9"
+   },
+   "standR": {
+    "dev": 1.73,
+    "edge": 1.0,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
    }
   },
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "td8 (loaded) td9 (empty)",
-   "target": "yes"
+   "run": "pa8 pa10 (stand), pa9 (stances), pa14 (seat)",
+   "target": "no"
+  },
+  "seat": {
+   "dev": 1.74,
+   "end": 0.0,
+   "run": "pa14"
+  }
+ },
+ "models/weapons/colt45.tik": {
+  "action": "support hand: magazine out / in below the screen edge (pushed up into the grip; the magazine itself only peeks); EMPTY: slide locked back, SUPPORT THUMB sweeps the slide stop as the hand closes on the grip, slide runs forward - shown; loaded: no slide action",
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   }
+  },
+  "qa": "pa11: GIF decoded and looked at, stance sheet pa9 and seat sheet pa15 looked at; seat push x0.6, thumb x0.45; on target NO: loaded 2.2 / 1.0 %, emptied 1.4 / 4.3 % over two runs of the same clips; pose approved by the user 2026-10-12 (th3)",
+  "reload": {
+   "braced": {
+    "dev": 1.73,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "crouch": {
+    "dev": 1.76,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "prone": {
+    "dev": 1.73,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "ride": {
+    "dev": 1.73,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa15"
+   },
+   "stand": {
+    "dev": 1.75,
+    "edge": 0.99,
+    "end": 0.01,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa11"
+   },
+   "standL": {
+    "dev": 1.73,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "standR": {
+    "dev": 1.72,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "pa8 pa11 (stand), pa9 (stances), pa15 (seat); td8 / td9 before",
+   "target": "no"
+  },
+  "seat": {
+   "dev": 1.73,
+   "end": 0.0,
+   "run": "pa15"
   }
  },
  "models/weapons/colt45_colt1911w.tik": {
@@ -187,112 +378,731 @@
   }
  },
  "models/weapons/colt45_coltpa.tik": {
-  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
- },
- "models/weapons/colt_silenced.tik": {
-  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
- },
- "models/weapons/it_w_beretta.tik": {
-  "action": "support hand: magazine out / in below the screen edge; EMPTY: slide locked back, support thumb sweeps the slide stop as the hand closes on the grip, slide runs forward - shown; loaded: no slide action",
+  "action": "support hand: magazine out / in below the screen edge; EMPTY: slide locked back, the support thumb sweeps the stop as the hand closes on the grip, it runs forward - shown; loaded: no action",
   "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
    "crouch": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "crouchL": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "crouchR": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "prone": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "stand": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "standL": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "standR": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "pa17"
    }
   },
-  "qa": "th4: sheet + GIF checked; rack skipped by the support hand",
+  "qa": "pa8: GIF decoded and looked at, stance sheet pa9 and seat sheet pa14 looked at",
   "reload": {
-   "crouch": {
-    "dev": 2.23,
-    "edge": 0.97,
+   "braced": {
+    "dev": 1.74,
+    "edge": 0.99,
+    "emptied": true,
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "tg5"
+    "run": "pa9"
+   },
+   "crouch": {
+    "dev": 1.74,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
    },
    "prone": {
-    "dev": 2.24,
-    "edge": 0.97,
+    "dev": 1.74,
+    "edge": 0.99,
+    "emptied": true,
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "tg5"
+    "run": "pa9"
+   },
+   "ride": {
+    "dev": 1.74,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa14"
    },
    "stand": {
-    "dev": 2.26,
-    "edge": 0.96,
-    "end": 0.0,
+    "dev": 1.74,
+    "edge": 1.0,
+    "end": 0.01,
     "ok": true,
     "pmin": 1.0,
-    "run": "tg5"
+    "run": "pa8"
    },
    "standL": {
-    "dev": 2.24,
-    "edge": 0.96,
+    "dev": 1.73,
+    "edge": 0.99,
+    "emptied": true,
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "tg5"
+    "run": "pa9"
    },
    "standR": {
-    "dev": 2.24,
-    "edge": 0.96,
+    "dev": 1.74,
+    "edge": 0.99,
+    "emptied": true,
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "tg5"
+    "run": "pa9"
    }
   },
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "te6 (loaded) te7 (empty)",
+   "run": "pa8 (stand), pa9 (stances), pa14 (seat)",
    "target": "yes"
+  },
+  "seat": {
+   "dev": 1.74,
+   "end": 0.0,
+   "run": "pa14"
+  }
+ },
+ "models/weapons/colt_silenced.tik": {
+  "action": "support hand: magazine out / in below the screen edge; EMPTY: slide locked back, the support thumb sweeps the stop as the hand closes on the grip, it runs forward - shown; loaded: no action",
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   }
+  },
+  "qa": "pa8: GIF decoded and looked at, stance sheet pa9 and seat sheet pa14 looked at; the silencer never meets the support hand",
+  "reload": {
+   "braced": {
+    "dev": 1.74,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "crouch": {
+    "dev": 1.73,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "prone": {
+    "dev": 1.73,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "ride": {
+    "dev": 1.73,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa14"
+   },
+   "stand": {
+    "dev": 1.73,
+    "edge": 0.99,
+    "end": 0.01,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa8"
+   },
+   "standL": {
+    "dev": 1.74,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "standR": {
+    "dev": 1.73,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "pa8 (stand), pa9 (stances), pa14 (seat)",
+   "target": "yes"
+  },
+  "seat": {
+   "dev": 1.73,
+   "end": 0.0,
+   "run": "pa14"
+  }
+ },
+ "models/weapons/it_w_beretta.tik": {
+  "action": "support hand: magazine out / in below the screen edge; EMPTY: slide locked back, support thumb sweeps the slide stop as the hand closes on the grip, slide runs forward - shown; loaded: no slide action",
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   }
+  },
+  "qa": "pa11: GIF decoded and looked at, stance sheet pa9 and seat sheet pa15 looked at; sheet gamma-lifted as .dds (readable); on target NO: loaded 2.1 / 0.9 / 2.0 %; emptied figure polluted by the 15-shot view walk (3.4 / 4.8 / 2.4 %)",
+  "reload": {
+   "braced": {
+    "dev": 1.78,
+    "edge": 0.97,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "crouch": {
+    "dev": 1.77,
+    "edge": 0.97,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "prone": {
+    "dev": 1.77,
+    "edge": 0.97,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "ride": {
+    "dev": 1.78,
+    "edge": 0.97,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa15"
+   },
+   "stand": {
+    "dev": 1.77,
+    "edge": 0.97,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa11"
+   },
+   "standL": {
+    "dev": 1.77,
+    "edge": 0.97,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "standR": {
+    "dev": 1.79,
+    "edge": 0.97,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "pa8 pa10 pa11 (stand), pa9 (stances), pa15 (seat)",
+   "target": "no"
+  },
+  "seat": {
+   "dev": 1.78,
+   "end": 0.0,
+   "run": "pa15"
   }
  },
  "models/weapons/lugerp08.tik": {
-  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
+  "action": "TOGGLE (two bones): up 50 deg while empty; emptied reload held under the centre box, support hand takes the knobs from above, pulls and lets go, it snaps shut - shown; loaded: magazine only",
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   }
+  },
+  "lowered": true,
+  "qa": "pa10: GIFs decoded and looked at, stance sheet pa9 and seat sheet pa14 looked at; open toggle in the centre box for 0.2 s before the gun is down; front link not articulated; aim pose new, not approved",
+  "reload": {
+   "braced": {
+    "dev": 14.74,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "crouch": {
+    "dev": 14.76,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "prone": {
+    "dev": 14.75,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "ride": {
+    "dev": 14.77,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa14"
+   },
+   "stand": {
+    "dev": 14.78,
+    "edge": 0.99,
+    "end": 0.01,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa10"
+   },
+   "standL": {
+    "dev": 14.74,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "standR": {
+    "dev": 14.76,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "pa10 (stand), pa9 (stances), pa14 (seat)",
+   "target": "yes"
+  },
+  "seat": {
+   "dev": 14.77,
+   "end": 0.0,
+   "run": "pa14"
+  }
  },
  "models/weapons/lugerp08silenced.tik": {
-  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
+  "action": "as the Luger P08 (same clips, own split mesh)",
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   }
+  },
+  "lowered": true,
+  "qa": "pa10: GIF decoded and looked at, stance sheet pa9 and seat sheet pa13 looked at",
+  "reload": {
+   "braced": {
+    "dev": 14.76,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "crouch": {
+    "dev": 14.75,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "prone": {
+    "dev": 14.75,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "ride": {
+    "dev": 14.75,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa13"
+   },
+   "stand": {
+    "dev": 14.77,
+    "edge": 0.99,
+    "end": 0.01,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa10"
+   },
+   "standL": {
+    "dev": 14.74,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "standR": {
+    "dev": 14.74,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "pa10 (stand), pa9 (stances), pa13 (seat)",
+   "target": "yes"
+  },
+  "seat": {
+   "dev": 14.75,
+   "end": 0.0,
+   "run": "pa13"
+  }
  },
  "models/weapons/m10_revolver.tik": {
   "action": "worked LOW: straight down, support hand pushes the cylinder out; EMPTY: gun canted muzzle-up 16 deg, ejector rod struck, six cases jump out to the lower left; one round per loop from the pouch; cylinder pushed shut low (reload_end_ads), straight up into the aim - shown",
@@ -356,7 +1166,7 @@
   },
   "lowered": true,
   "note": "ts1 / tu1: swing-out reload with a real cylinder face (chamber mouths, case heads hidden while empty), readable case dump, 6 rounds, stand / crouch / prone / lean, switch + sprint interruptions; open: a cartridge flies off when the loop is cut by a weapon switch, ejector rod does not move, braced",
-  "qa": "pa5: GIF played back (dump in frame, heads appear round by round), stance sheet tn2 looked at; braced and vehicle seats not run; third person and break-off with the heads not checked",
+  "qa": "pa5: GIF played back (dump in frame, heads appear round by round), stance sheet tn2 looked at; braced and vehicle seats not run; third person and break-off with the heads not checked / pa12: hip reload and both break-off states with the per-chamber heads looked at (fill one by one at the hip, a break-off closes on the heads that are in); third person not run - by the code another player always sees six heads",
   "reload": {
    "crouch": {
     "dev": 11.04,
@@ -407,7 +1217,150 @@
   }
  },
  "models/weapons/mauser_c96.tik": {
-  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
+  "action": "own reload: gun straight down under the centre box, support hand strips a clip in from the top and lifts it out, bolt end forward as it leaves; loaded: the hand draws the bolt back first. NOT shown: the clip (no mesh - it is under the palm); only the bolt's rear end moves (0.42 u)",
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   }
+  },
+  "lowered": true,
+  "qa": "pa8: GIFs decoded and looked at, stance sheet pa9 and seat sheet pa13 looked at; lowered gun alone at the bottom of the frame for 0.35 s; Trench C96 not run",
+  "reload": {
+   "braced": {
+    "dev": 13.56,
+    "edge": 0.95,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "crouch": {
+    "dev": 13.58,
+    "edge": 0.95,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "prone": {
+    "dev": 13.56,
+    "edge": 0.95,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "ride": {
+    "dev": 13.57,
+    "edge": 0.95,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa13"
+   },
+   "stand": {
+    "dev": 13.58,
+    "edge": 0.96,
+    "end": 0.01,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa8"
+   },
+   "standL": {
+    "dev": 13.55,
+    "edge": 0.95,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "standR": {
+    "dev": 13.56,
+    "edge": 0.95,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   }
+  },
+  "rule": {
+   "action": "no",
+   "reacts": "yes",
+   "run": "pa8 (stand), pa9 (stances), pa13 (seat)",
+   "target": "yes"
+  },
+  "seat": {
+   "dev": 13.57,
+   "end": 0.0,
+   "run": "pa13"
+  }
  },
  "models/weapons/nagant_revolver.tik": {
   "action": "worked LOW: straight down, rolled onto its left side in the support hand (gate up), firing-side hand feeds one round per loop through the gate, the fired case nudged out per round (reload_single_ads), rolled upright and straight up into the aim - shown; the gun sits at the bottom edge of the frame",
@@ -522,109 +1475,584 @@
   }
  },
  "models/weapons/nambu.tik": {
-  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
- },
- "models/weapons/p38.tik": {
-  "action": "support hand: magazine out / in below the screen edge; EMPTY: slide locked back, support thumb sweeps the slide stop as the hand closes on the grip, slide runs forward - shown; loaded: no slide action",
+  "action": "support hand: magazine out / in below the screen edge; EMPTY: bolt (round knob, cut out onto a bone) locked back, the support thumb sweeps the stop as the hand closes on the grip, it runs forward - shown; loaded: no action",
   "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
    "crouch": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "crouchL": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "crouchR": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "prone": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "stand": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "standL": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "pa17"
    },
    "standR": {
     "dev": 0.0,
     "edge": 0.0,
+    "end": 0.0,
     "ok": true,
-    "run": "th4"
+    "pmin": 1.0,
+    "run": "pa17"
    }
   },
-  "qa": "th4: sheet + GIF checked",
+  "qa": "pa11: GIF decoded and looked at, stance sheet pa9 and seat sheet pa14 looked at; sheet gamma-lifted in pa11; on target NO: loaded 1.4 / 3.1 / 2.2 % over three runs",
   "reload": {
-   "crouch": {
-    "dev": 2.27,
-    "edge": 0.96,
-    "end": 0.01,
+   "braced": {
+    "dev": 1.74,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "tg4"
+    "run": "pa9"
+   },
+   "crouch": {
+    "dev": 1.72,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
    },
    "prone": {
-    "dev": 2.27,
-    "edge": 0.97,
+    "dev": 1.74,
+    "edge": 0.98,
+    "emptied": true,
     "end": 0.0,
     "ok": true,
     "pmin": 1.0,
-    "run": "tg4"
+    "run": "pa9"
+   },
+   "ride": {
+    "dev": 1.75,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa14"
    },
    "stand": {
-    "dev": 2.27,
-    "edge": 0.97,
-    "end": 0.0,
-    "ok": true,
-    "pmin": 1.0,
-    "run": "tg4"
-   },
-   "standL": {
-    "dev": 2.27,
-    "edge": 0.97,
-    "end": 0.0,
-    "ok": true,
-    "pmin": 1.0,
-    "run": "tg4"
-   },
-   "standR": {
-    "dev": 2.27,
-    "edge": 0.95,
+    "dev": 1.75,
+    "edge": 1.0,
     "end": 0.01,
     "ok": true,
     "pmin": 1.0,
-    "run": "tg4"
+    "run": "pa11"
+   },
+   "standL": {
+    "dev": 1.76,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "standR": {
+    "dev": 1.74,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
    }
   },
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "te1 (loaded) te2 (empty)",
+   "run": "pa8 pa10 pa11 (stand), pa9 (stances), pa14 (seat)",
+   "target": "no"
+  },
+  "seat": {
+   "dev": 1.75,
+   "end": 0.0,
+   "run": "pa14"
+  }
+ },
+ "models/weapons/p38.tik": {
+  "action": "support hand: magazine out / in below the screen edge; EMPTY: slide locked back, support thumb sweeps the slide stop as the hand closes on the grip, slide runs forward - shown; loaded: no slide action",
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   }
+  },
+  "qa": "pa11: GIF decoded and looked at, stance sheet pa9 and seat sheet pa15 looked at; breech block added in the slide's rear slot (no black gap); loaded 0.3 %, emptied 0.7 % (pa11), 1.8 / 2.8 % in pa8 before the filler",
+  "reload": {
+   "braced": {
+    "dev": 1.79,
+    "edge": 0.97,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "crouch": {
+    "dev": 1.79,
+    "edge": 0.97,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "prone": {
+    "dev": 1.79,
+    "edge": 0.96,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "ride": {
+    "dev": 1.78,
+    "edge": 0.96,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa15"
+   },
+   "stand": {
+    "dev": 1.8,
+    "edge": 0.97,
+    "end": 0.01,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa11"
+   },
+   "standL": {
+    "dev": 1.79,
+    "edge": 0.96,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "standR": {
+    "dev": 1.79,
+    "edge": 0.96,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "pa11 (stand), pa9 (stances), pa15 (seat)",
    "target": "yes"
+  },
+  "seat": {
+   "dev": 1.78,
+   "end": 0.0,
+   "run": "pa15"
   }
  },
  "models/weapons/p38silenced.tik": {
-  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
+  "action": "support hand: magazine out / in below the screen edge; EMPTY: slide (cut out onto a bone) locked back, the support thumb sweeps the stop as the hand closes on the grip, it runs forward - shown; loaded: no action",
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   }
+  },
+  "qa": "pa11: GIF decoded and looked at, stance sheet pa9 and seat sheet pa15 looked at; sheets gamma-lifted; the open slide shows a dark middle slot",
+  "reload": {
+   "braced": {
+    "dev": 1.74,
+    "edge": 1.0,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "crouch": {
+    "dev": 1.75,
+    "edge": 1.0,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "prone": {
+    "dev": 1.77,
+    "edge": 1.0,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "ride": {
+    "dev": 1.75,
+    "edge": 1.01,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa15"
+   },
+   "stand": {
+    "dev": 1.75,
+    "edge": 1.02,
+    "end": 0.01,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa11"
+   },
+   "standL": {
+    "dev": 1.75,
+    "edge": 1.0,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "standR": {
+    "dev": 1.76,
+    "edge": 1.0,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "pa8 pa10 pa11 (stand), pa9 (stances), pa15 (seat)",
+   "target": "yes"
+  },
+  "seat": {
+   "dev": 1.75,
+   "end": 0.0,
+   "run": "pa15"
+  }
  },
  "models/weapons/ppk.tik": {
-  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
+  "action": "support hand: magazine out / in below the screen edge; EMPTY: slide locked back, the support thumb sweeps the stop as the hand closes on the grip, it runs forward - shown; loaded: no action",
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   }
+  },
+  "qa": "pa8: GIF decoded and looked at, stance sheet pa9 and seat sheet pa13 looked at",
+  "reload": {
+   "braced": {
+    "dev": 1.74,
+    "edge": 1.0,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "crouch": {
+    "dev": 1.73,
+    "edge": 1.0,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "prone": {
+    "dev": 1.76,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "ride": {
+    "dev": 1.77,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa13"
+   },
+   "stand": {
+    "dev": 1.75,
+    "edge": 1.0,
+    "end": 0.01,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa8"
+   },
+   "standL": {
+    "dev": 1.73,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "standR": {
+    "dev": 1.74,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "pa8 (stand), pa9 (stances), pa13 (seat)",
+   "target": "yes"
+  },
+  "seat": {
+   "dev": 1.77,
+   "end": 0.0,
+   "run": "pa13"
+  }
  },
  "models/weapons/silencedpistol.tik": {
   "action": "HAND-CYCLED, no lock-back: the hip technique - the gun comes down under the centre box, the left hand goes OVER the slide (retail hip relation), pulls and releases, gun back on the sights - after every aimed shot and at the end of every aimed reload (one shared motion)",
@@ -746,10 +2174,294 @@
   }
  },
  "models/weapons/tt33.tik": {
-  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
+  "action": "support hand: magazine out / in below the screen edge; EMPTY: slide locked back, the support thumb sweeps the stop as the hand closes on the grip, it runs forward - shown; loaded: no action",
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   }
+  },
+  "qa": "pa8: GIF decoded and looked at, stance sheet pa9 and seat sheet pa13 looked at; gun reload clip 7 -> 73 frames (server-side tik change, not tested on a dedicated server)",
+  "reload": {
+   "braced": {
+    "dev": 1.74,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "crouch": {
+    "dev": 1.74,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "prone": {
+    "dev": 1.75,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "ride": {
+    "dev": 1.76,
+    "edge": 1.0,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa13"
+   },
+   "stand": {
+    "dev": 1.74,
+    "edge": 1.01,
+    "end": 0.01,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa8"
+   },
+   "standL": {
+    "dev": 1.75,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "standR": {
+    "dev": 1.77,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "pa8 (stand), pa9 (stances), pa13 (seat)",
+   "target": "yes"
+  },
+  "seat": {
+   "dev": 1.76,
+   "end": 0.0,
+   "run": "pa13"
+  }
  },
  "models/weapons/tt33silenced.tik": {
-  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
+  "action": "support hand: magazine out / in below the screen edge; EMPTY: slide locked back, the support thumb sweeps the stop as the hand closes on the grip, it runs forward - shown; loaded: no action",
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   }
+  },
+  "qa": "pa10: GIF decoded and looked at, stance sheet pa9 and seat sheet pa13 looked at; on target NO: emptied 2.3 % in pa8, 1.8 % in pa10",
+  "reload": {
+   "braced": {
+    "dev": 1.75,
+    "edge": 1.0,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "crouch": {
+    "dev": 1.75,
+    "edge": 1.0,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "prone": {
+    "dev": 1.75,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "ride": {
+    "dev": 1.77,
+    "edge": 1.0,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa13"
+   },
+   "stand": {
+    "dev": 1.76,
+    "edge": 1.0,
+    "end": 0.01,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa10"
+   },
+   "standL": {
+    "dev": 1.77,
+    "edge": 1.0,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "standR": {
+    "dev": 1.75,
+    "edge": 1.0,
+    "emptied": true,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa9"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "pa8 pa10 (stand), pa9 (stances), pa13 (seat)",
+   "target": "no"
+  },
+  "seat": {
+   "dev": 1.77,
+   "end": 0.0,
+   "run": "pa13"
+  }
  },
  "models/weapons/webley_revolver.tik": {
   "action": "worked LOW under the centre box: gun straight down out of the aim, support hand tips the barrel open (gun clip eased, reload_ads_*), six cases kicked up and across the lower frame when empty, one round per loop from the pouch (0.77 s), barrel swung shut low (reload_end_ads), hand back on the grip, straight up into the aim - shown",
@@ -864,6 +2576,149 @@
   }
  },
  "models/weapons/welrod.tik": {
-  "note": "pa6: first engine run (stand, 2 shots + loaded reload); see README D first pass - empty reload, stances, per-gun look still open"
+  "action": "BOLT ACTION by the support hand, after every aimed shot and at the end of an emptied reload: gun down under the centre box, hand over the rear, knob turned 55 deg, bolt pulled 2.0 u, run forward, turned shut - shown; loaded reload: no bolt work",
+  "aim": {
+   "braced": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouch": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "crouchR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "prone": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "stand": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standL": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   },
+   "standR": {
+    "dev": 0.0,
+    "edge": 0.0,
+    "end": 0.0,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "pa17"
+   }
+  },
+  "lowered": true,
+  "qa": "pa11: GIFs decoded and looked at (cycle, loaded, emptied), stance sheet pa9 (crouch / prone / leans / braced) and seat sheet pa13 looked at; on target NO: loaded reload 0.6 / 2.8 / 1.3 % over three runs of the same clips; hip unchanged; aim pose new, not approved",
+  "reload": {
+   "braced": {
+    "dev": 17.02,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "crouch": {
+    "dev": 17.02,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "prone": {
+    "dev": 17.02,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "ride": {
+    "dev": 15.85,
+    "edge": 0.99,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa13"
+   },
+   "stand": {
+    "dev": 15.87,
+    "edge": 0.99,
+    "end": 0.01,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa11"
+   },
+   "standL": {
+    "dev": 17.04,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   },
+   "standR": {
+    "dev": 17.01,
+    "edge": 0.98,
+    "emptied": true,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "pa9"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "pa8 pa10 pa11 (stand), pa9 (stances), pa13 (seat)",
+   "target": "no"
+  },
+  "seat": {
+   "dev": 15.85,
+   "end": 0.0,
+   "run": "pa13"
+  }
  }
 }

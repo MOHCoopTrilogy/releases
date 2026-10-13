@@ -1,7 +1,144 @@
+# HANDOVER (2026-10-12 night, PISTOL lane, after list items D and E) - read this first; everything below the line `# HANDOVER (2026-10-12 late evening` is history
+
+**State: D is done for the mechanisms and measured standing; D and E stance runs are done and looked at (crouch, prone,
+both leans, braced; vehicle seat: see the table). Open points are listed under "Not done / not verified" - read them.**
+Nothing is in the mod tree or the fixes pak; all of it is staged here (`assets/` = the whole staged tree, emitted by
+`MKOV_EMIT=<abs>\assets sh build_ov.sh x.pk3`).
+* Engine: branch `ads-next` at **2627cb94** (worktree `openmohaa-hzm-ads`) = test cgame `G:\mohaa-adsanim\cgames\cgame_adsnext11.dll`.
+  New in it: the per-weapon row override `coopr_<weapon key>_<suffix>` also covers the aim pose (`charge`) and the
+  client-only per-shot cycle (`cycle`), so ONE gun of a shared prefix can have its own pose (Luger, Welrod) and its own
+  bolt cycle (Welrod). `coop_vmAdsAnims`, `coop_vmAimedCycle`, `coop_vmAimedReloadGun` gate them as before.
+* RUN IDS: prefix `pa`; pa7-pa17 are used, **pa18 is next**. The runners refuse an existing id.
+* Working copies: `SCRATCH\ads2h` (this session's scratchpad), synced into `tools/` at each commit - EXCEPT
+  `tools/coverage.py`, which the rifle lane edited on 2026-10-12 20:01: the copy in `tools/` is the current one.
+* Last overlay: `SCRATCH\ads2h\ov_d4.pk3` (= `assets/` + harness plumbing). Rebuild: `sh build_ov.sh ov_x.pk3`.
+
+## D + E: what each pistol has now (centre box = worst frame, engine, standing, wooden-door backdrop)
+
+| gun | aimed loaded reload | aimed emptied reload | per shot | the action, and who works it | stances looked at | evidence |
+|---|---|---|---|---|---|---|
+| Welrod | 0.6 (pa8) / 2.8 (pa10) / 1.3 (pa11) | 0.5 / 1.7 / 0.8 | bolt worked after EVERY aimed shot: 0.87 s, the gun leaves the sights by 16 deg under the box and is back to 0.01 deg; frames over 2 %: the recoil frame after each shot, and in pa11 four frames at 2-3 % as the hand comes off | BOLT ACTION, support hand: gun down under the box, hand over the rear, knob turned 55 deg, bolt pulled 2.0 u, run forward, turned shut (bolt surface on a bone; the case leaves at the pull). Emptied reload ends in the same cycle; loaded reload: no bolt work. Own aim pose 3.4 u further out; five sheets level-lifted (the knob is a ringed steel disc, not a black one) | crouch, prone, lean L / R, braced (pa9), vehicle seat (pa13) - emptied reload, sheets looked at; settled aim 0.0 deg in 8 stances (pa17, numbers) | `welrod_aimed_cycle_reload_d.gif`, `welrod_aimed_reload_empty_d.gif`, `welrod_stances_emptied_pa9.jpg` |
+| Luger P08 | 0.9 (pa8, pa10) | 4.3 (pa8) -> 1.6 (pa10, hand approach lowered) | - | TOGGLE on two bones (rear link + knobs, breech): up 50 deg / breech back 1.7 u while empty (idle_empty), the emptied gun is held under the box for the reload, the support hand takes the knobs from above, pulls and lets go - it snaps shut. Own aim pose 2.2 u further out (base cover 18 -> 13 %) | crouch, prone, lean L / R, braced (pa9), vehicle seat (pa14) - emptied reload, sheets looked at; settled aim 0.0 deg in 8 stances (pa17, numbers) | `luger_aimed_reload_empty_d.gif`, `luger_aimed_reload_loaded_d.gif`, `luger_stances_emptied_pa9.jpg`, `luger_toggle_offline.jpg` |
+| Silenced Luger P08 | 0.5 / 0.7 | 2.9 (pa8) -> 0.6 (pa10) | - | as the Luger (same clips, its own split mesh) | crouch, prone, lean L / R, braced (pa9), vehicle seat (pa13) - emptied reload, sheets looked at; settled aim 0.0 deg in 8 stances (pa17, numbers) | `luger_silenced_aimed_reload_empty_d.gif`, `pistols_stances_emptied_pa9_4.jpg` |
+| Mauser C96 | 1.0 (pa8); was 7.2 (pa6) | 0.7 (pa8) | - | own reload: gun straight down under the box, support hand strips a clip in from the top (clip UNDER THE PALM - no clip mesh exists), bolt end forward 0.42 u as the clip leaves, hammer down with it; loaded: the hand draws the bolt back first. Sights leave by 13.6 deg by design, back to 0.01 | crouch, prone, lean L / R, braced (pa9), vehicle seat (pa13) - emptied reload, sheets looked at; settled aim 0.0 deg in 8 stances (pa17, numbers) | `c96_aimed_reload_loaded_d.gif`, `c96_aimed_reload_empty_d.gif`, `c96_stances_emptied_pa9.jpg` |
+| Walther PPK | 1.4 (pa8) | 5.1 (pa7) -> 1.9 (pa8, thumb lowered) | - | slide (Bone3) locked back when empty, forward at the support thumb's sweep; loaded: no slide action | crouch, prone, lean L / R, braced (pa9), vehicle seat (pa13) - emptied reload, sheets looked at; settled aim 0.0 deg in 8 stances (pa17, numbers) | `ppk_aimed_reload_empty_d.gif`, `pistols_stances_emptied_pa9_0.jpg` |
+| TT-33 | 1.9 (pa8) | 3.7 (pa7) -> 1.2 (pa8) | - | slide (selfcock) as the PPK; the gun's `reload` is 73 frames now (was 7) and it has an `idle_empty` | crouch, prone, lean L / R, braced (pa9), vehicle seat (pa13) - emptied reload, sheets looked at; settled aim 0.0 deg in 8 stances (pa17, numbers) | `tt33_aimed_reload_empty_d.gif`, `pistols_stances_emptied_pa9_0.jpg` |
+| Silenced TT-33 | 1.6 (pa8) / 1.4 (pa10); was 2.7 (pa6) | 2.3 (pa8) / 1.8 (pa10) | - | as the TT-33 | crouch, prone, lean L / R, braced (pa9), vehicle seat (pa13) - emptied reload, sheets looked at; settled aim 0.0 deg in 8 stances (pa17, numbers) | `tt33_silenced_aimed_reload_empty_d.gif`, `pistols_stances_emptied_pa9_1.jpg` |
+| Colt 45 (Pacific) | 1.2 (pa8); was 3.1 (pa6) | 1.3 (pa8) | - | slide (chamber) as the Colt: still when loaded (it snapped back before), locked back / forward at the thumb when empty | crouch, prone, lean L / R, braced (pa9), vehicle seat (pa14) - emptied reload, sheets looked at; settled aim 0.0 deg in 8 stances (pa17, numbers) | `colt_pacific_aimed_reload_loaded_d.gif`, `pistols_stances_emptied_pa9_1.jpg` |
+| Silenced Colt .45 | 1.6 (pa8) | 1.3 (pa8) | - | as the Colt (tik staged from the pak) | crouch, prone, lean L / R, braced (pa9), vehicle seat (pa14) - emptied reload, sheets looked at; settled aim 0.0 deg in 8 stances (pa17, numbers) | `colt_silenced_aimed_reload_empty_d.gif`, `pistols_stances_emptied_pa9_2.jpg` |
+| Silenced Beretta | 1.7 (pa8) / 0.9 (pa10) | 1.7 (pa8) / 3.1 (pa10) | - | slide (Rechamber) locked back / forward at the thumb, own `idle_empty`; sheet gamma-lifted (blued steel with highlights, was a black shape) | crouch, prone, lean L / R, braced (pa9), vehicle seat (pa14) - emptied reload, sheets looked at; settled aim 0.0 deg in 8 stances (pa17, numbers) | `beretta_silenced_aimed_reload_empty_d.gif`, `pistols_stances_emptied_pa9_2.jpg` |
+| Nambu Type 14 | 1.4 (pa8) / 3.1 (pa10) / 2.2 (pa11) | 1.2 / 0.9 / 0.4 | - | BOLT with its round knob cut out onto a bone: back 1.9 u when empty, forward at the thumb; sheet gamma-lifted | crouch, prone, lean L / R, braced (pa9), vehicle seat (pa14) - emptied reload, sheets looked at; settled aim 0.0 deg in 8 stances (pa17, numbers) | `nambu_aimed_reload_empty_d.gif`, `pistols_stances_emptied_pa9_3.jpg` |
+| Silenced Walther P38 | 1.6 / 0.7 / 0.5 | 1.3 / 1.0 / 0.5 | - | slide cut out onto a bone (S93 remodel): back 2.3 u when empty; sheets gamma-lifted. The open slide shows a dark slot down the middle (no filler on this mesh) | crouch, prone, lean L / R, braced (pa9), vehicle seat (pa15) - emptied reload, sheets looked at; settled aim 0.0 deg in 8 stances (pa17, numbers) | `p38_silenced_aimed_reload_empty_d.gif`, `pistols_stances_emptied_pa9_3.jpg` |
+| E: Colt 45 | 2.2 (pa8) / 1.0 (pa11); 1.6 before (td8) | 1.4 (pa8) / 4.3 (pa11); 3.2 before (td9) | - | unchanged technique; seat push x0.6, thumb x0.45 | crouch, prone, lean L / R, braced (pa9), vehicle seat (pa15) - emptied reload, sheets looked at; settled aim 0.0 deg in 8 stances (pa17, numbers) | `colt45_aimed_reload_empty_e.gif`, `pistols_stances_emptied_pa9_4.jpg` |
+| E: Walther P38 | 1.8 (pa8) / 0.3 (pa11) | 2.8 (pa8) / 0.7 (pa11); 4.0 before (te2) | - | unchanged technique; a steel breech block added inside the slide's rear slot (add_part.py) - the open slide no longer shows a black gap from behind | crouch, prone, lean L / R, braced (pa9), vehicle seat (pa15) - emptied reload, sheets looked at; settled aim 0.0 deg in 8 stances (pa17, numbers) | `p38_aimed_reload_empty_e.gif`, `pistols_stances_emptied_pa9_5.jpg`, `pistols_readable_rears_pa11.jpg` |
+| E: Beretta | 2.1 (pa8) / 0.9 (pa10) / 2.0 (pa11); 2.1 before (te6) | 3.4 / 4.8 / 2.4 - the 15 shots walk the view, the reference no longer fits (1.6 in te7) | - | unchanged technique; sheet gamma-lifted AND written as `.dds` (the lifted `.jpg` lost to a `.dds` in the HD pack) | crouch, prone, lean L / R, braced (pa9), vehicle seat (pa15) - emptied reload, sheets looked at; settled aim 0.0 deg in 8 stances (pa17, numbers) | `beretta_aimed_reload_empty_e.gif`, `pistols_stances_emptied_pa9_5.jpg` |
+
+Bar: under 2 % of the centre box beyond the settled aim in every frame, back to within 0.05 deg. All of them end at
+0.00-0.01 deg. **The figure moves by about 1 point between runs of the SAME clips** (the aim breathes; a big rear
+silhouette then shows a crescent outside the grown aim mask: Welrod loaded 0.6 % in pa8, 2.8 % in pa10, same files) -
+a figure between 1.5 and 3 is "at the bar", not a pass and not a defect. Offline (`offbox.py`, no breathing) every
+clip of this table is under 2 %, except the first 5 frames of the Luger's emptied reload (the open toggle stands in the
+aim until the gun has come down).
+
+## How D was built (reuse it)
+
+* `tools/p12.py` - the GUN side for every pistol that borrows the Colt / P38 hand rows: `reload_ads_loaded` (slide
+  still), `reload_ads_empty` (locked back, forward at the thumb sweep), `reload_empty` + `idle_empty` where the gun had
+  none, and a 73-frame `reload` where the retail gun clip is shorter than the hands' (TT-33: 7 frames). Tiks are read
+  from the mod tree, else from the live install's paks (six of the twelve live only in `zzzzz_xw_weapons.pk3`).
+  `split=` cuts a slide / bolt out of a mesh that has none (silenced P38, Nambu).
+* `tools/bonefit.py` - `split()` (islands onto new bones; ALWAYS from the original mesh: it drops
+  `IRONSIGHT_EXTRA_PAKS`), `fit()` (the new bone's frame = its parent's, fitted from the mesh), `chan()` (a turn about a
+  gun-space pivot + a move -> the bone's pos / rot; the engine applies a bone quaternion as rows). Luger toggle = two
+  bones, C96 = bolt end + hammer, Welrod = bolt turned about the bore.
+* `tools/welrod.py`, `tools/luger.py`, `tools/c96.py` - one module per gun with its own choreography: gun clips, tik
+  patch, hands (through `pistolbake.spec` with the rack hooks replaced), rows file `rows_p12_<gun>.txt` (picked up by
+  `build_ov.sh`). Offline loop before any engine run: `sh woff.sh cycle,reload sheet.jpg`, `sh loff.sh sheet.jpg`,
+  `sh coff.sh sheet.jpg` (bake, wip overlay, `offbox.py` over every frame, sheet).
+* `tools/pushpose.py <src pose> <sight key> <D> <out>` - an aim pose with both arms `D` u further out (Luger 2.2,
+  Welrod 3.4); `tools/eyedist.py` prints eye -> rear sight per gun (Colt 14.4 u; Luger was 12.8, Welrod 11.0).
+* `tools/weltex.py` (Welrod: level lift of five sheets at 0-60 of 255) and `tools/gamtex.py` (gamma lift: TT Beretta,
+  silenced Beretta, silenced P38, Nambu). **`.dds` beats `.jpg` / `.tga`**: the TT Beretta sheet has a `.dds` in
+  `zzzzzzz_dds_hdmem.pk3`, so gamtex also writes a full-mip DXT1 `.dds`; the lifted `.jpg` alone changed nothing (pa9).
+  When this ships, the pak that carries it has to sort after the HD packs.
+* `tools/pistolbake.py`: `PB_SEAT` 0.6 (the seat push; was 1.0) and `PB_THUMB` 0.45 (how high the support thumb rides
+  before the sweep; was 1.0) - both because smaller guns on the Colt clip went over the bar.
+* Engine runs: `python run_2h.py <id> --overlay <abs>\ov.pk3 --cgame cgame_adsnext11 --guns a,b --parts demoy --both
+  --eshots welrod=6,colt45=7,beretta=15 --gungap welrod=62 --demoreload 190 --demoreload_e 180 --shots 2`
+  (`--both` = loaded demo + the same gun fired empty, tag `yaw160e`). Stances: `--parts reloads --rstances
+  crouch,prone,standL,standR,braced --rempty --remptyonly --revery 5`. Vehicle seat: add `--ride` (t2l2 halftrack bed,
+  `--rstances ride`). Then `centrebox.py <id> --dump --cycle --json=centrebox.json`, `stsheet.py <id> <gun> out.jpg
+  --empty` (stances x frames), `picks.py` (chosen frames of several guns), `dgif.py` + `gifsheet.py`.
+
+## Not done / not verified (tell the user; do not hide)
+
+* **Run-to-run spread of the centre-box figure** (above). Worst cases with identical clips: Colt emptied 1.4 % (pa8) / 4.3 %
+  in half of the frames (pa11) - the gun sits about 0.25 u higher for the whole reload in pa11 and drops at its end;
+  Nambu loaded 1.4 / 3.1 / 2.2 - in pa10 the gun sits 8-10 px lower BEFORE the reload than after it. `ADSSETTLE` prints
+  zero in both runs (so not bug-3597's frozen rig target). Not understood. Until it is, "under 2 % in every frame" is not
+  proven for: Colt (both), Beretta (both), Nambu loaded, Welrod loaded, silenced Beretta emptied, silenced TT emptied.
+  `coverage.md` marks those "on target: no".
+* **Welrod**: no sound for the bolt (the P38 reload sample's slide click falls on the pull); at the HIP nothing changed
+  (no bolt work, as before); the server's `fire` is now 26 frames and `reload` 73 (were 1) - a SERVER-side tik change;
+  the per-shot cycle was not tried with a second shot pressed during it; the aim pose is new and NOT approved.
+* **Luger**: the aim pose is new and NOT approved. The emptied gun shows its open toggle in the centre box for the
+  0.2 s before the gun has come down (14 % offline) - a real open toggle does stand there. The breech block and front
+  link are ONE piece that slides back level under the raised rear link (no articulated front link). The toggle does not
+  flick on a shot (the retail fire clip is static). The releasing hand hangs open beside the gun for about 0.15 s.
+* **C96**: the stripper clip is never seen (no mesh); only the bolt's rear end moves, 0.42 u (the rest of the bolt is
+  part of the body mesh); the hammer rises again with the closing bolt; with the hand at the pouch the lowered gun is
+  alone at the bottom of the frame for about 0.35 s, the firing hand below the edge. The Trench C96 variant takes
+  the same hands rows by name (`mauser_c96` after the finish is stripped) but keeps its own gun clip - NOT run.
+* **TT-33 / Welrod / every tik staged from `zzzzz_xw_weapons.pk3`**: the staged tiks carry server-visible changes
+  (animation lengths, idle_empty). Not tested on a dedicated server or with a second client.
+* **Silenced P38**: the open slide's dark middle slot is still there (the filler was added to the retail P38 mesh only).
+* **PPK**: the hammer (Bone2) is held where the empty clip has it for the whole emptied reload.
+* **Textures**: Welrod (5 sheets), TT Beretta (`.jpg` + `.dds`), silenced Beretta, silenced P38 (2), Nambu were lifted
+  by a curve, nothing repainted; seen only on m3l2 by day and on t2l2 in snow. The TT-33 and silenced Colt still read
+  dark. When shipped, the pak has to sort after `zzzzzzz_dds_hdmem.pk3` or the Beretta `.dds` loses again.
+* **Hip reloads** of all fifteen: not touched, not re-run (the staged `reload_empty` clips change what an EMPTIED gun
+  shows at the hip: slide / toggle / bolt back until the retail magazine seats) - not looked at.
+* **Stances**: every stance sheet is of the EMPTIED reload (it contains the loaded one's hand path plus the action); the
+  loaded reload was looked at standing only. Crouch-lean stances not run. Hi-Standard: re-baked with the 0.6 seat push
+  and NOT re-run. The vehicle seat is seat 2 of the t2l2 halftrack (moving); `tools/run_2h.py --ride` survives about
+  seven guns per session before the ride ends - run at most five.
+* **M10** (list item E): hip reload and both break-off states were run with the per-chamber heads (pa12: the
+  chambers fill one by one at the hip too, a break-off closes on the heads that are in, `m10_hip_and_breakoff_pa12.jpg`).
+  THIRD PERSON was not run: by the code (`cg_modelanim.c`, the rule is under `s1->parent == cg.snap->ps.clientNum`)
+  another player always sees all six heads, also while that player's cylinder is open and empty. Not fixed - the
+  other client does not know that player's rounds.
+* A second client, real latency, weapon switch / sprint out of the new clips (Welrod cycle, Luger, C96): not run.
+* Settled aim in the stances (stand, crouch, prone, both leans, both crouch-leans, braced; run pa17): the NUMBERS are in
+  (pose 1.00, 0.0 deg for all fifteen) - those stills were not opened; the aim was looked at in the reload sheets only.
+* `pistols_vehicle_seat_pa13.jpg` shows the dead end of that session for the guns after the 7th; the nine missing guns
+  are in `pistols_vehicle_seat_pa14_pa15.jpg`.
+* A wandering NPC of the map walks through some frames; it is the map's.
+
+## The list from here
+
+1. The run-to-run spread = the aim's own sway / breath. `tools/swayenv.py` appeared in this folder on 2026-10-12 22:20
+   (NOT written by this lane; the heavy lane's measure made shared - its header calls it the standard): a reload is
+   judged against the ENVELOPE of the settled aim over one whole sway period (5.7 s = 357 game frames captured after
+   the reload, sparsely). The pistol lane has NOT used it: `run_2h.py` captures no such tail and `centrebox.py` still
+   compares against six frames. Do this first - add the tail to `demo()` (a `DEMO settle` mark, 360 frames every 4th),
+   call `swayenv.envelope_extra` from `centrebox.py`, re-measure all fifteen, then re-decide the six "on target: no".
+   The un-explained part stays: pa11 Colt emptied, the gun about 0.25 u higher for the whole reload
+   (`picks.py pa11 x.jpg "colt45__yaw160e:250,300,340,380,430"` against the same frames of pa8).
+2. User decisions: the Welrod and Luger aim poses; the texture lifts; whether the C96 gets a clip mesh (`add_part.py`
+   can add one to the hand side or the gun); a bolt sound for the Welrod.
+3. A second-client / dedicated-server pass of the staged tiks (TT-33, Welrod: animation lengths).
+4. Hip view of the emptied guns with the new `reload_empty` / `idle_empty`; Hi-Standard re-run; crouch-lean stances;
+   loaded reloads in the stances.
+5. Silenced P38 slot filler; Luger front link; Trench C96.
+A pistol row is DONE only with: aim pose, aimed reload (loaded + empty), per-shot cycle where the gun has one, all
+stances run and looked at, the three yes columns, a run id.
+
+---
+
 # HANDOVER (2026-10-12 late evening, PISTOL lane) - read this first, the rest of the file is the history
 
-**State: A, B and C of the list are done and committed (engine `ads-next` d2a6d31b = test cgame `cgame_adsnext10`).
-D and E are NOT started.** Nothing is in the mod tree or the fixes pak; all of it is staged here.
+**(superseded by the section above) State then: A, B and C of the list done and committed (engine `ads-next` d2a6d31b = test cgame `cgame_adsnext10`).
+D and E not started.** Nothing is in the mod tree or the fixes pak; all of it is staged here.
 RUN IDS: use the prefix `pa` (pa1-pa6 used; pa7 is next). `boot_session` deletes an existing run folder - ids tm1-tm3 and tn1 of
 earlier sessions were lost that way on 2026-10-12; `run_2h.py` / `run_break2.py` now refuse an existing id.
 The work is split into four lanes since 2026-10-12: this folder's root is the PISTOL lane (pistols + revolvers) and it
@@ -108,7 +245,7 @@ P38-prefix re-bake, not its stripper-clip technique). No silencer met the suppor
 NOT done in D: the Welrod's bolt cycle (per shot and after the reload), the C96's own aimed stripper-clip reload, the
 empty reloads and the stances of these twelve, the trims of the three over the bar, a pose for the Luger.
 
-## The list from here (PISTOL lane; order given by the coordinator; report at each letter)
+## The list as it stood then (D and E are done since: see the top)
 D. Welrod (bolt action after EVERY shot and after the reload; knob at the rear on the sight line: lower / roll the
    gun as for the Hi-Standard). Then Mauser C96 (stripper clip from the top), Luger, PPK, TT-33, Nambu, the silenced
    variants: each needs its own in-engine run (the 15 pistols sharing the Colt / P38 clips were only checked

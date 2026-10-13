@@ -1,4 +1,4 @@
-"""Beretta (TT It_W_Beretta.jpg) and silenced Beretta (`Beretta.jpg`): readable from behind (list item E - "reads
+"""Beretta (TT It_W_Beretta.jpg), silenced Beretta (`Beretta.jpg`), silenced P38 and Nambu: readable from behind (list item E - "reads
 near-black", seen in runs tl3 and pa6).
 
 Both sheets are finished art whose steel sits at 10-30 of 255: under the game's lighting the slide and frame are one
@@ -14,7 +14,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import gunskc
 vfs = gunskc.R.vfs
-SHEETS = {'textures/models/weapons/beretta/it_w_beretta.jpg': 0.62, 'textures/models/weapons/beretta/beretta.jpg': 0.62}
+SHEETS = {'textures/models/weapons/beretta/it_w_beretta.jpg': 0.62, 'textures/models/weapons/beretta/beretta.jpg': 0.62,
+          # the same defect, seen in the stance sheets of run pa9: silenced P38 (S93 remodel, median 8 of 255) and the Nambu
+          # (median 24 under an environment gloss) are black silhouettes in the aim
+          'textures/models/weapons/p38/s93_p38.tga': 0.52, 'textures/models/weapons/p38/s93_p38_blackgrip.tga': 0.75,
+          'textures/models/weapons/nambu/s93_nambu.tga': 0.62}
 
 
 def find(p):
@@ -46,6 +50,15 @@ def run(root, view=None):
             out.convert('RGB').save(dst, quality=92)
         else:
             (out if has_a else out.convert('RGB')).save(dst, format='TGA', compression='tga_rle')
+        # TRAPS: `.dds` beats `.jpg` / `.tga` (R_LoadImage tries it first). A sheet that has a .dds sibling in ANY pak
+        # (TT Beretta: zzzzzzz_dds_hdmem) is only replaced by a .dds - the lifted .jpg alone changed nothing (run pa9)
+        dd = vfs.winner(w[1].rsplit('.', 1)[0] + '.dds')
+        if dd:
+            sys.path.insert(0, r'C:\mohaa-coop-dev\docs\tools')
+            import fix_dds_shadowing as FD
+            ddst = dst.rsplit('.', 1)[0] + '.dds'
+            FD.save_dds_mipped(out if has_a else out.convert('RGB'), ddst, 'DXT5' if has_a else 'DXT1')
+            print('   + %s (shadowed by %s): full-mip %s, %d bytes' % (os.path.basename(ddst), vfs.pakname(dd[0]), 'DXT5' if has_a else 'DXT1', os.path.getsize(ddst)))
         print('%s (%s) %s gamma %.2f: median %.0f -> %.0f, mean %.0f -> %.0f, %d bytes' % (
             w[1], vfs.pakname(w[0]), im.size, g, np.median(a[..., :3]), np.median(b[..., :3]), a[..., :3].mean(), b[..., :3].mean(), os.path.getsize(dst)))
         tiles += [im.convert('RGB').resize((384, 384)), out.convert('RGB').resize((384, 384))]
