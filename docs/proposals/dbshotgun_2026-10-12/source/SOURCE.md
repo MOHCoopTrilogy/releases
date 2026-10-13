@@ -37,12 +37,25 @@ The author's readme carries no further conditions.
 - Python that reads these files runs with `python -I`.
 - Only `SOURCE.md` is committed. The zip (9.2 MB) and the unpacked files are not; the sha256 above identifies them.
 
-## Note on the textures inside the .blend files
+## What of the author's work is in the game files (2026-10-12 b)
 
-Both .blend files have two packed images named `TexturesCom_MetalBare0207_2_seamless_S.jpg` and
-`TexturesCom_WoodFine0061_12_seamless_S.jpg` (the inputs of the author's procedural materials) and one
-`proxy.duckduckgo.com.jpg` (an environment picture). **None of these three is used, extracted or shipped by us.** The
-game textures are made only from the author's own baked sheets in the zip (`doubleBarrelD.png`, `doubleBarrelG.png`)
-and from ambient occlusion we bake ourselves from the geometry. The baked sheets are the author's CC0 release; they
-were presumably derived from those two Textures.com images inside his materials - if that provenance matters for a
-public release, it is the one point to look at (open point in the README).
+**Only his MESH** (the high file's geometry, CC0) - cut into five rigid parts and triangulated by `tools/bl_build.py`.
+Everything else is ours:
+
+| Game file | Made from |
+|---|---|
+| `coop_dbshotgun.skd` | the author's mesh; **our** UV atlas (Blender smart project in `bl_build.py`); our bones, bead and shells |
+| `coop_dbshotgun.jpg` (2048) | painted by `tools/dbs_skin.py` (seeded, reproducible) into that atlas from: the mesh's positions / normals / curvature, the material-slot flag "this face is wood" (a face attribute of the mesh, not a texture), ambient occlusion **we** bake from the geometry, the RETAIL Kar98 sheet's butt-stock wood (`main/Pak2.pk3`, `textures/models/weapons/kar98/kar98.dds`, 1024 x 512, shading divided out) for the walnut's colour and figure, and procedural steel (no source image) |
+| `coop_dbshotgun_parts.jpg` (256) | procedural (`tools/dbs_build.py` `parts_sheet`): brass, shell hull, primer |
+
+**No pixel of the author's baked sheets is used any more** (`doubleBarrelD.png`, `doubleBarrelG.png`, `doubleBarrelR.png`,
+`doubleBarrelAO.png`), and nothing from the three images packed inside his .blend files
+(`TexturesCom_MetalBare0207_2_seamless_S.jpg`, `TexturesCom_WoodFine0061_12_seamless_S.jpg`, `proxy.duckduckgo.com.jpg` -
+the inputs of his procedural materials and an environment picture) was ever extracted, read or shipped. The first
+pass (commit 2bd2958 / f2dacd4) DID compose the sheet from his baked diffuse and glossy sheets, which were presumably
+made from those two Textures.com images; that sheet is replaced, and `tools/dbs_tex.py`, which made it, is deleted.
+`bl_build.py --own` (the mode the build now uses) opens neither his baked sheets nor his low file; its mesh / atlas
+output was compared with the first pass's and is identical to the last digit, so the skd did not change.
+
+Not from the author either: the HRRTM / HD retexture paks on this machine were looked at only to find the retail file
+(`tools/srclist.py` lists which pak carries a texture and saves the copy from a pak named `pak*.pk3`).

@@ -2,11 +2,11 @@
  "coop_dbshotgun": {
   "tik": "models/weapons/coop_dbshotgun.tik",
   "name": "Shotgun (Double Barrel)",
-  "F": "model.json sight.F",
+  "F": [21.5216, -1.05, -5.3041],
   "R": "model.json sight.R",
-  "delta_mrad": 30.0,
+  "delta_mrad": 131.0,
   "U": [0.0, 0.0, -1.0],
-  "relief": 0.0,
-  "why": "2026-10-12 (dbshotgun): F = the centre of the brass bead between the muzzles, R = the top of the breech end on the centre line (both read from build/model.json, written by tools/dbs_build.py from the mesh). The eye looks over the breech along the rib between the barrels to the bead; delta = the bead this far above the breech top in the picture. LOCAL row: the shared ironsights sights.json is not edited; tools/sightrow_dbs.py writes the one row into the lane worktree's cg_adssights.h."
+  "relief": 11.0,
+  "why": "2026-10-12 b (dbshotgun, own aim): F = the TOP of the brass bead between the muzzles (bead centre z -5.0974 from build/model.json, radius 0.2067 u), so the point of aim sits just over the bead and the target is seen above it; R = the top of the breech end on the centre line (build/model.json sight.R). relief 11 u = the eye 11 u behind the breech top; delta 131 mrad = the breech top that far under the bead's top, i.e. the eye 2.2 u above the rib line: the eye looks DOWN the rib between the two barrels (they draw as a trapezoid about 165 px tall at 1080p) and the bead is about 19 px across. The first row (relief 0, delta 30) looked level over the breech: the standing breech hid the barrels and the grip's wood filled the lower middle. The same two numbers are AIM in tools/dbs_hands.py (the `charge` pose is built on them, so the engine's correction is near zero). LOCAL row: the shared ironsights sights.json is not edited; tools/sightrow_dbs.py writes the one row into the lane worktree's cg_adssights.h."
  }
 }

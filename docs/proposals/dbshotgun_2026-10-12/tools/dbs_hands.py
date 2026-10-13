@@ -30,9 +30,23 @@ S = R.S
 ODIR = os.path.join(L.ASSETS, 'models', 'human', 'animation', 'viewmodel', 'coop_dbshotgun')
 TIK = 'models/weapons/coop_dbshotgun.tik'
 
-PUSH = 7.0            # u the gun is held further out along its own axis than the pump gun
-LH_BACK = 4.5         # u the forend hand sits nearer than on the pump gun
-LH_UP = 0.4           # u higher (this forend's underside is higher than the pump's)
+# THE HOLD (2026-10-12 b): the gun's own place in the VIEW, not the pump gun's place pushed out. The camera is the
+# eyes bone, its axes are the rig's (forward +x, left +y, up +z; vmcam). The pump rig shoulders the gun: the eye sits
+# beside the grip and the gun crosses the view 22 deg to the left and 12 deg up - with a 60 cm gun that put the grip
+# hand and the stock wood in the lower right as a lump. A pistol-gripped sawn-off is held OUT IN FRONT and low:
+#   breech   where the top of the breech end sits in the view (forward, left, up), game units
+#   yaw / pitch / roll   the barrels' direction off the view axis (deg; + = left / up; roll - = the top leans to the eye)
+HOLD = dict(breech=(13.8, -6.0, -3.2), yaw=5.0, pitch=2.5, roll=-8.0)      # run hold2: the engine draws the hip gun ~1.6 u lower than the offline camera (4.7 down put the breech on the screen's bottom edge)
+# THE AIM (the `charge` row; the engine then lays the sight line on the view axis itself - cg_adssights.h row, the
+# same two numbers): eye `relief` u behind the breech top, the breech top `delta` rad under the bead's top
+AIM = dict(relief=11.0, delta=0.131)
+SIGHT_R = (4.7932, -1.05, -5.0074)        # top of the breech end, centre line (build/model.json sight.R)
+SIGHT_F = (21.5216, -1.05, -5.3041)       # top of the bead (sight.F centre - its radius 0.2067 u)
+LH_BACK = 6.6         # u the forend hand sits nearer than on the pump gun: wrist at 9.1 u, palm under the rear half
+                      # of the forend (it runs 10.4 .. 21.9 u), the muzzle third left free
+LH_UP = float(os.environ.get('DBS_LH_UP', -0.7))          # u higher than on the pump gun (- = lower: the fingers stay under the barrels' top line in the aim picture; sheet _lh)
+LH_ROLL = float(os.environ.get('DBS_LH_ROLL', 0.0))       # deg the forend hand is turned about the forend's own axis
+LH_AXIS = (-1.05, -3.2)                                   # that axis: y, z in the gun frame
 # the gun during the reload, relative to the held (pushed) idle gun: degrees about the gun's own axes through the
 # grip, then a move in the idle gun's frame
 RELOAD = dict(roll=-18.0, pitch=-24.0, yaw=8.0, move=(0.0, -2.0, -2.0))      # sheets a2 / a4: (-3 -4.5 -3) put the grip hand in the eye, (4 -3 -3) is out of the arms' reach (39 IK clamps)
@@ -49,6 +63,35 @@ def xg(roll=0.0, pitch=0.0, yaw=0.0, move=(0, 0, 0), pivot=GRIP):
     Xm = np.eye(4); Xm[0:3, 0:3] = Rm
     Xm[3, 0:3] = -pv @ Rm + pv + np.asarray(move, float) / S
     return Xm
+
+
+def hold_G(E, breech, yaw, pitch, roll, at=None):
+    """gun matrix (rig world, row form) with the gun point `at` (default: the breech top) at view place `breech`"""
+    y, p, r = (math.radians(v) for v in (yaw, pitch, roll))
+    gx = np.array([math.cos(p) * math.cos(y), math.cos(p) * math.sin(y), math.sin(p)])
+    gy0 = np.array([math.sin(y), -math.cos(y), 0.0])                # the gun's right
+    gz0 = np.cross(gx, gy0)                                         # the gun's down
+    gy = gy0 * math.cos(r) + gz0 * math.sin(r); gz = -gy0 * math.sin(r) + gz0 * math.cos(r)
+    G = np.eye(4); G[0:3, 0:3] = np.array([gx, gy, gz])
+    G[3, 0:3] = np.asarray(E, float) + np.asarray(breech, float) / S - (np.asarray(at or SIGHT_R, float) / S) @ G[0:3, 0:3]
+    return G
+
+
+def aim_G(E, relief=None, delta=None):
+    """the aimed gun: bead top on the view axis, the breech top `relief` u from the eye and `delta` rad under it"""
+    relief = AIM['relief'] if relief is None else relief; delta = AIM['delta'] if delta is None else delta
+    fr = np.asarray(SIGHT_F) - np.asarray(SIGHT_R)
+    Lfr = float(np.linalg.norm(fr))
+    Rv = relief * np.array([math.cos(delta), 0.0, -math.sin(delta)])
+    dF = Rv[0] + math.sqrt(Lfr * Lfr - Rv[2] * Rv[2])
+    v = np.array([dF, 0.0, 0.0]) - Rv                              # breech top -> bead top in the view
+    pitch = math.degrees(math.atan2(v[2], v[0]) - math.atan2(-fr[2], fr[0]))
+    return hold_G(E, tuple(Rv), 0.0, pitch, 0.0)
+
+
+def lh_fix():
+    """the pump gun's forend hand (gun frame) -> this gun's forend: back, up, turned about the forend's axis"""
+    return tr((-LH_BACK, 0, -LH_UP)) @ xg(roll=LH_ROLL, pivot=(0.0, LH_AXIS[0], LH_AXIS[1]))
 
 
 def tr(move):
@@ -74,8 +117,11 @@ class Rig:
         gi = R.inv(self.G0)
         self.HRrel = self.W0['Bip01 R Hand'] @ gi                  # hand in gun frame (rig units)
         self.HLrel = self.W0['Bip01 L Hand'] @ gi
-        self.HLfor = self.HLrel @ tr((-LH_BACK, 0, -LH_UP))        # on THIS gun's forend
-        self.Gidle = tr((PUSH, 0, 0)) @ self.G0
+        self.HLfor = self.HLrel @ lh_fix()                         # on THIS gun's forend
+        self.E0 = self.W0['eyes bone'][3, 0:3].copy()
+        self.Gidle = hold_G(self.E0, **HOLD)
+        self.Dl = self.Gidle @ R.inv(self.G0)                       # the hold as a gun-local move of the pump gun's place
+        self.Gaim = aim_G(self.E0)
         fill = D.load('reload_single')
         self.fill = fill
         # The loading hand. (First try, sheet a1: the retail shell-feeding hand turned onto the chamber axis - that
@@ -165,8 +211,8 @@ def bake_all():
             # the gun comes out to the held place over the clip (pullout) / goes back over it (putaway): pushed all the way
             # from frame 0 the arms could not reach it (9 IK clamps, run act1: an arm across the view at raise f3)
             wp = 1.0 if nm == 'idle' else (ease(f / (a.numFrames - 1.0)) if nm == 'pullout' else 1.0 - ease(f / (a.numFrames - 1.0)))
-            G = tr((PUSH * wp, 0, 0)) @ W['tag_weapon_right']
-            HLg = W['Bip01 L Hand'] @ R.inv(W['tag_weapon_right']) @ tr((-LH_BACK, 0, -LH_UP))
+            G = lerpX(np.eye(4), rig.Dl, wp) @ W['tag_weapon_right']
+            HLg = W['Bip01 L Hand'] @ R.inv(W['tag_weapon_right']) @ lh_fix()
             fr.append(rig.solve(pd, G, HLg))
         clips[nm] = (a, fr)
     # ---- fire: 16 frames, the gun kicks
@@ -201,11 +247,12 @@ def bake_all():
     # ---- charge (the aim pose, 1 frame): the pump gun's aim pose with the gun held out the same way
     a = D.load('charge')
     pd = R.pose_dict(a, 0); W = R.evaluate(pd)
-    G = tr((PUSH, 0, 0)) @ W['tag_weapon_right']
-    HLg = W['Bip01 L Hand'] @ R.inv(W['tag_weapon_right']) @ tr((-LH_BACK, 0, -LH_UP))
+    G = aim_G(W['eyes bone'][3, 0:3])
+    HLg = W['Bip01 L Hand'] @ R.inv(W['tag_weapon_right']) @ lh_fix()
     rc = Rig.__new__(Rig); rc.HRrel = W['Bip01 R Hand'] @ R.inv(W['tag_weapon_right'])
     clips['charge'] = (a, [rc.solve(pd, G, HLg)])
     print('charge pose: eye in the gun frame', np.round(D.in_gun(G, W['eyes bone'][3, 0:3]), 2))
+    print('hold: eye in the gun frame', np.round(D.in_gun(rig.Gidle, rig.E0), 2))
     # ---- reload_end (32): the left hand takes the forend of the open barrels and swings them shut; gun back to the hold
     a = D.load('reload_end'); fr = []
     for f in range(32):
@@ -242,11 +289,11 @@ def write(clips, paths):
     json.dump(paths, open(os.path.join(L.BUILD, 'hand_paths.json'), 'w'))
 
 
-GUN_ANIM = {'idle': 'idle', 'pullout': 'idle', 'putaway': 'idle', 'fire': 'fire', 'reload': 'reload',
+GUN_ANIM = {'idle': 'idle', 'charge': 'idle', 'pullout': 'idle', 'putaway': 'idle', 'fire': 'fire', 'reload': 'reload',
             'reload_single': 'reload_single', 'reload_single_first': 'reload_single_first', 'reload_end': 'reload_end'}
 
 
-def sheet(clips, nm, frames, out, W=560, H=340, fov=80.0):
+def sheet(clips, nm, frames, out, W=int(os.environ.get('DBS_W', 560)), H=int(os.environ.get('DBS_H', 340)), fov=float(os.environ.get('DBS_FOV', 80.0))):
     from PIL import Image, ImageDraw
     a, fr = clips[nm]
     ims = []

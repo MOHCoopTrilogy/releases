@@ -18,6 +18,7 @@ from mathutils import Vector
 args = sys.argv[sys.argv.index('--') + 1:]
 SRC, OUT = args[0], args[1]
 TEX = int(args[args.index('--tex') + 1]) if '--tex' in args else 2048
+OWN = '--own' in args      # 2026-10-12: mesh + our atlas + our AO only; the author's baked sheets and the low file are NOT opened
 os.makedirs(OUT, exist_ok=True)
 
 PARTS = {
@@ -127,62 +128,70 @@ for o in allp:
     o.data.materials.clear(); o.data.materials.append(mat)
 
 # ---- the low file's meshes, in the same frame, emitting the author's baked diffuse
-with bpy.data.libraries.load(os.path.join(SRC, 'doubleBarrelLow.blend'), link=False) as (src, dst):
-    dst.objects = [n for n in src.objects]
 lows = []
-dimg = bpy.data.images.load(os.path.join(SRC, 'doubleBarrelD.png'))
-em = bpy.data.materials.new('low_emit'); em.use_nodes = True
-ent = em.node_tree
-for n in list(ent.nodes):
-    ent.nodes.remove(n)
-eo = ent.nodes.new('ShaderNodeOutputMaterial'); ee = ent.nodes.new('ShaderNodeEmission'); et = ent.nodes.new('ShaderNodeTexImage')
-et.image = dimg
-ent.links.new(et.outputs['Color'], ee.inputs['Color']); ent.links.new(ee.outputs[0], eo.inputs['Surface'])
-low_y = None
-for o in dst.objects:
-    if o is None or o.type != 'MESH':
-        continue
-    sc.collection.objects.link(o)
-    lows.append(o)
-lowshift = Vector((0.0, -bpy.data.objects['Cylinder'].location.y if 'Cylinder' in bpy.data.objects else 0.0, 0.0))
-# y centre of the low barrels = the offset the author moved the low file sideways by
-lb = [o for o in lows if o.name.startswith('Cylinder') and len(o.data.vertices) > 500][0]
-ys = [(lb.matrix_world @ v.co).y for v in lb.data.vertices]
-LOWY = (max(ys) + min(ys)) / 2
-print('LOW Y CENTRE', LOWY)
-for o in lows:
-    o.location.y -= LOWY
-    o.data.materials.clear(); o.data.materials.append(em)
-vl.update()
+if not OWN:
+    with bpy.data.libraries.load(os.path.join(SRC, 'doubleBarrelLow.blend'), link=False) as (src, dst):
+        dst.objects = [n for n in src.objects]
+    dimg = bpy.data.images.load(os.path.join(SRC, 'doubleBarrelD.png'))
+    em = bpy.data.materials.new('low_emit'); em.use_nodes = True
+    ent = em.node_tree
+    for n in list(ent.nodes):
+        ent.nodes.remove(n)
+    eo = ent.nodes.new('ShaderNodeOutputMaterial'); ee = ent.nodes.new('ShaderNodeEmission'); et = ent.nodes.new('ShaderNodeTexImage')
+    et.image = dimg
+    ent.links.new(et.outputs['Color'], ee.inputs['Color']); ent.links.new(ee.outputs[0], eo.inputs['Surface'])
+    low_y = None
+    for o in dst.objects:
+        if o is None or o.type != 'MESH':
+            continue
+        sc.collection.objects.link(o)
+        lows.append(o)
+    lowshift = Vector((0.0, -bpy.data.objects['Cylinder'].location.y if 'Cylinder' in bpy.data.objects else 0.0, 0.0))
+    # y centre of the low barrels = the offset the author moved the low file sideways by
+    lb = [o for o in lows if o.name.startswith('Cylinder') and len(o.data.vertices) > 500][0]
+    ys = [(lb.matrix_world @ v.co).y for v in lb.data.vertices]
+    LOWY = (max(ys) + min(ys)) / 2
+    print('LOW Y CENTRE', LOWY)
+    for o in lows:
+        o.location.y -= LOWY
+        o.data.materials.clear(); o.data.materials.append(em)
+    vl.update()
 
-sc.render.engine = 'CYCLES'
-sc.cycles.device = 'CPU'
-sc.render.threads_mode = 'FIXED'; sc.render.threads = 4
-sc.cycles.samples = 4
-bk = sc.render.bake
-bk.use_selected_to_active = True
-bk.cage_extrusion = 0.03
-bk.max_ray_distance = 0.09
-bk.margin = 0                 # dbs_tex.py grows the islands itself (the bake margin left magenta fringes in the 2nd sheet)
-bk.use_clear = False
-for name, o in parts.items():
-    only(o, lows)
-    bpy.ops.object.bake(type='EMIT')
-    print('BAKED D', name)
+    sc.render.engine = 'CYCLES'
+    sc.cycles.device = 'CPU'
+    sc.render.threads_mode = 'FIXED'; sc.render.threads = 4
+    sc.cycles.samples = 4
+    bk = sc.render.bake
+    bk.use_selected_to_active = True
+    bk.cage_extrusion = 0.03
+    bk.max_ray_distance = 0.09
+    bk.margin = 0                 # dbs_tex.py grows the islands itself (the bake margin left magenta fringes in the 2nd sheet)
+    bk.use_clear = False
+    for name, o in parts.items():
+        only(o, lows)
+        bpy.ops.object.bake(type='EMIT')
+        print('BAKED D', name)
 
-# the author's "glossy" sheet the same way: his diffuse is BLACK on the steel (metal workflow), the steel's colour and
-# its scratches live in the glossy sheet - a diffuse-only renderer needs both
-img_g = bpy.data.images.new('bake_g', TEX, TEX, alpha=True)
-img_g.generated_color = (1, 0, 1, 0)
-tn.image = img_g
-et.image = bpy.data.images.load(os.path.join(SRC, 'doubleBarrelG.png'))
-for name, o in parts.items():
-    only(o, lows)
-    bpy.ops.object.bake(type='EMIT')
-    print('BAKED G', name)
-g = np.empty(TEX * TEX * 4, np.float32); img_g.pixels.foreach_get(g)
-np.save(os.path.join(OUT, 'bake_g.npy'), g.reshape(TEX, TEX, 4)[::-1])
+    # the author's "glossy" sheet the same way: his diffuse is BLACK on the steel (metal workflow), the steel's colour and
+    # its scratches live in the glossy sheet - a diffuse-only renderer needs both
+    img_g = bpy.data.images.new('bake_g', TEX, TEX, alpha=True)
+    img_g.generated_color = (1, 0, 1, 0)
+    tn.image = img_g
+    et.image = bpy.data.images.load(os.path.join(SRC, 'doubleBarrelG.png'))
+    for name, o in parts.items():
+        only(o, lows)
+        bpy.ops.object.bake(type='EMIT')
+        print('BAKED G', name)
+    g = np.empty(TEX * TEX * 4, np.float32); img_g.pixels.foreach_get(g)
+    np.save(os.path.join(OUT, 'bake_g.npy'), g.reshape(TEX, TEX, 4)[::-1])
 
+if OWN:
+    sc.render.engine = 'CYCLES'
+    sc.cycles.device = 'CPU'
+    sc.render.threads_mode = 'FIXED'; sc.render.threads = 4
+    bk = sc.render.bake
+    bk.margin = 0
+    bk.use_clear = False
 # ---- ambient occlusion, each part alone
 tn.image = img_ao
 bk.use_selected_to_active = False
@@ -198,12 +207,14 @@ for name, o in parts.items():
 for q in allp:
     q.hide_render = False
 
-d = np.empty(TEX * TEX * 4, np.float32); img_d.pixels.foreach_get(d); d = d.reshape(TEX, TEX, 4)
 ao = np.empty(TEX * TEX * 4, np.float32); img_ao.pixels.foreach_get(ao); ao = ao.reshape(TEX, TEX, 4)
-np.save(os.path.join(OUT, 'bake_d.npy'), d[::-1])           # top row first, linear float RGBA
-np.save(os.path.join(OUT, 'bake_ao.npy'), ao[::-1])
-miss = (d[..., 3] > 0.5) & (d[..., 0] > 0.9) & (d[..., 1] < 0.1) & (d[..., 2] > 0.9)
-print('ATLAS covered %.1f %%, magenta (bake missed) %.2f %% of covered' % (100 * (d[..., 3] > 0.5).mean(), 100 * miss.sum() / max(1, (d[..., 3] > 0.5).sum())))
+np.save(os.path.join(OUT, 'bake_ao.npy'), ao[::-1])           # top row first, linear float RGBA
+if not OWN:
+    d = np.empty(TEX * TEX * 4, np.float32); img_d.pixels.foreach_get(d); d = d.reshape(TEX, TEX, 4)
+    np.save(os.path.join(OUT, 'bake_d.npy'), d[::-1])
+    miss = (d[..., 3] > 0.5) & (d[..., 0] > 0.9) & (d[..., 1] < 0.1) & (d[..., 2] > 0.9)
+    print('ATLAS covered %.1f %%, magenta (bake missed) %.2f %% of covered' % (100 * (d[..., 3] > 0.5).mean(), 100 * miss.sum() / max(1, (d[..., 3] > 0.5).sum())))
+print('AO covered %.1f %%' % (100 * (ao[..., 3] > 0.5).mean()))
 
 
 def dump(o, uvname):
@@ -226,19 +237,25 @@ def dump(o, uvname):
 
 
 out = {'frame': 'hinge pin at origin, +x muzzle, +y left, +z up, Blender units', 'parts': {}}
+out['wood'] = {}
 for name, o in parts.items():
     out['parts'][name] = dump(o, 'atlas')
+    wa = o.data.attributes.get('wood')
+    out['wood'][name] = [int(wa.data[t.polygon_index].value) if wa else 0 for t in o.data.loop_triangles]
+    print('WOOD', name, sum(out['wood'][name]), 'of', len(out['wood'][name]))
     print('DUMP', name, len(out['parts'][name]))
 json.dump(out, open(os.path.join(OUT, 'high_parts.json'), 'w'))
 
-lo = {'frame': out['frame'], 'parts': {}}
-for o in lows:
-    m = o.data
-    for p in m.polygons:
-        p.use_smooth = True
-    m.set_sharp_from_angle(angle=math.radians(40))
-    lo['parts'][o.name] = dump(o, 'UVMap')
-    print('DUMP LOW', o.name, len(lo['parts'][o.name]))
-json.dump(lo, open(os.path.join(OUT, 'low_parts.json'), 'w'))
-bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT, 'dbs_work.blend'), compress=True)
+if not OWN:
+    lo = {'frame': out['frame'], 'parts': {}}
+    for o in lows:
+        m = o.data
+        for p in m.polygons:
+            p.use_smooth = True
+        m.set_sharp_from_angle(angle=math.radians(40))
+        lo['parts'][o.name] = dump(o, 'UVMap')
+        print('DUMP LOW', o.name, len(lo['parts'][o.name]))
+    json.dump(lo, open(os.path.join(OUT, 'low_parts.json'), 'w'))
+if not OWN:
+    bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT, 'dbs_work.blend'), compress=True)
 print('DONE')
