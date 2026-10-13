@@ -1,0 +1,901 @@
+SRVPROBE st 65725 ps clip 0 ammo 0 vma 0 chg 0
+SRVPROBE st 65725 went 399 wanim idle t 0.000
+SRVPROBE st 68225 ps clip 0 ammo 80 vma 6 chg 1
+SRVPROBE st 68225 went 379 wanim idle t 0.000
+SRVPROBE st 68225 went 380 wanim reload t 0.000
+SRVPROBE st 68250 ps clip 8 ammo 80 vma 6 chg 1
+SRVPROBE st 68375 went 390 wanim idle t 0.025
+SRVPROBE st 70200 went 380 wanim idle t 0.000
+SRVPROBE st 70225 ps clip 8 ammo 80 vma 1 chg 2
+SRVPROBE st 71075 ps clip 8 ammo 200 vma 1 chg 2
+SRVPROBE st 71375 ps clip 8 ammo 200 vma 10 chg 3
+SRVPROBE st 71975 ps clip 7 ammo 200 vma 9 chg 1
+SRVPROBE st 72450 ps clip 7 ammo 200 vma 1 chg 2
+SRVPROBE st 88425 ps clip 7 ammo 200 vma 10 chg 3
+SRVPROBE st 89000 ps clip 6 ammo 200 vma 9 chg 1
+SRVPROBE st 89000 went 390 wanim idle t 0.000
+SRVPROBE st 89475 ps clip 6 ammo 200 vma 1 chg 2
+^~^~^ DED begin rel welrod hip
+SRVPROBE st 92375 ps clip 5 ammo 200 vma 3 chg 3
+SRVPROBE st 92375 went 390 wanim fire t 0.025
+SRVPROBE st 92425 went 390 wanim idle t 0.025
+SRVPROBE st 92550 ps clip 5 ammo 200 vma 1 chg 0
+SRVPROBE st 93400 ps clip 4 ammo 200 vma 3 chg 1
+SRVPROBE st 93400 went 390 wanim fire t 0.025
+SRVPROBE st 93450 went 390 wanim idle t 0.025
+SRVPROBE st 93575 ps clip 4 ammo 200 vma 1 chg 2
+^~^~^ DED reloadcmd
+SRVPROBE st 94650 ps clip 4 ammo 200 vma 6 chg 3
+SRVPROBE st 94650 went 390 wanim idle t 0.000
+SRVPROBE st 94650 went 391 wanim idle t 0.000
+SRVPROBE st 95500 ps clip 6 ammo 198 vma 6 chg 3
+SRVPROBE st 97050 ps clip 6 ammo 198 vma 1 chg 0
+SRVPROBE st 97100 ps clip 5 ammo 198 vma 3 chg 1
+SRVPROBE st 97100 went 390 wanim fire t 0.025
+SRVPROBE st 97150 went 390 wanim idle t 0.025
+SRVPROBE st 97275 ps clip 5 ammo 198 vma 1 chg 2
+SRVPROBE st 98175 ps clip 4 ammo 198 vma 3 chg 3
+SRVPROBE st 98175 went 390 wanim fire t 0.025
+SRVPROBE st 98225 went 390 wanim idle t 0.025
+SRVPROBE st 98350 ps clip 4 ammo 198 vma 1 chg 0
+SRVPROBE st 99200 ps clip 3 ammo 198 vma 3 chg 1
+SRVPROBE st 99200 went 390 wanim fire t 0.025
+SRVPROBE st 99250 went 390 wanim idle t 0.025
+SRVPROBE st 99375 ps clip 3 ammo 198 vma 1 chg 2
+SRVPROBE st 100300 ps clip 2 ammo 198 vma 3 chg 3
+SRVPROBE st 100300 went 390 wanim fire t 0.025
+SRVPROBE st 100350 went 390 wanim idle t 0.025
+SRVPROBE st 100475 ps clip 2 ammo 198 vma 1 chg 0
+SRVPROBE st 101375 ps clip 1 ammo 198 vma 3 chg 1
+SRVPROBE st 101375 went 390 wanim fire t 0.025
+SRVPROBE st 101425 went 390 wanim idle t 0.025
+SRVPROBE st 101550 ps clip 1 ammo 198 vma 1 chg 2
+SRVPROBE st 102425 ps clip 0 ammo 198 vma 3 chg 3
+SRVPROBE st 102425 went 390 wanim fire t 0.025
+SRVPROBE st 102475 went 390 wanim idle t 0.025
+SRVPROBE st 102600 ps clip 0 ammo 198 vma 6 chg 1
+SRVPROBE st 102600 went 390 wanim idle t 0.000
+SRVPROBE st 102600 went 391 wanim idle t 0.000
+SRVPROBE st 103450 ps clip 6 ammo 192 vma 6 chg 1
+SRVPROBE st 105000 ps clip 6 ammo 192 vma 1 chg 2
+SRVPROBE st 105025 ps clip 5 ammo 192 vma 3 chg 3
+SRVPROBE st 105025 went 390 wanim fire t 0.025
+SRVPROBE st 105075 went 390 wanim idle t 0.025
+SRVPROBE st 105200 ps clip 5 ammo 192 vma 1 chg 0
+SRVPROBE st 106050 ps clip 4 ammo 192 vma 3 chg 1
+SRVPROBE st 106050 went 390 wanim fire t 0.025
+SRVPROBE st 106100 went 390 wanim idle t 0.025
+SRVPROBE st 106225 ps clip 4 ammo 192 vma 1 chg 2
+^~^~^ DED end rel welrod hip
+SRVPROBE st 112700 ps clip 4 ammo 200 vma 1 chg 2
+^~^~^ DED begin rel welrod ads
+SRVPROBE st 116925 ps clip 4 ammo 200 vma 2 chg 3
+SRVPROBE st 118425 ps clip 3 ammo 200 vma 2 chg 3
+SRVPROBE st 118425 went 390 wanim fire t 0.025
+SRVPROBE st 118475 went 390 wanim idle t 0.025
+SRVPROBE st 119475 ps clip 2 ammo 200 vma 2 chg 3
+SRVPROBE st 119475 went 390 wanim fire t 0.025
+SRVPROBE st 119525 went 390 wanim idle t 0.025
+^~^~^ DED reloadcmd
+SRVPROBE st 120725 ps clip 2 ammo 200 vma 6 chg 0
+SRVPROBE st 120725 went 390 wanim idle t 0.000
+SRVPROBE st 120725 went 391 wanim idle t 0.000
+SRVPROBE st 121575 ps clip 6 ammo 196 vma 6 chg 0
+SRVPROBE st 123125 ps clip 5 ammo 196 vma 3 chg 2
+SRVPROBE st 123125 went 390 wanim fire t 0.025
+SRVPROBE st 123175 went 390 wanim idle t 0.025
+SRVPROBE st 123300 ps clip 5 ammo 196 vma 2 chg 0
+SRVPROBE st 124150 ps clip 4 ammo 196 vma 2 chg 0
+SRVPROBE st 124150 went 390 wanim fire t 0.025
+SRVPROBE st 124200 went 390 wanim idle t 0.025
+SRVPROBE st 125250 ps clip 3 ammo 196 vma 2 chg 0
+SRVPROBE st 125250 went 390 wanim fire t 0.025
+SRVPROBE st 125300 went 390 wanim idle t 0.025
+SRVPROBE st 126325 ps clip 2 ammo 196 vma 2 chg 0
+SRVPROBE st 126325 went 390 wanim fire t 0.025
+SRVPROBE st 126375 went 390 wanim idle t 0.025
+SRVPROBE st 127375 ps clip 1 ammo 196 vma 2 chg 0
+SRVPROBE st 127375 went 390 wanim fire t 0.025
+SRVPROBE st 127425 went 390 wanim idle t 0.025
+SRVPROBE st 128450 ps clip 0 ammo 196 vma 2 chg 0
+SRVPROBE st 128450 went 390 wanim fire t 0.025
+SRVPROBE st 128500 went 390 wanim idle t 0.025
+SRVPROBE st 128625 ps clip 0 ammo 196 vma 6 chg 1
+SRVPROBE st 128625 went 390 wanim idle t 0.000
+SRVPROBE st 128625 went 391 wanim idle t 0.000
+SRVPROBE st 129475 ps clip 6 ammo 190 vma 6 chg 1
+SRVPROBE st 131025 ps clip 6 ammo 190 vma 2 chg 3
+SRVPROBE st 131075 ps clip 5 ammo 190 vma 2 chg 3
+SRVPROBE st 131075 went 390 wanim fire t 0.025
+SRVPROBE st 131125 went 390 wanim idle t 0.025
+SRVPROBE st 132150 ps clip 4 ammo 190 vma 2 chg 3
+SRVPROBE st 132150 went 390 wanim fire t 0.025
+SRVPROBE st 132200 went 390 wanim idle t 0.025
+^~^~^ DED end rel welrod ads
+SRVPROBE st 136650 ps clip 4 ammo 190 vma 1 chg 0
+SRVPROBE st 139250 ps clip 4 ammo 200 vma 1 chg 0
+SRVPROBE st 139550 ps clip 4 ammo 200 vma 10 chg 1
+SRVPROBE st 140125 ps clip 8 ammo 200 vma 9 chg 3
+SRVPROBE st 140125 went 391 wanim idle t 0.000
+SRVPROBE st 140600 ps clip 8 ammo 200 vma 1 chg 0
+^~^~^ DED begin rel tt33 hip
+SRVPROBE st 143500 ps clip 7 ammo 200 vma 3 chg 1
+SRVPROBE st 143500 went 391 wanim fire t 0.025
+SRVPROBE st 143650 went 391 wanim idle t 0.025
+SRVPROBE st 143675 ps clip 7 ammo 200 vma 1 chg 2
+SRVPROBE st 143850 ps clip 6 ammo 200 vma 3 chg 3
+SRVPROBE st 143850 went 391 wanim fire t 0.025
+SRVPROBE st 144000 went 391 wanim idle t 0.025
+SRVPROBE st 144025 ps clip 6 ammo 200 vma 1 chg 0
+SRVPROBE st 144225 ps clip 5 ammo 200 vma 3 chg 1
+SRVPROBE st 144225 went 391 wanim fire t 0.025
+SRVPROBE st 144375 went 391 wanim idle t 0.025
+SRVPROBE st 144400 ps clip 5 ammo 200 vma 1 chg 2
+SRVPROBE st 144575 ps clip 4 ammo 200 vma 3 chg 3
+SRVPROBE st 144575 went 391 wanim fire t 0.025
+SRVPROBE st 144725 went 391 wanim idle t 0.025
+SRVPROBE st 144750 ps clip 4 ammo 200 vma 1 chg 0
+^~^~^ DED reloadcmd
+SRVPROBE st 145825 ps clip 4 ammo 200 vma 6 chg 1
+SRVPROBE st 145825 went 391 wanim reload t 0.000
+SRVPROBE st 145825 went 395 wanim idle t 0.000
+SRVPROBE st 146675 ps clip 8 ammo 196 vma 6 chg 1
+SRVPROBE st 147325 went 391 wanim idle t 0.025
+SRVPROBE st 148225 ps clip 8 ammo 196 vma 1 chg 2
+SRVPROBE st 148275 ps clip 7 ammo 196 vma 3 chg 3
+SRVPROBE st 148275 went 391 wanim fire t 0.025
+SRVPROBE st 148425 went 391 wanim idle t 0.025
+SRVPROBE st 148450 ps clip 7 ammo 196 vma 1 chg 0
+SRVPROBE st 148650 ps clip 6 ammo 196 vma 3 chg 1
+SRVPROBE st 148650 went 391 wanim fire t 0.025
+SRVPROBE st 148800 went 391 wanim idle t 0.025
+SRVPROBE st 148825 ps clip 6 ammo 196 vma 1 chg 2
+SRVPROBE st 149000 ps clip 5 ammo 196 vma 3 chg 3
+SRVPROBE st 149000 went 391 wanim fire t 0.025
+SRVPROBE st 149150 went 391 wanim idle t 0.025
+SRVPROBE st 149175 ps clip 5 ammo 196 vma 1 chg 0
+SRVPROBE st 149350 ps clip 4 ammo 196 vma 3 chg 1
+SRVPROBE st 149350 went 391 wanim fire t 0.025
+SRVPROBE st 149500 went 391 wanim idle t 0.025
+SRVPROBE st 149525 ps clip 4 ammo 196 vma 1 chg 2
+SRVPROBE st 149750 ps clip 3 ammo 196 vma 3 chg 3
+SRVPROBE st 149750 went 391 wanim fire t 0.025
+SRVPROBE st 149900 went 391 wanim idle t 0.025
+SRVPROBE st 149925 ps clip 3 ammo 196 vma 1 chg 0
+SRVPROBE st 150075 ps clip 2 ammo 196 vma 3 chg 1
+SRVPROBE st 150075 went 391 wanim fire t 0.025
+SRVPROBE st 150225 went 391 wanim idle t 0.025
+SRVPROBE st 150250 ps clip 2 ammo 196 vma 1 chg 2
+SRVPROBE st 150450 ps clip 1 ammo 196 vma 3 chg 3
+SRVPROBE st 150450 went 391 wanim fire t 0.025
+SRVPROBE st 150600 went 391 wanim idle t 0.025
+SRVPROBE st 150625 ps clip 1 ammo 196 vma 1 chg 0
+SRVPROBE st 150850 ps clip 0 ammo 196 vma 3 chg 1
+SRVPROBE st 150850 went 391 wanim fire t 0.025
+SRVPROBE st 151000 went 391 wanim idle t 0.025
+SRVPROBE st 151025 ps clip 0 ammo 196 vma 6 chg 3
+SRVPROBE st 151025 went 391 wanim reload t 0.000
+SRVPROBE st 151025 went 395 wanim idle t 0.000
+SRVPROBE st 151875 ps clip 8 ammo 188 vma 6 chg 3
+SRVPROBE st 152525 went 391 wanim idle t 0.025
+SRVPROBE st 153425 ps clip 8 ammo 188 vma 1 chg 0
+SRVPROBE st 153475 ps clip 7 ammo 188 vma 3 chg 1
+SRVPROBE st 153475 went 391 wanim fire t 0.025
+SRVPROBE st 153625 went 391 wanim idle t 0.025
+SRVPROBE st 153650 ps clip 7 ammo 188 vma 1 chg 2
+SRVPROBE st 153850 ps clip 6 ammo 188 vma 3 chg 3
+SRVPROBE st 153850 went 391 wanim fire t 0.025
+SRVPROBE st 154000 went 391 wanim idle t 0.025
+SRVPROBE st 154025 ps clip 6 ammo 188 vma 1 chg 0
+SRVPROBE st 154225 ps clip 5 ammo 188 vma 3 chg 1
+SRVPROBE st 154225 went 391 wanim fire t 0.025
+SRVPROBE st 154375 went 391 wanim idle t 0.025
+SRVPROBE st 154400 ps clip 5 ammo 188 vma 1 chg 2
+SRVPROBE st 154600 ps clip 4 ammo 188 vma 3 chg 3
+SRVPROBE st 154600 went 391 wanim fire t 0.025
+SRVPROBE st 154750 went 391 wanim idle t 0.025
+SRVPROBE st 154775 ps clip 4 ammo 188 vma 1 chg 0
+SRVPROBE st 155000 ps clip 3 ammo 188 vma 3 chg 1
+SRVPROBE st 155000 went 391 wanim fire t 0.025
+SRVPROBE st 155150 went 391 wanim idle t 0.025
+SRVPROBE st 155175 ps clip 3 ammo 188 vma 1 chg 2
+SRVPROBE st 155325 ps clip 2 ammo 188 vma 3 chg 3
+SRVPROBE st 155325 went 391 wanim fire t 0.025
+SRVPROBE st 155475 went 391 wanim idle t 0.025
+SRVPROBE st 155500 ps clip 2 ammo 188 vma 1 chg 0
+SRVPROBE st 155675 ps clip 1 ammo 188 vma 3 chg 1
+SRVPROBE st 155675 went 391 wanim fire t 0.025
+SRVPROBE st 155825 went 391 wanim idle t 0.025
+SRVPROBE st 155850 ps clip 1 ammo 188 vma 1 chg 2
+SRVPROBE st 156050 ps clip 0 ammo 188 vma 3 chg 3
+SRVPROBE st 156050 went 391 wanim fire t 0.025
+SRVPROBE st 156200 went 391 wanim idle t 0.025
+SRVPROBE st 156225 ps clip 0 ammo 188 vma 6 chg 1
+SRVPROBE st 156225 went 391 wanim reload t 0.000
+SRVPROBE st 156225 went 395 wanim idle t 0.000
+SRVPROBE st 157075 ps clip 8 ammo 180 vma 6 chg 1
+SRVPROBE st 157725 went 391 wanim idle t 0.025
+SRVPROBE st 158625 ps clip 8 ammo 180 vma 1 chg 2
+^~^~^ DED end rel tt33 hip
+SRVPROBE st 164250 ps clip 8 ammo 200 vma 1 chg 2
+^~^~^ DED begin rel tt33 ads
+SRVPROBE st 168500 ps clip 8 ammo 200 vma 2 chg 3
+SRVPROBE st 169975 ps clip 7 ammo 200 vma 2 chg 3
+SRVPROBE st 169975 went 391 wanim fire t 0.025
+SRVPROBE st 170125 went 391 wanim idle t 0.025
+SRVPROBE st 170325 ps clip 6 ammo 200 vma 2 chg 3
+SRVPROBE st 170325 went 391 wanim fire t 0.025
+SRVPROBE st 170475 went 391 wanim idle t 0.025
+SRVPROBE st 170675 ps clip 5 ammo 200 vma 2 chg 3
+SRVPROBE st 170675 went 391 wanim fire t 0.025
+SRVPROBE st 170825 went 391 wanim idle t 0.025
+SRVPROBE st 171000 ps clip 4 ammo 200 vma 2 chg 3
+SRVPROBE st 171000 went 391 wanim fire t 0.025
+SRVPROBE st 171150 went 391 wanim idle t 0.025
+^~^~^ DED reloadcmd
+SRVPROBE st 172275 ps clip 4 ammo 200 vma 6 chg 0
+SRVPROBE st 172275 went 391 wanim reload t 0.000
+SRVPROBE st 172275 went 395 wanim idle t 0.000
+SRVPROBE st 173125 ps clip 8 ammo 196 vma 6 chg 0
+SRVPROBE st 173775 went 391 wanim idle t 0.025
+SRVPROBE st 174675 ps clip 8 ammo 196 vma 2 chg 2
+SRVPROBE st 174700 ps clip 7 ammo 196 vma 2 chg 2
+SRVPROBE st 174700 went 391 wanim fire t 0.025
+SRVPROBE st 174850 went 391 wanim idle t 0.025
+SRVPROBE st 175025 ps clip 6 ammo 196 vma 2 chg 2
+SRVPROBE st 175025 went 391 wanim fire t 0.025
+SRVPROBE st 175175 went 391 wanim idle t 0.025
+SRVPROBE st 175375 ps clip 5 ammo 196 vma 2 chg 2
+SRVPROBE st 175375 went 391 wanim fire t 0.025
+SRVPROBE st 175525 went 391 wanim idle t 0.025
+SRVPROBE st 175725 ps clip 4 ammo 196 vma 2 chg 2
+SRVPROBE st 175725 went 391 wanim fire t 0.025
+SRVPROBE st 175875 went 391 wanim idle t 0.025
+SRVPROBE st 176050 ps clip 3 ammo 196 vma 2 chg 2
+SRVPROBE st 176050 went 391 wanim fire t 0.025
+SRVPROBE st 176200 went 391 wanim idle t 0.025
+SRVPROBE st 176400 ps clip 2 ammo 196 vma 2 chg 2
+SRVPROBE st 176400 went 391 wanim fire t 0.025
+SRVPROBE st 176550 went 391 wanim idle t 0.025
+SRVPROBE st 176725 ps clip 1 ammo 196 vma 2 chg 2
+SRVPROBE st 176725 went 391 wanim fire t 0.025
+SRVPROBE st 176875 went 391 wanim idle t 0.025
+SRVPROBE st 177075 ps clip 0 ammo 196 vma 2 chg 2
+SRVPROBE st 177075 went 391 wanim fire t 0.025
+SRVPROBE st 177225 went 391 wanim idle t 0.025
+SRVPROBE st 177250 ps clip 0 ammo 196 vma 6 chg 3
+SRVPROBE st 177250 went 391 wanim reload t 0.000
+SRVPROBE st 177250 went 395 wanim idle t 0.000
+SRVPROBE st 178100 ps clip 8 ammo 188 vma 6 chg 3
+SRVPROBE st 178750 went 391 wanim idle t 0.025
+SRVPROBE st 179650 ps clip 8 ammo 188 vma 2 chg 1
+SRVPROBE st 179675 ps clip 7 ammo 188 vma 2 chg 1
+SRVPROBE st 179675 went 391 wanim fire t 0.025
+SRVPROBE st 179825 went 391 wanim idle t 0.025
+SRVPROBE st 180025 ps clip 6 ammo 188 vma 2 chg 1
+SRVPROBE st 180025 went 391 wanim fire t 0.025
+SRVPROBE st 180175 went 391 wanim idle t 0.025
+SRVPROBE st 180375 ps clip 5 ammo 188 vma 2 chg 1
+SRVPROBE st 180375 went 391 wanim fire t 0.025
+SRVPROBE st 180525 went 391 wanim idle t 0.025
+SRVPROBE st 180725 ps clip 4 ammo 188 vma 2 chg 1
+SRVPROBE st 180725 went 391 wanim fire t 0.025
+SRVPROBE st 180875 went 391 wanim idle t 0.025
+SRVPROBE st 181100 ps clip 3 ammo 188 vma 2 chg 1
+SRVPROBE st 181100 went 391 wanim fire t 0.025
+SRVPROBE st 181250 went 391 wanim idle t 0.025
+SRVPROBE st 181475 ps clip 2 ammo 188 vma 2 chg 1
+SRVPROBE st 181475 went 391 wanim fire t 0.025
+SRVPROBE st 181625 went 391 wanim idle t 0.025
+SRVPROBE st 181800 ps clip 1 ammo 188 vma 2 chg 1
+SRVPROBE st 181800 went 391 wanim fire t 0.025
+SRVPROBE st 181950 went 391 wanim idle t 0.025
+SRVPROBE st 182175 ps clip 0 ammo 188 vma 2 chg 1
+SRVPROBE st 182175 went 391 wanim fire t 0.025
+SRVPROBE st 182325 went 391 wanim idle t 0.025
+SRVPROBE st 182350 ps clip 0 ammo 188 vma 6 chg 2
+SRVPROBE st 182350 went 391 wanim reload t 0.000
+SRVPROBE st 182350 went 395 wanim idle t 0.000
+SRVPROBE st 183200 ps clip 8 ammo 180 vma 6 chg 2
+SRVPROBE st 183850 went 391 wanim idle t 0.025
+SRVPROBE st 184750 ps clip 8 ammo 180 vma 2 chg 0
+^~^~^ DED end rel tt33 ads
+SRVPROBE st 187650 ps clip 8 ammo 180 vma 1 chg 1
+SRVPROBE st 190050 ps clip 8 ammo 200 vma 1 chg 1
+SRVPROBE st 190350 ps clip 8 ammo 200 vma 10 chg 2
+SRVPROBE st 190925 ps clip 8 ammo 200 vma 9 chg 0
+SRVPROBE st 190925 went 395 wanim idle t 0.000
+SRVPROBE st 191400 ps clip 8 ammo 200 vma 1 chg 1
+^~^~^ DED begin rel tt33silenced hip
+SRVPROBE st 194300 ps clip 7 ammo 200 vma 3 chg 2
+SRVPROBE st 194300 went 395 wanim fire t 0.025
+SRVPROBE st 194450 went 395 wanim idle t 0.025
+SRVPROBE st 194475 ps clip 7 ammo 200 vma 1 chg 3
+SRVPROBE st 194625 ps clip 6 ammo 200 vma 3 chg 0
+SRVPROBE st 194625 went 395 wanim fire t 0.025
+SRVPROBE st 194775 went 395 wanim idle t 0.025
+SRVPROBE st 194800 ps clip 6 ammo 200 vma 1 chg 1
+SRVPROBE st 194975 ps clip 5 ammo 200 vma 3 chg 2
+SRVPROBE st 194975 went 395 wanim fire t 0.025
+SRVPROBE st 195125 went 395 wanim idle t 0.025
+SRVPROBE st 195150 ps clip 5 ammo 200 vma 1 chg 3
+SRVPROBE st 195300 ps clip 4 ammo 200 vma 3 chg 0
+SRVPROBE st 195300 went 395 wanim fire t 0.025
+SRVPROBE st 195450 went 395 wanim idle t 0.025
+SRVPROBE st 195475 ps clip 4 ammo 200 vma 1 chg 1
+^~^~^ DED reloadcmd
+SRVPROBE st 196625 ps clip 4 ammo 200 vma 6 chg 2
+SRVPROBE st 196625 went 395 wanim reload t 0.000
+SRVPROBE st 196625 went 398 wanim idle t 0.000
+SRVPROBE st 197475 ps clip 8 ammo 196 vma 6 chg 2
+SRVPROBE st 198125 went 395 wanim idle t 0.025
+SRVPROBE st 199025 ps clip 8 ammo 196 vma 1 chg 3
+SRVPROBE st 199075 ps clip 7 ammo 196 vma 3 chg 0
+SRVPROBE st 199075 went 395 wanim fire t 0.025
+SRVPROBE st 199225 went 395 wanim idle t 0.025
+SRVPROBE st 199250 ps clip 7 ammo 196 vma 1 chg 1
+SRVPROBE st 199450 ps clip 6 ammo 196 vma 3 chg 2
+SRVPROBE st 199450 went 395 wanim fire t 0.025
+SRVPROBE st 199600 went 395 wanim idle t 0.025
+SRVPROBE st 199625 ps clip 6 ammo 196 vma 1 chg 3
+SRVPROBE st 199800 ps clip 5 ammo 196 vma 3 chg 0
+SRVPROBE st 199800 went 395 wanim fire t 0.025
+SRVPROBE st 199950 went 395 wanim idle t 0.025
+SRVPROBE st 199975 ps clip 5 ammo 196 vma 1 chg 1
+SRVPROBE st 200175 ps clip 4 ammo 196 vma 3 chg 2
+SRVPROBE st 200175 went 395 wanim fire t 0.025
+SRVPROBE st 200325 went 395 wanim idle t 0.025
+SRVPROBE st 200350 ps clip 4 ammo 196 vma 1 chg 3
+SRVPROBE st 200525 ps clip 3 ammo 196 vma 3 chg 0
+SRVPROBE st 200525 went 395 wanim fire t 0.025
+SRVPROBE st 200675 went 395 wanim idle t 0.025
+SRVPROBE st 200700 ps clip 3 ammo 196 vma 1 chg 1
+SRVPROBE st 200925 ps clip 2 ammo 196 vma 3 chg 2
+SRVPROBE st 200925 went 395 wanim fire t 0.025
+SRVPROBE st 201075 went 395 wanim idle t 0.025
+SRVPROBE st 201100 ps clip 2 ammo 196 vma 1 chg 3
+SRVPROBE st 201275 ps clip 1 ammo 196 vma 3 chg 0
+SRVPROBE st 201275 went 395 wanim fire t 0.025
+SRVPROBE st 201425 went 395 wanim idle t 0.025
+SRVPROBE st 201450 ps clip 1 ammo 196 vma 1 chg 1
+SRVPROBE st 201650 ps clip 0 ammo 196 vma 3 chg 2
+SRVPROBE st 201650 went 395 wanim fire t 0.025
+SRVPROBE st 201800 went 395 wanim idle t 0.025
+SRVPROBE st 201825 ps clip 0 ammo 196 vma 6 chg 0
+SRVPROBE st 201825 went 395 wanim reload t 0.000
+SRVPROBE st 201825 went 398 wanim idle t 0.000
+SRVPROBE st 202675 ps clip 8 ammo 188 vma 6 chg 0
+SRVPROBE st 203325 went 395 wanim idle t 0.025
+SRVPROBE st 204225 ps clip 8 ammo 188 vma 1 chg 1
+SRVPROBE st 204275 ps clip 7 ammo 188 vma 3 chg 2
+SRVPROBE st 204275 went 395 wanim fire t 0.025
+SRVPROBE st 204425 went 395 wanim idle t 0.025
+SRVPROBE st 204450 ps clip 7 ammo 188 vma 1 chg 3
+SRVPROBE st 204625 ps clip 6 ammo 188 vma 3 chg 0
+SRVPROBE st 204625 went 395 wanim fire t 0.025
+SRVPROBE st 204775 went 395 wanim idle t 0.025
+SRVPROBE st 204800 ps clip 6 ammo 188 vma 1 chg 1
+SRVPROBE st 204950 ps clip 5 ammo 188 vma 3 chg 2
+SRVPROBE st 204950 went 395 wanim fire t 0.025
+SRVPROBE st 205100 went 395 wanim idle t 0.025
+SRVPROBE st 205125 ps clip 5 ammo 188 vma 1 chg 3
+SRVPROBE st 205300 ps clip 4 ammo 188 vma 3 chg 0
+SRVPROBE st 205300 went 395 wanim fire t 0.025
+SRVPROBE st 205450 went 395 wanim idle t 0.025
+SRVPROBE st 205475 ps clip 4 ammo 188 vma 1 chg 1
+SRVPROBE st 205650 ps clip 3 ammo 188 vma 3 chg 2
+SRVPROBE st 205650 went 395 wanim fire t 0.025
+SRVPROBE st 205800 went 395 wanim idle t 0.025
+SRVPROBE st 205825 ps clip 3 ammo 188 vma 1 chg 3
+SRVPROBE st 206025 ps clip 2 ammo 188 vma 3 chg 0
+SRVPROBE st 206025 went 395 wanim fire t 0.025
+SRVPROBE st 206175 went 395 wanim idle t 0.025
+SRVPROBE st 206200 ps clip 2 ammo 188 vma 1 chg 1
+SRVPROBE st 206375 ps clip 1 ammo 188 vma 3 chg 2
+SRVPROBE st 206375 went 395 wanim fire t 0.025
+SRVPROBE st 206525 went 395 wanim idle t 0.025
+SRVPROBE st 206550 ps clip 1 ammo 188 vma 1 chg 3
+SRVPROBE st 206750 ps clip 0 ammo 188 vma 3 chg 0
+SRVPROBE st 206750 went 395 wanim fire t 0.025
+SRVPROBE st 206900 went 395 wanim idle t 0.025
+SRVPROBE st 206925 ps clip 0 ammo 188 vma 6 chg 2
+SRVPROBE st 206925 went 395 wanim reload t 0.000
+SRVPROBE st 206925 went 398 wanim idle t 0.000
+SRVPROBE st 207775 ps clip 8 ammo 180 vma 6 chg 2
+SRVPROBE st 208425 went 395 wanim idle t 0.025
+SRVPROBE st 209325 ps clip 8 ammo 180 vma 1 chg 3
+^~^~^ DED end rel tt33silenced hip
+SRVPROBE st 215075 ps clip 8 ammo 200 vma 1 chg 3
+^~^~^ DED begin rel tt33silenced ads
+SRVPROBE st 219325 ps clip 8 ammo 200 vma 2 chg 0
+SRVPROBE st 220800 ps clip 7 ammo 200 vma 2 chg 0
+SRVPROBE st 220800 went 395 wanim fire t 0.025
+SRVPROBE st 220950 went 395 wanim idle t 0.025
+SRVPROBE st 221150 ps clip 6 ammo 200 vma 2 chg 0
+SRVPROBE st 221150 went 395 wanim fire t 0.025
+SRVPROBE st 221300 went 395 wanim idle t 0.025
+SRVPROBE st 221525 ps clip 5 ammo 200 vma 2 chg 0
+SRVPROBE st 221525 went 395 wanim fire t 0.025
+SRVPROBE st 221675 went 395 wanim idle t 0.025
+SRVPROBE st 221875 ps clip 4 ammo 200 vma 2 chg 0
+SRVPROBE st 221875 went 395 wanim fire t 0.025
+SRVPROBE st 222025 went 395 wanim idle t 0.025
+^~^~^ DED reloadcmd
+SRVPROBE st 223125 ps clip 4 ammo 200 vma 6 chg 1
+SRVPROBE st 223125 went 395 wanim reload t 0.000
+SRVPROBE st 223125 went 398 wanim idle t 0.000
+SRVPROBE st 223975 ps clip 8 ammo 196 vma 6 chg 1
+SRVPROBE st 224625 went 395 wanim idle t 0.025
+SRVPROBE st 225525 ps clip 7 ammo 196 vma 3 chg 3
+SRVPROBE st 225525 went 395 wanim fire t 0.025
+SRVPROBE st 225675 went 395 wanim idle t 0.025
+SRVPROBE st 225700 ps clip 7 ammo 196 vma 2 chg 1
+SRVPROBE st 225875 ps clip 6 ammo 196 vma 2 chg 1
+SRVPROBE st 225875 went 395 wanim fire t 0.025
+SRVPROBE st 226025 went 395 wanim idle t 0.025
+SRVPROBE st 226250 ps clip 5 ammo 196 vma 2 chg 1
+SRVPROBE st 226250 went 395 wanim fire t 0.025
+SRVPROBE st 226400 went 395 wanim idle t 0.025
+SRVPROBE st 226600 ps clip 4 ammo 196 vma 2 chg 1
+SRVPROBE st 226600 went 395 wanim fire t 0.025
+SRVPROBE st 226750 went 395 wanim idle t 0.025
+SRVPROBE st 226925 ps clip 3 ammo 196 vma 2 chg 1
+SRVPROBE st 226925 went 395 wanim fire t 0.025
+SRVPROBE st 227075 went 395 wanim idle t 0.025
+SRVPROBE st 227300 ps clip 2 ammo 196 vma 2 chg 1
+SRVPROBE st 227300 went 395 wanim fire t 0.025
+SRVPROBE st 227450 went 395 wanim idle t 0.025
+SRVPROBE st 227675 ps clip 1 ammo 196 vma 2 chg 1
+SRVPROBE st 227675 went 395 wanim fire t 0.025
+SRVPROBE st 227825 went 395 wanim idle t 0.025
+SRVPROBE st 228050 ps clip 0 ammo 196 vma 2 chg 1
+SRVPROBE st 228050 went 395 wanim fire t 0.025
+SRVPROBE st 228200 went 395 wanim idle t 0.025
+SRVPROBE st 228225 ps clip 0 ammo 196 vma 6 chg 2
+SRVPROBE st 228225 went 395 wanim reload t 0.000
+SRVPROBE st 228225 went 398 wanim idle t 0.000
+SRVPROBE st 229075 ps clip 8 ammo 188 vma 6 chg 2
+SRVPROBE st 229725 went 395 wanim idle t 0.025
+SRVPROBE st 230625 ps clip 8 ammo 188 vma 2 chg 0
+SRVPROBE st 230650 ps clip 7 ammo 188 vma 2 chg 0
+SRVPROBE st 230650 went 395 wanim fire t 0.025
+SRVPROBE st 230800 went 395 wanim idle t 0.025
+SRVPROBE st 230975 ps clip 6 ammo 188 vma 2 chg 0
+SRVPROBE st 230975 went 395 wanim fire t 0.025
+SRVPROBE st 231125 went 395 wanim idle t 0.025
+SRVPROBE st 231325 ps clip 5 ammo 188 vma 2 chg 0
+SRVPROBE st 231325 went 395 wanim fire t 0.025
+SRVPROBE st 231475 went 395 wanim idle t 0.025
+SRVPROBE st 231700 ps clip 4 ammo 188 vma 2 chg 0
+SRVPROBE st 231700 went 395 wanim fire t 0.025
+SRVPROBE st 231850 went 395 wanim idle t 0.025
+SRVPROBE st 232075 ps clip 3 ammo 188 vma 2 chg 0
+SRVPROBE st 232075 went 395 wanim fire t 0.025
+SRVPROBE st 232225 went 395 wanim idle t 0.025
+SRVPROBE st 232400 ps clip 2 ammo 188 vma 2 chg 0
+SRVPROBE st 232400 went 395 wanim fire t 0.025
+SRVPROBE st 232550 went 395 wanim idle t 0.025
+SRVPROBE st 232775 ps clip 1 ammo 188 vma 2 chg 0
+SRVPROBE st 232775 went 395 wanim fire t 0.025
+SRVPROBE st 232925 went 395 wanim idle t 0.025
+SRVPROBE st 233100 ps clip 0 ammo 188 vma 2 chg 0
+SRVPROBE st 233100 went 395 wanim fire t 0.025
+SRVPROBE st 233250 went 395 wanim idle t 0.025
+SRVPROBE st 233275 ps clip 0 ammo 188 vma 6 chg 1
+SRVPROBE st 233275 went 395 wanim reload t 0.000
+SRVPROBE st 233275 went 398 wanim idle t 0.000
+SRVPROBE st 234125 ps clip 8 ammo 180 vma 6 chg 1
+SRVPROBE st 234775 went 395 wanim idle t 0.025
+SRVPROBE st 235675 ps clip 8 ammo 180 vma 2 chg 3
+^~^~^ DED end rel tt33silenced ads
+SRVPROBE st 238950 ps clip 8 ammo 180 vma 1 chg 0
+SRVPROBE st 241325 ps clip 8 ammo 200 vma 1 chg 0
+SRVPROBE st 241625 ps clip 8 ammo 200 vma 10 chg 1
+SRVPROBE st 242200 ps clip 7 ammo 200 vma 9 chg 3
+SRVPROBE st 242675 ps clip 7 ammo 200 vma 1 chg 0
+^~^~^ DED begin rel colt45 hip
+SRVPROBE st 245550 ps clip 6 ammo 200 vma 3 chg 1
+SRVPROBE st 245550 went 379 wanim fire t 0.025
+SRVPROBE st 245650 went 379 wanim idle t 0.000
+SRVPROBE st 245725 ps clip 6 ammo 200 vma 1 chg 2
+SRVPROBE st 245750 ps clip 5 ammo 200 vma 3 chg 3
+SRVPROBE st 245750 went 379 wanim fire t 0.025
+SRVPROBE st 245850 went 379 wanim idle t 0.000
+SRVPROBE st 245925 ps clip 4 ammo 200 vma 3 chg 1
+SRVPROBE st 245925 went 379 wanim fire t 0.025
+SRVPROBE st 246025 went 379 wanim idle t 0.000
+SRVPROBE st 246075 ps clip 3 ammo 200 vma 3 chg 2
+SRVPROBE st 246075 went 379 wanim fire t 0.025
+SRVPROBE st 246175 went 379 wanim idle t 0.000
+SRVPROBE st 246225 ps clip 2 ammo 200 vma 3 chg 3
+SRVPROBE st 246225 went 379 wanim fire t 0.025
+SRVPROBE st 246325 went 379 wanim idle t 0.000
+SRVPROBE st 246400 ps clip 2 ammo 200 vma 1 chg 0
+SRVPROBE st 246425 ps clip 1 ammo 200 vma 3 chg 1
+SRVPROBE st 246425 went 379 wanim fire t 0.025
+SRVPROBE st 246525 went 379 wanim idle t 0.000
+SRVPROBE st 246575 ps clip 0 ammo 200 vma 3 chg 2
+SRVPROBE st 246575 went 379 wanim fire_empty t 0.000
+SRVPROBE st 246600 went 379 wanim idle_empty t 0.000
+SRVPROBE st 246750 ps clip 0 ammo 200 vma 6 chg 0
+SRVPROBE st 246750 went 379 wanim reload t 0.000
+SRVPROBE st 246750 went 398 wanim idle t 0.000
+SRVPROBE st 247600 ps clip 7 ammo 193 vma 6 chg 0
+^~^~^ DED reloadcmd
+SRVPROBE st 249150 ps clip 6 ammo 193 vma 3 chg 2
+SRVPROBE st 249150 went 379 wanim fire t 0.025
+SRVPROBE st 249250 went 379 wanim idle t 0.000
+SRVPROBE st 249325 ps clip 6 ammo 193 vma 1 chg 3
+SRVPROBE st 249375 ps clip 5 ammo 193 vma 3 chg 0
+SRVPROBE st 249375 went 379 wanim fire t 0.025
+SRVPROBE st 249475 went 379 wanim idle t 0.000
+SRVPROBE st 249550 ps clip 4 ammo 193 vma 3 chg 2
+SRVPROBE st 249550 went 379 wanim fire t 0.025
+SRVPROBE st 249650 went 379 wanim idle t 0.000
+SRVPROBE st 249700 ps clip 3 ammo 193 vma 3 chg 3
+SRVPROBE st 249700 went 379 wanim fire t 0.025
+SRVPROBE st 249800 went 379 wanim idle t 0.000
+SRVPROBE st 249875 ps clip 3 ammo 193 vma 1 chg 0
+SRVPROBE st 249925 ps clip 2 ammo 193 vma 3 chg 1
+SRVPROBE st 249925 went 379 wanim fire t 0.025
+SRVPROBE st 250025 went 379 wanim idle t 0.000
+SRVPROBE st 250075 ps clip 1 ammo 193 vma 3 chg 2
+SRVPROBE st 250075 went 379 wanim fire t 0.025
+SRVPROBE st 250175 went 379 wanim idle t 0.000
+SRVPROBE st 250225 ps clip 0 ammo 193 vma 3 chg 3
+SRVPROBE st 250225 went 379 wanim fire_empty t 0.000
+SRVPROBE st 250250 went 379 wanim idle_empty t 0.000
+SRVPROBE st 250400 ps clip 0 ammo 193 vma 6 chg 1
+SRVPROBE st 250400 went 379 wanim reload t 0.000
+SRVPROBE st 250400 went 398 wanim idle t 0.000
+SRVPROBE st 251250 ps clip 7 ammo 186 vma 6 chg 1
+SRVPROBE st 252800 ps clip 7 ammo 186 vma 1 chg 2
+SRVPROBE st 252800 went 379 wanim idle t 0.000
+SRVPROBE st 252825 ps clip 6 ammo 186 vma 3 chg 3
+SRVPROBE st 252825 went 379 wanim fire t 0.025
+SRVPROBE st 252925 went 379 wanim idle t 0.000
+SRVPROBE st 252975 ps clip 5 ammo 186 vma 3 chg 0
+SRVPROBE st 252975 went 379 wanim fire t 0.025
+SRVPROBE st 253075 went 379 wanim idle t 0.000
+SRVPROBE st 253150 ps clip 4 ammo 186 vma 3 chg 2
+SRVPROBE st 253150 went 379 wanim fire t 0.025
+SRVPROBE st 253250 went 379 wanim idle t 0.000
+SRVPROBE st 253300 ps clip 3 ammo 186 vma 3 chg 3
+SRVPROBE st 253300 went 379 wanim fire t 0.025
+SRVPROBE st 253400 went 379 wanim idle t 0.000
+SRVPROBE st 253450 ps clip 2 ammo 186 vma 3 chg 0
+SRVPROBE st 253450 went 379 wanim fire t 0.025
+SRVPROBE st 253550 went 379 wanim idle t 0.000
+SRVPROBE st 253625 ps clip 2 ammo 186 vma 1 chg 1
+SRVPROBE st 253650 ps clip 1 ammo 186 vma 3 chg 2
+SRVPROBE st 253650 went 379 wanim fire t 0.025
+SRVPROBE st 253750 went 379 wanim idle t 0.000
+SRVPROBE st 253800 ps clip 0 ammo 186 vma 3 chg 3
+SRVPROBE st 253800 went 379 wanim fire_empty t 0.000
+SRVPROBE st 253825 went 379 wanim idle_empty t 0.000
+SRVPROBE st 253975 ps clip 0 ammo 186 vma 6 chg 1
+SRVPROBE st 253975 went 379 wanim reload t 0.000
+SRVPROBE st 253975 went 398 wanim idle t 0.000
+SRVPROBE st 254825 ps clip 7 ammo 179 vma 6 chg 1
+SRVPROBE st 256375 ps clip 6 ammo 179 vma 3 chg 3
+SRVPROBE st 256375 went 379 wanim fire t 0.025
+SRVPROBE st 256475 went 379 wanim idle t 0.000
+SRVPROBE st 256550 ps clip 6 ammo 179 vma 1 chg 0
+SRVPROBE st 256575 ps clip 5 ammo 179 vma 3 chg 1
+SRVPROBE st 256575 went 379 wanim fire t 0.025
+SRVPROBE st 256675 went 379 wanim idle t 0.000
+SRVPROBE st 256750 ps clip 4 ammo 179 vma 3 chg 3
+SRVPROBE st 256750 went 379 wanim fire t 0.025
+SRVPROBE st 256850 went 379 wanim idle t 0.000
+SRVPROBE st 256900 ps clip 3 ammo 179 vma 3 chg 0
+SRVPROBE st 256900 went 379 wanim fire t 0.025
+SRVPROBE st 257000 went 379 wanim idle t 0.000
+SRVPROBE st 257050 ps clip 2 ammo 179 vma 3 chg 1
+SRVPROBE st 257050 went 379 wanim fire t 0.025
+SRVPROBE st 257150 went 379 wanim idle t 0.000
+SRVPROBE st 257225 ps clip 2 ammo 179 vma 1 chg 2
+SRVPROBE st 257250 ps clip 1 ammo 179 vma 3 chg 3
+SRVPROBE st 257250 went 379 wanim fire t 0.025
+SRVPROBE st 257350 went 379 wanim idle t 0.000
+SRVPROBE st 257400 ps clip 0 ammo 179 vma 3 chg 0
+SRVPROBE st 257400 went 379 wanim fire_empty t 0.000
+SRVPROBE st 257425 went 379 wanim idle_empty t 0.000
+SRVPROBE st 257575 ps clip 0 ammo 179 vma 6 chg 2
+SRVPROBE st 257575 went 379 wanim reload t 0.000
+SRVPROBE st 257575 went 398 wanim idle t 0.000
+SRVPROBE st 258425 ps clip 7 ammo 172 vma 6 chg 2
+SRVPROBE st 259975 ps clip 7 ammo 172 vma 1 chg 3
+SRVPROBE st 259975 went 379 wanim idle t 0.000
+^~^~^ DED end rel colt45 hip
+SRVPROBE st 266300 ps clip 7 ammo 200 vma 1 chg 3
+^~^~^ DED begin rel colt45 ads
+SRVPROBE st 270500 ps clip 7 ammo 200 vma 2 chg 0
+SRVPROBE st 272000 ps clip 6 ammo 200 vma 2 chg 0
+SRVPROBE st 272000 went 379 wanim fire t 0.025
+SRVPROBE st 272100 went 379 wanim idle t 0.000
+SRVPROBE st 272150 ps clip 5 ammo 200 vma 2 chg 0
+SRVPROBE st 272150 went 379 wanim fire t 0.025
+SRVPROBE st 272250 went 379 wanim idle t 0.000
+SRVPROBE st 272300 ps clip 4 ammo 200 vma 2 chg 0
+SRVPROBE st 272300 went 379 wanim fire t 0.025
+SRVPROBE st 272400 went 379 wanim idle t 0.000
+SRVPROBE st 272450 ps clip 3 ammo 200 vma 2 chg 0
+SRVPROBE st 272450 went 379 wanim fire t 0.025
+SRVPROBE st 272550 went 379 wanim idle t 0.000
+SRVPROBE st 272600 ps clip 2 ammo 200 vma 2 chg 0
+SRVPROBE st 272600 went 379 wanim fire t 0.025
+SRVPROBE st 272700 went 379 wanim idle t 0.000
+SRVPROBE st 272750 ps clip 1 ammo 200 vma 2 chg 0
+SRVPROBE st 272750 went 379 wanim fire t 0.025
+SRVPROBE st 272850 went 379 wanim idle t 0.000
+SRVPROBE st 272900 ps clip 0 ammo 200 vma 2 chg 0
+SRVPROBE st 272900 went 379 wanim fire_empty t 0.000
+SRVPROBE st 272925 went 379 wanim idle_empty t 0.000
+SRVPROBE st 273075 ps clip 0 ammo 200 vma 6 chg 1
+SRVPROBE st 273075 went 379 wanim reload t 0.000
+SRVPROBE st 273075 went 398 wanim idle t 0.000
+SRVPROBE st 273925 ps clip 7 ammo 193 vma 6 chg 1
+^~^~^ DED reloadcmd
+SRVPROBE st 275475 ps clip 7 ammo 193 vma 2 chg 3
+SRVPROBE st 275475 went 379 wanim idle t 0.000
+SRVPROBE st 275550 ps clip 6 ammo 193 vma 2 chg 3
+SRVPROBE st 275550 went 379 wanim fire t 0.025
+SRVPROBE st 275650 went 379 wanim idle t 0.000
+SRVPROBE st 275775 ps clip 5 ammo 193 vma 2 chg 3
+SRVPROBE st 275775 went 379 wanim fire t 0.025
+SRVPROBE st 275875 went 379 wanim idle t 0.000
+SRVPROBE st 275975 ps clip 4 ammo 193 vma 2 chg 3
+SRVPROBE st 275975 went 379 wanim fire t 0.025
+SRVPROBE st 276075 went 379 wanim idle t 0.000
+SRVPROBE st 276125 ps clip 3 ammo 193 vma 2 chg 3
+SRVPROBE st 276125 went 379 wanim fire t 0.025
+SRVPROBE st 276225 went 379 wanim idle t 0.000
+SRVPROBE st 276350 ps clip 2 ammo 193 vma 2 chg 3
+SRVPROBE st 276350 went 379 wanim fire t 0.025
+SRVPROBE st 276450 went 379 wanim idle t 0.000
+SRVPROBE st 276575 ps clip 1 ammo 193 vma 2 chg 3
+SRVPROBE st 276575 went 379 wanim fire t 0.025
+SRVPROBE st 276675 went 379 wanim idle t 0.000
+SRVPROBE st 276725 ps clip 0 ammo 193 vma 2 chg 3
+SRVPROBE st 276725 went 379 wanim fire_empty t 0.000
+SRVPROBE st 276750 went 379 wanim idle_empty t 0.000
+SRVPROBE st 276900 ps clip 0 ammo 193 vma 6 chg 0
+SRVPROBE st 276900 went 379 wanim reload t 0.000
+SRVPROBE st 276900 went 398 wanim idle t 0.000
+SRVPROBE st 277750 ps clip 7 ammo 186 vma 6 chg 0
+SRVPROBE st 279300 ps clip 7 ammo 186 vma 2 chg 2
+SRVPROBE st 279300 went 379 wanim idle t 0.000
+SRVPROBE st 279350 ps clip 6 ammo 186 vma 2 chg 2
+SRVPROBE st 279350 went 379 wanim fire t 0.025
+SRVPROBE st 279450 went 379 wanim idle t 0.000
+SRVPROBE st 279550 ps clip 5 ammo 186 vma 2 chg 2
+SRVPROBE st 279550 went 379 wanim fire t 0.025
+SRVPROBE st 279650 went 379 wanim idle t 0.000
+SRVPROBE st 279700 ps clip 4 ammo 186 vma 2 chg 2
+SRVPROBE st 279700 went 379 wanim fire t 0.025
+SRVPROBE st 279800 went 379 wanim idle t 0.000
+SRVPROBE st 279850 ps clip 3 ammo 186 vma 2 chg 2
+SRVPROBE st 279850 went 379 wanim fire t 0.025
+SRVPROBE st 279950 went 379 wanim idle t 0.000
+SRVPROBE st 280025 ps clip 2 ammo 186 vma 2 chg 2
+SRVPROBE st 280025 went 379 wanim fire t 0.025
+SRVPROBE st 280125 went 379 wanim idle t 0.000
+SRVPROBE st 280225 ps clip 1 ammo 186 vma 2 chg 2
+SRVPROBE st 280225 went 379 wanim fire t 0.025
+SRVPROBE st 280325 went 379 wanim idle t 0.000
+SRVPROBE st 280400 ps clip 0 ammo 186 vma 2 chg 2
+SRVPROBE st 280400 went 379 wanim fire_empty t 0.000
+SRVPROBE st 280425 went 379 wanim idle_empty t 0.000
+SRVPROBE st 280575 ps clip 0 ammo 186 vma 6 chg 3
+SRVPROBE st 280575 went 379 wanim reload t 0.000
+SRVPROBE st 280575 went 398 wanim idle t 0.000
+SRVPROBE st 281425 ps clip 7 ammo 179 vma 6 chg 3
+SRVPROBE st 282975 ps clip 7 ammo 179 vma 2 chg 1
+SRVPROBE st 282975 went 379 wanim idle t 0.000
+SRVPROBE st 283025 ps clip 6 ammo 179 vma 2 chg 1
+SRVPROBE st 283025 went 379 wanim fire t 0.025
+SRVPROBE st 283125 went 379 wanim idle t 0.000
+SRVPROBE st 283175 ps clip 5 ammo 179 vma 2 chg 1
+SRVPROBE st 283175 went 379 wanim fire t 0.025
+SRVPROBE st 283275 went 379 wanim idle t 0.000
+SRVPROBE st 283375 ps clip 4 ammo 179 vma 2 chg 1
+SRVPROBE st 283375 went 379 wanim fire t 0.025
+SRVPROBE st 283475 went 379 wanim idle t 0.000
+SRVPROBE st 283525 ps clip 3 ammo 179 vma 2 chg 1
+SRVPROBE st 283525 went 379 wanim fire t 0.025
+SRVPROBE st 283625 went 379 wanim idle t 0.000
+SRVPROBE st 283675 ps clip 2 ammo 179 vma 2 chg 1
+SRVPROBE st 283675 went 379 wanim fire t 0.025
+SRVPROBE st 283775 went 379 wanim idle t 0.000
+SRVPROBE st 283900 ps clip 1 ammo 179 vma 2 chg 1
+SRVPROBE st 283900 went 379 wanim fire t 0.025
+SRVPROBE st 284000 went 379 wanim idle t 0.000
+SRVPROBE st 284050 ps clip 0 ammo 179 vma 2 chg 1
+SRVPROBE st 284050 went 379 wanim fire_empty t 0.000
+SRVPROBE st 284075 went 379 wanim idle_empty t 0.000
+SRVPROBE st 284225 ps clip 0 ammo 179 vma 6 chg 2
+SRVPROBE st 284225 went 379 wanim reload t 0.000
+SRVPROBE st 284225 went 398 wanim idle t 0.000
+SRVPROBE st 285075 ps clip 7 ammo 172 vma 6 chg 2
+SRVPROBE st 286625 ps clip 7 ammo 172 vma 2 chg 0
+SRVPROBE st 286625 went 379 wanim idle t 0.000
+^~^~^ DED end rel colt45 ads
+SRVPROBE st 290500 ps clip 7 ammo 172 vma 1 chg 1
+SRVPROBE st 292875 ps clip 7 ammo 200 vma 1 chg 1
+SRVPROBE st 293175 ps clip 7 ammo 200 vma 10 chg 2
+SRVPROBE st 293750 ps clip 8 ammo 200 vma 9 chg 0
+SRVPROBE st 293750 went 398 wanim idle t 0.000
+SRVPROBE st 294225 ps clip 8 ammo 200 vma 1 chg 1
+^~^~^ DED begin rel p38 hip
+SRVPROBE st 297125 ps clip 7 ammo 200 vma 3 chg 2
+SRVPROBE st 297125 went 398 wanim fire t 0.025
+SRVPROBE st 297300 ps clip 7 ammo 200 vma 1 chg 3
+SRVPROBE st 297350 ps clip 6 ammo 200 vma 3 chg 0
+SRVPROBE st 297350 went 398 wanim fire t 0.025
+SRVPROBE st 297525 ps clip 5 ammo 200 vma 3 chg 2
+SRVPROBE st 297525 went 398 wanim fire t 0.025
+SRVPROBE st 297700 ps clip 5 ammo 200 vma 1 chg 3
+SRVPROBE st 297750 ps clip 4 ammo 200 vma 3 chg 0
+SRVPROBE st 297750 went 398 wanim fire t 0.025
+SRVPROBE st 297925 ps clip 4 ammo 200 vma 1 chg 1
+SRVPROBE st 297975 ps clip 3 ammo 200 vma 3 chg 2
+SRVPROBE st 297975 went 398 wanim fire t 0.025
+SRVPROBE st 298150 ps clip 3 ammo 200 vma 1 chg 3
+SRVPROBE st 298200 ps clip 2 ammo 200 vma 3 chg 0
+SRVPROBE st 298200 went 398 wanim fire t 0.025
+SRVPROBE st 298375 ps clip 2 ammo 200 vma 1 chg 1
+SRVPROBE st 299200 went 398 wanim idle t 0.025
+^~^~^ DED reloadcmd
+SRVPROBE st 299450 ps clip 2 ammo 200 vma 6 chg 2
+SRVPROBE st 299450 went 398 wanim reload t 0.000
+SRVPROBE st 299450 went 400 wanim idle t 0.000
+SRVPROBE st 300300 ps clip 8 ammo 194 vma 6 chg 2
+SRVPROBE st 301850 ps clip 7 ammo 194 vma 3 chg 0
+SRVPROBE st 301850 went 398 wanim fire t 0.025
+SRVPROBE st 302025 ps clip 7 ammo 194 vma 1 chg 1
+SRVPROBE st 302075 ps clip 6 ammo 194 vma 3 chg 2
+SRVPROBE st 302075 went 398 wanim fire t 0.025
+SRVPROBE st 302250 ps clip 6 ammo 194 vma 1 chg 3
+SRVPROBE st 302275 ps clip 5 ammo 194 vma 3 chg 0
+SRVPROBE st 302275 went 398 wanim fire t 0.025
+SRVPROBE st 302450 ps clip 5 ammo 194 vma 1 chg 1
+SRVPROBE st 302475 ps clip 4 ammo 194 vma 3 chg 2
+SRVPROBE st 302475 went 398 wanim fire t 0.025
+SRVPROBE st 302650 ps clip 3 ammo 194 vma 3 chg 0
+SRVPROBE st 302650 went 398 wanim fire t 0.025
+SRVPROBE st 302825 ps clip 3 ammo 194 vma 1 chg 1
+SRVPROBE st 302875 ps clip 2 ammo 194 vma 3 chg 2
+SRVPROBE st 302875 went 398 wanim fire t 0.025
+SRVPROBE st 303050 ps clip 1 ammo 194 vma 3 chg 0
+SRVPROBE st 303050 went 398 wanim fire t 0.025
+SRVPROBE st 303200 ps clip 0 ammo 194 vma 3 chg 1
+SRVPROBE st 303200 went 398 wanim fire t 0.025
+SRVPROBE st 303375 ps clip 0 ammo 194 vma 6 chg 3
+SRVPROBE st 303375 went 398 wanim reload t 0.000
+SRVPROBE st 303375 went 400 wanim idle t 0.000
+SRVPROBE st 304225 ps clip 8 ammo 186 vma 6 chg 3
+SRVPROBE st 305775 ps clip 7 ammo 186 vma 3 chg 1
+SRVPROBE st 305775 went 398 wanim fire t 0.025
+SRVPROBE st 305950 ps clip 6 ammo 186 vma 3 chg 3
+SRVPROBE st 305950 went 398 wanim fire t 0.025
+SRVPROBE st 306125 ps clip 6 ammo 186 vma 1 chg 0
+SRVPROBE st 306200 ps clip 5 ammo 186 vma 3 chg 1
+SRVPROBE st 306200 went 398 wanim fire t 0.025
+SRVPROBE st 306375 ps clip 5 ammo 186 vma 1 chg 2
+SRVPROBE st 306400 ps clip 4 ammo 186 vma 3 chg 3
+SRVPROBE st 306400 went 398 wanim fire t 0.025
+SRVPROBE st 306575 ps clip 4 ammo 186 vma 1 chg 0
+SRVPROBE st 306600 ps clip 3 ammo 186 vma 3 chg 1
+SRVPROBE st 306600 went 398 wanim fire t 0.025
+SRVPROBE st 306775 ps clip 3 ammo 186 vma 1 chg 2
+SRVPROBE st 306800 ps clip 2 ammo 186 vma 3 chg 3
+SRVPROBE st 306800 went 398 wanim fire t 0.025
+SRVPROBE st 306950 ps clip 1 ammo 186 vma 3 chg 0
+SRVPROBE st 306950 went 398 wanim fire t 0.025
+SRVPROBE st 307125 ps clip 1 ammo 186 vma 1 chg 1
+SRVPROBE st 307150 ps clip 0 ammo 186 vma 3 chg 2
+SRVPROBE st 307150 went 398 wanim fire t 0.025
+SRVPROBE st 307325 ps clip 0 ammo 186 vma 6 chg 0
+SRVPROBE st 307325 went 398 wanim reload t 0.000
+SRVPROBE st 307325 went 400 wanim idle t 0.000
+SRVPROBE st 308175 ps clip 8 ammo 178 vma 6 chg 0
+SRVPROBE st 309725 ps clip 8 ammo 178 vma 1 chg 1
+SRVPROBE st 309725 went 398 wanim idle t 0.025
+SRVPROBE st 309800 ps clip 7 ammo 178 vma 3 chg 2
+SRVPROBE st 309800 went 398 wanim fire t 0.025
+SRVPROBE st 309950 ps clip 6 ammo 178 vma 3 chg 3
+SRVPROBE st 309950 went 398 wanim fire t 0.025
+SRVPROBE st 310125 ps clip 6 ammo 178 vma 1 chg 0
+SRVPROBE st 310150 ps clip 5 ammo 178 vma 3 chg 1
+SRVPROBE st 310150 went 398 wanim fire t 0.025
+SRVPROBE st 310325 ps clip 5 ammo 178 vma 1 chg 2
+SRVPROBE st 310375 ps clip 4 ammo 178 vma 3 chg 3
+SRVPROBE st 310375 went 398 wanim fire t 0.025
+SRVPROBE st 310550 ps clip 3 ammo 178 vma 3 chg 1
+SRVPROBE st 310550 went 398 wanim fire t 0.025
+SRVPROBE st 310725 ps clip 2 ammo 178 vma 3 chg 3
+SRVPROBE st 310725 went 398 wanim fire t 0.025
+SRVPROBE st 310900 ps clip 2 ammo 178 vma 1 chg 0
+SRVPROBE st 310950 ps clip 1 ammo 178 vma 3 chg 1
+SRVPROBE st 310950 went 398 wanim fire t 0.025
+SRVPROBE st 311125 ps clip 1 ammo 178 vma 1 chg 2
+SRVPROBE st 311950 went 398 wanim idle t 0.025
+^~^~^ DED end rel p38 hip
+SRVPROBE st 317450 ps clip 1 ammo 200 vma 1 chg 2
+^~^~^ DED begin rel p38 ads
+SRVPROBE st 321700 ps clip 1 ammo 200 vma 2 chg 3
+SRVPROBE st 323200 ps clip 0 ammo 200 vma 2 chg 3
+SRVPROBE st 323200 went 398 wanim fire t 0.025
+SRVPROBE st 323375 ps clip 0 ammo 200 vma 6 chg 0
+SRVPROBE st 323375 went 398 wanim reload t 0.000
+SRVPROBE st 323375 went 400 wanim idle t 0.000
+SRVPROBE st 324225 ps clip 8 ammo 192 vma 6 chg 0
+^~^~^ DED reloadcmd
+SRVPROBE st 325775 ps clip 7 ammo 192 vma 3 chg 2
+SRVPROBE st 325775 went 398 wanim fire t 0.025
+SRVPROBE st 325950 ps clip 6 ammo 192 vma 3 chg 0
+SRVPROBE st 325950 went 398 wanim fire t 0.025
+SRVPROBE st 326125 ps clip 6 ammo 192 vma 2 chg 2
+SRVPROBE st 326150 ps clip 5 ammo 192 vma 2 chg 2
+SRVPROBE st 326150 went 398 wanim fire t 0.025
+SRVPROBE st 326375 ps clip 4 ammo 192 vma 2 chg 2
+SRVPROBE st 326375 went 398 wanim fire t 0.025
+SRVPROBE st 326575 ps clip 3 ammo 192 vma 2 chg 2
+SRVPROBE st 326575 went 398 wanim fire t 0.025
+SRVPROBE st 326800 ps clip 2 ammo 192 vma 2 chg 2
+SRVPROBE st 326800 went 398 wanim fire t 0.025
+SRVPROBE st 326950 ps clip 1 ammo 192 vma 2 chg 2
+SRVPROBE st 326950 went 398 wanim fire t 0.025
+SRVPROBE st 327175 ps clip 0 ammo 192 vma 2 chg 2
+SRVPROBE st 327175 went 398 wanim fire t 0.025
+SRVPROBE st 327350 ps clip 0 ammo 192 vma 6 chg 3
+SRVPROBE st 327350 went 398 wanim reload t 0.000
+SRVPROBE st 327350 went 400 wanim idle t 0.000
+SRVPROBE st 328200 ps clip 8 ammo 184 vma 6 chg 3
+SRVPROBE st 329750 ps clip 8 ammo 184 vma 2 chg 1
+SRVPROBE st 329750 went 398 wanim idle t 0.025
+SRVPROBE st 329800 ps clip 7 ammo 184 vma 2 chg 1
+SRVPROBE st 329800 went 398 wanim fire t 0.025
+SRVPROBE st 329950 ps clip 6 ammo 184 vma 2 chg 1
+SRVPROBE st 329950 went 398 wanim fire t 0.025
+SRVPROBE st 330150 ps clip 5 ammo 184 vma 2 chg 1
+SRVPROBE st 330150 went 398 wanim fire t 0.025
+SRVPROBE st 330375 ps clip 4 ammo 184 vma 2 chg 1
+SRVPROBE st 330375 went 398 wanim fire t 0.025
+SRVPROBE st 330600 ps clip 3 ammo 184 vma 2 chg 1
+SRVPROBE st 330600 went 398 wanim fire t 0.025
+SRVPROBE st 330825 ps clip 2 ammo 184 vma 2 chg 1
+SRVPROBE st 330825 went 398 wanim fire t 0.025
+SRVPROBE st 331050 ps clip 1 ammo 184 vma 2 chg 1
+SRVPROBE st 331050 went 398 wanim fire t 0.025
+SRVPROBE st 331250 ps clip 0 ammo 184 vma 2 chg 1
+SRVPROBE st 331250 went 398 wanim fire t 0.025
+SRVPROBE st 331425 ps clip 0 ammo 184 vma 6 chg 2
+SRVPROBE st 331425 went 398 wanim reload t 0.000
+SRVPROBE st 331425 went 400 wanim idle t 0.000
+SRVPROBE st 332275 ps clip 8 ammo 176 vma 6 chg 2
+SRVPROBE st 333825 ps clip 7 ammo 176 vma 3 chg 0
+SRVPROBE st 333825 went 398 wanim fire t 0.025
+SRVPROBE st 334000 ps clip 7 ammo 176 vma 2 chg 2
+SRVPROBE st 334025 ps clip 6 ammo 176 vma 2 chg 2
+SRVPROBE st 334025 went 398 wanim fire t 0.025
+SRVPROBE st 334200 ps clip 5 ammo 176 vma 2 chg 2
+SRVPROBE st 334200 went 398 wanim fire t 0.025
+SRVPROBE st 334425 ps clip 4 ammo 176 vma 2 chg 2
+SRVPROBE st 334425 went 398 wanim fire t 0.025
+SRVPROBE st 334575 ps clip 3 ammo 176 vma 2 chg 2
+SRVPROBE st 334575 went 398 wanim fire t 0.025
+SRVPROBE st 334800 ps clip 2 ammo 176 vma 2 chg 2
+SRVPROBE st 334800 went 398 wanim fire t 0.025
+SRVPROBE st 334975 ps clip 1 ammo 176 vma 2 chg 2
+SRVPROBE st 334975 went 398 wanim fire t 0.025
+SRVPROBE st 335200 ps clip 0 ammo 176 vma 2 chg 2
+SRVPROBE st 335200 went 398 wanim fire t 0.025
+SRVPROBE st 335375 ps clip 0 ammo 176 vma 6 chg 3
+SRVPROBE st 335375 went 398 wanim reload t 0.000
+SRVPROBE st 335375 went 400 wanim idle t 0.000
+SRVPROBE st 336225 ps clip 8 ammo 168 vma 6 chg 3
+SRVPROBE st 337775 ps clip 8 ammo 168 vma 2 chg 1
+SRVPROBE st 337775 went 398 wanim idle t 0.025
+^~^~^ DED end rel p38 ads
+SRVPROBE st 341500 ps clip 8 ammo 168 vma 1 chg 2

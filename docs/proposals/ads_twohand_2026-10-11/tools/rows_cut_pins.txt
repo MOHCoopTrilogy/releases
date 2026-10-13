@@ -1,0 +1,2 @@
+	//===================== HZM coop SHIP CUT 2026-10-13: guns held out keep their released aim pose (their prefix row now is the two-handed pose) =====================
+	coopr_mauser_c96_charge			viewmodel/p38pose00.skc			crossblend 0.3

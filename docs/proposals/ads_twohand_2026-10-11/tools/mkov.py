@@ -7,6 +7,7 @@ asserted (a silently missing row would test the old pose).
 """
 import sys, os, re, zipfile
 HERE = os.path.dirname(os.path.abspath(__file__))
+STAGE = os.environ.get('MKOV_STAGE') or os.path.join(HERE, 'stage')      # shipcut.py points this at its filtered copy
 FX = r"C:\mohaa-coop-dev\docs\tools\assets\fixes\models\player\base\fps_anims_pistol.txt"
 
 
@@ -62,10 +63,10 @@ def main():
         import shutil
         d = os.path.join(emit, 'models', 'player', 'base'); os.makedirs(d, exist_ok=True)
         open(os.path.join(d, 'fps_anims_pistol.txt'), 'wb').write(txt.encode('latin-1'))
-        for dd, _, fs in os.walk(os.path.join(HERE, 'stage')):
+        for dd, _, fs in os.walk(STAGE):
             for f in fs:
                 src = os.path.join(dd, f)
-                dst = os.path.join(emit, os.path.relpath(src, os.path.join(HERE, 'stage')))
+                dst = os.path.join(emit, os.path.relpath(src, STAGE))
                 os.makedirs(os.path.dirname(dst), exist_ok=True); shutil.copyfile(src, dst)
         print('emitted staged tree to', emit)
     n = 0
@@ -74,7 +75,7 @@ def main():
         for i in b.infolist():
             z.writestr(i.filename, b.read(i.filename))
         z.writestr('models/player/base/fps_anims_pistol.txt', txt.encode('latin-1'))
-        root = os.path.join(HERE, 'stage')
+        root = STAGE
         for d, _, fs in os.walk(root):
             for f in fs:
                 p = os.path.join(d, f)

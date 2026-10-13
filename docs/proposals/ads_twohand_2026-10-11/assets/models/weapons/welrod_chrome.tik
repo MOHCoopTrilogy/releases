@@ -131,7 +131,7 @@ animations
 			entry sound P38_snd_reload item
 		}
 	}
-	reload 	 coop_welrod_reload_hip.skc
+	reload 	 welrod_pistol_reload.skc
 	{
 		server
 		{
@@ -263,7 +263,7 @@ animations
 			)
 		}
 	}
-	fire     coop_welrod_fire_hip.skc
+	fire     welrod_pistol_fire.skc
 	{
 		server
 		{

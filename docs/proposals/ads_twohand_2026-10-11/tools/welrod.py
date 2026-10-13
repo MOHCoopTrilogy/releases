@@ -135,7 +135,7 @@ QCOL = os.environ.get('WEL_QCOL', '0') == '1'      # the engine applies a bone q
 def build_gun(root):
     tmpl = p12.rd(DIR + '/welrod_pistol_reload.skc')
     kc = dict(CYC)
-    clips = dict(fire=gun_clip(root, 'coop_welrod_fire_hip.skc', 26, None, tmpl), fire_ads=gun_clip(root, 'coop_welrod_fire_ads.skc', 26, kc, tmpl),
+    clips = dict(fire_ads=gun_clip(root, 'coop_welrod_fire_ads.skc', 26, kc, tmpl),
                  reload=gun_clip(root, 'coop_welrod_reload_hip.skc', p12.N, None, tmpl),
                  reload_ads_empty=gun_clip(root, 'coop_welrod_reload_ads_empty.skc', p12.N, REL, tmpl))
     clips['reload_ads_loaded'] = clips['reload']
@@ -144,7 +144,7 @@ def build_gun(root):
     for stem, tx in p12.tiks_for(g):
         nl = '\r\n' if '\r\n' in tx else '\n'
         s = tx.replace('\r\n', '\n')
-        s = p12.patch_tik(stem, s, {k: clips[k] for k in ('reload', 'reload_ads_loaded', 'reload_ads_empty')},
+        s = p12.patch_tik(stem, s, {k: clips[k] for k in ('reload_ads_loaded', 'reload_ads_empty')},      # `reload` = the server's row: as released (bug-3736)
                           'shown by the cgame instead of `reload` while aiming; the bolt is cycled when the gun was empty')
         mm = re.search(r'(?m)^(\s*)fire(\s+)welrod_pistol_fire\.skc[^\n]*\n', s)
         assert mm, stem
@@ -157,7 +157,7 @@ def build_gun(root):
         blk = '%sfire_ads%s%s\n%s%s\n' % (mm.group(1), mm.group(2), clips['fire_ads'], mm.group(1), s[i:j])
         blk = re.sub(r'commanddelay\s+0\.1(\s+tagspawn\s+tag_eject)', r'commanddelay %.2f\1' % ((CYC['pull'][0] + 1) / 30.0), blk)   # the case leaves when the bolt is pulled
         s = (s[:mm.start()] + '%s// HZM coop [aimed bolt cycle, pistol lane 2026-10-12] shown by the cgame instead of `fire` while aiming: the bolt is worked\n' % mm.group(1)
-             + blk + '%sfire%s%s\n' % (mm.group(1), mm.group(2), clips['fire']) + s[mm.end():])
+             + blk + s[mm.start():mm.end()] + s[mm.end():])                                  # `fire` = the server's row: as released (bug-3736)
         p12.depth_ok(s, stem)
         p12.write_tik(root, stem, s, nl)
         nt.append(stem)

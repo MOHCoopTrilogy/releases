@@ -1,0 +1,101 @@
+info  models/weapons/LugerP08.tik: new idle_empty (coop_luger_idle_empty.skc) - an idle, no done event
+info  models/weapons/berettasilenced.tik: new idle_empty (coop_berettas_idle_empty.skc) - an idle, no done event
+info  models/weapons/lugerp08silenced.tik: new idle_empty (coop_luger_idle_empty.skc) - an idle, no done event
+info  models/weapons/nambu.tik: new idle_empty (coop_nambu_idle_empty.skc) - an idle, no done event
+info  models/weapons/p38.tik: new idle_empty (coop_p38_idle_empty.skc) - an idle, no done event
+info  models/weapons/p38_bloody.tik: new idle_empty (coop_p38_idle_empty.skc) - an idle, no done event
+info  models/weapons/p38_blued.tik: new idle_empty (coop_p38_idle_empty.skc) - an idle, no done event
+info  models/weapons/p38_camo_desert.tik: new idle_empty (coop_p38_idle_empty.skc) - an idle, no done event
+info  models/weapons/p38_camo_winter.tik: new idle_empty (coop_p38_idle_empty.skc) - an idle, no done event
+info  models/weapons/p38_camo_woodland.tik: new idle_empty (coop_p38_idle_empty.skc) - an idle, no done event
+info  models/weapons/p38_chrome.tik: new idle_empty (coop_p38_idle_empty.skc) - an idle, no done event
+info  models/weapons/p38_gold.tik: new idle_empty (coop_p38_idle_empty.skc) - an idle, no done event
+info  models/weapons/p38_guanp38.tik: new idle_empty (coop_p38_idle_empty.skc) - an idle, no done event
+info  models/weapons/p38_lv_ttp38.tik: new idle_empty (coop_p38_idle_empty.skc) - an idle, no done event
+info  models/weapons/p38silenced.tik: new idle_empty (coop_p38s_idle_empty.skc) - an idle, no done event
+info  models/weapons/tt33.tik: new idle_empty (coop_tt33_idle_empty.skc) - an idle, no done event
+info  models/weapons/tt33_bloody.tik: new idle_empty (coop_tt33_idle_empty.skc) - an idle, no done event
+info  models/weapons/tt33_blued.tik: new idle_empty (coop_tt33_idle_empty.skc) - an idle, no done event
+info  models/weapons/tt33_camo_desert.tik: new idle_empty (coop_tt33_idle_empty.skc) - an idle, no done event
+info  models/weapons/tt33_camo_winter.tik: new idle_empty (coop_tt33_idle_empty.skc) - an idle, no done event
+info  models/weapons/tt33_camo_woodland.tik: new idle_empty (coop_tt33_idle_empty.skc) - an idle, no done event
+info  models/weapons/tt33_chrome.tik: new idle_empty (coop_tt33_idle_empty.skc) - an idle, no done event
+info  models/weapons/tt33_gold.tik: new idle_empty (coop_tt33_idle_empty.skc) - an idle, no done event
+info  models/weapons/tt33silenced.tik: new idle_empty (coop_tt33_idle_empty.skc) - an idle, no done event
+info  models/weapons/tt33silenced_bloody.tik: new idle_empty (coop_tt33_idle_empty.skc) - an idle, no done event
+info  models/weapons/tt33silenced_blued.tik: new idle_empty (coop_tt33_idle_empty.skc) - an idle, no done event
+info  models/weapons/tt33silenced_camo_desert.tik: new idle_empty (coop_tt33_idle_empty.skc) - an idle, no done event
+info  models/weapons/tt33silenced_camo_winter.tik: new idle_empty (coop_tt33_idle_empty.skc) - an idle, no done event
+info  models/weapons/tt33silenced_camo_woodland.tik: new idle_empty (coop_tt33_idle_empty.skc) - an idle, no done event
+info  models/weapons/tt33silenced_chrome.tik: new idle_empty (coop_tt33_idle_empty.skc) - an idle, no done event
+info  models/weapons/tt33silenced_gold.tik: new idle_empty (coop_tt33_idle_empty.skc) - an idle, no done event
+info  models/player/base/anims_pistol.txt: 63 released rows, 63 staged (+0 new), 3 changed length
+info  models/player/base/anims_shared.txt: snapshot of mod 6cf61e58, the mod file has changed since - 3-way merge clean (+243 bytes); the MERGED text is checked and is what ships
+info  models/player/base/anims_shared.txt: 279 released rows, 292 staged (+13 new), 2 changed length
+info  models/player/base/fps_anims_pistol.txt: row `nagantrev_reload_single` viewmodel/nagantrev/reload_loop.skc 18 fr 0.600 s -> viewmodel/nagantrev/coop_nagant_reload_single_slow.skc 27 fr 0.900 s (client table)
+info  models/player/base/fps_anims_pistol.txt: row `webley_reload` viewmodel/webley/webley_reload_start.skc 16 fr 0.533 s -> viewmodel/webley/coop_webley_reload.skc 24 fr 0.800 s (client table)
+info  models/player/base/fps_anims_pistol.txt: row `webley_reload_end` viewmodel/webley/webley_reload_end.skc 16 fr 0.533 s -> viewmodel/webley/coop_webley_reload_end.skc 24 fr 0.800 s (client table)
+info  models/player/base/fps_anims_pistol.txt: row `webley_reload_single` viewmodel/webley/webley_reload_single.skc 16 fr 0.533 s -> viewmodel/webley/coop_webley_reload_single_slow.skc 24 fr 0.800 s (client table)
+info  models/player/base/fps_anims_pistol.txt: 65 released rows, 108 staged (+43 new), 4 changed length - CLIENT table
+info  coop_mod/player_Torso.st: snapshot of mod 12e9faf6, the mod file has changed since - 3-way merge clean (+3764 bytes); the MERGED text is checked and is what ships
+info  coop_mod/player_Torso.st: 618 changed lines against the released file (the server runs it: its own test, not a row length)
+info  client-picked new rows: fire_ads x16, reload_ads_empty x88, reload_ads_loaded x88, reload_empty x31, reload_end_ads x8, reload_single_ads x8
+decl  models/weapons/nagant_revolver.tik: row `reload_single` nagant_reload_loop.skc 16 fr 0.533 s -> nagant_reload_loop_slow.skc 27 fr 0.900 s
+      = Nagant: one round 0.53 -> 0.9 s (same decision; runs tn3 tu1)
+decl  models/weapons/nagant_revolver_bloody.tik: row `reload_single` nagant_reload_loop.skc 16 fr 0.533 s -> nagant_reload_loop_slow.skc 27 fr 0.900 s
+decl  models/weapons/nagant_revolver_blued.tik: row `reload_single` nagant_reload_loop.skc 16 fr 0.533 s -> nagant_reload_loop_slow.skc 27 fr 0.900 s
+decl  models/weapons/nagant_revolver_camo_desert.tik: row `reload_single` nagant_reload_loop.skc 16 fr 0.533 s -> nagant_reload_loop_slow.skc 27 fr 0.900 s
+decl  models/weapons/nagant_revolver_camo_winter.tik: row `reload_single` nagant_reload_loop.skc 16 fr 0.533 s -> nagant_reload_loop_slow.skc 27 fr 0.900 s
+decl  models/weapons/nagant_revolver_camo_woodland.tik: row `reload_single` nagant_reload_loop.skc 16 fr 0.533 s -> nagant_reload_loop_slow.skc 27 fr 0.900 s
+decl  models/weapons/nagant_revolver_chrome.tik: row `reload_single` nagant_reload_loop.skc 16 fr 0.533 s -> nagant_reload_loop_slow.skc 27 fr 0.900 s
+decl  models/weapons/nagant_revolver_gold.tik: row `reload_single` nagant_reload_loop.skc 16 fr 0.533 s -> nagant_reload_loop_slow.skc 27 fr 0.900 s
+decl  models/weapons/webley_revolver.tik: row `reload` webley_revolver_reload_start.skc 13 fr 0.433 s -> coop_webley_open_hip.skc 20 fr 0.667 s
+      = Webley: open / close 0.53 -> 0.8 s, one round 0.53 -> 0.8 s (coordinator 2026-10-12, list item C "give them time and weight"; webslow.py; runs tl9 tn1 ts1)
+decl  models/weapons/webley_revolver.tik: row `reload_end` webley_revolver_reload_end.skc 14 fr 0.467 s -> coop_webley_close_hip.skc 21 fr 0.700 s
+decl  models/weapons/webley_revolver.tik: row `reload_end`: server block differs: [] -> [first surface shellmetal_cull +nodraw]
+decl  models/weapons/webley_revolver.tik: row `reload_single` webley_revolver_reload_single.skc 16 fr 0.533 s -> webley_revolver_reload_single_slow.skc 24 fr 0.800 s
+decl  models/weapons/webley_revolver.tik: row `reload_single`: server block differs: [2 surface shellmetal_cull -nodraw 8 surface shellmetal_cull +nodraw] -> [14 surface shellmetal_cull +nodraw 20 surface shellmetal_cull -nodraw]
+decl  models/weapons/webley_revolver_bloody.tik: row `reload` webley_revolver_reload_start.skc 13 fr 0.433 s -> coop_webley_open_hip.skc 20 fr 0.667 s
+decl  models/weapons/webley_revolver_bloody.tik: row `reload_end` webley_revolver_reload_end.skc 14 fr 0.467 s -> coop_webley_close_hip.skc 21 fr 0.700 s
+decl  models/weapons/webley_revolver_bloody.tik: row `reload_end`: server block differs: [] -> [first surface shellmetal_cull +nodraw]
+decl  models/weapons/webley_revolver_bloody.tik: row `reload_single` webley_revolver_reload_single.skc 16 fr 0.533 s -> webley_revolver_reload_single_slow.skc 24 fr 0.800 s
+decl  models/weapons/webley_revolver_bloody.tik: row `reload_single`: server block differs: [2 surface shellmetal_cull -nodraw 8 surface shellmetal_cull +nodraw] -> [14 surface shellmetal_cull +nodraw 20 surface shellmetal_cull -nodraw]
+decl  models/weapons/webley_revolver_blued.tik: row `reload` webley_revolver_reload_start.skc 13 fr 0.433 s -> coop_webley_open_hip.skc 20 fr 0.667 s
+decl  models/weapons/webley_revolver_blued.tik: row `reload_end` webley_revolver_reload_end.skc 14 fr 0.467 s -> coop_webley_close_hip.skc 21 fr 0.700 s
+decl  models/weapons/webley_revolver_blued.tik: row `reload_end`: server block differs: [] -> [first surface shellmetal_cull +nodraw]
+decl  models/weapons/webley_revolver_blued.tik: row `reload_single` webley_revolver_reload_single.skc 16 fr 0.533 s -> webley_revolver_reload_single_slow.skc 24 fr 0.800 s
+decl  models/weapons/webley_revolver_blued.tik: row `reload_single`: server block differs: [2 surface shellmetal_cull -nodraw 8 surface shellmetal_cull +nodraw] -> [14 surface shellmetal_cull +nodraw 20 surface shellmetal_cull -nodraw]
+decl  models/weapons/webley_revolver_camo_desert.tik: row `reload` webley_revolver_reload_start.skc 13 fr 0.433 s -> coop_webley_open_hip.skc 20 fr 0.667 s
+decl  models/weapons/webley_revolver_camo_desert.tik: row `reload_end` webley_revolver_reload_end.skc 14 fr 0.467 s -> coop_webley_close_hip.skc 21 fr 0.700 s
+decl  models/weapons/webley_revolver_camo_desert.tik: row `reload_end`: server block differs: [] -> [first surface shellmetal_cull +nodraw]
+decl  models/weapons/webley_revolver_camo_desert.tik: row `reload_single` webley_revolver_reload_single.skc 16 fr 0.533 s -> webley_revolver_reload_single_slow.skc 24 fr 0.800 s
+decl  models/weapons/webley_revolver_camo_desert.tik: row `reload_single`: server block differs: [2 surface shellmetal_cull -nodraw 8 surface shellmetal_cull +nodraw] -> [14 surface shellmetal_cull +nodraw 20 surface shellmetal_cull -nodraw]
+decl  models/weapons/webley_revolver_camo_winter.tik: row `reload` webley_revolver_reload_start.skc 13 fr 0.433 s -> coop_webley_open_hip.skc 20 fr 0.667 s
+decl  models/weapons/webley_revolver_camo_winter.tik: row `reload_end` webley_revolver_reload_end.skc 14 fr 0.467 s -> coop_webley_close_hip.skc 21 fr 0.700 s
+decl  models/weapons/webley_revolver_camo_winter.tik: row `reload_end`: server block differs: [] -> [first surface shellmetal_cull +nodraw]
+decl  models/weapons/webley_revolver_camo_winter.tik: row `reload_single` webley_revolver_reload_single.skc 16 fr 0.533 s -> webley_revolver_reload_single_slow.skc 24 fr 0.800 s
+decl  models/weapons/webley_revolver_camo_winter.tik: row `reload_single`: server block differs: [2 surface shellmetal_cull -nodraw 8 surface shellmetal_cull +nodraw] -> [14 surface shellmetal_cull +nodraw 20 surface shellmetal_cull -nodraw]
+decl  models/weapons/webley_revolver_camo_woodland.tik: row `reload` webley_revolver_reload_start.skc 13 fr 0.433 s -> coop_webley_open_hip.skc 20 fr 0.667 s
+decl  models/weapons/webley_revolver_camo_woodland.tik: row `reload_end` webley_revolver_reload_end.skc 14 fr 0.467 s -> coop_webley_close_hip.skc 21 fr 0.700 s
+decl  models/weapons/webley_revolver_camo_woodland.tik: row `reload_end`: server block differs: [] -> [first surface shellmetal_cull +nodraw]
+decl  models/weapons/webley_revolver_camo_woodland.tik: row `reload_single` webley_revolver_reload_single.skc 16 fr 0.533 s -> webley_revolver_reload_single_slow.skc 24 fr 0.800 s
+decl  models/weapons/webley_revolver_camo_woodland.tik: row `reload_single`: server block differs: [2 surface shellmetal_cull -nodraw 8 surface shellmetal_cull +nodraw] -> [14 surface shellmetal_cull +nodraw 20 surface shellmetal_cull -nodraw]
+decl  models/weapons/webley_revolver_chrome.tik: row `reload` webley_revolver_reload_start.skc 13 fr 0.433 s -> coop_webley_open_hip.skc 20 fr 0.667 s
+decl  models/weapons/webley_revolver_chrome.tik: row `reload_end` webley_revolver_reload_end.skc 14 fr 0.467 s -> coop_webley_close_hip.skc 21 fr 0.700 s
+decl  models/weapons/webley_revolver_chrome.tik: row `reload_end`: server block differs: [] -> [first surface shellmetal_cull +nodraw]
+decl  models/weapons/webley_revolver_chrome.tik: row `reload_single` webley_revolver_reload_single.skc 16 fr 0.533 s -> webley_revolver_reload_single_slow.skc 24 fr 0.800 s
+decl  models/weapons/webley_revolver_chrome.tik: row `reload_single`: server block differs: [2 surface shellmetal_cull -nodraw 8 surface shellmetal_cull +nodraw] -> [14 surface shellmetal_cull +nodraw 20 surface shellmetal_cull -nodraw]
+decl  models/weapons/webley_revolver_gold.tik: row `reload` webley_revolver_reload_start.skc 13 fr 0.433 s -> coop_webley_open_hip.skc 20 fr 0.667 s
+decl  models/weapons/webley_revolver_gold.tik: row `reload_end` webley_revolver_reload_end.skc 14 fr 0.467 s -> coop_webley_close_hip.skc 21 fr 0.700 s
+decl  models/weapons/webley_revolver_gold.tik: row `reload_end`: server block differs: [] -> [first surface shellmetal_cull +nodraw]
+decl  models/weapons/webley_revolver_gold.tik: row `reload_single` webley_revolver_reload_single.skc 16 fr 0.533 s -> webley_revolver_reload_single_slow.skc 24 fr 0.800 s
+decl  models/weapons/webley_revolver_gold.tik: row `reload_single`: server block differs: [2 surface shellmetal_cull -nodraw 8 surface shellmetal_cull +nodraw] -> [14 surface shellmetal_cull +nodraw 20 surface shellmetal_cull -nodraw]
+decl  models/player/base/anims_pistol.txt: row `nagantrev_reload_loop` viewmodel/nagantrev/reload_loop.skc 18 fr 0.600 s -> viewmodel/nagantrev/coop_nagant_tp_loop_slow.skc 27 fr 0.900 s
+      = the torso rows of the two revolver decisions above
+decl  models/player/base/anims_pistol.txt: row `webley_reload_end` viewmodel/webley/webley_reload_end.skc 16 fr 0.533 s -> viewmodel/webley/coop_webley_tp_end24.skc 24 fr 0.800 s
+decl  models/player/base/anims_pistol.txt: row `webley_reload_loop` viewmodel/webley/webley_reload_single.skc 16 fr 0.533 s -> viewmodel/webley/coop_webley_tp_single_slow.skc 24 fr 0.800 s
+decl  models/player/base/anims_shared.txt: row `coop_prone_reload_pistol` weapon_pistol/prone/pistol_prone_reload.skc 15 fr 1.500 s -> weapon_pistol/prone/coop_pistol_prone_reload_73.skc 73 fr 2.433 s
+      = prone pistol reload as long as the standing one, 1.50 -> 2.43 s (coordinator 2026-10-12; patch_prone_reload.py; run tl8)
+decl  models/player/base/anims_shared.txt: row `coop_reload_webley_start` viewmodel/webley/webley_reload_start.skc 16 fr 0.533 s -> viewmodel/webley/coop_webley_tp_start24.skc 24 fr 0.800 s
+      = the torso row of the Webley decision above
+96 weapon tiks checked, 53 declared server-side changes, 0 FAIL

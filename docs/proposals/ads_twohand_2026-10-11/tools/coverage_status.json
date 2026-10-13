@@ -67,7 +67,7 @@
     "run": "pa17"
    }
   },
-  "qa": "pa10: GIF decoded and looked at, stance sheet pa9 and seat sheet pa14 looked at; sheet gamma-lifted (readable); on target (2026-10-13): against the settled aim's sway envelope, run pa18, loaded / emptied 0.02 / 0.77 % - the earlier 2-4 % readings were the aim's own sway at another phase (bug: sway envelope); emptied reload beyond the sway envelope per stance (pa20): crouch 0.2, prone 0.0, standL 0.5, standR 0.6 %",
+  "qa": "pa10: GIF decoded and looked at, stance sheet pa9 and seat sheet pa14 looked at; sheet gamma-lifted (readable); on target (2026-10-13): against the settled aim's sway envelope, run pa18, loaded / emptied 0.02 / 0.77 % - the earlier 2-4 % readings were the aim's own sway at another phase (bug: sway envelope); emptied reload beyond the sway envelope per stance (pa20): crouch 0.2, prone 0.0, standL 0.5, standR 0.6 %; pa20 re-read with the dry-pose rule as the default (crouch, prone, lean L, lean R): 0.1, 0.0, 0.5, 0.2 %",
   "reload": {
    "braced": {
     "dev": 1.77,
@@ -212,7 +212,7 @@
     "run": "pa17"
    }
   },
-  "qa": "pa11: GIF decoded and looked at, stance sheet pa9 and seat sheet pa15 looked at; seat push x0.6, thumb x0.45; on target (2026-10-13): against the settled aim's sway envelope, run pa18, loaded / emptied 0.01 / 0.79 % - the earlier 2-4 % readings were the aim's own sway at another phase (bug: sway envelope); emptied reload beyond the sway envelope per stance (pa20): crouch 0.9, prone 1.1, standL 0.7, standR 0.3 %",
+  "qa": "pa11: GIF decoded and looked at, stance sheet pa9 and seat sheet pa15 looked at; seat push x0.6, thumb x0.45; on target (2026-10-13): against the settled aim's sway envelope, run pa18, loaded / emptied 0.01 / 0.79 % - the earlier 2-4 % readings were the aim's own sway at another phase (bug: sway envelope); emptied reload beyond the sway envelope per stance (pa20): crouch 0.9, prone 1.1, standL 0.7, standR 0.3 %; pa20 re-read with the dry-pose rule as the default (crouch, prone, lean L, lean R): 0.1, 0.1, 0.3, 0.2 %",
   "reload": {
    "braced": {
     "dev": 1.73,
@@ -445,7 +445,7 @@
     "run": "pa17"
    }
   },
-  "qa": "pa8: GIF decoded and looked at, stance sheet pa9 and seat sheet pa14 looked at; pa18 against the sway envelope: loaded / emptied 0.07 / 0.93 %",
+  "qa": "pa8: GIF decoded and looked at, stance sheet pa9 and seat sheet pa14 looked at; pa18 against the sway envelope: loaded / emptied 0.07 / 0.93 %; emptied reload beyond the sway envelope per stance (pa23: crouch, prone, lean L, lean R): 0.1, 0.0, 1.2, 0.2 %",
   "reload": {
    "braced": {
     "dev": 1.74,
@@ -513,7 +513,7 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "pa18 (stand, sway envelope), pa8 (stand), pa9 (stances), pa14 (seat)",
+   "run": "pa23 (stances, sway envelope), pa18 (stand, sway envelope), pa8 (stand), pa9 (stances), pa14 (seat)",
    "target": "yes"
   },
   "seat": {
@@ -590,7 +590,7 @@
     "run": "pa17"
    }
   },
-  "qa": "pa8: GIF decoded and looked at, stance sheet pa9 and seat sheet pa14 looked at; the silencer never meets the support hand; pa18 against the sway envelope: loaded / emptied 0.05 / 0.59 %",
+  "qa": "pa8: GIF decoded and looked at, stance sheet pa9 and seat sheet pa14 looked at; the silencer never meets the support hand; pa18 against the sway envelope: loaded / emptied 0.05 / 0.59 %; emptied reload beyond the sway envelope per stance (pa23: crouch, prone, lean L, lean R): 0.1, 0.0, 2.4, 0.2 % - lean L 2.4 % in 7 frames = the last shot's muzzle smoke drifting through the box, no hand in it, gun as in its dry pose (frames looked at)",
   "reload": {
    "braced": {
     "dev": 1.74,
@@ -658,7 +658,7 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "pa18 (stand, sway envelope), pa8 (stand), pa9 (stances), pa14 (seat)",
+   "run": "pa23 (stances, sway envelope), pa18 (stand, sway envelope), pa8 (stand), pa9 (stances), pa14 (seat)",
    "target": "yes"
   },
   "seat": {
@@ -735,7 +735,7 @@
     "run": "pa17"
    }
   },
-  "qa": "pa11: GIF decoded and looked at, stance sheet pa9 and seat sheet pa15 looked at; sheet gamma-lifted as .dds (readable); on target (2026-10-13): against the settled aim's sway envelope, run pa18, loaded / emptied 0.02 / 1.29 % - the earlier 2-4 % readings were the aim's own sway at another phase (bug: sway envelope); emptied reload beyond the sway envelope per stance (pa20): crouch 1.3, prone 0.5, standL 0.9, standR 3.4 %; lean R 3.4 % = the emptied gun's own locked-back pose at the start of the window, no hand in the box (frames looked at); 0.11 % with the dry pose in the reference (centrebox.py --dry)",
+  "qa": "pa11: GIF decoded and looked at, stance sheet pa9 and seat sheet pa15 looked at; sheet gamma-lifted as .dds (readable); on target (2026-10-13): against the settled aim's sway envelope, run pa18, loaded / emptied 0.02 / 1.29 % - the earlier 2-4 % readings were the aim's own sway at another phase (bug: sway envelope); emptied reload beyond the sway envelope per stance (pa20): crouch 1.3, prone 0.5, standL 0.9, standR 3.4 %; lean R 3.4 % = the emptied gun's own locked-back pose at the start of the window, no hand in the box (frames looked at); 0.11 % with the dry pose in the reference (centrebox.py --dry); pa20 re-read with the dry-pose rule as the default (crouch, prone, lean L, lean R): 0.2, 0.1, 0.5, 0.1 %",
   "reload": {
    "braced": {
     "dev": 1.78,
@@ -881,7 +881,7 @@
    }
   },
   "lowered": true,
-  "qa": "pa10: GIFs decoded and looked at, stance sheet pa9 and seat sheet pa14 looked at; the emptied gun is under the box by frame 5 of the reload (pa19; was 7) - the open toggle stands in the box only in the dry gun's own aim and while it travels (0.13 s); front link not articulated; aim pose new, not approved; pa18 against the sway envelope: loaded / emptied 0.02 / 0.03 %; emptied reload beyond the sway envelope per stance (pa20): crouch 0.2, prone 0.1, standL 0.3, standR 0.3 %",
+  "qa": "pa10: GIFs decoded and looked at, stance sheet pa9 and seat sheet pa14 looked at; the emptied gun is under the box by frame 5 of the reload (pa19; was 7) - the open toggle stands in the box only in the dry gun's own aim and while it travels (0.13 s); front link not articulated; aim pose new, not approved; pa18 against the sway envelope: loaded / emptied 0.02 / 0.03 %; emptied reload beyond the sway envelope per stance (pa20): crouch 0.2, prone 0.1, standL 0.3, standR 0.3 %; pa20 re-read with the dry-pose rule as the default (crouch, prone, lean L, lean R): 0.1, 0.1, 0.3, 0.3 %",
   "reload": {
    "braced": {
     "dev": 14.74,
@@ -1027,7 +1027,7 @@
    }
   },
   "lowered": true,
-  "qa": "pa10: GIF decoded and looked at, stance sheet pa9 and seat sheet pa13 looked at; pa18 against the sway envelope: loaded / emptied 0.02 / 0.02 %; emptied reload beyond the sway envelope per stance (pa20): crouch 0.1, prone 0.1, standL 0.4, standR 0.3 %",
+  "qa": "pa10: GIF decoded and looked at, stance sheet pa9 and seat sheet pa13 looked at; pa18 against the sway envelope: loaded / emptied 0.02 / 0.02 %; emptied reload beyond the sway envelope per stance (pa20): crouch 0.1, prone 0.1, standL 0.4, standR 0.3 %; pa20 re-read with the dry-pose rule as the default (crouch, prone, lean L, lean R): 0.1, 0.1, 0.4, 0.3 %",
   "reload": {
    "braced": {
     "dev": 14.76,
@@ -1166,7 +1166,7 @@
   },
   "lowered": true,
   "note": "ts1 / tu1: swing-out reload with a real cylinder face (chamber mouths, case heads hidden while empty), readable case dump, 6 rounds, stand / crouch / prone / lean, switch + sprint interruptions; open: a cartridge flies off when the loop is cut by a weapon switch, ejector rod does not move, braced",
-  "qa": "pa5: GIF played back (dump in frame, heads appear round by round), stance sheet tn2 looked at; braced and vehicle seats not run; third person and break-off with the heads not checked / pa12: hip reload and both break-off states with the per-chamber heads looked at (fill one by one at the hip, a break-off closes on the heads that are in); third person not run - by the code another player always sees six heads",
+  "qa": "pa5: GIF played back (dump in frame, heads appear round by round), stance sheet tn2 looked at; braced and vehicle seats not run; third person and break-off with the heads not checked / pa12: hip reload and both break-off states with the per-chamber heads looked at (fill one by one at the hip, a break-off closes on the heads that are in); third person not run - by the code another player always sees six heads; HELD OUT of the SHIP CUT 2026-10-13 (another player always sees six chamber heads (by the code, not run)): ships as released (run pa24)",
   "reload": {
    "crouch": {
     "dev": 11.04,
@@ -1285,7 +1285,7 @@
    }
   },
   "lowered": true,
-  "qa": "pa8: GIFs decoded and looked at, stance sheet pa9 and seat sheet pa13 looked at; lowered gun alone at the bottom of the frame for 0.35 s; Trench C96 not run; pa18 against the sway envelope: loaded / emptied 0.05 / 0.02 %; emptied reload beyond the sway envelope per stance (pa20): crouch 0.1, prone 0.1, standL 0.5, standR 0.2 %; pa19 (2026-10-13, UNFINISHED): clip strip + eight rounds + bolt bar (2.0 u travel) + open port added to the mesh, the rounds go down and the strip is pulled and flicked - the hand does not travel with the rounds, the rounds read small; an existing prop pair (models/ammo/coop_c96_stripper_full / _empty + the server attach timeline) was found afterwards and is NOT used - decision open",
+  "qa": "pa8: GIFs decoded and looked at, stance sheet pa9 and seat sheet pa13 looked at; lowered gun alone at the bottom of the frame for 0.35 s; Trench C96 not run; pa18 against the sway envelope: loaded / emptied 0.05 / 0.02 %; emptied reload beyond the sway envelope per stance (pa20): crouch 0.1, prone 0.1, standL 0.5, standR 0.2 %; pa19 (2026-10-13, UNFINISHED): clip strip + eight rounds + bolt bar (2.0 u travel) + open port added to the mesh, the rounds go down and the strip is pulled and flicked - the hand does not travel with the rounds, the rounds read small; an existing prop pair (models/ammo/coop_c96_stripper_full / _empty + the server attach timeline) was found afterwards and is NOT used - decision open; HELD OUT of the SHIP CUT 2026-10-13 (stripper clip unfinished): ships as released (run pa24)",
   "reload": {
    "braced": {
     "dev": 13.56,
@@ -1542,7 +1542,7 @@
     "run": "pa17"
    }
   },
-  "qa": "pa11: GIF decoded and looked at, stance sheet pa9 and seat sheet pa14 looked at; sheet gamma-lifted in pa11; on target (2026-10-13): against the settled aim's sway envelope, run pa18, loaded / emptied 0.02 / 0.01 % - the earlier 2-4 % readings were the aim's own sway at another phase (bug: sway envelope); emptied reload beyond the sway envelope per stance (pa20): crouch 0.1, prone 0.1, standL 0.4, standR 0.3 %",
+  "qa": "pa11: GIF decoded and looked at, stance sheet pa9 and seat sheet pa14 looked at; sheet gamma-lifted in pa11; on target (2026-10-13): against the settled aim's sway envelope, run pa18, loaded / emptied 0.02 / 0.01 % - the earlier 2-4 % readings were the aim's own sway at another phase (bug: sway envelope); emptied reload beyond the sway envelope per stance (pa20): crouch 0.1, prone 0.1, standL 0.4, standR 0.3 %; pa20 re-read with the dry-pose rule as the default (crouch, prone, lean L, lean R): 0.0, 0.1, 0.3, 0.3 %",
   "reload": {
    "braced": {
     "dev": 1.74,
@@ -1687,7 +1687,7 @@
     "run": "pa17"
    }
   },
-  "qa": "pa11: GIF decoded and looked at, stance sheet pa9 and seat sheet pa15 looked at; breech block added in the slide's rear slot (no black gap); loaded 0.3 %, emptied 0.7 % (pa11), 1.8 / 2.8 % in pa8 before the filler; pa18 against the sway envelope: loaded / emptied 0.07 / 0.85 %",
+  "qa": "pa11: GIF decoded and looked at, stance sheet pa9 and seat sheet pa15 looked at; breech block added in the slide's rear slot (no black gap); loaded 0.3 %, emptied 0.7 % (pa11), 1.8 / 2.8 % in pa8 before the filler; pa18 against the sway envelope: loaded / emptied 0.07 / 0.85 %; emptied reload beyond the sway envelope per stance (pa23: crouch, prone, lean L, lean R): 0.1, 0.1, 0.3, 0.3 %",
   "reload": {
    "braced": {
     "dev": 1.79,
@@ -1755,7 +1755,7 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "pa18 (stand, sway envelope), pa11 (stand), pa9 (stances), pa15 (seat)",
+   "run": "pa23 (stances, sway envelope), pa18 (stand, sway envelope), pa11 (stand), pa9 (stances), pa15 (seat)",
    "target": "yes"
   },
   "seat": {
@@ -1832,7 +1832,7 @@
     "run": "pa17"
    }
   },
-  "qa": "pa11: GIF decoded and looked at, stance sheet pa9 and seat sheet pa15 looked at; sheets gamma-lifted; pa18 against the sway envelope: loaded / emptied 0.08 / 0.05 %; pa19: steel block fills the open slide's rear slot (comes flush only as the slide goes back)",
+  "qa": "pa11: GIF decoded and looked at, stance sheet pa9 and seat sheet pa15 looked at; sheets gamma-lifted; pa18 against the sway envelope: loaded / emptied 0.08 / 0.05 %; pa19: steel block fills the open slide's rear slot (comes flush only as the slide goes back); emptied reload beyond the sway envelope per stance (pa23: crouch, prone, lean L, lean R): 0.1, 0.2, 0.4, 0.3 %",
   "reload": {
    "braced": {
     "dev": 1.74,
@@ -1900,7 +1900,7 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "pa18 (stand, sway envelope), pa8 pa10 pa11 (stand), pa9 (stances), pa15 (seat)",
+   "run": "pa23 (stances, sway envelope), pa18 (stand, sway envelope), pa8 pa10 pa11 (stand), pa9 (stances), pa15 (seat)",
    "target": "yes"
   },
   "seat": {
@@ -1977,7 +1977,7 @@
     "run": "pa17"
    }
   },
-  "qa": "pa8: GIF decoded and looked at, stance sheet pa9 and seat sheet pa13 looked at; pa18 against the sway envelope: loaded / emptied 0.03 / 1.42 %; emptied reload beyond the sway envelope per stance (pa20): crouch 2.3, prone 2.7, standL 2.3, standR 0.5 %; on target NO (pa20): emptied reload OVER the bar in crouch / prone / lean L (2.3 / 2.7 / 2.3 %) at the support thumb's sweep (clip frame 51) - needs its own hands row with a lower thumb",
+  "qa": "pa8: GIF decoded and looked at, stance sheet pa9 and seat sheet pa13 looked at; pa18 against the sway envelope: loaded / emptied 0.03 / 1.42 %; emptied reload beyond the sway envelope per stance (pa20): crouch 2.3, prone 2.7, standL 2.3, standR 0.5 %; OWN EMPTIED ROW (2026-10-13): coopr_walther_ppk_reload_empty_ads = the Colt clip baked with the support thumb lower (PB_THUMB 0.15); emptied reload beyond the sway envelope, run pa23: stand 0.1, crouch 0.1, prone 0.1, lean L 0.3, lean R 0.2 % (was 1.4 / 2.3 / 2.7 / 2.3 / 0.5); thumb sweep not looked at up close",
   "reload": {
    "braced": {
     "dev": 1.74,
@@ -2045,8 +2045,8 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "pa18 (stand, sway envelope), pa8 (stand), pa9 (stances), pa13 (seat)",
-   "target": "no"
+   "run": "pa23 (stand + stances, own emptied row), pa18 (stand, sway envelope), pa8 (stand), pa9 (stances), pa13 (seat)",
+   "target": "yes"
   },
   "seat": {
    "dev": 1.77,
@@ -2241,7 +2241,7 @@
     "run": "pa17"
    }
   },
-  "qa": "pa8: GIF decoded and looked at, stance sheet pa9 and seat sheet pa13 looked at; gun reload clip 7 -> 73 frames (server-side tik change, not tested on a dedicated server); pa18 against the sway envelope: loaded / emptied 0.05 / 0.38 %; DO NOT SHIP: the staged tik changes server-read animation lengths (reload 73 frames) = WEAPON_RELOADING for 2.4 s on the server; not tested on a dedicated server (bug-3736)",
+  "qa": "pa8: GIF decoded and looked at, stance sheet pa9 and seat sheet pa13 looked at; gun reload clip 7 -> 73 frames (server-side tik change, not tested on a dedicated server); pa18 against the sway envelope: loaded / emptied 0.05 / 0.38 %; SERVER SIDE FIXED (2026-10-13, bug-3782): `reload` / `fire` are the released clips again, the long clips play on the cgame's own clock (ads-next e8e199be, coop_vmGunClipClock); dedicated server pa21b: fire row, reload row, refill, next shot, ammo = released; aimed run pa21 loaded / emptied 0.0 / 0.1 %, clips run to their end (GUNCLOCK trace), fire / switch during the reload traced; emptied reload beyond the sway envelope per stance (pa23: crouch, prone, lean L, lean R): 0.0, 0.1, 0.3, 0.3 %",
   "reload": {
    "braced": {
     "dev": 1.74,
@@ -2309,7 +2309,7 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "pa18 (stand, sway envelope), pa8 (stand), pa9 (stances), pa13 (seat)",
+   "run": "pa23 (stances, sway envelope), pa21 (stand, server rows as released), pa18 (stand, sway envelope), pa8 (stand), pa9 (stances), pa13 (seat)",
    "target": "yes"
   },
   "seat": {
@@ -2386,7 +2386,7 @@
     "run": "pa17"
    }
   },
-  "qa": "pa10: GIF decoded and looked at, stance sheet pa9 and seat sheet pa13 looked at; on target (2026-10-13): against the settled aim's sway envelope, run pa18, loaded / emptied 0.01 / 0.14 % - the earlier 2-4 % readings were the aim's own sway at another phase (bug: sway envelope); emptied reload beyond the sway envelope per stance (pa20): crouch 0.6, prone 0.1, standL 0.4, standR 0.3 %; DO NOT SHIP: the staged tik changes server-read animation lengths (reload 73 frames) = WEAPON_RELOADING for 2.4 s on the server; not tested on a dedicated server (bug-3736)",
+  "qa": "pa10: GIF decoded and looked at, stance sheet pa9 and seat sheet pa13 looked at; on target (2026-10-13): against the settled aim's sway envelope, run pa18, loaded / emptied 0.01 / 0.14 % - the earlier 2-4 % readings were the aim's own sway at another phase (bug: sway envelope); emptied reload beyond the sway envelope per stance (pa20): crouch 0.6, prone 0.1, standL 0.4, standR 0.3 %; SERVER SIDE FIXED (2026-10-13, bug-3782): `reload` / `fire` are the released clips again, the long clips play on the cgame's own clock (ads-next e8e199be, coop_vmGunClipClock); dedicated server pa21b: fire row, reload row, refill, next shot, ammo = released; aimed run pa21 loaded / emptied 0.0 / 0.0 %, clips run to their end (GUNCLOCK trace), fire / switch during the reload traced; pa20 re-read with the dry-pose rule as the default (crouch, prone, lean L, lean R): 0.6, 0.0, 0.4, 0.2 %",
   "reload": {
    "braced": {
     "dev": 1.75,
@@ -2454,7 +2454,7 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "pa18 (stand, sway envelope), pa8 pa10 (stand), pa9 (stances), pa13 (seat)",
+   "run": "pa21 (stand, server rows as released), pa18 (stand, sway envelope), pa8 pa10 (stand), pa9 (stances), pa13 (seat)",
    "target": "yes"
   },
   "seat": {
@@ -2644,7 +2644,7 @@
    }
   },
   "lowered": true,
-  "qa": "pa11: GIFs decoded and looked at (cycle, loaded, emptied), stance sheet pa9 (crouch / prone / leans / braced) and seat sheet pa13 looked at; on target (2026-10-13): against the settled aim's sway envelope, run pa18, loaded / emptied 0.00 / 0.03 % - the earlier 2-4 % readings were the aim's own sway at another phase (bug: sway envelope); emptied reload beyond the sway envelope per stance (pa20): crouch 0.9, prone 0.3, standL 0.3, standR 0.3 %; DO NOT SHIP: the staged tik changes server-read animation lengths (reload 73 frames, fire 26) = WEAPON_RELOADING for 2.4 s on the server; not tested on a dedicated server (bug-3736)",
+  "qa": "pa11: GIFs decoded and looked at (cycle, loaded, emptied), stance sheet pa9 (crouch / prone / leans / braced) and seat sheet pa13 looked at; on target (2026-10-13): against the settled aim's sway envelope, run pa18, loaded / emptied 0.00 / 0.03 % - the earlier 2-4 % readings were the aim's own sway at another phase (bug: sway envelope); emptied reload beyond the sway envelope per stance (pa20): crouch 0.9, prone 0.3, standL 0.3, standR 0.3 %; SERVER SIDE FIXED (2026-10-13, bug-3782): `reload` / `fire` are the released clips again, the long clips play on the cgame's own clock (ads-next e8e199be, coop_vmGunClipClock); dedicated server pa21b: fire row, reload row, refill, next shot, ammo = released; aimed run pa21 loaded / emptied 0.0 / 0.0 %, clips run to their end (GUNCLOCK trace), fire / switch during the reload traced; pa20 re-read with the dry-pose rule as the default (crouch, prone, lean L, lean R): 0.5, 0.3, 0.3, 0.2 %",
   "reload": {
    "braced": {
     "dev": 17.02,
@@ -2712,7 +2712,7 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "pa18 (stand, sway envelope), pa8 pa10 pa11 (stand), pa9 (stances), pa13 (seat)",
+   "run": "pa21 (stand, server rows as released), pa18 (stand, sway envelope), pa8 pa10 pa11 (stand), pa9 (stances), pa13 (seat)",
    "target": "yes"
   },
   "seat": {

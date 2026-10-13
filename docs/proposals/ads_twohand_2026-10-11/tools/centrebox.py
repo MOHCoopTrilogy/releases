@@ -140,10 +140,10 @@ for tag in marks:
     if tail:
         settled = list(range(cend, min(low, len(fs)) - 2))
         aim_raw = np.mean([mask_s(i) for i in settled[-6:]], axis=0) > 0.3
-        # --dry (opt-in; the SMG lane's rule for an EMPTIED gun): the dry gun's own pose - the three frames after the
+        # the dry-pose rule (default; --nodry switches it off; the SMG lane's rule for an EMPTIED gun): the dry gun's own pose - the three frames after the
         # skipped flash frames - belongs to the reference as well (a slide locked back stands higher in the box than
         # the loaded gun's). Only valid where the hands are still out of the box in those frames: LOOK at them.
-        dry_raw = (np.mean([mask_s(i) for i in range(rel, rel + 3)], axis=0) > 0.5) if (empty and '--dry' in sys.argv) else None
+        dry_raw = (np.mean([mask_s(i) for i in range(rel, rel + 3)], axis=0) > 0.5) if (empty and '--nodry' not in sys.argv) else None      # DEFAULT since 2026-10-13 (coordinator: the dry gun's own pose is part of the reference, as in the SMG lane); --nodry = the old figure
         exe, envc = swayenv.envelope_extra(mask_s, grow, range(rel, cend), settled, aim_raw, also=dry_raw)
         aimg = grow(aim_raw)
         alone = [float((mask_s(i) & ~aimg).mean()) for i in settled[:-8]]

@@ -1,0 +1,52 @@
+[
+ {
+  "error_message": "Pistol lane DO NOT SHIP blocker (bug-3736): staged Welrod / TT-33 / silenced TT-33 tiks changed animation lengths the SERVER reads. Dedicated server, measured (runs pa21a / pa21b, old overlay ov_e1): Welrod weapon entity shows `fire` 875 ms after a shot (released 50 ms) and `reload` 2400 ms (released: shorter than a 25 ms snapshot); TT-33 `reload` 2400 ms (released 1500 ms).",
+  "file": "openmohaa-hzm-ads/code/cgame/cg_modelanim.c; docs/proposals/ads_twohand_2026-10-11/tools/p12.py, welrod.py",
+  "root_cause": "The cgame's aimed-reload / aimed-cycle swap only replaces the animation INDEX in the slot where the server plays `reload` / `fire`; the shown clip ended with the server's row, so the lane padded the server's rows (Welrod reload / fire 1 frame -> 73 / 26, TT-33 reload 7 -> 73) to keep the picture. Weapon::StartReloading / Shoot hold weaponstate until those rows end.",
+  "fix": "cgame ads-next e8e199be (cgame_adsnext13.dll): a swapped clip longer than the server's row is latched (slot, start, length) and kept on a client clock after the server's row ends (coop_vmGunClipClock 1; dropped on another weapon animation, when the hands leave VM_ANIM_RELOAD / the client-only cycle, when the gun is gone); a second start from the hands for a server row that falls between two snapshots (the released Welrod reload is never seen). tiks: `reload` / `fire` back to the released clips in 8 Welrod + 16 TT-33 tiks (patch_srvrows.py). Proof: tools/srvrows.py (staged vs released row lengths, 0 FAIL) and run_ded.py / dedcmp.py - dedicated server + one client, released vs staged vs old overlay, staged = released on every measure (evidence/ded_pa21b/dedcmp.md).",
+  "tags": ["ads", "pistol-lane", "server-timing", "weapon-tik", "cgame", "dedicated"],
+  "related_bugs": ["bug-3736"]
+ },
+ {
+  "error_message": "The handover's figures for the released rows were wrong: 'Welrod reload 0.03 s, TT-33 0.23 s, ammo comes with DoneReloading'. Measured on a dedicated server: TT-33 `reload` row lasts 1500 ms (7 frames at 0.25 s, the engine counts frames-1), the Welrod's 1-frame rows last 0 / 50 ms, and the clip is refilled 850 ms after the hands' reload starts for every magazine pistol.",
+  "file": "docs/proposals/ads_twohand_2026-10-11/README.md",
+  "root_cause": "Read from weapon.cpp only. The refill is NOT EV_Weapon_DoneReloading: the player's torso row carries `first reloadweapon` and `25 weaponcommand mainhand clip_fill` (anims_*.txt), so the ammo comes at torso frame 25 whatever the weapon's own `reload` row does; and a clip's frame time was assumed to be 1/30 s.",
+  "fix": "srvrows.py reads frames x frame time from the clip header (v13 fixed header, v14 packed message); the handover and PISTOLS_SHIP.md carry the measured figures.",
+  "tags": ["ads", "pistol-lane", "server-timing", "handover"]
+ },
+ {
+  "error_message": "run_ded.py first runs: the trigger pulses and every `wait N` of the step ran at once (begin and end marker in the same second, one shot in 10 s).",
+  "file": "docs/proposals/ads_twohand_2026-10-11/tools/run_ded.py",
+  "root_cause": "`wait N` is MILLISECONDS in this engine (cmd.c: cmd_wait -= msec), not frames; `wait 2` is over inside the same frame. The listen harness never showed it because its frame steps are `wait 1` (= next frame) and its long waits were already written in ms.",
+  "fix": "pulses 50 ms down / 50 ms up, all waits in ms. Also: several rcon lines in one frame are rate-limited away (one `rcon exec isgive.cfg` written into the server's home instead), and a `reload` typed inside a shot's fire delay is dropped (1.2 s rest before it).",
+  "tags": ["harness", "dedicated", "wait", "rcon"]
+ },
+ {
+  "error_message": "cg_modelanim.c failed to build: 'newline in string literal' in two Printf format strings.",
+  "file": "openmohaa-hzm-ads/code/cgame/cg_modelanim.c",
+  "root_cause": "C source was patched through a python heredoc in Git-Bash with the text in a non-raw triple-quoted string: the backslash-n of the format strings became real newlines (the known heredoc trap, repeated).",
+  "fix": "fix_probe_nl.py (written with the Write tool) repaired the two literals; C patches go through the Edit tool or a Write-tool script.",
+  "tags": ["heredoc", "build", "cgame", "repeat"]
+ },
+ {
+  "error_message": "srvrows.py hung for 20 minutes on the first runs.",
+  "file": "docs/proposals/ads_twohand_2026-10-11/tools/srvrows.py",
+  "root_cause": "The clip length was read with skc_io.read, which assumes the v13 header; on a v14 clip (packed message header) numChannels is garbage and the channel loop runs for minutes.",
+  "fix": "header-only reader for both versions (v14 through skc14.Msg), with a sanity assert on frames and frame time.",
+  "tags": ["tools", "skc", "v14"]
+ },
+ {
+  "error_message": "Staged revolver work never covered the finish tiks: m10_revolver / webley_revolver / nagant_revolver had 7 finish tiks each in the released tree that were not staged - they would have run the released rows (0.53 s loops, magazine-style M10 reload) on the staged meshes and under the slowed torso / hands rows.",
+  "file": "docs/proposals/ads_twohand_2026-10-11/assets/models/weapons/*_revolver_*.tik",
+  "root_cause": "The revolver tiks were built by per-gun tools that wrote only the base tik (the magazine pistols go through p12.tiks_for, which patches every tik that plays the clip).",
+  "fix": "tools/finishclone.py: a finish tik = the STAGED base with exactly the lines in which the released finish differs from the released base (shader lines, name, rank); 21 tiks staged, not run in the engine. tools/variants.py lists per family which finish / variant tiks are covered.",
+  "tags": ["ads", "pistol-lane", "finishes", "variants", "revolver"]
+ },
+ {
+  "error_message": "The staged shared files would have reverted other lanes' work: assets/models/player/base/anims_shared.txt and coop_mod/player_Torso.st are full-file snapshots of mod commits 6cf61e58 / 12e9faf6; the mod tree has since gained the low-turret rows and states (7ca17790) and the heavy lane's shotgun break-off lines.",
+  "file": "docs/proposals/ads_twohand_2026-10-11/assets/coop_mod/player_Torso.st; assets/models/player/base/anims_shared.txt",
+  "root_cause": "Full-file staging of files other lanes also edit; nothing recorded the base commit.",
+  "fix": "srvrows.py BASES records the base commit per snapshot, 3-way merges with the mod tree's current file (git merge-file; clean today) and checks the MERGED text; --emit-merged writes it. Shipping = the 3-way merge at apply time, never a copy.",
+  "tags": ["ads", "pistol-lane", "merge", "state-file", "integration"]
+ }
+]

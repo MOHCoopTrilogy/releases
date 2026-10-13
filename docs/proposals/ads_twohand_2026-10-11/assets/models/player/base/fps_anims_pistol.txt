@@ -381,6 +381,11 @@ animations
 	coopr_silenced_luger_p08_reload_ads		viewmodel/pistol/coop_luger_reload_ads.skc		crossblend 0.1
 	coopr_silenced_luger_p08_reload_empty		viewmodel/pistol/reload_colt.skc			crossblend 0.3
 	coopr_silenced_luger_p08_reload_empty_ads	viewmodel/pistol/coop_luger_reload_empty_ads.skc		crossblend 0.1
+	//===================== HZM coop Walther PPK: its own EMPTIED aimed reload (the Colt clip with the support thumb riding lower, PB_THUMB 0.15: on the small gun the Colt thumb stood 2.3-2.7 % into the centre box in crouch / prone / lean L, run pa20) =====================
+	coopr_walther_ppk_reload			viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_walther_ppk_reload_ads		viewmodel/pistol/colt45_reload_ads.skc		crossblend 0.1
+	coopr_walther_ppk_reload_empty		viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_walther_ppk_reload_empty_ads	viewmodel/pistol/coop_ppk_reload_empty_ads.skc		crossblend 0.1
 	//===================== HZM coop Welrod (bolt-action pistol): own aimed reload and per-shot bolt cycle =====================
 	coopr_welrod_charge			viewmodel/pistol/coop_welrod_ads2h.skc		crossblend 0.3
 	coopr_welrod_reload			viewmodel/pistol/reload_colt.skc			crossblend 0.3

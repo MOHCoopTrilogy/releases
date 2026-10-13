@@ -37,7 +37,7 @@ SIDE = {
     'ppk': dict(hands='colt45', dir='models/weapons/ppk', clip='PPK_reload.skc', idle='PPK.skc', empty='PPK_empty.skc', slide='Bone3', mag='clip',
                 also={'Bone2 rot': 'empty'}),          # the hammer stays cocked with the slide back
     'tt33': dict(hands='colt45', dir='models/weapons/tt33', clip='tt33_reload.skc', idle='tt33.skc', empty=None, slide='selfcock', mag=None,
-                 travel=['tt33_fire.skc', 'tt33_reload.skc'], pad=True),
+                 travel=['tt33_fire.skc', 'tt33_reload.skc']),   # no pad (bug-3736): `reload` is the server's row and stays as released
     'berettas': dict(hands='colt45', dir='models/weapons/beretta', clip='beretta_reload.skc', idle='beretta.skc', empty=None, slide='Rechamber',
                      mag='Release', magdrop=4.0, travel=['beretta_reload.skc'], lock=0.9),
     # meshes with NO slide / bolt bone: the part is cut out onto `coop_slide` (bonefit.split; islands from _meshsurvey.py)

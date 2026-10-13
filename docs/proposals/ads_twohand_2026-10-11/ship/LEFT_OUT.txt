@@ -1,0 +1,55 @@
+models/human/animation/viewmodel/coop_m10/coop_m10_idle2h.skc   (not named by a shipped table)
+models/human/animation/viewmodel/coop_m10/coop_m10_reload.skc   (not named by a shipped table)
+models/human/animation/viewmodel/coop_m10/coop_m10_reload_empty.skc   (not named by a shipped table)
+models/human/animation/viewmodel/coop_m10/coop_m10_reload_end.skc   (not named by a shipped table)
+models/human/animation/viewmodel/coop_m10/coop_m10_reload_single.skc   (not named by a shipped table)
+models/human/animation/viewmodel/coop_m10/coop_m10_reload_single_slow.skc   (not named by a shipped table)
+models/human/animation/viewmodel/coop_m10/m10_ads2h.skc   (not named by a shipped table)
+models/human/animation/viewmodel/coop_m10/m10_reload_ads.skc   (not named by a shipped table)
+models/human/animation/viewmodel/coop_m10/m10_reload_empty_ads.skc   (not named by a shipped table)
+models/human/animation/viewmodel/coop_m10/m10_reload_end_ads.skc   (not named by a shipped table)
+models/human/animation/viewmodel/coop_m10/m10_reload_single_ads.skc   (not named by a shipped table)
+models/human/animation/viewmodel/coop_m10/m10_reload_single_slow_ads.skc   (not named by a shipped table)
+models/human/animation/viewmodel/pistol/coop_c96_reload_ads.skc
+models/human/animation/viewmodel/pistol/coop_c96_reload_empty_ads.skc
+models/human/animation/viewmodel/sten/coop_sten_ads_mag.skc
+models/human/animation/viewmodel/sten/coop_type100_ads_mag.skc
+models/player/base/fps_anims_smg.txt
+models/weapons/coop_c96/c96.skd
+models/weapons/coop_c96/coop_c96_idle_empty.skc
+models/weapons/coop_c96/coop_c96_reload_ads_empty.skc
+models/weapons/coop_c96/coop_c96_reload_ads_loaded.skc
+models/weapons/coop_c96/coop_c96_reload_empty.skc
+models/weapons/coop_m10/coop_m10_close.skc
+models/weapons/coop_m10/coop_m10_close_ads.skc
+models/weapons/coop_m10/coop_m10_open.skc
+models/weapons/coop_m10/coop_m10_single.skc
+models/weapons/coop_m10/coop_m10_single_slow.skc
+models/weapons/coop_m10/m10.skd
+models/weapons/m10_revolver.tik
+models/weapons/m10_revolver_bloody.tik
+models/weapons/m10_revolver_blued.tik
+models/weapons/m10_revolver_camo_desert.tik
+models/weapons/m10_revolver_camo_winter.tik
+models/weapons/m10_revolver_camo_woodland.tik
+models/weapons/m10_revolver_chrome.tik
+models/weapons/m10_revolver_gold.tik
+models/weapons/mauser_c96.tik
+models/weapons/mauser_c96_bloody.tik
+models/weapons/mauser_c96_blued.tik
+models/weapons/mauser_c96_camo_desert.tik
+models/weapons/mauser_c96_camo_winter.tik
+models/weapons/mauser_c96_camo_woodland.tik
+models/weapons/mauser_c96_chrome.tik
+models/weapons/mauser_c96_gold.tik
+scripts/coop_c96_clip.shader
+scripts/coop_m10_face.shader
+textures/coop_c96/coop_c96_boltbar.tga
+textures/coop_c96/coop_c96_bullet.tga
+textures/coop_c96/coop_c96_case.tga
+textures/coop_c96/coop_c96_port.tga
+textures/coop_c96/coop_c96_strip.tga
+textures/coop_m10/coop_m10_face.tga
+textures/coop_m10/coop_m10_head.tga
+textures/coop_m10/gun5.tga
+textures/models/weapons/**   (texture lifts: in ../ship_awaiting_approval, not in the cut)

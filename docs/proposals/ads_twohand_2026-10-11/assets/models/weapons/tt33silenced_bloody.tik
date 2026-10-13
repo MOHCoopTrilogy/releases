@@ -136,7 +136,7 @@ animations
 		}
 	}
 	idle_empty	coop_tt33_idle_empty.skc
-	reload 	coop_tt33_reload_hip.skc
+	reload 	tt33_reload.skc
 	{
 		server
 		{
