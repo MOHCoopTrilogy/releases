@@ -1,0 +1,6 @@
+{
+ "shotgun": {
+  "delta_mrad": 18.0,
+  "why": "the shared ironsights sights.json has carried 18 mrad since 2026-10-05 (ads_bolt, user-approved: at 4 the receiver crest hides the barrel end); cg_adssights.h was never regenerated and still says 4 mrad. Ships together with the staged bead mesh (tools/stage_bead.py): shotgun.skd + coop_bead surface line in 14 tiks + shader + texture"
+ }
+}

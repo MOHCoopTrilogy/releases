@@ -4,10 +4,10 @@ Lane of the aimed-animation work: the `## mg` and `## heavy` rows of `../coverag
 lane's (`../README.md` top section); this file says what is different here, what is done and what is next.
 **Everything is STAGED** in this folder and on engine branch `ads-heavy-next` (worktree
 `C:\mohaa-coop-dev\openmohaa-hzm-ads-heavy`, build dir `.cmake` - NOT `build`). Nothing is in the mod tree, the fixes
-pak or a live install. Run ids used: ha hb hc hd he hf hn hs (earlier), **hg1-hg3, hh1-hh9, hi1, hi2 (this session)** -
-never reuse one; next free prefix `hj`.
+pak or a live install. Run ids used: ha hb hc hd he hf hn hs (earlier), **hg1-hg3, hh1-hh9, hi1, hi2, hj1, hj2 (this session)** -
+never reuse one; next free: `hj3`.
 
-## State (third agent, runs hg / hh / hi; engine unchanged: cgame_heavy2)
+## State (third agent, runs hg / hh / hi / hj1-hj2; engine: cgame_heavy2 for every reload figure, cgame_heavy3 = + the shotgun row)
 | item | state |
 |---|---|
 | 1 measurement AS PLAYED (sway + breath on) | **done** - `boxeng.py --sway` (the SMG lane's reloadbox code as a library) + `run_h.py --tail 360:4`; bug-3620 answered: a measuring artefact (bug-3667) |
@@ -20,7 +20,7 @@ never reuse one; next free prefix `hj`.
 | hand on the handle (BAR, StG 44) | re-posed: wrist from below, fingers and knuckles readable (bug-3671); the knob is still hidden while gripped |
 | FG 42 | **scoped weapon, no iron-sight aim** (bug-3673; coordinator confirmed). Reload while scoped today: the scope picture stays, no viewmodel (hh9). Its HIP reload on the model is **not started** |
 | DP-28, aimed, rounds left + emptied, six stances + braced rows | **done to the three rules** (hi1 / hi2), weak points listed below |
-| shotgun sight (bead) | **not staged** - findings in "Next" (the tool, shader and texture exist, nothing ever shipped; the engine row still says 4 mrad) |
+| shotgun sight (bead) | **staged, NOT finished** (bug-3677): bead mesh + 14 tiks + shader + row 18 mrad on `ads-heavy-next` (`cgame_heavy3`); the barrel end now shows above the receiver, the bead itself does not read yet - see "Next" 1 |
 | belt-feds (M1919 portable, Breda, Vickers, MG42), shotgun reload, FG 42 hip reload | **not started** |
 
 ### Centre box AS PLAYED (cg_adsSway 0.1, cg_weaponBreath 1 = the runner's defaults), `centrebox.json`
@@ -221,19 +221,20 @@ reload is untouched (retail cocks even with rounds left); break-offs and the sco
   ABOVE it.** This lane ships nothing.
 
 ## Next
-1. **Shotgun sight (user 2026-10-12: "that shotgun needs some kind of sights")** - found, not staged: `sights.json`
-   HAS a `shotgun` row (F = barrel end ridge, R virtual on the receiver top, delta 18 mrad since 2026-10-05), but
-   `cg_adssights.h` on `ads-next` / `ads-heavy-next` still carries **4 mrad** for all 14 shotgun rows (never
-   regenerated), the retail M1897 mesh has no bead and no rear sight, and the brass bead approved on 2026-10-05 exists
-   only as a tool and art: `../../ads_bolt_2026-10-04/tools/add_bead.py shotgun <out.skd>` (own surface `coop_bead`),
-   `../../weapon_hd_2026-10-05/bead/` (shader `coop_shotgun_bead` + texture). To stage here: the skd with the bead
-   under `assets/models/weapons/shotgun/`, `surface coop_bead shader coop_shotgun_bead` in every shotgun tik on that
-   mesh (check each tik's `path`: authwinch, dhshotblack / chrome, guanshotty, hobbsshotty, lv_ttshotgun may be on
-   their own), shader + texture, a lane `sights_override.json` (delta 18 mrad, F = the bead's top that add_bead
-   prints) and the 14 header rows (the SMG lane's `patch_sights_row.py` rewrites F / R / relief only - delta needs a
-   lane tool), cgame rebuild -> `cgame_heavy3`, before / after aim stills (`run_h.py --parts yaw,stills --yaws 165`,
-   `mkov_h.py --before`), third person (`third_close` of smg_block is already bound in run_h.py). The groove on the
-   receiver top and other shotguns in the mod: not looked at.
+1. **Shotgun sight (user 2026-10-12: "that shotgun needs some kind of sights") - staged, not finished (bug-3677).**
+   What was wrong: the retail M1897 mesh has no bead and no rear sight; the brass bead approved on 2026-10-05 existed
+   only as a tool and art; `sights.json` has said 18 mrad since then but `cg_adssights.h` still had 4 mrad in all 14
+   shotgun rows, so the receiver crest hid the barrel end. All 14 shotgun tiks load the ONE retail skd - no other
+   shotgun mesh in the mod. Staged: `python ../tools/stage_bead.py` (skd with surface `coop_bead`, the tik line in 14
+   tiks, shader + texture from `../../weapon_hd_2026-10-05/bead/`), `sights_override.json` (delta 18 mrad) +
+   `python tools/sightrow_h.py <worktree>/code/cgame/cg_adssights.h` (14 rows; the SMG lane's tool leaves the delta
+   alone), cgame rebuilt = `cgame_heavy3`. Runs hj1 (released, cgame_heavy2, `mkov_h.py --before`) / hj2:
+   `evidence/shotgun_aim_bead_before_after_hj1_hj2.jpg` - the barrel end now stands above the receiver crest;
+   **the bead itself does not read** (6 px across at 1280, dark against that backdrop's foliage; nothing brass at 8x).
+   To do: a larger / brighter bead (`stage_bead.py --r 0.26`, the shader's lighting), a run on the light wall
+   (`--parts yaw,stills` ran on foliage), third person + world model (`third_close` of smg_block is bound in
+   run_h.py), the groove along the receiver top; `patch_tik_h.py` rebuilds staged tiks from the mod tree - keep the
+   bead line when the shotgun's reload rows are staged. Engine: the row is in the lane's worktree commit only.
 2. FG 42 hip reload on the model (above).
 3. Belt-feds: M1919 portable first (sight row; bug-3622), Breda, Vickers, MG42.
 4. Shotgun reload: shells one at a time on target or just under the box, break off on fire, pump only when the chamber
@@ -250,6 +251,6 @@ Runs: ha1 / ha2 (aim poses), hb1-hb9 (predecessor's BAR iterations), hs / hn (sk
 variants, finishes), hd1-hd3 (final BAR clips, settle diagnostics), he1-he7 (StG 44; he6 / he7 final), hf1 (StG 44 aim
 stills), hf2 (strapped variant). `centrebox.json` keys are GUN names (`bar`, `bar_empty`, ...) as coverage.py reads
 them; `python ../tools/coverage.py --lane heavy build` writes the lane preview `heavy/coverage.md` (BAR and StG 44: DONE).
-Bugs: 3619-3623, 3646-3649 (second agent); 3667-3676 (third agent).
+Bugs: 3619-3623, 3646-3649 (second agent); 3667-3677 (third agent).
 Tools added by the third agent: `boxeng.py --sway`, `swayshow.py`, `run_h.py --tail / --brk / --hipdemo / --hold / --rel`,
 `heavybake.py --hip` + `feed='top'`, `patch_tik_h.py` `more_paths` for the BAR, `hip=True`, the `dp28` set.
