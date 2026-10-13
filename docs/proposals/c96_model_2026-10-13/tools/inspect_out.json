@@ -1,0 +1,581 @@
+{
+ "importer": "wm.fbx_import",
+ "blender": "5.1.2",
+ "unit_scale": 1.0,
+ "frame_range": [
+  1,
+  250
+ ],
+ "fps": 30,
+ "objects": [
+  {
+   "name": "Frame_L",
+   "type": "MESH",
+   "parent": "MauserRig",
+   "parent_bone": null,
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rot_deg": [
+    -0.0,
+    -0.0,
+    0.0
+   ],
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "animated": false,
+   "action": null,
+   "verts": 12509,
+   "polys": 14867,
+   "tris": 24600,
+   "ngons": 36,
+   "bbox_min": [
+    -0.18418,
+    -2.37389,
+    -1.01058
+   ],
+   "bbox_max": [
+    0.17261,
+    2.37515,
+    1.32894
+   ],
+   "size": [
+    0.35679,
+    4.74904,
+    2.33951
+   ],
+   "materials": [
+    "MauserFinal"
+   ],
+   "uv_layers": [
+    "UVMap"
+   ],
+   "uv_range": [
+    0.003,
+    0.003,
+    0.997,
+    0.997
+   ],
+   "vgroups": [
+    "Root",
+    "Slide",
+    "Hammer",
+    "Trigger",
+    "EjectBullet",
+    "FreshBullet",
+    "Ring",
+    "Stock",
+    "StockCup",
+    "Clip"
+   ],
+   "modifiers": [
+    [
+     "ARMATURE",
+     "MauserRig"
+    ]
+   ],
+   "shape_keys": [],
+   "boundary_edges": 278,
+   "nonmanifold_edges": 0,
+   "wire_edges": 0,
+   "loose_verts": 9,
+   "zero_area_faces": 1,
+   "islands": 48,
+   "open_islands": 15,
+   "inverted_closed_islands": 0,
+   "custom_normals": true
+  },
+  {
+   "name": "MauserRig",
+   "type": "ARMATURE",
+   "parent": null,
+   "parent_bone": null,
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rot_deg": [
+    -0.0,
+    -0.0,
+    0.0
+   ],
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "animated": true,
+   "action": "MauserRig|MauserRigAction"
+  }
+ ],
+ "armatures": [
+  {
+   "name": "MauserRig",
+   "bones": [
+    {
+     "name": "Root",
+     "parent": null,
+     "head": [
+      -0.0,
+      0.36035,
+      -0.81346
+     ],
+     "len": 1.14909
+    },
+    {
+     "name": "Slide",
+     "parent": "Root",
+     "head": [
+      -0.0,
+      0.41479,
+      0.16269
+     ],
+     "len": 1.14909
+    },
+    {
+     "name": "Hammer",
+     "parent": "Root",
+     "head": [
+      0.0,
+      0.47048,
+      -0.09235
+     ],
+     "len": 1.14909
+    },
+    {
+     "name": "Trigger",
+     "parent": "Root",
+     "head": [
+      -0.0,
+      0.79411,
+      -0.04567
+     ],
+     "len": 1.14909
+    },
+    {
+     "name": "EjectBullet",
+     "parent": "Root",
+     "head": [
+      0.0,
+      1.02773,
+      1.10864
+     ],
+     "len": 1.14909
+    },
+    {
+     "name": "FreshBullet",
+     "parent": "Root",
+     "head": [
+      0.0,
+      1.02773,
+      1.30255
+     ],
+     "len": 1.14909
+    },
+    {
+     "name": "Ring",
+     "parent": "Root",
+     "head": [
+      -0.0,
+      0.31089,
+      -0.82993
+     ],
+     "len": 1.14909
+    },
+    {
+     "name": "Stock",
+     "parent": null,
+     "head": [
+      -0.0,
+      -1.96013,
+      -0.35819
+     ],
+     "len": 0.24458
+    },
+    {
+     "name": "StockCup",
+     "parent": "Stock",
+     "head": [
+      -0.16333,
+      -2.14116,
+      -0.37749
+     ],
+     "len": 0.24458
+    },
+    {
+     "name": "Clip",
+     "parent": null,
+     "head": [
+      0.0,
+      1.17706,
+      0.74757
+     ],
+     "len": 1.0
+    }
+   ]
+  }
+ ],
+ "actions": [
+  {
+   "name": "MauserRig|MauserRigAction",
+   "frame_range": [
+    1.0,
+    77.0
+   ],
+   "channels": {
+    "MauserRig | pose.bones[\"Hammer\"].location": {
+     "0": {
+      "keys": 17,
+      "min": -0.0,
+      "max": -0.0,
+      "first_f": 11.0,
+      "last_f": 27.0,
+      "moves": false
+     },
+     "1": {
+      "keys": 17,
+      "min": -0.0,
+      "max": -0.0,
+      "first_f": 11.0,
+      "last_f": 27.0,
+      "moves": false
+     },
+     "2": {
+      "keys": 17,
+      "min": -0.0,
+      "max": -0.0,
+      "first_f": 11.0,
+      "last_f": 27.0,
+      "moves": false
+     }
+    },
+    "MauserRig | pose.bones[\"Hammer\"].rotation_quaternion": {
+     "0": {
+      "keys": 17,
+      "min": 0.8476,
+      "max": 1.0,
+      "first_f": 11.0,
+      "last_f": 27.0,
+      "moves": true
+     },
+     "1": {
+      "keys": 17,
+      "min": -0.0,
+      "max": 0.53063,
+      "first_f": 11.0,
+      "last_f": 27.0,
+      "moves": true
+     },
+     "2": {
+      "keys": 17,
+      "min": 0.0,
+      "max": 0.0,
+      "first_f": 11.0,
+      "last_f": 27.0,
+      "moves": false
+     },
+     "3": {
+      "keys": 17,
+      "min": -0.0,
+      "max": -0.0,
+      "first_f": 11.0,
+      "last_f": 27.0,
+      "moves": false
+     }
+    },
+    "MauserRig | pose.bones[\"Hammer\"].scale": {
+     "0": {
+      "keys": 17,
+      "min": 1.0,
+      "max": 1.0,
+      "first_f": 11.0,
+      "last_f": 27.0,
+      "moves": false
+     },
+     "1": {
+      "keys": 17,
+      "min": 1.0,
+      "max": 1.0,
+      "first_f": 11.0,
+      "last_f": 27.0,
+      "moves": false
+     },
+     "2": {
+      "keys": 17,
+      "min": 1.0,
+      "max": 1.0,
+      "first_f": 11.0,
+      "last_f": 27.0,
+      "moves": false
+     }
+    },
+    "MauserRig | pose.bones[\"Trigger\"].location": {
+     "0": {
+      "keys": 31,
+      "min": 0.0,
+      "max": 0.0,
+      "first_f": 1.0,
+      "last_f": 37.0,
+      "moves": false
+     },
+     "1": {
+      "keys": 31,
+      "min": 0.0,
+      "max": 0.0,
+      "first_f": 1.0,
+      "last_f": 37.0,
+      "moves": false
+     },
+     "2": {
+      "keys": 31,
+      "min": -0.0,
+      "max": -0.0,
+      "first_f": 1.0,
+      "last_f": 37.0,
+      "moves": false
+     }
+    },
+    "MauserRig | pose.bones[\"Trigger\"].rotation_quaternion": {
+     "0": {
+      "keys": 31,
+      "min": 0.99664,
+      "max": 1.0,
+      "first_f": 1.0,
+      "last_f": 37.0,
+      "moves": true
+     },
+     "1": {
+      "keys": 31,
+      "min": -0.08196,
+      "max": -0.0,
+      "first_f": 1.0,
+      "last_f": 37.0,
+      "moves": true
+     },
+     "2": {
+      "keys": 31,
+      "min": -0.0,
+      "max": 0.0,
+      "first_f": 1.0,
+      "last_f": 37.0,
+      "moves": false
+     },
+     "3": {
+      "keys": 31,
+      "min": 0.0,
+      "max": 0.0,
+      "first_f": 1.0,
+      "last_f": 37.0,
+      "moves": false
+     }
+    },
+    "MauserRig | pose.bones[\"Trigger\"].scale": {
+     "0": {
+      "keys": 31,
+      "min": 1.0,
+      "max": 1.0,
+      "first_f": 1.0,
+      "last_f": 37.0,
+      "moves": false
+     },
+     "1": {
+      "keys": 31,
+      "min": 1.0,
+      "max": 1.0,
+      "first_f": 1.0,
+      "last_f": 37.0,
+      "moves": false
+     },
+     "2": {
+      "keys": 31,
+      "min": 1.0,
+      "max": 1.0,
+      "first_f": 1.0,
+      "last_f": 37.0,
+      "moves": false
+     }
+    },
+    "MauserRig | pose.bones[\"EjectBullet\"].location": {
+     "0": {
+      "keys": 59,
+      "min": -0.52598,
+      "max": 0.0,
+      "first_f": 19.0,
+      "last_f": 77.0,
+      "moves": true
+     },
+     "1": {
+      "keys": 59,
+      "min": -0.34382,
+      "max": 0.32442,
+      "first_f": 19.0,
+      "last_f": 77.0,
+      "moves": true
+     },
+     "2": {
+      "keys": 59,
+      "min": -1.55518,
+      "max": -0.65834,
+      "first_f": 19.0,
+      "last_f": 77.0,
+      "moves": true
+     }
+    },
+    "MauserRig | pose.bones[\"EjectBullet\"].rotation_quaternion": {
+     "0": {
+      "keys": 59,
+      "min": -0.96112,
+      "max": 1.0,
+      "first_f": 19.0,
+      "last_f": 77.0,
+      "moves": true
+     },
+     "1": {
+      "keys": 59,
+      "min": -0.19081,
+      "max": 0.98981,
+      "first_f": 19.0,
+      "last_f": 77.0,
+      "moves": true
+     },
+     "2": {
+      "keys": 59,
+      "min": -0.11179,
+      "max": 0.22833,
+      "first_f": 19.0,
+      "last_f": 77.0,
+      "moves": true
+     },
+     "3": {
+      "keys": 59,
+      "min": -0.01834,
+      "max": 2.0,
+      "first_f": 19.0,
+      "last_f": 77.0,
+      "moves": true
+     }
+    },
+    "MauserRig | pose.bones[\"EjectBullet\"].scale": {
+     "0": {
+      "keys": 59,
+      "min": 0.0,
+      "max": 1.0,
+      "first_f": 19.0,
+      "last_f": 77.0,
+      "moves": true
+     },
+     "1": {
+      "keys": 59,
+      "min": 0.0,
+      "max": 1.0,
+      "first_f": 19.0,
+      "last_f": 77.0,
+      "moves": true
+     },
+     "2": {
+      "keys": 59,
+      "min": 0.0,
+      "max": 1.0,
+      "first_f": 19.0,
+      "last_f": 77.0,
+      "moves": true
+     }
+    }
+   }
+  }
+ ],
+ "materials": [
+  {
+   "name": "MauserFinal",
+   "users": 1,
+   "nodes": [
+    {
+     "type": "ShaderNodeBsdfPrincipled"
+    },
+    {
+     "type": "ShaderNodeOutputMaterial"
+    },
+    {
+     "type": "ShaderNodeTexImage",
+     "image": "Mauser_L_Baker_BaseColor.1001.png",
+     "path": "C:/mohaa-coop-dev/docs/proposals/c96_model_2026-10-13/source/unpacked/source\\Textures\\Mauser_L_Baker_BaseColor.1001.png",
+     "to": [
+      "Base Color"
+     ]
+    },
+    {
+     "type": "ShaderNodeTexImage",
+     "image": "Mauser_L_Baker_Roughness.1001.png",
+     "path": "C:/mohaa-coop-dev/docs/proposals/c96_model_2026-10-13/source/unpacked/source\\Textures\\Mauser_L_Baker_Roughness.1001.png",
+     "to": [
+      "Roughness"
+     ]
+    },
+    {
+     "type": "ShaderNodeTexImage",
+     "image": "Mauser_L_Baker_Metallic.1001.png",
+     "path": "C:/mohaa-coop-dev/docs/proposals/c96_model_2026-10-13/source/unpacked/source\\Textures\\Mauser_L_Baker_Metallic.1001.png",
+     "to": [
+      "Metallic"
+     ]
+    },
+    {
+     "type": "ShaderNodeTexImage",
+     "image": "Mauser_L_Baker_Normal.1001.png",
+     "path": "C:/mohaa-coop-dev/docs/proposals/c96_model_2026-10-13/source/unpacked/source\\Textures\\Mauser_L_Baker_Normal.1001.png",
+     "to": [
+      "Color"
+     ]
+    },
+    {
+     "type": "ShaderNodeNormalMap"
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "name": "Mauser_L_Baker_BaseColor.1001.png",
+   "path": "C:/mohaa-coop-dev/docs/proposals/c96_model_2026-10-13/source/unpacked/source\\Textures\\Mauser_L_Baker_BaseColor.1001.png",
+   "size": [
+    0,
+    0
+   ],
+   "source": "FILE"
+  },
+  {
+   "name": "Mauser_L_Baker_Metallic.1001.png",
+   "path": "C:/mohaa-coop-dev/docs/proposals/c96_model_2026-10-13/source/unpacked/source\\Textures\\Mauser_L_Baker_Metallic.1001.png",
+   "size": [
+    0,
+    0
+   ],
+   "source": "FILE"
+  },
+  {
+   "name": "Mauser_L_Baker_Normal.1001.png",
+   "path": "C:/mohaa-coop-dev/docs/proposals/c96_model_2026-10-13/source/unpacked/source\\Textures\\Mauser_L_Baker_Normal.1001.png",
+   "size": [
+    0,
+    0
+   ],
+   "source": "FILE"
+  },
+  {
+   "name": "Mauser_L_Baker_Roughness.1001.png",
+   "path": "C:/mohaa-coop-dev/docs/proposals/c96_model_2026-10-13/source/unpacked/source\\Textures\\Mauser_L_Baker_Roughness.1001.png",
+   "size": [
+    0,
+    0
+   ],
+   "source": "FILE"
+  }
+ ],
+ "total_tris": 24600
+}
