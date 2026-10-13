@@ -1,0 +1,11 @@
+	//===================== HZM coop Luger P08: own aim pose (gun 2.2 u further out) and aimed reloads on it; the toggle works =====================
+	coopr_luger_p08_charge			viewmodel/pistol/coop_luger_ads2h.skc		crossblend 0.3
+	coopr_luger_p08_reload			viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_luger_p08_reload_ads		viewmodel/pistol/coop_luger_reload_ads.skc		crossblend 0.1
+	coopr_luger_p08_reload_empty		viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_luger_p08_reload_empty_ads	viewmodel/pistol/coop_luger_reload_empty_ads.skc		crossblend 0.1
+	coopr_silenced_luger_p08_charge			viewmodel/pistol/coop_luger_ads2h.skc		crossblend 0.3
+	coopr_silenced_luger_p08_reload			viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_silenced_luger_p08_reload_ads		viewmodel/pistol/coop_luger_reload_ads.skc		crossblend 0.1
+	coopr_silenced_luger_p08_reload_empty		viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_silenced_luger_p08_reload_empty_ads	viewmodel/pistol/coop_luger_reload_empty_ads.skc		crossblend 0.1

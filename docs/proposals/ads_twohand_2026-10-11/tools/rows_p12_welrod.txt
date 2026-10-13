@@ -1,0 +1,8 @@
+	//===================== HZM coop Welrod (bolt-action pistol): own aimed reload and per-shot bolt cycle =====================
+	coopr_welrod_charge			viewmodel/pistol/coop_welrod_ads2h.skc		crossblend 0.3
+	coopr_welrod_reload			viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_welrod_reload_ads		viewmodel/pistol/coop_welrod_reload_ads.skc		crossblend 0.1
+	coopr_welrod_reload_empty		viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_welrod_reload_empty_ads	viewmodel/pistol/coop_welrod_reload_empty_ads.skc		crossblend 0.1
+	coopr_welrod_cycle			viewmodel/pistol/coop_welrod_cycle_ads.skc		crossblend 0.08
+	coopr_welrod_cycle_ads		viewmodel/pistol/coop_welrod_cycle_ads.skc		crossblend 0.08

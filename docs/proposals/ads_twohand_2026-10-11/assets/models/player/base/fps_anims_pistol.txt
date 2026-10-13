@@ -365,5 +365,29 @@ animations
 	beretta_reload_empty_ads		viewmodel/beretta/beretta_reload_empty_ads.skc		crossblend 0.1
 	//===================== HZM coop aimed per-shot cycle (cgame plays <prefix>_cycle_ads on a clip-ammo drop while aiming) =====================
 	histandard_cycle_ads		viewmodel/pistol/histandard_cycle_ads.skc		crossblend 0.08
+	//===================== HZM coop Mauser C96: its own aimed reload (stripper clip from the top, gun kept up under the centre box) =====================
+	coopr_mauser_c96_reload			viewmodel/pistol/reload_p38.skc			crossblend 0.3
+	coopr_mauser_c96_reload_ads		viewmodel/pistol/coop_c96_reload_ads.skc		crossblend 0.1
+	coopr_mauser_c96_reload_empty		viewmodel/pistol/reload_p38.skc			crossblend 0.3
+	coopr_mauser_c96_reload_empty_ads	viewmodel/pistol/coop_c96_reload_empty_ads.skc		crossblend 0.1
+	//===================== HZM coop Luger P08: own aim pose (gun 2.2 u further out) and aimed reloads on it; the toggle works =====================
+	coopr_luger_p08_charge			viewmodel/pistol/coop_luger_ads2h.skc		crossblend 0.3
+	coopr_luger_p08_reload			viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_luger_p08_reload_ads		viewmodel/pistol/coop_luger_reload_ads.skc		crossblend 0.1
+	coopr_luger_p08_reload_empty		viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_luger_p08_reload_empty_ads	viewmodel/pistol/coop_luger_reload_empty_ads.skc		crossblend 0.1
+	coopr_silenced_luger_p08_charge			viewmodel/pistol/coop_luger_ads2h.skc		crossblend 0.3
+	coopr_silenced_luger_p08_reload			viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_silenced_luger_p08_reload_ads		viewmodel/pistol/coop_luger_reload_ads.skc		crossblend 0.1
+	coopr_silenced_luger_p08_reload_empty		viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_silenced_luger_p08_reload_empty_ads	viewmodel/pistol/coop_luger_reload_empty_ads.skc		crossblend 0.1
+	//===================== HZM coop Welrod (bolt-action pistol): own aimed reload and per-shot bolt cycle =====================
+	coopr_welrod_charge			viewmodel/pistol/coop_welrod_ads2h.skc		crossblend 0.3
+	coopr_welrod_reload			viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_welrod_reload_ads		viewmodel/pistol/coop_welrod_reload_ads.skc		crossblend 0.1
+	coopr_welrod_reload_empty		viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_welrod_reload_empty_ads	viewmodel/pistol/coop_welrod_reload_empty_ads.skc		crossblend 0.1
+	coopr_welrod_cycle			viewmodel/pistol/coop_welrod_cycle_ads.skc		crossblend 0.08
+	coopr_welrod_cycle_ads		viewmodel/pistol/coop_welrod_cycle_ads.skc		crossblend 0.08
 }
 

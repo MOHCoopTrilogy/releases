@@ -29,15 +29,18 @@ GUNS = pistolgun.GUNS
 
 STRENGTH = float(os.environ.get('PB_STRENGTH', '1.0'))
 POUCH = (5.0, 9.0, -15.0)              # camera frame (fwd, left, up): the belt, well under the frame
+# the push that seats the magazine lifts the gun's rear into the target: at 1.0 the thicker meshes on these clips went
+# over the 2 % bar for 3-6 frames (run pa6: silenced TT-33 2.7 %; Colt emptied 3.2 %, run td9)
+SEAT = float(os.environ.get('PB_SEAT', '0.6'))
 
 
 def events(g, empty):
     t = g['t']
     if g.get('rack'):                       # hand-cycled: magazine in, then the rack - pulled back, slammed forward
         r = g['rack']
-        return [(t['rel'], 'mag_release'), (t['out'][0], 'mag_out'), (t['seat'][1] - 1, 'mag_seat'),
+        return [(t['rel'], 'mag_release'), (t['out'][0], 'mag_out'), (t['seat'][1] - 1, 'mag_seat', SEAT),
                 (r['pull'][0], 'slide_back'), (r['fwd'][1] - 1, 'slide_fwd'), (r['on'] - 4, 'hand_on')]
-    ev = [(t['rel'], 'mag_release'), (t['out'][0], 'mag_out'), (t['seat'][1] - 1, 'mag_seat'), (t['on'][1] - 4, 'hand_on')]
+    ev = [(t['rel'], 'mag_release'), (t['out'][0], 'mag_out'), (t['seat'][1] - 1, 'mag_seat', SEAT), (t['on'][1] - 4, 'hand_on')]
     if empty:
         ev += [(t['press'], 'thumb_press'), (t['fwd'][1] - 1, 'slide_fwd')]
     return ev
@@ -89,8 +92,11 @@ def spec(name, empty):
         p = t['press']
         # the support thumb rides high as the hand closes on the grip and sweeps the slide stop down over p..p+2;
         # the slide starts forward on p+2 (pistolgun: fwd[0])
-        kw['finger_add'] = {'Bip01 L Finger01 rot': [(o0 + 2, 0.0), (p - 3, -26.0), (p, -26.0), (p + 2, 7.0), (p + 6, 0.0)],
-                            'Bip01 L Finger02 rot': [(o0 + 2, 0.0), (p - 3, -16.0), (p, -16.0), (p + 2, 5.0), (p + 6, 0.0)]}
+        # THUMB: how high the thumb rides before the sweep. At 1.0 (26 / 16 deg) it stood up beside the slide into the
+        # centre box on every gun smaller than the Colt (run pa7: PPK 5.1 %, TT-33 3.7 %; the Colt's own 3.2 % of run td9)
+        th_ = float(os.environ.get('PB_THUMB', '0.45'))
+        kw['finger_add'] = {'Bip01 L Finger01 rot': [(o0 + 2, 0.0), (p - 3, -26.0 * th_), (p, -26.0 * th_), (p + 2, 7.0), (p + 6, 0.0)],
+                            'Bip01 L Finger02 rot': [(o0 + 2, 0.0), (p - 3, -16.0 * th_), (p, -16.0 * th_), (p + 2, 5.0), (p + 6, 0.0)]}
     return kw, ph
 
 

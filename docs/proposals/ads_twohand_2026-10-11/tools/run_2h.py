@@ -109,22 +109,28 @@ def still(sess, gun, st, name=None):
     R.step(L, timeout=600)
 
 
-def reload_sparse(sess, gun, st, n=190, every=4, ads=True, shots=1):
-    """aimed reload in a stance for the NUMBERS: the ADSFRAME probe on every frame, a screenshot every `every` frames"""
-    tag = "ab__%s__%s__%s__%s__after" % (sess, gun, st, "reload" if ads else "hipreload")
-    L = S.RELEASE + S.TO_STAND + S.APPLY[st] + A.MODE["after"] + ["wait 400"] + (["+button13", "wait 1700"] if ads else ["wait 600"])
-    for _ in range(shots):
-        L += ["+attackprimary", "wait 90", "-attackprimary", "wait 2200" if _ == shots - 1 else "wait 1300"]
+RIDE = [False]
+SLOWGUNS = set()         # hand-cycled guns (--gungap): 1.3 s between the emptying shots, the others 0.45 s
+
+
+def reload_sparse(sess, gun, st, n=190, every=4, ads=True, shots=1, empty=False):
+    """aimed reload in a stance for the NUMBERS: the ADSFRAME probe on every frame, a screenshot every `every` frames.
+    empty: `shots` = the clip size - the last shot is fired as the capture starts and the gun reloads by itself (tag
+    stance <st>E)"""
+    tag = "ab__%s__%s__%s%s__%s__after" % (sess, gun, st, "E" if empty else "", "reload" if ads else "hipreload")
+    L = S.RELEASE + ([] if RIDE[0] else S.TO_STAND + S.APPLY[st]) + A.MODE["after"] + ["wait 400"] + (["+button13", "wait 1700"] if ads else ["wait 600"])
+    for _ in range(shots - 1 if empty else shots):
+        L += ["+attackprimary", "wait 90", "-attackprimary", "wait 2200" if (_ == shots - 1 and not empty) else ("wait 1300" if (not empty or gun in SLOWGUNS) else "wait 450")]
     L += ["coop_braceView"] if st == "braced" else []
     L += ["set cg_adsSightDebug 2", "echo ^~^~^ ABSCEN begin %s" % tag]
     for k in range(6):
         L += ["wait 1", "wait 1"]
-    L += ["reload"]
+    L += ["+attackprimary", "wait 1", "wait 1", "wait 1", "wait 1", "-attackprimary"] if empty else ["reload"]
     for k in range(n):
         L += (["screenshotJPEG %s__%04d" % (tag, k)] if k % every == 0 else []) + ["wait 1", "wait 1"]
     L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1"]
     L += ["coop_braceView"] if st == "braced" else []
-    L += S.RELEASE + A.UNAPPLY[st]
+    L += S.RELEASE + ([] if RIDE[0] else A.UNAPPLY[st])
     R.step(L, timeout=1800)
 
 
@@ -144,13 +150,17 @@ def yawstill(sess, gun, yaw):
 
 def run(a):
     extra = ["set cg_drawviewmodel 2", "set cg_weaponBreath 1", "set cg_adsSway 0.1"] + a.set
+    if a.ride:
+        R.MAP = "t2l2"
+        RIDE[0] = True
+        extra += ["set coop_isNoMove 1", "set coop_dbgForceSeat %d" % a.seat]
     rundir, notes = S.boot_session(a.session, a.cgame, 1280, 720, extra, a.overlay)
     try:
         R.step(["set coop_isFixed 16", "wait 300"], timeout=30)
         for gun in a.guns:
             A.GUNS.setdefault(gun, "models/weapons/%s.tik" % gun)
             A.log("[%s] 2h %s" % (a.session, gun))
-            R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+            R.step(S.RELEASE + ([] if RIDE[0] else S.TO_STAND) + S.give(A.GUNS[gun]), timeout=90)
             if "demo" in a.parts:
                 demo(a.session, gun)
             if "demoy" in a.parts:                      # the same demo against a lighter backdrop (other view yaw)
@@ -158,7 +168,16 @@ def run(a):
                 R.SPOT = (x, y, z, a.demoyaw)
                 try:
                     R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+                    GAP[0] = a.gungap.get(gun, a.shotgap)
                     demo(a.session, gun, tagst="yaw%d" % a.demoyaw)
+                    if a.both:                      # the same gun fired EMPTY (its clip size) and reloaded: tag yaw<N>e
+                        R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+                        sv = (EMPTY[0], SHOTS[0], DEMO_RELOAD[0])
+                        EMPTY[0] = True; SHOTS[0] = a.eshots.get(gun, 8); DEMO_RELOAD[0] = a.demoreload_e or a.demoreload
+                        try:
+                            demo(a.session, gun, tagst="yaw%de" % a.demoyaw)
+                        finally:
+                            EMPTY[0], SHOTS[0], DEMO_RELOAD[0] = sv
                     if "demohip" in a.parts:
                         R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
                         demohip(a.session, gun, tagst="yaw%d" % a.demoyaw)
@@ -183,8 +202,12 @@ def run(a):
                     still(a.session, gun, st)
             if "reloads" in a.parts:
                 for st in a.rstances:
-                    R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
-                    reload_sparse(a.session, gun, st, n=a.rframes, every=a.revery, shots=a.rshots)
+                    R.step(S.RELEASE + ([] if RIDE[0] else S.TO_STAND) + S.give(A.GUNS[gun]), timeout=90)
+                    if not a.remptyonly:
+                        reload_sparse(a.session, gun, st, n=a.rframes, every=a.revery, shots=a.rshots)
+                    if a.rempty:
+                        R.step(S.RELEASE + ([] if RIDE[0] else S.TO_STAND) + S.give(A.GUNS[gun]), timeout=90)
+                        reload_sparse(a.session, gun, st, n=a.rframes, every=a.revery, shots=a.eshots.get(gun, 8), empty=True)
                     if a.rhip:
                         R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
                         reload_sparse(a.session, gun, st, n=a.rframes, every=a.revery, ads=False, shots=a.rshots)
@@ -231,9 +254,16 @@ def main():
     ap.add_argument("--rstances", default="crouch,prone"); ap.add_argument("--rframes", type=int, default=190)
     ap.add_argument("--yaws", default="185,265,135,315"); ap.add_argument("--demoyaw", type=int, default=160); ap.add_argument("--demoreload", type=int, default=170); ap.add_argument("--braced", action="store_true"); ap.add_argument("--shots", type=int, default=2); ap.add_argument("--demoempty", action="store_true"); ap.add_argument("--shotgap", type=int, default=27); ap.add_argument("--intr", default="4,95,170"); ap.add_argument("--kinds", default="fire,switch,sprint"); ap.add_argument("--set", action="append", default=[]); ap.add_argument("--revery", type=int, default=4); ap.add_argument("--rhip", action="store_true"); ap.add_argument("--rshots", type=int, default=1)
     ap.add_argument("--force", action="store_true")
+    ap.add_argument("--both", action="store_true"); ap.add_argument("--eshots", default=""); ap.add_argument("--gungap", default="")
+    ap.add_argument("--demoreload_e", type=int, default=0)
+    ap.add_argument("--rempty", action="store_true"); ap.add_argument("--remptyonly", action="store_true")
+    ap.add_argument("--ride", action="store_true"); ap.add_argument("--seat", type=int, default=2)
     a = ap.parse_args()
     if os.path.isdir(os.path.join(R.RUNS, a.session)) and not a.force:
         sys.exit("run folder %s/%s exists - boot_session would delete it; pick an unused id or pass --force" % (R.RUNS, a.session))
+    a.eshots = {k: int(v) for k, v in (x.split("=") for x in a.eshots.split(",") if x)}
+    a.gungap = {k: int(v) for k, v in (x.split("=") for x in a.gungap.split(",") if x)}
+    SLOWGUNS.update(a.gungap)
     DEMO_RELOAD[0] = a.demoreload
     SHOTS[0] = a.shots
     EMPTY[0] = a.demoempty

@@ -437,6 +437,15 @@ def bake(name, ctl):
                             return pc.get(ch, ph[ch])
                         if spec_ == 'aim':
                             return base_
+                        if isinstance(spec_, (tuple, list)) and spec_[0] == 'clip':
+                            # ('clip', view clip path under ANIM, frame): the fingers of ANOTHER clip's frame (a grasp
+                            # borrowed from a different gun's art; pistol lane 2026-10-12, Welrod knob)
+                            if '_fc' not in rc:
+                                rc['_fc'] = {}
+                            k_ = (spec_[1], spec_[2])
+                            if k_ not in rc['_fc']:
+                                rc['_fc'][k_] = R.pose_dict(R.load(R.ANIM + spec_[1]), spec_[2])
+                            return rc['_fc'][k_].get(ch, base_)
                         if isinstance(spec_, (tuple, list)):
                             return R.qslerp(base_, R.pose_dict(hip, spec_[1])[ch], spec_[2])
                         return R.pose_dict(hip, spec_)[ch]

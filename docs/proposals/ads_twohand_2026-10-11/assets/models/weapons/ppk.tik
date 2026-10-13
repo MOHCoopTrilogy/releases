@@ -1,0 +1,483 @@
+TIKI
+setup
+{
+	scale 0.52			// Set default scale to 16/30.5 since world is in 16 units per foot and model is in cm's
+	path models/weapons/ppk
+	skelmodel PPK.skd
+	surface Plane1 shader ppk_BARREL
+	surface Cube2 shader ppk_BODY
+	surface Cube1 shader ppk_TRIGGER
+	surface Cube4 shader ppk_SLIDE
+	surface Cube5 shader ppk_BODY
+	surface Cube6 shader ppk_SLIDE
+	surface Cube7 shader ppk_MAG
+	surface Cube8 shader ppk_HAMMER
+	surface Cylinder2 shader ppk_SILENCER
+
+	
+
+}
+$define sounddir sound/weapons
+
+init
+{
+	server
+	{
+//		surface tag* +nodraw
+//		surface origin +nodraw
+
+		classname		Weapon
+		weapontype		pistol
+		name			"Walther PPK"
+		rank			164 110
+
+		pickupsound		colt45_snd_pickup
+		ammopickupsound	colt45_snd_pickup_ammo
+		noammosound		colt45_snd_noammo
+
+		// Holstering info
+holstertag				"Bip01 Pelvis"
+holsteroffset			"1.5 -4 -10.0"
+holsterangles			"5 190 195"
+holsterScale			1.0
+
+		// Primary fire type info
+		firetype		bullet
+		ammotype		"pistol"
+		meansofdeath	bullet
+semiauto		// HZM coop [user 07-12]: semiauto restored - without it the engine treats the gun as FULL-AUTO and the coop statemap's full-auto path (smg/mg only) dead-ends it at the hip (the ADS-only-fire bug)
+		bulletcount		1
+		clipsize		8
+		startammo		24
+		ammorequired	1
+		firedelay		0.3
+
+		//========================================//
+		//		WEAPON ACCURACY MODELLING	//
+		//========================================//
+
+//		Colt .45 Pistol: Max Eff. Range is 15-25 yds with a muzzle velocity of 805 ft/s. (.45 ACP round)
+
+		bulletrange		4000 			//the range at which bulletspread is applied
+		bulletspread	35 35 150 150 	//  minpitch minyaw maxpitch maxyaw
+		firespreadmult	0.38 0.7 200 0.6	//add falloff cap maxtime
+
+		bulletdamage	35
+
+		movementspeed 1.0		
+
+		tracerfrequency 	1
+
+		crosshair		1
+		quiet // don't notify AI of it being fired
+
+		secondary firetype			melee
+		secondary ammotype			none
+		secondary ammorequired		0
+		secondary meansofdeath		bash
+		secondary bulletrange		64
+		secondary bulletdamage		25
+		secondary bulletknockback	50
+		secondary quiet
+
+		// AI animation group info
+		weapongroup		xw_ppk
+
+		// DM Attributes
+		dmbulletcount	1
+		dmstartammo		32
+		dmammorequired	1
+		dmfiredelay		0.3
+		dmmovementspeed 	1.0	
+
+		dmbulletrange	4000 			//the range at which bulletspread is applied fully (5 yards)
+		dmbulletspread	35 35 150 150 	//minpitch minyaw maxpitch maxyaw(offsets in world units) spread is maximum at top movement speed
+		dmfirespreadmult	0.58 0.5 200 0.6	//add falloff cap maxtime 0.38 0.7 200 0.6 (original)
+
+//		dmbulletdamage	100
+		dmbulletdamage	30
+		dmcrosshair		1
+
+		// Secondary fire DM Attributes
+		secondary dmammorequired	0
+		secondary dmbulletrange		96
+		secondary dmbulletdamage	35
+		
+		// this is attached to the player during reload
+		cache models/ammo/colt_clip.tik
+	}
+	client
+	{
+		aliascache colt45_snd_reload_loaded sound/weapons/foley/coop_colt45_reload_loaded.wav soundparms 0.9 0.2 1.0 0.0 160 1000 item loaded always maps "dm obj lib"
+		cache muzsprite.spr
+		cache models/ammo/pistolshell.tik
+	}
+}
+
+animations
+{
+	idle		PPK.skc
+	idle_empty	PPK_empty.skc
+	// HZM coop [aimed reload, pistol lane 2026-10-12] shown by the cgame instead of `reload` (aimed; hip when empty): the slide works
+	reload_ads_loaded	coop_ppk_reload_ads_loaded.skc
+	{
+		client
+		{
+			entry sound colt45_snd_reload_loaded item
+		}
+	}
+	reload_ads_empty	coop_ppk_reload_ads_empty.skc
+	{
+		client
+		{
+			entry sound colt45_snd_reload item
+		}
+	}
+	reload		PPK_reload.skc
+	{
+		server
+		{
+			19 surface clip	+nodraw
+			40 surface clip -nodraw
+			last idle
+		}
+		client
+		{
+				entry sound colt45_snd_reload item
+		}
+	}
+	secondaryfire     PPK.skc
+	{
+		server
+		{
+			entry shoot secondary
+		}
+	}
+	fire     PPK_fire.skc
+	{
+		server
+		{
+			entry shoot primary
+		}
+		client
+		{
+			entry stopaliaschannel ppk_fire
+			entry sound ppk_fire
+
+
+			// By now, the server has already fired the weapon, so it's
+			// ok to apply the view kick apon entry to avoid problems
+			// with multiple application on single frame animations.
+
+			////////////////////////////////////////////////////////////////////////////////////////
+			// View Kick Controls
+			//
+			// View Kicking works based on the assumptions that every weapon has its own tendencies to kick in
+			// a paticular fashion. In MOH we call then scatter patterns. Currently we have 2 scatter patterns which
+			// will be explained.
+			// Scatter Patterns:
+			// "V" - the cone. The longer you shoot the more random your shots will be in the horizontal axis.
+			// "T" - the T shape. The gun has a tendancy to push in a paticular direction. not used much...too artificial looking
+			//
+			//
+			//             		+-------------------------------------------- Scatter Pitch Min
+			//              		|    +--------------------------------------- Scatter Pitch Max
+			//              		|    |       +------------------------------- Scatter Yaw Min
+			//             		|    |       |   +--------------------------- Scatter Yaw Max
+			//             		|    |       |   |     +--------------------- The Recentering speed in fraction per second
+			//              		|    |       |   |     |    +---------------- The Scatter Pattern
+			//              		|    |       |   |     |    |     +---------- The absolute pitch min/max
+			//              		|    |       |   |     |    |     |  +------- The absolute yaw min/max
+			//              		|    |       |   |     |    |     |  | +----- This is the pitch at which you loose all
+			//              		|    |       |   |     |    |     |  | |      control of the weapon and its behavior is
+			//             	 	|    |       |   |     |    |     |  | |      purely random.
+			//				V    V       V   V     V    V     V  V V
+
+			entry viewkick 	    -1.2 -1.2   -0.2  0.2    1   "V"    3.0 1.0 1.6
+
+
+
+			// smoke puff
+			entry tagspawn tag_barrel
+			(
+				count 2
+				model vsssource.spr
+				alpha 0.30
+				color 0.50 0.50 0.50
+				spritegridlighting
+				scale 0.3
+				life 1.00
+				scalerate 10.00
+				velocity 80.00
+				randvel range 20 -60 crandom -40 range 20 -60
+				friction 5.00
+				fade
+				randomroll
+			)
+
+			// shell eject
+			entry commanddelay 0.1 tagspawn tag_eject
+			(
+				count 1
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				scale 1.0
+				velocity 50
+				randvel crandom 10 crandom 10 random 20
+				emitterangles 0 0 0
+				avelocity crandom 90 crandom 90 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.6
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}
+	fire_empty   PPK_empty.skc
+	{
+		server
+		{
+			entry shoot primary
+		}
+		client
+		{
+			entry stopaliaschannel ppk_fire
+			entry sound ppk_fire
+
+			// By now, the server has already fired the weapon, so it's
+			// ok to apply the view kick apon entry to avoid problems
+			// with multiple application on single frame animations.
+
+			////////////////////////////////////////////////////////////////////////////////////////
+			// View Kick Controls
+			//
+			// View Kicking works based on the assumptions that every weapon has its own tendencies to kick in
+			// a paticular fashion. In MOH we call then scatter patterns. Currently we have 2 scatter patterns which
+			// will be explained.
+			// Scatter Patterns:
+			// "V" - the cone. The longer you shoot the more random your shots will be in the horizontal axis.
+			// "T" - the T shape. The gun has a tendancy to push in a paticular direction. not used much...too artificial looking
+			//
+			//
+			//             		+-------------------------------------------- Scatter Pitch Min
+			//              		|    +--------------------------------------- Scatter Pitch Max
+			//              		|    |       +------------------------------- Scatter Yaw Min
+			//             		|    |       |   +--------------------------- Scatter Yaw Max
+			//             		|    |       |   |     +--------------------- The Recentering speed in fraction per second
+			//              		|    |       |   |     |    +---------------- The Scatter Pattern
+			//              		|    |       |   |     |    |     +---------- The absolute pitch min/max
+			//              		|    |       |   |     |    |     |  +------- The absolute yaw min/max
+			//              		|    |       |   |     |    |     |  | +----- This is the pitch at which you loose all
+			//              		|    |       |   |     |    |     |  | |      control of the weapon and its behavior is
+			//             	 	|    |       |   |     |    |     |  | |      purely random.
+			//				V    V       V   V     V    V     V  V V
+
+			entry viewkick 	    -1.2 -1.2   -0.2  0.2    1   "V"    3.0 1.0 1.6
+
+
+
+			// smoke puff
+			entry tagspawn tag_barrel
+			(
+				count 2
+				model vsssource.spr
+				alpha 0.30
+				color 0.50 0.50 0.50
+				spritegridlighting
+				scale 0.3
+				life 1.00
+				scalerate 10.00
+				velocity 80.00
+				randvel range 20 -60 crandom -40 range 20 -60
+				friction 5.00
+				fade
+				randomroll
+			)
+
+			// shell eject
+			entry commanddelay 0.1 tagspawn tag_eject
+			(
+				count 1
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				scale 1.0
+				velocity 50
+				randvel crandom 10 crandom 10 random 20
+				emitterangles 0 0 0
+				avelocity crandom 90 crandom 90 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.6
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}
+	guardfire_i    PPK_fire.skc
+	{
+		client
+		{
+			entry stopaliaschannel ppk_fire
+			entry sound ppk_fire
+
+			// By now, the server has already fired the weapon, so it's
+			// ok to apply the view kick apon entry to avoid problems
+			// with multiple application on single frame animations.
+
+			////////////////////////////////////////////////////////////////////////////////////////
+			// View Kick Controls
+			//
+			// View Kicking works based on the assumptions that every weapon has its own tendencies to kick in
+			// a paticular fashion. In MOH we call then scatter patterns. Currently we have 2 scatter patterns which
+			// will be explained.
+			// Scatter Patterns:
+			// "V" - the cone. The longer you shoot the more random your shots will be in the horizontal axis.
+			// "T" - the T shape. The gun has a tendancy to push in a paticular direction. not used much...too artificial looking
+			//
+			//
+			//             		+-------------------------------------------- Scatter Pitch Min
+			//              		|    +--------------------------------------- Scatter Pitch Max
+			//              		|    |       +------------------------------- Scatter Yaw Min
+			//             		|    |       |   +--------------------------- Scatter Yaw Max
+			//             		|    |       |   |     +--------------------- The Recentering speed in fraction per second
+			//              		|    |       |   |     |    +---------------- The Scatter Pattern
+			//              		|    |       |   |     |    |     +---------- The absolute pitch min/max
+			//              		|    |       |   |     |    |     |  +------- The absolute yaw min/max
+			//              		|    |       |   |     |    |     |  | +----- This is the pitch at which you loose all
+			//              		|    |       |   |     |    |     |  | |      control of the weapon and its behavior is
+			//             	 	|    |       |   |     |    |     |  | |      purely random.
+			//				V    V       V   V     V    V     V  V V
+
+			entry viewkick 	    -1.2 -1.2   -0.2  0.2    1   "V"    3.0 1.0 1.6
+
+
+
+			// smoke puff
+			entry tagspawn tag_barrel
+			(
+				count 2
+				model vsssource.spr
+				alpha 0.30
+				color 0.50 0.50 0.50
+				spritegridlighting
+				scale 0.3
+				life 1.00
+				scalerate 10.00
+				velocity 80.00
+				randvel range 20 -60 crandom -40 range 20 -60
+				friction 5.00
+				fade
+				randomroll
+			)
+
+			// shell eject
+			entry commanddelay 0.1 tagspawn tag_eject
+			(
+				count 1
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				scale 1.0
+				velocity 50
+				randvel crandom 10 crandom 10 random 20
+				emitterangles 0 0 0
+				avelocity crandom 90 crandom 90 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.6
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}
+
+	guardfire_ii     PPK_fire.skc
+	{
+		client
+		{
+			entry stopaliaschannel ppk_fire
+			entry sound ppk_fire
+
+			// By now, the server has already fired the weapon, so it's
+			// ok to apply the view kick apon entry to avoid problems
+			// with multiple application on single frame animations.
+
+			////////////////////////////////////////////////////////////////////////////////////////
+			// View Kick Controls
+			//
+			// View Kicking works based on the assumptions that every weapon has its own tendencies to kick in
+			// a paticular fashion. In MOH we call then scatter patterns. Currently we have 2 scatter patterns which
+			// will be explained.
+			// Scatter Patterns:
+			// "V" - the cone. The longer you shoot the more random your shots will be in the horizontal axis.
+			// "T" - the T shape. The gun has a tendancy to push in a paticular direction. not used much...too artificial looking
+			//
+			//
+			//             		+-------------------------------------------- Scatter Pitch Min
+			//              		|    +--------------------------------------- Scatter Pitch Max
+			//              		|    |       +------------------------------- Scatter Yaw Min
+			//             		|    |       |   +--------------------------- Scatter Yaw Max
+			//             		|    |       |   |     +--------------------- The Recentering speed in fraction per second
+			//              		|    |       |   |     |    +---------------- The Scatter Pattern
+			//              		|    |       |   |     |    |     +---------- The absolute pitch min/max
+			//              		|    |       |   |     |    |     |  +------- The absolute yaw min/max
+			//              		|    |       |   |     |    |     |  | +----- This is the pitch at which you loose all
+			//              		|    |       |   |     |    |     |  | |      control of the weapon and its behavior is
+			//             	 	|    |       |   |     |    |     |  | |      purely random.
+			//				V    V       V   V     V    V     V  V V
+
+			entry viewkick 	    -1.2 -1.2   -0.2  0.2    1   "V"    3.0 1.0 1.6
+
+
+
+			// smoke puff
+			entry tagspawn tag_barrel
+			(
+				count 2
+				model vsssource.spr
+				alpha 0.30
+				color 0.50 0.50 0.50
+				spritegridlighting
+				scale 0.3
+				life 1.00
+				scalerate 10.00
+				velocity 80.00
+				randvel range 20 -60 crandom -40 range 20 -60
+				friction 5.00
+				fade
+				randomroll
+			)
+
+			// shell eject
+			entry commanddelay 0.1 tagspawn tag_eject
+			(
+				count 1
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				scale 1.0
+				velocity 50
+				randvel crandom 10 crandom 10 random 20
+				emitterangles 0 0 0
+				avelocity crandom 90 crandom 90 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.6
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}
+
+}
+
+/*QUAKED playerweapon_allied_colt45 (0.0 0.0 1.0) (-8 -8 -8) (8 8 8)
+American Colt.45 Pistol
+*/

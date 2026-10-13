@@ -1,0 +1,1 @@
+{"skd": "models/weapons/welrod/welrod_pistol.skd", "path": "models/weapons/welrod", "bone": "coop_slide", "back": [-1.9230769230769238, 0.0, 0.0], "travel": 2.2, "verts": 171, "A": [[0.5199999999999998, 0.0, 0.0], [0.0, 0.5199999999999999, 0.0], [0.0, 0.0, 0.5199999999999999]], "tik": "models/weapons/welrod.tik", "clip": "models/weapons/welrod/welrod_pistol_reload.skc"}

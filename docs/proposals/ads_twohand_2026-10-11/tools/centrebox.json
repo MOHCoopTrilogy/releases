@@ -1,80 +1,158 @@
 {
  "beretta": {
-  "base": 13.1,
-  "dev": 2.23,
+  "base": 15.9,
+  "dev": 1.78,
   "end": 0.01,
-  "frames": 180,
-  "max": 16.9,
+  "frames": 190,
+  "max": 16.3,
   "over": 0.0,
-  "run": "te6",
-  "xfr": 9.4,
+  "run": "pa8",
+  "xfr": 3.7,
   "xmax": 2.1
  },
+ "beretta_cycle": {
+  "dev": 2.4,
+  "end": 0.01,
+  "frames": 100,
+  "run": "pa8",
+  "shots": 2,
+  "xfr": 50.0,
+  "xmax": 18.8
+ },
  "beretta_empty": {
-  "base": 16.0,
-  "dev": 2.25,
+  "base": 17.1,
+  "dev": 1.78,
   "end": 0.0,
   "frames": 160,
-  "max": 16.4,
+  "max": 17.7,
   "over": 0.0,
-  "run": "te7",
-  "xfr": 0.0,
-  "xmax": 1.6
+  "run": "pa8",
+  "xfr": 41.9,
+  "xmax": 3.4
  },
  "berettasilenced": {
-  "base": 11.4,
-  "dev": 2.19,
+  "base": 10.7,
+  "dev": 1.74,
   "end": 0.01,
   "frames": 190,
-  "max": 13.6,
+  "max": 13.5,
   "over": 0.0,
-  "run": "pa6",
+  "run": "pa8",
   "xfr": 0.0,
-  "xmax": 1.8
+  "xmax": 1.7
+ },
+ "berettasilenced_cycle": {
+  "dev": 1.97,
+  "end": 0.01,
+  "frames": 100,
+  "run": "pa8",
+  "shots": 2,
+  "xfr": 11.0,
+  "xmax": 4.0
+ },
+ "berettasilenced_empty": {
+  "base": 10.9,
+  "dev": 1.78,
+  "end": 0.01,
+  "frames": 160,
+  "max": 13.8,
+  "over": 0.0,
+  "run": "pa8",
+  "xfr": 0.0,
+  "xmax": 1.7
  },
  "colt45": {
-  "base": 8.2,
-  "dev": 2.18,
+  "base": 8.3,
+  "dev": 1.74,
   "end": 0.01,
   "frames": 190,
-  "max": 10.7,
+  "max": 11.7,
   "over": 0.0,
-  "run": "td8",
+  "run": "pa8",
+  "xfr": 8.9,
+  "xmax": 2.2
+ },
+ "colt45_coltpa": {
+  "base": 12.3,
+  "dev": 1.73,
+  "end": 0.01,
+  "frames": 190,
+  "max": 12.3,
+  "over": 0.0,
+  "run": "pa8",
+  "xfr": 0.0,
+  "xmax": 1.2
+ },
+ "colt45_coltpa_cycle": {
+  "dev": 3.98,
+  "end": 0.01,
+  "frames": 100,
+  "run": "pa8",
+  "shots": 2,
+  "xfr": 53.0,
+  "xmax": 21.6
+ },
+ "colt45_coltpa_empty": {
+  "base": 11.3,
+  "dev": 1.74,
+  "end": 0.01,
+  "frames": 160,
+  "max": 13.0,
+  "over": 0.0,
+  "run": "pa8",
+  "xfr": 0.0,
+  "xmax": 1.3
+ },
+ "colt45_cycle": {
+  "dev": 3.97,
+  "end": 0.01,
+  "frames": 100,
+  "run": "pa8",
+  "shots": 2,
+  "xfr": 51.0,
+  "xmax": 20.9
+ },
+ "colt45_empty": {
+  "base": 9.5,
+  "dev": 1.76,
+  "end": 0.01,
+  "frames": 160,
+  "max": 12.3,
+  "over": 0.0,
+  "run": "pa8",
+  "xfr": 0.0,
+  "xmax": 1.4
+ },
+ "colt_silenced": {
+  "base": 9.9,
+  "dev": 1.73,
+  "end": 0.01,
+  "frames": 190,
+  "max": 11.2,
+  "over": 0.0,
+  "run": "pa8",
   "xfr": 0.0,
   "xmax": 1.6
  },
- "colt45_coltpa": {
-  "base": 11.4,
-  "dev": 2.18,
+ "colt_silenced_cycle": {
+  "dev": 3.14,
   "end": 0.01,
-  "frames": 190,
-  "max": 16.6,
-  "over": 0.5,
-  "run": "pa6",
-  "xfr": 5.8,
-  "xmax": 3.1
+  "frames": 100,
+  "run": "pa8",
+  "shots": 2,
+  "xfr": 47.0,
+  "xmax": 22.6
  },
- "colt45_empty": {
-  "base": 13.1,
-  "dev": 2.18,
-  "end": 0.0,
-  "frames": 180,
-  "max": 18.0,
-  "over": 0.0,
-  "run": "td9",
-  "xfr": 6.7,
-  "xmax": 3.2
- },
- "colt_silenced": {
-  "base": 9.3,
-  "dev": 2.2,
+ "colt_silenced_empty": {
+  "base": 11.3,
+  "dev": 1.73,
   "end": 0.01,
-  "frames": 190,
-  "max": 13.8,
+  "frames": 160,
+  "max": 12.3,
   "over": 0.0,
-  "run": "pa6",
+  "run": "pa8",
   "xfr": 0.0,
-  "xmax": 1.9
+  "xmax": 1.3
  },
  "histandard": {
   "base": 8.8,
@@ -106,26 +184,66 @@
   "run": "te5"
  },
  "lugerp08": {
-  "base": 18.1,
-  "dev": 2.17,
+  "base": 13.1,
+  "dev": 1.74,
   "end": 0.01,
   "frames": 190,
-  "max": 17.7,
+  "max": 14.8,
   "over": 0.0,
-  "run": "pa6",
+  "run": "pa8",
+  "xfr": 0.0,
+  "xmax": 0.9
+ },
+ "lugerp08_cycle": {
+  "dev": 3.18,
+  "end": 0.01,
+  "frames": 100,
+  "run": "pa8",
+  "shots": 2,
+  "xfr": 10.0,
+  "xmax": 5.9
+ },
+ "lugerp08_empty": {
+  "base": 13.5,
+  "dev": 14.8,
+  "end": 0.01,
+  "frames": 160,
+  "max": 16.7,
+  "over": 0.0,
+  "run": "pa8",
+  "xfr": 1.9,
+  "xmax": 4.3
+ },
+ "lugerp08silenced": {
+  "base": 16.0,
+  "dev": 1.74,
+  "end": 0.01,
+  "frames": 190,
+  "max": 16.0,
+  "over": 0.0,
+  "run": "pa8",
   "xfr": 0.0,
   "xmax": 0.5
  },
- "lugerp08silenced": {
-  "base": 15.7,
-  "dev": 2.19,
+ "lugerp08silenced_cycle": {
+  "dev": 2.58,
   "end": 0.01,
-  "frames": 190,
-  "max": 17.8,
+  "frames": 100,
+  "run": "pa8",
+  "shots": 2,
+  "xfr": 8.0,
+  "xmax": 3.0
+ },
+ "lugerp08silenced_empty": {
+  "base": 12.7,
+  "dev": 14.8,
+  "end": 0.01,
+  "frames": 160,
+  "max": 14.8,
   "over": 0.0,
-  "run": "pa6",
-  "xfr": 0.0,
-  "xmax": 0.6
+  "run": "pa8",
+  "xfr": 0.6,
+  "xmax": 2.9
  },
  "m10_revolver": {
   "base": 14.4,
@@ -150,15 +268,35 @@
   "xmax": 0.7
  },
  "mauser_c96": {
-  "base": 9.1,
-  "dev": 4.53,
+  "base": 8.5,
+  "dev": 13.57,
   "end": 0.01,
   "frames": 190,
-  "max": 9.0,
+  "max": 9.8,
   "over": 0.0,
-  "run": "pa6",
-  "xfr": 9.5,
-  "xmax": 7.2
+  "run": "pa8",
+  "xfr": 0.0,
+  "xmax": 1.0
+ },
+ "mauser_c96_cycle": {
+  "dev": 3.73,
+  "end": 0.01,
+  "frames": 100,
+  "run": "pa8",
+  "shots": 2,
+  "xfr": 15.0,
+  "xmax": 11.9
+ },
+ "mauser_c96_empty": {
+  "base": 8.7,
+  "dev": 13.58,
+  "end": 0.01,
+  "frames": 160,
+  "max": 9.2,
+  "over": 0.0,
+  "run": "pa8",
+  "xfr": 0.0,
+  "xmax": 0.7
  },
  "nagantrev": {
   "base": 11.8,
@@ -183,81 +321,190 @@
   "xmax": 0.3
  },
  "nambu": {
-  "base": 12.0,
-  "dev": 2.19,
+  "base": 13.1,
+  "dev": 1.73,
   "end": 0.01,
   "frames": 190,
-  "max": 15.7,
+  "max": 15.8,
   "over": 0.0,
-  "run": "pa6",
+  "run": "pa8",
   "xfr": 0.0,
-  "xmax": 1.1
+  "xmax": 1.4
+ },
+ "nambu_cycle": {
+  "dev": 2.17,
+  "end": 0.01,
+  "frames": 100,
+  "run": "pa8",
+  "shots": 2,
+  "xfr": 25.0,
+  "xmax": 8.6
+ },
+ "nambu_empty": {
+  "base": 12.3,
+  "dev": 1.77,
+  "end": 0.01,
+  "frames": 160,
+  "max": 12.6,
+  "over": 0.0,
+  "run": "pa8",
+  "xfr": 0.0,
+  "xmax": 1.2
  },
  "p38": {
-  "base": 10.6,
-  "dev": 2.26,
+  "base": 10.1,
+  "dev": 1.79,
   "end": 0.01,
   "frames": 190,
-  "max": 12.5,
+  "max": 12.3,
   "over": 0.0,
-  "run": "te1",
+  "run": "pa8",
   "xfr": 0.0,
-  "xmax": 0.7
+  "xmax": 1.8
+ },
+ "p38_cycle": {
+  "dev": 3.39,
+  "end": 0.01,
+  "frames": 100,
+  "run": "pa8",
+  "shots": 2,
+  "xfr": 15.0,
+  "xmax": 16.3
  },
  "p38_empty": {
-  "base": 11.5,
-  "dev": 2.27,
-  "end": 0.0,
-  "frames": 180,
-  "max": 18.8,
-  "over": 5.0,
-  "run": "te2",
-  "xfr": 3.9,
-  "xmax": 4.0
+  "base": 10.7,
+  "dev": 1.8,
+  "end": 0.01,
+  "frames": 160,
+  "max": 15.8,
+  "over": 0.6,
+  "run": "pa8",
+  "xfr": 14.4,
+  "xmax": 2.8
  },
  "p38silenced": {
-  "base": 11.0,
-  "dev": 2.2,
+  "base": 10.8,
+  "dev": 1.73,
   "end": 0.01,
   "frames": 190,
-  "max": 12.8,
+  "max": 12.2,
   "over": 0.0,
-  "run": "pa6",
+  "run": "pa8",
   "xfr": 0.0,
-  "xmax": 0.3
+  "xmax": 1.6
  },
- "ppk": {
-  "base": 7.5,
-  "dev": 2.2,
+ "p38silenced_cycle": {
+  "dev": 2.78,
   "end": 0.01,
-  "frames": 190,
-  "max": 11.2,
-  "over": 0.0,
-  "run": "pa6",
-  "xfr": 0.0,
-  "xmax": 1.7
+  "frames": 100,
+  "run": "pa8",
+  "shots": 2,
+  "xfr": 17.0,
+  "xmax": 6.0
  },
- "tt33": {
-  "base": 11.3,
-  "dev": 2.24,
+ "p38silenced_empty": {
+  "base": 11.5,
+  "dev": 1.75,
   "end": 0.01,
-  "frames": 190,
-  "max": 15.0,
+  "frames": 160,
+  "max": 11.6,
   "over": 0.0,
-  "run": "pa6",
+  "run": "pa8",
   "xfr": 0.0,
   "xmax": 1.3
  },
- "tt33silenced": {
-  "base": 9.9,
-  "dev": 2.19,
+ "ppk": {
+  "base": 7.2,
+  "dev": 1.75,
   "end": 0.01,
   "frames": 190,
-  "max": 15.3,
-  "over": 1.6,
-  "run": "pa6",
-  "xfr": 1.6,
-  "xmax": 2.7
+  "max": 9.8,
+  "over": 0.0,
+  "run": "pa8",
+  "xfr": 0.0,
+  "xmax": 1.4
+ },
+ "ppk_cycle": {
+  "dev": 2.59,
+  "end": 0.01,
+  "frames": 100,
+  "run": "pa8",
+  "shots": 2,
+  "xfr": 52.0,
+  "xmax": 35.8
+ },
+ "ppk_empty": {
+  "base": 7.2,
+  "dev": 1.75,
+  "end": 0.01,
+  "frames": 160,
+  "max": 9.6,
+  "over": 0.0,
+  "run": "pa8",
+  "xfr": 0.0,
+  "xmax": 1.9
+ },
+ "tt33": {
+  "base": 9.0,
+  "dev": 1.73,
+  "end": 0.01,
+  "frames": 190,
+  "max": 10.9,
+  "over": 0.0,
+  "run": "pa8",
+  "xfr": 0.0,
+  "xmax": 1.9
+ },
+ "tt33_cycle": {
+  "dev": 3.57,
+  "end": 0.01,
+  "frames": 100,
+  "run": "pa8",
+  "shots": 2,
+  "xfr": 16.0,
+  "xmax": 11.8
+ },
+ "tt33_empty": {
+  "base": 10.9,
+  "dev": 1.74,
+  "end": 0.01,
+  "frames": 160,
+  "max": 13.5,
+  "over": 0.0,
+  "run": "pa8",
+  "xfr": 0.0,
+  "xmax": 1.2
+ },
+ "tt33silenced": {
+  "base": 10.1,
+  "dev": 1.75,
+  "end": 0.01,
+  "frames": 190,
+  "max": 11.1,
+  "over": 0.0,
+  "run": "pa8",
+  "xfr": 0.0,
+  "xmax": 1.6
+ },
+ "tt33silenced_cycle": {
+  "dev": 2.98,
+  "end": 0.01,
+  "frames": 100,
+  "run": "pa8",
+  "shots": 2,
+  "xfr": 9.0,
+  "xmax": 5.1
+ },
+ "tt33silenced_empty": {
+  "base": 8.6,
+  "dev": 1.77,
+  "end": 0.01,
+  "frames": 160,
+  "max": 13.8,
+  "over": 1.2,
+  "run": "pa8",
+  "xfr": 3.1,
+  "xmax": 2.3
  },
  "webley": {
   "base": 10.3,
@@ -282,13 +529,33 @@
   "xmax": 0.3
  },
  "welrod": {
-  "base": 17.1,
-  "dev": 2.16,
+  "base": 4.8,
+  "dev": 1.74,
   "end": 0.01,
   "frames": 190,
-  "max": 18.2,
+  "max": 5.7,
   "over": 0.0,
-  "run": "pa6",
+  "run": "pa8",
+  "xfr": 0.0,
+  "xmax": 0.6
+ },
+ "welrod_cycle": {
+  "dev": 17.09,
+  "end": 0.01,
+  "frames": 170,
+  "run": "pa8",
+  "shots": 2,
+  "xfr": 6.5,
+  "xmax": 3.9
+ },
+ "welrod_empty": {
+  "base": 5.0,
+  "dev": 17.04,
+  "end": 0.01,
+  "frames": 160,
+  "max": 5.1,
+  "over": 0.0,
+  "run": "pa8",
   "xfr": 0.0,
   "xmax": 0.5
  }

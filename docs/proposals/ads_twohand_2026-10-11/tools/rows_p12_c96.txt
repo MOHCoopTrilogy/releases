@@ -1,0 +1,5 @@
+	//===================== HZM coop Mauser C96: its own aimed reload (stripper clip from the top, gun kept up under the centre box) =====================
+	coopr_mauser_c96_reload			viewmodel/pistol/reload_p38.skc			crossblend 0.3
+	coopr_mauser_c96_reload_ads		viewmodel/pistol/coop_c96_reload_ads.skc		crossblend 0.1
+	coopr_mauser_c96_reload_empty		viewmodel/pistol/reload_p38.skc			crossblend 0.3
+	coopr_mauser_c96_reload_empty_ads	viewmodel/pistol/coop_c96_reload_empty_ads.skc		crossblend 0.1

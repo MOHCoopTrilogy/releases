@@ -19,6 +19,9 @@ GUNS = {
     # islands: (surface, vertex count, min x of the island) - from meshparts.py
     'p38': dict(tik='models/weapons/p38.tik', skd='models/weapons/P38/p38.skd', clip='models/weapons/P38/P38_reload.skc',
                 islands=[('P381', 115, -0.64), ('P381', 48, 0.17), ('P382', 62, 6.62)], travel=2.3),
+    # the Welrod's bolt + rear knob (surface Cylinder3 = shader WR_bolt): turned and pulled by hand after every shot
+    'welrod': dict(tik='models/weapons/welrod.tik', skd=None, clip='models/weapons/welrod/welrod_pistol_reload.skc',
+                   islands=[('Cylinder3', 98, -4.21), ('Cylinder3', 73, -3.15)], travel=2.2),
     'histandard': dict(tik='models/weapons/silencedpistol.tik', skd=None, clip='models/weapons/highstandard/hs_pistol_reload.skc',
                        islands=[('pistol2', 58, -1.04), ('pistol2', 64, 0.52)], travel=2.2),
 }
@@ -100,7 +103,7 @@ def run(name):
     back = np.linalg.solve(A.T, np.array([-1.0, 0.0, 0.0]))    # the local move that is 1 u straight back in gun space
     np.set_printoptions(precision=3, suppress=True)
     print(name, 'verts moved by the probe', o['n1'], '| local axes in gun space:\n', A, '\n local vector for 1 u back:', back)
-    json.dump(dict(skd=skd, path=path, bone='coop_slide', back=back.tolist(), travel=g['travel'], verts=nsel), open(os.path.join(HERE, 'slide_%s.json' % name), 'w'))
+    json.dump(dict(skd=skd, path=path, bone='coop_slide', back=back.tolist(), travel=g['travel'], verts=nsel, A=A.tolist(), tik=g['tik'], clip=g['clip']), open(os.path.join(HERE, 'slide_%s.json' % name), 'w'))
 
 
 if __name__ == '__main__':
