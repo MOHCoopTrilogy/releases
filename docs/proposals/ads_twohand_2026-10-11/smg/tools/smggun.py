@@ -42,7 +42,14 @@ GUNS = {
                  # frames (1/30 s, the reload clips' clock): the handle is pulled over pull[0]..pull[1]
                  # HIP, empty: the handle follows the retail cocking hand's index fingertip along the gun (hip_row = the
                  # retail first-person clip), so hand and handle cannot drift apart; AIMED: this lane's keyed pull
-                 hip_row='viewmodel/MP40/reload_mp40_stand.skc', hip_tip_off=0.3, ads_pull=(55.0, 61.0)),
+                 hip_row='viewmodel/MP40/reload_mp40_stand.skc', hip_tip_off=0.3, ads_pull=(55.0, 61.0),
+                 # 2b: the retail hand pulls 6 u in ONE frame (f61-62) - the handle (and the hand, re-keyed onto it by
+                 # smgbake) now take these frames, eased; the sound's two clacks are at f59 and f64.5
+                 hip_pull=(58.0, 63.5),
+                 # 2b: a gun with rounds left is not cocked - its reload must not SOUND cocked either. `reload` gets the
+                 # retail sound faded out over these clip frames (magazine in: 1.15-1.5 s; handle: 1.97 s and 2.15 s);
+                 # the EMPTY rows keep the full sound
+                 snd_cut=(51.0, 56.0), snd_parms='soundparms 1.5 0.0 1.0 0.05 160 1000 item loaded always maps "m e t dm obj lib"'),
 }
 FIRE = [0.0, 0.55, 1.0, 0.6, 0.2, 0.0]          # forward fraction per 1/60 s frame
 FIRE_EMPTY = [0.0, 0.55, 1.0, 1.0]
@@ -72,6 +79,9 @@ def pull_curve(n, a, b, over=0.06):
 def hip_curve(g, n):
     """forward fraction per frame for the HIP empty reload: the handle is at the retail hand's index fingertip (minus
     hip_tip_off) along the gun, clamped to the slot; forward before the hand arrives, back once it has been pulled"""
+    if g.get('hip_pull'):                    # this lane's own pull: forward until a, eased back by b
+        a, b = g['hip_pull']
+        return [1.0 - ease((f - a) / float(b - a)) for f in range(n)]
     R = V.R
     c = R.load(R.ANIM + g['hip_row'])
     xs = []
@@ -132,6 +142,36 @@ def anim_block(txt, name):
 
 
 TAG0, TAG1 = '\t// HZM coop [smg action rows]', '\t// HZM coop [smg action rows end]'
+TAGS = '// HZM coop [smg rounds-left reload sound]'
+
+
+def sound_alias(alias):
+    """the wav an ubersound alias names (the last definition wins, as in the game)"""
+    wav = None
+    for p in sorted(set(vfs.glob_paths('ubersound/', '.scr'))):
+        for ln in vfs.read(p).decode('latin-1').splitlines():
+            m = re.match(r'\s*alias(?:cache)?\s+(\S+)\s+(\S+)', ln)
+            if m and m.group(1).lower() == alias.lower():
+                wav = m.group(2)
+    return wav
+
+
+def cut_wav(wav, cut, dst):
+    """the retail reload sound faded out over the clip frames cut[0]..cut[1] (30 fps) and ended there"""
+    import io, wave
+    w = wave.open(io.BytesIO(vfs.read(wav)))
+    sr, n, ch, sw = w.getframerate(), w.getnframes(), w.getnchannels(), w.getsampwidth()
+    assert sw == 2, 'only 16-bit sounds'
+    d = np.frombuffer(w.readframes(n), dtype=np.int16).astype(np.float64).reshape(-1, ch)
+    a, b = int(cut[0] / 30.0 * sr), int(cut[1] / 30.0 * sr)
+    d = d[:b].copy()
+    k = np.linspace(1.0, 0.0, b - a)
+    d[a:b] *= (k * k * (3 - 2 * k))[:, None]
+    os.makedirs(os.path.dirname(dst), exist_ok=True)
+    o = wave.open(dst, 'wb')
+    o.setnchannels(ch); o.setsampwidth(2); o.setframerate(sr)
+    o.writeframes(d.round().astype(np.int16).tobytes()); o.close()
+    return b / float(sr), n / float(sr)
 
 
 def patch_tik(txt, g):
@@ -139,15 +179,18 @@ def patch_tik(txt, g):
     reload_ads_empty added after the idle row. The reload rows carry only the client block (the sound): the server
     still runs `reload`; the cgame shows these instead."""
     nl = '\r\n' if '\r\n' in txt else '\n'
+
+    def cn(x):
+        return 'coop_%s%s.skc' % (g.get('_pre', ''), x)
     txt = re.sub(r'(?s)' + re.escape(TAG0) + r'.*?' + re.escape(TAG1) + r'[^\n]*\n', '', txt)
     fb = anim_block(txt, 'fire')
     assert fb, 'no fire row'
     s, e, blk, clip = fb
-    if clip != 'coop_fire.skc':
+    if clip != cn('fire'):
         g.setdefault('_orig_fire', clip)
-    blk_new = re.sub(r'(?m)^([ \t]*fire[ \t]+)\S+', lambda m_: m_.group(1) + 'coop_fire.skc', blk, count=1)
+    blk_new = re.sub(r'(?m)^([ \t]*fire[ \t]+)\S+', lambda m_: m_.group(1) + cn('fire'), blk, count=1)
     txt = txt[:s] + blk_new + txt[e:]
-    fe = re.sub(r'(?m)^([ \t]*)fire([ \t]+)\S+', lambda m_: m_.group(1) + 'fire_empty' + m_.group(2) + 'coop_fire_empty.skc', blk, count=1)
+    fe = re.sub(r'(?m)^([ \t]*)fire([ \t]+)\S+', lambda m_: m_.group(1) + 'fire_empty' + m_.group(2) + cn('fire_empty'), blk, count=1)
     rb = anim_block(txt, 'reload')
     assert rb, 'no reload row'
     rblk = rb[2]
@@ -157,12 +200,33 @@ def patch_tik(txt, g):
     def rel(name, clip_):
         return '\t%s\t%s%s\t{%s%s\t}%s' % (name, clip_, nl, nl, client, nl) if client else '\t%s\t%s%s' % (name, clip_, nl)
     add = (TAG0 + ' open bolt: the handle rests back, runs forward and back per shot, stays forward on empty' + nl
-           + '\tidle_empty\tcoop_idle_empty.skc' + nl + fe.rstrip('\r\n') + nl
-           + rel('reload_empty', 'coop_reload_empty.skc') + rel('reload_ads_empty', 'coop_reload_ads_empty.skc')
+           + '\tidle_empty\t' + cn('idle_empty') + nl + fe.rstrip('\r\n') + nl
+           + rel('reload_empty', cn('reload_empty')) + rel('reload_ads_empty', cn('reload_ads_empty'))
            + TAG1 + nl)
     ib = anim_block(txt, 'idle')
     assert ib, 'no idle row'
     txt = txt[:ib[1]] + add + txt[ib[1]:]
+    # rounds left: `reload` (hip and aimed - there is no `reload_ads_loaded` row, so cgame shows `reload`) sounds
+    # without the cock; the alias is the tik's own (init client), the EMPTY rows above keep the retail sound
+    ms = re.search(r'entry[ \t]+sound[ \t]+(\S+)', client)
+    if g.get('snd_cut') and ms:
+        alias = ms.group(1)
+        g.setdefault('_snd', {})[alias] = 'coop_%s_loaded' % alias
+        rb = anim_block(txt, 'reload')
+        blk2 = re.sub(r'(entry[ \t]+sound[ \t]+)' + re.escape(alias) + r'\b', lambda m_: m_.group(1) + 'coop_%s_loaded' % alias, rb[2], count=1)
+        assert blk2 != rb[2]
+        txt = txt[:rb[0]] + blk2 + txt[rb[1]:]
+        txt = '\n'.join(l for l in txt.split('\n') if TAGS not in l)
+        mi = re.search(r'(?ms)^init\b.*?^[ \t]*client[ \t]*\r?\n[ \t]*\{[ \t]*\r?\n', txt)
+        assert mi, 'no init client block'
+        line = '\t\taliascache coop_%s_loaded sound/weapons/foley/coop_%s_loaded.wav %s %s%s' % (alias, alias, g['snd_parms'], TAGS, nl)
+        txt = txt[:mi.end()] + line + txt[mi.end():]
+    if g.get('_repoint'):                    # step 3: every row that shows one of the gun's retail clips -> its coop_ copy
+        ka = txt.lower().index('\nanimations')
+        head, an = txt[:ka], txt[ka:]
+        for old, new in g['_repoint'].items():
+            an = re.sub(r'(?m)^([ \t]*[A-Za-z0-9_]+[ \t]+)' + re.escape(old) + r'(?=[ \t\r\n])', lambda m_: m_.group(1) + new, an)
+        txt = head + an
     body = '\n'.join(l.split('//')[0] for l in txt.splitlines())
     assert body.count('{') == body.count('}'), 'braces'
     return txt
@@ -225,12 +289,212 @@ def build(name, root, ads_pull=None):
         os.makedirs(os.path.dirname(dst), exist_ok=True)
         open(dst, 'wb').write(new.encode('latin-1'))
     print('   tiks patched (%d): %s' % (len(tiks), ' '.join(os.path.basename(p) for p in tiks)))
+    for alias, new in sorted(g.get('_snd', {}).items()):
+        wav = sound_alias(alias)
+        t1, t0 = cut_wav(wav, g['snd_cut'], os.path.join(root, 'sound', 'weapons', 'foley', new + '.wav'))
+        print('   sound %s = %s cut to %.2f s of %.2f s (no cock) -> the `reload` row of every tik above' % (new, wav, t1, t0))
     json.dump(dict(gun=name, tiks=tiks, back=g['back'], travel=g['travel'], forward=[g['back'][0] + g['travel'], g['back'][1], g['back'][2]],
                    hip_curve=hcurve, ads_pull=g['ads_pull'], surface=g['surface'], uv=info if not isinstance(info, (bytes, bytearray)) else None),
               open(os.path.join(HERE, 'smggun_%s.json' % name), 'w'), indent=1, default=str)
 
 
+# ------------------------------------------------------------------------------------------------------------
+# Guns whose mesh HAS a moving bolt / handle bone (step 3). The retail clips work it like a closed bolt (forward at
+# rest, back and forward in every reload). Nothing is changed on the mesh: every gun clip the tik names is re-issued
+# with that bone's channel rewritten to the open-bolt story (table at the top), under coop_<name>, and the tik rows
+# are pointed at them.
+OWN = {
+    'silenced_mp40': dict(tik='models/weapons/mp40silenced.tik', bone='eject', side='L'),
+    'm3_grease_gun': dict(tik='models/weapons/greasegun.tik', bone='Bone1', side='R'),
+    'silenced_grease_gun': dict(tik='models/weapons/greasegun_silenced.tik', bone='Bone1', side='R'),
+    # MP18: the pack's own first-person reload (coopr_mp40_mp18_reload) works the right-side handle with the RIGHT hand
+    # at f52-58 - the handle keeps those frames (hip and aimed), so that clip's hand stays on it
+    'mp40_mp18': dict(tik='models/weapons/mp40_mp18.tik', bone='Bone2', side='R', hip_pull=(52.5, 57.5), ads_pull=(52.5, 57.5)),
+    # the pack's own clips already tell the open-bolt story (rest BACK, forward on the shot; its reload runs the bolt
+    # forward at once and pulls it back at the end = the EMPTY case): rest='back'
+    # PPS-43: the handle is a surface of its own on the right of the receiver (x 9.6-10.6, forward), on the main bone
+    'silenced_pps_43': dict(tik='models/weapons/ppsh43silenced.tik', bone='coop_bolt', side='R', split=('PPS43_lever',), travel=6.0),
+    'mp40_reactivated': dict(tik='models/weapons/mp40_mp40r2.tik', bone='Bone1', side='L', rest='back'),
+}
+OWN_DEFAULTS = dict(hip_pull=(58.0, 63.5), ads_pull=(55.0, 61.0), snd_cut=(51.0, 56.0),
+                    snd_parms='soundparms 1.5 0.0 1.0 0.05 160 1000 item loaded always maps "m e t dm obj lib"')
+
+
+def moving_part(tik, anim, frame, side):
+    """the vertices that move between the gun's rest (idle 0) and (anim, frame): their travel (gun frame, u) and the
+    KNOB = the part of them that stands out furthest on `side` (L / R / T): where a finger hooks it"""
+    g0 = G.load_gun(tik, anim='idle', frame=0)
+    g1 = G.load_gun(tik, anim=anim, frame=frame)
+    P0 = np.vstack([s['P'] for s in g0['surfs']]); P1 = np.vstack([s['P'] for s in g1['surfs']])
+    d = P1 - P0
+    mv = np.linalg.norm(d, axis=1) > 0.5
+    if not mv.any():
+        return None
+    trav = d[mv].mean(0)
+    Pm = P0[mv]
+    ax, sg = {'L': (1, -1.0), 'R': (1, 1.0), 'T': (2, -1.0)}[side]
+    ext = (Pm[:, ax] * sg).max()
+    kn = Pm[(Pm[:, ax] * sg) > ext - 0.45]
+    return dict(n=int(mv.sum()), travel=trav, knob=kn.mean(0), front=float(kn[:, 0].max()), lo=Pm.min(0), hi=Pm.max(0),
+                kn_lo=kn.min(0), kn_hi=kn.max(0))
+
+
+def build_own(name, root):
+    g = dict(OWN_DEFAULTS); g.update(OWN[name])
+    bone, ch = g['bone'], g['bone'] + ' pos'
+    t = G.parse_tik(g['tik'])
+    txt0 = vfs.read(g['tik']).decode('latin-1')
+    rows = dict(re.findall(r'(?m)^[ \t]+([A-Za-z0-9_]+)[ \t]+(\S+\.skc)', txt0[txt0.lower().index('\nanimations'):]))
+    clip = {r: GF.read_skc_any(G._res(t, c)) for r, c in rows.items() if r in ('idle', 'fire', 'reload')}
+    idle, rel = clip['idle'], clip['reload']
+    back_rest = g.get('rest') == 'back'
+    if g.get('split'):
+        # the handle is modelled on the mesh but hangs on the gun's main bone: its vertices get their OWN bone
+        # (ads_bolt split_bone.py: weights re-pointed in place, nothing else changes; no channel = where they are)
+        import split_bone as SPL
+        skd_path = G._res(t, t['skel'][0])
+        raw = vfs.read(skd_path)
+        if bone in [b_.name for b_ in SK.read_skd(raw).bones]:
+            raise SystemExit('the VFS mesh already has %s - build with IRONSIGHT_EXTRA_PAKS unset' % bone)
+        new, parent, nsel = SPL.split(raw, bone, lambda s_, vi, p_: s_.name in g['split'])
+        gdir0 = os.path.join(root, t['path'].replace('/', os.sep))
+        os.makedirs(gdir0, exist_ok=True)
+        open(os.path.join(gdir0, os.path.basename(skd_path)), 'wb').write(new)
+        one0 = copy.deepcopy(idle); one0.values = [idle.values[0]]; one0.frames = [idle.frames[0]]; one0.numFrames = 1
+        _, pf, d = GF.solve_delta(SK.read_skd(new), GF.add_channels(one0, bone), bone, g['travel'] / t['scale'])
+        pb = pf + d
+        g0 = G.load_gun(g['tik'], anim='idle', frame=0)
+        Pm = np.vstack([s_['P'] for s_ in g0['surfs'] if s_['name'] in g['split']])
+        ax, sg = {'L': (1, -1.0), 'R': (1, 1.0), 'T': (2, -1.0)}[g['side']]
+        kn = Pm[(Pm[:, ax] * sg) > (Pm[:, ax] * sg).max() - 0.45]
+        part = dict(n=len(Pm), travel=np.array([-g['travel'], 0.0, 0.0]), knob=kn.mean(0), front=float(kn[:, 0].max()), kn_lo=kn.min(0), kn_hi=kn.max(0))
+        srow, kb = 'split', 0
+        print('%s: %d vertices of %s split from bone %s onto %s (%d -> %d bytes)' % (name, nsel, g['split'], parent, bone, len(raw), len(new)))
+    else:
+        pf, pb, part, srow, kb = _own_travel(g, clip, ch, back_rest)
+    if part is None:
+        print('%s: bone %s moves in %s (frame %d) but NO vertex of the mesh follows it - nothing to work on this model' % (name, bone, srow, kb))
+        return
+    print('%s: bone %s, rear end of its travel = %s frame %d; %d vertices move %s u; knob (side %s) at %s, front face x %.2f' % (
+        name, bone, srow, kb, part['n'], np.round(part['travel'], 2), g['side'], np.round(part['knob'], 2), part['front']))
+    _build_own_clips(name, root, g, t, rows, clip, pf, pb, part, back_rest)
+
+
+def _own_travel(g, clip, ch, back_rest):
+    # where the bone is at rest (forward, the retail closed-bolt look) and at the rear end of its travel
+    src = max((clip['fire'], clip['reload']), key=lambda c: (np.ptp(np.array(c.values)[:, c.names.index(ch), :3], axis=0).max() if ch in c.names else 0.0))
+    srow = 'fire' if src is clip['fire'] else 'reload'
+    ci = src.names.index(ch)
+    P = np.array(src.values)[:, ci, :3]
+    pf = P[0].copy()
+    kb = int(np.argmax(np.linalg.norm(P - pf, axis=1)))
+    pb = P[kb].copy()
+    if back_rest:
+        pf, pb = pb, pf
+    return pf, pb, moving_part(g['tik'], srow, kb, g['side']), srow, kb
+
+
+def _build_own_clips(name, root, g, t, rows, clip, pf, pb, part, back_rest):
+    bone, ch = g['bone'], g['bone'] + ' pos'
+    idle, rel = clip['idle'], clip['reload']
+
+    def with_bone(c, fracs):
+        """clip c with the bolt bone at fracs[f] (1 = forward, 0 = back) on every frame"""
+        s = c if ch in c.names else GF.add_channels(c, bone)
+        k = s.names.index(ch)
+        vals = []
+        for f in range(len(fracs)):
+            fr = [list(v) for v in s.values[min(f, len(s.values) - 1)]]
+            p = pb + fracs[f] * (pf - pb)
+            fr[k] = [float(p[0]), float(p[1]), float(p[2]), fr[k][3]]
+            vals.append(fr)
+        return GF.build_skc(s, vals, c.frameTime)
+
+    def on_clock(c, curve30):
+        """a curve given per 1/30 s frame (the hands' clock), sampled at the gun clip's own frames"""
+        return [curve30[min(len(curve30) - 1, int(round(f * c.frameTime * 30.0)))] for f in range(c.numFrames)]
+    one = copy.deepcopy(idle); one.values = [idle.values[0]]; one.frames = [idle.frames[0]]; one.numFrames = 1
+    one.frameTime = 1 / 60.0
+    n30 = int(round(rel.numFrames * rel.frameTime * 30.0)) + 1
+    g['_pre'] = pre = name + '_'          # the model directory may be shared with other guns (see patch_tik)
+    files = {'coop_%sfire.skc' % pre: with_bone(one, FIRE), 'coop_%sfire_empty.skc' % pre: with_bone(one, FIRE_EMPTY),
+             'coop_%sidle_empty.skc' % pre: with_bone(one, [1.0]),
+             'coop_%sreload.skc' % pre: with_bone(rel, [0.0] * rel.numFrames),
+             'coop_%sreload_empty.skc' % pre: with_bone(rel, on_clock(rel, hip_curve(g, n30))),
+             'coop_%sreload_ads_empty.skc' % pre: with_bone(rel, on_clock(rel, pull_curve(n30, *g['ads_pull'])))}
+    repoint = {rows['reload']: 'coop_%sreload.skc' % pre}
+    for c_ in sorted(set(rows.values())):               # every other clip the tik shows the gun with: the bolt held BACK
+        if c_ in (rows['fire'], rows['reload']) and c_ != rows['idle']:
+            continue
+        cc = GF.read_skc_any(G._res(t, c_))
+        nm = 'coop_%sheld_' % pre + os.path.basename(c_)
+        files[nm] = with_bone(cc, [0.0] * cc.numFrames)
+        if c_ != rows['reload']:
+            repoint[c_] = nm
+    g['_repoint'] = repoint
+    gdir = os.path.join(root, t['path'].replace('/', os.sep))
+    os.makedirs(gdir, exist_ok=True)
+    for fn, b in files.items():
+        open(os.path.join(gdir, fn), 'wb').write(b)
+        print('   %-30s %6d bytes %s' % (fn, len(b), hashlib.md5(b).hexdigest()[:8]))
+    tiks = same_mesh_tiks(g['tik'])
+    for p in tiks:
+        txt = vfs.read(p).decode('latin-1')
+        new = patch_tik(txt, g)
+        dst = os.path.join(root, p.replace('/', os.sep))
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        open(dst, 'wb').write(new.encode('latin-1'))
+    print('   tiks patched (%d): %s; rows repointed: %s' % (len(tiks), ' '.join(os.path.basename(p) for p in tiks), repoint))
+    for alias, new in sorted(g.get('_snd', {}).items()):
+        wav = sound_alias(alias)
+        t1, t0 = cut_wav(wav, g['snd_cut'], os.path.join(root, 'sound', 'weapons', 'foley', new + '.wav'))
+        print('   sound %s = %s cut to %.2f s of %.2f s' % (new, wav, t1, t0))
+    kn = part['knob'] + (part['travel'] if back_rest else 0.0)
+    # the json's `forward` = the point smgbake hooks (as the MP40's added box: 0.18 behind the front face, 0.4 in from
+    # the knob's outer end), at the FORWARD end of the travel
+    if g['side'] == 'L':
+        kn[1] = part['kn_lo'][1] + 0.4
+    elif g['side'] == 'R':
+        kn[1] = part['kn_hi'][1] - 0.4
+    else:
+        kn[2] = part['kn_lo'][2] + 0.4
+    part['front'] += float(part['travel'][0]) if back_rest else 0.0
+    part['travel'] = -part['travel'] if back_rest else part['travel']
+    json.dump(dict(gun=name, tiks=tiks, bone=bone, side=g['side'], travel=float(np.linalg.norm(part['travel'])), dir=[float(v) for v in part['travel'] / np.linalg.norm(part['travel'])],
+                   forward=[part['front'] - 0.18, float(kn[1]), float(kn[2])], rest=g.get('rest', 'fwd'),
+                   hip_curve=hip_curve(g, n30), ads_pull=g['ads_pull'], reload_frames=rel.numFrames, reload_ft=rel.frameTime),
+              open(os.path.join(HERE, 'smggun_%s.json' % name), 'w'), indent=1, default=str)
+
+
 if __name__ == '__main__':
+    if sys.argv[1] == 'survey':              # smggun.py survey <tik>:<bone>:<L|R|T> ...   what moves, where the knob is
+        for spec in sys.argv[2:]:
+            tik_, bone_, side_ = spec.split(':')
+            tik_ = tik_ if '/' in tik_ else 'models/weapons/' + tik_
+            t_ = G.parse_tik(tik_)
+            best = None
+            for row_ in ('fire', 'reload'):
+                c_ = GF.read_skc_any(G._res(t_, t_['anims'][row_]))
+                if bone_ + ' pos' not in c_.names:
+                    continue
+                P_ = np.array(c_.values)[:, c_.names.index(bone_ + ' pos'), :3]
+                k_ = int(np.argmax(np.linalg.norm(P_ - P_[0], axis=1)))
+                d_ = float(np.linalg.norm(P_[k_] - P_[0]))
+                if best is None or d_ > best[0]:
+                    best = (d_, row_, k_)
+            pt = moving_part(tik_, best[1], best[2], side_) if best and best[0] > 0 else None
+            if pt is None:
+                print('%-34s %-10s no vertex follows it' % (os.path.basename(tik_), bone_))
+                continue
+            # the firing shoulder in the mp40 aim pose is at (-20.2, 2.8, 0.8), arm 26.8 u; wrist about 4 u behind the knob
+            reach = np.linalg.norm(pt['knob'] - np.array([4.0, 0, 0]) - np.array([-20.2, 2.8, 0.8])) / 26.8
+            print('%-34s %-10s %3d verts, travel %s (from %s f%d), knob (side %s) at rest %s, front x %.1f | firing hand: %3.0f %% of the arm' % (
+                os.path.basename(tik_), bone_, pt['n'], np.round(pt['travel'], 1), best[1], best[2], side_, np.round(pt['knob'], 1), pt['front'], 100 * reach))
+        sys.exit(0)
+    if sys.argv[1].split(',')[0] in OWN or sys.argv[1] == 'own':
+        for nm in (sorted(OWN) if sys.argv[1] == 'own' else sys.argv[1].split(',')):
+            build_own(nm, sys.argv[2])
+        sys.exit(0)
     ap = None
     if os.environ.get('SMG_ADS_PULL'):
         ap = tuple(float(x) for x in os.environ['SMG_ADS_PULL'].split(','))

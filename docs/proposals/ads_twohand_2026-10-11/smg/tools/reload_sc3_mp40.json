@@ -1,0 +1,42 @@
+{
+ "stand_empty": {
+  "anim": 6,
+  "back": 0.063,
+  "base": 8.3,
+  "dev_end": 0.076,
+  "dev_max": 1.39,
+  "extra_first": 12.6,
+  "extra_frames_over": 0,
+  "extra_max": 1.0,
+  "frames": 156,
+  "pose_min": 1.0,
+  "reload": [
+   296,
+   451
+  ],
+  "run": "sc3",
+  "settled": 2,
+  "skip": 8,
+  "tag": "ab__sc3__mp40__adsE__demo__after"
+ },
+ "stand_loaded": {
+  "anim": 6,
+  "back": 0.062,
+  "base": 11.2,
+  "dev_end": 0.082,
+  "dev_max": 1.39,
+  "extra_first": 0,
+  "extra_frames_over": 0,
+  "extra_max": 0.4,
+  "frames": 157,
+  "pose_min": 1.0,
+  "reload": [
+   175,
+   331
+  ],
+  "run": "sc3",
+  "settled": 2,
+  "skip": 0,
+  "tag": "ab__sc3__mp40__adsL__demo__after"
+ }
+}

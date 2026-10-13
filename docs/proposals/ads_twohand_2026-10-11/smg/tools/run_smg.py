@@ -230,8 +230,44 @@ def ai_fire(sess, tik):
     R.step(L, timeout=900)
 
 
+def sbreak(sess, gun, kind, at, case="L", n=150):
+    """an AIMED reload broken off `at` 16 ms frames after it starts, EVERY frame captured (the shared `interrupt` part
+    takes every 2nd): fire = the trigger, switch = next weapon, sprint = run forward, drop = the aim let go (the row
+    hands over to the hip clip mid-reload), crouch = a stance change. case E = the gun emptied first."""
+    tag = "ab__%s__%s__brk%s%s%d__demo__after" % (sess, gun, kind, case, at)
+    i = [0]
+    L = S.RELEASE + S.TO_STAND + A.MODE["after"] + ["wait 600", "set cg_adsSightDebug 2", "echo ^~^~^ ABSCEN begin %s" % tag]
+    L += A.frames(tag, 4, i) + ["+button13", "echo ^~^~^ DEMO raise %d" % i[0]] + A.frames(tag, 40, i)
+    if case == "E":
+        L += ["+attackprimary", "echo ^~^~^ DEMO fire %d" % i[0]] + A.frames(tag, SMG_HOLD[0], i) + ["-attackprimary"]
+    else:
+        L += ["+attackprimary", "echo ^~^~^ DEMO fire %d" % i[0]] + A.frames(tag, 12, i) + ["-attackprimary"] + A.frames(tag, 50, i) + ["reload"]
+    L += ["echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, at, i)
+    act = {"fire": ["+attackprimary"], "switch": ["weapnext"], "sprint": ["+speed", "+forward"], "drop": ["-button13"],
+           "crouch": ["+movedown"]}[kind]
+    L += act + ["echo ^~^~^ DEMO intr %d" % i[0]] + A.frames(tag, 8, i)
+    L += (["-attackprimary"] if kind == "fire" else []) + A.frames(tag, n - 8, i)
+    L += ["echo ^~^~^ DEMO lower %d" % i[0], "-button13", "-forward", "-speed", "-movedown"] + A.frames(tag, 30, i)
+    L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1"] + S.RELEASE
+    if kind == "switch":
+        L += ["wait 1200", "weapprev", "wait 2500"]
+    if kind == "sprint":
+        L += ["+back", "wait 1300", "-back", "wait 400"]
+    R.step(L, timeout=2400)
+
+
 def smg_parts(a, gun):
     for part in a.parts:
+        if part.startswith("sbreak"):                # sbreak | sbreak:fire,switch:40,90[:E]   kinds : frames after the reload starts : case
+            sp = part.split(":")
+            kinds = sp[1].split("+") if len(sp) > 1 else ["fire", "switch", "sprint", "drop"]
+            ats = [int(x) for x in sp[2].split("+")] if len(sp) > 2 else [50, 105]
+            for kind in kinds:
+                for at in ats:
+                    R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS["colt45"]) + S.give(A.GUNS[gun]), timeout=120)
+                    sbreak(a.session, gun, kind, at, case=(sp[3] if len(sp) > 3 else "L"))
+            R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+            continue
         if part.startswith("sdemo"):                 # sdemo | sdemoL | sdemoE  (aimed);  shipdemo... (hip)
             cases = part[5:] or "LE"
             for c in cases:
@@ -321,12 +357,16 @@ def main():
     ap.add_argument("session"); ap.add_argument("--overlay", required=True); ap.add_argument("--cgame", default="cgame_1022d")
     ap.add_argument("--guns", default="colt45"); ap.add_argument("--parts", default="demo,stills,reloads,yaw")
     ap.add_argument("--rstances", default="crouch,prone"); ap.add_argument("--rframes", type=int, default=190)
-    ap.add_argument("--yaws", default="185,265,135,315"); ap.add_argument("--demoyaw", type=int, default=160); ap.add_argument("--demoreload", type=int, default=170); ap.add_argument("--braced", action="store_true"); ap.add_argument("--shots", type=int, default=2); ap.add_argument("--demoempty", action="store_true"); ap.add_argument("--shotgap", type=int, default=27); ap.add_argument("--intr", default="4,95,170"); ap.add_argument("--kinds", default="fire,switch,sprint"); ap.add_argument("--set", action="append", default=[]); ap.add_argument("--yaw", type=int, default=None); ap.add_argument("--stances", default=None); ap.add_argument("--sstances", default="stand"); ap.add_argument("--aitik", default="models/human/german_wehrmact_nco.tik"); ap.add_argument("--hold", type=int, default=175); ap.add_argument("--rel", type=int, default=200); ap.add_argument("--cheats", action="store_true"); ap.add_argument("--revery", type=int, default=4); ap.add_argument("--rhip", action="store_true"); ap.add_argument("--rshots", type=int, default=1)
+    ap.add_argument("--yaws", default="185,265,135,315"); ap.add_argument("--demoyaw", type=int, default=160); ap.add_argument("--demoreload", type=int, default=170); ap.add_argument("--braced", action="store_true"); ap.add_argument("--shots", type=int, default=2); ap.add_argument("--demoempty", action="store_true"); ap.add_argument("--shotgap", type=int, default=27); ap.add_argument("--intr", default="4,95,170"); ap.add_argument("--kinds", default="fire,switch,sprint"); ap.add_argument("--set", action="append", default=[]); ap.add_argument("--yaw", type=int, default=None); ap.add_argument("--stances", default=None); ap.add_argument("--sstances", default="stand"); ap.add_argument("--aitik", default="models/human/german_wehrmact_nco.tik"); ap.add_argument("--hold", type=int, default=175); ap.add_argument("--rel", type=int, default=200); ap.add_argument("--cheats", action="store_true"); ap.add_argument("--map", default=None); ap.add_argument("--spot", default=None); ap.add_argument("--revery", type=int, default=4); ap.add_argument("--rhip", action="store_true"); ap.add_argument("--rshots", type=int, default=1)
     a = ap.parse_args()
     if a.yaw is not None:
         R.SPOT = R.SPOT[:3] + (a.yaw,)
     a.sstances = [x for x in a.sstances.split(',') if x]
     SMG_HOLD[0] = a.hold; SMG_REL[0] = a.rel
+    if a.map:
+        R.MAP = a.map
+    if a.spot:
+        R.SPOT = tuple(float(x) for x in a.spot.split(','))
     if a.cheats:
         cheats_on()
     if a.stances:

@@ -18,7 +18,7 @@ CTL = json.load(open(os.path.join(T, '..', 'assets', 'ctl_stand.json')))
 BG = (206, 212, 218)
 
 
-def panels(c, f, gun, corr, gunanim='idle', W=480, eye_tex=True, offhand=None):
+def panels(c, f, gun, corr, gunanim='idle', W=480, eye_tex=True, offhand=None, only_eye=False):
     from PIL import Image, ImageDraw
     H = W * 9 // 16
     sight = V.SIGHTS[gun]
@@ -35,7 +35,12 @@ def panels(c, f, gun, corr, gunanim='idle', W=480, eye_tex=True, offhand=None):
     left = np.array([-fw[1], fw[0], 0.0])
     up = np.array([0, 0, 1.0])
     out = [eye]
-    for off, fv in ((left * 44 + up * 1.0, 40), (left * 20 + fw * 16 - up * 22, 44)):
+    if only_eye:
+        return out
+    # SV_RIGHT=1: the gun's RIGHT side and from above-right-rear instead (a handle on the right, worked by the firing hand)
+    cams = ((left * -44 + up * 1.0, 40), (left * -16 - fw * 20 + up * 26, 44)) if os.environ.get('SV_RIGHT') else \
+        ((left * 44 + up * 1.0, 40), (left * 20 + fw * 16 - up * 22, 44))
+    for off, fv in cams:
         r2, _, _ = raster.render({'surfs': surfs}, cen + off, cen, up, fov=fv, W=W, H=H, bg=BG, znear=1.0, tex=True)
         out.append(Image.fromarray(r2.astype(np.uint8)))
     return out

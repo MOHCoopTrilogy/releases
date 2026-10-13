@@ -55,6 +55,14 @@ animations
 	mp40_reload_empty		viewmodel/mp40/coop_mp40_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
 	mp40_reload_ads		viewmodel/mp40/mp40_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
 	mp40_reload_empty_ads		viewmodel/mp40/mp40_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_mp40_reactivated_reload		viewmodel/mp40/coop_mp40_reactivated_reload_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_mp40_reactivated_reload_empty		viewmodel/mp40/coop_mp40_reactivated_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_mp40_reactivated_reload_ads		viewmodel/mp40/mp40_reactivated_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_mp40_reactivated_reload_empty_ads		viewmodel/mp40/mp40_reactivated_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_silenced_mp40_reload		viewmodel/mp40/coop_silenced_mp40_reload_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_silenced_mp40_reload_empty		viewmodel/mp40/coop_silenced_mp40_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_silenced_mp40_reload_ads		viewmodel/mp40/silenced_mp40_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	coopr_silenced_mp40_reload_empty_ads		viewmodel/mp40/silenced_mp40_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
 	mp40_pullout		viewmodel/mp40/raise_mp40_stand.skc
 	{
 		client

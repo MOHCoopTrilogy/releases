@@ -1,0 +1,44 @@
+[
+ {
+  "error_message": "MP40 aimed reload (run sb4): the magazine seat lifts the gun in two frames (a hop); the rounds-left reload is on screen for 0.2 s (\"too quiet\"); the cocking hand reads as a fist hiding the hooked finger",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py",
+  "root_cause": "(1) The support weight came back from 0.3 to 0.75 inside the 4 seat frames, so the 1.3 deg / 0.27 u sag returned together with the seat impulse (velocity change 7 u/s): 0.175 deg per capture frame. (2) The hand spent 12 of the 38 prop frames at the pouch under the frame and left / arrived almost straight under the gun. (3) The hook had the fingers up the receiver's wall with the palm ON the wall: the eye, behind and above, saw only the back of the hand.",
+  "fix": "(1) weight back from 4 frames before the seat to 3 after it, seat impulse x0.8 over 5.5 frames, started 3 frames before the seat frame; magazine drag x0.8: fastest sight-line step at the seat now under 0.11 deg / frame (reloadbox.py --dump prints the six fastest steps). (2) the old magazine is swung out to the left of the gun and seen leaving low-left (clip f15-22), the new one comes up beside the gun (f31-39); rounds left: a tug on the seated magazine (smg_mag_tug) before the hand goes back to the housing. (3) hook turned palm DOWN / toward the gun, fingers forward-right and a little up (fdir 0.55 0.7 -0.45, pdir 0 0.5 0.85): the eye sees the knuckles lead up to the handle and the index on its front face (evidence/mp40_cock_closeup_sc1.jpg). Tried and dropped: palm to the shooter (thumb in the centre box, 6 %), palm flat at handle height (2.3 %). Runs sc1 / sc2: 0.1-1.2 % of the box in stand / crouch / prone / leans / crouch-leans / braced.",
+  "tags": ["ads", "smg", "mp40", "reload", "gunphys", "centre-box"]
+ },
+ {
+  "error_message": "MP40 reload with rounds left SOUNDS cocked: no hand on the handle (hip and aimed), two handle clacks in the sound",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smggun.py",
+  "root_cause": "The reload sound is one file (mp40_snd_reload = MP40Reload1a.wav, 3.12 s): magazine out at 0.37 s, in at 1.15-1.25 s, handle back / released at 1.97 s and 2.15 s. The open-bolt story removed the cock from the rounds-left clips (step 2) but the row still played the whole file.",
+  "fix": "smggun.py cuts the file (faded out over clip frames 51-56 = 1.70-1.87 s) into sound/weapons/foley/coop_mp40_snd_reload_loaded.wav, adds a tik-local aliascache for it and points the `reload` row's entry sound at it; `reload_empty` / `reload_ads_empty` (what cgame shows for an EMPTY gun) keep the retail sound. Side effect, accepted: other players hear a teammate's MP40 reload without the cock (the server row is `reload`). Not listened to - no audio capture in the harness; no load error in the run logs.",
+  "tags": ["ads", "smg", "mp40", "sound", "open-bolt", "tik"]
+ },
+ {
+  "error_message": "MP40 hip reloads (run sb4): empty - the handle goes back in ONE frame and the releasing hand is splayed; rounds left - the last 0.5 s is a still pose",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py",
+  "root_cause": "The handle followed the retail cocking hand's fingertip, which travels 6 u in 33 ms; the retail finger channels (a flat open hand through the pull, sprung open after it) were kept; the no-cock clip blended to its end pose by f60 of 76.",
+  "fix": "smggun.py hip_pull (58, 63.5): the handle's own eased pull over 5.5 frames (on the sound's two clacks), the retail hand re-keyed onto it as before; fingers half closed to the hip grip from the reach on (a hook) and eased from that to the grip after the pull (no splay); rounds left: the palm stays under the seated magazine 3 frames, then the gun comes back to the hip by f70 (0.2 s of settled pose left).",
+  "tags": ["ads", "smg", "mp40", "hip", "reload"]
+ },
+ {
+  "error_message": "Run sc2: the MP40's handle did not move any more (never forward on empty) after the silenced MP40 was built",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smggun.py",
+  "root_cause": "mp40.skd, mp40silenced.skd and ppsh43silenced.skd share the directory models/weapons/mp40. The step-3 builder wrote the silenced gun's coop_fire.skc / coop_idle_empty.skc / coop_reload_*.skc (channel `eject pos`) over the MP40's (channel `coop_bolt pos`); a clip without the mesh's bone channel moves nothing and prints nothing.",
+  "fix": "A step-3 gun's clips carry its weapon key (coop_<key>_fire.skc ..., patch_tik's cn()); the MP40's keep their names. All three rebuilt; the MP40 re-run (sc3). Lesson: check a rebuilt gun's handle in a close-up (smgbake --cu) after ANY gun in the same model directory was built.",
+  "tags": ["ads", "smg", "tooling", "clip-name-collision", "silent-failure"]
+ },
+ {
+  "error_message": "Silenced PPS-43: the firing hand cannot reach its right-side handle from the aim pose - the clamped arm drags the whole gun through the view (offline, 24 % of the centre box)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py",
+  "root_cause": "In the aim pose the right shoulder is 20 u behind the weapon tag; the PPS-43's handle is forward at x 10.4: the hooked wrist is 31 u away, 117 % of the 26.8 u arm (102 % with the fingers pointing forward). hold_bake's right_path writes the weapon tag relative to the PLANNED hand, so a clamped right arm moves the gun. The left hand under the receiver reaches (92 %) only with the forearm through the pistol grip.",
+  "fix": "OPEN. Nothing of the PPS-43 is staged. tools/reachcheck.py prints shoulder / wrist / reach per gun and hand - run it before choosing which hand works a handle. Ready in the tools: the handle split onto its own bone (smggun OWN `split`), a right-hand cock (cock='R': aimed + hip, for a handle within reach, e.g. the MP18's at x 7.9) and a left-hand under-reach (_UNDER). For handles out of reach the standard's other route applies: bring the gun DOWN under the box into a work pose (revbake's gun_abs / the BAR's work pose) and work it there with the retail left-hand technique.",
+  "tags": ["ads", "smg", "pps43", "ik", "reach", "open"]
+ },
+ {
+  "error_message": "Harness: every second emptied capture of the silenced MP40 has no reload (stand, prone, lean right, crouch-lean right in run sc2)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/measure_run.py",
+  "root_cause": "Its fire delay is 0.12 s (MP40: 0.095): 32 rounds take 3.84 s = 240 frames of 16 ms, the harness held the trigger 235 (--hold 235, the MP40's figure). One round stayed in the gun, no reload started; the next capture fired that round first and so ran dry.",
+  "fix": "--hold 300 for the silenced MP40 (rule: clipsize x firedelay / 0.016 + 40). measure_run.py / stancesheet.py say NO RELOAD FOUND and leave such a capture out instead of failing.",
+  "tags": ["harness", "smg", "firedelay"]
+ }
+]

@@ -64,8 +64,44 @@ def ai_fire(sess, tik):
     R.step(L, timeout=900)
 
 
+def sbreak(sess, gun, kind, at, case="L", n=150):
+    """an AIMED reload broken off `at` 16 ms frames after it starts, EVERY frame captured (the shared `interrupt` part
+    takes every 2nd): fire = the trigger, switch = next weapon, sprint = run forward, drop = the aim let go (the row
+    hands over to the hip clip mid-reload), crouch = a stance change. case E = the gun emptied first."""
+    tag = "ab__%s__%s__brk%s%s%d__demo__after" % (sess, gun, kind, case, at)
+    i = [0]
+    L = S.RELEASE + S.TO_STAND + A.MODE["after"] + ["wait 600", "set cg_adsSightDebug 2", "echo ^~^~^ ABSCEN begin %s" % tag]
+    L += A.frames(tag, 4, i) + ["+button13", "echo ^~^~^ DEMO raise %d" % i[0]] + A.frames(tag, 40, i)
+    if case == "E":
+        L += ["+attackprimary", "echo ^~^~^ DEMO fire %d" % i[0]] + A.frames(tag, SMG_HOLD[0], i) + ["-attackprimary"]
+    else:
+        L += ["+attackprimary", "echo ^~^~^ DEMO fire %d" % i[0]] + A.frames(tag, 12, i) + ["-attackprimary"] + A.frames(tag, 50, i) + ["reload"]
+    L += ["echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, at, i)
+    act = {"fire": ["+attackprimary"], "switch": ["weapnext"], "sprint": ["+speed", "+forward"], "drop": ["-button13"],
+           "crouch": ["+movedown"]}[kind]
+    L += act + ["echo ^~^~^ DEMO intr %d" % i[0]] + A.frames(tag, 8, i)
+    L += (["-attackprimary"] if kind == "fire" else []) + A.frames(tag, n - 8, i)
+    L += ["echo ^~^~^ DEMO lower %d" % i[0], "-button13", "-forward", "-speed", "-movedown"] + A.frames(tag, 30, i)
+    L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1"] + S.RELEASE
+    if kind == "switch":
+        L += ["wait 1200", "weapprev", "wait 2500"]
+    if kind == "sprint":
+        L += ["+back", "wait 1300", "-back", "wait 400"]
+    R.step(L, timeout=2400)
+
+
 def smg_parts(a, gun):
     for part in a.parts:
+        if part.startswith("sbreak"):                # sbreak | sbreak:fire,switch:40,90[:E]   kinds : frames after the reload starts : case
+            sp = part.split(":")
+            kinds = sp[1].split("+") if len(sp) > 1 else ["fire", "switch", "sprint", "drop"]
+            ats = [int(x) for x in sp[2].split("+")] if len(sp) > 2 else [50, 105]
+            for kind in kinds:
+                for at in ats:
+                    R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS["colt45"]) + S.give(A.GUNS[gun]), timeout=120)
+                    sbreak(a.session, gun, kind, at, case=(sp[3] if len(sp) > 3 else "L"))
+            R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+            continue
         if part.startswith("sdemo"):                 # sdemo | sdemoL | sdemoE  (aimed);  shipdemo... (hip)
             cases = part[5:] or "LE"
             for c in cases:

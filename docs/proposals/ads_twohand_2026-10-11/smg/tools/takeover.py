@@ -79,5 +79,11 @@ s = s.replace('ap.add_argument("--stances", default=None)',
 s = s.replace("    if a.stances:\n", "    a.sstances = [x for x in a.sstances.split(',') if x]\n    SMG_HOLD[0] = a.hold; SMG_REL[0] = a.rel\n"
               "    if a.cheats:\n        cheats_on()\n    if a.stances:\n", 1)
 assert 'SMG_HOLD[0] = a.hold' in s
+# another map / spot for the whole session (an AI to look at needs a place without the map's friendly actors:
+# mapents.py; m6l1a at its player start has none: --map m6l1a --spot 6152,-6528,5440,135)
+s = s.replace('ap.add_argument("--cheats", action="store_true")',
+              'ap.add_argument("--cheats", action="store_true"); ap.add_argument("--map", default=None); ap.add_argument("--spot", default=None)')
+s = s.replace("    if a.cheats:\n", "    if a.map:\n        R.MAP = a.map\n    if a.spot:\n        R.SPOT = tuple(float(x) for x in a.spot.split(','))\n    if a.cheats:\n", 1)
+assert 'R.MAP = a.map' in s
 open(os.path.join(HERE, 'run_smg.py'), 'w', encoding='latin-1', newline='\n').write(s)
 print('wrote run_smg.py')

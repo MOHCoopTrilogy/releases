@@ -110,7 +110,7 @@
   }
  },
  "models/weapons/mp40.tik": {
-  "action": "left hand: magazine down the well and out low-left, new one shown beside the gun and driven up; EMPTY (open bolt, bolt forward): left index hooks the added handle from below-left and pulls it back to the sear - shown, handle stays back; rounds left: no cock; hip tells the same story",
+  "action": "left hand: magazine down the well, seen leaving low-left, new one shown beside the gun and driven up; EMPTY (open bolt, bolt forward): left index hooks the added handle (palm down, knuckles toward the eye) and pulls it back to the sear - shown, handle stays back; rounds left: no cock, a tug on the magazine, the sound cut before the handle; hip tells the same story",
   "aim": {
    "braced": {
     "dev": 0.0,
@@ -177,73 +177,93 @@
     "run": "sa2"
    }
   },
-  "qa": "sb4: every stance + braced run; 9 GIFs decoded and looked at; AI firing not yet seen",
+  "qa": "sc1-sc3: stand / crouch / prone / leans / crouch-leans / braced run; 4 GIFs decoded and looked at (sc3), every stance on a sheet (sc1), cock close-up at full size; break-off (fire / sprint / switch / aim dropped, rounds left + empty) run and traced; an AI NCO seen firing, reloading and firing again on m6l1a (sc5), nothing detached - the handle is under a pixel there; open: 0.06 deg at the row's end (bug-3597)",
   "reload": {
    "braced": {
     "box": 0.2,
     "case": "empty",
     "dev": 1.38,
-    "edge": 0.087,
-    "end": 0.055,
+    "edge": 0.089,
+    "end": 0.056,
     "ok": true,
     "pmin": 1.0,
-    "run": "sb4"
+    "run": "sc1"
    },
    "crouch": {
-    "box": 0.1,
+    "box": 0.4,
     "case": "empty",
     "dev": 1.38,
     "edge": 0.08,
-    "end": 0.058,
+    "end": 0.057,
     "ok": true,
     "pmin": 1.0,
-    "run": "sb4"
+    "run": "sc1"
    },
-   "prone": {
-    "box": 0.7,
-    "case": "empty",
-    "dev": 1.38,
-    "edge": 0.085,
-    "end": 0.063,
-    "ok": true,
-    "pmin": 1.0,
-    "run": "sb4"
-   },
-   "stand": {
+   "crouchL": {
     "box": 1.2,
     "case": "empty",
     "dev": 1.38,
-    "edge": 0.082,
+    "edge": 0.085,
+    "end": 0.056,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc1"
+   },
+   "crouchR": {
+    "box": 0.8,
+    "case": "empty",
+    "dev": 1.37,
+    "edge": 0.088,
     "end": 0.061,
     "ok": true,
     "pmin": 1.0,
-    "run": "sb4"
+    "run": "sc1"
    },
-   "standL": {
-    "box": 1.3,
-    "case": "empty",
-    "dev": 1.37,
-    "edge": 0.083,
-    "end": 0.058,
-    "ok": true,
-    "pmin": 1.0,
-    "run": "sb4"
-   },
-   "standR": {
-    "box": 0.5,
+   "prone": {
+    "box": 0.4,
     "case": "empty",
     "dev": 1.38,
-    "edge": 0.089,
-    "end": 0.053,
+    "edge": 0.086,
+    "end": 0.056,
     "ok": true,
     "pmin": 1.0,
-    "run": "sb4"
+    "run": "sc1"
+   },
+   "stand": {
+    "box": 1.0,
+    "case": "empty",
+    "dev": 1.39,
+    "edge": 0.076,
+    "end": 0.063,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc3"
+   },
+   "standL": {
+    "box": 0.9,
+    "case": "empty",
+    "dev": 1.37,
+    "edge": 0.09,
+    "end": 0.056,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc1"
+   },
+   "standR": {
+    "box": 0.7,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.083,
+    "end": 0.059,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc1"
    }
   },
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "sb4",
+   "run": "sc3",
    "target": "yes"
   }
  },
@@ -262,6 +282,7 @@
   }
  },
  "models/weapons/mp40_mp40r2.tik": {
+  "action": "the MP40 choreography on its own sight line and its own handle (bone Bone1, a knob on a stem, left): rests back, forward on empty, the left index pulls it back after an EMPTY reload; rounds left: no cock; hip the same (retail hand turned onto the handle)",
   "aim": {
    "stand": {
     "box": 14.4,
@@ -273,9 +294,99 @@
     "run": "sa3",
     "sight_abs": 0.0
    }
+  },
+  "qa": "sc4: stand / crouch / prone / leans / crouch-leans / braced run (box 0.0-0.7 %); 4 GIFs decoded, every stance on a sheet, cock close-up at full size; per-shot handle travel not looked at in the engine; open: 0.06 deg at the row's end (bug-3597)",
+  "reload": {
+   "braced": {
+    "box": 0.2,
+    "case": "empty",
+    "dev": 1.32,
+    "edge": 0.019,
+    "end": 0.018,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc4"
+   },
+   "crouch": {
+    "box": 0.3,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.084,
+    "end": 0.059,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc4"
+   },
+   "crouchL": {
+    "box": 0.7,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.083,
+    "end": 0.062,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc4"
+   },
+   "crouchR": {
+    "box": 0.5,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.081,
+    "end": 0.061,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc4"
+   },
+   "prone": {
+    "box": 0.0,
+    "case": "empty",
+    "dev": 1.39,
+    "edge": 0.076,
+    "end": 0.063,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc4"
+   },
+   "stand": {
+    "box": 0.6,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.086,
+    "end": 0.056,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc4"
+   },
+   "standL": {
+    "box": 0.5,
+    "case": "empty",
+    "dev": 1.37,
+    "edge": 0.085,
+    "end": 0.062,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc4"
+   },
+   "standR": {
+    "box": 0.3,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.077,
+    "end": 0.059,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc4"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "sc4",
+   "target": "yes"
   }
  },
  "models/weapons/mp40silenced.tik": {
+  "action": "the MP40 choreography on its own sight line and its own handle (the mesh's knob, bone eject, left): rests back, forward on empty, the left index pulls it back after an EMPTY reload; rounds left: no cock, sound cut before the handle; hip the same (retail hand turned onto the knob)",
   "aim": {
    "stand": {
     "box": 16.3,
@@ -287,6 +398,95 @@
     "run": "sa3",
     "sight_abs": 0.0
    }
+  },
+  "qa": "sc6 (aim sway off, trigger held 300 frames - fire delay 0.12 s): stand / crouch / prone / leans / crouch-leans / braced run (box 0.0-0.8 %); with sway on three stances read 2.4-4.0 % from the sway alone (sc2); 4 GIFs decoded, every stance on a sheet, cock looked at in full-size crops; open: 0.06 deg at the row's end (bug-3597)",
+  "reload": {
+   "braced": {
+    "box": 0.3,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.089,
+    "end": 0.054,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc6"
+   },
+   "crouch": {
+    "box": 0.6,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.084,
+    "end": 0.059,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc6"
+   },
+   "crouchL": {
+    "box": 0.6,
+    "case": "empty",
+    "dev": 1.37,
+    "edge": 0.089,
+    "end": 0.055,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc6"
+   },
+   "crouchR": {
+    "box": 0.8,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.081,
+    "end": 0.059,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc6"
+   },
+   "prone": {
+    "box": 0.5,
+    "case": "empty",
+    "dev": 1.39,
+    "edge": 0.079,
+    "end": 0.059,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc6"
+   },
+   "stand": {
+    "box": 0.6,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.082,
+    "end": 0.056,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc6"
+   },
+   "standL": {
+    "box": 0.7,
+    "case": "empty",
+    "dev": 1.37,
+    "edge": 0.084,
+    "end": 0.06,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc6"
+   },
+   "standR": {
+    "box": 0.5,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.081,
+    "end": 0.062,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "sc6"
+   }
+  },
+  "rule": {
+   "action": "yes",
+   "reacts": "yes",
+   "run": "sc6",
+   "target": "yes"
   }
  },
  "models/weapons/ppsh43silenced.tik": {

@@ -147,6 +147,7 @@ holsterScale			1.0
 	}
 	client
 	{
+		aliascache coop_mp40_snd_reload_loaded sound/weapons/foley/coop_mp40_snd_reload_loaded.wav soundparms 1.5 0.0 1.0 0.05 160 1000 item loaded always maps "m e t dm obj lib" // HZM coop [smg rounds-left reload sound]
 		cache tracer.spr
 		cache muzsprite.spr
 		cache corona_util.spr
@@ -360,7 +361,7 @@ animations
 		}
 		client
 		{
-			entry sound mp40_snd_reload item
+			entry sound coop_mp40_snd_reload_loaded item
 		}
 	}
 	secondaryfire     mp40.skc

@@ -45,32 +45,74 @@ def _envf(name, default):
 # the LEFT at bore height, pulled straight back against the return spring.
 gunphys.ACTIONS.update({
     'smg_catch':     ((1.0, -10.0, 4.0, 0.8, 0.0), 2.0),        # the thumb on the magazine catch
-    'smg_mag_drag':  ((34.0, -6.0, 60.0, 1.5, 0.0), 2.5),       # the magazine dragged down out of the well: the gun follows
+    'smg_mag_drag':  ((27.0, -5.0, 48.0, 1.2, 0.0), 3.0),       # the magazine dragged down out of the well: the gun follows
+                                                                # (0.8 of run sb4's: it was the fastest step of the sight line, 0.18 deg / frame)
     'smg_mag_free':  ((-22.0, 0.0, -46.0, 0.0, 0.0), 2.0),      # ...and springs up as it comes free
     'smg_mag_enter': ((-9.0, 5.0, -16.0, -1.0, 2.0), 2.0),      # the lips find the well
-    'smg_mag_seat':  ((-26.0, 0.0, -66.0, 0.0, 3.0), 3.5),      # driven home with the palm: up, muzzle up, back (twice this
+    'smg_mag_tug':   ((16.0, 2.0, 30.0, 0.0, 0.0), 2.5),        # a tug down on the seated magazine: is the catch holding?
+    'smg_mag_seat':  ((-26.0, 0.0, -66.0, 0.0, 3.0), _envf('SB_SEATLEN', (5.5,))[0]),      # driven home with the palm: up, muzzle up, back (twice this
                                                                 # lifts the sights 3-4 % into the centre box, offline)
     'smg_handle_on': ((-5.0, -10.0, -10.0, 2.0, 2.0), 2.0),     # the fingers hook the handle from below-left
     'smg_bolt_pull': ((6.0, -46.0, -70.0, 9.0, 120.0), 5.0),    # pulled back against the spring: into the shoulder, canted to the hand
     'smg_bolt_stop': ((0.0, -10.0, -34.0, 0.0, 60.0), 1.5),     # the bolt hits the end of its travel
     'smg_bolt_sear': ((2.0, 14.0, 52.0, -3.0, -66.0), 1.5),     # let go: the spring runs it forward onto the sear
     'smg_hand_on':   ((-12.0, 12.0, -30.0, -3.0, 5.0), 3.0),    # the support hand lands on the magazine housing
+    'smg_grip_on':   ((-3.0, 5.0, -8.0, -1.0, 6.0), 3.0),       # the firing hand takes the grip again: a little into the shoulder
 })
+# a handle on the RIGHT, worked by the firing hand: the same actions with roll and side reversed (the simulation's one
+# `hand` sign is the left hand's, for the magazine)
+for _k in ('smg_handle_on', 'smg_bolt_pull', 'smg_bolt_stop', 'smg_bolt_sear'):
+    _v, _d = gunphys.ACTIONS[_k]
+    gunphys.ACTIONS[_k + '_r'] = ((_v[0], -_v[1], _v[2], -_v[3], _v[4]), _d)
 
 GUNS = {
     'mp40': dict(row='mp40_reload', sight='mp40', aim='viewmodel/mp40/coop_mp40_ads_mag.skc', cls='smg', vdir='viewmodel/mp40',
                  tik='models/weapons/mp40.tik', prop='models/ammo/mp40_clip.tik', propwin=(10, 48),
                  out_rel=10, in_rel=48,           # retail frames: hand on the magazine as it leaves / as it is seated
                  well=(0.0, 0.0, 1.0),            # the way the magazine leaves the well (gun frame; z = down)
-                 t=dict(down=(3, 8), catch=7, out=(10, 14), gone=19, back=31, show=36, under=40, seat=(44, 48),
-                        on=(51, 58),              # loaded: straight back up to the housing
+                 t=dict(down=(3, 8), catch=7, out=(10, 14), outshow=17, outgo=21, gone=25, back=28, show=33, hold=36, under=40, seat=(44, 48),
+                        tug=51.5, on=(55, 62),    # loaded: a tug on the seated magazine, then back up to the housing
                         reach=(50, 55), pull=(55, 61), let=63, on_e=(65, 71)),
                  # gun frame: x forward, y right, z down. add = from the handle's centre to its front face (+ a little low)
                  # fingers up and IN toward the gun from a wrist at the lower left; the palm on the receiver's wall, turned down with them
-                 hook=dict(ref=61, fdir=_envf('SB_FDIR', (0.15, 0.6, -0.8)), pdir=_envf('SB_PDIR', (0.0, 0.8, 0.6)),
-                           add=_envf('SB_HADD', (0.18, -0.3, 0.2)), fdir_hip=_envf('SB_FDIRH', (0.8, 0.3, -0.5)), pdir_hip=_envf('SB_PDIRH', (0.0, 1.0, 0.0)), curl=_envf('SB_HCURL', (0.0,))[0], mix=_envf('SB_HMIX', (0.5,))[0]),
-                 hip_blend=(48, 60), hip_reach=(52, 59)),      # hip, rounds left: from the seat frame (the retail hand opens for its cock right after)
+                 # 2b: palm DOWN and toward the gun, fingers forward-right and a little up: the eye sees the row of
+                 # knuckles lead up to the handle and the handle against the index (sb4's hand, fingers up the wall
+                 # with the palm on it, showed the eye only its back = "a fist"). Tried and dropped: palm to the shooter
+                 # (thumb stands up into the centre box, 6 %), palm flat down at handle height (2.3 %, a large hand)
+                 hook=dict(ref=61, fdir=_envf('SB_FDIR', (0.55, 0.7, -0.45)), pdir=_envf('SB_PDIR', (0.0, 0.5, 0.85)),
+                           add=_envf('SB_HADD', (0.18, -0.3, 0.05)), fdir_hip=_envf('SB_FDIRH', (0.8, 0.3, -0.5)), pdir_hip=_envf('SB_PDIRH', (0.0, 1.0, 0.0)), curl=_envf('SB_HCURL', (0.0,))[0], mix=_envf('SB_HMIX', (0.5,))[0]),
+                 # hip, rounds left: from the seat frame (the retail hand opens for its cock right after) the gun is
+                 # brought back to the hip over 0.63 s (2b: by f60 left 0.5 s of still pose at the end of the row)
+                 hip_blend=(48, 70), hip_reach=(52, 58)),
 }
+
+
+def _variant(base, key, **kw):
+    """a gun that shares `base`'s hands rows but has its OWN handle / mesh (step 3): the same choreography baked on its
+    own sight line and handle (smggun_<key>.json), staged as the per-weapon rows coopr_<key>_reload[_empty][_ads]
+    (cgame CoopPerWeaponReloadAnim: they win over the prefix rows for exactly this weapon)"""
+    g = dict(GUNS[base]); g['hook'] = dict(g['hook'])
+    g.update(sight=key, out='coopr_%s_reload' % key)
+    hk = kw.pop('hook', {})
+    g.update(kw); g['hook'].update(hk)
+    return g
+
+
+GUNS['silenced_mp40'] = _variant('mp40', 'silenced_mp40', tik='models/weapons/mp40silenced.tik')
+GUNS['mp40_reactivated'] = _variant('mp40', 'mp40_reactivated', tik='models/weapons/mp40_mp40r2.tik')
+# handle on the RIGHT, worked by the firing hand (hook = the mirror image of the left-hand one). The pull sits on the
+# reload sound's two clacks (f59, f64.5) in both clips; the left hand is back on its grip before the right one leaves.
+_RIGHT = dict(cock='R', hook=dict(fdir=(0.55, -0.7, -0.45), pdir=(0.0, -0.5, 0.85), add=(0.18, 0.3, 0.05),
+                                  fdir_hip=(0.8, -0.3, -0.5), pdir_hip=(0.0, -1.0, 0.0)))
+# For a gun the firing hand cannot reach the handle of from the aim (reachcheck.py: PPS-43, handle forward at x 10.4 =
+# 117 % of the arm from the shoulder; a clamped arm drags the gun with it) the LEFT hand goes UNDER the receiver, between
+# trigger guard and magazine, and its fingers come up the right side in front of the handle, palm to the shooter (the
+# under-reach used on right-handed rifles) - the firing hand never leaves its grip, the hand works low. At the hip the
+# same hand goes OVER the receiver (the retail technique for right-side handles, e.g. the Type 100's own clip).
+_UNDER = dict(handle='R', hook=dict(fdir=_envf('SB_UF', (0.5, -0.1, -0.85)), pdir=_envf('SB_UP', (-1.0, 0.0, -0.5)), add=_envf('SB_UA', (0.45, 0.0, 0.1)),
+                                    approach=_envf('SB_UAP', (-0.6, 0.6, -2.2)), leave=(0.0, 0.3, -1.2), home=(-1.0, 1.0, -2.5),
+                                    hip_built=1, fdir_hip=_envf('SB_UFH', (0.2, 0.7, 0.7)), pdir_hip=_envf('SB_UPH', (-0.9, 0.0, 0.4)), add_hip=(0.45, 0.0, -0.1)))
+GUNS['silenced_pps_43'] = _variant('mp40', 'silenced_pps_43', tik='models/weapons/ppsh43silenced.tik', **_UNDER)
 
 
 def knob(name):
@@ -93,7 +135,7 @@ def pull_u(f, a, b):
     return 1 - (1 - u) ** 2
 
 
-def hook_rel(g, hipclip, fwd, hip=False):
+def hook_rel(g, hipclip, fwd, hip=False, hand='L'):
     """hand-to-gun relation (rows, pre-scale) of the support hand HOOKED on the handle at its FORWARD place, built from
     the hand's own geometry in the aim grip's finger pose (no borrowed art): the first joints of the index and middle
     finger stand in front of the handle's front face, pointing `fdir` (gun frame; up the receiver's side), the palm
@@ -104,18 +146,18 @@ def hook_rel(g, hipclip, fwd, hip=False):
     pa = dict(R.pose_dict(ac, ac.numFrames - 1))
     pr = R.pose_dict(hipclip, hk['ref'])
     for ch in list(pa):                    # the finger pose the keys use: ('mix', ref, mix) = the aim grip opened toward the
-        if ch.startswith('Bip01 L Finger') and ch in pr:           # retail cocking hand's open fingers
+        if ch.startswith('Bip01 %s Finger' % hand) and ch in pr:           # retail cocking hand's open fingers
             pa[ch] = R.qslerp(np.asarray(pa[ch], float), np.asarray(pr[ch], float), hk['mix'])
     Wa = R.evaluate(pa)
-    Hh = Wa['Bip01 L Hand']
+    Hh = Wa['Bip01 %s Hand' % hand]
 
     def loc(b):
         return (Wa[b][3, 0:3] - Hh[3, 0:3]) @ Hh[0:3, 0:3].T
-    mcp = (loc('Bip01 L Finger1') + loc('Bip01 L Finger2')) / 2
-    pip = (loc('Bip01 L Finger11') + loc('Bip01 L Finger21')) / 2
-    tip = (loc('Bip01 L Finger12') + loc('Bip01 L Finger22')) / 2           # the last joints: the pads are just beyond
+    mcp = (loc('Bip01 %s Finger1' % hand) + loc('Bip01 %s Finger2' % hand)) / 2
+    pip = (loc('Bip01 %s Finger11' % hand) + loc('Bip01 %s Finger21' % hand)) / 2
+    tip = (loc('Bip01 %s Finger12' % hand) + loc('Bip01 %s Finger22' % hand)) / 2           # the last joints: the pads are just beyond
     df = tip - mcp; df /= np.linalg.norm(df)                               # the fingers' overall direction
-    side = loc('Bip01 L Finger4') - loc('Bip01 L Finger1')
+    side = loc('Bip01 %s Finger4' % hand) - loc('Bip01 %s Finger1' % hand)
     nrm = np.cross(df, side); nrm /= np.linalg.norm(nrm)
     if (pip - (mcp + tip) / 2) @ nrm > 0:  # a curled finger's middle joint stands out on the BACK of the hand
         nrm = -nrm
@@ -130,17 +172,17 @@ def hook_rel(g, hipclip, fwd, hip=False):
     # index -> little finger direction: with the palm on the receiver's wall (P = +y) it points FORWARD, so the other
     # fingers stand in front of the index along the wall. (Run sb3 had the palm facing the shooter: index -> little
     # finger then pointed INTO the gun and the fingertips came out on its right side.)
-    c = loc('Bip01 L Finger12') - np.cross(df, nrm) * (hk.get('thick', 0.3) / R.S)
+    c = loc('Bip01 %s Finger12' % hand) - (1.0 if hand == 'L' else -1.0) * np.cross(df, nrm) * (hk.get('thick', 0.3) / R.S)
     tgt = (np.asarray(fwd, float) + np.asarray(hk['add'], float)) / R.S
     rel = np.eye(4); rel[0:3, 0:3] = Rr; rel[3, 0:3] = tgt - c @ Rr
     return rel
 
 
-def curl_add(keys, deg=(26.0, 38.0, 26.0)):
+def curl_add(keys, deg=(26.0, 38.0, 26.0), hand='L'):
     out = {}
     for fi in (1, 2, 3, 4):
         for j, sfx in enumerate(('', '1', '2')):
-            out['Bip01 L Finger%d%s rot' % (fi, sfx)] = [(k, w * deg[j]) for k, w in keys]
+            out['Bip01 %s Finger%d%s rot' % (hand, fi, sfx)] = [(k, w * deg[j]) for k, w in keys]
     return out
 
 
@@ -161,47 +203,85 @@ def ads_spec(name, empty):
           # OUT: straight down the well until the lips are clear (the housing holds about 3 u of it), then down-left -
           # the eye sees the top of the magazine leave at the lower left before the hand goes under the frame
           o0 + 2: dict(rel=o, gun_add=tuple(wl * 2.4), fing=o),
-          o1: dict(rel=o, gun_add=tuple(wl * 3.4), cam_add=_envf('SB_OUT1', (-0.3, 2.6, 0.0)), fing=o),
-          o1 + 2: dict(rel=o, gun_add=tuple(wl * 4.5), cam_add=_envf('SB_OUT2', (-1.0, 6.0, -0.5)), fing=o),
+          o1: dict(rel=o, gun_add=tuple(wl * 3.5), cam_add=_envf('SB_OUT1', (-0.2, 1.0, 0.0)), fing=o),
+          # ...and is SEEN: swung out to the left of the gun, under the centre box, before it goes down to the pouch
+          # (2b: the swap was on screen for 0.2 s - "too quiet")
+          t['outshow']: dict(rel=o, gun_add=tuple(wl * 3.0), cam_add=_envf('SB_OUT2', (-0.6, 5.2, 0.6)), fing=o),
+          t['outgo']: dict(rel=o, gun_add=tuple(wl * 3.6), cam_add=_envf('SB_OUT3', (-1.0, 7.2, -0.6)), fing=o),
           t['gone']: dict(cam=POUCH, rot='aim', fing=o), t['back']: dict(cam=POUCH, rot='aim', fing=i),
           # IN: the new magazine comes up BESIDE the gun on the left, in view under the centre box (the shooter indexes
           # the well), drops under the housing, slides in under the well and is driven up
           t['show']: dict(rel=i, gun_add=tuple(wl * 1.2), cam_add=_envf('SB_IN1', (-0.5, 5.0, 0.8)), fing=i),
+          t['hold']: dict(rel=i, gun_add=tuple(wl * 1.5), cam_add=_envf('SB_IN1B', (-0.4, 4.5, 0.9)), fing=i),
           t['under']: dict(rel=i, gun_add=tuple(wl * 3.6), cam_add=_envf('SB_IN2', (-0.2, 2.4, 0.0)), fing=i),
           s0 - 1: dict(rel=i, gun_add=tuple(wl * 3.5), fing=i),
           s0 + 1: dict(rel=i, gun_add=tuple(wl * 2.4), fing=i),
           s1 - 1: dict(rel=i, gun_add=tuple(wl * 0.5), fing=i),
           s1: dict(rel=i, fing=i), s1 + 2: dict(rel=i, fing=i)}
     # support weight: never 0 - the gun is still in the shoulder and the firing hand while the left hand is away
-    sup = [(0, 1), (d0, 1), (d1, 0.7), (o0 + 1, 0.55), (o1, SHOULDER), (s0, SHOULDER), (s1, 0.75)]
-    ev = [(t['catch'], 'smg_catch'), (o0 - 0.5, 'smg_mag_drag'), (o0 + 2.0, 'smg_mag_free'), (s0 - 0.5, 'smg_mag_enter'), (s1 - 1.5, 'smg_mag_seat', _envf('SB_SEAT', (1.0,))[0])]
+    # 2b: the weight comes back onto the left hand from the moment the magazine meets the well until after the seat
+    # (it was SHOULDER until s0 and 0.75 at s1: the sag came back in 4 frames, with the seat's push = a hop)
+    sup = [(0, 1), (d0, 1), (d1, 0.7), (o0 + 1, 0.55), (o1, SHOULDER), (s0 - 4, SHOULDER), (s1 + 3, 0.75)]
+    ev = [(t['catch'], 'smg_catch'), (o0 - 0.5, 'smg_mag_drag'), (o0 + 2.0, 'smg_mag_free'), (s0 - 0.5, 'smg_mag_enter'), (s1 - _envf('SB_SEATAT', (3.0,))[0], 'smg_mag_seat', _envf('SB_SEAT', (0.8,))[0])]
     kw = {}
-    if empty:
+    if empty and g.get('cock') == 'R':
+        # A handle on the RIGHT (step 3): the left hand seats the magazine and goes straight back to its grip (it and
+        # the shoulder hold the gun), then the FIRING hand leaves the grip, hooks the handle from below-right, pulls it
+        # back to the sear and returns - the mirror image of the left-hand pull, same physics with the roll reversed.
+        a0, a1 = t['on_r']
+        lp[a0] = dict(rel=i, fing=i)
+        lp[a0 + 3] = dict(aim=1, cam_add=(0.0, 0.6, -1.2), fing=('mix', i, 0.5))
+        for f in range(a1, n + 1):
+            lp[f] = AIM
+        r0, r1 = t['reach_r']; p0, p1 = t['pull']; e0, e1 = t['on_er']
+        T = hook_rel(g, hipclip, fwd, hand='R')
+        ck = g['hook'].get('curl_r', -0.8)
+        rp = {0: AIM, r0: AIM, r1 - 2: dict(relT=T, cam_add=(-0.3, -1.3, -1.3), fing='aim'), r1: dict(relT=T, fing='aim')}
+        for f in range(p0, p1 + 1):
+            rp[f] = dict(relT=T, gun_add=(-travel * pull_u(f, p0, p1), 0.0, 0.0), fing='aim')
+        rp[t['let']] = dict(relT=T, gun_add=(-travel, 0.0, 0.0), cam_add=(0.0, -0.5, -0.5), fing='aim')
+        rp[e0] = dict(aim=1, cam_add=(1.0, -1.0, -1.5), fing='aim')
+        for f in range(e1, n + 1):
+            rp[f] = AIM
+        kw['right_path'] = rp
+        kw['finger_add'] = curl_add([(r0, 0.0), (r1, ck), (p1, ck), (t['let'] + 2, 0.0), (n, 0.0)], hand='R')
+        sup += [(a0, 0.75), (a1, 0.95), (r0, 0.95), (r1, 0.7), (p1, 0.7), (e0, 0.7), (e1, 1.0), (n, 1.0)]
+        ev += [(a1 - 3.0, 'smg_hand_on', 0.7), (r1 - 1.0, 'smg_handle_on_r'), (p0, 'smg_bolt_pull_r'), (p1 - 0.5, 'smg_bolt_stop_r'),
+               (t['let'] - 1.0, 'smg_bolt_sear_r'), (e1 - 3.0, 'smg_grip_on')]
+    elif empty:
         r0, r1 = t['reach']; p0, p1 = t['pull']; e0, e1 = t['on_e']
         T = hook_rel(g, hipclip, fwd)
         ck = g['hook']['curl']
         lp[r1] = dict(relT=T, fing=('mix', g['hook']['ref'], g['hook']['mix']))
-        lp[r1 - 2] = dict(relT=T, cam_add=(-0.3, 1.3, -1.3), fing=('mix', g['hook']['ref'], g['hook']['mix']))   # up to the handle from below-left
+        hk = g['hook']
+        sfx = '_r' if g.get('handle') == 'R' else ''        # the handle's side: which way the pull rolls the gun
+        lp[r1 - 2] = dict(relT=T, cam_add=hk.get('approach', (-0.3, 1.3, -1.3)), fing=('mix', g['hook']['ref'], g['hook']['mix']))   # up to the handle from below-left
         for f in range(p0, p1 + 1):
             lp[f] = dict(relT=T, gun_add=(-travel * pull_u(f, p0, p1), 0.0, 0.0), fing=('mix', g['hook']['ref'], g['hook']['mix']))
         back = (-travel, 0.0, 0.0)
-        lp[t['let']] = dict(relT=T, gun_add=back, cam_add=(0.0, 0.5, -0.5), fing=('mix', g['hook']['ref'], 0.9))
-        lp[e0] = dict(aim=1, cam_add=(-1.5, 2.0, -2.5), fing=('mix', g['hook']['ref'], 0.6))
+        lp[t['let']] = dict(relT=T, gun_add=back, cam_add=hk.get('leave', (0.0, 0.5, -0.5)), fing=('mix', g['hook']['ref'], 0.9))
+        lp[e0] = dict(aim=1, cam_add=hk.get('home', (-1.5, 2.0, -2.5)), fing=('mix', g['hook']['ref'], 0.6))
         for f in range(e1, n + 1):
             lp[f] = AIM
         kw['finger_add'] = curl_add([(r0, 0.0), (r1, ck), (p1, ck), (t['let'], 0.0), (n, 0.0)])
         sup += [(r0, 0.6), (r1, 0.4), (p1, 0.4), (e0, 0.4), (e1, 1.0), (n, 1.0)]
-        ev += [(r1 - 1.0, 'smg_handle_on'), (p0, 'smg_bolt_pull'), (p1 - 0.5, 'smg_bolt_stop'), (t['let'] - 1.0, 'smg_bolt_sear'), (e1 - 3.5, 'smg_hand_on', 0.6)]
+        ev += [(r1 - 1.0, 'smg_handle_on' + sfx), (p0, 'smg_bolt_pull' + sfx), (p1 - 0.5, 'smg_bolt_stop' + sfx), (t['let'] - 1.0, 'smg_bolt_sear' + sfx), (e1 - 3.5, 'smg_hand_on', 0.6)]
     else:
         a0, a1 = t['on']
+        lp[a0] = dict(rel=i, fing=i)
         lp[a0 + 3] = dict(aim=1, cam_add=(0.0, 0.6, -1.2), fing=('mix', i, 0.5))
         for f in range(a1, n + 1):
             lp[f] = AIM
         sup += [(a0, 0.75), (a1, 1.0), (n, 1.0)]
-        ev += [(a1 - 3.0, 'smg_hand_on')]
+        ev += [(t['tug'], 'smg_mag_tug'), (a1 - 3.0, 'smg_hand_on')]
     # fade 14: the last frames ease onto the exact aim (run sb3 with the default 6: 0.08 deg left when the row ends)
     ph = gunphys.simulate(n + 1, hipclip.frameTime, g['cls'], support=sup, fade=14,
                           mag=[(0, 1), (o0, 1), (o0 + 3, 0), (s0, 0), (s1, 1)], events=ev, strength=STRENGTH, hand=-1.0)
+    if os.environ.get('SB_TRACE'):
+        X = ph['X']; a_, b_ = [int(v) for v in os.environ['SB_TRACE'].split(':')]
+        print('    f   drop   roll  pitch   side   back   | per-frame step: drop u, pitch deg')
+        for f in range(a_, min(b_, n) + 1):
+            print('   %3d %6.2f %6.2f %6.2f %6.2f %6.2f   | %+.3f %+.3f' % ((f,) + tuple(X[f]) + (X[f][0] - X[f - 1][0], X[f][2] - X[f - 1][2])))
     kw.update(gun=g['sight'], charge=g['aim'], fixed_right=True, dip=ph['dip'], left_path=lp, weight=dict(on=False), handover=False,
               tag_map={0: o, t['gone']: o, t['back']: i, n: i},
               elbow_vec={'R': (0.0, -1.0, -0.2), 'L': _envf('SB_ELB', (0.0, 0.35, -1.0))},
@@ -247,9 +327,10 @@ def bake_hip(name, root):
     b0, b1 = g['hip_blend']
     pe = R.pose_dict(hip, n - 1)
     pa = R.pose_dict(hip, b0)
+    hold = g.get('hip_hold', 3)             # the palm stays under the seated magazine for a moment before the gun comes back
     for f in range(b0, n):
-        w = max(0.0, min(1.0, (f - b0) / float(b1 - b0)))
-        w = w * w * w * (w * (w * 6 - 15) + 10)
+        w = max(0.0, min(1.0, (f - b0 - hold) / float(b1 - b0 - hold)))
+        w = w * w * (3 - 2 * w)
         pd = {}
         for ch in hip.names:
             if ch.endswith(' rot'):
@@ -265,6 +346,9 @@ def bake_hip(name, root):
     open(dst, 'wb').write(bts)
     print(name, 'hip   loaded ->', o1, n, 'frames', hashlib.md5(bts).hexdigest()[:8], '(retail to f%d, then its end pose by f%d: no cock)' % (b0, b1))
     rep['hip_loaded'] = dict(clip=o1)
+    if g.get('cock') == 'R':
+        rep['hip_empty'] = bake_hip_right(name, root, g, hip, cm, dst, fwd, travel, kj)
+        return rep
     # ---- empty: the hand on the handle
     # The retail cocking hand is at the handle's height and place ALONG the gun, but 3 u out to the left of the
     # receiver (index tip at y -5.3; the wall is at -1.8), and at arm's length (reach 25.9 of 26.8 u): a built hook
@@ -281,8 +365,36 @@ def bake_hip(name, root):
     e1 = min(n - 3, let + 8)
     add = np.asarray(g['hook'].get('add_hip', (0.3, -0.25, 0.1)), float)
     used = []
+    Th = hook_rel(g, hip, fwd, hip=True) if g['hook'].get('hip_built') else None
+    # 2b: the RELEASE - the retail hand springs open (fingers splayed) as it lets go. The fingers now go from their
+    # hooked pose at the end of the pull straight to the clip's last pose (the hip grip), eased over 0.33 s
+    # Run sc1: with that, the PULL itself still showed the retail's flat open hand. From the reach on the fingers close
+    # half way to the hip grip (`hip_mix`): a hooked hand; the fingertip the hand is turned onto the handle by is taken
+    # from THAT finger pose.
+    pf, pl = dict(R.pose_dict(hip, p1)), R.pose_dict(hip, n - 1)
+    fch = [ch for ch in hip.names if ch.startswith('Bip01 L Finger') and ch.endswith(' rot')]
+    hmix = g['hook'].get('hip_mix', 0.5)
+
+    def hooked(pd, f):
+        u = hmix * ease_((f - r0) / float(max(1, r1 - r0)))
+        for ch in fch:
+            pd[ch] = R.qslerp(np.asarray(pd[ch], float), np.asarray(pl[ch], float), u)
+    hooked(pf, p1)
+
+    def relax(pd, f):
+        u = ease_((f - p1) / 10.0)
+        for ch in fch:
+            pd[ch] = R.qslerp(np.asarray(pf[ch], float), np.asarray(pl[ch], float), u)
+    for f in range(e1 + 1, n):
+        pd = dict(R.pose_dict(hip, f))
+        relax(pd, f)
+        K.write_frame(out, hip, cm, f, pd)
     for f in range(r0, e1 + 1):
-        ph = R.pose_dict(hip, f)
+        ph = dict(R.pose_dict(hip, f))
+        if f <= p1:
+            hooked(ph, f)
+        else:
+            relax(ph, f)
         Wh = R.evaluate(ph)
         G = Wh['tag_weapon_right']
         HLr = Wh['Bip01 L Hand']
@@ -297,6 +409,11 @@ def bake_hip(name, root):
         HLn = HLr.copy()
         HLn[0:3, 0:3] = HLr[0:3, 0:3] @ Rm
         HLn[3, 0:3] = tgt - la_ * b_
+        if g['hook'].get('hip_built'):
+            Tn = Th.copy()
+            Tn[3, 0] -= travel * (1.0 - curve[min(f, len(curve) - 1)]) / R.S
+            HLn = Tn @ G
+            tgt = HLn[3, 0:3] + (Wh['Bip01 L Finger12'][3, 0:3] - HLr[3, 0:3]) @ HLr[0:3, 0:3].T @ HLn[0:3, 0:3]
         w = min(ease_((f - r0) / float(max(1, r1 - r0))), ease_((e1 - f) / float(max(1, e1 - let))))
         HL = B.blend_H(HLr, HLn, w)
         pd = dict(ph)
@@ -305,6 +422,8 @@ def bake_hip(name, root):
         for ch in ('tag_weapon_left rot', 'tag_weapon_left pos'):
             if ch in ph:
                 pd[ch] = ph[ch]
+        if f > p1:
+            relax(pd, f)
         K.write_frame(out, hip, cm, f, pd)
         if w > 0.99:
             Wn = R.evaluate(R.pose_dict(out, f))
@@ -319,12 +438,70 @@ def bake_hip(name, root):
     return rep
 
 
+def bake_hip_right(name, root, g, hip, cm, loaded_path, fwd, travel, kj):
+    """HIP, empty, a handle on the RIGHT: the rounds-left clip (magazine only; the retail left-hand mime on the gun's
+    left is gone with it) + the FIRING hand: it leaves the grip, hooks the handle (hook_rel, built from the hand's own
+    geometry, fingers opened from the grip), rides it back along the gun clip's own curve and goes home. The left hand
+    holds the gun meanwhile, as in the aimed clip."""
+    base = R.load(loaded_path)
+    out = R.load(loaded_path)
+    n = hip.numFrames
+    curve = kj['hip_curve']
+    r0, r1 = g.get('hip_reach_r', (50, 57))
+    moving = [f for f in range(n) if 0.0 < curve[min(f, len(curve) - 1)] < 1.0]
+    p0, p1 = min(moving) - 1, max(moving) + 1
+    let = p1 + 2
+    e1 = min(n - 2, let + 8)
+    T = hook_rel(g, hip, fwd, hip=True, hand='R')
+    fch = [ch for ch in hip.names if ch.startswith('Bip01 R Finger') and ch.endswith(' rot')]
+    opn = g['hook'].get('curl_r_hip', -22.0)        # deg per joint: the grip's fist opened into a hook
+    clamp = 0
+    for f in range(r0, e1 + 1):
+        ph = dict(R.pose_dict(base, f))
+        w = min(ease_((f - r0) / float(max(1, r1 - r0))), ease_((e1 - f) / float(max(1, e1 - let))))
+        for ch in fch:
+            ph[ch] = R.rows_to_quat(R.axis_angle_rows((0, 0, 1), opn * w) @ R.quat_to_rows(ph[ch]))
+        Wh = R.evaluate(ph)
+        G = Wh['tag_weapon_right']
+        HRr = Wh['Bip01 R Hand']
+        Tn = T.copy()
+        Tn[3, 0] -= travel * (1.0 - curve[min(f, len(curve) - 1)]) / R.S
+        HRn = Tn @ G
+        HR = B.blend_H(HRr, HRn, w)
+        # between the grip and the handle the hand swings out to the right, clear of the receiver
+        HR[3, 0:3] += (np.array([0.0, 1.6, 0.0]) / R.S) @ G[0:3, 0:3] * math.sin(math.pi * w) * (1.0 if f < p0 or f > let else 0.0)
+        pd = dict(ph)
+        K.solve_arms(pd, Wh, HR, Wh['Bip01 L Hand'], G, None)
+        for ch in ('tag_weapon_left rot', 'tag_weapon_left pos'):
+            if ch in ph:
+                pd[ch] = ph[ch]
+        K.write_frame(out, hip, cm, f, pd)
+        if w > 0.99:
+            Wn = R.evaluate(R.pose_dict(out, f))
+            clamp = max(clamp, float(np.linalg.norm(Wn['Bip01 R Hand'][3, 0:3] - HRn[3, 0:3]) * R.S))
+    out.values = [[[float(np.float32(x)) for x in out.V[f, c]] for c in range(out.numChannels)] for f in range(n)]
+    bts = R.skc_io.write(out)
+    o2 = '%s/coop_%s_reload_empty_hip.skc' % (g['vdir'], name)
+    open(os.path.join(root, 'models', 'human', 'animation', o2.replace('/', os.sep)), 'wb').write(bts)
+    print(name, 'hip   empty  ->', o2, n, 'frames', hashlib.md5(bts).hexdigest()[:8],
+          '(RIGHT hand: off the grip f%d, on the handle f%d, pull f%d-%d, home f%d; wrist short of its place by %.2f u at worst)' % (r0, r1, p0, p1, e1, clamp))
+    return dict(clip=o2)
+
+
 def rows_extra(name, rep):
     """the lane's rows for stage_rows.py (rows_extra.json): hip rounds-left = no cock; <row>_empty hip + both aimed rows"""
     g = GUNS[name]
     p = os.path.join(HERE, 'rows_extra.json')
     e = json.load(open(p)) if os.path.isfile(p) else {'repoint': [], 'add': []}
     row = g['row']
+    if g.get('out'):                         # per-weapon rows: all four are new rows, after the prefix's own block
+        o_ = g['out']
+        names = (o_, o_ + '_empty', o_ + '_ads', o_ + '_empty_ads')
+        e['add'] = [x for x in e['add'] if x[0] not in names]
+        e['add'] += [[o_, rep['hip_loaded']['clip'], '0.1', row + '_empty_ads'], [o_ + '_empty', rep['hip_empty']['clip'], '0.1', o_],
+                     [o_ + '_ads', rep['ads_loaded']['clip'], '0.1', o_ + '_empty'], [o_ + '_empty_ads', rep['ads_empty']['clip'], '0.1', o_ + '_ads']]
+        json.dump(e, open(p, 'w'), indent=1)
+        return
     e['repoint'] = [x for x in e['repoint'] if x[0] != row] + [[row, rep['hip_loaded']['clip']]]
     names = (row + '_empty', row + '_ads', row + '_empty_ads')
     e['add'] = [x for x in e['add'] if x[0] not in names]

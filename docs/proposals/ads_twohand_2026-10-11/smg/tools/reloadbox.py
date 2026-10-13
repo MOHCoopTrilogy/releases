@@ -123,6 +123,10 @@ def measure(sess, sub, skip=0, dump=False):
     if dump:
         print('   over 2 %:', ' '.join('%d:%.0f' % (i0 + k, 100 * e) for k, e in enumerate(ex) if e > 0.02) or '-')
         print('   dev by 10 frames:', ' '.join('%.1f' % max(dev[k:k + 10]) for k in range(0, len(dev), 10)))
+        # the fastest the sight line moves (a hop reads as a large step): deg per capture frame, with the clip frame (30 fps)
+        st = [((seg[k + 1][2] - seg[k][2]) ** 2 + (seg[k + 1][3] - seg[k][3]) ** 2) ** 0.5 for k in range(len(seg) - 1)]
+        top = sorted(range(len(st)), key=lambda k: -st[k])[:6]
+        print('   fastest sight-line steps, deg / frame (clip frame):', ' '.join('%.3f (f%.0f)' % (st[k], k * 76.0 / len(seg)) for k in sorted(top)))
     return res
 
 

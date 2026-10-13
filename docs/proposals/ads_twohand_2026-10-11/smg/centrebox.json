@@ -1,24 +1,68 @@
 {
  "mp40": {
-  "base": 11.1,
-  "dev": 1.38,
-  "end": 0.061,
+  "base": 11.2,
+  "dev": 1.39,
+  "end": 0.062,
+  "frames": 157,
+  "max": 0.4,
+  "over": 0.0,
+  "run": "sc3",
+  "xfr": 0.0,
+  "xmax": 0.4
+ },
+ "mp40_empty": {
+  "base": 8.3,
+  "dev": 1.39,
+  "end": 0.063,
   "frames": 156,
+  "max": 1.0,
+  "over": 0.0,
+  "run": "sc3",
+  "xfr": 0.0,
+  "xmax": 1.0
+ },
+ "mp40_reactivated": {
+  "base": 14.2,
+  "dev": 1.38,
+  "end": 0.056,
+  "frames": 157,
+  "max": 0.1,
+  "over": 0.0,
+  "run": "sc4",
+  "xfr": 0.0,
+  "xmax": 0.1
+ },
+ "mp40_reactivated_empty": {
+  "base": 11.6,
+  "dev": 1.38,
+  "end": 0.056,
+  "frames": 157,
   "max": 0.6,
   "over": 0.0,
-  "run": "sb4",
+  "run": "sc4",
   "xfr": 0.0,
   "xmax": 0.6
  },
- "mp40_empty": {
-  "base": 9.6,
+ "silenced_mp40": {
+  "base": 14.2,
   "dev": 1.38,
-  "end": 0.061,
-  "frames": 156,
-  "max": 1.2,
+  "end": 0.057,
+  "frames": 157,
+  "max": 0.0,
   "over": 0.0,
-  "run": "sb4",
+  "run": "sc6",
   "xfr": 0.0,
-  "xmax": 1.2
+  "xmax": 0.0
+ },
+ "silenced_mp40_empty": {
+  "base": 10.5,
+  "dev": 1.38,
+  "end": 0.056,
+  "frames": 156,
+  "max": 0.6,
+  "over": 0.0,
+  "run": "sc6",
+  "xfr": 0.0,
+  "xmax": 0.6
  }
 }
