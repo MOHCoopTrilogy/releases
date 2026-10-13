@@ -1,0 +1,16 @@
+{
+ "gun": "enfield",
+ "near_cap": 2.5,
+ "settled_near": 3.6,
+ "grow": 1.44,
+ "k": 0.544,
+ "stroke_full_u": 3.42,
+ "stroke_kept_u": 1.86,
+ "lift_deg": 48.3,
+ "nearest_full": 0.94,
+ "nearest_now": 2.5,
+ "bbox_full": 36.5,
+ "bbox_now": 28.1,
+ "clip": "models/weapons/enfield/enfield_rechamber_ads.skc",
+ "tik": "models/weapons/enfield.tik"
+}

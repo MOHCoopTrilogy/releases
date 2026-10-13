@@ -35,6 +35,8 @@ gunphys.ACTIONS.update({
     # reaching arm and comes up again with the clip - the rifle, held by the left hand alone, follows the body
     'body_reach': ((1.6, 9.0, 3.0, -0.8, 0.6), 5.0),
     'body_back':  ((-1.4, -7.0, -2.5, 0.6, -0.5), 5.0),
+    # the working hand lets go of the rifle (bolt knob / charger): what it was pressing down springs back
+    'hand_off':   ((-1.6, -8.0, -2.0, 0.3, 0.0), 2.0),
 })
 
 PIVOT = -22.0       # hold_bake dip pivot: 22 u BEHIND the eye along the sight line = the butt in the shoulder
@@ -48,22 +50,37 @@ GUNS = {
         # 2026-10-12 on target: 'bolt' / 'close' = boltphys.HOLD (the receiver eased 1.25 u down with the front sight
         # held on the target, canted to the hand) - the bolt is opened and closed there; only 'low' leaves the target
         # USER DECISION (variant A): the bolt is opened and closed with the rifle LOCKED on the sights
-        holds=dict(bolt=dict(drop=0.0, roll=2.0, pitch=0.0, side=0.0, back=-3.0),
+        # 2026-10-12 (coordinator, after the rb15 playback): the FULL reload is worked JUST UNDER THE CENTRE BOX from
+        # its first stroke to its last - the rifle comes down first, the bolt is opened there, the charger thumbed in,
+        # the bolt closed, and only then does the rifle come back up to the exact aim. Locked on the sights (rb15) the
+        # full stroke of the reload clip brought the bolt to 1.1 u from the eye for 0.45 s at each end (boltnear.py:
+        # bolt bbox 33-39 % of the screen) and the hand crossed the box (2.9 %); and 'low' sat so low (drop 4.3 u,
+        # muzzle 3 deg down) that the action was at the bottom edge of the frame and the loading could not be seen.
+        holds=dict(bolt=dict(drop=1.9, roll=7.0, pitch=0.6, side=0.3, back=-3.2),
                    # LOW: the muzzle swung down about the butt (which stays in the shoulder, so the left arm still
                    # reaches the fore-end): the open action comes under the centre box, its top turned to the eye
                    # LOW: the butt dropped from the shoulder toward the armpit, the rifle a little forward and turned to
                    # the working hand: the open action sits under the centre box with its top to the eye (a muzzle-down
                    # swing about the butt put it below the frame: v2), the charger is thumbed in there
-                   low=dict(drop=4.3, roll=12.0, pitch=3.0, side=0.8, back=-2.5),
+                   low=dict(drop=2.5, roll=13.0, pitch=1.2, side=0.7, back=-3.2),
+                   # the trip to the pouch: the right shoulder goes down and back with the reaching arm - the rifle,
+                   # on the left hand alone, sags to that side and comes up again as the hand returns with the clip
+                   reach=dict(drop=3.5, roll=21.0, pitch=2.5, side=-0.1, back=-2.4),
+                   # the thumb presses the five rounds down against the magazine spring: the rifle is pressed down with
+                   # them (and the hand over the charger stays under the centre box: 5.9 % at the 'low' height)
+                   push=dict(drop=3.5, roll=13.0, pitch=1.6, side=0.7, back=-3.2),
                    # the bolt is shoved home while the rifle is still on its way up
-                   close=dict(drop=0.0, roll=3.0, pitch=0.0, side=0.0, back=-3.0),
-                   down=dict(drop=0.0, roll=0.0, pitch=0.0, side=0.0, back=-1.0)),
+                   close=dict(drop=1.9, roll=8.0, pitch=0.6, side=0.3, back=-3.2),
+                   # run rb21: with a shallow 'down' (0.9 u) the rifle canted and went forward while still in the box - its own
+                   # body read 2-6 % beyond the settled aim for 0.18 s at each end. Straight down / straight up, aligned,
+                   # the whole way under the box; the cant and the reach forward only below it
+                   down=dict(drop=1.9, roll=0.0, pitch=0.6, side=0.0, back=-0.6)),
         # 'down' = the bolt hold's drop and muzzle dip alone: the rifle leaves and re-enters the aim downward first
-        pose=[(0, None), (4, 'down'), (9, 'bolt'), (17, 'bolt'), (30, 'low'), (63, 'low'), (73, 'close'), (86, 'close'),
-              (92, 'down'), (99, None), (101, None)],
+        pose=[(0, None), (5, 'down'), (10, 'bolt'), (16, 'bolt'), (21, 'low'), (27, 'reach'), (37, 'push'), (60, 'push'), (65, 'low'),
+              (72, 'close'), (85, 'close'), (91, 'down'), (98, None), (101, None)],
         # the bolt strokes are worked with key_bolt's grip (one wrapped grip from retail frame 12, rolled under and
         # swung right of the knob so the hand body stays under the sight line), carried by the gun's own bolt bone
-        bolt=dict(anim='reload', gref=12, roll=35.0, yaw=-40.0, off=(0.0, 1.2, 0.6), spans=[(7, 18), (71, 85)]),
+        bolt=dict(anim='reload', gref=12, roll=35.0, yaw=-40.0, off=(0.0, 0.9, 0.4), spans=[(7, 18), (71, 85)]),
         # 55-60 the retail hand lifts the empty charger off and flicks it away - high enough to cross the centre
         # with the gun this near the eye (and the lens at the hip, bug-3451): the lift is kept low (gun frame: +y right, +z down)
         # prop_from 8: the hand-over to the off hand at frame 1 is FADED by the cgame from the main-hand tag; with the
@@ -73,8 +90,8 @@ GUNS = {
                    add={55: (0, 0.5, 1.2), 56: (0, 1.0, 2.6), 57: (0, 1.5, 3.6), 58: (0, 1.5, 3.4), 59: (0, 1.0, 2.2), 60: (0, 0.4, 0.9)}),
         support=[(0, 1), (3, 1), (6, 0), (92, 0), (98, 1)],
         # multipliers are on top of --scale (2.5, the bolt cycle's): the clip events keep their first strength (x4)
-        events=[(8, 'rb_up'), (14, 'rb_back'), (15, 'rb_stop'), (23, 'body_reach'), (35, 'body_back'),
-                (43, 'clip_set', 1.6), (53, 'clip_push', 1.6), (61, 'clip_push', 1.1),
+        events=[(8, 'rb_up'), (14, 'rb_back'), (15, 'rb_stop'), (19, 'hand_off'), (23, 'body_reach', 1.6), (35, 'body_back', 1.6),
+                (43, 'clip_set', 2.0), (53, 'clip_push', 2.2), (61, 'clip_push', 1.7), (66, 'hand_off'),
                 (78, 'rb_fwd'), (82, 'rb_down'), (95, 'rb_grip')]),
 }
 

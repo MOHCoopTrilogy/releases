@@ -18,12 +18,20 @@ def main():
         b = zipfile.ZipFile(os.path.join(HERE, 'ovbase_1021.pk3'))
         for i in b.infolist():
             z.writestr(i.filename, b.read(i.filename))
+        mr = os.path.join(HERE, 'measure_ov')
+        # a measure-only tik REPLACES the staged one of the same path (nosmoke.py derives it from the staged tik - run
+        # it again after boltcap.py changes a staged tik; checked below by the row both must carry)
+        marcs = {os.path.relpath(os.path.join(d, f), mr).replace(os.sep, '/').lower() for d, _, fs in os.walk(mr) for f in fs} if measure else set()
         for d, _, fs in os.walk(ROOT):
             for f in sorted(fs):
                 if f.endswith(('.json', '.md', '.bak')):
                     continue
                 p = os.path.join(d, f)
                 arc = os.path.relpath(p, ROOT).replace(os.sep, '/')
+                if arc.lower() in marcs:
+                    st, me = open(p, 'rb').read(), open(os.path.join(mr, arc.replace('/', os.sep)), 'rb').read()
+                    assert (b'rechamber_ads' in st) == (b'rechamber_ads' in me), arc + ': the measure tik is older than the staged one - re-run nosmoke.py'
+                    continue
                 if only and not any(s in arc for s in only):
                     continue
                 z.write(p, arc); n += 1

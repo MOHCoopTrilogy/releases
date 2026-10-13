@@ -2,32 +2,46 @@
  "gun": "kar98",
  "holds": {
   "bolt": {
-   "drop": 0.0,
-   "roll": 2.0,
-   "pitch": 0.0,
-   "side": 0.0,
-   "back": -3.0
+   "drop": 1.9,
+   "roll": 7.0,
+   "pitch": 0.6,
+   "side": 0.3,
+   "back": -3.2
   },
   "low": {
-   "drop": 4.3,
-   "roll": 12.0,
-   "pitch": 3.0,
-   "side": 0.8,
-   "back": -2.5
+   "drop": 2.5,
+   "roll": 13.0,
+   "pitch": 1.2,
+   "side": 0.7,
+   "back": -3.2
+  },
+  "reach": {
+   "drop": 3.5,
+   "roll": 21.0,
+   "pitch": 2.5,
+   "side": -0.1,
+   "back": -2.4
+  },
+  "push": {
+   "drop": 3.5,
+   "roll": 13.0,
+   "pitch": 1.6,
+   "side": 0.7,
+   "back": -3.2
   },
   "close": {
-   "drop": 0.0,
-   "roll": 3.0,
-   "pitch": 0.0,
-   "side": 0.0,
-   "back": -3.0
+   "drop": 1.9,
+   "roll": 8.0,
+   "pitch": 0.6,
+   "side": 0.3,
+   "back": -3.2
   },
   "down": {
-   "drop": 0.0,
+   "drop": 1.9,
    "roll": 0.0,
-   "pitch": 0.0,
+   "pitch": 0.6,
    "side": 0.0,
-   "back": -1.0
+   "back": -0.6
   }
  },
  "pose": [
@@ -36,39 +50,51 @@
    null
   ],
   [
-   4,
+   5,
    "down"
   ],
   [
-   9,
+   10,
    "bolt"
   ],
   [
-   17,
+   16,
    "bolt"
   ],
   [
-   30,
+   21,
    "low"
   ],
   [
-   63,
+   27,
+   "reach"
+  ],
+  [
+   37,
+   "push"
+  ],
+  [
+   60,
+   "push"
+  ],
+  [
+   65,
    "low"
   ],
   [
-   73,
+   72,
    "close"
   ],
   [
-   86,
+   85,
    "close"
   ],
   [
-   92,
+   91,
    "down"
   ],
   [
-   99,
+   98,
    null
   ],
   [
@@ -94,29 +120,39 @@
    2.5
   ],
   [
+   19,
+   "hand_off",
+   2.5
+  ],
+  [
    23,
    "body_reach",
-   2.5
+   4.0
   ],
   [
    35,
    "body_back",
-   2.5
+   4.0
   ],
   [
    43,
    "clip_set",
-   4.0
+   5.0
   ],
   [
    53,
    "clip_push",
-   4.0
+   5.5
   ],
   [
    61,
    "clip_push",
-   2.75
+   4.25
+  ],
+  [
+   66,
+   "hand_off",
+   2.5
   ],
   [
    78,
@@ -156,6 +192,6 @@
   ],
   "tr2": 0.5
  },
- "report": "class custom x1.00: peak pitch 3.44 deg at f58, roll 13.25 deg, drop 4.66 u, back 3.36 u; settles 0.20 s after the last action; left at the last frame before the fade: pitch 0.02 deg",
- "md5": "d7250395a8863fedc8b2a51aada05b4e"
+ "report": "class custom x1.00: peak pitch 2.64 deg at f31, roll 21.63 deg, drop 3.98 u, back 3.54 u; settles 0.23 s after the last action; left at the last frame before the fade: pitch 0.01 deg",
+ "md5": "3edad21052ca1eddb8a8b120042cb172"
 }

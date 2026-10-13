@@ -16,9 +16,11 @@ import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 SHARED = os.path.join(HERE, '..', '..', 'tools')
 T = r"C:\mohaa-coop-dev\docs\proposals\ads_bolt_2026-10-04\tools"
-sys.path.insert(0, T); sys.path.insert(0, SHARED)
+sys.path.insert(0, T); sys.path.insert(0, SHARED); sys.path.insert(0, HERE)
+import staged      # the staged tiks / gun clips (rechamber_ads, boltcap.py) are read as loose files
 _c = os.getcwd(); os.chdir(T)
 import key_bolt as K
+import anahip, boltgrip
 os.chdir(_c)
 import gunphys
 R = K.R
@@ -50,28 +52,31 @@ gunphys.ACTIONS.update({
 GUNS = {
     # frames are the view clip's; up / back / fwd / down = (first, last) frame of that stroke in the gun's own clip
     'kar98': dict(recipe='kar98_rechamber', out='viewmodel/rifle/kar98_rechamber_ads.skc',
-                  sight='kar98', aim='viewmodel/kar_stand00.skc', anim='rechamber',
+                  sight='kar98', aim='viewmodel/kar_stand00.skc', anim='rechamber_ads',
                   off=(2, 7), up=(8, 10), back=(13, 15), fwd=(23, 24), down=(27, 29), on=(36, 42),
                   hold=(0, 11, 27, 42),       # the hold eases in over 0-11 (receiver down first, forward as the bolt opens; 0-7 read as a snap forward in run rb5), out over 27-42
                   ease=0.0, hold_set=dict(back=-3.0),   # A as shown to the user (run rb8): head 3 u back off the comb
-                  rc=dict(knob_off=(0.0, 1.2, 0.6))),
+                  # 1c (2026-10-12): the knob sits IN the curled fingers while it is hauled back; the grip opens to the
+                  # fingertips for the shove forward and the turn-down, where the hand would cross the box's rim
+                  rc=dict(knob_off={8: (0.0, 1.15, 0.55), 12: (0.0, 1.15, 0.55), 15: (0.0, 0.75, 0.3), 21: (0.0, 0.75, 0.3), 24: (0.0, 1.2, 0.6), 30: (0.0, 1.2, 0.6)})),
     # Springfield M1903 (56 x 1/30 s): lift 8-10, back 15-17, forward 27-28, down 30-32, hand on the knob 8-31
     'springfield': dict(recipe='springfield_rechamber', out='viewmodel/rifle/springfield_rechamber_ads.skc',
-                        sight='springfield_unscoped', aim='viewmodel/sprng_stand00.skc', anim='rechamber',
+                        sight='springfield_unscoped', aim='viewmodel/sprng_stand00.skc', anim='rechamber_ads',
                         off=(2, 7), up=(8, 10), back=(15, 17), fwd=(27, 28), down=(30, 32), on=(38, 44), hold=(0, 11, 30, 45),
-                        ease=0.0, rc=dict(knob_off=(0.0, 1.2, 0.6))),
+                        ease=0.0, # 90 deg lift (boltcap.py): the open knob stands at the box's right rim - fingertips there, deeper in the hand while the bolt is back
+                        rc=dict(knob_off={8: (0.0, 1.6, 0.95), 14: (0.0, 1.6, 0.95), 18: (0.0, 1.2, 0.6), 25: (0.0, 1.2, 0.6), 28: (0.0, 1.6, 0.95), 33: (0.0, 1.6, 0.95)})),
     # Mosin-Nagant (45 x 1/30 s): lift 7-12, back 12-15, forward + down 26-27
     'mosin': dict(recipe='mosin_rechamber', out='viewmodel/mosin_nagant/mosin_rechamber_ads.skc',
-                  sight='mosin_nagant_rifle', aim='viewmodel/kar_stand00.skc', anim='rechamber',
+                  sight='mosin_nagant_rifle', aim='viewmodel/kar_stand00.skc', anim='rechamber_ads',
                   off=(1, 6), up=(7, 12), back=(12, 15), fwd=(26, 26), down=(27, 27), on=(34, 40), hold=(0, 10, 27, 41),
-                  ease=0.0, rc=dict(knob_off=(0.0, 1.2, 0.6))),
+                  ease=0.0, rc=dict(knob_off=(0.0, 0.5, 0.25))),
     # Lee-Enfield (45 x 1/30 s): lift 7-12, back 12-15, forward + down 24-27; the rear sight sits on the receiver
     # bridge just ahead of the eye, so the rifle is eased further forward than the Kar98
     'enfield': dict(recipe='enfield_rechamber', out='viewmodel/enfield/enfield_rechamber_ads.skc',
-                    sight='lee_enfield', aim='viewmodel/kar_stand00.skc', anim='rechamber',
+                    sight='lee_enfield', aim='viewmodel/kar_stand00.skc', anim='rechamber_ads',
                     off=(1, 6), up=(7, 12), back=(12, 15), fwd=(24, 25), down=(26, 27), on=(34, 40), hold=(0, 10, 27, 41),
                     ease=0.0, hold_set=dict(back=-1.0),   # 3.3 u read as a pump (run rb13): the rifle stays put
-                    rc=dict(knob_off=(0.0, 1.2, 0.6))),
+                    rc=dict(knob_off=(0.0, 0.3, 0.15))),
 }
 # the hold while the bolt is worked: (drop u, roll deg, pitch deg, side u, back u).
 # ON TARGET (2026-10-12, user: "bolt actions should ideally not move much from locking onto target when the bolt is
@@ -109,6 +114,18 @@ FS_KEEP = 0.25
 FS_LEN = 73.6      # calibrated on the Kar98 with rpart.py --track (65 left the front sight 0.35 deg HIGH in the hold)
 RCV_LEN = 33.0     # butt pivot to the receiver / rear sight
 SC = dict(k=1.0)
+
+
+def slerp_x(q0, q1, s):
+    """slerp that extrapolates (s outside 0..1 keeps turning about the same axis)"""
+    q0 = np.asarray(q0, float); q1 = np.asarray(q1, float)
+    d = float(q0 @ q1)
+    if d < 0:
+        q1, d = -q1, -d
+    th = np.arccos(min(1.0, d))
+    if th < 1e-6:
+        return q0.copy()
+    return (np.sin((1 - s) * th) * q0 + np.sin(s * th) * q1) / np.sin(th)
 
 
 def phys(g, n, ft, hold=HOLD, sc=1.0):
@@ -158,10 +175,45 @@ def bake(name, root, hold=HOLD, sc=1.0, show=False, suffix=''):
     # the knob deep in the palm, so the palm and the fingers lie over the receiver LEFT of the knob (at the cheek that
     # is the right half of the centre box); moved right / down the knob is held by the fingers and the hand's bulk is
     # beside the box. Weighted like the knob-grip fingers (in over the reach, out over the return).
+    # grip_rot (deg about the gun's x fwd / y right / z down axes, through the KNOB, in that order) turns the whole hand
+    # about the knob it holds; finger_s {finger digit: (base, middle, tip)} scales each joint's curl between the aim
+    # grip's (0) and the knob grip's fist (1; > 1 tighter, < 0 opens it) - so the knob can be held by the thumb and the
+    # first two fingers with the hand's bulk off to the lower right, instead of a fist beside it (2026-10-12, 1c).
     off = rc.get('knob_off')
+    grot, fsc, pin = rc.get('grip_rot'), rc.get('finger_s'), rc.get('grip_pin')
     orig, cnt = K.solve_arms, [0]
-    if off is not None:
+    if off is not None or grot or fsc or pin:
         (k0, k1), (r0, r1), (t0, t1) = rc['knob'], rc['reach'], rc['ret']
+        Kt, kft2 = anahip.knob_traj(K.V.GUNTIK[rc['gun']], g.get('anim', 'rechamber'))
+        chg = R.load(R.ANIM + rc['charge']); pc_ = R.pose_dict(chg, chg.numFrames - 1)
+        gs_ = rc.get('grip_src')
+        fist = R.pose_dict(R.load(R.ANIM + gs_['hip']), gs_['frame']) if gs_ else R.pose_dict(hip, rc.get('grip_ref', k0))
+        I3 = np.eye(3)
+        if pin:
+            pf = dict(pc_)
+            for ch in fist:
+                if ' Finger' in ch and ch.startswith('Bip01 R') and ch.endswith(' rot'):
+                    dg, sfx = ch.split('Finger')[1].split(' ')[0][0], ch.split('Finger')[1].split(' ')[0][1:]
+                    s_ = (fsc or {}).get(dg, (1.0, 1.0, 1.0))[('', '1', '2').index(sfx)] if sfx in ('', '1', '2') else 1.0
+                    pf[ch] = slerp_x(pc_.get(ch, fist[ch]), fist[ch], s_)
+                elif ch not in pf:
+                    pf[ch] = fist[ch]
+            Wf = R.evaluate(pf)
+            Hi = R.inv(Wf['Bip01 R Hand'])
+            loc = lambda b: (Wf['Bip01 R ' + b] @ Hi)[3, 0:3]
+            unit = lambda v: np.asarray(v, float) / np.linalg.norm(v)
+            ax_l = unit(loc('Finger2'))                              # wrist -> middle knuckle
+            ac_l = loc('Finger4') - loc('Finger1'); ac_l = unit(ac_l - (ac_l @ ax_l) * ax_l)    # index -> little finger
+            nl = np.cross(ax_l, ac_l)
+            if nl @ (loc('Finger22') - loc('Finger2')) < 0:          # the curled fingertips lie on the PALM side
+                nl = -nl
+            # the pinch point: between two joints of the posed hand, `lift` u out of the palm side (the knob's radius)
+            g_l = loc(pin.get('a', 'Finger11')) * (1 - pin.get('t', 0.5)) + loc(pin.get('b', 'Finger21')) * pin.get('t', 0.5) + \
+                nl * pin.get('lift', 0.0) / R.S + ax_l * pin.get('along', 0.0) / R.S
+            # target attitude in the gun frame (x fwd, y RIGHT, z DOWN): fingers along `dir`, palm facing `palm`
+            ag = unit(pin['dir']); ng = np.asarray(pin['palm'], float); ng = unit(ng - (ng @ ag) * ag)
+            Bl = np.array([ax_l, nl, np.cross(ax_l, nl)]); Bg = np.array([ag, ng, np.cross(ag, ng)])
+            Rl2g = Bl.T @ Bg                                         # row vectors: v_local @ Rl2g = v_gun
 
         def sa(pd, Wc, HR, HL, Gads, pole_bias=None):
             f = cnt[0]; cnt[0] += 1
@@ -169,13 +221,57 @@ def bake(name, root, hold=HOLD, sc=1.0, show=False, suffix=''):
                 1.0 - K.ease((f - t0) / float(t1 - t0))
             if w > 0:
                 HR = HR.copy()
-                HR[3, 0:3] += (np.array(off, float) / R.S * w) @ Gads[0:3, 0:3]
+                if pin:
+                    # ABSOLUTE GRIP: the hand's attitude is given in the GUN frame (where the fingers point, where the
+                    # palm faces) and the pinch point of the posed hand is put on the knob; the hand follows the knob's
+                    # point through lift / back / forward / down without turning with the bolt (a ball knob turns in
+                    # the fingers). Blended in over the reach and out over the return.
+                    kk = Kt[min(len(Kt) - 1, int(round(f * ft / kft2)))] / R.S
+                    HT = np.eye(4)
+                    HT[0:3, 0:3] = Rl2g @ Gads[0:3, 0:3]
+                    kw = (np.append(kk, 1.0) @ Gads)[0:3] + (np.array(pin.get('off', (0, 0, 0)), float) / R.S) @ Gads[0:3, 0:3]
+                    HT[3, 0:3] = kw - g_l @ HT[0:3, 0:3]
+                    HR = K.B.blend_H(HR, HT, w)
+                if grot:
+                    kk = Kt[min(len(Kt) - 1, int(round(f * ft / kft2)))] / R.S
+                    Rr = R.axis_angle_rows([1.0, 0, 0], grot[0] * w) @ R.axis_angle_rows([0, 1.0, 0], grot[1] * w) @ \
+                        R.axis_angle_rows([0, 0, 1.0], grot[2] * w)
+                    HR = HR @ R.inv(Gads) @ K.B.H(I3, -kk) @ K.B.H(Rr, np.zeros(3)) @ K.B.H(I3, kk) @ Gads
+                if off is not None:
+                    # a dict {frame: (x, y, z)} = the grip SLIDES on the knob through the cycle (monotone cubic): the
+                    # knob deep in the fingers while it is hauled back (clear of the box), out at the fingertips for
+                    # the lift and the turn-down, where the knob stands at the box's rim
+                    o_ = off if not isinstance(off, dict) else \
+                        [K.pchip(sorted(off), [off[k_][i_] for k_ in sorted(off)], f) for i_ in range(3)]
+                    HR[3, 0:3] += (np.array(o_, float) / R.S * w) @ Gads[0:3, 0:3]
+                if fsc:
+                    for dg, ss in fsc.items():
+                        for j, sfx in enumerate(('', '1', '2')):
+                            ch = 'Bip01 R Finger%s%s rot' % (dg, sfx)
+                            if ch in pd and ch in fist:
+                                pd[ch] = slerp_x(pc_.get(ch, fist[ch]), fist[ch], w * ss[j])
             return orig(pd, Wc, HR, HL, Gads)
         K.solve_arms = sa
+    # THE HAND RIDES THE BOLT AS IT IS SHOWN WHILE AIMING: key_bolt asks for the gun's `rechamber` trajectories; the
+    # aimed view shows `rechamber_ads` (boltcap.py: the stroke stops short of the eye), so the target gun's knob point
+    # and bolt bone come from that clip. A borrowed grip's SOURCE (another gun's hip clip) keeps its hip `rechamber`.
+    ganim, tgt = g.get('anim', 'rechamber'), K.V.GUNTIK[rc['gun']]
+    ok_, oc_ = anahip.knob_traj, boltgrip.chamber_traj
+    src_tik = rc.get('grip_src', {}).get('tik')
+    calls = [0]
+
+    def kt(tik, anim):
+        # the borrowed-grip source call comes with the SOURCE tik; for the Kar98 (its own grip_ref) both are the target
+        return ok_(tik, ganim if (tik == tgt and anim == 'rechamber') else anim)
+
+    def ct(tik, anim='rechamber', bone=None):
+        return oc_(tik, ganim if (tik == tgt and anim == 'rechamber') else anim, bone)
+    anahip.knob_traj, boltgrip.chamber_traj = kt, ct
     try:
         sk, rep = K.key('_phys_' + name, CTL)
     finally:
         K.solve_arms = orig
+        anahip.knob_traj, boltgrip.chamber_traj = ok_, oc_
     bts = R.skc_io.write(sk)
     dst = os.path.join(root, 'models', 'human', 'animation', g['out'].replace('/', os.sep))
     os.makedirs(os.path.dirname(dst), exist_ok=True)

@@ -8,8 +8,9 @@ front sight line now and at the aim, and the rear sight the same way).
 import sys, os, json, argparse
 import numpy as np
 T = r"C:\mohaa-coop-dev\docs\proposals\ads_bolt_2026-10-04\tools"
-sys.path.insert(0, T)
+sys.path.insert(0, T); sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 _c = os.getcwd(); os.chdir(T)
+import staged  # noqa: staged tiks + gun clips as loose files
 import vmcam as V
 os.chdir(_c)
 R = V.R
@@ -24,7 +25,7 @@ def grow(m, r):
     return o
 
 
-def measure(gun, aimp, spec, w=320, sheet=None, every=2, zoom=False, minp=0.5, quiet=False):
+def measure(gun, aimp, spec, w=320, sheet=None, every=2, zoom=False, minp=0.5, quiet=False, cols=8, frames=None):
     from PIL import Image, ImageDraw
     aim = R.load(aimp)
     sight = V.SIGHTS[gun]
@@ -55,7 +56,7 @@ def measure(gun, aimp, spec, w=320, sheet=None, every=2, zoom=False, minp=0.5, q
     ang = lambda a, b: float(np.degrees(np.arccos(np.clip(a @ b / (np.linalg.norm(a) * np.linalg.norm(b)), -1, 1))))
     out, ims = [], []
     for f in range(c.numFrames):
-        want = sheet and f % every == 0
+        want = sheet and f % every == 0 and (frames is None or frames[0] <= f <= frames[1])
         rgb, ids, surfs, Sp = frame(c, f, anim, oh, tex=bool(want))
         box = ids[y0:y1, x0:x1]
         ext = (box >= 0) & ~aimmask
@@ -90,7 +91,7 @@ def measure(gun, aimp, spec, w=320, sheet=None, every=2, zoom=False, minp=0.5, q
         os.path.basename(sp[0]), c.numFrames, mx['extra'], mx['f'], sum(1 for d in out if d['extra'] > 2.0),
         max(d.get('muzzle_deg', 0) for d in out), max(d.get('rear_deg', 0) for d in out), max(d['line_deg'] for d in out), out[-1].get('muzzle_deg', 0)))
     if sheet and ims:
-        cols = min(8, len(ims))
+        cols = min(cols, len(ims))
         S = Image.new('RGB', (W * cols, H * ((len(ims) + cols - 1) // cols)), 'white')
         for i, im in enumerate(ims):
             S.paste(im, ((i % cols) * W, (i // cols) * H))
@@ -105,8 +106,9 @@ if __name__ == '__main__':
     ap.add_argument('--w', type=int, default=320); ap.add_argument('--sheet'); ap.add_argument('--every', type=int, default=2)
     ap.add_argument('--zoom', action='store_true'); ap.add_argument('--min', type=float, default=0.5)
     ap.add_argument('--quiet', action='store_true')
+    ap.add_argument('--cols', type=int, default=8); ap.add_argument('--frames', help='a:b - sheet only these clip frames')
     ap.add_argument('--track', action='store_true', help='print the signed front-sight elevation per clip frame (deg, + = above the target)')
     a = ap.parse_args()
-    o = measure(a.gun, a.aim, a.part, a.w, a.sheet, a.every, a.zoom, a.min, a.quiet)
+    o = measure(a.gun, a.aim, a.part, a.w, a.sheet, a.every, a.zoom, a.min, a.quiet, a.cols, [int(x) for x in a.frames.split(':')] if a.frames else None)
     if a.track:
         print('front sight up (deg) per frame:', ' '.join('%d:%.2f' % (d['f'], d['f_up']) for d in o))

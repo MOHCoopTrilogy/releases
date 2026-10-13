@@ -1,0 +1,16 @@
+{
+ "gun": "springfield",
+ "near_cap": 2.5,
+ "settled_near": 3.74,
+ "grow": 1.5,
+ "k": 0.546,
+ "stroke_full_u": 5.49,
+ "stroke_kept_u": 3.0,
+ "lift_deg": 90.0,
+ "nearest_full": 0.01,
+ "nearest_now": 2.5,
+ "bbox_full": 71.5,
+ "bbox_now": 24.9,
+ "clip": "models/weapons/springfield/spring_recham_ads.skc",
+ "tik": "models/weapons/springfield_unscoped.tik"
+}

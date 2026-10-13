@@ -1,0 +1,470 @@
+{
+ "ab__rb17__enfield__braced__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 5.0,
+  "dev": 0.36,
+  "end": 0.0,
+  "fdev": 0.13,
+  "fdev2": 0.13,
+  "frames": 190,
+  "hands": 0.2,
+  "hands_at": 160,
+  "over": 0,
+  "start": 27,
+  "xmax": 1.5
+ },
+ "ab__rb17__enfield__crouch__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 15.4,
+  "dev": 0.6,
+  "end": 0.0,
+  "fdev": 0.68,
+  "fdev2": 0.22,
+  "frames": 190,
+  "hands": 1.1,
+  "hands_at": 86,
+  "over": 63,
+  "start": 27,
+  "xmax": 3.0
+ },
+ "ab__rb17__enfield__prone__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 9.6,
+  "dev": 0.59,
+  "end": 0.0,
+  "fdev": 0.68,
+  "fdev2": 0.22,
+  "frames": 188,
+  "hands": 1.1,
+  "hands_at": 62,
+  "over": 1,
+  "start": 28,
+  "xmax": 3.6
+ },
+ "ab__rb17__enfield__standL__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 16.7,
+  "dev": 0.59,
+  "end": 0.0,
+  "fdev": 0.67,
+  "fdev2": 0.22,
+  "frames": 188,
+  "hands": 1.0,
+  "hands_at": 196,
+  "over": 0,
+  "start": 28,
+  "xmax": 2.0
+ },
+ "ab__rb17__enfield__standR__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 9.5,
+  "dev": 0.6,
+  "end": 0.0,
+  "fdev": 0.69,
+  "fdev2": 0.21,
+  "frames": 190,
+  "hands": 1.2,
+  "hands_at": 79,
+  "over": 64,
+  "start": 27,
+  "xmax": 3.5
+ },
+ "ab__rb17__enfield__stand__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 10.6,
+  "dev": 0.64,
+  "end": 0.0,
+  "fdev": 0.73,
+  "fdev2": 0.22,
+  "frames": 189,
+  "hands": 0.7,
+  "hands_at": 176,
+  "over": 11,
+  "start": 27,
+  "xmax": 2.8
+ },
+ "ab__rb17__kar98__braced__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 7.2,
+  "dev": 0.33,
+  "end": 0.0,
+  "fdev": 0.19,
+  "fdev2": 0.19,
+  "frames": 190,
+  "hands": 1.4,
+  "hands_at": 156,
+  "over": 25,
+  "start": 27,
+  "xmax": 6.3
+ },
+ "ab__rb17__kar98__crouch__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 14.9,
+  "dev": 0.59,
+  "end": 0.0,
+  "fdev": 0.65,
+  "fdev2": 0.24,
+  "frames": 188,
+  "hands": 1.0,
+  "hands_at": 166,
+  "over": 64,
+  "start": 28,
+  "xmax": 11.1
+ },
+ "ab__rb17__kar98__prone__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 8.1,
+  "dev": 0.59,
+  "end": 0.0,
+  "fdev": 0.65,
+  "fdev2": 0.24,
+  "frames": 190,
+  "hands": 1.0,
+  "hands_at": 39,
+  "over": 60,
+  "start": 27,
+  "xmax": 10.8
+ },
+ "ab__rb17__kar98__standL__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 14.5,
+  "dev": 0.66,
+  "end": 0.0,
+  "fdev": 0.73,
+  "fdev2": 0.26,
+  "frames": 190,
+  "hands": 1.8,
+  "hands_at": 153,
+  "over": 120,
+  "start": 27,
+  "xmax": 13.4
+ },
+ "ab__rb17__kar98__standR__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 14.8,
+  "dev": 0.65,
+  "end": 0.0,
+  "fdev": 0.72,
+  "fdev2": 0.25,
+  "frames": 190,
+  "hands": 0.7,
+  "hands_at": 167,
+  "over": 60,
+  "start": 27,
+  "xmax": 7.9
+ },
+ "ab__rb17__kar98__stand__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 15.5,
+  "dev": 0.59,
+  "end": 0.0,
+  "fdev": 0.67,
+  "fdev2": 0.24,
+  "frames": 188,
+  "hands": 0.6,
+  "hands_at": 154,
+  "over": 64,
+  "start": 28,
+  "xmax": 11.0
+ },
+ "ab__rb17__mosin__braced__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 6.2,
+  "dev": 0.36,
+  "end": 0.0,
+  "fdev": 0.14,
+  "fdev2": 0.14,
+  "frames": 188,
+  "hands": 1.0,
+  "hands_at": 177,
+  "over": 7,
+  "start": 28,
+  "xmax": 6.7
+ },
+ "ab__rb17__mosin__crouch__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 15.0,
+  "dev": 0.59,
+  "end": 0.0,
+  "fdev": 0.65,
+  "fdev2": 0.24,
+  "frames": 190,
+  "hands": 1.2,
+  "hands_at": 61,
+  "over": 96,
+  "start": 27,
+  "xmax": 8.0
+ },
+ "ab__rb17__mosin__prone__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 13.2,
+  "dev": 0.65,
+  "end": 0.0,
+  "fdev": 0.72,
+  "fdev2": 0.26,
+  "frames": 190,
+  "hands": 1.1,
+  "hands_at": 141,
+  "over": 51,
+  "start": 27,
+  "xmax": 5.7
+ },
+ "ab__rb17__mosin__standL__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 14.5,
+  "dev": 0.58,
+  "end": 0.0,
+  "fdev": 0.65,
+  "fdev2": 0.24,
+  "frames": 188,
+  "hands": 1.0,
+  "hands_at": 63,
+  "over": 73,
+  "start": 28,
+  "xmax": 6.6
+ },
+ "ab__rb17__mosin__standR__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 15.2,
+  "dev": 0.59,
+  "end": 0.0,
+  "fdev": 0.65,
+  "fdev2": 0.23,
+  "frames": 188,
+  "hands": 1.0,
+  "hands_at": 62,
+  "over": 68,
+  "start": 28,
+  "xmax": 7.0
+ },
+ "ab__rb17__mosin__stand__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 15.4,
+  "dev": 0.64,
+  "end": 0.0,
+  "fdev": 0.71,
+  "fdev2": 0.25,
+  "frames": 190,
+  "hands": 1.0,
+  "hands_at": 175,
+  "over": 51,
+  "start": 27,
+  "xmax": 5.6
+ },
+ "ab__rb17__springfield__braced__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 3.8,
+  "dev": 0.49,
+  "end": 0.0,
+  "fdev": 0.47,
+  "fdev2": 0.14,
+  "frames": 186,
+  "hands": 0.1,
+  "hands_at": 28,
+  "over": 0,
+  "start": 28,
+  "xmax": 1.3
+ },
+ "ab__rb17__springfield__crouch__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 7.9,
+  "dev": 0.61,
+  "end": 0.0,
+  "fdev": 0.66,
+  "fdev2": 0.24,
+  "frames": 189,
+  "hands": 1.2,
+  "hands_at": 27,
+  "over": 49,
+  "start": 27,
+  "xmax": 8.4
+ },
+ "ab__rb17__springfield__prone__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 5.3,
+  "dev": 0.65,
+  "end": 0.0,
+  "fdev": 0.72,
+  "fdev2": 0.25,
+  "frames": 188,
+  "hands": 1.3,
+  "hands_at": 27,
+  "over": 38,
+  "start": 27,
+  "xmax": 7.6
+ },
+ "ab__rb17__springfield__standL__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 7.2,
+  "dev": 0.64,
+  "end": 0.0,
+  "fdev": 0.72,
+  "fdev2": 0.25,
+  "frames": 188,
+  "hands": 1.0,
+  "hands_at": 27,
+  "over": 50,
+  "start": 27,
+  "xmax": 7.4
+ },
+ "ab__rb17__springfield__standR__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 8.1,
+  "dev": 0.6,
+  "end": 0.0,
+  "fdev": 0.66,
+  "fdev2": 0.23,
+  "frames": 189,
+  "hands": 0.9,
+  "hands_at": 91,
+  "over": 49,
+  "start": 27,
+  "xmax": 7.5
+ },
+ "ab__rb17__springfield__stand__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 7.3,
+  "dev": 0.59,
+  "end": 0.0,
+  "fdev": 0.66,
+  "fdev2": 0.24,
+  "frames": 187,
+  "hands": 1.4,
+  "hands_at": 28,
+  "over": 50,
+  "start": 28,
+  "xmax": 9.2
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "gun": "mosin",
+ "near_cap": 3.03,
+ "settled_near": 4.54,
+ "grow": 1.5,
+ "k": 0.574,
+ "stroke_full_u": 5.82,
+ "stroke_kept_u": 3.34,
+ "lift_deg": 54.0,
+ "nearest_full": 0.55,
+ "nearest_now": 3.03,
+ "bbox_full": 45.2,
+ "bbox_now": 17.6,
+ "clip": "models/weapons/mosin_nagant/mosin_nagant_rechamber_ads.skc",
+ "tik": "models/weapons/mosin_nagant_rifle.tik"
+}

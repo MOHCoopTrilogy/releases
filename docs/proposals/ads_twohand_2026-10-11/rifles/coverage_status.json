@@ -1,6 +1,6 @@
 {
  "models/weapons/enfield.tik": {
-  "action": "right hand on the bolt knob (fingers on the knob), lift / back / forward / down ride the gun's bolt bone - hand and handle shown at the right, all stances; aimed reload NOT built",
+  "action": "right hand on the bolt knob (knob in the curled fingers), lift / back / forward / down ride the gun's bolt bone - all stances; aimed reload NOT built",
   "bolt": {
    "stand": {
     "dev": 3.53,
@@ -11,7 +11,7 @@
     "run": "ra7"
    }
   },
-  "note": "rb14 (cgame_rifle3, six stances), USER DECISION variant A: bolt cycle with the rifle LOCKED on the sights, front sight as the pivot - sight line within 0.65 deg (braced 0.36), front sight within 0.24-0.49 deg from 0.26 s into the cycle (0.6-0.9 deg at its first frames = the shot's recoil still recovering, tau 0.3 s), ends 0.00, no pops; box: hands 0.0 % offline, own bolt 1.2-6.1 % engine (exempt); the rifle stays put now (1 u, was 3.3 u = the pump); working hand in view during lift and turn-down. Aimed reload NOT built",
+  "note": "rb18 (cgame_rifle4, six stances, sway on): bolt cycle LOCKED with rechamber_ads (stroke 1.86 of 3.42 u) - hands-only engine box 0.4-1.4 % (steady rb17 0.2-1.2), sight line 0.59-0.66 deg (braced 0.36), front sight 0.26-0.61 deg after the recoil, ends 0.00. Aimed reload NOT built.",
   "reload": {
    "stand": {
     "dev": 6.01,
@@ -30,7 +30,7 @@
   }
  },
  "models/weapons/kar98.tik": {
-  "action": "right hand on the bolt knob (fingers on the knob, hand right of / under it): lift / back / forward / down ride the gun's bolt bone, shown lower right beside the centre box; reload: bolt opened with the front sight on the target, charger thumbed in with the rifle lowered under the centre box, bolt closed on the target - shown",
+  "action": "right hand on the bolt knob (knob in the curled fingers), lift / back / forward / down ride the gun's bolt bone; aimed reload: bolt opened, charger thumbed in and bolt closed just under the centre box, back to the exact aim",
   "bolt": {
    "braced": {
     "dev": 2.57,
@@ -82,7 +82,7 @@
    }
   },
   "lowered": true,
-  "note": "rb14 (cgame_rifle3, six stances), USER DECISION variant A: bolt cycle with the rifle LOCKED on the sights, front sight as the pivot - sight line within 0.65 deg (braced 0.36), front sight within 0.24-0.49 deg from 0.26 s into the cycle (0.6-0.9 deg at its first frames = the shot's recoil still recovering, tau 0.3 s), ends 0.00, no pops; box: hands 0.3 % offline, own bolt handle + body 12-19 % engine (exempt). Aimed reload rebaked with the bolt opened / closed locked (rb15 stand + prone: ends 0.03-0.04, hands 2.9 % offline - over; not played back yet); the reload's static half second still open",
+  "note": "rb20 (cgame_rifle4 = ads-rifle-next 2747ecc8, six stances, sway on): bolt cycle LOCKED on the sights with the aim-only gun clip rechamber_ads (bolt stops >= 2.5 u from the eye, stroke 2.81 of 4.61 u) and the knob held in the fingers - hands-only engine box 0.9-1.5 % (steady rb17 0.6-1.8), sight line 0.58-0.64 deg (braced 0.33), front sight 0.26-0.61 deg after the recoil, ends 0.00, own bolt exempt. Aimed reload kar98_reload_ads (rb23, six stances, sway on): worked just under the centre box and back to 0.00 deg; hands-only box 0.1-1.3 % with rounds left, 0.2-2.2 % emptied (2.2 = lean left, one frame); NOT met: the rifle's own body 2-6 % for about 0.1 s as it leaves and returns to the aim.",
   "reload": {
    "braced": {
     "dev": 5.34,
@@ -141,7 +141,7 @@
   }
  },
  "models/weapons/mosin_nagant_rifle.tik": {
-  "action": "right hand on the bolt knob (fingers on the knob), lift / back / forward / down ride the gun's bolt bone - hand and handle shown at the right, all stances; aimed reload NOT built",
+  "action": "right hand on the bolt knob (knob in the curled fingers), lift / back / forward / down ride the gun's bolt bone - all stances; aimed reload NOT built",
   "bolt": {
    "stand": {
     "dev": 3.6,
@@ -152,7 +152,7 @@
     "run": "ra7"
    }
   },
-  "note": "rb14 (cgame_rifle3, six stances), USER DECISION variant A: bolt cycle with the rifle LOCKED on the sights, front sight as the pivot - sight line within 0.65 deg (braced 0.36), front sight within 0.24-0.49 deg from 0.26 s into the cycle (0.6-0.9 deg at its first frames = the shot's recoil still recovering, tau 0.3 s), ends 0.00, no pops; box: hands 0.0 % offline, own bolt 5-7 % engine (exempt); with the bolt back the cocking piece is a large grey mass at the bottom centre. Aimed reload NOT built",
+  "note": "rb18 (cgame_rifle4, six stances, sway on): bolt cycle LOCKED with rechamber_ads (stroke 3.34 of 5.82 u: the cocking piece is drawn at most 1.5 x its settled size) - hands-only engine box 1.1-2.0 % (2.0 = crouch, in the frame the case crosses the box; steady rb17 1.0-1.2), sight line 0.60-0.65 deg (braced 0.36), front sight 0.31-0.48 deg after the recoil, ends 0.00. Aimed reload NOT built.",
   "reload": {
    "stand": {
     "dev": 5.9,
@@ -171,7 +171,7 @@
   }
  },
  "models/weapons/springfield_unscoped.tik": {
-  "action": "right hand on the bolt knob (fingers on the knob), lift / back / forward / down ride the gun's bolt bone - hand and handle shown at the right, all stances; aimed reload NOT built",
+  "action": "right hand on the bolt knob (knob in the curled fingers), lift / back / forward / down ride the gun's bolt bone - all stances; aimed reload NOT built",
   "bolt": {
    "stand": {
     "dev": 3.42,
@@ -182,7 +182,7 @@
     "run": "ra7"
    }
   },
-  "note": "rb14 (cgame_rifle3, six stances), USER DECISION variant A: bolt cycle with the rifle LOCKED on the sights, front sight as the pivot - sight line within 0.65 deg (braced 0.36), front sight within 0.24-0.49 deg from 0.26 s into the cycle (0.6-0.9 deg at its first frames = the shot's recoil still recovering, tau 0.3 s), ends 0.00, no pops; box: hands 1.6 % offline, own bolt 3-9 % engine (exempt). Aimed reload NOT built",
+  "note": "rb18 (cgame_rifle4, six stances, sway on): bolt cycle LOCKED with rechamber_ads (stroke 3.00 of 5.49 u, handle lift 90 deg instead of the retail 80.5) - hands-only engine box 0.5-1.8 % (steady rb17 0.1-1.4), sight line 0.57-0.61 deg, front sight 0.22-0.39 deg after the recoil, ends 0.00. Aimed reload NOT built.",
   "reload": {
    "stand": {
     "dev": 6.44,

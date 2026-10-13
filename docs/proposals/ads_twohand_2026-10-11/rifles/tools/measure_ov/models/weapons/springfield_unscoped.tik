@@ -171,6 +171,33 @@ animations
 			)
 		}
 	}
+	// HZM coop [ads rifles 2026-10-12] rechamber_ads: the cycle as shown while AIMING - the bolt stops short of the eye (boltcap.py); same sound and case
+	rechamber_ads	spring_recham_ads.skc
+	{
+		client
+		{
+			entry sound gen_rifle_bolt item //kar98_snd_bolt 
+			18 tagspawn tag_eject 1024
+			(
+				spawnrange 2048
+				count 1
+				model models/ammo/rifleshell.tik
+				scale 1.0
+				velocity 70
+				randvel crandom 10 crandom 10 random 20
+				emitterangles 0 0 0
+				avelocity crandom 90 crandom 90 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_rifle_shell
+			)
+		}
+	}
+	// HZM coop [ads rifles 2026-10-12] rechamber_ads end
 	fire		springfield.skc
 	{
 		server

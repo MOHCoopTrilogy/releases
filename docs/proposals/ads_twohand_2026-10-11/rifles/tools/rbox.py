@@ -93,6 +93,11 @@ def measure(sess, sub='', dump=False, zoomdir=None):
             Ff = np.asarray(Image.open(fs[i]).convert('RGB')).astype(np.int16)
             Fg = Ff.sum(axis=2).astype(np.float32)
             Fm = Ff[y0:y1, x0:x1]
+            # SKIN-coloured box pixels (the hands; the bolt is dark / grey, the sleeve olive, the stock orange): the
+            # HANDS-ONLY figure of a bolt cycle, whose own bolt is exempt from the bar (user 2026-10-12)
+            r_, g_, b_ = Fm[:, :, 0], Fm[:, :, 1], Fm[:, :, 2]
+            # (the spent case is brass: far more yellow than skin, g - b 60-110 against 30)
+            skin[i] = (r_ > 110) & (r_ - g_ > 12) & (r_ - g_ < 65) & (r_ - b_ > 30) & (r_ - b_ < 110) & (g_ - b_ < 48)
             best = None
             for Rr, Rg in zip(Rs, Gs):
                 e, dy, dx = shift_of(Fg, Rg)
@@ -104,6 +109,7 @@ def measure(sess, sub='', dump=False, zoomdir=None):
                     kick[i] = (dy, dx)
             return best
         kick = {}
+        skin = {}
 
         def grow(m, r=6):
             o = m.copy()
@@ -115,6 +121,10 @@ def measure(sess, sub='', dump=False, zoomdir=None):
         first = mk[0][1]; end = [f for n, f, s in mk if n == 'end'][0]
         start = [f for n, f, s in mk if n in ('reload', 'fire')][-1]
         segs = [(start, end)]
+        if '__empty' in tag:
+            # the automatic reload of an emptied gun: the mark sits 4 frames after the LAST SHOT - its recoil
+            # (0.4 s, the whole rifle kicked through the box) is the shot's, not the reload's
+            segs = [(start + 26, end)]
         if '__bolt' in tag and anims.get(tag):
             # the cycle clip, not the shot: from the capture frame the view anim leaves the fire / aim row for the
             # cycle row (the first NEW anim id after the fire mark), + 4 frames (the 0.06 s blend out of the recoil).
@@ -139,6 +149,7 @@ def measure(sess, sub='', dump=False, zoomdir=None):
         fr = [i for a_, b_ in segs for i in range(a_, min(b_, len(fs)))]
         exm = {i: (mask(i) & ~aimmask) for i in fr}
         ex = [float(exm[i].mean()) for i in fr]
+        hx = [float((exm[i] & skin[i]).mean()) for i in fr]
         s = sight.get(tag, [])
         dev = endd = fdev = fdev2 = float('nan')
         if s:
@@ -187,9 +198,9 @@ def measure(sess, sub='', dump=False, zoomdir=None):
         for x in an:
             if not seq or seq[-1] != x:
                 seq.append(x)
-        out[tag] = dict(start=start, xmax=round(100 * max(ex), 1), over=len(over), frames=len(ex), base=round(100 * base, 1), dev=round(dev, 2), fdev=round(fdev, 2), fdev2=round(fdev2, 2), end=round(endd, 2), anims=seq[:12])
-        print('%-52s from f%d' % (tag[4:-7], start), 'box beyond the aim: max %4.1f %%, %d of %d frames over 2 %% | aim covers %4.1f %% | rear sight vs front (sight dev) max %5.2f deg, ends %.2f | FRONT sight off the target max %.2f deg (%.2f after the recoil) | anims %s' % (
-            100 * max(ex), len(over), len(ex), 100 * base, dev, endd, fdev, fdev2, ' '.join(seq[:8])))
+        out[tag] = dict(start=start, xmax=round(100 * max(ex), 1), hands=round(100 * max(hx), 1), hands_at=fr[int(np.argmax(hx))], over=len(over), frames=len(ex), base=round(100 * base, 1), dev=round(dev, 2), fdev=round(fdev, 2), fdev2=round(fdev2, 2), end=round(endd, 2), anims=seq[:12])
+        print('%-52s from f%d' % (tag[4:-7], start), 'box beyond the aim: HANDS (skin) max %4.1f %% at f%d, all %4.1f %%, %d of %d frames over 2 %% | aim covers %4.1f %% | rear sight vs front (sight dev) max %5.2f deg, ends %.2f | FRONT sight off the target max %.2f deg (%.2f after the recoil) | anims %s' % (
+            100 * max(hx), fr[int(np.argmax(hx))], 100 * max(ex), len(over), len(ex), 100 * base, dev, endd, fdev, fdev2, ' '.join(seq[:8])))
         if dump:
             print('    largest view shift (px):', max((abs(v[0]) for v in kick.values()), default=0))
         if dump and over:

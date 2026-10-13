@@ -1,0 +1,16 @@
+{
+ "gun": "kar98",
+ "near_cap": 2.5,
+ "settled_near": 2.92,
+ "grow": 1.17,
+ "k": 0.61,
+ "stroke_full_u": 4.61,
+ "stroke_kept_u": 2.81,
+ "lift_deg": 88.0,
+ "nearest_full": 0.7,
+ "nearest_now": 2.5,
+ "bbox_full": 46.3,
+ "bbox_now": 25.0,
+ "clip": "models/weapons/KAR98/rechamber_kar98_ads.skc",
+ "tik": "models/weapons/kar98.tik"
+}
