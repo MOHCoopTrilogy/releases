@@ -52,6 +52,23 @@ def third_person(sess, gun):
     R.step(L, timeout=900)
 
 
+def third_close(sess, gun):
+    """the held gun from outside, CLOSE, standing still (how do its sights read in third person = the world model's
+    mesh?): three stills per camera place - left side, right side, behind and above; hip, then the aim held"""
+    tag = "ab__%s__%s__stand__tpc__after" % (sess, gun)
+    L = S.RELEASE + S.TO_STAND + ["wait 400", "set cg_3rd_person 1", "echo ^~^~^ ABSCEN begin %s" % tag]
+    k = 0
+    for aim in (0, 1):
+        L += (["+button13", "wait 900"] if aim else [])
+        for dist, hgt, side in ((34, 2, -30), (34, 2, 30), (26, 12, -8), (46, 4, -40)):
+            L += ["set cg_cameradist %d" % dist, "set cg_cameraheight %d" % hgt, "set cg_camerasideoffset %d" % side, "wait 500"]
+            for _ in range(2):
+                L += ["screenshotJPEG %s__%04d" % (tag, k), "wait 1", "wait 1", "wait 1", "wait 1"]
+                k += 1
+    L += ["-button13", "echo ^~^~^ ABSCEN end %s" % tag, "set cg_3rd_person 0", "set cg_camerasideoffset 18", "set cg_cameradist 120", "set cg_cameraheight 18", "wait 400"] + S.RELEASE
+    R.step(L, timeout=900)
+
+
 def ai_fire(sess, tik):
     """an AI spawned in front of the player by the test overlay's own thread (cvar coop_isAi; the dev `spawn` needs
     cheats, which the mod's server start switches off), AI switched on, the player visible and invulnerable: does its
@@ -104,10 +121,10 @@ def smg_parts(a, gun):
             continue
         if part.startswith("sdemo"):                 # sdemo | sdemoL | sdemoE  (aimed);  shipdemo... (hip)
             cases = part[5:] or "LE"
-            for c in cases:
-                for st in (a.sstances if c == "E" else ["stand"]):      # every stance is run on the EMPTY case (magazine + cock)
+            for c in cases:                                              # "l" = rounds left in EVERY stance of --sstances
+                for st in (a.sstances if c in "El" else ["stand"]):      # every stance is run on the EMPTY case (magazine + cock)
                     R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
-                    sdemo(a.session, gun, c, ads=True, stance=st)
+                    sdemo(a.session, gun, c.upper(), ads=True, stance=st)
         elif part.startswith("shipdemo"):
             for c in (part[8:] or "LE"):
                 R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
@@ -115,6 +132,9 @@ def smg_parts(a, gun):
         elif part == "tp":
             R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
             third_person(a.session, gun)
+        elif part == "tpc":
+            R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+            third_close(a.session, gun)
         elif part == "ai":
             ai_fire(a.session, a.aitik)
 

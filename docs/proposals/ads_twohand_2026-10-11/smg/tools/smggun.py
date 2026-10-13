@@ -60,7 +60,7 @@ def ease(u):
     return u * u * (3 - 2 * u)
 
 
-def pull_curve(n, a, b, over=0.06):
+def pull_curve(n, a, b, over=0.06, soft=0.0):
     """forward fraction per frame of an n-frame reload: 1 (forward) until a, pulled back to 0 by b - the hand's pull is
     quick at first and stops against the rear (ease-out), then the bolt settles a hair forward onto the sear"""
     out = []
@@ -71,7 +71,9 @@ def pull_curve(n, a, b, over=0.06):
             v = 0.0 + 0.0 * over
         else:
             u = (f - a) / float(b - a)
-            v = 1.0 - (1 - (1 - u) ** 2)
+            # soft: part of the pull starts gently (a handle worked by the FIRING hand: the gun hangs on that hand's
+            # keys, and a first step of 2.7 u put it 0.16 u off between two of them - midframe.py)
+            v = 1.0 - ((1 - soft) * (1 - (1 - u) ** 2) + soft * (u * u * (3 - 2 * u)))
         out.append(v)
     return out
 
@@ -310,7 +312,7 @@ OWN = {
     # MP18: the pack's own first-person reload (coopr_mp40_mp18_reload) works the right-side handle with the RIGHT hand
     # at f52-58 - the handle keeps those frames (hip and aimed), so that clip's hand stays on it
     # (2026-10-13: both hands clips are rebuilt now - smgbake GUNS['mp40_mp18'] - so the handle takes the default frames, on the sound)
-    'mp40_mp18': dict(tik='models/weapons/mp40_mp18.tik', bone='Bone2', side='R'),
+    'mp40_mp18': dict(tik='models/weapons/mp40_mp18.tik', bone='Bone2', side='R', pull_soft=0.6),
     # the pack's own clips already tell the open-bolt story (rest BACK, forward on the shot; its reload runs the bolt
     # forward at once and pulls it back at the end = the EMPTY case): rest='back'
     # PPS-43: the handle is a surface of its own on the right of the receiver (x 9.6-10.6, forward), on the main bone
@@ -422,7 +424,7 @@ def _build_own_clips(name, root, g, t, rows, clip, pf, pb, part, back_rest):
              'coop_%sidle_empty.skc' % pre: with_bone(one, [1.0]),
              'coop_%sreload.skc' % pre: with_bone(rel, [0.0] * rel.numFrames),
              'coop_%sreload_empty.skc' % pre: with_bone(rel, on_clock(rel, hip_curve(g, n30))),
-             'coop_%sreload_ads_empty.skc' % pre: with_bone(rel, on_clock(rel, pull_curve(n30, *g['ads_pull'])))}
+             'coop_%sreload_ads_empty.skc' % pre: with_bone(rel, on_clock(rel, pull_curve(n30, *g['ads_pull'], soft=g.get('pull_soft', 0.0))))}
     repoint = {rows['reload']: 'coop_%sreload.skc' % pre}
     for c_ in sorted(set(rows.values())):               # every other clip the tik shows the gun with: the bolt held BACK
         if c_ in (rows['fire'], rows['reload']) and c_ != rows['idle']:
@@ -461,7 +463,7 @@ def _build_own_clips(name, root, g, t, rows, clip, pf, pb, part, back_rest):
         kn[2] = part['kn_lo'][2] + 0.4
     part['front'] += float(part['travel'][0]) if back_rest else 0.0
     part['travel'] = -part['travel'] if back_rest else part['travel']
-    json.dump(dict(gun=name, tiks=tiks, bone=bone, side=g['side'], travel=float(np.linalg.norm(part['travel'])), dir=[float(v) for v in part['travel'] / np.linalg.norm(part['travel'])],
+    json.dump(dict(gun=name, tiks=tiks, bone=bone, side=g['side'], pull_soft=g.get('pull_soft', 0.0), travel=float(np.linalg.norm(part['travel'])), dir=[float(v) for v in part['travel'] / np.linalg.norm(part['travel'])],
                    forward=[part['front'] - 0.18, float(kn[1]), float(kn[2])], rest=g.get('rest', 'fwd'),
                    hip_curve=hip_curve(g, n30), ads_pull=g['ads_pull'], reload_frames=rel.numFrames, reload_ft=rel.frameTime),
               open(os.path.join(HERE, 'smggun_%s.json' % name), 'w'), indent=1, default=str)

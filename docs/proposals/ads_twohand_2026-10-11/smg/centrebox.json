@@ -21,6 +21,28 @@
   "xfr": 0.0,
   "xmax": 1.0
  },
+ "mp40_mp18": {
+  "base": 17.1,
+  "dev": 1.02,
+  "end": 0.058,
+  "frames": 156,
+  "max": 0.5,
+  "over": 0.0,
+  "run": "se6",
+  "xfr": 0.0,
+  "xmax": 0.5
+ },
+ "mp40_mp18_empty": {
+  "base": 9.4,
+  "dev": 0.9,
+  "end": 0.036,
+  "frames": 156,
+  "max": 1.2,
+  "over": 0.0,
+  "run": "se6",
+  "xfr": 0.0,
+  "xmax": 1.2
+ },
  "mp40_reactivated": {
   "base": 14.2,
   "dev": 1.38,
@@ -44,25 +66,25 @@
   "xmax": 0.6
  },
  "silenced_mp40": {
-  "base": 12.0,
-  "dev": 1.38,
-  "end": 0.059,
+  "base": 12.1,
+  "dev": 1.37,
+  "end": 0.054,
   "frames": 157,
   "max": 0.6,
   "over": 0.0,
-  "run": "se1",
+  "run": "se4",
   "xfr": 0.0,
   "xmax": 0.6
  },
  "silenced_mp40_empty": {
-  "base": 6.9,
-  "dev": 1.37,
-  "end": 0.06,
-  "frames": 156,
-  "max": 0.5,
+  "base": 7.8,
+  "dev": 1.38,
+  "end": 0.053,
+  "frames": 157,
+  "max": 0.1,
   "over": 0.0,
-  "run": "se1",
+  "run": "se4",
   "xfr": 0.0,
-  "xmax": 0.5
+  "xmax": 0.1
  }
 }

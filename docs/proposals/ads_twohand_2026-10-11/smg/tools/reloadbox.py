@@ -76,7 +76,7 @@ def make_shifter(Rf, box):
     return shifted_ref
 
 
-def measure(sess, sub, skip=0, dump=False):
+def measure(sess, sub, skip=0, dump=False, dry=False):
     run, tag, marks, rows, fs = load(sess, sub)
     mk = {n: (f, si) for n, f, si in marks}
     # probe rows and screenshots are both one per frame from the ABSCEN begin: the mark's two counters give the offset
@@ -107,6 +107,15 @@ def measure(sess, sub, skip=0, dump=False):
     # The reference is therefore shifted to each frame's background first - the shift that best matches two strips of
     # the frame the first-person model never reaches (top left / top right).
     shifted_ref = make_shifter(Rf, box)
+    dry_add = 0.0
+    if dry:
+        # An EMPTY reload starts from the DRY gun's settled aim (an open-bolt gun's handle is forward): that pose is
+        # its reference as well (coordinator 2026-10-13: the MP18's dry handle rests inside the centre box before any
+        # hand moves). Taken from the three frames after the skipped flash frames: hands still on their grips.
+        db = [mask(fs[i], shifted_ref(fs[i])[0], box) for i in range(i0 + skip, min(i1, i0 + skip + 3))]
+        dm = grow(np.mean(db, axis=0) > 0.5)
+        dry_add = float((dm & ~aimmask).mean())
+        aimmask = aimmask | dm
     ex, shifts = [], []
     for i in range(i0, i1 + 1):
         Rs, sh = shifted_ref(fs[i])
@@ -119,7 +128,7 @@ def measure(sess, sub, skip=0, dump=False):
     dev = [((r[2] - s0[2]) ** 2 + (r[3] - s0[3]) ** 2) ** 0.5 for r in seg]
     res = dict(run=sess, tag=tag, reload=(i0, i1), frames=i1 - i0 + 1, anim=rid, settled=settled,
                extra_max=round(100 * max(ex[skip:]), 1), extra_frames_over=int(sum(e > 0.02 for e in ex[skip:])), skip=skip,
-               extra_first=round(100 * max(ex[:skip] or [0]), 1), dev_max=round(max(dev), 2), dev_end=round(max(dev[-5:]), 3),
+               extra_first=round(100 * max(ex[:skip] or [0]), 1), dry_ref=round(100 * dry_add, 1), dev_max=round(max(dev), 2), dev_end=round(max(dev[-5:]), 3),
                pose_min=round(min(r[0] for r in seg), 2), base=round(100 * float(np.mean(base)), 1),
                back=round(max(((rows[min(len(rows) - 1, i + o)][2] - s0[2]) ** 2 + (rows[min(len(rows) - 1, i + o)][3] - s0[3]) ** 2) ** 0.5 for i in range(i1 + 4, min(low, i1 + 12))) if i1 + 4 < low else -1.0, 3))
     print('%s: reload = capture frames %d-%d (%d frames, anim %d; settled %d) | box beyond the aim max %.1f %% (%d frames over 2 %%%s) | '

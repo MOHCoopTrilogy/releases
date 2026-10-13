@@ -18,7 +18,7 @@ def main():
         m = re.match(r'^(\s*\{"[^"]+", "[^"]+", )\{([^}]*)\}, \{([^}]*)\}, ([-\d.]+f), \{([^}]*)\}, ([-\d.]+f)\}, // (\S+)\s*$', ln)
         if m and m.group(7) in ov:
             o = ov[m.group(7)]
-            F = o.get('F'); R = o.get('R')
+            F = o.get('F_root') or o.get('F'); R = o.get('R_root') or o.get('R')      # a root-frame gun's row holds F_root / R_root
             f = '%.4ff, %.4ff, %.4ff' % tuple(F) if F else m.group(2)
             r = '%.4ff, %.4ff, %.4ff' % tuple(R) if R else m.group(3)
             rel = ('%.3ff' % o['relief']) if 'relief' in o else m.group(6)

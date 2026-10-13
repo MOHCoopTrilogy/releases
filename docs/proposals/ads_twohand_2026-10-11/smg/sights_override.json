@@ -1,7 +1,39 @@
 {
  "silenced_mp40": {
-  "F": [28.263, -1.082, -6.0254],
-  "R": [6.7486, -0.9251, -6.341],
-  "why": "staged mp40silenced.skd has both sights raised 0.45 u (tools/sightraise.py); hunk for ironsights_2026-09-28/sights.json + the regenerated cg_adssights.h - apply ONLY together with the staged mesh"
+  "F": [
+   28.263,
+   -1.082,
+   -6.0254
+  ],
+  "R": [
+   6.7486,
+   -0.9251,
+   -6.341
+  ],
+  "why": "staged mp40silenced.skd has both sights raised 0.45 u (tools/sightraise.py) and the rear leaf shaped into a notch block (tools/sightshape.py, x only); hunk for ironsights_2026-09-28/sights.json + the regenerated cg_adssights.h - apply ONLY together with the staged mesh"
+ },
+ "mp40_mp18": {
+  "F": [
+   27.9039,
+   -0.6393,
+   -5.0327
+  ],
+  "R": [
+   4.1545,
+   -0.7739,
+   -6.0928
+  ],
+  "F_root": [
+   25.728,
+   -2.2582,
+   -4.912
+  ],
+  "R_root": [
+   1.9786,
+   -2.3928,
+   -5.9721
+  ],
+  "relief": 12.34,
+  "why": "coordinator's decision 2 (2026-10-13): eye relief +4 u (8.34 -> 12.34, the rig's clamp) and both sights of the staged coop_mp18/mp18.skd 0.3 u taller (tools/sightraise.py --box Cube1:1.8,2.25,-5.42 --box Cube1:25.3,26.1,-4.2; the smallest raise at which the settled aim alone passes with sway on, tools/sighttry.py). The header row of this gun holds F_root / R_root. Apply ONLY together with the staged mesh"
  }
 }

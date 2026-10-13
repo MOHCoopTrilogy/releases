@@ -1,0 +1,58 @@
+[
+ {
+  "error_message": "MP18 aimed EMPTY reload, run se5: the whole gun jumps on every other 16 ms frame while the firing hand leaves the grip and again as it comes home (centre box 2.2-9.6 % in 7 of 8 stances, frames at clip f51-53 and f64-65); offline the same clip read 0.5 %",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py",
+  "root_cause": "The weapon tag is a child of the FIRING hand. With a right_path (the firing hand works a right-side handle) hold_bake counter-keys the tag so the gun stays put - exact on the clip's 30 Hz keys only. Between two keys the engine blends every channel on its own (rotations slerp, positions lerp), so the gun is off by about (distance of the hand from the grip) x (the hand's turn per frame)^2 / 8: 0.64 u / 1.4 deg at the half-way points when the turn off the grip took 4 frames and the way home 2. The offline box check and the look sheets sample integer frames only, so they cannot see it.",
+  "fix": "tools/midframe.py prints the gun's half-way error per clip frame (run it on every clip in which the firing hand moves). smgbake cock='R': the hand TURNS into its hook right beside the grip (hook 'beside' / 'turn'), travels to the handle without turning, travels home first and turns last; MP18 timeline reach_r (43,55), on_er (70,74), the left hand holds the seated drum until f63; the pull starts gently (smggun pull_soft 0.6 / smgbake pull_u soft - gun clip and hand share the curve); bake_hip_right splits its blend the same way (wr / wt). Result: 0.07 u / 0.05 deg aimed, 0.15 u hip; engine run se6: empty 0.2-1.2 % in all eight stances.",
+  "tags": ["ads", "smg", "mp18", "interpolation", "weapon-tag", "right_path", "midframe", "tooling-blind-spot"]
+ },
+ {
+  "error_message": "MP18 side-drum physics, first bake: the gun swung to the RIGHT and canted top-right as the drum was dragged out to the LEFT",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py",
+  "root_cause": "The SMG lane runs gunphys.simulate with hand=-1, which multiplies the roll and side of EVERY event by -1 (gunphys._run). The new smg_side_* actions were written as the motion is seen (side + = left, roll + = top right) and came out mirrored. Measured on the baked weapon tag, not guessed.",
+  "fix": "smg_side_* (catch / drag / free / enter / tug / seat; a magazine that enters from the left side: side + roll, next to no drop / pitch) are written as seen and stored reversed by a loop right under the table, with the reason. GUNS[key] magphys='smg_side', magk (strength), shoulder (support floor while the hand is away). Note for the next gun: any new action table in this lane is subject to the same reversal.",
+  "tags": ["ads", "smg", "gunphys", "sign-convention", "mp18", "side-magazine"]
+ },
+ {
+  "error_message": "Offline looks of the MP18 reload showed TWO drums 2.7 u apart (the prop beside the gun's own drum) at the hand-over frames",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py",
+  "root_cause": "The drum prop (models/ammo/coop_mp18_drum.tik) is the gun's own skeleton on another skd path (coop_snaildrum.skd). gungeo draws the root channel only for skds listed in sights.json as frame_used == 'root' (the gun's mp18.skd is, the prop's copy is not), so the offline prop was drawn without the root offset (2.18, 1.62, -0.12). The engine draws both with it: an offline artefact, not a game fault.",
+  "fix": "smgbake adds the prop's skd to gungeo.root_skds() next to the MP18 entry. Any prop that is a copy of a root-frame gun's skeleton needs the same line before its offline looks mean anything.",
+  "tags": ["ads", "smg", "mp18", "offline-render", "root-frame", "prop"]
+ },
+ {
+  "error_message": "MP18 sight raise, first offline search: taller sights made the aim cover MORE of the centre box (21 -> 27 %) - the gun did not come down",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/sighttry.py",
+  "root_cause": "For a gun sights.json marks frame_used == 'root' the rig solve (vmcam.rig_target, and the engine's header row) reads F_root / R_root, not F / R. The lane's sight override only carried F / R, so the solve kept aiming over the old sight points.",
+  "fix": "smgbake takes F_root / R_root from sights_override.json; sighttry.py writes both pairs; patch_sights_row.py writes F_root / R_root into the header row when the override has them. sighttry.py = the offline search for the smallest raise at which the settled aim alone passes with sway on (MP18: 0.3 u at eye relief 12.34 u: 3.4 -> 2.2 % worst pair, 1.1 -> 0.4 % from rest).",
+  "tags": ["ads", "smg", "sights", "root-frame", "mp18", "sights_override"]
+ },
+ {
+  "error_message": "MP18 firing-hand hook on the handle: five orientation tries (fdir / pdir by hand) put the hand beside, under or above the handle bar, never on it; a flexion sign test first looked like the cause and was not",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py",
+  "root_cause": "hook_rel's fdir / pdir orient the hand by the chord of its fingers, which changes with the finger pose - for a hooked hand the wrist ends up tens of degrees off what the two vectors suggest. Also wrong assumptions: the handle bar ends about 1.3 u right of the bolt's centre (not 2.3), and the aim grip's trigger finger is already bent 47 deg at its middle joint. (+z IS flexion for both hands - measured with a wrist-to-fingertip distance.)",
+  "fix": "hook 'grab': the index finger's three joints are given places in the gun frame (first phalanx over the bar's top, second down its front face) and the hand is the rigid fit to them (Kabsch); hook_pose() builds the hooked fingers from the hand's own straight finger; the same hand is used at the hip. For the next right-side handle: set grab y / over / front / dir, do not tune fdir / pdir.",
+  "tags": ["ads", "smg", "mp18", "hand-pose", "hook", "kabsch", "edited-many-times"]
+ },
+ {
+  "error_message": "Silenced MP40 with the sights raised 0.45 u: the rear leaf is a plate 0.1 u thick and 0.96 u tall - a spike from the side (third person, world model)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/sightshape.py",
+  "root_cause": "sightraise.py stretches the leaf upward only; the pack mesh's leaf was a thin plate to begin with (the retail MP40's is 0.13-0.2 u thick and 0.5 u tall on a 1.85 u base).",
+  "fix": "tools/sightshape.py spreads a leaf's vertices along the barrel only (x), tapering from the foot to the tip: the silenced MP40's leaf is now a notch block 1.1 u long at the foot and 0.48 u at the tip, the MP18's raised plate is scaled 3.2x / 1.5x. The eye's picture does not change (run se4: rounds left 0.1-1.5 %, empty 0.1-0.7 %, eight stances, sway on). Looked at in third person (se4 / se5) and from the side offline.",
+  "tags": ["ads", "smg", "sights", "mesh", "silenced-mp40", "third-person"]
+ },
+ {
+  "error_message": "Centre-box measure of an EMPTY reload counted the dry gun's own forward handle as cover (MP18: 3.5-4 % before any hand moves)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/reloadbox.py",
+  "root_cause": "The reference mask was the settled aim of the COCKED gun only (handle back). An open-bolt gun that ran dry rests its handle forward, and on the MP18 that is inside the centre box.",
+  "fix": "Coordinator's decision 2026-10-13: the dry gun's own pose is the reference for an empty reload. smgbake.box_check ORs the idle_empty look into the aim mask for *_empty clips; reloadbox.measure(dry=True) ORs the mask of the three frames after the skipped flash frames (measure_run does it for every E capture, --nodry switches it off and it prints how much the dry mask adds). Caution: after a long burst that mask also holds lingering muzzle smoke (5-12 % on the MP18), so read the dry figure next to the offline one.",
+  "tags": ["ads", "smg", "centre-box", "measure", "validation", "open-bolt"]
+ },
+ {
+  "error_message": "run_smg part tpc (close third-person stills): the cg_camera* cvars do not put the camera where intended and are ignored while aiming - the gun is about 60 px long in the frame",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smg_block.py",
+  "root_cause": "cg_cameradist / cg_cameraheight / cg_camerasideoffset were set by guess; the aim view overrides the third-person camera place.",
+  "fix": "OPEN. The stills are still usable cropped and enlarged 3x (evidence/*_third_person_*.jpg) and were enough to judge the raised sights; a proper close camera needs the engine's third-person camera code read first.",
+  "tags": ["ads", "smg", "harness", "third-person", "open"]
+ }
+]

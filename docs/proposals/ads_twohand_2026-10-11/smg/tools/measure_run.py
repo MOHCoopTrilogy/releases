@@ -18,7 +18,10 @@ for ln in open(RBX.RUNS + sess + '/qconsole.log', encoding='latin-1', errors='re
 out = {}
 for stance, case, tag in tags:
     try:
-        r = RBX.measure(sess, '%s__%sads%s__' % (gun, '' if stance == 'stand' else stance, case), 8 if case == 'E' else 0, '--dump' in sys.argv)
+        r = RBX.measure(sess, '%s__%sads%s__' % (gun, '' if stance == 'stand' else stance, case), 8 if case == 'E' else 0, '--dump' in sys.argv,
+                        dry=(case == 'E' and '--nodry' not in sys.argv))
+        if r.get('dry_ref'):
+            print('      (dry-gun reference: its own parts add %.1f %% of the box to the aim mask)' % r['dry_ref'])
     except ValueError as e:                  # no reload in the capture (the gun did not run dry / did not fire): say so, go on
         print('%s %s %s: NO RELOAD FOUND in this capture (%s) - run it again' % (gun, stance, case, e))
         continue

@@ -279,6 +279,88 @@
     "run": "sa3",
     "sight_abs": 0.0
    }
+  },
+  "reload": {
+   "braced": {
+    "box": 0.2,
+    "case": "empty",
+    "dev": 1.02,
+    "edge": 0.081,
+    "end": 0.057,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "se6"
+   },
+   "crouch": {
+    "box": 0.4,
+    "case": "empty",
+    "dev": 1.0,
+    "edge": 0.097,
+    "end": 0.06,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "se6"
+   },
+   "crouchL": {
+    "box": 0.3,
+    "case": "empty",
+    "dev": 1.01,
+    "edge": 0.083,
+    "end": 0.063,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "se6"
+   },
+   "crouchR": {
+    "box": 0.7,
+    "case": "empty",
+    "dev": 1.01,
+    "edge": 0.085,
+    "end": 0.058,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "se6"
+   },
+   "prone": {
+    "box": 0.4,
+    "case": "empty",
+    "dev": 1.01,
+    "edge": 0.092,
+    "end": 0.058,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "se6"
+   },
+   "stand": {
+    "box": 1.2,
+    "case": "empty",
+    "dev": 0.9,
+    "edge": 0.04,
+    "end": 0.036,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "se6"
+   },
+   "standL": {
+    "box": 0.4,
+    "case": "empty",
+    "dev": 1.01,
+    "edge": 0.085,
+    "end": 0.06,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "se6"
+   },
+   "standR": {
+    "box": 0.5,
+    "case": "empty",
+    "dev": 1.01,
+    "edge": 0.088,
+    "end": 0.057,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "se6"
+   }
   }
  },
  "models/weapons/mp40_mp40r2.tik": {
@@ -402,84 +484,84 @@
   "qa": "sc6 (aim sway OFF, trigger held 300 frames - fire delay 0.12 s): every stance 0.0-0.8 % of the box. WITH aim sway on (the bar): 2.4-4.0 % in three stances (sc2) - the gun is bulky in the box, the sway alone uncovers it; cg_adsRigReliefBias 2.0 tried (sd1): 0.0-1.1 % mid-reload, 2.9 % in the first 18 frames of the emptied stand capture, and the settled aim after the clip then reads 3.6-5.0 % - not solved, no engine change. 4 GIFs decoded, every stance on a sheet, cock looked at in full-size crops; hip-empty hand closes before the reach (sd2); open: 0.06 deg at the row's end (engine, not the clip)",
   "reload": {
    "braced": {
-    "box": 0.2,
-    "case": "empty",
-    "dev": 1.37,
-    "edge": 0.089,
-    "end": 0.056,
-    "ok": true,
-    "pmin": 1.0,
-    "run": "se1"
-   },
-   "crouch": {
-    "box": 0.1,
-    "case": "empty",
-    "dev": 1.38,
-    "edge": 0.079,
-    "end": 0.058,
-    "ok": true,
-    "pmin": 1.0,
-    "run": "se1"
-   },
-   "crouchL": {
-    "box": 0.6,
-    "case": "empty",
-    "dev": 1.38,
-    "edge": 0.078,
-    "end": 0.061,
-    "ok": true,
-    "pmin": 1.0,
-    "run": "se1"
-   },
-   "crouchR": {
-    "box": 1.0,
-    "case": "empty",
-    "dev": 1.38,
-    "edge": 0.084,
-    "end": 0.059,
-    "ok": true,
-    "pmin": 1.0,
-    "run": "se1"
-   },
-   "prone": {
-    "box": 0.0,
-    "case": "empty",
-    "dev": 1.39,
-    "edge": 0.079,
-    "end": 0.058,
-    "ok": true,
-    "pmin": 1.0,
-    "run": "se1"
-   },
-   "stand": {
-    "box": 0.5,
-    "case": "empty",
-    "dev": 1.37,
-    "edge": 0.088,
-    "end": 0.06,
-    "ok": true,
-    "pmin": 1.0,
-    "run": "se1"
-   },
-   "standL": {
-    "box": 0.6,
-    "case": "empty",
-    "dev": 1.38,
-    "edge": 0.086,
-    "end": 0.058,
-    "ok": true,
-    "pmin": 1.0,
-    "run": "se1"
-   },
-   "standR": {
     "box": 0.3,
     "case": "empty",
     "dev": 1.38,
-    "edge": 0.085,
+    "edge": 0.077,
+    "end": 0.061,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "se4"
+   },
+   "crouch": {
+    "box": 0.3,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.084,
+    "end": 0.062,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "se4"
+   },
+   "crouchL": {
+    "box": 0.4,
+    "case": "empty",
+    "dev": 1.37,
+    "edge": 0.086,
     "end": 0.057,
     "ok": true,
     "pmin": 1.0,
-    "run": "se1"
+    "run": "se4"
+   },
+   "crouchR": {
+    "box": 0.6,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.08,
+    "end": 0.059,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "se4"
+   },
+   "prone": {
+    "box": 0.1,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.084,
+    "end": 0.061,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "se4"
+   },
+   "stand": {
+    "box": 0.1,
+    "case": "empty",
+    "dev": 1.38,
+    "edge": 0.084,
+    "end": 0.053,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "se4"
+   },
+   "standL": {
+    "box": 0.4,
+    "case": "empty",
+    "dev": 1.37,
+    "edge": 0.089,
+    "end": 0.058,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "se4"
+   },
+   "standR": {
+    "box": 0.4,
+    "case": "empty",
+    "dev": 1.37,
+    "edge": 0.085,
+    "end": 0.062,
+    "ok": true,
+    "pmin": 1.0,
+    "run": "se4"
    }
   },
   "rule": {

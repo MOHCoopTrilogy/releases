@@ -218,6 +218,23 @@ def third_person(sess, gun):
     R.step(L, timeout=900)
 
 
+def third_close(sess, gun):
+    """the held gun from outside, CLOSE, standing still (how do its sights read in third person = the world model's
+    mesh?): three stills per camera place - left side, right side, behind and above; hip, then the aim held"""
+    tag = "ab__%s__%s__stand__tpc__after" % (sess, gun)
+    L = S.RELEASE + S.TO_STAND + ["wait 400", "set cg_3rd_person 1", "echo ^~^~^ ABSCEN begin %s" % tag]
+    k = 0
+    for aim in (0, 1):
+        L += (["+button13", "wait 900"] if aim else [])
+        for dist, hgt, side in ((34, 2, -30), (34, 2, 30), (26, 12, -8), (46, 4, -40)):
+            L += ["set cg_cameradist %d" % dist, "set cg_cameraheight %d" % hgt, "set cg_camerasideoffset %d" % side, "wait 500"]
+            for _ in range(2):
+                L += ["screenshotJPEG %s__%04d" % (tag, k), "wait 1", "wait 1", "wait 1", "wait 1"]
+                k += 1
+    L += ["-button13", "echo ^~^~^ ABSCEN end %s" % tag, "set cg_3rd_person 0", "set cg_camerasideoffset 18", "set cg_cameradist 120", "set cg_cameraheight 18", "wait 400"] + S.RELEASE
+    R.step(L, timeout=900)
+
+
 def ai_fire(sess, tik):
     """an AI spawned in front of the player by the test overlay's own thread (cvar coop_isAi; the dev `spawn` needs
     cheats, which the mod's server start switches off), AI switched on, the player visible and invulnerable: does its
@@ -270,10 +287,10 @@ def smg_parts(a, gun):
             continue
         if part.startswith("sdemo"):                 # sdemo | sdemoL | sdemoE  (aimed);  shipdemo... (hip)
             cases = part[5:] or "LE"
-            for c in cases:
-                for st in (a.sstances if c == "E" else ["stand"]):      # every stance is run on the EMPTY case (magazine + cock)
+            for c in cases:                                              # "l" = rounds left in EVERY stance of --sstances
+                for st in (a.sstances if c in "El" else ["stand"]):      # every stance is run on the EMPTY case (magazine + cock)
                     R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
-                    sdemo(a.session, gun, c, ads=True, stance=st)
+                    sdemo(a.session, gun, c.upper(), ads=True, stance=st)
         elif part.startswith("shipdemo"):
             for c in (part[8:] or "LE"):
                 R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
@@ -281,6 +298,9 @@ def smg_parts(a, gun):
         elif part == "tp":
             R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
             third_person(a.session, gun)
+        elif part == "tpc":
+            R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+            third_close(a.session, gun)
         elif part == "ai":
             ai_fire(a.session, a.aitik)
 
@@ -358,6 +378,7 @@ def main():
     ap.add_argument("--guns", default="colt45"); ap.add_argument("--parts", default="demo,stills,reloads,yaw")
     ap.add_argument("--rstances", default="crouch,prone"); ap.add_argument("--rframes", type=int, default=190)
     ap.add_argument("--yaws", default="185,265,135,315"); ap.add_argument("--demoyaw", type=int, default=160); ap.add_argument("--demoreload", type=int, default=170); ap.add_argument("--braced", action="store_true"); ap.add_argument("--shots", type=int, default=2); ap.add_argument("--demoempty", action="store_true"); ap.add_argument("--shotgap", type=int, default=27); ap.add_argument("--intr", default="4,95,170"); ap.add_argument("--kinds", default="fire,switch,sprint"); ap.add_argument("--set", action="append", default=[]); ap.add_argument("--yaw", type=int, default=None); ap.add_argument("--stances", default=None); ap.add_argument("--sstances", default="stand"); ap.add_argument("--aitik", default="models/human/german_wehrmact_nco.tik"); ap.add_argument("--hold", type=int, default=175); ap.add_argument("--rel", type=int, default=200); ap.add_argument("--cheats", action="store_true"); ap.add_argument("--map", default=None); ap.add_argument("--spot", default=None); ap.add_argument("--revery", type=int, default=4); ap.add_argument("--rhip", action="store_true"); ap.add_argument("--rshots", type=int, default=1)
+    ap.add_argument("--force", action="store_true")
     a = ap.parse_args()
     if a.yaw is not None:
         R.SPOT = R.SPOT[:3] + (a.yaw,)
@@ -371,6 +392,8 @@ def main():
         cheats_on()
     if a.stances:
         globals()['STANCES'] = tuple(x for x in a.stances.split(',') if x)
+    if os.path.isdir(os.path.join(R.RUNS, a.session)) and not a.force:
+        sys.exit("run folder %s/%s exists - boot_session would delete it; pick an unused id or pass --force" % (R.RUNS, a.session))
     DEMO_RELOAD[0] = a.demoreload
     SHOTS[0] = a.shots
     EMPTY[0] = a.demoempty

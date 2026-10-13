@@ -2,107 +2,129 @@
 
 Scope: the `## smg` rows of `..\coverage.md` (18 weapons). Method = `..\README.md` (the standard, the bake pipeline,
 gunphys, the offline centre-box check, staged rows, cgame hooks). Everything here is STAGED: nothing is in the mod
-tree or the fixes pak. Engine: worktree `openmohaa-hzm-ads-smg`, branch `ads-smg-next` (= ads-next 94bb3dca + ONE
-generated row of `cg_adssights.h`, see the handover; `cgame_smg1.dll` = without it, `cgame_smg2.dll` = with it, both in
-`G:\mohaa-adsanim3\cgames`). Test game: `G:\mohaa-adsanim3` (owner adsanim3, port 12578).
+tree or the fixes pak. Engine: worktree `openmohaa-hzm-ads-smg`, branch `ads-smg-next` (= ads-next 94bb3dca + two
+generated rows of `cg_adssights.h`, see the handover; `cgame_smg3.dll` in `G:\mohaa-adsanim3\cgames` has both).
+Test game: `G:\mohaa-adsanim3` (owner adsanim3, port 12578).
 
-## HANDOVER (2026-10-13, runs se1 / se2) - read this first
+## HANDOVER (2026-10-13, runs se4 / se5 / se6) - read this first
 
-Engine: `ads-smg-next` is at f1802d87 = 94bb3dca + ONE commit: the Silenced MP40's row of
-`cg_adssights.h` (F / R z 0.45 u higher, `tools/patch_sights_row.py` from `sights_override.json`), built as
-`G:\mohaa-adsanim3\cgames\cgame_smg2.dll`. It belongs TOGETHER with the staged `mp40silenced.skd` - never one
-without the other (the eye would look over or under the sights). Run ids used: sa1-sd2, se1, se2, se3. Next: se4.
+Engine: `ads-smg-next` is at 7b4bc029 = 94bb3dca + TWO commits, each ONE generated row of `cg_adssights.h`
+(`tools/patch_sights_row.py` from `sights_override.json`): f1802d87 the Silenced MP40's (F / R z 0.45 u higher), 7b4bc029
+the MP18's (F_root / R_root z 0.3 u higher, eye relief 12.34 u). Built as `G:\mohaa-adsanim3\cgames\cgame_smg3.dll`
+(`cgame_smg2` = without the MP18 row, `cgame_smg1` = without either). Each row belongs TOGETHER with its staged mesh
+(`mp40silenced.skd`, `coop_mp18/mp18.skd`) - never one without the other (the eye would look over or under the sights).
+Run ids used: sa1-sd2, se1-se6. Next: se7. Build: `cmake --build .cmake --config Release --target cgame` in the worktree.
 
 | gun | state |
 |---|---|
 | MP40 (reference) | done (section 2), unchanged |
-| Silenced MP40 | **passes with aim sway ON in all eight stances** (run se1: 0.0-1.0 %, table below) after the sights of its staged mesh were raised 0.45 u. Needs the user's yes: it is a change of the gun's look (taller sights, lower gun in the aim) |
+| Silenced MP40 | **done** (run se4, sway on, cgame_smg2, eight stances): rounds left 0.1-1.5 %, empty 0.1-0.7 %, settled aim alone 0.0-0.9 %, back on the aim 0.05-0.07 deg. Rear leaf shaped into a notch block (below). Looked at: stance sheets, the four GIFs decoded, third person |
 | MP40 R2 | passes (sc4; se2 stand with sway on: 0.1 % rounds left, 1.4 % empty). Per-shot handle travel looked at in the engine (se2) |
-| MP18 | NOT done. A first pass was built offline and taken OUT of the staged tree again (not acceptable yet, list below). Its aim view was captured with the approved skin (se2) |
-| Thompsons, Sten, PPSh, grease guns, PPS-43, Type 100, Moschetto | NOT started (section 3 has the facts) |
+| MP18 | **done** (run se6, sway on, cgame_smg3, eight stances): rounds left 0.2-1.0 %, empty 0.2-1.2 % (against the dry gun's own pose), settled aim alone 0.0-0.4 %, back on the aim 0.04-0.06 deg. Eye relief +4 u, sights 0.3 u taller, side-drum physics, left hand closed on the drum, firing hand hooked on the handle bar's end. Table and weak points below |
+| Thompsons, Sten, PPSh, grease guns, PPS-43, Type 100, Moschetto | NOT started (section 3 has the facts; the Thompson survey of this session is below) |
 
-### Silenced MP40 with sway on - what was wrong, what was done
+### Sight raises made (coordinator's blanket rule: the minimum that passes, believable, checked in third person)
 
-**Why the settled aim "moved after a clip with a relief set" (run sd1): it did not.** The probe's `relief` is 15.11 u
-+-0.01 from the end of the burst to the lower in every sd1 capture; nothing re-eases. Two other things were read as it:
-1. `swaybox.py` compared against the UNSHIFTED reference frame. After a 32-round burst the VIEW is still creeping
-   back, so the backdrop itself counted as cover (the plain MP40 read 3.2-6.3 % the same way). Fixed: it uses
-   reloadbox's shifted reference now. Re-read: sd1 0.0 / 0.3 %, MP40 sc1 0.2 %. The old figures are void.
-2. Aim sway + breath are a TRANSLATION of the whole first-person rig (`cg_view.c`: sway +-0.10 u sideways, +-0.07 u
-   up/down; breath +-0.105 u up/down, +-0.04 u sideways while aiming), so a part moves on screen by 572 px x shift /
-   distance from the eye: the rear sight (13 u) wanders 5-8 px, anything at 5 u wanders 15-20 px.
-
-**Why this gun and not the MP40** (`tools/topprof.py`, `tools/swayoff.py`): on `mp40silenced.skd` the rear leaf stood
-0.3-0.45 u over the receiver's rear (retail MP40: 0.7 u) and the receiver is 3.2 u wide (retail 2.1). From the aiming
-eye its top was INSIDE the centre box (3.5-4.9 deg under the sight line at 5-7 u from the eye; the box edge is at
-7.2 deg), exactly where the sway moves it most. Offline, the settled aim ALONE, worst pair of sway states, box cover
-beyond its own grown mask: silenced MP40 6.3 %, MP40 1.8 %, MP40 R2 1.6 %.
-
-| tried | result |
-|---|---|
-| eye relief (the sights.json `relief` lever), offline -3 .. +4 u | 5.5 / 6.6 / 6.3 / 6.3 / 5.6 / 4.6 / 4.1 / 3.6 % - never under the bar; +4 u is the rig's clamp. Engine sd1 (+2 u) had 2.9 %. A relief cannot fix it: the receiver's top stays at the box edge at every distance |
-| lowering the whole rig in the aim (offline `--drop`) | 0.2 u: 2.9 %, 0.35 u: 1.8 %, 0.5 u: 1.3 % - works, but a lowered rig takes the sights off the eye line |
-| **both sights 0.45 u taller on the mesh** (`tools/sightraise.py`: rear leaf and front hood + post stretched, 112 vertices of `metal3`, nothing else touched; `sights_override.json`; the rig solve then seats the gun 0.45 u lower by itself) | offline 1.8 % worst pair (= the MP40), 0.4 % from rest. **Engine se1, sway on, cgame_smg2:** |
-
-| stance (run se1, sway on) | rounds left | empty | settled aim alone after it | back on the aim |
+| gun | raise | how | before / after | third person |
 |---|---|---|---|---|
-| stand | 0.6 % | 0.5 % | 0.1 % | 0.06 deg |
-| crouch / prone | - | 0.1 / 0.0 % | 0.1 / 0.0 % | 0.06 |
-| lean left / right | - | 0.6 / 0.3 % | 0.3 / 0.2 % | 0.06 |
-| crouch + lean left / right | - | 0.6 / 1.0 % | 0.6 / 0.5 % | 0.06 |
-| braced | - | 0.2 % | 0.2 % | 0.06 |
+| Silenced MP40 | both sights 0.45 u (run se1) | `sightraise.py`, then `sightshape.py --surf metal3 --box 6.64,6.85,-1.6,-0.25,-6.35,-5.37 --half 0.55,0.24`: the raised leaf was a plate 0.1 u thick and 0.96 u tall (a spike from the side) - now a notch block 1.1 u long at the foot, 0.48 u at the tip; x only, the eye's picture is the same | `evidence/mp40silenced_aim_before_after_se1.jpg`, side: `mp40silenced_mesh_sights_raised_side.jpg` (spike) -> `mp40silenced_mesh_sights_shaped_side.jpg` | `evidence/mp40silenced_third_person_se4.jpg`: a small block on the receiver, hooded front post; no spike |
+| MP18 | both sights 0.3 u + eye relief 8.34 -> 12.34 u | `sightraise.py models/weapons/mp40_mp18.tik ... 0.3 --box Cube1:1.8,2.25,-5.42 --box Cube1:25.3,26.1,-4.2`, then `sightshape.py --surf Cube1 --box 1.86,2.20,-2.8,-2.0,-5.98,-5.32 --scale 3.2,1.5` (run with `IRONSIGHT_EXTRA_PAKS` = an overlay holding the skd being shaped). Search: `sighttry.py` - settled aim alone, worst pair of sway states 3.4 % at relief +4 alone, 2.4 / 2.2 / 2.4 / 2.2 % at 0.2 / 0.3 / 0.45 / 0.6 u (from rest 1.1 -> 0.4 %): 0.3 u is where it stops improving | `evidence/mp18_aim_before_after_se6.jpg`, side: `mp18_mesh_sights_raised_side.jpg` | `evidence/mp18_third_person_se5.jpg`: small rear block and front post, reads as the gun's own sights |
 
-Offline (every frame, magazine drawn): 0.0 % both. Looked at: every stance on the sheet, the cock at full size, both
-aimed GIFs decoded. Hip GIFs remade (clips unchanged, taller sights). Weak points seen: the rear leaf is a thin tall
-blade from the side (0.92 u, was 0.47 - `evidence/mp40silenced_mesh_sights_raised_side.jpg`); at the end of the pull
-the index still sits under the knob's stem; third person and the world model get the taller sights too (not looked
-at). The 0.06 deg at the row's end is unchanged (engine item, not this lane's).
-For a release: the staged skd + this hunk in `ironsights_2026-09-28/sights.json` (`silenced_mp40` F z -6.0254, R z
--6.341) + a regenerated header, in ONE deploy. The shared sights.json is NOT edited (the lane's tools read
-`sights_override.json` through smgbake; `SMG_NO_SIGHT_OVERRIDE=1` switches it off).
+For a release each needs, in ONE deploy: the staged skd + its hunk in `ironsights_2026-09-28/sights.json` (the values in
+`sights_override.json`; the MP18 is a root-frame gun: F_root / R_root as well as F / R, and `relief`) + a regenerated
+header. The shared sights.json is NOT edited (the lane's tools read `sights_override.json` through smgbake;
+`SMG_NO_SIGHT_OVERRIDE=1` switches it off, `SMG_SIGHT_OVERRIDE_FILE` points at a trial file).
 
-### Per-shot handle travel in the engine (task 2) - looked at, consecutive 16 ms frames
-* Silenced MP40 (se1): knob back at rest, runs forward and back on every shot (one shot per 8 frames), stays FORWARD
-  after the last round until the reload's pull (`evidence/mp40silenced_handle_per_shot_se1.jpg`).
-* MP40 R2 (se2): the same (the mesh is near-black: the handle reads as a dark bar on the left;
-  `evidence/mp40r2_handle_per_shot_se2.jpg`); forward when dry, 8 frames looked at.
+### MP18 (run se6) - what it does
 
-### MP18 - where it stands (NOT staged; first-pass files are not in the repo)
-* Tools are ready and stay in: `smgbake.GUNS['mp40_mp18']` (row from `EXTRA_ROWS`: its hands row lives in
-  anims_shared.txt; side drum `well=(0,-1,0)`, `out_rel=12`, `in_rel=44`, right-hand cock on the MP40's sound frames
-  55-61, hook fdir (0.8,-0.5,-0.3) / pdir (-0.3,-0.6,0.75) = wrist at 93 % of the arm, no IK clamp; the mirrored MP40
-  hook clamps at 106 %), `smggun.OWN['mp40_mp18']` on the default pull frames, `rows_extra()` writes the shared row
-  into `rows_extra.json` `shared`, `mkov_smg.py` patches the pak's own anims_shared.txt into the overlay (never a
-  staged copy) and takes `--extra <dir>` (the approved skin: `..\..\mp18_skin_2026-10-12\assets`).
-* Rebuild: `python ../tools/smggun.py mp40_mp18 . && python ../tools/smgbake.py mp40_mp18 . && python ../tools/stage_rows.py`.
-* Seen offline in that first pass (why it was taken out): the left hand goes to the drum OPEN, fingers splayed (the
-  retail approach frames); the right hand rises beside the gun flat, fingers straight up (`fing='aim'` + curl -0.8
-  opens the grip too far - it needs a hooked pose of its own); the magazine actions still push the gun DOWN / up
-  (`smg_mag_*` are for a magazine under the gun: a side drum needs side / roll actions and its weight in the roll).
-  Offline box: rounds left 3.1 % (one frame), empty 6.6 %.
-* A fact for the user's rule 1: the MP18's handle rests FORWARD when the gun is dry, on the right, 4.6 deg under and
-  5.7 deg right of the sight line - inside the centre box (3.5-3.8 % offline) before any hand moves. Decision needed:
-  count the dry gun as the reference for an EMPTY reload, or accept it.
-* Aim view with the approved skin (`evidence/mp18_aim_new_skin_se2.jpg`): the sheets load (dark blued steel, no flat
-  brown). The receiver's rear is a large flat dark face low in the centre, 31 % of the screen wide: the eye is only
-  8.34 u behind the rear sight (probe `relief`; the MP40 has 13.35). First thing to try: `relief` in
-  `sights_override.json` for `mp40_mp18` (the rig clamps the move at +4 u = 12.3) via `--set "set
-  cg_adsRigReliefBias 4"` in a `sdemo` run, then judge the picture.
-  TRIED (run se3, probe relief 12.34 u, `evidence/mp18_aim_relief_se2_se3.jpg`): the flat face becomes a readable
-  receiver end with the wooden stock under it, about two thirds the size - clearly better; the receiver's top then
-  reaches the bottom edge of the centre box. Not staged (it is `"mp40_mp18": {"relief": 12.3}` in
-  `sights_override.json` + its header row; the user should see the picture first).
-* SWAY, before any MP18 reload is judged (`swayoff.py mp40_mp18 0,2,4`, settled aim alone, worst pair of sway
-  states): 7.7 % as released, 5.4 % at +2 u, **4.0 % at +4 u** (from rest 2.3 / 1.1 / 0.7 %). Its rear sight stands
-  only 0.2-0.3 u over the receiver top just behind it (`topprof.py`), and the magazine housing crosses the box: with
-  sway on the MP18 will NOT pass by a relief alone - it needs the silenced MP40's cure as well (taller sights,
-  `sightraise.py`), offline first.
+Aimed, EMPTY (`coopr_mp40_mp18_reload_empty_ads`, 76 frames):
+1. f2-8 the left hand leaves the aim grip LOW and to the left (waypoint `via`, fingers closed), comes up to the drum from
+   below-left and closes on it (`magmix` 0.55: the pack clip's spread fingers closed half way to the aim grip);
+2. f13-17 the drum is dragged out along the raked housing (`well` (-0.6, -0.8, 0)): the gun is pulled LEFT (side 0.2 u)
+   and cants toward the pull (roll 1.2 deg), swings back as the drum comes free; f40-44 the new drum is driven home: the
+   gun is pushed RIGHT and forward and cants the other way (`smg_side_*`, class smg; next to no drop: 0.19 u, the muzzle
+   sag while the hand is away is 0.9 deg with `shoulder` 0.5);
+3. the left hand KEEPS HOLD of the seated drum (f44-63) while the firing hand turns into a hook right beside the grip
+   (f43-48), goes up to the END of the handle bar (f55: index over the bar, second phalanx down its front face - hook
+   `grab`, the hand = the rigid fit to three index joints), pulls it back to the sear (f55-61, gentle start), lets go
+   (f63), goes home and turns back last (f70-74); the left hand returns to its grip (f63-71).
+Aimed, rounds left (`..._reload_ads`): 1 and 2, a tug outward on the seated drum, home. No pull.
+Hip: rounds left = the pack clip to the seat, then its end pose (no mimed cock); empty = that + the same firing hand
+(hook pose + `grab`) on the gun clip's own curve.
 
-**Next, in this order.** (a) MP18: the three hand faults above, the relief, then engine + GIFs. (b) Thompson family,
-Sten (support hand stays on the magazine in the aim), PPSh, grease guns (cover + bolt to build), then the three
-out-of-reach guns with a lowered work pose (section 3). Before judging any other gun with sway on, run
+| stance (run se6, sway on) | rounds left | empty (dry-gun reference) | settled aim alone | back on the aim |
+|---|---|---|---|---|
+| stand | 0.5 % | 1.2 % | 0.2 % | 0.04-0.06 deg |
+| crouch / prone | 0.2 / 0.3 % | 0.4 / 0.4 % | 0.2 / 0.0 % | 0.06 |
+| lean left / right | 1.0 / 0.8 % | 0.4 / 0.5 % | 0.2 / 0.4 % | 0.06 |
+| crouch + lean left / right | 0.7 / 0.5 % | 0.3 / 0.7 % | 0.3 / 0.2 % | 0.06 |
+| braced | 0.2 % | 0.2 % | 0.1 % | 0.05 |
+
+Offline (every clip frame, drum drawn): 0.2 % both. Looked at: all eight stances on the sheets, twelve full-size engine
+frames of the empty reload (`evidence/mp18_reload_aimed_empty_frames_se6.jpg`), the four GIFs decoded.
+Weak points seen: the firing hand holds the handle at its very END (thumb and index around the bar's tip - further in,
+the fingers over the bar stand in the centre box while the handle is forward); the left hand's index lies along the
+drum's rear face as in the pack clip; in the full-frame GIFs (440 px) the hands are small - the frame sheet shows them;
+the hip clips were looked at only on the decode sheet and one offline sheet; 0.04-0.06 deg at the row's end (engine item).
+Not listened to. Not run: break-off mid-reload for this gun, an AI with it.
+
+### Three things the next gun needs to know (all cost a run or more here)
+
+1. **A firing hand that leaves the grip moves the GUN between the clip's keys** (bug-3659). The weapon tag hangs on that
+   hand; the bake counter-keys it on the 30 Hz keys only. Run se5: the gun jumped on every other 16 ms frame (0.64 u /
+   1.4 deg at the half-way points; 2-10 % of the box) and the offline tools - integer frames - saw nothing.
+   `python ../tools/midframe.py <clip.skc>` prints it; under about 0.1 u / 0.1 deg it is not seen. Cure in the bake: turn
+   the hand beside the grip, travel without turning, start the pull gently (`pull_soft` in smggun OWN, shared with
+   smgbake's `pull_u`), give the turn frames. Applies to every `cock='R'` gun (Sten, M1A1 remodel) and to bake_hip_right.
+2. **gunphys runs with hand=-1 in this lane: roll and side of every event are reversed** (bug-3660). Write a new action
+   as it is seen and reverse it under the table, as `smg_side_*` does; check with the SB_TRACE print or the baked tag.
+3. **Root-frame guns** (sights.json `frame_used: root` - the Breakthrough / pack meshes): the rig reads F_root / R_root
+   (bug-3662), and a prop that is a copy of such a gun's skeleton has to be added to `gungeo.root_skds()` or the offline
+   looks draw it 2-3 u off (bug-3661). `topprof.py` reads F / R against root-frame geometry for such a gun: its angles
+   are off by the frame offset.
+
+Also new: an EMPTY reload is measured against the DRY gun's own pose as well as the cocked aim (coordinator's decision 3,
+bug-3665): `smgbake --box` does it for `*_empty`, `measure_run.py` for every E capture (`--nodry` = off; it prints how
+much the dry mask adds - after a long burst that includes lingering smoke, so read it next to the offline figure).
+`run_smg.py --parts sdemol` (lower-case L) = rounds left in EVERY stance of `--sstances`; `tpc` = close third-person
+stills (the camera cvars do not frame the gun well, bug-3666: crop and enlarge). `evid.py <run> <gun key> <name> <sheet>
+--stances` = the four full-frame GIFs + stance sheets + one decode sheet. `smgbake --cu out.jpg --cuhand L|R --cam f,l,u`
+= a close look at one hand.
+
+### Thompson family - surveyed this session, NOT started (five meshes, three techniques)
+
+| tik(s) | mesh | handle | gun clip, magazine hidden | note |
+|---|---|---|---|---|
+| thompsonsmg, thompsonsmg_gold | `ThompsonSMG/ThompsonSMG.skd` | none (one bone) | 71 fr, f9-47 | add a handle on the RIGHT (the M1A1's place), firing hand, `grab` |
+| thompsonsmg_tommy1928d | `coop_tommy1928d/ThompsonSMG.skd` | none | 71 fr, f24-58 (its own prop window f22-60) | its own mesh and timing |
+| thompson50 | `Thompson/Thompson50.skd` | `Bolt`, TOP knob, rests back, +5.05 forward | 84 fr, f26-58 | drum; group xw_thompson50; the knob is ON the sight line |
+| thompsonsmg_tommy28 | `coop_tommy28/ThompsonSMG.skd` | `Bolt`, top knob | 84 fr x 0.032, f9-47 | as the 50rd |
+| thompsonsmg_m1a1dk | `coop_m1a1dk/thompson.skd` | `chamber`, right, forward x 3.2, travel 6.1 | 71 fr, f9-47 | firing hand reaches (75 %) |
+
+Hands row `thompson_reload` = `viewmodel/smg/reload_tommy_stand.skc`, 84 frames; the left hand is away f1-77 (pouch at
+f28), the right never leaves the grip; server prop `models/ammo/thompson_clip.tik` on tag_weapon_left f8-46; aim pose
+`thompson_charge` = `viewmodel/idle_tommy_stand.skc` (support hand on the fore-grip, 0.3 u from the hip place: nothing to
+re-pose). `prop_qa.attach_windows(row, frames, frametime)` gives the prop window of any row (sten 12-43, ppsh 44-60).
+A TOP knob on the sight line cannot be worked on the sights: lowered work pose (the standard's second route).
+
+**Next, in this order.** (a) Thompson family (start with the retail mesh: `smggun.GUNS` entry with a right-side handle,
+`smgbake.GUNS['thompson']` base entry, then the remodel as `cock='R'` + `grab`, then the top-knob pair with a work
+pose), Sten (support hand stays on the magazine in the aim), PPSh, grease guns (cover + bolt to build), then the three
+out-of-reach guns with a lowered work pose (section 3). Before judging any gun with sway on, run
 `python ../tools/swayoff.py <gun>` (needs a `smgbake.GUNS` entry): a gun whose settled aim alone is over about 2 %
-there cannot pass any reload, and the cure is in its sight height / framing, not in the clip.
+there cannot pass any reload - `sighttry.py` finds the raise. Run `midframe.py` on every clip with a moving firing hand.
+
+### Silenced MP40 with sway on - what was wrong, what was done (run se1; unchanged facts)
+
+Aim sway + breath are a TRANSLATION of the whole first-person rig (`cg_view.c`: sway +-0.10 u sideways, +-0.07 u up /
+down; breath +-0.105 u up / down, +-0.04 u sideways while aiming), so a part moves on screen by 572 px x shift /
+distance from the eye. On `mp40silenced.skd` the rear leaf stood 0.3-0.45 u over the receiver's rear (retail MP40:
+0.7 u) and the receiver is 3.2 u wide (retail 2.1): its top was INSIDE the centre box, 5-7 u from the eye. Settled aim
+alone, offline, worst pair of sway states: 6.3 % (MP40 1.8 %). Eye relief -3 .. +4 u: 5.5-3.6 %, never under the bar;
+lowering the rig works but takes the sights off the eye line; both sights 0.45 u taller: 1.8 % (= the MP40).
+`swaybox.py` compares against the reference shifted to each frame's background (the unshifted figures of sd1 are void).
+Per-shot handle travel looked at in the engine: Silenced MP40 (se1), MP40 R2 (se2) - back at rest, forward and back on
+every shot, forward after the last round (`evidence/mp40silenced_handle_per_shot_se1.jpg`, `mp40r2_handle_per_shot_se2.jpg`).
 
 ## 1. Aim poses (`tools/smgpose.py`, rows by `tools/stage_rows.py`)
 
@@ -230,7 +252,7 @@ All of them fire from an open bolt: handle back when ready, forward when dry, co
 |---|---|---|---|---|
 | Silenced MP40 (`mp40silenced.skd`; since se1 with both sights 0.45 u taller, see the handover) | built, run sc2 + sc6, **se1** | a real knob on bone `eject`, left; the retail clips slam it back and forward at the END of every reload | sc6 (aim sway off): rounds left 0.0 %, empty 0.3-0.8 % in stand / crouch / prone / leans / crouch-leans / braced; back on the aim 0.06 deg | **se1, sway ON: 0.0-1.0 % in all eight stances** (it was 2.4-4.0 % in three stances of sc2 with the pack's low sights). Hip, empty: the hand closes before the reach since sd2; at the end of the aimed pull the index sits under the knob's stem. Per-shot knob travel looked at (se1) |
 | MP40 R2 (`coop_mp40r2`) | built, run sc4 | `Bone1`, left; the pack's clips already rest it back (its reload = the EMPTY story) | sc4: rounds left 0.1 %, empty 0.0-0.7 % in all eight; back on the aim 0.06 deg (braced 0.02) | hip, empty: the hand closes before the reach since sd2. Per-shot travel looked at (se2). The mesh is near-black in the offline renders (its texture), fine in the engine |
-| MP18 (`coop_mp18`) | not built | `Bone2`, right, forward x 8.3, travel 8.7; side drum; its own first-person clip cocks with the RIGHT hand f52-58, 3.7 u ahead of the handle; gun clip returns the handle forward | - | next (see the handover) |
+| MP18 (`coop_mp18`; staged mesh: sights 0.3 u taller, eye relief 12.34 u) | built, run **se6** | `Bone2`, a bar on the right, forward x 8.3, travel 8.7 (ends about 1.3 u right of the bolt's centre); side drum; the pack's own first-person clip cocks with the RIGHT hand f52-58, 3.7 u ahead of the handle | se6, sway ON: rounds left 0.2-1.0 %, empty 0.2-1.2 % (dry-gun reference) in all eight stances; back on the aim 0.04-0.06 deg | the firing hand holds the bar at its end; break-off and AI not run (see the handover) |
 | Silenced PPS-43 (`ppsh43silenced.skd`) | tried offline, NOT staged | `PPS43_lever` (20 vertices, right, x 9.6-10.6) hangs on the main bone -> split works; `eject` moves nothing | - | out of BOTH hands' reach from the aim (below) |
 | Grease gun + silenced (`greaser.skd`) | not built | `Bone1` moves 9.4 u in the reload but NO vertex follows it; the cover is a closed surface (`Mesh_MultiAttached4`, on the top-left as modelled), no port, no bolt | - | cover on a hinge bone + a port and bolt to add |
 | Thompson M1A1 / gold / 1928d (`ThompsonSMG.skd`) | not built | none (one bone) | - | add a handle (as the MP40) |
@@ -264,7 +286,8 @@ Ready in the tools, exercised only offline: `cock='R'` (aimed: the left hand ret
 hand hooks, pulls, returns - mirrored hook and mirrored `smg_*_r` physics; hip: `bake_hip_right`, built on the
 rounds-left clip), `handle='R'` + `_UNDER`, `hip_built` (a built left-hand hook over the top at the hip).
 
-Evidence: `evidence/mp40silenced_reload_{aimed,hip}_{roundsleft,empty}_se1.gif` (current; the `_sc6` / `_sd2` ones show the pack's low sights), `mp40silenced_reload_aimed_empty_stances_se1.jpg`, `mp40silenced_aim_before_after_se1.jpg`;
+Evidence: `evidence/mp40silenced_reload_{aimed,hip}_{roundsleft,empty}_se4.gif` (current, full frame; the `_sc6` / `_sd2` ones show the pack's low sights), `mp40silenced_reload_aimed_{empty,roundsleft}_stances_se4.jpg`, `mp40silenced_aim_before_after_se1.jpg`, `mp40silenced_third_person_se4.jpg`;
+`evidence/mp18_reload_{aimed,hip}_{roundsleft,empty}_se6.gif`, `mp18_reload_aimed_{empty,roundsleft}_stances_se6.jpg`, `mp18_reload_aimed_empty_frames_se6.jpg`, `mp18_aim_before_after_se6.jpg`, `mp18_third_person_se5.jpg`;
 `evidence/mp40r2_reload_{aimed,hip}_{roundsleft,empty}_sc4.gif` (hip empty: `_sd2`), `mp40r2_reload_aimed_empty_stances_sc4.jpg`,
 `mp40r2_cock_closeup_sc4.jpg`. All GIFs decoded (gifsheet.py) and looked at; every stance looked at on its sheet.
 
@@ -286,7 +309,7 @@ looks from the right), `stage_rows.py` (fps_anims_smg.txt = released fixes-pak c
 `measure_run.py` (every aimed capture of a gun in a run -> `reload_<run>_<gun>.json`, `--status` into
 `coverage_status.json`), `reloadbox.py` (one capture; `--dump` = frames over the bar + the fastest sight-line steps),
 `stancesheet.py` (every stance of a gun on one sheet), `capcrop.py` (full-size crops of capture frames),
-`brkmarks.py` (what the rig did through a break-off), `endpose.py` (is a clip's end the aim pose), `swaybox.py` (the settled aim's own box cover with sway on, engine), `swayoff.py` (the same offline, for every sway state and eye relief), `topprof.py` (a mesh's top behind the rear sight as the eye sees it), `sightraise.py` (taller sights on a staged skd), `patch_sights_row.py` (that gun's row in the worktree's cg_adssights.h), `gifrows.py`, `eyezoom.py` (the eye's picture offline, cropped, at game size),
+`brkmarks.py` (what the rig did through a break-off), `endpose.py` (is a clip's end the aim pose), `swaybox.py` (the settled aim's own box cover with sway on, engine), `swayoff.py` (the same offline, for every sway state and eye relief), `topprof.py` (a mesh's top behind the rear sight as the eye sees it), `sightraise.py` (taller sights on a staged skd), `sightshape.py` (a thin raised leaf into a block, x only), `sighttry.py` (offline search for the smallest raise that passes with sway on), `midframe.py` (does the gun stay put BETWEEN a clip's keys), `evid.py` (a gun's GIFs + sheets from one run), `patch_sights_row.py` (that gun's row in the worktree's cg_adssights.h), `gifrows.py`, `eyezoom.py` (the eye's picture offline, cropped, at game size),
 `reachcheck.py`, `gunsurvey.py`, `handtrace.py`, `mapents.py` (player start + actors of a map: where an AI can be
 looked at), `aimpair.py`, `sideview.py` / `eyepair.py` / `gunside.py` (offline looks), `status_merge.py` /
 `status_reload.py`, `buglog_add.py`.
