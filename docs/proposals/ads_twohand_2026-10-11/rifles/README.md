@@ -1,3 +1,9 @@
+> **COORDINATOR NOTE 2026-10-13 (user decision) - FIRST JOBS when this lane resumes:**
+> 1. Own-body crossing of the centre box during the full aimed reloads: do NOT speed up the first / last frames (the user wants the weight kept).
+>    Fix the PATH: give the Lee-Enfield the Mosin's straighter drop under the box and return (Enfield reads 3-6 % in five stances, the Mosin <= 1 %);
+>    apply the same small path touch-up to Kar98 / Springfield / Garand (2.3-2.9 % in 1-3 stances). If one needs more than a small adjustment, accept it as it is.
+> 2. M1 Carbine aimed reload (the user noticed it is missing), then SVT-40, Johnson, Carcano, De Lisle, Arisaka, kar98_g98, enfield_p14, the scoped A/B sample.
+
 # RIFLE lane - aimed (ADS) first-person animations
 
 Lane of `docs/proposals/ads_twohand_2026-10-11` (read the HANDOVER at the top of `../README.md` first: the standard and
