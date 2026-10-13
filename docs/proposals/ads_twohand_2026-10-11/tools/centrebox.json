@@ -84,15 +84,15 @@
   "xmax": 0.3
  },
  "m10_revolver_empty": {
-  "base": 14.7,
+  "base": 14.0,
   "dev": 11.04,
   "end": 0.0,
   "frames": 480,
-  "max": 14.7,
+  "max": 14.9,
   "over": 0.0,
-  "run": "pa2",
+  "run": "pa5",
   "xfr": 0.0,
-  "xmax": 0.4
+  "xmax": 0.7
  },
  "nagantrev": {
   "base": 11.8,

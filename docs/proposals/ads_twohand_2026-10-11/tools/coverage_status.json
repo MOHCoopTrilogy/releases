@@ -341,7 +341,7 @@
   },
   "lowered": true,
   "note": "ts1 / tu1: swing-out reload with a real cylinder face (chamber mouths, case heads hidden while empty), readable case dump, 6 rounds, stand / crouch / prone / lean, switch + sprint interruptions; open: a cartridge flies off when the loop is cut by a weapon switch, ejector rod does not move, braced",
-  "qa": "pa2: GIF played back (dump in frame, cases about 0.2 s), stance sheet looked at; braced and vehicle seats not run",
+  "qa": "pa5: GIF played back (dump in frame, heads appear round by round), stance sheet tn2 looked at; braced and vehicle seats not run; third person and break-off with the heads not checked",
   "reload": {
    "crouch": {
     "dev": 11.04,
@@ -385,9 +385,9 @@
    }
   },
   "rule": {
-   "action": "no",
+   "action": "yes",
    "reacts": "yes",
-   "run": "tn2, pa2 (emptied gun + 2-round reloads, 5 stances); action = no: the chambers do not fill one by one yet",
+   "run": "tn2 (5 stances), pa5 (emptied gun; chambers fill one by one, cgame_adsnext10)",
    "target": "yes"
   }
  },

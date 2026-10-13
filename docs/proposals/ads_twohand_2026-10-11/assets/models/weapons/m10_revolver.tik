@@ -27,6 +27,14 @@ setup
 	surface Cylinder2 shader coop_m10_cyopen1
 	surface coop_m10_face shader coop_m10_face
 	surface coop_m10_heads shader coop_m10_heads
+	// HZM coop [revolver chambers 2026-10-12] one head per chamber: the cgame draws coop_round<N> iff N <= rounds in the
+	// gun (m10rounds.py); the all-six surface is kept in the mesh but never drawn (init: +nodraw)
+	surface coop_round1 shader coop_m10_heads
+	surface coop_round2 shader coop_m10_heads
+	surface coop_round3 shader coop_m10_heads
+	surface coop_round4 shader coop_m10_heads
+	surface coop_round5 shader coop_m10_heads
+	surface coop_round6 shader coop_m10_heads
 }
 $define sounddir sound/weapons
 
@@ -34,6 +42,7 @@ init
 {
 	server
 	{
+		surface coop_m10_heads +nodraw	// HZM coop [revolver chambers] replaced by coop_round1..6
 	//========================================//
 	//		WEAPON NAME		  //
 	//========================================//
@@ -176,7 +185,6 @@ animations
 	{
 		server
 		{
-			21 surface coop_m10_heads +nodraw	// the cylinder is emptied
 		}
 		client
 		{
@@ -203,7 +211,6 @@ animations
 	{
 		server
 		{
-			first surface coop_m10_heads -nodraw	// loaded
 			last idle
 		}
 		client

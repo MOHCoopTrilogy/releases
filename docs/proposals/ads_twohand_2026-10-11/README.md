@@ -1,8 +1,8 @@
 # HANDOVER (2026-10-12 late evening, PISTOL lane) - read this first, the rest of the file is the history
 
-**State: A, B and C of the list are done and committed (engine `ads-next` 191f1879 = test cgame `cgame_adsnext9`).
+**State: A, B and C of the list are done and committed (engine `ads-next` d2a6d31b = test cgame `cgame_adsnext10`).
 D and E are NOT started.** Nothing is in the mod tree or the fixes pak; all of it is staged here.
-RUN IDS: use the prefix `pa` (pa1, pa2 used). `boot_session` deletes an existing run folder - ids tm1-tm3 and tn1 of
+RUN IDS: use the prefix `pa` (pa1-pa5 used; pa6 is next). `boot_session` deletes an existing run folder - ids tm1-tm3 and tn1 of
 earlier sessions were lost that way on 2026-10-12; `run_2h.py` / `run_break2.py` now refuse an existing id.
 The work is split into four lanes since 2026-10-12: this folder's root is the PISTOL lane (pistols + revolvers) and it
 OWNS `tools/` and `coverage.md`; `rifles/`, `smg/`, `heavy/` are the other lanes (own harness copies, own
@@ -25,7 +25,7 @@ cgame_adsnext8 on. `run_2h.py --parts reloads --rstances prone --rhip --revery 3
 | gun | change | engine (emptied gun, aimed) | evidence |
 |---|---|---|---|
 | Webley | open and close states 0.53 s -> 0.8 s, HIP AND AIM (`tools/webslow.py`, then `revbake.py webley_hip / webley_ads`): the barrel tips over 12 frames (was 4), shuts over 10; hands re-keyed, sounds / cases moved with it. A Webley reload is 0.27 s longer at each end. | box max 0.3 %, 0.00 deg, 5 stances (tn1) | `evidence/webley_reload_aimed_c.gif` |
-| S&W M10 | dump pose raised 1.4 u and flattened (cylinder face fully in frame), cases thrown up and left | box max 0.4 %, 0.00 deg, 5 stances (tn2, pa2) | `evidence/m10_reload_aimed_c.gif` |
+| S&W M10 | dump pose raised 1.4 u and flattened (cylinder face fully in frame), cases thrown up and left; chambers fill one by one | box max 0.7 %, 0.00 deg (pa5), 5 stances (tn2) | `evidence/m10_reload_aimed_c.gif` |
 | Nagant | worked 1.8 u higher (gate 5.6 u under the eye line - the limit of the 2 % bar), feeding hand comes from below, lower support elbow; in prone the gun and both hands are in frame now | box max 0.3 %, 0.00 deg, 5 stances (tn3) | `evidence/nagant_reload_aimed_c.gif`, `revolver_stances_tn.jpg` |
 
 M10 cases "vanishing near the top of their arc": they do not - the evidence GIF's crop (x from 240) cut them off on
@@ -34,13 +34,16 @@ the left. Full frames of run pa2: out at f276, top of the arc f282, out of the b
 re-cut (crop from x 140) so the arc is in it. Capture frames are 16 ms; a GIF frame of dgif `:3` is 48 ms.
 Still weak, seen in playback: the Nagant's left forearm is still large for
 about 0.1 s at the hand-over; the Webley hip open / close were looked at only at coarse scale.
-NOT DONE - M10 chambers filling one by one. Design (about half a day): (1) `m10face.py` appends six surfaces
-`coop_round1..6` instead of the one `coop_m10_heads` (round k on the chamber k steps behind the feed chamber; round 6 on
-the feed chamber); (2) cgame, in the held-gun block of `cg_modelanim.c` (where `reload_end_ads` is chosen): a surface
-named `coop_round<N>` is drawn iff N <= STAT_CLIPAMMO - but latched, so a new round shows when the loop clip restarts;
-(3) `m10build.py`: the loop clip spins `coop_cyl` one chamber over its last 4 frames (the pattern is then continuous
-across the restart); (4) the tik's `surface coop_m10_heads +/-nodraw` lines go. The Webley / Nagant could use the same
-rule. Gun frame axes for particle rows: x forward, y right, z DOWN.
+M10 chambers fill ONE BY ONE now (run pa5, cgame `cgame_adsnext10` = ads-next d2a6d31b): `tools/m10rounds.py` (after
+m10face / m10build) appends six surfaces `coop_round1..6` to the staged skd (round k on the chamber k index steps
+behind the feed chamber, round 6 on the feed chamber), makes the loop clip turn the cylinder one chamber over its last
+four frames, and fixes the tik (the old all-six surface is hidden in `init`: a surface FLAG in `setup` is ignored).
+cgame (`cg_modelanim.c`, held-gun block; applied after `model.surfaces` is copied from the entity state): a
+`coop_round<N>` surface is drawn iff N <= rounds in the gun - all of them outside a reload and until an emptied gun's
+cases are dumped (0.70 s into the opening clip), latched in the loop so the new head shows at the loop's restart.
+`coop_vmRoundSurfaces 0` = off. The Webley / Nagant could get the same surfaces. Not checked: third-person view
+(another player sees all six heads - the rule is local), the break-off states with the heads.
+Gun frame axes for particle rows: x forward, y right, z DOWN.
 
 bug-3597 (does the rig-solve target freeze mid-recoil on an emptied gun?): measured, NOT confirmed - see the buglog
 entry and `cg_view.c` CG_AdsRigSolve; `cg_adsSightDebug 2` prints `ADSSETTLE`, `tools/sightend.py <run>` prints the
