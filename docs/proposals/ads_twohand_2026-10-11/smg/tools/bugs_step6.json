@@ -1,0 +1,74 @@
+[
+ {
+  "error_message": "Thompson aimed reload reads 2-12 % of the centre box 'beyond the aim' with aim sway on although the same clips read 0.2-1.5 % with sway off (bug-3682): the settled aim ALONE is at 1-9 % against a six-frame mask of itself",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/reloadbox.py",
+  "root_cause": "The lane's reference was the aim's mask from six settled frames. Sway and breath translate the whole first-person rig; a gun drawn close to the eye (Thompson: rear aperture and receiver top cover half the box) covers a different part of the box from one moment to the next, so any frame taken at another sway phase counts as cover.",
+  "fix": "User decision 2026-10-13: the Thompson's aim framing is NOT changed; a reload is judged against the settled aim's SWAY ENVELOPE (everything the settled aim covers through a whole sway period), under 2 % beyond it in every frame. Implemented once for all lanes: docs/proposals/ads_twohand_2026-10-11/tools/swayenv.py (the heavy lane's boxeng.py --sway lines as a function; boxeng.py itself untouched), reloadbox.py prints / stores env_max, env_after40, env_cover, env_tail; run_smg.py --tail 360:4 (smg_block.py SMG_TAIL, mark `DEMO settle`) captures the period; status_reload.py passes on the envelope figure when the tail was captured. Run se10 (Thompson, eight stances, sway on): rounds left 0.0-1.5 %, emptied 0.1-2.0 % (lean right 2.7 % in ONE frame, the 41st after the last shot). Guns passed earlier with the stricter six-frame reading stay passed.",
+  "tags": ["ads", "smg", "thompson", "sway", "centre-box", "measure", "envelope", "standard"],
+  "related_bugs": ["bug-3682", "bug-3641"]
+ },
+ {
+  "error_message": "Emptied Thompson, aimed reload: 'dry-gun reference: its own parts add 19-73 % of the box to the aim mask' - with that reference every stance read under 1.9 %, without it 2-29 % in the first 40 capture frames",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/reloadbox.py",
+  "root_cause": "The dry-gun mask (bug-3665) is taken from three frames 8 frames into the reload of an emptied gun. After 30 rounds those frames hold the last shots' smoke and a view that is still pitching back down 8 degrees (the wall scrolls behind the gun), so the 'dry gun' mask swallowed most of the box and the measure could no longer fail. Looked at (run se10, lean right, capture f246-285): the gun and hands are where they are in the rounds-left capture; what differs is smoke, cases and the moving wall.",
+  "fix": "reloadbox.py: for an emptied gun the envelope figure is also taken after the first 40 capture frames (0.64 s) = the heavy lane's rule (env_after40, env_over_after40, env_first_over); status_reload.py uses it. measure_run.py --nodry is the reading to use for a gun whose dry pose does not differ inside the box (Thompson: the knob is outside it); the dry-gun reference stays for the MP18 (its dry handle bar lies in the box). Both figures are in the handover.",
+  "tags": ["ads", "smg", "measure", "empty-reload", "smoke", "dry-gun", "thompson"],
+  "related_bugs": ["bug-3665"]
+ },
+ {
+  "error_message": "Thompson (retail mesh): 'a 0.42 u square knob' - and the texture still paints a knob ring at the FRONT of the slot while the real knob rests at the back",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/stage_slot.py",
+  "root_cause": "The added handle was add_part's box; the retail sheet (and every finish's own sheet: 10 files for 12 tiks) paints the knob as a ring at the slot's front end.",
+  "fix": "smggun.py round_mesh (a chamfered cylinder through add_part.add, its box_mesh swapped for the call): knob 0.8 u across, 0.7 u out of the wall, own bone coop_bolt as before. stage_slot.py: on STAGED copies of the ten sheets the slot's own rear end, mirrored, is laid over the ring (UV strip of the right wall: u = 0.7875 - 0.04369 (x + 8.47), v = 0.6939 + 0.0439 (z + 4.43)), blended over 1.1 u; .dds written DXT1 with mipmaps by the weapon-HD encoder; the 6.5 MB .tga twin of the HD sheet is not staged (--all writes it). Side still evidence/thompson_mesh_round_knob_slot_repainted_side_se10.jpg.",
+  "tags": ["ads", "smg", "thompson", "mesh", "texture", "knob", "staged"],
+  "related_bugs": ["bug-3685"]
+ },
+ {
+  "error_message": "Thompson aimed empty reload: the sight picture swells for 0.15 s at the pull; the magazine swap is almost entirely under the frame",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py",
+  "root_cause": "The MP40's pull reaction (0.9 u back into the shoulder = toward the eye) on a gun aimed a few units from the eye; the MP40's show points for the magazine are under the frame in the Thompson's closer aim.",
+  "fix": "Per-gun `pullk` = (all, back): the handle events scaled, the step toward the eye once more (Thompson 0.6, 0.45: 0.24 u back, cant and dip kept) and per-gun `show` points (out2 / out3 / in1 / in1b / in2, camera frame). Run se10: the magazine is in view at the lower left f15-22 and f31-38, never in the centre box.",
+  "tags": ["ads", "smg", "thompson", "gunphys", "magazine", "choreography"],
+  "related_bugs": []
+ },
+ {
+  "error_message": "User: 'Mp18 is gonna need some more love on the reload anims. Also, was that gun not held by the mag?' - in the hip idle and the settled aim no support hand is visible on the MP18",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/sidehold.py",
+  "root_cause": "The MP18 is a finish of the MP40 ('MP40 (MP18)', prefix mp40): its idle / aim / fire hands hold the MP40's magazine housing UNDER the gun. This mesh has none there (side drum on a raked neck), so the hand sat under the fore-end out of sight. Only reload rows could be per weapon (coopr_<key>_reload...).",
+  "fix": "cgame (ads-smg-next): the coopr_<weapon key>_<suffix> rule for EVERY view animation (cg_viewmodelanim.c, cvar coop_vmPerWeaponRows 1). sidehold.py: the Sten's own retail hold (place on the magazine, rotation, fingers) carried onto the drum's neck (rake 34 deg, 0.85 of the way to the drum); rows coopr_mp40_mp18_idle / charge / fire / fire_secondary / pullout on copies of the mp40 clips with ONLY the left arm changed (asserted). The reloads start and end in that hold (smgbake `hold`, the drum prop rigid in the holding hand: hold_prop), the hip rows are the same story on the hip pose (hip_proc). Third person is the server's animation and is not changed.",
+  "tags": ["ads", "smg", "mp18", "hold", "per-weapon-rows", "cgame", "sten"],
+  "related_bugs": ["bug-3662"]
+ },
+ {
+  "error_message": "The per-weapon idle row coopr_mp40_mp18_idle1 was never shown (run se11: the hip idle still one-handed while the aim row worked)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/sidehold.py",
+  "root_cause": "The engine asks for '<row>_idle'. mp40_idle1..4 answer to 'mp40_idle' only because rows with `weight` are random variants (TAF_RANDOM) whose trailing digits the loader strips (tiki_files.cpp); a row without `weight` keeps its digit, so 'coopr_mp40_mp18_idle1' is an alias nobody asks for.",
+  "fix": "The row is named coopr_mp40_mp18_idle (no digit). Rule: a per-weapon row carries exactly the suffix the engine composes (idle, charge, fire, ...), never a variant number unless it also carries `weight`.",
+  "tags": ["tiki", "alias", "random", "fps_anims", "per-weapon-rows", "mp18"],
+  "related_bugs": []
+ },
+ {
+  "error_message": "Coordinator on the MP18 (and seen on the Thompson in run se10): the firing hand going to the cocking handle is 'a large flat pale mitten entering from the right'",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py",
+  "root_cause": "The `grab` hook had the index's first phalanx pointing (0.62, -0.78, 0): the hand came from the RIGHT, side-on to the eye, ring and little finger only half folded.",
+  "fix": "_GRAB_BEHIND / _HOOK_BEHIND: the hand comes from BEHIND the handle (first phalanx (0.94, -0.12, -0.32): forward and a little up, over the handle's top; index and middle hooked down its front, ring and little finger folded): the eye sees the back of a closed hand end-on with two fingers over the bar (run se11 frames). The added flexion depends on the aim grip's own trigger-finger bend (+62 from the MP40 / Thompson grip, +40 from the Sten's): read the 'grab fit' print (SB_TRACE=0:0), under 0.1 u. MP18: index 1.0 u in from the bar's end so BOTH fingers are on it (at the end the middle finger hung in the air).",
+  "tags": ["ads", "smg", "hand-pose", "hook", "mp18", "sten", "thompson"],
+  "related_bugs": ["bug-3659"]
+ },
+ {
+  "error_message": "Sten: the reload sound's bolt clacks are at f71 and f74.5, the server ends the reload at f78 - an aimed pull on the sound leaves the firing hand 3 frames to get back on the grip",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smggun.py",
+  "root_cause": "The retail clip pulls the bolt with the LEFT hand at f68-72 and is simply cut by the server while that hand is still on its way back; in the aim the firing hand does it and carries the weapon tag (bug-3659: it must travel and turn slowly).",
+  "fix": "smggun `snd_tight`: the aimed EMPTY row (reload_ads_empty) plays the reload sound with f61-67 (0.2 s between the slap and the bolt) taken out, 10 ms crossfade (coop_sten_snd_reload_tight; the part taken out peaks at 9 % of the file's peak - not dead silence); the handle is pulled over f62-68, hand home f73-77. Rounds left: cut after the slap (snd_cut 61-66). Not listened to.",
+  "tags": ["ads", "smg", "sten", "sound", "timing"],
+  "related_bugs": []
+ },
+ {
+  "error_message": "A patch script written through a Git-Bash heredoc again: reloadbox.py got a TAB in its docstring and an unescaped apostrophe (SyntaxError); `cmake --build ... -- /m:4` built nothing (Git-Bash turned /m:4 into a path) and the OLD cgame.dll was copied as cgame_smg4",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/reloadbox.py",
+  "root_cause": "bug-3581 repeated: the heredoc collapses backslash escapes before Python sees them. MSYS path conversion rewrites a leading-slash MSBuild switch.",
+  "fix": "Patch scripts with the Write tool only (the heredoc ones of this session were re-checked with py_compile and by reading the lines). MSBuild switches after `--` in dash form: `cmake --build .cmake --config Release --target cgame -- -m:4 -v:m`; check the dll's time before copying it.",
+  "tags": ["tooling", "git-bash", "heredoc", "msbuild", "cgame", "repeat"],
+  "related_bugs": ["bug-3581"]
+ }
+]

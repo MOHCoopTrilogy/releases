@@ -5,6 +5,9 @@
 #   hip tags in __demohip__after. A reference frame without the first-person model is taken before the lower.
 SMG_HOLD = [175]        # frames the trigger is held to empty the gun (MP40: 32 rounds at 0.08 s = 160 frames of 16 ms)
 SMG_REL = [200]         # frames captured from the reload mark
+SMG_TAIL = [0, 4]       # --tail N[:step] (sway-on runs): the settled aim for N more game frames after the reload window,
+                        # every step-th captured, then 10 dense ones (the aim mask's own) - one whole sway / breath period
+                        # (5.7 s = 357 frames) for the sway ENVELOPE (reloadbox.py; the heavy lane's run_h.py --tail)
 
 
 def sdemo(sess, gun, case, ads=True, stance="stand"):
@@ -26,6 +29,11 @@ def sdemo(sess, gun, case, ads=True, stance="stand"):
             L += ["+attackprimary", "echo ^~^~^ DEMO fire %d" % i[0]] + A.frames(tag, 3, i) + ["-attackprimary"] + A.frames(tag, 22, i)
         L += A.frames(tag, 40, i)
         L += ["reload", "echo ^~^~^ DEMO reload %d" % i[0]] + A.frames(tag, SMG_REL[0], i)
+    if ads and SMG_TAIL[0]:
+        L += ["echo ^~^~^ DEMO settle %d" % i[0]]
+        for k in range(SMG_TAIL[0] // SMG_TAIL[1]):
+            L += A.frames(tag, 1, i) + ["wait 1", "wait 1"] * (SMG_TAIL[1] - 1)
+        L += A.frames(tag, 10, i)
     L += REF
     if ads:
         L += ["-button13", "echo ^~^~^ DEMO lower %d" % i[0]] + A.frames(tag, 40, i)

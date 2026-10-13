@@ -7,6 +7,10 @@
   [
    "thompson_reload",
    "viewmodel/smg/coop_thompson_reload_hip.skc"
+  ],
+  [
+   "sten_reload",
+   "viewmodel/sten/coop_sten_reload_hip.skc"
   ]
  ],
  "add": [
@@ -77,6 +81,54 @@
    "coopr_silenced_mp40_reload_ads"
   ],
   [
+   "thompson_reload_empty",
+   "viewmodel/smg/coop_thompson_reload_empty_hip.skc",
+   "0.1",
+   "thompson_reload"
+  ],
+  [
+   "thompson_reload_ads",
+   "viewmodel/smg/thompson_reload_ads.skc",
+   "0.1",
+   "thompson_reload_empty"
+  ],
+  [
+   "thompson_reload_empty_ads",
+   "viewmodel/smg/thompson_reload_empty_ads.skc",
+   "0.1",
+   "thompson_reload_ads"
+  ],
+  [
+   "coopr_mp40_mp18_idle",
+   "viewmodel/mp40/coop_mp40_mp18_idle.skc",
+   "0.25",
+   "mp40_idle1"
+  ],
+  [
+   "coopr_mp40_mp18_charge",
+   "viewmodel/mp40/coop_mp40_mp18_charge.skc",
+   "0.25",
+   "mp40_charge"
+  ],
+  [
+   "coopr_mp40_mp18_fire",
+   "viewmodel/mp40/coop_mp40_mp18_fire.skc",
+   "0.05",
+   "mp40_fire"
+  ],
+  [
+   "coopr_mp40_mp18_fire_secondary",
+   "viewmodel/mp40/coop_mp40_mp18_fire_secondary.skc",
+   "0.3",
+   "mp40_fire_secondary"
+  ],
+  [
+   "coopr_mp40_mp18_pullout",
+   "viewmodel/mp40/coop_mp40_mp18_pullout.skc",
+   "0.3",
+   "mp40_pullout"
+  ],
+  [
    "coopr_mp40_mp18_reload_empty",
    "viewmodel/mp40/coop_mp40_mp18_reload_empty_hip.skc",
    "0.1",
@@ -95,22 +147,22 @@
    "coopr_mp40_mp18_reload_ads"
   ],
   [
-   "thompson_reload_empty",
-   "viewmodel/smg/coop_thompson_reload_empty_hip.skc",
+   "sten_reload_empty",
+   "viewmodel/sten/coop_sten_reload_empty_hip.skc",
    "0.1",
-   "thompson_reload"
+   "sten_reload"
   ],
   [
-   "thompson_reload_ads",
-   "viewmodel/smg/thompson_reload_ads.skc",
+   "sten_reload_ads",
+   "viewmodel/sten/sten_reload_ads.skc",
    "0.1",
-   "thompson_reload_empty"
+   "sten_reload_empty"
   ],
   [
-   "thompson_reload_empty_ads",
-   "viewmodel/smg/thompson_reload_empty_ads.skc",
+   "sten_reload_empty_ads",
+   "viewmodel/sten/sten_reload_empty_ads.skc",
    "0.1",
-   "thompson_reload_ads"
+   "sten_reload_ads"
   ]
  ],
  "shared": [

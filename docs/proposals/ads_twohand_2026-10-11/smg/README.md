@@ -6,7 +6,164 @@ tree or the fixes pak. Engine: worktree `openmohaa-hzm-ads-smg`, branch `ads-smg
 generated rows of `cg_adssights.h`, see the handover; `cgame_smg3.dll` in `G:\mohaa-adsanim3\cgames` has both).
 Test game: `G:\mohaa-adsanim3` (owner adsanim3, port 12578).
 
-## HANDOVER (2026-10-13, runs se4 - se9) - read this first
+## HANDOVER (2026-10-13 night, runs se10 - se14) - read this first
+
+Engine: `ads-smg-next` is at **9ae4d1b0** = 7b4bc029 + ONE commit: per-weapon view rows for EVERY view animation
+(`coopr_<weapon key>_<suffix>`: idle, charge, fire ...; cvar `coop_vmPerWeaponRows`). Test build
+`G:\mohaa-adsanim3\cgames\cgame_smg4.dll` (smg3 = without it: the MP18's hold rows are then not shown).
+Run ids used: sa1-sd2, se1-se19 (se14 never ran: disk full). **Next: se20.** Build (Git-Bash): `cmake --build .cmake --config Release --target cgame -- -m:4 -v:m`
+(NOT `/m:4`: bug-3726 - check the dll's time before copying it).
+
+### The lane's measure from now on: AS PLAYED, against the settled aim's SWAY ENVELOPE (user, bug-3718)
+
+A reload may add under 2 % of the centre box beyond everything the settled aim covers through a whole sway period, in
+every frame. ONE implementation for all lanes: `..\tools\swayenv.py` (the heavy lane's `boxeng.py --sway` lines as a
+function; boxeng itself is untouched, it could import it). Here: `run_smg.py --tail 360:4` (the settled aim for one sway
+period after the reload window, mark `DEMO settle`), `reloadbox.py` / `measure_run.py` print `AS PLAYED: beyond the sway
+ENVELOPE` and store `env_max`, `env_cover`, `env_tail`; `status_reload.py` passes on it when the tail was captured.
+An EMPTIED gun starts its reload in its last shots' smoke with the view still pitching back: its figure is taken after
+the first 40 capture frames (0.64 s; `env_after40` = the heavy lane's rule, bug-3719). `measure_run.py --nodry` = without
+the dry-gun reference: use it for a gun whose dry pose does not differ INSIDE the box (Thompson) - after a 30-round burst
+that reference swallows 19-73 % of the box. Guns passed with the stricter six-frame reading stay passed.
+
+| gun | state |
+|---|---|
+| MP40, MP40 R2, Silenced MP40 | done, unchanged (below) |
+| Thompson, retail mesh (12 tiks) | **finished to the four decisions** - table below. The other four Thompson meshes are NOT built: **do not ship the Thompson rows before all five** |
+| MP18 | **REOPENED by the user and reworked with the Sten as one family** (held by the magazine neck; below) |
+| Sten | **built** (aimed + hip, open bolt; below) |
+| Thompson remodel / M1928 / 1928 Tommy / 50rd, PPSh, grease guns, PPS-43, Type 100, Moschetto | NOT started (order and facts: section 3 and the Thompson survey below) |
+
+### Thompson, retail mesh - the four decisions (runs se10, se12)
+
+1. **Measure**: the envelope (above); the aim framing is untouched.
+2. **Knob and slot** (bug-3720): a ROUND knob 0.8 u across standing 0.7 u out of the right wall (`smggun.round_mesh`, own bone
+   `coop_bolt` as before); the painted knob ring is gone from the slot's front on STAGED copies of all ten sheets the
+   twelve tiks read (`tools/stage_slot.py`: the slot's own rear end mirrored over the ring; `--preview`; the 6.5 MB .tga
+   twin of the HD .dds is not staged, `--all` writes it). `evidence/thompson_mesh_round_knob_slot_repainted_side_se10.jpg`.
+3. **Pull** (bug-3721): `pullk=(0.6, 0.45)` - the gun comes 0.24 u back (was 0.91), cant and dip kept.
+4. **Magazine seen**: `show=` points - in view at the lower left as it leaves (clip f15-22) and arrives (f31-38), never in the box.
+5. Also (se12): the firing hand comes to the knob FROM BEHIND (bug-3724, as on the MP18 / Sten) - in se10 it was a large
+   flat hand from the right that hid the knob.
+
+| stance (sway ON, envelope) | rounds left (se10; stand also se12) | emptied, after the last shots' 0.64 s, NO dry reference (se12) | back on the aim |
+|---|---|---|---|
+| stand | 0.00 % (se12: 1.39 %) | 0.01 % | 0.07-0.08 deg |
+| crouch / prone | 0.07 / 0.31 % | 0.01 / 0.85 % | 0.07-0.08 |
+| lean left / right | 1.20 / 1.49 % | 1.10 / 0.06 % | 0.07-0.08 |
+| crouch + lean left / right | 0.09 / 0.01 % | 0.00 / 0.01 % | 0.07-0.08 |
+| braced | 0.19 % | 0.03 % | 0.07 |
+
+(The rounds-left clip is the same file in se10 and se12, hash b0b8bc40. se10, emptied, with the old side-on hand: 0.1-2.0 %,
+lean right 2.7 % in ONE frame = the 41st after the last shot. Against the old six-frame mask the same captures read
+3-12 %: that is the aim's own sway.) Offline: 1.1 % both; gun between the keys 0.09 u / 0.07 deg (`midframe.py`).
+Break-off (se10, rounds left at 50 / 105 frames, emptied at 118): trigger and sprint - the reload runs to its end in the
+aim; next weapon - the gun goes down at once; aim let go - the framing goes to the hip while the row hands over. As the MP40.
+Looked at: eight stances on `evidence/thompson_reload_aimed_empty_stances_se12.jpg`, sixteen engine frames
+(`..._frames_se12.jpg`), a zoom of the pull, the lean-right smoke frames of se10; the GIF decode sheets only at thumbnail size.
+Evidence: `evidence/thompson_reload_{aimed,hip}_{empty,roundsleft}_se12.gif` (current; the `_se10` set shows the old
+hand from the right), `thompson_reload_aimed_{empty,roundsleft}_stances_se12.jpg` (rounds left: stand only; all eight =
+`..._roundsleft_stances_se10.jpg`), `thompson_reload_aimed_empty_frames_se12.jpg`, `thompson_mesh_round_knob_slot_repainted_side_se10.jpg`,
+`thompson_third_person_se10.jpg` (the gun's LEFT side: the camera cvars do not frame its right side, bug-3666 - the knob is
+not shown in third person).
+Weak points seen: the index finger lies OVER the knob through the pull, so the knob itself is hidden until the hand
+leaves (a small bump right of the receiver after it); a fingertip of the left hand shows inside the box's left edge for
+about two frames as that hand leaves the fore-grip (clip f4-5); the knob is one flat dark colour (it samples one texel);
+the hip clips were looked at only at thumbnail size; not listened to; the eleven finish tiks were not run one by one
+(same mesh, rows and script-made sheets - the ten staged sheets were looked at on `stage_slot.py --preview`).
+
+### MP18 + Sten = one family: HELD BY THE SIDE MAGAZINE (user; bug-3722, runs se11, se13, se14)
+
+**Hold** (`tools/sidehold.py`, rows `coopr_mp40_mp18_idle / charge / fire / fire_secondary / pullout`, need cgame_smg4):
+the Sten's own retail hold (hand place on the magazine, rotation, fingers of `sten_idle.skc`) carried onto the MP18's
+drum NECK (between housing and drum, 0.85 of the way out, turned by the neck's 34 deg rake); copies of the mp40 clips
+with ONLY the left arm changed (asserted per frame). `mp40_putaway` names a clip that is not in the game - no row.
+A row must carry the exact suffix the engine asks for: `..._idle`, not `..._idle1` (bug-3723: only rows with `weight`
+lose their digit). THIRD PERSON is the server's animation (group mp40): the support hand there is NOT changed.
+
+**Reloads** (`smgbake.py`: `hold=`, `hold_prop`, `hip_proc`, `_GRAB_BEHIND` / `_HOOK_BEHIND`; `smggun.OWN['sten']`):
+* the reload starts with the hand ON the magazine: thumb in for the catch (f5-9), magazine / drum drawn out to the LEFT
+  along its housing and shown leaving, pouch, the new one in from the left, pushed home, a tug against the catch
+  (f47.5; both cases), back in the hold. The prop is rigid in the holding hand and exactly in its seat whenever that
+  hand is in the hold (`hold_prop`). Sten only: a palm slap on the magazine's end at f58 (on the sound).
+* EMPTY: the firing hand turns into a hook beside the grip, comes to the handle FROM BEHIND (fingers forward over its
+  top, index and middle hooked down its front, ring and little finger folded), pulls it back to the sear, lets go, home.
+  OPEN BOLT as every SMG here: the handle STAYS BACK after the pull (the coordinator's note asked for "releases, flies
+  forward" - that would be a closed bolt; a decision if wanted).
+* MP18 hip rows = the SAME story on the hip pose (`hip_proc`; the pack clip neither starts nor ends in the hold).
+  Sten hip rows = the RETAIL clip (gun canted, slap, left hand over the top onto the bolt): rounds left to the slap then
+  its end pose (no cock); empty = retail, the hand turned onto the handle, the handle on the hand's frames (f68-72).
+* Sten sound: the retail reload sound as it is for the EMPTY rows (slap f58, bolt clacks f71 / f74.5: the aimed pull is
+  on them, f68-74); rounds left: cut after the slap (`snd_cut` 61-66). The first build tightened the sound on a wrong
+  assumption about the reload's length (bug-3725, corrected by bug-3760; `snd_tight` stays in smggun, unused). Not listened to.
+* The Sten's cocked handle now RESTS BACK (open bolt): in the settled aim the knob stands right of the tube's rear.
+
+| stance (sway ON, envelope) | MP18 rounds left (se13) | MP18 emptied (se11; dry-gun reference) | Sten rounds left (se16 / se17 / se19) | Sten emptied (se18; dry-gun reference) |
+|---|---|---|---|---|
+| stand | 0.00 % | 0.54 % | 0.00 % | 0.70 % |
+| crouch / prone | 0.01 / 0.01 % | 0.54 / 0.21 % | 0.00 / 0.14 % | 0.92 / **2.63 % - NOT passed** |
+| lean left / right | 0.02 / 0.23 % | 1.37 / 0.46 % | 0.01 / 0.05 % | 0.83 / 1.04 % |
+| crouch + lean left / right | 0.01 / 0.07 % | 0.03 / 0.59 % | 0.05 / 0.01 % | 0.19 / 1.45 % |
+| braced | 0.03 % | 0.05 % | 0.01 % | 0.67 % |
+| back on the aim | 0.06 deg | 0.01-0.07 | 0.06 | 0.05-0.06 |
+
+* **Sten, emptied, PRONE: 2.5-3.8 % for 8 capture frames (clip f66-70)** - the index and middle fingertips of the firing
+  hand stand in the box's lower right corner as they reach the knob (`evidence` zoom not kept; reloadbox `--dump` on
+  `se18 sten__proneadsE__`). Same cure as the coordinator's note 1 below; not done.
+* The emptied figures use the dry-gun reference (the forward handle of both guns lies in or at the box); it adds 0.7-18 %
+  of the box here, far less than on the Thompson. MP18 se13 re-ran four emptied stances: 0.16-0.88 %.
+* Reload length, measured: MP18 156 capture frames (2.5 s = its 76-frame row), **Sten 187 (3.0 s = the WHOLE 91-frame
+  row, bug-3760)** - the first Sten build (se11, se14 never ran) assumed f78 and tightened the sound for nothing; the
+  current one (se18) pulls on the retail sound's clacks (f68-74), hand home f80-86. Rounds left: all done by f66, the last
+  0.8 s is the settled aim (the retail clip fills it with the bolt pull) - shortening it is a server item, a decision.
+* Gun between the keys (`midframe.py`): MP18 0.09 u / 0.07 deg, Sten 0.07 u / 0.04 deg, MP18 hip 0.10 u / 0.08 deg.
+* Break-off (MP18 se15, Sten se17; rounds left, 105 frames in): trigger / sprint - the reload runs to its end in the aim;
+  next weapon - down at once, the next gun comes up; aim let go - the framing goes to the hip while the row hands over.
+  Not run: break-off of an emptied gun for these two, an AI with either.
+* Looked at: every stance of all four cases on the stance sheets, sixteen engine frames of each emptied reload, zooms of
+  both hands (MP18) and of the pull (Sten, also prone), hip rounds-left frames of both, third person of the MP18.
+  The GIFs were decoded only at thumbnail size. Not listened to.
+
+Evidence (`evidence/`): `mp18_reload_aimed_{empty,roundsleft}_se13.gif`, `mp18_reload_hip_{empty,roundsleft}_se15.gif`
+(the hip idle hold is in from se15 on), `mp18_reload_aimed_roundsleft_stances_se13.jpg`, `mp18_reload_aimed_empty_stances_se11.jpg`,
+`mp18_reload_aimed_empty_frames_se13.jpg`, `mp18_third_person_se15.jpg` (the support hand is under the fore-end there:
+third person is the server's mp40 animation, not changed); `sten_reload_aimed_empty_se18.gif` (current),
+`sten_reload_aimed_roundsleft_se11.gif`, `sten_reload_hip_{empty,roundsleft}_se17.gif`, `sten_reload_aimed_empty_stances_se18.jpg`,
+`sten_reload_aimed_roundsleft_stances_se16.jpg` + `_se17.jpg`, `sten_reload_aimed_empty_frames_se18.jpg`, `sten_third_person_se17.jpg`.
+Superseded, kept: `sten_reload_aimed_empty_se11.gif`, `sten_reload_hip_*_se11.gif`, `sten_*_se11.jpg` (the f62-68 pull on the
+tightened sound), `mp18_*_se6.*` (the one-handed look), `thompson_*_se9/_se10.*`.
+
+**OPEN on this pair (coordinator, 2026-10-13 morning, after the user saw the GIFs) - do these first:**
+1. The cocking hand still reads as straight, splayed fingers on the approach (MP18 clip f48-56, Sten f62-70) and closes
+   only at the bar: seen from behind, the hooked second phalanges point away from the eye, so index and middle look
+   straight, and ring / little finger show their nails. Wanted: fingers curled on the way, the hand coming from BELOW.
+   Where: `_GRAB_BEHIND['dir']` (more from below: z positive), `_HOOK_BEHIND` (more flexion at the first joints, read the
+   `grab fit` print), `beside` / `turn` in the hook, Sten `y` further out. This also cures the Sten's prone figure.
+2. "The MP18's receiver rear shows as a mosaic of big brown squares": the lane's overlay shows the RELEASED sheets
+   (`textures/coop_mp18/body.jpg` etc.: 1000 x 1000 JPEGs of 63-110 KB - their 8-pixel JPEG blocks at 12 u from the eye).
+   The approved skin (`docs/proposals/mp18_skin_2026-10-12/assets`) is not in the overlay: build it with
+   `mkov_smg.py <out> --extra <that assets dir>` and look again. Not done, not verified.
+3. The hand on the drum hides the drum from the eye (the back of the hand is toward the eye, the thumb on the far
+   side): `sidehold.py` `roll` (SH_ROLL) / `out` turn the hold about the neck; the same look at the Sten's hold.
+4. Finishes / variants (user: "all of these new guns will need their camo/variants too"). Covered by script, every tik on
+   the mesh: MP40 11 (mp40, bloody, blued, camo_desert / winter / woodland, chrome, gold, guanmp40, guanmp40s, lv_mp75),
+   Silenced MP40 1, MP40 R2 1, MP18 1 (it has no finish tik), Sten 8 (sten, bloody, blued, camo_desert / winter / woodland,
+   chrome, gold), Thompson retail mesh 12 (thompsonsmg, bloody, blued, camo x3, chrome, gold, guantommy, hobbstomworn,
+   lv_famastommy, lv_tttommy; slot repainted on all ten sheets they read). NOT covered: the four other Thompson meshes
+   (m1a1dk, tommy1928d, tommy28, thompson50). The per-finish AIM SHEETS the user asked for are NOT made (only
+   `stage_slot.py --preview` for the Thompson sheets); the MP18's hold rows answer to the key `mp40_mp18` only.
+
+**Raw frames.** Nothing was deleted. G: filled up twice (bug-3761): se13 and se16 are partial runs (their complete
+captures are measured; `measure_run.py` names the incomplete ones), se14 never ran. Finished runs are archived on
+`H:\hzm_archive\smg\` (se10 - se19; se10 / se11 went by way of C:). The tools read `G:/mohaa-adsanim3/runs`: move a
+folder back (or set `ADS_RUNS` for the tools that take it) to measure it again. An aimed capture with `--tail` is
+530-650 frames of 0.54 MB: check `df /g` before a run.
+
+**Next, in this order:** the four OPEN points above; the Sten's prone figure; then the other four Thompson meshes
+(survey below; the remodel and the top-knob pair can use `_GRAB_BEHIND`), PPSh, grease guns, then PPS-43 / Type 100 /
+Moschetto with a lowered work pose (section 3).
+
+## Earlier handover (2026-10-13, runs se4 - se9) - the MP18 and Thompson paragraphs here are superseded by the above
 
 Engine: `ads-smg-next` is at 7b4bc029 = 94bb3dca + TWO commits, each ONE generated row of `cg_adssights.h`
 (`tools/patch_sights_row.py` from `sights_override.json`): f1802d87 the Silenced MP40's (F / R z 0.45 u higher), 7b4bc029
@@ -310,7 +467,7 @@ All of them fire from an open bolt: handle back when ready, forward when dry, co
 | Thompson 1928 Tommy (`coop_tommy1928d`) | not built | none (its own mesh) | - | add a handle; prop window f22-60 |
 | Thompson 50rd / M1928 | not built | `Bolt`, top knob at x -0.9, rests BACK already, +5.1 forward in the retail reload | - | `rest='back'`; a knob on the sight line |
 | Thompson M1A1 remodel (`coop_m1a1dk`) | not built | `chamber`, right, forward x 3.2, travel 6.1 | - | firing hand reaches (75 %) |
-| Sten | not built | `Sten_Bolt`, right, forward x 7.8, travel 8.8 | - | firing hand reaches (92 %) |
+| Sten | **built 2026-10-13** (handover: held by the magazine, runs se16-se19) | `Sten_Bolt`, right, forward x 7.8, travel 8.8 | sway ON, envelope: rounds left 0.0-0.14 %, emptied 0.2-1.5 % in seven stances, PRONE 2.6 % (open) | the four OPEN points of the handover |
 | PPSh | not built | welded into the mesh | - | split by box (`split_bone.py --box`) |
 | Moschetto / Beretta M38 | not built | `Rechamber`, right, forward x 12.3, travel 4.1 (+ `Eject_Cover`); the real handle does not reciprocate | - | out of the firing hand's reach (107 %) |
 | Type 100 | not built | `bolt`, right, forward x 10.3, travel 5.6 | - | out of reach (101 %) |
@@ -351,6 +508,15 @@ magazine on the ground), fires again - 12 s, nothing detached, no animation erro
 the first-person gun and offline only.
 
 ## Tools (`tools/`)
+
+New on 2026-10-13 (se10 - se19): `..\..\tools\swayenv.py` (the sway ENVELOPE, shared by the lanes), `reloadbox.py` env
+figures + `run_smg.py --tail N[:step]`, `stage_slot.py` (Thompson slot repaint on every finish sheet), `smggun.round_mesh`
+(a round knob), `sidehold.py` (a gun of a shared prefix held by its side magazine: per-weapon idle / charge / fire rows),
+`smgbake.py` `hold` / `hold_prop` / `hip_proc` / `pullk` / `show` / `end_e` / `_GRAB_BEHIND`, `smggun` `snd_tight` (unused),
+`framesheet.py` (engine frames at given CLIP frames, full or cropped: `framesheet.py se18 sten E out.jpg --clip 62,66,68
+--stance prone --crop 380,200,1180,650`), `measure_run.py` skips an incomplete capture and says so. `SB_TRACE=0:0` on a bake
+prints the `grab fit` of a hook. Waiting on a run from a shell: the line `[seNN] done` is in the run's own `.out`, the
+shared `run.log` only gets `run ended` (two waiters hung on that here).
 
 `takeover.py` regenerates `run_smg.py` (+ `smg_block.py`: `sdemo` / `shipdemo` / `tp` / `ai` / `sbreak` captures; `--map`
 / `--spot`) and the measure tools from `..\tools`, repointed at G:\mohaa-adsanim3. `smgpose.py` (aim poses +

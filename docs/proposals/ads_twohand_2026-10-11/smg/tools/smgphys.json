@@ -27,18 +27,18 @@
   "ads_empty": {
    "back": 0.93,
    "clip": "viewmodel/mp40/mp40_mp18_reload_empty_ads.skc",
-   "drop": 0.19,
-   "peak_deg": 0.89,
-   "roll": 1.23,
+   "drop": 0.21,
+   "peak_deg": 0.9,
+   "roll": 1.21,
    "settle_s": 0.17
   },
   "ads_loaded": {
    "back": 0.08,
    "clip": "viewmodel/mp40/mp40_mp18_reload_ads.skc",
    "drop": 0.19,
-   "peak_deg": 0.89,
-   "roll": 1.23,
-   "settle_s": 0.23
+   "peak_deg": 0.9,
+   "roll": 1.21,
+   "settle_s": 0.28
   },
   "hip_empty": {
    "clip": "viewmodel/mp40/coop_mp40_mp18_reload_empty_hip.skc"
@@ -95,13 +95,37 @@
    "clip": "viewmodel/mp40/coop_silenced_mp40_reload_hip.skc"
   }
  },
+ "sten": {
+  "ads_empty": {
+   "back": 0.92,
+   "clip": "viewmodel/sten/sten_reload_empty_ads.skc",
+   "drop": 0.21,
+   "peak_deg": 0.93,
+   "roll": 1.1,
+   "settle_s": 0.23
+  },
+  "ads_loaded": {
+   "back": 0.06,
+   "clip": "viewmodel/sten/sten_reload_ads.skc",
+   "drop": 0.19,
+   "peak_deg": 0.9,
+   "roll": 1.1,
+   "settle_s": 0.35
+  },
+  "hip_empty": {
+   "clip": "viewmodel/sten/coop_sten_reload_empty_hip.skc"
+  },
+  "hip_loaded": {
+   "clip": "viewmodel/sten/coop_sten_reload_hip.skc"
+  }
+ },
  "thompson": {
   "ads_empty": {
-   "back": 0.91,
+   "back": 0.24,
    "clip": "viewmodel/smg/thompson_reload_empty_ads.skc",
    "drop": 0.39,
    "peak_deg": 1.26,
-   "roll": 0.81,
+   "roll": 0.76,
    "settle_s": 0.2
   },
   "ads_loaded": {

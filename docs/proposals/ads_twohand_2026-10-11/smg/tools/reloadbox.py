@@ -6,11 +6,19 @@ the harness's mark - an emptied gun starts by itself), and over exactly those fr
     pose    lowest ADS pose factor (1.00 = the aim framing held throughout)
 An emptied gun reloads in its own smoke: `--skip N` leaves the first N reload frames out of `extra` (reported).
 
+AS PLAYED (aim sway + breath on) - the lane's standard since 2026-10-13 (user): `env` = the share of the box covered
+BEYOND THE SETTLED AIM'S SWAY ENVELOPE (everything the settled aim covers in the frames after the reload - with
+run_smg.py --tail 360:4 a whole sway period; the top-level tools/swayenv.py = the heavy lane's boxeng.py --sway measure in one
+shared function). Bar: under 2 % in every frame. `extra` (six-frame mask) is still printed; `env_tail` says whether a
+whole period was captured (without it the envelope is only what the 50 frames after the reload happened to cover).
+
     python reloadbox.py <session> <tag substring> [--skip 0] [--dump] [--json out.json key]
 """
 import sys, os, re, glob, json
 import numpy as np
 from PIL import Image
+sys.path.insert(0, os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'tools')))
+import swayenv
 RUNS = 'G:/mohaa-adsanim3/runs/'
 
 
@@ -88,7 +96,10 @@ def measure(sess, sub, skip=0, dump=False, dry=False):
     first = [n for n in marks if n[0] == 'fire'][0][1]
     # the reload = the last run of frames before `low` whose anim id is neither the settled one nor a firing one
     fire_ids = set(anim(i) for i in range(first, min(first + 3, low)))
-    i1 = low - 1
+    # run_smg --tail: after the mark `settle` the captures are sparse (one in N game frames) while the probe rows go on
+    # one per frame - the reload is looked for in the dense part only
+    dense_end = mk['settle'][0] if 'settle' in mk else low
+    i1 = dense_end - 1
     while i1 > first and anim(i1) == settled:
         i1 -= 1
     i0 = i1
@@ -101,19 +112,28 @@ def measure(sess, sub, skip=0, dump=False, dry=False):
     box = (int(W * 0.4), int(W * 0.6), int(H * 0.4), int(H * 0.6))
     Rb = Rf[box[2]:box[3], box[0]:box[1]]
     base = [mask(fs[i], Rb, box) for i in range(low - 8, low - 2)]
-    aimmask = grow(np.mean(base, axis=0) > 0.3)
+    aim_raw = np.mean(base, axis=0) > 0.3
+    aimmask = grow(aim_raw)
     # After a long burst the VIEW is still creeping back for seconds: the wall behind the gun is then a pixel or two
     # off the reference and every timber edge counts as cover (run sb2: 7 % with nothing but the sights in the box).
     # The reference is therefore shifted to each frame's background first - the shift that best matches two strips of
     # the frame the first-person model never reaches (top left / top right).
     shifted_ref = make_shifter(Rf, box)
     dry_add = 0.0
+    dry_raw = None
+    _mc = {}
+
+    def mask_of(i):
+        if i not in _mc:
+            _mc[i] = mask(fs[i], shifted_ref(fs[i])[0], box)
+        return _mc[i]
     if dry:
         # An EMPTY reload starts from the DRY gun's settled aim (an open-bolt gun's handle is forward): that pose is
         # its reference as well (coordinator 2026-10-13: the MP18's dry handle rests inside the centre box before any
         # hand moves). Taken from the three frames after the skipped flash frames: hands still on their grips.
         db = [mask(fs[i], shifted_ref(fs[i])[0], box) for i in range(i0 + skip, min(i1, i0 + skip + 3))]
-        dm = grow(np.mean(db, axis=0) > 0.5)
+        dry_raw = np.mean(db, axis=0) > 0.5
+        dm = grow(dry_raw)
         dry_add = float((dm & ~aimmask).mean())
         aimmask = aimmask | dm
     ex, shifts = [], []
@@ -123,6 +143,10 @@ def measure(sess, sub, skip=0, dump=False, dry=False):
         ex.append(float((mask(fs[i], Rs, box) & ~aimmask).mean()))
     if dump:
         print('   background shift against the reference, px (dy, dx): first %s, largest %s' % (shifts[0], max(shifts, key=lambda s: abs(s[0]) + abs(s[1]))))
+    # AS PLAYED: beyond the settled aim's sway envelope (every settled frame after the reload up to the mask's own)
+    settled_frames = list(range(i1 + 1, low - 2))
+    exe, env_cover = swayenv.envelope_extra(mask_of, grow, range(i0, i1 + 1), settled_frames, aim_raw, also=dry_raw)
+    alone = [float((mask_of(i) & ~aimmask).mean()) for i in range(i1 + 1, low - 8)]
     s0 = rows[min(len(rows) - 1, low - 3 + o)]
     seg = [rows[min(len(rows) - 1, i + o)] for i in range(i0, i1 + 1)]
     dev = [((r[2] - s0[2]) ** 2 + (r[3] - s0[3]) ** 2) ** 0.5 for r in seg]
@@ -130,11 +154,25 @@ def measure(sess, sub, skip=0, dump=False, dry=False):
                extra_max=round(100 * max(ex[skip:]), 1), extra_frames_over=int(sum(e > 0.02 for e in ex[skip:])), skip=skip,
                extra_first=round(100 * max(ex[:skip] or [0]), 1), dry_ref=round(100 * dry_add, 1), dev_max=round(max(dev), 2), dev_end=round(max(dev[-5:]), 3),
                pose_min=round(min(r[0] for r in seg), 2), base=round(100 * float(np.mean(base)), 1),
+               env_max=round(100 * max(exe[skip:]), 2), env_frames_over=int(sum(e > 0.02 for e in exe[skip:])), env_at=int(i0 + skip + int(np.argmax(exe[skip:]))),
+               env_cover=round(100 * env_cover, 1), env_n=len(settled_frames), env_tail=bool('settle' in mk),
+               alone_max=round(100 * max(alone), 1) if alone else -1.0,
+               # an EMPTIED gun starts its reload in its last shots' smoke and with the view still coming back from the
+               # burst: the heavy lane's rule (boxeng.py) - the figure after the first 40 capture frames (0.64 s)
+               env_after40=round(100 * max(exe[40:]), 2), env_over_after40=int(sum(e > 0.02 for e in exe[40:])),
+               env_first_over=[int(i0 + k) for k, e in enumerate(exe) if e > 0.02 and k >= skip][:1] + [int(i0 + k) for k, e in enumerate(exe) if e > 0.02 and k >= skip][-1:],
                back=round(max(((rows[min(len(rows) - 1, i + o)][2] - s0[2]) ** 2 + (rows[min(len(rows) - 1, i + o)][3] - s0[3]) ** 2) ** 0.5 for i in range(i1 + 4, min(low, i1 + 12))) if i1 + 4 < low else -1.0, 3))
     print('%s: reload = capture frames %d-%d (%d frames, anim %d; settled %d) | box beyond the aim max %.1f %% (%d frames over 2 %%%s) | '
           'sight dev max %.2f deg, last 5 frames %.3f, back on the aim after it %.3f | pose min %.2f' % (
               tag.split('__', 2)[2], i0, i1, res['frames'], rid, settled, res['extra_max'], res['extra_frames_over'],
               (', first %d frames skipped: max %.1f %%' % (skip, res['extra_first'])) if skip else '', res['dev_max'], res['dev_end'], res['back'], res['pose_min']))
+    print('      AS PLAYED: beyond the sway ENVELOPE of the aim (%d settled frames%s, covers %.1f %% of the box) max %.2f %% (capture f%d), %d frames over 2 %% | settled aim alone vs the six-frame mask: max %.1f %%' % (
+        res['env_n'], ' = a whole sway period' if res['env_tail'] else ', NO tail: partial', res['env_cover'], res['env_max'], res['env_at'], res['env_frames_over'], res['alone_max']))
+    if skip:
+        print('      emptied gun: after the first 40 capture frames (0.64 s: the last shots\' smoke and the view coming back) max %.2f %%, %d frames over; frames over before that: %s' % (
+            res['env_after40'], res['env_over_after40'], ('f%d-%d' % tuple(res['env_first_over']) if len(res['env_first_over']) == 2 else '-')))
+    if dump:
+        print('   envelope over 2 %:', ' '.join('%d:%.1f' % (i0 + k, 100 * e) for k, e in enumerate(exe) if e > 0.02 and k >= skip) or '-')
     if dump:
         print('   over 2 %:', ' '.join('%d:%.0f' % (i0 + k, 100 * e) for k, e in enumerate(ex) if e > 0.02) or '-')
         print('   dev by 10 frames:', ' '.join('%.1f' % max(dev[k:k + 10]) for k in range(0, len(dev), 10)))

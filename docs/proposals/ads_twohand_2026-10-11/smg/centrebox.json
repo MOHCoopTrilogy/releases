@@ -22,26 +22,26 @@
   "xmax": 1.0
  },
  "mp40_mp18": {
-  "base": 17.1,
+  "base": 7.0,
   "dev": 1.02,
-  "end": 0.058,
+  "end": 0.063,
   "frames": 156,
-  "max": 0.5,
+  "max": 0.1,
   "over": 0.0,
-  "run": "se6",
+  "run": "se13",
   "xfr": 0.0,
-  "xmax": 0.5
+  "xmax": 0.0
  },
  "mp40_mp18_empty": {
-  "base": 9.4,
-  "dev": 0.9,
-  "end": 0.036,
+  "base": 5.6,
+  "dev": 1.01,
+  "end": 0.058,
   "frames": 156,
-  "max": 1.2,
+  "max": 1.0,
   "over": 0.0,
-  "run": "se6",
+  "run": "se13",
   "xfr": 0.0,
-  "xmax": 1.2
+  "xmax": 0.86
  },
  "mp40_reactivated": {
   "base": 14.2,
@@ -87,26 +87,48 @@
   "xfr": 0.0,
   "xmax": 0.1
  },
- "thompson": {
-  "base": 43.1,
-  "dev": 1.37,
-  "end": 0.073,
-  "frames": 162,
-  "max": 0.6,
+ "sten": {
+  "base": 15.1,
+  "dev": 1.0,
+  "end": 0.057,
+  "frames": 187,
+  "max": 1.2,
   "over": 0.0,
-  "run": "se9",
+  "run": "se16",
   "xfr": 0.0,
-  "xmax": 0.6
+  "xmax": 0.0
+ },
+ "sten_empty": {
+  "base": 6.2,
+  "dev": 1.05,
+  "end": 0.063,
+  "frames": 187,
+  "max": 1.9,
+  "over": 0.0,
+  "run": "se18",
+  "xfr": 0.0,
+  "xmax": 0.7
+ },
+ "thompson": {
+  "base": 44.3,
+  "dev": 1.36,
+  "end": 0.079,
+  "frames": 163,
+  "max": 6.3,
+  "over": 0.0,
+  "run": "se12",
+  "xfr": 0.0,
+  "xmax": 1.39
  },
  "thompson_empty": {
-  "base": 28.4,
-  "dev": 1.44,
-  "end": 0.135,
-  "frames": 163,
-  "max": 1.1,
+  "base": 21.2,
+  "dev": 1.37,
+  "end": 0.077,
+  "frames": 162,
+  "max": 19.4,
   "over": 0.0,
-  "run": "se9",
+  "run": "se12",
   "xfr": 0.0,
-  "xmax": 1.1
+  "xmax": 0.01
  }
 }

@@ -41,17 +41,20 @@ animations
 	// MP40 Anims
 	//========================
 	mp40_idle1	 		viewmodel/mp40/mp40_stand_idle.skc	crossblend 0.25		weight 1.0
+	coopr_mp40_mp18_idle		viewmodel/mp40/coop_mp40_mp18_idle.skc		crossblend 0.25	// HZM coop [ads-smg] staged
 	mp40_idle2	 		viewmodel/mp40/mp40_stand_idle_a.skc	crossblend 0.25		weight 1.0	dontrepeate
 	mp40_idle3	 		viewmodel/mp40/mp40_stand_idle_b.skc	crossblend 0.25		weight 1.0
 	mp40_idle4	 		viewmodel/mp40/mp40_stand_idle_c.skc	crossblend 0.25		weight 1.0
 	mp40_disabled 		        viewmodel/unarmed/unarmed_idle.skc	crossblend 0.2
 	mp40_fire			viewmodel/mp40/mp40_stand_fire.skc	crossblend 0.05
+	coopr_mp40_mp18_fire		viewmodel/mp40/coop_mp40_mp18_fire.skc		crossblend 0.05	// HZM coop [ads-smg] staged
 	mp40_fire_secondary		viewmodel/mp40/mp40_butt_stand.skc	crossblend 0.3
 	{
 		client
 		{
 			entry sound pistol_whip // the swish sound. 
 		}
+	coopr_mp40_mp18_fire_secondary		viewmodel/mp40/coop_mp40_mp18_fire_secondary.skc		crossblend 0.3	// HZM coop [ads-smg] staged
 	}
 	mp40_reload		viewmodel/mp40/coop_mp40_reload_hip.skc	crossblend 0.1
 	mp40_reload_empty		viewmodel/mp40/coop_mp40_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
@@ -74,6 +77,7 @@ animations
 		{
 			enter sound snd_rifle_pullout
 		}
+	coopr_mp40_mp18_pullout		viewmodel/mp40/coop_mp40_mp18_pullout.skc		crossblend 0.3	// HZM coop [ads-smg] staged
 	}
 	$path models/human/protoanimations
 	mp40_putaway		lower_rifle_standplayer.skc
@@ -101,8 +105,10 @@ animations
 			entry sound pistol_whip // the swish sound. 
 		}
 	}
-	sten_reload			viewmodel/sten/sten_reload.skc	crossblend 0.1
-	sten_reload_ads		viewmodel/sten/sten_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	sten_reload			viewmodel/sten/coop_sten_reload_hip.skc	crossblend 0.1
+	sten_reload_empty		viewmodel/sten/coop_sten_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	sten_reload_ads		viewmodel/sten/sten_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	sten_reload_empty_ads		viewmodel/sten/sten_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
 	sten_pullout			viewmodel/sten/raise_sten_stand.skc
 	{
 		client
@@ -183,6 +189,7 @@ animations
 	thompson_charge		viewmodel/idle_tommy_stand.skc		crossblend 0.1
 	thompson_adsfire		viewmodel/fire_tommy_stand00.skc	crossblend 0
 	mp40_charge			viewmodel/mp40/coop_mp40_ads_mag.skc		crossblend 0.25
+	coopr_mp40_mp18_charge		viewmodel/mp40/coop_mp40_mp18_charge.skc		crossblend 0.25	// HZM coop [ads-smg] staged
 	mp40_adsfire			viewmodel/mp40_stand_fire00.skc		crossblend 0.05
 
 	//===================== HZM coop Type 100 first-person set =====================

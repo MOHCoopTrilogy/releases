@@ -19,7 +19,7 @@ gun has to be cocked after the magazine goes in, and a gun with rounds left does
 
     cd smg/assets; python ../tools/smggun.py <gun> .           -> models/weapons/<dir>/... + the patched tiks
 """
-import sys, os, re, json, copy, hashlib
+import sys, os, re, json, copy, hashlib, math
 import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 T = r"C:\mohaa-coop-dev\docs\proposals\ads_bolt_2026-10-04\tools"
@@ -57,7 +57,11 @@ GUNS = {
     # (ThompsonReload1a.wav): magazine out f9-13, in f39 / f45-49, handle f57-65: the aimed pull sits on f59-65.
     # Clip names carry the key (`_pre`); the gun's own clips are 71 frames, the hands row 84: `frames`.
     'thompson': dict(tik='models/weapons/thompsonsmg.tik', bone='coop_bolt', parent='tommy gun new', surface='ThompsonSMG1',
-                     back=(-1.6, 0.89, -3.9), size=(0.42, 0.7, 0.42), travel=5.0, uv_at=(1.0, 0.54, -4.55), side='R', _pre='thompson_',
+                     # se10 (user): a ROUND knob in the retail gun's proportions - the diameter of the ring the retail
+                     # texture paints at the slot's front (0.9 u on a receiver 1.6 u tall; the M1A1's knob is about 5/8 in
+                     # on a 1.6 in receiver, the painted ring includes its shadow): 0.8 u across, standing 0.7 u out of
+                     # the wall, rim chamfered. The painted ring itself is taken off the staged textures (stage_slot.py).
+                     back=(-1.6, 0.89, -3.9), size=(0.8, 0.7, 0.8), round=dict(n=14, cham=0.14), travel=5.0, uv_at=(1.0, 0.54, -4.55), side='R', _pre='thompson_',
                      hip_row='viewmodel/smg/reload_tommy_stand.skc', hip_tip_off=0.3, ads_pull=(59.0, 65.0), hip_pull=(63.5, 66.5),
                      frames=84, pull_soft=0.6, snd_cut=(51.0, 56.0),
                      snd_parms='soundparms 1.5 0.0 1.0 0.05 160 1000 item loaded always maps "m e t dm obj lib"'),
@@ -187,6 +191,26 @@ def cut_wav(wav, cut, dst):
     return b / float(sr), n / float(sr)
 
 
+def tight_wav(wav, cut, dst):
+    """the retail reload sound with the clip frames cut[0]..cut[1] (30 fps; a silent stretch) taken out, 10 ms crossfade"""
+    import io, wave
+    w = wave.open(io.BytesIO(vfs.read(wav)))
+    sr, n, ch, sw = w.getframerate(), w.getnframes(), w.getnchannels(), w.getsampwidth()
+    assert sw == 2, 'only 16-bit sounds'
+    d = np.frombuffer(w.readframes(n), dtype=np.int16).astype(np.float64).reshape(-1, ch)
+    a, b = int(cut[0] / 30.0 * sr), int(cut[1] / 30.0 * sr)
+    x = int(0.01 * sr)
+    k = np.linspace(0.0, 1.0, x)[:, None]
+    mid = d[a - x:a] * (1 - k) + d[b - x:b] * k
+    out = np.vstack([d[:a - x], mid, d[b:]])
+    peak = float(np.abs(d[a:b]).max()) / max(1.0, float(np.abs(d).max()))
+    os.makedirs(os.path.dirname(dst), exist_ok=True)
+    o = wave.open(dst, 'wb')
+    o.setnchannels(ch); o.setsampwidth(2); o.setframerate(sr)
+    o.writeframes(out.round().astype(np.int16).tobytes()); o.close()
+    return len(out) / float(sr), n / float(sr), peak
+
+
 def patch_tik(txt, g):
     """idempotent: fire -> coop_fire.skc; fire_empty (a copy of the fire block), idle_empty, reload_empty,
     reload_ads_empty added after the idle row. The reload rows carry only the client block (the sound): the server
@@ -209,12 +233,20 @@ def patch_tik(txt, g):
     rblk = rb[2]
     mc = re.search(r'(?s)([ \t]*client[ \t]*\r?\n[ \t]*\{.*?\n[ \t]*\}[ \t]*\r?\n)', rblk)
     client = mc.group(1) if mc else ''
+    # `snd_tight`: the aimed EMPTY row plays the reload sound with a stretch of silence taken out (tight_wav)
+    client_t = client
+    mt = re.search(r'entry[ \t]+sound[ \t]+(\S+)', client) if (client and g.get('snd_tight')) else None
+    if mt and mt.group(1).startswith('coop_') and mt.group(1).endswith('_loaded'):      # a tik that was patched before
+        mt = None
+    if mt:
+        g.setdefault('_snd_tight', {})[mt.group(1)] = 'coop_%s_tight' % mt.group(1)
+        client_t = client[:mt.start(1)] + 'coop_%s_tight' % mt.group(1) + client[mt.end(1):]
 
-    def rel(name, clip_):
+    def rel(name, clip_, client=client):
         return '\t%s\t%s%s\t{%s%s\t}%s' % (name, clip_, nl, nl, client, nl) if client else '\t%s\t%s%s' % (name, clip_, nl)
     add = (TAG0 + ' open bolt: the handle rests back, runs forward and back per shot, stays forward on empty' + nl
            + '\tidle_empty\t' + cn('idle_empty') + nl + fe.rstrip('\r\n') + nl
-           + rel('reload_empty', cn('reload_empty')) + rel('reload_ads_empty', cn('reload_ads_empty'))
+           + rel('reload_empty', cn('reload_empty')) + rel('reload_ads_empty', cn('reload_ads_empty'), client_t)
            + TAG1 + nl)
     ib = anim_block(txt, 'idle')
     assert ib, 'no idle row'
@@ -233,6 +265,8 @@ def patch_tik(txt, g):
         mi = re.search(r'(?ms)^init\b.*?^[ \t]*client[ \t]*\r?\n[ \t]*\{[ \t]*\r?\n', txt)
         assert mi, 'no init client block'
         line = '\t\taliascache coop_%s_loaded sound/weapons/foley/coop_%s_loaded.wav %s %s%s' % (alias, alias, g['snd_parms'], TAGS, nl)
+        for al_ in sorted(g.get('_snd_tight', {})):
+            line += '\t\taliascache coop_%s_tight sound/weapons/foley/coop_%s_tight.wav %s %s%s' % (al_, al_, g['snd_parms'], TAGS, nl)
         txt = txt[:mi.end()] + line + txt[mi.end():]
     if g.get('_repoint'):                    # step 3: every row that shows one of the gun's retail clips -> its coop_ copy
         ka = txt.lower().index('\nanimations')
@@ -243,6 +277,44 @@ def patch_tik(txt, g):
     body = '\n'.join(l.split('//')[0] for l in txt.splitlines())
     assert body.count('{') == body.count('}'), 'braces'
     return txt
+
+
+def round_mesh(n=12, cham=0.12):
+    """a round knob in place of add_part's box, same call (c = centre, s = (diameter, length, diameter)): a cylinder
+    along y (out of the receiver's wall) with a chamfered rim and a flat end on the +y side (side='R') or the -y side.
+    Returns add_part.box_mesh's (verts [(pos, normal)], tris) with its winding rule (cross(b-a, c-a) . n < 0)."""
+    def mesh(c, s):
+        c = np.asarray(c, float); r = float(s[0]) / 2.0; h = float(s[1]) / 2.0
+        ch = cham * r / 0.4
+        sg = 1.0 if c[1] >= 0 else -1.0                 # which way the knob stands out of the gun
+        ang = [2 * math.pi * k / n for k in range(n)]
+        rad = [np.array([math.cos(a), 0.0, math.sin(a)]) for a in ang]
+        ax = np.array([0.0, sg, 0.0])
+        verts, tris = [], []
+
+        def ring(y, rr, nf):
+            b = len(verts)
+            for d in rad:
+                nn = nf(d); verts.append((c + ax * y + d * rr, nn / np.linalg.norm(nn)))
+            return b
+
+        def band(b0, b1):
+            for k in range(n):
+                k2 = (k + 1) % n
+                for t in ((b0 + k, b0 + k2, b1 + k2), (b0 + k, b1 + k2, b1 + k)):
+                    pa, pb, pc = (verts[i][0] for i in t)
+                    nn = verts[t[0]][1] + verts[t[1]][1] + verts[t[2]][1]
+                    tris.append((t[0], t[2], t[1]) if np.cross(pb - pa, pc - pa) @ nn > 0 else t)
+        a0 = ring(-h, r, lambda d: d); a1 = ring(h - ch, r, lambda d: d); band(a0, a1)
+        b0 = ring(h - ch, r, lambda d: d + ax); b1 = ring(h, r - ch, lambda d: d + ax); band(b0, b1)
+        c0 = ring(h, r - ch, lambda d: ax)
+        cc = len(verts); verts.append((c + ax * h, ax))
+        for k in range(n):
+            t = (cc, c0 + k, c0 + (k + 1) % n)
+            pa, pb, pc = (verts[i][0] for i in t)
+            tris.append((t[0], t[2], t[1]) if np.cross(pb - pa, pc - pa) @ ax > 0 else t)
+        return verts, tris
+    return mesh
 
 
 def build(name, root, ads_pull=None):
@@ -259,7 +331,13 @@ def build(name, root, ads_pull=None):
     names = [b.name for b in SK.read_skd(src).bones]
     if g['bone'] in names:
         raise SystemExit('the VFS mesh already has %s - build with IRONSIGHT_EXTRA_PAKS unset (the staged overlay must not be mounted)' % g['bone'])
-    out, info = AP.add(src, g['tik'], g['bone'], g['parent'], g['surface'], list(g['back']), list(g['size']), list(g['uv_at']))
+    _box = AP.box_mesh
+    if g.get('round'):
+        AP.box_mesh = round_mesh(**g['round'])
+    try:
+        out, info = AP.add(src, g['tik'], g['bone'], g['parent'], g['surface'], list(g['back']), list(g['size']), list(g['uv_at']))
+    finally:
+        AP.box_mesh = _box
     old, chk = SK.read_skd(src), SK.read_skd(out)
     for so, sn in zip(old.surfaces, chk.surfaces):
         assert (sn.vert_bytes[:len(so.vert_bytes)] == so.vert_bytes) if so.name == g['surface'] else (sn.vert_bytes == so.vert_bytes)
@@ -331,6 +409,17 @@ OWN = {
     # PPS-43: the handle is a surface of its own on the right of the receiver (x 9.6-10.6, forward), on the main bone
     'silenced_pps_43': dict(tik='models/weapons/ppsh43silenced.tik', bone='coop_bolt', side='R', split=('PPS43_lever',), travel=6.0),
     'mp40_reactivated': dict(tik='models/weapons/mp40_mp40r2.tik', bone='Bone1', side='L', rest='back'),
+    # Sten (retail TA mesh): `Sten_Bolt`, a knob on the right, forward x 7.8, travel 8.8. The retail first-person clip
+    # (91 frames; the gun's own 79) works it with the LEFT hand over the top at f68-72 - the hip handle keeps those
+    # frames. The reload sound (wpn_Sten_reload.wav, 2.56 s): magazine out f10-11, in f44-47, a slap f58-59, the bolt
+    # f71 and f74.5 - 0.1 s before the server ends the reload (f78). AIMED, the firing hand has to be back on the grip
+    # by then, so the aimed EMPTY row plays the sound with the 0.2 s of silence before the bolt taken out
+    # (`snd_tight`: clacks at f65 and f68.5) and the handle is pulled over f62-68. Rounds left: cut after the slap.
+    'sten': dict(tik='models/weapons/sten.tik', bone='Sten_Bolt', side='R', pull_soft=0.6, hip_pull=(68.0, 72.0), ads_pull=(68.0, 74.0),
+                 # run se16: the reload lasts 187 capture frames = the WHOLE 91-frame hands row (3.0 s), not the gun clip's 79 frames
+                 # (bug-3725 corrected) - the aimed pull sits on the retail sound's own clacks (f68-74) and the hand
+                 # has until f90 to get home: no `snd_tight` (the option stays in the tool, unused)
+                 snd_cut=(61.0, 66.0)),
 }
 OWN_DEFAULTS = dict(hip_pull=(58.0, 63.5), ads_pull=(55.0, 61.0), snd_cut=(51.0, 56.0),
                     snd_parms='soundparms 1.5 0.0 1.0 0.05 160 1000 item loaded always maps "m e t dm obj lib"')
@@ -465,6 +554,11 @@ def _build_own_clips(name, root, g, t, rows, clip, pf, pb, part, back_rest):
         wav = sound_alias(alias)
         t1, t0 = cut_wav(wav, g['snd_cut'], os.path.join(root, 'sound', 'weapons', 'foley', new + '.wav'))
         print('   sound %s = %s cut to %.2f s of %.2f s' % (new, wav, t1, t0))
+    for alias, new in sorted(g.get('_snd_tight', {}).items()):
+        wav = sound_alias(alias)
+        t1, t0, pk = tight_wav(wav, g['snd_tight'], os.path.join(root, 'sound', 'weapons', 'foley', new + '.wav'))
+        print('   sound %s = %s with f%.0f-%.0f taken out (%.2f s of %.2f s; the loudest sample in the part taken out is %.1f %% of the file\'s peak) -> reload_ads_empty' % (
+            new, wav, g['snd_tight'][0], g['snd_tight'][1], t1, t0, 100 * pk))
     kn = part['knob'] + (part['travel'] if back_rest else 0.0)
     # the json's `forward` = the point smgbake hooks (as the MP40's added box: 0.18 behind the front face, 0.4 in from
     # the knob's outer end), at the FORWARD end of the travel

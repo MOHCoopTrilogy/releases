@@ -1,0 +1,73 @@
+[
+ {
+  "error_message": "Sten aimed EMPTY reload (runs se11 / se14 build): the hands stand still in the aim for the last 0.4 s of the reload and the reload sound was shortened for nothing - the reload does not end at f78",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py",
+  "root_cause": "bug-3725 assumed the server ends the Sten's reload with the gun clip's 79 frames (as the Thompson's row is cut at f78 of 84). Measured (run se16, reloadbox `frames`): the reload animation id is up for 187 capture frames = 2.99 s = the WHOLE 91-frame hands row. The assumption was never checked against a capture before the clips were built on it.",
+  "fix": "Sten: no `snd_tight` (the option stays in smggun, unused; the staged coop_sten_snd_reload_tight.wav is gone and the tik rows no longer name it), the aimed pull sits on the retail sound's own clacks (ads_pull 68-74, let go f76, hand home f80-86), `end_e=90` for the emptied case (smgbake: `end` = rounds left, `end_e` = emptied). Rounds-left clip unchanged (hash 9840b032): everything is done by f66, the last 0.8 s of the 3.0 s reload is the settled aim - the retail clip fills that time with the bolt pull, which a gun with rounds left must not show; shortening it needs the server's reload time (not a lane item). RULE: read a gun's real reload length from a capture (`frames` in reload_<run>_<gun>.json / 2.083 = clip frames) before timing anything against 'the end'. Run se18.",
+  "tags": [
+   "ads",
+   "smg",
+   "sten",
+   "timing",
+   "reload-length",
+   "assumption",
+   "sound"
+  ],
+  "related_bugs": [
+   "bug-3725",
+   "bug-3683"
+  ]
+ },
+ {
+  "error_message": "Runs se13 / se14 / se16: 'OSError(28) There is not enough space on the disk' - G: (932 GB) full; a capture run died mid-way and the client of se16 hung for 12 minutes",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/run_smg.py",
+  "root_cause": "Every capture frame is a 1280x720 JPEG of about 0.54 MB: a 27-capture session is 7-8 GB (se10 7.5 GB, se11 6.9 GB), and every lane keeps its raw frames on G:. Nothing checked the free space before a run. When the disk fills, screenshots stop being written while the game goes on (the log still shows `ABSCEN end`), the final move fails, and a later step can hang until its 40-minute timeout.",
+  "fix": "Nothing was deleted. Finished runs se10 and se11 were MOVED to C:\\Users\\curry\\AppData\\Local\\Temp\\claude\\C--mohaa-coop-dev\\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\\scratchpad\\smg\\runs\\ (tools read G:/mohaa-adsanim3/runs: move a folder back, or set ADS_RUNS for the tools that read it, to re-measure); the frames a failed run left in home\\maintt\\screenshots were moved into runs\\se13 with a copy of the log and the complete captures measured (measure_run.py now reports an incomplete capture and goes on). Practice: `df /g` before a run (0.54 MB x frames; an aimed capture with --tail is about 530-650 frames), capture only the stances a run needs, check per-capture frame counts when a run ends oddly, stop only your OWN client when it hangs (harness_guard classify -> owner adsanim3).",
+  "tags": [
+   "harness",
+   "disk-space",
+   "capture",
+   "run",
+   "g-drive"
+  ],
+  "related_bugs": []
+ },
+ {
+  "error_message": "Sten aimed EMPTY reload, PRONE (run se18): 2.5-3.8 % of the centre box beyond the sway envelope for 8 capture frames (clip f66-70); the other seven stances 0.2-1.5 %",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py",
+  "root_cause": "The firing hand reaches the bolt knob from behind with index and middle finger straight ahead; in the prone framing their tips stand in the box's lower right corner as they arrive (offline, standing, sway off: 1.6 % with the hook at y 0.15, 2.2 % at -0.15).",
+  "fix": "OPEN - not fixed. Cure to try: the approach from BELOW (_GRAB_BEHIND dir with z positive), the hook further out along the knob (y 0.4 read 1.3 % offline), fingers curled earlier; then all eight stances again.",
+  "tags": [
+   "ads",
+   "smg",
+   "sten",
+   "prone",
+   "centre-box",
+   "open"
+  ],
+  "related_bugs": [
+   "bug-3724"
+  ]
+ },
+ {
+  "error_message": "Coordinator after the user saw the se11-se17 GIFs: (1) the cocking hand still comes in with straight, splayed fingers (MP18 clip f48-56) and closes only at the bar, flat from the right; (2) the MP18's receiver rear / stock is a mosaic of big brown squares; (3) the hand on the drum hides the whole drum. User: every changed gun needs its camo / variant tiks covered, with a sheet of the finishes in the aim per gun",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/README.md",
+  "root_cause": "(1) Seen from behind, the hooked second phalanges point away from the eye, so index and middle look straight and ring / little finger show their nails; the fingers reach the hook pose at the turn beside the grip, but that pose is what looks splayed from the eye. (2) The lane's overlay holds only the lane's assets: the MP18 is drawn with the RELEASED sheets (textures/coop_mp18/*.jpg, 1000 x 1000 at 63-110 KB: JPEG blocks 12 u from the eye); the approved skin of docs/proposals/mp18_skin_2026-10-12 is not in it. (3) The Sten's hold carried onto the neck has the back of the hand toward the eye.",
+  "fix": "OPEN - none of the three is fixed; where to work is in the README's OPEN list (hook dir / flexion, mkov_smg.py --extra <mp18 skin assets>, sidehold SH_ROLL). Finish coverage is listed there (script-covered: MP40 11 tiks, Silenced MP40 1, MP40 R2 1, MP18 1, Sten 8, Thompson retail mesh 12; not covered: the four other Thompson meshes); the per-finish aim sheets are not made.",
+  "tags": [
+   "ads",
+   "smg",
+   "mp18",
+   "sten",
+   "hand-pose",
+   "texture",
+   "finishes",
+   "open",
+   "user-feedback"
+  ],
+  "related_bugs": [
+   "bug-3722",
+   "bug-3724"
+  ]
+ }
+]

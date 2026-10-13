@@ -74,9 +74,10 @@ assert s.count(hook) == 1
 s = s.replace(hook, '            smg_parts(a, gun)\n' + hook)
 s = s.replace('ap.add_argument("--stances", default=None)',
               'ap.add_argument("--stances", default=None); ap.add_argument("--sstances", default="stand"); '
-              'ap.add_argument("--aitik", default="models/human/german_wehrmact_nco.tik"); ap.add_argument("--hold", type=int, default=175); '
+              'ap.add_argument("--aitik", default="models/human/german_wehrmact_nco.tik"); ap.add_argument("--hold", type=int, default=175); ap.add_argument("--tail", default="0"); '
               'ap.add_argument("--rel", type=int, default=200); ap.add_argument("--cheats", action="store_true")')
 s = s.replace("    if a.stances:\n", "    a.sstances = [x for x in a.sstances.split(',') if x]\n    SMG_HOLD[0] = a.hold; SMG_REL[0] = a.rel\n"
+              "    SMG_TAIL[:] = [int(a.tail.split(':')[0]), int((a.tail.split(':') + ['4'])[1])]\n"
               "    if a.cheats:\n        cheats_on()\n    if a.stances:\n", 1)
 assert 'SMG_HOLD[0] = a.hold' in s
 # another map / spot for the whole session (an AI to look at needs a place without the map's friendly actors:

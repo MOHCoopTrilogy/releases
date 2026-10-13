@@ -25,6 +25,9 @@ for stance, case, tag in tags:
     except ValueError as e:                  # no reload in the capture (the gun did not run dry / did not fire): say so, go on
         print('%s %s %s: NO RELOAD FOUND in this capture (%s) - run it again' % (gun, stance, case, e))
         continue
+    except (FileNotFoundError, IndexError, OSError) as e:      # a capture with frames missing (run se13: the disk filled up mid-run)
+        print('%s %s %s: capture INCOMPLETE (%s) - not measured, run it again' % (gun, stance, case, str(e)[-70:]))
+        continue
     if r['frames'] < 100:
         print('%s %s %s: only %d reload frames found - not recorded, run it again' % (gun, stance, case, r['frames']))
         continue
