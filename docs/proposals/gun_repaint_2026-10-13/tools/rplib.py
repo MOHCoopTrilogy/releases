@@ -108,10 +108,12 @@ def noise(shape, sigma, seed):
     return g
 
 
-def bake(s, W, H, wrap=False):
-    """texel -> (pos, normal, island id); island -1 where no triangle. wrap: UVs outside 0..1 are folded back."""
+def bake(s, W, H, wrap=False, want_tid=False):
+    """texel -> (pos, normal, island id); island -1 where no triangle. wrap: UVs outside 0..1 are folded back.
+    want_tid: also the index (into s["tris"]) of the triangle that wrote each texel."""
     pos = np.zeros((H, W, 3), np.float32); nrm = np.zeros((H, W, 3), np.float32)
     isl = -np.ones((H, W), np.int32)
+    tid = -np.ones((H, W), np.int32) if want_tid else None
     uvp = s["uv"] * np.array([W, H], float)
     for ti, t in enumerate(s["tris"]):
         a, b, c = uvp[t]
@@ -135,9 +137,84 @@ def bake(s, W, H, wrap=False):
         Wt = np.stack([w0, w1, w2], -1)[m]
         sub_p = pos[y0:y1, x0:x1]; sub_n = nrm[y0:y1, x0:x1]; sub_i = isl[y0:y1, x0:x1]
         sub_p[m] = Wt @ s["pos"][t]; sub_n[m] = Wt @ s["nrm"][t]; sub_i[m] = s["isl"][ti]
+        if want_tid:
+            tid[y0:y1, x0:x1][m] = ti
     l = np.linalg.norm(nrm, axis=2, keepdims=True)
     nrm = nrm / np.maximum(l, 1e-6)
+    if want_tid:
+        return pos, nrm, isl, tid
     return pos, nrm, isl
+
+
+def hard_edge_points(s, deg=28, step=0.06):
+    """sample points (3D) along the mesh's sharp edges: (convex, concave). Same edge test as edge_masks."""
+    P = s["pos"]; T = s["tris"]
+    fn = np.cross(P[T[:, 1]] - P[T[:, 0]], P[T[:, 2]] - P[T[:, 0]])
+    fn /= (np.linalg.norm(fn, axis=1, keepdims=True) + 1e-9)
+    vn = s["nrm"][T].mean(1)
+    fn *= np.sign((fn * vn).sum(1, keepdims=True) + 1e-9)
+    cen = P[T].mean(1)
+    key = {}
+    wid = np.zeros(len(P), int)
+    for i, p in enumerate(P):
+        wid[i] = key.setdefault(tuple(np.round(p, 2)), len(key))
+    edges = {}
+    for ti, t in enumerate(T):
+        for k in range(3):
+            i, j = int(t[k]), int(t[(k + 1) % 3])
+            edges.setdefault(tuple(sorted((wid[i], wid[j]))), []).append((ti, i, j))
+    out = ([], [])
+    for e, lst in edges.items():
+        if len(lst) != 2:
+            continue
+        (ta, ia, ja), (tb, ib, jb) = lst
+        if float((fn[ta] * fn[tb]).sum()) > np.cos(np.radians(deg)):
+            continue
+        na = s["nrm"][ia] + s["nrm"][ja]; nb = s["nrm"][ib] + s["nrm"][jb]
+        na /= (np.linalg.norm(na) + 1e-9); nb /= (np.linalg.norm(nb) + 1e-9)
+        if float((na * nb).sum()) > np.cos(np.radians(20)):
+            continue
+        convex = float(((cen[tb] - cen[ta]) * fn[ta]).sum()) < 0
+        a, b = P[ia], P[ja]
+        n = max(2, int(np.linalg.norm(b - a) / step) + 1)
+        w = np.linspace(0, 1, n)[:, None]
+        out[0 if convex else 1].append(a[None] * (1 - w) + b[None] * w)
+    cv = np.concatenate(out[0]) if out[0] else np.zeros((0, 3))
+    cc = np.concatenate(out[1]) if out[1] else np.zeros((0, 3))
+    return cv, cc
+
+
+def vnoise3(P, seed):
+    """value noise on the integer lattice of P (n,3) -> (n,) in 0..1. Solid: no UV stretch can smear it."""
+    i = np.floor(P).astype(np.int64); f = (P - i).astype(np.float32)
+    f = f * f * (3 - 2 * f)
+
+    def h(ix, iy, iz):
+        n = ix * 374761393 + iy * 668265263 + iz * 2147483647 + seed * 1442695041
+        n = (n ^ (n >> 13)) * 1274126177
+        n = n ^ (n >> 16)
+        return (n & 0xffff).astype(np.float32) / 65535.0
+    x0, y0, z0 = i[:, 0], i[:, 1], i[:, 2]
+    c = [[[h(x0 + a, y0 + b, z0 + c_) for c_ in (0, 1)] for b in (0, 1)] for a in (0, 1)]
+    fx, fy, fz = f[:, 0], f[:, 1], f[:, 2]
+    x00 = c[0][0][0] * (1 - fx) + c[1][0][0] * fx; x01 = c[0][0][1] * (1 - fx) + c[1][0][1] * fx
+    x10 = c[0][1][0] * (1 - fx) + c[1][1][0] * fx; x11 = c[0][1][1] * (1 - fx) + c[1][1][1] * fx
+    y0_ = x00 * (1 - fy) + x10 * fy; y1_ = x01 * (1 - fy) + x11 * fy
+    return y0_ * (1 - fz) + y1_ * fz
+
+
+def fbm3(P, freq, octaves, seed, dmin=None, lac=2.0, gain=0.55, floor=0.0):
+    """sum of octaves, zero mean, about unit range. dmin (px per unit on the texel's coarse axis): an octave whose
+    wavelength falls under ~3 texels there is faded out (to `floor`) instead of being smeared."""
+    out = np.zeros(len(P), np.float32); amp = 1.0; tot = 0.0; f = float(freq)
+    for o in range(octaves):
+        n = vnoise3(P * f + 17.3 * o, seed + o) - 0.5
+        if dmin is not None:
+            w = np.clip(dmin / (3.0 * f), floor, 1.0)
+            n = n * w
+        out += amp * n; tot += amp
+        amp *= gain; f *= lac
+    return out / tot * 2.0
 
 
 def edge_masks(s, W, H, deg=28, width=None):

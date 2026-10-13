@@ -1,0 +1,23 @@
+[
+ {
+  "error_message": "M3 grease gun (greaser.skd, sheet textures/models/weapons/greasegun/greaser.jpg 512x512): black slashes on the magazine, white blobs on the rear cap, smeared reddish housing - the mesh does not follow the art of its sheet",
+  "file": "docs/proposals/gun_repaint_2026-10-13/tools/greasegun.py",
+  "root_cause": "Measured (tools/gg_probe.py, gg_geom.py): 269 of 2567 triangles have UVs thrown across the sheet (two magazine vertices sit at uv 0,0 - the slashes are the sheet's black gaps seen through them); the lower receiver sides and the magazine sides are squeezed 7-11 : 1 into narrow strips (4-5 texels per unit on their coarse axis at 2048); the receiver halves share one strip; rear sight, port cover, stock guides and brackets lie on top of that strip; the magazine's front / back faces share their texels with the stock guide tubes; the grip plates are unwrapped as fans. Any sheet painted as a picture is sampled wrongly somewhere.",
+  "fix": "STAGED, not shipped: assets/textures/models/weapons/greasegun/greaser.dds, 4096x4096 DXT1 + mips (11.2 MB), painted in GUN SPACE: per texel the bone-space position, normal, part and the texel density of its triangle are baked from the mesh; solid 3D noise (an octave the triangle's coarse axis cannot hold is faded, never smeared); wear / dirt from the 3D distance to hard edges; shared texels get plain material; thrown triangles never write; gutters = nearest part's colour (no black). The mesh's own faults stay: the thrown triangles still sample across the sheet (magazine floor plate from below, a few magazine / port triangles), now through low-contrast steel.",
+  "tags": ["gun_repaint_2026-10-13", "greasegun", "greaser", "uv", "thrown-triangles", "gun-space-bake", "staged"]
+ },
+ {
+  "error_message": "Grease gun repaint, first engine look: the gun read as flat grey plastic (rear cap = one flat grey disc filling the aim picture); in the software previews before that: swirls on the grip plates, rectangular patches on the receiver side, navy rails along the receiver",
+  "file": "docs/proposals/gun_repaint_2026-10-13/tools/greasegun.py",
+  "root_cause": "(1) Phosphate base 64 with a matte shade is far lighter than every neighbour gun under this engine's lighting, and the software preview (gain 1.45, own light) hid it. (2) Edge-wear bands on triangles with under ~4 texels per unit come out as wide bands that follow the fan unwrap = swirls. (3) Damping the paint in texels shared by two parts draws the other part's footprint on the winner. (4) The stock guide tubes have no texels of their own: they take the magazine's.",
+  "fix": "Base 50/52/50, stains, a broken highlight band and unwrapped scratches on the tube, a turned rear cap (rings, groove, centre, two-lobed sheen); no edge band under 3.5 texels per unit; the receiver strip is always painted in full, elsewhere only shade / features are damped in shared texels, grip plates plain; the texels the magazine shares are a tone between magazine and housing. Rule for the next gun: judge tone in the ENGINE first (one quick run), not in the software render.",
+  "tags": ["gun_repaint_2026-10-13", "greasegun", "procedural", "flat-look", "shared-texels", "soft3d-preview"]
+ },
+ {
+  "error_message": "Python patch passed through a Git-Bash heredoc failed (AssertionError: the block to replace not found) - a line-continuation backslash inside the quoted text",
+  "file": "docs/proposals/gun_repaint_2026-10-13/tools/greasegun.py",
+  "root_cause": "The known heredoc trap (fourth time on this project): `\\\\\\n` in a Python string inside `<<'EOF'` did not arrive as written. The assert stopped it before anything was written.",
+  "fix": "Patch scripts written with the Write tool and run as files (work/_patch_gg*.py); no heredoc Python after that.",
+  "tags": ["gun_repaint_2026-10-13", "heredoc", "git-bash", "tooling"]
+ }
+]

@@ -1,0 +1,2 @@
+[2026-10-13 14:22:58 UTC-6.000] 1740: 2048x2048 DXT1       3Mb textures/models/weapons/Colt/colt45s2.tga
+[2026-10-13 14:22:58 UTC-6.000] 1758: 4096x4096 DXT1      12Mb textures/models/weapons/greasegun/greaser.jpg
