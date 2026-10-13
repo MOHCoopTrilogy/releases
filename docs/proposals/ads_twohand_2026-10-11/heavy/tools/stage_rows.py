@@ -53,6 +53,13 @@ EDITS = {
         ('coopr_fg_42_irons_reload_empty_ads', 'viewmodel/fg42/fg42_irons_reload_empty_ads.skc', 0.1, 'FG 42 Irons aimed, empty: + the charging handle'),
         ('coopr_fg_42_irons_reload_adsb', 'viewmodel/fg42/fg42_irons_reload_adsb.skc', 0.1, 'FG 42 Irons aimed + braced, rounds left'),
         ('coopr_fg_42_irons_reload_empty_adsb', 'viewmodel/fg42/fg42_irons_reload_empty_adsb.skc', 0.1, 'FG 42 Irons aimed + braced, empty'),
+        # M1919 .30 cal portable (m1919sights.py / handpose.py m1919 / beltbake.py) - the BAR's hands prefix, so every row is
+        # a per-weapon row. The hip row for rounds left, coopr_m1919_30cal_reload, is in the SHARED anims_shared.txt:
+        # wire/patch_m1919_rows.py repoints it (a patch, not a staged copy)
+        ('coopr_m1919_30cal_charge', 'viewmodel/mg/coop_m1919_ads_hand.skc', 0.1, 'M1919: aim pose, the support hand cups the receiver as at the hip'),
+        ('coopr_m1919_30cal_reload_empty', 'viewmodel/coop_m1919/coop_m1919_reload_hip_empty.skc', 0.3, 'M1919 hip, empty: cover, belt, cover, then the firing hand works the charging handle'),
+        ('coopr_m1919_30cal_reload_ads', 'viewmodel/coop_m1919/m1919_reload_ads.skc', 0.1, 'M1919 aimed, rounds left: down under the box, cover, belt, cover, back to the aim'),
+        ('coopr_m1919_30cal_reload_empty_ads', 'viewmodel/coop_m1919/m1919_reload_empty_ads.skc', 0.1, 'M1919 aimed, empty: the same, then the charging handle worked in the aim'),
     ],
     'shotgun': [
         # shotgun reload (sgbake.py): the three aimed rows keep their SHIPPED paths - the staged clips replace them.
@@ -62,6 +69,13 @@ EDITS = {
         # the reload broken off by the trigger with a round chambered (state file: patch_sgbreak.py stage 2; cgame apply_sgbreak.py)
         ('shotgun_reload_end_break', 'viewmodel/shotgun/coop_shotgun_reload_end_break.skc', 0.12, 'hip, break-off with a round chambered: hand to the forend in 0.37 s, no pump'),
         ('shotgun_reload_end_break_ads', 'viewmodel/shotgun/shotgun_reload_end_break_ads.skc', 0.12, 'aimed, break-off with a round chambered: up into the aim in 0.37 s'),
+        # FOLLOW-UP 2026-10-13 (SHOTGUN_PUMP_FIX.md; user: "the shotgun doesnt have the pumping action when in ads"): the
+        # aimed per-shot cycle - cgame apply_cyclewpn.py plays coopr_<weapon key>_cycle_ads when the clip ammo drops in
+        # the aim (the server holds the hands at `charge` through an aimed shot). Per-weapon rows: the pump gun only
+        ('coopr_shotgun_cycle', 'viewmodel/shotgun/fire_shotgun_stand.skc', 0.05, 'retail: the hip fire clip (pump stroke at the same frames) - what an aim let go in mid-pump hands over to'),
+        ('coopr_shotgun_cycle_ads', 'viewmodel/shotgun/coop_shotgun_cycle_ads.skc', 0.05, 'aimed, after a shot with rounds left: the support hand racks the forend, the gun stays on target (sgpump.py)'),
+        ('coopr_shotgun_cyclelast', 'viewmodel/shotgun/fire_shotgun_stand.skc', 0.05, 'retail: as coopr_shotgun_cycle, after the last round'),
+        ('coopr_shotgun_cyclelast_ads', 'viewmodel/shotgun/coop_shotgun_cycle_ads.skc', 0.05, 'aimed, after the LAST round: the same stroke (the hip clip pumps after every shot)'),
     ],
 }
 

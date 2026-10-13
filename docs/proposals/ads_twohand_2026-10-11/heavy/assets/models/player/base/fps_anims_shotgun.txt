@@ -46,5 +46,9 @@ animations
 	shotgun_reload_end_loaded_ads		viewmodel/shotgun/shotgun_reload_end_loaded_ads.skc		crossblend 0.1	// HZM coop [ads heavy] aimed, rounds were left: back up into the aim, no pump
 	shotgun_reload_end_break		viewmodel/shotgun/coop_shotgun_reload_end_break.skc		crossblend 0.12	// HZM coop [ads heavy] hip, break-off with a round chambered: hand to the forend in 0.37 s, no pump
 	shotgun_reload_end_break_ads		viewmodel/shotgun/shotgun_reload_end_break_ads.skc		crossblend 0.12	// HZM coop [ads heavy] aimed, break-off with a round chambered: up into the aim in 0.37 s
+	coopr_shotgun_cycle		viewmodel/shotgun/fire_shotgun_stand.skc		crossblend 0.05	// HZM coop [ads heavy] retail: the hip fire clip (pump stroke at the same frames) - what an aim let go in mid-pump hands over to
+	coopr_shotgun_cycle_ads		viewmodel/shotgun/coop_shotgun_cycle_ads.skc		crossblend 0.05	// HZM coop [ads heavy] aimed, after a shot with rounds left: the support hand racks the forend, the gun stays on target (sgpump.py)
+	coopr_shotgun_cyclelast		viewmodel/shotgun/fire_shotgun_stand.skc		crossblend 0.05	// HZM coop [ads heavy] retail: as coopr_shotgun_cycle, after the last round
+	coopr_shotgun_cyclelast_ads		viewmodel/shotgun/coop_shotgun_cycle_ads.skc		crossblend 0.05	// HZM coop [ads heavy] aimed, after the LAST round: the same stroke (the hip clip pumps after every shot)
 }
 

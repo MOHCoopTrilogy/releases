@@ -122,7 +122,35 @@ def hipstill(sess, gun):
     R.step(L, timeout=300)
 
 
+def pumpdemo(sess, gun, st, shots, gap):
+    """LANE part (--pump st,st,..): `shots` single presses in a stance, `gap` game frames apart, EVERY frame captured
+    (the cycle between the shots: a pump gun's forend, a bolt) - aimed, or from the hip with --sthip. Model-less
+    reference first, marks DEMO fire <frame>; --tail as in stdemo. Tag and marks as stdemo's (`reload` = the first
+    shot), so boxeng.py --sway reads it with BOXENG_CLIPLEN = shots x (gap + 3); not together with --stdemo."""
+    tag = "ab__%s__%s__%s%s__demo__after" % (sess, gun, st, "hip" if STHIP else "")
+    i = [0]
+    L = S.RELEASE + S.TO_STAND + S.APPLY[st] + A.MODE["after"] + ["wait 400"] + ([] if STHIP else ["+button13"]) + ["wait 1700"]
+    L += ["coop_braceView"] if st == "braced" else []
+    L += ["wait 300", "set cg_adsSightDebug 2", "echo ^~^~^ ABSCEN begin %s" % tag]
+    L += ["set cg_drawviewmodel 0", "wait 1", "wait 1", "wait 1", "screenshotJPEG %s__ref" % tag, "wait 1", "wait 1",
+          "set cg_drawviewmodel 2", "wait 1", "wait 1", "wait 1", "wait 1"]
+    L += A.frames(tag, 6, i) + ["echo ^~^~^ DEMO reload %d" % i[0]]
+    for k in range(shots):
+        L += ["+attackprimary", "echo ^~^~^ DEMO fire %d" % i[0]] + A.frames(tag, 3, i) + ["-attackprimary"] + A.frames(tag, gap, i)
+    if TAIL[0]:
+        L += ["echo ^~^~^ DEMO settle %d" % i[0]]
+        for k in range(TAIL[0] // TAIL[1]):
+            L += A.frames(tag, 1, i) + ["wait 1", "wait 1"] * (TAIL[1] - 1)
+        L += A.frames(tag, 10, i)
+    L += ["-button13", "echo ^~^~^ DEMO lower %d" % i[0]] + A.frames(tag, 24, i)
+    L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_adsSightDebug 1"]
+    L += ["coop_braceView"] if st == "braced" else []
+    L += S.RELEASE + A.UNAPPLY[st]
+    R.step(L, timeout=2400)
+
+
 _run0 = T2.run
+PUMP = []           # --pump stand,crouch,.. : pumpdemo
 STDEMO = []
 TAIL = [0, 4]
 BRK = []            # --brk fire+switch+sprint+drop:50+105[:E]
@@ -136,7 +164,7 @@ HIPSTILL = []       # --hipstill : the gun at the hip on the light wall
 
 
 def _run(a):
-    if not (STDEMO or BRK or HIPDEMO or WALLSTILL or TPC or TPREL or GROUND or HIPSTILL):
+    if not (STDEMO or BRK or HIPDEMO or WALLSTILL or TPC or TPREL or GROUND or HIPSTILL or PUMP):
         return _run0(a)
     # our part runs inside the shared session: hook the per-gun loop through the (otherwise unused here) "yaw" part
     def ys(sess, gun, yaw):
@@ -156,6 +184,9 @@ def _run(a):
                 tp_reload(sess, gun, a.shots, a.shotgap, a.demoreload)
             if GROUND:
                 ground(sess, gun)
+            for st in PUMP:
+                R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+                pumpdemo(sess, gun, st, a.shots, a.shotgap)
             for st in STDEMO:
                 R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
                 stdemo(sess, gun, st, a.shots, a.shotgap, a.demoreload, a.demoempty)
@@ -196,7 +227,7 @@ if __name__ == "__main__":
         sys.argv.remove("--tprel"); TPREL.append(1)
     if "--ground" in sys.argv:
         sys.argv.remove("--ground"); GROUND.append(1)
-    for opt, lst in (("--brk", BRK), ("--hipdemo", HIPDEMO), ("--wallstill", WALLSTILL)):
+    for opt, lst in (("--pump", PUMP), ("--brk", BRK), ("--hipdemo", HIPDEMO), ("--wallstill", WALLSTILL)):
         if opt in sys.argv:
             k = sys.argv.index(opt)
             lst[:] = sys.argv[k + 1].split(",")

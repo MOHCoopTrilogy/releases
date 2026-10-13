@@ -28,5 +28,24 @@
   ],
   "relief": 12.0,
   "why": "2026-10-13 (heavy lane, fifth agent): the iron-sight FG 42 (tools/fg42irons.py). F = the rebuilt front post's tip, R = the centre of the rear aperture ring; relief = eye to the aperture. New gun: 8 rows inserted by tools/apply_fg42irons.py. Ships only with the staged mesh, tiks, shader and texture."
+ },
+ "m1919": {
+  "new": true,
+  "tiks": {
+   "models/weapons/30calportable.tik": "M1919 30cal"
+  },
+  "F": [
+   17.11,
+   -0.005,
+   -7.9
+  ],
+  "R": [
+   -0.55,
+   -0.005,
+   -7.9
+  ],
+  "delta_mrad": 0.0,
+  "relief": 10.0,
+  "why": "2026-10-13 (heavy lane, seventh agent; bug-3622): the cgame had NO sight row for the M1919 portable (the shared sights.json key is a synthetic line under the receiver, never generated into cg_adssights.h) and the mesh no front sight - the aim was a black receiver wall. F = the tip of the new front blade on the trunnion block, R = the shoulders of the new notch slider in the rear leaf's window (tools/m1919sights.py), the line parallel to the bore 2.9 u above the receiver's top; relief = eye to the leaf. One row (the gun has no finish tiks), inserted by tools/apply_mgsights.py. Ships only with the staged mesh, tik, shader and texture."
  }
 }

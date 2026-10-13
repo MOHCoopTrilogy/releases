@@ -206,5 +206,9 @@ animations
 	coopr_fg_42_irons_reload_empty_ads		viewmodel/fg42/fg42_irons_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads heavy] FG 42 Irons aimed, empty: + the charging handle
 	coopr_fg_42_irons_reload_adsb		viewmodel/fg42/fg42_irons_reload_adsb.skc		crossblend 0.1	// HZM coop [ads heavy] FG 42 Irons aimed + braced, rounds left
 	coopr_fg_42_irons_reload_empty_adsb		viewmodel/fg42/fg42_irons_reload_empty_adsb.skc		crossblend 0.1	// HZM coop [ads heavy] FG 42 Irons aimed + braced, empty
+	coopr_m1919_30cal_charge		viewmodel/mg/coop_m1919_ads_hand.skc		crossblend 0.1	// HZM coop [ads heavy] M1919: aim pose, the support hand cups the receiver as at the hip
+	coopr_m1919_30cal_reload_empty		viewmodel/coop_m1919/coop_m1919_reload_hip_empty.skc		crossblend 0.3	// HZM coop [ads heavy] M1919 hip, empty: cover, belt, cover, then the firing hand works the charging handle
+	coopr_m1919_30cal_reload_ads		viewmodel/coop_m1919/m1919_reload_ads.skc		crossblend 0.1	// HZM coop [ads heavy] M1919 aimed, rounds left: down under the box, cover, belt, cover, back to the aim
+	coopr_m1919_30cal_reload_empty_ads		viewmodel/coop_m1919/m1919_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads heavy] M1919 aimed, empty: the same, then the charging handle worked in the aim
 }
 

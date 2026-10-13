@@ -28,6 +28,7 @@ GUNS = {
     'vickers': dict(sight='vickers_berthier', tik='models/weapons/Uk_W_Vickers.tik', cls='lmg', idle='vickers_idle', vdir='viewmodel/Vickers'),
     'breda':   dict(sight='breda', tik='models/weapons/It_W_Breda.tik', cls='lmg', idle='breda_idle', vdir='viewmodel/breda'),
     'dp28':    dict(sight='dp_28', tik='models/weapons/dp28.tik', cls='lmg', idle='dp28_idle1', vdir='viewmodel/coop_dp28'),
+    'm1919':   dict(sight='m1919', tik='models/weapons/30calportable.tik', cls='m1919', idle='bar_idle1', vdir='viewmodel/mg'),
     'shotgun': dict(sight='shotgun', tik='models/weapons/shotgun.tik', cls='shotgun', idle='shotgun_idle1', vdir='viewmodel/shotgun'),
 }
 
@@ -50,6 +51,12 @@ def lib():
         for k, o in json.load(open(ov)).items():
             if k in H.V.SIGHTS:
                 H.V.SIGHTS[k].update({kk: o[kk] for kk in ('delta_mrad', 'relief', 'F', 'R') if kk in o})
+                # an override row is written in the header's frame (= gungeo's, the root applied): a shared entry
+                # that aims by its `_root` copies (M1919, bug-3840) must take the override there too
+                if 'F' in o and H.V.SIGHTS[k].get('frame_used') == 'root':
+                    H.V.SIGHTS[k].update(F_root=o['F'], R_root=o['R'], up_root=o.get('up', [0.0, 0.0, -1.0]), verified=True)
+                if 'F' in o:
+                    H.V.GUNTIK.setdefault(k, H.V.SIGHTS[k]['tik'])
             elif o.get('new'):               # a NEW gun of this lane (FG 42 Irons): its row exists only here
                 tik = sorted(o['tiks'], key=len)[0]
                 H.V.SIGHTS[k] = dict(tik=tik, name=o['tiks'][tik], skd=o.get('skd', ''), F=o['F'], R=o['R'], up=o.get('up', [0.0, 0.0, -1.0]),

@@ -5,11 +5,42 @@ lane's (`../README.md` top section); this file says what is different here, what
 **Everything is STAGED** in this folder and on engine branch `ads-heavy-next` (worktree
 `C:\mohaa-coop-dev\openmohaa-hzm-ads-heavy`, build dir `.cmake` - NOT `build`). Nothing is in the mod tree, the fixes
 pak or a live install. Run ids used: ha hb hc hd he hf hn hs (earlier), hg1-hg3, hh1-hh9, hi1, hi2, hj1, hj2 (third agent), **hj3-hj14 (fourth agent)** -
-hj15-hj25 (fifth agent), **hj26-hj44 (sixth agent)** - never reuse one; next free: `hj45`.
+hj15-hj25 (fifth agent), hj26-hj44 (sixth agent), **hj45-hj53 (seventh agent)** - never reuse one; next free: `hj54`.
 
 **FROZEN (coordinator, 2026-10-13): BAR family, StG 44 family, DP-28 and the pump shotgun are being integrated from this
 folder at engine 4b73e8c5. Do NOT change their staged files, rows, tool output or README sections; a defect in one
 goes to the coordinator by message.** `fps_anims_mg.txt` gained one ADDED row since (the irons aim pose), nothing else.
+
+## SEVENTH AGENT, 2026-10-13 (runs hj45-hj53; next free `hj54`) - read this block first
+* **Harness after the 11:02 deploy**: `G:\mohaa-adsanim4\game.dll` + `games\game_install_orig.dll` are now the released
+  6b515fbf (the old one: `games\game_install_orig_until_20261013_689d0db1.dll`); with the old DLL the map never loads
+  (hj45, hj46 spent - bug-3846). The user's deployed cgame is in the harness as `cgames\cgame_userinteg8.dll`.
+* **DONE - shotgun pump stroke in the aim (user report, top priority): `SHOTGUN_PUMP_FIX.md`** - the whole cut (files,
+  rows, engine `ads-heavy-next` 54514e44 = `cgame_heavy11`, figures, evidence, what is not done). bug-3844..3848.
+  New lane tools: `run_h.py --pump st,st,..` (N single presses, every frame captured), `boxeng.py` `BOXENG_SERIES`,
+  `sgpump.py`, `apply_cyclewpn.py`.
+* **IN PROGRESS - M1919 .30 cal portable (nothing run in the engine yet; everything below is staged and uncommitted
+  in the engine worktree: the sight row in `cg_adssights.h`, built into `cgame_heavy10` / `cgame_heavy11`)**:
+  * sights: `tools/m1919sights.py` -> `coop_30cal_sights.skd` (surface `coop_sight`: a notch slider in the rear leaf's
+    empty window + a front blade on the trunnion block), shader `coop_30cal_sight`, the staged tik; sight row
+    `sights_override.json` key `m1919` (F 17.11 / R -0.55 at z -7.9, relief 10; the shared entry aims by its `_root`
+    copies - `hv.lib()` now writes an override there too); aim pose `handpose.py m1919` -> row
+    `coopr_m1919_30cal_charge`. Offline the picture is a real leaf-and-blade sight line over the top cover.
+  * reloads: `tools/beltbake.py` (hip / ads x loaded / empty; gun clips `coop_30cal_reload_loaded.skc` (tik row
+    `reload`, 98 frames as released, handle still) and `coop_30cal_reload_empty.skc` (rows `reload_empty` /
+    `reload_ads_empty`, one pull f84-90)); rows in `stage_rows.py`; the hip row for rounds left is in the shared
+    anims_shared.txt -> `wire/patch_m1919_rows.py` (`--pk3` for a test overlay). Overlay recipe:
+    `stage_rows.py`, `mkov_h.py ov_a.pk3`, `wire/patch_m1919_rows.py --pk3 ov_a.pk3 ov.pk3`.
+    Looked at OFFLINE only (`fgview.py --sight m1919 --pose viewmodel/mg/coop_m1919_ads_hand.skc --tik
+    models/weapons/30calportable.tik --prop models/ammo/coop_belt_30cal.tik:32:58 --hide belt:34:56`): aimed, the gun
+    comes straight down, is rolled 55 deg top-to-the-right under the box (the open cover leans away to the right, the
+    feed side faces the eye), cover / belt / cover by a closed left hand, back up; EMPTY: the handle is worked
+    overhand by the firing hand with the gun back IN THE AIM. Re-running `m1919sights.py` rewrites the staged tik:
+    run `beltbake.py gun` after it.
+  * NEXT for it: engine runs (aim stills before / after on light + dark, six stances; `--stdemo` rounds left + emptied
+    with `--tail 360:4`, `boxeng.py --sway`), server timing (`run_srvtime_h.py`, `rowlen_h.py`), GIFs, then commit
+    the engine row. Known offline weak points: the left arm clamps at its reach for about 10 frames ("IK clamp L",
+    probably at the pouch), the empty reload's last hand-back is 5 frames, the hip reload's sleeve crosses the centre.
 
 ## FG 42 pair - hip reload, aimed reload, charging handle, armory entry (sixth agent, runs hj26-hj44)
 Engine `ads-heavy-next` **aa84c42d** (= 24f21200 + `tools/apply_reloadfinish.py`) = test DLL **`cgame_heavy9`** (every figure below); bugs 3824-3832.

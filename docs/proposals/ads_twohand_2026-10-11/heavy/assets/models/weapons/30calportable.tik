@@ -1,0 +1,178 @@
+TIKI
+// [reload audit phase B 2026-10-05] MOD COPY of the xw pack's 30calportable.tik (zzzzz_xw_weapons.pk3), identical except the reload
+// block and the cached belt prop - the mod pk3 sorts after the xw pack, so this copy wins.
+setup
+{
+	scale 1.1
+	path models/weapons/30calportable
+	skelmodel coop_30cal_sights.skd
+
+	surface weapon shader 30cal
+	surface weapon1 shader 30cal
+	//[reload audit phase B polish 2026-10-05] the ammo box is gone (user: "remove ammo box for 30"): coop 30cal.skd
+	//no longer has the crate surface; it carries a short linked belt (surface belt) hanging from the feedway instead
+	surface belt shader shellbelt
+	//HZM coop [ads heavy 2026-10-13] real sights (tools/m1919sights.py): notch slider in the rear leaf, front blade
+	surface coop_sight shader coop_30cal_sight
+}
+
+init
+{
+	server
+	{
+		classname		Weapon
+		weapontype		mg
+		name			"M1919 30cal"
+		rank			432 430
+
+		pickupsound		bar_snd_pickup
+		ammopickupsound	bar_snd_pickup_ammo
+		noammosound		bar_snd_noammo
+
+		// Holstering info
+holstertag				"Bip01 Spine2"
+holsteroffset			"8.0 -7.75 6.5"
+holsterangles			"0 185 -25"
+holsterScale			1.0
+
+		// Primary fire type info
+		firetype		bullet
+		ammotype		"mg"
+		meansofdeath		bullet
+		bulletcount		2
+		clipsize		120
+		startammo		120
+		ammorequired		1
+		firedelay		0.09
+		bulletrange		4000
+		bulletspread		11 11 45 45
+		firespreadmult		0.38 0.61 200 0.6
+		bulletdamage		45
+		crosshair		1
+		movementspeed		0.6
+
+		tracerfrequency 	3
+
+		// AI animation group info
+		weapongroup		xw_30calportable
+
+		// DM Attributes
+		dmbulletcount		2
+		dmstartammo		120
+		dmammorequired		1
+		dmfiredelay		0.09
+		dmbulletrange		4000
+		dmbulletspread		12 12 52 52
+		dmfirespreadmult	0.35 0.65 160 0.7
+		dmbulletdamage		45
+		dmcrosshair		1
+		dmmovementspeed		0.6
+	}
+	client
+	{
+		cache muzsprite.spr
+		cache models/fx/muzflash.tik
+		cache models/ammo/coop_belt_30cal.tik	// [reload audit phase B polish] belt prop
+		cache models/ammo/rifleshell.tik
+		cache vsssource.spr
+	}
+}
+
+animations
+{
+	idle		30cal.skc
+	idle_empty	30cal.skc
+	{
+		server
+		{
+			entry surface belt +nodraw
+		}
+	}
+	//[reload audit phase B polish 2026-10-05] BELT reload, hand-keyed (keyclip.py / beltsched.py, one timeline): latch
+	//f10, cover lifted f12-18 and flicked open, the old belt end stripped out to the left and a new one laid on the feed
+	//tray and seated on the stop (belt prop coop_belt_30cal.tik f32-58, the gun's belt hidden f34-56), cover pulled
+	//down and slapped shut f63-71, charging handle (its own bone) pulled twice f74-87.
+	//HZM coop [ads heavy 2026-10-13] (tools/beltbake.py) the server-read row keeps its LENGTH (98 frames) and its commands;
+	//its clip: cover open f14-21 / shut f63-69, the charging handle does not move (rounds left = a round is chambered)
+	reload 		coop_30cal_reload_loaded.skc
+	{
+		server
+		{
+			34 surface belt +nodraw
+			56 surface belt -nodraw
+			last idle
+		}
+		client
+		{
+			entry sound bar_snd_reload
+		}
+	}
+	//cgame-only rows (an EMPTY gun, hip / aimed): the same + ONE pull of the charging handle f84-90
+	reload_empty		coop_30cal_reload_empty.skc
+	reload_ads_empty	coop_30cal_reload_empty.skc
+	fire		30cal.skc
+	{
+		server
+		{
+			entry shoot
+		}
+		client
+		{
+			entry stopaliaschannel WaW30cal
+			entry sound WaW30cal
+
+			entry viewkick 	     -1.6 -1.6  -0.8 0.8   3.2  "T" 10 0.60 12.0
+
+			entry tagdlight tag_barrel 0.25 0.2 0.05 110 0.11
+			entry tagspawnlinked tag_barrel
+			(
+				scale 0.6
+				offsetalongaxis 3 0 0
+				count 1
+				model muzsprite.spr
+				angles 0 0 crandom 25
+				life 0.04
+			)
+
+			entry tagspawnlinked tag_barrel
+			(
+				count 1
+				scalemin 1.0
+				scalemax 1.5
+				model models/fx/muzflash.tik
+				randomroll
+				life 0.03
+			)
+
+			// shell eject
+			entry commanddelay 0.1 tagspawn tag_eject
+			(
+				spawnrange 1024
+				count 1
+				model models/ammo/rifleshell.tik
+				scale 1.0
+				velocity 70
+				randvel crandom 10 crandom 10 random 20
+				emitterangles 0 0 0
+				avelocity crandom 90 crandom 90 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_rifle_shell
+			)
+
+			entry tagspawn tag_barrel
+                        (
+				count 1
+				scalemin 1.0
+				scalemax 1.5
+				model vsssource.spr
+				randomroll
+				life 0.03
+			)
+		}
+	}
+}

@@ -61,6 +61,24 @@
    "settle_s": 0.33
   }
  },
+ "m1919": {
+  "ads_empty": {
+   "peak_deg": 2.3,
+   "settle_s": 0.1
+  },
+  "ads_loaded": {
+   "peak_deg": 2.3,
+   "settle_s": 0.27
+  },
+  "hip_empty": {
+   "peak_deg": 2.3,
+   "settle_s": 0.1
+  },
+  "hip_loaded": {
+   "peak_deg": 2.3,
+   "settle_s": 0.27
+  }
+ },
  "mp44": {
   "empty": {
    "peak_deg": 4.16,

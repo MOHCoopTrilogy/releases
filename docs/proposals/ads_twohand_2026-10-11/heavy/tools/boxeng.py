@@ -145,6 +145,11 @@ for tag in marks:
         if '--empty' in sys.argv:
             under = [i for i in range(len(exe) - 5) if max(exe[i:i + 5]) <= 0.02]
             k0s = min(40, max(20, under[0] if under else 0))
+        if os.environ.get('BOXENG_SERIES'):                # the whole per-frame series (pump cycle: fixed against deployed, frame for frame)
+            _sp = os.environ['BOXENG_SERIES']
+            _sd = json.load(open(_sp)) if os.path.isfile(_sp) else {}
+            _sd['%s:%s:%s' % (sess, gun, tag.split('__')[3])] = dict(rel=rel, env=[round(100 * e, 3) for e in exe])
+            json.dump(_sd, open(_sp, 'w'))
         exs = exe[k0s:]
         ovr = [(rel + k0s + i, e) for i, e in enumerate(exs) if e > 0.02]
         print('   AS PLAYED (sway on) %s: clip = capture f%d-%d%s | vs the 6-frame aim mask: max %.1f %%, %d over | settled aim ALONE after the clip (%d frames) vs that mask: max %.1f %%, %d over | '

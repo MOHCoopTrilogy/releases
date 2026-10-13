@@ -24,6 +24,7 @@ SET = {
     'dp28': dict(),
     'vickers': dict(),
     'breda': dict(),
+    'm1919': dict(),      # M1919 .30 cal portable (the BAR's hands prefix; row coopr_m1919_30cal_charge): the support hand cups the receiver's underside as at the hip
 }
 
 

@@ -1,0 +1,39 @@
+[
+ {
+  "error_message": "User, deployed integrated build: \"noticed the shotgun doesnt have the pumping action when in ads\" - aimed, the hull ejects and the pump sound plays but the support hand never moves; at the hip the pump stroke plays",
+  "file": "docs/proposals/ads_twohand_2026-10-11/heavy/tools/sgpump.py",
+  "root_cause": "While the aim is held the server keeps the view-model animation at `charge` (the aim pose) through every shot, so the hands row shotgun_fire (retail fire_shotgun_stand.skc, which carries the pump stroke at frames 10-21) is never started; the gun's own `fire` row still runs the forend. The released rows had no cycle row for the shotgun (shotgun_adsfire is referenced by no engine code): already so before the ADS rollout - a gap, not a regression (reproduced on the deployed cgame a7c8c1e6 without the lane overlay, runs hj47 / hj48).",
+  "fix": "STAGED (heavy/SHOTGUN_PUMP_FIX.md): new clip viewmodel/shotgun/coop_shotgun_cycle_ads.skc (32 frames = the gun's fire row; the support hand keeps its aim grip and rides the forend by the forend's own measured travel; gunphys class shotgun), 4 added per-weapon rows coopr_shotgun_cycle / _cycle_ads / _cyclelast / _cyclelast_ads in fps_anims_shotgun.txt, engine ads-heavy-next 54514e44 (apply_cyclewpn.py: the client-only aimed cycle looks up coopr_<weapon key>_cycle_ads first, a last-round row, a same-mesh guard). Runs hj49 (six stances, looked at), hj51 (to the last shell), hj52 / hj53 (shot interval 1.20 s with the fix and deployed).",
+  "tags": ["ads", "shotgun", "pump", "cycle", "cgame", "user-report", "heavy-lane"]
+ },
+ {
+  "error_message": "The per-weapon row lookup strips ANY trailing \"(...)\" from a weapon name: \"Shotgun (Double Barrel)\" resolves to the pump gun's coopr_shotgun_* rows",
+  "file": "openmohaa-hzm/code/cgame/cg_viewmodelanim.c",
+  "root_cause": "CoopStripSkinSuffix cuts at the first \" (\" - it was written for \"<Gun> (<Finish>)\" names; a different GUN whose name has that shape (the double-barrel shotgun, not shipped yet) falls through to the base gun's per-weapon rows in pass 2 of CoopPerWeaponReloadAnim. On integ-ads (pistol lane's Welrod change) that includes the aimed cycle row.",
+  "fix": "For the aimed cycle only (apply_cyclewpn.py, ads-heavy-next 54514e44): a row found through the stripped name counts only when the held gun is the same mesh as the base gun (CG_AdsSightSameMesh); an exact-name row always counts. The reload / charge rows keep the unguarded lookup - a gun named \"X (Y)\" that is not a finish of X needs its own exact-name rows.",
+  "tags": ["cgame", "per-weapon-rows", "double-barrel", "name-strip", "heavy-lane"]
+ },
+ {
+  "error_message": "Runs hj45 / hj46 failed: 'map never became ready' after 10 minutes - ERROR: coop_mod/player_Legs.st: Unknown condition 'COOP_TURRET_LOW' on line 1445, Server crashed",
+  "file": "G:/mohaa-adsanim4/game.dll",
+  "root_cause": "The 11:02 deploy of the integrated build replaced the GOG paks the private harness reads; the harness copy still had the previous game.dll (689d0db1), whose state-machine condition list lacks the new mod's COOP_TURRET_LOW. Same failure as the rifle lane's run rb57; the heavy lane's copy G:/mohaa-adsanim4 had not been updated.",
+  "fix": "G:/mohaa-adsanim4/game.dll and games/game_install_orig.dll replaced by the released 6b515fbf (copied FROM the GOG folder, nothing written there); the old one kept as games/game_install_orig_until_20261013_689d0db1.dll. Run ids hj45 and hj46 are spent.",
+  "tags": ["harness", "game-dll", "deploy", "boot", "heavy-lane"],
+  "occurrences": 2
+ },
+ {
+  "error_message": "apply_cyclewpn.py: SyntaxError unterminated string literal after a patch through a Git-Bash heredoc (a backslash-n inside a quoted Python string became a real line break)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/heavy/tools/apply_cyclewpn.py",
+  "root_cause": "The known heredoc escape trap (bug-3621) again: an inline `python - <<'EOF'` patch wrote Python source that itself contained an escaped newline inside triple-quoted text; the nested quoting turned it into a line break.",
+  "fix": "The script was rewritten whole with the Write tool; it builds its line-feed from chr(10) so no backslash escape is needed in the patch text. Scripts that write scripts go through Write, never through a heredoc.",
+  "tags": ["heredoc", "escape", "tooling", "repeat", "heavy-lane"],
+  "related_bugs": ["bug-3621"]
+ },
+ {
+  "error_message": "boxeng.py --sway reads 3-13 % of the centre box for an aimed shotgun shot WITH and WITHOUT the pump stroke - the 2 % bar cannot be shown for a per-shot cycle by the engine figure",
+  "file": "docs/proposals/ads_twohand_2026-10-11/heavy/tools/boxeng.py",
+  "root_cause": "The measure compares every frame with the settled aim's sway envelope. A shot kicks the view and the gun for about a second (sight line up to 7.5 deg off in the leans), adds smoke and a hull through the box; the deployed build without any pump reads 1.9-13.0 % in the same frames (run hj50), higher than the fixed build in three stances - the spread is the kick's.",
+  "fix": "Reported as it is: the clip's own contribution measured offline (offbox.py: 0.0 %, the hand slides inside the aim's silhouette), the engine figure side by side fix / deployed per stance (BOXENG_SERIES dumps the per-frame series), braced as the one clean engine reading (0.82 %). run_h.py --pump is the capture.",
+  "tags": ["centre-box", "measure", "per-shot-cycle", "shotgun", "heavy-lane"]
+ }
+]
