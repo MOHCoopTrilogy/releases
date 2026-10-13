@@ -144,6 +144,16 @@ _HOOK_BEHIND = {0: _envf('SB_HP0', (0.0, 0.0, 0.0)), 1: _envf('SB_HP1', (22.0, 6
                 3: _envf('SB_HP3', (58.0, 82.0, 50.0)), 4: _envf('SB_HP3', (58.0, 82.0, 50.0))}
 _GRAB_BEHIND = dict(y=_envf('SB_GY', (0.15,))[0], over=_envf('SB_GO', (0.6,))[0], front=_envf('SB_GF', (0.5,))[0],
                     dir=_envf('SB_GD', (0.94, -0.12, -0.32)))
+# se20 (user, after the se13 / se18 GIFs: "straight, splayed fingers" on the approach): seen from the eye the overhand
+# hook above shows the back of a hand with its first phalanges pointing away - the curl is hidden behind them. The SIDE
+# hook is a closed fist, thumb side up, that comes up from the grip BELOW and behind the handle with next to no turn
+# (the firing grip already is that fist): the index runs forward past the handle's outer end and turns in across its
+# FRONT face (a right angle at its middle joint), the other fingers stay folded under it. `dir` = the index's first
+# phalanx (knuckle below and behind the handle), `down` = its second phalanx (inward along the front face).
+_HOOK_SIDE = {0: _envf('SB_HP0', (0.0, 0.0, 0.0)), 1: _envf('SB_HP1', (18.0, 43.0, 30.0)), 2: _envf('SB_HP2', (52.0, 80.0, 50.0)),
+              3: _envf('SB_HP3', (58.0, 84.0, 52.0)), 4: _envf('SB_HP3', (58.0, 84.0, 52.0))}
+_GRAB_SIDE = dict(y=_envf('SB_GY', (0.7,))[0], over=_envf('SB_GO', (0.0,))[0], front=_envf('SB_GF', (0.5,))[0],
+                  dir=_envf('SB_GD', (0.92, 0.0, -0.39)), down=_envf('SB_GDN', (-0.25, -1.0, 0.0)))
 _THOMPSON_HP1 = (22.0, 62.0, 42.0)      # the index's flexion for the same hook from the Thompson's aim grip (set by the fit print)
 # MP18: side drum on the LEFT (the well points left: the drum leaves sideways, outside the centre box by its own place),
 # handle on the RIGHT within the firing hand's reach (94 % of the arm). Its hands row lives in anims_shared.txt, not in
@@ -163,6 +173,12 @@ GUNS['mp40_mp18'] = _variant('mp40', 'mp40_mp18', row='coopr_mp40_mp18_reload', 
                              # rows are the same story on the hip pose (hip_proc).
                              aim='viewmodel/mp40/coop_mp40_mp18_charge.skc', hold='mp40_mp18',
                              hip_proc=dict(pose='viewmodel/mp40/coop_mp40_mp18_idle.skc'),
+                             # se20 (user: the drum is to be SEEN while it is drawn out and brought back): the drum stands 3 u
+                             # outboard of the holding hand, so the shared `show` points (5-7 u to the left) carried it off the
+                             # screen's left edge at once. Its own: drawn out along the housing, then LOWERED beside the gun
+                             # (in view at the lower left), down to the pouch; the new one comes up the same way.
+                             show=dict(out1=_envf('SB_OUT1', (0.0, 0.0, -0.3)), out2=_envf('SB_OUT2', (-0.6, -1.0, -2.6)), out3=_envf('SB_OUT3', (-1.0, -0.5, -5.0)),
+                                       in1=_envf('SB_IN1', (-0.5, 0.6, -3.2)), in1b=_envf('SB_IN1B', (-0.4, 0.8, -2.0)), in2=_envf('SB_IN2', (-0.2, 0.0, -0.4))),
                              t=dict(down=(2, 5), catch=9, out=(12, 16), outshow=19, outgo=22, gone=25, back=28, show=32, hold=34, under=37, seat=(40, 44),
                                     tug=47.5, on=(52, 54), on_r=(50, 52), reach_r=_envf('SB_RR', (43, 55)), pull=(55, 61), let=63, on_er=_envf('SB_ONER', (70, 74))),
                              cock='R', magphys='smg_side', magk=1.4, shoulder=0.5,
@@ -175,7 +191,10 @@ GUNS['mp40_mp18'] = _variant('mp40', 'mp40_mp18', row='coopr_mp40_mp18_reload', 
                              # sees the back of a closed hand end-on, not a flat hand side-on (`dir` = the index's first
                              # phalanx: forward and a little up; it was (0.62, -0.78, 0) = from the right)
                              hook=dict(_RIGHT['hook'], fdir=_envf('SB_RF', (0.8, -0.5, -0.3)), pdir=_envf('SB_RP', (-0.3, -0.6, 0.75)), add=_envf('SB_RA', (0.18, 0.3, 0.05)),
-                                       hookpose=_HOOK_BEHIND, grab=dict(_GRAB_BEHIND, y=_envf('SB_GY', (-1.0,))[0])))
+                                       # se20: the SIDE hook (a closed fist from below, the index across the bar's
+                                       # front at its outer end: bar tip y 0.44, front face x 8.49, centre z -4.11)
+                                       hookpose=_HOOK_SIDE, grab=dict(_GRAB_SIDE),
+                                       approach_r=((-0.3, 0.5, 1.1), 3), let_add=(0.0, -1.0, -0.4)))
 # the prop is the gun's own skeleton with only the drum surface: the engine draws its root channel as it does the gun's
 V.PR.gungeo.root_skds().add('models/weapons/coop_mp18/coop_snaildrum.skd')
 # Thompson M1A1 (retail mesh; the Gold finish resolves to it): stick magazine under the gun, the added handle on the
@@ -222,8 +241,14 @@ GUNS['sten'] = dict(row='sten_reload', sight='sten_mark_ii', aim='viewmodel/sten
                     end=78, end_e=90, cock='R', hip_cock='L', hip_blend=(57, 74), hip_reach=(62, 67),
                     hook=dict(_RIGHT['hook'], ref=70, mix=0.5, curl=0.0, add_hip=_envf('SB_HADDH', (0.3, 0.25, 0.1)), hip_mix=0.75, hip_close=4,
                               # the Sten aim grip's trigger finger is bent further than the MP40's: +40 at its middle joint makes the same hook (fit 0.07 u)
-                              hookpose={**_HOOK_BEHIND, 1: _envf('SB_HP1', (22.0, 40.0, 42.0)), 2: _envf('SB_HP1', (22.0, 40.0, 42.0))},
-                              grab=dict(_GRAB_BEHIND, y=_envf('SB_GY', (0.15,))[0])))     # 0.15: at -0.15 the fingertips stood in the box's corner (2.2 % offline)
+                              # se20: the SIDE hook as on the MP18 (knob: y 1.21-1.55, front face x 8.19, centre z -4.81; `forward` is
+                              # its stem's centre at y 1.15)
+                              hookpose={**_HOOK_SIDE, 1: _envf('SB_HP1', (18.0, 22.0, 30.0))},
+                              # only the LAST phalanx lies across the knob's front (y 2.85: the fist is outboard of the knob, right of the box), 0.3 u
+                              # under its centre: the knob's top stays in sight over the finger (offline box 0.1 %; at y 0.75 the
+                              # finger ran on over the tube's top to the sights, 2.2 %)
+                              grab=dict(_GRAB_SIDE, y=_envf('SB_GY', (2.85,))[0], front=_envf('SB_GF', (1.0,))[0], over=_envf('SB_GO', (-0.3,))[0]),
+                              approach_r=((-0.3, 0.5, 1.1), 3), let_add=(0.0, -1.0, -0.4)))
 
 
 def knob(name):
@@ -470,9 +495,14 @@ def ads_spec(name, empty, hip=False):
         beside = tuple((rel_aim[3, 0:3] - T[3, 0:3]) * R.S + np.asarray(g['hook'].get('beside', (0.0, 0.9, 0.3)), float))
         rm = r0 + int(g['hook'].get('turn', 5))
         rp = {0: AIM, r0: AIM, rm: dict(relT=T, gun_add=beside, fing=fh), r1: dict(relT=T, fing=fh)}
+        if g['hook'].get('approach_r'):
+            # the last part of the way is from BELOW: the hooked index rises in front of the handle (it cannot pass
+            # through it from behind), `approach_r` = (gun frame offset, frames before the hand is on)
+            apv, apf = g['hook']['approach_r']
+            rp[r1 - int(apf)] = dict(relT=T, gun_add=tuple(_envf('SB_APR', apv)), fing=fh)
         for f in range(p0, p1 + 1):
             rp[f] = dict(relT=T, gun_add=(-travel * pull_u(f, p0, p1, knob(name)[2].get('pull_soft', 0.0)), 0.0, 0.0), fing=fh)
-        rp[t['let']] = dict(relT=T, gun_add=(-travel, 0.0, 0.0), cam_add=(0.0, -0.5, -0.5), fing=fh)
+        rp[t['let']] = dict(relT=T, gun_add=(-travel, 0.0, 0.0), cam_add=tuple(_envf('SB_LET', g['hook'].get('let_add', (0.0, -0.5, -0.5)))), fing=fh)
         rp[e0] = dict(relT=T, gun_add=beside, fing=fh)
         for f in range(e1, n + 1):
             rp[f] = AIM

@@ -65,6 +65,10 @@ s = s.replace(old, '    L += A.frames(tag, 4, i) + ["set cg_drawviewmodel 0", "w
 s = s.replace('ap.add_argument("--yaw", type=int, default=None)', 'ap.add_argument("--yaw", type=int, default=None); ap.add_argument("--stances", default=None)')
 s = s.replace("        R.SPOT = R.SPOT[:3] + (a.yaw,)\n", "        R.SPOT = R.SPOT[:3] + (a.yaw,)\n    if a.stances:\n        globals()['STANCES'] = tuple(x for x in a.stances.split(',') if x)\n", 1)
 assert "globals()['STANCES']" in s
+# a --guns key that is not in the table = models/weapons/<key>.tik (finish tiks: sten_gold ...)
+old = '    a.guns = [g for g in a.guns.split(",") if g]; a.parts = a.parts.split(",")\n'
+assert s.count(old) == 1
+s = s.replace(old, '    a.guns = [g for g in a.guns.split(",") if g]; a.parts = a.parts.split(",")\n    for g_ in a.guns:                      # a key that is not in the table = that tik (finish tiks: sten_gold ...)\n        A.GUNS.setdefault(g_, "models/weapons/%s.tik" % g_)\n')
 # the SMG lane's own captures (smg_block.py), dispatched per gun from run()
 blk = open(os.path.join(HERE, 'smg_block.py'), encoding='latin-1').read()
 assert s.count('\ndef run(a):\n') == 1

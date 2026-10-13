@@ -439,6 +439,8 @@ def main():
     GAP[0] = a.shotgap
     INTR[:] = [int(x) for x in a.intr.split(",")]; KINDS[:] = a.kinds.split(",")
     a.guns = [g for g in a.guns.split(",") if g]; a.parts = a.parts.split(",")
+    for g_ in a.guns:                      # a key that is not in the table = that tik (finish tiks: sten_gold ...)
+        A.GUNS.setdefault(g_, "models/weapons/%s.tik" % g_)
     a.rstances = [s for s in a.rstances.split(",") if s]; a.yaws = [int(v) for v in a.yaws.split(",") if v]
     os.makedirs(os.path.dirname(A.LOGF), exist_ok=True)
     # 2026-10-12 (coordinator): this harness no longer takes the shared heavy lock or the shared test slot - the

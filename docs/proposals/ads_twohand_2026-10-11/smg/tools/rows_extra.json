@@ -129,24 +129,6 @@
    "mp40_pullout"
   ],
   [
-   "coopr_mp40_mp18_reload_empty",
-   "viewmodel/mp40/coop_mp40_mp18_reload_empty_hip.skc",
-   "0.1",
-   "mp40_reload_empty_ads"
-  ],
-  [
-   "coopr_mp40_mp18_reload_ads",
-   "viewmodel/mp40/mp40_mp18_reload_ads.skc",
-   "0.1",
-   "coopr_mp40_mp18_reload_empty"
-  ],
-  [
-   "coopr_mp40_mp18_reload_empty_ads",
-   "viewmodel/mp40/mp40_mp18_reload_empty_ads.skc",
-   "0.1",
-   "coopr_mp40_mp18_reload_ads"
-  ],
-  [
    "sten_reload_empty",
    "viewmodel/sten/coop_sten_reload_empty_hip.skc",
    "0.1",
@@ -163,6 +145,24 @@
    "viewmodel/sten/sten_reload_empty_ads.skc",
    "0.1",
    "sten_reload_ads"
+  ],
+  [
+   "coopr_mp40_mp18_reload_empty",
+   "viewmodel/mp40/coop_mp40_mp18_reload_empty_hip.skc",
+   "0.1",
+   "mp40_reload_empty_ads"
+  ],
+  [
+   "coopr_mp40_mp18_reload_ads",
+   "viewmodel/mp40/mp40_mp18_reload_ads.skc",
+   "0.1",
+   "coopr_mp40_mp18_reload_empty"
+  ],
+  [
+   "coopr_mp40_mp18_reload_empty_ads",
+   "viewmodel/mp40/mp40_mp18_reload_empty_ads.skc",
+   "0.1",
+   "coopr_mp40_mp18_reload_ads"
   ]
  ],
  "shared": [

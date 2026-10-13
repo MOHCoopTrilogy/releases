@@ -35,12 +35,16 @@ HOLDS = {
     # y right, z down). MP18 (root-frame mesh: its centre line is at y -2.5): housing stub to y -7.9, then the drum's
     # neck, raked back - centre line (11.2, -7.5, -3.45) -> (9.15, -10.5, -3.45) - and the drum body from y -11 on,
     # standing above the neck. The hand goes on the NECK between housing and drum, the drum against its heel.
+    # se20 (user: the hand on the drum hid the drum - the back of the hand was toward the eye, the thumb on the far
+    # side): the SAME template hand turned end for end along the neck (yaw 180) and rolled under it (roll 100) = an
+    # underhand hold - palm up under the neck, the fingers up its far side and over its top toward the eye, the thumb
+    # on the eye's side by the drum; the drum stands clear above and outboard of the hand (tools/holdtry.py shows it).
     'mp40_mp18': dict(prefix='mp40', vdir='viewmodel/mp40', template='viewmodel/sten/sten_idle.skc',
                       t_axis=((12.4, 0.0, -3.6), (0.0, -1.0, 0.0)),
                       neck=((11.2, -7.5, -3.45), (9.15, -10.5, -3.45)),
-                      out=_envf('SH_OUT', (0.85,))[0],          # where along the neck the hand's centre sits (0 = housing end, 1 = drum)
-                      roll=_envf('SH_ROLL', (0.0,))[0],         # deg about the neck's axis
-                      yaw=_envf('SH_YAW', (0.0,))[0],           # deg about the vertical, on top of the rake
+                      out=_envf('SH_OUT', (0.7,))[0],          # where along the neck the hand's centre sits (0 = housing end, 1 = drum)
+                      roll=_envf('SH_ROLL', (100.0,))[0],       # deg about the neck's axis
+                      yaw=_envf('SH_YAW', (180.0,))[0],         # deg about the vertical, on top of the rake
                       add=_envf('SH_ADD', (0.0, 0.0, 0.0)),     # gun frame, u
                       rows=dict(idle=('mp40_idle1', 1.0, 1.0), charge=('mp40_charge', 1.0, 1.0), fire=('mp40_fire', 1.0, 1.0),
                                 fire_secondary=('mp40_fire_secondary', 1.0, 1.0),
