@@ -53,8 +53,25 @@ GUNS = {
     'kar98_winter': ('kar98_camo_winter.tik', 'bolt', 5500), 'mosin_gold': ('mosin_nagant_rifle_gold.tik', 'bolt', 5500),
     'mosin_lite': ('mosin_nagant_rifle_lite.tik', 'bolt', 5500), 'enfield_gold': ('enfield_gold.tik', 'bolt', 6500),
     'enfield_lite': ('enfield_lite.tik', 'bolt', 6500), 'g98': ('kar98_g98.tik', 'bolt', 5500),
+    # ---- pass 2, step 4: pistols (class semi = magazine pistol, rev = revolver loaded round by round, bolt = Welrod)
+    'colt45_gold': ('colt45_gold.tik', 'semi', 4500), 'guancolt': ('colt45_guancolt.tik', 'semi', 4500), 'coltpa': ('colt45_coltpa.tik', 'semi', 4500),
+    'coltsil': ('colt_silenced.tik', 'semi', 4500), 'dbno': ('dbno_pistol.tik', 'semi', 4500),
+    'p38': ('p38.tik', 'semi', 4500), 'p38tt': ('p38_lv_ttp38.tik', 'semi', 4500), 'p38sil': ('p38silenced.tik', 'semi', 4500),
+    'beretta': ('it_w_beretta.tik', 'semi', 4500), 'berettasil': ('berettasilenced.tik', 'semi', 4500),
+    'luger': ('lugerp08.tik', 'semi', 4500), 'lugersil': ('lugerp08silenced.tik', 'semi', 4500), 'nambu': ('nambu.tik', 'semi', 4500),
+    'ppk': ('ppk.tik', 'semi', 4500), 'tt33': ('tt33.tik', 'semi', 4500), 'tt33sil': ('tt33silenced.tik', 'semi', 4500),
+    'welrod': ('welrod.tik', 'bolt', 4500), 'histd': ('silencedpistol.tik', 'bolt', 4500),
+    'webley': ('webley_revolver.tik', 'rev', 9000), 'webley_gold': ('webley_revolver_gold.tik', 'rev', 9000),
+    'webley_desert': ('webley_revolver_camo_desert.tik', 'rev', 9000), 'webleytt': ('webley_revolver_lv_ttwebley.tik', 'rev', 9000),
+    'mk6': ('colt45_colt1911w.tik', 'rev', 9000), 'nagant': ('nagant_revolver.tik', 'rev', 10500),
+    'nagant_blued': ('nagant_revolver_blued.tik', 'rev', 10500), 'nagant_bloody': ('nagant_revolver_bloody.tik', 'rev', 10500),
+    # held out by the pistol lane (must stay as released)
+    'c96': ('mauser_c96.tik', 'semi', 5500), 'm10': ('m10_revolver.tik', 'rev', 6000),
+    # ---- pass 2, step 5
+    'g43': ('g43.tik', 'semi', 5000), 'g43irons': ('coop_g43_irons.tik', 'semi', 5000), 'g43irons_gold': ('coop_g43_irons_gold.tik', 'semi', 5000),
 }
-GAP = {'semi': 450, 'bolt': 2100, 'pump': 1600}
+GAP = {'semi': 450, 'bolt': 2100, 'pump': 1600, 'rev': 800}
+PRONE = ('colt45', 'p38', 'beretta', 'tt33', 'welrod', 'histd', 'webley', 'nagant', 'luger', 'c96', 'm10', 'coltsil', 'ppk', 'nambu')    # + a prone phase
 
 
 def log(*a):
@@ -95,6 +112,10 @@ def scenario(key, shot):
     Lc += m('aimempty') + fire(cls, clip, clip) + ['wait 700', 'reload', 'wait %d' % (rw + 1500), 'set cg_adsSightDebug 1']
     Lc += m('crouch') + ['set coop_proneHold 999', '+movedown', 'wait 1200'] + fire(cls, burst, clip) + ['wait 1300', 'reload',
                                                                                                        'wait %d' % rw, '-movedown', 'wait 800', 'set coop_proneHold 0.5']
+    if key in PRONE:
+        # prone (run_ironsights: the crouch key held for coop_proneHold), aimed: fire + reload - the declared prone pistol reload
+        Lc += m('prone') + ['set coop_proneHold 0.5', '+movedown', 'wait 900', '-movedown', 'wait 2200'] + fire(cls, burst, clip) + [
+            'wait 1300', 'reload', 'wait %d' % (rw + 600), '+movedown', 'wait 200', '-movedown', 'wait 2500']
     Lc += ['-button13', 'wait 900']
     Lc += m('hipempty') + fire(cls, clip, clip) + ['wait 700', 'reload', 'wait %d' % (rw + 1500)]
     if cls == 'pump':

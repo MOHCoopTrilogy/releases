@@ -28,6 +28,15 @@ earlier steps has to change). A step is a list of ops:
   C(gun, weapon name, tiks, skip)  coverage proof (user rule): every mod-tree tik whose weapon name is `name` or
                                `name (...)` must be in `tiks`; `skip` = tiks of that name knowingly left as released
   P(tool, gun)                 a mod-tree patch tool of a lane, run with the mod tree as its argument (--mod-patches)
+  M(rel, lane, base, gun)      3-WAY MERGE into a fixes source (git merge-file): `theirs` = the lane's copy, which is a
+                               SNAPSHOT of a shared table at an older revision; `base` = that revision -
+                               ('docs', rev) = docs/tools/assets/fixes/<rel> at a docs commit, ('mod', rev) = the mod
+                               tree's file at a mod commit; `ours` = the same file at PASS1_REV (a fixes source) or
+                               the CURRENT mod-tree copy (which then becomes the pinned base). A conflict fails the run.
+  G(rel, lane, src, rev, gun)  the same 3-way merge ONTO A MOD-TREE FILE of the code pak (coop_mod/...): written only
+                               with --mod-patches; the dry run says whether the mod tree already carries it
+A lane name that starts with `@` is a folder beside the lane folders that holds game paths directly (`@ship` = the
+pistol lane's frozen ship cut), not `<lane>/assets/`.
 Entry kinds (docs/tools/gen_fixes_pak.py): a path already in the manifest keeps its entry; a path the mod tree carries
 = `base` (mod-tree copy saved under docs/tools/assets/fixes_base, pinned by md5 + mtime ticks); a path only a
 retail / third-party pak carries = `base_pak`; a path nothing carries = `new`. A path that a pak sorting ABOVE the
@@ -64,6 +73,22 @@ def C(gun, name, tiks, skip=()):
 
 def P(lane, tool, gun):
     return dict(op='P', lane=lane, tool=tool, gun=gun)
+
+
+def M(rel, lane, base, gun, src=None):
+    return dict(op='M', rel=rel, lane=lane, base=base, gun=gun, src=src or rel)
+
+
+def G(rel, lane, src, rev, gun):
+    return dict(op='G', rel=rel, lane=lane, src=src, rev=rev, gun=gun)
+
+
+# Steps that are SHIPPED (pass 1, on the user's install): their lanes go on working in the same folders (the rifles lane
+# rewrote its staged Enfield tiks for the aimed reload the day after), so a re-run must not take a changed lane file -
+# the copy in docs/tools/assets/fixes is kept and the line says so (bug-3833). After a --reset these steps can only be
+# rebuilt from the docs commit (git show PASS1_REV), not from the lane folders.
+FROZEN = (1, 2, 3)
+PASS1_REV = '76f7b15'       # docs commit of integration pass 1 (steps 1-3) = what is on the user's install
 
 
 VM = 'models/human/animation/viewmodel/'
@@ -211,12 +236,141 @@ def step3():
     return ops
 
 
-STEPS = {1: step1, 2: step2, 3: step3}
+def step4():
+    """PISTOLS - the pistol lane's frozen SHIP CUT v2 (PISTOLS_SHIP.md, folder ship/, docs commit ddd502c): 17 pistols
+    + the Webley Mk VI, every finish and model-variant tik (98 tiks).
+    NOT shipped: Mauser C96 + Trench C96, S&W M10 + finishes (held out by the lane; nothing of theirs is in ship/),
+    the texture lifts (ship_awaiting_approval/), ship/LEFT_OUT.txt.
+    SHARED TABLES are merged, never copied: fps_anims_pistol.txt (op M against the pass-1 fixes copy),
+    anims_shared.txt (op M: the lane's snapshot of mod commit 6cf61e58 onto the CURRENT mod-tree file, which also has
+    the low-turret rows; the result ships in the fixes pak over the pinned mod-tree copy), coop_mod/player_torso.st
+    (op G: the snapshot of mod commit 12e9faf6 onto the current file, which also has the turret rows and the shotgun
+    break-off; code pak, mod commit).
+    ISOLATION. The lane repoints the generic rows colt45_idle / colt45_charge / p38_idle / p38_charge (+ the bytes of
+    the released clips colt45_reload_ads / p38_reload_ads ...). Pistol-class weapons that are NOT in the cut (complete
+    scan of every tik the game can load, pistolclass.py): Mauser C96 + finishes + Trench (prefix p38), S&W M10 (own
+    prefix m10, rows untouched), "Bombing Run" = the coop binoculars + finishes (weapontype pistol, no named prefix ->
+    the FALLBACK prefix colt45). They are PINNED to the released clips by per-weapon rows (the lane's own
+    coopr_mauser_c96_charge + the rows below); proof: rowpick.py."""
+    s = '@ship'
+    root = os.path.join(L.PROP, 'ship')
+    rowf = 'models/player/base/fps_anims_pistol.txt'
+    tag = '\t// HZM coop [ads pistols, integrate_ads.py] PIN: '
+    d2 = {  # released lines a D2 gun (declared server-side pace change) replaces
+        'webley': (r'^\s*reload(_end|_single)?\s+webley_(revolver_)?reload_(start|end|single)\.skc\s*$',
+                   r'^\s*\d+\s+sound webley_snd_reload_(start|end|single)\s*$', r'^\s*\d+\s+surface shellmetal_cull [+-]nodraw\s*$',
+                   r'^\s*\d+ tagspawn tag_eject\s*$', r'^\s*[()]\s*$',
+                   r'^\s*(count 1|model models/ammo/pistolshell\.tik|spawnrange 1024|scale \.75|velocity 50|randvelaxis range 1 2 range 1 2 0'
+                   r'|emitterangles 0 0 45|avelocity crandom 90 crandom 90 0|accel 0 0 -800|physicsrate 20|life 2\.0|fadedelay 1\.7'
+                   r'|collision|bouncefactor 0\.2|bouncesoundonce snd_pistol_shell)\s*$'),
+        'nagant': (r'^\s*reload_single\s+nagant_reload_loop\.skc\s*$',)}
+    ops, byname = [], {}
+    for dp, _dn, fn in sorted(os.walk(root)):
+        for f in sorted(fn):
+            rel = os.path.relpath(os.path.join(dp, f), root).replace(os.sep, '/')
+            low = rel.lower()
+            if '/' not in rel:
+                continue                                    # LEFT_OUT.txt
+            if low == 'coop_mod/player_torso.st':
+                ops.append(G('coop_mod/player_torso.st', s, rel, '12e9faf6', 'pistols (state file)'))
+            elif low == rowf:
+                ops.append(M(rowf, s, ('docs', PASS1_REV), 'pistols (hands rows)'))
+            elif low == 'models/player/base/anims_shared.txt':
+                ops.append(M(rel, s, ('mod', '6cf61e58'), 'pistols (torso rows)'))
+            elif low.endswith('.tik'):
+                txt = open(os.path.join(dp, f), 'rb').read().decode('latin-1')
+                name = L.tik_name(txt)
+                stem = re.sub(r'\s*\([^()]*\)\s*$', '', name)
+                stem = 'Colt 45' if name == 'Colt 45 (Pacific)' else stem
+                byname.setdefault(stem, []).append(f[:-4])
+                allow = d2['webley'] if (f.lower().startswith('webley_revolver') or f.lower() == 'colt45_colt1911w.tik') else \
+                    d2['nagant'] if f.lower().startswith('nagant_revolver') else ()
+                ops.append(T(s, rel, name if name == 'Webley Mk VI' else stem, allow=allow))
+            else:
+                gun = 'pistols'
+                for key, g in (('webley', 'Webley'), ('coop_colt1911w', 'Webley Mk VI'), ('mk6', 'Webley Mk VI'), ('nagan', 'Nagant'), ('m10', 'M10 torso clip (named by a shared table)'),
+                               ('beretta', 'Beretta'), ('luger', 'Luger'), ('welrod', 'Welrod'), ('tt33', 'TT-33'), ('ppk', 'PPK'),
+                               ('nambu', 'Nambu'), ('histandard', 'Hi-Standard'), ('highstandard', 'Hi-Standard'), ('hs_pistol', 'Hi-Standard'),
+                               ('p38', 'P38'), ('colt', 'Colt 45'), ('prone', 'prone pistol reload')):
+                    if key in low:
+                        gun = g
+                        break
+                ops.append(F(s, rel, gun))
+    for stem, tiks in sorted(byname.items()):
+        # coverage is proved against the mod tree; 7 pistols of the cut live only in zzzzz_xw_weapons.pk3 (one tik each)
+        inmod = [t for t in tiks if os.path.isfile(os.path.join(L.MOD, 'models', 'weapons', t + '.tik'))]
+        if inmod:
+            ops.append(C(stem, stem, inmod))
+    # ---- pins: pistol-class weapons outside the cut keep the RELEASED clips of the generic rows the lane repointed
+    for key, what in (('mauser_c96', 'Mauser C96 + finishes + Trench C96 (held out; prefix p38)'),
+                      ('bombing_run', 'Bombing Run = the coop binoculars + finishes (pistol class, fallback prefix colt45)')):
+        ops.append(RL(rowf, 'coopr_%s_idle' % key, '\tcoopr_%s_idle\t\tviewmodel/pistol/coltpose.skc\t\tcrossblend 0.3%s%s keeps the RELEASED hip idle' % (key, tag, what), 'pin'))
+        if key != 'mauser_c96':     # the C96's aim-pose pin is the lane's own row (in the merged file)
+            ops.append(RL(rowf, 'coopr_%s_charge' % key, '\tcoopr_%s_charge\t\tviewmodel/coltpose00.skc\t\tcrossblend 0.3%s%s keeps the RELEASED aim pose' % (key, tag, what), 'pin'))
+    return ops
+
+
+def step5():
+    """G 43 IRONS - a NEW weapon (rifles lane, closed): 12 tiks `coop_g43_irons*` (base, 7 finishes, 4 pack-skin
+    variants) on its own mesh with its own sight surface, aim pose, aimed reloads, the aim-only gun row
+    reload_ads_empty (the carrier racked; kept on the client clip clock), loot-feed picture. Every file is `new`
+    (nothing of it is in the mod tree: a new file there would re-hash the 1.3 GB assets pak). The server-read rows of
+    the tiks are the scoped G43's released clips (rowlen_check.py --like).
+    The armory entry (roster id 78, rank 2), state-file row, recoil rows, AI alias, dev lists are CODE-pak files:
+    integrate/apply_armory5.py runs the lane's source edits + the generators on the real tree.
+    NOT shipped: models/weapons/g43/coop_g43_irons_reload.skc (no tik row names it any more), the *_phys.json notes."""
+    r = 'rifles'
+    tiks = ['coop_g43_irons'] + ['coop_g43_irons_' + s for s in FINISH + ('dhg43fleck', 'hobbsg43urb', 'hobbsg43wood', 'lv_ttg43')]
+    wdir = os.path.join(L.PROP, r, 'assets', 'models', 'weapons')
+    staged = sorted(f[:-4].lower() for f in os.listdir(wdir) if f.lower().endswith('.tik')
+                    and (L.tik_name(open(os.path.join(wdir, f), 'rb').read().decode('latin-1')) or '').startswith('G 43 Irons'))
+    assert staged == sorted(tiks), ('G 43 Irons: staged tiks and the list differ', staged)
+    ops = [F(r, W + t + '.tik', 'G 43 Irons') for t in tiks]
+    ops += [F(r, VM + 'g43/' + c + '.skc', 'G 43 Irons') for c in ('coop_g43_irons_aim', 'coop_g43_irons_reload_ads', 'coop_g43_irons_reload_empty_ads')]
+    ops += [F(r, W + 'g43/coop_g43_irons.skd', 'G 43 Irons'), F(r, W + 'g43/coop_g43_irons_reload_ads_empty.skc', 'G 43 Irons'),
+            F(r, 'scripts/coop_g43_sight.shader', 'G 43 Irons'), F(r, 'textures/coop_wpn/g43_sight.tga', 'G 43 Irons', tga_flag=True),
+            F(r, 'textures/hud/loot/w_g43irons.tga', 'G 43 Irons', tga_flag=True)]
+    ops += [R('models/player/base/fps_anims_rifle.txt', r, ['coopr_g_43_irons_charge', 'coopr_g_43_irons_reload', 'coopr_g_43_irons_reload_empty',
+                                                            'coopr_g_43_irons_reload_ads', 'coopr_g_43_irons_reload_empty_ads'], 'G 43 Irons')]
+    return ops
+
+
+STEPS = {1: step1, 2: step2, 3: step3, 4: step4, 5: step5}
 
 
 # ------------------------------------------------------------------------------------------------------------------
 def lane_file(lane, rel):
+    if lane.startswith('@'):
+        return os.path.join(L.PROP, lane[1:], *rel.split('/'))
     return os.path.join(L.PROP, lane, 'assets', *rel.split('/'))
+
+
+def merge3(ours, base, theirs):
+    """git merge-file on LF text; returns (merged bytes in the line ending of `ours`, number of conflicts)"""
+    import tempfile
+    crlf = b'\r\n' in ours
+    d = tempfile.mkdtemp(prefix='integ_m3_')
+    names = []
+    for n, x in (('ours', ours), ('base', base), ('theirs', theirs)):
+        fp = os.path.join(d, n)
+        open(fp, 'wb').write(x.replace(b'\r\n', b'\n'))
+        names.append(fp)
+    r = subprocess.run(['git', 'merge-file', '-p'] + names, capture_output=True)
+    out = r.stdout
+    for fp in names:
+        os.remove(fp)
+    os.rmdir(d)
+    if crlf:
+        out = out.replace(b'\n', b'\r\n')
+    return out, (r.returncode if r.returncode >= 0 else 999)
+
+
+def git_show(repo, rev, path):
+    # the working tree is case-insensitive, the object store is not (coop_mod/player_Torso.st on disk, player_torso.st in git)
+    for n in subprocess.run(['git', '-C', repo, 'ls-tree', '-r', '--name-only', rev, os.path.dirname(path) + '/'], capture_output=True, text=True).stdout.splitlines():
+        if n.lower() == path.lower():
+            path = n
+    return subprocess.run(['git', '-C', repo, 'show', '%s:%s' % (rev, path)], capture_output=True, check=True).stdout
 
 
 def row_of(line):
@@ -276,7 +430,7 @@ def main():
         return reset()
     dry = '--dry-run' in sys.argv
     modp = '--mod-patches' in sys.argv
-    steps = [1, 2, 3]
+    steps = sorted(STEPS)
     if '--steps' in sys.argv:
         steps = [int(x) for x in sys.argv[sys.argv.index('--steps') + 1].split(',')]
     man = json.load(open(L.MAN, encoding='utf-8'))
@@ -320,7 +474,9 @@ def main():
         hit = [i for i, l in enumerate(lines) if row_of(l.decode('latin-1')) == row]
         if len(hit) > 1:
             fails.append('%s: row %s defined %d times' % (rel, row, len(hit)))
-        if hit:
+        if hit and step in FROZEN and lines[hit[0]] != line_b:
+            act = 'KEPT (shipped step: the lane row has changed since pass 1)'
+        elif hit:
             act = 'same' if lines[hit[0]] == line_b else 'REPOINT'
             lines[hit[0]] = line_b
         else:
@@ -338,6 +494,53 @@ def main():
 
     for st in steps:
         for o in STEPS[st]():
+            if o['op'] == 'M':
+                theirs = open(lane_file(o['lane'], o['src']), 'rb').read()
+                k = key_of(o['rel'])
+                if o['base'][0] == 'docs':
+                    base = git_show(L.ROOT, o['base'][1], 'docs/tools/assets/fixes/' + k)
+                    wc = open(os.path.join(L.FIX, *k.split('/')), 'rb').read()
+                    ours = git_show(L.ROOT, PASS1_REV, 'docs/tools/assets/fixes/' + k).replace(b'\r\n', b'\n')
+                    if b'\r\n' in wc:
+                        ours = ours.replace(b'\n', b'\r\n')
+                    kind = 'manifest (base)'
+                else:
+                    mp = vfs.mod[o['rel'].lower()]
+                    base = git_show(L.MOD, o['base'][1], mp)
+                    ours = open(os.path.join(L.MOD, *mp.split('/')), 'rb').read()
+                    kind = 'manifest (base)' if k in man else 'base'
+                data, nconf = merge3(ours, base, theirs)
+                if nconf:
+                    fails.append('%s: 3-way merge of the lane snapshot has %d conflict(s)' % (o['rel'], nconf))
+                    continue
+                note = ' [3-way merge: lane snapshot (base %s %s) onto %s]' % (o['base'][0], o['base'][1], 'the pass-1 fixes copy' if o['base'][0] == 'docs' else 'the current mod-tree file')
+                if o['base'][0] == 'docs':
+                    nl_ = b'\r\n' if b'\r\n' in data else b'\n'
+                    rowfiles[o['rel']] = [data.split(nl_), nl_]
+                    report.append((st, o['gun'], 'merge', k, 'merged' + note))
+                else:
+                    out[k] = data
+                    owner[k] = (o['gun'], st, kind)
+                    fp = os.path.join(L.FIX, *k.split('/'))
+                    report.append((st, o['gun'], kind, k, ('same' if os.path.isfile(fp) and open(fp, 'rb').read() == data else 'WRITE') + note))
+                continue
+            if o['op'] == 'G':
+                mp = vfs.mod[o['rel'].lower()]
+                fp = os.path.join(L.MOD, *mp.split('/'))
+                ours = open(fp, 'rb').read()
+                data, nconf = merge3(ours, git_show(L.MOD, o['rev'], mp), open(lane_file(o['lane'], o['src']), 'rb').read())
+                if nconf:
+                    fails.append('%s: 3-way merge onto the mod tree has %d conflict(s)' % (o['rel'], nconf))
+                    continue
+                if data == ours:
+                    res = 'already in the mod tree'
+                elif modp and not dry:
+                    open(fp, 'wb').write(data)
+                    res = 'MERGED into the mod tree (commit it in the mod repo)'
+                else:
+                    res = 'NOT in the mod tree yet (give --mod-patches)'
+                report.append((st, o['gun'], 'mod merge', mp + ' <= %s/%s (snapshot of mod %s)' % (o['lane'], o['src'], o['rev']), res))
+                continue
             if o['op'] in ('F', 'T'):
                 src = lane_file(o['lane'], o['rel'])
                 if not os.path.isfile(src):
@@ -361,6 +564,10 @@ def main():
                     data = data[:17] + bytes([data[17] & ~0x20 & 0xff]) + data[18:]
                     tganote = ' [tga top-down flag cleared]'
                 k = key_of(o['rel'])
+                fpk = os.path.join(L.FIX, *k.split('/'))
+                if st in FROZEN and k in man and os.path.isfile(fpk) and open(fpk, 'rb').read() != data:
+                    data = open(fpk, 'rb').read()
+                    tganote += ' [SHIPPED step: the lane file has changed since pass 1 - the shipped copy is KEPT]'
                 below, above = vfs.below_fixes(o['rel'])
                 if above:
                     fails.append('%s: also carried by %s, which sorts ABOVE the fixes pak - the override would be dead' % (o['rel'], above))

@@ -12,6 +12,9 @@ its clip LENGTH, or gameplay timing changes.
                                                    `row` = in every file, `<file glob>:<row>` = only in matching tiks
                                                    (e.g. mp40*.tik:fire)
     python rowlen_check.py --released-rev <rev>    docs-repo commit that holds the released fixes sources
+    python rowlen_check.py --like "<tik glob>=<host tik>,..."   a NEW weapon (no released tik of its own): its rows are
+                                                   compared with the RELEASED rows of the gun whose server timing it must
+                                                   have (coop_g43_irons*.tik=G43.tik)
 
 RELEASED = paks of main / mainta / maintt + the mod tree + docs/tools/assets/fixes at --released-rev;
 INTEGRATED = the same with the working copy of docs/tools/assets/fixes. Lengths are read from the .skc header
@@ -83,6 +86,7 @@ def main():
                 return True
         return False
     full = '--full' in sys.argv
+    like = [x.split('=') for x in (arg('--like', '') or '').split(',') if x]
     old, new = L.Vfs(('git', rel_rev)), L.Vfs(L.FIX)
     if '--tiks' in sys.argv:
         files = [t if '/' in t else 'models/weapons/' + t for t in arg('--tiks').split(',')]
@@ -96,7 +100,10 @@ def main():
     print('released = fixes @ %s | integrated = working copy | %d file(s)' % (rel_rev, len(files)))
     print('file | row | released | integrated | verdict')
     for f in files:
-        a, b = rows_of(old, f), rows_of(new, f)
+        host = next((h for g, h in like if fnmatch.fnmatch(os.path.basename(f).lower(), g.lower())), None)
+        a, b = rows_of(old, ('models/weapons/' + host) if host else f), rows_of(new, f)
+        if host:
+            print('%s | (new weapon: compared with the released %s)' % (f, host))
         if b is None:
             print('%s | - | - | - | NOT IN THE INTEGRATED SET' % f)
             bad += 1

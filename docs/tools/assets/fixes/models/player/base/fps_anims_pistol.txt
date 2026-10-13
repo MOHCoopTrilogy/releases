@@ -5,7 +5,7 @@ animations
 	//========================
 	// Colt Anims
 	//========================
-	colt45_idle	 		viewmodel/pistol/coltpose.skc				crossblend 0.3
+	colt45_idle	 		viewmodel/pistol/coop_colt45_idle2h.skc				crossblend 0.3
 	colt45_disabled 		viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
 	colt45_fire			viewmodel/pistol/fire_colt.skc				crossblend 0.05	
 	colt45_fire_secondary1		viewmodel/pistol/pistolwhip1.skc	random
@@ -43,7 +43,7 @@ animations
 	//========================
 	// P38 Anims
 	//========================
-	p38_idle	 		viewmodel/pistol/coltpose.skc				crossblend 0.3
+	p38_idle	 		viewmodel/pistol/coop_p38_idle2h.skc				crossblend 0.3
 	p38_disabled 			viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
 	p38_fire			viewmodel/pistol/fire_colt.skc				crossblend 0.05	
 	p38_fire_secondary1		viewmodel/pistol/pistolwhip1.skc	random
@@ -80,7 +80,7 @@ animations
 	//========================
 	// Hi-Standard Anims
 	//========================
-	histandard_idle	 			viewmodel/pistol/coltpose.skc				crossblend 0.3
+	histandard_idle	 			viewmodel/pistol/coop_histandard_idle2h.skc				crossblend 0.3
 	histandard_fire				viewmodel/pistol/fire_hp.skc				crossblend 0.05	
 	histandard_fire_secondary1		viewmodel/pistol/pistolwhip1.skc	random
 	{
@@ -115,8 +115,8 @@ animations
 	//========================
 	// Nagant Revolver Anims
 	//========================
-	nagantrev_idle	 			viewmodel/nagantrev/idle.skc				crossblend 0.2
-	nagantrev_charge	 			viewmodel/coltpose00.skc				crossblend 0.2
+	nagantrev_idle	 			viewmodel/nagantrev/coop_nagantrev_idle2h.skc				crossblend 0.2
+	nagantrev_charge	 			viewmodel/nagantrev/nagantrev_ads2h.skc				crossblend 0.2
 	nagantrev_disabled 			viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
 	nagantrev_fire				viewmodel/nagantrev/fire.skc				crossblend 0.0	
 	nagantrev_fire_secondary1		viewmodel/pistol/pistolwhip1.skc				random
@@ -134,9 +134,9 @@ animations
 			entry sound pistol_whip // the swish sound. 
 		}
 	}
-	nagantrev_reload		viewmodel/nagantrev/reload_start.skc			crossblend 0.1
-	nagantrev_reload_single		viewmodel/nagantrev/reload_loop.skc			crossblend 0
-	nagantrev_reload_end		viewmodel/nagantrev/reload_end.skc			crossblend 0.2
+	nagantrev_reload		viewmodel/nagantrev/coop_nagant_reload.skc			crossblend 0.1
+	nagantrev_reload_single		viewmodel/nagantrev/coop_nagant_reload_single_slow.skc			crossblend 0.1
+	nagantrev_reload_end		viewmodel/nagantrev/coop_nagant_reload_end.skc			crossblend 0.2
 	nagantrev_pullout		viewmodel/nagantrev/pullout.skc
 	{
 		client
@@ -154,8 +154,8 @@ animations
 	//========================
 	// Beretta Anims
 	//========================
-	beretta_idle	 		viewmodel/beretta/A_W_MOD34Pistol_idle_fps.skc			crossblend 0.2
-	beretta_charge	 		viewmodel/coltpose00.skc			crossblend 0.2
+	beretta_idle	 		viewmodel/beretta/coop_beretta_idle2h.skc			crossblend 0.2
+	beretta_charge	 		viewmodel/beretta/beretta_ads2h.skc			crossblend 0.2
 	beretta_disabled 		viewmodel/unarmed/unarmed_idle.skc				crossblend 0.2
 	beretta_fire			viewmodel/beretta/A_W_MOD34Pistol_fire_fps.skc			crossblend 0.0	
 	beretta_fire_secondary1		viewmodel/beretta/A_W_MOD34Pistol_butt_fps.skc		        random
@@ -192,8 +192,8 @@ animations
 	//========================
 	// Webley Revolver Anims
 	//========================
-	webley_idle	 			viewmodel/nagantrev/idle.skc				crossblend 0.2
-	webley_charge	 			viewmodel/coltpose00.skc				crossblend 0.2
+	webley_idle	 			viewmodel/webley/coop_webley_idle2h.skc				crossblend 0.2
+	webley_charge	 			viewmodel/webley/webley_ads2h.skc				crossblend 0.2
 	webley_disabled 			viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
 	webley_fire				viewmodel/nagantrev/fire.skc				crossblend 0.0	
 	webley_fire_secondary1			viewmodel/pistol/pistolwhip1.skc	random
@@ -211,11 +211,11 @@ animations
 			entry sound pistol_whip // the swish sound. 
 		}
 	}
-	webley_reload			viewmodel/webley/webley_reload_start.skc		crossblend 0.1
+	webley_reload			viewmodel/webley/coop_webley_reload.skc		crossblend 0.1
 	webley_reload_ads		viewmodel/webley/webley_reload_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
-	webley_reload_single		viewmodel/webley/webley_reload_single.skc		crossblend 0.0
-	webley_reload_single_ads		viewmodel/webley/webley_reload_single_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
-	webley_reload_end		viewmodel/webley/webley_reload_end.skc			crossblend 0.2
+	webley_reload_single		viewmodel/webley/coop_webley_reload_single_slow.skc		crossblend 0.1
+	webley_reload_single_ads		viewmodel/webley/webley_reload_single_ads_slow.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
+	webley_reload_end		viewmodel/webley/coop_webley_reload_end.skc			crossblend 0.2
 	webley_reload_end_ads		viewmodel/webley/webley_reload_end_ads.skc		crossblend 0.1	// HZM coop [adsbolt] aimed
 	webley_pullout			viewmodel/nagantrev/pullout.skc
 	{
@@ -233,9 +233,9 @@ animations
 	}
 
 	//===================== HZM coop ADS aim poses (additive) =====================
-	colt45_charge			viewmodel/coltpose00.skc		crossblend 0.3
-	p38_charge			viewmodel/p38pose00.skc			crossblend 0.3
-	histandard_charge		viewmodel/hs_pistol00.skc		crossblend 0.3
+	colt45_charge			viewmodel/pistol/colt45_ads2h.skc		crossblend 0.3
+	p38_charge			viewmodel/pistol/p38_ads2h.skc			crossblend 0.3
+	histandard_charge		viewmodel/pistol/histandard_ads2h.skc		crossblend 0.3
 
 	//===================== HZM coop S&W M10 .38 first-person set =====================
 	//[user 2026-08-17] East shipped a real 141 KB first-person RELOAD with this gun and
@@ -251,5 +251,97 @@ animations
 	m10_pullout			viewmodel/pistol/pullout_colt.skc
 	m10_putaway			viewmodel/pistol/putaway_colt.skc
 	m10_reload			viewmodel/coop_m10/m10_reload.skc
+	//===================== HZM coop revolver reloads: EMPTY cylinder (cgame picks <row>_empty when the clip is 0) =====================
+	webley_reload_empty		viewmodel/webley/coop_webley_reload.skc		crossblend 0.1
+	{
+		client
+		{
+			22 tagspawn tag_weapon_right	// the top-break throws its six cases as it opens (first person; the server drops the world ones)
+			(
+				count 6
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				scale 1.0
+				offsetalongaxis 9.5 -0.8 -4.6
+				randvelaxis range -45 -12 crandom 26 range -28 8
+				avelocity crandom 360 crandom 360 crandom 180
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}
+	webley_reload_empty_ads		viewmodel/webley/webley_reload_ads.skc		crossblend 0.1
+	{
+		client
+		{
+			20 tagspawn tag_weapon_right	// aimed: kicked up and across the lower frame by the extractor
+			(
+				count 6
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				scale 1.0
+				offsetalongaxis 9.5 -0.8 -4.6
+				randvelaxis range -10 -12 crandom 40 range -30 -16
+				avelocity crandom 360 crandom 360 crandom 180
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}
+	//===================== HZM coop Nagant revolver: aimed reload (gate loader; keyed gun, retail hand relations, pouch trip per round) =====================
+	nagantrev_reload_ads		viewmodel/nagantrev/nagantrev_reload_ads.skc		crossblend 0.1
+	nagantrev_reload_single_ads		viewmodel/nagantrev/nagantrev_reload_single_slow_ads.skc		crossblend 0.1
+	nagantrev_reload_end_ads		viewmodel/nagantrev/nagantrev_reload_end_ads.skc		crossblend 0.2
+	//===================== HZM coop magazine pistols: reload of an EMPTY gun (cgame picks <row>_empty when the clip is 0) =====================
+	colt45_reload_empty			viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	colt45_reload_empty_ads		viewmodel/pistol/colt45_reload_empty_ads.skc		crossblend 0.1
+	p38_reload_empty			viewmodel/pistol/reload_p38.skc			crossblend 0.3
+	p38_reload_empty_ads		viewmodel/pistol/p38_reload_empty_ads.skc		crossblend 0.1
+	histandard_reload_empty			viewmodel/pistol/reload_hp.skc			crossblend 0.3
+	histandard_reload_empty_ads		viewmodel/pistol/histandard_reload_empty_ads.skc		crossblend 0.1
+	beretta_reload_empty			viewmodel/beretta/A_W_MOD34Pistol_reload_fps.skc			crossblend 0.3
+	beretta_reload_empty_ads		viewmodel/beretta/beretta_reload_empty_ads.skc		crossblend 0.1
+	//===================== HZM coop aimed per-shot cycle (cgame plays <prefix>_cycle_ads on a clip-ammo drop while aiming) =====================
+	histandard_cycle_ads		viewmodel/pistol/histandard_cycle_ads.skc		crossblend 0.08
+	//===================== HZM coop Luger P08: own aim pose (gun 2.2 u further out) and aimed reloads on it; the toggle works =====================
+	coopr_luger_p08_charge			viewmodel/pistol/coop_luger_ads2h.skc		crossblend 0.3
+	coopr_luger_p08_reload			viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_luger_p08_reload_ads		viewmodel/pistol/coop_luger_reload_ads.skc		crossblend 0.1
+	coopr_luger_p08_reload_empty		viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_luger_p08_reload_empty_ads	viewmodel/pistol/coop_luger_reload_empty_ads.skc		crossblend 0.1
+	coopr_silenced_luger_p08_charge			viewmodel/pistol/coop_luger_ads2h.skc		crossblend 0.3
+	coopr_silenced_luger_p08_reload			viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_silenced_luger_p08_reload_ads		viewmodel/pistol/coop_luger_reload_ads.skc		crossblend 0.1
+	coopr_silenced_luger_p08_reload_empty		viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_silenced_luger_p08_reload_empty_ads	viewmodel/pistol/coop_luger_reload_empty_ads.skc		crossblend 0.1
+	//===================== HZM coop Walther PPK: its own EMPTIED aimed reload (the Colt clip with the support thumb riding lower, PB_THUMB 0.15: on the small gun the Colt thumb stood 2.3-2.7 % into the centre box in crouch / prone / lean L, run pa20) =====================
+	coopr_walther_ppk_reload			viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_walther_ppk_reload_ads		viewmodel/pistol/colt45_reload_ads.skc		crossblend 0.1
+	coopr_walther_ppk_reload_empty		viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_walther_ppk_reload_empty_ads	viewmodel/pistol/coop_ppk_reload_empty_ads.skc		crossblend 0.1
+	//===================== HZM coop Welrod (bolt-action pistol): own aimed reload and per-shot bolt cycle =====================
+	coopr_welrod_charge			viewmodel/pistol/coop_welrod_ads2h.skc		crossblend 0.3
+	coopr_welrod_reload			viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_welrod_reload_ads		viewmodel/pistol/coop_welrod_reload_ads.skc		crossblend 0.1
+	coopr_welrod_reload_empty		viewmodel/pistol/reload_colt.skc			crossblend 0.3
+	coopr_welrod_reload_empty_ads	viewmodel/pistol/coop_welrod_reload_empty_ads.skc		crossblend 0.1
+	coopr_welrod_cycle			viewmodel/pistol/coop_welrod_cycle_ads.skc		crossblend 0.08
+	coopr_welrod_cycle_ads		viewmodel/pistol/coop_welrod_cycle_ads.skc		crossblend 0.08
+	//===================== HZM coop SHIP CUT 2026-10-13: guns held out keep their released aim pose (their prefix row now is the two-handed pose) =====================
+	coopr_mauser_c96_charge			viewmodel/p38pose00.skc			crossblend 0.3
+	//===================== HZM coop ADS rollout (integrate_ads.py; rows taken from the lane folders) =====================
+	coopr_mauser_c96_idle		viewmodel/pistol/coltpose.skc		crossblend 0.3	// HZM coop [ads pistols, integrate_ads.py] PIN: Mauser C96 + finishes + Trench C96 (held out; prefix p38) keeps the RELEASED hip idle
+	coopr_bombing_run_idle		viewmodel/pistol/coltpose.skc		crossblend 0.3	// HZM coop [ads pistols, integrate_ads.py] PIN: Bombing Run = the coop binoculars + finishes (pistol class, fallback prefix colt45) keeps the RELEASED hip idle
+	coopr_bombing_run_charge		viewmodel/coltpose00.skc		crossblend 0.3	// HZM coop [ads pistols, integrate_ads.py] PIN: Bombing Run = the coop binoculars + finishes (pistol class, fallback prefix colt45) keeps the RELEASED aim pose
 }
 

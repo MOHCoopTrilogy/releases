@@ -1,0 +1,373 @@
+TIKI
+setup
+{
+	scale 0.52
+	path models/weapons/colt45
+	skelmodel colt45.skd
+	surface colt45 shader colt
+	surface clip shader colt
+
+}
+$define sounddir sound/weapons
+
+init
+{
+	server
+	{
+		classname		Weapon
+		weapontype		pistol
+		name			"Colt 45"
+		rank			110 110
+
+		sp bulletrange		4000
+		sp bulletspread		60 60 100 100
+		sp firespreadmult	0.38 0.7 200 0.6
+
+		dm bulletrange		4000
+		dm bulletspread		45 45 65 65
+		dm firespreadmult	0.48 0.5 200 0.6
+
+		realism bulletrange	4000
+		realism bulletspread	45 45 65 65
+		realism firespreadmult	0.48 0.5 200 0.6
+
+		sp bulletdamage		35
+		dm bulletdamage		37
+		sprealism bulletdamage	55
+		dmrealism bulletdamage	55
+
+		sp firedelay		0.14
+		dm firedelay		0.14
+		realism firedelay	0.14
+
+		sp movementspeed	0.55
+		dm movementspeed	0.55
+		realism movementspeed	0.55
+
+		firetype	bullet
+		ammotype	"pistol"
+		meansofdeath	bullet
+		semiauto
+		bulletcount	1
+		clipsize	7
+		ammorequired	1
+
+		sp startammo	8
+		dm startammo	28
+		sprealism startammo	8
+		dmrealism startammo	14
+
+		sp tracerfrequency	1
+		dm tracerfrequency	0
+		sprealism tracerfrequency	1
+		dmrealism tracerfrequency	0
+
+		crosshair		1
+
+		pickupsound		colt45_snd_pickup
+		ammopickupsound		colt45_snd_pickup_ammo
+		noammosound		colt45_snd_noammo
+
+		weapongroup	pistol
+		airange		short
+
+		cache models/ammo/colt_clip.tik
+	}
+	client
+	{
+		cache muzsprite.spr
+		cache models/ammo/pistolshell.tik
+	}
+}
+
+animations
+{
+	raise		colt45.skc
+	idle		colt45.skc
+	idle_empty	colt45_empty.skc
+	reload		reload_colt45.skc
+	{
+		server
+		{
+			19 surface clip	+nodraw
+			40 surface clip -nodraw
+			last idle
+		}
+		client
+		{
+			entry sound colt45_snd_reload item
+		}
+	}
+	fire	fire_colt45.skc
+	{
+		server
+		{
+			entry shoot primary
+		}
+		client
+		{
+			entry stopaliaschannel colt45_snd_fire
+			entry sound colt45_snd_fire
+			entry viewkick	-1.2 -1.2 -0.2 0.2 1 "V" 3.0 1.0 1.6
+			entry tagdlight tag_barrel 0.25 0.2 0.15 120 0.11
+			entry tagspawnlinked tag_barrel
+			(
+				scale 0.2
+				alpha 0.5
+				offsetalongaxis 2 0 0
+				count 1
+				model muzsprite.spr
+				angles 0 0 crandom 25
+				life 0.04
+				randomroll
+				fade
+			)
+			entry tagspawnlinked tag_barrel
+			(
+				count 1
+				scalemin 0.25
+				scalemax 0.5
+				model muzsprite.spr
+				randomroll
+				life 0.04
+				fade
+			)
+			entry tagspawn tag_barrel
+			(
+				count 2
+				model vsssource.spr
+				alpha 0.30
+				color 0.50 0.50 0.50
+				spritegridlighting
+				scale 0.3
+				life 1.00
+				scalerate 10.00
+				velocity 80.00
+				randvel range 20 -60 crandom -40 range 20 -60
+				friction 5.00
+				fade
+				randomroll
+			)
+			entry commanddelay 0.1 tagspawn tag_eject
+			(
+				count 1
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				scale 1.0
+				velocity 50
+				randvel crandom 10 crandom 10 random 20
+				emitterangles 0 0 0
+				avelocity crandom 90 crandom 90 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.6
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}
+	fire_empty	colt45_empty.skc
+	{
+		server
+		{
+			entry shoot primary
+		}
+		client
+		{
+			entry stopaliaschannel colt45_snd_fire
+			entry sound colt45_snd_fire
+			entry viewkick	-1.2 -1.2 -0.2 0.2 1 "V" 3.0 1.0 1.6
+			entry tagdlight tag_barrel 0.25 0.2 0.15 120 0.11
+			entry tagspawnlinked tag_barrel
+			(
+				scale 0.2
+				alpha 0.5
+				offsetalongaxis 2 0 0
+				count 1
+				model muzsprite.spr
+				angles 0 0 crandom 25
+				life 0.04
+				randomroll
+				fade
+			)
+			entry tagspawnlinked tag_barrel
+			(
+				count 1
+				scalemin 0.25
+				scalemax 0.5
+				model muzsprite.spr
+				randomroll
+				life 0.04
+				fade
+			)
+			entry tagspawn tag_barrel
+			(
+				count 2
+				model vsssource.spr
+				alpha 0.30
+				color 0.50 0.50 0.50
+				spritegridlighting
+				scale 0.3
+				life 1.00
+				scalerate 10.00
+				velocity 80.00
+				randvel range 20 -60 crandom -40 range 20 -60
+				friction 5.00
+				fade
+				randomroll
+			)
+			entry commanddelay 0.1 tagspawn tag_eject
+			(
+				count 1
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				scale 1.0
+				velocity 50
+				randvel crandom 10 crandom 10 random 20
+				emitterangles 0 0 0
+				avelocity crandom 90 crandom 90 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.6
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}
+	guardfire_i	fire_colt45.skc
+	{
+		client
+		{
+			entry stopaliaschannel colt45_snd_fire
+			entry sound colt45_snd_fire
+			entry viewkick	-1.2 -1.2 -0.2 0.2 1 "V" 3.0 1.0 1.6
+			entry tagdlight tag_barrel 0.25 0.2 0.05 120 0.11
+			entry tagspawnlinked tag_barrel
+			(
+				scale 0.2
+				alpha 0.5
+				offsetalongaxis 2 0 0
+				count 1
+				model muzsprite.spr
+				angles 0 0 crandom 25
+				life 0.04
+				randomroll
+				fade
+			)
+			entry tagspawnlinked tag_barrel
+			(
+				count 1
+				scalemin 0.25
+				scalemax 0.5
+				model muzsprite.spr
+				randomroll
+				life 0.04
+				fade
+			)
+			entry tagspawn tag_barrel
+			(
+				count 2
+				model vsssource.spr
+				alpha 0.30
+				color 0.50 0.50 0.50
+				spritegridlighting
+				scale 0.3
+				life 1.00
+				scalerate 10.00
+				velocity 80.00
+				randvel range 20 -60 crandom -40 range 20 -60
+				friction 5.00
+				fade
+				randomroll
+			)
+			entry commanddelay 0.1 tagspawn tag_eject
+			(
+				count 1
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				scale 1.0
+				velocity 50
+				randvel crandom 10 crandom 10 random 20
+				emitterangles 0 0 0
+				avelocity crandom 90 crandom 90 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.6
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}
+	guardfire_ii	fire_colt45.skc
+	{
+		client
+		{
+			entry stopaliaschannel colt45_snd_fire
+			entry sound colt45_snd_fire
+			entry viewkick	-1.2 -1.2 -0.2 0.2 1 "V" 3.0 1.0 1.6
+			entry tagdlight tag_barrel 0.25 0.2 0.05 120 0.11
+			entry tagspawnlinked tag_barrel
+			(
+				scale 0.2
+				alpha 0.5
+				offsetalongaxis 2 0 0
+				count 1
+				model muzsprite.spr
+				angles 0 0 crandom 25
+				life 0.04
+				randomroll
+				fade
+			)
+			entry tagspawnlinked tag_barrel
+			(
+				count 1
+				scalemin 0.25
+				scalemax 0.5
+				model muzsprite.spr
+				randomroll
+				life 0.04
+				fade
+			)
+			entry tagspawn tag_barrel
+			(
+				count 2
+				model vsssource.spr
+				alpha 0.30
+				color 0.50 0.50 0.50
+				spritegridlighting
+				scale 0.3
+				life 1.00
+				scalerate 10.00
+				velocity 80.00
+				randvel range 20 -60 crandom -40 range 20 -60
+				friction 5.00
+				fade
+				randomroll
+			)
+			entry commanddelay 0.1 tagspawn tag_eject
+			(
+				count 1
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				scale 1.0
+				velocity 50
+				randvel crandom 10 crandom 10 random 20
+				emitterangles 0 0 0
+				avelocity crandom 90 crandom 90 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.6
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}
+}

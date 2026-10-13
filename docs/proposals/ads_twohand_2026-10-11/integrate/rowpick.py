@@ -16,6 +16,8 @@ import intlib as L
 # (weapon name as the tik has it, animation prefix as CG_GetVMAnimPrefixIndex returns it, in the rollout?)
 # 2 = not in the rollout AND on another mesh than the rifle its prefix was authored for: CoopAdsClipFitsHeldGun (in the
 # released cgame too) keeps such a gun on the hip clips of the four bolt rifles, so the `_ads` row is never chosen
+# 3 = not in the rollout and WITHOUT A MAGAZINE (tik: clipsize 0 - the coop binoculars): no reload can start, so the
+# reload cases are not compared; every other case must be unchanged
 WEAPONS = [
     ('BAR', 'bar', 1), ('BAR (Gold)', 'bar', 1), ('BAR (M1918 Classic)', 'bar', 1), ('BAR (Pacific)', 'bar', 1),
     ('Lewis Gun', 'bar', 0), ('M1919 30cal', 'bar', 0), ('MG42', 'bar', 0),
@@ -26,8 +28,20 @@ WEAPONS = [
     ('Mauser KAR 98K', 'kar98', 1), ('Mauser KAR 98K (Gewehr 98)', 'kar98', 2), ('Arisaka Type 99', 'kar98', 2),
     ("Springfield M1903", 'springfield', 1), ('Mosin Nagant Rifle', 'mosin', 1), ('Lee-Enfield', 'enfield', 1),
     ('Lee-Enfield (P14 Enfield)', 'enfield', 2),
-    ('Thompson', 'thompson', 0), ('Sten', 'sten', 0), ('Colt 45', 'colt45', 0), ('M1 Garand', 'garand', 0), ('FG 42', 'fg42', 0),
-    ('G 43', 'g43', 0), ('PPSH SMG', 'ppsh', 0), ('Vickers-Berthier', 'vickers', 0), ('Breda', 'breda', 0),
+    ('Thompson', 'thompson', 0), ('Sten', 'sten', 0), ('M1 Garand', 'garand', 0), ('FG 42', 'fg42', 0),
+    # ---- step 4, pistols (prefix as CG_GetVMAnimPrefixIndex returns it: a pistol-class name it does not list = colt45)
+    ('Colt 45', 'colt45', 1), ('Colt 45 (Gold)', 'colt45', 1), ('Colt 45 (Pacific)', 'colt45', 1), ('Silenced Colt .45', 'colt45', 1),
+    ('Walther P38', 'p38', 1), ('Walther P38 (Gold)', 'p38', 1), ('Silenced Walther P38', 'colt45', 1),
+    ('Beretta', 'beretta', 1), ('Silenced Beretta', 'colt45', 1), ('Luger P08', 'colt45', 1), ('Silenced Luger P08', 'colt45', 1),
+    ('Nambu Type 14', 'colt45', 1), ('Walther PPK', 'colt45', 1), ('TT-33 Tokarev', 'colt45', 1), ('Silenced TT-33', 'colt45', 1),
+    ('Welrod', 'colt45', 1), ('Welrod (Gold)', 'colt45', 1), ('Hi-Standard Silenced', 'histandard', 1),
+    ('Webley Revolver', 'webley', 1), ('Webley Revolver (Gold)', 'webley', 1), ('Webley Mk VI', 'webley', 1),
+    ('Nagant Revolver', 'nagantrev', 1), ('Nagant Revolver (Blued)', 'nagantrev', 1),
+    # pistol-class weapons that are NOT in the cut (every one the game can load): held on the released clips
+    ('Mauser C96', 'p38', 0), ('Mauser C96 (Gold)', 'p38', 0), ('Mauser C96 (Trench C96)', 'p38', 0),
+    ('S&W M10 .38', 'm10', 0), ('S&W M10 .38 (Gold)', 'm10', 0), ('Bombing Run', 'colt45', 3), ('Bombing Run (Gold)', 'colt45', 3),
+    ('G 43', 'g43', 0), ('G43 Sniper', 'g43', 0), ('G 43 Irons', 'g43', 1), ('G 43 Irons (Gold)', 'g43', 1),
+    ('PPSH SMG', 'ppsh', 0), ('Vickers-Berthier', 'vickers', 0), ('Breda', 'breda', 0),
 ]
 # (label, suffix, aiming, empty, braced)
 CASES = [('aim pose', 'charge', 0, 0, 0), ('hip reload', 'reload', 0, 0, 0), ('hip reload, emptied', 'reload', 0, 1, 0),
@@ -36,7 +50,8 @@ CASES = [('aim pose', 'charge', 0, 0, 0), ('hip reload', 'reload', 0, 0, 0), ('h
          ('reload single', 'reload_single', 0, 0, 0), ('aimed reload single', 'reload_single', 1, 0, 0),
          ('reload end', 'reload_end', 0, 1, 0), ('aimed reload end', 'reload_end', 1, 1, 0),
          ('reload end, rounds were left', 'reload_end', 0, 0, 0), ('aimed reload end, rounds were left', 'reload_end', 1, 0, 0),
-         ('bolt', 'rechamber', 0, 0, 0), ('aimed bolt', 'rechamber', 1, 0, 0), ('idle', 'idle', 0, 0, 0), ('fire', 'fire', 0, 0, 0)]
+         ('bolt', 'rechamber', 0, 0, 0), ('aimed bolt', 'rechamber', 1, 0, 0), ('idle', 'idle', 0, 0, 0), ('fire', 'fire', 0, 0, 0),
+         ('aimed per-shot cycle (client-only)', 'cycle', 1, 0, 0)]
 
 
 def key(name):
@@ -85,7 +100,7 @@ def pick(rows, name, prefix, suffix, aiming, empty, braced, merged, othermesh=Fa
         an += '_loaded'
     if merged and suffix == 'reload' and empty and (an + '_empty') in rows:
         an += '_empty'
-    if aiming and suffix in ('reload', 'reload_single', 'reload_end', 'rechamber') and not (othermesh and prefix in GUARDED):
+    if aiming and suffix in ('reload', 'reload_single', 'reload_end', 'rechamber', 'cycle') and not (othermesh and prefix in GUARDED):
         ads = an + '_ads'
         if merged and braced and (an + '_adsb') in rows:
             ads = an + '_adsb'
@@ -102,6 +117,8 @@ def main():
     for name, prefix, inscope in WEAPONS:
         changed = []
         for label, suffix, aiming, empty, braced in CASES:
+            if inscope == 3 and suffix.startswith('reload'):
+                continue
             a = pick(ro, name, prefix, suffix, aiming, empty, braced, False, inscope == 2)
             b = pick(rn, name, prefix, suffix, aiming, empty, braced, True, inscope == 2)
             if a not in ro and b not in rn:

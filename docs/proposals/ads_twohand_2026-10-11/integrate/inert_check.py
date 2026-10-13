@@ -28,9 +28,23 @@ OWNERS = [
     (r'^coopr_silenced_mp40_(charge|reload|reload_empty|reload_ads|reload_empty_ads)$', 'step 2 Silenced MP40'),
     (r'^coopr_mp40_reactivated_(reload|reload_empty|reload_ads|reload_empty_ads)$', 'step 2 MP40 R2'),
     (r'^coopr_mp40_mp18_charge$', 'step 2 pin: MP18 keeps the released aim pose'),
+    # ---- step 4, pistols
+    (r'^(colt45|p38|histandard|beretta)_reload_empty(_ads)?$', 'step 4 pistols: emptied reload of the Colt / P38 / Hi-Standard / Beretta rows (colt45 = also the fallback: every user is in the cut or has no magazine - Bombing Run, clipsize 0)'),
+    (r'^webley_reload_empty(_ads)?$', 'step 4 Webley + Mk VI'),
+    (r'^histandard_cycle_ads$', 'step 4 Hi-Standard (aimed rack after the shot)'),
+    (r'^coopr_(luger_p08|silenced_luger_p08|welrod)_(charge|reload_ads|reload_empty|reload_empty_ads)$', 'step 4 Luger / Welrod'),
+    (r'^coopr_welrod_cycle(_ads)?$', 'step 4 Welrod (aimed bolt cycle)'),
+    (r'^coopr_walther_ppk_(reload_ads|reload_empty|reload_empty_ads)$', 'step 4 PPK'),
+    (r'^coopr_mauser_c96_(charge|idle)$|^coopr_bombing_run_(charge|idle)$', 'step 4 pin: C96 / Bombing Run keep the released aim pose and hip idle'),
+    (r'^coopr_g_43_irons_(charge|reload_ads|reload_empty|reload_empty_ads)$', 'step 5 G 43 Irons'),
     (r'^coopr_[a-z0-9_]+_reload(_single|_end)?$', 'RELEASED per-weapon reload row (looked up by the released cgame too)'),
 ]
+PISTOL_TIKS = (r'^models/weapons/(colt45|colt45_(?!m10)[a-z0-9_]+|colt_silenced|dbno_pistol[a-z0-9_]*|p38|p38_[a-z0-9_]+|p38silenced|it_w_beretta[a-z0-9_]*'
+               r'|berettasilenced|lugerp08|lugerp08silenced|nambu|ppk|tt33[a-z0-9_]*|welrod[a-z0-9_]*|silencedpistol[a-z0-9_]*'
+               r'|webley_revolver[a-z0-9_]*|nagant_revolver[a-z0-9_]*)\.tik$')
 GUN_OWNERS = [
+    (r'^models/weapons/coop_g43_irons[a-z0-9_]*\.tik$', ('reload_ads_empty',), 'step 5 G 43 Irons'),
+    (PISTOL_TIKS, ('reload_ads_loaded', 'reload_ads_empty', 'reload_empty', 'reload_end_ads', 'reload_single_ads'), 'step 4 pistols'),
     (r'^models/weapons/(bar|bar_(?!bar1918\.)[a-z0-9_]+|dp28[a-z0-9_]*|mp44[a-z0-9_]*)\.tik$', ('reload_ads_loaded', 'reload_ads_empty', 'reload_empty'), 'step 1'),
     (r'^models/weapons/shotgun[a-z0-9_]*\.tik$', ('reload_end_loaded',), 'step 1 Shotgun'),
     (r'^models/weapons/(mp40|mp40_(?!mp18)[a-z0-9_]+|mp40silenced)\.tik$', ('reload_ads_empty', 'reload_empty'), 'step 2'),

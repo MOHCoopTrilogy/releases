@@ -960,5 +960,837 @@
   "models/weapons/springfield_unscoped.tik": {
     "base_pak": "zzzzz_xw_weapons.pk3",
     "base_md5": "390abf34c4de6e68f7b39312864eb413"
+  },
+  "models/human/animation/viewmodel/beretta/beretta_ads2h.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/beretta/beretta_reload_empty_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/beretta/coop_beretta_idle2h.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_m10/coop_m10_tp_fetch.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_m10/coop_m10_tp_seat.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/coop_m10/coop_m10_tp_start.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/nagantrev/coop_nagant_reload.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/nagantrev/coop_nagant_reload_end.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/nagantrev/coop_nagant_reload_single.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/nagantrev/coop_nagant_reload_single_slow.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/nagantrev/coop_nagant_tp_fetch.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/nagantrev/coop_nagant_tp_loop_slow.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/nagantrev/coop_nagant_tp_seat.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/nagantrev/coop_nagantrev_idle2h.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/nagantrev/nagantrev_ads2h.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/nagantrev/nagantrev_reload_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/nagantrev/nagantrev_reload_end_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/nagantrev/nagantrev_reload_single_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/nagantrev/nagantrev_reload_single_slow_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/colt45_ads2h.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/colt45_reload_empty_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/coop_colt45_idle2h.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/coop_histandard_idle2h.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/coop_luger_ads2h.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/coop_luger_reload_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/coop_luger_reload_empty_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/coop_p38_idle2h.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/coop_ppk_reload_empty_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/coop_welrod_ads2h.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/coop_welrod_cycle_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/coop_welrod_reload_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/coop_welrod_reload_empty_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/histandard_ads2h.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/histandard_cycle_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/histandard_reload_empty_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/p38_ads2h.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/pistol/p38_reload_empty_ads.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/webley/coop_webley_idle2h.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/webley/coop_webley_reload.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/webley/coop_webley_reload_end.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/webley/coop_webley_reload_single.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/webley/coop_webley_reload_single_slow.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/webley/coop_webley_tp_end24.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/webley/coop_webley_tp_fetch.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/webley/coop_webley_tp_seat.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/webley/coop_webley_tp_single_slow.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/webley/coop_webley_tp_start24.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/webley/webley_ads2h.skc": {
+    "new": "True"
+  },
+  "models/human/animation/viewmodel/webley/webley_reload_single_ads_slow.skc": {
+    "new": "True"
+  },
+  "models/human/animation/weapon_pistol/prone/coop_pistol_prone_reload_63.skc": {
+    "new": "True"
+  },
+  "models/human/animation/weapon_pistol/prone/coop_pistol_prone_reload_73.skc": {
+    "new": "True"
+  },
+  "models/player/base/anims_pistol.txt": {
+    "base_pak": "pak3.pk3",
+    "base_md5": "36543e58d58b1da330445232262675fb"
+  },
+  "models/player/base/anims_shared.txt": {
+    "base_md5": "629eca479fe84ef0a80849705b9a9812",
+    "base_ticks": 639274526211249801,
+    "base_from": "docs/tools/assets/fixes_base/models/player/base/anims_shared.txt"
+  },
+  "models/weapons/Beretta/coop_beretta_reload_ads_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/Beretta/coop_beretta_reload_ads_loaded.skc": {
+    "new": "True"
+  },
+  "models/weapons/Beretta/coop_berettas_idle_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/Beretta/coop_berettas_reload_ads_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/Beretta/coop_berettas_reload_ads_loaded.skc": {
+    "new": "True"
+  },
+  "models/weapons/Beretta/coop_berettas_reload_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/It_W_Beretta.tik": {
+    "base_md5": "49b1d185fcc96074b074fbf5eab96e66",
+    "base_ticks": 639195658272518572,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/It_W_Beretta.tik"
+  },
+  "models/weapons/LugerP08.tik": {
+    "base_pak": "zzzzz_xw_weapons.pk3",
+    "base_md5": "00cb767f643b0219e1a022c7f473c5b8"
+  },
+  "models/weapons/P38/P38silenced.skd": {
+    "base_pak": "zzzzz_xw_weapons.pk3",
+    "base_md5": "d0c26f4442c2bdc373912e4dc11fdf61"
+  },
+  "models/weapons/P38/coop_nambu_idle_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/P38/coop_nambu_reload_ads_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/P38/coop_nambu_reload_ads_loaded.skc": {
+    "new": "True"
+  },
+  "models/weapons/P38/coop_nambu_reload_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/P38/coop_p38_idle_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/P38/coop_p38_reload_ads_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/P38/coop_p38_reload_ads_loaded.skc": {
+    "new": "True"
+  },
+  "models/weapons/P38/coop_p38_reload_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/P38/coop_p38s_idle_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/P38/coop_p38s_reload_ads_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/P38/coop_p38s_reload_ads_loaded.skc": {
+    "new": "True"
+  },
+  "models/weapons/P38/coop_p38s_reload_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/P38/nambu.skd": {
+    "base_pak": "zzzzz_xw_weapons.pk3",
+    "base_md5": "b9ea23a7ff96d5718f460ddfebc7c9da"
+  },
+  "models/weapons/P38/p38.skd": {
+    "base_pak": "Pak0.pk3",
+    "base_md5": "146577c99f5b218869a48dbf194248c1"
+  },
+  "models/weapons/berettasilenced.tik": {
+    "base_pak": "zzzzz_xw_weapons.pk3",
+    "base_md5": "619447c86efed4cd53f682fe5504097b"
+  },
+  "models/weapons/colt45.tik": {
+    "base_md5": "2431d1133d4663c7ece1e00edefedbf5",
+    "base_ticks": 639195657708515855,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/colt45.tik"
+  },
+  "models/weapons/colt45/coop_colt45_reload_ads_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/colt45/coop_colt45_reload_ads_loaded.skc": {
+    "new": "True"
+  },
+  "models/weapons/colt45_bloody.tik": {
+    "base_md5": "39e4e39e4746f6fa3dec82480b6d562e",
+    "base_ticks": 639226892661647986,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/colt45_bloody.tik"
+  },
+  "models/weapons/colt45_bloodyeic.tik": {
+    "base_md5": "a1eb41ac2c96c7517f50adb0d9b4998d",
+    "base_ticks": 639226764623165937,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/colt45_bloodyeic.tik"
+  },
+  "models/weapons/colt45_blued.tik": {
+    "base_md5": "a570e045daf4be94370f346f812a4289",
+    "base_ticks": 639226892661647986,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/colt45_blued.tik"
+  },
+  "models/weapons/colt45_camo_desert.tik": {
+    "base_md5": "fa7afd9ee27d225b81bc026634ef7a94",
+    "base_ticks": 639226892661657999,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/colt45_camo_desert.tik"
+  },
+  "models/weapons/colt45_camo_winter.tik": {
+    "base_md5": "ef72648158d039d2f5279ad73a3b8cb2",
+    "base_ticks": 639226892661657999,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/colt45_camo_winter.tik"
+  },
+  "models/weapons/colt45_camo_woodland.tik": {
+    "base_md5": "175ca1691b169afb1bc570cd9b3adac5",
+    "base_ticks": 639226892661647986,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/colt45_camo_woodland.tik"
+  },
+  "models/weapons/colt45_chrome.tik": {
+    "base_md5": "dde799512ed4a3d5a756ab794c65e228",
+    "base_ticks": 639226892661637986,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/colt45_chrome.tik"
+  },
+  "models/weapons/colt45_colt1911w.tik": {
+    "base_md5": "28600f66d06fd7615c5371f4a7b79b88",
+    "base_ticks": 639268117595397130,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/colt45_colt1911w.tik"
+  },
+  "models/weapons/colt45_coltpa.tik": {
+    "base_md5": "d3e8e1def3d7289fa8687293af88b730",
+    "base_ticks": 639226751352068258,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/colt45_coltpa.tik"
+  },
+  "models/weapons/colt45_covert.tik": {
+    "base_md5": "1828508bbe8eaa14e10a9bbdababedbc",
+    "base_ticks": 639226764623100884,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/colt45_covert.tik"
+  },
+  "models/weapons/colt45_drbond.tik": {
+    "base_md5": "f40b7096b2f1fe6307eb6bef6225a935",
+    "base_ticks": 639226764623140897,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/colt45_drbond.tik"
+  },
+  "models/weapons/colt45_gold.tik": {
+    "base_md5": "99ca57385c2b58fd9a6b3a3290d3d6a9",
+    "base_ticks": 639226892661637986,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/colt45_gold.tik"
+  },
+  "models/weapons/colt45_guancolt.tik": {
+    "base_md5": "8ab219f3b20c220781c7c7699dc6f4f7",
+    "base_ticks": 639227624700523870,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/colt45_guancolt.tik"
+  },
+  "models/weapons/colt45_lv_ttcolt.tik": {
+    "base_md5": "5f45d9eed108d31bdfce46dcf637488a",
+    "base_ticks": 639227672949179102,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/colt45_lv_ttcolt.tik"
+  },
+  "models/weapons/colt_silenced.tik": {
+    "base_pak": "zzzzz_xw_weapons.pk3",
+    "base_md5": "84a8dffa4f63f758c3c963ce8af45554"
+  },
+  "models/weapons/coop_colt1911w/coop_mk6_close_ads.skc": {
+    "new": "True"
+  },
+  "models/weapons/coop_colt1911w/coop_mk6_close_hip.skc": {
+    "new": "True"
+  },
+  "models/weapons/coop_colt1911w/coop_mk6_open_ads.skc": {
+    "new": "True"
+  },
+  "models/weapons/coop_colt1911w/coop_mk6_open_hip.skc": {
+    "new": "True"
+  },
+  "models/weapons/coop_colt1911w/coop_mk6_single_slow.skc": {
+    "new": "True"
+  },
+  "models/weapons/coop_coltpa/coop_coltpa_reload_ads_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/coop_coltpa/coop_coltpa_reload_ads_loaded.skc": {
+    "new": "True"
+  },
+  "models/weapons/dbno_pistol.tik": {
+    "base_md5": "16aa2360c954f7a67998416ce6e01439",
+    "base_ticks": 639175059210760412,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/dbno_pistol.tik"
+  },
+  "models/weapons/dbno_pistol_bloody.tik": {
+    "base_md5": "352983ea9bc54d949ddba6e4e67dab3a",
+    "base_ticks": 639226892661698512,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/dbno_pistol_bloody.tik"
+  },
+  "models/weapons/dbno_pistol_blued.tik": {
+    "base_md5": "5b890632a542956ced5f5a327d392120",
+    "base_ticks": 639226892661688501,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/dbno_pistol_blued.tik"
+  },
+  "models/weapons/dbno_pistol_camo_desert.tik": {
+    "base_md5": "34d641ee51c5c014d33c460f3162b5dc",
+    "base_ticks": 639226892661698512,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/dbno_pistol_camo_desert.tik"
+  },
+  "models/weapons/dbno_pistol_camo_winter.tik": {
+    "base_md5": "70fbed81bbf9497652580c4acf25850d",
+    "base_ticks": 639226892661698512,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/dbno_pistol_camo_winter.tik"
+  },
+  "models/weapons/dbno_pistol_camo_woodland.tik": {
+    "base_md5": "8ab6d96d199848fe9e94cc3c8b1bb9c5",
+    "base_ticks": 639226892661698512,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/dbno_pistol_camo_woodland.tik"
+  },
+  "models/weapons/dbno_pistol_chrome.tik": {
+    "base_md5": "734f55c710c35b6a5137af09d27de562",
+    "base_ticks": 639226892661688501,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/dbno_pistol_chrome.tik"
+  },
+  "models/weapons/dbno_pistol_gold.tik": {
+    "base_md5": "eed9e91b7321c5bde7fffbf558b00992",
+    "base_ticks": 639226892661688501,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/dbno_pistol_gold.tik"
+  },
+  "models/weapons/highstandard/coop_histandard_fire_ads.skc": {
+    "new": "True"
+  },
+  "models/weapons/highstandard/coop_histandard_reload_ads_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/highstandard/coop_histandard_reload_ads_loaded.skc": {
+    "new": "True"
+  },
+  "models/weapons/highstandard/hs_pistol.skd": {
+    "base_pak": "Pak0.pk3",
+    "base_md5": "281788c7d538bc384fc79f459e5c30a5"
+  },
+  "models/weapons/it_w_beretta_bloody.tik": {
+    "base_md5": "2f2f7cf43448866b97fc24f653a9c2e7",
+    "base_ticks": 639226892661359334,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/it_w_beretta_bloody.tik"
+  },
+  "models/weapons/it_w_beretta_blued.tik": {
+    "base_md5": "775aafc2c0c55a714987568d313c81c0",
+    "base_ticks": 639226892661349343,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/it_w_beretta_blued.tik"
+  },
+  "models/weapons/it_w_beretta_camo_desert.tik": {
+    "base_md5": "87e8c491285491ad4eaf3e7d275136c9",
+    "base_ticks": 639226892661364360,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/it_w_beretta_camo_desert.tik"
+  },
+  "models/weapons/it_w_beretta_camo_winter.tik": {
+    "base_md5": "383883821b8763a2678cdda3c517084e",
+    "base_ticks": 639226892661364360,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/it_w_beretta_camo_winter.tik"
+  },
+  "models/weapons/it_w_beretta_camo_woodland.tik": {
+    "base_md5": "f61f0a04acd04e726b2929aa0509c981",
+    "base_ticks": 639226892661364360,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/it_w_beretta_camo_woodland.tik"
+  },
+  "models/weapons/it_w_beretta_chrome.tik": {
+    "base_md5": "1db1adc451894e3e6676e4ffb2de3212",
+    "base_ticks": 639226892661349343,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/it_w_beretta_chrome.tik"
+  },
+  "models/weapons/it_w_beretta_gold.tik": {
+    "base_md5": "2e9c453a193abf9a2e4189fc24069023",
+    "base_ticks": 639226892661349343,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/it_w_beretta_gold.tik"
+  },
+  "models/weapons/it_w_beretta_lv_ttberetta.tik": {
+    "base_md5": "64c80525ffbf85c1ae77629720e8344c",
+    "base_ticks": 639227672949124067,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/it_w_beretta_lv_ttberetta.tik"
+  },
+  "models/weapons/luger/coop_luger_idle_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/luger/coop_luger_reload_ads_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/luger/coop_luger_reload_ads_loaded.skc": {
+    "new": "True"
+  },
+  "models/weapons/luger/coop_luger_reload_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/luger/luger.skd": {
+    "base_pak": "zzzzz_xw_weapons.pk3",
+    "base_md5": "c314aa0df76445f0b87b6a3dee6e0b33"
+  },
+  "models/weapons/luger/lugerSilenced.skd": {
+    "base_pak": "zzzzz_xw_weapons.pk3",
+    "base_md5": "46dd1e3720739923093004aef4a074ed"
+  },
+  "models/weapons/lugerp08silenced.tik": {
+    "base_pak": "zzzzz_xw_weapons.pk3",
+    "base_md5": "751bab5eecc836178b0647ea82542e81"
+  },
+  "models/weapons/nagant_revolver.tik": {
+    "base_md5": "79fb522f64241c680d64fd1c10ab8c30",
+    "base_ticks": 639195657708580963,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/nagant_revolver.tik"
+  },
+  "models/weapons/nagant_revolver_bloody.tik": {
+    "base_md5": "ceb8592fcecfef6acc89efa56e2f1ff2",
+    "base_ticks": 639226892661507489,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/nagant_revolver_bloody.tik"
+  },
+  "models/weapons/nagant_revolver_blued.tik": {
+    "base_md5": "529a34da9822ba8fb693ac81e80769f6",
+    "base_ticks": 639226892661507489,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/nagant_revolver_blued.tik"
+  },
+  "models/weapons/nagant_revolver_camo_desert.tik": {
+    "base_md5": "377deb4770a39a06d109ae9a4bbcd851",
+    "base_ticks": 639226892661517484,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/nagant_revolver_camo_desert.tik"
+  },
+  "models/weapons/nagant_revolver_camo_winter.tik": {
+    "base_md5": "b17b8052ae218948fadfd997a1b85786",
+    "base_ticks": 639226892661507489,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/nagant_revolver_camo_winter.tik"
+  },
+  "models/weapons/nagant_revolver_camo_woodland.tik": {
+    "base_md5": "9485bced16d7049e9df06d3292399859",
+    "base_ticks": 639226892661507489,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/nagant_revolver_camo_woodland.tik"
+  },
+  "models/weapons/nagant_revolver_chrome.tik": {
+    "base_md5": "bdda889b5495f1345226236971d720df",
+    "base_ticks": 639226892661507489,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/nagant_revolver_chrome.tik"
+  },
+  "models/weapons/nagant_revolver_gold.tik": {
+    "base_md5": "cdbf4e245f850af748961243dc629fa4",
+    "base_ticks": 639226892661497486,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/nagant_revolver_gold.tik"
+  },
+  "models/weapons/nagent_revolver/nagant_reload_loop_slow.skc": {
+    "new": "True"
+  },
+  "models/weapons/nambu.tik": {
+    "base_pak": "zzzzz_xw_weapons.pk3",
+    "base_md5": "81d69142705e935ddcb99899ddcbc5f5"
+  },
+  "models/weapons/p38.tik": {
+    "base_md5": "bfd12235f416da41853c500b2ad004e8",
+    "base_ticks": 639195657708580963,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/p38.tik"
+  },
+  "models/weapons/p38_bloody.tik": {
+    "base_md5": "6da80a3565e6ffee6531bbe4ee993347",
+    "base_ticks": 639226892661998776,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/p38_bloody.tik"
+  },
+  "models/weapons/p38_blued.tik": {
+    "base_md5": "616b098831d48bdf9cabd7106813e5ff",
+    "base_ticks": 639226892661983739,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/p38_blued.tik"
+  },
+  "models/weapons/p38_camo_desert.tik": {
+    "base_md5": "7dcf736fd5d9e135a96d1db6c5aac353",
+    "base_ticks": 639226892661998776,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/p38_camo_desert.tik"
+  },
+  "models/weapons/p38_camo_winter.tik": {
+    "base_md5": "7d6ba13505177c9d56cdfd376c01702e",
+    "base_ticks": 639226892661998776,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/p38_camo_winter.tik"
+  },
+  "models/weapons/p38_camo_woodland.tik": {
+    "base_md5": "83e3c6653d88a11f721455da1caf0db7",
+    "base_ticks": 639226892661998776,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/p38_camo_woodland.tik"
+  },
+  "models/weapons/p38_chrome.tik": {
+    "base_md5": "fcfefd7e4e2622bb10c24d407bfaa782",
+    "base_ticks": 639226892661983739,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/p38_chrome.tik"
+  },
+  "models/weapons/p38_gold.tik": {
+    "base_md5": "29163016eefc83200bff80d422823550",
+    "base_ticks": 639226892661983739,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/p38_gold.tik"
+  },
+  "models/weapons/p38_guanp38.tik": {
+    "base_md5": "b727193aa959c2fd35c12febe91593be",
+    "base_ticks": 639227624700733941,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/p38_guanp38.tik"
+  },
+  "models/weapons/p38_lv_ttp38.tik": {
+    "base_md5": "4150e12f74e8a8aafeca738f22fd4550",
+    "base_ticks": 639227672949347434,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/p38_lv_ttp38.tik"
+  },
+  "models/weapons/p38silenced.tik": {
+    "base_pak": "zzzzz_xw_weapons.pk3",
+    "base_md5": "77097e2304b1a007ec66e301c15615f8"
+  },
+  "models/weapons/ppk.tik": {
+    "base_pak": "zzzzz_xw_weapons.pk3",
+    "base_md5": "ca922d1bd752b5977a4251f7d49a1cf1"
+  },
+  "models/weapons/ppk/coop_ppk_reload_ads_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/ppk/coop_ppk_reload_ads_loaded.skc": {
+    "new": "True"
+  },
+  "models/weapons/silencedpistol.tik": {
+    "base_md5": "012f2e349bb5cbdd8611685e15f9945f",
+    "base_ticks": 639221063293005639,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/silencedpistol.tik"
+  },
+  "models/weapons/silencedpistol_bloody.tik": {
+    "base_md5": "6dd52ec64cf0c7b8b340e49956bbb670",
+    "base_ticks": 639226892662068826,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/silencedpistol_bloody.tik"
+  },
+  "models/weapons/silencedpistol_blued.tik": {
+    "base_md5": "45351307bef769620a582061ab0eecb9",
+    "base_ticks": 639226892662068826,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/silencedpistol_blued.tik"
+  },
+  "models/weapons/silencedpistol_camo_desert.tik": {
+    "base_md5": "97ecea350c81e2c48cbfcc832d1d7e58",
+    "base_ticks": 639226892662078833,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/silencedpistol_camo_desert.tik"
+  },
+  "models/weapons/silencedpistol_camo_winter.tik": {
+    "base_md5": "22759b205934038f19c1e0081767f84a",
+    "base_ticks": 639226892662078833,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/silencedpistol_camo_winter.tik"
+  },
+  "models/weapons/silencedpistol_camo_woodland.tik": {
+    "base_md5": "04669e380f0747bf4c1da5cc73fb230f",
+    "base_ticks": 639226892662068826,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/silencedpistol_camo_woodland.tik"
+  },
+  "models/weapons/silencedpistol_chrome.tik": {
+    "base_md5": "9ac87a471346531008fa65b810d3bf81",
+    "base_ticks": 639226892662068826,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/silencedpistol_chrome.tik"
+  },
+  "models/weapons/silencedpistol_gold.tik": {
+    "base_md5": "754c668f32aa7c78064e46f67019939a",
+    "base_ticks": 639226892662058824,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/silencedpistol_gold.tik"
+  },
+  "models/weapons/tt33.tik": {
+    "base_md5": "37943161264369f02d238b9b93f75117",
+    "base_ticks": 639225995679850474,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/tt33.tik"
+  },
+  "models/weapons/tt33/coop_tt33_idle_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/tt33/coop_tt33_reload_ads_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/tt33/coop_tt33_reload_ads_loaded.skc": {
+    "new": "True"
+  },
+  "models/weapons/tt33/coop_tt33_reload_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/tt33_bloody.tik": {
+    "base_md5": "be40519e5d9cb8d4622ef0e2caa2cc4f",
+    "base_ticks": 639226892662163915,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/tt33_bloody.tik"
+  },
+  "models/weapons/tt33_blued.tik": {
+    "base_md5": "9d738fcb03abcfc85b6b756f6a2103cc",
+    "base_ticks": 639226892662163915,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/tt33_blued.tik"
+  },
+  "models/weapons/tt33_camo_desert.tik": {
+    "base_md5": "d23c7fc55854a1e97b191bf4a21bfb2a",
+    "base_ticks": 639226892662163915,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/tt33_camo_desert.tik"
+  },
+  "models/weapons/tt33_camo_winter.tik": {
+    "base_md5": "49aae8126fe0b33a61732a141ad98ae9",
+    "base_ticks": 639226892662163915,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/tt33_camo_winter.tik"
+  },
+  "models/weapons/tt33_camo_woodland.tik": {
+    "base_md5": "dd7de40e2d9fc61da7a05bf3b4baf16c",
+    "base_ticks": 639226892662163915,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/tt33_camo_woodland.tik"
+  },
+  "models/weapons/tt33_chrome.tik": {
+    "base_md5": "509b8fed1702171caf1717b8699ae117",
+    "base_ticks": 639226892662153925,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/tt33_chrome.tik"
+  },
+  "models/weapons/tt33_gold.tik": {
+    "base_md5": "a2e9d8a2e4d421b5886ddfcda1b766d9",
+    "base_ticks": 639226892662153925,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/tt33_gold.tik"
+  },
+  "models/weapons/tt33silenced.tik": {
+    "base_md5": "fce675061b06e3e4f20693d4487426e8",
+    "base_ticks": 639225995680627053,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/tt33silenced.tik"
+  },
+  "models/weapons/tt33silenced_bloody.tik": {
+    "base_md5": "7b765aab9a01d5cd613d5b26101c8dec",
+    "base_ticks": 639226892662173910,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/tt33silenced_bloody.tik"
+  },
+  "models/weapons/tt33silenced_blued.tik": {
+    "base_md5": "64a76dc0c49d841fdf66bd01fc2adb2f",
+    "base_ticks": 639226892662173910,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/tt33silenced_blued.tik"
+  },
+  "models/weapons/tt33silenced_camo_desert.tik": {
+    "base_md5": "63cfa55279134da8ac11d7c431542638",
+    "base_ticks": 639226892662183919,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/tt33silenced_camo_desert.tik"
+  },
+  "models/weapons/tt33silenced_camo_winter.tik": {
+    "base_md5": "f38a3c1dfce5963e361f815fe9ef4d51",
+    "base_ticks": 639226892662183919,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/tt33silenced_camo_winter.tik"
+  },
+  "models/weapons/tt33silenced_camo_woodland.tik": {
+    "base_md5": "5d0882deda364a0bab780ec83e9a4f85",
+    "base_ticks": 639226892662183919,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/tt33silenced_camo_woodland.tik"
+  },
+  "models/weapons/tt33silenced_chrome.tik": {
+    "base_md5": "85e49d2ae479effba3f4b7f54d72e2e9",
+    "base_ticks": 639226892662173910,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/tt33silenced_chrome.tik"
+  },
+  "models/weapons/tt33silenced_gold.tik": {
+    "base_md5": "d50d9bd73d8faa298e9f8790ddfae6f1",
+    "base_ticks": 639226892662173910,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/tt33silenced_gold.tik"
+  },
+  "models/weapons/webley_revolver.tik": {
+    "base_md5": "d082026b81cecaaa8544b2e5f37f055d",
+    "base_ticks": 639195657708616107,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/webley_revolver.tik"
+  },
+  "models/weapons/webley_revolver/coop_webley_close_ads.skc": {
+    "new": "True"
+  },
+  "models/weapons/webley_revolver/coop_webley_close_hip.skc": {
+    "new": "True"
+  },
+  "models/weapons/webley_revolver/coop_webley_open_ads.skc": {
+    "new": "True"
+  },
+  "models/weapons/webley_revolver/coop_webley_open_hip.skc": {
+    "new": "True"
+  },
+  "models/weapons/webley_revolver/webley_revolver_reload_single_slow.skc": {
+    "new": "True"
+  },
+  "models/weapons/webley_revolver_bloody.tik": {
+    "base_md5": "af568a0b5acd5c127d342ea46d03937a",
+    "base_ticks": 639226892661588009,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/webley_revolver_bloody.tik"
+  },
+  "models/weapons/webley_revolver_blued.tik": {
+    "base_md5": "9ee9987132e765dbadfad15eb8179fa6",
+    "base_ticks": 639226892661588009,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/webley_revolver_blued.tik"
+  },
+  "models/weapons/webley_revolver_camo_desert.tik": {
+    "base_md5": "d4542c5e6a7c5adf811c8fbcde574c06",
+    "base_ticks": 639226892661597993,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/webley_revolver_camo_desert.tik"
+  },
+  "models/weapons/webley_revolver_camo_winter.tik": {
+    "base_md5": "7ca03daddf4b91f4a32a0158cf0c2e97",
+    "base_ticks": 639226892661597993,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/webley_revolver_camo_winter.tik"
+  },
+  "models/weapons/webley_revolver_camo_woodland.tik": {
+    "base_md5": "75d20b9b6729af563df410974df747f9",
+    "base_ticks": 639226892661597993,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/webley_revolver_camo_woodland.tik"
+  },
+  "models/weapons/webley_revolver_chrome.tik": {
+    "base_md5": "69a08344ea468bdc35fd9b7e8fc5a897",
+    "base_ticks": 639226892661588009,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/webley_revolver_chrome.tik"
+  },
+  "models/weapons/webley_revolver_gold.tik": {
+    "base_md5": "c01674186cf79c798a58c00ec2bc0658",
+    "base_ticks": 639226892661588009,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/webley_revolver_gold.tik"
+  },
+  "models/weapons/webley_revolver_lv_ttwebley.tik": {
+    "base_md5": "4306f56fe0e2b564095d80f16a67ebe0",
+    "base_ticks": 639227672949474541,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/webley_revolver_lv_ttwebley.tik"
+  },
+  "models/weapons/welrod.tik": {
+    "base_md5": "5edade3323b1d9572695f12869dc3057",
+    "base_ticks": 639225995681381912,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/welrod.tik"
+  },
+  "models/weapons/welrod/coop_welrod_fire_ads.skc": {
+    "new": "True"
+  },
+  "models/weapons/welrod/coop_welrod_reload_ads_empty.skc": {
+    "new": "True"
+  },
+  "models/weapons/welrod/coop_welrod_reload_hip.skc": {
+    "new": "True"
+  },
+  "models/weapons/welrod/welrod_pistol.skd": {
+    "base_pak": "zzzzz_xw_weapons.pk3",
+    "base_md5": "dffbf55f2ced6f1a9996f689bec1521d"
+  },
+  "models/weapons/welrod_bloody.tik": {
+    "base_md5": "52003f7afbe96cbd5c09a636d2af9de7",
+    "base_ticks": 639226892662193914,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/welrod_bloody.tik"
+  },
+  "models/weapons/welrod_blued.tik": {
+    "base_md5": "73eb9ed59383b400de34aedc2f44f386",
+    "base_ticks": 639226892662193914,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/welrod_blued.tik"
+  },
+  "models/weapons/welrod_camo_desert.tik": {
+    "base_md5": "0836c64be5a303ce791d0ee16fb2a181",
+    "base_ticks": 639226892662193914,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/welrod_camo_desert.tik"
+  },
+  "models/weapons/welrod_camo_winter.tik": {
+    "base_md5": "96955bc13829151433d0ed80a10a4c30",
+    "base_ticks": 639226892662193914,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/welrod_camo_winter.tik"
+  },
+  "models/weapons/welrod_camo_woodland.tik": {
+    "base_md5": "35a44dba16cf03df51bf697b73a140df",
+    "base_ticks": 639226892662193914,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/welrod_camo_woodland.tik"
+  },
+  "models/weapons/welrod_chrome.tik": {
+    "base_md5": "2eb1b85133891299400c729e03f8e978",
+    "base_ticks": 639226892662193914,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/welrod_chrome.tik"
+  },
+  "models/weapons/welrod_gold.tik": {
+    "base_md5": "ea2573adff5b9b9b24737fb19b3ca26b",
+    "base_ticks": 639226892662183919,
+    "base_from": "docs/tools/assets/fixes_base/models/weapons/welrod_gold.tik"
+  },
+  "sound/weapons/foley/coop_beretta_reload_loaded.wav": {
+    "new": "True"
+  },
+  "sound/weapons/foley/coop_colt45_reload_loaded.wav": {
+    "new": "True"
+  },
+  "sound/weapons/foley/coop_histandard_reload_loaded.wav": {
+    "new": "True"
+  },
+  "sound/weapons/foley/coop_p38_reload_loaded.wav": {
+    "new": "True"
   }
 }

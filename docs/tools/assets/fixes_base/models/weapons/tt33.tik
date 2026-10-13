@@ -1,0 +1,239 @@
+TIKI
+setup
+{
+	scale 0.52			// Set default scale to 16/30.5 since world
+						// is in 16 units per foot and model is in cm's
+	path models/weapons/tt33
+	skelmodel tt33.skd
+	surface Cylinder shader tt33
+	surface Cylinder1 shader tt33
+	surface clip shader P38
+}
+
+init
+{
+	server
+	{
+		classname		Weapon
+		weapontype		pistol
+		name			"TT-33 Tokarev"
+		rank			170 120
+
+
+		pickupsound		p38_snd_pickup
+		ammopickupsound	p38_snd_pickup_ammo
+		noammosound		p38_snd_noammo
+
+		// Holstering info
+holstertag				"Bip01 Pelvis"
+holsteroffset			"1.5 -4 -10.0"
+holsterangles			"5 190 195"
+holsterScale			1.0
+
+		// Primary fire type info
+		firetype		bullet
+		ammotype		"Pistol"
+		meansofdeath	bullet
+semiauto		// HZM coop [user 07-12]: semiauto restored - without it the engine treats the gun as FULL-AUTO and the coop statemap's full-auto path (smg/mg only) dead-ends it at the hip (the ADS-only-fire bug)
+		bulletcount		1
+		clipsize		8
+		startammo		24
+		ammorequired	1
+		
+
+
+		//==============================================//
+		//		WEAPON BEHAVIOR MODELLING 		//
+		//==============================================//
+
+//		Walther P-38 Pistol: Max Eff. Range is 75 yds with a muzzle velocity of 1150 ft/s. (9mm Parabellum round)
+
+		bulletrange		1000 	//the range at which bulletspread is applied fully
+		bulletspread	10 10 75 75 //  minpitch minyaw maxpitch maxyaw(offsets in world units)
+		firespreadmult	0.38 0.7 200 0.6			//add falloff cap maxtime
+		firedelay		0.2
+		bulletdamage	35		//Cartucho 7,62 x 25
+		movementspeed 	0.98
+
+		tracerfrequency 	1
+
+		crosshair		1
+//		usenoammo		1 // allow the pistol to be used when it has no ammo
+
+		secondary firetype			melee
+		secondary ammotype			none
+		secondary ammorequired		0
+		secondary meansofdeath		bash
+		secondary bulletrange		64
+		secondary bulletdamage		25
+		secondary bulletknockback	50
+		secondary quiet
+
+
+		airange			short
+
+		// AI animation group info
+		weapongroup		xw_tt33
+
+		// DM Attributes
+
+		dmbulletcount	1
+		dmstartammo		32
+		dmammorequired	1
+		dmfiredelay		0.3
+		dmbulletdamage	30		//Cartucho 7,62 x 25
+		dmmovementspeed	0.98
+
+		dmbulletrange	1000 	//the range at which bulletspread is applied fully (65 yards)
+		dmbulletspread	10 10 75 75 //  minpitch minyaw maxpitch maxyaw(offsets in world units) spread is maximum at top movement speed
+//		dmfirespreadmult	0.38 0.7 200 0.6			//add falloff cap maxtime
+		dmfirespreadmult	0.58 0.5 200 0.6	//add falloff cap maxtime 0.38 0.7 200 0.6 (original)
+
+		dmcrosshair		1
+		// Secondary fire DM Attributes
+		secondary dmammorequired	0
+		secondary dmbulletrange		96
+		secondary dmbulletdamage	35
+
+		// this is attached to the player during reload
+		cache models/ammo/colt45_clip.tik
+	}
+	client
+	{
+		cache tracer.spr
+		cache muzsprite.spr
+		cache models/fx/muzflash.tik
+		cache models/ammo/pistolshell.tik
+	}
+}
+
+animations
+{
+	idle     tt33.skc
+	reload 	tt33_reload.skc
+	{
+		server
+		{
+			// [user 2026-08-17] weapon audit. tt33_reload.skc has 7 frames, so 18/39 never fire; and the mesh's surface is
+			// 'p38clip', not 'clip'. Copied from zzzzz_xw_weapons.pk3 with only this
+			// block changed - name/ammo/FX and every other line are byte-identical.
+			2 surface p38clip	+nodraw
+			5 surface p38clip	-nodraw
+			last idle
+		}
+		client
+		{
+				entry sound colt45_snd_reload item
+		}
+
+	}
+
+	secondaryfire     tt33.skc
+	{
+		server
+		{
+			entry shoot secondary
+		}
+	}
+
+	fire     tt33_fire.skc
+	{
+		server
+		{
+			entry shoot primary
+		}
+		client
+		{
+			entry stopaliaschannel tt33_fire
+			entry sound tt33_fire
+
+			// By now, the server has already fired the weapon, so it's
+			// ok to apply the view kick apon entry to avoid problems
+			// with multiple application on single frame animations.
+
+			////////////////////////////////////////////////////////////////////////////////////////
+			// View Kick Controls
+			//
+			// View Kicking works based on the assumptions that every weapon has its own tendencies to kick in
+			// a paticular fashion. In MOH we call then scatter patterns. Currently we have 2 scatter patterns which
+			// will be explained.
+			// Scatter Patterns:
+			// "V" - the cone. The longer you shoot the more random your shots will be in the horizontal axis.
+			// "T" - the T shape. The gun has a tendancy to push in a paticular direction. //not used much...too artificial looking
+			//
+			//
+			//             		+-------------------------------------------- Scatter Pitch Min
+			//              		|    +--------------------------------------- Scatter Pitch Max
+			//              		|    |       +------------------------------- Scatter Yaw Min
+			//             		|    |       |   +--------------------------- Scatter Yaw Max
+			//             		|    |       |   |     +--------------------- The Recentering speed in fraction per second
+			//              		|    |       |   |     |    +---------------- The Scatter Pattern
+			//              		|    |       |   |     |    |     +---------- The absolute pitch min/max
+			//              		|    |       |   |     |    |     |  +------- The absolute yaw min/max
+			//              		|    |       |   |     |    |     |  | +----- This is the pitch at which you loose all
+			//              		|    |       |   |     |    |     |  | |      control of the weapon and its behavior is
+			//             	 	|    |       |   |     |    |     |  | |      purely random.
+			//				V    V       V   V     V    V     V  V V
+			entry viewkick 	    -1.0 -1.0    -0.16 0.16  1.2 "V"  2.8 0.8 1.2
+
+			//entry viewkick 	    -1.2 -1.2    -0.2 0.2    1   "V"  3.0 1.0 1.6 (Colt .45 stats)
+
+			// muzzle flash
+			entry tagdlight tag_barrel 0.25 0.2 0.15 120 0.11
+			entry tagspawn tag_barrel
+			(
+				scale 0.2
+				offsetalongaxis 2 0 0
+				count 1
+				scale 0.30
+				model muzsprite.spr
+				life 0.06
+			)
+			entry tagspawn tag_barrel
+			(
+				count 1
+				scalemin 0.15
+				scalemax 0.25
+				model models/fx/muzflash.tik
+				randomroll
+				life 0.04
+			)
+
+			// smoke puff
+//			entry commanddelay 0.05 tagspawn tag_barrel
+//			(
+//				volumetric
+//				model gun	// sets the type of smoke
+//				life 10		// amount of smoke
+//				scale 1.0	// radius
+//				alpha 0.3	// density
+//				color 0.7 0.7 0.7	// RBG color of the smoke
+//				velocity 2	// base velocity away from the surface
+//				randvelaxis random 6 0 0	// velocity offset
+//				offsetalongaxis random 4 0 0	// positional offset
+//			)
+
+			// shell eject
+			entry commanddelay 0.1 tagspawn tag_eject
+			(
+				count 1
+				model models/ammo/pistolshell.tik
+				spawnrange 1024
+				velocity 50
+				randvel crandom 10 crandom 10 random 20
+				avelocity crandom 90 crandom 90 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_pistol_shell
+			)
+		}
+	}
+}
+
+/*QUAKED playerweapon_german_p38 (0.0 0.0 1.0) (-8 -8 -8) (8 8 8)
+German pistol - Walther P38
+*/
