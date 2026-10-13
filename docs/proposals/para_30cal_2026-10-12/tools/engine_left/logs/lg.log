@@ -1,0 +1,63 @@
+19:58:05 booted lg_a1 m3l2 {'cgame.dll': 'd233ccd2', 'game.dll': '3de8b9f5', 'renderer_opengl2.dll': '8296bf86', 'openmohaa_ironsight.exe': 'affd0767'} dog False
+19:58:06 a1 ['LG purge removed=27']
+19:58:07 a1 LG gun at=( -3699.924 2211.076 40.125 ) yaw=225.000 tag=old ground=0.125
+19:58:11 a1 old rest pitch -45.562
+19:58:16 a1 old_heat LG PST at=( -3654.669 2256.331 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=( -3699.924 2211.076 40.125 ) ai=none
+19:58:29 a1 old_heat {"heat_start": 52.175, "cooked_at": 54.075, "sec_to_cook": 1.9, "rounds_to_cook": 19, "rounds_per_sec": 10.0, "fire_resumed_after": 2.0, "cold_after": 9.0, "heat_max": 100.0, "ammo_first": 300, "ammo_last": 250}
+19:58:32 a1 old empty {"heat_max_on_empty_hold": 98.75, "ammo": 0, "feed": [], "resupply_text_in_log": 1}
+19:58:39 a1 old off: LG PST at=( -3654.669 2256.331 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=none ai=none
+19:58:39 a1 LG gun at=( -3699.924 2211.076 40.125 ) yaw=225.000 tag=new ground=0.125
+19:58:42 a1 rest pitch [3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0]
+19:58:47 a1 heat LG PST at=( -3654.669 2256.331 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=( -3699.924 2211.076 40.125 ) ai=none
+19:59:00 a1 heat {"heat_start": 83.175, "cooked_at": 85.675, "sec_to_cook": 2.5, "rounds_to_cook": 24, "rounds_per_sec": 9.6, "fire_resumed_after": 2.0, "cold_after": 8.4, "heat_max": 100.0, "ammo_first": 250, "ammo_last": 200}
+19:59:02 a1 off: LG PST at=( -3654.669 2256.331 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=none ai=none
+19:59:02 a1 script / alias errors: []
+19:59:02 a1 ended G:/mohaa-hudfeed3/runs\lg_a1
+20:00:31 booted lg_a2 m3l2 {'cgame.dll': 'd233ccd2', 'game.dll': '3de8b9f5', 'renderer_opengl2.dll': '8296bf86', 'openmohaa_ironsight.exe': 'affd0767'} dog False
+20:00:33 a2 ['LG purge removed=27']
+20:00:34 a2 LG gun at=( -3699.924 2211.076 40.125 ) yaw=225.000 tag=new ground=0.125
+20:00:37 a2 LG PST at=( -3654.669 2256.331 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=( -3699.924 2211.076 40.125 ) ai=none
+20:00:45 a2 empty {"ammo": 0, "heat_max_on_empty_hold": 28.2, "feed_lines": [], "resupply_text": 0, "alias_errors": []}
+20:00:49 a2 dismount up 1 0.125 ) ang=( -32.618 -135.000 0.000 ) turret=none ai=none [-32.618, -32.618, -32.618, -32.618, -32.618, -24.27, -12.985, -6.37, -2.493, -0.22, 1.143, 2.343, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0]
+20:00:57 a2 dismount down 31 0.125 ) ang=( 34.860 -135.000 0.000 ) turret=none ai=none [34.86, 34.86, 34.86, 34.86, 34.86, 21.676, 13.947, 9.417, 6.762, 5.205, 4.005, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0]
+20:01:03 a2 off: LG PST at=( -3654.669 2256.331 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=none ai=none
+20:01:04 a2 LG gun at=( -3699.924 2211.076 40.125 ) yaw=225.000 tag=bad ground=0.125
+20:01:11 a2 bad alias, three pulls: {"alias_errors": 3, "feed_lines": 0, "sample": "[2026-10-12 20:01:07 UTC-6.000] ERROR: Entity::Sound: lg_no_such_alias needs an alias in ubersound.scr or uberdialog.scr - Please fix."}
+20:01:13 a2 LG gun at=( -3699.924 2211.076 40.125 ) yaw=225.000 tag=new ground=0.125
+20:01:14 a2 ['LG ai seat=( -3651.642 2246.965 0.125 ) belt=250']
+20:01:39 a2 ai {"sec": 23.9, "belt_first": 250, "belt_last": 92, "belt_used": 158, "engine_shoot_lines": 164, "heat_max": 99.375, "cooked": 2}
+20:02:30 a2 ai empty {"belt": 15, "shoot_lines_to_empty": 0, "shoot_lines_in_10s_after": 0, "heat_10s_after": 0.0}
+20:02:35 a2 ['LG left belt=120 heat=0.000']
+20:02:43 a2 pitch after his death [-4.286, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0]
+20:02:46 a2 Use after his death: LG PST at=( -3654.669 2256.331 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=( -3699.924 2211.076 40.125 ) ai=alive=0 at=( -3661.284 2256.880 0.125 )
+20:02:47 a2 fired {"ammo_first": 120, "ammo_last": 105}
+20:02:49 a2 script / alias errors: ['[2026-10-12 20:01:07 UTC-6.000] ERROR: Entity::Sound: lg_no_such_alias needs an alias in ubersound.scr or uberdialog.scr - Please fix.', '[2026-10-12 20:01:08 UTC-6.000] ERROR: Entity::Sound: lg_no_such_alias needs an alias in ubersound.scr or uberdialog.scr - Please fix.', '[2026-10-12 20:01:09 UTC-6.000] ERROR: Entity::Sound: lg_no_such_alias needs an alias in ubersound.scr or uberdialog.scr - Please fix.']
+20:02:49 a2 ended G:/mohaa-hudfeed3/runs\lg_a2
+20:06:34 booted lg_a3 m3l2 {'cgame.dll': 'd233ccd2', 'game.dll': 'e0777ea5', 'renderer_opengl2.dll': '8296bf86', 'openmohaa_ironsight.exe': 'affd0767'} dog False
+20:06:35 a3 ['LG purge removed=27']
+20:06:36 a3 LG gun at=( -3699.924 2211.076 40.125 ) yaw=225.000 tag=old ground=0.125
+20:06:40 a3 old rest pitch -45.562
+20:06:45 a3 old_heat LG PST at=( -3654.669 2256.331 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=( -3699.924 2211.076 40.125 ) ai=none
+20:06:58 a3 old_heat {"heat_start": 51.9, "cooked_at": 53.8, "sec_to_cook": 1.9, "rounds_to_cook": 19, "rounds_per_sec": 10.0, "fire_resumed_after": 2.0, "cold_after": 9.0, "heat_max": 100.0, "ammo_first": 300, "ammo_last": 250}
+20:07:02 a3 old empty {"heat_max_on_empty_hold": 98.75, "ammo": 0, "feed": [], "resupply_text_in_log": 1}
+20:07:08 a3 old off: LG PST at=( -3654.669 2256.331 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=none ai=none
+20:07:08 a3 LG gun at=( -3699.924 2211.076 40.125 ) yaw=225.000 tag=new ground=0.125
+20:07:11 a3 rest pitch [3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0]
+20:07:16 a3 heat LG PST at=( -3654.669 2256.331 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=( -3699.924 2211.076 40.125 ) ai=none
+20:07:29 a3 heat {"heat_start": 82.9, "cooked_at": 85.4, "sec_to_cook": 2.5, "rounds_to_cook": 24, "rounds_per_sec": 9.6, "fire_resumed_after": 2.0, "cold_after": 8.4, "heat_max": 100.0, "ammo_first": 250, "ammo_last": 200}
+20:07:37 a3 empty {"ammo": 0, "heat_max_on_empty_hold": 28.2, "feed_lines": ["FEED cat=2 key=mgbelt t=97402 Belt empty", "FEED cat=2 key=mgbelt t=100603 Belt empty", "FEED cat=2 key=mgbelt t=101887 Belt empty"], "resupply_text": 0, "alias_errors": []}
+20:07:42 a3 dismount up 1 0.125 ) ang=( -32.618 -135.000 0.000 ) turret=none ai=none [-32.618, -32.618, -32.618, -32.618, -32.618, -20.862, -10.987, -5.199, -1.806, 0.183, 1.443, 2.643, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0]
+20:07:49 a3 dismount down 31 0.125 ) ang=( 35.134 -135.000 0.000 ) turret=none ai=none [35.134, 35.134, 35.134, 35.134, 31.117, 19.482, 12.661, 8.663, 6.32, 4.924, 3.724, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0]
+20:07:56 a3 off: LG PST at=( -3654.669 2256.331 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=none ai=none
+20:07:56 a3 LG gun at=( -3699.924 2211.076 40.125 ) yaw=225.000 tag=bad ground=0.125
+20:08:03 a3 bad alias, three pulls: {"alias_errors": 3, "feed_lines": 3, "sample": "[2026-10-12 20:07:59 UTC-6.000] ERROR: Entity::Sound: lg_no_such_alias needs an alias in ubersound.scr or uberdialog.scr - Please fix."}
+20:08:05 a3 LG gun at=( -3699.924 2211.076 40.125 ) yaw=225.000 tag=new ground=0.125
+20:08:06 a3 ['LG ai seat=( -3651.642 2246.965 0.125 ) belt=250']
+20:08:31 a3 ai {"sec": 23.9, "belt_first": 241, "belt_last": 158, "belt_used": 83, "engine_shoot_lines": 83, "rounds_per_sec_in_a_burst": 10.0, "heat_max": 99.375, "cooked": 5}
+20:08:47 a3 ai empty {"belt": 0, "shoot_lines_to_empty": 15, "shoot_lines_in_10s_after": 0, "heat_10s_after": 0.0}
+20:08:52 a3 ['LG left belt=103 heat=40.625']
+20:08:59 a3 pitch after his death [-2.486, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0]
+20:09:02 a3 Use after his death: LG PST at=( -3654.669 2256.331 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=( -3699.924 2211.076 40.125 ) ai=alive=0 at=( -3656.890 2252.789 0.125 )
+20:09:04 a3 fired {"ammo_first": 102, "ammo_last": 88}
+20:09:05 a3 script / alias errors: ['[2026-10-12 20:07:59 UTC-6.000] ERROR: Entity::Sound: lg_no_such_alias needs an alias in ubersound.scr or uberdialog.scr - Please fix.', '[2026-10-12 20:08:00 UTC-6.000] ERROR: Entity::Sound: lg_no_such_alias needs an alias in ubersound.scr or uberdialog.scr - Please fix.', '[2026-10-12 20:08:02 UTC-6.000] ERROR: Entity::Sound: lg_no_such_alias needs an alias in ubersound.scr or uberdialog.scr - Please fix.']
+20:09:06 a3 ended G:/mohaa-hudfeed3/runs\lg_a3

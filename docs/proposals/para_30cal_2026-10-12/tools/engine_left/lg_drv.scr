@@ -1,0 +1,338 @@
+//=========================================================================
+// TEST-ONLY overlay driver - NEVER shipped. main.scr starts st_xp_run when coop_st_xp 1.
+// Engine side of the paratroopers' left .30 cal (game1-next): spawns the same gun parasquad.scr
+// spawns (mgSetup, mode C: the sandbag rest), leaves it the way mgLeft leaves it, and reads the
+// turret's own getters back. lg_tag "new" sets the new per-gun keys, "old" sets none (the control).
+// lg_cmd: tp purge gun belt poll ai foe kill pst      (args in lg_x lg_y lg_z lg_yaw lg_pitch lg_n lg_tag)
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ LG armed"
+	setcvar "lg_cmd" "0"
+	level.lg_poll = 0
+	while( 1 ){
+		local.c = getcvar( "lg_cmd" )
+		if( local.c != "0" && local.c != "" ){
+			setcvar "lg_cmd" "0"
+			waitthread lg_do local.c
+			println ( "^~^~^ LG did " + local.c )
+		}
+		waitframe
+	}
+}end
+
+lg_vec:{
+	local.o = ( 0 0 0 )
+	local.o[0] = float( getcvar( "lg_x" ) )
+	local.o[1] = float( getcvar( "lg_y" ) )
+	local.o[2] = float( getcvar( "lg_z" ) )
+}end local.o
+
+// what the engine holds for the gun, every 0.1 s while lg_poll is on
+lg_pollLoop:{
+	while( level.lg_poll == 1 ){
+		local.g = level.lg_gun
+		if( local.g != NIL && local.g != NULL ){
+			local.pit = local.g.angles[0]
+			if( local.pit > 180 ){ local.pit = local.pit - 360 }
+			println ( "^~^~^ LGP t=" + level.time + " ammo=" + local.g.coopammo + " heat=" + local.g.coopheat + " oh=" + local.g.coopoverheated + " pitch=" + local.pit + " yaw=" + local.g.angles[1] )
+		}
+		wait 0.1
+	}
+}end
+
+// the seat the engine holds a gunner on (parasquad.scr mgSeat = Actor::ThinkHoldGun_TurretGun)
+lg_seat local.gp local.yaw local.gz:{
+	local.hp = local.gp[2] - local.gz
+	local.cw = ( 71.8 - local.hp ) / 33.1
+	if( local.cw > 1.0 ){ local.cw = 1.0 }
+	if( local.cw < 0 ){ local.cw = 0 }
+	local.back = 62.4 - ( local.cw * 3.0 )
+	local.left = 10.3 - ( local.cw * 1.6 )
+	local.s = local.gp - ( vector_scale ( angles_toforward ( 0 local.yaw 0 ) ) local.back ) + ( vector_scale ( angles_toforward ( 0 ( local.yaw + 90 ) 0 ) ) local.left )
+	local.s[2] = local.gz
+}end local.s
+
+lg_do local.c:{
+	local.p = $player[1]
+	if( local.p == NULL ){ end }
+	local.yaw = float( getcvar( "lg_yaw" ) )
+	local.tag = getcvar( "lg_tag" )
+	local.n = int( getcvar( "lg_n" ) )
+	if( local.c == "tp" ){
+		local.o = waitthread lg_vec
+		local.pit = float( getcvar( "lg_pitch" ) )
+		local.p origin local.o
+		local.p.viewangles = ( local.pit local.yaw 0 )
+		println ( "^~^~^ LG at " + local.p.origin )
+	}
+	if( local.c == "purge" ){
+		local.k = 0
+		for( local.i = 1; local.i < 1024; local.i++ ){
+			local.e = getentbyentnum local.i
+			if( local.e == NULL ){ continue }
+			if( local.e.classname != "Actor" ){ continue }
+			if( local.tag != "all" && local.e.team != "german" ){ continue }		// "all": the map's friendly actors too (they walk into the stills)
+			local.e remove
+			local.k++
+		}
+		println ( "^~^~^ LG purge removed=" + local.k )
+	}
+	if( local.c == "god" ){
+		// TEST SET-UP: the player takes no damage while the stills are made (lg_n 1), or takes it again (0)
+		if( local.n == 1 ){ local.p nodamage } else { local.p takedamage }
+	}
+	if( local.c == "arc" ){
+		if( level.lg_gun != NIL && level.lg_gun != NULL ){ level.lg_gun maxYawOffset local.n }
+	}
+	if( local.c == "gun" ){
+		// the sandbag rest (mgPlan mode C): bags on the ground, bipod 38.6 u and gun 40 u over it
+		local.o = waitthread lg_vec
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.o + ( 0 0 48 ) )
+		if( local.g != NIL ){ local.o = local.g }
+		if( level.lg_gun != NIL && level.lg_gun != NULL ){ level.lg_gun remove }
+		if( level.lg_bag != NIL && level.lg_bag != NULL ){ level.lg_bag remove }
+		if( level.lg_sup != NIL && level.lg_sup != NULL ){ level.lg_sup remove }
+		local.bag = spawn script_model
+		local.bag model "models/static/coop_mg_bags.tik"
+		local.bag notsolid
+		local.bag.origin = local.o
+		local.bag.angles = ( 0 local.yaw 0 )
+		local.sup = spawn script_model
+		local.sup model "models/statweapons/mg42_bipod.tik"
+		local.sup notsolid
+		local.sup.origin = local.o + ( 0 0 38.6 )
+		local.sup.angles = ( 0 local.yaw 0 )
+		// parasquad.scr mgSetup, step 4
+		local.gun = spawn "models/statweapons/coop_30cal_para.tik"
+		local.gun.origin = local.o + ( 0 0 40 )
+		local.gun.angles = ( 0 local.yaw 0 )
+		local.gun startyaw local.yaw
+		local.gun targettype "auto"
+		local.gun burstFireSettings 1.2 3.0 0.8 2.2
+		local.gun aibulletspread 300 300
+		local.gun maxYawOffset 45
+		local.gun convergeTime 1.0
+		local.gun suppressTime 5
+		local.gun suppressWaitTime 3
+		local.gun suppressWidth 96
+		local.gun suppressHeight 40
+		// THE NEW KEYS (what parasquad.scr is to add at the same place)
+		if( local.tag == "new" ){
+			local.gun coopammo 250
+			local.gun coopaibelt 1
+			local.gun coopnoresupply 1
+			local.gun coopdrysound "bar_snd_noammo"
+			local.gun coopheatrates 40 8 25 2
+			local.gun cooprestpitch 3
+		}
+		if( local.tag == "bad" ){
+			local.gun coopdrysound "lg_no_such_alias"
+			local.gun coopnoresupply 1
+			local.gun cooprestpitch 3
+		}
+		level.lg_gun = local.gun
+		level.lg_bag = local.bag
+		level.lg_sup = local.sup
+		level.lg_gz = local.o[2]
+		level.lg_yaw = local.yaw
+		println ( "^~^~^ LG gun at=" + local.gun.origin + " yaw=" + local.yaw + " tag=" + local.tag + " ground=" + local.o[2] )
+	}
+	if( local.c == "turrets" ){
+		// the map's own emplaced guns: where, and how high over the ground a man behind them stands on
+		for( local.i = 1; local.i < 1024; local.i++ ){
+			local.e = getentbyentnum local.i
+			if( local.e == NULL ){ continue }
+			if( local.e.classname != "TurretGun" ){ continue }
+			local.dir = angles_toforward ( 0 local.e.angles[1] 0 )
+			local.b = local.e.origin - ( vector_scale local.dir 64 )
+			local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.b + ( 0 0 8 ) )
+			local.h = "?"
+			if( local.g != NIL ){ local.h = local.e.origin[2] - local.g[2] }
+			println ( "^~^~^ LG turret num=" + local.i + " at=" + local.e.origin + " yaw=" + local.e.angles[1] + " model=" + local.e.model + " h=" + local.h + " tn=" + local.e.targetname )
+		}
+	}
+	if( local.c == "take" ){
+		// work on one of the map's own guns (lg_n = entity number)
+		local.e = getentbyentnum local.n
+		if( local.e == NULL ){ end }
+		level.lg_gun = local.e
+		level.lg_yaw = local.e.angles[1]
+		local.dir = angles_toforward ( 0 level.lg_yaw 0 )
+		local.b = local.e.origin - ( vector_scale local.dir 64 )
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.b + ( 0 0 8 ) )
+		level.lg_gz = local.e.origin[2] - 60
+		if( local.g != NIL ){ level.lg_gz = local.g[2] }
+		if( local.tag == "belt" ){ local.e coopammo 300 }
+		println ( "^~^~^ LG take num=" + local.n + " at=" + local.e.origin + " yaw=" + level.lg_yaw + " ground=" + level.lg_gz )
+	}
+	if( local.c == "mg42" ){
+		// a retail MG42 on its bipod, lg_n units over the ground at lg_x/y/z, facing lg_yaw; lg_tag "belt" = coopammo 300
+		local.o = waitthread lg_vec
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.o + ( 0 0 48 ) )
+		if( local.g != NIL ){ local.o = local.g }
+		if( level.lg_gun != NIL && level.lg_gun != NULL ){ level.lg_gun remove }
+		if( level.lg_bag != NIL && level.lg_bag != NULL ){ level.lg_bag remove }
+		if( level.lg_sup != NIL && level.lg_sup != NULL ){ level.lg_sup remove }
+		local.sup = spawn script_model
+		local.sup model "models/statweapons/mg42_bipod.tik"
+		local.sup notsolid
+		local.sup.origin = local.o + ( 0 0 local.n )
+		local.sup.angles = ( 0 local.yaw 0 )
+		local.gun = spawn "models/statweapons/mg42_gun.tik"
+		local.gun.origin = local.o + ( 0 0 local.n )
+		local.gun.angles = ( 0 local.yaw 0 )
+		local.gun startyaw local.yaw
+		local.gun maxYawOffset 45
+		if( local.tag == "belt" ){ local.gun coopammo 300 }
+		local.gun setPlayerUsable 1
+		level.lg_gun = local.gun
+		level.lg_sup = local.sup
+		level.lg_gz = local.o[2]
+		level.lg_yaw = local.yaw
+		println ( "^~^~^ LG gun at=" + local.gun.origin + " yaw=" + local.yaw + " tag=mg42_" + local.tag + " ground=" + local.o[2] )
+	}
+	if( local.c == "sidecam" ){
+		// TEST VIEW: a script camera whose ANGLES point across the gun (lg_yaw degrees round from its facing,
+		// lg_pitch down). In third person on a turret the client chases the player along the camera's angles,
+		// so this frames the mounted player from his side.
+		if( level.lg_cam == NIL || level.lg_cam == NULL ){ level.lg_cam = spawn Camera }
+		level.lg_cam.origin = local.p.origin + ( 0 0 60 )
+		level.lg_cam.angles = ( ( float( getcvar( "lg_pitch" ) ) ) ( level.lg_yaw + local.yaw ) 0 )
+		cuecamera level.lg_cam
+	}
+	if( local.c == "rmgun" ){
+		if( level.lg_gun != NIL && level.lg_gun != NULL ){ level.lg_gun remove }
+	}
+	if( local.c == "pkill" ){
+		local.p hurt 100000
+	}
+	if( local.c == "hull" ){
+		local.mn = local.p.getmins
+		local.mx = local.p.getmaxs
+		local.al = isAlive local.p
+		println ( "^~^~^ LG HULL mins=" + local.mn + " maxs=" + local.mx + " at=" + local.p.origin + " alive=" + local.al )
+	}
+	if( local.c == "left" ){
+		// parasquad.scr mgLeft (the belt comes from lg_n; -1 = keep what the gun holds)
+		local.gun = level.lg_gun
+		if( local.gun == NIL || local.gun == NULL ){ end }
+		local.gun targettype "none"
+		local.gun stopFiring
+		local.gun clearAimTarget
+		if( local.n >= 0 ){ local.gun coopammo local.n }
+		local.gun setPlayerUsable 1
+		println ( "^~^~^ LG left belt=" + local.gun.coopammo + " heat=" + local.gun.coopheat )
+	}
+	if( local.c == "belt" ){
+		if( level.lg_gun != NIL && level.lg_gun != NULL ){
+			level.lg_gun coopammo local.n
+			println ( "^~^~^ LG belt set " + level.lg_gun.coopammo )
+		}
+	}
+	if( local.c == "poll" ){
+		if( local.n == 1 ){
+			if( level.lg_poll != 1 ){
+				level.lg_poll = 1
+				thread lg_pollLoop
+			}
+		} else {
+			level.lg_poll = 0
+		}
+	}
+	if( local.c == "behind" ){
+		// the player steps up behind the gun (parasquad pass 2: 52 u back, on the seat's ground)
+		local.gun = level.lg_gun
+		if( local.gun == NIL || local.gun == NULL ){ end }
+		local.dir = angles_toforward ( 0 level.lg_yaw 0 )
+		local.o = local.gun.origin - ( vector_scale local.dir 52 )
+		local.o[2] = level.lg_gz + 4
+		local.p origin local.o
+		local.p.viewangles = ( 0 level.lg_yaw 0 )
+	}
+	if( local.c == "cam" ){
+		// lg_n units out, lg_yaw degrees round from the gun's facing, lg_z up; looking at the gun
+		local.gun = level.lg_gun
+		if( local.gun == NIL || local.gun == NULL ){ end }
+		local.tgt = local.gun.origin - ( vector_scale ( angles_toforward ( 0 level.lg_yaw 0 ) ) 20 )
+		local.tgt[2] = local.tgt[2] - 8
+		local.cdir = angles_toforward ( 0 ( level.lg_yaw + local.yaw ) 0 )
+		local.cp = local.tgt + ( vector_scale local.cdir local.n )
+		local.cp[2] = level.lg_gz + float( getcvar( "lg_z" ) )
+		local.p origin local.cp
+		local.eye = local.cp + ( 0 0 82 )
+		local.va = vector_toangles ( local.tgt - local.eye )
+		local.p.viewangles = ( local.va[0] local.va[1] 0 )
+	}
+	if( local.c == "ai" ){
+		// an AI gunner on it (parasquad.scr mgSetup, the mount)
+		local.gun = level.lg_gun
+		if( local.gun == NIL || local.gun == NULL ){ end }
+		local.seat = waitthread lg_seat local.gun.origin level.lg_yaw level.lg_gz
+		local.a = spawn "models/human/allied_airborne_soldier.tik"
+		local.a.origin = local.seat
+		local.a.angles = ( 0 level.lg_yaw 0 )
+		local.a.health = 5000
+		waitframe
+		local.a turret local.gun
+		local.a type_idle "machinegunner"
+		local.a type_attack "machinegunner"
+		local.a type_disguise "machinegunner"
+		local.a type_grenade "machinegunner"
+		local.a physics_off
+		local.a.enableEnemy = 1
+		local.a forceactivate
+		level.lg_ai = local.a
+		println ( "^~^~^ LG ai seat=" + local.seat + " belt=" + local.gun.coopammo )
+	}
+	if( local.c == "foe" ){
+		// three riflemen lg_n units down the gun's line, standing their ground (health 100000)
+		local.gun = level.lg_gun
+		if( local.gun == NIL || local.gun == NULL ){ end }
+		local.dir = angles_toforward ( 0 level.lg_yaw 0 )
+		for( local.i = 0; local.i < 3; local.i++ ){
+			local.ep = local.gun.origin + ( vector_scale local.dir ( local.n + local.i * 60 ) ) + ( vector_scale ( angles_toforward ( 0 ( level.lg_yaw + 90 ) 0 ) ) ( ( local.i - 1 ) * 90 ) )
+			local.eg = waitthread coop_mod/officer.scr::coop_find_ground ( local.ep + ( 0 0 80 ) )
+			if( local.eg == NIL ){ continue }
+			local.e = spawn "models/human/german_wehrmact_soldier.tik"
+			local.e.origin = local.eg
+			local.e.angles = ( 0 ( level.lg_yaw + 180 ) 0 )
+			local.e.health = 100000
+			local.e.leash = 0
+			local.e.fixedleash = 1
+			local.e type_attack "turret"
+			level.lg_foe[local.i] = local.e
+			println ( "^~^~^ LG foe at=" + local.eg )
+		}
+	}
+	if( local.c == "burst" ){
+		// script fire at the middle rifleman (what parasquad.scr mgHold does for an enemy only the squad knows)
+		local.gun = level.lg_gun
+		if( local.gun == NIL || local.gun == NULL ){ end }
+		if( level.lg_foe[1] == NIL || level.lg_foe[1] == NULL ){ end }
+		local.gun targettype "none"
+		local.gun setAimTarget level.lg_foe[1]
+		local.gun startFiring
+	}
+	if( local.c == "nofoe" ){
+		for( local.i = 0; local.i < 3; local.i++ ){
+			if( level.lg_foe[local.i] != NIL && level.lg_foe[local.i] != NULL ){ level.lg_foe[local.i] remove }
+		}
+	}
+	if( local.c == "kill" ){
+		if( level.lg_ai != NIL && level.lg_ai != NULL ){
+			level.lg_ai.health = 1
+			level.lg_ai kill
+		}
+	}
+	if( local.c == "rmbody" ){
+		if( level.lg_ai != NIL && level.lg_ai != NULL ){ level.lg_ai remove }
+	}
+	if( local.c == "pst" ){
+		local.tu = local.p.turret
+		local.ts = "none"
+		if( local.tu != NIL && local.tu != NULL ){ local.ts = local.tu.origin }
+		local.ai = "none"
+		if( level.lg_ai != NIL && level.lg_ai != NULL ){ local.ai = "alive=" + ( isAlive level.lg_ai ) + " at=" + level.lg_ai.origin }
+		println ( "^~^~^ LG PST at=" + local.p.origin + " ang=" + local.p.viewangles + " turret=" + local.ts + " ai=" + local.ai )
+	}
+}end

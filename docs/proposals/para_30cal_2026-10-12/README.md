@@ -198,3 +198,184 @@ was planned (`bring`; that room has no pathnodes and the squad wedge sends him 3
 Tools: `tools/pass2/` - `p2_run.py` (the sessions above; options in its header), `p2_drv.scr` (the driver), `p2_sweep.py`
 / `p2_grid.py` / `p2_flood.py` (where does a map have cover), `p2_strip.py` (walk-round of a prop), `build_scr.py` +
 `frag_mg.scr` + `edit_*.py` (how the script was assembled; the mod file is the truth now).
+
+---
+
+# ENGINE SIDE OF THE LEFT GUN (2026-10-12, engine `game1-next` `92944d37` + `277bdb9d`, on `integ-1.10.22` `a9a00da9`)
+
+Handover item 5 above (`92944d37`, `fgame/weapturret.cpp` / `.h`), then round 2 (`277bdb9d` + mod `coop-wip`
+`7ca17790`): bug-3639 fixed, and the player crouches behind a low gun - both at the end of this section.
+**Not deployed, and `parasquad.scr` does not use the keys yet** - the lines below are for whoever edits that file. Nothing here changes a gun that does not ask: every key is off
+(or at the MG42's numbers) by default, there is no cgame change and no new network field - the HUD reads the same
+packed `STAT_MGHEAT` ("BELT n" + the heat bar). bug-3636..3639.
+
+## The keys (ordinary TurretGun events: script, or the server block of a tik)
+
+| key | what it does | default |
+|---|---|---|
+| `coopnoresupply 1` | the empty-belt line is **"Belt empty"** in the event feed (bottom left; cat 2 "self", key `mgbelt`), once per trigger pull. A cgame without the feed, or a Hardcore host, gets it as the centre print | 0 = "BELT EMPTY - resupply from an ammo box", centre print |
+| `coopdrysound <alias>` | played from the gun once per trigger pull on an empty belt | none |
+| `coopheatrates <heat> <bleed> <cool> <lock> [hot]` | heat per second of fire, bleed per second between bursts, cooling per second while cooked, seconds dead after a cook-off, heat per second firing while cooked (default 2.5 x heat). The bar is still 0-100 | `50 8 25 2 125` (the MG42) |
+| `coopaibelt 1` | an AI gunner fires at the gun's own `firedelay`, each round comes off the belt, and at 0 the gun does not fire (whatever the tracker or a `startFiring` asks) | 0 |
+| `cooprestpitch <deg>` | unmanned, the gun eases to this pitch (0 level, positive muzzle down) instead of dropping its butt | unset = retail butt drop |
+| `.coopammo` `.coopheat` `.coopoverheated` | getters: rounds left (-1 unlimited), heat 0-100, 1 while cooked | |
+
+No belted gun heats while the trigger is held on an empty belt (bug-3639, `277bdb9d`; in `92944d37` only a gun with
+`coopnoresupply` or `coopdrysound`).
+
+## Lines for `parasquad.scr`
+
+In `mgSetup`, after `local.gun suppressHeight 40`:
+
+```
+	local.gun coopammo 250
+	local.gun coopaibelt 1
+	local.gun coopnoresupply 1
+	local.gun coopdrysound "bar_snd_noammo"
+	local.gun coopheatrates 40 8 25 2
+	local.gun cooprestpitch 3
+```
+
+In `mgLeft`, instead of the reckoning from `local.fired` (the three lines that compute `local.n` / `local.left`):
+
+```
+	local.left = local.gun.coopammo
+	if( local.left < 25 ){ local.left = 25 }
+```
+
+(`local.gun coopammo local.left` stays; drop the floor if an empty gun should be left empty.) `coop_psqMgFired` and the
+11-rounds-a-second sum in `mgHold` are then dead. For the debug line: `local.gun.coopheat`, `local.gun.coopoverheated`.
+While he is on it, `local.gun.coopammo == 0` is "he is out": the engine only stops the gun, what he does next (pack up,
+or a new belt after a pause: `local.gun coopammo 250`) is the script's.
+
+**Two things this changes for the gunner himself, both wanted but not yet tuned in script:**
+
+- **His rate of fire drops from 40 to 10 rounds a second.** `TurretGun::AI_DoFiring` calls `Fire()` every server
+  frame of a burst, and `Fire()` has no fire-delay test - an AI gunner's cyclic rate is `sv_fps` (40 live), whatever
+  the tik says. That is what the second pass saw and what the script took for "11 rounds a second". True of every
+  AI-manned turret, the maps' MG42 nests included; those keep it (they were tuned at it). `aibulletspread 300 300`
+  was chosen at four times the rounds.
+- **Heat.** An AI gunner cooks at a ceiling rolled 55-95 per burst; at 40 / s that is 1.4-2.4 s of fire. With
+  `burstFireSettings 1.2 3.0 0.8 2.2` he cooked 5 times in 24 s (steam hiss, 2 s dead, then cooling to a rolled
+  0-35). Shorter bursts cook less.
+
+## Numbers chosen for the M1919, and what was measured
+
+`coopheatrates 40 8 25 2` on the tik's `firedelay 0.09`: against the MG42's `50 8 25 2` on `0.06`. Same lock-out (2 s
+dead, then it can be fired hot at 100 / s of heat against 25 of cooling, or left 4 s to go cold).
+
+Harness `G:/mohaa-hudfeed3`, m3l2, the gun spawned by an overlay driver with `mgSetup`'s own lines on a sandbag-rest
+site (gun 40 u up), left with `mgLeft`'s lines; values are the turret's getters every 0.1 s. Run a3 = everything below
+with the committed code (`tools/engine_left/logs/result_a3.json`); "control" = the same gun with none of the keys.
+
+| | with the keys | control |
+|---|---|---|
+| trigger held from cold | cooked after **2.5 s, 24 rounds** (9.6 / s) | 1.9 s, 19 rounds (10.0 / s) |
+| after the cook-off | no round for **2.0 s** (heat 100 -> 50), then firing again while hot (heat pegged at 100, 10 / s); released: cold 3.9 s later | no round for 2.0 s |
+| last round of a 10-round belt, trigger still held | heat 37 falling at 8 / s; one "Belt empty" feed line; three pulls = three lines | 3-round belt, held 3 s: heat **98.75** with the belt at 0 (bug-3639 - fixed in `277bdb9d`, below) |
+| dry click | three pulls with `bar_snd_noammo`: no error. Three pulls with a made-up alias: three `Entity::Sound: ... needs an alias` errors - the sound call runs once per pull and `bar_snd_noammo` resolves (it is aliased for every map: `maps "m e t dm obj train lib moh"`). **Not listened to** | none |
+| Hardcore host (run a2) | the centre print "Belt empty" (the feed draws only alerts there) | |
+| unmanned | pitch **3.0** from spawn | **-45.56** (barrel up) |
+| off the gun, looking 32.6 up | -20.9 -11.0 -5.2 -1.8 0.2 1.4 2.6 3.0 at 0.1 s steps (0.8 s) | |
+| off the gun, looking 35.1 down | 31.1 19.5 12.7 8.7 6.3 4.9 3.7 3.0 (0.8 s) | |
+| AI gunner, 24 s of the turret's own track cycle at three riflemen | belt 241 -> 158 = **83**, and **83** `FIREDBG SHOOT .30 Cal` lines; 10.0 / s inside a burst (before the firedelay gate, run a2: 158 = 158 at 40 / s) | not counted |
+| AI gunner, belt set to 15 (script `startFiring`) | 15 shots, then none in 10 s; belt 0, heat 0 | |
+| he is killed at it | pitch 3.0 within 0.5 s; `.coopammo` read 103; Use mounted the player, who fired 102 -> 88 | |
+
+Stills (`media/`): `eng_rest_before.jpg` / `eng_rest_after.jpg` (unmanned, control and with the key),
+`eng_after_death.jpg`, `eng_hot_hud.jpg` (BELT 225, the bar full), `eng_belt_empty_feed.jpg` ("Belt empty" in the feed,
+BELT 0), `eng_belt_empty_hardcore.jpg` (the centre print), `eng_third_person.jpg` (item below).
+
+## Not verified
+
+- The click was never heard (the harness is muted); only that the call runs once per pull and the alias resolves.
+- Nothing was run with `parasquad.scr` itself (it does not set the keys yet), on a second client, or on a dedicated
+  server. Only m3l2, only the sandbag-rest height.
+- An older `game.dll` with a script that sets the keys: not tried (each line would be an unknown command).
+- In the rest stills the gun stands a little clear of the bipod's head; that is where `mgSetup` puts the two (gun
+  +40, bipod +38.6), not something this pass moved.
+
+## Round 2 (engine `277bdb9d`, mod `coop-wip` `7ca17790`)
+
+### bug-3639: the trigger held on an empty belt heats no belted gun
+
+The empty test is one branch in front of the heat branches now, for every belted gun. Measured on a retail
+`models/statweapons/mg42_gun.tik` with `coopammo 300`, player on it, this build (runs c1, c2) against the previous one
+(`92944d37`, run c0):
+
+| | this build | previous build |
+|---|---|---|
+| trigger held from cold, rounds in the belt | cooked after 2.0 s, 31 rounds (15.5 / s) | 1.9 s, 30 rounds (15.8 / s) |
+| after the cook-off | no round for 2.0 s; cold 9.0 s after it | 2.0 s; 9.0 s |
+| belt 3, trigger held 3 s | heat peaked **7-8** (the three rounds) and fell to 0, no cook-off | heat **98.75**, cooked off |
+| text | "BELT EMPTY - resupply from an ammo box", centre print | the same |
+
+(1.9 / 2.0 s and 30 / 31 rounds are the 0.1 s sampling: run b1 of this build read 1.9 s and 30.) One difference in
+when the text shows, by the code and not measured: it is now also sent while the gun is in its 2 s dead time after a
+cook-off.
+
+### bug-3658: a player on a LOW gun crouches behind it
+
+**What decides "low":** the AI gunner's own test (`Actor::ThinkHoldGun_TurretGun`): crouch weight
+w = (71.8 - h) / 33.1 for a gun h over the ground the man is held on, crouched at w >= 0.5 - a gun **under 55.25 u**.
+Decided once per mount (`Player::EnterTurret` -> `TurretGun::CoopUserLow`). Coop missions only; never a vehicle or a
+portable turret; `coop_turretCrouch 0` switches it off; `developer 1` prints `TURRETSEAT enter / exit`.
+
+**What a low gun changes:** hull 54, view height 48 (put back exactly in `ExitTurret`), the AI's crouched seat
+(62.4 - 3.0 w back and 10.3 - 1.6 w to the left of the gun, where the standing player is 64 back and 0 left), and
+the condition `COOP_TURRET_LOW` for the state files.
+
+**Where the pose really comes from - not the legs states.** The first report above was wrong, and so were bug-304 and
+bug-309 before it: on a ground turret the legs states `COOP_TURRET_MAN` / `TURRET_USING` are never evaluated. The
+torso state `TURRET_IDLE` is `movetype anim`, `Player::EvaluateState` runs the legs machine only under
+`MOVECONTROL_LEGS`, and the debug line the engine already prints says so (`TURRETSTATE legs='STAND'`, once, and never
+another). The whole body is the TORSO state's action row (`turret_idle` = the retail `mg42_stand_idle`), chosen once
+on entering the state. So the mod commit has: the two aliases (`anims_shared.txt`), the crouched idle row in
+`player_Torso.st` `TURRET_IDLE`, a new torso state `TURRET_FIRE_LOW` for the firing clip, and the crouch rows in the
+two legs states as asked (dead on a ground turret, commented as such).
+
+**Ship the mod commit and the engine together**: the state file names a condition an older `game.dll` does not have.
+The other way round (new `game.dll`, old state file) was not run; by construction it gives the crouched hull and
+seat with the standing clip.
+
+Seen in engine (m3l2, run c2 = this build + the mod files, run c0 = the previous build + the deployed state files):
+
+| | low gun (.30 cal, 40.1 u) | standing height (retail MG42 at 60.1 u; the map's own `scene7_mg1` at 61.9 u) |
+|---|---|---|
+| `TURRETSEAT enter` | `low=1 crouch=0.96 maxsz=54 view=48 psview=48` | `low=0 crouch=0.00 maxsz=94 view=82 psview=82` |
+| seat | (-3651.642 2246.965) = the AI gunner's seat on the same gun in run a3, to the unit | the same origin as the previous build, to the unit (both guns) |
+| third person | kneeling behind the gun, hands on it, front foot behind the bags; the firing clip with the trigger (before: upright, hands in the air over the gun) | the same frame as the previous build: mean absolute difference 0.0-0.1 of 255 (`scene7_mg1`, both sides) |
+| first person | the same frame as the previous build (difference 0.5 of 255) | `scene7_mg1`: difference 1.0 of 255 |
+| off it with Use | `TURRETSEAT exit maxsz=94 view=82 psview=82`, hull read back 94, walked away | hull 94 |
+| the gun removed under him | exit 94 / 82 / 82, `turret=none`, hull 94 | |
+| killed on it | exit 94 / 82 / 82, then the ordinary dead hull (32) | |
+
+**First person needed nothing.** With `g_turretcameras 1` (the mod's setting) the view on a turret is the turret's own
+camera, at the gun's origin + its `viewOffset` (-42 0 10): 50 u over the ground on this gun, looking along it, whatever
+the body does. The crouched view height (48) is what the third-person camera and anything aiming at his eyes use.
+
+**The 64 u hold distance:** on the crouched seat (59.5 u back for this gun) his front foot is clear of the bags in
+the side stills (they reach 16.5 u back from the gun). Nothing sits inside them.
+
+Stills (`media/`, all QA'd at full size): `eng_low_side_before.jpg` / `eng_low_side_after.jpg` (from his left, the
+whole man), `eng_low_side_fire.jpg` (from his right, firing; the dark patch on the ground is in this frame only -
+probably the muzzle flash's own shadow, not checked), `eng_low_first_person.jpg`, `eng_nest_side_before.jpg` /
+`eng_nest_side_after.jpg` (the map's `scene7_mg1`). The side view is a test camera: a script `Camera` whose angles
+point across the gun - in third person on a turret the client chases the player along the camera's angles.
+
+**Not verified / to know:**
+
+- **Map guns under 55.25 u now crouch the player too** - that is the rule as asked. m3l2 has two: `scene4_mg42`
+  (38.9 u over the ground behind it) and `scene11_mg2` (54.9 u). Neither was mounted. The AI blends between the two
+  poses by height; a player gets one or the other, so on a gun between about 45 and 55 u the full crouch puts the
+  hands up to half a blend (some 15 u) under the gun.
+- A second client watching him, a dedicated server, the pose after a map restart: not run. The pose is an ordinary
+  player animation and an ordinary hull, nothing new goes over the wire.
+- Leaving a low gun under a ceiling too low to stand under: not tried (he gets the standing hull back regardless).
+- Test set-up in these runs: every actor on the map removed (friendly ones walk into the frame), the player made
+  undamageable for the stills (something on m3l2 kills a man standing at `scene7_mg1` within seconds), the gun's
+  traverse locked to 0 for the side views (the gun follows the test camera's angles otherwise).
+
+Tools: `tools/engine_left/` - `lg_run.py` (round 1), `lg_run2.py` (round 2: `c2 new`, `c0 old mg42,nest,low`),
+`lg_drv.scr`, `lg_lib.py`, `patch_lowgun_mod.py` + `patch_lowgun_torso.py` (how the mod files were edited),
+`logs/result_c2_new.json`, `logs/result_c0_previous_build.json`.

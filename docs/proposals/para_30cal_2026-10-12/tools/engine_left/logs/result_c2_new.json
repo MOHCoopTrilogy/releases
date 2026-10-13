@@ -1,0 +1,381 @@
+{
+ "label": "c2",
+ "which": "new",
+ "phases": [
+  "mg42",
+  "nest",
+  "low",
+  "rm",
+  "kill"
+ ],
+ "map_turrets": [
+  "LG turret num=17 at=( -6728.000 -6250.000 -130.000 ) yaw=25.000 model=models/statweapons/mg42_gun.tik h=61.875 tn=scene7_mg1",
+  "LG turret num=118 at=( 2437.000 -4811.000 -31.000 ) yaw=90.000 model=models/statweapons/mg42_gun.tik h=54.875 tn=scene11_mg2",
+  "LG turret num=120 at=( -3647.000 3082.000 55.000 ) yaw=270.000 model=models/statweapons/mg42_gun.tik h=38.875 tn=scene4_mg42",
+  "LG turret num=168 at=( 3968.000 -3419.000 -171.000 ) yaw=90.000 model=models/statweapons/mg42_gun.tik h=84.875 tn=scene11_mg1",
+  "LG turret num=370 at=( 4602.309 -3535.558 -125.334 ) yaw=112.000 model=models/statweapons/mg42_gun.tik h=4.234 tn=coop_mgnest1",
+  "LG turret num=374 at=( -4356.048 -6794.864 -284.634 ) yaw=202.000 model=models/statweapons/mg42_gun.tik h=4.234 tn=coop_mgnest2"
+ ],
+ "mg42_hull_before": "LG HULL mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) at=( -3663.154 2247.846 0.125 ) alive=1",
+ "mg42_mount": [
+  "TURRETSEAT enter low=0 crouch=0.00 gunz=60.1 feetz=0.1 maxsz=94 view=82 psview=82",
+  "TURRETSTATE legs='STAND'"
+ ],
+ "mg42_pst": "LG PST at=( -3654.669 2256.331 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=( -3699.924 2211.076 60.125 ) ai=none",
+ "mg42_hull_on": "LG HULL mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) at=( -3654.669 2256.331 0.125 ) alive=1",
+ "mg42_heat": {
+  "sec_to_cook": 2.0,
+  "rounds_to_cook": 31,
+  "rounds_per_sec": 15.5,
+  "fire_resumed_after": 2.0,
+  "cold_after": 9.0,
+  "ammo_first": 299,
+  "ammo_last": 219
+ },
+ "mg42_heat_trace": [
+  [
+   49.425,
+   299,
+   2.5,
+   0
+  ],
+  [
+   49.725,
+   295,
+   17.5,
+   0
+  ],
+  [
+   50.025,
+   290,
+   32.5,
+   0
+  ],
+  [
+   50.325,
+   285,
+   47.5,
+   0
+  ],
+  [
+   50.625,
+   280,
+   62.5,
+   0
+  ],
+  [
+   50.925,
+   275,
+   77.5,
+   0
+  ],
+  [
+   51.225,
+   271,
+   92.5,
+   0
+  ],
+  [
+   51.525,
+   268,
+   96.2,
+   1
+  ],
+  [
+   51.825,
+   268,
+   88.8,
+   1
+  ],
+  [
+   52.125,
+   268,
+   81.2,
+   1
+  ],
+  [
+   52.425,
+   268,
+   73.8,
+   1
+  ],
+  [
+   52.725,
+   268,
+   66.2,
+   1
+  ],
+  [
+   53.025,
+   268,
+   58.8,
+   1
+  ],
+  [
+   53.325,
+   268,
+   51.2,
+   1
+  ],
+  [
+   53.625,
+   263,
+   78.1,
+   1
+  ],
+  [
+   53.925,
+   258,
+   100.0,
+   1
+  ],
+  [
+   54.225,
+   254,
+   100.0,
+   1
+  ],
+  [
+   54.525,
+   249,
+   100.0,
+   1
+  ],
+  [
+   54.825,
+   244,
+   100.0,
+   1
+  ],
+  [
+   55.125,
+   239,
+   100.0,
+   1
+  ],
+  [
+   55.425,
+   234,
+   100.0,
+   1
+  ],
+  [
+   55.725,
+   230,
+   100.0,
+   1
+  ],
+  [
+   56.025,
+   225,
+   100.0,
+   1
+  ],
+  [
+   56.325,
+   220,
+   100.0,
+   1
+  ],
+  [
+   56.625,
+   219,
+   93.8,
+   1
+  ],
+  [
+   56.925,
+   219,
+   86.2,
+   1
+  ],
+  [
+   57.225,
+   219,
+   78.8,
+   1
+  ],
+  [
+   57.525,
+   219,
+   71.2,
+   1
+  ],
+  [
+   57.825,
+   219,
+   63.8,
+   1
+  ],
+  [
+   58.125,
+   219,
+   56.2,
+   1
+  ],
+  [
+   58.425,
+   219,
+   48.8,
+   1
+  ],
+  [
+   58.725,
+   219,
+   41.2,
+   1
+  ],
+  [
+   59.025,
+   219,
+   33.8,
+   1
+  ],
+  [
+   59.325,
+   219,
+   26.2,
+   1
+  ],
+  [
+   59.625,
+   219,
+   18.8,
+   1
+  ],
+  [
+   59.925,
+   219,
+   11.2,
+   1
+  ],
+  [
+   60.225,
+   219,
+   3.8,
+   1
+  ],
+  [
+   60.525,
+   219,
+   0.0,
+   0
+  ],
+  [
+   60.825,
+   219,
+   0.0,
+   0
+  ],
+  [
+   61.125,
+   219,
+   0.0,
+   0
+  ],
+  [
+   61.425,
+   219,
+   0.0,
+   0
+  ],
+  [
+   61.725,
+   219,
+   0.0,
+   0
+  ],
+  [
+   62.025,
+   219,
+   0.0,
+   0
+  ],
+  [
+   62.325,
+   219,
+   0.0,
+   0
+  ],
+  [
+   62.625,
+   219,
+   0.0,
+   0
+  ]
+ ],
+ "mg42_empty": {
+  "heat_max_trigger_held_on_empty": 7.1,
+  "ammo": 0,
+  "heat_trace": [
+   0.0,
+   6.3,
+   3.9,
+   1.5,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "feed_lines": 0,
+  "resupply_text_in_log": 1,
+  "cooked": 0
+ },
+ "mg42_off": [
+  "TURRETSEAT exit maxsz=94 view=82 psview=82 dead=0"
+ ],
+ "mg42_hull_after": "LG HULL mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) at=( -3635.924 2211.076 0.125 ) alive=1",
+ "nest_hull_before": "LG HULL mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) at=( -6775.128 -6271.976 -191.875 ) alive=1",
+ "nest_mount": [
+  "TURRETSEAT enter low=0 crouch=0.00 gunz=-130.0 feetz=-191.9 maxsz=94 view=82 psview=82"
+ ],
+ "nest_pst": "LG PST at=( -6786.004 -6277.047 -191.875 ) ang=( 0.000 24.999 0.000 ) turret=( -6728.000 -6250.000 -130.000 ) ai=none",
+ "nest_hull_on": "LG HULL mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) at=( -6786.004 -6277.047 -191.875 ) alive=1",
+ "nest_off": [
+  "TURRETSEAT exit maxsz=94 view=82 psview=82 dead=0"
+ ],
+ "nest_hull_after": "LG HULL mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) at=( -6788.140 -6228.111 -191.875 ) alive=1",
+ "low_hull_before": "LG HULL mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) at=( -3663.154 2247.846 0.125 ) alive=1",
+ "low_mount": [
+  "TURRETSEAT enter low=1 crouch=0.96 gunz=40.1 feetz=0.1 maxsz=54 view=48 psview=48"
+ ],
+ "low_pst": "LG PST at=( -3651.642 2246.965 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=( -3699.924 2211.076 40.125 ) ai=none",
+ "low_hull_on": "LG HULL mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 54.000 ) at=( -3651.642 2246.965 0.125 ) alive=1",
+ "low_off": [
+  "TURRETSEAT exit maxsz=94 view=82 psview=82 dead=0"
+ ],
+ "low_hull_after": "LG HULL mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) at=( -3640.406 2202.313 0.125 ) alive=1",
+ "low_pst_after": "LG PST at=( -3640.406 2202.313 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=none ai=none",
+ "low_walk": [
+  "LG PST at=( -3640.406 2202.313 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=none ai=none",
+  "LG PST at=( -3574.522 2268.197 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=none ai=none"
+ ],
+ "rm_hull_before": "LG HULL mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) at=( -3663.154 2247.846 0.125 ) alive=1",
+ "rm_mount": [
+  "TURRETSEAT enter low=1 crouch=0.96 gunz=40.1 feetz=0.1 maxsz=54 view=48 psview=48"
+ ],
+ "rm_pst": "LG PST at=( -3651.642 2246.965 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=( -3699.924 2211.076 40.125 ) ai=none",
+ "rm_hull_on": "LG HULL mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 54.000 ) at=( -3651.642 2246.965 0.125 ) alive=1",
+ "rm_exit": [
+  "TURRETSEAT exit maxsz=94 view=82 psview=82 dead=0"
+ ],
+ "rm_hull_after": "LG HULL mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) at=( -3651.642 2246.965 0.125 ) alive=1",
+ "rm_pst_after": "LG PST at=( -3651.642 2246.965 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=none ai=none",
+ "kill_hull_before": "LG HULL mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) at=( -3663.154 2247.846 0.125 ) alive=1",
+ "kill_mount": [
+  "TURRETSEAT enter low=1 crouch=0.96 gunz=40.1 feetz=0.1 maxsz=54 view=48 psview=48"
+ ],
+ "kill_pst": "LG PST at=( -3651.642 2246.965 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=( -3699.924 2211.076 40.125 ) ai=none",
+ "kill_hull_on": "LG HULL mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 54.000 ) at=( -3651.642 2246.965 0.125 ) alive=1",
+ "kill_exit": [
+  "TURRETSEAT exit maxsz=94 view=82 psview=82 dead=0"
+ ],
+ "kill_hull_after": "LG HULL mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 32.000 ) at=( -3729.358 2159.125 0.125 ) alive=0",
+ "kill_pst_after": "LG PST at=( -3729.358 2159.125 0.125 ) ang=( 0.000 -135.000 0.000 ) turret=none ai=none",
+ "errors": [
+  "[2026-10-12 20:37:20 UTC-6.000] ERROR: Entity::Sound: dfr_panic_35c_13 needs an alias in ubersound.scr or uberdialog.scr - Please fix."
+ ]
+}

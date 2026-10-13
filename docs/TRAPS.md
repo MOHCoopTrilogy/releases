@@ -828,27 +828,27 @@ latter is `ERR_DROP` and really does take the server down (t2l3, bug-1493).
 ---
 
 <a name="turrets"></a>
-## Turrets and AI spread: three ways a weapon tune never reaches the gun
+## Turrets and AI spread: five ways a tune never reaches the gun
 
 **Bugs:** 1920, 1940, 1946, 1950. **Rule: before tuning a value, prove the failing PATH reads it -
 grep the consumer, not the setter.** Full write-up:
-[`archive/traps-pruned-2026-08-20.md`](archive/traps-pruned-2026-08-20.md).
+[archive](archive/traps-pruned-2026-08-20.md).
 
 - **A MANNED turret never reads `bulletspread`** - `weapon.cpp`'s `FT_BULLET` sets `vSpread` only for
-  `owner->client`, and the `(max+base)/2` fallback is for `owner == NULL` (unmanned guns, which do not
-  fire). An actor-manned turret's ONLY dispersion is `m_vAIBulletSpread`, set solely by the
-  `aibulletspread` event (retail SH/BT use 300-450; the handler ignores arg 2). Gunner `accuracy` does
-  nothing - only `Actor::GunTarget` consults it. (bug-1940)
+  `owner->client` (unmanned guns: `(max+base)/2`). An actor's ONLY dispersion on one is `m_vAIBulletSpread`, set by the
+  `aibulletspread` event (retail SH/BT: 300-450; arg 2 is ignored). Gunner `accuracy` does
+  nothing. (bug-1940)
 - **AI spread is an AVERAGE** - `Weapon::Fire` gives a non-client owner
-  `(bulletspreadmax + bulletspread) / 2`, so `bulletspread 120 120` averages with 0 to an effective
-  60 and the tune feels dead. **Set all four args: `bulletspread B B M M`.** Player fire uses a
-  base/max lerp and is unaffected. (bug-1920)
+  `(bulletspreadmax + bulletspread) / 2`, so `bulletspread 120 120` is an effective 60.
+  **Set all four args: `bulletspread B B M M`.** Player fire is unaffected. (bug-1920)
 - **`TurretGun` fixes NEVER reach `VehicleTurretGun`** - it overrides `Think()`,
-  `UpdateFireControl()` and `GetMuzzlePosition()`, so halftrack / tank hull MG / jeep guns silently
-  skip every TurretGun-path tune: MG heat never cycled (bug-1946), and AI road gunners kept full
-  damage and accuracy because the coop trio (damage scale, spread bonus, wandering aim error) was
-  TurretGun-only (bug-1950). **Any turret-behavior change ships BOTH class paths.** The trio is
-  `extern`'d in `weapturret.h`.
+  `UpdateFireControl()` and `GetMuzzlePosition()`, so halftrack, tank MG and jeep guns skip
+  every TurretGun tune: no MG heat (bug-1946), full AI damage and accuracy (bug-1950).
+  **Any turret-behavior change ships BOTH class paths.**
+- **An AI gunner fires at `sv_fps`, not `firedelay`** - `AI_DoFiring` calls `Fire()` every frame
+  of a burst (40 / s live; MG42 nests are tuned at it). `coopaibelt 1` gates a gun. (bug-3638)
+- **On a turret the TORSO state is the whole body** (`movetype anim`; the legs machine is off, its
+  turret rows are dead), and an action row is picked once, on entry. (bug-309, 3658)
 
 ---
 
