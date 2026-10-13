@@ -1,0 +1,12 @@
+{
+ "coop_dbshotgun": {
+  "tik": "models/weapons/coop_dbshotgun.tik",
+  "name": "Shotgun (Double Barrel)",
+  "F": "model.json sight.F",
+  "R": "model.json sight.R",
+  "delta_mrad": 30.0,
+  "U": [0.0, 0.0, -1.0],
+  "relief": 14.0,
+  "why": "2026-10-12 (dbshotgun): F = the centre of the brass bead between the muzzles, R = the top of the breech end on the centre line (both read from build/model.json, written by tools/dbs_build.py from the mesh). The eye looks over the breech along the rib between the barrels to the bead; delta = the bead this far above the breech top in the picture. LOCAL row: the shared ironsights sights.json is not edited; tools/sightrow_dbs.py writes the one row into the lane worktree's cg_adssights.h."
+ }
+}
