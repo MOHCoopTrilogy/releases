@@ -1,0 +1,16 @@
+# STAGED - not applied. How a player gets the iron-sight G43 through the mod's own MODEL VARIANT mechanism
+# (docs/tools/wire_mv2.py: fids 8+ of a host gun, the armory's VARIANT button cycles them, each unlocked by a kill
+# challenge with the host gun). One entry, appended LAST so the existing fids 8-12 of the G43 (saved in players'
+# archives by exact fid) do not shift: the iron-sight G43 becomes fid 13 of roster id 04 (GEWEHR 43).
+# Apply together with the staged assets (rifles/assets) and the cgame of branch ads-rifle-next, then re-run
+# wire_mv2.py - it regenerates coop_mod/loadoutskins.scr (coop_skinGive / coop_skinMvName / coop_skinMvMax),
+# coop_mod/loadoutskins_base.scr (coop_skinBase), coop_mod/mvchal_gen.scr (the unlock challenge) and the
+# ui/loadout/mvp04_*_s*.cfg chain (5 links -> 6). Also add the rows of recoil_table_g43irons.txt (same folder).
+--- a/docs/tools/wire_mv2.py
++++ b/docs/tools/wire_mv2.py
+@@ -44,3 +44,4 @@
+     ("G43",          [("g98", "GEWEHR 98 (BOLT) (EAST)", "models/weapons/kar98_g98.tik"),
+                       ("dhg43fleck", "FLECKTARN G43 (DIRTYHARRY)"), ("hobbsg43wood", "WOODLAND G43 (HOBBS)"),
+-                      ("hobbsg43urb", "URBAN G43 (HOBBS)"), ("lv_ttg43", "TEAM TACTICS (LEON)")], "wpn_g43_e"),
++                      ("hobbsg43urb", "URBAN G43 (HOBBS)"), ("lv_ttg43", "TEAM TACTICS (LEON)"),
++                      ("irons", "G43 IRON SIGHTS (NO SCOPE)", "models/weapons/coop_g43_irons.tik")], "wpn_g43_e"),

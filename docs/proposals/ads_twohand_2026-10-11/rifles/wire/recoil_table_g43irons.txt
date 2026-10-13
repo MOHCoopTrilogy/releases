@@ -1,0 +1,15 @@
+// STAGED rows for hzm-mohaa-coop-mod/coop_mod/recoil_table.txt (the G43 row, one per iron-sight tik). Without them the
+// server finds NO row: Weapon::CoopFindRecoil drops trailing _segments (coop_g43_irons -> coop_g43 -> coop) and never
+// reaches g43. A tik named g43_irons*.tik would resolve to g43 by itself.
+coop_g43_irons -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_bloody -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_blued -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_camo_desert -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_camo_winter -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_camo_woodland -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_chrome -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_dhg43fleck -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_gold -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_hobbsg43urb -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_hobbsg43wood -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_lv_ttg43 -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0

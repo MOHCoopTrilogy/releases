@@ -1,0 +1,51 @@
+[
+ {
+  "error_message": "iron-sight G43 (run rb24): the new rear notch plate drew PURE BLACK in game, the rest of the rifle lit normally",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/g43irons.py",
+  "root_cause": "the appended geometry took ONE flat uv = the MEAN uv of the retail plate's vertices. The plate's faces sit on different islands of the g43 sheet (eye face about 0.91 0.14, top face 0.78 0.25), and their mean (0.882 0.168) is a black texel (3 3 3). Not a lighting or winding fault.",
+  "fix": "sample the uv of ONE face (the eye-side face's two triangles), later superseded: both sights are a surface of their own (coop_sight, shader coop_g43_sight, own 64x64 texture) so they are dark steel on every finish. Rule: never average uvs across faces of an atlas-mapped part; take one triangle's centroid.",
+  "tags": ["g43", "ironsights", "skd", "uv", "ads", "rifle-lane"]
+ },
+ {
+  "error_message": "retail G43 mesh: the rear tangent sight has NO notch - its 'notch plate' is a solid block 1.35 u wide (12 triangles), and the front post is 0.085 u wide at the tip = 2 px at 1280x720",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/g43irons.py",
+  "root_cause": "the shipped G43 was only ever aimed through its scope, so the iron sights under it were modelled as silhouettes. The previous handover's 'the real sights are already there, nothing has to be built' was read from bounding boxes, not from the vertices.",
+  "fix": "g43irons.py drops the block and the post and builds surface coop_sight: a 0.95 u leaf with chamfered corners, a notch 0.30 / 0.20 u wide and 0.19 u deep on the post's line (top 0.06 u higher so daylight shows above the slider behind it), a worn edge band, and a post 0.19 u wide. Sight row R z -5.33. Dump the vertices of a sight before calling it usable.",
+  "tags": ["g43", "ironsights", "mesh", "ads", "rifle-lane"]
+ },
+ {
+  "error_message": "G43 with the scope removed would still get the ZF4 scope picture if it were named like a finish ('G 43 (Irons)')",
+  "file": "openmohaa-hzm-ads-rifle/code/cgame/cg_viewmodelanim.c",
+  "root_cause": "five cgame sites key on the weapon NAME 'G 43' after CoopStripSkinSuffix cuts at ' (': the scope table (cg_hzmscope.c), CG_ActiveWeaponHasScope (cg_view.c), the hands prefix, the ADS donor table. A parenthesised suffix makes the gun the scoped G 43 everywhere.",
+  "fix": "new BASE name 'G 43 Irons' (finishes 'G 43 Irons (Winter)' strip to it): one entry each in the prefix lookup (WPREFIX_G43) and s_adsDonor (M1 Garand); absent from the scope table on purpose. Sight rows keyed by tik path (12 rows, rifles/sights_override.json + tools/patch_sights_row.py).",
+  "tags": ["g43", "ironsights", "weapon-name", "variant-suffix", "cgame", "rifle-lane"]
+ },
+ {
+  "error_message": "coop_g43_irons*.tik resolves to NO row of coop_mod/recoil_table.txt",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/wire/recoil_table_g43irons.txt",
+  "root_cause": "Weapon::CoopFindRecoil (weapon.cpp) keys on the tik's bare name and drops trailing _segments until a row matches: coop_g43_irons -> coop_g43 -> coop, never g43. A variant has to be named <base>_<key> to inherit, and the coordinator's name starts with coop_.",
+  "fix": "staged 12 rows (the G43's values) for the table; not applied (mod tree). Alternative at integration: name the tiks g43_irons*.tik, which resolve by themselves and also fit wire_mv2.py's default <stem>_<key>.tik.",
+  "tags": ["g43", "recoil-table", "variant-suffix", "naming", "rifle-lane"]
+ },
+ {
+  "error_message": "python patch in a Git-Bash heredoc: AssertionError, the search string no longer matched (SyntaxWarning invalid escape sequence \\s)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/g43tik.py",
+  "root_cause": "the heredoc halved the backslashes of the regex text inside the inline python (\\\\s arrived as \\s, \\\\t as a TAB), so the old-string was not found. The FIRST file of the same script had already been written - a half-applied patch.",
+  "fix": "patch scripts written with the Write tool (scratchpad) and run as files; one file per script, asserts before any write. Known gotcha (memory: heredoc-escape-gotcha) - repeated.",
+  "tags": ["heredoc", "git-bash", "tooling", "repeat"]
+ },
+ {
+  "error_message": "hold_bake IndexError in _keyed (ks[i1 + 1]) when baking a new aim pose from the 1-frame aim clip",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/g43pose.py",
+  "root_cause": "hold_bake keys a hand path over the frames of the recipe's `hip` clip; an aim pose clip has ONE frame, so the path has one key and the bracketing lookup runs off the list.",
+  "fix": "the hip idle (several frames) is the time line; the support hand's relation to the gun is passed outright as relT (the aim pose's own L-hand-to-tag relation, then moved in the camera frame), both hands' finger channels copied back from the aim pose.",
+  "tags": ["hold_bake", "aim-pose", "g43", "rifle-lane"]
+ },
+ {
+  "error_message": "WARNING: 'textures/coop_wpn/g43_sight.tga' TGA file header declares top-down image, ignoring (run rb27)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/g43irons.py",
+  "root_cause": "write_tga (copied from the heavy lane's stage_sgsight.py) sets descriptor 0x20 (top-down); the engine ignores the flag and reads the rows bottom-up, so the texture is drawn upside down in v.",
+  "fix": "descriptor 0x00 and the rows written bottom-up. The heavy lane's shotgun_bead.tga / shotgun_groove.tga are written the same old way (theirs to fix).",
+  "tags": ["tga", "texture", "g43", "heavy-lane"]
+ }
+]

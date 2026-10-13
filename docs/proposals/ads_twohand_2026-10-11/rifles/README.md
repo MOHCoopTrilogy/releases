@@ -5,7 +5,103 @@ the method are the pistol lane's). Rows: the `## rifle` section of `../coverage.
 the fixes pak; everything is staged in this folder and on engine branch `ads-rifle-next`
 (worktree `C:\mohaa-coop-dev\openmohaa-hzm-ads-rifle`, build dir `.cmake`, test build `cgames\cgame_rifle4.dll`).
 
-# HANDOVER (2026-10-12 night, fourth stretch) - read this first
+# HANDOVER (2026-10-12 late night, fifth stretch) - read this first
+
+**This stretch did ONE thing: the IRON-SIGHT G43 is built and its look test is delivered (and refined once on the
+coordinator's notes). NOT done: its aimed reload, its reload stance sheets, and everything after it on the list
+(Kar98 reload leftovers, Springfield / Mosin / Enfield reloads, the semi-autos, Carcano / De Lisle / Arisaka / G98,
+the scoped sample).** Engine `ads-rifle-next` **60e00829** = test build `cgames\cgame_rifle7.dll`. Overlay of the
+staged state: `G:\mohaa-adsanim2\ov_rifle_d4.pk3`. Run ids used: rb24-rb27; **rb28 is next**.
+
+## Iron-sight G43 ("G 43 Irons") - what exists
+Accepted by the coordinator after the look test: the notch, eye relief 17.0 u, the Garand's accuracy / movement rows.
+* **Mesh** `assets/models/weapons/g43/coop_g43_irons.skd` (`tools/g43irons.py`, from the retail `g43.skd`, which is
+  not touched): scope tube, two turrets, two rings, mount (300 triangles) and the whole `svt_lens` surface are out;
+  the dovetail rail on the receiver's right side stays. The retail rear sight had **no notch** (a solid block 1.35 u
+  wide) and the front post was 0.085 u wide (2 px): both are dropped and rebuilt as a surface of their own,
+  `coop_sight` (78 triangles, shader `coop_g43_sight`, `assets/scripts/coop_g43_sight.shader` +
+  `assets/textures/coop_wpn/g43_sight.tga`) - **dark steel on every finish**: a tangent-leaf plate 0.95 u wide with
+  chamfered corners, a notch 0.30 u (top) / 0.20 u (foot) wide and 0.19 u deep on the post's line, a worn edge band,
+  and a post 0.19 u wide inside the untouched hood ring. One mesh = first person and world / third person.
+* **Tiks** `assets/models/weapons/coop_g43_irons.tik` + 11 finishes (`tools/g43tik.py`, each from the mod tree's own
+  G43 tik of that finish): name **"G 43 Irons"** (a base name of its own - "G 43 (Irons)" would be stripped to
+  "G 43" and get the scope, bug-3713), rank 271, no `zoom`, the M1 Garand's accuracy and movement rows, `airange long`;
+  damage, fire delay, 10-round magazine, sounds, recoil kick and the reload are the G43's own.
+* **Sight row** `sights_override.json` (lane-local; `tools/patch_sights_row.py <worktree>\code\cgame\cg_adssights.h`
+  inserts the 12 rows): F 41.95 -1.1565 -4.388 (post tip), R 12.0845 -1.1565 -5.33 (notch shoulders), relief 17.0 u.
+  The shared ironsights `sights.json` is NOT edited.
+* **Aim pose** `viewmodel/g43/coop_g43_irons_aim.skc` (`tools/g43pose.py`): the Garand pose with the support hand
+  1.1 u left / 1.6 u lower, so no finger shows right of the receiver. Row `coopr_g_43_irons_charge`
+  (`rows_rifle.py`); the scoped G43 keeps `g43_charge`.
+* **Engine** (cgame only): "G 43 Irons" -> the G43's hands and the Garand's aim tune; the 12 sight rows; the per-weapon
+  row override `coopr_<weapon key>_<suffix>` now also covers `charge` (the pistol lane's rule on `ads-next`).
+* **Measured** (rb27, `cg_adsSightDebug`): sights on the centre 0.00 deg in stand / crouch / prone / both leans; the
+  bore sits 1.75 deg under the sight line (the rear sight is that much higher than the post on this mesh); relief
+  17.00 u (19.0 u braced - the brace view, as on the Kar98).
+* **Looked at** (every sheet opened): mesh from three sides before / after; hip (wood, Winter, crouch, the scoped
+  gun beside it); aim on the light wall and the dark door enlarged 4x; aim in stand / crouch / prone / lean left /
+  lean right / braced, light and dark, wood and Winter; third person at the hip and aiming.
+  Evidence, `evidence/g43irons/`: `g43irons_mesh_side_before_after.jpg`, `g43irons_hip_rb27.jpg`,
+  `g43irons_aim_rb27.jpg`, `g43irons_aim_stances_rb27.jpg`, `g43irons_third_person_rb27.jpg`; the `_rb26` files are
+  the first look (flat plate with a small V nick, thin post, raw Garand pose) - superseded, kept for comparison.
+* **Weak points seen**: at 1280x720 the post is 3 px wide and the notch 13 px - it reads, but small (1080p: 4.5 /
+  20 px, not captured); the support hand is now an open palm on the left of the fore-end; in the mesh picture
+  `g43irons_mesh_side_before_after.jpg` (current mesh) the offline renderer draws `coop_sight` as untextured light
+  grey - in game it is dark steel; the held gun is small in the third-person stills; the hood ring and the rest of the
+  rear sight take the finish (white on Winter); third person: the camera cvars are ignored while aiming, so there is
+  no side view of the AIMED gun from outside.
+* **NOT done / not verified**: the aimed reload (below); hip reload not run with the new mesh; fire / recoil not
+  captured; a second client or a dedicated server (new tiks, new shader); LOD at distance (the dropped triangles'
+  vertices stay in the file; `coop_sight` collapses last); `coverage.md` has no row for it.
+
+### How a player gets it (worked out, STAGED in `wire/`, nothing applied)
+The mod hands out variant tiks through two generated tables: finishes (fid 1-7, `coop_mod/loadoutskins.scr`
+`level.coop_skinGive[<base tik>][fid]`) and **model variants** (fid 8+, the armory's VARIANT button cycles them, each
+unlocked by a kill challenge with the host gun; generator `docs/tools/wire_mv2.py`, which also writes
+`loadoutskins_base.scr`, `mvchal_gen.scr` and the `ui/loadout/mvp<id>_*.cfg` chain).
+1. **Model variant of the G43 (recommended; `wire/wire_mv2_g43irons.patch`)**: one entry appended to the G43's list
+   in `wire_mv2.py` -> fid 13 of roster id 04 "GEWEHR 43", label "G43 IRON SIGHTS (NO SCOPE)", unlocked like its
+   other variants. Appended LAST so the saved fids 8-12 do not shift. A finish cannot be combined with a model
+   variant (one fid at a time), so the 11 finish tiks would be unused on this path.
+2. **Its own armory entry**: a new roster id in `coop_mod/loadoutroster.scr` (+ `coop_loRosterGive`, a UI tile) with
+   `coop_skinGive["models/weapons/coop_g43_irons.tik"][1..7]` = the staged finish tiks: irons AND a finish. More
+   UI work; not staged.
+3. **Dropped by German riflemen**: `coop_mod/aihandler.scr` already arms a share of Kar98 soldiers with
+   `models/weapons/g43.tik` (`coop_aiG43Chance`); giving them the iron-sight tik instead puts it on the ground for
+   pick-up (most real G43s had no scope). Not staged.
+4. Today, for testing: `give models/weapons/coop_g43_irons.tik` (what the harness does).
+Needed with any of them: `wire/recoil_table_g43irons.txt` (12 rows - `coop_g43_irons` resolves to NO row of
+`coop_mod/recoil_table.txt`, bug-3714; tiks named `g43_irons*.tik` would resolve by themselves and fit `wire_mv2.py`'s
+default naming - a naming decision), the staged assets, the cgame, and the sight rows in the shared `sights.json`.
+
+### Its aimed reload - NOT started; what is known
+* Hip clip `viewmodel/g43/g43_reload.skc`: 88 frames x 1/30 s = 2.93 s. The gun's own `g43_reload.skc` is only
+  56 frames (1.87 s) - the same mismatch the pistol lane met on the TT-33; tik: magazine surface hidden frames 16-50.
+* `tools/clipinfo.py models/weapons/g43.tik reload viewmodel/g43/g43_reload.skc`: the LEFT hand keeps its place on
+  the fore-end to frame 48 while the right hand leaves the grip at frame 2 and works; the hand tags change at about
+  frame 50 (re-run with the off-hand span to read the second half).
+* The tik has only `reload` (no `reload_empty`). Rows to use, so the scoped G43 and the G43 Sniper stay as they are:
+  `coopr_g_43_irons_reload` / `coopr_g_43_irons_reload_empty` and their `_ads` (the cgame composes per-weapon row ->
+  `_empty` -> `_ads`); the prefix `g43` has no mesh guard, so a plain `g43_reload_ads` would also reach the scoped guns.
+* `tools/g43pose.py register()` makes the gun known to the offline tools (`V.SIGHTS['g43_irons']`, `V.GUNTIK`);
+  the SMG lane's magazine reloads (`../smg/tools/smgbake.py`) are the nearest recipe (box magazine, handle worked
+  when empty).
+
+## Next (the coordinator's order, unchanged)
+1. G 43 Irons: aimed reload (rounds left, emptied) + GIFs + stance sheet; hip reload and a shot looked at.
+2. Kar98 reload leftovers (emptied capture `--rframes 360`, lean-left 2.2 %, judge `kar98_reload_stances_rb23.jpg`,
+   pouch half second and the clip pushes as a visible jolt).
+3. Springfield / Mosin / Enfield aimed reloads; 4. Garand, SVT, Johnson (the scoped G43: leave), then Carcano /
+   De Lisle / Arisaka / G98, then ONE scoped rifle as a sample with two options.
+
+## New tools this stretch
+`g43parts.py` (components), `g43irons.py` (mesh + shader + texture), `g43tik.py` (12 tiks), `g43pose.py` (aim pose,
+`--pic` = offline picture old / new), `g43look.py <run> <scoped run>` (the five evidence sheets),
+`patch_sights_row.py`, `run_rifle.py` parts `hipstills`, `<part>D` (the same part facing `--darkyaw`), `tpc` (third
+person, one screenshot per step), `relief` (settled aim at `cg_adsRigReliefBias` 0 / 1.5 / 3); `staged.py` now also
+answers `vfs.winner` for a staged file that is in no pak. Bugs: bug-3711..3717.
+
+# HANDOVER (2026-10-12 night, fourth stretch) - the bolt cycles and the Kar98 reload; still current for those
 
 **Done: step 1 of the coordinator's list (bolt-cycle clean-up, all four rifles, six stances) and step 2 (Kar98 aimed
 reload reworked, six stances). NOT started: aimed reloads of Springfield / Mosin / Enfield, the semi-autos, Carcano /
