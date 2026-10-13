@@ -28,8 +28,11 @@ cgame_adsnext8 on. `run_2h.py --parts reloads --rstances prone --rhip --revery 3
 | S&W M10 | dump pose raised 1.4 u and flattened (cylinder face fully in frame), cases thrown up and left | box max 0.4 %, 0.00 deg, 5 stances (tn2, pa2) | `evidence/m10_reload_aimed_c.gif` |
 | Nagant | worked 1.8 u higher (gate 5.6 u under the eye line - the limit of the 2 % bar), feeding hand comes from below, lower support elbow; in prone the gun and both hands are in frame now | box max 0.3 %, 0.00 deg, 5 stances (tn3) | `evidence/nagant_reload_aimed_c.gif`, `revolver_stances_tn.jpg` |
 
-Still weak, seen in playback: the M10's cases are in view for only about 0.2 s (they vanish near the top of their
-arc: the particle's `collision` against the player box is the suspect); the Nagant's left forearm is still large for
+M10 cases "vanishing near the top of their arc": they do not - the evidence GIF's crop (x from 240) cut them off on
+the left. Full frames of run pa2: out at f276, top of the arc f282, out of the bottom-left of the frame f286 = 0.17 to
+0.2 s, which is what brass does at that distance under the game's gravity (800 u/s2); left as it is, the GIF is
+re-cut (crop from x 140) so the arc is in it. Capture frames are 16 ms; a GIF frame of dgif `:3` is 48 ms.
+Still weak, seen in playback: the Nagant's left forearm is still large for
 about 0.1 s at the hand-over; the Webley hip open / close were looked at only at coarse scale.
 NOT DONE - M10 chambers filling one by one. Design (about half a day): (1) `m10face.py` appends six surfaces
 `coop_round1..6` instead of the one `coop_m10_heads` (round k on the chamber k steps behind the feed chamber; round 6 on
