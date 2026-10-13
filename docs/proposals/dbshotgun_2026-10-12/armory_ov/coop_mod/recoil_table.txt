@@ -477,6 +477,19 @@ welrod_camo_winter -1.0 -1.0 -0.16 0.16 1.2 V 2.8 0.8 1.2 12.0 25.0
 welrod_camo_woodland -1.0 -1.0 -0.16 0.16 1.2 V 2.8 0.8 1.2 12.0 25.0
 welrod_chrome -1.0 -1.0 -0.16 0.16 1.2 V 2.8 0.8 1.2 12.0 25.0
 welrod_gold -1.0 -1.0 -0.16 0.16 1.2 V 2.8 0.8 1.2 12.0 25.0
+// [g43 irons 2026-10-13] iron-sight G43: the G43's rows under its own tik names (coop_g43_irons resolves to no g43 row)
+coop_g43_irons -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_bloody -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_blued -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_camo_desert -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_camo_winter -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_camo_woodland -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_chrome -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_dhg43fleck -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_gold -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_hobbsg43urb -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_hobbsg43wood -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+coop_g43_irons_lv_ttg43 -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
 // [dbshotgun 2026-10-13] double-barrel shotgun: its tik's own viewkick line, the base and every finish
 coop_dbshotgun -23.0 -26.0 -2.0 2.0 12.0 T 14.0 6.0 12.0 12.0 25.0
 coop_dbshotgun_bloody -23.0 -26.0 -2.0 2.0 12.0 T 14.0 6.0 12.0 12.0 25.0

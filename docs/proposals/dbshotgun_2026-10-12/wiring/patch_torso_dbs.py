@@ -29,6 +29,8 @@ END = ('\t\t// HZM coop %s no pump stroke after the last shell\n'
        '\t\tcoop_dbs_reload_end\t\t: %s\n') % (MARK, NAME)
 REFIRE_ROW = ('\t\t// HZM coop %s the second barrel while aiming: do not wait for the torso clip\n'
               '\t\tCOOP_DBS_REFIRE_AIM\t\t: +ATTACK_PRIMARY IS_WEAPON_READY_TO_FIRE "mainhand" %s\n') % (MARK, NAME)
+QUICK_ROW = ('\t\t// HZM coop %s an open double barrel is shut before the owed shot: the full end row, not the quick hand-back\n'
+             '\t\tRELOAD_SHOTGUN_BREAK_END\t: +ATTACK_PRIMARY HAS_AMMO_IN_CLIP "mainhand" %s\n') % (MARK, NAME)
 REFIRE_STATE = ('\n// HZM coop %s routing state: the second shot of the double barrel while aiming (see ATTACK_SHOTGUN_PRIMARY_AIM)\n'
                 'state COOP_DBS_REFIRE_AIM\n{\n\tmovetype legs\n\n\taction\n\t{\n\t\tnone\t\t\t\t: default // stop the torso clip, so the next one fires\n\t}\n\n'
                 '\tstates\n\t{\n\t\tSTAND\t\t\t\t: KILLED\n\t\tATTACK_SHOTGUN_PRIMARY_AIM\t: default\n\t}\n}\n') % MARK
@@ -50,6 +52,13 @@ def patch(text):
     rx_aim = re.compile(r'(^state ATTACK_SHOTGUN_PRIMARY_AIM[ \t]*\n\{.*?^\tstates[ \t]*\n\t\{[ \t]*\n[ \t]*STAND[ \t]+: KILLED[ \t]*\n)', re.M | re.S)
     assert len(rx_aim.findall(s)) == 1
     s = rx_aim.sub(lambda m: m.group(1) + REFIRE_ROW, s)
+    # the mod tree since 2026-10-13 (heavy lane, patch_sgbreak.py): a reload begun with a round in the gun is broken off by the
+    # trigger through RELOAD_SHOTGUN_BREAK_QUICK - a 0.45 s hand-back with no pump, then the shot. A double barrel is OPEN while
+    # it is loaded: it has to be shut first. For this gun only the trigger goes to RELOAD_SHOTGUN_BREAK_END (its own end row =
+    # the gun is shut, then the owed shot). 0 such rows in the released file, 2 in the tree (RELOAD_SHOTGUN, .._SINGLE_CH)
+    rx_q = re.compile(r'^[ \t]*RELOAD_SHOTGUN_BREAK_QUICK[ \t]+: \+ATTACK_PRIMARY HAS_AMMO_IN_CLIP "mainhand"[^\n]*\n', re.M)
+    assert len(rx_q.findall(s)) in (0, 2), len(rx_q.findall(s))
+    s = rx_q.sub(lambda m: QUICK_ROW + m.group(0), s)
     s = s.rstrip('\n') + '\n' + REFIRE_STATE
     # the parse-killer checks of docs/TRAPS.md on what was added, and a running brace depth scan of the whole file
     assert '—' not in FIRE + END and '(-' not in FIRE + END
@@ -66,7 +75,7 @@ def main():
     p = sys.argv[1]
     raw = open(p, 'rb').read().decode('latin-1')
     out = patch(raw)
-    print('%s: %s' % (p, 'already patched' if out == raw else '5 torso rows in 3 states, 1 exit row + the routing state COOP_DBS_REFIRE_AIM'))
+    print('%s: %s' % (p, 'already patched' if out == raw else '%d torso rows, 1 aimed-refire exit row + the routing state COOP_DBS_REFIRE_AIM, %d break-off routing rows' % (len(re.findall(r'(?m)^\t\tcoop_dbs_', out)), out.count('an open double barrel is shut'))))
     if out != raw and '--check' not in sys.argv:
         open(p, 'wb').write(out.encode('latin-1'))
 

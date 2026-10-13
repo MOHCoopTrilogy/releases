@@ -1,0 +1,17 @@
+weapon tik row	idle	coop_dbs_idle.skc	1 frames	0.033 s
+weapon tik row	fire	coop_dbs_fire.skc	10 frames	0.333 s
+weapon tik row	fire_empty	coop_dbs_fire_empty.skc	10 frames	0.333 s
+weapon tik row	reload	coop_dbs_reload.skc	23 frames	0.767 s
+weapon tik row	reload_empty	coop_dbs_reload_empty.skc	23 frames	0.767 s
+weapon tik row	reload_ads_empty	coop_dbs_reload_empty.skc	23 frames	0.767 s
+weapon tik row	reload_single	coop_dbs_reload_single.skc	20 frames	0.667 s
+weapon tik row	reload_single_first	coop_dbs_reload_single_first.skc	20 frames	0.667 s
+weapon tik row	reload_end	coop_dbs_reload_end.skc	32 frames	1.067 s
+weapon tik row	secondaryfire	coop_dbs_idle.skc	1 frames	0.033 s
+8 tiks: every row equal to the base tik's (10 rows)
+torso row	coop_dbs_stand_fire	36 frames 1.200 s	pump gun shotgun_stand_fire	36 frames 1.200 s	EQUAL
+torso row	coop_dbs_crouch_fire	35 frames 1.167 s	pump gun shotgun_crouch_fire	35 frames 1.167 s	EQUAL
+torso row	coop_dbs_reload_end	36 frames 1.200 s	pump gun shotgun_reload_end	36 frames 1.200 s	EQUAL
+torso row (shared, not changed)	shotgun_reload_start	23 frames	0.767 s
+torso row (shared, not changed)	shotgun_reload_loop	20 frames	0.667 s
+torso row (shared, not changed)	shotgun_reload_break	11 frames	0.367 s

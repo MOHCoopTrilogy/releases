@@ -3,6 +3,12 @@
 Option A (a switch on the trench gun's page) is **superseded**: `superseded/patch_wiring_dbs.py`, kept for the record,
 do not apply. The cvar `coop_dbShotgun` stays, as a master on / off only.
 
+**2026-10-13, fourth pass: the ship cut is `../DBS_SHIP.md`** (exact file list, order against ids 78 / 79, the engine
+merge, checks). Changed since the table below was written: the tile is the LAST tile of the heavy tab (no tile moves,
+no empty row when the switch is off); the torso patch has two more rows (a reload broken off by the trigger shuts the
+gun first); the engine is `dbshotgun-next` 1dc10936 (= integ-ads merged in); the patches in `gen/` were re-made on the mod tree
+with id 78 in it (17761c3a).
+
 ## What to apply, in this order
 | step | what | file here |
 |---|---|---|
@@ -20,8 +26,8 @@ is a name and is asserted). The G 43 Irons (78) and the FG 42 Irons (79) edit th
 tile list: apply one, re-run the next one's script.
 
 ## The entry
-* Roster id **80**, give `models/weapons/coop_dbshotgun.tik`, tile **"DOUBLE BARREL"** on the HEAVY tab directly under
-  the TRENCH GUN (bazooka, panzerschreck, PIAT, DP-28 move one row down), "12 GAUGE / BREAK-ACTION", bars DMG 10 / RPM 3 /
+* Roster id **80**, give `models/weapons/coop_dbshotgun.tik`, tile **"DOUBLE BARREL"**, the LAST tile of the HEAVY tab
+  (under DP-28 today; no other tile moves - third pass: directly under the TRENCH GUN), "12 GAUGE / BREAK-ACTION", bars DMG 10 / RPM 3 /
   ACC 6 / MOB 10 (trench gun 10 / 1 / 8 / 9), 2 rounds (`textures/hud/clip/clip_2.tga`, new), slot / ammo / class as the
   trench gun (primary, shotgun, heavy, 40 shells).
 * **Unlock: challenge "Both Barrels" - Get 60 kills with the Shotgun** (`wpn_shotgun_v`, SUPPORT WEAPONS). The mod's
@@ -36,7 +42,7 @@ tile list: apply one, re-run the next one's script.
   same gate as the pump gun, shared.
 * **Master switch** `coop_dbShotgun` (server, default 1). At 0: the pick is refused ("... is switched off on this
   server", the client keeps its archived pick), the tile is hidden (`coop_loP3d`, set by `ui/loadout/lktab3.cfg` through
-  the archived client command `coop_loDbT` the server sends with the padlocks) and its padlock is off. The row stays as
-  a gap in the list; the PRIMARY card keeps showing the archived pick.
+  the archived client command `coop_loDbT` the server sends with the padlocks) and its padlock is off. The tile is the
+  tab's last, so nothing is left where it was (looked at, run w3); the PRIMARY card keeps showing the archived pick.
 
 ## Run (private test install, overlay `mkov_dbs.py --armory`, coop_lockLoadout 1) - README sec. 8 has the table

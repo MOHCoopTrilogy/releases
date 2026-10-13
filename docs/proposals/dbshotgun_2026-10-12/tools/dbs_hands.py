@@ -39,7 +39,7 @@ import gunphys as GP                                   # ads_twohand_2026-10-11/
 R, V, K, B = D.R, D.V, D.K, D.B
 S = R.S
 FT = 1.0 / 30.0
-ODIR = os.path.join(L.ASSETS, 'models', 'human', 'animation', 'viewmodel', 'coop_dbshotgun')
+ODIR = os.environ.get('DBS_ODIR') or os.path.join(L.ASSETS, 'models', 'human', 'animation', 'viewmodel', 'coop_dbshotgun')     # DBS_ODIR: a trial bake elsewhere
 TIK = 'models/weapons/coop_dbshotgun.tik'
 
 # ---------------------------------------------------------------------------------------------------- the numbers
@@ -51,6 +51,13 @@ SIGHT_R = (4.7932, -1.05, -5.0074)        # top of the breech end, centre line (
 SIGHT_F = (21.5216, -1.05, -5.3041)       # top of the bead
 WORK = {'hip': dict(cham=(10.8, -2.6, -1.1), yaw=6.0, pitch=16.0, roll=-8.0),      # run rh1: at -2.6 up the hip reload played on the screen's bottom edge
         'ads': dict(cham=(9.6, -0.2, -3.0), yaw=0.0, pitch=18.0, roll=-4.0)}
+# the aimed work pose of the third pass: the belt point (where the hand fetches a shell) is fixed in the GUN frame from
+# this pose, so raising the aimed work pose does not move the shells' path or the hip clips
+WORK_BELT_REF = dict(cham=(9.6, -0.2, -3.0), yaw=0.0, pitch=18.0, roll=-4.0)
+if os.environ.get('DBS_ADS_CHAM'):
+    WORK['ads']['cham'] = tuple(float(x) for x in os.environ['DBS_ADS_CHAM'].split(','))
+if os.environ.get('DBS_ADS_PITCH'):
+    WORK['ads']['pitch'] = float(os.environ['DBS_ADS_PITCH'])
 LH_BACK = 6.6         # u the forend hand sits nearer than on the pump gun: wrist at 9.1 u, palm under the rear half
 LH_UP = float(os.environ.get('DBS_LH_UP', -0.7))
 LH_ROLL = float(os.environ.get('DBS_LH_ROLL', 0.0))
@@ -78,9 +85,9 @@ SHELL_LEN = 5.9       # skd units
 TIPLEN = {0: 1.3, 1: 0.9, 2: 1.0}          # last phalanx, game u
 LEVER_SHIFT = (2.5, 0.0, -1.0)             # the grip hand slides this far up the grip to reach the lever (gun frame, u)
 BELT_VIEW = (5.0, 5.5, -9.5)               # where the hand goes for a shell: below and left of the view
-WRIST_VIEW_HIP = (-0.20, 0.50, -0.84)      # (tried -0.25 0.12 -0.96, the hand from straight below: it stood in front of the whole gun; same side as aimed)
+WRIST_VIEW_HIP = tuple(float(x) for x in os.environ.get('DBS_WRIST_HIP', '-0.20,0.50,-0.84').split(','))      # (tried -0.25 0.12 -0.96, the hand from straight below: it stood in front of the whole gun; same side as aimed)
 
-WRIST_VIEW = (-0.20, 0.50, -0.84)          # the loading hand lies to this side of the shell in the view (unit-ish)
+WRIST_VIEW = tuple(float(x) for x in os.environ.get('DBS_WRIST_ADS', '-0.20,0.50,-0.84').split(','))           # the loading hand lies to this side of the shell in the view (unit-ish)
 
 
 def zq(deg):
@@ -217,6 +224,8 @@ class Rig:
         self.cham_mid = (c_r + c_l) / 2 * S                        # game units, for hold_G(at=)
         self.Gwork = {m: hold_G(self.E0 if m == 'hip' else self.Ec, w['cham'], w['yaw'], w['pitch'], w['roll'], at=self.cham_mid)
                       for m, w in WORK.items()}
+        w = WORK_BELT_REF
+        self.Gbeltref = hold_G(self.Ec, w['cham'], w['yaw'], w['pitch'], w['roll'], at=self.cham_mid)
         self.fit_pinch()
         self.loads = {m: self.fit_load_frame(m) for m in ('ads', 'hip')}
         self.load = self.loads['ads']
@@ -419,7 +428,7 @@ def build(rig, mode):
     HRk = {0: rig.HRrel, 2: HRl, 8: HRl, 12: rig.HRrel}
     fRk = {0: rig.fR, 2: f_on, 5: f_psh, 8: f_psh, 12: rig.fR}
     belt = ((E + np.asarray(BELT_VIEW) / S) - Gw[3, 0:3]) @ Gw[0:3, 0:3].T          # gun frame, rig units (of the AIMED work pose: one gun-space path for both)
-    Gwa = rig.Gwork['ads']
+    Gwa = rig.Gbeltref
     belt = ((rig.Ec + np.asarray(BELT_VIEW) / S) - Gwa[3, 0:3]) @ Gwa[0:3, 0:3].T
     Hbelt, Rbelt = rig.hand_on_shell(belt, tilt=-28.0, mode=mode)
     ld = rig.loads[mode]
@@ -544,7 +553,7 @@ def write(clips, paths):
         b = a.frames[0]['bounds']
         data = X.build_skc(names, vals, FT if len(fr) > 1 else a.frameTime, b[0:3], b[3:6], a.frames[0]['radius'])
         open(os.path.join(ODIR, 'dbs_%s.skc' % nm), 'wb').write(data)
-    json.dump(paths, open(os.path.join(L.BUILD, 'hand_paths.json'), 'w'))
+    json.dump(paths, open(os.path.join(os.environ.get('DBS_ODIR') or L.BUILD, 'hand_paths.json'), 'w'))
 
 
 def gun_anim(nm):

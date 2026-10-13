@@ -1,0 +1,18 @@
+   AS PLAYED (sway on) stand: clip = capture f4-267 (first 29 = last shot skipped) | vs the 6-frame aim mask: max 2.6 %, 3 over | settled aim ALONE after the clip (118 frames) vs that mask: max 0.7 %, 0 over | clip vs the aim's sway ENVELOPE (covers 16.9 %): max 1.97 % (f33), 0 over
+      after the first 66 capture frames (1.06 s; the smoke is gone): max 0.71 %
+dbs        stand  box EXTRA vs the settled aim after the reload: max 42.2 % (capture f17), frames over 2 %: 32 of 390 | settled aim covers 11.9 % | sight line: max 14.17 deg off, last 12 frames within 0.00 deg
+   AS PLAYED (sway on) crouch: clip = capture f4-265 (first 40 = last shot skipped) | vs the 6-frame aim mask: max 7.9 %, 8 over | settled aim ALONE after the clip (120 frames) vs that mask: max 0.1 %, 0 over | clip vs the aim's sway ENVELOPE (covers 16.3 %): max 7.52 % (f44), 8 over
+      after the first 66 capture frames (1.06 s; the smoke is gone): max 0.21 %
+dbs        crouch  box EXTRA vs the settled aim after the reload: max 34.7 % (capture f4), frames over 2 %: 48 of 390 | settled aim covers 12.4 % | sight line: max 14.17 deg off, last 12 frames within 0.00 deg
+   AS PLAYED (sway on) prone: clip = capture f4-206 (first 40 = last shot skipped) | vs the 6-frame aim mask: max 14.5 %, 11 over | settled aim ALONE after the clip (179 frames) vs that mask: max 0.1 %, 0 over | clip vs the aim's sway ENVELOPE (covers 13.8 %): max 14.44 % (f44), 11 over
+      after the first 66 capture frames (1.06 s; the smoke is gone): max 0.12 %
+dbs        prone  box EXTRA vs the settled aim after the reload: max 37.1 % (capture f4), frames over 2 %: 51 of 390 | settled aim covers 9.0 % | sight line: max 14.24 deg off, last 12 frames within 0.00 deg
+   AS PLAYED (sway on) standL: clip = capture f4-267 (first 39 = last shot skipped) | vs the 6-frame aim mask: max 1.9 %, 0 over | settled aim ALONE after the clip (118 frames) vs that mask: max 0.0 %, 0 over | clip vs the aim's sway ENVELOPE (covers 15.6 %): max 1.91 % (f44), 0 over
+      after the first 66 capture frames (1.06 s; the smoke is gone): max 0.71 %
+dbs        standL  box EXTRA vs the settled aim after the reload: max 25.4 % (capture f4), frames over 2 %: 38 of 390 | settled aim covers 13.9 % | sight line: max 14.18 deg off, last 12 frames within 0.00 deg
+   AS PLAYED (sway on) standR: clip = capture f4-267 (first 28 = last shot skipped) | vs the 6-frame aim mask: max 2.1 %, 1 over | settled aim ALONE after the clip (118 frames) vs that mask: max 0.0 %, 0 over | clip vs the aim's sway ENVELOPE (covers 16.6 %): max 1.12 % (f141), 0 over
+      after the first 66 capture frames (1.06 s; the smoke is gone): max 1.12 %
+dbs        standR  box EXTRA vs the settled aim after the reload: max 46.2 % (capture f12), frames over 2 %: 29 of 390 | settled aim covers 11.4 % | sight line: max 14.17 deg off, last 12 frames within 0.00 deg
+   AS PLAYED (sway on) braced: clip = capture f4-265 (first 40 = last shot skipped) | vs the 6-frame aim mask: max 5.0 %, 5 over | settled aim ALONE after the clip (120 frames) vs that mask: max 0.0 %, 0 over | clip vs the aim's sway ENVELOPE (covers 5.2 %): max 5.00 % (f44), 5 over
+      after the first 66 capture frames (1.06 s; the smoke is gone): max 0.13 %
+dbs        braced  box EXTRA vs the settled aim after the reload: max 28.6 % (capture f7), frames over 2 %: 45 of 390 | settled aim covers 4.3 % | sight line: max 14.17 deg off, last 12 frames within 0.00 deg

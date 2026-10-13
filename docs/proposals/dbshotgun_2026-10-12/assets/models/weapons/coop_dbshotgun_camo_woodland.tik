@@ -310,6 +310,31 @@ animations
 			)
 		}
 	}
+	reload_ads_empty	coop_dbs_reload_empty.skc
+	{
+		client
+		{
+			entry sound coop_dbs_snd_open
+			10 tagspawn tag_eject
+			(
+				count 2
+				model models/ammo/shotgunshell.tik
+				spawnrange 1024
+				scale 1.0
+				velocity 90
+				randvel crandom 14 crandom 14 random 20
+				emitterangles 0 0 0
+				avelocity crandom 120 crandom 120 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_shotgun_shell
+			)
+		}
+	}
 	reload_single	coop_dbs_reload_single.skc
 	{
 		client

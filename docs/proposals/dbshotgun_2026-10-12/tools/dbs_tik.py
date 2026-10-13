@@ -60,8 +60,10 @@ def anims():
         a += ['\t%s\tcoop_dbs_%s.skc' % (nm, nm), '\t{', '\t\tserver', '\t\t{', '\t\t\tentry shoot', '\t\t}', '\t\tclient', '\t\t{',
               '\t\t\tentry stopaliaschannel coop_dbs_snd_fire', '\t\t\tentry sound coop_dbs_snd_fire',
               '\t\t\tentry viewkick %s' % N['kick'], _flash(tag), '\t\t}', '\t}']
-    for nm, count in (('reload', 1), ('reload_empty', 2)):
-        a += ['\t%s\tcoop_dbs_%s.skc' % (nm, nm), '\t{', '\t\tclient', '\t\t{', '\t\t\tentry sound coop_dbs_snd_open',
+    # reload_ads_empty = reload_empty under the name the integrated cgame (integ-ads, CG_ModelAnim) looks for when an
+    # EMPTIED gun is reloaded while aiming; at the hip it looks for reload_empty. Same clip, same commands.
+    for nm, count, clip in (('reload', 1, 'reload'), ('reload_empty', 2, 'reload_empty'), ('reload_ads_empty', 2, 'reload_empty')):
+        a += ['\t%s\tcoop_dbs_%s.skc' % (nm, clip), '\t{', '\t\tclient', '\t\t{', '\t\t\tentry sound coop_dbs_snd_open',
               _eject(10, count), '\t\t}', '\t}']
     for nm in ('reload_single', 'reload_single_first'):
         a += ['\t%s\tcoop_dbs_%s.skc' % (nm, nm), '\t{', '\t\tclient', '\t\t{', '\t\t\t12 stopaliaschannel coop_dbs_snd_shell',

@@ -20,13 +20,13 @@
  	//[user 2026-08-26] PER-VARIANT WEAPON SKINS. Generated, never hand-written - see
 --- a/hzm-mohaa-coop-mod/coop_mod/itemhandler.scr
 +++ b/hzm-mohaa-coop-mod/coop_mod/itemhandler.scr
-@@ -3468,4 +3468,5 @@
+@@ -3469,4 +3469,5 @@
  		case "models/weapons/it_w_breda.tik":
  			end("mg")
 +		case "models/weapons/coop_dbshotgun.tik": //[dbshotgun 2026-10-13]
  		case "models/weapons/shotgun.tik":
  			end("shotgun")
-@@ -3606,4 +3607,5 @@
+@@ -3608,4 +3609,5 @@
  		case "models/weapons/mp44.tik":
  		case "models/weapons/panzerschreck.tik":
 +		case "models/weapons/coop_dbshotgun.tik": //[dbshotgun 2026-10-13]
@@ -68,7 +68,7 @@
  	waitthread coop_mod/loadoutskins.scr::skin_init
 --- a/hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr
 +++ b/hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr
-@@ -357,4 +357,12 @@
+@@ -365,4 +365,12 @@
  			local.r["class"] = "heavy"
  			break
 +		case "80":	//[dbshotgun 2026-10-13] the double-barrel shotgun, its own entry
@@ -81,19 +81,19 @@
 +			break
  		case "45":
  			local.r["give"] = "models/weapons/bazooka.tik"
-@@ -607,5 +615,5 @@
+@@ -615,5 +623,5 @@
  roster_ids:{
  	if( level.coop_loRosterN != NIL ){ end }
--	level.coop_loRosterN = 74
-+	level.coop_loRosterN = 75
+-	level.coop_loRosterN = 75
++	level.coop_loRosterN = 76
  	level.coop_loRosterId[0] = "01"
  	level.coop_loRosterGive[0] = "models/weapons/m1_garand.tik"
-@@ -830,4 +838,7 @@
- 	level.coop_loRosterGive[73] = "models/weapons/m10_revolver.tik"
- 	level.coop_loRosterTab[73] = 4
-+	level.coop_loRosterId[74] = "80"
-+	level.coop_loRosterGive[74] = "models/weapons/coop_dbshotgun.tik"
-+	level.coop_loRosterTab[74] = 3
+@@ -841,4 +849,7 @@
+ 	level.coop_loRosterGive[74] = "models/weapons/coop_g43_irons.tik"
+ 	level.coop_loRosterTab[74] = 0
++	level.coop_loRosterId[75] = "80"
++	level.coop_loRosterGive[75] = "models/weapons/coop_dbshotgun.tik"
++	level.coop_loRosterTab[75] = 3
  }end
  
 --- a/hzm-mohaa-coop-mod/coop_mod/loadoutskins.scr
@@ -101,11 +101,11 @@
 @@ -6,5 +6,5 @@
  skin_init:{
  	if( level.coop_skinN != NIL ){ end }
--	level.coop_skinN = 350
-+	level.coop_skinN = 357
+-	level.coop_skinN = 357
++	level.coop_skinN = 364
  	level.coop_skinFinStat[1] = "finish_gold"
  	level.coop_skinFinName[1] = "GOLD"
-@@ -315,4 +315,11 @@
+@@ -322,4 +322,11 @@
  	level.coop_skinGive["models/weapons/shotgun.tik"][6] = "models/weapons/shotgun_camo_winter.tik"
  	level.coop_skinGive["models/weapons/shotgun.tik"][7] = "models/weapons/shotgun_camo_desert.tik"
 +	level.coop_skinGive["models/weapons/coop_dbshotgun.tik"][1] = "models/weapons/coop_dbshotgun_gold.tik"
@@ -119,7 +119,7 @@
  	level.coop_skinGive["models/weapons/silencedpistol.tik"][2] = "models/weapons/silencedpistol_chrome.tik"
 --- a/hzm-mohaa-coop-mod/coop_mod/loadoutskins_base.scr
 +++ b/hzm-mohaa-coop-mod/coop_mod/loadoutskins_base.scr
-@@ -299,4 +299,11 @@
+@@ -306,4 +306,11 @@
  	level.coop_skinBase["models/weapons/shotgun_camo_winter.tik"] = "models/weapons/shotgun.tik"
  	level.coop_skinBase["models/weapons/shotgun_camo_desert.tik"] = "models/weapons/shotgun.tik"
 +	level.coop_skinBase["models/weapons/coop_dbshotgun_gold.tik"] = "models/weapons/coop_dbshotgun.tik"
@@ -133,9 +133,9 @@
  	level.coop_skinBase["models/weapons/silencedpistol_chrome.tik"] = "models/weapons/silencedpistol.tik"
 --- a/hzm-mohaa-coop-mod/coop_mod/recoil_table.txt
 +++ b/hzm-mohaa-coop-mod/coop_mod/recoil_table.txt
-@@ -478,2 +478,11 @@
- welrod_chrome -1.0 -1.0 -0.16 0.16 1.2 V 2.8 0.8 1.2 12.0 25.0
- welrod_gold -1.0 -1.0 -0.16 0.16 1.2 V 2.8 0.8 1.2 12.0 25.0
+@@ -491,2 +491,11 @@
+ coop_g43_irons_hobbsg43wood -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
+ coop_g43_irons_lv_ttg43 -4.5 -5.0 -1.0 1.0 6 T 8 8 8 12.0 25.0
 +// [dbshotgun 2026-10-13] double-barrel shotgun: its tik's own viewkick line, the base and every finish
 +coop_dbshotgun -23.0 -26.0 -2.0 2.0 12.0 T 14.0 6.0 12.0 12.0 25.0
 +coop_dbshotgun_bloody -23.0 -26.0 -2.0 2.0 12.0 T 14.0 6.0 12.0 12.0 25.0
@@ -147,47 +147,12 @@
 +coop_dbshotgun_gold -23.0 -26.0 -2.0 2.0 12.0 T 14.0 6.0 12.0 12.0 25.0
 --- a/hzm-mohaa-coop-mod/coop_mod/unlockreq_gen.scr
 +++ b/hzm-mohaa-coop-mod/coop_mod/unlockreq_gen.scr
-@@ -56,4 +56,5 @@
+@@ -57,4 +57,5 @@
  	level.coop_unlockReq["models/weapons/mg42portable.tik"] = "Challenge: Bonesaw - Get 40 kills with the MG42"
  	level.coop_unlockReq["models/weapons/shotgun.tik"] = "Challenge: Shadow Hunter - Eliminate 12 Gestapo officers"
 +	level.coop_unlockReq["models/weapons/coop_dbshotgun.tik"] = "Challenge: Both Barrels - Get 60 kills with the Shotgun"
  	level.coop_unlockReq["models/weapons/bazooka.tik"] = "Challenge: Bob Burns' Horn - Get 15 kills with the Bazooka"
  	level.coop_unlockReq["models/weapons/panzerschreck.tik"] = "Challenge: Tank Terror - Get 15 kills with the Panzerschreck"
-@@ -87,5 +88,5 @@
- 	level.coop_unlockReq["models/coop_helmets/coop_helmet_net.tik"] = "Challenge: Kopfjager - Get 100 headshot kills"
- 	level.coop_unlockReq["models/coop_helmets/coop_helmet_29th.tik"] = "Challenge: Across Dog Green - Cross the beach to the seawall in under 90 seconds"
--	level.coop_unlockReq["models/coop_helmets/coop_helmet_29thnet.tik"] = "Challenge: Finest Hour - Reach the bangalores on Omaha without a squadmate going"
-+	level.coop_unlockReq["models/coop_helmets/coop_helmet_29thnet.tik"] = "Challenge: Not the Actual Events - Signal the bomber to conceal the advance to t"
- 	level.coop_unlockReq["models/coop_helmets/coop_helmet_sergeant.tik"] = "Reach rank 5, or challenge: Roman Roscoe"
- 	level.coop_unlockReq["models/coop_helmets/coop_helmet_captain.tik"] = "Challenge: Conspicuous Gallantry - Complete 50 primary objectives"
-@@ -130,5 +131,5 @@
- 	level.coop_unlockReq["models/coop_helmets/coop_helmet_ger_splinter.tik"] = "Challenge: Ghost in the Fog - Eliminate 45 enemy snipers"
- 	level.coop_unlockReq["models/player/allied_101st_captain.tik"] = "Reach rank 13, or challenge: Wet Behind the Ears"
--	level.coop_unlockReq["models/player/allied_101st_infantry.tik"] = "Challenge: To Hell and Back - Get 2500 total kills"
-+	level.coop_unlockReq["models/player/allied_101st_infantry.tik"] = "Challenge: To Hell and Back - Get 500 total kills"
- 	level.coop_unlockReq["models/player/allied_101st_scout.tik"] = "Challenge: A Thousand Yards - Get 75 long-range kills"
- 	level.coop_unlockReq["models/player/allied_501st_pir_scout.tik"] = "Reach rank 14, or challenge: The Guns Fall Silent"
-@@ -154,5 +155,5 @@
- 	level.coop_unlockReq["models/player/allied_russian_recon_soldier.tik"] = "Challenge: Stalingrad Rifle-Only Server - Beat a campaign level using only a bol"
- 	level.coop_unlockReq["models/player/allied_russian_seaman.tik"] = "Challenge: Blue Fox, This Is White Rook - Infiltrate the sub pen and finish the "
--	level.coop_unlockReq["models/player/allied_sas.tik"] = "Challenge: Todesengel - Get 5000 total kills"
-+	level.coop_unlockReq["models/player/allied_sas.tik"] = "Challenge: Todesengel - Get 750 total kills"
- 	level.coop_unlockReq["models/player/allied_tanker.tik"] = "Challenge: Panzer Graveyard - Destroy 30 enemy vehicles in the campaign"
- 	level.coop_unlockReq["models/player/allied_tanker2.tik"] = "Reach rank 15, or challenge: SOE Silencer"
-@@ -162,5 +163,5 @@
- 	level.coop_unlockReq["models/player/allied_wheathers.tik"] = "Reach rank 16, or challenge: Iron Coffin"
- 	level.coop_unlockReq["models/player/american_army2.tik"] = "Challenge: Blooded - Get 100 total kills"
--	level.coop_unlockReq["models/player/american_army3.tik"] = "Challenge: Dogface - Get 1000 total kills"
-+	level.coop_unlockReq["models/player/american_army3.tik"] = "Challenge: Dogface - Get 250 total kills"
- 	level.coop_unlockReq["models/player/american_army_29id.tik"] = "Reach rank 2, or challenge: Cheap and Deadly"
- 	level.coop_unlockReq["models/player/american_army_29id_bar.tik"] = "Reach rank 6, or challenge: Slabsides Slayer"
-@@ -202,5 +203,5 @@
- 	level.coop_unlockReq["models/player/support_gunner.tik"] = "Challenge: Kripo's Companion - Get 90 kills with the Walther PPK (Elite)"
- 	level.coop_unlockReq["models/player/support_gunnernohelm.tik"] = "Challenge: Commissar's Companion - Get 90 kills with the Nagant Revolver (Elite)"
--	level.coop_unlockReq["models/player/allied_Airborne_101E_Col_Sink.tik"] = "Challenge: The Scourge of Berlin - Eliminate 1000 Wehrmacht infantry"
-+	level.coop_unlockReq["models/player/allied_Airborne_101E_Col_Sink.tik"] = "Challenge: The Scourge of Berlin - Eliminate 750 Wehrmacht infantry"
- 	level.coop_unlockReq["models/player/allied_Airborne_101E_Lt_Speirs.tik"] = "Challenge: Kentucky Windage - Get 25 long-range kills (over 2000 units)"
- 	level.coop_unlockReq["models/player/allied_Airborne_101E_Corp_Liebgott.tik"] = "Challenge: Spotless Record - Complete 5 missions with every primary objective do"
 --- a/hzm-mohaa-coop-mod/global/giveall.scr
 +++ b/hzm-mohaa-coop-mod/global/giveall.scr
 @@ -11,4 +11,5 @@
@@ -209,14 +174,14 @@
 @@ -1999,4 +1999,36 @@
  }
  
-+// [dbshotgun 2026-10-13] the double-barrel shotgun, its own tile, directly under the trench gun. Lit by coop_loP3d (the heavy tab AND
++// [dbshotgun 2026-10-13] the double-barrel shotgun, its own tile, the last one of the heavy tab. Lit by coop_loP3d (the heavy tab AND
 +// the server's master switch coop_dbShotgun: ui/loadout/lktab3.cfg runs `vstr coop_loDbT`), not by coop_loP3.
 +resource
 +Button
 +{
 +name "tile80"
 +title "DOUBLE BARREL"
-+rect 306 251 162 16
++rect 306 327 162 16
 +fgcolor 0.84 0.82 0.76 1.00
 +bgcolor 0.09 0.10 0.13 0.90
 +borderstyle "3D_BORDER"
@@ -233,7 +198,7 @@
 +{
 +ordernumber 8
 +name "tilelk80"
-+rect 452 252 14 14
++rect 452 328 14 14
 +fgcolor 1.00 1.00 1.00 1.00
 +bgcolor 0.00 0.00 0.00 0.00
 +borderstyle "NONE"
@@ -243,93 +208,37 @@
 +
  resource
  Button
-@@ -2004,5 +2036,5 @@
- name "tile45"
- title "M1A1 BAZOOKA"
--rect 306 251 162 16
-+rect 306 270 162 16
- fgcolor 0.84 0.82 0.76 1.00
- bgcolor 0.09 0.10 0.13 0.90
-@@ -2021,5 +2053,5 @@
- ordernumber 8
- name "tilelk45"
--rect 452 252 14 14
-+rect 452 271 14 14
- fgcolor 1.00 1.00 1.00 1.00
- bgcolor 0.00 0.00 0.00 0.00
-@@ -2034,5 +2066,5 @@
- name "tile46"
- title "PANZERSCHRECK"
--rect 306 270 162 16
-+rect 306 289 162 16
- fgcolor 0.84 0.82 0.76 1.00
- bgcolor 0.09 0.10 0.13 0.90
-@@ -2051,5 +2083,5 @@
- ordernumber 8
- name "tilelk46"
--rect 452 271 14 14
-+rect 452 290 14 14
- fgcolor 1.00 1.00 1.00 1.00
- bgcolor 0.00 0.00 0.00 0.00
-@@ -2064,5 +2096,5 @@
- name "tile47"
- title "PIAT"
--rect 306 289 162 16
-+rect 306 308 162 16
- fgcolor 0.84 0.82 0.76 1.00
- bgcolor 0.09 0.10 0.13 0.90
-@@ -2081,5 +2113,5 @@
- ordernumber 8
- name "tilelk47"
--rect 452 290 14 14
-+rect 452 309 14 14
- fgcolor 1.00 1.00 1.00 1.00
- bgcolor 0.00 0.00 0.00 0.00
-@@ -2818,5 +2850,5 @@
- name "tile72"
- title "DP-28"
--rect 306 308 162 16
-+rect 306 327 162 16
- fgcolor 0.84 0.82 0.76 1.00
- bgcolor 0.09 0.10 0.13 0.90
-@@ -2835,5 +2867,5 @@
- ordernumber 8
- name "tilelk72"
--rect 452 309 14 14
-+rect 452 328 14 14
- fgcolor 1.00 1.00 1.00 1.00
- bgcolor 0.00 0.00 0.00 0.00
 --- a/hzm-mohaa-coop-mod/ui/loadout/lktab0.cfg
 +++ b/hzm-mohaa-coop-mod/ui/loadout/lktab0.cfg
-@@ -96,4 +96,6 @@
- set coop_loLkV74 0
+@@ -97,4 +97,6 @@
  set coop_loLkV75 0
+ set coop_loLkV78 0
 +set coop_loLkV80 0
 +set coop_loP3d 0
  vstr coop_loLkA11
  vstr coop_loLkA70
 --- a/hzm-mohaa-coop-mod/ui/loadout/lktab1.cfg
 +++ b/hzm-mohaa-coop-mod/ui/loadout/lktab1.cfg
-@@ -98,3 +98,5 @@
- set coop_loLkV74 0
+@@ -99,3 +99,5 @@
  set coop_loLkV75 0
+ set coop_loLkV78 0
 +set coop_loLkV80 0
 +set coop_loP3d 0
  vstr coop_loLkA23
 --- a/hzm-mohaa-coop-mod/ui/loadout/lktab2.cfg
 +++ b/hzm-mohaa-coop-mod/ui/loadout/lktab2.cfg
-@@ -98,4 +98,6 @@
- set coop_loLkV74 0
+@@ -99,4 +99,6 @@
  set coop_loLkV75 0
+ set coop_loLkV78 0
 +set coop_loLkV80 0
 +set coop_loP3d 0
  vstr coop_loLkA35
  vstr coop_loLkA71
 --- a/hzm-mohaa-coop-mod/ui/loadout/lktab3.cfg
 +++ b/hzm-mohaa-coop-mod/ui/loadout/lktab3.cfg
-@@ -98,5 +98,9 @@
- set coop_loLkV74 0
+@@ -99,5 +99,9 @@
  set coop_loLkV75 0
+ set coop_loLkV78 0
 +set coop_loLkV80 0
 +set coop_loP3d 0
  vstr coop_loLkA47
@@ -339,18 +248,18 @@
 +vstr coop_loDbT
 --- a/hzm-mohaa-coop-mod/ui/loadout/lktab4.cfg
 +++ b/hzm-mohaa-coop-mod/ui/loadout/lktab4.cfg
-@@ -106,4 +106,6 @@
- set coop_loLkV74 0
+@@ -107,4 +107,6 @@
  set coop_loLkV75 0
+ set coop_loLkV78 0
 +set coop_loLkV80 0
 +set coop_loP3d 0
  vstr coop_loLkA63
  vstr coop_loLkA74
 --- a/hzm-mohaa-coop-mod/ui/loadout/lktab5.cfg
 +++ b/hzm-mohaa-coop-mod/ui/loadout/lktab5.cfg
-@@ -86,3 +86,5 @@
- set coop_loLkV74 0
+@@ -87,3 +87,5 @@
  set coop_loLkV75 0
+ set coop_loLkV78 0
 +set coop_loLkV80 0
 +set coop_loP3d 0
  vstr coop_loLkA69

@@ -16,6 +16,7 @@ main:{
 	level.coop_unlockReq["models/weapons/carbine.tik"] = "Reach rank 1"
 	level.coop_unlockReq["models/weapons/kar98.tik"] = "Reach rank 3"
 	level.coop_unlockReq["models/weapons/g43.tik"] = "Reach rank 5"
+	level.coop_unlockReq["models/weapons/coop_g43_irons.tik"] = "Reach rank 2"
 	level.coop_unlockReq["models/weapons/enfield.tik"] = "Reach rank 7"
 	level.coop_unlockReq["models/weapons/springfield_unscoped.tik"] = "Reach rank 9"
 	level.coop_unlockReq["models/weapons/it_w_carcano.tik"] = "Reach rank 10"

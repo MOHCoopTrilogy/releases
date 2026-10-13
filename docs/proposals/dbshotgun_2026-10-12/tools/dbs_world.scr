@@ -1,0 +1,290 @@
+
+//=========================================================================
+// TEST OVERLAY ONLY (docs/proposals/dbshotgun_2026-10-12 tools/dbs_world.scr) - NEVER shipped.
+// World behaviour of the double barrel, driven from the server script; the harness (tools/run_world.py) answers
+// every "^~^~^ DBSW <seq> <kind> <arg>" line (shot / die / fwd / use / fire / cmd) and acknowledges it in cvar
+// coop_dbsAck. Facts are printed as "^~^~^ DBSW stat <tag> ...".
+//=========================================================================
+dbsw_main local.mode:{
+	local.p = $player[1]
+	if( local.p == NULL ){ println "^~^~^ DBSW abort no player"; end }
+	level.dbsw_seq = 0
+	level.dbsw_dbs = "models/weapons/coop_dbshotgun.tik"
+	level.dbsw_pump = "models/weapons/shotgun.tik"
+	setcvar "coop_lootProbe" "1"
+	level.coop_dbno_disabled = 1
+	level.coop_disableSpawnWarper = 1		//a respawn goes to a map spawn point, not onto the death place
+	local.yaw = float( getcvar( "coop_isYaw" ) )
+	local.sx = float( getcvar( "coop_isX" ) )
+	local.sy = float( getcvar( "coop_isY" ) )
+	local.fw = angles_toforward ( 0 local.yaw 0 )
+	local.lf = angles_toforward ( 0 ( local.yaw + 90.0 ) 0 )
+	local.p nodamage
+	local.p.origin = ( local.sx local.sy 80 )
+	local.p.viewangles = ( 0 local.yaw 0 )
+	wait 1.5
+	local.S = local.p.origin
+	println ( "^~^~^ DBSW spot " + local.S + " yaw " + local.yaw + " mode " + local.mode )
+
+	if( local.mode == "1" ){
+	// ---- A. the death drop, seen; touched by a player who does not hold the gun
+	local.p give level.dbsw_dbs
+	wait 0.5
+	local.p use level.dbsw_dbs
+	wait 3.5
+	waitthread dbsw_stat "A0_holding_it_before_death"
+	local.p takedamage
+	waitthread dbsw_mark "die" "A"
+	wait 2
+	local.p = $player[1]
+	local.p nodamage
+	waitthread dbsw_stat "A1_respawned_at_a_map_spawn"
+	local.d = waitthread dbsw_find level.dbsw_dbs
+	if( local.d == NULL ){ println "^~^~^ DBSW abort no death drop found"; println "^~^~^ DBSW end"; end }
+	local.dorg = local.d.origin
+	println ( "^~^~^ DBSW deathdrop ent=" + local.d.entnum + " at " + local.dorg )
+	local.p.origin = local.S - local.fw * 150.0
+	wait 0.3
+	waitthread dbsw_aim local.p local.dorg 86
+	waitthread dbsw_mark "shot" "w01_death_drop_on_the_ground"
+	waitthread dbsw_mark "fwd" "650"
+	wait 1.5
+	waitthread dbsw_stat "A2_after_walking_over_it"
+	local.p use level.dbsw_dbs
+	wait 3.4
+	local.p.viewangles = ( 0 local.yaw 0 )
+	wait 0.4
+	waitthread dbsw_mark "shot" "w02_touch_pickup_in_the_hand"
+
+	// ---- E1. holding the double barrel, walking over a PUMP gun lying there: same weapon class = its shells only
+	local.q = local.S + local.lf * 160.0
+	local.e = spawn level.dbsw_pump "origin" ( local.q + ( 0 0 24 ) )
+	wait 1.5
+	waitthread dbsw_aim local.p local.q 70
+	waitthread dbsw_stat "E0_double_barrel_held_pump_gun_on_the_ground"
+	waitthread dbsw_mark "shot" "w03_pump_gun_on_the_ground_double_barrel_held"
+	waitthread dbsw_mark "fwd" "550"
+	wait 1.5
+	waitthread dbsw_stat "E1_after_walking_over_the_pump_gun"
+
+	// ---- B. die again (the double barrel drops), respawn with neither; a pump gun taken as a NEW gun by touch
+	//         (the same forced path as A: is the `cannot be picked up` line this gun's or any gun's?), then the
+	//         double barrel's death drop walked over with the pump gun held: its shells only
+	local.p takedamage
+	waitthread dbsw_mark "die" "B"
+	wait 2
+	local.p = $player[1]
+	local.p nodamage
+	waitthread dbsw_stat "B0_respawned_with_neither"
+	local.d = waitthread dbsw_find level.dbsw_dbs
+	if( local.d == NULL ){ println "^~^~^ DBSW abort no second death drop"; println "^~^~^ DBSW end"; end }
+	local.dorg = local.d.origin
+	local.q = local.S - local.lf * 160.0
+	local.e = spawn level.dbsw_pump "origin" ( local.q + ( 0 0 24 ) )
+	wait 1.5
+	local.p.origin = local.q - local.fw * 150.0
+	wait 0.3
+	waitthread dbsw_aim local.p local.q 70
+	waitthread dbsw_mark "fwd" "550"
+	wait 1.5
+	waitthread dbsw_stat "B1_pump_gun_walked_over_as_a_new_gun"
+	local.p.origin = local.dorg - local.fw * 150.0
+	wait 0.3
+	waitthread dbsw_aim local.p local.dorg 70
+	waitthread dbsw_stat "B2_pump_gun_held_double_barrel_on_the_ground"
+	waitthread dbsw_mark "fwd" "550"
+	wait 1.5
+	waitthread dbsw_stat "B3_after_walking_over_the_double_barrel"
+
+	}
+	if( local.mode == "2" ){
+		//mode 2: straight to the AI part, with a pump gun in the kit (what part B leaves the player with).
+		//Run w2: the loot rule then calls the double barrel OWNED (fgame s_hzmLootSameGun cuts both names at " (":
+		//"Shotgun (Double Barrel)" = "Shotgun") - shells only. Mode 3 = no shotgun in the kit: the gun can be taken.
+		local.p give level.dbsw_pump
+		wait 1.5
+	}
+	// ---- D. an AI armed with it through the mod's AI weapon path, killed: the Use prompt with our picture; TAP = the gun
+	local.w = waitthread dbsw_ai local.p local.S local.fw local.yaw "w04_ai_holding_it"
+	if( local.w == NULL ){ println "^~^~^ DBSW abort no AI drop"; println "^~^~^ DBSW end"; end }
+	waitthread dbsw_aim local.p ( local.w.origin + ( 0 0 4 ) ) 60
+	wait 0.6
+	waitthread dbsw_stat "D0_looking_at_the_AI_drop"
+	waitthread dbsw_mark "shot" "w05_use_prompt_with_loot_picture"
+	waitthread dbsw_mark "use" "160"
+	wait 2
+	waitthread dbsw_stat "D1_after_the_tap"
+	// ---- F. right after picking it up: bring it up, both barrels, a reload, a weapon switch
+	local.p.origin = local.S
+	local.p.viewangles = ( 0 local.yaw 0 )
+	local.p use level.dbsw_dbs
+	wait 3.4
+	local.p setammo "shotgun" 20
+	wait 0.2
+	waitthread dbsw_stat "F0_looted_gun_brought_up"
+	waitthread dbsw_mark "shot" "w06_looted_gun_in_the_hand"
+	waitthread dbsw_mark "cmd" "rt1"
+	waitthread dbsw_mark "fire" "2"
+	wait 0.25
+	waitthread dbsw_mark "shot" "w07_both_barrels_fired"
+	waitthread dbsw_mark "cmd" "reload"
+	wait 5.5
+	waitthread dbsw_mark "cmd" "rt0"
+	waitthread dbsw_stat "F1_both_fired_and_reloaded"
+	waitthread dbsw_mark "shot" "w08_reloaded"
+	if( local.mode == "3" ){
+		//the second shotgun as the armory's two picks put it into the kit (the world never hands both to one player:
+		//a touch gives the shells of a same-class gun, the loot rule calls the sibling owned)
+		local.p give level.dbsw_pump
+		wait 1.5
+	}
+	local.p use level.dbsw_pump
+	wait 3.4
+	waitthread dbsw_stat "F2_switched_to_the_pump_gun"
+	waitthread dbsw_mark "shot" "w09_switched_to_the_pump_gun"
+	waitthread dbsw_mark "cmd" "rt1"
+	waitthread dbsw_mark "fire" "1"
+	wait 1.8
+	waitthread dbsw_mark "cmd" "reload"
+	wait 4.5
+	waitthread dbsw_mark "cmd" "rt0"
+	waitthread dbsw_stat "F3_pump_gun_one_shot_and_reloaded"
+	waitthread dbsw_mark "shot" "w10_pump_gun_after_one_shot_and_reload"
+	local.p use level.dbsw_dbs
+	wait 3.4
+	waitthread dbsw_stat "F4_back_on_the_double_barrel"
+	waitthread dbsw_mark "shot" "w11_back_on_the_double_barrel"
+
+	// ---- H. a second AI drop with the gun already owned: HOLD = its shells
+	local.p setammo "shotgun" 10
+	wait 0.3
+	local.w = waitthread dbsw_ai local.p local.S local.fw local.yaw "none"
+	if( local.w == NULL ){ println "^~^~^ DBSW abort no second AI drop"; println "^~^~^ DBSW end"; end }
+	waitthread dbsw_aim local.p ( local.w.origin + ( 0 0 4 ) ) 60
+	wait 0.6
+	waitthread dbsw_stat "H0_looking_at_a_second_AI_drop_gun_owned"
+	waitthread dbsw_mark "shot" "w12_use_prompt_gun_already_owned"
+	waitthread dbsw_mark "use" "1300"
+	wait 2
+	waitthread dbsw_stat "H1_after_the_hold"
+	waitthread dbsw_mark "shot" "w13_after_the_hold"
+	println "^~^~^ DBSW end"
+}end
+
+//one mark for the harness; waits for its acknowledgement (at most a minute)
+dbsw_mark local.kind local.arg:{
+	level.dbsw_seq++
+	println ( "^~^~^ DBSW " + level.dbsw_seq + " " + local.kind + " " + local.arg )
+	local.n = 0
+	while( int( getcvar( "coop_dbsAck" ) ) != level.dbsw_seq && local.n < 2400 ){
+		waitframe
+		local.n++
+	}
+}end
+
+//facts: the shell pool, what the player holds, what lies in the world
+dbsw_stat local.tag:{
+	local.p = $player[1]
+	local.pool = local.p getammo "shotgun"
+	local.hd = local.p coop_hasitem "Shotgun (Double Barrel)"
+	local.hp = local.p coop_hasitem "Shotgun"
+	local.nd = 0
+	local.np = 0
+	local.i = 0
+	while( local.i < 1024 ){
+		local.e = getentbyentnum local.i
+		if( local.e != NULL ){
+			if( local.e.classname == "Weapon" ){
+				if( ( vector_length local.e.origin ) > 8 ){
+					if( local.e.model == level.dbsw_dbs ){ local.nd++ }
+					if( local.e.model == level.dbsw_pump ){ local.np++ }
+				}
+			}
+		}
+		local.i++
+	}
+	println ( "^~^~^ DBSW stat " + local.tag + " pool=" + local.pool + " hasDbs=" + local.hd + " hasPump=" + local.hp + " worldDbs=" + local.nd + " worldPump=" + local.np + " lootT=" + getcvar( "coop_lootT" ) + " torso=" + ( local.p gettorsostate ) + " t=" + level.time )
+}end
+
+//the first weapon of that model lying in the world
+dbsw_find local.model:{
+	local.r = NULL
+	local.i = 0
+	while( local.i < 1024 && local.r == NULL ){
+		local.e = getentbyentnum local.i
+		if( local.e != NULL ){
+			if( local.e.classname == "Weapon" ){
+				if( local.e.model == local.model && ( vector_length local.e.origin ) > 8 ){
+					local.r = local.e
+				}
+			}
+		}
+		local.i++
+	}
+}end local.r
+
+//stand local.dist from a point, on the side the player is on, and look straight at it
+dbsw_aim local.p local.pt local.dist:{
+	local.dir = local.p.origin - local.pt
+	local.dir[2] = 0
+	local.len = vector_length local.dir
+	if( local.len < 1 ){
+		local.dir = ( 1 0 0 )
+		local.len = 1
+	}
+	local.spot = local.pt + ( local.dir * ( local.dist / local.len ) )
+	local.spot[2] = local.pt[2] + 8
+	local.p.origin = local.spot
+	local.p.velocity = ( 0 0 0 )
+	wait 0.5
+	local.eye = local.p.origin + ( 0 0 82 )
+	local.p.viewangles = vector_toangles ( local.pt - local.eye )
+	wait 0.7
+}end
+
+//one German armed with the double barrel through the mod's AI weapon path, looked at, killed by a bullet hit; returns his dropped gun
+dbsw_ai local.p local.S local.fw local.yaw local.shot:{
+	local.p.origin = local.S
+	local.p.viewangles = ( 0 local.yaw 0 )
+	local.p.velocity = ( 0 0 0 )
+	wait 0.5
+	local.g = spawn models/human/german_wehrmact_soldier.tik "origin" ( local.S + local.fw * 130.0 )
+	local.g.angles = ( 0 ( local.yaw + 180.0 ) 0 )
+	wait 1
+	local.g waitthread coop_mod/aihandler.scr::coop_actorArm level.dbsw_dbs
+	local.p nodamage
+	setcvar "g_ai" "1"
+	wait 1.2
+	println ( "^~^~^ DBSW ai armed ent=" + local.g.entnum )
+	if( local.shot != "none" ){ waitthread dbsw_mark "shot" local.shot }
+	//a bullet hit whose attacker is the player: the event a real shot makes (aihandler.scr::actorPainHandler)
+	local.k = 0
+	while( local.k < 5 && local.g != NULL && ( isalive local.g ) ){
+		local.g damage local.p 5000 local.p ( 0 0 0 ) local.fw ( 0 0 0 ) 0 16 17 3
+		local.k++
+		wait 0.5
+	}
+	println ( "^~^~^ DBSW ai hits=" + local.k )
+	wait 4.5
+	local.al = 1
+	if( local.g != NULL ){ local.al = isalive local.g }
+	setcvar "g_ai" "0"
+	local.w = waitthread dbsw_find level.dbsw_dbs
+	local.wn = 0
+	if( local.w != NULL ){ local.wn = local.w.entnum }
+	println ( "^~^~^ DBSW ai stillAlive=" + local.al + " dropEnt=" + local.wn )
+}end local.w
+
+//server timing probe: while coop_rtOn is 1, one line per server frame (time, torso state, shell pool)
+dbsw_probe:{
+	println "^~^~^ DBST probe started"
+	while( 1 ){
+		if( getcvar( "coop_rtOn" ) == "1" && $player != NULL && $player.size >= 1 ){
+			local.p = $player[1]
+			local.s = local.p gettorsostate
+			local.a = local.p getammo "shotgun"
+			println ( "^~^~^ DBST t=" + level.time + " st=" + local.s + " am=" + local.a )
+		}
+		waitframe
+	}
+}end

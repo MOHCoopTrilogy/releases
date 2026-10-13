@@ -745,7 +745,7 @@ Button
 {
 name "tile03"
 title "KAR98K"
-rect 306 118 162 16
+rect 306 137 162 16
 fgcolor 0.84 0.82 0.76 1.00
 bgcolor 0.09 0.10 0.13 0.90
 borderstyle "3D_BORDER"
@@ -762,7 +762,7 @@ Label
 {
 ordernumber 8
 name "tilelk03"
-rect 452 119 14 14
+rect 452 138 14 14
 fgcolor 1.00 1.00 1.00 1.00
 bgcolor 0.00 0.00 0.00 0.00
 borderstyle "NONE"
@@ -775,7 +775,7 @@ Button
 {
 name "tile04"
 title "GEWEHR 43"
-rect 306 137 162 16
+rect 306 156 162 16
 fgcolor 0.84 0.82 0.76 1.00
 bgcolor 0.09 0.10 0.13 0.90
 borderstyle "3D_BORDER"
@@ -792,7 +792,7 @@ Label
 {
 ordernumber 8
 name "tilelk04"
-rect 452 138 14 14
+rect 452 157 14 14
 fgcolor 1.00 1.00 1.00 1.00
 bgcolor 0.00 0.00 0.00 0.00
 borderstyle "NONE"
@@ -805,7 +805,7 @@ Button
 {
 name "tile05"
 title "LEE-ENFIELD NO.4"
-rect 306 156 162 16
+rect 306 175 162 16
 fgcolor 0.84 0.82 0.76 1.00
 bgcolor 0.09 0.10 0.13 0.90
 borderstyle "3D_BORDER"
@@ -822,7 +822,7 @@ Label
 {
 ordernumber 8
 name "tilelk05"
-rect 452 157 14 14
+rect 452 176 14 14
 fgcolor 1.00 1.00 1.00 1.00
 bgcolor 0.00 0.00 0.00 0.00
 borderstyle "NONE"
@@ -835,7 +835,7 @@ Button
 {
 name "tile06"
 title "SPRINGFIELD M1903"
-rect 306 175 162 16
+rect 306 194 162 16
 fgcolor 0.84 0.82 0.76 1.00
 bgcolor 0.09 0.10 0.13 0.90
 borderstyle "3D_BORDER"
@@ -852,7 +852,7 @@ Label
 {
 ordernumber 8
 name "tilelk06"
-rect 452 176 14 14
+rect 452 195 14 14
 fgcolor 1.00 1.00 1.00 1.00
 bgcolor 0.00 0.00 0.00 0.00
 borderstyle "NONE"
@@ -865,7 +865,7 @@ Button
 {
 name "tile07"
 title "CARCANO M91/38"
-rect 306 194 162 16
+rect 306 213 162 16
 fgcolor 0.84 0.82 0.76 1.00
 bgcolor 0.09 0.10 0.13 0.90
 borderstyle "3D_BORDER"
@@ -882,7 +882,7 @@ Label
 {
 ordernumber 8
 name "tilelk07"
-rect 452 195 14 14
+rect 452 214 14 14
 fgcolor 1.00 1.00 1.00 1.00
 bgcolor 0.00 0.00 0.00 0.00
 borderstyle "NONE"
@@ -895,7 +895,7 @@ Button
 {
 name "tile08"
 title "SVT-40"
-rect 306 213 162 16
+rect 306 232 162 16
 fgcolor 0.84 0.82 0.76 1.00
 bgcolor 0.09 0.10 0.13 0.90
 borderstyle "3D_BORDER"
@@ -912,7 +912,7 @@ Label
 {
 ordernumber 8
 name "tilelk08"
-rect 452 214 14 14
+rect 452 233 14 14
 fgcolor 1.00 1.00 1.00 1.00
 bgcolor 0.00 0.00 0.00 0.00
 borderstyle "NONE"
@@ -925,7 +925,7 @@ Button
 {
 name "tile09"
 title "MOSIN-NAGANT"
-rect 306 232 162 16
+rect 306 251 162 16
 fgcolor 0.84 0.82 0.76 1.00
 bgcolor 0.09 0.10 0.13 0.90
 borderstyle "3D_BORDER"
@@ -942,7 +942,7 @@ Label
 {
 ordernumber 8
 name "tilelk09"
-rect 452 233 14 14
+rect 452 252 14 14
 fgcolor 1.00 1.00 1.00 1.00
 bgcolor 0.00 0.00 0.00 0.00
 borderstyle "NONE"
@@ -955,7 +955,7 @@ Button
 {
 name "tile10"
 title "ARISAKA TYPE 99"
-rect 306 251 162 16
+rect 306 270 162 16
 fgcolor 0.84 0.82 0.76 1.00
 bgcolor 0.09 0.10 0.13 0.90
 borderstyle "3D_BORDER"
@@ -972,7 +972,7 @@ Label
 {
 ordernumber 8
 name "tilelk10"
-rect 452 252 14 14
+rect 452 271 14 14
 fgcolor 1.00 1.00 1.00 1.00
 bgcolor 0.00 0.00 0.00 0.00
 borderstyle "NONE"
@@ -985,7 +985,7 @@ Button
 {
 name "tile11"
 title "M1 GARAND SILENCED"
-rect 306 270 162 16
+rect 306 289 162 16
 fgcolor 0.84 0.82 0.76 1.00
 bgcolor 0.09 0.10 0.13 0.90
 borderstyle "3D_BORDER"
@@ -1002,7 +1002,7 @@ Label
 {
 ordernumber 8
 name "tilelk11"
-rect 452 271 14 14
+rect 452 290 14 14
 fgcolor 1.00 1.00 1.00 1.00
 bgcolor 0.00 0.00 0.00 0.00
 borderstyle "NONE"
@@ -1998,14 +1998,14 @@ enabledcvar "coop_loLkV44"
 shader "textures/mohmenu/coop_lo_lock.tga"
 }
 
-// [dbshotgun 2026-10-13] the double-barrel shotgun, its own tile, directly under the trench gun. Lit by coop_loP3d (the heavy tab AND
+// [dbshotgun 2026-10-13] the double-barrel shotgun, its own tile, the last one of the heavy tab. Lit by coop_loP3d (the heavy tab AND
 // the server's master switch coop_dbShotgun: ui/loadout/lktab3.cfg runs `vstr coop_loDbT`), not by coop_loP3.
 resource
 Button
 {
 name "tile80"
 title "DOUBLE BARREL"
-rect 306 251 162 16
+rect 306 327 162 16
 fgcolor 0.84 0.82 0.76 1.00
 bgcolor 0.09 0.10 0.13 0.90
 borderstyle "3D_BORDER"
@@ -2022,7 +2022,7 @@ Label
 {
 ordernumber 8
 name "tilelk80"
-rect 452 252 14 14
+rect 452 328 14 14
 fgcolor 1.00 1.00 1.00 1.00
 bgcolor 0.00 0.00 0.00 0.00
 borderstyle "NONE"
@@ -2035,7 +2035,7 @@ Button
 {
 name "tile45"
 title "M1A1 BAZOOKA"
-rect 306 270 162 16
+rect 306 251 162 16
 fgcolor 0.84 0.82 0.76 1.00
 bgcolor 0.09 0.10 0.13 0.90
 borderstyle "3D_BORDER"
@@ -2052,7 +2052,7 @@ Label
 {
 ordernumber 8
 name "tilelk45"
-rect 452 271 14 14
+rect 452 252 14 14
 fgcolor 1.00 1.00 1.00 1.00
 bgcolor 0.00 0.00 0.00 0.00
 borderstyle "NONE"
@@ -2065,7 +2065,7 @@ Button
 {
 name "tile46"
 title "PANZERSCHRECK"
-rect 306 289 162 16
+rect 306 270 162 16
 fgcolor 0.84 0.82 0.76 1.00
 bgcolor 0.09 0.10 0.13 0.90
 borderstyle "3D_BORDER"
@@ -2082,7 +2082,7 @@ Label
 {
 ordernumber 8
 name "tilelk46"
-rect 452 290 14 14
+rect 452 271 14 14
 fgcolor 1.00 1.00 1.00 1.00
 bgcolor 0.00 0.00 0.00 0.00
 borderstyle "NONE"
@@ -2095,7 +2095,7 @@ Button
 {
 name "tile47"
 title "PIAT"
-rect 306 308 162 16
+rect 306 289 162 16
 fgcolor 0.84 0.82 0.76 1.00
 bgcolor 0.09 0.10 0.13 0.90
 borderstyle "3D_BORDER"
@@ -2112,7 +2112,7 @@ Label
 {
 ordernumber 8
 name "tilelk47"
-rect 452 309 14 14
+rect 452 290 14 14
 fgcolor 1.00 1.00 1.00 1.00
 bgcolor 0.00 0.00 0.00 0.00
 borderstyle "NONE"
@@ -2787,7 +2787,7 @@ Button
 {
 name "tile70"
 title "JOHNSON M1941"
-rect 306 289 162 16
+rect 306 308 162 16
 fgcolor 0.84 0.82 0.76 1.00
 bgcolor 0.09 0.10 0.13 0.90
 borderstyle "3D_BORDER"
@@ -2804,11 +2804,42 @@ Label
 {
 ordernumber 8
 name "tilelk70"
-rect 452 290 14 14
+rect 452 309 14 14
 fgcolor 1.00 1.00 1.00 1.00
 bgcolor 0.00 0.00 0.00 0.00
 borderstyle "NONE"
 enabledcvar "coop_loLkV70"
+shader "textures/mohmenu/coop_lo_lock.tga"
+}
+
+// [g43 irons 2026-10-13] the iron-sight G43, its own tile, between the M1 Carbine and the Kar98k
+resource
+Button
+{
+name "tile78"
+title "GEWEHR 43 (IRON SIGHTS)"
+rect 306 118 162 16
+fgcolor 0.84 0.82 0.76 1.00
+bgcolor 0.09 0.10 0.13 0.90
+borderstyle "3D_BORDER"
+font "verdana-12"
+clicksound "sound/menu/apply.wav"
+enabledcvar "!coop_loNP0"
+stuffcommand "exec ui/loadout/t78.cfg"
+hovercommand "exec ui/loadout/req78.cfg"
+mouseawaycommand "exec ui/loadout/reqclear.cfg"
+}
+
+resource
+Label
+{
+ordernumber 8
+name "tilelk78"
+rect 452 119 14 14
+fgcolor 1.00 1.00 1.00 1.00
+bgcolor 0.00 0.00 0.00 0.00
+borderstyle "NONE"
+enabledcvar "coop_loLkV78"
 shader "textures/mohmenu/coop_lo_lock.tga"
 }
 
@@ -2849,7 +2880,7 @@ Button
 {
 name "tile72"
 title "DP-28"
-rect 306 327 162 16
+rect 306 308 162 16
 fgcolor 0.84 0.82 0.76 1.00
 bgcolor 0.09 0.10 0.13 0.90
 borderstyle "3D_BORDER"
@@ -2866,7 +2897,7 @@ Label
 {
 ordernumber 8
 name "tilelk72"
-rect 452 328 14 14
+rect 452 309 14 14
 fgcolor 1.00 1.00 1.00 1.00
 bgcolor 0.00 0.00 0.00 0.00
 borderstyle "NONE"

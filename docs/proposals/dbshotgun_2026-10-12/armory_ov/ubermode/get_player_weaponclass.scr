@@ -58,6 +58,7 @@ setup_weapon_classes: // after level waittill spawn: level.mef_weaponclasses = w
 	local.classes["models/weapons/enfield.tik"] = "rifle"
 	local.classes["models/weapons/svt_rifle.tik"] = "sniper"
 	local.classes["models/weapons/g43.tik"] = "sniper"
+	local.classes["models/weapons/coop_g43_irons.tik"] = "rifle"	//[g43 irons 2026-10-13] no scope
 	local.classes["models/weapons/ppsh_smg.tik"] = "smg"
 	local.classes["models/weapons/sten.tik"] = "smg"
 	local.classes["models/weapons/kar98_mortar.tik"] = "shotgun"

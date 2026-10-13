@@ -1,0 +1,34 @@
+coop_dbshotgun.hip.two_barrels
+   -0.300 state STAND  0.000 SHOT  0.025 state ATTACK_SHOTGUN_PRIMARY  0.375 SHOT  1.575 state RELOAD_SHOTGUN  2.325 state RELOAD_SHOTGUN_SINGLE  2.775 pool -1
+coop_dbshotgun.hip.one_shot_reload
+   -0.300 state STAND  0.000 SHOT  0.025 state ATTACK_SHOTGUN_PRIMARY  1.200 state STAND  key reload  1.650 state RELOAD_SHOTGUN  2.400 state RELOAD_SHOTGUN_SINGLE_CH  2.850 pool -1  3.050 state RELOAD_SHOTGUN_END  4.225 state STAND
+coop_dbshotgun.hip.emptied_reload
+   -0.300 state STAND  0.000 SHOT  0.025 state ATTACK_SHOTGUN_PRIMARY  0.500 SHOT  key lastshot  1.700 state RELOAD_SHOTGUN  2.450 state RELOAD_SHOTGUN_SINGLE  2.900 pool -1  3.550 pool -1  3.750 state RELOAD_SHOTGUN_END  4.925 state STAND
+coop_dbshotgun.hip.reload_broken_off
+   -0.300 state STAND  0.000 SHOT  0.025 state ATTACK_SHOTGUN_PRIMARY  1.200 state STAND  key reload  1.650 state RELOAD_SHOTGUN  2.400 state RELOAD_SHOTGUN_SINGLE_CH  key trigger  2.725 state RELOAD_SHOTGUN_BREAK_END  3.875 SHOT  3.900 state ATTACK_SHOTGUN_PRIMARY  5.075 state RELOAD_SHOTGUN  5.825 state RELOAD_SHOTGUN_SINGLE  6.275 pool -1  6.925 pool -1  7.125 state RELOAD_SHOTGUN_END
+coop_dbshotgun.ads.two_barrels
+   -0.275 state AIM  0.000 SHOT  0.025 state ATTACK_SHOTGUN_PRIMARY_AIM  0.400 SHOT  1.600 state RELOAD_SHOTGUN  2.350 state RELOAD_SHOTGUN_SINGLE  2.800 pool -1
+coop_dbshotgun.ads.one_shot_reload
+   -0.300 state AIM  0.000 SHOT  0.025 state ATTACK_SHOTGUN_PRIMARY_AIM  1.200 state AIM  key reload  1.650 state RELOAD_SHOTGUN  2.400 state RELOAD_SHOTGUN_SINGLE_CH  2.850 pool -1  3.050 state RELOAD_SHOTGUN_END  4.225 state AIM
+coop_dbshotgun.ads.emptied_reload
+   -0.300 state AIM  0.000 SHOT  0.025 state ATTACK_SHOTGUN_PRIMARY_AIM  0.500 SHOT  key lastshot  1.700 state RELOAD_SHOTGUN  2.450 state RELOAD_SHOTGUN_SINGLE  2.900 pool -1  3.550 pool -1  3.750 state RELOAD_SHOTGUN_END  4.925 state AIM
+coop_dbshotgun.ads.reload_broken_off
+   -0.275 state AIM  0.000 SHOT  0.025 state ATTACK_SHOTGUN_PRIMARY_AIM  1.200 state AIM  key reload  1.675 state RELOAD_SHOTGUN  2.425 state RELOAD_SHOTGUN_SINGLE_CH  key trigger  2.750 state RELOAD_SHOTGUN_BREAK_END  3.900 SHOT  3.925 state ATTACK_SHOTGUN_PRIMARY_AIM  5.100 state RELOAD_SHOTGUN  5.850 state RELOAD_SHOTGUN_SINGLE  6.300 pool -1  6.950 pool -1  7.150 state RELOAD_SHOTGUN_END
+shotgun.hip.one_shot_reload
+   -0.300 state STAND  0.000 SHOT  0.025 state ATTACK_SHOTGUN_PRIMARY  1.200 state STAND  key reload  1.650 state RELOAD_SHOTGUN  2.400 state RELOAD_SHOTGUN_SINGLE_CH  2.850 pool -1  3.050 state RELOAD_SHOTGUN_END  4.225 state STAND
+   vs wb: same sequence of 9 events, largest time difference 0.000 s
+shotgun.hip.emptied_reload
+   -0.300 state STAND  0.000 SHOT  0.025 state ATTACK_SHOTGUN_PRIMARY  1.200 state STAND  1.525 SHOT  1.550 state ATTACK_SHOTGUN_PRIMARY  2.725 state STAND  3.050 SHOT  3.075 state ATTACK_SHOTGUN_PRIMARY  4.250 state STAND  4.600 SHOT  4.625 state ATTACK_SHOTGUN_PRIMARY  5.800 state STAND  6.125 SHOT  6.150 state ATTACK_SHOTGUN_PRIMARY  7.325 state RELOAD_SHOTGUN  key lastshot  8.075 state RELOAD_SHOTGUN_SINGLE  8.525 pool -1  9.175 pool -1  9.825 pool -1  10.475 pool -1  11.125 pool -1  11.325 state RELOAD_SHOTGUN_END  12.500 state STAND
+   vs wb: same sequence of 24 events, largest time difference 0.025 s
+shotgun.hip.reload_broken_off
+   -0.275 state STAND  0.000 SHOT  0.025 state ATTACK_SHOTGUN_PRIMARY  1.200 state STAND  key reload  1.675 state RELOAD_SHOTGUN  2.425 state RELOAD_SHOTGUN_SINGLE_CH  key trigger  2.750 state RELOAD_SHOTGUN_BREAK_QUICK  3.075 SHOT  3.100 state ATTACK_SHOTGUN_PRIMARY  4.275 state STAND
+   vs wb: same sequence of 10 events, largest time difference 0.025 s
+shotgun.ads.one_shot_reload
+   -0.300 state AIM  0.000 SHOT  0.025 state ATTACK_SHOTGUN_PRIMARY_AIM  1.200 state AIM  key reload  1.650 state RELOAD_SHOTGUN  2.400 state RELOAD_SHOTGUN_SINGLE_CH  2.850 pool -1  3.500 pool -1  4.150 pool -1  4.350 state RELOAD_SHOTGUN_END  5.525 state AIM
+   vs wb: same sequence of 11 events, largest time difference 0.000 s
+shotgun.ads.emptied_reload
+   -0.300 state AIM  0.000 SHOT  0.025 state ATTACK_SHOTGUN_PRIMARY_AIM  1.200 state AIM  1.525 SHOT  1.550 state ATTACK_SHOTGUN_PRIMARY_AIM  2.725 state AIM  3.075 SHOT  3.100 state ATTACK_SHOTGUN_PRIMARY_AIM  4.275 state AIM  4.600 SHOT  4.625 state ATTACK_SHOTGUN_PRIMARY_AIM  5.800 state AIM  6.150 SHOT  6.175 state ATTACK_SHOTGUN_PRIMARY_AIM  7.350 state RELOAD_SHOTGUN  key lastshot  8.100 state RELOAD_SHOTGUN_SINGLE  8.550 pool -1  9.200 pool -1  9.850 pool -1  10.500 pool -1  11.150 pool -1  11.350 state RELOAD_SHOTGUN_END  12.525 state AIM
+   vs wb: same sequence of 24 events, largest time difference 0.025 s
+shotgun.ads.reload_broken_off
+   -0.300 state AIM  0.000 SHOT  0.025 state ATTACK_SHOTGUN_PRIMARY_AIM  1.200 state AIM  key reload  1.650 state RELOAD_SHOTGUN  2.400 state RELOAD_SHOTGUN_SINGLE_CH  key trigger  2.725 state RELOAD_SHOTGUN_BREAK_QUICK  3.050 SHOT  3.075 state ATTACK_SHOTGUN_PRIMARY_AIM  4.250 state AIM
+   vs wb: same sequence of 10 events, largest time difference 0.025 s

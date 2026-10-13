@@ -36,6 +36,14 @@ roster_get local.id:{
 			local.r["ammoN"] = 70
 			local.r["class"] = "rifle"
 			break
+		case "78":	//[g43 irons 2026-10-13] the iron-sight G43, its own entry
+			local.r["give"] = "models/weapons/coop_g43_irons.tik"
+			local.r["name"] = "GEWEHR 43 (IRON SIGHTS)"
+			local.r["slot"] = "p"
+			local.r["ammo"] = "rifle"
+			local.r["ammoN"] = 70
+			local.r["class"] = "rifle"
+			break
 		case "05":
 			local.r["give"] = "models/weapons/enfield.tik"
 			local.r["name"] = "LEE-ENFIELD NO.4"
@@ -614,7 +622,7 @@ roster_get local.id:{
 //[v3] Tab = picker tab index 0-5, read by the coop_loLkV compound export (NIL-guarded).
 roster_ids:{
 	if( level.coop_loRosterN != NIL ){ end }
-	level.coop_loRosterN = 75
+	level.coop_loRosterN = 76
 	level.coop_loRosterId[0] = "01"
 	level.coop_loRosterGive[0] = "models/weapons/m1_garand.tik"
 	level.coop_loRosterTab[0] = 0
@@ -837,8 +845,11 @@ roster_ids:{
 	level.coop_loRosterId[73] = "75"
 	level.coop_loRosterGive[73] = "models/weapons/m10_revolver.tik"
 	level.coop_loRosterTab[73] = 4
-	level.coop_loRosterId[74] = "80"
-	level.coop_loRosterGive[74] = "models/weapons/coop_dbshotgun.tik"
-	level.coop_loRosterTab[74] = 3
+	level.coop_loRosterId[74] = "78"
+	level.coop_loRosterGive[74] = "models/weapons/coop_g43_irons.tik"
+	level.coop_loRosterTab[74] = 0
+	level.coop_loRosterId[75] = "80"
+	level.coop_loRosterGive[75] = "models/weapons/coop_dbshotgun.tik"
+	level.coop_loRosterTab[75] = 3
 }end
 

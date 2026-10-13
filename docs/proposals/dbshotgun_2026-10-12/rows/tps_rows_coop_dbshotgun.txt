@@ -21,5 +21,6 @@
 		server
 		{
 			first weaponcommand mainhand anim reload_end
+			first removeattachedmodel tag_weapon_left 0 models/ammo/shotgunshell.tik	// as the pump gun's end row (heavy lane): a reload broken off with the third-person shell still in the hand
 		}
 	}

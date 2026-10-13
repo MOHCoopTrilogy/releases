@@ -29,8 +29,8 @@ AUTHORED for the new gun (edited in a scratch copy of the repo, never in the rea
     coop_defaults.cfg                seta coop_dbShotgun 1, seta coop_loDbT "set coop_loP3d 1"
     coop_mod/itemhandler.scr         the tik in getAmmoType ("shotgun") and in isPrimaryWeapon
     coop_mod/recoil_table.txt        8 rows (the base + 7 finishes) from the tik's own `entry viewkick` line
-    ui/coop_loadout.urc              tile80 + its lock label on the heavy tab, directly under the trench gun; the rows
-                                     below move 19 px down. The tile is lit by coop_loP3d (not coop_loP3): the heavy tab
+    ui/coop_loadout.urc              tile80 + its lock label, the LAST tile of the heavy tab (no other tile moves; hidden
+                                     by the master switch it leaves no empty row). The tile is lit by coop_loP3d (not coop_loP3): the heavy tab
                                      AND the server's master switch. NO generator; checksum-locked (see README)
     ui/loadout/lktab0-5.cfg          the lock cvar and the tile cvar of the new tile (lktab3 = the heavy tab applies them)
     ubermode/get_player_weaponclass.scr, global/giveall.scr      the lists the pump gun is in
@@ -173,23 +173,20 @@ def urc(t):
     y_host = int(one(r'rect \d+ (\d+) \d+ \d+', t[a:b]).group(1))
     tab = one(r'enabledcvar "([^"]+)"', t[a:b]).group(1)
     assert tab == 'coop_loP3', tab
-    y_new = y_host + ROW
-    moved = []
+    # 2026-10-13 (fourth pass): the tile is the LAST one of the heavy tab, not the row under the trench gun. With the
+    # master switch off the tile is hidden: in the middle of the list that left an empty row; at the end it leaves
+    # nothing. No other tile moves (the checksum-locked urc changes by two blocks only).
+    ys = []
     for nm in re.findall(r'name "tile(\d+)"', t):
         a, b = res_block(t, 'tile' + nm)
         blk = t[a:b]
         if one(r'enabledcvar "([^"]+)"', blk).group(1) != tab:
             continue
-        m = one(r'rect (\d+) (\d+) (\d+) (\d+)', blk)
-        if int(m.group(2)) < y_new:
-            continue
-        t = t[:a] + blk.replace(m.group(0), 'rect %s %d %s %s' % (m.group(1), int(m.group(2)) + ROW, m.group(3), m.group(4))) + t[b:]
-        a, b = res_block(t, 'tilelk' + nm)
-        blk = t[a:b]
-        m = one(r'rect (\d+) (\d+) (\d+) (\d+)', blk)
-        t = t[:a] + blk.replace(m.group(0), 'rect %s %d %s %s' % (m.group(1), int(m.group(2)) + ROW, m.group(3), m.group(4))) + t[b:]
-        moved.append(nm)
-    assert '45' in moved and HOSTID not in moved and len(moved) >= 4, moved
+        ys.append(int(one(r'rect (\d+) (\d+) (\d+) (\d+)', blk).group(2)))
+    assert len(ys) >= 13 and y_host in ys, ys
+    y_new = max(ys) + ROW
+    assert y_new <= 403, ('the heavy tab is longer than the longest tab of the menu', y_new)
+    moved = []
     a, b = res_block(t, 'tile' + HOSTID)
     tile = t[a:b]
     m = one(r'rect (\d+) (\d+) (\d+) (\d+)', tile)
@@ -201,7 +198,7 @@ def urc(t):
     m2 = one(r'rect (\d+) (\d+) (\d+) (\d+)', lk)
     lk = lk.replace(m2.group(0), 'rect %s %d %s %s' % (m2.group(1), y_new + 1, m2.group(3), m2.group(4))).replace('"tilelk%s"' % HOSTID, '"tilelk%s"' % ID).replace('coop_loLkV' + HOSTID, 'coop_loLkV' + ID)
     assert tile.count(ID) == 3 and NAME in tile and TILECVAR in tile and 'coop_loLkV' + ID in lk and '"tilelk%s"' % ID in lk
-    cmt = ('// %s the double-barrel shotgun, its own tile, directly under the trench gun. Lit by %s (the heavy tab AND' % (NOTE, TILECVAR) + nl
+    cmt = ('// %s the double-barrel shotgun, its own tile, the last one of the heavy tab. Lit by %s (the heavy tab AND' % (NOTE, TILECVAR) + nl
            + '// the server\'s master switch coop_dbShotgun: ui/loadout/lktab3.cfg runs `vstr coop_loDbT`), not by coop_loP3.' + nl)
     return t[:b2] + nl + cmt + tile + nl + lk + t[b2:], moved, y_new
 
@@ -272,7 +269,7 @@ def edit_sources(root, log):
         wr(p, fn(rd(p)))
     p = os.path.join(root, 'hzm-mohaa-coop-mod', 'ui', 'coop_loadout.urc')
     t, moved, y = urc(rd(p)); wr(p, t)
-    log.append('tile%s at y %d on the heavy tab; moved one row down: %s' % (ID, y, ' '.join(moved)))
+    log.append('tile%s at y %d, the last tile of the heavy tab; tiles moved: %s' % (ID, y, ' '.join(moved) or 'none'))
     for k in range(6):
         p = os.path.join(root, 'hzm-mohaa-coop-mod', 'ui', 'loadout', 'lktab%d.cfg' % k)
         wr(p, lktab(rd(p), k))

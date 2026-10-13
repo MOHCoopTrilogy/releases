@@ -1,6 +1,12 @@
 # Sawn-off double-barrel shotgun (`coop_dbshotgun`) - proposal, STAGED
 
-**Status 2026-10-13 (third pass: the armory side).** The weapon itself (own texture, hold, aim, reloads, third person)
+**Status 2026-10-13 (fourth pass: ready to ship, staged).** `DBS_SHIP.md` is the SHIP CUT for the integration agent
+(file list, apply order, checks, engine merge, the gun's numbers and measured server timings, verified / not verified)
+and the files it names are FROZEN (`DBS_SHIP.manifest.tsv`, `tools/ship_manifest.py --check`). Section 15 below is what
+this pass did; where sections 6, 7, 8, 11, 12 and 14 disagree with section 15 or `DBS_SHIP.md`, those win.
+Engine: `dbshotgun-next` **1dc10936** (= integ-ads 8327e12b + this gun, cgame only; the runs used 45373131 = harness `cgame_dbs9`).
+
+**Status of the third pass (the armory side), kept for the record.** The weapon itself (own texture, hold, aim, reloads, third person)
 is as the second pass left it. New: the mod's full FINISH SET (7 finishes, sec. 13), its OWN ARMORY ENTRY with an
 unlock path through the generators (id 80, sec. 8 - wiring option A is superseded), the pick and the finish proven
 over a map restart and a map change. World behaviour (sec. 14) is only partly verified.
@@ -23,7 +29,8 @@ in the mod tree, the fixes pak, `docs/tools` or the live install.
 | 5a | Finish set: gold, chrome, blued, bloody, woodland, winter, desert | **done** | looked at in engine: every finish at the hip, in the aim, in third person, open (runs f1-f3, a2) |
 | 5b | Own armory entry + unlock path (challenge "Both Barrels", 60 shotgun kills) | **done, staged** | run a1 / a2: every step of sec. 8 looked at + log |
 | 5c | The pick lost at a map change (the second pass's open defect) | **fixed** by 5b | run a1: slot + finish after a map restart AND a map change, looked at |
-| 5d | World behaviour | **NOT finished** (sec. 14) | a double barrel lying on the ground: looked at; death-drop log line; touch pickup, use-to-loot, shell sharing: NOT verified |
+| 5d | World behaviour | **done** (sec. 15; fourth pass) | death drop, touch pickup, AI drop + Use prompt with our picture, tap = gun, hold = shells, shells shared both ways, both barrels / reload / switch after a pickup: looked at + log (runs w1-w3) |
+| 5e | Server timing; pump gun unchanged; state file of the current mod tree | **done** (`DBS_SHIP.md` sec. 7) | measured (runs w2, wb) |
 | 6 | Engine minimal + merge note | **done** (unchanged this pass) | sec. 6 |
 | 7 | Sounds | aliases resolve (no alias error in `developer 1` logs), **not heard** | sec. 9 |
 
@@ -120,6 +127,10 @@ The settled aim itself covers 11-17 % of the box (prone 12-14 %, braced 5-6 %).
 4. `cg_coopfeed.c` + `cg_coopfeed_loot.h` (`wiring/patch_cgame_loot_dbs.py`): the loot picture is looked up by the
    FULL weapon name first, then by the name cut at " (" as before; one row `"Shotgun (Double Barrel)" -> w_dbshotgun`.
 
+**SUPERSEDED 2026-10-13: the merge is DONE on the branch (45373131) and written out in `DBS_SHIP.md` sec. 6. The
+note below was wrong in one point - neither block swaps the other's result back; the real gap was the aimed name
+`reload_ads_empty`, now a row of the 8 tiks.**
+
 **MERGE NOTE (item 2 against the SMG lane's `ads-smg-next`).** Both branches add a block to `CG_ModelAnim` right after
 `CG_InterpolateAnimParms(s1, sNext, &model);` that replaces the held gun's `reload` frame infos by `reload_empty`.
 Ours is table-driven: `s_dbsRows[2][2] = {{"reload","reload_empty"},{"reload_single","reload_single_first"}}`, for the
@@ -209,6 +220,11 @@ today, the torso patch's check passes on it but nothing was run against it); the
 
 ## 11. Open points (honest list)
 
+**After the fourth pass:** 1 is closed (sec. 15); 2 and 3 were looked into and NOT changed (the aimed pose is at the
+rule's limit; a choice for the user); 5: the gap is closed, the PRIMARY card still keeps the archived name; 6 is
+general behaviour, not this gun. New: the loot rule calls the pump gun and the double barrel the same gun (fgame); the
+`cannot be picked up` false alarm is mod-wide (fgame or itemhandler.scr). 4, 7, 8, 9, 10 stand as written.
+
 1. World behaviour, sec. 14: touch pickup, use-to-loot, shell sharing are not verified; one unexplained log line.
 2. The aimed reload plays low on the screen (chambers at about 85 % of the height). NOT raised this pass.
 3. Hip reload: the loading hand is large when it crosses to the left chamber. NOT changed this pass.
@@ -253,7 +269,34 @@ keeps the bores dark under the stage finishes; the bead and the shells are the u
 gun's hands, torso rows and sight row (bug-3809); the armory tells them apart by tik path. Ranks 3000-3006.
 `gen_skins.py` skips this gun by itself (a name with " (" is "already a variant"), so it will not overwrite them.
 
-## 14. World behaviour (NOT finished) - runs a2, a3
+## 15. Fourth pass (2026-10-13): world behaviour, timing, merge, ship cut
+
+Tools of this pass: `tools/mkbase_dbs.py` (harness plumbing on the weather.scr deployed today), `mkov_dbs.py --world
+--tree [--nopatch]` (world driver + timing probe; the mod TREE's state file and the fixes dir's delta in the overlay),
+`tools/dbs_world.scr` + `tools/run_world.py` (parts `world2`, `time`, `tiles`; `--wmode 1|2|3`), `tools/time_report.py`,
+`tools/dbs_rowlen.py`, `tools/torso_check.py`, `tools/dbs_tikrow.py`, `tools/ship_manifest.py`.
+
+| what | result |
+|---|---|
+| `cannot be picked up` (bug-3813) | not this gun: the engine does not send the script's `pickup` notify for a placed (not dropped) weapon taken as a new gun; the pickup succeeds, the line is a false alarm; same line for the pump gun in run w1 and 81 times in other lanes' logs. No change to the staged wiring |
+| death drop | exactly one gun, on the ground where the player died - looked at (`media/dbs_world_death_drop_touch_pickup.jpg`) |
+| touch pickup by a player without the gun (respawn at a map spawn, kit Frag / Colt 45 / Thompson) | taken, in the hand - looked at + log |
+| AI drop | an AI armed through `coop_actorArm` aims and fires it (it killed the test player once), drops it when killed (damage event with the player as attacker); Use prompt with our picture + "Double Barrel" - looked at (`media/dbs_world_ai_drop_loot.jpg`, `dbs_world_loot_prompts.jpg`); tap = the gun with 2 in the clip; hold = +2 shells, gun consumed |
+| found: the loot rule and the pump gun | with a PUMP gun in the kit the double barrel counts as owned (fgame cuts both names at " ("): shells only. Not changed (fgame). A choice for the user |
+| shells | one pool (max 50): reload of the double barrel -2, pump gun shot + reload -1, switching leaves the pool; walking over the other shotgun gives its shells (5 / 2) and consumes it |
+| after a pickup | both barrels, reload, switch to the pump gun and back - looked at + log |
+| server timing | `DBS_SHIP.md` sec. 7; the pump gun is equal with and without the torso patch (runs w2 / wb) |
+| mod tree's state file | the heavy lane's quick break-off would have fired the OPEN gun 0.33 s after the trigger: two routing rows send this gun through its own end row (shot 1.15 s after the trigger) |
+| engine | merged with integ-ads on the branch (1dc10936; run as 45373131); 8 tiks carry `reload_ads_empty` |
+| armory tile | last on the heavy tab: no empty row with `coop_dbShotgun 0` - looked at (`media/dbs_armory_heavy_tab_switch_on_off.jpg`) |
+| respawn brings up PRIMARY 2 | general: the mod raises the gun that was in the hand at death (`coop_lastWeapon`) before slot 1 |
+| aimed work pose | NOT raised: the loading hand's top is already at the centre box's lower edge (`media/dbs_aimed_work_pose_options_offline.jpg`); six stances re-measured with the merged cgame (`DBS_SHIP.md` sec. 8) |
+| hip loading hand, Service Record hover, sounds | not changed / not exercised / not heard |
+
+Traps of this pass: bug-3851 .. bug-3860. Id 78 (G 43 Irons) landed in the mod tree during the pass: the armory patches were re-made on it and run (a4). Runs w1, w2, w3, wb, rs1, rs2, a4 are in
+`H:\hzm_archive\dbs\<run>\`.
+
+## 14. World behaviour - runs a2, a3 (third pass; SUPERSEDED by sec. 15)
 
 | Item | State |
 |---|---|

@@ -10,7 +10,8 @@ thread, built by ads_twohand_2026-10-11/tools/mkbase.py) with two test-only addi
 import sys, os, re, zipfile
 import dbslib as L
 
-BASE = r"C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\ads2h\ovbase_1021.pk3"
+# the plumbing on the DEPLOYED weather.scr (tools/mkbase_dbs.py); the ADS lanes' ovbase_1021.pk3 is the 1.10.21 one
+BASE = os.environ.get("DBS_OVBASE") or os.path.join(L.BUILD, "ovbase_cur.pk3")
 TOP = ('models', 'scripts', 'sound', 'textures', 'coop_mod', 'ui', 'global', 'ubersound')
 
 DROP = (
@@ -112,7 +113,15 @@ HOOKS = (
 )
 
 
-def weather(src, keepunlocks=False):
+WORLDHOOK = (
+    '\t\tlocal.ww = getcvar( "coop_dbsW" )\n'
+    '\t\tif( local.ww != "" && local.ww != local.lastW && $player != NULL && $player.size >= 1 ){\n'
+    '\t\t\tlocal.lastW = local.ww\n'
+    '\t\t\tthread dbsw_main local.ww\n'
+    '\t\t}\n')
+
+
+def weather(src, keepunlocks=False, world=False):
     s = src.replace('\r\n', '\n')
     a = '\tlocal.lastF = ""\n'
     assert s.count(a) == 1
@@ -123,6 +132,13 @@ def weather(src, keepunlocks=False):
     k = s.index('coop_is_test:')
     w = s.index('\t\twaitframe\n', k)
     s = s[:w] + DROP + HOOKS + s[w:]
+    if world:                            # --world: the world-behaviour driver + the server timing probe (tools/dbs_world.scr)
+        a2 = '\tlocal.lastM = ""\n'
+        assert s.count(a2) == 1
+        s = s.replace(a2, a2 + '\tlocal.lastW = ""\n\tthread dbsw_probe\n')
+        w = s.index('\t\twaitframe\n', s.index('coop_is_test:'))
+        s = s[:w] + WORLDHOOK + s[w:]
+        s = s.rstrip('\n') + '\n' + open(os.path.join(L.PROP, 'tools', 'dbs_world.scr'), encoding='latin-1').read().replace('\r\n', '\n')
     if keepunlocks:                      # armory runs: the test `give` must not overwrite the player's unlock record
         u = '\t\t\t\tlocal.p.flags["coop_chal_unlocks"] = local.t'
         assert s.count(u) == 1
@@ -147,7 +163,7 @@ def main():
         for i in b.infolist():
             data = b.read(i.filename)
             if i.filename == 'coop_mod/weather.scr':
-                data = weather(data.decode('latin-1'), '--armory' in sys.argv).encode('latin-1')
+                data = weather(data.decode('latin-1'), '--armory' in sys.argv, '--world' in sys.argv).encode('latin-1')
             z.writestr(i.filename, data)
         for d, _, fs in os.walk(L.ASSETS):
             for f in fs:
@@ -176,8 +192,30 @@ def main():
             nl2 = '\r\n' if '\r\n' in al else '\n'
             k2 = al.rstrip().rfind('}')
             z.writestr('models/player/base/anims_shotgun.txt', (al[:k2] + trow.replace('\n', nl2) + al[k2:]).encode('latin-1'))
-            st = HV.read('coop_mod/player_Torso.st').decode('latin-1')
-            z.writestr('coop_mod/player_Torso.st', PT.patch(st).encode('latin-1'))
+            if '--tree' in sys.argv:
+                st = open(os.path.join(os.path.dirname(L.DOCS), 'hzm-mohaa-coop-mod', 'coop_mod', 'player_Torso.st'), 'rb').read().decode('latin-1')
+                print('torso state file: the mod TREE, %d bytes' % len(st))
+            else:
+                st = HV.read('coop_mod/player_Torso.st').decode('latin-1')
+            z.writestr('coop_mod/player_Torso.st', (st if '--nopatch' in sys.argv else PT.patch(st)).encode('latin-1'))
+            if '--tree' in sys.argv:
+                fxd = os.path.join(L.DOCS, 'tools', 'assets', 'fixes')
+                have = set(z.namelist())
+                k4 = 0
+                for d4, _, fs4 in os.walk(fxd):
+                    for f4 in fs4:
+                        p4 = os.path.join(d4, f4)
+                        arc = os.path.relpath(p4, fxd).replace(os.sep, '/')
+                        if arc in have or arc.split('/')[0] not in TOP:
+                            continue
+                        data = open(p4, 'rb').read()
+                        try:
+                            same = HV.read(arc) == data
+                        except Exception:
+                            same = False
+                        if not same:
+                            z.writestr(arc, data); k4 += 1
+                print('fixes dir: %d files the deployed paks do not have (or have differently)' % k4)
             print('third person: alias rows + torso state rows added')
         # --armory: the own armory entry (wiring/stage_armory_dbs.py -> armory_ov/: the mod-tree files edited + what the
         # generators wrote). coop_defaults.cfg is ahead of the release in the mod tree: the INSTALLED file + the same edit.

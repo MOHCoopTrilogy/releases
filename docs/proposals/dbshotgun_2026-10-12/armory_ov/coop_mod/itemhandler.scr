@@ -508,6 +508,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 				case "mosin nagant rifle":
 					local.grencount = -4; break
 				case "g 43":
+				case "g 43 irons":	//[g43 irons 2026-10-13]
 				case "mauser kar 98d sniper":
 				case "springfield '03 sniper":
 				case "svt 40":
@@ -3478,6 +3479,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 		case "models/weapons/svt_rifle.tik":
 		case "models/weapons/mosin_nagant_rifle.tik":
 		case "models/weapons/g43.tik":
+		case "models/weapons/coop_g43_irons.tik":
 		case "models/weapons/enfield.tik":
 		case "models/weapons/uk_w_l42a1.tik":
 			end("rifle")
@@ -3617,6 +3619,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 		case "models/weapons/uk_w_vickers.tik":
 		case "models/weapons/enfield.tik":
 		case "models/weapons/g43.tik":
+		case "models/weapons/coop_g43_irons.tik":
 		case "models/weapons/mosin_nagant_rifle.tik":
 		case "models/weapons/ppsh_smg.tik":
 		case "models/weapons/svt_rifle.tik":

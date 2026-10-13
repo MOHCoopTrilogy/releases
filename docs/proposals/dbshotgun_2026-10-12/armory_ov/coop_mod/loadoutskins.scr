@@ -5,7 +5,7 @@
 //shares one source.
 skin_init:{
 	if( level.coop_skinN != NIL ){ end }
-	level.coop_skinN = 357
+	level.coop_skinN = 364
 	level.coop_skinFinStat[1] = "finish_gold"
 	level.coop_skinFinName[1] = "GOLD"
 	level.coop_skinFinStat[2] = "finish_chrome"
@@ -41,6 +41,13 @@ skin_init:{
 	level.coop_skinGive["models/weapons/g43.tik"][5] = "models/weapons/g43_camo_woodland.tik"
 	level.coop_skinGive["models/weapons/g43.tik"][6] = "models/weapons/g43_camo_winter.tik"
 	level.coop_skinGive["models/weapons/g43.tik"][7] = "models/weapons/g43_camo_desert.tik"
+	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][1] = "models/weapons/coop_g43_irons_gold.tik"
+	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][2] = "models/weapons/coop_g43_irons_chrome.tik"
+	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][3] = "models/weapons/coop_g43_irons_blued.tik"
+	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][4] = "models/weapons/coop_g43_irons_bloody.tik"
+	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][5] = "models/weapons/coop_g43_irons_camo_woodland.tik"
+	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][6] = "models/weapons/coop_g43_irons_camo_winter.tik"
+	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][7] = "models/weapons/coop_g43_irons_camo_desert.tik"
 	level.coop_skinGive["models/weapons/Gr_W_MineDetector.tik"][1] = "models/weapons/gr_w_minedetector_gold.tik"
 	level.coop_skinGive["models/weapons/Gr_W_MineDetector.tik"][2] = "models/weapons/gr_w_minedetector_chrome.tik"
 	level.coop_skinGive["models/weapons/Gr_W_MineDetector.tik"][3] = "models/weapons/gr_w_minedetector_blued.tik"
@@ -493,6 +500,17 @@ skin_init:{
 	level.coop_skinMvElite["models/weapons/g43.tik"] = "wpn_g43_e"
 	level.coop_skinMvByElite["wpn_g43_e"] = "G 43 MODEL VARIANTS"
 	level.coop_skinMvPseudo["mv_wpn_g43_e"] = "G 43 MODEL VARIANTS"
+	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][8] = "models/weapons/coop_g43_irons_dhg43fleck.tik"
+	level.coop_skinMvName["models/weapons/coop_g43_irons.tik"][8] = "FLECKTARN G43 (DIRTYHARRY)"
+	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][9] = "models/weapons/coop_g43_irons_hobbsg43wood.tik"
+	level.coop_skinMvName["models/weapons/coop_g43_irons.tik"][9] = "WOODLAND G43 (HOBBS)"
+	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][10] = "models/weapons/coop_g43_irons_hobbsg43urb.tik"
+	level.coop_skinMvName["models/weapons/coop_g43_irons.tik"][10] = "URBAN G43 (HOBBS)"
+	level.coop_skinGive["models/weapons/coop_g43_irons.tik"][11] = "models/weapons/coop_g43_irons_lv_ttg43.tik"
+	level.coop_skinMvName["models/weapons/coop_g43_irons.tik"][11] = "TEAM TACTICS (LEON)"
+	level.coop_skinMvMax["models/weapons/coop_g43_irons.tik"] = 11
+	level.coop_skinMvElite["models/weapons/coop_g43_irons.tik"] = "wpn_g43_e"
+	level.coop_skinMvShare["models/weapons/coop_g43_irons.tik"] = "models/weapons/g43.tik"
 	level.coop_skinGive["models/weapons/kar98sniper.tik"][8] = "models/weapons/KAR98sniper_g98scope.tik"
 	level.coop_skinMvName["models/weapons/kar98sniper.tik"][8] = "G98 SCOPED (EAST)"
 	level.coop_skinGive["models/weapons/kar98sniper.tik"][9] = "models/weapons/KAR98sniper_lv_ttkar98sn.tik"
@@ -635,6 +653,7 @@ skin_init:{
 	level.coop_skinMvTile["models/weapons/colt45.tik"] = "48"
 	level.coop_skinMvTile["models/weapons/enfield.tik"] = "05"
 	level.coop_skinMvTile["models/weapons/g43.tik"] = "04"
+	level.coop_skinMvTile["models/weapons/coop_g43_irons.tik"] = "78"
 	level.coop_skinMvTile["models/weapons/kar98sniper.tik"] = "13"
 	level.coop_skinMvTile["models/weapons/springfield.tik"] = "12"
 	level.coop_skinMvTile["models/weapons/mauser_c96.tik"] = "74"

@@ -1,20 +1,20 @@
-stage_armory_dbs.py 20261013_095403   scratch: C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\dbs\armgen\20261013_095403
+stage_armory_dbs.py 20261013_130353   scratch: C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\dbs\armgen\20261013_130353
 --- BASE (mod tree as it is)
-gen_loadout.py build         exit 0  wrote 622 files + the unlock roster, for 74 weapons
-gen_skinbase.py              exit 0  loadoutskins_base.scr: 427 variant->base entries
-armory_unlocks.py --emit     exit 0  wrote C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\dbs\armgen\20261013_095403\base\hzm-m
+gen_loadout.py build         exit 0  wrote 627 files + the unlock roster, for 75 weapons
+gen_skinbase.py              exit 0  loadoutskins_base.scr: 438 variant->base entries
+armory_unlocks.py --emit     exit 0  wrote C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\dbs\armgen\20261013_130353\base\hzm-m
 gen_loadout.py check         exit 0    -> EXACT REPRODUCTION
 gen_service_record.py build  exit 0    P28  STEALTH      WEAPON FINISHES      7 rows  rowh=84
 --- NEW (sources edited, generators patched)
-tile80 at y 251 on the heavy tab; moved one row down: 45 46 47 72
-gen_loadout.py build         exit 0  wrote 634 files + the unlock roster, for 75 weapons
-gen_skinbase.py              exit 0  loadoutskins_base.scr: 434 variant->base entries
-armory_unlocks.py --emit     exit 0  wrote C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\dbs\armgen\20261013_095403\new\hzm-mo
+tile80 at y 327, the last tile of the heavy tab; tiles moved: none
+gen_loadout.py build         exit 0  wrote 639 files + the unlock roster, for 76 weapons
+gen_skinbase.py              exit 0  loadoutskins_base.scr: 445 variant->base entries
+armory_unlocks.py --emit     exit 0  wrote C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\dbs\armgen\20261013_130353\new\hzm-mo
 gen_loadout.py check         exit 0    -> EXACT REPRODUCTION
 gen_service_record.py build  exit 0    P28  STEALTH      WEAPON FINISHES      7 rows  rowh=84
 
 generator drift already in the tree (BASE differs from the real file; NOT staged): 1
-   hzm-mohaa-coop-mod/coop_mod/unlockreq_gen.scr
+   hzm-mohaa-coop-mod/ui/loadout/p78.cfg
 
 changed by this weapon: 20
    docs/tools/gen_service_record.py
@@ -139,5 +139,19 @@ Service Record output that differs (test install only; build.ps1 regenerates it)
    ui/coop_sr_pinclear.cfg
    ui/coop_sr_pinreset.cfg
 
-overlay files whose mod-tree original is NOT the released file (check before a harness run): 1
-   coop_defaults.cfg (the mod tree is ahead of the release)
+overlay files whose mod-tree original is NOT the released file (check before a harness run): 15
+   coop_mod/itemhandler.scr (the mod tree is ahead of the release)
+   coop_mod/loadoutroster.scr (the mod tree is ahead of the release)
+   coop_mod/loadoutskins.scr (the mod tree is ahead of the release)
+   coop_mod/loadoutskins_base.scr (the mod tree is ahead of the release)
+   coop_mod/recoil_table.txt (the mod tree is ahead of the release)
+   coop_mod/unlockreq_gen.scr (the mod tree is ahead of the release)
+   global/giveall.scr (the mod tree is ahead of the release)
+   ubermode/get_player_weaponclass.scr (the mod tree is ahead of the release)
+   ui/coop_loadout.urc (the mod tree is ahead of the release)
+   ui/loadout/lktab0.cfg (the mod tree is ahead of the release)
+   ui/loadout/lktab1.cfg (the mod tree is ahead of the release)
+   ui/loadout/lktab2.cfg (the mod tree is ahead of the release)
+   ui/loadout/lktab3.cfg (the mod tree is ahead of the release)
+   ui/loadout/lktab4.cfg (the mod tree is ahead of the release)
+   ui/loadout/lktab5.cfg (the mod tree is ahead of the release)
