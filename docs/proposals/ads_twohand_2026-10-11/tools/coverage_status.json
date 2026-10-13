@@ -341,50 +341,53 @@
   },
   "lowered": true,
   "note": "ts1 / tu1: swing-out reload with a real cylinder face (chamber mouths, case heads hidden while empty), readable case dump, 6 rounds, stand / crouch / prone / lean, switch + sprint interruptions; open: a cartridge flies off when the loop is cut by a weapon switch, ejector rod does not move, braced",
+  "qa": "pa2: GIF played back (dump in frame, cases about 0.2 s), stance sheet looked at; braced and vehicle seats not run",
   "reload": {
    "crouch": {
-    "dev": 8.11,
-    "edge": 4.89,
+    "dev": 11.04,
+    "edge": 8.03,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "ts1"
+    "run": "tn2"
    },
    "prone": {
-    "dev": 8.11,
-    "edge": 4.7,
+    "dev": 11.04,
+    "edge": 8.0,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "ts1"
+    "run": "tn2"
    },
    "stand": {
-    "dev": 49.93,
-    "edge": 49.93,
-    "end": 0.01,
-    "ok": false,
-    "pmin": 1.0,
-    "run": "ts1"
-   },
-   "standL": {
-    "dev": 8.11,
-    "edge": 5.5,
+    "dev": 11.04,
+    "edge": 8.01,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "ts1"
+    "run": "tn2"
+   },
+   "standL": {
+    "dev": 11.04,
+    "edge": 8.03,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "tn2"
    },
    "standR": {
-    "dev": 116.22,
-    "edge": 17.77,
+    "dev": 11.04,
+    "edge": 8.02,
+    "end": 0.0,
     "ok": false,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "tn2"
    }
   },
   "rule": {
-   "action": "yes",
+   "action": "no",
    "reacts": "yes",
-   "run": "tk11 (empty: box 1.6 %) tk4 (3 rounds: 0.3 %); offline 0.2 %; tk13 read 4.5 % in 5 frames = the last shot's smoke over the door, model outside the box; per round 2.5 deg swing",
+   "run": "tn2, pa2 (emptied gun + 2-round reloads, 5 stances); action = no: the chambers do not fill one by one yet",
    "target": "yes"
   }
  },
@@ -450,50 +453,53 @@
   },
   "lowered": true,
   "note": "ts1 / tu1: aim + aimed reload (0.9 s per round) in stand / crouch / prone / lean, switch + sprint interruptions clean; case pops from the gate per round; open: cradling hand still large, braced",
+  "qa": "tn3: GIF played back, stance sheet looked at (prone in frame now); forearm still large for 0.1 s at the hand-over; braced and vehicle seats not run",
   "reload": {
    "crouch": {
-    "dev": 23.67,
-    "edge": 0.0,
-    "end": 0.0,
-    "ok": false,
-    "pmin": 1.0,
-    "run": "ts1"
-   },
-   "prone": {
-    "dev": 23.72,
+    "dev": 20.85,
     "edge": 0.01,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "ts1"
+    "run": "tn3"
    },
-   "stand": {
-    "dev": 24.07,
-    "edge": 21.55,
-    "end": 0.01,
-    "ok": false,
-    "pmin": 1.0,
-    "run": "ts1"
-   },
-   "standL": {
-    "dev": 23.53,
-    "edge": 0.0,
+   "prone": {
+    "dev": 21.11,
+    "edge": 0.01,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "ts1"
+    "run": "tn3"
+   },
+   "stand": {
+    "dev": 21.75,
+    "edge": 0.02,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "tn3"
+   },
+   "standL": {
+    "dev": 20.86,
+    "edge": 0.01,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "tn3"
    },
    "standR": {
-    "dev": 45.8,
-    "edge": 1.44,
+    "dev": 20.76,
+    "edge": 0.01,
+    "end": 0.0,
     "ok": false,
-    "run": "th5"
+    "pmin": 1.0,
+    "run": "tn3"
    }
   },
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "tk12 (empty: box 0.4 %) tk10 (3 rounds: 1.7 %, with the old high case throw); offline 0.0 %; per round 0.8 u shove + 1.1 deg in the clip (the engine probe does not read a gun on the off-hand tag)",
+   "run": "tn3 (emptied gun + 2-round reloads, 5 stances; worked 1.8 u higher)",
    "target": "yes"
   }
  },
@@ -774,44 +780,53 @@
   },
   "lowered": true,
   "note": "ts1: aim + aimed reload at the chosen pace in stand / crouch / prone / lean (ends 0.0 deg), switch + sprint interruptions clean; a fire press does not cut the loop (existing state rule); open: cuff, Mk VI finger fit, braced",
+  "qa": "tn1: GIF played back, open / close looked at at full rate, stance sheet looked at; braced and vehicle seats not run",
   "reload": {
    "crouch": {
-    "dev": 35.02,
-    "edge": 34.91,
+    "dev": 30.22,
+    "edge": 30.06,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "ts1"
+    "run": "tn1"
    },
    "prone": {
-    "dev": 35.01,
-    "edge": 34.91,
+    "dev": 30.21,
+    "edge": 30.04,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "ts1"
+    "run": "tn1"
    },
    "stand": {
-    "dev": 35.02,
-    "edge": 34.98,
-    "end": 0.01,
-    "ok": false,
-    "pmin": 1.0,
-    "run": "ts1"
-   },
-   "standL": {
-    "dev": 35.01,
-    "edge": 34.91,
+    "dev": 30.22,
+    "edge": 30.04,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "ts1"
+    "run": "tn1"
+   },
+   "standL": {
+    "dev": 30.21,
+    "edge": 30.05,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "tn1"
+   },
+   "standR": {
+    "dev": 30.21,
+    "edge": 30.06,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "tn1"
    }
   },
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "tk13 (empty: box 0.2 %, back to 0.00 deg) tk4 (3 rounds: 0.2 %); offline offbox.py 0.2 % over every clip frame; per round 2.5 deg swing",
+   "run": "tn1 (emptied gun + 2-round reloads in stand / crouch / prone / both leans; open and close 0.8 s)",
    "target": "yes"
   }
  }

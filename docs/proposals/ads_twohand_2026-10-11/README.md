@@ -1,7 +1,9 @@
 # HANDOVER (2026-10-12 late evening, PISTOL lane) - read this first, the rest of the file is the history
 
-**State: A and B of the list are done and committed (engine `ads-next` e889e68c = test cgame `cgame_adsnext8`).
-C, D, E are NOT started.** Nothing is in the mod tree or the fixes pak; all of it is staged here.
+**State: A, B and C of the list are done and committed (engine `ads-next` 191f1879 = test cgame `cgame_adsnext9`).
+D and E are NOT started.** Nothing is in the mod tree or the fixes pak; all of it is staged here.
+RUN IDS: use the prefix `pa` (pa1, pa2 used). `boot_session` deletes an existing run folder - ids tm1-tm3 and tn1 of
+earlier sessions were lost that way on 2026-10-12; `run_2h.py` / `run_break2.py` now refuse an existing id.
 The work is split into four lanes since 2026-10-12: this folder's root is the PISTOL lane (pistols + revolvers) and it
 OWNS `tools/` and `coverage.md`; `rifles/`, `smg/`, `heavy/` are the other lanes (own harness copies, own
 `coverage_status.json`, merged by `tools/coverage.py build`; they read `tools/` as a library - keep changes there
@@ -18,6 +20,28 @@ backward compatible; the runs folder of every shared tool comes from `ADS_RUNS`)
 Harness facts learned in B: a cfg `wait N` is only N ms under fixedtime (the host with `coop_isFixed 16`); on a free
 running client time the capture from Python and post keys (run_break2.py). ADSFRAME carries `clip=` / `ammo=` from
 cgame_adsnext8 on. `run_2h.py --parts reloads --rstances prone --rhip --revery 3` = aimed + hip reload in a stance.
+
+## C, done (runs tl9, tl10, tn1-tn3, pa1, pa2; overlay recipe unchanged: `sh build_ov.sh ov_x.pk3`)
+| gun | change | engine (emptied gun, aimed) | evidence |
+|---|---|---|---|
+| Webley | open and close states 0.53 s -> 0.8 s, HIP AND AIM (`tools/webslow.py`, then `revbake.py webley_hip / webley_ads`): the barrel tips over 12 frames (was 4), shuts over 10; hands re-keyed, sounds / cases moved with it. A Webley reload is 0.27 s longer at each end. | box max 0.3 %, 0.00 deg, 5 stances (tn1) | `evidence/webley_reload_aimed_c.gif` |
+| S&W M10 | dump pose raised 1.4 u and flattened (cylinder face fully in frame), cases thrown up and left | box max 0.4 %, 0.00 deg, 5 stances (tn2, pa2) | `evidence/m10_reload_aimed_c.gif` |
+| Nagant | worked 1.8 u higher (gate 5.6 u under the eye line - the limit of the 2 % bar), feeding hand comes from below, lower support elbow; in prone the gun and both hands are in frame now | box max 0.3 %, 0.00 deg, 5 stances (tn3) | `evidence/nagant_reload_aimed_c.gif`, `revolver_stances_tn.jpg` |
+
+Still weak, seen in playback: the M10's cases are in view for only about 0.2 s (they vanish near the top of their
+arc: the particle's `collision` against the player box is the suspect); the Nagant's left forearm is still large for
+about 0.1 s at the hand-over; the Webley hip open / close were looked at only at coarse scale.
+NOT DONE - M10 chambers filling one by one. Design (about half a day): (1) `m10face.py` appends six surfaces
+`coop_round1..6` instead of the one `coop_m10_heads` (round k on the chamber k steps behind the feed chamber; round 6 on
+the feed chamber); (2) cgame, in the held-gun block of `cg_modelanim.c` (where `reload_end_ads` is chosen): a surface
+named `coop_round<N>` is drawn iff N <= STAT_CLIPAMMO - but latched, so a new round shows when the loop clip restarts;
+(3) `m10build.py`: the loop clip spins `coop_cyl` one chamber over its last 4 frames (the pattern is then continuous
+across the restart); (4) the tik's `surface coop_m10_heads +/-nodraw` lines go. The Webley / Nagant could use the same
+rule. Gun frame axes for particle rows: x forward, y right, z DOWN.
+
+bug-3597 (does the rig-solve target freeze mid-recoil on an emptied gun?): measured, NOT confirmed - see the buglog
+entry and `cg_view.c` CG_AdsRigSolve; `cg_adsSightDebug 2` prints `ADSSETTLE`, `tools/sightend.py <run>` prints the
+sight line at and after the clip's end. The Colt's 0.08 deg at the end of its empty reload is the baked physics tail.
 
 ## The standard (every aimed reload / cycle, all three)
 1. ON TARGET - centre box (middle 20 % of the screen) covered beyond the settled aim under 2 % in every frame; where
@@ -67,12 +91,6 @@ Known weak points, seen in playback (tell the user, do not hide them):
 * Python patch scripts are written with the file tool - a heredoc mangled `\t` / `\s` again today (bug-3581).
 
 ## The list from here (PISTOL lane; order given by the coordinator; report at each letter)
-C. Revolver polish (the weak points above): Webley close and open are brisk (0.1 s) - give them time and weight;
-   M10 cases in view for only 0.16 s and its chambers do not fill one by one (cheap: per-round surface / texture
-   swap); Nagant works at the very bottom edge with the gate barely in frame (and in PRONE its hands lie along the
-   bottom edge, run tl3) - raise it as far as the 2 % bar allows, shrink the forearm on hand-over.
-   After C: fresh stance runs for the three revolvers (their `coverage.md` reload cells read `ends 99.00` = old
-   captures without an end figure; the new pass bar wants one).
 D. Welrod (bolt action after EVERY shot and after the reload; knob at the rear on the sight line: lower / roll the
    gun as for the Hi-Standard). Then Mauser C96 (stripper clip from the top), Luger, PPK, TT-33, Nambu, the silenced
    variants: each needs its own in-engine run (the 15 pistols sharing the Colt / P38 clips were only checked

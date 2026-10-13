@@ -162,7 +162,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("session"); ap.add_argument("--overlay", required=True); ap.add_argument("--cgame", default="cgame_adsnext7")
     ap.add_argument("--plan", required=True); ap.add_argument("--yaw", type=int, default=160)
+    ap.add_argument("--force", action="store_true")
     a = ap.parse_args()
+    if os.path.isdir(os.path.join(R.RUNS, a.session)) and not a.force:
+        sys.exit("run folder %s/%s exists - boot_session would delete it; pick an unused id or pass --force" % (R.RUNS, a.session))
     plan = [(g, int(s), int(t) / 1000.0) for g, s, t in (x.split(":") for x in a.plan.split(","))]
     os.makedirs(os.path.dirname(A.LOGF), exist_ok=True)
     A.log("start", a.session, "break2")

@@ -1319,13 +1319,13 @@ animations
 	// throws every fired case at once as the gun breaks open (gun fully open ~0.38-0.43 s). The Nagant already drops
 	// one case per round (nagant_pistol_shell.tik is on the engine's eject list, once per reload_loop); the M10 drops
 	// its fired cases at the ejector-rod push (0.53 s, above).
-	coop_reload_webley_start	viewmodel/webley/webley_reload_start.skc	crossblend 0.1
+	coop_reload_webley_start	viewmodel/webley/coop_webley_tp_start24.skc	crossblend 0.1
 	{
 		server
 		{
-			3 reloadweapon		// HZM coop [revolver reload] the gun's own opening clip is 13 frames: started 3 frames in, it ends as the
+			4 reloadweapon		// HZM coop [revolver reload] the gun's own opening clip is 13 frames: started 3 frames in, it ends as the
 							// first round starts (it used to end 3 frames early and the gun snapped shut for those frames)
-			15	coop_ejectcases models/ammo/pistolshell.tik tag_weapon_right 6
+			21	coop_ejectcases models/ammo/pistolshell.tik tag_weapon_right 6
 		}
 	}
 	// [phase B 2026-10-05] DRUM reloads: the drum prop (gun skeleton, drum surface only) rides tag_weapon_left while

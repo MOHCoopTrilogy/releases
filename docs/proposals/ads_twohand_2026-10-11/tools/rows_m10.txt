@@ -31,14 +31,14 @@
 	{
 		client
 		{
-			21 tagspawn tag_weapon_right	// the ejector rod pushes the six fired cases out of the open cylinder (first person)
+			21 tagspawn tag_weapon_right	// the ejector rod punches the six fired cases out: up (gun frame z is DOWN, so negative) and to the left, an arc across the lower frame
 			(
 				count 6
 				model models/ammo/pistolshell.tik
 				spawnrange 1024
 				scale 1.0
 				offsetalongaxis 3.2 -2.2 -1.5
-				randvelaxis range -14 -10 range -6 -12 range -44 -20
+				randvelaxis crandom 8 range -22 -8 range -72 -46
 				avelocity crandom 360 crandom 360 crandom 180
 				accel 0 0 -800
 				physicsrate 20

@@ -84,15 +84,15 @@
   "xmax": 0.3
  },
  "m10_revolver_empty": {
-  "base": 13.8,
-  "dev": 16.87,
+  "base": 14.7,
+  "dev": 11.04,
   "end": 0.0,
-  "frames": 430,
-  "max": 13.9,
+  "frames": 480,
+  "max": 14.7,
   "over": 0.0,
-  "run": "tk11",
+  "run": "pa2",
   "xfr": 0.0,
-  "xmax": 1.6
+  "xmax": 0.4
  },
  "nagantrev": {
   "base": 11.8,
@@ -106,15 +106,15 @@
   "xmax": 1.7
  },
  "nagantrev_empty": {
-  "base": 13.1,
-  "dev": 20.49,
+  "base": 12.5,
+  "dev": 20.75,
   "end": 0.0,
-  "frames": 480,
-  "max": 13.5,
+  "frames": 540,
+  "max": 14.4,
   "over": 0.0,
-  "run": "tk12",
+  "run": "tn3",
   "xfr": 0.0,
-  "xmax": 0.4
+  "xmax": 0.3
  },
  "p38": {
   "base": 10.6,
@@ -150,14 +150,14 @@
   "xmax": 0.2
  },
  "webley_empty": {
-  "base": 12.4,
-  "dev": 30.06,
+  "base": 12.1,
+  "dev": 30.21,
   "end": 0.0,
-  "frames": 430,
+  "frames": 480,
   "max": 12.4,
   "over": 0.0,
-  "run": "tk13",
+  "run": "tn1",
   "xfr": 0.0,
-  "xmax": 0.2
+  "xmax": 0.3
  }
 }

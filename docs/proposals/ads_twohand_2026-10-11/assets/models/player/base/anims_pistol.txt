@@ -60,7 +60,7 @@ animations
 			20 removeattachedmodel tag_weapon_left 0 models/ammo/nagant_pistol_shell.tik
 		}
 	}
-	webley_reload_end			viewmodel/webley/webley_reload_end.skc			crossblend 0.0
+	webley_reload_end			viewmodel/webley/coop_webley_tp_end24.skc			crossblend 0.0
 	{
 		server
 		{

@@ -147,11 +147,11 @@ holsterScale			1.0
 animations
 {
 	idle    webley_revolver.skc
-	reload 	webley_revolver_reload_start.skc
+	reload 	coop_webley_open_hip.skc
 	{
 		client
 		{
-			7 sound webley_snd_reload_start
+			8 sound webley_snd_reload_start
 		}
 
 	}
@@ -175,25 +175,25 @@ animations
 	{
 		client
 		{
-			4 sound webley_snd_reload_start
+			6 sound webley_snd_reload_start
 		}
 	}
 	reload_ads_empty	coop_webley_open_ads.skc
 	{
 		client
 		{
-			4 sound webley_snd_reload_start
+			6 sound webley_snd_reload_start
 		}
 	}
 	reload_end_ads	coop_webley_close_ads.skc
 	{
 		client
 		{
-			3 sound webley_snd_reload_end
+			13 sound webley_snd_reload_end
 		}
 	}
 	// HZM coop [aimed revolver rows end]
-	reload_end 	webley_revolver_reload_end.skc
+	reload_end 	coop_webley_close_hip.skc
 	{
 		server
 		{
@@ -201,7 +201,7 @@ animations
 		}
 		client
 		{
-			3 sound webley_snd_reload_end
+			18 sound webley_snd_reload_end
 		}
 	}
 	

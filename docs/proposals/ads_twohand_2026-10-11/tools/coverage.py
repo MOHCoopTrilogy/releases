@@ -275,6 +275,11 @@ def tested(st, tik, kind, cbx=None):
     END_BAR of the aim, the pose weight stays >= 0.9, and the centre box (cbx: centrebox.json, loaded and empty runs)
     must be under BOX_BAR in every frame. No box figure = not passed (it has not been measured)."""
     e = st.get(tik, {}).get(kind, {})
+    if isinstance(e, dict):                        # only well-formed stance records count (lane files may differ)
+        e = {k: dict(v, ok=bool(v.get('ok')), run=str(v.get('run', '?')), dev=float(v.get('dev', 0.0) or 0.0))
+             for k, v in e.items() if isinstance(v, dict)}
+    else:
+        e = {}
     if not e:
         return '-', 0
     low = bool(st.get(tik, {}).get('lowered')) and kind in ('reload', 'bolt')
@@ -473,6 +478,8 @@ def build():
             hs = 'hip (%.1f, %.1f, %.1f) / ADS (%.1f, %.1f, %.1f) / %.1f u apart: %s%s' % (
                 tuple(hv['hip']) + tuple(hv['aim']) + (hv['d'], 'yes' if hv['match'] else 'NO', ' (staged pose)' if hv.get('staged') else ''))
         rl = st.get(tik, {}).get('rule') or {}
+        if not isinstance(rl, dict):               # a lane wrote free text: shown as the run note, counts as no / no / no
+            rl = dict(run=str(rl))
         r1, r2, r3 = [(rl.get(k) or 'no') if aims else 'n/a' for k in ('target', 'reacts', 'action')]
         if aims and status in ('DONE', 'DONE but braced') and (r1, r2, r3) != ('yes', 'yes', 'yes'):
             status = 'PARTIAL'
