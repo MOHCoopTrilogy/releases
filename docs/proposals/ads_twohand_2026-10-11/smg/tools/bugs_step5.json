@@ -1,0 +1,30 @@
+[
+ {
+  "error_message": "Thompson (retail mesh): the settled aim ALONE is over the 2 % centre-box bar with aim sway on - engine run se8: 6.3 % in the 52 settled frames after one reload (23 frames over), 0.8 % and 0.1 % after two others; offline 6.9 % from rest, 20 % between two sway states",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/README.md",
+  "root_cause": "The Thompson's aim is drawn very close: the rear aperture sight with its two guard ears and the receiver top cover 50 % of the centre box, a few units from the eye. Aim sway + breath translate the whole first-person rig (+-0.14 / +-0.175 u), which moves those long edges 15-20 px. Not a low-sight case (the blanket sight raise does not apply): eye relief +4 u, the rig's clamp, still leaves 2.3 % from rest / 8.3 % worst pair offline.",
+  "fix": "OPEN - a decision for the user: the Thompson's reloads pass with sway OFF in all eight stances (run se9: rounds left 0.3-1.0 %, empty 0.2-1.5 %); with sway on they read 0.3-2.2 % (se8, stand / crouch) on top of an aim that is itself over the bar at times. Either the Thompson's aim framing changes (eye relief +4 u and more - a visible change to the most used gun), or its reloads are judged with sway off / against a reference that follows the sway.",
+  "tags": ["ads", "smg", "thompson", "centre-box", "sway", "open", "user-decision"]
+ },
+ {
+  "error_message": "Thompson aimed reloads, run se7: the last frames were cut off - 0.30-0.35 deg left in the last five frames of the empty reload and the firing hand not yet home",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/smgbake.py",
+  "root_cause": "The hands row thompson_reload has 84 frames (2.8 s) but the server's reload lasts 2.6 s = 78 of them (the gun's own reload clip is 71 frames; the retail first-person clip is finished by f78 as well). The bake planned to the row's last frame.",
+  "fix": "GUNS[key] end=77: the physics run and fade to that frame, the frames after it hold the exact aim; the Thompson's hand timeline ends at f75 (on_er (71,75)). Run se9: last five frames 0.10-0.19 deg, back on the aim 0.07 (0.135 after the standing empty reload). Check for every row: reload length in capture frames x 16 / 33.3 against the row's frame count (measure_run prints the frames).",
+  "tags": ["ads", "smg", "thompson", "clip-length", "server-timing"]
+ },
+ {
+  "error_message": "measure_run braced EMPTY reload of the Thompson read 5.5 % (14 frames over 2 %) in run se7 although no hand or gun part is in the centre box in the braced view",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/reloadbox.py",
+  "root_cause": "In the braced view the gun sits under the centre box, so the box holds only the backdrop - and the muzzle smoke of the 30-round burst drifting through it in reload frames 14-27. The same capture in run se9 read 1.5 %.",
+  "fix": "None in the tool: look at the frames `reloadbox --dump` lists before reading a braced figure as a hand in the box (evidence sheet of the frames was looked at: hand right of and under the box).",
+  "tags": ["ads", "smg", "centre-box", "measure", "smoke", "braced"]
+ },
+ {
+  "error_message": "midframe.py reports 0.22 u / 1.28 deg for coop_thompson_reload_empty_hip.skc at f0-1 and 0.7 deg at f52 although the firing hand never leaves the grip there",
+  "file": "docs/proposals/ads_twohand_2026-10-11/smg/tools/midframe.py",
+  "root_cause": "The tool compares the weapon tag at the half-way point with the mean of its two keyed places: where the GUN itself swings fast (the retail hip clip's own motion) that is the curve of real motion, not a counter-keying error.",
+  "fix": "Read midframe.py only on frames where the gun is meant to stand still while the firing hand moves (aimed clips with a right_path, bake_hip_right); noted in the README.",
+  "tags": ["ads", "smg", "midframe", "tooling", "false-positive"]
+ }
+]

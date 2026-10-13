@@ -86,5 +86,27 @@
   "run": "se4",
   "xfr": 0.0,
   "xmax": 0.1
+ },
+ "thompson": {
+  "base": 43.1,
+  "dev": 1.37,
+  "end": 0.073,
+  "frames": 162,
+  "max": 0.6,
+  "over": 0.0,
+  "run": "se9",
+  "xfr": 0.0,
+  "xmax": 0.6
+ },
+ "thompson_empty": {
+  "base": 28.4,
+  "dev": 1.44,
+  "end": 0.135,
+  "frames": 163,
+  "max": 1.1,
+  "over": 0.0,
+  "run": "se9",
+  "xfr": 0.0,
+  "xmax": 1.1
  }
 }

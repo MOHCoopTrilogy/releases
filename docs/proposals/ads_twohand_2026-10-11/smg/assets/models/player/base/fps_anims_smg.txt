@@ -15,8 +15,10 @@ animations
 			entry sound pistol_whip // the swish sound. 
 		}
 	}
-	thompson_reload			viewmodel/smg/reload_tommy_stand.skc		crossblend 0.3
-	thompson_reload_ads		viewmodel/smg/thompson_reload_ads.skc		crossblend 0.1	// HZM coop [adsreload] reload held in ADS, with weight
+	thompson_reload			viewmodel/smg/coop_thompson_reload_hip.skc		crossblend 0.3
+	thompson_reload_empty		viewmodel/smg/coop_thompson_reload_empty_hip.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	thompson_reload_ads		viewmodel/smg/thompson_reload_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
+	thompson_reload_empty_ads		viewmodel/smg/thompson_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads-smg] staged
 	thompson_pullout		viewmodel/smg/raise_tommy_stand.skc
 	{
 		client

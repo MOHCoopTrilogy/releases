@@ -160,6 +160,24 @@ GUNS['mp40_mp18'] = _variant('mp40', 'mp40_mp18', row='coopr_mp40_mp18_reload', 
                                                  dir=_envf('SB_GD', (0.62, -0.78, 0.0)))))
 # the prop is the gun's own skeleton with only the drum surface: the engine draws its root channel as it does the gun's
 V.PR.gungeo.root_skds().add('models/weapons/coop_mp18/coop_snaildrum.skd')
+# Thompson M1A1 (retail mesh; the Gold finish resolves to it): stick magazine under the gun, the added handle on the
+# RIGHT. AIMED: the firing hand works it (`grab`: the index over the knob); HIP: the retail technique - the LEFT hand
+# over the top, turned onto the knob (hip_cock='L'). Retail clip (84 frames): hand on the magazine f6-10, out f9-13,
+# pouch f28, in f40-47, seat f47-48, over the top f54-58, pull f64-66, away f72. Server prop f8-46.
+# These are the PREFIX rows (thompson_reload...): every Thompson without rows of its own shows them - the other four
+# meshes (remodel, M1928, 1928 Tommy, 50rd) need their own before any of this ships.
+GUNS['thompson'] = dict(row='thompson_reload', sight='thompson', aim='viewmodel/idle_tommy_stand.skc', cls='smg', vdir='viewmodel/smg',
+                        tik='models/weapons/thompsonsmg.tik', prop='models/ammo/thompson_clip.tik', propwin=(8, 46), out_rel=9, in_rel=47,
+                        well=(0.0, 0.0, 1.0),
+                        t=dict(down=(2, 7), catch=6, out=(9, 13), outshow=16, outgo=20, gone=24, back=28, show=33, hold=36, under=40, seat=(43, 47),
+                               tug=51.0, on=(55, 63), on_r=_envf('SB_ONR', (49, 57)), reach_r=_envf('SB_RR', (47, 59)), pull=(59, 65), let=67,
+                               on_er=_envf('SB_ONER', (71, 75))),
+                        end=77, cock='R', hip_cock='L', hip_blend=(48, 76), hip_reach=(56, 61),
+                        hook=dict(_RIGHT['hook'], ref=64, mix=0.5, curl=0.0, add_hip=_envf('SB_HADDH', (0.3, 0.25, 0.1)), hip_mix=0.75, hip_close=4,
+                                  hookpose={1: _envf('SB_HP1', (8.0, 43.0, 30.0)), 2: _envf('SB_HP1', (8.0, 43.0, 30.0)),
+                                            3: _envf('SB_HP3', (40.0, 60.0, 40.0)), 4: _envf('SB_HP3', (40.0, 60.0, 40.0))},
+                                  grab=dict(y=_envf('SB_GY', (0.1,))[0], over=_envf('SB_GO', (0.43,))[0], front=_envf('SB_GF', (0.43,))[0],
+                                            dir=_envf('SB_GD', (0.62, -0.78, 0.0)))))
 GUNS['silenced_pps_43'] = _variant('mp40', 'silenced_pps_43', tik='models/weapons/ppsh43silenced.tik', **_UNDER)
 
 
@@ -405,8 +423,15 @@ def ads_spec(name, empty):
         sup += [(a0, 0.75), (a1, 1.0), (n, 1.0)]
         ev += [(t['tug'], mp + '_tug'), (a1 - 3.0, 'smg_hand_on')]
     # fade 14: the last frames ease onto the exact aim (run sb3 with the default 6: 0.08 deg left when the row ends)
-    ph = gunphys.simulate(n + 1, hipclip.frameTime, g['cls'], support=sup, fade=14,
+    # `end`: the frame the SERVER ends the reload at when that is before the hands row's last frame (Thompson: the
+    # row has 84 frames, the reload lasts 2.6 s = 78 of them - run se7: the last 0.3 deg and the firing hand's last
+    # frames home were cut off). The physics run to `end` and fade there; the frames after it hold the exact aim.
+    ne = int(g.get('end', n))
+    sup = [(f, v) for f, v in sup if f < ne] + [(ne, 1.0)]
+    ph = gunphys.simulate(ne + 1, hipclip.frameTime, g['cls'], support=sup, fade=14,
                           mag=[(0, 1), (o0, 1), (o0 + 3, 0), (s0, 0), (s1, 1)], events=ev, strength=STRENGTH, hand=-1.0)
+    for f in range(ne + 1, n + 1):
+        ph['dip'][f] = tuple(0.0 for _ in ph['dip'][ne])
     if os.environ.get('SB_TRACE'):
         X = ph['X']; a_, b_ = [int(v) for v in os.environ['SB_TRACE'].split(':')]
         print('    f   drop   roll  pitch   side   back   | per-frame step: drop u, pitch deg')
@@ -476,7 +501,7 @@ def bake_hip(name, root):
     open(dst, 'wb').write(bts)
     print(name, 'hip   loaded ->', o1, n, 'frames', hashlib.md5(bts).hexdigest()[:8], '(retail to f%d, then its end pose by f%d: no cock)' % (b0, b1))
     rep['hip_loaded'] = dict(clip=o1)
-    if g.get('cock') == 'R':
+    if g.get('cock') == 'R' and g.get('hip_cock') != 'L':
         rep['hip_empty'] = bake_hip_right(name, root, g, hip, cm, dst, fwd, travel, kj)
         return rep
     # ---- empty: the hand on the handle

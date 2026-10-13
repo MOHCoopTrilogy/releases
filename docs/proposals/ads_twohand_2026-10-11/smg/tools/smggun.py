@@ -50,6 +50,17 @@ GUNS = {
                  # retail sound faded out over these clip frames (magazine in: 1.15-1.5 s; handle: 1.97 s and 2.15 s);
                  # the EMPTY rows keep the full sound
                  snd_cut=(51.0, 56.0), snd_parms='soundparms 1.5 0.0 1.0 0.05 160 1000 item loaded always maps "m e t dm obj lib"'),
+    # Thompson M1A1 (ThompsonSMG.skd, Pak0; also the Gold finish): one bone, NO handle - the slot is painted on the RIGHT
+    # of the receiver (x -2.2 .. 3.2, z -3.9; wall at y 0.54) with a knob painted at its FRONT end (x 3.4). The added
+    # knob stands out of the wall on the right; back = cocked. The retail first-person clip pulls it with the LEFT hand
+    # over the top (index 3.7 -> -1.2 along the gun at f64-66) - the place and travel of this handle. The reload sound
+    # (ThompsonReload1a.wav): magazine out f9-13, in f39 / f45-49, handle f57-65: the aimed pull sits on f59-65.
+    # Clip names carry the key (`_pre`); the gun's own clips are 71 frames, the hands row 84: `frames`.
+    'thompson': dict(tik='models/weapons/thompsonsmg.tik', bone='coop_bolt', parent='tommy gun new', surface='ThompsonSMG1',
+                     back=(-1.6, 0.89, -3.9), size=(0.42, 0.7, 0.42), travel=5.0, uv_at=(1.0, 0.54, -4.55), side='R', _pre='thompson_',
+                     hip_row='viewmodel/smg/reload_tommy_stand.skc', hip_tip_off=0.3, ads_pull=(59.0, 65.0), hip_pull=(63.5, 66.5),
+                     frames=84, pull_soft=0.6, snd_cut=(51.0, 56.0),
+                     snd_parms='soundparms 1.5 0.0 1.0 0.05 160 1000 item loaded always maps "m e t dm obj lib"'),
 }
 FIRE = [0.0, 0.55, 1.0, 0.6, 0.2, 0.0]          # forward fraction per 1/60 s frame
 FIRE_EMPTY = [0.0, 0.55, 1.0, 1.0]
@@ -271,13 +282,14 @@ def build(name, root, ads_pull=None):
             fr[ci] = [float(p[0]), float(p[1]), float(p[2]), v0[ci][3]]
             vals.append(fr)
         return GF.build_skc(sk, vals, ft)
-    nrel = GF.read_skc_any(G._res(t, t['anims']['reload'])).numFrames
+    nrel = g.get('frames') or GF.read_skc_any(G._res(t, t['anims']['reload'])).numFrames
     hcurve = hip_curve(g, nrel)
     print('   hip handle curve (forward fraction) f56..f68:', ' '.join('%.2f' % v for v in hcurve[56:69]))
-    files = {'coop_fire.skc': clip(FIRE, 1 / 60.0), 'coop_fire_empty.skc': clip(FIRE_EMPTY, 1 / 60.0),
-             'coop_idle_empty.skc': clip([1.0], 1 / 30.0),
-             'coop_reload_empty.skc': clip(hcurve, idle.frameTime),
-             'coop_reload_ads_empty.skc': clip(pull_curve(nrel, *g['ads_pull']), idle.frameTime)}
+    pre = g.get('_pre', '')
+    files = {'coop_%sfire.skc' % pre: clip(FIRE, 1 / 60.0), 'coop_%sfire_empty.skc' % pre: clip(FIRE_EMPTY, 1 / 60.0),
+             'coop_%sidle_empty.skc' % pre: clip([1.0], 1 / 30.0),
+             'coop_%sreload_empty.skc' % pre: clip(hcurve, idle.frameTime),
+             'coop_%sreload_ads_empty.skc' % pre: clip(pull_curve(nrel, *g['ads_pull'], soft=g.get('pull_soft', 0.0)), idle.frameTime)}
     for fn, b in files.items():
         open(os.path.join(gdir, fn), 'wb').write(b)
         print('   %-28s %6d bytes %s' % (fn, len(b), hashlib.md5(b).hexdigest()[:8]))
@@ -296,6 +308,7 @@ def build(name, root, ads_pull=None):
         t1, t0 = cut_wav(wav, g['snd_cut'], os.path.join(root, 'sound', 'weapons', 'foley', new + '.wav'))
         print('   sound %s = %s cut to %.2f s of %.2f s (no cock) -> the `reload` row of every tik above' % (new, wav, t1, t0))
     json.dump(dict(gun=name, tiks=tiks, back=g['back'], travel=g['travel'], forward=[g['back'][0] + g['travel'], g['back'][1], g['back'][2]],
+                   side=g.get('side', 'L'), pull_soft=g.get('pull_soft', 0.0),
                    hip_curve=hcurve, ads_pull=g['ads_pull'], surface=g['surface'], uv=info if not isinstance(info, (bytes, bytearray)) else None),
               open(os.path.join(HERE, 'smggun_%s.json' % name), 'w'), indent=1, default=str)
 

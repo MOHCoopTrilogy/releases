@@ -6,14 +6,14 @@ tree or the fixes pak. Engine: worktree `openmohaa-hzm-ads-smg`, branch `ads-smg
 generated rows of `cg_adssights.h`, see the handover; `cgame_smg3.dll` in `G:\mohaa-adsanim3\cgames` has both).
 Test game: `G:\mohaa-adsanim3` (owner adsanim3, port 12578).
 
-## HANDOVER (2026-10-13, runs se4 / se5 / se6) - read this first
+## HANDOVER (2026-10-13, runs se4 - se9) - read this first
 
 Engine: `ads-smg-next` is at 7b4bc029 = 94bb3dca + TWO commits, each ONE generated row of `cg_adssights.h`
 (`tools/patch_sights_row.py` from `sights_override.json`): f1802d87 the Silenced MP40's (F / R z 0.45 u higher), 7b4bc029
 the MP18's (F_root / R_root z 0.3 u higher, eye relief 12.34 u). Built as `G:\mohaa-adsanim3\cgames\cgame_smg3.dll`
 (`cgame_smg2` = without the MP18 row, `cgame_smg1` = without either). Each row belongs TOGETHER with its staged mesh
 (`mp40silenced.skd`, `coop_mp18/mp18.skd`) - never one without the other (the eye would look over or under the sights).
-Run ids used: sa1-sd2, se1-se6. Next: se7. Build: `cmake --build .cmake --config Release --target cgame` in the worktree.
+Run ids used: sa1-sd2, se1-se9. Next: se10. Build: `cmake --build .cmake --config Release --target cgame` in the worktree.
 
 | gun | state |
 |---|---|
@@ -21,7 +21,8 @@ Run ids used: sa1-sd2, se1-se6. Next: se7. Build: `cmake --build .cmake --config
 | Silenced MP40 | **done** (run se4, sway on, cgame_smg2, eight stances): rounds left 0.1-1.5 %, empty 0.1-0.7 %, settled aim alone 0.0-0.9 %, back on the aim 0.05-0.07 deg. Rear leaf shaped into a notch block (below). Looked at: stance sheets, the four GIFs decoded, third person |
 | MP40 R2 | passes (sc4; se2 stand with sway on: 0.1 % rounds left, 1.4 % empty). Per-shot handle travel looked at in the engine (se2) |
 | MP18 | **done** (run se6, sway on, cgame_smg3, eight stances): rounds left 0.2-1.0 %, empty 0.2-1.2 % (against the dry gun's own pose), settled aim alone 0.0-0.4 %, back on the aim 0.04-0.06 deg. Eye relief +4 u, sights 0.3 u taller, side-drum physics, left hand closed on the drum, firing hand hooked on the handle bar's end. Table and weak points below |
-| Thompsons, Sten, PPSh, grease guns, PPS-43, Type 100, Moschetto | NOT started (section 3 has the facts; the Thompson survey of this session is below) |
+| Thompson (retail mesh `ThompsonSMG.skd`: Thompson + its eleven finish tiks) | **built; passes with aim sway OFF** in all eight stances (run se9: rounds left 0.3-1.0 %, empty 0.2-1.5 %). **With sway ON it does not pass reliably and cannot: its settled aim ALONE is at 0.1-6.3 % (se8) - a decision for the user, below.** The other four Thompson meshes are NOT built and show these prefix rows meanwhile |
+| Thompson remodel / M1928 / 1928 Tommy / 50rd, Sten, PPSh, grease guns, PPS-43, Type 100, Moschetto | NOT started (section 3 has the facts; the Thompson survey is below) |
 
 ### Sight raises made (coordinator's blanket rule: the minimum that passes, believable, checked in third person)
 
@@ -91,7 +92,56 @@ stills (the camera cvars do not frame the gun well, bug-3666: crop and enlarge).
 --stances` = the four full-frame GIFs + stance sheets + one decode sheet. `smgbake --cu out.jpg --cuhand L|R --cam f,l,u`
 = a close look at one hand.
 
-### Thompson family - surveyed this session, NOT started (five meshes, three techniques)
+### Thompson, retail mesh (runs se7 / se8 / se9) - built, one decision open
+
+**Gun.** `ThompsonSMG.skd` has one bone and no handle: the cocking slot is painted on the RIGHT of the receiver (x -2.2 ..
+3.2, z -3.9) with a knob ring painted at its front end. A knob is ADDED (`smggun.GUNS['thompson']`: box 0.42 x 0.7 x
+0.42 u on its own bone `coop_bolt`, standing out of the right wall; back x -1.6 = cocked, forward x 3.4 = inside the
+painted ring; existing vertices untouched), open bolt as the MP40 (`coop_thompson_fire` / `_fire_empty` / `_idle_empty` /
+`_reload_empty` / `_reload_ads_empty`; the key is in the names). All 12 tiks on this mesh are patched by script. The
+reload sound (ThompsonReload1a.wav: magazine out f9-13, in f39 / f45-49, handle f57-65) is cut before the handle for
+`reload` (`coop_thompson_snd_reload_loaded`). `evidence/thompson_mesh_handle_added_side.jpg` (back / forward).
+
+**Hands** (`smgbake.GUNS['thompson']`, the PREFIX rows `thompson_reload[_empty][_ads]`):
+* aimed: the left hand leaves the fore-grip, magazine out and in as the MP40's (under the gun; in this close aim almost
+  all of it is under the frame - the new magazine shows beside the gun on the left for 0.2 s), back to the fore-grip;
+  EMPTY: the FIRING hand turns into a hook beside the grip (f47-52), goes up to the knob (f59), pulls it back to the
+  sear on the sound's clacks (f59-65), lets go (f67), home by f75. The server ends this reload at f78 of the row's 84
+  frames (`end=77`, bug-3668);
+* hip: rounds left = the retail clip to the seat, then its end pose (the mimed cock is gone); empty = the RETAIL
+  technique - the left hand over the top of the gun, turned about its wrist onto the knob (`hip_cock='L'`), the knob
+  follows it (f63.5-66.5).
+
+| stance | rounds left, sway OFF (se9) | empty, sway OFF (se9) | back on the aim |
+|---|---|---|---|
+| stand | 0.6 % | 1.1 % | 0.07 / 0.14 deg |
+| crouch / prone | 0.7 / 0.8 % | 0.2 / 1.0 % | 0.07 |
+| lean left / right | 1.0 / 0.3 % | 0.3 / 0.6 % | 0.08 |
+| crouch + lean left / right | 0.9 / 0.3 % | 0.4 / 0.6 % | 0.07 |
+| braced | 0.3 % | 1.5 % (smoke: nothing of the gun or the hands is in the box in the braced view; se7 read 5.5 % the same way) | 0.07 |
+
+Offline (every frame): 1.1 % rounds left, 1.7 % empty; gun between the keys 0.07 u / 0.06 deg (`midframe.py`).
+**With aim sway ON (run se8, cgame_smg3, the same clips but for the last frames):** stand rounds left 2.2 % (5 frames
+over), stand empty 0.8 %, crouch empty 0.3 % - and the SETTLED AIM ALONE, nothing happening: 0.8 %, 6.3 % (23 of 52
+frames over) and 0.1 % after those three. Offline, settled aim alone: 6.9 % from rest, 20 % between two sway states;
+with eye relief +2 / +4 u: 4.2 / 2.3 % from rest, 12.9 / 8.3 % worst pair. The rear aperture with its two guard ears
+and the receiver top cover 50 % of the box a few units from the eye, and the sway moves them 15-20 px. This is not a
+low-sight case, so no sight was raised. **Decision for the user (bug-3667):** change the Thompson's aim framing (eye
+relief +4 u and more - a visible change to the most used gun), or judge its reloads with sway off / against a
+reference that follows the sway.
+
+Looked at: all eight stances on the sheets (se9), ten full-size engine frames of the empty reload + third person
+(`evidence/thompson_reload_aimed_empty_frames_and_third_person_se7.jpg`), the four GIFs decoded.
+Weak points seen: the eye sees next to nothing of the magazine swap (it is under the frame; only the gun's dip and
+lift show it); at the pull the gun comes 0.9 u back and cants - in this close aim the whole sight picture swells for
+0.15 s (the MP40's figure; `smg_bolt_pull_r` could be made lighter for this gun); the firing hand is a large shape
+right of the receiver and hides the knob it holds; the painted knob ring stays at the front of the slot while the real
+knob rests back (a 0.42 u square in a 0.9 u ring when forward) - a bigger knob or a repainted slot is a look decision;
+the first frames of the "empty" GIF show the view still coming back from the burst. Not run: break-off, AI, the
+per-shot knob travel in the engine (same clip set as the MP40's), the finish tiks one by one (same mesh and rows).
+Not listened to.
+
+### Thompson family - the other four meshes, NOT started
 
 | tik(s) | mesh | handle | gun clip, magazine hidden | note |
 |---|---|---|---|---|
@@ -107,9 +157,10 @@ f28), the right never leaves the grip; server prop `models/ammo/thompson_clip.ti
 re-pose). `prop_qa.attach_windows(row, frames, frametime)` gives the prop window of any row (sten 12-43, ppsh 44-60).
 A TOP knob on the sight line cannot be worked on the sights: lowered work pose (the standard's second route).
 
-**Next, in this order.** (a) Thompson family (start with the retail mesh: `smggun.GUNS` entry with a right-side handle,
-`smgbake.GUNS['thompson']` base entry, then the remodel as `cock='R'` + `grab`, then the top-knob pair with a work
-pose), Sten (support hand stays on the magazine in the aim), PPSh, grease guns (cover + bolt to build), then the three
+**Next, in this order.** (a) the rest of the Thompson family: the remodel as a `_variant('thompson', ...)` with its own
+`chamber` handle (`smggun.OWN`, `cock='R'` + `grab`), the 1928 Tommy (its own mesh, no handle, prop window f22-60), then
+the top-knob pair (M1928, 50rd) with a lowered work pose - until then those four show the retail mesh's prefix rows
+(a hand on a knob that is not there): **do not ship the Thompson rows before all five are built.** Then Sten (support hand stays on the magazine in the aim), PPSh, grease guns (cover + bolt to build), then the three
 out-of-reach guns with a lowered work pose (section 3). Before judging any gun with sway on, run
 `python ../tools/swayoff.py <gun>` (needs a `smgbake.GUNS` entry): a gun whose settled aim alone is over about 2 %
 there cannot pass any reload - `sighttry.py` finds the raise. Run `midframe.py` on every clip with a moving firing hand.
@@ -255,7 +306,8 @@ All of them fire from an open bolt: handle back when ready, forward when dry, co
 | MP18 (`coop_mp18`; staged mesh: sights 0.3 u taller, eye relief 12.34 u) | built, run **se6** | `Bone2`, a bar on the right, forward x 8.3, travel 8.7 (ends about 1.3 u right of the bolt's centre); side drum; the pack's own first-person clip cocks with the RIGHT hand f52-58, 3.7 u ahead of the handle | se6, sway ON: rounds left 0.2-1.0 %, empty 0.2-1.2 % (dry-gun reference) in all eight stances; back on the aim 0.04-0.06 deg | the firing hand holds the bar at its end; break-off and AI not run (see the handover) |
 | Silenced PPS-43 (`ppsh43silenced.skd`) | tried offline, NOT staged | `PPS43_lever` (20 vertices, right, x 9.6-10.6) hangs on the main bone -> split works; `eject` moves nothing | - | out of BOTH hands' reach from the aim (below) |
 | Grease gun + silenced (`greaser.skd`) | not built | `Bone1` moves 9.4 u in the reload but NO vertex follows it; the cover is a closed surface (`Mesh_MultiAttached4`, on the top-left as modelled), no port, no bolt | - | cover on a hinge bone + a port and bolt to add |
-| Thompson M1A1 / gold / 1928d (`ThompsonSMG.skd`) | not built | none (one bone) | - | add a handle (as the MP40) |
+| Thompson M1A1 + finishes (`ThompsonSMG.skd`, 12 tiks) | built, runs se7-se9 | ADDED: a knob on the right, back x -1.6, travel 5.0 | se9, sway OFF: rounds left 0.3-1.0 %, empty 0.2-1.5 % in all eight | with sway ON the settled aim alone is over the bar (bug-3667, decision); see the handover |
+| Thompson 1928 Tommy (`coop_tommy1928d`) | not built | none (its own mesh) | - | add a handle; prop window f22-60 |
 | Thompson 50rd / M1928 | not built | `Bolt`, top knob at x -0.9, rests BACK already, +5.1 forward in the retail reload | - | `rest='back'`; a knob on the sight line |
 | Thompson M1A1 remodel (`coop_m1a1dk`) | not built | `chamber`, right, forward x 3.2, travel 6.1 | - | firing hand reaches (75 %) |
 | Sten | not built | `Sten_Bolt`, right, forward x 7.8, travel 8.8 | - | firing hand reaches (92 %) |
@@ -288,6 +340,7 @@ rounds-left clip), `handle='R'` + `_UNDER`, `hip_built` (a built left-hand hook 
 
 Evidence: `evidence/mp40silenced_reload_{aimed,hip}_{roundsleft,empty}_se4.gif` (current, full frame; the `_sc6` / `_sd2` ones show the pack's low sights), `mp40silenced_reload_aimed_{empty,roundsleft}_stances_se4.jpg`, `mp40silenced_aim_before_after_se1.jpg`, `mp40silenced_third_person_se4.jpg`;
 `evidence/mp18_reload_{aimed,hip}_{roundsleft,empty}_se6.gif`, `mp18_reload_aimed_{empty,roundsleft}_stances_se6.jpg`, `mp18_reload_aimed_empty_frames_se6.jpg`, `mp18_aim_before_after_se6.jpg`, `mp18_third_person_se5.jpg`;
+`evidence/thompson_reload_{aimed,hip}_{roundsleft,empty}_se9.gif` (sway off), `thompson_reload_aimed_{empty,roundsleft}_stances_se9.jpg`, `thompson_reload_aimed_empty_frames_and_third_person_se7.jpg`, `thompson_mesh_handle_added_side.jpg`;
 `evidence/mp40r2_reload_{aimed,hip}_{roundsleft,empty}_sc4.gif` (hip empty: `_sd2`), `mp40r2_reload_aimed_empty_stances_sc4.jpg`,
 `mp40r2_cock_closeup_sc4.jpg`. All GIFs decoded (gifsheet.py) and looked at; every stance looked at on its sheet.
 

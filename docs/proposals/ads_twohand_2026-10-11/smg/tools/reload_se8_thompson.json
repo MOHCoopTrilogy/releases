@@ -1,0 +1,65 @@
+{
+ "crouch_empty": {
+  "anim": 6,
+  "back": 0.214,
+  "base": 41.3,
+  "dev_end": 0.427,
+  "dev_max": 1.48,
+  "dry_ref": 36.3,
+  "extra_first": 0.4,
+  "extra_frames_over": 0,
+  "extra_max": 0.3,
+  "frames": 163,
+  "pose_min": 1.0,
+  "reload": [
+   246,
+   408
+  ],
+  "run": "se8",
+  "settled": 2,
+  "skip": 8,
+  "tag": "ab__se8__thompson__crouchadsE__demo__after"
+ },
+ "stand_empty": {
+  "anim": 6,
+  "back": 0.108,
+  "base": 26.6,
+  "dev_end": 0.317,
+  "dev_max": 1.36,
+  "dry_ref": 41.1,
+  "extra_first": 1.2,
+  "extra_frames_over": 0,
+  "extra_max": 0.8,
+  "frames": 163,
+  "pose_min": 1.0,
+  "reload": [
+   245,
+   407
+  ],
+  "run": "se8",
+  "settled": 2,
+  "skip": 8,
+  "tag": "ab__se8__thompson__adsE__demo__after"
+ },
+ "stand_loaded": {
+  "anim": 6,
+  "back": 0.072,
+  "base": 45.6,
+  "dev_end": 0.101,
+  "dev_max": 1.36,
+  "dry_ref": 0.0,
+  "extra_first": 0,
+  "extra_frames_over": 5,
+  "extra_max": 2.2,
+  "frames": 163,
+  "pose_min": 1.0,
+  "reload": [
+   175,
+   337
+  ],
+  "run": "se8",
+  "settled": 2,
+  "skip": 0,
+  "tag": "ab__se8__thompson__adsL__demo__after"
+ }
+}

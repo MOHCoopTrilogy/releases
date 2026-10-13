@@ -3,6 +3,10 @@
   [
    "mp40_reload",
    "viewmodel/mp40/coop_mp40_reload_hip.skc"
+  ],
+  [
+   "thompson_reload",
+   "viewmodel/smg/coop_thompson_reload_hip.skc"
   ]
  ],
  "add": [
@@ -89,6 +93,24 @@
    "viewmodel/mp40/mp40_mp18_reload_empty_ads.skc",
    "0.1",
    "coopr_mp40_mp18_reload_ads"
+  ],
+  [
+   "thompson_reload_empty",
+   "viewmodel/smg/coop_thompson_reload_empty_hip.skc",
+   "0.1",
+   "thompson_reload"
+  ],
+  [
+   "thompson_reload_ads",
+   "viewmodel/smg/thompson_reload_ads.skc",
+   "0.1",
+   "thompson_reload_empty"
+  ],
+  [
+   "thompson_reload_empty_ads",
+   "viewmodel/smg/thompson_reload_empty_ads.skc",
+   "0.1",
+   "thompson_reload_ads"
   ]
  ],
  "shared": [
