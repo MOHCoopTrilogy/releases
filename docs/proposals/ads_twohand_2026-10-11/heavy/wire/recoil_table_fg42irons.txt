@@ -1,0 +1,8 @@
+coop_fg42_irons -2.1 -2.1 -0.2 0.05 3.4 T 12 0.2 2.2 12.0 25.0
+coop_fg42_irons_bloody -2.1 -2.1 -0.2 0.05 3.4 T 12 0.2 2.2 12.0 25.0
+coop_fg42_irons_blued -2.1 -2.1 -0.2 0.05 3.4 T 12 0.2 2.2 12.0 25.0
+coop_fg42_irons_camo_desert -2.1 -2.1 -0.2 0.05 3.4 T 12 0.2 2.2 12.0 25.0
+coop_fg42_irons_camo_winter -2.1 -2.1 -0.2 0.05 3.4 T 12 0.2 2.2 12.0 25.0
+coop_fg42_irons_camo_woodland -2.1 -2.1 -0.2 0.05 3.4 T 12 0.2 2.2 12.0 25.0
+coop_fg42_irons_chrome -2.1 -2.1 -0.2 0.05 3.4 T 12 0.2 2.2 12.0 25.0
+coop_fg42_irons_gold -2.1 -2.1 -0.2 0.05 3.4 T 12 0.2 2.2 12.0 25.0

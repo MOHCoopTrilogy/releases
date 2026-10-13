@@ -24,6 +24,7 @@ GUNS = {
     'bar':     dict(sight='bar', tik='models/weapons/bar.tik', cls='bar', idle='bar_idle1', vdir='viewmodel/mg'),
     'mp44':    dict(sight='stg44', tik='models/weapons/mp44.tik', cls='stg', idle='mp44_idle1', vdir='viewmodel/mp44'),
     'fg42':    dict(sight=None, tik='models/weapons/FG42.tik', cls='fg42', idle='fg42_idle', vdir='viewmodel/fg42'),
+    'fg42irons': dict(sight='fg42_irons', tik='models/weapons/coop_fg42_irons.tik', cls='fg42', idle='fg42_idle', vdir='viewmodel/fg42'),
     'vickers': dict(sight='vickers_berthier', tik='models/weapons/Uk_W_Vickers.tik', cls='lmg', idle='vickers_idle', vdir='viewmodel/Vickers'),
     'breda':   dict(sight='breda', tik='models/weapons/It_W_Breda.tik', cls='lmg', idle='breda_idle', vdir='viewmodel/breda'),
     'dp28':    dict(sight='dp_28', tik='models/weapons/dp28.tik', cls='lmg', idle='dp28_idle1', vdir='viewmodel/coop_dp28'),
@@ -49,6 +50,11 @@ def lib():
         for k, o in json.load(open(ov)).items():
             if k in H.V.SIGHTS:
                 H.V.SIGHTS[k].update({kk: o[kk] for kk in ('delta_mrad', 'relief', 'F', 'R') if kk in o})
+            elif o.get('new'):               # a NEW gun of this lane (FG 42 Irons): its row exists only here
+                tik = sorted(o['tiks'], key=len)[0]
+                H.V.SIGHTS[k] = dict(tik=tik, name=o['tiks'][tik], skd=o.get('skd', ''), F=o['F'], R=o['R'], up=o.get('up', [0.0, 0.0, -1.0]),
+                                     delta_mrad=1000.0 * o.get('delta', 0.0), ftype='tip', rtype='aperture', relief=o.get('relief', 0.0), verified=True, note='')
+                H.V.GUNTIK[k] = tik
     return H, H.R, H.V, CTL
 
 

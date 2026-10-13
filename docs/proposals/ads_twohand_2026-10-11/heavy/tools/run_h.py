@@ -26,6 +26,10 @@ A.GUNS.update({"30cal": "models/weapons/30calportable.tik", "mg42": "models/weap
                "mp44gold": "models/weapons/mp44_gold.tik",
                "mp44strap": "models/weapons/mp44_mp44strap.tik",
                # the other BAR meshes (bug-3623): retail mesh / the Pacific pack's S93 skeleton on its own path
+               "fg42irons": "models/weapons/coop_fg42_irons.tik", "fg42irons_gold": "models/weapons/coop_fg42_irons_gold.tik",
+               "fg42irons_chrome": "models/weapons/coop_fg42_irons_chrome.tik", "fg42irons_blued": "models/weapons/coop_fg42_irons_blued.tik",
+               "fg42irons_bloody": "models/weapons/coop_fg42_irons_bloody.tik", "fg42irons_camo_woodland": "models/weapons/coop_fg42_irons_camo_woodland.tik",
+               "fg42irons_camo_winter": "models/weapons/coop_fg42_irons_camo_winter.tik", "fg42irons_camo_desert": "models/weapons/coop_fg42_irons_camo_desert.tik",
                "sggold": "models/weapons/shotgun_gold.tik", "sgcamo": "models/weapons/shotgun_camo_winter.tik",
                "sgchrome": "models/weapons/shotgun_chrome.tik",
                "dp28": "models/weapons/dp28.tik", "fg42": "models/weapons/FG42.tik",
@@ -106,6 +110,15 @@ def ground(sess, gun):
         R.step(L, timeout=300)
 
 
+def hipstill(sess, gun):
+    """--hipstill: the gun held at the hip on the light wall, two stills. Tag <gun>__stand__hip."""
+    tag = "ab__%s__%s__stand__hip__after" % (sess, gun)
+    L = S.RELEASE + S.TO_STAND + ["wait 900"]
+    for k in range(2):
+        L += ["screenshotJPEG %s__%04d" % (tag, k), "wait 1", "wait 1", "wait 1", "wait 1"]
+    R.step(L, timeout=300)
+
+
 _run0 = T2.run
 STDEMO = []
 TAIL = [0, 4]
@@ -116,16 +129,20 @@ STHIP = []          # --sthip : --stdemo from the hip
 TPC = []            # --tpc : third_close (smg_block) = the held gun from outside, close, hip + aim
 TPREL = []          # --tprel : tp_reload = the hip reload from outside
 GROUND = []         # --ground : the dropped gun
+HIPSTILL = []       # --hipstill : the gun at the hip on the light wall
 
 
 def _run(a):
-    if not (STDEMO or BRK or HIPDEMO or WALLSTILL or TPC or TPREL or GROUND):
+    if not (STDEMO or BRK or HIPDEMO or WALLSTILL or TPC or TPREL or GROUND or HIPSTILL):
         return _run0(a)
     # our part runs inside the shared session: hook the per-gun loop through the (otherwise unused here) "yaw" part
     def ys(sess, gun, yaw):
         x, y, z, w = R.SPOT
         R.SPOT = (x, y, z, a.demoyaw)        # the light wall: on the default yaw (fence, moving foliage) the box measure is void (run hc1)
         try:
+            if HIPSTILL:
+                R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+                hipstill(sess, gun)
             for st in WALLSTILL:
                 R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)      # give re-faces to the wall yaw
                 T2.still(sess, gun, st, name=st + "W")
@@ -170,6 +187,8 @@ if __name__ == "__main__":
         sys.argv.remove("--sthip"); STHIP.append(1)
     if "--tpc" in sys.argv:
         sys.argv.remove("--tpc"); TPC.append(1)
+    if "--hipstill" in sys.argv:
+        sys.argv.remove("--hipstill"); HIPSTILL.append(1)
     if "--tprel" in sys.argv:
         sys.argv.remove("--tprel"); TPREL.append(1)
     if "--ground" in sys.argv:

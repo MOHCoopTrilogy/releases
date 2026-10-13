@@ -5,10 +5,14 @@ lane's (`../README.md` top section); this file says what is different here, what
 **Everything is STAGED** in this folder and on engine branch `ads-heavy-next` (worktree
 `C:\mohaa-coop-dev\openmohaa-hzm-ads-heavy`, build dir `.cmake` - NOT `build`). Nothing is in the mod tree, the fixes
 pak or a live install. Run ids used: ha hb hc hd he hf hn hs (earlier), hg1-hg3, hh1-hh9, hi1, hi2, hj1, hj2 (third agent), **hj3-hj14 (fourth agent)** -
-**hj15-hj21 (fifth agent)** - never reuse one; next free: `hj22`.
+**hj15-hj25 (fifth agent)** - never reuse one; next free: `hj26`.
+
+**FROZEN (coordinator, 2026-10-13): BAR family, StG 44 family, DP-28 and the pump shotgun are being integrated from this
+folder at engine 4b73e8c5. Do NOT change their staged files, rows, tool output or README sections; a defect in one
+goes to the coordinator by message.** `fps_anims_mg.txt` gained one ADDED row since (the irons aim pose), nothing else.
 
 ## Fifth agent, 2026-10-13: shotgun polish (supersedes the matching lines of "Shotgun reload" below)
-Engine `ads-heavy-next` **4b73e8c5** = `cgame_heavy6` (current). Overlay of the last runs: `SCRATCH/adsheavy/ov_k8.pk3`.
+Engine `ads-heavy-next` **4b73e8c5** = `cgame_heavy6` (the shotgun's; what the integration takes). Overlay of the shotgun runs: `SCRATCH/adsheavy/ov_k8.pk3`.
 * **Break-off, round chambered: 0.38-0.40 s from the press to the shot** (was 1.18-1.23 s; runs hj15, hj19, hj20,
   `tools/brktime.py <run>` reads it from the log). `patch_sgbreak.py` STAGE 2 (still a PATCH; it upgrades a stage-1
   file): the state machine has no memory, so a reload that leaves the start state with a round in the gun runs
@@ -42,12 +46,75 @@ Engine `ads-heavy-next` **4b73e8c5** = `cgame_heavy6` (current). Overlay of the 
   not listened to; the hip reload still swings the muzzle through the centre (left, coordinator's call).
 * Coverage rows: `cov_h.py scan hj16 hj19 hj20`, `lowered` set, rule yes / yes / yes.
 * New tools: `brktime.py`, `apply_sgbreak.py`, `moveruns.py`, `run_h.py --tprel / --ground`.
-* **Disk**: G: ran full (bug-3758). Nobody deletes: finished, written-up runs are moved into to-delete folders the
-  user empties - ha1..hh4 are in `SCRATCH/_delete_me/heavy/` (C:), hh5..hj14 in `G:\_hzm_delete_me\heavy\`. Still in
-  `G:\mohaa-adsanim4\runs`: hj15-hj21, hn1-3, hs1-3. A six-stance run with a tail is 1.3-2 GB.
-* **Next (coordinator, 2026-10-13)**: FG 42 IRONS as a new weapon first (`coop_fg42_irons`, the rifles lane's G43
-  Irons recipe, `..\rifles\README.md`; look-test stills, ONE interim message to main), then the hip reload for both
-  FG 42s and the aimed reload for the irons one, what plays when reloading scoped; then the belt-feds.
+* **Disk**: G: ran full (bug-3758). Nobody deletes. Finished, written-up runs are MOVED to the archive disk:
+  `python tools/moveruns.py <id,id,...>` -> `H:\hzm_archive\heavy\<id>` (verified copy, then the source removed;
+  run it in the background, H: is slow). Live captures stay on `G:\mohaa-adsanim4\runs`. The coordinator moved
+  ha1..hj14 to H: as well. A six-stance run with a tail is 1.3-2 GB; a stills run of 8 guns 0.2 GB.
+
+## FG 42 Irons - a NEW weapon (fifth agent, runs hj22-hj25; user 2026-10-13) - look test delivered and accepted
+Engine `ads-heavy-next` **24f21200** = `cgame_heavy8` (`cgame_heavy7` = the same without the trace). Overlay:
+`SCRATCH/adsheavy/ov_f5.pk3` = `mkov_h.py` + `wire/patch_fg42irons_state.py --pk3` (the state row, see below).
+The rifle lane's G 43 Irons recipe (`..\rifles\README.md`), its helpers imported as a library.
+* **Mesh** `assets/models/weapons/fg42/coop_fg42_irons.skd` (`tools/fg42irons.py`; `tools/fg42parts.py` lists the
+  retail components): the retail `fg42.skd` (SKMD v5, 4 stray bytes after ofsEnd - dropped, bug-3770) had NO rear sight
+  under the scope and a front slab with a stud facing the eye. Out (triangles only): scope tube 76, turret / ring /
+  mount 96, its foot 26, the lens surface, the front slab 46. In, surface `coop_sight` (218 tris, shader
+  `coop_fg42_sight`, `scripts/coop_fg42_sight.shader`, `textures/coop_wpn/fg42_sight.tga` = the G43 sheet at 0.52 /
+  0.66 - it read mid-grey on this gun): REAR aperture ring outer r 0.46 / hole r 0.21 u, 0.22 u thick, a worn band
+  round the rim, on a stalk with a range drum and a foot at x -6.2 on the receiver's rear tube; FRONT post 0.38 u wide
+  at the tip with a worn-bright band across its top (coordinator's note: the 0.26 u post was lost on dark foliage)
+  on a hinge block on the retail foot. Sight line 0.10 deg to the bore axis, sight radius 33 u.
+* **Tiks** (`tools/fg42tik.py`): `coop_fg42_irons.tik` + gold, chrome, blued, bloody, camo_woodland, camo_winter,
+  camo_desert = EVERY finish the scoped FG 42 has; name "FG 42 Irons" (+ " (Gold)" ...), rank 231, no zoom, the
+  BAR's accuracy and movement rows read from the mod tree's bar.tik (coordinator: the BAR's - settled); damage, fire
+  delay, 20 rounds, sounds, reload the FG 42's own. The sights are dark steel on every finish (sheet below).
+* **Sight row** `sights_override.json` key `fg42_irons` (`"new": true`): F 26.77 -0.855 -5.50, R -6.2 -0.855 -5.44,
+  relief 12. `tools/apply_fg42irons.py <worktree>` writes the 8 rows and the three cgame edits (name -> the fg42
+  hands prefix; aim tune donor StG 44; the per-weapon row override also covers `charge`). `hv.lib()` registers a
+  `new` key for the offline tools (gun entry `fg42irons` in `hv.GUNS`).
+* **Aim pose** `viewmodel/fg42/coop_fg42_irons_aim.skc` (`tools/fg42pose.py`, row `coopr_fg_42_irons_charge` in
+  `stage_rows.py`): the StG 44 aim pose (the gun's seat in the firing hand is identical to the FG 42 hip idle's),
+  both arms 5 u further out, the support hand = the hip idle's grip turned 40 deg about the gun through the
+  handguard and 0.4 u lower: palm on the handguard's left flank, fingers under (the plain hip grip put four fingers
+  large right of the rear sight, bug-3771). The scoped FG 42 has no aim pose and is untouched.
+* **Looked at** (`evidence/fg42irons/`): `fg42irons_mesh_side_before_after.jpg`; `fg42irons_hip_aim_hj23.jpg` (hip,
+  aim light / dark, crouch, prone, lean left); `fg42irons_aim_enlarged_hj25.jpg` (the thicker post: light wall, dark,
+  Winter; `_hj23` = the thin post, superseded); `fg42irons_finishes_hip_aim_hj23.jpg` (base + 7 finishes, hip + aim);
+  `fg42irons_third_person_hj23.jpg`; `fg42_reloads_today_hj24.jpg`.
+* **Weak points seen**: the side magazine is a long dark slab left of the sight just under the centre box; the stock
+  fills the bottom centre; a little of the firing hand shows right of the receiver under the box (coordinator: tuck
+  it if cheap - it is not: `fixed_right` keeps the firing arm, it needs its own finger pose); the third-person
+  stills show the gun small; the hip stills of hj23 were not re-taken with the thicker post.
+* **What plays today** (run hj24, `--set "set coop_vmTrace 1"`, `apply_vmtrace.py`, bug-3773): SCOPED FG 42, reload
+  with the scope up: the cgame starts the HIP row `fg42_reload` for 2.32 s and goes back to `fg42_charge`; all 200
+  frames show the unchanged scope picture - no hands, no gun, the picture does not move. The gun's `reload` row has
+  `entry sound fg42_snd_reload`; not listened to. FG 42 IRONS aimed: the same hip row (no `_ads` row yet) - the gun
+  drops to the hip clip, an OPEN left hand comes up mid-screen, back at the aim after 2.3 s. HIP reload (both guns,
+  DaRKaNGeL's clip): the left hand paws at the magazine with open fingers - it has to be rebuilt to the rule.
+* **State row** (bug-3772): `coop_mod/player_Torso.st` picks the reload's torso row by the exact name "FG 42";
+  `wire/patch_fg42irons_state.py <tree>` adds the row for "FG 42 Irons" (a PATCH; `--pk3 in out` patches a test
+  overlay - the lane's staged state file is the shotgun's and is frozen). Run hj24 with it: the hip reload plays.
+* **How the player gets it** - `wire/README.md`: own armory entry (roster id 79 proposed, tab heavy), **unlock at rank
+  18** (the scoped FG 42 is rank 19; rank 18 unlocks nothing today), the 7 finishes under the new base tik, recoil
+  rows staged (`wire/recoil_table_fg42irons.txt`). The generator patch script is NOT written: the coordinator said to
+  wait for the rifle lane's generator-based recipe in `..\rifles\wire\README.md`, then follow it. How the scoped FG
+  42's finishes unlock was not found (`challenges.scr` has no "fg42" text).
+
+## NEXT, in the coordinator's order
+1. FG 42 pair, HIP reload to the rule: magazine out and in from the LEFT side with a gripping hand, the charging
+   handle worked by the suitable hand. The mesh has no handle geometry (only the slot on the right of the receiver,
+   z -2.6, x -3..2) and one gun bone: add a handle as a new surface on a new bone (`split_bone` / `add_bead.add_surface`,
+   as `g43irons.py` does for `coop_bolt`) - for BOTH skds, or give the scoped tiks the irons mesh's bone some other
+   way; the gun's `reload` row is the static `fg42.skc`; torso row `coop_reload_fg42` (2.34 s). `clipinfo.py` fails
+   on `fg42_reload.skc` (not found under that name - find the gun clip's real path first).
+2. FG 42 Irons AIMED reload to the acceptance rule (rows `coopr_fg_42_irons_reload_ads` / `_reload_empty_ads`, a
+   `heavybake` entry copied from MP44 with the well on the left), six stances + braced, sway on, GIFs.
+3. Reload-while-scoped: follows the rifle lane's scoped sample (today: nothing is shown, above).
+4. The armory / unlock / finish wiring (`wire/README.md`).
+5. Belt-feds: M1919 portable first (sight row via `sights_override.json`, bug-3622), Breda, Vickers, MG42.
+6. Leftovers: BAR A1 / A2 run, BAR / DP-28 heavier return, BAR hip reload - those guns are FROZEN now: ask first.
+7. Shotgun leftovers that need a way round the harness: the ground pickup look, a third-person camera that shows
+   the reload (bug-3759).
 
 ## State (third agent, runs hg / hh / hi / hj1-hj2; engine: cgame_heavy2 for every reload figure, cgame_heavy3 = + the shotgun row)
 | item | state |
@@ -376,6 +443,6 @@ Runs: ha1 / ha2 (aim poses), hb1-hb9 (predecessor's BAR iterations), hs / hn (sk
 variants, finishes), hd1-hd3 (final BAR clips, settle diagnostics), he1-he7 (StG 44; he6 / he7 final), hf1 (StG 44 aim
 stills), hf2 (strapped variant). `centrebox.json` keys are GUN names (`bar`, `bar_empty`, ...) as coverage.py reads
 them; `python ../tools/coverage.py --lane heavy build` writes the lane preview `heavy/coverage.md` (BAR and StG 44: DONE).
-Bugs: 3619-3623, 3646-3649 (second agent); 3667-3676, 3681 (third agent); 3696-3698, 3727-3732 (fourth agent).
+Bugs: 3619-3623, 3646-3649 (second agent); 3667-3676, 3681 (third agent); 3696-3698, 3727-3732 (fourth agent); 3755-3759, 3769-3773 (fifth agent).
 Tools added by the third agent: `boxeng.py --sway`, `swayshow.py`, `run_h.py --tail / --brk / --hipdemo / --hold / --rel`,
 `heavybake.py --hip` + `feed='top'`, `patch_tik_h.py` `more_paths` for the BAR, `hip=True`, the `dp28` set.

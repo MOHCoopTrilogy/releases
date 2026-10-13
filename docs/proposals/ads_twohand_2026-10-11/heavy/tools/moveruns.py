@@ -7,7 +7,7 @@ DEST\moved.txt (id, files, GB). Tools find a moved run through hv.run_dir(<id>) 
 """
 import os, sys, shutil
 SRC = 'G:/mohaa-adsanim4/runs'
-DEST = r'C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\heavy\runs'
+DEST = r"H:\hzm_archive\heavy"          # the archive disk (slow; finished, written-up runs only - live captures stay on G:)
 
 
 def arg(k, d):

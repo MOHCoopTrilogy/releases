@@ -40,6 +40,8 @@ EDITS = {
         ('dp28_reload_empty_ads', 'viewmodel/coop_dp28/dp28_reload_empty_ads.skc', 0.1, 'aimed, empty: the pan, then the left hand hauls the handle and lets it fly'),
         ('dp28_reload_adsb', 'viewmodel/coop_dp28/dp28_reload_adsb.skc', 0.1, 'aimed + braced, rounds left'),
         ('dp28_reload_empty_adsb', 'viewmodel/coop_dp28/dp28_reload_empty_adsb.skc', 0.1, 'aimed + braced, empty'),
+        # FG 42 Irons (fg42irons.py / fg42tik.py / fg42pose.py): the per-weapon aim pose; the scoped FG 42 has none
+        ('coopr_fg_42_irons_charge', 'viewmodel/fg42/coop_fg42_irons_aim.skc', 0.1, 'FG 42 Irons: aim pose (StG pose pushed out, support hand on the wooden handguard)'),
     ],
     'shotgun': [
         # shotgun reload (sgbake.py): the three aimed rows keep their SHIPPED paths - the staged clips replace them.
