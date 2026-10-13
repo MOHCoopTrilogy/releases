@@ -53,24 +53,25 @@ GUNS = {
                   sight='kar98', aim='viewmodel/kar_stand00.skc', anim='rechamber',
                   off=(2, 7), up=(8, 10), back=(13, 15), fwd=(23, 24), down=(27, 29), on=(36, 42),
                   hold=(0, 11, 27, 42),       # the hold eases in over 0-11 (receiver down first, forward as the bolt opens; 0-7 read as a snap forward in run rb5), out over 27-42
-                  ease=1.25, hold_set=dict(drop=2.5, pitch=-2.2),   # = ease 1.23, the values of runs rb5-rb7
+                  ease=0.0, hold_set=dict(back=-3.0),   # A as shown to the user (run rb8): head 3 u back off the comb
                   rc=dict(knob_off=(0.0, 1.2, 0.6))),
     # Springfield M1903 (56 x 1/30 s): lift 8-10, back 15-17, forward 27-28, down 30-32, hand on the knob 8-31
     'springfield': dict(recipe='springfield_rechamber', out='viewmodel/rifle/springfield_rechamber_ads.skc',
                         sight='springfield_unscoped', aim='viewmodel/sprng_stand00.skc', anim='rechamber',
                         off=(2, 7), up=(8, 10), back=(15, 17), fwd=(27, 28), down=(30, 32), on=(38, 44), hold=(0, 11, 30, 45),
-                        ease=0.5, rc=dict(knob_off=(0.0, 1.2, 0.6))),
+                        ease=0.0, rc=dict(knob_off=(0.0, 1.2, 0.6))),
     # Mosin-Nagant (45 x 1/30 s): lift 7-12, back 12-15, forward + down 26-27
     'mosin': dict(recipe='mosin_rechamber', out='viewmodel/mosin_nagant/mosin_rechamber_ads.skc',
                   sight='mosin_nagant_rifle', aim='viewmodel/kar_stand00.skc', anim='rechamber',
                   off=(1, 6), up=(7, 12), back=(12, 15), fwd=(26, 26), down=(27, 27), on=(34, 40), hold=(0, 10, 27, 41),
-                  ease=0.5, rc=dict(knob_off=(0.0, 1.2, 0.6))),
+                  ease=0.0, rc=dict(knob_off=(0.0, 1.2, 0.6))),
     # Lee-Enfield (45 x 1/30 s): lift 7-12, back 12-15, forward + down 24-27; the rear sight sits on the receiver
     # bridge just ahead of the eye, so the rifle is eased further forward than the Kar98
     'enfield': dict(recipe='enfield_rechamber', out='viewmodel/enfield/enfield_rechamber_ads.skc',
                     sight='lee_enfield', aim='viewmodel/kar_stand00.skc', anim='rechamber',
                     off=(1, 6), up=(7, 12), back=(12, 15), fwd=(24, 25), down=(26, 27), on=(34, 40), hold=(0, 10, 27, 41),
-                    ease=0.0, hold_set=dict(back=-3.3), rc=dict(knob_off=(0.0, 1.2, 0.6))),
+                    ease=0.0, hold_set=dict(back=-1.0),   # 3.3 u read as a pump (run rb13): the rifle stays put
+                    rc=dict(knob_off=(0.0, 1.2, 0.6))),
 }
 # the hold while the bolt is worked: (drop u, roll deg, pitch deg, side u, back u).
 # ON TARGET (2026-10-12, user: "bolt actions should ideally not move much from locking onto target when the bolt is
@@ -91,6 +92,22 @@ GUNS = {
 #     `--set ease=x` / `--set drop=.. --set pitch=..` override.
 HOLD = dict(drop=None, roll=2.0, pitch=None, side=0.0, back=-2.0)
 EASE = 1.25
+# USER DECISION 2026-10-12 (after the A / C GIF): **variant A - the rifle stays LOCKED on the sights while the hand
+# works the bolt**; the open bolt handle / bolt body in the middle of the view is accepted, for every bolt-action
+# rifle. No easing of the receiver for the between-shot cycle: every gun's `ease` is 0 now. Variant C stays
+# reproducible and unused: `--set ease=1.25` (Kar98; 0.5 Springfield / Mosin) `--set back=-2`.
+EASE = 0.0
+# THE FRONT SIGHT IS THE PIVOT (2026-10-12 late; user: "weight yes, drift no"). gunphys turns the rifle about the butt,
+# so every stroke's pitch and the spring's overshoot swung the MUZZLE: the staged Kar98 clip itself put the front
+# sight 0.67 deg above the target with the bolt back and 0.23 deg under it at the turn-down (rpart.py --track) - most
+# of what read as "leaving the target", and it was the clip, not the shot's recoil. The support hand holds the
+# fore-end on the target; what gives is the butt in the shoulder. So after the simulation the DROP of every frame is
+# re-solved so the front sight keeps only FS_KEEP of its excursion (height of the front sight against the aim =
+# -drop - FS_LEN * sin(pitch); FS_LEN = butt pivot to front sight). The reaction stays in full at the receiver end,
+# in the roll and in the fore-aft tug. `--set fskeep=1` = the unconstrained simulation.
+FS_KEEP = 0.25
+FS_LEN = 73.6      # calibrated on the Kar98 with rpart.py --track (65 left the front sight 0.35 deg HIGH in the hold)
+RCV_LEN = 33.0     # butt pivot to the receiver / rear sight
 SC = dict(k=1.0)
 
 
@@ -116,16 +133,24 @@ def bake(name, root, hold=HOLD, sc=1.0, show=False, suffix=''):
     hold = dict(hold, **{k: v for k, v in g.get('hold_set', {}).items() if hold.get(k) is None or k not in ('drop', 'pitch')})
     ease = hold.pop('ease', g.get('ease', EASE))
     if hold['drop'] is None:
-        hold['drop'] = round(ease * 65.0 / 32.0, 3)
+        hold['drop'] = round(ease * FS_LEN / (FS_LEN - RCV_LEN), 3)
     if hold['pitch'] is None:
-        hold['pitch'] = round(-float(np.degrees(np.arctan(ease / 32.0))), 3)
+        hold['pitch'] = round(-float(np.degrees(np.arctan(ease / (FS_LEN - RCV_LEN)))), 3)
     rc = copy.deepcopy(K.RECIPES[g['recipe']])
     hip = R.load(R.ANIM + rc['hip'])
     n, ft = hip.numFrames, hip.frameTime
     r, ev = phys(g, n, ft, hold, sc)
-    X = r['X']
+    keep = float(hold.pop('fskeep', g.get('fs_keep', FS_KEEP)))
+    X = r['X'].copy()
+    zf = -X[:, 0] - g.get('fs_len', FS_LEN) * np.sin(np.radians(X[:, 2]))
+    X[:, 0] += (1.0 - keep) * zf
+    print('    front sight (clip alone, before -> after the pivot): %.2f..%.2f u -> %.2f..%.2f u' % (
+        zf.min(), zf.max(), (keep * zf).min(), (keep * zf).max()))
     # gunphys (drop, roll, pitch, side, back) -> key_bolt (dip, cant, yaw, fwd, left, up); cant + = top to the LEFT
     rc['keys'] = {f: (float(X[f, 2]), float(-X[f, 1]), 0.0, float(-X[f, 4]), float(X[f, 3]), float(-X[f, 0])) for f in range(n)}
+    # the cant turns about the SIGHT LINE (camera axis through the eye), not the bore 3 u under it: a roll about the
+    # bore carried the front sight 0.2 deg sideways off the target
+    rc['pivot_cant'] = (0.0, 0.0, 0.0)
     for k, v in g.get('rc', {}).items():
         rc[k] = v
     K.RECIPES['_phys_' + name] = rc
@@ -164,7 +189,7 @@ def bake(name, root, hold=HOLD, sc=1.0, show=False, suffix=''):
     if show:
         for f in range(0, n, 2):
             print('    %2d ' % f + ' '.join('%6.2f' % v for v in X[f]))
-    json.dump(dict(gun=name, hold=hold, scale=sc, events=[list(e) for e in ev], cls=RIFLE, report=r['report'],
+    json.dump(dict(gun=name, hold=hold, scale=sc, fs_keep=keep, events=[list(e) for e in ev], cls=RIFLE, report=r['report'],
                    md5=hashlib.md5(bts).hexdigest()), open(dst[:-4] + '_phys.json', 'w'), indent=1)
     return dst
 

@@ -1,13 +1,14 @@
 {
  "gun": "kar98",
  "hold": {
-  "drop": 2.5,
+  "drop": 0.0,
   "roll": 2.0,
-  "pitch": -2.2,
+  "pitch": -0.0,
   "side": 0.0,
-  "back": -2.0
+  "back": -3.0
  },
  "scale": 2.5,
+ "fs_keep": 0.25,
  "events": [
   [
    8,
@@ -62,6 +63,6 @@
   ],
   "tr2": 0.5
  },
- "report": "class custom x1.00: peak pitch 2.52 deg at f17, roll 3.63 deg, drop 2.74 u, back 2.38 u; settles 0.40 s after the last action; left at the last frame before the fade: pitch 0.01 deg",
- "md5": "021f9d0cef8e5697dfc27f296aa1e2af"
+ "report": "class custom x1.00: peak pitch 0.36 deg at f31, roll 3.63 deg, drop 0.08 u, back 3.39 u; settles 0.25 s after the last action; left at the last frame before the fade: pitch -0.00 deg",
+ "md5": "c4d53b619da0e6f5a1e8e11c06751002"
 }

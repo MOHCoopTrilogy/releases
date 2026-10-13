@@ -64,7 +64,9 @@ def measure(gun, aimp, spec, w=320, sheet=None, every=2, zoom=False, minp=0.5, q
             parts[surfs[int(si)]['name']] = round(100.0 * float(((box // 1000000 == si) & ext).mean()), 1)
         d = dict(f=f, extra=round(100.0 * float(ext.mean()), 1), parts=parts,
                  muzzle_deg=round(ang(Sp[0], S0[0]), 2), rear_deg=round(ang(Sp[1], S0[1]), 2),
-                 line_deg=round(ang(Sp[0] - Sp[1], S0[0] - S0[1]), 2))
+                 line_deg=round(ang(Sp[0] - Sp[1], S0[0] - S0[1]), 2),
+                 # signed: the front sight's elevation against the settled aim (deg, + = ABOVE the target)
+                 f_up=round(float(np.degrees(np.arctan2(Sp[0][2], Sp[0][0]) - np.arctan2(S0[0][2], S0[0][0]))), 3))
         out.append(d)
         if want:
             im = Image.fromarray(rgb)
@@ -80,6 +82,10 @@ def measure(gun, aimp, spec, w=320, sheet=None, every=2, zoom=False, minp=0.5, q
             if d['extra'] >= minp:
                 print('  f%-3d %5.1f %%  %s' % (d['f'], d['extra'], '  '.join('%s %.1f' % kv for kv in sorted(d['parts'].items(), key=lambda kv: -kv[1]))))
     mx = max(out, key=lambda d: d['extra'])
+    # bolt cycles (user 2026-10-12): the rifle's OWN bolt handle / bolt body are exempt from the 2 % bar - hands count
+    hands = max(sum(v for k, v in d['parts'].items() if 'hand' in k.lower()) for d in out)
+    gunp = max(sum(v for k, v in d['parts'].items() if 'hand' not in k.lower()) for d in out)
+    print('  in the box beyond the aim: HANDS max %.1f %% (the bar), the gun\'s own surfaces max %.1f %% (exempt on a bolt cycle)' % (hands, gunp))
     print('%s: %d frames, max extra %.1f %% at f%d, %d over 2 %%; front sight off the target max %.2f deg, rear sight max %.2f deg, sight LINE turned max %.2f deg (last frame %.2f)' % (
         os.path.basename(sp[0]), c.numFrames, mx['extra'], mx['f'], sum(1 for d in out if d['extra'] > 2.0),
         max(d.get('muzzle_deg', 0) for d in out), max(d.get('rear_deg', 0) for d in out), max(d['line_deg'] for d in out), out[-1].get('muzzle_deg', 0)))
@@ -99,5 +105,8 @@ if __name__ == '__main__':
     ap.add_argument('--w', type=int, default=320); ap.add_argument('--sheet'); ap.add_argument('--every', type=int, default=2)
     ap.add_argument('--zoom', action='store_true'); ap.add_argument('--min', type=float, default=0.5)
     ap.add_argument('--quiet', action='store_true')
+    ap.add_argument('--track', action='store_true', help='print the signed front-sight elevation per clip frame (deg, + = above the target)')
     a = ap.parse_args()
-    measure(a.gun, a.aim, a.part, a.w, a.sheet, a.every, a.zoom, a.min, a.quiet)
+    o = measure(a.gun, a.aim, a.part, a.w, a.sheet, a.every, a.zoom, a.min, a.quiet)
+    if a.track:
+        print('front sight up (deg) per frame:', ' '.join('%d:%.2f' % (d['f'], d['f_up']) for d in o))

@@ -47,7 +47,8 @@ GUNS = {
         # hand back on the grip 93-99
         # 2026-10-12 on target: 'bolt' / 'close' = boltphys.HOLD (the receiver eased 1.25 u down with the front sight
         # held on the target, canted to the hand) - the bolt is opened and closed there; only 'low' leaves the target
-        holds=dict(bolt=dict(drop=2.5, roll=2.0, pitch=-2.2, side=0.0, back=-2.0),
+        # USER DECISION (variant A): the bolt is opened and closed with the rifle LOCKED on the sights
+        holds=dict(bolt=dict(drop=0.0, roll=2.0, pitch=0.0, side=0.0, back=-3.0),
                    # LOW: the muzzle swung down about the butt (which stays in the shoulder, so the left arm still
                    # reaches the fore-end): the open action comes under the centre box, its top turned to the eye
                    # LOW: the butt dropped from the shoulder toward the armpit, the rifle a little forward and turned to
@@ -55,8 +56,8 @@ GUNS = {
                    # swing about the butt put it below the frame: v2), the charger is thumbed in there
                    low=dict(drop=4.3, roll=12.0, pitch=3.0, side=0.8, back=-2.5),
                    # the bolt is shoved home while the rifle is still on its way up
-                   close=dict(drop=2.5, roll=4.0, pitch=-2.2, side=0.0, back=-2.0),
-                   down=dict(drop=2.5, roll=0.0, pitch=-2.2, side=0.0, back=0.0)),
+                   close=dict(drop=0.0, roll=3.0, pitch=0.0, side=0.0, back=-3.0),
+                   down=dict(drop=0.0, roll=0.0, pitch=0.0, side=0.0, back=-1.0)),
         # 'down' = the bolt hold's drop and muzzle dip alone: the rifle leaves and re-enters the aim downward first
         pose=[(0, None), (4, 'down'), (9, 'bolt'), (17, 'bolt'), (30, 'low'), (63, 'low'), (73, 'close'), (86, 'close'),
               (92, 'down'), (99, None), (101, None)],

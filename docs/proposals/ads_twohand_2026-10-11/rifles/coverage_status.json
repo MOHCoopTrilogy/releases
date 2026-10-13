@@ -11,7 +11,7 @@
     "run": "ra7"
    }
   },
-  "note": "rb13, six stances: cycle fully LOCKED on the sights (ease 0) - sight line 0.36-0.64 deg, front sight 0.57-0.82 deg, ends 0.00; working hand now in view at the right (was below the frame); engine box 2.6-11.9 % (handle along the bottom edge of the box, bolt body under it; the rifle goes 3.3 u forward and back, which reads as a pump) - bar NOT met; no pops; aimed reload not built",
+  "note": "rb14 (cgame_rifle3, six stances), USER DECISION variant A: bolt cycle with the rifle LOCKED on the sights, front sight as the pivot - sight line within 0.65 deg (braced 0.36), front sight within 0.24-0.49 deg from 0.26 s into the cycle (0.6-0.9 deg at its first frames = the shot's recoil still recovering, tau 0.3 s), ends 0.00, no pops; box: hands 0.0 % offline, own bolt 1.2-6.1 % engine (exempt); the rifle stays put now (1 u, was 3.3 u = the pump); working hand in view during lift and turn-down. Aimed reload NOT built",
   "reload": {
    "stand": {
     "dev": 6.01,
@@ -25,7 +25,7 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "rb13",
+   "run": "rb14",
    "target": "no"
   }
  },
@@ -82,7 +82,7 @@
    }
   },
   "lowered": true,
-  "note": "rb7 / rb9 (cgame_rifle3 = ads-rifle-next 18dc8b36): ON-TARGET rebuild after the user's correction - bolt cycle keeps the front sight within 0.75-1.2 deg of the target (0.7 of it is the shot's recoil held through the clip, bug-3597), sight line tilts 2.65 deg (receiver eased 1.25 u down), ends 0.01-0.02 deg, all six stances; centre box 4-10 % in the cycle and in the reload's two bolt phases = the rifle's OWN barrel under the front sight (no hand, no bolt), so the 2 % bar is NOT met; reload low phase under 2 %, ends 0.03-0.04; pops at the clip ends fixed in the cgame (tag jitter); awaiting the user's choice A (locked, handle in the box 15 %) or C (staged)",
+  "note": "rb14 (cgame_rifle3, six stances), USER DECISION variant A: bolt cycle with the rifle LOCKED on the sights, front sight as the pivot - sight line within 0.65 deg (braced 0.36), front sight within 0.24-0.49 deg from 0.26 s into the cycle (0.6-0.9 deg at its first frames = the shot's recoil still recovering, tau 0.3 s), ends 0.00, no pops; box: hands 0.3 % offline, own bolt handle + body 12-19 % engine (exempt). Aimed reload rebaked with the bolt opened / closed locked (rb15 stand + prone: ends 0.03-0.04, hands 2.9 % offline - over; not played back yet); the reload's static half second still open",
   "reload": {
    "braced": {
     "dev": 5.34,
@@ -101,20 +101,20 @@
     "run": "rb9"
    },
    "prone": {
-    "dev": 5.94,
-    "edge": 2.35,
-    "end": 2.28,
-    "ok": false,
-    "pmin": 1.0,
-    "run": "rb9"
-   },
-   "stand": {
-    "dev": 6.15,
-    "edge": 2.57,
+    "dev": 6.16,
+    "edge": 2.89,
     "end": 2.5,
     "ok": false,
     "pmin": 1.0,
-    "run": "rb9"
+    "run": "rb15"
+   },
+   "stand": {
+    "dev": 5.94,
+    "edge": 2.64,
+    "end": 2.28,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "rb15"
    },
    "standL": {
     "dev": 5.92,
@@ -136,7 +136,7 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "rb7 rb9",
+   "run": "rb14",
    "target": "no"
   }
  },
@@ -152,7 +152,7 @@
     "run": "ra7"
    }
   },
-  "note": "rb13, six stances: on-target cycle (receiver eased 0.5 u) - front sight within 0.61-0.80 deg, sight line 1.15 deg, ends 0.00; engine box 3.0-6.6 % (straight handle through the lower right corner of the box while open) - bar NOT met; no pops; aimed reload not built",
+  "note": "rb14 (cgame_rifle3, six stances), USER DECISION variant A: bolt cycle with the rifle LOCKED on the sights, front sight as the pivot - sight line within 0.65 deg (braced 0.36), front sight within 0.24-0.49 deg from 0.26 s into the cycle (0.6-0.9 deg at its first frames = the shot's recoil still recovering, tau 0.3 s), ends 0.00, no pops; box: hands 0.0 % offline, own bolt 5-7 % engine (exempt); with the bolt back the cocking piece is a large grey mass at the bottom centre. Aimed reload NOT built",
   "reload": {
    "stand": {
     "dev": 5.9,
@@ -166,7 +166,7 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "rb13",
+   "run": "rb14",
    "target": "no"
   }
  },
@@ -182,7 +182,7 @@
     "run": "ra7"
    }
   },
-  "note": "rb13, six stances: on-target cycle (receiver eased 0.5 u) - front sight within 0.57-0.81 deg, sight line 1.13 deg, ends 0.00; engine box 3.0-11.8 % (the handle passes the lower right corner of the box, plus the rifle's own barrel) - bar NOT met; no pops; aimed reload not built",
+  "note": "rb14 (cgame_rifle3, six stances), USER DECISION variant A: bolt cycle with the rifle LOCKED on the sights, front sight as the pivot - sight line within 0.65 deg (braced 0.36), front sight within 0.24-0.49 deg from 0.26 s into the cycle (0.6-0.9 deg at its first frames = the shot's recoil still recovering, tau 0.3 s), ends 0.00, no pops; box: hands 1.6 % offline, own bolt 3-9 % engine (exempt). Aimed reload NOT built",
   "reload": {
    "stand": {
     "dev": 6.44,
@@ -196,7 +196,7 @@
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "rb13",
+   "run": "rb14",
    "target": "no"
   }
  }

@@ -1,0 +1,38 @@
+{
+ "ab__rb15__kar98__prone__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "2"
+  ],
+  "base": 1.6,
+  "dev": 3.68,
+  "end": 0.03,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 230,
+  "over": 50,
+  "start": 8,
+  "xmax": 8.6
+ },
+ "ab__rb15__kar98__stand__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "2"
+  ],
+  "base": 5.2,
+  "dev": 3.69,
+  "end": 0.04,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 230,
+  "over": 54,
+  "start": 8,
+  "xmax": 16.0
+ }
+}

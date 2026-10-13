@@ -601,5 +601,8 @@ if __name__ == '__main__':
         tik = tik if tik.startswith('models/') else 'models/weapons/%s.tik' % tik
         s.setdefault(tik, {})['qa'] = '%s: %s' % (sys.argv[3], ' '.join(sys.argv[4:]))
         json.dump(s, open(STATUS, 'w'), indent=1, sort_keys=True)
-    else:
+    elif cmd == 'build':
         build()
+    else:                                     # rifle lane 2026-10-12: an unknown argument (--help) used to run build
+        print(__doc__)
+        sys.exit('unknown command %r' % cmd)

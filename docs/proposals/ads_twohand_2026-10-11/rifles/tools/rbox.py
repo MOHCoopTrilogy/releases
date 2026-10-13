@@ -129,8 +129,13 @@ def measure(sess, sub='', dump=False, zoomdir=None):
                     k = next((i for i in range(s0 + 2, min(s1, len(an_))) if an_[i] != an_[s0 - 1]), s0)
                 segs.append(((f0 if os.environ.get('RBOX_FROM_FIRE') else int(round(f0 + (k - s0) * (f1 - f0) / float(max(1, s1 - s0)))) + 4), f1))
             start = segs[0][0]
-        aimmask = grow(np.mean([mask(i) for i in range(max(0, first - 6), first)], axis=0) > 0.3)
-        base = float(np.mean([mask(i).mean() for i in range(max(0, first - 6), first)]))
+        # the settled aim = EVERYTHING the breathing aim covers in the frames before the first mark (their union,
+        # grown 6 px). It was `mean > 0.3` of six frames: the same pose then read 3-19 % 'aim covers' from one
+        # capture to the next and the rifle's own breathing counted as cover (2026-10-12). For a figure of the CLIP
+        # alone capture with `run_rifle.py --steady` (breath and sway off).
+        pre = [mask(i) for i in range(max(0, first - 8), first)]
+        aimmask = grow(np.any(pre, axis=0))
+        base = float(np.mean([m_.mean() for m_ in pre]))
         fr = [i for a_, b_ in segs for i in range(a_, min(b_, len(fs)))]
         exm = {i: (mask(i) & ~aimmask) for i in fr}
         ex = [float(exm[i].mean()) for i in fr]
