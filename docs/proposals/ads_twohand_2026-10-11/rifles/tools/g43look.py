@@ -76,7 +76,7 @@ def main():
     grid(cells, 2, os.path.join(EV, 'g43irons_aim_%s.jpg' % run))
     cells = []
     for g in (IR, WI):
-        for st in ('stand', 'crouch', 'prone', 'standD', 'crouchD', 'proneD'):
+        for st in ('stand', 'crouch', 'prone', 'standL', 'standR', 'braced', 'standD', 'crouchD', 'proneD', 'standLD', 'standRD', 'bracedD'):
             try:
                 cells.append(label(shot(run, g, st, 'stills', 2).crop((320, 180, 960, 540)), '%s %s' % ('Irons' if g == IR else 'Irons (Winter)', st)))
             except FileNotFoundError:

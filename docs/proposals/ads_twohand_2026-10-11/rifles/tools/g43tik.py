@@ -1,8 +1,8 @@
 """Iron-sight G43: the staged tiks. assets/models/weapons/coop_g43_irons.tik + one per finish of the scoped G43
 (coop_g43_irons_<finish>.tik) - each is the mod tree's own G43 tik of that finish with ONLY these changes:
 
-  * skelmodel coop_g43_irons.skd (tools/g43irons.py: scope, mount, rings, turrets, lens removed; V notch in the rear
-    plate); the `surface svt_lens` line goes with the lens
+  * skelmodel coop_g43_irons.skd (tools/g43irons.py: scope, mount, rings, turrets, lens removed; the two sights
+    rebuilt as the surface coop_sight); the `surface svt_lens` line becomes `surface coop_sight shader coop_g43_sight`
   * name "G 43 Irons" / "G 43 Irons (<Finish>)" - a NEW base name: the cgame's scope table lists "G 43", so a
     finish-style name "G 43 (Irons)" would be stripped to "G 43" and get the ZF4 scope picture
   * no `zoom` (the tik's zoom 30 is the scope; an iron-sighted gun has none - M1 Garand, Kar98) and no zoomspreadmult /
@@ -57,7 +57,8 @@ def make(src, fin):
     nl = '\r\n' if '\r\n' in raw else '\n'
     t = raw
     t, n = re.subn(r'skelmodel\s+g43\.skd', 'skelmodel coop_g43_irons.skd', t); assert n == 1
-    t, n = re.subn(r'[ \t]*surface\s+svt_lens\s+shader\s+svt_lens[^\n]*\n', '', t); assert n == 1
+    # the lens surface is gone; the two sights are a surface of their own, dark steel on every finish
+    t, n = re.subn(r'([ \t]*)surface\s+svt_lens\s+shader\s+svt_lens[^\n]*\n', lambda m: m.group(1) + 'surface coop_sight \tshader coop_g43_sight' + nl, t); assert n == 1
     m = re.search(r'(\n\s*name\s+)"G 43( \([^"]*\))?"', t); assert m, src
     name = 'G 43 Irons' + (m.group(2) or '')
     t = t[:m.start()] + m.group(1) + '"%s"' % name + t[m.end():]
@@ -70,7 +71,7 @@ def make(src, fin):
     t = t.replace('German sniper rifle - G43.', 'German semi-automatic rifle - G43 with iron sights (no scope).')
     assert 'zoom' not in re.sub(r'//[^\n]*', '', t).lower().replace('zoomspreadmult', '').replace('zoommovement', '') or True
     code = re.sub(r'//[^\n]*', '', t)
-    assert not re.search(r'\bzoom\b|zoomspreadmult|zoommovement|svt_lens', code), src
+    assert not re.search(r'\bzoom\b|zoomspreadmult|zoommovement|svt_lens', code) and 'coop_sight' in code, src
     d = 0
     for ln in code.splitlines():
         d += ln.count('{') - ln.count('}')

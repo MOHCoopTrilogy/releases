@@ -2,7 +2,7 @@
  "g43_irons": {
   "new": true,
   "F": [41.95, -1.1565, -4.388],
-  "R": [12.085, -1.1565, -5.267],
+  "R": [12.0845, -1.1565, -5.33],
   "delta": 0.0,
   "up": [0.0, 0.0, -1.0],
   "relief": 17.0,
@@ -23,6 +23,6 @@
    "models/weapons/coop_g43_irons_hobbsg43wood.tik": "G 43 Irons (Woodland Camo)",
    "models/weapons/coop_g43_irons_lv_ttg43.tik": "G 43 Irons (Team Tactics)"
   },
-  "why": "iron-sight G43 (user 2026-10-12): staged mesh coop_g43_irons.skd = g43.skd without scope / mount / rings / turrets / lens and with a V notch cut into the rear sight's plate (tools/g43irons.py). F = tip of the hooded front post (x mid 41.74..42.16, top z -4.388), R = the notch plate's shoulders (top z -5.267, x mid 11.965..12.204) on the post's centre line y -1.1565. relief 17.0 u: the G43 borrows the Garand's aim pose (g43_charge = grnd_stand00), which puts this rear sight 14.75 u from the eye = the eye 1.2 u behind the receiver's rear end (x -1.5), and the receiver fills the lower middle (run rb24 at 15.5 u); 17.0 u (run rb25, sweep 15.5 / 17.0 / 18.5) puts the eye 3.4 u behind it - the Kar98 sits at 15.65 u. The engine clamps the relief move to +-4 u about the pose's own value. A NEW row set for ironsights_2026-09-28/sights.json + the regenerated cg_adssights.h - apply ONLY together with the staged mesh and tiks."
+  "why": "iron-sight G43 (user 2026-10-12): staged mesh coop_g43_irons.skd = g43.skd without scope / mount / rings / turrets / lens and with both sights rebuilt as the surface coop_sight (tools/g43irons.py: notch plate with a real notch, its top 0.06 u above the retail block; front post 0.19 u wide). F = tip of the hooded front post (x mid 41.74..42.16, top z -4.388), R = the notch plate's shoulders (top z -5.33, x mid 11.965..12.204) on the post's centre line y -1.1565. relief 17.0 u: the G43 borrows the Garand's aim pose (g43_charge = grnd_stand00), which puts this rear sight 14.75 u from the eye = the eye 1.2 u behind the receiver's rear end (x -1.5), and the receiver fills the lower middle (run rb24 at 15.5 u); 17.0 u (run rb25, sweep 15.5 / 17.0 / 18.5) puts the eye 3.4 u behind it - the Kar98 sits at 15.65 u. The engine clamps the relief move to +-4 u about the pose's own value. A NEW row set for ironsights_2026-09-28/sights.json + the regenerated cg_adssights.h - apply ONLY together with the staged mesh and tiks."
  }
 }

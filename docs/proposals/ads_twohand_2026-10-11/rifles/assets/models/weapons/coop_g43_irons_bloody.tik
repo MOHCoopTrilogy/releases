@@ -7,6 +7,7 @@ setup
 	skelmodel coop_g43_irons.skd
 	surface g43cull 	shader coop_skin_g43_bloody
 	surface g43 		shader coop_skin_g43_bloody
+	surface coop_sight 	shader coop_g43_sight
 	surface g43_clip 	shader coop_skin_g43_bloody
 }
 $define sounddir sound/weapons

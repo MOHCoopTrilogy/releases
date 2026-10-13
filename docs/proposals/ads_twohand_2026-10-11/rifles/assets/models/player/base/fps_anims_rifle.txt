@@ -246,6 +246,7 @@ animations
 	//========================
 	g43_idle	 	viewmodel/g43/g43_idle.skc				crossblend 0.2		
 	g43_charge	 	viewmodel/grnd_stand00.skc				crossblend 0.2		
+	coopr_g_43_irons_charge	viewmodel/g43/coop_g43_irons_aim.skc		crossblend 0.2	// HZM coop [ads rifles 2026-10-12] iron-sight G43 (weapon name G 43 Irons): its own aim pose = the Garand pose with the support hand 1.1 u left / 1.6 u lower (no fingers right of the receiver); per-weapon row, the scoped G43 keeps g43_charge
 	g43_disabled 		viewmodel/unarmed/unarmed_idle.skc			crossblend 0.2
 	g43_fire		viewmodel/g43/g43_fire.skc				crossblend 0.05
 	g43_reload		viewmodel/g43/g43_reload.skc				crossblend 0.05
