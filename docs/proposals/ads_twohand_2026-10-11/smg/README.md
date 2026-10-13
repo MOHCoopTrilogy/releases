@@ -107,7 +107,7 @@ reload sound (ThompsonReload1a.wav: magazine out f9-13, in f39 / f45-49, handle 
   all of it is under the frame - the new magazine shows beside the gun on the left for 0.2 s), back to the fore-grip;
   EMPTY: the FIRING hand turns into a hook beside the grip (f47-52), goes up to the knob (f59), pulls it back to the
   sear on the sound's clacks (f59-65), lets go (f67), home by f75. The server ends this reload at f78 of the row's 84
-  frames (`end=77`, bug-3668);
+  frames (`end=77`, bug-3683);
 * hip: rounds left = the retail clip to the seat, then its end pose (the mimed cock is gone); empty = the RETAIL
   technique - the left hand over the top of the gun, turned about its wrist onto the knob (`hip_cock='L'`), the knob
   follows it (f63.5-66.5).
@@ -126,7 +126,7 @@ over), stand empty 0.8 %, crouch empty 0.3 % - and the SETTLED AIM ALONE, nothin
 frames over) and 0.1 % after those three. Offline, settled aim alone: 6.9 % from rest, 20 % between two sway states;
 with eye relief +2 / +4 u: 4.2 / 2.3 % from rest, 12.9 / 8.3 % worst pair. The rear aperture with its two guard ears
 and the receiver top cover 50 % of the box a few units from the eye, and the sway moves them 15-20 px. This is not a
-low-sight case, so no sight was raised. **Decision for the user (bug-3667):** change the Thompson's aim framing (eye
+low-sight case, so no sight was raised. **Decision for the user (bug-3682):** change the Thompson's aim framing (eye
 relief +4 u and more - a visible change to the most used gun), or judge its reloads with sway off / against a
 reference that follows the sway.
 
@@ -306,7 +306,7 @@ All of them fire from an open bolt: handle back when ready, forward when dry, co
 | MP18 (`coop_mp18`; staged mesh: sights 0.3 u taller, eye relief 12.34 u) | built, run **se6** | `Bone2`, a bar on the right, forward x 8.3, travel 8.7 (ends about 1.3 u right of the bolt's centre); side drum; the pack's own first-person clip cocks with the RIGHT hand f52-58, 3.7 u ahead of the handle | se6, sway ON: rounds left 0.2-1.0 %, empty 0.2-1.2 % (dry-gun reference) in all eight stances; back on the aim 0.04-0.06 deg | the firing hand holds the bar at its end; break-off and AI not run (see the handover) |
 | Silenced PPS-43 (`ppsh43silenced.skd`) | tried offline, NOT staged | `PPS43_lever` (20 vertices, right, x 9.6-10.6) hangs on the main bone -> split works; `eject` moves nothing | - | out of BOTH hands' reach from the aim (below) |
 | Grease gun + silenced (`greaser.skd`) | not built | `Bone1` moves 9.4 u in the reload but NO vertex follows it; the cover is a closed surface (`Mesh_MultiAttached4`, on the top-left as modelled), no port, no bolt | - | cover on a hinge bone + a port and bolt to add |
-| Thompson M1A1 + finishes (`ThompsonSMG.skd`, 12 tiks) | built, runs se7-se9 | ADDED: a knob on the right, back x -1.6, travel 5.0 | se9, sway OFF: rounds left 0.3-1.0 %, empty 0.2-1.5 % in all eight | with sway ON the settled aim alone is over the bar (bug-3667, decision); see the handover |
+| Thompson M1A1 + finishes (`ThompsonSMG.skd`, 12 tiks) | built, runs se7-se9 | ADDED: a knob on the right, back x -1.6, travel 5.0 | se9, sway OFF: rounds left 0.3-1.0 %, empty 0.2-1.5 % in all eight | with sway ON the settled aim alone is over the bar (bug-3682, decision); see the handover |
 | Thompson 1928 Tommy (`coop_tommy1928d`) | not built | none (its own mesh) | - | add a handle; prop window f22-60 |
 | Thompson 50rd / M1928 | not built | `Bolt`, top knob at x -0.9, rests BACK already, +5.1 forward in the retail reload | - | `rest='back'`; a knob on the sight line |
 | Thompson M1A1 remodel (`coop_m1a1dk`) | not built | `chamber`, right, forward x 3.2, travel 6.1 | - | firing hand reaches (75 %) |
