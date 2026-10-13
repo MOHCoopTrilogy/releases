@@ -1,6 +1,7 @@
 {
  "shotgun": {
-  "delta_mrad": 18.0,
-  "why": "the shared ironsights sights.json has carried 18 mrad since 2026-10-05 (ads_bolt, user-approved: at 4 the receiver crest hides the barrel end); cg_adssights.h was never regenerated and still says 4 mrad. Ships together with the staged bead mesh (tools/stage_bead.py): shotgun.skd + coop_bead surface line in 14 tiks + shader + texture"
+  "delta_mrad": 30.0,
+  "relief": 14.11,
+  "why": "2026-10-13 (heavy lane, fourth agent; bug-3681 follow-up): the eye sat OVER the receiver's rear end (eye -> virtual rear point 10.1 u), so the receiver was a blurred hump filling the lower middle of the screen and the bead a 6 px nub. relief 14.11 = the rig's clamp (+4 u): the eye is 4 u behind the receiver and looks along its top; delta 30 mrad (was 18; the shared sights.json says 18, cg_adssights.h said 4 until ads-heavy-next 89c08278): the whole barrel top shows between the receiver and the bead. Ships ONLY together with the staged mesh (tools/stage_sgsight.py: bead + receiver groove surfaces, 14 tiks, shader, textures)"
  }
 }

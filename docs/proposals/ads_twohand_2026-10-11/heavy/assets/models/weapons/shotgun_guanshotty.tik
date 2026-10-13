@@ -6,7 +6,8 @@ setup
 	path models/weapons/shotgun
 	skelmodel shotgun.skd
 	surface shotgun shader coop_v3_guanshotty_shotgun
-	surface coop_bead shader coop_shotgun_bead	// HZM coop [heavy lane] brass front bead (stage_bead.py)
+	surface coop_bead shader coop_shotgun_bead	// HZM coop [heavy lane] shotgun sights (stage_sgsight.py)
+	surface coop_groove shader coop_shotgun_groove	// HZM coop [heavy lane] shotgun sights (stage_sgsight.py)
 }
 
 init

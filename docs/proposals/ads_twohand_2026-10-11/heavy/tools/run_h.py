@@ -26,6 +26,8 @@ A.GUNS.update({"30cal": "models/weapons/30calportable.tik", "mg42": "models/weap
                "mp44gold": "models/weapons/mp44_gold.tik",
                "mp44strap": "models/weapons/mp44_mp44strap.tik",
                # the other BAR meshes (bug-3623): retail mesh / the Pacific pack's S93 skeleton on its own path
+               "sggold": "models/weapons/shotgun_gold.tik", "sgcamo": "models/weapons/shotgun_camo_winter.tik",
+               "sgchrome": "models/weapons/shotgun_chrome.tik",
                "dp28": "models/weapons/dp28.tik", "fg42": "models/weapons/FG42.tik",
                "bar1918a": "models/weapons/bar_bar1918a.tik", "barpa": "models/weapons/bar_pabar.tik"})
 
@@ -77,16 +79,23 @@ STDEMO = []
 TAIL = [0, 4]
 BRK = []            # --brk fire+switch+sprint+drop:50+105[:E]
 HIPDEMO = []        # --hipdemo L,E
+WALLSTILL = []      # --wallstill stand,crouch,prone : the settled aim on the light wall (--demoyaw), tag <st>W
+TPC = []            # --tpc : third_close (smg_block) = the held gun from outside, close, hip + aim
 
 
 def _run(a):
-    if not (STDEMO or BRK or HIPDEMO):
+    if not (STDEMO or BRK or HIPDEMO or WALLSTILL or TPC):
         return _run0(a)
     # our part runs inside the shared session: hook the per-gun loop through the (otherwise unused here) "yaw" part
     def ys(sess, gun, yaw):
         x, y, z, w = R.SPOT
         R.SPOT = (x, y, z, a.demoyaw)        # the light wall: on the default yaw (fence, moving foliage) the box measure is void (run hc1)
         try:
+            for st in WALLSTILL:
+                R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)      # give re-faces to the wall yaw
+                T2.still(sess, gun, st, name=st + "W")
+            if TPC:
+                third_close(sess, gun)
             for st in STDEMO:
                 R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
                 stdemo(sess, gun, st, a.shots, a.shotgap, a.demoreload, a.demoempty)
@@ -117,7 +126,9 @@ if __name__ == "__main__":
         k = sys.argv.index("--stdemo")
         STDEMO[:] = sys.argv[k + 1].split(",")
         del sys.argv[k:k + 2]
-    for opt, lst in (("--brk", BRK), ("--hipdemo", HIPDEMO)):
+    if "--tpc" in sys.argv:
+        sys.argv.remove("--tpc"); TPC.append(1)
+    for opt, lst in (("--brk", BRK), ("--hipdemo", HIPDEMO), ("--wallstill", WALLSTILL)):
         if opt in sys.argv:
             k = sys.argv.index(opt)
             lst[:] = sys.argv[k + 1].split(",")

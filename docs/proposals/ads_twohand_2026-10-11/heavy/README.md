@@ -4,8 +4,8 @@ Lane of the aimed-animation work: the `## mg` and `## heavy` rows of `../coverag
 lane's (`../README.md` top section); this file says what is different here, what is done and what is next.
 **Everything is STAGED** in this folder and on engine branch `ads-heavy-next` (worktree
 `C:\mohaa-coop-dev\openmohaa-hzm-ads-heavy`, build dir `.cmake` - NOT `build`). Nothing is in the mod tree, the fixes
-pak or a live install. Run ids used: ha hb hc hd he hf hn hs (earlier), **hg1-hg3, hh1-hh9, hi1, hi2, hj1, hj2 (this session)** -
-never reuse one; next free: `hj3`.
+pak or a live install. Run ids used: ha hb hc hd he hf hn hs (earlier), hg1-hg3, hh1-hh9, hi1, hi2, hj1, hj2 (third agent), **hj3-hj5 (fourth agent)** -
+never reuse one; next free: `hj6`.
 
 ## State (third agent, runs hg / hh / hi / hj1-hj2; engine: cgame_heavy2 for every reload figure, cgame_heavy3 = + the shotgun row)
 | item | state |
@@ -20,7 +20,7 @@ never reuse one; next free: `hj3`.
 | hand on the handle (BAR, StG 44) | re-posed: wrist from below, fingers and knuckles readable (bug-3671); the knob is still hidden while gripped |
 | FG 42 | **scoped weapon, no iron-sight aim** (bug-3673; coordinator confirmed). Reload while scoped today: the scope picture stays, no viewmodel (hh9). Its HIP reload on the model is **not started** |
 | DP-28, aimed, rounds left + emptied, six stances + braced rows | **done to the three rules** (hi1 / hi2), weak points listed below |
-| shotgun sight (bead) | **staged, NOT finished** (bug-3681): bead mesh + 14 tiks + shader + row 18 mrad on `ads-heavy-next` (`cgame_heavy3`); the barrel end now shows above the receiver, the bead itself does not read yet - see "Next" 1 |
+| shotgun sight | **DONE (fourth agent, runs hj3-hj5, bug-3696 / 3697)**: brass bead r 0.27 u (surface `coop_bead`) + the receiver's matted sighting groove (surface `coop_groove`), row delta 30 mrad + relief 14.11 u on `ads-heavy-next` 5e351620 (`cgame_heavy4`). `evidence/shotgun_aim_before_after_hj5.jpg`; see "Shotgun sight" below |
 | belt-feds (M1919 portable, Breda, Vickers, MG42), shotgun reload, FG 42 hip reload | **not started** |
 
 ### Centre box AS PLAYED (cg_adsSway 0.1, cg_weaponBreath 1 = the runner's defaults), `centrebox.json`
@@ -91,6 +91,32 @@ looked at every fourth frame at small size (no pop seen), NOT stepped frame by f
 (a pale shape under the left rim); the pan is out of the gun for 0.5 s; the return takes 0.3-0.4 s; the brief says
 "charging handle on the right" - the real gun's is, this mesh has it on the left and the pack's hip clip works it with
 the left hand, which is what was reproduced. Break-offs and the hip reload not run.
+
+## Shotgun sight - `tools/stage_sgsight.py` (supersedes stage_bead.py), `sights_override.json`, `tools/sgaim.py`, `tools/sgsheet.py`
+What was wrong (bug-3697): the aim pose has the eye 10.1 u behind the virtual rear point = OVER the receiver's rear end
+(a 1.8 u wide receiver 2-3 u from the eye is a wall); the retail roof is a peaked ridge with a mirrored soft texture;
+the bead was 6 px and UNLIT - `rgbGen lightingDiffuse` draws black on a model in this engine, every model shader of
+the mod uses `lightingSpherical` (bug-3696).
+* Row (`sights_override.json` -> `sightrow_h.py`): relief 14.11 u = the rig's +4 u clamp (more needs a new aim clip:
+  offline +6 looked a little better still, +10 brings the firing hand and forearm large into the bottom of the frame),
+  delta 30 mrad (the whole barrel top shows between receiver and bead; bullets go to the bead's foot = screen centre).
+* Mesh (ONE skd, 14 tiks): bead r 0.27 u, 68 % proud, 14 x 8 sphere = 10-12 px at 1280 wide (16-18 px at 1080p).
+  Groove: the ridge vertices of the receiver roof exist once per roof side in the retail mesh, so they SLIDE down their
+  own roof edge to two rails (+-0.20 u; position and UV stay on the edge, the roof keeps its shape) and a new surface
+  closes the gap: chamfers, floor (+-0.11 u, 0.10 u deep), front end plate; zero width at the rear station. No old
+  triangle is re-indexed; the new surfaces collapse away at low detail. Own textures (written by the tool): brass with
+  the glint painted in, groove with bright worn rails and a cross-matted floor.
+* `python ../tools/stage_sgsight.py` from `assets/` WITHOUT `IRONSIGHT_EXTRA_PAKS` (it reads the retail skd); it
+  rewrites the two `surface ...` lines in an already staged tik and keeps that tik's other edits.
+* Offline design tool: `IRONSIGHT_EXTRA_PAKS=<pk3> python ../tools/sgaim.py out.jpg --v delta:relief_move ...`
+  (matches the engine picture). Engine: `run_h.py ... --parts stills --wallstill stand,crouch,prone --tpc`
+  (`--wallstill` = stills on the light wall, tag `<st>W`; `--tpc` = third person close; guns `sggold sgcamo sgchrome`).
+* Looked at (hj4 / hj5): light wall stand / crouch / prone, dark foliage in seven stances, third person aimed (the bead
+  shows, same skd as the view model - there is no other shotgun mesh), gold / winter camo / chrome finishes.
+  NOT done: the gun lying on the ground as a pickup (same skd, not captured); the groove from close up in third person.
+* Weak points, say them: the receiver is still about a fifth of the screen wide at its near end (it is 4 u from the
+  eye); the stock wrist under it shows the retail texture's mirror seam; on the gold finish the brass bead is gold on
+  gold (reads against the backdrop, not against the gun); the groove stays blued steel on every finish.
 
 ## FG 42 - what the still shows
 `evidence/mp44_gold_and_fg42_aim_hh6_hh9.jpg`: top row the gold StG 44's emptied aimed reload (same mesh, plays the
@@ -221,20 +247,7 @@ reload is untouched (retail cocks even with rounds left); break-offs and the sco
   ABOVE it.** This lane ships nothing.
 
 ## Next
-1. **Shotgun sight (user 2026-10-12: "that shotgun needs some kind of sights") - staged, not finished (bug-3681).**
-   What was wrong: the retail M1897 mesh has no bead and no rear sight; the brass bead approved on 2026-10-05 existed
-   only as a tool and art; `sights.json` has said 18 mrad since then but `cg_adssights.h` still had 4 mrad in all 14
-   shotgun rows, so the receiver crest hid the barrel end. All 14 shotgun tiks load the ONE retail skd - no other
-   shotgun mesh in the mod. Staged: `python ../tools/stage_bead.py` (skd with surface `coop_bead`, the tik line in 14
-   tiks, shader + texture from `../../weapon_hd_2026-10-05/bead/`), `sights_override.json` (delta 18 mrad) +
-   `python tools/sightrow_h.py <worktree>/code/cgame/cg_adssights.h` (14 rows; the SMG lane's tool leaves the delta
-   alone), cgame rebuilt = `cgame_heavy3`. Runs hj1 (released, cgame_heavy2, `mkov_h.py --before`) / hj2:
-   `evidence/shotgun_aim_bead_before_after_hj1_hj2.jpg` - the barrel end now stands above the receiver crest;
-   **the bead itself does not read** (6 px across at 1280, dark against that backdrop's foliage; nothing brass at 8x).
-   To do: a larger / brighter bead (`stage_bead.py --r 0.26`, the shader's lighting), a run on the light wall
-   (`--parts yaw,stills` ran on foliage), third person + world model (`third_close` of smg_block is bound in
-   run_h.py), the groove along the receiver top; `patch_tik_h.py` rebuilds staged tiks from the mod tree - keep the
-   bead line when the shotgun's reload rows are staged. Engine: the row is in the lane's worktree commit only.
+1. Shotgun sight: done, see "Shotgun sight".
 2. FG 42 hip reload on the model (above).
 3. Belt-feds: M1919 portable first (sight row; bug-3622), Breda, Vickers, MG42.
 4. Shotgun reload: shells one at a time on target or just under the box, break off on fire, pump only when the chamber
