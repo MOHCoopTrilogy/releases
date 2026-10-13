@@ -16,7 +16,9 @@ reload leftovers on (order unchanged, list in the sixth stretch below).
 * Overlays: `ov_rifle_g4.pk3` (`mkov_rifle.py <pk3> --armgen` = staged assets + the generator-made armory entry),
   `ov_rifle_g3m.pk3` (the same with the measure tiks), `ov_rifle_g4y.pk3` (+ the script probes of `srvtime_ov.py`).
   `--armory` (the hand-made entry) is superseded.
-* Run ids used: rb39-rb47. **rb48 is next.** Finished run folders are in `H:\hzm_archive\rifles\`.
+* Run ids used: rb39-rb48. **rb49 is next.** Finished run folders are in `H:\hzm_archive\rifles\` (rb48 is still in
+  `G:\mohaa-adsanim2\runs`). The test player's save files were empty before rb44; rb44's bad ones are in
+  `runs\rb44\save_after` (bug-3795).
 * **FROZEN (coordinator, 2026-10-13): the between-shot bolt cycles** - the capped `rechamber_ads` clips, their rows
   and the 56 variant tiks are being taken into the release build from this folder. Do not change those clips, rows or
   tiks; a later aimed-RELOAD row goes into the same tiks as a SEPARATE row, the bolt rows byte-identical. A defect
