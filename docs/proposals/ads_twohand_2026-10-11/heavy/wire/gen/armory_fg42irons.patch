@@ -1,0 +1,397 @@
+--- a/hzm-mohaa-coop-mod/coop_mod/buildmode_catalog.scr
++++ b/hzm-mohaa-coop-mod/coop_mod/buildmode_catalog.scr
+@@ -422,5 +422,6 @@
+ 	level.coop_build_item[8][84] = "models/weapons/us_w_minedetector.tik"
+ 	level.coop_build_item[8][85] = "models/weapons/webley_revolver.tik"
+-	level.coop_build_itemcount[8] = 85
++	level.coop_build_item[8][86] = "models/weapons/coop_fg42_irons.tik"	//[fg42 irons 2026-10-13]
++	level.coop_build_itemcount[8] = 86
+ 
+ 	// ---- 9: VEHICLES + MISC (47) ----
+--- a/hzm-mohaa-coop-mod/coop_mod/itemhandler.scr
++++ b/hzm-mohaa-coop-mod/coop_mod/itemhandler.scr
+@@ -3531,4 +3531,5 @@
+ 		case "models/weapons/kar98snipersilenced.tik":
+ 		case "models/weapons/fg42.tik":
++		case "models/weapons/coop_fg42_irons.tik":
+ 			end("rifle")
+ 		case "models/weapons/thompson50.tik":
+@@ -3644,4 +3645,5 @@
+ 		case "models/weapons/mp44scoped.tik":
+ 		case "models/weapons/fg42.tik":
++		case "models/weapons/coop_fg42_irons.tik":
+ 		case "models/weapons/30calportable.tik":
+ 		case "models/weapons/mg42portable.tik":
+--- a/hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr
++++ b/hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr
+@@ -317,4 +317,12 @@
+ 			local.r["class"] = "heavy"
+ 			break
++		case "79":	//[fg42 irons 2026-10-13] the iron-sight FG 42, its own entry
++			local.r["give"] = "models/weapons/coop_fg42_irons.tik"
++			local.r["name"] = "FG 42 (IRON SIGHTS)"
++			local.r["slot"] = "p"
++			local.r["ammo"] = "rifle"
++			local.r["ammoN"] = 70
++			local.r["class"] = "heavy"
++			break
+ 		case "40":
+ 			local.r["give"] = "models/weapons/uk_w_vickers.tik"
+@@ -607,5 +615,5 @@
+ roster_ids:{
+ 	if( level.coop_loRosterN != NIL ){ end }
+-	level.coop_loRosterN = 74
++	level.coop_loRosterN = 75
+ 	level.coop_loRosterId[0] = "01"
+ 	level.coop_loRosterGive[0] = "models/weapons/m1_garand.tik"
+@@ -830,4 +838,7 @@
+ 	level.coop_loRosterGive[73] = "models/weapons/m10_revolver.tik"
+ 	level.coop_loRosterTab[73] = 4
++	level.coop_loRosterId[74] = "79"
++	level.coop_loRosterGive[74] = "models/weapons/coop_fg42_irons.tik"
++	level.coop_loRosterTab[74] = 3
+ }end
+ 
+--- a/hzm-mohaa-coop-mod/coop_mod/loadoutskins.scr
++++ b/hzm-mohaa-coop-mod/coop_mod/loadoutskins.scr
+@@ -6,5 +6,5 @@
+ skin_init:{
+ 	if( level.coop_skinN != NIL ){ end }
+-	level.coop_skinN = 350
++	level.coop_skinN = 357
+ 	level.coop_skinFinStat[1] = "finish_gold"
+ 	level.coop_skinFinName[1] = "GOLD"
+@@ -35,4 +35,11 @@
+ 	level.coop_skinGive["models/weapons/fg42.tik"][6] = "models/weapons/fg42_camo_winter.tik"
+ 	level.coop_skinGive["models/weapons/fg42.tik"][7] = "models/weapons/fg42_camo_desert.tik"
++	level.coop_skinGive["models/weapons/coop_fg42_irons.tik"][1] = "models/weapons/coop_fg42_irons_gold.tik"
++	level.coop_skinGive["models/weapons/coop_fg42_irons.tik"][2] = "models/weapons/coop_fg42_irons_chrome.tik"
++	level.coop_skinGive["models/weapons/coop_fg42_irons.tik"][3] = "models/weapons/coop_fg42_irons_blued.tik"
++	level.coop_skinGive["models/weapons/coop_fg42_irons.tik"][4] = "models/weapons/coop_fg42_irons_bloody.tik"
++	level.coop_skinGive["models/weapons/coop_fg42_irons.tik"][5] = "models/weapons/coop_fg42_irons_camo_woodland.tik"
++	level.coop_skinGive["models/weapons/coop_fg42_irons.tik"][6] = "models/weapons/coop_fg42_irons_camo_winter.tik"
++	level.coop_skinGive["models/weapons/coop_fg42_irons.tik"][7] = "models/weapons/coop_fg42_irons_camo_desert.tik"
+ 	level.coop_skinGive["models/weapons/g43.tik"][1] = "models/weapons/g43_gold.tik"
+ 	level.coop_skinGive["models/weapons/g43.tik"][2] = "models/weapons/g43_chrome.tik"
+--- a/hzm-mohaa-coop-mod/coop_mod/loadoutskins_base.scr
++++ b/hzm-mohaa-coop-mod/coop_mod/loadoutskins_base.scr
+@@ -19,4 +19,11 @@
+ 	level.coop_skinBase["models/weapons/fg42_camo_winter.tik"] = "models/weapons/fg42.tik"
+ 	level.coop_skinBase["models/weapons/fg42_camo_desert.tik"] = "models/weapons/fg42.tik"
++	level.coop_skinBase["models/weapons/coop_fg42_irons_gold.tik"] = "models/weapons/coop_fg42_irons.tik"
++	level.coop_skinBase["models/weapons/coop_fg42_irons_chrome.tik"] = "models/weapons/coop_fg42_irons.tik"
++	level.coop_skinBase["models/weapons/coop_fg42_irons_blued.tik"] = "models/weapons/coop_fg42_irons.tik"
++	level.coop_skinBase["models/weapons/coop_fg42_irons_bloody.tik"] = "models/weapons/coop_fg42_irons.tik"
++	level.coop_skinBase["models/weapons/coop_fg42_irons_camo_woodland.tik"] = "models/weapons/coop_fg42_irons.tik"
++	level.coop_skinBase["models/weapons/coop_fg42_irons_camo_winter.tik"] = "models/weapons/coop_fg42_irons.tik"
++	level.coop_skinBase["models/weapons/coop_fg42_irons_camo_desert.tik"] = "models/weapons/coop_fg42_irons.tik"
+ 	level.coop_skinBase["models/weapons/g43_gold.tik"] = "models/weapons/g43.tik"
+ 	level.coop_skinBase["models/weapons/g43_chrome.tik"] = "models/weapons/g43.tik"
+--- a/hzm-mohaa-coop-mod/coop_mod/recoil_table.txt
++++ b/hzm-mohaa-coop-mod/coop_mod/recoil_table.txt
+@@ -478,2 +478,11 @@
+ welrod_chrome -1.0 -1.0 -0.16 0.16 1.2 V 2.8 0.8 1.2 12.0 25.0
+ welrod_gold -1.0 -1.0 -0.16 0.16 1.2 V 2.8 0.8 1.2 12.0 25.0
++// [fg42 irons 2026-10-13] iron-sight FG 42: the FG 42's rows under its own tik names
++coop_fg42_irons -2.1 -2.1 -0.2 0.05 3.4 T 12 0.2 2.2 12.0 25.0
++coop_fg42_irons_bloody -2.1 -2.1 -0.2 0.05 3.4 T 12 0.2 2.2 12.0 25.0
++coop_fg42_irons_blued -2.1 -2.1 -0.2 0.05 3.4 T 12 0.2 2.2 12.0 25.0
++coop_fg42_irons_camo_desert -2.1 -2.1 -0.2 0.05 3.4 T 12 0.2 2.2 12.0 25.0
++coop_fg42_irons_camo_winter -2.1 -2.1 -0.2 0.05 3.4 T 12 0.2 2.2 12.0 25.0
++coop_fg42_irons_camo_woodland -2.1 -2.1 -0.2 0.05 3.4 T 12 0.2 2.2 12.0 25.0
++coop_fg42_irons_chrome -2.1 -2.1 -0.2 0.05 3.4 T 12 0.2 2.2 12.0 25.0
++coop_fg42_irons_gold -2.1 -2.1 -0.2 0.05 3.4 T 12 0.2 2.2 12.0 25.0
+--- a/hzm-mohaa-coop-mod/coop_mod/unlockreq_gen.scr
++++ b/hzm-mohaa-coop-mod/coop_mod/unlockreq_gen.scr
+@@ -51,4 +51,5 @@
+ 	level.coop_unlockReq["models/weapons/mp44scoped.tik"] = "Challenge: Sturm Scope - Get 100 kills with the StG44"
+ 	level.coop_unlockReq["models/weapons/fg42.tik"] = "Reach rank 19"
++	level.coop_unlockReq["models/weapons/coop_fg42_irons.tik"] = "Reach rank 18"
+ 	level.coop_unlockReq["models/weapons/uk_w_vickers.tik"] = "Challenge: Sands of Victory - Eliminate 150 Afrika Korps soldiers"
+ 	level.coop_unlockReq["models/weapons/it_w_breda.tik"] = "Challenge: Apennine Breakthrough - Eliminate 110 Italian infantry"
+@@ -87,5 +88,5 @@
+ 	level.coop_unlockReq["models/coop_helmets/coop_helmet_net.tik"] = "Challenge: Kopfjager - Get 100 headshot kills"
+ 	level.coop_unlockReq["models/coop_helmets/coop_helmet_29th.tik"] = "Challenge: Across Dog Green - Cross the beach to the seawall in under 90 seconds"
+-	level.coop_unlockReq["models/coop_helmets/coop_helmet_29thnet.tik"] = "Challenge: Finest Hour - Reach the bangalores on Omaha without a squadmate going"
++	level.coop_unlockReq["models/coop_helmets/coop_helmet_29thnet.tik"] = "Challenge: Not the Actual Events - Signal the bomber to conceal the advance to t"
+ 	level.coop_unlockReq["models/coop_helmets/coop_helmet_sergeant.tik"] = "Reach rank 5, or challenge: Roman Roscoe"
+ 	level.coop_unlockReq["models/coop_helmets/coop_helmet_captain.tik"] = "Challenge: Conspicuous Gallantry - Complete 50 primary objectives"
+@@ -130,5 +131,5 @@
+ 	level.coop_unlockReq["models/coop_helmets/coop_helmet_ger_splinter.tik"] = "Challenge: Ghost in the Fog - Eliminate 45 enemy snipers"
+ 	level.coop_unlockReq["models/player/allied_101st_captain.tik"] = "Reach rank 13, or challenge: Wet Behind the Ears"
+-	level.coop_unlockReq["models/player/allied_101st_infantry.tik"] = "Challenge: To Hell and Back - Get 2500 total kills"
++	level.coop_unlockReq["models/player/allied_101st_infantry.tik"] = "Challenge: To Hell and Back - Get 500 total kills"
+ 	level.coop_unlockReq["models/player/allied_101st_scout.tik"] = "Challenge: A Thousand Yards - Get 75 long-range kills"
+ 	level.coop_unlockReq["models/player/allied_501st_pir_scout.tik"] = "Reach rank 14, or challenge: The Guns Fall Silent"
+@@ -154,5 +155,5 @@
+ 	level.coop_unlockReq["models/player/allied_russian_recon_soldier.tik"] = "Challenge: Stalingrad Rifle-Only Server - Beat a campaign level using only a bol"
+ 	level.coop_unlockReq["models/player/allied_russian_seaman.tik"] = "Challenge: Blue Fox, This Is White Rook - Infiltrate the sub pen and finish the "
+-	level.coop_unlockReq["models/player/allied_sas.tik"] = "Challenge: Todesengel - Get 5000 total kills"
++	level.coop_unlockReq["models/player/allied_sas.tik"] = "Challenge: Todesengel - Get 750 total kills"
+ 	level.coop_unlockReq["models/player/allied_tanker.tik"] = "Challenge: Panzer Graveyard - Destroy 30 enemy vehicles in the campaign"
+ 	level.coop_unlockReq["models/player/allied_tanker2.tik"] = "Reach rank 15, or challenge: SOE Silencer"
+@@ -162,5 +163,5 @@
+ 	level.coop_unlockReq["models/player/allied_wheathers.tik"] = "Reach rank 16, or challenge: Iron Coffin"
+ 	level.coop_unlockReq["models/player/american_army2.tik"] = "Challenge: Blooded - Get 100 total kills"
+-	level.coop_unlockReq["models/player/american_army3.tik"] = "Challenge: Dogface - Get 1000 total kills"
++	level.coop_unlockReq["models/player/american_army3.tik"] = "Challenge: Dogface - Get 250 total kills"
+ 	level.coop_unlockReq["models/player/american_army_29id.tik"] = "Reach rank 2, or challenge: Cheap and Deadly"
+ 	level.coop_unlockReq["models/player/american_army_29id_bar.tik"] = "Reach rank 6, or challenge: Slabsides Slayer"
+@@ -202,5 +203,5 @@
+ 	level.coop_unlockReq["models/player/support_gunner.tik"] = "Challenge: Kripo's Companion - Get 90 kills with the Walther PPK (Elite)"
+ 	level.coop_unlockReq["models/player/support_gunnernohelm.tik"] = "Challenge: Commissar's Companion - Get 90 kills with the Nagant Revolver (Elite)"
+-	level.coop_unlockReq["models/player/allied_Airborne_101E_Col_Sink.tik"] = "Challenge: The Scourge of Berlin - Eliminate 1000 Wehrmacht infantry"
++	level.coop_unlockReq["models/player/allied_Airborne_101E_Col_Sink.tik"] = "Challenge: The Scourge of Berlin - Eliminate 750 Wehrmacht infantry"
+ 	level.coop_unlockReq["models/player/allied_Airborne_101E_Lt_Speirs.tik"] = "Challenge: Kentucky Windage - Get 25 long-range kills (over 2000 units)"
+ 	level.coop_unlockReq["models/player/allied_Airborne_101E_Corp_Liebgott.tik"] = "Challenge: Spotless Record - Complete 5 missions with every primary objective do"
+--- a/hzm-mohaa-coop-mod/coop_mod/xp.scr
++++ b/hzm-mohaa-coop-mod/coop_mod/xp.scr
+@@ -83,5 +83,6 @@
+ 	level.coop_xp_rankUnlockCnt[17] = 1
+ 	level.coop_xp_rankUnlock[17][0] = "models/weapons/type100smg.tik"
+-	level.coop_xp_rankUnlockCnt[18] = 0
++	level.coop_xp_rankUnlockCnt[18] = 1
++	level.coop_xp_rankUnlock[18][0] = "models/weapons/coop_fg42_irons.tik"	//[fg42 irons 2026-10-13] the rank before the scoped FG 42 (19)
+ 	level.coop_xp_rankUnlockCnt[19] = 1
+ 	level.coop_xp_rankUnlock[19][0] = "models/weapons/fg42.tik"
+--- a/hzm-mohaa-coop-mod/global/giveall.scr
++++ b/hzm-mohaa-coop-mod/global/giveall.scr
+@@ -33,4 +33,5 @@
+ // rig would need a proper model+anim import (none exists in any pack we have).
+ weapon weapons/FG42.tik
++weapon weapons/coop_fg42_irons.tik	//[fg42 irons 2026-10-13]
+ 
+ // British
+--- a/hzm-mohaa-coop-mod/ubermode/get_player_weaponclass.scr
++++ b/hzm-mohaa-coop-mod/ubermode/get_player_weaponclass.scr
+@@ -54,4 +54,5 @@
+ 	// Spearhead
+ 	local.classes["models/weapons/fg42.tik"] = "rifle"
++	local.classes["models/weapons/coop_fg42_irons.tik"] = "rifle"	//[fg42 irons 2026-10-13]
+ 	local.classes["models/weapons/mosin_nagant_rifle.tik"] = "rifle"
+ 	local.classes["models/weapons/enfield.tik"] = "rifle"
+--- a/hzm-mohaa-coop-mod/ui/coop_loadout.urc
++++ b/hzm-mohaa-coop-mod/ui/coop_loadout.urc
+@@ -1824,5 +1824,5 @@
+ name "tile39"
+ title "FG 42"
+-rect 306 137 162 16
++rect 306 156 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -1841,9 +1841,40 @@
+ ordernumber 8
+ name "tilelk39"
++rect 452 157 14 14
++fgcolor 1.00 1.00 1.00 1.00
++bgcolor 0.00 0.00 0.00 0.00
++borderstyle "NONE"
++enabledcvar "coop_loLkV39"
++shader "textures/mohmenu/coop_lo_lock.tga"
++}
++
++// [fg42 irons 2026-10-13] the iron-sight FG 42, its own tile, directly above the scoped FG 42 (unlock order)
++resource
++Button
++{
++name "tile79"
++title "FG 42 (IRON SIGHTS)"
++rect 306 137 162 16
++fgcolor 0.84 0.82 0.76 1.00
++bgcolor 0.09 0.10 0.13 0.90
++borderstyle "3D_BORDER"
++font "verdana-12"
++clicksound "sound/menu/apply.wav"
++enabledcvar "coop_loP3"
++stuffcommand "exec ui/loadout/t79.cfg"
++hovercommand "exec ui/loadout/req79.cfg"
++mouseawaycommand "exec ui/loadout/reqclear.cfg"
++}
++
++resource
++Label
++{
++ordernumber 8
++name "tilelk79"
+ rect 452 138 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+ borderstyle "NONE"
+-enabledcvar "coop_loLkV39"
++enabledcvar "coop_loLkV79"
+ shader "textures/mohmenu/coop_lo_lock.tga"
+ }
+@@ -1854,5 +1885,5 @@
+ name "tile40"
+ title "VICKERS-BERTHIER"
+-rect 306 156 162 16
++rect 306 175 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -1871,5 +1902,5 @@
+ ordernumber 8
+ name "tilelk40"
+-rect 452 157 14 14
++rect 452 176 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+@@ -1884,5 +1915,5 @@
+ name "tile41"
+ title "BREDA M30"
+-rect 306 175 162 16
++rect 306 194 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -1901,5 +1932,5 @@
+ ordernumber 8
+ name "tilelk41"
+-rect 452 176 14 14
++rect 452 195 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+@@ -1914,5 +1945,5 @@
+ name "tile42"
+ title "M1919 .30 CAL"
+-rect 306 194 162 16
++rect 306 213 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -1931,5 +1962,5 @@
+ ordernumber 8
+ name "tilelk42"
+-rect 452 195 14 14
++rect 452 214 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+@@ -1944,5 +1975,5 @@
+ name "tile43"
+ title "MG42"
+-rect 306 213 162 16
++rect 306 232 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -1961,5 +1992,5 @@
+ ordernumber 8
+ name "tilelk43"
+-rect 452 214 14 14
++rect 452 233 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+@@ -1974,5 +2005,5 @@
+ name "tile44"
+ title "TRENCH GUN"
+-rect 306 232 162 16
++rect 306 251 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -1991,5 +2022,5 @@
+ ordernumber 8
+ name "tilelk44"
+-rect 452 233 14 14
++rect 452 252 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+@@ -2004,5 +2035,5 @@
+ name "tile45"
+ title "M1A1 BAZOOKA"
+-rect 306 251 162 16
++rect 306 270 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -2021,5 +2052,5 @@
+ ordernumber 8
+ name "tilelk45"
+-rect 452 252 14 14
++rect 452 271 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+@@ -2034,5 +2065,5 @@
+ name "tile46"
+ title "PANZERSCHRECK"
+-rect 306 270 162 16
++rect 306 289 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -2051,5 +2082,5 @@
+ ordernumber 8
+ name "tilelk46"
+-rect 452 271 14 14
++rect 452 290 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+@@ -2064,5 +2095,5 @@
+ name "tile47"
+ title "PIAT"
+-rect 306 289 162 16
++rect 306 308 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -2081,5 +2112,5 @@
+ ordernumber 8
+ name "tilelk47"
+-rect 452 290 14 14
++rect 452 309 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+@@ -2818,5 +2849,5 @@
+ name "tile72"
+ title "DP-28"
+-rect 306 308 162 16
++rect 306 327 162 16
+ fgcolor 0.84 0.82 0.76 1.00
+ bgcolor 0.09 0.10 0.13 0.90
+@@ -2835,5 +2866,5 @@
+ ordernumber 8
+ name "tilelk72"
+-rect 452 309 14 14
++rect 452 328 14 14
+ fgcolor 1.00 1.00 1.00 1.00
+ bgcolor 0.00 0.00 0.00 0.00
+--- a/hzm-mohaa-coop-mod/ui/loadout/lktab0.cfg
++++ b/hzm-mohaa-coop-mod/ui/loadout/lktab0.cfg
+@@ -96,4 +96,5 @@
+ set coop_loLkV74 0
+ set coop_loLkV75 0
++set coop_loLkV79 0
+ vstr coop_loLkA11
+ vstr coop_loLkA70
+--- a/hzm-mohaa-coop-mod/ui/loadout/lktab1.cfg
++++ b/hzm-mohaa-coop-mod/ui/loadout/lktab1.cfg
+@@ -98,3 +98,4 @@
+ set coop_loLkV74 0
+ set coop_loLkV75 0
++set coop_loLkV79 0
+ vstr coop_loLkA23
+--- a/hzm-mohaa-coop-mod/ui/loadout/lktab2.cfg
++++ b/hzm-mohaa-coop-mod/ui/loadout/lktab2.cfg
+@@ -98,4 +98,5 @@
+ set coop_loLkV74 0
+ set coop_loLkV75 0
++set coop_loLkV79 0
+ vstr coop_loLkA35
+ vstr coop_loLkA71
+--- a/hzm-mohaa-coop-mod/ui/loadout/lktab3.cfg
++++ b/hzm-mohaa-coop-mod/ui/loadout/lktab3.cfg
+@@ -98,5 +98,7 @@
+ set coop_loLkV74 0
+ set coop_loLkV75 0
++set coop_loLkV79 0
+ vstr coop_loLkA47
+ vstr coop_loLkA72
+ vstr coop_loLkA73
++vstr coop_loLkA79
+--- a/hzm-mohaa-coop-mod/ui/loadout/lktab4.cfg
++++ b/hzm-mohaa-coop-mod/ui/loadout/lktab4.cfg
+@@ -106,4 +106,5 @@
+ set coop_loLkV74 0
+ set coop_loLkV75 0
++set coop_loLkV79 0
+ vstr coop_loLkA63
+ vstr coop_loLkA74
+--- a/hzm-mohaa-coop-mod/ui/loadout/lktab5.cfg
++++ b/hzm-mohaa-coop-mod/ui/loadout/lktab5.cfg
+@@ -86,3 +86,4 @@
+ set coop_loLkV74 0
+ set coop_loLkV75 0
++set coop_loLkV79 0
+ vstr coop_loLkA69

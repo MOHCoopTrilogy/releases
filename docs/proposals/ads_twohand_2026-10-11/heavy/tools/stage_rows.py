@@ -42,6 +42,17 @@ EDITS = {
         ('dp28_reload_empty_adsb', 'viewmodel/coop_dp28/dp28_reload_empty_adsb.skc', 0.1, 'aimed + braced, empty'),
         # FG 42 Irons (fg42irons.py / fg42tik.py / fg42pose.py): the per-weapon aim pose; the scoped FG 42 has none
         ('coopr_fg_42_irons_charge', 'viewmodel/fg42/coop_fg42_irons_aim.skc', 0.1, 'FG 42 Irons: aim pose (StG pose pushed out, support hand on the wooden handguard)'),
+        # FG 42, both guns (fg42bake.py): the HIP reload rebuilt - magazine in from the left with a closed hand; an
+        # EMPTY gun gets the right-side charging handle worked by the firing hand (91 frames = the weapon row's 3.0 s)
+        ('fg42_reload', 'viewmodel/fg42/coop_fg42_reload_hip.skc', None, 'FG 42 hip, rounds left: side magazine, no handle'),
+        ('fg42_reload_empty', 'viewmodel/fg42/coop_fg42_reload_hip_empty.skc', 0.05, 'FG 42 hip, empty: side magazine, then the firing hand works the charging handle'),
+        # FG 42 Irons only (the scoped gun's scope picture is not ours): the per-weapon base rows let cgame find _ads
+        ('coopr_fg_42_irons_reload', 'viewmodel/fg42/coop_fg42_reload_hip.skc', 0.05, 'FG 42 Irons hip, rounds left (= fg42_reload)'),
+        ('coopr_fg_42_irons_reload_empty', 'viewmodel/fg42/coop_fg42_reload_hip_empty.skc', 0.05, 'FG 42 Irons hip, empty (= fg42_reload_empty)'),
+        ('coopr_fg_42_irons_reload_ads', 'viewmodel/fg42/fg42_irons_reload_ads.skc', 0.1, 'FG 42 Irons aimed, rounds left'),
+        ('coopr_fg_42_irons_reload_empty_ads', 'viewmodel/fg42/fg42_irons_reload_empty_ads.skc', 0.1, 'FG 42 Irons aimed, empty: + the charging handle'),
+        ('coopr_fg_42_irons_reload_adsb', 'viewmodel/fg42/fg42_irons_reload_adsb.skc', 0.1, 'FG 42 Irons aimed + braced, rounds left'),
+        ('coopr_fg_42_irons_reload_empty_adsb', 'viewmodel/fg42/fg42_irons_reload_empty_adsb.skc', 0.1, 'FG 42 Irons aimed + braced, empty'),
     ],
     'shotgun': [
         # shotgun reload (sgbake.py): the three aimed rows keep their SHIPPED paths - the staged clips replace them.
@@ -55,10 +66,17 @@ EDITS = {
 }
 
 
+PIN = '993f706'      # base revision of the released rows files; `--live` = the working copy instead
+
+
 def build(cls, without=()):
     rel = 'models/player/base/fps_anims_%s.txt' % cls
-    txt = open(os.path.join(hv.FIXES, rel.replace('/', os.sep)), 'rb').read().decode('latin-1')
-    nl = '\r\n' if '\r\n' in txt else '\n'
+    if PIN:        # the released copy AS COMMITTED at PIN (the coordinator's integration rewrites the working copy while it runs)
+        import subprocess
+        txt = subprocess.check_output(['git', '-C', r'C:\mohaa-coop-dev', 'show', '%s:docs/tools/assets/fixes/%s' % (PIN, rel)]).decode('latin-1')
+    else:
+        txt = open(os.path.join(hv.FIXES, rel.replace('/', os.sep)), 'rb').read().decode('latin-1')
+    nl ='\r\n' if '\r\n' in txt else '\n'
     new = []
     for row, clip, xb, why in EDITS[cls]:
         if row in without:
@@ -91,6 +109,8 @@ def build(cls, without=()):
 
 if __name__ == '__main__':
     wo = ()
+    if '--live' in sys.argv:     # base = the working copy (carries the coordinator's integration rows while it runs)
+        PIN = None
     if '--without' in sys.argv:
         wo = tuple(sys.argv[sys.argv.index('--without') + 1].split(','))
     for c in EDITS:

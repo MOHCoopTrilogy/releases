@@ -127,6 +127,10 @@ for tag in marks:
         while ce > rel and aid(ce) == sid:
             ce -= 1
         ce += 1                                             # first settled capture frame
+        # BOXENG_CLIPLEN=N: a hands row the cgame plays PAST the server's idle / charge (apply_reloadfinish.py; FG 42
+        # emptied: the anim id is the aim's again at 2.33 s, the row runs 3.0 s) - the clip is N capture frames long
+        if os.environ.get('BOXENG_CLIPLEN'):
+            ce = max(ce, min(low - 10, rel + int(os.environ['BOXENG_CLIPLEN'])))
         st = ex[ce - rel:low - 8 - rel]
         alone = (ce, len(st), 100 * max(st) if st else -1.0, sum(1 for e in st if e > 0.02))
         clip = ex[:ce - rel]

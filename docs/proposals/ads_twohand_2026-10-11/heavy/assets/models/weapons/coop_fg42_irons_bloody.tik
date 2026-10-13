@@ -22,6 +22,7 @@ setup
 	surface fg42barrel shader coop_skin_fg42_bloody
 	surface fg42clip   shader coop_skin_fg42_bloody
 	surface coop_sight shader coop_fg42_sight
+	surface coop_handle shader coop_fg42_sight	// HZM coop [ads heavy] the charging handle (fg42handle.py)
 }
 $define sounddir sound/weapons
 
@@ -284,6 +285,32 @@ animations
 	//only played one sound on entry, so the charging handle was silent. Frames 20/40 are where his
 	//animation hides and restores the magazine, so the rail pull sits around frame 30 - a bolt sound
 	//there lines up with the motion. Uses an existing alias; none of his .wav files were taken.
+	// HZM coop [ads heavy rows] FG 42: rows only the cgame shows. An EMPTY gun gets the charging handle (bone coop_chg)
+	// hauled back and let go by the firing hand; with rounds left the bolt is cocked and nothing moves.
+	reload_empty	coop_reload_empty.skc
+	{
+		client
+		{
+			entry sound fg42_snd_reload
+			66 sound fg42_snd_bolt
+		}
+	}
+	reload_ads_empty	coop_reload_empty.skc
+	{
+		client
+		{
+			entry sound fg42_snd_reload
+			66 sound fg42_snd_bolt
+		}
+	}
+	reload_ads_loaded	fg42.skc
+	{
+		client
+		{
+			entry sound fg42_snd_reload
+		}
+	}
+	// HZM coop [ads heavy rows end]
 	reload		fg42.skc
 	{
 		server
@@ -295,7 +322,7 @@ animations
 		client
 		{
 			entry sound fg42_snd_reload
-			30 sound fg42_snd_bolt
+			// HZM coop [ads heavy] the bolt sound moved to the emptied rows (reload_empty / reload_ads_empty): rounds left = no handle work
 		}
 	}
 }

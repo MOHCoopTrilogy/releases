@@ -35,6 +35,32 @@
    "settle_s": 0.37
   }
  },
+ "fg42": {
+  "ads_empty": {
+   "peak_deg": 3.56,
+   "settle_s": 0.27
+  },
+  "ads_loaded": {
+   "peak_deg": 3.56,
+   "settle_s": 0.33
+  },
+  "adsb_empty": {
+   "peak_deg": 1.96,
+   "settle_s": 0.2
+  },
+  "adsb_loaded": {
+   "peak_deg": 1.96,
+   "settle_s": 0.3
+  },
+  "hip_empty": {
+   "peak_deg": 3.56,
+   "settle_s": 0.27
+  },
+  "hip_loaded": {
+   "peak_deg": 3.56,
+   "settle_s": 0.33
+  }
+ },
  "mp44": {
   "empty": {
    "peak_deg": 4.16,

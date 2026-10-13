@@ -1,0 +1,65 @@
+[
+ {
+  "error_message": "FG 42 / FG 42 Irons hip reload (DaRKaNGeL's clip): the left hand paws at the side magazine with open fingers, nobody works the charging handle, and the mesh has only the handle's painted slot",
+  "file": "docs/proposals/ads_twohand_2026-10-11/heavy/tools/fg42bake.py",
+  "root_cause": "The pack's hands clip keeps the firing hand on the grip for all 71 frames and the gun clip fg42.skc is static (8 channels, none moves); fg42.skd has one gun bone and no handle geometry.",
+  "fix": "STAGED: fg42handle.py adds surface coop_handle on a new bone coop_chg to the irons mesh and to a new coop_fg42.skd (retail mesh + handle) for the 8 scoped tiks; fg42bake.py bakes hip / aimed / braced hands clips (left hand cups the side magazine = the StG 44 magazine grip turned 90 deg about the gun's axis, the firing hand hooks the handle on an EMPTY gun), gun clip coop_reload_empty.skc, tik rows reload_empty / reload_ads_empty / reload_ads_loaded (fg42rows.py). Runs hj27-hj44.",
+  "tags": ["ads", "heavy-lane", "fg42", "reload", "charging-handle", "mesh", "staged"]
+ },
+ {
+  "error_message": "A 91-frame FG 42 hands reload row was cut at 2.34 s: coop_vmTrace showed coopr_fg_42_irons_reload_empty at t=90576 and fg42_idle at t=92915, the handle work never played to its end",
+  "file": "openmohaa-hzm-ads-heavy/code/cgame/cg_viewmodelanim.c",
+  "root_cause": "The torso state leaves the reload when its own row ends (coop_reload_fg42, 2.34 s) and the server sends idle / charge, while the weapon's `reload` row (fg42.skc, 91 frames) holds WEAPON_RELOADING until 3.0 s (run hj26: last-frame mark at 2.95 s). The cgame replaced the hands row at once.",
+  "fix": "tools/apply_reloadfinish.py (ads-heavy-next, cgame only, cvar coop_vmReloadFinish default 1): while the current hands row is a RELOAD named coopr_* or fg42_reload* with more than 0.05 s left, an idle / charge change is taken only when the row has ended; anything else replaces it at once. Measured 2.93 s (hj28, hj37). Test DLL cgame_heavy9.",
+  "tags": ["ads", "heavy-lane", "cgame", "viewmodelanim", "reload", "server-timing", "fg42"]
+ },
+ {
+  "error_message": "Padding a hands clip to more frames (appending frame dicts to the Skc object) wrote garbage: frame 0 had values of 1e16 and frames 70-90 were the aim pose",
+  "file": "docs/proposals/ads_twohand_2026-10-11/heavy/tools/fg42bake.py",
+  "root_cause": "skc_io.write() packs into the clip's ORIGINAL byte layout (a.raw, each frame's own ofsValues): frame headers appended past the old count overwrite the first frames' values and the copied dicts all point at the old last frame's values.",
+  "fix": "fg42bake._load lays a longer clip out afresh (v13: header 48, 48 per frame header, 16 per channel value, 32 per channel name; new ofsValues / ofsChannels / ofsEnd / raw). Any tool that lengthens a clip through skc_io must do the same.",
+  "tags": ["tools", "skc", "heavy-lane", "clip-length", "skc_io"]
+ },
+ {
+  "error_message": "stage_rows.py changed the FROZEN staged rows files (a 'HZM coop ADS rollout' header and a coopr_bar_charge row appeared in fps_anims_mg.txt, the shotgun file's header line changed)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/heavy/tools/stage_rows.py",
+  "root_cause": "The tool builds the staged rows files on top of docs/tools/assets/fixes/... as it is on disk, and the coordinator's integration (integrate_ads.py) was rewriting that working copy at the time: the 'released' base was no longer the one the staged files had been built on.",
+  "fix": "stage_rows.py reads the base from git at a pinned commit (PIN = 993f706; `--live` = the working copy). Rebuilt: the staged shotgun file is byte-identical to the committed one, the mg file differs only by the FG 42 rows. After the deploy of 2026-10-13 the pin may have to move.",
+  "tags": ["tools", "heavy-lane", "rows", "frozen", "integration", "pin"]
+ },
+ {
+  "error_message": "FG 42 Irons aimed reload read 3.8 % (standing) / 2.7 % (lean left) beyond the sway envelope at clip frame 14, and 5.7-5.9 % for three capture frames at the handle's release (runs hj29, hj30)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/heavy/tools/fg42bake.py",
+  "root_cause": "(1) The cant started while the gun was still high: the rear sight ring and the receiver left the aim's own silhouette sideways through the box (the StG 44 lesson, bug-3646). (2) After the release the hand's finger curl was taken off at once: the pistol-grip pose has the trigger finger straight, and it pointed up into the box.",
+  "fix": "Timeline: `down` (straight down, f5-11) before `cant_in` (f11-18), back in the reverse order, an emptied gun stays down between the magazine and the handle; the hand stays closed after the release and drops away under the receiver. hj32 / hj33: max 0.31 % rounds left, 1.76 % emptied, 0 frames over in six stances.",
+  "tags": ["ads", "heavy-lane", "fg42", "centre-box", "reload", "bake"]
+ },
+ {
+  "error_message": "boxeng.py --sway measured the emptied FG 42 reload only to capture frame 140 of 190: the handle work was outside the measured clip",
+  "file": "docs/proposals/ads_twohand_2026-10-11/heavy/tools/boxeng.py",
+  "root_cause": "The clip's end is taken from the ADSFRAME anim id going back to the aim's; with apply_reloadfinish.py the server's id is the aim's again at 2.33 s while the hands row plays on to 3.0 s.",
+  "fix": "BOXENG_CLIPLEN=<capture frames> sets the clip length (190 for a 91-frame row). Without it a held row's tail is counted as 'the settled aim alone'.",
+  "tags": ["tools", "heavy-lane", "boxeng", "measurement", "reload"]
+ },
+ {
+  "error_message": "FG 42 Irons armory tile showed NO padlock while locked, and its description line '7.92MM / AUTOMATIC RIFLE / IRON SIGHTS' was cut on both sides (run hj34)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/heavy/wire/stage_armory_fg42irons.py",
+  "root_cause": "The rifle lane's lktab transform writes `vstr coop_loLkA<id>` into lktab0.cfg because the G 43 Irons is on tab 0; a heavy-tab tile needs it in its own tab file (lktab3.cfg). The server-side lock worked (click refused), only the icon was missing. The description is longer than the panel's line.",
+  "fix": "The vstr goes into the tile's own tab file (TAB = 3); description '7.92MM / AUTOMATIC / IRON SIGHTS' (32 characters). Run hj38: padlock at rank 0, gone at rank 18, the line fits.",
+  "tags": ["armory", "heavy-lane", "fg42", "unlock", "ui", "lktab"]
+ },
+ {
+  "error_message": "wire notes said the FG 42's finishes are 'unlocked by the FG 42's kill counter in challenges.scr' (and the rifle lane's README says the G 43 Irons' finishes go by the G 43's kill counter) - challenges.scr has no fg42 text at all",
+  "file": "docs/proposals/ads_twohand_2026-10-11/heavy/wire/README.md",
+  "root_cause": "Finishes fid 1-7 are GLOBAL unlocks: challenges fin_gold / fin_chrome / fin_blued / fin_bloody / fin_woodland / fin_winter / fin_desert put 'finish_<key>' into the player's unlock store and loadoutpick.scr::loadout_finish checks loadout_finUnlocked <fid> plus a coop_skinGive row of the slot's gun. Per-gun kill counters gate only model variants (fid 8+).",
+  "fix": "wire/README.md rewritten; the irons get the 7 coop_skinGive rows and nothing else. Run hj34: Winter refused state 0, 1 after chal_bump kill_snow 150, applied, survives a map restart.",
+  "tags": ["armory", "finishes", "unlock", "docs", "heavy-lane", "rifle-lane"]
+ },
+ {
+  "error_message": "The new FG 42 charging handle was a stark WHITE bar on the dark receiver in the engine (run hj33 crops)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/heavy/tools/fg42handle.py",
+  "root_cause": "Its worn faces used the sight texture's full 'edge' column; under lightingSpherical in front of a white wall that column reads white on a face a quarter of a unit wide.",
+  "fix": "The worn faces sample the texture's dark | edge seam (u 0.5): mid-grey steel (run hj42 crops).",
+  "tags": ["mesh", "heavy-lane", "fg42", "texture", "visual-qa"]
+ }
+]

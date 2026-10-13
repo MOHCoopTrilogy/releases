@@ -1,0 +1,344 @@
+TIKI
+
+setup
+{
+	scale 0.52			// Set default scale to 16/30.5 since world is in 16 units per foot and model is in cm's
+	path models/weapons/fg42
+	skelmodel coop_fg42.skd
+	// HZM revive: the vanilla "fg42" shader is UNDEFINED (nothing named it) -> the mesh rendered
+	// INVISIBLE. Point the surface straight at its own texture so it draws. (svt_lens/fg42cull
+	// surfaces don't exist in fg42.skd - single "fg42" surface on one worldbone - so they no-op.)
+	//[user 2026-08-17] "still invisible in my hand". The retail shader file defines BOTH fg42 and
+	//fg42cull, so the mesh has more than one surface, and naming only "fg42" left any other surface
+	//with no shader at all. "surface all" assigns every surface regardless of its name - the same
+	//form coop_stump_neck.tik uses - so nothing can be missed because we guessed a name wrong.
+	//[user 2026-08-17] Surfaces now match DaRKaNGeL's RE-RIGGED mesh (moh-db.com/mods/17867),
+	//which replaces retail's unusable one. Retail fg42.skd has ONE bone and NO tags, so it could
+	//not be skinned or carry a muzzle/eject point - that is why it was invisible no matter what
+	//we did to the shader. His has origin / FG42 / tag_barrel / tag_eject and real animation.
+	//His mod ships as a SHOTGUN REPLACEMENT; we take only the geometry and anims, so our shotgun
+	//is untouched and this works on AA/SH/BT because it rides the coop pak, not his.
+	surface fg42base   shader coop_skin_fg42_blued
+	surface fg42barrel shader coop_skin_fg42_blued
+	surface fg42clip   shader coop_skin_fg42_blued
+	surface fg42lens   shader lens
+	surface coop_handle shader coop_fg42_sight	// HZM coop [ads heavy] the charging handle (fg42handle.py)
+}
+$define sounddir sound/weapons
+
+init
+{
+	server
+	{
+	//========================================//
+	//		WEAPON NAME		  //
+	//========================================//
+
+		classname		Weapon
+		//[user 2026-08-17] rifle -> mg. The complete 1P arm set for this gun ALREADY SHIPS
+		//(models/player/base/fps_anims_mg.txt defines fg42_idle/fire/reload/pullout/putaway/
+		//disabled, all pointing at real anims) but was unreachable: the only fg42 state hook lives
+		//in RELOAD_MG, entered via IS_WEAPONCLASS_ACTIVE "mg", and the engine's "FG 42" lookup sits
+		//inside the WEAPON_CLASS_MG branch of CG_GetAnimPrefixFromWeapon. As a rifle it fell through
+		//to WPREFIX_GARAND - Garand hands doing a clip-eject reload, which is exactly the defect the
+		//one public SH mod documents as "my character miss the clip".
+		//This CANNOT affect the StG 44: animation sets are read-only shared. mp44.tik keeps its own
+		//weapontype/weapongroup and is not modified by anything here.
+		weapontype		mg
+		name			"FG 42 (Blued)"
+		rank			1282 1282
+
+	//========================================//
+	//		WEAPON ACCURACY 	  //
+	//========================================//
+
+//		Springfield 1903A4 Sniper's: Max Eff. Range is 650 yds with a muzzle velocity of 2800 ft/s. (30-06 Springfield)
+
+		sp bulletrange		4000	 		//the range at which bulletspread is applied
+		sp bulletspread		59 59 140 140 	//minpitch minyaw maxpitch maxyaw
+		sp zoomspreadmult	0.055			//bulletspread accuracy boost multiplier when zoomed
+
+		dm bulletrange		4000
+//		dm bulletspread		59 59 150 150
+		dm bulletspread		59 59 300 300	// further increased to encourage standing still while firing
+					// and to counteract the fact that you move slower with the weapon
+		dm zoomspreadmult	0.055
+
+		realism bulletrange		4000
+		realism bulletspread		59 59 300 300	// further increased to encourage standing still while firing
+					// and to counteract the fact that you move slower with the weapon
+		realism zoomspreadmult	0.055
+
+	//========================================//
+	//		DAMAGE / RATE OF FIRE	  //
+	//========================================//
+
+		sp bulletdamage		100
+		dm bulletdamage		106	//originally 100
+		realism bulletdamage		106	//originally 100
+
+		sp firedelay		0.09
+		dm firedelay		0.09 // HZM revive: real FG42 was full-auto ~750rpm. Vanilla's 2.0 delay was
+		realism firedelay	0.09 // tied to a reload cycle it never plays; 0.09 gives a proper auto rate.
+
+		realism throughwood		24
+		realism throughmetal	8
+
+	//========================================//
+	//		PLAYER MOVEMENT		  //
+	//========================================//
+
+		sp movementspeed	0.88
+		sp zoommovement		0.5
+
+		dm movementspeed	0.8		//originally 0.77
+		dm zoommovement		0.5
+
+		realism movementspeed	0.8		//originally 0.77
+		realism zoommovement	0.5
+
+	//========================================//
+	//		RIFLE BUTT / SECONDARY FIRE//
+	//========================================//
+
+	//========================================//
+	//		AMMO			  //
+	//========================================//
+
+		firetype		bullet
+		ammotype		"rifle"
+		meansofdeath	bullet
+		// HZM revive: was `semiauto` (one shot per click) - the FG42 is an automatic rifle, so drop it
+		// to fire full-auto while held. Bigger clip to match (20-rnd box).
+		clipsize		20
+		ammorequired	1
+		bulletlarge		1
+
+		sp startammo	5
+		dm startammo	50
+		sprealism startammo	5
+		dmrealism startammo	50
+
+		// Additional DM Loadout
+		dm additionalstartammo "grenade" 1
+		dm additionalstartammo "smokegrenade" 1
+		dm startitem "items/binoculars.tik"
+
+		// Additional DM Realism Loadout
+		dmrealism additionalstartammo "grenade" 1
+		dmrealism additionalstartammo "smokegrenade" 1
+		dmrealism startitem "items/binoculars.tik"
+
+	//========================================//
+	//		CROSSHAIR, ZOOM, TRACERS  //
+	//========================================//
+
+//		sp tracerfrequency 2
+//		dm tracerfrequency 0
+
+		zoom			20
+
+		crosshair		1
+
+	//========================================//
+	//		SOUND, AI, OTHER	  //
+	//========================================//
+
+		// this is attached to the player during reload
+		cache models/ammo/springfield_clip_reload.tik
+
+		// AI animation group info
+		weapongroup		rifle
+
+		pickupsound		springfield_snd_pickup
+		ammopickupsound	springfield_snd_pickup_ammo
+		noammosound		springfield_snd_noammo
+
+		// Holstering info
+holstertag				"Bip01 Spine2"
+holsteroffset			"8.0 -7.75 6.5"
+holsterangles			"0 185 -25"
+holsterScale			1.0
+
+//		viewkick		-2 -3   -1 1
+
+	}
+	client
+	{
+		cache tracer.spr
+		cache muzsprite.spr
+		cache models/ammo/rifleshell.tik
+		cache models/fx/muzflash.tik
+		cache model models/fx/snipesmoke.tik
+	}
+}
+
+animations
+{
+	//[user 2026-08-17] Rebuilt on DaRKaNGeL's animated fg42.skc. My first pass replaced this block
+	//with a bare 'entry shoot' + sound and so DROPPED the muzzle flash and shell ejection - that was
+	//my regression, reported as "we're missing ejection rounds and muzzle flash too".
+	//
+	//These FX are worth having ONLY NOW: they all hang off tag_barrel / tag_eject, and retail's mesh
+	//had NEITHER tag (one bone, no tags) - so in vanilla these commands pointed at nothing. His
+	//re-rigged mesh adds origin / FG42 / tag_barrel / tag_eject, which is what makes them possible.
+	//Emitter parameters are copied verbatim from mp44.tik, the closest working weapon, so the FG42
+	//flashes and ejects exactly like the StG 44 rather than to hand-guessed numbers.
+	idle		fg42.skc
+
+	fire		fg42.skc
+	{
+		server
+		{
+			entry shoot
+		}
+		client
+		{
+			entry stopaliaschannel fg42_snd_fire
+			entry sound fg42_snd_fire
+
+			entry viewkick 	    -2.1 -2.1    -0.2 0.05   3.4  "T"   12 0.2 2.2
+
+			entry tagdlight tag_barrel 0.25 0.2 0.15 150 0.11
+			entry tagspawnlinked tag_barrel
+			(
+				count 1
+				model models/fx/muzflash.tik
+				color 1.00 1.00 1.00
+				scale 0.60
+				life 0.05
+				offsetalongaxis -3 0 0
+				fade
+				randomroll
+			)
+
+			entry tagspawnlinked tag_barrel
+			(
+				count 1
+				model muzsprite.spr
+				alpha 0.70
+				color 1.00 1.00 1.00
+				scale 0.60
+				life 0.05
+				offsetalongaxis 1 0 0
+				fade
+				randomroll
+			)
+
+			entry tagspawnlinked tag_barrel
+			(
+				count 1
+				model corona_util.spr
+				color 1.00 1.00 1.00
+				scale 0.10
+				life 0.05
+				scalerate 11.00
+				fade
+				randomroll
+			)
+
+			entry commanddelay 0.01 tagspawn tag_eject
+			(
+				spawnrate 1
+				model vsssource.spr
+				alpha 0.30
+				color 0.50 0.50 0.50
+				spritegridlighting
+				scale 0.10
+				life 0.30
+				scalerate 10.00
+				velocity 60.00
+				randvel range 20 -60 crandom -40 range 20 -60
+				friction 5.00
+				fade
+				randomroll
+			)
+
+			entry tagspawn tag_barrel
+			(
+				spawnrate 1.00
+				model vsssource.spr
+				alpha 0.40
+				color .70 .70 .70
+				spritegridlighting
+				scale 0.45
+				life 0.20
+				scalerate 10.00
+				velocity 200.00
+				offsetalongaxis 10 0 0
+				friction 6.00
+				fade
+				randomroll
+			)
+
+			entry commanddelay 0.1 tagspawn tag_eject
+			(
+				spawnrange 2048
+				count 1
+				model models/ammo/rifleshell.tik
+				scale 1.0
+				velocity 50
+				randvel crandom 10 crandom 10 random 20
+				emitterangles 0 0 0
+				avelocity crandom 90 crandom 90 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_rifle_shell
+			)
+		}
+	}
+
+	//[user 2026-08-17] "there's also not a sound when pulling back the rail on reloading". The block
+	//only played one sound on entry, so the charging handle was silent. Frames 20/40 are where his
+	//animation hides and restores the magazine, so the rail pull sits around frame 30 - a bolt sound
+	//there lines up with the motion. Uses an existing alias; none of his .wav files were taken.
+	// HZM coop [ads heavy rows] FG 42: rows only the cgame shows. An EMPTY gun gets the charging handle (bone coop_chg)
+	// hauled back and let go by the firing hand; with rounds left the bolt is cocked and nothing moves.
+	reload_empty	coop_reload_empty.skc
+	{
+		client
+		{
+			entry sound fg42_snd_reload
+			66 sound fg42_snd_bolt
+		}
+	}
+	reload_ads_empty	coop_reload_empty.skc
+	{
+		client
+		{
+			entry sound fg42_snd_reload
+			66 sound fg42_snd_bolt
+		}
+	}
+	reload_ads_loaded	fg42.skc
+	{
+		client
+		{
+			entry sound fg42_snd_reload
+		}
+	}
+	// HZM coop [ads heavy rows end]
+	reload		fg42.skc
+	{
+		server
+		{
+			20 surface fg42clip +nodraw
+			40 surface fg42clip -nodraw
+			last idle
+		}
+		client
+		{
+			entry sound fg42_snd_reload
+			// HZM coop [ads heavy] the bolt sound moved to the emptied rows (reload_empty / reload_ads_empty): rounds left = no handle work
+		}
+	}
+}
+
+///*QUAKED playerweapon_german_fg42 (0.0 0.0 1.0) (-8 -8 -8) (8 8 8)
+//German machine gun - FG42.
+//*/
+// this weapon is probably going to be scrapped

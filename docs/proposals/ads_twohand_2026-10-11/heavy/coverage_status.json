@@ -127,6 +127,63 @@
    "target": "yes"
   }
  },
+ "models/weapons/coop_fg42_irons.tik": {
+  "action": "left hand: cups the side magazine from below, out to the left, pouch, home; EMPTY: left hand back on the handguard, the firing hand hooks the right-side charging handle (bone coop_chg), hauls it back and lets it go",
+  "lowered": true,
+  "note": "gun comes straight down under the box, turns there, returns to the exact aim; needs cgame apply_reloadfinish.py (the emptied row is 3.0 s, the torso reload 2.33 s); break-offs, crouch + leans, third person not run",
+  "qa": "looked at: six-stance sheets hj32 / hj33, crops hj33 / hj42, GIFs hj41 / hj42 / hj43 decoded",
+  "reload": {
+   "braced": {
+    "dev": 2.94,
+    "edge": 2.86,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hj33"
+   },
+   "crouch": {
+    "dev": 4.12,
+    "edge": 4.03,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hj33"
+   },
+   "prone": {
+    "dev": 4.13,
+    "edge": 4.04,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hj33"
+   },
+   "stand": {
+    "dev": 4.11,
+    "edge": 4.04,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hj33"
+   },
+   "standL": {
+    "dev": 4.08,
+    "edge": 4.02,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hj33"
+   },
+   "standR": {
+    "dev": 4.14,
+    "edge": 4.05,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hj33"
+   }
+  },
+  "rule": "on target yes (rounds left max 0.31 %, emptied max 1.76 % beyond the sway envelope, six stances, hj32 / hj33) / weapon reacts yes (gunphys class fg42) / action works yes (side magazine by the left hand, right-side charging handle by the firing hand on an EMPTY gun)"
+ },
  "models/weapons/dp28.tik": {
   "aim": {
    "braced": {

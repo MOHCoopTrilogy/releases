@@ -1,0 +1,9 @@
+gun	part	torso reload in (level.time)	weapon row starts	magazine filled	weapon row last frame	weapon row left (WEAPON_RELOADING ends)	torso leaves the reload	first state after	shots before
+fg42	hip	51.65	0.00	1.35	2.95	-	2.33	STAND	1
+fg42	hipempty	77.45	0.00	1.35	2.95	-	2.33	STAND	20
+fg42	ads	96.28	0.00	1.35	2.95	-	2.32	STAND	1
+fg42	adsempty	123.25	0.00	1.35	2.95	-	2.33	STAND	20
+fg42irons	hip	140.88	0.00	1.35	2.95	-	2.32	STAND	1
+fg42irons	hipempty	166.68	0.00	1.35	2.95	-	2.32	STAND	20
+fg42irons	ads	185.55	0.00	1.35	2.95	-	2.32	STAND	1
+fg42irons	adsempty	212.53	0.00	1.35	2.95	-	2.32	STAND	20

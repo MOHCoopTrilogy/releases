@@ -1,0 +1,23 @@
+--- a/docs/tools/gen_service_record.py
++++ b/docs/tools/gen_service_record.py
+@@ -343,4 +343,5 @@
+     # Verified against the Armory's actual title list, not guessed from the filename alone.
+     "models/weapons/arisakasniper.tik": "Arisaka Sniper",
++    "models/weapons/coop_fg42_irons.tik": "FG 42 (Iron Sights)",
+     "models/weapons/bar.tik": "BAR M1918",
+     "models/weapons/berettasilenced.tik": "Beretta Silenced",
+--- a/docs/tools/loadout_weapons.tsv
++++ b/docs/tools/loadout_weapons.tsv
+@@ -89,2 +89,3 @@
+ 74	models/weapons/mauser_c96.tik		0 0 0 1.60 0 90 180	coop_hold_pistol		4	MAUSER C96	7.63MM / SEMI-AUTO / 10 RD	3	5	9	9	10	10	p38	3
+ 75	models/weapons/m10_revolver.tik		0 0 0 1.60 0 90 180	coop_hold_pistol		4	S&W M10 .38	.38 SPECIAL / REVOLVER / 6 RD	3	5	8	9	6	6	nagant_revolver	3
++79	models/weapons/coop_fg42_irons.tik	models/weapons/coop_fg42_irons.tik	0 0 0 0.80 0 90 180	coop_hold_rifle	heavy	3	FG 42 (IRON SIGHTS)	7.92MM / AUTOMATIC / IRON SIGHTS	10	9	8	6	20	20	coop_fg42_irons	12
+--- a/docs/tools/armory_unlocks.py
++++ b/docs/tools/armory_unlocks.py
+@@ -39,5 +39,5 @@
+ import sys
+ 
+-MOD = r'C:\mohaa-coop-dev\hzm-mohaa-coop-mod'
++MOD = os.environ.get('HZM_MOD') or r'C:\mohaa-coop-dev\hzm-mohaa-coop-mod'   # HZM_MOD: a scratch / staged tree (as gen_loadout.py)
+ CO = os.path.join(MOD, 'coop_mod')
+ 

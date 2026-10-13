@@ -1,0 +1,218 @@
+// HZM coop - "give all" weapon list (read by the engine GiveCheat when a player runs "give all").
+// Overrides the base list so the DEBUG "Give All Guns" key hands you EVERY gun at once - the engine holds
+// multiple per category, so you just scroll through them all with the weapon wheel / number keys.
+// Guns + grenades/smoke + the Gewehrgranate rifle-grenade. Format: weapon weapons/<file>.tik
+// Grenades have startammo 0, so developer.scr::give_all_weapons grants grenade AMMO after "give all".
+
+// US
+weapon weapons/m1_garand.tik
+weapon weapons/thompsonsmg.tik
+weapon weapons/bar.tik
+weapon weapons/springfield.tik
+weapon weapons/shotgun.tik
+weapon weapons/colt45.tik
+weapon weapons/silencedpistol.tik
+weapon weapons/bazooka.tik
+
+// German
+weapon weapons/mp40.tik
+weapon weapons/mp44.tik
+weapon weapons/kar98.tik
+weapon weapons/KAR98sniper.tik
+weapon weapons/g43.tik
+weapon weapons/p38.tik
+weapon weapons/panzerschreck.tik
+weapon weapons/mg42carryable.tik
+// PORTABLE (handheld) MG42 - belt-fed LMG from the S93 Extra WW2 pack (own model + reload anim + animated
+// ammo belt). The proper sibling of 30calportable; name fixed BAR->MG42, sound -> coop mg42_gun_snd_fire.
+weapon weapons/mg42portable.tik
+// FG42 REVIVED for testing (mod override models/weapons/FG42.tik): vanilla one was invisible (undefined
+// shader -> pointed surface at its own texture) + single-shot (removed `semiauto`, firedelay 0.09 = full
+// auto). CAVEAT: fg42.skd is a single-worldbone mesh with a 110-byte stub .skc, so it's a STATIC prop -
+// no reload/recoil/muzzle-tag animation (no rigged parts). Testable to judge the model; a real fire/reload
+// rig would need a proper model+anim import (none exists in any pack we have).
+weapon weapons/FG42.tik
+weapon weapons/coop_fg42_irons.tik	//[fg42 irons 2026-10-13]
+
+// British
+weapon weapons/enfield.tik
+weapon weapons/Uk_W_L42A1.tik
+weapon weapons/DeLisle.tik
+weapon weapons/sten.tik
+weapon weapons/Webley_Revolver.tik
+weapon weapons/Uk_W_Vickers.tik
+weapon weapons/Uk_W_Piat.tik
+
+// Russian
+weapon weapons/Mosin_Nagant_Rifle.tik
+weapon weapons/svt_rifle.tik
+weapon weapons/ppsh_smg.tik
+weapon weapons/Nagant_revolver.tik
+
+// Italian
+weapon weapons/It_W_Carcano.tik
+weapon weapons/It_W_Moschetto.tik
+weapon weapons/It_W_Breda.tik
+weapon weapons/It_W_Beretta.tik
+
+// ===== S93 Extra Weapons (imported 2026-07-09) - the ~18 guns coop didn't already have =====
+// US
+weapon weapons/greasegun.tik
+weapon weapons/thompson50.tik
+weapon weapons/garand_scoped.tik
+weapon weapons/springfield_unscoped.tik
+weapon weapons/30calportable.tik
+// German
+weapon weapons/LugerP08.tik
+weapon weapons/ppk.tik
+weapon weapons/g43sniper.tik
+weapon weapons/mp44scoped.tik
+// British
+weapon weapons/welrod.tik
+// Russian
+weapon weapons/tt33.tik
+weapon weapons/Nagant_sniper.tik
+// Italian
+weapon weapons/moschetto.tik
+weapon weapons/carcanosniper.tik
+// Japanese
+weapon weapons/nambu.tik
+weapon weapons/type100smg.tik
+weapon weapons/arisaka.tik
+weapon weapons/arisakasniper.tik
+
+// ===== S93 silenced/suppressed variants + Lee-Enfield sniper (imported 2026-07-10, batch 2). Models/
+// textures/shaders/sounds were already in zzzzz_xw_weapons.pk3 from the first import; only the tiks were
+// added (names fixed + unique weapon-select orders). Silenced fire aliases registered in coop ubersound. =====
+weapon weapons/colt_silenced.tik
+weapon weapons/p38silenced.tik
+weapon weapons/tt33silenced.tik
+weapon weapons/berettasilenced.tik
+weapon weapons/lugerp08silenced.tik
+weapon weapons/mp40silenced.tik
+weapon weapons/greasegun_silenced.tik
+weapon weapons/ppsh43silenced.tik
+weapon weapons/garand_silenced.tik
+weapon weapons/nagant_snipersilenced.tik
+weapon weapons/kar98snipersilenced.tik
+weapon weapons/enfieldsniper.tik
+// M1 Carbine (from the LockNLoad/RAMSOC HD pack - full model+anim+texture import, coop had no carbine)
+weapon weapons/carbine.tik
+
+// ===== Surgical Operations 'KUN' HD iterations REMOVED per user (2026-07-10) - they were HD dupes of guns
+// we already have. The zzzzz_kun_weapons.pk3 is pulled from deployment; nothing references the _kun tiks. =====
+
+// ===== Grenades / smoke / rifle-grenade (ammo granted by developer.scr::give_all_weapons) =====
+weapon weapons/m2frag_grenade_sp_start.tik
+weapon weapons/steilhandgranate_start.tik
+weapon weapons/mills_grenade_sp_start.tik
+weapon weapons/it_w_bomba_sp_start.tik
+weapon weapons/Russian_F1_grenade_sp_start.tik
+// SMOKE variants: the coop itemhandler DELETES M18/RDG-1/Nebelhandgranate + dedups grenades by ammo
+// type, BUT developer.scr::give_all_weapons turns the itemhandler OFF during the give, so all of
+// these survive here (US / German / Russian national smokes + the coop's own signal smoke).
+weapon weapons/M18_smoke_grenade_start.tik
+weapon weapons/nebelhandgranate_start.tik
+weapon weapons/RDG-1_Smoke_grenade_start.tik
+weapon weapons/coop_smoke_grenade.tik
+weapon weapons/kar98_mortar.tik
+
+// ===== East imports (2026-08-17). Added as NEW guns, not replacements: his C96 ships as a Walther
+// P38 replacement and his Johnson as an M1 Garand replacement, so both were re-pathed onto private
+// meshes, shaders and textures instead. Fire sounds are ours (real C96 from our WWI library; our
+// .30-06 Garand recording for the Johnson - same cartridge, same action). =====
+weapon weapons/mauser_c96.tik
+weapon weapons/johnson_m1941.tik
+// Lt. Pato's DP-28 (ds-servers). Also a replacement - of the BAR - re-pathed the same way.
+weapon weapons/dp28.tik
+// East's Panzerfaust and S&W M10 .38 - both replacements (of the Panzerschreck and
+// the Colt 45), re-pathed the same way as the rest.
+weapon weapons/m10_revolver.tik
+// SKIN VARIANT proof-of-concept: same mesh and tuning as the Thompson, different
+// surfaces. Skins have to be their own weapon definition because a live weapon's
+// shader cannot be swapped at runtime.
+weapon weapons/thompsonsmg_gold.tik
+weapon weapons/thompsonsmg_chrome.tik
+weapon weapons/thompsonsmg_blued.tik
+weapon weapons/thompsonsmg_bloody.tik
+weapon weapons/thompsonsmg_camo_woodland.tik
+weapon weapons/thompsonsmg_camo_winter.tik
+weapon weapons/thompsonsmg_camo_desert.tik
+// [user 2026-08-18] imported model variants (strip fid 8)
+weapon weapons/mp40_mp40r2.tik
+weapon weapons/thompsonsmg_tommy28.tik
+weapon weapons/bar_pabar.tik
+weapon weapons/m1_garand_pagarand.tik
+weapon weapons/enfield_lv_ttenfield.tik
+weapon weapons/G43_lv_ttg43.tik
+weapon weapons/mosin_nagant_rifle_lv_ttmosin.tik
+weapon weapons/it_w_beretta_lv_ttberetta.tik
+weapon weapons/it_w_carcano_lv_ttcarcano.tik
+weapon weapons/colt45_lv_ttcolt.tik
+weapon weapons/delisle_lv_ttdelisle.tik
+weapon weapons/kar98_lv_ttkar98.tik
+weapon weapons/KAR98sniper_lv_ttkar98sn.tik
+weapon weapons/m1_garand_lv_ttgarand.tik
+weapon weapons/p38_lv_ttp38.tik
+weapon weapons/thompsonsmg_lv_tttommy.tik
+weapon weapons/mp44_lv_ttmp44.tik
+weapon weapons/springfield_lv_ttspring.tik
+weapon weapons/webley_revolver_lv_ttwebley.tik
+weapon weapons/shotgun_lv_ttshotgun.tik
+weapon weapons/panzerschreck_lv_ofenrohr.tik
+weapon weapons/KAR98sniper_lv_98ks.tik
+weapon weapons/delisle_lv_wdelisle.tik
+weapon weapons/thompsonsmg_lv_famastommy.tik
+weapon weapons/mp40_lv_mp75.tik
+weapon weapons/springfield_dhspdesert.tik
+weapon weapons/springfield_dhspdigital.tik
+weapon weapons/springfield_dhsptiger.tik
+weapon weapons/springfield_dhspwinter.tik
+weapon weapons/springfield_guansplight.tik
+weapon weapons/springfield_guansp2.tik
+weapon weapons/springfield_hobbsspwood.tik
+weapon weapons/springfield_hobbsspurban.tik
+weapon weapons/G43_dhg43fleck.tik
+weapon weapons/G43_hobbsg43wood.tik
+weapon weapons/G43_hobbsg43urb.tik
+weapon weapons/mp44_dhstg44ss.tik
+weapon weapons/mp44_guanmp44.tik
+weapon weapons/kar98_hobbskarworn.tik
+weapon weapons/kar98_hobbskarwood.tik
+weapon weapons/thompsonsmg_hobbstomworn.tik
+weapon weapons/thompsonsmg_guantommy.tik
+weapon weapons/colt45_guancolt.tik
+weapon weapons/m1_garand_guangarand.tik
+weapon weapons/mp40_guanmp40.tik
+weapon weapons/mp40_guanmp40s.tik
+weapon weapons/enfield_hobbsenfurb.tik
+weapon weapons/shotgun_dhshotblack.tik
+weapon weapons/shotgun_dhshotchrome.tik
+weapon weapons/shotgun_hobbsshotty.tik
+weapon weapons/shotgun_guanshotty.tik
+weapon weapons/p38_guanp38.tik
+weapon weapons/bazooka_guanbazooka.tik
+weapon weapons/mosin_nagant_rifle_hobbsmosinur.tik
+weapon weapons/svt_rifle_hobbssvtwood.tik
+weapon weapons/uk_w_l42a1_dhl42camo.tik
+weapon weapons/thompsonsmg_m1a1dk.tik
+weapon weapons/colt45_covert.tik
+weapon weapons/colt45_drbond.tik
+weapon weapons/colt45_bloodyeic.tik
+weapon weapons/shotgun_authwinch.tik
+weapon weapons/bar_bar1918a.tik
+weapon weapons/bar_bar1918a1.tik
+weapon weapons/bar_bar1918a2.tik
+weapon weapons/enfield_p14.tik
+weapon weapons/springfield_m1903.tik
+weapon weapons/mp44_mp44strap.tik
+weapon weapons/colt45_coltpa.tik
+weapon weapons/mp40_mp18.tik
+weapon weapons/springfield_smlescope.tik
+weapon weapons/kar98_g98.tik
+weapon weapons/KAR98sniper_g98scope.tik
+weapon weapons/bar_bar1918.tik
+weapon weapons/colt45_colt1911w.tik
+weapon weapons/mauser_c96_c96trench.tik
+weapon weapons/thompsonsmg_tommy1928d.tik
+weapon weapons/thompsonsmg_tommy27a1.tik

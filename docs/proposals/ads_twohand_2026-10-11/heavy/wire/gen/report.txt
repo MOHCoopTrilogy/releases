@@ -1,0 +1,52 @@
+stage_armory_fg42irons.py 20261013_102801   scratch: C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\adsheavy\armgen\20261013_102801
+--- BASE (mod tree as it is)
+gen_loadout.py build         exit 0  wrote 622 files + the unlock roster, for 74 weapons
+gen_skinbase.py              exit 0  loadoutskins_base.scr: 427 variant->base entries
+armory_unlocks.py --emit     exit 0  wrote C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\adsheavy\armgen\20261013_102801\base\
+gen_loadout.py check         exit 0    -> EXACT REPRODUCTION
+--- NEW (sources edited, generators patched)
+tile79 at y 137 on the heavy tab; moved one row down: 39 40 41 42 43 44 45 46 47 72
+gen_loadout.py build         exit 0  wrote 634 files + the unlock roster, for 75 weapons
+gen_skinbase.py              exit 0  loadoutskins_base.scr: 434 variant->base entries
+armory_unlocks.py --emit     exit 0  wrote C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\adsheavy\armgen\20261013_102801\new\h
+gen_loadout.py check         exit 0    -> EXACT REPRODUCTION
+
+generator drift already in the tree (BASE differs from the real file; NOT staged): 1
+   hzm-mohaa-coop-mod/coop_mod/unlockreq_gen.scr
+
+changed by this weapon: 19
+   docs/tools/gen_service_record.py
+   docs/tools/loadout_weapons.tsv
+   hzm-mohaa-coop-mod/coop_mod/buildmode_catalog.scr
+   hzm-mohaa-coop-mod/coop_mod/itemhandler.scr
+   hzm-mohaa-coop-mod/coop_mod/loadoutroster.scr
+   hzm-mohaa-coop-mod/coop_mod/loadoutskins.scr
+   hzm-mohaa-coop-mod/coop_mod/loadoutskins_base.scr
+   hzm-mohaa-coop-mod/coop_mod/recoil_table.txt
+   hzm-mohaa-coop-mod/coop_mod/unlockreq_gen.scr
+   hzm-mohaa-coop-mod/coop_mod/xp.scr
+   hzm-mohaa-coop-mod/global/giveall.scr
+   hzm-mohaa-coop-mod/ubermode/get_player_weaponclass.scr
+   hzm-mohaa-coop-mod/ui/coop_loadout.urc
+   hzm-mohaa-coop-mod/ui/loadout/lktab0.cfg
+   hzm-mohaa-coop-mod/ui/loadout/lktab1.cfg
+   hzm-mohaa-coop-mod/ui/loadout/lktab2.cfg
+   hzm-mohaa-coop-mod/ui/loadout/lktab3.cfg
+   hzm-mohaa-coop-mod/ui/loadout/lktab4.cfg
+   hzm-mohaa-coop-mod/ui/loadout/lktab5.cfg
+
+new files: 12
+   hzm-mohaa-coop-mod/ui/loadout/finp79_1.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp79_2.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp79_3.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp79_4.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp79_5.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp79_6.cfg
+   hzm-mohaa-coop-mod/ui/loadout/finp79_7.cfg
+   hzm-mohaa-coop-mod/ui/loadout/p79.cfg
+   hzm-mohaa-coop-mod/ui/loadout/req79.cfg
+   hzm-mohaa-coop-mod/ui/loadout/t79.cfg
+   hzm-mohaa-coop-mod/ui/loadout/w79_s1.cfg
+   hzm-mohaa-coop-mod/ui/loadout/w79_s2.cfg
+
+overlay files whose mod-tree original is NOT the released file (check before a harness run): 0

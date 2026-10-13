@@ -77,7 +77,7 @@ animations
 			entry sound pistol_whip // the swish sound. 
 		}
 	}
-	fg42_reload		viewmodel/fg42/fg42_stand_reload.skc				crossblend 0.05
+	fg42_reload		viewmodel/fg42/coop_fg42_reload_hip.skc				crossblend 0.05
 	fg42_pullout		viewmodel/rifle/raise_rifle_standplayer.skc
 	{
 		client
@@ -199,5 +199,12 @@ animations
 	dp28_reload_adsb		viewmodel/coop_dp28/dp28_reload_adsb.skc		crossblend 0.1	// HZM coop [ads heavy] aimed + braced, rounds left
 	dp28_reload_empty_adsb		viewmodel/coop_dp28/dp28_reload_empty_adsb.skc		crossblend 0.1	// HZM coop [ads heavy] aimed + braced, empty
 	coopr_fg_42_irons_charge		viewmodel/fg42/coop_fg42_irons_aim.skc		crossblend 0.1	// HZM coop [ads heavy] FG 42 Irons: aim pose (StG pose pushed out, support hand on the wooden handguard)
+	fg42_reload_empty		viewmodel/fg42/coop_fg42_reload_hip_empty.skc		crossblend 0.05	// HZM coop [ads heavy] FG 42 hip, empty: side magazine, then the firing hand works the charging handle
+	coopr_fg_42_irons_reload		viewmodel/fg42/coop_fg42_reload_hip.skc		crossblend 0.05	// HZM coop [ads heavy] FG 42 Irons hip, rounds left (= fg42_reload)
+	coopr_fg_42_irons_reload_empty		viewmodel/fg42/coop_fg42_reload_hip_empty.skc		crossblend 0.05	// HZM coop [ads heavy] FG 42 Irons hip, empty (= fg42_reload_empty)
+	coopr_fg_42_irons_reload_ads		viewmodel/fg42/fg42_irons_reload_ads.skc		crossblend 0.1	// HZM coop [ads heavy] FG 42 Irons aimed, rounds left
+	coopr_fg_42_irons_reload_empty_ads		viewmodel/fg42/fg42_irons_reload_empty_ads.skc		crossblend 0.1	// HZM coop [ads heavy] FG 42 Irons aimed, empty: + the charging handle
+	coopr_fg_42_irons_reload_adsb		viewmodel/fg42/fg42_irons_reload_adsb.skc		crossblend 0.1	// HZM coop [ads heavy] FG 42 Irons aimed + braced, rounds left
+	coopr_fg_42_irons_reload_empty_adsb		viewmodel/fg42/fg42_irons_reload_empty_adsb.skc		crossblend 0.1	// HZM coop [ads heavy] FG 42 Irons aimed + braced, empty
 }
 
