@@ -1,0 +1,515 @@
+{
+ "ab__rb63__springfield__braced__empty__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "6",
+   "7"
+  ],
+  "base": 2.2,
+  "dev": 3.28,
+  "end": 0.0,
+  "env_all": 0.0,
+  "env_all_at": 780,
+  "env_cover": 3.7,
+  "env_frames": 455,
+  "env_hands": 0.0,
+  "env_hands_at": 795,
+  "env_over": 0,
+  "env_over_list": [],
+  "env_tail": 57,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 680,
+  "hands": 0.3,
+  "hands_at": 1150,
+  "over": 0,
+  "start": 590,
+  "xmax": 0.3
+ },
+ "ab__rb63__springfield__braced__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "7",
+   "8",
+   "2"
+  ],
+  "base": 0.8,
+  "dev": 3.26,
+  "end": 0.02,
+  "env_all": 0.8,
+  "env_all_at": 208,
+  "env_cover": 2.5,
+  "env_frames": 240,
+  "env_hands": 0.0,
+  "env_hands_at": 154,
+  "env_over": 0,
+  "env_over_list": [],
+  "env_tail": 140,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 800,
+  "hands": 0.3,
+  "hands_at": 485,
+  "over": 0,
+  "start": 8,
+  "xmax": 1.0
+ },
+ "ab__rb63__springfield__crouch__empty__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "6",
+   "7"
+  ],
+  "base": 17.4,
+  "dev": 3.27,
+  "end": 0.0,
+  "env_all": 0.1,
+  "env_all_at": 1135,
+  "env_cover": 21.5,
+  "env_frames": 455,
+  "env_hands": 0.0,
+  "env_hands_at": 1053,
+  "env_over": 0,
+  "env_over_list": [],
+  "env_tail": 57,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 680,
+  "hands": 0.0,
+  "hands_at": 1053,
+  "over": 0,
+  "start": 590,
+  "xmax": 0.2
+ },
+ "ab__rb63__springfield__crouch__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "7",
+   "8",
+   "2"
+  ],
+  "base": 7.9,
+  "dev": 3.26,
+  "end": 0.02,
+  "env_all": 2.9,
+  "env_all_at": 14,
+  "env_cover": 17.5,
+  "env_frames": 240,
+  "env_hands": 0.1,
+  "env_hands_at": 17,
+  "env_over": 12,
+  "env_over_list": [
+   [
+    14,
+    2.9
+   ],
+   [
+    15,
+    2.9
+   ],
+   [
+    16,
+    2.9
+   ],
+   [
+    17,
+    2.9
+   ],
+   [
+    18,
+    2.8
+   ],
+   [
+    19,
+    2.7
+   ],
+   [
+    20,
+    2.3
+   ],
+   [
+    205,
+    2.1
+   ],
+   [
+    206,
+    2.4
+   ],
+   [
+    207,
+    2.7
+   ],
+   [
+    208,
+    2.8
+   ],
+   [
+    209,
+    2.9
+   ]
+  ],
+  "env_tail": 140,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 800,
+  "hands": 0.8,
+  "hands_at": 14,
+  "over": 14,
+  "start": 8,
+  "xmax": 5.5
+ },
+ "ab__rb63__springfield__prone__empty__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "6",
+   "7"
+  ],
+  "base": 14.3,
+  "dev": 3.27,
+  "end": 0.0,
+  "env_all": 0.1,
+  "env_all_at": 715,
+  "env_cover": 21.0,
+  "env_frames": 455,
+  "env_hands": 0.0,
+  "env_hands_at": 720,
+  "env_over": 0,
+  "env_over_list": [],
+  "env_tail": 57,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 680,
+  "hands": 0.1,
+  "hands_at": 1136,
+  "over": 0,
+  "start": 590,
+  "xmax": 1.2
+ },
+ "ab__rb63__springfield__prone__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "7",
+   "8",
+   "2"
+  ],
+  "base": 4.6,
+  "dev": 3.24,
+  "end": 0.02,
+  "env_all": 0.6,
+  "env_all_at": 18,
+  "env_cover": 9.3,
+  "env_frames": 240,
+  "env_hands": 0.4,
+  "env_hands_at": 18,
+  "env_over": 0,
+  "env_over_list": [],
+  "env_tail": 140,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 800,
+  "hands": 0.7,
+  "hands_at": 18,
+  "over": 0,
+  "start": 8,
+  "xmax": 1.0
+ },
+ "ab__rb63__springfield__standL__empty__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "6",
+   "7"
+  ],
+  "base": 12.5,
+  "dev": 3.25,
+  "end": 0.0,
+  "env_all": 0.5,
+  "env_all_at": 820,
+  "env_cover": 23.7,
+  "env_frames": 455,
+  "env_hands": 0.1,
+  "env_hands_at": 988,
+  "env_over": 0,
+  "env_over_list": [],
+  "env_tail": 57,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 680,
+  "hands": 0.4,
+  "hands_at": 1221,
+  "over": 95,
+  "start": 590,
+  "xmax": 3.7
+ },
+ "ab__rb63__springfield__standL__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "7",
+   "8",
+   "2"
+  ],
+  "base": 7.8,
+  "dev": 3.25,
+  "end": 0.02,
+  "env_all": 2.8,
+  "env_all_at": 18,
+  "env_cover": 17.4,
+  "env_frames": 240,
+  "env_hands": 0.1,
+  "env_hands_at": 18,
+  "env_over": 10,
+  "env_over_list": [
+   [
+    16,
+    2.7
+   ],
+   [
+    17,
+    2.7
+   ],
+   [
+    18,
+    2.8
+   ],
+   [
+    19,
+    2.8
+   ],
+   [
+    20,
+    2.6
+   ],
+   [
+    21,
+    2.3
+   ],
+   [
+    206,
+    2.3
+   ],
+   [
+    207,
+    2.6
+   ],
+   [
+    208,
+    2.7
+   ],
+   [
+    209,
+    2.7
+   ]
+  ],
+  "env_tail": 140,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 800,
+  "hands": 0.6,
+  "hands_at": 19,
+  "over": 61,
+  "start": 8,
+  "xmax": 4.9
+ },
+ "ab__rb63__springfield__standR__empty__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "6",
+   "7"
+  ],
+  "base": 12.2,
+  "dev": 3.26,
+  "end": 0.0,
+  "env_all": 0.7,
+  "env_all_at": 867,
+  "env_cover": 21.8,
+  "env_frames": 455,
+  "env_hands": 0.2,
+  "env_hands_at": 817,
+  "env_over": 0,
+  "env_over_list": [],
+  "env_tail": 57,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 680,
+  "hands": 0.2,
+  "hands_at": 817,
+  "over": 45,
+  "start": 590,
+  "xmax": 2.6
+ },
+ "ab__rb63__springfield__standR__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "7",
+   "8",
+   "2"
+  ],
+  "base": 1.7,
+  "dev": 3.24,
+  "end": 0.02,
+  "env_all": 2.3,
+  "env_all_at": 18,
+  "env_cover": 15.2,
+  "env_frames": 240,
+  "env_hands": 0.1,
+  "env_hands_at": 116,
+  "env_over": 5,
+  "env_over_list": [
+   [
+    18,
+    2.3
+   ],
+   [
+    19,
+    2.2
+   ],
+   [
+    20,
+    2.1
+   ],
+   [
+    206,
+    2.0
+   ],
+   [
+    207,
+    2.3
+   ]
+  ],
+  "env_tail": 140,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 800,
+  "hands": 0.6,
+  "hands_at": 18,
+  "over": 35,
+  "start": 8,
+  "xmax": 4.2
+ },
+ "ab__rb63__springfield__stand__empty__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "2",
+   "5",
+   "6",
+   "7"
+  ],
+  "base": 17.5,
+  "dev": 3.27,
+  "end": 0.0,
+  "env_all": 0.2,
+  "env_all_at": 1119,
+  "env_cover": 21.8,
+  "env_frames": 455,
+  "env_hands": 0.1,
+  "env_hands_at": 1120,
+  "env_over": 0,
+  "env_over_list": [],
+  "env_tail": 57,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 680,
+  "hands": 0.2,
+  "hands_at": 1123,
+  "over": 0,
+  "start": 590,
+  "xmax": 0.9
+ },
+ "ab__rb63__springfield__stand__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "7",
+   "8",
+   "2"
+  ],
+  "base": 10.9,
+  "dev": 3.27,
+  "end": 0.02,
+  "env_all": 0.0,
+  "env_all_at": 52,
+  "env_cover": 23.7,
+  "env_frames": 240,
+  "env_hands": 0.0,
+  "env_hands_at": 30,
+  "env_over": 0,
+  "env_over_list": [],
+  "env_tail": 140,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 800,
+  "hands": 0.4,
+  "hands_at": 18,
+  "over": 75,
+  "start": 8,
+  "xmax": 4.9
+ }
+}

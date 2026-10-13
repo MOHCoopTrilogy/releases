@@ -69,7 +69,7 @@ last-shot bolt cycle (that cycle is the frozen between-shot clip; `RBOX_EMPTY_SK
 | Kar98 (rb50) | 0.0 0.0 0.0 0.1 0.1 0.0 | **2.7** 1.8 0.0 0.8 1.4 2.0 | 0.0 0.0 0.0 0.2 0.2 0.0 | 0.0 0.0 0.0 0.8 0.6 0.0 | 0.00 deg |
 | Mosin (rb53) | 0.1 0.0 0.0 0.1 0.1 0.0 | 0.3 0.1 0.1 0.6 0.8 1.0 | 0.0 0.0 0.0 0.1 0.1 0.0 | 0.0 0.2 0.0 0.7 0.6 0.0 | 0.00 deg |
 | Enfield (rb56) | 0.5 0.3 1.0 1.1 0.1 0.1 | **4.3 3.3 2.8 5.7 3.0** 0.4 | 0.0 0.0 0.0 0.1 0.1 0.0 | 0.0 0.0 0.0 0.4 0.4 0.0 | 0.00 deg |
-| Springfield (rb63) | 0.0 0.1 0.4 0.1 0.1 0.0 | 0.0 **2.9** 0.6 **2.8 2.3** 0.8 | 0.1 0.0 (stand, crouch; the other four NOT measured - the measure stopped) | 0.2 0.1 | 0.00-0.02 deg |
+| Springfield (rb63) | 0.0 0.1 0.4 0.1 0.1 0.0 | 0.0 **2.9** 0.6 **2.8 2.3** 0.8 | 0.1 0.0 0.0 0.1 0.2 0.0 | 0.2 0.1 0.1 0.5 0.7 0.0 | 0.00-0.02 deg |
 | M1 Garand (rb60) | 0.0 0.0 0.0 0.1 0.1 0.0 | 1.9 1.6 1.8 1.7 **2.6** 0.1 | 0.0 0.0 0.0 0.1 0.1 0.0 | 0.0 0.0 0.0 0.4 0.3 0.3 | 0.00 deg |
 
 * HANDS are under the bar in every stance of every rifle.
@@ -190,7 +190,7 @@ own background call (about 1.5 min per capture).
 * `garand_reload_aimed_rb60.gif`, `garand_reload_aimed_empty_rb60.gif` (finished), `garand_reload_stances_rb60_a.jpg` /
   `_b.jpg`, `garand_reload_variant_tiks_rb61.jpg`.
 * `rb49_box.json`, `rb50_box.json`, `rb50_box_empty_reload_only.json`, `rb53_box.json`, `rb56_box.json`, `rb58_box.json`,
-  `rb59_box.json`, `rb60_box.json` (rb63: no json - the measure stopped after 8 of 12 captures; figures in the table), `srvtime_rb51.tsv`, `srvtime_rb52.tsv`, `rowlen_staged_vs_released.tsv`.
+  `rb59_box.json`, `rb60_box.json`, `rb63_box.json`, `srvtime_rb51.tsv`, `srvtime_rb52.tsv`, `rowlen_staged_vs_released.tsv`.
 
 ## 7. Next, in the coordinator's order
 1. Semi-autos still to do: M1 Carbine (`carbine.tik`; its hip reload is the per-weapon row `coopr_m1_carbine_reload`,
