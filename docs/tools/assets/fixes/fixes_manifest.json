@@ -111,5 +111,35 @@
     "base_ticks": 639229579389302037,
     "base_from": "docs/tools/assets/fixes_base/models/player/base/fps_anims_shotgun.txt",
     "why": "ADS reload rollout 2026-10-06: aimed-reload rows for the guns of this file; base = the released mod-tree copy"
+  },
+  "textures/coop_mp18/body.jpg": {
+    "base_md5": "cb43b9ae74c55f0a313ac55540ddef4b",
+    "base_ticks": 639226751352340289,
+    "base_from": "docs/tools/assets/fixes_base/textures/coop_mp18/body.jpg",
+    "why": "MP18 skin rework (docs/proposals/mp18_skin_2026-10-12, tools/mp18skin.py): dark steel, perforated jacket, walnut stock; user approved 2026-10-12"
+  },
+  "textures/coop_mp18/clip.jpg": {
+    "base_md5": "ce19b7060d45005cdf7b91e57f600c05",
+    "base_ticks": 639227516479942278,
+    "base_from": "docs/tools/assets/fixes_base/textures/coop_mp18/clip.jpg",
+    "why": "MP18 skin rework (docs/proposals/mp18_skin_2026-10-12, tools/mp18skin.py): dark steel, perforated jacket, walnut stock; user approved 2026-10-12"
+  },
+  "textures/coop_mp18/drum.jpg": {
+    "base_md5": "9a860119ca3c97a781f97b6cd5b08f32",
+    "base_ticks": 639227522678611915,
+    "base_from": "docs/tools/assets/fixes_base/textures/coop_mp18/drum.jpg",
+    "why": "MP18 skin rework (docs/proposals/mp18_skin_2026-10-12, tools/mp18skin.py): dark steel, perforated jacket, walnut stock; user approved 2026-10-12"
+  },
+  "textures/coop_mp18/front.JPG": {
+    "base_md5": "5b78df380effcf1fe728330669cb9b3f",
+    "base_ticks": 639227513358369212,
+    "base_from": "docs/tools/assets/fixes_base/textures/coop_mp18/front.JPG",
+    "why": "MP18 skin rework (docs/proposals/mp18_skin_2026-10-12, tools/mp18skin.py): dark steel, perforated jacket, walnut stock; user approved 2026-10-12"
+  },
+  "textures/coop_mp18/stuff.jpg": {
+    "base_md5": "4069c9acab60678ce457c65131aab144",
+    "base_ticks": 639227521465261237,
+    "base_from": "docs/tools/assets/fixes_base/textures/coop_mp18/stuff.jpg",
+    "why": "MP18 skin rework (docs/proposals/mp18_skin_2026-10-12, tools/mp18skin.py): dark steel, perforated jacket, walnut stock; user approved 2026-10-12"
   }
 }
