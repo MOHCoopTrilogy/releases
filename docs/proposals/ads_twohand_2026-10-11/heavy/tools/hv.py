@@ -52,7 +52,7 @@ def lib():
             if k in H.V.SIGHTS:
                 H.V.SIGHTS[k].update({kk: o[kk] for kk in ('delta_mrad', 'relief', 'F', 'R') if kk in o})
                 # an override row is written in the header's frame (= gungeo's, the root applied): a shared entry
-                # that aims by its `_root` copies (M1919, bug-3840) must take the override there too
+                # that aims by its `_root` copies (M1919, bug-3871) must take the override there too
                 if 'F' in o and H.V.SIGHTS[k].get('frame_used') == 'root':
                     H.V.SIGHTS[k].update(F_root=o['F'], R_root=o['R'], up_root=o.get('up', [0.0, 0.0, -1.0]), verified=True)
                 if 'F' in o:

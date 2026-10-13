@@ -26,7 +26,7 @@ The pump gun gets its own row for it.
 
 | what | file | note |
 |---|---|---|
-| NEW clip | `assets/models/human/animation/viewmodel/shotgun/coop_shotgun_cycle_ads.skc` (32 frames at 30 / s, 30 960 bytes, md5 4f95c41b) | `tools/sgpump.py`. The firing hand and the gun stay where the aim has them; the support hand keeps its aim grip and RIDES THE FOREND - its place is the aim grip moved by the forend's own travel in the gun's `fire` row, frame for frame (measured on the mesh), so hand and forend cannot part. Weight: gunphys class `shotgun`, the lane's `sg_pump_back` (frame 10) / `sg_pump_fwd` (frame 20) at 0.6: the gun leaves its aim by 0.27 deg / 0.28 u at most |
+| NEW clip | `assets/models/human/animation/viewmodel/shotgun/coop_shotgun_cycle_ads.skc` (32 frames at 30 / s, 30 960 bytes, md5 **8b09ccff** - RE-TIMED, see "Hull and pull-back" below; the first cut was 4f95c41b) | `tools/sgpump.py`. The firing hand and the gun stay where the aim has them; the support hand keeps its aim grip and RIDES THE FOREND - its place is the aim grip moved by the forend's own travel in the gun's `fire` row, frame for frame (measured on the mesh), so hand and forend cannot part. Weight: gunphys class `shotgun`, the lane's `sg_pump_back` (frame 10) / `sg_pump_fwd` (frame 20) at 0.6: the gun leaves its aim by 0.27 deg / 0.28 u at most |
 | 4 ADDED rows | `assets/models/player/base/fps_anims_shotgun.txt` (`tools/stage_rows.py`, the last four rows; the file's other rows are byte-identical to the integrated ones) | `coopr_shotgun_cycle` -> `viewmodel/shotgun/fire_shotgun_stand.skc` (retail hip clip: what an aim let go in mid-pump hands over to, and the base name the cgame needs), `coopr_shotgun_cycle_ads` -> the new clip, `coopr_shotgun_cyclelast` / `coopr_shotgun_cyclelast_ads` -> the same two clips (after the LAST shell) |
 | engine | `ads-heavy-next` **54514e44** (cgame only; `tools/apply_cyclewpn.py <worktree>`, idempotent) = test DLL `cgame_heavy11` (a9655dd7; it also carries the M1919 sight row of the lane's next commit, inert for the shotgun) | see below |
 
@@ -100,3 +100,33 @@ the released aimed shot alone does not meet it there.
   hand and the receiver at this aim (relief 14 u): it reads as a pump by the hand's travel, not by the forend.
 * `tools/run_h.py --pump` (new lane part: N single presses, every frame captured, boxeng-readable) and
   `boxeng.py` `BOXENG_SERIES=<json>` (per-frame series) are the tools used.
+
+## Hull and pull-back (user: "do you see the shell eject when you pump?") - clip RE-TIMED, run hj56
+* **Measured, first cut (run hj49, every 16 ms frame):** the hull is first in the picture 0.13-0.14 s after the client
+  sees the shot and has left it by 0.19-0.24 s (the gun's `fire` row: `entry commanddelay 0.2 tagspawn tag_eject`).
+  The forend - and with it the first cut's hand - went back only at clip frames 10-11 = 0.33-0.37 s. **The hull was
+  out 0.13-0.2 s BEFORE the hand had even started back.**
+* **The hip reference has the same mismatch**: the retail hip clip's hand is at the rear at its frame 11 (0.37 s), the
+  hull leaves at 0.2 s. It is the retail gun row's own timing (eject at 0.2 s, forend at 0.33 s), hip and aim alike.
+* **Fix (the HAND clip only, `tools/sgpump.py --pull 3,5`, the default now):** the hand leaves the front after clip
+  frame 3, is half way at 4 and AT THE REAR FROM FRAME 5 (0.167 s), stays there, and goes forward WITH the forend at
+  the gun's own frames 20-21. New clip md5 **8b09ccff** (32 frames, same rows, same length; `sg_pump_back` at frame 4).
+  Offline the clip adds 0.2 % of the centre box.
+* **Run hj56** (stand, crouch, lean left; 3 shots each; trace: `coopr_shotgun_cycle_ads` after every shot, 0 Script
+  Error): hull first seen 0.144 / 0.144 / 0.128 s after the shot, the hand at the rear at 0.167 s - within one clip
+  frame. The hull is in the aim view for 5-7 captured frames (about 0.1 s), right of the receiver, going up and to
+  the right; it is not behind the hand. LOOKED AT: `evidence/shotgun_pump/shotgun_aimed_pullback_and_hull_hj56.jpg`
+  (six crops: shot, hand starting back, further back, at the rear with the hull out, hull rising, hull leaving).
+* **What this does NOT fix, plainly:**
+  * the forend ON THE MESH and the pump SOUND still follow the frozen gun row (forend back at 0.33 s): for 0.17-0.2 s
+    the hand is at the rear while the forend under it has not moved yet. From the eye the forend is hidden in this
+    aim (under the hand and the barrel), so it is not seen; the sound was not listened to.
+  * the hand now waits at the rear for 0.5 s (frames 5-19) before the forward stroke.
+  * the HIP is unchanged: there the hull still leaves 0.17 s before the hand reaches the rear (retail).
+* **The cleaner fix, a decision for the coordinator / user:** one CLIENT command in the gun's `fire` row -
+  `entry commanddelay 0.2 tagspawn tag_eject` -> `0.35` in the 14 shotgun tiks - would put the hull on the real
+  pull-back for hip AND aim (hand, forend, sound and hull together), and the first cut's clip (4f95c41b, hand on the
+  forend frame for frame) would then be the right one. It is a client block: no server-read row changes length. The
+  tiks are frozen, so it was NOT done here.
+* The six-stance figures and GIFs above are of the first cut (hj49); only stand / crouch / lean left were re-run
+  with the re-timed clip (hj56), and the GIF was not rebuilt.

@@ -1,0 +1,39 @@
+[
+ {
+  "error_message": "M1919 .30 cal portable: aiming shows a black receiver wall over the whole centre box (bug-3622) - confirmed on the deployed build in stand / crouch / prone, light and dark background (run hj54)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/heavy/tools/m1919sights.py",
+  "root_cause": "cg_adssights.h has no row for models/weapons/30calportable.tik (the shared sights.json key m1919 is a synthetic line under the receiver top, verified false, never generated into the header), so the aim falls back on the hands clip's own eye place - behind the back plate. The mesh has a rear leaf whose window is EMPTY (two posts, no slider, no notch) and no front sight at all.",
+  "fix": "STAGED: m1919sights.py adds surface coop_sight (bone origin, shader coop_30cal_sight, dark steel) to a copy of the mod's 30cal.skd = coop_30cal_sights.skd: a notch slider across the leaf's window and a front blade on the trunnion block in front of the cover hinge; the staged tik names it; sight row sights_override.json key m1919 (new: true): F 17.11 -0.005 -7.9, R -0.55 -0.005 -7.9, relief 10 - the line parallel to the bore 2.9 u above the receiver's top; engine row via apply_fg42irons.py (it writes every `new` key); aim pose row coopr_m1919_30cal_charge (handpose.py m1919).",
+  "tags": ["ads", "m1919", "sights", "mesh", "cg_adssights", "heavy-lane"],
+  "related_bugs": ["bug-3622"]
+ },
+ {
+  "error_message": "A sights_override.json row for the shared key m1919 was ignored by the offline tools: the eye sat in the firing hand (a skin-coloured wall in the offline aim picture)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/heavy/tools/hv.py",
+  "root_cause": "The shared sights.json entry m1919 has frame_used = root and aims by its F_root / R_root copies (the xw mesh is drawn with its root rolled 180 deg); hv.lib() copied an override's F / R only into the plain F / R fields, which the rig solve does not read for such an entry.",
+  "fix": "hv.lib(): an override row is written in the header's frame (= gungeo's, root applied) - for an entry with frame_used root it now also sets F_root / R_root / up_root, and registers the gun's tik in GUNTIK.",
+  "tags": ["sights", "offline-tools", "root-frame", "m1919", "heavy-lane"]
+ },
+ {
+  "error_message": "M1919 hip reload (reload audit clip viewmodel/coop_reload/m1919_reload.skc): both hands work the cover, the belt and the charging handle OPEN and FLAT, fingers spread; the gun is thrown muzzle-up through the centre of the view; the handle is pulled twice in 0.4 s in every reload",
+  "file": "docs/proposals/ads_twohand_2026-10-11/heavy/tools/beltbake.py",
+  "root_cause": "The hand-keyed audit clip (keyclip.py) placed wrists on the controls and left the fingers of the base pose; its gun pose tips the muzzle up 60 deg so that the open cover leans back; the gun clip pulls the handle twice (frames 75-87) with rounds left or not.",
+  "fix": "STAGED: beltbake.py rebuilds the four reloads (hip / aimed x rounds left / emptied) through hold_bake with explicit hand-to-gun holds (mkrel): an overhand grasp on the cover's rear end that rides the cover (its rigid move per frame from the released gun clip, m1919cover.json), a fist on the belt's lower rear corner (the belt's upper end stands out of it), an overhand hook on the charging handle; the gun rolled 55 deg top-to-the-right under the centre box for cover / belt (the open cover leans away, the feed side faces the eye); gun clips coop_30cal_reload_loaded.skc (tik row reload: 98 frames as released, handle still) and coop_30cal_reload_empty.skc (rows reload_empty / reload_ads_empty, one pull); rows in stage_rows.py + wire/patch_m1919_rows.py for the one row that lives in the shared anims_shared.txt.",
+  "tags": ["reload", "m1919", "hands", "open-hand", "belt", "cover", "heavy-lane"]
+ },
+ {
+  "error_message": "M1919 reload, first bakes (offline sheets): held at its top end the belt was invisible; with the gun level under the box the receiver and the feed tray were below the frame; a palm-up hook on the charging handle showed the eye an open palm and a raised thumb",
+  "file": "docs/proposals/ads_twohand_2026-10-11/heavy/tools/beltbake.py",
+  "root_cause": "The eye looks along the gun: a belt hanging beside the receiver is a plane seen edge-on behind the fist that holds its top. An open top cover stands 11 u above the receiver - to keep it under the centre box a level gun must go down until the receiver leaves the frame. Palm-up, the palm faces the eye.",
+  "fix": "The fist holds the belt's lower rear corner (the upper end runs from it to the feedway on the flank that faces the eye); the gun is rolled 55 deg top-to-the-right for the work (the cover leans to the right, the receiver stays in the frame); the handle is hooked overhand (the back of a closed hand on the bar); an emptied gun is brought back into the aim first and the handle worked there (at the lowered pose the handle sat on the frame's bottom edge).",
+  "tags": ["reload", "m1919", "visibility", "work-pose", "heavy-lane"]
+ },
+ {
+  "error_message": "coop 30cal.skd: add_bead.add_surface AssertionError (81220, 81216) - 4 stray bytes after ofsEnd",
+  "file": "docs/proposals/ads_twohand_2026-10-11/heavy/tools/m1919sights.py",
+  "root_cause": "The mod's re-exported 30cal.skd (SKMD v5) carries 4 bytes after the last surface, as the FG 42 mesh does (bug-3770).",
+  "fix": "m1919sights.py drops everything after ofsEnd before adding the surface (G.surf_blocks gives ofsEnd).",
+  "tags": ["skd", "trailing-bytes", "m1919", "heavy-lane"],
+  "related_bugs": ["bug-3770"]
+ }
+]

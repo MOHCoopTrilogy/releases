@@ -6,7 +6,7 @@ its FRONT end, opens 75 deg; the belt hangs from the feedway on the LEFT (surfac
 z -4.6..2.2; the server hides it clip frames 34-56 and shows the prop models/ammo/coop_belt_30cal.tik on the off-hand
 tag frames 32-58); charging handle = a bar out of the RIGHT side (bone `chandle`, x 9.05..9.89, y 0.72..3.58,
 z -3.1..-2.26, travel 3.2 u). The released hands clip (viewmodel/coop_reload/m1919_reload.skc, reload audit
-2026-10-05) worked all of it with OPEN, FLAT hands (bug-3841) and threw the muzzle up through the centre of the view.
+2026-10-05) worked all of it with OPEN, FLAT hands (bug-3872) and threw the muzzle up through the centre of the view.
 
 Technique (the released choreography, its order kept; every hold a closed hand):
   * the LEFT hand leaves its support under the receiver, takes the cover's rear end from above (palm down over it,

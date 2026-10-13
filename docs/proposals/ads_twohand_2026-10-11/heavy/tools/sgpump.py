@@ -9,9 +9,10 @@ ammo drops while the aim pose is up) plays this clip:
 
     viewmodel/shotgun/coop_shotgun_cycle_ads.skc   32 frames at 30 / s = the gun's `fire` row, frame for frame
         the firing hand and the sights stay where the aim has them; the support hand keeps ITS AIM GRIP on the forend
-        and rides it - its place is the aim grip moved by the forend's own travel in shotgun_fire.skc at every frame
-        (measured on the mesh, so hand and forend cannot part); weight by gunphys class `shotgun` (the lane's
-        `sg_pump_back` at frame 10, `sg_pump_fwd` at frame 20; at the cheek the gun does not ride above its aim)
+        and works it: BACK over clip frames 3-5 (0.10-0.17 s: at the rear as the hull leaves - see main()), held, and
+        FORWARD with the forend's own travel in shotgun_fire.skc at frames 20-21 (measured on the mesh); weight by
+        gunphys class `shotgun` (the lane's `sg_pump_back` at frame 4, `sg_pump_fwd` at frame 20; at the cheek the gun
+        does not ride above its aim)
 
     cd heavy/assets; python ../tools/sgpump.py [--root dir] [--strength 0.6]
 """
@@ -43,11 +44,24 @@ def forend():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--root', default='.'); ap.add_argument('--strength', type=float, default=0.6)
+    ap.add_argument('--pull', default='3,5', help='clip frames of the back stroke: the hand leaves the front after the first, is at the rear from the second')
     a = ap.parse_args()
+    a.pull = [int(x) for x in a.pull.split(',')]
     d = forend()
     back = [f for f in range(N) if d[f][0] < -0.1]
     print('forend: back %.2f u, frames %d-%d' % (-min(v[0] for v in d), back[0], back[-1]))
-    ph = gunphys.simulate(N, 1 / 30.0, 'shotgun', [(0, 1.0), (N - 1, 1.0)], [(back[0], 'sg_pump_back'), (back[-1], 'sg_pump_fwd')],
+    # THE BACK STROKE IS EARLIER THAN THE FOREND'S (user 2026-10-13: "do you see the shell eject when you pump?"): the
+    # gun's `fire` row throws the hull 0.2 s after the shot (tik: `entry commanddelay 0.2 tagspawn tag_eject`; in the
+    # engine it is first in the picture 0.13-0.14 s after the client sees the shot, run hj49) but moves the forend
+    # back only at 0.33-0.37 s - at the hip too the retail hull is out before the hand has started. The gun's row is
+    # frozen and server-read, so the HAND is re-timed: back over clip frames PULL[0]..PULL[1] (at the rear as the hull
+    # leaves), held there, forward WITH the forend at its own frames. From the eye the forend is hidden in this aim.
+    full = min(v[0] for v in d)
+    for f in range(N):
+        if f < back[-1]:
+            u = 0.0 if f <= a.pull[0] else 1.0 if f >= a.pull[1] else (f - a.pull[0]) / float(a.pull[1] - a.pull[0])
+            d[f] = np.array([min(d[f][0], full * u), d[f][1], d[f][2]])
+    ph = gunphys.simulate(N, 1 / 30.0, 'shotgun', [(0, 1.0), (N - 1, 1.0)], [(a.pull[0] + 1, 'sg_pump_back'), (back[-1], 'sg_pump_fwd')],
                           strength=a.strength, fade=6)
     X = ph['X'].copy()
     for j in (0, 2):                              # at the cheek the gun does not ride ABOVE its aim (the lane's rule)
