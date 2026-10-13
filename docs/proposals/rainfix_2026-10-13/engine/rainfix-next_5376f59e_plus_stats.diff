@@ -1,0 +1,510 @@
+diff --git a/code/cgame/cg_beam.cpp b/code/cgame/cg_beam.cpp
+index b03c94f8..ad7ade29 100644
+--- a/code/cgame/cg_beam.cpp
++++ b/code/cgame/cg_beam.cpp
+@@ -94,6 +94,9 @@ beam_t::beam_t()
+ beam_t  cl_beams[MAX_BEAMS];
+ beam_t *cl_free_beams;
+ beam_t *cl_active_beams;
++// HZM coop [bug-3881] live beams: counted by CG_AddBeams every frame, raised by CG_CreateBeam in between. Read by
++// the rain spawner (cg_nature.cpp), which keeps to its own share of the pool.
++int cg_hzmLiveBeams = 0;
+ 
+ static int seed = 100;
+ 
+@@ -963,8 +966,27 @@ void CG_CreateModelBeam(beam_t *b, vec3_t org, vec3_t dist, float total_length,
+     }
+ }
+ 
++// HZMRAINSTATS (measurement build only)
++extern int       g_hzmBeamsAlive, g_hzmBeamPoolFail, g_hzmBeamFrames;
++extern long long g_hzmBeamsUs;
++extern long long CG_HZMRainNowUs(void);
++extern void      CG_HZMRainCov(const float *vA, const float *vB);
++struct hzmBeamTimer_t {
++    long long t0;
++    int       n;
++    hzmBeamTimer_t() : t0(CG_HZMRainNowUs()), n(0) {}
++    ~hzmBeamTimer_t()
++    {
++        g_hzmBeamsUs += CG_HZMRainNowUs() - t0;
++        g_hzmBeamFrames++;
++        g_hzmBeamsAlive = n;
++    }
++};
++
+ void CG_AddBeams(void)
+ {
++    hzmBeamTimer_t hzmTimer;
++    int     iLive = 0;
+     int     i, ii;
+     beam_t *b;
+     beam_t *bNext;
+@@ -1004,8 +1026,11 @@ void CG_AddBeams(void)
+             continue;
+         }
+ 
++        iLive++; // HZM coop [bug-3881]
++
+         // Fade the beam based on it's life
+         fade = (float)(b->endtime - cg.time) / (float)b->life;
++        hzmTimer.n++;
+ 
+         if (b->flags & BEAM_FADE) {
+             for (ii = 0; ii < 4; ii++) {
+@@ -1117,6 +1142,54 @@ void CG_AddBeams(void)
+                     b->alphastep,
+                     b->renderfx
+                 );
++            } else if ((b->flags & BEAM_INVERTED_FAST) && (b->flags & BEAM_HZM_TAILRUN)) {
++                // HZM coop [bug-3881] a rain streak that runs INTO the point where the drop lands. The beam's life
++                // covers the path plus one streak length: the head travels start -> end and stops there, the tail
++                // (one streak length behind) goes on until it arrives too. The picture is cut, not squeezed: the
++                // part of the streak that has gone into the surface is left off the texture as well.
++                vec3_t     vCurrStart, vCurrEnd;
++                vec3_t     vDir;
++                polyVert_t points[4];
++                float      fLen, fHead, fS;
++                int        jj;
++
++                VectorSubtract(b->end, b->start, vDir);
++                fLen  = VectorNormalize(vDir);
++                fHead = (1.0f - fade) * (fLen + b->toggledelay); // how far the drop has fallen
++                fS    = 1.0f;
++                if (fHead > fLen) {
++                    if (b->toggledelay > 0.0f) {
++                        fS = 1.0f - (fHead - fLen) / b->toggledelay;
++                    }
++                    if (fS < 0.0f) {
++                        fS = 0.0f;
++                    }
++                    VectorCopy(b->end, vCurrEnd);
++                } else {
++                    VectorMA(b->start, fHead, vDir, vCurrEnd);
++                }
++                VectorMA(b->start, fHead - b->toggledelay, vDir, vCurrStart);
++
++                // the quad of CG_BuildRendererBeam_Fast, with the head's texture coordinate cut to what is left
++                VectorMA(vCurrEnd, b->scale, cg.refdef.viewaxis[1], points[0].xyz);
++                VectorMA(vCurrStart, b->scale, cg.refdef.viewaxis[1], points[1].xyz);
++                VectorMA(vCurrStart, -b->scale, cg.refdef.viewaxis[1], points[2].xyz);
++                VectorMA(vCurrEnd, -b->scale, cg.refdef.viewaxis[1], points[3].xyz);
++                points[0].st[0] = fS;
++                points[0].st[1] = 1.0f;
++                points[1].st[0] = 0.0f;
++                points[1].st[1] = 1.0f;
++                points[2].st[0] = 0.0f;
++                points[2].st[1] = 0.0f;
++                points[3].st[0] = fS;
++                points[3].st[1] = 0.0f;
++                for (ii = 0; ii < 4; ++ii) {
++                    for (jj = 0; jj < 4; ++jj) {
++                        points[ii].modulate[jj] = color[jj];
++                    }
++                }
++                cgi.R_AddPolyToScene(b->beamshader, 4, points, b->renderfx);
++                CG_HZMRainCov(vCurrStart, vCurrEnd);
+             } else if (b->flags & BEAM_INVERTED_FAST) {
+                 vec3_t vCurrStart, vCurrEnd;
+                 vec3_t vDir;
+@@ -1127,6 +1200,7 @@ void CG_AddBeams(void)
+                 VectorMA(b->start, 1.0 - fade, vDir, vCurrEnd);
+                 VectorNormalizeFast(vDir);
+                 VectorMA(vCurrEnd, -b->toggledelay, vDir, vCurrStart);
++                CG_HZMRainCov(vCurrStart, vCurrEnd);
+ 
+                 CG_BuildRendererBeam_Fast(
+                     vCurrStart,
+@@ -1168,6 +1242,7 @@ void CG_AddBeams(void)
+             }
+         }
+     }
++    cg_hzmLiveBeams = iLive; // HZM coop [bug-3881]
+ }
+ 
+ void CG_CreateBeam(
+@@ -1267,6 +1342,7 @@ void CG_CreateBeam(
+         b->next         = cl_active_beams;
+         b->prev         = 0;
+         cl_active_beams = b;
++        cg_hzmLiveBeams++; // HZM coop [bug-3881]
+ 
+         b->entity          = owner;
+         b->endtime         = cg.time + life;
+@@ -1307,6 +1383,10 @@ void CG_CreateBeam(
+         VectorCopy(end, b->end);
+         return;
+     }
++    {
++        extern int g_hzmBeamPoolFail;
++        g_hzmBeamPoolFail++;
++    }
+     return;
+ }
+ 
+diff --git a/code/cgame/cg_commands.h b/code/cgame/cg_commands.h
+index 54c23fd9..927ec59c 100644
+--- a/code/cgame/cg_commands.h
++++ b/code/cgame/cg_commands.h
+@@ -759,7 +759,14 @@ public:
+ // slots exist purely to absorb a burst. m_tempmodels is a flat array in ClientGameCommandManager,
+ // so the cost is bounded and paid once at load.
+ #define MAX_TEMPMODELS 4096
+-#define MAX_BEAMS      4096
++// HZM coop [bug-3881] 4096 -> 8192, and rain / snow keep to the first 4096 (coop_rainMaxBeams, cg_nature.cpp). Slow
++// snow has always wanted far more streaks than the pool holds and kept it full, so every other beam in the game was
++// refused while it snowed; rain streaks now live longer (until the tail has reached the ground) and from a rooftop
++// the downpour filled it too. Snow draws what it drew before; the other 4096 are for everything else.
++#define MAX_BEAMS      8192
++// HZM coop [bug-3881] cgame-only beam flag (the shared BEAM_ flags in q_shared.h end at 1<<14): a rain streak whose
++// head stops where the drop lands while its tail runs on into that point. See CG_HZMRainTailRun in cg_nature.cpp.
++#define BEAM_HZM_TAILRUN (1 << 24)
+ 
+ class ClientGameCommandManager : public Listener
+ {
+diff --git a/code/cgame/cg_nature.cpp b/code/cgame/cg_nature.cpp
+index 34414cd4..7409ced1 100644
+--- a/code/cgame/cg_nature.cpp
++++ b/code/cgame/cg_nature.cpp
+@@ -143,9 +143,225 @@ static qboolean CG_RainBrushDropVisible(const vec3_t vStart, vec3_t vEnd, int *p
+     return qtrue;
+ }
+ 
++// HZM coop [bug-3881] RAIN TO THE GROUND. A streak is drawn from the drop (its head) back up its path for
++// rain_length units, and the whole streak was removed the moment the head reached the surface the drop lands on. So
++// over the last streak-length above the ground the rain thinned out to nothing: no streak ever covered the ground
++// itself, and at head height a standing player saw (82 / length) of the full density - 91 % with ordinary rain
++// (length 90), 32 % in the downpour tier (length 260): "the rain stays near the top of the screen". The drop now
++// lives one streak length longer and is drawn with BEAM_HZM_TAILRUN (cg_beam.cpp): the head stops at the surface,
++// the tail runs on into it. Nothing is drawn beyond the surface, so no streak can show under a roof or a floor.
++// coop_rainToGround 1 (default; 0 = as before). Returns the beam flags and stretches *piLife.
++static int CG_HZMRainTailRun(const vec3_t vStart, const vec3_t vEnd, int *piLife)
++{
++    static cvar_t *pOn = NULL;
++    vec3_t         vD;
++    float          fLen, fTail;
++
++    if (!pOn) { pOn = cgi.Cvar_Get("coop_rainToGround", "1", 0); }
++    fTail = (float)(int)cg.rain.length; // what CG_CreateBeam keeps (its streak-length parameter is an int)
++    if (!pOn->integer || fTail <= 0.0f || *piLife < 1) {
++        return BEAM_INVERTED_FAST;
++    }
++    VectorSubtract(vEnd, vStart, vD);
++    fLen = VectorLength(vD);
++    if (fLen < 1.0f) {
++        return BEAM_INVERTED_FAST;
++    }
++    *piLife = (int)((float)*piLife * (fLen + fTail) / fLen + 0.5f); // same speed, one streak length further
++    return BEAM_INVERTED_FAST | BEAM_HZM_TAILRUN;
++}
++
++// HZM coop [bug-3881] THE FLOOR. The brushless rain's drops fell to 256 units below the eye and were removed there
++// whatever was under them, so from a wall, a hill, a tower or an upstairs window the rain stopped in mid-air in a
++// flat sheet below the viewer. A drop that reaches that level with nothing solid under it now carries on along its
++// own line, at its own speed, down to the first solid or to coop_rainFloor units below the eye (default 1024;
++// 256 = as before). One extra trace, and only for a drop that found no ground - none on level ground. A drop that
++// found no ground and falls flatter than 60 degrees from the vertical is not drawn: it started just above the old
++// floor and was a short sideways dash there (level ground removes the same drops by itself). Snow has the same
++// floor and gets the same way down (a flake may live 20 s instead of 10 for it); a flat-flying flake is left as it
++// was. Returns qfalse for a drop that is not to be drawn.
++static qboolean CG_HZMRainFloor(const vec3_t vStart, vec3_t vEnd, int *piLife)
++{
++    static cvar_t *pFloor = NULL;
++    vec3_t         vZero = {0.0f, 0.0f, 0.0f};
++    vec3_t         vDir, vFar;
++    float          fFloor, fLen, fMore, fLife;
++    trace_t        tr;
++
++    if (!pFloor) { pFloor = cgi.Cvar_Get("coop_rainFloor", "1024", 0); }
++    fFloor = pFloor->value;
++    if (fFloor > 4096.0f) { fFloor = 4096.0f; }
++    if (fFloor <= 256.0f) {
++        return qtrue;
++    }
++    VectorSubtract(vEnd, vStart, vDir);
++    fLen = VectorNormalize(vDir);
++    if (fLen < 1.0f || *piLife < 1) {
++        return qfalse;
++    }
++    if (vDir[2] > -0.5f) {
++        // flatter than 60 degrees from the vertical. A rain streak is not drawn (see above); a snowflake (streak
++        // under 32 units: wind-driven flakes fly flat by design) is left exactly as it was
++        return (cg.rain.length >= 32.0f) ? qfalse : qtrue;
++    }
++    fMore = (fFloor - 256.0f) / -vDir[2];
++    VectorMA(vEnd, fMore, vDir, vFar);
++    cgi.CM_BoxTrace(&tr, vEnd, vFar, vZero, vZero, 0, MASK_SOLID, qfalse);
++    if (tr.startsolid) {
++        return qtrue;
++    }
++    fMore *= tr.fraction;
++    fLife = (float)*piLife * (fLen + fMore) / fLen;
++    if (fLife > 20000.0f) {
++        // a slow snowflake: the way down from the old floor may take up to 10 s more than the 10 s a drop was
++        // allowed before, at the flake's own speed; it stops where it gets to in that time
++        fMore = fLen * (20000.0f / (float)*piLife) - fLen;
++        fLife = 20000.0f;
++        if (fMore < 0.0f) {
++            return qtrue;
++        }
++    }
++    VectorMA(vEnd, fMore, vDir, vEnd);
++    *piLife = (int)fLife;
++    return qtrue;
++}
++
++// HZM coop [bug-3881] RAIN'S SHARE OF THE BEAM POOL. Rain and snow stop spawning while coop_rainMaxBeams beams
++// (default 4096 = the whole pool as it was) are alive; the pool itself is 8192 now (cg_commands.h). The spawn loops
++// leave at the first drop that finds the share full, so a pool-bound snowfall no longer traces thousands of flakes
++// a second that could never be created.
++static qboolean CG_HZMRainPoolFull(void)
++{
++    extern int     cg_hzmLiveBeams;
++    static cvar_t *pMax = NULL;
++    int            iMax;
++
++    if (!pMax) { pMax = cgi.Cvar_Get("coop_rainMaxBeams", "4096", 0); }
++    iMax = pMax->integer;
++    if (iMax < 256) { iMax = 256; } else if (iMax > MAX_BEAMS - 256) { iMax = MAX_BEAMS - 256; }
++    return (cg_hzmLiveBeams >= iMax) ? qtrue : qfalse;
++}
++
++// HZMRAINSTATS (measurement build only)
++#include <chrono>
++struct hzmRainStat_t {
++    int       frames, want, made, kDist, kSky, kStub, kLife, kFlat, kEnd, kNear, nSamp;
++    double    hs, he, gap, cosz, life;
++    long long usRain;
++    double    cov[16];
++    int       covFrames;
++};
++hzmRainStat_t g_hzmRS;
++int           g_hzmBeamsAlive   = 0;
++int           g_hzmBeamPoolFail = 0;
++long long     g_hzmBeamsUs      = 0;
++int           g_hzmBeamFrames   = 0;
++static int    s_hzmRSLast       = 0;
++
++long long CG_HZMRainNowUs(void)
++{
++    return std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now().time_since_epoch())
++        .count();
++}
++
++qboolean CG_HZMRainStatsOn(void)
++{
++    static cvar_t *p = NULL;
++    if (!p) { p = cgi.Cvar_Get("coop_rainStats", "0", 0); }
++    return p->integer ? qtrue : qfalse;
++}
++
++// a drawn streak from vA (tail) to vB (head): add its height span to the 32-unit bands over the player's feet
++void CG_HZMRainCov(const float *vA, const float *vB)
++{
++    float z0, z1, lo, hi;
++    int   k;
++
++    if (!CG_HZMRainStatsOn()) {
++        return;
++    }
++    z0 = vA[2] - cg.predicted_player_state.origin[2];
++    z1 = vB[2] - cg.predicted_player_state.origin[2];
++    if (z0 > z1) { float t = z0; z0 = z1; z1 = t; }
++    for (k = 0; k < 16; k++) {
++        lo = -64.0f + 32.0f * k;
++        hi = lo + 32.0f;
++        if (z1 <= lo || z0 >= hi) { continue; }
++        g_hzmRS.cov[k] += (double)((z1 < hi ? z1 : hi) - (z0 > lo ? z0 : lo));
++    }
++}
++
++static void CG_HZMRainSample(const vec3_t vStart, const vec3_t vEnd, int iLife, int iFlags)
++{
++    vec3_t  vZero = {0.0f, 0.0f, 0.0f};
++    vec3_t  a, b, d;
++    trace_t tr;
++    float   gz, len;
++
++    if (!CG_HZMRainStatsOn() || (g_hzmRS.made & 7)) {
++        return;
++    }
++    VectorSubtract(vEnd, vStart, d);
++    len = VectorNormalize(d);
++    VectorCopy(vEnd, a);
++    a[2] += 4.0f;
++    VectorCopy(a, b);
++    b[2] -= 4096.0f;
++    cgi.CM_BoxTrace(&tr, a, b, vZero, vZero, 0, MASK_SOLID, qfalse);
++    if (tr.fraction >= 1.0f || tr.startsolid) {
++        return; // no ground under it
++    }
++    gz = tr.endpos[2];
++    g_hzmRS.nSamp++;
++    g_hzmRS.hs   += vStart[2] - gz;
++    g_hzmRS.he   += vEnd[2] - gz;
++    g_hzmRS.gap  += (vEnd[2] - gz) + ((iFlags & BEAM_HZM_TAILRUN) ? 0.0f : (float)(int)cg.rain.length * -d[2]);
++    g_hzmRS.cosz += -d[2];
++    g_hzmRS.life += iLife;
++    (void)len;
++}
++
++static void CG_HZMRainStatFrame(long long usT0)
++{
++    char line[512];
++    int  k, n;
++
++    if (!CG_HZMRainStatsOn()) {
++        return;
++    }
++    g_hzmRS.frames++;
++    g_hzmRS.usRain += CG_HZMRainNowUs() - usT0;
++    if (cg.time - s_hzmRSLast < 1000 && cg.time >= s_hzmRSLast) {
++        return;
++    }
++    n = g_hzmRS.nSamp ? g_hzmRS.nSamp : 1;
++    cgi.Printf(
++        "^~^~^ RAINSTAT ms=%d frames=%d want=%d made=%d kDist=%d kSky=%d kStub=%d kLife=%d kFlat=%d kEnd=%d kNear=%d "
++        "alive=%d poolfail=%d rain_us=%.1f beams_us=%.1f hs=%.1f he=%.1f gap=%.1f cosz=%.3f life=%.0f den=%.2f "
++        "len=%.0f spd=%.0f vary=%d slant=%d dist=%.0f wind=%.0f,%.0f\n",
++        cg.time - s_hzmRSLast, g_hzmRS.frames, g_hzmRS.want, g_hzmRS.made, g_hzmRS.kDist, g_hzmRS.kSky, g_hzmRS.kStub,
++        g_hzmRS.kLife, g_hzmRS.kFlat, g_hzmRS.kEnd, g_hzmRS.kNear, g_hzmBeamsAlive, g_hzmBeamPoolFail,
++        (double)g_hzmRS.usRain / (g_hzmRS.frames ? g_hzmRS.frames : 1),
++        (double)g_hzmBeamsUs / (g_hzmBeamFrames ? g_hzmBeamFrames : 1), g_hzmRS.hs / n, g_hzmRS.he / n,
++        g_hzmRS.gap / n, g_hzmRS.cosz / n, g_hzmRS.life / n, cg.rain.density, cg.rain.length, cg.rain.speed,
++        cg.rain.speed_vary, cg.rain.slant, cg.rain.min_dist, vss_wind_x->value, vss_wind_y->value
++    );
++    line[0] = 0;
++    for (k = 0; k < 16; k++) {
++        Q_strcat(line, sizeof(line), va(" %d", (int)(g_hzmRS.cov[k] / (g_hzmBeamFrames ? g_hzmBeamFrames : 1))));
++    }
++    cgi.Printf("^~^~^ RAINCOV%s\n", line);
++    memset(&g_hzmRS, 0, sizeof(g_hzmRS));
++    g_hzmBeamPoolFail = 0;
++    g_hzmBeamsUs      = 0;
++    g_hzmBeamFrames   = 0;
++    s_hzmRSLast       = cg.time;
++}
++
+ void CG_Rain(centity_t *cent)
+ {
+     int         iLife;
++    int         iBeamFlags;
+     vec3_t      mins, maxs;
+ 
+     g_lastRainEntityTime = cg.time; // a rain brush exists on this map
+@@ -244,6 +460,9 @@ void CG_Rain(centity_t *cent)
+     }
+ 
+     for (i = 0; i < iNumSpawn; ++i) {
++        if (CG_HZMRainPoolFull()) {
++            break; // HZM coop [bug-3881]
++        }
+         {
+             extern int CG_HZMRainSeed(void);
+             int        iSeed = CG_HZMRainSeed(); // HZM coop [bug-3552] a fresh seed for every drop
+@@ -290,6 +509,7 @@ void CG_Rain(centity_t *cent)
+                 continue; // HZM coop [2026-10-12] near cull (see CG_HZMRainTooNear)
+             }
+         }
++        iBeamFlags = CG_HZMRainTailRun(vStart, vEnd, &iLife); // HZM coop [bug-3881] the streak runs into the surface
+ 
+         CG_CreateBeam(
+             vStart,
+@@ -298,7 +518,7 @@ void CG_Rain(centity_t *cent)
+             1,
+             1.0,
+             cg.rain.width,
+-            BEAM_INVERTED_FAST,
++            iBeamFlags,
+             1000.0,
+             iLife,
+             qtrue,
+@@ -416,7 +636,7 @@ qboolean CG_HZMRainTooNearX(const vec3_t vStart, const vec3_t vEnd)
+ void CG_RainGlobal(void)
+ {
+     static cvar_t *pGlobal = NULL;
+-    int            iNumSpawn, i, iRandom, iLife, iSlant, iSpeedVary;
++    int            iNumSpawn, i, iRandom, iLife, iSlant, iSpeedVary, iBeamFlags;
+     float          fDensity;
+     float          fcolor[4];
+     vec3_t         vOmins, vOmaxs, vOe, vStart, vEnd, vLength;
+@@ -516,6 +736,8 @@ void CG_RainGlobal(void)
+         static float sCarryGlobal = 0.0f;
+         iNumSpawn = CG_HZMRainSpawnCount(iNumSpawn, &sCarryGlobal); // HZM coop [bug-3558] by elapsed time
+     }
++    long long usStat0 = CG_HZMRainNowUs();
++    g_hzmRS.want += iNumSpawn;
+ 
+     iSlant     = (cg.rain.slant < 1) ? 1 : cg.rain.slant;            // snow uses slant 1; guard div-by-zero
+     iSpeedVary = (cg.rain.speed_vary < 1) ? 1 : cg.rain.speed_vary;  // guard div-by-zero
+@@ -527,6 +749,10 @@ void CG_RainGlobal(void)
+         trace_t skyTr;
+         vec3_t  vSkyStart, vSkyEnd;
+ 
++        if (CG_HZMRainPoolFull()) {
++            break; // HZM coop [bug-3881]
++        }
++
+         {
+             int iSeed = CG_HZMRainSeed(); // HZM coop [bug-3552] a fresh seed for every drop
+             if (iSeed >= 0) { iRandom = iSeed; }
+@@ -540,6 +766,7 @@ void CG_RainGlobal(void)
+         VectorSubtract(cg.refdef.vieworg, vStart, vLength);
+         vLength[2] = 0;
+         if (VectorLengthSquared(vLength) > Square(cg.rain.min_dist)) {
++            g_hzmRS.kDist++;
+             continue;
+         }
+         if (bEntRoof) {
+@@ -573,6 +800,7 @@ void CG_RainGlobal(void)
+             if (!pStrict2) { pStrict2 = cgi.Cvar_Get("coop_rainSkyStrict", "1", CVAR_ARCHIVE); }
+             if (pStrict2->integer) {
+                 if (!(skyTr.surfaceFlags & SURF_SKY)) {
++                    g_hzmRS.kSky++;
+                     continue; // no sky in this column -> no drop
+                 }
+             } else if (!(skyTr.surfaceFlags & SURF_SKY) && skyTr.fraction < 0.999f) {
+@@ -602,13 +830,18 @@ void CG_RainGlobal(void)
+             cgi.CM_BoxTrace(&wallTr, vStart, vEnd, vZero, vZero, 0, MASK_SOLID, qfalse);
+             if (wallTr.fraction < 1.0f) {
+                 if (wallTr.fraction < 0.1f) {
++                    g_hzmRS.kStub++;
+                     continue; // streak would be a stub - skip the drop entirely
+                 }
+                 VectorCopy(wallTr.endpos, vEnd);
+                 iLife = (int)(iLife * wallTr.fraction); // die on impact so the visible speed stays constant
+                 if (iLife < 50) {
++                    g_hzmRS.kLife++;
+                     continue;
+                 }
++            } else if (!CG_HZMRainFloor(vStart, vEnd, &iLife)) {
++                g_hzmRS.kFlat++;
++                continue; // HZM coop [bug-3881] nothing solid above the old floor: see CG_HZMRainFloor
+             }
+         }
+ 
+@@ -632,17 +865,23 @@ void CG_RainGlobal(void)
+                 vEndUp1[2] += 16384.0f;
+                 cgi.CM_BoxTrace(&endTr, vEndUp0, vEndUp1, vZero, vZero, 0, MASK_SOLID, qfalse);
+                 if (endTr.startsolid || (!(endTr.surfaceFlags & SURF_SKY) && endTr.fraction < 0.999f)) {
++                    g_hzmRS.kEnd++;
+                     continue; // lands under cover
+                 }
+             }
+         }
+ 
+         if (CG_HZMRainTooNear(vStart, vEnd)) {
++            g_hzmRS.kNear++;
+             continue; // HZM coop [2026-10-12] near cull
+         }
++        iBeamFlags = CG_HZMRainTailRun(vStart, vEnd, &iLife); // HZM coop [bug-3881] the streak runs into the surface
++        CG_HZMRainSample(vStart, vEnd, iLife, iBeamFlags);
++        g_hzmRS.made++;
+         CG_CreateBeam(
+-            vStart, vec_zero, 0, 1, 1.0, cg.rain.width, BEAM_INVERTED_FAST, 1000.0, iLife, qtrue,
++            vStart, vec_zero, 0, 1, 1.0, cg.rain.width, iBeamFlags, 1000.0, iLife, qtrue,
+             vEnd, 0, 0, 0, 1, 0, shadername, fcolor, 0, 0.0, cg.rain.length, 1.0, 0, "raineffect"
+         );
+     }
++    CG_HZMRainStatFrame(usStat0);
+ }

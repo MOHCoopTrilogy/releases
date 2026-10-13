@@ -1,0 +1,222 @@
+//=========================================================================
+// TEST-ONLY overlay driver (docs/proposals/rainfix_2026-10-13) - NEVER shipped. main.scr starts st_xp_run when
+// coop_st_xp 1. Rain camera rig. A command runs each time the cvar gq_go changes:
+//   tp     camera feet at gq_x gq_y gq_z (held there, physics off), view gq_pitch gq_yaw
+//   here   the same view change where the player stands
+//   scan   grid of down traces round gq_x gq_y gq_z (step gq_step, half size gq_half): prints rooms with a view out,
+//          alleys and high spots
+//   info   print the player and the rain variables
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ GQ driver armed"
+	while( $player == NULL || $player.size < 1 ){ wait 0.5 }
+	level.coop_dbno_disabled = 1
+	local.p = $player[1]
+	local.last = getcvar "gq_go"
+	local.hold = 0
+	local.holdang = ( 0 0 0 )
+	local.holdpos = ( 0 0 0 )
+	println ( "^~^~^ GQ ready origin=" + local.p.origin )
+	while( 1 ){
+		local.p = $player[1]
+		if( local.p == NULL ){ wait 0.5; continue }
+		if( local.hold == 1 ){
+			local.p.origin = local.holdpos
+			local.p.velocity = ( 0 0 0 )
+			local.p.viewangles = local.holdang
+		}
+		local.go = getcvar "gq_go"
+		if( local.go != local.last ){
+			local.last = local.go
+			local.cmd = getcvar "gq_cmd"
+			if( local.cmd == "tp" || local.cmd == "here" ){
+				if( local.cmd == "tp" ){
+					local.pos = ( 0 0 0 )
+					local.pos[0] = float( getcvar "gq_x" )
+					local.pos[1] = float( getcvar "gq_y" )
+					local.pos[2] = float( getcvar "gq_z" )
+					if( getcvar "gq_ground" == "1" ){
+						local.g0 = local.pos + ( 0 0 40 )
+						local.pos = trace local.g0 ( local.g0 + ( 0 0 -3000 ) ) 1
+					}
+					local.holdpos = local.pos
+				}else{
+					local.holdpos = local.p.origin
+				}
+				local.p nodamage
+				local.p notarget 1
+				local.p unglue
+				local.p detach
+				local.p physics_off
+				local.p.origin = local.holdpos
+				local.p.velocity = ( 0 0 0 )
+				local.va = ( 0 0 0 )
+				local.va[0] = float( getcvar "gq_pitch" )
+				local.va[1] = float( getcvar "gq_yaw" )
+				local.p.viewangles = local.va
+				local.holdang = local.va
+				local.hold = 1
+				wait 0.3
+				local.eye = local.p.origin + ( 0 0 82 )
+				local.gd = trace local.eye ( local.eye + ( 0 0 -4000 ) ) 1
+				local.up = trace local.eye ( local.eye + ( 0 0 3000 ) )
+				println ( "^~^~^ GQ view origin=" + local.p.origin + " angles=" + local.p.viewangles + " eye_over_ground=" + ( local.eye[2] - local.gd[2] ) + " roof=" + ( local.up[2] - local.eye[2] ) )
+			}
+			if( local.cmd == "scan" ){
+				waitthread gq_scan
+			}
+			if( local.cmd == "wp" ){
+				// the native weather's strength, live: 1 light rain, 2 rain, 3 heavy rain (global/weather.scr reads it every pass)
+				level.weatherpattern = int( getcvar "gq_n" )
+				println ( "^~^~^ GQ weatherpattern " + level.weatherpattern )
+			}
+			if( local.cmd == "info" ){
+				println ( "^~^~^ GQ info player=" + local.p.origin + " den=" + level.rain_density + " len=" + level.rain_length + " speed=" + level.rain_speed + " slant=" + level.rain_slant + " dist=" + level.rain_min_dist + " farplane=" + $world.farplane + " wxS=" + level.coop_wxS )
+			}
+			println ( "^~^~^ GQ done " + local.go + " " + local.cmd )
+		}
+		waitframe
+	}
+}end
+
+//=========================================================================
+gq_scan:{
+//=========================================================================
+	local.cx = float( getcvar "gq_x" )
+	local.cy = float( getcvar "gq_y" )
+	local.cz = float( getcvar "gq_z" )
+	local.step = float( getcvar "gq_step" )
+	local.half = int( getcvar "gq_half" )
+	if( local.step < 16 ){ local.step = 80.0 }
+	if( local.half < 1 ){ local.half = 20 }
+	local.nroom = 0
+	local.nalley = 0
+	local.nhigh = 0
+	local.cnt = 0
+	for( local.ix = 0 - local.half; local.ix <= local.half; local.ix++ ){
+		for( local.iy = 0 - local.half; local.iy <= local.half; local.iy++ ){
+			local.cnt++
+			if( ( local.cnt % 4 ) == 0 ){ waitframe }
+			local.x = local.cx + ( local.ix * local.step )
+			local.y = local.cy + ( local.iy * local.step )
+			local.top = ( 0 0 0 )
+			local.top[0] = local.x
+			local.top[1] = local.y
+			local.top[2] = local.cz + 700.0
+			local.bot = local.top
+			local.bot[2] = local.cz - 700.0
+			local.a = trace local.top local.bot
+			if( local.top[2] - local.a[2] < 4 ){ continue }
+			if( local.a[2] - local.bot[2] < 4 ){ continue }
+			// is the first surface from above a thin roof with a floor under it
+			local.gap = 0
+			for( local.t = 1; local.t <= 5; local.t++ ){
+				local.b0 = local.a
+				local.b0[2] = local.a[2] - ( local.t * 48 )
+				local.b = trace local.b0 local.bot
+				local.gap = local.b0[2] - local.b[2]
+				if( local.gap > 80 ){ break }
+			}
+			if( local.gap > 80 && local.gap < 300 && local.b[2] - local.bot[2] > 4 ){
+				// a room: look for a direction that runs far and ends under open sky
+				local.eye = local.b + ( 0 0 60 )
+				local.up = trace local.eye ( local.eye + ( 0 0 1500 ) )
+				local.roof = local.up[2] - local.eye[2]
+				if( local.roof > 40 && local.roof < 260 ){
+					local.bd = 0
+					local.byaw = 0
+					for( local.k = 0; local.k < 12; local.k++ ){
+						local.dir = angles_toforward ( 0 ( local.k * 30 ) 0 )
+						local.e2 = trace local.eye ( local.eye + local.dir * 1100 )
+						local.d = vector_length ( local.e2 - local.eye )
+						if( local.d > 380 ){
+							local.q = local.eye + local.dir * ( local.d - 70 )
+							local.uq = trace local.q ( local.q + ( 0 0 1500 ) )
+							local.gq2 = trace local.q ( local.q + ( 0 0 -400 ) )
+							local.m = local.eye + local.dir * 130
+							local.um = trace local.m ( local.m + ( 0 0 1500 ) )
+							if( vector_length ( local.uq - local.q ) > 500 && vector_length ( local.gq2 - local.q ) < 200 && vector_length ( local.um - local.m ) < 260 && local.d > local.bd ){
+								local.bd = local.d
+								local.byaw = local.k * 30
+							}
+						}
+					}
+					if( local.bd > 0 && local.nroom < 14 ){
+						local.far = 1
+						for( local.c = 1; local.c <= local.nroom; local.c++ ){
+							if( vector_length ( local.room[local.c] - local.b ) < 300 ){ local.far = 0 }
+						}
+						if( local.far == 1 ){
+							local.nroom++
+							local.room[local.nroom] = local.b
+							println ( "^~^~^ GQ room " + local.nroom + " at " + local.b + " yaw=" + local.byaw + " roof=" + local.roof + " run=" + local.bd )
+						}
+					}
+				}
+				continue
+			}
+			// open ground: sky above
+			local.eye = local.a + ( 0 0 60 )
+			local.up = trace local.eye ( local.eye + ( 0 0 1500 ) )
+			if( local.up[2] - local.eye[2] < 500 ){ continue }
+			// a high spot: 260 units away the ground is far lower
+			local.bdrop = 0
+			local.byaw = 0
+			for( local.k = 0; local.k < 8; local.k++ ){
+				local.dir = angles_toforward ( 0 ( local.k * 45 ) 0 )
+				local.e2 = trace local.eye ( local.eye + local.dir * 260 )
+				if( vector_length ( local.e2 - local.eye ) < 255 ){ continue }
+				local.g2 = trace local.e2 ( local.e2 + ( 0 0 -1500 ) )
+				local.drop = local.e2[2] - local.g2[2] - 60
+				if( local.drop > local.bdrop ){
+					local.bdrop = local.drop
+					local.byaw = local.k * 45
+				}
+			}
+			if( local.bdrop > 230 && local.nhigh < 10 ){
+				local.far = 1
+				for( local.c = 1; local.c <= local.nhigh; local.c++ ){
+					if( vector_length ( local.high[local.c] - local.a ) < 400 ){ local.far = 0 }
+				}
+				if( local.far == 1 ){
+					local.nhigh++
+					local.high[local.nhigh] = local.a
+					println ( "^~^~^ GQ high " + local.nhigh + " at " + local.a + " yaw=" + local.byaw + " drop=" + local.bdrop )
+				}
+			}
+			// an alley: walls close on both sides, a long run along it
+			for( local.k = 0; local.k < 6; local.k++ ){
+				local.dir = angles_toforward ( 0 ( local.k * 30 ) 0 )
+				local.side = angles_toforward ( 0 ( ( local.k * 30 ) + 90 ) 0 )
+				local.l = trace local.eye ( local.eye + local.side * 400 )
+				local.r = trace local.eye ( local.eye - local.side * 400 )
+				local.dl = vector_length ( local.l - local.eye )
+				local.dr = vector_length ( local.r - local.eye )
+				if( local.dl > 190 || local.dr > 190 || local.dl < 40 || local.dr < 40 ){ continue }
+				// the walls must be high: still there 150 units up
+				local.e3 = local.eye + ( 0 0 150 )
+				local.l = trace local.e3 ( local.e3 + local.side * 400 )
+				local.r = trace local.e3 ( local.e3 - local.side * 400 )
+				if( vector_length ( local.l - local.e3 ) > 220 || vector_length ( local.r - local.e3 ) > 220 ){ continue }
+				local.f = trace local.eye ( local.eye + local.dir * 1200 )
+				local.bk = trace local.eye ( local.eye - local.dir * 1200 )
+				local.df = vector_length ( local.f - local.eye )
+				local.db = vector_length ( local.bk - local.eye )
+				if( local.df + local.db > 600 && local.nalley < 10 ){
+					local.far = 1
+					for( local.c = 1; local.c <= local.nalley; local.c++ ){
+						if( vector_length ( local.alley[local.c] - local.a ) < 300 ){ local.far = 0 }
+					}
+					if( local.far == 1 ){
+						local.nalley++
+						local.alley[local.nalley] = local.a
+						local.yw = local.k * 30
+						if( local.db > local.df ){ local.yw = local.yw + 180 }
+						println ( "^~^~^ GQ alley " + local.nalley + " at " + local.a + " yaw=" + local.yw + " width=" + ( local.dl + local.dr ) + " run=" + ( local.df + local.db ) )
+					}
+				}
+			}
+		}
+	}
+	println ( "^~^~^ GQ scan points=" + local.cnt + " rooms=" + local.nroom + " alleys=" + local.nalley + " highs=" + local.nhigh )
+}end

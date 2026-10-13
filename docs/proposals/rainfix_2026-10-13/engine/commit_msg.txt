@@ -1,0 +1,34 @@
+cgame rain: streaks reach the ground (bug-3881) - coop_rainToGround 1, coop_rainFloor 1024, coop_rainMaxBeams 4096 of a pool of 8192
+
+User, on the build deployed 2026-10-13: "the rain doesnt really go to the ground, it stays closer to the top of the
+screen". A streak is drawn from the drop back UP its path for rain_length units, and the whole beam was removed the
+moment the drop reached the surface it lands on (the wall clamp), so over the last streak-length above the ground the
+rain thinned to nothing. Measured on m3l2 standing in the yard, downpour tier (length 260), 60 fps: the top of a
+streak was still 233 units over the ground when the streak was removed; streak cover per 32-unit height band rose in
+a straight line from 12 % of full at the ground to full at 224 units; the lower half of the level view held 0.0-0.1 %
+streak pixels against 10-13 % in the upper tenths, and looking 30 degrees down there was no rain in the picture at
+all (0.1 %). Ordinary heavy rain (length 90): 95 units. Switching coop_rainEndGate, coop_rainByTime,
+coop_rainNearCull, coop_rainSeed, coop_rainSeeOut or the rain shader's depth test off, one at a time, leaves the
+lower half empty; the unmodified integ-1.10.22 build shows the same.
+
+- coop_rainToGround 1 (default; 0 = as before), CG_HZMRainTailRun + the cgame-only beam flag BEAM_HZM_TAILRUN
+  (cg_commands.h, drawn in CG_AddBeams): the drop lives one streak length longer; the head stops at the surface, the
+  tail runs on into it; the texture is cut by what has gone in, not squeezed. Nothing is drawn beyond the surface.
+  Both rain paths (map rain brush, brushless). No trace added.
+- coop_rainFloor 1024 (default; 256 = as before), CG_HZMRainFloor, brushless path: a drop that reaches 256 units
+  below the eye with nothing solid under it (seen from a roof, a wall, a slope: the rain stopped in mid-air in a flat
+  sheet) carries on along its own line at its own speed to the first solid or to that depth. One extra trace, only
+  for such a drop. A rain drop of that kind that falls flatter than 60 degrees from the vertical is not drawn (level
+  ground removes the same drops by itself); a snowflake is left as it was. A slow snowflake may live 20 s instead of
+  10 for the way down.
+- MAX_BEAMS 4096 -> 8192, and coop_rainMaxBeams 4096 (default): rain and snow stop spawning while that many beams
+  are alive (cg_hzmLiveBeams), the spawn loops leave at the first drop that finds the share full. Slow snow has
+  always kept the 4096 pool full (10,000+ refusals a second, every other beam refused with them) and draws what it
+  drew before; the longer-lived rain streaks cannot fill the pool either; the other 4096 are for everything else.
+
+After, same spot: top of a streak 4 units over the ground when removed, cover flat from the ground up, 5-15 % streak
+pixels in every tenth of the level view, the same picture at 30 / 60 / 125 / 231 frames a second. Cost, downpour,
+yard, 60 fps: drops made 11,400-11,800 a second before and after; live streaks 1,700 -> 2,700; beam pass 0.20-0.25 ->
+0.28-0.34 ms a frame; spawner 1.4-1.7 ms a frame before and after. Evidence: docs/proposals/rainfix_2026-10-13.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
