@@ -1,0 +1,29 @@
+[
+ {
+  "error_message": "Springfield aimed reload, emptied rifle (run rb62): at every round the hand popped in from nowhere beside the action",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/riflereload.py",
+  "root_cause": "the hands loop clip springfield_reload_fill.skc has 28 frames but the SERVER's torso loop clip (tps_springfield_reload_fill.skc) has 20: the reload_single view animation is restarted every 20 frames. The retail art is continuous across frame 20 -> 0; the re-timed aimed loop was keyed to close at frame 27",
+  "fix": "loop_len=20: the hand's keys and the round's tag map close at frame 20 (= frame 0), the gun's excursion is simulated over 20 frames, frames 20-27 hold the first frame; rb63: two loop boundaries looked at every 2nd capture frame - continuous. Rule for any re-timed loop clip: read the TORSO clip's length, not the hands clip's",
+  "tags": [
+   "ads",
+   "rifles",
+   "springfield",
+   "reload",
+   "loop",
+   "server timing"
+  ]
+ },
+ {
+  "error_message": "the 'emptied' Springfield captures of rb58 / rb59 show no reload (and their box figures read 0.0-0.5 %)",
+  "file": "docs/proposals/ads_twohand_2026-10-11/rifles/tools/run_rifle.py",
+  "root_cause": "run_rifle.py --gap 110 (1.8 s between shots) is shorter than the Springfield's bolt cycle (1.9 s): only three of the five shots fired, the rifle was never empty; the capture and the measure had no check that a reload happened",
+  "fix": "--gap 140 for the Springfield (rb62 / rb63: five shots, then start / five loops / end by the cgame's view-anim ids); the rb58 / rb59 emptied figures and GIF are withdrawn in the README. Not added: a check in rbox.py that the reload anim id appears in an `empty` capture",
+  "tags": [
+   "harness",
+   "rifles",
+   "springfield",
+   "measure",
+   "capture"
+  ]
+ }
+]

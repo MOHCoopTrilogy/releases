@@ -14,10 +14,9 @@ Carcano / De Lisle / Arisaka, `kar98_g98` / `enfield_p14`, the scoped sample (th
 SCOPED rifle - it waits with them).
 * Engine: **unchanged**, `ads-rifle-next` c7ce5e86 = `cgames\cgame_rifle8.dll`. The gun rows are shown by the cgame's
   existing `reload` -> `reload_ads_loaded` / `reload_ads_empty` swap (cg_modelanim.c, the pistols' mechanism).
-* Run ids used: rb49-rb61 (rb57 spent on a failed boot). **rb62 is next.** rb48-rb56 are in `H:\hzm_archive\rifles\`
-  (moved in the background at the end of this stretch - check `scratchpad\move_runs_h.log`); rb57-rb61 are still in
-  `G:\mohaa-adsanim2\runs`.
-* Overlays: `ov_rifle_h7m.pk3` = the staged state + measure tiks (`mkov_rifle.py <pk3> --armgen --measure`; re-run
+* Run ids used: rb49-rb63 (rb57 spent on a failed boot). **rb64 is next.** rb48-rb56 are in `H:\hzm_archive\rifles\`;
+  rb57-rb63 are still in `G:\mohaa-adsanim2\runs` (rb58 / rb59 / rb62 are superseded by rb63 - move them too).
+* Overlays: `ov_rifle_h8m.pk3` = the staged state + measure tiks (`mkov_rifle.py <pk3> --armgen --measure`; re-run
   `nosmoke.py kar98.tik enfield.tik mosin_nagant_rifle.tik springfield_unscoped.tik` first).
 * **AFTER THE 11:02 DEPLOY (integrated build in the GOG paks):** the private harness needed the released game DLL -
   with its old `game.dll` the listen server died at map load (`player_Legs.st: Unknown condition 'COOP_TURRET_LOW'`,
@@ -64,13 +63,13 @@ last-shot bolt cycle (that cycle is the frozen between-shot clip; `RBOX_EMPTY_SK
 | Kar98 (rb50) | 0.0 0.0 0.0 0.1 0.1 0.0 | **2.7** 1.8 0.0 0.8 1.4 2.0 | 0.0 0.0 0.0 0.2 0.2 0.0 | 0.0 0.0 0.0 0.8 0.6 0.0 | 0.00 deg |
 | Mosin (rb53) | 0.1 0.0 0.0 0.1 0.1 0.0 | 0.3 0.1 0.1 0.6 0.8 1.0 | 0.0 0.0 0.0 0.1 0.1 0.0 | 0.0 0.2 0.0 0.7 0.6 0.0 | 0.00 deg |
 | Enfield (rb56) | 0.5 0.3 1.0 1.1 0.1 0.1 | **4.3 3.3 2.8 5.7 3.0** 0.4 | 0.0 0.0 0.0 0.1 0.1 0.0 | 0.0 0.0 0.0 0.4 0.4 0.0 | 0.00 deg |
-| Springfield (rb58 stand / lean L, rb59 the rest) | 0.0 0.2 0.0 0.2 0.2 0.0 | 0.0 **3.3** 0.0 **3.3** 2.0 0.6 | 0.4 0.0 0.1 0.1 0.0 0.0 | 0.4 0.0 0.1 0.5 0.1 0.0 | 0.00-0.02 deg |
+| Springfield (rb63) | 0.0 0.1 0.4 0.1 0.1 0.0 | 0.0 **2.9** 0.6 **2.8 2.3** 0.8 | 0.1 0.0 (stand, crouch; the other four NOT measured - the measure stopped) | 0.2 0.1 | 0.00-0.02 deg |
 | M1 Garand (rb60) | 0.0 0.0 0.0 0.1 0.1 0.0 | 1.9 1.6 1.8 1.7 **2.6** 0.1 | 0.0 0.0 0.0 0.1 0.1 0.0 | 0.0 0.0 0.0 0.4 0.3 0.3 | 0.00 deg |
 
 * HANDS are under the bar in every stance of every rifle.
 * **NOT met, "everything":** the rifle's OWN body reads over 2 % for a few frames as it leaves the aim and again as it
   returns - Kar98 stand 3 frames (2.7 %), Enfield 5-12 frames in five stances (up to 5.7 %, lean left; capture
-  frames 17-24 and 242-246 = clip frames 4-8 and the last 4), Springfield 7-9 frames crouched / leaning left (3.3 %),
+  frames 17-24 and 242-246 = clip frames 4-8 and the last 4), Springfield 5-12 frames crouched / leaning (2.9 %),
   Garand 1 frame leaning right (2.6 %). The same clip reads 0.0 in another stance: it depends on where the aim's sway
   is when the reload starts. Nothing was changed for it: the muzzle end has to pass
   through the lower half of the box to get under it. Levers not tried: a faster first / last five frames
@@ -122,21 +121,26 @@ skin - and the pluck; `evidence/kar98_reload_variant_tiks_rb54.jpg`, looked at);
 action; `evidence/garand_reload_variant_tiks_rb61.jpg`, looked at - its top row is the silenced Garand's scope picture,
 unchanged through the reload). No Mosin / Enfield variant tik and no Garand finish tik run.
 
-## 4. Springfield M1903 (iron sights): done (runs rb58 stand / lean left, rb59 the other four stances)
+## 4. Springfield M1903 (iron sights): done (run rb63, six stances; rb58 / rb59 / rb62 are superseded)
 The game loads it ONE ROUND AT A TIME (torso state RELOAD_SPRINGFIELD: start, one loop per round, end) - that is its
 hip technique; there is no charger for it in this game. Three chained aimed clips (`riflereload.py chain=`):
 `springfield_reload_ads` (rifle down, bolt opened, hand to the pouch and up), `springfield_reload_single_ads` (RE-TIMED
 so the round is seen: the hand is already beside the action with the round at frame 0 - the server draws the round
-prop for frames 0-5 only -, round laid in at 3, thumbed down 4-6, to the pouch and back), `springfield_reload_end_ads`
-(bolt shut with the closed grip, back to the aim). The rifle stays in its loading hold across the clip boundaries
-(drop 2.4 u: the single-round hand works beside the stock, lower than a charger hand; front sight 57-70 px under the
-centre through the loop, back to 0 at the end - the cgame's ADSFRAME track).
-LOOKED AT: stand, the rounds-left reload every 6th capture frame and the loop every 2nd at 2x; both stance sheets
-(five moments x six stances); the GIFs were made from those captures and NOT decoded again.
-Weak points seen: the round is on screen for about 0.1 s per loop (the server draws it for the loop's first five
-frames only); the loading is at the lower edge of the frame; the front sight's tip stands just inside the box's lower
-edge through the loading; the 1.1 s before the first round has no hand in the picture (the start clip's trip to the
-pouch); an emptied rifle takes five loops (about 4.7 s of the same small motion).
+prop for frames 0-5 only -, round laid in at 3, thumbed down 4-6, down out of the frame and up again),
+`springfield_reload_end_ads` (bolt shut with the closed grip, back to the aim). The rifle stays in its loading hold
+across the clip boundaries (drop 2.4 u; front sight 57-70 px under the centre through the loop, back to 0 at the end).
+**The server plays only 20 frames of the 28-frame loop clip** (its torso loop clip is 20 frames = 0.67 s per round):
+the loop closes at frame 20 (`loop_len`). The first version (rb58 / rb59 / rb62) was keyed over 28 frames - with
+several rounds the hand popped in from nowhere at every round (seen in rb62; a rounds-left reload has one loop and
+did not show it). Also found: the harness's five shots 110 frames apart did not empty a Springfield (its cycle is
+1.9 s) - `--gap 140` does (rb62 / rb63); rb58 / rb59 "emptied" captures show no reload at all.
+LOOKED AT (rb63): two loop boundaries of the emptied reload every 2nd capture frame (continuous), both stance sheets
+(five moments x six stances); rb58 stand every 6th frame (the start and end clips are unchanged since). The rb63 GIFs
+were made from those captures and NOT decoded again.
+Weak points seen: the round is on screen for about 0.1 s per loop (server-drawn prop); the hand goes out of the frame
+and is back with the next round within 0.25 s (the server's 0.67 s per round leaves no more); the loading is at the
+lower edge of the frame; the front sight's tip stands just inside the box's lower edge through the loading; the 1.1 s
+before the first round has no hand in the picture.
 
 ## 4b. M1 Garand: done (run rb60, six stances; rb61 the Pacific Garand)
 Hands clip only (`coop_garand_reload_ads.skc`, 61 frames = the hip clip's length): rifle down under the box, the trip
@@ -173,12 +177,14 @@ own background call (about 1.5 min per capture).
 * `mosin_reload_aimed_rb53.gif`, `mosin_reload_aimed_empty_rb53.gif` (finished), `mosin_reload_stances_rb53_a.jpg` / `_b.jpg`.
 * `enfield_reload_aimed_rb56.gif`, `enfield_reload_aimed_empty_rb56.gif` (finished except the transit figure above),
   `enfield_reload_stances_rb56_a.jpg` / `_b.jpg`.
-* `springfield_reload_aimed_rb58.gif` (rounds left: one round), `springfield_reload_aimed_empty_rb58.gif` (emptied: five
-  rounds one by one) - finished; `springfield_reload_stances_rb58_a.jpg` (stand, lean L) / `springfield_reload_stances_rb59_b.jpg`.
+* `springfield_reload_aimed_rb63.gif` (rounds left: one round), `springfield_reload_aimed_empty_rb63.gif` (emptied: five
+  rounds one by one) - finished; `springfield_reload_stances_rb63_a.jpg` / `_b.jpg`. SUPERSEDED, kept:
+  `springfield_reload_aimed_rb58.gif`, `springfield_reload_aimed_empty_rb58.gif` (shows NO reload - the rifle was not
+  empty), `springfield_reload_stances_rb58_a.jpg`, `springfield_reload_stances_rb59_b.jpg`.
 * `garand_reload_aimed_rb60.gif`, `garand_reload_aimed_empty_rb60.gif` (finished), `garand_reload_stances_rb60_a.jpg` /
   `_b.jpg`, `garand_reload_variant_tiks_rb61.jpg`.
 * `rb49_box.json`, `rb50_box.json`, `rb50_box_empty_reload_only.json`, `rb53_box.json`, `rb56_box.json`, `rb58_box.json`,
-  `rb59_box.json`, `rb60_box.json`, `srvtime_rb51.tsv`, `srvtime_rb52.tsv`, `rowlen_staged_vs_released.tsv`.
+  `rb59_box.json`, `rb60_box.json` (rb63: no json - the measure stopped after 8 of 12 captures; figures in the table), `srvtime_rb51.tsv`, `srvtime_rb52.tsv`, `rowlen_staged_vs_released.tsv`.
 
 ## 7. Next, in the coordinator's order
 1. Semi-autos still to do: M1 Carbine (`carbine.tik`; its hip reload is the per-weapon row `coopr_m1_carbine_reload`,

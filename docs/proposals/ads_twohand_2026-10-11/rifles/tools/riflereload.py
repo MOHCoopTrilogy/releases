@@ -205,8 +205,10 @@ GUNS = {
     # end 32 frames (hand on the knob 4-8, bolt forward 8-10, knob down 11-15, grip 22-26).
     # Aimed: the rifle comes down under the centre box in `start` and stays in the loading hold through every loop.
     # THE LOOP IS RE-TIMED so the round is SEEN going in: frame 0 = the retail hand of frame 4 (already up beside the
-    # action with the round), round on the action at 3, thumbed down 4-6, away to the pouch 12-21, up again by 27.
-    # `start` therefore ends, and `end` begins, with the hand coming up (the loop's retail frame 3).
+    # action with the round), round on the action at 3, thumbed down 4-6, down out of the frame 12-16, up again by 20.
+    # THE SERVER PLAYS 20 FRAMES OF IT (its torso loop clip tps_springfield_reload_fill.skc is 20 frames; the hands
+    # clip has 28): the loop closes at frame 20 = frame 0 (run rb62: keyed over 28 frames the hand popped in from
+    # nowhere at every round). `start` therefore ends, and `end` begins, on the loop's frame 0 (retail frame 4).
     'springfield': dict(
         gun='springfield_unscoped', hip='viewmodel/rifle/springfield_reload_start.skc', charge='viewmodel/sprng_stand00.skc', offhand=(1, 48),
         out='viewmodel/rifle/springfield_reload_ads.skc', enter=6, exit=0, chain='start',
@@ -220,7 +222,7 @@ GUNS = {
                   src=dict(hip='viewmodel/rifle/kar98_rechamber.skc', frame=12, offhand=(1, 44), anim='rechamber', tik='models/weapons/kar98.tik')),
         rhand=dict(aim=[(0, 3)], rel=[(19, 38)], way={5: (-0.8, 2.2, 2.6)},
                    keys={45: dict(clip=('viewmodel/rifle/springfield_reload_fill.skc', 2)),
-                         48: dict(clip=('viewmodel/rifle/springfield_reload_fill.skc', 3))}),
+                         48: dict(clip=('viewmodel/rifle/springfield_reload_fill.skc', 4))}),
         support=[(0, 1), (3, 1), (6, 0), (48, 0)],
         events=[(8, 'rb_up'), (14, 'rb_back'), (15, 'rb_stop'), (19, 'hand_off'), (23, 'body_reach', 2.0), (27, 'pouch_tug', 1.0),
                 (31, 'pouch_tug', 1.3), (40, 'body_back', 2.0)]),
@@ -230,14 +232,15 @@ GUNS = {
         holds=dict(push=dict(drop=2.4, roll=16.0, pitch=1.1, side=0.9, back=-3.2)),
         pose=[(0, 'push'), (27, 'push')],
         # the round rides the hand as the retail art has it (tag_map: clip frame -> retail frame of the prop tag)
-        rc=dict(free_tag=True, tag_map={0: 4, 1: 5, 2: 6, 3: 7, 4: 8, 6: 8, 8: 10, 10: 14, 12: 16, 14: 18, 17: 22, 21: 26, 24: 2, 27: 3}),
+        loop_len=20,
+        rc=dict(free_tag=True, tag_map={0: 4, 1: 5, 2: 6, 3: 7, 4: 8, 6: 8, 8: 10, 10: 14, 12: 16, 14: 18, 15: 20, 17: 2, 19: 3, 20: 4, 27: 4}),
         rhand=dict(aim=[], rel=[], keys={0: dict(rel=4), 1: dict(rel=5), 2: dict(rel=6), 3: dict(rel=7),
                                          4: dict(rel=8, gun_add=(0.0, 0.0, 0.5)), 5: dict(rel=8, gun_add=(0.0, 0.0, 1.0)),
                                          6: dict(rel=8, gun_add=(0.0, 0.0, 1.0)), 8: dict(rel=10, gun_add=(0.0, 1.0, 1.5)),
                                          10: dict(rel=14, gun_add=(0.0, 1.5, 2.5)), 12: dict(rel=16), 14: dict(rel=18),
-                                         17: dict(rel=22), 21: dict(rel=26), 24: dict(rel=2), 27: dict(rel=3)}),
+                                         15: dict(rel=20), 17: dict(rel=2), 19: dict(rel=3), 20: dict(rel=4), 27: dict(rel=4)}),
         support=[(0, 0), (27, 0)],
-        events=[(3, 'clip_set', 1.2), (5, 'clip_push', 1.6), (8, 'hand_off', 0.5), (15, 'body_reach', 0.8), (22, 'body_back', 0.8)]),
+        events=[(3, 'clip_set', 1.2), (5, 'clip_push', 1.6), (8, 'hand_off', 0.5), (12, 'body_reach', 0.6), (16, 'body_back', 0.6)]),
     'springfield_end': dict(
         gun='springfield_unscoped', hip='viewmodel/rifle/springfield_reload_end.skc', charge='viewmodel/sprng_stand00.skc', offhand=(0, 30),
         out='viewmodel/rifle/springfield_reload_end_ads.skc', enter=0, exit=8, chain='end',
@@ -247,7 +250,7 @@ GUNS = {
         pose=[(0, 'push'), (5, 'close'), (15, 'close'), (20, 'down'), (26, None), (31, None)],
         bolt=dict(anim='reload_end', gref=6, roll=35.0, yaw=-40.0, off=(0.0, 0.3, 0.1), spans=[(5, 15)],
                   src=dict(hip='viewmodel/rifle/kar98_rechamber.skc', frame=12, offhand=(1, 44), anim='rechamber', tik='models/weapons/kar98.tik')),
-        rhand=dict(aim=[(26, 31)], rel=[], keys={0: dict(clip=('viewmodel/rifle/springfield_reload_fill.skc', 3))}),
+        rhand=dict(aim=[(26, 31)], rel=[], keys={0: dict(clip=('viewmodel/rifle/springfield_reload_fill.skc', 4))}),
         support=[(0, 0), (20, 0), (26, 1)],
         events=[(9, 'rb_fwd'), (12, 'rb_down'), (24, 'rb_grip')]),
     # M1 GARAND (hands vm_riflereload.skc, 61 frames = 2.03 s; gun clip 60 frames). Retail: the hand is away at the
@@ -307,8 +310,14 @@ def phys(g, n, ft, sc):
             u = sm((f - (n - 6)) / 5.0)
             X[f] = (1 - u) * X[f] + u * Hh
     elif ch == 'loop':
-        r = gunphys.simulate(n, ft, BP.RIFLE, support=g['support'], events=ev, pose=None, fade=5)
-        X = r['X'] + np.array(hv(g['pose'][0][1]), float)
+        # loop_len = the frames the SERVER plays of this clip (its torso loop clip's length): the excursion is back at
+        # zero THERE, and the frames after it (never shown) hold the loop's first frame
+        nl = g.get('loop_len', n)
+        r = gunphys.simulate(nl, ft, BP.RIFLE, support=[(f, v) for f, v in g['support'] if f < nl] + [(nl - 1, g['support'][-1][1])],
+                             events=[e for e in ev if e[0] < nl], pose=None, fade=5)
+        X = np.zeros((n, r['X'].shape[1]))
+        X[:nl] = r['X']
+        X = X + np.array(hv(g['pose'][0][1]), float)
     else:
         pre = 40
         r = gunphys.simulate(n + pre, ft, BP.RIFLE, support=[(0, g['support'][0][1])] + [(f + pre, v) for f, v in g['support']],

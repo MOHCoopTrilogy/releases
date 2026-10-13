@@ -37,14 +37,14 @@
    1.25
   ],
   [
-   15,
+   12,
    "body_reach",
-   2.0
+   1.5
   ],
   [
-   22,
+   16,
    "body_back",
-   2.0
+   1.5
   ]
  ],
  "cls": {
@@ -69,6 +69,6 @@
   ],
   "tr2": 0.5
  },
- "report": "chain loop: class custom x1.00: peak pitch 0.46 deg at f9, roll 0.90 deg, drop 0.42 u, back 0.08 u; settles 0.20 s after the last action; left at the last frame before the fade: pitch 0.10 deg",
- "md5": "c3271512c27d4a750856af1bff983777"
+ "report": "chain loop: class custom x1.00: peak pitch 0.46 deg at f9, roll 0.74 deg, drop 0.42 u, back 0.08 u; settles 0.13 s after the last action; left at the last frame before the fade: pitch 0.07 deg",
+ "md5": "5835da7c0c07ad80155699484656b01b"
 }
