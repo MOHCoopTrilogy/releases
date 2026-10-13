@@ -140,12 +140,16 @@ for tag in marks:
     if tail:
         settled = list(range(cend, min(low, len(fs)) - 2))
         aim_raw = np.mean([mask_s(i) for i in settled[-6:]], axis=0) > 0.3
-        exe, envc = swayenv.envelope_extra(mask_s, grow, range(rel, cend), settled, aim_raw)
+        # --dry (opt-in; the SMG lane's rule for an EMPTIED gun): the dry gun's own pose - the three frames after the
+        # skipped flash frames - belongs to the reference as well (a slide locked back stands higher in the box than
+        # the loaded gun's). Only valid where the hands are still out of the box in those frames: LOOK at them.
+        dry_raw = (np.mean([mask_s(i) for i in range(rel, rel + 3)], axis=0) > 0.5) if (empty and '--dry' in sys.argv) else None
+        exe, envc = swayenv.envelope_extra(mask_s, grow, range(rel, cend), settled, aim_raw, also=dry_raw)
         aimg = grow(aim_raw)
         alone = [float((mask_s(i) & ~aimg).mean()) for i in settled[:-8]]
         ex6 = [float((mask_s(i) & ~aimg).mean()) for i in range(rel, cend)]
         shl = [_shifts[i] for i in range(rel, cend)]
-        envd = dict(env=True, x6max=round(100 * max(ex6), 1), x6fr=round(100 * float(np.mean([e > 0.02 for e in ex6])), 1),
+        envd = dict(env=True, dry=bool(dry_raw is not None), x6max=round(100 * max(ex6), 1), x6fr=round(100 * float(np.mean([e > 0.02 for e in ex6])), 1),
                     env_cover=round(100 * envc, 1), env_n=len(settled), aim_cover=round(100 * float(aim_raw.mean()), 1),
                     alone=round(100 * max(alone), 1), xat=rel + int(np.argmax(exe)),
                     shift=list(max(shl, key=lambda q: abs(q[0]) + abs(q[1]))))

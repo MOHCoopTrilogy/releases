@@ -47,5 +47,12 @@ for g in ('lugerp08', 'lugerp08silenced'):
     e = d[T(g)]
     if 'frame 5' not in e['qa']:
         e['qa'] = e['qa'].replace('open toggle in the centre box for 0.2 s before the gun is down', 'the emptied gun is under the box by frame 5 of the reload (pa19; was 7) - the open toggle stands in the box only in the dry gun\'s own aim and while it travels (0.13 s)')
+e = d[T('ppk')]
+e['rule']['target'] = 'no'
+if 'OVER the bar' not in e['qa']:
+    e['qa'] += '; on target NO (pa20): emptied reload OVER the bar in crouch / prone / lean L (2.3 / 2.7 / 2.3 %) at the support thumb\'s sweep (clip frame 51) - needs its own hands row with a lower thumb'
+e = d[T('it_w_beretta')]
+if 'lean R 3.4' not in e['qa']:
+    e['qa'] += '; lean R 3.4 % = the emptied gun\'s own locked-back pose at the start of the window, no hand in the box (frames looked at); 0.11 % with the dry pose in the reference (centrebox.py --dry)'
 json.dump(d, open(P, 'w'), indent=1, sort_keys=True)
 print('coverage_status updated', len(ALL), 'guns; stance notes from', SRUN)
