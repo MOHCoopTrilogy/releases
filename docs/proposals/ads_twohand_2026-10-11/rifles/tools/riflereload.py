@@ -31,6 +31,10 @@ gunphys.ACTIONS.update({
     'clip_push': ((9.0, -5.0, 9.0, 0.0, -1.0), 3.0),     # five rounds thumbed down against the magazine spring: the rifle is pushed down
     'mag_out_r': ((-3.0, 0.0, -8.0, 0.0, 0.0), 3.0),     # a box magazine pulled out below: the rifle lifts as the weight leaves
     'mag_in_r':  ((-10.0, 0.0, 14.0, 0.0, 0.6), 2.5),    # ...and rocked / pushed home from below
+    # the trip to the pouch (no hand in view for most of a second): the right shoulder goes down and back with the
+    # reaching arm and comes up again with the clip - the rifle, held by the left hand alone, follows the body
+    'body_reach': ((1.6, 9.0, 3.0, -0.8, 0.6), 5.0),
+    'body_back':  ((-1.4, -7.0, -2.5, 0.6, -0.5), 5.0),
 })
 
 PIVOT = -22.0       # hold_bake dip pivot: 22 u BEHIND the eye along the sight line = the butt in the shoulder
@@ -41,7 +45,9 @@ GUNS = {
         # retail timeline (30 fps): knob lifted 8-9, bolt back 14-15, hand to the pouch 21-33, clip on the gun 43,
         # pushed 53-54 (charger) and 62-63 (rounds), bolt forward 78-79 (the charger is thrown out), down 82-84,
         # hand back on the grip 93-99
-        holds=dict(bolt=dict(drop=1.5, roll=3.0, pitch=2.5, side=0.0, back=-3.0),
+        # 2026-10-12 on target: 'bolt' / 'close' = boltphys.HOLD (the receiver eased 1.25 u down with the front sight
+        # held on the target, canted to the hand) - the bolt is opened and closed there; only 'low' leaves the target
+        holds=dict(bolt=dict(drop=2.5, roll=2.0, pitch=-2.2, side=0.0, back=-2.0),
                    # LOW: the muzzle swung down about the butt (which stays in the shoulder, so the left arm still
                    # reaches the fore-end): the open action comes under the centre box, its top turned to the eye
                    # LOW: the butt dropped from the shoulder toward the armpit, the rifle a little forward and turned to
@@ -49,14 +55,14 @@ GUNS = {
                    # swing about the butt put it below the frame: v2), the charger is thumbed in there
                    low=dict(drop=4.3, roll=12.0, pitch=3.0, side=0.8, back=-2.5),
                    # the bolt is shoved home while the rifle is still on its way up
-                   close=dict(drop=2.3, roll=4.0, pitch=3.0, side=0.0, back=-3.0),
-                   down=dict(drop=1.5, roll=0.0, pitch=2.5, side=0.0, back=0.0)),
+                   close=dict(drop=2.5, roll=4.0, pitch=-2.2, side=0.0, back=-2.0),
+                   down=dict(drop=2.5, roll=0.0, pitch=-2.2, side=0.0, back=0.0)),
         # 'down' = the bolt hold's drop and muzzle dip alone: the rifle leaves and re-enters the aim downward first
-        pose=[(0, None), (2, 'down'), (5, 'bolt'), (17, 'bolt'), (30, 'low'), (63, 'low'), (73, 'close'), (85, 'close'),
-              (91, 'down'), (98, None), (101, None)],
+        pose=[(0, None), (4, 'down'), (9, 'bolt'), (17, 'bolt'), (30, 'low'), (63, 'low'), (73, 'close'), (86, 'close'),
+              (92, 'down'), (99, None), (101, None)],
         # the bolt strokes are worked with key_bolt's grip (one wrapped grip from retail frame 12, rolled under and
         # swung right of the knob so the hand body stays under the sight line), carried by the gun's own bolt bone
-        bolt=dict(anim='reload', gref=12, roll=35.0, yaw=-40.0, spans=[(7, 18), (71, 85)]),
+        bolt=dict(anim='reload', gref=12, roll=35.0, yaw=-40.0, off=(0.0, 1.2, 0.6), spans=[(7, 18), (71, 85)]),
         # 55-60 the retail hand lifts the empty charger off and flicks it away - high enough to cross the centre
         # with the gun this near the eye (and the lens at the hip, bug-3451): the lift is kept low (gun frame: +y right, +z down)
         # prop_from 8: the hand-over to the off hand at frame 1 is FADED by the cgame from the main-hand tag; with the
@@ -65,7 +71,9 @@ GUNS = {
         rhand=dict(aim=[(0, 3), (97, 101)], rel=(21, 68), way={5: (-0.8, 2.2, 2.6)},      # the reach to the knob dips under the sight line (run ra5: 3-5 % for two frames)
                    add={55: (0, 0.5, 1.2), 56: (0, 1.0, 2.6), 57: (0, 1.5, 3.6), 58: (0, 1.5, 3.4), 59: (0, 1.0, 2.2), 60: (0, 0.4, 0.9)}),
         support=[(0, 1), (3, 1), (6, 0), (92, 0), (98, 1)],
-        events=[(8, 'rb_up'), (14, 'rb_back'), (15, 'rb_stop'), (43, 'clip_set'), (53, 'clip_push'), (61, 'clip_push', 0.7),
+        # multipliers are on top of --scale (2.5, the bolt cycle's): the clip events keep their first strength (x4)
+        events=[(8, 'rb_up'), (14, 'rb_back'), (15, 'rb_stop'), (23, 'body_reach'), (35, 'body_back'),
+                (43, 'clip_set', 1.6), (53, 'clip_push', 1.6), (61, 'clip_push', 1.1),
                 (78, 'rb_fwd'), (82, 'rb_down'), (95, 'rb_grip')]),
 }
 
@@ -105,14 +113,17 @@ def right_path(g, hip):
         rel = Wg['Bip01 R Hand'] @ R.inv(Wg['tag_weapon_left' if lo <= gr <= hi else 'tag_weapon_right'])
         k = Kn[gi(gr, kft, len(Kn))] / R.S
         X = B.H(np.eye(3), -k) @ B.H(R.axis_angle_rows([1.0, 0, 0], bo['roll']) @ R.axis_angle_rows([0, 0, 1.0], bo['yaw']), np.zeros(3)) @ B.H(np.eye(3), k)
-        rel_bolt = rel @ X @ R.inv(Ch[gi(gr, cft, len(Ch))])
+        relx = rel @ X
+        if bo.get('off'):       # boltphys knob_off: the knob held by the fingers, the hand's bulk right of / under it
+            relx = relx.copy(); relx[3, 0:3] += np.array(bo['off'], float) / R.S
+        rel_bolt = relx @ R.inv(Ch[gi(gr, cft, len(Ch))])
         for a, b in bo['spans']:
             for f in range(a, b + 1):
                 rp[f] = dict(relT=rel_bolt @ Ch[gi(f, cft, len(Ch))], fing=gr)
     return rp
 
 
-def bake(name, root, sc=4.0, sets=()):
+def bake(name, root, sc=2.5, sets=()):
     g = copy.deepcopy(GUNS[name])
     for kv in sets:
         k, v = kv.split('=')
@@ -157,7 +168,7 @@ def bake(name, root, sc=4.0, sets=()):
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('gun'); ap.add_argument('--root', default='.'); ap.add_argument('--set', action='append', default=[])
-    ap.add_argument('--scale', type=float, default=4.0)
+    ap.add_argument('--scale', type=float, default=2.5)
     a = ap.parse_args()
     for nm in a.gun.split(','):
         bake(nm, a.root, a.scale, a.set)

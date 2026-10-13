@@ -27,17 +27,24 @@ CTL = json.load(open(os.path.join(T, '..', 'assets', 'ctl_stand.json')))
 # a bolt rifle in the shoulder: heavier and slower-settling than the pistols (4.6 Hz) and the shared 'rifle' class's
 # two-handed hold; "support" here is the FIRING hand (1 = on the grip, 0 = off it: butt in the shoulder + the left
 # hand on the fore-end alone - the rifle rolls a little toward the missing hand and the butt settles)
-RIFLE = dict(m=4.1, f2=2.6, f1=2.0, z=0.62, sag=(0.10, 1.1, 0.35, -0.05, -0.06), magw=0.0,
+# 2026-10-12 (user: "bolt actions should ideally not move much from locking onto target", "you can have weight etc
+# but ideally it stays primarily on target"): the firing hand off the grip no longer lets the muzzle sag (pitch 0.35
+# -> 0.10 deg) - the butt stays in the shoulder and the left hand holds the fore-end steady
+RIFLE = dict(m=4.1, f2=2.6, f1=2.0, z=0.62, sag=(0.04, 0.8, 0.10, -0.03, -0.04), magw=0.0,
              tr=(0.012, 0.10, 0.07, 0.010, 0.004), tr2=0.5)
 # impulses for mass 1 (drop u/s, roll deg/s, pitch deg/s, side u/s, back u/s), length in frames.
 # roll + = top to the RIGHT (toward the working hand), pitch + = muzzle down, back + = into the shoulder
+# 2026-10-12, on target: the PITCH share of every stroke is about half of the first version's - a muzzle swing about
+# the butt is what takes the front sight off the target (x1.6: the front sight is 65 u from the butt, 40 u from the
+# eye). The weight is carried by the ROLL toward the hand and the tug back / shove forward along the sight line,
+# which leave the front sight where it is.
 gunphys.ACTIONS.update({
-    'rb_up':    ((-1.5, -26.0, -5.0, -0.8, 0.0), 2.5),    # knob lifted on the right: that side is pushed up
-    'rb_back':  ((0.6, 30.0, -16.0, -1.5, 9.0), 2.5),     # dragged rearward, high and right of the bore: into the shoulder, muzzle up and round to the hand
-    'rb_stop':  ((0.0, 6.0, -7.0, 0.0, 5.0), 1.5),        # the bolt hits its stop
-    'rb_fwd':   ((0.5, -12.0, 15.0, 0.8, -11.0), 2.5),    # shoved forward: the rifle goes forward, muzzle dips
-    'rb_down':  ((3.0, 14.0, 9.0, 1.0, -2.0), 2.0),       # knob slapped down: the right side is pushed down, into battery
-    'rb_grip':  ((0.6, 5.0, 2.0, 0.4, 1.0), 3.0),         # the firing hand lands on the grip again
+    'rb_up':    ((-1.2, -26.0, -2.5, -0.8, 0.0), 2.5),    # knob lifted on the right: that side is pushed up
+    'rb_back':  ((0.4, 30.0, -7.0, -1.5, 11.0), 2.5),     # dragged rearward, high and right of the bore: into the shoulder, round to the hand
+    'rb_stop':  ((0.0, 6.0, -3.5, 0.0, 6.0), 1.5),        # the bolt hits its stop
+    'rb_fwd':   ((0.3, -12.0, 7.0, 0.8, -13.0), 2.5),     # shoved forward: the rifle goes forward, muzzle dips a little
+    'rb_down':  ((1.5, 16.0, 4.0, 1.0, -2.0), 2.0),       # knob slapped down: the right side is pushed down, into battery
+    'rb_grip':  ((0.4, 5.0, 1.0, 0.4, 1.0), 3.0),         # the firing hand lands on the grip again
 })
 
 GUNS = {
@@ -45,24 +52,45 @@ GUNS = {
     'kar98': dict(recipe='kar98_rechamber', out='viewmodel/rifle/kar98_rechamber_ads.skc',
                   sight='kar98', aim='viewmodel/kar_stand00.skc', anim='rechamber',
                   off=(2, 7), up=(8, 10), back=(13, 15), fwd=(23, 24), down=(27, 29), on=(36, 42),
-                  hold=(0, 7, 26, 40)),       # the hold pose eases in over 0-7 (the spring reaches it about frame 10), out over 26-40
+                  hold=(0, 11, 27, 42),       # the hold eases in over 0-11 (receiver down first, forward as the bolt opens; 0-7 read as a snap forward in run rb5), out over 27-42
+                  ease=1.25, hold_set=dict(drop=2.5, pitch=-2.2),   # = ease 1.23, the values of runs rb5-rb7
+                  rc=dict(knob_off=(0.0, 1.2, 0.6))),
     # Springfield M1903 (56 x 1/30 s): lift 8-10, back 15-17, forward 27-28, down 30-32, hand on the knob 8-31
     'springfield': dict(recipe='springfield_rechamber', out='viewmodel/rifle/springfield_rechamber_ads.skc',
                         sight='springfield_unscoped', aim='viewmodel/sprng_stand00.skc', anim='rechamber',
-                        off=(2, 7), up=(8, 10), back=(15, 17), fwd=(27, 28), down=(30, 32), on=(38, 44), hold=(0, 6, 30, 43)),
+                        off=(2, 7), up=(8, 10), back=(15, 17), fwd=(27, 28), down=(30, 32), on=(38, 44), hold=(0, 11, 30, 45),
+                        ease=0.5, rc=dict(knob_off=(0.0, 1.2, 0.6))),
     # Mosin-Nagant (45 x 1/30 s): lift 7-12, back 12-15, forward + down 26-27
     'mosin': dict(recipe='mosin_rechamber', out='viewmodel/mosin_nagant/mosin_rechamber_ads.skc',
                   sight='mosin_nagant_rifle', aim='viewmodel/kar_stand00.skc', anim='rechamber',
-                  off=(1, 6), up=(7, 12), back=(12, 15), fwd=(26, 26), down=(27, 27), on=(34, 40), hold=(0, 5, 27, 39)),
+                  off=(1, 6), up=(7, 12), back=(12, 15), fwd=(26, 26), down=(27, 27), on=(34, 40), hold=(0, 10, 27, 41),
+                  ease=0.5, rc=dict(knob_off=(0.0, 1.2, 0.6))),
     # Lee-Enfield (45 x 1/30 s): lift 7-12, back 12-15, forward + down 24-27; the rear sight sits on the receiver
     # bridge just ahead of the eye, so the rifle is eased further forward than the Kar98
     'enfield': dict(recipe='enfield_rechamber', out='viewmodel/enfield/enfield_rechamber_ads.skc',
                     sight='lee_enfield', aim='viewmodel/kar_stand00.skc', anim='rechamber',
-                    off=(1, 6), up=(7, 12), back=(12, 15), fwd=(24, 25), down=(26, 27), on=(34, 40), hold=(0, 5, 27, 39),
-                    hold_set=dict(back=-3.3)),
+                    off=(1, 6), up=(7, 12), back=(12, 15), fwd=(24, 25), down=(26, 27), on=(34, 40), hold=(0, 10, 27, 41),
+                    ease=0.0, hold_set=dict(back=-3.3), rc=dict(knob_off=(0.0, 1.2, 0.6))),
 }
-# the hold while the bolt is worked: (drop u, roll deg, pitch deg, side u, back u) - off the cheek along the sight line
-HOLD = dict(drop=1.2, roll=3.0, pitch=2.3, side=0.0, back=-3.0)
+# the hold while the bolt is worked: (drop u, roll deg, pitch deg, side u, back u).
+# ON TARGET (2026-10-12, user: "bolt actions should ideally not move much from locking onto target when the bolt is
+# pulled back", "you can have weight etc but ideally it stays primarily on target"). The first version of this lane
+# (drop 1.2 u, muzzle 2.3 deg DOWN) took the sights 3.4 deg off the target for a second per shot - rejected.
+# Facts the hold answers (offline, rpart.py, Kar98):
+#   * fully locked (`--set drop=0 --set pitch=0`, variant A): the rifle's OWN open bolt handle stands in the right
+#     half of the centre box - 8 % at the lift, 17-20 % with the bolt back, 19 frames; no hand in the box.
+#   * a cant does not clear it (up to 30 deg either way: 11-15 %) - the handle's root is on the bolt body, on the
+#     centre line. Only lowering the RECEIVER does: 0.75 u reads 1.4 %, 1.1 u 0.1 %.
+#   * so the default lowers the receiver and NOT the front sight: the butt eases down 2.5 u while the muzzle comes
+#     up 2.2 deg about it - the front sight stays on the target (65 u from the butt: -2.5 + 65 * tan 2.2 = 0), the
+#     rear sight / receiver / bolt sink 1.25 u under the box, the shooter looks over the rear sight at the front one.
+#     The head comes back off the comb (3 u forward along the sight line) and the rifle cants 2 deg to the hand.
+#   * PER GUN (`ease`, u the receiver comes down; drop = ease * 65 / 32, pitch = -atan(ease / 32)): the Kar98's
+#     turned-down handle stands highest when open (1.25); the Springfield's and the Mosin's need 0.4 (0.5 staged);
+#     the Lee-Enfield's handle is at the rear and stays under the sight line: fully locked (0), 1.1 % offline.
+#     `--set ease=x` / `--set drop=.. --set pitch=..` override.
+HOLD = dict(drop=None, roll=2.0, pitch=None, side=0.0, back=-2.0)
+EASE = 1.25
 SC = dict(k=1.0)
 
 
@@ -82,9 +110,15 @@ def phys(g, n, ft, hold=HOLD, sc=1.0):
     return r, ev
 
 
-def bake(name, root, hold=HOLD, sc=1.0, show=False):
-    g = GUNS[name]
-    hold = dict(hold, **g.get('hold_set', {}))
+def bake(name, root, hold=HOLD, sc=1.0, show=False, suffix=''):
+    g = dict(GUNS[name])
+    g['out'] = g['out'][:-4] + suffix + '.skc'
+    hold = dict(hold, **{k: v for k, v in g.get('hold_set', {}).items() if hold.get(k) is None or k not in ('drop', 'pitch')})
+    ease = hold.pop('ease', g.get('ease', EASE))
+    if hold['drop'] is None:
+        hold['drop'] = round(ease * 65.0 / 32.0, 3)
+    if hold['pitch'] is None:
+        hold['pitch'] = round(-float(np.degrees(np.arctan(ease / 32.0))), 3)
     rc = copy.deepcopy(K.RECIPES[g['recipe']])
     hip = R.load(R.ANIM + rc['hip'])
     n, ft = hip.numFrames, hip.frameTime
@@ -95,7 +129,28 @@ def bake(name, root, hold=HOLD, sc=1.0, show=False):
     for k, v in g.get('rc', {}).items():
         rc[k] = v
     K.RECIPES['_phys_' + name] = rc
-    sk, rep = K.key('_phys_' + name, CTL)
+    # knob_off (gun frame u: x fwd, +y RIGHT, +z DOWN): the knob grip moved off the knob centre - the retail grip has
+    # the knob deep in the palm, so the palm and the fingers lie over the receiver LEFT of the knob (at the cheek that
+    # is the right half of the centre box); moved right / down the knob is held by the fingers and the hand's bulk is
+    # beside the box. Weighted like the knob-grip fingers (in over the reach, out over the return).
+    off = rc.get('knob_off')
+    orig, cnt = K.solve_arms, [0]
+    if off is not None:
+        (k0, k1), (r0, r1), (t0, t1) = rc['knob'], rc['reach'], rc['ret']
+
+        def sa(pd, Wc, HR, HL, Gads, pole_bias=None):
+            f = cnt[0]; cnt[0] += 1
+            w = 0.0 if (f <= r0 or f >= t1) else K.ease((f - r0) / float(k0 - r0)) if f < k0 else 1.0 if f <= k1 else \
+                1.0 - K.ease((f - t0) / float(t1 - t0))
+            if w > 0:
+                HR = HR.copy()
+                HR[3, 0:3] += (np.array(off, float) / R.S * w) @ Gads[0:3, 0:3]
+            return orig(pd, Wc, HR, HL, Gads)
+        K.solve_arms = sa
+    try:
+        sk, rep = K.key('_phys_' + name, CTL)
+    finally:
+        K.solve_arms = orig
     bts = R.skc_io.write(sk)
     dst = os.path.join(root, 'models', 'human', 'animation', g['out'].replace('/', os.sep))
     os.makedirs(os.path.dirname(dst), exist_ok=True)
@@ -117,8 +172,14 @@ def bake(name, root, hold=HOLD, sc=1.0, show=False):
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('gun'); ap.add_argument('--root', default='.'); ap.add_argument('--set', action='append', default=[])
-    ap.add_argument('--scale', type=float, default=4.0); ap.add_argument('--print', action='store_true')
+    ap.add_argument('--scale', type=float, default=2.5); ap.add_argument('--suffix', default=''); ap.add_argument('--print', action='store_true')
+    ap.add_argument('--rc', action='append', default=[], help='recipe override k=python literal (knob_roll=60, pivot_cant=(0,0,0))')
     a = ap.parse_args()
+    import ast
+    for kv in a.rc:
+        k, v = kv.split('=', 1)
+        for nm in a.gun.split(','):
+            GUNS[nm].setdefault('rc', {})[k] = ast.literal_eval(v)
     hold = dict(HOLD)
     for kv in a.set:
         k, v = kv.split('=')
@@ -126,6 +187,6 @@ if __name__ == '__main__':
             for nm in a.gun.split(','):
                 GUNS[nm]['hold'] = tuple(int(x) for x in v.split(','))
         else:
-            hold[k] = float(v)
+            hold[k] = float(v)      # drop / roll / pitch / side / back, or ease
     for nm in a.gun.split(','):
-        bake(nm, a.root, hold, a.scale, a.print)
+        bake(nm, a.root, hold, a.scale, a.print, a.suffix)

@@ -7,9 +7,11 @@ run_2h / run_adsbolt steps, repointed; nothing here touches G:\\mohaa-adsanim.
 parts (each = ONE continuous capture per gun and stance, one engine screenshot per 16 ms of game time)
   bolt       settled aim, reference frames (the same view without the first-person model, before and after), one aimed
              shot, the cycle (`--after` frames)
+  bolt2      the same with TWO shots and two cycles
   reload     settled aim, one aimed shot + its cycle (not captured), reference, `reload`, `--rframes` frames
   empty      settled aim, `--shots` aimed shots `--gap` frames apart (the last one empties the gun), then `--rframes`
   hipreload  the same from the hip (no aim) - one shot, the cycle, then the reload
+  breakfire / breakswitch / breaksprint   one aimed shot + cycle, `reload`, broken off --breakat frames in, --bframes more
   stills     settled aim, 4 frames
 Tags: ab__<sess>__<gun>__<stance>__<part>__after ; marks `^~^~^ RIFLE <name> <capture frame>` in the log.
 """
@@ -32,7 +34,7 @@ R.PRISTINE = os.path.join(R.CLIENT, "pristine")
 R.RUNS = "G:/mohaa-adsanim2/runs"
 R.PORT = 12558
 A.LOGF = os.path.join(A.SCR, "adsrifle", "run.log")
-A.GUNS.update({"carbine": "models/weapons/carbine.tik", "carcano": "models/weapons/it_w_carcano.tik",
+A.GUNS.update({"kar98mortar": "models/weapons/kar98_mortar.tik", "carbine": "models/weapons/carbine.tik", "carcano": "models/weapons/it_w_carcano.tik",
                "svt": "models/weapons/svt_rifle.tik", "delisle": "models/weapons/delisle.tik",
                "garand_silenced": "models/weapons/garand_silenced.tik", "enfield_p14": "models/weapons/enfield_p14.tik",
                "springfield_scoped": "models/weapons/springfield.tik", "kar98sniper": "models/weapons/kar98sniper.tik"})
@@ -59,16 +61,33 @@ def cap(sess, gun, st, part, a):
     ads = part != "hipreload"
     # a bolt capture spends a round: top the magazine up first (a no-op when full) - run ra3 emptied the Kar98 on the
     # fifth stance and the capture ran into the automatic reload
-    top = (S.RELEASE + ["reload", "wait 4300"]) if part == "bolt" else []
+    top = (S.RELEASE + ["reload", "wait 4300"]) if part in ("bolt", "bolt2") else []
     L = top + pre(st, ads) + ["set cg_adsSightDebug 2", "echo ^~^~^ ABSCEN begin %s" % tag]
     if part == "stills":
         L += F(tag, 4, i)
     elif part == "bolt":
         L += REF(tag, "ref") + F(tag, 8, i) + mark("fire") + ["+attackprimary"] + F(tag, 4, i) + ["-attackprimary"] + F(tag, a.after, i)
         L += mark("end") + REF(tag, "ref2")
+    elif part == "bolt2":       # two aimed shots, two cycles, in one capture (the GIF the user asked for)
+        L += REF(tag, "ref") + F(tag, 8, i)
+        for k in range(2):
+            L += mark("fire") + ["+attackprimary"] + F(tag, 4, i) + ["-attackprimary"] + F(tag, a.after, i)
+        L += mark("end") + REF(tag, "ref2")
     elif part in ("reload", "hipreload"):
         L += ["+attackprimary", "wait 90", "-attackprimary", "wait %d" % a.cyclems]
         L += REF(tag, "ref") + F(tag, 8, i) + mark("reload") + ["reload"] + F(tag, a.rframes, i) + mark("end") + REF(tag, "ref2")
+    elif part in ("breakfire", "breakswitch", "breaksprint"):
+        # the aimed reload broken off `--breakat` capture frames in (the shared run_2h recipe: fire = a trigger press,
+        # switch = next weapon, sprint = run forward), every frame captured for `--bframes`
+        act = {"breakfire": ["+attackprimary"], "breakswitch": ["weapnext"], "breaksprint": ["+speed", "+forward"]}[part]
+        L += ["+attackprimary", "wait 90", "-attackprimary", "wait %d" % a.cyclems]
+        L += F(tag, 6, i) + mark("reload") + ["reload"] + F(tag, a.breakat, i) + mark("break") + act + F(tag, 6, i)
+        L += (["-attackprimary"] if part == "breakfire" else []) + F(tag, a.bframes, i) + mark("end")
+        L += ["-forward", "-speed"]
+        if part == "breakswitch":
+            L += ["wait 1200", "weapprev", "wait 2500"]
+        if part == "breaksprint":
+            L += ["+back", "wait 1300", "-back", "wait 400"]
     elif part == "empty":
         L += F(tag, 6, i)
         for k in range(a.shots):
@@ -89,7 +108,7 @@ def run(a):
             R.SPOT = (x, y, z, a.yaw)
             try:
                 for part in a.parts:
-                    for st in (a.stances if part != "hipreload" else a.stances[:1]):
+                    for st in (a.stances if (part != "hipreload" or a.hipall) else a.stances[:1]):
                         A.log("[%s] rifle %s %s %s" % (a.session, gun, part, st))
                         R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
                         cap(a.session, gun, st, part, a)
@@ -107,6 +126,7 @@ def main():
     ap.add_argument("--stances", default="stand"); ap.add_argument("--after", type=int, default=110)
     ap.add_argument("--rframes", type=int, default=230); ap.add_argument("--cyclems", type=int, default=2200)
     ap.add_argument("--shots", type=int, default=5); ap.add_argument("--gap", type=int, default=110)
+    ap.add_argument("--hipall", action="store_true"); ap.add_argument("--breakat", type=int, default=70); ap.add_argument("--bframes", type=int, default=150)
     ap.add_argument("--yaw", type=int, default=160); ap.add_argument("--set", action="append", default=[])
     a = ap.parse_args()
     a.guns = [g for g in a.guns.split(",") if g]; a.parts = a.parts.split(","); a.stances = a.stances.split(",")

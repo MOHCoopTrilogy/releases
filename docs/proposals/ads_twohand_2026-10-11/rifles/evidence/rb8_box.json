@@ -1,0 +1,20 @@
+{
+ "ab__rb8__kar98__stand__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 11.3,
+  "dev": 0.59,
+  "end": 0.0,
+  "fdev": 0.78,
+  "fdev2": 0.78,
+  "frames": 169,
+  "over": 64,
+  "start": 28,
+  "xmax": 15.5
+ }
+}

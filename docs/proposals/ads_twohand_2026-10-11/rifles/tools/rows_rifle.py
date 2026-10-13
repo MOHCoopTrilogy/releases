@@ -12,6 +12,10 @@ NOTE = '// HZM coop [ads rifles 2026-10-12] '
 ROWS = [
     ('kar98_reload_ads', 'viewmodel/rifle/kar98_reload_ads.skc', '0.1', 'kar98_reload',
      'aimed reload: bolt worked on the sights, charger thumbed in with the rifle lowered under the centre, back to the aim'),
+    # NOT staged: kar98mortar_rechamber_ads / kar98mortar_reload_ads. The rifle-grenade Kar98 (kar98_mortar.tik,
+    # 'Gewehrgranate', prefix kar98mortar) has NO aim at all - no ironsight row (`ADSSIGHT norow wpn='Gewehrgranate'`)
+    # and no `kar98mortar_charge` row (run rb12: "Couldn't find view model animation kar98mortar_charge", the gun
+    # never comes up). Aimed rows without an aim pose would play the Kar98's aimed clips from the hip.
 ]
 # rows that already exist and whose CLIP FILE is replaced by a staged one (no text change): listed for the report
 REPLACED = ['kar98_rechamber_ads -> viewmodel/rifle/kar98_rechamber_ads.skc (rebuilt: gun motion from gunphys)']

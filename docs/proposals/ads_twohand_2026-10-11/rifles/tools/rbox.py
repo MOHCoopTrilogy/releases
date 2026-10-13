@@ -6,18 +6,20 @@ Centre box = the middle 20 % of the screen. A frame's EXTRA cover = box pixels c
 muzzle smoke does not count) that the settled aim (the frames before the first mark, mask grown 6 px) does not cover.
 Sight deviation from the cgame's ADSFRAME probe (deg from the settled aim).
 
-    python rbox.py <session> [tag substring] [--dump] [--json=out.json]
+    python rbox.py <session> [tag substring] [--dump] [--json=out.json] [--zoom=<dir>]
+--dump lists every frame over 2 % with WHERE in the box the cover sits; --zoom writes the box surround of those frames
+with the extra cover tinted red (to see which part crosses the rim).
 """
 import sys, os, re, glob, json
 import numpy as np
 from PIL import Image
-RUNS = 'G:/mohaa-adsanim2/runs/'
+RUNS = os.environ.get('ADS_RUNS', 'G:/mohaa-adsanim2/runs').rstrip('/') + '/'
 
 
-def measure(sess, sub='', dump=False):
+def measure(sess, sub='', dump=False, zoomdir=None):
     RUN = RUNS + sess + '/'
     log = open(RUN + 'qconsole.log', encoding='latin-1', errors='replace').read().splitlines()
-    marks, sight, anims, cur = {}, {}, {}, None
+    marks, sight, anims, front, cur = {}, {}, {}, {}, None
     for ln in log:
         m = re.search(r'ABSCEN (begin|end) (\S+)', ln)
         if m and 'echo' not in ln:
@@ -33,6 +35,9 @@ def measure(sess, sub='', dump=False):
             p = re.search(r'sight=\(([-\d.]+) ([-\d.]+)\)', ln)
             if p:
                 sight.setdefault(cur, []).append((float(p.group(1)), float(p.group(2))))
+            p2 = re.search(r' F=\(([-\d.]+) ([-\d.]+)\)', ln)       # the FRONT sight on screen (deg from the view axis)
+            if p and p2:
+                front.setdefault(cur, []).append((float(p2.group(1)), float(p2.group(2))))
             q = re.search(r'anim=(\S+)', ln)
             if q:
                 anims.setdefault(cur, []).append(q.group(1))
@@ -109,45 +114,90 @@ def measure(sess, sub='', dump=False):
         mk = marks[tag]
         first = mk[0][1]; end = [f for n, f, s in mk if n == 'end'][0]
         start = [f for n, f, s in mk if n in ('reload', 'fire')][-1]
-        if '__bolt__' in tag and anims.get(tag):
+        segs = [(start, end)]
+        if '__bolt' in tag and anims.get(tag):
             # the cycle clip, not the shot: from the capture frame the view anim leaves the fire / aim row for the
-            # cycle row (the first NEW anim id after the fire mark), + 4 frames (the 0.06 s blend out of the recoil)
-            (_, f0, s0), (_, f1, s1) = [m for m in mk if m[0] == 'fire'][-1], [m for m in mk if m[0] == 'end'][0]
+            # cycle row (the first NEW anim id after the fire mark), + 4 frames (the 0.06 s blend out of the recoil).
+            # One segment per shot (part bolt2 = two shots, two cycles), each up to the next fire mark / the end.
             an_ = anims[tag]
-            k = next((i for i in range(s0 + 2, min(s1, len(an_))) if an_[i] != an_[s0 - 1] and an_[i] != an_[min(s0 + 1, len(an_) - 1)]), None)
-            if k is None:
-                k = next((i for i in range(s0 + 2, min(s1, len(an_))) if an_[i] != an_[s0 - 1]), s0)
-            start = int(round(f0 + (k - s0) * (f1 - f0) / float(max(1, s1 - s0)))) + 4
+            fires = [m for m in mk if m[0] == 'fire']
+            segs = []
+            for j, (_, f0, s0) in enumerate(fires):
+                _, f1, s1 = fires[j + 1] if j + 1 < len(fires) else [m for m in mk if m[0] == 'end'][0]
+                k = next((i for i in range(s0 + 2, min(s1, len(an_))) if an_[i] != an_[s0 - 1] and an_[i] != an_[min(s0 + 1, len(an_) - 1)]), None)
+                if k is None:
+                    k = next((i for i in range(s0 + 2, min(s1, len(an_))) if an_[i] != an_[s0 - 1]), s0)
+                segs.append(((f0 if os.environ.get('RBOX_FROM_FIRE') else int(round(f0 + (k - s0) * (f1 - f0) / float(max(1, s1 - s0)))) + 4), f1))
+            start = segs[0][0]
         aimmask = grow(np.mean([mask(i) for i in range(max(0, first - 6), first)], axis=0) > 0.3)
         base = float(np.mean([mask(i).mean() for i in range(max(0, first - 6), first)]))
-        ex = [float((mask(i) & ~aimmask).mean()) for i in range(start, min(end, len(fs)))]
+        fr = [i for a_, b_ in segs for i in range(a_, min(b_, len(fs)))]
+        exm = {i: (mask(i) & ~aimmask) for i in fr}
+        ex = [float(exm[i].mean()) for i in fr]
         s = sight.get(tag, [])
-        dev = endd = float('nan')
+        dev = endd = fdev = fdev2 = float('nan')
         if s:
             si0 = mk[0][2]; r0 = s[max(0, si0 - 1)]
             seg = s[[x for n, f, x in mk if n in ('reload', 'fire')][-1]:[x for n, f, x in mk if n == 'end'][0]]
+            if '__bolt' in tag:
+                # the CYCLE's sight movement, not the shot's recoil: the probe samples that belong to the measured
+                # capture frames (sample index interpolated between the marks, one probe line per rendered frame)
+                pts = sorted((f, x) for n, f, x in mk)
+                s_of = lambda f: int(round(np.interp(f, [a_ for a_, b_ in pts], [b_ for a_, b_ in pts])))
+                seg = [s[min(len(s) - 1, s_of(f))] for f in fr]
+                fs_ = front.get(tag, [])
+                if len(fs_) == len(s):
+                    # F is in screen pixels of the 1280-wide weapon view (wfov 81.96 deg): 12.85 px per degree.
+                    # fdev = every measured frame (the first ones still carry the SHOT's recoil, about 0.9 deg when the
+                    # cycle clip starts); fdev2 = from 16 capture frames (0.26 s) into each cycle on = the cycle alone
+                    f0_ = fs_[max(0, si0 - 1)]
+                    fd = lambda f: (((fs_[min(len(s) - 1, s_of(f))][0] - f0_[0]) ** 2 + (fs_[min(len(s) - 1, s_of(f))][1] - f0_[1]) ** 2) ** 0.5) / 12.85
+                    fdev = max(fd(f) for f in fr)
+                    late = [f for a_, b_ in segs for f in range(a_ + 16, min(b_, len(fs)))]
+                    fdev2 = max(fd(f) for f in late) if late else float('nan')
             if seg:
                 dev = max(((a - r0[0]) ** 2 + (b - r0[1]) ** 2) ** 0.5 for a, b in seg)
                 endd = max(((a - r0[0]) ** 2 + (b - r0[1]) ** 2) ** 0.5 for a, b in seg[-5:])
-        over = [(start + k, 100 * e) for k, e in enumerate(ex) if e > 0.02]
+        over = [(fr[k], 100 * e) for k, e in enumerate(ex) if e > 0.02]
+        # WHERE in the box the extra cover sits (which part crosses the rim): share of it in the left / right half and
+        # the upper / lower half, and the box edges it touches
+        where = {}
+        for i, pc in over:
+            m_ = exm[i]; hh, ww = m_.shape; t_ = float(m_.sum())
+            edges = ''.join(c for c, on in (('L', m_[:, :3].any()), ('R', m_[:, -3:].any()), ('T', m_[:3].any()), ('B', m_[-3:].any())) if on)
+            where[i] = 'right %d %% low %d %% edges %s' % (100 * m_[:, ww // 2:].sum() / t_, 100 * m_[hh // 2:].sum() / t_, edges or '-')
+        if zoomdir and over:
+            os.makedirs(zoomdir, exist_ok=True)
+            for i, pc in over:
+                im = Image.open(fs[i]).convert('RGB')
+                a_ = np.asarray(im).copy()
+                sv = a_[y0:y1, x0:x1]; sv[exm[i]] = (0.4 * sv[exm[i]] + 0.6 * np.array([255, 0, 0])).astype(np.uint8)
+                cx0, cy0 = max(0, x0 - (x1 - x0)), max(0, y0 - (y1 - y0))
+                im2 = Image.fromarray(a_).crop((cx0, cy0, min(W, x1 + (x1 - x0)), min(H, y1 + (y1 - y0))))
+                from PIL import ImageDraw
+                ImageDraw.Draw(im2).rectangle((x0 - cx0, y0 - cy0, x1 - cx0, y1 - cy0), outline=(255, 230, 0))
+                im2.save(os.path.join(zoomdir, '%s__f%04d.jpg' % (tag[4:-7], i)), quality=88)
         an = anims.get(tag, [])
         seq = []
         for x in an:
             if not seq or seq[-1] != x:
                 seq.append(x)
-        out[tag] = dict(start=start, xmax=round(100 * max(ex), 1), over=len(over), frames=len(ex), base=round(100 * base, 1), dev=round(dev, 2), end=round(endd, 2), anims=seq[:12])
-        print('%-52s from f%d' % (tag[4:-7], start), 'box beyond the aim: max %4.1f %%, %d of %d frames over 2 %% | aim covers %4.1f %% | sight dev max %5.2f deg, ends %.2f | anims %s' % (
-            100 * max(ex), len(over), len(ex), 100 * base, dev, endd, ' '.join(seq[:8])))
+        out[tag] = dict(start=start, xmax=round(100 * max(ex), 1), over=len(over), frames=len(ex), base=round(100 * base, 1), dev=round(dev, 2), fdev=round(fdev, 2), fdev2=round(fdev2, 2), end=round(endd, 2), anims=seq[:12])
+        print('%-52s from f%d' % (tag[4:-7], start), 'box beyond the aim: max %4.1f %%, %d of %d frames over 2 %% | aim covers %4.1f %% | rear sight vs front (sight dev) max %5.2f deg, ends %.2f | FRONT sight off the target max %.2f deg (%.2f after the recoil) | anims %s' % (
+            100 * max(ex), len(over), len(ex), 100 * base, dev, endd, fdev, fdev2, ' '.join(seq[:8])))
         if dump:
             print('    largest view shift (px):', max((abs(v[0]) for v in kick.values()), default=0))
         if dump and over:
             print('    over 2 %:', ' '.join('%d:%.0f' % o for o in over))
+            for i, pc in over:
+                print('      f%d %4.1f %%  %s' % (i, pc, where[i]))
     return out
 
 
 if __name__ == '__main__':
     args = [a for a in sys.argv[1:] if not a.startswith('--')]
-    o = measure(args[0], args[1] if len(args) > 1 else '', '--dump' in sys.argv)
+    zd = next((a[7:] for a in sys.argv[1:] if a.startswith('--zoom=')), None)
+    o = measure(args[0], args[1] if len(args) > 1 else '', '--dump' in sys.argv, zd)
     for a in sys.argv[1:]:
         if a.startswith('--json='):
             p = a[7:]

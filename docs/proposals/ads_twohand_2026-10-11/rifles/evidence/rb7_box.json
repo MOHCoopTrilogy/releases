@@ -1,0 +1,206 @@
+{
+ "ab__rb7__kar98__braced__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 7.8,
+  "dev": 2.57,
+  "end": 0.01,
+  "fdev": 0.8,
+  "fdev2": 0.8,
+  "frames": 170,
+  "over": 1,
+  "start": 27,
+  "xmax": 2.3
+ },
+ "ab__rb7__kar98__braced__bolt__after": {
+  "anims": [
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 4.4,
+  "dev": 2.57,
+  "end": 0.01,
+  "fdev": 0.71,
+  "fdev2": 0.71,
+  "frames": 85,
+  "over": 28,
+  "start": 27,
+  "xmax": 4.7
+ },
+ "ab__rb7__kar98__crouch__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 14.3,
+  "dev": 2.66,
+  "end": 0.01,
+  "fdev": 1.24,
+  "fdev2": 1.24,
+  "frames": 169,
+  "over": 26,
+  "start": 27,
+  "xmax": 6.1
+ },
+ "ab__rb7__kar98__crouch__bolt__after": {
+  "anims": [
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 7.5,
+  "dev": 2.65,
+  "end": 0.01,
+  "fdev": 0.88,
+  "fdev2": 0.88,
+  "frames": 85,
+  "over": 23,
+  "start": 27,
+  "xmax": 6.0
+ },
+ "ab__rb7__kar98__prone__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 8.5,
+  "dev": 2.65,
+  "end": 0.01,
+  "fdev": 1.09,
+  "fdev2": 1.09,
+  "frames": 169,
+  "over": 23,
+  "start": 27,
+  "xmax": 4.8
+ },
+ "ab__rb7__kar98__prone__bolt__after": {
+  "anims": [
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 4.2,
+  "dev": 2.65,
+  "end": 0.01,
+  "fdev": 0.78,
+  "fdev2": 0.78,
+  "frames": 85,
+  "over": 40,
+  "start": 27,
+  "xmax": 7.5
+ },
+ "ab__rb7__kar98__standL__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 14.8,
+  "dev": 2.65,
+  "end": 0.01,
+  "fdev": 0.91,
+  "fdev2": 0.91,
+  "frames": 169,
+  "over": 26,
+  "start": 28,
+  "xmax": 4.0
+ },
+ "ab__rb7__kar98__standL__bolt__after": {
+  "anims": [
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 7.4,
+  "dev": 2.65,
+  "end": 0.02,
+  "fdev": 0.86,
+  "fdev2": 0.86,
+  "frames": 84,
+  "over": 56,
+  "start": 28,
+  "xmax": 4.6
+ },
+ "ab__rb7__kar98__standR__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 15.4,
+  "dev": 2.65,
+  "end": 0.01,
+  "fdev": 0.98,
+  "fdev2": 0.98,
+  "frames": 169,
+  "over": 35,
+  "start": 28,
+  "xmax": 5.5
+ },
+ "ab__rb7__kar98__standR__bolt__after": {
+  "anims": [
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 5.6,
+  "dev": 2.65,
+  "end": 0.01,
+  "fdev": 0.77,
+  "fdev2": 0.77,
+  "frames": 85,
+  "over": 50,
+  "start": 27,
+  "xmax": 6.8
+ },
+ "ab__rb7__kar98__stand__bolt2__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 13.3,
+  "dev": 2.66,
+  "end": 0.01,
+  "fdev": 0.75,
+  "fdev2": 0.75,
+  "frames": 169,
+  "over": 145,
+  "start": 28,
+  "xmax": 10.4
+ },
+ "ab__rb7__kar98__stand__bolt__after": {
+  "anims": [
+   "2",
+   "5",
+   "2"
+  ],
+  "base": 7.6,
+  "dev": 2.65,
+  "end": 0.02,
+  "fdev": 0.85,
+  "fdev2": 0.85,
+  "frames": 84,
+  "over": 26,
+  "start": 28,
+  "xmax": 5.7
+ }
+}

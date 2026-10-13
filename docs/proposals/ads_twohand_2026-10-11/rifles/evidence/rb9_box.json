@@ -1,0 +1,110 @@
+{
+ "ab__rb9__kar98__braced__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "2"
+  ],
+  "base": 0.3,
+  "dev": 3.7,
+  "end": 0.03,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 230,
+  "over": 66,
+  "start": 8,
+  "xmax": 2.6
+ },
+ "ab__rb9__kar98__crouch__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "2"
+  ],
+  "base": 2.3,
+  "dev": 3.7,
+  "end": 0.03,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 230,
+  "over": 91,
+  "start": 8,
+  "xmax": 6.3
+ },
+ "ab__rb9__kar98__prone__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "2"
+  ],
+  "base": 3.1,
+  "dev": 3.69,
+  "end": 0.03,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 230,
+  "over": 0,
+  "start": 8,
+  "xmax": 1.5
+ },
+ "ab__rb9__kar98__standL__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "2"
+  ],
+  "base": 4.9,
+  "dev": 3.68,
+  "end": 0.03,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 230,
+  "over": 85,
+  "start": 8,
+  "xmax": 3.9
+ },
+ "ab__rb9__kar98__standR__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "2"
+  ],
+  "base": 6.9,
+  "dev": 3.68,
+  "end": 0.03,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 230,
+  "over": 84,
+  "start": 8,
+  "xmax": 4.7
+ },
+ "ab__rb9__kar98__stand__reload__after": {
+  "anims": [
+   "2",
+   "5",
+   "2",
+   "6",
+   "2"
+  ],
+  "base": 5.9,
+  "dev": 3.68,
+  "end": 0.04,
+  "fdev": NaN,
+  "fdev2": NaN,
+  "frames": 230,
+  "over": 90,
+  "start": 8,
+  "xmax": 5.7
+ }
+}

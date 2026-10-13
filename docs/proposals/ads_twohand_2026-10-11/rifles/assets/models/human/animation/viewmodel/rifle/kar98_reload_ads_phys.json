@@ -2,11 +2,11 @@
  "gun": "kar98",
  "holds": {
   "bolt": {
-   "drop": 1.5,
-   "roll": 3.0,
-   "pitch": 2.5,
+   "drop": 2.5,
+   "roll": 2.0,
+   "pitch": -2.2,
    "side": 0.0,
-   "back": -3.0
+   "back": -2.0
   },
   "low": {
    "drop": 4.3,
@@ -16,16 +16,16 @@
    "back": -2.5
   },
   "close": {
-   "drop": 2.3,
+   "drop": 2.5,
    "roll": 4.0,
-   "pitch": 3.0,
+   "pitch": -2.2,
    "side": 0.0,
-   "back": -3.0
+   "back": -2.0
   },
   "down": {
-   "drop": 1.5,
+   "drop": 2.5,
    "roll": 0.0,
-   "pitch": 2.5,
+   "pitch": -2.2,
    "side": 0.0,
    "back": 0.0
   }
@@ -36,11 +36,11 @@
    null
   ],
   [
-   2,
+   4,
    "down"
   ],
   [
-   5,
+   9,
    "bolt"
   ],
   [
@@ -60,15 +60,15 @@
    "close"
   ],
   [
-   85,
+   86,
    "close"
   ],
   [
-   91,
+   92,
    "down"
   ],
   [
-   98,
+   99,
    null
   ],
   [
@@ -76,22 +76,32 @@
    null
   ]
  ],
- "scale": 4.0,
+ "scale": 2.5,
  "events": [
   [
    8,
    "rb_up",
-   4.0
+   2.5
   ],
   [
    14,
    "rb_back",
-   4.0
+   2.5
   ],
   [
    15,
    "rb_stop",
-   4.0
+   2.5
+  ],
+  [
+   23,
+   "body_reach",
+   2.5
+  ],
+  [
+   35,
+   "body_back",
+   2.5
   ],
   [
    43,
@@ -106,22 +116,22 @@
   [
    61,
    "clip_push",
-   2.8
+   2.75
   ],
   [
    78,
    "rb_fwd",
-   4.0
+   2.5
   ],
   [
    82,
    "rb_down",
-   4.0
+   2.5
   ],
   [
    95,
    "rb_grip",
-   4.0
+   2.5
   ]
  ],
  "cls": {
@@ -130,11 +140,11 @@
   "f1": 2.0,
   "z": 0.62,
   "sag": [
+   0.04,
+   0.8,
    0.1,
-   1.1,
-   0.35,
-   -0.05,
-   -0.06
+   -0.03,
+   -0.04
   ],
   "magw": 0.0,
   "tr": [
@@ -146,6 +156,6 @@
   ],
   "tr2": 0.5
  },
- "report": "class custom x1.00: peak pitch 3.94 deg at f84, roll 13.51 deg, drop 4.72 u, back 3.48 u; settles 0.23 s after the last action; left at the last frame before the fade: pitch 0.01 deg",
- "md5": "812872f2402c916ed6a9ddf1407bbfa2"
+ "report": "class custom x1.00: peak pitch 3.44 deg at f58, roll 13.25 deg, drop 4.66 u, back 2.57 u; settles 0.23 s after the last action; left at the last frame before the fade: pitch -0.11 deg",
+ "md5": "013ab792af9d7427c5226dc00c518dee"
 }

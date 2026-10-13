@@ -29,113 +29,113 @@
   }
  },
  "models/weapons/kar98.tik": {
-  "action": "right hand on the bolt knob (right side): lift / back / forward / down ride the gun's bolt bone, shown lower right; reload: bolt opened on the sights, charger thumbed in with the rifle lowered under the centre box, bolt closed on the way up - shown",
+  "action": "right hand on the bolt knob (fingers on the knob, hand right of / under it): lift / back / forward / down ride the gun's bolt bone, shown lower right beside the centre box; reload: bolt opened with the front sight on the target, charger thumbed in with the rifle lowered under the centre box, bolt closed on the target - shown",
   "bolt": {
    "braced": {
-    "dev": 3.44,
+    "dev": 2.57,
     "edge": 2.23,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "ra5"
+    "run": "rb7"
    },
    "crouch": {
-    "dev": 3.44,
+    "dev": 2.65,
     "edge": 2.48,
     "end": 0.01,
     "ok": false,
     "pmin": 1.0,
-    "run": "ra5"
+    "run": "rb7"
    },
    "prone": {
-    "dev": 3.44,
+    "dev": 2.65,
     "edge": 2.48,
-    "end": 0.0,
+    "end": 0.01,
     "ok": false,
     "pmin": 1.0,
-    "run": "ra5"
+    "run": "rb7"
    },
    "stand": {
-    "dev": 3.44,
+    "dev": 2.65,
     "edge": 2.48,
-    "end": 0.0,
+    "end": 0.01,
     "ok": false,
     "pmin": 1.0,
-    "run": "ra7"
+    "run": "rb7"
    },
    "standL": {
-    "dev": 3.43,
+    "dev": 2.65,
     "edge": 2.48,
-    "end": 0.0,
+    "end": 0.01,
     "ok": false,
     "pmin": 1.0,
-    "run": "ra5"
+    "run": "rb7"
    },
    "standR": {
-    "dev": 3.44,
+    "dev": 2.65,
     "edge": 2.48,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "ra5"
+    "run": "rb7"
    }
   },
   "lowered": true,
-  "note": "ra5-ra7: bolt cycle + aimed reload in stand / crouch / prone / lean L / lean R / braced, ends 0.00-0.02 deg; engine centre box 3-6 % for 2-6 frames at the two ends of each clip (prone, braced under 2 %), offline 0.5 % / 0.0 %; rifle sits 3.4 deg low for about 1 s per cycle; reload: 0.9 s with the rifle low and no hand in view (pouch trip)",
+  "note": "rb7 / rb9 (cgame_rifle3 = ads-rifle-next 18dc8b36): ON-TARGET rebuild after the user's correction - bolt cycle keeps the front sight within 0.75-1.2 deg of the target (0.7 of it is the shot's recoil held through the clip, bug-3597), sight line tilts 2.65 deg (receiver eased 1.25 u down), ends 0.01-0.02 deg, all six stances; centre box 4-10 % in the cycle and in the reload's two bolt phases = the rifle's OWN barrel under the front sight (no hand, no bolt), so the 2 % bar is NOT met; reload low phase under 2 %, ends 0.03-0.04; pops at the clip ends fixed in the cgame (tag jitter); awaiting the user's choice A (locked, handle in the box 15 %) or C (staged)",
   "reload": {
    "braced": {
-    "dev": 5.67,
-    "edge": 4.32,
-    "end": 2.24,
+    "dev": 5.34,
+    "edge": 1.73,
+    "end": 1.66,
     "ok": false,
     "pmin": 1.0,
-    "run": "ra5"
+    "run": "rb9"
    },
    "crouch": {
-    "dev": 5.92,
-    "edge": 4.23,
-    "end": 2.49,
+    "dev": 6.17,
+    "edge": 2.58,
+    "end": 2.5,
     "ok": false,
     "pmin": 1.0,
-    "run": "ra5"
+    "run": "rb9"
    },
    "prone": {
-    "dev": 5.72,
-    "edge": 4.04,
-    "end": 2.3,
+    "dev": 5.94,
+    "edge": 2.35,
+    "end": 2.28,
     "ok": false,
     "pmin": 1.0,
-    "run": "ra5"
+    "run": "rb9"
    },
    "stand": {
-    "dev": 5.68,
-    "edge": 4.01,
-    "end": 2.26,
+    "dev": 6.15,
+    "edge": 2.57,
+    "end": 2.5,
     "ok": false,
     "pmin": 1.0,
-    "run": "ra7"
+    "run": "rb9"
    },
    "standL": {
-    "dev": 5.91,
-    "edge": 4.22,
-    "end": 2.49,
+    "dev": 5.92,
+    "edge": 2.33,
+    "end": 2.27,
     "ok": false,
     "pmin": 1.0,
-    "run": "ra5"
+    "run": "rb9"
    },
    "standR": {
-    "dev": 5.92,
-    "edge": 4.32,
-    "end": 2.49,
+    "dev": 6.16,
+    "edge": 2.57,
+    "end": 2.5,
     "ok": false,
     "pmin": 1.0,
-    "run": "ra5"
+    "run": "rb9"
    }
   },
   "rule": {
    "action": "yes",
    "reacts": "yes",
-   "run": "ra7",
+   "run": "rb7 rb9",
    "target": "no"
   }
  },
