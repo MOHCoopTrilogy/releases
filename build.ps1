@@ -1,4 +1,8 @@
-﻿Add-Type -AssemblyName System.IO.Compression
+﻿# -AllowTexPakChange: let a DELIBERATE change of the 1.3 GB assets_tex pk3 through the TEX PAK BASELINE GATE below
+# (every player re-downloads it). Same as $env:HZM_ALLOW_TEX_PAK_CHANGE = '1', which also works through
+# publish_release.ps1. After publishing, re-pin: python docs/tools/check_tex_pak_baseline.py --write-baseline
+param([switch]$AllowTexPakChange)
+Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 $srcDir     = "C:\mohaa-coop-dev\hzm-mohaa-coop-mod"
@@ -203,6 +207,36 @@ if (-not $mpiOk) {
     throw "BUILD BLOCKED: MP isolation contract"
 }
 # <<< MP-ISOLATION GATE
+
+# >>> TEX PAK BASELINE GATE [bug-3901]. zzzzzz_co-op_hzm_mod_assets_tex.pk3 (1.3 GB) is reused by the updater only while
+# its sha256 equals the released one, and the packer below is deterministic over (path, size, mtime) of every file under
+# textures/ models/ gfx/ env/. v1.10.22 let 318 new files into those folders and every player re-downloaded the pak.
+# The checker compares the tree with docs/tools/tex_pak_baseline.tsv (pinned from the released pak) and names every
+# added / removed / changed / touched file. New art ships in the fixes pak (docs/tools/gen_fixes_pak.py) instead.
+# Override for a deliberate tex pak release: build.ps1 -AllowTexPakChange or $env:HZM_ALLOW_TEX_PAK_CHANGE = '1', then
+# `python docs/tools/check_tex_pak_baseline.py --write-baseline` once it is published. Same throw / exit-code recipe as
+# the MP-isolation gate above.
+$texGate = "C:\mohaa-coop-dev\docs\tools\check_tex_pak_baseline.py"
+if (-not (Test-Path -LiteralPath $texGate -PathType Leaf)) {
+    Write-Host "BUILD BLOCKED: $texGate is missing - the tex pak baseline cannot be checked." -ForegroundColor Red
+    throw "BUILD BLOCKED: tex pak baseline tool missing"
+}
+$texArgs = @($texGate)
+if ($AllowTexPakChange -or $env:HZM_ALLOW_TEX_PAK_CHANGE -eq '1') { $texArgs += '--allow-change' }
+$texEap = $ErrorActionPreference
+$ErrorActionPreference = 'Continue'
+$global:LASTEXITCODE = 99
+$texOut = & python @texArgs 2>&1
+$texCode = $LASTEXITCODE
+$ErrorActionPreference = $texEap
+$texOk = ($texCode -eq 0) -and (@($texOut | Where-Object { "$_" -match '^tex pak baseline: (ok|OVERRIDDEN)\b' }).Count -eq 1)
+$texOverridden = @($texOut | Where-Object { "$_" -match '^tex pak baseline: OVERRIDDEN\b' }).Count -gt 0
+foreach ($line in $texOut) { if ($texOk -and -not $texOverridden) { Write-Host "  $line" -ForegroundColor DarkGray } elseif ($texOk) { Write-Host "  $line" -ForegroundColor Yellow } else { Write-Host "  $line" -ForegroundColor Red } }
+if (-not $texOk) {
+    Write-Host "BUILD BLOCKED: the assets_tex pk3 would change and every player would re-download 1.3 GB - nothing was packed or deployed." -ForegroundColor Red
+    throw "BUILD BLOCKED: tex pak baseline"
+}
+# <<< TEX PAK BASELINE GATE
 
 # >>> CFG SIZE GATE [bug-2908]. `exec` inserts a whole file into the engine command buffer, and a file that
 # does not fit is DROPPED ENTIRE with one "Cbuf_InsertText overflowed" line that prints before
