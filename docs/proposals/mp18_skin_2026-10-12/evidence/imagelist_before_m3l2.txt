@@ -1,0 +1,11 @@
+[2026-10-12 19:00:15 UTC-6.000]  521: 2048x2048 DXT5       6Mb textures/models/weapons/mp40/mp40.tga
+[2026-10-12 19:00:15 UTC-6.000] 1680:  128x 128 RGTC2     24kb textures/coop_mp18/body_nh
+[2026-10-12 19:00:15 UTC-6.000] 1681:  512x 512 DXT1a    192kb textures/coop_mp18/body.jpg
+[2026-10-12 19:00:15 UTC-6.000] 1682:  128x 128 RGTC2     24kb textures/coop_mp18/clip_nh
+[2026-10-12 19:00:15 UTC-6.000] 1683: 1024x1024 DXT1a    768kb textures/coop_mp18/clip.jpg
+[2026-10-12 19:00:15 UTC-6.000] 1684:  128x 128 RGTC2     24kb textures/coop_mp18/stuff_nh
+[2026-10-12 19:00:15 UTC-6.000] 1685:  512x 512 DXT1a    192kb textures/coop_mp18/stuff.jpg
+[2026-10-12 19:00:15 UTC-6.000] 1686:  128x 128 RGTC2     24kb textures/coop_mp18/drum_nh
+[2026-10-12 19:00:15 UTC-6.000] 1687: 1024x1024 DXT1a    768kb textures/coop_mp18/drum.jpg
+[2026-10-12 19:00:15 UTC-6.000] 1688:  128x  64 RGTC2     12kb textures/coop_mp18/front_nh
+[2026-10-12 19:00:15 UTC-6.000] 1689: 1024x 512 DXT1a    384kb textures/coop_mp18/front.JPG
