@@ -1,0 +1,1 @@
+[2026-10-13 13:41:12 UTC-6.000] 1742: 2048x2048 DXT1       3Mb textures/models/weapons/Colt/colt45s2.tga

@@ -1,0 +1,23 @@
+[
+ {
+  "error_message": "Shared silencer sheet textures/models/weapons/colt/colt45s2.tga (320x240, six silenced guns) is drawn as a flat black tube: imagelist shows the engine holds it as 256x128 DXT1a, 24 kb",
+  "file": "docs/proposals/gun_repaint_2026-10-13/tools/silencer.py",
+  "root_cause": "The sheet is a 320x240 near-black .tga (mean RGB 12/11/10 on the tube) from zzzzz_xw_weapons.pk3; the renderer rounds the non-power-of-two size DOWN and compresses it (256x128 DXT1a), so the little detail it has is gone. Nothing else in any pak carries that name (no .dds, no .jpg).",
+  "fix": "STAGED, not shipped: assets/textures/models/weapons/colt/colt45s2.dds, 2048x2048 DXT1 + mips, painted by script on the same UVs (all six skds carry identical UVs and triangles on Cylinder1 - asserted). A .dds of that stem in the fixes pak wins (R_LoadImage probes .dds first; only the .tga exists today). Engine: imagelist 2048x2048 DXT1 3Mb, six guns seen hip / world side / ground, light + dark (m3l2) and night (m4l1).",
+  "tags": ["gun_repaint_2026-10-13", "silencer", "colt45s2", "texture", "dds", "npot", "staged"]
+ },
+ {
+  "error_message": "Silencer repaint, first paint: the worn muzzle rim came out as a bar-code of horizontal stripes and the muzzle face's chamfer as gear teeth; the knurl left a plain stripe along both side seams",
+  "file": "docs/proposals/gun_repaint_2026-10-13/tools/silencer.py",
+  "root_cause": "The break-up noise of the wear was (a) the brushed-streak layer (70 px long along the tube) and (b) noise generated in SHEET space. The two half shells are planar projections: sheet-space noise is stretched up to 4x towards the seams, and a streak layer cannot break up a ring. The knurl was faded out over the last 15 degrees before each seam (too few texels there for 32 diamonds) towards the PLAIN tone, which is lighter than the knurl's mean.",
+  "fix": "All wear break-up is sampled from an isotropic layer of the unwrapped (t, theta) canvas (gun space, periodic in theta); rim band narrowed to the last 1 %; chamfer wear = thin ring with fine noise. Knurl: 24 diamonds round, fade only in the last 6 degrees, faded zone keeps the knurl's mean tone (0.90). Scratches near the seams are sampled from a theta-blurred copy (no dashes).",
+  "tags": ["gun_repaint_2026-10-13", "silencer", "planar-projection", "seam", "procedural", "wear"]
+ },
+ {
+  "error_message": "Repaint harness run r1: the ground stills were taken through a sniper scope, and the 'third person' stills show the player's back - the gun is hidden",
+  "file": "docs/proposals/gun_repaint_2026-10-13/tools/run_rp.py",
+  "root_cause": "(1) +button13 on a scoped gun (silenced Garand, Kar98 sniper, Mosin sniper) latches the scope picture; -button13 does not leave it, and `give none` keeps that gun in the hand, so the next stills (third person, ground) were scope pictures. (2) cg_3rd_person's camera sits behind the right shoulder (cg_cameradist / cg_camerasideoffset only slide it): a gun pointing forward is behind the body.",
+  "fix": "run_rp.py: scoped guns get no aim still (SCOPED); before the world stills an unscoped gun (colt45.tik) is given; the world model (same skd and shader as in the hand) is photographed as props instead - three guns floating side-on at 48 u (both sides, mkov.py coop_isPmode float, roll 180 because a weapon tik spawned as script_model hangs upside down) and the same three laid on the ground from above.",
+  "tags": ["gun_repaint_2026-10-13", "harness", "scope", "third-person", "props", "screenshot"]
+ }
+]
