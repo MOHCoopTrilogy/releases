@@ -451,62 +451,76 @@
   }
  },
  "models/weapons/shotgun.tik": {
+  "action": "gun pitched down about the butt under the centre box and canted 20 deg; support hand seen leaving the forend, to the pouch, each shell brought up in a closed pinch beside the receiver (in view 0.24 s), rolled under and thumbed into the gate; pump only when the gun was empty; the trigger breaks the reload off: 0.40 s to the shot with a round chambered (hj15, hj19, hj20), 1.2 s with the pump when it was empty",
+  "lowered": true,
+  "qa": "looked at: rounds-left six stances (hj16 sheet), emptied six stances incl. the first 51 frames (hj19 sheet: last shot's kick, hull, smoke - the gun is at its aim), crouch leans (hj20), GIFs partial / full / break-off decoded, shell crop; third person only partly seen (camera cut the body), ground pickup not captured (weapdrop does nothing in the harness)",
   "reload": {
    "braced": {
-    "dev": 7.62,
-    "edge": 7.21,
+    "dev": 7.56,
+    "edge": 2.43,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "hj12"
+    "run": "hj19"
    },
    "crouch": {
-    "dev": 7.61,
-    "edge": 7.2,
+    "dev": 7.55,
+    "edge": 2.37,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "hj12"
+    "run": "hj19"
+   },
+   "crouchL": {
+    "dev": 7.57,
+    "edge": 7.23,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hj20"
+   },
+   "crouchR": {
+    "dev": 7.55,
+    "edge": 7.23,
+    "end": 0.0,
+    "ok": false,
+    "pmin": 1.0,
+    "run": "hj20"
    },
    "prone": {
-    "dev": 7.63,
-    "edge": 7.22,
+    "dev": 7.57,
+    "edge": 7.16,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "hj12"
+    "run": "hj19"
    },
    "stand": {
-    "dev": 7.61,
-    "edge": 7.19,
+    "dev": 7.57,
+    "edge": 3.37,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "hj12"
+    "run": "hj19"
    },
    "standL": {
-    "dev": 7.61,
-    "edge": 7.19,
+    "dev": 7.55,
+    "edge": 3.36,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "hj12"
+    "run": "hj19"
    },
    "standR": {
-    "dev": 7.6,
-    "edge": 7.21,
+    "dev": 7.56,
+    "edge": 3.37,
     "end": 0.0,
     "ok": false,
     "pmin": 1.0,
-    "run": "hj12"
+    "run": "hj19"
    }
   },
-  "rule": {
-   "action": "yes",
-   "reacts": "yes",
-   "run": "hj11 hj12 (aimed, six stances), hj13 hj14 (hip, break-off)",
-   "target": "yes"
-  }
+  "rule": "yes yes yes hj16 hj19 hj20"
  },
  "models/weapons/uk_w_vickers.tik": {
   "aim": {

@@ -17,7 +17,7 @@ animations
 		server
 		{
 			first weaponcommand mainhand anim reload_single
-			7 attachmodel models/ammo/shotgunshell.tik tag_weapon_left		// HZM coop [heavy lane] a shell in the support hand, from the pouch (stage_sgreload.py)
+			first attachmodel models/ammo/shotgunshell.tik tag_weapon_left		// HZM coop [heavy lane] a shell in the support hand, from the pouch (stage_sgreload.py)
 			14 weaponcommand mainhand clip_add 1		// counted when it is IN the gate (retail: frame 5, the hand still at the pouch)
 			15 removeattachedmodel tag_weapon_left 0 models/ammo/shotgunshell.tik
 		}
@@ -28,6 +28,14 @@ animations
 		{
 			first weaponcommand mainhand anim reload_end
 			first removeattachedmodel tag_weapon_left 0 models/ammo/shotgunshell.tik	// HZM coop [heavy lane] a reload broken off with the shell still in the hand
+		}
+	}
+	shotgun_reload_break			viewmodel/shotgun/coop_tps_reload_break.skc		crossblend 0.05	// HZM coop [heavy lane] the reload broken off by the trigger with a round chambered: no pump (stage_sgreload.py)
+	{
+		server
+		{
+			first weaponcommand mainhand anim idle
+			first removeattachedmodel tag_weapon_left 0 models/ammo/shotgunshell.tik
 		}
 	}
 

@@ -1,11 +1,53 @@
-# HEAVY lane (MGs / shotgun) - HANDOVER, 2026-10-12 23:45 (fourth agent). Read this first.
+# HEAVY lane (MGs / shotgun) - HANDOVER, 2026-10-13 (fifth agent). Read this first.
 
 Lane of the aimed-animation work: the `## mg` and `## heavy` rows of `../coverage.md`. The method is the pistol
 lane's (`../README.md` top section); this file says what is different here, what is done and what is next.
 **Everything is STAGED** in this folder and on engine branch `ads-heavy-next` (worktree
 `C:\mohaa-coop-dev\openmohaa-hzm-ads-heavy`, build dir `.cmake` - NOT `build`). Nothing is in the mod tree, the fixes
 pak or a live install. Run ids used: ha hb hc hd he hf hn hs (earlier), hg1-hg3, hh1-hh9, hi1, hi2, hj1, hj2 (third agent), **hj3-hj14 (fourth agent)** -
-never reuse one; next free: `hj15`.
+**hj15-hj21 (fifth agent)** - never reuse one; next free: `hj22`.
+
+## Fifth agent, 2026-10-13: shotgun polish (supersedes the matching lines of "Shotgun reload" below)
+Engine `ads-heavy-next` **4b73e8c5** = `cgame_heavy6` (current). Overlay of the last runs: `SCRATCH/adsheavy/ov_k8.pk3`.
+* **Break-off, round chambered: 0.38-0.40 s from the press to the shot** (was 1.18-1.23 s; runs hj15, hj19, hj20,
+  `tools/brktime.py <run>` reads it from the log). `patch_sgbreak.py` STAGE 2 (still a PATCH; it upgrades a stage-1
+  file): the state machine has no memory, so a reload that leaves the start state with a round in the gun runs
+  copies of the loop pair (`RELOAD_SHOTGUN_SINGLE_CH` / `_CHECK_CONTINUE_CH`, same rows, same timing) whose break-off
+  goes to `RELOAD_SHOTGUN_BREAK_QUICK`: torso row `shotgun_reload_break` (11 frames, `coop_tps_reload_break.skc`,
+  added to `anims_shotgun.txt` by `stage_sgreload.py`; weapon anim `idle`, so no pump sound for others) and
+  `viewmodelanim reload_end` sent TWICE. cgame (`apply_sgbreak.py`) sees the change counter step by two and plays
+  `<row>_break` (+ `_ads`): rows `shotgun_reload_end_break` (hip, cut from the retail end) and
+  `shotgun_reload_end_break_ads` (`sgbake.py` part `brk`), crossblend 0.12. No new anim id, fgame untouched. A reload
+  that began EMPTY keeps the 1.2 s end with the pump. The uninterrupted reload is not retimed.
+* **Hand and shell** (`sgbake.py`): the loop is RE-PHASED - it starts and ends at the pouch with the shell in the hand
+  (`first attachmodel`; counted at frame 14 as before, removed at 15); show beat f5-8, gate f11, home f13. The start
+  clip's hand is seen leaving the forend (f3-19). Pouch point `5,9,-10`. Carrying hand = closed pinch (`PIN`,
+  `pinch()` finger_add; prop pinch point `8.6,2.4,-2.6`). Engine: hand out of view about 0.35 s before the first
+  shell (was 0.6 s), shell in view 15 capture frames = 0.24 s per round (was about 0.1 s).
+  Never pair `first removeattachedmodel` with `first attachmodel` of the same model: the prop is gone (bug-3756).
+* **Centre box AS PLAYED, beyond the sway envelope** (`centrebox.json`): rounds left hj16 stand / crouch / prone /
+  lean L / lean R / braced **0.45 / 0.12 / 0.36 / 0.40 / 0.29 / 0.51 %**; crouch + lean L / R (hj20) 0.37 / 0.28 %;
+  emptied hj19 from the reload's start (`BOXENG_AFTER=64`) **0.17 / 0.04 / 0.10 / 0.40 / 0.41 / 0.53 %**; 0 frames
+  over 2 %, every run back within 0.00 deg.
+* **Looked at**: `evidence/shotgun_reload_aimed_roundsleft_stances_hj16.jpg`, `..._empty_stances_hj19.jpg` (incl. the
+  first 51 frames in every stance: the last shot's kick, the hull, smoke - the gun is at its aim),
+  `..._crouch_leans_hj20.jpg`, `shotgun_shell_pinch_crops_hj17.jpg`; GIFs rebuilt and decoded:
+  `shotgun_reload_aimed_partial.gif` (hj16), `_full.gif` (hj19), `_breakoff_fire.gif` (hj20, 0.40 s),
+  `shotgun_reload_hip_roundsleft.gif` (hj21: the retail hip loop now has the shell in the hand from its start).
+  `shotgun_reload_hip_empty.gif` is still the fourth agent's (hj14).
+* **Not done / weak**: third person only partly seen (`shotgun_reload_third_person_hj20.jpg`: `--tprel` camera cuts
+  the body - try dist 40, height 8, side -12); the gun as a ground pickup NOT captured (`weapdrop` does nothing in the
+  harness, bug-3759); at a break-off the shell in the hand vanishes at once and the hand sinks away in 3 frames;
+  a killed player may keep a shell on the hand tag (no row removes it); the hip break row was not captured; sounds
+  not listened to; the hip reload still swings the muzzle through the centre (left, coordinator's call).
+* Coverage rows: `cov_h.py scan hj16 hj19 hj20`, `lowered` set, rule yes / yes / yes.
+* New tools: `brktime.py`, `apply_sgbreak.py`, `moveruns.py`, `run_h.py --tprel / --ground`.
+* **Disk**: G: ran full (bug-3758). Nobody deletes: finished, written-up runs are moved into to-delete folders the
+  user empties - ha1..hh4 are in `SCRATCH/_delete_me/heavy/` (C:), hh5..hj14 in `G:\_hzm_delete_me\heavy\`. Still in
+  `G:\mohaa-adsanim4\runs`: hj15-hj21, hn1-3, hs1-3. A six-stance run with a tail is 1.3-2 GB.
+* **Next (coordinator, 2026-10-13)**: FG 42 IRONS as a new weapon first (`coop_fg42_irons`, the rifles lane's G43
+  Irons recipe, `..\rifles\README.md`; look-test stills, ONE interim message to main), then the hip reload for both
+  FG 42s and the aimed reload for the irons one, what plays when reloading scoped; then the belt-feds.
 
 ## State (third agent, runs hg / hh / hi / hj1-hj2; engine: cgame_heavy2 for every reload figure, cgame_heavy3 = + the shotgun row)
 | item | state |
@@ -23,7 +65,7 @@ never reuse one; next free: `hj15`.
 | shotgun sight | **DONE (fourth agent, runs hj3-hj5, bug-3696 / 3697)**: brass bead r 0.27 u (surface `coop_bead`) + the receiver's matted sighting groove (surface `coop_groove`), row delta 30 mrad + relief 14.11 u on `ads-heavy-next` 5e351620 (`cgame_heavy4`). `evidence/shotgun_aim_before_after_hj5.jpg`; see "Shotgun sight" below |
 | shotgun reload, aimed (rounds left + emptied, six stances) | **done to the three rules (fourth agent, runs hj9-hj12)** - see "Shotgun reload"; weak points listed there |
 | shotgun: the pump only when the gun was empty | **done** - cgame `ads-heavy-next` 0cef28a7 (`cgame_heavy5`, `tools/apply_sgpump.py`), aimed and hip (bug-3729) |
-| shotgun: firing breaks off the reload | **done** - `tools/patch_sgbreak.py` (state file PATCH), run hj14: stops at once, end row, the owed shot (bug-3728) |
+| shotgun: firing breaks off the reload | **done** - `tools/patch_sgbreak.py` (state file PATCH, stage 1 + 2): round chambered 0.40 s to the shot, gun was empty 1.2 s with the pump (bug-3728, bug-3755) |
 | shotgun hip reload | checked: shells one by one (retail), no pump with rounds left (hj13), pump when emptied (hj14); NOT rebuilt - the retail hip clip swings the muzzle up through the centre of the screen, as before |
 | belt-feds (M1919 portable, Breda, Vickers, MG42), FG 42 hip reload, BAR A1 / A2 run, BAR / DP-28 heavier return, BAR hip reload | **not started** |
 

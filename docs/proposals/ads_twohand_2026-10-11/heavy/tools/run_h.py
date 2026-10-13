@@ -76,6 +76,36 @@ def stdemo(sess, gun, st, shots, gap, nrel, empty):  # TAIL: see below
 # reload, rounds left (L) or emptied (E; SMG_HOLD = frames the trigger is held, --hold).
 exec(compile(open(os.path.join(hv.LANE, '..', 'smg', 'tools', 'smg_block.py'), encoding='latin-1').read(), 'smg_block.py', 'exec'), globals())
 
+def tp_reload(sess, gun, shots, gap, nrel):
+    """--tprel: the HIP reload seen from outside (what the other players see: the server's torso rows, the shell prop
+    on the hand tag), camera close on the left side, every 3rd frame. Tag <gun>__stand__tprel."""
+    tag = "ab__%s__%s__stand__tprel__after" % (sess, gun)
+    i = [0]
+    L = S.RELEASE + S.TO_STAND + ["wait 400", "set cg_3rd_person 1", "set cg_cameradist 30", "set cg_cameraheight 4",
+                                   "set cg_camerasideoffset -26", "wait 600", "echo ^~^~^ ABSCEN begin %s" % tag]
+    for k in range(shots):
+        L += ["+attackprimary", "wait 1", "wait 1", "wait 1", "wait 1", "-attackprimary"] + ["wait 1", "wait 1"] * gap
+    L += ["reload", "echo ^~^~^ DEMO reload %d" % i[0]]
+    for k in range(nrel // 3):
+        L += A.frames(tag, 1, i) + ["wait 1", "wait 1"]
+    L += ["echo ^~^~^ ABSCEN end %s" % tag, "set cg_3rd_person 0", "set cg_camerasideoffset 18", "set cg_cameradist 120",
+          "set cg_cameraheight 18", "wait 400"] + S.RELEASE
+    R.step(L, timeout=1500)
+
+
+def ground(sess, gun):
+    """--ground: the gun dropped (`weapdrop`) and looked down at - the world model as a pickup. Tag <gun>__stand__ground."""
+    tag = "ab__%s__%s__stand__ground__after" % (sess, gun)
+    k = 0
+    for pitch in (30.0, 50.0, 70.0):
+        R.give(A.GUNS[gun], pitch)
+        L = ["wait 500", "weapdrop", "wait 1500"]
+        for _ in range(2):
+            L += ["screenshotJPEG %s__%04d" % (tag, k), "wait 1", "wait 1", "wait 1", "wait 1"]
+            k += 1
+        R.step(L, timeout=300)
+
+
 _run0 = T2.run
 STDEMO = []
 TAIL = [0, 4]
@@ -84,10 +114,12 @@ HIPDEMO = []        # --hipdemo L,E
 WALLSTILL = []      # --wallstill stand,crouch,prone : the settled aim on the light wall (--demoyaw), tag <st>W
 STHIP = []          # --sthip : --stdemo from the hip
 TPC = []            # --tpc : third_close (smg_block) = the held gun from outside, close, hip + aim
+TPREL = []          # --tprel : tp_reload = the hip reload from outside
+GROUND = []         # --ground : the dropped gun
 
 
 def _run(a):
-    if not (STDEMO or BRK or HIPDEMO or WALLSTILL or TPC):
+    if not (STDEMO or BRK or HIPDEMO or WALLSTILL or TPC or TPREL or GROUND):
         return _run0(a)
     # our part runs inside the shared session: hook the per-gun loop through the (otherwise unused here) "yaw" part
     def ys(sess, gun, yaw):
@@ -99,6 +131,11 @@ def _run(a):
                 T2.still(sess, gun, st, name=st + "W")
             if TPC:
                 third_close(sess, gun)
+            if TPREL:
+                R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
+                tp_reload(sess, gun, a.shots, a.shotgap, a.demoreload)
+            if GROUND:
+                ground(sess, gun)
             for st in STDEMO:
                 R.step(S.RELEASE + S.TO_STAND + S.give(A.GUNS[gun]), timeout=90)
                 stdemo(sess, gun, st, a.shots, a.shotgap, a.demoreload, a.demoempty)
@@ -133,6 +170,10 @@ if __name__ == "__main__":
         sys.argv.remove("--sthip"); STHIP.append(1)
     if "--tpc" in sys.argv:
         sys.argv.remove("--tpc"); TPC.append(1)
+    if "--tprel" in sys.argv:
+        sys.argv.remove("--tprel"); TPREL.append(1)
+    if "--ground" in sys.argv:
+        sys.argv.remove("--ground"); GROUND.append(1)
     for opt, lst in (("--brk", BRK), ("--hipdemo", HIPDEMO), ("--wallstill", WALLSTILL)):
         if opt in sys.argv:
             k = sys.argv.index(opt)

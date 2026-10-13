@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import hv
 from PIL import Image, ImageDraw
 out, part, frames = sys.argv[1:4]
-CL = {'start': ('shotgun_reload_ads.skc', 'reload', None), 'single': ('shotgun_reload_single_ads.skc', 'reload_single', 'models/ammo/shotgunshell.tik:7:15'),
+CL = {'start': ('shotgun_reload_ads.skc', 'reload', None), 'single': ('shotgun_reload_single_ads.skc', 'reload_single', 'models/ammo/shotgunshell.tik:0:15'),
       'end': ('shotgun_reload_end_ads.skc', 'reload_end', None), 'endl': ('shotgun_reload_end_loaded_ads.skc', 'idle', None)}
 W = int(os.environ.get('SGTRY_W', '640'))
 ims = []

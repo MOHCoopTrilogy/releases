@@ -369,122 +369,122 @@
   "align": 0,
   "dev": 7.63,
   "note": "AS PLAYED (cg_adsSway 0.1, cg_weaponBreath 1): xmax = beyond the settled aim's sway envelope; mask6 = vs the six-frame aim mask (SMG rule), alone = the settled aim alone vs that mask",
-  "run": "hj12",
+  "run": "hj16",
   "stances": {
    "braced": {
     "alone": 0.02,
     "end": 0.0,
-    "mask6": 1.51,
-    "run": "hj12",
+    "mask6": 0.79,
+    "run": "hj16",
     "xfr": 0.0,
-    "xmax": 0.93
+    "xmax": 0.51
    },
    "crouch": {
-    "alone": 0.01,
+    "alone": 0.22,
     "end": 0.0,
-    "mask6": 0.46,
-    "run": "hj12",
+    "mask6": 0.44,
+    "run": "hj16",
     "xfr": 0.0,
-    "xmax": 0.18
+    "xmax": 0.12
    },
    "prone": {
-    "alone": 0.51,
+    "alone": 0.07,
     "end": 0.0,
-    "mask6": 2.05,
-    "run": "hj12",
+    "mask6": 0.72,
+    "run": "hj16",
     "xfr": 0.0,
-    "xmax": 0.32
+    "xmax": 0.36
    },
    "stand": {
-    "alone": 0.01,
+    "alone": 0.23,
     "end": 0.0,
-    "mask6": 1.28,
-    "run": "hj12",
+    "mask6": 0.94,
+    "run": "hj16",
     "xfr": 0.0,
-    "xmax": 0.46
+    "xmax": 0.45
    },
    "standL": {
-    "alone": 0.1,
-    "end": 0.0,
-    "mask6": 1.32,
-    "run": "hj12",
-    "xfr": 0.0,
-    "xmax": 0.72
-   },
-   "standR": {
     "alone": 0.21,
     "end": 0.0,
-    "mask6": 1.07,
-    "run": "hj12",
+    "mask6": 0.48,
+    "run": "hj16",
     "xfr": 0.0,
-    "xmax": 0.53
+    "xmax": 0.4
+   },
+   "standR": {
+    "alone": 0.41,
+    "end": 0.0,
+    "mask6": 1.05,
+    "run": "hj16",
+    "xfr": 0.0,
+    "xmax": 0.29
    }
   },
   "xfr": 0.0,
-  "xmax": 0.93
+  "xmax": 0.51
  },
  "shotgun_empty": {
   "align": 0,
   "dev": 7.63,
   "note": "AS PLAYED (cg_adsSway 0.1, cg_weaponBreath 1): xmax = beyond the settled aim's sway envelope; mask6 = vs the six-frame aim mask (SMG rule), alone = the settled aim alone vs that mask; first 20 capture frames (last shot) skipped",
-  "run": "hj11",
+  "run": "hj19",
   "stances": {
    "braced": {
-    "after40": 0.16,
-    "alone": 0.02,
-    "end": 0.0,
-    "mask6": 10.1,
-    "run": "hj11",
-    "xfr": 1.7,
-    "xmax": 9.99
-   },
-   "crouch": {
-    "after40": 0.07,
+    "after40": 0.53,
     "alone": 0.04,
     "end": 0.0,
-    "mask6": 5.57,
-    "run": "hj11",
-    "xfr": 1.2,
-    "xmax": 4.78
+    "mask6": 1.99,
+    "run": "hj19",
+    "xfr": 0.0,
+    "xmax": 1.91
+   },
+   "crouch": {
+    "after40": 0.04,
+    "alone": 0.77,
+    "end": 0.0,
+    "mask6": 2.74,
+    "run": "hj19",
+    "xfr": 0.0,
+    "xmax": 1.68
    },
    "prone": {
-    "after40": 0.01,
-    "alone": 0.06,
+    "after40": 0.1,
+    "alone": 0.5,
     "end": 0.0,
-    "mask6": 4.3,
-    "run": "hj11",
-    "xfr": 2.1,
-    "xmax": 3.17
+    "mask6": 1.27,
+    "run": "hj19",
+    "xfr": 0.0,
+    "xmax": 1.0
    },
    "stand": {
-    "after40": 0.19,
+    "after40": 0.17,
     "alone": 0.03,
     "end": 0.0,
-    "mask6": 2.64,
-    "run": "hj11",
+    "mask6": 2.78,
+    "run": "hj19",
     "xfr": 0.0,
-    "xmax": 1.93
+    "xmax": 1.88
    },
    "standL": {
-    "after40": 0.46,
-    "alone": 0.0,
+    "after40": 0.4,
+    "alone": 0.53,
     "end": 0.0,
-    "mask6": 2.13,
-    "run": "hj11",
+    "mask6": 2.58,
+    "run": "hj19",
     "xfr": 0.0,
-    "xmax": 1.9
+    "xmax": 1.97
    },
    "standR": {
-    "after40": 0.62,
-    "alone": 0.09,
+    "after40": 0.41,
+    "alone": 0.1,
     "end": 0.0,
-    "mask6": 2.28,
-    "run": "hj11",
+    "mask6": 3.02,
+    "run": "hj19",
     "xfr": 0.0,
-    "xmax": 1.96
+    "xmax": 1.62
    }
   },
-  "xfr": 2.1,
-  "xmax": 9.99
+  "xfr": 0.0,
+  "xmax": 1.97
  }
 }

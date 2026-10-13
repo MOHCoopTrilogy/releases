@@ -16,7 +16,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import hv
 H, R, V, CTL = hv.lib()
 SHELL = 'models/ammo/shotgunshell.tik'
-ATTACH, COUNT, GONE = 7, 14, 15
+ATTACH, COUNT, GONE = 'first', 14, 15      # [fifth agent] the loop starts at the pouch with the shell in the hand (sgbake.py re-phased)
+BRK = 'coop_tps_reload_break.skc'          # sgbake.py --hipend: 11 frames = 0.37 s, the time from a break-off to the owed shot
 ROW = '\treload_end_loaded coop_shotgun_still32.skc\t// HZM coop [heavy lane] end of a reload that began with rounds in the gun: no pump, no pump sound (stage_sgreload.py; cgame shows it in place of reload_end)'
 
 
@@ -54,17 +55,34 @@ def anims():
     assert a and t.count('weaponcommand mainhand clip_add 1') == 1
     ind = a.group(1)
     new = nl.join([
-        ind + '%d attachmodel %s tag_weapon_left\t\t// HZM coop [heavy lane] a shell in the support hand, from the pouch (stage_sgreload.py)' % (ATTACH, SHELL),
+        ind + '%s attachmodel %s tag_weapon_left\t\t// HZM coop [heavy lane] a shell in the support hand, from the pouch (stage_sgreload.py)' % (ATTACH, SHELL),
         ind + '%d weaponcommand mainhand clip_add 1\t\t// counted when it is IN the gate (retail: frame 5, the hand still at the pouch)' % COUNT,
         ind + '%d removeattachedmodel tag_weapon_left 0 %s' % (GONE, SHELL)])
     t = t[:a.start()] + new + t[a.end():]
     b = re.search(r'(?m)^([ \t]*)first weaponcommand mainhand anim reload_end[^\r\n]*', t)
     assert b
     t = t[:b.end()] + nl + b.group(1) + 'first removeattachedmodel tag_weapon_left 0 %s\t// HZM coop [heavy lane] a reload broken off with the shell still in the hand' % SHELL + t[b.end():]
+    # the quick break-off row (patch_sgbreak.py stage 2: state RELOAD_SHOTGUN_BREAK_QUICK), after the end row's block
+    e = re.search(r'(?m)^[ \t]*shotgun_reload_end[ \t]+\S+[^\r\n]*', t)
+    assert e
+    j = t.index('}', t.index('}', e.end()) + 1)          # server { ... } then the row's own block
+    k = t.index(nl, j) + len(nl)
+    row = nl.join([
+        '\tshotgun_reload_break\t\t\tviewmodel/shotgun/' + BRK + '\t\tcrossblend 0.05\t// HZM coop [heavy lane] the reload broken off by the trigger with a round chambered: no pump (stage_sgreload.py)',
+        '\t{', '\t\tserver', '\t\t{',
+        '\t\t\tfirst weaponcommand mainhand anim idle',
+        '\t\t\tfirst removeattachedmodel tag_weapon_left 0 ' + SHELL,
+        '\t\t}', '\t}', ''])
+    t = t[:k] + row + t[k:]
+    d = 0
+    for ch in t:
+        d += (ch == '{') - (ch == '}')
+        assert d >= 0
+    assert d == 0
     out = hv.staged(rel)
     os.makedirs(os.path.dirname(out), exist_ok=True)
     open(out, 'wb').write(t.encode('latin-1'))
-    print('staged', rel, '(retail + shell prop, count at frame %d)' % COUNT)
+    print('staged', rel, '(retail + shell prop from the loop start, count at frame %d, row shotgun_reload_break)' % COUNT)
 
 
 if __name__ == '__main__':

@@ -46,6 +46,9 @@ EDITS = {
         # The pump only when the gun was empty (cgame ads-heavy-next, apply_sgpump.py): `_loaded` end rows
         ('shotgun_reload_end_loaded', 'viewmodel/shotgun/coop_shotgun_reload_end_loaded.skc', 0.05, 'hip, rounds were left: the retail end with the pump cut out'),
         ('shotgun_reload_end_loaded_ads', 'viewmodel/shotgun/shotgun_reload_end_loaded_ads.skc', 0.1, 'aimed, rounds were left: back up into the aim, no pump'),
+        # the reload broken off by the trigger with a round chambered (state file: patch_sgbreak.py stage 2; cgame apply_sgbreak.py)
+        ('shotgun_reload_end_break', 'viewmodel/shotgun/coop_shotgun_reload_end_break.skc', 0.12, 'hip, break-off with a round chambered: hand to the forend in 0.37 s, no pump'),
+        ('shotgun_reload_end_break_ads', 'viewmodel/shotgun/shotgun_reload_end_break_ads.skc', 0.12, 'aimed, break-off with a round chambered: up into the aim in 0.37 s'),
     ],
 }
 

@@ -7,8 +7,9 @@ import sys, os, subprocess, argparse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import hv
 from PIL import Image
-P = {'start': ('shotgun_reload_ads.skc', 'reload', 23, None), 'single': ('shotgun_reload_single_ads.skc', 'reload_single', 20, 'models/ammo/shotgunshell.tik:7:15'),
-     'end': ('shotgun_reload_end_ads.skc', 'reload_end', 32, None), 'endl': ('shotgun_reload_end_loaded_ads.skc', 'idle', 32, None)}
+P = {'start': ('shotgun_reload_ads.skc', 'reload', 23, None), 'single': ('shotgun_reload_single_ads.skc', 'reload_single', 20, 'models/ammo/shotgunshell.tik:0:15'),
+     'end': ('shotgun_reload_end_ads.skc', 'reload_end', 32, None), 'endl': ('shotgun_reload_end_loaded_ads.skc', 'idle', 32, None),
+     'brk': ('shotgun_reload_end_break_ads.skc', 'idle', 11, None)}
 ap = argparse.ArgumentParser()
 ap.add_argument('out'); ap.add_argument('--w', type=int, default=360); ap.add_argument('--parts', default='start,single,end,endl')
 ap.add_argument('--step', type=int, default=2); ap.add_argument('--cols', type=int, default=8); ap.add_argument('--side', action='store_true')
@@ -28,7 +29,7 @@ for p in a.parts.split(','):
     if r.returncode:
         print(p, (r.stdout + r.stderr)[-600:]); continue
     ims[p] = Image.open(tmp).convert('RGB')
-for nm, ps in (('a', ('start', 'single')), ('b', ('end', 'endl'))):
+for nm, ps in (('a', ('start', 'single')), ('b', ('end', 'endl', 'brk'))):
     L = [ims[p] for p in ps if p in ims]
     if not L:
         continue
