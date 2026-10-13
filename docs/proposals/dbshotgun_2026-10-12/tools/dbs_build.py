@@ -208,15 +208,20 @@ def bead_tris(A):
 def build():
     P = load_parts()
     A = anchors(P)
-    bones = [('origin', 'worldbone'), ('dbs_barrels', 'origin'), ('tag_barrel', 'dbs_barrels'), ('tag_eject', 'origin'),
+    # the shells hang on `origin`, not on the barrels: dbs_anim.py keys them in gun space (chambered = it follows the
+    # barrels itself; carried by the hand; parked inside the stock when the chamber is empty)
+    bones = [('origin', 'worldbone'), ('dbs_barrels', 'origin'), ('tag_barrel', 'dbs_barrels'),
+             ('tag_dbs_r', 'dbs_barrels'), ('tag_dbs_l', 'dbs_barrels'), ('tag_eject', 'origin'),
              ('dbs_lever', 'origin'), ('dbs_trig_f', 'origin'), ('dbs_trig_r', 'origin'),
-             ('dbs_shell_r', 'dbs_barrels'), ('dbs_shell_l', 'dbs_barrels')]
+             ('dbs_shell_r', 'origin'), ('dbs_shell_l', 'origin')]
     bi = {n: i for i, (n, _) in enumerate(bones)}
     # bind positions, source frame (world); +y is LEFT in the source frame, so the RIGHT barrel is -y
     head_x = A['breech_x'] + 0.004
     W = {'origin': np.zeros(3), 'dbs_barrels': np.zeros(3),
          'tag_barrel': np.array([A['muzzle_x'], 0.0, A['bore_z']]),
-         'tag_eject': np.array([A['breech_x'], 0.0, A['bore_z'] + 0.12]),
+         'tag_dbs_r': np.array([A['muzzle_x'], -A['bore_y'], A['bore_z']]),
+         'tag_dbs_l': np.array([A['muzzle_x'], A['bore_y'], A['bore_z']]),
+         'tag_eject': np.array([A['breech_x'] - 0.15, 0.0, A['bore_z'] + 0.35]),
          'dbs_lever': A['lever_pivot'], 'dbs_trig_f': A['trig_f_pivot'], 'dbs_trig_r': A['trig_r_pivot'],
          'dbs_shell_r': np.array([head_x, -A['bore_y'], A['bore_z']]),
          'dbs_shell_l': np.array([head_x, A['bore_y'], A['bore_z']])}

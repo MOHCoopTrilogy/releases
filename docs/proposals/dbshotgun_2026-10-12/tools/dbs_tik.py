@@ -26,14 +26,138 @@ N = dict(
     speed=1.0,                     # [0.99] short and light
     dm_ammo=40, sp_ammo=10,        # [60 / 5]
     # view kick: pitch min max, yaw min max, recentre, pattern, abs pitch, abs yaw, lose-control pitch
-    kick='-27.0 -31.0  -2.5 2.5  11.0  "T"  16.0 7.0 13.0',      # [-20 -20 0.05 0.05 15.2 T 12 5 10]
+    kick='-23.0 -26.0  -2.0 2.0  12.0  "T"  14.0 6.0 12.0',      # [-20 -20 0.05 0.05 15.2 T 12 5 10]; run act1: -27 -31 threw the view 25 deg up
 )
+
+
+# ---- sounds: retail files only, own alias names (declared in the tik's client init like models/frag-n-rock.tik does,
+# so ubersound.scr is not edited). volume volMod pitch pitchMod dist maxDist channel
+MAPS = 'maps "m e t dm obj lib"'
+ALIASES = [
+    # the pump gun's report, lower and louder: two barrels' worth of powder out of 33 cm tubes [retail 1.95 .. 0.8 0.1 480]
+    ('coop_dbs_snd_fire', 'sound/weapons/fire/ShotgunFire1.wav', '2.2 0.0 0.70 0.05 540 8000 weapon'),
+    ('coop_dbs_snd_open', 'sound/weapons/foley/wpn_Webley_reloadstart.wav', '1.7 0.0 0.85 0.05 160 1000 item'),     # break-top latch
+    ('coop_dbs_snd_shell', 'sound/weapons/foley/ShotgunFill1.wav', '1.2 0.01 0.90 0.06 160 1000 item'),           # a shell pushed home
+    ('coop_dbs_snd_close', 'sound/weapons/foley/coop_wpn_action_heavy.wav', '1.1 0.05 0.85 0.05 160 1000 item'),  # swung shut
+]
+
+
+def aliases():
+    return '\n'.join('\t\taliascache %s %s soundparms %s loaded %s' % (n, f, sp, MAPS) for n, f, sp in ALIASES)
+
+
+def _flash(tag):
+    return FLASH.replace('@TAG@', tag)
+
+
+def _eject(frame, count):
+    return EJECT % dict(frame=frame, count=count)
+
+
+def anims():
+    a = ['animations', '{', '\tidle\tcoop_dbs_idle.skc']
+    for nm, tag in (('fire', 'tag_dbs_r'), ('fire_empty', 'tag_dbs_l')):
+        a += ['\t%s\tcoop_dbs_%s.skc' % (nm, nm), '\t{', '\t\tserver', '\t\t{', '\t\t\tentry shoot', '\t\t}', '\t\tclient', '\t\t{',
+              '\t\t\tentry stopaliaschannel coop_dbs_snd_fire', '\t\t\tentry sound coop_dbs_snd_fire',
+              '\t\t\tentry viewkick %s' % N['kick'], _flash(tag), '\t\t}', '\t}']
+    for nm, count in (('reload', 1), ('reload_empty', 2)):
+        a += ['\t%s\tcoop_dbs_%s.skc' % (nm, nm), '\t{', '\t\tclient', '\t\t{', '\t\t\tentry sound coop_dbs_snd_open',
+              _eject(8, count), '\t\t}', '\t}']
+    for nm in ('reload_single', 'reload_single_first'):
+        a += ['\t%s\tcoop_dbs_%s.skc' % (nm, nm), '\t{', '\t\tclient', '\t\t{', '\t\t\t12 stopaliaschannel coop_dbs_snd_shell',
+              '\t\t\t12 sound coop_dbs_snd_shell', '\t\t}', '\t}']
+    a += ['\treload_end\tcoop_dbs_reload_end.skc', '\t{', '\t\tserver', '\t\t{', '\t\t\tlast idle', '\t\t}', '\t\tclient', '\t\t{',
+          '\t\t\t10 sound coop_dbs_snd_close', '\t\t}', '\t}']
+    a += ['\tsecondaryfire\tcoop_dbs_idle.skc', '\t{', '\t\tserver', '\t\t{', '\t\t\tentry shoot secondary', '\t\t}', '\t}', '}']
+    return '\n'.join(a)
+
+
+# the pump gun's muzzle effects, on the barrel that fired
+FLASH = """			entry tagdlight @TAG@ 0.25 0.2 0.15 150 0.11
+			entry tagspawnlinked @TAG@
+			(
+				scale 0.45
+				offsetalongaxis 1.5 0 0
+				count 1
+				model muzsprite.spr
+				angles 0 0 crandom 25
+				life 0.06
+			)
+			entry tagspawn @TAG@
+			(
+				spawnrate 1.00
+				model models/fx/bh_metal_fastpiece.tik
+				count 3
+				color 1.00 1.00 1.00
+				scale 0.20
+				life 0.30
+				radius 3.00
+				velocity 100.00
+				randvel 100 0 0
+				accel 0.00 0.00 -120.00
+				offsetalongaxis 4 0 0
+				fade
+				align
+			)
+			entry tagspawnlinked @TAG@
+			(
+				spawnrate 1.00
+				model muzsprite.spr
+				color 1.00 1.00 1.00
+				scale 0.70
+				life 0.09
+				scalerate 12.00
+				velocity 33.00
+				offsetalongaxis 4 0 0
+				fade
+				randomroll
+			)
+			entry commanddelay 0.010 originspawn
+			(
+				model vsssource.spr
+				count 6
+				alpha 0.30
+				color 1.00 1.00 1.00
+				spritegridlighting
+				scale 0.80
+				life 0.55
+				scalerate 6.00
+				cone 8.00 2.00
+				velocity 300.00
+				radialvelocity 11.00 60.00 120.00
+				accel 0.00 0.00 -30.00
+				friction 5.00
+				offset crandom -5 crandom -5 crandom -5
+				offsetalongaxis 22 0 0
+				fade
+				randomroll
+			)"""
+
+# the pump gun's case (its shell eject block), thrown by the ejectors as the action opens
+EJECT = """			%(frame)d tagspawn tag_eject
+			(
+				count %(count)d
+				model models/ammo/shotgunshell.tik
+				spawnrange 1024
+				scale 1.0
+				velocity 90
+				randvel crandom 14 crandom 14 random 20
+				emitterangles 0 0 0
+				avelocity crandom 120 crandom 120 0
+				accel 0 0 -800
+				physicsrate 20
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.2
+				bouncesoundonce snd_shotgun_shell
+			)"""
 
 
 def tik(surfaces):
     surf = '\n'.join('\tsurface %s shader %s' % (s, 'coop_dbshotgun_parts' if s.startswith('dbsx') else 'coop_dbshotgun')
                      for s in surfaces)
-    return TEMPLATE % dict(N, surf=surf, name=WEAPON_NAME)
+    return TEMPLATE % dict(N, surf=surf, name=WEAPON_NAME, anims=anims(), aliases=aliases())
 
 
 TEMPLATE = r"""TIKI
@@ -131,132 +255,12 @@ init
 		cache tracer.spr
 		cache muzsprite.spr
 		cache model models/fx/bh_metal_fastpiece.tik
+		cache models/ammo/shotgunshell.tik
+%(aliases)s
 	}
 }
 
-animations
-{
-	idle	coop_dbs_idle.skc
-	reload 	coop_dbs_idle.skc
-	{
-		client
-		{
-			entry sound shotgun_snd_reload_start
-		}
-	}
-	reload_single coop_dbs_idle.skc
-	{
-		client
-		{
-			entry stopaliaschannel shotgun_snd_reload_single
-			entry sound shotgun_snd_reload_single
-		}
-	}
-	reload_end coop_dbs_idle.skc
-	{
-		server
-		{
-			last idle
-		}
-		client
-		{
-			entry sound shotgun_snd_reload_end
-		}
-	}
-	secondaryfire     coop_dbs_idle.skc
-	{
-		server
-		{
-			entry shoot secondary
-		}
-	}
-	fire	coop_dbs_idle.skc
-	{
-		server
-		{
-			entry shoot
-		}
-		client
-		{
-			entry stopaliaschannel shotgun_snd_fire
-			entry sound shotgun_snd_fire
-
-			entry viewkick %(kick)s
-
-			entry tagdlight tag_barrel 0.25 0.2 0.15 140 0.11
-			entry tagspawnlinked tag_barrel
-			(
-				scale 0.4
-				offsetalongaxis 1.5 0 0
-				count 1
-				model muzsprite.spr
-				angles 0 0 crandom 25
-				life 0.06
-			)
-			entry tagspawn tag_barrel
-			(
-				spawnrate 1.00
-				model models/fx/bh_metal_fastpiece.tik
-				count 2
-				color 1.00 1.00 1.00
-				scale 0.20
-				life 0.30
-				radius 3.00
-				velocity 100.00
-				randvel 100 0 0
-				accel 0.00 0.00 -120.00
-				offsetalongaxis 4 0 0
-				fade
-				align
-			)
-			entry tagspawnlinked tag_barrel
-			(
-				spawnrate 1.00
-				model muzsprite.spr
-				color 1.00 1.00 1.00
-				scale 0.60
-				life 0.09
-				scalerate 12.00
-				velocity 33.00
-				offsetalongaxis 4 0 0
-				fade
-				randomroll
-			)
-			entry tagspawnlinked tag_barrel
-			(
-				spawnrate 1.00
-				model muzsprite.spr
-				color 1.00 1.00 1.00
-				scale 0.60
-				life 0.10
-				scalerate 3.00
-				velocity 40.00
-				offsetalongaxis 5 0 0
-				randomroll
-			)
-			entry commanddelay 0.010 originspawn
-			(
-				model vsssource.spr
-				count 5
-				alpha 0.30
-				color 1.00 1.00 1.00
-				spritegridlighting
-				scale 0.70
-				life 0.50
-				scalerate 6.00
-				cone 6.00 2.00
-				velocity 320.00
-				radialvelocity 11.00 60.00 120.00
-				accel 0.00 0.00 -30.00
-				friction 5.00
-				offset crandom -5 crandom -5 crandom -5
-				offsetalongaxis 30 0 0
-				fade
-				randomroll
-			)
-		}
-	}
-}
+%(anims)s
 
 /*QUAKED addon_playerweapon_coop_dbshotgun (0.0 0.0 1.0) (-8 -8 -8) (8 8 8)
 Weapon - sawn-off double-barrel shotgun (HZM coop)

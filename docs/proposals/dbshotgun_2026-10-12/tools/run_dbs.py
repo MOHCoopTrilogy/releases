@@ -89,7 +89,28 @@ def part_pump(a):
     R.step(CAMOFF)
 
 
-PARTS = {'look': part_look, 'pump': part_pump, 'var': part_var}
+def part_action(a):
+    """the gun at work, hip: raise, two shots, the reload of the emptied gun (both cases out, two shells), one shot and
+    a reload with one shell left; then aimed: the aim, one shot. One screenshot per captured game frame."""
+    i = [0]
+    R.step(RELEASE + R.give("models/weapons/shotgun.tik") + ["wait 4500"], timeout=90)
+    L = ["set cg_fov 90", "set cg_drawviewmodel 2"] + R.give(a.tik) + ["wait 300"] + frames("act_raise", 14, i, 8)
+    R.step(L + ["wait 2500"], timeout=120)
+    i = [0]
+    L = ["+attackprimary", "wait 1", "wait 1", "-attackprimary"] + frames("act_fire1", 10, i, 1)
+    L += ["wait 250", "+attackprimary", "wait 1", "wait 1", "-attackprimary"] + frames("act_fire2", 6, i, 1)
+    i = [0]
+    L += ["wait 900", "reload"] + frames("act_reload2", 58, i, 3) + ["wait 2500"]
+    R.step(L, timeout=240)
+    i = [0]
+    L = ["+attackprimary", "wait 1", "wait 1", "-attackprimary", "wait 900", "reload"] + frames("act_reload1", 44, i, 3) + ["wait 2500"]
+    R.step(L, timeout=240)
+    R.step(["+button13", "wait 1900"]); shot("act_aim")
+    i = [0]
+    R.step(["+attackprimary", "wait 1", "wait 1", "-attackprimary"] + frames("act_aimfire", 8, i, 1) + ["wait 900", "-button13", "wait 600"], timeout=120)
+
+
+PARTS = {'look': part_look, 'pump': part_pump, 'var': part_var, 'action': part_action}
 
 
 def run(a):

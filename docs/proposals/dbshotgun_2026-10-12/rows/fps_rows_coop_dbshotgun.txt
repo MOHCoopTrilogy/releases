@@ -1,0 +1,23 @@
+	//===================== HZM coop: double-barrel shotgun ("Shotgun (Double Barrel)") =====================
+	// per-weapon rows (cg_viewmodelanim.c CoopPerWeaponReloadAnim; idle / fire / charge / pullout / putaway need the
+	// dbshotgun-next cgame, the three reload rows work on any build). Clips: docs/proposals/dbshotgun_2026-10-12
+	coopr_shotgun_double_barrel_idle			viewmodel/coop_dbshotgun/dbs_idle.skc			crossblend 0.2
+	coopr_shotgun_double_barrel_fire			viewmodel/coop_dbshotgun/dbs_fire.skc			crossblend 0.03
+	coopr_shotgun_double_barrel_charge			viewmodel/coop_dbshotgun/dbs_charge.skc			crossblend 0.2
+	coopr_shotgun_double_barrel_reload			viewmodel/coop_dbshotgun/dbs_reload.skc			crossblend 0.05
+	coopr_shotgun_double_barrel_reload_single	viewmodel/coop_dbshotgun/dbs_reload_single.skc	crossblend 0
+	coopr_shotgun_double_barrel_reload_end		viewmodel/coop_dbshotgun/dbs_reload_end.skc		crossblend 0.05
+	coopr_shotgun_double_barrel_pullout			viewmodel/coop_dbshotgun/dbs_pullout.skc
+	{
+		client
+		{
+			enter sound snd_shotgun_pullout
+		}
+	}
+	coopr_shotgun_double_barrel_putaway			viewmodel/coop_dbshotgun/dbs_putaway.skc
+	{
+		client
+		{
+			enter sound snd_shotgun_putaway
+		}
+	}

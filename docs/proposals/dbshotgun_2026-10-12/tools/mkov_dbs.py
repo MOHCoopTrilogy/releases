@@ -94,6 +94,13 @@ def main():
                 if arc.split('/')[0] not in TOP:
                     continue
                 z.write(p, arc); n += 1
+        # the first-person rows: the RELEASED fixes-pak fps_anims_shotgun.txt + our rows block before its closing brace
+        # (the shared file is not edited or staged whole - other lanes stage rows in it too)
+        fx = open(os.path.join(L.DOCS, 'tools', 'assets', 'fixes', 'models', 'player', 'base', 'fps_anims_shotgun.txt'), 'rb').read().decode('latin-1')
+        rows = open(os.path.join(L.PROP, 'rows', 'fps_rows_coop_dbshotgun.txt'), 'rb').read().decode('latin-1').replace('\r\n', '\n')
+        nl = '\r\n' if '\r\n' in fx else '\n'
+        k = fx.rstrip().rfind('}')
+        z.writestr('models/player/base/fps_anims_shotgun.txt', (fx[:k] + rows.replace('\n', nl) + fx[k:]).encode('latin-1'))
         # --var s46=0.46 ... : TEST-ONLY copies of the tik at another scale (models/weapons/coop_dbshotgun_<tag>.tik)
         base = open(os.path.join(L.ASSETS, 'models', 'weapons', 'coop_dbshotgun.tik')).read()
         for v in [x for x in sys.argv[2:] if '=' in x]:
