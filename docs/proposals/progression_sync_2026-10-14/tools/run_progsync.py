@@ -359,7 +359,10 @@ def phase1(code, test, ctx):
     srv = saves(smt, gid)
     check("1a server files now hold the PC record", srv["xp"] == "5000" and "pc_unlock_a" in (srv["unlocks"] or ""),
           json.dumps(srv))
-    check("1a no client write needed on a fresh server", not re.search(r"COOPSYNC client wrote", read(clog)), "")
+    time.sleep(3)
+    nw = len(re.findall(r"COOPSYNC client wrote unlocks", read(clog)))
+    # a fresh id on a fresh server is re-granted every rank unlock (dozens of rewrites in one frame): coalesced
+    check("1a join burst coalesced (unlocks record sent at most 3 times)", 1 <= nw <= 3, "client wrote unlocks x%d" % nw)
     joined = join(hm, slog)
     check("1a joined a team", joined)
     time.sleep(12)
@@ -382,10 +385,14 @@ def phase1(code, test, ctx):
     rcon(hm, slog, "unlock")
     cw = wait_for(clog, r"\^~\^~\^ COOPSYNC client wrote unlocks[^\r\n]*", 20, st)
     pc = saves(mt, gid)
-    check("1c unlock comes home", cw and "pstest_unlock" in (pc["unlocks"] or "") and "pc_unlock_a" in (pc["unlocks"] or ""),
-          "pc unlocks=%s" % pc["unlocks"])
-    # 1d award WITHOUT a flush, then disconnect: the XP fold-in must bring it home
-    r = rcon(hm, slog, "award")
+    srvu = saves(smt, gid)["unlocks"] or ""
+    check("1c unlock comes home, byte-identical to the server's record (paths with '/')",
+          cw and "pstest_unlock" in (pc["unlocks"] or "") and "pc_unlock_a" in (pc["unlocks"] or "")
+          and "models/weapons/" in (pc["unlocks"] or "") and pc["unlocks"] == srvu,
+          "pc unlocks=%s" % (pc["unlocks"] or "")[:160])
+    # 1d award WITHOUT a flush (1 XP: no rank-up, whose flush would send it anyway), then disconnect: the XP
+    # fold-in must bring it home
+    r = rcon(hm, slog, "award1")
     total2 = r.group(1) if r else None
     st = len(read(clog))
     step(hm, ["wait 1500", "disconnect", "echo ^~^~^ PS disconnected", "wait 12000",

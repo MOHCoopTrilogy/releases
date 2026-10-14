@@ -19,7 +19,7 @@ static void expect(int rule, const char *a, const char *b, const char *want)
 int main(void)
 {
     static char enc[COOPSYNC_MAXLEN * 3 + 1], dec[COOPSYNC_MAXLEN + 1];
-    const char *raw = "models/weapons/kar98.tik|a b\"c;d$e%f//g~h";
+    const char *raw = "models/weapons/kar98.tik|a b\"c;d$e%f//g~h!i";
     int         n;
 
     expect(COOPSYNC_MERGE_MAX, "1200", "900", "1200");
@@ -41,13 +41,13 @@ int main(void)
 
     CoopSync_Encode(raw, (int)strlen(raw), enc);
     n = CoopSync_Decode(enc, dec, sizeof(dec));
-    if (n != (int)strlen(raw) || strcmp(dec, raw) || strpbrk(enc, " \";$/\\")) {
+    if (n != (int)strlen(raw) || strcmp(dec, raw) || strpbrk(enc, " \";$/\\%")) {
         printf("FAIL encode/decode [%s] -> [%s] -> [%s]\n", raw, enc, dec);
         fails++;
     } else {
         printf("ok   encode [%s]\n", enc);
     }
-    if (CoopSync_Decode("%G1", dec, sizeof(dec)) != -1 || CoopSync_Decode("%4", dec, sizeof(dec)) != -1) {
+    if (CoopSync_Decode("!G1", dec, sizeof(dec)) != -1 || CoopSync_Decode("!4", dec, sizeof(dec)) != -1) {
         printf("FAIL malformed decode accepted\n");
         fails++;
     }

@@ -15,7 +15,23 @@
 - **Tests:** `tools/merge_selftest.c` (offline, ALL PASS); `tools/run_progsync.py run <name> [--phases 1,2,3,4,5]`
   (private copy G:\mohaa-hudfeed5, sub-folders progsync\ + progsync_old\, fake qkey identity; results + homes are
   moved to H:\hzm_archive\progression_sync\<name>\).
-- **Next:** run the harness phase by phase, fix what fails, then write the ship steps below.
+- **Harness run r3 (2026-10-14 11:47-12:17, archived H:\hzm_archive\progression_sync\r3):** first join on a
+  dedicated server WORKS (PC record 5000 XP shown on the server, award+flush and unlock came back to the PC
+  home, join burst coalesced to 1 write, old client unchanged, listen host unchanged). Three defects found:
+  1. `%` escapes arrive as `.` (every MSG_Read*String rewrites '%'): unlock paths came home as
+     `models.2Fweapons...` - FIXED in source (escape is now `!`), not yet rebuilt/retested.
+  2. **Upload stalls the connection when the client's packet reaches ~1300 bytes**: the client exe never
+     sends the second fragment of a fragmented packet (`CL_Netchan_TransmitNextFragment` is never called), and
+     every packet re-carries all unacked reliable commands. Reconnect, server B and the old-server case all
+     timed out this way once the records had grown (unlocks ~1 KB). Also: while ACTIVE a dedicated server
+     IGNORES (acks but drops) any client command within 1 s of the previous one (sv_floodProtect).
+     => protocol v2 (IN PROGRESS): `begin` carries per-record digests (CRC of a sorted canonical form); the
+     server answers `coopsave want <types>` only for records that differ (map changes on the same server
+     upload nothing); wanted records go up in small chunks (<=480 chars), one at a time, each acked by the
+     server (`coopsave got <t> <seq>`), resent after 3 s, >=1.2 s apart (flood protection).
+  3. Harness bugs (listen phase read the log from a stale offset; a duplicate server B).
+- **Next:** finish protocol v2 (bg_coopsync.h digest + encode `/` raw, g_coopsync.cpp begin/want/got,
+  cg_coopsync.c paced queue + CG_DrawActiveFrame hook, script wait cap 60 s), rebuild, rerun all 5 phases.
 
 ## The problem in one paragraph
 

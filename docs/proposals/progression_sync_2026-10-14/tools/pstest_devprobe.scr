@@ -18,6 +18,8 @@ main:{
 			} else {
 				if( local.c == "award" ){
 					waitthread coop_mod/xp.scr::xp_award local.player 250 "objective" "PSTEST"
+				} else if( local.c == "award1" ){
+					waitthread coop_mod/xp.scr::xp_award local.player 1 "objective" "PSTEST"
 				} else if( local.c == "flush" ){
 					waitthread coop_mod/xp.scr::xp_flush
 					waitthread coop_mod/challenges.scr::chal_flush
