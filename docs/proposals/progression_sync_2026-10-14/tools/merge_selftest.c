@@ -41,7 +41,7 @@ int main(void)
 
     CoopSync_Encode(raw, (int)strlen(raw), enc);
     n = CoopSync_Decode(enc, dec, sizeof(dec));
-    if (n != (int)strlen(raw) || strcmp(dec, raw) || strpbrk(enc, " \";$/\\%")) {
+    if (n != (int)strlen(raw) || strcmp(dec, raw) || strpbrk(enc, " \";$\\%") || strstr(enc, "//")) {
         printf("FAIL encode/decode [%s] -> [%s] -> [%s]\n", raw, enc, dec);
         fails++;
     } else {
@@ -58,6 +58,42 @@ int main(void)
     if (CoopSync_ValidContent("a\nb", 3) || !CoopSync_ValidContent("a b~c", 5)) {
         printf("FAIL content validation\n");
         fails++;
+    }
+    {
+        char d1[16], d2[16], d3[16];
+        CoopSync_DigestHex(COOPSYNC_MERGE_UNION, "b|a|c", d1);
+        CoopSync_DigestHex(COOPSYNC_MERGE_UNION, "a|c|b|a", d2);
+        CoopSync_DigestHex(COOPSYNC_MERGE_UNION, "a|c", d3);
+        if (strcmp(d1, d2) || !strcmp(d1, d3)) {
+            printf("FAIL digest order-independence %s %s %s\n", d1, d2, d3);
+            fails++;
+        } else {
+            printf("ok   digest %s == %s != %s\n", d1, d2, d3);
+        }
+        CoopSync_DigestHex(COOPSYNC_MERGE_MAX, "", d1);
+        CoopSync_DigestHex(COOPSYNC_MERGE_MAX, "5000", d2);
+        CoopSync_DigestHex(COOPSYNC_MERGE_UNION_TRAIL, "m1_1|m2_2|", d3);
+        if (!strcmp(d1, d2)) {
+            printf("FAIL digest xp\n");
+            fails++;
+        }
+        CoopSync_DigestHex(COOPSYNC_MERGE_UNION_TRAIL, "m2_2|m1_1", d1);
+        if (strcmp(d1, d3)) {
+            printf("FAIL digest trailing bar\n");
+            fails++;
+        }
+    }
+    {
+        /* '/' travels raw except in "//"; the encoding never contains "//" or '%' */
+        const char *p2 = "models/weapons/a.tik|x//y|/";
+        CoopSync_Encode(p2, (int)strlen(p2), enc);
+        n = CoopSync_Decode(enc, dec, sizeof(dec));
+        if (strstr(enc, "//") || strchr(enc, '%') || n != (int)strlen(p2) || strcmp(dec, p2)) {
+            printf("FAIL slash encoding [%s]\n", enc);
+            fails++;
+        } else {
+            printf("ok   slash encoding [%s]\n", enc);
+        }
     }
     printf("%s (%d failures)\n", fails ? "FAILED" : "ALL PASS", fails);
     return fails ? 1 : 0;

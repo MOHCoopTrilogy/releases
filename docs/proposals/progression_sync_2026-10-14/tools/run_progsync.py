@@ -350,8 +350,9 @@ def phase1(code, test, ctx):
     clog = launch_client(BIN, hm, SPORT["A"])
     m = wait_for(slog, r"\^~\^~\^ COOPSYNC merged cl=\d+ id=(\w+)\.\.[^\r\n]*", 300)
     check("1a server merged the uploaded record", m and gid.startswith(m.group(1)), m.group(0) if m else "no merge line")
-    c = wait_for(clog, r"\^~\^~\^ COOPSYNC client sent (\d+) records", 60)
-    check("1a client sent its records", c and int(c.group(1)) >= 5, c.group(0) if c else "no send line")
+    c = wait_for(clog, r"\^~\^~\^ COOPSYNC client uploading (\d+) chunks", 60)
+    check("1a client was asked for its records and uploaded them", c and int(c.group(1)) >= 4,
+          c.group(0) if c else "no upload line")
     sr = wait_for(slog, r"\^~\^~\^ XP Service record: [^\r\n]*", 120)
     check("1a XP from the PC shows on the dedicated server", sr and " 5000 XP" in sr.group(0), sr.group(0) if sr else "")
     w = re.search(r"COOPSYNC script waited[^\r\n]*", read(slog))
@@ -395,6 +396,7 @@ def phase1(code, test, ctx):
     r = rcon(hm, slog, "award1")
     total2 = r.group(1) if r else None
     st = len(read(clog))
+    sst_rc = len(read(slog))
     step(hm, ["wait 1500", "disconnect", "echo ^~^~^ PS disconnected", "wait 12000",
               "connect 127.0.0.1:%d" % SPORT["A"], "wait 500"], timeout=60)
     time.sleep(1)
@@ -406,16 +408,29 @@ def phase1(code, test, ctx):
           fold and total2 and pc["xp"] == total2 and pc["xp"] != "999999",
           "server total=%s pc=%s line=%s" % (total2, pc["xp"], fold.group(0) if fold else None))
     ctx["after1d"] = pc
-    # 1e reconnect mid-mission: merged again, nothing lost
-    st = len(read(slog))
-    m = wait_for(slog, r"\^~\^~\^ COOPSYNC merged[^\r\n]*", 180, st)
-    sr = wait_for(slog, r"\^~\^~\^ XP Service record: [^\r\n]*", 120, st)
-    check("1e reconnect: merged again and the total is intact", m and sr and (" %s XP" % total2) in sr.group(0),
+    # 1e reconnect mid-mission: the PC and the server already agree -> nothing uploaded, nothing lost
+    m = wait_for(slog, r"\^~\^~\^ COOPSYNC merged[^\r\n]*", 180, sst_rc)
+    sr = wait_for(slog, r"\^~\^~\^ XP Service record: [^\r\n]*", 120, sst_rc)
+    check("1e reconnect: total intact", m and sr and (" %s XP" % total2) in sr.group(0),
           (m.group(0) if m else "no merge") + " | " + (sr.group(0) if sr else "no record"))
+    check("1e reconnect: nothing had to be uploaded (all 7 records already the same)",
+          m and "already_same=7" in m.group(0), m.group(0) if m else "")
     join(hm, slog)
     time.sleep(4)
     ctx["shots"].append(shot(hm, "p1_after_reconnect"))
     ctx["total"] = total2
+    # 1f map change on the same server (the every-mission case): no upload, records intact
+    sst = len(read(slog))
+    open(os.path.join(os.path.dirname(slog), "pscmd.cfg"), "w", newline="\n").write("map %s\n" % MAP)
+    step(hm, ["rcon exec pscmd.cfg", "wait 200"])
+    m = wait_for(slog, r"\^~\^~\^ COOPSYNC merged[^\r\n]*", 300, sst)
+    sr = wait_for(slog, r"\^~\^~\^ XP Service record: [^\r\n]*", 120, sst)
+    check("1f map change: no upload, total intact", m and "already_same=7" in m.group(0) and sr and (" %s XP" % total2) in sr.group(0),
+          (m.group(0) if m else "no merge") + " | " + (sr.group(0) if sr else "no record"))
+    w = re.findall(r"COOPSYNC script waited[^\r\n]*", read(slog)[sst:])
+    log("1f script waits:", w)
+    join(hm, slog)
+    time.sleep(3)
 
 
 def phase2(code, test, ctx):
@@ -476,8 +491,8 @@ def phase4(code, test, ctx):
     before_pc = saves(mt, gid)
     sst = len(read(slog))
     clog = launch_client(BIN, hm, SPORT["OLD"])
-    c = wait_for(clog, r"\^~\^~\^ COOPSYNC client sent (\d+) records", 300)
-    check("4 new client on old server: it still uploads (harmless)", c, c.group(0) if c else "")
+    c = wait_for(clog, r"\^~\^~\^ COOPSYNC client handshake[^\r\n]*", 300)
+    check("4 new client on old server: handshake sent, nothing else (harmless)", c, c.group(0) if c else "")
     ok = wait_for(slog, r"\^~\^~\^ XP Service record: [^\r\n]*", 300, sst)
     check("4 new client on old server: joins and loads as today", ok, ok.group(0) if ok else "")
     joined = join(hm, slog)
@@ -496,14 +511,15 @@ def phase5(code, test, ctx):
     hm, mt, gid = ctx["pc"], ctx["pcmt"], ctx["gid"]
     before_pc = saves(mt, gid)
     lg = os.path.join(mt, "qconsole.log")
-    st = len(read(lg))
     launch_client(BIN, hm, listen=True)
+    time.sleep(3)
+    st = 0
     sr = wait_for(lg, r"\^~\^~\^ XP Service record: [^\r\n]*", 300, st)
     check("5 listen host: own record loads as today", sr and (" %s XP" % before_pc["xp"]) in sr.group(0),
           sr.group(0) if sr else "")
     tail = read(lg)[st:]
     check("5 listen host: no upload, no merge, no wait",
-          not re.search(r"COOPSYNC (client sent|merged|script waited)", tail), "")
+          not re.search(r"COOPSYNC (client handshake|client uploading|merged|script waited)", tail), "")
     joined = join(hm, lg)
     r = rcon(hm, lg, "award", local=True)
     rcon(hm, lg, "flush", local=True)
@@ -554,7 +570,7 @@ def main():
             phase2(code, test, ctx)
             ctx["srvB"] = (os.path.join(home("srvB"), "maintt"), os.path.join(home("srvB"), "maintt", "qconsole.log"))
         if 3 in phases:
-            if "srvB" not in ST["servers"]:
+            if "B" not in ST["servers"]:
                 start_server("B", BIN, code, test, recs=B_SEED, gid=gid)
                 ctx["srvB"] = (os.path.join(home("srvB"), "maintt"), os.path.join(home("srvB"), "maintt", "qconsole.log"))
             phase3(code, test, ctx)
