@@ -33,10 +33,10 @@ def main():
     log = read(os.path.join(A, run, "srv", "maintt", "qconsole.log"))
     if not log:  # listen host: the host's own log
         log = read(os.path.join(A, run, "pc1", "maintt", "qconsole.log"))
-    segs = re.split(r"(?=\[[^\]]*\] Server: )", log)
+    segs = re.split(r"(?=\[[^\]]*\] (?:Server: |Rcon from ))", log)  # an rcon map prints no Server: line
     for seg in segs:
-        m = re.match(r"\[[^\]]*\] Server: (\S+)", seg)
-        name = m.group(1) if m else "(start)"
+        m = re.match(r"\[[^\]]*\] (?:Server: (\S+)|Rcon from (\S+))", seg)
+        name = (m.group(1) or "(rcon map from %s)" % m.group(2)) if m else "(start)"
         per = {}
         for r in SV.finditer(seg):
             cl, st = int(r.group(2)), int(r.group(3))

@@ -260,7 +260,7 @@ def launch_client(idx, bins, hm, fps=60, W=960, Hh=540):
     sets = [("com_target_game", "2"), ("fs_basepath", GOG), ("fs_homepath", hm), ("cl_renderer", "opengl2"),
             ("r_ext_framebuffer_multisample", "0"), ("r_ext_multisample", "0"), ("r_mode", "-1"),
             ("r_customwidth", str(W)), ("r_customheight", str(Hh)), ("r_fullscreen", "0"), ("developer", "0"),
-            ("logfile", "2"), ("net_enabled", "1"), ("net_ip", "127.0.0.1"), ("net_port", str(CPORTS[idx - 1]))]
+            ("logfile", "2"), ("net_enabled", "1"), ("net_ip", "127.0.0.1"), ("net_port", str(SPORT if (ST.get("listen") and idx == 1) else CPORTS[idx - 1]))]
     args = [os.path.join(bins, "openmohaa_jf.exe")]
     for k, v in sets:
         args += ["+set", k, v]
@@ -268,7 +268,7 @@ def launch_client(idx, bins, hm, fps=60, W=960, Hh=540):
         boot += ["set cl_netProbe 1"]
     if ST.get("netdebug"):
         boot += ["set showdrop 1", "set cl_shownet 1"]
-    if ST.get("listen"):
+    if ST.get("listen") and idx == 1:
         # listen host: the client hosts co_lobby1 itself through the menu path (start_server.cfg -> ui_startdmmap 2)
         boot += ["set sv_netProbe 1", "set sv_lagProbe 1", "seta coop_campaign 1", "set net_port %d" % SPORT]
         args += ["+set", "g_gametype", "2", "+exec", "jf_on.cfg", "+set", "ui_dmmap", "co_lobby1",
@@ -428,6 +428,9 @@ def main():
             cs.append(launch_client(i + 1, cbins[i], pcs[i][0], fps=opts["fps"]))
             if i + 1 < opts["clients"]:
                 time.sleep(20)
+                if ST.get("listen") and i == 0:
+                    wait_for(slog, r"has entered the battle", 300)  # the host is up before a remote joins it
+                    time.sleep(10)
         t0 = time.time()
         ctx["t"]["launched"] = time.strftime("%H:%M:%S")
         m = wait_for(slog, r"has entered the battle", 240)
@@ -454,6 +457,7 @@ def main():
             ctx["shots"].append(shot(c, "c%d_lobby_end" % c["idx"]))
             st = len(read(slog))
         lobby_end = len(read(slog))
+        cl_lobby_end = len(read(cs[0]["log"]))
         if opts["ready"]:
             for c in cs:
                 step(c, ["+use", "wait 30", "-use", "wait 30"])
@@ -462,20 +466,33 @@ def main():
             # in the mission: join a team, then play
             # the briefing is skipped by the squad ready gate (coop_mod/readygate.scr): everyone presses Use
             m2 = None
-            for _ in range(8):
+            for k in range(8):
                 time.sleep(15)
-                if re.search(r"Server: m1l1", read(slog)[lobby_end:]):
+                if re.search(r"Server: m1l1", read(cs[0]["log"])[cl_lobby_end:]):
                     break
-                for c in cs:
-                    step(c, ["+use", "wait 30", "-use"])
-            m2 = wait_for(slog, r"Server: m1l1", 120, lobby_end)
+                if k < 4:
+                    for c in cs:
+                        step(c, ["popmenu 0", "wait 5", "+use", "wait 40", "-use"])
+                elif k == 4 and not ST.get("listen"):
+                    # fallback: the same clean "map" transition the mod's own launch uses (stuffsrv map), via rcon
+                    log("briefing skip by Use did not fire - rcon map m1l1")
+                    step(cs[0], ["set rconPassword " + RCON, "rcon map m1l1"])
+                elif k == 4:
+                    step(cs[0], ["map m1l1"])
+            m2 = wait_for(cs[0]["log"], r"Server: m1l1", 120, cl_lobby_end)
             check("briefing skipped into m1l1", m2)
             log("mission map:", m2.group(0) if m2 else "(no m1l1 line)")
             t1 = time.time()
-            time.sleep(30)
+            time.sleep(20)
+            # spawn in: the mission starts the player as a spectator ("Press Fire to join the battle")
             for c in cs:
-                step(c, ["popmenu 0", "wait 10", "primarydmweapon smg", "wait 5", "join_team allies", "wait 20",
-                         "popmenu 0", "wait 40", "popmenu 0"])
+                for _ in range(3):
+                    st0 = len(read(slog))
+                    step(c, ["popmenu 0", "wait 10", "primarydmweapon smg", "wait 5", "join_team allies", "wait 20",
+                             "popmenu 0", "wait 20", "+attackprimary", "wait 30", "-attackprimary", "wait 60"])
+                    if wait_for(slog, r"JFTester%d[^\r\n]*(?:has joined|has entered)|KITGIVE" % c["idx"], 10, st0):
+                        break
+            ctx["shots"].append(shot(cs[0], "c1_mission_spawned"))
             half = None
             while time.time() - t1 < opts["missionsec"]:
                 if any(c["bg"].proc.poll() is not None for c in cs):
