@@ -2,7 +2,9 @@
 
 ## HANDOVER (keep this current - the next session starts here)
 
-- **Status (2026-10-14 13:40): reproduction harness being built. Nothing fixed, nothing deployed.**
+- **Status (2026-10-14 14:00): REPRODUCED on the harness (run a4: v1.10.23, the user's own client config copied
+  read-only, fake identity, veteran record) - same signature as the public logs. A/B vs v1.10.22 running. Nothing
+  fixed, nothing deployed.**
 - **Branches / worktrees**
   - engine `joinflood-next` from e8838a89 (= v1.10.23 source), worktree `C:\mohaa-coop-dev\openmohaa-hzm-joinflood`,
     build dir `.cmake` there (configured like progsync's). Uncommitted: the `sv_netProbe` instrument
@@ -33,6 +35,11 @@
    window; every snapshot re-carries the whole window -> ~10+ KB snapshots, 1300-byte fragments, slow acks; the
    `coopsave got` waits behind it in the FIFO, which triggers (1).
 
-## Runs
+## Runs (H:\hzm_archive\joinflood\<run>\, server log srv\maintt\qconsole.log, SVNET = 1 line/s)
 
-(none yet)
+| run | build srv/cl | client cfg | result |
+|---|---|---|---|
+| a1_new_stock | 1.10.23 / 1.10.23 | pristine harness cfg, fps 60 | OK. Upload 30 s. After the merge ONE burst: 256 in flight + 81 parked, a 21.5 KB snapshot (318 seta + 5 coopsave); acked in < 1 s on this path. |
+| a2_new_fps200 | same | pristine, fps 200 | OK. userinfo = 566 bytes. |
+| a3_new_poke | same | pristine + name flips during upload | OK; the mod itself uses the name as a report bus (`,sn37` `,hn43` `,f10`...: 5 userinfo pairs in 3 s). |
+| **a4_new_usercfg** | same | **user's omconfig (read-only copy)** | **REPRODUCED.** From entry the client acks NO server command (in flight 60 -> 233 in 19 s, every snapshot fragmented, 4-9 KB) while its own packets still arrive (60/s); at +20 s every client packet is a fragment (infrag 60/s, in 0 - the client exe never sends the 2nd fragment, bug-3905), client log `MAX_PACKET_USERCMDS` x10840; upload never completes; timed out. Ready-up impossible. |

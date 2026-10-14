@@ -37,6 +37,9 @@ RCON = "jf14"
 SCR = r"C:\Users\curry\AppData\Local\Temp\claude\C--mohaa-coop-dev\7ee3b4ee-deea-4563-b7bc-c7746a82f4e9\scratchpad\joinflood"
 ARCHIVE = r"H:\hzm_archive\joinflood"
 CODEPAK = "zzzzzz_co-op_hzm_mod_code.pk3"
+# --usercfg: a READ-ONLY copy of the user's own client config (never his saves or key), so the harness client
+# carries the same userinfo (pins, kit, cosmetics, MP blob...) as the real one; name and identity are fake
+USERCFG = r"G:\mohaa-gl2\home\maintt\configs\omconfig.cfg"
 PATCHED_LOBBY = os.path.join(ROOT, "public_servers", "srv1", "maintt", "coop_mod", "lobby.scr")
 TYPES = ("xp", "chal", "unlocks", "pins", "pend", "medals", "bpfound")
 RES = []
@@ -201,7 +204,7 @@ def seed_client(idx, slotdir, code, recs):
     key = os.urandom(2048)
     open(os.path.join(hm, "qkey"), "wb").write(key)
     gid = hashlib.md5(key).hexdigest().upper()
-    cfg = read(os.path.join(PRISTINE, "omconfig.cfg"))
+    cfg = read(USERCFG if ST.get("usercfg") else os.path.join(PRISTINE, "omconfig.cfg"))
     for k, v in (("name", "JFTester%d" % idx), ("rate", "90000"), ("snaps", "40"), ("cl_maxpackets", "100")):
         cfg, n = re.subn(r'(?im)^seta %s "[^"\r\n]*"' % k, 'seta %s "%s"' % (k, v), cfg)
         if not n:
@@ -243,11 +246,11 @@ def stop_server():
     ST["server"] = None
 
 
-def launch_client(idx, bins, hm, W=960, Hh=540):
+def launch_client(idx, bins, hm, fps=60, W=960, Hh=540):
     owner, slotdir = SLOTS[idx - 1]
     mt = os.path.join(hm, "maintt")
     boot = ['bind F12 "exec isstep.cfg"', "set ui_gmbox 0", "ui_checkrestart", "set coop_idleInspect 0",
-            "set coop_tinnitus 0", "set com_maxfps 60", "set coop_coverAuto 0"]
+            "set coop_tinnitus 0", "set com_maxfps %d" % fps, "set coop_coverAuto 0", "set cl_lanForcePackets 1"]
     sets = [("com_target_game", "2"), ("fs_basepath", GOG), ("fs_homepath", hm), ("cl_renderer", "opengl2"),
             ("r_ext_framebuffer_multisample", "0"), ("r_ext_multisample", "0"), ("r_mode", "-1"),
             ("r_customwidth", str(W)), ("r_customheight", str(Hh)), ("r_fullscreen", "0"), ("developer", "0"),
@@ -255,6 +258,8 @@ def launch_client(idx, bins, hm, W=960, Hh=540):
     args = [os.path.join(bins, "openmohaa_jf.exe")]
     for k, v in sets:
         args += ["+set", k, v]
+    if ST.get("netdebug"):
+        boot += ["set showdrop 1", "set cl_shownet 1"]
     args += ["+exec", "jf_on.cfg", "+connect", "127.0.0.1:%d" % SPORT]
     args, late = hw.apply_policy(args, width=W, height=Hh)
     boot += late
@@ -369,7 +374,10 @@ def main():
     opts = {"srv": opt("--srv", "new"), "cl": opt("--cl", "new"), "clients": int(opt("--clients", "1")),
             "lobby": opt("--lobby", "stock"), "lobbysec": int(opt("--lobbysec", "300")),
             "missionsec": int(opt("--missionsec", "200")), "delay": int(opt("--delay", "0")),
-            "ready": "--noready" not in a}
+            "ready": "--noready" not in a, "fps": int(opt("--fps", "60")), "poke": int(opt("--poke", "0"))}
+    ST["usercfg"] = "--usercfg" in a
+    ST["netdebug"] = "--netdebug" in a
+    opts["usercfg"] = ST["usercfg"]
     os.makedirs(SCR, exist_ok=True)
     log("RUN", ST["run"], json.dumps(opts))
     users = hg.user_game_running()
@@ -393,13 +401,19 @@ def main():
                 open(os.path.join(pcs[i][1], "jf_delay.cfg"), "w").write("set cl_packetdelay %d\n" % opts["delay"])
         cs = []
         for i in range(opts["clients"]):
-            cs.append(launch_client(i + 1, cbins[i], pcs[i][0]))
+            cs.append(launch_client(i + 1, cbins[i], pcs[i][0], fps=opts["fps"]))
             if i + 1 < opts["clients"]:
                 time.sleep(20)
         t0 = time.time()
         ctx["t"]["launched"] = time.strftime("%H:%M:%S")
         m = wait_for(slog, r"has entered the battle", 240)
         check("client entered the lobby", m)
+        # the user's own menu activity during the upload: the fov menu reports through the name (player.scr
+        # manageFovSet: "append name ,1<fov>"), i.e. two userinfo commands back to back
+        for k in range(opts["poke"]):
+            for c in cs:
+                step(c, ['set name "JFTester%d ,0203"' % c["idx"], "wait 2", 'set name "JFTester%d"' % c["idx"]])
+            time.sleep(4)
         if opts["delay"]:
             for c in cs:
                 step(c, ["exec jf_delay.cfg"])

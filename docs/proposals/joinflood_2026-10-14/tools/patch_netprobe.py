@@ -164,3 +164,34 @@ edit('code/server/sv_snapshot.c', '''				// Not enough time since last packet pa
 				SV_NetProbe_Skip( c, 1 ); // HZM [joinflood] probe
 				continue;''')
 print('netprobe patched into', ROOT)
+
+
+# --- v2: userinfo size/count and a command histogram while the queue is deep
+edit('code/server/sv_main.c', '''	int inPk, inFragPk, maxInflight, maxParked;
+} svNetProbe_t;''', '''	int inPk, inFragPk, maxInflight, maxParked, userinfos, histAt;
+} svNetProbe_t;''')
+edit('code/server/sv_main.c', '''void SV_NetProbe_Skip( client_t *cl, int why ) {''', '''void SV_NetProbe_Userinfo( client_t *cl ) {
+	svNetProbe_t *p = SV_NP( cl );
+	if ( p ) {
+		p->userinfos++;
+	}
+}
+
+static void SV_CmdQueueReport( client_t *client, int pending );
+
+void SV_NetProbe_Skip( client_t *cl, int why ) {''')
+edit('code/server/sv_main.c', r'''			"skipfrag=%d skiprate=%d in=%d infrag=%d lastin=%d ping=%d rate=%d\n",''',
+     r'''			"skipfrag=%d skiprate=%d in=%d infrag=%d lastin=%d ping=%d rate=%d ui=%d uic=%d\n",''')
+edit('code/server/sv_main.c', '''			cl->ping, cl->rate );
+		Com_Memset( p, 0, sizeof( *p ) );''', '''			cl->ping, cl->rate, (int)strlen( cl->userinfo ), p->userinfos );
+		if ( cl->reliableSequence - cl->reliableAcknowledge + sv_park[i].count >= 48 ) {
+			SV_CmdQueueReport( cl, cl->reliableSequence - cl->reliableAcknowledge + sv_park[i].count );
+		}
+		Com_Memset( p, 0, sizeof( *p ) );''')
+edit('code/server/server.h', 'void SV_NetProbe_Skip( client_t *cl, int why );',
+     'void SV_NetProbe_Skip( client_t *cl, int why );\nvoid SV_NetProbe_Userinfo( client_t *cl );')
+edit('code/server/sv_client.c', '''static void SV_UpdateUserinfo_f( client_t *cl ) {
+	Q_strncpyz( cl->userinfo, Cmd_Argv(1), sizeof(cl->userinfo) );''', '''static void SV_UpdateUserinfo_f( client_t *cl ) {
+	SV_NetProbe_Userinfo( cl ); // HZM [joinflood] probe
+	Q_strncpyz( cl->userinfo, Cmd_Argv(1), sizeof(cl->userinfo) );''')
+print('netprobe v2 patched')
