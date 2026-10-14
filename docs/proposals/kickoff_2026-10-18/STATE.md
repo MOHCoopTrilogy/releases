@@ -51,7 +51,7 @@
 - They BLOCK deploys (deploy_window.ps1 aborts while omohaaded runs from G:\GOG): stop them first, restart after a release.
 - bug-3909/3910 shipped in v1.10.24. The public servers keep sv_lagProbe 1 for a few days: watch SVCMDQ / SVFRAME lines in public_servers/srvN/maintt/qconsole.log.
 
-## STOPPED AT THE WEEKLY LIMIT (2026-10-14 ~16:50) - join lag on dedicated servers NOT fixed yet
+## v1.10.25 HOTFIX SHIPPED 2026-10-14 ~17:30: join lag fixed (bug-3911 client reads network every frame, bug-3912 4 MB sockets); engine rel-1.10.25-netfix dfc7079f pushed as release-1.10.25 (exe aa8304ff, ded 0de5f7ca). Notes below are the history of the hunt.
 - v1.10.24 still lags for real clients. Repro: user cfg at com_maxfps 200 never enters (H:\hzm_archive\joinflood\r1_rel_user200, r2); at 60 fps it joins but backlog ~926, as low as 7 snapshots/s (r3); pristine cfg at 200 is fine (r4).
 - The agent (handover docs/proposals/joinflood_2026-10-14/README.md, engine worktree openmohaa-hzm-joinflood) was cut off while starting: "Add a socket-buffer helper and call it for both sockets" (raise the UDP send/receive buffers - Windows defaults are small and drop bursts of 1300-byte fragments at high frame rates). Unverified lead.
 - User requirement: anyone must be able to join at ANY settings (no settings workaround). Proof after the fix = 6 runs: user cfg@200, worst case (fps 0/333, maxpackets 125, packetdup max, rate 90000, snaps 40), lightest (60, 30, 0, 25000, 20), pristine@200, two clients, listen host. Ship as a hotfix (user approved), rebuild exes in openmohaa-hzm-rel (DLOPEN on), then restart the public servers.
