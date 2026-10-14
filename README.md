@@ -9,22 +9,28 @@
 <p align="center">
 <a href="https://github.com/MOHCoopTrilogy/releases/releases/latest/download/MOHCoopTrilogy-WebSetup.exe"><img src="https://img.shields.io/badge/Download%20%26%20Install-2ea44f?style=for-the-badge&logo=github&logoColor=white" alt="Download and install"></a>
 &nbsp;
+<a href="https://discord.gg/cVjMYPBFZ"><img src="https://img.shields.io/badge/Join%20the%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Join the Discord"></a>
+&nbsp;
 <a href="#install"><img src="https://img.shields.io/badge/How%20to%20install-24292f?style=for-the-badge" alt="How to install"></a>
 </p>
-<p align="center"><sub>One ~3 MB installer · needs a GOG copy of MOH: Allied Assault War Chest · <b><a href="https://github.com/MOHCoopTrilogy/releases/releases/latest">Release notes</a></b> · <b><a href="https://discord.gg/cVjMYPBFZ">Discord</a></b></sub></p>
+<p align="center"><sub>One ~3 MB installer · needs a GOG copy of MOH: Allied Assault War Chest · <b><a href="https://github.com/MOHCoopTrilogy/releases/releases/latest">Release notes</a></b></sub></p>
+
+> [!IMPORTANT]
+> ### 🎖️ Testers wanted - solo players and whole squads
+> This is an **early alpha**, and we need people to play it. Grab some friends (or come find a squad), play
+> through missions, and tell us what breaks, what feels off and what you love.
+> **[Join the Discord](https://discord.gg/cVjMYPBFZ)** to find games and send feedback. Mid-game, Start menu →
+> **MOH Trilogy Coop - Report a Problem** sends us your logs in one click.
 
 Play the complete **Allied Assault**, **Spearhead** and **Breakthrough** campaigns in co-op, **built for 4** (multiplayer modes scale to 16). Built on the [HaZardModding Coop Mod](https://github.com/HaZardModding/hzm-mohaa-coop-mod) and a custom fork of the [OpenMOHAA](https://github.com/openmoh/openmohaa) engine, then heavily extended: weighty guns, aimed reloads, ragdolls, an unlockable Armory, smarter enemies, a full audio overhaul and HD visuals. Updates install themselves at every launch, and your original game is never touched.
-
-> [!WARNING]
-> **Early alpha.** Systems are tested as they're built, but no full campaign has been played start to finish on the current build. If something breaks, Start menu → **MOH Trilogy Coop – Report a Problem** sends us your logs in one click.
 
 ## Install
 
 1. **[Download the installer](https://github.com/MOHCoopTrilogy/releases/releases/latest/download/MOHCoopTrilogy-WebSetup.exe)** (~3 MB) and run it. It finds your GOG game and creates a **MOH Trilogy Coop** shortcut. No admin rights needed.
-2. **Launch from the shortcut.** The first launch downloads about 7 GB of game files. After that, each launch fetches only what changed.
-3. **Host:** Multiplayer → Start Game → **MOH Trilogy Coop**, pick a mission, Apply. **Join:** Multiplayer → Join Game, or `connect <ip>` in the console.
+2. **Launch from the shortcut.** The first launch downloads about 8 GB of game files from GitHub, with a progress bar. After that, each launch fetches only what changed.
+3. **Host:** Multiplayer → Start Game → **MOH Coop Trilogy (HZM)**, pick a mission, Apply. **Join:** Multiplayer → Join Game, or `connect <ip>` in the console.
 
-**Needs:** Windows, a GOG install of [MOH: Allied Assault War Chest](https://www.gog.com/game/medal_of_honor_allied_assault_war_chest), and about 6 GB free.
+**Needs:** Windows, a GOG install of [MOH: Allied Assault War Chest](https://www.gog.com/game/medal_of_honor_allied_assault_war_chest), an internet connection, and about 10 GB free.
 
 <details>
 <summary>Your existing game is safe</summary>
@@ -110,6 +116,14 @@ They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, t
 <tr>
 <td width="50%"><img src="docs/screenshots/05-challenges.jpg" width="100%" alt="Unlock skins, weapons and equipment through Service Record challenges"></td>
 <td width="50%"><img src="docs/screenshots/06-hero.jpg" width="100%" alt="Build your hero through unlocks and progression"></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/07-paratroopers.jpg" width="100%" alt="Your paratrooper squad holds the line and sets up a .30 cal you can take over"></td>
+<td width="50%"><img src="docs/screenshots/08-storms.jpg" width="100%" alt="Storms you can feel: rain that reaches the ground, wet streets, lightning and blizzards"></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/09-pistol.jpg" width="100%" alt="Aim two-handed, and reload without ever leaving your sights"></td>
+<td width="50%"><img src="docs/screenshots/10-double-barrel.jpg" width="100%" alt="New guns to earn, like the Double Barrel, each with finishes and variants"></td>
 </tr>
 </table>
 
