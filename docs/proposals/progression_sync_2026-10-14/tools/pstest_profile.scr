@@ -1,0 +1,31 @@
+//=========================================================================
+// TEST OVERLAY ONLY (bug-3903 progression sync harness) - replaces coop_mod/profile.scr inside the test pak
+// zzzzzzzzzzzz_progsynctest.pk3. player.scr threads prof_channel_probe once per player, so this is a per-player
+// hook. Poll the server cvar coop_pstest (set by rcon from the test client) and run one action per request.
+//=========================================================================
+prof_channel_probe local.player:{
+	if( local.player == NULL ){ end }
+	println ( "^~^~^ PSTEST hook e" + local.player.entnum )
+	while( local.player != NULL ){
+		local.c = getcvar( "coop_pstest" )
+		if( local.c != "" && local.c != "0" ){
+			setcvar "coop_pstest" "0"
+			if( local.c == "award" ){
+				waitthread coop_mod/xp.scr::xp_award local.player 250 "objective" "PSTEST"
+			} else if( local.c == "flush" ){
+				waitthread coop_mod/xp.scr::xp_flush
+				waitthread coop_mod/challenges.scr::chal_flush
+			} else if( local.c == "unlock" ){
+				waitthread coop_mod/challenges.scr::chal_add_unlock local.player "pstest_unlock"
+			}
+			local.t = local.player.flags["coop_xp_total"]
+			if( local.t == NIL ){ local.t = "nil" }
+			local.u = local.player.flags["coop_chal_unlocks"]
+			if( local.u == NIL ){ local.u = "nil" }
+			local.ss = local.player.coop_syncstate
+			if( local.ss == NIL ){ local.ss = "nil" }
+			println ( "^~^~^ PSTEST did=" + local.c + " total=" + local.t + " sync=" + local.ss + " unlocks=" + local.u )
+		}
+		wait 0.5
+	}
+}end

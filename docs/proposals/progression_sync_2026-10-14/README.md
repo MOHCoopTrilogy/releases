@@ -2,12 +2,20 @@
 
 ## HANDOVER (keep this current - the next session starts here)
 
-- **Status:** design written; engine + script work starting.
-- **Engine branch:** `progsync-next` in worktree `C:\mohaa-coop-dev\openmohaa-hzm-progsync` (base 0206e3c9 = v1.10.22 source).
-- **Mod branch:** `progsync-next` in worktree `C:\mohaa-coop-dev\hzm-mod-progsync` (base coop-wip 4f8a1019 = v1.10.22).
-- **Done:** design (this file).
-- **Next:** engine `fgame/g_coopsync.cpp` + hooks, cgame `cgame/cg_coopsync.c` + hooks, script wait in `coop_mod/xp.scr`.
-- **How to test:** see "Test plan" below. Nothing is deployed, pushed or released.
+- **Status:** engine + script code written and BUILT; offline merge self-test passes; in-game harness written,
+  first in-game run next. Nothing deployed, pushed or released.
+- **Engine branch:** `progsync-next` in worktree `C:\mohaa-coop-dev\openmohaa-hzm-progsync` (base 0206e3c9 = v1.10.22
+  source), commit 44e134ff. Build dir `.cmake` there (`cmake --build . --config Release --target fgame cgame --parallel 4`
+  from PowerShell); outputs `.cmake\code\servergame\Release\game.dll`, `.cmake\code\client\cgame\Release\cgame.dll`.
+- **Mod branch:** `progsync-next` in worktree `C:\mohaa-coop-dev\hzm-mod-progsync` (base coop-wip 4f8a1019 = v1.10.22),
+  commit 42fe688c (`coop_mod/xp.scr` xp_waitSync + call sites in xp_identify and challenges chal_ensure).
+- **Code map:** `code/fgame/bg_coopsync.h` (shared rules + wire encoding), `code/fgame/g_coopsync.cpp` (server),
+  `code/cgame/cg_coopsync.c` (client); hooks in g_client.cpp (connect/disconnect/userinfo), gamecmds.cpp
+  (G_ClientCommand), scriptthread.cpp (FS_WriteContent), cg_main.c (CG_Init/CG_Shutdown), cg_servercmds.c.
+- **Tests:** `tools/merge_selftest.c` (offline, ALL PASS); `tools/run_progsync.py run <name> [--phases 1,2,3,4,5]`
+  (private copy G:\mohaa-hudfeed5, sub-folders progsync\ + progsync_old\, fake qkey identity; results + homes are
+  moved to H:\hzm_archive\progression_sync\<name>\).
+- **Next:** run the harness phase by phase, fix what fails, then write the ship steps below.
 
 ## The problem in one paragraph
 
