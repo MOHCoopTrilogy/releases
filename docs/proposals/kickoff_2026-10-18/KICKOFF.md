@@ -97,6 +97,54 @@ default for each (section 5). Never drip questions one at a time - each reply re
 
 **-> Release candidate A** (Stage 1 + Stage 2). Cheap, visible, and safe to ship on its own.
 
+### Stage 2b - THE AIM AUDIT: every weapon, no exceptions (the user's requirement, 2026-10-14)
+
+The user's words: "ensure that we have all ads and ads reload anims down, vet them to make sure
+they aren't robotic looking, and that going in and out of ads is smooth for every single weapon.
+On any bad quality weapons I want us to fix them, including any model work we have done with
+Claude for ironsights etc."
+
+This audit decides the fix list for Stages 3 and 4, so it runs BEFORE more weapon work is built.
+The weapon job is not done until every row of the audit table passes.
+
+**Scope:** every weapon the player can hold - all 162 in `global/giveall.scr`, plus every variant
+and finish tik - INCLUDING everything that already shipped (v1.10.22 and earlier). Start from
+`docs/proposals/ads_twohand_2026-10-11/coverage.md` but trust the sweep, not the list.
+
+**What is checked, per weapon:**
+1. *Complete:* usable sights in aim; an aimed reload that stays on target; an aimed cycle between
+   shots where the gun has one (bolt, pump, lever); empty and partial reloads; every stance.
+2. *Not robotic:* motion eases in and out (no constant-speed slides, no dead stops); hands and gun
+   do not all start and stop on the same frame; the gun shows weight and settles after a move; the
+   action really works on the model with a hand on the real control; no frozen fingers, no hand
+   passing through the gun, no magazine appearing from nowhere.
+3. *Smooth in and out of aim:* no pop, snap or one-frame jump going into or out of aim - from
+   idle, while walking, right after a shot, in the MIDDLE of a reload or a cycle, on a stance
+   change, and when sprint or a weapon swap breaks the aim. Same check with sway on.
+4. *Model work made in this project:* every sight, part or mesh we built or edited (G43 Irons,
+   FG 42 Irons, the shotgun sights, the M1A1 remodel, Double Barrel, pistol variants, any other
+   iron-sight or scope removal work) - proportions, alignment of front and rear sight on the eye
+   line, shading and texture match with the rest of the gun, no holes, no floating or clipping
+   parts, correct in first AND third person and on every finish.
+
+**How to do it cheaply (one agent on sonnet for the sweep, default model for the judging):**
+- One scripted pass per weapon in a private harness copy: aim in, hold, fire, cycle, aimed reload
+  (partial and empty), aim out, then aim in and out mid-reload. Many weapons per game launch, low
+  frame-rate capture, one capture job at a time, raw frames archived to H: as each batch finishes.
+- Measure before looking: per-frame gun and hand positions give a jump score (pops at the aim
+  transition), a speed-profile score (constant speed and dead stops = robotic) and the on-target
+  number already used for reloads. Rank all weapons by these scores.
+- Then LOOK at every weapon's strip - the scores choose the order, they do not replace the eye.
+- Output: one audit table (weapon x sights / aim in-out / aimed reload / cycle / model work /
+  verdict / what is wrong), published as an artifact for the user, plus GIFs of the WORST cases
+  only (not all 162) sent to the user for their verdict.
+- The user's eye is the final judge. Anything they call bad goes on the fix list.
+
+**Then fix:** failures become the work list for the rifle, SMG, heavy and pistol lanes below, worst
+first. A weapon whose problem is the model (not the animation) goes to a model fix, and if our own
+build cannot be made good, say so and propose a sourced replacement (as was done for the C96 and
+the Double Barrel) rather than polishing a bad mesh.
+
 ### Stage 3 - the two big lanes, in parallel (one agent each)
 - **Officer and reinforcements rework** - approved by the user. Design, build order S1..S6, accepted
   answers and the radio addition are at the top of
@@ -152,6 +200,9 @@ default for each (section 5). Never drip questions one at a time - each reply re
 - Aimed reloads: on target (under 2 % of the centre box beyond the sway envelope), the action
   really works on the model, hands on the real control, every stance run AND looked at, and
   server-read tik row lengths never change.
+- Nothing weapon-related is "done" until it passes the Stage 2b audit: complete, not robotic,
+  smooth in and out of aim (including mid-reload), and any model work of ours looks right. This
+  applies to every lane agent's brief in Stages 3 and 4, and to weapons that already shipped.
 - Never hard-delete: move aside, archive to `H:\`. Stop only processes you started.
 - QA every visual before showing it. Python patch scripts via the Write tool, never Git-Bash
   heredocs. One `git add <paths> && git commit` per commit.
@@ -172,6 +223,7 @@ default for each (section 5). Never drip questions one at a time - each reply re
 | 8 | Frame-generation shadows question | Leave as is |
 | 9 | Scoped rifle reload style | Show the A/B sample, then ask once |
 | 10 | Small-maps ideas | Design summary first |
+| 11 | Aim audit: which comes first after Stage 2 - the audit of all weapons, or the officer rework | Both at once (one agent each); rifles wait for the audit's fix list |
 
 Also wanted from the user, if they played v1.10.22: how the scope view looks, whether the downpour
 is too heavy, and whether the What's New card lays out correctly. Nobody has checked those by eye.
