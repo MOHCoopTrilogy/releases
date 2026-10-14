@@ -6,7 +6,7 @@
   first in-game run next. Nothing deployed, pushed or released.
 - **Engine branch:** `progsync-next` in worktree `C:\mohaa-coop-dev\openmohaa-hzm-progsync` (base 0206e3c9 = v1.10.22
   source), commit 44e134ff. Build dir `.cmake` there (`cmake --build . --config Release --target fgame cgame --parallel 4`
-  from PowerShell); outputs `.cmake\code\servergame\Release\game.dll`, `.cmake\code\client\cgame\Release\cgame.dll`.
+  from PowerShell); outputs `.cmake\code\server\fgame\Release\game.dll`, `.cmake\code\client\cgame\Release\cgame.dll`.
 - **Mod branch:** `progsync-next` in worktree `C:\mohaa-coop-dev\hzm-mod-progsync` (base coop-wip 4f8a1019 = v1.10.22),
   commit 42fe688c (`coop_mod/xp.scr` xp_waitSync + call sites in xp_identify and challenges chal_ensure).
 - **Code map:** `code/fgame/bg_coopsync.h` (shared rules + wire encoding), `code/fgame/g_coopsync.cpp` (server),
