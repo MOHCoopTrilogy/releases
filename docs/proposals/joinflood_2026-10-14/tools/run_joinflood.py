@@ -98,13 +98,17 @@ def prep_bins(variant, slotdir):
         if not os.path.isfile(t) or md5f(t) != md5f(s):
             shutil.copyfile(s, t)
     shutil.copyfile(os.path.join(ENG, "Release", "omohaaded.exe"), os.path.join(d, "omohaaded_jf.exe"))
+    if ST.get("clprobe"):
+        # the same exe source as the release (unchanged since v1.10.22) + the cl_netProbe instrument
+        shutil.copyfile(os.path.join(ENG, "Release", "openmohaa.exe"), os.path.join(d, "openmohaa_jf.exe"))
     if variant == "new":
         game, cgame = os.path.join(GOG, "game.dll"), os.path.join(GOG, "cgame.dll")
     elif variant == "old":
         game, cgame = os.path.join(OLD_DLLS, "game.dll"), os.path.join(OLD_DLLS, "cgame.dll")
     else:
-        game = os.path.join(ENG, "code", "server", "fgame", "Release", "game.dll")
-        cgame = os.path.join(ENG, "code", "client", "cgame", "Release", "cgame.dll")
+        # fix: the joinflood-next exes; game.dll/cgame.dll are unchanged from v1.10.23 (same source, e8838a89)
+        game, cgame = os.path.join(GOG, "game.dll"), os.path.join(GOG, "cgame.dll")
+        shutil.copyfile(os.path.join(ENG, "Release", "openmohaa.exe"), os.path.join(d, "openmohaa_jf.exe"))
     shutil.copyfile(game, os.path.join(d, "game.dll"))
     shutil.copyfile(cgame, os.path.join(d, "cgame.dll"))
     log("bins", variant, d, "game", md5f(os.path.join(d, "game.dll"))[:8], "cgame",
@@ -188,6 +192,8 @@ def seed_server(opts, code):
            "seta coop_campaign 1", "set sv_lanForceRate 0", "set sv_netProbe 1", "set sv_lagProbe 1"]
     if opts["delay"]:
         cfg.append("set sv_packetdelay %d" % opts["delay"])
+    if opts.get("parkbytes") is not None:
+        cfg.append("set sv_cmdParkBytes %d" % opts["parkbytes"])  # 0 = the released behaviour (count window only)
     cfg.append("map co_lobby1")
     open(os.path.join(mt, "jf_start.cfg"), "w", newline="\n").write("\n".join(cfg) + "\n")
     return hm, mt
@@ -258,6 +264,8 @@ def launch_client(idx, bins, hm, fps=60, W=960, Hh=540):
     args = [os.path.join(bins, "openmohaa_jf.exe")]
     for k, v in sets:
         args += ["+set", k, v]
+    if ST.get("clprobe"):
+        boot += ["set cl_netProbe 1"]
     if ST.get("netdebug"):
         boot += ["set showdrop 1", "set cl_shownet 1"]
     args += ["+exec", "jf_on.cfg", "+connect", "127.0.0.1:%d" % SPORT]
@@ -374,9 +382,14 @@ def main():
     opts = {"srv": opt("--srv", "new"), "cl": opt("--cl", "new"), "clients": int(opt("--clients", "1")),
             "lobby": opt("--lobby", "stock"), "lobbysec": int(opt("--lobbysec", "300")),
             "missionsec": int(opt("--missionsec", "200")), "delay": int(opt("--delay", "0")),
-            "ready": "--noready" not in a, "fps": int(opt("--fps", "60")), "poke": int(opt("--poke", "0"))}
+            "ready": "--noready" not in a, "fps": int(opt("--fps", "60")), "poke": int(opt("--poke", "0")),
+            "parkbytes": int(opt("--parkbytes", "-1"))}
+    if opts["parkbytes"] < 0:
+        opts["parkbytes"] = None
     ST["usercfg"] = "--usercfg" in a
     ST["netdebug"] = "--netdebug" in a
+    ST["clprobe"] = "--clprobe" in a
+    opts["clprobe"] = ST["clprobe"]
     opts["usercfg"] = ST["usercfg"]
     os.makedirs(SCR, exist_ok=True)
     log("RUN", ST["run"], json.dumps(opts))
