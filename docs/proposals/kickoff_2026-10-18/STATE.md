@@ -6,6 +6,8 @@
 ## Live
 - Public release v1.10.22 "Eyes on Target" (GitHub MOHCoopTrilogy/releases, verified). The user's
   install matches it. Mod `coop-wip` = `org/coop-wip` = 4f8a1019.
+- Engine source for v1.10.22 is on GitHub: joncurry94-tech/openmohaa `release-1.10.22` = 0206e3c9
+  (pushed 2026-10-14). The lane branches are still PC-only; a backup push needs the user's yes.
 - Release binaries: `SCRATCH\built_integ10` (exe 5cd827eb, cgame b4b5c4e2, game 6b515fbf,
   gl2 8296bf86). Engine branches `integ-1.10.22` 277bdb9d and `integ-ads` 0206e3c9. Engine not pushed.
 
