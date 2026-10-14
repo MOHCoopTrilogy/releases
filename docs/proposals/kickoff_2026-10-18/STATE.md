@@ -43,6 +43,7 @@
 - Small-maps ideas, main menu, performance moves 2-5: not started.
 
 ## Waiting on the user
+- bug-3915: only player 1 can change uniform in the co-op lobby. Batch with bug-3913/3914; ask before changing.
 - bug-3914: co-op lobby bottom bar shows the PvP Allied/Axis armories; should be Loadout + Service Record only. Batch with bug-3913; ask before changing.
 - bug-3913: a departed player's lobby mannequin stays in co_lobby1 (cause in the buglog entry). User: do NOT change it yet - ask before fixing.
 - The decision sheet in KICKOFF.md section 5 (defaults apply if they say "all defaults").
