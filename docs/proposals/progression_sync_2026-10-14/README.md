@@ -2,36 +2,51 @@
 
 ## HANDOVER (keep this current - the next session starts here)
 
-- **Status:** engine + script code written and BUILT; offline merge self-test passes; in-game harness written,
-  first in-game run next. Nothing deployed, pushed or released.
-- **Engine branch:** `progsync-next` in worktree `C:\mohaa-coop-dev\openmohaa-hzm-progsync` (base 0206e3c9 = v1.10.22
-  source), commit 44e134ff. Build dir `.cmake` there (`cmake --build . --config Release --target fgame cgame --parallel 4`
-  from PowerShell); outputs `.cmake\code\server\fgame\Release\game.dll`, `.cmake\code\client\cgame\Release\cgame.dll`.
-- **Mod branch:** `progsync-next` in worktree `C:\mohaa-coop-dev\hzm-mod-progsync` (base coop-wip 4f8a1019 = v1.10.22),
-  commit 42fe688c (`coop_mod/xp.scr` xp_waitSync + call sites in xp_identify and challenges chal_ensure).
-- **Code map:** `code/fgame/bg_coopsync.h` (shared rules + wire encoding), `code/fgame/g_coopsync.cpp` (server),
-  `code/cgame/cg_coopsync.c` (client); hooks in g_client.cpp (connect/disconnect/userinfo), gamecmds.cpp
-  (G_ClientCommand), scriptthread.cpp (FS_WriteContent), cg_main.c (CG_Init/CG_Shutdown), cg_servercmds.c.
-- **Tests:** `tools/merge_selftest.c` (offline, ALL PASS); `tools/run_progsync.py run <name> [--phases 1,2,3,4,5]`
-  (private copy G:\mohaa-hudfeed5, sub-folders progsync\ + progsync_old\, fake qkey identity; results + homes are
-  moved to H:\hzm_archive\progression_sync\<name>\).
-- **Harness run r3 (2026-10-14 11:47-12:17, archived H:\hzm_archive\progression_sync\r3):** first join on a
-  dedicated server WORKS (PC record 5000 XP shown on the server, award+flush and unlock came back to the PC
-  home, join burst coalesced to 1 write, old client unchanged, listen host unchanged). Three defects found:
-  1. `%` escapes arrive as `.` (every MSG_Read*String rewrites '%'): unlock paths came home as
-     `models.2Fweapons...` - FIXED in source (escape is now `!`), not yet rebuilt/retested.
-  2. **Upload stalls the connection when the client's packet reaches ~1300 bytes**: the client exe never
-     sends the second fragment of a fragmented packet (`CL_Netchan_TransmitNextFragment` is never called), and
-     every packet re-carries all unacked reliable commands. Reconnect, server B and the old-server case all
-     timed out this way once the records had grown (unlocks ~1 KB). Also: while ACTIVE a dedicated server
-     IGNORES (acks but drops) any client command within 1 s of the previous one (sv_floodProtect).
-     => protocol v2 (IN PROGRESS): `begin` carries per-record digests (CRC of a sorted canonical form); the
-     server answers `coopsave want <types>` only for records that differ (map changes on the same server
-     upload nothing); wanted records go up in small chunks (<=480 chars), one at a time, each acked by the
-     server (`coopsave got <t> <seq>`), resent after 3 s, >=1.2 s apart (flood protection).
-  3. Harness bugs (listen phase read the log from a stale offset; a duplicate server B).
-- **Next:** finish protocol v2 (bg_coopsync.h digest + encode `/` raw, g_coopsync.cpp begin/want/got,
-  cg_coopsync.c paced queue + CG_DrawActiveFrame hook, script wait cap 60 s), rebuild, rerun all 5 phases.
+- **Status (2026-10-14 12:30): DONE and harness-proven (run r4, 28/28 checks). NOT deployed, pushed or
+  released** - shipping needs the user's word (see "Ship steps").
+- **Engine:** branch `progsync-next`, worktree `C:\mohaa-coop-dev\openmohaa-hzm-progsync`, base 0206e3c9
+  (= v1.10.22 source), head **e8838a89** (5 commits). Build dir `.cmake` there; from PowerShell:
+  `cmake --build . --config Release --target fgame cgame --parallel 4` -> `.cmake\code\server\fgame\Release\game.dll`,
+  `.cmake\code\client\cgame\Release\cgame.dll`. `openmohaa.exe` / `omohaaded.exe` are NOT changed.
+- **Mod:** branch `progsync-next`, worktree `C:\mohaa-coop-dev\hzm-mod-progsync`, base coop-wip 4f8a1019
+  (= v1.10.22), head **a513b08c** (`coop_mod/xp.scr` xp_waitSync + call in xp_identify, `coop_mod/challenges.scr`).
+- **Code map:** `code/fgame/bg_coopsync.h` (record list, merge rules, wire encoding, digests - shared by both
+  sides), `code/fgame/g_coopsync.cpp` (server), `code/cgame/cg_coopsync.c` (client); hooks: g_client.cpp
+  (connect / disconnect / userinfo -> coop_syncstate), gamecmds.cpp (G_ClientCommand), g_main.cpp (G_RunFrame),
+  scriptthread.cpp (FS_WriteContent), cg_main.c (CG_Init / CG_Shutdown), cg_view.c (CG_DrawActiveFrame),
+  cg_servercmds.c (`coopsave`).
+- **Tests:** `tools/merge_selftest.c` (offline: merge rules, encoding, digests - ALL PASS);
+  `tools/run_progsync.py run <name> [--phases 1,2,3,4,5]` (private copy G:\mohaa-hudfeed5, sub-folders
+  `progsync\` (new dlls) and `progsync_old\` (released dlls), fake qkey identity, IPv4 127.0.0.1 only, ports
+  12781-12784; everything is moved to `H:\hzm_archive\progression_sync\<name>\`).
+- **Run r4 results** (`H:\hzm_archive\progression_sync\r4\results.json`, screenshots in `...\r4\pc\maintt\screenshots\`):
+  1. remote client, dedicated server with NO record: the PC's 5000 XP shows on the server (scoreboard rank T/4,
+     `p1_scoreboard_rank.jpg`); upload took 6.8 s (6 chunks); award+flush and an unlock came back to the PC
+     byte-identical (paths with `/` intact); the first-join burst of rank-unlock rewrites reached the PC as 1 write;
+     XP awarded right before a disconnect (no flush) was in the PC file at the disconnect.
+  2. reconnect mid-mission and a map change on the same server: `already_same=7`, nothing uploaded, total intact.
+  3. the same PC on server B holding an OLDER, different record: server and PC both end with the union of
+     unlocks/blueprints, the higher challenge progress, the higher XP; the PC's own pin choice won.
+  4. old (released) client on the new server: as today, nothing written on the PC, no wait.
+  5. new client on an old (released) server: one handshake line, joins normally, nothing written on the PC.
+  6. listen host: no handshake/upload/merge/wait; writes its own files as today.
+- **Earlier runs** r1-r3 (archived) found the defects logged as bug-3904..3908 (escape `%`->`.`, the client
+  fragment stall + flood protection, a build include, the join burst, harness IPv6 socket).
+- **Open / not done:** no tamper check (decision row 15 default: honour system). Docs: one TRAPS line added (T8,
+  client->server bulk limits) in the base checkout, uncommitted because TRAPS.md carries other sessions' edits.
+
+## Ship steps (only with the user's yes)
+
+1. Merge engine `progsync-next` (e8838a89) into the next integration branch, and mod `progsync-next` (a513b08c)
+   into coop-wip; rebuild `game.dll` + `cgame.dll` from the merged tree (other lanes touch the same files - the
+   hooks are small and self-contained, see "Code map").
+2. `build.ps1` packs the code pak (xp.scr, challenges.scr) and deploys `cgame.dll`; `game.dll` is the manual copy
+   (back up as `game_pre_progsync_bak.dll`) into `G:\mohaa-gl2` and the GOG root.
+3. Release (publish_release.ps1): players need the new `cgame.dll` for their progression to travel; anyone who
+   hosts needs the new `game.dll` + code pak. Old clients keep working exactly as today.
+4. Public servers: stop both, put the new `game.dll` + code pak in place (the GOG-root `game.dll` is locked while
+   `omohaaded.exe` runs), start them. Records already on the servers merge with each player's own on his first
+   join with the new client - nothing to copy by hand.
 
 ## The problem in one paragraph
 
@@ -77,7 +92,8 @@ the fix get the two records merged on their first join.
 - Old client on a new server: it sends nothing, the server behaves exactly as today.
 - New client on an old server: the server ignores the upload and never sends anything back; nothing changes
   on your PC.
-- The server only waits (max 10 s) for a player whose upload has actually started.
+- The scripts wait (max 60 s; ~7 s for the test record, a few seconds more for a big one) only for a player whose
+  upload has actually started - i.e. only on his first join of a server whose copy differs from his.
 - Ships as a PAIR for full effect: `game.dll` (servers, and every listen host) + `cgame.dll` (every player).
   `openmohaa.exe` / `omohaaded.exe` are unchanged, so no protocol change. The script change (`xp.scr`,
   `challenges.scr`) is a bounded wait that is a no-op without the new game.dll.
