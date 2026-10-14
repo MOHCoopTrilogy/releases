@@ -23,7 +23,7 @@
 ## Lanes (one line each)
 - Give-all key bug: not started, not in the buglog.
 - SAS mission sandstorm + hint: not started.
-- Aim audit (Stage 2b, all 162 weapons): not started.
+- Aim audit (Stage 2b, all 162 weapons): ON HOLD by the user (2026-10-14) - do not run.
 - Officer and reinforcements: design approved, nothing built. README in
   `docs/proposals/officer_reinforcements_2026-10-14/`.
 - Rifles: `ads-rifle-next` c7ce5e86; reloads built for Kar98, Mosin, Enfield, Springfield, Garand,

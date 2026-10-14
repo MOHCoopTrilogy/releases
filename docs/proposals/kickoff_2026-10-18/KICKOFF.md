@@ -119,7 +119,12 @@ default for each (section 5). Never drip questions one at a time - each reply re
 
 **-> Release candidate A** (Stage 1 + Stage 2). Cheap, visible, and safe to ship on its own.
 
-### Stage 2b - THE AIM AUDIT: every weapon, no exceptions (the user's requirement, 2026-10-14)
+### Stage 2b - THE AIM AUDIT: every weapon - **ON HOLD (user, 2026-10-14: "Let's hold on the big animation overhaul instruction for now")**
+
+> **DO NOT RUN THIS STAGE.** Skip it entirely: no sweep, no audit table, no fix list from it, and do
+> not put its checks into any agent's brief. It stays written here so it is ready when the user
+> says to start it. Do not ask about it; the user will bring it up. Until then the weapon lanes in
+> Stages 3 and 4 run to the existing aimed-reload standard in section 4 only.
 
 The user's words: "ensure that we have all ads and ads reload anims down, vet them to make sure
 they aren't robotic looking, and that going in and out of ads is smooth for every single weapon.
@@ -222,9 +227,8 @@ the Double Barrel) rather than polishing a bad mesh.
 - Aimed reloads: on target (under 2 % of the centre box beyond the sway envelope), the action
   really works on the model, hands on the real control, every stance run AND looked at, and
   server-read tik row lengths never change.
-- Nothing weapon-related is "done" until it passes the Stage 2b audit: complete, not robotic,
-  smooth in and out of aim (including mid-reload), and any model work of ours looks right. This
-  applies to every lane agent's brief in Stages 3 and 4, and to weapons that already shipped.
+- (ON HOLD with Stage 2b - not in force until the user starts the audit: "nothing weapon-related
+  is done until it passes the Stage 2b audit".)
 - Never hard-delete: move aside, archive to `H:\`. Stop only processes you started.
 - QA every visual before showing it. Python patch scripts via the Write tool, never Git-Bash
   heredocs. One `git add <paths> && git commit` per commit.
@@ -245,7 +249,7 @@ the Double Barrel) rather than polishing a bad mesh.
 | 8 | Frame-generation shadows question | Leave as is |
 | 9 | Scoped rifle reload style | Show the A/B sample, then ask once |
 | 10 | Small-maps ideas | Design summary first |
-| 11 | Aim audit: which comes first after Stage 2 - the audit of all weapons, or the officer rework | Both at once (one agent each); rifles wait for the audit's fix list |
+| 11 | Aim audit of all weapons (Stage 2b) | ON HOLD - do not run, do not ask; rifles do not wait for it |
 
 Also wanted from the user, if they played v1.10.22: how the scope view looks, whether the downpour
 is too heavy, and whether the What's New card lays out correctly. Nobody has checked those by eye.
