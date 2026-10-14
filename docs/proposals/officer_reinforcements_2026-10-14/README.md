@@ -1,3 +1,14 @@
+> **COORDINATOR NOTE 2026-10-14 - USER APPROVED THE DESIGN ("I love your design summary. I'd like to roll it out.") - BUILD IT.**
+> Open questions: take the recommended answers (MG42 team inside the rifle section; killing the officer breaks the CURRENT attack; Panzerschreck only with a target;
+> sniper pair; truck / motorcycle arrivals later, map by map; build order S1 entry first, then S2, S3 MG42 team ...; the officer is not capturable).
+> **ADDITION from the user (verbatim):** "I also think that unless the radio does get destroyed, random troops will call in (If we have German radio chatter that plays that would be great)
+> after the officer dies (as though they are trying to call back in and can't reach the officer so they are sending in backup)."
+> Meaning: the officer's RADIO is a real, destroyable object. While it stands and the officer is dead, a surviving soldier goes to the radio after a delay, tries to raise the officer,
+> and calls in backup (a smaller wave through the same entry planner); German radio chatter plays at the set if an existing alias exists (verify each alias on m / e / t maps; no new sound files).
+> This can repeat with growing delays until the radio is destroyed (shot / grenade / explosives; give it health and a visible destroyed state using existing models) or no soldier can reach it.
+> Destroying the radio ends all further calls - tell the players so through the feed once. With the officer alive the radio is how HE calls waves, so destroying it early cuts him off too.
+> Add it to step S5 (officer) / S6 (reserves), behind `coop_reinfSmart` and its own cvar; scale and caps as the other waves; never blocks mission progress.
+
 # Officer and reinforcements: audit and design - 2026-10-14
 
 User, verbatim: "Go ahead and start working on refining all of the reinforcements that the officer calls in, including
