@@ -19,7 +19,7 @@
 > ### 🎖️ Testers wanted - solo players and whole squads
 > This is an **early alpha**, and we need people to play it. Grab some friends (or come find a squad), play
 > through missions, and tell us what breaks, what feels off and what you love.
-> **[Join the Discord](https://discord.gg/cVjMYPBFZ)** to find games and send feedback. Mid-game, Start menu →
+> **[Join the Discord](https://discord.gg/cVjMYPBFZ)** to find games and send feedback. If something breaks, Start menu →
 > **MOH Trilogy Coop - Report a Problem** sends us your logs in one click.
 
 Play the complete **Allied Assault**, **Spearhead** and **Breakthrough** campaigns in co-op, **built for 4** (multiplayer modes scale to 16). Built on the [HaZardModding Coop Mod](https://github.com/HaZardModding/hzm-mohaa-coop-mod) and a custom fork of the [OpenMOHAA](https://github.com/openmoh/openmohaa) engine, then heavily extended: weighty guns, aimed reloads, ragdolls, an unlockable Armory, smarter enemies, a full audio overhaul and HD visuals. Updates install themselves at every launch, and your original game is never touched.
