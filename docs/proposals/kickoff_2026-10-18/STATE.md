@@ -12,7 +12,7 @@
   gl2 8296bf86). Engine branches `integ-1.10.22` 277bdb9d and `integ-ads` 0206e3c9. Engine not pushed.
 
 ## Next
-- Stage 0 (the "first ten minutes" in KICKOFF.md), then Stage 1. Nothing of the plan has started.
+- Stage 0 (the "first ten minutes" in KICKOFF.md), then Stage 0b (progression follows the player - TOP PRIORITY), then Stage 1.
 - Because this file is dated 2026-10-14, the resume memory file IS still needed this once: read its
   2026-10-13 and 2026-10-14 entries only.
 

@@ -96,7 +96,32 @@ default for each (section 5). Never drip questions one at a time - each reply re
 
 ## 3. THE WORK, IN ORDER
 
-### Stage 1 - quick fixes (one agent, default model)
+### Stage 0b - PROGRESSION FOLLOWS THE PLAYER - TOP PRIORITY (user, 2026-10-14: "this needs fixed right for all players")
+
+bug-3903. Today XP, rank, challenges, unlocks, pins, pending rewards and blueprints are saved by the HOSTING
+machine (`fs_write_content` into `<host fs_homepath>/maintt/coop_mod/save/{xp,chal,unlocks,pins,pend,bpfound}_<cl_guid
+hash>.dat`, see `coop_mod/xp.scr`). On the user's public dedicated servers (`public_servers/`, see STATE.md) every
+player therefore starts from zero, and what they earn there never reaches their own game.
+
+**Goal:** the player's own PC holds their progression and it goes with them to ANY server - their own listen
+server, a friend's, or the public dedicated servers - and progress earned anywhere comes home.
+
+**Design first (artifact for the user, then build):**
+- Source of truth = the player's own save files. On join the client sends its record to the server; the server
+  works from that copy; on every save point (mission end, unlock, disconnect) the server sends the updated record
+  back and the client writes it. Find the existing client-to-server channel first: the name-command bus already
+  carries loadout / unlock sync (`,sn`, `,hn`, `,w...` lines in a dedicated server's log on join) - copy that recipe;
+  the server-to-client direction and a client-side write path may need engine (cgame) work.
+- Migration: a record already on a server (players who played on the public servers before the fix) is MERGED
+  with the client's - keep the higher value of each counter, the union of unlocks - never lost, never doubled.
+- Listen-server hosts keep working exactly as today (their own record is already local).
+- Cheating: there is no anti-cheat and dev tools ship enabled, so an honour system is consistent (default).
+  Say plainly in the design what a player could edit, and offer a light tamper check as an option.
+- Must work for a REMOTE player on a DEDICATED server - test it that way (two machines' worth of homes in the
+  harness), plus the listen-host case, plus reconnect mid-mission, plus two servers in a row.
+- Ships as a release (the user's word required). Then restart the public servers on it.
+
+
 - **Give-all key does nothing.** `bind K "append name ,gax"` is saved in the user's config and does
   nothing in v1.10.22. Path: name-command bus -> `coop_mod/player.scr` (index 17) ->
   `coop_mod/developer.scr::give_all_weapons` -> `global/giveall.scr`. Reproduce in a private harness
@@ -259,6 +284,8 @@ is too heavy, and whether the What's New card lays out correctly. Nobody has che
 | 12 | Trim the instruction files that load on every turn: the two unused web-UI sections of `.wolf/OPENWOLF.md` (Design QC, Reframe) and the duplicate bullet list in `.claude/rules/openwolf.md` | Yes - show the cut in three lines, then make it |
 | 13 | Switch off connectors this project does not use, for these sessions | Yes |
 | 14 | Mechanical agents on the cheaper model at medium effort | Yes |
+| 15 | Progression follows the player (Stage 0b): cheating stance | Honour system (no anti-cheat exists); show what could be edited |
+| 16 | Records players already earned on the public servers | Merge into their own (higher value wins, unlocks combined) |
 
 ## 6. FIRST REPLY TO THE USER
 
