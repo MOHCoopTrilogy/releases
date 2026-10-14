@@ -41,7 +41,7 @@
 - Small-maps ideas, main menu, performance moves 2-5: not started.
 
 ## Waiting on the user
-- bug-3903: progression does not follow players to the public (dedicated) servers - each server keeps its own records. Ask: copy his own saves in once (a), and schedule the real fix (b, progression carried by the player).
+- bug-3903: progression does not follow players to the public (dedicated) servers - each server keeps its own records. Ask: copy their own saves in once (a), and schedule the real fix (b, progression carried by the player).
 - The decision sheet in KICKOFF.md section 5 (defaults apply if they say "all defaults").
 - Their eyes on v1.10.22: scope view, downpour density, What's New card layout.
 
