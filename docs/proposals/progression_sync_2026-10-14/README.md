@@ -100,13 +100,18 @@ the fix get the two records merged on their first join.
 
 ## How it works (for the next engineer)
 
-- Wire, client -> server (sent from `CG_Init`, i.e. while the client is CS_PRIMED, before ClientBegin, which is
-  also the only window without the 1-command-per-second flood protection): `coopsync begin 1`, then per record
-  `coopsync d <type> <chunk> ...` (percent-encoded, args <= 240 chars because Cmd_Args_Sanitize truncates at 255)
-  and `coopsync have <type> <decoded length>`, then `coopsync end`. Intercepted in `G_ClientCommand` BEFORE
-  `G_ProcessClientCommand` (which refuses everything until the Player entity exists).
-- On `end` the server merges with its session cvar AND its file, rewrites both, sets the entity var
-  `coop_syncstate` 2 (1 while receiving), sends back what differs, then `coopsave ack 1`.
+- Handshake (protocol 2), sent from `CG_Init` while the client is still CS_PRIMED: `coopsync begin 2 <7 digests>`
+  (CRC-32 of each own record in an order-independent canonical form, `bg_coopsync.h`). Intercepted in
+  `G_ClientCommand` BEFORE `G_ProcessClientCommand` (which refuses everything until the Player entity exists).
+  The server compares with its own view (file merged with session cvar): all equal -> merge at once
+  (`already_same=7`, the normal map-change case); else `coopsave want <types>` and `coop_syncstate` 1.
+- Upload of wanted records: `coopsync d <type> <seq> <final> <declen> <chunk> <chunk>` (`!XX` escapes, `/` raw
+  except in `//`; <= 2 args of 240 chars), ONE in flight, each acked with `coopsave got <type> <seq>`, resent
+  after 3 s, >= 1.2 s apart (CG_CoopSync_Frame from CG_DrawActiveFrame). Why: the client exe never sends the
+  2nd fragment of a >~1.3 KB packet and every packet carries all unacked reliable commands (bug-3905); a
+  dedicated server drops an in-game client's command < 1 s after its previous one; `%` arrives as `.` (bug-3904).
+  `declen -1` = no such file. Then `coopsync end` -> merge -> `coop_syncstate` 2, records that differ are sent
+  down, `coopsave ack 2`. An upload that never ends goes FAILED after 120 s (no downloads that session).
 - Server -> client: `coopsave <type> <part> <nparts> <chunk> ...` server commands (not stufftext, so the stufftext
   filter is not involved). `ScriptThread::FS_WriteContent` parks every write of `coop_mod/save/<type>_<id>.dat`
   for the client whose merged id matches; `G_CoopSync_Frame` (G_RunFrame) sends the newest copy at most once
