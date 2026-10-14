@@ -4,6 +4,7 @@
 **Usage then:** weekly 98 %, extra usage off. Reset 2026-10-18 06:00 local.
 
 ## Live
+- **v1.10.23 HOTFIX published 2026-10-14**: progression follows the player to any server (bug-3903). Only game.dll 126a66e3 + cgame.dll d84e0679 + the code pak changed; exe / ded / renderers = v1.10.22. Engine source pushed as release-1.10.23 (origin + org) = progsync-next e8838a89; mod coop-wip 7a5211a0 pushed to org. The .cmake folder now holds these two dlls (the v1.10.22 ones are in SCRATCH/pre_1.10.23_cmake).
 - Public release v1.10.22 "Eyes on Target" (GitHub MOHCoopTrilogy/releases, verified). The user's
   install matches it. Mod `coop-wip` = `org/coop-wip` = 4f8a1019.
 - Engine source for v1.10.22 is on GitHub: joncurry94-tech/openmohaa `release-1.10.22` = 0206e3c9
@@ -12,7 +13,7 @@
   gl2 8296bf86). Engine branches `integ-1.10.22` 277bdb9d and `integ-ads` 0206e3c9. Engine not pushed.
 
 ## Next
-- Stage 0 (the "first ten minutes" in KICKOFF.md), then Stage 0b (progression follows the player - TOP PRIORITY), then Stage 1.
+- Stage 0 (the "first ten minutes" in KICKOFF.md), then Stage 1 (Stage 0b, progression sync, SHIPPED in v1.10.23).
 - Because this file is dated 2026-10-14, the resume memory file IS still needed this once: read its
   2026-10-13 and 2026-10-14 entries only.
 
@@ -40,11 +41,7 @@
   started.
 - Small-maps ideas, main menu, performance moves 2-5: not started.
 
-## In progress
-- bug-3903 progression sync: agent building it on progsync-next branches (handover: docs/proposals/progression_sync_2026-10-14/README.md). USER APPROVED a HOTFIX RELEASE once it is proven (2026-10-14: "We need to roll it out as a hotfix once done. I'll get more usage if need be"). Ship steps: confirm the user's game is closed; stop public servers (public_servers/stop_servers.ps1); release v1.10.23 hotfix via publish_release.ps1 (notes: progression now follows players to any server); re-run public_servers/setup_trilogy.py; start_servers.ps1; confirm both listed in the browser.
-
 ## Waiting on the user
-- bug-3903: progression does not follow players to the public (dedicated) servers - each server keeps its own records. Ask: copy their own saves in once (a), and schedule the real fix (b, progression carried by the player).
 - The decision sheet in KICKOFF.md section 5 (defaults apply if they say "all defaults").
 - Their eyes on v1.10.22: scope view, downpour density, What's New card layout.
 

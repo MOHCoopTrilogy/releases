@@ -44,7 +44,11 @@ The mod installs into its own folder (you pick it; the default is `%LOCALAPPDATA
 They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, teleport and more). There is no anti-cheat, so on public servers it's an honour system.
 </details>
 
-## What's new in v1.10.22 - Eyes on Target
+## What's new
+
+**v1.10.23 hotfix:** your **XP, rank, challenges and unlocks now follow you to any server** - your own, a friend's, or our public ones - and everything you earn there comes home to your PC.
+
+### v1.10.22 - Eyes on Target
 
 - **Aimed reloads that stay on target** - BAR, StG 44, DP-28, the MP40s, 17 pistols (now aimed **two-handed**), the bolt-action rifles, and a pump shotgun with real sights that pumps while you aim
 - **Two new guns** - the **Gewehr 43 with iron sights** and a **Double Barrel shotgun**
