@@ -43,3 +43,7 @@
 ## Waiting on the user
 - The decision sheet in KICKOFF.md section 5 (defaults apply if they say "all defaults").
 - Their eyes on v1.10.22: scope view, downpour density, What's New card layout.
+
+## Public servers (started 2026-10-14 at the user's request)
+- Two v1.10.22 coop dedicated servers run from the GOG folder's release omohaaded.exe, homes in `public_servers\srv1` (port 12203, m1l1) and `srv2` (port 12204, e1l1), 4 players each, restarted automatically by `public_servers\run_server.ps1`. Stop with `public_servers\stop_servers.ps1`.
+- They BLOCK deploys (deploy_window.ps1 aborts while omohaaded runs from G:\GOG): stop them first, restart after a release.
