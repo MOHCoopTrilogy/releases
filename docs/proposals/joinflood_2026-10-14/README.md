@@ -2,8 +2,15 @@
 
 ## HANDOVER (keep this current - the next session starts here)
 
-- **Status (2026-10-14 15:35): fix PROVEN on the harness; HOLDING (coordinator: v1.10.24 deploy in progress, no game
-  runs until told). No harness process running. Next: f3-listen against the released v1.10.24 files when told.**
+- **Status (2026-10-14 16:55): STAGE 2. v1.10.24 shipped stage 1 (rel-1.10.24 f551686f). The user's real client
+  still lagged; ROOT CAUSE FOUND AND FIXED (bug-3911, engine cbe691b0): the com_preciseFps frame limiter skips
+  NET_Sleep - the only reader of remote packets - on every frame that used up its interval (vsync on / fps cap above
+  what the PC renders), so the client stopped reading the server for seconds at a time. Proof run p1 in progress.
+  Nothing deployed.**
+- **Stage 2 ship:** cherry-pick cbe691b0 (+ 7d9a8b78, test probe, optional) onto rel-1.10.24 f551686f; build
+  `openmohaa` (and `omohaaded` for parity - its path is unaffected) in the release build dir. Only `openmohaa.exe`
+  changes for players and listen hosts. No dll, no pak. The exe source of `joinflood-next` = the release tree's
+  (277bdb9d vs 0206e3c9 differ only in fgame/cgame); joinflood `.cmake` is now USE_RENDERER_DLOPEN=ON (1.9 MB).
 - **!! SHIP WARNING: do NOT ship the exes from `openmohaa-hzm-joinflood\.cmake`** - that dir was configured with
   `USE_RENDERER_DLOPEN=OFF` (static renderer; openmohaa.exe 2.73 MB vs the release 1.90 MB). Cherry-pick 15732bb2
   (only `code/client/cl_net_chan.cpp` + the `code/server/*` byte window matter; the probes are default-off) into the
@@ -75,3 +82,19 @@ one ~450 ms server frame at the merge (script cost of xp_identify / exports).
 3. Players: new `openmohaa.exe` (the fragment fix is client-side) + code pak. Servers (public + any self-hosted
    dedicated): new `omohaaded.exe` + code pak; the public servers can then drop their loose `lobby.scr` override.
    Old clients on a new server are better off (small snapshots) but keep the client-side fragment limit until they update.
+
+## Stage 2 (bug-3911) - the client stops reading the network
+
+| run | build | client cfg | result |
+|---|---|---|---|
+| r1, r2 _rel_user200 | released v1.10.24 (GOG) | user's cfg + autoexec, 200 fps | `Connect to server timed out`: the server's connectResponse was read 15 s late. |
+| r3_rel_user60 | released | user's, 60 fps | in flight stuck at 56, parked -> 771, ping sawtooth 75/275/475/675 every 4 s = the live pattern. |
+| r4_rel_pristine200 | released | harness cfg (no vsync) | fine - why stage 1 never saw it. |
+| **r5_probe2_user60** | released source + cl_netProbe 2 | user's | **client read 0 packets for 58 s at 60 frames/s, then 2324 server messages missing; ping max 725 ms, 59 s over 100 ms.** |
+| **r6 / r7 _fixpoll_user60/200** | + cbe691b0 | user's, 60 / 200 fps | **packets read every second (median 40/s); ping max 40 / 21 ms, 0 s over 100 ms; parked ~330 drained in ~1.5 s; connects at 200 fps.** |
+| p1_fixpoll_full200 | + cbe691b0 | user's, 200 fps | (running: lobby 300 s, ready, briefing, m1l1 200 s) |
+
+Why: `Com_Frame` (common.c) with com_preciseFps 1 does `for(;;){ left = next - now; if (left <= 0) break; NET_Sleep(..) }`.
+With vsync (user: r_swapInterval 1) or a cap the PC cannot reach (user: com_maxfps 200), `left` is already <= 0, so
+NET_Sleep - which is where `NET_Event` reads every remote packet - never runs. The old millisecond loop was a
+do-while and always polled once. Trap for any future frame-pacing change: poll the network every frame.

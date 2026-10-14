@@ -97,11 +97,15 @@ def prep_bins(variant, slotdir):
         s, t = os.path.join(GOG, src), os.path.join(d, dst or src)
         if not os.path.isfile(t) or md5f(t) != md5f(s):
             shutil.copyfile(s, t)
-    shutil.copyfile(os.path.join(ENG, "Release", "omohaaded.exe"), os.path.join(d, "omohaaded_jf.exe"))
-    if ST.get("clprobe"):
+    if variant == "rel":
+        # the RELEASED install as it is in the GOG root (v1.10.24+): exe, dedicated exe, dlls - nothing of ours
+        shutil.copyfile(os.path.join(GOG, "omohaaded.exe"), os.path.join(d, "omohaaded_jf.exe"))
+    else:
+        shutil.copyfile(os.path.join(ENG, "Release", "omohaaded.exe"), os.path.join(d, "omohaaded_jf.exe"))
+    if ST.get("clprobe") and variant != "rel":
         # the same exe source as the release (unchanged since v1.10.22) + the cl_netProbe instrument
         shutil.copyfile(os.path.join(ENG, "Release", "openmohaa.exe"), os.path.join(d, "openmohaa_jf.exe"))
-    if variant == "new":
+    if variant in ("new", "rel"):
         game, cgame = os.path.join(GOG, "game.dll"), os.path.join(GOG, "cgame.dll")
     elif variant == "old":
         game, cgame = os.path.join(OLD_DLLS, "game.dll"), os.path.join(OLD_DLLS, "cgame.dll")
@@ -204,7 +208,10 @@ def seed_client(idx, slotdir, code, recs):
     mt = os.path.join(hm, "maintt")
     os.makedirs(os.path.join(mt, "configs"), exist_ok=True)
     for f in ("autoexec.cfg", "coop_defaults.cfg"):
-        shutil.copyfile(os.path.join(PRISTINE, f), os.path.join(mt, f))
+        src = os.path.join(PRISTINE, f)
+        if ST.get("usercfg"):   # read-only copies of the user's own (configs, never saves or key)
+            src = os.path.join(os.path.dirname(os.path.dirname(USERCFG)), f)
+        shutil.copyfile(src, os.path.join(mt, f))
     if code:
         shutil.copyfile(code, os.path.join(mt, CODEPAK))
     key = os.urandom(2048)
@@ -265,7 +272,7 @@ def launch_client(idx, bins, hm, fps=60, W=960, Hh=540):
     for k, v in sets:
         args += ["+set", k, v]
     if ST.get("clprobe"):
-        boot += ["set cl_netProbe 1"]
+        boot += ["set cl_netProbe %d" % (2 if ST.get("clprobe2") else 1)]
     if ST.get("netdebug"):
         boot += ["set showdrop 1", "set cl_shownet 1"]
     if ST.get("listen") and idx == 1:
@@ -275,7 +282,7 @@ def launch_client(idx, bins, hm, fps=60, W=960, Hh=540):
                  "+exec", "coop_mod/start_server.cfg"]
     else:
         args += ["+exec", "jf_on.cfg", "+connect", "127.0.0.1:%d" % SPORT]
-    args, late = hw.apply_policy(args, width=W, height=Hh)
+    args, late = hw.apply_policy(args, width=W, height=Hh, unfocused_fps=ST.get("ufps", 60))
     boot += late
     open(os.path.join(mt, "jf_on.cfg"), "w", newline="\n").write("\n".join(boot) + "\n")
     hg.acquire_slot(owner, args[0], hm, [CPORTS[idx - 1]], 90)
@@ -394,8 +401,11 @@ def main():
         opts["parkbytes"] = None
     ST["usercfg"] = "--usercfg" in a
     ST["netdebug"] = "--netdebug" in a
-    ST["clprobe"] = "--clprobe" in a
+    ST["clprobe2"] = "--clprobe2" in a
+    ST["clprobe"] = "--clprobe" in a or ST["clprobe2"]
     ST["listen"] = "--listen" in a
+    ST["ufps"] = int(opt("--ufps", "60"))
+    opts["ufps"] = ST["ufps"]
     opts["listen"] = ST["listen"]
     opts["clprobe"] = ST["clprobe"]
     opts["usercfg"] = ST["usercfg"]
@@ -454,6 +464,7 @@ def main():
                 ctx["shots"] += mid
             time.sleep(5)
         for c in cs:
+            step(c, ["hzm_diag"])   # the client's own hitch record (frames > 100 ms, by phase) into its log
             ctx["shots"].append(shot(c, "c%d_lobby_end" % c["idx"]))
             st = len(read(slog))
         lobby_end = len(read(slog))
