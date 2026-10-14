@@ -2,8 +2,9 @@
 
 ## HANDOVER (keep this current - the next session starts here)
 
-- **Status (2026-10-14 14:45): root cause found and reproduced; fix built and committed; PROOF RUNS IN PROGRESS.
-  Nothing deployed, pushed or released.**
+- **Status (2026-10-14 15:00): root cause found and reproduced (2 of 5 joins with the user's config died on the
+  released build); fix committed; 6 of 6 fix runs clean (e1-e5, f1). Still to prove: 2 clients + m1l1 (f2), listen
+  host (f3). Nothing deployed, pushed or released.**
 - **Root cause (short):** the client exe only sends the FIRST fragment of a client->server packet over ~1300 bytes,
   and every client packet re-carries all unacknowledged client commands. A join alone queues ~1.5 KB of them
   (two userinfo + pak checksums + the v1.10.23 progression handshake), and v1.10.23's upload adds ~520-byte chunks
@@ -46,4 +47,7 @@
 | b1_srvnew_clold | 1.10.23 / 1.10.22 cgame | user's cfg | OK. |
 | b2_srvold_clnew | 1.10.22 / 1.10.23 cgame | user's cfg | DEAD at CS_PRIMED: every client packet a fragment from +11 s, timed out. |
 | c1_new_clprobe | 1.10.23 / 1.10.23 + cl_netProbe | user's cfg | passed this time; CLNET at entry: 4 unacked = 1514 B (userinfo 495, coopsync begin 79, `cp` pak checksums 371, userinfo 545). Recovery is luck. |
-| d1-d3_base_usercfg | released behaviour | user's cfg | (running - failure rate) |
+| d1, d2 / **d3** _base_usercfg | released behaviour (`--parkbytes 0`, GOG client exe) | user's cfg | d1, d2 OK; **d3 DEAD** (64 s of fragment-only client packets, in flight 256, parked 1236). Baseline: 2 of 5 user-cfg joins died (a4, d3). The dead run's client ends with 602 of 3119 challenge/Armory UI cvars wrong. |
+| e1-e5_fix_usercfg | **fix** exes + lobby fix | user's cfg | **5 of 5 OK.** In flight max 44 commands (<= 2400 B), parked peak 328-332 for ~1.5 s after the merge (293 seta + 5 coopsave) then 0, snapshot max 5.2 KB (was 21.5 KB), 0 s of fragment-only client packets, 0 s without a client packet; upload done in 36 s; UI cvars identical to d1 (3119, 0 differ). |
+| f1_fix_full | fix | user's cfg | **OK**: 295 s in the lobby, ready-up, briefing 441 s (harness did not skip it), 0 s client silent / fragment-only, in flight max 44 (lobby) / 64 (briefing), parked max 332 / 105; no timeout; merge OK; UI cvars identical to d1. Shots `H:\hzm_archive\joinflood1_fix_full\pc1\maintt\screenshots\`. |
+| f2_fix_two | fix, 2 remote clients | user's cfg x2 | (running: lobby 150 s, ready, briefing skip by Use, m1l1 200 s) |

@@ -268,7 +268,13 @@ def launch_client(idx, bins, hm, fps=60, W=960, Hh=540):
         boot += ["set cl_netProbe 1"]
     if ST.get("netdebug"):
         boot += ["set showdrop 1", "set cl_shownet 1"]
-    args += ["+exec", "jf_on.cfg", "+connect", "127.0.0.1:%d" % SPORT]
+    if ST.get("listen"):
+        # listen host: the client hosts co_lobby1 itself through the menu path (start_server.cfg -> ui_startdmmap 2)
+        boot += ["set sv_netProbe 1", "set sv_lagProbe 1", "seta coop_campaign 1", "set net_port %d" % SPORT]
+        args += ["+set", "g_gametype", "2", "+exec", "jf_on.cfg", "+set", "ui_dmmap", "co_lobby1",
+                 "+exec", "coop_mod/start_server.cfg"]
+    else:
+        args += ["+exec", "jf_on.cfg", "+connect", "127.0.0.1:%d" % SPORT]
     args, late = hw.apply_policy(args, width=W, height=Hh)
     boot += late
     open(os.path.join(mt, "jf_on.cfg"), "w", newline="\n").write("\n".join(boot) + "\n")
@@ -389,6 +395,8 @@ def main():
     ST["usercfg"] = "--usercfg" in a
     ST["netdebug"] = "--netdebug" in a
     ST["clprobe"] = "--clprobe" in a
+    ST["listen"] = "--listen" in a
+    opts["listen"] = ST["listen"]
     opts["clprobe"] = ST["clprobe"]
     opts["usercfg"] = ST["usercfg"]
     os.makedirs(SCR, exist_ok=True)
@@ -408,7 +416,10 @@ def main():
     ctx = {"opts": opts, "rev": rev, "shots": [], "gids": [p[2] for p in pcs], "t": {}}
     slog = os.path.join(smt, "qconsole.log")
     try:
-        slog = start_server(sbins, shm, smt)
+        if ST.get("listen"):
+            slog = os.path.join(pcs[0][1], "qconsole.log")
+        else:
+            slog = start_server(sbins, shm, smt)
         if opts["delay"]:
             for i in range(opts["clients"]):
                 open(os.path.join(pcs[i][1], "jf_delay.cfg"), "w").write("set cl_packetdelay %d\n" % opts["delay"])
@@ -449,7 +460,16 @@ def main():
             m = wait_for(slog, r"Server: (?!co_lobby)\S+", 90, lobby_end)
             check("ready-up launched the campaign", m, m.group(0) if m else "")
             # in the mission: join a team, then play
-            m2 = wait_for(slog, r"Server: m1l1", 240, lobby_end)
+            # the briefing is skipped by the squad ready gate (coop_mod/readygate.scr): everyone presses Use
+            m2 = None
+            for _ in range(8):
+                time.sleep(15)
+                if re.search(r"Server: m1l1", read(slog)[lobby_end:]):
+                    break
+                for c in cs:
+                    step(c, ["+use", "wait 30", "-use"])
+            m2 = wait_for(slog, r"Server: m1l1", 120, lobby_end)
+            check("briefing skipped into m1l1", m2)
             log("mission map:", m2.group(0) if m2 else "(no m1l1 line)")
             t1 = time.time()
             time.sleep(30)
