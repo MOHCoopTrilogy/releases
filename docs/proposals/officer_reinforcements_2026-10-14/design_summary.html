@@ -1,0 +1,270 @@
+<title>Officer Reinforcements Design</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+/* layout: one reading column; the eight wave types as a two-column field of cards, each with the same five rows */
+:root{
+  --bg:#f3f4f0; --panel:#ffffff; --ink:#1d2320; --muted:#5b655f; --line:#cfd4cc;
+  --field:#4d5d53; --field-soft:#e3e8e1; --signal:#a8431f; --ok:#2f6b4a;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#151a17; --panel:#1d2420; --ink:#e6eae4; --muted:#9aa69e; --line:#34403a;
+    --field:#9fb3a5; --field-soft:#26302b; --signal:#e58a5e; --ok:#7cc79c; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#151a17; --panel:#1d2420; --ink:#e6eae4; --muted:#9aa69e; --line:#34403a;
+  --field:#9fb3a5; --field-soft:#26302b; --signal:#e58a5e; --ok:#7cc79c; color-scheme:dark;
+}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:60rem;margin:0 auto;padding-inline:1.1rem;padding-block:2rem 4rem;display:flex;flex-direction:column;gap:2.6rem}
+header{display:flex;flex-direction:column;gap:.6rem;border-bottom:2px solid var(--field);padding-bottom:1.2rem}
+.eyebrow{font-family:var(--display);font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--field);font-size:.95rem}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2rem,6vw,3rem);line-height:1.02;margin:0;text-wrap:balance}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;line-height:1.1;margin:0;text-wrap:balance}
+h3{font-family:var(--display);font-weight:600;font-size:1.3rem;line-height:1.15;margin:0}
+p{margin:0;max-width:65ch}
+section{display:flex;flex-direction:column;gap:1rem}
+.status{display:inline-block;align-self:flex-start;font-weight:600;color:var(--signal);border:1px solid var(--signal);padding:.15rem .6rem;border-radius:3px;font-size:.92rem}
+.lede{font-size:1.1rem;color:var(--muted)}
+ul{margin:0;padding-left:1.15rem;display:flex;flex-direction:column;gap:.4rem;max-width:68ch}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem}
+.two > *{min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1rem 1.05rem;display:flex;flex-direction:column;gap:.55rem}
+.card .de{font-family:var(--display);font-weight:600;color:var(--field);letter-spacing:.05em;text-transform:uppercase;font-size:.86rem}
+dl{margin:0;display:grid;grid-template-columns:5.2rem 1fr;gap:.35rem .7rem;font-size:.95rem}
+dt{color:var(--muted);font-weight:500}
+dd{margin:0;min-width:0}
+dd.beat{color:var(--ok);font-weight:500}
+.band{background:var(--field-soft);border-radius:4px;padding:1.2rem 1.15rem;display:flex;flex-direction:column;gap:.9rem}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.8rem}
+.steps > div{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:.8rem .9rem;display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.steps b{font-family:var(--display);font-size:1.1rem;font-weight:600}
+.tablebox{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:34rem;font-size:.95rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--display);font-weight:600;letter-spacing:.05em;text-transform:uppercase;font-size:.85rem;color:var(--field)}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:600}
+.q{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.q .rec{color:var(--ok);font-weight:500}
+.q .rec::before{content:"Recommended: ";font-weight:600}
+small{color:var(--muted)}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">HZM Coop Mod &middot; design for review &middot; 14 October 2026</div>
+  <h1>The officer and his reinforcements</h1>
+  <p class="lede">A proposal for making the enemy officer and every wave he calls behave like a German platoon and its leader, including the MG42 team that was scrapped.</p>
+  <span class="status">Design only. Nothing is built, nothing in the mod has changed.</span>
+</header>
+
+<section>
+  <h2>What the officer does today</h2>
+  <p>On most combat maps a high-health officer appears at a fixed spot with a radio and one to four bodyguards. He stands and shoots like any soldier. When he first sees a player, when his health passes three quarters, half and a third, and each time a bodyguard dies, he calls a wave. The wave is picked by a dice roll out of eight kinds. It appears at one fixed point per map and every man in it runs at the nearest player until he is close, then fights on his own.</p>
+  <p>He heals himself twice when the players lose sight of him. Killing him ends the calls. Blowing up the radio stops them for good.</p>
+</section>
+
+<section>
+  <h2>What is weak about it</h2>
+  <ul>
+    <li><b>The dice choose the wave.</b> An anti-tank team comes for players on foot. A dive bomber is as likely indoors as in the open (it is then swapped for a rifle squad).</li>
+    <li><b>One doorway per map.</b> Every wave appears at the same point. Nothing checks whether a player is looking at it, standing near it, or whether a path leads from it to the players.</li>
+    <li><b>No squads, only men.</b> Every soldier runs the same loop: go to the nearest player, stop close, shoot. No leader, no covering fire, no reaction to losses, no retreat.</li>
+    <li><b>The kinds differ by weapon only.</b> Elite squad and Wehrmacht squad behave the same. The grenade men run to the front rank. The sniper is alone, walks toward the players and never moves again. The dogs arrive apart from their handler.</li>
+    <li><b>The officer does not lead.</b> He has no place behind his men and gives no orders beyond the radio call.</li>
+    <li><b>His death changes little.</b> Unless a switch that ships turned off is on, the survivors carry on as before.</li>
+    <li><b>The MG42 team is dead code.</b> It was replaced by the Wehrmacht squad because the gunner floated and never fired.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>The officer, as proposed</h2>
+  <div class="two">
+    <div class="card"><h3>He commands from behind</h3><p>He takes real cover a short way behind his escort, out of the players' line of fire. Two escorts stand forward, the rest stay at his side.</p></div>
+    <div class="card"><h3>He gives the order</h3><p>A whistle blast, then the radio call. Both sounds are already in the game.</p></div>
+    <div class="card"><h3>He reads the fight</h3><p>Players bunched in the open get the bomber, the guns or the MG. Players in a building get the assault group and grenades. A player on his own gets the dogs. Players holding at long range get snipers. No kind twice in a row.</p></div>
+    <div class="card"><h3>He moves when threatened</h3><p>A player close with a clear shot, or a hard hit, and he falls back to the next cover toward his radio while the escort covers him.</p></div>
+    <div class="card"><h3>Without his escort he runs</h3><p>He stops fighting and heads for the radio to call more men. Catch him on the way and the call never happens.</p></div>
+    <div class="card"><h3>Kill him and the attack breaks</h3><p>Squads that are already at half strength give up, using the surrender system the mod has. The rest pull back to where they came from and hold there.</p></div>
+  </div>
+  <p><small>Unchanged: his health scaling, his two heals, the radio objective, the replacement officer, the music, XP and challenges.</small></p>
+</section>
+
+<section>
+  <h2>The reinforcements, one by one</h2>
+  <p>The eight kinds stay eight, with the same names in the feed, the same per-map switches and the same challenge. What changes is who is in them, where they come from and how they fight. Every squad on foot gets a leader, moves in two halves (one shoots while the other moves to cover), and stops at the distance its job needs.</p>
+  <div class="two">
+
+    <div class="card">
+      <div class="de">Schuetzengruppe &middot; today: Wehrmacht Squad</div>
+      <h3>Rifle section</h3>
+      <dl>
+        <dt>Who</dt><dd>A sergeant with an MP40, riflemen, one assault rifle. On open ground it can bring the MG42.</dd>
+        <dt>Arrives</dt><dd>On foot, from a direction the players cannot see.</dd>
+        <dt>Fights</dt><dd>Advances cover to cover, stops at medium range and holds. The patient one.</dd>
+        <dt>Different</dt><dd>It keeps its distance and makes you come to it.</dd>
+        <dt>Beat it</dt><dd class="beat">Kill the sergeant (the squad hesitates), or get round the half that is shooting.</dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <div class="de">Sturmtrupp &middot; today: Elite Squad</div>
+      <h3>Assault group</h3>
+      <dl>
+        <dt>Who</dt><dd>Submachine guns, an assault rifle, one shotgun, grenades.</dd>
+        <dt>Arrives</dt><dd>From a different side than the last wave.</dd>
+        <dt>Fights</dt><dd>Throws smoke between itself and you, then comes round the flank on a route it has checked it can walk. Grenades first when you are indoors.</dd>
+        <dt>Different</dt><dd>The only one that tries to get close and behind.</dd>
+        <dt>Beat it</dt><dd class="beat">Watch the corner the smoke hides. It has no long guns.</dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <div class="de">Grenadiere &middot; today: Grenadier Squad</div>
+      <h3>Grenadiers</h3>
+      <dl>
+        <dt>Who</dt><dd>Two to six men with MP40s and grenades.</dd>
+        <dt>Arrives</dt><dd>Behind another squad when one is alive.</dd>
+        <dt>Fights</dt><dd>Stops behind cover at throwing range, lobs over it, shifts after three throws.</dd>
+        <dt>Different</dt><dd>It digs you out of a position instead of charging it.</dd>
+        <dt>Beat it</dt><dd class="beat">Close the distance. Up close they are weak.</dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <div class="de">Scharfschuetzen &middot; today: Elite Sniper</div>
+      <h3>Sniper pair</h3>
+      <dl>
+        <dt>Who</dt><dd>A sniper and a spotter with an MP40.</dd>
+        <dt>Arrives</dt><dd>Far away, on the highest spot with a view of you that it can reach.</dd>
+        <dt>Fights</dt><dd>Shoots for half a minute, or until hit, then both move to another spot. The spotter guards the way up.</dd>
+        <dt>Different</dt><dd>It does not stay where you last saw it.</dd>
+        <dt>Beat it</dt><dd class="beat">Catch the move between spots, or rush the spotter.</dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <div class="de">Panzerschreck-Trupp &middot; today: Anti-Tank Team</div>
+      <h3>Rocket team</h3>
+      <dl>
+        <dt>Who</dt><dd>A gunner and a loader.</dd>
+        <dt>Arrives</dt><dd>On foot, and only when there is a target for it.</dd>
+        <dt>Fights</dt><dd>Called against a vehicle, a manned gun or players in a building. One rocket, then it relocates.</dd>
+        <dt>Different</dt><dd>It answers what you are using, not who you are.</dd>
+        <dt>Beat it</dt><dd class="beat">Hit it during the reload. The loader has to be next to the gunner.</dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <div class="de">Hundefuehrer &middot; today: Attack Dogs</div>
+      <h3>Dog handler</h3>
+      <dl>
+        <dt>Who</dt><dd>A handler and two to five dogs.</dd>
+        <dt>Arrives</dt><dd>Together, the handler leading.</dd>
+        <dt>Fights</dt><dd>The dogs stay with him until they are near or see you, then he lets them go. They pick the player who is most alone.</dd>
+        <dt>Different</dt><dd>It punishes splitting up.</dd>
+        <dt>Beat it</dt><dd class="beat">Shoot the handler early. The dogs lose direction for a few seconds.</dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <div class="de">Stuka &middot; unchanged effect</div>
+      <h3>Dive bomber</h3>
+      <dl>
+        <dt>When</dt><dd>Only when the players have stood close together under open sky for a while.</dd>
+        <dt>Different</dt><dd>Called for a reason, so it can be read and avoided.</dd>
+        <dt>Beat it</dt><dd class="beat">Spread out or get under a roof.</dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <div class="de">Artillerie &middot; unchanged effect</div>
+      <h3>Artillery</h3>
+      <dl>
+        <dt>When</dt><dd>Same rule. Preferred over the bomber when the players have not moved for some time.</dd>
+        <dt>Different</dt><dd>The answer to a held position.</dd>
+        <dt>Beat it</dt><dd class="beat">Move.</dd>
+      </dl>
+    </div>
+  </div>
+  <p><small>The battalion he calls at low health stays as it is, but comes from two sides and uses the same squad behaviour.</small></p>
+</section>
+
+<section class="band">
+  <div class="eyebrow">The piece that was never rolled out</div>
+  <h2>The MG42 team</h2>
+  <p>The old version put a finished gun nest at the spawn point. The gunner floated, and he never fired because the script that drives every working nest in the game was never started for it. The proposal does not repair the nest. It builds a team, using what was made for the paratroopers' .30 cal.</p>
+  <div class="steps">
+    <div><b>Carry</b><span>The gunner brings the gun in with the rifle section. An assistant carries ammunition and takes over if he dies.</span></div>
+    <div><b>Choose ground</b><span>A wall top or window sill he can rest the bipod on, overlooking the players, or flat open ground. Never a doorway. The walk there is checked first.</span></div>
+    <div><b>Suppress</b><span>Bursts, with pauses before the barrel overheats. A belt and one spare. It fires so the other half of the squad can move.</span></div>
+    <div><b>Relocate</b><span>When a player gets on its flank, when a grenade lands near it, or when it has no target, the team packs up and sets up somewhere else.</span></div>
+    <div><b>Capture</b><span>Kill both men and the gun stays there with what is left on its belt. Any player can use it.</span></div>
+  </div>
+  <p>It is part of the rifle section, about half the time and only on open ground. Not indoors. A per-map switch can turn it off. This is the largest single step of the work.</p>
+</section>
+
+<section>
+  <h2>How encounters vary</h2>
+  <ul>
+    <li><b>Where they come from.</b> For each wave the game looks at the map's own spawn points and a ring of spots around the players, keeps those no player can see, that are not close to a player, and from which a walkable path leads to the players, and draws one. The next wave prefers a different side.</li>
+    <li><b>What comes.</b> The officer's choice follows what the players are doing, so two runs of a map differ when the players play differently.</li>
+    <li><b>One call held back.</b> He keeps a reserve and spends it on a player who wanders off, a dug-in squad, or his own MG42 turned against him.</li>
+    <li><b>A roll per session</b> decides flank side, sniper spot and whether the rifle section brings the MG.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Player count</h2>
+  <p>The numbers stay with the scaling the mod already has. Squad sizes are written for two players. A solo player meets smaller, weaker squads. Three and four players meet bigger ones, up to six men a squad. Health and accuracy follow the same curve as today. The MG team and the spotter come out of the squad's headcount. The only addition is the sniper's spotter (two men where there was one).</p>
+</section>
+
+<section>
+  <h2>What it will not do</h2>
+  <ul>
+    <li>Spawn where a player is looking, or close to a player.</li>
+    <li>Spawn on ground with no path to the players.</li>
+    <li>Stand on or block objective items, scripted doors or ladders.</li>
+    <li>Add models or textures. No new download for anyone.</li>
+    <li>Touch the Omaha maps, or any map where the officer is turned off.</li>
+    <li>Change the eight kinds, their feed lines, the per-map switches or the challenges.</li>
+    <li>Stay on if you do not want it. One setting brings back today's behaviour exactly.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Build order</h2>
+  <p>Each step is built apart from the game files, tested on two maps at solo and scaled sizes, shown in stills and a GIF, and only then put in.</p>
+  <div class="tablebox">
+  <table>
+    <thead><tr><th>Step</th><th>What you will see</th><th>Effort</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td>Waves come from different, unseen, reachable directions</td><td>Small</td></tr>
+      <tr><td class="n">2</td><td>Rifle section, assault group and grenadiers fight as squads, each at its own distance</td><td>Large</td></tr>
+      <tr><td class="n">3</td><td>The MG42 team: carry, set up, fire, relocate, capture</td><td>Largest</td></tr>
+      <tr><td class="n">4</td><td>Sniper pair, dog handler, rocket team only with a target</td><td>Medium</td></tr>
+      <tr><td class="n">5</td><td>The officer: cover, whistle, choice of wave, falling back, the break on his death</td><td>Medium to large</td></tr>
+      <tr><td class="n">6</td><td>Reserves, the per-session roll, the battalion from two sides</td><td>Medium</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>Your call</h2>
+  <div class="q"><b>1. Should the MG42 team be part of the rifle section, or a ninth kind of wave?</b><span class="rec">part of the section. A ninth kind would change the feed, the per-map switches and the "Full Deck" challenge.</span></div>
+  <div class="q"><b>2. Should killing the officer break the attack by default?</b><span class="rec">yes. Today the survivors carry on unless a hidden switch is on.</span></div>
+  <div class="q"><b>3. Should the rocket team only come when it has a target (vehicle, manned gun, players in a building)?</b><span class="rec">yes. It will then be rare on most maps.</span></div>
+  <div class="q"><b>4. Should the sniper become a pair?</b><span class="rec">yes. One more enemy per sniper wave.</span></div>
+  <div class="q"><b>5. Trucks and motorcycles bringing men in?</b><span class="rec">later, map by map. Each road has to be laid out and checked in game. Tell me which maps matter most.</span></div>
+  <div class="q"><b>6. Which first: the entry directions, or the MG42 team?</b><span class="rec">entry directions first (small, and everything else stands on it), then the MG42 team if that is what you want to see soonest.</span></div>
+  <div class="q"><b>7. Can the officer be captured?</b><span class="rec">no change. On 20 August you decided the officer never surrenders.</span></div>
+</section>
+
+<p><small>Based on a read of the officer script as it is on the coop-wip branch today. No game session was run for this page. The full audit, with the code references and the settings, is in the proposal folder's README.</small></p>
+
+</div>
