@@ -1,0 +1,41 @@
+//=========================================================================
+// TEST OVERLAY ONLY (bug-3903 progression sync harness) - replaces coop_mod/devprobe.scr inside the test pak
+// zzzzzzzzzzzz_progsynctest.pk3. main.scr::main threads devprobe.scr::main and ::stuckWatch unconditionally
+// (the shipped file is a dev-only probe that ends at once unless coop_whoProbe is set), so this is a reliable
+// level-wide hook. Poll the server cvar coop_pstest (the test client sets it through `rcon exec`) and run one
+// action on the first connected player per request.
+//=========================================================================
+main:{
+	println ( "^~^~^ PSTEST hook up" )
+	while( 1 ){
+		local.c = getcvar( "coop_pstest" )
+		if( local.c != "" && local.c != "0" ){
+			setcvar "coop_pstest" "0"
+			local.player = NULL
+			if( $player.size > 0 ){ local.player = $player[1] }
+			if( local.player == NULL ){
+				println ( "^~^~^ PSTEST did=" + local.c + " total=noplayer sync=nil unlocks=nil" )
+			} else {
+				if( local.c == "award" ){
+					waitthread coop_mod/xp.scr::xp_award local.player 250 "objective" "PSTEST"
+				} else if( local.c == "flush" ){
+					waitthread coop_mod/xp.scr::xp_flush
+					waitthread coop_mod/challenges.scr::chal_flush
+				} else if( local.c == "unlock" ){
+					waitthread coop_mod/challenges.scr::chal_add_unlock local.player "pstest_unlock"
+				}
+				local.t = local.player.flags["coop_xp_total"]
+				if( local.t == NIL ){ local.t = "nil" }
+				local.u = local.player.flags["coop_chal_unlocks"]
+				if( local.u == NIL ){ local.u = "nil" }
+				local.ss = local.player.coop_syncstate
+				if( local.ss == NIL ){ local.ss = "nil" }
+				println ( "^~^~^ PSTEST did=" + local.c + " total=" + local.t + " sync=" + local.ss + " unlocks=" + local.u )
+			}
+		}
+		wait 0.5
+	}
+}end
+
+stuckWatch:{
+}end

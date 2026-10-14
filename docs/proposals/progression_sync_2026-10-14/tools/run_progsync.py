@@ -91,6 +91,8 @@ def guard():
     c = ST["client"]
     if c is not None and c.watcher.violations:
         raise RuntimeError("window policy violation: %s" % (c.watcher.violations[:3],))
+    if c is not None and c.proc.poll() is not None:
+        raise RuntimeError("client exited")
 
 
 # ---------------------------------------------------------------------------------------------- binaries + paks
@@ -128,7 +130,7 @@ def build_paks():
         subprocess.run(["git", "-C", MOD, "archive", "--format=zip", "-1", "-o", code, full, "--"] + tops, check=True)
     test = os.path.join(SCR, TESTPAK)
     with zipfile.ZipFile(test, "w", zipfile.ZIP_DEFLATED) as z:
-        z.writestr("coop_mod/profile.scr", open(os.path.join(HERE, "pstest_profile.scr"), "rb").read())
+        z.writestr("coop_mod/devprobe.scr", open(os.path.join(HERE, "pstest_devprobe.scr"), "rb").read())
     log("paks code", full[:10], "test overlay", os.path.getsize(test))
     return code, test, full
 
@@ -193,7 +195,7 @@ def start_server(tag, bins, code, test, recs=None, gid=None):
         "set coop_pstest 0", "map " + MAP]) + "\n")
     args = [os.path.join(bins, "omohaaded_progsync.exe")]
     for k, v in (("com_target_game", "2"), ("dedicated", "1"), ("fs_basepath", GOG), ("fs_homepath", hm),
-                 ("net_ip", "127.0.0.1"), ("net_port", str(SPORT[tag])), ("sv_maxclients", "4"), ("g_gametype", "2"),
+                 ("net_enabled", "1"), ("net_ip", "127.0.0.1"), ("net_port", str(SPORT[tag])), ("sv_maxclients", "4"), ("g_gametype", "2"),
                  ("developer", "1"), ("logfile", "2")):
         args += ["+set", k, v]
     args += ["+exec", "ded_ps.cfg"]
@@ -226,7 +228,7 @@ def launch_client(bins, hm, connect_port=None, listen=False, W=960, Hh=540):
     sets = [("com_target_game", "2"), ("fs_basepath", GOG), ("fs_homepath", hm), ("cl_renderer", "opengl2"),
             ("r_ext_framebuffer_multisample", "0"), ("r_ext_multisample", "0"), ("r_mode", "-1"),
             ("r_customwidth", str(W)), ("r_customheight", str(Hh)), ("r_fullscreen", "0"), ("developer", "1"),
-            ("logfile", "2"), ("net_ip", "127.0.0.1"), ("net_port", str(CPORT))]
+            ("logfile", "2"), ("net_enabled", "1"), ("net_ip", "127.0.0.1"), ("net_port", str(CPORT))]
     args = [os.path.join(bins, "openmohaa_progsync.exe")]
     for k, v in sets:
         args += ["+set", k, v]
@@ -319,7 +321,11 @@ def shot(hm, name):
 
 def rcon(hm, srvlog, action, timeout=30, local=False):
     st = len(read(srvlog))
-    step(hm, [("set coop_pstest " if local else "rcon set coop_pstest ") + action, "wait 200"])
+    if local:
+        step(hm, ["set coop_pstest " + action, "wait 200"])
+    else:
+        open(os.path.join(os.path.dirname(srvlog), "pscmd.cfg"), "w", newline="\n").write("set coop_pstest %s\n" % action)
+        step(hm, ["rcon exec pscmd.cfg", "wait 200"])
     m = wait_for(srvlog, r"\^~\^~\^ PSTEST did=%s total=(\S+) sync=(\S+) unlocks=([^\r\n]*)" % action, timeout, st)
     if m:
         log("server says", m.group(0))
@@ -356,9 +362,9 @@ def phase1(code, test, ctx):
     check("1a no client write needed on a fresh server", not re.search(r"COOPSYNC client wrote", read(clog)), "")
     joined = join(hm, slog)
     check("1a joined a team", joined)
-    time.sleep(6)
+    time.sleep(12)
     ctx["shots"].append(shot(hm, "p1_joined_dedicated"))
-    step(hm, ["+scores", "wait 600"])
+    step(hm, ["+scores", "wait 800"])
     ctx["shots"].append(shot(hm, "p1_scoreboard_rank"))
     step(hm, ["-scores", "wait 100"])
 
@@ -523,6 +529,7 @@ def main():
         print(__doc__)
         return 2
     ST["run"] = sys.argv[2]
+    os.makedirs(SCR, exist_ok=True)
     phases = [1, 2, 3, 4, 5]
     if "--phases" in sys.argv:
         phases = [int(x) for x in sys.argv[sys.argv.index("--phases") + 1].split(",")]
