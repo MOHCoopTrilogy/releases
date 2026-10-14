@@ -2,15 +2,13 @@
 
 ## HANDOVER (keep this current - the next session starts here)
 
-- **Status (2026-10-14 16:55): STAGE 2. v1.10.24 shipped stage 1 (rel-1.10.24 f551686f). The user's real client
-  still lagged; ROOT CAUSE FOUND AND FIXED (bug-3911, engine cbe691b0): the com_preciseFps frame limiter skips
-  NET_Sleep - the only reader of remote packets - on every frame that used up its interval (vsync on / fps cap above
-  what the PC renders), so the client stopped reading the server for seconds at a time. Proof run p1 in progress.
+- **Status (2026-10-14 17:15): STAGE 2 fixes committed, six-run proof (`tools/run_six.py six`) in progress.
+  Engine joinflood-next: cbe691b0 (bug-3911: client reads the network every frame) + 0dc98ae3 (bug-3912: 4 MB UDP
+  socket buffers, a map gamestate burst no longer overflows them) + 7d9a8b78 (test probe, default off).
   Nothing deployed.**
-- **Stage 2 ship:** cherry-pick cbe691b0 (+ 7d9a8b78, test probe, optional) onto rel-1.10.24 f551686f; build
-  `openmohaa` (and `omohaaded` for parity - its path is unaffected) in the release build dir. Only `openmohaa.exe`
-  changes for players and listen hosts. No dll, no pak. The exe source of `joinflood-next` = the release tree's
-  (277bdb9d vs 0206e3c9 differ only in fgame/cgame); joinflood `.cmake` is now USE_RENDERER_DLOPEN=ON (1.9 MB).
+- **Stage 2 ship:** cherry-pick cbe691b0 + 0dc98ae3 (7d9a8b78 optional) onto rel-1.10.24 f551686f; build `openmohaa`
+  AND `omohaaded` in the release build dir (both change: the socket buffers are in qcommon). Players + listen hosts:
+  openmohaa.exe; servers: omohaaded.exe. No dll, no pak. Test exes here (DLOPEN on): openmohaa 543ac9aa, omohaaded 06f33619.
 - **!! SHIP WARNING: do NOT ship the exes from `openmohaa-hzm-joinflood\.cmake`** - that dir was configured with
   `USE_RENDERER_DLOPEN=OFF` (static renderer; openmohaa.exe 2.73 MB vs the release 1.90 MB). Cherry-pick 15732bb2
   (only `code/client/cl_net_chan.cpp` + the `code/server/*` byte window matter; the probes are default-off) into the
@@ -92,7 +90,8 @@ one ~450 ms server frame at the merge (script cost of xp_identify / exports).
 | r4_rel_pristine200 | released | harness cfg (no vsync) | fine - why stage 1 never saw it. |
 | **r5_probe2_user60** | released source + cl_netProbe 2 | user's | **client read 0 packets for 58 s at 60 frames/s, then 2324 server messages missing; ping max 725 ms, 59 s over 100 ms.** |
 | **r6 / r7 _fixpoll_user60/200** | + cbe691b0 | user's, 60 / 200 fps | **packets read every second (median 40/s); ping max 40 / 21 ms, 0 s over 100 ms; parked ~330 drained in ~1.5 s; connects at 200 fps.** |
-| p1_fixpoll_full200 | + cbe691b0 | user's, 200 fps | (running: lobby 300 s, ready, briefing, m1l1 200 s) |
+| p1_fixpoll_full200 | + cbe691b0 | user's, 200 fps | lobby 290 s ping max 25 ms, briefing OK - but after the map change to m1l1 the client stayed CS_PRIMED: ~1020 fragments/s received, no gamestate ever completed = **bug-3912** (64 KB socket buffer vs a ~66 KB gamestate burst, resent ~20x/s) -> 0dc98ae3. |
+| six_* | + cbe691b0 + 0dc98ae3 | user's 200 / worst 333,125,dup5 / light 60,30,dup0,25000,20 / pristine 200 / two clients / listen host | (running) |
 
 Why: `Com_Frame` (common.c) with com_preciseFps 1 does `for(;;){ left = next - now; if (left <= 0) break; NET_Sleep(..) }`.
 With vsync (user: r_swapInterval 1) or a cap the PC cannot reach (user: com_maxfps 200), `left` is already <= 0, so

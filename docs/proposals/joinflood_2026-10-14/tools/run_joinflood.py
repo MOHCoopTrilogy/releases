@@ -218,7 +218,12 @@ def seed_client(idx, slotdir, code, recs):
     open(os.path.join(hm, "qkey"), "wb").write(key)
     gid = hashlib.md5(key).hexdigest().upper()
     cfg = read(USERCFG if ST.get("usercfg") else os.path.join(PRISTINE, "omconfig.cfg"))
-    for k, v in (("name", "JFTester%d" % idx), ("rate", "90000"), ("snaps", "40"), ("cl_maxpackets", "100")):
+    mx = ST.get("mx", {}).get(idx)
+    kv = [("name", "JFTester%d" % idx), ("rate", "90000"), ("snaps", "40"), ("cl_maxpackets", "100")]
+    if mx:
+        kv = [("name", "JFTester%d" % idx), ("com_maxfps", mx[0]), ("cl_maxpackets", mx[1]), ("cl_packetdup", mx[2]),
+              ("rate", mx[3]), ("snaps", mx[4])]
+    for k, v in kv:
         cfg, n = re.subn(r'(?im)^seta %s "[^"\r\n]*"' % k, 'seta %s "%s"' % (k, v), cfg)
         if not n:
             cfg += '\nseta %s "%s"\n' % (k, v)
@@ -282,7 +287,12 @@ def launch_client(idx, bins, hm, fps=60, W=960, Hh=540):
                  "+exec", "coop_mod/start_server.cfg"]
     else:
         args += ["+exec", "jf_on.cfg", "+connect", "127.0.0.1:%d" % SPORT]
-    args, late = hw.apply_policy(args, width=W, height=Hh, unfocused_fps=ST.get("ufps", 60))
+    mx = ST.get("mx", {}).get(idx)
+    if mx:
+        # the window is never focused: com_maxfpsUnfocused IS its frame cap, so it carries the matrix value
+        boot = [b for b in boot if not b.startswith("set com_maxfps ")] + ["set com_maxfps " + mx[0]]
+    args, late = hw.apply_policy(args, width=W, height=Hh,
+                                 unfocused_fps=int(mx[0]) if mx else ST.get("ufps", 60))
     boot += late
     open(os.path.join(mt, "jf_on.cfg"), "w", newline="\n").write("\n".join(boot) + "\n")
     hg.acquire_slot(owner, args[0], hm, [CPORTS[idx - 1]], 90)
@@ -404,6 +414,11 @@ def main():
     ST["clprobe2"] = "--clprobe2" in a
     ST["clprobe"] = "--clprobe" in a or ST["clprobe2"]
     ST["listen"] = "--listen" in a
+    ST["mx"] = {}
+    if "--mx" in a:
+        for n, grp in enumerate(opt("--mx", "").split(";")):
+            ST["mx"][n + 1] = grp.split(",")
+    opts["mx"] = ST["mx"]
     ST["ufps"] = int(opt("--ufps", "60"))
     opts["ufps"] = ST["ufps"]
     opts["listen"] = ST["listen"]
