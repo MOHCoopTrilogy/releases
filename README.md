@@ -9,507 +9,242 @@
 <p align="center">
 <a href="https://github.com/MOHCoopTrilogy/releases/releases/latest/download/MOHCoopTrilogy-WebSetup.exe"><img src="https://img.shields.io/badge/Download%20%26%20Install-2ea44f?style=for-the-badge&logo=github&logoColor=white" alt="Download and install"></a>
 &nbsp;
-<a href="#download--install"><img src="https://img.shields.io/badge/How%20to%20install-24292f?style=for-the-badge" alt="How to install"></a>
+<a href="#install"><img src="https://img.shields.io/badge/How%20to%20install-24292f?style=for-the-badge" alt="How to install"></a>
 </p>
-<p align="center"><sub>One ~3 MB installer. Auto-detects your GOG game, then downloads the rest on first launch. Needs a GOG copy of MOH: Allied Assault War Chest.</sub></p>
+<p align="center"><sub>One ~3 MB installer · needs a GOG copy of MOH: Allied Assault War Chest · <b><a href="https://github.com/MOHCoopTrilogy/releases/releases/latest">Release notes</a></b> · <b><a href="https://discord.gg/cVjMYPBFZ">Discord</a></b></sub></p>
 
-Play **Medal of Honor: Allied Assault War Chest** cooperatively — the complete *Allied Assault*, *Spearhead*, and *Breakthrough* campaigns, mission by mission, in co-op **built for 4** (the multiplayer modes scale up to 16).
-
-Built on the [HaZardModding Coop Mod](https://github.com/HaZardModding/hzm-mohaa-coop-mod) by chrissstrahl and a custom fork of the [OpenMOHAA](https://github.com/openmoh/openmohaa) engine, then heavily extended: guns with real weight and recoil character, ragdoll physics, an unlockable Armory with hundreds of weapon finishes, enemies that take cover and fight back, a full audio overhaul, HD visuals with post-processing, and dozens of coop-specific systems. One installer, automatic updates at every launch, and your original game folder is never touched.
+Play the complete **Allied Assault**, **Spearhead** and **Breakthrough** campaigns in co-op, **built for 4** (multiplayer modes scale to 16). Built on the [HaZardModding Coop Mod](https://github.com/HaZardModding/hzm-mohaa-coop-mod) and a custom fork of the [OpenMOHAA](https://github.com/openmoh/openmohaa) engine, then heavily extended: weighty guns, aimed reloads, ragdolls, an unlockable Armory, smarter enemies, a full audio overhaul and HD visuals. Updates install themselves at every launch, and your original game is never touched.
 
 > [!WARNING]
-> **Early alpha — expect bugs, and it hasn't been played end-to-end yet.** Systems and missions are
-> tested as they're built, but no full campaign or multiplayer session has been run start-to-finish on
-> the current build. If something breaks, the in-game **Report a Problem** tool (Start menu → *MOH
-> Trilogy Coop – Report a Problem*, one click, sends your logs) or a
-> [GitHub issue](https://github.com/MOHCoopTrilogy/releases/issues) is the most helpful thing you can send.
-
-<sub>**[Release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest)** · **[Discord](https://discord.gg/cVjMYPBFZ)** (announcements, find players, report bugs) · <a href="#for-developers">Source & build</a></sub>
-
-<details>
-<summary>Heads-up: developer &amp; debug tools are left switched on</summary>
-
-Debug/cheat tools ship **enabled** so testers can get unstuck — they are not behind anti-cheat, so on a public server treat it as an honour system. `coop_dev 1` gives `noclip`, `god`, self/team heal, spawn-point inspection, marker placement, position printing, a touched-entity probe, threat-bias toggle, mission-status dumps, and firing any script thread or trigger by name. `coop_build` places and saves world objects live; `coop_maptest` runs an automated tour of every map.
-</details>
-
-## Requirements
-
-- A GOG installation of [Medal of Honor: Allied Assault War Chest](https://www.gog.com/game/medal_of_honor_allied_assault_war_chest)
-- Windows, and roughly 6 GB of free disk space
-
-That's the whole list. The engine, renderer, runtimes, and all mod content are bundled. The installer detects your GOG install automatically and reads the original game data from it **without modifying it** — everything installs side-by-side into its own folder, so your vanilla game keeps working exactly as before.
+> **Early alpha.** Systems are tested as they're built, but no full campaign has been played start to finish on the current build. If something breaks, Start menu → **MOH Trilogy Coop – Report a Problem** sends us your logs in one click.
 
 ## Install
 
-> [!NOTE]
-> **It will not touch your existing game.** The mod installs into its own folder and runs from
-> there. **You choose that folder during setup** — the installer suggests
-> `%LOCALAPPDATA%\MOH Coop Trilogy`, and you can put it anywhere you like. Your GOG *Medal of
-> Honor: Allied Assault War Chest* install and any vanilla OpenMOHAA install are left exactly as
-> they are — nothing is overwritten, patched, or moved. Setup will refuse a folder that would
-> break that promise: it will not install into a Medal of Honor game folder, into an existing
-> OpenMOHAA installation it did not create, or anywhere inside your GOG folder.
->
-> The installer *reads* three support DLLs from your GOG folder and copies them across; it
-> never writes anything back to it, and it asks for no
-> administrator rights, so it could not modify a protected location even if it tried. Uninstalling
-> removes its own folder and nothing else. You can keep playing the original campaign normally.
+1. **[Download the installer](https://github.com/MOHCoopTrilogy/releases/releases/latest/download/MOHCoopTrilogy-WebSetup.exe)** (~3 MB) and run it. It finds your GOG game and creates a **MOH Trilogy Coop** shortcut. No admin rights needed.
+2. **Launch from the shortcut.** The first launch downloads about 7 GB of game files. After that, each launch fetches only what changed.
+3. **Host:** Multiplayer → Start Game → **MOH Trilogy Coop**, pick a mission, Apply. **Join:** Multiplayer → Join Game, or `connect <ip>` in the console.
 
-### Download & install
-
-<p align="center">
-<a href="https://github.com/MOHCoopTrilogy/releases/releases/latest/download/MOHCoopTrilogy-WebSetup.exe"><img src="https://img.shields.io/badge/Download%20%26%20Install-MOH%20Coop%20Trilogy-2ea44f?style=for-the-badge&logo=github&logoColor=white" alt="Download and install MOH Coop Trilogy"></a>
-</p>
-
-**One small installer is the whole download** — everything else is automatic:
-
-1. **[Download the installer](https://github.com/MOHCoopTrilogy/releases/releases/latest/download/MOHCoopTrilogy-WebSetup.exe)** (~3 MB) and run it. It auto-detects your GOG game, installs into its own folder, and creates a **MOH Trilogy Coop** shortcut. No admin rights, nothing touched in your game folder.
-2. **Launch from the shortcut.** The first launch downloads the ~7 GB of game files from GitHub with a progress bar (you need your GOG game installed and an internet connection). After that, startup is instant.
-3. **Play.** Every launch quietly checks for updates and grabs only what changed — usually a few megabytes — so you always match the live servers. If a check ever fails, the game just starts with what you already have.
-
-> That download link always points at the **newest version**, so it's the only link you ever need — bookmark it, share it, done.
-
-**Something broke?** Start menu → **MOH Trilogy Coop – Report a Problem** sends us your logs in a couple of clicks. GitHub [Issues](https://github.com/MOHCoopTrilogy/releases/issues) work too.
-
-### Playing
-
-Host: launch the shortcut, then **Multiplayer → Start Game → MOH Trilogy Coop**, pick a mission tile, hit Apply. Friends join over LAN/Internet via **Multiplayer → Join Game** or `connect <ip>` in the console.
-
-## What's new
-
-The mod updates itself every launch, so you're always on the newest build. Every release is written up in the **[latest release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest)**. Newest in **v1.10.22 - Eyes on Target**: **reloads and bolt work that stay on target** while you aim (BAR, StG 44, DP-28, the MP40s, 17 pistols with a **two-handed aim**, the bolt-action rifles and a pump shotgun with real sights), two new guns (**Gewehr 43 with iron sights** and a **Double Barrel shotgun**), **looting with the Use key** (enemy guns, ammo, searching bodies), a **paratrooper squad** that holds a line and sets up a .30 cal you can man, **rain that reaches the ground** with rare blizzards and downpours, a **new scope view** with each optic's own reticle, clouds on by default, smoother **Frame Generation (beta)**, a video memory gauge, and Last Man Standing players who reconnect keep their lives. In **v1.10.21 - All Cores Forward**: **big battles are faster again** (Omaha Beach went from about 31 to about 75 fps on our test PC) and **firefights stutter far less**, a **Graphics Quality** control with a **Recommended** button in Options > Video, an **exact frame-rate limit** with choices that match real displays, an optional **Frame Generation (beta)** switch, a smaller **item readout** that shows the key you bound to each item, an **enemies-remaining counter** on clear-out objectives, and the best connection settings for everyone. In **v1.10.20 - Clear the Beach**: **big battles run much smoother** (Omaha Beach went from about 19 to about 31 fps on our test PC), new **Quality Presets** (Low / Medium / High / Ultra) and a **Model Detail** row in Advanced Graphics, a fix for the crash when joining a game in progress, slow loaders are no longer kicked, and the U-boat, Omaha bunker and church-defence mission blockers are fixed. In **v1.10.19 - Steady Aim 3**: **reload while aiming** now works on most guns (MP40, MP44, Sten, Type 100, BAR, DP-28, Johnson, the pistols, the Webley and the shotgun, on top of the Garand, PPSh, Thompson and Moschetto) - first pass, being refined. In **v1.10.18 - Steady Aim 2**: **reload while aiming** on the Thompson and Moschetto (first pass). In **v1.10.17 - Steady Aim**: **reload while aiming** on the Garand and PPSh-41 (the sights stay up), and the **bolt cycled while aiming** on the Springfield, Lee-Enfield and Mosin-Nagant. In **v1.10.16** (hotfix): the **Kar98, G98 and Arisaka hip reload** no longer throws your hand up through the lens. In **v1.10.15**: the **sky no longer shows through thick fog**, weapon finishes use less video memory, and the Mosin sniper's scope gets an original canvas wrap. In **v1.10.14 - Quick Hands**: a much **faster, fluid quick draw** (hold H), **smarter sprint**, **authentic reloads** for drum Thompsons, the MP18, the .30 cal and MG42 belts, the C96 stripper clip, the Lewis and DP-28 pans and revolvers that eject their cases, a **cleaner screen** with a small fading message feed and a new mission **Debrief**, a wordless **bleed-out ring**, **paratrooper planes and Stukas you can actually see** (and shoot down), better **water and wet ground**, **voices that match each soldier's nation**, new music cues, and Germans that no longer hurt themselves. Since v1.10.4: **MSAA anti-aliasing** on by default, **footprints** in snow and mud, the **Kar98 bolt worked while aiming**, respawns with your **full kit**, new art for **every mission tile**, and **fuller sandstorms** with moonlit night storms. In **v1.10.3**: **realistic lightning** with bolts in the sky and thunder that arrives by distance, **water reflections and wet ground in rain** with puddles, **dead bodies that settle and react to blasts**, new **Lightning** and **Water & Weather** menu settings, a much **quieter console**, and fixes including the unkillable soldier by the barrels on m1l1. In **v1.10.2**: **116 loading tips** you can flip with LEFT/RIGHT (including how to read your injuries), the loading medal now **morphs from the original MOHAA icon** to the compass star, the **rank-up bar's gold square is fixed**, drivers keep **both hands on the wheel**, Germans shout **"Hands up!"** again, sound groups play **all their recordings**, a cleaned-up **graphics menu** (DEFAULT keeps your HD textures; new Frame Rate Limit and Menu Layout), and bots that **climb hills, jump banks and take doorways** cleanly. In **v1.10.1**: a launch tribute **in memory of Vince Zampella**, lead designer of Medal of Honor: Allied Assault; a new **loading screen** with a turning compass-star medal and 60 field tips on how the mod works; **headlights** that light the road and soldiers; five more **HD skies**; **Use opens doors** instead of bracing on the frame; and bots that **clear rooms together**. In **v1.10.0**: **HD skyboxes and moving clouds** with the box seams removed, 120 textures with their **tiling lines repaired** and ground textures **colour-matched** to the original game, **dust storms** that roll in on the desert maps, **weather in multiplayer**, a **Coop Hardcore** host rule, and bots that **pair up and check corners**. Earlier headliners: competitive **Push** (best-of-3), full **MP medkits**, the **Domination / Countdown / Assassination / Freeze Tag / Prop Hunt** modes, objective-playing **bots**, a **vehicle system** (tanks, jeeps, Flak 88s, Nebelwerfers), and shadows that no longer bleed through the ground.
-
-Co-op stays fully isolated from every multiplayer system — enforced by an automated contract on each build. Before reporting, skim **Known issues** near the bottom.
+**Needs:** Windows, a GOG install of [MOH: Allied Assault War Chest](https://www.gog.com/game/medal_of_honor_allied_assault_war_chest), and about 6 GB free.
 
 <details>
-<summary><b>Full documentation</b> — generated reference (features, maps, challenges, unlockables, every fix)</summary>
+<summary>Your existing game is safe</summary>
 
-Generated from the project itself (bug log, challenge definitions, map scripts, feature record) by `docs/tools/gen_public_pages.py`, so they can't drift from the build:
+The mod installs into its own folder (you pick it; the default is `%LOCALAPPDATA%\MOH Coop Trilogy`). It only *reads* your GOG game and never writes to it, and setup refuses any folder that would overwrite a game install. Uninstalling removes only the mod's folder.
+</details>
 
-- **[Features](docs/public/FEATURES.md)** — every system, by domain, with status
-- **[Maps](docs/public/MAPS.md)** — every mission, whether it's integrated, and how much repair it took
-- **[Challenges](docs/public/CHALLENGES.md)** — all challenges, grouped as the in-game Service Record shows them
-- **[Unlockables](docs/public/UNLOCKABLES.md)** — every weapon, perk, helmet and uniform, and the challenge that earns it
-- **[Every fix, logged](docs/public/BUGFIXES.md)** — the raw engineering record, by area
-- **[Roadmap & known issues](docs/public/ROADMAP.md)** — planned, in progress, or known broken
+<details>
+<summary>Developer and debug tools are switched on</summary>
+
+They ship enabled so testers can get unstuck (`coop_dev 1`: noclip, god, heal, teleport and more). There is no anti-cheat, so on public servers it's an honour system.
+</details>
+
+## What's new in v1.10.22 - Eyes on Target
+
+- **Aimed reloads that stay on target** - BAR, StG 44, DP-28, the MP40s, 17 pistols (now aimed **two-handed**), the bolt-action rifles, and a pump shotgun with real sights that pumps while you aim
+- **Two new guns** - the **Gewehr 43 with iron sights** and a **Double Barrel shotgun**
+- **Looting** with the Use key - pick up enemy guns and ammo, search bodies
+- **A paratrooper squad** that holds a line and sets up a .30 cal you can man
+- **Rain that reaches the ground**, plus rare blizzards and downpours
+- **New scope view** with each optic's own reticle, clouds on by default, smoother Frame Generation (beta)
+
+<table>
+<tr>
+<td width="50%"><img src="docs/screenshots/v11022-bar-reload-aimed.gif" width="100%" alt="BAR reloaded while aiming, the sights stay on the target"><br><sub>BAR reload without leaving the sights</sub></td>
+<td width="50%"><img src="docs/screenshots/v11022-stg44-reload-aimed.gif" width="100%" alt="StG 44 reloaded while aiming"><br><sub>StG 44, same idea</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/v11022-shotgun-pump-aimed.gif" width="100%" alt="Pump shotgun fired three times while aiming, pumping between shots"><br><sub>The shotgun pumps between shots while you aim</sub></td>
+<td width="50%"><img src="docs/screenshots/v11022-double-barrel-reload.gif" width="100%" alt="Double Barrel shotgun reloaded while aiming"><br><sub>New Double Barrel shotgun (mesh by Jean PFP, CC0)</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/v11022-pistol-reload-aimed.gif" width="100%" alt="Colt 45 held two-handed and reloaded while aiming"><br><sub>Pistols aim two-handed and reload on target</sub></td>
+<td width="50%"><img src="docs/screenshots/v11022-paratrooper-30cal.gif" width="100%" alt="A paratrooper sets up a .30 cal on sandbags, fires, and packs it up"><br><sub>Paratroopers set up a .30 cal on cover</sub></td>
+</tr>
+</table>
+
+<img src="docs/screenshots/v11022-downpour-before-after.gif" width="100%" alt="A downpour before and after: the rain now reaches the ground">
+<sub>Downpour, before and after: the rain now falls all the way to the ground.</sub>
+
+<details>
+<summary><b>Earlier releases</b> (full notes for every version are on the <a href="https://github.com/MOHCoopTrilogy/releases/releases">Releases page</a>)</summary>
+
+- **v1.10.21 - All Cores Forward** - big battles much faster (Omaha ~31 → ~75 fps on our test PC), a Graphics Quality control with a Recommended button, exact frame-rate limits, Frame Generation (beta), an enemies-remaining counter
+- **v1.10.20 - Clear the Beach** - Omaha ~19 → ~31 fps, Quality Presets, join-in-progress crash fixed, U-boat / Omaha bunker / church-defence blockers fixed
+- **v1.10.17-19 - Steady Aim** - first reloads while aiming (Garand, PPSh, Thompson, Moschetto, then most guns) and bolts worked while aiming
+- **v1.10.14 - Quick Hands** - fast quick draw, smarter sprint, authentic belt / drum / pan reloads, a cleaner HUD and mission debrief, visible paratrooper planes, nation-matched voices
+- **v1.10.4 - On Target** - iron sights that line up in every stance, MSAA on by default, footprints, briefing films for joiners
+- **v1.10.3 - Storm Front** - realistic lightning, water reflections and puddles, bodies that react to blasts
+- **v1.10.0-2** - HD skies and moving clouds, dust storms, multiplayer weather, 116 loading tips, headlights, and a tribute to Vince Zampella
+
+<table>
+<tr>
+<td width="50%"><img src="docs/screenshots/v11021-video-quality-recommended.jpg" width="100%" alt="Options > Video with the Quality control and the Recommended button"><br><sub>v1.10.21: one Quality control with a Recommended button</sub></td>
+<td width="50%"><img src="docs/screenshots/v11021-enemies-remaining.jpg" width="100%" alt="Enemies remaining counter on a clear-out objective"><br><sub>v1.10.21: enemies-remaining counter</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/v1014-quickdraw.gif" width="100%" alt="Quick draw, old left, new right"><br><sub>v1.10.14: quick draw (old left, new right)</sub></td>
+<td width="50%"><img src="docs/screenshots/v1014-reload-30cal.gif" width="100%" alt="The .30 cal belt reload"><br><sub>v1.10.14: the .30 cal takes a belt</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/v1014-paradrop.gif" width="100%" alt="C-47s cross the sky and paratroopers jump"><br><sub>v1.10.14: paratrooper C-47s you can see</sub></td>
+<td width="50%"><img src="docs/screenshots/v1104-ironsights-all-stances.gif" width="100%" alt="Garand sights lined up in every stance"><br><sub>v1.10.4: sights line up in every stance</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/screenshots/v1103-lightning-day-bolt.gif" width="100%" alt="A lightning bolt reaches the skyline"><br><sub>v1.10.3: realistic lightning</sub></td>
+<td width="50%"><img src="docs/screenshots/v1103-rain-wet-ground.gif" width="100%" alt="Rain rolls in and the ground gets wet"><br><sub>v1.10.3: wet ground in rain</sub></td>
+</tr>
+</table>
 </details>
 
 ## Screenshots
 
 <table>
 <tr>
-<td width="50%"><img src="docs/screenshots/01-pressure.jpg" width="100%" alt="Feel the pressure of combat in a way never experienced before in MOHAA"></td>
-<td width="50%"><img src="docs/screenshots/02-cinematic.jpg" width="100%" alt="New cinematic set-pieces make an old friend feel more in-tune with 2026"></td>
+<td width="50%"><img src="docs/screenshots/01-pressure.jpg" width="100%" alt="Feel the pressure of combat"></td>
+<td width="50%"><img src="docs/screenshots/02-cinematic.jpg" width="100%" alt="New cinematic set-pieces"></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/screenshots/03-progression.jpg" width="100%" alt="Explore new progressions and ways to complete missions"></td>
-<td width="50%"><img src="docs/screenshots/04-officers.jpg" width="100%" alt="Complete side objectives and eliminate High Ranking Officers to win support"></td>
+<td width="50%"><img src="docs/screenshots/03-progression.jpg" width="100%" alt="New progressions and ways to complete missions"></td>
+<td width="50%"><img src="docs/screenshots/04-officers.jpg" width="100%" alt="Eliminate High Ranking Officers to win support"></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/screenshots/05-challenges.jpg" width="100%" alt="Unlock new skins, weapons, variants and equipment by completing hundreds of Service Record challenges"></td>
+<td width="50%"><img src="docs/screenshots/05-challenges.jpg" width="100%" alt="Unlock skins, weapons and equipment through Service Record challenges"></td>
 <td width="50%"><img src="docs/screenshots/06-hero.jpg" width="100%" alt="Build your hero through unlocks and progression"></td>
-</tr>
-</table>
-
-### New in v1.10.22 - Eyes on Target
-
-<table>
-<tr>
-<td width="50%"><img src="docs/screenshots/v11022-two-handed-pistol.jpg" width="100%" alt="Aiming a Colt 45 with both hands on the gun"></td>
-<td width="50%"><img src="docs/screenshots/v11022-double-barrel.jpg" width="100%" alt="Aiming the new Double Barrel shotgun over its brass bead"></td>
-</tr>
-</table>
-<sub>Left: the two-handed pistol aim - reloads now stay on target. Right: the new Double Barrel shotgun (mesh by Jean PFP, OpenGameArt, CC0).</sub>
-
-### New in v1.10.21 - All Cores Forward
-
-<table>
-<tr>
-<td width="50%"><img src="docs/screenshots/v11021-video-quality-recommended.jpg" width="100%" alt="Options > Video with the Quality control and the Recommended button"></td>
-<td width="50%"><img src="docs/screenshots/v11021-enemies-remaining.jpg" width="100%" alt="Enemies remaining counter at the top right during the Omaha back line objective"></td>
-</tr>
-<tr>
-<td width="50%"><img src="docs/screenshots/v11021-item-readout.jpg" width="100%" alt="Medkit, sandbag and ammo box icons with small amounts and the bound key under each"></td>
-<td width="50%"><img src="docs/screenshots/v11021-frame-generation.jpg" width="100%" alt="A real frame beside a generated in-between frame for the same camera"></td>
-</tr>
-</table>
-<sub>Top: one Quality control for every graphics page, with a Recommended button that picks the preset for your PC; the new enemies-remaining counter. Bottom: the smaller item readout with your bound keys; Frame Generation (beta, off by default) - a real frame next to a generated one.</sub>
-
-### New in v1.10.15 - Hotfix
-
-<img src="docs/screenshots/v1015-skyfog.jpg" width="100%" alt="Night fog over the sea, before and after: the painted clouds and sea no longer show through the fog">
-<sub>Sky through fog: before, the painted clouds and sea showed straight through thick night fog (left); now the fog hides them the way it hides buildings (right).</sub>
-
-### New in v1.10.14 - Quick Hands
-
-<table>
-<tr>
-<td width="50%"><img src="docs/screenshots/v1014-quickdraw.gif" width="100%" alt="Quick draw with the Garand while aiming, old on the left, new on the right"><br><sub>Quick draw: the rifle swings onto its sling as the pistol snaps up (old left, new right)</sub></td>
-<td width="50%"><img src="docs/screenshots/v1014-reload-30cal.gif" width="100%" alt="The .30 cal reload: cover up, belt laid in, cover shut, double charge"><br><sub>The .30 cal now opens its cover and takes a belt (old left, new right)</sub></td>
-</tr>
-<tr>
-<td width="50%"><img src="docs/screenshots/v1014-reload-drum.gif" width="100%" alt="Thompson drum reload, old on the left, new on the right"><br><sub>Drum Thompsons swap their drum (old left, new right)</sub></td>
-<td width="50%"><img src="docs/screenshots/v1014-paradrop.gif" width="100%" alt="Three C-47s cross the sky and paratroopers jump"><br><sub>Paratrooper C-47s you can actually see, flying in formation</sub></td>
-</tr>
-<tr>
-<td width="50%"><img src="docs/screenshots/v1014-c47-flak.gif" width="100%" alt="A C-47 hit by flak trails smoke and crashes"><br><sub>Sometimes flak brings a C-47 down in front of you</sub></td>
-<td width="50%"><img src="docs/screenshots/v1014-bleedout-ring.gif" width="100%" alt="The bleed-out ring around the crosshair"><br><sub>Bleeding out: a thin ring, a fading screen and your heartbeat instead of big text</sub></td>
-</tr>
-<tr>
-<td width="50%"><img src="docs/screenshots/v1014-message-feed.jpg" width="100%" alt="Old stacked message box on the left, new small feed on the right"><br><sub>Cleaner screen: the stack of bold messages becomes a small feed (old left, new right)</sub></td>
-<td width="50%"><img src="docs/screenshots/v1014-wet-ground.gif" width="100%" alt="Wet courtyard, before and after"><br><sub>Wet ground is dark and damp instead of chalky white sheets</sub></td>
-</tr>
-</table>
-
-### New in v1.10.4 - On Target
-
-<table>
-<tr>
-<td width="50%"><img src="docs/screenshots/v1104-ironsights-garand-aim.gif" width="100%" alt="M1 Garand aiming down the sights, old on the left, new on the right"><br><sub>Iron sights now sit where the bullet goes (old left, new right)</sub></td>
-<td width="50%"><img src="docs/screenshots/v1104-ironsights-all-stances.gif" width="100%" alt="The Garand's sights lined up standing, crouched, prone and leaning"><br><sub>Lined up in every stance: standing, crouched, prone and leaning</sub></td>
-</tr>
-<tr>
-<td width="50%"><img src="docs/screenshots/v1104-ironsights-lean.jpg" width="100%" alt="Leaning left: old sight off to the side, new sight centred"><br><sub>Leaning no longer throws the gun off to the side</sub></td>
-<td width="50%"><img src="docs/screenshots/v1104-briefing-film-joiner.jpg" width="100%" alt="A joining player watching the Breakthrough briefing film under the Ready prompt"><br><sub>Briefing films now play for everyone who joins, not just the host</sub></td>
-</tr>
-<tr>
-<td width="50%"><img src="docs/screenshots/v1104-loading-cassino.jpg" width="100%" alt="New loading screen art: street fighting in Italy"><br><sub>New loading screen art, picked at random</sub></td>
-<td width="50%"><img src="docs/screenshots/v1104-loading-bastogne.jpg" width="100%" alt="New loading screen art: Bastogne"><br><sub>More new loading screen art</sub></td>
-</tr>
-</table>
-
-### New in v1.10.3 - Storm Front
-
-<table>
-<tr>
-<td width="50%"><img src="docs/screenshots/v1103-lightning-day-bolt.gif" width="100%" alt="Realistic lightning: a bolt reaches down to the skyline"><br><sub>Realistic lightning with bolts in the sky</sub></td>
-<td width="50%"><img src="docs/screenshots/v1103-lightning-night-bolt.gif" width="100%" alt="A lightning bolt at night"><br><sub>Night storms: the strike lights the clouds, thunder arrives by distance</sub></td>
-</tr>
-<tr>
-<td width="50%"><img src="docs/screenshots/v1103-lightning-before-after.gif" width="100%" alt="Old flat white flash on top, new realistic lightning below"><br><sub>Before (top): the whole sky flashed white. After (bottom): a real strike</sub></td>
-<td width="50%"><img src="docs/screenshots/v1103-rain-wet-ground.gif" width="100%" alt="Rain rolls in and the ground gets wet, then dries"><br><sub>Rain rolls in, the ground darkens and shines, then dries (time-lapse)</sub></td>
-</tr>
-<tr>
-<td width="50%"><img src="docs/screenshots/v1103-night-puddles.gif" width="100%" alt="Puddles at night, before and after"><br><sub>Puddles at night</sub></td>
-<td width="50%"><img src="docs/screenshots/v1103-harbour-water.gif" width="100%" alt="Harbour water, before and after"><br><sub>Water that picks up the sky and haze</sub></td>
-</tr>
-<tr>
-<td width="50%"><img src="docs/screenshots/v1103-ragdoll-grenade.gif" width="100%" alt="A grenade throws a body which comes to rest"><br><sub>Bodies settle and react to blasts</sub></td>
-<td width="50%"><img src="docs/screenshots/v1103-loading-medal.gif" width="100%" alt="Loading screen medal morphing from the original icon to the compass star"><br><sub>The loading medal morphs from the original MOHAA icon to the compass star</sub></td>
 </tr>
 </table>
 
 ## Features
 
-Everything here exists in the current build. Status honesty: systems marked *(experimental)* are known-rough; the [Still early](#still-early--read-before-reporting) section lists what is newest and least settled.
-
 <details>
-<summary><b>Full-campaign co-op</b> — all three War Chest campaigns, start to finish, with coop-native rules</summary>
+<summary><b>Full-campaign co-op</b></summary>
 
-- 50+ missions with working objectives, cutscene moments, escorts, and vehicle rides across *Allied Assault*, *Spearhead*, and *Breakthrough* — all under a single unified launch profile, no juggling game modes
-- Objectives HUD with main and side objectives, "new objective" toasts, mission-progress respawn points, and map-to-map transitions
-- **Down-But-Not-Out**: instead of dying you go down — crawl, hold on (heartbeat and breathing close in), and self-revive with a medkit, or bleed out. At very low health you *limp*, and the first-person camera limps with you
-- **Medkits** — carry self-heal charges, pick up dropped health, get patched up by the paradrop AI medic
-- Optional **Last Man Standing** mode with a shared pool of lives, and **8-second spawn protection** so reinforcements aren't farmed
-- AI difficulty and enemy counts scale with how many players are in — more players means more Germans, within sane caps — and an adaptive difficulty director *(experimental, on by default)* quietly eases or ramps the pacing based on how the squad is doing
-- **Officer boss encounters**: named officers with radio-called reinforcement waves (8 wave types), bodyguards, snipers, dogs, death battalions, German voice lines, and heal-and-retreat behavior — with a hard cap on self-heals so they stay killable
-- **Officer forces scale with your squad** — health, accuracy, and unit sizes grow with player count, and scale *down* below the two-player baseline for solo runs
-- **Reward items** from officer kills: binoculars that call in airstrikes, and signal smoke that summons a C-47 supply paradrop — including an AI medic who can get downed players back up
-- **Allied squads survive with you**: escort NPCs scale their health with player count and go *down* instead of dying — revive them by proximity, free
-- A pre-mission **coop lobby** with character selection and a ready-up countdown
-- Server-tunable rules via cvars: player health, DBNO on/off, LMS lives, corpse persistence, AI scaling, and more
-
+- 50+ missions across all three campaigns with working objectives, cutscenes, escorts and vehicle rides
+- **Down-But-Not-Out**: go down instead of dying, crawl, and self-revive with a medkit or bleed out
+- Optional **Last Man Standing** lives pool, spawn protection, and enemy counts that scale with your squad
+- **Officer bosses** that radio in reinforcement waves; kill them for airstrike binoculars and supply-drop smoke
+- Allied escorts go down instead of dying and can be revived
 </details>
 
 <details>
-<summary><b>Multiplayer — modes, bots & PvP</b> — a full competitive layer alongside the co-op campaign</summary>
+<summary><b>Multiplayer, modes and bots</b></summary>
 
-- **A dozen game modes**, playable with friends *or* bots: **Push** (best-of-3 single-front tug-of-war), **Base Assault / Build-A-Base** (build and hold, on real campaign maps), **Domination**, **King of the Hill**, **Capture the Flag**, **Countdown**, **Assassination**, **Demolition** (two-way — either team can plant), **Gun Game**, **Cyber Attack**, **Freeze Tag** (with a meltgun to thaw teammates), **Prop Hunt** (hide disguised as map objects), and **Last Man Standing**
-- **Match modifiers** stack on top of any mode: **One-Shot**, **One-Ammo**, **Hardcore**, and **Realism**
-- **Bots that play the objective** — fill a match to any size; they push the line, take the hill, plant and defend, and see, hear, flank and fight when engaged
-- **Campaign maps in multiplayer** — Push and Base Assault play on real single-player maps, reached from a **Campaign Maps** button on the team-setup screen, not only the deathmatch arenas
-- **Vehicles**: drive tanks and jeeps (driver + separate gunner), man fixed Flak 88s and Nebelwerfers, and pick up faction anti-tank launchers; capture an enemy's vehicle by holding USE beside it
-- **MP-native systems** ported from co-op: **medkits** (same icon, count and self-heal), **Down-But-Not-Out** with revives, and **spawn protection**
-- **Persistent XP, ranks and challenges** carry across co-op and multiplayer alike
-- Every one of these is **gated off on co-op maps** by an automated isolation contract enforced on every build — none of it can leak into the campaign
-
+- A dozen modes with friends or bots: Push, Base Assault, Domination, King of the Hill, CTF, Countdown, Assassination, Demolition, Gun Game, Freeze Tag, Prop Hunt, Last Man Standing
+- Modifiers: One-Shot, One-Ammo, Hardcore, Realism
+- Bots that play the objective; drivable tanks and jeeps, mountable Flak 88s and Nebelwerfers
+- Campaign maps playable in Push and Base Assault; XP and challenges carry across co-op and multiplayer
+- Kept fully separate from co-op by an automated check on every build
 </details>
 
 <details>
-<summary><b>The Armory — loadout, finishes & unlocks</b> — press F7, pick every slot of your kit</summary>
+<summary><b>The Armory and unlocks</b> (F7)</summary>
 
-- Pick your whole kit — two primaries, sidearm, grenade — from the trilogy's full arsenal plus imports and new additions: **over 70 weapons**, with live 3D previews and stat bars
-- **357 weapon finishes** across 45 guns, plus **77 community-credited model variants** on 23 host guns — different guns entirely, not reskins (each credited to its original author)
-- **Four new weapons in v1.4.1**: Mauser C96, Johnson M1941, DP-28, and the S&W M10 .38 — added alongside the existing roster, replacing nothing
-- Unlocks are **earned, never bought, never random**: faction challenges gate the BAR, StG44, Vickers, Breda and Trench Gun; rank gates the rest; every locked tile shows the exact path that unlocks it
-- **Blueprints** hidden in the world: every 5th find rolls a random unlock of any type
-- The 3D soldier shows the kit you picked; the main-menu armory works with no server running
-- Hundreds of cosmetic unlocks — helmets, headgear, uniforms and skins, including named trilogy characters earned by keeping them alive in their own missions
-- Mid-mission changes land in your hands in seconds — no restart, no rejoin
-
+- Choose two primaries, a sidearm and a grenade from 70+ weapons, with live 3D previews
+- Hundreds of weapon finishes and credited community model variants, plus helmets, uniforms and skins
+- Everything is **earned, never bought or random**: through rank, challenges and hidden blueprints
+- Changes made mid-mission land in your hands in seconds
 </details>
 
 <details>
-<summary><b>Weapon feel & movement</b> — a gun is no longer a floating camera attachment</summary>
+<summary><b>Weapon feel and movement</b></summary>
 
-- **Weapons have weight**: hip recoil, mass-scaled recovery, landing dip, footfall shake and breathing all scale with what you carry — a Thompson and a BAR do not handle alike
-- **Aim-down-sights** on its own key, easing in and out instead of snapping, with a per-gun tune table dialled by hand across 45 guns
-- The camera carries momentum; crouching and standing have weight behind them
-- Sprint-to-fire transitions, a low-ammo tell, an idle inspect that turns the gun to show its side, and your weapon retracts when you push it into a wall
-- **Procedural finger life**: the trigger hand re-grips and rests off the trigger, the support hand squeezes and stretches on the foregrip
-- Blood gets on the gun
-- **Sprint & stamina** (weapon lowers, gear rattles, breath runs out), quiet walk on ALT, weapon **bash** on its own key, lean, **vault/mantle** over low obstacles, and a **grenade kick**
-- **Take Cover** *(experimental)*: face a wall or low obstacle and hit your cover bind — auto third-person, blind-fire around corners or over the top, hold aim to peek out
-- **Three view modes on one bind**: first person → third person → third-person **free cam**, plus over-the-shoulder third-person aiming with shoulder swap and a smooth handoff into first-person irons
-- **Player emotes**: salute, at-ease, and stretch on bindable keys
-- Deployable **ammo box** and **sandbag cover**; **MG42 overheat** on mounted guns — for you *and* for German gunners
-
+- Guns have weight: recoil, recovery, sway and breathing scale with what you carry
+- Aim down sights on its own key, with **reloads and bolt / pump work that keep you on target**
+- Sprint and stamina, lean, vault, weapon bash, quick draw, take cover *(experimental)*
+- First person, third person and a free camera on one key; emotes; deployable ammo boxes and sandbags
 </details>
 
 <details>
-<summary><b>Ragdolls</b> — new in v1.4.x, on by default</summary>
+<summary><b>Enemies, ragdolls and gore</b></summary>
 
-- A real Verlet physics solver with 18 angular joint limits, world and brush-entity collision, and per-bone collision radii
-- The authored death animation owns the fall; physics owns the landing — bodies tumble over what is under them instead of clipping through it
-- Shoot a corpse and the limb you hit moves — and keeps where the bullet put it; explosions throw bodies per-limb
-- **This is the newest system in the mod.** `coop_ragdoll 0` turns it off and cleanly restores the retail death animations — see [Still early](#still-early--read-before-reporting)
-
+- Germans take cover, go prone, flank, retreat when hurt, and sometimes surrender (and can be recruited)
+- AI grenades work again (an engine bug had blocked almost all of them)
+- **Ragdolls** on by default: bodies land on what's under them and react to bullets and blasts (`coop_ragdoll 0` turns them off)
+- Blood trails, wounds and pools on a strict budget; helmets that fly off
 </details>
 
 <details>
-<summary><b>Gore & battlefield persistence</b></summary>
+<summary><b>Audio</b></summary>
 
-- Wounded enemies bleed through visible blood tiers, leave **blood trails** you can follow, and drip growing pools
-- Bone-attached wound props, headshot blood bursts with wall splats, brain-matter chunks and (rare) severed heads — rebuilt on a strict budget after the first version misbehaved, and capped so it can't run away
-- **Corpse impact physics** — explosions actually throw bodies — plus corpse persistence you control (`coop_corpseLife`; default: bodies stay)
-- Helmets pop off convincingly, fly with proper physics, and clank when they land
-- Dying enemies can crawl, drag themselves, and die where they fall instead of playing one canned animation
-
+- Re-recorded guns from licensed sound libraries, 60 new explosions, and handling sounds for your hands
+- Reverb by room type, occlusion through walls, HRTF for headphones, distant gunfire that sounds distant
+- Near-miss cracks, tinnitus after close blasts, 1,389 unused retail voice lines restored
+- A real mixer (Master, Music, SFX, Ambience, Dialogue) and an output-device picker
 </details>
 
 <details>
-<summary><b>The Germans fight back</b> — the v1.4.x AI overhaul</summary>
+<summary><b>Visuals and weather</b></summary>
 
-- Enemies **take cover, go prone at long range, and fight from behind crates** instead of standing in the open trading fire
-- The last soldier of a wiped squad may **surrender** rather than die — and you can **recruit him** (hold USE)
-- **Suppression-reactive poses**, locational hit reactions (head/back/arm/leg), arm hits that can knock the gun from their hands, and MG42 crews that side-step instead of eating the burst
-- **Weapon variety**: a slice of Kar98 riflemen carry (and drop) the G43; the G98 variant cycles its bolt properly; enemies chance-roll onto model variants of their own guns
-- Nine buried retail behaviours wired in for the first time, plus crawl-to-death and facial moods recovered from cut content
-- Reinforcements behave naturally: marching battalions actually storm in, dug-in troops patrol and chatter, hurt troopers pull back and drink from a canteen
-- AI grenades work at all — an engine bug had silently vetoed ~100% of AI grenade throws trilogy-wide (fixed)
-- Squad-level behaviours (shared alerts, last-known-position searches, morale breaks, tactical retreats) are wired in *(experimental — the "feel" is still being tuned in live play)*
-
+- Bundled HD texture, character, world, FX and sky packs
+- Bloom, ambient occlusion, sharpening, MSAA and optional Frame Generation (beta)
+- Rain, snow, dust storms and lightning with wet ground, puddles and water reflections
+- Layered vehicle deaths, restored headlight glow, teammate and officer icons
 </details>
 
 <details>
-<summary><b>Audio overhaul</b></summary>
+<summary><b>HUD, progression and settings</b></summary>
 
-- Nearly every weapon re-voiced — gun sounds redesigned from professionally recorded, licensed sound libraries
-- **60 new explosion recordings behind 79 aliases** — the retail trilogy pushed 366 alias lines through about 34 distinct wavs; one metal hit used to be the tank, the truck, the plane, the jeep, the glider, the AA gun, the bunker, the door and the radio
-- **Weapon handling foley**: the motions your hands make now have sound (first-person; the third-person set ships deliberately unwired — see [Still early](#still-early--read-before-reporting))
-- **Environmental reverb** (interiors classify themselves — room, stone hall, bunker), **sound occlusion** through walls, **HRTF** 3D audio for headphones, and **distance layering** so far-away gunfire gets true far-field tails
-- **Tinnitus and shellshock** after close blasts, ricochet whines, supersonic **near-miss cracks and zings**, and muffled screams from crews still inside a burning vehicle
-- **Death voices**: a 484-clip pool with distance filtering — far-away kills sound far away — plus a headshot kill cue and tiered injury audio
-- **Footstep overhaul** — stone/dirt/foliage/metal/sand/snow/water, 44 per-surface bullet impacts, shell casings, and enemies you can actually hear coming
-- **1,389 never-played retail voice takes** restored to the campaign — suppressing-fire calls, reload shouts, German banter, fear barks
-- Full in-game **audio mixer**: Master, Music, SFX, Ambience, and Dialogue sliders that each actually do what they say, plus an **output-device picker**; cinematic ducks return to *your* levels afterward
-- Per-map ambience beds, dynamic weather you can hear roll in, radio squelch on officer calls, and ~3,100 missing vehicle-collision sounds restored trilogy-wide
-- Engine-level fixes: the sound table tripled (512 → 1600), audio follows your Windows default device, and map-wide gunfire falloff restored to how the original engine did it
-
+- A HUD that fades when things are quiet; Coop Settings, Advanced Graphics and Post-FX menus
+- Persistent XP with 13 WW2 US Army ranks, 445 challenges, medals, and pinned challenge tracking
+- A What's New report after each update and a Report a Bug button in game
 </details>
 
 <details>
-<summary><b>Visuals</b></summary>
+<summary><b>Map and engine work</b></summary>
 
-- Bundled **HD texture, character, world, FX, and skybox packs** (see credits), wired through a DDS override pipeline so the HD versions load reliably everywhere
-- **HD skyboxes and moving clouds** rebuilt at 2048 with the seams between sky faces removed, **tiling lines repaired** on 120 textures, and ground textures **colour-matched** back to the original game (Omaha Beach deliberately left as it is)
-- Post-processing: **bloom**, **SSAO**, **contrast-adaptive sharpening**, and suppression/low-health screen effects — each toggleable
-- Decal **shadows** under characters that follow each map's real sun direction
-- **Layered vehicle deaths**: the initial shake, staged fuel/ammo cook-offs, a burning wreck and a lingering smoke column — instead of one puff and a static husk
-- Overhead **teammate icons** so you stop shooting your friends, and boss icons over officers
-- **Dynamic weather** — rolling rainstorms and snow driven through the engine's native weather system, **dust storms** that roll in over the desert maps, and weather on multiplayer maps too
-- Restored **lamp glow** on vehicle headlights and softer, lit **searchlight cones**
-- Full-detail models at all distances, HD-upscaled menus and UI art, and experimental **3D grass** (off by default)
-
+- Every campaign map repaired for co-op: objective failsafes, rebuilt convoy and jeep rides, the U-boat stealth mission made a real stealth mission, ~550 missing German soldiers restored on Spearhead and Breakthrough
+- Engine limits raised (entities, models, sounds) with guards so they can't silently regress; dozens of crash fixes
+- 2,000+ fixes logged with root causes: **[every fix, by area](docs/public/BUGFIXES.md)**
 </details>
 
-<details>
-<summary><b>HUD, UI & settings</b></summary>
+Full generated reference: **[Features](docs/public/FEATURES.md)** · **[Maps](docs/public/MAPS.md)** · **[Challenges](docs/public/CHALLENGES.md)** · **[Unlockables](docs/public/UNLOCKABLES.md)** · **[Roadmap and known issues](docs/public/ROADMAP.md)**
 
-- **HUD fade**: the HUD gets out of the way after 5 quiet seconds and snaps back the instant anything matters (the compass stays, by design)
-- **Coop Settings** menu (find the desk telephone): HUD behaviour, XP popup, crosshair and aim options, audio mixer, and the coop rules — most of it per-player, not server-wide
-- **Advanced Graphics** — texture filtering and anisotropy, LOD and draw distance, detail levels, and a display-mode selector (Borderless or Exclusive Fullscreen; use Borderless if you record or stream)
-- **Post-FX** menu — bloom, sharpening, depth of field, suppression and low-health effects, all tunable; turn the whole layer off for the classic look
-- **What's New field report** after each update, an in-game **Report a Bug** button that goes straight to the dev team, **console copy/paste** (Ctrl+V), an **FOV slider that actually works**, and bindable coop commands for everything above
-- Rebuilt loading screens and menu art (the m1l1 corkboard case-file is the template for more)
-
-</details>
+## Known issues
 
 <details>
-<summary><b>XP, ranks, challenges & Service Record</b></summary>
+<summary>Read before reporting</summary>
 
-- **Persistent XP** saved across sessions — 13 authentic US Army WW2 ranks with metallic insignia on the scoreboard
-- XP for everything: kills (headshot/melee/long-range bonuses), assists, valor (saving a teammate under fire, fighting while downed), officer bounties, denied officer heals, support calls, objectives, mission completion, deathless runs, blindfire and fighting-from-cover kills
-- **Promotion ceremony** with a cinematic M1 Garand ping, an animated **end-of-match debrief**, and a small "+2" kill popup by the crosshair (toggleable)
-- **445 challenges** in 11 categories — campaign feats, weapon mastery (90 per-weapon), stealth, vehicles, Axis forces — browsable from the **Service Record** (in the lobby, and fully disconnected from the main menu), with live progress bars and per-player persistence
-- **Medals & Badges**: 12 campaign-wide meta-achievements derived from the challenge categories
-- **Pin up to 5 challenges** to track live (from the lobby or main-menu Service Record; an in-mission pin surface is still missing — see Known bugs)
-- A few just for fun — see **Wuss.pk3**, awarded for registering enough distinct sounds in one marathon session to nearly fill the engine's sound table
-- Rank thresholds are locked in: they double as the spine for the planned skill trees
+**Newest and least settled:** the multiplayer modes and bots (little human playtesting yet), ragdolls, take cover, the free camera, the jeep and tank machine-gun seats, and squad AI behaviour.
 
-</details>
+**Open bugs:**
+- e3l4: a jeep passenger can fail the first supply run (failsafes still complete the mission)
+- t2l2: some extra MG42 nests go unmanned and one German vehicle can fail to appear (the map still plays through)
+- m1l1: a couple of Rangers on the opening truck can render with mangled limbs
+- The down-but-not-out crawl animation plays backwards
+- Reload magazines keep the stock skin on a finished gun
+- Pinned challenges have no in-mission panel yet
+- OpenGL2 renderer: some animated lights pulse red, and distant objects can pop through fog
+- Dedicated servers crash on plain deathmatch maps (listen servers are fine)
 
-<details>
-<summary><b>Per-map coop work</b> — the long tail that keeps the campaigns finishable</summary>
-
-- **Trilogy-wide objective failsafes** — plant-to-destroy objectives (nebelwerfers, flak guns, AA batteries, cannons) count *however* you destroy them: airstrike, grenades, tank shells. Mission-critical tools (the Ardennes nebelwerfer, the t1l3 flak cannon, the escape tank) can no longer be destroyed early and soft-lock the map
-- **~550 German AI restored trilogy-wide** — an entity-spawner defect had been silently eating entire enemy placements on Spearhead/Breakthrough maps (and spamming thousands of errors while doing it)
-- **m3l3** — the church defense rebuilt: aggressive nebelwerfer barrages that respect walls, MG42s that actually suppress, story conversations keyed to real battlefield state
-- **m2l2a** — the U-boat stealth mission made a real stealth mission: papers checks work, disguise logic fixed end to end, and a new **contain mechanic** — corner an officer alone and silence him quietly before he reaches the alarm
-- **m3l1a Omaha** — landing-craft audio pacing, beach ambience, and the ramp-drop cinematic mix
-- **m3l1b** — the devs' cut "destroy the gun emplacements" FLAK-88 objective restored and wired into the exit
-- **t2l1 Ardennes** — full officer integration, late-map respawn, restored battle-sound gates, manned MG42 nests, and a "keep the squad alive" objective with revivable allies
-- **t2l2** — the halftrack/truck convoy ride rebuilt for coop: solid riders, locked cameras, everyone arrives together; **m1l3a / m1l3b** — jeep rides with coop seating and respawns; **m1l1** — restored truck sequence
-- **m1l2a** — SAS escort fixed; **m2l1** — Grillo escort and officer staging; **m2l2 / m2l3** — U-boat pens and train-station finales staged for coop
-- **t1l3** — the colonel can no longer be killed by your own bombing run mid-cutscene; **e3l4** — five separate crash fixes
-- **e2l3 finale** — objectives no longer un-complete each other; the mortar emplacement now shoots where you aim at long range
-- **e1l2** — three species of invisible walls removed (including 33 armed landmines that were secretly solid boxes)
-- Crewed AA emplacements, placeable flak guns, restored cut voice moments, and **AI polish everywhere**: paradrop death anims, pain-handler fixes, smoke grenades no longer eat your frags, dogs animate as dogs
-
-</details>
-
-<details>
-<summary><b>Engine fixes</b> — the fork earns its keep</summary>
-
-- **The entity-pool saga**: a years-old config lie (`maxentities 2048` against a 10-bit network protocol) disabled the allocator's overflow guard and caused a whole family of "random" crashes. Fixed properly — the wire protocol was widened, ~25 guards added
-- **Invisible enemies fixed twice over**: the model table doubled (past 1024 models, new enemies literally rendered as nothing), and a separate snapshot limit was silently discarding every entity past the 1024th
-- Sound, animation, skeleton, cvar, and configstring limits all raised for what the mod actually pushes — with compile-time guards so they can't silently regress
-- **AI grenade throws un-vetoed** (a distance check compared units against units-squared, so every squadmate on the map blocked every throw)
-- Crash fixes: TGA loader, TIKI animation overruns, NULL derefs in the disguise sight-trace and e3l4's scripts, vehicle-crew edge cases
-- Riders on vehicles are solid, take real damage, and their view is locked to the vehicle (no more judder); turret gunners are visible to drivers
-- Menus got engine work too: clickable stacked buttons (the Armory needs it), hi-DPI font atlases rendered from a real vector font, working display modes
-- Holstered **weapons on your back** — EA shipped the system disabled; it took an engine fix plus 100+ model files to switch on
-
-</details>
-
-## Known issues & rough edges
-
-<details>
-<summary><b>Newest / least-settled systems</b> — read before reporting</summary>
-
-Deliberately shipped so they can be played and reported on:
-
-- **The multiplayer modes and bots are the newest layer.** A dozen modes, the match modifiers, objective-playing bots and the vehicle system have been built and verified in automated testing, but most have not had a full human playtest yet. Expect rough edges in the drive / fire / hide / plant / capture interactions, and report anything that misbehaves — co-op play is unaffected.
-- **Ragdolls are ON by default, and one of the least-settled systems.** Thirty commits across six review rounds went into them and they are still among the least settled things here. Expect the occasional odd pose, a body that spins a moment too long, or one that finds geometry you would not expect. This is the system most worth reporting on. If you'd rather have a clean run, `coop_ragdoll 0` puts the retail death animations back with no other side effects.
-- **The skin and finish system is new end to end.** 357 variants is a lot of surface area; it has been playtested, but menu edge cases under fast clicking are the likeliest rough spot.
-- **The weapon-feel pass was tuned very recently** — it got a live tuning session on release day, and the idle-inspect framing in particular was corrected very late and has not had a long soak.
-- **Third-person weapon handling foley ships inert.** The 84 recorded takes are in the package but deliberately not wired yet — they need per-class animation forks and carry a double-trigger hazard, so they are silent rather than half-connected.
-- **Sniper scopes show the background incorrectly** around the lens. Known, and a proper fix needs renderer work that has not started yet.
-- Still settling from earlier releases: **Take Cover** (pose detection and peek transitions under active tuning), the **jeep .30cal and tank MG gunner slots** (prototypes), the **free cam**, shoulder-aim leg animations (dedicated aimed-locomotion anims are on the roadmap), and the new **AI squad behaviours** (wired in, feel still being tuned).
-
-</details>
-
-<details>
-<summary><b>Open bugs right now</b></summary>
-
-The current honest list — carried in the [release notes](https://github.com/MOHCoopTrilogy/releases/releases/latest) and the internal defect ledger:
-
-- **e3l4**: a jeep passenger can fail to complete the first supply run. Failsafes catch it so the mission still completes; the root cause is instrumented and being chased.
-- **t2l2**: script errors on coop boot — some addon MG42 nests go unmanned and one German vehicle fails to appear. The map plays through regardless (degraded, not dead).
-- **Pinned challenges have no in-mission surface yet** — pin from the lobby or main-menu Service Record; an in-mission panel needs engine work.
-- **DBNO crawl** animation plays opposite to your movement direction (crawling forward looks like crawling backward).
-- **Reload magazines keep the stock skin** on a finished/skinned gun — the in-hand magazine is a separate model whose source is still being traced.
-- **m1l1**: a couple of the Rangers riding the opening truck can render with mangled limbs. Six investigations so far; a targeted diagnostic ships in the build.
-- **e2l2**: a dozen harmless-looking "NULL listener" script warnings on boot — being fixed with the established guard pattern.
-- **OpenGL2 renderer path**: surfaces lit by animated light styles (e.g. the e2l1 bridge rails) can pulse red, and distant objects can pop through fog instead of fading. The classic renderer path doesn't show either.
-- **Dedicated servers** work for coop maps but crash loading plain deathmatch maps; listen servers (the normal way to host) are unaffected.
-- **Multiplayer dynamic weather is switched off** — it can crash the client while loading some multiplayer maps, so it stays disabled until the fix is verified. Co-op weather is unaffected.
-
-If you hit something not on this list, that's exactly what the **Report a Problem** tool is for.
-
-</details>
-
-<details>
-<summary><b>The engineering record</b> — 2,000+ fixes logged with root causes</summary>
-
-Since the structured defect log began on 2026-06-26, **over 2,000 defects have been individually logged with root cause and fix** — the id counter is past bug-2700, and all but roughly 30 are closed. (Everything fixed before late June predates the log on top of that.) The bar for logging is deliberately low — real bugs, failed builds, and surprising engine behaviour all count — and the full ledger is published, by area, at **[Every fix, logged](docs/public/BUGFIXES.md)**.
-
-Where the work went (log tags overlap): ~110 renderer entries, ~100 engine, 42 outright crashes, ~105 Armory/loadout, ~90 HUD/menus, ~55 audio, ~85 AI/officer/turrets — and every campaign map has its own trail (the m3l3 church defense alone carries 49 entries, the m2l2a stealth mission 48, the Kasserine glider map 37).
-
-Headline fixes, so you know the flavor:
-
-- **The entity-pool crash saga** — one config lie (`maxentities 2048` over a 10-bit wire protocol) silently disabled an allocator guard, corrupted the world slot, and produced a weekend's worth of "random" crashes. Root-caused from minidumps and fixed at the protocol level.
-- **MG42s never aimed like MG42s** — manned turrets never read the spread values that were supposed to control them, so three earlier "fixes" were placebos. The real knob was found in the engine and wired trilogy-wide: suppressive near-misses instead of laser accuracy.
-- **The m3l3 church barrage wounded you invisibly** — it wrote health directly instead of dealing damage (no pain sound, no flash, no indicator), pinned you at 1 HP so the next stray round killed you, and could hit you *through the church walls*. All three fixed — shells now respect line of sight.
-- **Enemies never reloaded** — the reload table matched `"stg44"` while the weapon is named `"stg 44"`, so the animation resolved empty and they simply fired forever. Same class of bug on the sniper and shotgun.
-- **Enemies were permanent bullet sponges** — the coop pain handler ran once per actor *ever* due to a latch nothing cleared; separately, officers could break line of sight and heal to full unlimited times. Both fixed (officers get a heal budget).
-- **Invisible enemies, invisible torsos, and silent guns across Spearhead** — plus the engine-side model-table overflow that made late-map enemies render as nothing on any map.
-- **Severed heads vanishing during normal play** — a stale config seed was overriding the engine's corrected cap; caught in the v1.4.1 pre-release audit.
-- **Officer reinforcements could spawn under the map**, battalions could spawn inside walls, and ~550 German AI across Spearhead/Breakthrough never spawned at all. All restored.
-- **The XP bar could never fill.** Now it can.
-- **You can hear the bombing run coming now.**
-
+Found something else? Use **Report a Problem**, post on Discord, or open an [issue](https://github.com/MOHCoopTrilogy/releases/issues).
 </details>
 
 ## Roadmap
 
-In design and research — being built in the open, no dates promised:
+No dates promised: online play without port forwarding, skill trees (Ranger, Corpsman, Pathfinder), a carryable MG42, new player animations, a wave-survival mode, and in-game update notices.
 
-- **Play online without port forwarding** — a tiny rendezvous service + UDP hole-punching so a friend can join with a memorable code instead of router surgery *(phase 1 is built and verified locally; real-world testing next)*
-- **Skill trees** — the shipped XP ranks become spendable in three trees: **Ranger** (assault), **Corpsman** (medic/support — reviving teammates is planned as a Corpsman unlock), and **Pathfinder** (recon/officer hunting)
-- **Carryable machine guns** — the portable MG42 (carry it, deploy it on its bipod, pack it back up) as a loadout option; a .30 cal variant to follow
-- **New player animations** — proper aimed-movement, sprint, mantling, and richer death/pain variety, re-authored in-house on the game's own skeleton
-- **Holdout** — a wave-survival gamemode; a full prototype exists and is parked while trilogy work continues
-- **Between-mission staging** — the pre-mission lobby extended into a between-maps ready-up flow
-- **In-game update notifications** — an "update available" notice in the menu when a release lands while you're playing
-
-## Looking for help
-
-**We're looking for Animators, Mappers, and Artists** to help:
-
-- create new weapons and modernize skins
-- animate ADS (aim-down-sights) for the entire arsenal
-- port single-player maps and build new modern battlefields
-
-This is a passion project, so your time is respected — but no one earns a cent on it, including myself. If that sounds like your kind of thing, come say hi on **[Discord](https://discord.gg/cVjMYPBFZ)**.
+**Want to help?** We're looking for animators, mappers and artists (new weapons and skins, aimed animations, map ports). It's a passion project and nobody is paid, including me. Say hi on **[Discord](https://discord.gg/cVjMYPBFZ)**.
 
 ## Credits
 
-This project stands on a lot of other people's work. Thank you:
+- **chrissstrahl, Smithy (1337Smithy) and HaZardModding** - the original [HZM Coop Mod](https://github.com/HaZardModding/hzm-mohaa-coop-mod) this project builds on, and its testers and community ([hazardmodding.com](http://www.hazardmodding.com))
+- **The OpenMOHAA team** - the open-source [engine](https://github.com/openmoh/openmohaa)
+- **HD packs** by their authors: *MOHAA HD Project*, *HRRTM - HD Realism Texture Mod* (and its blood addon), HD gun sounds, geared soldiers and HD foliage packs, plus in-house upscales made for this project
+- **Weapon models and finishes** by their original authors, credited individually in game; the Double Barrel shotgun mesh by **Jean PFP** (OpenGameArt, CC0). Archive-era content is included with attribution and removed on request
+- **Sound design** from licensed professional sound libraries
+- **2015, Inc. / Electronic Arts** - the original *Medal of Honor: Allied Assault* trilogy
 
-- **chrissstrahl, Smithy (1337Smithy), and HaZardModding** — creators of the original [HZM Coop Mod](https://github.com/HaZardModding/hzm-mohaa-coop-mod), the coop framework this entire project builds on, plus the HZM testers and community ([hazardmodding.com](http://www.hazardmodding.com))
-- **The OpenMOHAA team** — the open-source [engine](https://github.com/openmoh/openmohaa) that makes any of this possible
-- **HD content packs**, bundled with attribution to their authors:
-  - *MOHAA HD Project* (AA HD Project paks)
-  - *HRRTM — HD Realism Texture Mod* (texture, model, and weapon paks plus the blood-effects addon)
-  - HD gun sounds, geared soldiers, and HD foliage packs by their respective authors
-  - Additional in-house upscale and gap-fill packs (character skins, world, FX, skybox, DDS overrides) produced for this project
-- **Weapon model & skin variants** — community weapon packs and finishes by their original authors, credited individually in-game and in the mod's credits file; archive-era content is included with attribution and removed on request
-- **Sound design** — additional weapon and world audio built from licensed professional sound libraries
-- **2015, Inc. / Electronic Arts** — the original *Medal of Honor: Allied Assault* trilogy
-
-*MOH Coop Trilogy is an independent, non-commercial fan project. It is not affiliated with, endorsed by, or sponsored by Electronic Arts, 2015 Inc., or any other rights holder of the Medal of Honor series. Medal of Honor and all related trademarks and assets remain the property of their respective owners. A legitimate copy of the original game is required to play.*
+*MOH Coop Trilogy is an independent, non-commercial fan project, not affiliated with or endorsed by Electronic Arts, 2015 Inc. or any other Medal of Honor rights holder. All trademarks and assets remain their owners' property. A legitimate copy of the game is required.*
 
 ## License
 
-- **Engine fork** — GPLv2, source at [MOHCoopTrilogy/openmohaa](https://github.com/MOHCoopTrilogy/openmohaa) (upstream: [openmoh/openmohaa](https://github.com/openmoh/openmohaa))
-- **Mod scripts and content** — under the original HZM Coop Mod's terms; see `hzm_legal.txt` in the [mod repo](https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod)
-- **Game assets** — remain the property of their respective owners and are not covered by the above
-
-## Feedback & community
-
-**[Discord](https://discord.gg/cVjMYPBFZ)** is the project's home — release announcements land there the moment they ship, and it's the fastest way to reach the devs, report bugs, or find a squad to play with.
-
-Found a bug, or something just feels off? Use the **Report a Problem** tool in the Start menu (it attaches the logs we need), post in Discord, or open an issue on [this repo](https://github.com/MOHCoopTrilogy/releases/issues). Mission-breaking bugs in any of the 50+ maps are the highest priority — tell us the map and what you were doing.
-
----
+- **Engine fork** - GPLv2, source at [MOHCoopTrilogy/openmohaa](https://github.com/MOHCoopTrilogy/openmohaa) (upstream [openmoh/openmohaa](https://github.com/openmoh/openmohaa))
+- **Mod scripts and content** - the original HZM Coop Mod's terms; see `hzm_legal.txt` in the [mod repo](https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod)
+- **Game assets** - remain their owners' property
 
 ## For developers
 
-| Repo | What it holds |
+| Repo | Holds |
 |---|---|
-| [MOHCoopTrilogy/releases](https://github.com/MOHCoopTrilogy/releases) | This repo — downloads, the auto-update manifest, build & installer pipeline |
-| [MOHCoopTrilogy/hzm-mohaa-coop-mod](https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod) | Mod source (scripts, UI, configs, assets) |
+| [MOHCoopTrilogy/releases](https://github.com/MOHCoopTrilogy/releases) | This repo: downloads, the update manifest, the build and installer pipeline (`build.ps1`, `installer/`, `updater/`, `publish_release.ps1`) |
+| [MOHCoopTrilogy/hzm-mohaa-coop-mod](https://github.com/MOHCoopTrilogy/hzm-mohaa-coop-mod) | Mod source: scripts, UI, configs, assets |
 | [MOHCoopTrilogy/openmohaa](https://github.com/MOHCoopTrilogy/openmohaa) | Engine fork source (GPLv2) |
-
-Alongside Releases, this repo hosts the pipeline: `build.ps1` (packs the mod tree into pk3s and deploys a dev install), `installer/` (Inno Setup sources + the problem reporter), `updater/` (the launch-time auto-updater), and `publish_release.ps1` (manifest generation + release publishing).
