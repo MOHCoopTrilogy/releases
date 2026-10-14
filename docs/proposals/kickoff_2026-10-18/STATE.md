@@ -45,5 +45,5 @@
 - Their eyes on v1.10.22: scope view, downpour density, What's New card layout.
 
 ## Public servers (started 2026-10-14 at the user's request)
-- Two v1.10.22 coop dedicated servers run from the GOG folder's release omohaaded.exe, homes in `public_servers\srv1` (port 12203, m1l1) and `srv2` (port 12204, e1l1), 4 players each, restarted automatically by `public_servers\run_server.ps1`. Stop with `public_servers\stop_servers.ps1`.
+- Two v1.10.22 coop dedicated servers (names "MOH Coop Trilogy #1/#2 - github.com/MOHCoopTrilogy/releases", ports 12203 / 12204, 4 players) play the FULL TRILOGY: coop_campaign 1 from co_lobby1; server-only loose copies of the three finales in `public_serverssrvNmainttmaps` (made by `public_serverssetup_trilogy.py` from the released paks) hand AA -> SH -> BT -> AA. The finale hand-offs are untested (need a full campaign end). Runner `public_serversun_server.ps1` restarts on exit; stop with `public_serversstop_servers.ps1`. Re-run setup_trilogy.py after any release that changes m6l3e, t3l2 or e3l4/Outro.
 - They BLOCK deploys (deploy_window.ps1 aborts while omohaaded runs from G:\GOG): stop them first, restart after a release.
