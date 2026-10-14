@@ -15,6 +15,8 @@ The remaining list is very likely MORE than one week's allowance. So: order matt
 enemy, and verified work gets released before the budget runs out.
 
 **Reading**
+- Read `STATE.md` (next to this file) first: it is the current state. If it is dated after
+  2026-10-14 it replaces the resume memory file entirely - do not open that file at all.
 - Do NOT read whole files. `MEMORY.md` is already loaded. From
   `C:\Users\curry\.claude\projects\C--mohaa-coop-dev\memory\paused-2026-10-06-resume.md` read only
   the entries dated 2026-10-13 and 2026-10-14 (grep the dates, read from "v1.10.22 ... PUBLISHED"
@@ -54,6 +56,26 @@ enemy, and verified work gets released before the budget runs out.
 
 **Ask the user ONCE.** Every open decision goes in one "decision sheet" message with a recommended
 default for each (section 5). Never drip questions one at a time - each reply re-reads everything.
+
+**More savers (all approved by the user unless the kickoff message says otherwise)**
+- *State lives in ONE small file.* `docs/proposals/kickoff_2026-10-18/STATE.md` is the current
+  state and nothing else: OVERWRITE it at every handoff (never append), keep it under 60 lines. A
+  new session reads this file and STATE.md, not the long resume memory file.
+- *Looking at pictures costs tokens.* The agent that makes a GIF or still does its own visual QA
+  and builds ONE small contact sheet per item (a few frames, downscaled). The coordinator looks at
+  the contact sheet only, never at frame folders, and sends the GIF itself to the user.
+- *TRAPS.md is 70 KB.* Agents that write game scripts or engine code read it in full (a parse
+  killer costs more than the read). Animation, model and texture agents grep it for their topic.
+- *Slim what loads on every turn.* At the start, check the session's connectors and switch off the
+  ones this project does not use (Chrome, computer use, document and finance connectors, the
+  registry) - their tool lists ride along on every message and into every agent.
+- *Effort.* The user asks that mechanical agents (the ones on `sonnet`) run at `medium` effort.
+  Judgement agents keep their usual effort.
+- *The cache lasts one hour.* If the user comes back after a long silence to a big conversation,
+  the whole thing is re-read at full price. After a gap of hours, prefer a fresh session
+  (section 7) over continuing a large one.
+- *No idle chatter.* No "still working" messages, no polling of background agents (they notify),
+  no re-reading files already read, no second opinion agents unless a result looks wrong.
 
 ---
 
@@ -230,7 +252,43 @@ is too heavy, and whether the What's New card lays out correctly. Nobody has che
 
 ---
 
+| 12 | Trim the instruction files that load on every turn: the two unused web-UI sections of `.wolf/OPENWOLF.md` (Design QC, Reframe) and the duplicate bullet list in `.claude/rules/openwolf.md` | Yes - show the cut in three lines, then make it |
+| 13 | Switch off connectors this project does not use, for these sessions | Yes |
+| 14 | Mechanical agents on the cheaper model at medium effort | Yes |
+
 ## 6. FIRST REPLY TO THE USER
 
 A few lines only: what the parallel-session check found, which decisions are still open (if any),
 and that Stage 1 has started. Then work.
+
+---
+
+## 7. SESSION HANDOFF - telling the user when to start a new session
+
+The coordinator, not the user, watches for this. Check `get_usage` (context) whenever an agent
+reports back.
+
+**Hand off when any of these is true**
+- this conversation has passed about 250k tokens;
+- a release has just been published, or a stage has just finished;
+- the weekly 70 % or 85 % checkpoint has been reached;
+- the user returns after hours away and the conversation is already large.
+
+**Never hand off with agents still running** - their results come back only to the session that
+started them. First let them finish (or tell them to stop at a clean point and write their README
+handover), and commit everything.
+
+**Then, in this order**
+1. Overwrite `STATE.md` (under 60 lines): date and time; what is live; which stage and step is next;
+   each lane in one line (done / in progress / blocked, branch and commit, README path); what is
+   built but not released; what is waiting on the user's eyes or a decision; usage percent.
+2. Commit it. Update the "Resume list" line in `MEMORY.md` only if the pointer changed.
+3. Send the user this, and nothing more:
+
+   **Time for a new session.** (one line: why)
+   **Recap for you:** five lines at most - what got done, what is waiting on you, what is next.
+   **Send this in a new session:**
+   `Read docs/proposals/kickoff_2026-10-18/KICKOFF.md and STATE.md next to it, and continue. My game is closed. <your answers to anything waiting on you>`
+
+The recap is for the user to read. The new session does NOT need it pasted - it gets the same facts,
+more exactly, from STATE.md. That is why the prompt stays one line.
