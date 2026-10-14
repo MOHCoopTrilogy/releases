@@ -61,7 +61,28 @@ the fix get the two records merged on their first join.
 - Old client on a new server: it sends nothing, the server behaves exactly as today.
 - New client on an old server: the server ignores the upload and never sends anything back; nothing changes
   on your PC.
-- The server only waits (max ~5 s) for a player whose upload has actually started.
+- The server only waits (max 10 s) for a player whose upload has actually started.
+- Ships as a PAIR for full effect: `game.dll` (servers, and every listen host) + `cgame.dll` (every player).
+  `openmohaa.exe` / `omohaaded.exe` are unchanged, so no protocol change. The script change (`xp.scr`,
+  `challenges.scr`) is a bounded wait that is a no-op without the new game.dll.
+
+## How it works (for the next engineer)
+
+- Wire, client -> server (sent from `CG_Init`, i.e. while the client is CS_PRIMED, before ClientBegin, which is
+  also the only window without the 1-command-per-second flood protection): `coopsync begin 1`, then per record
+  `coopsync d <type> <chunk> ...` (percent-encoded, args <= 240 chars because Cmd_Args_Sanitize truncates at 255)
+  and `coopsync have <type> <decoded length>`, then `coopsync end`. Intercepted in `G_ClientCommand` BEFORE
+  `G_ProcessClientCommand` (which refuses everything until the Player entity exists).
+- On `end` the server merges with its session cvar AND its file, rewrites both, sets the entity var
+  `coop_syncstate` 2 (1 while receiving), sends back what differs, then `coopsave ack 1`.
+- Server -> client: `coopsave <type> <part> <nparts> <chunk> ...` server commands (not stufftext, so the stufftext
+  filter is not involved). `ScriptThread::FS_WriteContent` parks every write of `coop_mod/save/<type>_<id>.dat`
+  for the client whose merged id matches; `G_CoopSync_Frame` (G_RunFrame) sends the newest copy at most once
+  per second per record (a first join re-grants every rank unlock = dozens of rewrites in one frame).
+- The client ignores `coopsave` unless it uploaded to this server this session; merges with the same rules;
+  writes only if the result differs. `CG_Shutdown` folds `coop_xp_totalOwn` (pushed by `xp.scr` on every award)
+  into the xp file, but only when the server acked AND the cvar changed during this session.
+- A vid_restart re-runs CG_Init on a live connection: the server answers a second `begin` with just an ack.
 
 ## Safety
 
@@ -72,6 +93,12 @@ the fix get the two records merged on their first join.
   (any XP, any unlock, any challenge) and every server he joins will believe him. Before this fix the same
   was true for the host on his own server; now it is true everywhere. Nothing stops this; that is the
   accepted design (decision rows 15-16).
+- What a player could edit, concretely: `xp_<id>.dat` (one number), `chal_<id>.dat` (challenge progress),
+  `unlocks_<id>.dat` (weapon/perk/cosmetic unlocks), `medals_<id>.dat`, `bpfound_<id>.dat` (blueprints),
+  `pins_<id>.dat`, `pend_<id>.dat`, all plain text in `<home>/maintt/coop_mod/save/`.
+- Identity is the `cl_guid` the client reports (as before). A modified client that reports someone ELSE's
+  cl_guid could add to that player's record on that server, or replace his pinned challenges there - it can
+  never remove progress. Same trust level the save ids had before this change.
 
 ## Test plan (private harness only, fake identities)
 
