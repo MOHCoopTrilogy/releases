@@ -1,13 +1,13 @@
 ﻿{
     "manifestVersion":  1,
-    "version":  "1.10.23",
-    "created":  "2026-10-14T17:49:20Z",
+    "version":  "1.10.24",
+    "created":  "2026-10-14T20:35:43Z",
     "files":  [
                   {
                       "path":  "openmohaa.exe",
-                      "size":  1901568,
-                      "sha256":  "fe59bb715388848773388ea29029d5b402f1c6c263112bdc133808b16643803b",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.22/openmohaa.exe"
+                      "size":  1904128,
+                      "sha256":  "76f3e0000c22bc9ffc7c12e11461852430fc642fed526f31d662774fe21ea89c",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.24/openmohaa.exe"
                   },
                   {
                       "path":  "cgame.dll",
@@ -35,9 +35,9 @@
                   },
                   {
                       "path":  "omohaaded.exe",
-                      "size":  674304,
-                      "sha256":  "12ccf7a61a39a3a34c84667878bcd3fb08c73cb827101edcc8394b83ad689993",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.22/omohaaded.exe"
+                      "size":  675840,
+                      "sha256":  "c634aacc28d5fac4e792c0467ac89b50432b18ee98e4210cdf19e7d5243d3ca6",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.24/omohaaded.exe"
                   },
                   {
                       "path":  "SDL2.dll",
@@ -95,9 +95,9 @@
                   },
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_code.pk3",
-                      "size":  25938848,
-                      "sha256":  "a6ae8109fa4b475714e2334d10ed82f89e84857caffa6e51d488df5430159dd9",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.23/zzzzzz_co-op_hzm_mod_code.pk3"
+                      "size":  25939144,
+                      "sha256":  "aaddc33390b0142cb152c804c798510295203b32157185f8ea60a798076f2c7f",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.24/zzzzzz_co-op_hzm_mod_code.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzz_coop_terrain.pk3",
