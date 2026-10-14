@@ -40,6 +40,9 @@
   started.
 - Small-maps ideas, main menu, performance moves 2-5: not started.
 
+## In progress
+- bug-3903 progression sync: agent building it on progsync-next branches (handover: docs/proposals/progression_sync_2026-10-14/README.md). USER APPROVED a HOTFIX RELEASE once it is proven (2026-10-14: "We need to roll it out as a hotfix once done. I'll get more usage if need be"). Ship steps: confirm the user's game is closed; stop public servers (public_servers/stop_servers.ps1); release v1.10.23 hotfix via publish_release.ps1 (notes: progression now follows players to any server); re-run public_servers/setup_trilogy.py; start_servers.ps1; confirm both listed in the browser.
+
 ## Waiting on the user
 - bug-3903: progression does not follow players to the public (dedicated) servers - each server keeps its own records. Ask: copy their own saves in once (a), and schedule the real fix (b, progression carried by the player).
 - The decision sheet in KICKOFF.md section 5 (defaults apply if they say "all defaults").
