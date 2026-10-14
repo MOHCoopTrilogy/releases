@@ -27,6 +27,8 @@ ROOT = r"C:\mohaa-coop-dev"
 HERE = os.path.dirname(os.path.abspath(__file__))
 GOG = r"G:\GOG\Medal of Honor - Allied Assault War Chest"
 ENG = os.path.join(ROOT, "openmohaa-hzm-joinflood", ".cmake")
+if "--ship" in sys.argv:   # the shipping build (release tree, DLOPEN on) instead of the joinflood test build
+    ENG = os.path.join(ROOT, "openmohaa-hzm-rel", ".cmake")
 MODWT = os.path.join(ROOT, "hzm-mod-joinflood")
 SLOTS = [("hudfeed5", r"G:\mohaa-hudfeed5"), ("hudfeed4", r"G:\mohaa-hudfeed4")]
 H = SLOTS[0][1]
