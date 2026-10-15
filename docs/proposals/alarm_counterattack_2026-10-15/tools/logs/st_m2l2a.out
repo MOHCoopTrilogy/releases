@@ -1,0 +1,8 @@
+16:27:51 t=0.028 launched pid 20048 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:27:51 t=0.066 in-process guard installed on thread 26000
+16:27:52 t=0.433 place 0x9f09ca SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:27:52 t=0.549 place 0xa009ca SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:27:52 t=0.555 place 0xa00cca SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:29:51 st_m2l2a boot note: RuntimeError('player never spawned')
+16:30:03 st_m2l2a m2l2a coop-detected=1 ALARM lines=1 ALMGATE=['^~^~^ ALMGATE blocked m2l2a: stealth'] COUNTER lines=0
+16:30:03 st_m2l2a script errors 0 []

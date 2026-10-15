@@ -1,0 +1,10 @@
+16:32:56 t=0.029 launched pid 8048 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:32:56 t=0.049 in-process guard installed on thread 27808
+16:32:57 t=0.437 place 0xd30ac4 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:32:57 t=0.559 place 0xd40ac4 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:32:57 t=0.565 place 0xa70c88 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:34:08 booted cn_st2_e1l4 e1l4 ref=work dog False
+16:34:20 st2_e1l4 e1l4 coop-detected=1 ALARM lines=5 ALMGATE=['^~^~^ ALMGATE blocked e1l4: stealth'] COUNTER lines=0
+16:34:20 st2_e1l4 script errors 6 ["[2026-10-15 16:33:09 UTC-6.000] ^~^~^ Script Error : command 'anim' applied to NULL listener", "[2026-10-15 16:33:09 UTC-6.000] ^~^~^ Script Error : command 'gun' applied to NULL listener", "[2026-10-15 16:33:09 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener"]
+16:34:20 t=84.088 process exited
+16:34:20 end_session ModuleNotFoundError("No module named 'PIL'")

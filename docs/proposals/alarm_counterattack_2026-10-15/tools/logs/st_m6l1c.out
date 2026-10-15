@@ -1,0 +1,10 @@
+16:31:29 t=0.027 launched pid 27588 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:31:29 t=0.046 in-process guard installed on thread 12376
+16:31:29 t=0.424 place 0x900ca6 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:31:29 t=0.539 place 0x910ca6 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:31:29 t=0.544 place 0x2b0c8e SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:32:34 booted cn_st_m6l1c m6l1c ref=work dog False
+16:32:46 st_m6l1c m6l1c coop-detected=1 ALARM lines=1 ALMGATE=['^~^~^ ALMGATE blocked m6l1c: ownalarm'] COUNTER lines=0
+16:32:46 st_m6l1c script errors 0 []
+16:32:46 t=77.175 process exited
+16:32:46 end_session ModuleNotFoundError("No module named 'PIL'")

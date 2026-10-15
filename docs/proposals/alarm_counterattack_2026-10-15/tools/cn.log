@@ -790,3 +790,47 @@ RuntimeError: player never spawned
 16:27:26 gen_m4l1     ^~^~^ CN ALM live=0 pulls=1 map=1 sw=2 alarm_on=- alive=3 t=89.950
 16:27:26 gen_m4l1 script errors: 3 ["[2026-10-15 16:27:21 UTC-6.000] ^~^~^ Script Error : Field 'health' applied to NULL listener", "[2026-10-15 16:27:21 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-15 16:27:21 UTC-6.000] ^~^~^ Script Error : binary '>' applied to incompatible types 'none' and 'int'"]
 16:27:26 end_session ModuleNotFoundError("No module named 'PIL'")
+16:29:51 st_m2l2a boot note: RuntimeError('player never spawned')
+16:30:03 st_m2l2a m2l2a coop-detected=1 ALARM lines=1 ALMGATE=['^~^~^ ALMGATE blocked m2l2a: stealth'] COUNTER lines=0
+16:30:03 st_m2l2a script errors 0 []
+16:31:16 booted cn_st_e1l4 e1l4 ref=work dog False
+16:31:28 st_e1l4 e1l4 coop-detected=1 ALARM lines=5 ALMGATE=['^~^~^ ALMGATE blocked e1l4: stealth'] COUNTER lines=0
+16:31:28 st_e1l4 script errors 6 ["[2026-10-15 16:30:17 UTC-6.000] ^~^~^ Script Error : command 'anim' applied to NULL listener", "[2026-10-15 16:30:17 UTC-6.000] ^~^~^ Script Error : command 'gun' applied to NULL listener", "[2026-10-15 16:30:17 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener"]
+16:31:28 end_session ModuleNotFoundError("No module named 'PIL'")
+16:32:34 booted cn_st_m6l1c m6l1c ref=work dog False
+16:32:46 st_m6l1c m6l1c coop-detected=1 ALARM lines=1 ALMGATE=['^~^~^ ALMGATE blocked m6l1c: ownalarm'] COUNTER lines=0
+16:32:46 st_m6l1c script errors 0 []
+16:32:46 end_session ModuleNotFoundError("No module named 'PIL'")
+16:34:08 booted cn_st2_e1l4 e1l4 ref=work dog False
+16:34:20 st2_e1l4 e1l4 coop-detected=1 ALARM lines=5 ALMGATE=['^~^~^ ALMGATE blocked e1l4: stealth'] COUNTER lines=0
+16:34:20 st2_e1l4 script errors 6 ["[2026-10-15 16:33:09 UTC-6.000] ^~^~^ Script Error : command 'anim' applied to NULL listener", "[2026-10-15 16:33:09 UTC-6.000] ^~^~^ Script Error : command 'gun' applied to NULL listener", "[2026-10-15 16:33:09 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener"]
+16:34:20 end_session ModuleNotFoundError("No module named 'PIL'")
+16:36:20 st2_m2l2a boot note: RuntimeError('player never spawned')
+16:36:32 st2_m2l2a m2l2a coop-detected=1 ALARM lines=1 ALMGATE=['^~^~^ ALMGATE blocked m2l2a: stealth'] COUNTER lines=0
+16:36:32 st2_m2l2a script errors 0 []
+16:37:47 booted cn_st3_e1l4 e1l4 ref=work dog False
+16:37:59 st3_e1l4 e1l4 coop-detected=1 ALARM lines=5 ALMGATE=['^~^~^ ALMGATE blocked e1l4: stealth'] COUNTER lines=0
+16:37:59 st3_e1l4 script errors 6 ["[2026-10-15 16:36:49 UTC-6.000] ^~^~^ Script Error : command 'anim' applied to NULL listener", "[2026-10-15 16:36:49 UTC-6.000] ^~^~^ Script Error : command 'gun' applied to NULL listener", "[2026-10-15 16:36:49 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener"]
+16:37:59 end_session ModuleNotFoundError("No module named 'PIL'")
+16:39:53 booted cn_rad1 m1l1 ref=work dog False
+16:40:09 rad1     ^~^~^ CN OFSETUP officer=( 3087.562 131.798 -127.875 )
+16:40:09 rad1     ^~^~^ CN OFWAVES waves=- calls=- officerNull=0
+16:40:09 rad1     ^~^~^ CN OFDIE dead=0
+16:40:09 rad1     ^~^~^ CN OFREMOVE officer is NULL: 1 storedPos=( 3087.562 131.798 -127.875 )
+16:40:09 rad1     ^~^~^ CN OFWAVES waves=- calls=- officerNull=1
+16:40:09 rad1     ^~^~^ RNF radio call n=1 snd=coop_radio_german_reinf9 live=0
+16:40:09 rad1     ^~^~^ RNF entry pick=none why=none cand=19 probes=18 paths=1 zone=( 2787.562 131.798 -127.875 ) players=1 rej(ground,hull,near,los,path)=17,0,0,0,1 deferred=0
+16:40:09 rad1     ^~^~^ RNF radio call n=2 snd=coop_radio_german_reinf2 live=3
+16:40:09 rad1     ^~^~^ RNF entry pick=none why=none cand=19 probes=18 paths=2 zone=( 2787.562 131.798 -127.875 ) players=1 rej(ground,hull,near,los,path)=13,1,0,2,2 deferred=0
+16:40:09 rad1     ^~^~^ CN OFWAVES waves=6 calls=2 officerNull=1
+16:40:09 rad1 script errors: 0 []
+16:40:09 end_session ModuleNotFoundError("No module named 'PIL'")
+16:41:27 booted cn_st4_e1l4 e1l4 ref=work dog False
+16:41:39 st4_e1l4 non-SYSTEM ALARM lines: []
+16:41:39 st4_e1l4 e1l4 coop-detected=1 ALARM lines=0 ALMGATE=['^~^~^ ALMGATE blocked e1l4: stealth'] COUNTER lines=0
+16:41:39 st4_e1l4 script errors 6 ["[2026-10-15 16:40:29 UTC-6.000] ^~^~^ Script Error : command 'anim' applied to NULL listener", "[2026-10-15 16:40:29 UTC-6.000] ^~^~^ Script Error : command 'gun' applied to NULL listener", "[2026-10-15 16:40:29 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener"]
+16:41:39 end_session ModuleNotFoundError("No module named 'PIL'")
+16:43:38 st4_m2l2a boot note: RuntimeError('player never spawned')
+16:43:50 st4_m2l2a non-SYSTEM ALARM lines: []
+16:43:50 st4_m2l2a m2l2a coop-detected=1 ALARM lines=0 ALMGATE=['^~^~^ ALMGATE blocked m2l2a: stealth'] COUNTER lines=0
+16:43:50 st4_m2l2a script errors 0 []

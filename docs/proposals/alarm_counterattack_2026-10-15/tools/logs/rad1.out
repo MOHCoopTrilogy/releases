@@ -1,0 +1,19 @@
+16:38:48 t=0.027 launched pid 26136 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:38:48 t=0.048 in-process guard installed on thread 6896
+16:38:48 t=0.425 place 0x6509b8 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:38:48 t=0.542 place 0x6609b8 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:38:48 t=0.546 place 0x9c09d4 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:39:53 booted cn_rad1 m1l1 ref=work dog False
+16:40:09 rad1     ^~^~^ CN OFSETUP officer=( 3087.562 131.798 -127.875 )
+16:40:09 rad1     ^~^~^ CN OFWAVES waves=- calls=- officerNull=0
+16:40:09 rad1     ^~^~^ CN OFDIE dead=0
+16:40:09 rad1     ^~^~^ CN OFREMOVE officer is NULL: 1 storedPos=( 3087.562 131.798 -127.875 )
+16:40:09 rad1     ^~^~^ CN OFWAVES waves=- calls=- officerNull=1
+16:40:09 rad1     ^~^~^ RNF radio call n=1 snd=coop_radio_german_reinf9 live=0
+16:40:09 rad1     ^~^~^ RNF entry pick=none why=none cand=19 probes=18 paths=1 zone=( 2787.562 131.798 -127.875 ) players=1 rej(ground,hull,near,los,path)=17,0,0,0,1 deferred=0
+16:40:09 rad1     ^~^~^ RNF radio call n=2 snd=coop_radio_german_reinf2 live=3
+16:40:09 rad1     ^~^~^ RNF entry pick=none why=none cand=19 probes=18 paths=2 zone=( 2787.562 131.798 -127.875 ) players=1 rej(ground,hull,near,los,path)=13,1,0,2,2 deferred=0
+16:40:09 rad1     ^~^~^ CN OFWAVES waves=6 calls=2 officerNull=1
+16:40:09 rad1 script errors: 0 []
+16:40:09 t=81.694 process exited
+16:40:09 end_session ModuleNotFoundError("No module named 'PIL'")

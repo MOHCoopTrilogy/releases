@@ -259,8 +259,56 @@ cn_probe local.cls:{
 	local.e remove
 }end
 
+// ---- officer radio call after the corpse is gone (BUILD.md, radio fix) ---------------------------------------------------------
+cn_ofsetup:{
+	local.p = $player[1]
+	cache models/human/german_waffenss_officer.tik
+	local.f = angles_toforward ( local.p.angles )
+	local.pos = local.p.origin + ( vector_scale local.f 500 )
+	local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 48 ) )
+	if( local.g != NIL ){ local.pos = local.g }
+	local.off = spawn "models/human/german_waffenss_officer.tik"
+	local.off.origin = local.pos
+	local.off droptofloor
+	local.off.health = 1200
+	level.coop_officer = local.off
+	level.coop_officer_alive = 1
+	level.coop_officerMaxHp = 1200
+	level.coop_wave_mask = 2
+	level.coop_officer_contact = 1
+	level.coop_officer_waves_at_zone = 0
+	local.radio = spawn script_model_realdamage
+	local.radio model "models/miscobj/radio_military.tik"
+	local.radio.origin = local.pos + ( 60 0 20 )
+	level.coop_radio = local.radio
+	level.coop_radio_destroyed = 0
+	thread coop_mod/officer.scr::coop_officer_death_monitor local.off
+	println ( "^~^~^ CN OFSETUP officer=" + local.off.origin )
+}end
+
+cn_ofdie:{
+	local.o = level.coop_officer
+	local.o damage local.o 99999 local.o local.o.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
+	println ( "^~^~^ CN OFDIE dead=" + ( waitthread cn_s ( isAlive local.o ) ) )
+}end
+
+cn_ofremove:{
+	local.o = level.coop_officer
+	if( local.o != NULL && local.o != NIL ){ local.o remove }
+	wait 0.2
+	println ( "^~^~^ CN OFREMOVE officer is NULL: " + ( waitthread cn_s ( level.coop_officer == NULL ) ) + " storedPos=" + ( waitthread cn_s level.coop_officerPos ) )
+}end
+
+cn_ofwaves:{
+	println ( "^~^~^ CN OFWAVES waves=" + ( waitthread cn_s level.coop_wave_count ) + " calls=" + ( waitthread cn_s level.coop_rnfRadioCalls ) + " officerNull=" + ( waitthread cn_s ( level.coop_officer == NULL ) ) )
+}end
+
 cn_do2 local.c:{
 	local.p = $player[1]
+	if( local.c == "ofsetup" ){ waitthread cn_ofsetup }
+	if( local.c == "ofdie" ){ waitthread cn_ofdie }
+	if( local.c == "ofremove" ){ waitthread cn_ofremove }
+	if( local.c == "ofwaves" ){ waitthread cn_ofwaves }
 	if( local.c == "scout" ){ waitthread cn_scout }
 	if( local.c == "probe" ){
 		waitthread cn_probe "script_model"
@@ -283,16 +331,5 @@ cn_do2 local.c:{
 		println ( "^~^~^ CN SHOOT1 hp0=" + local.sw.health )
 		local.sw damage local.p 400 local.p local.sw.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
 		wait 0.5
-		println ( "^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
-		if( local.sw.health > 900 ){
-			radiusdamage local.sw.origin 120 400
-			wait 0.5
-			println ( "^~^~^ CN SHOOT1 v1 hp=" + local.sw.health )
-		}
-		if( local.sw.health > 900 ){
-			local.sw damage local.p 400 local.p local.sw.origin ( 0 0 1 ) ( 0 0 1 ) 0 0 1 0
-			wait 0.5
-			println ( "^~^~^ CN SHOOT1 v3 hp=" + local.sw.health )
-		}
 	}
 }end
