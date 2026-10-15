@@ -1,7 +1,7 @@
 ﻿{
     "manifestVersion":  1,
-    "version":  "1.10.28",
-    "created":  "2026-10-15T02:05:42Z",
+    "version":  "1.10.29",
+    "created":  "2026-10-15T21:56:32Z",
     "files":  [
                   {
                       "path":  "openmohaa.exe",
@@ -12,8 +12,8 @@
                   {
                       "path":  "cgame.dll",
                       "size":  1044992,
-                      "sha256":  "ef2c5a859a8b4541597bfd71be6873624bce162fae4fb4e09238a3f725f764cb",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.23/cgame.dll"
+                      "sha256":  "3c346914a980345d124364a82cb328629e4b697b0873479e73ff49a57238cdcf",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.29/cgame.dll"
                   },
                   {
                       "path":  "game.dll",
@@ -95,9 +95,9 @@
                   },
                   {
                       "path":  "home/maintt/zzzzzz_co-op_hzm_mod_code.pk3",
-                      "size":  25941700,
-                      "sha256":  "bc7171f27b90c4b3d48f08d2afaac1af9e8a668415319be2fd5fe39513d63e2d",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.28/zzzzzz_co-op_hzm_mod_code.pk3"
+                      "size":  26072316,
+                      "sha256":  "09e9b3711d34ea236261c25f616c023dd4661d9c10f684fab890178019e3d12d",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.29/zzzzzz_co-op_hzm_mod_code.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzz_coop_terrain.pk3",
@@ -149,9 +149,9 @@
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzzz_coop_fixes.pk3",
-                      "size":  21324420,
-                      "sha256":  "1d54015193e536e0d7d8726b7216ca30a80e532c9f4a049bb61f1dcfa06c0b66",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.22/zzzzzzzzzz_coop_fixes.pk3"
+                      "size":  21329451,
+                      "sha256":  "ba2b594b839d9da5b2f5793ae04d06155f80f0e37fd59eb7b82bedf9035c2f22",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.29/zzzzzzzzzz_coop_fixes.pk3"
                   },
                   {
                       "path":  "home/maintt/zzzzzzzzzz_coop_m3l2ground.pk3",
@@ -167,9 +167,9 @@
                   },
                   {
                       "path":  "home/maintt/autoexec.cfg",
-                      "size":  138875,
-                      "sha256":  "9d7f7a9af7bf8f33003f5bec9566c3b232e3d4d5dfe1c8d0b4aafe5fdda6cad0",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.21/autoexec.cfg"
+                      "size":  144507,
+                      "sha256":  "0981bde615339bfdc792df02e7cd4acc88e4508e334622bec85b7435dde12978",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.29/autoexec.cfg"
                   },
                   {
                       "path":  "home/maintt/whatsnew_pending.cfg",
