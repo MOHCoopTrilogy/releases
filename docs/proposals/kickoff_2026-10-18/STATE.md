@@ -4,6 +4,7 @@
 **Usage then:** weekly 98 %, extra usage off. Reset 2026-10-18 06:00 local.
 
 ## Live
+- **v1.10.28 HOTFIX published 2026-10-14 night**: lobby + debrief text size (bug-3918, mod c54372fb; ihuddraw virtualsize 0 = UI hi-res scale; debrief y positions are absolute pixels tuned for 1080p - check low resolutions). Three public servers run it.
 - **v1.10.27 HOTFIX published 2026-10-14 evening**: briefing slide flicker for remote players fixed (bug-3917, mod 6e53cbd6). v1.10.26 before it: SAS escort failsafe on m1l2a + lobby mannequin cleanup + lobby bar (bug-3913/3914/3916). Only the code pak changed in both. Still open: bug-3915 (uniform for player 2; evidence in the buglog). Three public servers run v1.10.27.
 - **v1.10.24 HOTFIX published 2026-10-14 15:40**: remote join flood fixed (bug-3910 / 3909 / 3905): client exe sends every fragment, server caps reliable bytes in flight per remote client (sv_cmdParkBytes 2400), lobby.scr flood fix. Engine rel-1.10.24 f551686f (= 277bdb9d + 15732bb2; exe d33febc3, ded aa883b7c, built in openmohaa-hzm-rel/.cmake like the release) pushed as release-1.10.24 (origin + org); mod coop-wip 098f93eb pushed. game/cgame = v1.10.23, renderers = v1.10.22. Public servers run it; their loose lobby.scr was moved to public_servers/_superseded_lobby_patch/. Handover: docs/proposals/joinflood_2026-10-14/README.md.
 - **v1.10.23 HOTFIX published 2026-10-14**: progression follows the player to any server (bug-3903). Only game.dll 126a66e3 + cgame.dll d84e0679 + the code pak changed; exe / ded / renderers = v1.10.22. Engine source pushed as release-1.10.23 (origin + org) = progsync-next e8838a89; mod coop-wip 7a5211a0 pushed to org. The .cmake folder now holds these two dlls (the v1.10.22 ones are in SCRATCH/pre_1.10.23_cmake).
@@ -44,7 +45,6 @@
 - Small-maps ideas, main menu, performance moves 2-5: not started.
 
 ## Waiting on the user
-- bug-3918: lobby text (unlock items, player names, "Press F to ready up") and the end-of-mission unlocks + progress bar are drawn far too big. Queued.
 - bug-3917: briefing "flickering black" for a remote player (~200 ms). Lead in the buglog (menumirror slide add/remove order). bug-3915 uniform: new evidence in the buglog. Both for Sunday.
 - bug-3916: SAS escort sometimes gets stuck before the gate on the SAS rescue map (soft-lock: explosives cannot be triggered). Do it with the forced-sandstorm + hint feature (same map). Ask before changing.
 - bug-3915: only player 1 can change uniform in the co-op lobby. Batch with bug-3913/3914; ask before changing.
