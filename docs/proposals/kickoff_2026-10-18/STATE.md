@@ -44,6 +44,11 @@
   started.
 - Small-maps ideas, main menu, performance moves 2-5: not started.
 
+## Next big build (user 2026-10-15)
+- v1.10.29 is DEPLOYED to the user's install for testing, NOT released; public servers stopped meanwhile. Release on the user's "go" (publish_release 1.10.29; mod branch combo-1.10.29 in the main checkout; cgame aefb2f05 from progsync cgame-1.10.29 776e4de5), then start_servers.ps1.
+- Build the ALARM system + COUNTER-ATTACK from docs/proposals/alarm_counterattack_2026-10-15/DESIGN.md (8 steps, both off by default; stealth maps excluded via coop_stealthMap / coop_enableDisguises). User liked quick wins #1 (counter-attack) and #6 (alarms on more maps, AI runs to switches, reinforcements continue while live); #5 side objectives = investigate later.
+- AI realism steps 5+ from docs/proposals/ai_realism_2026-10-15/PLAN.md after that.
+
 ## Waiting on the user
 - FEATURE (user 2026-10-14): replace the big text prompts for picking up sandbags, using ammo boxes and healing friendlies with ICONS (small icon + the bound key near the crosshair). Reuse the item-readout icons from v1.10.21 (medkit / sandbag / ammo box, drawn with the key underneath) and the UI hi-res text scale from bug-3918. Design-first: show the user a mock-up before building.
 - bug-3917: briefing "flickering black" for a remote player (~200 ms). Lead in the buglog (menumirror slide add/remove order). bug-3915 uniform: new evidence in the buglog. Both for Sunday.
