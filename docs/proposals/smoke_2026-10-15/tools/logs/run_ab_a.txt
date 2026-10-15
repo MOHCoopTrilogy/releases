@@ -1,0 +1,25 @@
+    ^~^~^ SS MON t=1.000 live=3 hold=3 cansee=2 enemy=0 nearest=885 live_smoke=0
+    ^~^~^ SS MON t=2.000 live=3 hold=3 cansee=3 enemy=0 nearest=885 live_smoke=0
+    ^~^~^ SS MON t=3.000 live=3 hold=3 cansee=3 enemy=0 nearest=888 live_smoke=0
+    ^~^~^ SS MON t=4.000 live=3 hold=3 cansee=3 enemy=0 nearest=887 live_smoke=0
+    ^~^~^ SS MON t=5.000 live=3 hold=3 cansee=3 enemy=0 nearest=885 live_smoke=0
+    ^~^~^ SS MON t=6.000 live=3 hold=3 cansee=2 enemy=3 nearest=881 live_smoke=0
+    ^~^~^ SS MON t=7.000 live=3 hold=3 cansee=3 enemy=3 nearest=744 live_smoke=0
+    ^~^~^ SS MON t=8.000 live=3 hold=3 cansee=2 enemy=3 nearest=596 live_smoke=0
+    ^~^~^ SS MON t=9.000 live=3 hold=3 cansee=2 enemy=3 nearest=476 live_smoke=0
+    ^~^~^ SMOKE screen n=3 at=( -3694.854 -6770.140 -342.634 ) from=( -3194.854 -6770.140 -342.634 ) to=( -4294.854 -6770.140 -342.634 ) t=54.425
+    ^~^~^ SS WALL n=3
+    ^~^~^ SS MON t=10.000 live=3 hold=3 cansee=2 enemy=3 nearest=411 live_smoke=1
+    ^~^~^ SS MON t=11.000 live=3 hold=3 cansee=3 enemy=3 nearest=433 live_smoke=1
+    ^~^~^ SS MON t=12.000 live=3 hold=3 cansee=3 enemy=3 nearest=472 live_smoke=1
+    ^~^~^ SS MON t=13.000 live=3 hold=3 cansee=2 enemy=3 nearest=435 live_smoke=1
+    ^~^~^ SS MON t=14.000 live=3 hold=3 cansee=3 enemy=3 nearest=404 live_smoke=1
+    ^~^~^ SS MON t=15.000 live=3 hold=3 cansee=3 enemy=3 nearest=405 live_smoke=1
+    ^~^~^ SS MON t=16.000 live=3 hold=3 cansee=3 enemy=3 nearest=434 live_smoke=1
+    ^~^~^ SS MON t=17.000 live=3 hold=3 cansee=2 enemy=3 nearest=438 live_smoke=1
+    ^~^~^ SS MON t=18.000 live=3 hold=3 cansee=1 enemy=3 nearest=486 live_smoke=1
+    ^~^~^ SS MON t=19.000 live=3 hold=3 cansee=2 enemy=3 nearest=476 live_smoke=1
+    ^~^~^ SS MON t=20.000 live=3 hold=3 cansee=2 enemy=3 nearest=433 live_smoke=1
+    ^~^~^ SS MON t=21.000 live=3 hold=3 cansee=2 enemy=3 nearest=448 live_smoke=1
+    ^~^~^ SS MON t=22.000 live=3 hold=3 cansee=1 enemy=3 nearest=472 live_smoke=1
+script errors: 0 []

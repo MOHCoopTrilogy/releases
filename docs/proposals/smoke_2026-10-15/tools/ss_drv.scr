@@ -26,6 +26,7 @@ ss_vec:{
 // first living wave actor
 ss_lead:{
 	local.r = NIL
+	if( level.coop_wave_count == NIL ){ end NIL }
 	for( local.i = 1; local.i <= level.coop_wave_count; local.i++ ){
 		local.w = level.coop_wave_actors[local.i]
 		if( local.w == NULL || local.w == NIL ){ continue }
@@ -52,20 +53,26 @@ ss_mon:{
 	local.t0 = level.time
 	while( level.ss_mon == 1 ){
 		local.live = 0
+		local.n = level.coop_wave_count
+		if( local.n == NIL ){ local.n = 0 }
+		local.sl = level.coop_smokeLive
+		if( local.sl == NIL ){ local.sl = 0 }
 		local.hold = 0
+		local.en = 0
 		local.seen = 0
 		local.near = 999999
-		for( local.i = 1; local.i <= level.coop_wave_count; local.i++ ){
+		for( local.i = 1; local.i <= local.n; local.i++ ){
 			local.w = level.coop_wave_actors[local.i]
 			if( local.w == NULL || local.w == NIL ){ continue }
 			if( !isAlive local.w ){ continue }
 			local.live++
 			if( local.w.flags["coop_smokeHold"] == 1 ){ local.hold++ }
 			if( local.w cansee local.p ){ local.seen++ }
+			if( local.w.enemy != NULL && local.w.enemy != NIL ){ local.en++ }
 			local.d = vector_length( local.w.origin - local.p.origin )
 			if( local.d < local.near ){ local.near = local.d }
 		}
-		println ( "^~^~^ SS MON t=" + ( level.time - local.t0 ) + " live=" + local.live + " hold=" + local.hold + " cansee=" + local.seen + " nearest=" + int( local.near ) + " live_smoke=" + level.coop_smokeLive )
+		println ( "^~^~^ SS MON t=" + ( level.time - local.t0 ) + " live=" + local.live + " hold=" + local.hold + " cansee=" + local.seen + " enemy=" + local.en + " nearest=" + int( local.near ) + " live_smoke=" + local.sl )
 		wait 1
 	}
 }end
@@ -81,6 +88,11 @@ ss_do local.c:{
 		local.o = waitthread ss_vec
 		local.p origin local.o
 		local.p.viewangles = ( 0 local.yaw 0 )
+		local.p nodamage
+		local.p.health = 100000
+		local.p.max_health = 100000
+	}
+	if( local.c == "god" ){
 		local.p nodamage
 		local.p.health = 100000
 		local.p.max_health = 100000
@@ -121,6 +133,260 @@ ss_do local.c:{
 		local.p.viewangles = ( 0 local.by 0 )
 		println ( "^~^~^ SS STAGE squadpos=" + level.ss_pos + " dist=" + int( vector_length( level.ss_pos - local.p.origin ) ) )
 	}
+	if( local.c == "pair" ){
+		// the map's own Germans stand on walkable ground: find two of them 1700..2900u apart with a clear eye-height line and little
+		// height difference; the player goes to the first, the squad lands at the second
+		local.arr = level.coop_actorArray["german"]
+		local.bd = 0
+		local.ba = NIL
+		local.bb = NIL
+		local.n = local.arr.size
+		for( local.i = 1; local.i <= local.n; local.i++ ){
+			local.a = local.arr[local.i]
+			if( local.a == NULL || local.a == NIL ){ continue }
+			if( !isAlive local.a ){ continue }
+			for( local.j = local.i + 1; local.j <= local.n; local.j++ ){
+				local.b = local.arr[local.j]
+				if( local.b == NULL || local.b == NIL ){ continue }
+				if( !isAlive local.b ){ continue }
+				local.v = local.b.origin - local.a.origin
+				local.dz = local.v[2]
+				local.v[2] = 0
+				local.d = vector_length local.v
+				if( local.d < 1100 || local.d > 3200 ){ continue }
+				if( local.dz > 150 || local.dz < -150 ){ continue }
+				local.tr = traced ( local.a.origin + ( 0 0 64 ) ) ( local.b.origin + ( 0 0 64 ) )
+				if( local.tr["fraction"] < 0.9 ){ continue }
+				if( local.d > local.bd ){ local.bd = local.d; local.ba = local.a; local.bb = local.b }
+			}
+		}
+		if( local.ba == NIL ){
+			println ( "^~^~^ SS PAIR none germans=" + local.n )
+		} else {
+			local.dir = local.ba.origin - local.bb.origin
+			local.dir[2] = 0
+			local.dir = vector_normalize local.dir
+			local.pp = local.ba.origin + ( vector_scale local.dir 60 )
+			local.p origin local.pp
+			local.va = vector_toangles ( local.bb.origin - local.ba.origin )
+			local.p.viewangles = ( 0 local.va[1] 0 )
+			level.ss_pos = local.bb.origin
+			println ( "^~^~^ SS PAIR a=" + local.ba.origin + " b=" + local.bb.origin + " d=" + int( local.bd ) )
+		}
+	}
+	if( local.c == "scout" ){
+		// open-ground finder for the effect shots: from every German's spot scan 12 headings with TWO sight lines (eye and knee) and
+		// take the longest clear run (capped 2400)
+		local.arr = level.coop_actorArray["german"]
+		local.bc = 0
+		local.bo = NIL
+		local.by = 0
+		for( local.i = 1; local.i <= local.arr.size; local.i++ ){
+			local.a = local.arr[local.i]
+			if( local.a == NULL || local.a == NIL ){ continue }
+			for( local.y = 0; local.y < 360; local.y = local.y + 30 ){
+				local.f = angles_toforward ( 0 local.y 0 )
+				local.o1 = local.a.origin + ( 0 0 64 )
+				local.o2 = local.a.origin + ( 0 0 20 )
+				local.t1 = traced local.o1 ( local.o1 + ( vector_scale local.f 2400 ) )
+				local.t2 = traced local.o2 ( local.o2 + ( vector_scale local.f 2400 ) )
+				local.c1 = local.t1["fraction"]
+				if( local.t2["fraction"] < local.c1 ){ local.c1 = local.t2["fraction"] }
+				local.cl = local.c1 * 2400
+				if( local.cl > local.bc ){ local.bc = local.cl; local.bo = local.a.origin; local.by = local.y }
+			}
+		}
+		if( local.bo != NIL ){
+			local.p origin local.bo
+			local.p.viewangles = ( 0 local.by 0 )
+			local.p nodamage
+			local.p.health = 100000
+			level.ss_yaw = local.by
+			println ( "^~^~^ SS SCOUT at=" + local.bo + " yaw=" + local.by + " clear=" + int( local.bc ) )
+		}
+	}
+	if( local.c == "wall" ){
+		// the effect alone: a 3-canister wall 700u in front of the player, across his view
+		local.f = angles_toforward ( 0 level.ss_yaw 0 )
+		local.cc = local.p.origin + ( vector_scale local.f 600 )
+		local.fr = local.p.origin + ( vector_scale local.f 1100 )
+		local.to = local.p.origin
+		local.r = waitthread coop_mod/smokescreen.scr::ss_spawn local.cc local.fr local.to
+		println ( "^~^~^ SS WALL n=" + local.r )
+	}
+	if( local.c == "pairs" ){
+		// candidate (player spot, squad spot) pairs from the map's own Germans, distinct spots, up to 10; usepair N moves the player
+		local.arr = level.coop_actorArray["german"]
+		local.n = local.arr.size
+		local.k = 0
+		for( local.i = 1; local.i <= local.n; local.i++ ){
+			local.a = local.arr[local.i]
+			if( local.a == NULL || local.a == NIL ){ continue }
+			if( !isAlive local.a ){ continue }
+			for( local.j = 1; local.j <= local.n; local.j++ ){
+				if( local.j == local.i ){ continue }
+				local.b = local.arr[local.j]
+				if( local.b == NULL || local.b == NIL ){ continue }
+				if( !isAlive local.b ){ continue }
+				local.v = local.b.origin - local.a.origin
+				local.dz = local.v[2]
+				local.v[2] = 0
+				local.d = vector_length local.v
+				if( local.d < 900 || local.d > 3200 ){ continue }
+				if( local.dz > 150 || local.dz < -150 ){ continue }
+				local.tr = traced ( local.a.origin + ( 0 0 64 ) ) ( local.b.origin + ( 0 0 64 ) )
+				if( local.tr["fraction"] < 0.95 ){ continue }
+				local.dup = 0
+				for( local.m = 1; local.m <= local.k; local.m++ ){
+					if( vector_length( level.ss_pa[local.m] - local.a.origin ) < 400 ){ local.dup = 1 }
+				}
+				if( local.dup == 1 ){ continue }
+				if( local.k >= 10 ){ continue }
+				local.k++
+				level.ss_pa[local.k] = local.a.origin
+				level.ss_pb[local.k] = local.b.origin
+				println ( "^~^~^ SS CAND " + local.k + " a=" + local.a.origin + " b=" + local.b.origin + " d=" + int( local.d ) )
+			}
+		}
+		level.ss_pn = local.k
+		println ( "^~^~^ SS CANDS " + local.k )
+	}
+	if( local.c == "usepair" ){
+		local.q = int( getcvar( "ai_n" ) )
+		local.a = level.ss_pa[local.q]
+		local.b = level.ss_pb[local.q]
+		if( local.a != NIL && local.b != NIL ){
+			local.dir = local.b - local.a
+			local.dir[2] = 0
+			local.va = vector_toangles local.dir
+			local.p origin local.a
+			local.p.viewangles = ( 0 local.va[1] 0 )
+			level.ss_pos = local.b
+			println ( "^~^~^ SS USEPAIR " + local.q )
+		}
+	}
+	if( local.c == "fxspot" ){
+		// level, open ground ahead of the player: 24 headings, ground height at 500/900/1300u must match the player's feet (+-30) and the
+		// eye-height sight line must be clear for 1400u; the longest wins
+		local.g0 = local.p.origin[2]
+		local.bc = 0
+		local.by = -1
+		for( local.y = 0; local.y < 360; local.y = local.y + 15 ){
+			local.f = angles_toforward ( 0 local.y 0 )
+			local.ok = 1
+			for( local.k = 1; local.k <= 3; local.k++ ){
+				local.q = local.p.origin + ( vector_scale local.f ( local.k * 450 + 50 ) )
+				local.gp = waitthread coop_mod/officer.scr::coop_find_ground ( local.q + ( 0 0 64 ) )
+				if( local.gp == NIL ){ local.ok = 0; break }
+				local.dz = local.gp[2] - local.g0
+				if( local.dz > 30 || local.dz < -30 ){ local.ok = 0; break }
+			}
+			if( local.ok == 0 ){ continue }
+			local.a = local.p.origin + ( 0 0 64 )
+			local.tr = traced local.a ( local.a + ( vector_scale local.f 1400 ) )
+			local.cl = local.tr["fraction"] * 1400
+			if( local.cl > local.bc ){ local.bc = local.cl; local.by = local.y }
+		}
+		if( local.by < 0 ){
+			println "^~^~^ SS FXSPOT none"
+		} else {
+			level.ss_yaw = local.by
+			local.p.viewangles = ( 0 local.by 0 )
+			println ( "^~^~^ SS FXSPOT yaw=" + local.by + " clear=" + int( local.bc ) )
+		}
+	}
+	if( local.c == "fxsquad" ){
+		// a held elite squad 1100u down the heading, auto-smoke disabled, so the wall command is the only smoke
+		level.coop_officer_alive = 1
+		level.coop_smokeNextT = level.time + 99999
+		local.f = angles_toforward ( 0 level.ss_yaw 0 )
+		local.pos = local.p.origin + ( vector_scale local.f 1350 )
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 64 ) )
+		if( local.g != NIL ){ local.pos = local.g }
+		thread coop_mod/officer.scr::coop_spawn_elite_squad local.pos
+		wait 2
+		for( local.i = 1; local.i <= level.coop_wave_count; local.i++ ){
+			local.w = level.coop_wave_actors[local.i]
+			if( local.w == NULL || local.w == NIL ){ continue }
+			waitthread coop_mod/smokescreen.scr::ss_hold1 local.w 1
+		}
+		level.ss_mon = 1
+		thread ss_mon
+		println ( "^~^~^ SS FXSQUAD at=" + local.pos )
+	}
+	if( local.c == "fxreal" ){
+		// the REAL flow in the clearing: an elite squad 1700u down the heading, nothing disabled (squad_screen throws, holds, releases)
+		level.coop_officer_alive = 1
+		local.f = angles_toforward ( 0 level.ss_yaw 0 )
+		local.pos = local.p.origin + ( vector_scale local.f 1350 )
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 64 ) )
+		if( local.g != NIL ){ local.pos = local.g }
+		level.ss_mon = 1
+		thread ss_mon
+		thread coop_mod/officer.scr::coop_spawn_elite_squad local.pos
+		println ( "^~^~^ SS FXREAL at=" + local.pos )
+	}
+	if( local.c == "fxen" ){
+		// the held squad gets its enemy switch back but stays pinned (scripted idle): Actor::CanSee then runs the smoke obfuscation on the player
+		for( local.i = 1; local.i <= level.coop_wave_count; local.i++ ){
+			local.w = level.coop_wave_actors[local.i]
+			if( local.w == NULL || local.w == NIL ){ continue }
+			if( !isAlive local.w ){ continue }
+			local.w.enableEnemy = 1
+			local.w exec coop_mod/replace.scr::attackplayer
+		}
+	}
+	if( local.c == "probe" ){
+		// WALKABILITY probe: 12 throw-away men 2100u out on every heading are ordered to run at the player; the heading whose man
+		// covered the most ground in 3 s (and has a clear sight line) is where the squad is staged
+		local.model = exec coop_mod/officer.scr::coop_model_for "infantry"
+		local.pr = 0
+		for( local.y = 0; local.y < 360; local.y = local.y + 30 ){
+			local.pr++
+			local.f = angles_toforward ( 0 local.y 0 )
+			local.pos = local.p.origin + ( vector_scale local.f 2100 )
+			local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 48 ) )
+			level.ss_probe[local.pr] = NIL
+			level.ss_probeStart[local.pr] = NIL
+			if( local.g == NIL ){ continue }
+			local.s = spawn local.model
+			local.s.origin = local.g
+			local.s droptofloor
+			local.s.enableEnemy = 0
+			local.s forceactivate
+			local.s.movedoneradius = 200
+			local.s runto local.p.origin
+			level.ss_probe[local.pr] = local.s
+			level.ss_probeStart[local.pr] = local.s.origin
+			waitframe
+		}
+		wait 4
+		local.best = 0
+		local.bm = 0
+		local.by = 0
+		for( local.i = 1; local.i <= 12; local.i++ ){
+			local.s = level.ss_probe[local.i]
+			if( local.s == NIL || local.s == NULL ){ continue }
+			local.mv = vector_length( local.s.origin - level.ss_probeStart[local.i] )
+			local.y = ( local.i - 1 ) * 30
+			local.f = angles_toforward ( 0 local.y 0 )
+			local.a = local.p.origin + ( 0 0 64 )
+			local.tr = traced local.a ( local.a + ( vector_scale local.f 2000 ) )
+			println ( "^~^~^ SS PROBE yaw=" + local.y + " moved=" + int( local.mv ) + " clear=" + int( local.tr["fraction"] * 2000 ) )
+			if( local.mv > local.bm && local.tr["fraction"] > 0.97 ){ local.bm = local.mv; local.best = local.y }
+		}
+		for( local.i = 1; local.i <= 12; local.i++ ){
+			local.s = level.ss_probe[local.i]
+			if( local.s != NIL && local.s != NULL ){ local.s remove }
+		}
+		local.f = angles_toforward ( 0 local.best 0 )
+		local.pos = local.p.origin + ( vector_scale local.f 2100 )
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 48 ) )
+		if( local.g != NIL ){ local.pos = local.g }
+		level.ss_pos = local.pos
+		local.p.viewangles = ( 0 local.best 0 )
+		println ( "^~^~^ SS PROBE best yaw=" + local.best + " moved=" + int( local.bm ) + " squadpos=" + level.ss_pos )
+	}
 	if( local.c == "squad" ){
 		level.coop_officer_alive = 1
 		level.ss_mon = 1
@@ -130,6 +396,8 @@ ss_do local.c:{
 	if( local.c == "lob" ){
 		// one grenadier-style screen: the first wave man throws at the player
 		local.w = waitthread ss_lead
+		level.coop_smokeNextT = NIL
+		level.coop_smokeLive = 0
 		local.r = waitthread coop_mod/smokescreen.scr::lob local.w local.p
 		println ( "^~^~^ SS LOB result=" + local.r )
 	}

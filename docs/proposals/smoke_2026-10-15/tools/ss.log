@@ -7,3 +7,835 @@
     raise RuntimeError("map never became ready")
 RuntimeError: map never became ready
 
+15:45:28 booted ss_r2 m3l2 ref=work dog False
+15:45:35 r2     ^~^~^ SS MON t=" + ( level.time - local.t0 ) + " live=" + local.live + " hold=" + local.hold + " cansee=" + local.seen + " nearest=" + int( local.near ) + " live_smoke=" + level.coop_smokeLive )
+15:45:35 r2     ^~^~^ SS MON t=" + ( level.time - local.t0 ) + " live=" + local.live + " hold=" + local.hold + " cansee=" + local.seen + " nearest=" + int( local.near ) + " live_smoke=" ^
+15:45:35 r2     ^~^~^ SS MON t=" + ( level.time - local.t0 ) + " live=" + local.live + " hold=" + local.hold + " cansee=" + local.seen + " nearest=" + int( local.near ) + " live_smoke=" + level.coop_smokeLive )
+15:45:35 r2     ^~^~^ SS MON t=" + ( level.time - local.t0 ) + " live=" + local.live + " hold=" + local.hold + " cansee=" + local.seen + " nearest=" + int( local.near ) + " live_smoke=" ^
+15:45:35 r2 script errors: 4 ["[2026-10-15 15:45:32 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-15 15:45:32 UTC-6.000] ^~^~^ Script Error : binary '<=' applied to incompatible types 'int' and 'none'", "[2026-10-15 15:45:33 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-15 15:45:33 UTC-6.000] ^~^~^ Script Error : binary '<=' applied to incompatible types 'int' and 'none'"]
+15:47:06 booted ss_r3 m3l2 ref=work dog False
+15:47:56 r3     ^~^~^ SS MON t=0.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=1.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=2.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=3.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=4.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=5.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=6.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=7.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=8.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=9.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=10.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=11.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=12.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=13.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=14.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=15.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=16.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=17.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=18.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=19.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=20.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=21.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=22.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=23.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=24.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=25.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=26.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=27.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=28.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=29.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=30.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=31.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=32.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=33.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=34.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=35.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=36.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=37.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=38.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=39.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=40.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=41.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=42.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=43.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=44.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3     ^~^~^ SS MON t=45.000 live=3 hold=0 cansee=3 nearest=1961 live_smoke=0
+15:47:56 r3 script errors: 0 []
+15:49:43 booted ss_r4 m3l2 ref=work dog False
+15:50:32 r4     ^~^~^ SS MON t=0.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=1.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=2.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=3.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=4.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=5.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=6.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=7.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=8.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=9.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=10.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=11.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=12.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=13.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=14.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=15.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=16.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=17.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=18.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=19.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=20.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=21.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=22.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=23.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=24.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=25.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=26.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=27.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=28.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=29.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=30.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=31.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=32.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=33.000 live=3 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=34.000 live=6 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=35.000 live=6 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=36.000 live=6 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=37.000 live=6 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=38.000 live=6 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=39.000 live=6 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4     ^~^~^ SS MON t=40.000 live=6 hold=0 cansee=2 nearest=1759 live_smoke=0
+15:50:32 r4 script errors: 0 []
+15:51:59 booted ss_r5 m3l2 ref=work dog False
+15:52:45 r5     ^~^~^ SS MON t=0.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=1.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=2.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=3.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=4.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=5.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=6.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=7.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=8.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=9.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=10.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=11.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=12.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=13.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=14.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=15.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=16.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=17.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=18.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=19.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=20.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=21.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=22.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=23.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=24.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=25.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=26.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=27.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=28.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=29.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=30.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=31.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=32.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=33.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=34.000 live=3 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=35.000 live=6 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=36.000 live=6 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=37.000 live=6 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=38.000 live=6 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=39.000 live=6 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5     ^~^~^ SS MON t=40.000 live=6 hold=0 cansee=0 nearest=2167 live_smoke=0
+15:52:45 r5 script errors: 0 []
+15:54:18 booted ss_r6 m3l2 ref=work dog False
+15:55:01 r6     ^~^~^ SS MON t=0.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=1.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=2.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=3.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=4.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=5.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=6.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=7.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=8.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=9.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=10.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=11.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=12.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=13.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=14.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=15.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=16.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=17.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=18.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=19.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=20.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=21.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=22.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=23.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=24.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=25.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=26.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=27.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=28.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=29.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=30.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=31.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=32.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=33.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=34.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=35.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=36.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=37.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=38.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=39.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6     ^~^~^ SS MON t=40.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:55:01 r6 script errors: 7 ["[2026-10-15 15:54:20 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector", "[2026-10-15 15:54:20 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'array' and 'vector'", "[2026-10-15 15:54:20 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'int'", "[2026-10-15 15:54:20 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'vector'", "[2026-10-15 15:54:20 UTC-6.000] ^~^~^ Script Error : binary '-' applied to incompatible types 'none' and 'none'", "[2026-10-15 15:54:20 UTC-6.000] ^~^~^ Script Error : binary '>' applied to incompatible types 'none' and 'int'"]
+15:56:19 booted ss_r7 e1l1 ref=work dog False
+15:56:57 r7     ^~^~^ SS MON t=0.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=1.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=2.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=3.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=4.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=5.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=6.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=7.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=8.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=9.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=10.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=11.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=12.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=13.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=14.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=15.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=16.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=17.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=18.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=19.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=20.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=21.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=22.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=23.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=24.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=25.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=26.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=27.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=28.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=29.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=30.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=31.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=32.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=33.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=34.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7     ^~^~^ SS MON t=35.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:56:57 r7 script errors: 7 ["[2026-10-15 15:56:21 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector", "[2026-10-15 15:56:21 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'array' and 'vector'", "[2026-10-15 15:56:21 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'int'", "[2026-10-15 15:56:21 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'vector'", "[2026-10-15 15:56:21 UTC-6.000] ^~^~^ Script Error : binary '-' applied to incompatible types 'none' and 'none'", "[2026-10-15 15:56:21 UTC-6.000] ^~^~^ Script Error : binary '>' applied to incompatible types 'none' and 'int'"]
+15:58:12 booted ss_r8 m3l2 ref=work dog False
+15:58:49 r8     ^~^~^ SS MON t=0.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+15:58:49 r8     ^~^~^ SS MON t=1.000 live=3 hold=0 cansee=2 nearest=1430 live_smoke=0
+15:58:49 r8     ^~^~^ SS MON t=2.000 live=3 hold=0 cansee=2 nearest=1325 live_smoke=0
+15:58:49 r8     ^~^~^ SMOKE screen n=3 at=( -5094.990 -7156.604 -334.790 ) from=( -4315.815 -6657.396 -334.790 ) to=( -5732.496 -7565.048 -366.630 ) t=44.375
+15:58:49 r8     ^~^~^ SS MON t=3.000 live=3 hold=3 cansee=2 nearest=1281 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=4.000 live=3 hold=3 cansee=1 nearest=1132 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=5.000 live=3 hold=3 cansee=1 nearest=986 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=6.000 live=3 hold=3 cansee=1 nearest=948 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=7.000 live=3 hold=3 cansee=2 nearest=965 live_smoke=1
+15:58:49 r8     ^~^~^ SMOKE advance t=49.375
+15:58:49 r8     ^~^~^ SS MON t=8.000 live=3 hold=0 cansee=0 nearest=918 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=9.000 live=3 hold=0 cansee=1 nearest=767 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=10.000 live=3 hold=0 cansee=2 nearest=636 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=11.000 live=3 hold=0 cansee=2 nearest=539 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=12.000 live=3 hold=0 cansee=2 nearest=497 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=13.000 live=3 hold=0 cansee=2 nearest=520 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=14.000 live=3 hold=0 cansee=2 nearest=633 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=15.000 live=3 hold=0 cansee=2 nearest=658 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=16.000 live=3 hold=0 cansee=2 nearest=667 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=17.000 live=3 hold=0 cansee=1 nearest=667 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=18.000 live=3 hold=0 cansee=1 nearest=667 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=19.000 live=3 hold=0 cansee=2 nearest=667 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=20.000 live=3 hold=0 cansee=2 nearest=588 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=21.000 live=3 hold=0 cansee=1 nearest=511 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=22.000 live=3 hold=0 cansee=1 nearest=512 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=23.000 live=3 hold=0 cansee=1 nearest=494 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=24.000 live=3 hold=0 cansee=1 nearest=498 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=25.000 live=3 hold=0 cansee=1 nearest=473 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=26.000 live=3 hold=0 cansee=2 nearest=504 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=27.000 live=3 hold=0 cansee=3 nearest=515 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=28.000 live=3 hold=0 cansee=2 nearest=518 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=29.000 live=3 hold=0 cansee=1 nearest=518 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=30.000 live=3 hold=0 cansee=1 nearest=518 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=31.000 live=3 hold=0 cansee=1 nearest=518 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=32.000 live=3 hold=0 cansee=1 nearest=483 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=33.000 live=3 hold=0 cansee=1 nearest=518 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=34.000 live=3 hold=0 cansee=0 nearest=528 live_smoke=1
+15:58:49 r8     ^~^~^ SS MON t=35.000 live=3 hold=0 cansee=1 nearest=531 live_smoke=1
+15:58:49 r8 script errors: 0 []
+16:00:34 booted ss_f1 m3l2 ref=work dog False
+16:01:02 f1     ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to + " t=" + level.time )
+16:01:02 f1     ^~^~^ SMOKE screen n=" + local.n + " at=" ^
+16:01:02 f1     ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to + " t=" + level.time )
+16:01:02 f1     ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c ^
+16:01:02 f1     ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to + " t=" + level.time )
+16:01:02 f1     ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" ^
+16:01:02 f1     ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to + " t=" + level.time )
+16:01:02 f1     ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from ^
+16:01:02 f1     ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to + " t=" + level.time )
+16:01:02 f1     ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" ^
+16:01:02 f1     ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to + " t=" + level.time )
+16:01:02 f1     ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to ^
+16:01:02 f1     ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to + " t=" + level.time )
+16:01:02 f1     ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to + " t=" ^
+16:01:02 f1     ^~^~^ SS WALL n=3
+16:01:02 f1 script errors: 15 ["[2026-10-15 16:00:37 UTC-6.000] ^~^~^ Script Error : Cannot cast 'array' to vector", "[2026-10-15 16:00:37 UTC-6.000] ^~^~^ Script Error : Cannot cast 'int' to vector", "[2026-10-15 16:00:37 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to float", "[2026-10-15 16:00:37 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector", "[2026-10-15 16:00:37 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-15 16:00:37 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'float'"]
+16:02:31 booted ss_f2 m3l2 ref=work dog False
+16:03:00 f2     ^~^~^ SMOKE screen n=3 at=( -4500.000 -7824.000 -485.338 ) from=( -3800.000 -7824.000 -485.338 ) to=( -5200.000 -7824.000 -485.338 ) t=43.875
+16:03:00 f2     ^~^~^ SS WALL n=3
+16:03:00 f2 script errors: 0 []
+16:04:16 booted ss_f3 t1l1 ref=work dog False
+16:04:32 f3     ^~^~^ SMOKE screen n=3 at=( -3960.782 5989.000 6622.000 ) from=( -3354.564 6339.000 6622.000 ) to=( -4567.000 5639.000 6622.000 ) t=43.950
+16:04:32 f3     ^~^~^ SS WALL n=3
+16:04:32 f3 script errors: 0 []
+16:05:53 booted ss_r9 e1l1 ref=work dog False
+16:06:25 r9     ^~^~^ SS MON t=0.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+16:06:25 r9     ^~^~^ SS MON t=1.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=0
+16:06:25 r9     ^~^~^ SS MON t=2.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=0
+16:06:25 r9     ^~^~^ SMOKE screen n=3 at=( -2783.318 -500.477 224.125 ) from=( -2545.313 -1128.331 224.125 ) to=( -2978.048 13.221 272.125 ) t=44.350
+16:06:25 r9     ^~^~^ SS MON t=3.000 live=3 hold=3 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=4.000 live=3 hold=3 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=5.000 live=3 hold=3 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=6.000 live=3 hold=3 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=7.000 live=3 hold=3 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SMOKE advance t=49.350
+16:06:25 r9     ^~^~^ SS MON t=8.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=9.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=10.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=11.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=12.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=13.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=14.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=15.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=16.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=17.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=18.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=19.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=20.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=21.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=22.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=23.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=24.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=25.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=26.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=27.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=28.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=29.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9     ^~^~^ SS MON t=30.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+16:06:25 r9 script errors: 0 []
+16:08:01 booted ss_v1 m3l2 ref=work dog False
+16:09:27 booted ss_r10 m3l2 ref=work dog False
+16:10:16 r10     ^~^~^ SS MON t=0.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+16:10:16 r10     ^~^~^ SS MON t=1.000 live=3 hold=0 cansee=3 nearest=1100 live_smoke=0
+16:10:16 r10     ^~^~^ SS MON t=2.000 live=3 hold=0 cansee=2 nearest=965 live_smoke=0
+16:10:16 r10     ^~^~^ SMOKE screen n=3 at=( -4885.489 -7113.268 -383.791 ) from=( -5607.376 -7532.646 -383.791 ) to=( -4294.854 -6770.140 -342.634 ) t=45.900
+16:10:16 r10     ^~^~^ SS MON t=3.000 live=3 hold=3 cansee=1 nearest=852 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=4.000 live=3 hold=3 cansee=1 nearest=798 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=5.000 live=3 hold=3 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=6.000 live=3 hold=3 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=7.000 live=3 hold=3 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SMOKE advance t=50.900
+16:10:16 r10     ^~^~^ SS MON t=8.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=9.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=10.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=11.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=12.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=13.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=14.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=15.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=16.000 live=3 hold=0 cansee=0 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=17.000 live=3 hold=0 cansee=0 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=18.000 live=3 hold=0 cansee=0 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=19.000 live=3 hold=0 cansee=0 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=20.000 live=3 hold=0 cansee=0 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=21.000 live=3 hold=0 cansee=0 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=22.000 live=3 hold=0 cansee=0 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=23.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=24.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=25.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=26.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=27.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=28.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=29.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=30.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=31.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=32.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=33.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=34.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=35.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=36.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=37.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=38.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=39.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=40.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=41.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=42.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=43.000 live=3 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=44.000 live=4 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10     ^~^~^ SS MON t=45.000 live=4 hold=0 cansee=1 nearest=774 live_smoke=1
+16:10:16 r10 script errors: 0 []
+16:12:06 booted ss_x1 m3l2 ref=work dog False
+16:12:50 x1     ^~^~^ SS MON t=1.000 live=3 hold=3 cansee=2 nearest=537 live_smoke=0
+16:12:50 x1     ^~^~^ SS MON t=2.000 live=3 hold=3 cansee=3 nearest=458 live_smoke=0
+16:12:50 x1     ^~^~^ SS MON t=3.000 live=3 hold=3 cansee=3 nearest=415 live_smoke=0
+16:12:50 x1     ^~^~^ SS MON t=4.000 live=3 hold=3 cansee=2 nearest=368 live_smoke=0
+16:12:50 x1     ^~^~^ SS MON t=5.000 live=3 hold=3 cansee=3 nearest=417 live_smoke=0
+16:12:50 x1     ^~^~^ SS MON t=6.000 live=3 hold=3 cansee=2 nearest=471 live_smoke=0
+16:12:50 x1     ^~^~^ SS MON t=7.000 live=3 hold=3 cansee=3 nearest=436 live_smoke=0
+16:12:50 x1     ^~^~^ SS MON t=8.000 live=3 hold=3 cansee=3 nearest=404 live_smoke=0
+16:12:50 x1     ^~^~^ SS MON t=9.000 live=3 hold=3 cansee=3 nearest=408 live_smoke=0
+16:12:50 x1     ^~^~^ SMOKE screen n=3 at=( -3694.854 -6770.140 -342.634 ) from=( -3194.854 -6770.140 -342.634 ) to=( -4294.854 -6770.140 -342.634 ) t=55.225
+16:12:50 x1     ^~^~^ SS WALL n=3
+16:12:50 x1     ^~^~^ SS MON t=10.000 live=3 hold=3 cansee=3 nearest=451 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=11.000 live=3 hold=3 cansee=3 nearest=432 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=12.000 live=3 hold=3 cansee=2 nearest=483 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=13.000 live=3 hold=3 cansee=2 nearest=534 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=14.000 live=3 hold=3 cansee=2 nearest=640 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=15.000 live=3 hold=3 cansee=2 nearest=468 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=16.000 live=3 hold=3 cansee=2 nearest=404 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=17.000 live=3 hold=3 cansee=2 nearest=427 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=18.000 live=3 hold=3 cansee=2 nearest=472 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=19.000 live=3 hold=3 cansee=2 nearest=509 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=20.000 live=3 hold=3 cansee=2 nearest=615 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=21.000 live=3 hold=3 cansee=2 nearest=616 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=22.000 live=3 hold=3 cansee=2 nearest=611 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=23.000 live=3 hold=3 cansee=1 nearest=450 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=24.000 live=3 hold=3 cansee=1 nearest=404 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=25.000 live=3 hold=3 cansee=1 nearest=404 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=26.000 live=3 hold=3 cansee=1 nearest=457 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=27.000 live=3 hold=3 cansee=1 nearest=473 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=28.000 live=3 hold=3 cansee=1 nearest=594 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=29.000 live=3 hold=3 cansee=1 nearest=612 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=30.000 live=3 hold=3 cansee=1 nearest=613 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=31.000 live=3 hold=3 cansee=1 nearest=620 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=32.000 live=3 hold=3 cansee=1 nearest=622 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=33.000 live=3 hold=3 cansee=1 nearest=668 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=34.000 live=3 hold=3 cansee=1 nearest=670 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=35.000 live=6 hold=3 cansee=1 nearest=671 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=36.000 live=6 hold=3 cansee=1 nearest=674 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=37.000 live=6 hold=3 cansee=1 nearest=645 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=38.000 live=6 hold=3 cansee=1 nearest=618 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=39.000 live=6 hold=3 cansee=1 nearest=616 live_smoke=1
+16:12:50 x1     ^~^~^ SS MON t=40.000 live=6 hold=3 cansee=1 nearest=619 live_smoke=1
+16:12:50 x1 script errors: 0 []
+16:14:58 booted ss_x2 m3l2 ref=work dog False
+16:15:43 x2     ^~^~^ SS MON t=1.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=2.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=3.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=4.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=5.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=6.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=7.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=8.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=9.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SMOKE screen n=3 at=( -3694.854 -6770.140 -342.634 ) from=( -3194.854 -6770.140 -342.634 ) to=( -4294.854 -6770.140 -342.634 ) t=55.050
+16:15:43 x2     ^~^~^ SS WALL n=3
+16:15:43 x2     ^~^~^ SS MON t=10.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=11.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=12.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=13.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=14.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=15.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=16.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=17.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=18.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=19.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=20.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=21.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=22.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=23.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=24.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=25.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=26.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=27.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=28.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=29.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=30.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=31.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=32.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=33.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=34.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=35.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=36.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=37.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=38.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=39.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2     ^~^~^ SS MON t=40.000 live=3 hold=3 cansee=1 nearest=1502 live_smoke=0
+16:15:43 x2 script errors: 0 []
+16:17:23 booted ss_x3 m3l2 ref=work dog False
+16:18:21 x3     ^~^~^ SS MON t=0.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+16:18:21 x3     ^~^~^ SS FXREAL at=( -2594.854 -6770.140 -537.875 )
+16:18:21 x3     ^~^~^ SS MON t=1.000 live=3 hold=0 cansee=0 nearest=1510 live_smoke=0
+16:18:21 x3     ^~^~^ SS MON t=2.000 live=3 hold=0 cansee=0 nearest=1510 live_smoke=0
+16:18:21 x3     ^~^~^ SMOKE screen n=3 at=( -3497.618 -6752.339 -537.875 ) from=( -2523.219 -6730.582 -537.875 ) to=( -4294.854 -6770.140 -342.634 ) t=46.025
+16:18:21 x3     ^~^~^ SS MON t=3.000 live=3 hold=3 cansee=0 nearest=1510 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=4.000 live=3 hold=3 cansee=0 nearest=1510 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=5.000 live=3 hold=3 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=6.000 live=3 hold=3 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=7.000 live=3 hold=3 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SMOKE advance t=51.025
+16:18:21 x3     ^~^~^ SS MON t=8.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=9.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=10.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=11.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=12.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=13.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=14.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=15.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=16.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=17.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=18.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=19.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=20.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=21.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=22.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=23.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=24.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=25.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=26.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=27.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=28.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=29.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=30.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=31.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=32.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=33.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=34.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=35.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=36.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=37.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=38.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=39.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=40.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=41.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=42.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=43.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=44.000 live=3 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=45.000 live=4 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=46.000 live=4 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=47.000 live=4 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=48.000 live=6 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=49.000 live=6 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=50.000 live=6 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=51.000 live=6 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=52.000 live=6 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=53.000 live=6 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3     ^~^~^ SS MON t=54.000 live=6 hold=0 cansee=0 nearest=1509 live_smoke=1
+16:18:21 x3 script errors: 0 []
+16:19:42 booted ss_x4 m3l2 ref=work dog False
+16:20:29 x4     ^~^~^ SS MON t=0.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+16:20:29 x4     ^~^~^ SS FXREAL at=( -2944.854 -6770.140 -351.875 )
+16:20:29 x4     ^~^~^ SS MON t=1.000 live=3 hold=0 cansee=3 nearest=1062 live_smoke=0
+16:20:29 x4     ^~^~^ SS MON t=2.000 live=3 hold=0 cansee=2 nearest=895 live_smoke=0
+16:20:29 x4     ^~^~^ SMOKE screen n=3 at=( -3789.242 -6853.426 -357.104 ) from=( -3171.271 -6955.221 -357.104 ) to=( -4294.854 -6770.140 -342.634 ) t=45.650
+16:20:29 x4     ^~^~^ SS MON t=3.000 live=3 hold=3 cansee=1 nearest=787 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=4.000 live=3 hold=3 cansee=1 nearest=649 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=5.000 live=3 hold=3 cansee=1 nearest=541 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=6.000 live=3 hold=3 cansee=1 nearest=395 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=7.000 live=3 hold=3 cansee=2 nearest=392 live_smoke=1
+16:20:29 x4     ^~^~^ SMOKE advance t=50.650
+16:20:29 x4     ^~^~^ SS MON t=8.000 live=3 hold=0 cansee=3 nearest=323 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=9.000 live=3 hold=0 cansee=3 nearest=265 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=10.000 live=3 hold=0 cansee=3 nearest=306 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=11.000 live=3 hold=0 cansee=3 nearest=435 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=12.000 live=3 hold=0 cansee=2 nearest=472 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=13.000 live=3 hold=0 cansee=3 nearest=428 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=14.000 live=3 hold=0 cansee=2 nearest=404 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=15.000 live=3 hold=0 cansee=1 nearest=416 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=16.000 live=3 hold=0 cansee=1 nearest=471 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=17.000 live=3 hold=0 cansee=1 nearest=486 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=18.000 live=3 hold=0 cansee=1 nearest=634 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=19.000 live=3 hold=0 cansee=1 nearest=640 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=20.000 live=3 hold=0 cansee=1 nearest=644 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=21.000 live=3 hold=0 cansee=1 nearest=643 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=22.000 live=3 hold=0 cansee=1 nearest=489 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=23.000 live=3 hold=0 cansee=1 nearest=405 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=24.000 live=3 hold=0 cansee=1 nearest=420 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=25.000 live=3 hold=0 cansee=1 nearest=472 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=26.000 live=3 hold=0 cansee=1 nearest=504 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=27.000 live=3 hold=0 cansee=1 nearest=609 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=28.000 live=3 hold=0 cansee=1 nearest=614 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=29.000 live=3 hold=0 cansee=1 nearest=706 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=30.000 live=3 hold=0 cansee=1 nearest=633 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=31.000 live=3 hold=0 cansee=1 nearest=484 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=32.000 live=3 hold=0 cansee=1 nearest=407 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=33.000 live=3 hold=0 cansee=1 nearest=404 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=34.000 live=3 hold=0 cansee=1 nearest=450 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=35.000 live=3 hold=0 cansee=1 nearest=472 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=36.000 live=3 hold=0 cansee=1 nearest=588 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=37.000 live=3 hold=0 cansee=1 nearest=641 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=38.000 live=3 hold=0 cansee=1 nearest=654 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=39.000 live=3 hold=0 cansee=1 nearest=709 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=40.000 live=6 hold=0 cansee=1 nearest=705 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=41.000 live=6 hold=0 cansee=1 nearest=526 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=42.000 live=6 hold=0 cansee=1 nearest=472 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=43.000 live=6 hold=0 cansee=1 nearest=525 live_smoke=1
+16:20:29 x4     ^~^~^ SS MON t=44.000 live=6 hold=0 cansee=1 nearest=613 live_smoke=1
+16:20:29 x4 script errors: 0 []
+16:21:53 booted ss_x5 m3l2 ref=work dog False
+16:22:45 x5     ^~^~^ SS MON t=0.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+16:22:45 x5     ^~^~^ SS FXREAL at=( -2944.854 -6770.140 -351.875 )
+16:22:45 x5     ^~^~^ SMOKE screen n=3 at=( -3777.974 -6858.044 -356.820 ) from=( -3146.231 -6965.484 -356.820 ) to=( -4294.854 -6770.140 -342.634 ) t=44.475
+16:22:45 x5     ^~^~^ SS MON t=1.000 live=3 hold=3 cansee=3 nearest=1081 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=2.000 live=3 hold=3 cansee=1 nearest=1081 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=3.000 live=3 hold=3 cansee=0 nearest=1075 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=4.000 live=3 hold=3 cansee=0 nearest=928 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=5.000 live=3 hold=3 cansee=0 nearest=771 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=6.000 live=3 hold=3 cansee=0 nearest=633 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=7.000 live=3 hold=3 cansee=0 nearest=532 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=8.000 live=3 hold=3 cansee=0 nearest=432 live_smoke=1
+16:22:45 x5     ^~^~^ SMOKE advance t=52.475
+16:22:45 x5     ^~^~^ SS MON t=9.000 live=3 hold=0 cansee=1 nearest=408 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=10.000 live=3 hold=0 cansee=2 nearest=458 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=11.000 live=3 hold=0 cansee=2 nearest=471 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=12.000 live=3 hold=0 cansee=3 nearest=412 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=13.000 live=3 hold=0 cansee=2 nearest=407 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=14.000 live=3 hold=0 cansee=3 nearest=410 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=15.000 live=3 hold=0 cansee=3 nearest=410 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=16.000 live=3 hold=0 cansee=3 nearest=419 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=17.000 live=3 hold=0 cansee=2 nearest=476 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=18.000 live=3 hold=0 cansee=3 nearest=435 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=19.000 live=3 hold=0 cansee=3 nearest=317 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=20.000 live=3 hold=0 cansee=3 nearest=385 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=21.000 live=3 hold=0 cansee=3 nearest=444 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=22.000 live=3 hold=0 cansee=0 nearest=424 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=23.000 live=3 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=24.000 live=3 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=25.000 live=3 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=26.000 live=3 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=27.000 live=3 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=28.000 live=3 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=29.000 live=3 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=30.000 live=3 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=31.000 live=3 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=32.000 live=3 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=33.000 live=3 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=34.000 live=3 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=35.000 live=3 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=36.000 live=3 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=37.000 live=6 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=38.000 live=6 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=39.000 live=6 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=40.000 live=6 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=41.000 live=6 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=42.000 live=6 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=43.000 live=6 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=44.000 live=6 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=45.000 live=6 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=46.000 live=6 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=47.000 live=6 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=48.000 live=6 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5     ^~^~^ SS MON t=49.000 live=6 hold=0 cansee=0 nearest=404 live_smoke=1
+16:22:45 x5 script errors: 0 []
+16:24:12 booted ss_x6 m3l2 ref=work dog False
+16:25:05 x6     ^~^~^ SS MON t=0.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+16:25:05 x6     ^~^~^ SS FXREAL at=( -2944.854 -6770.140 -351.875 )
+16:25:05 x6     ^~^~^ SMOKE screen n=3 at=( -3738.988 -6868.397 -356.120 ) from=( -3059.595 -6988.491 -356.120 ) to=( -4294.854 -6770.140 -342.634 ) t=43.750
+16:25:05 x6     ^~^~^ SS MON t=1.000 live=3 hold=3 cansee=3 nearest=1071 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=2.000 live=3 hold=3 cansee=2 nearest=1070 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=3.000 live=3 hold=3 cansee=2 nearest=1072 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=4.000 live=3 hold=3 cansee=1 nearest=1065 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=5.000 live=3 hold=3 cansee=1 nearest=975 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=6.000 live=3 hold=3 cansee=1 nearest=816 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=7.000 live=3 hold=3 cansee=1 nearest=674 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=8.000 live=3 hold=3 cansee=1 nearest=564 live_smoke=1
+16:25:05 x6     ^~^~^ SMOKE advance t=51.750
+16:25:05 x6     ^~^~^ SS MON t=9.000 live=3 hold=0 cansee=1 nearest=487 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=10.000 live=3 hold=0 cansee=2 nearest=473 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=11.000 live=3 hold=0 cansee=2 nearest=530 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=12.000 live=3 hold=0 cansee=2 nearest=597 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=13.000 live=3 hold=0 cansee=2 nearest=553 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=14.000 live=3 hold=0 cansee=3 nearest=446 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=15.000 live=3 hold=0 cansee=3 nearest=404 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=16.000 live=3 hold=0 cansee=3 nearest=404 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=17.000 live=3 hold=0 cansee=3 nearest=472 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=18.000 live=3 hold=0 cansee=2 nearest=575 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=19.000 live=3 hold=0 cansee=1 nearest=643 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=20.000 live=3 hold=0 cansee=1 nearest=474 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=21.000 live=3 hold=0 cansee=1 nearest=424 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=22.000 live=3 hold=0 cansee=1 nearest=545 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=23.000 live=3 hold=0 cansee=1 nearest=614 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=24.000 live=3 hold=0 cansee=1 nearest=654 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=25.000 live=3 hold=0 cansee=1 nearest=709 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=26.000 live=3 hold=0 cansee=1 nearest=707 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=27.000 live=3 hold=0 cansee=1 nearest=529 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=28.000 live=3 hold=0 cansee=1 nearest=472 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=29.000 live=3 hold=0 cansee=1 nearest=525 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=30.000 live=3 hold=0 cansee=1 nearest=613 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=31.000 live=3 hold=0 cansee=1 nearest=577 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=32.000 live=3 hold=0 cansee=1 nearest=577 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=33.000 live=3 hold=0 cansee=1 nearest=528 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=34.000 live=3 hold=0 cansee=1 nearest=413 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=35.000 live=3 hold=0 cansee=1 nearest=404 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=36.000 live=3 hold=0 cansee=1 nearest=434 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=37.000 live=3 hold=0 cansee=1 nearest=472 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=38.000 live=6 hold=0 cansee=1 nearest=572 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=39.000 live=6 hold=0 cansee=1 nearest=615 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=40.000 live=6 hold=0 cansee=1 nearest=614 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=41.000 live=6 hold=0 cansee=1 nearest=616 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=42.000 live=6 hold=0 cansee=1 nearest=653 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=43.000 live=6 hold=0 cansee=0 nearest=704 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=44.000 live=6 hold=0 cansee=1 nearest=715 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=45.000 live=6 hold=0 cansee=1 nearest=714 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=46.000 live=6 hold=0 cansee=1 nearest=714 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=47.000 live=6 hold=0 cansee=1 nearest=629 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=48.000 live=6 hold=0 cansee=1 nearest=620 live_smoke=1
+16:25:05 x6     ^~^~^ SS MON t=49.000 live=6 hold=0 cansee=1 nearest=619 live_smoke=1
+16:25:05 x6 script errors: 0 []
+16:26:35 booted ss_x7 m3l2 ref=work dog False
+16:27:27 x7     ^~^~^ SS MON t=0.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+16:27:27 x7     ^~^~^ SS FXREAL at=( -2944.854 -6770.140 -351.875 )
+16:27:27 x7     ^~^~^ SMOKE screen n=3 at=( -3774.702 -6861.233 -356.905 ) from=( -3138.959 -6972.570 -356.905 ) to=( -4294.854 -6770.140 -342.634 ) t=43.800
+16:27:27 x7     ^~^~^ SS MON t=1.000 live=3 hold=3 cansee=3 nearest=1106 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=2.000 live=3 hold=3 cansee=2 nearest=1106 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=3.000 live=3 hold=3 cansee=2 nearest=1107 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=4.000 live=3 hold=3 cansee=2 nearest=1109 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=5.000 live=3 hold=3 cansee=2 nearest=1107 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=6.000 live=3 hold=3 cansee=2 nearest=1106 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=7.000 live=3 hold=3 cansee=1 nearest=1106 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=8.000 live=3 hold=3 cansee=2 nearest=1107 live_smoke=1
+16:27:27 x7     ^~^~^ SMOKE advance t=51.800
+16:27:27 x7     ^~^~^ SS MON t=9.000 live=3 hold=0 cansee=0 nearest=1063 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=10.000 live=3 hold=0 cansee=1 nearest=915 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=11.000 live=3 hold=0 cansee=0 nearest=748 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=12.000 live=3 hold=0 cansee=1 nearest=597 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=13.000 live=3 hold=0 cansee=1 nearest=476 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=14.000 live=3 hold=0 cansee=2 nearest=411 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=15.000 live=3 hold=0 cansee=2 nearest=370 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=16.000 live=3 hold=0 cansee=3 nearest=215 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=17.000 live=3 hold=0 cansee=3 nearest=161 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=18.000 live=3 hold=0 cansee=3 nearest=161 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=19.000 live=3 hold=0 cansee=3 nearest=165 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=20.000 live=3 hold=0 cansee=3 nearest=165 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=21.000 live=3 hold=0 cansee=3 nearest=174 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=22.000 live=3 hold=0 cansee=3 nearest=173 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=23.000 live=3 hold=0 cansee=3 nearest=176 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=24.000 live=3 hold=0 cansee=3 nearest=176 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=25.000 live=3 hold=0 cansee=3 nearest=175 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=26.000 live=3 hold=0 cansee=3 nearest=174 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=27.000 live=3 hold=0 cansee=3 nearest=173 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=28.000 live=3 hold=0 cansee=3 nearest=172 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=29.000 live=3 hold=0 cansee=3 nearest=168 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=30.000 live=3 hold=0 cansee=3 nearest=172 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=31.000 live=3 hold=0 cansee=3 nearest=171 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=32.000 live=3 hold=0 cansee=3 nearest=171 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=33.000 live=3 hold=0 cansee=3 nearest=179 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=34.000 live=3 hold=0 cansee=3 nearest=179 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=35.000 live=3 hold=0 cansee=3 nearest=181 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=36.000 live=3 hold=0 cansee=3 nearest=181 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=37.000 live=3 hold=0 cansee=3 nearest=181 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=38.000 live=3 hold=0 cansee=3 nearest=180 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=39.000 live=6 hold=0 cansee=3 nearest=178 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=40.000 live=6 hold=0 cansee=3 nearest=177 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=41.000 live=6 hold=0 cansee=3 nearest=173 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=42.000 live=6 hold=0 cansee=3 nearest=177 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=43.000 live=6 hold=0 cansee=3 nearest=176 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=44.000 live=6 hold=0 cansee=3 nearest=176 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=45.000 live=6 hold=0 cansee=3 nearest=185 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=46.000 live=6 hold=0 cansee=3 nearest=184 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=47.000 live=6 hold=0 cansee=3 nearest=187 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=48.000 live=6 hold=0 cansee=3 nearest=187 live_smoke=1
+16:27:27 x7     ^~^~^ SS MON t=49.000 live=6 hold=0 cansee=3 nearest=186 live_smoke=1
+16:27:27 x7 script errors: 0 []
+16:29:02 booted ss_ab_b m3l2 ref=work dog False
+16:29:47 ab_b     ^~^~^ SS MON t=1.000 live=3 hold=3 cansee=3 enemy=0 nearest=885 live_smoke=0
+16:29:47 ab_b     ^~^~^ SS MON t=2.000 live=3 hold=3 cansee=3 enemy=0 nearest=885 live_smoke=0
+16:29:47 ab_b     ^~^~^ SS MON t=3.000 live=3 hold=3 cansee=3 enemy=0 nearest=888 live_smoke=0
+16:29:47 ab_b     ^~^~^ SS MON t=4.000 live=3 hold=3 cansee=3 enemy=0 nearest=887 live_smoke=0
+16:29:47 ab_b     ^~^~^ SS MON t=5.000 live=3 hold=3 cansee=3 enemy=0 nearest=885 live_smoke=0
+16:29:47 ab_b     ^~^~^ SS MON t=6.000 live=3 hold=3 cansee=3 enemy=0 nearest=885 live_smoke=0
+16:29:47 ab_b     ^~^~^ SS MON t=7.000 live=3 hold=3 cansee=3 enemy=0 nearest=885 live_smoke=0
+16:29:47 ab_b     ^~^~^ SS MON t=8.000 live=3 hold=3 cansee=3 enemy=0 nearest=882 live_smoke=0
+16:29:47 ab_b     ^~^~^ SS MON t=9.000 live=3 hold=3 cansee=3 enemy=0 nearest=884 live_smoke=0
+16:29:47 ab_b     ^~^~^ SMOKE screen n=3 at=( -3694.854 -6770.140 -342.634 ) from=( -3194.854 -6770.140 -342.634 ) to=( -4294.854 -6770.140 -342.634 ) t=54.225
+16:29:47 ab_b     ^~^~^ SS WALL n=3
+16:29:47 ab_b     ^~^~^ SS MON t=10.000 live=3 hold=3 cansee=3 enemy=0 nearest=883 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=11.000 live=3 hold=3 cansee=3 enemy=0 nearest=882 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=12.000 live=3 hold=3 cansee=3 enemy=0 nearest=882 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=13.000 live=3 hold=3 cansee=3 enemy=0 nearest=883 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=14.000 live=3 hold=3 cansee=3 enemy=0 nearest=884 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=15.000 live=3 hold=3 cansee=3 enemy=0 nearest=885 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=16.000 live=3 hold=3 cansee=3 enemy=0 nearest=886 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=17.000 live=3 hold=3 cansee=3 enemy=0 nearest=886 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=18.000 live=3 hold=3 cansee=3 enemy=0 nearest=884 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=19.000 live=3 hold=3 cansee=3 enemy=0 nearest=884 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=20.000 live=3 hold=3 cansee=3 enemy=0 nearest=884 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=21.000 live=3 hold=3 cansee=0 enemy=3 nearest=739 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=22.000 live=3 hold=3 cansee=0 enemy=3 nearest=585 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=23.000 live=3 hold=3 cansee=0 enemy=3 nearest=464 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=24.000 live=3 hold=3 cansee=1 enemy=3 nearest=395 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=25.000 live=3 hold=3 cansee=1 enemy=3 nearest=415 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=26.000 live=3 hold=3 cansee=1 enemy=3 nearest=466 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=27.000 live=3 hold=3 cansee=2 enemy=3 nearest=472 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=28.000 live=3 hold=3 cansee=2 enemy=3 nearest=471 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=29.000 live=3 hold=3 cansee=2 enemy=3 nearest=473 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=30.000 live=3 hold=3 cansee=2 enemy=3 nearest=465 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=31.000 live=3 hold=3 cansee=2 enemy=3 nearest=417 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=32.000 live=3 hold=3 cansee=2 enemy=3 nearest=403 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=33.000 live=4 hold=3 cansee=2 enemy=4 nearest=337 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=34.000 live=4 hold=3 cansee=2 enemy=4 nearest=233 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=35.000 live=4 hold=3 cansee=2 enemy=4 nearest=239 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=36.000 live=6 hold=3 cansee=2 enemy=5 nearest=239 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=37.000 live=6 hold=3 cansee=2 enemy=5 nearest=304 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=38.000 live=6 hold=3 cansee=2 enemy=5 nearest=442 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=39.000 live=6 hold=3 cansee=2 enemy=5 nearest=470 live_smoke=1
+16:29:47 ab_b     ^~^~^ SS MON t=40.000 live=6 hold=3 cansee=2 enemy=5 nearest=410 live_smoke=1
+16:29:47 ab_b script errors: 0 []
+16:30:59 booted ss_ab_a m3l2 ref=work dog False
+16:31:25 ab_a     ^~^~^ SS MON t=1.000 live=3 hold=3 cansee=2 enemy=0 nearest=885 live_smoke=0
+16:31:25 ab_a     ^~^~^ SS MON t=2.000 live=3 hold=3 cansee=3 enemy=0 nearest=885 live_smoke=0
+16:31:25 ab_a     ^~^~^ SS MON t=3.000 live=3 hold=3 cansee=3 enemy=0 nearest=888 live_smoke=0
+16:31:25 ab_a     ^~^~^ SS MON t=4.000 live=3 hold=3 cansee=3 enemy=0 nearest=887 live_smoke=0
+16:31:25 ab_a     ^~^~^ SS MON t=5.000 live=3 hold=3 cansee=3 enemy=0 nearest=885 live_smoke=0
+16:31:25 ab_a     ^~^~^ SS MON t=6.000 live=3 hold=3 cansee=2 enemy=3 nearest=881 live_smoke=0
+16:31:25 ab_a     ^~^~^ SS MON t=7.000 live=3 hold=3 cansee=3 enemy=3 nearest=744 live_smoke=0
+16:31:25 ab_a     ^~^~^ SS MON t=8.000 live=3 hold=3 cansee=2 enemy=3 nearest=596 live_smoke=0
+16:31:25 ab_a     ^~^~^ SS MON t=9.000 live=3 hold=3 cansee=2 enemy=3 nearest=476 live_smoke=0
+16:31:25 ab_a     ^~^~^ SMOKE screen n=3 at=( -3694.854 -6770.140 -342.634 ) from=( -3194.854 -6770.140 -342.634 ) to=( -4294.854 -6770.140 -342.634 ) t=54.425
+16:31:25 ab_a     ^~^~^ SS WALL n=3
+16:31:25 ab_a     ^~^~^ SS MON t=10.000 live=3 hold=3 cansee=2 enemy=3 nearest=411 live_smoke=1
+16:31:25 ab_a     ^~^~^ SS MON t=11.000 live=3 hold=3 cansee=3 enemy=3 nearest=433 live_smoke=1
+16:31:25 ab_a     ^~^~^ SS MON t=12.000 live=3 hold=3 cansee=3 enemy=3 nearest=472 live_smoke=1
+16:31:25 ab_a     ^~^~^ SS MON t=13.000 live=3 hold=3 cansee=2 enemy=3 nearest=435 live_smoke=1
+16:31:25 ab_a     ^~^~^ SS MON t=14.000 live=3 hold=3 cansee=3 enemy=3 nearest=404 live_smoke=1
+16:31:25 ab_a     ^~^~^ SS MON t=15.000 live=3 hold=3 cansee=3 enemy=3 nearest=405 live_smoke=1
+16:31:25 ab_a     ^~^~^ SS MON t=16.000 live=3 hold=3 cansee=3 enemy=3 nearest=434 live_smoke=1
+16:31:25 ab_a     ^~^~^ SS MON t=17.000 live=3 hold=3 cansee=2 enemy=3 nearest=438 live_smoke=1
+16:31:25 ab_a     ^~^~^ SS MON t=18.000 live=3 hold=3 cansee=1 enemy=3 nearest=486 live_smoke=1
+16:31:25 ab_a     ^~^~^ SS MON t=19.000 live=3 hold=3 cansee=2 enemy=3 nearest=476 live_smoke=1
+16:31:25 ab_a     ^~^~^ SS MON t=20.000 live=3 hold=3 cansee=2 enemy=3 nearest=433 live_smoke=1
+16:31:25 ab_a     ^~^~^ SS MON t=21.000 live=3 hold=3 cansee=2 enemy=3 nearest=448 live_smoke=1
+16:31:25 ab_a     ^~^~^ SS MON t=22.000 live=3 hold=3 cansee=1 enemy=3 nearest=472 live_smoke=1
+16:31:25 ab_a script errors: 0 []
+16:33:14 booted ss_lob1 m3l2 ref=work dog False
+16:33:42 lob1     ^~^~^ SS MON t=1.000 live=3 hold=3 cansee=3 enemy=0 nearest=847 live_smoke=0
+16:33:42 lob1     ^~^~^ SS MON t=2.000 live=3 hold=3 cansee=2 enemy=0 nearest=848 live_smoke=0
+16:33:42 lob1     ^~^~^ SS MON t=3.000 live=3 hold=3 cansee=2 enemy=0 nearest=851 live_smoke=0
+16:33:42 lob1     ^~^~^ SS MON t=4.000 live=3 hold=3 cansee=2 enemy=0 nearest=850 live_smoke=0
+16:33:42 lob1     ^~^~^ SS MON t=5.000 live=3 hold=3 cansee=2 enemy=0 nearest=847 live_smoke=0
+16:33:42 lob1     ^~^~^ SS MON t=6.000 live=3 hold=3 cansee=2 enemy=0 nearest=848 live_smoke=0
+16:33:42 lob1     ^~^~^ SS MON t=7.000 live=3 hold=3 cansee=2 enemy=0 nearest=848 live_smoke=0
+16:33:42 lob1     ^~^~^ SS MON t=8.000 live=3 hold=3 cansee=1 enemy=0 nearest=845 live_smoke=0
+16:33:42 lob1     ^~^~^ SS MON t=9.000 live=3 hold=3 cansee=2 enemy=0 nearest=847 live_smoke=0
+16:33:42 lob1     ^~^~^ SMOKE screen n=3 at=( -3796.280 -6844.479 -356.818 ) from=( -3186.912 -6935.337 -356.818 ) to=( -4294.854 -6770.140 -342.634 ) t=54.475
+16:33:42 lob1     ^~^~^ SS LOB result=1
+16:33:42 lob1     ^~^~^ SS MON t=10.000 live=3 hold=3 cansee=2 enemy=0 nearest=845 live_smoke=1
+16:33:42 lob1     ^~^~^ SS MON t=11.000 live=3 hold=3 cansee=2 enemy=0 nearest=845 live_smoke=1
+16:33:42 lob1     ^~^~^ SS MON t=12.000 live=3 hold=3 cansee=1 enemy=0 nearest=845 live_smoke=1
+16:33:42 lob1     ^~^~^ SS MON t=13.000 live=3 hold=3 cansee=1 enemy=0 nearest=846 live_smoke=1
+16:33:42 lob1     ^~^~^ SS MON t=14.000 live=3 hold=3 cansee=2 enemy=0 nearest=846 live_smoke=1
+16:33:42 lob1     ^~^~^ SS MON t=15.000 live=3 hold=3 cansee=2 enemy=0 nearest=847 live_smoke=1
+16:33:42 lob1     ^~^~^ SS MON t=16.000 live=3 hold=2 cansee=1 enemy=1 nearest=848 live_smoke=1
+16:33:42 lob1     ^~^~^ SS MON t=17.000 live=3 hold=2 cansee=1 enemy=1 nearest=815 live_smoke=1
+16:33:42 lob1     ^~^~^ SS MON t=18.000 live=3 hold=2 cansee=1 enemy=1 nearest=654 live_smoke=1
+16:33:42 lob1     ^~^~^ SS MON t=19.000 live=3 hold=2 cansee=1 enemy=1 nearest=521 live_smoke=1
+16:33:42 lob1     ^~^~^ SS MON t=20.000 live=3 hold=2 cansee=2 enemy=1 nearest=424 live_smoke=1
+16:33:42 lob1     ^~^~^ SS MON t=21.000 live=3 hold=2 cansee=2 enemy=1 nearest=405 live_smoke=1
+16:33:42 lob1     ^~^~^ SS MON t=22.000 live=3 hold=2 cansee=2 enemy=1 nearest=455 live_smoke=1
+16:33:42 lob1     ^~^~^ SS MON t=23.000 live=3 hold=2 cansee=2 enemy=1 nearest=472 live_smoke=1
+16:33:42 lob1 script errors: 0 []

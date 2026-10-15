@@ -12,11 +12,24 @@ def log(*a):
     G.log(LABEL, *a); OUT.write(" ".join(str(x) for x in a) + "\n"); OUT.flush()
 try:
     rundir, notes = G.boot("ss_" + LABEL, MAP, extra=["set g_ai 1", "set coop_aiScaleTest 1", "set coop_smokeDebug 1"] + [x for x in os.environ.get("SSSET", "").split(";") if x])
-    X, Y, Z, YAW = [float(v) for v in os.environ.get("SSSPOT", "-3608 2303 80 225").split()]
-    G.cmd("tp", x=X, y=Y, z=Z, yaw=YAW)
-    time.sleep(3)
-    G.cmd("purge", timeout=90)
-    G.cmd("stage")
+    if os.environ.get("SSSPOT", "") != "none":
+        X, Y, Z, YAW = [float(v) for v in os.environ.get("SSSPOT", "-3608 2303 80 225").split()]
+        G.cmd("tp", x=X, y=Y, z=Z, yaw=YAW)
+        time.sleep(3)
+    else:
+        G.cmd("god")
+        G.cmd("here")
+    if os.environ.get("SSCAND"):
+        G.cmd("pairs", timeout=90)
+        G.cmd("usepair", n=int(os.environ["SSCAND"]), timeout=30)
+        time.sleep(1)
+        G.cmd("purge", timeout=90)
+    elif os.environ.get("SSPAIR", "1") == "1":
+        G.cmd("pair", timeout=90)
+        G.cmd("purge", timeout=90)
+    else:
+        G.cmd("purge", timeout=90)
+        G.cmd("probe", timeout=90)
     p0 = len(R.read_log())
     G.still(LABEL + "_00_before")
     G.cmd("squad", timeout=60)

@@ -1,0 +1,26 @@
+    ^~^~^ SS MON t=1.000 live=3 hold=3 cansee=3 enemy=0 nearest=847 live_smoke=0
+    ^~^~^ SS MON t=2.000 live=3 hold=3 cansee=2 enemy=0 nearest=848 live_smoke=0
+    ^~^~^ SS MON t=3.000 live=3 hold=3 cansee=2 enemy=0 nearest=851 live_smoke=0
+    ^~^~^ SS MON t=4.000 live=3 hold=3 cansee=2 enemy=0 nearest=850 live_smoke=0
+    ^~^~^ SS MON t=5.000 live=3 hold=3 cansee=2 enemy=0 nearest=847 live_smoke=0
+    ^~^~^ SS MON t=6.000 live=3 hold=3 cansee=2 enemy=0 nearest=848 live_smoke=0
+    ^~^~^ SS MON t=7.000 live=3 hold=3 cansee=2 enemy=0 nearest=848 live_smoke=0
+    ^~^~^ SS MON t=8.000 live=3 hold=3 cansee=1 enemy=0 nearest=845 live_smoke=0
+    ^~^~^ SS MON t=9.000 live=3 hold=3 cansee=2 enemy=0 nearest=847 live_smoke=0
+    ^~^~^ SMOKE screen n=3 at=( -3796.280 -6844.479 -356.818 ) from=( -3186.912 -6935.337 -356.818 ) to=( -4294.854 -6770.140 -342.634 ) t=54.475
+    ^~^~^ SS LOB result=1
+    ^~^~^ SS MON t=10.000 live=3 hold=3 cansee=2 enemy=0 nearest=845 live_smoke=1
+    ^~^~^ SS MON t=11.000 live=3 hold=3 cansee=2 enemy=0 nearest=845 live_smoke=1
+    ^~^~^ SS MON t=12.000 live=3 hold=3 cansee=1 enemy=0 nearest=845 live_smoke=1
+    ^~^~^ SS MON t=13.000 live=3 hold=3 cansee=1 enemy=0 nearest=846 live_smoke=1
+    ^~^~^ SS MON t=14.000 live=3 hold=3 cansee=2 enemy=0 nearest=846 live_smoke=1
+    ^~^~^ SS MON t=15.000 live=3 hold=3 cansee=2 enemy=0 nearest=847 live_smoke=1
+    ^~^~^ SS MON t=16.000 live=3 hold=2 cansee=1 enemy=1 nearest=848 live_smoke=1
+    ^~^~^ SS MON t=17.000 live=3 hold=2 cansee=1 enemy=1 nearest=815 live_smoke=1
+    ^~^~^ SS MON t=18.000 live=3 hold=2 cansee=1 enemy=1 nearest=654 live_smoke=1
+    ^~^~^ SS MON t=19.000 live=3 hold=2 cansee=1 enemy=1 nearest=521 live_smoke=1
+    ^~^~^ SS MON t=20.000 live=3 hold=2 cansee=2 enemy=1 nearest=424 live_smoke=1
+    ^~^~^ SS MON t=21.000 live=3 hold=2 cansee=2 enemy=1 nearest=405 live_smoke=1
+    ^~^~^ SS MON t=22.000 live=3 hold=2 cansee=2 enemy=1 nearest=455 live_smoke=1
+    ^~^~^ SS MON t=23.000 live=3 hold=2 cansee=2 enemy=1 nearest=472 live_smoke=1
+script errors: 0 []

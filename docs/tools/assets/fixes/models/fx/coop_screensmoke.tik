@@ -38,15 +38,15 @@ init
 		gravity .8
 		setsize "-2 -2 -2" "2 2 2"
 
-		spawnrate 3
+		spawnrate 6
 		bouncefactor 0
-		spawnlife 24
-		scalerate 0.06
-		velocity 12 0 3
+		spawnlife 26
+		scalerate 0.05
+		velocity 10 0 2
 		spin 0
 		offset 0 0 30
-		scale 170
-		fadedelay 16
+		scale 400
+		fadedelay 18
 		fadein 2
 		maxalpha 1
 	}
@@ -57,24 +57,24 @@ init
 
 		originemitter initial
 		(
-			spawnrate 3
+			spawnrate 6
 			model vsssource.spr
 			color 0.88 0.88 0.86
 			spritegridlighting
 			alpha 1
 			bouncefactor 0
-			life 24
-			scalerate 0.06
-			velocity 12
+			life 26
+			scalerate 0.05
+			velocity 10
 			randvelaxis crandom 5 crandom 5 2
 			spin 0
-			offset crandom 70 crandom 70 range 6 40
+			offset crandom 130 crandom 130 range 20 160
 			angles 0 0 random 360
 			avelocity 0 0 crandom 10
-			scalemin 1.2
-			scalemax 1.5
+			scalemin 2.6
+			scalemax 3.4
 			fadein 2
-			fadedelay 16
+			fadedelay 18
 		)
 	}
 }

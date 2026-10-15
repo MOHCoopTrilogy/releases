@@ -1,0 +1,16 @@
+    ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to + " t=" + level.time )
+    ^~^~^ SMOKE screen n=" + local.n + " at=" ^
+    ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to + " t=" + level.time )
+    ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c ^
+    ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to + " t=" + level.time )
+    ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" ^
+    ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to + " t=" + level.time )
+    ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from ^
+    ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to + " t=" + level.time )
+    ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" ^
+    ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to + " t=" + level.time )
+    ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to ^
+    ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to + " t=" + level.time )
+    ^~^~^ SMOKE screen n=" + local.n + " at=" + local.c + " from=" + local.from + " to=" + local.to + " t=" ^
+    ^~^~^ SS WALL n=3
+script errors: 15 ["[2026-10-15 16:00:37 UTC-6.000] ^~^~^ Script Error : Cannot cast 'array' to vector", "[2026-10-15 16:00:37 UTC-6.000] ^~^~^ Script Error : Cannot cast 'int' to vector", "[2026-10-15 16:00:37 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to float", "[2026-10-15 16:00:37 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector", "[2026-10-15 16:00:37 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-15 16:00:37 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'float'"]

@@ -1,0 +1,34 @@
+    ^~^~^ SS MON t=0.000 live=0 hold=0 cansee=0 nearest=999999 live_smoke=0
+    ^~^~^ SS MON t=1.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=0
+    ^~^~^ SS MON t=2.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=0
+    ^~^~^ SMOKE screen n=3 at=( -2783.318 -500.477 224.125 ) from=( -2545.313 -1128.331 224.125 ) to=( -2978.048 13.221 272.125 ) t=44.350
+    ^~^~^ SS MON t=3.000 live=3 hold=3 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=4.000 live=3 hold=3 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=5.000 live=3 hold=3 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=6.000 live=3 hold=3 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=7.000 live=3 hold=3 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SMOKE advance t=49.350
+    ^~^~^ SS MON t=8.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=9.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=10.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=11.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=12.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=13.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=14.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=15.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=16.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=17.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=18.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=19.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=20.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=21.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=22.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=23.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=24.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=25.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=26.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=27.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=28.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=29.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+    ^~^~^ SS MON t=30.000 live=3 hold=0 cansee=0 nearest=1221 live_smoke=1
+script errors: 0 []
