@@ -1,0 +1,42 @@
+16:18:35 t=0.033 launched pid 19032 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:18:35 t=0.053 in-process guard installed on thread 15048
+16:18:36 t=0.466 place 0xe40bea SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:18:36 t=0.585 place 0xe50bea SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:18:36 t=0.589 place 0x610ca6 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:19:43 booted cn_sc_t2l1 t2l1 ref=work dog False
+16:21:17 sc_t2l1     ^~^~^ CN SCOUT guards=8 spawn=( 5329.000 -6252.000 3.000 )
+16:21:17 sc_t2l1     ^~^~^ CN SCOUT cluster ( -1247.000 -5669.000 302.336 ) n=3 has no flat wall within 450
+16:21:17 sc_t2l1     ^~^~^ CN SCOUT cluster ( 2540.000 -2568.000 441.706 ) n=1 has no flat wall within 450
+16:21:17 sc_t2l1     ^~^~^ CN SCOUT cluster ( -261.324 -4947.502 597.481 ) n=1 has no flat wall within 450
+16:21:17 sc_t2l1     ^~^~^ CN SCOUT cluster ( 266.888 -1586.272 859.572 ) n=1 has no flat wall within 450
+16:21:17 sc_t2l1     ^~^~^ CN SCOUT done switches=0 bells=0
+16:21:17 sc_t2l1     ^~^~^ CN ARMED
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=43.450
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=53.700
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=63.200
+16:21:17 sc_t2l1     ^~^~^ CN TPGUARD none
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=66.725
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=69.950
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=73.175
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=76.400
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=79.625
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=82.850
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=86.075
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=89.300
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=92.550
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=95.750
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=99.000
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=102.225
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=105.450
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=108.675
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=111.900
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=115.150
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=118.350
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=121.600
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=124.825
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=128.050
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=131.275
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=134.500
+16:21:17 sc_t2l1 script errors: 6 ["[2026-10-15 16:19:35 UTC-6.000] ^~^~^ Script Error : Script 'coop_mod/allysquad.scr' was not properly loaded", "[2026-10-15 16:19:35 UTC-6.000] ^~^~^ Script file compile error:  Couldn't compile 'coop_mod/allysquad.scr'", "[2026-10-15 16:20:06 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to listener", "[2026-10-15 16:20:06 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector"]
+16:21:17 t=161.960 process exited
+16:21:17 end_session ModuleNotFoundError("No module named 'PIL'")

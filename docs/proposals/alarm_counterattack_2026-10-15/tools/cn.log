@@ -175,3 +175,618 @@ RuntimeError: player never spawned
 15:30:48 a4c     ^~^~^ CN ALM live=0 pulls=1 map=1 sw=13 alarm_on=0 alive=6 t=77.075
 15:30:48 a4c script errors: 0 []
 15:30:48 end_session ModuleNotFoundError("No module named 'PIL'")
+15:34:10 booted cn_p5 m1l1 ref=work dog False
+15:35:15 p5     ^~^~^ CN SCOUT guards=20 spawn=( 2608.352 154.503 946.454 )
+15:35:15 p5     ^~^~^ CN SCOUT cluster ( -3408.000 -280.000 608.125 ) n=4 has no flat wall within 450
+15:35:15 p5     ^~^~^ CN ALMPT switch -4798.027 -269.170 666.125 337.500 n=2
+15:35:15 p5     ^~^~^ CN ALMPT switch -2163.401 -2881.539 100.882 225.000 n=2
+15:35:15 p5     ^~^~^ CN SCOUT done switches=2 bells=0
+15:35:15 p5     ^~^~^ CN VIEWSW at ( -4714.878 -303.612 656.125 )
+15:35:15 p5     ^~^~^ CN ARMED
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=44.100
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=54.350
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=63.225
+15:35:15 p5     ^~^~^ CN TPGUARD guard=206 d_to_switch=81 player=( -4662.909 -350.272 628.125 )
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=66.725
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=69.950
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=73.200
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=76.400
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=79.650
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=82.850
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=86.100
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=89.300
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=92.525
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=95.750
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=98.975
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=102.200
+15:35:15 p5     ^~^~^ ALARM runner start guard=120 dist=575
+15:35:15 p5     ^~^~^ CN KILLRUNNER killed 3
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=105.650
+15:35:15 p5     ^~^~^ ALARM pull cancelled: guard killed
+15:35:15 p5 script errors: 0 []
+15:35:16 end_session ModuleNotFoundError("No module named 'PIL'")
+15:44:44 booted cn_p5b m1l1 ref=work dog False
+15:46:14 p5b     ^~^~^ CN SCOUT guards=18 spawn=( 2587.562 131.798 941.789 )
+15:46:14 p5b     ^~^~^ CN SCOUT cluster ( -3408.000 -280.000 608.125 ) n=4 has no flat wall within 450
+15:46:14 p5b     ^~^~^ CN ALMPT switch -2163.401 -2881.539 100.882 225.000 n=2
+15:46:14 p5b     ^~^~^ CN SCOUT cluster ( -3576.151 -1455.998 313.432 ) n=2 has no flat wall within 450
+15:46:14 p5b     ^~^~^ CN ALMPT switch -4798.027 -269.170 666.125 337.500 n=1
+15:46:14 p5b     ^~^~^ CN SCOUT done switches=2 bells=0
+15:46:14 p5b     ^~^~^ CN VIEWSW at ( -2255.325 -2973.463 69.822 )
+15:46:14 p5b     ^~^~^ CN ARMED
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=43.325
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=53.550
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=63.225
+15:46:14 p5b     ^~^~^ CN TPGUARD guard=27 d_to_switch=221 player=( -1868.000 -2906.000 256.125 )
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=66.725
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=69.950
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=73.175
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=76.400
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=79.625
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=82.850
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=86.075
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=89.300
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=92.525
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=95.750
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=98.975
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=102.225
+15:46:14 p5b     ^~^~^ ALARM runner start guard=31 dist=1076
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=105.425
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=108.650
+15:46:14 p5b     ^~^~^ ALARM pulled
+15:46:14 p5b     ^~^~^ ALARM LIVE pull 1 switches=2
+15:46:14 p5b     ^~^~^ ALARM woke 0 idle guards
+15:46:14 p5b     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=111.875
+15:46:14 p5b     ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( -2021.204 -4427.106 88.339 )
+15:46:14 p5b     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=126.125
+15:46:14 p5b     ^~^~^ CN SHOOT1 hp=1000.000
+15:46:14 p5b     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=131.025
+15:46:14 p5b script errors: 2 ["[2026-10-15 15:45:52 UTC-6.000] ^~^~^ Script Error : anim 'alarm_switchon' not found, so can't tell if it is looping", "[2026-10-15 15:45:52 UTC-6.000] ^~^~^ Script Error : unknown animation 'alarm_switchon' in 'models/human/german_afrika_private.tik'"]
+15:46:15 end_session ModuleNotFoundError("No module named 'PIL'")
+15:47:42 booted cn_p5c m1l1 ref=work dog False
+15:49:14 p5c     ^~^~^ CN SCOUT guards=21 spawn=( 2597.960 143.076 944.132 )
+15:49:14 p5c     ^~^~^ CN SCOUT cluster ( -3408.000 -280.000 608.125 ) n=4 has no flat wall within 450
+15:49:14 p5c     ^~^~^ CN ALMPT switch -4798.027 -269.170 666.125 337.500 n=2
+15:49:14 p5c     ^~^~^ CN ALMPT switch -2165.539 -2881.539 101.042 225.000 n=2
+15:49:14 p5c     ^~^~^ CN SCOUT done switches=2 bells=0
+15:49:14 p5c     ^~^~^ CN VIEWSW at ( -4677.923 -318.919 656.125 )
+15:49:14 p5c     ^~^~^ CN ARMED
+15:49:14 p5c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=43.275
+15:49:14 p5c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=53.500
+15:49:14 p5c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=63.225
+15:49:14 p5c     ^~^~^ CN TPGUARD guard=170 d_to_switch=161 player=( -4516.000 -328.000 584.881 )
+15:49:14 p5c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=66.750
+15:49:14 p5c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=69.950
+15:49:14 p5c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=73.200
+15:49:14 p5c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=76.400
+15:49:14 p5c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=79.650
+15:49:14 p5c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=82.850
+15:49:14 p5c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=86.100
+15:49:14 p5c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=89.300
+15:49:14 p5c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=92.550
+15:49:14 p5c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=95.750
+15:49:14 p5c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=99.000
+15:49:14 p5c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=102.225
+15:49:14 p5c     ^~^~^ ALARM runner start guard=31 dist=1078
+15:49:14 p5c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=105.450
+15:49:14 p5c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=108.675
+15:49:14 p5c     ^~^~^ ALARM pulled
+15:49:14 p5c     ^~^~^ ALARM LIVE pull 1 switches=2
+15:49:14 p5c     ^~^~^ ALARM woke 0 idle guards
+15:49:14 p5c     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=111.900
+15:49:14 p5c     ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( -1181.442 -2222.861 -127.875 )
+15:49:14 p5c     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=3 t=126.150
+15:49:14 p5c     ^~^~^ CN SHOOT1 hp0=" + local.sw.health + " solid=" + local.sw.solid + " takedamage=" + local.sw.takedamage )
+15:49:14 p5c     ^~^~^ CN SHOOT1 hp0=" + local.sw.health + " solid=" ^
+15:49:14 p5c     ^~^~^ CN SHOOT1 hp0=" + local.sw.health + " solid=" + local.sw.solid + " takedamage=" + local.sw.takedamage )
+15:49:14 p5c     ^~^~^ CN SHOOT1 hp0=" + local.sw.health + " solid=" + local.sw.solid ^
+15:49:14 p5c     ^~^~^ CN SHOOT1 hp0=" + local.sw.health + " solid=" + local.sw.solid + " takedamage=" + local.sw.takedamage )
+15:49:14 p5c     ^~^~^ CN SHOOT1 hp0=" + local.sw.health + " solid=" + local.sw.solid + " takedamage=" ^
+15:49:14 p5c     ^~^~^ CN SHOOT1 v0 hp=1000.000
+15:49:14 p5c     ^~^~^ CN SHOOT1 v1 hp=1000.000
+15:49:14 p5c     ^~^~^ CN SHOOT1 v3 hp=1000.000
+15:49:14 p5c     ^~^~^ ALARM wave 2 players=1 made=3 alive=6 at=( -3871.982 -2680.102 156.813 )
+15:49:14 p5c     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=6 t=132.700
+15:49:14 p5c script errors: 3 ["[2026-10-15 15:49:08 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-15 15:49:08 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-15 15:49:08 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'"]
+15:49:14 end_session ModuleNotFoundError("No module named 'PIL'")
+15:50:57 booted cn_probe m1l1 ref=work dog False
+15:51:04 probe ^~^~^ CN PROBE models/animate/alarmswitch.tik class=ScriptModel hp=1000.000
+15:51:04 probe ^~^~^ CN PROBE models/animate/alarmswitch.tik world-dmg hp=1000.000
+15:51:04 probe ^~^~^ CN PROBE models/miscobj/alarmswitch.tik class=ScriptModel hp=1000.000
+15:51:04 probe ^~^~^ CN PROBE models/miscobj/alarmswitch.tik world-dmg hp=1000.000
+15:51:04 probe ^~^~^ CN PROBE models/static/alarmswitch.tik class=ScriptModel hp=1000.000
+15:51:04 probe ^~^~^ CN PROBE models/static/alarmswitch.tik world-dmg hp=1000.000
+15:51:04 probe ^~^~^ CN PROBE models/miscobj/radio_military.tik class=ScriptModel hp=1000.000
+15:51:04 probe ^~^~^ CN PROBE models/miscobj/radio_military.tik world-dmg hp=1000.000
+15:51:04 probe ^~^~^ CN PROBE models/static/alarmbell.tik class=ScriptModel hp=1000.000
+15:51:04 probe ^~^~^ CN PROBE models/static/alarmbell.tik world-dmg hp=1000.000
+15:51:04 probe errors 0 []
+15:51:04 end_session ModuleNotFoundError("No module named 'PIL'")
+15:52:26 booted cn_probe m1l1 ref=work dog False
+15:52:34 probe ^~^~^ CN PROBE models/animate/alarmswitch.tik t0=41.150
+15:52:34 probe ^~^~^ CN PROBE models/animate/alarmswitch.tik t1=42.650 hp=1000.000
+15:52:34 probe ^~^~^ CN PROBE models/animate/alarmswitch.tik v0 hp=1000.000
+15:52:34 probe ^~^~^ CN PROBE models/animate/alarmswitch.tik v1v2 hp=1000.000
+15:52:34 probe ^~^~^ CN PROBE models/miscobj/alarmswitch.tik t0=42.750
+15:52:34 probe ^~^~^ CN PROBE models/miscobj/alarmswitch.tik t1=44.250 hp=1000.000
+15:52:34 probe ^~^~^ CN PROBE models/miscobj/alarmswitch.tik v0 hp=1000.000
+15:52:34 probe ^~^~^ CN PROBE models/miscobj/alarmswitch.tik v1v2 hp=1000.000
+15:52:34 probe ^~^~^ CN PROBE models/static/alarmswitch.tik t0=44.350
+15:52:34 probe ^~^~^ CN PROBE models/static/alarmswitch.tik t1=45.850 hp=1000.000
+15:52:34 probe ^~^~^ CN PROBE models/static/alarmswitch.tik v0 hp=1000.000
+15:52:34 probe ^~^~^ CN PROBE models/static/alarmswitch.tik v1v2 hp=1000.000
+15:52:34 probe ^~^~^ CN PROBE models/miscobj/radio_military.tik t0=45.950
+15:52:34 probe ^~^~^ CN PROBE models/miscobj/radio_military.tik t1=47.450 hp=1000.000
+15:52:34 probe ^~^~^ CN PROBE models/miscobj/radio_military.tik v0 hp=1000.000
+15:52:34 probe ^~^~^ CN PROBE models/miscobj/radio_military.tik v1v2 hp=1000.000
+15:52:34 probe ^~^~^ CN PROBE models/static/alarmbell.tik t0=47.550
+15:52:34 probe ^~^~^ CN PROBE models/static/alarmbell.tik t1=49.050 hp=1000.000
+15:52:34 probe ^~^~^ CN PROBE models/static/alarmbell.tik v0 hp=1000.000
+15:52:34 probe ^~^~^ CN PROBE models/static/alarmbell.tik v1v2 hp=1000.000
+15:52:34 probe errors 0 []
+15:52:35 end_session ModuleNotFoundError("No module named 'PIL'")
+15:54:01 booted cn_p5d m1l1 ref=work dog False
+15:55:18 p5d     ^~^~^ CN SCOUT guards=21 spawn=( 2566.344 109.913 937.192 )
+15:55:18 p5d     ^~^~^ CN SCOUT cluster ( 3179.717 466.812 973.094 ) n=3 has no flat wall within 450
+15:55:18 p5d     ^~^~^ CN SCOUT cluster ( -3408.000 -280.000 608.125 ) n=3 has no flat wall within 450
+15:55:18 p5d     ^~^~^ CN SCOUT cluster ( -3571.074 -1455.872 313.371 ) n=3 has no flat wall within 450
+15:55:18 p5d     ^~^~^ CN ALMPT switch -4798.027 -269.170 666.125 337.500 n=2
+15:55:18 p5d     ^~^~^ CN SCOUT done switches=1 bells=0
+15:55:18 p5d     ^~^~^ CN VIEWSW at ( -4677.923 -318.919 656.125 )
+15:55:18 p5d     ^~^~^ CN ARMED
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=43.175
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=53.375
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=63.225
+15:55:18 p5d     ^~^~^ CN TPGUARD guard=208 d_to_switch=161 player=( -4516.145 -327.998 583.870 )
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=66.750
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=69.975
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=73.200
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=76.425
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=79.650
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=82.875
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=86.100
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=89.325
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=92.550
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=95.775
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=99.000
+15:55:18 p5d     ^~^~^ ALARM runner start guard=210 dist=1222
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=102.225
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=105.450
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=108.675
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=111.900
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=115.125
+15:55:18 p5d     ^~^~^ ALARM pull cancelled: timeout
+15:55:18 p5d     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=118.350
+15:55:18 p5d script errors: 0 []
+15:55:19 end_session ModuleNotFoundError("No module named 'PIL'")
+15:56:39 booted cn_p6 m4l1 ref=work dog False
+15:57:36 p6     ^~^~^ CN SCOUT guards=61 spawn=( -3977.000 -5881.000 -499.116 )
+15:57:36 p6     ^~^~^ CN ALMPT switch 2589.448 -3631.110 34.125 157.500 n=10
+15:57:36 p6     ^~^~^ CN ALMPT bell 2306.125 -3604.000 84.125 0.000 n=0
+15:57:36 p6     ^~^~^ CN SCOUT cluster ( 3216.000 2976.000 460.425 ) n=6 has no flat wall within 450
+15:57:36 p6     ^~^~^ CN ALMPT switch 325.332 -877.770 34.125 202.500 n=5
+15:57:36 p6     ^~^~^ CN ALMPT bell 163.639 -1121.617 84.125 67.500 n=0
+15:57:36 p6     ^~^~^ CN SCOUT done switches=2 bells=2
+15:57:36 p6     ^~^~^ CN VIEWSW at ( 2469.344 -3581.361 -15.875 )
+15:57:36 p6     ^~^~^ CN ARMED
+15:57:36 p6     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=43.500
+15:57:36 p6     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=53.750
+15:57:36 p6     ^~^~^ ALARM runner start guard=263 dist=218
+15:57:36 p6     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=63.225
+15:57:36 p6     ^~^~^ CN TPGUARD guard=263 d_to_switch=217 player=( 2617.575 -3532.138 192.125 )
+15:57:36 p6     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=66.750
+15:57:36 p6     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=69.975
+15:57:36 p6     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=73.200
+15:57:36 p6     ^~^~^ ALARM pulled
+15:57:36 p6     ^~^~^ ALARM LIVE pull 1 switches=2
+15:57:36 p6     ^~^~^ ALARM woke 4 idle guards
+15:57:36 p6     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=76.425
+15:57:36 p6     ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( 1455.268 -3085.970 96.125 )
+15:57:36 p6     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=3 t=90.650
+15:57:36 p6     ^~^~^ CN VIEWSW at ( 2469.344 -3581.361 -15.875 )
+15:57:36 p6     ^~^~^ ALARM wave 2 players=1 made=3 alive=6 at=( 1752.461 -2233.100 67.196 )
+15:57:36 p6     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=6 t=98.525
+15:57:36 p6 script errors: 0 []
+15:57:37 end_session ModuleNotFoundError("No module named 'PIL'")
+15:59:00 booted cn_probe m1l1 ref=work dog False
+15:59:05 probe ^~^~^ CN PROBE script_model class=ScriptModel hp=1000.000
+15:59:05 probe ^~^~^ CN PROBE animate class=Animate hp=600.000
+15:59:05 probe ^~^~^ CN PROBE Animate class=Animate hp=600.000
+15:59:05 probe ^~^~^ CN PROBE func_throwobject class=ThrowObject hp=600.000
+15:59:05 probe ^~^~^ CN PROBE ScriptModel class=ScriptModel hp=1000.000
+15:59:05 probe errors 0 []
+15:59:05 end_session ModuleNotFoundError("No module named 'PIL'")
+16:00:19 booted cn_p6b m4l1 ref=work dog False
+16:01:08 p6b     ^~^~^ CN SCOUT guards=60 spawn=( -3977.000 -5881.000 -499.116 )
+16:01:08 p6b     ^~^~^ CN ALMPT switch 2685.992 -3873.539 206.125 225.000 n=7
+16:01:08 p6b     ^~^~^ CN ALMPT bell 2540.125 -3923.456 256.125 0.000 n=0
+16:01:08 p6b     ^~^~^ CN SCOUT cluster ( 3216.000 2976.000 460.425 ) n=5 has no flat wall within 450
+16:01:08 p6b     ^~^~^ CN ALMPT switch 3826.267 4932.890 618.125 22.500 n=5
+16:01:08 p6b     ^~^~^ CN ALMPT bell 4406.027 4786.965 668.125 157.500 n=0
+16:01:08 p6b     ^~^~^ CN SCOUT done switches=2 bells=2
+16:01:08 p6b     ^~^~^ CN VIEWSW at ( 2594.068 -3965.463 168.125 )
+16:01:08 p6b     ^~^~^ CN ARMED
+16:01:08 p6b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=43.500
+16:01:08 p6b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=53.725
+16:01:08 p6b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=63.225
+16:01:08 p6b     ^~^~^ CN TPGUARD guard=67 d_to_switch=86 player=( 2776.070 -3923.613 92.155 )
+16:01:08 p6b     ^~^~^ ALARM runner start guard=67 dist=254
+16:01:08 p6b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=66.750
+16:01:08 p6b     ^~^~^ ALARM pulled
+16:01:08 p6b     ^~^~^ ALARM LIVE pull 1 switches=2
+16:01:08 p6b     ^~^~^ ALARM woke 4 idle guards
+16:01:08 p6b     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=69.975
+16:01:08 p6b     ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( 1859.780 -2270.582 73.231 )
+16:01:08 p6b     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=3 t=84.200
+16:01:08 p6b     ^~^~^ CN SHOOT1 hp0=936.000
+16:01:08 p6b     ^~^~^ ALARM destroyed switch at ( 2685.992 -3873.539 206.125 )
+16:01:08 p6b     ^~^~^ ALARM OFF: switch shot pulls=1
+16:01:08 p6b     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:01:08 p6b     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.^
+16:01:08 p6b     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:01:08 p6b     ^~^~^ CN SHOOT1 v0 hp=" ^
+16:01:08 p6b     ^~^~^ CN ALM live=0 pulls=1 map=1 sw=2 alarm_on=- alive=3 t=89.925
+16:01:08 p6b script errors: 3 ["[2026-10-15 16:01:03 UTC-6.000] ^~^~^ Script Error : Field 'health' applied to NULL listener", "[2026-10-15 16:01:03 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-15 16:01:03 UTC-6.000] ^~^~^ Script Error : binary '>' applied to incompatible types 'none' and 'int'"]
+16:01:09 end_session ModuleNotFoundError("No module named 'PIL'")
+16:02:34 booted cn_sc_m1l1 m1l1 ref=work dog False
+16:03:45 sc_m1l1     ^~^~^ CN SCOUT guards=20 spawn=( 2582.366 126.161 940.618 )
+16:03:45 sc_m1l1     ^~^~^ CN SCOUT cluster ( -3408.000 -280.000 608.125 ) n=4 has no flat wall within 450
+16:03:45 sc_m1l1     ^~^~^ CN SCOUT cluster ( 3218.163 419.779 973.195 ) n=3 has no flat wall within 450
+16:03:45 sc_m1l1     ^~^~^ CN SCOUT cluster ( -3571.872 -1455.898 313.377 ) n=3 has no flat wall within 450
+16:03:45 sc_m1l1     ^~^~^ CN ALMPT switch -2163.401 -2881.539 100.882 225.000 n=2
+16:03:45 sc_m1l1     ^~^~^ CN SCOUT done switches=1 bells=0
+16:03:45 sc_m1l1     ^~^~^ CN VIEWSW at ( -2255.325 -2973.463 69.822 )
+16:03:45 sc_m1l1     ^~^~^ CN ARMED
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=43.350
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=53.575
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=63.225
+16:03:45 sc_m1l1     ^~^~^ CN TPGUARD guard=27 d_to_switch=221 player=( -1868.000 -2906.000 256.125 )
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=66.725
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=69.950
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=73.175
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=76.400
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=79.650
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=82.850
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=86.100
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=89.300
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=92.550
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=95.750
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=99.000
+16:03:45 sc_m1l1     ^~^~^ ALARM runner start guard=31 dist=1494
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=102.200
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=105.450
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=108.675
+16:03:45 sc_m1l1     ^~^~^ ALARM pull cancelled: guard killed
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=111.900
+16:03:45 sc_m1l1 script errors: 0 []
+16:03:45 end_session ModuleNotFoundError("No module named 'PIL'")
+16:04:52 booted cn_sc_m3l2 m3l2 ref=work dog False
+16:05:38 sc_m3l2     ^~^~^ CN SCOUT guards=38 spawn=( -3894.000 2160.000 0.125 )
+16:05:38 sc_m3l2     ^~^~^ CN ALMPT switch -3433.973 3514.994 66.125 157.500 n=14
+16:05:38 sc_m3l2     ^~^~^ CN ALMPT bell -3750.027 3645.908 116.125 337.500 n=0
+16:05:38 sc_m3l2     ^~^~^ CN ALMPT switch -6726.023 -6081.973 -141.875 247.500 n=5
+16:05:38 sc_m3l2     ^~^~^ CN ALMPT bell -7118.027 -6312.300 -91.875 22.500 n=0
+16:05:38 sc_m3l2     ^~^~^ CN ALMPT switch -4509.914 -7187.374 -14.000 157.500 n=3
+16:05:38 sc_m3l2     ^~^~^ CN ALMPT bell -4667.314 -7122.176 36.000 337.500 n=0
+16:05:38 sc_m3l2     ^~^~^ CN SCOUT done switches=3 bells=3
+16:05:38 sc_m3l2     ^~^~^ CN VIEWSW at ( -3554.077 3564.743 16.125 )
+16:05:38 sc_m3l2     ^~^~^ CN ARMED
+16:05:38 sc_m3l2     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=3 alarm_on=- alive=0 t=43.325
+16:05:38 sc_m3l2     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=3 alarm_on=- alive=0 t=53.575
+16:05:38 sc_m3l2     ^~^~^ ALARM runner start guard=387 dist=67
+16:05:38 sc_m3l2     ^~^~^ ALARM pulled
+16:05:38 sc_m3l2     ^~^~^ ALARM LIVE pull 1 switches=3
+16:05:38 sc_m3l2     ^~^~^ ALARM woke 0 idle guards
+16:05:38 sc_m3l2     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=63.200
+16:05:38 sc_m3l2     ^~^~^ CN TPGUARD guard=247 d_to_switch=90 player=( -3364.000 3544.154 16.125 )
+16:05:38 sc_m3l2     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=66.725
+16:05:38 sc_m3l2     ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( -4465.341 2552.503 15.891 )
+16:05:38 sc_m3l2     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=3 t=80.950
+16:05:38 sc_m3l2     ^~^~^ CN SHOOT1 hp0=1000.000
+16:05:38 sc_m3l2     ^~^~^ ALARM destroyed switch at ( -3433.973 3514.994 66.125 )
+16:05:38 sc_m3l2     ^~^~^ ALARM OFF: switch shot pulls=1
+16:05:38 sc_m3l2     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:05:38 sc_m3l2     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.^
+16:05:38 sc_m3l2     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:05:38 sc_m3l2     ^~^~^ CN SHOOT1 v0 hp=" ^
+16:05:38 sc_m3l2     ^~^~^ CN ALM live=0 pulls=1 map=1 sw=3 alarm_on=- alive=3 t=86.675
+16:05:38 sc_m3l2 script errors: 3 ["[2026-10-15 16:05:33 UTC-6.000] ^~^~^ Script Error : Field 'health' applied to NULL listener", "[2026-10-15 16:05:33 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-15 16:05:33 UTC-6.000] ^~^~^ Script Error : binary '>' applied to incompatible types 'none' and 'int'"]
+16:05:38 end_session ModuleNotFoundError("No module named 'PIL'")
+16:06:45 booted cn_sc_m4l2 m4l2 ref=work dog False
+16:07:30 sc_m4l2     ^~^~^ CN SCOUT guards=61 spawn=( 5760.000 -529.000 346.965 )
+16:07:30 sc_m4l2     ^~^~^ CN ALMPT switch -5194.731 1975.110 97.830 337.500 n=10
+16:07:30 sc_m4l2     ^~^~^ CN ALMPT bell -4930.125 1935.390 147.830 180.000 n=0
+16:07:30 sc_m4l2     ^~^~^ CN ALMPT switch -2976.000 4331.875 98.125 270.000 n=7
+16:07:30 sc_m4l2     ^~^~^ CN ALMPT switch -6544.890 3223.238 98.125 112.500 n=4
+16:07:30 sc_m4l2     ^~^~^ CN SCOUT done switches=3 bells=1
+16:07:30 sc_m4l2     ^~^~^ CN VIEWSW at ( -5074.627 1925.361 48.125 )
+16:07:30 sc_m4l2     ^~^~^ CN ARMED
+16:07:30 sc_m4l2     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=3 alarm_on=- alive=0 t=43.550
+16:07:30 sc_m4l2     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=3 alarm_on=- alive=0 t=53.775
+16:07:30 sc_m4l2     ^~^~^ ALARM runner start guard=662 dist=169
+16:07:30 sc_m4l2     ^~^~^ ALARM pulled
+16:07:30 sc_m4l2     ^~^~^ ALARM LIVE pull 1 switches=3
+16:07:30 sc_m4l2     ^~^~^ ALARM woke 2 idle guards
+16:07:30 sc_m4l2     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=63.225
+16:07:30 sc_m4l2     ^~^~^ CN TPGUARD guard=300 d_to_switch=363 player=( -5315.854 1869.794 320.125 )
+16:07:30 sc_m4l2     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=66.750
+16:07:30 sc_m4l2     ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( -7087.088 2024.757 328.125 )
+16:07:30 sc_m4l2     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=3 t=80.975
+16:07:30 sc_m4l2     ^~^~^ CN SHOOT1 hp0=1000.000
+16:07:30 sc_m4l2     ^~^~^ ALARM destroyed switch at ( -5194.731 1975.110 97.830 )
+16:07:30 sc_m4l2     ^~^~^ ALARM OFF: switch shot pulls=1
+16:07:30 sc_m4l2     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:07:30 sc_m4l2     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.^
+16:07:30 sc_m4l2     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:07:30 sc_m4l2     ^~^~^ CN SHOOT1 v0 hp=" ^
+16:07:30 sc_m4l2     ^~^~^ ALARM runner start guard=276 dist=438
+16:07:30 sc_m4l2     ^~^~^ ALARM pulled
+16:07:30 sc_m4l2     ^~^~^ ALARM LIVE pull 2 switches=3
+16:07:30 sc_m4l2     ^~^~^ CN ALM live=1 pulls=2 map=1 sw=3 alarm_on=- alive=3 t=86.700
+16:07:30 sc_m4l2     ^~^~^ ALARM woke 2 idle guards
+16:07:30 sc_m4l2 script errors: 3 ["[2026-10-15 16:07:26 UTC-6.000] ^~^~^ Script Error : Field 'health' applied to NULL listener", "[2026-10-15 16:07:26 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-15 16:07:26 UTC-6.000] ^~^~^ Script Error : binary '>' applied to incompatible types 'none' and 'int'"]
+16:07:31 end_session ModuleNotFoundError("No module named 'PIL'")
+16:08:36 booted cn_sc_m2l1 m2l1 ref=work dog False
+16:09:22 sc_m2l1     ^~^~^ CN SCOUT guards=64 spawn=( -6519.000 -3558.000 468.196 )
+16:09:22 sc_m2l1     ^~^~^ CN ALMPT switch 1023.288 2142.027 674.125 247.500 n=13
+16:09:22 sc_m2l1     ^~^~^ CN ALMPT bell 985.684 1730.125 724.125 90.000 n=0
+16:09:22 sc_m2l1     ^~^~^ CN SCOUT cluster ( -224.096 -230.267 448.125 ) n=7 has no flat wall within 450
+16:09:22 sc_m2l1     ^~^~^ CN ALMPT switch 584.000 2909.875 498.125 270.000 n=6
+16:09:22 sc_m2l1     ^~^~^ CN ALMPT bell 584.000 2754.125 548.125 90.000 n=0
+16:09:22 sc_m2l1     ^~^~^ CN SCOUT done switches=2 bells=2
+16:09:22 sc_m2l1     ^~^~^ CN VIEWSW at ( 973.539 2021.923 624.125 )
+16:09:22 sc_m2l1     ^~^~^ CN ARMED
+16:09:22 sc_m2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=43.325
+16:09:22 sc_m2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=53.550
+16:09:22 sc_m2l1     ^~^~^ ALARM runner start guard=266 dist=160
+16:09:22 sc_m2l1     ^~^~^ ALARM pulled
+16:09:22 sc_m2l1     ^~^~^ ALARM LIVE pull 1 switches=2
+16:09:22 sc_m2l1     ^~^~^ ALARM woke 4 idle guards
+16:09:22 sc_m2l1     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=63.250
+16:09:22 sc_m2l1     ^~^~^ CN TPGUARD guard=91 d_to_switch=209 player=( 1356.000 2208.000 624.125 )
+16:09:22 sc_m2l1     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=66.750
+16:09:22 sc_m2l1     ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( -126.388 1281.701 448.125 )
+16:09:22 sc_m2l1     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=3 t=80.975
+16:09:22 sc_m2l1     ^~^~^ CN SHOOT1 hp0=1000.000
+16:09:22 sc_m2l1     ^~^~^ ALARM destroyed switch at ( 1023.288 2142.027 674.125 )
+16:09:22 sc_m2l1     ^~^~^ ALARM OFF: switch shot pulls=1
+16:09:22 sc_m2l1     ^~^~^ ALARM runner start guard=266 dist=156
+16:09:22 sc_m2l1     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:09:22 sc_m2l1     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.^
+16:09:22 sc_m2l1     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:09:22 sc_m2l1     ^~^~^ CN SHOOT1 v0 hp=" ^
+16:09:22 sc_m2l1     ^~^~^ ALARM pulled
+16:09:22 sc_m2l1     ^~^~^ ALARM LIVE pull 2 switches=2
+16:09:22 sc_m2l1     ^~^~^ ALARM woke 4 idle guards
+16:09:22 sc_m2l1     ^~^~^ CN ALM live=1 pulls=2 map=1 sw=2 alarm_on=- alive=3 t=86.725
+16:09:22 sc_m2l1 script errors: 3 ["[2026-10-15 16:09:17 UTC-6.000] ^~^~^ Script Error : Field 'health' applied to NULL listener", "[2026-10-15 16:09:17 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-15 16:09:17 UTC-6.000] ^~^~^ Script Error : binary '>' applied to incompatible types 'none' and 'int'"]
+16:09:22 end_session ModuleNotFoundError("No module named 'PIL'")
+16:10:29 booted cn_sc_e2l1 e2l1 ref=work dog False
+16:12:03 sc_e2l1     ^~^~^ CN SCOUT guards=36 spawn=( 4494.000 6086.000 592.000 )
+16:12:03 sc_e2l1     ^~^~^ CN SCOUT cluster ( 3829.589 3759.967 284.737 ) n=7 has no flat wall within 450
+16:12:03 sc_e2l1     ^~^~^ CN SCOUT cluster ( 267.000 2207.000 319.719 ) n=7 has no flat wall within 450
+16:12:03 sc_e2l1     ^~^~^ CN ALMPT switch -4359.780 -3505.006 357.754 90.000 n=6
+16:12:03 sc_e2l1     ^~^~^ CN SCOUT done switches=1 bells=0
+16:12:03 sc_e2l1     ^~^~^ CN VIEWSW at ( -4359.780 -3375.006 196.455 )
+16:12:03 sc_e2l1     ^~^~^ CN ARMED
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=43.200
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=53.425
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=63.225
+16:12:03 sc_e2l1     ^~^~^ CN TPGUARD guard=353 d_to_switch=456 player=( -4198.726 -3051.691 249.395 )
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=66.725
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=69.950
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=73.175
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=76.400
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=79.625
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=82.850
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=86.075
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=89.300
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=92.525
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=95.750
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=99.000
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=102.200
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=105.450
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=108.675
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=111.900
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=115.125
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=118.350
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=121.575
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=124.800
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=128.025
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=131.275
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=134.475
+16:12:03 sc_e2l1 script errors: 4 ["[2026-10-15 16:10:21 UTC-6.000] ^~^~^ Script Error : Field 'targetname' applied to NULL listener", "[2026-10-15 16:10:21 UTC-6.000] ^~^~^ Script Error : command 'ai_off' applied to NULL listener", "[2026-10-15 16:10:21 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener", "[2026-10-15 16:10:33 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener"]
+16:12:03 end_session ModuleNotFoundError("No module named 'PIL'")
+16:13:13 booted cn_sc_e3l1 e3l1 ref=work dog False
+16:14:46 sc_e3l1     ^~^~^ CN SCOUT guards=24 spawn=( -2620.979 -5445.941 67.593 )
+16:14:46 sc_e3l1     ^~^~^ CN SCOUT cluster ( 455.098 -4790.272 -11.211 ) n=4 has no flat wall within 450
+16:14:46 sc_e3l1     ^~^~^ CN ALMPT switch 636.875 3468.097 82.125 180.000 n=4
+16:14:46 sc_e3l1     ^~^~^ CN SCOUT cluster ( 98.000 -6237.000 217.432 ) n=3 has no flat wall within 450
+16:14:46 sc_e3l1     ^~^~^ CN ALMPT switch 2.125 5662.651 86.503 0.000 n=3
+16:14:46 sc_e3l1     ^~^~^ CN SCOUT done switches=2 bells=0
+16:14:46 sc_e3l1     ^~^~^ CN VIEWSW at ( 506.875 3468.097 32.125 )
+16:14:46 sc_e3l1     ^~^~^ CN ARMED
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=43.475
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=53.675
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=63.250
+16:14:46 sc_e3l1     ^~^~^ CN TPGUARD guard=362 d_to_switch=239 player=( 578.000 3592.000 32.125 )
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=66.750
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=69.975
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=73.200
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=76.425
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=79.650
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=82.875
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=86.100
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=89.350
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=92.550
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=95.775
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=99.000
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=102.225
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=105.450
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=108.700
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=111.925
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=115.150
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=118.375
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=121.600
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=124.850
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=128.050
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=131.300
+16:14:46 sc_e3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=134.525
+16:14:46 sc_e3l1 script errors: 1 ['[2026-10-15 16:13:35 UTC-6.000] ^~^~^ Script Error : cannot give health to dead entities']
+16:14:47 end_session ModuleNotFoundError("No module named 'PIL'")
+16:15:56 booted cn_sc_e3l2 e3l2 ref=work dog False
+16:16:42 sc_e3l2     ^~^~^ CN SCOUT guards=13 spawn=( 5366.000 -4173.000 -455.875 )
+16:16:42 sc_e3l2     ^~^~^ CN ALMPT switch -1080.135 5181.875 -525.875 270.000 n=3
+16:16:42 sc_e3l2     ^~^~^ CN ALMPT switch -893.973 463.808 -397.875 202.500 n=2
+16:16:42 sc_e3l2     ^~^~^ CN ALMPT bell -1070.054 463.110 -347.875 337.500 n=0
+16:16:42 sc_e3l2     ^~^~^ CN ALMPT switch 1725.875 -5473.276 -133.875 180.000 n=1
+16:16:42 sc_e3l2     ^~^~^ CN ALMPT bell 1450.125 -5473.276 -83.875 0.000 n=0
+16:16:42 sc_e3l2     ^~^~^ CN SCOUT done switches=3 bells=2
+16:16:42 sc_e3l2     ^~^~^ CN VIEWSW at ( -1080.135 5051.875 -575.875 )
+16:16:42 sc_e3l2     ^~^~^ CN ARMED
+16:16:42 sc_e3l2     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=3 alarm_on=- alive=0 t=43.250
+16:16:42 sc_e3l2     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=3 alarm_on=- alive=0 t=53.475
+16:16:42 sc_e3l2     ^~^~^ ALARM runner start guard=931 dist=104
+16:16:42 sc_e3l2     ^~^~^ ALARM pulled
+16:16:42 sc_e3l2     ^~^~^ ALARM LIVE pull 1 switches=3
+16:16:42 sc_e3l2     ^~^~^ ALARM woke 2 idle guards
+16:16:42 sc_e3l2     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=63.225
+16:16:42 sc_e3l2     ^~^~^ CN TPGUARD guard=931 d_to_switch=104 player=( -940.695 5089.830 -575.875 )
+16:16:42 sc_e3l2     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=66.750
+16:16:42 sc_e3l2     ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( -2324.627 4444.492 -575.875 )
+16:16:42 sc_e3l2     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=3 t=80.950
+16:16:42 sc_e3l2     ^~^~^ CN SHOOT1 hp0=1000.000
+16:16:42 sc_e3l2     ^~^~^ ALARM destroyed switch at ( -1080.135 5181.875 -525.875 )
+16:16:42 sc_e3l2     ^~^~^ ALARM OFF: switch shot pulls=1
+16:16:42 sc_e3l2     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:16:42 sc_e3l2     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.^
+16:16:42 sc_e3l2     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:16:42 sc_e3l2     ^~^~^ CN SHOOT1 v0 hp=" ^
+16:16:42 sc_e3l2     ^~^~^ CN ALM live=0 pulls=1 map=1 sw=3 alarm_on=- alive=3 t=86.700
+16:16:42 sc_e3l2 script errors: 8 ["[2026-10-15 16:15:50 UTC-6.000] ^~^~^ Script Error : command 'QueryTurretSlotEntity' applied to NULL listener", "[2026-10-15 16:15:50 UTC-6.000] ^~^~^ Script Error : command 'hide' applied to NIL", "[2026-10-15 16:15:50 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener", "[2026-10-15 16:15:50 UTC-6.000] ^~^~^ Script Error : command 'waitTill' applied to NULL listener"]
+16:16:43 end_session ModuleNotFoundError("No module named 'PIL'")
+16:17:48 booted cn_sc_t1l1 t1l1 ref=work dog False
+16:18:34 sc_t1l1     ^~^~^ CN SCOUT guards=46 spawn=( -4567.000 5639.000 6622.000 )
+16:18:34 sc_t1l1     ^~^~^ CN ALMPT switch -1413.075 715.035 -6751.942 270.000 n=8
+16:18:34 sc_t1l1     ^~^~^ CN ALMPT bell -1413.075 407.214 -6701.942 90.000 n=0
+16:18:34 sc_t1l1     ^~^~^ CN ALMPT switch -3766.611 5081.875 -6917.875 270.000 n=7
+16:18:34 sc_t1l1     ^~^~^ CN ALMPT bell -3946.461 4780.582 -6867.875 45.000 n=0
+16:18:34 sc_t1l1     ^~^~^ CN SCOUT cluster ( -1832.000 -3542.000 -6593.875 ) n=5 has no flat wall within 450
+16:18:34 sc_t1l1     ^~^~^ CN ALMPT switch -3122.027 5089.249 -6972.170 22.500 n=3
+16:18:34 sc_t1l1     ^~^~^ CN SCOUT done switches=3 bells=2
+16:18:34 sc_t1l1     ^~^~^ CN VIEWSW at ( -1413.075 585.035 -6786.569 )
+16:18:34 sc_t1l1     ^~^~^ CN ARMED
+16:18:34 sc_t1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=3 alarm_on=- alive=0 t=43.200
+16:18:34 sc_t1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=3 alarm_on=- alive=0 t=53.450
+16:18:34 sc_t1l1     ^~^~^ ALARM runner start guard=577 dist=231
+16:18:34 sc_t1l1     ^~^~^ ALARM pulled
+16:18:34 sc_t1l1     ^~^~^ ALARM LIVE pull 1 switches=3
+16:18:34 sc_t1l1     ^~^~^ ALARM woke 0 idle guards
+16:18:34 sc_t1l1     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=63.225
+16:18:34 sc_t1l1     ^~^~^ CN TPGUARD guard=365 d_to_switch=88 player=( -1273.075 642.132 -6782.090 )
+16:18:34 sc_t1l1     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=66.750
+16:18:34 sc_t1l1     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=80.975
+16:18:34 sc_t1l1     ^~^~^ CN SHOOT1 hp0=1000.000
+16:18:34 sc_t1l1     ^~^~^ ALARM destroyed switch at ( -1413.075 715.035 -6751.942 )
+16:18:34 sc_t1l1     ^~^~^ ALARM OFF: switch shot pulls=1
+16:18:34 sc_t1l1     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:18:34 sc_t1l1     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.^
+16:18:34 sc_t1l1     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:18:34 sc_t1l1     ^~^~^ CN SHOOT1 v0 hp=" ^
+16:18:34 sc_t1l1     ^~^~^ ALARM runner start guard=578 dist=1315
+16:18:34 sc_t1l1     ^~^~^ CN ALM live=0 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=86.675
+16:18:34 sc_t1l1 script errors: 4 ["-10-15 16:18:25 UTC-6.000] ^~^~^ Script Error : trying to play animation on( entnum: 348, targetname : 'tracer_1', classname : 'ScriptSlave' ) which does not have a model", "[2026-10-15 16:18:29 UTC-6.000] ^~^~^ Script Error : Field 'health' applied to NULL listener", "[2026-10-15 16:18:29 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-15 16:18:29 UTC-6.000] ^~^~^ Script Error : binary '>' applied to incompatible types 'none' and 'int'"]
+16:18:35 end_session ModuleNotFoundError("No module named 'PIL'")
+16:19:43 booted cn_sc_t2l1 t2l1 ref=work dog False
+16:21:17 sc_t2l1     ^~^~^ CN SCOUT guards=8 spawn=( 5329.000 -6252.000 3.000 )
+16:21:17 sc_t2l1     ^~^~^ CN SCOUT cluster ( -1247.000 -5669.000 302.336 ) n=3 has no flat wall within 450
+16:21:17 sc_t2l1     ^~^~^ CN SCOUT cluster ( 2540.000 -2568.000 441.706 ) n=1 has no flat wall within 450
+16:21:17 sc_t2l1     ^~^~^ CN SCOUT cluster ( -261.324 -4947.502 597.481 ) n=1 has no flat wall within 450
+16:21:17 sc_t2l1     ^~^~^ CN SCOUT cluster ( 266.888 -1586.272 859.572 ) n=1 has no flat wall within 450
+16:21:17 sc_t2l1     ^~^~^ CN SCOUT done switches=0 bells=0
+16:21:17 sc_t2l1     ^~^~^ CN ARMED
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=43.450
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=53.700
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=63.200
+16:21:17 sc_t2l1     ^~^~^ CN TPGUARD none
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=66.725
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=69.950
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=73.175
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=76.400
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=79.625
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=82.850
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=86.075
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=89.300
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=92.550
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=95.750
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=99.000
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=102.225
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=105.450
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=108.675
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=111.900
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=115.150
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=118.350
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=121.600
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=124.825
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=128.050
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=131.275
+16:21:17 sc_t2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=134.500
+16:21:17 sc_t2l1 script errors: 6 ["[2026-10-15 16:19:35 UTC-6.000] ^~^~^ Script Error : Script 'coop_mod/allysquad.scr' was not properly loaded", "[2026-10-15 16:19:35 UTC-6.000] ^~^~^ Script file compile error:  Couldn't compile 'coop_mod/allysquad.scr'", "[2026-10-15 16:20:06 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to listener", "[2026-10-15 16:20:06 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector"]
+16:21:17 end_session ModuleNotFoundError("No module named 'PIL'")
+16:22:26 booted cn_sc_t3l1 t3l1 ref=work dog False
+16:23:12 sc_t3l1     ^~^~^ CN SCOUT guards=12 spawn=( 5440.000 7148.000 -167.875 )
+16:23:12 sc_t3l1     ^~^~^ CN SCOUT cluster ( -4672.596 -3771.226 0.125 ) n=3 has no flat wall within 450
+16:23:12 sc_t3l1     ^~^~^ CN ALMPT switch 556.000 -7969.875 74.125 90.000 n=3
+16:23:12 sc_t3l1     ^~^~^ CN ALMPT bell 556.000 -7624.125 124.125 270.000 n=0
+16:23:12 sc_t3l1     ^~^~^ CN ALMPT switch 1524.429 3098.125 234.125 90.000 n=2
+16:23:12 sc_t3l1     ^~^~^ CN SCOUT done switches=2 bells=1
+16:23:12 sc_t3l1     ^~^~^ CN VIEWSW at ( 556.000 -7839.875 24.125 )
+16:23:12 sc_t3l1     ^~^~^ CN ARMED
+16:23:12 sc_t3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=43.325
+16:23:12 sc_t3l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=53.550
+16:23:12 sc_t3l1     ^~^~^ ALARM runner start guard=502 dist=106
+16:23:12 sc_t3l1     ^~^~^ ALARM pulled
+16:23:12 sc_t3l1     ^~^~^ ALARM LIVE pull 1 switches=2
+16:23:12 sc_t3l1     ^~^~^ ALARM woke 2 idle guards
+16:23:12 sc_t3l1     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=63.225
+16:23:12 sc_t3l1     ^~^~^ CN TPGUARD guard=502 d_to_switch=106 player=( 696.573 -7876.200 24.125 )
+16:23:12 sc_t3l1     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=66.750
+16:23:12 sc_t3l1     ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( 1006.638 -6719.021 24.125 )
+16:23:12 sc_t3l1     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=3 t=80.975
+16:23:12 sc_t3l1     ^~^~^ CN SHOOT1 hp0=1000.000
+16:23:12 sc_t3l1     ^~^~^ ALARM destroyed switch at ( 556.000 -7969.875 74.125 )
+16:23:12 sc_t3l1     ^~^~^ ALARM OFF: switch shot pulls=1
+16:23:12 sc_t3l1     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:23:12 sc_t3l1     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.^
+16:23:12 sc_t3l1     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:23:12 sc_t3l1     ^~^~^ CN SHOOT1 v0 hp=" ^
+16:23:12 sc_t3l1     ^~^~^ CN ALM live=0 pulls=1 map=1 sw=2 alarm_on=- alive=3 t=86.725
+16:23:12 sc_t3l1 script errors: 5 ["[2026-10-15 16:22:48 UTC-6.000] ^~^~^ Script Error : command 'accuracy' applied to NULL listener", "[2026-10-15 16:22:48 UTC-6.000] ^~^~^ Script Error : command 'exec' applied to NULL listener", "[2026-10-15 16:23:07 UTC-6.000] ^~^~^ Script Error : Field 'health' applied to NULL listener", "[2026-10-15 16:23:07 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'"]
+16:23:12 end_session ModuleNotFoundError("No module named 'PIL'")
+16:24:52 booted cn_base_t2l1 t2l1 ref=work dog False
+16:24:52 base_t2l1 errors 2 ["[2026-10-15 16:24:43 UTC-6.000] ^~^~^ Script Error : Script 'coop_mod/allysquad.scr' was not properly loaded", "[2026-10-15 16:24:43 UTC-6.000] ^~^~^ Script file compile error:  Couldn't compile 'coop_mod/allysquad.scr'"]
+16:24:53 end_session ModuleNotFoundError("No module named 'PIL'")
+16:26:36 booted cn_gen_m4l1 m4l1 ref=work dog False
+16:27:26 gen_m4l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=40.925
+16:27:26 gen_m4l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=51.150
+16:27:26 gen_m4l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=61.375
+16:27:26 gen_m4l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=63.250
+16:27:26 gen_m4l1     ^~^~^ CN TPGUARD guard=67 d_to_switch=86 player=( 2776.047 -3923.742 92.145 )
+16:27:26 gen_m4l1     ^~^~^ ALARM runner start guard=67 dist=254
+16:27:26 gen_m4l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=66.750
+16:27:26 gen_m4l1     ^~^~^ ALARM pulled
+16:27:26 gen_m4l1     ^~^~^ ALARM LIVE pull 1 switches=2
+16:27:26 gen_m4l1     ^~^~^ ALARM woke 4 idle guards
+16:27:26 gen_m4l1     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=70.000
+16:27:26 gen_m4l1     ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( 1170.725 -2426.756 61.492 )
+16:27:26 gen_m4l1     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=3 t=84.200
+16:27:26 gen_m4l1     ^~^~^ CN SHOOT1 hp0=964.000
+16:27:26 gen_m4l1     ^~^~^ ALARM destroyed switch at ( 2685.992 -3873.539 206.125 )
+16:27:26 gen_m4l1     ^~^~^ ALARM OFF: switch shot pulls=1
+16:27:26 gen_m4l1     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:27:26 gen_m4l1     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.^
+16:27:26 gen_m4l1     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:27:26 gen_m4l1     ^~^~^ CN SHOOT1 v0 hp=" ^
+16:27:26 gen_m4l1     ^~^~^ CN ALM live=0 pulls=1 map=1 sw=2 alarm_on=- alive=3 t=89.950
+16:27:26 gen_m4l1 script errors: 3 ["[2026-10-15 16:27:21 UTC-6.000] ^~^~^ Script Error : Field 'health' applied to NULL listener", "[2026-10-15 16:27:21 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-15 16:27:21 UTC-6.000] ^~^~^ Script Error : binary '>' applied to incompatible types 'none' and 'int'"]
+16:27:26 end_session ModuleNotFoundError("No module named 'PIL'")

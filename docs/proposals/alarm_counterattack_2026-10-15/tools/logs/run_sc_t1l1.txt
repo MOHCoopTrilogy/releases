@@ -1,0 +1,30 @@
+    ^~^~^ CN SCOUT guards=46 spawn=( -4567.000 5639.000 6622.000 )
+    ^~^~^ CN ALMPT switch -1413.075 715.035 -6751.942 270.000 n=8
+    ^~^~^ CN ALMPT bell -1413.075 407.214 -6701.942 90.000 n=0
+    ^~^~^ CN ALMPT switch -3766.611 5081.875 -6917.875 270.000 n=7
+    ^~^~^ CN ALMPT bell -3946.461 4780.582 -6867.875 45.000 n=0
+    ^~^~^ CN SCOUT cluster ( -1832.000 -3542.000 -6593.875 ) n=5 has no flat wall within 450
+    ^~^~^ CN ALMPT switch -3122.027 5089.249 -6972.170 22.500 n=3
+    ^~^~^ CN SCOUT done switches=3 bells=2
+    ^~^~^ CN VIEWSW at ( -1413.075 585.035 -6786.569 )
+    ^~^~^ CN ARMED
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=3 alarm_on=- alive=0 t=43.200
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=3 alarm_on=- alive=0 t=53.450
+    ^~^~^ ALARM runner start guard=577 dist=231
+    ^~^~^ ALARM pulled
+    ^~^~^ ALARM LIVE pull 1 switches=3
+    ^~^~^ ALARM woke 0 idle guards
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=63.225
+    ^~^~^ CN TPGUARD guard=365 d_to_switch=88 player=( -1273.075 642.132 -6782.090 )
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=66.750
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=80.975
+    ^~^~^ CN SHOOT1 hp0=1000.000
+    ^~^~^ ALARM destroyed switch at ( -1413.075 715.035 -6751.942 )
+    ^~^~^ ALARM OFF: switch shot pulls=1
+    ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+    ^~^~^ CN SHOOT1 v0 hp=" + local.sw.^
+    ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+    ^~^~^ CN SHOOT1 v0 hp=" ^
+    ^~^~^ ALARM runner start guard=578 dist=1315
+    ^~^~^ CN ALM live=0 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=86.675
+script errors: 4 ["-10-15 16:18:25 UTC-6.000] ^~^~^ Script Error : trying to play animation on( entnum: 348, targetname : 'tracer_1', classname : 'ScriptSlave' ) which does not have a model", "[2026-10-15 16:18:29 UTC-6.000] ^~^~^ Script Error : Field 'health' applied to NULL listener", "[2026-10-15 16:18:29 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-15 16:18:29 UTC-6.000] ^~^~^ Script Error : binary '>' applied to incompatible types 'none' and 'int'"]

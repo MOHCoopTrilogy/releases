@@ -1,0 +1,30 @@
+    ^~^~^ CN SCOUT guards=20 spawn=( 2582.366 126.161 940.618 )
+    ^~^~^ CN SCOUT cluster ( -3408.000 -280.000 608.125 ) n=4 has no flat wall within 450
+    ^~^~^ CN SCOUT cluster ( 3218.163 419.779 973.195 ) n=3 has no flat wall within 450
+    ^~^~^ CN SCOUT cluster ( -3571.872 -1455.898 313.377 ) n=3 has no flat wall within 450
+    ^~^~^ CN ALMPT switch -2163.401 -2881.539 100.882 225.000 n=2
+    ^~^~^ CN SCOUT done switches=1 bells=0
+    ^~^~^ CN VIEWSW at ( -2255.325 -2973.463 69.822 )
+    ^~^~^ CN ARMED
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=43.350
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=53.575
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=63.225
+    ^~^~^ CN TPGUARD guard=27 d_to_switch=221 player=( -1868.000 -2906.000 256.125 )
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=66.725
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=69.950
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=73.175
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=76.400
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=79.650
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=82.850
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=86.100
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=89.300
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=92.550
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=95.750
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=99.000
+    ^~^~^ ALARM runner start guard=31 dist=1494
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=102.200
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=105.450
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=108.675
+    ^~^~^ ALARM pull cancelled: guard killed
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=111.900
+script errors: 0 []

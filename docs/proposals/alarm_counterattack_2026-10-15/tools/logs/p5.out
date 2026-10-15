@@ -1,0 +1,36 @@
+15:33:04 t=0.029 launched pid 16352 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+15:33:04 t=0.051 in-process guard installed on thread 10968
+15:33:04 t=0.452 place 0x13105be SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:33:04 t=0.575 place 0x13205be SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+15:33:04 t=0.579 place 0x330ac4 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:34:10 booted cn_p5 m1l1 ref=work dog False
+15:35:15 p5     ^~^~^ CN SCOUT guards=20 spawn=( 2608.352 154.503 946.454 )
+15:35:15 p5     ^~^~^ CN SCOUT cluster ( -3408.000 -280.000 608.125 ) n=4 has no flat wall within 450
+15:35:15 p5     ^~^~^ CN ALMPT switch -4798.027 -269.170 666.125 337.500 n=2
+15:35:15 p5     ^~^~^ CN ALMPT switch -2163.401 -2881.539 100.882 225.000 n=2
+15:35:15 p5     ^~^~^ CN SCOUT done switches=2 bells=0
+15:35:15 p5     ^~^~^ CN VIEWSW at ( -4714.878 -303.612 656.125 )
+15:35:15 p5     ^~^~^ CN ARMED
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=44.100
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=54.350
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=63.225
+15:35:15 p5     ^~^~^ CN TPGUARD guard=206 d_to_switch=81 player=( -4662.909 -350.272 628.125 )
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=66.725
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=69.950
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=73.200
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=76.400
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=79.650
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=82.850
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=86.100
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=89.300
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=92.525
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=95.750
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=98.975
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=102.200
+15:35:15 p5     ^~^~^ ALARM runner start guard=120 dist=575
+15:35:15 p5     ^~^~^ CN KILLRUNNER killed 3
+15:35:15 p5     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=105.650
+15:35:15 p5     ^~^~^ ALARM pull cancelled: guard killed
+15:35:15 p5 script errors: 0 []
+15:35:16 t=131.685 process exited
+15:35:16 end_session ModuleNotFoundError("No module named 'PIL'")

@@ -1,0 +1,39 @@
+16:01:27 t=0.031 launched pid 11936 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:01:27 t=0.047 in-process guard installed on thread 7816
+16:01:28 t=0.437 place 0xae0964 SDL_app hidden-found-by-poll (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:01:28 t=0.439 place 0xae0964 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:01:28 t=0.578 place 0xaf0964 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:01:28 t=0.584 place 0x870ac4 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:02:34 booted cn_sc_m1l1 m1l1 ref=work dog False
+16:03:45 sc_m1l1     ^~^~^ CN SCOUT guards=20 spawn=( 2582.366 126.161 940.618 )
+16:03:45 sc_m1l1     ^~^~^ CN SCOUT cluster ( -3408.000 -280.000 608.125 ) n=4 has no flat wall within 450
+16:03:45 sc_m1l1     ^~^~^ CN SCOUT cluster ( 3218.163 419.779 973.195 ) n=3 has no flat wall within 450
+16:03:45 sc_m1l1     ^~^~^ CN SCOUT cluster ( -3571.872 -1455.898 313.377 ) n=3 has no flat wall within 450
+16:03:45 sc_m1l1     ^~^~^ CN ALMPT switch -2163.401 -2881.539 100.882 225.000 n=2
+16:03:45 sc_m1l1     ^~^~^ CN SCOUT done switches=1 bells=0
+16:03:45 sc_m1l1     ^~^~^ CN VIEWSW at ( -2255.325 -2973.463 69.822 )
+16:03:45 sc_m1l1     ^~^~^ CN ARMED
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=43.350
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=53.575
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=63.225
+16:03:45 sc_m1l1     ^~^~^ CN TPGUARD guard=27 d_to_switch=221 player=( -1868.000 -2906.000 256.125 )
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=66.725
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=69.950
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=73.175
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=76.400
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=79.650
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=82.850
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=86.100
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=89.300
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=92.550
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=95.750
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=99.000
+16:03:45 sc_m1l1     ^~^~^ ALARM runner start guard=31 dist=1494
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=102.200
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=105.450
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=108.675
+16:03:45 sc_m1l1     ^~^~^ ALARM pull cancelled: guard killed
+16:03:45 sc_m1l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=111.900
+16:03:45 sc_m1l1 script errors: 0 []
+16:03:45 t=137.860 process exited
+16:03:45 end_session ModuleNotFoundError("No module named 'PIL'")

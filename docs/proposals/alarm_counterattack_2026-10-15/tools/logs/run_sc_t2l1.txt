@@ -1,0 +1,34 @@
+    ^~^~^ CN SCOUT guards=8 spawn=( 5329.000 -6252.000 3.000 )
+    ^~^~^ CN SCOUT cluster ( -1247.000 -5669.000 302.336 ) n=3 has no flat wall within 450
+    ^~^~^ CN SCOUT cluster ( 2540.000 -2568.000 441.706 ) n=1 has no flat wall within 450
+    ^~^~^ CN SCOUT cluster ( -261.324 -4947.502 597.481 ) n=1 has no flat wall within 450
+    ^~^~^ CN SCOUT cluster ( 266.888 -1586.272 859.572 ) n=1 has no flat wall within 450
+    ^~^~^ CN SCOUT done switches=0 bells=0
+    ^~^~^ CN ARMED
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=43.450
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=53.700
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=63.200
+    ^~^~^ CN TPGUARD none
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=66.725
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=69.950
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=73.175
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=76.400
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=79.625
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=82.850
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=86.075
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=89.300
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=92.550
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=95.750
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=99.000
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=102.225
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=105.450
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=108.675
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=111.900
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=115.150
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=118.350
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=121.600
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=124.825
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=128.050
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=131.275
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=0 alarm_on=- alive=0 t=134.500
+script errors: 6 ["[2026-10-15 16:19:35 UTC-6.000] ^~^~^ Script Error : Script 'coop_mod/allysquad.scr' was not properly loaded", "[2026-10-15 16:19:35 UTC-6.000] ^~^~^ Script file compile error:  Couldn't compile 'coop_mod/allysquad.scr'", "[2026-10-15 16:20:06 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to listener", "[2026-10-15 16:20:06 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector"]

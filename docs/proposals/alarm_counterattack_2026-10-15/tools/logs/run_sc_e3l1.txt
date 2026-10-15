@@ -1,0 +1,35 @@
+    ^~^~^ CN SCOUT guards=24 spawn=( -2620.979 -5445.941 67.593 )
+    ^~^~^ CN SCOUT cluster ( 455.098 -4790.272 -11.211 ) n=4 has no flat wall within 450
+    ^~^~^ CN ALMPT switch 636.875 3468.097 82.125 180.000 n=4
+    ^~^~^ CN SCOUT cluster ( 98.000 -6237.000 217.432 ) n=3 has no flat wall within 450
+    ^~^~^ CN ALMPT switch 2.125 5662.651 86.503 0.000 n=3
+    ^~^~^ CN SCOUT done switches=2 bells=0
+    ^~^~^ CN VIEWSW at ( 506.875 3468.097 32.125 )
+    ^~^~^ CN ARMED
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=43.475
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=53.675
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=63.250
+    ^~^~^ CN TPGUARD guard=362 d_to_switch=239 player=( 578.000 3592.000 32.125 )
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=66.750
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=69.975
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=73.200
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=76.425
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=79.650
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=82.875
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=86.100
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=89.350
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=92.550
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=95.775
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=99.000
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=102.225
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=105.450
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=108.700
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=111.925
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=115.150
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=118.375
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=121.600
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=124.850
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=128.050
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=131.300
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=134.525
+script errors: 1 ['[2026-10-15 16:13:35 UTC-6.000] ^~^~^ Script Error : cannot give health to dead entities']

@@ -1,0 +1,32 @@
+    ^~^~^ CN SCOUT guards=21 spawn=( 2566.344 109.913 937.192 )
+    ^~^~^ CN SCOUT cluster ( 3179.717 466.812 973.094 ) n=3 has no flat wall within 450
+    ^~^~^ CN SCOUT cluster ( -3408.000 -280.000 608.125 ) n=3 has no flat wall within 450
+    ^~^~^ CN SCOUT cluster ( -3571.074 -1455.872 313.371 ) n=3 has no flat wall within 450
+    ^~^~^ CN ALMPT switch -4798.027 -269.170 666.125 337.500 n=2
+    ^~^~^ CN SCOUT done switches=1 bells=0
+    ^~^~^ CN VIEWSW at ( -4677.923 -318.919 656.125 )
+    ^~^~^ CN ARMED
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=43.175
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=53.375
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=63.225
+    ^~^~^ CN TPGUARD guard=208 d_to_switch=161 player=( -4516.145 -327.998 583.870 )
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=66.750
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=69.975
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=73.200
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=76.425
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=79.650
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=82.875
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=86.100
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=89.325
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=92.550
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=95.775
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=99.000
+    ^~^~^ ALARM runner start guard=210 dist=1222
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=102.225
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=105.450
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=108.675
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=111.900
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=115.125
+    ^~^~^ ALARM pull cancelled: timeout
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=118.350
+script errors: 0 []

@@ -1,0 +1,227 @@
+
+// ---- alarm scouting / proof (placed mode); appended to cn_drv.scr by cnlib.overlay -----------------------------------------
+// first flat vertical wall within local.maxd of local.c at height local.h above it, nearest of 16 directions; sets level.cn_wp / cn_wy
+cn_wall local.c local.maxd local.h local.skipyaw:{
+	level.cn_wp = NIL
+	local.bd = local.maxd + 1
+	for( local.k = 0; local.k < 16; local.k++ ){
+		local.yw = local.k * 22.5
+		if( local.skipyaw != NIL ){
+			local.df = local.yw - local.skipyaw
+			if( local.df < 0 ){ local.df = local.df + 360 }
+			if( local.df > 180 ){ local.df = 360 - local.df }
+			if( local.df < 120 ){ continue }
+		}
+		local.dir = angles_toforward ( 0 local.yw 0 )
+		local.from = local.c + ( 0 0 local.h )
+		local.tr = traced local.from ( local.from + ( vector_scale local.dir local.maxd ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+		if( local.tr["fraction"] >= 1.0 ){ continue }
+		local.d = local.tr["fraction"] * local.maxd
+		if( local.d < 70 ){ continue }
+		local.ep = local.tr["endpos"]
+		local.f2 = local.from + ( 0 0 30 )
+		local.t2 = traced local.f2 ( local.f2 + ( vector_scale local.dir local.maxd ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+		local.f3 = local.from - ( 0 0 30 )
+		local.t3 = traced local.f3 ( local.f3 + ( vector_scale local.dir local.maxd ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+		local.d2 = local.t2["fraction"] * local.maxd - local.d
+		local.d3 = local.t3["fraction"] * local.maxd - local.d
+		if( local.d2 < 0 ){ local.d2 = 0 - local.d2 }
+		if( local.d3 < 0 ){ local.d3 = 0 - local.d3 }
+		if( local.d2 > 5 || local.d3 > 5 ){ continue }
+		if( local.d < local.bd ){
+			local.bd = local.d
+			level.cn_wp = local.ep - ( vector_scale local.dir 2 )
+			level.cn_wy = local.yw + 180
+			if( level.cn_wy >= 360 ){ level.cn_wy = level.cn_wy - 360 }
+			level.cn_wdir = local.yw
+		}
+	}
+}end
+
+cn_spawn_pt local.kind local.pos local.yaw:{
+	local.e = spawn animate
+	if( local.kind == "switch" ){
+		local.e model "models/animate/alarmswitch.tik"
+	} else {
+		local.e model "models/static/alarmbell.tik"
+	}
+	local.e.origin = local.pos
+	local.e.angles = ( 0 local.yaw 0 )
+	local.e notsolid
+	waitthread coop_mod/alarm.scr::alm_add local.e local.kind
+}end local.e
+
+cn_scout:{
+	local.p = $player[1]
+	local.sp = local.p.origin
+	local.arr = level.coop_actorArray["german"]
+	local.cnt = 0
+	for( local.i = 1; local.i <= local.arr.size; local.i++ ){
+		local.a = local.arr[local.i]
+		if( local.a == NULL || local.a == NIL ){ continue }
+		if( !isAlive local.a ){ continue }
+		if( local.a.flags["coop_sceneActor"] == 1 || local.a.flags["coop_reinfSquad"] != NIL ){ continue }
+		local.cnt++
+		local.g[local.cnt] = local.a
+	}
+	println ( "^~^~^ CN SCOUT guards=" + local.cnt + " spawn=" + local.sp )
+	local.used = 0
+	for( local.round = 0; local.round < 4; local.round++ ){
+		local.bi = 0
+		local.bn = 0
+		for( local.i = 1; local.i <= local.cnt; local.i++ ){
+			local.a = local.g[local.i]
+			if( local.a == NULL || !isAlive local.a ){ continue }
+			if( vector_length( local.a.origin - local.sp ) < 700 ){ continue }
+			local.skip = 0
+			for( local.u = 1; local.u <= local.used; local.u++ ){
+				if( vector_length( local.a.origin - local.uc[local.u] ) < 900 ){ local.skip = 1 }
+			}
+			if( local.skip == 1 ){ continue }
+			local.nb = 0
+			for( local.j = 1; local.j <= local.cnt; local.j++ ){
+				local.b = local.g[local.j]
+				if( local.b == NULL || !isAlive local.b ){ continue }
+				if( vector_length( local.b.origin - local.a.origin ) < 600 ){ local.nb++ }
+			}
+			if( local.nb > local.bn ){
+				local.bn = local.nb
+				local.bi = local.i
+			}
+		}
+		if( local.bi == 0 ){ break }
+		local.c = local.g[local.bi].origin
+		local.used++
+		local.uc[local.used] = local.c
+		waitthread cn_wall local.c 450 50 NIL
+		if( level.cn_wp == NIL ){
+			println ( "^~^~^ CN SCOUT cluster " + local.c + " n=" + local.bn + " has no flat wall within 450" )
+			continue
+		}
+		local.swp = level.cn_wp
+		local.swy = level.cn_wy
+		local.sdir = level.cn_wdir
+		if( vector_length( local.swp - local.sp ) < 700 ){
+			println "^~^~^ CN SCOUT switch too close to spawn"
+			continue
+		}
+		waitthread cn_spawn_pt "switch" local.swp local.swy
+		println ( "^~^~^ CN ALMPT switch " + local.swp[0] + " " + local.swp[1] + " " + local.swp[2] + " " + local.swy + " n=" + local.bn )
+		waitthread cn_wall local.c 600 100 local.sdir
+		if( level.cn_wp != NIL ){
+			local.bp = level.cn_wp
+			local.by = level.cn_wy
+			waitthread cn_spawn_pt "bell" local.bp local.by
+			println ( "^~^~^ CN ALMPT bell " + local.bp[0] + " " + local.bp[1] + " " + local.bp[2] + " " + local.by + " n=0" )
+		}
+		if( local.used >= 3 ){ break }
+	}
+	println ( "^~^~^ CN SCOUT done switches=" + level.coop_alarmSwN + " bells=" + level.coop_alarmBellN )
+}end
+
+cn_viewsw:{
+	local.p = $player[1]
+	local.sw = level.coop_alarmSw[1]
+	if( local.sw == NULL || local.sw == NIL ){ end }
+	local.fwd = angles_toforward local.sw.angles
+	local.pos = local.sw.origin + ( vector_scale local.fwd 130 ) + ( 0 0 -10 )
+	local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 40 ) )
+	if( local.g != NIL ){ local.pos = local.g }
+	local.p origin local.pos
+	local.va = local.sw.angles
+	local.va[1] = local.va[1] + 180
+	local.va[0] = 0
+	local.p.viewangles = local.va
+	local.p nodamage
+	println ( "^~^~^ CN VIEWSW at " + local.pos )
+}end
+
+cn_tpguard:{
+	local.p = $player[1]
+	local.sw = level.coop_alarmSw[1]
+	local.arr = level.coop_actorArray["german"]
+	local.best = NIL
+	local.bd = 999999
+	for( local.i = 1; local.i <= local.arr.size; local.i++ ){
+		local.a = local.arr[local.i]
+		if( local.a == NULL || local.a == NIL ){ continue }
+		if( !isAlive local.a ){ continue }
+		if( local.a.flags["coop_reinfSquad"] != NIL || local.a.flags["coop_sceneActor"] == 1 ){ continue }
+		local.d = vector_length( local.a.origin - local.sw.origin )
+		if( local.d < local.bd ){
+			local.bd = local.d
+			local.best = local.a
+		}
+	}
+	if( local.best == NIL ){
+		println "^~^~^ CN TPGUARD none"
+		end
+	}
+	local.pos = local.best.origin + ( 140 0 40 )
+	local.g = waitthread coop_mod/officer.scr::coop_find_ground local.pos
+	if( local.g == NIL ){ local.g = local.best.origin + ( 0 0 8 ) }
+	local.p origin local.g
+	local.p nodamage
+	local.p.health = 100000
+	local.p.max_health = 100000
+	println ( "^~^~^ CN TPGUARD guard=" + local.best.entnum + " d_to_switch=" + int( local.bd ) + " player=" + local.g )
+}end
+
+cn_killrunner:{
+	local.arr = level.coop_actorArray["german"]
+	local.k = 0
+	for( local.i = 1; local.i <= local.arr.size; local.i++ ){
+		local.a = local.arr[local.i]
+		if( local.a == NULL || local.a == NIL ){ continue }
+		if( !isAlive local.a ){ continue }
+		if( local.a.coop_aiDisabled == 1 ){
+			local.a damage local.a 99999 local.a local.a.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
+			local.k++
+		}
+	}
+	println ( "^~^~^ CN KILLRUNNER killed " + local.k )
+}end
+
+cn_probe local.cls:{
+	local.p = $player[1]
+	local.e = spawn local.cls
+	local.e model "models/animate/alarmswitch.tik"
+	local.e.origin = local.p.origin + ( 80 0 40 )
+	local.e.health = 1000
+	local.e setsize ( -12 -12 -4 ) ( 12 12 28 )
+	local.e solid
+	local.e takedamage
+	wait 1
+	local.e damage local.p 400 local.p local.e.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
+	waitframe
+	waitframe
+	println ( "^~^~^ CN PROBE " + local.cls + " class=" + local.e.classname + " hp=" + local.e.health )
+	local.e remove
+}end
+
+cn_do2 local.c:{
+	local.p = $player[1]
+	if( local.c == "scout" ){ waitthread cn_scout }
+	if( local.c == "probe" ){
+		waitthread cn_probe "script_model"
+		waitthread cn_probe "animate"
+		waitthread cn_probe "Animate"
+		waitthread cn_probe "func_throwobject"
+		waitthread cn_probe "ScriptModel"
+	}
+	if( local.c == "viewsw" ){ waitthread cn_viewsw }
+	if( local.c == "tpguard" ){ waitthread cn_tpguard }
+	if( local.c == "killrunner" ){ waitthread cn_killrunner }
+	if( local.c == "arm" ){
+		level.coop_alarmMap = 1
+		level.coop_alarmAdopt = 0
+		thread coop_mod/alarm.scr::alm_watch
+		println "^~^~^ CN ARMED"
+	}
+	if( local.c == "shoot1" ){
+		local.sw = level.coop_alarmSw[1]
+		println ( "^~^~^ CN SHOOT1 hp0=" + local.sw.health )
+		local.sw damage local.p 400 local.p local.sw.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
+		wait 0.5
+	}
+}end

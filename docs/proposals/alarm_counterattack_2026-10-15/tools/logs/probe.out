@@ -1,0 +1,14 @@
+15:57:54 t=0.032 launched pid 19856 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+15:57:54 t=0.064 in-process guard installed on thread 5784
+15:57:54 t=0.436 place 0x2f0c36 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:57:54 t=0.550 place 0x300c36 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+15:57:54 t=0.555 place 0x160cc0 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:59:00 booted cn_probe m1l1 ref=work dog False
+15:59:05 probe ^~^~^ CN PROBE script_model class=ScriptModel hp=1000.000
+15:59:05 probe ^~^~^ CN PROBE animate class=Animate hp=600.000
+15:59:05 probe ^~^~^ CN PROBE Animate class=Animate hp=600.000
+15:59:05 probe ^~^~^ CN PROBE func_throwobject class=ThrowObject hp=600.000
+15:59:05 probe ^~^~^ CN PROBE ScriptModel class=ScriptModel hp=1000.000
+15:59:05 probe errors 0 []
+15:59:05 t=71.828 process exited
+15:59:05 end_session ModuleNotFoundError("No module named 'PIL'")

@@ -1,0 +1,34 @@
+    ^~^~^ CN SCOUT guards=36 spawn=( 4494.000 6086.000 592.000 )
+    ^~^~^ CN SCOUT cluster ( 3829.589 3759.967 284.737 ) n=7 has no flat wall within 450
+    ^~^~^ CN SCOUT cluster ( 267.000 2207.000 319.719 ) n=7 has no flat wall within 450
+    ^~^~^ CN ALMPT switch -4359.780 -3505.006 357.754 90.000 n=6
+    ^~^~^ CN SCOUT done switches=1 bells=0
+    ^~^~^ CN VIEWSW at ( -4359.780 -3375.006 196.455 )
+    ^~^~^ CN ARMED
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=43.200
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=53.425
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=63.225
+    ^~^~^ CN TPGUARD guard=353 d_to_switch=456 player=( -4198.726 -3051.691 249.395 )
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=66.725
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=69.950
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=73.175
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=76.400
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=79.625
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=82.850
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=86.075
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=89.300
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=92.525
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=95.750
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=99.000
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=102.200
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=105.450
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=108.675
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=111.900
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=115.125
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=118.350
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=121.575
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=124.800
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=128.025
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=131.275
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=134.475
+script errors: 4 ["[2026-10-15 16:10:21 UTC-6.000] ^~^~^ Script Error : Field 'targetname' applied to NULL listener", "[2026-10-15 16:10:21 UTC-6.000] ^~^~^ Script Error : command 'ai_off' applied to NULL listener", "[2026-10-15 16:10:21 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener", "[2026-10-15 16:10:33 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener"]

@@ -24,6 +24,7 @@ cn_s local.v:{
 cn_do local.c:{
 	local.p = $player[1]
 	if( local.p == NULL ){ end }
+	waitthread cn_do2 local.c
 	if( local.c == "here" ){
 		println ( "^~^~^ AI here " + local.p.origin )
 	}

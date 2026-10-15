@@ -1,0 +1,36 @@
+    ^~^~^ CN SCOUT guards=18 spawn=( 2587.562 131.798 941.789 )
+    ^~^~^ CN SCOUT cluster ( -3408.000 -280.000 608.125 ) n=4 has no flat wall within 450
+    ^~^~^ CN ALMPT switch -2163.401 -2881.539 100.882 225.000 n=2
+    ^~^~^ CN SCOUT cluster ( -3576.151 -1455.998 313.432 ) n=2 has no flat wall within 450
+    ^~^~^ CN ALMPT switch -4798.027 -269.170 666.125 337.500 n=1
+    ^~^~^ CN SCOUT done switches=2 bells=0
+    ^~^~^ CN VIEWSW at ( -2255.325 -2973.463 69.822 )
+    ^~^~^ CN ARMED
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=43.325
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=53.550
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=63.225
+    ^~^~^ CN TPGUARD guard=27 d_to_switch=221 player=( -1868.000 -2906.000 256.125 )
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=66.725
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=69.950
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=73.175
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=76.400
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=79.625
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=82.850
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=86.075
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=89.300
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=92.525
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=95.750
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=98.975
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=102.225
+    ^~^~^ ALARM runner start guard=31 dist=1076
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=105.425
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=108.650
+    ^~^~^ ALARM pulled
+    ^~^~^ ALARM LIVE pull 1 switches=2
+    ^~^~^ ALARM woke 0 idle guards
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=111.875
+    ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( -2021.204 -4427.106 88.339 )
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=126.125
+    ^~^~^ CN SHOOT1 hp=1000.000
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=131.025
+script errors: 2 ["[2026-10-15 15:45:52 UTC-6.000] ^~^~^ Script Error : anim 'alarm_switchon' not found, so can't tell if it is looping", "[2026-10-15 15:45:52 UTC-6.000] ^~^~^ Script Error : unknown animation 'alarm_switchon' in 'models/human/german_afrika_private.tik'"]

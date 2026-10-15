@@ -1,0 +1,44 @@
+15:43:38 t=0.027 launched pid 11888 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+15:43:38 t=0.046 in-process guard installed on thread 13396
+15:43:39 t=0.420 place 0x6f09ca SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:43:39 t=0.535 place 0x7009ca SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+15:43:39 t=0.540 place 0x9d09ac SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:44:44 booted cn_p5b m1l1 ref=work dog False
+15:46:14 p5b     ^~^~^ CN SCOUT guards=18 spawn=( 2587.562 131.798 941.789 )
+15:46:14 p5b     ^~^~^ CN SCOUT cluster ( -3408.000 -280.000 608.125 ) n=4 has no flat wall within 450
+15:46:14 p5b     ^~^~^ CN ALMPT switch -2163.401 -2881.539 100.882 225.000 n=2
+15:46:14 p5b     ^~^~^ CN SCOUT cluster ( -3576.151 -1455.998 313.432 ) n=2 has no flat wall within 450
+15:46:14 p5b     ^~^~^ CN ALMPT switch -4798.027 -269.170 666.125 337.500 n=1
+15:46:14 p5b     ^~^~^ CN SCOUT done switches=2 bells=0
+15:46:14 p5b     ^~^~^ CN VIEWSW at ( -2255.325 -2973.463 69.822 )
+15:46:14 p5b     ^~^~^ CN ARMED
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=43.325
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=53.550
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=63.225
+15:46:14 p5b     ^~^~^ CN TPGUARD guard=27 d_to_switch=221 player=( -1868.000 -2906.000 256.125 )
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=66.725
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=69.950
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=73.175
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=76.400
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=79.625
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=82.850
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=86.075
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=89.300
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=92.525
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=95.750
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=98.975
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=102.225
+15:46:14 p5b     ^~^~^ ALARM runner start guard=31 dist=1076
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=105.425
+15:46:14 p5b     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=108.650
+15:46:14 p5b     ^~^~^ ALARM pulled
+15:46:14 p5b     ^~^~^ ALARM LIVE pull 1 switches=2
+15:46:14 p5b     ^~^~^ ALARM woke 0 idle guards
+15:46:14 p5b     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=111.875
+15:46:14 p5b     ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( -2021.204 -4427.106 88.339 )
+15:46:14 p5b     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=126.125
+15:46:14 p5b     ^~^~^ CN SHOOT1 hp=1000.000
+15:46:14 p5b     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=131.025
+15:46:14 p5b script errors: 2 ["[2026-10-15 15:45:52 UTC-6.000] ^~^~^ Script Error : anim 'alarm_switchon' not found, so can't tell if it is looping", "[2026-10-15 15:45:52 UTC-6.000] ^~^~^ Script Error : unknown animation 'alarm_switchon' in 'models/human/german_afrika_private.tik'"]
+15:46:15 t=156.567 process exited
+15:46:15 end_session ModuleNotFoundError("No module named 'PIL'")

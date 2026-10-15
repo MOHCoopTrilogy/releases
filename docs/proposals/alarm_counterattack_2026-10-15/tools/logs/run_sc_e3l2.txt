@@ -1,0 +1,29 @@
+    ^~^~^ CN SCOUT guards=13 spawn=( 5366.000 -4173.000 -455.875 )
+    ^~^~^ CN ALMPT switch -1080.135 5181.875 -525.875 270.000 n=3
+    ^~^~^ CN ALMPT switch -893.973 463.808 -397.875 202.500 n=2
+    ^~^~^ CN ALMPT bell -1070.054 463.110 -347.875 337.500 n=0
+    ^~^~^ CN ALMPT switch 1725.875 -5473.276 -133.875 180.000 n=1
+    ^~^~^ CN ALMPT bell 1450.125 -5473.276 -83.875 0.000 n=0
+    ^~^~^ CN SCOUT done switches=3 bells=2
+    ^~^~^ CN VIEWSW at ( -1080.135 5051.875 -575.875 )
+    ^~^~^ CN ARMED
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=3 alarm_on=- alive=0 t=43.250
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=3 alarm_on=- alive=0 t=53.475
+    ^~^~^ ALARM runner start guard=931 dist=104
+    ^~^~^ ALARM pulled
+    ^~^~^ ALARM LIVE pull 1 switches=3
+    ^~^~^ ALARM woke 2 idle guards
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=63.225
+    ^~^~^ CN TPGUARD guard=931 d_to_switch=104 player=( -940.695 5089.830 -575.875 )
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=66.750
+    ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( -2324.627 4444.492 -575.875 )
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=3 t=80.950
+    ^~^~^ CN SHOOT1 hp0=1000.000
+    ^~^~^ ALARM destroyed switch at ( -1080.135 5181.875 -525.875 )
+    ^~^~^ ALARM OFF: switch shot pulls=1
+    ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+    ^~^~^ CN SHOOT1 v0 hp=" + local.sw.^
+    ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+    ^~^~^ CN SHOOT1 v0 hp=" ^
+    ^~^~^ CN ALM live=0 pulls=1 map=1 sw=3 alarm_on=- alive=3 t=86.700
+script errors: 8 ["[2026-10-15 16:15:50 UTC-6.000] ^~^~^ Script Error : command 'QueryTurretSlotEntity' applied to NULL listener", "[2026-10-15 16:15:50 UTC-6.000] ^~^~^ Script Error : command 'hide' applied to NIL", "[2026-10-15 16:15:50 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener", "[2026-10-15 16:15:50 UTC-6.000] ^~^~^ Script Error : command 'waitTill' applied to NULL listener"]

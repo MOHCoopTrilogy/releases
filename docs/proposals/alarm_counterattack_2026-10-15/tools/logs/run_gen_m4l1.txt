@@ -1,0 +1,22 @@
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=40.925
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=51.150
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=61.375
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=63.250
+    ^~^~^ CN TPGUARD guard=67 d_to_switch=86 player=( 2776.047 -3923.742 92.145 )
+    ^~^~^ ALARM runner start guard=67 dist=254
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=66.750
+    ^~^~^ ALARM pulled
+    ^~^~^ ALARM LIVE pull 1 switches=2
+    ^~^~^ ALARM woke 4 idle guards
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=70.000
+    ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( 1170.725 -2426.756 61.492 )
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=3 t=84.200
+    ^~^~^ CN SHOOT1 hp0=964.000
+    ^~^~^ ALARM destroyed switch at ( 2685.992 -3873.539 206.125 )
+    ^~^~^ ALARM OFF: switch shot pulls=1
+    ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+    ^~^~^ CN SHOOT1 v0 hp=" + local.sw.^
+    ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+    ^~^~^ CN SHOOT1 v0 hp=" ^
+    ^~^~^ CN ALM live=0 pulls=1 map=1 sw=2 alarm_on=- alive=3 t=89.950
+script errors: 3 ["[2026-10-15 16:27:21 UTC-6.000] ^~^~^ Script Error : Field 'health' applied to NULL listener", "[2026-10-15 16:27:21 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-15 16:27:21 UTC-6.000] ^~^~^ Script Error : binary '>' applied to incompatible types 'none' and 'int'"]

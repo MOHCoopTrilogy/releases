@@ -1,0 +1,33 @@
+    ^~^~^ CN SCOUT guards=64 spawn=( -6519.000 -3558.000 468.196 )
+    ^~^~^ CN ALMPT switch 1023.288 2142.027 674.125 247.500 n=13
+    ^~^~^ CN ALMPT bell 985.684 1730.125 724.125 90.000 n=0
+    ^~^~^ CN SCOUT cluster ( -224.096 -230.267 448.125 ) n=7 has no flat wall within 450
+    ^~^~^ CN ALMPT switch 584.000 2909.875 498.125 270.000 n=6
+    ^~^~^ CN ALMPT bell 584.000 2754.125 548.125 90.000 n=0
+    ^~^~^ CN SCOUT done switches=2 bells=2
+    ^~^~^ CN VIEWSW at ( 973.539 2021.923 624.125 )
+    ^~^~^ CN ARMED
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=43.325
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=53.550
+    ^~^~^ ALARM runner start guard=266 dist=160
+    ^~^~^ ALARM pulled
+    ^~^~^ ALARM LIVE pull 1 switches=2
+    ^~^~^ ALARM woke 4 idle guards
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=63.250
+    ^~^~^ CN TPGUARD guard=91 d_to_switch=209 player=( 1356.000 2208.000 624.125 )
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=66.750
+    ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( -126.388 1281.701 448.125 )
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=3 t=80.975
+    ^~^~^ CN SHOOT1 hp0=1000.000
+    ^~^~^ ALARM destroyed switch at ( 1023.288 2142.027 674.125 )
+    ^~^~^ ALARM OFF: switch shot pulls=1
+    ^~^~^ ALARM runner start guard=266 dist=156
+    ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+    ^~^~^ CN SHOOT1 v0 hp=" + local.sw.^
+    ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+    ^~^~^ CN SHOOT1 v0 hp=" ^
+    ^~^~^ ALARM pulled
+    ^~^~^ ALARM LIVE pull 2 switches=2
+    ^~^~^ ALARM woke 4 idle guards
+    ^~^~^ CN ALM live=1 pulls=2 map=1 sw=2 alarm_on=- alive=3 t=86.725
+script errors: 3 ["[2026-10-15 16:09:17 UTC-6.000] ^~^~^ Script Error : Field 'health' applied to NULL listener", "[2026-10-15 16:09:17 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-15 16:09:17 UTC-6.000] ^~^~^ Script Error : binary '>' applied to incompatible types 'none' and 'int'"]

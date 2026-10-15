@@ -1,0 +1,41 @@
+16:07:31 t=0.030 launched pid 24504 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:07:31 t=0.050 in-process guard installed on thread 18352
+16:07:32 t=0.446 place 0xda0bea SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:07:32 t=0.564 place 0xdb0bea SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:07:32 t=0.569 place 0xee09ac SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:08:36 booted cn_sc_m2l1 m2l1 ref=work dog False
+16:09:22 sc_m2l1     ^~^~^ CN SCOUT guards=64 spawn=( -6519.000 -3558.000 468.196 )
+16:09:22 sc_m2l1     ^~^~^ CN ALMPT switch 1023.288 2142.027 674.125 247.500 n=13
+16:09:22 sc_m2l1     ^~^~^ CN ALMPT bell 985.684 1730.125 724.125 90.000 n=0
+16:09:22 sc_m2l1     ^~^~^ CN SCOUT cluster ( -224.096 -230.267 448.125 ) n=7 has no flat wall within 450
+16:09:22 sc_m2l1     ^~^~^ CN ALMPT switch 584.000 2909.875 498.125 270.000 n=6
+16:09:22 sc_m2l1     ^~^~^ CN ALMPT bell 584.000 2754.125 548.125 90.000 n=0
+16:09:22 sc_m2l1     ^~^~^ CN SCOUT done switches=2 bells=2
+16:09:22 sc_m2l1     ^~^~^ CN VIEWSW at ( 973.539 2021.923 624.125 )
+16:09:22 sc_m2l1     ^~^~^ CN ARMED
+16:09:22 sc_m2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=43.325
+16:09:22 sc_m2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=53.550
+16:09:22 sc_m2l1     ^~^~^ ALARM runner start guard=266 dist=160
+16:09:22 sc_m2l1     ^~^~^ ALARM pulled
+16:09:22 sc_m2l1     ^~^~^ ALARM LIVE pull 1 switches=2
+16:09:22 sc_m2l1     ^~^~^ ALARM woke 4 idle guards
+16:09:22 sc_m2l1     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=63.250
+16:09:22 sc_m2l1     ^~^~^ CN TPGUARD guard=91 d_to_switch=209 player=( 1356.000 2208.000 624.125 )
+16:09:22 sc_m2l1     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=66.750
+16:09:22 sc_m2l1     ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( -126.388 1281.701 448.125 )
+16:09:22 sc_m2l1     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=3 t=80.975
+16:09:22 sc_m2l1     ^~^~^ CN SHOOT1 hp0=1000.000
+16:09:22 sc_m2l1     ^~^~^ ALARM destroyed switch at ( 1023.288 2142.027 674.125 )
+16:09:22 sc_m2l1     ^~^~^ ALARM OFF: switch shot pulls=1
+16:09:22 sc_m2l1     ^~^~^ ALARM runner start guard=266 dist=156
+16:09:22 sc_m2l1     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:09:22 sc_m2l1     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.^
+16:09:22 sc_m2l1     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:09:22 sc_m2l1     ^~^~^ CN SHOOT1 v0 hp=" ^
+16:09:22 sc_m2l1     ^~^~^ ALARM pulled
+16:09:22 sc_m2l1     ^~^~^ ALARM LIVE pull 2 switches=2
+16:09:22 sc_m2l1     ^~^~^ ALARM woke 4 idle guards
+16:09:22 sc_m2l1     ^~^~^ CN ALM live=1 pulls=2 map=1 sw=2 alarm_on=- alive=3 t=86.725
+16:09:22 sc_m2l1 script errors: 3 ["[2026-10-15 16:09:17 UTC-6.000] ^~^~^ Script Error : Field 'health' applied to NULL listener", "[2026-10-15 16:09:17 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-15 16:09:17 UTC-6.000] ^~^~^ Script Error : binary '>' applied to incompatible types 'none' and 'int'"]
+16:09:22 t=111.077 process exited
+16:09:22 end_session ModuleNotFoundError("No module named 'PIL'")

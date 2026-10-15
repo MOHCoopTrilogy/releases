@@ -1,0 +1,28 @@
+    ^~^~^ CN SCOUT guards=12 spawn=( 5440.000 7148.000 -167.875 )
+    ^~^~^ CN SCOUT cluster ( -4672.596 -3771.226 0.125 ) n=3 has no flat wall within 450
+    ^~^~^ CN ALMPT switch 556.000 -7969.875 74.125 90.000 n=3
+    ^~^~^ CN ALMPT bell 556.000 -7624.125 124.125 270.000 n=0
+    ^~^~^ CN ALMPT switch 1524.429 3098.125 234.125 90.000 n=2
+    ^~^~^ CN SCOUT done switches=2 bells=1
+    ^~^~^ CN VIEWSW at ( 556.000 -7839.875 24.125 )
+    ^~^~^ CN ARMED
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=43.325
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=53.550
+    ^~^~^ ALARM runner start guard=502 dist=106
+    ^~^~^ ALARM pulled
+    ^~^~^ ALARM LIVE pull 1 switches=2
+    ^~^~^ ALARM woke 2 idle guards
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=63.225
+    ^~^~^ CN TPGUARD guard=502 d_to_switch=106 player=( 696.573 -7876.200 24.125 )
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=66.750
+    ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( 1006.638 -6719.021 24.125 )
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=3 t=80.975
+    ^~^~^ CN SHOOT1 hp0=1000.000
+    ^~^~^ ALARM destroyed switch at ( 556.000 -7969.875 74.125 )
+    ^~^~^ ALARM OFF: switch shot pulls=1
+    ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+    ^~^~^ CN SHOOT1 v0 hp=" + local.sw.^
+    ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+    ^~^~^ CN SHOOT1 v0 hp=" ^
+    ^~^~^ CN ALM live=0 pulls=1 map=1 sw=2 alarm_on=- alive=3 t=86.725
+script errors: 5 ["[2026-10-15 16:22:48 UTC-6.000] ^~^~^ Script Error : command 'accuracy' applied to NULL listener", "[2026-10-15 16:22:48 UTC-6.000] ^~^~^ Script Error : command 'exec' applied to NULL listener", "[2026-10-15 16:23:07 UTC-6.000] ^~^~^ Script Error : Field 'health' applied to NULL listener", "[2026-10-15 16:23:07 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'"]

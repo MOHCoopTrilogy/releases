@@ -1,0 +1,37 @@
+16:14:47 t=0.029 launched pid 7588 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:14:47 t=0.052 in-process guard installed on thread 7244
+16:14:48 t=0.436 place 0x18f0c82 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:14:48 t=0.576 place 0x1900c82 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:14:48 t=0.580 place 0x16103a0 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:15:56 booted cn_sc_e3l2 e3l2 ref=work dog False
+16:16:42 sc_e3l2     ^~^~^ CN SCOUT guards=13 spawn=( 5366.000 -4173.000 -455.875 )
+16:16:42 sc_e3l2     ^~^~^ CN ALMPT switch -1080.135 5181.875 -525.875 270.000 n=3
+16:16:42 sc_e3l2     ^~^~^ CN ALMPT switch -893.973 463.808 -397.875 202.500 n=2
+16:16:42 sc_e3l2     ^~^~^ CN ALMPT bell -1070.054 463.110 -347.875 337.500 n=0
+16:16:42 sc_e3l2     ^~^~^ CN ALMPT switch 1725.875 -5473.276 -133.875 180.000 n=1
+16:16:42 sc_e3l2     ^~^~^ CN ALMPT bell 1450.125 -5473.276 -83.875 0.000 n=0
+16:16:42 sc_e3l2     ^~^~^ CN SCOUT done switches=3 bells=2
+16:16:42 sc_e3l2     ^~^~^ CN VIEWSW at ( -1080.135 5051.875 -575.875 )
+16:16:42 sc_e3l2     ^~^~^ CN ARMED
+16:16:42 sc_e3l2     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=3 alarm_on=- alive=0 t=43.250
+16:16:42 sc_e3l2     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=3 alarm_on=- alive=0 t=53.475
+16:16:42 sc_e3l2     ^~^~^ ALARM runner start guard=931 dist=104
+16:16:42 sc_e3l2     ^~^~^ ALARM pulled
+16:16:42 sc_e3l2     ^~^~^ ALARM LIVE pull 1 switches=3
+16:16:42 sc_e3l2     ^~^~^ ALARM woke 2 idle guards
+16:16:42 sc_e3l2     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=63.225
+16:16:42 sc_e3l2     ^~^~^ CN TPGUARD guard=931 d_to_switch=104 player=( -940.695 5089.830 -575.875 )
+16:16:42 sc_e3l2     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=0 t=66.750
+16:16:42 sc_e3l2     ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( -2324.627 4444.492 -575.875 )
+16:16:42 sc_e3l2     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=3 alarm_on=- alive=3 t=80.950
+16:16:42 sc_e3l2     ^~^~^ CN SHOOT1 hp0=1000.000
+16:16:42 sc_e3l2     ^~^~^ ALARM destroyed switch at ( -1080.135 5181.875 -525.875 )
+16:16:42 sc_e3l2     ^~^~^ ALARM OFF: switch shot pulls=1
+16:16:42 sc_e3l2     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:16:42 sc_e3l2     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.^
+16:16:42 sc_e3l2     ^~^~^ CN SHOOT1 v0 hp=" + local.sw.health )
+16:16:42 sc_e3l2     ^~^~^ CN SHOOT1 v0 hp=" ^
+16:16:42 sc_e3l2     ^~^~^ CN ALM live=0 pulls=1 map=1 sw=3 alarm_on=- alive=3 t=86.700
+16:16:42 sc_e3l2 script errors: 8 ["[2026-10-15 16:15:50 UTC-6.000] ^~^~^ Script Error : command 'QueryTurretSlotEntity' applied to NULL listener", "[2026-10-15 16:15:50 UTC-6.000] ^~^~^ Script Error : command 'hide' applied to NIL", "[2026-10-15 16:15:50 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener", "[2026-10-15 16:15:50 UTC-6.000] ^~^~^ Script Error : command 'waitTill' applied to NULL listener"]
+16:16:43 t=115.634 process exited
+16:16:43 end_session ModuleNotFoundError("No module named 'PIL'")

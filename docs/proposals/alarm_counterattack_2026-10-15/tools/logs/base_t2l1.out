@@ -1,0 +1,9 @@
+16:23:45 t=0.030 launched pid 28300 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:23:45 t=0.045 in-process guard installed on thread 8560
+16:23:45 t=0.448 place 0x3e09b8 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:23:46 t=0.567 place 0x3f09b8 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:23:46 t=0.573 place 0xe90378 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:24:52 booted cn_base_t2l1 t2l1 ref=work dog False
+16:24:52 base_t2l1 errors 2 ["[2026-10-15 16:24:43 UTC-6.000] ^~^~^ Script Error : Script 'coop_mod/allysquad.scr' was not properly loaded", "[2026-10-15 16:24:43 UTC-6.000] ^~^~^ Script file compile error:  Couldn't compile 'coop_mod/allysquad.scr'"]
+16:24:53 t=67.595 process exited
+16:24:53 end_session ModuleNotFoundError("No module named 'PIL'")

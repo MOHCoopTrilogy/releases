@@ -1,0 +1,42 @@
+16:09:23 t=0.029 launched pid 16868 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:09:23 t=0.055 in-process guard installed on thread 6612
+16:09:23 t=0.437 place 0x1a605be SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:09:23 t=0.555 place 0x1a705be SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:09:23 t=0.560 place 0x1009c0 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:10:29 booted cn_sc_e2l1 e2l1 ref=work dog False
+16:12:03 sc_e2l1     ^~^~^ CN SCOUT guards=36 spawn=( 4494.000 6086.000 592.000 )
+16:12:03 sc_e2l1     ^~^~^ CN SCOUT cluster ( 3829.589 3759.967 284.737 ) n=7 has no flat wall within 450
+16:12:03 sc_e2l1     ^~^~^ CN SCOUT cluster ( 267.000 2207.000 319.719 ) n=7 has no flat wall within 450
+16:12:03 sc_e2l1     ^~^~^ CN ALMPT switch -4359.780 -3505.006 357.754 90.000 n=6
+16:12:03 sc_e2l1     ^~^~^ CN SCOUT done switches=1 bells=0
+16:12:03 sc_e2l1     ^~^~^ CN VIEWSW at ( -4359.780 -3375.006 196.455 )
+16:12:03 sc_e2l1     ^~^~^ CN ARMED
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=43.200
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=53.425
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=63.225
+16:12:03 sc_e2l1     ^~^~^ CN TPGUARD guard=353 d_to_switch=456 player=( -4198.726 -3051.691 249.395 )
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=66.725
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=69.950
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=73.175
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=76.400
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=79.625
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=82.850
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=86.075
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=89.300
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=92.525
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=95.750
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=99.000
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=102.200
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=105.450
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=108.675
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=111.900
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=115.125
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=118.350
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=121.575
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=124.800
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=128.025
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=131.275
+16:12:03 sc_e2l1     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=1 alarm_on=- alive=0 t=134.475
+16:12:03 sc_e2l1 script errors: 4 ["[2026-10-15 16:10:21 UTC-6.000] ^~^~^ Script Error : Field 'targetname' applied to NULL listener", "[2026-10-15 16:10:21 UTC-6.000] ^~^~^ Script Error : command 'ai_off' applied to NULL listener", "[2026-10-15 16:10:21 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener", "[2026-10-15 16:10:33 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener"]
+16:12:03 t=160.599 process exited
+16:12:03 end_session ModuleNotFoundError("No module named 'PIL'")

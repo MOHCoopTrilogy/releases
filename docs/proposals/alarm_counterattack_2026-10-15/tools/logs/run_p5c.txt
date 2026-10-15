@@ -1,0 +1,44 @@
+    ^~^~^ CN SCOUT guards=21 spawn=( 2597.960 143.076 944.132 )
+    ^~^~^ CN SCOUT cluster ( -3408.000 -280.000 608.125 ) n=4 has no flat wall within 450
+    ^~^~^ CN ALMPT switch -4798.027 -269.170 666.125 337.500 n=2
+    ^~^~^ CN ALMPT switch -2165.539 -2881.539 101.042 225.000 n=2
+    ^~^~^ CN SCOUT done switches=2 bells=0
+    ^~^~^ CN VIEWSW at ( -4677.923 -318.919 656.125 )
+    ^~^~^ CN ARMED
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=43.275
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=53.500
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=63.225
+    ^~^~^ CN TPGUARD guard=170 d_to_switch=161 player=( -4516.000 -328.000 584.881 )
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=66.750
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=69.950
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=73.200
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=76.400
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=79.650
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=82.850
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=86.100
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=89.300
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=92.550
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=95.750
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=99.000
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=102.225
+    ^~^~^ ALARM runner start guard=31 dist=1078
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=105.450
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=2 alarm_on=- alive=0 t=108.675
+    ^~^~^ ALARM pulled
+    ^~^~^ ALARM LIVE pull 1 switches=2
+    ^~^~^ ALARM woke 0 idle guards
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=0 t=111.900
+    ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( -1181.442 -2222.861 -127.875 )
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=3 t=126.150
+    ^~^~^ CN SHOOT1 hp0=" + local.sw.health + " solid=" + local.sw.solid + " takedamage=" + local.sw.takedamage )
+    ^~^~^ CN SHOOT1 hp0=" + local.sw.health + " solid=" ^
+    ^~^~^ CN SHOOT1 hp0=" + local.sw.health + " solid=" + local.sw.solid + " takedamage=" + local.sw.takedamage )
+    ^~^~^ CN SHOOT1 hp0=" + local.sw.health + " solid=" + local.sw.solid ^
+    ^~^~^ CN SHOOT1 hp0=" + local.sw.health + " solid=" + local.sw.solid + " takedamage=" + local.sw.takedamage )
+    ^~^~^ CN SHOOT1 hp0=" + local.sw.health + " solid=" + local.sw.solid + " takedamage=" ^
+    ^~^~^ CN SHOOT1 v0 hp=1000.000
+    ^~^~^ CN SHOOT1 v1 hp=1000.000
+    ^~^~^ CN SHOOT1 v3 hp=1000.000
+    ^~^~^ ALARM wave 2 players=1 made=3 alive=6 at=( -3871.982 -2680.102 156.813 )
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=2 alarm_on=- alive=6 t=132.700
+script errors: 3 ["[2026-10-15 15:49:08 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-15 15:49:08 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-15 15:49:08 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'"]
