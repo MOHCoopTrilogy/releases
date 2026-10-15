@@ -1,0 +1,164 @@
+#!/usr/bin/env python3
+"""patch_armory_gating.py - one-shot, idempotent patch of the hand-maintained armory page cfgs (loadout review 2026-10-15).
+
+The uniform / helmet / glove pages (ui/loadout/skin|helm|glove/*.cfg) have no generator any more (the old scratchpad
+gen_loadout3.py is gone), so this script IS the record of the change.   python patch_armory_gating.py <mod_tree>
+
+What it fixes.  A page was "gated" only if it happened to carry a `vstr coop_lo*LkA<NN>` line, which disagreed with what the SERVER
+refuses (helmet.scr cosmetic_gatedBuild): 59 skin pages were baked locked with no vstr (padlock forever, even once earned), and 7 skin +
+14 helmet pages were baked UNLOCKED although the server refuses them (the click "equips" and silently does nothing).  Pages now follow
+the server's list.  Per row (skin / helm / glove):
+  * the < > buttons fire `vstr <Row>Go` instead of `vstr coop_loA<Row>`; the page sets that gate cvar.
+  * FREE page   : keeps `seta coop_loA<Row> "append name ,xxNN"` and Go = "vstr coop_loA<Row>" (preview = equip, as before).
+  * GATED page  : baked locked + a `vstr coop_lo*LkA<NN>` line.  The token is NOT written to the archived coop_loA<Row> (that archive is
+    replayed at join / menu close and must only hold an ACCEPTED page); it is parked in the non-archived `coop_lo<Row>Acc` and Go = no-op.
+    The server's push for an UNLOCKED page is `exec ui/loadout/<row>/uok.cfg` (opens the padlock, accepts the pick, arms Go).
+  * every page sets coop_loCosOk / coop_loCosOkTxt (the EQUIPPED caption); gated pages get "Not equipped yet" as the spare 3rd line.
+part2: weapon starter commit + finish-chip locked click files.
+"""
+import io, os, re, sys
+
+ROWS = {
+    "skin": dict(A="coop_loASkin", Lk="coop_loSkLkA", Acc="coop_loSkAcc", Go="coop_loASkinGo", TXT="UNIFORM EQUIPPED"),
+    "helm": dict(A="coop_loAHelm", Lk="coop_loHmLkA", Acc="coop_loHmAcc", Go="coop_loAHelmGo", TXT="HELMET EQUIPPED"),
+    "glove": dict(A="coop_loAGlove", Lk="coop_loGlLkA", Acc="coop_loGlAcc", Go="coop_loAGloveGo", TXT="GLOVES EQUIPPED"),
+}
+CR = chr(13)
+LF = chr(10)
+CRLF = CR + LF
+
+
+def rd(p):
+    return io.open(p, encoding="latin-1", newline="").read()
+
+
+def wr(p, s):
+    io.open(p, "w", encoding="latin-1", newline="").write(s)
+
+
+def server_gated(tree):
+    """the tokens the SERVER treats as locked-until-earned - the single truth the pages must follow."""
+    s = rd(os.path.join(tree, "coop_mod", "helmet.scr"))
+    return set(re.findall(r'coop_cosmeticGatedTok\["([^"]+)"\]\s*=\s*1', s))
+
+
+def page_token(row, s):
+    if row == "skin":
+        m = re.search(r'^set coop_loChar "models/player/(\w+?)(?:_nohat)?\.tik"', s, re.M)
+        return "models/player/%s.tik" % m.group(1) if m else ""
+    if row == "helm":
+        m = re.search(r'^set coop_loHelm "([^"]*)"', s, re.M)
+        return m.group(1) if m else ""
+    return ""
+
+
+def a_line(s, r):
+    return re.search(r'^(?:seta|set) %s "([^"\r\n]*)"[ \t]*(?=\r?$)' % r["A"], s, re.M)
+
+
+def patch_page(path, r, row, gset):
+    s = rd(path)
+    if "coop_loCosOkTxt" in s:
+        return 0
+    nl = CRLF if CRLF in s else LF
+    m = a_line(s, r)
+    if not m:
+        print("  NO A LINE:", path)
+        return -1
+    nn = re.search(r"(\d+)\.cfg$", path).group(1)
+    if row == "glove":
+        gated = ("vstr " + r["Lk"]) in s
+    else:
+        gated = page_token(row, s) in gset
+    tok = m.group(1)
+    if gated:
+        s = re.sub(r'^set coop_loCosLk 0[ \t]*(?=\r?$)', 'set coop_loCosLk 1', s, count=1, flags=re.M)
+        if "set coop_loCosLk 1" not in s:
+            print("  GATED PAGE WITHOUT CosLk:", path)
+            return -1
+        if ("vstr " + r["Lk"]) not in s:
+            s = re.sub(r'^(set coop_loCosLk 1)[ \t]*(?=\r?$)', lambda mm: mm.group(1) + nl + "vstr " + r["Lk"] + nn, s, count=1, flags=re.M)
+        m = a_line(s, r)
+        new = nl.join([
+            'set %s "seta %s %s"' % (r["Acc"], r["A"], tok),
+            'set %s "set coop_loSkNop 0"' % r["Go"],
+            "set coop_loCosOk 0",
+            'set coop_loCosOkTxt "%s"' % r["TXT"],
+        ])
+        s = s[:m.start()] + new + s[m.end():]
+        s = re.sub(r'^set coop_loCosReq3 ""', 'set coop_loCosReq3 "Not equipped yet"', s, flags=re.M)
+    else:
+        new = nl.join([
+            m.group(0),
+            'set %s "vstr %s"' % (r["Go"], r["A"]),
+            "set coop_loCosOk 1",
+            'set coop_loCosOkTxt "%s"' % r["TXT"],
+        ])
+        s = s[:m.start()] + new + s[m.end():]
+    wr(path, s)
+    return 1
+
+
+def main(tree):
+    gset = server_gated(tree)
+    for row, r in ROWS.items():
+        d = os.path.join(tree, "ui", "loadout", row)
+        n = 0
+        for f in sorted(os.listdir(d)):
+            if not re.match(r"[a-z]\d+\.cfg$", f):
+                continue
+            if patch_page(os.path.join(d, f), r, row, gset) > 0:
+                n += 1
+        text = CRLF.join([
+            "// GENERATED by docs/tools/patch_armory_gating.py - an UNLOCKED gated page: open the padlock, accept the pick, arm the < > send.",
+            "// The server pushes `exec ui/loadout/%s/uok.cfg` as the archived value of every page the player has earned." % row,
+            "set coop_loCosLk 0",
+            "set coop_loCosOk 1",
+            "vstr %s" % r["Acc"],
+            'set %s "vstr %s"' % (r["Go"], r["A"]),
+            "",
+        ])
+        wr(os.path.join(d, "uok.cfg"), text)
+        print(row, "pages patched:", n)
+    urc = os.path.join(tree, "ui", "coop_loadout.urc")
+    s = rd(urc)
+    for row, r in ROWS.items():
+        cap = {"skin": "coop_loCharP", "helm": "coop_loHelmP", "glove": "coop_loGloveP"}[row]
+        cn = cap[:-1] + "N"
+        for c in (cap, cn):
+            s = s.replace('vstr %s ; vstr %s"' % (c, r["A"]), 'vstr %s ; vstr %s"' % (c, r["Go"]))
+    if '"cosOk"' not in s:
+        eol = CRLF if CRLF in s else LF
+        lbl = eol.join(["", "resource", "Label", "{", "ordernumber 10", 'name "cosOk"', "rect 14 46 130 11",
+                        "fgcolor 0.55 0.88 0.45 1.00", "bgcolor 0.00 0.00 0.00 0.00", 'borderstyle "NONE"', 'font "verdana-12"',
+                        "dontlocalize", "textalign left", 'enabledcvar "coop_loCosOk"', 'linkcvar "coop_loCosOkTxt"', "}", ""])
+        i = s.index('name "cosReq3"')
+        j = s.index("}", i) + 1
+        k = s.index(LF, j) + 1
+        s = s[:k] + lbl + s[k:]
+    wr(urc, s)
+    print("urc patched")
+    part2(tree)
+
+
+def part2(tree):
+    """weapon starters + finish-chip locked click (idempotent). Weapon pages themselves come from gen_loadout.py."""
+    d = os.path.join(tree, "ui", "loadout")
+    p = os.path.join(d, "init.cfg")
+    s = rd(p)
+    for i in ("01", "24", "48", "64"):
+        s = s.replace('set coop_loCmt%s "vstr coop_loCcur"' % i, 'set coop_loCmt%s "exec ui/loadout/eq%s.cfg"' % (i, i))
+    wr(p, s)
+    p = os.path.join(d, "lkfin.cfg")
+    s = rd(p)
+    for f in range(1, 8):
+        s = s.replace('set coop_loFcmt%d "vstr coop_loDeny"' % f, 'set coop_loFcmt%d "exec ui/loadout/fdeny%d.cfg"' % (f, f))
+        wr(os.path.join(d, "fdeny%d.cfg" % f),
+           "// GENERATED by docs/tools/patch_armory_gating.py - locked finish chip click: show what unlocks it, beep, change nothing" + LF
+           + "exec ui/loadout/reqf%d.cfg" % f + LF + "vstr coop_loDeny" + LF)
+    wr(p, s)
+    print("part2 done")
+
+
+if __name__ == "__main__":
+    main(sys.argv[1])
