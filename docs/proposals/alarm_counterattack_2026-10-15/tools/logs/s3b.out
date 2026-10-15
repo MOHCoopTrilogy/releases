@@ -1,0 +1,16 @@
+15:19:41 t=0.030 launched pid 21520 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+15:19:41 t=0.059 in-process guard installed on thread 7884
+15:19:42 t=0.431 place 0x6a0cbc SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:19:42 t=0.553 place 0x6b0cbc SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+15:19:42 t=0.557 place 0xd005be SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:21:41 s3b FAILED RuntimeError('player never spawned') Traceback (most recent call last):
+  File "C:\mohaa-coop-dev\docs\proposals\alarm_counterattack_2026-10-15\tools\cn_run.py", line 16, in <module>
+    rundir, notes = G.boot("cn_" + LABEL, MAP, extra=extra)
+                    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev/docs/proposals/ai_realism_2026-10-15/tools\ailib.py", line 76, in boot
+    rundir, notes = S.boot_session(sess, cg, W, H, EXTRA + list(extra), ov or overlay(ref=ref, extra=files))
+                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev/docs/proposals/ironsights_2026-09-28/tools\run_sweep.py", line 114, in boot_session
+    raise RuntimeError("player never spawned")
+RuntimeError: player never spawned
+

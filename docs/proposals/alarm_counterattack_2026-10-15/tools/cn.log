@@ -55,3 +55,59 @@
 RuntimeError: driver never did state
 
 15:14:22 end_session ModuleNotFoundError("No module named 'PIL'")
+15:16:47 booted cn_g3 m1l1 ref=work dog False
+15:16:57 g3     m1l1 -> ok
+15:16:57 g3     m4l1 -> ok
+15:16:57 g3     m1l2a -> ok
+15:16:57 g3     m2l1 -> ok
+15:16:57 g3     m3l2 -> ok
+15:16:57 g3     m5l1a -> ok
+15:16:57 g3     m6l3b -> ok
+15:16:57 g3     t1l2 -> ok
+15:16:57 g3     t2l1 -> ok
+15:16:57 g3     t3l1 -> ok
+15:16:57 g3     e3l1 -> ok
+15:16:57 g3     e3l2 -> ok
+15:16:57 g3     e1l1 -> denied
+15:16:57 g3     e1l2 -> denied
+15:16:57 g3     e1l4 -> denied
+15:16:57 g3     e2l2 -> denied
+15:16:57 g3     e3l3 -> denied
+15:16:57 g3     m2l2a -> denied
+15:16:57 g3     m2l3 -> denied
+15:16:57 g3     m3l1a -> denied
+15:16:57 g3     m3l1b -> denied
+15:16:57 g3     m5l2b -> denied
+15:16:57 g3     m6l1c -> denied
+15:16:57 g3     m6l2a -> denied
+15:16:57 g3     m6l3a -> denied
+15:16:57 g3     t2l2 -> denied
+15:16:57 g3     t3l2 -> denied
+15:16:57 g3     co_lobby3 -> lobby
+15:16:57 g3     briefing2 -> briefing
+15:16:57 g3     training -> denied
+15:16:57 g3     m1l1 -> stealth
+15:16:57 g3     m1l1 -> off
+15:16:57 g3 script errors: 0 []
+15:16:57 end_session ModuleNotFoundError("No module named 'PIL'")
+15:18:10 booted cn_s3a m4l1 ref=work dog False
+15:19:32 s3a    (driver gone: the map transitioned)
+15:19:40 s3a     ^~^~^ COUNTER start map=m4l1 secs=15 gap=8 players=1
+15:19:40 s3a     ^~^~^ CN STATE done=1 active=1 sent=- alive=0 ran=- t=51.825
+15:19:40 s3a     ^~^~^ COUNTER wave 1 players=1 want=4 made=4 alive=4 via=fallback at=( -4408.922 -6950.043 -458.353 )
+15:19:40 s3a     ^~^~^ CN STATE done=1 active=1 sent=4 alive=4 ran=- t=62.025
+15:19:40 s3a     ^~^~^ CN STATE done=1 active=1 sent=4 alive=4 ran=- t=72.275
+15:19:40 s3a     ^~^~^ COUNTER end waves=1 sent=4 alive=4 t=30
+15:19:41 s3a script errors: 0 []
+15:19:41 end_session ModuleNotFoundError("No module named 'PIL'")
+15:21:41 s3b FAILED RuntimeError('player never spawned') Traceback (most recent call last):
+  File "C:\mohaa-coop-dev\docs\proposals\alarm_counterattack_2026-10-15\tools\cn_run.py", line 16, in <module>
+    rundir, notes = G.boot("cn_" + LABEL, MAP, extra=extra)
+                    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev/docs/proposals/ai_realism_2026-10-15/tools\ailib.py", line 76, in boot
+    rundir, notes = S.boot_session(sess, cg, W, H, EXTRA + list(extra), ov or overlay(ref=ref, extra=files))
+                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev/docs/proposals/ironsights_2026-09-28/tools\run_sweep.py", line 114, in boot_session
+    raise RuntimeError("player never spawned")
+RuntimeError: player never spawned
+

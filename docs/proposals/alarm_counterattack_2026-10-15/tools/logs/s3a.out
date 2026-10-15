@@ -1,0 +1,16 @@
+15:17:02 t=0.031 launched pid 16400 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+15:17:02 t=0.059 in-process guard installed on thread 25344
+15:17:03 t=0.464 place 0x809b8 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:17:03 t=0.610 place 0x909b8 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+15:17:03 t=0.615 place 0x1e09d4 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:18:10 booted cn_s3a m4l1 ref=work dog False
+15:19:32 s3a    (driver gone: the map transitioned)
+15:19:40 s3a     ^~^~^ COUNTER start map=m4l1 secs=15 gap=8 players=1
+15:19:40 s3a     ^~^~^ CN STATE done=1 active=1 sent=- alive=0 ran=- t=51.825
+15:19:40 s3a     ^~^~^ COUNTER wave 1 players=1 want=4 made=4 alive=4 via=fallback at=( -4408.922 -6950.043 -458.353 )
+15:19:40 s3a     ^~^~^ CN STATE done=1 active=1 sent=4 alive=4 ran=- t=62.025
+15:19:40 s3a     ^~^~^ CN STATE done=1 active=1 sent=4 alive=4 ran=- t=72.275
+15:19:40 s3a     ^~^~^ COUNTER end waves=1 sent=4 alive=4 t=30
+15:19:41 s3a script errors: 0 []
+15:19:41 t=158.565 process exited
+15:19:41 end_session ModuleNotFoundError("No module named 'PIL'")

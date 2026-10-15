@@ -1,0 +1,11 @@
+FAILED RuntimeError('player never spawned') Traceback (most recent call last):
+  File "C:\mohaa-coop-dev\docs\proposals\alarm_counterattack_2026-10-15\tools\cn_run.py", line 16, in <module>
+    rundir, notes = G.boot("cn_" + LABEL, MAP, extra=extra)
+                    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev/docs/proposals/ai_realism_2026-10-15/tools\ailib.py", line 76, in boot
+    rundir, notes = S.boot_session(sess, cg, W, H, EXTRA + list(extra), ov or overlay(ref=ref, extra=files))
+                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev/docs/proposals/ironsights_2026-09-28/tools\run_sweep.py", line 114, in boot_session
+    raise RuntimeError("player never spawned")
+RuntimeError: player never spawned
+

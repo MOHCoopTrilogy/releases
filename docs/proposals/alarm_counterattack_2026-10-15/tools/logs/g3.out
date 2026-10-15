@@ -1,0 +1,42 @@
+15:15:41 t=0.027 launched pid 5404 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+15:15:41 t=0.043 in-process guard installed on thread 23828
+15:15:41 t=0.418 place 0xab0caa SDL_app hidden-found-by-poll (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:15:41 t=0.418 place 0xab0caa SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:15:41 t=0.535 place 0xac0caa SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+15:15:41 t=0.539 place 0x1d0c36 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:16:47 booted cn_g3 m1l1 ref=work dog False
+15:16:57 g3     m1l1 -> ok
+15:16:57 g3     m4l1 -> ok
+15:16:57 g3     m1l2a -> ok
+15:16:57 g3     m2l1 -> ok
+15:16:57 g3     m3l2 -> ok
+15:16:57 g3     m5l1a -> ok
+15:16:57 g3     m6l3b -> ok
+15:16:57 g3     t1l2 -> ok
+15:16:57 g3     t2l1 -> ok
+15:16:57 g3     t3l1 -> ok
+15:16:57 g3     e3l1 -> ok
+15:16:57 g3     e3l2 -> ok
+15:16:57 g3     e1l1 -> denied
+15:16:57 g3     e1l2 -> denied
+15:16:57 g3     e1l4 -> denied
+15:16:57 g3     e2l2 -> denied
+15:16:57 g3     e3l3 -> denied
+15:16:57 g3     m2l2a -> denied
+15:16:57 g3     m2l3 -> denied
+15:16:57 g3     m3l1a -> denied
+15:16:57 g3     m3l1b -> denied
+15:16:57 g3     m5l2b -> denied
+15:16:57 g3     m6l1c -> denied
+15:16:57 g3     m6l2a -> denied
+15:16:57 g3     m6l3a -> denied
+15:16:57 g3     t2l2 -> denied
+15:16:57 g3     t3l2 -> denied
+15:16:57 g3     co_lobby3 -> lobby
+15:16:57 g3     briefing2 -> briefing
+15:16:57 g3     training -> denied
+15:16:57 g3     m1l1 -> stealth
+15:16:57 g3     m1l1 -> off
+15:16:57 g3 script errors: 0 []
+15:16:57 t=76.514 process exited
+15:16:57 end_session ModuleNotFoundError("No module named 'PIL'")

@@ -38,9 +38,11 @@ cn_do local.c:{
 		println ( "^~^~^ CN SIZES 1=" + ( waitthread coop_mod/coop_counter.scr::counter_wavesize 1 ) + " 2=" + ( waitthread coop_mod/coop_counter.scr::counter_wavesize 2 ) + " 3=" + ( waitthread coop_mod/coop_counter.scr::counter_wavesize 3 ) + " 4=" + ( waitthread coop_mod/coop_counter.scr::counter_wavesize 4 ) + " 5=" + ( waitthread coop_mod/coop_counter.scr::counter_wavesize 5 ) + " 8=" + ( waitthread coop_mod/coop_counter.scr::counter_wavesize 8 ) )
 	}
 	if( local.c == "gate" ){
-		println ( "^~^~^ CN GATE " + level.coop_mapname + " -> " + ( waitthread coop_mod/coop_counter.scr::counter_gate level.coop_mapname ) )
+		println ( "^~^~^ CN GATE " + level.coop_mapname + " -> " + ( waitthread coop_mod/coop_counter.scr::counter_gate level.coop_mapname "m9x" ) )
 	}
+	if( local.c == "stealthon" ){ level.coop_stealthMap = 1 }
+	if( local.c == "stealthoff" ){ level.coop_stealthMap = 0 }
 	if( local.c == "gatemap" ){
-		println ( "^~^~^ CN GATEMAP " + getcvar( "cn_map" ) + " -> " + ( waitthread coop_mod/coop_counter.scr::counter_gate ( getcvar( "cn_map" ) ) ) )
+		println ( "^~^~^ CN GATEMAP " + getcvar( "cn_map" ) + " -> " + ( waitthread coop_mod/coop_counter.scr::counter_gate ( getcvar( "cn_map" ) ) "m9x" ) )
 	}
 }end

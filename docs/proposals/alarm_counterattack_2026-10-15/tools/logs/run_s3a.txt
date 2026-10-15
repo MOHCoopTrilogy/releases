@@ -1,0 +1,8 @@
+   (driver gone: the map transitioned)
+    ^~^~^ COUNTER start map=m4l1 secs=15 gap=8 players=1
+    ^~^~^ CN STATE done=1 active=1 sent=- alive=0 ran=- t=51.825
+    ^~^~^ COUNTER wave 1 players=1 want=4 made=4 alive=4 via=fallback at=( -4408.922 -6950.043 -458.353 )
+    ^~^~^ CN STATE done=1 active=1 sent=4 alive=4 ran=- t=62.025
+    ^~^~^ CN STATE done=1 active=1 sent=4 alive=4 ran=- t=72.275
+    ^~^~^ COUNTER end waves=1 sent=4 alive=4 t=30
+script errors: 0 []
