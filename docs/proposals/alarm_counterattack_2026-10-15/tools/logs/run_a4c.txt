@@ -1,0 +1,21 @@
+    ^~^~^ CN ALM live=0 pulls=0 map=1 sw=13 alarm_on=0 alive=0 t=41.050
+    ^~^~^ ALARMBELL range=499.561 vol=1.143 ent=780
+    ^~^~^ ALARM LIVE pull 1 switches=13
+    ^~^~^ ALARM woke 4 idle guards
+    ^~^~^ ALARMBELL range=441.000 vol=1.185 ent=780
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=13 alarm_on=1 alive=0 t=50.500
+    ^~^~^ ALARMBELL range=825.495 vol=0.910 ent=780
+    ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( -5811.203 -4751.693 -298.093 )
+    ^~^~^ ALARMBELL range=948.417 vol=0.823 ent=780
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=13 alarm_on=1 alive=3 t=59.725
+    ^~^~^ ALARMBELL range=1470.588 vol=0.497 ent=780
+    ^~^~^ ALARM wave 2 players=1 made=3 alive=6 at=( -5334.020 -3860.780 -282.472 )
+    ^~^~^ ALARMBELL range=1404.896 vol=0.500 ent=780
+    ^~^~^ CN ALM live=1 pulls=1 map=1 sw=13 alarm_on=1 alive=6 t=68.950
+    ^~^~^ CN SHOOT sw=( 2750.170 291.230 30.010 ) hp=1000.000
+    ^~^~^ CN SHOOT after hp=600.000
+    ^~^~^ ALARM destroyed switch at ( 2750.170 291.230 30.010 )
+    ^~^~^ ALARM OFF: switch shot pulls=1
+    ^~^~^ CN ALM live=0 pulls=1 map=1 sw=13 alarm_on=0 alive=6 t=73.875
+    ^~^~^ CN ALM live=0 pulls=1 map=1 sw=13 alarm_on=0 alive=6 t=77.075
+script errors: 0 []

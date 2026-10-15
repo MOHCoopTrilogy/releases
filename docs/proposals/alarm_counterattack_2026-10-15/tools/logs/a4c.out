@@ -1,0 +1,29 @@
+15:29:06 t=0.027 launched pid 13124 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+15:29:06 t=0.046 in-process guard installed on thread 11444
+15:29:06 t=0.419 place 0x3709d4 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:29:06 t=0.533 place 0x3809d4 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+15:29:06 t=0.537 place 0xdf09a4 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:30:12 booted cn_a4c m4l3 ref=work dog False
+15:30:48 a4c     ^~^~^ CN ALM live=0 pulls=0 map=1 sw=13 alarm_on=0 alive=0 t=41.050
+15:30:48 a4c     ^~^~^ ALARMBELL range=499.561 vol=1.143 ent=780
+15:30:48 a4c     ^~^~^ ALARM LIVE pull 1 switches=13
+15:30:48 a4c     ^~^~^ ALARM woke 4 idle guards
+15:30:48 a4c     ^~^~^ ALARMBELL range=441.000 vol=1.185 ent=780
+15:30:48 a4c     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=13 alarm_on=1 alive=0 t=50.500
+15:30:48 a4c     ^~^~^ ALARMBELL range=825.495 vol=0.910 ent=780
+15:30:48 a4c     ^~^~^ ALARM wave 1 players=1 made=3 alive=3 at=( -5811.203 -4751.693 -298.093 )
+15:30:48 a4c     ^~^~^ ALARMBELL range=948.417 vol=0.823 ent=780
+15:30:48 a4c     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=13 alarm_on=1 alive=3 t=59.725
+15:30:48 a4c     ^~^~^ ALARMBELL range=1470.588 vol=0.497 ent=780
+15:30:48 a4c     ^~^~^ ALARM wave 2 players=1 made=3 alive=6 at=( -5334.020 -3860.780 -282.472 )
+15:30:48 a4c     ^~^~^ ALARMBELL range=1404.896 vol=0.500 ent=780
+15:30:48 a4c     ^~^~^ CN ALM live=1 pulls=1 map=1 sw=13 alarm_on=1 alive=6 t=68.950
+15:30:48 a4c     ^~^~^ CN SHOOT sw=( 2750.170 291.230 30.010 ) hp=1000.000
+15:30:48 a4c     ^~^~^ CN SHOOT after hp=600.000
+15:30:48 a4c     ^~^~^ ALARM destroyed switch at ( 2750.170 291.230 30.010 )
+15:30:48 a4c     ^~^~^ ALARM OFF: switch shot pulls=1
+15:30:48 a4c     ^~^~^ CN ALM live=0 pulls=1 map=1 sw=13 alarm_on=0 alive=6 t=73.875
+15:30:48 a4c     ^~^~^ CN ALM live=0 pulls=1 map=1 sw=13 alarm_on=0 alive=6 t=77.075
+15:30:48 a4c script errors: 0 []
+15:30:48 t=102.652 process exited
+15:30:48 end_session ModuleNotFoundError("No module named 'PIL'")

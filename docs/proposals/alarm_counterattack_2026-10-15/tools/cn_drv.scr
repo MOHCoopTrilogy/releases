@@ -40,6 +40,16 @@ cn_do local.c:{
 	if( local.c == "gate" ){
 		println ( "^~^~^ CN GATE " + level.coop_mapname + " -> " + ( waitthread coop_mod/coop_counter.scr::counter_gate level.coop_mapname "m9x" ) )
 	}
+	if( local.c == "pull" ){ local.p thread global/alarmer.scr::turn_alarm_on }
+	if( local.c == "shoot" ){
+		local.sw = $alarm[1]
+		println ( "^~^~^ CN SHOOT sw=" + local.sw.origin + " hp=" + local.sw.health )
+		local.sw damage local.p 400 local.p local.sw.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
+		println ( "^~^~^ CN SHOOT after hp=" + local.sw.health )
+	}
+	if( local.c == "almstate" ){
+		println ( "^~^~^ CN ALM live=" + ( waitthread cn_s level.coop_alarmLive ) + " pulls=" + ( waitthread cn_s level.coop_alarmPulls ) + " map=" + ( waitthread cn_s level.coop_alarmMap ) + " sw=" + ( waitthread cn_s level.coop_alarmSwN ) + " alarm_on=" + ( waitthread cn_s level.alarm_on ) + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive "alarm" ) + " t=" + level.time )
+	}
 	if( local.c == "stealthon" ){ level.coop_stealthMap = 1 }
 	if( local.c == "stealthoff" ){ level.coop_stealthMap = 0 }
 	if( local.c == "gatemap" ){

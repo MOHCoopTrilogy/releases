@@ -1,0 +1,25 @@
+15:27:18 t=0.030 launched pid 8544 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+15:27:18 t=0.050 in-process guard installed on thread 15632
+15:27:18 t=0.432 place 0x10b05be SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:27:18 t=0.553 place 0x10c05be SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+15:27:18 t=0.558 place 0x230cba SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:28:24 booted cn_a4b m4l3 ref=work dog False
+15:29:00 a4b     ^~^~^ CN ALM live=- pulls=- map=- sw=- alarm_on=0 alive=0 t=41.050
+15:29:00 a4b     ^~^~^ ALARMBELL range=499.561 vol=1.143 ent=766
+15:29:00 a4b     ^~^~^ ALARMBELL range=441.000 vol=1.185 ent=766
+15:29:00 a4b     ^~^~^ CN ALM live=- pulls=- map=- sw=- alarm_on=1 alive=0 t=50.500
+15:29:00 a4b     ^~^~^ ALARMBELL range=825.495 vol=0.910 ent=766
+15:29:00 a4b     ^~^~^ ALARMBELL range=948.417 vol=0.823 ent=766
+15:29:00 a4b     ^~^~^ CN ALM live=- pulls=- map=- sw=- alarm_on=1 alive=0 t=59.725
+15:29:00 a4b     ^~^~^ ALARMBELL range=1470.588 vol=0.497 ent=766
+15:29:00 a4b     ^~^~^ ALARMBELL range=1404.896 vol=0.500 ent=766
+15:29:00 a4b     ^~^~^ CN ALM live=- pulls=- map=- sw=- alarm_on=1 alive=0 t=68.950
+15:29:00 a4b     ^~^~^ CN SHOOT sw=( 2750.170 291.230 30.010 ) hp=0.000
+15:29:00 a4b     ^~^~^ CN SHOOT after hp=0.000
+15:29:00 a4b     ^~^~^ ALARMBELL range=1440.620 vol=0.498 ent=766
+15:29:00 a4b     ^~^~^ CN ALM live=- pulls=- map=- sw=- alarm_on=1 alive=0 t=73.850
+15:29:00 a4b     ^~^~^ ALARMBELL range=1440.620 vol=0.498 ent=766
+15:29:00 a4b     ^~^~^ CN ALM live=- pulls=- map=- sw=- alarm_on=1 alive=0 t=77.075
+15:29:00 a4b script errors: 0 []
+15:29:01 t=102.630 process exited
+15:29:01 end_session ModuleNotFoundError("No module named 'PIL'")
