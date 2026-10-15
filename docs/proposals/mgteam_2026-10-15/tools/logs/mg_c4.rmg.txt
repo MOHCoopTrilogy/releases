@@ -1,0 +1,40 @@
+.000] ^~^~^ MG armed
+.000] ^~^~^ MG here ( -3894.000 2160.000 0.125 ) ang=( 0.000 90.000 0.000 )
+.000] ^~^~^ MG did here
+.000] ^~^~^ MG did god
+.000] ^~^~^ MG setup REAL officer=( -3097.582 -2645.733 40.655 ) player=( -3894.000 2160.000 0.125 ) alive=1
+.000] ^~^~^ MG did setup
+.000] ^~^~^ MG purged non-german 4
+.000] ^~^~^ MG purged 33
+.000] ^~^~^ MG did purge
+.000] ^~^~^ MG tpoff heading=0 clear=1.000 player=( -2397.452 -2647.740 -11.458 ) officer=( -3097.452 -2647.740 40.791 )
+.000] ^~^~^ MG did tpoff
+.000] ^~^~^ RMG t=41.975 team sid=1 n=3 anchor=officer at=( -3108.444 -2684.942 44.086 ) from=( -4912.270 -4038.734 -109.662 )
+.000] ^~^~^ MG calm
+.000] ^~^~^ MG did calm
+.000] ^~^~^ MG notarget toggled
+.000] ^~^~^ MG did nt
+.000] ^~^~^ MG did wave
+.000] ^~^~^ RMG t=44.275 stage runto pathdist=2399.735 think=idle d=2079
+.000] ^~^~^ RMG t=53.275 staged secs=9 stall=0 at=( -3402.538 -2805.532 48.309 ) stage=( -3328.144 -2696.438 49.445 )
+.000] ^~^~^ MG camgun none
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun none
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun none
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun at=( -3568.904 -2837.665 49.374 ) gun=( -3417.204 -3073.010 79.438 ) off=100 d=281
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ RMG t=57.125 unpack secs=2 at=( -3477.364 -3103.672 39.208 )
+.000] ^~^~^ RMG t=60.975 gun up gunner=1 at=( -3417.204 -3073.010 79.438 ) yaw=22.805 mode=C
+.000] ^~^~^ MG camgun at=( -3084.225 -2889.912 50.264 ) gun=( -3417.204 -3073.010 79.438 ) off=6 d=381
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ RMG t=63.975 target UnnamedSoldier#8240 d=380 fromAnchor=469 settle=0.700
+.000] ^~^~^ RMG t=65.575 burst done len=0.800 at=UnnamedSoldier#8240 hp=100000.000 ammo=240 heat=37.300
+.000] ^~^~^ RMG t=67.675 burst done len=0.700 at=UnnamedSoldier#8240 hp=100000.000 ammo=235 heat=42.250
+.000] ^~^~^ MG camgun at=( -3568.904 -2837.665 49.374 ) gun=( -3417.204 -3073.010 79.438 ) off=100 d=281
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG killing gunner k=1 at=( -3474.921 -3089.530 40.438 )
+.000] ^~^~^ MG did killgunner
+.000] ^~^~^ RMG t=68.975 gunner down, k=2 takes over, gun up=1
+.000] ^~^~^ RMG t=71.325 takeover done k=2

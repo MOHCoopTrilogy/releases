@@ -1,0 +1,35 @@
+15:54:34 t=0.029 launched pid 26372 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+15:54:34 t=0.056 in-process guard installed on thread 28316
+15:54:35 t=0.438 place 0x5f09d4 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:54:35 t=0.581 place 0x6009d4 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+15:54:35 t=0.587 place 0x8f0964 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:55:40 booted mg_t3 m3l2 ref=work dog False
+15:55:41 t3 player -3894.0 2160.0 0.125 yaw 90.0
+15:57:40 t3 gun up: False after 115 s
+15:57:40 t3     ^~^~^ RMG t=45.350 team sid=1 n=3 anchor=officer at=( -3893.933 2660.853 0.125 ) from=( -3148.865 2684.965 0.125 )
+15:57:40 t3     ^~^~^ RMG t=47.650 stage runto pathdist=1256.636 think=idle d=619
+15:57:40 t3     ^~^~^ RMG t=50.650 staged secs=3 stall=0 at=( -3810.413 2677.219 0.125 ) stage=( -3893.903 2880.853 0.125 )
+15:57:40 t3     ^~^~^ RMG t=52.575 no site fails=1
+15:57:40 t3     ^~^~^ RMG t=58.900 no site fails=2
+15:57:40 t3     ^~^~^ RMG t=61.350 brain end sid=1 secs=16
+15:57:40 t3     ^~^~^ RMG t=91.900 team sid=2 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -3575.420 2324.414 0.125 )
+15:57:40 t3     ^~^~^ RMG t=94.200 stage runto pathdist=0.000 think=idle d=5106
+15:57:40 t3     ^~^~^ RMG t=104.200 staged secs=10 stall=8 at=( -3682.263 2213.243 0.125 ) stage=( -3139.350 -2868.564 53.218 )
+15:57:40 t3     ^~^~^ RMG t=105.525 no site fails=1
+15:57:40 t3     ^~^~^ RMG t=111.850 no site fails=2
+15:57:40 t3     ^~^~^ RMG t=118.175 no site fails=3
+15:57:40 t3     ^~^~^ RMG t=124.175 gunner down, k=2 takes over, gun up=0
+15:57:40 t3     ^~^~^ RMG t=125.500 no site fails=1
+15:57:40 t3     ^~^~^ RMG t=131.825 no site fails=2
+15:57:40 t3     ^~^~^ RMG t=138.150 no site fails=3
+15:57:40 t3     ^~^~^ RMG t=144.475 no site fails=4
+15:57:40 t3     ^~^~^ RMG t=144.475 release why=no_site
+15:57:40 t3     ^~^~^ RMG t=144.900 brain end sid=2 secs=52
+15:57:40 t3     ^~^~^ RMG t=146.575 team sid=3 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -4035.728 3481.410 0.125 )
+15:57:40 t3     ^~^~^ RMG t=148.575 gunner down, k=2 takes over, gun up=0
+15:57:40 t3     ^~^~^ RMG t=149.875 stage runto pathdist=0.000 think=idle d=6095
+15:57:40 t3     ^~^~^ RMG t=158.875 staged secs=9 stall=8 at=( -3526.886 3211.724 16.125 ) stage=( -3139.350 -2868.564 53.218 )
+15:57:40 t3     ^~^~^ RMG t=160.200 no site fails=1
+15:57:40 t3 script errors: 0 []
+15:57:40 t=185.806 process exited
+15:57:40 [mg_t3] done: 11 shots, window {'clean': True, 'violations': []}

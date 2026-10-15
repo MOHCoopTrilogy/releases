@@ -1,0 +1,27 @@
+16:02:03 t=0.029 launched pid 5508 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:02:03 t=0.051 in-process guard installed on thread 21512
+16:02:03 t=0.438 place 0x1d099c SDL_app hidden-found-by-poll (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:02:03 t=0.439 place 0x1d099c SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:02:03 t=0.562 place 0x1e099c SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:02:03 t=0.567 place 0x8a0ac4 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:03:08 booted mg_t5 m3l2 ref=work dog False
+16:03:08 t5 player -3894.0 2160.0 0.125 yaw 90.0
+16:03:29 t5 gun up: True after 17 s
+16:03:29 t5     ^~^~^ RMG t=49.775 staged secs=5 stall=0 at=( -3370.297 -2754.006 50.210 ) stage=( -3318.721 -2640.560 45.306 )
+16:03:29 t5     ^~^~^ RMG t=53.175 unpack secs=2 at=( -3231.247 -2863.088 47.228 )
+16:03:29 t5     ^~^~^ RMG t=56.425 target UnnamedSoldier#8240 d=811 fromAnchor=821 settle=0.700
+16:03:29 t5     ^~^~^ RMG t=57.025 gun up gunner=1 at=( -3173.843 -2865.531 88.382 ) yaw=10.658 mode=C
+16:03:29 t5     ^~^~^ RMG t=58.225 burst done len=1.000 at=UnnamedSoldier#8240 hp=100000.000 ammo=239 heat=31.350
+16:03:29 t5     ^~^~^ RMG t=60.225 burst done len=0.800 at=UnnamedSoldier#8240 hp=100000.000 ammo=233 heat=34.300
+16:03:47 t5 takeover: takeover failed
+16:03:58 t5     ^~^~^ RMG t=75.025 gunner down, k=2 takes over, gun up=1
+16:03:58 t5     ^~^~^ RMG t=79.275 takeover failed: not at the seat left=274
+16:03:58 t5     ^~^~^ RMG t=79.475 brain end sid=1 secs=37
+16:03:58 t5     ^~^~^ MG STATE sid=1 busy=0 over=1 kind=officer bursts=4 ayaw=0.045 apos=( -3201.125 -2651.781 44.310 )
+16:03:58 t5     ^~^~^ MG MAN k=1 alive=0 hp=0.000 at=( -3233.684 -2872.850 48.870 ) mounted=1 busy=0 think=killed type=void d=866
+16:03:58 t5     ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3224.745 -2981.600 51.873 ) mounted=0 busy=0 think=attack type=turret d=892
+16:03:58 t5     ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3212.015 -2724.407 49.668 ) mounted=0 busy=0 think=attack type=turret d=819
+16:03:58 t5     ^~^~^ MG GUN at=( -3173.843 -2865.531 88.382 ) ang=( -30.000 15.446 0.000 ) ammo=213 heat=0.000 d=811 offd=219
+16:03:58 t5 script errors: 0 []
+16:03:58 t=115.434 process exited
+16:03:58 [mg_t5] done: 19 shots, window {'clean': True, 'violations': []}

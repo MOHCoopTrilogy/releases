@@ -1,0 +1,217 @@
+.000] ^~^~^ MG armed
+.000] ^~^~^ MG here ( -3894.000 2160.000 0.125 ) ang=( 0.000 90.000 0.000 )
+.000] ^~^~^ MG did here
+.000] ^~^~^ MG did god
+.000] ^~^~^ MG setup officer=( -3894.000 2660.000 0.125 ) player=( -3894.000 2160.000 0.125 )
+.000] ^~^~^ MG did setup
+.000] ^~^~^ MG purged 42
+.000] ^~^~^ MG did purge
+.000] ^~^~^ MG did lookoff
+.000] ^~^~^ MG did wave
+.000] ^~^~^ RMG t=45.350 team sid=1 n=3 anchor=officer at=( -3893.933 2660.853 0.125 ) from=( -3148.865 2684.965 0.125 )
+.000] ^~^~^ RMG t=47.650 stage runto pathdist=1256.636 think=idle d=619
+.000] ^~^~^ MG STATE sid=1 busy=1 over=0 kind=officer bursts=- ayaw=269.852 apos=( -3889.690 2315.916 0.125 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3631.791 2606.261 0.125 ) mounted=0 busy=1 think=idle type=cover d=517
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3280.000 2560.000 0.215 ) mounted=0 busy=0 think=attack type=turret d=732
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3473.101 3104.762 16.125 ) mounted=0 busy=0 think=attack type=cover d=1034
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=220 at=( -3689.238 2240.944 0.125 ) enemyIsTeam=0 think=attack hp=100.000
+.000] ^~^~^ MG ACTOR 443 model=models/human/german_waffenss_officer.tik d=157 at=( -3883.765 2317.615 0.125 ) enemyIsTeam=0 think=attack hp=1000.000
+.000] ^~^~^ MG CENSUS 2
+.000] ^~^~^ MG did census
+.000] ^~^~^ RMG t=50.650 staged secs=3 stall=0 at=( -3810.413 2677.219 0.125 ) stage=( -3893.903 2880.853 0.125 )
+.000] ^~^~^ RMG t=52.575 no site fails=1
+.000] ^~^~^ MG STATE sid=1 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -4024.000 2624.000 0.125 ) mounted=0 busy=0 think=attack type=turret d=481
+.000] ^~^~^ MG MAN k=2 alive=0 hp=0.000 at=( -3233.269 2559.125 0.125 ) mounted=0 busy=0 think=killed type=void d=771
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3504.000 3096.000 16.125 ) mounted=0 busy=0 think=attack type=cover d=1014
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=232 at=( -3717.454 2311.667 0.125 ) enemyIsTeam=1 think=attack hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ MG lookgun d=483
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ RMG t=58.900 no site fails=2
+.000] ^~^~^ MG STATE sid=1 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -4024.266 2623.788 0.125 ) mounted=0 busy=0 think=idle type=turret d=481
+.000] ^~^~^ MG MAN k=2 alive=0 hp=0.000 at=( -3233.269 2559.125 0.125 ) mounted=0 busy=0 think=killed type=void d=771
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -3568.875 3116.068 16.125 ) mounted=0 busy=0 think=killed type=void d=1009
+.000] ^~^~^ MG did state
+.000] ^~^~^ RMG t=61.350 brain end sid=1 secs=16
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=481 at=( -4024.000 2624.000 0.125 ) enemyIsTeam=1 think=attack hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ MG STATE sid=1 busy=0 over=1 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=0 hp=0.000 at=( -4028.401 2623.128 0.125 ) mounted=0 busy=0 think=killed type=void d=482
+.000] ^~^~^ MG MAN k=2 alive=0 hp=0.000 at=( -3233.269 2559.125 0.125 ) mounted=0 busy=0 think=killed type=void d=771
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -3568.875 3116.068 16.125 ) mounted=0 busy=0 think=killed type=void d=1009
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=159 at=( -3923.945 2316.586 0.125 ) enemyIsTeam=0 think=idle hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ MG lookgun d=483
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ MG STATE sid=1 busy=0 over=1 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=0 hp=0.000 at=( -4028.401 2623.128 0.125 ) mounted=0 busy=0 think=killed type=void d=482
+.000] ^~^~^ MG MAN k=2 alive=0 hp=0.000 at=( -3233.269 2559.125 0.125 ) mounted=0 busy=0 think=killed type=void d=771
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -3568.875 3116.068 16.125 ) mounted=0 busy=0 think=killed type=void d=1009
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=162 at=( -3926.927 2318.918 0.125 ) enemyIsTeam=0 think=idle hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ MG STATE sid=1 busy=0 over=1 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=0 hp=0.000 at=( -4028.401 2623.128 0.125 ) mounted=0 busy=0 think=killed type=void d=482
+.000] ^~^~^ MG MAN k=2 alive=0 hp=0.000 at=( -3233.269 2559.125 0.125 ) mounted=0 busy=0 think=killed type=void d=771
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -3568.875 3116.068 16.125 ) mounted=0 busy=0 think=killed type=void d=1009
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=159 at=( -3923.890 2317.075 0.125 ) enemyIsTeam=0 think=idle hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ MG lookgun d=483
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ MG STATE sid=1 busy=0 over=1 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=0 hp=0.000 at=( -4028.401 2623.128 0.125 ) mounted=0 busy=0 think=killed type=void d=482
+.000] ^~^~^ MG MAN k=2 alive=0 hp=0.000 at=( -3233.269 2559.125 0.125 ) mounted=0 busy=0 think=killed type=void d=771
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -3568.875 3116.068 16.125 ) mounted=0 busy=0 think=killed type=void d=1009
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=161 at=( -3924.743 2318.640 0.125 ) enemyIsTeam=0 think=idle hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ MG STATE sid=1 busy=0 over=1 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=0 hp=0.000 at=( -4028.401 2623.128 0.125 ) mounted=0 busy=0 think=killed type=void d=482
+.000] ^~^~^ MG MAN k=2 alive=0 hp=0.000 at=( -3233.269 2559.125 0.125 ) mounted=0 busy=0 think=killed type=void d=771
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -3568.875 3116.068 16.125 ) mounted=0 busy=0 think=killed type=void d=1009
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=160 at=( -3923.889 2317.657 0.125 ) enemyIsTeam=0 think=idle hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ MG lookgun d=483
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ RNF radio call n=1 snd=coop_radio_german_reinf7 live=0
+.000] ^~^~^ RMG t=91.900 team sid=2 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -3575.420 2324.414 0.125 )
+.000] ^~^~^ RMG t=94.200 stage runto pathdist=0.000 think=idle d=5106
+.000] ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3687.202 2215.511 0.125 ) mounted=0 busy=1 think=idle type=turret d=214
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3873.639 2308.432 0.125 ) mounted=0 busy=0 think=attack type=turret d=149
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -4024.000 2624.000 0.125 ) mounted=0 busy=0 think=attack type=turret d=481
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=647 at=( -4345.846 2623.739 13.940 ) enemyIsTeam=3 think=attack hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3683.640 2218.241 0.125 ) mounted=0 busy=1 think=idle type=turret d=218
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3873.639 2308.432 0.125 ) mounted=0 busy=0 think=attack type=turret d=149
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -3957.624 2731.313 0.125 ) mounted=0 busy=0 think=killed type=void d=574
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=663 at=( -4392.000 2597.997 15.382 ) enemyIsTeam=2 think=attack hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ MG lookgun d=221
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ RMG t=104.200 staged secs=10 stall=8 at=( -3682.263 2213.243 0.125 ) stage=( -3139.350 -2868.564 53.218 )
+.000] ^~^~^ RMG t=105.525 no site fails=1
+.000] ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -4021.748 2624.062 0.125 ) mounted=0 busy=0 think=attack type=cover d=481
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3873.639 2308.432 0.125 ) mounted=0 busy=0 think=attack type=turret d=149
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -3957.624 2731.313 0.125 ) mounted=0 busy=0 think=killed type=void d=574
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=667 at=( -4392.000 2603.698 15.382 ) enemyIsTeam=1 think=attack hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ RMG t=111.850 no site fails=2
+.000] ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=11.800 at=( -3924.978 2497.723 0.125 ) mounted=0 busy=0 think=attack type=turret d=339
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3873.639 2308.432 0.125 ) mounted=0 busy=0 think=attack type=turret d=149
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -3957.624 2731.313 0.125 ) mounted=0 busy=0 think=killed type=void d=574
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=661 at=( -4393.776 2592.921 15.438 ) enemyIsTeam=1 think=attack hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ MG lookgun d=341
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ RMG t=118.175 no site fails=3
+.000] ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=11.800 at=( -3964.224 2510.672 0.125 ) mounted=0 busy=0 think=attack type=turret d=357
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3873.639 2308.432 0.125 ) mounted=0 busy=0 think=attack type=turret d=149
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -3957.624 2731.313 0.125 ) mounted=0 busy=0 think=killed type=void d=574
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=633 at=( -4324.731 2624.948 13.317 ) enemyIsTeam=1 think=attack hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ RMG t=124.175 gunner down, k=2 takes over, gun up=0
+.000] ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=0 hp=0.000 at=( -3886.610 2533.690 0.125 ) mounted=0 busy=0 think=killed type=void d=373
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3873.639 2308.432 0.125 ) mounted=0 busy=0 think=attack type=turret d=149
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -3957.624 2731.313 0.125 ) mounted=0 busy=0 think=killed type=void d=574
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=630 at=( -3984.858 2783.851 0.125 ) enemyIsTeam=2 think=attack hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ MG lookgun d=377
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ RMG t=125.500 no site fails=1
+.000] ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=0 hp=0.000 at=( -3863.577 2533.690 0.125 ) mounted=0 busy=0 think=killed type=void d=374
+.000] ^~^~^ MG MAN k=2 alive=1 hp=58.200 at=( -3808.841 2294.007 0.125 ) mounted=0 busy=0 think=attack type=turret d=158
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -3957.624 2731.313 0.125 ) mounted=0 busy=0 think=killed type=void d=574
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=947 at=( -4040.606 3095.792 0.125 ) enemyIsTeam=2 think=attack hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ RMG t=131.825 no site fails=2
+.000] ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=0 hp=0.000 at=( -3863.577 2533.690 0.125 ) mounted=0 busy=0 think=killed type=void d=374
+.000] ^~^~^ MG MAN k=2 alive=1 hp=58.200 at=( -3945.135 2292.053 0.125 ) mounted=0 busy=0 think=attack type=turret d=141
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -3957.624 2731.313 0.125 ) mounted=0 busy=0 think=killed type=void d=574
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=949 at=( -4055.375 3095.840 0.125 ) enemyIsTeam=2 think=attack hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ MG lookgun d=377
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ RMG t=138.150 no site fails=3
+.000] ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=0 hp=0.000 at=( -3863.577 2533.690 0.125 ) mounted=0 busy=0 think=killed type=void d=374
+.000] ^~^~^ MG MAN k=2 alive=1 hp=58.200 at=( -3934.146 2296.049 0.125 ) mounted=0 busy=0 think=attack type=turret d=141
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -3957.624 2731.313 0.125 ) mounted=0 busy=0 think=killed type=void d=574
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=959 at=( -4106.682 3095.494 0.125 ) enemyIsTeam=2 think=grenade hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ RMG t=144.475 no site fails=4
+.000] ^~^~^ RMG t=144.475 release why=no_site
+.000] ^~^~^ RMG t=144.900 brain end sid=2 secs=52
+.000] ^~^~^ RMG t=146.575 team sid=3 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -4035.728 3481.410 0.125 )
+.000] ^~^~^ MG STATE sid=3 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=3.000 at=( -3775.261 3196.274 0.125 ) mounted=0 busy=0 think=pain type=cover d=1043
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3769.316 3310.084 8.125 ) mounted=0 busy=0 think=attack type=cover d=1156
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -4029.945 3520.544 0.125 ) mounted=0 busy=0 think=attack type=turret d=1367
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=955 at=( -4090.391 3095.195 0.125 ) enemyIsTeam=1 think=attack hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ MG lookgun d=1036
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ RMG t=148.575 gunner down, k=2 takes over, gun up=0
+.000] ^~^~^ RMG t=149.875 stage runto pathdist=0.000 think=idle d=6095
+.000] ^~^~^ MG STATE sid=3 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=0 hp=0.000 at=( -3782.545 3158.279 0.125 ) mounted=0 busy=0 think=killed type=void d=1004
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3527.634 3214.486 16.125 ) mounted=0 busy=1 think=idle type=cover d=1116
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -4027.213 3591.103 0.125 ) mounted=0 busy=0 think=killed type=void d=1437
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=467 at=( -3931.086 2626.219 0.125 ) enemyIsTeam=0 think=idle hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ RNF radio call n=2 snd=coop_radio_german_reinf6 live=1
+.000] ^~^~^ RMG t=158.875 staged secs=9 stall=8 at=( -3526.886 3211.724 16.125 ) stage=( -3139.350 -2868.564 53.218 )
+.000] ^~^~^ MG STATE sid=3 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=0 hp=0.000 at=( -3782.545 3158.279 0.125 ) mounted=0 busy=0 think=killed type=void d=1004
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3513.049 3141.853 16.125 ) mounted=0 busy=0 think=attack type=cover d=1053
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -4027.213 3591.103 0.125 ) mounted=0 busy=0 think=killed type=void d=1437
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG ACTOR 81 model=models/human/2nd-ranger_captain.tik d=136 at=( -3914.320 2294.529 0.125 ) enemyIsTeam=0 think=idle hp=100.000
+.000] ^~^~^ MG CENSUS 1
+.000] ^~^~^ MG did census
+.000] ^~^~^ MG lookgun d=1005
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ RMG t=160.200 no site fails=1

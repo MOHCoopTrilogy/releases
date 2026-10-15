@@ -1,0 +1,62 @@
+.000] ^~^~^ MG armed
+.000] ^~^~^ MG here ( -3894.000 2160.000 0.125 ) ang=( 0.000 90.000 0.000 )
+.000] ^~^~^ MG did here
+.000] ^~^~^ MG did god
+.000] ^~^~^ MG setup REAL officer=( -3098.124 -2646.324 40.728 ) player=( -3894.000 2160.000 0.125 ) alive=1
+.000] ^~^~^ MG did setup
+.000] ^~^~^ MG purged non-german 4
+.000] ^~^~^ MG purged 38
+.000] ^~^~^ MG did purge
+.000] ^~^~^ MG tpoff heading=0 clear=1.000 player=( -2398.124 -2646.324 -11.443 ) officer=( -3098.124 -2646.324 40.728 )
+.000] ^~^~^ MG did tpoff
+.000] ^~^~^ RMG t=41.975 team sid=1 n=3 anchor=officer at=( -3094.899 -2698.752 44.286 ) from=( -4920.737 -3981.951 -108.724 )
+.000] ^~^~^ MG did wave
+.000] ^~^~^ RMG t=44.275 stage runto pathdist=2172.371 think=idle d=1885
+.000] ^~^~^ RMG t=62.275 staged secs=18 stall=8 at=( -3946.365 -3616.747 -2.116 ) stage=( -3314.279 -2715.259 50.572 )
+.000] ^~^~^ RMG t=70.950 unpack secs=1.000 at=( -3210.591 -2860.159 48.435 )
+.000] ^~^~^ MG mortal hp=100000.000
+.000] ^~^~^ MG did mortal
+.000] ^~^~^ MG HP t=166.250 hp=99693.555 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=168.475 hp=99322.734 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=170.700 hp=98958.852 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=172.925 hp=98707.359 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=175.150 hp=98291.820 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=177.375 hp=97951.188 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=179.600 hp=97696.664 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=181.825 hp=97385.633 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=184.050 hp=96854.648 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=186.275 hp=96624.359 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=188.500 hp=96319.750 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=190.725 hp=95929.812 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=192.950 hp=95487.203 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=195.175 hp=95117.477 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=197.375 hp=94810.016 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=199.625 hp=94469.969 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=201.825 hp=93930.242 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=204.075 hp=93521.383 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=206.275 hp=93165.164 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=208.525 hp=92627.109 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=210.725 hp=92340.844 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=212.950 hp=92017.109 bursts=-
+.000] ^~^~^ MG did hp

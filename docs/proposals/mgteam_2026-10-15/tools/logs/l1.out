@@ -1,0 +1,12 @@
+16:17:46 t=0.032 launched pid 26448 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:17:46 t=0.052 in-process guard installed on thread 11896
+16:17:47 t=0.441 place 0xb09fe SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:17:47 t=0.569 place 0xc09fe SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:17:47 t=0.575 place 0x5e0ca6 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:18:52 booted mg_l1 m3l2 ref=work dog False
+16:19:18 l1 gun up: True aim 1
+16:20:07 l1 RESULT aim=1 damage=6478 in 115s (0.0/s) bursts_at_end=16
+16:20:07 l1 hp series: [(69, 184), (71, 262), (73, 396), (75, 656), (78, 859), (80, 1191), (82, 1597), (84, 2034), (87, 2495), (89, 2790), (91, 3071), (93, 3321), (95, 3872), (98, 4347), (100, 4682), (102, 4885), (104, 5193), (107, 5561), (109, 5714), (111, 5903), (113, 6189), (115, 6477)]
+16:20:07 l1 script errors: 0 []
+16:20:07 t=140.979 process exited
+16:20:07 [mg_l1] done: 0 shots, window {'clean': True, 'violations': []}

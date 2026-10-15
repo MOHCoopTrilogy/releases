@@ -1,0 +1,20 @@
+15:58:30 t=0.030 launched pid 10364 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+15:58:30 t=0.052 in-process guard installed on thread 12416
+15:58:30 t=0.441 place 0x4f05b0 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:58:31 t=0.564 place 0x5005b0 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+15:58:31 t=0.570 place 0x1010b3e SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:59:36 booted mg_t4 m3l2 ref=work dog False
+15:59:36 t4 player -3894.0 2160.0 0.125 yaw 90.0
+16:01:33 t4 gun up: False after 115 s
+16:01:33 t4     ^~^~^ RMG t=43.075 team sid=1 n=3 anchor=officer at=( -3098.002 -2651.154 41.066 ) from=( -3892.607 3388.649 0.125 )
+16:01:33 t4     ^~^~^ RMG t=45.375 stage runto pathdist=0.000 think=idle d=6059
+16:01:33 t4     ^~^~^ RMG t=63.775 staged secs=18 stall=8 at=( -3768.000 3096.000 0.125 ) stage=( -3062.092 -2868.204 47.809 )
+16:01:33 t4     ^~^~^ RMG t=65.125 no site fails=1
+16:01:33 t4     ^~^~^ RMG t=71.475 no site fails=2
+16:01:33 t4     ^~^~^ RMG t=77.825 no site fails=3
+16:01:33 t4     ^~^~^ RMG t=84.175 no site fails=4
+16:01:33 t4     ^~^~^ RMG t=84.175 release why=no_site
+16:01:33 t4     ^~^~^ RMG t=84.575 brain end sid=1 secs=41
+16:01:33 t4 script errors: 0 []
+16:01:34 t=183.765 process exited
+16:01:34 [mg_t4] done: 11 shots, window {'clean': True, 'violations': []}

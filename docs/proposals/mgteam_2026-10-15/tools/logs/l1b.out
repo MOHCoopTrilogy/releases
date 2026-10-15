@@ -1,0 +1,12 @@
+16:24:29 t=0.029 launched pid 11888 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:24:29 t=0.053 in-process guard installed on thread 9400
+16:24:30 t=0.442 place 0x11009ac SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:24:30 t=0.568 place 0x11109ac SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:24:30 t=0.574 place 0x8e09ca SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:25:34 booted mg_l1b m3l2 ref=work dog False
+16:26:08 l1b gun up: True aim 1
+16:27:14 l1b RESULT aim=1 gun-only damage=5198 in 61s of game time (85.0 hp/s), bursts 2 -> 17
+16:27:14 l1b hp series: [(78, 266), (81, 461), (83, 761), (86, 957), (88, 1193), (91, 1412), (93, 1588), (96, 1852), (98, 2048), (100, 2360), (103, 2553), (105, 2727), (108, 2986), (110, 3172), (113, 3367), (115, 3608), (118, 3804), (120, 4033), (122, 4224), (125, 4418), (127, 4593), (130, 4790), (132, 4900), (135, 4994), (137, 5104), (140, 5197)]
+16:27:14 l1b script errors: 0 []
+16:27:14 t=164.841 process exited
+16:27:14 [mg_l1b] done: 0 shots, window {'clean': True, 'violations': []}

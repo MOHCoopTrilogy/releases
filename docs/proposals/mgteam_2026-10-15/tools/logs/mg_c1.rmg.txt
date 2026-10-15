@@ -1,0 +1,33 @@
+.000] ^~^~^ MG armed
+.000] ^~^~^ MG here ( -3894.000 2160.000 0.125 ) ang=( 0.000 90.000 0.000 )
+.000] ^~^~^ MG did here
+.000] ^~^~^ MG did god
+.000] ^~^~^ MG setup REAL officer=( -3098.000 -2651.000 41.055 ) player=( -3894.000 2160.000 0.125 ) alive=1
+.000] ^~^~^ MG did setup
+.000] ^~^~^ MG purged non-german 4
+.000] ^~^~^ MG purged 39
+.000] ^~^~^ MG did purge
+.000] ^~^~^ MG tpoff heading=0 clear=1.000 player=( -2398.000 -2651.000 -11.331 ) officer=( -3098.000 -2651.000 41.055 )
+.000] ^~^~^ MG did tpoff
+.000] ^~^~^ RMG t=41.675 team sid=1 n=3 anchor=officer at=( -3098.000 -2651.000 41.055 ) from=( -4896.883 -4020.299 -108.393 )
+.000] ^~^~^ MG did wave
+.000] ^~^~^ RMG t=43.975 stage runto pathdist=2374.685 think=idle d=2162
+.000] ^~^~^ RMG t=55.975 staged secs=12 stall=0 at=( -3417.855 -2805.011 48.563 ) stage=( -3318.000 -2651.000 46.041 )
+.000] ^~^~^ MG camgun none
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun none
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun at=( -3002.759 -2526.876 30.052 ) gun=( -3172.596 -2774.172 86.560 ) off=50.000 d=305
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ RMG t=58.600 unpack secs=2 at=( -3212.740 -2770.576 46.972 )
+.000] ^~^~^ RMG t=62.450 gun up gunner=1 at=( -3172.596 -2774.172 86.560 ) yaw=5.520 mode=C
+.000] ^~^~^ MG camgun at=( -2759.981 -2594.593 19.484 ) gun=( -3172.596 -2774.172 86.560 ) off=18.000 d=454
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ RMG t=62.650 target UnnamedSoldier#8240 d=453 fromAnchor=321 settle=0.700
+.000] ^~^~^ RMG t=64.050 burst done len=0.700 at=UnnamedSoldier#8240 hp=100000.000 ammo=240 heat=33.750
+.000] ^~^~^ RMG t=66.250 burst barrel len=0.600 at=UnnamedSoldier#8240 hp=100000.000 ammo=232 heat=49.500
+.000] ^~^~^ MG camgun at=( -3011.493 -2521.099 30.088 ) gun=( -3172.596 -2774.172 86.560 ) off=52.000 d=305
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG killing gunner k=1 at=( -3230.776 -2789.842 47.270 )
+.000] ^~^~^ MG did killgunner
+.000] ^~^~^ RMG t=68.450 gunner down, k=2 takes over, gun up=1

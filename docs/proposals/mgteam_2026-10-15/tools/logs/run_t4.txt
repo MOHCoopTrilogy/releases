@@ -1,0 +1,12 @@
+player -3894.0 2160.0 0.125 yaw 90.0
+gun up: False after 115 s
+    ^~^~^ RMG t=43.075 team sid=1 n=3 anchor=officer at=( -3098.002 -2651.154 41.066 ) from=( -3892.607 3388.649 0.125 )
+    ^~^~^ RMG t=45.375 stage runto pathdist=0.000 think=idle d=6059
+    ^~^~^ RMG t=63.775 staged secs=18 stall=8 at=( -3768.000 3096.000 0.125 ) stage=( -3062.092 -2868.204 47.809 )
+    ^~^~^ RMG t=65.125 no site fails=1
+    ^~^~^ RMG t=71.475 no site fails=2
+    ^~^~^ RMG t=77.825 no site fails=3
+    ^~^~^ RMG t=84.175 no site fails=4
+    ^~^~^ RMG t=84.175 release why=no_site
+    ^~^~^ RMG t=84.575 brain end sid=1 secs=41
+script errors: 0 []

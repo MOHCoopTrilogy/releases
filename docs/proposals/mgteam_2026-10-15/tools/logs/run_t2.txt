@@ -1,0 +1,24 @@
+player -3894.0 2160.0 0.125 yaw 90.0
+gun up: True after 27 s
+    ^~^~^ RMG t=44.225 team sid=1 n=3 anchor=officer at=( -3894.000 2660.000 0.125 ) from=( -3199.167 3461.260 0.125 )
+    ^~^~^ RMG t=54.225 staged secs=8 stall=8 at=( -2946.456 3458.097 0.125 ) stage=( -3894.000 2880.000 0.125 )
+    ^~^~^ RMG t=63.700 unpack secs=2 at=( -3895.304 2692.913 0.125 )
+    ^~^~^ RMG t=66.950 target UnnamedSoldier#8240 d=462 fromAnchor=4865 settle=0.700
+    ^~^~^ RMG t=67.550 gun up gunner=1 at=( -3879.510 2620.601 39.425 ) yaw=278.817 mode=C
+    ^~^~^ RMG t=68.150 burst gone len=0.400 at=UnnamedSoldier#8240 hp=100000.000 ammo=245 heat=15.500
+    ^~^~^ RMG t=68.550 gunner down, k=2 takes over, gun up=1
+    ^~^~^ RMG t=69.800 gunner down, k=3 takes over, gun up=1
+takeover: None
+    ^~^~^ RMG t=84.575 team sid=2 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -2763.188 2766.387 8.580 )
+    ^~^~^ RMG t=103.575 staged secs=17 stall=8 at=( -2481.926 2832.048 18.078 ) stage=( -3139.350 -2868.564 53.218 )
+    ^~^~^ RMG t=104.900 no site fails=1
+    ^~^~^ RMG t=111.225 no site fails=2
+    ^~^~^ RMG t=117.550 no site fails=3
+    ^~^~^ RMG t=123.875 no site fails=4
+    ^~^~^ RMG t=123.875 release why=no_site
+    ^~^~^ RMG t=124.075 brain end sid=2 secs=39
+    ^~^~^ MG STATE sid=2 busy=0 over=1 kind=radio bursts=1 ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+    ^~^~^ MG MAN k=1 alive=1 hp=61.051 at=( -2712.277 2752.618 12.637 ) mounted=0 busy=0 think=attack type=turret d=1322
+    ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -2821.819 2743.792 0.125 ) mounted=0 busy=0 think=attack type=turret d=1220
+    ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -2763.393 2775.030 9.459 ) mounted=0 busy=0 think=attack type=turret d=1287
+script errors: 0 []

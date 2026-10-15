@@ -1,0 +1,39 @@
+16:32:50 t=0.034 launched pid 8032 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:32:50 t=0.073 in-process guard installed on thread 10660
+16:32:50 t=0.449 place 0xa709ca SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:32:50 t=0.563 place 0xa809ca SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:32:50 t=0.567 place 0xcf0ac4 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:33:55 booted mg_r2 m3l2 ref=work dog False
+16:34:12 r2 gun up: RMG t=56.725 gun up
+16:34:22 r2 relocate: RMG t=66.975 relocate
+16:34:23 r2 pack up: RMG t=67.725 pack up
+16:34:31 r2 gun up again: RMG t=75.850 gun up
+16:34:35 r2     ^~^~^ RMG t=44.275 stage runto pathdist=1669.314 think=idle d=1553
+16:34:35 r2     ^~^~^ RMG t=50.275 staged secs=6 stall=0 at=( -3388.718 -2806.951 48.016 ) stage=( -3317.409 -2636.873 45.022 )
+16:34:35 r2     ^~^~^ PSQ t=51.875 mg site how=1 mode=C gun=( -3187.598 -2783.270 85.846 ) yaw=0.417 top=0 fire=advance:1.500 arc=45 seat=( -3247.060 -2775.003 47.324 ) walk=40.037 path=297.910 of=1
+16:34:35 r2     ^~^~^ PSQ t=51.875 mg plan aim=advance ground=51 passed=1 tried=1 bags=1 refused: height=29 gap=2 bag_ground=1 bag_slope=4 secs=0.600
+16:34:35 r2     ^~^~^ PSQ t=52.375 mg walk how=1 left=11.936 ok=1
+16:34:35 r2     ^~^~^ RMG t=52.875 unpack secs=2 at=( -3229.193 -2775.046 47.019 )
+16:34:35 r2     ^~^~^ RMG t=56.125 target UnnamedSoldier#8240 d=806 fromAnchor=644 settle=0.700
+16:34:35 r2     ^~^~^ PSQ t=56.725 mg setup k=1 mode=C gun=( -3187.598 -2783.270 85.846 ) yaw=0.417 arc=45 top=0 seat=( -3247.727 -2784.722 47.775 ) hp=38.071 pos=crouch
+16:34:35 r2     ^~^~^ RMG t=56.725 gun up gunner=1 at=( -3187.598 -2783.270 85.846 ) yaw=0.417 mode=C
+16:34:35 r2     ^~^~^ RMG t=57.925 burst done len=1.000 at=UnnamedSoldier#8240 hp=100000.000 ammo=236 heat=41.500
+16:34:35 r2     ^~^~^ RMG t=59.225 burst barrel len=0.300 at=UnnamedSoldier#8240 hp=100000.000 ammo=232 heat=47.050
+16:34:35 r2     ^~^~^ PSQ t=59.425 mg hold fire=barrel_hot
+16:34:35 r2     ^~^~^ PSQ t=63.675 mg hold fire=clear
+16:34:35 r2     ^~^~^ RMG t=64.575 burst barrel len=0.900 at=UnnamedSoldier#8240 hp=100000.000 ammo=221 heat=49.200
+16:34:35 r2     ^~^~^ PSQ t=64.775 mg hold fire=barrel_hot
+16:34:35 r2     ^~^~^ MG camgun at=( -3238.226 -2507.885 34.572 ) gun=( -3187.598 -2783.270 85.846 ) off=100 d=284
+16:34:35 r2     ^~^~^ RMG t=66.975 relocate why=flanked gun=( -3187.598 -2783.270 85.846 )
+16:34:35 r2     ^~^~^ RMG t=67.725 pack up why=flanked
+16:34:35 r2     ^~^~^ PSQ t=68.925 mg packup k=1
+16:34:35 r2     ^~^~^ PSQ t=71.250 mg site how=2 mode=C gun=( -3120.296 -2801.488 87.393 ) yaw=12.088 top=0 fire=enemy:1.500 arc=45 seat=( -3180.241 -2805.408 48.287 ) walk=40.312 path=0 of=1
+16:34:35 r2     ^~^~^ PSQ t=71.250 mg plan aim=enemy ground=55 passed=1 tried=1 bags=1 refused: height=34 gap=1 squad_in_front=1 bag_ground=3 bag_slope=2 secs=0.325
+16:34:35 r2     ^~^~^ PSQ t=71.500 mg walk how=2 left=7.369 ok=1
+16:34:35 r2     ^~^~^ RMG t=72.000 unpack secs=2 at=( -3178.719 -2821.417 49.086 )
+16:34:35 r2     ^~^~^ PSQ t=75.850 mg setup k=1 mode=C gun=( -3120.296 -2801.488 87.393 ) yaw=12.088 arc=45 top=0 seat=( -3180.201 -2805.420 49.858 ) hp=37.536 pos=crouch
+16:34:35 r2     ^~^~^ RMG t=75.850 gun up gunner=1 at=( -3120.296 -2801.488 87.393 ) yaw=12.088 mode=C
+16:34:35 r2     ^~^~^ MG GUN at=( -3120.296 -2801.488 87.393 ) ang=( -0.000 12.088 0.000 ) ammo=221 heat=0.000 d=320 offd=349
+16:34:35 r2 script errors: 0 []
+16:34:35 t=105.204 process exited
+16:34:35 [mg_r2] done: 0 shots, window {'clean': True, 'violations': []}

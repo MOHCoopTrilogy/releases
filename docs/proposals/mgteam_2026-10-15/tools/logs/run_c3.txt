@@ -1,0 +1,55 @@
+staged: RMG t=53.775 staged
+camera: False
+camera 2: True
+camera 3: True
+    ^~^~^ RMG t=44.775 stage runto pathdist=2383.865 think=idle d=2142
+    ^~^~^ RMG t=53.775 staged secs=9 stall=0 at=( -3418.051 -2807.153 48.465 ) stage=( -3318.105 -2653.221 46.201 )
+    ^~^~^ MG camgun none
+    ^~^~^ MG camgun none
+    ^~^~^ MG camgun none
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ RMG t=56.900 unpack secs=2 at=( -3236.974 -2820.422 45.014 )
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ RMG t=60.150 target UnnamedSoldier#8240 d=807 fromAnchor=911 settle=0.700
+    ^~^~^ MG camgun noplace
+    ^~^~^ RMG t=60.750 gun up gunner=1 at=( -3183.389 -2812.661 85.684 ) yaw=13.243 mode=C
+    ^~^~^ MG camgun noplace
+    ^~^~^ RMG t=61.750 burst done len=0.800 at=UnnamedSoldier#8240 hp=100000.000 ammo=241 heat=25.700
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ RMG t=63.850 burst done len=0.900 at=UnnamedSoldier#8240 hp=100000.000 ammo=236 heat=27.750
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ RMG t=66.350 burst barrel len=0.900 at=UnnamedSoldier#8240 hp=100000.000 ammo=227 heat=45.450
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ RMG t=68.050 burst barrel len=0.300 at=UnnamedSoldier#8240 hp=100000.000 ammo=223 heat=47.800
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ RMG t=73.850 burst done len=1.100 at=UnnamedSoldier#8240 hp=100000.000 ammo=215 heat=36.200
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ RMG t=76.050 burst barrel len=0.600 at=UnnamedSoldier#8240 hp=100000.000 ammo=207 heat=51.950
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+    ^~^~^ MG camgun noplace
+script errors: 0 []

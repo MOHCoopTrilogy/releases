@@ -1,0 +1,33 @@
+gun up: RMG t=63.025 gun up
+relocate: RMG t=72.975 relocate
+pack up: RMG t=73.025 pack up
+gun up again: RMG t=89.350 gun up
+    ^~^~^ RMG t=44.275 stage runto pathdist=2395.304 think=idle d=2146
+    ^~^~^ RMG t=56.275 staged secs=12 stall=0 at=( -3377.562 -2738.956 51.029 ) stage=( -3318.136 -2646.326 45.709 )
+    ^~^~^ PSQ t=57.925 mg site how=1 mode=C gun=( -3142.933 -2783.868 87.421 ) yaw=12.227 top=0 fire=advance:1.500 arc=45 seat=( -3203.095 -2787.869 46.017 ) walk=97.266 path=346.979 of=2
+    ^~^~^ PSQ t=57.925 mg plan aim=advance ground=56 passed=2 tried=1 bags=1 refused: height=29 squad_in_front=7 bag_ground=1 bag_slope=1 secs=0.650
+    ^~^~^ PSQ t=58.675 mg walk how=1 left=4.468 ok=1
+    ^~^~^ RMG t=59.175 unpack secs=2 at=( -3197.152 -2789.882 46.615 )
+    ^~^~^ RMG t=62.425 target UnnamedSoldier#8240 d=763 fromAnchor=723 settle=0.700
+    ^~^~^ PSQ t=63.025 mg setup k=1 mode=C gun=( -3142.933 -2783.868 87.421 ) yaw=12.227 arc=45 top=0 seat=( -3203.212 -2785.946 47.648 ) hp=39.772 pos=crouch
+    ^~^~^ RMG t=63.025 gun up gunner=1 at=( -3142.933 -2783.868 87.421 ) yaw=12.227 mode=C
+    ^~^~^ RMG t=64.125 burst done len=0.900 at=UnnamedSoldier#8240 hp=100000.000 ammo=237 heat=43.750
+    ^~^~^ PSQ t=64.725 mg hold fire=friend_in_front
+    ^~^~^ MG camgun at=( -3248.849 -2524.673 35.937 ) gun=( -3142.933 -2783.868 87.421 ) off=100 d=284
+    ^~^~^ RMG t=72.975 relocate why=flanked gun=( -3142.933 -2783.868 87.421 )
+    ^~^~^ RMG t=73.025 pack up why=flanked
+    ^~^~^ PSQ t=74.225 mg packup k=1
+    ^~^~^ PSQ t=76.550 mg nosite aim=enemy ground=54 passed=1 tried=0 bags=1 refused: height=22 gap=2 squad_in_front=7 bag_ground=2 bag_slope=3 secs=0.325
+    ^~^~^ RMG t=76.550 no site fails=1
+    ^~^~^ PSQ t=83.175 mg site how=1 mode=C gun=( -3200.195 -2803.131 85.570 ) yaw=11.062 top=0 fire=enemy:1.500 arc=45 seat=( -3260.240 -2805.966 46.068 ) walk=160.885 path=335.332 of=3
+    ^~^~^ PSQ t=83.175 mg plan aim=enemy ground=55 passed=3 tried=1 bags=1 refused: not_level=1 height=22 gap=1 squad_in_front=6 bag_ground=2 bag_slope=3 secs=0.625
+    ^~^~^ RMG t=83.425 gunner down, k=2 takes over, gun up=0
+    ^~^~^ PSQ t=84.750 mg site how=2 mode=C gun=( -3126.930 -2749.113 86.140 ) yaw=8.028 top=0 fire=enemy:1.500 arc=45 seat=( -3186.963 -2748.794 47.607 ) walk=56.504 path=0 of=2
+    ^~^~^ PSQ t=84.750 mg plan aim=enemy ground=54 passed=2 tried=1 bags=1 refused: not_level=2 height=24 squad_in_front=6 bag_ground=2 bag_slope=3 secs=0.325
+    ^~^~^ PSQ t=85.000 mg walk how=2 left=12.158 ok=1
+    ^~^~^ RMG t=85.500 unpack secs=2 at=( -3184.228 -2752.981 47.351 )
+    ^~^~^ PSQ t=88.750 mg hold fire=friend_in_front
+    ^~^~^ PSQ t=89.350 mg setup k=1 mode=C gun=( -3126.930 -2749.113 86.140 ) yaw=8.028 arc=45 top=0 seat=( -3186.964 -2748.794 48.509 ) hp=37.630 pos=crouch
+    ^~^~^ RMG t=89.350 gun up gunner=2 at=( -3126.930 -2749.113 86.140 ) yaw=8.028 mode=C
+    ^~^~^ MG GUN at=( -3126.930 -2749.113 86.140 ) ang=( 0.000 8.028 0.000 ) ammo=250 heat=0.000 d=260 offd=252
+script errors: 0 []

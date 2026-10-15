@@ -1,0 +1,149 @@
+.000] ^~^~^ MG armed
+.000] ^~^~^ MG here ( -3894.000 2160.000 0.125 ) ang=( 0.000 90.000 0.000 )
+.000] ^~^~^ MG did here
+.000] ^~^~^ MG did god
+.000] ^~^~^ MG setup officer=( -3894.000 2660.000 0.125 ) player=( -3894.000 2160.000 0.125 )
+.000] ^~^~^ MG did setup
+.000] ^~^~^ MG purged 40
+.000] ^~^~^ MG did purge
+.000] ^~^~^ MG did lookoff
+.000] ^~^~^ MG did wave
+.000] ^~^~^ RMG t=43.800 team sid=1 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -4280.073 3165.708 5.487 )
+.000] ^~^~^ MG STATE sid=1 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -4256.000 3080.000 0.412 ) mounted=0 busy=1 think=attack type=cover d=988
+.000] ^~^~^ MG MAN k=2 alive=0 hp=0.000 at=( -3959.171 3112.460 0.125 ) mounted=0 busy=1 think=killed type=void d=954
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -4357.771 2710.884 17.037 ) mounted=0 busy=0 think=attack type=turret d=720
+.000] ^~^~^ MG did state
+.000] ^~^~^ RMG t=47.800 staged left=6052 at=( -4256.000 3080.000 0.412 )
+.000] ^~^~^ RMG t=49.125 no site fails=1
+.000] ^~^~^ MG STATE sid=1 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -4256.000 3080.000 0.412 ) mounted=0 busy=0 think=attack type=cover d=988
+.000] ^~^~^ MG MAN k=2 alive=0 hp=0.000 at=( -3959.171 3112.460 0.125 ) mounted=0 busy=1 think=killed type=void d=954
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -4357.771 2710.884 17.037 ) mounted=0 busy=0 think=attack type=turret d=720
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG lookgun d=989
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ RMG t=55.450 no site fails=2
+.000] ^~^~^ MG STATE sid=1 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=32.606 at=( -3952.003 3084.555 4.125 ) mounted=0 busy=0 think=pain type=cover d=926
+.000] ^~^~^ MG MAN k=2 alive=0 hp=0.000 at=( -3959.171 3112.460 0.125 ) mounted=0 busy=1 think=killed type=void d=954
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -4053.890 2623.225 0.125 ) mounted=0 busy=1 think=killed type=void d=490
+.000] ^~^~^ MG did state
+.000] ^~^~^ RMG t=61.775 no site fails=3
+.000] ^~^~^ MG STATE sid=1 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=87.173 at=( -3937.177 3081.375 4.150 ) mounted=0 busy=0 think=idle type=cover d=922
+.000] ^~^~^ MG MAN k=2 alive=0 hp=0.000 at=( -3959.171 3112.460 0.125 ) mounted=0 busy=1 think=killed type=void d=954
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -4053.890 2623.225 0.125 ) mounted=0 busy=1 think=killed type=void d=490
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG lookgun d=922
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ RMG t=68.100 no site fails=4
+.000] ^~^~^ RMG t=68.100 release why=no_site
+.000] ^~^~^ RMG t=68.300 brain end sid=1 secs=24
+.000] ^~^~^ MG STATE sid=1 busy=0 over=1 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=87.173 at=( -3945.969 2993.581 0.125 ) mounted=0 busy=0 think=idle type=cover d=835
+.000] ^~^~^ MG MAN k=2 alive=0 hp=0.000 at=( -3959.171 3112.460 0.125 ) mounted=0 busy=1 think=killed type=void d=954
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -4053.890 2623.225 0.125 ) mounted=0 busy=1 think=killed type=void d=490
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG STATE sid=1 busy=0 over=1 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=87.173 at=( -3715.232 2291.274 0.125 ) mounted=0 busy=0 think=idle type=cover d=221
+.000] ^~^~^ MG MAN k=2 alive=0 hp=0.000 at=( -3959.171 3112.460 0.125 ) mounted=0 busy=1 think=killed type=void d=954
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -4053.890 2623.225 0.125 ) mounted=0 busy=1 think=killed type=void d=490
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG lookgun d=226
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ MG STATE sid=1 busy=0 over=1 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=87.173 at=( -3718.231 2300.489 0.125 ) mounted=0 busy=0 think=idle type=cover d=225
+.000] ^~^~^ MG MAN k=2 alive=0 hp=0.000 at=( -3959.171 3112.460 0.125 ) mounted=0 busy=1 think=killed type=void d=954
+.000] ^~^~^ MG MAN k=3 alive=0 hp=0.000 at=( -4053.890 2623.225 0.125 ) mounted=0 busy=1 think=killed type=void d=490
+.000] ^~^~^ MG did state
+.000] ^~^~^ RNF radio call n=1 snd=coop_radio_german_reinf9 live=2
+.000] ^~^~^ RMG t=82.775 team sid=2 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -3164.221 3420.491 0.125 )
+.000] ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3110.281 3615.633 0.125 ) mounted=0 busy=1 think=idle type=cover d=1653
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -2944.894 3429.379 0.125 ) mounted=0 busy=0 think=idle type=cover d=1584
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3164.221 3420.491 0.125 ) mounted=0 busy=0 think=idle type=cover d=1456
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG lookgun d=1653
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ RMG t=86.775 staged left=6484 at=( -3110.281 3615.633 0.125 )
+.000] ^~^~^ RMG t=88.100 no site fails=1
+.000] ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3110.281 3615.633 0.125 ) mounted=0 busy=0 think=attack type=turret d=1653
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -2945.967 3428.983 0.125 ) mounted=0 busy=0 think=attack type=cover d=1584
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3162.971 3419.953 0.125 ) mounted=0 busy=0 think=attack type=cover d=1456
+.000] ^~^~^ MG did state
+.000] ^~^~^ RMG t=94.425 no site fails=2
+.000] ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3110.281 3615.633 0.125 ) mounted=0 busy=0 think=attack type=turret d=1653
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -2945.967 3428.983 0.125 ) mounted=0 busy=0 think=attack type=turret d=1584
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3162.971 3419.953 0.125 ) mounted=0 busy=0 think=attack type=turret d=1456
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG lookgun d=1653
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ RMG t=100.750 no site fails=3
+.000] ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3110.281 3615.633 0.125 ) mounted=0 busy=0 think=attack type=turret d=1653
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -2945.967 3428.983 0.125 ) mounted=0 busy=0 think=attack type=turret d=1584
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3162.971 3419.953 0.125 ) mounted=0 busy=0 think=attack type=turret d=1456
+.000] ^~^~^ MG did state
+.000] ^~^~^ RMG t=107.075 no site fails=4
+.000] ^~^~^ RMG t=107.075 release why=no_site
+.000] ^~^~^ RMG t=107.275 brain end sid=2 secs=24
+.000] ^~^~^ MG STATE sid=2 busy=0 over=1 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3072.090 3292.007 0.125 ) mounted=0 busy=0 think=attack type=turret d=1398
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3105.882 3293.075 0.125 ) mounted=0 busy=0 think=attack type=turret d=1380
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3162.971 3419.953 0.125 ) mounted=0 busy=0 think=attack type=turret d=1456
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG lookgun d=1370
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ MG STATE sid=2 busy=0 over=1 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3216.271 3234.340 8.125 ) mounted=0 busy=0 think=attack type=turret d=1270
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3105.882 3293.075 0.125 ) mounted=0 busy=0 think=attack type=turret d=1380
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3162.971 3419.953 0.125 ) mounted=0 busy=0 think=attack type=turret d=1456
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG STATE sid=2 busy=0 over=1 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3069.257 3295.889 0.125 ) mounted=0 busy=0 think=attack type=turret d=1403
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3105.882 3293.075 0.125 ) mounted=0 busy=0 think=attack type=turret d=1380
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3162.971 3419.953 0.125 ) mounted=0 busy=0 think=attack type=turret d=1456
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG lookgun d=1404
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ MG STATE sid=2 busy=0 over=1 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3069.257 3295.889 0.125 ) mounted=0 busy=0 think=attack type=turret d=1403
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3105.882 3293.075 0.125 ) mounted=0 busy=0 think=attack type=turret d=1380
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3162.971 3419.953 0.125 ) mounted=0 busy=0 think=attack type=turret d=1456
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG STATE sid=2 busy=0 over=1 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3069.257 3295.889 0.125 ) mounted=0 busy=0 think=attack type=turret d=1403
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3105.882 3293.075 0.125 ) mounted=0 busy=0 think=attack type=turret d=1380
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3162.971 3419.953 0.125 ) mounted=0 busy=0 think=attack type=turret d=1456
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG lookgun d=1404
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ MG STATE sid=2 busy=0 over=1 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3069.257 3295.889 0.125 ) mounted=0 busy=0 think=attack type=turret d=1403
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3105.882 3293.075 0.125 ) mounted=0 busy=0 think=attack type=turret d=1380
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3162.971 3419.953 0.125 ) mounted=0 busy=0 think=attack type=turret d=1456
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG STATE sid=2 busy=0 over=1 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3069.257 3295.889 0.125 ) mounted=0 busy=0 think=attack type=turret d=1403
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3105.882 3293.075 0.125 ) mounted=0 busy=0 think=attack type=turret d=1380
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3162.971 3419.953 0.125 ) mounted=0 busy=0 think=attack type=turret d=1456
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG lookgun d=1404
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ MG STATE sid=2 busy=0 over=1 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3069.257 3295.889 0.125 ) mounted=0 busy=0 think=attack type=turret d=1403
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3105.882 3293.075 0.125 ) mounted=0 busy=0 think=attack type=turret d=1380
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3162.971 3419.953 0.125 ) mounted=0 busy=0 think=attack type=turret d=1456
+.000] ^~^~^ MG did state
+.000] ^~^~^ RNF radio call n=2 snd=coop_radio_german_reinf6 live=6
+.000] ^~^~^ MG STATE sid=2 busy=0 over=1 kind=radio bursts=- ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3069.257 3295.889 0.125 ) mounted=0 busy=0 think=attack type=turret d=1403
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3105.882 3293.075 0.125 ) mounted=0 busy=0 think=attack type=turret d=1380
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3162.971 3419.953 0.125 ) mounted=0 busy=0 think=attack type=turret d=1456
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG lookgun d=1404
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ RMG t=153.675 team sid=3 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -3119.973 2747.843 0.125 )

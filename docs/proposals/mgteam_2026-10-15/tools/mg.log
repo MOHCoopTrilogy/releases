@@ -1,0 +1,390 @@
+15:47:29 booted mg_t1 m3l2 ref=work dog False
+15:47:29 t1 player -3894.0 2160.0 0.125 yaw 90.0
+15:49:22 t1 gun up: False after 111 s
+15:49:22 t1     ^~^~^ RMG t=43.800 team sid=1 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -4280.073 3165.708 5.487 )
+15:49:22 t1     ^~^~^ RMG t=47.800 staged left=6052 at=( -4256.000 3080.000 0.412 )
+15:49:22 t1     ^~^~^ RMG t=49.125 no site fails=1
+15:49:22 t1     ^~^~^ RMG t=55.450 no site fails=2
+15:49:22 t1     ^~^~^ RMG t=61.775 no site fails=3
+15:49:22 t1     ^~^~^ RMG t=68.100 no site fails=4
+15:49:22 t1     ^~^~^ RMG t=68.100 release why=no_site
+15:49:22 t1     ^~^~^ RMG t=68.300 brain end sid=1 secs=24
+15:49:22 t1     ^~^~^ RMG t=82.775 team sid=2 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -3164.221 3420.491 0.125 )
+15:49:22 t1     ^~^~^ RMG t=86.775 staged left=6484 at=( -3110.281 3615.633 0.125 )
+15:49:22 t1     ^~^~^ RMG t=88.100 no site fails=1
+15:49:22 t1     ^~^~^ RMG t=94.425 no site fails=2
+15:49:22 t1     ^~^~^ RMG t=100.750 no site fails=3
+15:49:22 t1     ^~^~^ RMG t=107.075 no site fails=4
+15:49:22 t1     ^~^~^ RMG t=107.075 release why=no_site
+15:49:22 t1     ^~^~^ RMG t=107.275 brain end sid=2 secs=24
+15:49:22 t1     ^~^~^ RMG t=153.675 team sid=3 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -3119.973 2747.843 0.125 )
+15:49:22 t1 script errors: 0 []
+15:51:26 booted mg_t2 m3l2 ref=work dog False
+15:51:26 t2 player -3894.0 2160.0 0.125 yaw 90.0
+15:51:57 t2 gun up: True after 27 s
+15:51:57 t2     ^~^~^ RMG t=44.225 team sid=1 n=3 anchor=officer at=( -3894.000 2660.000 0.125 ) from=( -3199.167 3461.260 0.125 )
+15:51:57 t2     ^~^~^ RMG t=54.225 staged secs=8 stall=8 at=( -2946.456 3458.097 0.125 ) stage=( -3894.000 2880.000 0.125 )
+15:51:57 t2     ^~^~^ RMG t=63.700 unpack secs=2 at=( -3895.304 2692.913 0.125 )
+15:51:57 t2     ^~^~^ RMG t=66.950 target UnnamedSoldier#8240 d=462 fromAnchor=4865 settle=0.700
+15:51:57 t2     ^~^~^ RMG t=67.550 gun up gunner=1 at=( -3879.510 2620.601 39.425 ) yaw=278.817 mode=C
+15:51:57 t2     ^~^~^ RMG t=68.150 burst gone len=0.400 at=UnnamedSoldier#8240 hp=100000.000 ammo=245 heat=15.500
+15:51:57 t2     ^~^~^ RMG t=68.550 gunner down, k=2 takes over, gun up=1
+15:51:57 t2     ^~^~^ RMG t=69.800 gunner down, k=3 takes over, gun up=1
+15:53:11 t2 takeover: None
+15:53:22 t2     ^~^~^ RMG t=84.575 team sid=2 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -2763.188 2766.387 8.580 )
+15:53:22 t2     ^~^~^ RMG t=103.575 staged secs=17 stall=8 at=( -2481.926 2832.048 18.078 ) stage=( -3139.350 -2868.564 53.218 )
+15:53:22 t2     ^~^~^ RMG t=104.900 no site fails=1
+15:53:22 t2     ^~^~^ RMG t=111.225 no site fails=2
+15:53:22 t2     ^~^~^ RMG t=117.550 no site fails=3
+15:53:22 t2     ^~^~^ RMG t=123.875 no site fails=4
+15:53:22 t2     ^~^~^ RMG t=123.875 release why=no_site
+15:53:22 t2     ^~^~^ RMG t=124.075 brain end sid=2 secs=39
+15:53:22 t2     ^~^~^ MG STATE sid=2 busy=0 over=1 kind=radio bursts=1 ayaw=98.535 apos=( -3172.000 -2651.000 94.166 )
+15:53:22 t2     ^~^~^ MG MAN k=1 alive=1 hp=61.051 at=( -2712.277 2752.618 12.637 ) mounted=0 busy=0 think=attack type=turret d=1322
+15:53:22 t2     ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -2821.819 2743.792 0.125 ) mounted=0 busy=0 think=attack type=turret d=1220
+15:53:22 t2     ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -2763.393 2775.030 9.459 ) mounted=0 busy=0 think=attack type=turret d=1287
+15:53:22 t2 script errors: 0 []
+15:55:40 booted mg_t3 m3l2 ref=work dog False
+15:55:41 t3 player -3894.0 2160.0 0.125 yaw 90.0
+15:57:40 t3 gun up: False after 115 s
+15:57:40 t3     ^~^~^ RMG t=45.350 team sid=1 n=3 anchor=officer at=( -3893.933 2660.853 0.125 ) from=( -3148.865 2684.965 0.125 )
+15:57:40 t3     ^~^~^ RMG t=47.650 stage runto pathdist=1256.636 think=idle d=619
+15:57:40 t3     ^~^~^ RMG t=50.650 staged secs=3 stall=0 at=( -3810.413 2677.219 0.125 ) stage=( -3893.903 2880.853 0.125 )
+15:57:40 t3     ^~^~^ RMG t=52.575 no site fails=1
+15:57:40 t3     ^~^~^ RMG t=58.900 no site fails=2
+15:57:40 t3     ^~^~^ RMG t=61.350 brain end sid=1 secs=16
+15:57:40 t3     ^~^~^ RMG t=91.900 team sid=2 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -3575.420 2324.414 0.125 )
+15:57:40 t3     ^~^~^ RMG t=94.200 stage runto pathdist=0.000 think=idle d=5106
+15:57:40 t3     ^~^~^ RMG t=104.200 staged secs=10 stall=8 at=( -3682.263 2213.243 0.125 ) stage=( -3139.350 -2868.564 53.218 )
+15:57:40 t3     ^~^~^ RMG t=105.525 no site fails=1
+15:57:40 t3     ^~^~^ RMG t=111.850 no site fails=2
+15:57:40 t3     ^~^~^ RMG t=118.175 no site fails=3
+15:57:40 t3     ^~^~^ RMG t=124.175 gunner down, k=2 takes over, gun up=0
+15:57:40 t3     ^~^~^ RMG t=125.500 no site fails=1
+15:57:40 t3     ^~^~^ RMG t=131.825 no site fails=2
+15:57:40 t3     ^~^~^ RMG t=138.150 no site fails=3
+15:57:40 t3     ^~^~^ RMG t=144.475 no site fails=4
+15:57:40 t3     ^~^~^ RMG t=144.475 release why=no_site
+15:57:40 t3     ^~^~^ RMG t=144.900 brain end sid=2 secs=52
+15:57:40 t3     ^~^~^ RMG t=146.575 team sid=3 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -4035.728 3481.410 0.125 )
+15:57:40 t3     ^~^~^ RMG t=148.575 gunner down, k=2 takes over, gun up=0
+15:57:40 t3     ^~^~^ RMG t=149.875 stage runto pathdist=0.000 think=idle d=6095
+15:57:40 t3     ^~^~^ RMG t=158.875 staged secs=9 stall=8 at=( -3526.886 3211.724 16.125 ) stage=( -3139.350 -2868.564 53.218 )
+15:57:40 t3     ^~^~^ RMG t=160.200 no site fails=1
+15:57:40 t3 script errors: 0 []
+15:59:36 booted mg_t4 m3l2 ref=work dog False
+15:59:36 t4 player -3894.0 2160.0 0.125 yaw 90.0
+16:01:33 t4 gun up: False after 115 s
+16:01:33 t4     ^~^~^ RMG t=43.075 team sid=1 n=3 anchor=officer at=( -3098.002 -2651.154 41.066 ) from=( -3892.607 3388.649 0.125 )
+16:01:33 t4     ^~^~^ RMG t=45.375 stage runto pathdist=0.000 think=idle d=6059
+16:01:33 t4     ^~^~^ RMG t=63.775 staged secs=18 stall=8 at=( -3768.000 3096.000 0.125 ) stage=( -3062.092 -2868.204 47.809 )
+16:01:33 t4     ^~^~^ RMG t=65.125 no site fails=1
+16:01:33 t4     ^~^~^ RMG t=71.475 no site fails=2
+16:01:33 t4     ^~^~^ RMG t=77.825 no site fails=3
+16:01:33 t4     ^~^~^ RMG t=84.175 no site fails=4
+16:01:33 t4     ^~^~^ RMG t=84.175 release why=no_site
+16:01:33 t4     ^~^~^ RMG t=84.575 brain end sid=1 secs=41
+16:01:33 t4 script errors: 0 []
+16:03:08 booted mg_t5 m3l2 ref=work dog False
+16:03:08 t5 player -3894.0 2160.0 0.125 yaw 90.0
+16:03:29 t5 gun up: True after 17 s
+16:03:29 t5     ^~^~^ RMG t=49.775 staged secs=5 stall=0 at=( -3370.297 -2754.006 50.210 ) stage=( -3318.721 -2640.560 45.306 )
+16:03:29 t5     ^~^~^ RMG t=53.175 unpack secs=2 at=( -3231.247 -2863.088 47.228 )
+16:03:29 t5     ^~^~^ RMG t=56.425 target UnnamedSoldier#8240 d=811 fromAnchor=821 settle=0.700
+16:03:29 t5     ^~^~^ RMG t=57.025 gun up gunner=1 at=( -3173.843 -2865.531 88.382 ) yaw=10.658 mode=C
+16:03:29 t5     ^~^~^ RMG t=58.225 burst done len=1.000 at=UnnamedSoldier#8240 hp=100000.000 ammo=239 heat=31.350
+16:03:29 t5     ^~^~^ RMG t=60.225 burst done len=0.800 at=UnnamedSoldier#8240 hp=100000.000 ammo=233 heat=34.300
+16:03:47 t5 takeover: takeover failed
+16:03:58 t5     ^~^~^ RMG t=75.025 gunner down, k=2 takes over, gun up=1
+16:03:58 t5     ^~^~^ RMG t=79.275 takeover failed: not at the seat left=274
+16:03:58 t5     ^~^~^ RMG t=79.475 brain end sid=1 secs=37
+16:03:58 t5     ^~^~^ MG STATE sid=1 busy=0 over=1 kind=officer bursts=4 ayaw=0.045 apos=( -3201.125 -2651.781 44.310 )
+16:03:58 t5     ^~^~^ MG MAN k=1 alive=0 hp=0.000 at=( -3233.684 -2872.850 48.870 ) mounted=1 busy=0 think=killed type=void d=866
+16:03:58 t5     ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3224.745 -2981.600 51.873 ) mounted=0 busy=0 think=attack type=turret d=892
+16:03:58 t5     ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3212.015 -2724.407 49.668 ) mounted=0 busy=0 think=attack type=turret d=819
+16:03:58 t5     ^~^~^ MG GUN at=( -3173.843 -2865.531 88.382 ) ang=( -30.000 15.446 0.000 ) ammo=213 heat=0.000 d=811 offd=219
+16:03:58 t5 script errors: 0 []
+16:06:37 booted mg_t6 m3l2 ref=work dog False
+16:06:37 t6 player -3894.0 2160.0 0.125 yaw 90.0
+16:06:58 t6 gun up: True after 16 s
+16:07:13 t6 takeover: takeover done
+16:07:22 t6     ^~^~^ RMG t=45.275 stage runto pathdist=1481.583 think=idle d=1264
+16:07:22 t6     ^~^~^ RMG t=50.275 staged secs=5 stall=0 at=( -3433.218 -2947.209 42.137 ) stage=( -3327.014 -2693.716 49.232 )
+16:07:22 t6     ^~^~^ MG STATE sid=1 busy=1 over=0 kind=officer bursts=- ayaw=20.997 apos=( -3282.743 -2914.139 45.654 )
+16:07:22 t6     ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3433.214 -2947.163 42.139 ) mounted=0 busy=0 think=idle type=turret d=1078
+16:07:22 t6     ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3673.451 -3596.342 5.961 ) mounted=0 busy=0 think=attack type=turret d=1587
+16:07:22 t6     ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3790.798 -3647.823 -2.687 ) mounted=0 busy=0 think=attack type=turret d=1712
+16:07:22 t6     ^~^~^ RMG t=53.700 unpack secs=2 at=( -3188.393 -2904.529 51.429 )
+16:07:22 t6     ^~^~^ MG STATE sid=1 busy=1 over=0 kind=officer bursts=- ayaw=32.987 apos=( -3443.406 -3329.502 40.961 )
+16:07:22 t6     ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3186.878 -2913.344 51.840 ) mounted=0 busy=1 think=idle type=turret d=833
+16:07:22 t6     ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3391.655 -2904.061 43.510 ) mounted=0 busy=0 think=attack type=turret d=1026
+16:07:22 t6     ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3779.253 -3536.534 7.060 ) mounted=0 busy=0 think=attack type=turret d=1640
+16:07:22 t6     ^~^~^ RMG t=56.950 target UnnamedSoldier#8240 d=794 fromAnchor=1124 settle=0.700
+16:07:22 t6     ^~^~^ RMG t=57.550 gun up gunner=1 at=( -3149.547 -2888.272 90.741 ) yaw=27.888 mode=C
+16:07:22 t6     ^~^~^ RMG t=58.750 burst done len=1.000 at=UnnamedSoldier#8240 hp=100000.000 ammo=240 heat=28.450
+16:07:22 t6     ^~^~^ RMG t=61.150 burst done len=0.800 at=UnnamedSoldier#8240 hp=100000.000 ammo=228 heat=54.200
+16:07:22 t6     ^~^~^ MG STATE sid=1 busy=1 over=0 kind=officer bursts=2 ayaw=12.619 apos=( -3369.606 -3096.266 46.607 )
+16:07:22 t6     ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3209.079 -2897.752 51.322 ) mounted=1 busy=0 think=idle type=machinegunner d=850
+16:07:22 t6     ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3267.457 -2873.094 44.937 ) mounted=0 busy=0 think=attack type=turret d=899
+16:07:22 t6     ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3220.388 -2812.312 45.857 ) mounted=0 busy=0 think=attack type=turret d=840
+16:07:22 t6     ^~^~^ MG GUN at=( -3149.547 -2888.272 90.741 ) ang=( 4.644 17.526 0.000 ) ammo=228 heat=51.800 d=794 offd=387
+16:07:22 t6     ^~^~^ RMG t=67.300 burst done len=0.700 at=UnnamedSoldier#8240 hp=100000.000 ammo=219 heat=44.150
+16:07:22 t6     ^~^~^ RMG t=69.000 burst barrel len=0.300 at=UnnamedSoldier#8240 hp=100000.000 ammo=215 heat=46.500
+16:07:22 t6     ^~^~^ RMG t=70.700 burst barrel len=0.300 at=UnnamedSoldier#8240 hp=100000.000 ammo=211 heat=48.850
+16:07:22 t6     ^~^~^ MG STATE sid=1 busy=1 over=0 kind=officer bursts=5 ayaw=27.138 apos=( -3347.080 -3067.467 47.201 )
+16:07:22 t6     ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3209.079 -2897.752 51.322 ) mounted=1 busy=0 think=idle type=machinegunner d=850
+16:07:22 t6     ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3260.479 -2937.916 48.079 ) mounted=0 busy=0 think=attack type=turret d=910
+16:07:22 t6     ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3234.260 -2749.687 48.287 ) mounted=0 busy=0 think=attack type=turret d=844
+16:07:22 t6     ^~^~^ MG GUN at=( -3149.547 -2888.272 90.741 ) ang=( 4.644 17.526 0.000 ) ammo=211 heat=20.050 d=794 offd=216
+16:07:22 t6     ^~^~^ RMG t=74.550 gunner down, k=2 takes over, gun up=1
+16:07:22 t6     ^~^~^ RMG t=76.900 takeover done k=2
+16:07:22 t6     ^~^~^ RMG t=77.100 burst done len=0.800 at=UnnamedSoldier#8240 hp=100000.000 ammo=201 heat=34.400
+16:07:22 t6     ^~^~^ RMG t=79.200 burst done len=0.900 at=UnnamedSoldier#8240 hp=100000.000 ammo=199 heat=24.850
+16:07:22 t6     ^~^~^ RMG t=81.100 burst done len=0.700 at=UnnamedSoldier#8240 hp=100000.000 ammo=190 heat=48.800
+16:07:22 t6     ^~^~^ MG STATE sid=1 busy=1 over=0 kind=officer bursts=8 ayaw=19.174 apos=( -3268.999 -2876.177 44.951 )
+16:07:22 t6     ^~^~^ MG MAN k=1 alive=0 hp=0.000 at=( -3209.079 -2897.752 51.322 ) mounted=1 busy=0 think=killed type=void d=850
+16:07:22 t6     ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3209.079 -2897.752 51.322 ) mounted=1 busy=0 think=idle type=machinegunner d=850
+16:07:22 t6     ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3240.943 -2718.145 49.870 ) mounted=0 busy=0 think=attack type=turret d=847
+16:07:22 t6     ^~^~^ MG GUN at=( -3149.547 -2888.272 90.741 ) ang=( 4.644 17.526 0.000 ) ammo=190 heat=13.800 d=794 offd=128
+16:07:44 t6 radio team called: RMG t=107.800 team sid=2 n=3 anchor=radio
+16:08:12 t6     ^~^~^ RNF radio call n=1 snd=coop_radio_german_reinf4 live=3
+16:08:12 t6     ^~^~^ RMG t=107.800 team sid=2 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -4916.000 -4031.000 -109.671 )
+16:08:12 t6     ^~^~^ RMG t=110.100 stage runto pathdist=2350.385 think=idle d=2089
+16:08:12 t6     ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=9 ayaw=0.005 apos=( -3172.000 -2651.000 94.166 )
+16:08:12 t6     ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -4280.209 -3836.875 -58.651 ) mounted=0 busy=1 think=idle type=turret d=2225
+16:08:12 t6     ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -4675.866 -3887.015 -92.333 ) mounted=0 busy=0 think=attack type=turret d=2592
+16:08:12 t6     ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -4871.491 -4017.401 -106.945 ) mounted=0 busy=0 think=attack type=turret d=2827
+16:08:12 t6     ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=9 ayaw=0.005 apos=( -3172.000 -2651.000 94.166 )
+16:08:12 t6     ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3573.604 -2983.881 42.858 ) mounted=0 busy=1 think=idle type=turret d=1223
+16:08:12 t6     ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3763.400 -3304.303 32.131 ) mounted=0 busy=0 think=attack type=turret d=1514
+16:08:12 t6     ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3967.894 -3635.497 0.766 ) mounted=0 busy=0 think=attack type=turret d=1853
+16:08:12 t6     ^~^~^ RMG t=119.100 staged secs=9 stall=0 at=( -3462.436 -2780.120 50.673 ) stage=( -3392.000 -2651.020 47.198 )
+16:08:12 t6     ^~^~^ RNF radio call n=2 snd=coop_radio_german_reinf6 live=6
+16:08:12 t6     ^~^~^ RMG t=122.225 unpack secs=2 at=( -3219.231 -2794.636 46.192 )
+16:08:12 t6     ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=9 ayaw=0.005 apos=( -3172.000 -2651.000 94.166 )
+16:08:12 t6     ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3219.129 -2795.882 46.132 ) mounted=0 busy=1 think=idle type=turret d=835
+16:08:12 t6     ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3326.273 -2832.332 45.851 ) mounted=0 busy=0 think=attack type=turret d=947
+16:08:12 t6     ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3514.931 -2869.243 47.304 ) mounted=0 busy=0 think=attack type=turret d=1139
+16:08:12 t6     ^~^~^ RMG t=125.475 target UnnamedSoldier#8240 d=796 fromAnchor=781 settle=0.700
+16:08:12 t6     ^~^~^ RMG t=126.075 gun up gunner=1 at=( -3175.016 -2794.969 85.609 ) yaw=6.829 mode=C
+16:08:12 t6     ^~^~^ RMG t=127.275 burst done len=1.000 at=UnnamedSoldier#8240 hp=100000.000 ammo=242 heat=24.100
+16:08:12 t6     ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=10 ayaw=0.005 apos=( -3172.000 -2651.000 94.166 )
+16:08:12 t6     ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3235.176 -2797.134 46.997 ) mounted=1 busy=0 think=idle type=machinegunner d=851
+16:08:12 t6     ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3321.913 -2860.605 44.458 ) mounted=0 busy=0 think=attack type=turret d=949
+16:08:12 t6     ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3389.283 -2844.820 46.486 ) mounted=0 busy=0 think=attack type=turret d=1011
+16:08:12 t6     ^~^~^ MG GUN at=( -3175.016 -2794.969 85.609 ) ang=( 4.262 10.502 0.000 ) ammo=242 heat=13.900 d=796 offd=227
+16:08:12 t6     ^~^~^ RMG t=129.775 burst barrel len=0.900 at=UnnamedSoldier#8240 hp=100000.000 ammo=231 heat=49.050
+16:08:12 t6     ^~^~^ RMG t=135.175 burst done len=0.700 at=UnnamedSoldier#8240 hp=100000.000 ammo=222 heat=42.100
+16:08:12 t6     ^~^~^ MG STATE sid=2 busy=1 over=0 kind=radio bursts=12 ayaw=0.005 apos=( -3172.000 -2651.000 94.166 )
+16:08:12 t6     ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3235.176 -2797.134 46.997 ) mounted=1 busy=0 think=idle type=machinegunner d=851
+16:08:12 t6     ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3181.877 -2898.503 51.627 ) mounted=0 busy=0 think=attack type=turret d=824
+16:08:12 t6     ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3267.191 -2816.649 45.898 ) mounted=0 busy=0 think=attack type=turret d=886
+16:08:12 t6     ^~^~^ MG GUN at=( -3175.016 -2794.969 85.609 ) ang=( 4.262 10.502 0.000 ) ammo=222 heat=34.100 d=796 offd=227
+16:08:12 t6 script errors: 0 []
+16:10:01 booted mg_c1 m3l2 ref=work dog False
+16:10:17 c1 staged: RMG t=55.975 staged
+16:10:19 c1 camera: True
+16:10:21 c1 set-up frames taken
+16:10:24 c1 camera 2: True
+16:10:29 c1 camera 3: True
+16:10:33 c1     ^~^~^ RMG t=43.975 stage runto pathdist=2374.685 think=idle d=2162
+16:10:33 c1     ^~^~^ RMG t=55.975 staged secs=12 stall=0 at=( -3417.855 -2805.011 48.563 ) stage=( -3318.000 -2651.000 46.041 )
+16:10:33 c1     ^~^~^ MG camgun none
+16:10:33 c1     ^~^~^ MG camgun none
+16:10:33 c1     ^~^~^ MG camgun at=( -3002.759 -2526.876 30.052 ) gun=( -3172.596 -2774.172 86.560 ) off=50.000 d=305
+16:10:33 c1     ^~^~^ RMG t=58.600 unpack secs=2 at=( -3212.740 -2770.576 46.972 )
+16:10:33 c1     ^~^~^ RMG t=62.450 gun up gunner=1 at=( -3172.596 -2774.172 86.560 ) yaw=5.520 mode=C
+16:10:33 c1     ^~^~^ MG camgun at=( -2759.981 -2594.593 19.484 ) gun=( -3172.596 -2774.172 86.560 ) off=18.000 d=454
+16:10:33 c1     ^~^~^ RMG t=62.650 target UnnamedSoldier#8240 d=453 fromAnchor=321 settle=0.700
+16:10:33 c1     ^~^~^ RMG t=64.050 burst done len=0.700 at=UnnamedSoldier#8240 hp=100000.000 ammo=240 heat=33.750
+16:10:33 c1     ^~^~^ RMG t=66.250 burst barrel len=0.600 at=UnnamedSoldier#8240 hp=100000.000 ammo=232 heat=49.500
+16:10:33 c1     ^~^~^ MG camgun at=( -3011.493 -2521.099 30.088 ) gun=( -3172.596 -2774.172 86.560 ) off=52.000 d=305
+16:10:33 c1     ^~^~^ RMG t=68.450 gunner down, k=2 takes over, gun up=1
+16:10:33 c1 script errors: 0 []
+16:12:21 booted mg_c2 m3l2 ref=work dog False
+16:12:36 c2 staged: RMG t=56.275 staged
+16:12:38 c2 camera: True
+16:12:47 c2 set-up frames taken
+16:12:47 c2 camera 2: True
+16:12:52 c2 camera 3: True
+16:12:56 c2     ^~^~^ RMG t=45.275 stage runto pathdist=2419.304 think=idle d=2169
+16:12:56 c2     ^~^~^ RMG t=56.275 staged secs=11 stall=0 at=( -3399.531 -2773.318 49.773 ) stage=( -3318.136 -2646.326 45.709 )
+16:12:56 c2     ^~^~^ MG camgun none
+16:12:56 c2     ^~^~^ MG camgun none
+16:12:56 c2     ^~^~^ MG camgun none
+16:12:56 c2     ^~^~^ MG camgun at=( -2874.846 -2912.473 35.423 ) gun=( -3160.090 -2819.544 87.627 ) off=-26.000 d=304
+16:12:56 c2     ^~^~^ RMG t=59.425 unpack secs=2 at=( -3215.300 -2820.230 46.539 )
+16:12:56 c2     ^~^~^ RMG t=62.675 target UnnamedSoldier#8240 d=304 fromAnchor=371 settle=0.700
+16:12:56 c2     ^~^~^ RMG t=63.275 gun up gunner=1 at=( -3160.090 -2819.544 87.627 ) yaw=7.955 mode=C
+16:12:56 c2     ^~^~^ RMG t=64.175 burst done len=0.700 at=UnnamedSoldier#8240 hp=100000.000 ammo=240 heat=32.300
+16:12:56 c2     ^~^~^ RMG t=66.175 burst barrel len=0.600 at=UnnamedSoldier#8240 hp=100000.000 ammo=232 heat=49.650
+16:12:56 c2     ^~^~^ MG camgun at=( -2870.565 -2475.051 26.456 ) gun=( -3160.090 -2819.544 87.627 ) off=42.000 d=454
+16:12:56 c2     ^~^~^ RMG t=71.425 burst friend_in_front len=0.300 at=UnnamedSoldier#8240 hp=100000.000 ammo=228 heat=23.600
+16:12:56 c2     ^~^~^ MG camgun at=( -3009.886 -2559.854 31.091 ) gun=( -3160.090 -2819.544 87.627 ) off=52.000 d=305
+16:12:56 c2     ^~^~^ RMG t=73.275 gunner down, k=2 takes over, gun up=1
+16:12:56 c2     ^~^~^ RMG t=75.875 takeover done k=2
+16:12:56 c2 script errors: 0 []
+16:14:34 booted mg_c3 m3l2 ref=work dog False
+16:14:47 c3 staged: RMG t=53.775 staged
+16:15:16 c3 camera: False
+16:15:17 c3 camera 2: True
+16:15:26 c3 camera 3: True
+16:15:30 c3     ^~^~^ RMG t=44.775 stage runto pathdist=2383.865 think=idle d=2142
+16:15:30 c3     ^~^~^ RMG t=53.775 staged secs=9 stall=0 at=( -3418.051 -2807.153 48.465 ) stage=( -3318.105 -2653.221 46.201 )
+16:15:30 c3     ^~^~^ MG camgun none
+16:15:30 c3     ^~^~^ MG camgun none
+16:15:30 c3     ^~^~^ MG camgun none
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=56.900 unpack secs=2 at=( -3236.974 -2820.422 45.014 )
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=60.150 target UnnamedSoldier#8240 d=807 fromAnchor=911 settle=0.700
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=60.750 gun up gunner=1 at=( -3183.389 -2812.661 85.684 ) yaw=13.243 mode=C
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=61.750 burst done len=0.800 at=UnnamedSoldier#8240 hp=100000.000 ammo=241 heat=25.700
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=63.850 burst done len=0.900 at=UnnamedSoldier#8240 hp=100000.000 ammo=236 heat=27.750
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=66.350 burst barrel len=0.900 at=UnnamedSoldier#8240 hp=100000.000 ammo=227 heat=45.450
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=68.050 burst barrel len=0.300 at=UnnamedSoldier#8240 hp=100000.000 ammo=223 heat=47.800
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=73.850 burst done len=1.100 at=UnnamedSoldier#8240 hp=100000.000 ammo=215 heat=36.200
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=76.050 burst barrel len=0.600 at=UnnamedSoldier#8240 hp=100000.000 ammo=207 heat=51.950
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3 script errors: 0 []
+16:16:49 booted mg_c4 m3l2 ref=work dog False
+16:17:02 c4 staged: RMG t=53.275 staged
+16:17:05 c4 camera: True
+16:17:13 c4 set-up frames taken
+16:17:13 c4 camera 2: True
+16:17:18 c4 camera 3: True
+16:17:22 c4     ^~^~^ RMG t=44.275 stage runto pathdist=2399.735 think=idle d=2079
+16:17:22 c4     ^~^~^ RMG t=53.275 staged secs=9 stall=0 at=( -3402.538 -2805.532 48.309 ) stage=( -3328.144 -2696.438 49.445 )
+16:17:22 c4     ^~^~^ MG camgun none
+16:17:22 c4     ^~^~^ MG camgun none
+16:17:22 c4     ^~^~^ MG camgun none
+16:17:22 c4     ^~^~^ MG camgun at=( -3568.904 -2837.665 49.374 ) gun=( -3417.204 -3073.010 79.438 ) off=100 d=281
+16:17:22 c4     ^~^~^ RMG t=57.125 unpack secs=2 at=( -3477.364 -3103.672 39.208 )
+16:17:22 c4     ^~^~^ RMG t=60.975 gun up gunner=1 at=( -3417.204 -3073.010 79.438 ) yaw=22.805 mode=C
+16:17:22 c4     ^~^~^ MG camgun at=( -3084.225 -2889.912 50.264 ) gun=( -3417.204 -3073.010 79.438 ) off=6 d=381
+16:17:22 c4     ^~^~^ RMG t=63.975 target UnnamedSoldier#8240 d=380 fromAnchor=469 settle=0.700
+16:17:22 c4     ^~^~^ RMG t=65.575 burst done len=0.800 at=UnnamedSoldier#8240 hp=100000.000 ammo=240 heat=37.300
+16:17:22 c4     ^~^~^ RMG t=67.675 burst done len=0.700 at=UnnamedSoldier#8240 hp=100000.000 ammo=235 heat=42.250
+16:17:22 c4     ^~^~^ MG camgun at=( -3568.904 -2837.665 49.374 ) gun=( -3417.204 -3073.010 79.438 ) off=100 d=281
+16:17:22 c4     ^~^~^ RMG t=68.975 gunner down, k=2 takes over, gun up=1
+16:17:22 c4     ^~^~^ RMG t=71.325 takeover done k=2
+16:17:22 c4 script errors: 0 []
+16:18:52 booted mg_l1 m3l2 ref=work dog False
+16:19:18 l1 gun up: True aim 1
+16:20:07 l1 RESULT aim=1 damage=6478 in 115s (0.0/s) bursts_at_end=16
+16:20:07 l1 hp series: [(69, 184), (71, 262), (73, 396), (75, 656), (78, 859), (80, 1191), (82, 1597), (84, 2034), (87, 2495), (89, 2790), (91, 3071), (93, 3321), (95, 3872), (98, 4347), (100, 4682), (102, 4885), (104, 5193), (107, 5561), (109, 5714), (111, 5903), (113, 6189), (115, 6477)]
+16:20:07 l1 script errors: 0 []
+16:21:17 booted mg_l0 m3l2 ref=work dog False
+16:23:21 l0 gun up: False aim 0
+16:24:10 l0 RESULT aim=0 damage=7983 in 213s (0.0/s) bursts_at_end=-
+16:24:10 l0 hp series: [(166, 306), (168, 677), (171, 1041), (173, 1292), (175, 1708), (177, 2048), (180, 2303), (182, 2614), (184, 3145), (186, 3375), (188, 3680), (191, 4070), (193, 4512), (195, 4882), (197, 5189), (200, 5530), (202, 6069), (204, 6478), (206, 6834), (209, 7372), (211, 7659), (213, 7982)]
+16:24:10 l0 script errors: 0 []
+16:25:34 booted mg_l1b m3l2 ref=work dog False
+16:26:08 l1b gun up: True aim 1
+16:27:14 l1b RESULT aim=1 gun-only damage=5198 in 61s of game time (85.0 hp/s), bursts 2 -> 17
+16:27:14 l1b hp series: [(78, 266), (81, 461), (83, 761), (86, 957), (88, 1193), (91, 1412), (93, 1588), (96, 1852), (98, 2048), (100, 2360), (103, 2553), (105, 2727), (108, 2986), (110, 3172), (113, 3367), (115, 3608), (118, 3804), (120, 4033), (122, 4224), (125, 4418), (127, 4593), (130, 4790), (132, 4900), (135, 4994), (137, 5104), (140, 5197)]
+16:27:14 l1b script errors: 0 []
+16:28:27 booted mg_l0b m3l2 ref=work dog False
+16:28:48 l0b gun up: True aim 0
+16:29:54 l0b RESULT aim=0 gun-only damage=240 in 61s of game time (3.9 hp/s), bursts - -> -
+16:29:54 l0b hp series: [(66, 0), (69, 0), (71, 0), (74, 0), (76, 0), (79, 0), (81, 0), (84, 27), (86, 65), (88, 65), (91, 89), (93, 89), (96, 89), (98, 89), (101, 89), (103, 89), (106, 113), (108, 113), (110, 113), (113, 131), (115, 190), (118, 190), (120, 190), (123, 240), (125, 240), (128, 240)]
+16:29:54 l0b script errors: 0 []
+16:31:43 booted mg_r1 m3l2 ref=work dog False
+16:32:05 r1 gun up: RMG t=63.025 gun up
+16:32:15 r1 relocate: RMG t=72.975 relocate
+16:32:15 r1 pack up: RMG t=73.025 pack up
+16:32:32 r1 gun up again: RMG t=89.350 gun up
+16:32:36 r1     ^~^~^ RMG t=44.275 stage runto pathdist=2395.304 think=idle d=2146
+16:32:36 r1     ^~^~^ RMG t=56.275 staged secs=12 stall=0 at=( -3377.562 -2738.956 51.029 ) stage=( -3318.136 -2646.326 45.709 )
+16:32:36 r1     ^~^~^ PSQ t=57.925 mg site how=1 mode=C gun=( -3142.933 -2783.868 87.421 ) yaw=12.227 top=0 fire=advance:1.500 arc=45 seat=( -3203.095 -2787.869 46.017 ) walk=97.266 path=346.979 of=2
+16:32:36 r1     ^~^~^ PSQ t=57.925 mg plan aim=advance ground=56 passed=2 tried=1 bags=1 refused: height=29 squad_in_front=7 bag_ground=1 bag_slope=1 secs=0.650
+16:32:36 r1     ^~^~^ PSQ t=58.675 mg walk how=1 left=4.468 ok=1
+16:32:36 r1     ^~^~^ RMG t=59.175 unpack secs=2 at=( -3197.152 -2789.882 46.615 )
+16:32:36 r1     ^~^~^ RMG t=62.425 target UnnamedSoldier#8240 d=763 fromAnchor=723 settle=0.700
+16:32:36 r1     ^~^~^ PSQ t=63.025 mg setup k=1 mode=C gun=( -3142.933 -2783.868 87.421 ) yaw=12.227 arc=45 top=0 seat=( -3203.212 -2785.946 47.648 ) hp=39.772 pos=crouch
+16:32:36 r1     ^~^~^ RMG t=63.025 gun up gunner=1 at=( -3142.933 -2783.868 87.421 ) yaw=12.227 mode=C
+16:32:36 r1     ^~^~^ RMG t=64.125 burst done len=0.900 at=UnnamedSoldier#8240 hp=100000.000 ammo=237 heat=43.750
+16:32:36 r1     ^~^~^ PSQ t=64.725 mg hold fire=friend_in_front
+16:32:36 r1     ^~^~^ MG camgun at=( -3248.849 -2524.673 35.937 ) gun=( -3142.933 -2783.868 87.421 ) off=100 d=284
+16:32:36 r1     ^~^~^ RMG t=72.975 relocate why=flanked gun=( -3142.933 -2783.868 87.421 )
+16:32:36 r1     ^~^~^ RMG t=73.025 pack up why=flanked
+16:32:36 r1     ^~^~^ PSQ t=74.225 mg packup k=1
+16:32:36 r1     ^~^~^ PSQ t=76.550 mg nosite aim=enemy ground=54 passed=1 tried=0 bags=1 refused: height=22 gap=2 squad_in_front=7 bag_ground=2 bag_slope=3 secs=0.325
+16:32:36 r1     ^~^~^ RMG t=76.550 no site fails=1
+16:32:36 r1     ^~^~^ PSQ t=83.175 mg site how=1 mode=C gun=( -3200.195 -2803.131 85.570 ) yaw=11.062 top=0 fire=enemy:1.500 arc=45 seat=( -3260.240 -2805.966 46.068 ) walk=160.885 path=335.332 of=3
+16:32:36 r1     ^~^~^ PSQ t=83.175 mg plan aim=enemy ground=55 passed=3 tried=1 bags=1 refused: not_level=1 height=22 gap=1 squad_in_front=6 bag_ground=2 bag_slope=3 secs=0.625
+16:32:36 r1     ^~^~^ RMG t=83.425 gunner down, k=2 takes over, gun up=0
+16:32:36 r1     ^~^~^ PSQ t=84.750 mg site how=2 mode=C gun=( -3126.930 -2749.113 86.140 ) yaw=8.028 top=0 fire=enemy:1.500 arc=45 seat=( -3186.963 -2748.794 47.607 ) walk=56.504 path=0 of=2
+16:32:36 r1     ^~^~^ PSQ t=84.750 mg plan aim=enemy ground=54 passed=2 tried=1 bags=1 refused: not_level=2 height=24 squad_in_front=6 bag_ground=2 bag_slope=3 secs=0.325
+16:32:36 r1     ^~^~^ PSQ t=85.000 mg walk how=2 left=12.158 ok=1
+16:32:36 r1     ^~^~^ RMG t=85.500 unpack secs=2 at=( -3184.228 -2752.981 47.351 )
+16:32:36 r1     ^~^~^ PSQ t=88.750 mg hold fire=friend_in_front
+16:32:36 r1     ^~^~^ PSQ t=89.350 mg setup k=1 mode=C gun=( -3126.930 -2749.113 86.140 ) yaw=8.028 arc=45 top=0 seat=( -3186.964 -2748.794 48.509 ) hp=37.630 pos=crouch
+16:32:36 r1     ^~^~^ RMG t=89.350 gun up gunner=2 at=( -3126.930 -2749.113 86.140 ) yaw=8.028 mode=C
+16:32:36 r1     ^~^~^ MG GUN at=( -3126.930 -2749.113 86.140 ) ang=( 0.000 8.028 0.000 ) ammo=250 heat=0.000 d=260 offd=252
+16:32:36 r1 script errors: 0 []
+16:33:55 booted mg_r2 m3l2 ref=work dog False
+16:34:12 r2 gun up: RMG t=56.725 gun up
+16:34:22 r2 relocate: RMG t=66.975 relocate
+16:34:23 r2 pack up: RMG t=67.725 pack up
+16:34:31 r2 gun up again: RMG t=75.850 gun up
+16:34:35 r2     ^~^~^ RMG t=44.275 stage runto pathdist=1669.314 think=idle d=1553
+16:34:35 r2     ^~^~^ RMG t=50.275 staged secs=6 stall=0 at=( -3388.718 -2806.951 48.016 ) stage=( -3317.409 -2636.873 45.022 )
+16:34:35 r2     ^~^~^ PSQ t=51.875 mg site how=1 mode=C gun=( -3187.598 -2783.270 85.846 ) yaw=0.417 top=0 fire=advance:1.500 arc=45 seat=( -3247.060 -2775.003 47.324 ) walk=40.037 path=297.910 of=1
+16:34:35 r2     ^~^~^ PSQ t=51.875 mg plan aim=advance ground=51 passed=1 tried=1 bags=1 refused: height=29 gap=2 bag_ground=1 bag_slope=4 secs=0.600
+16:34:35 r2     ^~^~^ PSQ t=52.375 mg walk how=1 left=11.936 ok=1
+16:34:35 r2     ^~^~^ RMG t=52.875 unpack secs=2 at=( -3229.193 -2775.046 47.019 )
+16:34:35 r2     ^~^~^ RMG t=56.125 target UnnamedSoldier#8240 d=806 fromAnchor=644 settle=0.700
+16:34:35 r2     ^~^~^ PSQ t=56.725 mg setup k=1 mode=C gun=( -3187.598 -2783.270 85.846 ) yaw=0.417 arc=45 top=0 seat=( -3247.727 -2784.722 47.775 ) hp=38.071 pos=crouch
+16:34:35 r2     ^~^~^ RMG t=56.725 gun up gunner=1 at=( -3187.598 -2783.270 85.846 ) yaw=0.417 mode=C
+16:34:35 r2     ^~^~^ RMG t=57.925 burst done len=1.000 at=UnnamedSoldier#8240 hp=100000.000 ammo=236 heat=41.500
+16:34:35 r2     ^~^~^ RMG t=59.225 burst barrel len=0.300 at=UnnamedSoldier#8240 hp=100000.000 ammo=232 heat=47.050
+16:34:35 r2     ^~^~^ PSQ t=59.425 mg hold fire=barrel_hot
+16:34:35 r2     ^~^~^ PSQ t=63.675 mg hold fire=clear
+16:34:35 r2     ^~^~^ RMG t=64.575 burst barrel len=0.900 at=UnnamedSoldier#8240 hp=100000.000 ammo=221 heat=49.200
+16:34:35 r2     ^~^~^ PSQ t=64.775 mg hold fire=barrel_hot
+16:34:35 r2     ^~^~^ MG camgun at=( -3238.226 -2507.885 34.572 ) gun=( -3187.598 -2783.270 85.846 ) off=100 d=284
+16:34:35 r2     ^~^~^ RMG t=66.975 relocate why=flanked gun=( -3187.598 -2783.270 85.846 )
+16:34:35 r2     ^~^~^ RMG t=67.725 pack up why=flanked
+16:34:35 r2     ^~^~^ PSQ t=68.925 mg packup k=1
+16:34:35 r2     ^~^~^ PSQ t=71.250 mg site how=2 mode=C gun=( -3120.296 -2801.488 87.393 ) yaw=12.088 top=0 fire=enemy:1.500 arc=45 seat=( -3180.241 -2805.408 48.287 ) walk=40.312 path=0 of=1
+16:34:35 r2     ^~^~^ PSQ t=71.250 mg plan aim=enemy ground=55 passed=1 tried=1 bags=1 refused: height=34 gap=1 squad_in_front=1 bag_ground=3 bag_slope=2 secs=0.325
+16:34:35 r2     ^~^~^ PSQ t=71.500 mg walk how=2 left=7.369 ok=1
+16:34:35 r2     ^~^~^ RMG t=72.000 unpack secs=2 at=( -3178.719 -2821.417 49.086 )
+16:34:35 r2     ^~^~^ PSQ t=75.850 mg setup k=1 mode=C gun=( -3120.296 -2801.488 87.393 ) yaw=12.088 arc=45 top=0 seat=( -3180.201 -2805.420 49.858 ) hp=37.536 pos=crouch
+16:34:35 r2     ^~^~^ RMG t=75.850 gun up gunner=1 at=( -3120.296 -2801.488 87.393 ) yaw=12.088 mode=C
+16:34:35 r2     ^~^~^ MG GUN at=( -3120.296 -2801.488 87.393 ) ang=( -0.000 12.088 0.000 ) ammo=221 heat=0.000 d=320 offd=349
+16:34:35 r2 script errors: 0 []

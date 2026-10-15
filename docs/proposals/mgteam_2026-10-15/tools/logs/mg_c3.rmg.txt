@@ -1,0 +1,132 @@
+.000] ^~^~^ MG armed
+.000] ^~^~^ MG here ( -3894.000 2160.000 0.125 ) ang=( 0.000 90.000 0.000 )
+.000] ^~^~^ MG did here
+.000] ^~^~^ MG did god
+.000] ^~^~^ MG setup REAL officer=( -3098.000 -2651.000 41.055 ) player=( -3894.000 2160.000 0.125 ) alive=1
+.000] ^~^~^ MG did setup
+.000] ^~^~^ MG purged non-german 4
+.000] ^~^~^ MG purged 40
+.000] ^~^~^ MG did purge
+.000] ^~^~^ MG tpoff heading=0 clear=1.000 player=( -2398.000 -2651.000 -11.331 ) officer=( -3098.000 -2651.000 41.055 )
+.000] ^~^~^ MG did tpoff
+.000] ^~^~^ RMG t=42.475 team sid=1 n=3 anchor=officer at=( -3098.105 -2652.690 41.182 ) from=( -4868.737 -3921.979 -106.002 )
+.000] ^~^~^ MG calm
+.000] ^~^~^ MG did calm
+.000] ^~^~^ MG notarget toggled
+.000] ^~^~^ MG did nt
+.000] ^~^~^ MG did wave
+.000] ^~^~^ RMG t=44.775 stage runto pathdist=2383.865 think=idle d=2142
+.000] ^~^~^ RMG t=53.775 staged secs=9 stall=0 at=( -3418.051 -2807.153 48.465 ) stage=( -3318.105 -2653.221 46.201 )
+.000] ^~^~^ MG camgun none
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun none
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun none
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ RMG t=56.900 unpack secs=2 at=( -3236.974 -2820.422 45.014 )
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ RMG t=60.150 target UnnamedSoldier#8240 d=807 fromAnchor=911 settle=0.700
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ RMG t=60.750 gun up gunner=1 at=( -3183.389 -2812.661 85.684 ) yaw=13.243 mode=C
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ RMG t=61.750 burst done len=0.800 at=UnnamedSoldier#8240 hp=100000.000 ammo=241 heat=25.700
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ RMG t=63.850 burst done len=0.900 at=UnnamedSoldier#8240 hp=100000.000 ammo=236 heat=27.750
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ RMG t=66.350 burst barrel len=0.900 at=UnnamedSoldier#8240 hp=100000.000 ammo=227 heat=45.450
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ RMG t=68.050 burst barrel len=0.300 at=UnnamedSoldier#8240 hp=100000.000 ammo=223 heat=47.800
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ RMG t=73.850 burst done len=1.100 at=UnnamedSoldier#8240 hp=100000.000 ammo=215 heat=36.200
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ RMG t=76.050 burst barrel len=0.600 at=UnnamedSoldier#8240 hp=100000.000 ammo=207 heat=51.950
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ RMG t=82.150 burst done len=0.900 at=UnnamedSoldier#8240 hp=100000.000 ammo=198 heat=39.400
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun at=( -2824.619 -2687.425 27.200 ) gun=( -3183.389 -2812.661 85.684 ) off=6.000 d=384
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ RMG t=84.150 burst barrel len=0.600 at=UnnamedSoldier#8240 hp=100000.000 ammo=190 heat=55.300
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ RMG t=90.300 burst done len=0.700 at=UnnamedSoldier#8240 hp=100000.000 ammo=181 heat=45.249
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ RMG t=91.600 burst barrel len=0.300 at=UnnamedSoldier#8240 hp=100000.000 ammo=177 heat=50.799
+.000] ^~^~^ MG camgun noplace
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG camgun at=( -3441.583 -2782.068 49.990 ) gun=( -3183.389 -2812.661 85.684 ) off=160.000 d=262
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG killing gunner k=1 at=( -3242.560 -2823.962 46.365 )
+.000] ^~^~^ MG did killgunner
+.000] ^~^~^ RMG t=92.750 gunner down, k=2 takes over, gun up=1
+.000] ^~^~^ RMG t=95.350 takeover done k=2

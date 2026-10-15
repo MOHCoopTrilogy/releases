@@ -1,0 +1,72 @@
+.000] ^~^~^ MG armed
+.000] ^~^~^ MG here ( -3894.000 2160.000 0.125 ) ang=( 0.000 90.000 0.000 )
+.000] ^~^~^ MG did here
+.000] ^~^~^ MG did god
+.000] ^~^~^ MG setup REAL officer=( -3097.941 -2650.338 41.004 ) player=( -3894.000 2160.000 0.125 ) alive=1
+.000] ^~^~^ MG did setup
+.000] ^~^~^ MG purged non-german 4
+.000] ^~^~^ MG purged 38
+.000] ^~^~^ MG did purge
+.000] ^~^~^ MG tpoff heading=0 clear=1.000 player=( -2398.002 -2651.154 -11.327 ) officer=( -3098.002 -2651.154 41.066 )
+.000] ^~^~^ MG did tpoff
+.000] ^~^~^ RMG t=42.475 team sid=1 n=3 anchor=officer at=( -3098.736 -2643.091 40.533 ) from=( -4113.593 -3762.993 -35.492 )
+.000] ^~^~^ MG did lookoff
+.000] ^~^~^ RMG t=44.775 stage runto pathdist=1381.340 think=idle d=1269
+.000] ^~^~^ MG did wave
+.000] ^~^~^ RMG t=49.775 staged secs=5 stall=0 at=( -3370.297 -2754.006 50.210 ) stage=( -3318.721 -2640.560 45.306 )
+.000] ^~^~^ MG STATE sid=1 busy=1 over=0 kind=officer bursts=- ayaw=5.530 apos=( -3099.247 -2742.358 46.299 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3350.720 -2736.946 50.704 ) mounted=0 busy=0 think=attack type=turret d=958
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -4050.121 -3806.113 -30.147 ) mounted=0 busy=0 think=attack type=turret d=2015
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -4113.606 -3762.921 -34.525 ) mounted=0 busy=0 think=attack type=turret d=2044
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG CENSUS 0
+.000] ^~^~^ MG did census
+.000] ^~^~^ RMG t=53.175 unpack secs=2 at=( -3231.247 -2863.088 47.228 )
+.000] ^~^~^ MG STATE sid=1 busy=1 over=0 kind=officer bursts=- ayaw=3.632 apos=( -3216.152 -2693.719 47.541 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3229.886 -2862.712 47.301 ) mounted=0 busy=1 think=idle type=turret d=860
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -4050.121 -3806.113 -30.147 ) mounted=0 busy=0 think=attack type=turret d=2015
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3532.763 -2964.383 43.127 ) mounted=0 busy=0 think=attack type=turret d=1178
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG CENSUS 0
+.000] ^~^~^ MG did census
+.000] ^~^~^ MG lookgun d=864
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ RMG t=56.425 target UnnamedSoldier#8240 d=811 fromAnchor=821 settle=0.700
+.000] ^~^~^ RMG t=57.025 gun up gunner=1 at=( -3173.843 -2865.531 88.382 ) yaw=10.658 mode=C
+.000] ^~^~^ RMG t=58.225 burst done len=1.000 at=UnnamedSoldier#8240 hp=100000.000 ammo=239 heat=31.350
+.000] ^~^~^ RMG t=60.225 burst done len=0.800 at=UnnamedSoldier#8240 hp=100000.000 ammo=233 heat=34.300
+.000] ^~^~^ MG STATE sid=1 busy=1 over=0 kind=officer bursts=2 ayaw=0.045 apos=( -3201.125 -2651.781 44.310 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3327.133 -3110.714 49.984 ) mounted=0 busy=1 think=idle type=turret d=1038
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3352.435 -3057.503 46.276 ) mounted=0 busy=0 think=attack type=turret d=1038
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3481.330 -2864.740 46.994 ) mounted=0 busy=0 think=attack type=turret d=1105
+.000] ^~^~^ MG GUN at=( -3173.843 -2865.531 88.382 ) ang=( -30.000 15.446 0.000 ) ammo=233 heat=13.675 d=811 offd=219
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG CENSUS 0
+.000] ^~^~^ MG did census
+.000] ^~^~^ MG lookgun d=811
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ RMG t=68.275 burst done len=0.900 at=UnnamedSoldier#8240 hp=100000.000 ammo=222 heat=38.875
+.000] ^~^~^ MG lookgun d=811
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ MG STATE sid=1 busy=1 over=0 kind=officer bursts=3 ayaw=0.045 apos=( -3201.125 -2651.781 44.310 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3233.684 -2872.850 48.870 ) mounted=1 busy=0 think=idle type=machinegunner d=866
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3223.223 -2870.116 47.988 ) mounted=0 busy=0 think=attack type=turret d=855
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3374.480 -2981.479 41.804 ) mounted=0 busy=0 think=attack type=turret d=1032
+.000] ^~^~^ MG GUN at=( -3173.843 -2865.531 88.382 ) ang=( 4.380 15.446 0.000 ) ammo=213 heat=31.750 d=811 offd=219
+.000] ^~^~^ MG did state
+.000] ^~^~^ RMG t=74.850 burst done len=1.100 at=UnnamedSoldier#8240 hp=100000.000 ammo=213 heat=30.550
+.000] ^~^~^ MG killing gunner k=1 at=( -3233.684 -2872.850 48.870 )
+.000] ^~^~^ MG did killgunner
+.000] ^~^~^ RMG t=75.025 gunner down, k=2 takes over, gun up=1
+.000] ^~^~^ MG lookgun d=811
+.000] ^~^~^ MG did lookgun
+.000] ^~^~^ RMG t=79.275 takeover failed: not at the seat left=274
+.000] ^~^~^ RMG t=79.475 brain end sid=1 secs=37
+.000] ^~^~^ MG STATE sid=1 busy=0 over=1 kind=officer bursts=4 ayaw=0.045 apos=( -3201.125 -2651.781 44.310 )
+.000] ^~^~^ MG MAN k=1 alive=0 hp=0.000 at=( -3233.684 -2872.850 48.870 ) mounted=1 busy=0 think=killed type=void d=866
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3224.745 -2981.600 51.873 ) mounted=0 busy=0 think=attack type=turret d=892
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3212.015 -2724.407 49.668 ) mounted=0 busy=0 think=attack type=turret d=819
+.000] ^~^~^ MG GUN at=( -3173.843 -2865.531 88.382 ) ang=( -30.000 15.446 0.000 ) ammo=213 heat=0.000 d=811 offd=219
+.000] ^~^~^ MG did state
+.000] ^~^~^ MG lookgun d=811
+.000] ^~^~^ MG did lookgun

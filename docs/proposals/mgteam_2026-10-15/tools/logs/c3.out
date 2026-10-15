@@ -1,0 +1,64 @@
+16:13:29 t=0.032 launched pid 8520 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:13:29 t=0.056 in-process guard installed on thread 11040
+16:13:29 t=0.435 place 0x450cbe SDL_app hidden-found-by-poll (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:13:29 t=0.436 place 0x450cbe SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:13:30 t=0.553 place 0x460cbe SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:13:30 t=0.558 place 0x3009b8 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:14:34 booted mg_c3 m3l2 ref=work dog False
+16:14:47 c3 staged: RMG t=53.775 staged
+16:15:16 c3 camera: False
+16:15:17 c3 camera 2: True
+16:15:26 c3 camera 3: True
+16:15:30 c3     ^~^~^ RMG t=44.775 stage runto pathdist=2383.865 think=idle d=2142
+16:15:30 c3     ^~^~^ RMG t=53.775 staged secs=9 stall=0 at=( -3418.051 -2807.153 48.465 ) stage=( -3318.105 -2653.221 46.201 )
+16:15:30 c3     ^~^~^ MG camgun none
+16:15:30 c3     ^~^~^ MG camgun none
+16:15:30 c3     ^~^~^ MG camgun none
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=56.900 unpack secs=2 at=( -3236.974 -2820.422 45.014 )
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=60.150 target UnnamedSoldier#8240 d=807 fromAnchor=911 settle=0.700
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=60.750 gun up gunner=1 at=( -3183.389 -2812.661 85.684 ) yaw=13.243 mode=C
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=61.750 burst done len=0.800 at=UnnamedSoldier#8240 hp=100000.000 ammo=241 heat=25.700
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=63.850 burst done len=0.900 at=UnnamedSoldier#8240 hp=100000.000 ammo=236 heat=27.750
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=66.350 burst barrel len=0.900 at=UnnamedSoldier#8240 hp=100000.000 ammo=227 heat=45.450
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=68.050 burst barrel len=0.300 at=UnnamedSoldier#8240 hp=100000.000 ammo=223 heat=47.800
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=73.850 burst done len=1.100 at=UnnamedSoldier#8240 hp=100000.000 ammo=215 heat=36.200
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ RMG t=76.050 burst barrel len=0.600 at=UnnamedSoldier#8240 hp=100000.000 ammo=207 heat=51.950
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3     ^~^~^ MG camgun noplace
+16:15:30 c3 script errors: 0 []
+16:15:30 t=121.498 process exited
+16:15:31 [mg_c3] done: 74 shots, window {'clean': True, 'violations': []}

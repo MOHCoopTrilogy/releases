@@ -1,0 +1,81 @@
+.000] ^~^~^ MG armed
+.000] ^~^~^ MG here ( -3894.000 2160.000 0.125 ) ang=( 0.000 90.000 0.000 )
+.000] ^~^~^ MG did here
+.000] ^~^~^ MG did god
+.000] ^~^~^ MG setup REAL officer=( -3097.968 -2650.697 41.031 ) player=( -3894.000 2160.000 0.125 ) alive=1
+.000] ^~^~^ MG did setup
+.000] ^~^~^ MG purged non-german 4
+.000] ^~^~^ MG purged 37
+.000] ^~^~^ MG did purge
+.000] ^~^~^ MG tpoff heading=0 clear=1.000 player=( -2398.002 -2651.154 -11.327 ) officer=( -3098.002 -2651.154 41.066 )
+.000] ^~^~^ MG did tpoff
+.000] ^~^~^ RMG t=42.475 team sid=1 n=3 anchor=officer at=( -3098.020 -2651.404 41.085 ) from=( -4905.883 -4024.701 -108.979 )
+.000] ^~^~^ MG did wave
+.000] ^~^~^ RMG t=44.775 stage runto pathdist=2255.503 think=idle d=2119
+.000] ^~^~^ RMG t=53.775 staged secs=9 stall=0 at=( -3385.842 -2756.596 50.332 ) stage=( -3318.020 -2651.483 46.075 )
+.000] ^~^~^ RMG t=55.050 no site fails=1
+.000] ^~^~^ RMG t=63.175 unpack secs=1.000 at=( -3327.497 -2967.869 44.456 )
+.000] ^~^~^ RMG t=65.425 target UnnamedSoldier#8240 d=929 fromAnchor=1074 settle=0.700
+.000] ^~^~^ RMG t=66.025 gun up gunner=1 at=( -3277.380 -2936.107 83.920 ) yaw=18.732 mode=C
+.000] ^~^~^ MG mortal hp=100000.000
+.000] ^~^~^ MG did mortal
+.000] ^~^~^ RMG t=67.475 burst done len=1.000 at=UnnamedSoldier#8240 hp=100000.000 ammo=242 heat=25.550
+.000] ^~^~^ MG HP t=68.750 hp=99816.000 bursts=1
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=69.625 burst barrel len=0.900 at=UnnamedSoldier#8240 hp=99786.000 ammo=233 heat=47.500
+.000] ^~^~^ MG HP t=70.975 hp=99738.000 bursts=2
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=73.200 hp=99603.906 bursts=2
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=74.675 burst friend_in_front len=0.600 at=UnnamedSoldier#8240 hp=99377.406 ammo=225 heat=40.450
+.000] ^~^~^ MG HP t=75.425 hp=99343.961 bursts=3
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=76.025 burst barrel len=0.300 at=UnnamedSoldier#8240 hp=99343.961 ammo=221 heat=45.600
+.000] ^~^~^ MG HP t=77.650 hp=99140.312 bursts=4
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=77.775 burst barrel len=0.300 at=UnnamedSoldier#8240 hp=99140.312 ammo=217 heat=47.550
+.000] ^~^~^ MG HP t=79.875 hp=98808.750 bursts=5
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=82.100 hp=98402.922 bursts=5
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=82.825 burst friend_in_front len=0.600 at=UnnamedSoldier#8240 hp=98208.422 ammo=209 heat=40.500
+.000] ^~^~^ MG HP t=84.325 hp=97965.211 bursts=6
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=85.375 burst done len=0.700 at=UnnamedSoldier#8240 hp=97890.812 ammo=203 heat=43.300
+.000] ^~^~^ MG HP t=86.550 hp=97504.086 bursts=7
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=86.675 burst barrel len=0.300 at=UnnamedSoldier#8240 hp=97416.086 ammo=199 heat=48.850
+.000] ^~^~^ MG HP t=88.775 hp=97209.289 bursts=8
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=91.000 hp=96928.094 bursts=8
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=92.375 burst done len=1.000 at=UnnamedSoldier#8240 hp=96739.219 ammo=192 heat=33.699
+.000] ^~^~^ MG HP t=93.200 hp=96678.016 bursts=9
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=94.425 burst barrel len=0.600 at=UnnamedSoldier#8240 hp=96249.961 ammo=184 heat=49.199
+.000] ^~^~^ MG HP t=95.450 hp=96127.875 bursts=10
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=97.650 hp=95652.477 bursts=10
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=99.900 hp=95317.875 bursts=10
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=99.925 burst done len=0.800 at=UnnamedSoldier#8240 hp=95317.875 ammo=175 heat=44.349
+.000] ^~^~^ RMG t=101.975 burst friend_in_front len=0.600 at=UnnamedSoldier#8240 hp=95114.438 ammo=175 heat=27.949
+.000] ^~^~^ MG HP t=102.100 hp=95114.438 bursts=12
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=104.350 hp=94806.734 bursts=12
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=104.525 burst done len=1.100 at=UnnamedSoldier#8240 hp=94806.734 ammo=168 heat=37.999
+.000] ^~^~^ RMG t=106.525 burst barrel len=0.600 at=UnnamedSoldier#8240 hp=94438.125 ammo=161 heat=52.449
+.000] ^~^~^ MG HP t=106.550 hp=94438.125 bursts=14
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=108.775 hp=94285.828 bursts=14
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG HP t=111.000 hp=94096.469 bursts=14
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=112.625 burst done len=0.900 at=UnnamedSoldier#8240 hp=93832.867 ammo=154 heat=34.099
+.000] ^~^~^ MG HP t=113.250 hp=93810.070 bursts=15
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=114.725 burst done len=0.900 at=UnnamedSoldier#8240 hp=93536.664 ammo=150 heat=31.799
+.000] ^~^~^ MG HP t=115.450 hp=93522.266 bursts=16
+.000] ^~^~^ MG did hp

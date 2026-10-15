@@ -1,0 +1,331 @@
+//=========================================================================
+// TEST-ONLY overlay driver (mgteam 2026-10-15) - NEVER shipped. Installed as coop_mod/coop_selftest_xp.scr, started by main.scr when
+// coop_st_xp 1. Commands arrive in cvar mg_cmd; args in mg_x mg_y mg_z mg_yaw mg_n.
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ MG armed"
+	setcvar "mg_cmd" "0"
+	while( 1 ){
+		local.c = getcvar( "mg_cmd" )
+		if( local.c != "0" && local.c != "" ){
+			setcvar "mg_cmd" "0"
+			waitthread mg_do local.c
+			println ( "^~^~^ MG did " + local.c )
+		}
+		waitframe
+	}
+}end
+
+mg_vec:{
+	local.o = ( 0 0 0 )
+	local.o[0] = float( getcvar( "mg_x" ) )
+	local.o[1] = float( getcvar( "mg_y" ) )
+	local.o[2] = float( getcvar( "mg_z" ) )
+}end local.o
+
+mg_s local.v:{
+	local.r = "-"
+	if( local.v != NIL ){ local.r = "" + local.v }
+}end local.r
+
+mg_do local.c:{
+	local.p = $player[1]
+	if( local.p == NULL ){ end }
+	local.yaw = float( getcvar( "mg_yaw" ) )
+	if( local.c == "here" ){
+		println ( "^~^~^ MG here " + local.p.origin + " ang=" + local.p.viewangles )
+	}
+	if( local.c == "tp" ){
+		local.o = waitthread mg_vec
+		local.p origin local.o
+		local.p.viewangles = ( 0 local.yaw 0 )
+	}
+	if( local.c == "god" ){
+		local.p nodamage
+		local.p.health = 100000
+		local.p.max_health = 100000
+	}
+	if( local.c == "setup" ){
+		// a stand-in officer 500u ahead of the player, waves limited to the infantry squad (the team's call), contact declared
+		cache models/human/german_waffenss_officer.tik
+		// the map's REAL officer is the one covered: no stand-in (a stand-in is not on the death monitor and was shot by the allied captain)
+		local.w = 0
+		while( ( level.coop_officer == NIL || level.coop_officer == NULL ) && local.w < 60 ){ wait 1; local.w++ }
+		if( level.coop_officer != NIL && level.coop_officer != NULL ){
+			level.coop_wave_mask = 2
+			level.coop_officer_contact = 1
+			level.coop_officer_waves_at_zone = 0
+			println ( "^~^~^ MG setup REAL officer=" + level.coop_officer.origin + " player=" + local.p.origin + " alive=" + level.coop_officer_alive )
+			end
+		}
+		local.f = angles_toforward ( 0 local.yaw 0 )
+		local.pos = local.p.origin + ( vector_scale local.f 500 )
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 48 ) )
+		if( local.g != NIL ){ local.pos = local.g }
+		local.off = spawn "models/human/german_waffenss_officer.tik"
+		local.off.origin = local.pos
+		local.off droptofloor
+		local.off.health = 1200
+		level.coop_officer = local.off
+		level.coop_officer_alive = 1
+		level.coop_officerMaxHp = 1200
+		level.coop_wave_mask = 2
+		level.coop_officer_contact = 1
+		level.coop_officer_waves_at_zone = 0
+		level.coop_officer_reinf_zone = local.pos - ( vector_scale local.f 500 )
+		println ( "^~^~^ MG setup officer=" + local.off.origin + " player=" + local.p.origin )
+	}
+	if( local.c == "purge" ){
+		local.arr = level.coop_actorArray["german"]
+		local.k = 0
+		for( local.i = 1; local.i <= local.arr.size; local.i++ ){
+			local.a = local.arr[local.i]
+			if( local.a == NULL || local.a == NIL ){ continue }
+			if( !isAlive local.a ){ continue }
+			if( local.a == level.coop_officer ){ continue }
+			if( local.a.flags["coop_role"] == "mgteam" ){ continue }
+			local.k++
+			local.a damage local.a 99999 local.a local.a.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
+		}
+		// TEST SET-UP: every living actor that is not in the German array (the map's allied captain and squads shoot the team on arrival)
+		// is killed, so the proof shows the team and the player only
+		local.ga = level.coop_actorArray["german"]
+		local.kk = 0
+		for( local.i = 1; local.i < 1024; local.i++ ){
+			local.e = getentbyentnum local.i
+			if( local.e == NULL ){ continue }
+			if( local.e.classname != "Actor" ){ continue }
+			if( !isAlive local.e ){ continue }
+			local.isg = 0
+			for( local.j = 1; local.j <= local.ga.size; local.j++ ){ if( local.ga[local.j] == local.e ){ local.isg = 1; break } }
+			if( local.isg == 1 ){ continue }
+			if( local.e.flags["coop_role"] == "mgteam" ){ continue }
+			local.kk++
+			local.e damage local.e 99999 local.e local.e.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
+		}
+		println ( "^~^~^ MG purged non-german " + local.kk )
+		level.coop_germanPeak = 0
+		println ( "^~^~^ MG purged " + local.k )
+	}
+	if( local.c == "wave" ){
+		level.coop_officer_lastWaveTime = NIL
+		thread coop_mod/officer.scr::coop_call_reinforcements
+	}
+	if( local.c == "state" ){
+		local.sid = level.coop_psqN
+		println ( "^~^~^ MG STATE sid=" + local.sid + " busy=" + ( waitthread mg_s level.coop_rmgBusy ) + " over=" + ( waitthread mg_s level.coop_rmgOver[local.sid] ) + " kind=" + ( waitthread mg_s level.coop_rmgKind ) + " bursts=" + ( waitthread mg_s level.coop_rmgBursts ) + " ayaw=" + ( waitthread mg_s level.coop_psqAyaw[local.sid] ) + " apos=" + ( waitthread mg_s level.coop_psqApos[local.sid] ) )
+		for( local.k = 1; local.k <= 3; local.k++ ){
+			local.m = level.coop_psqM[local.sid][local.k]
+			if( local.m == NIL || local.m == NULL ){ println ( "^~^~^ MG MAN k=" + local.k + " none" ); continue }
+			println ( "^~^~^ MG MAN k=" + local.k + " alive=" + ( isAlive local.m ) + " hp=" + local.m.health + " at=" + local.m.origin + " mounted=" + ( waitthread mg_s local.m.coop_psqMounted ) + " busy=" + ( waitthread mg_s local.m.coop_psqBusy ) + " think=" + local.m.thinkstate + " type=" + local.m.type_attack + " d=" + int( vector_length( local.m.origin - local.p.origin ) ) )
+		}
+		local.g = level.coop_rmgGun[local.sid]
+		if( local.g != NIL && local.g != NULL ){
+			println ( "^~^~^ MG GUN at=" + local.g.origin + " ang=" + local.g.angles + " ammo=" + ( waitthread coop_mod/parasquad_gun.scr::ammo local.g ) + " heat=" + ( waitthread coop_mod/parasquad_gun.scr::heat local.g ) + " d=" + int( vector_length( local.g.origin - local.p.origin ) ) + " offd=" + int( vector_length( local.g.origin - level.coop_officer.origin ) ) )
+		}
+	}
+	if( local.c == "killgunner" ){
+		local.sid = level.coop_psqN
+		local.m = level.coop_rmgCur[local.sid]
+		if( local.m != NIL && local.m != NULL ){
+			println ( "^~^~^ MG killing gunner k=" + local.m.coop_psqK + " at=" + local.m.origin )
+			local.m damage local.m 99999 local.m local.m.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
+		}
+	}
+	if( local.c == "lookgun" ){
+		local.sid = level.coop_psqN
+		local.g = level.coop_rmgGun[local.sid]
+		local.tgt = NIL
+		if( local.g != NIL && local.g != NULL ){ local.tgt = local.g.origin }
+		if( local.tgt == NIL ){
+			local.m = level.coop_psqM[local.sid][1]
+			if( local.m != NIL && local.m != NULL ){ local.tgt = local.m.origin + ( 0 0 40 ) }
+		}
+		if( local.tgt != NIL ){
+			local.va = vector_toangles ( local.tgt - ( local.p.origin + ( 0 0 82 ) ) )
+			local.p.viewangles = ( local.va[0] local.va[1] 0 )
+			println ( "^~^~^ MG lookgun d=" + int( vector_length( local.tgt - local.p.origin ) ) )
+		}
+	}
+	if( local.c == "lookoff" ){
+		local.o = level.coop_officer
+		if( local.o != NIL && local.o != NULL ){
+			local.va = vector_toangles ( ( local.o.origin + ( 0 0 40 ) ) - ( local.p.origin + ( 0 0 82 ) ) )
+			local.p.viewangles = ( local.va[0] local.va[1] 0 )
+		}
+	}
+	if( local.c == "radio" ){
+		// the officer's radio 300u ahead of the player
+		local.f = angles_toforward ( 0 local.yaw 0 )
+		local.pos = local.p.origin + ( vector_scale local.f 300 )
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 48 ) )
+		if( local.g != NIL ){ local.pos = local.g }
+		local.radio = spawn script_model_realdamage
+		local.radio model "models/miscobj/radio_military.tik"
+		local.radio.origin = local.pos + ( 0 0 20 )
+		level.coop_radio = local.radio
+		level.coop_radio_destroyed = 0
+		thread coop_mod/reinf.scr::rnf_radio_shootable local.radio
+		println ( "^~^~^ MG radio at=" + local.radio.origin )
+	}
+	if( local.c == "officerdie" ){
+		// the real officer dies: his death monitor starts the radio calls (reinf.scr::rnf_radio_calls) by itself
+		local.o = level.coop_officer
+		level.coop_wave_mask = 2
+		println ( "^~^~^ MG officer dies at=" + local.o.origin + " radio=" + ( waitthread mg_s level.coop_radio ) )
+		local.o damage local.o 99999 local.o local.o.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
+	}
+	if( local.c == "killteam" ){
+		local.sid = level.coop_psqN
+		for( local.k = 1; local.k <= 3; local.k++ ){
+			local.m = level.coop_psqM[local.sid][local.k]
+			if( local.m != NIL && local.m != NULL && isAlive local.m ){ local.m damage local.m 99999 local.m local.m.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0 }
+		}
+		println ( "^~^~^ MG team killed sid=" + local.sid )
+	}
+	if( local.c == "census" ){
+		// every living actor that is not one of the team, with whether it has a team man as its enemy (who is shooting them?)
+		local.sid = level.coop_psqN
+		local.n = 0
+		for( local.i = 1; local.i < 1024; local.i++ ){
+			local.e = getentbyentnum local.i
+			if( local.e == NULL ){ continue }
+			if( local.e.classname != "Actor" ){ continue }
+			if( !isAlive local.e ){ continue }
+			if( local.e.flags["coop_role"] == "mgteam" ){ continue }
+			local.tm = 0
+			for( local.k = 1; local.k <= 3; local.k++ ){
+				if( local.e.enemy == level.coop_psqM[local.sid][local.k] ){ local.tm = local.k }
+			}
+			local.d = int( vector_length( local.e.origin - local.p.origin ) )
+			if( local.tm > 0 || local.d < 700 ){
+				local.n++
+				println ( "^~^~^ MG ACTOR " + local.i + " model=" + local.e.model + " d=" + local.d + " at=" + local.e.origin + " enemyIsTeam=" + local.tm + " think=" + local.e.thinkstate + " hp=" + local.e.health )
+			}
+		}
+		println ( "^~^~^ MG CENSUS " + local.n )
+	}
+	if( local.c == "tpoff" ){
+		// put the player mg_n units from the real officer, on the side with the longest clear view, facing him
+		local.o = level.coop_officer
+		local.dist = float( getcvar( "mg_n" ) )
+		local.bestf = 0
+		local.besth = 0
+		for( local.h = 0; local.h < 360; local.h = local.h + 30 ){
+			local.d = angles_toforward ( 0 local.h 0 )
+			local.tr = traced ( local.o.origin + ( 0 0 40 ) ) ( local.o.origin + ( 0 0 40 ) + ( vector_scale local.d ( local.dist + 300 ) ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+			if( local.tr["fraction"] > local.bestf ){ local.bestf = local.tr["fraction"]; local.besth = local.h }
+		}
+		local.d = angles_toforward ( 0 local.besth 0 )
+		local.pos = local.o.origin + ( vector_scale local.d local.dist )
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 48 ) )
+		if( local.g != NIL ){ local.pos = local.g }
+		local.p origin ( local.pos + ( 0 0 8 ) )
+		local.p.viewangles = ( 0 ( local.besth + 180 ) 0 )
+		println ( "^~^~^ MG tpoff heading=" + local.besth + " clear=" + local.bestf + " player=" + local.pos + " officer=" + local.o.origin )
+	}
+	if( local.c == "camgun" ){
+		// the camera: the player stands mg_x units from the PLANNED gun, mg_n degrees off its line (tries both sides), looking at it
+		local.sid = level.coop_psqN
+		local.g = level.coop_rmgCur[local.sid]
+		if( local.g == NIL || local.g == NULL || local.g.coop_psqMgGun == NIL ){ println "^~^~^ MG camgun none"; end }
+		local.gp = local.g.coop_psqMgGun
+		local.yy = local.g.coop_psqMgYaw
+		local.dist = float( getcvar( "mg_x" ) )
+		local.off = float( getcvar( "mg_n" ) )
+		local.done = 0
+		// mg_n = 0: the set-up camera - the first clear place outside the arc (100, 260, 80, 280 ... degrees off the line); else the firing
+		// camera - inside the arc (6, -6, 12, -12, 0 degrees)
+		local.list[1] = 100
+		local.list[2] = 260
+		local.list[3] = 80
+		local.list[4] = 280
+		local.list[5] = 120
+		local.list[6] = 240
+		local.list[7] = 60
+		local.list[8] = 300
+		local.list[9] = 140
+		local.list[10] = 220
+		local.list[11] = 160
+		local.list[12] = 200
+		local.nl = 12
+		if( local.off != 0 ){
+			local.list[1] = 6
+			local.list[2] = 0 - 6
+			local.list[3] = 12
+			local.list[4] = 0 - 12
+			local.list[5] = 0
+			local.nl = 5
+		}
+		for( local.t = 1; local.t <= local.nl; local.t++ ){
+			local.a = local.list[local.t]
+			local.pos = local.gp + ( vector_scale ( angles_toforward ( 0 ( local.yy + local.a ) 0 ) ) local.dist )
+			local.pg = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 48 ) )
+			if( local.pg == NIL ){ continue }
+			local.tr = traced ( local.pg + ( 0 0 70 ) ) ( local.gp + ( 0 0 10 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+			if( local.tr["fraction"] < 0.98 ){ continue }
+			// the officer and the radio table must not stand in the line of sight
+			local.ob = level.coop_officer
+			if( local.ob != NIL && local.ob != NULL ){
+				local.sv = local.gp - local.pg
+				local.sv[2] = 0
+				local.sl = vector_length local.sv
+				local.ov = local.ob.origin - local.pg
+				local.ov[2] = 0
+				local.al = vector_dot local.ov ( vector_scale local.sv ( 1.0 / local.sl ) )
+				if( local.al > 0 && local.al < local.sl ){
+					local.lat = vector_length( local.ov - ( vector_scale ( vector_scale local.sv ( 1.0 / local.sl ) ) local.al ) )
+					if( local.lat < 130 ){ continue }
+				}
+			}
+			local.p origin ( local.pg + ( 0 0 8 ) )
+			local.va = vector_toangles ( ( local.gp + ( 0 0 5 ) ) - ( local.pg + ( 0 0 82 ) ) )
+			local.p.viewangles = ( local.va[0] local.va[1] 0 )
+			println ( "^~^~^ MG camgun at=" + local.pg + " gun=" + local.gp + " off=" + local.a + " d=" + int( vector_length( local.pg - local.gp ) ) )
+			local.done = 1
+			break
+		}
+		if( local.done == 0 ){ println "^~^~^ MG camgun noplace" }
+	}
+	if( local.c == "mortal" ){
+		local.p takedamage
+		local.p.health = 100000
+		local.p.max_health = 100000
+		println ( "^~^~^ MG mortal hp=" + local.p.health )
+	}
+	if( local.c == "hp" ){
+		println ( "^~^~^ MG HP t=" + level.time + " hp=" + local.p.health + " bursts=" + ( waitthread mg_s level.coop_rmgBursts ) )
+	}
+	if( local.c == "calm" ){
+		// the officer and his guards stop shooting (clean close-ups: the player is only meant to be shot at by the gun)
+		local.o = level.coop_officer
+		if( local.o != NIL && local.o != NULL ){ local.o.enableEnemy = 0 }
+		for( local.i = 1; local.i <= 6; local.i++ ){
+			local.b = level.coop_bodyguards[local.i]
+			if( local.b != NIL && local.b != NULL && isAlive local.b ){ local.b.enableEnemy = 0 }
+		}
+		println "^~^~^ MG calm"
+	}
+	if( local.c == "nt" ){
+		local.p notarget
+		println "^~^~^ MG notarget toggled"
+	}
+	if( local.c == "mute" ){
+		// only the gun shoots: the officer, his guards and the team's riflemen (k 2, 3) stop targeting; the gunner is left alone
+		local.o = level.coop_officer
+		if( local.o != NIL && local.o != NULL ){ local.o.enableEnemy = 0 }
+		for( local.i = 1; local.i <= 6; local.i++ ){
+			local.b = level.coop_bodyguards[local.i]
+			if( local.b != NIL && local.b != NULL && isAlive local.b ){ local.b.enableEnemy = 0 }
+		}
+		local.sid = level.coop_psqN
+		for( local.k = 2; local.k <= 3; local.k++ ){
+			local.m = level.coop_psqM[local.sid][local.k]
+			if( local.m != NIL && local.m != NULL && isAlive local.m && local.m != level.coop_rmgCur[local.sid] ){ local.m.enableEnemy = 0 }
+		}
+	}
+	if( local.c == "dropteam" ){
+		// clear the previous team so a second call is allowed (test only)
+		level.coop_rmgBusy = 0
+	}
+}end

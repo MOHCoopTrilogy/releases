@@ -1,0 +1,106 @@
+.000] ^~^~^ MG armed
+.000] ^~^~^ MG here ( -3894.000 2160.000 0.125 ) ang=( 0.000 90.000 0.000 )
+.000] ^~^~^ MG did here
+.000] ^~^~^ MG did god
+.000] ^~^~^ MG setup REAL officer=( -3098.000 -2651.000 41.055 ) player=( -3894.000 2160.000 0.125 ) alive=1
+.000] ^~^~^ MG did setup
+.000] ^~^~^ MG purged non-german 4
+.000] ^~^~^ MG purged 38
+.000] ^~^~^ MG did purge
+.000] ^~^~^ MG tpoff heading=0 clear=1.000 player=( -2398.000 -2651.000 -11.331 ) officer=( -3098.000 -2651.000 41.055 )
+.000] ^~^~^ MG did tpoff
+.000] ^~^~^ RMG t=41.975 team sid=1 n=3 anchor=officer at=( -3116.370 -2724.683 47.384 ) from=( -4884.610 -3936.865 -106.076 )
+.000] ^~^~^ MG did wave
+.000] ^~^~^ RMG t=44.275 stage runto pathdist=2291.484 think=idle d=2102
+.000] ^~^~^ RMG t=54.275 staged secs=10 stall=0 at=( -3383.795 -2810.165 47.789 ) stage=( -3335.221 -2747.130 49.966 )
+.000] ^~^~^ RMG t=57.125 unpack secs=1.000 at=( -3418.093 -3059.622 41.672 )
+.000] ^~^~^ RMG t=59.975 gun up gunner=1 at=( -3356.578 -3031.876 82.111 ) yaw=18.476 mode=C
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG mortal hp=100000.000
+.000] ^~^~^ MG did mortal
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=66.425 hp=100000.000 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=68.875 hp=100000.000 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=71.325 hp=100000.000 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=73.750 hp=100000.000 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=76.200 hp=100000.000 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=78.650 hp=100000.000 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=80.475 relocate why=no_target gun=( -3356.578 -3031.876 82.111 )
+.000] ^~^~^ MG did mute
+.000] ^~^~^ RMG t=80.975 pack up why=no_target
+.000] ^~^~^ MG HP t=81.100 hp=100000.000 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=83.525 hp=99972.266 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=85.975 hp=99934.188 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=86.825 unpack secs=1.000 at=( -3273.511 -2912.625 46.093 )
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=88.425 hp=99934.188 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=89.675 gun up gunner=1 at=( -3207.672 -2904.696 87.641 ) yaw=8.969 mode=C
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=90.875 hp=99910.188 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=93.325 hp=99910.188 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=95.775 hp=99910.188 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=98.225 hp=99910.188 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=100.675 hp=99910.188 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=103.125 hp=99910.188 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=105.550 hp=99886.188 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=108.000 hp=99886.188 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=109.975 relocate why=no_target gun=( -3207.672 -2904.696 87.641 )
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=110.450 hp=99886.188 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=110.675 pack up why=no_target
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=112.900 hp=99868.188 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=115.350 hp=99809.391 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ RMG t=117.650 unpack secs=1.000 at=( -3297.225 -2934.979 45.438 )
+.000] ^~^~^ MG HP t=117.800 hp=99809.391 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=120.225 hp=99809.391 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ RMG t=120.500 gun up gunner=1 at=( -3225.826 -2952.908 88.184 ) yaw=20.796 mode=C
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=122.675 hp=99759.977 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=125.125 hp=99759.977 bursts=-
+.000] ^~^~^ MG did hp
+.000] ^~^~^ MG did mute
+.000] ^~^~^ MG HP t=127.575 hp=99759.977 bursts=-
+.000] ^~^~^ MG did hp

@@ -1,0 +1,21 @@
+staged: RMG t=53.275 staged
+camera: True
+set-up frames taken
+camera 2: True
+camera 3: True
+    ^~^~^ RMG t=44.275 stage runto pathdist=2399.735 think=idle d=2079
+    ^~^~^ RMG t=53.275 staged secs=9 stall=0 at=( -3402.538 -2805.532 48.309 ) stage=( -3328.144 -2696.438 49.445 )
+    ^~^~^ MG camgun none
+    ^~^~^ MG camgun none
+    ^~^~^ MG camgun none
+    ^~^~^ MG camgun at=( -3568.904 -2837.665 49.374 ) gun=( -3417.204 -3073.010 79.438 ) off=100 d=281
+    ^~^~^ RMG t=57.125 unpack secs=2 at=( -3477.364 -3103.672 39.208 )
+    ^~^~^ RMG t=60.975 gun up gunner=1 at=( -3417.204 -3073.010 79.438 ) yaw=22.805 mode=C
+    ^~^~^ MG camgun at=( -3084.225 -2889.912 50.264 ) gun=( -3417.204 -3073.010 79.438 ) off=6 d=381
+    ^~^~^ RMG t=63.975 target UnnamedSoldier#8240 d=380 fromAnchor=469 settle=0.700
+    ^~^~^ RMG t=65.575 burst done len=0.800 at=UnnamedSoldier#8240 hp=100000.000 ammo=240 heat=37.300
+    ^~^~^ RMG t=67.675 burst done len=0.700 at=UnnamedSoldier#8240 hp=100000.000 ammo=235 heat=42.250
+    ^~^~^ MG camgun at=( -3568.904 -2837.665 49.374 ) gun=( -3417.204 -3073.010 79.438 ) off=100 d=281
+    ^~^~^ RMG t=68.975 gunner down, k=2 takes over, gun up=1
+    ^~^~^ RMG t=71.325 takeover done k=2
+script errors: 0 []

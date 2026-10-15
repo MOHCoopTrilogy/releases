@@ -1,0 +1,46 @@
+.000] ^~^~^ MG armed
+.000] ^~^~^ MG here ( -3894.000 2160.000 0.125 ) ang=( 0.000 90.000 0.000 )
+.000] ^~^~^ MG did here
+.000] ^~^~^ MG did god
+.000] ^~^~^ MG setup REAL officer=( -3098.136 -2646.326 40.729 ) player=( -3894.000 2160.000 0.125 ) alive=1
+.000] ^~^~^ MG did setup
+.000] ^~^~^ MG purged non-german 4
+.000] ^~^~^ MG purged 36
+.000] ^~^~^ MG did purge
+.000] ^~^~^ MG tpoff heading=0 clear=1.000 player=( -2398.468 -2646.902 -11.401 ) officer=( -3098.468 -2646.902 40.789 )
+.000] ^~^~^ MG did tpoff
+.000] ^~^~^ RMG t=41.975 team sid=1 n=3 anchor=officer at=( -3097.422 -2639.274 40.184 ) from=( -4003.455 -3931.258 -32.367 )
+.000] ^~^~^ MG did wave
+.000] ^~^~^ RMG t=44.275 stage runto pathdist=1669.314 think=idle d=1553
+.000] ^~^~^ RMG t=50.275 staged secs=6 stall=0 at=( -3388.718 -2806.951 48.016 ) stage=( -3317.409 -2636.873 45.022 )
+.000] ^~^~^ PSQ t=51.875 mg site how=1 mode=C gun=( -3187.598 -2783.270 85.846 ) yaw=0.417 top=0 fire=advance:1.500 arc=45 seat=( -3247.060 -2775.003 47.324 ) walk=40.037 path=297.910 of=1
+.000] ^~^~^ PSQ t=51.875 mg plan aim=advance ground=51 passed=1 tried=1 bags=1 refused: height=29 gap=2 bag_ground=1 bag_slope=4 secs=0.600
+.000] ^~^~^ PSQ t=52.375 mg walk how=1 left=11.936 ok=1
+.000] ^~^~^ RMG t=52.875 unpack secs=2 at=( -3229.193 -2775.046 47.019 )
+.000] ^~^~^ RMG t=56.125 target UnnamedSoldier#8240 d=806 fromAnchor=644 settle=0.700
+.000] ^~^~^ PSQ t=56.725 mg setup k=1 mode=C gun=( -3187.598 -2783.270 85.846 ) yaw=0.417 arc=45 top=0 seat=( -3247.727 -2784.722 47.775 ) hp=38.071 pos=crouch
+.000] ^~^~^ RMG t=56.725 gun up gunner=1 at=( -3187.598 -2783.270 85.846 ) yaw=0.417 mode=C
+.000] ^~^~^ RMG t=57.925 burst done len=1.000 at=UnnamedSoldier#8240 hp=100000.000 ammo=236 heat=41.500
+.000] ^~^~^ RMG t=59.225 burst barrel len=0.300 at=UnnamedSoldier#8240 hp=100000.000 ammo=232 heat=47.050
+.000] ^~^~^ PSQ t=59.425 mg hold fire=barrel_hot
+.000] ^~^~^ PSQ t=63.675 mg hold fire=clear
+.000] ^~^~^ RMG t=64.575 burst barrel len=0.900 at=UnnamedSoldier#8240 hp=100000.000 ammo=221 heat=49.200
+.000] ^~^~^ PSQ t=64.775 mg hold fire=barrel_hot
+.000] ^~^~^ MG camgun at=( -3238.226 -2507.885 34.572 ) gun=( -3187.598 -2783.270 85.846 ) off=100 d=284
+.000] ^~^~^ MG did camgun
+.000] ^~^~^ MG did mute
+.000] ^~^~^ RMG t=66.975 relocate why=flanked gun=( -3187.598 -2783.270 85.846 )
+.000] ^~^~^ RMG t=67.725 pack up why=flanked
+.000] ^~^~^ PSQ t=68.925 mg packup k=1
+.000] ^~^~^ PSQ t=71.250 mg site how=2 mode=C gun=( -3120.296 -2801.488 87.393 ) yaw=12.088 top=0 fire=enemy:1.500 arc=45 seat=( -3180.241 -2805.408 48.287 ) walk=40.312 path=0 of=1
+.000] ^~^~^ PSQ t=71.250 mg plan aim=enemy ground=55 passed=1 tried=1 bags=1 refused: height=34 gap=1 squad_in_front=1 bag_ground=3 bag_slope=2 secs=0.325
+.000] ^~^~^ PSQ t=71.500 mg walk how=2 left=7.369 ok=1
+.000] ^~^~^ RMG t=72.000 unpack secs=2 at=( -3178.719 -2821.417 49.086 )
+.000] ^~^~^ PSQ t=75.850 mg setup k=1 mode=C gun=( -3120.296 -2801.488 87.393 ) yaw=12.088 arc=45 top=0 seat=( -3180.201 -2805.420 49.858 ) hp=37.536 pos=crouch
+.000] ^~^~^ RMG t=75.850 gun up gunner=1 at=( -3120.296 -2801.488 87.393 ) yaw=12.088 mode=C
+.000] ^~^~^ MG STATE sid=1 busy=1 over=0 kind=officer bursts=3 ayaw=320.094 apos=( -2925.578 -2513.467 28.022 )
+.000] ^~^~^ MG MAN k=1 alive=1 hp=91.000 at=( -3180.201 -2805.420 49.858 ) mounted=1 busy=0 think=idle type=machinegunner d=303
+.000] ^~^~^ MG MAN k=2 alive=1 hp=78.000 at=( -3267.890 -2853.631 44.124 ) mounted=0 busy=0 think=idle type=turret d=347
+.000] ^~^~^ MG MAN k=3 alive=1 hp=78.000 at=( -3292.540 -2651.977 45.753 ) mounted=0 busy=0 think=idle type=turret d=154
+.000] ^~^~^ MG GUN at=( -3120.296 -2801.488 87.393 ) ang=( -0.000 12.088 0.000 ) ammo=221 heat=0.000 d=320 offd=349
+.000] ^~^~^ MG did state

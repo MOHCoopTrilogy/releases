@@ -1,0 +1,20 @@
+player -3894.0 2160.0 0.125 yaw 90.0
+gun up: False after 111 s
+    ^~^~^ RMG t=43.800 team sid=1 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -4280.073 3165.708 5.487 )
+    ^~^~^ RMG t=47.800 staged left=6052 at=( -4256.000 3080.000 0.412 )
+    ^~^~^ RMG t=49.125 no site fails=1
+    ^~^~^ RMG t=55.450 no site fails=2
+    ^~^~^ RMG t=61.775 no site fails=3
+    ^~^~^ RMG t=68.100 no site fails=4
+    ^~^~^ RMG t=68.100 release why=no_site
+    ^~^~^ RMG t=68.300 brain end sid=1 secs=24
+    ^~^~^ RMG t=82.775 team sid=2 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -3164.221 3420.491 0.125 )
+    ^~^~^ RMG t=86.775 staged left=6484 at=( -3110.281 3615.633 0.125 )
+    ^~^~^ RMG t=88.100 no site fails=1
+    ^~^~^ RMG t=94.425 no site fails=2
+    ^~^~^ RMG t=100.750 no site fails=3
+    ^~^~^ RMG t=107.075 no site fails=4
+    ^~^~^ RMG t=107.075 release why=no_site
+    ^~^~^ RMG t=107.275 brain end sid=2 secs=24
+    ^~^~^ RMG t=153.675 team sid=3 n=3 anchor=radio at=( -3172.000 -2651.000 94.166 ) from=( -3119.973 2747.843 0.125 )
+script errors: 0 []
