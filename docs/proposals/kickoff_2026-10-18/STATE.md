@@ -4,6 +4,7 @@
 **Usage then:** weekly 98 %, extra usage off. Reset 2026-10-18 06:00 local.
 
 ## Live
+- **v1.10.29 RELEASED 2026-10-15**: AI realism (officer men in squad layers, wave entry, event voices + faces, radio call-ins, idle watchdog, MG42 team covering officer/radio - lethal ~85 hp/s, may need softening), reinforcement smoke screens, HUD polish (one fade curve, icon alignment, feed routing, no icons in lobby/briefing), Armory locks + DONE guard + lp_* fast picks + gun fit, seamless lobby anims, load art everywhere, alarm + counter-attack SHIPPED OFF (coop_alarm 0 / coop_counter 0 until the user playtests). Mod coop-wip = combo-1.10.29; cgame aefb2f05 (progsync cgame-1.10.29 776e4de5, pushed as release-1.10.29-cgame). Desktop shortcut "Start MOH Coop Servers.bat" starts the 3 servers. Open: bug-3984 t2l1 allysquad.scr compile error (pre-existing or harness).
 - **v1.10.28 HOTFIX published 2026-10-14 night**: lobby + debrief text size (bug-3918, mod c54372fb; ihuddraw virtualsize 0 = UI hi-res scale; debrief y positions are absolute pixels tuned for 1080p - check low resolutions). Three public servers run it.
 - **v1.10.27 HOTFIX published 2026-10-14 evening**: briefing slide flicker for remote players fixed (bug-3917, mod 6e53cbd6). v1.10.26 before it: SAS escort failsafe on m1l2a + lobby mannequin cleanup + lobby bar (bug-3913/3914/3916). Only the code pak changed in both. Still open: bug-3915 (uniform for player 2; evidence in the buglog). Three public servers run v1.10.27.
 - **v1.10.24 HOTFIX published 2026-10-14 15:40**: remote join flood fixed (bug-3910 / 3909 / 3905): client exe sends every fragment, server caps reliable bytes in flight per remote client (sv_cmdParkBytes 2400), lobby.scr flood fix. Engine rel-1.10.24 f551686f (= 277bdb9d + 15732bb2; exe d33febc3, ded aa883b7c, built in openmohaa-hzm-rel/.cmake like the release) pushed as release-1.10.24 (origin + org); mod coop-wip 098f93eb pushed. game/cgame = v1.10.23, renderers = v1.10.22. Public servers run it; their loose lobby.scr was moved to public_servers/_superseded_lobby_patch/. Handover: docs/proposals/joinflood_2026-10-14/README.md.
@@ -45,7 +46,7 @@
 - Small-maps ideas, main menu, performance moves 2-5: not started.
 
 ## Next big build (user 2026-10-15)
-- v1.10.29 is DEPLOYED to the user's install for testing, NOT released; public servers stopped meanwhile. Release on the user's "go" (publish_release 1.10.29; mod branch combo-1.10.29 in the main checkout; cgame aefb2f05 from progsync cgame-1.10.29 776e4de5), then start_servers.ps1.
+- v1.10.29 released (see Live). Release on the user's "go" (publish_release 1.10.29; mod branch combo-1.10.29 in the main checkout; cgame aefb2f05 from progsync cgame-1.10.29 776e4de5), then start_servers.ps1.
 - Build the ALARM system + COUNTER-ATTACK from docs/proposals/alarm_counterattack_2026-10-15/DESIGN.md (8 steps, both off by default; stealth maps excluded via coop_stealthMap / coop_enableDisguises). User liked quick wins #1 (counter-attack) and #6 (alarms on more maps, AI runs to switches, reinforcements continue while live); #5 side objectives = investigate later.
 - AI realism steps 5+ from docs/proposals/ai_realism_2026-10-15/PLAN.md after that.
 
