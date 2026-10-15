@@ -1,0 +1,94 @@
+TIKI
+// HZM coop [2026-10-15] SMOKE SCREEN canister - the cloud a reinforcement squad / grenadier hides behind.
+//
+// WHY THIS EXISTS. The reinforcements' smoke used to be tehao_thickSmoke (a 3/s, 8 s, DARK GREY soot wisp that rises at
+// accel z 60) plus a stock M18 pop at the thrower's feet, removed after 16-20 s. It looked like a campfire and hid nothing.
+//
+// HOW CONCEALMENT WORKS. Two halves that must agree (the stock file says so: "these values should mimic those of the
+// client-side effect"):
+//   server  classname SmokeGrenade -> every 1/spawnrate s it drops a SmokeSprite (a sphere of radius `scale`, growing by
+//           scale*scalerate per s). Actor::CanSee asks G_VisualObfuscation for the eye-to-eye ray and an enemy whose
+//           visibility falls under m_fVisibilityThreshold (0.5) is NOT seen: AI inside / behind the cloud cannot see the
+//           players either, so they stop getting perfect shots through it. maxalpha 1 = one sprite on the ray blocks it.
+//   client  the originemitter draws the same puffs for the players: a white-grey vsssource.spr (the sprite every D-Day
+//           smoke emitter and coop_smokescreen use) at alpha 1, big and slow, so it is opaque from both sides.
+// SCALE MATH (same in both halves: growth = start * scalerate per second). Server scale is the RADIUS = half the
+// parameter ("scale 170" -> radius 85); client scale is x128 px DIAMETER, so 170 <=> scalemin 1.33.
+// LIFE: emitter life 60 + spawnlife 24 -> the cloud holds fully opaque from about +3 s to +60 s and thins out by ~+84 s.
+// COST: spawnrate 3 -> ~72 live puffs per canister (squads throw three side by side); no `collision` (no per-puff traces,
+// the same choice coop_smokescreen made).
+setup
+{
+	scale 0.6
+	lod_scale 30
+	path models/projectiles/M18_smoke_grenade
+	skelmodel M18_smoke_grenade.skd
+	surface all shader M18_smoke_gren
+}
+
+init
+{
+	server
+	{
+		classname SmokeGrenade
+		notsolid
+		life 60
+		alwaysdraw
+		toss
+		gravity .8
+		setsize "-2 -2 -2" "2 2 2"
+
+		spawnrate 3
+		bouncefactor 0
+		spawnlife 24
+		scalerate 0.06
+		velocity 12 0 3
+		spin 0
+		offset 0 0 30
+		scale 170
+		fadedelay 16
+		fadein 2
+		maxalpha 1
+	}
+
+	client
+	{
+		cache vsssource.spr
+
+		originemitter initial
+		(
+			spawnrate 3
+			model vsssource.spr
+			color 0.88 0.88 0.86
+			spritegridlighting
+			alpha 1
+			bouncefactor 0
+			life 24
+			scalerate 0.06
+			velocity 12
+			randvelaxis crandom 5 crandom 5 2
+			spin 0
+			offset crandom 70 crandom 70 range 6 40
+			angles 0 0 random 360
+			avelocity 0 0 crandom 10
+			scalemin 1.2
+			scalemax 1.5
+			fadein 2
+			fadedelay 16
+		)
+	}
+}
+
+animations
+{
+	$path models/projectiles/M18_smoke_grenade
+	idle M18_smoke_grenade.skc
+	{
+		client
+		{
+			entry sound smokegrenade_exp_start
+			entry loopsound smokegrenade_exp_loop
+			entry commanddelay 59.9 sound smokegrenade_exp_end
+		}
+	}
+}

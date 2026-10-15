@@ -1990,5 +1990,8 @@
   },
   "textures/models/weapons/coop_dbshotgun/coop_dbshotgun_parts.jpg": {
     "new": "True"
+  },
+  "models/fx/coop_screensmoke.tik": {
+    "new": "True"
   }
 }

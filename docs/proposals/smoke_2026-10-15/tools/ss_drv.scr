@@ -1,0 +1,142 @@
+//=========================================================================
+// TEST-ONLY overlay driver (smoke screens 2026-10-15) - NEVER shipped. Installed as coop_mod/coop_selftest_xp.scr,
+// started by main.scr when coop_st_xp 1. Commands arrive in cvar ai_cmd; args in ai_x ai_y ai_z ai_yaw ai_n.
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ AI armed"
+	setcvar "ai_cmd" "0"
+	while( 1 ){
+		local.c = getcvar( "ai_cmd" )
+		if( local.c != "0" && local.c != "" ){
+			setcvar "ai_cmd" "0"
+			waitthread ss_do local.c
+			println ( "^~^~^ AI did " + local.c )
+		}
+		waitframe
+	}
+}end
+
+ss_vec:{
+	local.o = ( 0 0 0 )
+	local.o[0] = float( getcvar( "ai_x" ) )
+	local.o[1] = float( getcvar( "ai_y" ) )
+	local.o[2] = float( getcvar( "ai_z" ) )
+}end local.o
+
+// first living wave actor
+ss_lead:{
+	local.r = NIL
+	for( local.i = 1; local.i <= level.coop_wave_count; local.i++ ){
+		local.w = level.coop_wave_actors[local.i]
+		if( local.w == NULL || local.w == NIL ){ continue }
+		if( !isAlive local.w ){ continue }
+		local.r = local.w
+		break
+	}
+}end local.r
+
+ss_cam:{
+	local.p = $player[1]
+	while( level.ss_cam == 1 ){
+		local.w = waitthread ss_lead
+		if( local.w != NIL && local.p != NULL ){
+			local.va = vector_toangles ( ( local.w.origin + ( 0 0 40 ) ) - ( local.p.origin + ( 0 0 82 ) ) )
+			local.p.viewangles = ( local.va[0] local.va[1] 0 )
+		}
+		waitframe
+	}
+}end
+
+ss_mon:{
+	local.p = $player[1]
+	local.t0 = level.time
+	while( level.ss_mon == 1 ){
+		local.live = 0
+		local.hold = 0
+		local.seen = 0
+		local.near = 999999
+		for( local.i = 1; local.i <= level.coop_wave_count; local.i++ ){
+			local.w = level.coop_wave_actors[local.i]
+			if( local.w == NULL || local.w == NIL ){ continue }
+			if( !isAlive local.w ){ continue }
+			local.live++
+			if( local.w.flags["coop_smokeHold"] == 1 ){ local.hold++ }
+			if( local.w cansee local.p ){ local.seen++ }
+			local.d = vector_length( local.w.origin - local.p.origin )
+			if( local.d < local.near ){ local.near = local.d }
+		}
+		println ( "^~^~^ SS MON t=" + ( level.time - local.t0 ) + " live=" + local.live + " hold=" + local.hold + " cansee=" + local.seen + " nearest=" + int( local.near ) + " live_smoke=" + level.coop_smokeLive )
+		wait 1
+	}
+}end
+
+ss_do local.c:{
+	local.p = $player[1]
+	if( local.p == NULL ){ end }
+	local.yaw = float( getcvar( "ai_yaw" ) )
+	if( local.c == "here" ){
+		println ( "^~^~^ AI here " + local.p.origin + " ang=" + local.p.viewangles )
+	}
+	if( local.c == "tp" ){
+		local.o = waitthread ss_vec
+		local.p origin local.o
+		local.p.viewangles = ( 0 local.yaw 0 )
+		local.p nodamage
+		local.p.health = 100000
+		local.p.max_health = 100000
+	}
+	if( local.c == "purge" ){
+		local.arr = level.coop_actorArray["german"]
+		local.k = 0
+		for( local.i = 1; local.i <= local.arr.size; local.i++ ){
+			local.a = local.arr[local.i]
+			if( local.a == NULL || local.a == NIL ){ continue }
+			if( !isAlive local.a ){ continue }
+			if( local.a.flags["coop_reinfSquad"] != NIL ){ continue }
+			local.k++
+			local.a damage local.a 99999 local.a local.a.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
+		}
+		println ( "^~^~^ AI purged " + local.k )
+	}
+	if( local.c == "stage" ){
+		// the longest clear run from the player's eye over 12 headings; the squad lands at the end of it
+		local.bd = 0
+		local.by = 0
+		for( local.y = 0; local.y < 360; local.y = local.y + 30 ){
+			local.f = angles_toforward ( 0 local.y 0 )
+			local.a = local.p.origin + ( 0 0 64 )
+			local.tr = traced local.a ( local.a + ( vector_scale local.f 2800 ) )
+			local.d = local.tr["fraction"] * 2800
+			if( local.d > local.bd ){ local.bd = local.d; local.by = local.y }
+		}
+		println ( "^~^~^ SS STAGE best yaw=" + local.by + " clear=" + int( local.bd ) )
+		local.dd = local.bd - 150
+		if( local.dd > 2300 ){ local.dd = 2300 }
+		local.f = angles_toforward ( 0 local.by 0 )
+		local.pos = local.p.origin + ( vector_scale local.f local.dd )
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 48 ) )
+		if( local.g != NIL ){ local.pos = local.g }
+		level.ss_pos = local.pos
+		level.ss_yaw = local.by
+		local.p.viewangles = ( 0 local.by 0 )
+		println ( "^~^~^ SS STAGE squadpos=" + level.ss_pos + " dist=" + int( vector_length( level.ss_pos - local.p.origin ) ) )
+	}
+	if( local.c == "squad" ){
+		level.coop_officer_alive = 1
+		level.ss_mon = 1
+		thread ss_mon
+		thread coop_mod/officer.scr::coop_spawn_elite_squad level.ss_pos
+	}
+	if( local.c == "lob" ){
+		// one grenadier-style screen: the first wave man throws at the player
+		local.w = waitthread ss_lead
+		local.r = waitthread coop_mod/smokescreen.scr::lob local.w local.p
+		println ( "^~^~^ SS LOB result=" + local.r )
+	}
+	if( local.c == "camon" ){
+		level.ss_cam = 1
+		thread ss_cam
+	}
+	if( local.c == "camoff" ){ level.ss_cam = 0 }
+	if( local.c == "monoff" ){ level.ss_mon = 0 }
+}end

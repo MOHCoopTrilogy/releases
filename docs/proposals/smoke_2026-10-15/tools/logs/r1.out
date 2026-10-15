@@ -1,0 +1,14 @@
+15:28:07 t=0.030 launched pid 13636 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+15:28:07 t=0.058 in-process guard installed on thread 15340
+15:28:07 t=0.484 place 0x2609ca SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:28:08 t=0.600 place 0x2709ca SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+15:28:08 t=0.605 place 0x5b0cb4 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:38:07 r1 FAILED RuntimeError('map never became ready') set coop_aiScaleTest 1", "set coop_smokeDebug 1"] + [x for x in os.environ.get("SSSET", "").split(";") if x])
+                    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev/docs/proposals/ai_realism_2026-10-15/tools\ailib.py", line 76, in boot
+    rundir, notes = S.boot_session(sess, cg, W, H, EXTRA + list(extra), ov or overlay(ref=ref, extra=files))
+                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev/docs/proposals/ironsights_2026-09-28/tools\run_sweep.py", line 104, in boot_session
+    raise RuntimeError("map never became ready")
+RuntimeError: map never became ready
+
