@@ -45,6 +45,7 @@
 - Small-maps ideas, main menu, performance moves 2-5: not started.
 
 ## Waiting on the user
+- FEATURE (user 2026-10-14): replace the big text prompts for picking up sandbags, using ammo boxes and healing friendlies with ICONS (small icon + the bound key near the crosshair). Reuse the item-readout icons from v1.10.21 (medkit / sandbag / ammo box, drawn with the key underneath) and the UI hi-res text scale from bug-3918. Design-first: show the user a mock-up before building.
 - bug-3917: briefing "flickering black" for a remote player (~200 ms). Lead in the buglog (menumirror slide add/remove order). bug-3915 uniform: new evidence in the buglog. Both for Sunday.
 - bug-3916: SAS escort sometimes gets stuck before the gate on the SAS rescue map (soft-lock: explosives cannot be triggered). Do it with the forced-sandstorm + hint feature (same map). Ask before changing.
 - bug-3915: only player 1 can change uniform in the co-op lobby. Batch with bug-3913/3914; ask before changing.
