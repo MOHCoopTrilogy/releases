@@ -1,0 +1,46 @@
+//=========================================================================
+// TEST-ONLY overlay driver (alarm/counter 2026-10-15) - NEVER shipped. Installed as coop_mod/coop_selftest_xp.scr.
+// Commands arrive in cvar ai_cmd (the ai_realism harness protocol: prints "^~^~^ AI did <cmd>").
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ AI armed"
+	setcvar "ai_cmd" "0"
+	while( 1 ){
+		local.c = getcvar( "ai_cmd" )
+		if( local.c != "0" && local.c != "" ){
+			setcvar "ai_cmd" "0"
+			waitthread cn_do local.c
+			println ( "^~^~^ AI did " + local.c )
+		}
+		waitframe
+	}
+}end
+
+cn_s local.v:{
+	local.r = "-"
+	if( local.v != NIL ){ local.r = "" + local.v }
+}end local.r
+
+cn_do local.c:{
+	local.p = $player[1]
+	if( local.p == NULL ){ end }
+	if( local.c == "here" ){
+		println ( "^~^~^ AI here " + local.p.origin )
+	}
+	if( local.c == "mc" ){
+		// the mission ends the way a map does it: the finishing player is self
+		local.p thread global/missioncomplete.scr::main "m1l2a" 1
+	}
+	if( local.c == "state" ){
+		println ( "^~^~^ CN STATE done=" + ( waitthread cn_s level.coop_counterDone ) + " active=" + ( waitthread cn_s level.coop_counterActive ) + " sent=" + ( waitthread cn_s level.coop_counterN ) + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive ) + " ran=" + ( waitthread cn_s level.coop_missionCompleteRan ) + " t=" + level.time )
+	}
+	if( local.c == "sizes" ){
+		println ( "^~^~^ CN SIZES 1=" + ( waitthread coop_mod/coop_counter.scr::counter_wavesize 1 ) + " 2=" + ( waitthread coop_mod/coop_counter.scr::counter_wavesize 2 ) + " 3=" + ( waitthread coop_mod/coop_counter.scr::counter_wavesize 3 ) + " 4=" + ( waitthread coop_mod/coop_counter.scr::counter_wavesize 4 ) + " 5=" + ( waitthread coop_mod/coop_counter.scr::counter_wavesize 5 ) + " 8=" + ( waitthread coop_mod/coop_counter.scr::counter_wavesize 8 ) )
+	}
+	if( local.c == "gate" ){
+		println ( "^~^~^ CN GATE " + level.coop_mapname + " -> " + ( waitthread coop_mod/coop_counter.scr::counter_gate level.coop_mapname ) )
+	}
+	if( local.c == "gatemap" ){
+		println ( "^~^~^ CN GATEMAP " + getcvar( "cn_map" ) + " -> " + ( waitthread coop_mod/coop_counter.scr::counter_gate ( getcvar( "cn_map" ) ) ) )
+	}
+}end

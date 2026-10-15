@@ -1,0 +1,16 @@
+15:11:33 t=0.035 launched pid 6100 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+15:11:33 t=0.052 in-process guard installed on thread 3856
+15:11:34 t=0.431 place 0x930caa SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:11:34 t=0.557 place 0x940caa SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+15:11:34 t=0.561 place 0x960b3e SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:12:39 booted cn_s2 m1l1 ref=work dog False
+15:14:21 s2 FAILED RuntimeError('driver never did state') Traceback (most recent call last):
+  File "C:\mohaa-coop-dev\docs\proposals\alarm_counterattack_2026-10-15\tools\cn_run.py", line 24, in <module>
+    G.cmd("state")
+    ~~~~~^^^^^^^^^
+  File "C:\mohaa-coop-dev/docs/proposals/ai_realism_2026-10-15/tools\ailib.py", line 97, in cmd
+    raise RuntimeError("driver never did %s" % what)
+RuntimeError: driver never did state
+
+15:14:22 t=168.427 process exited
+15:14:22 end_session ModuleNotFoundError("No module named 'PIL'")

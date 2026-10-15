@@ -1,0 +1,8 @@
+FAILED RuntimeError('driver never did state') Traceback (most recent call last):
+  File "C:\mohaa-coop-dev\docs\proposals\alarm_counterattack_2026-10-15\tools\cn_run.py", line 24, in <module>
+    G.cmd("state")
+    ~~~~~^^^^^^^^^
+  File "C:\mohaa-coop-dev/docs/proposals/ai_realism_2026-10-15/tools\ailib.py", line 97, in cmd
+    raise RuntimeError("driver never did %s" % what)
+RuntimeError: driver never did state
+
