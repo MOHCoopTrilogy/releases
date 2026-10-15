@@ -1,7 +1,7 @@
 ﻿{
     "manifestVersion":  1,
-    "version":  "1.10.29",
-    "created":  "2026-10-15T21:56:32Z",
+    "version":  "1.10.30",
+    "created":  "2026-10-15T22:27:43Z",
     "files":  [
                   {
                       "path":  "openmohaa.exe",
@@ -167,9 +167,9 @@
                   },
                   {
                       "path":  "home/maintt/autoexec.cfg",
-                      "size":  144507,
-                      "sha256":  "0981bde615339bfdc792df02e7cd4acc88e4508e334622bec85b7435dde12978",
-                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.29/autoexec.cfg"
+                      "size":  142968,
+                      "sha256":  "87fe1879f7223d9d44f54c83a277eb2615c13cc7818164f0ae765403159ba6e6",
+                      "url":  "https://github.com/MOHCoopTrilogy/releases/releases/download/v1.10.30/autoexec.cfg"
                   },
                   {
                       "path":  "home/maintt/whatsnew_pending.cfg",
