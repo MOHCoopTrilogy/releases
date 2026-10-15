@@ -154,7 +154,7 @@ MP_OWNED_MENUS = {"mpoptions"}
 # ONLY this file: the MP-facing menus are left unlocked on purpose - the user approved coop edits to them
 # (Select Game Type cleanup, mod copies of the MP options screens, 2026-09-13).
 LOCKS = {
-    "ui/coop_loadout.urc": {"sha256_lf": "462a8a4568f0b4ca5135bf75cc7ef1f10ef05caa4656cad41c9f70ede1c15697", "sha256_crlf": "67f089273e907e2d753ea2cf9443c7df2a7bbdd8c60cda47710f841b9f72a98e", "lf_bytes": 76913, "blob": "0ba78fc0", "eol": "crlf", "commit": "f58e211c", "locked": "2026-10-13 integration pass 3 step B: the double-barrel shotgun's armory tile (id 80), the LAST tile of the heavy tab, no other tile moved (dbshotgun lane wiring/gen/armory_dbs.patch, re-made on the tree with id 78); was blob 89be4290 @ 17761c3a (step 5, G 43 Irons id 78)"},
+    "ui/coop_loadout.urc": {"sha256_lf": "7dea624497f3a1271c2fd7158fd6638db85bd8fd1219a4e920959ed90e562d4a", "sha256_crlf": "914c5299440b7687a18bd691491715091da5c956c57994374221f7554526c8fb", "lf_bytes": 90292, "blob": "de7f8f72431035713af2823febaaeabe465c6a4d", "eol": "crlf", "commit": "2fd7df66", "locked": "2026-10-15 deliberate co-op armory gating edit (locked tiles never preview/equip, mastery + variant locks, equipped marker; docs/tools/patch_armory_gating.py), bug-3919/bug-3920"},
 }
 
 # Clauses 4/5. Every saved coop cvar MP could plausibly touch [bug-2564]; each would follow the player into coop.
