@@ -1,0 +1,36 @@
+animations
+{
+	$path models/human/animation
+
+	//----------------------------------------------------------------
+	// HZM COOP MOD - wounded-enemy belly crawl (bug-1818).
+	//
+	// coop_mod/wounded.scr is GERMANS-ONLY ("enemies only, never allies")
+	// and drives a wounded german away from the fight with
+	//   local.actor setanim coop_dbno_crawl
+	// but that label was only ever defined in the PLAYER animation set
+	// (models/player/base/anims_shared.txt). AI models never had it, so
+	// every wounded german logged
+	//   Script Error : unknown animation 'coop_dbno_crawl' in '<model>.tik'
+	// and - because a Script Error SKIPS THE STATEMENT rather than killing
+	// the thread - coop_woundedFleeCrawl kept origin-stepping regardless.
+	// The result was a german SLIDING across the floor in his previous
+	// pose for up to 40 seconds. The feature has never looked right.
+	//
+	// mp40_pain_floorcrawl is the retail belly-crawl from the German
+	// major-pain set: it is under models/human/animation (the same root
+	// this AI set already uses, NOT a player-only path), it ships in
+	// main/Pak0 so it loads on every map in all three campaigns, and it
+	// is authored for a german holding an MP40 rather than for the player
+	// rig. Root translation is irrelevant here because wounded.scr moves
+	// the actor itself by origin-stepping - this clip only has to LOOK
+	// like crawling.
+	//----------------------------------------------------------------
+
+	coop_dbno_crawl		weapon_mp40/major_pain/mp40_pain_floorcrawl.skc
+	//bug-1956: human_rifle.tik is the ONE wg pack shipping NO pain_floorcrawl (pak census),
+	//and wounded.scr fans the crawl to <wg>_pain_floorcrawl - rifle carriers errored unknown-
+	//animation and slid in-pose (the exact bug-1818 symptom). Alias the rifle name onto the
+	//same mp40 belly-crawl skc every other group uses.
+	rifle_pain_floorcrawl	weapon_mp40/major_pain/mp40_pain_floorcrawl.skc
+}

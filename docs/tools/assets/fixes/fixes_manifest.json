@@ -1993,5 +1993,11 @@
   },
   "models/fx/coop_screensmoke.tik": {
     "new": "True"
+  },
+  "models/human/animation/scripted/coop_wounded.tik": {
+    "base_md5": "9ae477981749c7d3706f139c42b7699a",
+    "base_ticks": 639277114447728779,
+    "base_from": "docs/tools/assets/fixes_base/models/human/animation/scripted/coop_wounded.tik",
+    "why": "bug-3984: coop_dbno_collapse / coop_dbno_idle for AI models so the fixed allysquad.scr downed allies animate (t2l1/t2l3 escorts)"
   }
 }
