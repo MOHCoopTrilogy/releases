@@ -16,7 +16,7 @@ for nm, tik, lab, xt, xw, pid, sl in J:
     im = Image.open(p).convert("RGB")
     a = np.asarray(im).astype(int)
     off = 76 * (int(sl) - 1)
-    th = (int(160 * SX), int((60 + off) * SY), int(252 * SX), int((110 + off) * SY))
+    th = (int(L.BX * SX), int((L.BY + off) * SY), int((L.BX + L.BW) * SX), int((L.BY + L.BH + off) * SY))
     m = L.mask(a[th[1]:th[3], th[0]:th[2]], base[th[1]:th[3], th[0]:th[2]])
     ys, xs = np.nonzero(m)
     if len(xs) > 12:

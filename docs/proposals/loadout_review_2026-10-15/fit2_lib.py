@@ -5,8 +5,11 @@ import numpy as np
 from PIL import Image
 
 SX, SY = 1.5, 1.125
+# Thumbnail box in 640x480 menu units. Re-solve for another box (redesign hero/card sizes): BOXX/BOXY/BOXW/BOXH env, or edit these.
+BX, BY = float(os.environ.get("BOXX", 160)), float(os.environ.get("BOXY", 60))
+BW, BH = float(os.environ.get("BOXW", 92)), float(os.environ.get("BOXH", 50))
 RECTS = {
-    "T": (int(160 * SX), int(60 * SY), int((160 + 92) * SX), int((60 + 50) * SY)),      # cardthumb1 rect 160 60 92 50
+    "T": (int(BX * SX), int(BY * SY), int((BX + BW) * SX), int((BY + BH) * SY)),      # cardthumb1 rect 160 60 92 50
     "W": (int(478 * SX), int(44 * SY), int((478 + 152) * SX), int((44 + 100) * SY)),    # prevC* rect 478 44 152 100
 }
 THR = 10
@@ -16,8 +19,8 @@ def load(path, view):
     return np.asarray(Image.open(path).convert("RGB").crop(RECTS[view])).astype(int)
 
 
-def mask(img, base):
-    m = (np.abs(img - base).sum(axis=2) > THR)
+def mask(img, base, thr=None):
+    m = (np.abs(img - base).sum(axis=2) > (THR if thr is None else thr))
     # drop isolated specks: keep a pixel only if >= 3 of its 8 neighbours are set
     p = np.pad(m, 1)
     n = sum(p[1 + dy:p.shape[0] - 1 + dy, 1 + dx:p.shape[1] - 1 + dx].astype(int) for dy in (-1, 0, 1) for dx in (-1, 0, 1) if (dy or dx))
@@ -26,6 +29,8 @@ def mask(img, base):
 
 def measure(img, base):
     m = mask(img, base)
+    if m.sum() < 220:   # faint / dark gun on the dark card (26, 32, 52, 61 ...): retry with a lower threshold
+        m = mask(img, base, 4)
     ys, xs = np.nonzero(m)
     if len(xs) < 12:
         return None

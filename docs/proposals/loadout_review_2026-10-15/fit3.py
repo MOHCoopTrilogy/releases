@@ -1,4 +1,6 @@
-"""fit3.py - gun-fit redo, continuation of fit2_solve.py. Fits BOTH the slot-card thumbnail (T, 92x50) and the inspect preview (W, 152x100).
+"""RE-SOLVE FOR A NEW BOX: set BOXX/BOXY/BOXW/BOXH (640x480 menu units) in the env, then loop: `fit3.py probe3 j.json` -> run_fit3.py (jobs=j.json, one fair-queue
+turn, runloop.sh) -> `fit3.py refine3 <run> T` until ~70/76 converge -> `fit3.py apply` (writes loadout_weapons.tsv xfm/xfmt) -> gen_loadout.py build -> run_fit4.py verify + fit4_sheet.py.
+fit3.py - gun-fit redo, continuation of fit2_solve.py. Fits BOTH the slot-card thumbnail (T, 92x50) and the inspect preview (W, 152x100).
     fit3.py jobs <out.json> [ids,...]    job list from fit2_state.json (all guns or the given ids)
     fit3.py probe <out.json>             W-view slope probes (8 guns: base, y+PR, z+PR)
     fit3.py slopew <runDir>              derive the W slopes from the probe run (median, per scale), store in the state
