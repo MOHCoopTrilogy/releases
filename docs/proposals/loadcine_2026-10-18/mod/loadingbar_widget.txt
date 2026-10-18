@@ -1,0 +1,14 @@
+// Insert into hzm-mohaa-coop-mod/ui/loadingbar.txt AFTER the hzm_loadart resource and BEFORE hzm_loadhint_bg
+// (draw order is file order: the clip sits over the menu's own art and the pool art, under the tip strip, medal and bar).
+// An exe without the loading cinematic never sets ui_loadCineOn, so it ignores this widget (it stays hidden).
+// Only the exe draws it: UILabel::Draw special-cases the name "hzm_loadcine".
+resource
+Label
+{
+name "hzm_loadcine"
+rect 0 0 640 481
+fgcolor 1.00 1.00 1.00 1.00
+bgcolor 0.00 0.00 0.00 0.00
+borderstyle "NONE"
+enabledcvar "ui_loadCineOn"
+}

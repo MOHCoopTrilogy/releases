@@ -1,0 +1,9 @@
+// HZM coop [user 2026-10-18] LOADING-SCREEN CINEMATIC rules (read by the exe at every load: cl_loadcine.cpp).
+//   map <mapname>[*] <clip> [clip ...]   first matching rule wins; several clips = one picked at random per load
+//   map <mapname>[*] -                   no clip: the map's own / pool art shows, exactly as on an old exe
+// A clip is loadclips/<clip>.hzlc in a pak (docs/tools/gen_loadclip.py). No rule / no file = no clip.
+// Example (names are the footage agent's, not final):
+//   map m1l1 -
+//   map m1l* truck_desert
+//   map t* c47_night truck_night
+//   map * road_march

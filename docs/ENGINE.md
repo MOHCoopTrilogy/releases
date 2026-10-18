@@ -8,48 +8,12 @@ Remotes: `origin` (joncurry94-tech/openmohaa), `org` (MOHCoopTrilogy/openmohaa),
 
 ## 0. Repo state — read before anything else
 
-**Committed HZM work since the merge-base `a72bc153` (2025-08-03):** ~12,100 added lines over 125
-files.
-
-| Area | Files | Lines |
-|---|---:|---|
-| `fgame` | 37 | +3,600 / −127 |
-| `cgame` | 18 | +3,503 / −76 |
-| `renderergl1` | 12 | +1,983 / −9 |
-| `client` | 18 | +1,530 / −93 |
-| `tools` | 7 | +655 / −78 |
-| `qcommon` | 12 | +358 / −13 |
-| `uilib` | 5 | +161 / −6 |
-| `renderergl2` | 2 | +70 / −11 |
-| plus `tiki`, `sys`, `server`, `sdl`, `skeletor`, `renderercommon` | | |
-
-**⚠️ UNCOMMITTED on top of that: 119 files, ~10,750 insertions, 483 deletions, plus 20 untracked
-files.** (Measured 2026-07-29; a concurrent workflow is actively editing `renderergl2/`, so this is a
-moving target — it grew during the audit.)
-
-| Area | Files | Lines (uncommitted) |
-|---|---:|---|
-| `renderergl2` | 29 | +5,794 / −281 |
-| `fgame` | 33 | +1,828 / −70 |
-| `cgame` | 10 | +554 / −23 |
-| `client` | 10 | +547 / −21 |
-| `renderergl1` | 12 | +402 / −31 |
-| `qcommon` | 7 | +385 / −26 |
-| `tiki` | 4 | +215 / −3 |
-| `uilib` | 7 | +203 / −8 |
-
-**Untracked and therefore not backed up by git at all:** `renderergl1/tr_gore.c`,
-`renderergl2/tr_gore.c`, and 17 `renderergl2/glsl/*.glsl` post-FX shaders (`bloom_blur`,
-`bloom_bright`, `chromab`, `dof`, `filmgrain`, `frost`, `fxaa`, `globalfog_fp`+`vp`, `heathaze`,
-`lowhealth`, `raindrops`, `sharpen`, `suppression`, `tonemap_hzm`, `underwater`). That is the gore
-pipeline and the entire post-FX chain. Also present: `player.cpp.bak_botinput`, `player.h.bak_botinput`
-— **`.bak` files used as the rollback mechanism instead of commits.**
-
-**Consequences:**
-1. Every binary currently deployed or released was built from a tree state **no commit can reproduce**.
-2. A single `git checkout` destroys ~10k lines with no restore point.
-3. Engine claims must be anchored to `file:line`, **not** to history. Not one buglog entry cites a
-   commit hash.
+**Snapshot 2026-07-29 (superseded - the fork now lives on many committed branches/worktrees; the code wins):** ~12,100
+lines committed over 125 files since the merge-base `a72bc153` (2025-08-03: fgame +3.6k, cgame +3.5k, renderergl1 +2k,
+client +1.5k) and ~10,750 uncommitted on top (renderergl2 +5.8k, fgame +1.8k), including untracked `tr_gore.c` x2 and 17
+`renderergl2/glsl/*.glsl` post-FX shaders, with `.bak` files as the rollback mechanism. Lessons that still hold: a binary
+built from an uncommitted tree can not be reproduced, so **anchor engine claims to `file:line` and branch, not history**,
+and commit before building anything you will ship.
 
 **Upstream drift:** upstream tip is `a2f34019` (2026-04-23). The fork has not been rebased in roughly
 nine months, so a future merge carries ~9 months of upstream drift on top of a working tree already
@@ -141,6 +105,7 @@ now the 11-bit wire cap of 2048, **and that one fails at build time.**
 | **e3l4 set-piece guards** — 5 NULL-deref/loop guards incl. a **retry CAP** in `G_PushEntity` (an earlier guard made the projectile survive, so the engine's goto-retry loop spun forever) | `entity.cpp`, `weaputils.cpp`, `g_phys.cpp`, `player.cpp`, `vehicle.cpp` |
 | **m1l2a/b, m1l3c connect crash** — `Actor::MoveOnPathWithSquad` obstacle branches call `G_GetEntity(0)`, NULL while client 0 is CONNECTING (`CS_PRIMED`, pre-`ClientBegin`) | `actor.cpp ~3341/~3361`, `sentient.cpp:3016` |
 | **Print gating** — `ScriptThread::Println` early-returns on `!developer->integer` at **three** sites | `scriptthread.cpp:2858`, `:2869`, `:2883` |
+| **Bot navmesh is WORLD-ONLY** - entity brush models (doors, gates, script_objects) are never baked (`BuildMeshesForEntities` is a disabled path), so a gate kept CLOSED on purpose is invisible to pathing and bots press its bars. Cut the mesh with `block`/`blockline`, bridge a gap with `jump`/`fall`, ride a lift with `elevator` (bot waits, stuck recovery held off) in `navlinks/<map>[_<variant>].txt`; world brushes can be removed per variant with `cmpatch/<map>_<variant>.txt`. **Diagnose with `nav_dump 1`** (polys+links to `navdump/`) - a map whose solo build fails is rebuilt TILED automatically (e3l2 had shipped with ZERO polys). **Static solid props ARE cut at build, reversibly** (bugs 2893/2901, `bot_navEntityBlocks`): fencepost, vehicles + `VehicleCollisionEntity`, crates, barrels, script_models, script_objects (not lift/door/gate names) become area 54 polys flagged `RECAST_POLYFLAG_PROP` (filter-excluded, 16u pad); `NavEntityBlocks_Update` frees them when an MP script removes/unsolids/moves the prop (`NAVPROP release`) - the runtime obstacle carve only excludes polys whose CENTRE a prop covers, so it never caught a fence line (t1l1 stuck 16.6% -> 3.3%); its release gate now matches its engage gate (bug-2894 leak). Auto jump/fall links with an end on unwalkable slope are dropped (bug-2896: take-offs had slid up gully walls). Slopes: >33 deg costed x4, >38 deg x25 last-resort, never removed (bug-2887) | bugs 2836/2837/2842/2848/2860-2862/2887/2893, `navigation_recast_load*.cpp` |
 | **Removed: decapitation** — `CoopGoreTryDecapitate`, its `ArmorDamage` call, header decl, `HeadGibObject`, `coop_decap*` cvars all removed **at source level** so a rebuild cannot reintroduce them. `object.h`/`object.cpp` restored byte-identical to HEAD. **Verified: zero symbols remain.** | bug-892 |
 
 ### `cgame` — client game / prediction / view
@@ -204,16 +169,13 @@ defaults to `"opengl1"` (`client/cl_main.cpp:3231`).
 | **Character sun-cascade shadows, SSAO, dynamic-light shadows, MSAA cvar, sun bridge** | bugs 1154, 1209, 1210, 1211, 1123; `r_hzmDlightShadows` |
 | **Bloom ported** | Byte-ports of gl1's `BRIGHT_FS`/`BLUR_FS` on `tr.quarterFbo[0..1]`. ⚠️ **A no-op at the shipped threshold** — gl2 thresholds the **pre-tone HDR** buffer while gl1 thresholds its display-referred LDR backbuffer. Same chain position, different numeric domain: the slider does not mean the same thing on both renderers (bug-1149). |
 
-**⚠️ `r_globalFogDebug` is still registered `CVAR_TEMP` at `renderergl2/tr_init.c:1926`** — it was
-temporarily moved off `CVAR_CHEAT` because a listen server runs `sv_cheats 0` and clamped it back to
-0 so the debug views could never enable. **Restore it.**
-
 **Diagnostic scaffolding is deliberately NOT stripped** — inventoried at ~90 interleaved sites
 (`tr_shade.c` 36, `tr_model.cpp` 53 → now 31, `tr_scene.c` 4, plus `CMDTRACE`/`IMM2D`). Deferred for
 good reasons (`CMDTRACE`/`IMM2D` solved bug-1144; the heavy probes are gated behind `r_skeldiag`
 default 0; a 90-site edit is not a safe tail-of-session change). `tr_model.cpp`'s
 `SKELREG`/`SKELDIAG`/`SKELDRAW` are ungated but **deduped to once per model handle** — bounded by
-model count, not frame rate (`tr_model.cpp:50-51`).
+model count, not frame rate (`tr_model.cpp:50-51`). Typed-only: `hzmtlprobe <tag>` (bug-3064,
+`tr_surface.c`) prints per-patch terrain light direction + overbright/sun state; silent unless typed.
 
 ### `qcommon` / `server` / `client`
 
@@ -236,11 +198,19 @@ model count, not frame rate (`tr_model.cpp:50-51`).
 - **Sound**: `s_sfxvolume` in `snd_dma_new.cpp S_StartSound`; `AL_MAX_GAIN 8.0` and a music-exempt
   duck in `snd_openal_new.cpp openal_channel::set_gain`; distance model `INVERSE` →
   `LINEAR_DISTANCE_CLAMPED` at context init; `s_openaldevice` sanitised once per process.
-  **Live sound code: `snd_openal_new.cpp`, `snd_dma_new.cpp`, `snd_mem_new.cpp`, `snd_miles_new.cpp`,
-  `snd_info.cpp`** (`NO_MODERN_DMA=0`, `USE_OPENAL=1`). `code/client/new/snd_main_new.cpp`, `snd_dma.c` and
-  `snd_main.c` are not compiled, and `snd_main_new.cpp` is wholly `#if NO_MODERN_DMA` besides - its note
-  that the OpenAL backend is excluded is pre-2024. The menu theme picker went there first and never
-  reached the exe (bug-2572); it lives in `S_TriggeredMusic_PlayIntroMusic`, `snd_openal_new.cpp`.
+  **Live sound code is the `*_new.cpp` set + `snd_info.cpp`** (`USE_OPENAL=1`); `snd_main_new.cpp`, `snd_dma.c`,
+  `snd_main.c` are not compiled (a menu-theme edit there never reached the exe, bug-2572).
+- **Loading cinematic** (`cl_loadcine.cpp`, branch `loadcine-next`, 2026-10-18; `cl_loadCinematic 1`). A packed
+  JPEG flipbook `loadclips/<clip>.hzlc` (tool `docs/tools/gen_loadclip.py`; ui/loadclips.txt rules pick one per map;
+  no rule/file/widget = the old art) drawn by the loading menu's `hzm_loadcine` Label (UILabel::Draw special-case)
+  with `re.DrawStretchRaw`, time-based (Sys_Milliseconds), looped, fade in/out, mute. **No thread**: the GL context is
+  the loader's, so frames happen only on the existing load tick (`UI_LoadResource` -> `UI_TestUpdateScreen`), re-timed to
+  `cl_loadCineFps` (30) start-to-start; a blocking call (gl2 R_Init, one big shader/image block, alias parse) still
+  freezes the picture, and the next tick jumps to the right frame. A flipbook beat RoQ: a frame is independent (no delta
+  catch-up after a stall) and ffmpeg's roqvideo spends ~20 KB per 512x256 frame. The exe now links libjpeg (client
+  CMakeLists). The tick forces `SDL_GL_SetSwapInterval(0)` for the load (`IN_HZM_Set/GetSwapInterval`, restored at
+  End/Abort) - with vsync a 30 fps tick costs a refresh wait per draw. Needs the mod's `hzm_loadcine` widget
+  (docs/proposals/loadcine_2026-10-18/mod/); an exe without it never sets `ui_loadCineOn`. Numbers: that folder's README.
 - **`CL_HZM_ResetTransientAudio`** (`cl_main.cpp`, from `CL_ClearState` and `CL_ServerRestarted`) - on
   every exit from a map (disconnect, map change, same-map `restart`, and the next `CL_Init` after a crash)
   the server-drivable mix cvars go back to rest and the player's own volumes come back from
@@ -475,12 +445,26 @@ dark band half a period apart is the whole mechanism (`docs/tools/gen_boreshade.
 * **A flat patch is culled to 8x8 at load** (collinear cull, `tr_curve.c:569-583`) - so a
   high-tessellation flat patch authored as a wave bed silently loses its rows before it ever deforms.
 
+### lightglow and rgbGen dot, and the headlight dlight bits (bug-2946, 2026-09-25)
+
+gl2 parsed `deformVertexes lightglow` and `rgbGen dot` and drew neither: every corona and muzzle glow was its raw
+quad, the truck beam a flat tube. `LightGlowDeform` (gl1 maths verbatim plus a near-shrink) and a CalcColor dot
+branch now exist behind `r_hzmLightGlow` / `r_hzmRgbGenDot` (-1 = auto). **The AUTO defaults and the Omaha
+exclusion live in `renderercommon/hzm_light_restore.h`, shared with cgame** - flip there, ship both DLLs.
+`dlighttype_t` gained `hzm_dlight_noshadow` (8) and `hzm_dlight_edgefade` (16): a cgame-to-gl2 convention only the
+headlight manager sets. A lightglow refEntity needs an IDENTITY axis - gl1's maths adds a world-space pull to a
+model-space centre.
+**Phase S (bug-2969): spot/flare params ride a CARRIER light** (intensity < 0: gl1/old gl2 drop it) - bit layout +
+guards in `hzm_light_restore.h`; ROM `r_hzmSpotProtocol` handshake, else omni fallback. Logic: `tr_hzm_spot.c`
+(unit test `docs/tools/hzm_spot_selftest/`).
+
 ### Reading a MOHAA BSP, since this needed it
 
 `dheader_t` is `ident, version, **checksum**, lumps[28]` - so **lumps start at byte 12, not 8**.
 Shader lump stride is **140**, `dsurface_t` is **108**, `drawVert_t` is **44**
-(`xyz[3], st[2], lightmap[2], normal[3], color[4]`). That is enough to answer "what shader is this
-surface and what are its UVs", which settled this bug when source reading alone could not.
+(`xyz[3], st[2], lightmap[2], normal[3], color[4]`). Triangles wind **clockwise seen from the front**, so
+`cross(v1-v0, v2-v0)` points BEHIND the face (99.9% of faces, e1l4/m5l1b/m5l2b): orient by the drawVert normals.
+Spearhead/Breakthrough BSPs carry ident `EALA`, same layout (water_wetness_2026-09-27).
 
 ## 4. Known engine-side unknowns
 
