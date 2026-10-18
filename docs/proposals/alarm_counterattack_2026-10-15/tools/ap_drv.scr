@@ -1,0 +1,154 @@
+//=========================================================================
+// TEST-ONLY overlay driver (alarm placements v2, 2026-10-18) - NEVER shipped. Installed as coop_mod/coop_selftest_xp.scr.
+// Commands arrive in cvar ai_cmd (ai_realism harness protocol: prints "^~^~^ AI did <cmd>"). ai_i = 1-based switch index.
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ AI armed"
+	setcvar "ai_cmd" "0"
+	while( 1 ){
+		local.c = getcvar( "ai_cmd" )
+		if( local.c != "0" && local.c != "" ){
+			setcvar "ai_cmd" "0"
+			waitthread ap_do local.c
+			println ( "^~^~^ AI did " + local.c )
+		}
+		waitframe
+	}
+}end
+
+ap_do local.c:{
+	local.p = $player[1]
+	if( local.p == NULL ){ end }
+	if( local.c == "count" ){
+		println ( "^~^~^ AP COUNT sw=" + level.coop_alarmSwN + " bell=" + level.coop_alarmBellN + " map=" + level.coop_mapname + " t=" + level.time )
+	}
+	if( local.c == "view" ){
+		local.s = getcvar( "ai_i" )
+		local.i = int( local.s )
+		local.sw = level.coop_alarmSw[local.i]
+		if( local.sw == NULL || local.sw == NIL ){
+			println ( "^~^~^ AP VIEW none " + local.i )
+			end
+		}
+		local.fwd = angles_toforward local.sw.angles
+		local.tr0 = traced ( local.sw.origin + ( vector_scale local.fwd 4 ) ) ( local.sw.origin + ( vector_scale local.fwd 150 ) )
+		local.dist = local.tr0["fraction"] * 146
+		if( local.dist > 125 ){ local.dist = 125 }
+		if( local.dist < 50 ){ local.dist = 50 }
+		local.pos = local.sw.origin + ( vector_scale local.fwd local.dist )
+		local.pos[2] = local.sw.origin[2] - 51
+		local.va = local.sw.angles
+		local.va[1] = local.va[1] + 180
+		local.va[0] = 4
+		waitthread ap_pin local.pos local.va
+		if( level.ap_lamp != NIL && level.ap_lamp != NULL ){ level.ap_lamp remove }
+		level.ap_lamp = spawn script_model model "models/fx/dummy.tik"
+		level.ap_lamp notsolid
+		level.ap_lamp.origin = local.pos + ( 0 0 70 ) + ( vector_scale local.fwd 20 )
+		level.ap_lamp lightRed 1
+		level.ap_lamp lightGreen 1
+		level.ap_lamp lightBlue 0.95
+		level.ap_lamp lightRadius 420
+		level.ap_lamp lightOn
+		wait 0.4
+		println ( "^~^~^ AP VIEW i=" + local.i + " sw=" + local.sw.origin + " yaw=" + local.sw.angles + " eye=" + local.pos + " now=" + local.p.origin + " va=" + local.p.viewangles )
+	}
+	if( local.c == "mc" ){
+		local.nl = getcvar( "ai_nl" )
+		if( local.nl == "" || local.nl == "0" ){ local.nl = "m9x" }
+		local.p thread global/missioncomplete.scr::main local.nl 1
+	}
+	if( local.c == "czshow" ){
+		local.s = getcvar( "ai_i" )
+		local.i = int( local.s )
+		local.cnt = waitthread coop_mod/coop_counter_zones.scr::zones level.coop_mapname
+		if( local.i > local.cnt ){
+			println ( "^~^~^ AP CZ none " + local.i + " of " + local.cnt )
+			end
+		}
+		level.coop_czSel = level.coop_czPos[local.i]
+		level.coop_czSelR = level.coop_czRad[local.i]
+		level.coop_czSelName = level.coop_czName[local.i]
+		waitthread coop_mod/coop_counter.scr::counter_marker_stop
+		waitthread coop_mod/coop_counter.scr::counter_marker_start
+		wait 1.5
+		local.view = NIL
+		for( local.k = 0; local.k < 8 && local.view == NIL; local.k++ ){
+			local.dir = angles_toforward ( 0 ( local.k * 45 ) 0 )
+			local.pos = level.coop_czSel + ( vector_scale local.dir 260 ) + ( 0 0 40 )
+			local.g = waitthread coop_mod/officer.scr::coop_find_ground local.pos
+			if( local.g == NIL ){ continue }
+			local.tr = traced ( local.g + ( 0 0 60 ) ) ( level.coop_czSel + ( 0 0 60 ) )
+			if( local.tr["fraction"] >= 1.0 ){ local.view = local.g}
+		}
+		if( local.view == NIL ){ local.view = level.coop_czSel + ( 0 0 4 ); }
+		local.va = vector_toangles ( level.coop_czSel + ( 0 0 70 ) - local.view - ( 0 0 64 ) )
+		waitthread ap_pin local.view local.va
+		if( level.ap_lamp != NIL && level.ap_lamp != NULL ){ level.ap_lamp remove }
+		level.ap_lamp = spawn script_model model "models/fx/dummy.tik"
+		level.ap_lamp notsolid
+		level.ap_lamp.origin = local.view + ( 0 0 90 )
+		level.ap_lamp lightRed 1
+		level.ap_lamp lightGreen 1
+		level.ap_lamp lightBlue 0.95
+		level.ap_lamp lightRadius 600
+		level.ap_lamp lightOn
+		wait 0.4
+		println ( "^~^~^ AP CZ i=" + local.i + " of " + local.cnt + " name=" + level.coop_czSelName + " at=" + level.coop_czSel + " r=" + level.coop_czSelR + " eye=" + local.view + " now=" + local.p.origin )
+	}
+	if( local.c == "stay" ){
+		waitthread ap_pin local.p.origin local.p.viewangles
+		println ( "^~^~^ AP STAY pinned at " + local.p.origin )
+	}
+	if( local.c == "pull" ){
+		local.sw = level.coop_alarmSw[1]
+		waitthread coop_mod/alarm.scr::alm_start local.sw
+		println ( "^~^~^ AP PULL sw1 at " + local.sw.origin )
+	}
+	if( local.c == "leave" ){
+		local.dir = angles_toforward ( 0 90 0 )
+		local.pos = level.coop_czSel + ( vector_scale local.dir ( level.coop_czSelR + 900 ) ) + ( 0 0 40 )
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground local.pos
+		if( local.g == NIL ){ local.g = level.coop_czSel + ( vector_scale local.dir ( level.coop_czSelR + 900 ) ) }
+		waitthread ap_pin local.g level.ap_va
+		println ( "^~^~^ AP LEAVE to " + local.g + " t=" + level.time )
+	}
+	if( local.c == "enter" ){
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( level.coop_czSel + ( 0 0 40 ) )
+		if( local.g == NIL ){ local.g = level.coop_czSel }
+		waitthread ap_pin local.g level.ap_va
+		println ( "^~^~^ AP ENTER at " + local.g + " t=" + level.time )
+	}
+	if( local.c == "foe" ){
+		local.n0 = level.coop_counterN
+		if( local.n0 == NIL ){ local.n0 = 0 }
+		waitthread coop_mod/coop_counter.scr::counter_squad level.coop_czSel 2 99 "counter"
+		for( local.q = local.n0 + 1; local.q <= level.coop_counterN; local.q++ ){
+			local.a = level.coop_counterActors[local.q]
+			if( local.a != NULL && local.a != NIL ){ local.a.enableEnemy = 0 }
+		}
+		println ( "^~^~^ AP FOE placed in zone t=" + level.time )
+	}
+}end
+
+
+// QA camera: the harness player is moved by the client every frame, so re-pin the position + view each frame until released
+ap_pin local.pos local.va:{
+	level.ap_pos = local.pos
+	level.ap_va = local.va
+	if( level.ap_pinOn == 1 ){ end }
+	level.ap_pinOn = 1
+	thread ap_pinloop
+}end
+
+ap_pinloop:{
+	while( level.ap_pinOn == 1 ){
+		local.p = $player[1]
+		if( local.p != NULL && local.p != NIL ){
+			local.p origin level.ap_pos
+			local.p.viewangles = level.ap_va
+			if( local.p.health < 60 && local.p.health > 0 ){ local.p.health = 100 }
+		}
+		waitframe
+	}
+}end
