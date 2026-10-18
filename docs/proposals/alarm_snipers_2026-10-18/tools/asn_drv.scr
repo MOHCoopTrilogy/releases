@@ -165,6 +165,7 @@ asd_do local.c:{
 		local.so = local.a.origin
 		local.p threatbias ignoreme
 		setcvar "r_fullbright" "1"
+		local.a light 1 1 0.9 420
 		if( local.mode == "from" ){
 			local.q = level.asd_P
 			local.va = waitthread asd_vang ( local.q + ( 0 0 56 ) ) ( local.so + ( 0 0 50 ) )
@@ -176,7 +177,7 @@ asd_do local.c:{
 		local.base = waitthread asd_vang local.so level.asd_P
 		local.yb = local.base[1]
 		local.bestq = NIL
-		local.dd = 4
+		local.dd = 3
 		while( local.dd >= 1 && local.bestq == NIL ){
 			local.rad = 100 + ( local.dd * 70 )
 			for( local.t = 0; local.t < 8; local.t++ ){

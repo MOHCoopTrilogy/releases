@@ -1,0 +1,65 @@
+using hudfeed4
+teleport check off= 9132
+teleport check off= 2
+PHASE 1 sim players 1
+PHASE 2 sim players 3
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=0 pulls=0 spots=- snipers=0 players=1 want=2 t=40.700
+    ^~^~^ ASN PLACE at ( 216.000 3208.000 34.125 ) yaw 317.785 spots_in_range_with_los=3
+    ^~^~^ ASN WHERE ( -2364.609 -5551.779 61.146 ) off=9132
+    ^~^~^ ASN PLACE at ( 216.000 3208.000 34.125 ) yaw 317.785 spots_in_range_with_los=3
+    ^~^~^ ASN WHERE ( 216.000 3208.000 32.125 ) off=2
+    ^~^~^ ASN LOAD spots=4
+    ^~^~^ ALARM LIVE pull 1 switches=2
+    ^~^~^ ASN PULL started
+    ^~^~^ ASNIPER pull 1 players=1 want=2 alive=0 spots=4
+    ^~^~^ ASNIPER SNIPER 1 spot=1 at=( 216.000 4008.000 224.125 ) floorz=224.125 cluster=1 side=2 alive=1
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=1 pulls=1 spots=4 snipers=1 players=1 want=2 t=56.525
+    ^~^~^ ASNIPER SNIPER 2 spot=3 at=( -872.000 2776.000 224.125 ) floorz=224.125 cluster=3 side=3 alive=2
+    ^~^~^ ASNIPER pull 1 done made=2 alive=2 tries=0
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=1 pulls=1 spots=4 snipers=2 players=1 want=2 t=61.750
+    ^~^~^ ASN LIST alive=2
+    ^~^~^ ASN SN 1 ent=599 spot=1 origin=( 206.599 4004.446 224.125 ) floorz=224.125 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=player dist=819
+    ^~^~^ ASN SN 2 ent=618 spot=3 origin=( -872.000 2776.000 224.125 ) floorz=224.125 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=player dist=1186
+    ^~^~^ ASN CAM close ( 516.578 4008.105 228.125 ) to sniper 1 dist=310
+    ^~^~^ ASN CAM from player place ( 216.000 3208.000 34.125 ) to sniper 1 dist=818
+    ^~^~^ ASN CAM close ( -778.994 2989.530 228.125 ) to sniper 2 dist=240
+    ^~^~^ ASN CAM from player place ( 216.000 3208.000 34.125 ) to sniper 2 dist=1189
+    ^~^~^ ASN PLACE at ( 216.000 3208.000 34.125 ) yaw 317.785 spots_in_range_with_los=3
+    ^~^~^ ASN WHERE ( 216.000 3208.000 32.125 ) off=2
+    ^~^~^ ASN KILLED 2
+    ^~^~^ ALARM LIVE pull 2 switches=2
+    ^~^~^ ASN PULL started
+    ^~^~^ ASNIPER pull 2 players=1 want=4 alive=0 spots=4
+    ^~^~^ ASNIPER SNIPER 1 spot=1 at=( 216.000 4008.000 224.125 ) floorz=224.125 cluster=1 side=2 alive=1
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=4 snipers=1 players=1 want=4 t=92.725
+    ^~^~^ ASNIPER SNIPER 2 spot=3 at=( -872.000 2776.000 224.125 ) floorz=224.125 cluster=3 side=3 alive=2
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=4 snipers=2 players=1 want=4 t=97.950
+    ^~^~^ ASNIPER SNIPER 3 spot=4 at=( -248.000 4248.000 224.125 ) floorz=224.125 cluster=1 side=2 alive=3
+    ^~^~^ ASNIPER no spot yet (try 1): pn=1 p1=( 216.000 3208.000 32.125 ) dmin=600 dmax=2300 nearest=4545 free=0 near=0 far=1 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 2): pn=1 p1=( 216.000 3208.000 32.125 ) dmin=600 dmax=2300 nearest=4545 free=0 near=0 far=1 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=4 snipers=3 players=1 want=4 t=103.175
+    ^~^~^ ASNIPER no spot yet (try 3): pn=1 p1=( 216.000 3208.000 32.125 ) dmin=600 dmax=2300 nearest=4545 free=0 near=0 far=1 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 4): pn=1 p1=( 216.000 3208.000 32.125 ) dmin=600 dmax=2300 nearest=4545 free=0 near=0 far=1 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=4 snipers=3 players=1 want=4 t=108.425
+    ^~^~^ ASNIPER no spot yet (try 5): pn=1 p1=( 216.000 3208.000 32.125 ) dmin=600 dmax=2300 nearest=4545 free=0 near=0 far=1 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 6): pn=1 p1=( 216.000 3208.000 32.125 ) dmin=600 dmax=2300 nearest=4545 free=0 near=0 far=1 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 7): pn=1 p1=( 216.000 3208.000 32.125 ) dmin=600 dmax=2300 nearest=4545 free=0 near=0 far=1 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=4 snipers=3 players=1 want=4 t=113.650
+    ^~^~^ ASNIPER no spot yet (try 8): pn=1 p1=( 216.000 3208.000 32.125 ) dmin=600 dmax=2300 nearest=4545 free=0 near=0 far=1 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 9): pn=1 p1=( 216.000 3208.000 32.125 ) dmin=600 dmax=2300 nearest=4545 free=0 near=0 far=1 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 10): pn=1 p1=( 216.000 3208.000 32.125 ) dmin=600 dmax=2300 nearest=4545 free=0 near=0 far=1 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=4 snipers=3 players=1 want=4 t=118.875
+    ^~^~^ ASNIPER no spot yet (try 11): pn=1 p1=( 216.000 3208.000 32.125 ) dmin=600 dmax=2300 nearest=4545 free=0 near=0 far=1 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 12): pn=1 p1=( 216.000 3208.000 32.125 ) dmin=600 dmax=2300 nearest=4545 free=0 near=0 far=1 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=4 snipers=3 players=1 want=4 t=124.125
+    ^~^~^ ASNIPER no spot yet (try 13): pn=1 p1=( 216.000 3208.000 32.125 ) dmin=600 dmax=2300 nearest=4545 free=0 near=0 far=1 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 14): pn=1 p1=( 216.000 3208.000 32.125 ) dmin=600 dmax=2300 nearest=4545 free=0 near=0 far=1 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 15): pn=1 p1=( 216.000 3208.000 32.125 ) dmin=600 dmax=2300 nearest=4545 free=0 near=0 far=1 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=4 snipers=3 players=1 want=4 t=129.350
+    ^~^~^ ASNIPER pull 2 done made=3 alive=3 tries=15
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=4 snipers=3 players=1 want=4 t=134.575
+    ^~^~^ ASN LIST alive=3
+    ^~^~^ ASN SN 1 ent=661 spot=1 origin=( 215.881 4012.862 224.125 ) floorz=224.125 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=none dist=827
+    ^~^~^ ASN SN 2 ent=610 spot=3 origin=( -872.130 2780.858 224.125 ) floorz=224.125 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=none dist=1184
+    ^~^~^ ASN SN 3 ent=535 spot=4 origin=( -248.000 4248.000 224.125 ) floorz=224.125 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=none dist=1154
+script errors: 0 []

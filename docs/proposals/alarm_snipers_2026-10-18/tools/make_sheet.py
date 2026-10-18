@@ -4,7 +4,7 @@ import os, sys
 from PIL import Image, ImageDraw, ImageFont
 MEDIA = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "media")
 out = sys.argv[1]
-rows = [a.split(":") for a in sys.argv[2:]]
+rows = [(a.split(":") + [""])[:3] for a in sys.argv[2:]]
 W, H = 640, 360
 sheet = Image.new("RGB", (W * 2, (H + 22) * len(rows)), (20, 20, 20))
 d = ImageDraw.Draw(sheet)
@@ -12,7 +12,7 @@ try:
     f = ImageFont.truetype("arial.ttf", 15)
 except Exception:
     f = ImageFont.load_default()
-for r, (label, k) in enumerate(rows):
+for r, (label, k, typ) in enumerate(rows):
     for c, kind in enumerate(("close", "player")):
         p = os.path.join(MEDIA, "%s_s%s_%s.jpg" % (label, k, kind))
         im = Image.open(p).convert("RGB").resize((W, H))
@@ -24,6 +24,6 @@ for r, (label, k) in enumerate(rows):
         else:
             bright = False
         sheet.paste(im, (c * W, r * (H + 22) + 22))
-        d.text((c * W + 6, r * (H + 22) + 3), "%s sniper %s - %s" % (label, k, ("sniper at its spot (floor visible)" if kind == "close" else "view from the player's place (zoomed)") + (" [gamma-lifted]" if bright else "")), fill=(255, 255, 255), font=f)
+        d.text((c * W + 6, r * (H + 22) + 3), "%s sniper %s [%s] - %s" % (label, k, typ, ("sniper at its spot (floor visible)" if kind == "close" else "view from the player's place (zoomed)") + (" [gamma-lifted]" if bright else "")), fill=(255, 255, 255), font=f)
 sheet.save(out, quality=88)
 print("wrote", out, sheet.size)

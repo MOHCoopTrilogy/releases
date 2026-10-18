@@ -227,6 +227,15 @@ def ground_check(B, p):
     return res
 
 
+def open_sky(B, x, y, fz):
+    """trace up from head height (floor+72) 6000 u: nothing solid, or the first thing hit is a sky surface = a roof / outdoor surface"""
+    t = B.trace_box((x, y, fz + 72.0), (x, y, fz + 6072.0))
+    if not t:
+        return True
+    shn = t[2]
+    return 0 <= shn < len(B.shaders) and bool(B.shaders[shn][1] & T.SURF_SKY)
+
+
 def drop_test(B, x, y, fz, nbanchors):
     """HIGH-PLACE test: the ground falls away near the spot. Of 16 samples (8 directions at 200 u and 320 u) at least 8 must find a floor
     >= 140 u below the spot's floor (world-brush trace) or, where the world brush has nothing below (terrain), a route anchor within
@@ -336,6 +345,17 @@ def scan(m, seed=1, minh=None):
         nb = near(x, y, 1200.0)
         if len(nb) < 4:
             continue
+        # ELEVATION RULE (coordinator 2026-10-18): >= 128 u above the route ground under it = floor of the nearest route anchor
+        # (pathnode / player start / switch / AI) in plan view within 1500 u
+        na = None
+        nd2 = 1500.0 ** 2
+        for a in near(x, y, 1500.0):
+            d2 = (a[0] - x) ** 2 + (a[1] - y) ** 2
+            if d2 < nd2:
+                nd2, na = d2, a
+        if na is None or z - na[2] < 128.0:
+            continue
+        st["route128"] = st.get("route128", 0) + 1
         zs = sorted(a[2] for a in nb)
         if z - zs[len(zs) // 2] < MINH_:
             continue
@@ -352,8 +372,10 @@ def scan(m, seed=1, minh=None):
         if not g["ok"]:
             continue
         st["ground"] += 1
-        if drop_test(B, x, y, z + g["floorDz"], nb) < 8:
+        dn = drop_test(B, x, y, z + g["floorDz"], nb)
+        if dn < 8:
             continue
+        sky = open_sky(B, x, y, z + g["floorDz"])
         st["drop"] = st.get("drop", 0) + 1
         fz = z + g["floorDz"]
         head = (x, y, fz + 60.0)
@@ -378,9 +400,12 @@ def scan(m, seed=1, minh=None):
             continue
         st["los"] += 1
         keep.append({"pos": [round(x, 2), round(y, 2), round(fz, 2)], "los": nl, "body": nbod, "ground": g,
-                     "drop": 0, "elev": round(fz - sorted(a[2] for a in nb)[len(nb) // 2], 1)})
+                     "routeDz": round(z - na[2], 1), "sky": sky, "type": ("roof" if sky and dn >= 12 else "outdoor-high" if sky else "interior fallback"), "elev": round(fz - sorted(a[2] for a in nb)[len(nb) // 2], 1)})
     # greedy pick: best score first but each pick must be MINSEP away from earlier picks and prefer new clusters / sides
-    keep.sort(key=lambda s: -(s["los"] + s["body"]))
+    # USER RULE 2026-10-18: rooftops / outdoor elevated surfaces first; interior spots only on maps with no outdoor option
+    if any(q["sky"] for q in keep):
+        keep = [q for q in keep if q["sky"]]
+    keep.sort(key=lambda s: (0 if s["type"] == "roof" else 1, -(s["los"] + s["body"])))
     picked = []
     def side(p):
         return int(((math.degrees(math.atan2(p[1] - cy, p[0] - cx)) + 360 + 22.5) % 360) // 45)

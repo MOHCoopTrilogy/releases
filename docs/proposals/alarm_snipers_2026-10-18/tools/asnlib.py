@@ -71,6 +71,7 @@ def configure_slot():
                 for fn in ("OpenAL64.dll", "SDL2.dll", "libcurl.dll", "cgame.dll", "game.dll", "renderer_opengl1.dll", "renderer_opengl2.dll"):
                     shutil.copyfile(SRC + "/" + fn, client + "/" + fn)
                 shutil.copyfile(SRC + "/openmohaa_air.exe", client + "/" + exe)
+                shutil.copyfile(SRC + "/openmohaa_air.exe", client + "/openmohaa_ironsight.exe")   # run_sweep md5s this name
                 shutil.copytree(SRC + "/pristine", client + "/pristine")
                 for sub in ("cgames", "renderers", "games"):
                     if os.path.isdir(SRC + "/" + sub):

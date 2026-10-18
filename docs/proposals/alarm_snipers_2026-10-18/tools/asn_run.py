@@ -63,13 +63,13 @@ def run_one(label, mp):
             if m and int(m[-1]) > 0:
                 break
             time.sleep(2)
-        for k in range(4):
+        for k in range(14 if mp in ("m1l1", "m4l3") else 4):
             G.cmd("autoplace")
             w = re.findall(r"ASN WHERE [^\r\n]*off=(\d+)", R.read_log()[p0:])
             log("teleport check off=", w[-1] if w else "?")
             if w and int(w[-1]) < 100:
                 break
-            time.sleep(8)
+            time.sleep(10)
         shot_done = False
         G.cmd("load")
         for phase, sim in ((1, 1), (2, 3)):

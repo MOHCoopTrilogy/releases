@@ -28,30 +28,53 @@ whether any of it runs. Debug lines: `coop_alarmDebug 1` prints `^~^~^ ASNIPER .
 1. Every upward face (normal z > 0.7) of a solid world brush, sampled on a 48 u grid inset 24 u from the edges.
 2. Hard ground rule (mirrored at spawn time in script): trace down from spot+16, a **world-brush** floor within 2 u, flat (normal z > 0.7 and the
    four corners +-12 u within 3 u), shader not sky / water / nodraw; the AI bbox (-15 -15 0)..(15 15 72) not start-solid; >= 72 u headroom.
-3. High place: >= 8 of 16 samples 200 / 320 u round the spot fall >= 140 u; floor shader not ground-like (snow, street, earth, crate...).
+3. High place: floor >= 128 u above the nearest route anchor's floor (<= 1500 u), >= 8 of 16 samples 200 / 320 u round the spot fall >= 140 u, floor shader not ground-like (snow, street, earth, crate...), open-sky test and type tag (see below).
 4. Fire exchange: head visible from >= 6 route anchors (pathnodes, player start, switches, AI) 450..2300 u away, body from >= 4.
 5. Dynamic things: not inside a `func_*` mover's bounds (+64 u), not within 350 u of vehicle / train path points, plus a hand deny box on m4l2
    (`sniper_spots_deny.json`).
 6. Greedy spread pick, <= 14 per map, building cluster (700 u) and side tags. Terrain is NOT traced, so terrain ridges are never offered.
-Result: **104 spots on 26 maps** (`docs/tools/sniper_spots.json`, generated `coop_mod/alarmsnipers_spots.scr`).
+Result: see the final count below (`docs/tools/sniper_spots.json`, generated `coop_mod/alarmsnipers_spots.scr`).
 
-## Maps covered (alarm-armed maps with spots)
-| map | spots | notes |
-|---|---:|---|
-| m2l1 | 4 | warehouse gantry + upper floor, one building |
-| e3l1 | 5 | rooftops / upper floors, 4 buildings |
-| e3l2 | 9 | 6 buildings |
-| m4l2 | 3 | after the deny box |
-| m4l3 | 5 | vanilla alarmer map, spots only (no harness shot: its intro is a ride) |
-| m1l1 | 2 | intro truck ride: harness could not place the player, spawn proven by log only |
-| m3l2 | 1 | |
-| t1l1 | 1 | |
-| t3l1 | 1 | |
-| e2l1, m4l1 | 0 | no spot passed (terrain / low town) - alarm works, no snipers |
-Other 17 maps have spots too (e1l1 e1l2 e1l3 e2l2 e3l3 e3l4 m1l3b m1l3c m5l3 m6l1a m6l1b m6l2b t1l2 t1l3 t2l1 t2l2 t2l4 ...) and will light up as soon as an alarm is placed there.
+## Maps covered, spots kept and their type (final)
+Rules added after the coordinator / user QA: **elevation** (floor >= 128 u above the floor of the nearest route anchor within 1500 u),
+**open sky** (a trace up from head height reaches sky, so it is a roof or an outdoor surface) and **preference**: if a map has any
+open-sky spot only those are kept (roof first), interior spots (`interior fallback`) only on maps with no outdoor option. Types:
+`roof` = open sky and >= 12 of 16 samples drop away, `outdoor-high` = open sky (tower, wall, ridge, platform, ledge), `interior fallback`.
+Total now **58 spots on 19 maps** (was 104 on 26). Dropped by the new rules: e.g. t3l1 (the shed-side ground spot), m3l2, t1l1, e2l1, m4l1 have none left; m4l2 lost its low path spot.
+Alarm maps with snipers: m2l1, m4l3 (interior fallback only), e3l1 (roof + outdoor-high), m4l2 (outdoor-high), e3l2 (2 spots, interior fallback), m1l1 (1 roof; the harness could not place a player there, intro ride).
+Per map (all maps with spots; "before rules" = the v3 list in `tools/sniper_spots_v3_before_elevation_rule.json`):
+
+| map | before rules | kept | types | kept spots (x y floor-z, dz above route ground) |
+|---|---:|---:|---|---|
+| e1l1 | 3 | 3 | 1 roof, 2 outdoor-high | 5016 2216 608.12 (+192); -3176 40 400.12 (+304); 3392 1704 600.12 (+184) |
+| e1l2 | 2 | 1 | 1 outdoor-high | 4184 4184 448.12 (+256) |
+| e1l3 | 11 | 10 | 6 roof, 4 outdoor-high | 792 -5760 400.12 (+216); -648 4312 512.12 (+384); -136 -1080 512.12 (+328); 1176 568 616.12 (+472); 1304 -1704 768.12 (+592); -136 2904 704.12 (+352); 480 3936 432.12 (+280); 104 -1752 768.12 (+231); 264 4312 512.12 (+352); 600 -5432 328.12 (+160) |
+| e2l2 | 11 | 4 | 2 roof, 2 outdoor-high | 1128 4464 2800.12 (+240); 1864 3416 3296.12 (+288); 1408 5080 2737.12 (+129); 1480 3416 3296.12 (+288) |
+| e3l1 | 5 | 4 | 2 roof, 2 outdoor-high | 216 4008 224.12 (+136); 968 -1272 200.12 (+156); -872 2776 224.12 (+144); -248 4248 224.12 (+184) |
+| e3l2 | 9 | 2 | 2 interior fallback | 4825 -424 -140.88 (+254); 3988 277 -153.88 (+256) |
+| e3l3 | 1 | 0 | - | none (all dropped) |
+| e3l4 | 1 | 1 | 1 interior fallback | 2584 1384 1920.12 (+128) |
+| m1l1 | 2 | 1 | 1 roof | -3944 120 564.12 (+132) |
+| m1l3b | 4 | 4 | 4 outdoor-high | -2616 6904 192.12 (+198); -3048 7288 192.12 (+168); -2568 7288 192.12 (+168); -3048 6904 192.12 (+168) |
+| m1l3c | 3 | 2 | 1 roof, 1 outdoor-high | -576 -2472 512.12 (+172); 141 -2009 1104.12 (+780) |
+| m2l1 | 4 | 3 | 3 interior fallback | 4184 6960 304.12 (+320); 3640 7320 176.12 (+192); 3688 6840 176.12 (+192) |
+| m3l2 | 1 | 0 | - | none (all dropped) |
+| m4l2 | 3 | 2 | 2 outdoor-high | -3256 4424 304.12 (+256); -1544 1240 248.12 (+168) |
+| m4l3 | 5 | 4 | 4 interior fallback | -2480 -1280 200.12 (+160); -1912 -1664 200.12 (+160); -2528 -752 200.12 (+160); -2344 -1664 200.12 (+160) |
+| m5l3 | 4 | 3 | 3 outdoor-high | -2184 -2356 648.12 (+224); -2760 -3316 648.12 (+368); -2712 -2884 648.12 (+288) |
+| m6l1a | 11 | 0 | - | none (all dropped) |
+| m6l1b | 5 | 3 | 1 roof, 2 outdoor-high | -1852 2776 2408.12 (+208); -2498 2171 2408.12 (+256); -2018 2290 2408.12 (+256) |
+| m6l2b | 1 | 0 | - | none (all dropped) |
+| t1l1 | 1 | 0 | - | none (all dropped) |
+| t1l2 | 4 | 2 | 2 interior fallback | -3928 3032 232.12 (+168); -3976 3616 232.12 (+184) |
+| t1l3 | 6 | 7 | 7 outdoor-high | 4512 2860 492.12 (+443); -1416 1504 248.12 (+200); 3784 3224 552.12 (+352); -1249 1904 496.12 (+448); -1249 1132 496.12 (+448); 3936 2860 492.12 (+460); 4600 3224 552.12 (+503) |
+| t2l1 | 3 | 1 | 1 interior fallback | 2856 1304 1272.12 (+256) |
+| t2l2 | 1 | 0 | - | none (all dropped) |
+| t2l4 | 2 | 1 | 1 interior fallback | -5176 4616 944.12 (+305) |
+| t3l1 | 1 | 0 | - | none (all dropped) |
 
 ## Proof
-- Contact sheet: `media/contact_sheet_alarm_snipers.jpg` (m2l1, e3l1, t3l1, m4l2; left = sniper at his spot, right = from the player's place at fov 28; night maps are gamma-lifted for the sheet only). Row quality is honest: m2l1 and t3l1 show the man standing on a floor; in e3l1 he stands in near-black room light and in m4l2 the right view is dominated by guards - they prove position, not looks.
+- Contact sheet: `media/contact_sheet_alarm_snipers.jpg` (e3l1 roof/outdoor, m4l2 outdoor-high, m2l1 and m4l3 interior fallback; left = sniper at his spot, right = from the player's place at fov 28; dark rows are gamma-lifted, the test driver adds a dlight on the filmed sniper). Honest notes: the e3l1 and m4l2 right views are dominated by guards / a dog, the sniper is small in them; e3l2 and m1l1 could not be placed in the harness this round.
 - Progress GIF: `media/progress_m2l1_snipers_on_gantry.gif`.
 - Per sniper in the harness (`ASN SN` lines): the floor trace under him, `dz=0.000`, `startsolid=0` on every sniper that was not removed.
 - Log excerpt, one alarm pull at **1 simulated player (want 2)** and one at **3 (want 4)**, m2l1 (`tools/logs/run_m2l1f.txt`):
