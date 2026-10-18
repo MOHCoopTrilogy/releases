@@ -1,0 +1,284 @@
+//=========================================================================
+// TEST-ONLY overlay driver (mortar squads 2026-10-18) - NEVER shipped. Installed as coop_mod/coop_selftest_xp.scr, started by main.scr
+// when coop_st_xp 1. Commands arrive in cvar mz_cmd; args in mz_x mz_y mz_z mz_yaw mz_pitch mz_n.
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ MZ armed"
+	setcvar "mz_cmd" "0"
+	while( 1 ){
+		local.c = getcvar( "mz_cmd" )
+		if( local.c != "0" && local.c != "" ){
+			setcvar "mz_cmd" "0"
+			waitthread mz_do local.c
+			println ( "^~^~^ MZ did " + local.c )
+		}
+		waitframe
+	}
+}end
+
+// the live player: the first non-spectator, alive entry of $player (entry 1 can be a spectator slot)
+mz_pp:{
+	local.r = NIL
+	for( local.i = 1; local.i <= $player.size; local.i++ ){
+		local.q = $player[local.i]
+		if( local.q == NULL ){ continue }
+		if( local.q.dmteam == "spectator" ){ continue }
+		if( !isAlive local.q ){ continue }
+		local.r = local.q
+		break
+	}
+	if( local.r == NIL ){ local.r = $player[1] }
+}end local.r
+
+mz_holdthread:{
+	// TEST ONLY: something in the mod moves a teleported player back; this re-sets the spot 5 times a second
+	while( 1 ){
+		if( level.mz_hold != NIL ){
+			local.hp1 = waitthread mz_pp
+			if( local.hp1 != NIL && local.hp1 != NULL ){ local.hp1 origin level.mz_hold }
+		}
+		wait 0.2
+	}
+}end
+
+mz_vec:{
+	local.o = ( 0 0 0 )
+	local.o[0] = float( getcvar( "mz_x" ) )
+	local.o[1] = float( getcvar( "mz_y" ) )
+	local.o[2] = float( getcvar( "mz_z" ) )
+}end local.o
+
+mz_do local.c:{
+	local.p = waitthread mz_pp
+	if( local.p == NULL || local.p == NIL ){ end }
+	println ( "^~^~^ MZ players=" + $player.size + " using " + local.p.targetname + " dmteam=" + local.p.dmteam + " at " + local.p.origin )
+	local.yaw = float( getcvar( "mz_yaw" ) )
+	if( local.c == "here" ){
+		println ( "^~^~^ MZ here " + local.p.origin + " ang=" + local.p.viewangles + " hp=" + local.p.health + " max=" + local.p.max_health + " map=" + level.coop_mapname )
+	}
+	if( local.c == "tp" ){
+		local.o = waitthread mz_vec
+		local.p origin local.o
+		local.pit = float( getcvar( "mz_pitch" ) )
+		local.p.viewangles = ( local.pit local.yaw 0 )
+	}
+	if( local.c == "look" ){
+		local.pit = float( getcvar( "mz_pitch" ) )
+		local.p.viewangles = ( local.pit local.yaw 0 )
+	}
+	if( local.c == "god" ){
+		local.p nodamage
+		local.p.health = 100000
+		local.p.max_health = 100000
+	}
+	if( local.c == "hp" ){
+		local.p takedamage
+		local.p.max_health = 750
+		local.p.health = float( getcvar( "mz_n" ) )
+	}
+	if( local.c == "purge" ){
+		// TEST SET-UP: every living actor that is not part of a mortar team goes, so the proof shows the team and the player only
+		local.kk = 0
+		for( local.i = 1; local.i < 1024; local.i++ ){
+			local.e = getentbyentnum local.i
+			if( local.e == NULL ){ continue }
+			if( local.e.classname != "Actor" ){ continue }
+			if( !isAlive local.e ){ continue }
+			if( local.e.flags["coop_role"] == "mortarcrew" ){ continue }
+			if( local.e.flags["coop_mzPara"] == 1 ){ continue }
+			if( local.e.flags["coop_offmapPara"] == 1 ){ continue }
+			local.kk++
+			local.e damage local.e 99999 local.e local.e.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
+		}
+		println ( "^~^~^ MZ purged " + local.kk )
+	}
+	if( local.c == "toofficer" ){
+		// the player goes to open ground mz_n units (default 1500) from the officer (or from where he stands, with no officer)
+		local.w = 0
+		while( ( level.coop_officer == NIL || level.coop_officer == NULL ) && local.w < 25 ){ wait 1; local.w++ }
+		local.base = local.p.origin
+		if( level.coop_officer != NIL && level.coop_officer != NULL ){ local.base = level.coop_officer.origin }
+		local.dist = float( getcvar( "mz_n" ) )
+		if( local.dist < 300 ){ local.dist = 1500 }
+		local.g = NIL
+		for( local.k = 0; local.k < 12 && local.g == NIL; local.k++ ){
+			local.f = angles_toforward ( 0 ( local.yaw + ( local.k * 30 ) ) 0 )
+			local.pos = local.base + ( vector_scale local.f local.dist )
+			local.gg = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 96 ) )
+			if( local.gg != NIL ){
+				local.sk = exec coop_mod/officer.scr::coop_hasOpenSky local.gg
+				if( local.sk == 1 ){ local.g = local.gg }
+			}
+		}
+		if( local.g != NIL ){ local.p origin ( local.g + ( 0 0 8 ) ) }
+		println ( "^~^~^ MZ toofficer base=" + local.base + " player=" + local.p.origin + " found=" + ( local.g != NIL ) )
+	}
+	if( local.c == "sitetest" ){
+		// the German site finder from where the player stands, entry = the officer's reinforcement zone (else his own spot)
+		local.zone = level.coop_officer_reinf_zone
+		if( local.zone == NIL && level.coop_officer != NIL && level.coop_officer != NULL ){ local.zone = level.coop_officer.origin }
+		if( local.zone == NIL ){ local.zone = local.p.origin }
+		local.site = waitthread coop_mod/mortar.scr::mz_site_g local.zone
+		local.txt = "none"
+		if( local.site != NIL ){ local.txt = "" + local.site }
+		// the Allied site finder's raw material: open-sky level ground spots in a ring 150-450u round the player
+		local.na = 0
+		local.pg = waitthread coop_mod/officer.scr::coop_find_ground ( local.p.origin + ( 0 0 48 ) )
+		if( local.pg == NIL ){ local.pg = local.p.origin }
+		for( local.ri = 1; local.ri <= 3; local.ri++ ){
+			for( local.ai = 0; local.ai < 12; local.ai++ ){
+				local.ang = ( 0 0 0 )
+				local.ang[1] = local.ai * 30
+				local.cc = local.p.origin + ( vector_scale ( angles_toforward local.ang ) ( 100 + ( local.ri * 120 ) ) )
+				local.gr = waitthread coop_mod/mortar.scr::mz_ground local.cc local.pg
+				if( local.gr != NIL ){ local.na++ }
+			}
+		}
+		println ( "^~^~^ MZ SITETEST map=" + level.coop_mapname + " player=" + local.p.origin + " zone=" + local.zone + " alliedspots=" + local.na + " site=" + local.txt )
+	}
+	if( local.c == "nearsite" ){
+		// TEST SET-UP: the player goes to open ground 900-1200u from the tube with a clear line to it (the tube is at mz_x mz_y mz_z)
+		local.t = waitthread mz_vec
+		local.done = 0
+		for( local.ri = 0; local.ri < 3 && local.done == 0; local.ri++ ){
+			for( local.k = 0; local.k < 16 && local.done == 0; local.k++ ){
+				local.f = angles_toforward ( 0 ( local.k * 22.5 ) 0 )
+				local.nd0 = float( getcvar( "mz_n" ) )
+				if( local.nd0 < 100 ){ local.nd0 = 900 }
+				local.pos = local.t + ( vector_scale local.f ( local.nd0 + ( local.ri * 150 ) ) )
+				local.gg = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 96 ) )
+				if( local.gg == NIL ){ continue }
+				local.sk = exec coop_mod/officer.scr::coop_hasOpenSky local.gg
+				if( local.sk != 1 ){ continue }
+				local.tr = traced ( local.t + ( 0 0 60 ) ) ( local.gg + ( 0 0 48 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+				if( local.tr["fraction"] < 1.0 ){ continue }
+				// a standing man's hull must fit there (a black screen = the eye inside a brush)
+				local.hq = local.gg + ( 0 0 4 )
+				local.th = traced local.hq ( local.hq + ( 0 0 1 ) ) 1023 ( -20 -20 0 ) ( 20 20 76 ) 1
+				if( local.th["startSolid"] == 1 || local.th["allSolid"] == 1 || local.th["fraction"] < 1.0 ){ continue }
+				local.p origin ( local.gg + ( 0 0 8 ) )
+				level.mz_hold = local.gg + ( 0 0 8 )
+				if( level.mz_holdOn != 1 ){ level.mz_holdOn = 1; thread mz_holdthread }
+				local.done = 1
+			}
+		}
+		println ( "^~^~^ MZ nearsite done=" + local.done + " player=" + local.p.origin )
+	}
+	if( local.c == "observer" ){
+		// ONE German who actually sees the player (rule A): stands at (mz_x mz_y mz_z), enemy = the player, hard to kill
+		cache models/human/german_waffenss_shutze.tik
+		local.o = waitthread mz_vec
+		local.gg = waitthread coop_mod/officer.scr::coop_find_ground ( local.o + ( 0 0 96 ) )
+		if( local.gg == NIL ){ local.gg = local.o }
+		local.a = spawn "models/human/german_waffenss_shutze.tik"
+		local.a.origin = local.gg
+		local.a droptofloor
+		local.a.health = 5000
+		local.a.flags["coop_personality_set"] = 1
+		local.a.flags["coop_mzObserver"] = 1
+		local.a exec coop_mod/replace.scr::attackplayer
+		println ( "^~^~^ MZ observer at " + local.a.origin )
+	}
+	if( local.c == "unhold" ){
+		level.mz_hold = NIL
+	}
+	if( local.c == "killobs" ){
+		for( local.i = 1; local.i < 1024; local.i++ ){
+			local.e = getentbyentnum local.i
+			if( local.e == NULL ){ continue }
+			if( local.e.flags["coop_mzObserver"] == 1 ){ local.e damage local.e 99999 local.e local.e.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0 }
+		}
+	}
+	if( local.c == "ger" ){
+		// the officer's Artillery wave path, called directly: pos = ground under the player
+		// the wave's spawn position as the real dispatch has it: the officer's authored reinforcement zone (else the officer's own spot)
+		local.zone = level.coop_officer_reinf_zone
+		if( local.zone == NIL && level.coop_officer != NIL && level.coop_officer != NULL ){ local.zone = level.coop_officer.origin }
+		if( local.zone == NIL ){ local.zone = local.p.origin }
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.zone + ( 0 0 48 ) )
+		if( local.g == NIL ){ local.g = local.zone }
+		println ( "^~^~^ MZ ger zone=" + local.g )
+		level.coop_mzBusyG = 0
+		level.coop_mzNextG = NIL
+		local.r = waitthread coop_mod/mortar.scr::mz_g_wave local.g NIL
+		println ( "^~^~^ MZ ger result=" + local.r )
+	}
+	if( local.c == "wave5" ){
+		// the REAL dispatch: officer.scr::coop_call_reinforcements with only wave type 5 allowed
+		level.coop_wave_mask = 32
+		level.coop_officer_lastWaveTime = NIL
+		level.coop_mzBusyG = 0
+		level.coop_mzNextG = NIL
+		thread coop_mod/officer.scr::coop_call_reinforcements
+	}
+	if( local.c == "para" ){
+		level.coop_paradrop_active = 0
+		level.coop_paradrop_armed = 1
+		level.coop_smoke_player = local.p
+		level.coop_mzBusyA = 0
+		local.f = angles_toforward ( 0 local.yaw 0 )
+		local.pos = local.p.origin + ( vector_scale local.f 200 )
+		println ( "^~^~^ MZ para at " + local.pos )
+		thread coop_mod/paradrop.scr::smokeDropZone local.pos
+	}
+	if( local.c == "targets" ){
+		// stand-still Germans 700-1100u ahead of the player for the Allied spotter (they do not fight: enableEnemy 0)
+		cache models/human/german_waffenss_shutze.tik
+		local.n = int( getcvar( "mz_n" ) )
+		local.f = angles_toforward ( 0 local.yaw 0 )
+		local.rt = angles_toforward ( 0 ( local.yaw - 90 ) 0 )
+		for( local.i = 0; local.i < local.n; local.i++ ){
+			local.pos = local.p.origin + ( vector_scale local.f ( 800 + ( local.i * 40 ) ) ) + ( vector_scale local.rt ( ( local.i * 60 ) - 90 ) )
+			local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 96 ) )
+			if( local.g == NIL ){ local.g = local.pos }
+			local.a = spawn "models/human/german_waffenss_shutze.tik"
+			local.a.origin = local.g
+			local.a droptofloor
+			local.a.health = 400
+			local.a.enableEnemy = 0
+			local.a.flags["coop_personality_set"] = 1
+			println ( "^~^~^ MZ target " + local.i + " at " + local.a.origin )
+		}
+	}
+	if( local.c == "targets2" ){
+		// stand-still Germans 700-900u from the ALLIED tube (mz_x mz_y mz_z), one per direction that has ground (enableEnemy 0)
+		cache models/human/german_waffenss_shutze.tik
+		local.t = waitthread mz_vec
+		local.n = int( getcvar( "mz_n" ) )
+		local.made = 0
+		for( local.k = 0; local.k < 16 && local.made < local.n; local.k++ ){
+			local.f = angles_toforward ( 0 ( local.yaw + ( local.k * 22.5 ) ) 0 )
+			local.pos = local.t + ( vector_scale local.f ( 700 + ( local.made * 60 ) ) )
+			local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 96 ) )
+			if( local.g == NIL ){ continue }
+			local.tr = traced ( local.t + ( 0 0 60 ) ) ( local.g + ( 0 0 48 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+			if( local.tr["fraction"] < 1.0 ){ continue }
+			local.a = spawn "models/human/german_waffenss_shutze.tik"
+			local.a.origin = local.g
+			local.a droptofloor
+			local.a.health = 400
+			local.a.enableEnemy = 0
+			local.a.flags["coop_personality_set"] = 1
+			local.made++
+			println ( "^~^~^ MZ target2 " + local.made + " at " + local.a.origin )
+		}
+	}
+	if( local.c == "state" ){
+		println ( "^~^~^ MZ STATE roundsG=" + level.coop_mzRoundsG + " roundsA=" + level.coop_mzRoundsA + " hitsG=" + level.coop_mzHitsG + " busyG=" + level.coop_mzBusyG + " busyA=" + level.coop_mzBusyA + " hp=" + local.p.health )
+		for( local.k = 1; local.k <= 7; local.k++ ){
+			local.m = level.coop_paradrop_squad[local.k]
+			if( local.m == NIL || local.m == NULL ){ continue }
+			println ( "^~^~^ MZ PARA k=" + local.k + " alive=" + ( isAlive local.m ) + " hp=" + local.m.health + " at=" + local.m.origin )
+		}
+	}
+	if( local.c == "tube" ){
+		// find the nearest script_model carrying a mortar tube model and report it
+		for( local.i = 1; local.i < 1024; local.i++ ){
+			local.e = getentbyentnum local.i
+			if( local.e == NULL ){ continue }
+			if( local.e.model == "models/static/granatwerfer.tik" || local.e.model == "models/static/us_mortar.tik" ){
+				println ( "^~^~^ MZ TUBE " + local.e.model + " at=" + local.e.origin + " ang=" + local.e.angles + " hp=" + local.e.health )
+			}
+		}
+	}
+}end
