@@ -29,7 +29,7 @@ try:
     time.sleep(1)
     G.cmd("mc", timeout=60, nl="m9x")
     if not waitfor(r"COUNTER zone src", 40, p0): raise RuntimeError("no zone")
-    time.sleep(1); G.frames(LABEL + "_gstart", 22, 230)
+    time.sleep(1); G.frames(LABEL + "_gstart", 30, 230)
     waitfor(r"COUNTER tick[^\r\n]*state=hold[^\r\n]*remaining=([4-6][0-9])", 60)
     time.sleep(2)
     log("--- LEAVE")

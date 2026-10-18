@@ -20,12 +20,16 @@ try:
     G.cmd("view", timeout=60, i=1)
     G.cmd("pull", timeout=60)
     t0 = time.time()
-    k = 0
-    while time.time() - t0 < 70:
-        G.frames("%s_mg%02d" % (LABEL, k), 6, 450)
-        k += 1
-        if re.search(r"ALARM MG team called", R.read_log()[p0:]) and time.time() - t0 > 45:
+    while time.time() - t0 < 60 and not re.search(r"ALARM MG team called", R.read_log()[p0:]):
+        time.sleep(1)
+    time.sleep(5)
+    for _t in range(8):
+        G.cmd("viewmg", timeout=60)
+        if re.search(r"AP VIEWMG gunner", R.read_log()[-3000:]):
             break
+        time.sleep(3)
+    time.sleep(1)
+    G.frames("%s_mgset" % LABEL, 28, 300)
     time.sleep(2)
     txt = R.read_log()[p0:]
     for l in re.findall(r"\^~\^~\^ (?:ALARM|RMG|AP PULL)[^\r\n]*", txt):

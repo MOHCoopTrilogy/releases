@@ -1,0 +1,96 @@
+COUNTER defend-zone clock - log excerpts (harness e3l2, level.time stamps t=..., ticks every 5 s)
+
+== run f2: hold (ticks 5.000 s apart drop 'remaining' by 5.000; a wave spawn is on the clock in the same tick), pause, wind back, ZONE LOST, restart ==
+^~^~^ AP STAY pinned at ( 5366.000 -4173.000 -455.875 )
+^~^~^ COUNTER start map=e3l2 secs=70 gap=12 players=1
+^~^~^ COUNTER zone src=vetted name=the courtyard at=( 5488.000 -4496.000 -447.900 ) r=489
+^~^~^ COUNTER ring dashes=9
+^~^~^ COUNTER tick t=46.850 elapsed=0.250 remaining=84.750 state=hold inside=1 empty=0 lose=0 waves=0
+^~^~^ COUNTER tick t=51.850 elapsed=5.250 remaining=79.750 state=hold inside=1 empty=0 lose=0 waves=0
+^~^~^ COUNTER tick t=56.850 elapsed=10.250 remaining=74.750 state=hold inside=1 empty=0 lose=0 waves=0
+^~^~^ COUNTER wave 1 players=1 want=4 made=4 alive=4 via=fallback at=( 4174.067 -5644.915 -455.875 )
+^~^~^ COUNTER tick t=62.900 elapsed=16.300 remaining=68.700 state=hold inside=1 empty=0 lose=0 waves=1
+^~^~^ COUNTER tick t=67.900 elapsed=21.300 remaining=63.700 state=hold inside=1 empty=0 lose=0 waves=1
+^~^~^ COUNTER tick t=72.900 elapsed=26.300 remaining=58.700 state=hold inside=1 empty=0 lose=0 waves=1
+^~^~^ COUNTER wave 2 players=1 want=2 made=2 alive=6 via=fallback at=( 6301.340 -3388.156 -575.875 )
+^~^~^ COUNTER tick t=78.150 elapsed=31.550 remaining=53.450 state=hold inside=1 empty=0 lose=0 waves=2
+^~^~^ COUNTER tick t=83.150 elapsed=36.550 remaining=48.450 state=hold inside=1 empty=0 lose=0 waves=2
+^~^~^ COUNTER tick t=88.150 elapsed=41.550 remaining=43.450 state=hold inside=1 empty=0 lose=0 waves=2
+^~^~^ COUNTER tick t=93.150 elapsed=46.550 remaining=38.450 state=hold inside=1 empty=0 lose=0 waves=2
+^~^~^ COUNTER tick t=98.150 elapsed=51.550 remaining=33.450 state=hold inside=1 empty=0 lose=0 waves=2
+^~^~^ COUNTER wave 3 skipped: cap 6 alive 6
+^~^~^ COUNTER tick t=103.150 elapsed=56.550 remaining=28.450 state=hold inside=1 empty=0 lose=0 waves=3
+^~^~^ COUNTER tick t=108.150 elapsed=61.550 remaining=23.450 state=hold inside=1 empty=0 lose=0 waves=3
+^~^~^ COUNTER tick t=113.150 elapsed=66.550 remaining=18.450 state=hold inside=1 empty=0 lose=0 waves=3
+^~^~^ AP LEAVE to ( 5888.000 -4496.000 -447.900 ) t=115.550
+^~^~^ COUNTER tick t=118.150 elapsed=71.550 remaining=13.450 state=hold inside=1 empty=0 lose=0 waves=3
+^~^~^ COUNTER wave 4 skipped: cap 6 alive 6
+^~^~^ COUNTER tick t=123.150 elapsed=76.550 remaining=8.450 state=hold inside=1 empty=0 lose=0 waves=4
+^~^~^ AP ENTER at ( 5573.000 -4348.776 -447.875 ) t=123.550
+^~^~^ COUNTER tick t=128.150 elapsed=81.550 remaining=3.450 state=hold inside=1 empty=0 lose=0 waves=4
+^~^~^ AP LEAVE to ( 5488.000 -5305.000 -447.875 ) t=128.700
+^~^~^ COUNTER state hold -> paused remaining=2.950 inside=0 empty=0.250 t=128.900
+^~^~^ COUNTER warn UnnamedSoldier#8240 outside t=128.900
+^~^~^ AP FOE placed in zone t=129.000
+^~^~^ COUNTER tick t=133.150 elapsed=86.550 remaining=2.950 state=paused inside=0 empty=4.500 lose=4.500 waves=4
+^~^~^ COUNTER state paused -> rewind remaining=3.200 inside=0 empty=6.000 t=134.650
+^~^~^ COUNTER warn UnnamedSoldier#8240 outside t=136.900
+^~^~^ COUNTER tick t=138.150 elapsed=91.550 remaining=6.700 state=rewind inside=0 empty=9.500 lose=9.500 waves=4
+^~^~^ COUNTER wave 5 skipped: cap 6 alive 8
+^~^~^ COUNTER tick t=143.150 elapsed=96.550 remaining=11.700 state=rewind inside=0 empty=14.500 lose=14.500 waves=5
+^~^~^ COUNTER warn UnnamedSoldier#8240 outside t=144.900
+^~^~^ COUNTER tick t=148.150 elapsed=101.550 remaining=16.700 state=rewind inside=0 empty=19.500 lose=19.500 waves=5
+^~^~^ COUNTER warn UnnamedSoldier#8240 outside t=152.900
+^~^~^ COUNTER tick t=153.150 elapsed=106.550 remaining=21.700 state=rewind inside=0 empty=24.500 lose=23.250 waves=5
+^~^~^ COUNTER zone LOST (#1) - restart from 85 t=154.900
+^~^~^ COUNTER state rewind -> lost remaining=85 inside=0 empty=0 t=154.900
+^~^~^ COUNTER state lost -> paused remaining=85 inside=0 empty=0.250 t=155.150
+^~^~^ AP ENTER at ( 5573.000 -4348.776 -447.875 ) t=155.725
+^~^~^ COUNTER state paused -> hold remaining=84.750 inside=1 empty=0 t=155.900
+^~^~^ COUNTER tick t=158.150 elapsed=111.550 remaining=82.500 state=hold inside=1 empty=0 lose=0 waves=5
+^~^~^ COUNTER tick t=163.150 elapsed=116.550 remaining=77.500 state=hold inside=1 empty=0 lose=0 waves=5
+^~^~^ COUNTER wave 6 skipped: cap 6 alive 8
+^~^~^ COUNTER tick t=168.150 elapsed=121.550 remaining=72.500 state=hold inside=1 empty=0 lose=0 waves=6
+^~^~^ COUNTER tick t=173.150 elapsed=126.550 remaining=67.500 state=hold inside=1 empty=0 lose=0 waves=6
+^~^~^ COUNTER wave 7 skipped: cap 6 alive 8
+^~^~^ COUNTER tick t=178.150 elapsed=131.550 remaining=62.500 state=hold inside=1 empty=0 lose=0 waves=7
+^~^~^ COUNTER tick t=183.150 elapsed=136.550 remaining=57.500 state=hold inside=1 empty=0 lose=0 waves=7
+^~^~^ COUNTER tick t=188.150 elapsed=141.550 remaining=52.500 state=hold inside=1 empty=0 lose=0 waves=7
+^~^~^ COUNTER wave 8 skipped: cap 6 alive 8
+^~^~^ COUNTER tick t=193.150 elapsed=146.550 remaining=47.500 state=hold inside=1 empty=0 lose=0 waves=8
+^~^~^ COUNTER tick t=198.150 elapsed=151.550 remaining=42.500 state=hold inside=1 empty=0 lose=0 waves=8
+^~^~^ COUNTER tick t=203.150 elapsed=156.550 remaining=37.500 state=hold inside=1 empty=0 lose=0 waves=8
+^~^~^ COUNTER tick t=208.150 elapsed=161.550 remaining=32.500 state=hold inside=1 empty=0 lose=0 waves=8
+^~^~^ COUNTER wave 9 skipped: cap 6 alive 8
+^~^~^ COUNTER tick t=213.150 elapsed=166.550 remaining=27.500 state=hold inside=1 empty=0 lose=0 waves=9
+^~^~^ COUNTER tick t=218.150 elapsed=171.550 remaining=22.500 state=hold inside=1 empty=0 lose=0 waves=9
+^~^~^ COUNTER tick t=223.150 elapsed=176.550 remaining=17.500 state=hold inside=1 empty=0 lose=0 waves=9
+^~^~^ COUNTER wave 10 skipped: cap 6 alive 8
+^~^~^ COUNTER tick t=228.150 elapsed=181.550 remaining=12.500 state=hold inside=1 empty=0 lose=0 waves=10
+^~^~^ COUNTER tick t=233.150 elapsed=186.550 remaining=7.500 state=hold inside=1 empty=0 lose=0 waves=10
+^~^~^ COUNTER tick t=238.150 elapsed=191.550 remaining=2.500 state=hold inside=1 empty=0 lose=0 waves=10
+^~^~^ COUNTER clock 0:00 t=240.650 elapsed=194.050
+^~^~^ COUNTER end waves=10 sent=8 alive=8 lost=1 t=240.650
+
+== run r1 (ring proof): leave -> paused (clock frozen) -> rewind (+1 s per s after coop_counterGrace) ==
+^~^~^ AP STAY pinned at ( 5366.000 -4173.000 -455.875 )
+^~^~^ COUNTER start map=e3l2 secs=90 gap=30 players=1
+^~^~^ COUNTER zone src=vetted name=the courtyard at=( 5488.000 -4496.000 -447.900 ) r=489
+^~^~^ COUNTER ring dashes=9
+^~^~^ COUNTER tick t=46.850 elapsed=0.250 remaining=104.750 state=hold inside=1 empty=0 lose=0 waves=0
+^~^~^ COUNTER tick t=51.850 elapsed=5.250 remaining=99.750 state=hold inside=1 empty=0 lose=0 waves=0
+^~^~^ COUNTER tick t=56.850 elapsed=10.250 remaining=94.750 state=hold inside=1 empty=0 lose=0 waves=0
+^~^~^ AP LEAVE to ( 5488.000 -5305.000 -447.875 ) t=61.975
+^~^~^ COUNTER wave 1 players=1 want=4 made=4 alive=4 via=entry at=( 3915.229 -5901.962 -447.875 )
+^~^~^ COUNTER state hold -> paused remaining=90.250 inside=0 empty=1.250 t=62.600
+^~^~^ COUNTER warn UnnamedSoldier#8240 outside t=62.600
+^~^~^ COUNTER tick t=62.600 elapsed=16.000 remaining=90.250 state=paused inside=0 empty=1.250 lose=0 waves=1
+^~^~^ COUNTER state paused -> rewind remaining=90.500 inside=0 empty=6.000 t=67.350
+^~^~^ COUNTER tick t=67.600 elapsed=21.000 remaining=90.750 state=rewind inside=0 empty=6.250 lose=0 waves=1
+
+== run f1 (earlier build, same code path): full cycle incl. RESUME and clock 0:00 (quoted from that run's console log) ==
+COUNTER state hold -> paused remaining=17.800 inside=0 empty=0.250 t=114.125
+COUNTER state paused -> rewind remaining=18.050 inside=0 empty=6.000 t=119.875
+COUNTER state rewind -> hold remaining=19.800 inside=1 empty=0 t=122.125
+COUNTER zone LOST (#1) - restart from 85 t=151.875
+COUNTER clock 0:00 t=236.875 elapsed=190.200

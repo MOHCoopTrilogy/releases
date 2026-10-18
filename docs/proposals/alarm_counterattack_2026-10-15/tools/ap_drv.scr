@@ -34,7 +34,7 @@ ap_do local.c:{
 		local.tr0 = traced ( local.sw.origin + ( vector_scale local.fwd 4 ) ) ( local.sw.origin + ( vector_scale local.fwd 150 ) )
 		local.dist = local.tr0["fraction"] * 146
 		if( local.dist > 125 ){ local.dist = 125 }
-		if( local.dist < 50 ){ local.dist = 50 }
+		if( local.dist < 95 ){ local.dist = 95 }
 		local.pos = local.sw.origin + ( vector_scale local.fwd local.dist )
 		local.pos[2] = local.sw.origin[2] - 51
 		local.va = local.sw.angles
@@ -109,7 +109,7 @@ ap_do local.c:{
 		local.gl = NIL
 		for( local.k = 0; local.k < 12 && local.gl == NIL; local.k++ ){
 			local.dir = angles_toforward ( 0 ( local.k * 30 ) 0 )
-			local.pos = level.coop_czSel + ( vector_scale local.dir ( level.coop_czSelR + 120 ) ) + ( 0 0 40 )
+			local.pos = level.coop_czSel + ( vector_scale local.dir ( level.coop_czSelR + 320 ) ) + ( 0 0 40 )
 			local.g = waitthread coop_mod/officer.scr::coop_find_ground local.pos
 			if( local.g == NIL ){ continue }
 			local.dz = local.g[2] - level.coop_czSel[2]
@@ -118,16 +118,55 @@ ap_do local.c:{
 			local.tr = traced ( local.g + ( 0 0 60 ) ) ( level.coop_czSel + ( 0 0 60 ) )
 			if( local.tr["fraction"] >= 1.0 ){ local.gl = local.g }
 		}
-		if( local.gl == NIL ){ local.gl = level.coop_czSel + ( 400 0 0 ) }
+		if( local.gl == NIL ){ local.gl = level.coop_czSel + ( vector_scale ( 1 0 0 ) ( level.coop_czSelR + 220 ) ) }
 		local.vva = vector_toangles ( level.coop_czSel + ( 0 0 40 ) - local.gl - ( 0 0 64 ) )
 		waitthread ap_pin local.gl local.vva
 		println ( "^~^~^ AP LEAVE to " + local.gl + " t=" + level.time )
 	}
 	if( local.c == "enter" ){
-		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( level.coop_czSel + ( 0 0 40 ) )
-		if( local.g == NIL ){ local.g = level.coop_czSel }
-		waitthread ap_pin local.g level.ap_va
-		println ( "^~^~^ AP ENTER at " + local.g + " t=" + level.time )
+		local.ge = NIL
+		for( local.k = 0; local.k < 12 && local.ge == NIL; local.k++ ){
+			local.dir = angles_toforward ( 0 ( local.k * 30 ) 0 )
+			local.pos = level.coop_czSel + ( vector_scale local.dir 170 ) + ( 0 0 40 )
+			local.g = waitthread coop_mod/officer.scr::coop_find_ground local.pos
+			if( local.g == NIL ){ continue }
+			local.dz = local.g[2] - level.coop_czSel[2]
+			if( local.dz < 0 ){ local.dz = 0 - local.dz }
+			if( local.dz > 60 ){ continue }
+			local.tr = traced ( local.g + ( 0 0 60 ) ) ( level.coop_czSel + ( 0 0 60 ) )
+			if( local.tr["fraction"] >= 1.0 ){ local.ge = local.g }
+		}
+		if( local.ge == NIL ){ local.ge = level.coop_czSel }
+		local.eva = vector_toangles ( level.coop_czSel + ( 0 0 70 ) - local.ge - ( 0 0 64 ) )
+		waitthread ap_pin local.ge local.eva
+		println ( "^~^~^ AP ENTER at " + local.ge + " t=" + level.time )
+	}
+	if( local.c == "viewmg" ){
+		local.gun = level.coop_psqM[1][1]
+		if( local.gun == NULL || local.gun == NIL ){
+			println "^~^~^ AP VIEWMG no gunner"
+			end
+		}
+		local.go = local.gun.origin
+		local.vp = NIL
+		local.vp2 = NIL
+		for( local.k = 0; local.k < 12 && local.vp == NIL; local.k++ ){
+			local.dir = angles_toforward ( 0 ( local.k * 30 ) 0 )
+			local.pos = local.go + ( vector_scale local.dir ( 150 + ( ( local.k - ( int( local.k / 2 ) * 2 ) ) * 100 ) ) ) + ( 0 0 40 )
+			local.g = waitthread coop_mod/officer.scr::coop_find_ground local.pos
+			if( local.g == NIL ){ continue }
+			local.dz = local.g[2] - local.go[2]
+			if( local.dz < 0 ){ local.dz = 0 - local.dz }
+			if( local.dz > 90 ){ continue }
+			if( local.vp2 == NIL ){ local.vp2 = local.g }
+			local.tr = traced ( local.g + ( 0 0 60 ) ) ( local.go + ( 0 0 40 ) )
+			if( local.tr["fraction"] >= 1.0 ){ local.vp = local.g }
+		}
+		if( local.vp == NIL ){ local.vp = local.vp2 }
+		if( local.vp == NIL ){ println "^~^~^ AP VIEWMG no ground"; end }
+		local.mva = vector_toangles ( local.go + ( 0 0 30 ) - local.vp - ( 0 0 64 ) )
+		waitthread ap_pin local.vp local.mva
+		println ( "^~^~^ AP VIEWMG gunner at " + local.go + " eye=" + local.vp )
 	}
 	if( local.c == "foe" ){
 		local.n0 = level.coop_counterN

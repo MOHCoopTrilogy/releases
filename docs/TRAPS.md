@@ -446,7 +446,7 @@ box is a crate around the anim bounds, and a clip sized "Y-long for yaw 90" lies
 strands the nodes beside it** (`Path not found`, the actor stands still; `NearestStartNode` lifts its trace
 32u): cut with the box inset by the hull half-width (15u), then restore it. Recipe: `gen_m3l3_rock_clips.py`.
 
-**Wall props are placed by TRACE, never by eye (bug-4005).** Hand-snapped switches sat in doorways. Use `docs/tools/alarm_place.py` over `bsptrace.py`: origin = wall hit + normal * 3.3, yaw =
+**Wall props are placed by TRACE, never by eye (bug-4038).** Hand-snapped switches sat in doorways. Use `docs/tools/alarm_place.py` over `bsptrace.py`: origin = wall hit + normal * 3.3, yaw =
 atan2(normal) exactly, z = floor + 52 (measured on vanilla; bell same wall +56); one flat plane
 (57x48 patch, visible shader), 96 u clear in front, >= 56 u from every `func_*`/`script_object` mover (doors, windows,
 ladders are NOT in the world brushes, a trace cannot see them), a pathnode near the stand spot, >= 700 u from spawns
