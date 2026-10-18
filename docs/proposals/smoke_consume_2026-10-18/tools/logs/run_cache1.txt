@@ -1,0 +1,16 @@
+    ^~^~^ OFFICER_DROP map=m2l2c indoor=1 pick=indoor
+    ^~^~^ INDOOR_CACHE spawn pos=( -3814.000 2160.000 6.125 )
+    ^~^~^ SM idrop done
+    ^~^~^ SM lookcache from ( -4014.000 2160.000 46.125 )
+    ^~^~^ INDOOR_CACHE used p=UnnamedSoldier#8240 hp=250.000 rifle=80 smg=120 pistol=81
+    ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+    ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+    ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+    ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+    ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+    ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+    ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+    ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+    ^~^~^ SM retarget covered=( -4073.808 2310.000 0.125 ) alt=( -3923.808 2310.000 0.125 ) altOpenSky=1
+    ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+script errors: 0 []

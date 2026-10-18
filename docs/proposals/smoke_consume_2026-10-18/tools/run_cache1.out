@@ -1,0 +1,25 @@
+14:03:27 t=0.034 launched pid 20584 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+14:03:27 t=0.075 in-process guard installed on thread 9764
+14:03:28 t=0.543 place 0x48db0a10 SDL_app hidden-found-by-poll (4395, 535, 4405, 545) -> (4395, 535) hidden
+14:03:28 t=0.543 place 0x48db0a10 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+14:03:28 t=0.736 place 0x48dc0a10 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+14:03:28 t=0.741 place 0x34fd0a20 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+14:04:37 booted sm_cache1 m3l2 ref=work dog False
+14:05:00 cache1     ^~^~^ OFFICER_DROP map=m2l2c indoor=1 pick=indoor
+14:05:00 cache1     ^~^~^ INDOOR_CACHE spawn pos=( -3814.000 2160.000 6.125 )
+14:05:00 cache1     ^~^~^ SM idrop done
+14:05:00 cache1     ^~^~^ SM lookcache from ( -4014.000 2160.000 46.125 )
+14:05:00 cache1     ^~^~^ INDOOR_CACHE used p=UnnamedSoldier#8240 hp=250.000 rifle=80 smg=120 pistol=81
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1     ^~^~^ SM retarget covered=( -4073.808 2310.000 0.125 ) alt=( -3923.808 2310.000 0.125 ) altOpenSky=1
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1 script errors: 0 []
+14:05:00 t=92.852 process exited
+14:05:00 [sm_cache1] done: 34 shots, window {'clean': True, 'violations': []}

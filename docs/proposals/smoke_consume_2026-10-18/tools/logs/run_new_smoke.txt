@@ -1,0 +1,17 @@
+=== 1. give the smoke
+=== 2. throw it (real input)
+   (in flight / just thrown)
+   real throw reached the landing hook (PARADROP signal smoke)
+=== 3. die, respawn, inventory
+=== 4. weapon / loadout refresh
+=== 5. let the guardian run another 6 s
+    ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SMOKE_CONSUMED p=UnnamedSoldier#8240
+    ^~^~^ PARADROP signal smoke (feed: the C-47 line follows)
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=0 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=0 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state after_itemGetAll p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+script errors: 0 []

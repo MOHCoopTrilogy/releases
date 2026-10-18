@@ -1,0 +1,19 @@
+=== 1. grant the binoculars
+=== 2. the one strike
+=== 3. die, respawn
+=== 4. refresh, wait
+    ^~^~^ SM ammo binoc_granted rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+    ^~^~^ SM state binoc_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=1 binocOwner=UnnamedSoldier#8240
+    ^~^~^ SM ammo binoc_after_fire rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+    ^~^~^ SM state binoc_after_fire p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+    ^~^~^ SM ammo now rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+    ^~^~^ SM ammo respawned rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+    ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+    ^~^~^ SM ammo now rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+    ^~^~^ SM ammo after_itemGetAll rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+    ^~^~^ SM state after_itemGetAll p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+    ^~^~^ SM ammo now rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+script errors: 0 []

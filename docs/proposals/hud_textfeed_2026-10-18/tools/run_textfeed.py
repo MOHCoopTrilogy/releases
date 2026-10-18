@@ -43,6 +43,27 @@ def start_server2(bins, hm, mt):
     return lg
 
 
+def pick_slot():
+    """the first harness copy whose harness_guard slot is free (2 games may run at once, each in its own copy)"""
+    for _try in range(40):
+      for owner, d in (("hudfeed5", r"G:\mohaa-hudfeed5"), ("hudfeed4", r"G:\mohaa-hudfeed4"), ("hudfeed2", r"G:\mohaa-hudfeed2")):
+          try:
+              jf.hg.acquire_slot(owner, os.path.join(d, "x.exe"), os.path.join(d, "home_probe"), [12832], 1)
+              jf.hg.release_slot(owner)
+          except Exception as e:
+              log("slot", owner, "busy:", str(e)[:80])
+              continue
+          jf.SLOTS[:] = [(owner, d)]
+          jf.H = d
+          jf.PRISTINE = os.path.join(d, "pristine")
+          jf.SPORT, jf.CPORTS[:] = 12831, [12832, 12833]
+          log("using slot", owner)
+          return
+
+      time.sleep(15)
+    raise RuntimeError("no free harness slot")
+
+
 def overlay_pak():
     p = os.path.join(jf.SCR, "zzzzzzz_tf_overlay.pk3")
     with zipfile.ZipFile(p, "w", zipfile.ZIP_DEFLATED) as z:
@@ -78,6 +99,7 @@ def main():
     W, HH = [int(x) for x in opt("--res", "1280x720").split("x")]
     scen = [int(x) for x in opt("--scen", "1,2,3,5").split(",")]
     ST["run"] = name
+    pick_slot()
     ST.update({"usercfg": False, "netdebug": False, "clprobe": False, "clprobe2": False, "listen": False, "mx": {}, "ufps": 60})
     os.makedirs(jf.SCR, exist_ok=True)
     opts = {"srv": "rel", "cl": "rel", "lobby": "fix", "delay": 0, "parkbytes": None, "mx": {}, "ufps": 60,
@@ -112,28 +134,30 @@ def main():
         join(c, 2)
         step(c, ["+attackprimary", "wait 6", "-attackprimary", "wait 20"])
         shots["a_hud"] = jf.shot(c, "a_hud")
+        def sc(tag, go, n, gap, pre=100, extra=None):
+            """ONE console step: trigger, wait, then n shots `gap` frames apart (>= 50: closer ones are dropped by the exe)"""
+            lines = ["rcon set tf_go %d" % go, "wait %d" % pre] + (extra or [])
+            for i in range(n):
+                lines += ["screenshotJPEG %s_%02d" % (tag, i), "wait %d" % gap]
+            step(c, lines, timeout=150)
+            time.sleep(2)
+            shots[tag] = [os.path.join(sd, f) for f in sorted(os.listdir(sd)) if f.startswith(tag + "_")]
+            log("shots", tag, len(shots[tag]))
         if 1 in scen:
-            # full feed + subtitles at the same time
-            step(c, ["rcon set tf_go 1", "wait 70"])
-            step(c, ["set subtitle0 \"%s\"" % SUBS[0], "set subtitle1 \"%s\"" % SUBS[1], "wait 50"])
-            shots["b_sub_feed"] = burst(c, "b_sub_feed", 3, 40)
-            step(c, ["set subtitle0 \"\"", "set subtitle1 \"\"", "set subtitle2 \"\"", "wait 400"])
-            time.sleep(10)
+            sc("b_sub_feed", 1, 3, 50, 60, ["set subtitle0 \"%s\"" % SUBS[0], "set subtitle1 \"%s\"" % SUBS[1], "wait 90"])
+            step(c, ["set subtitle0 \"\"", "set subtitle1 \"\"", "set subtitle2 \"\"", "wait 300"])
+            time.sleep(8)
         if 5 in scen:
-            step(c, ["rcon set tf_go 5", "wait 80"])
-            shots["e_longwording"] = burst(c, "e_longwording", 3, 90)
-            time.sleep(12)
+            sc("e_longwording", 5, 3, 120, 100)
+            time.sleep(10)
         if 2 in scen:
-            step(c, ["rcon set tf_go 2", "wait 400"])
-            shots["c_m1l1_hint"] = burst(c, "c_m1l1_hint", 3, 90)
+            sc("c_m1l1_hint", 2, 4, 120, 200)
             time.sleep(8)
         if 4 in scen:
-            step(c, ["rcon set tf_go 4", "wait 120"])
-            shots["f_oldroute"] = burst(c, "f_oldroute", 2, 60)
+            sc("f_oldroute", 4, 2, 60, 120)
             time.sleep(8)
         if 3 in scen:
-            step(c, ["rcon set tf_go 3", "wait 15"])
-            shots["d_banner"] = burst(c, "d_banner", 6, 28)
+            sc("d_banner", 3, 5, 50, 40)
             time.sleep(6)
         errs = re.findall(r"[^\r\n]*Script Error[^\r\n]*", read(slog))
         check("0 Script Error lines in the server log", not errs, "; ".join(errs[:3]))

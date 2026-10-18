@@ -1,0 +1,20 @@
+   SR prep ent=331 killedMates=13 hp=30/100.000 at=( -3952.154 3328.000 176.125 )
+   SURRENDER ent=331 n=1 t=42.001
+   SR ally ent=437 team=american at=( -4202.154 3448.399 176.125 )
+   SR ally ent=453 team=american at=( -4202.154 3208.399 176.125 )
+   SR SNAP t=50.075 ent=331 alive=1 hp=30 surr=1 conv=- tb=-6969 team=german
+   SR SNAP t=60.300 ent=331 alive=1 hp=30 surr=1 conv=- tb=-6969 team=german
+   SR SNAP t=70.525 ent=331 alive=1 hp=30 surr=1 conv=- tb=-6969 team=german
+   SR SNAP t=80.750 ent=331 alive=1 hp=30 surr=1 conv=- tb=-6969 team=german
+   SR SNAP t=90.975 ent=331 alive=1 hp=30 surr=1 conv=- tb=-6969 team=german
+   SR SNAP t=101.200 ent=331 alive=1 hp=30 surr=1 conv=- tb=-6969 team=german
+   SR SNAP t=111.425 ent=331 alive=1 hp=30 surr=1 conv=- tb=-6969 team=german
+   SR SNAP t=121.650 ent=331 alive=1 hp=30 surr=1 conv=- tb=-6969 team=german
+-- control: un-ignore, allies may now shoot him
+  ctl SR SNAP t=127.100 ent=331 alive=1 hp=30 surr=1 conv=- tb=0 team=german
+  ctl SR SNAP t=132.325 ent=331 alive=1 hp=30 surr=1 conv=- tb=0 team=german
+  ctl SR SNAP t=137.550 ent=331 alive=1 hp=30 surr=1 conv=- tb=0 team=german
+  ctl SR SNAP t=142.775 ent=331 alive=1 hp=30 surr=1 conv=- tb=0 team=german
+  ctl SR SNAP t=148.000 ent=331 alive=1 hp=30 surr=1 conv=- tb=0 team=german
+  ctl SR SNAP t=153.200 ent=331 alive=1 hp=30 surr=1 conv=- tb=0 team=german
+script errors: 0 []

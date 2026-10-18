@@ -1,0 +1,2 @@
+OLD (35% per lone survivor, no cap)                  mean 4.91 surrenders/run, P(>=1)=100%, max 12
+NEW (12% + hp/range/officer gates, cap 3, 60s cd)    mean 0.28 surrenders/run, P(>=1)=26%, max 3

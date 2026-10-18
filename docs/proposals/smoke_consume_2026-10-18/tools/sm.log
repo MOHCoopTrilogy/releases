@@ -1,0 +1,413 @@
+10:04:14 booted sm_s1 m3l2 ref=work dog False
+10:04:25 s1 === 1. give the smoke
+10:04:26 s1 === 2. throw it (real input)
+10:04:28 s1    (in flight / just thrown)
+10:04:35 s1    real throw never reached the landing hook -> simulated throw
+10:04:45 s1     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:04:45 s1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:04:45 s1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:04:45 s1     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:04:45 s1     ^~^~^ SM state sim_thrown_in_flight p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=0 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:04:45 s1     ^~^~^ SMOKE_CONSUMED p=UnnamedSoldier#8240
+10:04:45 s1     ^~^~^ PARADROP signal smoke (feed: the C-47 line follows)
+10:04:45 s1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=0 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:04:45 s1 === 3. die, respawn, inventory
+10:05:11 s1 === 4. weapon / loadout refresh
+10:05:14 s1 === 5. let the guardian run another 6 s
+10:05:20 s1     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:05:20 s1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:05:20 s1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:05:20 s1     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:05:20 s1     ^~^~^ SM state sim_thrown_in_flight p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=0 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:05:20 s1     ^~^~^ SMOKE_CONSUMED p=UnnamedSoldier#8240
+10:05:20 s1     ^~^~^ PARADROP signal smoke (feed: the C-47 line follows)
+10:05:20 s1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=0 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:05:20 s1     ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=0 hasSmoke=0 smokeAmmo=0 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:05:20 s1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=0 hasSmoke=0 smokeAmmo=0 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:05:20 s1     ^~^~^ SM state after_itemGetAll p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:05:20 s1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:05:20 s1 script errors: 0 []
+10:37:40 booted sm_old1 m3l2 ref=coop-wip dog False
+10:37:51 old1 === 1. give the smoke
+10:37:54 old1 === 2. throw it (real input)
+10:38:00 old1    (in flight / just thrown)
+10:38:10 old1    real throw never reached the landing hook -> simulated throw
+10:38:25 old1     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:38:25 old1     ^~^~^ PARADROP signal smoke (feed: the C-47 line follows)
+10:38:25 old1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:38:25 old1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:38:25 old1     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:38:25 old1     ^~^~^ SM state sim_thrown_in_flight p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=0 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:38:25 old1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=0 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:38:25 old1 === 3. die, respawn, inventory
+10:38:53 old1 === 4. weapon / loadout refresh
+10:38:58 old1 === 5. let the guardian run another 6 s
+10:39:06 old1     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ PARADROP signal smoke (feed: the C-47 line follows)
+10:39:06 old1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ SM state sim_thrown_in_flight p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=0 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=0 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ REWARD_DROP kind=smoke spot=( -3894.000 2884.989 6.125 ) lastpos=( -3894.000 2860.000 0.125 )
+10:39:06 old1     ^~^~^ REWARD_SPAWN kind=smoke pos=( -3894.000 2884.989 6.125 ) fb=( -3894.000 2860.000 6.125 )
+10:39:06 old1     ^~^~^ REWARD_PICKUP kind=smoke by=UnnamedSoldier#8240
+10:39:06 old1     ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ SM state after_itemGetAll p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1 script errors: 0 []
+10:42:00 booted sm_old2 m3l2 ref=coop-wip dog False
+10:42:11 old2 === 1. give the smoke
+10:42:14 old2 === 2. throw it (real input)
+10:42:21 old2    (in flight / just thrown)
+10:42:30 old2    real throw reached the landing hook (PARADROP signal smoke)
+10:42:30 old2 === 3. die, respawn, inventory
+10:42:49 old2 === 4. weapon / loadout refresh
+10:42:54 old2 === 5. let the guardian run another 6 s
+10:43:02 old2     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:43:02 old2     ^~^~^ PARADROP signal smoke (feed: the C-47 line follows)
+10:43:02 old2     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:43:02 old2     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:43:02 old2     ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:43:02 old2     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:43:02 old2     ^~^~^ SM state after_itemGetAll p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:43:02 old2     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:43:02 old2 script errors: 0 []
+10:44:09 booted sm_new_smoke m3l2 ref=work dog False
+10:44:19 new_smoke === 1. give the smoke
+10:44:23 new_smoke === 2. throw it (real input)
+10:44:29 new_smoke    (in flight / just thrown)
+10:44:38 new_smoke    real throw reached the landing hook (PARADROP signal smoke)
+10:44:38 new_smoke === 3. die, respawn, inventory
+10:44:57 new_smoke === 4. weapon / loadout refresh
+10:45:02 new_smoke === 5. let the guardian run another 6 s
+10:45:11 new_smoke     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:45:11 new_smoke     ^~^~^ SMOKE_CONSUMED p=UnnamedSoldier#8240
+10:45:11 new_smoke     ^~^~^ PARADROP signal smoke (feed: the C-47 line follows)
+10:45:11 new_smoke     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=0 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:45:11 new_smoke     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=0 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:45:11 new_smoke     ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:45:11 new_smoke     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:45:11 new_smoke     ^~^~^ SM state after_itemGetAll p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:45:11 new_smoke     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:45:11 new_smoke script errors: 0 []
+10:46:19 booted sm_new_unused m3l2 ref=work dog False
+10:46:29 new_unused === 1. give the smoke, do NOT throw it
+10:46:32 new_unused === 2. die with it, respawn
+10:47:00 new_unused     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:47:00 new_unused     ^~^~^ REWARD_DROP kind=smoke spot=( -3894.000 2883.665 6.125 ) lastpos=( -3894.000 2860.000 0.125 )
+10:47:00 new_unused     ^~^~^ REWARD_SPAWN kind=smoke pos=( -3894.000 2883.665 6.125 ) fb=( -3894.000 2860.000 6.125 )
+10:47:00 new_unused     ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=0 hasSmoke=0 smokeAmmo=0 used=0 armed=1 smokeOwner=none hasBinoc=0 binocUses=nil binocOwner=none
+10:47:00 new_unused     ^~^~^ REWARD_PICKUP kind=smoke by=UnnamedSoldier#8240
+10:47:00 new_unused     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:47:00 new_unused === 3. walk over the drop
+10:47:06 new_unused === 4. refresh, wait, state
+10:47:17 new_unused     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:47:17 new_unused     ^~^~^ REWARD_DROP kind=smoke spot=( -3894.000 2883.665 6.125 ) lastpos=( -3894.000 2860.000 0.125 )
+10:47:17 new_unused     ^~^~^ REWARD_SPAWN kind=smoke pos=( -3894.000 2883.665 6.125 ) fb=( -3894.000 2860.000 6.125 )
+10:47:17 new_unused     ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=0 hasSmoke=0 smokeAmmo=0 used=0 armed=1 smokeOwner=none hasBinoc=0 binocUses=nil binocOwner=none
+10:47:17 new_unused     ^~^~^ REWARD_PICKUP kind=smoke by=UnnamedSoldier#8240
+10:47:17 new_unused     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:47:17 new_unused     ^~^~^ SM state after_walkoversmoke p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:47:17 new_unused     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:47:17 new_unused     ^~^~^ SM state after_itemGetAll p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:47:17 new_unused     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:47:17 new_unused script errors: 0 []
+10:48:24 booted sm_new_binoc m3l2 ref=work dog False
+10:48:34 new_binoc === 1. grant the binoculars
+10:48:37 new_binoc === 2. the one strike
+10:48:50 new_binoc === 3. die, respawn
+10:50:29 new_binoc === 4. refresh, wait
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" ^
+10:50:42 new_binoc     ^~^~^ REWARD_DROP kind=binoc spot=( -3894.000 2882.340 6.125 ) lastpos=( -3894.000 2860.000 0.125 )
+10:50:42 new_binoc     ^~^~^ REWARD_SPAWN kind=binoc pos=( -3894.000 2882.340 6.125 ) fb=( -3894.000 2860.000 6.125 )
+10:50:42 new_binoc     ^~^~^ REWARD_PICKUP kind=binoc by=UnnamedSoldier#8240
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" ^
+10:50:42 new_binoc     ^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + level.coop_paradrop_armed + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+10:50:42 new_binoc script errors: 28 ["[2026-10-18 10:48:37 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-18 10:48:37 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'int'", "[2026-10-18 10:48:37 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'string'", "[2026-10-18 10:48:37 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'"]
+10:51:49 booted sm_new_drops m3l2 ref=work dog False
+10:51:59 new_drops === 10 officer drops (outdoor map m3l2)
+10:52:07 new_drops === 1 officer drop on an indoor map name (m2l2c)
+10:52:11 new_drops === cache: every player uses it, then again
+10:52:15 new_drops     ^~^~^ SM players n=1
+10:52:15 new_drops     ^~^~^ SM player 1 UnnamedSoldier#8240 alive=1 ent=0
+10:52:15 new_drops     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+10:52:15 new_drops     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+10:52:15 new_drops     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+10:52:15 new_drops     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+10:52:15 new_drops     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+10:52:15 new_drops     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+10:52:15 new_drops     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+10:52:15 new_drops     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+10:52:15 new_drops     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+10:52:15 new_drops     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+10:52:15 new_drops     ^~^~^ SM odrops done n=10
+10:52:15 new_drops     ^~^~^ OFFICER_DROP map=m2l2c indoor=1 pick=indoor
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE spawn pos=( -3814.000 2160.000 6.125 )
+10:52:15 new_drops     ^~^~^ SM idrop done
+10:52:15 new_drops     ^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=UnnamedSoldier#8240 hp=250.000 rifle=100 smg=300 pistol=90
+10:52:15 new_drops     ^~^~^ SM cache after p=UnnamedSoldier#8240 hp=250.000 rifle=100
+10:52:15 new_drops     ^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+10:52:15 new_drops     ^~^~^ SM cache after p=UnnamedSoldier#8240 hp=100.000 rifle=3
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.^
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" ^
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname ^
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" ^
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp ^
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.^
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" ^
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health ^
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" ^
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.^
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache after p=" ^
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname ^
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.^
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" ^
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health ^
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" ^
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.^
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" ^
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname ^
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" ^
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp ^
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.^
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" ^
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health ^
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as ^
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+10:52:15 new_drops     ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" ^
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.^
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache after p=" ^
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname ^
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.^
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" ^
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health ^
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+10:52:15 new_drops     ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" ^
+10:52:15 new_drops script errors: 24 ['[2026-10-18 10:52:13 UTC-6.000] ^~^~^ Script Error : Bad hash code value: NIL', "[2026-10-18 10:52:13 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to listener", '[2026-10-18 10:52:13 UTC-6.000] ^~^~^ Script Error : array index 2 out of range', "[2026-10-18 10:52:13 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'"]
+11:12:17 booted sm_new_binoc2 m3l2 ref=work dog False
+11:12:28 new_binoc2 === 1. grant the binoculars
+11:12:31 new_binoc2 === 2. the one strike
+11:12:43 new_binoc2 === 3. die, respawn
+11:13:06 new_binoc2 === 4. refresh, wait
+11:13:19 new_binoc2     ^~^~^ SM ammo binoc_granted rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+11:13:19 new_binoc2     ^~^~^ SM state binoc_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=1 binocOwner=UnnamedSoldier#8240
+11:13:19 new_binoc2     ^~^~^ SM ammo binoc_after_fire rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+11:13:19 new_binoc2     ^~^~^ SM state binoc_after_fire p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=1 binocOwner=UnnamedSoldier#8240
+11:13:19 new_binoc2     ^~^~^ SM ammo now rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+11:13:19 new_binoc2     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=1 binocOwner=UnnamedSoldier#8240
+11:13:19 new_binoc2     ^~^~^ REWARD_DROP kind=binoc spot=( -3894.000 2881.898 6.125 ) lastpos=( -3894.000 2860.000 0.125 )
+11:13:19 new_binoc2     ^~^~^ REWARD_SPAWN kind=binoc pos=( -3894.000 2881.898 6.125 ) fb=( -3894.000 2860.000 6.125 )
+11:13:19 new_binoc2     ^~^~^ REWARD_PICKUP kind=binoc by=UnnamedSoldier#8240
+11:13:19 new_binoc2     ^~^~^ SM ammo respawned rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+11:13:19 new_binoc2     ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=1 binocOwner=UnnamedSoldier#8240
+11:13:19 new_binoc2     ^~^~^ SM ammo now rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+11:13:19 new_binoc2     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=1 binocOwner=UnnamedSoldier#8240
+11:13:19 new_binoc2     ^~^~^ SM ammo after_itemGetAll rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+11:13:19 new_binoc2     ^~^~^ SM state after_itemGetAll p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=1 binocOwner=UnnamedSoldier#8240
+11:13:19 new_binoc2     ^~^~^ SM ammo now rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+11:13:19 new_binoc2     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=1 binocOwner=UnnamedSoldier#8240
+11:13:19 new_binoc2 script errors: 0 []
+11:30:35 booted sm_new_drops2 m3l2 ref=work dog False
+11:35:52 new_drops2 map restart never became ready
+12:29:38 booted sm_new_binoc3 m3l2 ref=work dog False
+12:29:49 new_binoc3 === 1. grant the binoculars
+12:29:52 new_binoc3 === 2. the one strike
+12:30:05 new_binoc3 === 3. die, respawn
+12:30:28 new_binoc3 === 4. refresh, wait
+12:30:41 new_binoc3     ^~^~^ SM ammo binoc_granted rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+12:30:41 new_binoc3     ^~^~^ SM state binoc_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=1 binocOwner=UnnamedSoldier#8240
+12:30:41 new_binoc3     ^~^~^ SM ammo binoc_after_fire rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+12:30:41 new_binoc3     ^~^~^ SM state binoc_after_fire p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+12:30:41 new_binoc3     ^~^~^ SM ammo now rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+12:30:41 new_binoc3     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+12:30:41 new_binoc3     ^~^~^ SM ammo respawned rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+12:30:41 new_binoc3     ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+12:30:41 new_binoc3     ^~^~^ SM ammo now rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+12:30:41 new_binoc3     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+12:30:41 new_binoc3     ^~^~^ SM ammo after_itemGetAll rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+12:30:41 new_binoc3     ^~^~^ SM state after_itemGetAll p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+12:30:41 new_binoc3     ^~^~^ SM ammo now rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+12:30:41 new_binoc3     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+12:30:41 new_binoc3 script errors: 0 []
+13:27:18 booted sm_new_drops4 m3l2 ref=work dog False
+13:27:28 new_drops4 === 10 officer drops (outdoor map m3l2)
+13:27:36 new_drops4 === 1 officer drop on an indoor map name (m2l2c)
+13:27:46 new_drops4 === cache: every player uses it, then again
+13:27:49 new_drops4     ^~^~^ SM players n=1
+13:27:49 new_drops4     ^~^~^ SM player 1 UnnamedSoldier#8240 alive=1 ent=0
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+13:27:49 new_drops4     ^~^~^ SM odrops done n=10
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m2l2c indoor=1 pick=indoor
+13:27:49 new_drops4     ^~^~^ INDOOR_CACHE spawn pos=( -3814.000 2160.000 6.125 )
+13:27:49 new_drops4     ^~^~^ SM idrop done
+13:27:49 new_drops4     ^~^~^ SM lookcache from ( -4014.000 2160.000 46.125 )
+13:27:49 new_drops4     ^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+13:27:49 new_drops4     ^~^~^ INDOOR_CACHE used p=UnnamedSoldier#8240 hp=250.000 rifle=80 smg=120 pistol=81
+13:27:49 new_drops4     ^~^~^ SM cache after p=UnnamedSoldier#8240 hp=250.000 rifle=80
+13:27:49 new_drops4     ^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+13:27:49 new_drops4     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+13:27:49 new_drops4     ^~^~^ SM cache after p=UnnamedSoldier#8240 hp=100.000 rifle=3
+13:27:49 new_drops4     ^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+13:27:49 new_drops4     ^~^~^ INDOOR_CACHE used p=UnnamedSoldier#8240 hp=250.000 rifle=80 smg=120 pistol=81
+13:27:49 new_drops4     ^~^~^ SM cache after p=UnnamedSoldier#8240 hp=250.000 rifle=80
+13:27:49 new_drops4     ^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+13:27:49 new_drops4     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+13:27:49 new_drops4     ^~^~^ SM cache after p=UnnamedSoldier#8240 hp=100.000 rifle=3
+13:27:49 new_drops4 script errors: 0 []
+14:04:37 booted sm_cache1 m3l2 ref=work dog False
+14:05:00 cache1     ^~^~^ OFFICER_DROP map=m2l2c indoor=1 pick=indoor
+14:05:00 cache1     ^~^~^ INDOOR_CACHE spawn pos=( -3814.000 2160.000 6.125 )
+14:05:00 cache1     ^~^~^ SM idrop done
+14:05:00 cache1     ^~^~^ SM lookcache from ( -4014.000 2160.000 46.125 )
+14:05:00 cache1     ^~^~^ INDOOR_CACHE used p=UnnamedSoldier#8240 hp=250.000 rifle=80 smg=120 pistol=81
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1     ^~^~^ SM retarget covered=( -4073.808 2310.000 0.125 ) alt=( -3923.808 2310.000 0.125 ) altOpenSky=1
+14:05:00 cache1     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+14:05:00 cache1 script errors: 0 []

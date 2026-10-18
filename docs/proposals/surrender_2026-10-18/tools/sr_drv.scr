@@ -1,0 +1,209 @@
+//=========================================================================
+// TEST-ONLY overlay driver (surrender-next 2026-10-18) - NEVER shipped. Installed as coop_mod/coop_selftest_xp.scr,
+// started by main.scr when coop_st_xp 1. Commands arrive in cvar sr_cmd.
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ SR armed"
+	setcvar "sr_cmd" "0"
+	while( 1 ){
+		local.c = getcvar( "sr_cmd" )
+		if( local.c != "0" && local.c != "" ){
+			setcvar "sr_cmd" "0"
+			waitthread sr_do local.c
+			println ( "^~^~^ SR did " + local.c )
+		}
+		waitframe
+	}
+}end
+
+sr_s local.v:{
+	local.r = "-"
+	if( local.v != NIL ){ local.r = "" + local.v }
+}end local.r
+
+sr_do local.c:{
+	local.p = $player[1]
+	if( local.p == NULL ){ end }
+	if( local.c == "here" ){
+		println ( "^~^~^ SR here " + local.p.origin )
+	}
+	if( local.c == "god" ){
+		local.p nodamage
+		local.p.health = 100000
+		local.p.max_health = 100000
+	}
+	if( local.c == "prep" ){
+		local.best = NULL
+		local.arr = level.coop_actorArray["german"]
+		local.cnt = 0
+		for( local.i = 1; local.i <= local.arr.size; local.i++ ){
+			local.a = local.arr[local.i]
+			if( local.a == NULL || local.a == NIL ){ continue }
+			if( !isAlive local.a ){ continue }
+			if( local.a == level.coop_officer ){ continue }
+			if( local.a.flags["coop_dynAttached"] != 1 ){ continue }
+			if( local.a.flags["coop_srTried"] == 1 ){ continue }
+			if( local.a.flags["coop_actorActualHealth"] == NIL ){ continue }
+			if( local.a.flags["coop_woundedMaxHp"] == NIL ){ continue }
+			if( local.a.type_idle == "machinegunner" || local.a.type_attack == "machinegunner" ){ continue }
+			local.m = 0
+			for( local.j = 1; local.j <= local.arr.size; local.j++ ){
+				local.b = local.arr[local.j]
+				if( local.b == NULL || local.b == NIL || local.b == local.a ){ continue }
+				if( !isAlive local.b ){ continue }
+				if( vector_length( local.b.origin - local.a.origin ) < 650 ){ local.m++ }
+			}
+			if( local.m >= 2 ){ local.best = local.a; break }
+		}
+		if( local.best == NULL ){
+			println "^~^~^ SR prep NONE"
+			end
+		}
+		local.t = local.best
+		local.t.flags["coop_srTried"] = 1
+		level.sr_target = local.t
+		local.k = 0
+		for( local.j = 1; local.j <= local.arr.size; local.j++ ){
+			local.b = local.arr[local.j]
+			if( local.b == NULL || local.b == NIL || local.b == local.t ){ continue }
+			if( !isAlive local.b ){ continue }
+			if( vector_length( local.b.origin - local.t.origin ) < 720 ){
+				local.k++
+				local.b damage local.b 99999 local.b local.b.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
+			}
+		}
+		local.mx = local.t.flags["coop_woundedMaxHp"]
+		local.t.flags["coop_actorActualHealth"] = int( ( local.mx * 3 ) / 10 )
+		local.pos = local.t.origin + ( 0 0 40 )
+		local.face = 180
+		for( local.d = 0; local.d < 8; local.d++ ){
+			local.ang = local.d * 45
+			local.f = angles_toforward ( 0 local.ang 0 )
+			local.cand = local.t.origin + ( vector_scale local.f 190 )
+			local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.cand + ( 0 0 48 ) )
+			if( local.g == NIL ){ continue }
+			local.clear = sighttrace ( local.g + ( 0 0 60 ) ) ( local.t.origin + ( 0 0 60 ) ) 1
+			if( local.clear == 1 ){
+				local.pos = local.g
+				local.face = local.ang + 180
+				break
+			}
+		}
+		local.p origin local.pos
+		local.p.viewangles = ( 0 local.face 0 )
+		println ( "^~^~^ SR prep ent=" + local.t.entnum + " killedMates=" + local.k + " hp=" + local.t.flags["coop_actorActualHealth"] + "/" + local.mx + " at=" + local.t.origin )
+	}
+	if( local.c == "allies" ){
+		local.t = level.sr_target
+		cache models/human/german_waffenss_shutze.tik
+		for( local.n = 0; local.n < 2; local.n++ ){
+			local.yw = local.p.viewangles
+			local.side = angles_toforward ( 0 ( local.yw[1] + 90 ) 0 )
+			local.sc = 90
+			if( local.n == 1 ){ local.sc = 0 - 90 }
+			local.o = local.p.origin + ( vector_scale local.side local.sc )
+			local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.o + ( 0 0 48 ) )
+			if( local.g != NIL ){ local.o = local.g }
+			local.al = spawn "models/human/german_waffenss_shutze.tik"
+			local.al.origin = local.o
+			local.al droptofloor
+			local.al american
+			local.al waitthread coop_mod/aihandler.scr::coop_actorArm "models/weapons/mp40.tik"
+			local.al.health = 100000
+			local.al.enableEnemy = 1
+			local.al forceactivate
+			level.sr_ally[local.n] = local.al
+			println ( "^~^~^ SR ally ent=" + local.al.entnum + " team=" + local.al.team + " at=" + local.al.origin )
+		}
+	}
+	if( local.c == "snap" ){
+		local.t = level.sr_target
+		if( local.t == NULL || local.t == NIL ){
+			println "^~^~^ SR SNAP target=none"
+			end
+		}
+		local.alive = 0
+		if( isAlive local.t ){ local.alive = 1 }
+		local.hp = waitthread sr_s local.t.flags["coop_actorActualHealth"]
+		local.sr = waitthread sr_s local.t.flags["coop_surrendered"]
+		local.cv = waitthread sr_s local.t.coop_converted
+		println ( "^~^~^ SR SNAP t=" + level.time + " ent=" + local.t.entnum + " alive=" + local.alive + " hp=" + local.hp + " surr=" + local.sr + " conv=" + local.cv + " tb=" + local.t.threatbias + " team=" + local.t.team )
+	}
+	if( local.c == "unignore" ){
+		local.t = level.sr_target
+		local.t threatbias 0
+		println ( "^~^~^ SR unignore ent=" + local.t.entnum )
+	}
+	if( local.c == "convert" ){
+		local.t = level.sr_target
+		level.sr_cmark = level.time
+		println ( "^~^~^ SR convert-start ent=" + local.t.entnum + " t=" + level.time )
+		waitthread coop_mod/surrender.scr::convert local.t local.p
+		println ( "^~^~^ SR convert-end ent=" + local.t.entnum + " t=" + level.time )
+	}
+	if( local.c == "act" ){
+		local.t = level.sr_target
+		local.alive = 0
+		if( isAlive local.t ){ local.alive = 1 }
+		local.en = "-"
+		if( local.t.enemy != NULL && local.t.enemy != NIL ){ local.en = "enemy" }
+		local.mv = 0
+		if( local.t.sr_lastOrg != NIL ){ local.mv = int( vector_length( local.t.origin - local.t.sr_lastOrg ) ) }
+		local.t.sr_lastOrg = local.t.origin
+		local.pd = int( vector_length( local.t.origin - local.p.origin ) )
+		println ( "^~^~^ SR ACT pd=" + local.pd + " t=" + level.time + " ent=" + local.t.entnum + " alive=" + local.alive + " team=" + local.t.team + " gun=" + local.t.weapon + " en=" + local.en + " moved=" + local.mv + " ee=" + local.t.enableEnemy )
+	}
+	if( local.c == "mksquad" ){
+		// four fresh germans in the open near the player, one tight cluster, so a lone-survivor candidate exists
+		cache models/human/german_waffenss_shutze.tik
+		local.base = local.p.origin
+		local.placed = 0
+		local.anchor = NIL
+		for( local.d = 0; local.d < 12 && local.anchor == NIL; local.d++ ){
+			local.f = angles_toforward ( 0 ( local.d * 30 ) 0 )
+			local.cand = local.base + ( vector_scale local.f 700 )
+			local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.cand + ( 0 0 48 ) )
+			if( local.g != NIL ){ local.anchor = local.g }
+		}
+		if( local.anchor != NIL ){
+			for( local.n = 0; local.n < 4; local.n++ ){
+				local.o = local.anchor + ( ( local.n * 45 ) ( local.n * 40 ) 0 )
+				local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.o + ( 0 0 48 ) )
+				if( local.g == NIL ){ local.g = local.anchor }
+				local.e = spawn "models/human/german_waffenss_shutze.tik"
+				local.e.origin = local.g
+				local.e droptofloor
+				local.e waitthread coop_mod/aihandler.scr::coop_actorArm "models/weapons/kar98.tik"
+				local.placed++
+			}
+		}
+		println ( "^~^~^ SR mksquad placed=" + local.placed )
+	}
+	if( local.c == "mkfight" ){
+		// two live germans 450u from the recruit, hostile to the player side, so a fight is on
+		local.t = level.sr_target
+		cache models/human/german_waffenss_shutze.tik
+		for( local.n = 0; local.n < 2; local.n++ ){
+			local.o = local.t.origin + ( 450 0 0 )
+			if( local.n == 1 ){ local.o = local.t.origin + ( 0 450 0 ) }
+			local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.o + ( 0 0 48 ) )
+			if( local.g != NIL ){ local.o = local.g }
+			local.e = spawn "models/human/german_waffenss_shutze.tik"
+			local.e.origin = local.o
+			local.e droptofloor
+			local.e waitthread coop_mod/aihandler.scr::coop_actorArm "models/weapons/mp40.tik"
+			local.e.health = 100000
+			local.e.enableEnemy = 1
+			local.e forceactivate
+		}
+	}
+	if( local.c == "census" ){
+		local.arr = level.coop_actorArray["german"]
+		local.live = 0
+		for( local.i = 1; local.i <= local.arr.size; local.i++ ){
+			local.a = local.arr[local.i]
+			if( local.a != NULL && local.a != NIL && isAlive local.a ){ local.live++ }
+		}
+		println ( "^~^~^ SR census german=" + local.live + " surrCount=" + level.coop_surrCount )
+	}
+}end

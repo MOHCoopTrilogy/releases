@@ -1,0 +1,29 @@
+10:45:11 t=0.029 launched pid 10572 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+10:45:11 t=0.052 in-process guard installed on thread 29448
+10:45:12 t=0.458 place 0x12303fc SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+10:45:12 t=0.578 place 0x12403fc SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+10:45:12 t=0.582 place 0x9450822 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+10:46:19 booted sm_new_unused m3l2 ref=work dog False
+10:46:29 new_unused === 1. give the smoke, do NOT throw it
+10:46:32 new_unused === 2. die with it, respawn
+10:47:00 new_unused     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:47:00 new_unused     ^~^~^ REWARD_DROP kind=smoke spot=( -3894.000 2883.665 6.125 ) lastpos=( -3894.000 2860.000 0.125 )
+10:47:00 new_unused     ^~^~^ REWARD_SPAWN kind=smoke pos=( -3894.000 2883.665 6.125 ) fb=( -3894.000 2860.000 6.125 )
+10:47:00 new_unused     ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=0 hasSmoke=0 smokeAmmo=0 used=0 armed=1 smokeOwner=none hasBinoc=0 binocUses=nil binocOwner=none
+10:47:00 new_unused     ^~^~^ REWARD_PICKUP kind=smoke by=UnnamedSoldier#8240
+10:47:00 new_unused     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:47:00 new_unused === 3. walk over the drop
+10:47:06 new_unused === 4. refresh, wait, state
+10:47:17 new_unused     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:47:17 new_unused     ^~^~^ REWARD_DROP kind=smoke spot=( -3894.000 2883.665 6.125 ) lastpos=( -3894.000 2860.000 0.125 )
+10:47:17 new_unused     ^~^~^ REWARD_SPAWN kind=smoke pos=( -3894.000 2883.665 6.125 ) fb=( -3894.000 2860.000 6.125 )
+10:47:17 new_unused     ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=0 hasSmoke=0 smokeAmmo=0 used=0 armed=1 smokeOwner=none hasBinoc=0 binocUses=nil binocOwner=none
+10:47:17 new_unused     ^~^~^ REWARD_PICKUP kind=smoke by=UnnamedSoldier#8240
+10:47:17 new_unused     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:47:17 new_unused     ^~^~^ SM state after_walkoversmoke p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:47:17 new_unused     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:47:17 new_unused     ^~^~^ SM state after_itemGetAll p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:47:17 new_unused     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:47:17 new_unused script errors: 0 []
+10:47:17 t=125.694 process exited
+10:47:17 [sm_new_unused] done: 0 shots, window {'clean': True, 'violations': []}

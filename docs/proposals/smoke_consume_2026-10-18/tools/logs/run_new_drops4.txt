@@ -1,0 +1,33 @@
+=== 10 officer drops (outdoor map m3l2)
+=== 1 officer drop on an indoor map name (m2l2c)
+=== cache: every player uses it, then again
+    ^~^~^ SM players n=1
+    ^~^~^ SM player 1 UnnamedSoldier#8240 alive=1 ent=0
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+    ^~^~^ SM odrops done n=10
+    ^~^~^ OFFICER_DROP map=m2l2c indoor=1 pick=indoor
+    ^~^~^ INDOOR_CACHE spawn pos=( -3814.000 2160.000 6.125 )
+    ^~^~^ SM idrop done
+    ^~^~^ SM lookcache from ( -4014.000 2160.000 46.125 )
+    ^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+    ^~^~^ INDOOR_CACHE used p=UnnamedSoldier#8240 hp=250.000 rifle=80 smg=120 pistol=81
+    ^~^~^ SM cache after p=UnnamedSoldier#8240 hp=250.000 rifle=80
+    ^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+    ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+    ^~^~^ SM cache after p=UnnamedSoldier#8240 hp=100.000 rifle=3
+    ^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+    ^~^~^ INDOOR_CACHE used p=UnnamedSoldier#8240 hp=250.000 rifle=80 smg=120 pistol=81
+    ^~^~^ SM cache after p=UnnamedSoldier#8240 hp=250.000 rifle=80
+    ^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+    ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+    ^~^~^ SM cache after p=UnnamedSoldier#8240 hp=100.000 rifle=3
+script errors: 0 []

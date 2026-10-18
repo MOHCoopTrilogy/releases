@@ -1,0 +1,12 @@
+conv 1 active=True sounds=258 pre-convert-deathlike=2 post-convert-deathlike=5 ['sound/dialogue/m3l2/a/dfr_m3l3_343k.wav', 'sound/dialogue/generic/g/pain/hit_g_018f02.wav', 'sound/dialogue/generic/g/death/dth_001c22.wav'] skipmarker=1 kicks=['ent=331 why=idle5s', 'ent=331 why=idle5s', 'ent=331 why=idle5s'] last=('1', 'american', 'mp40', '-', '0')
+conv 2 active=False sounds=1231 pre-convert-deathlike=1 post-convert-deathlike=4 ['sound/dialogue/generic/g/pain/hit_g_018e13.wav', 'sound/dialogue/generic/g/death/den_death_02.wav', 'sound/coop_deathvox/dv_238.wav'] skipmarker=1 kicks=['ent=331 why=idle5s', 'ent=331 why=idle5s', 'ent=331 why=idle5s'] last=('0', 'american', '', '-', '0')
+conv 3 active=False sounds=157 pre-convert-deathlike=1 post-convert-deathlike=5 ['sound/dialogue/generic/g/death/dth_001c32.wav', 'sound/coop_deathvox/dv_334.wav', 'sound/coop_gurgle/cg_gurgle8.wav'] skipmarker=1 kicks=['ent=331 why=idle5s', 'ent=331 why=idle5s', 'ent=331 why=idle5s', 'ent=331 why=idle5s'] last=('0', 'american', '', '-', '0')
+conv 4 no surrender reached
+conv 5 no surrender reached
+conv 6 no surrender reached
+conv 7 no surrender reached
+conv 8 no surrender reached
+conv 9 no surrender reached
+conv 10 no surrender reached
+CONVERT SUMMARY active 1 / 10
+script errors: 0 []

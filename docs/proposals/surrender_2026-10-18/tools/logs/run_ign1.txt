@@ -1,0 +1,11 @@
+FAILED RuntimeError('map never became ready')     "set coop_aiSurrenderChance 100", "set coop_aiSurrenderMax 99", "set coop_aiSurrenderCooldown 0",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "set coop_aiSurrenderHpPct 60"])
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev\docs\proposals\surrender_2026-10-18\tools\srlib.py", line 76, in boot
+    rundir, notes = S.boot_session(sess, cg, W, H, EXTRA + list(extra), ov or overlay(ref=ref, extra=files))
+                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev/docs/proposals/ironsights_2026-09-28/tools\run_sweep.py", line 104, in boot_session
+    raise RuntimeError("map never became ready")
+RuntimeError: map never became ready
+

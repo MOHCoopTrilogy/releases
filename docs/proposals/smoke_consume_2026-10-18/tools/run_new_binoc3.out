@@ -1,0 +1,27 @@
+12:28:33 t=0.026 launched pid 2292 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+12:28:33 t=0.047 in-process guard installed on thread 19664
+12:28:33 t=0.431 place 0x1d830702 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+12:28:33 t=0.547 place 0x1d840702 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+12:28:33 t=0.551 place 0x231c09da SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+12:29:38 booted sm_new_binoc3 m3l2 ref=work dog False
+12:29:49 new_binoc3 === 1. grant the binoculars
+12:29:52 new_binoc3 === 2. the one strike
+12:30:05 new_binoc3 === 3. die, respawn
+12:30:28 new_binoc3 === 4. refresh, wait
+12:30:41 new_binoc3     ^~^~^ SM ammo binoc_granted rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+12:30:41 new_binoc3     ^~^~^ SM state binoc_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=1 binocOwner=UnnamedSoldier#8240
+12:30:41 new_binoc3     ^~^~^ SM ammo binoc_after_fire rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+12:30:41 new_binoc3     ^~^~^ SM state binoc_after_fire p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+12:30:41 new_binoc3     ^~^~^ SM ammo now rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+12:30:41 new_binoc3     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+12:30:41 new_binoc3     ^~^~^ SM ammo respawned rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+12:30:41 new_binoc3     ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+12:30:41 new_binoc3     ^~^~^ SM ammo now rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+12:30:41 new_binoc3     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+12:30:41 new_binoc3     ^~^~^ SM ammo after_itemGetAll rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+12:30:41 new_binoc3     ^~^~^ SM state after_itemGetAll p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+12:30:41 new_binoc3     ^~^~^ SM ammo now rifle=80 smg=120 mg=100 pistol=81 grenade=-1 shotgun=0 heavy=0
+12:30:41 new_binoc3     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+12:30:41 new_binoc3 script errors: 0 []
+12:30:41 t=128.635 process exited
+12:30:41 [sm_new_binoc3] done: 0 shots, window {'clean': True, 'violations': []}

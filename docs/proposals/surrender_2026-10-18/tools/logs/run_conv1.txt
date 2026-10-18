@@ -1,0 +1,12 @@
+conv 1 active=True sounds=291 deathlike=['sound/coop_gurgle/cg_gurgle8.wav', 'sound/coop_gurgle/cg_gurgle10.wav', 'sound/coop_gurgle/cg_gurgle2.wav'] kicks=['ent=331 why=idle5s', 'ent=331 why=idle5s'] last=('1', 'american', 'mp40', '-', '171')
+conv 2 active=False sounds=827 deathlike=['sound/coop_gurgle/cg_gurgle8.wav', 'sound/coop_gurgle/cg_gurgle10.wav', 'sound/coop_gurgle/cg_gurgle6.wav'] kicks=[] last=None
+conv 3 active=False sounds=4 deathlike=['sound/dialogue/m3l2/a/dfr_m3l3_339k.wav'] kicks=[] last=None
+conv 4 no surrender reached
+conv 5 no surrender reached
+conv 6 no surrender reached
+conv 7 no surrender reached
+conv 8 no surrender reached
+conv 9 no surrender reached
+conv 10 no surrender reached
+CONVERT SUMMARY active 1 / 10
+script errors: 0 []

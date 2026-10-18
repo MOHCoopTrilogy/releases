@@ -1,0 +1,134 @@
+=== 10 officer drops (outdoor map m3l2)
+=== 1 officer drop on an indoor map name (m2l2c)
+=== cache: every player uses it, then again
+    ^~^~^ SM players n=1
+    ^~^~^ SM player 1 UnnamedSoldier#8240 alive=1 ent=0
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+    ^~^~^ SM odrops done n=10
+    ^~^~^ OFFICER_DROP map=m2l2c indoor=1 pick=indoor
+    ^~^~^ INDOOR_CACHE spawn pos=( -3814.000 2160.000 6.125 )
+    ^~^~^ SM idrop done
+    ^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+    ^~^~^ INDOOR_CACHE used p=UnnamedSoldier#8240 hp=250.000 rifle=100 smg=300 pistol=90
+    ^~^~^ SM cache after p=UnnamedSoldier#8240 hp=250.000 rifle=100
+    ^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+    ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+    ^~^~^ SM cache after p=UnnamedSoldier#8240 hp=100.000 rifle=3
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" + local.q.^
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" ^
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" + local.q.netname ^
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" ^
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp ^
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.^
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" ^
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health ^
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" ^
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+    ^~^~^ SM cache after p=" + local.q.^
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+    ^~^~^ SM cache after p=" ^
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+    ^~^~^ SM cache after p=" + local.q.netname ^
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.^
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" ^
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health ^
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" ^
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" + local.q.^
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" ^
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" + local.q.netname ^
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" ^
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp ^
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.^
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" ^
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health ^
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+    ^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as ^
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" + local.ap )
+    ^~^~^ INDOOR_CACHE used p=" + local.player.netname + " hp=" + local.player.health + " rifle=" + local.ar + " smg=" + local.as + " pistol=" ^
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+    ^~^~^ SM cache after p=" + local.q.^
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+    ^~^~^ SM cache after p=" ^
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+    ^~^~^ SM cache after p=" + local.q.netname ^
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.^
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" ^
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health ^
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+    ^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" ^
+script errors: 24 ['[2026-10-18 10:52:13 UTC-6.000] ^~^~^ Script Error : Bad hash code value: NIL', "[2026-10-18 10:52:13 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to listener", '[2026-10-18 10:52:13 UTC-6.000] ^~^~^ Script Error : array index 2 out of range', "[2026-10-18 10:52:13 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'"]

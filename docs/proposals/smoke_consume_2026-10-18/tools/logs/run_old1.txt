@@ -1,0 +1,29 @@
+=== 1. give the smoke
+=== 2. throw it (real input)
+   (in flight / just thrown)
+   real throw never reached the landing hook -> simulated throw
+    ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ PARADROP signal smoke (feed: the C-47 line follows)
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state sim_thrown_in_flight p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=0 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=0 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+=== 3. die, respawn, inventory
+=== 4. weapon / loadout refresh
+=== 5. let the guardian run another 6 s
+    ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ PARADROP signal smoke (feed: the C-47 line follows)
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state sim_thrown_in_flight p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=0 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=0 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ REWARD_DROP kind=smoke spot=( -3894.000 2884.989 6.125 ) lastpos=( -3894.000 2860.000 0.125 )
+    ^~^~^ REWARD_SPAWN kind=smoke pos=( -3894.000 2884.989 6.125 ) fb=( -3894.000 2860.000 6.125 )
+    ^~^~^ REWARD_PICKUP kind=smoke by=UnnamedSoldier#8240
+    ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state after_itemGetAll p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+script errors: 0 []

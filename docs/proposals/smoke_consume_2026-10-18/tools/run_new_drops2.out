@@ -1,0 +1,19 @@
+11:29:30 t=0.028 launched pid 18280 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+11:29:30 t=0.058 in-process guard installed on thread 17060
+11:29:30 t=0.462 place 0xd3d0a1e SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+11:29:30 t=0.602 place 0xd3e0a1e SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+11:29:30 t=0.606 place 0xc8f09f0 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+11:30:35 booted sm_new_drops2 m3l2 ref=work dog False
+11:35:52 new_drops2 map restart never became ready
+11:39:12 t=582.129 process exited
+11:39:12 [sm_new_drops2] done: 0 shots, window {'clean': True, 'violations': []}
+Traceback (most recent call last):
+  File "C:\mohaa-coop-dev\docs\proposals\smoke_consume_2026-10-18\tools\sm_sess.py", line 142, in <module>
+    cmd("players")
+    ~~~^^^^^^^^^^^
+  File "C:\mohaa-coop-dev\docs\proposals\smoke_consume_2026-10-18\tools\sm_sess.py", line 30, in cmd
+    return G.cmd(c, timeout=80, **kv)
+           ~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev/docs/proposals/rewards_2026-10-15/tools\rwlib.py", line 99, in cmd
+    raise RuntimeError("driver never did %s" % what)
+RuntimeError: driver never did players

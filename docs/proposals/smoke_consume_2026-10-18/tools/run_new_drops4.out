@@ -1,0 +1,41 @@
+13:26:14 t=0.029 launched pid 3796 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+13:26:14 t=0.055 in-process guard installed on thread 10952
+13:26:14 t=0.435 place 0x75f0914 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+13:26:14 t=0.546 place 0x7600914 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+13:26:14 t=0.550 place 0xf83072c SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+13:27:18 booted sm_new_drops4 m3l2 ref=work dog False
+13:27:28 new_drops4 === 10 officer drops (outdoor map m3l2)
+13:27:36 new_drops4 === 1 officer drop on an indoor map name (m2l2c)
+13:27:46 new_drops4 === cache: every player uses it, then again
+13:27:49 new_drops4     ^~^~^ SM players n=1
+13:27:49 new_drops4     ^~^~^ SM player 1 UnnamedSoldier#8240 alive=1 ent=0
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+13:27:49 new_drops4     ^~^~^ SM odrops done n=10
+13:27:49 new_drops4     ^~^~^ OFFICER_DROP map=m2l2c indoor=1 pick=indoor
+13:27:49 new_drops4     ^~^~^ INDOOR_CACHE spawn pos=( -3814.000 2160.000 6.125 )
+13:27:49 new_drops4     ^~^~^ SM idrop done
+13:27:49 new_drops4     ^~^~^ SM lookcache from ( -4014.000 2160.000 46.125 )
+13:27:49 new_drops4     ^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+13:27:49 new_drops4     ^~^~^ INDOOR_CACHE used p=UnnamedSoldier#8240 hp=250.000 rifle=80 smg=120 pistol=81
+13:27:49 new_drops4     ^~^~^ SM cache after p=UnnamedSoldier#8240 hp=250.000 rifle=80
+13:27:49 new_drops4     ^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+13:27:49 new_drops4     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+13:27:49 new_drops4     ^~^~^ SM cache after p=UnnamedSoldier#8240 hp=100.000 rifle=3
+13:27:49 new_drops4     ^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+13:27:49 new_drops4     ^~^~^ INDOOR_CACHE used p=UnnamedSoldier#8240 hp=250.000 rifle=80 smg=120 pistol=81
+13:27:49 new_drops4     ^~^~^ SM cache after p=UnnamedSoldier#8240 hp=250.000 rifle=80
+13:27:49 new_drops4     ^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+13:27:49 new_drops4     ^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+13:27:49 new_drops4     ^~^~^ SM cache after p=UnnamedSoldier#8240 hp=100.000 rifle=3
+13:27:49 new_drops4 script errors: 0 []
+13:27:49 t=95.586 process exited
+13:27:49 [sm_new_drops4] done: 26 shots, window {'clean': True, 'violations': []}

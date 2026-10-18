@@ -1,0 +1,11 @@
+WAIT smokec: ahead=['icons', 'surrender', 'hdring', 'alarmplace', 'loadscreen']
+WAIT smokec: ahead=['icons', 'surrender', 'hdring', 'alarmplace', 'loadscreen']
+WAIT smokec: ahead=['icons', 'surrender', 'hdring', 'alarmplace', 'loadscreen']
+WAIT smokec: ahead=['icons', 'surrender', 'hdring', 'alarmplace', 'loadscreen']
+WAIT smokec: ahead=['icons', 'surrender', 'hdring', 'alarmplace', 'loadscreen']
+WAIT smokec: ahead=['icons', 'surrender', 'hdring', 'alarmplace', 'loadscreen']
+WAIT smokec: ahead=['icons', 'surrender', 'hdring', 'alarmplace', 'loadscreen']
+WAIT smokec: ahead=['icons', 'surrender', 'hdring', 'alarmplace', 'loadscreen']
+Terminated                 python docs/tools/harness_turn.py wait smokec
+RELEASED smokec
+BATCHDONE

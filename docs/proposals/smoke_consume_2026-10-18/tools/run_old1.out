@@ -1,0 +1,38 @@
+fatal: path 'coop_mod/indoor_maps.scr' exists on disk, but not in 'coop-wip'
+10:36:34 t=0.031 launched pid 27640 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+10:36:34 t=0.053 in-process guard installed on thread 3952
+10:36:34 t=0.468 place 0x8ce049e SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+10:36:34 t=0.588 place 0x8cf049e SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+10:36:34 t=0.592 place 0x13010742 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+10:37:40 booted sm_old1 m3l2 ref=coop-wip dog False
+10:37:51 old1 === 1. give the smoke
+10:37:54 old1 === 2. throw it (real input)
+10:38:00 old1    (in flight / just thrown)
+10:38:10 old1    real throw never reached the landing hook -> simulated throw
+10:38:25 old1     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:38:25 old1     ^~^~^ PARADROP signal smoke (feed: the C-47 line follows)
+10:38:25 old1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:38:25 old1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:38:25 old1     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:38:25 old1     ^~^~^ SM state sim_thrown_in_flight p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=0 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:38:25 old1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=0 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:38:25 old1 === 3. die, respawn, inventory
+10:38:53 old1 === 4. weapon / loadout refresh
+10:38:58 old1 === 5. let the guardian run another 6 s
+10:39:06 old1     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ PARADROP signal smoke (feed: the C-47 line follows)
+10:39:06 old1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ SM state sim_thrown_in_flight p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=0 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=0 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ REWARD_DROP kind=smoke spot=( -3894.000 2884.989 6.125 ) lastpos=( -3894.000 2860.000 0.125 )
+10:39:06 old1     ^~^~^ REWARD_SPAWN kind=smoke pos=( -3894.000 2884.989 6.125 ) fb=( -3894.000 2860.000 6.125 )
+10:39:06 old1     ^~^~^ REWARD_PICKUP kind=smoke by=UnnamedSoldier#8240
+10:39:06 old1     ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ SM state after_itemGetAll p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:39:06 old1 script errors: 0 []
+10:39:06 t=152.548 process exited
+10:39:06 [sm_old1] done: 0 shots, window {'clean': True, 'violations': []}

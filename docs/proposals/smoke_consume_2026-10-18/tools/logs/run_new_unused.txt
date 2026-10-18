@@ -1,0 +1,21 @@
+=== 1. give the smoke, do NOT throw it
+=== 2. die with it, respawn
+    ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ REWARD_DROP kind=smoke spot=( -3894.000 2883.665 6.125 ) lastpos=( -3894.000 2860.000 0.125 )
+    ^~^~^ REWARD_SPAWN kind=smoke pos=( -3894.000 2883.665 6.125 ) fb=( -3894.000 2860.000 6.125 )
+    ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=0 hasSmoke=0 smokeAmmo=0 used=0 armed=1 smokeOwner=none hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ REWARD_PICKUP kind=smoke by=UnnamedSoldier#8240
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+=== 3. walk over the drop
+=== 4. refresh, wait, state
+    ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ REWARD_DROP kind=smoke spot=( -3894.000 2883.665 6.125 ) lastpos=( -3894.000 2860.000 0.125 )
+    ^~^~^ REWARD_SPAWN kind=smoke pos=( -3894.000 2883.665 6.125 ) fb=( -3894.000 2860.000 6.125 )
+    ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=0 hasSmoke=0 smokeAmmo=0 used=0 armed=1 smokeOwner=none hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ REWARD_PICKUP kind=smoke by=UnnamedSoldier#8240
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state after_walkoversmoke p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state after_itemGetAll p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+    ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+script errors: 0 []

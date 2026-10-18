@@ -1,0 +1,25 @@
+10:43:03 t=0.031 launched pid 9816 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+10:43:03 t=0.056 in-process guard installed on thread 28604
+10:43:03 t=0.442 place 0x35f0a14 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+10:43:03 t=0.581 place 0x3600a14 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+10:43:03 t=0.584 place 0x6b60822 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+10:44:09 booted sm_new_smoke m3l2 ref=work dog False
+10:44:19 new_smoke === 1. give the smoke
+10:44:23 new_smoke === 2. throw it (real input)
+10:44:29 new_smoke    (in flight / just thrown)
+10:44:38 new_smoke    real throw reached the landing hook (PARADROP signal smoke)
+10:44:38 new_smoke === 3. die, respawn, inventory
+10:44:57 new_smoke === 4. weapon / loadout refresh
+10:45:02 new_smoke === 5. let the guardian run another 6 s
+10:45:11 new_smoke     ^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:45:11 new_smoke     ^~^~^ SMOKE_CONSUMED p=UnnamedSoldier#8240
+10:45:11 new_smoke     ^~^~^ PARADROP signal smoke (feed: the C-47 line follows)
+10:45:11 new_smoke     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=0 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:45:11 new_smoke     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=0 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:45:11 new_smoke     ^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:45:11 new_smoke     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:45:11 new_smoke     ^~^~^ SM state after_itemGetAll p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:45:11 new_smoke     ^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+10:45:11 new_smoke script errors: 0 []
+10:45:11 t=128.157 process exited
+10:45:11 [sm_new_smoke] done: 0 shots, window {'clean': True, 'violations': []}
