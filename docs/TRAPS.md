@@ -4,53 +4,37 @@
 **Tell** first — that is what you will observe. Status legend in
 [SOURCE_OF_TRUTH.md](SOURCE_OF_TRUTH.md#status-vocabulary).
 
-> Pruned 2026-08-20 and 2026-09-02; every rule, bug id and `file:line` anchor kept. War-story
-> detail: [`archive/traps-pruned-2026-08-20.md`](archive/traps-pruned-2026-08-20.md).
+> War stories: [`archive/traps-pruned-2026-08-20.md`](archive/traps-pruned-2026-08-20.md).
 
 ## ClientThink runs once per USERCMD, not once per server frame
 
-Anything integrating `level.frametime` inside ClientThink advances once per COMMAND, so its rate scales
-with client framerate (com_maxfps 180 against sv_fps 40 is ~4.5x) and differs between players on one
-server. It bit four systems in one session - recoil recovery, crouch-to-prone dwell, stress and brace
-envelopes - and two of them silently moved a balance number, since stress multiplies bullet spread.
-**Use elapsed time:** keep `m_fCoop<X>Last`, take `dt = level.time - last`, clamp it (0.1-0.25 s) so a
-hitch cannot dump a whole envelope, and seed the member in the constructor - player memory is not zeroed.
+Integrating `level.frametime` inside ClientThink advances once per COMMAND (com_maxfps 180 vs sv_fps 40 is ~4.5x), differing per player
+(bit recoil, prone dwell, stress, brace, sprint pool bug-3372). **Use elapsed time:** keep `m_fCoop<X>Last`, `dt = level.time - last`
+clamped to 0.1-0.25 s, and seed the member in the constructor (player memory is not zeroed).
 
 ## Quick index
 
-**Every `##` heading is an entry — grep them for the full set.** Below is only what a grep cannot
-give you.
-
 **Open now:** [T11](#t11) trusting the record over the code · [T14](#t14) verification that lied.
-**Most recurrent:** T1 parse killers, T4 capacity families, T6 what loads != what you shipped.
 ---
 
 <a name="t1"></a>
 ## T1 — Morpheus parse killers: one bad token silently kills the WHOLE `.scr`
 
-**Recurred under 17 bug ids.**
+**17 bug ids.**
 
 **Tell:** a feature silently does nothing, with **no error at the failure site**; every `::` call into
-the file logs `Script was not properly loaded`. A whole subsystem dying at once (bug-533) means the
-shared bus file. The compiler is all-or-nothing: one syntax error
+the file logs `Script was not properly loaded`. The compiler is all-or-nothing: one syntax error
 kills the entire file and the map runs with no script at all.
+**An engine-new command fails the WHOLE file on an older game.dll** (bug-3423): isolate it in a helper `.scr` (`dbno_bleed.scr`).
 
 > **An assignment with no value is a parse killer and the error points at the WRONG line** (bug-1908):
 > the parser takes the *next* statement as the value and dies on **that** statement's `=`. A bare
 > trailing `=` is legal continuation, so it is fatal only when the next code line is itself an
-> assignment. `docs/tools/check_empty_rhs.py` runs every build (it came from a generator; validate their inputs).
+> assignment. `docs/tools/check_empty_rhs.py` runs every build.
 >
-> **All three scanners pass a file that cannot compile** - they check brace depth, line shape and string
-> termination, not *expression* syntax (bug-1751: unparenthesized `+` in a `println` kills the file).
-> Builtin CALL SYNTAX too (bug-2632): args are SPACE-separated not comma; a 2-arg builtin uses command
-> form `local.x = f a b`; a getter reads `p.userinfo`, not `p userinfo`.
-> **Not verified until a server has loaded the map and the log shows no `parse error`.**
+> **All three scanners pass a file that cannot compile** (braces, line shape, strings - not *expression* syntax: bug-1751 an unparenthesized `+` in `println`; bug-2632 builtin args are SPACE-separated, a 2-arg builtin is `local.x = f a b`, a getter is `p.userinfo`). **Not verified until a server has loaded the map with no `parse error` in the log.**
 >
-> **A comment that lost its `//` scans perfectly - TWICE** (2026-09-06; then 2026-09-08, eight
-> lines at once, in the fixer that fixed the first, in the session that wrote this entry). Both times
-> a Python fixer emitted a multi-line comment with `//` on the FIRST line only; braces and quotes
-> balance, so every structural scanner passed. Knowing the trap did not prevent it -
-> **`docs/tools/prosecheck.py` does.**
+>**A comment that lost its `//` scans perfectly** (twice; a fixer put `//` on a multi-line comment's first line only) - **`prosecheck.py` catches it.**
 
 **Run all four — they catch disjoint classes; only the last reads a line as language:**
 
@@ -61,8 +45,7 @@ kills the entire file and the map runs with no script at all.
 | odd-quote scan (comment- and string-aware, per line) | unterminated / multi-line string literals | everything below |
 | `docs/tools/prosecheck.py` | **English prose standing where a statement should be** | expression syntax |
 
-The log names only the **first** offending line - bug-1283 had two multi-line strings in one file and
-fixing the reported one would have left it equally dead. **Fix the class, not the line.**
+The log names only the **first** offending line (bug-1283 had two). **Fix the class, not the line.**
 
 **The 11 confirmed triggers are tabulated in
 [`archive/traps-t1-triggers.md`](archive/traps-t1-triggers.md)** - read it before writing `.scr`. The four
@@ -72,8 +55,6 @@ components* are fine); **an unquoted `+`/`-` directive argument** such as `surfa
 fatal in script, and braces still balance so the depth scan misses it); and **a real newline inside a
 string literal**, usually from a generator.
 
-**NOT a parse killer:** `spawn <class>` with inline keyvalues is fine (192 occurrences, incl. `main.scr`).
-
 1. **`developer 1` is mandatory** - compile errors are developer-gated; without it the failure is silent.
 2. **Raw brace counts are invalid** - opposite errors cancel (bug-239), comment/string braces
    miscount. Use a **running-depth scan** (never negative; 0 at every col-0 label, `goto` labels
@@ -81,6 +62,9 @@ string literal**, usually from a generator.
 3. **A call in a `}end <expr>` return position is NOT evaluated** (bug-2603): `}end int(local.s)`
    returns the token `int`, not a number. Assign first: `local.v = int(local.s)` ... `}end local.v`.
 4. **An `EV_SETTER` is assigned, not called** (bug-2608): `ent.injail = 1`, never `ent injail 1` (a compile killer); `EV_NORMAL` events use the command form.
+5. **An UNKNOWN COMMAND kills the file too, and a failed compile was a CRASH, not noise** (bug-2709/2868):
+   `immortal` killed `admin.scr` for three releases, logged "harmless"; up to v1.9.0 a failed compile set up a
+   game.dll double free on the next map change. Grep boot/soak logs for `Couldn't compile`; a hit is P0.
 
 
 ---
@@ -100,10 +84,10 @@ and stays, never the reported line.
 
 | What happened | Bug |
 |---|---|
-| Bytes read out of a `.pk3` (already CRLF) written back through Python **text** mode → `\r\r\n` on 434 lines. TIKI silently dropped **every** alias in `anims_shared.txt`, killing the salute emote. | 259 |
-| A bash-heredoc Python generator collapsed the two-char `\n` escape into literal newlines in 4 string literals → T1 parse kill. | 331, 962 |
-| A shader generator's brace matcher mishandled mixed CRLF/LF plus `//`-commented braces, emitting blocks missing closing braces (45 open / 43 close) → white-square HUD icons. | 480 |
-| A **texture upscaler** sharpened AFTER cropping its 3x3 tile, so the border clamp reintroduced the seam tiling prevents (14x worse on `ocean1b`), and Lanczos overshot a capped alpha. Sharpen inside the tiled space; clamp to the source range. | 1247 |
+| `.pk3` bytes (already CRLF) written back in Python **text** mode → `\r\r\n`; TIKI dropped **every** `anims_shared.txt` alias. | 259 |
+| A Python literal of script/C text (heredoc or not) made a `\n` escape a real newline → T1 kill, C2001. Use a fragment file. | 331, 962, 3002 |
+| A shader generator's brace matcher broke on mixed CRLF/LF + `//`-commented braces (45 open / 43 close) → white-square HUD icons. | 480 |
+| A **texture upscaler** sharpened AFTER cropping its 3x3 tile (clamp re-made the seam, Lanczos overshot alpha): sharpen tiled, clamp to source. **DXT encoders skew colour**: Pillow DXT5 tilts normals ~14 deg (use `gen_terrain_pak_*.py`);  **TGA: bottom-up** (loader ignores the top-down bit, PIL obeys it). | 1247, 2953, 2994, 3019 |
 | A PowerShell harness assigned `$home`, a **built-in automatic variable**; the assignment silently no-op'd and logs landed in the user profile. | ps-home-var |
 
 - **Binary mode on BOTH sides, repo files included.** `open(p, encoding=...)` translates newlines on
@@ -111,22 +95,21 @@ and stays, never the reported line.
   flips the **whole file** to LF. Both fail silently - `str.replace` returns unchanged rather than
   raising. Use `rb`/`wb`; the tree is **not uniform** (`challenges.scr` CRLF, `lobbyui.scr` LF-only,
   `docs/TRAPS.md` LF - bug-1600 was this file flipped by a prune script). Detect per file and **assert
-  the match count before every replace**; that assert caught bug-1363.
+  the match count before every replace**.
   Not Python-only: **`sed -i` and any shell in-place rewriter flip the whole file the same way** (bug-2081).
-  Detect endings by counting `b'\r\n'` against bare `b'\n'` on the RAW BYTES - `grep -c $'\r'`
-  answers 0 on a CRLF file and will clear a broken edit. Then confirm the diff is the SHAPE you
-  intended (`cmp`, `git diff --numstat`): a whole-file diff on a 16-line edit is the tell.
+  Detect endings by counting `b'\r\n'` vs bare `b'\n'` on RAW BYTES (`grep -c $'\r'` says 0 on CRLF) and
+  confirm the diff SHAPE (`git diff --numstat`): a whole-file diff on a 16-line edit is the tell.
   With `core.autocrlf=true` (**both** sub-repos), git's smudge filter runs on `git apply` as well as
   `git checkout --`, so **a patch that applies cleanly still rewrites every line ending in the file**
-  (bug-2453) while `git diff` shows nothing, the blob being LF all along. `build.ps1` packs the
-  WORKING COPY, so that CRLF ships: after **any** `git apply`, re-count `b'\r'` per touched file
-  against an unpatched neighbour. Hence `.scr` patches are Python fixers, never diffs.
+  (bug-2453) while `git diff` shows nothing (blob is LF); `build.ps1` packs the WORKING COPY, so that
+  CRLF ships: after any `git apply`, re-count `b'\r'` per file. Hence `.scr` patches are Python fixers.
+  **Never `git checkout`/`reset`/`restore` a shared authored doc**: others hold unstaged edits in it
+  (bug-4037, 2026-10-18: wiped weeks of FEATURES edits, flipped it to CRLF). Rebase via `git merge-file`.
 - **Derive generated hunks against the base the generator saw.** Diffing a lane's FULL patched
   copy against a text that already carries other lanes' edits turns every one of those edits into
   a deletion - and per-hunk uniqueness asserts pass, because each reverting FIND genuinely occurs
   once (bug-2482). Print the byte delta of every edit and read the signs: a `-10870` where an
   insert was expected is the only tell.
-- **Never** emit script files through a bash heredoc.
 - **Verify the invariant you claim to preserve, against the ORIGINAL** - the seam regression was caught
   only by measuring edge-wrap error on output vs input per file.
 - **Assertion gates, not review.** Review never held; balance asserts, zero-stale-ref asserts, count
@@ -142,10 +125,11 @@ no effect / can't be felt." Before tuning X, **prove X executes.** Instances:
 `archive/traps-t3-instances.md`, `traps-t3-archived-rows.md`;
 long narratives for the starred four in `archive/traps-pruned-2026-08-20.md`.
 
-**⭐ FALSE NEGATIVE from the test harness: a `omohaaded.exe` dedicated boot runs NO coop/MP map script
-unless `developer 1` is set** (bug-2637) - even a normal MP map shows no `MP init`. Players on listen
-servers are unaffected. Every script-verification boot MUST `set developer 1`; a non-dev dedicated boot
-that "shows nothing" is the harness, not the feature. This cost ~12 engine rebuilds chasing a phantom.
+**⭐ FALSE NEGATIVE from the test harness: a dedicated boot prints no script output unless `developer 1`**
+(bug-2637; ~12 rebuilds chased that phantom). `launch_dedicated_2player.ps1 -ServerCvars a,b` called from bash
+`powershell -File` binds ONE string - every cvar lands on one dead `seta` line; call it from PowerShell. Headless
+clients never click to deploy, and an intro ride (m1l1) keeps players inactive + unhittable: wait for
+`coop_isActive` and the end of `coop_spawnProtOn` before any damage test (ST_HC, bug-2923).
 
 **⭐ A guard written for one question is wrong for the neighbouring one** (bug-1687): re-read what a
 predicate was written to decide before reusing it; when the answers differ, SPLIT rather than widen.
@@ -198,9 +182,11 @@ fix a silent-discard branch, **add the warning even though you also raised the l
 
 **`int / int` IS C INTEGER DIVISION AND SILENTLY ZEROES (OR MULTIPLIES) WHOLE FEATURES** (bugs
 2424/2425, 2497). `scriptvariable.cpp:1671` divides ints as ints: **`38 / 100` is `0`**, `750 / 100` is
-`7` (a 7x scale, 2497). The Higgins sink issued `rotatexup 0` for weeks; `wait ( 34 / 24 )` waits **1**.
+`7` (a 7x scale, 2497). `wait ( 34 / 24 )` waits **1**.
 **Write `* 0.01`, or `* 1.0` before dividing.** A ratio is safe only if you can NAME the float
-operand - `vector_length` results are; counts never are.
+operand - `vector_length` results are; counts never are. **The build never compiles GLSL**: after any `.glsl` edit
+OR merge run `glsl_variant_lint.py --emit` + glslang on its output; the lint cannot see a duplicate local (bug-2971, 3252). **Float compares have a 1e-4 dead band**
+(`scriptvariable.cpp`): thresholds < 1e-4 never fire - scale first (bug-2963).
 
 **A `sighttrace` ending at an entity's own origin ends INSIDE its box.** With the third arg 0 the mask
 keeps CONTENTS_BODY/BBOX and a segment that ends inside the target's collision box reads as blocked -
@@ -223,37 +209,35 @@ handed out the world slot: a weekend of use-after-free minidumps.
   `item && item->isSubclassOf(Item)` (bug-919).
 - **Audit bare array sizes, not just constant names** - `tr.skel_index[1024]` (bug-932b);
   `processed[MAX_ENTITIES]` where `MAX_ENTITIES` is the renderer *refentity* cap 1023, **not** the gentity
-  count (bug-935); `MAX_SKELMORPH 12800` silently out-of-bounds (bug-1214). Three payouts for the
-  invisible-actor symptom alone (bug-932 gl1, `renderergl2/tr_local.h:2339` gl2, bug-1135
-  `R_AllocModel`).
-- **Map the whole producer→consumer chain in one pass** (bug-1186's `MAX_SNAPSHOT_ENTITIES`).
+  count (bug-935); `MAX_SKELMORPH 12800` silently out-of-bounds (bug-1214). Same invisible-actor symptom
+  paid out three times (bug-932, bug-1135 `R_AllocModel`, `renderergl2/tr_local.h:2339`).
 - **A capacity never reset is a per-SESSION budget, and it kills an INNOCENT map** (bug-1803).
-  `MAX_SKELETOR_CHANNELS` fills two process-global statics zeroed only at construction; after ~28 maps
-  e2l2 merely held the 2,560th channel - blameless, fine from a fresh boot. **Ask of every limit: what
-  frees an entry?** If nothing does, size it against everything the game can load (a measured 4,589
-  whole-game proves 2,560 had to fall over). Resetting is NOT safe - `skelChannelList_c` stores *global*
-  indices in every cached model.
-- **A protocol raise ships four binaries** - see [ENGINE.md](ENGINE.md#protocol-coupling).
-- **One capacity grows while nobody touches the code: `MAX_CVARS`** (bug-1582). *Archived* content
-  consumes it - `omconfig.cfg` hit **3019** cvars (Service Record ~1500, armory locks ~500), crossing
-  4096 a month after bug-598 doubled it. Doubling is headroom, not a cure; now 8192 + 80% warning.
-
+  `MAX_SKELETOR_CHANNELS` fills process-global statics zeroed only at construction; after ~28 maps e2l2
+  held the 2,560th channel - fine from a fresh boot. **Ask of every limit: what frees an entry?** If
+  nothing does, size it against everything the game can load (measured 4,589 whole-game). Resetting is NOT
+  safe - `skelChannelList_c` caches *global* indices.
+- **A protocol raise ships four binaries** - see [ENGINE.md](ENGINE.md#protocol-coupling). And **a raised
+  size constant is a stack landmine**: `MAX_MSGLEN`→256KB (bug-1864) crashed the dedicated server the instant
+  a browser sent `getstatus` - the OOB reply chain (`SVC_Status`→`SV_NET_OutOfBandPrint`→`NET_OutOfBandPrint`)
+  allocates `char[MAX_MSGLEN]` on the *stack* at every hop, >1MB on a 1MB stack → `0xC00000FD` (bug-2727).
+  Fix = `static` (ioq3 pattern; OOB send is single-threaded). **Grep every `[MAX_MSGLEN]`/large stack array
+  when you raise a size constant - a public server gets `getstatus` in seconds, so it only crashes in prod.**
 - **⭐ Two constants that agree by COINCIDENCE are a bomb with no label** (bugs 2291-2293, 2315; three
   crashes and one blind revert). `TIKI_MAX_ENTITIES` was a hardcoded 2048 that merely *happened* to
   equal `MAX_GENTITIES`; `TIKI_End()` indexed `skel_entity_cache[i*2+j]` without the writer's
   `% TIKI_MAX_ENTITIES` wrap - in bounds by luck, zero margin - so 12 bits `delete`d 4096 garbage
   pointers and the blame landed on a blameless `GENTITYNUM_BITS` raise. **Grep a capacity's VALUE, not
   just its name; ask whether two limits are derived or merely equal today; an `==` against a capacity is
-  always a bug.** **KNOWING THIS DOES NOT PREVENT IT:** I wrote this entry, then next day raised the
-  sound channels 32→96 and shipped a launch crash - seven loops bounded `loop_sounds[64]` by
-  `CHANNELS_3D+CHANNELS_2D` (bug-2315). **Write the build break in the same commit as the raise.** And
+  always a bug.** Knowing this does not prevent it (bug-2315: raised sound channels 32→96, shipped a
+  launch crash - loops bounded `loop_sounds[64]` by `CHANNELS_3D+CHANNELS_2D`): **write the build break in
+  the same commit as the raise.** And
   **`ENTITYNUM_*` are PROTOCOL indices** (`MAX_GENTITIES-2`): size anything indexed by one off
   `MAX_GENTITIES`, never off `maxentities`, which is all `g_entities` was malloc'd at (bug-2291).
-  **Diagnose this class from the FAULT ADDRESS, never by inspection** - two rounds of reading the diff
-  produced two real-but-wrong fixes at ~an hour each; WER's fault RVA + the linker `.map` named it in a
-  minute. Recipe in the `crash_dump_analysis` memory.
+  **Diagnose this class from the FAULT ADDRESS, never by inspection** - reading the diff produces
+  real-but-wrong fixes; WER's fault RVA + the linker `.map` names it in a minute (recipe in the
+  `crash_dump_analysis` memory; bug-2727 was cracked this way with no debugger installed).
 
-**Read `openmohaa-hzm/code/qcommon/q_shared.h:1690-1755` before touching any capacity constant** - the canonical `MAX_SOUNDS` comment (four constraints in the order they bite, each with its bug) and the compile-time `#error` that kept it from regressing while `TIKI_MAX_ENTITIES` rotted (bug-2292).
+**Read `openmohaa-hzm/code/qcommon/q_shared.h:1690-1755` before touching any capacity constant** (the canonical `MAX_SOUNDS` comment + its compile-time `#error`, bug-2292).
 
 ---
 
@@ -265,8 +249,7 @@ handed out the world slot: a weekend of use-after-free minidumps.
 1. **`Cannot cast array to listener`** - vanilla SP treats `$player` as one entity, but with **2+
    connected players it is a 1-indexed ARRAY**, so `$player.origin`, `turnto $player`, `isAlive $player`
    all throw. Repair idiom: an **inline `$player[i]` scan** with a per-element NULL guard, or
-   `$player[1]` with a NULL host guard. ⚠️ This line used to recommend
-   `exec coop_mod/replace.scr::player_closestTo self` - do **not** reach for that first (bug-1665).
+   `$player[1]` with a NULL host guard - never `replace.scr::player_closestTo` first (bug-1665).
 2. **`Cannot cast none to <type>`** - a `level.*` timing global the vanilla SP init would have set is
    never set in coop (`level.thundertime` / `windtime` / `shuttertime` / `rainvolume`);
    `weather.scr:378` alone threw **8,662 times**. Fix: NIL-guards restoring vanilla defaults.
@@ -274,8 +257,7 @@ handed out the world slot: a weekend of use-after-free minidumps.
    a freed player ref lingered and evaded `== NULL`.
 
 **⚠️ Guard with BOTH.** `NIL != NULL` and coop hits both; bug-1065 hardened `xp_award` with
-`== NULL || == NIL` because `level.coop_smoke_player` is only ever assigned, never initialised. The open
-bug-1220 (12× "applied to NULL listener" on e2l2) is this exact cure.
+`== NULL || == NIL` because `level.coop_smoke_player` is only ever assigned, never initialised.
 
 **⭐ THE META-LESSON — SEQUENTIAL STORMS.** Fixing one class lets maps progress **further**, exposing the
 next: the array-cast fixes are what unlocked the none-cast storm. **A storm blocks map progression and
@@ -310,24 +292,24 @@ changes.
 
 | Load-order rule | Consequence |
 |---|---|
-| Pak order main < mainta < maintt < mod pk3s, **LAST copy wins** | An extractor keeping the FIRST match ships Spearhead's values (a G43 at 1 degree of yaw got 16); strip trailing `//` before tokenising a TIK line. Full entry: `archive/traps-pruned-2026-09-05.md`. |
-| `.dds` beats `.jpg`/`.tga` | `R_LoadImage` rewrites the extension to `.dds` and tries `LoadDDS` **first** whenever texture compression is on, so a same-basename stock `.dds` beats your HD `.jpg` - this made 881 upscales dead. Disabling `r_ext_compressed_textures` is **not** a fix (~1400 stock-`.dds`-only textures would vanish); ship DXT `.dds` overrides with a full mip chain. |
-| The engine tries `.jpg` **before** `.tga` | Menu art in particular |
-| Shader **NAME** overrides lose the reverse-concat race | Whole-**FILE** overrides win: the filesystem dedupes by filename and the coop pak mounts last (bug-921 used bug-525's whole-file pattern on `scripts/equipment.shader`) |
+| Pak order main < mainta < maintt < mod pk3s, **LAST copy wins** | A FIRST-match extractor shipped Spearhead's values (G43 yaw 1 -> 16; archive/traps-pruned-2026-09-05.md). |
+| `.dds` beats `.jpg`/`.tga` | `R_LoadImage` tries `.dds` **first** (compression on): a stock `.dds` beat 881 HD `.jpg`s. Compression off is no fix (~1400 `.dds`-only textures vanish): ship full-mip DXT `.dds` overrides or NEW names (`env/hzmhd/`). gl1 can't read DX10/BC7 hdmem `.dds`: parse DX10 (bug-2994). |
+| The engine tries `.jpg` **before** `.tga` | Menu art especially |
+| Shader **NAME** overrides lose the reverse-concat race | Whole-**FILE** overrides win (filesystem dedupes by filename; coop pak mounts last; bug-921/525) |
 | `zzzzzzzz_*` sorts after `zzzzzz_*` | bug-1190 |
 | `.tik` surface directives must match the `.skd`'s real surface names | else `TIKI_InitTiki` drops them (bug-1216) |
-| **A junction hides the loose half from your tools** | `G:\mohaa-gl2\{main,mainta,maintt}` are NTFS **junctions** into the GOG install: Git-Bash `find` needs `-L` and a pak-only scan misses loose files - both produced the retracted "reinstall, your speech is missing" claim (bug-2336). Python `os.walk` follows them. An asset-presence check must cover paks **and** the walked junction (bug-2386). |
-| Loose files beat paks **both ways** | bug-2020: 7,755 loose dev-only files under `G:\mohaa-gl2\main\sound\` made 1,623 alias refs (chatter restoration included) work in dev, silent for everyone else. **Audit assets against the SHIPPED set (retail paks + mod source tree), never the dev install** - loose files mask this class. |
-| Homepath `maintt/` beats basepath; loose files beat paks | **bug-1633:** stale cfgs in the live profile's `maintt/` shadowed every deployed change; `build.ps1` now deploys cfgs to all three targets. Also watch for 0-byte decoys (bug-595). |
+| **A junction hides the loose half from your tools** | `G:\mohaa-gl2\{main,mainta,maintt}` -> GOG: `find -L`; pak-only scans miss loose files (bug-2336/2386). |
+| Dev-only content skews audits **both ways** | bugs 2020, 2952, 2991. **Scope by the SHIPPED set (`manifests/latest.json`), never the install or the tool's own pak.** |
+| **`newanim/<path>` beats `<path>` for every `.skc`** | tiki_files.cpp ~565 opens `newanim/`+path FIRST (Pak0 ships 2,415): a same-path clip override never loads (bug-3452). Ship a NEW `coop_` path, repoint the row. |
+| Homepath `maintt/` beats basepath | **bug-1633:** stale cfgs in the live profile's `maintt/` shadowed every deploy (build.ps1 now deploys cfgs to all three targets); watch 0-byte decoys (bug-595). |
 
 **⭐ THE FINAL ANSWER when a name is contested** (bug-922, closing the 5-round black-pouch saga): **stop
 fighting for the name.** Mint a NEW shader name existing only in the coop pak, pointing at a PRIVATE
-texture path also only in the coop pak, and retarget the `.tik` surface. **Tell:** a "black" surface
-showing per-face **shading** means a lit default shader is drawing it and your def never reached it.
+texture path also only in the coop pak, and retarget the `.tik` surface. **Tell:** a black surface with
+per-face **shading** = a lit default shader drew it; your def never reached it.
 **Precedence is PAK order, not file name** (verified 2026-09-05, bug-2485): both renderers resolve a
 duplicated shader name to the highest-priority pak and, within one pak, to the alphabetically FIRST
-shader file - the `zz_` prefix on the coop overrides buys nothing and would lose an intra-pak duplicate.
-Define a name in exactly one coop file.
+shader file - a `zz_` prefix buys nothing. Define a name in exactly one coop file.
 
 **⭐ A playtest log only testifies about the build it loaded** (bug-1610): the client quit at 23:37, the
 file was packed at 23:38. **Compare the pk3 entry's timestamp (`zipfile.getinfo(name).date_time`) against
@@ -352,59 +334,56 @@ chrome.
 <a name="t7"></a>
 ## T7 — Cvar registration, flags, and exec order
 
-**⭐ BINDS CANNOT LIVE IN `coop_defaults.cfg`.** Verified order in `qcommon/common.c`:
-`coop_defaults.cfg` (:1841) -> `configs/<config>` (:1847) -> `autoexec.cfg` (:1862). Before-the-config
-is exactly right for `seta` CVARS - that is why the file exists - but **`configs/omconfig.cfg` opens
-with `unbindall`**, so any bind seeded there is created and then destroyed every launch (bug-2093: the
-quick-grenade key looked completely dead while its engine code was fine and had never run). All 40 of
-the project's binds are in `autoexec.cfg` for this reason.
-The cost is real and unavoidable: autoexec re-forces the bind each launch, so a rebind is lost next
-start. **Feature dead + code obviously correct = check the bind actually exists before debugging it.**
+**⭐ BINDS CANNOT LIVE IN `coop_defaults.cfg`.** Order (`qcommon/common.c`): `coop_defaults.cfg` (:1841)
+-> `configs/<config>` (:1847, **opens with `unbindall`**) -> `autoexec.cfg` (:1862). `seta` seeds go before
+the config; a bind there dies every launch (bug-2093), so all binds live in `autoexec.cfg`. **Feature dead +
+code obviously correct = check the bind exists first.** **And `exec` DROPS a file larger than the command
+buffer - whole, silently, one line printed before qconsole.log opens:** autoexec passed the old 128 KB in
+v1.8.8 and four releases shipped with no binds, What's New card or report webhook (bug-2908). Buffer is
+1 MiB now; `build.ps1` blocks any cfg over 512 KB. **Both cfgs run on DEDICATED boots too** (`Com_Init`,
+unconditional; both ship in the code pak): a default flipped for players flips every harness server, so a
+harness that reads a marker passes `+set` for it (applied after both cfgs). `probe.scr` long claimed otherwise.
 
 
-**An archived cvar is a latch - including one you add for debugging** (bug-1427, twice). A
-`seta`-archived switch rides `omconfig.cfg` forever and re-fires on every later load (`coop_buildmap`
-broke e3l4 twice in one evening); editing omconfig.cfg externally loses the race, as the engine rewrites
-it from memory at shutdown. The repeat came from the other side: `CVAR_ARCHIVE` on `r_novis` for one
-test wrote `seta r_novis "1"` into the user's config and cost a `0xC00000FF` startup crash. **Consume
-mode-flipping cvars one-shot at map init** (copy to a level var, `setcvar` back to 0, never a live
-`getcvar`), and never give a diagnostic `CVAR_ARCHIVE`.
+**An archived cvar is a latch** (bug-1427 x2, bug-2840). `seta` re-fires from `omconfig.cfg` every load
+(`coop_buildmap` broke e3l4 twice; `r_novis 1` = a `0xC00000FF` startup crash), external edits lose (rewritten
+at shutdown), and it FREEZES a tuning default (`bot_aimFloor "0.6"`). Consume mode-flips one-shot at map init;
+never archive a diagnostic; new tuning knobs get flags `0` so default changes ship.
 
 **⭐ Script `getcvar` CREATES the cvar EMPTY, permanently defeating the engine's own default**
-(bug-1669). `ScriptThread::Getcvar` is `gi.Cvar_Get(name, "", 0)` (`fgame/scriptthread.cpp:2628`), so
-the first *script* read of an unregistered cvar creates it with `""`; the engine's later
-`Cvar_Get(name, "1", CVAR_ARCHIVE)` finds it existing, updates only the reset string, and **keeps the
-empty value** - `->integer` is 0 forever. That is how limping was dead: `coop_limpWarn` is threaded at
-player setup (`player.scr:224`) and getcvar'd `coop_limp` before `Player::TickLimp` registered it -
-**the warning system silently switched off the feature it exists to warn about** - and it had also
-killed `coop_tinnitusBlast` and `coop_goreDripCorpseTime`. One trap, three dead features.
+(bug-1669). `ScriptThread::Getcvar` is `gi.Cvar_Get(name, "", 0)` (`fgame/scriptthread.cpp:2628`): a
+script read before the engine registers the cvar creates it `""`, and the engine's later `Cvar_Get(name, "1",
+...)` **keeps the empty value** (`->integer` 0 forever) - it killed `coop_limp`, `coop_tinnitusBlast`,
+`coop_goreDripCorpseTime`.
+
+**Script `.classname` is the C++ CLASS, not the spawn classname** (bug-2854): `RotatingDoor`, `Player`, not
+`func_rotatingdoor`/`player` (`CLASS_DECLARATION`'s `#classname`). A `getentbyentnum` walk comparing BSP names
+matched nothing ("doors opened=0"). Check the declaration before writing the comparison.
 
 - **Detect:** rcon the cvar — `is:"" default:"1"` means it fired; a genuinely unknown cvar prints
-  **nothing**, and that control query is what proved it rather than inferred it.
+  **nothing**.
 - **Fix:** pre-register engine-owned `coop_*` cvars in `G_InitGame` (`fgame/g_main.cpp`), which runs
   before any script. **Any new engine `coop_*` cvar that script also reads must go in that block.**
 - **Find the collision set:** intersect engine `Cvar_Get("coop_*", <non-empty default>)` against every
   `getcvar("coop_*")` in the scripts. It was six; four were genuinely broken.
 
-*(summary table moved to [`archive/traps-t7-cvar-table.md`](archive/traps-t7-cvar-table.md) - the rules it tabulates are the prose above and below.)*
+*(summary table: [`archive/traps-t7-cvar-table.md`](archive/traps-t7-cvar-table.md).)*
 
-**⚠️ A workaround written into the SAVED config outlives the bug it worked around and beats
-`coop_defaults.cfg` forever** - `seta` in a saved config is a fossil, not a decision, so **record a
-cvar mitigation with its bug id and clear it when that bug closes** (bug-1990). LIVE case:
-`r_ext_multisample 0` mitigates a gl2 foliage-cutout artifact still open as bug-1298, so the archived
-`0` stays until it closes. [T11](#t11) biting inside T7.
+**⚠️ A workaround in the SAVED config outlives its bug and beats `coop_defaults.cfg` forever** - **record
+a cvar mitigation with its bug id and clear it when that bug closes** (bug-1990). LIVE: `r_ext_multisample 0`
+stays until gl2 foliage-cutout bug-1298 closes. [T11](#t11) inside T7.
 
 **⚠️ gl2 is the renderer we ship and test on** - confirm from the qconsole banner, never a doc.
 Two corollaries:
 **any cvar comment naming a renderer is suspect until re-read against that renderer's `tr_init.c`**
-- `r_mapOverBrightBits` defaults 1 in gl1 and **2** in gl2 (`renderergl2/tr_init.c:1886`), so a
-comment calling 1 "the engine default" silently halved lightmap overbright on every world surface;
-and **grep the OTHER renderer for a token before trusting the feature works** - what gl1 implements
-can be a `// FIXME: unimplemented` stub in gl2 (`nofog`, bug-2186), so a bug appearing just after a
-renderer feature ships reads as a gap that feature exposed. **And a feature gl2 implements can still
-be unreachable**: `alphaGen sCoord/tCoord` lives only in the GENERIC program, and a shader with no
-`deformVertexes` is collapsed into LIGHTALL, which has none - the stage draws at alpha 1 with no warning
-(bug-2486). On a deform-free shader, bake a coordinate ramp into texture alpha (bug-2485).
+- `r_mapOverBrightBits` defaults 1 in gl1, **2** in gl2 (`tr_init.c:1886`): "1 = engine default" halved
+world overbright; and **grep the OTHER renderer for a token before trusting a feature** - gl1 code can be
+a `// FIXME: unimplemented` stub in gl2 (`nofog`, bug-2186). **A gl2 feature can still be unreachable**:
+`alphaGen sCoord/tCoord` is GENERIC-only and a deform-free shader collapses into LIGHTALL - alpha 1, no
+warning (bug-2486); bake the ramp into texture alpha (bug-2485). **A 2D quad's vertex alpha is NOT the
+`R_SetColor` alpha**: an explicit 2D stage with `alphaGen vertex` draws at (1 - fade) - use `rgbGen/alphaGen
+global` (bug-3462). Retail's `oneMinusVertex` is the same quirk, so the scope pillars bug-2008 called
+transparent are opaque (s2b frames).
 
 **The structural fix is half-built:** `coop_defaults.cfg` execs **BEFORE** the saved config, so its values
 are true defaults a menu change overrides and persists. Migration out of `autoexec.cfg` is incomplete, and
@@ -423,36 +402,56 @@ a crc of the id list and wipe on mismatch; a generated lookup map is `set`, not 
 <a name="t8"></a>
 ## T8 - server->client stufftext is a lossy, filtered channel
 
-Six ways a server->client message is silently destroyed, and one on the receiving end. In short:
-an embedded quote truncates the wire argument, so send values UNQUOTED and one statement per
-stufftext; `cg_servercmds_filter.cpp` silently drops unscoped server-stuffed `exec`, unsafe `vstr` and unlisted
-`set`, which has presented as three unrelated bugs and as "one mode of a multi-mode feature works,
-the rest collapse together"; `Cvar_Set_f` re-joins tokenised args so runs of whitespace normalise
-to one space; client `exec`/`vstr` INSERT at the buffer front while server stufftext APPENDS, so
-the last textual line of a client chain wins and a server echo arrives a round trip later; and the
-name bus dispatches ONE token per ~0.75s batch in BUS INDEX order, destroying every other stacked
-token. On the receiving end, a `.urc` widget below its menu's declared canvas height draws nothing
-at all, with no error. Remote clients need the updated `cgame.dll` for any of it.
+Ways a server->client message silently dies: an embedded quote truncates the wire argument, so send values UNQUOTED and one statement per
+stufftext; the filter silently drops unscoped server-stuffed `exec`, unsafe `vstr` and unlisted
+`set`; client `exec`/`vstr` INSERT at the buffer front while server stufftext APPENDS, so
+the last line of a client chain wins and a server echo lags a round trip (a cfg `wait` holds it, bug-3211); and the
+name bus dispatches ONE token per ~0.75s batch in BUS INDEX order, dropping other stacked tokens. A `.urc` widget below its menu's canvas height draws nothing, no error.
 
 **The filter is a security boundary and must split EXACTLY like `Cbuf_Execute`** (`cmd.c`: quote
 parity, `;`, LF, CR, `//`, `/* */`). `COM_ParseExt` keeps a glued `;` inside a token, so `echo;quit`
-hid `quit`; a text ending inside `/*` carries into the next buffered stufftext and is refused
-(`COVC VDROP comment`); vstr'd values are re-checked as statements (bug-2580). **A new server-vstr'd
+hid `quit`; a text ending inside `/*` carries into the next buffered stufftext and is refused;
+vstr'd values are re-checked as statements (bug-2580). **A new server-vstr'd
 name-bus marker needs a grammar entry in `cg_servercmds_filter.cpp` AND a shipped `cgame.dll` before
 the pk3 change**, or remote clients silently drop it. Self-test: `docs/tools/sec1_filter_selftest/build.bat`.
 
-Worked cases, bypass forms and call sites in
-**[`archive/traps-t8-stufftext.md`](archive/traps-t8-stufftext.md)**. Bugs 595, 597, 736, 758, 772,
-773, 1364, 1365, 1991, 2580.
+**`name` is 32 chars: never put a must-not-lose signal on the name bus** (a truncated `,q<side>d` = can't spawn, bug-2767); use a registered `CVAR_USERINFO` cvar via `info_valueforkey`, as kit/cosmetics do.
+**Client->server bulk** (bugs 3904/3905): a packet >~1.3 KB stalls (the exe never sends fragment 2; all unacked cmds ride each packet); dedicated drops cmds <1 s apart; `%` -> `.`. `cg_coopsync.c`.
+
+**`showmenu`/`hidemenu`/`cinematic`/`spmap`/`map`/`disconnect` reach ONLY a listen host**
+(`whiteListedLocalServerCommands`); remote clients drop them. Mirror: `coop_mod/menumirror.scr` (bug-3234).
+
+**`ihuddraw_*` rides ONE snapshot, no retransmit**: a lost teardown strands it on a remote client -
+claim on draw, re-send the hide: `coop_mod/hudresend.scr` (MP twin). Cases + bug ids: [archive](archive/traps-t8-stufftext.md).
+**Every `coop_*` cvar is server-writable (bare form too): never put one on a command line or trust it as a destination** (bug-3276).
+
+**A width-0 `ihuddraw` quad draws at the texture's NATIVE pixel size** (`0<w<1` truncates to 0; the rank bar's
+promotion "gold square", bug-3076): hide a 0% fill with alpha.
+**Hold-progress = the HD ring, by shader NAME** (bug-4035): a huddraw pair `textures/hud/coop_hold_track` +
+`coop_hold_<revive|heal|place|use|objective>` (fill = slot+1, fraction = fill/track w) is drawn by `cgame/cg_hdprogress.c`
+round the crosshair; `ihuddraw_color` ignored. `R_DrawTrianglePic` (exe+cgame together) culls back faces (`HD_Tri`). The pristine omconfig has `coop_hardcore 1` = NO bleed ring/crosshair in a harness: `seta coop_hardcore 0`.
 
 ## T9 - Same-frame spawn / model / solid race
 
-**Fixed; pattern known.** Full write-up in
-[archive/traps-t9-spawn-race.md](archive/traps-t9-spawn-race.md). Short form: a `spawn`, its `model`
+**Fixed.** Write-up: [archive/traps-t9-spawn-race.md](archive/traps-t9-spawn-race.md). A `spawn`, its `model`
 and `solid` cannot all land in one frame — step them. **And a `.tik` `model` swap RE-SOLIDIFIES:**
 `ScriptSlave::SetModelEvent` (`scriptslave.cpp:893`) sets SOLID_BBOX for any .tik, so `notsolid` must
-FOLLOW the swap. The Higgins hull became a box one line before its roll and blocked its own mover for
-four runs (bug-2496); every beach wreck carried the same box.
+FOLLOW the swap (bug-2496, the Higgins hulls).
+
+**Clip boxes (bug-3210, the m3l3 rocks).** (1) **A `script_model`'s box TURNS with its angles** - `ScriptSlave`
+sets `EF_LINKANGLES` (`scriptslave.cpp:768`) and `CM_TransformedBoxTrace` rotates it, so a `getmins`/`getmaxs`
+box is a crate around the anim bounds, and a clip sized "Y-long for yaw 90" lies ACROSS its target.
+(2) **An asymmetric `setsize` is predicted as a SYMMETRIC box** (`IntegerToBoundingBox` keeps only maxs x/y,
+~28u off): centre each clip on its own origin with integer half-extents. (3) **`disconnect_paths` on the full box
+strands the nodes beside it** (`Path not found`, the actor stands still; `NearestStartNode` lifts its trace
+32u): cut with the box inset by the hull half-width (15u), then restore it. Recipe: `gen_m3l3_rock_clips.py`.
+
+**Wall props are placed by TRACE, never by eye (bug-4005).** Hand-snapped switches sat in doorways. Use `docs/tools/alarm_place.py` over `bsptrace.py`: origin = wall hit + normal * 3.3, yaw =
+atan2(normal) exactly, z = floor + 52 (measured on vanilla; bell same wall +56); one flat plane
+(57x48 patch, visible shader), 96 u clear in front, >= 56 u from every `func_*`/`script_object` mover (doors, windows,
+ladders are NOT in the world brushes, a trace cannot see them), a pathnode near the stand spot, >= 700 u from spawns
+(`info_player_start` is not the coop spawn). Defend zones likewise: `gen_counter_zones.py` (pathnodes float
+0-110 u over the floor; outdoor ground is `terrain_z`, not a brush).
 
 ---
 
@@ -466,22 +465,38 @@ lower than the header says. Both directions happen: edited but never built/deplo
 and deployed when it shouldn't have been (bug-1172 - `build.ps1` run during a gl2 sandbox session
 pushed sandbox-only limit binaries into the user's **real install**).
 
-**The deploy set is complete now (all six binaries, bug-1796/bug-1634) - verify it anyway.** **A "verified" claim must name which binaries were deployed and when, and prove it by
-hashing the deployed file against the build output** - a bare timestamp check misreads 12-hour times.
-`build.ps1` refuses to deploy while the game is running, so if you
-did not deploy, the user tests the PREVIOUS build. A
-build can also silently no-op: a wrong `cmake --target` prints `MSB1009` but `| tail` masks the nonzero
-exit, so a stale DLL deploys.
+**The deploy set is complete (six binaries, bug-1796/1634) - verify anyway: a "verified" claim names the
+binaries and proves them by HASH against the build output**. `build.ps1`
+refuses while the game runs (the user then tests the PREVIOUS build); a wrong `cmake --target` prints
+`MSB1009` that `| tail` masks, so a stale DLL deploys.
 **Some changes must ship as a PAIR or they are worse than not shipping:** `bg_pmove.cpp` compiles into
 `game.dll` *and* `cgame.dll`, so a movement change in it desyncs client prediction from server truth if
 either ships alone (bug-2149); a protocol-constant change ships exe + cgame + game together.
+
+**Push nav is DIRECTED** (bug-2870/2871): fall links are one-way; after nav changes run `push_spawn_sweep.py` + `nav_sinks.py` (bug-2901). The mesh bakes at level spawn, BEFORE MP scripts seed spawns / clear debris: keep it reversible. **Coop helpers reachable from MP must test `level.coop_mpRun == 1` before `inCoopMode`** (bug-2968).
+
+**A bot feature that logs its DECISION proves nothing - log the ACT** (bugs 2875-2877): `CheckValidWeapon`
+re-drew the gun in the no-weapon frame of every grenade switch (no bot grenade ever flew); `TurnThink` stops
+turning inside 20 deg of target (exact aim needs `SetPrecise`); a bot's eye is the `usereyes_t` offset it
+sends (lean was cosmetic). Log the outcome (`nadeloose`, BOTPROBE `cov=`).
+**A gate that trims a rescue's false positives trims true ones**: bug-2889's 60u/s wedge gate froze a bot at 50u/s
+(bug-2891). Re-soak the map behind the OLD behaviour.
+**Bots are tuned at a PACE - `sv_dmspeedmult`** (autoexec 0.6; engine default 1.1). v1.8.8-1.9.1 dropped autoexec
+(bug-2908), so every Push tune ran at 1.1 and regressed at 0.6: m4l2 stuck 14% vs 1-4%, all at the lift whose
+timing assumed 1.1 (bug-2912). Soak at the shipped pace - check SPEEDPROBE `dm=`. **A steering state machine must
+die with its bot**: the lift protocol outlived a death and steered the respawn straight at the lift across the
+map - reset on spawn, drop when far. `Q_clamp(a,b,c)` ASSIGNS into `a`: use `Q_clamp_float`/`Q_min(Q_max())`.
+**Under coop_sprint a CLEAR `BUTTON_RUN` is the SPRINT key** - "drop RUN to walk" made bots sprint across danger
+ground (bug-2920); the walk is `BUTTON_COOPWALK`. **BT grenades COOK** (`minlife` -> P_CHARGE_LIFE): the hold that
+throws farther also shortens the fuse, so charge-scaled lobs air-burst (~65%, bug-2925). A `CVAR_ROM` serverinfo
+flag is written only by script `setcvar` (forced); a cfg `set` is refused - zero it per map in `G_SpawnEntities`.
 
 ---
 
 <a name="t11"></a>
 ## T11 — Trusting the record over the code  ⚠️ STRUCTURAL
 
-**Agreement between reviewers is NOT corroboration when they share an upstream source** (bug-1290). A multi-agent audit called "the injury vignette is permanently maxed after any DBNO revive" a live bug and two independent critique lenses confirmed it - all three had inherited one unchecked premise (that `healthonly 9999` puts 9999 into health; it clamps to `max_health`), so the "fix" would have hidden genuine low health. **Verify a finding's load-bearing premise against the code yourself** - agents reading the same brief are one witness, not three.
+**Reviewers sharing an upstream source are one witness** (bug-1290: three lenses confirmed a "bug" resting on one unchecked premise). **Verify the load-bearing premise in the code yourself.**
 
 **A later entry can silently reverse an earlier one, so read the ordered LIST, not one entry.**
 `docs/generated/FIX_INDEX.md` (file -> ordered bug ids) is the fix; the story belongs in HISTORY. Nothing
@@ -512,8 +527,7 @@ were corrected in place on 2026-08-06 after being filed on the wrong files.
 **There are TWO `_research` trees** and records conflate them: `C:\mohaa-coop-dev\_research\` (design
 docs, audits, **the regression harness**) and `C:\mohaa-coop-dev\hzm-mohaa-coop-mod\_research\`
 (buildmode inventories, `hud_slot_map.md`, `director_dda_plan.md`) - only the second is inside the shipped
-tree. **Ship risk: closed** - `build.ps1`'s `$excludeTop`
-skips both (the code pk3 had zero such entries on 2026-08-17). **Still open:** the regression harness - the
+tree; `build.ps1`'s `$excludeTop` skips both. **Still open:** the regression harness - the
 only working automated verification - lives in a directory named `_research`, which the build script
 treats as disposable; **promote it out**. Related: four uppercase map scripts (`M1*`, `M3*`, `M5*`,
 `M6*.scr`) sit alongside lowercase counterparts, unchecked for case-collision in a pak.
@@ -531,18 +545,12 @@ in a wait loop, `local.ok[n] = x` ninety lines later: `[]` on an int throws, the
 both reads come back none and both 044a voices went to NIL for four days while the label's own
 probe printed a healthy pick count. Grep a label for `local.X =` and `local.X[` before reusing a name.
 
-**And one level down again: two ENGINE EVENTS sharing a script command name** (bug-2064, the most
-expensive of the three). `notarget` is declared **twice** as `EV_NORMAL` - `Entity::NoTarget`
-(SETS from its argument) and `Player::NoTargetCheat` (ignores the argument, **XORs** the flag) -
-and `ScriptMaster` keeps one **name -> eventnum entry, last write wins** (`scriptmaster.cpp:616`)
-over an unordered container. **Which handler a script command reaches is therefore a build
-detail, not a decision.** For players the cheat won, turning every `player notarget 1` into a
-flip; it read as *intermittent* across five sessions because the outcome was call **parity**.
-**Grep the engine for a second `Event` with the same command string before trusting a script
-command's signature**, and when there is one make BOTH handlers agree for BOTH call shapes
-(argument = set, none = toggle) rather than betting on the lookup. Same tell as `.gun`
-(bug-2046) and `enableEnemy` (bug-2034): *the command name is not the contract, the `Event`
-declaration is.*
+**And one level down again: two ENGINE EVENTS sharing a script command name** (bug-2064). `notarget` is
+declared twice as `EV_NORMAL` (`Entity::NoTarget` SETS, `Player::NoTargetCheat` XORs) and `ScriptMaster` keeps
+one name -> eventnum entry, last write wins (`scriptmaster.cpp:616`): which handler runs is a build detail, and
+the result looked intermittent (call parity). **Grep the engine for a second `Event` with the same command
+string; if there is one, make BOTH handlers agree for both call shapes.** The `Event` declaration is the
+contract, not the name (also `.gun` bug-2046, `enableEnemy` bug-2034). Full story: [archive](archive/traps-pruned-2026-09-28.md).
 
 ---
 
@@ -550,7 +558,8 @@ declaration is.*
 ## T14 — Your verification lied: audits that pass, harnesses that measure nothing
 
 
-**PROBE DESIGN - three ways a probe lies.** *(1) Nested inside the condition it measures* - blind; put
+**PROBE DESIGN - three ways a probe lies** (plus: `r_gfxProbe` bit 2 PINS refdef.time, so
+every dt-driven fade reads dead: bug-3072/3091). *(1) Nested inside the condition it measures* - blind; put
 it OUTSIDE the branch and print the deciding inputs. *(2) Reading back
 your own input* - `m_fCoopHeadYaw` tracked perfectly while the networked value was clobbered by a
 subsystem the probe never read (bug-2102). **Probe the FINAL consumed value**; prefer a **sentinel the
@@ -560,33 +569,33 @@ player, separating "the maths is wrong" from "prone never engaged".
 *(worked examples archived to `docs/archive/traps-t14-worked-examples.md`)*
 
 **THE TOOL LIED, NOT THE CODE - six species, all returning plausible results.**
-*(a)* **`grep` bails on a binary line**: a `qconsole.log` with a NUL makes plain grep print
-`Binary file ... matches` and **nothing else**, so a marker was declared "never fired". **Always
-`grep -a` on logs.** *(b)* **A shell-eaten
-pattern matches everything**: `grep -c $'\r'` returned each file's TOTAL LINE COUNT, "proving" three
-pure-LF files were CRLF. **Count bytes, never grep, for line endings.** *(c)* **A pass that cannot fail**: `node --check f | head -5 && echo OK` prints OK
-unconditionally because `head` exits 0; and a `.ps1`'s `exit 1` is not an error to a `&` caller, so a
-failed build went on to publish (bug-2579) - check `$LASTEXITCODE`, end scripts with `exit 0`. **Gate on
-the tool's own exit code, never through a pipe.**
-*(d)* **`check_map_compiles.py` is flaky against a LIVE dedicated server** - confirm no
-`omohaaded`/`openmohaa` is running first. **And it only proves the map INITS**: bug-2530's errors
-fired two minutes into the ride and it passed clean.
-*(e)* **The preprocessor dropped it**: the menu-theme picker built, linked, passed the wiring audit and
-deployed from `snd_main_new.cpp`, which this OpenAL build never compiles (bug-2572). **After an engine
-change, `grep -a -c` one of its string literals in the built binary.**
-*(f)* **Windows PowerShell 5.1 re-splits embedded double quotes passed to a native exe**: an rcon
-`script *0 stufftext "..."` arrived as several arguments. Send such payloads from a python driver.
-**And absence of a marker is not absence of behaviour**: `playsound` on an entity prints nothing, so
-grepping for it measures the marker. Every
-new beat gets a `^~^~^` marker or a census reads it as missing.
+*(a)* **`grep` bails on a binary line**: a NUL in `qconsole.log` makes plain grep print only
+`Binary file ... matches`; a marker "never fired". **Always `grep -a` on logs.** *(b)* **A shell-eaten
+pattern matches everything** (`grep -c $'\r'` = the line count, "proving" LF files CRLF): **count bytes.** *(c)* **A pass that cannot fail**: `x | head -5 && echo OK`
+is always OK (`head` exits 0); a `.ps1`'s `exit 1` is no error to a `&` caller, so a failed build
+published (bug-2579) - check `$LASTEXITCODE`. **Gate on the tool's exit code, not a pipe.**
+*(d)* **`check_map_compiles.py` is flaky against a LIVE dedicated server** (stop
+`omohaaded`/`openmohaa` first) **and only proves the map INITS** (bug-2530 broke 2 min in, passed).
+*(e)* **The preprocessor dropped it**: the menu-theme picker passed build, audit and deploy from
+`snd_main_new.cpp`, never compiled here (bug-2572). **After an engine
+change, `grep -a -c` one of its string literals in the built binary.** *(g)* **GLSL lint + glslang never
+see C**: staged `tr_hzm_wet.c` used file-static `s_worldData` and passed both (bug-3150) -
+under a no-build rule, `cl /Zs` the touched files.
+*(f)* **PowerShell 5.1 re-splits embedded double quotes to a native exe** (an rcon
+`stufftext "..."` arrived as several args): send such payloads from python.
+**Absence of a marker is not absence of behaviour** (`playsound` prints nothing): every new beat gets a `^~^~^`
+marker or a census reads it as missing.
+*(h)* **A rubric gates only what it measures**: water/wet passed every sparkle/seam gate; users saw ruled
+cut-offs at object edges (a 1-tap height map traces outlines). Add an object-edge view.
 
-**Dedicated-server harness:** `script <ent> <event> <args>` needs cheats, and `SV_Map_f` forces
-`cheats 0` unless `developer` is set; a client is listed in `status` before its Player exists
-(`script *0` answers `Could not find entity *0`). **And a test client boots SPECTATING** - give its
-window focus + a real click to clear "Press Fire to join the battle"; a server-side `join_team` alone
-leaves it out of the fight. **A self-test that plants violations** must write only reserved `zzselftest`
-names and find anchors in the checker's comment-stripped view - a raw-byte precheck blocked real builds
-on comment-only coop edits (bug-2579).
+**Harness:** `ui_startdmmap` sets `cheats 0` (tele/face refused); a `map` restart to get cheats back lost the
+coop weather (bug-3174): move the camera by overlay script. **one frame = `wait 1; wait 1`** (bug-3314), **`cg_drawviewmodel 1` hides
+the arms**, **one frame keeps ONE `screenshot` name** (static fileName): give each shot its own frame (bug-3253). A client is in `status` before its Player exists (`Could not find entity *0`). **A test client boots SPECTATING**; `join_team` alone leaves it out - gfxrun `join()` sends
+`+attackprimary` from its console. Launch via `harness_window.py` (bug-3147). **A violation-planting self-test** writes only `zzselftest` names and
+anchors in the checker's comment-stripped view (bug-2579).
+**`god` is a no-op - the cheat is `dog`** (`god` = a NULL forwarder; bare `god` in rkeep/vcl/lt_ab did
+nothing). Send `dog 1`/`notarget 1` and require `CHEAT: godmode ON`; add `g_ai 0`,
+`coop_dbno 0`, `ui_gmbox 0`+`ui_checkrestart` or AI fire, shell shock, gmbox text hit frames (bug-3182).
 
 ## T16 — Waits that never complete: failsafe recursion, missing anims, unguarded `waittill`
 
@@ -627,18 +636,12 @@ aliases by grepping the tiki TEXT, not `.skc` FILENAMEs, which undercount badly.
 per-map `includes` blocks, so a coop feature must add them unconditionally to our
 `new_generic_human.tik` override (bug-1945).
 
-**A scripted conversation strands when a `waittill` outranges its guard** (bug-1579) - retail chatter
-helpers assume the talkers are alive and idle, and coop breaks all three assumptions. (a) A `waittill`
-**outside** the guard that started the anim/say waits forever, because no anim was issued: wait only on
-an actor you actually animated, recorded in a local, and never re-test the condition. (b) `isalive` on a
-NULL entity throws and the thrown statement is SKIPPED, so the guard vanishes and its body runs
-unguarded - test `!= NULL` first and separately. (c) `thinkstate != "attack"` is not "idle": a CURIOUS /
-GRENADE / PAIN actor overrides the scripted idle anim, so gate on `== idle` (`anim` runs at
-`THINKLEVEL_IDLE` via `Actor::PlayAnimation` -> `SetThinkIdle(THINK_ANIM)`, `actor.cpp:10819`; there is
-no `THINKSTATE_ANIM`). **Silence the LINE, never abort the THREAD** - the tail of these labels holds the
-RELEASE (`runto`, `enable_ai`, `type_disguise`) that hands actors back to normal AI, and ending early
-leaves them frozen, dying on their feet with no death animation. Safe exception: a dead-end label
-nothing waits on (`M1L3c` radio room). Sites: bug-1579; helper `replace.scr::convOk`.
+**A scripted conversation strands when a `waittill` outranges its guard** (bug-1579; retail chatter assumes
+live, idle talkers): (a) wait only on an actor you actually animated, held in a local; (b) test `!= NULL`
+BEFORE `isalive`, separately - a throw skips the guard and runs its body; (c) gate on `thinkstate == idle`, not
+`!= attack` (`anim` runs at `THINKLEVEL_IDLE`). **Silence the LINE, never abort the THREAD** - the label's tail
+holds the release (`runto`, `enable_ai`, `type_disguise`). Helper `replace.scr::convOk`; detail in the
+[archive](archive/traps-pruned-2026-09-28.md).
 
 ---
 
@@ -679,7 +682,7 @@ the caller still reports success. **Tell:** a feature that "does nothing" with n
 <a name="t20"></a>
 ## T20 — One flag, two states; and one-way latches
 
-Four shapes from the m6l1c stealth route (2026-08-11); in each the symptom pointed away from the cause.
+Shapes where the symptom pointed away from the cause (m6l1c, 2026-08-11).
 
 - **A flag that answers two questions gets tested for the wrong one.** `is_disguised` is the engine's
   per-frame opinion (`player.cpp:5519-5545`); `has_disguise` is the mod's own grant. Testing the first
@@ -700,14 +703,14 @@ Four shapes from the m6l1c stealth route (2026-08-11); in each the symptom point
   five rounds to kill it (bugs 1709, 1726, 1732, 1735, 1736). **One writer per player; clear the flag
   and yield a frame before threading a loop that sets it; split the latch from the state and clear it
   on every exit. Moving a flag's assignment earlier rewrites every guard that reads it.**
-- **A one-shot guard is not an invariant, and this project keeps writing the first where it needs the
-  second.** Pinned challenges had two - refuse to ADD a finished one, drop it the moment it finishes -
-  so anything that landed a done challenge in the list afterwards sat there for good (bug-2544). Actor
-  weapons had three fixes, each removing one producer of "active weapon, nothing in the hand", and it
-  returned with a fourth (bugs 1957, 1971, 2009, 2546). **If the property must hold at all times,
-  assert it in the routine that already runs unprompted** - the 3 s pin publisher, `Actor::Think` -
-  where it costs one compare when healthy, heals state that already went wrong with no player action,
-  and logs what it caught so the next producer is named rather than guessed.
+- **A one-shot guard is not an invariant.** Pinned challenges refused to ADD a finished one and dropped it
+  when it finished, so a later path that landed a done one kept it for good (bug-2544); actor weapons took four
+  fixes for one bad state (bugs 1957, 1971, 2009, 2546). **If a property must always hold, assert it in a routine
+  that already runs unprompted** (the 3 s pin publisher, `Actor::Think`): cheap, self-healing, names the producer.
+- **`hide` on a player is a latch.** cgame never submits a hidden (RF_DONTDRAW) player, so everything attached
+  to it - view gun, dust veil - fails `R_GetRenderEntity` and vanishes (developer 2: `Could not find parent
+  entity`). m1l1 hid everyone before reading `intro`; only the ride's end showed them, so `intro 0` = no gun all
+  map (bug-3323). **Show on every exit of a hide.**
 
 ---
 
@@ -716,19 +719,18 @@ Four shapes from the m6l1c stealth route (2026-08-11); in each the symptom point
 
 1. **Did it compile?** ([T1](#t1) — `developer 1`, running-depth scan)
 2. **Did it run?** ([T3](#t3) - prove execution before tuning; check the gate cvar is seeded). And when a
-   constant becomes a cvar, **update every reader in the same pass**: `coop_aiBuffer` converted the
-   unsponge detectors but not `actorPainHandler`, so the AI pain handler detached on every actor's first
-   hit, silently (bug-1733, bug-1734).
+   constant becomes a cvar, **update every reader in the same pass** (bug-1733/1734).
 3. **Is the binary I'm testing the one I built?** ([T10](#t10) — three binary states are live now)
 4. **Am I reading the record or the code?** ([T11](#t11) — the code wins; read the record to the END)
 5. **Am I guessing, or measuring?** (was T13) **BISECT FIRST - a cvar bisect beats any number of
-   hypotheses** (bug-1298): turn things off one at a time until the symptom moves. Six deployed
-   hypotheses on the gl2 "white distant objects" bug changed nothing; one bisect found it.
+   hypotheses** (bug-1298): turn things off one at a time until the symptom moves.
 6. **Symptom or design?** A fix producing the MIRROR IMAGE of the bug means the design underneath is
    wrong. "Stuck prone" and "popped back to crouch" were one flaw from two sides (bug-2108): an escape
    valve added to work around a broken standup trace force-stood the player a second after they let go.
    **The user's phrasing often names the design** - "space or control should put me back into crouch"
    described the INPUT MODEL, and was read as a trace bug twice.
+7. **Did I look at the moment it breaks?** An event-bound symptom needs an engine screenshot AT the event
+   (bug-3076: `coop_st_xp_mode promo`).
 
 ---
 
@@ -737,36 +739,32 @@ Four shapes from the m6l1c stealth route (2026-08-11); in each the symptom point
 
 **`<actor> say <alias>` IS AN ANIMATION CALL, NOT A SOUND CALL** - it drives the mouth and can block;
 a missing alias animates a silent mouth. **A bare animation alias DROPS THE NOTETRACKS that do the
-work** (three occurrences). Both, and the five failed fixes before the first, are in
-`docs/reference/tiki_and_sound_aliases.md`.
+work**. Both are in `docs/reference/tiki_and_sound_aliases.md`.
 
-**A sound alias's `maps` field is a LOAD FILTER.** `aliascache explode_tank ... maps "m2l2b "` means
-the alias **does not exist** elsewhere, and `playsound` on it is silent with no error (bug-2248). Grep
-for **name AND maps field**; tokens match as PREFIXES, so `m3l1b` does **not** cover `m3l1a` while
-`m4` DOES cover `m4l3` (bug-2394, `scriptmaster.cpp:433`). On a `loaded` (3D) alias `maxDist` is a
-hard START gate, not a rolloff; **`streamed` aliases are the exception** - `S_OPENAL_StartSound`
-diverts them to the 2D path before `PickChannel3D` (`snd_openal_new.cpp:1953`), so neither can explain
-a silent scripted line (bug-2309's 3D raise could not have).
+**A sound alias's `maps` field is a LOAD FILTER**: off-list the alias does not exist and `playsound` is
+silent (bug-2248); with NEITHER `maps` nor `always` it registers nowhere - never strip
+`always` to hush a warning (bug-2728/3098). Grep **name AND maps**; tokens are PREFIXES (`m4` covers `m4l3`, `m3l1b` not
+`m3l1a`; bug-2394). A `loaded` alias's `maxDist` is a hard START gate; `streamed` ones go 2D (bug-2309).
+**playsound names are PREFIX pools** (`X1` draws `X10..19`). Voice letter `n` = Manon (female), MP `z` = SAS
+(UK); BT nation = speaker id `_AS/_BS/_RS` (bug-3385..3387).
 
 **A `random` alias group registers under its digit-stripped STEM.** `crouch_beach_idle01..05 ...
 random` loads as ONE anim, `crouch_beach_idle`; `anim crouch_beach_idle02` is `unknown animation`
-(`tiki_files.cpp:1046`; bug-2214, re-tripped as 2498). Address the stem, never a member.
-
-**...but sometimes it is CURATION and widening it IS the defect** (bug-2307): clearing 179 `needs an
-alias` errors by making the AI callout pools trilogy-wide made the beach bark nonstop - the map list
-*was* the rate limit. **A console error is not evidence of a defect - silence can be authored.**
-(`always` gets the ALIAS, the maps field gets the **CACHE**, `scriptmaster.cpp:499`; uncached plays
-*badly* - bug-2304.)
+(`tiki_files.cpp:1046`; bug-2214, 2498). Address the stem, never a member.
 
 **An animation pack is gated by a PREFIX match on the MAP NAME.** `new_generic_human.tik` wraps packs
 in `includes <tok...> { }` and `TIKI_ParseIncludes` (`tiki_parse.cpp:345`) makes a block live only if
 one token is a **prefix of the live map name** - so `includes test utils traf holodeck coop` does NOT
-match `m3l1a`, and crate_carry/welding/workers were unreachable on Omaha while three sessions faked
-around them. Adding a pack costs one `$include` line in the right block.
+match `m3l1a` (crate_carry/welding were unreachable on Omaha). Adding a pack is one `$include` line.
 **`docs/tools/check_map_anims.py` fails the build** on any `anim`, `playsound` or model path that
-does not resolve on the map; its docstring carries the facts it encodes (SKC loop flag at offset **8**,
+does not resolve on the map; facts in its docstring (SKC loop flag at offset **8**,
 a looping alias never fires ANIMDONE so a following `waittill animdone` parks forever, PREFIX GROUPS -
 `alias.c:545`). `check_say_aliases.py` covers `say`/`sayd`.
+
+**`gun X`/`.weapon = X` REBUILDS the actor with X as the `case weapon` key** (bug-3306/3325). No default
+case: an unmatched key (getter name, `shotgun`, init weapon) drops all case content - the BODY where it is
+built there, else identity gear (radio, helmet). Use `coop_actorArm`; keep identity gear
+outside cases; `audit_actor_surfaces.py` checks both. Dying under `physics_off` skipped KILLED (bug-3324).
 
 **A TIKI's `init { server { ... } }` runs even when you `spawn script_model model "<path>"`.**
 `fx_tank_explosion.tik` carries `classname Explosion` / `radiusdamage 120` there, so a cosmetic set
@@ -786,12 +784,9 @@ ships 1.0 against retail's 0.2, and `count`/`spawnrate` are multiplied by it, so
 are 5x too dense here (2477, 2507).
 
 **`playlocalsound <alias> 1` writes ONE FIELD, not a channel.** The loop branch of
-`Player::PlayLocalSound` sets `edict->s.loopSound` (`player.cpp:18183`) - a single int in
-`entityState` - so a second local loop on the same entity **silently overwrites the first**, and
-`stoplocalsound` zeroes it *and* calls `gi.StopSound(entnum, CHAN_LOCAL)`, killing whatever one-shot
-held that channel. `dbno.scr` starts three and only the last has ever played (bug-2432). It also
-hardcodes `loopSoundVolume = 1.0f`, so the alias volume is **discarded** - bake the level into the
-wav (bug-2431). Flag 1 is
+`Player::PlayLocalSound` sets `edict->s.loopSound` (`player.cpp:18183`), one int, so a second local loop on the same entity **silently overwrites the first**, and
+`stoplocalsound` also kills the CHAN_LOCAL one-shot; `dbno.scr` started three, only the last played
+(bug-2432). Volume is hardcoded 1.0 - bake the level into the wav (bug-2431). Flag 1 is
 `LOOPSOUND_FLAG_NO_PAN`: 2D, centred, **no distance falloff** - and loopSound is broadcast, so every
 client emitted every *other* player's private body sounds until `CG_LoopSoundIsForeignLocal` (bug-2429).
 
@@ -803,27 +798,18 @@ touching a `.tik` or adding an alias; `audit_weapons.py`/`audit_shaders.py` make
 <a name="script-error"></a>
 ## ⭐ A `Script Error` does NOT kill the thread — it SKIPS the statement (verified 2026-08-06)
 
-**This corrects a premise that shaped many earlier diagnoses, including several in this file.**
-`ScriptException::next_abort` defaults to **0** (`script/scriptexception.cpp:30`), and
-`ScriptVM::HandleScriptException` (`script/scriptvm.cpp:1915-1933`) only rethrows `if (exc.bAbort)`;
-otherwise it prints `^~^~^ Script Error : …` and **returns**. The `catch` sits *inside* the
-per-instruction loop, so execution resumes at the **next instruction**. Only **two** sites in the whole
-VM set `next_abort = -1`: stack overflow (`scriptvm.cpp:1038`) and **command overflow** (`:1867`) — the
-latter is `ERR_DROP` and really does take the server down (t2l3, bug-1493).
+`ScriptException::next_abort` defaults to 0 (`scriptexception.cpp:30`); `ScriptVM::HandleScriptException`
+(`scriptvm.cpp:1915-1933`) rethrows only `if (exc.bAbort)`, else prints `^~^~^ Script Error` and resumes at the NEXT
+instruction. Only stack overflow (`:1038`) and command overflow (`:1867`, `ERR_DROP`, t2l3 bug-1493) abort.
 
 **Read every error site as "this statement was skipped", not "everything below died."**
 - **An `invalid waittill` means the script does NOT WAIT.** Everything below runs *immediately* -
   sequences fire before their preconditions, entities are touched before they spawn. That is why the
   `waitTillSpawn`/`waitTillPrespawn` shims still matter (bugs 1458-1469).
-- A cast error inside a `while` body removes the *statement*, not the loop - exactly how t2l3 span 4,347
-  times with no yield and killed the server.
-- **Values parsed out of a `.dat` file are STRINGS** (bug-1352): the character-walking splitters (fogmode,
-  blueprint, save files) return strings, so a later `if( x > 0 )` throws and *that assignment never
-  happens* while the caller prints success. Coerce with `float()`/`int()` at load; the tell is "works when
-  set live, never when loaded from its own save".
-- **A probe that throws prints nothing** while filling the log with errors - silently useless on exactly
-  the cases worth watching. Sanitise every field before concatenating: an unset var reads `none`, and
-  `"str" + none` throws (bugs 1702, and the SPAWNDISG probe before it, the same day).
+- A cast error inside a `while` body removes the *statement*, not the loop (t2l3 span 4,347 times with no yield).
+- **Values parsed out of a `.dat` file are STRINGS** (bug-1352): `if( x > 0 )` throws and the assignment never
+  happens while the caller prints success. Coerce with `float()`/`int()` at load; tell: works live, never from its save.
+- **A probe that throws prints nothing.** An unset var reads `none` and `"str" + none` throws (bug-1702): sanitise first.
 
 ---
 
@@ -849,6 +835,8 @@ grep the consumer, not the setter.** Full write-up:
   of a burst (40 / s live; MG42 nests are tuned at it). `coopaibelt 1` gates a gun. (bug-3638)
 - **On a turret the TORSO state is the whole body** (`movetype anim`; the legs machine is off, its
   turret rows are dead), and an action row is picked once, on entry. (bug-309, 3658)
+- **`damage` event's LAST arg = hit LOCATION; 0 = HEAD = x4** (`ArmorDamage`). A floor needs the amount
+  clamped AND location 3 (torso x1.0) (m3l3 church, mortars: bug-4032).
 
 ---
 
@@ -860,22 +848,24 @@ grep the consumer, not the setter.** Full write-up:
 `<base>_<finish>`: drop trailing `_segments` one at a time, never cut at the FIRST underscore. Display
 string `"<Base Gun> (<Finish>)"`: split on `" ("`. Different conventions; neither substitutes for the
 other. **Any new consumer tries the exact match first, then the stripped base name.** (bug-1982)
+A view-model PREFIX spans meshes (kar98: G98, Arisaka): gate per-mesh art on sight geometry (bug-3337).
 
 ---
 
 <a name="procedural"></a>
 ## Procedural view/weapon motion
 
-Four rules in **[`archive/traps-view-motion.md`](archive/traps-view-motion.md)** - integrate oscillator phase, never
-`time*frequency`; ease an amplitude, not a periodic state; a cap in units of the thing it caps is not a cap; a
-shared scaled budget makes every control non-linear. Read it before touching bob, sway, recoil, lean or ADS.
+Six rules, [`archive/traps-view-motion.md`](archive/traps-view-motion.md): integrate oscillator phase, never
+`time*frequency`; ease an amplitude, not a periodic state; cap in world units; a scaled shared budget makes
+controls non-linear; never low-pass the pose-to-camera term (bug-3207). Read before touching view motion.
+View-model previews: include the drawn bone controllers, the gun's hand surface, the engine weapon fov (bug-3334).
 
 ## Coop systems that touch EVERY actor will find the scripted ones
 
 Every global actor pass - the weapon-variant roll, the AI personality roll, enemy count-scaling -
 runs on a map's SCRIPTED CAST as readily as on its garrison, and a scripted actor is defined by state
 the pass casually overwrites. `coop_variantRoll` ends in `self.weapon = <tik>` + `self unholster` and
-re-armed m1l1's truck driver **while he was holding the steering wheel**; the personality roll
+re-armed scene actors (bug-1949; m1l1's rifle-on-wheel driver: bug-3052); the personality roll
 overwrites `type_attack` and locks a prone pose on scripted actors.
 
 **Every fix has been correct and too narrow.** bug-1949 guarded the variant roll with `self.no_idle`,
@@ -887,8 +877,7 @@ arithmetic is the tell: a guard covering fewer sites than the hazard has is one 
 invent a second, narrower check that will drift out of step with the first.
 
 **Detecting scenery generically.** Maps declare it three ways; `audit_scene_actors.py` finds
-all three, and each now has a guard (bugs 2033/2035/2037/2038 - one per pass, because each fix
-patched only the consumer that had just broken):
+all three, and each now has a guard (bugs 2033/2035/2037/2038, one per pass):
 
 | marker | readable as | guarded in |
 |---|---|---|
@@ -896,14 +885,13 @@ patched only the consumer that had just broken):
 | `anim_scripted` | `self.no_idle` | `coop_isProtectedActor` |
 | `threatbias ignoreme` | `self.threatbias == 0 - 6969` | `coop_variantRoll` **and** `coop_apply_personality` |
 
-The last row was once variant-roll only, on the reasoning that `ignoreme` is not scenery; measurement
-beat it (bug-2051). **Match a guard's scope to what it costs to be wrong.**
+**Match a guard's scope to what it costs to be wrong** (bug-2051).
 
 **Before guarding on a property, prove you can READ it.** `enableEnemy` is a lone `EV_SETTER`
 (actor.cpp:1470), so reading throws - 136 errors a map, and since *a Script Error skips the
 statement* that guard shipped having never once executed (bug-2034); `threatbias` has a real
-`EV_GETTER` (sentient.cpp:469) and reads fine. Registration tells you which you have, but that same
-reasoning produced bug-2034: **probe at runtime first, then re-probe against a baseline count.** A
+`EV_GETTER` (sentient.cpp:469) and reads fine. **Probe at runtime first, then re-probe against a baseline
+count.** A
 depth scan proves a script *parses*, never that a property is *readable*.
 
 Actors that are only *holstered* still have no generic marker; flag those with
@@ -965,9 +953,7 @@ does nothing — which is also why it survives playtesting by whoever hosts. `G_
 matches by literal name, so the `+`/`-` survives the relay. Worked example: `+coopnade` in
 `cg_consolecmds.c`.
 
-Two neighbours that ARE extensible, if you genuinely need wire state: the weapon-command enum has
-16 of its 31 values used, and `entityState.surfaces[]` bit 6 was reclaimed once (bug-2080). Both
-are **wire semantics** — changing either means shipping exe + cgame + game + both renderers together.
+Wire-state neighbours (weapon-command enum, `surfaces[]` bit 6): `archive/traps-pruned-2026-10-05.md`.
 
 ---
 
@@ -977,20 +963,19 @@ are **wire semantics** — changing either means shipping exe + cgame + game + b
 **Bugs:** 2099 (prone). Two causes, one feature, no error message from either; the first is the
 missing-notetrack rule, now filed once under [TIKI/sound](#tiki).
 
-**⭐ `last_ucmd` is not continuous — never reset a hold timer on one frame of no input.** Probe:
-`up=-127` the whole time a key was held, yet the hold read `0.02 → 0.00 → 0.27 → 0.00`. The server
-reads `upmove 0` on the odd frame (usercmd not yet refreshed). It presented as *"only works on
-certain terrain"* — never terrain, just whether the jitter spared a clean 0.35 s. Hold-to-do-X needs
-a grace period (150 ms) before treating a key as released.
+**⭐ `last_ucmd` is not continuous** - one frame of `upmove 0` mid-hold (usercmd not yet refreshed) reset the hold timer and
+read as "only works on certain terrain". Hold-to-do-X needs a 150 ms grace before treating a key as released.
 
-**⭐ `startsolid` says where you ARE, not where you are GOING - and a prone body on a slope is
-already in solid.** bug-2247's stand-up shuffle rejected any candidate whose reachability trace came
-back `startsolid`, a guard written to stop it clipping THROUGH a wall. But a prone hull is a 20-tall
-BOX and terrain is a RAMP, so lying on any hill buries a corner of it and all sixteen candidates were
-discarded before one was examined - deterministically, so pressing again could never answer
-differently (bug-2547). **A trace that starts inside geometry has nothing true to say about
-reachability: skip it while embedded and let the DESTINATION test carry the safety, capped in
-distance.** Same tell as `up=-127` above: "only on certain terrain" was never terrain.
+**⭐ `startsolid` says where you ARE, not where you are GOING** (bug-2547): a prone box on a slope is already in solid,
+so rejecting every `startsolid` candidate discarded all sixteen. Skip the trace while embedded; let the DESTINATION test carry
+the safety, capped in distance.
 
-**Shape:** five causes all presented as "prone is broken" and no two shared a fix. Resist the
-single-root-cause instinct; probe each symptom. None was found by reasoning about code.
+**Shape:** five unrelated causes all read "prone is broken"; none was found by reasoning about code - probe each symptom.
+
+<a name="t24"></a>
+## T24 - A text fix applied per call site never holds: route the channel, then check the sink
+
+**Bugs:** 3426, 3520, 3542, 3952, 4007. Four rounds converted `iprint`/`iprintlnbold` SITES to `feed.scr`; every later
+print was born on the old top-left box again. **Route at the channel:** cgame `CG_CoopFeedRouteUntagged`
+takes every untagged coop `print`/`hudprint` ("fail" lines, Hardcore, `coop_feed 0`, a hidden HUD stay old-box). **The sink lost text too**: check truncation, replacement, read time. Subtitles are drawn by the exe
+(`cl_uiview3d.cpp`, `subtitle0-3`): cgame cannot move them, so the feed stands above them.

@@ -40,17 +40,9 @@ st_xp_run:{
 					println "^~^~^ TF chalList returned"
 					waitthread coop_mod/hudresend.scr::claim local.p 76 78
 					println "^~^~^ TF claim returned"
-					ihuddraw_virtualsize local.p 120 1
-					ihuddraw_align local.p 120 center top
-					ihuddraw_font local.p 120 "verdana-10"
-					ihuddraw_color local.p 120 0 1 0
-					ihuddraw_rect local.p 120 0 200 0 0
-					ihuddraw_string local.p 120 "TF DIRECT SLOT 120 (fade-exempt)"
-					ihuddraw_alpha local.p 120 1
 					thread coop_mod/challenges.scr::chal_toast_show local.p "Dead Eye"
 					println "^~^~^ TF toast threaded"
-					wait 6
-					ihuddraw_string local.p 120 ""
+
 				}
 				if( local.g == "4" ){
 					println "^~^~^ TF phase oldroute"

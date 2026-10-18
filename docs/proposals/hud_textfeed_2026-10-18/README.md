@@ -1,8 +1,8 @@
 # Text feed round 5 (2026-10-18) - subtitles, missing text, challenge banner
 
 Bugs **4006** (subtitle overlap), **4007** (missing text / old scroller), **4008** (challenge banner). The commit messages say 4005 / 4006 / 4007: a parallel session took 4005 first. Engine branch `textfeed-next`
-(worktree `openmohaa-hzm-textfeed`, from `cgame-1.10.29` 776e4de5): `b9b6a528`, `0537692c`, cgame only. Mod branch `textfeed-next`
-(worktree `hzm-mod-textfeed`, from `coop-wip` f23f4608): `139765c1`, code pak only. No exe / game.dll / renderer change: the
+(worktree `openmohaa-hzm-textfeed`, from `cgame-1.10.29` 776e4de5): `b9b6a528`, `0537692c`, `24746846`+`377ffab9`+`91cb8452` (one change: slow-frame slide clamp; first patched the wrong clamp, restored), cgame only. **New cgame.dll needed (md5 in the report); no exe / game.dll.** Mod branch `textfeed-next`
+(worktree `hzm-mod-textfeed`, from `coop-wip` f23f4608): `139765c1`, `50c0c33e` (banner centring), code pak only. No exe / game.dll / renderer change: the
 v1.10.29 cgame lineage does not contain the netfix exe, so nothing here may touch `client/`.
 
 ## Why the earlier rounds did not hold
@@ -59,3 +59,10 @@ same banner as before.
 exe + game.dll, textfeed-next mod pak, the new cgame on the client only, DISPLAY2, engine `screenshot`), overlay driver
 `tools/overlay/coop_mod/coop_selftest_xp.scr` (TEST ONLY), `tools/make_sheet.py`. The real m1l1 hint ("Climb the stairs and find
 the MG42 ...", a bold `iprintlnbold` that used to land on the old box) is released by setting the two level flags its thread waits for.
+
+## Proof status
+- `contact_sheet.jpg`: cells 1-4 are the same scenario (3 long feed lines + an alert, 3 subtitles) on the RELEASED cgame (collides) and the new one (clear) at 720p and 4:3; cell 5 1080p; 6 long wording; 7 a bold `iprintlnbold` + `iprintln` (same calls as maps/m1l1.scr:2667 and items) arriving in the feed; 8 the banner. GIF: `media/challenge_banner_typewriter.gif`.
+- Harness: runs tf720h / tf1080h / tf43h (new), tfold720 / tfold43 (released cgame), tf720ja (banner, old-route), archived in G:\mohaa-hudfeed5uns_textfeed.
+- Real m1l1 MG42 hint: its log line (`FEEDUNTAGGED ... Climb the stairs`) arrived once (run tf720b), never again (the thread needs the intro/ending beats); the screenshot cell uses the same call from the overlay. Real untagged engine lines (`That weapon is currently banned.`, `Picked Up ...`) were routed in every run.
+- Harness trap found: the client runs at ~1000 fps, `wait N` is N frames (a fraction of a second): real-time pauses must be python sleeps; ihuddraw needs `cg_hud 1` (`set cg_huddraw_force 1`) in m1l1's intro.
+- Not verified: 2560x1440 / ultrawide (DISPLAY2 clamps to 1080p), 1080p true size, two-player remote client, Hardcore, a multi-line wrapped subtitle block beyond 3 lines, the banner on a non-feed-capable (old cgame) client, sound of the typewriter.

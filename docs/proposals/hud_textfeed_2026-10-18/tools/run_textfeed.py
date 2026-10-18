@@ -135,31 +135,52 @@ def main():
         join(c, 2)
         step(c, ["+attackprimary", "wait 6", "-attackprimary", "wait 20"])
         shots["a_hud"] = jf.shot(c, "a_hud")
-        def sc(tag, go, n, gap, pre=100, extra=None, post=None):
-            """ONE console step: trigger, wait, then n shots `gap` frames apart (>= 50: closer ones are dropped by the exe)"""
-            lines = (extra or []) + ["rcon set tf_go %d" % go, "wait %d" % pre] + (post or [])
+        def shoot(tag, n, wait_frames=60):
+            """ONE console step with n shots `wait_frames` frames apart (>= 50 or the exe drops them). The client runs at
+            hundreds of fps, so a frame wait is a fraction of a second: real-time pauses are python sleeps."""
+            lines = []
             for i in range(n):
-                lines += ["screenshotJPEG %s_%02d" % (tag, i), "wait %d" % gap]
+                lines += ["screenshotJPEG %s_%02d" % (tag, i), "wait %d" % wait_frames]
             step(c, lines, timeout=150)
             time.sleep(2)
             shots[tag] = [os.path.join(sd, f) for f in sorted(os.listdir(sd)) if f.startswith(tag + "_")]
             log("shots", tag, len(shots[tag]))
+
+        def trig(go):
+            step(c, ["rcon set tf_go %d" % go])
+
         if 1 in scen:
-            sc("b_sub_feed", 1, 4, 45, 330, None, ["set subtitle0 \"%s\"" % SUBS[0], "set subtitle1 \"%s\"" % SUBS[1], "set subtitle2 \"%s\"" % SUBS[2], "wait 70"])
-            step(c, ["set subtitle0 \"\"", "set subtitle1 \"\"", "set subtitle2 \"\"", "wait 300"])
-            time.sleep(8)
+            trig(1)
+            time.sleep(2.5)
+            step(c, ["set subtitle0 \"%s\"" % SUBS[0], "set subtitle1 \"%s\"" % SUBS[1], "set subtitle2 \"%s\"" % SUBS[2]])
+            time.sleep(1.6)
+            shoot("b_sub_feed", 4, 60)
+            step(c, ["set subtitle0 \"\"", "set subtitle1 \"\"", "set subtitle2 \"\""])
+            time.sleep(12)
         if 5 in scen:
-            sc("e_longwording", 5, 3, 120, 100)
-            time.sleep(10)
+            trig(5)
+            time.sleep(3.0)
+            shoot("e_longwording", 3, 90)
+            time.sleep(14)
         if 2 in scen:
-            sc("c_m1l1_hint", 2, 6, 120, 1000)
+            n0 = len(read(c["log"]))
+            trig(2)
+            m = wait_for(c["log"], r"FEEDUNTAGGED.*?Climb the stairs", 75, n0)
+            log("m1l1 hint arrived at the client:", bool(m))
+            check("real m1l1 hint reached the feed", m)
+            shoot("c_m1l1_hint", 3, 90)
             time.sleep(8)
         if 4 in scen:
-            sc("f_oldroute", 4, 2, 60, 120)
+            trig(4)
+            time.sleep(2)
+            shoot("f_oldroute", 2, 60)
             time.sleep(8)
         if 3 in scen:
-            sc("d_banner", 3, 6, 50, 40, ["set cg_hud 1", "set cg_huddraw_force 1", "echo ^~^~^ HUDCV1", "cg_hud", "cg_huddraw_force", "ui_hud", "coop_cineHud", "echo ^~^~^ HUDCV2", "+attackprimary", "wait 6", "-attackprimary", "wait 10"])
-            time.sleep(6)
+            step(c, ["set cg_hud 1", "set cg_huddraw_force 1", "+attackprimary", "wait 6", "-attackprimary"])
+            trig(3)
+            time.sleep(0.2)
+            shoot("d_banner", 26, 290)
+            time.sleep(4)
         errs = re.findall(r"[^\r\n]*Script Error[^\r\n]*", read(slog))
         check("0 Script Error lines in the server log", not errs, "; ".join(errs[:3]))
     except Exception as e:
