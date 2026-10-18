@@ -10,7 +10,14 @@ def say(s):
 subprocess.run([sys.executable, HT, "wait", "searchlight"], stdout=LOG, stderr=LOG)
 say("TURN granted")
 try:
-    subprocess.run([sys.executable, os.path.join(HERE, "sl_run.py"), "p1", MAP], stdout=LOG, stderr=LOG, timeout=840)
+    for attempt, client in enumerate(["hudfeed2", "hudfeed5", "hudfeed2"]):
+        env = dict(os.environ, SLCLIENT=client)
+        say("batch attempt %d on %s" % (attempt, client))
+        subprocess.run([sys.executable, os.path.join(HERE, "sl_run.py"), "p1", MAP], stdout=LOG, stderr=LOG, timeout=840, env=env)
+        rl = os.path.join(HERE, "logs", "run_p1.txt")
+        if os.path.exists(rl) and "SlotBusy" not in open(rl, errors="ignore").read():
+            break
+        say("slot busy, trying the next copy")
 finally:
     subprocess.run([sys.executable, HT, "release", "searchlight"], stdout=LOG, stderr=LOG)
     say("released")
