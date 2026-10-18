@@ -1,0 +1,4 @@
+WAIT searchlight: ahead=['alarmplace', 'smokec', 'loadscreen', 'mortar', 'gunfit', 'textfeed', 'alarmsnipers', 'icons']
+WAIT searchlight: ahead=['alarmplace', 'smokec', 'loadscreen', 'mortar', 'gunfit', 'textfeed', 'alarmsnipers', 'icons']
+WAIT searchlight: ahead=['alarmplace', 'smokec', 'loadscreen', 'mortar', 'gunfit', 'textfeed', 'alarmsnipers', 'icons']
+WAIT searchlight: ahead=['alarmplace', 'smokec', 'loadscreen', 'mortar', 'gunfit', 'textfeed', 'alarmsnipers', 'icons']

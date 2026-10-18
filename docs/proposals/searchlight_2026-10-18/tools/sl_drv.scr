@@ -1,0 +1,116 @@
+//=========================================================================
+// TEST-ONLY overlay driver (searchlight 2026-10-18) - NEVER shipped. Installed as coop_mod/coop_selftest_xp.scr.
+// Commands arrive in cvar ai_cmd (ai_realism harness protocol: prints "^~^~^ AI did <cmd>"). Args: ai_n (light index), ai_r (radius)
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ AI armed"
+	setcvar "ai_cmd" "0"
+	while( 1 ){
+		local.c = getcvar( "ai_cmd" )
+		if( local.c != "0" && local.c != "" ){
+			setcvar "ai_cmd" "0"
+			waitthread sl_do local.c
+			println ( "^~^~^ AI did " + local.c )
+		}
+		waitframe
+	}
+}end
+
+sl_s local.v:{
+	local.r = "-"
+	if( local.v != NIL ){ local.r = "" + local.v }
+}end local.r
+
+sl_do local.c:{
+	local.p = $player[1]
+	if( local.p == NULL ){ end }
+	local.n = int( getcvar( "ai_n" ) )
+	if( local.n < 1 ){ local.n = 1 }
+	if( local.c == "lights" ){
+		for( local.i = 1; local.i <= level.spotlights; local.i++ ){
+			local.l = level.spotlight[local.i]
+			local.t = local.l.spottgt
+			local.tn = "none"
+			if( local.t != NULL && local.t != NIL ){ local.tn = local.t.classname + "/" + local.t.targetname }
+			local.sw = 0
+			if( local.l.currentaim == local.l.org ){ local.sw = 1 }
+			local.ga = 0
+			if( isalive local.l.spotter ){ local.ga = 1 }
+			println ( "^~^~^ SL light=" + local.i + " set=" + local.l.set + " pos=" + local.l.origin + " hunt=" + ( waitthread sl_s local.l.coopHunt ) + " tgt=" + local.tn + " on=" + ( waitthread sl_s local.l.on_target ) + " spot=" + local.l.spotlight.origin + " aimsweep=" + local.sw + " gunner=" + local.ga + " t=" + level.time )
+		}
+	}
+	if( local.c == "tpl" ){
+		// put the player 300..900u from light n, in its sight, facing it
+		local.l = level.spotlight[local.n]
+		local.eye = local.l.origin + ( 0 0 40 )
+		local.done = 0
+		for( local.r = 500; local.r <= 1100 && local.done == 0; local.r = local.r + 150 ){
+			for( local.a = 0; local.a < 360 && local.done == 0; local.a = local.a + 30 ){
+				local.d = angles_toforward ( 0 local.a 0 )
+				local.pos = local.l.origin + ( local.d * local.r )
+				local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 200 ) )
+				if( local.g != NIL ){
+					local.tp = local.g + ( 0 0 40 )
+					local.v = trace local.eye local.tp 1
+					if( local.v[0] == local.tp[0] && local.v[1] == local.tp[1] && local.v[2] == local.tp[2] ){
+						local.yaw = ( local.a + 180 )
+						local.p origin local.g
+						local.p.viewangles = ( 0 local.yaw 0 )
+						local.p nodamage
+						local.p.health = 100000
+						local.p.max_health = 100000
+						println ( "^~^~^ SL tpl light=" + local.n + " r=" + local.r + " a=" + local.a + " at=" + local.g )
+						local.done = 1
+					}
+				}
+			}
+		}
+		if( local.done == 0 ){ println "^~^~^ SL tpl none-visible" }
+	}
+	if( local.c == "tpfar" ){
+		local.p origin ( 0 0 5000 )
+		println "^~^~^ SL tpfar"
+	}
+	if( local.c == "det1" ){ level.coop_alarmLive = 1 ; println "^~^~^ SL detected=1" }
+	if( local.c == "det0" ){ level.coop_alarmLive = 0 ; println "^~^~^ SL detected=0" }
+	if( local.c == "ally" ){
+		// an allied paratrooper-class AI, in sight of light n
+		local.l = level.spotlight[local.n]
+		local.eye = local.l.origin + ( 0 0 40 )
+		cache models/human/allied_airborne_soldier.tik
+		local.done = 0
+		for( local.r = 500; local.r <= 1100 && local.done == 0; local.r = local.r + 150 ){
+			for( local.a = 0; local.a < 360 && local.done == 0; local.a = local.a + 30 ){
+				local.d = angles_toforward ( 0 local.a 0 )
+				local.pos = local.l.origin + ( local.d * local.r )
+				local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 200 ) )
+				if( local.g != NIL ){
+					local.tp = local.g + ( 0 0 40 )
+					local.v = trace local.eye local.tp 1
+					if( local.v[0] == local.tp[0] && local.v[1] == local.tp[1] && local.v[2] == local.tp[2] ){
+						local.act = spawn "models/human/allied_airborne_soldier.tik"
+						local.act.origin = local.g
+						local.act droptofloor
+						local.act.team = "american"
+						local.act.health = 550
+						local.act.targetname = "sl_ally"
+						local.act forceactivate
+						if( level.coop_actorArray["american"] == NIL ){ level.coop_actorArray["american"][1] = local.act }
+						else{ level.coop_actorArray["american"][level.coop_actorArray["american"].size + 1] = local.act }
+						println ( "^~^~^ SL ally spawned at=" + local.g + " r=" + local.r )
+						local.done = 1
+					}
+				}
+			}
+		}
+		if( local.done == 0 ){ println "^~^~^ SL ally none-visible" }
+	}
+	if( local.c == "scene" ){
+		// a scene actor next to the ally spot: must NEVER be hunted
+		local.s = $sl_ally
+		if( local.s != NULL ){
+			local.s.flags["coop_sceneActor"] = 1
+			println "^~^~^ SL scene flag set on ally"
+		}
+	}
+}end
