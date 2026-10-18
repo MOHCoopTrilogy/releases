@@ -47,6 +47,11 @@ def main():
         for rel in sorted(files):
             z.write(files[rel], rel)
         z.writestr(ROWS, pistol_rows())
+        if not os.environ.get('C96_OLD'):       # reference gun for side-by-side runs: the old mesh under its own tik (test overlay only)
+            t = open(os.path.join(SHIP2, 'models', 'weapons', 'mauser_c96.tik'), 'rb').read().decode('latin-1')
+            t = t.replace('name			"Mauser C96"', 'name			"Mauser C96 (Oldref)"').replace('rank			121 121', 'rank			3999 3999')
+            assert 'Oldref' in t and '3999' in t
+            z.writestr('models/weapons/mauser_c96_oldref.tik', t.encode('latin-1'))
     print('overlay', out, len(files) + 1, 'files')
 
 

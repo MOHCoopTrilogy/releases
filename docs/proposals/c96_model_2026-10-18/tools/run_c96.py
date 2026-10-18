@@ -33,6 +33,9 @@ A.LOGF = os.path.join(HERE, '..', 'build', 'run_h.log')
 for _f in ("", "_gold", "_chrome", "_blued", "_bloody", "_camo_woodland", "_camo_winter", "_camo_desert"):
     A.GUNS["c96" + _f] = "models/weapons/mauser_c96%s.tik" % _f
 A.GUNS["colt45"] = "models/weapons/colt45.tik"
+A.GUNS["c96old"] = "models/weapons/mauser_c96_oldref.tik"
+A.GUNS["luger"] = "models/weapons/LugerP08.tik"
+A.GUNS["p38"] = "models/weapons/p38.tik"
 
 
 def third_close_c96(sess, gun):

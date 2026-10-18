@@ -25,6 +25,7 @@ MUZ_Y, TAIL_Y = 2.3752, 0.2027
 BORE_Z = 0.158                                    # bore centre height at the muzzle (BU)
 S_SCALED = 17.3 / (MUZ_Y - TAIL_Y)                # scaled units per BU
 S = S_SCALED / SCALE                              # raw units per BU
+LAT = 0.85                                        # lateral squeeze: the source's frame is 12.3 % of its length wide, a real C96's 10.6 %
 CENTRE_Y_RAW = -1.58                              # lateral centre of the gun, raw
 MUZZLE_X_RAW = 30.80
 
@@ -84,11 +85,11 @@ PITCH_DEG, ROT, TRANS = _solve()
 
 def to_raw(p):
     """BU source point(s) -> raw game-frame point(s)"""
-    return _g(p) * S @ ROT + TRANS
+    return (_g(p) * np.array([1.0, LAT, 1.0])) * S @ ROT + TRANS
 
 
 def nrm_raw(n):
-    n = _g(n) @ ROT
+    n = (_g(n) * np.array([1.0, 1.0 / LAT, 1.0])) @ ROT
     return n / np.maximum(np.linalg.norm(n, axis=-1, keepdims=True), 1e-9)
 
 

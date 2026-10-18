@@ -19,9 +19,9 @@ TEXV = 'textures/models/weapons/coop_c96n/'
 TDIR = os.path.join(L.STAGE, 'textures', 'models', 'weapons', 'coop_c96n')
 ENVMAP = 'textures/coop_skins/env_sheen.tga'
 FINISHES = [
-    ('gold', 'stage', {'tint': (1.00, 0.78, 0.30), 'env': (0.40, 0.31, 0.12)}),
-    ('chrome', 'stage', {'tint': (0.88, 0.92, 0.98), 'env': (0.55, 0.58, 0.64)}),
-    ('blued', 'stage', {'tint': (0.44, 0.48, 0.64), 'env': (0.10, 0.12, 0.20)}),
+    ('gold', 'sheen', {'tint': (1.00, 0.78, 0.30), 'env': (0.22, 0.17, 0.07)}),
+    ('chrome', 'sheen', {'tint': (0.88, 0.92, 0.98), 'env': (0.30, 0.32, 0.36)}),
+    ('blued', 'sheen', {'tint': (0.44, 0.48, 0.64), 'env': (0.08, 0.10, 0.16)}),
     ('bloody', 'bake', {}),
     ('camo_woodland', 'bake', {'pal': [(58, 66, 40), (86, 92, 56), (44, 40, 30), (104, 98, 66)], 'seed': 3}),
     ('camo_winter', 'bake', {'pal': [(178, 182, 186), (140, 146, 152), (96, 102, 108), (206, 210, 213)], 'seed': 11}),
@@ -92,6 +92,7 @@ def volume(pos, m, sigma_cm, seed, cell=0.5):
 
 def camo(base, pos, M, pal, seed):
     m = M['mask']
+    mm = METAL[..., None]
     l = norm(luma(base), m)
     low = ndi.gaussian_filter(l, SIZE // 64 / 2.0)
     detail = l - low
@@ -100,7 +101,11 @@ def camo(base, pos, M, pal, seed):
     edges = np.quantile(f[m], np.linspace(0, 1, len(pal) + 1)[1:-1])
     pat = np.array(pal, np.float32)[np.digitize(f, edges)]
     out = np.clip(pat * shade + detail[..., None] * 190.0, 0, 255)
+    out = out * mm + base * (1 - mm)            # the grips stay walnut: the pattern covers the steel only
     return pad(out, M)
+
+
+METAL = None
 
 
 def bloody(base, pos, nrm, M):
@@ -151,8 +156,14 @@ def build():
     B = np.load(os.path.join(L.BUILD, 'texel_bake.npz'))
     M = {k: B[k] for k in B.files}
     pos, nrm = M['pos'], M['nrm']
+    global METAL
+    METAL = (np.asarray(Image.open(os.path.join(L.BUILD, 'c96_metalmask.png'))).astype(np.float32) / 255.0)
     os.makedirs(TDIR, exist_ok=True)
     for key, kind, pr in FINISHES:
+        if kind == 'sheen':
+            fb = np.asarray(Image.open(os.path.join(L.BUILD, 'fin_%s.png' % key)).convert('RGB')).astype(np.float32)
+            Image.fromarray(np.clip(pad(fb, M), 0, 255).astype(np.uint8)).save(os.path.join(TDIR, 'coop_c96n_%s.jpg' % key), quality=93, subsampling=0)
+            continue
         if kind != 'bake':
             continue
         if key == 'bloody':
@@ -170,7 +181,7 @@ def build():
               '// NEW names, defined in this one file only (TRAPS T6)',
               shader_block('coop_c96n', TEXV + 'coop_c96n.jpg', 'plain', {})]
     for key, kind, pr in FINISHES:
-        tex = TEXV + ('coop_c96n.jpg' if kind == 'stage' else 'coop_c96n_%s.jpg' % key)
+        tex = TEXV + 'coop_c96n_%s.jpg' % key
         blocks.append(shader_block('coop_c96n_%s' % key, tex, kind, pr))
     os.makedirs(os.path.join(L.STAGE, 'scripts'), exist_ok=True)
     open(os.path.join(L.STAGE, 'scripts', 'coop_c96n.shader'), 'w', newline='\r\n').write('\n'.join(blocks) + '\n')

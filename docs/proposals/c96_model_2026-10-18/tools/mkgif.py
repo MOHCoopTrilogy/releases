@@ -40,5 +40,6 @@ for k, im in enumerate(sh):
 S.save(a.out + '_sheet.jpg', quality=88)
 print('sheet', S.size)
 if a.gif:
-    iio.mimsave(a.out + '.gif', [__import__('numpy').asarray(im) for im in ims], duration=a.ms / 1000.0, loop=0)
+    qs = [im.quantize(colors=112, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE) for im in ims]
+    qs[0].save(a.out + '.gif', save_all=True, append_images=qs[1:], duration=a.ms, loop=0, optimize=True)
     print('gif', a.out + '.gif', len(ims), 'frames', os.path.getsize(a.out + '.gif') // 1024, 'KB')
