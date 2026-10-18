@@ -16,10 +16,10 @@ from scipy_free_filters import box_blur
 HERE = os.path.dirname(os.path.abspath(__file__))
 B = os.path.join(HERE, '..', 'build')
 STEEL = np.array([0.50, 0.56, 0.68])        # blue-grey tint of the steel (relative)
-STEEL_GAIN = float(os.environ.get('C96_STEEL_GAIN', '0.55'))
+STEEL_GAIN = float(os.environ.get('C96_STEEL_GAIN', '1.15'))
 STEEL_GAMMA = float(os.environ.get('C96_STEEL_GAMMA', '1.25'))
-WOOD_GAIN = float(os.environ.get('C96_WOOD_GAIN', '0.95'))
-EDGE_DARK = float(os.environ.get('C96_EDGE_DARK', '0.55'))
+WOOD_GAIN = float(os.environ.get('C96_WOOD_GAIN', '1.45'))
+EDGE_DARK = float(os.environ.get('C96_EDGE_DARK', '0.45'))
 POLISH = float(os.environ.get('C96_POLISH', '0.30'))
 
 

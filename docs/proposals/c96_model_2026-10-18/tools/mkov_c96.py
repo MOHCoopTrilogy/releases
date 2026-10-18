@@ -32,7 +32,7 @@ def pistol_rows():
 def main():
     out = sys.argv[1]
     files = {}
-    for root in (SHIP2, L.STAGE):
+    for root in ((SHIP2,) if os.environ.get('C96_OLD') else (SHIP2, L.STAGE)):
         for dp, _dn, fn in os.walk(root):
             for f in fn:
                 p = os.path.join(dp, f)
@@ -40,7 +40,10 @@ def main():
                 if rel.upper().endswith('.TXT') and '/' not in rel:
                     continue                      # FILES.txt / ROWS_*.txt of ship2
                 files[rel] = p
+    base = zipfile.ZipFile(os.path.join(L.BUILD, 'ovbase_c96.pk3'))
     with zipfile.ZipFile(out, 'w', zipfile.ZIP_STORED) as z:
+        for n in base.namelist():
+            z.writestr(n, base.read(n))
         for rel in sorted(files):
             z.write(files[rel], rel)
         z.writestr(ROWS, pistol_rows())

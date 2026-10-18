@@ -41,7 +41,7 @@ def tris_world(m, bn):
     return out
 
 
-def render(surfs, tex, view, W, H, light=(0.4, -0.5, -0.7)):
+def render(surfs, tex, view, W, H, light=(0.4, -0.5, -0.7), boxes=()):
     P_all = np.vstack([s[1] for s in surfs])
     ctr = (P_all.min(0) + P_all.max(0)) / 2
     # gun frame: +x muzzle, +y right, +z down.  views: camera axes (right, up, toward-camera)
@@ -98,14 +98,23 @@ def render(surfs, tex, view, W, H, light=(0.4, -0.5, -0.7)):
             reg = img[y0:y1 + 1, x0:x1 + 1]
             reg[m] = col[m]
             sub[m] = z[m]
-    return Image.fromarray((np.clip(img, 0, 1) * 255).astype(np.uint8))
+    im = Image.fromarray((np.clip(img, 0, 1) * 255).astype(np.uint8))
+    d = ImageDraw.Draw(im)
+    for (b0, b1, colr) in boxes:
+        pts = [np.array([x, y, z]) for x in (b0[0], b1[0]) for y in (b0[1], b1[1]) for z in (b0[2], b1[2])]
+        pr = [(float((p - ctr) @ R * sc + W / 2), float(-((p - ctr) @ U) * sc + H / 2)) for p in pts]
+        for i in range(8):
+            for j in range(i + 1, 8):
+                if bin(i ^ j).count('1') == 1:
+                    d.line([pr[i], pr[j]], fill=colr, width=1)
+    return im
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('out'); ap.add_argument('--clip', default='c96n_idle.skc'); ap.add_argument('--frames', default='0')
     ap.add_argument('--views', default='sideL,top,front,34'); ap.add_argument('--tex', default=None); ap.add_argument('--w', type=int, default=640)
-    ap.add_argument('--skd', default=None)
+    ap.add_argument('--skd', default=None); ap.add_argument('--box', action='append', default=[])
     a = ap.parse_args()
     md = os.path.join(SH, 'models', 'weapons', 'coop_c96n')
     m = load_gun(a.skd or os.path.join(md, 'c96n.skd'))
@@ -117,7 +126,8 @@ def main():
         surfs = tris_world(m, bn)
         tiles = []
         for v in a.views.split(','):
-            im = render(surfs, tex, v, W, H)
+            bx = [(np.array([float(q) for q in b.split(',')[:3]]), np.array([float(q) for q in b.split(',')[3:6]]), (255, 60, 60)) for b in a.box]
+            im = render(surfs, tex, v, W, H, boxes=bx)
             ImageDraw.Draw(im).text((4, 3), '%s f%d %s' % (v, f, a.clip), fill=(255, 255, 0))
             tiles.append(im)
         rows.append(tiles)
