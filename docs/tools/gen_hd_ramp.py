@@ -25,7 +25,7 @@ def smoothstep(x):
 
 
 def build():
-    hdr = struct.pack("<BBBHHBHHHHBB", 0, 0, 2, 0, 0, 0, 0, 0, W, H, 32, 0x28)  # top-left origin, 8 alpha bits
+    hdr = struct.pack("<BBBHHBHHHHBB", 0, 0, 2, 0, 0, 0, 0, 0, W, H, 32, 0x08)  # bottom-up (the engine loader ignores top-down), 8 alpha bits
     row = bytearray()
     for x in range(W):
         a = int(round(255.0 * smoothstep((x + 0.5) / W)))

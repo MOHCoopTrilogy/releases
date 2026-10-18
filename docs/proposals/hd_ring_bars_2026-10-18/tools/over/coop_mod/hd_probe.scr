@@ -1,0 +1,156 @@
+//=========================================================================
+// hd_probe.scr - TEST OVERLAY ONLY (hd_ring_bars_2026-10-18). Never shipped.
+// Draws, on the first player, the same huddraw elements the real scripts draw (slots, rects, text) for each action
+// family, and the bleed ring through the real engine command, so a harness can screenshot each look.
+// coop_hdOld 1 = the pre-hdring look (flat coop_bar_white rects, the scripts' old green/gold colours), coop_hdOld 0 = HD.
+// Scenes are picked by the cvar coop_hdScene (changed by the harness); coop_hdGo 1 = the client has joined.
+//=========================================================================
+run:{
+	local.host = NULL
+	local.t = 0
+	println "^~^~^ HDP armed"
+	while( local.t < 600 ){
+		if( getcvar( "coop_hdGo" ) == "1" && $player != NULL && $player.size >= 1 ){
+			if( $player[1].flags["coop_isActive"] == 1 && isAlive $player[1] ){
+				local.host = $player[1]
+			}
+		}
+		if( local.host != NULL ){ break }
+		wait 0.5
+		local.t++
+	}
+	if( local.host == NULL ){
+		println "^~^~^ HDP abort no_host"
+		end
+	}
+	println "^~^~^ HDP host ready"
+	local.cur = ""
+	local.ringRem = 0
+	while( local.host != NULL ){
+		local.sc = getcvar "coop_hdScene"
+		if( local.sc != local.cur ){
+			waitthread hide local.host
+			local.cur = local.sc
+			local.ringRem = 0
+			if( local.sc == "heal" ){ waitthread bar local.host 33 34 35 "Applying medkit..." "heal" 0.55 0 }
+			if( local.sc == "revive" ){ waitthread bar local.host 135 136 137 "Healing player" "revive" 0.40 1 }
+			if( local.sc == "place" ){ waitthread bar local.host 145 146 147 "Hold [USE] to remove cover" "place" 0.62 2 }
+			if( local.sc == "objective" ){ waitthread bar local.host 118 119 120 "Sabotaging the Naxos" "objective" 0.50 3 }
+			if( local.sc == "healanim" ){
+				waitthread bar local.host 33 34 35 "Applying medkit..." "heal" 0 0
+				wait 0.6
+				println "^~^~^ HDP animstart"
+				local.k = 0
+				while( local.k <= 40 ){
+					ihuddraw_rect local.host 35 270 -55 ( int( local.k * 2.5 ) ) 6
+					local.k++
+					wait 0.1
+				}
+			}
+			if( local.sc == "ring" ){ waitthread ringphase local.host }
+			println ( "^~^~^ HDP scene " + local.sc )
+		}
+		if( local.ringRem > 0 ){
+			local.host coop_setbleed ( int( local.ringRem * 60 ) ) 60 0
+		}
+		wait 0.5
+	}
+}end
+
+//the REAL downed state (dbno_enter publishes the bleed-out through the engine; this is what a player sees)
+ringphase local.p:{
+	setcvar "coop_dbnoTimer" "120"
+	thread coop_mod/dbno.scr::dbno_enter local.p "chest"
+	wait 6
+	println "^~^~^ HDP shot ringa"
+	wait 9.5
+	println "^~^~^ HDP shot ringb"
+	wait 2
+	if( local.p.flags["coop_dbno_active"] == 1 ){
+		waitthread coop_mod/dbno.scr::dbno_ai_revive local.p
+	}
+	wait 3
+	println "^~^~^ HDP ringend"
+}end
+
+hide local.p:{
+	local.i = 33
+	while( local.i <= 35 ){
+		ihuddraw_alpha local.p local.i 0
+		local.i++
+	}
+	local.i = 118
+	while( local.i <= 120 ){
+		ihuddraw_alpha local.p local.i 0
+		local.i++
+	}
+	local.i = 135
+	while( local.i <= 137 ){
+		ihuddraw_alpha local.p local.i 0
+		local.i++
+	}
+	local.i = 145
+	while( local.i <= 147 ){
+		ihuddraw_alpha local.p local.i 0
+		local.i++
+	}
+}end
+
+//kind: 0 self heal / 1 revive / 2 cover (centre bottom, 120 wide) / 3 sabotage (left bottom)
+bar local.p local.st local.sa local.sb local.txt local.fam local.frac local.kind:{
+	local.old = getcvar "coop_hdOld"
+	local.shT = "textures/hud/coop_hold_track"
+	local.shF = "textures/hud/coop_hold_" + local.fam
+	if( local.old == "1" ){
+		local.shT = "textures/hud/coop_bar_white"
+		local.shF = "textures/hud/coop_bar_white"
+	}
+	local.al = "left"
+	local.x = 270
+	local.w = 100
+	local.h = 6
+	local.cy = 55
+	if( local.kind == 2 ){
+		local.al = "center"
+		local.x = 0 - 60
+		local.w = 120
+		local.h = 8
+		local.cy = 38
+	}
+	local.cy = 0 - local.cy
+	local.fw = int( local.w * local.frac )
+	local.tal = "center"
+	local.tyo = 0 - 58
+	if( local.old == "1" && local.kind == 0 ){
+		local.tal = "bottom"
+		local.tyo = 0 - 80
+	}
+	if( local.kind == 2 ){
+		local.tal = "bottom"
+		local.tyo = 0 - 20
+	}
+
+	ihuddraw_virtualsize local.p local.st 1
+	ihuddraw_align       local.p local.st center local.tal
+	ihuddraw_font        local.p local.st "verdana-12"
+	ihuddraw_color       local.p local.st 1 1 1
+	ihuddraw_rect        local.p local.st 0 local.tyo 0 0
+	ihuddraw_string      local.p local.st local.txt
+	ihuddraw_alpha       local.p local.st 1
+
+	ihuddraw_virtualsize local.p local.sa 1
+	ihuddraw_align       local.p local.sa local.al bottom
+	ihuddraw_shader      local.p local.sa local.shT
+	ihuddraw_color       local.p local.sa 0.12 0.12 0.12
+	ihuddraw_rect        local.p local.sa local.x local.cy local.w local.h
+	ihuddraw_alpha       local.p local.sa 0.8
+
+	ihuddraw_virtualsize local.p local.sb 1
+	ihuddraw_align       local.p local.sb local.al bottom
+	ihuddraw_shader      local.p local.sb local.shF
+	if( local.fam == "objective" ){ ihuddraw_color local.p local.sb 0.9 0.75 0.2 }
+	else if( local.fam == "place" ){ ihuddraw_color local.p local.sb 0.1 0.9 0.1 }
+	else{ ihuddraw_color local.p local.sb 0.1 0.9 0.1 }
+	ihuddraw_rect        local.p local.sb local.x local.cy local.fw local.h
+	ihuddraw_alpha       local.p local.sb 0.9
+}end
