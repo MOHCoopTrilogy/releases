@@ -11,7 +11,7 @@ def log(*a):
 rundir = notes = None
 try:
     rundir, notes = G.boot("mg_" + LABEL, MAP, extra=["set coop_alarm 1", "set coop_alarmDebug 1", "set coop_reinfDebug 1", "set coop_reinfMgChance 0",
-        "set coop_alarmWaveGap 12", "set coop_alarmMg 1", "set ui_hud 1"])
+        "set coop_alarmWaveGap 12", "set coop_alarmMg 1", "set ui_hud 1", "set coop_dbno 0"])
     p0 = len(R.read_log())
     time.sleep(3)
     G.cmd("count", timeout=60)

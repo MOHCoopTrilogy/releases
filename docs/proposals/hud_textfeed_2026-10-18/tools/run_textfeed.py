@@ -116,6 +116,7 @@ def main():
     pc = jf.seed_client(1, jf.SLOTS[0][1], code, jf.veteran_record(1000))
     cfgp = os.path.join(smt, "jf_start.cfg")
     txt = jf.read(cfgp).replace("map co_lobby1", "seta coop_st_xp 1\nmap m1l1")
+    txt = txt.replace("seta developer 0", "seta developer 1")   # script println / errors are developer-gated
     open(cfgp, "w", newline="\n").write(txt)
     shots = {}
     slog = os.path.join(smt, "qconsole.log")
@@ -126,7 +127,7 @@ def main():
         sd = os.path.join(c["mt"], "screenshots")
         m = wait_for(slog, r"JFTester1[^\r\n]*entered the battle", 240)
         check("client entered the server", m)
-        step(c, ["set ui_gmbox 1", "set coop_hudFadeTime 600", "set coop_feedDebug 1", "set g_subtitle 1",
+        step(c, ["set ui_gmbox 1", "set coop_hudFadeTime 600", "set coop_feedDebug 1", "set g_subtitle 1", "set cg_huddraw_force 1", "ui_hud 1",
                  "set rconPassword " + jf.RCON])
         time.sleep(30)
         join(c, 3)
@@ -134,9 +135,9 @@ def main():
         join(c, 2)
         step(c, ["+attackprimary", "wait 6", "-attackprimary", "wait 20"])
         shots["a_hud"] = jf.shot(c, "a_hud")
-        def sc(tag, go, n, gap, pre=100, extra=None):
+        def sc(tag, go, n, gap, pre=100, extra=None, post=None):
             """ONE console step: trigger, wait, then n shots `gap` frames apart (>= 50: closer ones are dropped by the exe)"""
-            lines = ["rcon set tf_go %d" % go, "wait %d" % pre] + (extra or [])
+            lines = (extra or []) + ["rcon set tf_go %d" % go, "wait %d" % pre] + (post or [])
             for i in range(n):
                 lines += ["screenshotJPEG %s_%02d" % (tag, i), "wait %d" % gap]
             step(c, lines, timeout=150)
@@ -144,20 +145,20 @@ def main():
             shots[tag] = [os.path.join(sd, f) for f in sorted(os.listdir(sd)) if f.startswith(tag + "_")]
             log("shots", tag, len(shots[tag]))
         if 1 in scen:
-            sc("b_sub_feed", 1, 3, 50, 60, ["set subtitle0 \"%s\"" % SUBS[0], "set subtitle1 \"%s\"" % SUBS[1], "wait 90"])
+            sc("b_sub_feed", 1, 4, 45, 330, None, ["set subtitle0 \"%s\"" % SUBS[0], "set subtitle1 \"%s\"" % SUBS[1], "set subtitle2 \"%s\"" % SUBS[2], "wait 70"])
             step(c, ["set subtitle0 \"\"", "set subtitle1 \"\"", "set subtitle2 \"\"", "wait 300"])
             time.sleep(8)
         if 5 in scen:
             sc("e_longwording", 5, 3, 120, 100)
             time.sleep(10)
         if 2 in scen:
-            sc("c_m1l1_hint", 2, 4, 120, 200)
+            sc("c_m1l1_hint", 2, 6, 120, 1000)
             time.sleep(8)
         if 4 in scen:
             sc("f_oldroute", 4, 2, 60, 120)
             time.sleep(8)
         if 3 in scen:
-            sc("d_banner", 3, 5, 50, 40)
+            sc("d_banner", 3, 6, 50, 40, ["+attackprimary", "wait 6", "-attackprimary", "wait 10"])
             time.sleep(6)
         errs = re.findall(r"[^\r\n]*Script Error[^\r\n]*", read(slog))
         check("0 Script Error lines in the server log", not errs, "; ".join(errs[:3]))

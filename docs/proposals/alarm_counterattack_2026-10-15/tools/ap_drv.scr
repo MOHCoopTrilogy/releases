@@ -106,12 +106,22 @@ ap_do local.c:{
 		println ( "^~^~^ AP PULL sw1 at " + local.sw.origin )
 	}
 	if( local.c == "leave" ){
-		local.dir = angles_toforward ( 0 90 0 )
-		local.pos = level.coop_czSel + ( vector_scale local.dir ( level.coop_czSelR + 900 ) ) + ( 0 0 40 )
-		local.g = waitthread coop_mod/officer.scr::coop_find_ground local.pos
-		if( local.g == NIL ){ local.g = level.coop_czSel + ( vector_scale local.dir ( level.coop_czSelR + 900 ) ) }
-		waitthread ap_pin local.g level.ap_va
-		println ( "^~^~^ AP LEAVE to " + local.g + " t=" + level.time )
+		local.gl = NIL
+		for( local.k = 0; local.k < 12 && local.gl == NIL; local.k++ ){
+			local.dir = angles_toforward ( 0 ( local.k * 30 ) 0 )
+			local.pos = level.coop_czSel + ( vector_scale local.dir ( level.coop_czSelR + 120 ) ) + ( 0 0 40 )
+			local.g = waitthread coop_mod/officer.scr::coop_find_ground local.pos
+			if( local.g == NIL ){ continue }
+			local.dz = local.g[2] - level.coop_czSel[2]
+			if( local.dz < 0 ){ local.dz = 0 - local.dz }
+			if( local.dz > 60 ){ continue }
+			local.tr = traced ( local.g + ( 0 0 60 ) ) ( level.coop_czSel + ( 0 0 60 ) )
+			if( local.tr["fraction"] >= 1.0 ){ local.gl = local.g }
+		}
+		if( local.gl == NIL ){ local.gl = level.coop_czSel + ( 400 0 0 ) }
+		local.vva = vector_toangles ( level.coop_czSel + ( 0 0 40 ) - local.gl - ( 0 0 64 ) )
+		waitthread ap_pin local.gl local.vva
+		println ( "^~^~^ AP LEAVE to " + local.gl + " t=" + level.time )
 	}
 	if( local.c == "enter" ){
 		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( level.coop_czSel + ( 0 0 40 ) )
@@ -147,7 +157,7 @@ ap_pinloop:{
 		if( local.p != NULL && local.p != NIL ){
 			local.p origin level.ap_pos
 			local.p.viewangles = level.ap_va
-			if( local.p.health < 60 && local.p.health > 0 ){ local.p.health = 100 }
+			if( local.p.health > 0 ){ local.p.health = 750 }
 		}
 		waitframe
 	}
