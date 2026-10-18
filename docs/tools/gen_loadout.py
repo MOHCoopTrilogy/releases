@@ -49,7 +49,7 @@ UI = os.path.join(MOD, "ui", "loadout")
 TSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "loadout_weapons.tsv")
 
 COLS = ["id", "tik", "give", "xfm", "charanim", "cls", "tab", "name", "cd", "b0", "b1", "b2", "b3",
-        "clip", "clipn", "recoil", "slots"]
+        "clip", "clipn", "recoil", "slots", "xfmt"]
 
 # The server-side unlock roster. Absent from it, a weapon draws in the grid and does nothing
 # when clicked - no commit command, no padlock, no unlock text.
@@ -152,7 +152,7 @@ def slotfile(w, s):
         'seta coop_loN%s "%s"' % (s, w["name"]),
         'seta coop_loS%s "%s"' % (s, w["tik"]),
         'seta coop_loA%s "append name ,w%s%s"' % (s, s, w["id"]),
-        'set coop_loXfmT%s "%s"' % (s, w["xfm"]),
+        'set coop_loXfmT%s "%s"' % (s, w.get("xfmt") or w["xfm"]),
         "vstr coop_loA%s" % s,
     ]
     # [user 2026-08-18] "if I click sidearm he's still holding primary 1" - every slot commit now
@@ -170,15 +170,54 @@ def slotfile(w, s):
             'seta coop_loUnregP%s "exec ui/loadout/unreg_%s.cfg"' % (s, cls),
             'seta coop_loWho_%s "exec ui/loadout/clrP%s.cfg"' % (cls, s),
         ]
+    # [loadout review 2026-10-15] EQUIPPED tile marker: register this pick in the slot's per-tab archive (the marker label of
+    # tile<id> reads coop_loEqV<id>, recomputed per tab by lktab<t>.cfg -> eqre<t>.cfg) and refresh the visible tab now.
+    t = str(w["tab"])
+    L.append('seta coop_loEqR%s_%s "set coop_loEqV%s 1"' % (t, s, w["id"]))
+    for ot in "012345":
+        if ot != t:
+            L.append('seta coop_loEqR%s_%s ""' % (ot, s))
+    # [loadout review 2026-10-15] the pick as userinfo STATE too (cgame lp_w<slot>; the server converges on the last value, so quick
+    # clicks cannot be lost to the name bus). A new gun also resets its slot's finish state to standard.
+    L.append('set lp_w%s "%s"' % (s, w["id"]))
+    L.append('set lp_f%s "0"' % s)
+    L.append("vstr coop_loEqRe")
     return "\n".join(L) + "\n"
 
 
 def tile(w):
-    """tNN.cfg - what the grid tile runs when clicked."""
-    return ("// GENERATED - inspect + LOCK-GATED equip-into-active-slot "
-            "(coop_loCmt<id> = commit or deny)\n"
+    """tNN.cfg - what the grid tile runs when clicked.
+
+    [loadout review 2026-10-15] The tile no longer previews first. coop_loCmt<id> (archived, pushed by the server's
+    loadout_ui_exportUnlocks) is now the whole click: UNLOCKED -> `exec eq<id>.cfg` (preview + equip into the active
+    slot, the old behaviour), LOCKED -> `exec lkw<id>.cfg` (show the requirement + deny beep; the gun is NOT previewed,
+    so a locked gun can never look like it was equipped). Unset (no server yet) = fail-locked no-op."""
+    return ("// GENERATED - the click is coop_loCmt<id>: eq<id>.cfg when earned, lkw<id>.cfg when locked\n"
+            "vstr coop_loCmt%s\n" % w["id"])
+
+
+def eqfile(w):
+    """eqNN.cfg - the EARNED click: inspect this weapon, then commit it into the active slot."""
+    return ("// GENERATED - earned weapon click: inspect + equip into the active slot\n"
             "exec ui/loadout/p%s.cfg\n"
-            "vstr coop_loCmt%s\n" % (w["id"], w["id"]))
+            "vstr coop_loCcur\n" % w["id"])
+
+
+def lkwfile(w, has_req):
+    """lkwNN.cfg - the LOCKED click: requirement text + deny beep, nothing previewed or equipped."""
+    # The info panel is retitled to THIS gun with "LOCKED" and its stat bars are blanked, so the requirement line can never be
+    # read as belonging to the gun that was already equipped (the first version left the previous gun's panel up).
+    return ("// GENERATED - locked weapon click: show what unlocks it, beep, change nothing\n"
+            'set coop_loNm "%s"\n'
+            'set coop_loCd "LOCKED"\n'
+            'set coop_loB0 "textures/hud/coop_bf0"\n'
+            'set coop_loB1 "textures/hud/coop_bf0"\n'
+            'set coop_loB2 "textures/hud/coop_bf0"\n'
+            'set coop_loB3 "textures/hud/coop_bf0"\n'
+            'set coop_loClip "textures/hud/clip/clip_0"\n'
+            'set coop_loClipN ""\n' % w["name"]
+            + ("exec ui/loadout/req%s.cfg\n" % w["id"] if has_req else "")
+            + "vstr coop_loDeny\n")
 
 
 def req(lines):
@@ -345,6 +384,9 @@ def render_all(rows):
             out["w%s_s%s.cfg" % (w["id"], s)] = slotfile(w, s)
     hovers, clipped = unlock_hovers(rows)
     out.update(hovers)
+    for w in rows:
+        out["eq%s.cfg" % w["id"]] = eqfile(w)
+        out["lkw%s.cfg" % w["id"]] = lkwfile(w, "req%s.cfg" % w["id"] in hovers)
     return out, clipped
 
 
@@ -397,6 +439,7 @@ def extract():
             "clipn": g("coop_loClipN"),
             "recoil": g("coop_loRecoil").rsplit("rec_", 1)[-1],
             "slots": slots,
+            "xfmt": _xfmt(wid),
         })
     hdr = ("# Armory weapon table - the source of truth for ui/loadout/. One row = one weapon in\n"
            "# the picker. Regenerate the pages with: python docs/tools/gen_loadout.py build\n"
@@ -417,6 +460,17 @@ def extract():
     body = "".join("\t".join(w[c] for c in COLS) + "\n" for w in rows)
     io.open(TSV, "w", encoding="utf-8", newline="\n").write(hdr + body)
     return rows
+
+
+def _xfmt(wid):
+    """slot-card thumbnail transform: whatever the first slot commit file of this weapon carries."""
+    for sl in "1234":
+        sp = os.path.join(UI, "w%s_s%s.cfg" % (wid, sl))
+        if os.path.exists(sp):
+            m = re.search(r'(?m)^set coop_loXfmT\d "([^"]*)"', _read(sp))
+            if m:
+                return m.group(1)
+    return ""
 
 
 def load():
@@ -472,7 +526,7 @@ def main():
     roster_ok = splice_roster(rows, rtext) == rtext
 
     orphan = [f for f in os.listdir(UI)
-              if re.match(r"(p|t|reqf?)\d+\.cfg$|w\d+_s\d\.cfg$", f) and f not in files]
+              if re.match(r"(p|t|eq|lkw|reqf?)\d+\.cfg$|w\d+_s\d\.cfg$", f) and f not in files]
     hover_bad = [n for n in bad if n.startswith("req")]
     print("%d weapons -> %d generated files" % (len(rows), len(files)))
     print("  byte-identical : %d" % (len(files) - len(bad) - len(missing)))
