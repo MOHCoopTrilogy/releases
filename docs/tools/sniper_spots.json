@@ -710,64 +710,7 @@
   }
  },
  "e3l2": {
-  "spots": [
-   {
-    "body": 18,
-    "cluster": 1,
-    "elev": 155.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 214.8,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/mohtest/flrwood1"
-    },
-    "los": 26,
-    "pos": [
-     4825.0,
-     -424.0,
-     -140.88
-    ],
-    "routeDz": 254.0,
-    "side": 0,
-    "sky": false,
-    "type": "interior fallback"
-   },
-   {
-    "body": 7,
-    "cluster": 2,
-    "elev": 142.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 171.8,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/mohtest/flrwood1"
-    },
-    "los": 8,
-    "pos": [
-     3988.0,
-     277.0,
-     -153.88
-    ],
-    "routeDz": 256.0,
-    "side": 0,
-    "sky": false,
-    "type": "interior fallback"
-   }
-  ],
+  "spots": [],
   "stats": {
    "drop": 31,
    "faces": 2299,
@@ -794,36 +737,7 @@
   }
  },
  "e3l4": {
-  "spots": [
-   {
-    "body": 6,
-    "cluster": 1,
-    "elev": 120.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 142.8,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/af_extwall/AF-E-stonewall03"
-    },
-    "los": 6,
-    "pos": [
-     2584.0,
-     1384.0,
-     1920.12
-    ],
-    "routeDz": 128.0,
-    "side": 0,
-    "sky": false,
-    "type": "interior fallback"
-   }
-  ],
+  "spots": [],
   "stats": {
    "drop": 14,
    "faces": 3539,
@@ -1100,92 +1014,7 @@
   }
  },
  "m2l1": {
-  "spots": [
-   {
-    "body": 19,
-    "cluster": 1,
-    "elev": 288.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 142.8,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/norway/cr1_top"
-    },
-    "los": 20,
-    "pos": [
-     4184.0,
-     6960.0,
-     304.12
-    ],
-    "routeDz": 320.0,
-    "side": 2,
-    "sky": false,
-    "type": "interior fallback"
-   },
-   {
-    "body": 7,
-    "cluster": 1,
-    "elev": 160.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 256.0,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/algiers/doccrtset_1b"
-    },
-    "los": 9,
-    "pos": [
-     3640.0,
-     7320.0,
-     176.12
-    ],
-    "routeDz": 192.0,
-    "side": 2,
-    "sky": false,
-    "type": "interior fallback"
-   },
-   {
-    "body": 7,
-    "cluster": 1,
-    "elev": 160.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 214.8,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/algiers/doccrtset_1b"
-    },
-    "los": 16,
-    "pos": [
-     3688.0,
-     6840.0,
-     176.12
-    ],
-    "routeDz": 192.0,
-    "side": 2,
-    "sky": false,
-    "type": "interior fallback"
-   }
-  ],
+  "spots": [],
   "stats": {
    "drop": 31,
    "faces": 1644,
@@ -1331,120 +1160,7 @@
   }
  },
  "m4l3": {
-  "spots": [
-   {
-    "body": 14,
-    "cluster": 1,
-    "elev": 152.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 246.8,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/mohtest/oldcrpt1"
-    },
-    "los": 15,
-    "pos": [
-     -2480.0,
-     -1280.0,
-     200.12
-    ],
-    "routeDz": 160.0,
-    "side": 6,
-    "sky": false,
-    "type": "interior fallback"
-   },
-   {
-    "body": 10,
-    "cluster": 1,
-    "elev": 152.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 246.8,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/mohtest/oldcrpt1"
-    },
-    "los": 12,
-    "pos": [
-     -1912.0,
-     -1664.0,
-     200.12
-    ],
-    "routeDz": 160.0,
-    "side": 7,
-    "sky": false,
-    "type": "interior fallback"
-   },
-   {
-    "body": 5,
-    "cluster": 1,
-    "elev": 152.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 246.8,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/mohtest/oldcrpt1"
-    },
-    "los": 6,
-    "pos": [
-     -2528.0,
-     -752.0,
-     200.12
-    ],
-    "routeDz": 160.0,
-    "side": 3,
-    "sky": false,
-    "type": "interior fallback"
-   },
-   {
-    "body": 8,
-    "cluster": 1,
-    "elev": 152.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 246.8,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/mohtest/oldcrpt1"
-    },
-    "los": 10,
-    "pos": [
-     -2344.0,
-     -1664.0,
-     200.12
-    ],
-    "routeDz": 160.0,
-    "side": 6,
-    "sky": false,
-    "type": "interior fallback"
-   }
-  ],
+  "spots": [],
   "stats": {
    "drop": 73,
    "faces": 1465,
@@ -1726,64 +1442,7 @@
   }
  },
  "t1l2": {
-  "spots": [
-   {
-    "body": 16,
-    "cluster": 1,
-    "elev": 168.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 187.2,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/mohtest/wdflr2a"
-    },
-    "los": 20,
-    "pos": [
-     -3928.0,
-     3032.0,
-     232.12
-    ],
-    "routeDz": 168.0,
-    "side": 3,
-    "sky": false,
-    "type": "interior fallback"
-   },
-   {
-    "body": 7,
-    "cluster": 1,
-    "elev": 168.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 126.3,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/mohtest/wdflr2a"
-    },
-    "los": 7,
-    "pos": [
-     -3976.0,
-     3616.0,
-     232.12
-    ],
-    "routeDz": 184.0,
-    "side": 3,
-    "sky": false,
-    "type": "interior fallback"
-   }
-  ],
+  "spots": [],
   "stats": {
    "drop": 5,
    "faces": 2151,
@@ -2006,36 +1665,7 @@
   }
  },
  "t2l1": {
-  "spots": [
-   {
-    "body": 41,
-    "cluster": 1,
-    "elev": 319.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 171.2,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/TAardennes/flrwood1_repwinter"
-    },
-    "los": 78,
-    "pos": [
-     2856.0,
-     1304.0,
-     1272.12
-    ],
-    "routeDz": 256.0,
-    "side": 0,
-    "sky": false,
-    "type": "interior fallback"
-   }
-  ],
+  "spots": [],
   "stats": {
    "drop": 3,
    "faces": 631,
@@ -2071,36 +1701,7 @@
   }
  },
  "t2l4": {
-  "spots": [
-   {
-    "body": 6,
-    "cluster": 1,
-    "elev": 317.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 215.7,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/mohtest/wdflr2a"
-    },
-    "los": 6,
-    "pos": [
-     -5176.0,
-     4616.0,
-     944.12
-    ],
-    "routeDz": 305.0,
-    "side": 3,
-    "sky": false,
-    "type": "interior fallback"
-   }
-  ],
+  "spots": [],
   "stats": {
    "drop": 58,
    "faces": 2506,

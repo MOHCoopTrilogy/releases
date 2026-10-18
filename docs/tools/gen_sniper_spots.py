@@ -403,8 +403,8 @@ def scan(m, seed=1, minh=None):
                      "routeDz": round(z - na[2], 1), "sky": sky, "type": ("roof" if sky and dn >= 12 else "outdoor-high" if sky else "interior fallback"), "elev": round(fz - sorted(a[2] for a in nb)[len(nb) // 2], 1)})
     # greedy pick: best score first but each pick must be MINSEP away from earlier picks and prefer new clusters / sides
     # USER RULE 2026-10-18: rooftops / outdoor elevated surfaces first; interior spots only on maps with no outdoor option
-    if any(q["sky"] for q in keep):
-        keep = [q for q in keep if q["sky"]]
+    # USER RULE 2026-10-18 (final): NO indoor snipers. Only open-sky spots (roof / outdoor-high) count; a map with none gets no snipers.
+    keep = [q for q in keep if q["sky"]]
     keep.sort(key=lambda s: (0 if s["type"] == "roof" else 1, -(s["los"] + s["body"])))
     picked = []
     def side(p):
