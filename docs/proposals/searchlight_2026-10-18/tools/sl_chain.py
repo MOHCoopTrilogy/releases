@@ -21,11 +21,11 @@ try:
 finally:
     subprocess.run([sys.executable, HT, "release", "searchlight"], stdout=LOG, stderr=LOG)
     say("released")
-runs = sorted(glob.glob(os.path.join(HERE, "runs", "sl_p1", "p1_det_*.jpg")))
+runs = sorted(glob.glob(os.path.join(HERE, "runs", "sl_p1", "p1_det_*.jpg"))) + sorted(glob.glob(os.path.join(HERE, "runs", "sl_p1", "p1_dtb_*.jpg")))
 say("frames %d" % len(runs))
 if runs:
     from PIL import Image
     fr = [Image.open(f).convert("RGB").resize((800, 450)).quantize(colors=64, dither=0) for f in runs[::2]]
-    out = os.path.join(HERE, "searchlight_detected.gif")
+    out = os.path.join(HERE, "searchlight_detected2.gif")
     fr[0].save(out, save_all=True, append_images=fr[1:], duration=240, loop=0)
     say("GIF " + out)

@@ -18,6 +18,8 @@ def extra_lines(p0):
 try:
     rundir, notes = G.boot("sl_" + LABEL, MAP, extra=["set coop_alarm 0"])
     G.cmd("lights")
+    G.cmd("purge", timeout=60)
+    time.sleep(3)
     # ---- undetected pass: player in the light's sight, no alarm, notarget -> sweep keeps running
     p0 = G.cmd("tpl", n=int(os.environ.get("SLN", "1")))
     G.since(p0, r"SL tpl")
@@ -27,9 +29,10 @@ try:
     extra_lines(p0)
     # ---- detected pass
     log("== DETECTED PASS (alarm live)")
-    p1 = G.cmd("det1")
     G.cmd("tpl", n=int(os.environ.get("SLN", "1")))
-    G.frames(LABEL + "_det", 60, ms=120)
+    G.frames(LABEL + "_det", 20, ms=150)
+    p1 = G.cmd("det1")
+    G.frames(LABEL + "_dtb", 60, ms=120)
     for k in range(3):
         lights("det"); time.sleep(2)
     extra_lines(p1)

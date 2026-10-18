@@ -67,6 +67,21 @@ sl_do local.c:{
 		}
 		if( local.done == 0 ){ println "^~^~^ SL tpl none-visible" }
 	}
+	if( local.c == "purge" ){
+		// TEST SET-UP: the map's own Germans (not the searchlight gunners) are killed, so nothing is detecting anyone
+		local.arr = level.coop_actorArray["german"]
+		local.k = 0
+		for( local.i = 1; local.i <= local.arr.size; local.i++ ){
+			local.a = local.arr[local.i]
+			if( local.a != NULL && local.a != NIL && isAlive local.a && local.a.turret == NULL ){
+				local.a.health = 0
+				local.a kill
+				local.k++
+			}
+		}
+		level.alarm = 0
+		println ( "^~^~^ SL purged " + local.k )
+	}
 	if( local.c == "tpfar" ){
 		local.p origin ( 0 0 5000 )
 		println "^~^~^ SL tpfar"

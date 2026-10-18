@@ -1,0 +1,66 @@
+14:00:11 booted sl_p1 m1l2a ref=work dog False
+14:00:11 p1 == UNDETECTED PASS (alarm 0)
+14:00:15 p1   [undet] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 2248.172 2085.820 343.533 ) aimsweep=0 gunner=1 t=44.425
+14:00:15 p1   [undet] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 1600.310 2332.648 287.392 ) aimsweep=0 gunner=1 t=44.425
+14:00:15 p1   [undet] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( -741.457 1856.786 -60.309 ) aimsweep=1 gunner=1 t=44.425
+14:00:18 p1   [undet] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 2248.172 2085.820 343.533 ) aimsweep=0 gunner=1 t=47.650
+14:00:18 p1   [undet] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 1309.951 2232.125 311.267 ) aimsweep=0 gunner=1 t=47.650
+14:00:18 p1   [undet] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( -269.359 2275.110 -78.268 ) aimsweep=1 gunner=1 t=47.650
+14:00:21 p1   [undet] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 2248.172 2085.820 343.533 ) aimsweep=0 gunner=1 t=50.875
+14:00:21 p1   [undet] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 1309.950 2232.125 311.267 ) aimsweep=0 gunner=1 t=50.875
+14:00:21 p1   [undet] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( 366.056 1798.665 -80.003 ) aimsweep=1 gunner=1 t=50.875
+14:00:24 p1   [undet] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 2248.172 2085.820 343.533 ) aimsweep=0 gunner=1 t=54.100
+14:00:24 p1   [undet] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 1309.950 2232.125 311.267 ) aimsweep=0 gunner=1 t=54.100
+14:00:24 p1   [undet] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( 443.717 1078.782 -79.275 ) aimsweep=1 gunner=1 t=54.100
+14:00:24 p1     ^~^~^ SL tpl light=1 r=500 a=120 at=( 2020.250 2480.593 256.125 )
+14:00:24 p1 == DETECTED PASS (alarm live)
+14:00:32 p1   [det] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 2248.172 2085.820 343.533 ) aimsweep=0 gunner=1 t=62.125
+14:00:32 p1   [det] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 1309.950 2232.125 311.267 ) aimsweep=0 gunner=1 t=62.125
+14:00:32 p1   [det] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( -664.943 2210.755 -66.696 ) aimsweep=1 gunner=1 t=62.125
+14:00:34 p1   [det] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 2248.172 2085.820 343.533 ) aimsweep=0 gunner=1 t=64.375
+14:00:34 p1   [det] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 1309.950 2232.125 311.267 ) aimsweep=0 gunner=1 t=64.375
+14:00:34 p1   [det] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( -144.632 2217.391 -79.146 ) aimsweep=1 gunner=1 t=64.375
+14:00:37 p1   [det] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 2248.172 2085.820 343.533 ) aimsweep=0 gunner=1 t=66.600
+14:00:37 p1   [det] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 1309.950 2232.125 311.267 ) aimsweep=0 gunner=1 t=66.600
+14:00:37 p1   [det] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( 294.588 1885.493 -80.005 ) aimsweep=1 gunner=1 t=66.600
+14:00:39 p1     ^~^~^ SL detected=1
+14:00:39 p1     ^~^~^ SL tpl light=1 r=500 a=120 at=( 2020.250 2480.593 256.125 )
+14:00:39 p1 == CALM (alarm off, expect return to sweep after ~12s)
+14:00:44 p1   [calm] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 2248.172 2085.820 343.533 ) aimsweep=0 gunner=1 t=73.525
+14:00:44 p1   [calm] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 1309.950 2232.125 311.267 ) aimsweep=0 gunner=1 t=73.525
+14:00:44 p1   [calm] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( -297.029 1200.117 -45.105 ) aimsweep=1 gunner=1 t=73.525
+14:00:48 p1   [calm] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 2248.172 2085.820 343.533 ) aimsweep=0 gunner=1 t=77.750
+14:00:48 p1   [calm] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 1309.950 2232.125 311.267 ) aimsweep=0 gunner=1 t=77.750
+14:00:48 p1   [calm] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( -741.346 2099.806 -63.129 ) aimsweep=1 gunner=1 t=77.750
+14:00:52 p1   [calm] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 2248.172 2085.820 343.533 ) aimsweep=0 gunner=1 t=81.975
+14:00:52 p1   [calm] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 1309.950 2232.125 311.267 ) aimsweep=0 gunner=1 t=81.975
+14:00:52 p1   [calm] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( 148.799 2022.287 -80.013 ) aimsweep=1 gunner=1 t=81.975
+14:00:56 p1   [calm] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 2248.172 2085.820 343.533 ) aimsweep=0 gunner=1 t=86.225
+14:00:56 p1   [calm] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 1309.950 2232.125 311.267 ) aimsweep=0 gunner=1 t=86.225
+14:00:56 p1   [calm] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( 479.321 1122.093 -79.924 ) aimsweep=1 gunner=1 t=86.225
+14:01:01 p1   [calm] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 2248.172 2085.820 343.533 ) aimsweep=0 gunner=1 t=90.425
+14:01:01 p1   [calm] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 1309.950 2232.125 311.267 ) aimsweep=0 gunner=1 t=90.425
+14:01:01 p1   [calm] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( -437.914 1313.175 -38.995 ) aimsweep=1 gunner=1 t=90.425
+14:01:05 p1   [calm] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 2248.172 2085.820 343.533 ) aimsweep=0 gunner=1 t=94.675
+14:01:05 p1   [calm] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 1309.950 2232.125 311.267 ) aimsweep=0 gunner=1 t=94.675
+14:01:05 p1   [calm] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( -623.615 2238.802 -68.458 ) aimsweep=1 gunner=1 t=94.675
+14:01:05 p1     ^~^~^ SL detected=0
+14:01:05 p1 == ALLIED AI PASS
+14:01:08 p1   [ally] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Actor/sl_ally on=- spot=( 2248.226 2085.820 343.547 ) aimsweep=0 gunner=1 t=97.575
+14:01:08 p1   [ally] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Actor/sl_ally on=- spot=( 1030.912 2103.939 297.995 ) aimsweep=0 gunner=1 t=97.575
+14:01:08 p1   [ally] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( 42.533 2119.094 -80.026 ) aimsweep=1 gunner=1 t=97.575
+14:01:11 p1   [ally] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Actor/sl_ally on=- spot=( 2248.227 2085.820 343.547 ) aimsweep=0 gunner=1 t=100.775
+14:01:11 p1   [ally] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Actor/sl_ally on=- spot=( 1309.219 2232.125 311.323 ) aimsweep=0 gunner=1 t=100.775
+14:01:11 p1   [ally] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( 552.310 1510.170 -80.000 ) aimsweep=1 gunner=1 t=100.775
+14:01:11 p1     ^~^~^ SL tpfar
+14:01:11 p1     ^~^~^ SPOTLIGHT lost set=1 group=2
+14:01:11 p1     ^~^~^ SPOTLIGHT lost set=1 group=1
+14:01:11 p1     ^~^~^ SL detected=1
+14:01:11 p1     ^~^~^ SL ally spawned at=( 2020.250 2480.593 256.125 ) r=500
+14:01:11 p1     ^~^~^ SPOTLIGHT hunt set=1 group=2 target=sl_ally/Actor
+14:01:11 p1     ^~^~^ SPOTLIGHT hunt set=1 group=1 target=sl_ally/Actor
+14:01:11 p1 == SCENE-ACTOR PASS (flagged ally must not be hunted)
+14:01:20 p1   [scene] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=0 tgt=none on=- spot=( 1620.188 294.847 -86.960 ) aimsweep=0 gunner=1 t=109.475
+14:01:20 p1   [scene] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=0 tgt=none on=- spot=( 1217.067 1847.528 -107.580 ) aimsweep=0 gunner=1 t=109.475
+14:01:20 p1   [scene] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( -747.536 1944.036 -61.656 ) aimsweep=1 gunner=1 t=109.475
+14:01:20 p1 script errors: 0 []
