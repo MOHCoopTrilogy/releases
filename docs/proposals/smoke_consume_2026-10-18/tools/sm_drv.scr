@@ -219,9 +219,9 @@ sm_do local.c:{
 	if( local.c == "lookcache" ){
 		local.t = level.coop_cacheTrig
 		if( local.t != NULL && local.t != NIL ){
-			local.o = local.t.origin + ( -200 0 40 )
+			local.o = local.t.origin + ( -140 -55 24 )
 			local.p origin local.o
-			local.p.viewangles = ( 12 0 0 )
+			local.p.viewangles = ( 6 22 0 )
 			println ( "^~^~^ SM lookcache from " + local.o )
 		}
 	}

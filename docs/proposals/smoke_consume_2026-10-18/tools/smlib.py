@@ -25,3 +25,16 @@ def overlay(name="ov_sm.pk3", driver="sm_drv.scr", ref=None, extra=()):
     return ov
 G.overlay = overlay
 R = G.R
+
+_c = os.environ.get("SMCLIENT")
+if _c:
+    _ports = {"hudfeed4": 12793, "hudfeed2": 12721, "hudfeed5": 12795}
+    R.OWNER = _c
+    R.CLIENT = "G:/mohaa-" + _c
+    R.EXE = os.path.join(R.CLIENT, "openmohaa_rw.exe")
+    R.HOME = os.path.join(R.CLIENT, "home")
+    R.MAINTT = os.path.join(R.HOME, "maintt")
+    R.LOG = os.path.join(R.MAINTT, "qconsole.log")
+    R.SHOTS = os.path.join(R.MAINTT, "screenshots")
+    R.PRISTINE = os.path.join(R.CLIENT, "pristine")
+    R.PORT = _ports.get(_c, 12795)
