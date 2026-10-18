@@ -1,0 +1,53 @@
+//=========================================================================
+// TEST-ONLY overlay (docs/proposals/hud_textfeed_2026-10-18/tools/run_textfeed.py) - NEVER shipped.
+// Replaces coop_selftest_xp.scr inside the harness overlay pk3 only; main.scr starts st_xp_run when coop_st_xp 1.
+// tf_go 1: a FULL feed (three long lines + a long-wording burst) - the subtitle test stands the client-side subtitle cvars on top.
+// tf_go 2: releases the REAL m1l1 hint "Climb the stairs and find the MG42 mounted machine gun." (maps/m1l1.scr ~2667,
+//          a bold iprintlnbold that went to the old top-left box) by setting the flags that thread waits for.
+// tf_go 3: the REAL challenges.scr::chal_toast_show (banner + typewriter).
+// tf_go 4: the OLD route: bare iprint / iprintlnbold from a map-style call, for contrast on the old cgame.
+// Re-armed on every change of tf_go.
+//=========================================================================
+st_xp_run:{
+	local.last = "x"
+	while( 1 ){
+		wait 0.5
+		local.g = getcvar "tf_go"
+		if( local.g != local.last ){
+			local.last = local.g
+			local.p = $player[1]
+			if( local.p != NULL ){
+				if( local.g == "1" ){
+					println "^~^~^ TF phase fullfeed"
+					waitthread coop_mod/feed.scr::feed_player local.p 1 "tf_a" "Squad leader: the bridge is held by an MG42 nest. Flank through the orchard and keep your heads down until the mortar team is ready."
+					waitthread coop_mod/feed.scr::feed_player local.p 1 "tf_b" "Radio: second platoon reports armour moving up the east road. Hold the crossroads and do not let it cut the supply line to the beach."
+					waitthread coop_mod/feed.scr::feed_player local.p 1 "tf_c" "Medic: I am out of bandages. Find an aid station or a fallen comrade before the next push, we will need every man."
+					wait 0.3
+					waitthread coop_mod/feed.scr::feed_player local.p 0 "tf_d" "Sniper spotted on the church tower!"
+				}
+				if( local.g == "2" ){
+					println "^~^~^ TF phase m1l1 hint"
+					level.flags["bazooka"] = 2
+					level.flags["door"] = 1
+				}
+				if( local.g == "3" ){
+					println "^~^~^ TF phase banner"
+					thread coop_mod/challenges.scr::chal_toast_show local.p "Dead Eye"
+				}
+				if( local.g == "4" ){
+					println "^~^~^ TF phase oldroute"
+					iprintlnbold "Climb the stairs and find the MG42 mounted machine gun."
+					wait 1
+					iprintln "You have acquired the binoculars!"
+				}
+				if( local.g == "5" ){
+					println "^~^~^ TF phase longwording"
+					waitthread coop_mod/feed.scr::feed_player local.p 2 "chal" "Challenge complete: Sharpshooter"
+					waitthread coop_mod/feed.scr::feed_player local.p 2 "chal" "Challenge complete: Dead Eye"
+					wait 0.2
+					iprintlnbold "This is a deliberately long mission hint that used to be cut off with three dots after the third row of the old feed. It now wraps to the sixth row, so the last words (end of message) arrive intact."
+				}
+			}
+		}
+	}
+}end

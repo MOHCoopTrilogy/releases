@@ -1,0 +1,62 @@
+== OLD code (coop-wip): thrown smoke back after respawn ==
+^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+
+== NEW: throw, die, respawn ==
+real throw reached the landing hook (PARADROP signal smoke)
+^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+^~^~^ SMOKE_CONSUMED p=UnnamedSoldier#8240
+^~^~^ PARADROP signal smoke (feed: the C-47 line follows)
+^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=0 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=0 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+^~^~^ SM state after_itemGetAll p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=1 armed=0 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+
+== NEW: unused smoke survives death ==
+^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+^~^~^ REWARD_DROP kind=smoke spot=( -3894.000 2883.665 6.125 ) lastpos=( -3894.000 2860.000 0.125 )
+^~^~^ REWARD_SPAWN kind=smoke pos=( -3894.000 2883.665 6.125 ) fb=( -3894.000 2860.000 6.125 )
+^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=0 hasSmoke=0 smokeAmmo=0 used=0 armed=1 smokeOwner=none hasBinoc=0 binocUses=nil binocOwner=none
+^~^~^ REWARD_PICKUP kind=smoke by=UnnamedSoldier#8240
+^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+^~^~^ SM state smoke_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=1 smokeAmmo=-1 used=0 armed=1 smokeOwner=UnnamedSoldier#8240 hasBinoc=0 binocUses=nil binocOwner=none
+
+== NEW: binoculars ==
+^~^~^ SM state binoc_granted p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=1 binocOwner=UnnamedSoldier#8240
+^~^~^ SM state binoc_after_fire p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+^~^~^ SM state respawned p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+^~^~^ SM state after_itemGetAll p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+^~^~^ SM state now p=UnnamedSoldier#8240 alive=1 hasSmoke=0 smokeAmmo=-1 used=0 armed=0 smokeOwner=none hasBinoc=0 binocUses=0 binocOwner=none
+
+== NEW: drops + cache ==
+^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=smoke
+^~^~^ OFFICER_DROP map=m3l2 indoor=0 pick=binoc
+^~^~^ OFFICER_DROP map=m2l2c indoor=1 pick=indoor
+^~^~^ INDOOR_CACHE spawn pos=( -3814.000 2160.000 6.125 )
+^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+^~^~^ INDOOR_CACHE used p=UnnamedSoldier#8240 hp=250.000 rifle=80 smg=120 pistol=81
+^~^~^ SM cache after p=UnnamedSoldier#8240 hp=250.000 rifle=80
+^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+^~^~^ SM cache after p=UnnamedSoldier#8240 hp=100.000 rifle=3
+^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+^~^~^ INDOOR_CACHE used p=UnnamedSoldier#8240 hp=250.000 rifle=80 smg=120 pistol=81
+^~^~^ SM cache after p=UnnamedSoldier#8240 hp=250.000 rifle=80
+^~^~^ SM cache before p=UnnamedSoldier#8240 hp=100.000 max=250.000 rifle=3
+^~^~^ INDOOR_CACHE refused p=UnnamedSoldier#8240 (already used)
+^~^~^ SM cache after p=UnnamedSoldier#8240 hp=100.000 rifle=3

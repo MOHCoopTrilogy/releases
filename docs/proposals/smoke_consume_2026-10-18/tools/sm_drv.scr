@@ -1,0 +1,228 @@
+//=========================================================================
+// TEST-ONLY overlay driver (smoke-consume / one-reward / indoor cache 2026-10-18) - NEVER shipped.
+// Installed as coop_mod/coop_selftest_xp.scr. Commands arrive in cvar rw_cmd; args in rw_x rw_y rw_z rw_yaw rw_n.
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ RW armed"
+	setcvar "rw_cmd" "0"
+	while( 1 ){
+		local.c = getcvar( "rw_cmd" )
+		if( local.c != "0" && local.c != "" ){
+			setcvar "rw_cmd" "0"
+			waitthread sm_do local.c
+			println ( "^~^~^ RW did " + local.c )
+		}
+		waitframe
+	}
+}end
+
+sm_state local.tag local.p:{
+	if( local.p == NULL ){ end }
+	// REAL inventory probe (playerHasWeapon only reads the script bookkeeping array): equip it by name and look at the
+	// active weapon. The engine ignores "use" for an item that is not in the inventory.
+	local.has = 0
+	if( isAlive local.p ){
+		local.p useweaponclass "rifle"
+		wait 0.6
+		local.p use "Signal Smoke Grenade"
+		wait 1.2
+		local.w = local.p getactiveweap 0
+		if( local.w != NULL && local.w != NIL ){
+			if( local.w.model == "models/weapons/coop_smoke_grenade.tik" ){ local.has = 1 }
+		}
+		local.p useweaponclass "rifle"
+	}
+	local.hb = 0
+	if( waitthread coop_mod/itemhandler.scr::playerHasWeapon local.p "weapons/coop_binoculars.tik" ){ local.hb = 1 }
+	local.am = local.p getammo smokegrenade
+	local.al = 0
+	if( isAlive local.p ){ local.al = 1 }
+	local.us = 0
+	if( local.p.flags["coop_smokeUsed"] == 1 ){ local.us = 1 }
+	local.so = "none"
+	if( level.coop_smoke_player != NULL && level.coop_smoke_player != NIL ){ local.so = level.coop_smoke_player.netname }
+	local.bo = "none"
+	if( level.coop_binoc_owner != NULL && level.coop_binoc_owner != NIL ){ local.bo = level.coop_binoc_owner.netname }
+	local.arm = 0
+	if( level.coop_paradrop_armed == 1 ){ local.arm = 1 }
+	local.uses = "nil"
+	if( level.coop_binoc_uses != NIL ){ local.uses = "" + level.coop_binoc_uses }
+	local.a1 = local.p getammo rifle
+	local.a2 = local.p getammo smg
+	local.a3 = local.p getammo mg
+	local.a4 = local.p getammo pistol
+	local.a5 = local.p getammo grenade
+	local.a6 = local.p getammo shotgun
+	local.a7 = local.p getammo heavy
+	println ( "^~^~^ SM ammo " + local.tag + " rifle=" + local.a1 + " smg=" + local.a2 + " mg=" + local.a3 + " pistol=" + local.a4 + " grenade=" + local.a5 + " shotgun=" + local.a6 + " heavy=" + local.a7 )
+	println ( "^~^~^ SM state " + local.tag + " p=" + local.p.netname + " alive=" + local.al + " hasSmoke=" + local.has + " smokeAmmo=" + local.am + " used=" + local.us + " armed=" + local.arm + " smokeOwner=" + local.so + " hasBinoc=" + local.hb + " binocUses=" + local.uses + " binocOwner=" + local.bo )
+}end
+
+sm_do local.c:{
+	local.p = $player[1]
+	if( local.p == NULL ){ end }
+	local.yaw = float( getcvar( "rw_yaw" ) )
+	if( local.c == "here" ){
+		println ( "^~^~^ RW here " + local.p.origin + " ang=" + local.p.viewangles )
+	}
+	if( local.c == "god" ){
+		local.p nodamage
+		local.p.health = 100000
+		local.p.max_health = 100000
+	}
+	if( local.c == "players" ){
+		println ( "^~^~^ SM players n=" + $player.size )
+		for( local.i = 1; local.i <= $player.size; local.i++ ){
+			println ( "^~^~^ SM player " + local.i + " " + $player[local.i].netname + " alive=" + ( isAlive $player[local.i] ) + " ent=" + $player[local.i].entnum )
+		}
+	}
+	if( local.c == "purge" ){
+		local.k = 0
+		for( local.i = 1; local.i <= $actor.size; local.i++ ){
+			local.a = $actor[local.i]
+			if( local.a == NULL || local.a == NIL ){ continue }
+			if( !isAlive local.a ){ continue }
+			local.k++
+			local.a damage local.a 99999 local.a local.a.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
+		}
+		println ( "^~^~^ RW purged " + local.k )
+	}
+	if( local.c == "state" ){
+		waitthread sm_state "now" local.p
+	}
+	// the pickup half of coop_smoke_reward_pickup (same lines, same order)
+	if( local.c == "grantsmoke" ){
+		local.p.flags["coop_smokeUsed"] = NIL
+		local.p item models/weapons/coop_smoke_grenade.tik
+		level.coop_paradrop_armed = 1
+		level.coop_smoke_player = local.p
+		thread coop_mod/officer.scr::coop_smoke_hud_show
+		thread coop_mod/officer.scr::coop_smoke_owner_watch local.p
+		wait 1
+		waitthread sm_state "smoke_granted" local.p
+	}
+	// the throw, driven by the real input (console use + attack) happens in the python; this only reports
+	if( local.c == "sim_throw" ){
+		// fallback: what the engine does to the inventory on a throw, then the landing hook
+		local.p take "Signal Smoke Grenade"
+		local.p setammo smokegrenade 0
+		waitthread sm_state "sim_thrown_in_flight" local.p
+		thread coop_mod/paradrop.scr::smokeDropZone ( local.p.origin + ( 0 0 4 ) )
+	}
+	if( local.c == "awaitrespawn" ){
+		waitthread coop_mod/coop_selftest_keyitems.scr::st_ki_awaitRespawn local.p 40
+		wait 2
+		if( isAlive local.p ){
+			local.p nodamage
+			local.p.health = 100000
+		}
+		waitthread sm_state "respawned" local.p
+	}
+	// the loadout / weapon refresh paths a respawn or an armory change runs
+	if( local.c == "refresh" ){
+		local.p thread coop_mod/main.scr::itemGetAll
+		wait 3
+		waitthread sm_state "after_itemGetAll" local.p
+	}
+	if( local.c == "tpfwd" ){
+		local.f = angles_toforward ( 0 local.yaw 0 )
+		local.dist = float( getcvar( "rw_x" ) )
+		local.up = float( getcvar( "rw_z" ) )
+		local.fs = vector_scale local.f local.dist
+		local.tgt = local.p.origin + local.fs
+		local.t2 = local.tgt + ( 0 0 48 )
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground local.t2
+		if( local.g == NIL ){ local.g = local.tgt }
+		local.g[2] = local.g[2] + local.up
+		local.p origin local.g
+		println ( "^~^~^ RW tpfwd to " + local.g )
+	}
+	if( local.c == "walkoversmoke" ){
+		local.t = level.coop_rewardTrig["smoke"]
+		if( local.t != NULL && local.t != NIL ){
+			local.p origin ( local.t.origin + ( 0 0 4 ) )
+			wait 2.5
+		}
+		waitthread sm_state "after_walkoversmoke" local.p
+	}
+	// ---- binoculars: grant through the real function, fire through the real hook
+	if( local.c == "grantbinoc" ){
+		level.coop_binoc_uses = NIL
+		level.coop_binoc_given = 0
+		level.coop_binoc_owner = NULL
+		waitthread coop_mod/officer.scr::coop_binoc_grant local.p
+		wait 1
+		waitthread sm_state "binoc_granted" local.p
+	}
+	if( local.c == "firebinoc" ){
+		local.f = angles_toforward ( 0 local.yaw 0 )
+		local.tgt = local.p.origin + ( vector_scale local.f 500 )
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground local.tgt
+		if( local.g != NIL ){ local.tgt = local.g }
+		waitthread coop_mod/officer.scr::binoculars_fired local.p local.tgt
+		wait 4
+		waitthread sm_state "binoc_after_fire" local.p
+	}
+	// ---- officer drops: n calls to the real death-drop function at spaced points (the ten-drop proof)
+	if( local.c == "odrops" ){
+		local.n = int( getcvar( "rw_n" ) )
+		for( local.i = 1; local.i <= local.n; local.i++ ){
+			// a fresh slate each time so a drop never meets a held reward
+			level.coop_binoc_given = 0
+			level.coop_binoc_owner = NULL
+			level.coop_smoke_player = NULL
+			level.coop_paradrop_armed = 0
+			local.o = local.p.origin + ( ( local.i * 40 ) 0 0 )
+			waitthread coop_mod/officer.scr::coop_officer_death_drops local.o
+		}
+		println ( "^~^~^ SM odrops done n=" + local.n )
+	}
+	// one drop on an indoor map (the map name is the only thing the gate reads)
+	if( local.c == "idrop" ){
+		local.keep = level.coop_mapname
+		level.coop_mapname = "m2l2c"
+		waitthread coop_mod/officer.scr::coop_officer_death_drops ( local.p.origin + ( 80 0 0 ) )
+		level.coop_mapname = local.keep
+		println ( "^~^~^ SM idrop done" )
+	}
+	if( local.c == "cacheuse" ){
+		local.i = int( getcvar( "rw_n" ) )
+		local.q = $player[local.i]
+		if( local.q == NULL ){
+			println ( "^~^~^ SM cacheuse no player " + local.i )
+		} else {
+			local.q healthonly 100
+			local.q setammo rifle 3
+			local.q setammo smg 3
+			local.q setammo pistol 2
+			local.hp = local.q.health
+			local.ar = local.q getammo rifle
+			println ( "^~^~^ SM cache before p=" + local.q.netname + " hp=" + local.hp + " max=" + local.q.max_health + " rifle=" + local.ar )
+			local.sl = getcvar( "rw_slot" )
+			if( local.sl == "" || local.sl == "0" ){
+				waitthread coop_mod/officer.scr::coop_cache_use local.q
+			} else {
+				waitthread coop_mod/officer.scr::coop_cache_use local.q ( int( local.sl ) )
+			}
+			local.ar = local.q getammo rifle
+			println ( "^~^~^ SM cache after p=" + local.q.netname + " hp=" + local.q.health + " rifle=" + local.ar )
+		}
+	}
+	// the real walk-over: stand the player on the cache trigger
+	if( local.c == "walkcache" ){
+		local.t = level.coop_cacheTrig
+		if( local.t != NULL && local.t != NIL ){
+			local.p origin ( local.t.origin + ( 0 0 4 ) )
+			wait 1.5
+		}
+	}
+	if( local.c == "lookcache" ){
+		local.t = level.coop_cacheTrig
+		if( local.t != NULL && local.t != NIL ){
+			local.o = local.t.origin + ( -200 0 40 )
+			local.p origin local.o
+			local.p.viewangles = ( 12 0 0 )
+			println ( "^~^~^ SM lookcache from " + local.o )
+		}
+	}
+}end
