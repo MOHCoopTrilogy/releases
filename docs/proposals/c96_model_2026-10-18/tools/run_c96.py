@@ -35,6 +35,25 @@ for _f in ("", "_gold", "_chrome", "_blued", "_bloody", "_camo_woodland", "_camo
 A.GUNS["colt45"] = "models/weapons/colt45.tik"
 
 
+def third_close_c96(sess, gun):
+    """third person, CLOSE: left side, right side, behind-above, hip and aimed; then one shot per camera of the first two,
+    every frame (the bolt cycle seen from outside = the world model's own clip). Tag <gun>__stand__tpc."""
+    tag = "ab__%s__%s__stand__tpc__after" % (sess, gun)
+    L = S.RELEASE + S.TO_STAND + ["wait 400", "set cg_3rd_person 1", "echo ^~^~^ ABSCEN begin %s" % tag]
+    i = [0]
+    for aim in (0, 1):
+        L += (["+button13", "wait 900"] if aim else [])
+        for dist, hgt, side in ((16, 2, -15), (16, 2, 15), (22, 10, 0)):
+            L += ["set cg_cameradist %d" % dist, "set cg_cameraheight %d" % hgt, "set cg_camerasideoffset %d" % side, "wait 500"]
+            L += A.frames(tag, 2, i)
+        L += ["set cg_cameradist 16", "set cg_cameraheight 2", "set cg_camerasideoffset -15", "wait 400", "+attackprimary"] + A.frames(tag, 14, i) + ["-attackprimary"] + A.frames(tag, 10, i)
+    L += ["-button13", "echo ^~^~^ ABSCEN end %s" % tag, "set cg_3rd_person 0", "set cg_camerasideoffset 18", "set cg_cameradist 120", "set cg_cameraheight 18", "wait 400"] + S.RELEASE
+    R.step(L, timeout=900)
+
+
+RH.third_close = third_close_c96
+
+
 def take(opt, n=1):
     if opt not in sys.argv:
         return None
