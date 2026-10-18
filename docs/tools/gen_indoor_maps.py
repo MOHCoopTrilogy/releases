@@ -2,10 +2,9 @@
 """Generate coop_mod/indoor_maps.scr - the per-map INDOOR flag used by officer.scr::coop_officer_death_drops.
 
 A map is INDOOR (no airstrike / paradrop reward is usable, so the officer drops the ammo+health cache instead) when:
-  (a) it is flight class D in aircraft_envelope: fewer than 40 outdoor pathnodes, i.e. no usable sky anywhere; or
-  (b) the officer's authored anchor (officer_positions.scr coop_officer_anchor) has NO open sky above it: the first
-      leaf above the anchor's open air is not a sky leaf (a roof / ceiling / bunker), so a call-in aimed at the
-      arena would be denied by the sky check anyway.
+  (a) it is flight class D in aircraft_envelope: fewer than 40 outdoor pathnodes, i.e. no usable sky anywhere.
+  Only (a) counts: an officer standing under a roof on an otherwise open map is NOT indoor (the call-ins retarget to
+  the nearest open sky, officer.scr::coop_binoc_opensky). Omaha (m3l1a/b) is never touched.
 Source: retail BSPs via aircraft_bsp.py (read only). Never hand-edit the output.
 
 Usage: python gen_indoor_maps.py build | check | list
@@ -57,12 +56,6 @@ def compute():
         why = None
         if "g50" not in r or r.get("outdoor", 0) < 40:
             why = "no usable sky (%s outdoor nodes)" % r.get("outdoor", 0)
-        elif m in anc:
-            s = r.get("_bsp")
-            if s is not None:
-                sky = open_sky_above(s, *anc[m])
-                if sky is False:
-                    why = "officer anchor %d %d %d is under cover" % anc[m]
         if why:
             rows.append((m, why))
     return rows

@@ -225,4 +225,25 @@ sm_do local.c:{
 			println ( "^~^~^ SM lookcache from " + local.o )
 		}
 	}
+	if( local.c == "retest" ){
+		local.found = 0
+		for( local.r = 200; local.r <= 1600 && local.found == 0; local.r = local.r + 100 ){
+			for( local.k = 0; local.k < 12 && local.found == 0; local.k++ ){
+				local.d = angles_toforward ( 0 ( local.k * 30 ) 0 )
+				local.q = local.p.origin + ( vector_scale local.d local.r )
+				local.g = waitthread coop_mod/officer.scr::coop_find_ground local.q
+				if( local.g != NIL ){
+					local.sky = exec coop_mod/officer.scr::coop_hasOpenSky local.g
+					if( local.sky == 0 ){
+						local.found = 1
+						local.alt = exec coop_mod/officer.scr::coop_binoc_opensky local.g
+						local.altsky = "none"
+						if( local.alt != NIL ){ local.altsky = "" + ( exec coop_mod/officer.scr::coop_hasOpenSky local.alt ) }
+						println ( "^~^~^ SM retarget covered=" + local.g + " alt=" + local.alt + " altOpenSky=" + local.altsky )
+					}
+				}
+			}
+		}
+		if( local.found == 0 ){ println "^~^~^ SM retarget no covered point found" }
+	}
 }end

@@ -123,6 +123,19 @@ try:
         cmd("state")
         show(p0)
 
+    if FLOW == "cache":
+        p0 = len(R.read_log())
+        cmd("purge")
+        time.sleep(5)
+        cmd("idrop")
+        cmd("lookcache")
+        time.sleep(1.5)
+        G.frames("cacheshot", 24, ms=150)
+        R.step(["set rw_cmd walkcache"], timeout=10)
+        G.frames("cacheshot_b", 10, ms=150)
+        cmd("retest")
+        show(p0, 40)
+
     if FLOW == "drops":
         p0 = len(R.read_log())
         cmd("players")
