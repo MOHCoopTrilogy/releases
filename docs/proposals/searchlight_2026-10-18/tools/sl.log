@@ -174,3 +174,73 @@ PermissionError: [WinError 32] The process cannot access the file because it is 
 18:35:59 p1   [scene] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=0 tgt=none on=0 spot=( 373.110 1201.021 -63.089 ) aimsweep=0 gunner=1 t=115.850
 18:35:59 p1   [scene] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( 406.330 1742.951 -80.002 ) aimsweep=1 gunner=1 t=115.850
 18:35:59 p1 script errors: 1 ['[2026-10-18 18:34:44 UTC-6.000] ^~^~^ Script Error : health must be greater than 0']
+18:46:22 p2 FAILED PermissionError(13, 'The process cannot access the file because it is being used by another process')  extra=["set coop_alarm 0"])
+                    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev/docs/proposals/ai_realism_2026-10-15/tools\ailib.py", line 76, in boot
+    rundir, notes = S.boot_session(sess, cg, W, H, EXTRA + list(extra), ov or overlay(ref=ref, extra=files))
+                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev/docs/proposals/ironsights_2026-09-28/tools\run_sweep.py", line 97, in boot_session
+    R.seed_home(cgame, overlay)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev\docs\proposals\ironsights_2026-09-28\tools\run_ironsights.py", line 75, in seed_home
+    os.remove(LOG)
+    ~~~~~~~~~^^^^^
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'G:/mohaa-hudfeed2\\home\\maintt\\qconsole.log'
+
+18:47:32 booted sl_p2 m1l2a ref=work dog False
+18:47:35 p2 == A: undetected sweep (off-axis camera yaw 40), then a German spots the player
+18:47:49 p2   [spotted] ight=1 set=1 hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) why=german ent538 enemy=Player aimsweep=0 gunner=1 t=57.925
+18:47:49 p2   [spotted] ight=2 set=1 hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) why=german ent538 enemy=Player aimsweep=0 gunner=1 t=57.925
+18:47:49 p2     ^~^~^ SPOTLIGHT detect=1 set=1 group=2 why=german ent610 enemy=Player
+18:47:49 p2     ^~^~^ SPOTLIGHT detect=1 set=1 group=1 why=german ent610 enemy=Player
+18:47:49 p2     ^~^~^ SPOTLIGHT detect=1 set=1 group=3 why=german ent610 enemy=Player
+18:47:49 p2 == B: German removed, player far out of sight, alarm untouched; detect/hunt every 2 s for 30 s
+18:47:49 p2   [calm + 0s] ight=1 set=1 hunt=1 tgt=Player/player on=0 spot=( 1948.354 2392.314 483.590 ) why=none aimsweep=0 gunner=1 t=58.600
+18:47:49 p2   [calm + 0s] ight=2 set=1 hunt=1 tgt=Player/player on=0 spot=( 1948.355 2392.315 483.588 ) why=none aimsweep=0 gunner=1 t=58.600
+18:47:51 p2   [calm + 1s] ight=1 set=1 hunt=0 tgt=none on=0 spot=( 2331.819 1608.677 -116.268 ) why=none aimsweep=0 gunner=1 t=60.025
+18:47:51 p2   [calm + 1s] ight=2 set=1 hunt=0 tgt=none on=0 spot=( 1050.626 1282.031 -65.947 ) why=none aimsweep=0 gunner=1 t=60.025
+18:47:52 p2   [calm + 2s] ight=1 set=1 hunt=0 tgt=none on=0 spot=( 2070.322 1605.166 -127.472 ) why=none aimsweep=0 gunner=1 t=61.475
+18:47:52 p2   [calm + 2s] ight=2 set=1 hunt=0 tgt=none on=0 spot=( 1160.269 1147.824 -71.679 ) why=none aimsweep=0 gunner=1 t=61.475
+18:47:54 p2   [calm + 4s] ight=1 set=1 hunt=0 tgt=none on=0 spot=( 1719.848 1237.427 -101.110 ) why=none aimsweep=0 gunner=1 t=62.875
+18:47:54 p2   [calm + 4s] ight=2 set=1 hunt=0 tgt=none on=0 spot=( 1160.269 1147.824 -71.679 ) why=none aimsweep=0 gunner=1 t=62.875
+18:47:55 p2   [calm + 5s] ight=1 set=1 hunt=0 tgt=none on=0 spot=( 1771.263 1237.084 -95.299 ) why=none aimsweep=0 gunner=1 t=64.325
+18:47:55 p2   [calm + 5s] ight=2 set=1 hunt=0 tgt=none on=0 spot=( 532.577 857.672 31.154 ) why=none aimsweep=0 gunner=1 t=64.325
+18:47:56 p2   [calm + 7s] ight=1 set=1 hunt=0 tgt=none on=0 spot=( 2210.863 1234.154 -45.615 ) why=none aimsweep=0 gunner=1 t=65.750
+18:47:56 p2   [calm + 7s] ight=2 set=1 hunt=0 tgt=none on=0 spot=( 1011.548 1334.794 -59.200 ) why=none aimsweep=0 gunner=1 t=65.750
+18:47:58 p2   [calm + 8s] ight=1 set=1 hunt=0 tgt=none on=0 spot=( 2346.604 1574.942 -115.698 ) why=none aimsweep=0 gunner=1 t=67.175
+18:47:58 p2   [calm + 8s] ight=2 set=1 hunt=0 tgt=none on=0 spot=( 1341.245 1151.826 -100.234 ) why=none aimsweep=0 gunner=1 t=67.175
+18:47:59 p2   [calm +10s] ight=1 set=1 hunt=0 tgt=none on=0 spot=( 457.037 1065.982 -43.406 ) why=none aimsweep=0 gunner=1 t=68.625
+18:47:59 p2   [calm +10s] ight=2 set=1 hunt=0 tgt=none on=0 spot=( 542.499 858.505 29.581 ) why=none aimsweep=0 gunner=1 t=68.625
+18:48:01 p2   [calm +11s] ight=1 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 2154.036 1226.439 -43.018 ) why=none aimsweep=0 gunner=1 t=70.025
+18:48:01 p2   [calm +11s] ight=2 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 1360.457 1144.523 -102.764 ) why=none aimsweep=0 gunner=1 t=70.025
+18:48:02 p2   [calm +12s] ight=1 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 926.827 1027.380 -57.326 ) why=none aimsweep=0 gunner=1 t=71.475
+18:48:02 p2   [calm +12s] ight=2 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 263.612 1718.826 -82.916 ) why=none aimsweep=0 gunner=1 t=71.475
+18:48:04 p2   [calm +14s] ight=1 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 1549.950 1061.571 -28.530 ) why=none aimsweep=0 gunner=1 t=72.875
+18:48:04 p2   [calm +14s] ight=2 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 621.309 1734.595 -94.550 ) why=none aimsweep=0 gunner=1 t=72.875
+18:48:05 p2   [calm +15s] ight=1 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 1735.486 814.480 -72.505 ) why=none aimsweep=0 gunner=1 t=74.325
+18:48:05 p2   [calm +15s] ight=2 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 976.912 1670.409 -119.810 ) why=none aimsweep=1 gunner=1 t=74.325
+18:48:06 p2   [calm +17s] ight=1 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 1391.747 899.453 -107.825 ) why=none aimsweep=1 gunner=1 t=75.750
+18:48:06 p2   [calm +17s] ight=2 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 1290.947 1516.385 -133.256 ) why=none aimsweep=1 gunner=1 t=75.750
+18:48:08 p2   [calm +18s] ight=1 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 1311.501 1228.979 -115.385 ) why=none aimsweep=1 gunner=1 t=77.175
+18:48:08 p2   [calm +18s] ight=2 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 1396.612 1189.556 -124.158 ) why=none aimsweep=1 gunner=1 t=77.175
+18:48:09 p2   [calm +19s] ight=1 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 1457.024 1552.117 -93.846 ) why=none aimsweep=1 gunner=1 t=78.600
+18:48:09 p2   [calm +19s] ight=2 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 1147.830 959.159 -103.085 ) why=none aimsweep=1 gunner=1 t=78.600
+18:48:11 p2   [calm +21s] ight=1 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 1703.486 1767.208 -79.793 ) why=none aimsweep=1 gunner=1 t=80.025
+18:48:11 p2   [calm +21s] ight=2 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 818.168 829.790 -79.586 ) why=none aimsweep=1 gunner=1 t=80.025
+18:48:12 p2   [calm +22s] ight=1 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 2056.631 1844.128 -79.968 ) why=none aimsweep=1 gunner=1 t=81.475
+18:48:12 p2   [calm +22s] ight=2 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 457.308 862.743 -79.136 ) why=none aimsweep=1 gunner=1 t=81.475
+18:48:14 p2   [calm +24s] ight=1 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 2410.605 1838.110 -79.995 ) why=none aimsweep=1 gunner=1 t=82.900
+18:48:14 p2   [calm +24s] ight=2 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 112.321 950.347 -70.242 ) why=none aimsweep=1 gunner=1 t=82.900
+18:48:15 p2   [calm +25s] ight=1 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 2577.623 1578.290 -79.571 ) why=none aimsweep=1 gunner=1 t=84.325
+18:48:15 p2   [calm +25s] ight=2 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( -112.447 1210.109 -57.384 ) why=none aimsweep=1 gunner=1 t=84.325
+18:48:16 p2   [calm +27s] ight=1 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 2539.007 1253.546 31.550 ) why=none aimsweep=1 gunner=1 t=85.750
+18:48:16 p2   [calm +27s] ight=2 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( -73.099 1541.008 -62.824 ) why=none aimsweep=1 gunner=1 t=85.750
+18:48:18 p2   [calm +28s] ight=1 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 2219.586 1184.753 97.162 ) why=none aimsweep=1 gunner=1 t=87.175
+18:48:18 p2   [calm +28s] ight=2 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 222.866 1712.958 -81.508 ) why=none aimsweep=1 gunner=1 t=87.175
+18:48:19 p2   [calm +29s] ight=1 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 1937.902 1076.415 -11.319 ) why=none aimsweep=1 gunner=1 t=88.600
+18:48:19 p2   [calm +29s] ight=2 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 577.751 1737.198 -92.530 ) why=none aimsweep=1 gunner=1 t=88.600
+18:48:21 p2   [calm +31s] ight=1 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 1751.470 815.094 -70.340 ) why=none aimsweep=1 gunner=1 t=90.025
+18:48:21 p2   [calm +31s] ight=2 set=1 hunt=0 tgt=Actor/friendly on=0 spot=( 928.352 1681.646 -115.855 ) why=none aimsweep=1 gunner=1 t=90.025
+18:48:22 p2     ^~^~^ SPOTLIGHT lost set=1 group=2
+18:48:22 p2     ^~^~^ SPOTLIGHT lost set=1 group=1
+18:48:22 p2 script errors: 2 ['[2026-10-18 18:47:32 UTC-6.000] ^~^~^ Script Error : health must be greater than 0', '[2026-10-18 18:47:49 UTC-6.000] ^~^~^ Script Error : health must be greater than 0']

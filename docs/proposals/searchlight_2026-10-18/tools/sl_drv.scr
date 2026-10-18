@@ -36,7 +36,7 @@ sl_do local.c:{
 			if( local.l.currentaim == local.l.org ){ local.sw = 1 }
 			local.ga = 0
 			if( isalive local.l.spotter ){ local.ga = 1 }
-			println ( "^~^~^ SL light=" + local.i + " set=" + local.l.set + " pos=" + local.l.origin + " hunt=" + ( waitthread sl_s local.l.coopHunt ) + " tgt=" + local.tn + " on=" + ( waitthread sl_s local.l.on_target ) + " spot=" + local.l.spotlight.origin + " aimsweep=" + local.sw + " gunner=" + local.ga + " t=" + level.time )
+			println ( "^~^~^ SL light=" + local.i + " set=" + local.l.set + " pos=" + local.l.origin + " hunt=" + ( waitthread sl_s local.l.coopHunt ) + " tgt=" + local.tn + " on=" + ( waitthread sl_s local.l.on_target ) + " spot=" + local.l.spotlight.origin + " why=" + ( waitthread sl_s local.l.coopWhy ) + " aimsweep=" + local.sw + " gunner=" + local.ga + " t=" + level.time )
 		}
 	}
 	if( local.c == "tpl" ){
@@ -81,6 +81,27 @@ sl_do local.c:{
 		}
 		level.alarm = 0
 		println ( "^~^~^ SL purged " + local.k )
+	}
+	if( local.c == "look" ){
+		local.lp = float( getcvar( "ai_pitch" ) )
+		local.ly = float( getcvar( "ai_yaw" ) )
+		local.p.viewangles = ( local.lp local.ly 0 )
+	}
+	if( local.c == "german" ){
+		// a German 250u in front of the player, in the coop array, so the light's detection can see him
+		cache models/human/german_waffenss_officer.tik
+		local.gy = float( getcvar( "ai_yaw" ) )
+		local.f = angles_toforward ( 0 local.gy 0 )
+		local.pos = local.p.origin + ( local.f * 250 )
+		local.g = waitthread coop_mod/officer.scr::coop_find_ground ( local.pos + ( 0 0 100 ) )
+		if( local.g == NIL ){ local.g = local.pos }
+		local.ger = spawn "models/human/german_waffenss_officer.tik"
+		local.ger.origin = local.g
+		local.ger droptofloor
+		local.ger.team = "german"
+		local.ger forceactivate
+		level.coop_actorArray["german"][level.coop_actorArray["german"].size + 1] = local.ger
+		println ( "^~^~^ SL german spawned at=" + local.g )
 	}
 	if( local.c == "tpfar" ){
 		local.p origin ( 0 0 5000 )
