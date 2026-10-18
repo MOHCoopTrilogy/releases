@@ -1,0 +1,4648 @@
+{
+ "e1l1": {
+  "spots": [
+   {
+    "body": 89,
+    "cluster": 1,
+    "elev": 392.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe/tudor_set1w_exwall1flat"
+    },
+    "los": 91,
+    "pos": [
+     -2864.0,
+     160.0,
+     472.12
+    ],
+    "side": 4
+   },
+   {
+    "body": 57,
+    "cluster": 2,
+    "elev": 192.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/concretewall_winter_bunker"
+    },
+    "los": 63,
+    "pos": [
+     5064.0,
+     2216.0,
+     608.12
+    ],
+    "side": 0
+   },
+   {
+    "body": 62,
+    "cluster": 3,
+    "elev": 184.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/concretewall_winter_bunker"
+    },
+    "los": 67,
+    "pos": [
+     3392.0,
+     1608.0,
+     600.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 67,
+    "cluster": 4,
+    "elev": 332.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe/tudor_set1w_exwall1flat"
+    },
+    "los": 77,
+    "pos": [
+     4056.0,
+     2008.0,
+     748.12
+    ],
+    "side": 1
+   }
+  ],
+  "stats": {
+   "faces": 3148,
+   "ground": 70,
+   "high": 347,
+   "kept": 57,
+   "los": 57,
+   "raw": 2648
+  }
+ },
+ "e1l2": {
+  "spots": [
+   {
+    "body": 10,
+    "cluster": 1,
+    "elev": 372.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 118.6,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe/tudor_set1w_exwall1flat"
+    },
+    "los": 14,
+    "pos": [
+     3240.0,
+     4696.0,
+     592.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 8,
+    "cluster": 2,
+    "elev": 256.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe/tudor_set1w_exwall1flat"
+    },
+    "los": 8,
+    "pos": [
+     4432.0,
+     4184.0,
+     448.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 8,
+    "cluster": 1,
+    "elev": 400.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 118.6,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe/tudor_set1w_exwall1flat"
+    },
+    "los": 8,
+    "pos": [
+     3800.0,
+     4712.0,
+     592.12
+    ],
+    "side": 1
+   }
+  ],
+  "stats": {
+   "faces": 3081,
+   "ground": 120,
+   "high": 218,
+   "kept": 38,
+   "los": 38,
+   "raw": 1680
+  }
+ },
+ "e1l3": {
+  "spots": [
+   {
+    "body": 59,
+    "cluster": 1,
+    "elev": 256.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/pierset_3ptty"
+    },
+    "los": 61,
+    "pos": [
+     792.0,
+     -5760.0,
+     400.12
+    ],
+    "side": 6
+   },
+   {
+    "body": 4,
+    "cluster": 2,
+    "elev": 312.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/stset_2base"
+    },
+    "los": 45,
+    "pos": [
+     -696.0,
+     4312.0,
+     512.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 5,
+    "cluster": 3,
+    "elev": 328.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 174.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/stset_2base"
+    },
+    "los": 43,
+    "pos": [
+     -136.0,
+     -840.0,
+     512.12
+    ],
+    "side": 5
+   },
+   {
+    "body": 23,
+    "cluster": 4,
+    "elev": 464.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/afrik_wall1a"
+    },
+    "los": 30,
+    "pos": [
+     1176.0,
+     760.0,
+     616.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 25,
+    "cluster": 5,
+    "elev": 584.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/af_extwall/AF-E-stonewall03highpass"
+    },
+    "los": 30,
+    "pos": [
+     1304.0,
+     -1752.0,
+     768.12
+    ],
+    "side": 7
+   },
+   {
+    "body": 8,
+    "cluster": 6,
+    "elev": 528.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe/tudor_set1w_exwall1flat"
+    },
+    "los": 44,
+    "pos": [
+     -136.0,
+     2904.0,
+     704.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 42,
+    "cluster": 7,
+    "elev": 280.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/af_extwall/AF-E-door03wallbase02"
+    },
+    "los": 45,
+    "pos": [
+     480.0,
+     3984.0,
+     432.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 27,
+    "cluster": 8,
+    "elev": 584.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/it_extwall/it_e_wall_brickochre01a"
+    },
+    "los": 33,
+    "pos": [
+     8.0,
+     -1752.0,
+     768.12
+    ],
+    "side": 6
+   },
+   {
+    "body": 24,
+    "cluster": 9,
+    "elev": 360.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/af_extwall/AF-E-door03wallbase02"
+    },
+    "los": 36,
+    "pos": [
+     280.0,
+     -6440.0,
+     512.12
+    ],
+    "side": 6
+   },
+   {
+    "body": 10,
+    "cluster": 2,
+    "elev": 320.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/stset_2base"
+    },
+    "los": 47,
+    "pos": [
+     -72.0,
+     4312.0,
+     512.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 42,
+    "cluster": 1,
+    "elev": 184.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 246.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/pierset_3ptty"
+    },
+    "los": 58,
+    "pos": [
+     600.0,
+     -5432.0,
+     328.12
+    ],
+    "side": 6
+   },
+   {
+    "body": 6,
+    "cluster": 7,
+    "elev": 352.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/stset_2base"
+    },
+    "los": 44,
+    "pos": [
+     312.0,
+     4312.0,
+     512.12
+    ],
+    "side": 2
+   }
+  ],
+  "stats": {
+   "faces": 2619,
+   "ground": 1519,
+   "high": 2932,
+   "kept": 350,
+   "los": 350,
+   "raw": 14416
+  }
+ },
+ "e2l1": {
+  "spots": [
+   {
+    "body": 63,
+    "cluster": 1,
+    "elev": 376.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe/church_interior_wall2flt"
+    },
+    "los": 77,
+    "pos": [
+     -3736.0,
+     -3960.0,
+     424.12
+    ],
+    "side": 5
+   },
+   {
+    "body": 35,
+    "cluster": 2,
+    "elev": 328.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_industrial/bridgebeam"
+    },
+    "los": 44,
+    "pos": [
+     1140.0,
+     -4304.0,
+     344.12
+    ],
+    "side": 6
+   },
+   {
+    "body": 26,
+    "cluster": 3,
+    "elev": 156.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe/church_interior_wall2flt"
+    },
+    "los": 29,
+    "pos": [
+     -4936.0,
+     -3960.0,
+     424.12
+    ],
+    "side": 5
+   },
+   {
+    "body": 31,
+    "cluster": 4,
+    "elev": 328.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_industrial/bridgebeam"
+    },
+    "los": 31,
+    "pos": [
+     300.0,
+     -4016.0,
+     344.12
+    ],
+    "side": 6
+   },
+   {
+    "body": 25,
+    "cluster": 1,
+    "elev": 376.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe/church_interior_wall2flt"
+    },
+    "los": 29,
+    "pos": [
+     -4264.0,
+     -4392.0,
+     424.12
+    ],
+    "side": 5
+   },
+   {
+    "body": 36,
+    "cluster": 3,
+    "elev": 265.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe/church_interior_wall2flt"
+    },
+    "los": 39,
+    "pos": [
+     -4456.0,
+     -3960.0,
+     424.12
+    ],
+    "side": 5
+   },
+   {
+    "body": 39,
+    "cluster": 1,
+    "elev": 376.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe/church_interior_wall2flt"
+    },
+    "los": 57,
+    "pos": [
+     -3784.0,
+     -4392.0,
+     424.12
+    ],
+    "side": 5
+   },
+   {
+    "body": 27,
+    "cluster": 2,
+    "elev": 328.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_industrial/bridgebeam"
+    },
+    "los": 32,
+    "pos": [
+     856.0,
+     -4016.0,
+     344.12
+    ],
+    "side": 6
+   }
+  ],
+  "stats": {
+   "faces": 549,
+   "ground": 250,
+   "high": 252,
+   "kept": 250,
+   "los": 250,
+   "raw": 971
+  }
+ },
+ "e2l2": {
+  "spots": [
+   {
+    "body": 80,
+    "cluster": 1,
+    "elev": 192.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/jh_corrugate4dmg"
+    },
+    "los": 85,
+    "pos": [
+     744.0,
+     4464.0,
+     2800.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 61,
+    "cluster": 2,
+    "elev": 162.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/it_terrain/IT_T_2-1Rockface512-01c"
+    },
+    "los": 70,
+    "pos": [
+     2990.67,
+     -1406.4,
+     2760.12
+    ],
+    "side": 7
+   },
+   {
+    "body": 43,
+    "cluster": 3,
+    "elev": 370.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 171.2,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/german/gnrlcratesml_top"
+    },
+    "los": 72,
+    "pos": [
+     6296.0,
+     4264.0,
+     2930.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 34,
+    "cluster": 4,
+    "elev": 380.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/jh_corrugate4a"
+    },
+    "los": 34,
+    "pos": [
+     5502.0,
+     920.0,
+     2952.12
+    ],
+    "side": 0
+   },
+   {
+    "body": 32,
+    "cluster": 5,
+    "elev": 322.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/german/gnrlcratesml_top"
+    },
+    "los": 45,
+    "pos": [
+     3376.0,
+     6352.0,
+     2930.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 39,
+    "cluster": 6,
+    "elev": 448.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/flrwood1"
+    },
+    "los": 43,
+    "pos": [
+     2024.0,
+     3288.0,
+     3008.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 49,
+    "cluster": 7,
+    "elev": 217.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/das_boot/foodcrate3"
+    },
+    "los": 56,
+    "pos": [
+     1701.0,
+     5493.0,
+     2801.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 48,
+    "cluster": 8,
+    "elev": 193.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/german/gnrlcratesml_frnt"
+    },
+    "los": 52,
+    "pos": [
+     5416.0,
+     2184.0,
+     2769.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 40,
+    "cluster": 9,
+    "elev": 193.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/norway/cr1_end"
+    },
+    "los": 40,
+    "pos": [
+     4469.0,
+     6086.0,
+     2753.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 81,
+    "cluster": 10,
+    "elev": 161.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/arzewpj_2"
+    },
+    "los": 82,
+    "pos": [
+     5464.0,
+     4312.0,
+     2721.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 34,
+    "cluster": 4,
+    "elev": 380.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/jh_corrugate4a"
+    },
+    "los": 36,
+    "pos": [
+     5262.0,
+     344.0,
+     2952.12
+    ],
+    "side": 0
+   },
+   {
+    "body": 13,
+    "cluster": 6,
+    "elev": 432.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/flrwood1"
+    },
+    "los": 69,
+    "pos": [
+     1480.0,
+     3464.0,
+     3296.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 41,
+    "cluster": 4,
+    "elev": 188.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 104.6,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/german/crate_reinforced1_top"
+    },
+    "los": 50,
+    "pos": [
+     5290.0,
+     1382.0,
+     2760.12
+    ],
+    "side": 0
+   },
+   {
+    "body": 53,
+    "cluster": 7,
+    "elev": 177.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/arzewpj_2"
+    },
+    "los": 61,
+    "pos": [
+     1408.0,
+     5080.0,
+     2737.12
+    ],
+    "side": 2
+   }
+  ],
+  "stats": {
+   "faces": 3087,
+   "ground": 277,
+   "high": 1640,
+   "kept": 225,
+   "los": 225,
+   "raw": 10298
+  }
+ },
+ "e2l3": {
+  "spots": [
+   {
+    "body": 57,
+    "cluster": 1,
+    "elev": 104.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/it_3-2cassino/it_e_3-2wallbeigebase_01-512"
+    },
+    "los": 57,
+    "pos": [
+     2372.0,
+     5468.0,
+     232.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 33,
+    "cluster": 1,
+    "elev": 104.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/it_3-2cassino/it_e_3-2wallbeigebase_01-512"
+    },
+    "los": 35,
+    "pos": [
+     2916.0,
+     5468.0,
+     232.12
+    ],
+    "side": 1
+   }
+  ],
+  "stats": {
+   "faces": 1829,
+   "ground": 3,
+   "high": 1283,
+   "kept": 3,
+   "los": 3,
+   "minh": 100,
+   "raw": 5049
+  }
+ },
+ "e3l1": {
+  "spots": [
+   {
+    "body": 81,
+    "cluster": 1,
+    "elev": 160.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/whsflrset1_1b"
+    },
+    "los": 83,
+    "pos": [
+     216.0,
+     4008.0,
+     224.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 17,
+    "cluster": 2,
+    "elev": 150.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/wdflr2a"
+    },
+    "los": 67,
+    "pos": [
+     968.0,
+     -1272.0,
+     200.12
+    ],
+    "side": 6
+   },
+   {
+    "body": 55,
+    "cluster": 3,
+    "elev": 160.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/concretewall2"
+    },
+    "los": 58,
+    "pos": [
+     -872.0,
+     2776.0,
+     224.12
+    ],
+    "side": 3
+   },
+   {
+    "body": 24,
+    "cluster": 4,
+    "elev": 361.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/concretewall2"
+    },
+    "los": 42,
+    "pos": [
+     360.0,
+     5112.0,
+     448.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 33,
+    "cluster": 1,
+    "elev": 160.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 150.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/garagefloor"
+    },
+    "los": 36,
+    "pos": [
+     -296.0,
+     4360.0,
+     224.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 34,
+    "cluster": 1,
+    "elev": 160.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/concretewall2"
+    },
+    "los": 50,
+    "pos": [
+     -296.0,
+     3816.0,
+     224.12
+    ],
+    "side": 3
+   },
+   {
+    "body": 29,
+    "cluster": 4,
+    "elev": 261.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 158.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/brest/jh_patterntile1"
+    },
+    "los": 37,
+    "pos": [
+     616.0,
+     4680.0,
+     344.12
+    ],
+    "side": 2
+   }
+  ],
+  "stats": {
+   "faces": 1507,
+   "ground": 317,
+   "high": 654,
+   "kept": 130,
+   "los": 130,
+   "raw": 6456
+  }
+ },
+ "e3l2": {
+  "spots": [
+   {
+    "body": 74,
+    "cluster": 1,
+    "elev": 374.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/it_3-2cassino/it_t_3-2street01-512"
+    },
+    "los": 74,
+    "pos": [
+     -472.0,
+     -4616.0,
+     -372.88
+    ],
+    "side": 6
+   },
+   {
+    "body": 46,
+    "cluster": 2,
+    "elev": 142.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 171.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/flrwood1"
+    },
+    "los": 48,
+    "pos": [
+     4084.0,
+     -11.0,
+     -153.88
+    ],
+    "side": 0
+   },
+   {
+    "body": 32,
+    "cluster": 3,
+    "elev": 112.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/it_3-2cassino/it_e_3-2wallbeigebase_01-512"
+    },
+    "los": 32,
+    "pos": [
+     4208.0,
+     -5188.0,
+     -231.88
+    ],
+    "side": 7
+   },
+   {
+    "body": 32,
+    "cluster": 4,
+    "elev": 104.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/wdflr2a"
+    },
+    "los": 32,
+    "pos": [
+     954.0,
+     -3032.0,
+     -239.88
+    ],
+    "side": 6
+   },
+   {
+    "body": 25,
+    "cluster": 5,
+    "elev": 272.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/stset_2base"
+    },
+    "los": 42,
+    "pos": [
+     -272.0,
+     -3824.0,
+     -447.88
+    ],
+    "side": 6
+   },
+   {
+    "body": 49,
+    "cluster": 1,
+    "elev": 379.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/it_3-2cassino/it_t_3-2street01-512"
+    },
+    "los": 52,
+    "pos": [
+     -730.0,
+     -4111.0,
+     -372.88
+    ],
+    "side": 5
+   }
+  ],
+  "stats": {
+   "faces": 2299,
+   "ground": 336,
+   "high": 2637,
+   "kept": 235,
+   "los": 235,
+   "minh": 100,
+   "raw": 22774
+  }
+ },
+ "e3l3": {
+  "spots": [
+   {
+    "body": 124,
+    "cluster": 1,
+    "elev": 474.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/stonebricks1drk"
+    },
+    "los": 136,
+    "pos": [
+     -5736.0,
+     -1336.0,
+     448.12
+    ],
+    "side": 4
+   },
+   {
+    "body": 88,
+    "cluster": 1,
+    "elev": 474.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/stonebricks1drk"
+    },
+    "los": 108,
+    "pos": [
+     -5736.0,
+     -2024.0,
+     448.12
+    ],
+    "side": 4
+   }
+  ],
+  "stats": {
+   "faces": 2269,
+   "ground": 31,
+   "high": 567,
+   "kept": 22,
+   "los": 22,
+   "raw": 3081
+  }
+ },
+ "e3l4": {
+  "spots": [
+   {
+    "body": 39,
+    "cluster": 1,
+    "elev": 128.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 158.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/it_extwall/it_p_castlecobblestone"
+    },
+    "los": 39,
+    "pos": [
+     472.0,
+     3828.0,
+     2144.12
+    ],
+    "side": 2
+   }
+  ],
+  "stats": {
+   "faces": 3539,
+   "ground": 124,
+   "high": 281,
+   "kept": 30,
+   "los": 30,
+   "minh": 100,
+   "raw": 4954
+  }
+ },
+ "m1l1": {
+  "spots": [
+   {
+    "body": 112,
+    "cluster": 1,
+    "elev": 123.4,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/fort_roofwhite"
+    },
+    "los": 121,
+    "pos": [
+     -1912.0,
+     -2808.0,
+     320.12
+    ],
+    "side": 7
+   },
+   {
+    "body": 43,
+    "cluster": 2,
+    "elev": 156.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/afrik_wall1a"
+    },
+    "los": 64,
+    "pos": [
+     -3848.0,
+     -159.0,
+     604.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 105,
+    "cluster": 3,
+    "elev": 104.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/fort_roofwhite"
+    },
+    "los": 109,
+    "pos": [
+     -2856.0,
+     -2168.0,
+     320.12
+    ],
+    "side": 7
+   },
+   {
+    "body": 54,
+    "cluster": 1,
+    "elev": 112.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/fort_roofwhite"
+    },
+    "los": 57,
+    "pos": [
+     -2600.0,
+     -2808.0,
+     320.12
+    ],
+    "side": 7
+   },
+   {
+    "body": 57,
+    "cluster": 1,
+    "elev": 104.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/fort_roofwhite"
+    },
+    "los": 97,
+    "pos": [
+     -2280.0,
+     -2312.0,
+     320.12
+    ],
+    "side": 7
+   },
+   {
+    "body": 68,
+    "cluster": 1,
+    "elev": 104.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/fort_roofwhite"
+    },
+    "los": 94,
+    "pos": [
+     -1720.0,
+     -2376.0,
+     320.12
+    ],
+    "side": 7
+   },
+   {
+    "body": 92,
+    "cluster": 3,
+    "elev": 112.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/fort_roofwhite"
+    },
+    "los": 92,
+    "pos": [
+     -2856.0,
+     -2552.0,
+     320.12
+    ],
+    "side": 7
+   },
+   {
+    "body": 77,
+    "cluster": 1,
+    "elev": 112.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/fort_roofwhite"
+    },
+    "los": 103,
+    "pos": [
+     -2264.0,
+     -2664.0,
+     320.12
+    ],
+    "side": 7
+   }
+  ],
+  "stats": {
+   "faces": 529,
+   "ground": 395,
+   "high": 793,
+   "kept": 327,
+   "los": 327,
+   "minh": 100,
+   "raw": 1845
+  }
+ },
+ "m1l2b": {
+  "spots": [
+   {
+    "body": 41,
+    "cluster": 1,
+    "elev": 104.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 159.7,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/german/gnrlcratesml_top"
+    },
+    "los": 47,
+    "pos": [
+     -4248.0,
+     3512.0,
+     -151.88
+    ],
+    "side": 3
+   },
+   {
+    "body": 28,
+    "cluster": 2,
+    "elev": 104.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 184.4,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/german/gnrlcratesml_top"
+    },
+    "los": 34,
+    "pos": [
+     -3320.0,
+     2440.0,
+     -151.88
+    ],
+    "side": 3
+   },
+   {
+    "body": 26,
+    "cluster": 3,
+    "elev": 104.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 179.1,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/german/gnrlcratesml_top"
+    },
+    "los": 30,
+    "pos": [
+     -3296.0,
+     4528.0,
+     -151.88
+    ],
+    "side": 3
+   },
+   {
+    "body": 26,
+    "cluster": 2,
+    "elev": 104.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 166.7,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/german/gnrlcratesml_top"
+    },
+    "los": 30,
+    "pos": [
+     -3240.0,
+     3120.0,
+     -151.88
+    ],
+    "side": 3
+   },
+   {
+    "body": 36,
+    "cluster": 1,
+    "elev": 104.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/german/gnrlcratesml_top"
+    },
+    "los": 40,
+    "pos": [
+     -3744.0,
+     3936.0,
+     -151.88
+    ],
+    "side": 3
+   },
+   {
+    "body": 27,
+    "cluster": 3,
+    "elev": 104.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 172.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/german/gnrlcratesml_top"
+    },
+    "los": 29,
+    "pos": [
+     -3264.0,
+     4008.0,
+     -151.88
+    ],
+    "side": 3
+   }
+  ],
+  "stats": {
+   "faces": 1095,
+   "ground": 28,
+   "high": 3342,
+   "kept": 28,
+   "los": 28,
+   "minh": 100,
+   "raw": 12665
+  }
+ },
+ "m1l3a": {
+  "spots": [],
+  "stats": {
+   "faces": 464,
+   "ground": 0,
+   "high": 0,
+   "kept": 0,
+   "los": 0,
+   "raw": 856
+  }
+ },
+ "m1l3b": {
+  "spots": [
+   {
+    "body": 54,
+    "cluster": 1,
+    "elev": 168.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/jh_conc512b"
+    },
+    "los": 54,
+    "pos": [
+     -2616.0,
+     6904.0,
+     192.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 16,
+    "cluster": 1,
+    "elev": 168.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/jh_conc512b"
+    },
+    "los": 32,
+    "pos": [
+     -3048.0,
+     7288.0,
+     192.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 16,
+    "cluster": 1,
+    "elev": 168.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/jh_conc512b"
+    },
+    "los": 33,
+    "pos": [
+     -2568.0,
+     7288.0,
+     192.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 46,
+    "cluster": 1,
+    "elev": 168.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 210.1,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/jh_conc512b"
+    },
+    "los": 46,
+    "pos": [
+     -3048.0,
+     6904.0,
+     192.12
+    ],
+    "side": 2
+   }
+  ],
+  "stats": {
+   "faces": 229,
+   "ground": 99,
+   "high": 777,
+   "kept": 99,
+   "los": 99,
+   "raw": 1915
+  }
+ },
+ "m1l3c": {
+  "spots": [
+   {
+    "body": 101,
+    "cluster": 1,
+    "elev": 132.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/whsflrset1_1b"
+    },
+    "los": 105,
+    "pos": [
+     -1808.0,
+     -2360.0,
+     528.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 45,
+    "cluster": 2,
+    "elev": 744.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/whsflrset1_1a"
+    },
+    "los": 55,
+    "pos": [
+     48.0,
+     -1818.0,
+     1104.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 50,
+    "cluster": 3,
+    "elev": 152.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/blasted/dday_bunker_wall1bsml"
+    },
+    "los": 60,
+    "pos": [
+     -576.0,
+     -2472.0,
+     512.12
+    ],
+    "side": 0
+   }
+  ],
+  "stats": {
+   "faces": 1279,
+   "ground": 635,
+   "high": 1512,
+   "kept": 50,
+   "los": 50,
+   "minh": 100,
+   "raw": 3760
+  }
+ },
+ "m2l1": {
+  "spots": [
+   {
+    "body": 19,
+    "cluster": 1,
+    "elev": 288.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 142.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/norway/cr1_top"
+    },
+    "los": 20,
+    "pos": [
+     4184.0,
+     6960.0,
+     304.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 9,
+    "cluster": 1,
+    "elev": 160.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/doccrtset_1b"
+    },
+    "los": 10,
+    "pos": [
+     3592.0,
+     7320.0,
+     176.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 7,
+    "cluster": 1,
+    "elev": 160.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 214.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/doccrtset_1b"
+    },
+    "los": 16,
+    "pos": [
+     3688.0,
+     6840.0,
+     176.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 7,
+    "cluster": 1,
+    "elev": 160.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/doccrtset_1b"
+    },
+    "los": 12,
+    "pos": [
+     4072.0,
+     7320.0,
+     176.12
+    ],
+    "side": 2
+   }
+  ],
+  "stats": {
+   "faces": 1644,
+   "ground": 128,
+   "high": 4639,
+   "kept": 74,
+   "los": 74,
+   "raw": 11596
+  }
+ },
+ "m2l2b": {
+  "spots": [],
+  "stats": {
+   "faces": 1674,
+   "ground": 5963,
+   "high": 6424,
+   "kept": 0,
+   "los": 0,
+   "raw": 16796
+  }
+ },
+ "m2l2c": {
+  "spots": [],
+  "stats": {
+   "faces": 1044,
+   "ground": 15001,
+   "high": 16353,
+   "kept": 0,
+   "los": 0,
+   "raw": 24307
+  }
+ },
+ "m3l2": {
+  "spots": [
+   {
+    "body": 6,
+    "cluster": 1,
+    "elev": 127.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 158.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/interior/tiledfloor_manordark2"
+    },
+    "los": 6,
+    "pos": [
+     -4200.0,
+     3536.0,
+     176.12
+    ],
+    "side": 2
+   }
+  ],
+  "stats": {
+   "faces": 776,
+   "ground": 158,
+   "high": 299,
+   "kept": 1,
+   "los": 1,
+   "minh": 100,
+   "raw": 3464
+  }
+ },
+ "m3l3": {
+  "spots": [],
+  "stats": {
+   "faces": 1182,
+   "ground": 0,
+   "high": 576,
+   "kept": 0,
+   "los": 0,
+   "raw": 3003
+  }
+ },
+ "m4l1": {
+  "spots": [],
+  "stats": {
+   "faces": 1082,
+   "ground": 3,
+   "high": 321,
+   "kept": 0,
+   "los": 0,
+   "raw": 10089
+  }
+ },
+ "m4l2": {
+  "spots": [
+   {
+    "body": 92,
+    "cluster": 1,
+    "elev": 312.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/wilderness/m3l3grass_1rough"
+    },
+    "los": 102,
+    "pos": [
+     -6952.0,
+     4888.0,
+     328.12
+    ],
+    "side": 3
+   },
+   {
+    "body": 40,
+    "cluster": 2,
+    "elev": 252.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/nu_earth_set2brd1"
+    },
+    "los": 45,
+    "pos": [
+     7448.0,
+     2296.0,
+     272.12
+    ],
+    "side": 0
+   },
+   {
+    "body": 42,
+    "cluster": 3,
+    "elev": 232.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/blasted/dday_bunker_wall1bsml"
+    },
+    "los": 44,
+    "pos": [
+     -1544.0,
+     1240.0,
+     248.12
+    ],
+    "side": 7
+   },
+   {
+    "body": 31,
+    "cluster": 4,
+    "elev": 288.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/blasted/dday_bunker_wall1bsml"
+    },
+    "los": 52,
+    "pos": [
+     -3208.0,
+     4616.0,
+     304.12
+    ],
+    "side": 3
+   },
+   {
+    "body": 60,
+    "cluster": 5,
+    "elev": 264.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/wilderness/m3l3grass_1rough"
+    },
+    "los": 62,
+    "pos": [
+     -5064.0,
+     4936.0,
+     328.12
+    ],
+    "side": 3
+   },
+   {
+    "body": 37,
+    "cluster": 6,
+    "elev": 212.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/flrwood1_rep"
+    },
+    "los": 42,
+    "pos": [
+     6240.0,
+     2216.0,
+     272.12
+    ],
+    "side": 0
+   },
+   {
+    "body": 32,
+    "cluster": 7,
+    "elev": 264.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/wilderness/m3l3grass_1rough"
+    },
+    "los": 61,
+    "pos": [
+     -6184.0,
+     5032.0,
+     328.12
+    ],
+    "side": 3
+   },
+   {
+    "body": 63,
+    "cluster": 2,
+    "elev": 212.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/flrwood1_rep"
+    },
+    "los": 66,
+    "pos": [
+     6816.0,
+     2408.0,
+     272.12
+    ],
+    "side": 0
+   },
+   {
+    "body": 46,
+    "cluster": 4,
+    "elev": 288.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/blasted/dday_bunker_wall1bsml"
+    },
+    "los": 50,
+    "pos": [
+     -2728.0,
+     4424.0,
+     304.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 76,
+    "cluster": 1,
+    "elev": 312.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/wilderness/m3l3grass_1rough"
+    },
+    "los": 92,
+    "pos": [
+     -6568.0,
+     4936.0,
+     328.12
+    ],
+    "side": 3
+   }
+  ],
+  "stats": {
+   "faces": 1574,
+   "ground": 551,
+   "high": 1632,
+   "kept": 380,
+   "los": 380,
+   "raw": 12803
+  }
+ },
+ "m4l3": {
+  "spots": [
+   {
+    "body": 12,
+    "cluster": 1,
+    "elev": 152.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 246.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/oldcrpt1"
+    },
+    "los": 17,
+    "pos": [
+     -2528.0,
+     -1232.0,
+     200.12
+    ],
+    "side": 6
+   },
+   {
+    "body": 6,
+    "cluster": 2,
+    "elev": 152.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 174.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/interior/sp_carpet_townhall"
+    },
+    "los": 7,
+    "pos": [
+     72.0,
+     -1592.0,
+     208.12
+    ],
+    "side": 0
+   },
+   {
+    "body": 7,
+    "cluster": 3,
+    "elev": 152.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 174.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/frenchfloor_wood1"
+    },
+    "los": 8,
+    "pos": [
+     -1128.0,
+     -1208.0,
+     208.12
+    ],
+    "side": 0
+   },
+   {
+    "body": 4,
+    "cluster": 4,
+    "elev": 152.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 166.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/oldcrpt1"
+    },
+    "los": 6,
+    "pos": [
+     -2200.0,
+     -600.0,
+     200.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 5,
+    "cluster": 1,
+    "elev": 152.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 246.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/oldcrpt1"
+    },
+    "los": 6,
+    "pos": [
+     -2104.0,
+     -1664.0,
+     200.12
+    ],
+    "side": 7
+   },
+   {
+    "body": 7,
+    "cluster": 3,
+    "elev": 152.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 174.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/frenchfloor_wood1"
+    },
+    "los": 8,
+    "pos": [
+     -1080.0,
+     -1592.0,
+     208.12
+    ],
+    "side": 7
+   },
+   {
+    "body": 6,
+    "cluster": 1,
+    "elev": 152.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 246.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/oldcrpt1"
+    },
+    "los": 6,
+    "pos": [
+     -2528.0,
+     -800.0,
+     200.12
+    ],
+    "side": 3
+   },
+   {
+    "body": 7,
+    "cluster": 1,
+    "elev": 152.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 246.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/oldcrpt1"
+    },
+    "los": 8,
+    "pos": [
+     -2528.0,
+     -1616.0,
+     200.12
+    ],
+    "side": 6
+   }
+  ],
+  "stats": {
+   "faces": 1465,
+   "ground": 587,
+   "high": 2195,
+   "kept": 60,
+   "los": 60,
+   "raw": 8115
+  }
+ },
+ "m5l2a": {
+  "spots": [],
+  "stats": {
+   "faces": 1054,
+   "ground": 0,
+   "high": 405,
+   "kept": 0,
+   "los": 0,
+   "raw": 2576
+  }
+ },
+ "m5l2b": {
+  "spots": [],
+  "stats": {
+   "faces": 1625,
+   "ground": 0,
+   "high": 1019,
+   "kept": 0,
+   "los": 0,
+   "raw": 4866
+  }
+ },
+ "m5l3": {
+  "spots": [
+   {
+    "body": 71,
+    "cluster": 1,
+    "elev": 208.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/platestone1flt"
+    },
+    "los": 72,
+    "pos": [
+     -1272.0,
+     -2356.0,
+     648.12
+    ],
+    "side": 6
+   },
+   {
+    "body": 30,
+    "cluster": 2,
+    "elev": 264.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/platestone1flt"
+    },
+    "los": 32,
+    "pos": [
+     -2760.0,
+     -2932.0,
+     648.12
+    ],
+    "side": 5
+   },
+   {
+    "body": 48,
+    "cluster": 3,
+    "elev": 208.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/platestone1flt"
+    },
+    "los": 58,
+    "pos": [
+     -2136.0,
+     -2356.0,
+     648.12
+    ],
+    "side": 5
+   },
+   {
+    "body": 16,
+    "cluster": 1,
+    "elev": 208.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/platestone1flt"
+    },
+    "los": 43,
+    "pos": [
+     -1704.0,
+     -2500.0,
+     648.12
+    ],
+    "side": 5
+   },
+   {
+    "body": 50,
+    "cluster": 1,
+    "elev": 216.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/platestone1flt"
+    },
+    "los": 55,
+    "pos": [
+     -840.0,
+     -2404.0,
+     648.12
+    ],
+    "side": 6
+   }
+  ],
+  "stats": {
+   "faces": 1949,
+   "ground": 499,
+   "high": 2352,
+   "kept": 147,
+   "los": 147,
+   "raw": 27916
+  }
+ },
+ "m6l1a": {
+  "spots": [
+   {
+    "body": 95,
+    "cluster": 1,
+    "elev": 352.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_rough256"
+    },
+    "los": 97,
+    "pos": [
+     6344.0,
+     -2072.0,
+     5792.12
+    ],
+    "side": 7
+   },
+   {
+    "body": 47,
+    "cluster": 2,
+    "elev": 400.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_rough256"
+    },
+    "los": 55,
+    "pos": [
+     2600.0,
+     2280.0,
+     5792.12
+    ],
+    "side": 3
+   },
+   {
+    "body": 34,
+    "cluster": 3,
+    "elev": 152.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_med256"
+    },
+    "los": 52,
+    "pos": [
+     4241.08,
+     -4858.98,
+     5760.12
+    ],
+    "side": 6
+   },
+   {
+    "body": 41,
+    "cluster": 4,
+    "elev": 152.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_med256"
+    },
+    "los": 49,
+    "pos": [
+     3112.0,
+     -2360.0,
+     5632.12
+    ],
+    "side": 5
+   },
+   {
+    "body": 39,
+    "cluster": 5,
+    "elev": 272.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_mdlttrns256"
+    },
+    "los": 41,
+    "pos": [
+     6668.0,
+     -4720.0,
+     5712.12
+    ],
+    "side": 7
+   },
+   {
+    "body": 38,
+    "cluster": 6,
+    "elev": 208.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_med256"
+    },
+    "los": 38,
+    "pos": [
+     2744.0,
+     8.0,
+     5696.12
+    ],
+    "side": 3
+   },
+   {
+    "body": 53,
+    "cluster": 7,
+    "elev": 168.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_med256"
+    },
+    "los": 72,
+    "pos": [
+     5808.0,
+     -560.0,
+     5624.12
+    ],
+    "side": 0
+   },
+   {
+    "body": 41,
+    "cluster": 8,
+    "elev": 200.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_mdlttrns256"
+    },
+    "los": 45,
+    "pos": [
+     6888.0,
+     -3256.0,
+     5640.12
+    ],
+    "side": 7
+   },
+   {
+    "body": 27,
+    "cluster": 8,
+    "elev": 200.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_mdlttrns256"
+    },
+    "los": 48,
+    "pos": [
+     7016.0,
+     -2680.0,
+     5640.12
+    ],
+    "side": 7
+   },
+   {
+    "body": 57,
+    "cluster": 3,
+    "elev": 224.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_mdrghtrans256"
+    },
+    "los": 57,
+    "pos": [
+     4812.94,
+     -4973.99,
+     5664.12
+    ],
+    "side": 6
+   },
+   {
+    "body": 29,
+    "cluster": 1,
+    "elev": 352.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_rough256"
+    },
+    "los": 52,
+    "pos": [
+     6408.0,
+     -1624.0,
+     5792.12
+    ],
+    "side": 0
+   },
+   {
+    "body": 40,
+    "cluster": 3,
+    "elev": 152.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_med256"
+    },
+    "los": 41,
+    "pos": [
+     3978.87,
+     -4520.99,
+     5760.12
+    ],
+    "side": 6
+   },
+   {
+    "body": 48,
+    "cluster": 7,
+    "elev": 168.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_med256"
+    },
+    "los": 63,
+    "pos": [
+     6048.0,
+     -896.0,
+     5624.12
+    ],
+    "side": 0
+   },
+   {
+    "body": 28,
+    "cluster": 4,
+    "elev": 152.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_med256"
+    },
+    "los": 53,
+    "pos": [
+     2968.0,
+     -2744.0,
+     5632.12
+    ],
+    "side": 5
+   }
+  ],
+  "stats": {
+   "faces": 476,
+   "ground": 1495,
+   "high": 1915,
+   "kept": 384,
+   "los": 384,
+   "raw": 9974
+  }
+ },
+ "m6l1b": {
+  "spots": [
+   {
+    "body": 30,
+    "cluster": 1,
+    "elev": 168.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_lite256"
+    },
+    "los": 31,
+    "pos": [
+     -2629.0,
+     -4809.0,
+     1984.12
+    ],
+    "side": 5
+   },
+   {
+    "body": 13,
+    "cluster": 2,
+    "elev": 232.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/norway/csnowconc"
+    },
+    "los": 14,
+    "pos": [
+     -1970.0,
+     2386.0,
+     2408.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 12,
+    "cluster": 3,
+    "elev": 200.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_lite256"
+    },
+    "los": 13,
+    "pos": [
+     -3032.0,
+     -5552.0,
+     2016.12
+    ],
+    "side": 5
+   },
+   {
+    "body": 14,
+    "cluster": 1,
+    "elev": 168.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_lite256"
+    },
+    "los": 20,
+    "pos": [
+     -2832.0,
+     -4344.0,
+     1984.12
+    ],
+    "side": 5
+   },
+   {
+    "body": 13,
+    "cluster": 1,
+    "elev": 168.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/forstsnow_lite256"
+    },
+    "los": 17,
+    "pos": [
+     -3011.92,
+     -5089.0,
+     1984.12
+    ],
+    "side": 5
+   }
+  ],
+  "stats": {
+   "faces": 517,
+   "ground": 547,
+   "high": 790,
+   "kept": 206,
+   "los": 206,
+   "raw": 6683
+  }
+ },
+ "m6l2b": {
+  "spots": [
+   {
+    "body": 48,
+    "cluster": 1,
+    "elev": 144.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/norway/cr1_top"
+    },
+    "los": 60,
+    "pos": [
+     3896.0,
+     5288.0,
+     160.12
+    ],
+    "side": 2
+   }
+  ],
+  "stats": {
+   "faces": 2069,
+   "ground": 109,
+   "high": 2004,
+   "kept": 10,
+   "los": 10,
+   "minh": 100,
+   "raw": 22663
+  }
+ },
+ "m6l3b": {
+  "spots": [
+   {
+    "body": 5,
+    "cluster": 1,
+    "elev": 336.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 190.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/algiers/whsflrset1_1a"
+    },
+    "los": 7,
+    "pos": [
+     -744.0,
+     680.0,
+     -639.88
+    ],
+    "side": 2
+   }
+  ],
+  "stats": {
+   "faces": 2473,
+   "ground": 290,
+   "high": 429,
+   "kept": 1,
+   "los": 1,
+   "raw": 2753
+  }
+ },
+ "t1l1": {
+  "spots": [
+   {
+    "body": 7,
+    "cluster": 1,
+    "elev": 228.0,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 144.7,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/frenchfloor_wood1"
+    },
+    "los": 7,
+    "pos": [
+     -3293.0,
+     5244.0,
+     -6719.88
+    ],
+    "side": 2
+   }
+  ],
+  "stats": {
+   "faces": 1181,
+   "ground": 9,
+   "high": 343,
+   "kept": 3,
+   "los": 3,
+   "raw": 2748
+  }
+ },
+ "t1l2": {
+  "spots": [
+   {
+    "body": 85,
+    "cluster": 1,
+    "elev": 320.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/TAHolland/railway_road"
+    },
+    "los": 85,
+    "pos": [
+     -2584.0,
+     1849.14,
+     384.12
+    ],
+    "side": 3
+   },
+   {
+    "body": 37,
+    "cluster": 2,
+    "elev": 160.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/TAHolland/railway_road"
+    },
+    "los": 37,
+    "pos": [
+     3064.0,
+     1801.14,
+     384.12
+    ],
+    "side": 0
+   },
+   {
+    "body": 35,
+    "cluster": 3,
+    "elev": 400.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/TAHolland/railway_road"
+    },
+    "los": 35,
+    "pos": [
+     -5664.0,
+     1609.14,
+     384.12
+    ],
+    "side": 4
+   },
+   {
+    "body": 34,
+    "cluster": 4,
+    "elev": 336.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/TAHolland/railway_road"
+    },
+    "los": 34,
+    "pos": [
+     1000.0,
+     1849.14,
+     384.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 35,
+    "cluster": 5,
+    "elev": 224.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/TAHolland/railway_road"
+    },
+    "los": 35,
+    "pos": [
+     -824.0,
+     1801.14,
+     384.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 39,
+    "cluster": 6,
+    "elev": 352.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/TAHolland/railway_road"
+    },
+    "los": 61,
+    "pos": [
+     -4128.0,
+     1801.14,
+     384.12
+    ],
+    "side": 4
+   },
+   {
+    "body": 36,
+    "cluster": 7,
+    "elev": 160.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/TAHolland/railway_road"
+    },
+    "los": 36,
+    "pos": [
+     2008.0,
+     1753.14,
+     384.12
+    ],
+    "side": 0
+   },
+   {
+    "body": 40,
+    "cluster": 8,
+    "elev": 336.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/TAHolland/railway_road"
+    },
+    "los": 66,
+    "pos": [
+     -3352.0,
+     1657.14,
+     384.12
+    ],
+    "side": 3
+   },
+   {
+    "body": 32,
+    "cluster": 9,
+    "elev": 376.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/TAHolland/railway_road"
+    },
+    "los": 45,
+    "pos": [
+     -4896.0,
+     1705.14,
+     384.12
+    ],
+    "side": 4
+   },
+   {
+    "body": 38,
+    "cluster": 2,
+    "elev": 160.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/TAHolland/railway_road"
+    },
+    "los": 41,
+    "pos": [
+     2536.0,
+     1657.14,
+     384.12
+    ],
+    "side": 0
+   },
+   {
+    "body": 35,
+    "cluster": 4,
+    "elev": 160.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/TAHolland/railway_road"
+    },
+    "los": 36,
+    "pos": [
+     1528.0,
+     1849.14,
+     384.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 52,
+    "cluster": 1,
+    "elev": 320.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/TAHolland/railway_road"
+    },
+    "los": 77,
+    "pos": [
+     -2968.0,
+     1753.14,
+     384.12
+    ],
+    "side": 3
+   },
+   {
+    "body": 46,
+    "cluster": 6,
+    "elev": 368.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/TAHolland/railway_road"
+    },
+    "los": 50,
+    "pos": [
+     -4512.0,
+     1609.14,
+     384.12
+    ],
+    "side": 4
+   },
+   {
+    "body": 56,
+    "cluster": 6,
+    "elev": 320.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/TAHolland/railway_road"
+    },
+    "los": 69,
+    "pos": [
+     -3736.0,
+     1849.14,
+     384.12
+    ],
+    "side": 3
+   }
+  ],
+  "stats": {
+   "faces": 2151,
+   "ground": 760,
+   "high": 1888,
+   "kept": 739,
+   "los": 739,
+   "raw": 6442
+  }
+ },
+ "t1l3": {
+  "spots": [
+   {
+    "body": 78,
+    "cluster": 1,
+    "elev": 444.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/flatgrey_conc"
+    },
+    "los": 85,
+    "pos": [
+     4512.0,
+     2860.0,
+     492.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 41,
+    "cluster": 2,
+    "elev": 200.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/jh_woodwall2"
+    },
+    "los": 73,
+    "pos": [
+     -1416.0,
+     1408.0,
+     248.12
+    ],
+    "side": 4
+   },
+   {
+    "body": 18,
+    "cluster": 3,
+    "elev": 504.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/jh_woodshingles1"
+    },
+    "los": 51,
+    "pos": [
+     3784.0,
+     3176.0,
+     552.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 25,
+    "cluster": 2,
+    "elev": 448.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/conc_rough4a"
+    },
+    "los": 51,
+    "pos": [
+     -1249.0,
+     1904.0,
+     496.12
+    ],
+    "side": 4
+   },
+   {
+    "body": 60,
+    "cluster": 1,
+    "elev": 443.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/flatgrey_conc"
+    },
+    "los": 65,
+    "pos": [
+     4080.0,
+     2860.0,
+     492.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 47,
+    "cluster": 1,
+    "elev": 507.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/jh_woodshingles1"
+    },
+    "los": 79,
+    "pos": [
+     4600.0,
+     3224.0,
+     552.12
+    ],
+    "side": 1
+   }
+  ],
+  "stats": {
+   "faces": 2133,
+   "ground": 312,
+   "high": 1631,
+   "kept": 149,
+   "los": 149,
+   "raw": 27465
+  }
+ },
+ "t2l1": {
+  "spots": [
+   {
+    "body": 148,
+    "cluster": 1,
+    "elev": 161.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/snowfield1"
+    },
+    "los": 150,
+    "pos": [
+     2040.0,
+     1160.0,
+     1152.12
+    ],
+    "side": 0
+   },
+   {
+    "body": 63,
+    "cluster": 2,
+    "elev": 176.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/snowfield1"
+    },
+    "los": 92,
+    "pos": [
+     2664.0,
+     1544.0,
+     1152.12
+    ],
+    "side": 0
+   },
+   {
+    "body": 137,
+    "cluster": 1,
+    "elev": 183.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/snowfield1"
+    },
+    "los": 139,
+    "pos": [
+     2472.0,
+     1160.0,
+     1152.12
+    ],
+    "side": 0
+   }
+  ],
+  "stats": {
+   "faces": 631,
+   "ground": 114,
+   "high": 489,
+   "kept": 82,
+   "los": 82,
+   "raw": 1890
+  }
+ },
+ "t2l2": {
+  "spots": [
+   {
+    "body": 39,
+    "cluster": 1,
+    "elev": 208.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/snowfield1"
+    },
+    "los": 40,
+    "pos": [
+     3936.0,
+     4568.0,
+     2104.12
+    ],
+    "side": 1
+   },
+   {
+    "body": 19,
+    "cluster": 1,
+    "elev": 208.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/snowfield1"
+    },
+    "los": 19,
+    "pos": [
+     3936.0,
+     5252.0,
+     2104.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 19,
+    "cluster": 1,
+    "elev": 208.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/snowfield1"
+    },
+    "los": 26,
+    "pos": [
+     4384.0,
+     4064.0,
+     2104.12
+    ],
+    "side": 1
+   }
+  ],
+  "stats": {
+   "faces": 667,
+   "ground": 4,
+   "high": 12,
+   "kept": 3,
+   "los": 3,
+   "raw": 2192
+  }
+ },
+ "t2l3": {
+  "spots": [],
+  "stats": {
+   "faces": 235,
+   "ground": 0,
+   "high": 0,
+   "kept": 0,
+   "los": 0,
+   "raw": 48
+  }
+ },
+ "t2l4": {
+  "spots": [
+   {
+    "body": 132,
+    "cluster": 1,
+    "elev": 128.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/winterroof_set1w"
+    },
+    "los": 144,
+    "pos": [
+     -516.0,
+     3976.0,
+     768.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 110,
+    "cluster": 2,
+    "elev": 200.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/winterroof_set1w"
+    },
+    "los": 121,
+    "pos": [
+     -1736.0,
+     5640.0,
+     840.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 122,
+    "cluster": 3,
+    "elev": 200.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/winterroof_set1w"
+    },
+    "los": 131,
+    "pos": [
+     -575.9,
+     5592.1,
+     840.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 113,
+    "cluster": 1,
+    "elev": 128.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/winterroof_set1w"
+    },
+    "los": 121,
+    "pos": [
+     -612.0,
+     3400.0,
+     768.12
+    ],
+    "side": 2
+   },
+   {
+    "body": 91,
+    "cluster": 2,
+    "elev": 200.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe_winter/winterroof_set1w"
+    },
+    "los": 103,
+    "pos": [
+     -1151.9,
+     5640.1,
+     840.12
+    ],
+    "side": 2
+   }
+  ],
+  "stats": {
+   "faces": 2506,
+   "ground": 724,
+   "high": 2243,
+   "kept": 149,
+   "los": 149,
+   "minh": 100,
+   "raw": 6620
+  }
+ },
+ "t3l1": {
+  "spots": [
+   {
+    "body": 29,
+    "cluster": 1,
+    "elev": 212.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/jh_conc512damg"
+    },
+    "los": 32,
+    "pos": [
+     1544.0,
+     -2828.0,
+     376.12
+    ],
+    "side": 7
+   },
+   {
+    "body": 9,
+    "cluster": 2,
+    "elev": 128.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 134.8,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/floor4"
+    },
+    "los": 16,
+    "pos": [
+     -414.0,
+     -7950.0,
+     224.12
+    ],
+    "side": 6
+   },
+   {
+    "body": 12,
+    "cluster": 1,
+    "elev": 212.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/general_structure/jh_conc512damg"
+    },
+    "los": 15,
+    "pos": [
+     1256.0,
+     -2540.0,
+     376.12
+    ],
+    "side": 7
+   }
+  ],
+  "stats": {
+   "faces": 2273,
+   "ground": 2117,
+   "high": 4129,
+   "kept": 36,
+   "los": 36,
+   "minh": 100,
+   "raw": 38897
+  }
+ },
+ "t3l2": {
+  "spots": [
+   {
+    "body": 90,
+    "cluster": 1,
+    "elev": 116.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/wdflr2a"
+    },
+    "los": 91,
+    "pos": [
+     -4016.0,
+     -3900.0,
+     192.12
+    ],
+    "side": 5
+   },
+   {
+    "body": 44,
+    "cluster": 1,
+    "elev": 116.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/wdflr2a"
+    },
+    "los": 49,
+    "pos": [
+     -3536.0,
+     -3708.0,
+     192.12
+    ],
+    "side": 5
+   },
+   {
+    "body": 38,
+    "cluster": 1,
+    "elev": 116.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/mohtest/wdflr2a"
+    },
+    "los": 42,
+    "pos": [
+     -3776.0,
+     -4284.0,
+     192.12
+    ],
+    "side": 5
+   }
+  ],
+  "stats": {
+   "faces": 2051,
+   "ground": 2168,
+   "high": 4150,
+   "kept": 147,
+   "los": 147,
+   "minh": 100,
+   "raw": 35517
+  }
+ }
+}

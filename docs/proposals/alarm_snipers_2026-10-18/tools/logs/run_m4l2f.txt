@@ -1,0 +1,58 @@
+using hudfeed2
+teleport check off= 1
+PHASE 1 sim players 1
+PHASE 2 sim players 3
+    ^~^~^ ASN STATUS map=m4l2 alarmMap=1 sw=3 live=0 pulls=0 spots=- snipers=0 players=1 want=2 t=41.100
+    ^~^~^ ASN PLACE at ( 5892.000 2216.000 269.125 ) yaw 183.210 spots_in_range_with_los=2
+    ^~^~^ ASN WHERE ( 5892.000 2216.000 267.131 ) off=1
+    ^~^~^ ASN LOAD spots=4
+    ^~^~^ ALARM LIVE pull 1 switches=3
+    ^~^~^ ASN PULL started
+    ^~^~^ ASNIPER pull 1 players=1 want=2 alive=0 spots=4
+    ^~^~^ ASNIPER SNIPER 1 spot=4 at=( 6960.000 2360.000 272.125 ) floorz=272.125 cluster=2 side=0 alive=1
+    ^~^~^ ASN STATUS map=m4l2 alarmMap=1 sw=3 live=1 pulls=1 spots=4 snipers=1 players=1 want=2 t=47.850
+    ^~^~^ ASNIPER SNIPER 2 spot=2 at=( 7392.000 2216.000 272.125 ) floorz=272.125 cluster=2 side=0 alive=2
+    ^~^~^ ASNIPER pull 1 done made=2 alive=2 tries=0
+    ^~^~^ ASN STATUS map=m4l2 alarmMap=1 sw=3 live=1 pulls=1 spots=4 snipers=2 players=1 want=2 t=53.075
+    ^~^~^ ASN LIST alive=2
+    ^~^~^ ASN SN 1 ent=755 spot=4 origin=( 6960.000 2360.000 272.125 ) floorz=272.125 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=player dist=1077
+    ^~^~^ ASN SN 2 ent=42 spot=2 origin=( 7392.000 2216.000 272.125 ) floorz=272.125 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=player dist=1500
+    ^~^~^ ASN CAM close ( 6583.408 2309.223 276.125 ) to sniper 1 dist=380
+    ^~^~^ ASNIPER sniper moved 90u off his floor (a mover took him): removed, spot dropped
+    ^~^~^ ASN CAM from player place ( 5892.000 2216.000 269.125 ) to sniper 1 dist=1500
+    ^~^~^ ASN CAM no sniper 2
+    ^~^~^ ASN CAM no sniper 2
+    ^~^~^ ASN PLACE at ( 5892.000 2216.000 269.125 ) yaw 183.210 spots_in_range_with_los=2
+    ^~^~^ ASN WHERE ( 5892.000 2216.000 267.131 ) off=1
+    ^~^~^ ASN KILLED 1
+    ^~^~^ ALARM LIVE pull 2 switches=3
+    ^~^~^ ASN PULL started
+    ^~^~^ ASNIPER pull 2 players=1 want=4 alive=0 spots=4
+    ^~^~^ ASNIPER SNIPER 1 spot=2 at=( 7392.000 2216.000 272.125 ) floorz=272.125 cluster=2 side=0 alive=1
+    ^~^~^ ASN STATUS map=m4l2 alarmMap=1 sw=3 live=1 pulls=2 spots=4 snipers=1 players=1 want=4 t=83.275
+    ^~^~^ ASNIPER no spot yet (try 1): pn=1 p1=( 5892.000 2216.000 267.131 ) dmin=600 dmax=2300 nearest=7499 free=0 near=0 far=2 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 2): pn=1 p1=( 5892.000 2216.000 267.131 ) dmin=600 dmax=2300 nearest=7499 free=0 near=0 far=2 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=m4l2 alarmMap=1 sw=3 live=1 pulls=2 spots=4 snipers=1 players=1 want=4 t=88.525
+    ^~^~^ ASNIPER no spot yet (try 3): pn=1 p1=( 5892.000 2216.000 267.131 ) dmin=600 dmax=2300 nearest=7499 free=0 near=0 far=2 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 4): pn=1 p1=( 5892.000 2216.000 267.131 ) dmin=600 dmax=2300 nearest=7499 free=0 near=0 far=2 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=m4l2 alarmMap=1 sw=3 live=1 pulls=2 spots=4 snipers=1 players=1 want=4 t=93.725
+    ^~^~^ ASNIPER no spot yet (try 5): pn=1 p1=( 5892.000 2216.000 267.131 ) dmin=600 dmax=2300 nearest=7499 free=0 near=0 far=2 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 6): pn=1 p1=( 5892.000 2216.000 267.131 ) dmin=600 dmax=2300 nearest=7499 free=0 near=0 far=2 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 7): pn=1 p1=( 5892.000 2216.000 267.131 ) dmin=600 dmax=2300 nearest=7499 free=0 near=0 far=2 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=m4l2 alarmMap=1 sw=3 live=1 pulls=2 spots=4 snipers=1 players=1 want=4 t=98.950
+    ^~^~^ ASNIPER no spot yet (try 8): pn=1 p1=( 5892.000 2216.000 267.131 ) dmin=600 dmax=2300 nearest=7499 free=0 near=0 far=2 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 9): pn=1 p1=( 5892.000 2216.000 267.131 ) dmin=600 dmax=2300 nearest=7499 free=0 near=0 far=2 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 10): pn=1 p1=( 5892.000 2216.000 267.131 ) dmin=600 dmax=2300 nearest=7499 free=0 near=0 far=2 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=m4l2 alarmMap=1 sw=3 live=1 pulls=2 spots=4 snipers=1 players=1 want=4 t=104.175
+    ^~^~^ ASNIPER no spot yet (try 11): pn=1 p1=( 5892.000 2216.000 267.131 ) dmin=600 dmax=2300 nearest=7499 free=0 near=0 far=2 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 12): pn=1 p1=( 5892.000 2216.000 267.131 ) dmin=600 dmax=2300 nearest=7499 free=0 near=0 far=2 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=m4l2 alarmMap=1 sw=3 live=1 pulls=2 spots=4 snipers=1 players=1 want=4 t=109.425
+    ^~^~^ ASNIPER no spot yet (try 13): pn=1 p1=( 5892.000 2216.000 267.131 ) dmin=600 dmax=2300 nearest=7499 free=0 near=0 far=2 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 14): pn=1 p1=( 5892.000 2216.000 267.131 ) dmin=600 dmax=2300 nearest=7499 free=0 near=0 far=2 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 15): pn=1 p1=( 5892.000 2216.000 267.131 ) dmin=600 dmax=2300 nearest=7499 free=0 near=0 far=2 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=m4l2 alarmMap=1 sw=3 live=1 pulls=2 spots=4 snipers=1 players=1 want=4 t=114.650
+    ^~^~^ ASNIPER pull 2 done made=1 alive=1 tries=15
+    ^~^~^ ASN STATUS map=m4l2 alarmMap=1 sw=3 live=1 pulls=2 spots=4 snipers=1 players=1 want=4 t=119.875
+    ^~^~^ ASN LIST alive=1
+    ^~^~^ ASN SN 1 ent=60 spot=2 origin=( 7392.035 2216.193 272.125 ) floorz=272.125 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=none dist=1500
+script errors: 0 []

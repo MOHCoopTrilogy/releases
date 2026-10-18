@@ -228,6 +228,14 @@ engine spawned `models/nil.tik` in a loop. Fixed with an `ai_model` fallback + N
 a real 2-player server: spawner storm ~7,000+ → 25 total, zero maps still storming; ~550 German AI
 restored trilogy-wide. *Anchor:* `global/spawner.scr:95-138`.
 
+**Alarm snipers** - `SHIPPED-UNVERIFIED` (2026-10-18, branch `alarmsnipers-next`, nothing deployed). When an alarm goes live
+(`alarm.scr::alm_start` -> `alarmsnipers.scr::asn_alarm`) enemy snipers (vanilla sniper model, Kar98 sniper, accuracy 55 then
+`coop_reinf_scale`) take BSP-traced high spots (roofs, upper floors, ledges; `docs/tools/gen_sniper_spots.py` -> generated
+`alarmsnipers_spots.scr`, 104 spots, 26 maps). Count `coop_alarmSnipersBase` 2 + `Per` 1 per extra player, max `Max` 5; never two on a spot;
+never in a player's view; hard solid-ground rule (world floor within 2 u, flat, bbox clear, 72 u headroom) re-run at spawn; they never
+walk (leash 24); a sniper lifted by a mover is removed. Stealth / disguise / Omaha / own-alarm maps are gated by `alm_blocked`.
+Proof and per-spot traces: `docs/proposals/alarm_snipers_2026-10-18/README.md`. Unverified: real alarm trigger, real player fire, 2+ real players.
+
 ---
 
 <a name="movement"></a>

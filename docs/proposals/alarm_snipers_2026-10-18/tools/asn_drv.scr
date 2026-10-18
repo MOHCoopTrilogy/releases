@@ -1,0 +1,213 @@
+//=========================================================================
+// TEST-ONLY overlay driver (alarm snipers 2026-10-18) - NEVER shipped. Installed as coop_mod/coop_selftest_xp.scr.
+// Commands arrive in cvar ai_cmd (ai_realism harness protocol: prints "^~^~^ AI did <cmd>"), arguments in ai_<name> cvars.
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ AI armed"
+	setcvar "ai_cmd" "0"
+	while( 1 ){
+		local.c = getcvar( "ai_cmd" )
+		if( local.c != "0" && local.c != "" ){
+			setcvar "ai_cmd" "0"
+			waitthread asd_do local.c
+			println ( "^~^~^ AI did " + local.c )
+		}
+		waitframe
+	}
+}end
+
+asd_s local.v:{
+	local.r = "-"
+	if( local.v != NIL ){ local.r = "" + local.v }
+}end local.r
+
+asd_f local.k:{
+	local.v = getcvar local.k
+	if( local.v == "" ){ end 0 }
+	local.n = float( local.v )
+}end local.n
+
+// the player's standing place: in front of alarm switch 1
+asd_place:{
+	local.p = $player[1]
+	local.sw = level.coop_alarmSw[1]
+	if( local.sw == NULL || local.sw == NIL ){ end NIL }
+	local.o = waitthread coop_mod/alarm.scr::alm_stand local.sw
+}end local.o
+
+asd_snipers:{
+	local.n = 0
+	if( level.coop_asnN2 == NIL ){ end 0 }
+	for( local.i = 1; local.i <= level.coop_asnN2; local.i++ ){
+		local.a = level.coop_asnAct[local.i]
+		if( local.a == NULL || local.a == NIL ){ continue }
+		if( !isAlive local.a ){ continue }
+		local.n++
+		level.asd_sn[local.n] = local.a
+	}
+}end local.n
+
+asd_vang local.from local.to:{
+	local.v = local.to - local.from
+	local.va = vector_toangles local.v
+	local.pa = local.va[0]
+	local.m180 = 0 - 180
+	if( local.pa < local.m180 ){ local.va[0] = local.pa + 360 }
+	local.va[2] = 0
+}end local.va
+
+asd_do local.c:{
+	local.p = $player[1]
+	if( local.p == NULL ){ end }
+	if( local.c == "status" ){
+		println ( "^~^~^ ASN STATUS map=" + level.coop_mapname + " alarmMap=" + ( waitthread asd_s level.coop_alarmMap ) + " sw=" + ( waitthread asd_s level.coop_alarmSwN ) + " live=" + ( waitthread asd_s level.coop_alarmLive ) + " pulls=" + ( waitthread asd_s level.coop_alarmPulls ) + " spots=" + ( waitthread asd_s level.coop_asnN ) + " snipers=" + ( waitthread coop_mod/alarmsnipers.scr::asn_alive ) + " players=" + ( waitthread coop_mod/alarmsnipers.scr::asn_players ) + " want=" + ( waitthread coop_mod/alarmsnipers.scr::asn_want ) + " t=" + level.time )
+	}
+	if( local.c == "load" ){
+		local.n = waitthread coop_mod/alarmsnipers.scr::asn_load
+		println ( "^~^~^ ASN LOAD spots=" + local.n )
+	}
+	if( local.c == "pull" ){
+		local.sw = level.coop_alarmSw[1]
+		if( local.sw == NULL || local.sw == NIL ){ println "^~^~^ ASN PULL no switch"; end }
+		thread coop_mod/alarm.scr::alm_start local.sw
+		println "^~^~^ ASN PULL started"
+	}
+	if( local.c == "autoplace" ){
+		waitthread coop_mod/alarmsnipers.scr::asn_load
+		local.bestn = 0
+		local.bestq = NIL
+		local.bestyaw = 0
+		local.sdirs = 0
+		for( local.i = 1; local.i <= level.coop_asnN; local.i++ ){
+			local.so = level.coop_asnSpot[local.i]
+			for( local.t = 0; local.t < 16; local.t++ ){
+				for( local.dd = 0; local.dd < 3; local.dd++ ){
+					local.ang = ( 0 0 0 )
+					local.ang[1] = local.t * 22.5
+					local.dir = angles_toforward local.ang
+					local.rad = 1500 - ( local.dd * 350 )
+					local.q = local.so + ( vector_scale local.dir local.rad )
+					local.q[2] = local.so[2] + 16
+					local.fl = traced local.q ( local.q - ( 0 0 900 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+					if( local.fl["fraction"] >= 1.0 || local.fl["startSolid"] == 1 ){ continue }
+					local.g = local.fl["endpos"]
+					local.g[2] = local.g[2] + 2
+					local.bx = traced local.g ( local.g + ( 0 0 0.5 ) ) 1023 ( -16 -16 0 ) ( 16 16 72 ) 1
+					if( local.bx["startSolid"] == 1 || local.bx["allSolid"] == 1 ){ continue }
+					local.cnt = 0
+					local.ssx = 0
+					local.ssy = 0
+					for( local.j = 1; local.j <= level.coop_asnN; local.j++ ){
+						local.sj = level.coop_asnSpot[local.j]
+						local.dl = vector_length( local.sj - local.g )
+						if( local.dl < 650 || local.dl > 2200 ){ continue }
+						local.lt = traced ( local.g + ( 0 0 56 ) ) ( local.sj + ( 0 0 60 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+						if( local.lt["fraction"] < 1.0 ){ continue }
+						local.cnt++
+						local.ssx = local.ssx + ( local.sj[0] - local.g[0] )
+						local.ssy = local.ssy + ( local.sj[1] - local.g[1] )
+					}
+					if( local.cnt > local.bestn ){
+						local.bestn = local.cnt
+						local.bestq = local.g
+						local.away = ( 0 0 0 )
+						local.away[0] = 0 - local.ssx
+						local.away[1] = 0 - local.ssy
+						local.bva = vector_toangles local.away
+						local.bestyaw = local.bva[1]
+					}
+				}
+			}
+			waitframe
+		}
+		if( local.bestq == NIL ){ println "^~^~^ ASN PLACE none found"; end }
+		local.o = local.bestq
+		local.va = ( 0 0 0 )
+		local.va[1] = local.bestyaw
+		local.p origin local.o
+		local.p.viewangles = local.va
+		local.p nodamage
+		local.p.health = 100000
+		local.p.max_health = 100000
+		level.asd_P = local.o
+		println ( "^~^~^ ASN PLACE at " + local.o + " yaw " + local.bestyaw + " spots_in_range_with_los=" + local.bestn )
+		wait 0.6
+		local.pw = local.p.origin
+		println ( "^~^~^ ASN WHERE " + local.pw + " off=" + int( vector_length( local.pw - local.o ) ) )
+	}
+	if( local.c == "list" ){
+		local.n = waitthread asd_snipers
+		println ( "^~^~^ ASN LIST alive=" + local.n )
+		for( local.i = 1; local.i <= local.n; local.i++ ){
+			local.a = level.asd_sn[local.i]
+			local.o = local.a.origin
+			local.tr = traced ( local.o + ( 0 0 8 ) ) ( local.o - ( 0 0 8 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+			local.fz = 0
+			local.dz = 999
+			if( local.tr["fraction"] < 1.0 ){
+				local.e = local.tr["endpos"]
+				local.fz = local.e[2]
+				local.dz = local.o[2] - local.fz
+			}
+			local.bb = traced local.o ( local.o + ( 0 0 0.5 ) ) 1023 ( -15 -15 0 ) ( 15 15 72 ) 1
+			local.en = "none"
+			if( local.a.enemy != NULL && local.a.enemy != NIL ){ local.en = "player" }
+			println ( "^~^~^ ASN SN " + local.i + " ent=" + local.a.entnum + " spot=" + local.a.flags["coop_asnSpotI"] + " origin=" + local.o + " floorz=" + local.fz + " dz=" + local.dz + " startsolid=" + local.bb["startSolid"] + " hp=" + local.a.health + " acc=" + local.a.accuracy + " enemy=" + local.en + " dist=" + int( vector_length( local.o - local.p.origin ) ) )
+		}
+	}
+	if( local.c == "cam" ){
+		local.kf = waitthread asd_f "ai_k"
+		local.k = int( local.kf )
+		local.mode = getcvar "ai_mode"
+		local.n = waitthread asd_snipers
+		if( local.k < 1 || local.k > local.n ){ println ( "^~^~^ ASN CAM no sniper " + local.k ); end }
+		local.a = level.asd_sn[local.k]
+		local.so = local.a.origin
+		local.p threatbias ignoreme
+		setcvar "r_fullbright" "1"
+		if( local.mode == "from" ){
+			local.q = level.asd_P
+			local.va = waitthread asd_vang ( local.q + ( 0 0 56 ) ) ( local.so + ( 0 0 50 ) )
+			local.p origin local.q
+			local.p.viewangles = local.va
+			println ( "^~^~^ ASN CAM from player place " + local.q + " to sniper " + local.k + " dist=" + int( vector_length( local.so - local.q ) ) )
+			end
+		}
+		local.base = waitthread asd_vang local.so level.asd_P
+		local.yb = local.base[1]
+		local.bestq = NIL
+		local.dd = 4
+		while( local.dd >= 1 && local.bestq == NIL ){
+			local.rad = 100 + ( local.dd * 70 )
+			for( local.t = 0; local.t < 8; local.t++ ){
+				local.ang = ( 0 0 0 )
+				local.ang[1] = local.yb + ( local.t * 45 )
+				local.dir = angles_toforward local.ang
+				local.q = local.so + ( vector_scale local.dir local.rad )
+				local.q[2] = local.so[2] + 4
+				local.bx = traced local.q ( local.q + ( 0 0 0.5 ) ) 1023 ( -16 -16 0 ) ( 16 16 72 ) 1
+				if( local.bx["startSolid"] == 1 || local.bx["allSolid"] == 1 ){ continue }
+				local.fl = traced ( local.q + ( 0 0 8 ) ) ( local.q - ( 0 0 24 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+				if( local.fl["fraction"] >= 1.0 ){ continue }
+				local.lt = traced ( local.q + ( 0 0 56 ) ) ( local.so + ( 0 0 50 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+				if( local.lt["fraction"] < 1.0 ){ continue }
+				local.bestq = local.q
+				break
+			}
+			local.dd--
+		}
+		if( local.bestq == NIL ){ println ( "^~^~^ ASN CAM no camera spot for sniper " + local.k ); end }
+		local.va = waitthread asd_vang ( local.bestq + ( 0 0 56 ) ) ( local.so + ( 0 0 36 ) )
+		local.p origin local.bestq
+		local.p.viewangles = local.va
+		println ( "^~^~^ ASN CAM close " + local.bestq + " to sniper " + local.k + " dist=" + int( vector_length( local.so - local.bestq ) ) )
+	}
+	if( local.c == "killsn" ){
+		local.n = waitthread asd_snipers
+		for( local.i = 1; local.i <= local.n; local.i++ ){
+			local.a = level.asd_sn[local.i]
+			local.a damage local.p 99999 local.p local.a.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
+		}
+		println ( "^~^~^ ASN KILLED " + local.n )
+	}
+}end

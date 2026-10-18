@@ -1,0 +1,59 @@
+using hudfeed2
+teleport check off= 0
+PHASE 1 sim players 1
+PHASE 2 sim players 3
+    ^~^~^ ASN STATUS map=e3l2 alarmMap=1 sw=3 live=0 pulls=0 spots=- snipers=0 players=1 want=2 t=40.975
+    ^~^~^ ASN PLACE at ( 888.000 -4920.000 -253.875 ) yaw 225.660 spots_in_range_with_los=2
+    ^~^~^ ASN WHERE ( 888.000 -4920.000 -253.875 ) off=0
+    ^~^~^ ASN LOAD spots=9
+    ^~^~^ ALARM LIVE pull 1 switches=3
+    ^~^~^ ASN PULL started
+    ^~^~^ ASNIPER pull 1 players=1 want=2 alive=0 spots=9
+    ^~^~^ ASNIPER SNIPER 1 spot=4 at=( 2106.000 -3912.000 -239.875 ) floorz=-239.875 cluster=4 side=7 alive=1
+    ^~^~^ ASN STATUS map=e3l2 alarmMap=1 sw=3 live=1 pulls=1 spots=9 snipers=1 players=1 want=2 t=47.725
+    ^~^~^ ASNIPER SNIPER 2 spot=7 at=( 1671.360 -3880.000 -239.875 ) floorz=-239.875 cluster=4 side=6 alive=2
+    ^~^~^ ASNIPER pull 1 done made=2 alive=2 tries=0
+    ^~^~^ ASN STATUS map=e3l2 alarmMap=1 sw=3 live=1 pulls=1 spots=9 snipers=2 players=1 want=2 t=52.975
+    ^~^~^ ASN LIST alive=2
+    ^~^~^ ASN SN 1 ent=131 spot=4 origin=( 2106.000 -3912.000 -239.875 ) floorz=-239.875 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=player dist=1581
+    ^~^~^ ASN SN 2 ent=139 spot=7 origin=( 1671.360 -3880.000 -239.875 ) floorz=-239.875 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=player dist=1302
+    ^~^~^ ASN CAM close ( 1813.250 -4154.276 -235.875 ) to sniper 1 dist=380
+    ^~^~^ ASN CAM from player place ( 888.000 -4920.000 -253.875 ) to sniper 1 dist=1580
+    ^~^~^ ASN CAM close ( 1974.093 -4100.897 -235.875 ) to sniper 2 dist=380
+    ^~^~^ ASN CAM from player place ( 888.000 -4920.000 -253.875 ) to sniper 2 dist=1302
+    ^~^~^ ASN PLACE at ( 888.000 -4920.000 -253.875 ) yaw 225.660 spots_in_range_with_los=2
+    ^~^~^ ASN WHERE ( 888.000 -4920.000 -255.875 ) off=2
+    ^~^~^ ASN KILLED 2
+    ^~^~^ ALARM LIVE pull 2 switches=3
+    ^~^~^ ASN PULL started
+    ^~^~^ ASNIPER pull 2 players=1 want=4 alive=0 spots=9
+    ^~^~^ ASNIPER SNIPER 1 spot=7 at=( 1671.360 -3880.000 -239.875 ) floorz=-239.875 cluster=4 side=6 alive=1
+    ^~^~^ ASN STATUS map=e3l2 alarmMap=1 sw=3 live=1 pulls=2 spots=9 snipers=1 players=1 want=4 t=83.575
+    ^~^~^ ASNIPER SNIPER 2 spot=4 at=( 2106.000 -3912.000 -239.875 ) floorz=-239.875 cluster=4 side=7 alive=2
+    ^~^~^ ASNIPER no spot yet (try 1): pn=1 p1=( 888.000 -4920.000 -255.875 ) dmin=600 dmax=2300 nearest=800 free=0 near=0 far=4 nolos=3 seen=0 floor=0
+    ^~^~^ ASN STATUS map=e3l2 alarmMap=1 sw=3 live=1 pulls=2 spots=9 snipers=2 players=1 want=4 t=88.800
+    ^~^~^ ASNIPER no spot yet (try 2): pn=1 p1=( 888.000 -4920.000 -255.875 ) dmin=600 dmax=2300 nearest=800 free=0 near=0 far=4 nolos=3 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 3): pn=1 p1=( 888.000 -4920.000 -255.875 ) dmin=600 dmax=2300 nearest=800 free=0 near=0 far=4 nolos=3 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 4): pn=1 p1=( 888.000 -4920.000 -255.875 ) dmin=600 dmax=2300 nearest=800 free=0 near=0 far=4 nolos=3 seen=0 floor=0
+    ^~^~^ ASN STATUS map=e3l2 alarmMap=1 sw=3 live=1 pulls=2 spots=9 snipers=2 players=1 want=4 t=94.025
+    ^~^~^ ASNIPER no spot yet (try 5): pn=1 p1=( 888.000 -4920.000 -255.875 ) dmin=600 dmax=2300 nearest=800 free=0 near=0 far=4 nolos=3 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 6): pn=1 p1=( 888.000 -4920.000 -255.875 ) dmin=600 dmax=2300 nearest=800 free=0 near=0 far=4 nolos=3 seen=0 floor=0
+    ^~^~^ ASN STATUS map=e3l2 alarmMap=1 sw=3 live=1 pulls=2 spots=9 snipers=2 players=1 want=4 t=99.250
+    ^~^~^ ASNIPER no spot yet (try 7): pn=1 p1=( 888.000 -4920.000 -255.875 ) dmin=600 dmax=2300 nearest=800 free=0 near=0 far=4 nolos=3 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 8): pn=1 p1=( 888.000 -4920.000 -255.875 ) dmin=600 dmax=2300 nearest=800 free=0 near=0 far=4 nolos=3 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 9): pn=1 p1=( 888.000 -4920.000 -255.875 ) dmin=600 dmax=2300 nearest=800 free=0 near=0 far=4 nolos=3 seen=0 floor=0
+    ^~^~^ ASN STATUS map=e3l2 alarmMap=1 sw=3 live=1 pulls=2 spots=9 snipers=2 players=1 want=4 t=104.475
+    ^~^~^ ASNIPER no spot yet (try 10): pn=1 p1=( 888.000 -4920.000 -255.875 ) dmin=600 dmax=2300 nearest=800 free=0 near=0 far=4 nolos=3 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 11): pn=1 p1=( 888.000 -4920.000 -255.875 ) dmin=600 dmax=2300 nearest=800 free=0 near=0 far=4 nolos=3 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 12): pn=1 p1=( 888.000 -4920.000 -255.875 ) dmin=600 dmax=2300 nearest=800 free=0 near=0 far=4 nolos=3 seen=0 floor=0
+    ^~^~^ ASN STATUS map=e3l2 alarmMap=1 sw=3 live=1 pulls=2 spots=9 snipers=2 players=1 want=4 t=109.725
+    ^~^~^ ASNIPER no spot yet (try 13): pn=1 p1=( 888.000 -4920.000 -255.875 ) dmin=600 dmax=2300 nearest=800 free=0 near=0 far=4 nolos=3 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 14): pn=1 p1=( 888.000 -4920.000 -255.875 ) dmin=600 dmax=2300 nearest=800 free=0 near=0 far=4 nolos=3 seen=0 floor=0
+    ^~^~^ ASN STATUS map=e3l2 alarmMap=1 sw=3 live=1 pulls=2 spots=9 snipers=2 players=1 want=4 t=114.950
+    ^~^~^ ASNIPER no spot yet (try 15): pn=1 p1=( 888.000 -4920.000 -255.875 ) dmin=600 dmax=2300 nearest=800 free=0 near=0 far=4 nolos=3 seen=0 floor=0
+    ^~^~^ ASNIPER pull 2 done made=2 alive=2 tries=15
+    ^~^~^ ASN STATUS map=e3l2 alarmMap=1 sw=3 live=1 pulls=2 spots=9 snipers=2 players=1 want=4 t=120.175
+    ^~^~^ ASN LIST alive=2
+    ^~^~^ ASN SN 1 ent=197 spot=7 origin=( 1671.389 -3879.871 -239.875 ) floorz=-239.875 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=none dist=1302
+    ^~^~^ ASN SN 2 ent=467 spot=4 origin=( 2106.132 -3910.487 -239.875 ) floorz=-239.875 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=none dist=1582
+script errors: 5 ["[2026-10-18 16:17:34 UTC-6.000] ^~^~^ Script Error : command 'QueryTurretSlotEntity' applied to NULL listener", "[2026-10-18 16:17:34 UTC-6.000] ^~^~^ Script Error : command 'hide' applied to NIL", "[2026-10-18 16:17:34 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener", "[2026-10-18 16:17:34 UTC-6.000] ^~^~^ Script Error : command 'waitTill' applied to NULL listener"]

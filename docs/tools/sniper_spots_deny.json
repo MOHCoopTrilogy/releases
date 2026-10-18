@@ -1,0 +1,4 @@
+{
+ "_note": "hand-vetted exclusion boxes [x0,y0,x1,y1] per map for spots next to scripted movers the BSP cannot show (script-spawned vehicles / trains). Found in the harness: a sniper at m4l2 6960,2360 was moved 90-224 u off his floor.",
+ "m4l2": [[5400, 1800, 8200, 2900]]
+}

@@ -158,7 +158,7 @@ def main():
             sc("f_oldroute", 4, 2, 60, 120)
             time.sleep(8)
         if 3 in scen:
-            sc("d_banner", 3, 6, 50, 40, ["+attackprimary", "wait 6", "-attackprimary", "wait 10"])
+            sc("d_banner", 3, 6, 50, 40, ["set cg_hud 1", "set cg_huddraw_force 1", "echo ^~^~^ HUDCV1", "cg_hud", "cg_huddraw_force", "ui_hud", "coop_cineHud", "echo ^~^~^ HUDCV2", "+attackprimary", "wait 6", "-attackprimary", "wait 10"])
             time.sleep(6)
         errs = re.findall(r"[^\r\n]*Script Error[^\r\n]*", read(slog))
         check("0 Script Error lines in the server log", not errs, "; ".join(errs[:3]))

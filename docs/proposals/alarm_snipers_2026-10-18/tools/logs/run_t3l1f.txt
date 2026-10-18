@@ -1,0 +1,74 @@
+using hudfeed2
+teleport check off= 0
+PHASE 1 sim players 1
+PHASE 2 sim players 3
+    ^~^~^ ASN STATUS map=t3l1 alarmMap=1 sw=2 live=0 pulls=0 spots=- snipers=0 players=1 want=2 t=41.000
+    ^~^~^ ASN PLACE at ( 2344.000 -2828.000 146.125 ) yaw 0.000 spots_in_range_with_los=1
+    ^~^~^ ASN WHERE ( 2344.000 -2828.000 146.125 ) off=0
+    ^~^~^ ASN LOAD spots=1
+    ^~^~^ ALARM LIVE pull 1 switches=2
+    ^~^~^ ASN PULL started
+    ^~^~^ ASNIPER pull 1 players=1 want=2 alive=0 spots=1
+    ^~^~^ ASNIPER SNIPER 1 spot=1 at=( 1544.000 -2828.000 376.125 ) floorz=376.125 cluster=1 side=7 alive=1
+    ^~^~^ ASN STATUS map=t3l1 alarmMap=1 sw=2 live=1 pulls=1 spots=1 snipers=1 players=1 want=2 t=47.775
+    ^~^~^ ASNIPER no spot yet (try 1): pn=1 p1=( 2344.000 -2828.000 146.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 2): pn=1 p1=( 2344.000 -2828.000 146.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=t3l1 alarmMap=1 sw=2 live=1 pulls=1 spots=1 snipers=1 players=1 want=2 t=53.000
+    ^~^~^ ASNIPER no spot yet (try 3): pn=1 p1=( 2344.000 -2828.000 146.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 4): pn=1 p1=( 2344.000 -2828.000 146.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=t3l1 alarmMap=1 sw=2 live=1 pulls=1 spots=1 snipers=1 players=1 want=2 t=58.225
+    ^~^~^ ASNIPER no spot yet (try 5): pn=1 p1=( 2344.000 -2828.000 146.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 6): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 7): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=t3l1 alarmMap=1 sw=2 live=1 pulls=1 spots=1 snipers=1 players=1 want=2 t=63.450
+    ^~^~^ ASNIPER no spot yet (try 8): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 9): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 10): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=t3l1 alarmMap=1 sw=2 live=1 pulls=1 spots=1 snipers=1 players=1 want=2 t=68.700
+    ^~^~^ ASNIPER no spot yet (try 11): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 12): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=t3l1 alarmMap=1 sw=2 live=1 pulls=1 spots=1 snipers=1 players=1 want=2 t=73.900
+    ^~^~^ ASNIPER no spot yet (try 13): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 14): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 15): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=t3l1 alarmMap=1 sw=2 live=1 pulls=1 spots=1 snipers=1 players=1 want=2 t=79.150
+    ^~^~^ ASNIPER pull 1 done made=1 alive=1 tries=15
+    ^~^~^ ASN STATUS map=t3l1 alarmMap=1 sw=2 live=1 pulls=1 spots=1 snipers=1 players=1 want=2 t=84.375
+    ^~^~^ ASN LIST alive=1
+    ^~^~^ ASN SN 1 ent=255 spot=1 origin=( 1545.302 -2833.956 376.125 ) floorz=376.125 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=player dist=831
+    ^~^~^ ASN CAM close ( 1274.605 -2567.266 380.125 ) to sniper 1 dist=380
+    ^~^~^ ASN CAM from player place ( 2344.000 -2828.000 146.125 ) to sniper 1 dist=831
+    ^~^~^ ASN PLACE at ( 2344.000 -2828.000 146.125 ) yaw 0.000 spots_in_range_with_los=1
+    ^~^~^ ASN WHERE ( 2344.000 -2828.000 144.125 ) off=1
+    ^~^~^ ASN KILLED 1
+    ^~^~^ ALARM LIVE pull 2 switches=2
+    ^~^~^ ASN PULL started
+    ^~^~^ ASNIPER pull 2 players=1 want=4 alive=0 spots=1
+    ^~^~^ ASNIPER SNIPER 1 spot=1 at=( 1544.000 -2828.000 376.125 ) floorz=376.125 cluster=1 side=7 alive=1
+    ^~^~^ ASN STATUS map=t3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=1 snipers=1 players=1 want=4 t=109.750
+    ^~^~^ ASNIPER no spot yet (try 1): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 2): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=t3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=1 snipers=1 players=1 want=4 t=114.975
+    ^~^~^ ASNIPER no spot yet (try 3): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 4): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 5): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=t3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=1 snipers=1 players=1 want=4 t=120.225
+    ^~^~^ ASNIPER no spot yet (try 6): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 7): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=t3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=1 snipers=1 players=1 want=4 t=125.450
+    ^~^~^ ASNIPER no spot yet (try 8): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 9): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 10): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=t3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=1 snipers=1 players=1 want=4 t=130.675
+    ^~^~^ ASNIPER no spot yet (try 11): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 12): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 13): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=t3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=1 snipers=1 players=1 want=4 t=135.900
+    ^~^~^ ASNIPER no spot yet (try 14): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASNIPER no spot yet (try 15): pn=1 p1=( 2344.000 -2828.000 144.125 ) dmin=600 dmax=2300 nearest=999999 free=0 near=0 far=0 nolos=0 seen=0 floor=0
+    ^~^~^ ASN STATUS map=t3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=1 snipers=1 players=1 want=4 t=141.125
+    ^~^~^ ASNIPER pull 2 done made=1 alive=1 tries=15
+    ^~^~^ ASN STATUS map=t3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=1 snipers=1 players=1 want=4 t=146.375
+    ^~^~^ ASN LIST alive=1
+    ^~^~^ ASN SN 1 ent=813 spot=1 origin=( 1543.994 -2828.309 376.125 ) floorz=376.125 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=none dist=832
+script errors: 2 ["[2026-10-18 16:09:59 UTC-6.000] ^~^~^ Script Error : command 'accuracy' applied to NULL listener", "[2026-10-18 16:09:59 UTC-6.000] ^~^~^ Script Error : command 'exec' applied to NULL listener"]

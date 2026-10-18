@@ -1,0 +1,47 @@
+using hudfeed2
+teleport check off= 8786
+teleport check off= 2
+PHASE 1 sim players 1
+PHASE 2 sim players 3
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=0 pulls=0 spots=- snipers=0 players=1 want=2 t=40.950
+    ^~^~^ ASN PLACE at ( -128.086 2945.539 34.125 ) yaw 267.692 spots_in_range_with_los=4
+    ^~^~^ ASN WHERE ( -2364.609 -5551.779 61.146 ) off=8786
+    ^~^~^ ASN PLACE at ( -128.086 2945.539 34.125 ) yaw 267.692 spots_in_range_with_los=4
+    ^~^~^ ASN WHERE ( -128.086 2945.539 32.125 ) off=2
+    ^~^~^ ASN LOAD spots=5
+    ^~^~^ ALARM LIVE pull 1 switches=2
+    ^~^~^ ASN PULL started
+    ^~^~^ ASNIPER pull 1 players=1 want=2 alive=0 spots=5
+    ^~^~^ ASNIPER SNIPER 1 spot=5 at=( -296.000 4056.000 224.125 ) floorz=224.125 cluster=1 side=2 alive=1
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=1 pulls=1 spots=5 snipers=1 players=1 want=2 t=56.750
+    ^~^~^ ASNIPER SNIPER 2 spot=3 at=( -872.000 2776.000 224.125 ) floorz=224.125 cluster=3 side=3 alive=2
+    ^~^~^ ASNIPER pull 1 done made=2 alive=2 tries=0
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=1 pulls=1 spots=5 snipers=2 players=1 want=2 t=61.950
+    ^~^~^ ASN LIST alive=2
+    ^~^~^ ASN SN 1 ent=153 spot=5 origin=( -296.000 4056.000 224.125 ) floorz=224.125 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=player dist=1139
+    ^~^~^ ASN SN 2 ent=596 spot=3 origin=( -872.000 2776.000 224.125 ) floorz=224.125 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=player dist=786
+    ^~^~^ ASN CAM close ( -260.117 3818.698 228.125 ) to sniper 1 dist=240
+    ^~^~^ ASN CAM from player place ( -128.086 2945.539 34.125 ) to sniper 1 dist=1139
+    ^~^~^ ASN CAM close ( -785.114 2916.901 228.125 ) to sniper 2 dist=170
+    ^~^~^ ASN CAM from player place ( -128.086 2945.539 34.125 ) to sniper 2 dist=785
+    ^~^~^ ASN PLACE at ( -128.086 2945.539 34.125 ) yaw 267.692 spots_in_range_with_los=4
+    ^~^~^ ASN WHERE ( -128.086 2945.539 32.125 ) off=2
+    ^~^~^ ASN KILLED 2
+    ^~^~^ ALARM LIVE pull 2 switches=2
+    ^~^~^ ASN PULL started
+    ^~^~^ ASNIPER pull 2 players=1 want=4 alive=0 spots=5
+    ^~^~^ ASNIPER SNIPER 1 spot=1 at=( 312.000 4008.000 224.125 ) floorz=224.125 cluster=1 side=2 alive=1
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=5 snipers=1 players=1 want=4 t=92.125
+    ^~^~^ ASNIPER SNIPER 2 spot=3 at=( -872.000 2776.000 224.125 ) floorz=224.125 cluster=3 side=3 alive=2
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=5 snipers=2 players=1 want=4 t=97.350
+    ^~^~^ ASNIPER SNIPER 3 spot=4 at=( 504.000 4920.000 448.125 ) floorz=448.125 cluster=4 side=2 alive=3
+    ^~^~^ ASNIPER SNIPER 4 spot=5 at=( -296.000 4056.000 224.125 ) floorz=224.125 cluster=1 side=2 alive=4
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=5 snipers=4 players=1 want=4 t=102.600
+    ^~^~^ ASNIPER pull 2 done made=4 alive=4 tries=0
+    ^~^~^ ASN STATUS map=e3l1 alarmMap=1 sw=2 live=1 pulls=2 spots=5 snipers=4 players=1 want=4 t=107.825
+    ^~^~^ ASN LIST alive=4
+    ^~^~^ ASN SN 1 ent=597 spot=1 origin=( 314.993 4010.746 224.125 ) floorz=224.125 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=none dist=1169
+    ^~^~^ ASN SN 2 ent=254 spot=3 origin=( -870.840 2778.494 224.125 ) floorz=224.125 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=none dist=785
+    ^~^~^ ASN SN 3 ent=673 spot=4 origin=( 504.000 4920.000 448.125 ) floorz=448.125 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=none dist=2114
+    ^~^~^ ASN SN 4 ent=535 spot=5 origin=( -296.136 4060.687 224.125 ) floorz=224.125 dz=0.000 startsolid=0 hp=65.000 acc=55.000 enemy=none dist=1143
+script errors: 0 []
