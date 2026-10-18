@@ -62,7 +62,14 @@ the MG42 ...", a bold `iprintlnbold` that used to land on the old box) is releas
 
 ## Proof status
 - `contact_sheet.jpg`: cells 1-4 are the same scenario (3 long feed lines + an alert, 3 subtitles) on the RELEASED cgame (collides) and the new one (clear) at 720p and 4:3; cell 5 1080p; 6 long wording; 7 a bold `iprintlnbold` + `iprintln` (same calls as maps/m1l1.scr:2667 and items) arriving in the feed; 8 the banner. GIF: `media/challenge_banner_typewriter.gif`.
-- Harness: runs tf720h / tf1080h / tf43h (new), tfold720 / tfold43 (released cgame), tf720ja (banner, old-route), archived in G:\mohaa-hudfeed5uns_textfeed.
+- Harness: runs tf720h / tf1080h / tf43h (new), tfold720 / tfold43 (released cgame), tf720ja (banner, old-route), archived in G:\mohaa-hudfeed5
+uns_textfeed.
 - Real m1l1 MG42 hint: its log line (`FEEDUNTAGGED ... Climb the stairs`) arrived once (run tf720b), never again (the thread needs the intro/ending beats); the screenshot cell uses the same call from the overlay. Real untagged engine lines (`That weapon is currently banned.`, `Picked Up ...`) were routed in every run.
 - Harness trap found: the client runs at ~1000 fps, `wait N` is N frames (a fraction of a second): real-time pauses must be python sleeps; ihuddraw needs `cg_hud 1` (`set cg_huddraw_force 1`) in m1l1's intro.
 - Not verified: 2560x1440 / ultrawide (DISPLAY2 clamps to 1080p), 1080p true size, two-player remote client, Hardcore, a multi-line wrapped subtitle block beyond 3 lines, the banner on a non-feed-capable (old cgame) client, sound of the typewriter.
+
+## Round 2 (coordinator QA: subtitles ran across the item row / health cluster)
+Engine `ba72a485`: in a coop session cgame draws the subtitles itself (same text, 80 % wrap, timing and envelope as the exe) with
+the block's bottom 6 px above `CG_CoopItemsTopPx` (clears the item row, labels and health cluster), and sets the exe's `subAlpha`
+to 0 so its copy is invisible (put back outside coop). The feed stands above the new block. Opacity: archived `coop_subAlpha`
+(0.65). cgame.dll md5 `c94af88916b2e4c1e6e6f1e5bca1d906`. Cells 2, 4, 5 re-shot (runs tf720ka / tf1080ka / tf43ka).
