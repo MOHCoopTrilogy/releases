@@ -18,18 +18,18 @@ id	tik	give	xfm	charanim	cls	tab	name	cd	b0	b1	b2	b3	clip	clipn	recoil	slots	xfm
 02	models/weapons/carbine.tik	models/weapons/carbine.tik	0 3.429 0 0.823 0 270 180	coop_hold_rifle	rifle	0	M1 CARBINE	.30 CARBINE / SEMI-AUTO	4	5	8	8	15	15	carbine	12	0 3.429 0 0.823 0 270 180
 03	models/weapons/kar98.tik	models/weapons/kar98.tik	0 0.122 -0.245 0.909 0 270 180	coop_hold_rifle	rifle	0	KAR98K	7.92MM / BOLT-ACTION	10	1	8	10	5	5	kar98	12	0 0.122 -0.245 0.909 0 270 180
 04	models/weapons/g43.tik	models/weapons/g43.tik	0 14.171 -4.22 1.117 0 270 180	coop_hold_rifle	rifle	0	GEWEHR 43	7.92MM / SEMI-AUTO	5	4	9	5	10	10	g43	12	0 14.171 -4.22 1.117 0 270 180
-05	models/weapons/enfield.tik	models/weapons/enfield.tik	0 0.174 0.406 1.361 0 270 180	coop_hold_rifle	rifle	0	LEE-ENFIELD NO.4	.303 / BOLT-ACTION	9	1	8	10	10	10	enfield	12	0 0.174 0.406 1.361 0 270 180
+05	models/weapons/enfield.tik	models/weapons/enfield.tik	0 12.475 -0.517 1.1 0 270 180	coop_hold_rifle	rifle	0	LEE-ENFIELD NO.4	.303 / BOLT-ACTION	9	1	8	10	10	10	enfield	12	0 12.475 -0.517 1.1 0 270 180
 06	models/weapons/springfield_unscoped.tik	models/weapons/springfield_unscoped.tik	0 11.111 0 1.005 0 270 180	coop_hold_rifle	rifle	0	SPRINGFIELD M1903	.30-06 / BOLT-ACTION	8	1	8	8	5	5	springfield_unscoped	12	0 11.111 0 1.005 0 270 180
 07	models/weapons/it_w_carcano.tik	models/weapons/it_w_carcano.tik	0 9.471 1.939 1.082 0 270 180	coop_hold_rifle	rifle	0	CARCANO M91/38	6.5MM / BOLT-ACTION	9	1	9	10	6	6	it_w_carcano	12	0 9.471 1.939 1.082 0 270 180
 08	models/weapons/svt_rifle.tik	models/weapons/svt_rifle.tik	0 11.952 -4.649 1.051 0 270 180	coop_hold_rifle	rifle	0	SVT-40	7.62MM / SEMI-AUTO	5	1	0	5	10	10	svt_rifle	12	0 11.952 -4.649 1.051 0 270 180
 09	models/weapons/mosin_nagant_rifle.tik	models/weapons/mosin_nagant_rifle.tik	0 16.178 -1.135 1.134 0 270 180	coop_hold_rifle	rifle	0	MOSIN-NAGANT	7.62MM / BOLT-ACTION	9	1	8	10	5	5	mosin_nagant_rifle	12	0 16.178 -1.135 1.134 0 270 180
-10	models/weapons/arisaka.tik	models/weapons/arisaka.tik	0 1.998 0.7 1.345 0 270 180	coop_hold_rifle	rifle	0	ARISAKA TYPE 99	7.7MM / BOLT-ACTION	8	1	8	8	5	5	arisaka	12	0 1.998 0.7 1.345 0 270 180
+10	models/weapons/arisaka.tik	models/weapons/arisaka.tik	0 14.39 -0.27 1.149 0 270 180	coop_hold_rifle	rifle	0	ARISAKA TYPE 99	7.7MM / BOLT-ACTION	8	1	8	8	5	5	arisaka	12	0 14.39 -0.27 1.149 0 270 180
 11	models/weapons/garand_silenced.tik	models/weapons/garand_silenced.tik	0 12.963 -0.996 0.99 0 270 180	coop_hold_rifle	rifle	0	M1 GARAND SILENCED	.30-06 / SEMI-AUTO / SU..	4	2	8	8	8	8	garand_silenced	12	0 12.963 -0.996 0.99 0 270 180
 12	models/weapons/springfield.tik	models/weapons/springfield.tik	0 11.665 -1.656 1.059 0 270 180	coop_hold_rifle	sniper	1	SPRINGFIELD SNIPER	.30-06 / SCOPED BOLT	9	0	9	7	5	5	springfield	12	0 11.665 -1.656 1.059 0 270 180
 13	models/weapons/kar98sniper.tik	models/weapons/kar98sniper.tik	0 14.427 -1.539 1.139 0 270 180	coop_hold_rifle	sniper	1	KAR98K SNIPER	7.92MM / SCOPED BOLT	9	0	9	5	5	5	kar98sniper	12	0 14.427 -1.539 1.139 0 270 180
 14	models/weapons/uk_w_l42a1.tik	models/weapons/uk_w_l42a1.tik	0 5.061 -1.602 0.779 0 270 180	coop_hold_rifle	sniper	1	ENFIELD L42A1	.303 / SCOPED BOLT	9	1	9	8	10	10	uk_w_l42a1	12	0 5.061 -1.602 0.779 0 270 180
 15	models/weapons/garand_scoped.tik	models/weapons/garand_scoped.tik	0 12.375 -0.996 1.005 0 270 180	coop_hold_rifle	sniper	1	M1 GARAND SCOPED	.30-06 / SCOPED SEMI-AUTO	4	2	9	8	8	8	garand_scoped	12	0 12.375 -0.996 1.005 0 270 180
-16	models/weapons/g43sniper.tik	models/weapons/g43sniper.tik	0 28.825 14.844 0.915 0 270 180	coop_hold_rifle	sniper	1	G43 SNIPER	7.92MM / SCOPED SEMI-AUTO	4	4	9	7	10	10	g43sniper	12	0 28.825 14.844 0.915 0 270 180
+16	models/weapons/g43sniper.tik	models/weapons/g43sniper.tik	0 12.692 -4.311 1.111 0 270 180	coop_hold_rifle	sniper	1	G43 SNIPER	7.92MM / SCOPED SEMI-AUTO	4	4	9	7	10	10	g43sniper	12	0 12.692 -4.311 1.111 0 270 180
 17	models/weapons/enfieldsniper.tik	models/weapons/enfieldsniper.tik	0 12.85 -0.462 1.125 0 270 180	coop_hold_rifle	sniper	1	LEE-ENFIELD SNIPER	.303 / SCOPED BOLT	8	1	9	5	10	10	enfieldsniper	12	0 12.85 -0.462 1.125 0 270 180
 18	models/weapons/carcanosniper.tik	models/weapons/carcanosniper.tik	0 9.934 -1.748 0.83 0 270 180	coop_hold_rifle	sniper	1	CARCANO SNIPER	6.5MM / SCOPED BOLT	8	1	9	5	6	6	carcanosniper	12	0 9.934 -1.748 0.83 0 270 180
 19	models/weapons/arisakasniper.tik	models/weapons/arisakasniper.tik	0 16.237 -1.625 0.935 0 270 180	coop_hold_rifle	sniper	1	ARISAKA SNIPER	7.7MM / SCOPED BOLT	8	1	9	8	5	5	arisakasniper	12	0 16.237 -1.625 0.935 0 270 180
@@ -44,19 +44,19 @@ id	tik	give	xfm	charanim	cls	tab	name	cd	b0	b1	b2	b3	clip	clipn	recoil	slots	xfm
 28	models/weapons/sten.tik	models/weapons/sten.tik	0 11.214 -1.578 1.088 0 270 180	coop_hold_smg	smg	2	STEN MK II	9MM / FULL-AUTO	2	10	8	8	30	30	sten	12	0 11.214 -1.578 1.088 0 270 180
 29	models/weapons/ppsh_smg.tik	models/weapons/ppsh_smg.tik	0 4.277 -1.912 1.153 0 270 180	coop_hold_smg	smg	2	PPSH-41	7.62MM / FULL-AUTO	2	9	8	8	70	70	ppsh_smg	12	0 4.277 -1.912 1.153 0 270 180
 30	models/weapons/ppsh43silenced.tik	models/weapons/ppsh43silenced.tik	0 -11.644 1.286 1.602 0 90 180	coop_hold_smg	smg	2	PPS-43 SILENCED	7.62MM / SUPPRESSED AUTO	2	9	9	8	35	35	ppsh43silenced	12	0 -11.644 1.286 1.602 0 90 180
-31	models/weapons/greasegun.tik	models/weapons/greasegun.tik	0 -8.089 6.442 1.137 0 90 180	coop_hold_smg	smg	2	M3 GREASE GUN	.45 ACP / FULL-AUTO	2	7	9	8	30	30	greasegun	12	0 -8.089 6.442 1.137 0 90 180
+31	models/weapons/greasegun.tik	models/weapons/greasegun.tik	0 -3.931 6.442 1.181 0 90 180	coop_hold_smg	smg	2	M3 GREASE GUN	.45 ACP / FULL-AUTO	2	7	9	8	30	30	greasegun	12	0 -3.931 6.442 1.181 0 90 180
 32	models/weapons/greasegun_silenced.tik	models/weapons/greasegun_silenced.tik	0 15.509 6.111 1.784 0 270 180	coop_hold_smg	smg	2	M3 GREASE SILENCED	.45 ACP / SUPPRESSED AUTO	2	7	9	8	30	30	greasegun_silenced	12	0 15.509 6.111 1.784 0 270 180
 33	models/weapons/it_w_moschetto.tik	models/weapons/it_w_moschetto.tik	0 2.616 0.942 0.885 0 270 180	coop_hold_smg	smg	2	MOSCHETTO M38	9MM / FULL-AUTO	2	10	8	8	40	40	it_w_moschetto	12	0 2.616 0.942 0.885 0 270 180
 34	models/weapons/moschetto.tik	models/weapons/moschetto.tik	0 7.045 -1.235 1.642 0 270 180	coop_hold_smg	smg	2	BERETTA M38A	9MM / FULL-AUTO	2	9	9	8	40	40	moschetto	12	0 7.045 -1.235 1.642 0 270 180
 35	models/weapons/type100smg.tik	models/weapons/type100smg.tik	0 9.284 -7.585 1.038 0 270 180	coop_hold_smg	smg	2	TYPE 100 SMG	8MM / FULL-AUTO	2	8	9	9	30	30	type100smg	12	0 9.284 -7.585 1.038 0 270 180
-36	models/weapons/bar.tik	models/weapons/bar.tik	0 9.588 -0.093 1.224 0 270 180	coop_hold_rifle	heavy	3	BAR M1918	.30-06 / AUTOMATIC RIFLE	3	7	8	6	20	20	bar	12	0 9.588 -0.093 1.224 0 270 180
+36	models/weapons/bar.tik	models/weapons/bar.tik	0 14.363 1.253 1.109 0 270 180	coop_hold_rifle	heavy	3	BAR M1918	.30-06 / AUTOMATIC RIFLE	3	7	8	6	20	20	bar	12	0 14.363 1.253 1.109 0 270 180
 37	models/weapons/mp44.tik	models/weapons/mp44.tik	0 7.339 3.172 1.116 0 270 180	coop_hold_rifle	heavy	3	STG 44	7.92MM KURZ / ASSAULT R..	3	7	8	6	30	30	mp44	12	0 7.339 3.172 1.116 0 270 180
 38	models/weapons/mp44scoped.tik	models/weapons/mp44scoped.tik	0 6.654 1.555 1.076 0 270 180	coop_hold_rifle	heavy	3	STG 44 SCOPED	7.92MM KURZ / SCOPED AS..	2	7	9	7	30	30	mp44scoped	12	0 6.654 1.555 1.076 0 270 180
 39	models/weapons/fg42.tik	models/weapons/fg42.tik	0 8.964 -5.03 1.042 0 270 180	coop_hold_rifle	heavy	3	FG 42	7.92MM / AUTOMATIC RIFLE	10	9	0	5	20	20	fg42	12	0 8.964 -5.03 1.042 0 270 180
 40	models/weapons/uk_w_vickers.tik	models/weapons/uk_w_vickers.tik	0 10.44 -1.081 1.107 0 270 0	coop_hold_rifle	heavy	3	VICKERS-BERTHIER	.303 / LIGHT MG	3	6	8	5	30	30	uk_w_vickers	12	0 10.44 -1.081 1.107 0 270 0
 41	models/weapons/it_w_breda.tik	models/weapons/it_w_breda.tik	0 5.452 9.166 0.835 0 270 180	coop_hold_rifle	heavy	3	BREDA M30	6.5MM / LIGHT MG	3	7	8	5	20	20	it_w_breda	12	0 5.452 9.166 0.835 0 270 180
 42	models/weapons/30calportable.tik	models/weapons/30calportable.tik	0 -14.006 -4.993 1.142 0 90 180	coop_hold_rifle	heavy	3	M1919 .30 CAL	.30-06 / PORTABLE MG	8	9	9	1	120	120	30calportable	12	0 -14.006 -4.993 1.142 0 90 180
-43	models/weapons/mg42portable.tik	models/weapons/mg42portable.tik	0 -58.296 10.755 0.651 0 270 180	coop_hold_rifle	heavy	3	MG42	7.92MM / PORTABLE MG	10	10	9	1	120	120	mg42portable	12	0 -58.296 10.755 0.651 0 270 180
+43	models/weapons/mg42portable.tik	models/weapons/mg42portable.tik	0 15.159 -0.675 1.111 0 270 180	coop_hold_rifle	heavy	3	MG42	7.92MM / PORTABLE MG	10	10	9	1	120	120	mg42portable	12	0 15.159 -0.675 1.111 0 270 180
 44	models/weapons/shotgun.tik	models/weapons/shotgun.tik	0 8.689 2.224 1.14 0 270 180	coop_hold_rifle	heavy	3	TRENCH GUN	12 GAUGE / PUMP-ACTION	10	1	8	9	5	5	shotgun	12	0 8.689 2.224 1.14 0 270 180
 45	models/weapons/bazooka.tik	models/weapons/bazooka.tik	0 8.398 -3.657 0.967 0 90 180	coop_hold_rifle	heavy	3	M1A1 BAZOOKA	ROCKET / ANTI-TANK	10	1	6	3	1	1	bazooka	12	0 8.398 -3.657 0.967 0 90 180
 46	models/weapons/panzerschreck.tik	models/weapons/panzerschreck.tik	0 -1.897 -7.315 1.145 0 90 180	coop_hold_rifle	heavy	3	PANZERSCHRECK	ROCKET / ANTI-TANK	10	1	6	3	1	1	panzerschreck	12	0 -1.897 -7.315 1.145 0 90 180
@@ -69,10 +69,10 @@ id	tik	give	xfm	charanim	cls	tab	name	cd	b0	b1	b2	b3	clip	clipn	recoil	slots	xfm
 53	models/weapons/webley_revolver.tik	models/weapons/webley_revolver.tik	0 7.793 -0.446 1.119 0 270 180	coop_hold_pistol		4	WEBLEY MK VI	.455 / REVOLVER	4	7	8	9	6	6	webley_revolver	3	0 7.793 -0.446 1.119 0 270 180
 54	models/weapons/nagant_revolver.tik	models/weapons/nagant_revolver.tik	0 6.322 -0.213 1.07 0 270 180	coop_hold_pistol		4	NAGANT M1895	7.62MM / REVOLVER	3	5	8	9	7	7	nagant_revolver	3	0 6.322 -0.213 1.07 0 270 180
 55	models/weapons/it_w_beretta.tik	models/weapons/it_w_beretta.tik	0 3.273 1.42 1.033 0 270 180	coop_hold_pistol		4	BERETTA M1934	9MM CORTO / SEMI-AUTO	3	5	8	9	15	15	it_w_beretta	3	0 3.273 1.42 1.033 0 270 180
-56	models/weapons/berettasilenced.tik	models/weapons/berettasilenced.tik	0 1.638 0 1.396 0 90 0	coop_hold_pistol		4	BERETTA SILENCED	9MM CORTO / SUPPRESSED	3	3	7	9	8	8	berettasilenced	3	0 1.638 0 1.396 0 90 0
+56	models/weapons/berettasilenced.tik	models/weapons/berettasilenced.tik	0 8.128 1.579 1.698 0 270 180	coop_hold_pistol		4	BERETTA SILENCED	9MM CORTO / SUPPRESSED	3	3	7	9	8	8	berettasilenced	3	0 8.128 1.579 1.698 0 270 180
 57	models/weapons/lugerp08.tik	models/weapons/lugerp08.tik	0 6.444 1.941 1.349 0 270 180	coop_hold_pistol		4	LUGER P08	9MM / SEMI-AUTO	3	3	7	9	8	8	lugerp08	3	0 6.444 1.941 1.349 0 270 180
 58	models/weapons/lugerp08silenced.tik	models/weapons/lugerp08silenced.tik	0 11.005 2.164 2.24 0 270 180	coop_hold_pistol		4	LUGER P08 SILENCED	9MM / SUPPRESSED	3	3	7	9	8	8	lugerp08silenced	3	0 11.005 2.164 2.24 0 270 180
-59	models/weapons/ppk.tik	models/weapons/ppk.tik	0 2.025 1.297 2.727 0 270 180	coop_hold_pistol		4	WALTHER PPK	7.65MM / SEMI-AUTO	3	3	6	9	8	8	ppk	3	0 2.025 1.297 2.727 0 270 180
+59	models/weapons/ppk.tik	models/weapons/ppk.tik	0 7.905 1.578 2.102 0 270 180	coop_hold_pistol		4	WALTHER PPK	7.65MM / SEMI-AUTO	3	3	6	9	8	8	ppk	3	0 7.905 1.578 2.102 0 270 180
 60	models/weapons/tt33.tik	models/weapons/tt33.tik	0 5.206 1.848 1.103 0 270 180	coop_hold_pistol		4	TOKAREV TT-33	7.62MM / SEMI-AUTO	3	3	8	9	8	8	tt33	3	0 5.206 1.848 1.103 0 270 180
 61	models/weapons/tt33silenced.tik	models/weapons/tt33silenced.tik	0 9.572 1.897 1.766 0 270 180	coop_hold_pistol		4	TT-33 SILENCED	7.62MM / SUPPRESSED	3	3	8	9	8	8	tt33silenced	3	0 9.572 1.897 1.766 0 270 180
 62	models/weapons/nambu.tik	models/weapons/nambu.tik	0 4.854 1.804 1.277 0 270 180	coop_hold_pistol		4	NAMBU TYPE 14	8MM / SEMI-AUTO	3	3	7	9	8	8	nambu	3	0 4.854 1.804 1.277 0 270 180
@@ -85,8 +85,8 @@ id	tik	give	xfm	charanim	cls	tab	name	cd	b0	b1	b2	b3	clip	clipn	recoil	slots	xfm
 69	models/weapons/nebelhandgranate.tik	models/weapons/nebelhandgranate_start.tik	0 1.069 1.912 1.265 0 90 180	coop_hold_pistol		5	NEBELHANDGRANATE	GERMAN SMOKE GRENADE	0	2	5	10	0		nebel	4	0 1.069 1.912 1.265 0 90 180
 70	models/weapons/johnson_m1941.tik		0 6.862 -1.323 0.817 0 270 180	coop_hold_rifle	rifle	0	JOHNSON M1941	.30-06 / SEMI-AUTO / 10 RD	5	4	8	10	10	10	m1_garand	12	0 6.862 -1.323 0.817 0 270 180
 71	models/weapons/thompsonsmg_gold.tik		0 1.507 1.751 1.134 0 270 180	coop_hold_smg	smg	2	THOMPSON (GOLD)	.45 ACP / FULL-AUTO	2	9	8	8	30	30	thompsonsmg	12	0 1.507 1.751 1.134 0 270 180
-72	models/weapons/dp28.tik		0 -30.402 -1.592 1.197 0 90 180	coop_hold_rifle	heavy	3	DP-28	7.62x54R / FULL-AUTO / 47 RD	3	7	8	6	50	47	bar	12	0 -30.402 -1.592 1.197 0 90 180
-74	models/weapons/mauser_c96.tik		0 -3.091 -0.053 0.692 0 90 0	coop_hold_pistol		4	MAUSER C96	7.63MM / SEMI-AUTO / 10 RD	3	5	9	9	10	10	p38	3	0 -3.091 -0.053 0.692 0 90 0
+72	models/weapons/dp28.tik		0 -5.791 -1.304 0.979 0 90 180	coop_hold_rifle	heavy	3	DP-28	7.62x54R / FULL-AUTO / 47 RD	3	7	8	6	50	47	bar	12	0 -5.791 -1.304 0.979 0 90 180
+74	models/weapons/mauser_c96.tik		0 7.815 0.595 1.136 0 270 180	coop_hold_pistol		4	MAUSER C96	7.63MM / SEMI-AUTO / 10 RD	3	5	9	9	10	10	p38	3	0 7.815 0.595 1.136 0 270 180
 75	models/weapons/m10_revolver.tik		0 5.227 -0.802 1.122 0 270 180	coop_hold_pistol		4	S&W M10 .38	.38 SPECIAL / REVOLVER / 6 RD	3	5	8	9	6	6	nagant_revolver	3	0 5.227 -0.802 1.122 0 270 180
 78	models/weapons/coop_g43_irons.tik	models/weapons/coop_g43_irons.tik	0 14.718 -3.74 1.114 0 270 180	coop_hold_rifle	rifle	0	GEWEHR 43 (IRON SIGHTS)	7.92MM / SEMI-AUTO / IRON SIGHTS	5	4	8	10	10	10	g43	12	0 14.718 -3.74 1.114 0 270 180
 80	models/weapons/coop_dbshotgun.tik	models/weapons/coop_dbshotgun.tik	0 7.638 -1.135 0.804 0 270 180	coop_hold_rifle	heavy	3	DOUBLE BARREL	12 GAUGE / BREAK-ACTION	10	3	6	10	2	2	shotgun	12	0 7.638 -1.135 0.804 0 270 180
