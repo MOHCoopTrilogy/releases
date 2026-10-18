@@ -15,7 +15,7 @@ try:
         say("batch attempt %d on %s" % (attempt, client))
         subprocess.run([sys.executable, os.path.join(HERE, "sl_run.py"), "p1", MAP], stdout=LOG, stderr=LOG, timeout=840, env=env)
         rl = os.path.join(HERE, "logs", "run_p1.txt")
-        if os.path.exists(rl) and "SlotBusy" not in open(rl, errors="ignore").read():
+        if os.path.exists(rl) and ("SlotBusy" not in open(rl, errors="ignore").read() and "FAILED" not in open(rl, errors="ignore").read()):
             break
         say("slot busy, trying the next copy")
 finally:

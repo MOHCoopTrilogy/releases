@@ -1,0 +1,13 @@
+FAILED PermissionError(13, 'The process cannot access the file because it is being used by another process')  extra=["set coop_alarm 0"])
+                    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev/docs/proposals/ai_realism_2026-10-15/tools\ailib.py", line 76, in boot
+    rundir, notes = S.boot_session(sess, cg, W, H, EXTRA + list(extra), ov or overlay(ref=ref, extra=files))
+                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev/docs/proposals/ironsights_2026-09-28/tools\run_sweep.py", line 97, in boot_session
+    R.seed_home(cgame, overlay)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev\docs\proposals\ironsights_2026-09-28\tools\run_ironsights.py", line 75, in seed_home
+    os.remove(LOG)
+    ~~~~~~~~~^^^^^
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'G:/mohaa-hudfeed2\\home\\maintt\\qconsole.log'
+

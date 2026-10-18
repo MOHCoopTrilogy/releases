@@ -1,0 +1,96 @@
+== UNDETECTED PASS (alarm 0)
+  [undet] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=0 tgt=Player/player on=- spot=( 1566.072 1725.004 -79.571 ) aimsweep=1 gunner=1 t=47.900
+  [undet] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=0 tgt=Player/player on=- spot=( 892.788 858.067 -84.880 ) aimsweep=1 gunner=1 t=47.900
+  [undet] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=Player/player on=- spot=( -211.920 2250.499 -78.746 ) aimsweep=1 gunner=1 t=47.900
+  [undet] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=0 tgt=Player/player on=- spot=( 2355.749 1850.471 -79.993 ) aimsweep=1 gunner=1 t=51.125
+  [undet] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=0 tgt=Player/player on=- spot=( 106.337 952.140 -70.048 ) aimsweep=1 gunner=1 t=51.125
+  [undet] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=Player/player on=- spot=( 402.748 1748.073 -80.002 ) aimsweep=1 gunner=1 t=51.125
+  [undet] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=0 tgt=Player/player on=- spot=( 2516.765 1230.612 51.027 ) aimsweep=1 gunner=1 t=54.350
+  [undet] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=0 tgt=Player/player on=- spot=( -11.185 1619.013 -69.410 ) aimsweep=1 gunner=1 t=54.350
+  [undet] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=Player/player on=- spot=( 392.437 1043.422 -77.874 ) aimsweep=1 gunner=1 t=54.350
+  [undet] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2027.165 2414.540 340.034 ) aimsweep=0 gunner=1 t=57.575
+  [undet] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=- spot=( 1307.371 2119.727 235.079 ) aimsweep=0 gunner=1 t=57.575
+  [undet] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=Player/player on=- spot=( -343.313 1231.962 -42.319 ) aimsweep=1 gunner=1 t=57.575
+    ^~^~^ SL tpl light=1 r=500 a=120 at=( 2020.250 2480.593 256.125 )
+    ^~^~^ SPOTLIGHT detect=1 set=1 group=2
+    ^~^~^ SPOTLIGHT detect=1 set=1 group=1
+== DETECTED PASS (alarm live)
+  [det] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=68.525
+  [det] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=68.525
+  [det] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( 560.567 1486.585 -80.000 ) aimsweep=1 gunner=1 t=68.525
+  [det] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=70.750
+  [det] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=70.750
+  [det] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( 340.255 1022.658 -76.186 ) aimsweep=1 gunner=1 t=70.750
+  [det] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=72.975
+  [det] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=72.975
+  [det] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( -182.141 1124.896 -51.911 ) aimsweep=1 gunner=1 t=72.975
+    ^~^~^ SL detected=1
+    ^~^~^ SPOTLIGHT detect=1 set=1 group=3
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+== CALM (alarm off, expect return to sweep after ~12s)
+  [calm] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=79.900
+  [calm] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=79.900
+  [calm] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( -292.767 2283.884 -78.025 ) aimsweep=1 gunner=1 t=79.900
+  [calm] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=84.150
+  [calm] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=84.150
+  [calm] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( 495.637 1607.210 -80.001 ) aimsweep=1 gunner=1 t=84.150
+  [calm] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=88.375
+  [calm] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=88.375
+  [calm] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( -12.304 1032.479 -61.441 ) aimsweep=1 gunner=1 t=88.375
+  [calm] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=92.600
+  [calm] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=92.600
+  [calm] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( -725.147 1770.932 -58.110 ) aimsweep=1 gunner=1 t=92.600
+  [calm] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=96.825
+  [calm] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=96.825
+  [calm] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( -122.492 2205.781 -79.251 ) aimsweep=1 gunner=1 t=96.825
+  [calm] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=101.075
+  [calm] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=1 tgt=Player/player on=1 spot=( 2020.250 2480.593 262.125 ) aimsweep=0 gunner=1 t=101.075
+  [calm] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( 569.341 1437.452 -80.000 ) aimsweep=1 gunner=1 t=101.075
+    ^~^~^ SL detected=0
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+    ::spotowner targeting 1: parent.spottgt
+== ALLIED AI PASS
+  [ally] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=1 tgt=Actor/sl_ally on=0 spot=( 1807.042 1286.767 262.945 ) aimsweep=0 gunner=1 t=103.950
+  [ally] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=0 tgt=none on=0 spot=( 1064.939 393.366 -44.163 ) aimsweep=0 gunner=1 t=103.950
+  [ally] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( 131.285 991.934 -68.434 ) aimsweep=1 gunner=1 t=103.950
+  [ally] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=0 tgt=none on=0 spot=( 2320.614 1533.654 -116.870 ) aimsweep=0 gunner=1 t=107.200
+  [ally] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=0 tgt=none on=0 spot=( 1518.433 713.058 -90.384 ) aimsweep=0 gunner=1 t=107.200
+  [ally] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( -531.699 1430.045 -41.411 ) aimsweep=1 gunner=1 t=107.200
+    ^~^~^ SL tpfar
+    ^~^~^ SL detected=1
+    ^~^~^ SPOTLIGHT lost set=1 group=1
+    ^~^~^ SPOTLIGHT lost set=1 group=2
+    ^~^~^ SL ally spawned at=( 2020.250 2480.593 256.125 ) r=500
+    ^~^~^ SPOTLIGHT hunt set=1 group=1 target=sl_ally/Actor
+    ^~^~^ SPOTLIGHT hunt set=1 group=2 target=sl_ally/Actor
+    ^~^~^ SPOTLIGHT lost set=1 group=1
+    ^~^~^ SPOTLIGHT lost set=1 group=2
+    ::spotowner clearaimtarget 1
+    ::spotowner clearaimtarget 1
+== SCENE-ACTOR PASS (flagged ally must not be hunted)
+  [scene] ight=1 set=1 pos=( 2270.250 2047.580 320.000 ) hunt=0 tgt=none on=0 spot=( 1840.112 1354.040 -71.449 ) aimsweep=0 gunner=1 t=115.850
+  [scene] ight=2 set=1 pos=( 785.250 2048.580 320.000 ) hunt=0 tgt=none on=0 spot=( 373.110 1201.021 -63.089 ) aimsweep=0 gunner=1 t=115.850
+  [scene] ight=3 set=1 pos=( 70.250 2464.580 328.000 ) hunt=0 tgt=none on=- spot=( 406.330 1742.951 -80.002 ) aimsweep=1 gunner=1 t=115.850
+script errors: 1 ['[2026-10-18 18:34:44 UTC-6.000] ^~^~^ Script Error : health must be greater than 0']
