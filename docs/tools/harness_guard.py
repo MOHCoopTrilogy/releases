@@ -244,6 +244,8 @@ HARNESSES = {
     r"G:\mohaa-hudfeed3": {"owner": "hudfeed3", "home": r"G:\mohaa-hudfeed3\home"},
     r"G:\mohaa-hudfeed4": {"owner": "hudfeed4", "home": r"G:\mohaa-hudfeed4\home"},
     r"G:\mohaa-hudfeed5": {"owner": "hudfeed5", "home": r"G:\mohaa-hudfeed5\home"},
+    r"G:\mohaa-gamepad": {"owner": "gamepad", "home": r"G:\mohaa-gamepad\home"},
+    r"G:\mohaa-gamepad2": {"owner": "gamepad2", "home": r"G:\mohaa-gamepad2\home"},
 }
 # [2026-10-12] one slot PER OWNER (= per harness folder), no longer one for the whole PC: the user lifted the quiet rule
 # ("It's fine to hear the fans now"), so different harnesses run at the same time. Two clients of the SAME harness

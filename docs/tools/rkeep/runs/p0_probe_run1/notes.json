@@ -1,0 +1,70 @@
+{
+ "tag": "p0_probe_run1",
+ "renderer": "opengl2keep",
+ "probe": "1",
+ "cmdline": "G:\\mohaa-gfxtest\\openmohaa_gfxtest.exe +set com_target_game 2 +set fs_basepath \"G:\\GOG\\Medal of Honor - Allied Assault War Chest\" +set fs_homepath G:\\mohaa-gl2\\home_keep +set r_ext_framebuffer_multisample 0 +set r_ext_multisample 0 +set r_uselod 0 +set r_lodscale 28 +set r_mode -1 +set r_customwidth 3440 +set r_customheight 1440 +set r_fullscreen 0 +set developer 1 +set r_drawSunRays 0 +set r_specularMapping 0 +set r_cmdtrace 0 +set r_skeldiag 0 +set r_picmip 0 +set r_textureMode GL_LINEAR_MIPMAP_LINEAR +set r_ext_max_anisotropy 16 +set logfile 2 +set g_gametype 2 +set net_port 12460 +set rconPassword rkeeppw +set in_mouse 0 +set cl_renderer opengl2keep +set r_hzmKeepProbe 1 +set ui_dmmap m1l1 +exec coop_mod/start_server.cfg",
+ "soak_servers_running": [
+  25312,
+  31496,
+  9836,
+  1348,
+  14800,
+  32552,
+  35892,
+  25348,
+  24588,
+  31320,
+  34080,
+  20332
+ ],
+ "t0": "2026-09-27 14:13:07",
+ "steps": [
+  [
+   "start",
+   "m1l1",
+   "14:13:33"
+  ],
+  [
+   "map",
+   "m1l2a",
+   "14:14:01",
+   true
+  ],
+  [
+   "map",
+   "m1l2b",
+   "14:14:29",
+   true
+  ],
+  [
+   "map",
+   "m1l1",
+   "14:14:58",
+   true
+  ],
+  [
+   "map",
+   "m1l1",
+   "14:15:26",
+   true
+  ],
+  [
+   "map",
+   "co_lobby1",
+   "14:15:48",
+   true
+  ],
+  [
+   "map",
+   "m2l1",
+   "14:16:16",
+   true
+  ],
+  [
+   "menu_start",
+   "m3l2",
+   "14:16:44",
+   true
+  ]
+ ]
+}

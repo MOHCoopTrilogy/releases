@@ -1,0 +1,10 @@
+[
+ "-- in fsr_easu (fp, #version 120):",
+ "-- in fsr_easu (fp, #version 130):",
+ "-- in fsr_easu (fp, #version 150):",
+ "-- in fsr_rcas (fp, #version 120):",
+ "fsr_easu_fp.glsl fp v120 fsr_easu_fp.glsl:N: undeclared identifier 'textureGather'",
+ "fsr_easu_fp.glsl fp v130 fsr_easu_fp.glsl:N: undeclared identifier 'textureGather'",
+ "fsr_easu_fp.glsl fp v150 fsr_easu_fp.glsl:N: undeclared identifier 'textureGather'",
+ "fsr_rcas_fp.glsl fp v120 fsr_rcas_fp.glsl:N: texelFetch() needs #version 130"
+]

@@ -748,6 +748,133 @@ def merge_snap(m, path):
     print(m, st, "pool", len(keep), "picked", len(picked), [p.get("src") for p in picked])
 
 
+# ---------------- ROOF PLATFORM SPOTS (user decision 2026-10-18): a solid prop deck on a real roof is the sniper's floor
+PLAT_HALF = 32.0      # deck footprint 64 x 64 (two nazi_crate 32 x 64 side by side), 24 u high
+PLAT_H = 24.0
+PLAT_RING = 56.0      # deck half 32 + 24 u from the roof edge
+
+
+POOLS = {}
+
+
+def roof_spots(m):
+    """sample real roof faces (visible solid world brush tops, normal z >= 0.75), keep points where a 64 x 64 deck sits flush (4 corners + 8 ring points at 56 u on the
+    SAME face plane, +-5 u), open sky, >= 128 u over the lowest route node within 600 u, the high-place drop test, line of sight to >= 3 route anchors, not on movers.
+    Returns the picked spots (<= 6, >= 600 u apart) with pos = TOP of the deck, base z and a yaw (0/90/180/270) that faces the route."""
+    random.seed(1)
+    B = T.BSP.load(m)
+    A = anchors_for(B, m)
+    nodes = [T.vec(e["origin"]) for e in B.entities() if e.get("classname") == "info_pathnode" and T.vec(e.get("origin", ""))] + player_starts(B)
+    cell = 1200.0
+    grid = {}
+    for a in A:
+        grid.setdefault((int(a[0] // cell), int(a[1] // cell)), []).append(a)
+    def near(x, y, r):
+        out = []
+        for gx in range(int(x // cell) - 3, int(x // cell) + 4):
+            for gy in range(int(y // cell) - 3, int(y // cell) + 4):
+                for a in grid.get((gx, gy), ()):
+                    if (a[0] - x) ** 2 + (a[1] - y) ** 2 <= r * r:
+                        out.append(a)
+        return out
+    movers, vpts = [], []
+    for e in B.entities():
+        c, mdl = e.get("classname", ""), e.get("model", "")
+        if c.startswith("func_") and mdl.startswith("*"):
+            try:
+                movers.append(B.model_bounds(int(mdl[1:])))
+            except Exception:
+                pass
+        o = T.vec(e.get("origin", ""))
+        if o and (c in ("info_vehiclepoint", "info_splinepath") or c.startswith("vehicle_") or "vehicles/" in mdl.lower() or "train" in e.get("targetname", "").lower()):
+            vpts.append(o)
+    stealth_free = [T.vec(e["origin"]) for e in B.entities() if e.get("classname") in ("info_player_start", "info_player_deathmatch") and T.vec(e.get("origin", ""))]
+    st = {"faces": 0, "samples": 0, "flush": 0, "sky": 0, "high": 0, "drop": 0, "los": 0}
+    keep = []
+    for bi, pl, poly in top_faces(B):
+        nx, ny, nz, d = pl
+        if nz < 0.75:
+            continue
+        st["faces"] += 1
+        xs = [p[0] for p in poly]; ys = [p[1] for p in poly]
+        def pz(px, py):
+            return (d - nx * px - ny * py) / nz
+        x = min(xs) + 32
+        while x <= max(xs) - 32:
+            y = min(ys) + 32
+            while y <= max(ys) - 32:
+                if inpoly_inset(poly, x, y, 32.0):
+                    st["samples"] += 1
+                    z = pz(x, y)
+                    ok = True
+                    cz = []
+                    for dx, dy in ((PLAT_HALF, PLAT_HALF), (-PLAT_HALF, PLAT_HALF), (PLAT_HALF, -PLAT_HALF), (-PLAT_HALF, -PLAT_HALF)):
+                        h = floor_hit(B, x + dx, y + dy, pz(x + dx, y + dy), up=24.0, down=24.0)
+                        if h is None or abs(h[0] - pz(x + dx, y + dy)) > 5.0 or bad_surface(B, h[2]):
+                            ok = False
+                            break
+                        cz.append(h[0])
+                    if ok and max(cz) - min(cz) <= 16.0:
+                        for k in range(8):
+                            a_ = math.radians(k * 45.0)
+                            rx, ry = x + math.cos(a_) * PLAT_RING, y + math.sin(a_) * PLAT_RING
+                            h = floor_hit(B, rx, ry, pz(rx, ry), up=24.0, down=24.0)
+                            if h is None or abs(h[0] - pz(rx, ry)) > 5.0 or bad_surface(B, h[2]):
+                                ok = False
+                                break
+                    if ok:
+                        st["flush"] += 1
+                        base = min(cz)
+                        top = base + PLAT_H
+                        # open sky over the sniper's head and 72 u of headroom above the deck
+                        if open_sky(B, x, y, top):
+                            st["sky"] += 1
+                            low = [a[2] for a in nodes if (a[0] - x) ** 2 + (a[1] - y) ** 2 <= 600.0 ** 2]
+                            if low and top - min(low) >= 128.0 and not any(mn[0] - 80 <= x <= mx[0] + 80 and mn[1] - 80 <= y <= mx[1] + 80 and mn[2] - 200 <= base <= mx[2] + 96 for mn, mx in movers)                                     and not any((v[0] - x) ** 2 + (v[1] - y) ** 2 < 350.0 ** 2 for v in vpts)                                     and not any((s_[0] - x) ** 2 + (s_[1] - y) ** 2 < 500.0 ** 2 for s_ in stealth_free):
+                                st["high"] += 1
+                                dn = drop_test(B, x, y, base, near(x, y, 1200.0))
+                                if dn >= 8:
+                                    st["drop"] += 1
+                                    far = [a for a in near(x, y, 3000.0) if math.hypot(a[0] - x, a[1] - y) >= 250.0]
+                                    random.shuffle(far)
+                                    nl = nbod = 0
+                                    sx = sy = 0.0
+                                    for a in far[:90]:
+                                        eye = (a[0], a[1], a[2] + 56.0)
+                                        if not B.trace(eye, (x, y, top + 60.0)):
+                                            nl += 1
+                                            sx += a[0] - x
+                                            sy += a[1] - y
+                                            if not B.trace(eye, (x, y, top + 30.0)):
+                                                nbod += 1
+                                    if nl >= 3:
+                                        st["los"] += 1
+                                        ang = (math.degrees(math.atan2(sy, sx)) + 360.0) % 360.0
+                                        yaw = int(round(ang / 90.0)) % 4 * 90
+                                        keep.append({"pos": [round(x, 2), round(y, 2), round(top, 2)], "base": round(base, 2), "yaw": yaw, "plat": True,
+                                                     "los": nl, "body": nbod, "routeDz": round(top - min(low), 1), "sky": True, "type": "roof (crate deck)", "src": "roof-deck",
+                                                     "ground": {"ok": True, "floorDz": 0.0, "normalZ": round(nz, 3), "cornerDz": [round(c_ - base, 2) for c_ in cz], "headroom": ">=72", "shader": "roof brush"},
+                                                     "elev": round(top - min(low), 1)})
+                y += 64
+            x += 64
+    cx = sum(a[0] for a in A) / len(A)
+    cy = sum(a[1] for a in A) / len(A)
+    picked = pick_spots(keep, cx, cy)
+    # the thinned full pool (one per 96 u cell, best score) goes to the in-engine pre-check
+    keep.sort(key=lambda s_: -(s_["routeDz"] / 8.0 + s_["los"] / 3.0 + s_["body"] / 6.0))
+    thin = {}
+    for s_ in keep:
+        thin.setdefault((int(s_["pos"][0] // 96), int(s_["pos"][1] // 96)), s_)
+    st["pool"] = len(thin)
+    roof_spots.pool = list(thin.values())
+    return picked, st
+
+
+def set_max(n):
+    global MAXSPOTS
+    MAXSPOTS = n
+
+
 def main():
     a = sys.argv[1:]
     if not a:
@@ -771,6 +898,56 @@ def main():
             data[m] = {"spots": r["spots"], "stats": {"faces": r["faces"], "raw": r["raw"], **r["stage"], "kept": r["kept_before_pick"]}}
             print(m, "faces", r["faces"], "cands", r["raw"], r["stage"], "kept", r["kept_before_pick"], "picked", len(r["spots"]), flush=True)
             json.dump(data, open(OUTJ, "w"), indent=1, sort_keys=True)
+    elif cmd == "roofs":
+        set_max(12)      # audit candidates; the best 6 PASSERS are kept afterwards
+        for m_ in a[1:]:
+            picked, st_ = roof_spots(m_)
+            POOLS[m_] = roof_spots.pool
+            json.dump(POOLS, open(os.path.join(HERE, "roof_pool.json"), "w"))
+            ex = [e_ for e_ in data.get(m_, {}).get("spots", []) if not e_.get("plat")]
+            add_ = [p for p in picked if all(math.hypot(p["pos"][0] - e_["pos"][0], p["pos"][1] - e_["pos"][1]) >= 600.0 for e_ in ex)]
+            for p in add_:
+                p.setdefault("cluster", 90 + len(ex)); p.setdefault("side", 0)
+            data.setdefault(m_, {"spots": []})["spots"] = ex + add_
+            data[m_]["audited"] = False
+            data[m_]["stats_roof"] = st_
+            json.dump(data, open(OUTJ, "w"), indent=1, sort_keys=True)
+            print(m_, st_, "picked", len(picked), "kept after spacing vs existing", len(add_), flush=True)
+    elif cmd == "roofcands":
+        pools = json.load(open(os.path.join(HERE, "roof_pool.json")))
+        mod = a[a.index("--mod") + 1] if "--mod" in a else os.path.join(os.path.dirname(os.path.dirname(HERE)), "hzm-mod-alarmsnipers")
+        allc = {m_: [(p["pos"][0], p["pos"][1], p["base"], str(p["yaw"])) for p in v] for m_, v in pools.items()}
+        write_cands(allc, mod)
+        print({m_: len(v) for m_, v in allc.items()})
+    elif cmd == "merge-dpre":
+        set_max(12)
+        pools = json.load(open(os.path.join(HERE, "roof_pool.json")))
+        m_ = a[1]
+        ok = set()
+        for ln in open(a[2]):
+            p = ln.split()
+            if len(p) >= 4 and p[1] == "DPRE" and p[3] == "OK":
+                ok.add(int(p[2]))
+        pool = [p for i, p in enumerate(pools[m_], 1) if i in ok]
+        failed = []
+        base = os.path.join(HERE, "..", "proposals", "alarm_snipers_2026-10-18", "tools", "spotcheck")
+        for d_ in [base] + [os.path.join(base, x) for x in os.listdir(base) if x.startswith("_round")]:
+            fp = os.path.join(d_, m_ + ".json")
+            if os.path.exists(fp):
+                failed += [r["pos"] for r in json.load(open(fp)) if r["verdict"] != "PASS" and "deck=1" in r["line"]]
+        n0 = len(pool)
+        pool = [p for p in pool if not any((f[0] - p["pos"][0]) ** 2 + (f[1] - p["pos"][1]) ** 2 < 40.0 ** 2 for f in failed)]
+        print(m_, "removed by earlier audit failures:", n0 - len(pool))
+        ex = [e_ for e_ in data.get(m_, {}).get("spots", []) if not e_.get("plat")]
+        cx = cy = 0.0
+        picked = pick_spots(pool, 0.0, 0.0)
+        picked = [p for p in picked if all(math.hypot(p["pos"][0] - e_["pos"][0], p["pos"][1] - e_["pos"][1]) >= 600.0 for e_ in ex)]
+        for p in picked:
+            p.setdefault("cluster", 90); p.setdefault("side", 0)
+        data[m_]["spots"] = ex + picked
+        data[m_]["audited"] = False
+        json.dump(data, open(OUTJ, "w"), indent=1, sort_keys=True)
+        print(m_, "pool", len(pools[m_]), "engine-flush", len(pool), "picked", len(picked))
     elif cmd == "merge-snap":
         merge_snap(a[1], a[2])
     elif cmd == "cands":
@@ -817,6 +994,9 @@ def main():
                 L.append("\tlevel.coop_asnSpot[%d] = ( %s %s %s )" % (i, p[0], p[1], p[2]))
                 L.append("\tlevel.coop_asnCl[%d] = %d" % (i, s["cluster"]))
                 L.append("\tlevel.coop_asnSide[%d] = %d" % (i, s["side"]))
+                L.append("\tlevel.coop_asnPlat[%d] = %d" % (i, 1 if s.get("plat") else 0))
+                if s.get("plat"):
+                    L.append("\tlevel.coop_asnYaw[%d] = %d" % (i, s["yaw"]))
             L.append("}end %d\n" % len(sp))
         open(os.path.join(mod, "coop_mod", "alarmsnipers_spots.scr"), "w", newline="\n").write("\n".join(L) + "\n")
         print("wrote", sum(len(v["spots"]) for v in data.values()), "spots")

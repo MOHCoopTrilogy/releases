@@ -115,7 +115,7 @@
       "textures/hobbscarbine/mech": "third-party 2002 joke stampings on the M1 Carbine: 'POLYGON FURREH DLE' and an obscene 'F*** BIN LADEN' (QA card, 2026-10-05)",
       "textures/hobbscarbine/base": "joke stamp 'FURREH' (+ two small words) on the receiver plate",
       "textures/hobbscarbine/carbine1": "same 'FURREH' stamp (same art at 612x410)",
-      "textures/models/weapons/mosin_nagant/weas": "modder notes on the sheet: 'DaRKSTeiN was here', 'thats is from cod2' (+arrow), 'that's a Airbone sleeve' (+arrow)",
+      "textures/models/weapons/mosin_nagant/weas": "modder notes on the sheet: 'DaRKSTeiN was here', 'thats is from cod2' (+arrow), 'that's a Airbone sleeve' (+arrow); plus the unused 'airborne sleeve' patch (CoD2-sourced per the same notes)",
       "textures/models/weapons/tt33/tokarev": "'MFG HUDSON SPG / 600641 1939' - not a TT-33 marking (Tula arsenal); left out rather than invented",
       "textures/models/weapons/ppk/ppk_slide": "POST-WAR markings on a WWII PPK: 'Carl Walther Waffenfabrik Ulm/Do. / Modell PPK-L Cal.7,65 mm' (Walther moved to Ulm after 1945) and the '2/57 ... East' / '1005-12-120' date-serial line; the WALTHER banner (period-correct) is kept",
       "textures/coop_dp28/bipod": "'AI OPTICS' ring (a modern brand) on the DP-28 bipod/cap sheet"
@@ -211,5 +211,26 @@
   "tame": {
     "_doc": "per-sheet 0..1 compression of bright local streaks on dark art (painted drips that upscale into hallucination-looking blotches)",
     "textures/models/weapons/30cal/30cal": 0.8
+  },
+  "paint": {
+    "_doc": "sheet stem -> module with paint(W,H)->(rgb,alpha): original replacement art composited after the pass",
+    "textures/models/weapons/mosin_nagant/weas": "paint_weas"
+  },
+  "blank": {
+    "_doc": "rects filled with pure black in the SOURCE (unmapped areas whose art must go entirely)",
+    "textures/models/weapons/mosin_nagant/weas": [
+      [
+        0.0,
+        0.605,
+        1.0,
+        1.0
+      ],
+      [
+        0.66,
+        0.14,
+        1.0,
+        0.605
+      ]
+    ]
   }
 }

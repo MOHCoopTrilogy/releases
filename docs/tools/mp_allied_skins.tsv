@@ -1,0 +1,104 @@
+# FULL MP skin roster (source of truth). stem\tpiece\tname. Regen menus: gen_mp_armory.py build
+american_ranger	models/coop_helmets/coop_std_us_helmet_private_net.tik	US RANGER
+allied_airborne_101st_1	models/coop_helmets/coop_std_dday_camo_hel.tik	101ST AIRBORNE
+allied_airborne_82nd_1	models/coop_helmets/coop_std_dday_camo_hel.tik	82ND AIRBORNE
+allied_101st_captain	models/coop_helmets/coop_std_us_helmet_captain_snw.tik	101ST CAPTAIN
+allied_101st_scout	models/coop_helmets/coop_std_us_pfc_snow_helmet1.tik	101ST SCOUT
+allied_british_6th_airborne_paratrooper	models/coop_helmets/coop_helmet_uk_helmet.tik	BRITISH PARA
+allied_british_cmd	models/coop_helmets/coop_helmet_brit_cmdhat.tik	BRITISH COMMANDO
+allied_british_tank	models/coop_helmets/coop_helmet_brit_tankhat.tik	BRITISH TANKER
+allied_russian_seaman	models/coop_helmets/coop_helmet_soviet_hat.tik	SOVIET SEAMAN
+allied_501st_pir_soldier	models/coop_helmets/coop_std_us_pt_helmet1.tik	501ST PIR
+allied_airborne_101st_sgt	models/coop_helmets/coop_std_air_helm.tik	101ST SERGEANT
+allied_airborne_82nd_sgt	models/coop_helmets/coop_std_blank_web.tik	82ND SERGEANT
+american_army_29id	models/coop_helmets/coop_std_us_helmet_29th_net.tik	29TH INFANTRY
+allied_big_red_one	models/coop_helmets/coop_std_blank_web.tik	BIG RED ONE
+american_medic	models/coop_helmets/coop_std_medic_helmet.tik	US ARMY MEDIC
+american_sniper	models/coop_helmets/coop_std_blank_sniper.tik	US ARMY SNIPER
+allied_101st_infantry	models/coop_helmets/coop_std_us_pfc_snow_helmet1.tik	101ST RIFLEMAN
+american_8thUrbanRanger	models/coop_helmets/coop_std_us_helmet_cam8ushelm.tik	8TH RANGER BN
+allied_british_general	models/coop_helmets/coop_std_brit_general_hat.tik	BRITISH GENERAL
+allied_russian_Pvt	models/coop_helmets/coop_std_soviet_private_hat.tik	RED ARMY
+allied_tanker	models/coop_helmets/coop_std_tanker_helmet.tik	US TANK CREW
+allied_pilot	models/coop_helmets/coop_std_pilot_hat.tik	US PILOT
+american_army_captain	models/coop_helmets/coop_std_blank_capt.tik	US ARMY CAPTAIN
+allied_us_mask	models/coop_helmets/coop_std_al_us_mask.tik	US GAS MASK
+allied_501st_pir_scout	models/coop_helmets/coop_std_us_pt_helmet3.tik	501ST PIR, SCOUT
+allied_airborne	models/coop_helmets/coop_std_dday_camo_hel.tik	AIRBORNE
+allied_airborne_101st_2	models/coop_helmets/coop_std_dday_camo_hel.tik	101ST AIRBORNE
+american_8thUrbanRangerSniper	models/coop_helmets/coop_std_us_helmet_cam8ushelm.tik	8TH RANGER BN., SNIPER
+american_8thUrbanRangerBar	models/coop_helmets/coop_std_us_helmet_cam8ushelm.tik	8TH RANGER BN., BAR GU
+american_8thUrbanRangeradio	models/coop_helmets/coop_std_us_helmet_cam8ushelm.tik	8TH RANGER BN., RADIO 
+american_8thUrbanRangerMG	models/coop_helmets/coop_std_us_helmet_cam8ushelm.tik	8TH RANGER BN., MACHIN
+allied_82ndair	models/coop_helmets/coop_std_e2_helmet.tik	82ND AIRBORNE
+allied_airborne_elite	models/coop_helmets/coop_std_ae_helmet.tik	AIRBORNE, ELITE
+american_omaha_ranger	models/coop_helmets/coop_std_omaha_ranger_helmet.tik	RANGER
+allied_17thAirb_soldierbloody	models/coop_helmets/coop_std_17thairb_helmet_shots.tik	17TH AIRBORNE, RIFLEMA
+allied_airborne_82nd_2	models/coop_helmets/coop_std_helmet_inside_bob.tik	82ND AIRBORNE
+allied_Commanding_Officer	models/coop_helmets/coop_std_co_hat1.tik	ALLIED, COMMANDING OFF
+allied_infantry	models/coop_helmets/coop_std_infantry_helmet.tik	ALLIED, RIFLEMAN
+allied_camo_108thMGST	models/coop_helmets/coop_std_demo_beret.tik	108TH, CAMOUFLAGED, CA
+allied_sniper	models/coop_helmets/coop_std_snipers_us_helmet_captain.tik	ALLIED, SNIPER
+allied_airborne_82nd_3	models/coop_helmets/coop_std_helmet_inside_bob_2.tik	82ND AIRBORNE
+allied_medic	models/coop_helmets/coop_std_am_helmet.tik	ALLIED, MEDIC
+allied_british_6th_airborne_captain	models/coop_helmets/coop_helmet_brit_beret.tik	BRITISH 6TH AIRBORNE, 
+allied_british_tank_corporal	models/coop_helmets/coop_helmet_brit_tankberet.tik	BRITISH ARMOURED, CORP
+allied_norwegian_resistance	models/coop_helmets/coop_helmet_woolcap.tik	ALLIED
+allied_russian_corporal	models/coop_helmets/coop_std_soviet_corporal_helmet.tik	RED ARMY, CORPORAL
+allied_tanker2	models/coop_helmets/coop_std_tankhelm_sgt_net.tik	ALLIED, TANK CREW
+allied_technician	models/coop_helmets/coop_std_us_helmet_private.tik	ALLIED, TECHNICIAN
+allied_us_tank	models/coop_helmets/coop_helmet_us_tankhat.tik	ALLIED, TANK CREW
+allied_wheathers	models/coop_helmets/coop_std_sc_al_us_inf_helm.tik	SGT. WEATHERS
+american_army	models/coop_helmets/coop_std_ushelmet.tik	US ARMY
+american_army2	models/coop_helmets/coop_std_ushelmet.tik	US ARMY
+american_army3	models/coop_helmets/coop_std_ushelmet.tik	US ARMY
+american_army_29id_bar	models/coop_helmets/coop_std_us_helmet_29th_net.tik	29TH INFANTRY, BAR GUN
+american_army_29id_radioman	models/coop_helmets/coop_std_us_helmet_29th.tik	29TH INFANTRY, RADIO O
+american_army_29id_sgt	models/coop_helmets/coop_std_us_helmet_29th.tik	29TH INFANTRY, SERGEAN
+american_army_bar	models/coop_helmets/coop_std_ushelmet_net.tik	US ARMY, BAR GUNNER
+american_army_hbt	models/coop_helmets/coop_std_blank_web.tik	US ARMY, HBT FATIGUES
+american_army_lieutenant	models/coop_helmets/coop_std_blank_lt.tik	US ARMY, LIEUTENANT
+american_army_m43	models/coop_helmets/coop_std_blank_web.tik	US ARMY, M43 FIELD JAC
+american_army_major	models/coop_helmets/coop_std_ushelmet_major.tik	US ARMY, MAJOR
+american_army_medic	models/coop_helmets/coop_std_us_helmet_medic.tik	US ARMY, MEDIC
+american_army_sergeant	models/coop_helmets/coop_std_blank_sgt.tik	US ARMY, SERGEANT
+american_assault_engineer	models/coop_helmets/coop_std_us_helmet_engineer01.tik	US ARMY, ENGINEER
+american_assault_engineer2	models/coop_helmets/coop_std_us_helmet_engineer01.tik	US ARMY, ENGINEER
+american_major	models/coop_helmets/coop_std_ushelmet_major.tik	US ARMY, MAJOR
+american_navy_beach_radioman	models/coop_helmets/coop_std_us_helmet_engineer02.tik	US ARMY, RADIO OPERATO
+american_ranger2	models/coop_helmets/coop_std_2ndranger_sgt.tik	RANGER
+american_ranger3_hbt	models/coop_helmets/coop_std_us_helmet_private_net.tik	RANGER, HBT FATIGUES
+american_ranger_assault	models/coop_helmets/coop_std_us_helmet_private_net.tik	RANGER, ASSAULT
+american_ranger_assault_captain	models/coop_helmets/coop_std_2ndranger_cpt.tik	RANGER, CAPTAIN
+american_ranger_assault_sergeant	models/coop_helmets/coop_std_2ndranger_sgt.tik	RANGER, SERGEANT
+american_ranger_lieutenant	models/coop_helmets/coop_std_ranger_lt_web.tik	RANGER, LIEUTENANT
+american_ranger_medic	models/coop_helmets/coop_std_ranger_helmet_medic.tik	RANGER, MEDIC
+american_ranger_sergeant	models/coop_helmets/coop_std_2ndranger_sgt.tik	RANGER, SERGEANT
+american_ranger_winter	models/coop_helmets/coop_std_helmet_rgr_winter.tik	RANGER
+american_ranger_winter_m41	models/coop_helmets/coop_std_helmet_rgr_winter.tik	RANGER, M41 FIELD JACK
+american_ranger_winter_m43	models/coop_helmets/coop_std_helmet_rgr_winter.tik	RANGER, M43 FIELD JACK
+american_ranger_winter_m43_lt	models/coop_helmets/coop_std_helmet_rgr_lt_winter.tik	RANGER, LIEUTENANT
+american_ranger_winter_sgt	models/coop_helmets/coop_std_helmet_rgr_sgt_winter.tik	RANGER, SERGEANT
+american_winter_m41	models/coop_helmets/coop_std_helmet_rgr_winter.tik	WINTER, M41 FIELD JACK
+american_winter_m43	models/coop_helmets/coop_std_helmet_rgr_winter.tik	WINTER, M43 FIELD JACK
+american_winter_sgt	models/coop_helmets/coop_std_helmet_rgr_winter.tik	WINTER, SERGEANT
+american_winter_specengineer	models/coop_helmets/coop_std_helmet_engineer_winter.tik	WINTER, ENGINEER
+allied_Airborne_101E_Col_Sink	models/coop_helmets/coop_std_col_helmet.tik	COL. SINK, 506TH
+allied_Airborne_101E_Lt_Speirs	models/coop_helmets/coop_std_ba_lt_helmet.tik	LT. SPEIRS, EASY CO.
+allied_Airborne_101E_Corp_Liebgott	models/coop_helmets/coop_std_ba_pvt_helmet.tik	CPL. LIEBGOTT, EASY CO
+allied_British_Officer	models/coop_helmets/coop_helmet_brit_offcap2.tik	BRITISH ARMY
+Allied_British_rifleman	models/coop_helmets/coop_helmet_brit_mk2.tik	BRITISH ARMY, RIFLEMAN
+allied_british_paratroops	models/coop_helmets/coop_std_britberet6abs.tik	BRITISH ARMY
+allied_british_paratroops_helmet	models/coop_helmets/coop_helmet_brit_paramask.tik	BRITISH ARMY
+allied_british_paratroops_officer	models/coop_helmets/coop_std_britberet6abscan.tik	BRITISH ARMY
+allied_british_polish_para	models/coop_helmets/coop_std_polberet6abs.tik	BRITISH ARMY
+Allied_British_1_snow_helmet1	models/coop_helmets/coop_std_britmk3snow.tik	BRITISH ARMY
+Allied_British_1_snow_RADIO	models/coop_helmets/coop_std_britmk3snow.tik	BRITISH ARMY, RADIO OP
+allied_capt_recon	models/coop_helmets/coop_std_recon_helm.tik	RECON CAPTAIN
+american_1st_rangers_engineer	models/coop_helmets/coop_std_1st_rangers_helmet_engineer.tik	1ST RANGER BN., ENGINE
+american_1st_rangers_lieutenant	models/coop_helmets/coop_std_1st_rangers_helmet_ltnt.tik	1ST RANGER BN., LIEUTE
+american_1st_rangers_sergeant	models/coop_helmets/coop_std_1st_rangers_helmet_sergeant.tik	1ST RANGER BN., SERGEA
+american_1st_rangers_private	models/coop_helmets/coop_std_1st_rangers_helmet.tik	1ST RANGER BN., PRIVAT
+american_1st_rangers_captain	models/coop_helmets/coop_std_1st_rangers_helmet_captain.tik	1ST RANGER BN., CAPTAI
+american_1st_rangers_medic	models/coop_helmets/coop_std_1st_rangers_helmet_medic.tik	1ST RANGER BN., MEDIC
+american_28th_private	models/coop_helmets/coop_std_wtf_helmet.tik	28TH INFANTRY, PRIVATE

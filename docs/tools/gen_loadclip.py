@@ -51,7 +51,7 @@ def cmd_clip(a):
     if a.max_secs:
         n_out = min(n_out, int(a.max_secs * a.fps))
     pick = [min(n_src - 1, int(round(i * a.src_fps / a.fps))) for i in range(n_out)]
-    blend = a.loop_blend
+    blend = 0 if a.once else a.loop_blend
     if blend and n_out < blend * 3:
         sys.exit("clip of %d frames is too short for --loop-blend %d" % (n_out, blend))
     length = n_out - blend
@@ -70,7 +70,7 @@ def cmd_clip(a):
         buf = io.BytesIO()
         im.save(buf, "JPEG", quality=a.quality, subsampling=2, optimize=False, progressive=False)
         out.append(buf.getvalue())
-    hdr = 28 + 4 * (length + 1)
+    hdr = (32 if a.once else 28) + 4 * (length + 1)
     offs, pos = [], hdr
     for b in out:
         offs.append(pos)
@@ -79,7 +79,9 @@ def cmd_clip(a):
     os.makedirs(a.out, exist_ok=True)
     path = os.path.join(a.out, a.name + ".hzlc")
     with open(path, "wb") as f:
-        f.write(struct.pack("<7I", MAGIC, 1, w, h, a.fps, length, int(round(a.aspect * 1000))))
+        f.write(struct.pack("<7I", MAGIC, 2 if a.once else 1, w, h, a.fps, length, int(round(a.aspect * 1000))))
+        if a.once:
+            f.write(struct.pack("<I", 1))   # flags bit 0: play once, then hold the last frame with a slow zoom
         f.write(struct.pack("<%dI" % (length + 1), *offs))
         for b in out:
             f.write(b)
@@ -90,8 +92,11 @@ def cmd_clip(a):
 def cmd_info(a):
     d = open(a.clip, "rb").read()
     m, v, w, h, fps, n, asp = struct.unpack_from("<7I", d, 0)
-    offs = struct.unpack_from("<%dI" % (n + 1), d, 28)
-    ok = m == MAGIC and v == 1 and offs[-1] == len(d)
+    flags = struct.unpack_from("<I", d, 28)[0] if v == 2 else 0
+    offs = struct.unpack_from("<%dI" % (n + 1), d, 32 if v == 2 else 28)
+    ok = m == MAGIC and v in (1, 2) and offs[-1] == len(d)
+    if flags & 1:
+        print("flags: play once + hold")
     print("%s: %s %dx%d %dfps %d frames (%.1f s) aspect %.3f, %.2f MB, avg %.1f KB/frame" % (
         a.clip, "ok" if ok else "BAD", w, h, fps, n, n / float(fps), asp / 1000.0, len(d) / 1048576.0, len(d) / n / 1024.0))
 
@@ -119,6 +124,7 @@ def main():
     c.add_argument("--quality", type=int, default=62)
     c.add_argument("--loop-blend", type=int, default=15)
     c.add_argument("--max-secs", type=float, default=0)
+    c.add_argument("--once", action="store_true", help="play once then hold the last frame with a slow zoom (header v2, flag 1); implies --loop-blend 0")
     c.add_argument("--aspect", type=float, default=16.0 / 9.0)
     c.set_defaults(fn=cmd_clip)
     i = sp.add_parser("info")

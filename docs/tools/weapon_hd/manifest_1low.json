@@ -321,7 +321,7 @@
    "size": 11184952
   },
   "textures/models/weapons/mosin_nagant/weas.dds": {
-   "md5": "3d17a9a1d2c8f87fe7e21a11ef119c70",
+   "md5": "e5f3c4c0a9be1d0a0adeed5513176ffe",
    "size": 11184952
   },
   "textures/models/weapons/mosin_nagant/wrapping_06.dds": {
@@ -450,6 +450,6 @@
   }
  },
  "pak": "zzzzzzzzzz_coop_hd_wpn_1low.pk3",
- "pak_bytes": 298832267,
- "pak_sha256": "2d42374319901236ce8a982b4af757650e7b7f6bf6510da9c5f02546691af6e7"
+ "pak_bytes": 297911201,
+ "pak_sha256": "6b619754048f9f00b80660de9c450aecdc56f7f84f26737be0a5864a964e8875"
 }

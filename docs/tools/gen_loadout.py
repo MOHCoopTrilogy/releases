@@ -66,6 +66,7 @@ ICON2D = ("66",)
 
 
 HEROFIT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "armory_hero_fit.tsv")
+CARDFIT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "armory_card_fit.tsv")
 _HERO = {}
 
 
@@ -552,6 +553,17 @@ def load():
             continue
         v = line.rstrip("\n").split("\t")
         rows.append(dict(zip(COLS, v + [""] * (len(COLS) - len(v)))))
+    # [armory-engine] the 46x25 card / slot-tile gun box transforms, MEASURED on the square-pixel build (armory_card_fit.tsv, hero_fit.py HF_MODE=card)
+    if os.path.isfile(CARDFIT):
+        fit = {}
+        for ln in io.open(CARDFIT, encoding="latin-1"):
+            if ln.startswith("#") or ln.startswith("id\t") or not ln.strip():
+                continue
+            a, b = ln.rstrip("\r\n").split("\t")
+            fit[a] = b
+        for r in rows:
+            if r["id"] in fit:
+                r["xfmt"] = fit[r["id"]]
     return rows
 
 

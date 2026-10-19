@@ -11,7 +11,7 @@ $cfg = "$srvHome\maintt\pvp_probe.cfg"
 Set-Content -Path $cfg -Encoding ascii -Value @('set rconpassword kRXYGDbvFdH6arXXaEYjoUGy', 'set sv_maxclients 8', "set g_gametype $Gametype", 'set coop_dmgProbe 1', 'set sv_numbots 4', "map $Map")
 $start = 0; if (Test-Path $log) { $start = (Get-Item $log).Length }
 $argStr = "+set com_target_game 2 +set fs_basepath `"$gog`" +set com_abnormalExit 0 +set logfile 2 +set dedicated 1 +set fs_homepath `"$srvHome`" +set net_port 12203 +set sv_maxclients 8 +set g_gametype $Gametype +set sv_fps 40 +set sv_maxbots 4 +set sv_numbots 4 +exec pvp_probe.cfg"
-$srv = Start-Process -FilePath "$gog\omohaaded.exe" -ArgumentList $argStr -WorkingDirectory $gog -PassThru -WindowStyle Minimized
+$srv = Start-Process -FilePath "$gog\omohaaded.exe" -ArgumentList $argStr -WorkingDirectory $gog -PassThru -WindowStyle Hidden
 $deadline = (Get-Date).AddSeconds($Seconds); $txt = ''
 while ((Get-Date) -lt $deadline) {
     Start-Sleep -Seconds 5

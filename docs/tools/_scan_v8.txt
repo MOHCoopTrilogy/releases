@@ -1,0 +1,11 @@
+e3l1 faces 1507 cands 6456 {'high': 442, 'ground': 54, 'los': 50, 'route128': 443, 'drop': 54} kept 28 picked 4
+t3l1 faces 2273 cands 38897 {'high': 3886, 'ground': 1482, 'los': 35, 'route128': 5148, 'drop': 645} kept 0 picked 0
+m3l2 faces 776 cands 3464 {'high': 276, 'ground': 121, 'los': 56, 'route128': 276, 'drop': 78} kept 0 picked 0
+m4l1 faces 1082 cands 10089 {'high': 384, 'ground': 26, 'los': 0, 'route128': 400} kept 0 picked 0
+m4l2 faces 1574 cands 12803 {'high': 1410, 'ground': 126, 'los': 60, 'route128': 1981, 'drop': 108} kept 55 picked 5
+m2l1 faces 1644 cands 11596 {'high': 4074, 'ground': 91, 'los': 90, 'route128': 4313, 'drop': 90} kept 0 picked 0
+e3l2 faces 2299 cands 22774 {'high': 2370, 'ground': 26, 'los': 22, 'route128': 2387, 'drop': 26} kept 5 picked 1
+m1l1 faces 529 cands 1845 {'high': 333, 'ground': 42, 'los': 33, 'route128': 333, 'drop': 38} kept 33 picked 3
+m4l3 faces 1465 cands 8115 {'high': 1913, 'ground': 275, 'los': 159, 'route128': 2106, 'drop': 224} kept 0 picked 0
+t1l1 faces 1181 cands 2748 {'high': 344, 'ground': 0, 'los': 0, 'route128': 530} kept 0 picked 0
+e2l1 faces 549 cands 971 {'high': 216, 'ground': 42, 'los': 4, 'route128': 224, 'drop': 4} kept 4 picked 1

@@ -38,24 +38,33 @@ def log(*a):
         f.write(s + "\n")
 
 
-def make_overlay():
+def make_overlay(extra=()):
+    """the ironsights polling weather.scr + optional mod-tree files (e.g. scripts/coop_skins.shader at HEAD)"""
     src = zipfile.ZipFile(r"G:\mohaa-adsanim\home\maintt\zzzzzzzzzzzz_ironsighttest.pk3")
     with zipfile.ZipFile(OVERLAY, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("coop_mod/weather.scr", src.read("coop_mod/weather.scr"))
+        for rel in extra:
+            z.write(os.path.join(MOD, *rel.split("/")), rel)
 
 
 def shot(name):
     return ["screenshot %s" % name, "wait 1", "wait 1", "wait 200", "echo ^~^~^ WHDSHOT %s" % name]
 
 
+HOME_FILES, THIRD = [], [False]
+
+
 def session(sess, paks, guns):
     for fn in os.listdir(R.MAINTT):
-        if fn.startswith("zzzzzzzzzz_coop_hd_wpn_"):
+        if fn.startswith("zzzzzzzzzz_coop_hd_w"):     # incl. the 2026-10-05 pilot's _hd_weapons.pk3, which sat in this
+                                                    # home and polluted every run's BEFORE for kar98/thompson/colt45
             os.remove(os.path.join(R.MAINTT, fn))
     for k in paks:
         if k:
             shutil.copyfile(os.path.join(r"C:\mohaa-weaponhd\paks", "zzzzzzzzzz_coop_hd_wpn_%s.pk3" % k),   # the QA outbox
                             os.path.join(R.MAINTT, "zzzzzzzzzz_coop_hd_wpn_%s.pk3" % k))
+    for f in HOME_FILES:
+        shutil.copyfile(f, os.path.join(R.MAINTT, os.path.basename(f)))
     extra = ["set cg_drawviewmodel 2", "set ui_hud 0", "set cg_adsSway 0", "set cg_weaponBreath 0", "fov 80"]
     rundir, notes = S.boot_session(sess, "cgame_live", 1920, 1080, extra, OVERLAY)
     notes["paks"] = paks
@@ -66,6 +75,11 @@ def session(sess, paks, guns):
             R.step(S.RELEASE + S.TO_STAND + S.give("models/weapons/%s.tik" % g), timeout=90)
             L = ["wait 1500"] + shot("whd__%s__%s__1p_idle" % (sess, g))
             L += ["+button13", "wait 1800"] + shot("whd__%s__%s__1p_ads" % (sess, g)) + ["-button13", "wait 700"]
+            if THIRD[0]:
+                L += ["set cg_3rd_person 1"] + R.face(35) + ["set cg_cameradist 30", "set cg_cameraheight 14",
+                      "set cg_camerasideoffset 26", "wait 1200"] + shot("whd__%s__%s__3p" % (sess, g))
+                L += ["set cg_3rd_person 0", "set cg_cameradist 120", "set cg_cameraheight 18",
+                      "set cg_camerasideoffset 18"] + R.face(0) + ["wait 600"]
             R.step(L, timeout=240)
         R.step(["imagelist", "wait 200"], timeout=60)
     finally:
@@ -76,9 +90,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("tag"); ap.add_argument("--guns", required=True)
     ap.add_argument("--before", default=""); ap.add_argument("--after", required=True)
+    ap.add_argument("--overlay-extra", default="", help="comma list of mod-tree files added to the test overlay")
+    ap.add_argument("--home-files", default="", help="comma list of files copied into the test home maintt (e.g. a rebuilt fixes pak)")
+    ap.add_argument("--third", action="store_true", help="also a 3P shot (camera right of the player, pitched down)")
     ap.add_argument("--only", default="", help="'after' = skip the before session (its shots already exist)")
     a = ap.parse_args()
-    make_overlay()
+    make_overlay([x for x in a.overlay_extra.split(",") if x])
+    HOME_FILES[:] = [x for x in a.home_files.split(",") if x]
+    THIRD[0] = a.third
     log("preflight %s: waiting for slot == weaponhd" % a.tag)
     while open(SLOT).read().strip() != "weaponhd":
         time.sleep(5)

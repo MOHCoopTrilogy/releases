@@ -1,0 +1,11 @@
+t3l1 {'rf_raw': 35274, 'rf_cells': 9454, 'route128': 5354, 'los': 251, 'invisible': 251} pool 1 picked 1 [('roof', 'brush-face')]
+e3l1 {'rf_raw': 30661, 'rf_cells': 7869, 'route128': 4379, 'los': 0} pool 7 picked 7 [('roof', 'brush-face'), ('roof', 'brush-face'), ('outdoor-high', 'brush-face'), ('outdoor-high', 'brush-face'), ('roof', 'brush-face'), ('roof', 'brush-face'), ('roof', 'brush-face')]
+m4l2 {'rf_raw': 16158, 'rf_cells': 4586, 'route128': 533, 'los': 230, 'invisible': 188} pool 45 picked 8 [('outdoor-high', 'brush-face'), ('outdoor-high', 'brush-face'), ('outdoor-high', 'engine-scan'), ('outdoor-high', 'brush-face'), ('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-scan'),
+m2l1 {'rf_raw': 37043, 'rf_cells': 10145, 'route128': 1316, 'los': 1136, 'invisible': 712} pool 424 picked 8 [('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-
+e3l2 {'rf_raw': 7702, 'rf_cells': 2672, 'route128': 710, 'los': 533, 'invisible': 507} pool 26 picked 8 [('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-scan'), ('roof', 'engine-scan'), ('roof', 'engine-scan'), ('roof', 'engine-scan'), ('outdoor-high', 'engine-scan'), ('outdoor-high', 'eng
+m3l2 {'rf_raw': 1299, 'rf_cells': 517, 'route128': 10, 'los': 10, 'invisible': 2} pool 8 picked 1 [('roof', 'engine-scan')]
+m4l1 {'rf_raw': 7917, 'rf_cells': 2252, 'route128': 145, 'los': 42, 'invisible': 40} pool 2 picked 1 [('roof', 'engine-scan')]
+m1l1 {'rf_raw': 9380, 'rf_cells': 2855, 'route128': 411, 'los': 399, 'invisible': 144} pool 255 picked 8 [('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-scan
+m4l3 {'rf_raw': 4820, 'rf_cells': 1926, 'route128': 22, 'los': 7, 'invisible': 6} pool 1 picked 1 [('roof', 'engine-scan')]
+t1l1 {'rf_raw': 1965, 'rf_cells': 882, 'route128': 14, 'los': 10, 'invisible': 9} pool 1 picked 1 [('outdoor-high', 'engine-scan')]
+e2l1 {'rf_raw': 25184, 'rf_cells': 6389, 'route128': 4278, 'los': 0} pool 0 picked 0 []

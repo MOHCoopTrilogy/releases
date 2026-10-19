@@ -1,0 +1,175 @@
+{
+ "t1l2": [
+  {
+   "tn": "compoundgate",
+   "class": "RotatingDoor",
+   "hits": 48
+  }
+ ],
+ "m5l1a": [
+  {
+   "tn": "leftgate",
+   "class": "ScriptSlave",
+   "hits": 60,
+   "keep_solid": "user 2026-09-23: the map-end gate - axis now spawn in FRONT of it (bug-2835); opening it only let bots wander into the dead end behind it"
+  },
+  {
+   "tn": "explodersmashed",
+   "class": "ScriptSlave",
+   "hits": 53,
+   "why": "set 51 rubble (*18 x200-384 sits ON the axis home east of the gate): hidden until the SP end bombing, so remove"
+  },
+  {
+   "tn": "rightgate",
+   "class": "ScriptSlave",
+   "hits": 37,
+   "keep_solid": "user 2026-09-23: the map-end gate - axis now spawn in FRONT of it (bug-2835); opening it only let bots wander into the dead end behind it"
+  },
+  {
+   "tn": "exploder",
+   "class": "ScriptSlave",
+   "hits": 10,
+   "keep_solid": "user 2026-09-23: exploder set 51 is the END-LEVEL bombing of the building BEHIND the map-end gate (maps/m5l1a.scr endlevel). Keep the intact building (SP pre-bomb state); removing it AND its rubble left a wall-less room. The closed gate keeps bots out of it."
+  },
+  {
+   "tn": "exploderchunk",
+   "class": "ScriptSlave",
+   "hits": 0,
+   "manual": true,
+   "why": "set 51 flying debris - hidden until the SP end bombing"
+  },
+  {
+   "tn": "exploderfire",
+   "class": "ScriptModel",
+   "hits": 0,
+   "manual": true,
+   "why": "set 51 explosion emitters - exploder.scr main swaps them to fx/dummy.tik"
+  }
+ ],
+ "m1l2b": [
+  {
+   "tn": "door02",
+   "class": "RotatingDoor",
+   "hits": 152
+  }
+ ],
+ "e3l3": [
+  {
+   "tn": "doorlocked",
+   "class": "RotatingDoor",
+   "hits": 146
+  },
+  {
+   "tn": "exploder",
+   "class": "ScriptSlave",
+   "hits": 0,
+   "manual": "user-review 2026-09-23: track barriers the SP train smashes through block on-foot play"
+  },
+  {
+   "tn": "exploderchunk",
+   "class": "ScriptSlave",
+   "hits": 0,
+   "manual": "user-review 2026-09-23: track barriers the SP train smashes through block on-foot play"
+  },
+  {
+   "tn": "explodersmashed",
+   "class": "ScriptSlave",
+   "hits": 0,
+   "manual": "user-review 2026-09-23: track barriers the SP train smashes through block on-foot play"
+  }
+ ],
+ "m5l2a": [
+  {
+   "tn": "explodersmashed",
+   "class": "ScriptSlave",
+   "hits": 44
+  },
+  {
+   "tn": "exploder",
+   "class": "ScriptSlave",
+   "hits": 26
+  },
+  {
+   "tn": "exploderchunk",
+   "class": "ScriptSlave",
+   "hits": 19
+  }
+ ],
+ "t1l3": [
+  {
+   "tn": "exploder",
+   "class": "ScriptSlave",
+   "hits": 136
+  },
+  {
+   "tn": "exploderchunk",
+   "class": "ScriptSlave",
+   "hits": 49
+  },
+  {
+   "tn": "explodersmashed",
+   "class": "ScriptSlave",
+   "hits": 8
+  }
+ ],
+ "t2l4": [
+  {
+   "tn": "explodersmashed",
+   "class": "ScriptSlave",
+   "hits": 21
+  },
+  {
+   "tn": "exploder",
+   "class": "ScriptSlave",
+   "hits": 14
+  }
+ ],
+ "e3l2": [
+  {
+   "tn": "smalldoor1",
+   "class": "RotatingDoor",
+   "hits": 71
+  }
+ ],
+ "m3l1b": [
+  {
+   "tn": "explosive_barrel",
+   "class": "CrateObject",
+   "hits": 11
+  }
+ ],
+ "m5l1b": [
+  {
+   "tn": "explodersmashed",
+   "class": "ScriptSlave",
+   "hits": 146
+  },
+  {
+   "tn": "exploder",
+   "class": "ScriptSlave",
+   "hits": 130
+  }
+ ],
+ "m4l2": [
+  {
+   "tn": "exploder",
+   "class": "ScriptSlave",
+   "hits": 0,
+   "keep_solid": "user 2026-09-23: these are the shootable RADIO cabinets/sets (exploder sets 3-16, 36x56x126 / 52x20x44, radio3 hum among them) - NOT rail cars (bug-2844 corrects bug-2835's label). Keep the intact radios, the SP pre-destruction look."
+  },
+  {
+   "tn": "explodersmashed",
+   "class": "ScriptSlave",
+   "hits": 0,
+   "manual": true,
+   "why": "the smashed radio states - hidden until destroyed in SP (exploder.scr main); remove"
+  },
+  {
+   "tn": "exploderfire",
+   "class": "ScriptModel",
+   "hits": 0,
+   "manual": true,
+   "why": "14 adamspark + 12 smoke emitters that SP swaps to fx/dummy until a radio is shot - the 'sparks flying everywhere' (user 2026-09-23); remove"
+  }
+ ]
+}

@@ -1,0 +1,28 @@
+e1l1 faces 3148 cands 2648 {'high': 347, 'ground': 70, 'los': 57} kept 57 picked 4
+e1l2 faces 3081 cands 1680 {'high': 218, 'ground': 120, 'los': 38} kept 38 picked 3
+e1l3 faces 2619 cands 14416 {'high': 2932, 'ground': 1519, 'los': 350} kept 350 picked 12
+e2l2 faces 3087 cands 10298 {'high': 1640, 'ground': 277, 'los': 225} kept 225 picked 14
+e2l3 faces 1829 cands 5049 {'high': 1283, 'ground': 3, 'los': 3, 'minh': 100} kept 3 picked 2
+e3l3 faces 2269 cands 3081 {'high': 567, 'ground': 31, 'los': 22} kept 22 picked 2
+e3l4 faces 3539 cands 4954 {'high': 281, 'ground': 124, 'los': 30, 'minh': 100} kept 30 picked 1
+m1l2b faces 1095 cands 12665 {'high': 3342, 'ground': 28, 'los': 28, 'minh': 100} kept 28 picked 6
+m1l3a faces 464 cands 856 {'high': 0, 'ground': 0, 'los': 0} kept 0 picked 0
+m1l3b faces 229 cands 1915 {'high': 777, 'ground': 99, 'los': 99} kept 99 picked 4
+m1l3c faces 1279 cands 3760 {'high': 1512, 'ground': 635, 'los': 50, 'minh': 100} kept 50 picked 3
+m2l2b faces 1674 cands 16796 {'high': 6424, 'ground': 5963, 'los': 0} kept 0 picked 0
+m2l2c faces 1044 cands 24307 {'high': 16353, 'ground': 15001, 'los': 0} kept 0 picked 0
+m3l3 faces 1182 cands 3003 {'high': 576, 'ground': 0, 'los': 0} kept 0 picked 0
+m5l2a faces 1054 cands 2576 {'high': 405, 'ground': 0, 'los': 0} kept 0 picked 0
+m5l2b faces 1625 cands 4866 {'high': 1019, 'ground': 0, 'los': 0} kept 0 picked 0
+m5l3 faces 1949 cands 27916 {'high': 2352, 'ground': 499, 'los': 147} kept 147 picked 5
+m6l1a faces 476 cands 9974 {'high': 1915, 'ground': 1495, 'los': 384} kept 384 picked 14
+m6l1b faces 517 cands 6683 {'high': 790, 'ground': 547, 'los': 206} kept 206 picked 5
+m6l2b faces 2069 cands 22663 {'high': 2004, 'ground': 109, 'los': 10, 'minh': 100} kept 10 picked 1
+m6l3b faces 2473 cands 2753 {'high': 429, 'ground': 290, 'los': 1} kept 1 picked 1
+t1l2 faces 2151 cands 6442 {'high': 1888, 'ground': 760, 'los': 739} kept 739 picked 14
+t1l3 faces 2133 cands 27465 {'high': 1631, 'ground': 312, 'los': 149} kept 149 picked 6
+t2l1 faces 631 cands 1890 {'high': 489, 'ground': 114, 'los': 82} kept 82 picked 3
+t2l2 faces 667 cands 2192 {'high': 12, 'ground': 4, 'los': 3} kept 3 picked 3
+t2l3 faces 235 cands 48 {'high': 0, 'ground': 0, 'los': 0} kept 0 picked 0
+t2l4 faces 2506 cands 6620 {'high': 2243, 'ground': 724, 'los': 149, 'minh': 100} kept 149 picked 5
+t3l2 faces 2051 cands 35517 {'high': 4150, 'ground': 2168, 'los': 147, 'minh': 100} kept 147 picked 3

@@ -1,0 +1,89 @@
+{
+ "RKEEPBUILD": [],
+ "RKEEP": [],
+ "RKEEPINIT": [],
+ "RKEEPGLSL": [],
+ "RKEEPIMG": [],
+ "RKEEPVRAM": [],
+ "glsl_engine_line": [
+  "oaded 131 GLSL shaders (48 gen 42 light 41 etc) in  0.13 seconds",
+  "oaded 131 GLSL shaders (48 gen 42 light 41 etc) in  0.12 seconds",
+  "oaded 131 GLSL shaders (48 gen 42 light 41 etc) in  0.09 seconds",
+  "oaded 131 GLSL shaders (48 gen 42 light 41 etc) in  0.09 seconds",
+  "oaded 131 GLSL shaders (48 gen 42 light 41 etc) in  0.09 seconds",
+  "oaded 131 GLSL shaders (48 gen 42 light 41 etc) in  0.10 seconds",
+  "oaded 131 GLSL shaders (48 gen 42 light 41 etc) in  0.09 seconds",
+  "oaded 131 GLSL shaders (48 gen 42 light 41 etc) in  0.09 seconds",
+  "oaded 131 GLSL shaders (48 gen 42 light 41 etc) in  0.09 seconds",
+  "oaded 131 GLSL shaders (48 gen 42 light 41 etc) in  0.10 seconds"
+ ],
+ "cgame": [
+  [
+   "2026-09-27 14:18:24",
+   14.8
+  ],
+  [
+   "2026-09-27 14:18:51",
+   12.75
+  ],
+  [
+   "2026-09-27 14:19:18",
+   12.28
+  ],
+  [
+   "2026-09-27 14:19:47",
+   13.65
+  ],
+  [
+   "2026-09-27 14:20:16",
+   13.7
+  ],
+  [
+   "2026-09-27 14:21:06",
+   12.98
+  ],
+  [
+   "2026-09-27 14:21:33",
+   12.42
+  ]
+ ],
+ "server": [
+  [
+   "2026-09-27 14:18:03",
+   "m1l1"
+  ],
+  [
+   "2026-09-27 14:18:33",
+   "m1l2a"
+  ],
+  [
+   "2026-09-27 14:19:01",
+   "m1l2b"
+  ],
+  [
+   "2026-09-27 14:19:28",
+   "m1l1"
+  ],
+  [
+   "2026-09-27 14:19:57",
+   "m1l1"
+  ],
+  [
+   "2026-09-27 14:20:25",
+   "co_lobby1"
+  ],
+  [
+   "2026-09-27 14:20:47",
+   "m2l1"
+  ],
+  [
+   "2026-09-27 14:21:15",
+   "m3l2"
+  ]
+ ],
+ "errors": {
+  "WARNING": 161,
+  "ERROR": 71,
+  "Script Error": 42
+ }
+}

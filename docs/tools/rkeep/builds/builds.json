@@ -1,0 +1,67 @@
+[
+ {
+  "suffix": "pre",
+  "commit": "0f8b6a4f-dirty",
+  "date": "2026-09-27T17:25",
+  "dll": "C:\\mohaa-coop-dev\\openmohaa-hzm-keep\\.cmake-keep\\code\\renderercommon\\renderergl2\\Release\\renderer_opengl2.dll",
+  "sha256": "89ca42b846b4d20669e73398c0068cacd9f5b2949e90ecce0fd0f4be9b905d77",
+  "size": 1232896,
+  "fixed_unchanged": true
+ },
+ {
+  "suffix": "p1",
+  "commit": "82e3141a-dirty",
+  "date": "2026-09-27T17:53",
+  "dll": "C:\\mohaa-coop-dev\\openmohaa-hzm-keep\\.cmake-keep\\code\\renderercommon\\renderergl2\\Release\\renderer_opengl2.dll",
+  "sha256": "62e3b406ff883edaab46cfe4b4b63730a10bb9cde126c625f5130278555347da",
+  "size": 1250816,
+  "fixed_unchanged": true
+ },
+ {
+  "suffix": "p2",
+  "commit": "57bc9475-dirty",
+  "date": "2026-09-27T18:04",
+  "dll": "C:\\mohaa-coop-dev\\openmohaa-hzm-keep\\.cmake-keep\\code\\renderercommon\\renderergl2\\Release\\renderer_opengl2.dll",
+  "sha256": "d4dbf5fa273e2c227d4dc740777ec5a1cb6e93e8085b873656ab5b14cb180089",
+  "size": 1257984,
+  "fixed_unchanged": true
+ },
+ {
+  "suffix": "p2",
+  "commit": "119c5bb7-dirty",
+  "date": "2026-09-27T18:20",
+  "dll": "C:\\mohaa-coop-dev\\openmohaa-hzm-keep\\.cmake-keep\\code\\renderercommon\\renderergl2\\Release\\renderer_opengl2.dll",
+  "sha256": "0cc0f5bf388673316460d044ac54b17eb2be98d6d13e751486407de42403fde0",
+  "size": 1259008,
+  "fixed_unchanged": true
+ },
+ {
+  "suffix": "p2",
+  "commit": "119c5bb7-dirty",
+  "date": "2026-09-27T18:34",
+  "dll": "C:\\mohaa-coop-dev\\openmohaa-hzm-keep\\.cmake-keep\\code\\renderercommon\\renderergl2\\Release\\renderer_opengl2.dll",
+  "sha256": "74455e0439eacbd89f66f58ba5779e3505f1ef948305f6cc8122e3fb7db58214",
+  "size": 1259008,
+  "fixed_unchanged": true
+ },
+ {
+  "suffix": "v1103",
+  "tree": "live",
+  "commit": "c30ce4ef-dirty",
+  "date": "2026-09-28T01:28",
+  "dll": "C:\\mohaa-coop-dev\\openmohaa-hzm-live\\.cmake-live\\code\\renderercommon\\renderergl2\\Release\\renderer_opengl2.dll",
+  "sha256": "033f4d8ab931092e7176b8d561d82878eb9b64b78774a090a059a2bedf5a6a2f",
+  "size": 1320960,
+  "fixed_unchanged": true
+ },
+ {
+  "suffix": "live",
+  "tree": "live",
+  "commit": "6ddcd015-dirty",
+  "date": "2026-09-28T07:37",
+  "dll": "C:\\mohaa-coop-dev\\openmohaa-hzm-live\\.cmake-live\\code\\renderercommon\\renderergl2\\Release\\renderer_opengl2.dll",
+  "sha256": "95a57d3fee12ae84bb67aaf120478d96383b2393ec194f8ed3bc29f2ffec7da8",
+  "size": 1325568,
+  "fixed_unchanged": true
+ }
+]

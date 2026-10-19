@@ -1,0 +1,14 @@
+MSBuild version 18.7.1+024f5b037 for .NET Framework
+
+  jpeg.vcxproj -> C:\mohaa-coop-dev\openmohaa-hzm-keep\.cmake-keep\code\renderercommon\Release\jpeg.lib
+  stringify.vcxproj -> C:\mohaa-coop-dev\openmohaa-hzm-keep\.cmake-keep\code\renderercommon\renderergl2\Release\stringify.exe
+  omohsdl_gl.vcxproj -> C:\mohaa-coop-dev\openmohaa-hzm-keep\.cmake-keep\code\sdl\Release\omohsdl_gl.lib
+  omohrenderer_common.vcxproj -> C:\mohaa-coop-dev\openmohaa-hzm-keep\.cmake-keep\code\renderercommon\Release\omohrenderer_common.lib
+  tr_hzm_keepprobe.c
+C:\mohaa-coop-dev\openmohaa-hzm-keep\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-keep\.cmake-keep\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_hzm_keepprobe.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-keep\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+     Creating library C:/mohaa-coop-dev/openmohaa-hzm-keep/.cmake-keep/code/renderercommon/renderergl2/Release/renderer_opengl2.lib and object C:/mohaa-coop-dev/openmohaa-hzm-keep/.cmake-keep/code/renderercommon/renderergl2/Release/renderer_opengl2.exp
+  omohrenderergl2.vcxproj -> C:\mohaa-coop-dev\openmohaa-hzm-keep\.cmake-keep\code\renderercommon\renderergl2\Release\renderer_opengl2.dll

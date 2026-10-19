@@ -1,0 +1,1180 @@
+{
+  "e1l1": {
+    "axis_spawn": [
+      -1233,
+      -3874
+    ],
+    "allies_spawn": [
+      -4253,
+      3672
+    ],
+    "chokes": [
+      {
+        "at": [
+          -1941,
+          -4655,
+          null
+        ],
+        "stuck_samples": 31,
+        "dist_from_axis_spawn": 1054,
+        "flanks": [
+          [
+            -2480,
+            -4439,
+            266
+          ],
+          [
+            -1110,
+            -5546,
+            -128
+          ]
+        ]
+      },
+      {
+        "at": [
+          -2225,
+          -4632,
+          null
+        ],
+        "stuck_samples": 29,
+        "dist_from_axis_spawn": 1248,
+        "flanks": [
+          [
+            -1085,
+            -5496,
+            -128
+          ]
+        ]
+      }
+    ]
+  },
+  "e3l1": {
+    "axis_spawn": [
+      2861,
+      -3432
+    ],
+    "allies_spawn": [
+      -466,
+      -6920
+    ],
+    "chokes": [
+      {
+        "at": [
+          1384,
+          -1353,
+          null
+        ],
+        "stuck_samples": 27,
+        "dist_from_axis_spawn": 2550,
+        "flanks": [
+          [
+            2070,
+            -1301,
+            -272
+          ],
+          [
+            368,
+            -2295,
+            0
+          ]
+        ]
+      },
+      {
+        "at": [
+          2480,
+          -2551,
+          null
+        ],
+        "stuck_samples": 17,
+        "dist_from_axis_spawn": 959,
+        "flanks": [
+          [
+            3300,
+            -2675,
+            104
+          ],
+          [
+            1054,
+            -2736,
+            123
+          ]
+        ]
+      }
+    ]
+  },
+  "e3l2": {
+    "axis_spawn": [
+      -1629,
+      2376
+    ],
+    "allies_spawn": [
+      3102,
+      -4292
+    ],
+    "chokes": [
+      {
+        "at": [
+          -700,
+          4840,
+          null
+        ],
+        "stuck_samples": 652,
+        "dist_from_axis_spawn": 2634,
+        "flanks": [
+          [
+            -297,
+            4340,
+            -240
+          ]
+        ]
+      },
+      {
+        "at": [
+          -2575,
+          61,
+          null
+        ],
+        "stuck_samples": 446,
+        "dist_from_axis_spawn": 2500,
+        "flanks": [
+          [
+            -2924,
+            473,
+            -456
+          ]
+        ]
+      }
+    ]
+  },
+  "e3l3": {
+    "axis_spawn": [
+      -3041,
+      -7637
+    ],
+    "allies_spawn": [
+      -5733,
+      -4220
+    ],
+    "chokes": [
+      {
+        "at": [
+          -5108,
+          -4680,
+          null
+        ],
+        "stuck_samples": 968,
+        "dist_from_axis_spawn": 3608,
+        "flanks": [
+          [
+            -6385,
+            -5146,
+            457
+          ]
+        ]
+      },
+      {
+        "at": [
+          -5088,
+          -4706,
+          null
+        ],
+        "stuck_samples": 365,
+        "dist_from_axis_spawn": 3574,
+        "flanks": [
+          [
+            -6385,
+            -5146,
+            457
+          ]
+        ]
+      }
+    ]
+  },
+  "m1l2b": {
+    "axis_spawn": [
+      2589,
+      -4131
+    ],
+    "allies_spawn": [
+      -3129,
+      3815
+    ],
+    "chokes": [
+      {
+        "at": [
+          1148,
+          -225,
+          null
+        ],
+        "stuck_samples": 17,
+        "dist_from_axis_spawn": 4164,
+        "flanks": [
+          [
+            1795,
+            530,
+            -256
+          ],
+          [
+            36,
+            -987,
+            -232
+          ]
+        ]
+      },
+      {
+        "at": [
+          1313,
+          -696,
+          null
+        ],
+        "stuck_samples": 5,
+        "dist_from_axis_spawn": 3665,
+        "flanks": [
+          [
+            1527,
+            -140,
+            -256
+          ],
+          [
+            36,
+            -987,
+            -232
+          ]
+        ]
+      }
+    ]
+  },
+  "m1l3a": {
+    "axis_spawn": [
+      5480,
+      27
+    ],
+    "allies_spawn": [
+      -2488,
+      -2976
+    ],
+    "chokes": [
+      {
+        "at": [
+          -2181,
+          -4156,
+          null
+        ],
+        "stuck_samples": 193,
+        "dist_from_axis_spawn": 8728,
+        "flanks": [
+          [
+            -2449,
+            -2733,
+            20
+          ],
+          [
+            -2159,
+            -4853,
+            152
+          ]
+        ]
+      },
+      {
+        "at": [
+          -2487,
+          -3181,
+          null
+        ],
+        "stuck_samples": 20,
+        "dist_from_axis_spawn": 8588,
+        "flanks": [
+          [
+            -2295,
+            -2613,
+            20
+          ],
+          [
+            -1789,
+            -4399,
+            20
+          ]
+        ]
+      }
+    ]
+  },
+  "m1l3b": {
+    "axis_spawn": [
+      -1421,
+      4359
+    ],
+    "allies_spawn": [
+      19,
+      -4737
+    ],
+    "chokes": [
+      {
+        "at": [
+          1887,
+          4646,
+          null
+        ],
+        "stuck_samples": 15,
+        "dist_from_axis_spawn": 3321,
+        "flanks": [
+          [
+            1573,
+            3598,
+            -24
+          ],
+          [
+            2289,
+            5787,
+            -21
+          ]
+        ]
+      },
+      {
+        "at": [
+          1903,
+          4345,
+          null
+        ],
+        "stuck_samples": 11,
+        "dist_from_axis_spawn": 3324,
+        "flanks": [
+          [
+            1424,
+            3572,
+            -24
+          ],
+          [
+            1926,
+            5739,
+            -22
+          ]
+        ]
+      }
+    ]
+  },
+  "m2l1": {
+    "axis_spawn": [
+      3971,
+      6859
+    ],
+    "allies_spawn": [
+      -2147,
+      -1780
+    ],
+    "chokes": [
+      {
+        "at": [
+          3578,
+          6953,
+          null
+        ],
+        "stuck_samples": 220,
+        "dist_from_axis_spawn": 404,
+        "flanks": [
+          [
+            4216,
+            7802,
+            42
+          ],
+          [
+            3568,
+            5519,
+            -64
+          ]
+        ]
+      },
+      {
+        "at": [
+          4941,
+          1167,
+          null
+        ],
+        "stuck_samples": 21,
+        "dist_from_axis_spawn": 5774,
+        "flanks": [
+          [
+            3980,
+            598,
+            488
+          ]
+        ]
+      }
+    ]
+  },
+  "m2l3": {
+    "axis_spawn": [
+      -1858,
+      -1037
+    ],
+    "allies_spawn": [
+      -92,
+      6083
+    ],
+    "chokes": [
+      {
+        "at": [
+          -465,
+          3020,
+          null
+        ],
+        "stuck_samples": 318,
+        "dist_from_axis_spawn": 4290,
+        "flanks": [
+          [
+            -110,
+            2437,
+            -476
+          ]
+        ]
+      },
+      {
+        "at": [
+          -432,
+          2991,
+          null
+        ],
+        "stuck_samples": 84,
+        "dist_from_axis_spawn": 4273,
+        "flanks": [
+          [
+            -110,
+            2437,
+            -476
+          ]
+        ]
+      }
+    ]
+  },
+  "m3l1b": {
+    "axis_spawn": [
+      -906,
+      -751
+    ],
+    "allies_spawn": [
+      1601,
+      -1522
+    ],
+    "chokes": [
+      {
+        "at": [
+          1832,
+          -1662,
+          null
+        ],
+        "stuck_samples": 196,
+        "dist_from_axis_spawn": 2886,
+        "flanks": [
+          [
+            1549,
+            -2154,
+            272
+          ],
+          [
+            1511,
+            -1087,
+            248
+          ]
+        ]
+      },
+      {
+        "at": [
+          1521,
+          -2112,
+          null
+        ],
+        "stuck_samples": 139,
+        "dist_from_axis_spawn": 2783,
+        "flanks": [
+          [
+            1703,
+            -1209,
+            250
+          ]
+        ]
+      }
+    ]
+  },
+  "m3l3": {
+    "axis_spawn": [
+      2550,
+      -1774
+    ],
+    "allies_spawn": [
+      785,
+      5331
+    ],
+    "chokes": [
+      {
+        "at": [
+          5078,
+          -548,
+          null
+        ],
+        "stuck_samples": 56,
+        "dist_from_axis_spawn": 2809,
+        "flanks": [
+          [
+            5289,
+            -1586,
+            -368
+          ]
+        ]
+      },
+      {
+        "at": [
+          5112,
+          -554,
+          null
+        ],
+        "stuck_samples": 25,
+        "dist_from_axis_spawn": 2837,
+        "flanks": [
+          [
+            5289,
+            -1586,
+            -368
+          ]
+        ]
+      }
+    ]
+  },
+  "m4l1": {
+    "axis_spawn": [
+      3474,
+      2135
+    ],
+    "allies_spawn": [
+      -1696,
+      -5378
+    ],
+    "chokes": [
+      {
+        "at": [
+          2552,
+          3510,
+          null
+        ],
+        "stuck_samples": 8,
+        "dist_from_axis_spawn": 1656,
+        "flanks": [
+          [
+            3881,
+            4003,
+            585
+          ],
+          [
+            1673,
+            2358,
+            -49
+          ]
+        ]
+      }
+    ]
+  },
+  "m4l2": {
+    "axis_spawn": [
+      -5316,
+      2092
+    ],
+    "allies_spawn": [
+      -1539,
+      1283
+    ],
+    "chokes": [
+      {
+        "at": [
+          -1276,
+          767,
+          null
+        ],
+        "stuck_samples": 805,
+        "dist_from_axis_spawn": 4252,
+        "flanks": [
+          [
+            -1975,
+            227,
+            0
+          ],
+          [
+            -1404,
+            1959,
+            0
+          ]
+        ]
+      },
+      {
+        "at": [
+          -1397,
+          972,
+          null
+        ],
+        "stuck_samples": 182,
+        "dist_from_axis_spawn": 4076,
+        "flanks": [
+          [
+            -2160,
+            -27,
+            0
+          ],
+          [
+            -1453,
+            2064,
+            5
+          ]
+        ]
+      }
+    ]
+  },
+  "m5l1a": {
+    "axis_spawn": [
+      -495,
+      -1107
+    ],
+    "allies_spawn": [
+      3826,
+      -4470
+    ],
+    "chokes": [
+      {
+        "at": [
+          -235,
+          -201,
+          null
+        ],
+        "stuck_samples": 1188,
+        "dist_from_axis_spawn": 942,
+        "flanks": [
+          [
+            750,
+            -906,
+            52
+          ],
+          [
+            -1679,
+            -211,
+            -128
+          ]
+        ]
+      },
+      {
+        "at": [
+          -2179,
+          -216,
+          null
+        ],
+        "stuck_samples": 30,
+        "dist_from_axis_spawn": 1906,
+        "flanks": []
+      }
+    ]
+  },
+  "m5l1b": {
+    "axis_spawn": [
+      -2440,
+      -3866
+    ],
+    "allies_spawn": [
+      2970,
+      21
+    ],
+    "chokes": [
+      {
+        "at": [
+          -2340,
+          -2814,
+          null
+        ],
+        "stuck_samples": 17,
+        "dist_from_axis_spawn": 1057,
+        "flanks": []
+      },
+      {
+        "at": [
+          -709,
+          -117,
+          null
+        ],
+        "stuck_samples": 5,
+        "dist_from_axis_spawn": 4129,
+        "flanks": [
+          [
+            763,
+            -254,
+            387
+          ],
+          [
+            -1273,
+            -385,
+            489
+          ]
+        ]
+      }
+    ]
+  },
+  "m5l2a": {
+    "axis_spawn": [
+      -5486,
+      5007
+    ],
+    "allies_spawn": [
+      3504,
+      2773
+    ],
+    "chokes": [
+      {
+        "at": [
+          4152,
+          1027,
+          null
+        ],
+        "stuck_samples": 352,
+        "dist_from_axis_spawn": 10428,
+        "flanks": [
+          [
+            4071,
+            325,
+            128
+          ],
+          [
+            4338,
+            2411,
+            148
+          ]
+        ]
+      },
+      {
+        "at": [
+          3691,
+          1206,
+          null
+        ],
+        "stuck_samples": 182,
+        "dist_from_axis_spawn": 9933,
+        "flanks": [
+          [
+            3782,
+            575,
+            151
+          ],
+          [
+            4338,
+            2411,
+            148
+          ]
+        ]
+      }
+    ]
+  },
+  "m5l3": {
+    "axis_spawn": [
+      -3917,
+      -3545
+    ],
+    "allies_spawn": [
+      1503,
+      4398
+    ],
+    "chokes": [
+      {
+        "at": [
+          1675,
+          -5516,
+          null
+        ],
+        "stuck_samples": 848,
+        "dist_from_axis_spawn": 5929,
+        "flanks": [
+          [
+            2269,
+            -5039,
+            201
+          ]
+        ]
+      },
+      {
+        "at": [
+          -7376,
+          -3856,
+          null
+        ],
+        "stuck_samples": 20,
+        "dist_from_axis_spawn": 3473,
+        "flanks": [
+          [
+            -7141,
+            -3298,
+            -512
+          ],
+          [
+            -7467,
+            -5268,
+            -512
+          ]
+        ]
+      }
+    ]
+  },
+  "t1l1": {
+    "axis_spawn": [
+      -2094,
+      -3585
+    ],
+    "allies_spawn": [
+      -3160,
+      3937
+    ],
+    "chokes": [
+      {
+        "at": [
+          -3538,
+          4628,
+          null
+        ],
+        "stuck_samples": 488,
+        "dist_from_axis_spawn": 8339,
+        "flanks": [
+          [
+            -2398,
+            4498,
+            -6976
+          ],
+          [
+            -4932,
+            4861,
+            -7000
+          ]
+        ]
+      },
+      {
+        "at": [
+          -3669,
+          4628,
+          null
+        ],
+        "stuck_samples": 35,
+        "dist_from_axis_spawn": 8363,
+        "flanks": [
+          [
+            -2398,
+            4498,
+            -6976
+          ],
+          [
+            -5041,
+            4697,
+            -7006
+          ]
+        ]
+      }
+    ]
+  },
+  "t1l2": {
+    "axis_spawn": [
+      -2405,
+      3152
+    ],
+    "allies_spawn": [
+      408,
+      -3691
+    ],
+    "chokes": [
+      {
+        "at": [
+          -96,
+          4108,
+          null
+        ],
+        "stuck_samples": 93,
+        "dist_from_axis_spawn": 2499,
+        "flanks": [
+          [
+            383,
+            2940,
+            4
+          ]
+        ]
+      },
+      {
+        "at": [
+          -4902,
+          812,
+          null
+        ],
+        "stuck_samples": 12,
+        "dist_from_axis_spawn": 3422,
+        "flanks": [
+          [
+            -4982,
+            1554,
+            -53
+          ],
+          [
+            -4786,
+            62,
+            -17
+          ]
+        ]
+      }
+    ]
+  },
+  "t1l3": {
+    "axis_spawn": [
+      4859,
+      2883
+    ],
+    "allies_spawn": [
+      -1620,
+      -864
+    ],
+    "chokes": [
+      {
+        "at": [
+          2871,
+          3220,
+          null
+        ],
+        "stuck_samples": 650,
+        "dist_from_axis_spawn": 2017,
+        "flanks": [
+          [
+            3159,
+            2698,
+            0
+          ]
+        ]
+      },
+      {
+        "at": [
+          3742,
+          2539,
+          null
+        ],
+        "stuck_samples": 83,
+        "dist_from_axis_spawn": 1169,
+        "flanks": [
+          [
+            2945,
+            3501,
+            0
+          ],
+          [
+            3601,
+            1459,
+            8
+          ]
+        ]
+      }
+    ]
+  },
+  "t2l1": {
+    "axis_spawn": [
+      -5755,
+      4213
+    ],
+    "allies_spawn": [
+      2860,
+      -6410
+    ],
+    "chokes": [
+      {
+        "at": [
+          3922,
+          -6293,
+          null
+        ],
+        "stuck_samples": 151,
+        "dist_from_axis_spawn": 14283,
+        "flanks": [
+          [
+            3569,
+            -6650,
+            170
+          ],
+          [
+            5108,
+            -5612,
+            2
+          ]
+        ]
+      },
+      {
+        "at": [
+          3796,
+          -5900,
+          null
+        ],
+        "stuck_samples": 149,
+        "dist_from_axis_spawn": 13910,
+        "flanks": [
+          [
+            2615,
+            -6534,
+            158
+          ],
+          [
+            4864,
+            -5410,
+            36
+          ]
+        ]
+      }
+    ]
+  },
+  "t2l3": {
+    "axis_spawn": [
+      675,
+      4031
+    ],
+    "allies_spawn": [
+      -702,
+      -4904
+    ],
+    "chokes": [
+      {
+        "at": [
+          -5586,
+          1299,
+          null
+        ],
+        "stuck_samples": 306,
+        "dist_from_axis_spawn": 6831,
+        "flanks": [
+          [
+            -5600,
+            2544,
+            0
+          ]
+        ]
+      },
+      {
+        "at": [
+          -1046,
+          -135,
+          null
+        ],
+        "stuck_samples": 5,
+        "dist_from_axis_spawn": 4508,
+        "flanks": [
+          [
+            -1616,
+            111,
+            -248
+          ],
+          [
+            60,
+            -997,
+            8
+          ]
+        ]
+      }
+    ]
+  },
+  "t2l4": {
+    "axis_spawn": [
+      -3007,
+      4715
+    ],
+    "allies_spawn": [
+      53,
+      -4604
+    ],
+    "chokes": [
+      {
+        "at": [
+          812,
+          -5266,
+          null
+        ],
+        "stuck_samples": 278,
+        "dist_from_axis_spawn": 10687,
+        "flanks": [
+          [
+            -346,
+            -5212,
+            278
+          ],
+          [
+            2247,
+            -5124,
+            339
+          ]
+        ]
+      },
+      {
+        "at": [
+          355,
+          -5196,
+          null
+        ],
+        "stuck_samples": 177,
+        "dist_from_axis_spawn": 10466,
+        "flanks": [
+          [
+            -1024,
+            -5396,
+            253
+          ],
+          [
+            1327,
+            -4815,
+            351
+          ]
+        ]
+      }
+    ]
+  },
+  "t3l1": {
+    "axis_spawn": [
+      -1034,
+      -5311
+    ],
+    "allies_spawn": [
+      3758,
+      6089
+    ],
+    "chokes": [
+      {
+        "at": [
+          -3603,
+          -2194,
+          null
+        ],
+        "stuck_samples": 13,
+        "dist_from_axis_spawn": 4039,
+        "flanks": [
+          [
+            -3020,
+            -2251,
+            0
+          ],
+          [
+            -4672,
+            -3098,
+            23
+          ]
+        ]
+      },
+      {
+        "at": [
+          -485,
+          -27,
+          null
+        ],
+        "stuck_samples": 10,
+        "dist_from_axis_spawn": 5312,
+        "flanks": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            -1765,
+            -171,
+            0
+          ]
+        ]
+      }
+    ]
+  }
+}

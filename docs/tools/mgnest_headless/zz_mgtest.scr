@@ -1,0 +1,221 @@
+//=========================================================================
+// [bug-2976] HEADLESS RIG (docs/tools only - never shipped in the pk3): MG42 nest gunner dismount.
+// Boot with docs/tools/mgnest_headless/mgnest_boot.ps1, then over rcon:
+//     script turret3 exec coop_mod/zz_mgtest.scr
+// Places a nest through coop_mod/bunker.scr::mg_nest_manned (the build-mode path) in front of bot 1,
+// parks the other bots in front of m4l1's baked nest (coop_mgnest1) and vanilla $turret3/$turret4,
+// and logs every tracked gunner every 2s:  ^~^~^ MGT <tn> ... on= d= tidl= tatk= ts= wg= anm=
+// on=1 means tidl machinegunner AND wg unarmed (holstered on the gun). d is drift from where he was
+// first tracked - a vanilla BSP gunner is snapped ~25-50u by ThinkHoldGun, so read d with tidl.
+// Phase A (0-60s) = live enemies only. Phase B (60s+) = also stamps coop_suppressedAt on each
+// gunner every 3s, exactly what weaputils.cpp:2710 writes when a player round cracks near him
+// (forced-branch probe, TRAPS T14). Baseline: the m4l1 baked gunner LEFT 9s into phase B.
+//=========================================================================
+run:{
+	println "^~^~^ MGT start"
+	level.mgt_phase = 0
+	local.t = 0
+	local.nAct = 0
+	while( local.t < 150 ){
+		local.nAct = 0
+		for( local.i = 1; local.i <= $player.size; local.i++ ){
+			local.p = $player[local.i]
+			if( local.p != NULL && local.p != NIL ){
+				if( local.p.flags["coop_isActive"] == 1 ){
+					local.nAct++
+					level.mgt_bot[local.nAct] = local.p
+				}
+			}
+		}
+		if( local.nAct >= 4 ){ break }
+		wait 1
+		local.t++
+	}
+	println( "^~^~^ MGT active bots " + local.nAct )
+	if( local.nAct < 1 ){ end }
+	for( local.i = 1; local.i <= local.nAct; local.i++ ){
+		level.mgt_bot[local.i] nodamage
+		level.mgt_bot[local.i] takeall
+	}
+
+	// ---- 1: a nest placed at runtime through the build-mode path, in front of bot 1 ----
+	local.b1 = level.mgt_bot[1]
+	local.ang = local.b1.angles
+	local.yaw = local.ang[1]
+	local.fa = ( 0 0 0 )
+	local.fa[1] = local.yaw
+	local.fwd = angles_toforward local.fa
+	local.nestPos = local.b1.origin + ( vector_scale local.fwd 380 )
+	local.tA = local.nestPos + ( 0 0 64 )
+	local.tB = local.nestPos - ( 0 0 512 )
+	local.nestPos = trace local.tA local.tB 1
+	local.nestYaw = local.yaw + 180
+	if( local.nestYaw >= 360 ){ local.nestYaw = local.nestYaw - 360 }
+	local.n = 1
+	if( level.coop_mgnestN != NIL ){ local.n = level.coop_mgnestN + 1 }
+	thread watchSpawn local.n
+	println( "^~^~^ MGT placing nest " + local.n + " at " + local.nestPos + " yaw " + local.nestYaw + " bot1 at " + local.b1.origin )
+	waitthread coop_mod/bunker.scr::mg_nest_manned local.nestPos local.nestYaw 1.0
+
+	level.mgt_n = 0
+	waitthread track ( "coop_mgnest" + local.n + "_gunner" ) local.b1 local.b1.origin
+
+	// ---- 2: the map's own baked build-mode nest (m4l1 coop_baked_0808) ----
+	if( local.nAct >= 2 && local.n > 1 ){
+		local.g = $( "coop_mgnest1_gunner" )
+		if( local.g != NULL && local.g != NIL ){
+			local.gang = local.g.angles
+			local.gyaw = local.gang[1]
+			local.ga = ( 0 0 0 )
+			local.ga[1] = local.gyaw
+			local.gf = angles_toforward local.ga
+			local.spot = local.g.origin + ( vector_scale local.gf 420 )
+			local.tA = local.spot + ( 0 0 64 )
+			local.tB = local.spot - ( 0 0 512 )
+			local.spot = trace local.tA local.tB 1
+			level.mgt_bot[2].origin = local.spot
+			waitthread track "coop_mgnest1_gunner" level.mgt_bot[2] local.spot
+		}
+	}
+	// ---- 3: a vanilla nest (m4l1 $turret3, mg42_active) ----
+	if( local.nAct >= 3 ){
+		local.tu = $turret3
+		if( local.tu != NULL && local.tu != NIL ){
+			local.gang = local.tu.angles
+			local.gyaw = local.gang[1]
+			local.ga = ( 0 0 0 )
+			local.ga[1] = local.gyaw
+			local.gf = angles_toforward local.ga
+			local.spot = local.tu.origin + ( vector_scale local.gf 420 )
+			local.tA = local.spot + ( 0 0 64 )
+			local.tB = local.spot - ( 0 0 1024 )
+			local.spot = trace local.tA local.tB 1
+			level.mgt_bot[3].origin = local.spot
+			waitthread track "turret3_gunner" level.mgt_bot[3] local.spot
+		}
+	}
+
+	if( local.nAct >= 4 ){
+		local.tu = $turret4
+		if( local.tu != NULL && local.tu != NIL ){
+			local.gang = local.tu.angles
+			local.gyaw = local.gang[1]
+			local.ga = ( 0 0 0 )
+			local.ga[1] = local.gyaw
+			local.gf = angles_toforward local.ga
+			local.spot = local.tu.origin + ( vector_scale local.gf 420 )
+			local.tA = local.spot + ( 0 0 64 )
+			local.tB = local.spot - ( 0 0 1024 )
+			local.spot = trace local.tA local.tB 1
+			level.mgt_bot[4].origin = local.spot
+			waitthread track "turret4_gunner" level.mgt_bot[4] local.spot
+		}
+	}
+	thread monitor
+	wait 60
+	level.mgt_phase = 1
+	println "^~^~^ MGT phase B - stamping coop_suppressedAt every 3s"
+	while( 1 ){
+		for( local.k = 1; local.k <= level.mgt_n; local.k++ ){
+			local.g = level.mgt_g[local.k]
+			if( local.g != NULL && local.g != NIL ){
+				if( isAlive local.g ){ local.g.coop_suppressedAt = level.time }
+			}
+		}
+		wait 3
+	}
+}end
+
+track local.tn local.bot local.spot:{
+	local.g = $( local.tn )
+	if( local.g == NULL || local.g == NIL ){
+		println( "^~^~^ MGT track MISSING " + local.tn )
+		end
+	}
+	level.mgt_n++
+	level.mgt_g[level.mgt_n] = local.g
+	if( getcvar "mgt_godgunners" == "1" ){ local.g nodamage }
+	level.mgt_tn[level.mgt_n] = local.tn
+	level.mgt_home[level.mgt_n] = local.g.origin
+	level.mgt_left[level.mgt_n] = 0
+	level.mgt_b[level.mgt_n] = local.bot
+	level.mgt_spot[level.mgt_n] = local.spot
+	println( "^~^~^ MGT track " + level.mgt_n + " " + local.tn + " home " + local.g.origin + " enemyBot at " + local.spot )
+	if( getcvar "mgt_fixcheck" == "1" ){
+		local.m = waitthread coop_mod/officer.scr::coop_isMannedGunner local.g
+		println( "^~^~^ MGT fixcheck " + local.tn + " isMannedGunner=" + local.m )
+	}
+}end
+
+watchSpawn local.n:{
+	local.tn = "coop_mgnest" + local.n + "_gunner"
+	local.f = 0
+	local.g = NULL
+	while( local.f < 400 ){
+		local.g = $( local.tn )
+		if( local.g != NULL && local.g != NIL ){ break }
+		waitframe
+		local.f++
+	}
+	if( local.g == NULL || local.g == NIL ){ end }
+	for( local.k = 0; local.k < 12; local.k++ ){
+		local.wg = local.g.weapongroup
+		if( local.wg == NIL || local.wg == "" ){ local.wg = "-" }
+		local.ti = local.g.type_idle
+		if( local.ti == NIL || local.ti == "" ){ local.ti = "-" }
+		println( "^~^~^ MGT spawnframe " + local.k + " t=" + level.time + " " + local.tn + " wg=" + local.wg + " tidl=" + local.ti )
+		waitframe
+		if( local.g == NULL ){ end }
+	}
+}end
+
+monitor:{
+	local.tick = 0
+	while( 1 ){
+		for( local.k = 1; local.k <= level.mgt_n; local.k++ ){
+			local.g = level.mgt_g[local.k]
+			local.tn = level.mgt_tn[local.k]
+			// keep his enemy parked in front of the gun
+			local.bot = level.mgt_b[local.k]
+			if( local.bot != NULL && local.bot != NIL ){
+				local.bot nodamage
+				if( vector_length( local.bot.origin - level.mgt_spot[local.k] ) > 120 ){ local.bot.origin = level.mgt_spot[local.k] }
+			}
+			if( local.g == NULL || local.g == NIL ){
+				if( level.mgt_left[local.k] != 9 ){
+					level.mgt_left[local.k] = 9
+					println( "^~^~^ MGT GONE " + local.tn + " t=" + level.time )
+				}
+				continue
+			}
+			if( !( isAlive local.g ) ){ continue }
+			local.d = int( vector_length( local.g.origin - level.mgt_home[local.k] ) )
+			local.ti = local.g.type_idle
+			if( local.ti == NIL || local.ti == "" ){ local.ti = "-" }
+			local.ta = local.g.type_attack
+			if( local.ta == NIL || local.ta == "" ){ local.ta = "-" }
+			local.ts = local.g.thinkstate
+			if( local.ts == NIL || local.ts == "" ){ local.ts = "-" }
+			local.wg = local.g.weapongroup
+			if( local.wg == NIL || local.wg == "" ){ local.wg = "-" }
+			local.an = local.g.animname
+			if( local.an == NIL || local.an == "" ){ local.an = "-" }
+			local.en = 0
+			if( local.g.enemy != NULL && local.g.enemy != NIL ){ local.en = 1 }
+			local.su = local.g.flags["coop_surrendered"]
+			if( local.su == NIL ){ local.su = 0 }
+			local.on = 1
+			if( local.ti != "machinegunner" || local.wg != "unarmed" ){ local.on = 0 }
+			if( local.on == 0 && level.mgt_left[local.k] == 0 ){
+				level.mgt_left[local.k] = 1
+				println( "^~^~^ MGT LEFT " + local.tn + " t=" + level.time + " phase=" + level.mgt_phase + " d=" + local.d + " tidl=" + local.ti + " tatk=" + local.ta + " ts=" + local.ts + " wg=" + local.wg + " anm=" + local.an + " surr=" + local.su )
+			}
+			if( local.tick == 0 ){
+				println( "^~^~^ MGT " + local.tn + " t=" + level.time + " ph=" + level.mgt_phase + " on=" + local.on + " d=" + local.d + " tidl=" + local.ti + " tatk=" + local.ta + " ts=" + local.ts + " wg=" + local.wg + " anm=" + local.an + " foe=" + local.en + " surr=" + local.su )
+			}
+		}
+		local.tick++
+		if( local.tick >= 4 ){ local.tick = 0 }
+		wait 0.5
+	}
+}end

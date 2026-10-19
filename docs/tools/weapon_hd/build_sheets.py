@@ -84,11 +84,15 @@ def erase(rgb, stem):
     """finishes.json "erase": remove non-period markings from the SOURCE before anything else sees them.
     Harmonic (Laplace) fill from the rect's whole border - column interpolation streaked wherever a border row crossed
     detail (QA) - plus per-pixel noise drawn from a ring around the rect, so the patch has the surrounding grain."""
-    rects = json.load(open(os.path.join(HERE, "finishes.json"), encoding="utf-8")).get("erase", {}).get(stem, [])
-    if not rects:
+    cfg = json.load(open(os.path.join(HERE, "finishes.json"), encoding="utf-8"))
+    rects = cfg.get("erase", {}).get(stem, [])
+    blanks = cfg.get("blank", {}).get(stem, [])
+    if not rects and not blanks:
         return rgb
     a = np.asarray(rgb, np.float32).copy()
     H, W = a.shape[:2]
+    for (u0, v0, u1, v1) in blanks:
+        a[int(v0 * H):int(math.ceil(v1 * H)), int(u0 * W):int(math.ceil(u1 * W))] = 0
     rng = np.random.default_rng(1)
     for (u0, v0, u1, v1) in rects:
         x0, y0 = max(1, int(u0 * W)), max(1, int(v0 * H))
@@ -393,6 +397,11 @@ def build(job, variant=0, preview=False):
             pd.ellipse([u * W - r, v * H - r, u * W + r, v * H + r], fill=255)
         pm = np.asarray(pm.filter(ImageFilter.GaussianBlur(r / 3)), np.float32)[..., None] / 255
         out = out * (1 - pm) + base * pm
+    pm_name = json.load(open(os.path.join(HERE, "finishes.json"), encoding="utf-8")).get("paint", {}).get(stem)
+    if pm_name:                     # original replacement art (e.g. paint_weas: the CoD2 scope wrap, bug-3453)
+        import importlib
+        prgb, pa = importlib.import_module(pm_name).paint(W, H)
+        out = out * (1 - pa[..., None]) + prgb * pa[..., None]
     out = np.clip(out, 0, 255)
 
     # ---- gates
@@ -430,7 +439,8 @@ def build(job, variant=0, preview=False):
     # reason}). Only the named gate is waived, and only for that stem; every other gate still applies.
     acc = json.load(open(os.path.join(HERE, "accepted.json"), encoding="utf-8")) if os.path.exists(os.path.join(HERE, "accepted.json")) else {}
     if stem in acc:
-        fails = [f for f in fails if not f.startswith(acc[stem]["gate"])]
+        gates = acc[stem]["gate"] if isinstance(acc[stem]["gate"], list) else [acc[stem]["gate"]]
+        fails = [f for f in fails if not any(f.startswith(g) for g in gates)]
         rep["accepted"] = acc[stem]
     rep["fails"] = fails
     tag = "" if variant == 0 else "_w%d" % variant

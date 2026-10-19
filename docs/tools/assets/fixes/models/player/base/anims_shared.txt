@@ -1446,4 +1446,62 @@ animations
 	// handle on the right with the right hand (MG42 first, pulled and pushed; M1919 last, pulled twice).
 	coopr_mg42_reload	viewmodel/coop_reload/mg42_reload.skc	crossblend 0.3
 	coopr_m1919_30cal_reload	viewmodel/coop_reload/m1919_reload.skc	crossblend 0.3
+	// HZM coop [lobbyanim 2026-10-15] aliases for the lobby mannequin director (coop_mod/lobbyanim.scr). Paths are relative
+	// to `$path models/human/animation` (bug-381). Existing coop_act_* / coop_pose_* aliases above are reused as they are;
+	// these are the clips that had no alias. The five smoking clips carry the SP recipe from models/human/new_generic_human.tik
+	// (smoking01-05): the cigarette is attached to the left fingers at lightup frame 16 and dropped/removed at frame 21 of
+	// buttout/throwaway (the thrown butt is a client tagspawn), and each drag ends with the breath puff. Names end in a
+	// letter on purpose (a trailing digit reads as a member of a random pool).
+	coop_lb_salute			misc/00A101_salute.skc
+	coop_lb_g_pushup		misc/00G106_Axis_pushup.skc
+	coop_lb_g_milling2		misc/00G109_Axis_milling_2.skc
+	coop_lb_tough_a_in		idle/unarmed_idle_lesstough_intro.skc
+	coop_lb_tough_a			idle/unarmed_idle_lesstough.skc
+	coop_lb_tough_a_out		idle/unarmed_idle_lesstough_outtro.skc
+	coop_lb_tough_b_in		idle/unarmed_idle_moretough_intro.skc
+	coop_lb_tough_b			idle/unarmed_idle_moretough01(loop).skc
+	coop_lb_tough_b_twitch		idle/unarmed_idle_moretough02(twitch).skc
+	coop_lb_tough_b_out		idle/unarmed_idle_moretough_outtro.skc
+	coop_lb_smoke_light		scripted/smoking/lightup.skc
+	{
+		server
+		{
+			first	removeattachedmodel "Bip01 L Finger11"
+			16	attachmodel models/items/cigarette.tik "Bip01 L Finger11" 1 1
+		}
+	}
+	coop_lb_smoke_first		scripted/smoking/firstinhale.skc
+	{
+		server
+		{
+			last	attachmodel models/emitters/breath_emitter.tik "Bip01 Head" 1 1
+		}
+	}
+	coop_lb_smoke_butt		scripted/smoking/buttout.skc
+	{
+		server
+		{
+			21	removeattachedmodel "Bip01 L Finger11"
+		}
+		client
+		{
+			21 tagspawn "Bip01 L Finger11"
+			(
+				spawnrange 512
+				count 1
+				model models/items/cigarette.tik
+				scale 1.0
+				velocity 50
+				randvel range 15 30 crandom 15 range 2 10
+				friction 2
+				emitterangles 0 0 0
+				avelocity -200 -500 0
+				accel 0 0 -600
+				life 2.0
+				fadedelay 1.7
+				collision
+				bouncefactor 0.0
+			)
+		}
+	}
 }

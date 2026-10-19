@@ -136,6 +136,7 @@ MUTATIONS = [
     # [4] saved coop cvars
     A("M6", MP, "setcvar \"coop_health\" \"100\"", {"4a"}),
     A("M6c", MP, "local.c = \"coop_prone\"\nsetcvar local.c \"0\"", {"4c"}),
+    A("M6h", MP, "setcvar \"coop_hardcore\" \"1\"", {"4a"}),  # [2026-09-25] coop Hardcore host rule is coop-owned
     N("M7", "ui/coop_mpa_zzselftest/reset.cfg", "seta coop_prone 0", {"4a"}),
     N("M7b", "ui/coop_mpa_zzselftest/r.cfg", "sets coop_health 100", {"4a"}),
     A("M7c", MP, "stuffsrv \"toggle coop_prone\"", {"4a"}),

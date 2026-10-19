@@ -43,7 +43,10 @@ MARKERS = {
 
 
 def main():
-    mapname = sys.argv[sys.argv.index("--map") + 1] if "--map" in sys.argv else "m3l1a"
+    if "-h" in sys.argv or "--help" in sys.argv:   # any other invocation boots a server and truncates LOG
+        print(__doc__)
+        return 0
+    mapname =sys.argv[sys.argv.index("--map") + 1] if "--map" in sys.argv else "m3l1a"
     secs = int(sys.argv[sys.argv.index("--seconds") + 1]) if "--seconds" in sys.argv else 60
 
     if not os.path.exists(EXE):
@@ -62,7 +65,8 @@ def main():
             "+set", "g_gametype", "2", "+set", "logfile", "2",
             "+set", "developer", "1", "+set", "com_abnormalExit", "0",
             "+map", mapname]
-    p = subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    # CREATE_NO_WINDOW: omohaaded is a console exe - never pop a console window (harness_window policy)
+    p = subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, creationflags=0x08000000)
     time.sleep(secs)
     crashed = p.poll()
     try:

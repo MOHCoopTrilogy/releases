@@ -4,8 +4,11 @@
     "reason": "2026-10-05 crop review: no added salt dots; the metric counts the G43 art's own painted pitting and the restored parkerize-free blued grain at 2048 (QA card cls1/models__weapons__g43__g43.jpg)"
   },
   "textures/models/weapons/mosin_nagant/weas": {
-    "gate": "corr_today",
-    "reason": "2026-10-05 review: low only because the modder text ('DaRKSTeiN was here', 'thats is from cod2', arrows) is deliberately ERASED - every mapped part matches today (QA card cls1/textures__models__weapons__mosin_nagant__weas.jpg)"
+    "gate": [
+      "corr_today",
+      "corr "
+    ],
+    "reason": "2026-10-06 bug-3453: the CoD2 scope wrap is deliberately REPAINTED with original procedural canvas and the captions/sleeve blanked, so correlation with the old art drops by design; reviewed in qa/weas_override.jpg + in-game"
   },
   "textures/hobbscarbine/mech": {
     "gate": "speckle",

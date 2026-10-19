@@ -1,0 +1,10 @@
+14:13:07 launching opengl2keep probe 1 (28 '+' commands); soak servers running: [25312, 31496, 9836, 1348, 14800, 32552, 35892, 25348, 24588, 31320, 34080, 20332]
+14:14:01 step 0 map m1l2a ok
+14:14:29 step 1 map m1l2b ok
+14:14:58 step 2 map m1l1 ok
+14:15:26 step 3 map m1l1 ok
+14:15:48 step 4 map co_lobby1 ok
+14:16:16 step 5 map m2l1 ok
+14:16:44 step 6 menu_start m3l2 ok
+14:16:54 done: C:\mohaa-coop-dev\docs\tools\rkeep\runs\p0_probe_run1
+exit=0

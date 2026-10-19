@@ -1,0 +1,13 @@
+MSBuild version 18.7.1+024f5b037 for .NET Framework
+
+  1>Checking Build System
+  jpeg.vcxproj -> C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\Release\jpeg.lib
+  stringify.vcxproj -> C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\Release\stringify.exe
+  sdl_gamma.c
+  sdl_glimp.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\sdl\sdl_gamma.c(62,3): warning C4996: 'GetVersionExA': was declared deprecated [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\sdl\sdl_glimp.c(1332,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\sdl\sdl_glimp.c(1376,31): error C2001: newline in string literal [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\sdl\sdl_glimp.c(1377,1): error C2001: newline in string literal [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\sdl\sdl_glimp.c(1378,3): error C2143: syntax error: missing ')' before 'return' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+  Generating Code...

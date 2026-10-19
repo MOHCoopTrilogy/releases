@@ -1,0 +1,666 @@
+MSBuild version 18.7.1+024f5b037 for .NET Framework
+
+  1>Checking Build System
+  Building Custom Rule C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderercommon/CMakeLists.txt
+  Building Custom Rule C:/mohaa-coop-dev/openmohaa-hzm-live/code/sdl/CMakeLists.txt
+  Building Custom Rule C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/CMakeLists.txt
+  jaricom.c
+  stringify.cpp
+  sdl_gamma.c
+  jcapimin.c
+  jcapistd.c
+  jcarith.c
+  jccoefct.c
+  jccolor.c
+  jcdctmgr.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\sdl\sdl_gamma.c(62,3): warning C4996: 'GetVersionExA': was declared deprecated [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+  jchuff.c
+  sdl_glimp.c
+  jcinit.c
+  jcmainct.c
+  jcmarker.c
+  jcmaster.c
+  jcomapi.c
+  jcparam.c
+  jcprepct.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\sdl\sdl_glimp.c(1332,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+  q_math.c
+  jcsample.c
+  jctrans.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_math.c(4023,19): warning C4305: '*=': truncation from 'double' to 'vec_t' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_math.c(4341,9): warning C4305: '=': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_math.c(4342,9): warning C4305: '=': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_math.c(4343,9): warning C4305: '=': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+  q_shared.c
+  jdapimin.c
+  jdapistd.c
+  Generating Code...
+  jdarith.c
+  Generating Code...
+  stringify.vcxproj -> C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\Release\stringify.exe
+  class.cpp
+  con_set.cpp
+  Compiling...
+  jdatadst.c
+  jdatasrc.c
+  jdcoefct.c
+  jdcolor.c
+  jddctmgr.c
+  jdhuff.c
+  jdinput.c
+  jdmainct.c
+  con_timer.cpp
+  jdmarker.c
+  jdmaster.c
+  jdmerge.c
+  jdpostct.c
+  jdsample.c
+  jdtrans.c
+  jerror.c
+  jfdctflt.c
+  delegate.cpp
+  jfdctfst.c
+  jfdctint.c
+  jidctflt.c
+  jidctfst.c
+  Generating Code...
+  lightclass.cpp
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\lightclass.cpp(76,28): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+  listener.cpp
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\listener.cpp(2096,16): warning C4267: '=': conversion from 'size_t' to 'unsigned short', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+  lz77.cpp
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\lz77.cpp(212,23): warning C4267: '=': conversion from 'size_t' to 'byte', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\lz77.cpp(216,23): warning C4267: '=': conversion from 'size_t' to 'byte', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\lz77.cpp(222,20): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+  mem_blockalloc.cpp
+  Compiling...
+  jidctint.c
+  mem_tempalloc.cpp
+  jmemmgr.c
+  jmemnobs.c
+  jquant1.c
+  jquant2.c
+  jutils.c
+  Generating Code...
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\mem_tempalloc.cpp(110,49): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+  script.cpp
+  str.cpp
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\str.cpp(737,12): warning C4101: 'i': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+  scriptexception.cpp
+  scriptvariable.cpp
+  jpeg.vcxproj -> C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\Release\jpeg.lib
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\script\scriptvariable.cpp(2071,83): warning C4305: 'argument': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\omohsdl_gl.vcxproj]
+  Generating Code...
+  omohsdl_gl.vcxproj -> C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\sdl\Release\omohsdl_gl.lib
+  Building Custom Rule C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderercommon/CMakeLists.txt
+  puff.c
+  tr_font.c
+  tr_image_bmp.c
+  tr_image_jpg.c
+  tr_image_pcx.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderercommon\tr_image_jpg.c(419,28): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\omohrenderer_common.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderercommon\tr_image_jpg.c(470,36): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\omohrenderer_common.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderercommon\tr_image_jpg.c(473,34): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\omohrenderer_common.vcxproj]
+  tr_image_png.c
+  tr_image_tga.c
+  tr_noise.c
+  tr_subs.c
+  q_math.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_math.c(4023,19): warning C4305: '*=': truncation from 'double' to 'vec_t' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\omohrenderer_common.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_math.c(4341,9): warning C4305: '=': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\omohrenderer_common.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_math.c(4342,9): warning C4305: '=': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\omohrenderer_common.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_math.c(4343,9): warning C4305: '=': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\omohrenderer_common.vcxproj]
+  q_shared.c
+  Generating Code...
+  tiki_mesh.cpp
+  omohrenderer_common.vcxproj -> C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\Release\omohrenderer_common.lib
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/bloodspatter_fp.glsl: bloodspatter_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/bloom_blur_fp.glsl: bloom_blur_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/bloom_bright_fp.glsl: bloom_bright_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/bokeh_fp.glsl: bokeh_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/bokeh_vp.glsl: bokeh_vp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/calclevels4x_fp.glsl: calclevels4x_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/calclevels4x_vp.glsl: calclevels4x_vp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/chromab_fp.glsl: chromab_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/depthblur_fp.glsl: depthblur_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/depthblur_vp.glsl: depthblur_vp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/dlight_fp.glsl: dlight_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/dlight_vp.glsl: dlight_vp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/dof_fp.glsl: dof_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/down4x_fp.glsl: down4x_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/down4x_vp.glsl: down4x_vp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/filmgrain_fp.glsl: filmgrain_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/fogpass_fp.glsl: fogpass_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/fogpass_vp.glsl: fogpass_vp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/frost_fp.glsl: frost_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/fsr_downscale_fp.glsl: fsr_downscale_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/fsr_easu_fp.glsl: fsr_easu_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/fsr_rcas_fp.glsl: fsr_rcas_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/fxaa_fp.glsl: fxaa_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/generic_fp.glsl: generic_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/generic_vp.glsl: generic_vp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/globalfog_fp.glsl: globalfog_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/globalfog_vp.glsl: globalfog_vp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/heathaze_fp.glsl: heathaze_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/hitblood_fp.glsl: hitblood_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/hzmlt_sky_fp.glsl: hzmlt_sky_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/hzmlt_sky_vp.glsl: hzmlt_sky_vp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/hzmwater_fp.glsl: hzmwater_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/hzmwater_vp.glsl: hzmwater_vp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/lightall_fp.glsl: lightall_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/lightall_vp.glsl: lightall_vp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/lowhealth_fp.glsl: lowhealth_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/motionblur_fp.glsl: motionblur_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/pshadow_fp.glsl: pshadow_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/pshadow_vp.glsl: pshadow_vp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/raindrops_fp.glsl: raindrops_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/shadowfill_fp.glsl: shadowfill_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/shadowfill_vp.glsl: shadowfill_vp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/shadowmask_fp.glsl: shadowmask_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/shadowmask_vp.glsl: shadowmask_vp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/sharpen_fp.glsl: sharpen_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/ssao_fp.glsl: ssao_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/ssao_vp.glsl: ssao_vp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/suppression_fp.glsl: suppression_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/texturecolor_fp.glsl: texturecolor_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/texturecolor_vp.glsl: texturecolor_vp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/tonemap_fp.glsl: tonemap_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/tonemap_hzm_fp.glsl: tonemap_hzm_fp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/tonemap_vp.glsl: tonemap_vp.c
+  Generate c source for C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/glsl/underwater_fp.glsl: underwater_fp.c
+  Building Custom Rule C:/mohaa-coop-dev/openmohaa-hzm-live/code/renderergl2/CMakeLists.txt
+  tr_font.c
+  tr_image_bmp.c
+  tr_image_jpg.c
+  tr_image_pcx.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderercommon\tr_image_jpg.c(419,28): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderercommon\tr_image_jpg.c(470,36): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderercommon\tr_image_jpg.c(473,34): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_image_png.c
+  tr_image_tga.c
+  tr_noise.c
+  tr_subs.c
+  tr_animation.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_animation.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_animation.c(50,24): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_animation.c(149,24): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_animation.c(346,24): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_backend.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_backend.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_backend.c(1791,15): warning C4305: 'function': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_backend.c(1808,15): warning C4305: 'function': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_bsp.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_bsp.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\json.h(221,25): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_bsp.c')
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_bsp.c(2537,31): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_bsp.c(2538,35): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_bsp.c(3134,31): warning C4047: '=': 'int' differs in levels of indirection from 'int *' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_bsp.c(4074,5): warning C4013: 'R_VisDebugLoad' undefined; assuming extern returning int [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_bsp.c(3756,23): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_cmds.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_cmds.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_curve.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_curve.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_draw.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_draw.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_dsa.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_dsa.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_extensions.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_extensions.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_extramath.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_extramath.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_fbo.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_fbo.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_fbo.c(241,20): warning C4090: 'function': different 'const' qualifiers [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_flares.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_flares.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_glsl.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_glsl.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_glsl.c(601,11): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_glsl.c(687,80): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_glsl.c(696,82): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_glsl.c(771,11): warning C4267: '-=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_glsl.c(790,12): warning C4267: '-=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_glsl.c(2203,20): warning C4090: 'function': different 'const' qualifiers [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_gore.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_gore.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  Generating Code...
+  Compiling...
+  tr_hzm_keep.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_hzm_keep.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_hzm_keepprobe.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_hzm_keepprobe.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_hzm_lightning.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_hzm_lightning.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_hzm_lodfog.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_hzm_lodfog.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_hzm_lodfog_rb.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_hzm_lodfog_rb.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_hzm_spot.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_hzm_spot.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_hzm_spot_rb.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_hzm_spot_rb.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_hzm_water.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_hzm_water.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_hzm_wet.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_hzm_wet.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_image.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_image.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_image.c(2518,15): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_image.c(2579,11): warning C4090: '=': different 'const' qualifiers [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_image.c(4394,14): warning C4101: 'hasAlpha': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_image.c(4397,9): warning C4101: 'piMipmapsAvailable': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_image_dds.c
+  tr_init.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_init.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_init.c(685,78): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_init.c(763,35): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_init.c(765,45): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_init.c(787,35): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_init.c(1140,20): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_init.c(1146,26): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_init.c(1157,24): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_init.c(1164,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_init.c(1178,47): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_init.c(1278,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_light.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_light.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_light.c(1400,12): warning C4101: 'vLight': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_light.c(1408,9): warning C4101: 'k': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_light.c(1409,9): warning C4101: 'gridStep': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_light.c(1408,12): warning C4101: 'l': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_light.c(1408,6): warning C4101: 'j': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_light.c(1465,20): warning C4101: 'newPoint': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_main.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_main.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_main.c(725,35): warning C4027: function declared without formal parameter list [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_main.c(843,9): warning C4101: 'tmp': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_main.c(842,9): warning C4101: 'realPlaneLen': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_main.c(844,10): warning C4101: 'fogColor': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_main.c(2445,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_main.c(3968,16): warning C4101: 'indices': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_main.c(3966,11): warning C4101: 'doRange': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_marks.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_marks.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_marks.c(259,5): warning C4029: declared formal parameter list different from definition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_marks_permanent.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_marks_permanent.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_marks_permanent.c(324,17): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_marks_permanent.c(880,19): warning C4305: '=': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_marks_permanent.c(883,19): warning C4305: '=': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_marks_permanent.c(886,19): warning C4305: '=': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_marks_permanent.c(821,29): warning C4101: 'fDist2': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_marks_permanent.c(814,22): warning C4101: 'pBModel': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_marks_permanent.c(1894,68): warning C4305: 'function': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_marks_permanent.c(1929,50): warning C4305: 'function': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_marks_permanent.c(1939,46): warning C4305: 'function': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_marks_permanent.c(1955,50): warning C4305: 'function': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_marks_permanent.c(1968,36): warning C4305: 'function': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_marks_permanent.c(1981,36): warning C4305: 'function': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_marks_permanent.c(1862,32): warning C4101: 'pVert2': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_marks_permanent.c(1862,24): warning C4101: 'pVert': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_marks_permanent.c(1863,24): warning C4101: 'verts': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_mesh.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_mesh.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_mesh.c(189,26): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_model_iqm.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_model_iqm.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_model_iqm.c(618,40): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_model_iqm.c(843,29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_postprocess.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_postprocess.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_scene.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_scene.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_scene.c(548,5): warning C4013: 'TIKI_Reset_Caches' undefined; assuming extern returning int [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  Generating Code...
+  Compiling...
+  tr_shade.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_shade.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_shade.c(3007,21): warning C4090: 'function': different 'const' qualifiers [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_shade_calc.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_shade_calc.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_shade_calc.c(389,8): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_shader.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_shader.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_shadows.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_shadows.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_sky.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_sky.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_sprite.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_sprite.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_sprite.c(97,11): warning C4047: '=': 'model_t *' differs in levels of indirection from 'model_t **' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_surface.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_surface.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_surface.c(1757,11): warning C4101: 'numv': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_terrain.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_terrain.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_terrain.c(714,38): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_terrain.c(715,39): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_vbo.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_vbo.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_vbo.c(348,20): warning C4090: 'function': different 'const' qualifiers [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_vbo.c(751,44): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_vbo.c(767,36): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_vbo.c(774,39): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_vbo.c(912,52): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_vbo.c(1052,57): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_world.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_world.c')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  bloodspatter_fp.c
+  bloom_blur_fp.c
+  bloom_bright_fp.c
+  bokeh_fp.c
+  bokeh_vp.c
+  calclevels4x_fp.c
+  calclevels4x_vp.c
+  chromab_fp.c
+  depthblur_fp.c
+  depthblur_vp.c
+  Generating Code...
+  Compiling...
+  dlight_fp.c
+  dlight_vp.c
+  dof_fp.c
+  down4x_fp.c
+  down4x_vp.c
+  filmgrain_fp.c
+  fogpass_fp.c
+  fogpass_vp.c
+  frost_fp.c
+  fsr_downscale_fp.c
+  fsr_easu_fp.c
+  fsr_rcas_fp.c
+  fxaa_fp.c
+  generic_fp.c
+  generic_vp.c
+  globalfog_fp.c
+  globalfog_vp.c
+  heathaze_fp.c
+  hitblood_fp.c
+  hzmlt_sky_fp.c
+  Generating Code...
+  Compiling...
+  hzmlt_sky_vp.c
+  hzmwater_fp.c
+  hzmwater_vp.c
+  lightall_fp.c
+  lightall_vp.c
+  lowhealth_fp.c
+  motionblur_fp.c
+  pshadow_fp.c
+  pshadow_vp.c
+  raindrops_fp.c
+  shadowfill_fp.c
+  shadowfill_vp.c
+  shadowmask_fp.c
+  shadowmask_vp.c
+  sharpen_fp.c
+  ssao_fp.c
+  ssao_vp.c
+  suppression_fp.c
+  texturecolor_fp.c
+  texturecolor_vp.c
+  Generating Code...
+  Compiling...
+  tonemap_fp.c
+  tonemap_hzm_fp.c
+  tonemap_vp.c
+  underwater_fp.c
+  q_math.c
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_math.c(4023,19): warning C4305: '*=': truncation from 'double' to 'vec_t' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_math.c(4341,9): warning C4305: '=': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_math.c(4342,9): warning C4305: '=': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_math.c(4343,9): warning C4305: '=': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  q_shared.c
+  Generating Code...
+  tr_font.cpp
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_font.cpp')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_font.cpp(414,71): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_font.cpp(769,24): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_font.cpp(836,62): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_ghost.cpp
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_ghost.cpp')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_model.cpp
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_model.cpp')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_ragdoll.cpp
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_ragdoll.cpp')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_sky_portal.cpp
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_sky_portal.cpp')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_sphere_shade.cpp
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_sphere_shade.cpp')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_sphere_shade.cpp(909,12): warning C4101: 'newColor': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_sphere_shade.cpp(910,22): warning C4101: 'fakeLine2': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_sphere_shade.cpp(908,12): warning C4101: 'i': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_sphere_shade.cpp(910,12): warning C4101: 'fakeLine': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_sphere_shade.cpp(985,12): warning C4101: 'radiusAtDist': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_sphere_shade.cpp(987,12): warning C4101: 'pointAtDist': unreferenced local variable [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_staticmodels.cpp
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_staticmodels.cpp')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_staticmodels.cpp(67,17): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_staticmodels.cpp(417,89): warning C4305: 'argument': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_staticmodels.cpp(417,84): warning C4305: 'argument': truncation from 'double' to 'float' [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  tr_sun_flare.cpp
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_sun_flare.cpp')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_swipe.cpp
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_swipe.cpp')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_util.cpp
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_util.cpp')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  tr_vis.cpp
+C:\mohaa-coop-dev\openmohaa-hzm-live\code\renderergl2\tr_extramath.h(49,9): warning C4005: 'DotProduct4': macro redefinition [C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\omohrenderergl2.vcxproj]
+  (compiling source file '../../../../code/renderergl2/tr_vis.cpp')
+      C:\mohaa-coop-dev\openmohaa-hzm-live\code\qcommon\q_shared.h(679,9):
+      see previous definition of 'DotProduct4'
+  
+  Generating Code...
+     Creating library C:/mohaa-coop-dev/openmohaa-hzm-live/.cmake-live/code/renderercommon/renderergl2/Release/renderer_opengl2.lib and object C:/mohaa-coop-dev/openmohaa-hzm-live/.cmake-live/code/renderercommon/renderergl2/Release/renderer_opengl2.exp
+  omohrenderergl2.vcxproj -> C:\mohaa-coop-dev\openmohaa-hzm-live\.cmake-live\code\renderercommon\renderergl2\Release\renderer_opengl2.dll

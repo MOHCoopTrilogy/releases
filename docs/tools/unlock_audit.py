@@ -8,18 +8,29 @@ Three enforcement sources must union-cover the roster:
   3. rank unlocks       xp.scr level.coop_xp_rankUnlock[rank][k] tables, granted through
                         chal_add_unlock by xp_rank_unlock on identify/rank-up (idempotent)
 
-Also cross-checks the DECLARED path (the armory hover's req1/req2 text in
-loadout_weapons.tsv) against the enforced source - a gun that SAYS "Rank: Corporal" but is
-actually only challenge-unlocked (or vice versa, or nothing) is UI drift.
+Also cross-checks the DECLARED path (the armory hover, ui/loadout/req<id>.cfg - what the player
+actually reads) against the enforced source - a gun that SAYS "Rank: Corporal" but is
+actually only challenge-unlocked (or vice versa, or nothing) is UI drift. Since 2026-09-28
+gen_loadout.py derives that hover from these same sources and its `check` fails on any
+difference, so this half is a second opinion; the orphan half is still the only one of its kind.
 
 Exit 1 on any orphan (no enforced path at all).
 """
 import re, io, os, sys
 
 ROOT = os.path.join(os.path.dirname(__file__), "..", "..")
-MOD  = os.path.join(ROOT, "hzm-mohaa-coop-mod")
+MOD  = os.environ.get("HZM_MOD") or os.path.join(ROOT, "hzm-mohaa-coop-mod")
 
-# ---- 1. roster (19 tab-separated cols: id tik give xfm charanim cls tab name cd b0..b3 clip clipn recoil slots req1 req2)
+
+def hover(wid):
+    p = os.path.join(MOD, "ui", "loadout", "req%s.cfg" % wid)
+    if not os.path.exists(p):
+        return ""
+    return " ".join(x for x in re.findall(r'(?m)^set coop_loReq2?\s+"([^"]*)"',
+                                          io.open(p, encoding="latin-1").read()) if x)
+
+
+# ---- 1. roster (tab-separated cols: id tik give xfm charanim cls tab name cd b0..b3 clip clipn recoil slots)
 roster = []
 for ln in io.open(os.path.join(ROOT, "docs", "tools", "loadout_weapons.tsv"), encoding="utf-8"):
     if not ln.strip() or ln.lstrip().startswith("#"):
@@ -27,7 +38,7 @@ for ln in io.open(os.path.join(ROOT, "docs", "tools", "loadout_weapons.tsv"), en
     c = ln.rstrip("\n").split("\t")
     if len(c) < 8 or not c[0].isdigit():
         continue
-    req = " ".join(x for x in c[17:19] if len(c) > 17 and x).strip()
+    req = hover(c[0])
     # empty give means "give the tik itself" (the newest imports use this)
     roster.append({"id": c[0], "give": (c[2] or c[1]).lower(), "name": c[7], "req": req})
 

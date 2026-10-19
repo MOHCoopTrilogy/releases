@@ -38,6 +38,11 @@ def main():
     opts = {"srv": "rel", "cl": "rel", "lobby": "fix", "delay": 0, "parkbytes": None, "mx": {}, "ufps": 30, "listen": False, "clprobe": False, "usercfg": False}
     sbins = jf.prep_bins("rel", jf.H)
     cbin = jf.prep_bins("rel", jf.SLOTS[0][1])
+    # HZM_CLIENT_EXE / HZM_SERVER_EXE: private copies of the armory-engine build (never the live install)
+    for env, dst in (("HZM_CLIENT_EXE", "openmohaa_jf.exe"), ("HZM_SERVER_EXE", "omohaaded_jf.exe")):
+        if os.environ.get(env):
+            shutil.copyfile(os.environ[env], os.path.join(cbin, dst))
+            log(env, os.environ[env], jf.md5f(os.path.join(cbin, dst))[:12])
     shm, smt = jf.seed_server(opts, code)
     pc = jf.seed_client(1, jf.SLOTS[0][1], code, rp.record())
     shutil.copyfile(os.path.join(MODWT, "coop_defaults.cfg"), os.path.join(pc[1], "coop_defaults.cfg"))
@@ -51,13 +56,20 @@ def main():
         time.sleep(35)
         rp.do(c, ["exec ui/loadout/open.cfg"], 3.0)
         time.sleep(4)
-        rp.do(c, ["set coop_loHero 1", "set coop_loPrev \"\"", "set coop_loHeroLk 0", "set coop_loHeroIc 0", "set coop_loCanEq 0"], 0.6)   # baseline = hero ON with no model (the UNLOCKED text is part of it)
+        card = os.environ.get("HF_MODE") == "card"
+        if card:       # the card gun box: card 0 visible, model empty; the hero is off
+            rp.do(c, ["set coop_loHero 0", "set coop_loHeroLk 0", "set coop_loHeroIc 0", "set coop_loK0V 1", "set coop_loK0M \"\"", "set coop_loK0I 0"], 0.6)
+        else:
+            rp.do(c, ["set coop_loHero 1", "set coop_loPrev \"\"", "set coop_loHeroLk 0", "set coop_loHeroIc 0", "set coop_loCanEq 0"], 0.6)   # baseline = hero ON with no model (the UNLOCKED text is part of it)
         rp.grab(c, sd, "hf_000")
         for nm, tik, xf in jobs:
             if time.time() - T0 > DEADLINE_S:
                 log("deadline: stopping at", nm)
                 break
-            rp.do(c, ["set coop_loHero 1", "set coop_loPrev \"%s\"" % tik, "set coop_loXfmHero \"%s\"" % xf], 0.55)
+            if card:
+                rp.do(c, ["set coop_loK0M \"%s\"" % tik, "set coop_loK0X \"%s\"" % xf], 0.55)
+            else:
+                rp.do(c, ["set coop_loHero 1", "set coop_loPrev \"%s\"" % tik, "set coop_loXfmHero \"%s\"" % xf], 0.55)
             if rp.grab(c, sd, "hf_" + nm):
                 done += 1
         log("frames", done, "of", len(jobs), "elapsed %.0fs" % (time.time() - T0))

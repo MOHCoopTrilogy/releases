@@ -16,13 +16,14 @@ import numpy as np
 from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-STATE = os.path.join(HERE, "hero_fit_state.json")
+MODE = os.environ.get("HF_MODE", "hero")          # "hero" (332x128 box) | "card" (the 46x25 card / slot-tile gun box)
+STATE = os.path.join(HERE, "hero_fit_state.json" if MODE == "hero" else "card_fit_state.json")
 TSV = r"C:\mohaa-coop-dev\docs\tools\loadout_weapons.tsv"
-OUT = r"C:\mohaa-coop-dev\docs\tools\armory_hero_fit.tsv"
-BOX = (144, 66, 332, 128)          # HERO_X, HERO_Y, HERO_W, HERO_H of gen_armory_urc.py (menu units)
+OUT = r"C:\mohaa-coop-dev\docs\tools\armory_hero_fit.tsv" if MODE == "hero" else r"C:\mohaa-coop-dev\docs\tools\armory_card_fit.tsv"
+BOX = (144, 66, 332, 128) if MODE == "hero" else (145, 282, 46, 25)     # HERO_X.. of gen_armory_urc.py; the card box = kGun0 (x+5, y+2, BOX_W, BOX_H)
 T_ASPECT = 92.0 / 50.0
-WT, HT = 0.92, 0.66                 # the gun fills 92 % of the width, at most 66 % of the height, centred at CY (the name / caliber sit over the lower left)
-CY = 0.37
+WT, HT = (0.92, 0.66) if MODE == "hero" else (0.92, 0.84)                # the gun fills 92 % of the width, at most 66 % of the height, centred at CY (the name / caliber sit over the lower left)
+CY = 0.37 if MODE == "hero" else 0.5
 PR = 1.5
 SKIP = {"66"}                      # the Mills bomb is a 2D icon
 TOL_S, TOL_CX, TOL_CY = 0.05, 0.03, 0.05
@@ -140,7 +141,8 @@ def solve(run, out):
             continue
         # centre error is corrected in WORLD units (independent of the scale change); the size by the scale
         x[1] += -(m0["cx"] - 0.5) / sy
-        x[2] += -(m0["cy"] - CY) / sz
+        # the vertical position is a fraction of the box that scales with 1 / scale: aim at CY for the scale we are ABOUT to use
+        x[2] += ((CY - 0.5) * ratio - (m0["cy"] - 0.5)) / sz
         x[3] = x[3] * ratio
         s["round"] += 1
         todo.append(i)

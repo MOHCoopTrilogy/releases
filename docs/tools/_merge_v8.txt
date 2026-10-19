@@ -1,0 +1,11 @@
+e3l1 {'rf_raw': 30661, 'rf_cells': 7869, 'route128': 4370, 'los': 0} pool 4 picked 4 [('outdoor-high', 'brush-face'), ('roof', 'brush-face'), ('roof', 'brush-face'), ('roof', 'brush-face')]
+t3l1 {'rf_raw': 35274, 'rf_cells': 9454, 'route128': 5354, 'los': 251, 'invisible': 251} pool 0 picked 0 []
+m3l2 {'rf_raw': 1299, 'rf_cells': 517, 'route128': 6, 'los': 6} pool 6 picked 1 [('roof', 'engine-scan')]
+m4l1 {'rf_raw': 7917, 'rf_cells': 2252, 'route128': 141, 'los': 40, 'invisible': 39} pool 1 picked 1 [('roof', 'engine-scan')]
+m4l2 {'rf_raw': 16158, 'rf_cells': 4586, 'route128': 520, 'los': 215, 'invisible': 180} pool 40 picked 8 [('outdoor-high', 'brush-face'), ('outdoor-high', 'brush-face'), ('outdoor-high', 'brush-face'), ('outdoor-high', 'engine-scan'), ('outdoor-high'
+m2l1 {'rf_raw': 37043, 'rf_cells': 10145, 'route128': 1299, 'los': 1134, 'invisible': 727} pool 407 picked 8 [('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-scan'), ('outdoo
+e3l2 {'rf_raw': 7702, 'rf_cells': 2672, 'route128': 696, 'los': 523, 'invisible': 503} pool 21 picked 7 [('roof', 'engine-scan'), ('roof', 'engine-scan'), ('roof', 'engine-scan'), ('roof', 'brush-face'), ('roof', 'engine-scan'), ('outdoor-high', 'eng
+m1l1 {'rf_raw': 9380, 'rf_cells': 2855, 'route128': 395, 'los': 383, 'invisible': 144} pool 242 picked 8 [('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-scan'), ('outdoor-high', 'engine-scan'), ('outdoor-hi
+m4l3 {'rf_raw': 4820, 'rf_cells': 1926, 'route128': 21, 'los': 6, 'invisible': 6} pool 0 picked 0 []
+t1l1 {'rf_raw': 1965, 'rf_cells': 882, 'route128': 14, 'los': 10, 'invisible': 9} pool 1 picked 1 [('outdoor-high', 'engine-scan')]
+e2l1 {'rf_raw': 25184, 'rf_cells': 6389, 'route128': 4278, 'los': 0} pool 1 picked 1 [('outdoor-high', 'brush-face')]

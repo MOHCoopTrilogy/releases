@@ -124,6 +124,11 @@ def main():
             "listen": False, "clprobe": False, "usercfg": False}
     sbins = jf.prep_bins("rel", jf.H)
     cbin = jf.prep_bins("rel", jf.SLOTS[0][1])
+    # HZM_CLIENT_EXE / HZM_SERVER_EXE: private copies of the armory-engine build (never the live install)
+    for env, dst in (("HZM_CLIENT_EXE", "openmohaa_jf.exe"), ("HZM_SERVER_EXE", "omohaaded_jf.exe")):
+        if os.environ.get(env):
+            shutil.copyfile(os.environ[env], os.path.join(cbin, dst))
+            log(env, os.environ[env], jf.md5f(os.path.join(cbin, dst))[:12])
     shm, smt = jf.seed_server(opts, code)
     proof = {"rev": full, "sizes": [], "errors": []}
     slog = None
