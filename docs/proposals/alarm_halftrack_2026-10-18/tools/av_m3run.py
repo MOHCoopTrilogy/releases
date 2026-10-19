@@ -12,9 +12,10 @@ def log(*a):
     G.log(LABEL, *a); OUT.write(" ".join(str(x) for x in a) + "\n"); OUT.flush()
 rundir = notes = None
 try:
-    rundir, notes = G.boot("av_" + LABEL, "m3l3", extra=["set coop_reinfDebug 1", "set coop_mortarDebug 1", "set coop_alarmVehDebug 1", "set coop_alarmVehIgnoreMission 1", "set coop_paraDebug 1"])
+    rundir, notes = G.boot("av_" + LABEL, "m3l3", extra=["set coop_reinfDebug 1", "set coop_mortarDebug 1", "set coop_alarmVehDebug 1", "set coop_alarmVehIgnoreMission 1", "set coop_paraDebug 1"] + ([x for x in os.environ.get("AVEXTRA", "").split(";") if x]))
     p0 = len(R.read_log())
     G.cmd("here")
+    G.cmd("trace")
     G.cmd("offdrop")
     time.sleep(8)
     G.cmd("m3church")
