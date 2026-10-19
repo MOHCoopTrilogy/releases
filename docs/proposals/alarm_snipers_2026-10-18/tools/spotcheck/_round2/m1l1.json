@@ -1,0 +1,82 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   128.0,
+   -4880.0,
+   1096.22
+  ],
+  "line": "z0=1096.220 z1=-127.875 dz=-1224.095 air=0.000 clipdz=0.000 sky=0 nodrawflag=1 edgebad=0 FAIL dropped",
+  "verdict": "FAIL dropped"
+ },
+ {
+  "i": 2,
+  "pos": [
+   -320.0,
+   -4432.0,
+   993.4
+  ],
+  "line": "z0=993.400 z1=-127.875 dz=-1121.275 air=0.000 clipdz=0.000 sky=0 nodrawflag=1 edgebad=0 FAIL dropped",
+  "verdict": "FAIL dropped"
+ },
+ {
+  "i": 3,
+  "pos": [
+   -384.0,
+   -5264.0,
+   997.27
+  ],
+  "line": "z0=997.270 z1=-127.875 dz=-1125.145 air=0.000 clipdz=0.000 sky=0 nodrawflag=1 edgebad=0 FAIL dropped",
+  "verdict": "FAIL dropped"
+ },
+ {
+  "i": 4,
+  "pos": [
+   -960.0,
+   -5776.0,
+   891.04
+  ],
+  "line": "z0=891.040 z1=-127.875 dz=-1018.915 air=0.000 clipdz=0.000 sky=0 nodrawflag=1 edgebad=0 FAIL dropped",
+  "verdict": "FAIL dropped"
+ },
+ {
+  "i": 5,
+  "pos": [
+   2752.0,
+   5232.0,
+   2356.39
+  ],
+  "line": "z0=2356.390 z1=-127.875 dz=-2484.265 air=0.000 clipdz=0.000 sky=0 nodrawflag=1 edgebad=0 FAIL dropped",
+  "verdict": "FAIL dropped"
+ },
+ {
+  "i": 6,
+  "pos": [
+   -960.0,
+   -5072.0,
+   807.36
+  ],
+  "line": "z0=807.360 z1=-127.875 dz=-935.235 air=0.000 clipdz=0.000 sky=0 nodrawflag=1 edgebad=0 FAIL dropped",
+  "verdict": "FAIL dropped"
+ },
+ {
+  "i": 7,
+  "pos": [
+   448.0,
+   -3152.0,
+   574.66
+  ],
+  "line": "z0=574.660 z1=-127.875 dz=-702.535 air=0.000 clipdz=0.000 sky=0 nodrawflag=1 edgebad=0 FAIL dropped",
+  "verdict": "FAIL dropped"
+ },
+ {
+  "i": 8,
+  "pos": [
+   192.0,
+   -2064.0,
+   641.69
+  ],
+  "line": "z0=641.690 z1=-127.875 dz=-769.565 air=0.000 clipdz=0.000 sky=0 nodrawflag=1 edgebad=0 FAIL dropped",
+  "verdict": "FAIL dropped"
+ }
+]

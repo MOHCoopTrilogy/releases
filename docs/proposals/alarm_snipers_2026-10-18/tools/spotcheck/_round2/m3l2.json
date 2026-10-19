@@ -1,0 +1,12 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   168.0,
+   -5731.0,
+   168.12
+  ],
+  "line": "z0=168.120 z1=168.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=3 FAIL edge",
+  "verdict": "FAIL edge"
+ }
+]

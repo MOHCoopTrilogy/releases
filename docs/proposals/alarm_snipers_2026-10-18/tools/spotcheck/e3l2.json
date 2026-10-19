@@ -1,0 +1,24 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   -576.0,
+   -4576.0,
+   -372.88
+  ],
+  "line": "z0=-372.880 z1=-372.875 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "FAIL manual QA: street-level arch beside a car, not a rooftop / high place",
+  "photo": "ok dir 1"
+ },
+ {
+  "i": 2,
+  "pos": [
+   4921.0,
+   -712.0,
+   -140.88
+  ],
+  "line": "z0=-140.880 z1=-140.875 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "FAIL manual QA: room interior with walls and beams, reads as indoor",
+  "photo": "ok dir 5"
+ }
+]

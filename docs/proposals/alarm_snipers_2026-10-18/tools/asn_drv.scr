@@ -190,9 +190,169 @@ asd_scan:{
 	println ( "^~^~^ RF DONE points=" + local.n + " kept=" + local.k )
 }end
 
+// ---- spot proof (every kept spot): spawn a sniper on EVERY spot at once, wait 3 s, judge each one
+asd_spawnraw local.pos local.i:{
+	local.mdl = exec coop_mod/officer.scr::coop_model_for "sniper"
+	local.s = spawn local.mdl
+	if( local.s == NULL || local.s == NIL ){ end NIL }
+	local.s.flags["coop_sceneActor"] = 1
+	local.s.flags["coop_personality_set"] = 1
+	local.s.flags["coop_reinfSquad"] = 1
+	local.s.origin = local.pos
+	local.s.health = 100
+	local.s.accuracy = 55
+	local.s waitthread coop_mod/aihandler.scr::coop_actorArm "mauser kar 98d sniper"
+	local.s.mindist = 0
+	local.s.maxdist = 3500
+	local.s.leash = 24
+	local.s.enableEnemy = 1
+	local.s forceactivate
+	local.s german
+}end local.s
+
+asd_judge local.i:{
+	local.pos = level.coop_asnSpot[local.i]
+	local.s = level.asd_chk[local.i]
+	local.v = ""
+	if( local.s == NULL || local.s == NIL || !isAlive local.s ){
+		println ( "^~^~^ SPOTCHK " + local.i + " " + local.pos + " FAIL gone" )
+		end
+	}
+	local.o = local.s.origin
+	local.z1 = local.o[2]
+	local.dz = local.z1 - local.pos[2]
+	local.adz = local.dz
+	if( local.adz < 0 ){ local.adz = 0 - local.adz }
+	local.tr = traced ( local.o + ( 0 0 8 ) ) ( local.o - ( 0 0 40 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+	local.air = 999
+	local.fz = local.z1 - 999
+	local.sky = 0
+	local.nd = 0
+	if( local.tr["fraction"] < 1.0 && local.tr["startSolid"] != 1 ){
+		local.h = local.tr["endpos"]
+		local.fz = local.h[2]
+		local.air = local.z1 - local.fz
+		local.sf = local.tr["surfaceFlags"]
+		local.q = int( local.sf / 4 )
+		if( local.q - int( local.q / 2 ) * 2 == 1 ){ local.sky = 1 }
+		local.q2 = int( local.sf / 128 )
+		if( local.q2 - int( local.q2 / 2 ) * 2 == 1 ){ local.nd = 1 }
+	}
+	local.clipdz = 0
+	local.tc = traced ( local.o + ( 0 0 40 ) ) ( local.o - ( 0 0 40 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 466945
+	if( local.tc["fraction"] < 1.0 && local.tc["startSolid"] != 1 ){
+		local.ch = local.tc["endpos"]
+		local.clipdz = local.ch[2] - local.fz
+	}
+	local.eb = 0
+	for( local.k = 0; local.k < 8; local.k++ ){
+		local.ang = ( 0 0 0 )
+		local.ang[1] = local.k * 45
+		local.dir = angles_toforward local.ang
+		local.pp = local.o + ( vector_scale local.dir 39 )
+		local.te = traced ( local.pp + ( 0 0 16 ) ) ( local.pp - ( 0 0 40 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+		if( local.te["fraction"] >= 1.0 || local.te["startSolid"] == 1 ){ local.eb++; continue }
+		local.eh = local.te["endpos"]
+		local.ed = local.eh[2] - local.fz
+		if( local.ed < 0 ){ local.ed = 0 - local.ed }
+		if( local.ed > 8 ){ local.eb++ }
+	}
+	if( local.adz > 4 ){ local.v = local.v + " dropped" }
+	if( local.air > 4 ){ local.v = local.v + " air" }
+	if( local.clipdz > 4 ){ local.v = local.v + " onclip" }
+	if( local.sky == 1 ){ local.v = local.v + " sky" }
+	if( local.eb > 0 ){ local.v = local.v + " edge" }
+	local.res = "PASS"
+	if( local.v != "" ){ local.res = "FAIL" + local.v }
+	println ( "^~^~^ SPOTCHK " + local.i + " " + local.pos + " z0=" + local.pos[2] + " z1=" + local.z1 + " dz=" + local.dz + " air=" + local.air + " clipdz=" + local.clipdz + " sky=" + local.sky + " nodrawflag=" + local.nd + " edgebad=" + local.eb + " " + local.res )
+}end
+
+asd_allspots:{
+	local.n = waitthread coop_mod/alarmsnipers.scr::asn_load
+	println ( "^~^~^ SPOTCHK START spots=" + local.n )
+	local.p = $player[1]
+	if( local.p != NULL ){ local.p threatbias ignoreme }
+	for( local.i = 1; local.i <= local.n; local.i++ ){
+		level.asd_chk[local.i] = waitthread asd_spawnraw level.coop_asnSpot[local.i] local.i
+		println ( "^~^~^ SPOTCHK spawned " + local.i + " at " + level.coop_asnSpot[local.i] )
+	}
+	wait 3
+	for( local.i = 1; local.i <= local.n; local.i++ ){ waitthread asd_judge local.i }
+	println "^~^~^ SPOTCHK DONE"
+}end
+
+asd_holder:{
+	local.p = $player[1]
+	while( level.asd_hold == 1 ){
+		local.p origin level.asd_holdPos
+		local.p.velocity = ( 0 0 0 )
+		waitframe
+	}
+}end
+
 asd_do local.c:{
 	local.p = $player[1]
 	if( local.p == NULL ){ end }
+	if( local.c == "allspots" ){ thread asd_allspots }
+	if( local.c == "sidecam" ){
+		local.kf = waitthread asd_f "ai_k"
+		local.k = int( local.kf )
+		local.s = level.asd_chk[local.k]
+		if( local.s == NULL || local.s == NIL ){ println ( "^~^~^ SPOTCHK CAM none " + local.k ); end }
+		local.ft = local.s.origin
+		level.asd_hold = 0
+		wait 0.1
+		local.pick = NIL
+		local.s light 1 1 0.9 320
+		setcvar "r_fullbright" "1"
+		local.tf = waitthread asd_f "ai_t"
+		local.t0 = int( local.tf )
+		local.rf = waitthread asd_f "ai_rad"
+		local.radbase = 300
+		if( local.rf > 50 ){ local.radbase = int( local.rf ) }
+		for( local.rr = 0; local.rr < 1 && local.pick == NIL; local.rr++ ){
+			local.rad = local.radbase
+			for( local.t = local.t0; local.t < local.t0 + 1; local.t++ ){
+				local.ang = ( 0 0 0 )
+				local.ang[1] = local.t * 22.5
+				local.dir = angles_toforward local.ang
+				local.q = local.ft + ( vector_scale local.dir local.rad )
+				local.q[2] = local.ft[2] - 34
+				local.eye = local.q + ( 0 0 56 )
+				local.ok = 1
+				for( local.m = 0; local.m < 5; local.m++ ){
+					local.tp = local.ft + ( 0 0 3 )
+					if( local.m == 1 ){ local.tp[0] = local.tp[0] + 18 }
+					if( local.m == 2 ){ local.tp[0] = local.tp[0] - 18 }
+					if( local.m == 3 ){ local.tp[1] = local.tp[1] + 18 }
+					if( local.m == 4 ){ local.tp[1] = local.tp[1] - 18 }
+					local.l1 = traced local.eye local.tp 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+					if( local.l1["fraction"] < 1.0 ){ local.ok = 0; break }
+				}
+				if( local.ok == 0 ){ continue }
+				local.l2 = traced local.eye ( local.ft + ( 0 0 60 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+				if( local.l2["fraction"] < 1.0 ){ continue }
+				local.pick = local.q
+				break
+			}
+		}
+		if( local.pick == NIL ){ println ( "^~^~^ SPOTCHK CAM no clear side for " + local.k ); end }
+		local.va = waitthread asd_vang ( local.pick + ( 0 0 56 ) ) ( local.ft + ( 0 0 10 ) )
+		local.p.viewangles = local.va
+		level.asd_holdPos = local.pick
+		level.asd_hold = 1
+		thread asd_holder
+		println ( "^~^~^ SPOTCHK CAM " + local.k + " from " + local.pick + " feet " + local.ft )
+	}
+	if( local.c == "sidecam_off" ){ level.asd_hold = 0 }
+	if( local.c == "hidesn" || local.c == "showsn" ){
+		local.kf = waitthread asd_f "ai_k"
+		local.hs = level.asd_chk[int( local.kf )]
+		if( local.hs != NULL && local.hs != NIL ){
+			if( local.c == "hidesn" ){ local.hs hide }
+			if( local.c == "showsn" ){ local.hs show }
+		}
+	}
 	if( local.c == "scan" ){ thread asd_scan }
 	if( local.c == "status" ){
 		println ( "^~^~^ ASN STATUS map=" + level.coop_mapname + " alarmMap=" + ( waitthread asd_s level.coop_alarmMap ) + " sw=" + ( waitthread asd_s level.coop_alarmSwN ) + " live=" + ( waitthread asd_s level.coop_alarmLive ) + " pulls=" + ( waitthread asd_s level.coop_alarmPulls ) + " spots=" + ( waitthread asd_s level.coop_asnN ) + " snipers=" + ( waitthread coop_mod/alarmsnipers.scr::asn_alive ) + " players=" + ( waitthread coop_mod/alarmsnipers.scr::asn_players ) + " want=" + ( waitthread coop_mod/alarmsnipers.scr::asn_want ) + " t=" + level.time )

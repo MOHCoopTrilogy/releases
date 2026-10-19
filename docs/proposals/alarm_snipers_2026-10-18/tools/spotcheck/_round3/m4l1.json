@@ -1,0 +1,12 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   -27.0,
+   -3229.0,
+   63.86
+  ],
+  "line": "z0=63.860 z1=384.125 dz=320.265 air=999 clipdz=999.000 sky=0 nodrawflag=0 edgebad=8 FAIL dropped air onclip edge",
+  "verdict": "FAIL dropped air onclip edge"
+ }
+]

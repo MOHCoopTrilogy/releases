@@ -1,0 +1,72 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   4632.0,
+   -3312.0,
+   264.12
+  ],
+  "line": "z0=264.120 z1=264.120 dz=0.000 air=-0.005 clipdz=0 sky=0 nodrawflag=0 edgebad=6 FAIL edge",
+  "verdict": "FAIL edge"
+ },
+ {
+  "i": 2,
+  "pos": [
+   264.0,
+   4008.0,
+   224.12
+  ],
+  "line": "z0=224.120 z1=224.125 dz=0.005 air=0.000 clipdz=0 sky=0 nodrawflag=0 edgebad=6 FAIL edge",
+  "verdict": "FAIL edge"
+ },
+ {
+  "i": 3,
+  "pos": [
+   968.0,
+   -1176.0,
+   200.12
+  ],
+  "line": "z0=200.120 z1=200.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=3 FAIL edge",
+  "verdict": "FAIL edge"
+ },
+ {
+  "i": 4,
+  "pos": [
+   -296.0,
+   4248.0,
+   224.12
+  ],
+  "line": "z0=224.120 z1=224.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "PASS"
+ },
+ {
+  "i": 5,
+  "pos": [
+   -824.0,
+   2776.0,
+   224.12
+  ],
+  "line": "z0=224.120 z1=224.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=3 FAIL edge",
+  "verdict": "FAIL edge"
+ },
+ {
+  "i": 6,
+  "pos": [
+   -872.0,
+   3496.0,
+   224.12
+  ],
+  "line": "z0=224.120 z1=224.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=3 FAIL edge",
+  "verdict": "FAIL edge"
+ },
+ {
+  "i": 7,
+  "pos": [
+   728.0,
+   3048.0,
+   208.12
+  ],
+  "line": "z0=208.120 z1=208.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=3 FAIL edge",
+  "verdict": "FAIL edge"
+ }
+]

@@ -1,0 +1,13 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   -4216.0,
+   -4056.0,
+   424.12
+  ],
+  "line": "z0=424.120 z1=424.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 7"
+ }
+]

@@ -206,6 +206,14 @@ def ground_check(B, p):
     if point_fluid(B, (x, y, h[0] + 20.0)):
         res["why"] = "water at spot"
         return res
+    # EDGE RULE (user 2026-10-18): the bbox must stay >= 24 u from a roof edge: 8 points on a ring of 39 u (15 bbox + 24) must all find
+    # the same floor (within 8 u) - mirrored by the in-engine audit (asn_drv.scr::asd_judge)
+    for k in range(8):
+        a_ = math.radians(k * 45.0)
+        e_ = floor_hit(B, x + math.cos(a_) * 39.0, y + math.sin(a_) * 39.0, z, up=16.0, down=40.0)
+        if e_ is None or abs(e_[0] - h[0]) > 8.0 or bad_surface(B, e_[2]):
+            res["why"] = "roof edge within 24 u (ring %d)" % k
+            return res
     cz = []
     for dx, dy in ((12, 12), (-12, 12), (12, -12), (-12, -12)):
         c = floor_hit(B, x + dx, y + dy, z)
@@ -494,6 +502,17 @@ def merge_rf(m, path):
         deny = json.load(open(os.path.join(HERE, "sniper_spots_deny.json"))).get(m, [])
     except Exception:
         pass
+    # engine-audit failures (docs/proposals/alarm_snipers_2026-10-18/tools/spotcheck): never offered again within 96 u
+    failed = []
+    audit_pass = audit_n = 0
+    base = os.path.join(HERE, "..", "proposals", "alarm_snipers_2026-10-18", "tools", "spotcheck")
+    for d_ in (base, os.path.join(base, "_round1")):
+        fp = os.path.join(d_, m + ".json")
+        if os.path.exists(fp):
+            rr_ = json.load(open(fp))
+            failed += [r["pos"] for r in rr_ if r["verdict"] != "PASS"]
+            audit_pass = audit_pass + sum(1 for r in rr_ if r["verdict"] == "PASS")
+            audit_n = audit_n + len(rr_)
     raw = []
     for ln in open(path):
         p = ln.split()
@@ -506,6 +525,8 @@ def merge_rf(m, path):
         if k not in best or z > best[k][2]:
             best[k] = (x, y, z, cd)
     cands = list(best.values())
+    if audit_n >= 8 and audit_pass == 0:
+        cands = []   # engine-scan surfaces on this map all failed the in-engine audit (actors fall through trees / terrain models): brush faces only
     st = {"rf_raw": len(raw), "rf_cells": len(cands), "route128": 0, "los": 0}
     keep = []
     for x, y, z, cd in cands:
@@ -522,6 +543,8 @@ def merge_rf(m, path):
         if any((v[0] - x) ** 2 + (v[1] - y) ** 2 < 350.0 ** 2 for v in vpts):
             continue
         if any(b[0] <= x <= b[2] and b[1] <= y <= b[3] for b in deny):
+            continue
+        if any((f[0] - x) ** 2 + (f[1] - y) ** 2 < 96.0 ** 2 for f in failed):
             continue
         st["route128"] += 1
         far = near(x, y, 3000.0)
@@ -597,6 +620,7 @@ def main():
         bad = [r["pos"] for r in res if r["verdict"] != "PASS"]
         before = len(data[a[1]]["spots"])
         data[a[1]]["spots"] = [s_ for s_ in data[a[1]]["spots"] if not any(abs(s_["pos"][0] - b[0]) < 1.5 and abs(s_["pos"][1] - b[1]) < 1.5 and abs(s_["pos"][2] - b[2]) < 1.5 for b in bad)]
+        data[a[1]]["audited"] = True
         data[a[1]].setdefault("dropped", []).extend([{"pos": r["pos"], "why": r["verdict"]} for r in res if r["verdict"] != "PASS"])
         json.dump(data, open(OUTJ, "w"), indent=1, sort_keys=True)
         print(a[1], "kept", len(data[a[1]]["spots"]), "of", before)
@@ -617,7 +641,7 @@ def main():
         L.append("}end local.n\n")
         for m in sorted(data):
             sp = data[m]["spots"]
-            if not sp:
+            if not sp or not data[m].get("audited"):
                 continue
             L.append("// %s: %d spots" % (m, len(sp)))
             L.append("sp_%s:{" % m)

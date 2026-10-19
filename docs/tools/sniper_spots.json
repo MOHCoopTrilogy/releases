@@ -434,12 +434,45 @@
   }
  },
  "e2l1": {
-  "spots": [],
+  "audited": true,
+  "dropped": [],
+  "spots": [
+   {
+    "body": 55,
+    "cluster": 1,
+    "elev": 376.1,
+    "ground": {
+     "cornerDz": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "floorDz": 0.12,
+     "headroom": 256.0,
+     "normalZ": 1.0,
+     "ok": true,
+     "shader": "textures/central_europe/church_interior_wall2flt"
+    },
+    "los": 59,
+    "pos": [
+     -4216.0,
+     -4056.0,
+     424.12
+    ],
+    "routeDz": 440.0,
+    "side": 5,
+    "sky": true,
+    "src": "brush-face",
+    "type": "outdoor-high"
+   }
+  ],
   "stats": {
+   "drop": 4,
    "faces": 549,
    "ground": 42,
    "high": 216,
-   "kept": 0,
+   "kept": 1,
    "los": 0,
    "raw": 971,
    "rf_cells": 6389,
@@ -586,97 +619,37 @@
   }
  },
  "e3l1": {
-  "spots": [
+  "audited": true,
+  "dropped": [
    {
-    "body": 203,
-    "cluster": 1,
-    "elev": 121.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 256.0,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/general_structure/garagefloor"
-    },
-    "los": 211,
     "pos": [
-     4632.0,
-     -3312.0,
-     264.12
+     776.0,
+     3048.0,
+     208.12
     ],
-    "routeDz": 180.0,
-    "side": 7,
-    "sky": true,
-    "src": "brush-face",
-    "type": "roof"
+    "why": "FAIL no visible angle (floor contact not photographable)"
    },
    {
-    "body": 109,
-    "cluster": 2,
-    "elev": 157.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 256.0,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/algiers/whsflrset1_1b"
-    },
-    "los": 109,
     "pos": [
-     264.0,
-     4008.0,
+     -824.0,
+     2872.0,
      224.12
     ],
-    "routeDz": 142.0,
-    "side": 2,
-    "sky": true,
-    "src": "brush-face",
-    "type": "roof"
+    "why": "FAIL manual QA: sniper not visible in the tile (contact unproven)"
    },
    {
-    "body": 73,
-    "cluster": 3,
-    "elev": 152.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 256.0,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/mohtest/wdflr2a"
-    },
-    "los": 89,
     "pos": [
-     968.0,
-     -1176.0,
-     200.12
+     776.0,
+     3048.0,
+     208.12
     ],
-    "routeDz": 156.0,
-    "side": 5,
-    "sky": true,
-    "src": "brush-face",
-    "type": "outdoor-high"
-   },
+    "why": "FAIL no visible angle (floor contact not photographable)"
+   }
+  ],
+  "spots": [
    {
-    "body": 25,
-    "cluster": 2,
+    "body": 63,
+    "cluster": 1,
     "elev": 160.1,
     "ground": {
      "cornerDz": [
@@ -691,10 +664,10 @@
      "ok": true,
      "shader": "textures/general_structure/concretewall2"
     },
-    "los": 45,
+    "los": 92,
     "pos": [
-     -296.0,
-     4248.0,
+     -200.0,
+     4200.0,
      224.12
     ],
     "routeDz": 184.0,
@@ -704,8 +677,8 @@
     "type": "outdoor-high"
    },
    {
-    "body": 37,
-    "cluster": 4,
+    "body": 20,
+    "cluster": 3,
     "elev": 160.1,
     "ground": {
      "cornerDz": [
@@ -720,39 +693,10 @@
      "ok": true,
      "shader": "textures/general_structure/concretewall2"
     },
-    "los": 37,
+    "los": 24,
     "pos": [
      -824.0,
-     2776.0,
-     224.12
-    ],
-    "routeDz": 144.0,
-    "side": 3,
-    "sky": true,
-    "src": "brush-face",
-    "type": "roof"
-   },
-   {
-    "body": 29,
-    "cluster": 5,
-    "elev": 160.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 256.0,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/general_structure/concretewall2"
-    },
-    "los": 33,
-    "pos": [
-     -872.0,
-     3496.0,
+     3592.0,
      224.12
     ],
     "routeDz": 160.0,
@@ -760,273 +704,94 @@
     "sky": true,
     "src": "brush-face",
     "type": "roof"
-   },
-   {
-    "body": 30,
-    "cluster": 6,
-    "elev": 144.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 256.0,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/it_3-2cassino/it_e_3-2rubble02-512"
-    },
-    "los": 35,
-    "pos": [
-     728.0,
-     3048.0,
-     208.12
-    ],
-    "routeDz": 144.0,
-    "side": 2,
-    "sky": true,
-    "src": "brush-face",
-    "type": "roof"
    }
   ],
   "stats": {
-   "drop": 101,
+   "drop": 54,
    "faces": 1507,
-   "ground": 101,
+   "ground": 54,
    "high": 442,
-   "kept": 7,
+   "kept": 4,
    "los": 0,
    "raw": 6456,
    "rf_cells": 7869,
    "rf_raw": 30661,
-   "route128": 4379
+   "route128": 4370
   }
  },
  "e3l2": {
-  "spots": [
+  "audited": true,
+  "dropped": [
    {
-    "body": 32,
-    "cluster": 1,
-    "elev": 1032.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 55,
     "pos": [
-     6784.0,
-     -5472.0,
-     688.12
-    ],
-    "routeDz": 1032.1,
-    "side": 7,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 21,
-    "cluster": 2,
-    "elev": 1096.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 30,
-    "pos": [
-     -1024.0,
+     256.0,
      -4832.0,
-     312.12
+     -447.88
     ],
-    "routeDz": 1096.1,
-    "side": 5,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
+    "why": "FAIL edge"
    },
    {
-    "body": 0,
-    "cluster": 3,
-    "elev": 1120.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 4,
     "pos": [
-     -256.0,
-     -5088.0,
-     400.12
+     -704.0,
+     -3936.0,
+     -372.88
     ],
-    "routeDz": 1120.1,
-    "side": 6,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
+    "why": "FAIL edge"
    },
    {
-    "body": 11,
-    "cluster": 4,
-    "elev": 1044.0,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 21,
     "pos": [
-     -832.0,
-     1184.0,
-     704.12
+     4928.0,
+     -96.0,
+     -161.88
     ],
-    "routeDz": 1044.0,
-    "side": 3,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
+    "why": "FAIL edge"
    },
    {
-    "body": 36,
-    "cluster": 5,
-    "elev": 877.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 46,
     "pos": [
-     -1664.0,
-     4320.0,
-     472.12
+     -320.0,
+     -1632.0,
+     40.89
     ],
-    "routeDz": 877.1,
-    "side": 3,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
+    "why": "FAIL dropped"
    },
    {
-    "body": 34,
-    "cluster": 6,
-    "elev": 877.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 40,
     "pos": [
-     2560.0,
-     544.0,
-     709.12
+     5120.0,
+     -3936.0,
+     -255.88
     ],
-    "routeDz": 877.1,
-    "side": 1,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
+    "why": "FAIL edge"
    },
    {
-    "body": 4,
-    "cluster": 7,
-    "elev": 945.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 7,
     "pos": [
-     -896.0,
-     -1888.0,
-     709.12
+     -576.0,
+     -4576.0,
+     -372.88
     ],
-    "routeDz": 945.1,
-    "side": 5,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
+    "why": "FAIL manual QA: street-level arch beside a car, not a rooftop / high place"
    },
    {
-    "body": 21,
-    "cluster": 8,
-    "elev": 872.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 21,
     "pos": [
-     -1664.0,
-     480.0,
-     704.12
+     4921.0,
+     -712.0,
+     -140.88
     ],
-    "routeDz": 872.1,
-    "side": 3,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
+    "why": "FAIL manual QA: room interior with walls and beams, reads as indoor"
    }
   ],
+  "spots": [],
   "stats": {
-   "drop": 31,
+   "drop": 26,
    "faces": 2299,
-   "ground": 38,
-   "high": 2367,
-   "kept": 533,
-   "los": 533,
-   "minh": 100,
+   "ground": 26,
+   "high": 2370,
+   "invisible": 503,
+   "kept": 21,
+   "los": 523,
    "raw": 22774,
    "rf_cells": 2672,
    "rf_raw": 7702,
-   "route128": 710
+   "route128": 696
   }
  },
  "e3l3": {
@@ -1057,228 +822,46 @@
   }
  },
  "m1l1": {
-  "spots": [
+  "audited": true,
+  "dropped": [
    {
-    "body": 69,
-    "cluster": 1,
-    "elev": 880.2,
-    "ground": {
-     "cornerDz": [
-      2.12
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 2.1 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 69,
     "pos": [
-     128.0,
-     -4880.0,
-     1096.22
+     -2408.0,
+     -2808.0,
+     320.12
     ],
-    "routeDz": 880.2,
-    "side": 7,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "outdoor-high"
+    "why": "FAIL gone"
    },
    {
-    "body": 1,
-    "cluster": 1,
-    "elev": 1032.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 37,
     "pos": [
-     -64.0,
-     -4304.0,
-     1248.12
+     -1768.0,
+     -2808.0,
+     320.12
     ],
-    "routeDz": 1032.1,
-    "side": 7,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
+    "why": "FAIL manual QA: sniper not visible in the tile (contact unproven)"
    },
    {
-    "body": 68,
-    "cluster": 1,
-    "elev": 781.3,
-    "ground": {
-     "cornerDz": [
-      2.796
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 2.8 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 68,
     "pos": [
-     -384.0,
-     -5264.0,
-     997.27
+     -2408.0,
+     -2808.0,
+     320.12
     ],
-    "routeDz": 781.3,
-    "side": 7,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "outdoor-high"
-   },
-   {
-    "body": 70,
-    "cluster": 2,
-    "elev": 675.0,
-    "ground": {
-     "cornerDz": [
-      4.923
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 4.9 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 70,
-    "pos": [
-     -960.0,
-     -5776.0,
-     891.04
-    ],
-    "routeDz": 675.0,
-    "side": 7,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "outdoor-high"
-   },
-   {
-    "body": 4,
-    "cluster": 3,
-    "elev": 908.4,
-    "ground": {
-     "cornerDz": [
-      6.546
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 6.5 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 4,
-    "pos": [
-     2752.0,
-     5232.0,
-     2356.39
-    ],
-    "routeDz": 908.4,
-    "side": 1,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "outdoor-high"
-   },
-   {
-    "body": 67,
-    "cluster": 1,
-    "elev": 603.6,
-    "ground": {
-     "cornerDz": [
-      7.716
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 7.7 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 68,
-    "pos": [
-     -640.0,
-     -4688.0,
-     819.58
-    ],
-    "routeDz": 603.6,
-    "side": 7,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "outdoor-high"
-   },
-   {
-    "body": 70,
-    "cluster": 2,
-    "elev": 536.1,
-    "ground": {
-     "cornerDz": [
-      5.053
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 5.1 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 70,
-    "pos": [
-     -1216.0,
-     -5200.0,
-     752.1
-    ],
-    "routeDz": 536.1,
-    "side": 7,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "outdoor-high"
-   },
-   {
-    "body": 24,
-    "cluster": 4,
-    "elev": 432.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 48,
-    "pos": [
-     -2688.0,
-     -2832.0,
-     560.12
-    ],
-    "routeDz": 432.1,
-    "side": 7,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
+    "why": "FAIL gone"
    }
   ],
+  "spots": [],
   "stats": {
-   "drop": 22,
+   "drop": 38,
    "faces": 529,
-   "ground": 54,
-   "high": 332,
-   "kept": 400,
-   "los": 399,
-   "minh": 100,
+   "ground": 42,
+   "high": 333,
+   "invisible": 144,
+   "kept": 2,
+   "los": 0,
    "raw": 1845,
-   "rf_cells": 2855,
+   "rf_cells": 0,
    "rf_raw": 9380,
-   "route128": 411
+   "route128": 0
   }
  },
  "m1l2b": {
@@ -1502,227 +1085,86 @@
   }
  },
  "m2l1": {
-  "spots": [
+  "audited": true,
+  "dropped": [
    {
-    "body": 15,
-    "cluster": 1,
-    "elev": 976.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 22,
     "pos": [
-     3072.0,
-     3456.0,
-     960.12
+     -3520.0,
+     -896.0,
+     1099.91
     ],
-    "routeDz": 976.1,
-    "side": 1,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
+    "why": "FAIL dropped"
    },
    {
-    "body": 27,
-    "cluster": 2,
-    "elev": 688.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 31,
-    "pos": [
-     2944.0,
-     6784.0,
-     672.12
-    ],
-    "routeDz": 688.1,
-    "side": 2,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 27,
-    "cluster": 3,
-    "elev": 688.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 30,
-    "pos": [
-     3968.0,
-     6784.0,
-     672.12
-    ],
-    "routeDz": 688.1,
-    "side": 2,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 39,
-    "cluster": 4,
-    "elev": 604.1,
-    "ground": {
-     "cornerDz": [
-      3.804
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 3.8 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 41,
-    "pos": [
-     -3456.0,
-     -1024.0,
-     1100.13
-    ],
-    "routeDz": 604.1,
-    "side": 5,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "outdoor-high"
-   },
-   {
-    "body": 43,
-    "cluster": 5,
-    "elev": 573.0,
-    "ground": {
-     "cornerDz": [
-      2.979
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 3.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 43,
-    "pos": [
-     -3328.0,
-     -2304.0,
-     1092.99
-    ],
-    "routeDz": 573.0,
-    "side": 5,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "outdoor-high"
-   },
-   {
-    "body": 37,
-    "cluster": 5,
-    "elev": 573.3,
-    "ground": {
-     "cornerDz": [
-      5.553
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 5.6 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 38,
-    "pos": [
-     -3328.0,
-     -1664.0,
-     1101.28
-    ],
-    "routeDz": 573.3,
-    "side": 5,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "outdoor-high"
-   },
-   {
-    "body": 33,
-    "cluster": 6,
-    "elev": 565.6,
-    "ground": {
-     "cornerDz": [
-      0.106
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.1 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 35,
-    "pos": [
-     -3776.0,
-     576.0,
-     1061.57
-    ],
-    "routeDz": 565.6,
-    "side": 4,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "outdoor-high"
-   },
-   {
-    "body": 33,
-    "cluster": 4,
-    "elev": 523.9,
-    "ground": {
-     "cornerDz": [
-      0.515
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.5 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 36,
     "pos": [
      -3200.0,
-     -448.0,
-     1019.9
+     -2432.0,
+     1093.39
     ],
-    "routeDz": 523.9,
-    "side": 4,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "outdoor-high"
+    "why": "FAIL edge"
+   },
+   {
+    "pos": [
+     -3328.0,
+     -1536.0,
+     1092.44
+    ],
+    "why": "FAIL dropped"
+   },
+   {
+    "pos": [
+     -3648.0,
+     640.0,
+     1062.22
+    ],
+    "why": "FAIL dropped"
+   },
+   {
+    "pos": [
+     2304.0,
+     3968.0,
+     552.1
+    ],
+    "why": "FAIL dropped"
+   },
+   {
+    "pos": [
+     -3328.0,
+     -320.0,
+     1025.39
+    ],
+    "why": "FAIL dropped"
+   },
+   {
+    "pos": [
+     1856.0,
+     4416.0,
+     558.06
+    ],
+    "why": "FAIL dropped edge"
+   },
+   {
+    "pos": [
+     -3456.0,
+     1216.0,
+     1019.81
+    ],
+    "why": "FAIL dropped"
    }
   ],
+  "spots": [],
   "stats": {
-   "drop": 112,
+   "drop": 90,
    "faces": 1644,
-   "ground": 113,
+   "ground": 91,
    "high": 4074,
-   "kept": 1138,
-   "los": 1136,
+   "invisible": 727,
+   "kept": 407,
+   "los": 1134,
    "raw": 11596,
    "rf_cells": 10145,
    "rf_raw": 37043,
-   "route128": 1316
+   "route128": 1299
   }
  },
  "m2l2b": {
@@ -1752,97 +1194,29 @@
   }
  },
  "m3l2": {
-  "spots": [
+  "audited": true,
+  "dropped": [
    {
-    "body": 24,
-    "cluster": 1,
-    "elev": 660.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 26,
     "pos": [
-     -4184.0,
-     3357.0,
-     692.12
-    ],
-    "routeDz": 660.1,
-    "side": 2,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 15,
-    "cluster": 2,
-    "elev": 424.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 21,
-    "pos": [
-     -3096.0,
-     2845.0,
-     616.12
-    ],
-    "routeDz": 424.1,
-    "side": 2,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 30,
-    "cluster": 3,
-    "elev": 130.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 30,
-    "pos": [
-     168.0,
+     40.0,
      -5731.0,
      168.12
     ],
-    "routeDz": 130.1,
-    "side": 7,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
+    "why": "FAIL no visible angle (floor contact not photographable)"
    }
   ],
+  "spots": [],
   "stats": {
-   "drop": 90,
+   "drop": 78,
    "faces": 776,
-   "ground": 145,
+   "ground": 121,
    "high": 276,
-   "kept": 10,
-   "los": 10,
+   "kept": 6,
+   "los": 6,
    "raw": 3464,
    "rf_cells": 517,
    "rf_raw": 1299,
-   "route128": 10
+   "route128": 6
   }
  },
  "m3l3": {
@@ -1858,260 +1232,87 @@
   }
  },
  "m4l1": {
-  "spots": [
+  "audited": true,
+  "dropped": [
    {
-    "body": 41,
-    "cluster": 1,
-    "elev": 224.1,
-    "ground": {
-     "cornerDz": [
-      6.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 6.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 50,
     "pos": [
-     -603.0,
-     -3101.0,
-     64.09
+     -27.0,
+     -3229.0,
+     63.86
     ],
-    "routeDz": 224.1,
-    "side": 5,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 37,
-    "cluster": 2,
-    "elev": 176.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 38,
-    "pos": [
-     3877.0,
-     4131.0,
-     816.12
-    ],
-    "routeDz": 176.1,
-    "side": 2,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 5,
-    "cluster": 2,
-    "elev": 192.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 6,
-    "pos": [
-     4517.0,
-     4131.0,
-     816.12
-    ],
-    "routeDz": 192.1,
-    "side": 1,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 2,
-    "cluster": 3,
-    "elev": 172.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 3,
-    "pos": [
-     5029.0,
-     4771.0,
-     576.12
-    ],
-    "routeDz": 172.1,
-    "side": 1,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 0,
-    "cluster": 3,
-    "elev": 180.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 1,
-    "pos": [
-     5157.0,
-     4131.0,
-     576.12
-    ],
-    "routeDz": 180.1,
-    "side": 1,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 2,
-    "cluster": 3,
-    "elev": 154.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 2,
-    "pos": [
-     5157.0,
-     5411.0,
-     576.12
-    ],
-    "routeDz": 154.1,
-    "side": 1,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 1,
-    "cluster": 4,
-    "elev": 148.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 1,
-    "pos": [
-     5157.0,
-     6179.0,
-     576.12
-    ],
-    "routeDz": 148.1,
-    "side": 1,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 1,
-    "cluster": 5,
-    "elev": 144.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 1,
-    "pos": [
-     4389.0,
-     6179.0,
-     576.12
-    ],
-    "routeDz": 144.1,
-    "side": 2,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
+    "why": "FAIL dropped air onclip edge"
    }
   ],
+  "spots": [],
   "stats": {
-   "drop": 3,
    "faces": 1082,
-   "ground": 3,
-   "high": 314,
-   "kept": 42,
-   "los": 42,
+   "ground": 26,
+   "high": 384,
+   "invisible": 39,
+   "kept": 1,
+   "los": 40,
    "raw": 10089,
    "rf_cells": 2252,
    "rf_raw": 7917,
-   "route128": 145
+   "route128": 141
   }
  },
  "m4l2": {
-  "spots": [
+  "audited": true,
+  "dropped": [
    {
-    "body": 3,
-    "cluster": 1,
-    "elev": 800.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 6,
     "pos": [
-     -4320.0,
-     1904.0,
-     560.12
+     -5408.0,
+     2352.0,
+     613.47
     ],
-    "routeDz": 800.1,
-    "side": 4,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
+    "why": "FAIL dropped edge"
    },
    {
-    "body": 101,
-    "cluster": 2,
+    "pos": [
+     -4968.0,
+     4936.0,
+     328.12
+    ],
+    "why": "FAIL no visible angle (floor contact not photographable)"
+   },
+   {
+    "pos": [
+     5792.0,
+     1648.0,
+     432.63
+    ],
+    "why": "FAIL no visible angle (floor contact not photographable)"
+   },
+   {
+    "pos": [
+     -6904.0,
+     4936.0,
+     328.12
+    ],
+    "why": "FAIL manual QA: sniper mostly hidden behind a fence, contact not clear"
+   },
+   {
+    "pos": [
+     -4968.0,
+     4936.0,
+     328.12
+    ],
+    "why": "FAIL no visible angle (floor contact not photographable)"
+   },
+   {
+    "pos": [
+     5792.0,
+     1648.0,
+     432.63
+    ],
+    "why": "FAIL no visible angle (floor contact not photographable)"
+   }
+  ],
+  "spots": [
+   {
+    "body": 83,
+    "cluster": 1,
     "elev": 288.1,
     "ground": {
      "cornerDz": [
@@ -2126,10 +1327,10 @@
      "ok": true,
      "shader": "textures/blasted/dday_bunker_wall1bsml"
     },
-    "los": 106,
+    "los": 102,
     "pos": [
-     -3160.0,
-     4424.0,
+     -3112.0,
+     4472.0,
      304.12
     ],
     "routeDz": 400.0,
@@ -2139,90 +1340,9 @@
     "type": "outdoor-high"
    },
    {
-    "body": 105,
-    "cluster": 3,
-    "elev": 312.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 256.0,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/wilderness/m3l3grass_1rough"
-    },
-    "los": 117,
-    "pos": [
-     -6952.0,
-     4888.0,
-     328.12
-    ],
-    "routeDz": 312.0,
-    "side": 3,
-    "sky": true,
-    "src": "brush-face",
-    "type": "outdoor-high"
-   },
-   {
-    "body": 20,
-    "cluster": 4,
-    "elev": 565.5,
-    "ground": {
-     "cornerDz": [
-      4.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 4.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 20,
-    "pos": [
-     -5536.0,
-     1584.0,
-     613.47
-    ],
-    "routeDz": 565.5,
-    "side": 4,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "outdoor-high"
-   },
-   {
-    "body": 16,
-    "cluster": 5,
-    "elev": 568.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 16,
-    "pos": [
-     -4448.0,
-     2800.0,
-     328.12
-    ],
-    "routeDz": 568.1,
-    "side": 4,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 79,
+    "body": 52,
     "cluster": 6,
-    "elev": 312.1,
+    "elev": 232.1,
     "ground": {
      "cornerDz": [
       0.0,
@@ -2234,230 +1354,102 @@
      "headroom": 256.0,
      "normalZ": 1.0,
      "ok": true,
-     "shader": "textures/wilderness/m3l3grass_1rough"
+     "shader": "textures/blasted/dday_bunker_wall1bsml"
     },
-    "los": 79,
+    "los": 58,
     "pos": [
-     -4776.0,
-     4888.0,
-     328.12
+     -1688.0,
+     1336.0,
+     248.12
     ],
-    "routeDz": 312.0,
-    "side": 3,
+    "routeDz": 168.0,
+    "side": 7,
     "sky": true,
     "src": "brush-face",
     "type": "outdoor-high"
    },
    {
-    "body": 44,
+    "body": 53,
     "cluster": 7,
-    "elev": 408.1,
+    "elev": 128.1,
     "ground": {
      "cornerDz": [
-      0.0
+      0.749
      ],
      "floorDz": 0.0,
      "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
+     "normalZ": ">0.7 (corners within 0.7 u)",
      "ok": true,
      "shader": "engine floor"
     },
-    "los": 50,
+    "los": 53,
     "pos": [
-     -7712.0,
-     4528.0,
-     424.12
+     2720.0,
+     880.0,
+     248.12
     ],
-    "routeDz": 408.1,
-    "side": 4,
+    "routeDz": 128.1,
+    "side": 0,
     "sky": true,
     "src": "engine-scan",
-    "type": "roof"
+    "type": "outdoor-high"
    },
    {
-    "body": 42,
-    "cluster": 7,
-    "elev": 408.1,
+    "body": 33,
+    "cluster": 8,
+    "elev": 146.6,
     "ground": {
      "cornerDz": [
-      1.985
+      2.25
      ],
      "floorDz": 0.0,
      "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 2.0 u)",
+     "normalZ": ">0.7 (corners within 2.2 u)",
      "ok": true,
      "shader": "engine floor"
     },
-    "los": 42,
+    "los": 47,
     "pos": [
-     -7648.0,
-     3888.0,
-     424.12
+     1504.0,
+     624.0,
+     242.63
     ],
-    "routeDz": 408.1,
-    "side": 4,
+    "routeDz": 146.6,
+    "side": 7,
     "sky": true,
     "src": "engine-scan",
-    "type": "roof"
+    "type": "outdoor-high"
    }
   ],
   "stats": {
-   "drop": 194,
+   "drop": 108,
    "faces": 1574,
-   "ground": 212,
+   "ground": 126,
    "high": 1410,
-   "kept": 235,
-   "los": 230,
+   "invisible": 180,
+   "kept": 40,
+   "los": 215,
    "raw": 12803,
    "rf_cells": 4586,
    "rf_raw": 16158,
-   "route128": 533
+   "route128": 520
   }
  },
  "m4l3": {
-  "spots": [
-   {
-    "body": 17,
-    "cluster": 1,
-    "elev": 608.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 26,
-    "pos": [
-     -2944.0,
-     704.0,
-     872.12
-    ],
-    "routeDz": 608.1,
-    "side": 2,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 49,
-    "cluster": 2,
-    "elev": 214.1,
-    "ground": {
-     "cornerDz": [
-      5.985
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 6.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 51,
-    "pos": [
-     -5888.0,
-     1472.0,
-     584.12
-    ],
-    "routeDz": 214.1,
-    "side": 3,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 60,
-    "cluster": 3,
-    "elev": 150.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 60,
-    "pos": [
-     2496.0,
-     128.0,
-     156.12
-    ],
-    "routeDz": 150.1,
-    "side": 0,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 4,
-    "cluster": 4,
-    "elev": 352.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 6,
-    "pos": [
-     -384.0,
-     -1088.0,
-     400.12
-    ],
-    "routeDz": 352.1,
-    "side": 0,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 31,
-    "cluster": 5,
-    "elev": 166.4,
-    "ground": {
-     "cornerDz": [
-      4.364
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 4.4 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 36,
-    "pos": [
-     -5760.0,
-     -512.0,
-     175.45
-    ],
-    "routeDz": 166.4,
-    "side": 4,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   }
-  ],
+  "audited": true,
+  "spots": [],
   "stats": {
-   "drop": 302,
+   "drop": 224,
    "faces": 1465,
-   "ground": 354,
+   "ground": 275,
    "high": 1913,
-   "kept": 7,
-   "los": 7,
+   "invisible": 6,
+   "kept": 0,
+   "los": 6,
    "raw": 8115,
    "rf_cells": 1926,
    "rf_raw": 4820,
-   "route128": 22
+   "route128": 21
   }
  },
  "m5l2a": {
@@ -2718,65 +1710,24 @@
   }
  },
  "t1l1": {
-  "spots": [
+  "audited": true,
+  "dropped": [
    {
-    "body": 27,
-    "cluster": 1,
-    "elev": 936.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 45,
-    "pos": [
-     -2168.0,
-     -4074.0,
-     -5579.88
-    ],
-    "routeDz": 936.1,
-    "side": 6,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 30,
-    "cluster": 2,
-    "elev": 191.1,
-    "ground": {
-     "cornerDz": [
-      1.501
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 1.5 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 40,
     "pos": [
      -5240.0,
      7510.0,
      -6796.87
     ],
-    "routeDz": 191.1,
-    "side": 3,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "outdoor-high"
+    "why": "FAIL no visible angle (floor contact not photographable)"
    }
   ],
+  "spots": [],
   "stats": {
    "faces": 1181,
    "ground": 0,
-   "high": 315,
-   "kept": 10,
+   "high": 344,
+   "invisible": 9,
+   "kept": 1,
    "los": 10,
    "raw": 2748,
    "rf_cells": 882,
@@ -3057,225 +2008,15 @@
   }
  },
  "t3l1": {
-  "spots": [
-   {
-    "body": 66,
-    "cluster": 1,
-    "elev": 818.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 66,
-    "pos": [
-     6800.0,
-     6284.0,
-     752.12
-    ],
-    "routeDz": 818.1,
-    "side": 1,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 56,
-    "cluster": 2,
-    "elev": 812.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 66,
-    "pos": [
-     5968.0,
-     -3828.0,
-     864.12
-    ],
-    "routeDz": 812.1,
-    "side": 0,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 59,
-    "cluster": 3,
-    "elev": 792.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 59,
-    "pos": [
-     4880.0,
-     7052.0,
-     904.12
-    ],
-    "routeDz": 792.1,
-    "side": 1,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 205,
-    "cluster": 4,
-    "elev": 89.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 256.0,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/blasted/dday_bunker_wall1crkdsml"
-    },
-    "los": 211,
-    "pos": [
-     5184.0,
-     2912.0,
-     64.12
-    ],
-    "routeDz": 192.0,
-    "side": 1,
-    "sky": true,
-    "src": "brush-face",
-    "type": "roof"
-   },
-   {
-    "body": 63,
-    "cluster": 1,
-    "elev": 757.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 63,
-    "pos": [
-     6416.0,
-     6796.0,
-     752.12
-    ],
-    "routeDz": 757.1,
-    "side": 1,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 55,
-    "cluster": 5,
-    "elev": 776.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 57,
-    "pos": [
-     5904.0,
-     7692.0,
-     608.12
-    ],
-    "routeDz": 776.1,
-    "side": 1,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 42,
-    "cluster": 6,
-    "elev": 824.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 42,
-    "pos": [
-     -2544.0,
-     -5364.0,
-     880.12
-    ],
-    "routeDz": 824.1,
-    "side": 5,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   },
-   {
-    "body": 63,
-    "cluster": 2,
-    "elev": 640.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.0 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 66,
-    "pos": [
-     6160.0,
-     -4404.0,
-     864.12
-    ],
-    "routeDz": 640.1,
-    "side": 7,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "roof"
-   }
-  ],
+  "audited": true,
+  "spots": [],
   "stats": {
-   "drop": 733,
+   "drop": 645,
    "faces": 2273,
-   "ground": 1604,
+   "ground": 1482,
    "high": 3886,
-   "kept": 252,
+   "invisible": 251,
+   "kept": 0,
    "los": 251,
    "raw": 38897,
    "rf_cells": 9454,

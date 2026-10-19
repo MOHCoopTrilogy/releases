@@ -35,43 +35,39 @@ whether any of it runs. Debug lines: `coop_alarmDebug 1` prints `^~^~^ ASNIPER .
 6. Greedy spread pick, <= 14 per map, building cluster (700 u) and side tags. Terrain is NOT traced, so terrain ridges are never offered.
 Result: see the final count below (`docs/tools/sniper_spots.json`, generated `coop_mod/alarmsnipers_spots.scr`).
 
-## Spot search, widened 2026-10-18 (user: "many more outdoor spots, find them")
-Two sources, merged and re-ranked per map by `gen_sniper_spots.py merge-rf`:
-1. brush faces (as before: every upward world-brush face, 48 u grid); 2. **an engine-side roof scan** (`tools/asn_drv.scr::asd_scan`, run in the harness by
-`tools/asn_scan.py`): a 64 u grid over the whole BSP, the top-most solid surface of each column found with the engine's own `traced`
-(sees patches, terrain and collidable models the BSP brush parse cannot), kept only if it is world geometry (not an entity), not sky, flat
-(4 corners +-12 u within 8 u), a standing hull fits, and open sky above head height (a solid map-cap slab / sky hull is detected as the mode of the first hits and
-counted as sky). Offline filters on those points: >= 128 u above the nearest route anchor (<= 1500 u), not in a func_ mover's bounds, not near vehicle paths, not in a deny box,
-line of sight to >= 1 route anchor within 3000 u; one candidate per 128 u cell; rank = height + overlook; best **up to 8 per map, >= 600 u apart**. Interior spots do not exist any more (open sky is required).
-Runtime adds the solid-floor rule, a 0.7 s settle check (a sniper that is more than 4 u off his floor after 0.7 s is removed and the spot dropped: roofs on m2l1 / m3l2 let actors fall 189 u)
-and the lift watch. Prone / crouch on low-walled roofs was NOT implemented (stance is left to the engine AI; a sniper in the m4l2 capture was prone on his own).
+## FINAL: every spot audited in the engine (2026-10-18, "snipers float in the sky")
+A sniper floating in the sky was real: the engine-side roof scan had offered the top of **invisible brushes** (caulk / nodraw / the map-cap slab; m4l1 spots 4-8 sat 500 u above the town) and
+surfaces that bullets hit but actors fall through (tree and terrain models: on m2l1 / m1l1 snipers dropped 100-1500 u). Fixes: surface shader names (nodraw, caulk, sky, clip, hint, common/) are rejected
+for engine-scan points, and **every kept spot is now proven in the engine** (`tools/asn_chk.py`, one harness turn per few maps): a sniper is spawned on EVERY kept spot at once, 3 s later each is judged:
+- z drop > 4 u = FAIL; air under the feet > 4 u (trace down from the feet) = FAIL; the actor-mask floor above the solid floor by > 4 u (standing on a monsterclip volume) = FAIL; sky surface = FAIL;
+  any of 8 ring points 39 u out (bbox 15 + 24 u) with no floor within 8 u = a roof edge within 24 u = FAIL. (`nodrawflag` is only logged: the 0x80 surface bit is also set on ordinary wooden floors.)
+- every survivor gets a side-on shot at 300 u level with the feet; the camera direction is chosen by an image test (screenshot with the sniper shown vs hidden: the difference region must be a whole body inside the frame). No visible angle = FAIL.
+- I then looked at every tile and dropped four more by hand (sniper hidden in the tile, street-level arch, indoor-looking room): reasons are in `spotcheck/*.json` (`manual QA`).
+- Failed spots are removed from `docs/tools/sniper_spots.json` (kept under `dropped`) and from the generated `alarmsnipers_spots.scr`. Maps that were not audited are no longer emitted at all.
+The generator also got the same edge rule (ring of 8 points at 39 u) and the engine-failure memory (`merge-rf` never offers a point within 96 u of an audit failure, and skips engine-scan candidates on a map where all of them failed).
 
-## Maps covered (final): 102 spots
-Alarm maps: e2l1 0; e3l1 7; e3l2 8; m1l1 8; m2l1 8; m3l2 3; m4l1 8; m4l2 8; m4l3 5; t1l1 2; t3l1 8. e2l1 has none (no engine-scan point passes line of sight; brush faces none). Not Omaha (m3l1a/b excluded in the tool).
-| map | spots | roof | outdoor-high | from engine scan | from brush faces |
-|---|---:|---:|---:|---:|---:|
-| e1l1 | 3 | 1 | 2 | 0 | 3 |
-| e1l2 | 1 | 0 | 1 | 0 | 1 |
-| e1l3 | 10 | 6 | 4 | 0 | 10 |
-| e2l2 | 4 | 2 | 2 | 0 | 4 |
-| e3l1 | 7 | 5 | 2 | 0 | 7 |
-| e3l2 | 8 | 8 | 0 | 8 | 0 |
-| m1l1 | 8 | 2 | 6 | 8 | 0 |
-| m1l3b | 4 | 0 | 4 | 0 | 4 |
-| m1l3c | 2 | 1 | 1 | 0 | 2 |
-| m2l1 | 8 | 3 | 5 | 8 | 0 |
-| m3l2 | 3 | 3 | 0 | 3 | 0 |
-| m4l1 | 8 | 8 | 0 | 8 | 0 |
-| m4l2 | 8 | 4 | 4 | 5 | 3 |
-| m4l3 | 5 | 5 | 0 | 5 | 0 |
-| m5l3 | 3 | 0 | 3 | 0 | 3 |
-| m6l1b | 3 | 1 | 2 | 0 | 3 |
-| t1l1 | 2 | 1 | 1 | 2 | 0 |
-| t1l3 | 7 | 0 | 7 | 0 | 7 |
-| t3l1 | 8 | 8 | 0 | 7 | 1 |
+Audit result per alarm map (last audit round; earlier rounds in `tools/spotcheck/_round1..3`):
 
-## Proof
-- Contact sheet: `media/contact_sheet_alarm_snipers.jpg` (m2l1 snow ridge, t3l1 roof, m3l2 wall top, e3l1 roof from the pre-widening capture; left = sniper at his spot, right = from the player's place at fov 28; dark rows are gamma-lifted, the test driver adds a dlight on the filmed sniper). Honest notes: the **m3l2 row does not show the sniper** (the close camera ended up behind the wall he stands on; the log proves two snipers at floor z 616 / 692, dz 0.000, stable); the e3l1 and m4l2 right views are dominated by guards / a dog, the sniper is small in them; e3l2 and m1l1 could not be placed in the harness this round.
+| map | spots audited (last round) | passed | dropped (reason: count) | final kept |
+|---|---:|---:|---|---:|
+| e2l1 | 1 | 1 | - | 1 |
+| e3l1 | 4 | 2 | manual QA: 1, no visible angle: 1 | 2 |
+| e3l2 | 2 | 0 | manual QA: 2 | 0 |
+| m1l1 | 2 | 0 | manual QA: 1, gone: 1 | 0 |
+| m2l1 | 8 | 0 | dropped: 7, edge: 2 | 0 |
+| m3l2 | 1 | 0 | no visible angle: 1 | 0 |
+| m4l1 | 1 | 0 | dropped: 1, air: 1, onclip: 1, edge: 1 | 0 |
+| m4l2 | 7 | 4 | manual QA: 1, no visible angle: 2 | 4 |
+| m4l3 | 1 | 0 | edge: 1 | 0 |
+| t1l1 | 1 | 0 | no visible angle: 1 | 0 |
+| t3l1 | 1 | 0 | edge: 1 | 0 |
+
+**Final: 7 spots on 3 maps (e2l1 1, e3l1 2, m4l2 4).** Every other alarm map gets no alarm snipers (its alarm still brings infantry and the MG team). Sheets (floor contact visible in every tile, dark tiles gamma-lifted):
+`media/sheet_spots_m4l2.jpg`, `media/sheet_spots_e3l1.jpg`, `media/sheet_spots_e2l1.jpg`. Honest notes: m4l2 spots are ridge / path surfaces rather than roofs; the m4l2 tile for spot 7 has a tree trunk beside him, the contact is visible;
+the e3l1 spots are terrace / roof-edge ledges with railings. Not Omaha. The earlier widened-search text below is history.
+
+## Proof (earlier rounds; the final audit above supersedes the spot lists and counts quoted here)
+- (older, superseded by the audit sheets above) Contact sheet: `media/contact_sheet_alarm_snipers.jpg` (m2l1 snow ridge, t3l1 roof, m3l2 wall top, e3l1 roof from the pre-widening capture; left = sniper at his spot, right = from the player's place at fov 28; dark rows are gamma-lifted, the test driver adds a dlight on the filmed sniper). Honest notes: the **m3l2 row does not show the sniper** (the close camera ended up behind the wall he stands on; the log proves two snipers at floor z 616 / 692, dz 0.000, stable); the e3l1 and m4l2 right views are dominated by guards / a dog, the sniper is small in them; e3l2 and m1l1 could not be placed in the harness this round.
 - Progress GIF: `media/progress_m2l1_snipers_on_gantry.gif`.
 - Per sniper in the harness (`ASN SN` lines): the floor trace under him, `dz=0.000`, `startsolid=0` on every sniper that was not removed.
 - Log excerpt, one alarm pull at **1 simulated player (want 2)** and one at **3 (want 4)**, m2l1 (`tools/logs/run_m2l1f.txt`):
@@ -116,96 +112,17 @@ Alarm maps: e2l1 0; e3l1 7; e3l2 8; m1l1 8; m2l1 8; m3l2 3; m4l1 8; m4l2 8; m4l3
 ```
 - Solid-ground failures seen and fixed: a sniper at a train/tank crossing on m4l2 was lifted 224 u then 90 u (hence the mover exclusion, the lift watch and the deny box; the watch itself fired correctly: "moved 90u off his floor ... removed, spot dropped"). Early spots that were ground level (rail bed, hillside street, crate tops) were removed by the high-place test.
 
-## Per-spot trace results (offline, bsptrace; `floor dz` is hit height minus spot height)
-| map | spots | buildings | sides |
-|---|---:|---:|---:|
-| e3l1 | 5 | 4 | 3 |
-| e3l2 | 9 | 6 | 3 |
-| m1l1 | 2 | 1 | 2 |
-| m2l1 | 4 | 1 | 1 |
-| m3l2 | 1 | 1 | 1 |
-| m4l2 | 3 | 3 | 3 |
-| m4l3 | 5 | 3 | 3 |
-| t1l1 | 1 | 1 | 1 |
-| t3l1 | 1 | 1 | 1 |
+## Per-spot trace results (the 7 surviving spots; in-engine audit lines)
 
-#### e3l1
-
-| # | spot x y floor-z | floor dz | normal z | corner dz (4) | headroom | shader | elev | LOS head/body | bldg | side |
-|---:|---|---:|---:|---|---:|---|---:|---|---:|---:|
-| 1 | 312.0 4008.0 224.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 256.0 | whsflrset1_1b | 156.1 | 83/83 | 1 | 2 |
-| 2 | 968.0 -1272.0 200.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 256.0 | wdflr2a | 150.1 | 80/21 | 2 | 6 |
-| 3 | -872.0 2776.0 224.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 256.0 | concretewall2 | 160.1 | 57/54 | 3 | 3 |
-| 4 | 504.0 4920.0 448.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 256.0 | concretewall2 | 352.1 | 80/56 | 4 | 2 |
-| 5 | -296.0 4056.0 224.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 256.0 | concretewall2 | 160.1 | 68/38 | 1 | 2 |
-
-#### e3l2
-
-| # | spot x y floor-z | floor dz | normal z | corner dz (4) | headroom | shader | elev | LOS head/body | bldg | side |
-|---:|---|---:|---:|---|---:|---|---:|---|---:|---:|
-| 1 | 4084.0 -11.0 -153.88 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 171.8 | flrwood1 | 142.1 | 48/46 | 1 | 0 |
-| 2 | 888.0 -4120.0 -239.88 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 256.0 | wdflr2a | 104.1 | 16/16 | 2 | 6 |
-| 3 | 4208.0 -5188.0 -231.88 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 256.0 | it_e_3-2wallbeigebase_01-512 | 112.1 | 30/30 | 3 | 7 |
-| 4 | 2106.0 -3912.0 -239.88 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 256.0 | wdflr2a | 104.1 | 19/14 | 4 | 7 |
-| 5 | 954.0 -3032.0 -239.88 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 256.0 | wdflr2a | 104.1 | 34/33 | 5 | 6 |
-| 6 | 4921.0 -424.0 -140.88 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 214.8 | flrwood1 | 155.1 | 17/13 | 6 | 0 |
-| 7 | 1671.36 -3880.0 -239.88 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 246.8 | wdflr2a | 104.1 | 18/15 | 4 | 6 |
-| 8 | 3988.0 373.0 -153.88 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 171.8 | flrwood1 | 142.1 | 32/10 | 1 | 0 |
-| 9 | 1804.0 -4216.0 -239.88 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 246.8 | wdflr2a | 104.1 | 19/19 | 4 | 6 |
-
-#### m1l1
-
-| # | spot x y floor-z | floor dz | normal z | corner dz (4) | headroom | shader | elev | LOS head/body | bldg | side |
-|---:|---|---:|---:|---|---:|---|---:|---|---:|---:|
-| 1 | -3704.0 -159.0 604.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 256.0 | afrik_wall1a | 164.1 | 59/39 | 1 | 1 |
-| 2 | -3944.0 120.0 564.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 256.0 | afrik_wall1a | 100.1 | 49/47 | 1 | 2 |
-
-#### m2l1
-
-| # | spot x y floor-z | floor dz | normal z | corner dz (4) | headroom | shader | elev | LOS head/body | bldg | side |
-|---:|---|---:|---:|---|---:|---|---:|---|---:|---:|
-| 1 | 4184.0 6960.0 304.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 142.8 | cr1_top | 288.1 | 20/19 | 1 | 2 |
-| 2 | 3592.0 7320.0 176.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 256.0 | doccrtset_1b | 160.1 | 10/9 | 1 | 2 |
-| 3 | 3688.0 6840.0 176.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 214.8 | doccrtset_1b | 160.1 | 16/7 | 1 | 2 |
-| 4 | 4120.0 7320.0 176.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 214.8 | doccrtset_1b | 160.1 | 14/7 | 1 | 2 |
-
-#### m3l2
-
-| # | spot x y floor-z | floor dz | normal z | corner dz (4) | headroom | shader | elev | LOS head/body | bldg | side |
-|---:|---|---:|---:|---|---:|---|---:|---|---:|---:|
-| 1 | -4200.0 3536.0 176.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 158.8 | tiledfloor_manordark2 | 127.1 | 6/6 | 1 | 2 |
-
-#### m4l2
-
-| # | spot x y floor-z | floor dz | normal z | corner dz (4) | headroom | shader | elev | LOS head/body | bldg | side |
-|---:|---|---:|---:|---|---:|---|---:|---|---:|---:|
-| 1 | -3256.0 4424.0 304.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 256.0 | dday_bunker_wall1bsml | 288.1 | 78/78 | 1 | 3 |
-| 2 | -5632.0 1192.0 376.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 256.0 | doccrtset_1b | 136.1 | 39/39 | 2 | 4 |
-| 3 | -1544.0 1240.0 248.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 256.0 | dday_bunker_wall1bsml | 232.1 | 44/42 | 3 | 7 |
-
-#### m4l3
-
-| # | spot x y floor-z | floor dz | normal z | corner dz (4) | headroom | shader | elev | LOS head/body | bldg | side |
-|---:|---|---:|---:|---|---:|---|---:|---|---:|---:|
-| 1 | -2480.0 -1520.0 200.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 246.8 | oldcrpt1 | 152.1 | 14/14 | 1 | 6 |
-| 2 | -984.0 -1544.0 208.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 166.8 | frenchfloor_wood1 | 152.1 | 7/6 | 2 | 7 |
-| 3 | -2528.0 -752.0 200.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 246.8 | oldcrpt1 | 152.1 | 7/4 | 3 | 3 |
-| 4 | -1912.0 -1664.0 200.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 246.8 | oldcrpt1 | 152.1 | 9/8 | 1 | 7 |
-| 5 | -2576.0 -1136.0 200.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 157.9 | oldcrpt1 | 152.1 | 10/4 | 1 | 6 |
-
-#### t1l1
-
-| # | spot x y floor-z | floor dz | normal z | corner dz (4) | headroom | shader | elev | LOS head/body | bldg | side |
-|---:|---|---:|---:|---|---:|---|---:|---|---:|---:|
-| 1 | -3341.0 5244.0 -6719.88 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 192.7 | frenchfloor_wood1 | 231.1 | 10/9 | 1 | 2 |
-
-#### t3l1
-
-| # | spot x y floor-z | floor dz | normal z | corner dz (4) | headroom | shader | elev | LOS head/body | bldg | side |
-|---:|---|---:|---:|---|---:|---|---:|---|---:|---:|
-| 1 | 1544.0 -2828.0 376.12 | 0.12 | 1.0 | [0.0, 0.0, 0.0, 0.0] | 256.0 | jh_conc512damg | 212.1 | 32/29 | 1 | 7 |
-
-
+| map | spot (x y floor-z) | type | z before -> after 3 s | air under feet | clip dz | edge ring bad | verdict |
+|---|---|---|---|---:|---:|---:|---|
+| e2l1 | -4216 -4056 424.12 | outdoor-high | 424.120 -> 424.125 | 0.000 | 0.000 | 0 | PASS |
+| e3l1 | -200 4200 224.12 | outdoor-high | 224.120 -> 224.125 | 0.000 | 0.000 | 0 | PASS |
+| e3l1 | -824 3592 224.12 | roof | 224.120 -> 224.125 | 0.000 | 0.000 | 0 | PASS |
+| m4l2 | -3112 4472 304.12 | outdoor-high | 304.120 -> 304.125 | 0.000 | 0.000 | 0 | PASS |
+| m4l2 | -1688 1336 248.12 | outdoor-high | 248.120 -> 248.125 | 0.000 | 0.000 | 0 | PASS |
+| m4l2 | 2720 880 248.12 | outdoor-high | 248.120 -> 248.125 | 0.000 | 0.000 | 0 | PASS |
+| m4l2 | 1504 624 242.63 | outdoor-high | 242.630 -> 242.333 | 0.131 | -0.000 | 0 | PASS |
 
 ## Unverified
 - A real alarm trigger (the harness forced `alm_start`), real player fire at / from the snipers, 2+ real players, a public server, the effect on mission balance.

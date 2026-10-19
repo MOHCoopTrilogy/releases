@@ -1,0 +1,32 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   -4184.0,
+   3357.0,
+   692.12
+  ],
+  "line": "z0=692.120 z1=692.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=1 edgebad=4 FAIL edge",
+  "verdict": "FAIL edge"
+ },
+ {
+  "i": 2,
+  "pos": [
+   -3096.0,
+   2845.0,
+   616.12
+  ],
+  "line": "z0=616.120 z1=616.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=1 edgebad=5 FAIL edge",
+  "verdict": "FAIL edge"
+ },
+ {
+  "i": 3,
+  "pos": [
+   168.0,
+   -5731.0,
+   168.12
+  ],
+  "line": "z0=168.120 z1=168.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=3 FAIL edge",
+  "verdict": "FAIL edge"
+ }
+]
