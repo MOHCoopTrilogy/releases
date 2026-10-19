@@ -1,0 +1,14 @@
+30cal team camera at 1885.5092781519693 -1896.955645057404 gun 1655.788 -1885.636 -269.665 yaw 177.179
+    ^~^~^ PSQ t=118.700 lz plan n=5 ground_only=0 tests=5 secs=1.675 ref=( 4269.000 -2217.000 -334.655 )
+    ^~^~^ PSQ t=152.000 land k=1 at=( 4714.987 -2618.510 -310.251 ) lzoff=1.808
+    ^~^~^ PSQ t=152.350 land k=3 at=( 4622.912 -2284.304 -352.165 ) lzoff=1.426
+    ^~^~^ PSQ t=152.650 land k=5 at=( 4264.103 -2097.121 -326.235 ) lzoff=1.857
+    ^~^~^ PSQ t=152.950 land k=2 at=( 4511.840 -3021.351 -349.772 ) lzoff=0.555
+    ^~^~^ PSQ t=153.150 land k=4 at=( 5109.133 -2234.453 -353.580 ) lzoff=0.579
+    ^~^~^ PSQ t=258.600 mg nosite aim=advance ground=22 passed=0 tried=0 bags=1 refused: tall=11 not_level=16 top_blocked=1 height=4 nofire=3 bag_ground=4 bag_slope=1 secs=0.250
+    ^~^~^ PSQ t=269.150 mg site how=1 mode=C gun=( 1655.788 -1885.636 -269.665 ) yaw=177.179 top=0 fire=advance:1.250 arc=45 seat=( 1714.780 -1897.304 -309.412 ) walk=63.399 path=185.530 of=1
+    ^~^~^ PSQ t=269.150 mg plan aim=advance ground=23 passed=1 tried=1 bags=1 refused: tall=12 not_level=16 seatground=2 height=4 nofire=2 bag_ground=4 bag_slope=3 secs=0.550
+    ^~^~^ PSQ t=269.900 mg walk how=1 left=5.558 ok=1
+    ^~^~^ PSQ t=271.650 mg watch
+    ^~^~^ PSQ t=272.250 mg setup k=1 mode=C gun=( 1655.788 -1885.636 -269.665 ) yaw=177.179 arc=45 top=0 seat=( 1714.688 -1897.249 -307.515 ) hp=37.850 pos=crouch
+script errors: 0 []
