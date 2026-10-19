@@ -26,6 +26,15 @@ def check(name, ok, detail=""):
         FAILS.append(name)
 
 
+def layout(sim):
+    """{card position: gun id} of the visible cards"""
+    out = {}
+    for c in range(ga.NC):
+        if sim.get("coop_loK%dV" % c) == "1":
+            out[c] = sim.get("coop_loK%dGo" % c).replace("exec ui/loadout/t", "").replace(".cfg", "")
+    return out
+
+
 def main():
     rows = gl.load()
     files, _clipped = gl.render_all(rows)
@@ -55,20 +64,22 @@ def main():
             for t in range(6):
                 ids = [w["id"] for w in tabs[t]]
                 sim.exec("ui/loadout/fill%d.cfg" % t)
-                want = [i for i in ids if i in unl] + [i for i in ids if i not in unl]
-                got = []
-                for c in range(len(ids)):
-                    go = sim.get("coop_loK%dGo" % c, "")
-                    got.append(go.replace("exec ui/loadout/t", "").replace(".cfg", ""))
-                check("trial %d tab %d order (unlocked first, authoring order)" % (trial, t), got == want, (got, want))
-                nu = len([i for i in ids if i in unl])
-                locks = [sim.get("coop_loK%dL" % c) for c in range(len(ids))]
-                check("trial %d tab %d lock flags" % (trial, t), locks == ["0"] * nu + ["1"] * (len(ids) - nu), locks)
+                un = [i for i in ids if i in unl]
+                lk = [i for i in ids if i not in unl]
+                lay = layout(sim)
+                want = {c: g for c, g in enumerate(un)}
+                want.update({ga.row_up(len(un)) + j: g for j, g in enumerate(lk)})
+                check("trial %d tab %d layout (unlocked first, locked on their own rows)" % (trial, t), lay == want, (lay, want))
+                locks = {c: sim.get("coop_loK%dL" % c) for c in lay}
+                check("trial %d tab %d lock flags" % (trial, t), all(locks[c] == ("0" if lay[c] in unl else "1") for c in lay), locks)
                 check("trial %d tab %d counts" % (trial, t),
-                      sim.get("coop_loUnTxt") == "UNLOCKED %d" % nu and sim.get("coop_loLkTxt") == "LOCKED %d" % (len(ids) - nu),
+                      sim.get("coop_loUnTxt") == "UNLOCKED %d" % len(un) and sim.get("coop_loLkTxt") == "LOCKED %d" % len(lk),
                       (sim.get("coop_loUnTxt"), sim.get("coop_loLkTxt")))
-                tail = [sim.get("coop_loK%dV" % c) for c in range(len(ids), ga.NC)]
-                check("trial %d tab %d unused cards hidden" % (trial, t), all(v == "0" for v in tail), tail)
+                lrow = ga.row_up(len(un)) // ga.COLS
+                labels = [sim.get("coop_loLbL%d" % r) for r in range(ga.NC // ga.COLS)]
+                check("trial %d tab %d section labels (LOCKED above row %d, UNLOCKED %s)" % (trial, t, lrow, "shown" if un else "hidden"),
+                      labels == ["1" if r == lrow else "0" for r in range(ga.NC // ga.COLS)] and sim.get("coop_loLbU") == ("1" if un else "0"),
+                      (labels, sim.get("coop_loLbU")))
         # equipped / selected marks follow the card position
         sim = cfgsim.Sim(tmp)
         sim.exec("ui/loadout/armory_defaults.cfg")
@@ -76,7 +87,7 @@ def main():
             for w in t:
                 sim.run('set coop_loSrt%s "exec ui/loadout/%s%s.cfg"' % (w["id"], "sru" if w["id"] in {"01", "02", "24"} else "srl", w["id"]))
         sim.exec("ui/loadout/fill0.cfg")
-        pos = [sim.get("coop_loK%dGo" % c).replace("exec ui/loadout/t", "").replace(".cfg", "") for c in range(13)].index("02")
+        pos = [c for c, g in layout(sim).items() if g == "02"][0]
         sim.run("vstr coop_loEqOn02")
         check("equipped mark lands on the card of gun 02 (pos %d)" % pos, sim.get("coop_loEqP%d" % pos) == "1")
         sim.run("vstr coop_loSlOn02")
@@ -97,7 +108,7 @@ def main():
               and all(sim.get("coop_loCb%s4_%d" % (c, i)) == "0" for c in "ngr" for i in range(1, 11)))
         # progress join on a locked card
         sim.exec("ui/loadout/fill0.cfg")
-        lpos = [sim.get("coop_loK%dGo" % c).replace("exec ui/loadout/t", "").replace(".cfg", "") for c in range(13)].index("05")
+        lpos = [c for c, g in layout(sim).items() if g == "05"][0]
         sim.run('set coop_loPgA05 "vstr coop_loPgX7"')
         sim.exec("ui/loadout/pll_05_%d.cfg" % lpos)
         check("locked card progress level 7 lights step 7 only", sim.get("coop_loKb%d_7" % lpos) == "1" and sim.get("coop_loKb%d_6" % lpos) == "0")

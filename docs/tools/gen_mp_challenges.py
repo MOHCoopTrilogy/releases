@@ -249,12 +249,29 @@ derive local.p:{
 	if( level.coop_mpRun != 1 ){ end }
 	waitthread mpc_init
 
+	//[bug-3001] EXACT-KEY sets, not pipe-string char scans. The store dedupe and the "push this reward cvar once"
+	//record were two mp_progression.scr::containsSub scans per unlocked challenge (store ~600 chars, pushed
+	//record ~1100) - ~1M script commands for a veteran's derive. A team win derives every member in one frame,
+	//and on a loaded server that crossed the 3s wall-clock loop guard ("Command overflow", this derive, m4l2
+	//soak 2026-09-26). Now: local.seen[token] for the store (the STRING is still built - isUnlocked reads it)
+	//and one flag per reward cvar (coop_mpUP_<cvar>) for the pushed-once record.
 	local.store = "|"
-	local.pushed = local.p.flags["coop_mpUpushed"]
-	if( local.pushed == NIL ){ local.pushed = "|" }
 
 	for( local.i = 0; local.i < level.coop_mpChalN; local.i++ ){
-		local.val = waitthread coop_mod/mp_progression.scr::mp_statVal local.p level.coop_mpChalStat[local.i]
+		//the stat, read inline - the same rule as mp_progression.scr::mp_statVal (keep the two in step): "total" ->
+		//the grand total, a class name -> coop_mpProgC_<class>, anything else -> coop_mpS_<stat>; unset = 0.
+		//(A waitthread per challenge was 79 thread creations per derive.)
+		local.st = level.coop_mpChalStat[local.i]
+		if( local.st == NIL || local.st == "" ){
+			local.val = 0
+		} else if( local.st == "total" ){
+			local.val = local.p.flags["coop_mpProgKills"]
+		} else if( level.coop_mpClassStat[local.st] == 1 ){
+			local.val = local.p.flags[( "coop_mpProgC_" + local.st )]
+		} else {
+			local.val = local.p.flags[( "coop_mpS_" + local.st )]
+		}
+		if( local.val == NIL ){ local.val = 0 }
 		local.tgt = level.coop_mpChalTarget[local.i]
 		local.done = 0
 		if( local.val >= local.tgt ){ local.done = 1 }
@@ -270,6 +287,25 @@ derive local.p:{
 				waitthread mpc_toast local.p level.coop_mpChalTitle[local.i] level.coop_mpChalRewardName[local.i]
 				println( "^~^~^ MPCHAL done e" + local.p.entnum + " id=" + level.coop_mpChalId[local.i] )
 			}
+		}
+
+		//[bug-2756] per-challenge PROGRESS BAR for the Service Record (coop-parity with coop_sr's coop_uiB<i>).
+		//The fill is a SHADER path the widget renders via linkcvar+linkcvartoshader (no client math), reusing
+		//coop's existing textures/hud/coop_bf0..10 (+ coop_bfd when done). Same 0..10 bucket rule as
+		//challenges.scr::chal_ui_export. Diff-guarded so a busy server never restreams an unchanged bar.
+		if( local.done == 1 ){
+			local.bsh = "coop_bfd"
+		}else{
+			local.bk = 0
+			if( local.tgt > 0 ){ local.bk = int( local.val * 10 / local.tgt ) }
+			if( local.bk > 10 ){ local.bk = 10 }
+			if( local.bk < 0 ){ local.bk = 0 }
+			local.bsh = ( "coop_bf" + local.bk )
+		}
+		local.bkey = ( "coop_mpB" + local.i )
+		if( local.p.flags[local.bkey] != local.bsh ){
+			local.p.flags[local.bkey] = local.bsh
+			local.p stufftext ( "seta " + local.bkey + " textures/hud/" + local.bsh )
 		}
 
 		//[user 2026-09-17] SHARED RANK: the weapon UNLOCK (store + armory tile) also fires when the player's
@@ -289,14 +325,16 @@ derive local.p:{
 			local.rw = level.coop_mpChalReward[local.i]
 			if( local.rw != "" && local.rw != NIL ){
 				//dedupe into the store
-				if( waitthread storeHas local.store local.rw == 0 ){
+				if( local.seen[local.rw] != 1 ){
+					local.seen[local.rw] = 1
 					local.store = ( local.store + local.rw + "|" )
 				}
 				//push the reward's client unlock cvar once (armory tile un-grey)
 				local.rc = level.coop_mpChalRCvar[local.i]
 				if( local.rc != "" && local.rc != NIL ){
-					if( waitthread storeHas local.pushed local.rc == 0 ){
-						local.pushed = ( local.pushed + local.rc + "|" )
+					local.pkey = ( "coop_mpUP_" + local.rc )
+					if( local.p.flags[local.pkey] != 1 ){
+						local.p.flags[local.pkey] = 1
 						local.p stufftext ( "seta " + local.rc + " 1" )
 					}
 				}
@@ -305,7 +343,6 @@ derive local.p:{
 	}
 
 	local.p.flags["coop_mpUnlocks"] = local.store
-	local.p.flags["coop_mpUpushed"] = local.pushed
 }end
 
 
@@ -329,12 +366,39 @@ isUnlocked local.p local.token:{
 }end local.ok
 
 
+//[bug-2765] A weapon FINISH is unlocked by its fin:<finish> challenge OR a career-kill fallback, so the
+//mode-gated finishes (camo_woodland/desert/winter, which need plant/destroy/propsurv stats) are still
+//earnable on a server that never runs those modes. Career kills = coop_mpProgKills (same total cosNeed uses).
+//Called by mp_armory::applyMarker (selection) and mp_finish_map::resolve (apply) so both agree.
+finUnlocked local.p local.fin:{
+	if( local.p == NULL ){ end 0 }
+	if( waitthread isUnlocked local.p ( "fin:" + local.fin ) == 1 ){ end 1 }
+	local.need = 0
+	switch( local.fin ){
+		case "blued": local.need = 150; break
+		case "bloody": local.need = 250; break
+		case "gold": local.need = 350; break
+		case "camo_desert": local.need = 450; break
+		case "camo_winter": local.need = 550; break
+		case "camo_woodland": local.need = 650; break
+		case "chrome": local.need = 800; break
+	}
+	if( local.need <= 0 ){ end 0 }
+	local.tot = local.p.flags["coop_mpProgKills"]
+	if( local.tot == NIL ){ local.tot = 0 }
+	if( local.tot >= local.need ){ end 1 }
+	end 0
+}end
+
+
 //[user 2026-09-17] MP challenge-complete TOAST - the SAME on-screen style as coop's CHALLENGE COMPLETE toast
 //(challenges.scr::chal_toast_show): "CHALLENGE COMPLETE" + the challenge title + the unlocked item. MP-owned;
 //ihuddraw slots 76-78 are free in MP (the coop toast never runs here). Threaded hold+clear so it never blocks
 //derive. No coop code called; no coop_mp* naming issue.
 mpc_toast local.p local.title local.reward:{
 	if( local.p == NULL ){ end }
+	//[2026-09-25, bug-2906] claim on show, re-send the hide (coop_mod/mp_hudresend.scr, TRAPS T8)
+	waitthread coop_mod/mp_hudresend.scr::claim local.p 76 78
 	ihuddraw_virtualsize local.p 76 1
 	ihuddraw_align       local.p 76 center top
 	ihuddraw_font        local.p 76 "verdana-10"
@@ -375,6 +439,7 @@ mpc_toast_hold local.p:{
 	ihuddraw_alpha local.p 76 0
 	ihuddraw_alpha local.p 77 0
 	ihuddraw_alpha local.p 78 0
+	thread coop_mod/mp_hudresend.scr::resend local.p 76 78 0
 }end
 '''
 

@@ -211,8 +211,28 @@ def cvar(side, suffix):
 COS_MP_SCR = os.path.join(MOD, "coop_mod", "mp_cosmetics.scr")
 
 
+def _read_skin_tsv(fname):
+    """FULL skin roster from docs/tools/<fname>: rows (oid, stem, piece, name). ids are zero-padded 2-digit
+    below 100 (compat with saved coop_mp<side>_cosSkin) and plain above."""
+    rows, n = [], 0
+    for l in io.open(os.path.join(ROOT, "docs", "tools", fname), encoding="utf-8"):
+        if l.startswith("#") or not l.strip():
+            continue
+        p = (l.rstrip("\n").split("\t") + ["", ""])[:3]
+        n += 1
+        oid = "%02d" % n if n < 100 else "%d" % n
+        rows.append((oid, p[0], p[1], p[2]))
+    return rows
+
+
+# [bug-2762] The FULL skin roster is the source of truth in these tsvs. It lives in its own generated data
+# files (mp_skins_a/x.scr, emitted below) rather than one giant skinGet switch, which escapes the morpheus
+# per-file switch-case ceiling (~150 cases/file, ~82/switch) that a 186-case skinGet blew.
+SKIN_ROSTER = {"a": _read_skin_tsv("mp_allied_skins.tsv"), "x": _read_skin_tsv("mp_axis_skins.tsv")}
+
+
 def load_cosmetics():
-    """Parse skinGet (per side) and helmGet from mp_cosmetics.scr into the UI option tables."""
+    """Skins from the tsv roster (SKIN_ROSTER); helmets parsed from helmGet in mp_cosmetics.scr."""
     txt = rd(COS_MP_SCR)
 
     def body(fn):
@@ -230,27 +250,25 @@ def load_cosmetics():
                     return txt[i + 1:j]
         raise SystemExit("gen_mp_armory: %s block never closes" % fn)
 
-    skin_body = body("skinGet")
-    parts = re.split(r"\}\s*else\s*\{", skin_body, maxsplit=1)
-    if len(parts) != 2:
-        raise SystemExit("gen_mp_armory: skinGet is not a two-side if/else")
-    skin_rx = re.compile(r'case\s+"(\w+)":\s*local\.r\["stem"\]\s*=\s*"([^"]*)";\s*'
-                         r'local\.r\["name"\]\s*=\s*"([^"]*)"')
     skins = {}
-    for side, chunk in (("a", parts[0]), ("x", parts[1])):
-        skins[side] = [(sid, name, "models/player/" + stem + ".tik")
-                       for sid, stem, name in skin_rx.findall(chunk)]
-        if not skins[side]:
-            raise SystemExit("gen_mp_armory: no %s skins parsed from skinGet" % side)
+    for side in ("a", "x"):
+        skins[side] = [(oid, name, "models/player/" + stem + ".tik")
+                       for oid, stem, piece, name in SKIN_ROSTER[side]]
 
     helm_rx = re.compile(r'case\s+"(\w+)":\s*local\.r\["tik"\]\s*=\s*"([^"]*)";\s*'
                          r'local\.r\["name"\]\s*=\s*"([^"]*)"')
-    helms = []
-    for hid, tik, name in helm_rx.findall(body("helmGet")):
-        view = "" if tik in ("std", "none") else tik
-        helms.append((hid, name, view))
-    if not helms:
-        raise SystemExit("gen_mp_armory: no helmets parsed from helmGet")
+    # [bug-2761] helmGet is now side-specific (allied US/UK vs axis German/Italian), same two-side if/else
+    # shape as skinGet - parse each side into its own list so the armory offers side-correct headgear.
+    helm_body = body("helmGet")
+    hparts = re.split(r"\}\s*else\s*\{", helm_body, maxsplit=1)
+    if len(hparts) != 2:
+        raise SystemExit("gen_mp_armory: helmGet is not a two-side if/else")
+    helms = {}
+    for side, chunk in (("a", hparts[0]), ("x", hparts[1])):
+        helms[side] = [(hid, name, "" if tik in ("std", "none") else tik)
+                       for hid, tik, name in helm_rx.findall(chunk)]
+        if not helms[side]:
+            raise SystemExit("gen_mp_armory: no %s helmets parsed from helmGet" % side)
     return skins, helms
 
 
@@ -260,6 +278,89 @@ COS_SKINS, COS_HELMS = load_cosmetics()
 COS_GLOVES = [("0", "BARE HANDS", ""), ("1", "GRAY GLOVES", ""), ("2", "BLACK GLOVES", ""),
               ("3", "BROWN GLOVES", ""), ("4", "TAN GLOVES", ""), ("5", "WINTER GLOVES", ""),
               ("6", "ALPINE GLOVES", "")]
+
+
+# ---------------------------------------------------------------- [bug-2754] preview helmet-double fix data
+def nohat_of(full_vpath):
+    """The _nohat twin virtual path for a body tik if the twin exists on disk (all 24 armory skins now have
+    one - Allied shipped, Axis via _research/nohat/gen_axis_nohat.py), else the full body (never a broken
+    model). The MP appearance 3D PREVIEW uses the twin so an attached helmet does not double over a baked hat
+    (the UI model widget cannot nodraw a surface, unlike the live spawn's mp_cosmetics::hideBakedHelmet)."""
+    if not full_vpath.endswith(".tik"):
+        return full_vpath
+    twin = full_vpath[:-4] + "_nohat.tik"
+    return twin if os.path.isfile(os.path.join(MOD, twin.replace("/", os.sep))) else full_vpath
+
+
+def _allied_std_from_loadout():
+    """Parse each coop loadout skin cfg (ui/loadout/skin/*.cfg) for its twin body (coop_loChar) -> its
+    Standard-Issue head PIECE (coop_loStdH's `set coop_loHelm <piece>`), keyed by body stem. This reuses
+    coop's already-fit-tested per-skin std hat for the MP preview. Read at generation time only - the MP
+    OUTPUT carries just the models/coop_helmets/*.tik piece path (a shared asset), never a coop_lo/ui/loadout
+    token (isolation clauses 12/17 are about MP output, not what the generator reads)."""
+    out = {}
+    d = os.path.join(MOD, "ui", "loadout", "skin")
+    if not os.path.isdir(d):
+        return out
+    for fn in os.listdir(d):
+        if not (fn.startswith("s") and fn.endswith(".cfg")):
+            continue
+        t = io.open(os.path.join(d, fn), encoding="latin-1").read()
+        mc = re.search(r'set\s+coop_loChar\s+"[^"]*?/([^"/]+)_nohat\.tik"', t)
+        ms = re.search(r'set\s+coop_loStdH\s+"set\s+coop_loHelm\s+([^"]+)"', t)
+        if mc and ms:
+            out[mc.group(1)] = ms.group(1).strip()
+    return out
+
+
+# Each MP AXIS/Italian skin -> the coop_helmets piece that matches its baked headgear (thematically AND
+# head-bone-fit; coop_helmets pieces are head-local geometry). Coop's loadout is allied-only, so axis is
+# mapped here by the headgear each body carries (see _research/nohat/gen_axis_nohat.py's AXIS_HEADGEAR).
+AXIS_STD = {
+    "german_wehrmacht_soldier":    "models/coop_helmets/coop_helmet_ger_helmet.tik",   # stahlhelm
+    "german_waffenss_shutze":      "models/coop_helmets/coop_helmet_ger_covered.tik",  # coveredhelm_new
+    "german_waffenss_officer":     "models/coop_helmets/coop_helmet_ss_officerhat.tik",# officerhat_new
+    "german_Afrika_Private":       "models/coop_helmets/coop_helmet_ger_helmet.tik",   # germanhelmet
+    "german_Afrika_Officer":       "models/coop_helmets/coop_helmet_ssncocap.tik",     # ssncocap
+    "german_Panzer_Shutze":        "models/coop_helmets/coop_helmet_ger_helmet.tik",   # stahlhelm
+    "german_Panzer_Tankcommander": "models/coop_helmets/coop_helmet_ger_officercap.tik",# officerhat_new
+    "german_Elite_SS_officer":     "models/coop_helmets/coop_helmet_ss_officerhat.tik",# officerhat_new
+    "german_Feldgendarmerie":      "models/coop_helmets/coop_helmet_ger_helmet.tik",   # stahlhelm
+    "german_Kriegsmarine":         "models/coop_helmets/coop_helmet_ger_creasecap.tik",# creasecap
+    "IT_AX_Ital_Vol":              "models/coop_helmets/coop_helmet_ital_volhat.tik",  # ax_it_volhat
+    "Sc_AX_Ital_Inf":              "models/coop_helmets/coop_helmet_ital_infhat.tik",  # ax_ital_infhat
+    # [bug-2757] axis depth batch
+    "german_afrika_nco":           "models/coop_helmets/coop_helmet_ger_hat.tik",      # hat
+    "german_elite_gestapo":        "models/coop_helmets/coop_helmet_ss_officerhat.tik",# officerhat_new
+    "german_dday_colonel":         "models/coop_helmets/coop_helmet_ger_officercap.tik",# officercap
+    "german_kradshutzen":          "models/coop_helmets/coop_helmet_ger_helmet.tik",   # stahlhelm
+    "german_wehrmacht_officer":    "models/coop_helmets/coop_helmet_ger_offhat_sh.tik",# germangear/officer_hat
+    "german_wehrmacht_nco":        "models/coop_helmets/coop_helmet_ger_hat.tik",      # hat
+}
+# [bug-2762] FULL axis roster: merge every stem->piece from docs/tools/mp_axis_skins.tsv (research-derived).
+_AXTSV = os.path.join(ROOT, "docs", "tools", "mp_axis_skins.tsv")
+if os.path.isfile(_AXTSV):
+    for _l in io.open(_AXTSV, encoding="utf-8"):
+        if _l.startswith("#") or not _l.strip():
+            continue
+        _v = _l.rstrip("\n").split("\t")
+        if len(_v) >= 2 and _v[0] not in AXIS_STD:
+            AXIS_STD[_v[0]] = _v[1]
+
+# [bug-2762] SKIN_STD (skin -> Standard-Issue head piece for the preview) now comes straight from the tsv
+# roster, which carries a piece per skin. (AXIS_STD / _allied_std_from_loadout above are retained only as the
+# provenance of those tsv piece columns; the roster is authoritative.)
+SKIN_STD = {}
+for _side in ("a", "x"):
+    for _oid, _stem, _piece, _name in SKIN_ROSTER[_side]:
+        if _piece:
+            SKIN_STD[_stem] = _piece
+
+
+def _stem_of(view):
+    """models/player/<stem>.tik -> <stem>."""
+    b = os.path.basename(view)
+    return b[:-4] if b.endswith(".tik") else b
 
 
 # ---------------------------------------------------------------- progression constants (DERIVED)
@@ -290,26 +391,131 @@ def load_prog_consts():
 PROG = load_prog_consts()
 
 
+def cos_need(field, oid):
+    """The cumulative-kill threshold to unlock this cosmetic - MUST mirror mp_cosmetics.scr::cosNeed exactly
+    (k skin: (n-1)*step; h helmet: n>=3 -> (n-2)*step else 0; v glove: n*step), using the steps parsed from
+    that same script (PROG). 0 = free. The Service Record + server gate on the same numbers, so a retune of
+    cosNeed flows through here on the next build and the menu can never quietly disagree with the game."""
+    n = int(oid)
+    if field == "k":
+        return max(0, n - 1) * PROG["skin_step"]
+    if field == "h":
+        return (n - 2) * PROG["helm_step"] if n >= 3 else 0
+    if field == "v":
+        return n * PROG["glove_step"]
+    return 0
+
+
 def cos_option_cfg(side, field, oid, name, view):
     """One appearance option cfg: update the 3D viewer live (skin -> body model, helmet -> head attach;
     gloves have no model form so `view` is ""), set the chip name for feedback, and seta the carried
-    USERINFO cvar (field k=skin h=helmet v=glove). No vstr, and NO name-bus marker: cosmetics ride the
-    userinfo carry alone (E1), which the server validates + applies at spawn (mp_cosmetics::apply, which
-    now enforces cosUnlocked on the carried id). That is what lets the SAME cfg work both in a live match
-    and disconnected from Multiplayer Options - a menu pick never pollutes the player name, and the server
-    is still authoritative over the earned gate. The viewer cvars are the ones the charRender links, so
-    the pick shows instantly on either screen."""
+    USERINFO cvar (field k=skin h=helmet v=glove). No vstr (clause 18 - the MP UI is vstr-free by design),
+    and NO name-bus marker: cosmetics ride the userinfo carry alone (E1), which the server validates +
+    applies at spawn (mp_cosmetics::apply, which enforces cosUnlocked on the carried id). That is what lets
+    the SAME cfg work both in a live match and disconnected from Multiplayer Options - a menu pick never
+    pollutes the player name, and the server is still authoritative over the earned gate.
+
+    [bug-2754] PREVIEW HELMET-DOUBLE FIX (no vstr - clause 18): the skin viewer body is the `_nohat` TWIN, and
+    the skin's iconic baked hat is re-shown as an ATTACHED Standard-Issue piece (SKIN_STD, coop's fit-tested
+    coop_helmets pieces). So a helmet pick attaches onto a HATLESS head - no doubling - and picking a skin
+    resets the carried helmet to Standard Issue (seta cosHelm 01) so the preview matches what spawns. The
+    live spawn was already correct via mp_cosmetics::hideBakedHelmet; this fixes only the menu model."""
     persist = {"k": "cosSkin", "h": "cosHelm", "v": "cosGlove"}[field]
+    need = cos_need(field, oid)
+    req = "" if need <= 0 else ("Unlocks at %d career kills" % need)
     L = []
     if field == "k":
-        L.append('set %s "%s"' % (cvar(side, "Char"), view))
+        # body = the hatless twin; head = this skin's Standard-Issue piece (its baked hat, as an attach).
+        # [bug-2777] seta (persist) so the preview shows this saved skin on RE-OPEN, not the default body.
+        L.append('seta %s "%s"' % (cvar(side, "Char"), nohat_of(view)))
+        L.append('seta %s "%s"' % (cvar(side, "Helm"), SKIN_STD.get(_stem_of(view), "")))
     elif field == "h":
-        L.append('set %s "%s"' % (cvar(side, "Helm"), view))
+        L.append('seta %s "%s"' % (cvar(side, "Helm"), view))   # [bug-2777] persist for re-open preview
     L += [
-        'set %s "%s"' % (cvar(side, "CosNm"), name),
+        # [bug-2777] seta (persist) the picked cosmetic NAME so the appearance panel's selName label shows
+        # the last-chosen cosmetic on re-open instead of blank - the pick data itself already persists+applies
+        # (vet-confirmed), this restores the visible confirmation. Display-only archive cvar.
+        'seta %s "%s"' % (cvar(side, "CosNm"), name),
+        # [bug-2755] show this option's unlock requirement (coop parity: coop_loCosReq). Empty for a free
+        # option. The server (cosUnlocked) remains authoritative - this is display only.
+        'set %s "%s"' % (cvar(side, "CosReq"), req),
         'seta %s "%s"' % (cvar(side, persist), oid),
     ]
+    if field == "k":
+        # [bug-2754] a skin pick resets the CARRIED helmet to Standard Issue (id 01, always free) so the live
+        # spawn shows this skin's baked hat - matching the preview's twin + Standard-Issue piece. Pick a real
+        # helmet afterwards to override. (coop's loadout does the same reset-to-std on a skin change.)
+        L.append('seta %s "01"' % cvar(side, "cosHelm"))
     return "\n".join(L) + "\n"
+
+
+def _challenge_by_token():
+    """[bug-2779] reward-token -> (title, desc) from the MP challenge table, for coop-parity mouse-over text
+    that names the SPECIFIC challenge that unlocks each tile (like coop_loadout's hovercommand req cfgs)."""
+    out = {}
+    for c in gen_mp_challenges.all_challenges():
+        # KEEP FIRST occurrence: a reward can be granted by more than one challenge (e.g. a feat AND a
+        # catch-all milestone). all_challenges() lists the weapon ladder, then feats/objectives/modes, then
+        # milestones last, so the first hit is the intended/easier path - show that, not the 1000-kill milestone.
+        if c[6] not in out:
+            out[c[6]] = (c[2], c[3])   # reward token -> (title, desc)
+    return out
+
+
+def weapon_hover_text(w, pos):
+    """[bug-2779] The specific unlock line for a weapon tile's mouse-over. Starter -> blank (no unlock). A
+    gated weapon at tier pos+1 names its class-mastery challenge + the exact kill count. Built from the
+    RESOLVED row (real names, bool starter) and TIER_KILLS - NOT the challenge desc, whose '(name)' suffix is
+    '(-)' because gen_mp_challenges reads the raw roster where names are placeholders."""
+    if w["starter"]:
+        return ""
+    cls = w["tab"].strip().lower()
+    tier = pos + 1
+    kills = gen_mp_challenges.TIER_KILLS.get(tier, 225 + (tier - 9) * 60)
+    return "%s Mastery %d: %d %s kills or rank" % (w["tab"].title(), tier, kills, cls)
+
+
+def cos_hover_text(field, oid, side, tok):
+    """[bug-2779] The specific unlock line for a skin/helmet/glove tile. Free -> blank. If a dedicated
+    challenge rewards it, name the challenge AND the career-kill fallback (either unlocks it, server two-tier);
+    otherwise just the kill threshold."""
+    need = cos_need(field, oid)
+    if need <= 0:
+        return ""
+    key = {"k": "sk:%s:%s" % (side, oid), "h": "hl:%s" % oid, "v": "gl:%s" % oid}[field]
+    if key in tok:
+        title, desc = tok[key]
+        return ("%s, or %d career kills" % (desc, need)).replace('"', "'")
+    return "Unlocks at %d career kills" % need
+
+
+def finish_hover_text(fin, tok):
+    """[bug-2779] The specific unlock line for a weapon-finish tile. OFF -> blank; otherwise its challenge."""
+    if fin == "none":
+        return ""
+    key = "fin:%s" % fin
+    if key in tok:
+        title, desc = tok[key]
+        return (desc.split(" to unlock")[0]).replace('"', "'")   # strip the redundant "to unlock the X finish"
+    return "Complete its Service Record challenge"
+
+
+def _cos_challenge_cvars():
+    """[bug-2778] Map each cosmetic that has a DEDICATED challenge to its earned client cvar, from the MP
+    challenge table (`gen_mp_challenges`). Skins are per-side (`sk:<a|x>:<id>`), helmets/gloves shared
+    (`hl:<id>`/`gl:<id>`). The server's `mp_cosmetics::cosUnlocked` is two-tier — a cosmetic unlocks by its
+    challenge (`isUnlocked`) OR by the cumulative-kill fallback — so the padlock must hide when EITHER is met.
+    Only ~37 cosmetics have a challenge; the rest unlock purely by the kill threshold and keep the plain gate."""
+    out = {"k": {}, "h": {}, "v": {}}
+    for c in gen_mp_challenges.all_challenges():
+        parts = c[6].split(":")
+        if parts[0] == "sk" and len(parts) == 3:
+            out["k"][(parts[1], parts[2])] = gen_mp_challenges.reward_cvar(c[6])
+        elif parts[0] == "hl" and len(parts) == 2:
+            out["h"][parts[1]] = gen_mp_challenges.reward_cvar(c[6])
+        elif parts[0] == "gl" and len(parts) == 2:
+            out["v"][parts[1]] = gen_mp_challenges.reward_cvar(c[6])
+    return out
 
 
 def cos_panel_urc(side):
@@ -342,7 +548,7 @@ def cos_panel_urc(side):
     L += w_label("charRender", (12, 60, 134, 356), order=20, model=True, fg="1.00 1.00 1.00 1.00",
                  link=cvar(side, "Char"), xfmcvar=cvar(side, "XfmC"),
                  attachcvar=cvar(side, "Helm"), attachtag="Bip01 Head",
-                 attachcvar2=cvar(side, "Prev"), attachtag2="tag_weapon_right",
+                 attachcvar2=cvar(side, "S1"), attachtag2="tag_weapon_right",
                  spincvar=cvar(side, "CharSpin"), animcvar=cvar(side, "CharAnim"),
                  modeloffset="78 0 -18", modelrotateoffset="0 0 0", modelangles="0 200 0",
                  modelscale="1.0", modelanim=VIEW_ANIM_BASE)
@@ -351,30 +557,92 @@ def cos_panel_urc(side):
     L += [""]
     L += w_label("selName", (156, 34, 300, 14), link=cvar(side, "CosNm"), fg="0.86 0.74 0.44 1.00")
     L += [""]
-    # three columns to the right of the viewer: SKIN / HELMET / GLOVES
-    cols = [("SKIN", "k", COS_SKINS[side], 156), ("HELMET", "h", COS_HELMS, 310), ("GLOVES", "v", COS_GLOVES, 464)]
-    for capn, field, items, x in cols:
+    # [bug-2755] the selected option's unlock requirement (coop parity: coop_loCosReq). Empty for a free pick.
+    L += w_label("selReq", (156, 48, 300, 12), link=cvar(side, "CosReq"), fg="0.86 0.55 0.30 1.00")
+    L += [""]
+    # three columns to the right of the viewer: SKIN / HELMET / GLOVES.
+    # [bug-2754] the HELMET column drops id "01" (Standard Issue): a skin pick already sets the twin + this
+    # skin's Standard-Issue piece, so "Standard Issue" as a shared button would need a per-skin vstr (banned)
+    # and would otherwise show bareheaded. To return to standard, re-pick the skin. "No Helmet" (02) stays.
+    helm_items = [h for h in COS_HELMS[side] if h[0] != "01"]
+    TOP, BOT = 82, 452
+    # [bug-2762] SKIN column is PAGINATED (the roster is large - up to ~80 axis skins). Page buttons above the
+    # column each set exactly one coop_mp<side>_SkPg<p> flag; every skin row is gated on its page's flag (the
+    # proven Service-Record page mechanism). Page 0 is seeded on menu open (view_seed). HELMET/GLOVES are small
+    # so they stay single-page, auto-fit.
+    chal = _cos_challenge_cvars()   # [bug-2778] per-item challenge unlock cvars, so the padlock tracks BOTH paths
+    skins = COS_SKINS[side]
+    SK_PER = 16
+    sk_pages = max(1, (len(skins) + SK_PER - 1) // SK_PER)
+    L += w_label("cap_k", (156, 60, 90, 14), text="SKIN", fg="0.55 0.60 0.66 1.00")
+    L += [""]
+    row0 = 78
+    if sk_pages > 1:
+        pw = min(24, 148 // sk_pages)   # fit all page buttons inside the 150-wide skin column (clear of helmet x310)
+        for pg in range(sk_pages):
+            sets = " ; ".join("set %s %d" % (cvar(side, "SkPg%d" % q), 1 if q == pg else 0)
+                              for q in range(sk_pages))
+            L += w_button("skpg%d" % pg, (156 + pg * pw, 74, pw - 3, 14), "%d" % (pg + 1), sets)
+            L += [""]
+        row0 = 92
+    for i, (oid, name, view) in enumerate(skins):
+        pg = i // SK_PER
+        y = row0 + (i % SK_PER) * 20
+        pgflag = cvar(side, "SkPg%d" % pg) if sk_pages > 1 else None
+        L += w_button("opt_k%s" % oid, (156, y, 150, 17), name,
+                      "exec ui/%s/k%s.cfg" % (dir_, oid), enabled=pgflag,
+                      hover="exec ui/%s/hk%s.cfg" % (dir_, oid))   # [bug-2779] coop-parity unlock hint
+        need = cos_need("k", oid)
+        if need > 0:
+            # [bug-2774/2778] the padlock CLEARS when earned by EITHER path the server honours: its dedicated
+            # challenge (`!coop_mpUsk_<side><id>` — hides the instant that challenge completes) OR the
+            # cumulative-kill fallback (`coop_mpTotal<need`). The multi-condition enabledcvar (uiwidget.cpp)
+            # ANDs them, so the lock shows only while BOTH are unmet — matching mp_cosmetics::cosUnlocked.
+            lockgate = "coop_mpTotal<%d" % need
+            cv = chal["k"].get((side, oid))
+            if cv:
+                lockgate = "!%s %s" % (cv, lockgate)
+            if pgflag:
+                lockgate = "%s %s" % (pgflag, lockgate)
+            L += w_label("lk_k%s" % oid, (290, y, 13, 13), order=8, enabled=lockgate,
+                         shader="textures/mohmenu/coop_mp_lock.tga", fg="1.00 1.00 1.00 1.00")
+        L += [""]
+    # HELMET + GLOVES columns (single page, auto-fit row step to the item count).
+    for capn, field, items, x in [("HELMET", "h", helm_items, 310), ("GLOVES", "v", COS_GLOVES, 464)]:
         L += w_label("cap_%s" % field, (x, 60, 150, 16), text=capn, fg="0.55 0.60 0.66 1.00")
         L += [""]
+        n = len(items)
+        step = 20 if n <= 1 else min(20, (BOT - TOP) // (n - 1))
+        bh = max(11, min(17, step - 2))
         for i, (oid, name, view) in enumerate(items):
-            y = 82 + 20 * i
-            L += w_button("opt_%s%s" % (field, oid), (x, y, 150, 17), name,
-                          "exec ui/%s/%s%s.cfg" % (dir_, field, oid))
+            y = TOP + step * i
+            L += w_button("opt_%s%s" % (field, oid), (x, y, 150, bh), name,
+                          "exec ui/%s/%s%s.cfg" % (dir_, field, oid),
+                          hover="exec ui/%s/h%s%s.cfg" % (dir_, field, oid))   # [bug-2779] coop-parity hint
+            need = cos_need(field, oid)
+            if need > 0:
+                # [bug-2774/2778] padlock clears when earned by EITHER path: the item's challenge
+                # (`!coop_mpU{hl,gl}_<id>`) OR the cumulative-kill fallback (`coop_mpTotal<need`) - ANDed, so
+                # the lock shows only while both are unmet, matching the server's two-tier cosUnlocked.
+                lockgate = "coop_mpTotal<%d" % need
+                cv = chal[field].get(oid)
+                if cv:
+                    lockgate = "!%s %s" % (cv, lockgate)
+                L += w_label("lk_%s%s" % (field, oid), (x + 134, y, 13, min(13, bh)), order=8,
+                             enabled=lockgate,
+                             shader="textures/mohmenu/coop_mp_lock.tga", fg="1.00 1.00 1.00 1.00")
             L += [""]
-    # WEAPON FINISH row (below the columns): OFF + 7 finish buttons, each gated on its earned-finish cvar
-    # (coop_mpUfin_<finish>, pushed by the challenge derivation). The server re-validates the pick.
-    L += w_label("cap_f", (156, 330, 300, 16), text="WEAPON FINISH  (earn via challenges)",
-                 fg="0.55 0.60 0.66 1.00")
-    L += [""]
-    for i, (idx, fin, lbl) in enumerate(MP_FINISH_OPTS):
-        col, r = i % 4, i // 4
-        x = 156 + col * 115
-        y = 350 + r * 22
-        enabled = None if fin == "none" else "coop_mpUfin_%s" % fin
-        L += w_button("optf_%d" % idx, (x, y, 110, 18), lbl,
-                      "exec ui/%s/f%d.cfg" % (dir_, idx), enabled=enabled)
-        L += [""]
+    # [bug-2753] WEAPON FINISH moved OUT of here and INTO the armory (urc()) - a weapon finish is a weapon
+    # property and belongs where weapons are chosen (user 2026-09-20). Appearance now carries body cosmetics only.
     return "\n".join(L).rstrip("\n") + "\n"
+
+
+def locked_req(w):
+    """[bug-2763] The unlock requirement on a locked weapon tile - shows the weapon is EARNABLE, not missing
+    (user: 'we are missing guns' - they were padlocked with a vague message). A non-starter unlocks by kills of
+    its class OR by rank; the exact kill count escalates per tier (15/30/50/75...) so we state the mechanism
+    rather than a single wrong number (the old text always said 15, wrong for tier 3+; audit P2.4)."""
+    return "Master the %s class (kills or rank) to unlock" % w["tab"].title()
 
 
 def commit_cfg(w):
@@ -384,7 +652,7 @@ def commit_cfg(w):
     non-starter still shows the "Unlocks with MP progression" hint + the padlock overlay until earned,
     and the server degrades a locked carried pick at deploy time."""
     side, f, mpid = w["side"], w["field"], w["mpid"]
-    req = '""' if w["starter"] else '"%s"' % REQ_LOCKED
+    req = '""' if w["starter"] else '"%s"' % locked_req(w)   # [bug-2763] specific requirement, not a generic hint
     L = [
         'set %s "%s"' % (cvar(side, "Prev"), w["give"]),
         'set %s "%s"' % (cvar(side, "XfmW"), w["xfm"]),
@@ -405,7 +673,7 @@ def defaults_commit_cfg(w):
     only). Every tile archives its pick; the server validates the unlock when the player connects and
     deploys, so an offline default for a not-yet-earned weapon is degraded to the starter at spawn."""
     side, f, mpid = w["side"], w["field"], w["mpid"]
-    req = '""' if w["starter"] else '"%s"' % REQ_LOCKED
+    req = '""' if w["starter"] else '"%s"' % locked_req(w)   # [bug-2763] specific requirement, not a generic hint
     L = [
         'set %s "%s"' % (cvar(side, "Prev"), w["give"]),
         'set %s "%s"' % (cvar(side, "XfmW"), w["xfm"]),
@@ -437,12 +705,19 @@ def default_body(side):
 
 
 def view_seed(side, prim):
-    """The charRender seed lines shared by open.cfg / dopen.cfg: default body, no helmet (std baked look),
-    the char transform, spin off, and the starter's hold anim. The weapon attach comes from Prev (seeded
-    below); a skin/helmet pick or a weapon tile updates these live afterwards."""
+    """The charRender seed lines shared by open.cfg / dopen.cfg: default body + its Standard-Issue hat, the
+    char transform, spin off, and the starter's hold anim. The weapon attach comes from Prev (seeded below);
+    a skin/helmet pick or a weapon tile updates these live afterwards. [bug-2754] the body is the `_nohat`
+    TWIN with the default skin's Standard-Issue piece attached, so the opening preview shows the iconic look
+    with no baked-hat doubling once a helmet is chosen."""
+    # [bug-2777] Do NOT re-seed Char/Helm here. They are seta'd (persisted) by every cosmetic pick and given
+    # a launch DEFAULT by the engine (cl_main.cpp mp_preview_defaults, Cvar_Get-only-if-absent), so a fresh
+    # profile shows a default soldier while a saved skin/helmet is preserved and RE-DISPLAYED on re-open.
+    # Re-setting them to the default on every armory open is exactly what made cosmetics "look reset" - the
+    # same clobber class as the weapon-slot bug-2776. XfmC/CharSpin/CharAnim are viewer params (not saved
+    # cosmetics), so they still seed here.
     return [
-        'set %s "%s"' % (cvar(side, "Char"), default_body(side)),
-        'set %s ""' % cvar(side, "Helm"),
+        'set %s 1' % cvar(side, "SkPg0"),   # [bug-2762] show skin page 1 by default (paginated skin column)
         'set %s "%s"' % (cvar(side, "XfmC"), VIEW_XFMC),
         'set %s 0' % cvar(side, "CharSpin"),
         'set %s "%s"' % (cvar(side, "CharAnim"), prim["anim"]),
@@ -457,24 +732,37 @@ def open_cfg(side, rows):
     for w in srows:
         if w["starter"]:
             starters[w["slot"]] = w
-    L = ['set %s %d' % (cvar(side, "Tab%d" % i), 1 if i == 0 else 0) for i in range(len(TABS))]
+    # [bug-2808/user 2026-09-21] Do NOT clear the K6 deploy flag here. This cfg re-execs on EVERY engine armory
+    # re-open while the player is still a spectator (UserSelectWeapon redirect), so an earlier "seta K6 0" wiped
+    # a just-pressed DONE (K6=1) before the 0.5s poll could read it - that is what made DONE need 3-5 presses.
+    # The authoritative per-life clear is mp_armory.scr::onTeamFlip (host: direct setcvar, lag-free; remote:
+    # stufftext) guarded by holdSince>0.3s, and deploy consumes K6 on every deploy - so nothing here touches K6.
+    L = []
+    L += ['set %s %d' % (cvar(side, "Tab%d" % i), 1 if i == 0 else 0) for i in range(len(TABS))]
     L += [
         'set %s ""' % cvar(side, "Req"),
         'set %s "%s"' % (cvar(side, "Nm"), prim["name"]),
         'set %s "%s"' % (cvar(side, "Cd"), prim["cd"]),
         'set %s "%s"' % (cvar(side, "Prev"), prim["give"]),
         'set %s "%s"' % (cvar(side, "XfmW"), prim["xfm"]),
-        'set %s "%s"' % (cvar(side, "N1"), starters["p"]["name"]),
-        'set %s "%s"' % (cvar(side, "N2"), starters["s"]["name"]),
-        'set %s "%s"' % (cvar(side, "N3"), starters["g"]["name"]),
     ]
+    # [bug-2776] Do NOT re-seed the slot labels N1/N2/N3 here. They are seta'd (persisted) by every pick
+    # (c<id>.cfg / d<id>.cfg) and seeded to the starter in coop_defaults.cfg BEFORE the saved config, so the
+    # loadout the player last chose survives. Re-setting them to the starter on every armory open is exactly
+    # what made "the loadout resets after Done" - it clobbered (and archived over) the saved selection.
     L += view_seed(side, prim)
     L.append("pushmenu coop_mp%s_armory" % side)
     return "\n".join(L) + "\n"
 
 
 def deploy_cfg(side):
-    return "append name ,q%sd\n" % side
+    # [bug-2767] DEPLOY through a USERINFO flag (coop_mp<side>_K6), not only the name-bus. The ,q<side>d name
+    # marker is silently TRUNCATED off whenever stale/appearance markers have filled the 32-char `name` cvar
+    # (bug-2759), and the server cannot reliably clean a listen-host's name, so DONE was being lost and the
+    # player could never leave the armory (can't-spawn, both teams, all maps). K6 is a registered CVAR_USERINFO
+    # cvar (an otherwise-dead kit slot) the server reads with info_valueforkey - immune to name truncation. The
+    # ,q<side>d name marker is kept as a secondary trigger for the (clean-name) case.
+    return "seta %s 1\nappend name ,q%sd\n" % (cvar(side, "K6"), side)
 
 
 def defaults_open_cfg(side, rows):
@@ -492,10 +780,10 @@ def defaults_open_cfg(side, rows):
         'set %s "%s"' % (cvar(side, "Cd"), prim["cd"]),
         'set %s "%s"' % (cvar(side, "Prev"), prim["give"]),
         'set %s "%s"' % (cvar(side, "XfmW"), prim["xfm"]),
-        'set %s "%s"' % (cvar(side, "N1"), starters["p"]["name"]),
-        'set %s "%s"' % (cvar(side, "N2"), starters["s"]["name"]),
-        'set %s "%s"' % (cvar(side, "N3"), starters["g"]["name"]),
     ]
+    # [bug-2776] Do NOT re-seed N1/N2/N3 here - that was THE "loadout resets after Done" bug: opening the
+    # defaults menu overwrote the persisted slot labels with the starter. They persist via the pick cfgs +
+    # the coop_defaults.cfg starter seeds (before the saved config), so the last-chosen loadout shows on re-open.
     L += view_seed(side, prim)
     L.append("pushmenu coop_mp%s_defaults" % side)
     return "\n".join(L) + "\n"
@@ -628,7 +916,7 @@ def urc(side, rows, defaults=False):
     L += w_label("charRender", (12, 82, 134, 312), order=20, model=True, fg="1.00 1.00 1.00 1.00",
                  link=cvar(side, "Char"), xfmcvar=cvar(side, "XfmC"),
                  attachcvar=cvar(side, "Helm"), attachtag="Bip01 Head",
-                 attachcvar2=cvar(side, "Prev"), attachtag2="tag_weapon_right",
+                 attachcvar2=cvar(side, "S1"), attachtag2="tag_weapon_right",
                  spincvar=cvar(side, "CharSpin"), animcvar=cvar(side, "CharAnim"),
                  modeloffset="78 0 -18", modelrotateoffset="0 0 0", modelangles="0 200 0",
                  modelscale="1.0", modelanim=VIEW_ANIM_BASE)
@@ -646,7 +934,9 @@ def urc(side, rows, defaults=False):
     # stats / inspect panel
     L += w_label("statNm", (478, 44, 156, 16), link=cvar(side, "Nm"))
     L += w_label("statCd", (478, 62, 156, 16), link=cvar(side, "Cd"), fg="0.62 0.66 0.70 1.00")
-    L += w_label("statReq", (478, 404, 156, 44), link=cvar(side, "Req"), fg="0.86 0.55 0.30 1.00")
+    # [bug-2785] widened from 156w so the hover unlock text (the challenge requirement) no longer runs off
+    # both edges. Sits in the free lower band (x300..634, right of the finish column at x153..298).
+    L += w_label("statReq", (300, 402, 334, 28), link=cvar(side, "Req"), fg="0.86 0.55 0.30 1.00")
     L += [""]
     # tabs (3x3 grid; 8 populated)
     tx = [306, 361, 416]
@@ -662,13 +952,42 @@ def urc(side, rows, defaults=False):
             y = 97 + 19 * pos
             L += w_button("tile%s" % w["mpid"], (306, y, 162, 16), w["name"],
                           "exec ui/%s/%s%s.cfg" % (dir_, cfg_prefix, w["mpid"]),
-                          enabled=cvar(side, "Tab%d" % k))
+                          enabled=cvar(side, "Tab%d" % k),
+                          hover="exec ui/%s/h%s.cfg" % (dir_, w["mpid"]))   # [bug-2779] coop-parity unlock hint
             if not w["starter"]:
                 L += w_label("tilelk%s" % w["mpid"], (452, y + 1, 14, 14), order=8,
                              enabled=cvar(side, "Tab%d" % k),
                              shader="textures/mohmenu/coop_mp_lock.tga",
                              fg="1.00 1.00 1.00 1.00")
             L += [""]
+    # [bug-2753] WEAPON FINISH - moved here from the Appearance panel (a finish is a weapon property, so it
+    # lives where weapons are chosen). Single column in the free lower-centre band (below the slot cards,
+    # left of the tiles). OFF + 7 finishes, each gated on its earned-finish cvar (coop_mpUfin_<finish>, pushed
+    # by the challenge derivation); the server re-validates the pick. Present on BOTH the armory and the
+    # disconnected defaults screen (urc builds both), so a finish set in either place persists like the kit.
+    L += w_label("cap_f", (153, 250, 150, 14), text="WEAPON FINISH", font="verdana-12",
+                 fg="0.55 0.60 0.66 1.00")
+    L += [""]
+    for i, (idx, fin, lbl) in enumerate(MP_FINISH_OPTS):
+        y = 268 + 18 * i
+        # [bug-2793] every finish is ALWAYS listed + clickable (the server re-validates via finUnlocked and
+        # degrades a locked pick), with a PADLOCK overlay when it is not yet earned and the hover naming its
+        # unlock condition - so you see the full locked/unlocked list + how to earn each, instead of the old
+        # greyed-out buttons that read as "just OFF/ON".
+        L += w_button("optf_%d" % idx, (153, y, 128, 16), lbl,
+                      "exec ui/%s/f%d.cfg" % (dir_, idx),
+                      hover="exec ui/%s/hf%d.cfg" % (dir_, idx))   # [bug-2779] coop-parity unlock hint
+        if fin != "none":
+            L += w_label("lkf_%d" % idx, (285, y + 1, 13, 13), order=8,
+                         enabled="!coop_mpUfin_%s" % fin,
+                         shader="textures/mohmenu/coop_mp_lock.tga", fg="1.00 1.00 1.00 1.00")
+        L += [""]
+    # [bug-2777] show the ACTIVE finish (linkcvar coop_mp<side>_FinNm) below the options, so re-opening the
+    # armory reflects the saved pick instead of looking "reset". Additive labels only - nothing moves.
+    yb = 268 + 18 * len(MP_FINISH_OPTS) + 4
+    L += w_label("selFinCap", (153, yb, 52, 12), text="ACTIVE:", fg="0.55 0.60 0.66 1.00")
+    L += w_label("selFin", (207, yb, 91, 12), link=cvar(side, "FinNm"), fg="0.86 0.74 0.44 1.00")
+    L += [""]
     return "\n".join(L).rstrip("\n") + "\n"
 
 
@@ -753,15 +1072,28 @@ def record_urc():
         return "coop_mpS_%s" % stat
 
     ch = gen_mp_challenges.all_challenges()
-    PER = 14
+    PER = 12   # [bug-2758] was 14 - the 13th/14th rows + their progress bars ran off the bottom of the panel
     npages = (len(ch) + PER - 1) // PER
 
-    # page selector: buttons "1".."N", each sets exactly one coop_mpSrP<p> flag on
-    L += cap("pgCap", (410, 112, 40, 14), "PAGE", fg="0.55 0.60 0.66 1.00")
+    # [user 2026-09-21] RANK PROGRESS BAR under the XP block (coop-parity with coop_sr): a dark track + a
+    # linkcvartoshader fill driven by coop_xp_barMark (pushed by xp.scr), with the XP-TO-NEXT-rank callout
+    # kept above it. Sits in the header's right column, clear of the pager row below.
+    L += blk("Label", ['name "rankBarTrk"', "rect 300 120 224 6", "fgcolor 0.20 0.20 0.20 1.00",
+                       "bgcolor 0.10 0.11 0.14 0.90", 'borderstyle "NONE"'])
+    L += blk("Label", ['name "rankBarFill"', "rect 300 120 224 6", "fgcolor 1.00 1.00 1.00 1.00",
+                       "bgcolor 0.00 0.00 0.00 0.00", 'borderstyle "NONE"', "dontlocalize",
+                       'linkcvar "coop_xp_barMark"', "linkcvartoshader"])
+
+    # [bug-2785/2790] page selector on its OWN row, INSIDE the panel (x96..544). The previous placement ran
+    # to x634 - PAST the panel's right edge (544) = off-screen - and sat at y108 over the XP block. Centered
+    # with spacing that shrinks to fit any page count.
+    L += cap("pgCap", (150, 150, 44, 14), "PAGE", fg="0.55 0.60 0.66 1.00")
+    _psp = min(28, (516 - 200) // max(1, npages))
+    _pbw = max(16, _psp - 3)
     for p in range(npages):
         sets = ";".join("set coop_mpSrP%d %d" % (q, 1 if q == p else 0) for q in range(npages))
         L += blk("Button", ['name "pg%d"' % p, 'title "%d"' % (p + 1),
-                            "rect %d 108 22 20" % (446 + p * 24), "fgcolor 1.00 1.00 1.00 1.00",
+                            "rect %d 148 %d 18" % (200 + p * _psp, _pbw), "fgcolor 1.00 1.00 1.00 1.00",
                             "bgcolor 0.14 0.10 0.06 0.94", 'borderstyle "3D_BORDER"', 'font "verdana-12"',
                             "textalign center", 'clicksound "sound/menu/scroll.wav"',
                             'stuffcommand "%s"' % sets])
@@ -771,7 +1103,7 @@ def record_urc():
     for i, (cid, cat, title, desc, stat, tgt, rw) in enumerate(ch):
         page = i // PER
         row = i % PER
-        y = 150 + row * 22
+        y = 172 + row * 22   # [bug-2790] start below the moved PAGE row (y148) + the rank bar
         pg = 'enabledcvar "coop_mpSrP%d"' % page
         L += blk("Label", ['name "t%d" ' % i, 'title "%s"' % CAT_DISP.get(cat, cat[:4].upper()),
                            "rect 104 %d 40 16" % y, "fgcolor 0.55 0.60 0.66 1.00",
@@ -790,7 +1122,27 @@ def record_urc():
                            "fgcolor 0.55 0.80 0.45 1.00", "bgcolor 0.00 0.00 0.00 0.00",
                            'borderstyle "NONE"', 'font "verdana-12"',
                            'enabledcvar "coop_mpChD%d"' % i])
+        # [bug-2756] graphical PROGRESS BAR (coop-parity with coop_sr): a dark track + a linkcvartoshader
+        # fill whose shader (textures/hud/coop_bf<0..10>/coop_bfd) is pushed per challenge by
+        # mp_challenges::derive. Under the title, in the row's lower gap. Reuses coop's existing bar art.
+        L += blk("Label", ['name "bt%d"' % i, "rect 146 %d 224 3" % (y + 16),
+                           "fgcolor 0.20 0.20 0.20 1.00", "bgcolor 0.10 0.11 0.14 0.90",
+                           'borderstyle "NONE"', pg])
+        L += blk("Label", ['name "bf%d"' % i, "rect 146 %d 224 3" % (y + 16),
+                           "fgcolor 1.00 1.00 1.00 1.00", "bgcolor 0.00 0.00 0.00 0.00",
+                           'borderstyle "NONE"', "dontlocalize",
+                           'linkcvar "coop_mpB%d"' % i, "linkcvartoshader", pg])
+        # [bug-2764] MOUSEOVER: a transparent hover button over the row runs a tiny cfg that sets
+        # coop_mpSrHover to what this challenge unlocks; the hint label below shows it (coop-SR-style).
+        # hovercommand is a Button event (uibutton.cpp); the exec cfg avoids fragile nested quotes in the URC.
+        L += blk("Button", ['name "hov%d"' % i, "rect 100 %d 434 20" % y,
+                            "fgcolor 1 1 1 0", "bgcolor 0 0 0 0", 'borderstyle "NONE"',
+                            'hovercommand "exec ui/coop_mp_record/srhov%d.cfg"' % i, pg])
 
+    # [bug-2764] hover hint: shows what the row under the cursor unlocks.
+    L += blk("Label", ['name "srhint"', "rect 104 434 424 14", "fgcolor 0.86 0.74 0.44 1.00",
+                       "bgcolor 0.00 0.00 0.00 0.00", 'borderstyle "NONE"', 'font "verdana-12"',
+                       "dontlocalize", 'linkcvar "coop_mpSrHover"'])
     # back
     L += blk("Button", ['name "back"', "rect 8 448 96 24", "fgcolor 1.00 1.00 1.00 1.00",
                         "bgcolor 0.50 0.50 0.50 0.00", 'borderstyle "3D_BORDER"',
@@ -811,9 +1163,18 @@ MP_FINISH_OPTS = [(0, "none", "OFF"), (1, "gold", "GOLD"), (2, "chrome", "CHROME
 
 
 def finish_option_cfg(side, idx):
-    """f<idx>.cfg - pick a weapon finish: append the ,q<side>f<idx> name-bus marker (numeric index) so the
-    server (mp_armory.scr::applyMarker) records + validates it. No preview (a finish is not shown live)."""
-    return "append name ,q%sf%d\n" % (side, idx)
+    """f<idx>.cfg - pick a weapon finish. [bug-2775] seta the choice to a carried USERINFO cvar
+    (coop_mp<side>_K5, a registered-but-unused kit slot) so the finish PERSISTS across sessions/servers like
+    the kit + cosmetics, AND append the ,q<side>f<idx> name-bus marker so the server records+validates it this
+    life. This also fixes the finish being a dead click on the disconnected DEFAULTS screen (it now setas).
+
+    [bug-2777] Also seta the finish LABEL to a dedicated display cvar (coop_mp<side>_FinNm) so the armory
+    shows the ACTIVE finish on re-open. K5 travels+persists but nothing re-displayed it, so the menu looked
+    like it "reset" (it did not). FinNm is a display-only archive cvar nothing else writes - no clobber path
+    (the view_seed default-reset that hides the 3D preview's saved cosmetic never touches it)."""
+    lbl = next((l for (i, f, l) in MP_FINISH_OPTS if i == idx), "OFF")
+    return "seta %s %d\nseta %s \"%s\"\nappend name ,q%sf%d\n" % (
+        cvar(side, "K5"), idx, cvar(side, "FinNm"), lbl, side, idx)
 
 
 def _coop_variants():
@@ -845,20 +1206,46 @@ def finish_map_scr(rows):
         "\tlevel.coop_mpFinReady = 1",
     ]
     n = 0
+    mastered_bases = []   # distinct base tiks that have >=1 variant, in a STABLE (sorted) order = bit index
     for base in gives:
+        has_var = False
         for fin in MP_FINISHES:
             var = base.replace(".tik", "_" + fin + ".tik")
             if var in variants:
                 L.append('\tlevel.coop_mpFinVar["%s|%s"] = "%s"' % (base, fin, var))
                 n += 1
-    L.append('\tprintln( "^~^~^ MPFIN init combos=%d" )' % n)
+                has_var = True
+        if has_var:
+            mastered_bases.append(base)
+    # [bug-2770] PER-WEAPON MASTERY index table. Each variant-having base gets a FIXED bit index; the
+    # player's carried mastered-set bitstring (coop_mpMasterStr, persisted in the v3 progression blob) has a
+    # '1' at that index once they master the weapon. mpfin_mastered() reads it to gate the variant per-gun.
+    # Order is sorted+append-only: adding weapons appends higher indices, so existing persisted bits stay put.
+    for i, base in enumerate(mastered_bases):
+        L.append('\tlevel.coop_mpFinIdx["%s"] = %d' % (base, i))
+    L.append('\tlevel.coop_mpFinIdxN = %d' % len(mastered_bases))
+    L.append('\tprintln( "^~^~^ MPFIN init combos=%d masterable=%d" )' % (n, len(mastered_bases)))
     L.append("}end")
     L.append("")
     L += [
-        "//Resolve a weapon give to its finish variant IF the player has earned + picked that finish. Returns",
-        "//the variant tik, or the base unchanged. The pick is the server flag coop_mpFinSel (a finish name,",
-        "//e.g. gold), set by mp_armory.scr::applyMarker only after the fin:<finish> challenge is complete -",
-        "//so this is server-authoritative and needs no re-check, but we re-validate anyway (belt + braces).",
+        "//[bug-2770] Has this player MASTERED local.base (its per-weapon bit set in the carried mastered set)?",
+        "//A weapon with no variant / no index is UNGATED (returns 1) - nothing to gate. Mirrors coop's",
+        "//loadout_finMastered: a finish variant only shows on a gun you have mastered. Mastery is earned by",
+        "//per-weapon kills (mp_progression.scr::credit) and persists in the v3 blob (coop_mpMasterStr).",
+        "mpfin_mastered local.p local.base:{",
+        "\tif( local.p == NULL ){ end 0 }",
+        "\twaitthread mpfin_init",
+        "\tlocal.idx = level.coop_mpFinIdx[local.base]",
+        "\tif( local.idx == NIL ){ end 1 }",
+        "\tlocal.str = local.p.flags[\"coop_mpMasterStr\"]",
+        "\tif( local.str == NIL || local.str == \"\" ){ end 0 }",
+        "\tif( local.idx >= local.str.size ){ end 0 }",
+        "\tif( local.str[local.idx] == \"1\" ){ end 1 }",
+        "}end 0",
+        "",
+        "//Resolve a weapon give to its finish variant IF the player has earned + picked that finish AND has",
+        "//MASTERED that specific weapon (bug-2770). Returns the variant tik, or the base unchanged. The pick is",
+        "//the server flag coop_mpFinSel; finUnlocked re-checks the finish is earned; mpfin_mastered gates per-gun.",
         "resolve local.p local.base:{",
         "\tlocal.out = local.base",
         "\tif( local.p == NULL || local.base == NIL || local.base == \"\" ){ end local.out }",
@@ -866,7 +1253,8 @@ def finish_map_scr(rows):
         "\twaitthread mpfin_init",
         "\tlocal.fin = local.p.flags[\"coop_mpFinSel\"]",
         "\tif( local.fin == NIL || local.fin == \"\" ){ end local.out }",
-        "\tif( waitthread coop_mod/mp_challenges.scr::isUnlocked local.p ( \"fin:\" + local.fin ) != 1 ){ end local.out }",
+        "\tif( waitthread coop_mod/mp_challenges.scr::finUnlocked local.p local.fin != 1 ){ end local.out }",
+        "\tif( waitthread mpfin_mastered local.p local.base != 1 ){ end local.out }",
         "\tlocal.var = level.coop_mpFinVar[( local.base + \"|\" + local.fin )]",
         "\tif( local.var != NIL && local.var != \"\" ){ local.out = local.var }",
         "}end local.out",
@@ -958,9 +1346,55 @@ def prog_wpnmap_scr(rows):
     return "\n".join(L)
 
 
+def skins_data_scr(side):
+    """[bug-2762] coop_mod/mp_skins_<side>.scr - the FULL skin roster in its OWN file, split into range
+    sub-switches (<=48 cases) so neither the per-switch nor per-file morpheus case ceiling is hit. skinGet_<side>
+    (id) dispatches by id range; each sub returns stem+name. MP file (MP_MANIFEST); returns data only, names no
+    coop token; the caller (mp_cosmetics::skinGet) is coop_mpRun-guarded. Generated from mp_<side-name>_skins.tsv."""
+    rows = SKIN_ROSTER[side]
+    CH = 48
+    nsub = max(1, (len(rows) + CH - 1) // CH)
+    sname = "allied" if side == "a" else "axis"
+    L = [
+        "//GENERATED by docs/tools/gen_mp_armory.py -- DO NOT HAND-EDIT (regenerate instead).",
+        "//[bug-2762] FULL MP %s skin roster, split into <=48-case sub-switches to stay under the morpheus" % sname,
+        "//per-file/per-switch case ceiling. skinGet_%s(id) dispatches; mp_cosmetics.scr::skinGet calls it." % side,
+        "//MP-isolated: returns stem/name data only, names no coop token; coop_mpRun-guarded via the caller.",
+        "alive:{",
+        "\tend 1",
+        "}end",
+        "",
+        "skinGet_%s local.id:{" % side,
+        '\tlocal.r["stem"] = ""',
+        '\tlocal.r["name"] = ""',
+        "\tlocal.n = int( local.id )",
+    ]
+    for s in range(nsub):
+        if s < nsub - 1:
+            L += ["\tif( local.n <= %d ){" % ((s + 1) * CH),
+                  "\t\tlocal.r = waitthread skinGet_%s%d local.id" % (side, s + 1),
+                  "\t\tend local.r",
+                  "\t}"]
+    L += ["\tlocal.r = waitthread skinGet_%s%d local.id" % (side, nsub),
+          "\tend local.r",
+          "}end local.r",
+          ""]
+    for s in range(nsub):
+        sub = rows[s * CH:(s + 1) * CH]
+        L += ["skinGet_%s%d local.id:{" % (side, s + 1),
+              '\tlocal.r["stem"] = ""',
+              '\tlocal.r["name"] = ""',
+              "\tswitch( local.id ){"]
+        for oid, stem, piece, name in sub:
+            L += ['\t\tcase "%s": local.r["stem"] = "%s"; local.r["name"] = "%s"; break' % (oid, stem, name)]
+        L += ["\t}", "\tend local.r", "}end local.r", ""]
+    return "\n".join(L) + "\n"
+
+
 # ---------------------------------------------------------------- assemble + validate the output set
 def render_all(rows):
     files = {}
+    tok = _challenge_by_token()   # [bug-2779] reward-token -> (title, desc) for coop-parity hover hints
     for side in ("a", "x"):
         dir_ = os.path.join(MOD, "ui", "coop_mp%s_armory" % side)
         files[os.path.join(MOD, "ui", "coop_mp%s_armory.urc" % side)] = urc(side, rows)
@@ -974,22 +1408,50 @@ def render_all(rows):
             files[os.path.join(dir_, "c%s.cfg" % w["mpid"])] = commit_cfg(w)
             files[os.path.join(dir_, "d%s.cfg" % w["mpid"])] = defaults_commit_cfg(w)
         files[os.path.join(MOD, "coop_mod", "mp%s_roster.scr" % side)] = roster_scr(side, rows)
+        # [bug-2762] FULL skin roster in its own data file (escapes the morpheus per-file case ceiling).
+        files[os.path.join(MOD, "coop_mod", "mp_skins_%s.scr" % side)] = skins_data_scr(side)
         # MP cosmetics: the appearance panel + one option cfg per skin/helmet/glove (commit via ,q bus).
         files[os.path.join(MOD, "ui", "coop_mp%s_appearance.urc" % side)] = cos_panel_urc(side)
         cdir = os.path.join(MOD, "ui", "coop_mp%s_armory" % side)
         for oid, name, view in COS_SKINS[side]:
             files[os.path.join(cdir, "k%s.cfg" % oid)] = cos_option_cfg(side, "k", oid, name, view)
-        for oid, name, view in COS_HELMS:
+        for oid, name, view in COS_HELMS[side]:
             files[os.path.join(cdir, "h%s.cfg" % oid)] = cos_option_cfg(side, "h", oid, name, view)
         for oid, name, view in COS_GLOVES:
             files[os.path.join(cdir, "v%s.cfg" % oid)] = cos_option_cfg(side, "v", oid, name, view)
         # weapon-finish option cfgs (OFF + 7 finishes) - commit via the ,q<side>f<idx> name-bus.
         for idx, fin, lbl in MP_FINISH_OPTS:
             files[os.path.join(cdir, "f%d.cfg" % idx)] = finish_option_cfg(side, idx)
+        # [bug-2779] coop-parity MOUSE-OVER unlock hints. Each tile's hovercommand execs a READ-ONLY cfg that
+        # sets the requirement text (weapons/finishes -> coop_mp<side>_Req shown by statReq; cosmetics ->
+        # coop_mp<side>_CosReq shown by selReq) to the SPECIFIC challenge that unlocks it, exactly like
+        # coop_loadout's ui/loadout/req*.cfg hovers. No commit, no name-bus - hovering never changes the kit.
+        srows_side = [w for w in rows if w["side"] == side]
+        for tab in TABS:
+            ws = [w for w in srows_side if w["tab"] == tab]
+            for pos, w in enumerate(ws):
+                files[os.path.join(cdir, "h%s.cfg" % w["mpid"])] = \
+                    'set %s "%s"\n' % (cvar(side, "Req"), weapon_hover_text(w, pos))
+        for idx, fin, lbl in MP_FINISH_OPTS:
+            files[os.path.join(cdir, "hf%d.cfg" % idx)] = \
+                'set %s "%s"\n' % (cvar(side, "Req"), finish_hover_text(fin, tok))
+        for oid, name, view in COS_SKINS[side]:
+            files[os.path.join(cdir, "hk%s.cfg" % oid)] = \
+                'set %s "%s"\n' % (cvar(side, "CosReq"), cos_hover_text("k", oid, side, tok))
+        for oid, name, view in COS_HELMS[side]:
+            files[os.path.join(cdir, "hh%s.cfg" % oid)] = \
+                'set %s "%s"\n' % (cvar(side, "CosReq"), cos_hover_text("h", oid, side, tok))
+        for oid, name, view in COS_GLOVES:
+            files[os.path.join(cdir, "hv%s.cfg" % oid)] = \
+                'set %s "%s"\n' % (cvar(side, "CosReq"), cos_hover_text("v", oid, side, tok))
     files[os.path.join(MOD, "coop_mod", "mp_prog_wpnmap.scr")] = prog_wpnmap_scr(rows)
     files[os.path.join(MOD, "coop_mod", "mp_finish_map.scr")] = finish_map_scr(rows)
     # the MP Service Record (side-agnostic; reached from Multiplayer Options).
     files[os.path.join(MOD, "ui", "coop_mp_record.urc")] = record_urc()
+    # [bug-2764] per-row hover cfgs for the Service Record mouseover (what each challenge unlocks).
+    for i, (cid, cat, title, desc, stat, tgt, rw) in enumerate(gen_mp_challenges.all_challenges()):
+        hov = ("%s  ->  unlocks %s" % (desc, gen_mp_challenges.reward_name(rw))).replace('"', "'")
+        files[os.path.join(MOD, "ui", "coop_mp_record", "srhov%d.cfg" % i)] = 'set coop_mpSrHover "%s"\n' % hov
     return files
 
 

@@ -140,7 +140,9 @@ def render(data, zdata):
         "\tlevel.coop_mpPushAuthoredN = 0",
         "\tswitch( local.map ){",
     ]
-    present = [m for m in order if m in data]
+    # [bug-2857] + maps re-laid by gen_push_pinned.py that were BSP-derived before (e3l2): an authored entry wins over
+    # the mp_push_bsp.scr seed (push_seedAuthored only falls back to the BSP seed when this returns 0).
+    present = [m for m in order if m in data] + sorted(m for m in data if m not in order)
     for m in present:
         L.append('\t\tcase "%s":' % m)
         L.append("\t\t\twaitthread seed_%s" % m)

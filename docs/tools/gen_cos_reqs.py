@@ -18,31 +18,40 @@ place.
 import io, os, re, glob, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-MOD  = os.path.join(ROOT, 'hzm-mohaa-coop-mod')
+MOD  = os.environ.get('HZM_MOD') or os.path.join(ROOT, 'hzm-mohaa-coop-mod')
 
 def read(p):
     return io.open(p, encoding='utf-8', errors='replace').read().replace('\r\n', '\n')
 
-# cosReq2/cosReq3 are 130px wide at verdana-12 (coop_loadout.urc). Measured against the overflow
-# the user photographed, that is a little over 40 characters before the field clips. 40 is used so
-# a slightly wide glyph run still lands inside, and the text is broken on WORD boundaries so a line
-# never ends mid-word.
-REQ_COLS = 40
+
+def eol_of(p):
+    return '\r\n' if '\r\n' in io.open(p, encoding='utf-8', errors='replace', newline='').read() else '\n'
+
+# [armory B 2026-10-18] cosReq2 / cosReq3 are 118 menu units wide in the Showroom urc and a verdana-12 line is measured with the font's own glyph
+# widths (docs/tools/ritualfont.py x 0.69 units per sheet unit): the old 40-COLUMN rule let "Finish the Ardennes with nobody going" run ~170 units
+# through a 118-unit label (clipped to "nobod"). Lines are now broken on word boundaries by MEASURED width; a condition longer than two lines ends in "...".
+LINE_W = 112.0
+
+
+def tw(s):
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import ritualfont
+    return ritualfont.measure('verdana-12', s, 12.0, 1.0) * 0.69
 
 
 def wrap2(text):
-    """Split a condition across the two available lines, on word boundaries."""
+    """Split a condition across the two available lines, on word boundaries, each line <= LINE_W units wide."""
     words = ' '.join((text or '').split()).split(' ')
     l1, l2 = '', ''
     for w in words:
-        if not l1 or len(l1) + 1 + len(w) <= REQ_COLS:
+        if not l1 or tw(l1 + ' ' + w) <= LINE_W:
             l1 = (l1 + ' ' + w).strip()
-        elif not l2 or len(l2) + 1 + len(w) <= REQ_COLS:
+        elif not l2 or tw(l2 + ' ' + w) <= LINE_W:
             l2 = (l2 + ' ' + w).strip()
         else:
-            # genuinely longer than two lines - say so rather than clipping mid-word silently
-            if not l2.endswith('...'):
-                l2 = (l2[:REQ_COLS - 3]).rstrip() + '...'
+            while l2 and tw(l2 + '...') > LINE_W:
+                l2 = l2[:-1].rstrip()
+            l2 = l2 + '...'
             break
     return l1, l2
 
@@ -100,7 +109,7 @@ def main():
             nd = re.sub(r'set coop_loCosReq2\s+"[^"]*"', 'set coop_loCosReq2 "%s"' % line2, d)
             nd = re.sub(r'set coop_loCosReq3\s+"[^"]*"', 'set coop_loCosReq3 "%s"' % line3, nd)
             if nd != d:
-                io.open(f, 'w', encoding='utf-8', newline='\n').write(nd)
+                io.open(f, 'w', encoding='utf-8', newline='').write(nd.replace('\n', eol_of(f)))
                 touched += 1
             matched += 1
     print('  matched %d cosmetics to a real unlock path; rewrote %d cfgs' % (matched, touched))

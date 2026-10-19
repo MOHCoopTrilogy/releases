@@ -22,6 +22,14 @@ def check(name, ok, detail=""):
         FAILS.append(name)
 
 
+def layout(sim):
+    out = {}
+    for c in range(ga.NC):
+        if sim.get("coop_loK%dV" % c) == "1":
+            out[c] = sim.get("coop_loK%dGo" % c).replace("exec ui/loadout/t", "").replace(".cfg", "")
+    return out
+
+
 def push_locks(sim, rows, unlocked):
     """what loadout_ui_exportUnlocks stufftexts (lock command, commit command, sort command)"""
     for w in rows:
@@ -42,21 +50,22 @@ def main():
     push_locks(sim, rows, unlocked)
     sim.run("seta coop_loInspectS1 exec ui/loadout/p01.cfg ; seta coop_loInspectS2 exec ui/loadout/p24.cfg")
     sim.exec("ui/loadout/open.cfg")
-    go = [sim.get("coop_loK%dGo" % c, "") for c in range(13)]
-    first = [g.replace("exec ui/loadout/t", "").replace(".cfg", "") for g in go[:7]]
-    check("open: rifle tab, unlocked first", first[:3] == ["01", "02", "03"], first)
+    lay = layout(sim)
+    check("open: rifle tab, unlocked first", [lay.get(0), lay.get(1), lay.get(2)] == ["01", "02", "03"], lay)
     check("open: slot-1 gun inspected, hero lit", sim.get("coop_loHero") == "1" and sim.get("coop_loPrevId") == "01", (sim.get("coop_loHero"), sim.get("coop_loPrevId")))
     check("open: compare shows equal for the equipped gun", sim.get("coop_loCeq0") == "1", sim.get("coop_loCeq0"))
     check("open: tab 0 flag", sim.get("coop_loTA0") == "1" and sim.get("coop_loTA2") == "0")
     # tab 2 (SMG)
     sim.run("exec ui/loadout/lktab2.cfg")
     ids = [w["id"] for w in tabs[2]]
-    want = [i for i in ids if i in unlocked] + [i for i in ids if i not in unlocked]
-    got = [sim.get("coop_loK%dGo" % c, "").replace("exec ui/loadout/t", "").replace(".cfg", "") for c in range(len(ids))]
+    un2 = [i for i in ids if i in unlocked]
+    want = {c: g for c, g in enumerate(un2)}
+    want.update({ga.row_up(len(un2)) + j: g for j, g in enumerate([i for i in ids if i not in unlocked])})
+    got = layout(sim)
     check("tab 2 sorted", got == want, (got, want))
     check("tab 2 flag", sim.get("coop_loTA2") == "1" and sim.get("coop_loTA0") == "0")
     # click an earned gun (Sten, id 28): inspect, selected mark, can equip
-    c28 = got.index("28")
+    c28 = [c for c, g in got.items() if g == "28"][0]
     sim.run(sim.get("coop_loK%dGo" % c28))
     check("click earned: inspect only (hero, CanEq, selected mark)", sim.get("coop_loPrevId") == "28" and sim.get("coop_loCanEq") == "1"
           and sim.get("coop_loKs%d" % c28) == "1" and sim.get("coop_loHeroLk") == "0")
@@ -67,7 +76,7 @@ def main():
     check("equip: equipped mark on the card", sim.get("coop_loEqP%d" % c28) == "1", sim.get("coop_loEqP%d" % c28))
     check("equip: compare now equal", sim.get("coop_loCeq0") == "1" and sim.get("coop_loCpl0") == "0")
     # click a locked gun (Thompson drum, 25)
-    c25 = got.index("25")
+    c25 = [c for c, g in got.items() if g == "25"][0]
     sim.run(sim.get("coop_loK%dGo" % c25))
     check("click locked: hero shows the lock, no equip, selection moved", sim.get("coop_loHero") == "0" and sim.get("coop_loHeroLk") == "1"
           and sim.get("coop_loCanEq") == "0" and sim.get("coop_loKs%d" % c25) == "1" and sim.get("coop_loKs%d" % c28) == "0")
@@ -78,15 +87,14 @@ def main():
             sim.run("seta coop_loFsrt%d_%d exec ui/loadout/%s%d.cfg" % (n, f, "fsu" if f in (1, 3) else "fsl", f))
     sim.exec("ui/loadout/s1sel.cfg")
     chips = [sim.get("coop_loFp%dT" % q) for q in range(8)]
-    check("finish chips: STD, then unlocked (GOLD BLUED), then locked", chips == ["STD", "GOLD", "BLUED", "CHROM", "BLOOD", "WOOD", "SNOW", "SAND"], chips)
+    check("finish chips: STD, then unlocked (GOLD BLUED), then locked", chips == ["STD", "GOLD", "BLUED", "CHROME", "BLOODY", "WOOD", "SNOW", "SAND"], chips)
     check("finish chips: lock flags", [sim.get("coop_loFp%dL" % q) for q in range(8)] == ["0", "0", "0", "1", "1", "1", "1", "1"])
     check("finish chip click = the finish gate", sim.get("coop_loFp1Go") == "vstr coop_loFcmt1", sim.get("coop_loFp1Go"))
     # slot 3 (sidearm) -> pistol tab
     sim.exec("ui/loadout/s3sel.cfg")
     check("slot 3: pistol tab", sim.get("coop_loTA4") == "1", sim.get("coop_loTA4"))
-    pids = [w["id"] for w in tabs[4]]
-    pgot = [sim.get("coop_loK%dGo" % c, "").replace("exec ui/loadout/t", "").replace(".cfg", "") for c in range(len(pids))]
-    check("slot 3: pistols sorted, 48 first", pgot[0] == "48", pgot)
+    pgot = layout(sim)
+    check("slot 3: pistols sorted, 48 first", pgot.get(0) == "48", pgot)
     check("slot 3: the colt is the equipped side", sim.get("coop_loEv0") == "37", sim.get("coop_loEv0"))
     # uniform stepper: natural ring by default, then the server's unlocked-first pointers (python mirror of cosorder.scr::cos_exportOrder)
     import json

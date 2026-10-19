@@ -154,7 +154,7 @@ MP_OWNED_MENUS = {"mpoptions"}
 # ONLY this file: the MP-facing menus are left unlocked on purpose - the user approved coop edits to them
 # (Select Game Type cleanup, mod copies of the MP options screens, 2026-09-13).
 LOCKS = {
-    "ui/coop_loadout.urc": {"sha256_lf": "9231c84944710af5dc89ffbeb1395b38376170f13d44ba6894761d3d06dfae5d", "sha256_crlf": "d403944233972b595abbe3e15d8c6fb927b7845165472321a25d058ff28862dc", "lf_bytes": 159264, "blob": "891b23017ceca40857e392df2c5e36dcb8562dc8", "prev": {"sha256_lf": "d28059feee937a9e9d80476bbca9878278426645e33ecabbc5f87b3d158fe1c7", "sha256_crlf": "d042acaf6173b9cdac50a55ae4bf723c4c457cd7bea9cfb2a798e6a3ad29c1e6"}, "eol": "lf", "commit": "armory-next", "locked": "2026-10-18 deliberate co-op armory rebuild: the Showroom screen is now GENERATED (docs/tools/gen_armory_urc.py via gen_loadout.py; the old layout generator never existed in a commit), bugs 4044-4047"},
+    "ui/coop_loadout.urc": {"sha256_lf": "6f686857b1a4ef16ca66e5fa3ddfd0bdf961136e75aa7d4f6a18cd39095a0900", "sha256_crlf": "20897683a351b0b952eaa2888b442ebbc244edad788bf754ea9041030be57079", "lf_bytes": 175492, "blob": "6e61688b097d36f54fcf71e8fcd1106041197a38", "prev": {"sha256_lf": "41c44262ccbfcea79d3058de5e5e6a6fa3b8517b209673cbcd10bc9d0ed16e1d", "sha256_crlf": "2c26f5365ee510be6aa99cec2aa4c8b31bfb55f631ebb41928d4bf2f764cd487"}, "eol": "lf", "commit": "armory-next", "locked": "2026-10-18 deliberate co-op armory rebuild: the Showroom screen is GENERATED (docs/tools/gen_armory_urc.py via gen_loadout.py), after coordinator QA, bugs 4044-4047"},
 }
 
 # Clauses 4/5. Every saved coop cvar MP could plausibly touch [bug-2564]; each would follow the player into coop.

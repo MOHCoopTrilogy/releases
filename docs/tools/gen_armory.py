@@ -26,7 +26,8 @@ import re
 
 import gen_weapon_stats as gws
 
-NC = 18                         # card positions (the biggest tab, PISTOL, has 18 guns)
+NC = 24                         # card positions: 4 rows of 6 (the locked group starts on a NEW row; PISTOL = 18 guns needs up to 23)
+COLS = 6
 LV_NA = 11                      # level value of an n/a stat
 STAT_KEYS = ["dmg", "rate", "acc", "mob", "rel"]        # r = 0..4
 STAT_COLS = {"dmg": "dmgL", "rate": "rateL", "acc": "accL", "mob": "mobL", "rel": "relL"}
@@ -69,10 +70,10 @@ def rank_abbr(mod):
 
 
 def tw(s):
-    """width in menu units of verdana-12 text: the font's own glyph widths (fonts/verdana-12@3x.RitualFont) x 0.63 units per sheet unit
-    (calibrated against the live menu: 'SPRINGFIELD M1903' = 76.7 units)"""
+    """width in menu units of verdana-12 text: the font's own glyph widths (fonts/verdana-12@3x.RitualFont) x 0.69 units per sheet unit
+    (calibrated against the live menu, run ab6: "Finish the Ardennes with nobod" = 118 units, "M1 GARAND" = 48 units)"""
     import ritualfont
-    return ritualfont.measure("verdana-12", s, 12.0, 1.0) * 0.63
+    return ritualfont.measure("verdana-12", s, 12.0, 1.0) * 0.69
 
 
 def wrap_lines(text, maxc=11, maxl=2, maxw=54.0):
@@ -136,9 +137,72 @@ def levels(st):
     return [int(st[STAT_COLS[k]]) if st[STAT_COLS[k]] != "" else LV_NA for k in STAT_KEYS]
 
 
-def card_info(w, st):
-    """the two info lines of an unlocked card: magazine, rate of fire"""
-    return ["%s rd" % st["clip"] if st["clip"] else "", "%s rpm" % st["rpm"] if st["rpm"] else ""]
+ABBREV = [("(IRON SIGHTS)", "IRON"), ("SILENCED", "SIL."), ("SNIPER", "SNPR"), ("SCOPED", "SCP."), ("SPRINGFIELD", "SPRNGFLD"),
+          ("THOMPSON", "THOMP."), ("GEWEHR", "GEW."), ("VICKERS-BERTHIER", "VICKERS"), ("STIELHANDGRANATE", "STIELHAND"),
+          ("NEBELHANDGRANATE", "NEBELHAND"), ("PANZERSCHRECK", "PZ.SCHRECK"), ("HI-STANDARD", "HI-STD"), ("LEE-ENFIELD", "ENFIELD")]
+
+
+def fit_text(text, maxw):
+    """one line that fits maxw menu units: apply the abbreviation ladder step by step, then cut characters and end with a full stop"""
+    t = text
+    for a, b in ABBREV:
+        if tw(t) <= maxw:
+            return t
+        t = t.replace(a, b)
+    t = " ".join(t.split())
+    while tw(t) > maxw and len(t) > 3:
+        t = t[:-2].rstrip() + "."
+    return t
+
+
+# One-line card names where the abbreviation ladder alone would give a meaningless cut ("WALTHER P."). A display style table (like ABBREV), checked
+# against the font's own widths at build time: an entry that does not fit falls back to the ladder.
+SHORT = {"02": "CARBINE", "05": "ENFIELD", "06": "SPRNGFLD", "07": "CARCANO", "09": "MOSIN", "10": "ARISAKA 99", "11": "M1 SIL.",
+         "70": "JOHNSON", "78": "G43 IRON", "12": "M1903 SNP", "13": "KAR98K SN", "14": "L42A1", "15": "M1 SCOPE", "17": "ENFIELD SN",
+         "18": "CARC. SNP", "19": "ARISAKA SN", "20": "MOSIN SN", "21": "MOSIN SIL.", "22": "KAR98K SIL.", "23": "DE LISLE",
+         "24": "THOMPSON", "25": "T. DRUM", "27": "MP40 SIL.", "30": "PPS-43 SIL.", "31": "M3 GREASE", "32": "GREASE SIL", "33": "MOSCHET.",
+         "34": "BERETTA 38", "35": "TYPE 100", "71": "T. GOLD", "38": "STG 44 SCP.", "40": "VICKERS", "42": "M1919 .30", "44": "TRENCH",
+         "45": "BAZOOKA", "46": "SCHRECK", "80": "DBL BARREL", "48": "COLT 1911", "49": "COLT SIL.", "50": "P38", "51": "P38 SIL.",
+         "52": "HI-STD", "53": "WEBLEY", "54": "NAGANT", "55": "BERETTA 34", "56": "BERET. SIL.", "58": "LUGER SIL.", "59": "PPK",
+         "60": "TOKAREV", "61": "TT-33 SIL.", "62": "NAMBU", "63": "WELROD", "74": "MAUSER", "75": "S&W M10", "65": "STIELHAND",
+         "67": "BREDA 35", "69": "NEBELHAND"}
+TXTW = 50.5       # card text box in menu units: the 56-wide card minus ~3 padding each side (text starts x+3)
+
+
+def card_name(g, name):
+    s = SHORT.get(g)
+    if s and tw(s) <= TXTW:
+        return s
+    return fit_text(name, TXTW)
+
+
+def req_line(req, abbr, maxw):
+    """the ONE requirement line of a locked card: 'Rank SSgt', '175 kills', '25 headshot kills' ... (the hero panel has the full text)"""
+    t = req.replace("UNLOCK:", "").strip()
+    m = re.match(r"Rank: (.+)$", t)
+    if m:
+        return fit_text("Rank " + abbr.get(m.group(1), m.group(1)), maxw)
+    t = re.sub(r" w/ .*$", "", t)
+    t = t.replace("Eliminate ", "Kill ").replace(" infantry", "").replace("long-range", "long range")
+    return fit_text(t, maxw)
+
+
+def info_line(st, maxw):
+    """the info line of an unlocked card: magazine and rate of fire, the longest form that fits"""
+    clip, rpm = st["clip"], st["rpm"]
+    for cand in (("%s rd/%s rpm" % (clip, rpm)) if clip and rpm else "", ("%srd/%srpm" % (clip, rpm)) if clip and rpm else "",
+                 ("%s rpm" % rpm) if rpm else "", ("%s rd" % clip) if clip else ""):
+        if cand and tw(cand) <= maxw:
+            return cand
+    return ""
+
+
+def row_up(c):
+    return ((c + COLS - 1) // COLS) * COLS
+
+
+def npos(n):
+    return min(NC, n + COLS - 1)
 
 
 # ------------------------------------------------------------------ cfg families -------------------------------------------------
@@ -162,10 +226,11 @@ def build(rows, files, mod):
         return m.group(1) if m else ""
 
     # ---- card clear
-    L = ["// GENERATED by gen_armory.py - clear every card position", "set coop_loSelClr \"set coop_loNop 0\""]
+    L = ["// GENERATED by gen_armory.py - clear every card position", "set coop_loSelClr \"set coop_loNop 0\"", "set coop_loLbU 0"]
+    L += ["set coop_loLbL%d 0" % r for r in range(NC // COLS)]
     for c in range(NC):
         L += ["set coop_loK%dV 0" % c, "set coop_loK%dL 0" % c, "set coop_loK%dT1 \"\"" % c, "set coop_loK%dT2 \"\"" % c,
-              "set coop_loK%dT3 \"\"" % c, "set coop_loK%dT4 \"\"" % c, "set coop_loK%dGo \"set coop_loNop 0\"" % c, "set coop_loKs%d 0" % c, "set coop_loEqP%d 0" % c, "set coop_loK%dI 0" % c]
+              "set coop_loK%dGo \"set coop_loNop 0\"" % c, "set coop_loKs%d 0" % c, "set coop_loEqP%d 0" % c, "set coop_loK%dI 0" % c]
         L += ["set coop_loKb%d_%d 0" % (c, i) for i in range(1, 11)]
     put("kclr.cfg", L)
 
@@ -184,31 +249,40 @@ def build(rows, files, mod):
     for t in range(6):
         ids = [w["id"] for w in tabs[t]]
         n = len(ids)
+        P = npos(n)
         for k in range(n + 1):
             nxt_u = "exec ui/loadout/nu%d_%d.cfg" % (t, k + 1) if k < n else "set coop_loNop 0"
-            nxt_l = "exec ui/loadout/nl%d_%d.cfg" % (t, k + 1) if k < n else "set coop_loNop 0"
             lu = ["// GENERATED - unlocked pointer, tab %d state %d (place card %d, then advance)" % (t, k, k)]
             if k < n:
                 lu.append("vstr coop_loJU%d" % k)
-            lu += ["set coop_loNxU %s" % nxt_u,
-                   "set coop_loUnTxt \"UNLOCKED %d\"" % (k + 1 if k < n else k),
-                   "set coop_loLkTxt \"LOCKED %d\"" % (n - k - 1 if k < n else 0),
-                   "set coop_loNxLSt set coop_loNxL exec ui/loadout/nl%d_%d.cfg" % (t, k + 1 if k < n else k)]
+                if k == 0:
+                    lu.append("set coop_loLbU 1")
+                c1 = k + 1                                  # unlocked placed so far: the locked group starts on the next row
+                lu += ["set coop_loNxU %s" % nxt_u,
+                       "set coop_loUnTxt \"UNLOCKED %d\"" % c1,
+                       "set coop_loLkTxt \"LOCKED %d\"" % (n - c1),
+                       "set coop_loLbLsel set coop_loLbL%d 1" % (row_up(c1) // COLS),
+                       "set coop_loNxLSt set coop_loNxL exec ui/loadout/nl%d_%d.cfg" % (t, row_up(c1))]
+            else:
+                lu.append("set coop_loNxU %s" % nxt_u)
             put("nu%d_%d.cfg" % (t, k), lu)
+        for k in range(P + 1):
+            nxt_l = "exec ui/loadout/nl%d_%d.cfg" % (t, k + 1) if k < P else "set coop_loNop 0"
             ll = ["// GENERATED - locked pointer, tab %d state %d (place card %d, then advance)" % (t, k, k)]
-            if k < n:
+            if k < P:
                 ll.append("vstr coop_loJL%d" % k)
             ll.append("set coop_loNxL %s" % nxt_l)
             put("nl%d_%d.cfg" % (t, k), ll)
-        F = ["// GENERATED - fill the card grid of tab %d (%s): unlocked guns first, then locked (pass A / pass B)" % (t, TABNAMES[t]),
+        F = ["// GENERATED - fill the card grid of tab %d (%s): unlocked guns first, then locked on their own rows (pass A / pass B)" % (t, TABNAMES[t]),
              "exec ui/loadout/kclr.cfg",
              "set coop_loUnTxt \"UNLOCKED 0\"",
              "set coop_loLkTxt \"LOCKED %d\"" % n,
+             "set coop_loLbLsel \"set coop_loLbL0 1\"",
              "set coop_loNxU \"exec ui/loadout/nu%d_0.cfg\"" % t,
              "set coop_loNxL \"set coop_loNop 0\"",
              "set coop_loNxLSt \"set coop_loNxL exec ui/loadout/nl%d_0.cfg\"" % t]
         F += ["vstr coop_loSrt%s" % i for i in ids]
-        F += ["set coop_loNxU \"set coop_loNop 0\"", "vstr coop_loNxLSt"]
+        F += ["set coop_loNxU \"set coop_loNop 0\"", "vstr coop_loLbLsel", "vstr coop_loNxLSt"]
         F += ["vstr coop_loSrt%s" % i for i in ids]
         F += ["set coop_loRefill \"exec ui/loadout/fill%d.cfg\"" % t]
         put("fill%d.cfg" % t, F)
@@ -225,22 +299,23 @@ def build(rows, files, mod):
             put("uj%s.cfg" % g, ["// GENERATED - publish the unlocked placements of gun %s" % g]
                 + ['set coop_loJU%d "exec ui/loadout/plu_%s_%d.cfg"' % (c, g, c) for c in range(n)])
             put("lj%s.cfg" % g, ["// GENERATED - publish the locked placements of gun %s" % g]
-                + ['set coop_loJL%d "exec ui/loadout/pll_%s_%d.cfg"' % (c, g, c) for c in range(n)])
-            nm = (wrap_lines(w["name"].replace("SILENCED", "SIL."), 11, 2) + [""])[:2]       # the name always owns T1/T2; info / requirement own T3/T4
+                + ['set coop_loJL%d "exec ui/loadout/pll_%s_%d.cfg"' % (c, g, c) for c in range(npos(n))])
+            nm = card_name(g, w["name"])
             xf = w.get("xfmt") or w["xfm"]
-            for c in range(n):
+            for c in range(npos(n)):
                 common = ["set coop_loK%dV 1" % c,
                           "set coop_loK%dM \"%s\"" % (c, "" if g in gl.ICON2D else w["tik"]),
                           "set coop_loK%dI %d" % (c, 1 if g in gl.ICON2D else 0), "set coop_loK%dX \"%s\"" % (c, xf),
                           "set coop_loK%dGo \"exec ui/loadout/t%s.cfg\"" % (c, g),
                           "set coop_loEqOn%s \"set coop_loEqP%d 1\"" % (g, c), "set coop_loEqOff%s \"set coop_loEqP%d 0\"" % (g, c),
                           "set coop_loSlOn%s \"set coop_loKs%d 1\"" % (g, c), "set coop_loSlOff%s \"set coop_loKs%d 0\"" % (g, c)]
-                lu = (nm + card_info(w, st) + ["", "", ""])[:4]
-                ll = (nm + req_lines(reqline(w), abbr) + ["", "", ""])[:4]
-                tl = lambda L4: ["set coop_loK%dT%d \"%s\"" % (c, i + 1, L4[i]) for i in range(4)]
-                put("plu_%s_%d.cfg" % (g, c), ["// GENERATED - card %d shows gun %s (unlocked)" % (c, g), "set coop_loK%dL 0" % c] + tl(lu) + common)
-                put("pll_%s_%d.cfg" % (g, c), ["// GENERATED - card %d shows gun %s (locked)" % (c, g), "set coop_loK%dL 1" % c] + tl(ll) + common
-                    + ["exec ui/loadout/pgpub%d.cfg" % c, "vstr coop_loPgA%s" % g])
+                tl = lambda a, b_: ["set coop_loK%dT1 \"%s\"" % (c, a), "set coop_loK%dT2 \"%s\"" % (c, b_)]
+                if c < n:
+                    put("plu_%s_%d.cfg" % (g, c), ["// GENERATED - card %d shows gun %s (unlocked)" % (c, g), "set coop_loK%dL 0" % c]
+                        + tl(nm, info_line(st, TXTW)) + common)
+                if c < npos(n):
+                    put("pll_%s_%d.cfg" % (g, c), ["// GENERATED - card %d shows gun %s (locked)" % (c, g), "set coop_loK%dL 1" % c]
+                        + tl(nm, req_line(reqline(w), abbr, TXTW)) + common + ["exec ui/loadout/pgpub%d.cfg" % c, "vstr coop_loPgA%s" % g])
             # candidate (inspected) publish + equipped publish
             lv = levels(st)
             rt = raw_texts(st)
@@ -284,7 +359,7 @@ def build(rows, files, mod):
                 put("cm%d_%d_%d.cfg" % (r, e, c), C)
 
     # ---- finish chips (f = 0 STD fixed first, f = 1..7 sorted unlocked first; VARIANT stays a fixed widget)
-    FIN = ["STD", "GOLD", "CHROM", "BLUED", "BLOOD", "WOOD", "SNOW", "SAND"]
+    FIN = ["STD", "GOLD", "CHROME", "BLUED", "BLOODY", "WOOD", "SNOW", "SAND"]
     NF = 8
     L = ["// GENERATED - clear the finish chip positions"]
     for p in range(NF):

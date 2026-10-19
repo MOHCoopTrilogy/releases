@@ -544,13 +544,19 @@ def merge_rf(m, path):
         st["los"] += 1
         t = B.trace_box((x, y, z + 8.0), (x, y, z - 8.0))
         brushroof = bool(t)
+        if t:
+            nm = B.shaders[t[2]][0].lower() if 0 <= t[2] < len(B.shaders) else ""
+            # a surface the player cannot see is not a roof: the map-cap slab / sky hull / clip volumes (snipers "floated in the sky" on them, m4l1)
+            if any(w in nm for w in ("nodraw", "caulk", "sky", "clip", "hint", "skip", "origin", "trigger", "textures/common/", "fog")):
+                st["invisible"] = st.get("invisible", 0) + 1
+                continue
         keep.append({"pos": [round(x, 2), round(y, 2), round(z, 2)], "los": nl, "body": nbod, "routeDz": round(z - na[2], 1), "sky": True,
                      "type": "roof" if brushroof else "outdoor-high", "src": "engine-scan",
                      "ground": {"ok": True, "floorDz": 0.0, "normalZ": ">0.7 (corners within %.1f u)" % cd, "cornerDz": [cd], "headroom": ">=72 (hull)", "shader": "engine floor"},
                      "elev": round(z - na[2], 1)})
     data = json.load(open(OUTJ))
     for s_ in data.get(m, {}).get("spots", []):
-        if s_.get("sky"):
+        if s_.get("sky") and s_.get("src", "brush-face") == "brush-face":
             s_.setdefault("src", "brush-face")
             keep.append(s_)
     cx = sum(a[0] for a in A) / len(A)
@@ -586,6 +592,14 @@ def main():
             json.dump(data, open(OUTJ, "w"), indent=1, sort_keys=True)
     elif cmd == "merge-rf":
         merge_rf(a[1], a[2])
+    elif cmd == "drop-failed":
+        res = json.load(open(a[2]))
+        bad = [r["pos"] for r in res if r["verdict"] != "PASS"]
+        before = len(data[a[1]]["spots"])
+        data[a[1]]["spots"] = [s_ for s_ in data[a[1]]["spots"] if not any(abs(s_["pos"][0] - b[0]) < 1.5 and abs(s_["pos"][1] - b[1]) < 1.5 and abs(s_["pos"][2] - b[2]) < 1.5 for b in bad)]
+        data[a[1]].setdefault("dropped", []).extend([{"pos": r["pos"], "why": r["verdict"]} for r in res if r["verdict"] != "PASS"])
+        json.dump(data, open(OUTJ, "w"), indent=1, sort_keys=True)
+        print(a[1], "kept", len(data[a[1]]["spots"]), "of", before)
     elif cmd == "show":
         for s in data[a[1]]["spots"]:
             print(s["pos"], "los", s["los"], "body", s["body"], "cl", s["cluster"], "side", s["side"], s["ground"])

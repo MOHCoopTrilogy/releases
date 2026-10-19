@@ -65,6 +65,25 @@ ROSTER = os.path.join(MOD, "coop_mod", "loadoutroster.scr")
 ICON2D = ("66",)
 
 
+HEROFIT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "armory_hero_fit.tsv")
+_HERO = {}
+
+
+def hero_xfm(w):
+    """The Armory HERO box transform of a gun: MEASURED per gun (armory_hero_fit.tsv, docs/proposals/armory_redesign_2026-10-18/tools/hero_fit.py); a gun
+    not in the table falls back to its slot-thumbnail transform scaled by the aspect ratio (a rifle fits, a tall gun may clip)."""
+    if not _HERO and os.path.isfile(HEROFIT):
+        for ln in io.open(HEROFIT, encoding="latin-1"):
+            if ln.startswith("#") or ln.startswith("id\t") or not ln.strip():
+                continue
+            a, b = ln.rstrip("\r\n").split("\t")
+            _HERO[a] = b
+    if w["id"] in _HERO:
+        return _HERO[w["id"]]
+    t = (w.get("xfmt") or w["xfm"]).split()
+    return " ".join(t)       # the widget WIDTH frames the model (horizontal fov): the thumbnail transform fills the same width fraction in the hero
+
+
 def _read(p):
     return io.open(p, "r", encoding="latin-1", newline="").read()
 
@@ -142,11 +161,12 @@ def preview(w):
     # [armory B 2026-10-18] the inspect page also drives the hero (big render + compare): hero xform = the gun's slot-thumbnail transform
     # (the hero box has the thumbnail's 2.16 aspect, so the fit data is reused as is), the locked/equip flags and the candidate stats.
     L += [
-        'set coop_loXfmHero "%s"' % (w.get("xfmt") or w["xfm"]),
+        'set coop_loXfmHero "%s"' % hero_xfm(w),
         "set coop_loHero %d" % (0 if w["id"] in ICON2D else 1),
         "set coop_loHeroIc %d" % (1 if w["id"] in ICON2D else 0),
         "set coop_loHeroLk 0",
         "set coop_loCanEq 0",
+        "exec ui/loadout/hpg0.cfg",
         "exec ui/loadout/cand%s.cfg" % w["id"],
     ]
     return "\n".join(L) + "\n"
