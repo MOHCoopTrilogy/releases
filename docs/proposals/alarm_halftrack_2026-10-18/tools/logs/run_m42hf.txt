@@ -1,0 +1,25 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> ok
+   wait \^~\^~\^ ALMVEH ARRIVED -> ok
+   wait \^~\^~\^ ALMVEH FIRING -> TIMEOUT
+   wait \^~\^~\^ ALMVEH DESTROYED -> ok
+    ^~^~^ AVT pinned at ( 4587.000 4113.000 272.000 ) looking ( -0.000 115.418 0.000 )
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=m4l2
+    ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4587.000 4032.800 260.756 ) floor=( 4587.000 4032.800 254.756 ) shells=3
+    ^~^~^ ALMVEH crate ok route 1 kind=bazooka at=( 4587.000 4032.800 264.000 ) stored=( 4587.000 4112.800 264.000 )
+    ^~^~^ ALMVEH pull 1: vehicle due in 16 s
+    ^~^~^ ALMVEH halftrack gun=avveh1_turret0 gunner=
+    ^~^~^ ALMVEH ARRIVING halftrack route=1 camptruck hp=4000 pax=3 players=1 entry=( 5240.000 -800.000 264.000 )
+    ^~^~^ AVT follow cam on
+    ^~^~^ ALMVEH stuck at ( 4701.284 4595.759 239.060 ): treated as arrived
+    ^~^~^ ALMVEH ARRIVED halftrack at ( 4701.284 4595.759 239.060 )
+    ^~^~^ ALMVEH WITHDRAW, reason 40 s: halftrack at ( 4701.284 4595.759 239.060 )
+    ^~^~^ AVT hp set to 300.000
+    ^~^~^ AVT bullet on hp=300.000
+    ^~^~^ AVT bullet after hp=300.000
+    ^~^~^ AVT grenade on hp=300.000
+    ^~^~^ AVT grenade after hp=300.000
+    ^~^~^ AVT rocket on hp=300.000
+    ^~^~^ ALMVEH DESTROYED halftrack at ( 4701.282 4595.757 238.999 )
+    ^~^~^ AVT rocket after hp=-87.000
+script errors: 0 []

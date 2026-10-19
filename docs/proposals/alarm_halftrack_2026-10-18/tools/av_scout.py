@@ -16,6 +16,10 @@ try:
         if s.strip():
             x, y, z = s.split(",")
             G.cmd("fillseed", x=x, y=y, z=z)
+    for r in os.environ.get("AVRINGS", "").split(";"):
+        if r.strip():
+            x, y, z = r.split(",")
+            G.cmd("ringseed", x=x, y=y, z=z)
     G.cmd("fill", lx=MAXC)
     m = R.wait_log(r"\^~\^~\^ SCF done (\d+)", 600, p0)
     txt = R.read_log()[p0:]

@@ -97,6 +97,23 @@ av_do local.c:{
 		println "^~^~^ AVT follow cam on"
 	}
 	if( local.c == "fillseed" ){ waitthread av_fillseed }
+	// ring of seeds round a point (ai_x ai_y ai_z): radii 500 1000 1600, every 45 degrees (blocked ones are dropped by the fill)
+	if( local.c == "ringseed" ){
+		local.cx = float( getcvar( "ai_x" ) )
+		local.cy = float( getcvar( "ai_y" ) )
+		local.cz = float( getcvar( "ai_z" ) )
+		for( local.r = 500; local.r <= 1600; local.r = local.r + 550 ){
+			for( local.a = 0; local.a < 360; local.a = local.a + 45 ){
+				local.dv = angles_toforward ( 0 local.a 0 )
+				if( level.avf_ns == NIL ){ level.avf_ns = 0 }
+				level.avf_ns++
+				level.avf_sx[level.avf_ns] = local.cx + ( local.dv[0] * local.r )
+				level.avf_sy[level.avf_ns] = local.cy + ( local.dv[1] * local.r )
+				level.avf_sz[level.avf_ns] = local.cz
+			}
+		}
+		println ( "^~^~^ SCF ring seeds total " + level.avf_ns )
+	}
 	if( local.c == "fill" ){ thread av_fill }
 	if( local.c == "playerseed" ){
 		setcvar "ai_x" ( "" + local.p.origin[0] )
@@ -204,7 +221,7 @@ av_fill:{
 		local.sx = level.avf_sx[local.s]
 		local.sy = level.avf_sy[local.s]
 		local.sz = level.avf_sz[local.s]
-		local.gt = traced ( local.sx local.sy ( local.sz + 60 ) ) ( local.sx local.sy ( local.sz - 100 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+		local.gt = traced ( local.sx local.sy ( local.sz + 200 ) ) ( local.sx local.sy ( local.sz - 300 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
 		if( local.gt["startSolid"] == 1 || local.gt["fraction"] >= 1.0 ){
 			println ( "^~^~^ SCF seed blocked noground " + local.s )
 			continue

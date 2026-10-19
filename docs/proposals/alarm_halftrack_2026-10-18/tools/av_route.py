@@ -7,7 +7,7 @@ check (a segment is kept only when the cells around it are free). Prints the can
 import json, math, os, sys, collections, heapq
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(HERE))))
 STEP = 128
 
 
