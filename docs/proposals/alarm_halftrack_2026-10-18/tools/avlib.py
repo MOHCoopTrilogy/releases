@@ -17,14 +17,14 @@ import harness_guard as _hg
 _slot = os.environ.get("AVSLOT") or ("hudfeed4" if _hg.slot_holder("hudfeed4") is None else "hudfeed2")
 R.OWNER = _slot
 R.CLIENT = "G:/mohaa-" + _slot
-R.EXE = os.path.join(R.CLIENT, "openmohaa_c96.exe" if _slot == "hudfeed4" else "openmohaa_air.exe")
+R.EXE = os.path.join(R.CLIENT, {"hudfeed4": "openmohaa_c96.exe", "hudfeed5": "openmohaa_c96.exe", "hudfeed3": "openmohaa_hdlive.exe"}.get(_slot, "openmohaa_air.exe"))
 R.HOME = os.path.join(R.CLIENT, "home")
 R.MAINTT = os.path.join(R.HOME, "maintt")
 R.LOG = os.path.join(R.MAINTT, "qconsole.log")
 R.SHOTS = os.path.join(R.MAINTT, "screenshots")
 R.PRISTINE = os.path.join(R.CLIENT, "pristine")
 R.RUNS = os.path.join(HERE, "runs").replace("\\", "/")
-R.PORT = 12741 if _slot == "hudfeed4" else 12721
+R.PORT = {"hudfeed4": 12741, "hudfeed3": 12731, "hudfeed5": 12751}.get(_slot, 12721)
 G.FILES = os.environ.get("AVFILES", "coop_mod/alarmveh.scr,coop_mod/alarmveh_routes.scr,coop_mod/alarm.scr").split(",")
 _ov = G.overlay
 
