@@ -64,9 +64,10 @@ try:
     os.makedirs(rundir)
     R.seed_home(cg, G.overlay())
     notes = {"session": "la_" + LABEL, "W": 1280, "H": 720}
-    R.launch(1280, 720, extra)
+    W, H = int(os.environ.get("LAW", "1280")), int(os.environ.get("LAH", "720"))
+    R.launch(W, H, extra)
     t0 = len(R.read_log())
-    if MODE in ("single", "chain"):
+    if MODE in ("single", "chain", "brief"):
         need(r"\^~\^~\^ COOP_LOBBYALL_ENTER " + MAP, 600, t0, "menu start on %s was redirected to the lobby" % MAP)
     need(r"\^~\^~\^ LA armed map=(co_lobby1|%s)" % MAP, 600, t0, "driver armed on first map")
     time.sleep(10)
@@ -80,6 +81,9 @@ try:
         G.join_loop(); time.sleep(8)
         report("lobby 1")
         shots("lobby", 3)
+        if MODE == "brief":
+            log("brief shots taken %dx%d" % (W, H))
+            raise SystemExit
         p2 = len(R.read_log())
         G.cmd("ready")
         if MODE == "campaign":
@@ -106,12 +110,13 @@ try:
             G.cmd("god")
             G.cmd("xp")
             G.cmd("carry")
+            if os.environ.get("LACAMP"): G.cmd("camp")
             time.sleep(3)
             report("m1l1 before the level end")
             log("save files before:", savefiles())
             p4 = len(R.read_log())
             R.step(["set la_next m1l2b"], timeout=30); G.cmd("complete", timeout=60)
-            need(r"\^~\^~\^ LA armed map=co_lobby1", 300, p4, "level end hopped through the lobby")
+            need(r"\^~\^~\^ LA armed map=co_lobby\d", 300, p4, "level end hopped through the lobby")
             time.sleep(15); G.join_loop(); time.sleep(8)
             report("in the lobby between levels")
             shots("lobby2", 3)

@@ -57,3 +57,69 @@ harness_guard.SlotBusy: client slot hudfeed5 is in use by pid 9400 until Sun Oct
 20:04:13 chain3 save files after: ['chal_5A6D61309811F269E5FFF9A632E13713.dat 725B mtime=20:03:13', 'chal_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 29B mtime=16:07:45', 'pend_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:03:19', 'pins_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:03:13', 'pins_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 0B mtime=16:05:15', 'unlocks_5A6D61309811F269E5FFF9A632E13713.dat 411B mtime=15:43:27', 'xp_5A6D61309811F269E5FFF9A632E13713.dat 4B mtime=20:02:16', 'xp_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 1B mtime=16:05:45']
 20:04:15 chain3 ENTER marker seen: True
 20:04:15 chain3 script errors: 0 []
+20:08:08 chain4 OK   menu start on m1l2a was redirected to the lobby
+20:08:08 chain4 OK   driver armed on first map
+20:08:18 chain4 OK   lobby (co_lobby1) loaded
+20:08:55 chain4 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=1660 rank=2 cvarXp=1660 cvarUnlocks= carryReinf= marker= next=m1l2a campaign=0 players=1
+20:09:02 chain4 OK   ready-up -> lobby launches m1l2a
+20:09:06 chain4 OK   m1l2a loaded
+20:09:43 chain4 OK   coop active on m1l2a
+20:09:49 chain4 REPORT m1l1 before the level end ^~^~^ LA report map=m1l2a xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=2060 rank=2 cvarXp=2060 cvarUnlocks= carryReinf=1 marker=m1l1_marker next= campaign=1 players=1
+20:09:49 chain4 save files before: ['chal_5A6D61309811F269E5FFF9A632E13713.dat 725B mtime=20:09:49', 'chal_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 29B mtime=16:07:45', 'pend_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:09:02', 'pins_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:09:49', 'pins_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 0B mtime=16:05:15', 'unlocks_5A6D61309811F269E5FFF9A632E13713.dat 411B mtime=15:43:27', 'xp_5A6D61309811F269E5FFF9A632E13713.dat 4B mtime=20:02:16', 'xp_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 1B mtime=16:05:45']
+20:10:37 chain4 OK   level end hopped through the lobby
+20:11:14 chain4 REPORT in the lobby between levels ^~^~^ LA report map=co_lobby3 xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=2060 rank=2 cvarXp=2060 cvarUnlocks= carryReinf=1 marker=m1l1_marker next= campaign=1 players=1
+20:11:22 chain4 OK   second lobby launches m1l2b
+20:11:26 chain4 OK   m1l2a loaded
+20:12:05 chain4 OK   coop active on m1l2b
+20:12:05 chain4 REPORT m1l2b ^~^~^ LA report map=m1l2b xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=2060 rank=2 cvarXp=2060 cvarUnlocks= carryReinf=1 marker=m1l1_marker next= campaign=1 players=1
+20:12:05 chain4 save files after: ['chal_5A6D61309811F269E5FFF9A632E13713.dat 725B mtime=20:11:18', 'chal_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 29B mtime=16:07:45', 'pend_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:11:21', 'pins_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:11:18', 'pins_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 0B mtime=16:05:15', 'unlocks_5A6D61309811F269E5FFF9A632E13713.dat 411B mtime=15:43:27', 'xp_5A6D61309811F269E5FFF9A632E13713.dat 4B mtime=20:10:18', 'xp_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 1B mtime=16:05:45']
+20:12:07 chain4 ENTER marker seen: True
+20:12:07 chain4 script errors: 0 []
+09:39:04 b720 FAILED SlotBusy('client slot hudfeed5 is in use by pid 25548 until Mon Oct 19 10:55:44 2026') Traceback (most recent call last):
+  File "C:\mohaa-coop-dev\docs\proposals\lobbyall_2026-10-18\tools\la_run.py", line 68, in <module>
+    R.launch(W, H, extra)
+    ~~~~~~~~^^^^^^^^^^^^^
+  File "<string>", line 30, in launch
+  File "C:\mohaa-coop-dev\docs\tools\harness_guard.py", line 325, in acquire_slot
+    raise SlotBusy("client slot %s is in use by pid %s until %s" % (owner, cur.get("pid"), time.ctime(cur.get("expires", 0))))
+harness_guard.SlotBusy: client slot hudfeed5 is in use by pid 25548 until Mon Oct 19 10:55:44 2026
+
+09:39:27 b720 OK   menu start on m1l2a was redirected to the lobby
+09:39:27 b720 OK   driver armed on first map
+09:39:37 b720 OK   lobby (co_lobby1) loaded
+09:40:14 b720 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=4080823747935A41C0C9E44575C9311D flagXpTotal=10 rank=0 cvarXp=10 cvarUnlocks= carryReinf= marker= next=m1l2a campaign=0 players=1
+09:40:16 b720 brief shots taken 1280x720
+09:41:29 b720 OK   menu start on e1l2 was redirected to the lobby
+09:41:29 b720 OK   driver armed on first map
+09:41:39 b720 OK   lobby (co_lobby1) loaded
+09:42:17 b720 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=4080823747935A41C0C9E44575C9311D flagXpTotal=10 rank=0 cvarXp=10 cvarUnlocks= carryReinf= marker= next=e1l2 campaign=0 players=1
+09:42:19 b720 brief shots taken 1280x720
+09:42:36 b1080 OK   menu start on e1l2 was redirected to the lobby
+09:42:36 b1080 OK   driver armed on first map
+09:42:46 b1080 OK   lobby (co_lobby1) loaded
+09:43:23 b1080 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=4080823747935A41C0C9E44575C9311D flagXpTotal=10 rank=0 cvarXp=10 cvarUnlocks= carryReinf= marker= next=e1l2 campaign=0 players=1
+09:43:26 b1080 brief shots taken 1920x1080
+09:43:42 b43 OK   menu start on e1l2 was redirected to the lobby
+09:43:42 b43 OK   driver armed on first map
+09:43:52 b43 OK   lobby (co_lobby1) loaded
+09:44:30 b43 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=4080823747935A41C0C9E44575C9311D flagXpTotal=10 rank=0 cvarXp=10 cvarUnlocks= carryReinf= marker= next=e1l2 campaign=0 players=1
+09:44:32 b43 brief shots taken 1024x768
+09:45:09 b720 OK   menu start on e1l2 was redirected to the lobby
+09:45:09 b720 OK   driver armed on first map
+09:45:19 b720 OK   lobby (co_lobby1) loaded
+09:45:57 b720 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=4080823747935A41C0C9E44575C9311D flagXpTotal=10 rank=0 cvarXp=10 cvarUnlocks= carryReinf= marker= next=e1l2 campaign=0 players=1
+09:45:59 b720 brief shots taken 1280x720
+09:46:29 b1080 OK   menu start on e1l2 was redirected to the lobby
+09:46:29 b1080 OK   driver armed on first map
+09:46:39 b1080 OK   lobby (co_lobby1) loaded
+09:47:16 b1080 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=4080823747935A41C0C9E44575C9311D flagXpTotal=10 rank=0 cvarXp=10 cvarUnlocks= carryReinf= marker= next=e1l2 campaign=0 players=1
+09:47:19 b1080 brief shots taken 1920x1080
+09:47:32 rdy OK   menu start on m1l2a was redirected to the lobby
+09:47:32 rdy OK   driver armed on first map
+09:47:42 rdy OK   lobby (co_lobby1) loaded
+09:48:19 rdy REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=4080823747935A41C0C9E44575C9311D flagXpTotal=10 rank=0 cvarXp=10 cvarUnlocks= carryReinf= marker= next=m1l2a campaign=0 players=1
+09:48:26 rdy OK   ready-up -> lobby launches m1l2a
+09:48:30 rdy OK   m1l2a loaded
+09:49:09 rdy OK   coop active on m1l2a
+09:49:11 rdy ENTER marker seen: True
+09:49:11 rdy script errors: 0 []

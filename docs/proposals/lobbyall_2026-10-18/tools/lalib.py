@@ -20,7 +20,7 @@ R.PRISTINE = os.path.join(R.CLIENT, "pristine")
 R.RUNS = os.path.join(HERE, "runs").replace("\\", "/")
 R.PORT = 12811
 LOGF = os.path.join(HERE, "la.log")
-FILES = ["coop_mod/main.scr", "coop_mod/cfg/mission_start.cfg", "coop_mod/lobby.scr", "global/missioncomplete.scr"]
+FILES = ["coop_mod/main.scr", "coop_mod/cfg/mission_start.cfg", "coop_mod/lobby.scr", "coop_mod/lobbybrief.scr", "global/missioncomplete.scr"]
 
 
 def log(*a):

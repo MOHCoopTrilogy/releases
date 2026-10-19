@@ -1,0 +1,16 @@
+09:47:19 t=0.029 launched pid 22784 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+09:47:19 t=0.072 in-process guard installed on thread 23860
+09:47:20 t=0.518 place 0x2d410416 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+09:47:20 t=0.626 place 0x2d420416 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+09:47:20 t=0.630 place 0x6e77082c SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+09:47:32 rdy OK   menu start on m1l2a was redirected to the lobby
+09:47:32 rdy OK   driver armed on first map
+09:47:42 rdy OK   lobby (co_lobby1) loaded
+09:48:19 rdy REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=4080823747935A41C0C9E44575C9311D flagXpTotal=10 rank=0 cvarXp=10 cvarUnlocks= carryReinf= marker= next=m1l2a campaign=0 players=1
+09:48:26 rdy OK   ready-up -> lobby launches m1l2a
+09:48:30 rdy OK   m1l2a loaded
+09:49:09 rdy OK   coop active on m1l2a
+09:49:11 rdy ENTER marker seen: True
+09:49:11 rdy script errors: 0 []
+09:49:12 t=112.543 process exited
+09:49:12 [la_rdy] done: 6 shots, window {'clean': True, 'violations': []}

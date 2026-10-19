@@ -1,0 +1,12 @@
+09:43:26 t=0.029 launched pid 29832 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+09:43:26 t=0.067 in-process guard installed on thread 18352
+09:43:27 t=0.516 place 0x6233024a SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+09:43:27 t=0.626 place 0x6234024a SDL_app created (3888, 156, 4912, 924) -> (3888, 156) hidden
+09:43:27 t=0.629 place 0x553f0420 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+09:43:42 b43 OK   menu start on e1l2 was redirected to the lobby
+09:43:42 b43 OK   driver armed on first map
+09:43:52 b43 OK   lobby (co_lobby1) loaded
+09:44:30 b43 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=4080823747935A41C0C9E44575C9311D flagXpTotal=10 rank=0 cvarXp=10 cvarUnlocks= carryReinf= marker= next=e1l2 campaign=0 players=1
+09:44:32 b43 brief shots taken 1024x768
+09:44:32 t=65.756 process exited
+09:44:32 [la_b43] done: 3 shots, window {'clean': True, 'violations': []}

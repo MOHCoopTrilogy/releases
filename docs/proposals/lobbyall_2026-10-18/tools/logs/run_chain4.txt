@@ -1,0 +1,18 @@
+OK   menu start on m1l2a was redirected to the lobby
+OK   driver armed on first map
+OK   lobby (co_lobby1) loaded
+REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=1660 rank=2 cvarXp=1660 cvarUnlocks= carryReinf= marker= next=m1l2a campaign=0 players=1
+OK   ready-up -> lobby launches m1l2a
+OK   m1l2a loaded
+OK   coop active on m1l2a
+REPORT m1l1 before the level end ^~^~^ LA report map=m1l2a xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=2060 rank=2 cvarXp=2060 cvarUnlocks= carryReinf=1 marker=m1l1_marker next= campaign=1 players=1
+save files before: ['chal_5A6D61309811F269E5FFF9A632E13713.dat 725B mtime=20:09:49', 'chal_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 29B mtime=16:07:45', 'pend_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:09:02', 'pins_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:09:49', 'pins_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 0B mtime=16:05:15', 'unlocks_5A6D61309811F269E5FFF9A632E13713.dat 411B mtime=15:43:27', 'xp_5A6D61309811F269E5FFF9A632E13713.dat 4B mtime=20:02:16', 'xp_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 1B mtime=16:05:45']
+OK   level end hopped through the lobby
+REPORT in the lobby between levels ^~^~^ LA report map=co_lobby3 xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=2060 rank=2 cvarXp=2060 cvarUnlocks= carryReinf=1 marker=m1l1_marker next= campaign=1 players=1
+OK   second lobby launches m1l2b
+OK   m1l2a loaded
+OK   coop active on m1l2b
+REPORT m1l2b ^~^~^ LA report map=m1l2b xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=2060 rank=2 cvarXp=2060 cvarUnlocks= carryReinf=1 marker=m1l1_marker next= campaign=1 players=1
+save files after: ['chal_5A6D61309811F269E5FFF9A632E13713.dat 725B mtime=20:11:18', 'chal_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 29B mtime=16:07:45', 'pend_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:11:21', 'pins_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:11:18', 'pins_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 0B mtime=16:05:15', 'unlocks_5A6D61309811F269E5FFF9A632E13713.dat 411B mtime=15:43:27', 'xp_5A6D61309811F269E5FFF9A632E13713.dat 4B mtime=20:10:18', 'xp_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 1B mtime=16:05:45']
+ENTER marker seen: True
+script errors: 0 []
