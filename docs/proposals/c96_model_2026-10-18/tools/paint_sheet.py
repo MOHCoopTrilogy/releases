@@ -58,10 +58,10 @@ def build():
     wood = wood * (1.0 + 0.7 * EMB * emb[..., None]) * (1.0 - 0.35 * EDGE_DARK * edge[..., None])
     mm = m[..., None]
     outs = {
-        'c96_diffuse_final': metal_tone((0.62, 0.70, 0.84), 0.22, 0.68),          # blued steel
+        'c96_diffuse_final': metal_tone((0.90, 0.94, 1.00), 0.10, 0.52),          # blued steel
         'fin_gold': metal_tone((1.00, 0.78, 0.30), 0.30, 0.65),
         'fin_chrome': metal_tone((0.88, 0.92, 0.98), 0.40, 0.55),
-        'fin_blued': metal_tone((0.42, 0.50, 0.85), 0.12, 0.40),
+        'fin_blued': metal_tone((0.68, 0.80, 1.00), 0.10, 0.50),
     }
     for k, steel in outs.items():
         out = np.clip(steel * mm + wood * (1 - mm), 0, 1)
