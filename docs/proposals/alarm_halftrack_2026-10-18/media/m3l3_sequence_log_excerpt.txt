@@ -27,3 +27,14 @@
     ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
     ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
     ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
+
+== .30 cal tripod gun (run m3ta) ==
+000] ^~^~^ PSQ t=204.900 mg track
+000] ^~^~^ PSQ t=205.250 mg setup k=1 mode=C gun=( 1810.339 -2438.754 -240.575 ) yaw=203.278 arc=45 top=0 seat=( 1863.982 -2411.744 -279.875 ) hp=39.300 pos=crouch
+000] ^~^~^ AVT GUN ent1024 class=TurretGun model=models/statweapons/coop_30cal_para.tik org=( 1810.340 -2438.754 -240.143 ) ang=( 358.483 183.753 0.000 ) dist=0
+== floor audit (run m3j) ==
+000] ^~^~^ NEB t=261.850 sniper 1 placed at ( -3304.000 -6271.192 -15.925 ) world-brush floor within 4 u, near Nebelwerfer 2
+000] ^~^~^ NEB t=262.900 defenders at Nebelwerfer 1: 6 of 6 (waited 0 s, floor audit moved 4 dropped 0)
+000] ^~^~^ NEB t=263.325 defenders at Nebelwerfer 3: 5 of 6 (waited 0 s, floor audit moved 5 dropped 1)
+000] ^~^~^ NEB t=263.325 defenders at Nebelwerfer 4: 5 of 6 (waited 0 s, floor audit moved 5 dropped 1)
+000] ^~^~^ NEB t=263.350 defenders at Nebelwerfer 2: 6 of 6 (waited 0 s, floor audit moved 6 dropped 0)

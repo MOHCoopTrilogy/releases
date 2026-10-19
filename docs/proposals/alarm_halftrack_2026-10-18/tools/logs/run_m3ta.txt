@@ -1,0 +1,17 @@
+30cal team camera at 2021.6165842068758 -2347.85965247659 gun 1810.339 -2438.754 -240.575 yaw 203.278
+    ^~^~^ PSQ t=118.700 lz plan n=5 ground_only=0 tests=5 secs=1.675 ref=( 4269.000 -2217.000 -334.655 )
+    ^~^~^ PSQ t=149.550 land k=1 at=( 5109.096 -2234.754 -353.570 ) lzoff=0.574
+    ^~^~^ PSQ t=149.725 land k=3 at=( 4511.941 -3021.766 -349.798 ) lzoff=0.802
+    ^~^~^ PSQ t=150.050 land k=5 at=( 4153.331 -2184.785 -326.069 ) lzoff=0.131
+    ^~^~^ PSQ t=150.325 land k=2 at=( 4545.366 -1423.405 -347.461 ) lzoff=1.223
+    ^~^~^ PSQ t=150.450 land k=4 at=( 4264.036 -2097.165 -326.232 ) lzoff=1.858
+    ^~^~^ PSQ t=201.400 mg site how=1 mode=C gun=( 1810.339 -2438.754 -240.575 ) yaw=203.278 top=0 fire=enemy:1.250 arc=45 seat=( 1868.403 -2423.277 -279.875 ) walk=172.106 path=381.256 of=2
+    ^~^~^ PSQ t=201.400 mg plan aim=enemy ground=60 passed=2 tried=1 bags=1 refused: tall=8 not_level=6 top_blocked=1 seatground=1 height=1 nofire=3 seat=2 arc=1 gap=1 player_in_front=1 bag_ground=2 bag_slope=7 lane=2 secs=0.675
+    ^~^~^ PSQ t=202.900 mg walk how=1 left=4.548 ok=1
+    ^~^~^ PSQ t=204.650 mg watch
+    ^~^~^ PSQ t=204.900 mg track
+    ^~^~^ PSQ t=205.250 mg setup k=1 mode=C gun=( 1810.339 -2438.754 -240.575 ) yaw=203.278 arc=45 top=0 seat=( 1863.982 -2411.744 -279.875 ) hp=39.300 pos=crouch
+    ^~^~^ PSQ t=205.650 mg hold fire=friend_in_front
+    ^~^~^ PSQ t=209.650 mg hold fire=clear
+    ^~^~^ PSQ t=210.150 mg hold fire=friend_in_front
+script errors: 0 []

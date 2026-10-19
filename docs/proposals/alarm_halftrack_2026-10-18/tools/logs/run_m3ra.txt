@@ -1,0 +1,7 @@
+no .30 cal team formed this run
+    ^~^~^ PSQ t=118.675 lz plan n=5 ground_only=0 tests=5 secs=1.650 ref=( 4269.000 -2217.000 -334.655 )
+    ^~^~^ PSQ t=141.725 land k=1 at=( 4714.910 -2618.567 -310.255 ) lzoff=1.803
+    ^~^~^ PSQ t=142.075 land k=3 at=( 4622.689 -2284.728 -352.132 ) lzoff=1.448
+    ^~^~^ PSQ t=142.675 land k=2 at=( 4511.856 -3021.350 -349.772 ) lzoff=0.557
+    ^~^~^ PSQ t=142.875 land k=4 at=( 5109.117 -2234.747 -353.570 ) lzoff=0.582
+script errors: 0 []

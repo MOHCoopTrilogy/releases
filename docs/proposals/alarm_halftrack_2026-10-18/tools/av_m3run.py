@@ -61,7 +61,10 @@ try:
     time.sleep(40)
     G.frames(LABEL + "_fight", 18, 300)
     # 3. a charge goes on Nebelwerfer 1: defend wave, blast, counter-push
+    G.cmd("aiaudit")
     G.cmd("m3plant", x="1")
+    time.sleep(3)
+    G.cmd("aiaudit")
     G.frames(LABEL + "_plant", 24, 300)
     time.sleep(45)
     G.frames(LABEL + "_counter", 18, 300)

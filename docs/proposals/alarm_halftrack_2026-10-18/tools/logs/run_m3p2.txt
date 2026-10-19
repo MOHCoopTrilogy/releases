@@ -1,0 +1,24 @@
+no .30 cal team formed this run
+    ^~^~^ PSQ t=118.575 lz plan n=5 ground_only=0 tests=5 secs=1.550 ref=( 4269.000 -2217.000 -334.655 )
+    ^~^~^ PSQ t=138.025 land k=1 at=( 4361.889 -2438.417 -347.758 ) lzoff=1.428
+    ^~^~^ PSQ t=138.225 land k=3 at=( 4214.029 -2450.920 -346.437 ) lzoff=1.174
+    ^~^~^ PSQ t=138.575 land k=5 at=( 3943.011 -2370.296 -333.958 ) lzoff=1.414
+    ^~^~^ PSQ t=138.850 land k=2 at=( 4474.353 -2341.362 -350.239 ) lzoff=0.653
+    ^~^~^ PSQ t=139.050 land k=4 at=( 4508.203 -2197.087 -354.032 ) lzoff=1.651
+    ^~^~^ PSQ t=204.300 mg nosite aim=advance ground=14 passed=0 tried=0 bags=1 refused: tall=2 not_level=7 nofire=1 bag_slope=1 secs=0.075
+    ^~^~^ PSQ t=244.625 mg nosite aim=enemy ground=54 passed=0 tried=0 bags=1 refused: tall=12 not_level=1 seatground=2 height=1 nofire=4 arc=1 gap=1 player_in_front=1 bag_ground=1 bag_slope=14 lane=3 secs=0.325
+    ^~^~^ PSQ t=255.275 mg site how=1 mode=C gun=( 1671.747 -2332.060 -240.575 ) yaw=99.841 top=0 fire=enemy:1.250 arc=45 seat=( 1673.308 -2392.132 -279.875 ) walk=285.016 path=448.692 of=1
+    ^~^~^ PSQ t=255.275 mg plan aim=enemy ground=59 passed=1 tried=1 bags=1 refused: tall=14 not_level=3 seatground=1 height=2 nofire=5 seat=1 gap=1 bag_ground=4 bag_slope=11 lane=2 secs=0.650
+    ^~^~^ PSQ t=258.775 mg walk how=1 left=157.812 ok=0
+    ^~^~^ PSQ t=258.775 mg setup abort=not_reached left=157.812
+    ^~^~^ PSQ t=271.525 mg nosite aim=advance ground=60 passed=0 tried=0 bags=1 refused: tall=32 not_level=8 seatground=2 height=3 nofire=13 seat=1 arc=1 gap=3 bag_ground=4 bag_slope=18 lane=6 secs=0.750
+    ^~^~^ PSQ t=281.850 mg nosite aim=enemy ground=54 passed=0 tried=0 bags=1 refused: tall=16 not_level=1 top_blocked=1 seatground=1 nofire=5 bag_ground=1 bag_slope=17 lane=1 secs=0.325
+    ^~^~^ PSQ t=292.150 mg nosite aim=enemy ground=51 passed=0 tried=0 bags=1 refused: tall=12 nofire=3 gap=1 player_in_front=1 bag_ground=4 bag_slope=17 lane=2 secs=0.300
+    ^~^~^ PSQ t=302.800 mg nosite aim=advance ground=54 passed=0 tried=0 bags=1 refused: tall=42 not_level=1 top_blocked=2 seatground=2 height=2 nofire=9 bag_slope=29 lane=4 secs=0.650
+    ^~^~^ PSQ t=313.450 mg nosite aim=advance ground=54 passed=0 tried=0 bags=1 refused: tall=33 not_level=1 top_blocked=1 seatground=1 height=1 nofire=7 bag_ground=11 bag_slope=35 lane=2 secs=0.650
+    ^~^~^ PSQ t=323.775 mg nosite aim=last ground=53 passed=0 tried=0 bags=1 refused: tall=14 top_blocked=1 height=1 nofire=1 gap=2 bag_ground=6 bag_slope=18 lane=1 secs=0.325
+    ^~^~^ PSQ t=336.100 mg nosite aim=enemy ground=53 passed=0 tried=0 bags=1 refused: tall=13 not_level=1 height=2 nofire=5 seat=1 arc=2 bag_ground=4 bag_slope=10 lane=4 secs=0.325
+    ^~^~^ PSQ t=348.475 mg nosite aim=last ground=60 passed=0 tried=0 bags=1 refused: tall=14 not_level=4 top_blocked=1 seatground=2 nofire=7 seat=1 bag_ground=3 bag_slope=6 lane=3 secs=0.375
+    ^~^~^ PSQ t=360.150 mg site how=1 mode=C gun=( 1911.131 -2463.082 -240.575 ) yaw=185.638 top=0 fire=last:1.250 arc=45 seat=( 1971.155 -2465.928 -279.875 ) walk=329.189 path=416.094 of=2
+    ^~^~^ PSQ t=360.150 mg plan aim=last ground=62 passed=2 tried=1 bags=1 refused: tall=12 not_level=8 top_blocked=7 height=1 nofire=1 seat=1 arc=1 gap=1 player_in_front=6 bag_ground=2 bag_slope=2 lane=3 secs=0.675
+script errors: 0 []

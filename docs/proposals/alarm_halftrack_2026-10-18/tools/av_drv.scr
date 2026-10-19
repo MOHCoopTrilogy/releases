@@ -79,6 +79,21 @@ av_do local.c:{
 	local.p = $player[1]
 	if( local.p == NULL ){ end }
 	local.x = getcvar( "ai_x" )
+	if( local.c == "aiaudit" ){
+		for( local.e = 1; local.e < 1800; local.e++ ){
+			local.o = getentbyentnum local.e
+			if( local.o == NULL || local.o == NIL ){ continue }
+			if( local.o.model == NIL || local.o.health == NIL ){ continue }
+			if( local.o.health <= 0 ){ continue }
+			if( vector_length ( local.o.origin - local.p.origin ) > 700 ){ continue }
+			if( ( waitthread coop_mod/main.scr::containsText local.o.model "human/" 0 ) != 1 ){ continue }
+			if( local.o == local.p ){ continue }
+			println ( "^~^~^ AVT AIAUD ent" + local.e + " model=" + local.o.model + " org=" + local.o.origin + " src=" + local.o.flags["coop_waveSrc"] + " floor=[" + ( waitthread coop_mod/m3l3_nebel.scr::nb_floor local.o.origin ) + "] dist=" + int( vector_length ( local.o.origin - local.p.origin ) ) )
+		}
+	}
+	if( local.c == "god" ){ local.p.health = 9999
+		local.p.max_health = 9999
+		println ( "^~^~^ AVT god hp=" + local.p.health ) }
 	if( local.c == "here" ){ println ( "^~^~^ AI here " + local.p.origin ) }
 
 	// camera: ai_x ai_y ai_z = position, ai_yaw / ai_pit = view; "look" variant aims at the vehicle stop (ai_lx ai_ly ai_lz)

@@ -1,0 +1,1367 @@
+church hold finished after 81 s
+    ^~^~^ AVT officer smoke_drop flag=0 binoc_feature=1
+    ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
+    ^~^~^ AVT m3church: phase start requested, hold 45 s
+    ^~^~^ AVT m3 chDone=- chOver=- dropped=- scene7=- bombcount=4 t=55.600
+    ^~^~^ CHDEFEND posted 6 allied actors across 4 positions
+    ^~^~^ AVT m3 chDone=- chOver=- dropped=- scene7=- bombcount=4 t=61.825
+    ^~^~^ AVT m3 chDone=- chOver=- dropped=- scene7=- bombcount=4 t=68.050
+    ^~^~^ AVT m3 chDone=- chOver=- dropped=- scene7=- bombcount=4 t=74.275
+    ^~^~^ AVT m3 chDone=- chOver=- dropped=- scene7=- bombcount=4 t=80.500
+    ^~^~^ AVT m3 chDone=0 chOver=0 dropped=- scene7=- bombcount=4 t=86.725
+    ^~^~^ AVT m3 chDone=0 chOver=0 dropped=- scene7=- bombcount=4 t=92.950
+    ^~^~^ AVT m3 chDone=0 chOver=0 dropped=- scene7=- bombcount=4 t=99.200
+    ^~^~^ AVT m3 chDone=0 chOver=0 dropped=- scene7=- bombcount=4 t=105.425
+    ^~^~^ AVT m3 chDone=0 chOver=0 dropped=- scene7=- bombcount=4 t=111.650
+    ^~^~^ AVT m3 chDone=0 chOver=0 dropped=- scene7=- bombcount=4 t=117.875
+    ^~^~^ AVT m3 chDone=0 chOver=0 dropped=- scene7=- bombcount=4 t=124.100
+    ^~^~^ AVT m3 chDone=0 chOver=0 dropped=- scene7=- bombcount=4 t=130.350
+    ^~^~^ PSQ t=132.700 lz plan n=5 ground_only=0 tests=5 secs=1.675 ref=( 4269.000 -2217.000 -334.655 )
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=- scene7=- bombcount=4 t=136.550
+    ^~^~^ PSQ t=143.500 lz steer k=1 to=( 4714.887 -2618.478 -312.056 ) door=( 3734.293 -2816.186 1799.522 )
+    ^~^~^ PSQ t=143.500 lz steer k=3 to=( 4622.624 -2284.457 -353.553 ) door=( 3776.076 -3321.568 1826.811 )
+    ^~^~^ PSQ t=143.900 lz steer k=5 to=( 4263.975 -2097.105 -328.087 ) door=( 3381.920 -2643.869 1826.811 )
+    ^~^~^ CHDEFEND released 6 allied actors - airborne are down
+    ^~^~^ PSQ t=144.300 lz steer k=2 to=( 4511.787 -3021.148 -350.286 ) door=( 4043.678 -2484.410 1799.522 )
+    ^~^~^ PSQ t=144.300 lz steer k=4 to=( 5108.816 -2234.592 -354.044 ) door=( 4085.463 -2989.792 1826.811 )
+    ^~^~^ PSQ t=152.300 brain start sid=1
+    ^~^~^ PSQ t=158.550 land k=1 at=( 4714.971 -2618.488 -310.252 ) lzoff=1.806
+    ^~^~^ PSQ t=158.900 land k=3 at=( 4622.794 -2284.235 -352.166 ) lzoff=1.415
+    ^~^~^ PSQ t=159.200 land k=5 at=( 4264.105 -2097.050 -326.231 ) lzoff=1.862
+    ^~^~^ PSQ t=159.500 land k=2 at=( 4511.839 -3021.357 -349.772 ) lzoff=0.557
+    ^~^~^ PSQ t=159.625 land k=6 at=( 4398.064 -2654.559 -334.726 ) lzoff=none
+    ^~^~^ PSQ t=159.700 land k=4 at=( 5109.052 -2234.445 -353.580 ) lzoff=0.541
+    ^~^~^ PSQ t=159.875 land k=7 at=( 3849.221 -2142.749 -389.767 ) lzoff=none
+    ^~^~^ PSQ t=160.300 tac contact thr=( 2907.078 -2137.366 -357.057 )
+    ^~^~^ PSQ t=160.300 tac bound k=2 back=1 cover=1 base=1 dist=286.639
+    ^~^~^ PSQ t=160.300 tac bound k=4 back=1 cover=1 base=1 dist=362.937
+    ^~^~^ PSQ t=160.300 tac bound k=1 back=1 cover=0 base=1 dist=300.611
+    ^~^~^ PSQ t=160.300 tac bound k=3 back=1 cover=0 base=1 dist=300.011
+    ^~^~^ MZ t=160.300 allied site=( 4821.852 -2628.385 -315.241 )
+    ^~^~^ PSQ t=161.050 move k=4 why=bound left=362.641
+    ^~^~^ PSQ t=161.300 tac bound k=4 back=1 cover=1 base=0 dist=362.936
+    ^~^~^ PSQ t=161.800 move k=2 why=bound left=30.904
+    ^~^~^ PSQ t=161.800 move k=3 why=bound left=46.564
+    ^~^~^ PSQ t=162.050 move k=1 why=bound left=52.864
+    ^~^~^ PSQ t=162.050 move k=4 why=bound left=362.618
+    ^~^~^ PSQ t=162.300 tac bound k=1 back=1 cover=1 base=1 dist=290.099
+    ^~^~^ PSQ t=162.300 tac bound k=2 back=1 cover=0 base=1 dist=302.613
+    ^~^~^ PSQ t=162.300 tac bound k=3 back=1 cover=0 base=1 dist=300.560
+    ^~^~^ PSQ t=163.550 move k=1 why=bound left=46.855
+    ^~^~^ PSQ t=163.800 move k=2 why=bound left=36.097
+    ^~^~^ PSQ t=163.800 move k=3 why=bound left=30.979
+    ^~^~^ PSQ t=163.800 walkout k=4 goal=1 left=39.086 lost=0
+    ^~^~^ PSQ t=164.300 tac bound k=2 back=1 cover=0 base=1 dist=300.002
+    ^~^~^ PSQ t=164.300 tac bound k=3 back=1 cover=0 base=1 dist=305.378
+    ^~^~^ PSQ t=164.300 tac bound k=1 back=1 cover=1 base=1 dist=2826.816
+    ^~^~^ PSQ t=164.300 tac bound k=4 back=1 cover=0 base=1 dist=300.013
+    ^~^~^ PSQ t=165.050 move k=3 why=bound left=288.398
+    ^~^~^ PSQ t=165.300 tac bound k=3 back=1 cover=0 base=0 dist=303.631
+    ^~^~^ PSQ t=165.800 move k=2 why=bound left=45.181
+    ^~^~^ PSQ t=166.050 move k=4 why=bound left=28.929
+    ^~^~^ PSQ t=166.300 tac bound k=2 back=1 cover=0 base=1 dist=302.242
+    ^~^~^ PSQ t=166.300 tac bound k=4 back=1 cover=0 base=1 dist=300.242
+    ^~^~^ PSQ t=166.800 move k=3 why=bound left=55.656
+    ^~^~^ PSQ t=167.300 tac bound k=3 back=1 cover=0 base=0 dist=300.031
+    ^~^~^ PSQ t=167.800 move k=1 why=bound left=2450.382
+    ^~^~^ PSQ t=167.800 move k=2 why=bound left=34.585
+    ^~^~^ PSQ t=167.800 move k=4 why=bound left=31.756
+    ^~^~^ PSQ t=168.300 tac bound k=1 back=0 cover=0 base=0 dist=300.092
+    ^~^~^ PSQ t=168.300 tac bound k=2 back=0 cover=1 base=0 dist=310.932
+    ^~^~^ PSQ t=168.300 tac bound k=4 back=0 cover=0 base=0 dist=300.056
+    ^~^~^ PSQ t=168.800 move k=3 why=bound left=35.444
+    ^~^~^ MZ t=168.900 allied tube up
+    ^~^~^ PSQ t=169.300 tac bound k=3 back=0 cover=1 base=0 dist=340.385
+    ^~^~^ PSQ t=169.800 move k=1 why=bound left=45.555
+    ^~^~^ PSQ t=169.800 move k=2 why=bound left=32.127
+    ^~^~^ PSQ t=169.800 move k=4 why=bound left=29.180
+    ^~^~^ PSQ t=170.300 tac bound k=1 back=0 cover=0 base=1 dist=300.516
+    ^~^~^ PSQ t=170.300 tac bound k=4 back=0 cover=0 base=1 dist=300.018
+    ^~^~^ PSQ t=170.300 tac bound k=2 back=0 cover=1 base=1 dist=363.090
+    ^~^~^ PSQ t=171.050 move k=3 why=bound left=29.898
+    ^~^~^ PSQ t=171.300 tac bound k=3 back=0 cover=1 base=0 dist=415.741
+    ^~^~^ PSQ t=171.800 move k=1 why=bound left=55.545
+    ^~^~^ PSQ t=171.800 move k=4 why=bound left=31.324
+    ^~^~^ PSQ t=172.300 tac bound k=1 back=1 cover=0 base=1 dist=300.005
+    ^~^~^ PSQ t=172.300 tac bound k=4 back=1 cover=0 base=1 dist=300.388
+    ^~^~^ PSQ t=172.550 move k=2 why=bound left=34.574
+    ^~^~^ MZ t=172.900 allied: no target (germans=40 range=40 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=173.300 move k=3 why=bound left=40.052
+    ^~^~^ PSQ t=173.300 tac bound k=2 back=1 cover=0 base=0 dist=310.586
+    ^~^~^ PSQ t=173.300 tac bound k=3 back=1 cover=1 base=0 dist=1382.999
+    ^~^~^ PSQ t=173.550 move k=1 why=bound left=54.257
+    ^~^~^ PSQ t=173.800 move k=4 why=bound left=42.491
+    ^~^~^ PSQ t=174.050 move k=2 why=bound left=297.401
+    ^~^~^ PSQ t=174.300 tac bound k=1 back=1 cover=0 base=1 dist=301.017
+    ^~^~^ PSQ t=174.300 tac bound k=2 back=1 cover=0 base=1 dist=308.552
+    ^~^~^ PSQ t=174.300 tac bound k=4 back=1 cover=0 base=1 dist=300.004
+    ^~^~^ PSQ t=175.050 move k=2 why=bound left=308.234
+    ^~^~^ PSQ t=175.800 move k=4 why=bound left=35.006
+    ^~^~^ PSQ t=176.050 move k=1 why=bound left=43.989
+    ^~^~^ PSQ t=176.300 tac bound k=4 back=1 cover=1 base=0 dist=306.594
+    ^~^~^ PSQ t=176.300 tac bound k=1 back=1 cover=1 base=0 dist=1299.189
+    ^~^~^ PSQ t=176.800 move k=3 why=bound left=1234.218
+    ^~^~^ PSQ t=177.050 walkout k=2 goal=1 left=34.851 lost=0
+    ^~^~^ PSQ t=177.300 tac bound k=2 back=0 cover=1 base=0 dist=301.634
+    ^~^~^ PSQ t=177.800 move k=4 why=bound left=44.878
+    ^~^~^ MZ t=177.900 allied: no target (germans=37 range=37 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=178.800 move k=2 why=bound left=42.416
+    ^~^~^ PSQ t=179.800 move k=1 why=bound left=883.469
+    ^~^~^ PSQ t=181.000 mg nosite aim=advance ground=9 passed=0 tried=0 bags=1 refused: tall=4 not_level=2 height=1 nofire=6 bag_ground=2 secs=0.100
+    ^~^~^ MZ t=182.900 allied: no target (germans=36 range=36 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ MZ t=187.900 allied: no target (germans=35 range=35 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=191.100 mg nosite aim=advance ground=10 passed=0 tried=0 bags=1 refused: tall=3 not_level=2 height=2 nofire=7 bag_ground=2 bag_slope=1 secs=0.100
+    ^~^~^ MZ t=192.900 allied: no target (germans=35 range=35 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ MZ t=197.900 allied: no target (germans=35 range=35 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=200.300 tac bound k=2 back=0 cover=1 base=0 dist=1139.614
+    ^~^~^ PSQ t=200.300 tac bound k=3 back=1 cover=1 base=0 dist=298.421
+    ^~^~^ PSQ t=200.300 tac bound k=4 back=0 cover=0 base=0 dist=305.762
+    ^~^~^ PSQ t=201.050 move k=4 why=bound left=305.746
+    ^~^~^ PSQ t=201.300 tac bound k=4 back=0 cover=1 base=0 dist=330.905
+    ^~^~^ PSQ t=201.300 tac bound k=1 back=1 cover=1 base=0 dist=338.607
+    ^~^~^ PSQ t=202.050 move k=4 why=bound left=330.905
+    ^~^~^ PSQ t=202.050 walkout k=4 goal=0 left=-1 lost=0
+    ^~^~^ PSQ t=202.300 tac bound k=4 back=0 cover=1 base=0 dist=330.905
+    ^~^~^ MZ t=202.900 allied: no target (germans=35 range=35 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=203.050 move k=4 why=bound left=330.483
+    ^~^~^ PSQ t=203.300 tac bound k=4 back=0 cover=1 base=0 dist=330.829
+    ^~^~^ PSQ t=203.800 move k=2 why=bound left=703.761
+    ^~^~^ PSQ t=203.800 move k=3 why=bound left=851.249
+    ^~^~^ PSQ t=204.050 move k=4 why=bound left=330.406
+    ^~^~^ PSQ t=204.300 tac bound k=2 back=1 cover=1 base=0 dist=304.431
+    ^~^~^ PSQ t=204.700 nade k=3 why=fight nopath
+    ^~^~^ PSQ t=204.800 move k=1 why=bound left=614.814
+    ^~^~^ PSQ t=205.250 walkout k=4 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=205.300 tac bound k=3 back=1 cover=1 base=0 dist=303.655
+    ^~^~^ PSQ t=205.300 tac bound k=4 back=0 cover=0 base=0 dist=305.797
+    ^~^~^ PSQ t=205.300 tac bound k=1 back=1 cover=1 base=0 dist=301.702
+    ^~^~^ PSQ t=206.050 move k=3 why=bound left=331.708
+    ^~^~^ PSQ t=206.050 move k=4 why=bound left=305.745
+    ^~^~^ PSQ t=206.300 tac bound k=4 back=0 cover=0 base=0 dist=305.792
+    ^~^~^ PSQ t=206.300 tac bound k=3 back=1 cover=1 base=0 dist=302.238
+    ^~^~^ PSQ t=207.050 move k=4 why=bound left=305.844
+    ^~^~^ PSQ t=207.050 move k=3 why=bound left=301.532
+    ^~^~^ PSQ t=207.800 move k=2 why=bound left=575.242
+    ^~^~^ MZ t=207.900 allied: no target (germans=35 range=35 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=208.250 walkout k=4 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=208.300 tac bound k=4 back=0 cover=0 base=0 dist=305.787
+    ^~^~^ PSQ t=208.550 walkout k=3 goal=1 left=9.172 lost=0
+    ^~^~^ PSQ t=208.800 move k=1 why=bound left=865.708
+    ^~^~^ PSQ t=209.050 move k=4 why=bound left=305.788
+    ^~^~^ PSQ t=209.300 tac bound k=3 back=1 cover=1 base=0 dist=261.428
+    ^~^~^ PSQ t=209.300 tac bound k=1 back=1 cover=1 base=0 dist=303.131
+    ^~^~^ PSQ t=209.300 tac bound k=4 back=0 cover=0 base=0 dist=305.778
+    ^~^~^ PSQ t=210.050 move k=3 why=bound left=261.315
+    ^~^~^ PSQ t=210.050 move k=4 why=bound left=305.762
+    ^~^~^ PSQ t=210.300 tac bound k=3 back=1 cover=1 base=0 dist=260.634
+    ^~^~^ PSQ t=211.050 move k=3 why=bound left=262.232
+    ^~^~^ PSQ t=211.050 walkout k=3 goal=0 left=-1 lost=0
+    ^~^~^ PSQ t=211.250 walkout k=4 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=211.300 tac bound k=3 back=1 cover=1 base=0 dist=259.708
+    ^~^~^ PSQ t=211.300 tac bound k=4 back=0 cover=0 base=0 dist=305.774
+    ^~^~^ PSQ t=211.300 tac bound k=2 back=1 cover=1 base=0 dist=301.702
+    ^~^~^ PSQ t=212.050 move k=3 why=bound left=260.286
+    ^~^~^ PSQ t=212.050 move k=4 why=bound left=305.759
+    ^~^~^ PSQ t=212.800 move k=1 why=bound left=245.216
+    ^~^~^ MZ t=212.900 allied: no target (germans=38 range=38 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=214.800 move k=2 why=bound left=876.961
+    ^~^~^ MZ t=217.900 allied: no target (germans=37 range=37 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=221.300 tac contact thr=( 1683.763 -2295.730 -279.875 )
+    ^~^~^ PSQ t=221.300 tac bound k=4 back=1 cover=1 base=0 dist=305.775
+    ^~^~^ PSQ t=222.050 move k=4 why=bound left=305.448
+    ^~^~^ MZ t=222.900 allied: no target (germans=37 range=37 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=223.250 walkout k=4 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=223.300 tac bound k=2 back=1 cover=1 base=1 dist=296.013
+    ^~^~^ PSQ t=223.300 tac bound k=1 back=1 cover=1 base=1 dist=405.735
+    ^~^~^ PSQ t=223.300 tac bound k=3 back=1 cover=1 base=1 dist=302.643
+    ^~^~^ PSQ t=223.300 tac bound k=4 back=0 cover=0 base=1 dist=305.789
+    ^~^~^ PSQ t=224.050 move k=2 why=bound left=295.202
+    ^~^~^ PSQ t=224.050 move k=3 why=bound left=302.729
+    ^~^~^ PSQ t=224.050 move k=4 why=bound left=305.644
+    ^~^~^ PSQ t=224.300 tac bound k=4 back=1 cover=1 base=0 dist=305.795
+    ^~^~^ PSQ t=224.350 walkout k=3 goal=0 left=-1 lost=0
+    ^~^~^ PSQ t=225.050 move k=4 why=bound left=305.795
+    ^~^~^ PSQ t=225.300 tac bound k=2 back=1 cover=1 base=0 dist=249.611
+    ^~^~^ PSQ t=225.300 tac bound k=3 back=1 cover=1 base=0 dist=302.287
+    ^~^~^ PSQ t=226.050 move k=1 why=bound left=96.090
+    ^~^~^ PSQ t=226.050 move k=3 why=bound left=302.490
+    ^~^~^ PSQ t=226.250 walkout k=4 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=226.300 tac bound k=4 back=1 cover=1 base=0 dist=305.727
+    ^~^~^ PSQ t=226.800 move k=2 why=bound left=42.757
+    ^~^~^ PSQ t=227.050 move k=4 why=bound left=305.370
+    ^~^~^ PSQ t=227.300 tac bound k=4 back=1 cover=1 base=0 dist=305.724
+    ^~^~^ MZ t=227.900 allied: no target (germans=35 range=35 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=228.050 move k=4 why=bound left=305.366
+    ^~^~^ PSQ t=229.250 walkout k=4 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=229.300 tac bound k=4 back=1 cover=0 base=0 dist=305.749
+    ^~^~^ PSQ t=230.050 move k=4 why=bound left=305.393
+    ^~^~^ PSQ t=230.300 tac bound k=4 back=1 cover=1 base=0 dist=305.746
+    ^~^~^ PSQ t=231.050 move k=4 why=bound left=305.324
+    ^~^~^ PSQ t=232.250 walkout k=4 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=232.300 tac bound k=4 back=1 cover=0 base=0 dist=305.824
+    ^~^~^ MZ t=232.900 allied: no target (germans=35 range=35 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=233.050 move k=4 why=bound left=305.390
+    ^~^~^ PSQ t=233.300 tac bound k=4 back=1 cover=0 base=0 dist=305.836
+    ^~^~^ PSQ t=234.050 move k=4 why=bound left=306.563
+    ^~^~^ PSQ t=235.250 walkout k=4 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=235.300 tac bound k=4 back=1 cover=1 base=0 dist=305.356
+    ^~^~^ PSQ t=236.050 move k=4 why=bound left=305.038
+    ^~^~^ PSQ t=236.300 tac bound k=4 back=1 cover=1 base=0 dist=305.353
+    ^~^~^ PSQ t=237.050 move k=4 why=bound left=305.839
+    ^~^~^ PSQ t=237.350 walkout k=4 goal=0 left=-1 lost=1
+    ^~^~^ MZ t=237.900 allied: no target (germans=35 range=35 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=238.300 tac bound k=4 back=1 cover=1 base=0 dist=306.855
+    ^~^~^ PSQ t=239.050 move k=4 why=bound left=306.855
+    ^~^~^ PSQ t=239.300 tac bound k=4 back=1 cover=1 base=0 dist=306.855
+    ^~^~^ PSQ t=240.050 move k=4 why=bound left=306.423
+    ^~^~^ PSQ t=240.550 walkout k=4 goal=1 left=32.831 lost=0
+    ^~^~^ PSQ t=241.300 tac bound k=4 back=1 cover=1 base=0 dist=305.769
+    ^~^~^ PSQ t=242.050 move k=4 why=bound left=305.362
+    ^~^~^ PSQ t=242.300 tac bound k=4 back=1 cover=1 base=0 dist=305.803
+    ^~^~^ MZ t=242.900 allied: no target (germans=35 range=35 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=243.050 move k=4 why=bound left=305.449
+    ^~^~^ PSQ t=243.050 walkout k=4 goal=0 left=-1 lost=0
+    ^~^~^ PSQ t=243.300 tac bound k=4 back=1 cover=1 base=0 dist=305.799
+    ^~^~^ PSQ t=244.050 move k=4 why=bound left=305.445
+    ^~^~^ PSQ t=244.300 tac bound k=4 back=1 cover=1 base=0 dist=305.795
+    ^~^~^ PSQ t=245.050 move k=4 why=bound left=305.434
+    ^~^~^ PSQ t=246.250 walkout k=4 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=246.300 tac bound k=4 back=1 cover=0 base=0 dist=305.836
+    ^~^~^ PSQ t=247.050 move k=4 why=bound left=305.477
+    ^~^~^ PSQ t=247.300 tac bound k=4 back=1 cover=1 base=0 dist=305.833
+    ^~^~^ MZ t=247.900 allied: no target (germans=35 range=35 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=248.050 move k=4 why=bound left=305.446
+    ^~^~^ PSQ t=249.250 walkout k=4 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=249.300 tac bound k=4 back=1 cover=0 base=0 dist=305.897
+    ^~^~^ PSQ t=250.050 move k=4 why=bound left=305.897
+    ^~^~^ PSQ t=250.300 tac bound k=4 back=1 cover=0 base=0 dist=305.897
+    ^~^~^ PSQ t=251.050 move k=4 why=bound left=305.897
+    ^~^~^ PSQ t=251.350 walkout k=4 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=252.000 rescue k=4 why=lost from=( 2837.876 -2609.504 -451.179 ) to=( 1668.327 -2161.571 -279.875 ) vetted=1 n=1
+    ^~^~^ PSQ t=252.300 tac bound k=1 back=1 cover=1 base=1 dist=422.591
+    ^~^~^ MZ t=252.900 allied: no target (germans=35 range=35 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=254.550 move k=1 why=bound left=45.230
+    ^~^~^ MZ t=257.900 allied: no target (germans=38 range=38 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=258.300 tac bound k=4 back=1 cover=1 base=0 dist=237.670
+    ^~^~^ PSQ t=259.300 tac mandown alive=4
+    ^~^~^ PSQ t=259.300 tac bound k=2 back=1 cover=1 base=0 dist=334.602
+    ^~^~^ AVT m3nebel: hook + scene7 started
+    ^~^~^ NEB t=259.525 church hold complete: players=4 - the Nebelwerfer fight starts
+    ^~^~^ NEB t=259.525 nest 1 gunner placed at ( -2433.000 -5129.955 -38.144 ) gun at ( -2433.000 -5096.000 -17.000 )
+    ^~^~^ NEB t=259.525 nest 2 gunner placed at ( -3873.000 -6482.511 -15.422 ) gun at ( -3873.000 -6472.000 39.000 )
+    ^~^~^ NEB t=259.525 nest 3 gunner placed at ( -4905.000 -6289.592 -56.944 ) gun at ( -4905.000 -6280.000 -2.000 )
+    ^~^~^ NEB t=259.525 nest 4 gunner placed at ( -5703.946 -5391.000 -79.875 ) gun at ( -5697.000 -5391.000 -9.000 )
+    ^~^~^ NEB t=259.525 nest 5 gunner placed at ( -5825.000 -5254.946 -79.875 ) gun at ( -5825.000 -5248.000 -9.000 )
+    ^~^~^ PSQ t=260.050 move k=2 why=bound left=334.319
+    ^~^~^ PSQ t=260.300 tac bound k=2 back=1 cover=1 base=0 dist=330.221
+    ^~^~^ PSQ t=260.300 cover k=1 from=( 924.811 -2811.844 -277.486 ) to=( 867.191 -2783.990 -263.744 )
+    ^~^~^ PSQ t=260.800 move k=1 why=cover left=47.301
+    ^~^~^ NEB t=261.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=none deaths=0
+    ^~^~^ NEB t=261.525 nest 2 gunner_alive=1 dist_to_gun=55 enemy=none deaths=0
+    ^~^~^ NEB t=261.525 nest 3 gunner_alive=1 dist_to_gun=55 enemy=none deaths=0
+    ^~^~^ NEB t=261.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=none deaths=0
+    ^~^~^ NEB t=261.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=none deaths=0
+    ^~^~^ NEB t=261.525 sniper 1 placed at ( -3304.000 -6271.192 -15.925 ) world-brush floor within 4 u, near Nebelwerfer 2
+    ^~^~^ PSQ t=262.300 move k=2 why=bound left=48.059
+    ^~^~^ PSQ t=262.300 tac bound k=2 back=1 cover=1 base=0 dist=242.579
+    ^~^~^ NEB t=262.800 defenders at Nebelwerfer 2: 6 of 6 (waited 0 s, floor audit moved 5 dropped 0)
+    ^~^~^ NEB t=262.800 defenders at Nebelwerfer 1: 6 of 6 (waited 0 s, floor audit moved 5 dropped 0)
+    ^~^~^ MZ t=262.900 allied: no target (germans=64 range=64 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ NEB t=262.975 defenders at Nebelwerfer 3: 4 of 6 (waited 0 s, floor audit moved 4 dropped 2)
+    ^~^~^ NEB t=262.975 defenders at Nebelwerfer 4: 4 of 6 (waited 0 s, floor audit moved 4 dropped 2)
+    ^~^~^ PSQ t=263.550 move k=2 why=bound left=27.246
+    ^~^~^ NEB t=263.575 ROCKET CRATE at ( 1601.000 -2420.000 -279.875 ) dist_to_church=70 hidden from 1 halftrack stop(s), launcher bazooka + 3 shells (infinite respawn)
+    ^~^~^ NEB t=263.575 halftrack 1 stop ( -2837.400 -3004.600 -159.200 ) overlooks 7 of 7 approach points
+    ^~^~^ ALMVEH halftrack gun=avveh1_turret0 gunner=
+    ^~^~^ ALMVEH ARRIVING halftrack route=1 guard1 hp=300 pax=3 players=1 entry=( -3733.400 -1980.600 -190.500 )
+    ^~^~^ PSQ t=264.300 tac bound k=1 back=1 cover=0 base=0 dist=300.294
+    ^~^~^ PSQ t=264.300 tac bound k=2 back=1 cover=0 base=0 dist=5357.633
+    ^~^~^ NEB t=264.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=none deaths=0
+    ^~^~^ NEB t=264.525 nest 2 gunner_alive=1 dist_to_gun=73 enemy=none deaths=0
+    ^~^~^ NEB t=264.525 nest 3 gunner_alive=1 dist_to_gun=70 enemy=none deaths=0
+    ^~^~^ NEB t=264.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=none deaths=0
+    ^~^~^ NEB t=264.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=none deaths=0
+    ^~^~^ PSQ t=265.050 move k=1 why=bound left=328.752
+    ^~^~^ PSQ t=265.300 tac bound k=1 back=1 cover=0 base=0 dist=300.454
+    ^~^~^ PSQ t=265.300 tac bound k=3 back=1 cover=0 base=0 dist=300.191
+    ^~^~^ PSQ t=266.050 move k=1 why=bound left=301.393
+    ^~^~^ PSQ t=266.050 move k=3 why=bound left=332.852
+    ^~^~^ PSQ t=266.800 move k=2 why=bound left=4953.174
+    ^~^~^ PSQ t=266.800 walkout k=3 goal=1 left=6.026 lost=0
+    ^~^~^ PSQ t=267.300 tac pinned k=2 hp=298.400
+    ^~^~^ PSQ t=267.300 tac nocover k=2
+    ^~^~^ NEB t=267.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=none deaths=0
+    ^~^~^ NEB t=267.525 nest 2 gunner_alive=1 dist_to_gun=73 enemy=none deaths=0
+    ^~^~^ NEB t=267.525 nest 3 gunner_alive=1 dist_to_gun=70 enemy=none deaths=0
+    ^~^~^ NEB t=267.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=none deaths=0
+    ^~^~^ NEB t=267.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=none deaths=0
+    ^~^~^ PSQ t=267.550 walkout k=1 goal=1 left=29.550 lost=0
+    ^~^~^ MZ t=267.900 allied: no target (germans=63 range=63 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=268.300 tac pinned k=1 hp=274.400
+    ^~^~^ PSQ t=269.300 cover k=1 from=( 685.511 -2755.511 -265.694 ) to=( 657.656 -2813.131 -279.875 )
+    ^~^~^ NEB t=269.525 summary: nebel men alive=20 bombcount=4 elapsed=10 s
+    ^~^~^ PSQ t=269.700 nade k=2 why=fight nopath
+    ^~^~^ PSQ t=270.050 move k=1 why=cover left=66.075
+    ^~^~^ NEB t=270.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=none deaths=0
+    ^~^~^ NEB t=270.525 nest 2 gunner_alive=1 dist_to_gun=73 enemy=none deaths=0
+    ^~^~^ NEB t=270.525 nest 3 gunner_alive=1 dist_to_gun=70 enemy=none deaths=0
+    ^~^~^ NEB t=270.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=none deaths=0
+    ^~^~^ NEB t=270.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=none deaths=0
+    ^~^~^ PSQ t=272.300 tac mandown alive=3
+    ^~^~^ MZ t=272.900 allied: no target (germans=62 range=62 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ NEB t=273.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=none deaths=0
+    ^~^~^ NEB t=273.525 nest 2 gunner_alive=1 dist_to_gun=73 enemy=none deaths=0
+    ^~^~^ NEB t=273.525 nest 3 gunner_alive=1 dist_to_gun=70 enemy=none deaths=0
+    ^~^~^ NEB t=273.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=none deaths=0
+    ^~^~^ NEB t=273.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=none deaths=0
+    ^~^~^ NEB t=276.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=none deaths=0
+    ^~^~^ NEB t=276.525 nest 2 gunner_alive=1 dist_to_gun=73 enemy=none deaths=0
+    ^~^~^ NEB t=276.525 nest 3 gunner_alive=1 dist_to_gun=70 enemy=none deaths=0
+    ^~^~^ NEB t=276.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=none deaths=0
+    ^~^~^ NEB t=276.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=none deaths=0
+    ^~^~^ MZ t=277.900 allied: no target (germans=61 range=61 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ NEB t=279.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=none deaths=0
+    ^~^~^ NEB t=279.525 nest 2 gunner_alive=1 dist_to_gun=73 enemy=none deaths=0
+    ^~^~^ NEB t=279.525 nest 3 gunner_alive=1 dist_to_gun=70 enemy=none deaths=0
+    ^~^~^ NEB t=279.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=none deaths=0
+    ^~^~^ NEB t=279.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=none deaths=0
+    ^~^~^ NEB t=279.525 summary: nebel men alive=20 bombcount=4 elapsed=20 s
+    ^~^~^ PSQ t=279.700 nade k=1 why=fight nopath
+    ^~^~^ PSQ t=282.300 tac bound k=3 back=1 cover=0 base=0 dist=301.555
+    ^~^~^ NEB t=282.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=282.525 nest 2 gunner_alive=1 dist_to_gun=81 enemy=Player deaths=0
+    ^~^~^ NEB t=282.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=282.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=282.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ MZ t=282.900 allied: no target (germans=68 range=68 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=283.800 move k=3 why=bound left=288.000
+    ^~^~^ NEB t=285.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=285.525 nest 2 gunner_alive=1 dist_to_gun=81 enemy=Player deaths=0
+    ^~^~^ NEB t=285.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=285.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=285.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=287.300 tac bound k=1 back=1 cover=0 base=0 dist=306.193
+    ^~^~^ PSQ t=287.300 tac bound k=3 back=1 cover=0 base=0 dist=300.001
+    ^~^~^ ALMVEH ARRIVED halftrack at ( -2837.715 -2984.034 -162.919 )
+    ^~^~^ MZ t=287.900 allied: no target (germans=70 range=70 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ NEB t=288.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=288.525 nest 2 gunner_alive=1 dist_to_gun=81 enemy=Player deaths=0
+    ^~^~^ NEB t=288.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=288.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=288.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=288.800 move k=3 why=bound left=32.121
+    ^~^~^ PSQ t=289.300 tac bound k=3 back=1 cover=0 base=0 dist=300.312
+    ^~^~^ NEB t=289.525 summary: nebel men alive=20 bombcount=4 elapsed=30 s
+    ^~^~^ PSQ t=290.800 move k=1 why=bound left=329.945
+    ^~^~^ PSQ t=290.800 move k=3 why=bound left=55.657
+    ^~^~^ PSQ t=291.300 tac bound k=3 back=1 cover=0 base=0 dist=300.621
+    ^~^~^ PSQ t=291.300 tac bound k=1 back=1 cover=0 base=0 dist=300.749
+    ^~^~^ NEB t=291.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=291.525 nest 2 gunner_alive=1 dist_to_gun=81 enemy=Player deaths=0
+    ^~^~^ NEB t=291.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=291.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=291.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=292.050 move k=3 why=bound left=300.424
+    ^~^~^ PSQ t=292.300 tac bound k=3 back=1 cover=0 base=0 dist=300.974
+    ^~^~^ MZ t=292.900 allied: no target (germans=70 range=70 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=293.050 move k=1 why=bound left=31.164
+    ^~^~^ PSQ t=293.300 tac bound k=1 back=1 cover=0 base=0 dist=300.133
+    ^~^~^ PSQ t=293.800 move k=3 why=bound left=39.892
+    ^~^~^ PSQ t=294.300 tac mandown alive=2
+    ^~^~^ PSQ t=294.300 tac bound k=3 back=1 cover=0 base=0 dist=337.513
+    ^~^~^ NEB t=294.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=294.525 nest 2 gunner_alive=1 dist_to_gun=81 enemy=Player deaths=0
+    ^~^~^ NEB t=294.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=294.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=294.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=295.050 move k=3 why=bound left=337.252
+    ^~^~^ PSQ t=295.300 tac bound k=3 back=1 cover=0 base=0 dist=337.505
+    ^~^~^ PSQ t=296.300 move k=3 why=bound left=342.746
+    ^~^~^ PSQ t=296.300 walkout k=3 goal=0 left=-1 lost=0
+    ^~^~^ PSQ t=296.300 tac bound k=3 back=1 cover=0 base=0 dist=337.824
+    ^~^~^ PSQ t=297.050 move k=3 why=bound left=334.777
+    ^~^~^ PSQ t=297.300 tac bound k=3 back=1 cover=0 base=0 dist=337.674
+    ^~^~^ NEB t=297.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=297.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=297.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=297.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=297.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ MZ t=297.900 allied: no target (germans=70 range=70 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=298.050 move k=3 why=bound left=337.158
+    ^~^~^ PSQ t=298.950 walkout k=3 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=299.300 tac bound k=3 back=1 cover=0 base=0 dist=337.583
+    ^~^~^ NEB t=299.525 summary: nebel men alive=20 bombcount=4 elapsed=40 s
+    ^~^~^ PSQ t=300.050 move k=3 why=bound left=337.583
+    ^~^~^ PSQ t=300.300 tac bound k=3 back=1 cover=0 base=0 dist=337.583
+    ^~^~^ NEB t=300.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=300.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=300.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=300.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=300.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=301.050 move k=3 why=bound left=337.367
+    ^~^~^ PSQ t=301.950 walkout k=3 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=302.300 tac bound k=3 back=1 cover=0 base=0 dist=337.585
+    ^~^~^ MZ t=302.900 allied: no target (germans=70 range=70 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=303.050 move k=3 why=bound left=337.840
+    ^~^~^ PSQ t=303.300 tac bound k=3 back=1 cover=0 base=0 dist=337.601
+    ^~^~^ NEB t=303.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=303.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=303.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=303.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=303.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=304.050 move k=3 why=bound left=337.352
+    ^~^~^ PSQ t=304.950 walkout k=3 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=305.300 tac bound k=3 back=1 cover=0 base=0 dist=337.708
+    ^~^~^ PSQ t=306.050 move k=3 why=bound left=337.379
+    ^~^~^ PSQ t=306.300 tac bound k=3 back=1 cover=0 base=0 dist=337.686
+    ^~^~^ NEB t=306.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=306.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=306.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=306.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=306.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=307.050 move k=3 why=bound left=338.588
+    ^~^~^ MZ t=307.900 allied: no target (germans=69 range=69 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=307.950 walkout k=3 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=308.300 tac bound k=3 back=1 cover=0 base=0 dist=337.839
+    ^~^~^ PSQ t=309.050 move k=3 why=bound left=337.432
+    ^~^~^ PSQ t=309.300 tac bound k=3 back=1 cover=0 base=0 dist=337.817
+    ^~^~^ NEB t=309.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=309.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=309.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=309.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=309.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=309.525 summary: nebel men alive=20 bombcount=4 elapsed=50 s
+    ^~^~^ PSQ t=310.050 move k=3 why=bound left=337.817
+    ^~^~^ PSQ t=310.950 walkout k=3 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=311.300 tac bound k=3 back=1 cover=0 base=0 dist=337.879
+    ^~^~^ PSQ t=312.050 move k=3 why=bound left=337.653
+    ^~^~^ PSQ t=312.300 tac bound k=3 back=1 cover=0 base=0 dist=337.870
+    ^~^~^ NEB t=312.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=312.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=312.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=312.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=312.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ MZ t=312.900 allied: no target (germans=68 range=68 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=313.050 move k=3 why=bound left=338.121
+    ^~^~^ PSQ t=313.350 walkout k=3 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=314.300 tac bound k=3 back=1 cover=0 base=0 dist=339.402
+    ^~^~^ PSQ t=315.050 move k=3 why=bound left=339.402
+    ^~^~^ PSQ t=315.300 tac bound k=3 back=1 cover=0 base=0 dist=339.402
+    ^~^~^ NEB t=315.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=315.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=315.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=315.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=315.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=316.050 move k=3 why=bound left=339.402
+    ^~^~^ PSQ t=316.550 walkout k=3 goal=1 left=18.759 lost=0
+    ^~^~^ PSQ t=317.300 tac bound k=3 back=1 cover=0 base=0 dist=335.169
+    ^~^~^ MZ t=317.900 allied: no target (germans=67 range=67 noLOS=0 unknown=0 friendNear=0 spotterOk=1)
+    ^~^~^ PSQ t=318.050 move k=3 why=bound left=334.916
+    ^~^~^ PSQ t=318.300 tac bound k=3 back=1 cover=0 base=0 dist=335.184
+    ^~^~^ NEB t=318.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=318.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=318.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=318.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=318.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ MZ t=318.900 allied team packed up
+    ^~^~^ PSQ t=319.050 move k=3 why=bound left=335.412
+    ^~^~^ PSQ t=319.050 walkout k=3 goal=0 left=-1 lost=0
+    ^~^~^ PSQ t=319.300 tac bound k=3 back=1 cover=0 base=0 dist=335.103
+    ^~^~^ NEB t=319.525 summary: nebel men alive=19 bombcount=4 elapsed=60 s
+    ^~^~^ PSQ t=320.050 move k=3 why=bound left=335.499
+    ^~^~^ PSQ t=320.300 tac bound k=3 back=1 cover=0 base=0 dist=335.119
+    ^~^~^ PSQ t=321.050 move k=3 why=bound left=335.501
+    ^~^~^ PSQ t=321.350 walkout k=3 goal=0 left=-1 lost=0
+    ^~^~^ NEB t=321.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=321.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=321.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=321.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=321.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=322.300 tac bound k=3 back=1 cover=0 base=0 dist=335.941
+    ^~^~^ PSQ t=323.050 move k=3 why=bound left=335.733
+    ^~^~^ PSQ t=323.300 tac bound k=3 back=1 cover=0 base=0 dist=335.954
+    ^~^~^ PSQ t=324.050 move k=3 why=bound left=335.744
+    ^~^~^ PSQ t=324.050 walkout k=3 goal=0 left=-1 lost=0
+    ^~^~^ PSQ t=324.300 tac bound k=3 back=1 cover=0 base=0 dist=335.966
+    ^~^~^ NEB t=324.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=324.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=324.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=324.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=324.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=325.050 move k=3 why=bound left=335.713
+    ^~^~^ PSQ t=325.300 tac bound k=3 back=1 cover=0 base=0 dist=335.981
+    ^~^~^ PSQ t=326.050 move k=3 why=bound left=336.199
+    ^~^~^ PSQ t=326.950 walkout k=3 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=327.300 tac bound k=3 back=0 cover=0 base=0 dist=335.911
+    ^~^~^ NEB t=327.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=327.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=327.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=327.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=327.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=328.050 move k=3 why=bound left=335.911
+    ^~^~^ PSQ t=328.300 tac bound k=3 back=0 cover=0 base=0 dist=335.911
+    ^~^~^ PSQ t=329.050 move k=3 why=bound left=335.911
+    ^~^~^ PSQ t=329.350 walkout k=3 goal=0 left=-1 lost=1
+    ^~^~^ NEB t=329.525 summary: nebel men alive=19 bombcount=4 elapsed=70 s
+    ^~^~^ PSQ t=330.300 tac bound k=3 back=0 cover=0 base=0 dist=337.665
+    ^~^~^ NEB t=330.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=330.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=330.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=330.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=330.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=331.050 move k=3 why=bound left=337.391
+    ^~^~^ PSQ t=331.300 tac bound k=3 back=0 cover=0 base=0 dist=337.686
+    ^~^~^ PSQ t=332.050 move k=3 why=bound left=338.004
+    ^~^~^ PSQ t=332.550 walkout k=3 goal=1 left=26.569 lost=0
+    ^~^~^ PSQ t=333.300 tac bound k=3 back=0 cover=0 base=0 dist=336.454
+    ^~^~^ NEB t=333.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=333.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=333.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=333.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=333.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=334.050 move k=3 why=bound left=336.171
+    ^~^~^ PSQ t=334.300 tac bound k=3 back=0 cover=0 base=0 dist=336.476
+    ^~^~^ PSQ t=335.050 move k=3 why=bound left=336.219
+    ^~^~^ PSQ t=335.050 walkout k=3 goal=0 left=-1 lost=0
+    ^~^~^ PSQ t=335.300 tac bound k=3 back=0 cover=0 base=0 dist=336.450
+    ^~^~^ PSQ t=336.050 move k=3 why=bound left=335.951
+    ^~^~^ PSQ t=336.300 tac bound k=3 back=0 cover=0 base=0 dist=336.454
+    ^~^~^ NEB t=336.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=336.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=336.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=336.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=336.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3plant 1
+    ^~^~^ PSQ t=337.050 move k=3 why=bound left=337.514
+    ^~^~^ PSQ t=337.350 walkout k=3 goal=0 left=-1 lost=0
+    ^~^~^ NEB t=337.525 charge planted on Nebelwerfer 1 - 4 s fuse: DEFEND
+    ^~^~^ PSQ t=338.300 tac mandown alive=1
+    ^~^~^ PSQ t=338.300 tac bound k=3 back=1 cover=0 base=0 dist=338.030
+    ^~^~^ PSQ t=339.050 move k=3 why=bound left=337.548
+    ^~^~^ PSQ t=339.300 tac bound k=3 back=1 cover=0 base=0 dist=338.040
+    ^~^~^ NEB t=339.525 defend wave 1: 1 squad(s) sent from ( -3454.000 -6531.000 -26.000 )
+    ^~^~^ NEB t=339.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=339.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=339.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=339.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=339.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=339.525 summary: nebel men alive=18 bombcount=4 elapsed=80 s
+    ^~^~^ PSQ t=340.050 move k=3 why=bound left=337.785
+    ^~^~^ PSQ t=340.550 walkout k=3 goal=1 left=29.558 lost=0
+    ^~^~^ PSQ t=341.300 tac bound k=3 back=1 cover=0 base=0 dist=337.293
+    ^~^~^ PSQ t=342.050 move k=3 why=bound left=337.046
+    ^~^~^ PSQ t=342.300 tac bound k=3 back=1 cover=0 base=0 dist=337.305
+    ^~^~^ NEB t=342.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=342.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=342.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=342.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=342.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=342.525 Nebelwerfer 1 destroyed, remaining 3
+    ^~^~^ PSQ t=343.050 move k=3 why=bound left=337.054
+    ^~^~^ PSQ t=343.050 walkout k=3 goal=0 left=-1 lost=0
+    ^~^~^ PSQ t=343.300 tac bound k=3 back=1 cover=0 base=0 dist=337.318
+    ^~^~^ PSQ t=344.050 move k=3 why=bound left=337.073
+    ^~^~^ PSQ t=344.300 tac bound k=3 back=1 cover=0 base=0 dist=337.328
+    ^~^~^ PSQ t=345.050 move k=3 why=bound left=337.018
+    ^~^~^ PSQ t=345.350 walkout k=3 goal=0 left=-1 lost=0
+    ^~^~^ NEB t=345.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=345.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=345.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=345.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=345.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=346.300 tac bound k=3 back=1 cover=0 base=0 dist=338.184
+    ^~^~^ NEB t=346.825 COUNTER-PUSH: 2 squad(s) sent from ( -3454.000 -6531.000 -26.000 )
+    ^~^~^ PSQ t=347.050 move k=3 why=bound left=337.906
+    ^~^~^ PSQ t=347.300 tac bound k=3 back=1 cover=0 base=0 dist=338.202
+    ^~^~^ PSQ t=348.050 move k=3 why=bound left=338.482
+    ^~^~^ PSQ t=348.050 walkout k=3 goal=0 left=-1 lost=0
+    ^~^~^ PSQ t=348.300 tac bound k=3 back=1 cover=0 base=0 dist=338.087
+    ^~^~^ NEB t=348.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=348.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=348.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=348.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=348.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=349.050 move k=3 why=bound left=338.087
+    ^~^~^ PSQ t=349.300 tac bound k=3 back=1 cover=0 base=0 dist=338.087
+    ^~^~^ NEB t=349.525 summary: nebel men alive=16 bombcount=3 elapsed=90 s
+    ^~^~^ PSQ t=350.050 move k=3 why=bound left=337.861
+    ^~^~^ PSQ t=350.350 walkout k=3 goal=0 left=-1 lost=0
+    ^~^~^ NEB t=351.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=351.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=351.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=351.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=351.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=353.800 walkout k=3 goal=1 left=17.002 lost=0
+    ^~^~^ NEB t=354.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=354.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=354.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=354.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=354.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=355.300 tac contact thr=( -1408.540 -4466.861 -160.608 )
+    ^~^~^ PSQ t=355.300 tac bound k=3 back=1 cover=0 base=0 dist=338.812
+    ^~^~^ PSQ t=356.050 move k=3 why=bound left=338.679
+    ^~^~^ PSQ t=356.300 tac bound k=3 back=1 cover=0 base=0 dist=338.813
+    ^~^~^ PSQ t=357.050 move k=3 why=bound left=338.661
+    ^~^~^ PSQ t=357.050 walkout k=3 goal=0 left=-1 lost=0
+    ^~^~^ PSQ t=357.300 tac bound k=3 back=1 cover=0 base=0 dist=338.815
+    ^~^~^ NEB t=357.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=357.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=357.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=357.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=357.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=358.050 move k=3 why=bound left=338.779
+    ^~^~^ PSQ t=358.300 tac bound k=3 back=1 cover=0 base=0 dist=338.732
+    ^~^~^ PSQ t=359.050 move k=3 why=bound left=338.610
+    ^~^~^ NEB t=359.525 summary: nebel men alive=16 bombcount=3 elapsed=100 s
+    ^~^~^ PSQ t=359.650 walkout k=3 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=360.300 tac bound k=3 back=1 cover=0 base=0 dist=338.664
+    ^~^~^ NEB t=360.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=360.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=360.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=360.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=360.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=361.050 move k=3 why=bound left=338.452
+    ^~^~^ PSQ t=361.300 tac bound k=3 back=1 cover=0 base=0 dist=338.660
+    ^~^~^ PSQ t=362.050 move k=3 why=bound left=338.168
+    ^~^~^ PSQ t=362.650 walkout k=3 goal=0 left=-1 lost=1
+    ^~^~^ PSQ t=363.200 rescue k=3 why=lost from=( -157.646 -3450.824 -354.742 ) to=( -1607.721 -4567.200 -173.875 ) vetted=1 n=2
+    ^~^~^ NEB t=363.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=363.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=363.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=363.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=363.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=363.725 mg site how=1 mode=A gun=( -1719.573 -4568.816 -105.989 ) yaw=18.149 top=54.386 fire=last:1.500 arc=45 seat=( -1781.681 -4578.534 -173.875 ) walk=161.152 path=616.947 of=12
+    ^~^~^ PSQ t=363.725 mg plan aim=last ground=52 passed=12 tried=1 bags=1 refused: not_level=2 seatground=2 height=3 nofire=2 seat=4 gap=4 bag_slope=4 lane=5 secs=0.625
+    ^~^~^ PSQ t=365.975 mg walk how=1 left=13.403 ok=1
+    ^~^~^ NEB t=366.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=366.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=366.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=366.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=366.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=367.375 mg watch
+    ^~^~^ PSQ t=367.975 mg setup k=1 mode=A gun=( -1719.573 -4568.816 -105.989 ) yaw=18.149 arc=45 top=54.386 seat=( -1781.681 -4578.534 -173.875 ) hp=67.886 pos=stand
+    ^~^~^ NEB t=369.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=369.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=369.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=369.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=369.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=369.525 summary: nebel men alive=16 bombcount=3 elapsed=110 s
+    ^~^~^ NEB t=372.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=372.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=372.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=372.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=372.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=375.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=375.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=375.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=375.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=375.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=378.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=378.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=378.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=378.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=378.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ MZ t=378.725 site_g pick=none paths=1 players=1
+    ^~^~^ MZ t=378.725 no hidden site, try 0
+    ^~^~^ NEB t=379.525 summary: nebel men alive=16 bombcount=3 elapsed=120 s
+    ^~^~^ NEB t=381.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=381.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=381.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=381.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=381.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=382.375 mg track
+    ^~^~^ MZ t=383.025 site_g pick=none paths=1 players=1
+    ^~^~^ MZ t=383.025 no hidden site, try 1
+    ^~^~^ NEB t=384.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=384.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=384.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=384.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=384.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=385.375 mg hold fire=barrel_hot
+    ^~^~^ MZ t=387.325 site_g pick=none paths=1 players=1
+    ^~^~^ MZ t=387.325 no hidden site, try 2
+    ^~^~^ MZ t=387.325 no legal entry/site: barrage instead
+    ^~^~^ NEB t=387.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=387.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=387.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=387.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=387.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=389.525 summary: nebel men alive=16 bombcount=3 elapsed=130 s
+    ^~^~^ PSQ t=389.875 mg hold fire=clear
+    ^~^~^ NEB t=390.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=390.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=390.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=390.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=390.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=391.375 mg suppress at=( -1520.607 -4181.225 -162.504 ) age=0.075
+    ^~^~^ PSQ t=392.375 mg track
+    ^~^~^ PSQ t=393.125 mg hold fire=barrel_hot
+    ^~^~^ NEB t=393.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=393.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=393.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=393.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=393.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=396.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=396.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=396.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=396.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=396.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=397.625 mg hold fire=clear
+    ^~^~^ NEB t=399.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=399.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=399.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=399.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=399.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=399.525 summary: nebel men alive=16 bombcount=3 elapsed=140 s
+    ^~^~^ PSQ t=399.875 mg hold fire=barrel_hot
+    ^~^~^ NEB t=402.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=402.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=402.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=402.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=402.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=404.375 mg hold fire=clear
+    ^~^~^ NEB t=405.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=405.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=405.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=405.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=405.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=408.125 mg hold fire=barrel_hot
+    ^~^~^ NEB t=408.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=408.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=408.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=408.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=408.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=409.500
+    ^~^~^ NEB t=409.525 summary: nebel men alive=16 bombcount=3 elapsed=150 s
+    ^~^~^ NEB t=411.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=411.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=411.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=411.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=411.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=412.375 mg hold fire=clear
+    ^~^~^ NEB t=414.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=414.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=414.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=414.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=414.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=415.125 mg hold fire=barrel_hot
+    ^~^~^ NEB t=417.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=417.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=417.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=417.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=417.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=419.525 summary: nebel men alive=16 bombcount=3 elapsed=160 s
+    ^~^~^ PSQ t=420.375 mg hold fire=clear
+    ^~^~^ NEB t=420.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=420.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=420.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=420.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=420.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=423.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=423.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=423.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=423.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=423.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=424.750
+    ^~^~^ PSQ t=426.125 mg hold fire=barrel_hot
+    ^~^~^ NEB t=426.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=426.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=426.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=426.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=426.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=429.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=429.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=429.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=429.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=429.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=429.525 summary: nebel men alive=16 bombcount=3 elapsed=170 s
+    ^~^~^ PSQ t=430.875 mg hold fire=clear
+    ^~^~^ NEB t=432.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=432.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=432.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=432.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=432.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=433.625 mg hold fire=barrel_hot
+    ^~^~^ NEB t=435.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=435.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=435.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=435.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=435.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=437.925 no German mortar crew this time (chance / sites)
+    ^~^~^ NEB t=438.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=438.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=438.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=438.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=438.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=439.125 mg hold fire=clear
+    ^~^~^ NEB t=439.525 summary: nebel men alive=16 bombcount=3 elapsed=180 s
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=439.975
+    ^~^~^ NEB t=441.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=441.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=441.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=441.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=441.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=441.875 mg hold fire=barrel_hot
+    ^~^~^ PSQ t=444.300 brain end sid=1
+    ^~^~^ NEB t=444.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=444.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=444.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=444.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=444.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ PSQ t=444.975 mg left for the players belt=133 fired=0 gun=( -1719.573 -4568.816 -105.989 )
+    ^~^~^ NEB t=447.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=447.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=447.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=447.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=447.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=449.525 summary: nebel men alive=16 bombcount=3 elapsed=190 s
+    ^~^~^ NEB t=450.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=450.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=450.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=450.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=450.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=453.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=453.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=453.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=453.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=453.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=455.200
+    ^~^~^ NEB t=456.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=456.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=456.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=456.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=456.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=459.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=459.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=459.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=459.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=459.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=459.525 summary: nebel men alive=16 bombcount=3 elapsed=200 s
+    ^~^~^ NEB t=462.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=462.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=462.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=462.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=462.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=465.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=465.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=465.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=465.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=465.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=468.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=468.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=468.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=468.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=468.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=469.525 summary: nebel men alive=16 bombcount=3 elapsed=210 s
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=470.425
+    ^~^~^ NEB t=471.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=471.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=471.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=471.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=471.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=474.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=474.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=474.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=474.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=474.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=477.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=477.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=477.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=477.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=477.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=479.525 summary: nebel men alive=16 bombcount=3 elapsed=220 s
+    ^~^~^ NEB t=480.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=480.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=480.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=480.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=480.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=483.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=483.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=483.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=483.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=483.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=485.650
+    ^~^~^ NEB t=486.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=486.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=486.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=486.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=486.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=489.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=489.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=489.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=489.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=489.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=489.525 summary: nebel men alive=16 bombcount=3 elapsed=230 s
+    ^~^~^ NEB t=492.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=492.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=492.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=492.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=492.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=495.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=495.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=495.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=495.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=495.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=498.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=498.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=498.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=498.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=498.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=499.525 summary: nebel men alive=16 bombcount=3 elapsed=240 s
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=500.900
+    ^~^~^ NEB t=501.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=501.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=501.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=501.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=501.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=504.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=504.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=504.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=504.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=504.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=507.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=507.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=507.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=507.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=507.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=509.525 summary: nebel men alive=16 bombcount=3 elapsed=250 s
+    ^~^~^ NEB t=510.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=510.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=510.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=510.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=510.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=513.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=513.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=513.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=513.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=513.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=516.100
+    ^~^~^ NEB t=516.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=516.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=516.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=516.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=516.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=519.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=519.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=519.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=519.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=519.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=519.525 summary: nebel men alive=16 bombcount=3 elapsed=260 s
+    ^~^~^ NEB t=522.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=522.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=522.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=522.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=522.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=525.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=525.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=525.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=525.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=525.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=528.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=528.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=528.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=528.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=528.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=529.525 summary: nebel men alive=16 bombcount=3 elapsed=270 s
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=531.350
+    ^~^~^ NEB t=531.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=531.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=531.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=531.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=531.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=534.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=534.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=534.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=534.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=534.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=537.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=537.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=537.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=537.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=537.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=539.525 summary: nebel men alive=16 bombcount=3 elapsed=280 s
+    ^~^~^ NEB t=540.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=540.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=540.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=540.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=540.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=543.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=543.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=543.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=543.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=543.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=546.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=546.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=546.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=546.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=546.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=546.550
+    ^~^~^ NEB t=549.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=549.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=549.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=549.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=549.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=549.525 summary: nebel men alive=16 bombcount=3 elapsed=290 s
+    ^~^~^ NEB t=552.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=552.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=552.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=552.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=552.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=555.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=555.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=555.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=555.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=555.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=558.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=558.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=558.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=558.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=558.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=559.525 summary: nebel men alive=16 bombcount=3 elapsed=300 s
+    ^~^~^ NEB t=561.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=561.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=561.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=561.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=561.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=561.775
+    ^~^~^ NEB t=564.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=564.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=564.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=564.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=564.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=567.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=567.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=567.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=567.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=567.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=569.525 summary: nebel men alive=16 bombcount=3 elapsed=310 s
+    ^~^~^ NEB t=570.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=570.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=570.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=570.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=570.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=573.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=573.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=573.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=573.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=573.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=576.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=576.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=576.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=576.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=576.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=577.000
+    ^~^~^ NEB t=579.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=579.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=579.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=579.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=579.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=579.525 summary: nebel men alive=16 bombcount=3 elapsed=320 s
+    ^~^~^ NEB t=582.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=582.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=582.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=582.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=582.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=585.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=585.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=585.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=585.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=585.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=588.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=588.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=588.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=588.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=588.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=589.525 summary: nebel men alive=16 bombcount=3 elapsed=330 s
+    ^~^~^ NEB t=591.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=591.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=591.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=591.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=591.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=592.225
+    ^~^~^ NEB t=594.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=594.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=594.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=594.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=594.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=597.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=597.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=597.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=597.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=597.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=599.525 summary: nebel men alive=16 bombcount=3 elapsed=340 s
+    ^~^~^ NEB t=600.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=600.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=600.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=600.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=600.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=603.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=603.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=603.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=603.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=603.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=606.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=606.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=606.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=606.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=606.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=607.475
+    ^~^~^ NEB t=609.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=609.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=609.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=609.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=609.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=609.525 summary: nebel men alive=16 bombcount=3 elapsed=350 s
+    ^~^~^ NEB t=612.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=612.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=612.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=612.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=612.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=615.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=615.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=615.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=615.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=615.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=618.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=618.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=618.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=618.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=618.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=619.525 summary: nebel men alive=16 bombcount=3 elapsed=360 s
+    ^~^~^ NEB t=621.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=621.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=621.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=621.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=621.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=622.700
+    ^~^~^ NEB t=624.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=624.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=624.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=624.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=624.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=627.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=627.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=627.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=627.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=627.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=629.525 summary: nebel men alive=16 bombcount=3 elapsed=370 s
+    ^~^~^ NEB t=630.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=630.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=630.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=630.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=630.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=633.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=633.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=633.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=633.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=633.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=636.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=636.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=636.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=636.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=636.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=637.925
+    ^~^~^ NEB t=639.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=639.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=639.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=639.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=639.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=639.525 summary: nebel men alive=16 bombcount=3 elapsed=380 s
+    ^~^~^ NEB t=642.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=642.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=642.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=642.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=642.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=645.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=645.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=645.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=645.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=645.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=648.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=648.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=648.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=648.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=648.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=649.525 summary: nebel men alive=16 bombcount=3 elapsed=390 s
+    ^~^~^ NEB t=651.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=651.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=651.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=651.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=651.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=653.150
+    ^~^~^ NEB t=654.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=654.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=654.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=654.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=654.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=657.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=657.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=657.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=657.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=657.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=659.525 summary: nebel men alive=16 bombcount=3 elapsed=400 s
+    ^~^~^ NEB t=660.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=660.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=660.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=660.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=660.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=663.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=663.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=663.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=663.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=663.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=666.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=666.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=666.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=666.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=666.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=668.375
+    ^~^~^ NEB t=669.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=669.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=669.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=669.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=669.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=669.525 summary: nebel men alive=16 bombcount=3 elapsed=410 s
+    ^~^~^ NEB t=672.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=672.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=672.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=672.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=672.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=675.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=675.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=675.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=675.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=675.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=678.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=678.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=678.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=678.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=678.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=679.525 summary: nebel men alive=16 bombcount=3 elapsed=420 s
+    ^~^~^ NEB t=681.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=681.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=681.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=681.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=681.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=683.600
+    ^~^~^ NEB t=684.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=684.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=684.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=684.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=684.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=687.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=687.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=687.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=687.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=687.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=689.525 summary: nebel men alive=16 bombcount=3 elapsed=430 s
+    ^~^~^ NEB t=690.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=690.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=690.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=690.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=690.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=693.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=693.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=693.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=693.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=693.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=696.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=696.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=696.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=696.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=696.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=698.825
+    ^~^~^ NEB t=699.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=699.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=699.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=699.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=699.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=699.525 summary: nebel men alive=16 bombcount=3 elapsed=440 s
+    ^~^~^ NEB t=702.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=702.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=702.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=702.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=702.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=705.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=705.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=705.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=705.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=705.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=708.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=708.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=708.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=708.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=708.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=709.525 summary: nebel men alive=16 bombcount=3 elapsed=450 s
+    ^~^~^ NEB t=711.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=711.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=711.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=711.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=711.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=714.050
+    ^~^~^ NEB t=714.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=714.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=714.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=714.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=714.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=717.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=717.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=717.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=717.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=717.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=719.525 summary: nebel men alive=16 bombcount=3 elapsed=460 s
+    ^~^~^ NEB t=720.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=720.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=720.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=720.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=720.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=723.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=723.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=723.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=723.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=723.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=726.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=726.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=726.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=726.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=726.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=729.275
+    ^~^~^ NEB t=729.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=729.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=729.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=729.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=729.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=729.525 summary: nebel men alive=16 bombcount=3 elapsed=470 s
+    ^~^~^ NEB t=732.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=732.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=732.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=732.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=732.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=735.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=735.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=735.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=735.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=735.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=738.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=738.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=738.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=738.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=738.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=739.525 summary: nebel men alive=16 bombcount=3 elapsed=480 s
+    ^~^~^ NEB t=741.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=741.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=741.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=741.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=741.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=3 t=744.500
+    ^~^~^ NEB t=744.525 nest 1 gunner_alive=1 dist_to_gun=39 enemy=Player deaths=0
+    ^~^~^ NEB t=744.525 nest 2 gunner_alive=1 dist_to_gun=82 enemy=Player deaths=0
+    ^~^~^ NEB t=744.525 nest 3 gunner_alive=1 dist_to_gun=78 enemy=Player deaths=0
+    ^~^~^ NEB t=744.525 nest 4 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+    ^~^~^ NEB t=744.525 nest 5 gunner_alive=1 dist_to_gun=71 enemy=Player deaths=0
+script errors: 3 ["[2026-10-19 15:52:21 UTC-6.000] ^~^~^ Script Error : binary '<' applied to incompatible types 'int' and 'pointer'", "[2026-10-19 15:52:26 UTC-6.000] ^~^~^ Script Error : binary '<' applied to incompatible types 'int' and 'pointer'", "[2026-10-19 15:52:28 UTC-6.000] ^~^~^ Script Error : binary '<' applied to incompatible types 'int' and 'pointer'"]

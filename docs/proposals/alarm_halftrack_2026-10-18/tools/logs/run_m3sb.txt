@@ -1,0 +1,17 @@
+30cal team camera at 1845.078531843295 -1894.8352942339743 gun 1615.552 -1880.085 -268.712 yaw 176.323
+    ^~^~^ PSQ t=118.550 lz plan n=5 ground_only=0 tests=5 secs=1.525 ref=( 4269.000 -2217.000 -334.655 )
+    ^~^~^ PSQ t=143.275 land k=1 at=( 4153.446 -2184.648 -326.073 ) lzoff=0.113
+    ^~^~^ PSQ t=143.475 land k=3 at=( 4264.002 -2096.903 -326.221 ) lzoff=1.877
+    ^~^~^ PSQ t=143.950 land k=5 at=( 4214.353 -2450.661 -346.449 ) lzoff=1.131
+    ^~^~^ PSQ t=144.075 land k=2 at=( 4175.983 -1995.732 -321.732 ) lzoff=1.011
+    ^~^~^ PSQ t=144.275 land k=4 at=( 4063.643 -2092.550 -326.960 ) lzoff=0.944
+    ^~^~^ PSQ t=282.875 mg site how=1 mode=C gun=( 1615.552 -1880.085 -268.712 ) yaw=176.323 top=0 fire=enemy:1.250 arc=45 seat=( 1674.341 -1892.619 -308.199 ) walk=144.837 path=233.960 of=1
+    ^~^~^ PSQ t=282.875 mg plan aim=enemy ground=16 passed=1 tried=1 bags=1 refused: tall=5 not_level=6 bag_slope=2 secs=0.400
+    ^~^~^ PSQ t=283.625 mg walk how=1 left=11.484 ok=1
+    ^~^~^ PSQ t=285.375 mg watch
+    ^~^~^ PSQ t=285.625 mg track
+    ^~^~^ PSQ t=285.975 mg setup k=1 mode=C gun=( 1615.552 -1880.085 -268.712 ) yaw=176.323 arc=45 top=0 seat=( 1674.047 -1893.589 -307.132 ) hp=38.419 pos=crouch
+    ^~^~^ PSQ t=288.400 mg nade at=( 1544.925 -1782.271 -305.791 ) d=173.986
+    ^~^~^ PSQ t=289.250 mg rearm k=3 prim=m1 garand weapon=m1 garand
+    ^~^~^ PSQ t=292.700 mg nade walkback straight=1 left=21.652
+script errors: 0 []
