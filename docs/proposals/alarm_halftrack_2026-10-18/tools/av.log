@@ -25,3 +25,224 @@
 21:31:30 p1     ^~^~^ AV P2 t=12 org=( -6992.199 3147.600 -513.375 ) moved=0.000
 21:31:30 p1     ^~^~^ AV P2 t=13 org=( -6992.199 3147.600 -513.375 ) moved=0.000
 21:31:30 p1 script errors: 3 ["[2026-10-18 21:31:13 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-18 21:31:13 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-18 21:31:13 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'"]
+21:36:19 booted av_m3ht m3l3 ref=work dog False
+21:37:52 m3ht    wait \^~\^~\^ ALMVEH ARRIVING -> TIMEOUT
+21:39:22 m3ht    wait \^~\^~\^ ALMVEH ARRIVED -> TIMEOUT
+21:40:02 m3ht    wait \^~\^~\^ ALMVEH FIRING -> TIMEOUT
+21:40:40 m3ht    wait \^~\^~\^ ALMVEH DESTROYED -> TIMEOUT
+21:40:40 m3ht     ^~^~^ AVT pinned at " + local.pos + " looking " + local.va )
+21:40:40 m3ht     ^~^~^ AVT pinned at " + local.pos + " looking " ^
+21:40:40 m3ht     ^~^~^ AVT players=1
+21:40:40 m3ht     ^~^~^ AVT armed pull=1 map=m3l3
+21:40:40 m3ht     ^~^~^ ATSUPPLY skip tag=alarmveh_m3l31 pos=( -1905.700 4855.200 -136.000 ) reason=no_floor_or_solid
+21:40:40 m3ht     ^~^~^ ALMVEH crate FAILED route 1 at=( -1905.700 4855.200 -136.000 )
+21:40:40 m3ht     ^~^~^ ALMVEH pull 1: vehicle due in 9 s
+21:40:40 m3ht     ^~^~^ ALMVEH SKIP: no hidden entry, reason no crate
+21:40:40 m3ht     ^~^~^ AVT bullet: no vehicleend
+21:40:40 m3ht     ^~^~^ AVT bullet on hp=" + local.v.health )
+21:40:40 m3ht     ^~^~^ AVT bullet on hp=" + local.v.^
+21:40:40 m3ht     ^~^~^ AVT bullet on hp=" + local.v.health )
+21:40:40 m3ht     ^~^~^ AVT bullet on hp=" ^
+21:40:40 m3ht     ^~^~^ AVT bullet after hp=" + ( waitthread av_s local.v.health ) )
+21:40:40 m3ht     ^~^~^ AVT bullet after hp=" + ( waitthread av_s local.v.^
+21:40:40 m3ht     ^~^~^ AVT bullet after hp=-
+21:40:40 m3ht     ^~^~^ AVT grenade: no vehicleend
+21:40:40 m3ht     ^~^~^ AVT grenade on hp=" + local.v.health )
+21:40:40 m3ht     ^~^~^ AVT grenade on hp=" + local.v.^
+21:40:40 m3ht     ^~^~^ AVT grenade on hp=" + local.v.health )
+21:40:40 m3ht     ^~^~^ AVT grenade on hp=" ^
+21:40:40 m3ht     ^~^~^ AVT grenade after hp=" + ( waitthread av_s local.v.health ) )
+21:40:40 m3ht     ^~^~^ AVT grenade after hp=" + ( waitthread av_s local.v.^
+21:40:40 m3ht     ^~^~^ AVT grenade after hp=-
+21:40:40 m3ht     ^~^~^ AVT rocket: no vehicleend
+21:40:40 m3ht     ^~^~^ AVT rocket on hp=" + local.v.health )
+21:40:40 m3ht     ^~^~^ AVT rocket on hp=" + local.v.^
+21:40:40 m3ht     ^~^~^ AVT rocket on hp=" + local.v.health )
+21:40:40 m3ht     ^~^~^ AVT rocket on hp=" ^
+21:40:40 m3ht     ^~^~^ AVT rocket after hp=" + ( waitthread av_s local.v.health ) )
+21:40:40 m3ht     ^~^~^ AVT rocket after hp=" + ( waitthread av_s local.v.^
+21:40:40 m3ht     ^~^~^ AVT rocket after hp=-
+21:40:40 m3ht script errors: 531 ["[2026-10-18 21:36:19 UTC-6.000] ^~^~^ Script Error : Cannot cast 'float' to vector", "[2026-10-18 21:36:19 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector", "[2026-10-18 21:36:19 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-18 21:36:20 UTC-6.000] ^~^~^ Script Error : Cannot cast 'float' to vector", "[2026-10-18 21:36:20 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector", "[2026-10-18 21:36:21 UTC-6.000] ^~^~^ Script Error : Cannot cast 'float' to vector"]
+21:41:52 booted av_t3tk t3l1 ref=work dog False
+21:42:06 t3tk    wait \^~\^~\^ ALMVEH ARRIVING -> ok
+21:42:25 t3tk    wait \^~\^~\^ ALMVEH ARRIVED -> ok
+21:43:08 t3tk    wait \^~\^~\^ ALMVEH WITHDRAW -> ok
+21:43:28 t3tk    wait \^~\^~\^ ALMVEH withdrawn -> ok
+21:43:28 t3tk     ^~^~^ AVT pinned at " + local.pos + " looking " + local.va )
+21:43:28 t3tk     ^~^~^ AVT pinned at " + local.pos + " looking " ^
+21:43:28 t3tk     ^~^~^ AVT players=1
+21:43:28 t3tk     ^~^~^ AVT armed pull=1 map=t3l1
+21:43:28 t3tk     ^~^~^ ATSUPPLY skip tag=alarmveh_t3l11 pos=( 1524.400 3098.100 234.100 ) reason=no_floor_or_solid
+21:43:28 t3tk     ^~^~^ ALMVEH crate FAILED route 1 at=( 1524.400 3098.100 234.100 )
+21:43:28 t3tk     ^~^~^ ALMVEH pull 1: vehicle due in 10 s
+21:43:28 t3tk     ^~^~^ ALMVEH ARRIVING truck route=1 s10_truck3 hp=600 pax=3 players=1 entry=( 1390.000 6992.000 192.000 )
+21:43:28 t3tk     ^~^~^ ALMVEH ARRIVED truck at ( 1538.992 2644.745 182.625 )
+21:43:28 t3tk     ^~^~^ ALMVEH unloading
+21:43:28 t3tk     ^~^~^ AVT alarm men alive=3
+21:43:28 t3tk     ^~^~^ ALMVEH WITHDRAW, reason 40 s: truck at ( 1538.992 2644.745 182.625 )
+21:43:28 t3tk     ^~^~^ ALMVEH withdrawn and removed after 20 s
+21:43:28 t3tk script errors: 192 ["[2026-10-18 21:41:53 UTC-6.000] ^~^~^ Script Error : Cannot cast 'float' to vector", "[2026-10-18 21:41:53 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector", "[2026-10-18 21:41:53 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-18 21:41:54 UTC-6.000] ^~^~^ Script Error : Cannot cast 'float' to vector", "[2026-10-18 21:41:54 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector", "[2026-10-18 21:41:55 UTC-6.000] ^~^~^ Script Error : Cannot cast 'float' to vector"]
+21:48:08 booted av_m3ht2 m3l3 ref=work dog False
+21:49:41 m3ht2    wait \^~\^~\^ ALMVEH ARRIVING -> TIMEOUT
+21:51:12 m3ht2    wait \^~\^~\^ ALMVEH ARRIVED -> TIMEOUT
+21:51:52 m3ht2    wait \^~\^~\^ ALMVEH FIRING -> TIMEOUT
+21:52:30 m3ht2    wait \^~\^~\^ ALMVEH DESTROYED -> TIMEOUT
+21:52:30 m3ht2     ^~^~^ AVT pinned at ( -3236.000 4026.000 -95.000 ) looking ( -359.148 19.103 0.000 )
+21:52:30 m3ht2     ^~^~^ AVT players=1
+21:52:30 m3ht2     ^~^~^ AVT armed pull=1 map=m3l3
+21:52:30 m3ht2     ^~^~^ ALMVEH crate FAILED route 1: no clear covered floor within 320 u of ( -1905.700 4855.200 -136.000 )
+21:52:30 m3ht2     ^~^~^ ALMVEH pull 1: vehicle due in 10 s
+21:52:30 m3ht2     ^~^~^ ALMVEH SKIP: no hidden entry, reason no crate
+21:52:30 m3ht2     ^~^~^ AVT bullet: no vehicleend
+21:52:30 m3ht2     ^~^~^ AVT bullet on hp=" + local.v.health )
+21:52:30 m3ht2     ^~^~^ AVT bullet on hp=" + local.v.^
+21:52:30 m3ht2     ^~^~^ AVT bullet on hp=" + local.v.health )
+21:52:30 m3ht2     ^~^~^ AVT bullet on hp=" ^
+21:52:30 m3ht2     ^~^~^ AVT bullet after hp=" + ( waitthread av_s local.v.health ) )
+21:52:30 m3ht2     ^~^~^ AVT bullet after hp=" + ( waitthread av_s local.v.^
+21:52:30 m3ht2     ^~^~^ AVT bullet after hp=-
+21:52:30 m3ht2     ^~^~^ AVT grenade: no vehicleend
+21:52:30 m3ht2     ^~^~^ AVT grenade on hp=" + local.v.health )
+21:52:30 m3ht2     ^~^~^ AVT grenade on hp=" + local.v.^
+21:52:30 m3ht2     ^~^~^ AVT grenade on hp=" + local.v.health )
+21:52:30 m3ht2     ^~^~^ AVT grenade on hp=" ^
+21:52:30 m3ht2     ^~^~^ AVT grenade after hp=" + ( waitthread av_s local.v.health ) )
+21:52:30 m3ht2     ^~^~^ AVT grenade after hp=" + ( waitthread av_s local.v.^
+21:52:30 m3ht2     ^~^~^ AVT grenade after hp=-
+21:52:30 m3ht2     ^~^~^ AVT rocket: no vehicleend
+21:52:30 m3ht2     ^~^~^ AVT rocket on hp=" + local.v.health )
+21:52:30 m3ht2     ^~^~^ AVT rocket on hp=" + local.v.^
+21:52:30 m3ht2     ^~^~^ AVT rocket on hp=" + local.v.health )
+21:52:30 m3ht2     ^~^~^ AVT rocket on hp=" ^
+21:52:30 m3ht2     ^~^~^ AVT rocket after hp=" + ( waitthread av_s local.v.health ) )
+21:52:30 m3ht2     ^~^~^ AVT rocket after hp=" + ( waitthread av_s local.v.^
+21:52:30 m3ht2     ^~^~^ AVT rocket after hp=-
+21:52:30 m3ht2 script errors: 7 ["[2026-10-18 21:51:52 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to listener", "[2026-10-18 21:51:52 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-18 21:51:52 UTC-6.000] ^~^~^ Script Error : command 'damage' applied to NIL", "[2026-10-18 21:51:53 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to listener", "[2026-10-18 21:51:53 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-18 21:51:53 UTC-6.000] ^~^~^ Script Error : command 'damage' applied to NIL"]
+21:53:59 booted av_t3tk2 t3l1 ref=work dog False
+21:55:32 t3tk2    wait \^~\^~\^ ALMVEH ARRIVING -> TIMEOUT
+21:57:02 t3tk2    wait \^~\^~\^ ALMVEH ARRIVED -> TIMEOUT
+21:59:11 t3tk2    wait \^~\^~\^ ALMVEH WITHDRAW -> TIMEOUT
+22:01:11 t3tk2    wait \^~\^~\^ ALMVEH withdrawn -> TIMEOUT
+22:01:11 t3tk2     ^~^~^ AVT pinned at ( 1524.400 3098.100 236.000 ) looking ( -356.665 270.719 0.000 )
+22:01:11 t3tk2     ^~^~^ AVT players=1
+22:01:11 t3tk2     ^~^~^ AVT armed pull=1 map=t3l1
+22:01:11 t3tk2     ^~^~^ ATSUPPLY ok tag=alarmveh_t3l11 weapon=models/weapons/bazooka.tik at=( 1580.969 3154.669 190.125 ) floor=( 1580.969 3154.669 184.125 ) shells=3
+22:01:11 t3tk2     ^~^~^ ALMVEH crate ok route 1 kind=bazooka at=( 1580.969 3154.669 234.100 ) stored=( 1524.400 3098.100 234.100 )
+22:01:11 t3tk2     ^~^~^ ALMVEH pull 1: vehicle due in 10 s
+22:01:11 t3tk2     ^~^~^ ALMVEH SKIP: no hidden entry, reason seen
+22:01:11 t3tk2     ^~^~^ AVT alarm men alive=0
+22:01:11 t3tk2 script errors: 2 ["[2026-10-18 21:54:21 UTC-6.000] ^~^~^ Script Error : command 'accuracy' applied to NULL listener", "[2026-10-18 21:54:21 UTC-6.000] ^~^~^ Script Error : command 'exec' applied to NULL listener"]
+22:05:22 booted av_m3ht3 m3l3 ref=work dog False
+22:06:56 m3ht3    wait \^~\^~\^ ALMVEH ARRIVING -> TIMEOUT
+22:08:26 m3ht3    wait \^~\^~\^ ALMVEH ARRIVED -> TIMEOUT
+22:09:06 m3ht3    wait \^~\^~\^ ALMVEH FIRING -> TIMEOUT
+22:09:42 m3ht3    wait \^~\^~\^ ALMVEH DESTROYED -> TIMEOUT
+22:09:42 m3ht3     ^~^~^ AVT pinned at ( -3236.000 4026.000 -95.000 ) looking ( -359.148 19.103 0.000 )
+22:09:42 m3ht3     ^~^~^ AVT players=1
+22:09:42 m3ht3     ^~^~^ AVT armed pull=1 map=m3l3
+22:09:42 m3ht3     ^~^~^ ALMVEH crate FAILED route 1: no clear covered floor within 480 u of ( -3185.000 3625.000 -147.000 )
+22:09:42 m3ht3     ^~^~^ ALMVEH pull 1: vehicle due in 3 s
+22:09:42 m3ht3     ^~^~^ ALMVEH SKIP: no hidden entry, reason no crate
+22:09:42 m3ht3     ^~^~^ AVT bullet: no vehicle
+22:09:42 m3ht3     ^~^~^ AVT grenade: no vehicle
+22:09:42 m3ht3     ^~^~^ AVT rocket: no vehicle
+22:09:42 m3ht3 script errors: 0 []
+22:10:54 booted av_t3tk3 t3l1 ref=work dog False
+22:11:15 t3tk3    wait \^~\^~\^ ALMVEH ARRIVING -> ok
+22:11:35 t3tk3    wait \^~\^~\^ ALMVEH ARRIVED -> ok
+22:12:15 t3tk3    wait \^~\^~\^ ALMVEH WITHDRAW -> ok
+22:12:34 t3tk3    wait \^~\^~\^ ALMVEH withdrawn -> ok
+22:12:34 t3tk3     ^~^~^ AVT players=1
+22:12:34 t3tk3     ^~^~^ AVT armed pull=1 map=t3l1
+22:12:34 t3tk3     ^~^~^ ATSUPPLY ok tag=alarmveh_t3l11 weapon=models/weapons/bazooka.tik at=( 1580.969 3154.669 190.125 ) floor=( 1580.969 3154.669 184.125 ) shells=3
+22:12:34 t3tk3     ^~^~^ ALMVEH crate ok route 1 kind=bazooka at=( 1580.969 3154.669 234.100 ) stored=( 1524.400 3098.100 234.100 )
+22:12:34 t3tk3     ^~^~^ ALMVEH pull 1: vehicle due in 18 s
+22:12:34 t3tk3     ^~^~^ ALMVEH ARRIVING truck route=1 s10_truck3 hp=600 pax=3 players=1 entry=( 1390.000 6992.000 192.000 )
+22:12:34 t3tk3     ^~^~^ ALMVEH ARRIVED truck at ( 1538.992 2644.745 182.625 )
+22:12:34 t3tk3     ^~^~^ ALMVEH unloading
+22:12:35 t3tk3     ^~^~^ AVT alarm men alive=3
+22:12:35 t3tk3     ^~^~^ ALMVEH WITHDRAW, reason 40 s: truck at ( 1538.992 2644.745 182.625 )
+22:12:35 t3tk3     ^~^~^ ALMVEH withdrawn and removed after 20 s
+22:12:35 t3tk3 script errors: 2 ["[2026-10-18 22:11:17 UTC-6.000] ^~^~^ Script Error : command 'accuracy' applied to NULL listener", "[2026-10-18 22:11:17 UTC-6.000] ^~^~^ Script Error : command 'exec' applied to NULL listener"]
+22:21:19 booted av_m3ht4 m3l3 ref=work dog False
+22:22:52 m3ht4    wait \^~\^~\^ ALMVEH ARRIVING -> TIMEOUT
+22:24:22 m3ht4    wait \^~\^~\^ ALMVEH ARRIVED -> TIMEOUT
+22:25:02 m3ht4    wait \^~\^~\^ ALMVEH FIRING -> TIMEOUT
+22:25:38 m3ht4    wait \^~\^~\^ ALMVEH DESTROYED -> TIMEOUT
+22:25:38 m3ht4     ^~^~^ AVT pinned at ( -3236.000 4026.000 -95.000 ) looking ( -359.148 19.103 0.000 )
+22:25:38 m3ht4     ^~^~^ AVT players=1
+22:25:38 m3ht4     ^~^~^ AVT armed pull=1 map=m3l3
+22:25:38 m3ht4     ^~^~^ ALMVEH crate FAILED route 1: no clear covered floor within 480 u of ( -3185.000 3625.000 -147.000 ) nofloor=49 nocover=0
+22:25:38 m3ht4     ^~^~^ ALMVEH pull 1: vehicle due in 22 s
+22:25:38 m3ht4     ^~^~^ ALMVEH SKIP: no hidden entry, reason no crate
+22:25:38 m3ht4     ^~^~^ AVT bullet: no vehicle
+22:25:38 m3ht4     ^~^~^ AVT grenade: no vehicle
+22:25:38 m3ht4     ^~^~^ AVT rocket: no vehicle
+22:25:38 m3ht4 script errors: 0 []
+22:36:49 booted av_m3ht5 m3l3 ref=work dog False
+22:38:22 m3ht5    wait \^~\^~\^ ALMVEH ARRIVING -> TIMEOUT
+22:39:52 m3ht5    wait \^~\^~\^ ALMVEH ARRIVED -> TIMEOUT
+22:40:32 m3ht5    wait \^~\^~\^ ALMVEH FIRING -> TIMEOUT
+22:41:08 m3ht5    wait \^~\^~\^ ALMVEH DESTROYED -> TIMEOUT
+22:41:08 m3ht5     ^~^~^ AVT pinned at ( -3236.000 4026.000 -95.000 ) looking ( -359.148 19.103 0.000 )
+22:41:08 m3ht5     ^~^~^ AVT players=1
+22:41:08 m3ht5     ^~^~^ AVT armed pull=1 map=m3l3
+22:41:08 m3ht5     ^~^~^ ALMVEH crate probe pos0: startSolid=0 allSolid=0 fraction=0.062 end=( -3185.000 3625.000 -144.807 )
+22:41:08 m3ht5     ^~^~^ ALMVEH crate FAILED route 1: no clear covered floor within 480 u of ( -3185.000 3625.000 -147.000 ) nofloor=49 nocover=0
+22:41:08 m3ht5     ^~^~^ ALMVEH pull 1: vehicle due in 7 s
+22:41:08 m3ht5     ^~^~^ ALMVEH SKIP: no hidden entry, reason no crate
+22:41:08 m3ht5     ^~^~^ AVT bullet: no vehicle
+22:41:08 m3ht5     ^~^~^ AVT grenade: no vehicle
+22:41:08 m3ht5     ^~^~^ AVT rocket: no vehicle
+22:41:08 m3ht5 script errors: 0 []
+22:42:18 booted av_m41tk m4l1 ref=work dog False
+22:42:24 m41tk    wait \^~\^~\^ ALMVEH ARRIVING -> ok
+22:42:43 m41tk    wait \^~\^~\^ ALMVEH ARRIVED -> ok
+22:43:23 m41tk    wait \^~\^~\^ ALMVEH WITHDRAW -> ok
+22:43:29 m41tk    wait \^~\^~\^ ALMVEH withdrawn -> ok
+22:43:29 m41tk     ^~^~^ AVT pinned at ( 3068.000 3184.000 335.000 ) looking ( -0.000 180.000 0.000 )
+22:43:29 m41tk     ^~^~^ AVT players=1
+22:43:29 m41tk     ^~^~^ AVT armed pull=1 map=m4l1
+22:43:29 m41tk     ^~^~^ ALMVEH crate probe pos0: startSolid=1 allSolid=1 fraction=0.000 end=( 3068.000 3184.000 364.000 )
+22:43:29 m41tk     ^~^~^ ALMVEH crate FAILED route 1: no clear covered floor within 480 u of ( 3068.000 3184.000 328.000 ) nofloor=44 nocover=0
+22:43:29 m41tk     ^~^~^ ALMVEH pull 1: vehicle due in 3 s
+22:43:29 m41tk     ^~^~^ ALMVEH ARRIVING truck route=1 truck01 hp=600 pax=3 players=1 entry=( 1823.000 225.000 -120.000 )
+22:43:29 m41tk     ^~^~^ ALMVEH ARRIVED truck at ( 2689.787 3150.864 309.372 )
+22:43:29 m41tk     ^~^~^ ALMVEH unloading
+22:43:29 m41tk     ^~^~^ AVT alarm men alive=3
+22:43:29 m41tk     ^~^~^ ALMVEH WITHDRAW, reason 40 s: truck at ( 2689.771 3148.510 309.348 )
+22:43:29 m41tk     ^~^~^ ALMVEH withdrawn and removed after 3 s
+22:43:29 m41tk script errors: 0 []
+22:57:46 booted av_m3ht6 m3l3 ref=work dog False
+22:58:03 m3ht6    wait \^~\^~\^ ALMVEH ARRIVING -> ok
+22:59:39 m3ht6    wait \^~\^~\^ ALMVEH ARRIVED -> TIMEOUT
+23:00:19 m3ht6    wait \^~\^~\^ ALMVEH FIRING -> TIMEOUT
+23:00:25 m3ht6    wait \^~\^~\^ ALMVEH DESTROYED -> ok
+23:00:25 m3ht6     ^~^~^ AVT pinned at ( -3236.000 4026.000 -95.000 ) looking ( -359.148 19.103 0.000 )
+23:00:25 m3ht6     ^~^~^ AVT players=1
+23:00:25 m3ht6     ^~^~^ AVT armed pull=1 map=m3l3
+23:00:25 m3ht6     ^~^~^ ALMVEH crate ok route 1 kind=panzerschreck at=( -3185.000 3625.000 -147.000 ) (small-volume path)
+23:00:25 m3ht6     ^~^~^ ALMVEH pull 1: vehicle due in 14 s
+23:00:25 m3ht6     ^~^~^ ALMVEH halftrack gun=avveh1_turret0 gunner=
+23:00:25 m3ht6     ^~^~^ ALMVEH ARRIVING halftrack route=1 halftrack hp=300 pax=3 players=1 entry=( -729.900 5373.400 -136.000 )
+23:00:25 m3ht6     ^~^~^ ALMVEH DESTROYED halftrack at ( -1307.044 4882.823 -145.022 )
+23:00:25 m3ht6     ^~^~^ AVT bullet: no vehicle
+23:00:25 m3ht6     ^~^~^ AVT grenade: no vehicle
+23:00:25 m3ht6     ^~^~^ AVT rocket: no vehicle
+23:00:25 m3ht6 script errors: 0 []
+23:01:31 booted av_t23ht t2l3 ref=work dog False
+23:03:04 t23ht    wait \^~\^~\^ ALMVEH ARRIVING -> TIMEOUT
+23:04:35 t23ht    wait \^~\^~\^ ALMVEH ARRIVED -> TIMEOUT
+23:05:15 t23ht    wait \^~\^~\^ ALMVEH FIRING -> TIMEOUT
+23:05:51 t23ht    wait \^~\^~\^ ALMVEH DESTROYED -> TIMEOUT
+23:05:51 t23ht     ^~^~^ AVT pinned at ( 2271.700 822.600 92.000 ) looking ( -0.000 182.202 0.000 )
+23:05:51 t23ht     ^~^~^ AVT players=1
+23:05:51 t23ht     ^~^~^ AVT armed pull=1 map=t2l3
+23:05:51 t23ht     ^~^~^ ALMVEH crate probe pos0: startSolid=0 allSolid=0 fraction=0.195 end=( 2271.700 822.600 9.007 )
+23:05:51 t23ht     ^~^~^ ALMVEH crate FAILED route 1: no clear covered floor within 480 u of ( 2271.700 822.600 80.000 ) nofloor=27 nocover=17
+23:05:51 t23ht     ^~^~^ ALMVEH pull 1: vehicle due in 13 s
+23:05:51 t23ht     ^~^~^ ALMVEH SKIP: no hidden entry, reason no crate
+23:05:51 t23ht     ^~^~^ AVT bullet: no vehicle
+23:05:51 t23ht     ^~^~^ AVT grenade: no vehicle
+23:05:51 t23ht     ^~^~^ AVT rocket: no vehicle
+23:05:51 t23ht script errors: 4 ["[2026-10-18 23:00:38 UTC-6.000] ^~^~^ Script Error : Script 'coop_mod/allysquad.scr' was not properly loaded", "[2026-10-18 23:00:38 UTC-6.000] ^~^~^ Script file compile error:  Couldn't compile 'coop_mod/allysquad.scr'", "[2026-10-18 23:02:53 UTC-6.000] ^~^~^ Script Error : Script 'coop_mod/allysquad.scr' was not properly loaded", "[2026-10-18 23:02:53 UTC-6.000] ^~^~^ Script file compile error:  Couldn't compile 'coop_mod/allysquad.scr'"]

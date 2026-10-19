@@ -1,0 +1,17 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> ok
+   wait \^~\^~\^ ALMVEH ARRIVED -> ok
+   wait \^~\^~\^ ALMVEH WITHDRAW -> ok
+   wait \^~\^~\^ ALMVEH withdrawn -> ok
+    ^~^~^ AVT pinned at ( 3068.000 3184.000 335.000 ) looking ( -0.000 180.000 0.000 )
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=m4l1
+    ^~^~^ ALMVEH crate probe pos0: startSolid=1 allSolid=1 fraction=0.000 end=( 3068.000 3184.000 364.000 )
+    ^~^~^ ALMVEH crate FAILED route 1: no clear covered floor within 480 u of ( 3068.000 3184.000 328.000 ) nofloor=44 nocover=0
+    ^~^~^ ALMVEH pull 1: vehicle due in 3 s
+    ^~^~^ ALMVEH ARRIVING truck route=1 truck01 hp=600 pax=3 players=1 entry=( 1823.000 225.000 -120.000 )
+    ^~^~^ ALMVEH ARRIVED truck at ( 2689.787 3150.864 309.372 )
+    ^~^~^ ALMVEH unloading
+    ^~^~^ AVT alarm men alive=3
+    ^~^~^ ALMVEH WITHDRAW, reason 40 s: truck at ( 2689.771 3148.510 309.348 )
+    ^~^~^ ALMVEH withdrawn and removed after 3 s
+script errors: 0 []

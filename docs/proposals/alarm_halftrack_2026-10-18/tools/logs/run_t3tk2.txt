@@ -1,0 +1,13 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> TIMEOUT
+   wait \^~\^~\^ ALMVEH ARRIVED -> TIMEOUT
+   wait \^~\^~\^ ALMVEH WITHDRAW -> TIMEOUT
+   wait \^~\^~\^ ALMVEH withdrawn -> TIMEOUT
+    ^~^~^ AVT pinned at ( 1524.400 3098.100 236.000 ) looking ( -356.665 270.719 0.000 )
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=t3l1
+    ^~^~^ ATSUPPLY ok tag=alarmveh_t3l11 weapon=models/weapons/bazooka.tik at=( 1580.969 3154.669 190.125 ) floor=( 1580.969 3154.669 184.125 ) shells=3
+    ^~^~^ ALMVEH crate ok route 1 kind=bazooka at=( 1580.969 3154.669 234.100 ) stored=( 1524.400 3098.100 234.100 )
+    ^~^~^ ALMVEH pull 1: vehicle due in 10 s
+    ^~^~^ ALMVEH SKIP: no hidden entry, reason seen
+    ^~^~^ AVT alarm men alive=0
+script errors: 2 ["[2026-10-18 21:54:21 UTC-6.000] ^~^~^ Script Error : command 'accuracy' applied to NULL listener", "[2026-10-18 21:54:21 UTC-6.000] ^~^~^ Script Error : command 'exec' applied to NULL listener"]

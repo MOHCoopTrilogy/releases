@@ -1,0 +1,14 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> TIMEOUT
+   wait \^~\^~\^ ALMVEH ARRIVED -> TIMEOUT
+   wait \^~\^~\^ ALMVEH FIRING -> TIMEOUT
+   wait \^~\^~\^ ALMVEH DESTROYED -> TIMEOUT
+    ^~^~^ AVT pinned at ( -3236.000 4026.000 -95.000 ) looking ( -359.148 19.103 0.000 )
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=m3l3
+    ^~^~^ ALMVEH crate FAILED route 1: no clear covered floor within 480 u of ( -3185.000 3625.000 -147.000 ) nofloor=49 nocover=0
+    ^~^~^ ALMVEH pull 1: vehicle due in 22 s
+    ^~^~^ ALMVEH SKIP: no hidden entry, reason no crate
+    ^~^~^ AVT bullet: no vehicle
+    ^~^~^ AVT grenade: no vehicle
+    ^~^~^ AVT rocket: no vehicle
+script errors: 0 []

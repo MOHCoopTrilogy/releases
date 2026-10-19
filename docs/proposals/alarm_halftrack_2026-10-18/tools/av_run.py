@@ -18,7 +18,7 @@ def wl(pat, to, p0):
 rundir = notes = None
 try:
     rundir, notes = G.boot("av_" + LABEL, MAP, extra=["set coop_alarmVeh 1", "set coop_alarmVehDebug 1", "set coop_alarmVehDelay 3",
-                           "set coop_alarmVehMinTime 0", "set coop_alarmVehWithdraw " + WD, "set coop_alarmVehLoop 0"])
+                           "set coop_alarmVehMinTime 0", "set coop_alarmVehWithdraw " + WD, "set coop_alarmVehLoop 0"] + (["set coop_alarmVehHp " + os.environ["AVHP"]] if os.environ.get("AVHP") else []))
     p0 = len(R.read_log())
     G.cmd("here")
     if cx != "none":
@@ -42,6 +42,7 @@ try:
     else:
         if wl(r"\^~\^~\^ ALMVEH FIRING", 40, p0):
             G.frames(LABEL + "_fire", 16, 220)
+        G.cmd("hp", x="300")
         G.cmd("bullet")
         G.cmd("grenade")
         G.cmd("rocket")

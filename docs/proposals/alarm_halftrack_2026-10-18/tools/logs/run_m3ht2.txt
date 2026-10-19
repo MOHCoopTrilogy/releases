@@ -1,0 +1,35 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> TIMEOUT
+   wait \^~\^~\^ ALMVEH ARRIVED -> TIMEOUT
+   wait \^~\^~\^ ALMVEH FIRING -> TIMEOUT
+   wait \^~\^~\^ ALMVEH DESTROYED -> TIMEOUT
+    ^~^~^ AVT pinned at ( -3236.000 4026.000 -95.000 ) looking ( -359.148 19.103 0.000 )
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=m3l3
+    ^~^~^ ALMVEH crate FAILED route 1: no clear covered floor within 320 u of ( -1905.700 4855.200 -136.000 )
+    ^~^~^ ALMVEH pull 1: vehicle due in 10 s
+    ^~^~^ ALMVEH SKIP: no hidden entry, reason no crate
+    ^~^~^ AVT bullet: no vehicleend
+    ^~^~^ AVT bullet on hp=" + local.v.health )
+    ^~^~^ AVT bullet on hp=" + local.v.^
+    ^~^~^ AVT bullet on hp=" + local.v.health )
+    ^~^~^ AVT bullet on hp=" ^
+    ^~^~^ AVT bullet after hp=" + ( waitthread av_s local.v.health ) )
+    ^~^~^ AVT bullet after hp=" + ( waitthread av_s local.v.^
+    ^~^~^ AVT bullet after hp=-
+    ^~^~^ AVT grenade: no vehicleend
+    ^~^~^ AVT grenade on hp=" + local.v.health )
+    ^~^~^ AVT grenade on hp=" + local.v.^
+    ^~^~^ AVT grenade on hp=" + local.v.health )
+    ^~^~^ AVT grenade on hp=" ^
+    ^~^~^ AVT grenade after hp=" + ( waitthread av_s local.v.health ) )
+    ^~^~^ AVT grenade after hp=" + ( waitthread av_s local.v.^
+    ^~^~^ AVT grenade after hp=-
+    ^~^~^ AVT rocket: no vehicleend
+    ^~^~^ AVT rocket on hp=" + local.v.health )
+    ^~^~^ AVT rocket on hp=" + local.v.^
+    ^~^~^ AVT rocket on hp=" + local.v.health )
+    ^~^~^ AVT rocket on hp=" ^
+    ^~^~^ AVT rocket after hp=" + ( waitthread av_s local.v.health ) )
+    ^~^~^ AVT rocket after hp=" + ( waitthread av_s local.v.^
+    ^~^~^ AVT rocket after hp=-
+script errors: 7 ["[2026-10-18 21:51:52 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to listener", "[2026-10-18 21:51:52 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-18 21:51:52 UTC-6.000] ^~^~^ Script Error : command 'damage' applied to NIL", "[2026-10-18 21:51:53 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to listener", "[2026-10-18 21:51:53 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-18 21:51:53 UTC-6.000] ^~^~^ Script Error : command 'damage' applied to NIL"]

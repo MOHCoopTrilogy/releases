@@ -1,0 +1,18 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> ok
+   wait \^~\^~\^ ALMVEH ARRIVED -> ok
+   wait \^~\^~\^ ALMVEH WITHDRAW -> ok
+   wait \^~\^~\^ ALMVEH withdrawn -> ok
+    ^~^~^ AVT pinned at " + local.pos + " looking " + local.va )
+    ^~^~^ AVT pinned at " + local.pos + " looking " ^
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=t3l1
+    ^~^~^ ATSUPPLY skip tag=alarmveh_t3l11 pos=( 1524.400 3098.100 234.100 ) reason=no_floor_or_solid
+    ^~^~^ ALMVEH crate FAILED route 1 at=( 1524.400 3098.100 234.100 )
+    ^~^~^ ALMVEH pull 1: vehicle due in 10 s
+    ^~^~^ ALMVEH ARRIVING truck route=1 s10_truck3 hp=600 pax=3 players=1 entry=( 1390.000 6992.000 192.000 )
+    ^~^~^ ALMVEH ARRIVED truck at ( 1538.992 2644.745 182.625 )
+    ^~^~^ ALMVEH unloading
+    ^~^~^ AVT alarm men alive=3
+    ^~^~^ ALMVEH WITHDRAW, reason 40 s: truck at ( 1538.992 2644.745 182.625 )
+    ^~^~^ ALMVEH withdrawn and removed after 20 s
+script errors: 192 ["[2026-10-18 21:41:53 UTC-6.000] ^~^~^ Script Error : Cannot cast 'float' to vector", "[2026-10-18 21:41:53 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector", "[2026-10-18 21:41:53 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-18 21:41:54 UTC-6.000] ^~^~^ Script Error : Cannot cast 'float' to vector", "[2026-10-18 21:41:54 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector", "[2026-10-18 21:41:55 UTC-6.000] ^~^~^ Script Error : Cannot cast 'float' to vector"]

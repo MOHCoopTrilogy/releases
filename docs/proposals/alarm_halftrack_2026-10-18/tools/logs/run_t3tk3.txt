@@ -1,0 +1,16 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> ok
+   wait \^~\^~\^ ALMVEH ARRIVED -> ok
+   wait \^~\^~\^ ALMVEH WITHDRAW -> ok
+   wait \^~\^~\^ ALMVEH withdrawn -> ok
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=t3l1
+    ^~^~^ ATSUPPLY ok tag=alarmveh_t3l11 weapon=models/weapons/bazooka.tik at=( 1580.969 3154.669 190.125 ) floor=( 1580.969 3154.669 184.125 ) shells=3
+    ^~^~^ ALMVEH crate ok route 1 kind=bazooka at=( 1580.969 3154.669 234.100 ) stored=( 1524.400 3098.100 234.100 )
+    ^~^~^ ALMVEH pull 1: vehicle due in 18 s
+    ^~^~^ ALMVEH ARRIVING truck route=1 s10_truck3 hp=600 pax=3 players=1 entry=( 1390.000 6992.000 192.000 )
+    ^~^~^ ALMVEH ARRIVED truck at ( 1538.992 2644.745 182.625 )
+    ^~^~^ ALMVEH unloading
+    ^~^~^ AVT alarm men alive=3
+    ^~^~^ ALMVEH WITHDRAW, reason 40 s: truck at ( 1538.992 2644.745 182.625 )
+    ^~^~^ ALMVEH withdrawn and removed after 20 s
+script errors: 2 ["[2026-10-18 22:11:17 UTC-6.000] ^~^~^ Script Error : command 'accuracy' applied to NULL listener", "[2026-10-18 22:11:17 UTC-6.000] ^~^~^ Script Error : command 'exec' applied to NULL listener"]

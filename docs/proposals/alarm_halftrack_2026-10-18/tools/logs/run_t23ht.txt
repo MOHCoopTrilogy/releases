@@ -1,0 +1,15 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> TIMEOUT
+   wait \^~\^~\^ ALMVEH ARRIVED -> TIMEOUT
+   wait \^~\^~\^ ALMVEH FIRING -> TIMEOUT
+   wait \^~\^~\^ ALMVEH DESTROYED -> TIMEOUT
+    ^~^~^ AVT pinned at ( 2271.700 822.600 92.000 ) looking ( -0.000 182.202 0.000 )
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=t2l3
+    ^~^~^ ALMVEH crate probe pos0: startSolid=0 allSolid=0 fraction=0.195 end=( 2271.700 822.600 9.007 )
+    ^~^~^ ALMVEH crate FAILED route 1: no clear covered floor within 480 u of ( 2271.700 822.600 80.000 ) nofloor=27 nocover=17
+    ^~^~^ ALMVEH pull 1: vehicle due in 13 s
+    ^~^~^ ALMVEH SKIP: no hidden entry, reason no crate
+    ^~^~^ AVT bullet: no vehicle
+    ^~^~^ AVT grenade: no vehicle
+    ^~^~^ AVT rocket: no vehicle
+script errors: 4 ["[2026-10-18 23:00:38 UTC-6.000] ^~^~^ Script Error : Script 'coop_mod/allysquad.scr' was not properly loaded", "[2026-10-18 23:00:38 UTC-6.000] ^~^~^ Script file compile error:  Couldn't compile 'coop_mod/allysquad.scr'", "[2026-10-18 23:02:53 UTC-6.000] ^~^~^ Script Error : Script 'coop_mod/allysquad.scr' was not properly loaded", "[2026-10-18 23:02:53 UTC-6.000] ^~^~^ Script file compile error:  Couldn't compile 'coop_mod/allysquad.scr'"]

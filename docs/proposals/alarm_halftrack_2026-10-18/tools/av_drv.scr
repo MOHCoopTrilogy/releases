@@ -132,6 +132,12 @@ av_do local.c:{
 		wait 0.3
 		println ( "^~^~^ AVT bullet after hp=" + ( waitthread av_s local.v.health ) )
 	}
+	if( local.c == "hp" ){
+		if( level.av_ent != NULL && level.av_ent != NIL ){
+			level.av_ent.health = float( getcvar( "ai_x" ) )
+			println ( "^~^~^ AVT hp set to " + level.av_ent.health )
+		}
+	}
 	if( local.c == "pcount" ){ println ( "^~^~^ AVT players=" + ( waitthread coop_mod/coop_counter.scr::counter_players ) ) }
 	// alarm-man counters (crew are tagged coop_waveSrc alarm)
 	if( local.c == "men" ){ println ( "^~^~^ AVT alarm men alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive "alarm" ) ) }
