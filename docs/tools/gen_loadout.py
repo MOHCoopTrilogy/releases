@@ -60,6 +60,11 @@ ROSTER = os.path.join(MOD, "coop_mod", "loadoutroster.scr")
 # so a sniper holds a rifle pose and still gates on unreg_sniper.cfg. It is its own column.
 
 
+# [armory B] guns whose 3D model cannot be shown (the Mills bomb renders solid black: texture alpha) get the stock 2D grenade icon
+# (textures/hud/weap_grenade.tga) on cards, the hero and the slot tile instead.
+ICON2D = ("66",)
+
+
 def _read(p):
     return io.open(p, "r", encoding="latin-1", newline="").read()
 
@@ -134,6 +139,16 @@ def preview(w):
         "set coop_loC3 %s" % cmds[2],
         "set coop_loC4 %s" % cmds[3],
     ]
+    # [armory B 2026-10-18] the inspect page also drives the hero (big render + compare): hero xform = the gun's slot-thumbnail transform
+    # (the hero box has the thumbnail's 2.16 aspect, so the fit data is reused as is), the locked/equip flags and the candidate stats.
+    L += [
+        'set coop_loXfmHero "%s"' % (w.get("xfmt") or w["xfm"]),
+        "set coop_loHero %d" % (0 if w["id"] in ICON2D else 1),
+        "set coop_loHeroIc %d" % (1 if w["id"] in ICON2D else 0),
+        "set coop_loHeroLk 0",
+        "set coop_loCanEq 0",
+        "exec ui/loadout/cand%s.cfg" % w["id"],
+    ]
     return "\n".join(L) + "\n"
 
 
@@ -173,10 +188,17 @@ def slotfile(w, s):
     # [loadout review 2026-10-15] EQUIPPED tile marker: register this pick in the slot's per-tab archive (the marker label of
     # tile<id> reads coop_loEqV<id>, recomputed per tab by lktab<t>.cfg -> eqre<t>.cfg) and refresh the visible tab now.
     t = str(w["tab"])
-    L.append('seta coop_loEqR%s_%s "set coop_loEqV%s 1"' % (t, s, w["id"]))
+    # [armory B] the marker is a CARD (position) flag now: coop_loEqOn<id> is published by the card chain when the gun is placed.
+    L.append('seta coop_loEqR%s_%s "vstr coop_loEqOn%s"' % (t, s, w["id"]))
     for ot in "012345":
         if ot != t:
             L.append('seta coop_loEqR%s_%s ""' % (ot, s))
+    # [armory B] the slot's gun is the EQUIPPED side of the compare: archive its publisher, publish now, refresh the inspected gun's compare
+    if s == "4":
+        L.append("set coop_loIc4 %d" % (1 if w["id"] in ICON2D else 0))
+    L.append('seta coop_loPubS%s "exec ui/loadout/pubgun%s.cfg"' % (s, w["id"]))
+    L.append("vstr coop_loPubS%s" % s)
+    L.append("vstr coop_loCandRe")
     # [loadout review 2026-10-15] the pick as userinfo STATE too (cgame lp_w<slot>; the server converges on the last value, so quick
     # clicks cannot be lost to the name bus). A new gun also resets its slot's finish state to standard.
     L.append('set lp_w%s "%s"' % (s, w["id"]))
@@ -198,9 +220,13 @@ def tile(w):
 
 def eqfile(w):
     """eqNN.cfg - the EARNED click: inspect this weapon, then commit it into the active slot."""
-    return ("// GENERATED - earned weapon click: inspect + equip into the active slot\n"
+    # [armory B 2026-10-18] a click INSPECTS (hero render + compare against what the slot holds); the EQUIP button runs coop_loCcur.
+    return ("// GENERATED - earned weapon click: inspect (hero + compare + selected mark); EQUIP commits into the active slot\n"
             "exec ui/loadout/p%s.cfg\n"
-            "vstr coop_loCcur\n" % w["id"])
+            "set coop_loCanEq 1\n"
+            "vstr coop_loSelClr\n"
+            "vstr coop_loSlOn%s\n"
+            'set coop_loSelClr "vstr coop_loSlOff%s"\n' % (w["id"], w["id"], w["id"]))
 
 
 def lkwfile(w, has_req):
@@ -217,6 +243,19 @@ def lkwfile(w, has_req):
             'set coop_loClip "textures/hud/clip/clip_0"\n'
             'set coop_loClipN ""\n' % w["name"]
             + ("exec ui/loadout/req%s.cfg\n" % w["id"] if has_req else "")
+            # [armory B 2026-10-18] the hero shows the lock (no model), the compare still reads this gun's stats, and the server-pushed
+            # progress (coop_loPgH<id> = bar level, coop_loPgT<id> = "74 / 100" text) says how close the player is.
+            + "set coop_loHero 0\n"
+            + "set coop_loHeroIc 0\n"
+            + "set coop_loMvOn 0\n"
+            + "set coop_loHeroLk 1\n"
+            + "set coop_loCanEq 0\n"
+            + "exec ui/loadout/cand%s.cfg\n" % w["id"]
+            + "vstr coop_loPgH%s\n" % w["id"]
+            + "vstr coop_loPgT%s\n" % w["id"]
+            + "vstr coop_loSelClr\n"
+            + "vstr coop_loSlOn%s\n" % w["id"]
+            + 'set coop_loSelClr "vstr coop_loSlOff%s"\n' % w["id"]
             + "vstr coop_loDeny\n")
 
 
@@ -387,7 +426,18 @@ def render_all(rows):
     for w in rows:
         out["eq%s.cfg" % w["id"]] = eqfile(w)
         out["lkw%s.cfg" % w["id"]] = lkwfile(w, "req%s.cfg" % w["id"] in hovers)
+    # [armory B 2026-10-18] the card chains, compare tables, progress joins and defaults (gen_armory.py); paths are mod-relative
+    import gen_armory as ga
+    extra = ga.build(rows, out, MOD)
+    for rel, text in extra.items():
+        if rel.startswith("ui/loadout/"):
+            out[rel[len("ui/loadout/"):]] = text
+        else:
+            EXTRA[rel] = text
     return out, clipped
+
+
+EXTRA = {}      # generated files outside ui/loadout/ (mod-relative path -> text), filled by render_all
 
 
 # ---------------------------------------------------------------- extract --------------------
@@ -506,6 +556,9 @@ def main():
             p = os.path.join(UI, name)
             text = text.replace("\n", _eol(p))
             io.open(p, "w", encoding="latin-1", newline="").write(text)
+        for rel, text in sorted(EXTRA.items()):      # [armory B] files outside ui/loadout/ (the urc)
+            p = os.path.join(MOD, rel.replace("/", os.sep))
+            io.open(p, "w", encoding="latin-1", newline="").write(text.replace("\n", _eol(p)))
         # Compute BEFORE opening for write. open(..., "w") truncates immediately, and the
         # argument is evaluated after - so reading the file inside the write call reads the empty
         # file it just destroyed, and any failure leaves nothing behind. That emptied
@@ -522,6 +575,12 @@ def main():
             missing.append(name)
         elif _read(p) != text.replace("\n", _eol(p)):
             bad.append(name)
+    for rel, text in sorted(EXTRA.items()):
+        p = os.path.join(MOD, rel.replace("/", os.sep))
+        if not os.path.exists(p):
+            missing.append(rel)
+        elif _read(p) != text.replace("\n", _eol(p)):
+            bad.append(rel)
     rtext = _read(ROSTER)
     roster_ok = splice_roster(rows, rtext) == rtext
 
