@@ -50,14 +50,26 @@ def comps(cells, adj):
     return out
 
 
-def bfs(adj, src):
+FAT = {}
+
+
+def fat(cells, c):
+    """a rotation-safe cell: most of the 8 lattice neighbours (<= 190 u) are drivable fill cells too (the fill sweeps an axis-aligned box; a turning
+    Opel needs about a 80 u radius round its centre)"""
+    if c not in FAT:
+        x, y = cells[c][0], cells[c][1]
+        FAT[c] = sum(1 for d in cells.values() if 0 < math.hypot(d[0] - x, d[1] - y) <= 190) >= 6
+    return FAT[c]
+
+
+def bfs(adj, src, ok=None):
     dist = {src: 0}
     par = {}
     dq = collections.deque([src])
     while dq:
         u = dq.popleft()
         for v in adj[u]:
-            if v not in dist:
+            if v not in dist and (ok is None or ok(v)):
                 dist[v] = dist[u] + 1
                 par[v] = u
                 dq.append(v)
@@ -114,7 +126,7 @@ def main():
             cand.sort()
             cand = [(x[1], x[2]) for x in cand if x[0] <= -3]
             for _, stop in cand[:10]:
-                dist, par = bfs(adj, stop)
+                dist, par = bfs(adj, stop, lambda v: fat(cells, v))
                 ents = [(dist[c], c) for c in comp if c in dist and min(D(c, a, b) for a, b in sws) >= efar and 1800 <= dist[c] * 128 <= 7000]
                 if not ents:
                     continue

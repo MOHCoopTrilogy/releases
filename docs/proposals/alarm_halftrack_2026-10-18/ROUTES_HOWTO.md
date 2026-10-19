@@ -6,6 +6,11 @@ switches but no vanilla vehicle road: **m1l1, m2l1, m3l2, e3l1, e3l2, t1l1**. (m
 You place a few marker models with the normal build tool, walk the road once, and the agent turns the markers into the route file.
 Nothing you place stays in the map: markers are only read from the save file.
 
+> **Auto-scout result, 2026-10-19 (tools/av_scout.py + av_route.py, in-engine flood fill of the Opel hull, 128 u grid):** none of the six maps has a clean
+> route, so all six stay vehicle-off and need hand-placed routes as below. m1l1, m3l2, e3l1, t1l1: the area at the switches' height splits into small
+> pockets, none connects 1800+ u away to an entry. m2l1: a flat road drove cleanly, but its stop has no cover and the entry sits on a ledge the truck drove
+> off. e3l2: the planned route stuck 110 u after the entry in a real drive (and none survives a rotation-safe width test).
+
 ## 1. Start build mode (same as for the alarm switches)
 
 1. Launch normally, start the mission with the coop menu (Apply), open the console and run `exec coop_mod/cfg/buildmode.cfg`

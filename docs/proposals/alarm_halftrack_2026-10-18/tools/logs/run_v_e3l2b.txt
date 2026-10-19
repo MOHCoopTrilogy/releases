@@ -1,0 +1,17 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> ok
+   wait \^~\^~\^ ALMVEH ARRIVED -> ok
+   wait \^~\^~\^ ALMVEH WITHDRAW -> ok
+   wait \^~\^~\^ ALMVEH withdrawn -> TIMEOUT
+    ^~^~^ AVT pinned at ( -894.000 464.000 -396.000 ) looking ( -354.700 321.076 0.000 )
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=e3l2
+    ^~^~^ ALMVEH pull 1: vehicle due in 16 s
+    ^~^~^ ALMVEH ARRIVING truck route=1 scout hp=600 pax=3 players=1 entry=( 3314.600 38.400 -441.900 )
+    ^~^~^ AVT follow cam on
+    ^~^~^ ALMVEH stuck at ( 3261.158 145.052 -455.371 ): treated as arrived
+    ^~^~^ ALMVEH ARRIVED truck at ( 3261.158 145.052 -455.371 )
+    ^~^~^ ALMVEH unloading
+    ^~^~^ AVT cover rays blocked=3 of 8 at stop ( -525.400 166.400 -449.900 )
+    ^~^~^ AVT alarm men alive=3
+    ^~^~^ ALMVEH WITHDRAW, reason 40 s: truck at ( 3261.158 145.052 -455.371 )
+script errors: 5 ["[2026-10-19 12:01:08 UTC-6.000] ^~^~^ Script Error : command 'QueryTurretSlotEntity' applied to NULL listener", "[2026-10-19 12:01:08 UTC-6.000] ^~^~^ Script Error : command 'hide' applied to NIL", "[2026-10-19 12:01:08 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener", "[2026-10-19 12:01:08 UTC-6.000] ^~^~^ Script Error : command 'waitTill' applied to NULL listener", '[2026-10-19 12:01:10 UTC-6.000] ^~^~^ Script Error : coop_mod/replace.scr::turnto - needs to be executed by a actor']
