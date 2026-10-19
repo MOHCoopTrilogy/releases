@@ -48,7 +48,13 @@ av_pinloop:{
 			}
 			local.p origin level.avt_pos
 			local.p.viewangles = level.avt_va
-			if( local.p.health > 0 ){ local.p.health = 750 }
+			if( local.p.health > 0 ){
+				if( local.p.health < 750 ){
+					if( level.avt_lost == NIL ){ level.avt_lost = 0 }
+					level.avt_lost = level.avt_lost + ( 750 - local.p.health )
+				}
+				local.p.health = 750
+			}
 		}
 		waitframe
 	}
@@ -61,9 +67,9 @@ av_trace:{
 		if( level.avt_trace == 1 ){
 			local.v = level.av_ent
 			if( local.v == NULL || local.v == NIL ){
-				println ( "^~^~^ AVT t=" + level.time + " live=" + ( waitthread av_s level.av_live ) + " ent=none" )
+				println ( "^~^~^ AVT t=" + level.time + " live=" + ( waitthread av_s level.av_live ) + " ent=none lost=" + ( waitthread av_s level.avt_lost ) )
 			} else {
-				println ( "^~^~^ AVT t=" + level.time + " live=" + ( waitthread av_s level.av_live ) + " org=" + local.v.origin + " ang=" + local.v.angles + " hp=" + local.v.health + " arr=" + ( waitthread av_s local.v.av_arrT ) + " leaving=" + ( waitthread av_s local.v.av_leaving ) )
+				println ( "^~^~^ AVT t=" + level.time + " live=" + ( waitthread av_s level.av_live ) + " org=" + local.v.origin + " lost=" + ( waitthread av_s level.avt_lost ) + " ang=" + local.v.angles + " hp=" + local.v.health + " arr=" + ( waitthread av_s local.v.av_arrT ) + " leaving=" + ( waitthread av_s local.v.av_leaving ) )
 			}
 		}
 	}
@@ -213,8 +219,9 @@ av_do local.c:{
 		println ( "^~^~^ AVT m3 chDone=" + ( waitthread av_s level.coop_chDone ) + " chOver=" + ( waitthread av_s level.coop_chOver ) + " dropped=" + ( waitthread av_s level.coop_paradrop_dropped ) + " scene7=" + ( waitthread av_s level.coop_scene7Started ) + " bombcount=" + ( waitthread av_s level.scene7_bombcount ) + " t=" + level.time )
 	}
 	if( local.c == "m3plant" ){
-		thread maps/m3l3.scr::scene7_bombplant int( getcvar( "ai_x" ) )
-		println ( "^~^~^ AVT m3plant " + getcvar( "ai_x" ) )
+		local.bn = int( getcvar( "ai_x" ) )
+		thread maps/m3l3.scr::scene7_bombplant local.bn
+		println ( "^~^~^ AVT m3plant " + local.bn )
 	}
 	if( local.c == "m3nebel" ){
 		thread coop_mod/m3l3_nebel.scr::nb_hold_done

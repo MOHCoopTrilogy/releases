@@ -1,0 +1,19 @@
+{
+ "session": "av_m3b",
+ "cgame": "cgame_ai",
+ "W": 1280,
+ "H": 720,
+ "md5": {
+  "cgame.dll": "aefb2f05",
+  "game.dll": "126a66e3",
+  "renderer_opengl2.dll": "8296bf86",
+  "openmohaa_ironsight.exe": "affd0767"
+ },
+ "joined": true,
+ "dog": false,
+ "window": {
+  "clean": true,
+  "violations": []
+ },
+ "shots": 77
+}
