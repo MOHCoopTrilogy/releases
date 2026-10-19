@@ -188,6 +188,18 @@ av_do local.c:{
 		}
 		println ( "^~^~^ AVT cover rays blocked=" + local.blocked + " of 8 at stop " + local.sp )
 	}
+	// stand at the crate spot looking at the vehicle stop (eye height 60), for the screenshot proof
+	if( local.c == "cratecam" ){
+		local.cp = level.av_crateAt[1]
+		local.sp = level.av_p[( 1 * 100 ) + level.av_n[1]]
+		if( local.cp == NIL ){
+			println "^~^~^ AVT cratecam: no crate"
+		} else {
+			local.va = vector_toangles ( ( local.sp + ( 0 0 60 ) ) - ( local.cp + ( 0 0 60 ) ) )
+			waitthread av_pin local.cp local.va
+			println ( "^~^~^ AVT cratecam at " + local.cp + " looking at stop " + local.sp + " dist=" + int( vector_length ( local.sp - local.cp ) ) )
+		}
+	}
 	if( local.c == "pcount" ){ println ( "^~^~^ AVT players=" + ( waitthread coop_mod/coop_counter.scr::counter_players ) ) }
 	// alarm-man counters (crew are tagged coop_waveSrc alarm)
 	if( local.c == "men" ){ println ( "^~^~^ AVT alarm men alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive "alarm" ) ) }

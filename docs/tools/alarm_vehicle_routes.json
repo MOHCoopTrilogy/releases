@@ -47,7 +47,12 @@
     -147.0
    ],
    "crateyaw": 0.0,
-   "src": "BSP halftrack (vehicles//sdkfz.tik) + halftrack_path 6n"
+   "src": "BSP halftrack (vehicles//sdkfz.tik) + halftrack_path 6n",
+   "squad": [
+    -3236,
+    4026,
+    -105
+   ]
   }
  ],
  "t2l3": [
@@ -118,7 +123,12 @@
     80.0
    ],
    "crateyaw": 182.2,
-   "src": "BSP halftrack1 (halftrack_winter.tik) + halftrack1_path 10n"
+   "src": "BSP halftrack1 (halftrack_winter.tik) + halftrack1_path 10n",
+   "squad": [
+    2271.7,
+    822.6,
+    80
+   ]
   }
  ],
  "t3l1": [
@@ -194,7 +204,12 @@
     234.1
    ],
    "crateyaw": 90.0,
-   "src": "BSP s10_truck3 + s10_truck3_path 11n; crate = alarm switch 2 seed"
+   "src": "BSP s10_truck3 + s10_truck3_path 11n; crate = alarm switch 2 seed",
+   "squad": [
+    1524.4,
+    3098.1,
+    234.1
+   ]
   }
  ],
  "m4l1": [
@@ -275,7 +290,12 @@
     328.0
    ],
    "crateyaw": 180.0,
-   "src": "maps/m4l1.scr::truck01_drive pose + truck01_path 12n"
+   "src": "maps/m4l1.scr::truck01_drive pose + truck01_path 12n",
+   "squad": [
+    2930,
+    4608,
+    610
+   ]
   }
  ],
  "m4l2": [
@@ -381,7 +401,12 @@
     264.0
    ],
    "crateyaw": 115.4,
-   "src": "camptruck_pathgate 8n + camptruck_pathpark 10n"
+   "src": "camptruck_pathgate 8n + camptruck_pathpark 10n",
+   "squad": [
+    3202,
+    1995,
+    150
+   ]
   }
  ]
 }

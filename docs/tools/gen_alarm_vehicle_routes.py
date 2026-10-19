@@ -65,6 +65,8 @@ def render():
             if r.get("crate"):
                 o.append("\tlevel.av_crate[%d] = %s" % (i, v(r["crate"])))
                 o.append("\tlevel.av_cyaw[%d] = %g" % (i, float(r.get("crateyaw", 0)) % 360))
+            if r.get("squad"):
+                o.append("	level.av_squad[%d] = %s" % (i, v(r["squad"])))
             for k, p in enumerate(r["nodes"], 1):
                 o.append("\tlevel.av_p[%d] = %s" % (i * 100 + k, v(p)))
         o.append("}end")
