@@ -1,0 +1,12 @@
+09:56:25 t=0.028 launched pid 11220 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+09:56:25 t=0.052 in-process guard installed on thread 22552
+09:56:25 t=0.492 place 0x72a20a1c SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+09:56:25 t=0.609 place 0x72a30a1c SDL_app created (3440, 0, 5360, 1080) -> (3440, 0) hidden
+09:56:25 t=0.612 place 0x69f0a64 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+09:56:37 w1080 OK   menu start on m1l2a was redirected to the lobby
+09:56:37 w1080 OK   driver armed on first map
+09:56:47 w1080 OK   lobby (co_lobby1) loaded
+09:57:24 w1080 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=4080823747935A41C0C9E44575C9311D flagXpTotal=10 rank=0 cvarXp=10 cvarUnlocks= carryReinf= marker= next=m1l2a campaign=0 players=1
+09:57:30 w1080 brief shots taken 1920x1080
+09:57:30 t=65.793 process exited
+09:57:30 [la_w1080] done: 3 shots, window {'clean': True, 'violations': []}

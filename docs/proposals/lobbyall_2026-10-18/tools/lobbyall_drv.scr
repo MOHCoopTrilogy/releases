@@ -42,6 +42,13 @@ la_do local.c:{
 		setcvar "coop_carryReinf" "1"
 		setcvar "coop_lobbyall_marker" "m1l1_marker"
 	}
+	if( local.c == "unl" && local.p != NULL ){
+		local.p.flags["coop_unlockPend"] = "Thompson SMG~M1 Garand~Kar98 Rifle~BAR~Sten Gun~Luger P08~Webley Revolver~Springfield~Lee Enfield~Mills Grenade~Carbine~G43 Rifle"
+	}
+	if( local.c == "feed" && local.p != NULL ){
+		local.p iprintln_noloc "Test feed line: ally revived by the squad"
+		local.p iprintlnbold_noloc "Test banner line"
+	}
 	if( local.c == "camp" ){
 		setcvar "coop_campaign" "1"
 	}

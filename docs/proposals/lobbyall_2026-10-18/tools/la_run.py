@@ -80,6 +80,10 @@ try:
         time.sleep(15)
         G.join_loop(); time.sleep(8)
         report("lobby 1")
+        if MODE == "brief":
+            G.cmd("unl"); G.cmd("feed")
+            R.step(["say Worst case chat line from the squad"], timeout=30)
+            time.sleep(3)
         shots("lobby", 3)
         if MODE == "brief":
             log("brief shots taken %dx%d" % (W, H))

@@ -123,3 +123,33 @@ harness_guard.SlotBusy: client slot hudfeed5 is in use by pid 25548 until Mon Oc
 09:49:09 rdy OK   coop active on m1l2a
 09:49:11 rdy ENTER marker seen: True
 09:49:11 rdy script errors: 0 []
+09:51:47 w720 OK   menu start on m1l2a was redirected to the lobby
+09:51:47 w720 OK   driver armed on first map
+09:51:57 w720 OK   lobby (co_lobby1) loaded
+09:52:34 w720 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=4080823747935A41C0C9E44575C9311D flagXpTotal=10 rank=0 cvarXp=10 cvarUnlocks= carryReinf= marker= next=m1l2a campaign=0 players=1
+09:52:39 w720 brief shots taken 1280x720
+09:53:02 w720 OK   menu start on m1l2a was redirected to the lobby
+09:53:02 w720 OK   driver armed on first map
+09:53:12 w720 OK   lobby (co_lobby1) loaded
+09:53:49 w720 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=4080823747935A41C0C9E44575C9311D flagXpTotal=10 rank=0 cvarXp=10 cvarUnlocks= carryReinf= marker= next=m1l2a campaign=0 players=1
+09:53:55 w720 brief shots taken 1280x720
+09:54:16 w720 OK   menu start on m1l2a was redirected to the lobby
+09:54:16 w720 OK   driver armed on first map
+09:54:26 w720 OK   lobby (co_lobby1) loaded
+09:55:03 w720 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=4080823747935A41C0C9E44575C9311D flagXpTotal=10 rank=0 cvarXp=10 cvarUnlocks= carryReinf= marker= next=m1l2a campaign=0 players=1
+09:55:09 w720 brief shots taken 1280x720
+09:55:31 w720 OK   menu start on m1l2a was redirected to the lobby
+09:55:31 w720 OK   driver armed on first map
+09:55:41 w720 OK   lobby (co_lobby1) loaded
+09:56:18 w720 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=4080823747935A41C0C9E44575C9311D flagXpTotal=10 rank=0 cvarXp=10 cvarUnlocks= carryReinf= marker= next=m1l2a campaign=0 players=1
+09:56:24 w720 brief shots taken 1280x720
+09:56:37 w1080 OK   menu start on m1l2a was redirected to the lobby
+09:56:37 w1080 OK   driver armed on first map
+09:56:47 w1080 OK   lobby (co_lobby1) loaded
+09:57:24 w1080 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=4080823747935A41C0C9E44575C9311D flagXpTotal=10 rank=0 cvarXp=10 cvarUnlocks= carryReinf= marker= next=m1l2a campaign=0 players=1
+09:57:30 w1080 brief shots taken 1920x1080
+09:57:43 w43 OK   menu start on m1l2a was redirected to the lobby
+09:57:43 w43 OK   driver armed on first map
+09:57:53 w43 OK   lobby (co_lobby1) loaded
+09:58:30 w43 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=4080823747935A41C0C9E44575C9311D flagXpTotal=10 rank=0 cvarXp=10 cvarUnlocks= carryReinf= marker= next=m1l2a campaign=0 players=1
+09:58:36 w43 brief shots taken 1024x768

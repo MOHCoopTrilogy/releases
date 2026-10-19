@@ -1,0 +1,5 @@
+OK   menu start on m1l2a was redirected to the lobby
+OK   driver armed on first map
+OK   lobby (co_lobby1) loaded
+REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=4080823747935A41C0C9E44575C9311D flagXpTotal=10 rank=0 cvarXp=10 cvarUnlocks= carryReinf= marker= next=m1l2a campaign=0 players=1
+brief shots taken 1024x768
