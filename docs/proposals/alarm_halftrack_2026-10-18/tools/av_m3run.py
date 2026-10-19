@@ -27,6 +27,8 @@ try:
         time.sleep(6)
     log("church hold finished after %d s" % (time.time() - t0))
     time.sleep(25)                      # the paradrop lands
+    G.cmd("find30")
+    time.sleep(2)
     G.still(LABEL + "_church_para")
     G.frames(LABEL + "_para", 6, 400)
     G.cmd("m3nebel")

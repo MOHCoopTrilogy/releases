@@ -6,6 +6,14 @@ import av_route as R
 CH = (1551, -2370)
 NEB = [(-1834, -5160), (-3454, -6531), (-4173, -6487), (-5676, -6055)]
 cells, adj = R.load("m3l3g")
+OVL = {}
+if os.path.exists("scout/m3l3_ovl.txt"):
+    for l in open("scout/m3l3_ovl.txt"):
+        a = l.split()
+        OVL[(round(float(a[0]), 1), round(float(a[1]), 1))] = int(a[3])
+MINOV = int(os.environ.get("MINOV", "4"))
+def ovl(c):
+    return OVL.get((round(cells[c][0], 1), round(cells[c][1], 1)), -1)
 comps = R.comps(cells, adj)
 D = lambda c, p: math.hypot(cells[c][0] - p[0], cells[c][1] - p[1])
 def lat(c):
@@ -17,8 +25,8 @@ out = []
 for comp in sorted(comps, key=len, reverse=True)[:4]:
     if len(comp) < 80:
         continue
-    cand = [c for c in comp if 800 <= D(c, NEB[0]) <= 1900 and D(c, CH) > D(c, NEB[0]) * 0.6 and lat(c) >= 150 and R.fat(cells, c) and R.room(cells, adj, c) >= 6 and R.bypass(cells, c) >= 22]
-    cand.sort(key=lambda c: abs(D(c, NEB[0]) - 1300))
+    cand = [c for c in comp if ovl(c) >= MINOV and lat(c) >= 150 and R.fat(cells, c) and R.room(cells, adj, c) >= 6 and R.bypass(cells, c) >= 22]
+    cand.sort(key=lambda c: (-ovl(c), abs(D(c, NEB[0]) - 1300)))
     print("component", len(comp), "stop candidates", len(cand))
     chosen = []
     for s in cand:
@@ -38,7 +46,7 @@ for comp in sorted(comps, key=len, reverse=True)[:4]:
             nodes = [[round(cells[c][0], 1), round(cells[c][1], 1), round(cells[c][2] + 6, 1)] for c in thin]
             chosen.append(s)
             out.append(dict(name="guard%d" % len(out + [0]), nodes=nodes))
-            print("route", len(out), "nodes", len(nodes), "len", len(path) * 128, "entry", nodes[0], "stop", nodes[-1], "stop->neb1", round(D(s, NEB[0])), "lat", round(lat(s)))
+            print("route", len(out), "overlook", ovl(s), "nodes", len(nodes), "len", len(path) * 128, "entry", nodes[0], "stop", nodes[-1], "stop->neb1", round(D(s, NEB[0])), "lat", round(lat(s)))
         if len(chosen) >= 2:
             break
     if out:

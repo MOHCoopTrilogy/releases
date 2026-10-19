@@ -251,6 +251,30 @@ av_do local.c:{
 		}
 		println ( "^~^~^ OVL " + local.sv[0] + " " + local.sv[1] + " " + local.sv[2] + " " + local.n )
 	}
+	// find the paratroopers' .30 cal (any entity whose model has 30cal, nearest the church) and put the camera behind it
+	if( local.c == "find30" ){
+		local.best = NIL
+		local.bd = 999999
+		for( local.e = 1; local.e < 1600; local.e++ ){
+			local.o = getentbyentnum local.e
+			if( local.o == NULL || local.o == NIL ){ continue }
+			if( local.o.model == NIL ){ continue }
+			if( ( waitthread coop_mod/main.scr::containsText local.o.model "30cal" 0 ) != 1 ){ continue }
+			local.d = vector_length ( local.o.origin - ( 1551 -2370 -255 ) )
+			println ( "^~^~^ AVT 30cal ent" + local.e + " class=" + local.o.classname + " org=" + local.o.origin + " ang=" + local.o.angles + " dist_church=" + int( local.d ) )
+			if( local.d < local.bd ){
+				local.bd = local.d
+				local.best = local.o
+			}
+		}
+		if( local.best != NIL ){
+			local.fw = angles_toforward local.best.angles
+			local.cp = local.best.origin - ( local.fw * 260 ) + ( 0 0 70 )
+			local.va = vector_toangles ( ( local.best.origin + ( 0 0 20 ) ) - local.cp )
+			waitthread av_pin local.cp local.va
+			println ( "^~^~^ AVT 30cal camera behind the gun at " + local.cp + " gun faces yaw " + local.best.angles[1] )
+		}
+	}
 	if( local.c == "pcount" ){ println ( "^~^~^ AVT players=" + ( waitthread coop_mod/coop_counter.scr::counter_players ) ) }
 	// alarm-man counters (crew are tagged coop_waveSrc alarm)
 	if( local.c == "men" ){ println ( "^~^~^ AVT alarm men alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive "alarm" ) ) }
