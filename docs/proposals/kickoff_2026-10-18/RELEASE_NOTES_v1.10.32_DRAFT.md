@@ -1,7 +1,5 @@
 ## MOH Coop Trilogy v1.10.32 - Lobby, Armory and Battlefield Update
 
-DRAFT for the publish step (`publish_release.ps1 -NotesFile`). Plain language, ASCII only. Trim or reorder before publishing; anything the final regression marked as not proven should be removed here first.
-
 **A pre-mission lobby before every mission, a new Showroom Armory, and a much busier battlefield.** This update needs the new game files (the updater brings them): the new menus, the hold ring and the controller support ride on the new program, not only the scripts.
 
 ### Before and between missions
@@ -14,7 +12,7 @@ DRAFT for the publish step (`publish_release.ps1 -NotesFile`). Plain language, A
 - **Alarms and the final counter-attack are tougher and fairer.** The finale now has a DEFEND zone marked on your compass: the clock only runs while someone stands in it, and if the Germans hold an empty zone too long the defence starts over. Alarm switches and bells were re-placed so they sit where you can reach them. (Alarm vehicles - trucks and half-tracks - are built but stay off by default.)
 - **Snipers take rooftops when an alarm is raised.** Stay out of the open.
 - **Mortar crews.** The Germans, and your own paratroopers, can set up a mortar. Shells whistle before they land: keep moving, or kill the crew.
-- **Searchlights** sweep the night maps.
+- **Searchlights find you once you're spotted.** Lights sweep while you're unseen; after an alarm or a German spots you, they swing onto you (and your allies) and the MG next to them opens fire.
 - **Surrender is rarer.** Only a wounded last man with no officer nearby gives up, a few times per mission at most, and surrendered men are left alone by your allies.
 - **Officers drop binoculars or signal smoke (one of the two).** The binoculars give one bombing run, thrown smoke is used up, and on maps with no usable sky the officer drops an ammo and health cache instead. Rewards can no longer get lost in water or fall out of the map.
 - **Paratroopers re-arm** when they leave the .30 cal. The MG42 team now paces its fire properly. Ardennes escorts (the Ardennes trucks missions) now scale, go down and can be revived like everywhere else.
