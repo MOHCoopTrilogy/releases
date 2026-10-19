@@ -35,45 +35,43 @@ whether any of it runs. Debug lines: `coop_alarmDebug 1` prints `^~^~^ ASNIPER .
 6. Greedy spread pick, <= 14 per map, building cluster (700 u) and side tags. Terrain is NOT traced, so terrain ridges are never offered.
 Result: see the final count below (`docs/tools/sniper_spots.json`, generated `coop_mod/alarmsnipers_spots.scr`).
 
-## Maps covered, spots kept and their type (final, user rule: NO indoor snipers)
-Rules: floor >= 128 u above the nearest route anchor's floor (<= 1500 u); **open sky** above head height (roof or outdoor surface) - interior spots are
-removed entirely, a map with no outdoor spot gets no alarm snipers (its alarm still brings infantry and the MG team). Types: `roof` = open sky and
->= 12 of 16 samples drop away, `outdoor-high` = other open-sky surface (tower, wall, ridge, platform, ledge).
-Total **44 spots on 12 maps**. Alarm maps with snipers: **e3l1 (4: 2 roof, 2 outdoor-high), m4l2 (2 outdoor-high), m1l1 (1 roof; not re-captured, harness cannot place a player during its intro ride)**.
-Alarm maps with none now: m2l1, m4l3, e3l2, m3l2, t1l1, t3l1, e2l1, m4l1.
-Per map ("before rules" = `tools/sniper_spots_v3_before_elevation_rule.json`):
+## Spot search, widened 2026-10-18 (user: "many more outdoor spots, find them")
+Two sources, merged and re-ranked per map by `gen_sniper_spots.py merge-rf`:
+1. brush faces (as before: every upward world-brush face, 48 u grid); 2. **an engine-side roof scan** (`tools/asn_drv.scr::asd_scan`, run in the harness by
+`tools/asn_scan.py`): a 64 u grid over the whole BSP, the top-most solid surface of each column found with the engine's own `traced`
+(sees patches, terrain and collidable models the BSP brush parse cannot), kept only if it is world geometry (not an entity), not sky, flat
+(4 corners +-12 u within 8 u), a standing hull fits, and open sky above head height (a solid map-cap slab / sky hull is detected as the mode of the first hits and
+counted as sky). Offline filters on those points: >= 128 u above the nearest route anchor (<= 1500 u), not in a func_ mover's bounds, not near vehicle paths, not in a deny box,
+line of sight to >= 1 route anchor within 3000 u; one candidate per 128 u cell; rank = height + overlook; best **up to 8 per map, >= 600 u apart**. Interior spots do not exist any more (open sky is required).
+Runtime adds the solid-floor rule, a 0.7 s settle check (a sniper that is more than 4 u off his floor after 0.7 s is removed and the spot dropped: roofs on m2l1 / m3l2 let actors fall 189 u)
+and the lift watch. Prone / crouch on low-walled roofs was NOT implemented (stance is left to the engine AI; a sniper in the m4l2 capture was prone on his own).
 
-| map | before rules | kept | types | kept spots (x y floor-z, dz above route ground) |
-|---|---:|---:|---|---|
-| e1l1 | 3 | 3 | 1 roof, 2 outdoor-high | 5016 2216 608.12 (+192); -3176 40 400.12 (+304); 3392 1704 600.12 (+184) |
-| e1l2 | 2 | 1 | 1 outdoor-high | 4184 4184 448.12 (+256) |
-| e1l3 | 11 | 10 | 6 roof, 4 outdoor-high | 792 -5760 400.12 (+216); -648 4312 512.12 (+384); -136 -1080 512.12 (+328); 1176 568 616.12 (+472); 1304 -1704 768.12 (+592); -136 2904 704.12 (+352); 480 3936 432.12 (+280); 104 -1752 768.12 (+231); 264 4312 512.12 (+352); 600 -5432 328.12 (+160) |
-| e2l2 | 11 | 4 | 2 roof, 2 outdoor-high | 1128 4464 2800.12 (+240); 1864 3416 3296.12 (+288); 1408 5080 2737.12 (+129); 1480 3416 3296.12 (+288) |
-| e3l1 | 5 | 4 | 2 roof, 2 outdoor-high | 216 4008 224.12 (+136); 968 -1272 200.12 (+156); -872 2776 224.12 (+144); -248 4248 224.12 (+184) |
-| e3l2 | 9 | 0 | - | none: no outdoor spot, no alarm snipers |
-| e3l3 | 1 | 0 | - | none: no outdoor spot, no alarm snipers |
-| e3l4 | 1 | 0 | - | none: no outdoor spot, no alarm snipers |
-| m1l1 | 2 | 1 | 1 roof | -3944 120 564.12 (+132) |
-| m1l3b | 4 | 4 | 4 outdoor-high | -2616 6904 192.12 (+198); -3048 7288 192.12 (+168); -2568 7288 192.12 (+168); -3048 6904 192.12 (+168) |
-| m1l3c | 3 | 2 | 1 roof, 1 outdoor-high | -576 -2472 512.12 (+172); 141 -2009 1104.12 (+780) |
-| m2l1 | 4 | 0 | - | none: no outdoor spot, no alarm snipers |
-| m3l2 | 1 | 0 | - | none: no outdoor spot, no alarm snipers |
-| m4l2 | 3 | 2 | 2 outdoor-high | -3256 4424 304.12 (+256); -1544 1240 248.12 (+168) |
-| m4l3 | 5 | 0 | - | none: no outdoor spot, no alarm snipers |
-| m5l3 | 4 | 3 | 3 outdoor-high | -2184 -2356 648.12 (+224); -2760 -3316 648.12 (+368); -2712 -2884 648.12 (+288) |
-| m6l1a | 11 | 0 | - | none: no outdoor spot, no alarm snipers |
-| m6l1b | 5 | 3 | 1 roof, 2 outdoor-high | -1852 2776 2408.12 (+208); -2498 2171 2408.12 (+256); -2018 2290 2408.12 (+256) |
-| m6l2b | 1 | 0 | - | none: no outdoor spot, no alarm snipers |
-| t1l1 | 1 | 0 | - | none: no outdoor spot, no alarm snipers |
-| t1l2 | 4 | 0 | - | none: no outdoor spot, no alarm snipers |
-| t1l3 | 6 | 7 | 7 outdoor-high | 4512 2860 492.12 (+443); -1416 1504 248.12 (+200); 3784 3224 552.12 (+352); -1249 1904 496.12 (+448); -1249 1132 496.12 (+448); 3936 2860 492.12 (+460); 4600 3224 552.12 (+503) |
-| t2l1 | 3 | 0 | - | none: no outdoor spot, no alarm snipers |
-| t2l2 | 1 | 0 | - | none: no outdoor spot, no alarm snipers |
-| t2l4 | 2 | 0 | - | none: no outdoor spot, no alarm snipers |
-| t3l1 | 1 | 0 | - | none: no outdoor spot, no alarm snipers |
+## Maps covered (final): 102 spots
+Alarm maps: e2l1 0; e3l1 7; e3l2 8; m1l1 8; m2l1 8; m3l2 3; m4l1 8; m4l2 8; m4l3 5; t1l1 2; t3l1 8. e2l1 has none (no engine-scan point passes line of sight; brush faces none). Not Omaha (m3l1a/b excluded in the tool).
+| map | spots | roof | outdoor-high | from engine scan | from brush faces |
+|---|---:|---:|---:|---:|---:|
+| e1l1 | 3 | 1 | 2 | 0 | 3 |
+| e1l2 | 1 | 0 | 1 | 0 | 1 |
+| e1l3 | 10 | 6 | 4 | 0 | 10 |
+| e2l2 | 4 | 2 | 2 | 0 | 4 |
+| e3l1 | 7 | 5 | 2 | 0 | 7 |
+| e3l2 | 8 | 8 | 0 | 8 | 0 |
+| m1l1 | 8 | 2 | 6 | 8 | 0 |
+| m1l3b | 4 | 0 | 4 | 0 | 4 |
+| m1l3c | 2 | 1 | 1 | 0 | 2 |
+| m2l1 | 8 | 3 | 5 | 8 | 0 |
+| m3l2 | 3 | 3 | 0 | 3 | 0 |
+| m4l1 | 8 | 8 | 0 | 8 | 0 |
+| m4l2 | 8 | 4 | 4 | 5 | 3 |
+| m4l3 | 5 | 5 | 0 | 5 | 0 |
+| m5l3 | 3 | 0 | 3 | 0 | 3 |
+| m6l1b | 3 | 1 | 2 | 0 | 3 |
+| t1l1 | 2 | 1 | 1 | 2 | 0 |
+| t1l3 | 7 | 0 | 7 | 0 | 7 |
+| t3l1 | 8 | 8 | 0 | 7 | 1 |
 
 ## Proof
-- Contact sheet: `media/contact_sheet_alarm_snipers.jpg` (e3l1 roof/outdoor, m4l2 outdoor-high; the m2l1 and m4l3 rows are interior spots that were REMOVED by the final rule and are kept only as an old-capture record; left = sniper at his spot, right = from the player's place at fov 28; dark rows are gamma-lifted, the test driver adds a dlight on the filmed sniper). Honest notes: the e3l1 and m4l2 right views are dominated by guards / a dog, the sniper is small in them; e3l2 and m1l1 could not be placed in the harness this round.
+- Contact sheet: `media/contact_sheet_alarm_snipers.jpg` (m2l1 snow ridge, t3l1 roof, m3l2 wall top, e3l1 roof from the pre-widening capture; left = sniper at his spot, right = from the player's place at fov 28; dark rows are gamma-lifted, the test driver adds a dlight on the filmed sniper). Honest notes: the **m3l2 row does not show the sniper** (the close camera ended up behind the wall he stands on; the log proves two snipers at floor z 616 / 692, dz 0.000, stable); the e3l1 and m4l2 right views are dominated by guards / a dog, the sniper is small in them; e3l2 and m1l1 could not be placed in the harness this round.
 - Progress GIF: `media/progress_m2l1_snipers_on_gantry.gif`.
 - Per sniper in the harness (`ASN SN` lines): the floor trace under him, `dz=0.000`, `startsolid=0` on every sniper that was not removed.
 - Log excerpt, one alarm pull at **1 simulated player (want 2)** and one at **3 (want 4)**, m2l1 (`tools/logs/run_m2l1f.txt`):

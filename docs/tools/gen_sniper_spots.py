@@ -27,9 +27,9 @@ import bsptrace as T
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUTJ = os.path.join(HERE, "sniper_spots.json")
 ALJ = os.path.join(HERE, "alarm_points.json")
-MINH, MINLOS, MINBODY = 150.0, 6, 4
-MAXSPOTS = 14
-MINSEP = 350.0
+MINH, MINLOS, MINBODY = 60.0, 1, 1   # widened 2026-10-18 (user): one route point within 3000 u is enough; ranking does the rest
+MAXSPOTS = 8
+MINSEP = 600.0
 BBMIN, BBMAX = (-15, -15, 0), (15, 15, 72)
 OMAHA = {"m3l1a", "m3l1b"}
 
@@ -177,7 +177,7 @@ def point_fluid(B, p):
     return False
 
 
-GROUNDISH = ("forstsnow", "snowfield", "street", "earth", "grass", "dirt", "mud", "gravel", "sand", "crate", "cobble", "rail", "track", "road", "terrain", "ground")
+GROUNDISH = ("street", "crate", "cobble", "rail", "track", "road", "terrain")
 
 
 def ground_check(B, p):
@@ -209,7 +209,7 @@ def ground_check(B, p):
     cz = []
     for dx, dy in ((12, 12), (-12, 12), (12, -12), (-12, -12)):
         c = floor_hit(B, x + dx, y + dy, z)
-        if c is None or abs(c[0] - h[0]) > 3.0 or bad_surface(B, c[2]):
+        if c is None or abs(c[0] - h[0]) > 8.0 or bad_surface(B, c[2]):
             res["why"] = "corner (%d,%d) unsupported" % (dx, dy)
             return res
         cz.append(round(c[0] - h[0], 2))
@@ -373,23 +373,23 @@ def scan(m, seed=1, minh=None):
             continue
         st["ground"] += 1
         dn = drop_test(B, x, y, z + g["floorDz"], nb)
-        if dn < 8:
+        if dn < 2:
             continue
         sky = open_sky(B, x, y, z + g["floorDz"])
         st["drop"] = st.get("drop", 0) + 1
         fz = z + g["floorDz"]
         head = (x, y, fz + 60.0)
         body = (x, y, fz + 30.0)
-        far = near(x, y, 2300.0)
+        far = near(x, y, 3000.0)
         random.shuffle(far)
         nl = nbod = 0
         tried = 0
         for a in far:
             dd = math.hypot(a[0] - x, a[1] - y)
-            if dd < 450.0:
+            if dd < 250.0 or dd > 3000.0:
                 continue
             tried += 1
-            if tried > 160:
+            if tried > 220:
                 break
             eye = (a[0], a[1], a[2] + 56.0)
             if not B.trace(eye, head):
@@ -405,7 +405,7 @@ def scan(m, seed=1, minh=None):
     # USER RULE 2026-10-18: rooftops / outdoor elevated surfaces first; interior spots only on maps with no outdoor option
     # USER RULE 2026-10-18 (final): NO indoor snipers. Only open-sky spots (roof / outdoor-high) count; a map with none gets no snipers.
     keep = [q for q in keep if q["sky"]]
-    keep.sort(key=lambda s: (0 if s["type"] == "roof" else 1, -(s["los"] + s["body"])))
+    keep.sort(key=lambda s: -(s["routeDz"] / 8.0 + s["los"] / 3.0 + s["body"] / 6.0))   # height, overlook
     picked = []
     def side(p):
         return int(((math.degrees(math.atan2(p[1] - cy, p[0] - cx)) + 360 + 22.5) % 360) // 45)
@@ -417,18 +417,14 @@ def scan(m, seed=1, minh=None):
     ncl = 0
     pool = keep[:]
     while pool and len(picked) < MAXSPOTS:
-        # farthest from picked among the top 40 by score
-        mx = max(q["los"] + q["body"] for q in pool)
-        top = [q for q in pool if q["los"] + q["body"] >= 0.4 * mx] or pool[:40]
-        if picked:
-            def mind(s):
-                return min(math.hypot(s["pos"][0] - q["pos"][0], s["pos"][1] - q["pos"][1]) for q in picked)
-            top.sort(key=lambda s: -mind(s))
-            best = top[0]
-            if mind(best) < MINSEP:
+        # best ranked (height, overlook) that is >= MINSEP (600 u) from every pick; spread is the 600 u rule
+        best = None
+        for q in pool:
+            if all(math.hypot(q["pos"][0] - p["pos"][0], q["pos"][1] - p["pos"][1]) >= MINSEP for p in picked):
+                best = q
                 break
-        else:
-            best = top[0]
+        if best is None:
+            break
         pool.remove(best)
         c = cluster_of(best["pos"])
         if c is None:
@@ -440,6 +436,129 @@ def scan(m, seed=1, minh=None):
     out["spots"] = picked
     out["kept_before_pick"] = len(keep)
     return out, "ok"
+
+
+def pick_spots(keep, cx, cy):
+    """rank (height, overlook), keep the best MAXSPOTS that are >= MINSEP apart, tag building cluster and side"""
+    keep = sorted(keep, key=lambda s: -(s["routeDz"] / 8.0 + s["los"] / 3.0 + s["body"] / 6.0))
+    picked = []
+    ncl = 0
+    for q in keep:
+        if len(picked) >= MAXSPOTS:
+            break
+        if any(math.hypot(q["pos"][0] - p["pos"][0], q["pos"][1] - p["pos"][1]) < MINSEP for p in picked):
+            continue
+        c = None
+        for p in picked:
+            if math.hypot(p["pos"][0] - q["pos"][0], p["pos"][1] - q["pos"][1]) < 700.0:
+                c = p["cluster"]
+        if c is None:
+            ncl += 1
+            c = ncl
+        q["cluster"] = c
+        q["side"] = int(((math.degrees(math.atan2(q["pos"][1] - cy, q["pos"][0] - cx)) + 360 + 22.5) % 360) // 45)
+        picked.append(q)
+    return picked
+
+
+def merge_rf(m, path):
+    """merge the engine-side roof scan (asn_scan.py ^~^~^ RF lines) with the brush-face spots already in the json, filter and re-pick"""
+    random.seed(1)
+    B = T.BSP.load(m)
+    A = anchors_for(B, m)
+    cell = 1200.0
+    grid = {}
+    for a in A:
+        grid.setdefault((int(a[0] // cell), int(a[1] // cell)), []).append(a)
+    def near(x, y, r):
+        out = []
+        for gx in range(int(x // cell) - 3, int(x // cell) + 4):
+            for gy in range(int(y // cell) - 3, int(y // cell) + 4):
+                for a in grid.get((gx, gy), ()):
+                    if (a[0] - x) ** 2 + (a[1] - y) ** 2 <= r * r:
+                        out.append(a)
+        return out
+    movers, vpts = [], []
+    for e in B.entities():
+        c, mdl = e.get("classname", ""), e.get("model", "")
+        if c.startswith("func_") and mdl.startswith("*"):
+            try:
+                movers.append(B.model_bounds(int(mdl[1:])))
+            except Exception:
+                pass
+        o = T.vec(e.get("origin", ""))
+        if o and (c in ("info_vehiclepoint", "info_splinepath") or c.startswith("vehicle_") or "vehicles/" in mdl.lower() or "train" in e.get("targetname", "").lower()):
+            vpts.append(o)
+    deny = []
+    try:
+        deny = json.load(open(os.path.join(HERE, "sniper_spots_deny.json"))).get(m, [])
+    except Exception:
+        pass
+    raw = []
+    for ln in open(path):
+        p = ln.split()
+        if len(p) >= 5 and p[1] == "RF" and p[2] not in ("START", "DONE", "CEIL"):
+            raw.append((float(p[2]), float(p[3]), float(p[4]), float(p[5]) if len(p) > 5 else 0.0))
+    # one candidate per 128 u cell: the highest
+    best = {}
+    for x, y, z, cd in raw:
+        k = (int(x // 128), int(y // 128))
+        if k not in best or z > best[k][2]:
+            best[k] = (x, y, z, cd)
+    cands = list(best.values())
+    st = {"rf_raw": len(raw), "rf_cells": len(cands), "route128": 0, "los": 0}
+    keep = []
+    for x, y, z, cd in cands:
+        nb = near(x, y, 1500.0)
+        na, nd2 = None, 1500.0 ** 2
+        for a in nb:
+            d2 = (a[0] - x) ** 2 + (a[1] - y) ** 2
+            if d2 < nd2:
+                nd2, na = d2, a
+        if na is None or z - na[2] < 128.0:
+            continue
+        if any(mn[0] - 64 <= x <= mx[0] + 64 and mn[1] - 64 <= y <= mx[1] + 64 and mn[2] - 200 <= z <= mx[2] + 96 for mn, mx in movers):
+            continue
+        if any((v[0] - x) ** 2 + (v[1] - y) ** 2 < 350.0 ** 2 for v in vpts):
+            continue
+        if any(b[0] <= x <= b[2] and b[1] <= y <= b[3] for b in deny):
+            continue
+        st["route128"] += 1
+        far = near(x, y, 3000.0)
+        random.shuffle(far)
+        nl = nbod = tried = 0
+        head, body = (x, y, z + 60.0), (x, y, z + 30.0)
+        for a in far:
+            if math.hypot(a[0] - x, a[1] - y) < 250.0:
+                continue
+            tried += 1
+            if tried > 70:
+                break
+            eye = (a[0], a[1], a[2] + 56.0)
+            if not B.trace(eye, head):
+                nl += 1
+                if not B.trace(eye, body):
+                    nbod += 1
+        if nl < 1:
+            continue
+        st["los"] += 1
+        t = B.trace_box((x, y, z + 8.0), (x, y, z - 8.0))
+        brushroof = bool(t)
+        keep.append({"pos": [round(x, 2), round(y, 2), round(z, 2)], "los": nl, "body": nbod, "routeDz": round(z - na[2], 1), "sky": True,
+                     "type": "roof" if brushroof else "outdoor-high", "src": "engine-scan",
+                     "ground": {"ok": True, "floorDz": 0.0, "normalZ": ">0.7 (corners within %.1f u)" % cd, "cornerDz": [cd], "headroom": ">=72 (hull)", "shader": "engine floor"},
+                     "elev": round(z - na[2], 1)})
+    data = json.load(open(OUTJ))
+    for s_ in data.get(m, {}).get("spots", []):
+        if s_.get("sky"):
+            s_.setdefault("src", "brush-face")
+            keep.append(s_)
+    cx = sum(a[0] for a in A) / len(A)
+    cy = sum(a[1] for a in A) / len(A)
+    picked = pick_spots(keep, cx, cy)
+    data[m] = {"spots": picked, "stats": {**data.get(m, {}).get("stats", {}), **st, "kept": len(keep)}}
+    json.dump(data, open(OUTJ, "w"), indent=1, sort_keys=True)
+    print(m, st, "pool", len(keep), "picked", len(picked), [(p["type"], p["src"]) for p in picked])
 
 
 def main():
@@ -465,6 +584,8 @@ def main():
             data[m] = {"spots": r["spots"], "stats": {"faces": r["faces"], "raw": r["raw"], **r["stage"], "kept": r["kept_before_pick"]}}
             print(m, "faces", r["faces"], "cands", r["raw"], r["stage"], "kept", r["kept_before_pick"], "picked", len(r["spots"]), flush=True)
             json.dump(data, open(OUTJ, "w"), indent=1, sort_keys=True)
+    elif cmd == "merge-rf":
+        merge_rf(a[1], a[2])
     elif cmd == "show":
         for s in data[a[1]]["spots"]:
             print(s["pos"], "los", s["los"], "body", s["body"], "cl", s["cluster"], "side", s["side"], s["ground"])

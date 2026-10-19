@@ -56,9 +56,144 @@ asd_vang local.from local.to:{
 	local.va[2] = 0
 }end local.va
 
+// ENGINE-SIDE ROOF SCAN: the BSP parse sees brush faces only; roofs made of patches / terrain / collidable models are in the engine's
+// collision. Grid of top-most solid surfaces from the sky down, each kept only if: world geometry (not an entity), not sky, flat
+// (4 corners +-12 u within 8 u), a standing hull fits, open sky above head height, at least ai_zmin high. Prints ^~^~^ RF x y z cdz.
+asd_scan:{
+	local.fx = waitthread asd_f "ai_x0"
+	local.fy = waitthread asd_f "ai_y0"
+	local.lx = waitthread asd_f "ai_x1"
+	local.ly = waitthread asd_f "ai_y1"
+	local.zt = waitthread asd_f "ai_ztop"
+	local.zb = waitthread asd_f "ai_zbot"
+	local.zm = waitthread asd_f "ai_zmin"
+	local.st = waitthread asd_f "ai_step"
+	if( local.st < 16 ){ local.st = 64 }
+	local.w = $world
+	local.wn = local.w.entnum
+	local.n = 0
+	local.k = 0
+	// the map's cap: many maps close the world with a solid slab (or a solid sky hull) that every vertical trace hits first. Find its height
+	// as the mode of the first hit over a 9 x 9 sample, then ignore it (retrace below it, and count it as "sky" for the open-sky test).
+	level.asd_cnt = NIL
+	local.best = 0
+	local.bestz = 99999
+	for( local.i = 0; local.i < 9; local.i++ ){
+		for( local.j = 0; local.j < 9; local.j++ ){
+			local.s = ( 0 0 0 )
+			local.s[0] = local.fx + ( ( local.lx - local.fx ) * ( local.i + 0.5 ) / 9 )
+			local.s[1] = local.fy + ( ( local.ly - local.fy ) * ( local.j + 0.5 ) / 9 )
+			local.s[2] = local.zt
+			local.e = local.s
+			local.e[2] = local.zb
+			local.tr = traced local.s local.e 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+			if( local.tr["fraction"] >= 1.0 ){ continue }
+			local.h = local.tr["endpos"]
+			local.key = "z" + int( local.h[2] / 4 )
+			if( level.asd_cnt[local.key] == NIL ){ level.asd_cnt[local.key] = 0 }
+			level.asd_cnt[local.key]++
+			if( level.asd_cnt[local.key] > local.best ){
+				local.best = level.asd_cnt[local.key]
+				local.bestz = local.h[2]
+			}
+		}
+	}
+	local.ceil = 99999
+	if( local.best >= 40 ){ local.ceil = local.bestz }
+	println ( "^~^~^ RF CEIL " + local.ceil + " samples_at_mode=" + local.best )
+	println ( "^~^~^ RF START " + local.fx + " " + local.fy + " " + local.lx + " " + local.ly + " zt=" + local.zt + " zb=" + local.zb + " zmin=" + local.zm )
+	for( local.x = local.fx; local.x <= local.lx; local.x = local.x + local.st ){
+		for( local.y = local.fy; local.y <= local.ly; local.y = local.y + local.st ){
+			local.n++
+			if( local.n - ( int( local.n / 100 ) * 100 ) == 0 ){ waitframe }
+			local.s = ( 0 0 0 )
+			local.s[0] = local.x
+			local.s[1] = local.y
+			local.s[2] = local.zt
+			local.e = local.s
+			local.e[2] = local.zb
+			local.tr = traced local.s local.e 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+			if( local.tr["fraction"] >= 1.0 || local.tr["startSolid"] == 1 ){ continue }
+			if( local.tr["entityNum"] != local.wn ){ continue }
+			local.sf = local.tr["surfaceFlags"]
+			local.q = int( local.sf / 4 )
+			local.h = local.tr["endpos"]
+			local.cap = 0
+			if( local.q - int( local.q / 2 ) * 2 == 1 ){ local.cap = 1 }
+			local.dc = local.h[2] - local.ceil
+			if( local.dc < 0 ){ local.dc = 0 - local.dc }
+			if( local.dc < 4 ){ local.cap = 1 }
+			if( local.cap == 1 ){
+				local.offs = 8
+				local.s2 = local.s
+				for( local.r = 0; local.r < 7; local.r++ ){
+					local.s2[2] = local.h[2] - local.offs
+					local.tr = traced local.s2 local.e 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+					if( local.tr["startSolid"] != 1 ){ break }
+					local.offs = local.offs * 2
+				}
+				if( local.tr["fraction"] >= 1.0 || local.tr["startSolid"] == 1 ){ continue }
+				if( local.tr["entityNum"] != local.wn ){ continue }
+				local.sf = local.tr["surfaceFlags"]
+				local.q = int( local.sf / 4 )
+				if( local.q - int( local.q / 2 ) * 2 == 1 ){ continue }
+				local.h = local.tr["endpos"]
+			}
+			if( local.h[2] < local.zm ){ continue }
+			local.cdz = 0
+			local.bad = 0
+			for( local.c = 0; local.c < 4; local.c++ ){
+				local.o = local.h
+				local.o[0] = local.h[0] + 12
+				local.o[1] = local.h[1] + 12
+				if( local.c == 1 || local.c == 3 ){ local.o[0] = local.h[0] - 12 }
+				if( local.c == 2 || local.c == 3 ){ local.o[1] = local.h[1] - 12 }
+				local.o[2] = local.h[2] + 16
+				local.o2 = local.o
+				local.o2[2] = local.h[2] - 16
+				local.ct = traced local.o local.o2 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+				if( local.ct["fraction"] >= 1.0 || local.ct["startSolid"] == 1 ){ local.bad = 1; break }
+				local.ch = local.ct["endpos"]
+				local.d = local.ch[2] - local.h[2]
+				if( local.d < 0 ){ local.d = 0 - local.d }
+				if( local.d > local.cdz ){ local.cdz = local.d }
+			}
+			if( local.bad == 1 || local.cdz > 8 ){ continue }
+			local.bp = local.h
+			local.bp[2] = local.h[2] + 0.25
+			local.bp2 = local.bp
+			local.bp2[2] = local.bp[2] + 0.5
+			local.bb = traced local.bp local.bp2 1023 ( -15 -15 0 ) ( 15 15 72 ) 1
+			if( local.bb["startSolid"] == 1 || local.bb["allSolid"] == 1 ){ continue }
+			local.u1 = local.bp
+			local.u1[2] = local.bp[2] + 72
+			local.u2 = local.bp
+			local.u2[2] = local.bp[2] + 6072
+			local.up = traced local.u1 local.u2 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+			local.sky = 0
+			if( local.up["fraction"] >= 1.0 ){ local.sky = 1 }
+			if( local.sky == 0 ){
+				local.uh = local.up["endpos"]
+				local.ud = local.uh[2] - local.ceil
+				if( local.ud < 0 ){ local.ud = 0 - local.ud }
+				if( local.ud < 6 ){ local.sky = 1 }
+			}
+			if( local.sky == 0 ){
+				local.usf = int( local.up["surfaceFlags"] / 4 )
+				if( local.usf - int( local.usf / 2 ) * 2 == 1 ){ local.sky = 1 }
+			}
+			if( local.sky != 1 ){ continue }
+			local.k++
+			println ( "^~^~^ RF " + local.h[0] + " " + local.h[1] + " " + local.h[2] + " " + local.cdz )
+		}
+	}
+	println ( "^~^~^ RF DONE points=" + local.n + " kept=" + local.k )
+}end
+
 asd_do local.c:{
 	local.p = $player[1]
 	if( local.p == NULL ){ end }
+	if( local.c == "scan" ){ thread asd_scan }
 	if( local.c == "status" ){
 		println ( "^~^~^ ASN STATUS map=" + level.coop_mapname + " alarmMap=" + ( waitthread asd_s level.coop_alarmMap ) + " sw=" + ( waitthread asd_s level.coop_alarmSwN ) + " live=" + ( waitthread asd_s level.coop_alarmLive ) + " pulls=" + ( waitthread asd_s level.coop_alarmPulls ) + " spots=" + ( waitthread asd_s level.coop_asnN ) + " snipers=" + ( waitthread coop_mod/alarmsnipers.scr::asn_alive ) + " players=" + ( waitthread coop_mod/alarmsnipers.scr::asn_players ) + " want=" + ( waitthread coop_mod/alarmsnipers.scr::asn_want ) + " t=" + level.time )
 	}
