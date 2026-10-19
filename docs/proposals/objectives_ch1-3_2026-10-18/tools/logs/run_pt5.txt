@@ -1,0 +1,57 @@
+   67s booted; players joined True
+   73s -- vanilla objective 1: the four comms sets
+   83s -- lighthouse base: obj2trig starts the signal-log objective
+   84s ACTIVE log seen: True
+   88s -- up to the lever platform; look at the log from a few steps away
+   93s DONE log seen: True
+   96s -- the lever: lights the beacon, starts the hold
+   99s ACTIVE hold seen: True
+  102s -- the truck trigger first (so the truck arrives during the hold), then the landing
+  133s gate closed seen at loop 5
+  152s gate closed seen at loop 10
+  170s gate closed seen at loop 15
+  190s gate closed seen at loop 20
+  209s gate closed seen at loop 25
+  227s gate closed seen at loop 30
+  245s gate closed seen at loop 35
+  266s gate closed seen at loop 40
+  266s hold clock finished: True
+  266s GATE open seen: True
+  309s mission-complete chain reached the counter gate: False
+  317s ---- OBJX log ----
+  317s OBJX armed m1l3c objectives=2 items=2 players=1
+  317s OBJX ACTIVE log type=intel t=57.225
+  317s OBJX PICKUP log 1/1 by UnnamedSoldier#8240
+  317s OBJX DONE log took=8.575s done=1/2 t=65.800
+  317s OBJX ACTIVE hold type=hold t=71.775
+  317s OBJX HOLD hold zone=the lighthouse landing at=( -380.000 -1720.000 306.000 ) r=380 total=140s players=1
+  317s OBJX HOLD state hold -> paused remaining=136.500 inside=0 t=83.025
+  317s OBJX HOLD state paused -> hold remaining=136.250 inside=1 t=84.775
+  317s OBJX HOLD wave 1 players=1 want=4 made=4 alive=4 entry=1 at=( -900.000 -2300.000 282.000 )
+  317s OBJX HOLD state hold -> paused remaining=119.400 inside=0 t=101.875
+  317s OBJX GATE closed: 1/2 done at t=103.550
+  317s OBJX HOLD state paused -> hold remaining=119.150 inside=1 t=103.625
+  317s OBJX HOLD state hold -> paused remaining=106.150 inside=0 t=116.875
+  317s OBJX HOLD state paused -> hold remaining=105.900 inside=1 t=118.625
+  317s OBJX HOLD wave 2 players=1 want=4 made=4 alive=6 entry=2 at=( -1000.000 -2350.000 266.000 )
+  317s OBJX HOLD state hold -> paused remaining=92.300 inside=0 t=132.475
+  317s OBJX HOLD state paused -> hold remaining=92.050 inside=1 t=134.225
+  317s OBJX HOLD state hold -> paused remaining=79.050 inside=0 t=147.475
+  317s OBJX HOLD state paused -> hold remaining=78.800 inside=1 t=149.225
+  317s OBJX HOLD wave 3 players=1 want=4 made=4 alive=10 entry=1 at=( -900.000 -2300.000 282.000 )
+  317s OBJX HOLD state hold -> paused remaining=65.950 inside=0 t=162.325
+  317s OBJX HOLD state paused -> hold remaining=65.700 inside=1 t=164.075
+  317s OBJX HOLD state hold -> paused remaining=52.200 inside=0 t=177.825
+  317s OBJX HOLD state paused -> hold remaining=51.950 inside=1 t=179.575
+  317s OBJX HOLD state hold -> paused remaining=39.200 inside=0 t=192.575
+  317s OBJX HOLD state paused -> hold remaining=38.950 inside=1 t=194.075
+  317s OBJX HOLD wave 4 players=1 want=4 made=4 alive=14 entry=2 at=( -1000.000 -2350.000 266.000 )
+  317s OBJX HOLD state hold -> paused remaining=25.600 inside=0 t=207.675
+  317s OBJX HOLD state paused -> hold remaining=25.350 inside=1 t=209.425
+  317s OBJX HOLD state hold -> paused remaining=12.350 inside=0 t=222.675
+  317s OBJX HOLD state paused -> hold remaining=12.100 inside=1 t=224.425
+  317s OBJX HOLD clock 0:00 elapsed=157.400 waves=4 lost=0
+  317s OBJX DONE hold took=164.900s done=2/2 t=236.675
+  317s OBJX ALL DONE 2 objectives t=236.675
+  317s OBJX GATE open t=237.550
+  317s script errors: 1 ["[2026-10-18 22:44:23 UTC-6.000] ^~^~^ Script Error : ScriptMaster::CreateScriptThread: label 'briefing_briefing2' does not exist in 'coop_mod/spawnlocations.scr'."]

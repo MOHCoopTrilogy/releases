@@ -1,0 +1,25 @@
+   66s booted; players joined True
+   71s -- vanilla objective 1: the four comms sets
+   82s -- lighthouse base: obj2trig starts the signal-log objective
+   82s ACTIVE log seen: True
+   87s -- up to the lever platform; look at the log from a few steps away
+   91s DONE log seen: True
+   95s -- the lever: lights the beacon, starts the hold
+   97s ACTIVE hold seen: True
+  101s -- the truck trigger first (so the truck arrives during the hold), then the landing
+  188s hold clock finished: True
+  229s GATE open seen: False
+  272s mission-complete chain reached the counter gate: False
+  280s ---- OBJX log ----
+  280s OBJX armed m1l3c objectives=2 items=2 players=1
+  280s OBJX ACTIVE log type=intel t=56.850
+  280s OBJX PICKUP log 1/1 by UnnamedSoldier#8240
+  280s OBJX DONE log took=8.550s done=1/2 t=65.400
+  280s OBJX ACTIVE hold type=hold t=71.400
+  280s OBJX HOLD hold zone=the lighthouse landing at=( -380.000 -1720.000 306.000 ) r=380 total=81s players=1
+  280s OBJX HOLD wave 1 players=1 want=4 made=4 alive=4 entry=1 at=( -900.000 -2300.000 282.000 )
+  280s OBJX HOLD wave 2 players=1 want=4 made=4 alive=8 entry=2 at=( 100.000 -1800.000 326.000 )
+  280s OBJX HOLD clock 0:00 elapsed=81.200 waves=2 lost=0
+  280s OBJX DONE hold took=88.700s done=2/2 t=160.100
+  280s OBJX ALL DONE 2 objectives t=160.100
+  280s script errors: 0 []

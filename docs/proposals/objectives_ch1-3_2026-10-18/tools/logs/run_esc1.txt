@@ -1,0 +1,8 @@
+   67s booted; players joined True
+   70s ACTIVE esc: True
+   86s freed: False
+  143s DONE esc: False
+  147s ---- OBJX log ----
+  147s OBJX armed m1l3c objectives=2 items=2 players=1
+  147s OBJX ACTIVE esc type=escort t=43.500
+  147s script errors: 0 []

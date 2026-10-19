@@ -1,0 +1,26 @@
+   68s booted; players joined True
+   68s ACTIVE radios seen: True
+   73s    OX STATE t=46.675 active=1 n=1 done=0 gate=0 players=1
+   73s    OX STATE obj 1 radios stat=2 prog=0/3
+   73s -- set 1: gunfire
+   84s gunfire did not bring set 1 down (see radiohp); using the driver damage call instead
+   84s set 1 down: True
+   86s -- set 2: planted charge
+   99s set 2 down: True
+  112s garrison call seen: True
+  112s -- set 3: gunfire
+  122s gunfire did not bring set 3 down (see radiohp); using the driver damage call instead
+  122s DONE radios seen: True
+  126s ---- OBJX log ----
+  126s OBJX armed m2l1 objectives=1 items=3 players=1
+  126s OBJX ACTIVE radios type=radio t=32.500
+  126s OBJX RADIO set 1 armed at ( -1762.000 -3447.800 636.000 )
+  126s OBJX RADIO set 2 armed at ( 819.900 3291.900 536.000 )
+  126s OBJX RADIO set 3 armed at ( 3780.500 7016.000 26.000 )
+  126s OBJX RADIO down 1 (shot) 1/3 t=57.700
+  126s OBJX RADIO down 2 (charge) 2/3 t=72.600
+  126s OBJX RADIO call #1 made=4 t=85.000
+  126s OBJX RADIO down 3 (shot) 3/3 t=95.700
+  126s OBJX DONE radios took=63.200s done=1/1 t=95.700
+  126s OBJX ALL DONE 1 objectives t=95.700
+  126s script errors: 0 []

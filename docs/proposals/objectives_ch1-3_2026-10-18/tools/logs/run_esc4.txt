@@ -1,0 +1,10 @@
+   67s booted; players joined True
+   70s ACTIVE esc: True
+   76s freed: True
+  142s DONE esc: False
+  145s ---- OBJX log ----
+  145s OBJX armed m1l3c objectives=2 items=2 players=1
+  145s OBJX ACTIVE esc type=escort t=43.600
+  145s OBJX ESCORT freed by UnnamedSoldier#8240
+  145s OBJX ESCORT actor died - respawning at the start in 10 s
+  145s script errors: 0 []

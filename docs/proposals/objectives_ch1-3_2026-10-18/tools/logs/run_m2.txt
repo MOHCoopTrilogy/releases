@@ -1,0 +1,21 @@
+   68s booted; players joined True
+   68s ACTIVE radios seen: True
+   73s    OX STATE t=46.025 active=1 n=1 done=0 gate=0 players=1
+   73s    OX STATE obj 1 radios stat=2 prog=0/3
+   73s -- set 1: gunfire
+   92s set 1 down: False
+   94s -- set 2: planted charge
+  107s set 2 down: True
+  135s garrison call seen: True
+  136s -- set 3: gunfire
+  160s DONE radios seen: False
+  164s ---- OBJX log ----
+  164s OBJX armed m2l1 objectives=1 items=3 players=1
+  164s OBJX ACTIVE radios type=radio t=32.250
+  164s OBJX RADIO set 1 armed at ( -1762.000 -3447.800 636.000 )
+  164s OBJX RADIO set 2 armed at ( 819.900 3291.900 536.000 )
+  164s OBJX RADIO set 3 armed at ( 3780.500 7016.000 26.000 )
+  164s OBJX RADIO down 2 (charge) 1/3 t=80.400
+  164s OBJX RADIO call #1 made=4 t=108.450
+  164s OBJX RADIO call #2 made=4 t=134.850
+  164s script errors: 1 ["[2026-10-18 22:58:55 UTC-6.000] ^~^~^ Script Error : command 'exec' applied to NULL listener"]

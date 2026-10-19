@@ -1,0 +1,28 @@
+   69s class animate done
+   72s class script_model_realdamage done
+   72s OX mktarget class=animate at=( -4632.723 -6185.559 878.125 ) me=( -4655.000 -6344.000 848.125 ) yaw=81.996
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon + " hp_me=" + local.p.health )
+   72s OX targethp " + local.hp + " weapon=" ^
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon + " hp_me=" + local.p.health )
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon ^
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon + " hp_me=" + local.p.health )
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon + " hp_me=" ^
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon + " hp_me=" + local.p.health )
+   72s OX targethp " + local.hp + " weapon=" ^
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon + " hp_me=" + local.p.health )
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon ^
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon + " hp_me=" + local.p.health )
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon + " hp_me=" ^
+   72s OX mktarget class=script_model_realdamage at=( -4636.191 -6185.109 878.125 ) me=( -4655.000 -6344.000 848.125 ) yaw=83.249
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon + " hp_me=" + local.p.health )
+   72s OX targethp " + local.hp + " weapon=" ^
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon + " hp_me=" + local.p.health )
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon ^
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon + " hp_me=" + local.p.health )
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon + " hp_me=" ^
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon + " hp_me=" + local.p.health )
+   72s OX targethp " + local.hp + " weapon=" ^
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon + " hp_me=" + local.p.health )
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon ^
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon + " hp_me=" + local.p.health )
+   72s OX targethp " + local.hp + " weapon=" + local.p.activeweapon + " hp_me=" ^

@@ -1,0 +1,27 @@
+   68s booted; players joined True
+   74s -- vanilla objective 1: the four comms sets
+   84s -- lighthouse base: obj2trig starts the signal-log objective
+   84s ACTIVE log seen: True
+   89s -- up to the lever platform; look at the log from a few steps away
+   94s DONE log seen: True
+   97s -- the lever: lights the beacon, starts the hold
+  100s ACTIVE hold seen: True
+  103s -- the truck trigger first (so the truck arrives during the hold), then the landing
+  248s hold clock finished: True
+  311s GATE open seen: False
+  354s mission-complete chain reached the counter gate: False
+  363s ---- OBJX log ----
+  363s OBJX armed m1l3c objectives=2 items=2 players=1
+  363s OBJX ACTIVE log type=intel t=57.100
+  363s OBJX PICKUP log 1/1 by UnnamedSoldier#8240
+  363s OBJX DONE log took=8.550s done=1/2 t=65.650
+  363s OBJX ACTIVE hold type=hold t=71.650
+  363s OBJX HOLD hold zone=the lighthouse landing at=( -380.000 -1720.000 306.000 ) r=380 total=140s players=1
+  363s OBJX HOLD wave 1 players=1 want=4 made=4 alive=4 entry=1 at=( -900.000 -2300.000 282.000 )
+  363s OBJX HOLD wave 2 players=1 want=4 made=4 alive=7 entry=2 at=( -1000.000 -2350.000 266.000 )
+  363s OBJX HOLD wave 3 players=1 want=4 made=4 alive=11 entry=1 at=( -900.000 -2300.000 282.000 )
+  363s OBJX HOLD wave 4 players=1 want=3 made=3 alive=14 entry=2 at=( -1000.000 -2350.000 266.000 )
+  363s OBJX HOLD clock 0:00 elapsed=140.125 waves=4 lost=0
+  363s OBJX DONE hold took=147.625s done=2/2 t=219.275
+  363s OBJX ALL DONE 2 objectives t=219.275
+  363s script errors: 80 ["[2026-10-18 22:30:23 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-18 22:30:23 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'float'", "[2026-10-18 22:30:23 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-18 22:30:23 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'vector'", "[2026-10-18 22:30:23 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-18 22:30:40 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'"]

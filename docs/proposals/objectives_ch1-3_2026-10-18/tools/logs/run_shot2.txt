@@ -1,0 +1,8 @@
+   69s class animate done
+   72s class script_model_realdamage done
+   72s OX mktarget class=animate at=( -4632.723 -6185.559 878.125 ) me=( -4655.000 -6344.000 848.125 ) yaw=81.996
+   72s OX targethp 1000.000 weapon=-
+   72s OX targethp 1000.000 weapon=-
+   72s OX mktarget class=script_model_realdamage at=( -4634.532 -6185.314 878.125 ) me=( -4655.000 -6344.000 848.125 ) yaw=82.650
+   72s OX targethp 1000.000 weapon=-
+   72s OX targethp 1000.000 weapon=-
