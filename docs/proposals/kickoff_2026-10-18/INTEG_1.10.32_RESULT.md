@@ -51,3 +51,10 @@ Fixes made during integration (each its own commit, buglog 4087-4092):
 5. G: had 0 bytes free; moved G:\mohaa-adsanim3\runs to F:\hzm_archive. adsanim\runs (50 GB) and hudfeed2\runs (173 GB) still on G:.
 
 Drafts: `RELEASE_NOTES_v1.10.32_DRAFT.md`, `WHATSNEW_v1.10.32_DRAFT.md` (already applied to the mod).
+
+## Update (blockers closed, 2026-10-19 10:30)
+- Armory black previews: NOT an engine or renderer problem (released exe, released DLLs, rebuilt DLLs, released fixes pak all behaved the same; armory-next alone was textured). Bisected on the mod to coop_mod/lobby.scr: the new empty-lobby 15 s skip sent the harness server (started on co_lobby1 with nobody) on to the briefing, where the Armory UI opens without the lobby state. With `coop_lobbyTimeout 0` on the harness server the integrated Armory is textured. Not a player-facing bug. Renderers: sources unchanged, ship the RELEASED DLLs. CL_Draw3DModel aspect change survived (verified in the diff).
+- One client session shows HD ring + icon prompt (lobby) and the textured Armory: `integ_ring_icon_armory_sheet.jpg`.
+- C96 fire and reload in the integrated build: `integ_c96_fire.gif`, `integ_c96_reload.gif` (hip view; the muzzle-up pose in the fire frames and the bolt cycle were not judged against the design).
+- Merged lobbyall-next 3662aed5 (23e8a5d2): scanners PASS, isolation 22/0, lobby hop re-run (m1l2a chain) 0 script errors.
+- Public servers: loose files under srvN/maintt are only the three trilogy map scripts (m6l3e, t3l2, e3l4/Outro), lobby .pth caches and saves; no lobby.scr or other mod file shadows the new mod. `public_servers/aside_overrides.py [--apply]` (never touches saves) is in the release checklist.
