@@ -422,60 +422,6 @@
    ],
    "event": "guard",
    "src": "flood fill + overlook scan (av_scout/av_ovl/av_route_g), stop overlooks 9/9 of the church->Nebelwerfer 1 approach"
-  },
-  {
-   "name": "guard2",
-   "kind": "halftrack",
-   "model": "models/vehicles/sdkfz.tik",
-   "nodes": [
-    [
-     -3733.4,
-     -1980.6,
-     -190.5
-    ],
-    [
-     -3733.4,
-     -2364.6,
-     -145.9
-    ],
-    [
-     -3733.4,
-     -2748.6,
-     -145.6
-    ],
-    [
-     -3733.4,
-     -3132.6,
-     -161.9
-    ],
-    [
-     -3477.4,
-     -3260.6,
-     -166.6
-    ],
-    [
-     -3477.4,
-     -3644.6,
-     -132.9
-    ],
-    [
-     -3477.4,
-     -4028.6,
-     -153.9
-    ],
-    [
-     -3093.4,
-     -4028.6,
-     -153.9
-    ],
-    [
-     -2837.4,
-     -3900.6,
-     -156.9
-    ]
-   ],
-   "event": "guard",
-   "src": "same road, parks 3 nodes before guard1 (second hull for 3+ players)"
   }
  ]
 }
