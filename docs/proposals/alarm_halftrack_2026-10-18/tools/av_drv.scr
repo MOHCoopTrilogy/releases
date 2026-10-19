@@ -70,8 +70,14 @@ av_do local.c:{
 
 	// camera: ai_x ai_y ai_z = position, ai_yaw / ai_pit = view; "look" variant aims at the vehicle stop (ai_lx ai_ly ai_lz)
 	if( local.c == "pin" ){
-		local.pos = ( float( getcvar( "ai_x" ) ) float( getcvar( "ai_y" ) ) float( getcvar( "ai_z" ) ) )
-		local.tgt = ( float( getcvar( "ai_lx" ) ) float( getcvar( "ai_ly" ) ) float( getcvar( "ai_lz" ) ) )
+		local.pos = ( 0 0 0 )
+		local.pos[0] = float( getcvar( "ai_x" ) )
+		local.pos[1] = float( getcvar( "ai_y" ) )
+		local.pos[2] = float( getcvar( "ai_z" ) )
+		local.tgt = ( 0 0 0 )
+		local.tgt[0] = float( getcvar( "ai_lx" ) )
+		local.tgt[1] = float( getcvar( "ai_ly" ) )
+		local.tgt[2] = float( getcvar( "ai_lz" ) )
 		local.va = vector_toangles ( local.tgt - local.pos )
 		waitthread av_pin local.pos local.va
 		println ( "^~^~^ AVT pinned at " + local.pos + " looking " + local.va )
