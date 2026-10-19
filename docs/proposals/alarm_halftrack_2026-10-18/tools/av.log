@@ -12330,3 +12330,5 @@ harness_guard.SlotBusy: client slot hudfeed4 is in use by pid 21804 until Mon Oc
 15:20:57 m3p1     ^~^~^ PSQ t=271.650 mg watch
 15:20:57 m3p1     ^~^~^ PSQ t=272.250 mg setup k=1 mode=C gun=( 1655.788 -1885.636 -269.665 ) yaw=177.179 arc=45 top=0 seat=( 1714.688 -1897.249 -307.515 ) hp=37.850 pos=crouch
 15:20:57 m3p1 script errors: 0 []
+15:30:39 m3crate FAILED SlotBusy('client slot hudfeed2 is in use by pid 13092 until Mon Oct 19 16:27:17 2026')
+15:32:48 booted av_m3crate m3l3 ref=work dog False

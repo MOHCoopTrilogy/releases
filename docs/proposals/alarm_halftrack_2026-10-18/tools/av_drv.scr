@@ -283,6 +283,30 @@ av_do local.c:{
 			println ( "^~^~^ AVT 30cal camera behind the gun at " + local.cp + " gun faces yaw " + local.best.angles[1] )
 		}
 	}
+	// the .30 cal: list every gun-like entity within 450 u of ai_x ai_y ai_z, and send a German squad at it (ai_lx ai_ly ai_lz) so the team has to fire
+	if( local.c == "gun30" ){
+		local.gc = ( 0 0 0 )
+		local.gc[0] = float( getcvar( "ai_x" ) )
+		local.gc[1] = float( getcvar( "ai_y" ) )
+		local.gc[2] = float( getcvar( "ai_z" ) )
+		for( local.e = 1; local.e < 1800; local.e++ ){
+			local.o = getentbyentnum local.e
+			if( local.o == NULL || local.o == NIL ){ continue }
+			if( vector_length ( local.o.origin - local.gc ) > 450 ){ continue }
+			if( local.o.model == NIL ){ continue }
+			if( ( waitthread coop_mod/main.scr::containsText local.o.model "30cal" 0 ) == 1 || ( waitthread coop_mod/main.scr::containsText local.o.model "mg42" 0 ) == 1 || ( waitthread coop_mod/main.scr::containsText local.o.model "bipod" 0 ) == 1 ){
+				println ( "^~^~^ AVT GUN ent" + local.e + " class=" + local.o.classname + " model=" + local.o.model + " org=" + local.o.origin + " ang=" + local.o.angles + " dist=" + int( vector_length ( local.o.origin - local.gc ) ) )
+			}
+		}
+	}
+	if( local.c == "m3foe" ){
+		local.fp = ( 0 0 0 )
+		local.fp[0] = float( getcvar( "ai_lx" ) )
+		local.fp[1] = float( getcvar( "ai_ly" ) )
+		local.fp[2] = float( getcvar( "ai_lz" ) )
+		thread coop_mod/officer.scr::coop_spawn_infantry_squad local.fp
+		println ( "^~^~^ AVT m3foe squad sent from " + local.fp )
+	}
 	if( local.c == "pcount" ){ println ( "^~^~^ AVT players=" + ( waitthread coop_mod/coop_counter.scr::counter_players ) ) }
 	// alarm-man counters (crew are tagged coop_waveSrc alarm)
 	if( local.c == "men" ){ println ( "^~^~^ AVT alarm men alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive "alarm" ) ) }
