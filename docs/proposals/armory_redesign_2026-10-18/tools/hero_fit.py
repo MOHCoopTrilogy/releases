@@ -19,12 +19,13 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 STATE = os.path.join(HERE, "hero_fit_state.json")
 TSV = r"C:\mohaa-coop-dev\docs\tools\loadout_weapons.tsv"
 OUT = r"C:\mohaa-coop-dev\docs\tools\armory_hero_fit.tsv"
-BOX = (144, 61, 332, 52)           # HERO_X, HERO_Y, HERO_W, HERO_H of gen_armory_urc.py (menu units)
+BOX = (144, 66, 332, 128)          # HERO_X, HERO_Y, HERO_W, HERO_H of gen_armory_urc.py (menu units)
 T_ASPECT = 92.0 / 50.0
-WT, HT = 0.88, 0.80
+WT, HT = 0.92, 0.66                 # the gun fills 92 % of the width, at most 66 % of the height, centred at CY (the name / caliber sit over the lower left)
+CY = 0.37
 PR = 1.5
 SKIP = {"66"}                      # the Mills bomb is a 2D icon
-TOL_S, TOL_CX, TOL_CY = 0.05, 0.03, 0.07
+TOL_S, TOL_CX, TOL_CY = 0.05, 0.03, 0.05
 
 
 def rows():
@@ -131,7 +132,7 @@ def solve(run, out):
             s["slope"] = [sy, sz, s["x"][3]]
         sc = s["slope"][2] / x[3]                         # slope ~ 1 / scale
         sy, sz = s["slope"][0] * sc, s["slope"][1] * sc
-        good = abs(ratio - 1) < TOL_S and abs(m0["cx"] - 0.5) < TOL_CX and abs(m0["cy"] - 0.5) < TOL_CY and not m0["touch"]
+        good = abs(ratio - 1) < TOL_S and abs(m0["cx"] - 0.5) < TOL_CX and abs(m0["cy"] - CY) < TOL_CY and not m0["touch"]
         s["last"] = {k: (round(v, 3) if isinstance(v, float) else v) for k, v in m0.items() if k != "aspect_px"}
         if good:
             s["done"] = True
@@ -139,13 +140,22 @@ def solve(run, out):
             continue
         # centre error is corrected in WORLD units (independent of the scale change); the size by the scale
         x[1] += -(m0["cx"] - 0.5) / sy
-        x[2] += -(m0["cy"] - 0.5) / sz
+        x[2] += -(m0["cy"] - CY) / sz
         x[3] = x[3] * ratio
         s["round"] += 1
         todo.append(i)
     json.dump(st, open(STATE, "w"), indent=1)
     print("converged %d / %d ; todo %d ; unmeasured %s" % (ok, len(st), len(todo), miss[:10]))
     jobs(st, out, todo)
+
+
+def reset(out):
+    """keep the solved transforms as the starting point (the box is taller now) but measure everything again"""
+    st = json.load(open(STATE))
+    for s_ in st.values():
+        s_["done"], s_["slope"], s_["round"] = False, None, 0
+    json.dump(st, open(STATE, "w"), indent=1)
+    jobs(st, out, [i for i in st])
 
 
 def apply():
@@ -170,6 +180,8 @@ if __name__ == "__main__":
     m = sys.argv[1]
     if m == "init":
         init(sys.argv[2])
+    elif m == "reset":
+        reset(sys.argv[2])
     elif m == "solve":
         solve(sys.argv[2], sys.argv[3])
     elif m == "apply":

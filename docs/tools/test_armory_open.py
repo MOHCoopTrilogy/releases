@@ -60,7 +60,7 @@ def main():
     ids = [w["id"] for w in tabs[2]]
     un2 = [i for i in ids if i in unlocked]
     want = {c: g for c, g in enumerate(un2)}
-    want.update({ga.row_up(len(un2)) + j: g for j, g in enumerate([i for i in ids if i not in unlocked])})
+    want.update({len(un2) + j: g for j, g in enumerate([i for i in ids if i not in unlocked])})
     got = layout(sim)
     check("tab 2 sorted", got == want, (got, want))
     check("tab 2 flag", sim.get("coop_loTA2") == "1" and sim.get("coop_loTA0") == "0")
@@ -88,6 +88,8 @@ def main():
     sim.exec("ui/loadout/s1sel.cfg")
     chips = [sim.get("coop_loFp%dT" % q) for q in range(8)]
     check("finish chips: STD, then unlocked (GOLD BLUED), then locked", chips == ["STD", "GOLD", "BLUED", "CHROME", "BLOODY", "WOOD", "SNOW", "SAND"], chips)
+    check("finish chips: swatch colour flags (position p shows finish f)", [sim.get("coop_loFp%dC%d" % (q, f)) for q, f in enumerate([0, 1, 3, 2, 4, 5, 6, 7])] == ["1"] * 8
+          and sim.get("coop_loFp1C3") == "0")
     check("finish chips: lock flags", [sim.get("coop_loFp%dL" % q) for q in range(8)] == ["0", "0", "0", "1", "1", "1", "1", "1"])
     check("finish chip click = the finish gate", sim.get("coop_loFp1Go") == "vstr coop_loFcmt1", sim.get("coop_loFp1Go"))
     # slot 3 (sidearm) -> pistol tab

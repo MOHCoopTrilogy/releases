@@ -3,7 +3,7 @@
 // the server pushes, per locked gun, how close the player is to the unlock the hover text names (docs/tools/gen_armory.py writes
 // coop_mod/unlockprog_gen.scr: rank R = the XP threshold, or the first rewarding challenge + its target):
 //   coop_loPgA<id> = "vstr coop_loPgX<lv>"            lights step <lv> (0..10) of that card's progress bar (the card join, pgpub<c>.cfg)
-//   coop_loPgH<id> = "exec ui/loadout/hpg<lv>.cfg"    the hero panel's bar
+//   (the hero bar reuses coop_loPgA<id> through ui/loadout/hpub.cfg)
 //   coop_loPgT<id> = "set coop_loReqPg <cur> / <need>[ XP]"   the hero panel's text
 // Same rules as the lock export above: archived `seta` (a cold menu keeps the last values), unquoted on the wire (bug-758), DIFF-ONLY
 // (flags coop_loPgLast<id>), paced to stay under the reliable-command ring. Returns 1 when anything was pushed (the caller then asks the
@@ -48,7 +48,6 @@ loadout_ui_exportProgress local.player:{
 			if(local.player.flags["coop_loPgLast" + local.id] != local.sig){
 				local.player.flags["coop_loPgLast" + local.id] = local.sig
 				local.player stufftext ( "seta coop_loPgA" + local.id + " vstr coop_loPgX" + local.lv )
-				local.player stufftext ( "seta coop_loPgH" + local.id + " exec ui/loadout/hpg" + local.lv + ".cfg" )
 				local.player stufftext ( "seta coop_loPgT" + local.id + " set coop_loReqPg " + local.txt )
 				local.chg = 1
 				local.w++

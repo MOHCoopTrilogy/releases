@@ -89,7 +89,7 @@ SHOTS = [
     ("a_rifle_open", []),
     ("b_rifle_inspect_kar98k", ["exec ui/loadout/t03.cfg"]),
     ("c_rifle_locked_enfield", ["exec ui/loadout/t05.cfg"]),
-    ("d_rifle_finish_gold", ["exec ui/loadout/s1sel.cfg", "exec ui/loadout/t03.cfg", "exec ui/loadout/finp03_1.cfg"]),
+    ("d_rifle_finish_gold", ["exec ui/loadout/s1sel.cfg", "exec ui/loadout/t03.cfg", "exec ui/loadout/finp03_1.cfg", "exec ui/loadout/fin1_s1.cfg"]),
     ("e_sniper", ["exec ui/loadout/lktab1.cfg", "exec ui/loadout/t12.cfg"]),
     ("f_smg", ["exec ui/loadout/lktab2.cfg", "exec ui/loadout/t24.cfg"]),
     ("g_smg_locked_drum", ["exec ui/loadout/t25.cfg"]),
@@ -151,6 +151,7 @@ def main():
                     do(c, lines)
                 if grab(c, sd, nm):
                     got.append(nm)
+                do(c, ["echo CVCOUNT " + nm, "cvarlist"], 0.3)      # the engine holds 8192 cvars in all: watch the count
             frames = []
             if "--skip-gif" not in a and W >= 1280 and H <= 720:
                 for i, lines in enumerate(GIF):

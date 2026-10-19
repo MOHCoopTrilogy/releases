@@ -51,7 +51,7 @@ def main():
         time.sleep(35)
         rp.do(c, ["exec ui/loadout/open.cfg"], 3.0)
         time.sleep(4)
-        rp.do(c, ["set coop_loHero 0", "set coop_loHeroLk 0", "set coop_loHeroIc 0", "set coop_loCanEq 0"], 0.6)
+        rp.do(c, ["set coop_loHero 1", "set coop_loPrev \"\"", "set coop_loHeroLk 0", "set coop_loHeroIc 0", "set coop_loCanEq 0"], 0.6)   # baseline = hero ON with no model (the UNLOCKED text is part of it)
         rp.grab(c, sd, "hf_000")
         for nm, tik, xf in jobs:
             if time.time() - T0 > DEADLINE_S:

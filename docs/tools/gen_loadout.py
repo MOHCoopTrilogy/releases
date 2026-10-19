@@ -218,6 +218,8 @@ def slotfile(w, s):
         L.append("set coop_loIc4 %d" % (1 if w["id"] in ICON2D else 0))
     L.append('seta coop_loPubS%s "exec ui/loadout/pubgun%s.cfg"' % (s, w["id"]))
     L.append("vstr coop_loPubS%s" % s)
+    L.append('seta coop_loNsA%s "exec ui/loadout/nsn%s_%s.cfg"' % (s, s, w["id"]))   # the slot tile's (short) name line
+    L.append("vstr coop_loNsA%s" % s)
     L.append("vstr coop_loCandRe")
     # [loadout review 2026-10-15] the pick as userinfo STATE too (cgame lp_w<slot>; the server converges on the last value, so quick
     # clicks cannot be lost to the name bus). A new gun also resets its slot's finish state to standard.
@@ -244,9 +246,8 @@ def eqfile(w):
     return ("// GENERATED - earned weapon click: inspect (hero + compare + selected mark); EQUIP commits into the active slot\n"
             "exec ui/loadout/p%s.cfg\n"
             "set coop_loCanEq 1\n"
-            "vstr coop_loSelClr\n"
-            "vstr coop_loSlOn%s\n"
-            'set coop_loSelClr "vstr coop_loSlOff%s"\n' % (w["id"], w["id"], w["id"]))
+            "exec ui/loadout/kselclr.cfg\n"
+            "vstr coop_loSlOn%s\n" % (w["id"], w["id"]))
 
 
 def lkwfile(w, has_req):
@@ -264,18 +265,19 @@ def lkwfile(w, has_req):
             'set coop_loClipN ""\n' % w["name"]
             + ("exec ui/loadout/req%s.cfg\n" % w["id"] if has_req else "")
             # [armory B 2026-10-18] the hero shows the lock (no model), the compare still reads this gun's stats, and the server-pushed
-            # progress (coop_loPgH<id> = bar level, coop_loPgT<id> = "74 / 100" text) says how close the player is.
+            # progress (coop_loPgA<id> through hpub.cfg = bar level, coop_loPgT<id> = "74 / 100" text) says how close the player is.
             + "set coop_loHero 0\n"
             + "set coop_loHeroIc 0\n"
             + "set coop_loMvOn 0\n"
             + "set coop_loHeroLk 1\n"
             + "set coop_loCanEq 0\n"
             + "exec ui/loadout/cand%s.cfg\n" % w["id"]
-            + "vstr coop_loPgH%s\n" % w["id"]
+            + "exec ui/loadout/hpg0.cfg\n"
+            + "exec ui/loadout/hpub.cfg\n"
+            + "vstr coop_loPgA%s\n" % w["id"]
             + "vstr coop_loPgT%s\n" % w["id"]
-            + "vstr coop_loSelClr\n"
+            + "exec ui/loadout/kselclr.cfg\n"
             + "vstr coop_loSlOn%s\n" % w["id"]
-            + 'set coop_loSelClr "vstr coop_loSlOff%s"\n' % w["id"]
             + "vstr coop_loDeny\n")
 
 

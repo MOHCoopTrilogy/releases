@@ -154,11 +154,14 @@ class Out:
 # (docs/tools/armory_hero_fit.tsv, hero_fit.py).  Card / slot-tile gun boxes keep the slot-thumbnail aspect (46x25 = 1.84), so xfmt is reused.
 STAT_LABELS = ["DAMAGE", "RATE OF FIRE", "ACCURACY", "MOBILITY", "RELOAD"]
 BOX_W, BOX_H = 46, 25                      # card + slot-tile gun box
-HERO_X, HERO_Y, HERO_W, HERO_H = 144, 61, 332, 52
+HERO_X, HERO_Y, HERO_W, HERO_H = 144, 66, 332, 128      # 2.6 : 1, ~40 % of the centre column
 CARD_BACK = (0.205, 0.196, 0.178)          # a lighter backdrop behind every gun render (dark guns 26 / 32 / 52 / 61 stay readable)
 ICON2D = "textures/hud/weap_grenade.tga"   # stock 2D icon: the Mills bomb's 3D model renders solid black (texture alpha)
-CW, CH, PX, GX = 56, 52, 57, 140           # card grid: 6 columns x 4 bands (a band = a 11-unit label strip + one row of cards)
-BAND0, BAND = 198, 64
+CW, CH, PX, GX = 56, 52, 57, 140           # card grid: 6 columns x 3 rows (a row = a 10-unit label strip + one row of cards)
+BAND0, BAND = 270, 61
+SLOT_Y = 227
+# finish swatch colours, by finish id (STD, GOLD, CHROME, BLUED, BLOODY, WOOD, SNOW, SAND)
+FINCOL = [(0.55, 0.47, 0.38), (0.87, 0.68, 0.23), (0.78, 0.80, 0.82), (0.17, 0.24, 0.40), (0.60, 0.12, 0.10), (0.33, 0.42, 0.20), (0.90, 0.92, 0.94), (0.78, 0.66, 0.45)]
 
 
 def model_label(o, name, rect, link, xform, enable):
@@ -198,69 +201,77 @@ def build_urc():
         o.carry(nx, (118, y + 8, 11, 14), fgcolor=c4(DIM), bgcolor=c4(PANEL), borderstyle='"NONE"')
     o.carry("resetBtn", (14, 440, 116, 13), fgcolor=c4(DIM), bgcolor=c4(PANEL2), borderstyle='"NONE"')
 
-    # ---------------------------------------------------------------- category strip
+    # ---------------------------------------------------------------- category strip: name over "unlocked / total"
     for k in range(6):
         x = 140 + k * 57
-        o.carry("tab%d" % k, (x, 36, 55, 22), fgcolor=c4(DIM), bgcolor=c4(PANEL), borderstyle='"NONE"')
-        o.new("Label", "tabHl%d" % k, (x, 36, 55, 22), bg=(ORANGE, 0.10), enable="coop_loTA%d" % k)
-        o.new("Label", "tabUl%d" % k, (x, 55, 55, 3), bg=ORANGE, enable="coop_loTA%d" % k)
+        o.new("Label", "tabBg%d" % k, (x, 36, 55, 26), bg=PANEL)
+        o.new("Label", "tabHl%d" % k, (x, 36, 55, 26), bg=(ORANGE, 0.10), enable="coop_loTA%d" % k)
+        o.carry("tab%d" % k, (x, 37, 55, 13), fgcolor=c4(DIM), bgcolor="0.00 0.00 0.00 0.00", borderstyle='"NONE"')
+        o.text("tabCnt%d" % k, x, 49, 55, link="coop_loTc%d" % k, col=FAINT, align="center")
+        o.new("Label", "tabUl%d" % k, (x, 59, 55, 3), bg=ORANGE, enable="coop_loTA%d" % k)
 
-    # ---------------------------------------------------------------- hero: a wide render, name / caliber / status BELOW it, finish chips under that
-    o.box("heroPanel", 140, 59, 340, 100, fill=PANEL2)
-    o.rule("heroTop", 140, 59, 340, 2, ORANGE)
+    # ---------------------------------------------------------------- hero: a tall render (2.6:1), name / caliber / status over its lower left, finish swatches + EQUIP in the strip below
+    o.box("heroPanel", 140, HERO_Y - 2, 340, 160, fill=PANEL2)
+    o.rule("heroTop", 140, HERO_Y - 2, 340, 2, ORANGE)
     o.new("Label", "heroBack", (HERO_X, HERO_Y, HERO_W, HERO_H), bg=CARD_BACK)
     model_label(o, "heroGun", (HERO_X, HERO_Y, HERO_W, HERO_H), "coop_loPrev", "coop_loXfmHero", "coop_loHero")
-    o.new("Label", "heroIc", (HERO_X + 114, HERO_Y, 104, HERO_H), shader=ICON2D, enable="coop_loHeroIc")
-    o.new("Label", "heroLockIc", (150, 65, 44, 44), shader="textures/mohmenu/coop_lo_lock.tga", enable="coop_loHeroLk")
-    o.text("heroReq1", 204, 66, 268, link="coop_loReq", col=CREAM, enable="coop_loHeroLk")
-    o.text("heroReq2", 204, 78, 268, link="coop_loReq2", col=DIM, enable="coop_loHeroLk")
-    o.new("Label", "heroPgTrack", (204, 94, 148, 4), bg=PANEL, enable="coop_loHeroLk")
+    o.new("Label", "heroIc", (HERO_X + 114, HERO_Y + 8, 104, 76), shader=ICON2D, enable="coop_loHeroIc")
+    o.new("Label", "heroLockIc", (150, HERO_Y + 8, 44, 44), shader="textures/mohmenu/coop_lo_lock.tga", enable="coop_loHeroLk")
+    o.text("heroReq1", 204, HERO_Y + 10, 268, link="coop_loReq", col=CREAM, enable="coop_loHeroLk")
+    o.text("heroReq2", 204, HERO_Y + 22, 268, link="coop_loReq2", col=DIM, enable="coop_loHeroLk")
+    o.new("Label", "heroPgTrack", (204, HERO_Y + 40, 148, 4), bg=PANEL, enable="coop_loHeroLk")
     for lv in range(1, 11):
-        o.new("Label", "heroPg%d" % lv, (204, 94, int(round(148 * lv / 10.0)), 4), bg=ORANGE, enable="coop_loHPg%d" % lv)
-    o.text("heroPgTxt", 358, 90, 114, link="coop_loReqPg", col=DIM, enable="coop_loHeroLk")
-    o.text("heroName", 146, 115, 240, link="coop_loNm", col=CREAM, font="facfont-20", h=16)
-    o.text("heroCd", 146, 130, 196, link="coop_loCd", col=DIM)
-    o.text("heroOk", 346, 130, 60, "UNLOCKED", col=GREEN, enable="coop_loHero")
-    o.text("heroOkI", 346, 130, 60, "UNLOCKED", col=GREEN, enable="coop_loHeroIc")
-    o.text("heroLk", 346, 130, 60, "LOCKED", col=RED, enable="coop_loHeroLk")
-    o.new("Button", "equipBtn", (400, 113, 72, 16), title="EQUIP", fg=TRACK, bg=ORANGE, font="verdana-12", sound="sound/menu/apply.wav",
+        o.new("Label", "heroPg%d" % lv, (204, HERO_Y + 40, int(round(148 * lv / 10.0)), 4), bg=ORANGE, enable="coop_loHPg%d" % lv)
+    o.text("heroPgTxt", 358, HERO_Y + 36, 114, link="coop_loReqPg", col=DIM, enable="coop_loHeroLk")
+    o.text("heroName", 150, HERO_Y + HERO_H - 36, 250, link="coop_loNm", col=CREAM, font="facfont-20", h=16)
+    o.text("heroCd", 150, HERO_Y + HERO_H - 20, 250, link="coop_loCd", col=DIM)
+    o.text("heroOk", 404, HERO_Y + HERO_H - 18, 68, "UNLOCKED", col=GREEN, enable="coop_loHero", align="right")
+    o.text("heroOkI", 404, HERO_Y + HERO_H - 18, 68, "UNLOCKED", col=GREEN, enable="coop_loHeroIc", align="right")
+    o.text("heroLk", 404, HERO_Y + HERO_H - 18, 68, "LOCKED", col=RED, enable="coop_loHeroLk", align="right")
+    sy = HERO_Y + HERO_H + 3                  # the strip under the render
+    o.new("Button", "equipBtn", (398, sy, 76, 16), title="EQUIP", fg=TRACK, bg=ORANGE, font="verdana-12", sound="sound/menu/apply.wav",
           enable="coop_loCanEq", stuff="vstr coop_loCcur")
-    # finish chips: 8 positions (STD fixed first, then open, then locked finishes; gen_armory.py ffill<slot>.cfg); the gun's MODEL variant sits at the end of the row
+    # finish swatches: 8 positions (STD fixed first, then open, then locked finishes; gen_armory.py ffill<slot>.cfg); the colour of position p is the finish it shows
     for p in range(8):
-        x = 142 + p * 42
+        x = 146 + p * 22
         e = "coop_loFp%dV" % p
-        o.new("Label", "fcBg%d" % p, (x, 144, 41, 14), bg=PANEL, enable=e)
-        o.new("Label", "fcDim%d" % p, (x, 144, 41, 14), bg=(TRACK, 0.55), enable="coop_loFp%dL" % p)
-        o.text("fcTx%d" % p, x + 1, 145, 36, link="coop_loFp%dT" % p, col=CREAM, enable=e, h=12)
-        o.new("Label", "fcLk%d" % p, (x + 35, 148, 6, 6), shader="textures/mohmenu/coop_lo_lock.tga", enable="coop_loFp%dL" % p)
-        o.new("Button", "fcBtn%d" % p, (x, 144, 41, 14), fg=(1, 1, 1), bg=None, sound="sound/menu/apply.wav", enable=e, title="",
+        o.new("Label", "fcBg%d" % p, (x - 1, sy - 1, 21, 14), bg=LINE, enable=e)
+        for f in range(8):
+            o.new("Label", "fcCol%d_%d" % (p, f), (x, sy, 19, 12), bg=FINCOL[f], enable="coop_loFp%dC%d" % (p, f))
+        o.new("Label", "fcDim%d" % p, (x, sy, 19, 12), bg=(TRACK, 0.55), enable="coop_loFp%dL" % p)
+        o.new("Label", "fcLk%d" % p, (x + 6, sy + 3, 7, 7), shader="textures/mohmenu/coop_lo_lock.tga", enable="coop_loFp%dL" % p)
+        o.new("Button", "fcBtn%d" % p, (x, sy, 19, 12), fg=(1, 1, 1), bg=None, sound="sound/menu/apply.wav", enable=e, title="",
               stuff="vstr coop_loFp%dGo" % p, hover="vstr coop_loFp%dHov" % p, away="exec ui/loadout/reqclear.cfg")
-    o.carry("finbtn8", (412, 131, 60, 12), title='"MODEL"', fgcolor=c4(CREAM), bgcolor=c4(PANEL), borderstyle='"NONE"', textalign="left")
-    o.carry("finlk8", (462, 133, 7, 7))
+    o.text("finCap", 146, sy + 14, 40, "FINISH", col=FAINT, enable="coop_loFinUIOn")
+    o.text("finNm", 188, sy + 14, 100, link="coop_loFinNm", col=CREAM, enable="coop_loFinUIOn")
+    o.carry("finbtn8", (324, sy + 2, 62, 12), title='"MODEL"', fgcolor=c4(CREAM), bgcolor=c4(PANEL), borderstyle='"NONE"', textalign="left")
+    o.carry("finlk8", (376, sy + 4, 7, 7))
 
-    # ---------------------------------------------------------------- slot tiles (thumbnail + name tag; the active slot's gun is the compare's NOW)
+    # ---------------------------------------------------------------- slot tiles: thumbnail, slot caption and the gun's NAME
     names = ["PRIM 1", "PRIM 2", "SIDE", "NADE"]
     for i in range(4):
         n = i + 1
-        x, y = 140 + i * 86, 162
-        o.box("slotBg%d" % n, x, y, 82, 32, fill=PANEL)
-        o.new("Label", "cardhl%d" % n, (x, y, 82, 32), bg=(ORANGE, 0.18), enable="coop_loSel%d" % n, order=24)
-        o.new("Label", "slotBack%d" % n, (x + 3, y + 3, BOX_W, BOX_H), bg=CARD_BACK)
-        o.carry("card%d" % n, (x + 52, y + 4, 29, 12), title='"%s"' % names[i], fgcolor=c4(DIM), bgcolor="0.00 0.00 0.00 0.00",
+        x, y = 140 + i * 86, SLOT_Y
+        o.box("slotBg%d" % n, x, y, 82, 40, fill=PANEL)
+        o.new("Label", "cardhl%d" % n, (x, y, 82, 40), bg=(ORANGE, 0.18), enable="coop_loSel%d" % n, order=24)
+        o.new("Label", "slotBack%d" % n, (x + 3, y + 2, BOX_W, BOX_H), bg=CARD_BACK)
+        o.carry("card%d" % n, (x + 52, y + 3, 29, 12), title='"%s"' % names[i], fgcolor=c4(DIM), bgcolor="0.00 0.00 0.00 0.00",
                 borderstyle='"NONE"', textalign="left")
-        o.carry("cardbody%d" % n, (x + 1, y + 1, 80, 30))
-        o.carry("cardthumb%d" % n, (x + 3, y + 3, BOX_W, BOX_H))
+        o.carry("cardbody%d" % n, (x + 1, y + 1, 80, 38))
+        o.carry("cardthumb%d" % n, (x + 3, y + 2, BOX_W, BOX_H))
         if n == 4:
-            o.new("Label", "slotIc4", (x + 3, y + 6, BOX_W, 20), shader=ICON2D, enable="coop_loIc4")
+            o.new("Label", "slotIc4", (x + 3, y + 5, BOX_W, 20), shader=ICON2D, enable="coop_loIc4")
+        o.text("slotNm%d" % n, x + 3, y + 27, 78, link="coop_loNs%d" % n, col=CREAM)
 
-    # ---------------------------------------------------------------- card grid: 4 bands of 6.  The UNLOCKED label sits above band 0, the LOCKED label above the band
-    # where the locked group starts (the locked group always starts on a new band: gen_armory.py row_up)
-    o.text("gridUn", 142, BAND0 - 1, 120, link="coop_loUnTxt", col=GREEN, enable="coop_loLbU")
-    for r in range(4):
-        o.text("gridLk%d" % r, 142, BAND0 - 1 + r * BAND, 120, link="coop_loLkTxt", col=DIM, enable="coop_loLbL%d" % r)
-    for c in range(24):
+    # ---------------------------------------------------------------- card grid: ONE continuous flow of 3 rows x 6 (unlocked first, then the locked group).  The UNLOCKED
+    # label sits over card 0, the LOCKED label over the first locked card (gen_armory.py sets exactly one coop_loLbS<row>_<col>)
+    o.text("gridUn", 142, BAND0 - 1, 100, link="coop_loUnTxt", col=GREEN, enable="coop_loLbU")
+    for r in range(3):
+        for c in range(6):
+            o.text("gridLk%d_%d" % (r, c), GX + c * PX + 2, BAND0 - 1 + r * BAND, 80, link="coop_loLkTxt", col=DIM, enable="coop_loLbS%d_%d" % (r, c))
+    for c in range(NC):
         col, row = c % 6, c // 6
-        x, y = GX + col * PX, BAND0 + 11 + row * BAND
+        x, y = GX + col * PX, BAND0 + 10 + row * BAND
         e = "coop_loK%dV" % c
         o.new("Label", "kBg%d" % c, (x, y, CW, CH), bg=PANEL, enable=e)
         o.new("Label", "kBack%d" % c, (x + 5, y + 2, BOX_W, BOX_H), bg=CARD_BACK, enable=e)
@@ -279,7 +290,7 @@ def build_urc():
         o.new("Button", "kBtn%d" % c, (x, y, CW, CH), fg=(1, 1, 1), bg=None, sound="sound/menu/apply.wav", enable=e,
               stuff="vstr coop_loK%dGo" % c, title="")
 
-    # ---------------------------------------------------------------- compare ledger (right column)
+    # ---------------------------------------------------------------- compare ledger (right column): numeric deltas next to the values, "what unlocks next" under them
     o.box("cmpPanel", 486, 36, 144, 420)
     o.text("cmpCap", 492, 39, 100, "COMPARE", col=DIM)
     o.new("Label", "cmpDotN", (492, 58, 6, 6), bg=ORANGE)
@@ -287,15 +298,16 @@ def build_urc():
     o.new("Label", "cmpDotE", (492, 75, 6, 6), bg=FAINT)
     o.text("cmpNowCap", 502, 72, 30, "NOW", col=DIM)
     for n in range(1, 5):
-        o.text("cmpNow%d" % n, 526, 72, 100, link="coop_loN%d" % n, col=DIM, enable="coop_loSel%d" % n)
+        o.text("cmpNow%d" % n, 526, 72, 100, link="coop_loNs%d" % n, col=DIM, enable="coop_loSel%d" % n)
     for r in range(5):
         y = 90 + r * 44
-        o.text("stLbl%d" % r, 492, y, 90, STAT_LABELS[r], col=DIM)
+        o.text("stLbl%d" % r, 492, y, 66, STAT_LABELS[r], col=DIM)
+        # the delta, right-aligned on the label line: green = better, red = worse, grey = equal (colour from the level join)
+        o.text("stDp%d" % r, 556, y, 70, link="coop_loDl%d" % r, col=GREEN, align="right", enable="coop_loCpl%d" % r)
+        o.text("stDm%d" % r, 556, y, 70, link="coop_loDl%d" % r, col=RED, align="right", enable="coop_loCmi%d" % r)
+        o.text("stDe%d" % r, 556, y, 70, link="coop_loDl%d" % r, col=FAINT, align="right", enable="coop_loCeq%d" % r)
         o.text("stCv%d" % r, 492, y + 11, 62, link="coop_loCv%d" % r, col=CREAM, font="facfont-20", h=16)
-        o.text("stEv%d" % r, 556, y + 14, 48, link="coop_loEv%d" % r, col=FAINT)
-        o.text("stPl%d" % r, 600, y + 8, 26, "+", col=GREEN, font="facfont-20", h=16, align="right", enable="coop_loCpl%d" % r)
-        o.text("stMi%d" % r, 600, y + 8, 26, "-", col=RED, font="facfont-20", h=16, align="right", enable="coop_loCmi%d" % r)
-        o.text("stEq%d" % r, 600, y + 8, 26, "=", col=FAINT, font="facfont-20", h=16, align="right", enable="coop_loCeq%d" % r)
+        o.text("stEv%d" % r, 556, y + 14, 70, link="coop_loEv%d" % r, col=FAINT, align="right")
         o.new("Label", "cbTr%d" % r, (492, y + 30, 132, 4), bg=PANEL, enable=None)
         for colk, colv in (("n", CREAM), ("g", GREEN), ("r", RED)):
             for lv in range(1, 11):
@@ -304,15 +316,20 @@ def build_urc():
         o.new("Label", "ebTr%d" % r, (492, y + 36, 132, 3), bg=PANEL)
         for lv in range(1, 11):
             o.new("Label", "eb%d_%d" % (r, lv), (492, y + 36, int(round(132 * lv / 10.0)), 3), bg=FAINT, enable="coop_loEb%d_%d" % (r, lv))
-    o.rule("cmpLine", 492, 313, 132, 1, LINE)
-    o.text("magCap", 492, 316, 132, "MAGAZINE (ROUNDS)", col=DIM)
-    o.carry("magRds", (492, 329, 30, 12), fgcolor=c4(CREAM), textalign="left")
-    o.carry("clipStrip", (524, 329, 100, 12))
-    o.text("recCap", 492, 345, 132, "RECOIL PATTERN", col=DIM)
-    o.carry("recoilImg", (492, 358, 62, 52))
-    o.carry("helm3dRender", (560, 358, 64, 52))
-    o.text("cmpKey1", 492, 418, 132, "Top bar: this gun.", col=FAINT)
-    o.text("cmpKey2", 492, 430, 132, "Bottom bar: the slot now.", col=FAINT)
+    o.rule("cmpLine", 492, 312, 132, 1, LINE)
+    o.text("ledCap", 492, 315, 132, "WHAT UNLOCKS NEXT", col=DIM)
+    for j in range(4):
+        y = 329 + j * 28
+        e = "coop_loWv%d" % j
+        o.new("Label", "ledLk%d" % j, (492, y + 2, 8, 8), shader="textures/mohmenu/coop_lo_lock.tga", enable=e)
+        o.text("ledNm%d" % j, 502, y, 82, link="coop_loWn%d" % j, col=CREAM, enable=e)
+        o.text("ledPc%d" % j, 586, y, 38, link="coop_loWp%d" % j, col=ORANGE, align="right", enable=e)
+        o.text("ledRq%d" % j, 492, y + 15, 132, link="coop_loWr%d" % j, col=DIM, enable=e)
+        o.new("Label", "ledTr%d" % j, (492, y + 12, 132, 3), bg=PANEL, enable=e)
+        for lv in range(1, 11):
+            o.new("Label", "ledB%d_%d" % (j, lv), (492, y + 12, int(round(132 * lv / 10.0)), 3), bg=ORANGE, enable="coop_loWb%d_%d" % (j, lv))
+    o.text("cmpKey", 492, 443, 132, "Top bar: new. Lower: now.", col=FAINT)
+    o.carry("helm3dRender", (14, 52, 50, 46))
 
     # ---------------------------------------------------------------- footer, done gate, fit tools
     o.rule("ftrLine", 10, 458, 620, 1, LINE)
@@ -324,7 +341,7 @@ def build_urc():
     for nm in ("doneGateBg", "doneGateT", "doneGateM2", "doneGateM3", "doneGateHint", "doneGateOk"):
         o.carry(nm)
     dropped = {n for n in order if re.match(r"(tile|tileeq|tilelk)\d+$", n)} | {"finbtn%d" % i for i in range(8)} | {"finlk%d" % i for i in range(1, 8)} | {"finstrip_lbl"} | {"chipn%d" % i for i in range(1, 5)} \
-        | {"bg", "wname", "wdesc", "wreq", "wreq2"} | {"bar0", "bar1", "bar2", "bar3"} | {"prevC%d" % i for i in range(6)} | {"prevG39"}
+        | {"bg", "wname", "wdesc", "wreq", "wreq2", "magRds", "clipStrip", "recoilImg"} | {"bar0", "bar1", "bar2", "bar3"} | {"prevC%d" % i for i in range(6)} | {"prevG39"}
     missing = [n for n in order if n not in o.names and n not in dropped]
     assert not missing, "baseline widgets neither carried nor dropped: %s" % missing
     return o.render(head)

@@ -68,18 +68,25 @@ def main():
                 lk = [i for i in ids if i not in unl]
                 lay = layout(sim)
                 want = {c: g for c, g in enumerate(un)}
-                want.update({ga.row_up(len(un)) + j: g for j, g in enumerate(lk)})
-                check("trial %d tab %d layout (unlocked first, locked on their own rows)" % (trial, t), lay == want, (lay, want))
+                want.update({len(un) + j: g for j, g in enumerate(lk)})
+                check("trial %d tab %d layout (unlocked first, the locked group right after)" % (trial, t), lay == want, (lay, want))
                 locks = {c: sim.get("coop_loK%dL" % c) for c in lay}
                 check("trial %d tab %d lock flags" % (trial, t), all(locks[c] == ("0" if lay[c] in unl else "1") for c in lay), locks)
                 check("trial %d tab %d counts" % (trial, t),
                       sim.get("coop_loUnTxt") == "UNLOCKED %d" % len(un) and sim.get("coop_loLkTxt") == "LOCKED %d" % len(lk),
                       (sim.get("coop_loUnTxt"), sim.get("coop_loLkTxt")))
-                lrow = ga.row_up(len(un)) // ga.COLS
-                labels = [sim.get("coop_loLbL%d" % r) for r in range(ga.NC // ga.COLS)]
-                check("trial %d tab %d section labels (LOCKED above row %d, UNLOCKED %s)" % (trial, t, lrow, "shown" if un else "hidden"),
-                      labels == ["1" if r == lrow else "0" for r in range(ga.NC // ga.COLS)] and sim.get("coop_loLbU") == ("1" if un else "0"),
-                      (labels, sim.get("coop_loLbU")))
+                # one LOCKED label, over the first locked card (row, col); UNLOCKED over card 0
+                want_l = {"coop_loLbS%d_%d" % (r, c): "0" for r in range(ga.NC // ga.COLS) for c in range(ga.COLS)}
+                if lk:
+                    want_l["coop_loLbS%d_%d" % (len(un) // ga.COLS, len(un) % ga.COLS)] = "1"
+                got_l = {k: sim.get(k) for k in want_l}
+                check("trial %d tab %d section labels (LOCKED over card %d, UNLOCKED %s)" % (trial, t, len(un), "shown" if un else "hidden"),
+                      got_l == want_l and sim.get("coop_loLbU") == ("1" if un else "0"), ([k for k in got_l if got_l[k] != want_l[k]], sim.get("coop_loLbU")))
+                # the ledger = the first four locked guns, in tab order
+                for j in range(ga.NLEDGER):
+                    shown = sim.get("coop_loWv%d" % j) == "1"
+                    check("trial %d tab %d ledger row %d" % (trial, t, j), shown == (j < len(lk)) and (not shown or sim.get("coop_loWn%d" % j) != ""),
+                          (shown, sim.get("coop_loWn%d" % j)))
         # equipped / selected marks follow the card position
         sim = cfgsim.Sim(tmp)
         sim.exec("ui/loadout/armory_defaults.cfg")
@@ -112,6 +119,19 @@ def main():
         sim.run('set coop_loPgA05 "vstr coop_loPgX7"')
         sim.exec("ui/loadout/pll_05_%d.cfg" % lpos)
         check("locked card progress level 7 lights step 7 only", sim.get("coop_loKb%d_7" % lpos) == "1" and sim.get("coop_loKb%d_6" % lpos) == "0")
+        # numeric deltas: kar98k (dmg 110, 55 rpm) against the garand (dmg 50, 333 rpm)
+        sim.exec("ui/loadout/pubgun01.cfg")
+        sim.exec("ui/loadout/cand03.cfg")
+        d_dmg, d_rpm = sim.get("coop_loDl0"), sim.get("coop_loDl1")
+        check("delta text kar98k vs garand (dmg %s, rate %s)" % (d_dmg, d_rpm),
+              d_dmg == "%+g" % (float(stats["03"]["dmg"]) - float(stats["01"]["dmg"])) and d_rpm == "%+g" % (float(stats["03"]["rpm"]) - float(stats["01"]["rpm"])))
+        sim.exec("ui/loadout/cand04.cfg")
+        check("delta of an n/a stat is blank", sim.get("coop_loDl4") == "")
+        sim.exec("ui/loadout/cand01.cfg")
+        check("delta against itself is =", all(sim.get("coop_loDl%d" % r) in ("=", "") for r in range(5)))
+        # slot tile name
+        sim.exec("ui/loadout/nsn1_05.cfg")
+        check("slot tile name", sim.get("coop_loNs1") != "")
         bad = [l for l in sim.log if l.startswith("exec: missing")]
         check("no missing cfg files", not bad, bad[:5])
         print("generated files:", len(out))
