@@ -27,11 +27,25 @@ try:
             break
         time.sleep(6)
     log("church hold finished after %d s" % (time.time() - t0))
+    # the paratroopers' .30 cal team sets up: camera behind the gun (position + facing from the PSQ line)
+    mm = R.wait_log(r"\^~\^~\^ PSQ t=\S+ mg setup k=\d+ mode=\w+ gun=\( (-?[\d.]+) (-?[\d.]+) (-?[\d.]+) \) yaw=(-?[\d.]+)", 90, p0)
+    if mm:
+        gx, gy, gz, gyaw = float(mm.group(1)), float(mm.group(2)), float(mm.group(3)), float(mm.group(4))
+        import math
+        bx, by = gx - 260 * math.cos(math.radians(gyaw)), gy - 260 * math.sin(math.radians(gyaw))
+        G.cmd("pin", x="%.0f" % bx, y="%.0f" % by, z="%.0f" % (gz + 40), lx="%.0f" % gx, ly="%.0f" % gy, lz="%.0f" % (gz + 20))
+        G.still(LABEL + "_30cal_team")
+        G.frames(LABEL + "_30cal", 8, 250)
+        log("30cal team camera at", bx, by, "gun", gx, gy, gz, "yaw", gyaw)
     time.sleep(25)                      # the paradrop lands
     G.cmd("find30")
     time.sleep(2)
     G.still(LABEL + "_church_para")
     G.frames(LABEL + "_para", 6, 400)
+    # screenshot from the rocket crate toward the halftrack stop (shows the cover between)
+    G.cmd("pin", x="1601", y="-2420", z="-250", lx="-2837", ly="-3005", lz="-120")
+    time.sleep(1.5)
+    G.still(LABEL + "_crate_to_stop")
     G.cmd("m3nebel")
     t1 = time.time()
     # 1. the guard halftracks arrive: chase camera
