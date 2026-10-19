@@ -11,7 +11,7 @@ G.HERE = HERE
 G.MOD = "C:/mohaa-coop-dev/hzm-mod-alarmsnipers"
 G.LOGF = os.path.join(HERE, "asn.log")
 G.R.RUNS = os.path.join(HERE, "runs").replace("\\", "/")
-G.FILES = ["coop_mod/alarmsnipers.scr", "coop_mod/alarmsnipers_spots.scr", "coop_mod/alarm.scr"]
+G.FILES = ["coop_mod/alarmsnipers.scr", "coop_mod/alarmsnipers_spots.scr", "coop_mod/alarm.scr", "coop_mod/asn_cands_test.scr"]
 _ov = G.overlay
 
 

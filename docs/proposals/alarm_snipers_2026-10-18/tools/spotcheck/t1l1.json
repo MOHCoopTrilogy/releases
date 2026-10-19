@@ -2,12 +2,12 @@
  {
   "i": 1,
   "pos": [
-   -5240.0,
-   7510.0,
-   -6796.87
+   -3386.0,
+   5042.0,
+   -6719.88
   ],
-  "line": "z0=-6796.870 z1=-6796.757 dz=0.113 air=0.117 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
-  "verdict": "FAIL no visible angle (floor contact not photographable)",
-  "photo": "none"
+  "line": "z0=-6719.880 z1=-6719.875 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "FAIL manual QA: inside a train / ship interior, indoor",
+  "photo": "ok dir 4"
  }
 ]

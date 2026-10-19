@@ -1,0 +1,44 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   456.0,
+   4944.0,
+   448.12
+  ],
+  "line": "z0=448.120 z1=448.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=1 FAIL edge",
+  "verdict": "FAIL edge"
+ },
+ {
+  "i": 2,
+  "pos": [
+   -200.0,
+   4200.0,
+   224.12
+  ],
+  "line": "z0=224.120 z1=224.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 0"
+ },
+ {
+  "i": 3,
+  "pos": [
+   -824.0,
+   3592.0,
+   224.12
+  ],
+  "line": "z0=224.120 z1=224.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 0"
+ },
+ {
+  "i": 4,
+  "pos": [
+   -232.0,
+   4800.0,
+   32.12
+  ],
+  "line": "z0=32.120 z1=32.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=3 FAIL edge",
+  "verdict": "FAIL edge"
+ }
+]

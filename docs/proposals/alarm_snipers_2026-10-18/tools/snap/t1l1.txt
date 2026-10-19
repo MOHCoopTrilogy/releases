@@ -1,0 +1,3 @@
+^~^~^ SNAP START n=275 ceil=8156.000
+^~^~^ SNAP 164 -3386.000 5042.000 -6719.875 0 pathnode
+^~^~^ SNAP DONE kept=1

@@ -2,22 +2,23 @@
  {
   "i": 1,
   "pos": [
-   -1768.0,
-   -2808.0,
+   -2492.0,
+   -2504.0,
    320.12
   ],
   "line": "z0=320.120 z1=320.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
-  "verdict": "FAIL manual QA: sniper not visible in the tile (contact unproven)",
+  "verdict": "PASS",
   "photo": "ok dir 2"
  },
  {
   "i": 2,
   "pos": [
-   -2408.0,
-   -2808.0,
-   320.12
+   -7092.0,
+   1528.0,
+   640.12
   ],
-  "line": "FAIL gone",
-  "verdict": "FAIL gone"
+  "line": "z0=640.120 z1=640.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 4"
  }
 ]

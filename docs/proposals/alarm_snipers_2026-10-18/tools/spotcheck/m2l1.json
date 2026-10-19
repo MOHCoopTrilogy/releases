@@ -2,81 +2,12 @@
  {
   "i": 1,
   "pos": [
-   -3520.0,
-   -896.0,
-   1099.91
+   4448.0,
+   2592.0,
+   448.12
   ],
-  "line": "z0=1099.910 z1=992.125 dz=-107.785 air=0.000 clipdz=0.000 sky=0 nodrawflag=1 edgebad=0 FAIL dropped",
-  "verdict": "FAIL dropped"
- },
- {
-  "i": 2,
-  "pos": [
-   -3200.0,
-   -2432.0,
-   1093.39
-  ],
-  "line": "z0=1093.390 z1=1093.390 dz=0.000 air=0.001 clipdz=0 sky=0 nodrawflag=0 edgebad=6 FAIL edge",
-  "verdict": "FAIL edge"
- },
- {
-  "i": 3,
-  "pos": [
-   -3328.0,
-   -1536.0,
-   1092.44
-  ],
-  "line": "z0=1092.440 z1=992.125 dz=-100.315 air=0.000 clipdz=0.000 sky=0 nodrawflag=1 edgebad=0 FAIL dropped",
-  "verdict": "FAIL dropped"
- },
- {
-  "i": 4,
-  "pos": [
-   -3648.0,
-   640.0,
-   1062.22
-  ],
-  "line": "z0=1062.220 z1=448.125 dz=-614.095 air=0.000 clipdz=0.000 sky=0 nodrawflag=1 edgebad=0 FAIL dropped",
-  "verdict": "FAIL dropped"
- },
- {
-  "i": 5,
-  "pos": [
-   2304.0,
-   3968.0,
-   552.1
-  ],
-  "line": "z0=552.100 z1=448.125 dz=-103.975 air=0.000 clipdz=0.000 sky=0 nodrawflag=1 edgebad=0 FAIL dropped",
-  "verdict": "FAIL dropped"
- },
- {
-  "i": 6,
-  "pos": [
-   -3328.0,
-   -320.0,
-   1025.39
-  ],
-  "line": "z0=1025.390 z1=448.125 dz=-577.265 air=0.000 clipdz=0.000 sky=0 nodrawflag=1 edgebad=0 FAIL dropped",
-  "verdict": "FAIL dropped"
- },
- {
-  "i": 7,
-  "pos": [
-   1856.0,
-   4416.0,
-   558.06
-  ],
-  "line": "z0=558.060 z1=448.125 dz=-109.935 air=0.000 clipdz=0.000 sky=0 nodrawflag=1 edgebad=3 FAIL dropped edge",
-  "verdict": "FAIL dropped edge"
- },
- {
-  "i": 8,
-  "pos": [
-   -3456.0,
-   1216.0,
-   1019.81
-  ],
-  "line": "z0=1019.810 z1=448.125 dz=-571.685 air=0.000 clipdz=0.000 sky=0 nodrawflag=1 edgebad=0 FAIL dropped",
-  "verdict": "FAIL dropped"
+  "line": "z0=448.120 z1=448.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 0"
  }
 ]

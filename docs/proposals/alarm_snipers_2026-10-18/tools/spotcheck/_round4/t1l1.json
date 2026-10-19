@@ -1,0 +1,13 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   -5240.0,
+   7510.0,
+   -6796.87
+  ],
+  "line": "z0=-6796.870 z1=-6796.757 dz=0.113 air=0.117 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "FAIL no visible angle (floor contact not photographable)",
+  "photo": "none"
+ }
+]

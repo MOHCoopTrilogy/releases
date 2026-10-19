@@ -14,33 +14,11 @@
   "i": 2,
   "pos": [
    -824.0,
-   2872.0,
-   224.12
-  ],
-  "line": "z0=224.120 z1=224.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
-  "verdict": "FAIL manual QA: sniper not visible in the tile (contact unproven)",
-  "photo": "ok dir 13"
- },
- {
-  "i": 3,
-  "pos": [
-   -824.0,
    3592.0,
    224.12
   ],
   "line": "z0=224.120 z1=224.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
   "verdict": "PASS",
   "photo": "ok dir 0"
- },
- {
-  "i": 4,
-  "pos": [
-   776.0,
-   3048.0,
-   208.12
-  ],
-  "line": "z0=208.120 z1=208.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
-  "verdict": "FAIL no visible angle (floor contact not photographable)",
-  "photo": "none"
  }
 ]

@@ -1,0 +1,23 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   -1768.0,
+   -2808.0,
+   320.12
+  ],
+  "line": "z0=320.120 z1=320.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "FAIL manual QA: sniper not visible in the tile (contact unproven)",
+  "photo": "ok dir 2"
+ },
+ {
+  "i": 2,
+  "pos": [
+   -2408.0,
+   -2808.0,
+   320.12
+  ],
+  "line": "FAIL gone",
+  "verdict": "FAIL gone"
+ }
+]

@@ -1,0 +1,43 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   5200.0,
+   -2289.0,
+   562.84
+  ],
+  "line": "z0=562.840 z1=531.125 dz=-31.715 air=999 clipdz=1030.719 sky=0 nodrawflag=0 edgebad=8 FAIL dropped air onclip edge",
+  "verdict": "FAIL dropped air onclip edge"
+ },
+ {
+  "i": 2,
+  "pos": [
+   -4216.0,
+   -4056.0,
+   424.12
+  ],
+  "line": "z0=424.120 z1=424.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 8"
+ },
+ {
+  "i": 3,
+  "pos": [
+   5741.0,
+   -1012.0,
+   624.83
+  ],
+  "line": "z0=624.830 z1=631.374 dz=6.544 air=7.833 clipdz=0.000 sky=0 nodrawflag=0 edgebad=7 FAIL dropped air edge",
+  "verdict": "FAIL dropped air edge"
+ },
+ {
+  "i": 4,
+  "pos": [
+   -4208.0,
+   -2357.0,
+   559.26
+  ],
+  "line": "z0=559.260 z1=382.883 dz=-176.378 air=1.433 clipdz=0.000 sky=0 nodrawflag=0 edgebad=4 FAIL dropped edge",
+  "verdict": "FAIL dropped edge"
+ }
+]

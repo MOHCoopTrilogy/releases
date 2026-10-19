@@ -35,6 +35,26 @@ whether any of it runs. Debug lines: `coop_alarmDebug 1` prints `^~^~^ ASNIPER .
 6. Greedy spread pick, <= 14 per map, building cluster (700 u) and side tags. Terrain is NOT traced, so terrain ridges are never offered.
 Result: see the final count below (`docs/tools/sniper_spots.json`, generated `coop_mod/alarmsnipers_spots.scr`).
 
+## ADDED 2026-10-18: vanilla-game candidates (coordinator: "positions the original game already uses for high enemies")
+`gen_sniper_spots.py cands` reads the BSP entity lists: every `ai_*` actor, turret / MG nests, entities named sniper / tower / watch / nest, and **elevated pathnodes** (a pathnode with another one >= 128 u below it within 500 u: a tower, roof or stair top with a real floor). The in-engine snap (`asn_drv.scr::asd_snap`, `asn_snap.py`) puts each on the real floor and keeps open-sky, flat, hull-fitting points; `merge-snap` applies >= 128 u over the lowest route node within 600 u, line of sight, the visibility (shader name) check and the failure memory, pools them with the spots that already passed, keeps the best 6 per map >= 600 u apart; then the SAME audit (drop, air, clip, sky, 24 u roof edge, side shot) ran again over everything. Interior pathnodes (most of them) are rejected by the open-sky check.
+
+| map | vanilla candidates (BSP) | snapped to open-sky floor | passed generator filters | audited (final round) | final kept |
+|---|---:|---:|---:|---:|---:|
+| e2l1 | 297 | 15 | 9 | 1 | 1 |
+| e3l1 | 379 | 90 | 24 | 2 | 2 |
+| e3l2 | 418 | 39 | 7 | 0 | 0 |
+| m1l1 | 143 | 59 | 11 | 2 | 2 |
+| m2l1 | 322 | 12 | 1 | 1 | 1 |
+| m3l2 | 353 | 0 | 0 | 0 | 0 |
+| m4l1 | 103 | 12 | 5 | 0 | 0 |
+| m4l2 | 177 | 72 | 22 | 5 | 5 |
+| m4l3 | 681 | 21 | 21 | 3 | 0 |
+| t1l1 | 275 | 1 | 1 | 1 | 0 |
+| t3l1 | 628 | 2 | 0 | 0 | 0 |
+
+Audit of the pooled set: m4l2 5/5, e3l1 2/2, e2l1 1/1, m1l1 2/2, m2l1 1/1 passed all rules and tiles; m4l3 3/3 and t1l1 1/1 passed the numeric rules but their tiles showed a ground-level garden (z 2) and a train interior, so they were dropped by hand (`manual QA`). e3l2 (1 of 4: no visible angle, rest roof edges), m3l2, m4l1, t3l1 have nothing left.
+**Final: 11 spots on 5 maps (e2l1 1, e3l1 2, m1l1 2, m2l1 1, m4l2 5)** - up from 7 on 3 maps. Sheets: `media/sheet_spots_m4l2.jpg`, `_e3l1`, `_e2l1`, `_m1l1`, `_m2l1`. Honest notes: most survivors are elevated plazas, ledges and decks rather than rooftops (m1l1 terrace, m2l1 plateau behind a wall, m4l2 hill / dock deck); the generated spots file now lists only audited maps (the dispatcher used to name maps without a function).
+
 ## FINAL: every spot audited in the engine (2026-10-18, "snipers float in the sky")
 A sniper floating in the sky was real: the engine-side roof scan had offered the top of **invisible brushes** (caulk / nodraw / the map-cap slab; m4l1 spots 4-8 sat 500 u above the town) and
 surfaces that bullets hit but actors fall through (tree and terrain models: on m2l1 / m1l1 snipers dropped 100-1500 u). Fixes: surface shader names (nodraw, caulk, sky, clip, hint, common/) are rejected
@@ -62,7 +82,7 @@ Audit result per alarm map (last audit round; earlier rounds in `tools/spotcheck
 | t1l1 | 1 | 0 | no visible angle: 1 | 0 |
 | t3l1 | 1 | 0 | edge: 1 | 0 |
 
-**Final: 7 spots on 3 maps (e2l1 1, e3l1 2, m4l2 4).** Every other alarm map gets no alarm snipers (its alarm still brings infantry and the MG team). Sheets (floor contact visible in every tile, dark tiles gamma-lifted):
+(earlier result: 7 spots on 3 maps.) Every other alarm map gets no alarm snipers (its alarm still brings infantry and the MG team). Sheets (floor contact visible in every tile, dark tiles gamma-lifted):
 `media/sheet_spots_m4l2.jpg`, `media/sheet_spots_e3l1.jpg`, `media/sheet_spots_e2l1.jpg`. Honest notes: m4l2 spots are ridge / path surfaces rather than roofs; the m4l2 tile for spot 7 has a tree trunk beside him, the contact is visible;
 the e3l1 spots are terrace / roof-edge ledges with railings. Not Omaha. The earlier widened-search text below is history.
 

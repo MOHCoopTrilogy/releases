@@ -290,6 +290,84 @@ asd_holder:{
 	}
 }end
 
+// ---- snap vanilla candidates (actor / nest / pathnode origins from the BSP) onto the engine floor and keep the open-sky, flat, hull-fitting ones.
+// returns the flatness (max corner dz) or -1 when the point fails
+asd_pt local.h local.ceil:{
+	local.m1 = 0 - 1
+	local.cdz = 0
+	for( local.c = 0; local.c < 4; local.c++ ){
+		local.o = local.h
+		local.o[0] = local.h[0] + 12
+		local.o[1] = local.h[1] + 12
+		if( local.c == 1 || local.c == 3 ){ local.o[0] = local.h[0] - 12 }
+		if( local.c == 2 || local.c == 3 ){ local.o[1] = local.h[1] - 12 }
+		local.o[2] = local.h[2] + 16
+		local.o2 = local.o
+		local.o2[2] = local.h[2] - 16
+		local.ct = traced local.o local.o2 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+		if( local.ct["fraction"] >= 1.0 || local.ct["startSolid"] == 1 ){ end local.m1 }
+		local.ch = local.ct["endpos"]
+		local.d = local.ch[2] - local.h[2]
+		if( local.d < 0 ){ local.d = 0 - local.d }
+		if( local.d > local.cdz ){ local.cdz = local.d }
+	}
+	if( local.cdz > 8 ){ end local.m1 }
+	local.bp = local.h
+	local.bp[2] = local.h[2] + 0.25
+	local.bp2 = local.bp
+	local.bp2[2] = local.bp[2] + 0.5
+	local.bb = traced local.bp local.bp2 1023 ( -15 -15 0 ) ( 15 15 72 ) 1
+	if( local.bb["startSolid"] == 1 || local.bb["allSolid"] == 1 ){ end local.m1 }
+	local.u1 = local.bp
+	local.u1[2] = local.bp[2] + 72
+	local.u2 = local.bp
+	local.u2[2] = local.bp[2] + 6072
+	local.up = traced local.u1 local.u2 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+	local.sky = 0
+	if( local.up["fraction"] >= 1.0 ){ local.sky = 1 }
+	if( local.sky == 0 ){
+		local.uh = local.up["endpos"]
+		local.ud = local.uh[2] - local.ceil
+		if( local.ud < 0 ){ local.ud = 0 - local.ud }
+		if( local.ud < 6 ){ local.sky = 1 }
+	}
+	if( local.sky == 0 ){
+		local.usf = int( local.up["surfaceFlags"] / 4 )
+		if( local.usf - int( local.usf / 2 ) * 2 == 1 ){ local.sky = 1 }
+	}
+	if( local.sky != 1 ){ end local.m1 }
+}end local.cdz
+
+asd_snap:{
+	local.n = waitthread coop_mod/asn_cands_test.scr::cands level.coop_mapname
+	local.cf = waitthread asd_f "ai_ceil"
+	local.ceil = 99999
+	if( local.cf > 1 ){ local.ceil = local.cf }
+	local.w = $world
+	local.wn = local.w.entnum
+	local.k = 0
+	println ( "^~^~^ SNAP START n=" + local.n + " ceil=" + local.ceil )
+	for( local.i = 1; local.i <= local.n; local.i++ ){
+		if( local.i - ( int( local.i / 60 ) * 60 ) == 0 ){ waitframe }
+		local.p = level.asd_cp[local.i]
+		local.s = local.p
+		local.s[2] = local.p[2] + 24
+		local.e = local.p
+		local.e[2] = local.p[2] - 90
+		local.tr = traced local.s local.e 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+		if( local.tr["fraction"] >= 1.0 || local.tr["startSolid"] == 1 ){ continue }
+		if( local.tr["entityNum"] != local.wn ){ continue }
+		local.q = int( local.tr["surfaceFlags"] / 4 )
+		if( local.q - int( local.q / 2 ) * 2 == 1 ){ continue }
+		local.h = local.tr["endpos"]
+		local.cd = waitthread asd_pt local.h local.ceil
+		if( local.cd < 0 ){ continue }
+		local.k++
+		println ( "^~^~^ SNAP " + local.i + " " + local.h[0] + " " + local.h[1] + " " + local.h[2] + " " + local.cd + " " + level.asd_cs[local.i] )
+	}
+	println ( "^~^~^ SNAP DONE kept=" + local.k )
+}end
+
 asd_do local.c:{
 	local.p = $player[1]
 	if( local.p == NULL ){ end }
@@ -353,6 +431,7 @@ asd_do local.c:{
 			if( local.c == "showsn" ){ local.hs show }
 		}
 	}
+	if( local.c == "snap" ){ thread asd_snap }
 	if( local.c == "scan" ){ thread asd_scan }
 	if( local.c == "status" ){
 		println ( "^~^~^ ASN STATUS map=" + level.coop_mapname + " alarmMap=" + ( waitthread asd_s level.coop_alarmMap ) + " sw=" + ( waitthread asd_s level.coop_alarmSwN ) + " live=" + ( waitthread asd_s level.coop_alarmLive ) + " pulls=" + ( waitthread asd_s level.coop_alarmPulls ) + " spots=" + ( waitthread asd_s level.coop_asnN ) + " snipers=" + ( waitthread coop_mod/alarmsnipers.scr::asn_alive ) + " players=" + ( waitthread coop_mod/alarmsnipers.scr::asn_players ) + " want=" + ( waitthread coop_mod/alarmsnipers.scr::asn_want ) + " t=" + level.time )

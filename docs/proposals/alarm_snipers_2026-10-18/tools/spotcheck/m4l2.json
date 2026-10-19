@@ -13,49 +13,27 @@
  {
   "i": 2,
   "pos": [
-   -6904.0,
-   4936.0,
+   -5504.0,
+   2360.0,
    328.12
   ],
   "line": "z0=328.120 z1=328.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
-  "verdict": "FAIL manual QA: sniper mostly hidden behind a fence, contact not clear",
-  "photo": "ok dir 7"
+  "verdict": "PASS",
+  "photo": "ok dir 10"
  },
  {
   "i": 3,
   "pos": [
-   -4968.0,
-   4936.0,
-   328.12
+   -6944.0,
+   3168.0,
+   288.12
   ],
-  "line": "z0=328.120 z1=328.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
-  "verdict": "FAIL no visible angle (floor contact not photographable)",
-  "photo": "none"
+  "line": "z0=288.120 z1=288.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 12"
  },
  {
   "i": 4,
-  "pos": [
-   5792.0,
-   1648.0,
-   432.63
-  ],
-  "line": "z0=432.630 z1=432.308 dz=-0.322 air=0.132 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
-  "verdict": "FAIL no visible angle (floor contact not photographable)",
-  "photo": "none"
- },
- {
-  "i": 5,
-  "pos": [
-   -1688.0,
-   1336.0,
-   248.12
-  ],
-  "line": "z0=248.120 z1=248.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
-  "verdict": "PASS",
-  "photo": "ok dir 1"
- },
- {
-  "i": 6,
   "pos": [
    2720.0,
    880.0,
@@ -63,10 +41,10 @@
   ],
   "line": "z0=248.120 z1=248.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
   "verdict": "PASS",
-  "photo": "ok dir 5"
+  "photo": "ok dir 8"
  },
  {
-  "i": 7,
+  "i": 5,
   "pos": [
    1504.0,
    624.0,

@@ -1,0 +1,43 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   705.0,
+   -4817.0,
+   -199.88
+  ],
+  "line": "z0=-199.880 z1=-199.875 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=3 FAIL edge",
+  "verdict": "FAIL edge"
+ },
+ {
+  "i": 2,
+  "pos": [
+   -147.0,
+   -3916.0,
+   -447.88
+  ],
+  "line": "z0=-447.880 z1=-447.875 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=1 FAIL edge",
+  "verdict": "FAIL edge"
+ },
+ {
+  "i": 3,
+  "pos": [
+   4784.0,
+   -385.0,
+   -140.88
+  ],
+  "line": "z0=-140.880 z1=-140.875 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=4 FAIL edge",
+  "verdict": "FAIL edge"
+ },
+ {
+  "i": 4,
+  "pos": [
+   961.0,
+   -3977.0,
+   -239.88
+  ],
+  "line": "z0=-239.880 z1=-239.875 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "FAIL no visible angle (floor contact not photographable)",
+  "photo": "none"
+ }
+]

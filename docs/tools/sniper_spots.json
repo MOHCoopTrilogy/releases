@@ -439,7 +439,7 @@
   "spots": [
    {
     "body": 55,
-    "cluster": 1,
+    "cluster": 2,
     "elev": 376.1,
     "ground": {
      "cornerDz": [
@@ -454,6 +454,7 @@
      "ok": true,
      "shader": "textures/central_europe/church_interior_wall2flt"
     },
+    "keepaudit": true,
     "los": 59,
     "pos": [
      -4216.0,
@@ -478,6 +479,12 @@
    "rf_cells": 6389,
    "rf_raw": 25184,
    "route128": 4278
+  },
+  "stats_snap": {
+   "invisible": 0,
+   "los": 9,
+   "route128": 9,
+   "snap": 15
   }
  },
  "e2l2": {
@@ -649,7 +656,7 @@
   "spots": [
    {
     "body": 63,
-    "cluster": 1,
+    "cluster": 2,
     "elev": 160.1,
     "ground": {
      "cornerDz": [
@@ -664,6 +671,7 @@
      "ok": true,
      "shader": "textures/general_structure/concretewall2"
     },
+    "keepaudit": true,
     "los": 92,
     "pos": [
      -200.0,
@@ -693,6 +701,7 @@
      "ok": true,
      "shader": "textures/general_structure/concretewall2"
     },
+    "keepaudit": true,
     "los": 24,
     "pos": [
      -824.0,
@@ -717,6 +726,12 @@
    "rf_cells": 7869,
    "rf_raw": 30661,
    "route128": 4370
+  },
+  "stats_snap": {
+   "invisible": 22,
+   "los": 24,
+   "route128": 46,
+   "snap": 90
   }
  },
  "e3l2": {
@@ -792,6 +807,12 @@
    "rf_cells": 2672,
    "rf_raw": 7702,
    "route128": 696
+  },
+  "stats_snap": {
+   "invisible": 23,
+   "los": 7,
+   "route128": 31,
+   "snap": 39
   }
  },
  "e3l3": {
@@ -849,7 +870,60 @@
     "why": "FAIL gone"
    }
   ],
-  "spots": [],
+  "spots": [
+   {
+    "body": 51,
+    "cluster": 1,
+    "elev": 200.1,
+    "ground": {
+     "cornerDz": [
+      0.0
+     ],
+     "floorDz": 0.0,
+     "headroom": ">=72 (hull)",
+     "normalZ": ">0.7",
+     "ok": true,
+     "shader": "engine floor"
+    },
+    "los": 58,
+    "pos": [
+     -2492.0,
+     -2504.0,
+     320.12
+    ],
+    "routeDz": 200.1,
+    "side": 7,
+    "sky": true,
+    "src": "vanilla-pathnode",
+    "type": "tower/high (vanilla pathnode)"
+   },
+   {
+    "body": 4,
+    "cluster": 2,
+    "elev": 192.1,
+    "ground": {
+     "cornerDz": [
+      0.0
+     ],
+     "floorDz": 0.0,
+     "headroom": ">=72 (hull)",
+     "normalZ": ">0.7",
+     "ok": true,
+     "shader": "engine floor"
+    },
+    "los": 4,
+    "pos": [
+     -7092.0,
+     1528.0,
+     640.12
+    ],
+    "routeDz": 192.1,
+    "side": 3,
+    "sky": true,
+    "src": "vanilla-pathnode",
+    "type": "tower/high (vanilla pathnode)"
+   }
+  ],
   "stats": {
    "drop": 38,
    "faces": 529,
@@ -862,6 +936,12 @@
    "rf_cells": 0,
    "rf_raw": 9380,
    "route128": 0
+  },
+  "stats_snap": {
+   "invisible": 27,
+   "los": 11,
+   "route128": 38,
+   "snap": 59
   }
  },
  "m1l2b": {
@@ -1152,7 +1232,34 @@
     "why": "FAIL dropped"
    }
   ],
-  "spots": [],
+  "spots": [
+   {
+    "body": 27,
+    "cluster": 1,
+    "elev": 384.1,
+    "ground": {
+     "cornerDz": [
+      0.0
+     ],
+     "floorDz": 0.0,
+     "headroom": ">=72 (hull)",
+     "normalZ": ">0.7",
+     "ok": true,
+     "shader": "engine floor"
+    },
+    "los": 27,
+    "pos": [
+     4448.0,
+     2592.0,
+     448.12
+    ],
+    "routeDz": 384.1,
+    "side": 1,
+    "sky": true,
+    "src": "vanilla-pathnode",
+    "type": "tower/high (vanilla pathnode)"
+   }
+  ],
   "stats": {
    "drop": 90,
    "faces": 1644,
@@ -1165,6 +1272,12 @@
    "rf_cells": 10145,
    "rf_raw": 37043,
    "route128": 1299
+  },
+  "stats_snap": {
+   "invisible": 10,
+   "los": 1,
+   "route128": 11,
+   "snap": 12
   }
  },
  "m2l2b": {
@@ -1217,6 +1330,12 @@
    "rf_cells": 517,
    "rf_raw": 1299,
    "route128": 6
+  },
+  "stats_snap": {
+   "invisible": 0,
+   "los": 0,
+   "route128": 0,
+   "snap": 0
   }
  },
  "m3l3": {
@@ -1255,6 +1374,12 @@
    "rf_cells": 2252,
    "rf_raw": 7917,
    "route128": 141
+  },
+  "stats_snap": {
+   "invisible": 0,
+   "los": 5,
+   "route128": 5,
+   "snap": 12
   }
  },
  "m4l2": {
@@ -1327,6 +1452,7 @@
      "ok": true,
      "shader": "textures/blasted/dday_bunker_wall1bsml"
     },
+    "keepaudit": true,
     "los": 102,
     "pos": [
      -3112.0,
@@ -1340,33 +1466,56 @@
     "type": "outdoor-high"
    },
    {
-    "body": 52,
-    "cluster": 6,
-    "elev": 232.1,
+    "body": 28,
+    "cluster": 3,
+    "elev": 280.1,
     "ground": {
      "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
       0.0
      ],
-     "floorDz": 0.12,
-     "headroom": 256.0,
-     "normalZ": 1.0,
+     "floorDz": 0.0,
+     "headroom": ">=72 (hull)",
+     "normalZ": ">0.7",
      "ok": true,
-     "shader": "textures/blasted/dday_bunker_wall1bsml"
+     "shader": "engine floor"
     },
-    "los": 58,
+    "los": 29,
     "pos": [
-     -1688.0,
-     1336.0,
-     248.12
+     -5504.0,
+     2360.0,
+     328.12
     ],
-    "routeDz": 168.0,
-    "side": 7,
+    "routeDz": 280.1,
+    "side": 4,
     "sky": true,
-    "src": "brush-face",
-    "type": "outdoor-high"
+    "src": "vanilla-pathnode",
+    "type": "tower/high (vanilla pathnode)"
+   },
+   {
+    "body": 20,
+    "cluster": 6,
+    "elev": 288.1,
+    "ground": {
+     "cornerDz": [
+      0.0
+     ],
+     "floorDz": 0.0,
+     "headroom": ">=72 (hull)",
+     "normalZ": ">0.7",
+     "ok": true,
+     "shader": "engine floor"
+    },
+    "los": 22,
+    "pos": [
+     -6944.0,
+     3168.0,
+     288.12
+    ],
+    "routeDz": 288.1,
+    "side": 4,
+    "sky": true,
+    "src": "vanilla-pathnode",
+    "type": "tower/high (vanilla pathnode)"
    },
    {
     "body": 53,
@@ -1433,10 +1582,42 @@
    "rf_cells": 4586,
    "rf_raw": 16158,
    "route128": 520
+  },
+  "stats_snap": {
+   "invisible": 0,
+   "los": 22,
+   "route128": 23,
+   "snap": 72
   }
  },
  "m4l3": {
   "audited": true,
+  "dropped": [
+   {
+    "pos": [
+     -2960.0,
+     912.0,
+     2.12
+    ],
+    "why": "FAIL manual QA: ground-level garden (z 2), not a high place"
+   },
+   {
+    "pos": [
+     -3408.0,
+     464.0,
+     2.12
+    ],
+    "why": "FAIL manual QA: ground-level garden (z 2), not a high place"
+   },
+   {
+    "pos": [
+     -3408.0,
+     -208.0,
+     2.12
+    ],
+    "why": "FAIL manual QA: ground-level garden (z 2), not a high place"
+   }
+  ],
   "spots": [],
   "stats": {
    "drop": 224,
@@ -1450,6 +1631,12 @@
    "rf_cells": 1926,
    "rf_raw": 4820,
    "route128": 21
+  },
+  "stats_snap": {
+   "invisible": 0,
+   "los": 21,
+   "route128": 21,
+   "snap": 21
   }
  },
  "m5l2a": {
@@ -1719,6 +1906,14 @@
      -6796.87
     ],
     "why": "FAIL no visible angle (floor contact not photographable)"
+   },
+   {
+    "pos": [
+     -3386.0,
+     5042.0,
+     -6719.88
+    ],
+    "why": "FAIL manual QA: inside a train / ship interior, indoor"
    }
   ],
   "spots": [],
@@ -1733,6 +1928,12 @@
    "rf_cells": 882,
    "rf_raw": 1965,
    "route128": 14
+  },
+  "stats_snap": {
+   "invisible": 0,
+   "los": 1,
+   "route128": 1,
+   "snap": 1
   }
  },
  "t1l2": {
@@ -2022,6 +2223,12 @@
    "rf_cells": 9454,
    "rf_raw": 35274,
    "route128": 5354
+  },
+  "stats_snap": {
+   "invisible": 0,
+   "los": 0,
+   "route128": 0,
+   "snap": 2
   }
  },
  "t3l2": {
