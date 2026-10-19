@@ -42,11 +42,11 @@
     ]
    ],
    "crate": [
-    -1905.7,
-    4855.2,
-    -136.0
+    -3185.0,
+    3625.0,
+    -147.0
    ],
-   "crateyaw": 312.7,
+   "crateyaw": 0.0,
    "src": "BSP halftrack (vehicles//sdkfz.tik) + halftrack_path 6n"
   }
  ],

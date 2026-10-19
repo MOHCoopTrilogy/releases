@@ -101,7 +101,10 @@ av_do local.c:{
 	// a rocket hit on the live vehicle (means of death 16 = MOD_ROCKET)
 	if( local.c == "rocket" ){
 		local.v = level.av_ent
-		if( local.v == NULL || local.v == NIL ){ println "^~^~^ AVT rocket: no vehicle" end }
+		if( local.v == NULL || local.v == NIL ){
+			println "^~^~^ AVT rocket: no vehicle"
+			end
+		}
 		println ( "^~^~^ AVT rocket on hp=" + local.v.health )
 		local.v damage local.p 400 local.p local.v.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 16 0
 		wait 0.5
@@ -109,7 +112,10 @@ av_do local.c:{
 	}
 	if( local.c == "grenade" ){
 		local.v = level.av_ent
-		if( local.v == NULL || local.v == NIL ){ println "^~^~^ AVT grenade: no vehicle" end }
+		if( local.v == NULL || local.v == NIL ){
+			println "^~^~^ AVT grenade: no vehicle"
+			end
+		}
 		println ( "^~^~^ AVT grenade on hp=" + local.v.health )
 		local.v damage local.p 200 local.p local.v.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 14 0
 		wait 0.3
@@ -117,7 +123,10 @@ av_do local.c:{
 	}
 	if( local.c == "bullet" ){
 		local.v = level.av_ent
-		if( local.v == NULL || local.v == NIL ){ println "^~^~^ AVT bullet: no vehicle" end }
+		if( local.v == NULL || local.v == NIL ){
+			println "^~^~^ AVT bullet: no vehicle"
+			end
+		}
 		println ( "^~^~^ AVT bullet on hp=" + local.v.health )
 		local.v damage local.p 100 local.p local.v.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 18 0
 		wait 0.3

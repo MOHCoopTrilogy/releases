@@ -70,7 +70,7 @@ def main():
     # m3l3 (AA): the vanilla halftrack ambush hull + its 6-node road (maps/M3L3.scr::halftrack_drive)
     e = load("maps/m3l3.bsp")
     n = [[-729.9, 5373.4, -136.0]] + chain(e, "halftrack_path")
-    c, y = crate_for(n, [-3300, 3900])          # the coop player spawn (spawnlocations.scr::m3l3_update1)
+    c, y = [-3185.0, 3625.0, -147.0], 0.0       # beside the coop player spawn 6 (spawnlocations.scr::m3l3_update1): the cover area the map gives the squad
     routes["m3l3"] = [dict(name="halftrack", kind="halftrack", model="models/vehicles/sdkfz.tik", nodes=n, crate=c, crateyaw=y,
                            src="BSP halftrack (vehicles//sdkfz.tik) + halftrack_path 6n")]
     # t2l3 (BT): the vanilla snow halftrack + halftrack1_path

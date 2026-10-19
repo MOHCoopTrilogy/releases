@@ -21,7 +21,8 @@ try:
                            "set coop_alarmVehMinTime 0", "set coop_alarmVehWithdraw " + WD, "set coop_alarmVehLoop 0"])
     p0 = len(R.read_log())
     G.cmd("here")
-    G.cmd("pin", x=cx, y=cy, z=cz, lx=lx, ly=ly, lz=lz)
+    if cx != "none":
+        G.cmd("pin", x=cx, y=cy, z=cz, lx=lx, ly=ly, lz=lz)
     time.sleep(1.5)
     G.cmd("pcount")
     G.still(LABEL + "_pre")
