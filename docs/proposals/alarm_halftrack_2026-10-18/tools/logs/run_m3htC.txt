@@ -1,0 +1,20 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> ok
+   wait \^~\^~\^ ALMVEH ARRIVED -> TIMEOUT
+   wait \^~\^~\^ ALMVEH FIRING -> ok
+   wait \^~\^~\^ ALMVEH DESTROYED -> ok
+    ^~^~^ AVT pinned at ( -3236.000 4026.000 -95.000 ) looking ( -359.148 19.103 0.000 )
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=m3l3
+    ^~^~^ ALMVEH crate ok route 1 kind=panzerschreck at=( -3185.000 3625.000 -147.000 ) (small-volume path)
+    ^~^~^ ALMVEH pull 1: vehicle due in 4 s
+    ^~^~^ ALMVEH halftrack gun=avveh1_turret0 gunner=
+    ^~^~^ ALMVEH m3l3 air-raid triggers held: 1
+    ^~^~^ ALMVEH ARRIVING halftrack route=1 halftrack hp=4000 pax=3 players=1 entry=( -729.900 5373.400 -136.000 )
+    ^~^~^ AVT pinned at ( -1750.000 4400.000 -135.000 ) looking ( -0.426 48.013 0.000 )
+    ^~^~^ ALMVEH FIRING
+    ^~^~^ ALMVEH DESTROYED halftrack at ( -1343.016 4851.042 -144.864 )
+    ^~^~^ ALMVEH m3l3 air-raid triggers held: 0
+    ^~^~^ AVT bullet: no vehicle
+    ^~^~^ AVT grenade: no vehicle
+    ^~^~^ AVT rocket: no vehicle
+script errors: 0 []

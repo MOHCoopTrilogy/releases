@@ -1,0 +1,14 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> TIMEOUT
+   wait \^~\^~\^ ALMVEH ARRIVED -> TIMEOUT
+   wait \^~\^~\^ ALMVEH FIRING -> TIMEOUT
+   wait \^~\^~\^ ALMVEH DESTROYED -> TIMEOUT
+    ^~^~^ AVT pinned at ( -2300.000 4150.000 -125.000 ) looking ( -0.000 33.160 0.000 )
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=m3l3
+    ^~^~^ ALMVEH crate ok route 1 kind=panzerschreck at=( -3185.000 3625.000 -147.000 ) (small-volume path)
+    ^~^~^ ALMVEH pull 1: vehicle due in 22 s
+    ^~^~^ ALMVEH SKIP: no hidden entry, reason seen
+    ^~^~^ AVT bullet: no vehicle
+    ^~^~^ AVT grenade: no vehicle
+    ^~^~^ AVT rocket: no vehicle
+script errors: 0 []

@@ -1,0 +1,56 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> ok
+   wait \^~\^~\^ ALMVEH ARRIVED -> ok
+   wait \^~\^~\^ ALMVEH FIRING -> ok
+   wait \^~\^~\^ ALMVEH DESTROYED -> ok
+    ^~^~^ AVT pinned at ( 4587.000 4113.000 272.000 ) looking ( -0.000 115.418 0.000 )
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=m4l2
+    ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4587.000 4032.800 260.756 ) floor=( 4587.000 4032.800 254.756 ) shells=3
+    ^~^~^ ALMVEH crate ok route 1 kind=bazooka at=( 4587.000 4032.800 264.000 ) stored=( 4587.000 4112.800 264.000 )
+    ^~^~^ ALMVEH pull 1: vehicle due in 18 s
+    ^~^~^ ALMVEH halftrack gun=avveh1_turret0 gunner=
+    ^~^~^ ALMVEH ARRIVING halftrack route=1 camptruck hp=4000 pax=3 players=1 entry=( 5240.000 -800.000 264.000 )
+    ^~^~^ ALMVEH FIRING
+    ^~^~^ ALMVEH stuck at ( 4701.284 4595.759 239.060 ): treated as arrived
+    ^~^~^ ALMVEH ARRIVED halftrack at ( 4701.284 4595.759 239.060 )
+    ^~^~^ AVT hp set to 300.000
+    ^~^~^ ALMVEH DMG 4000.000 -> 300.000 at ( 4701.284 4595.759 239.060 ) vel=( -140.286 -76.789 0.000 ) fwdtrace frac=0.511 ent=11 surf=16544
+    ^~^~^ ALMVEH DMG near ent59 class=Actor tn=spawned_campwave02 model=models/human/german_waffenss_shutze.tik org=( 4639.432 4353.428 246.083 )
+    ^~^~^ ALMVEH " + local.t ) }
+    ^~^~^ ALMVEH " ^
+    ^~^~^ ALMVEH " + local.t ) }
+    ^~^~^ ALMVEH " ^
+    ^~^~^ ALMVEH DMG near ent572 class=VehicleSoundEntity tn= model=models/vehicles/vehiclesoundentity.tik org=( 4521.582 4442.021 310.700 )
+    ^~^~^ ALMVEH DMG near ent574 class=VehicleSoundEntity tn= model=models/vehicles/vehiclesoundentity.tik org=( 4454.057 4564.563 305.815 )
+    ^~^~^ ALMVEH DMG near ent735 class=VehicleSoundEntity tn= model=models/vehicles/vehiclesoundentity.tik org=( 4855.122 4622.896 356.437 )
+    ^~^~^ ALMVEH DMG near ent736 class=VehicleSoundEntity tn= model=models/vehicles/vehiclesoundentity.tik org=( 4592.006 4478.873 351.202 )
+    ^~^~^ ALMVEH DMG near ent742 class=VehicleSoundEntity tn= model=models/vehicles/vehiclesoundentity.tik org=( 4801.509 4721.055 350.577 )
+    ^~^~^ ALMVEH DMG near ent747 class=VehicleSoundEntity tn= model=models/vehicles/vehiclesoundentity.tik org=( 4538.393 4577.032 345.341 )
+    ^~^~^ ALMVEH DMG near ent748 class=VehicleTurretGun tn=avveh1_turret0 model=models/vehicles/sdkfz_mg42.tik org=( 4687.382 4566.145 325.687 )
+    ^~^~^ ALMVEH DMG near ent763 class=Actor tn= model=models/human/german_waffenss_shutze.tik org=( 4720.239 4605.161 293.578 )
+    ^~^~^ ALMVEH DMG near ent764 class=Weapon tn= model=models/weapons/kar98.tik org=( 4727.715 4617.000 369.734 )
+    ^~^~^ AVT bullet on hp=300.000
+    ^~^~^ AVT bullet after hp=300.000
+    ^~^~^ AVT grenade on hp=300.000
+    ^~^~^ AVT grenade after hp=300.000
+    ^~^~^ AVT rocket on hp=300.000
+    ^~^~^ ALMVEH DESTROYED halftrack at ( 4701.284 4595.759 239.060 )
+    ^~^~^ ALMVEH DMG 300.000 -> -249.000 at ( 4701.284 4595.759 239.060 ) vel=( -140.286 -76.789 0.000 ) fwdtrace frac=0.511 ent=11 surf=16544
+    ^~^~^ ALMVEH DMG near ent59 class=Actor tn=spawned_campwave02 model=models/human/german_waffenss_shutze.tik org=( 4639.432 4353.428 246.083 )
+    ^~^~^ ALMVEH " + local.t ) }
+    ^~^~^ ALMVEH " ^
+    ^~^~^ ALMVEH " + local.t ) }
+    ^~^~^ ALMVEH " ^
+    ^~^~^ ALMVEH DMG near ent572 class=VehicleSoundEntity tn= model=models/vehicles/vehiclesoundentity.tik org=( 4521.582 4442.021 310.700 )
+    ^~^~^ ALMVEH DMG near ent574 class=VehicleSoundEntity tn= model=models/vehicles/vehiclesoundentity.tik org=( 4454.057 4564.563 305.815 )
+    ^~^~^ ALMVEH DMG near ent735 class=VehicleSoundEntity tn= model=models/vehicles/vehiclesoundentity.tik org=( 4855.122 4622.896 356.437 )
+    ^~^~^ ALMVEH DMG near ent736 class=VehicleSoundEntity tn= model=models/vehicles/vehiclesoundentity.tik org=( 4592.006 4478.873 351.202 )
+    ^~^~^ ALMVEH DMG near ent742 class=VehicleSoundEntity tn= model=models/vehicles/vehiclesoundentity.tik org=( 4801.509 4721.055 350.577 )
+    ^~^~^ ALMVEH DMG near ent747 class=VehicleSoundEntity tn= model=models/vehicles/vehiclesoundentity.tik org=( 4538.393 4577.032 345.341 )
+    ^~^~^ ALMVEH DMG near ent763 class=Actor tn= model=models/human/german_waffenss_shutze.tik org=( 4723.244 4607.068 291.906 )
+    ^~^~^ ALMVEH DMG near ent764 class=Weapon tn= model=models/weapons/kar98.tik org=( 4731.748 4620.760 364.703 )
+    ^~^~^ ALMVEH DMG near ent772 class=Animate tn= model=models/emitters/fireandsmoke.tik org=( 4701.284 4595.759 251.060 )
+    ^~^~^ ALMVEH DMG near ent777 class=Animate tn= model=models/emitters/linger_smoke02.tik org=( 4701.284 4595.759 291.060 )
+    ^~^~^ ALMVEH DMG near ent779 class=ScriptModel tn= model=models/fx/fx_tank_explosion.tik org=( 4701.284 4595.759 279.060 )
+    ^~^~^ AVT rocket after hp=-249.000
+script errors: 8 ["[2026-10-19 00:10:12 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-19 00:10:12 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-19 00:10:12 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'vector'", "[2026-10-19 00:10:12 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-19 00:10:13 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-19 00:10:13 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'"]

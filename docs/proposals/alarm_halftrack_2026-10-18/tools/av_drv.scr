@@ -39,6 +39,13 @@ av_pinloop:{
 	while( level.avt_pinOn == 1 ){
 		local.p = $player[1]
 		if( local.p != NULL && local.p != NIL ){
+			if( level.avt_follow == 1 && level.av_ent != NULL && level.av_ent != NIL ){
+				// chase camera: behind and to the left of the vehicle, looking at it
+				local.fw = angles_toforward level.av_ent.angles
+				local.lf = angles_toleft level.av_ent.angles
+				level.avt_pos = level.av_ent.origin - ( local.fw * level.avt_back ) + ( local.lf * level.avt_side ) + ( 0 0 level.avt_up )
+				level.avt_va = vector_toangles ( ( level.av_ent.origin + ( 0 0 50 ) ) - level.avt_pos )
+			}
 			local.p origin level.avt_pos
 			local.p.viewangles = level.avt_va
 			if( local.p.health > 0 ){ local.p.health = 750 }
@@ -81,6 +88,13 @@ av_do local.c:{
 		local.va = vector_toangles ( local.tgt - local.pos )
 		waitthread av_pin local.pos local.va
 		println ( "^~^~^ AVT pinned at " + local.pos + " looking " + local.va )
+	}
+	if( local.c == "follow" ){
+		level.avt_back = float( getcvar( "ai_x" ) )
+		level.avt_side = float( getcvar( "ai_y" ) )
+		level.avt_up = float( getcvar( "ai_z" ) )
+		level.avt_follow = 1
+		println "^~^~^ AVT follow cam on"
 	}
 	if( local.c == "trace" ){ level.avt_trace = 1 }
 	if( local.c == "notrace" ){ level.avt_trace = 0 }

@@ -29,6 +29,9 @@ try:
     G.cmd("trace")
     G.cmd("arm")
     if wl(r"\^~\^~\^ ALMVEH ARRIVING", 90, p0):
+        if os.environ.get("AVFOLLOW"):
+            a = os.environ["AVFOLLOW"].split(",")
+            G.cmd("follow", x=a[0], y=a[1], z=a[2])
         if os.environ.get("AVCAM2"):
             a = os.environ["AVCAM2"].split(",")      # the squad walks to a vantage point AFTER the hidden spawn
             G.cmd("pin", x=a[0], y=a[1], z=a[2], lx=a[3], ly=a[4], lz=a[5])
