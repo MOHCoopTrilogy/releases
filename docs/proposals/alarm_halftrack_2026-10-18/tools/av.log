@@ -805,3 +805,112 @@ harness_guard.SlotBusy: client slot hudfeed4 is in use by pid 21804 until Mon Oc
 12:04:35 v_e3l2b     ^~^~^ AVT alarm men alive=3
 12:04:35 v_e3l2b     ^~^~^ ALMVEH WITHDRAW, reason 40 s: truck at ( 3261.158 145.052 -455.371 )
 12:04:35 v_e3l2b script errors: 5 ["[2026-10-19 12:01:08 UTC-6.000] ^~^~^ Script Error : command 'QueryTurretSlotEntity' applied to NULL listener", "[2026-10-19 12:01:08 UTC-6.000] ^~^~^ Script Error : command 'hide' applied to NIL", "[2026-10-19 12:01:08 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener", "[2026-10-19 12:01:08 UTC-6.000] ^~^~^ Script Error : command 'waitTill' applied to NULL listener", '[2026-10-19 12:01:10 UTC-6.000] ^~^~^ Script Error : coop_mod/replace.scr::turnto - needs to be executed by a actor']
+12:21:45 booted av_c_m4l1 m4l1 ref=work dog False
+12:21:51 c_m4l1     ^~^~^ ALMVEH crate scan route 1: 0 hidden+reachable candidates, 30 rejected on sight/walk, anchor ( 2930.000 4608.000 610.000 ) stop ( 2688.000 3184.000 328.000 )
+12:21:51 c_m4l1     ^~^~^ ALMVEH crate FAILED route 1: no hidden, reachable, in-range spot (candidates 0)
+12:21:51 c_m4l1     ^~^~^ AVT cratecam: no crate
+12:21:51 c_m4l1 script errors: 0 []
+12:23:02 booted av_c_t3l1 t3l1 ref=work dog False
+12:23:08 c_t3l1     ^~^~^ ALMVEH crate scan route 1: 10 hidden+reachable candidates, 116 rejected on sight/walk, anchor ( 1524.400 3098.100 234.100 ) stop ( 1530.000 2652.000 200.000 )
+12:23:08 c_t3l1     ^~^~^ ATSUPPLY ok tag=alarmveh_t3l11 weapon=models/weapons/bazooka.tik at=( 1530.000 2252.000 190.125 ) floor=( 1530.000 2252.000 184.125 ) shells=3
+12:23:08 c_t3l1     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 1530.000 2252.000 184.125 ) dist_to_stop=400 lateral_to_squad_way=400 hidden_from_cab_gunner_mg=3/3+crouch walk_to_way=ok
+12:23:08 c_t3l1     ^~^~^ AVT cratecam at ( 1530.000 2252.000 184.125 ) looking at stop ( 1530.000 2652.000 200.000 ) dist=400
+12:23:08 c_t3l1 script errors: 0 []
+12:24:16 booted av_c_m4l2 m4l2 ref=work dog False
+12:24:22 c_m4l2     ^~^~^ ALMVEH crate scan route 1: 27 hidden+reachable candidates, 150 rejected on sight/walk, anchor ( 3202.000 1995.000 150.000 ) stop ( 4424.000 4456.000 264.000 )
+12:24:22 c_m4l2     ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4024.000 3556.000 265.751 ) floor=( 4024.000 3556.000 259.751 ) shells=3
+12:24:22 c_m4l2     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 4024.000 3556.000 259.751 ) dist_to_stop=984 lateral_to_squad_way=41 hidden_from_cab_gunner_mg=3/3+crouch walk_to_way=ok
+12:24:22 c_m4l2     ^~^~^ AVT cratecam at ( 4024.000 3556.000 259.751 ) looking at stop ( 4424.000 4456.000 264.000 ) dist=984
+12:24:22 c_m4l2 script errors: 0 []
+12:27:33 booted av_d_m4l1 m4l1 ref=work dog False
+12:27:40 d_m4l1     ^~^~^ ALMVEH crate scan route 1: 0 hidden+reachable candidates, 47 rejected on sight/walk, anchor ( 2930.000 4608.000 610.000 ) stop ( 2688.000 3184.000 328.000 )
+12:27:40 d_m4l1     ^~^~^ ALMVEH crate FAILED route 1: no hidden, reachable, in-range spot (candidates 0)
+12:27:40 d_m4l1     ^~^~^ AVT cratecam: no crate
+12:27:40 d_m4l1 script errors: 0 []
+12:28:50 booted av_d_t3l1 t3l1 ref=work dog False
+12:28:56 d_t3l1     ^~^~^ ALMVEH crate scan route 1: 0 hidden+reachable candidates, 148 rejected on sight/walk, anchor ( 1524.400 3098.100 234.100 ) stop ( 1530.000 2652.000 200.000 )
+12:28:56 d_t3l1     ^~^~^ ALMVEH crate FAILED route 1: no hidden, reachable, in-range spot (candidates 0)
+12:28:56 d_t3l1     ^~^~^ AVT cratecam: no crate
+12:28:56 d_t3l1 script errors: 0 []
+12:30:02 booted av_d_m3l3 m3l3 ref=work dog False
+12:30:09 d_m3l3     ^~^~^ ALMVEH crate scan route 1: 0 hidden+reachable candidates, 178 rejected on sight/walk, anchor ( -3236.000 4026.000 -105.000 ) stop ( -1648.000 4576.000 -136.000 )
+12:30:09 d_m3l3     ^~^~^ ALMVEH crate FAILED route 1: no hidden, reachable, in-range spot (candidates 0)
+12:30:09 d_m3l3     ^~^~^ AVT cratecam: no crate
+12:30:09 d_m3l3 script errors: 0 []
+12:31:15 booted av_d_t2l3 t2l3 ref=work dog False
+12:31:21 d_t2l3     ^~^~^ ALMVEH crate scan route 1: 1 hidden+reachable candidates, 142 rejected on sight/walk, anchor ( 2271.700 822.600 80.000 ) stop ( 1892.000 808.000 80.000 )
+12:31:21 d_t2l3     ^~^~^ ATSUPPLY skip tag=alarmveh_t2l31 pos=( 2892.000 408.000 20.251 ) reason=no_floor_or_solid
+12:31:21 d_t2l3     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 2892.000 408.000 20.251 ) dist_to_stop=1077 lateral_to_squad_way=746 hidden_from_cab_gunner_mg=3/3+crouch walk_to_way=ok
+12:31:21 d_t2l3     ^~^~^ AVT cratecam at ( 2892.000 408.000 20.251 ) looking at stop ( 1892.000 808.000 80.000 ) dist=1078
+12:31:21 d_t2l3 script errors: 0 []
+12:32:29 booted av_d_m4l2 m4l2 ref=work dog False
+12:32:34 d_m4l2     ^~^~^ ALMVEH crate scan route 1: 22 hidden+reachable candidates, 82 rejected on sight/walk, anchor ( 3202.000 1995.000 150.000 ) stop ( 4424.000 4456.000 264.000 )
+12:32:34 d_m4l2     ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4024.000 3556.000 265.751 ) floor=( 4024.000 3556.000 259.751 ) shells=3
+12:32:34 d_m4l2     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 4024.000 3556.000 259.751 ) dist_to_stop=984 lateral_to_squad_way=41 hidden_from_cab_gunner_mg=3/3+crouch walk_to_way=ok
+12:32:34 d_m4l2     ^~^~^ AVT cratecam at ( 4024.000 3556.000 259.751 ) looking at stop ( 4424.000 4456.000 264.000 ) dist=984
+12:32:34 d_m4l2 script errors: 0 []
+12:35:50 booted av_e_m4l1 m4l1 ref=work dog False
+12:35:56 e_m4l1     ^~^~^ ALMVEH crate scan route 1: 0 hidden candidates, 47 rejected on sight, anchor ( 2930.000 4608.000 610.000 ) stop ( 2688.000 3184.000 328.000 )
+12:35:56 e_m4l1     ^~^~^ ALMVEH crate FAILED route 1: no hidden, reachable, in-range spot (candidates 0)
+12:35:56 e_m4l1     ^~^~^ AVT cratecam: no crate
+12:35:56 e_m4l1 script errors: 0 []
+12:37:08 booted av_e_t3l1 t3l1 ref=work dog False
+12:41:13 e_t3l1     ^~^~^ ALMVEH crate scan route 1: 21 hidden candidates, 49 rejected on sight, anchor ( 1524.400 3098.100 234.100 ) stop ( 1530.000 2652.000 200.000 )
+12:41:13 e_t3l1     ^~^~^ AVT cratecam: no crate
+12:41:13 e_t3l1 script errors: 18 ["[2026-10-19 12:37:30 UTC-6.000] ^~^~^ Script Error : command 'accuracy' applied to NULL listener", "[2026-10-19 12:37:30 UTC-6.000] ^~^~^ Script Error : command 'exec' applied to NULL listener", "[2026-10-19 12:38:58 UTC-6.000] ^~^~^ Script Error : unknown animation 'unarmed_prone_legs' in 'models/human/german_wehrmact_soldier.tik'"]
+12:42:20 booted av_e_m3l3 m3l3 ref=work dog False
+12:42:27 e_m3l3     ^~^~^ ALMVEH crate scan route 1: 0 hidden candidates, 178 rejected on sight, anchor ( -3236.000 4026.000 -105.000 ) stop ( -1648.000 4576.000 -136.000 )
+12:42:27 e_m3l3     ^~^~^ ALMVEH crate FAILED route 1: no hidden, reachable, in-range spot (candidates 0)
+12:42:27 e_m3l3     ^~^~^ AVT cratecam: no crate
+12:42:27 e_m3l3 script errors: 0 []
+12:43:33 booted av_e_t2l3 t2l3 ref=work dog False
+12:43:39 e_t2l3     ^~^~^ ALMVEH crate scan route 1: 1 hidden candidates, 142 rejected on sight, anchor ( 2271.700 822.600 80.000 ) stop ( 1892.000 808.000 80.000 )
+12:43:39 e_t2l3     ^~^~^ ATSUPPLY skip tag=alarmveh_t2l31 pos=( 2892.000 408.000 20.251 ) reason=no_floor_or_solid
+12:43:39 e_t2l3     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 2892.000 408.000 20.251 ) dist_to_stop=1077 lateral_to_squad_way=746 hidden_from_cab_gunner_mg=3/3+crouch path_to_squad_way=ok
+12:43:39 e_t2l3     ^~^~^ AVT cratecam at ( 2892.000 408.000 20.251 ) looking at stop ( 1892.000 808.000 80.000 ) dist=1078
+12:43:39 e_t2l3 script errors: 0 []
+12:44:45 booted av_e_m4l2 m4l2 ref=work dog False
+12:48:50 e_m4l2     ^~^~^ ALMVEH crate scan route 1: 32 hidden candidates, 72 rejected on sight, anchor ( 3202.000 1995.000 150.000 ) stop ( 4424.000 4456.000 264.000 )
+12:48:50 e_m4l2     ^~^~^ AVT cratecam: no crate
+12:48:50 e_m4l2 script errors: 0 []
+12:52:07 booted av_f_t3l1 t3l1 ref=work dog False
+12:52:16 f_t3l1     ^~^~^ ALMVEH crate scan route 1: 21 hidden candidates (pass 2), 49 rejected on sight, anchor ( 1524.400 3098.100 234.100 ) stop ( 1530.000 2652.000 200.000 )
+12:52:16 f_t3l1     ^~^~^ ALMVEH crate FAILED route 1: no hidden, reachable, in-range spot (candidates 21)
+12:52:16 f_t3l1     ^~^~^ AVT cratecam: no crate
+12:52:16 f_t3l1 script errors: 0 []
+12:53:27 booted av_f_m4l2 m4l2 ref=work dog False
+12:53:33 f_m4l2     ^~^~^ ALMVEH crate scan route 1: 32 hidden candidates (pass 2), 72 rejected on sight, anchor ( 3202.000 1995.000 150.000 ) stop ( 4424.000 4456.000 264.000 )
+12:53:33 f_m4l2     ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4024.000 3556.000 265.751 ) floor=( 4024.000 3556.000 259.751 ) shells=3
+12:53:33 f_m4l2     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 4024.000 3556.000 259.751 ) dist_to_stop=984 lateral_to_squad_way=41 hidden_from_cab_gunner_mg=3/3+crouch path_to_squad_way=ok
+12:53:33 f_m4l2     ^~^~^ AVT cratecam at ( 4024.000 3556.000 259.751 ) looking at stop ( 4424.000 4456.000 264.000 ) dist=984
+12:53:33 f_m4l2 script errors: 0 []
+12:54:42 booted av_f_m4l1 m4l1 ref=work dog False
+12:54:50 f_m4l1     ^~^~^ ALMVEH crate scan route 1: 3 hidden candidates (pass 4), 114 rejected on sight, anchor ( 2930.000 4608.000 610.000 ) stop ( 2688.000 3184.000 328.000 )
+12:54:50 f_m4l1     ^~^~^ ATSUPPLY skip tag=alarmveh_m4l11 pos=( 3688.000 3684.000 531.981 ) reason=no_floor_or_solid
+12:54:50 f_m4l1     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 3688.000 3684.000 531.981 ) dist_to_stop=1118 lateral_to_squad_way=902 hidden_from_cab_gunner_mg=3/3+crouch path_to_squad_way=ok
+12:54:50 f_m4l1     ^~^~^ AVT cratecam at ( 3688.000 3684.000 531.981 ) looking at stop ( 2688.000 3184.000 328.000 ) dist=1136
+12:54:50 f_m4l1 script errors: 0 []
+12:56:08 booted av_f_m3l3 m3l3 ref=work dog False
+12:56:16 f_m3l3     ^~^~^ ALMVEH crate scan route 1: 0 hidden candidates (pass 4), 283 rejected on sight, anchor ( -3236.000 4026.000 -105.000 ) stop ( -1648.000 4576.000 -136.000 )
+12:56:16 f_m3l3     ^~^~^ ALMVEH crate FAILED route 1: no hidden, reachable, in-range spot (candidates 0)
+12:56:16 f_m3l3     ^~^~^ AVT cratecam: no crate
+12:56:16 f_m3l3 script errors: 0 []
+13:02:12 booted av_g_t3l1 t3l1 ref=work dog False
+13:02:21 g_t3l1     ^~^~^ ALMVEH crate scan route 1: 21 hidden candidates (pass 2), 49 rejected on sight, anchor ( 1524.400 3098.100 234.100 ) stop ( 1530.000 2652.000 200.000 )
+13:02:21 g_t3l1     ^~^~^ ALMVEH crate FAILED route 1: no hidden, reachable, in-range spot (candidates 21)
+13:02:21 g_t3l1     ^~^~^ AVT cratecam: no crate
+13:02:21 g_t3l1 script errors: 0 []
+13:09:19 booted av_h_t2l3 t2l3 ref=work dog False
+13:09:27 h_t2l3     ^~^~^ ALMVEH crate scan route 1: 2 hidden candidates (pass 2), 270 rejected on sight, anchor ( 2271.700 822.600 80.000 ) stop ( 1892.000 808.000 80.000 )
+13:09:27 h_t2l3     ^~^~^ ATSUPPLY skip tag=alarmveh_t2l31 pos=( 2542.000 308.000 34.188 ) reason=no_floor_or_solid
+13:09:27 h_t2l3     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 2542.000 308.000 34.188 ) dist_to_stop=820 lateral_to_squad_way=581 hidden_from_cab_gunner_mg=3/3+crouch foot_reachable_to_squad_way=ok
+13:09:27 h_t2l3     ^~^~^ AVT cratecam at ( 2542.000 308.000 34.188 ) looking at stop ( 1892.000 808.000 80.000 ) dist=821
+13:09:27 h_t2l3 script errors: 0 []
+13:10:35 booted av_h_m4l1 m4l1 ref=work dog False
+13:10:47 h_m4l1     ^~^~^ ALMVEH crate scan route 1: 1 hidden candidates (pass 3), 188 rejected on sight, anchor ( 2930.000 4608.000 610.000 ) stop ( 2688.000 3184.000 328.000 )
+13:10:47 h_m4l1     ^~^~^ ATSUPPLY skip tag=alarmveh_m4l11 pos=( 3538.000 3634.000 511.925 ) reason=no_floor_or_solid
+13:10:47 h_m4l1     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 3538.000 3634.000 511.925 ) dist_to_stop=961 lateral_to_squad_way=762 hidden_from_cab_gunner_mg=3/3+crouch foot_reachable_to_squad_way=ok
+13:10:47 h_m4l1     ^~^~^ AVT cratecam at ( 3538.000 3634.000 511.925 ) looking at stop ( 2688.000 3184.000 328.000 ) dist=979
+13:10:47 h_m4l1 script errors: 0 []
+13:16:37 booted av_m3l3g m3l3 ref=work dog False
+13:16:46 m3l3g cells 2924 done errors 0 []

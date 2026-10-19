@@ -200,6 +200,37 @@ av_do local.c:{
 			println ( "^~^~^ AVT cratecam at " + local.cp + " looking at stop " + local.sp + " dist=" + int( vector_length ( local.sp - local.cp ) ) )
 		}
 	}
+	// ---- m3l3 full-sequence harness (church hold -> paradrop -> Nebelwerfer fight) ----
+	if( local.c == "m3church" ){
+		level.coop_chDur = 45
+		level.halftrack_alive = 0
+		local.p origin ( 1551 -2370 -255 )
+		println "^~^~^ AVT m3church: phase start requested, hold 45 s"
+		setcvar "coop_chStart" "1"
+	}
+	if( local.c == "m3status" ){
+		println ( "^~^~^ AVT m3 chDone=" + ( waitthread av_s level.coop_chDone ) + " chOver=" + ( waitthread av_s level.coop_chOver ) + " dropped=" + ( waitthread av_s level.coop_paradrop_dropped ) + " scene7=" + ( waitthread av_s level.coop_scene7Started ) + " bombcount=" + ( waitthread av_s level.scene7_bombcount ) + " t=" + level.time )
+	}
+	if( local.c == "m3nebel" ){
+		thread coop_mod/m3l3_nebel.scr::nb_hold_done
+		thread maps/m3l3.scr::scene7
+		println "^~^~^ AVT m3nebel: hook + scene7 started"
+	}
+	if( local.c == "m3to" ){
+		// stand the player at x y z (ai_x ai_y ai_z) facing yaw ai_lx
+		local.tv = ( 0 0 0 )
+		local.tv[0] = float( getcvar( "ai_x" ) )
+		local.tv[1] = float( getcvar( "ai_y" ) )
+		local.tv[2] = float( getcvar( "ai_z" ) )
+		local.p origin local.tv
+	}
+	if( local.c == "offdrop" ){
+		println ( "^~^~^ AVT officer smoke_drop flag=" + ( waitthread av_s level.coop_officer_smoke_drop ) + " binoc_feature=" + ( waitthread av_s level.coop_feature_binoc ) )
+		for( local.q = 0; local.q < 6; local.q++ ){
+			thread coop_mod/officer.scr::coop_officer_death_drops ( 1551 -2370 -255 )
+			wait 1
+		}
+	}
 	if( local.c == "pcount" ){ println ( "^~^~^ AVT players=" + ( waitthread coop_mod/coop_counter.scr::counter_players ) ) }
 	// alarm-man counters (crew are tagged coop_waveSrc alarm)
 	if( local.c == "men" ){ println ( "^~^~^ AVT alarm men alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive "alarm" ) ) }

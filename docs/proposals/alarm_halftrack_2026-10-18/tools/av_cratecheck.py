@@ -7,7 +7,7 @@ LABEL, MAP = sys.argv[1], sys.argv[2]
 rundir = notes = None
 try:
     rundir, notes = G.boot("av_" + LABEL, MAP, extra=["set coop_alarmVeh 1", "set coop_alarmVehDebug 1", "set coop_alarmVehDelay 400",
-                           "set coop_alarmVehMinTime 0", "set coop_alarmVehIgnoreMission 1", "set g_ai 0"])
+                           "set coop_alarmVehMinTime 0", "set coop_alarmVehIgnoreMission 1", "set g_ai 1"] + ([x for x in os.environ.get("AVEXTRA", "").split(";") if x]))
     p0 = len(R.read_log())
     G.cmd("here")
     G.cmd("arm")
