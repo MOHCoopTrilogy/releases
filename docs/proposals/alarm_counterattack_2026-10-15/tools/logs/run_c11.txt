@@ -1,0 +1,23 @@
+armed count before transition 1
+next map up: True
+    ^~^~^ AI armed
+    ^~^~^ AP CARRY map=m4l1 pen=0 squad(3,per1,cap6)=3 counter_wavesize(1p)=4 gapmul=1 cvars=[||] t=44.250
+    ^~^~^ COUNTER start map=m4l1 secs=20 gap=10 players=1
+    ^~^~^ COUNTER zone src=traced name=this open ground at=( -3977.000 -5881.000 -500.411 ) r=520
+    ^~^~^ CARRY set 1 from m4l1 place=this open ground
+    ^~^~^ COUNTER zone LOST (#1) - restart from 35 t=60.150
+    ^~^~^ AP CARRY map=m4l1 pen=0 squad(3,per1,cap6)=3 counter_wavesize(1p)=4 gapmul=1 cvars=[1|m4l1|this open ground] t=60.425
+    ^~^~^ COUNTER clock 0:00 t=95.800 elapsed=48.900
+    ^~^~^ COUNTER end waves=2 sent=6 alive=6 lost=1 t=95.800
+    ^~^~^ AI armed
+    ^~^~^ AP CARRY map=m4l2 pen=0 squad(3,per1,cap6)=3 counter_wavesize(1p)=4 gapmul=1 cvars=[1|m4l1|this open ground] t=0.525
+    ^~^~^ CARRY ACTIVE pen=1 on m4l2 (state cleared)
+    ^~^~^ CARRY message sent: The Germans regrouped after you lost this open ground - expect heavier resistance
+    ^~^~^ CARRY alarm-on-start waiting for the squad
+    ^~^~^ AP CARRY map=m4l2 pen=1 squad(3,per1,cap6)=4 counter_wavesize(1p)=5 gapmul=0.800 cvars=[0||] t=49.500
+    ^~^~^ ALARM LIVE pull 1 switches=3
+    ^~^~^ CARRY ALARM ON START on m4l2 t=83.000
+    ^~^~^ ALARM OFF: no players pulls=1
+    ^~^~^ AP CARRY map=m4l2 pen=1 squad(3,per1,cap6)=4 counter_wavesize(1p)=5 gapmul=0.800 cvars=[0||] t=87.900
+    ^~^~^ AP SHOOT1 switch health now 600.000
+script errors: 0 []

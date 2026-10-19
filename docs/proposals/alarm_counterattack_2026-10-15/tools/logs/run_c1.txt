@@ -1,0 +1,21 @@
+armed count before transition 1
+next map up: True
+    ^~^~^ AI armed
+    ^~^~^ AP CARRY map=e3l2 pen=0 squad(3,per1,cap6)=3 counter_wavesize(1p)=4 gapmul=1 cvars=[||] t=44.250
+    ^~^~^ COUNTER start map=e3l2 secs=20 gap=10 players=1
+    ^~^~^ COUNTER zone src=vetted name=the courtyard at=( 5488.000 -4496.000 -447.900 ) r=489
+    ^~^~^ CARRY set 1 from e3l2 place=the courtyard
+    ^~^~^ COUNTER zone LOST (#1) - restart from 35 t=60.150
+    ^~^~^ AP CARRY map=e3l2 pen=0 squad(3,per1,cap6)=3 counter_wavesize(1p)=4 gapmul=1 cvars=[1|e3l2|the courtyard] t=60.450
+    ^~^~^ COUNTER clock 0:00 t=95.750 elapsed=48.850
+    ^~^~^ COUNTER end waves=1 sent=6 alive=6 lost=1 t=95.750
+    ^~^~^ AI armed
+    ^~^~^ AP CARRY map=e3l3 pen=0 squad(3,per1,cap6)=3 counter_wavesize(1p)=4 gapmul=1 cvars=[1|e3l2|the courtyard] t=0.525
+    ^~^~^ CARRY ACTIVE pen=1 on e3l3 (state cleared)
+    ^~^~^ CARRY message sent: The Germans regrouped after you lost the the courtyard - expect heavier resistance
+    ^~^~^ AP CARRY map=e3l3 pen=1 squad(3,per1,cap6)=4 counter_wavesize(1p)=5 gapmul=0.800 cvars=[0||] t=49.375
+    ^~^~^ AP CARRYFAKE set from=e3l3 then reloading the same map
+    ^~^~^ AI armed
+    ^~^~^ CARRY cleared: same map reloaded (e3l3)
+    ^~^~^ AP CARRY map=e3l3 pen=0 squad(3,per1,cap6)=3 counter_wavesize(1p)=4 gapmul=1 cvars=[0||] t=0.525
+script errors: 5 ["[2026-10-18 18:52:29 UTC-6.000] ^~^~^ Script Error : command 'QueryTurretSlotEntity' applied to NULL listener", "[2026-10-18 18:52:29 UTC-6.000] ^~^~^ Script Error : command 'hide' applied to NIL", "[2026-10-18 18:52:29 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener", "[2026-10-18 18:52:29 UTC-6.000] ^~^~^ Script Error : command 'waitTill' applied to NULL listener"]

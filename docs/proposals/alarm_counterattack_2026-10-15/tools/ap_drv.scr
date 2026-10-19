@@ -168,6 +168,26 @@ ap_do local.c:{
 		waitthread ap_pin local.vp local.mva
 		println ( "^~^~^ AP VIEWMG gunner at " + local.go + " eye=" + local.vp )
 	}
+	if( local.c == "carrystate" ){
+		local.rc = exec coop_mod/officer.scr::coop_reinf_count 3 "coop_officerSquadPer" 1 6
+		local.ws = waitthread coop_mod/coop_counter.scr::counter_wavesize 1
+		local.gm = waitthread coop_mod/carry.scr::carry_gap
+		println ( "^~^~^ AP CARRY map=" + level.coop_mapname + " pen=" + ( waitthread coop_mod/carry.scr::carry_pen ) + " squad(3,per1,cap6)=" + local.rc + " counter_wavesize(1p)=" + local.ws + " gapmul=" + local.gm + " cvars=[" + getcvar( "coop_carryReinf" ) + "|" + getcvar( "coop_carryFrom" ) + "|" + getcvar( "coop_carryPlace" ) + "] t=" + level.time )
+	}
+	if( local.c == "carryfake" ){
+		setcvar "coop_carryReinf" "1"
+		setcvar "coop_carryFrom" level.coop_mapname
+		setcvar "coop_carryPlace" "test yard"
+		println ( "^~^~^ AP CARRYFAKE set from=" + level.coop_mapname + " then reloading the same map" )
+		stuffsrv ( "map " + level.coop_mapname )
+	}
+	if( local.c == "shoot1" ){
+		local.sw = level.coop_alarmSw[1]
+		if( local.sw != NULL && local.sw != NIL ){
+			local.sw damage local.p 400 local.p local.sw.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
+			println ( "^~^~^ AP SHOOT1 switch health now " + local.sw.health )
+		}
+	}
 	if( local.c == "foe" ){
 		local.n0 = level.coop_counterN
 		if( local.n0 == NIL ){ local.n0 = 0 }

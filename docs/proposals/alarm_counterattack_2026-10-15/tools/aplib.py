@@ -34,7 +34,7 @@ R.SHOTS = os.path.join(R.MAINTT, "screenshots")
 R.PRISTINE = os.path.join(_cl, "pristine")
 R.PORT = _port
 print("harness copy:", _own, _exe, flush=True)
-G.FILES = os.environ.get("APFILES", "coop_mod/alarm.scr,coop_mod/alarmpoints.scr,coop_mod/coop_counter.scr,coop_mod/coop_counter_zones.scr,coop_mod/reinf_mg.scr").split(",")
+G.FILES = os.environ.get("APFILES", "coop_mod/alarm.scr,coop_mod/alarmpoints.scr,coop_mod/coop_counter.scr,coop_mod/coop_counter_zones.scr,coop_mod/reinf_mg.scr,coop_mod/carry.scr,coop_mod/main.scr,coop_mod/officer.scr").split(",")
 HERE = C.HERE
 _orig = C._ov
 

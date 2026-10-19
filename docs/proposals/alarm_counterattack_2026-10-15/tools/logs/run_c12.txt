@@ -1,0 +1,16 @@
+armed count before transition 1
+next map up: True
+    ^~^~^ AI armed
+    ^~^~^ AP CARRY map=e3l2 pen=0 squad(3,per1,cap6)=3 counter_wavesize(1p)=4 gapmul=1 cvars=[||] t=44.125
+    ^~^~^ COUNTER start map=e3l2 secs=20 gap=10 players=1
+    ^~^~^ COUNTER zone src=vetted name=the courtyard at=( 5488.000 -4496.000 -447.900 ) r=489
+    ^~^~^ CARRY set 1 from e3l2 place=the courtyard
+    ^~^~^ COUNTER zone LOST (#1) - restart from 35 t=59.775
+    ^~^~^ AP CARRY map=e3l2 pen=0 squad(3,per1,cap6)=3 counter_wavesize(1p)=4 gapmul=1 cvars=[1|e3l2|the courtyard] t=60.275
+    ^~^~^ COUNTER clock 0:00 t=95.325 elapsed=48.550
+    ^~^~^ COUNTER end waves=1 sent=6 alive=6 lost=1 t=95.325
+    ^~^~^ AI armed
+    ^~^~^ CARRY cleared: chapter boundary e3l2 (e3) -> m1l1 (m1)
+    ^~^~^ AP CARRY map=m1l1 pen=0 squad(3,per1,cap6)=3 counter_wavesize(1p)=4 gapmul=1 cvars=[0||] t=0.525
+    ^~^~^ AP CARRY map=m1l1 pen=0 squad(3,per1,cap6)=3 counter_wavesize(1p)=4 gapmul=1 cvars=[0||] t=93.750
+script errors: 5 ["[2026-10-18 19:17:39 UTC-6.000] ^~^~^ Script Error : command 'QueryTurretSlotEntity' applied to NULL listener", "[2026-10-18 19:17:39 UTC-6.000] ^~^~^ Script Error : command 'hide' applied to NIL", "[2026-10-18 19:17:39 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener", "[2026-10-18 19:17:39 UTC-6.000] ^~^~^ Script Error : command 'waitTill' applied to NULL listener"]
