@@ -28,6 +28,10 @@ Play the complete **Allied Assault**, **Spearhead** and **Breakthrough** campaig
 
 1. **[Download the installer](https://github.com/MOHCoopTrilogy/releases/releases/latest/download/MOHCoopTrilogy-WebSetup.exe)** (~3 MB) and run it. It finds your GOG game and creates a **MOH Trilogy Coop** shortcut. No admin rights needed.
 2. **Launch from the shortcut.** The first launch downloads about 8 GB of game files from GitHub, with a progress bar. After that, each launch fetches only what changed.
+   **Other downloads** (every file has a SHA-256 on the release page; see [WINDOWS_SECURITY.md](docs/public/WINDOWS_SECURITY.md) if Windows blocks something):
+   - **WebSetup.exe**: pick this for a normal install (it finds your game and downloads everything).
+   - **NoInstaller zip** (several parts, unzip all into your game folder; INSTALL.txt inside): pick this if Windows blocks the installer or you prefer to unzip by hand.
+   - **ModFilesOnly zip** (only on releases that do not change the exe/dll files): pick this if you already run the previous release and just want the new mod files.
 3. **Host:** Multiplayer → Start Game → **MOH Coop Trilogy (HZM)**, pick a mission, Apply. **Join:** Multiplayer → Join Game, or `connect <ip>` in the console.
 
 **Needs:** Windows, a GOG install of [MOH: Allied Assault War Chest](https://www.gog.com/game/medal_of_honor_allied_assault_war_chest), an internet connection, and about 10 GB free.

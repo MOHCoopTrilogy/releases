@@ -323,6 +323,109 @@ if ($DryRun) {
 $manifestPath = Join-Path $env:TEMP "manifest-$Version.json"
 $manifest | ConvertTo-Json -Depth 5 | Set-Content $manifestPath -Encoding utf8
 
+# --- 4b. [2026-10-19 user] ALTERNATIVE DOWNLOADS next to the installer (no installer needed) -------------------------------
+# 1) NoInstaller zip, EVERY release: the HZM engine files (exe, ded, DLLs at the game-folder root) + every mod pak / cfg
+#    (under maintt/) + INSTALL.txt. 2) ModFilesOnly zip: the maintt/ paks and cfgs only, built ONLY when every engine
+#    binary hashes the same as in the previous release's manifest (a mod-only release); skipped otherwise.
+# GitHub refuses release assets over 2 GiB and the full set is ~8 GB, so each zip is split into numbered PARTS of at most
+# ~1.9 GB (a single file is never split; the biggest pak is 1.3 GB). Every asset gets a SHA-256 (SHA256SUMS.txt + the notes).
+$engineKeys = @('openmohaa.exe','cgame.dll','game.dll','renderer_opengl1.dll','renderer_opengl2.dll','omohaaded.exe','SDL2.dll','OpenAL64.dll','libcurl.dll')
+$sumLines = @()
+function New-SplitZips($zipBase, $entries, $installTxt) {
+    # $entries: ordered list of @{ name = <path inside the zip>; src = <file> }
+    $limit = 1900MB
+    $parts = @(); $cur = $null; $curSize = 0; $idx = 0
+    $partNames = @()
+    $groups = @(); $g = @(); $gs = 0
+    foreach ($e in $entries) {
+        $sz = (Get-Item -LiteralPath $e.src).Length
+        if ($g.Count -gt 0 -and ($gs + $sz) -gt $limit) { $groups += ,$g; $g = @(); $gs = 0 }
+        $g += $e; $gs += $sz
+    }
+    if ($g.Count -gt 0) { $groups += ,$g }
+    $n = $groups.Count
+    $out = @()
+    for ($i = 0; $i -lt $n; $i++) {
+        $leaf = if ($n -eq 1) { "$zipBase.zip" } else { "{0}-part{1}of{2}.zip" -f $zipBase, ($i + 1), $n }
+        $zp = Join-Path $env:TEMP $leaf
+        if (Test-Path -LiteralPath $zp) { Remove-Item -LiteralPath $zp -Force }
+        $za = [System.IO.Compression.ZipFile]::Open($zp, 'Create')
+        try {
+            if ($i -eq 0) {
+                $ent = $za.CreateEntry("INSTALL.txt")
+                $sw = New-Object System.IO.StreamWriter($ent.Open(), (New-Object System.Text.UTF8Encoding($false)))
+                $sw.Write($installTxt.Replace("{PARTS}", "$n")); $sw.Close()
+            }
+            foreach ($e in $groups[$i]) {
+                [void][System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($za, $e.src, $e.name, [System.IO.Compression.CompressionLevel]::Optimal)
+            }
+        } finally { $za.Dispose() }
+        $out += $zp
+    }
+    return $out
+}
+$extraNotes = ""
+try {
+    $entriesAll = @(); $entriesMod = @()
+    foreach ($k in ($stage.Keys | Sort-Object)) {
+        if ($k -in @('updater.ps1','launch_coop.vbs','report_problem.ps1')) { continue }   # installer-only helpers
+        if ($k -like 'home/maintt/*') {
+            $e = @{ name = ("maintt/" + $k.Substring('home/maintt/'.Length)); src = $stage[$k] }
+            $entriesAll += $e; $entriesMod += $e
+        } elseif ($k -in $engineKeys) {
+            $entriesAll += @{ name = $k; src = $stage[$k] }
+        }
+    }
+    $installFull = @"
+MOH Coop Trilogy $Version - no-installer download ({PARTS} part file(s))
+
+1. Close the game. Unzip ALL parts into the same folder: your Medal of Honor Allied Assault War Chest game folder
+   (the GOG one that contains MOHAA.exe). Say yes to overwrite. Engine files land next to MOHAA.exe, mod files in maintt\.
+2. Before you overwrite, keep a backup copy of your old openmohaa.exe, omohaaded.exe, cgame.dll, game.dll and the
+   renderer_*.dll files, in case you want to go back.
+3. Start openmohaa.exe. If Windows blocks it, read WINDOWS_SECURITY.md on the releases page (SmartScreen / Smart App Control).
+4. Check each part against the SHA-256 on the release page before you unzip (PowerShell: Get-FileHash .\<file> -Algorithm SHA256).
+"@
+    $installMod = @"
+MOH Coop Trilogy $Version - mod files only ({PARTS} part file(s)); NO program (.exe/.dll) files in here
+
+Unzip ALL parts into your game folder (the one with MOHAA.exe) so the files land in maintt\. Say yes to overwrite.
+Use this only on a version whose program files are unchanged from the previous release (the release notes say so).
+Check each part's SHA-256 against the release page first.
+"@
+    $assetsZ = New-SplitZips "MOHCoopTrilogy-NoInstaller-$Version" $entriesAll $installFull
+    foreach ($z in $assetsZ) { $uploads[(Split-Path -Leaf $z)] = $z }
+    $descr = @("- **MOHCoopTrilogy-WebSetup.exe**: pick this for a normal install. It finds your game and downloads everything.",
+               "- **MOHCoopTrilogy-NoInstaller-$Version (zip, $($assetsZ.Count) part(s))**: pick this if Windows blocks the installer, or you want to unzip by hand. Contains the engine files, all mod files and INSTALL.txt. Needs all parts.")
+    $same = $true
+    foreach ($k in $engineKeys) {
+        if (-not $stage.Contains($k)) { continue }
+        $pv = $prevMap[$k]; $cv = $files | Where-Object { $_.path -eq $k } | Select-Object -First 1
+        if (-not $pv -or -not $cv -or $pv.sha256 -ne $cv.sha256) { $same = $false; break }
+    }
+    $modZ = @()
+    if ($same -and $prevManifest) {
+        $modZ = New-SplitZips "MOHCoopTrilogy-ModFilesOnly-$Version" $entriesMod $installMod
+        foreach ($z in $modZ) { $uploads[(Split-Path -Leaf $z)] = $z }
+        $descr += "- **MOHCoopTrilogy-ModFilesOnly-$Version (zip, $($modZ.Count) part(s))**: pick this only if you already run the previous release; it has just the mod files (no exe/dll), because the program files did not change."
+        Write-Host "mod-only zip built (engine binaries identical to the previous release)"
+    } else {
+        Write-Host "mod-only zip SKIPPED (engine binaries differ from the previous release, or no previous manifest)"
+    }
+    $sumLines += "MOHCoopTrilogy-WebSetup.exe  " + ((Get-FileHash -LiteralPath "$dev\installer\MOHCoopTrilogy-WebSetup.exe" -Algorithm SHA256).Hash.ToLower())
+    foreach ($z in @($assetsZ) + @($modZ)) { $sumLines += ((Split-Path -Leaf $z) + "  " + ((Get-FileHash -LiteralPath $z -Algorithm SHA256).Hash.ToLower())) }
+    $sumLines += "manifest.json  " + ((Get-FileHash -LiteralPath $manifestPath -Algorithm SHA256).Hash.ToLower())
+    $sumPath = Join-Path $env:TEMP "SHA256SUMS.txt"
+    [System.IO.File]::WriteAllText($sumPath, (($sumLines -join "`n") + "`n"), (New-Object System.Text.UTF8Encoding($false)))
+    $uploads["SHA256SUMS.txt"] = $sumPath
+    $extraNotes = "`n`n### Which download?`n" + ($descr -join "`n") +
+        "`n`nWindows blocked something? See [Windows security warnings and how to get past them](https://github.com/$repoSlug/blob/main/docs/public/WINDOWS_SECURITY.md).`n" +
+        "`n### SHA-256 checksums`nCheck a download with ``Get-FileHash .\<file> -Algorithm SHA256`` in PowerShell; it must match exactly.`n``````n" + ($sumLines -join "`n") + "`n``````n"
+} catch {
+    Write-Host "WARNING: alternative-download step failed: $_" -ForegroundColor Red
+    throw
+}
+
 # --- 5. publish (Continue mode: gh/git write progress to stderr; rely on exit codes) ---
 $ErrorActionPreference = "Continue"
 if ($NotesFile) {
@@ -337,6 +440,12 @@ if ($NotesFile) {
     # NOT Set-Content -Encoding utf8: in PowerShell 5.1 that writes a BOM, and the BOM then shows up
     # as a stray glyph at the top of the rendered GitHub release notes (observed on v1.2.9).
     [System.IO.File]::WriteAllText($notesFile, $body, (New-Object System.Text.UTF8Encoding($false)))
+}
+if ($extraNotes) {
+    $withExtra = Join-Path $env:TEMP "mohcoop_relnotes_full.md"
+    $baseTxt = [System.IO.File]::ReadAllText($notesFile, [System.Text.Encoding]::UTF8).TrimStart([char]0xFEFF)
+    [System.IO.File]::WriteAllText($withExtra, $baseTxt + $extraNotes, (New-Object System.Text.UTF8Encoding($false)))
+    $notesFile = $withExtra
 }
 & $gh release create $tag --repo $repoSlug --draft --title "MOH Coop Trilogy $Version" --notes-file $notesFile
 if ($LASTEXITCODE -ne 0) { throw "gh release create failed" }
