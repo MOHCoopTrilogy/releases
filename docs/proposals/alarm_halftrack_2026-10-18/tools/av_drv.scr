@@ -89,6 +89,7 @@ av_do local.c:{
 		waitthread av_pin local.pos local.va
 		println ( "^~^~^ AVT pinned at " + local.pos + " looking " + local.va )
 	}
+	if( local.c == "nofollow" ){ level.avt_follow = 0 }
 	if( local.c == "follow" ){
 		level.avt_back = float( getcvar( "ai_x" ) )
 		level.avt_side = float( getcvar( "ai_y" ) )

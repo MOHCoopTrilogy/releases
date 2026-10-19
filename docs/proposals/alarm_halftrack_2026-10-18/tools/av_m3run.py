@@ -33,13 +33,26 @@ try:
     G.frames(LABEL + "_para", 6, 400)
     G.cmd("m3nebel")
     t1 = time.time()
-    shot = 0
+    # 1. the guard halftracks arrive: chase camera
+    if R.wait_log(r"\^~\^~\^ ALMVEH ARRIVING halftrack", 150, p0):
+        G.cmd("follow", x="450", y="250", z="160")
+        G.frames(LABEL + "_ht_in", 26, 250)
+    R.wait_log(r"\^~\^~\^ ALMVEH ARRIVED halftrack", 120, p0)
+    G.frames(LABEL + "_ht_park", 10, 300)
+    # 2. the squad moves up to Nebelwerfer 1: the nests see a player, the halftrack covers him
+    G.cmd("nofollow")
+    G.cmd("m3to", x="-1560", y="-4850", z="-120")
+    G.cmd("pin", x="-1560", y="-4850", z="-120", lx="-2433", ly="-5096", lz="-40")
+    time.sleep(40)
+    G.frames(LABEL + "_fight", 18, 300)
+    # 3. a charge goes on Nebelwerfer 1: defend wave, blast, counter-push
+    G.cmd("m3plant", x="1")
+    G.frames(LABEL + "_plant", 24, 300)
+    time.sleep(45)
+    G.frames(LABEL + "_counter", 18, 300)
     while time.time() - t1 < MIN * 60:
         time.sleep(15)
         G.cmd("m3status")
-        txt = R.read_log()[p0:]
-        if shot == 0 and re.search(r"NEB t=\S+ halftrack 1 stop", txt):
-            shot = 1
     for l in re.findall(r"\^~\^~\^ (?:NEB|PARADROP|OFFICER_DROP|AVT officer|AVT m3|ALMVEH|MZ|CHDEFEND|PSQ)[^\r\n]*", R.read_log()[p0:]):
         if "AVT t=" in l:
             continue
