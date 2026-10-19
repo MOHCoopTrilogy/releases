@@ -1,10 +1,11 @@
 //=========================================================================
 // TEST-ONLY overlay driver (alarm vehicle 2026-10-18) - NEVER shipped. Installed as coop_mod/coop_selftest_xp.scr.
-// Commands arrive in cvar ai_cmd (ai_realism harness protocol: prints "^~^~^ AI did <cmd>").
+// Commands arrive in cvar ai_cmd (ai_realism harness protocol: prints "^~^~^ AI did <cmd>"); arguments in ai_x ai_y ai_z ai_yaw ai_pit.
 //=========================================================================
 st_xp_run:{
 	println "^~^~^ AI armed"
 	setcvar "ai_cmd" "0"
+	thread av_trace
 	while( 1 ){
 		local.c = getcvar( "ai_cmd" )
 		if( local.c != "0" && local.c != "" ){
@@ -21,82 +22,104 @@ av_s local.v:{
 	if( local.v != NIL ){ local.r = "" + local.v }
 }end local.r
 
-// ground point under/over a position
 av_gnd local.p:{
 	local.t = trace ( local.p + ( 0 0 200 ) ) ( local.p + ( 0 0 -600 ) )
 }end local.t
 
-av_do local.c:{
-	local.p = $player[1]
-	if( local.p == NULL ){ end }
-	if( local.c == "here" ){ println ( "^~^~^ AI here " + local.p.origin ) }
+// camera pin (ap_drv.scr recipe): the player is held at a position and view angle
+av_pin local.pos local.va:{
+	level.avt_pos = local.pos
+	level.avt_va = local.va
+	if( level.avt_pinOn == 1 ){ end }
+	level.avt_pinOn = 1
+	thread av_pinloop
+}end
 
-	// PROBE-1: spawn a halftrack at runtime and give it the MG turret slot
-	if( local.c == "probe1" ){
-		local.fwd = angles_toforward ( 0 local.p.angles[1] 0 )
-		local.pos = ( waitthread av_gnd ( local.p.origin + ( local.fwd * 500 ) ) ) + ( 0 0 16 )
-		local.v = spawn DrivableVehicle model "models/vehicles/sdkfz.tik" targetname "avprobe1" origin local.pos angles ( 0 local.p.angles[1] 0 )
-		println ( "^~^~^ AV P1 spawn=" + ( waitthread av_s local.v ) + " at=" + local.pos )
-		if( local.v != NULL ){
-			wait 1
-			local.g = local.v queryturretslotentity 0
-			println ( "^~^~^ AV P1 slot0-after-spawn=" + ( waitthread av_s local.g ) + " hp=" + local.v.health )
-			if( local.g == NULL || local.g == NIL ){
-				local.v spawnturret 0 "models/vehicles/sdkfz_mg42.tik"
-				wait 1
-				local.g = local.v queryturretslotentity 0
-				println ( "^~^~^ AV P1 slot0-after-spawnturret=" + ( waitthread av_s local.g ) )
-			}
-			local.v lock
-			println ( "^~^~^ AV P1 locked, origin=" + local.v.origin + " angles=" + local.v.angles )
+av_pinloop:{
+	while( level.avt_pinOn == 1 ){
+		local.p = $player[1]
+		if( local.p != NULL && local.p != NIL ){
+			local.p origin level.avt_pos
+			local.p.viewangles = level.avt_va
+			if( local.p.health > 0 ){ local.p.health = 750 }
 		}
-	}
-
-	// PROBE-2: runtime waypoint chain + drive + waittill drive
-	if( local.c == "probe2" ){
-		local.v = $avprobe1
-		if( local.v == NULL ){ println "^~^~^ AV P2 no vehicle (run probe1)" end }
-		local.fwd = angles_toforward ( 0 local.v.angles[1] 0 )
-		local.n = 7
-		for( local.i = local.n; local.i >= 1; local.i-- ){
-			local.q = ( waitthread av_gnd ( local.v.origin + ( local.fwd * ( 220 * local.i ) ) ) ) + ( 0 0 8 )
-			if( local.i == local.n ){
-				spawn info_waypoint targetname ( "avp2_" + local.i ) origin local.q
-			} else {
-				spawn info_waypoint targetname ( "avp2_" + local.i ) origin local.q target ( "avp2_" + ( local.i + 1 ) )
-			}
-		}
-		println ( "^~^~^ AV P2 chain head=" + ( waitthread av_s $avp2_1 ) + " next=" + ( waitthread av_s $avp2_1.target ) + " tail=" + ( waitthread av_s $avp2_7 ) )
-		local.v drive $avp2_1 300 100 40 128
-		local.t0 = level.time
-		println ( "^~^~^ AV P2 driving from " + local.v.origin )
-		thread av_p2_watch local.v
-	}
-
-	// PROBE-3: does the stopped hull block a trace (AI / player mask)?
-	if( local.c == "probe3" ){
-		local.v = $avprobe1
-		if( local.v == NULL ){ println "^~^~^ AV P3 no vehicle" end }
-		local.fwd = angles_toforward ( 0 local.v.angles[1] 0 )
-		local.a = local.v.origin - ( local.fwd * 400 ) + ( 0 0 40 )
-		local.b = local.v.origin + ( local.fwd * 400 ) + ( 0 0 40 )
-		local.t1 = traced local.a local.b 1023 ( -16 -16 0 ) ( 16 16 72 ) 466945
-		local.t2 = traced local.a local.b 1023 ( 0 0 0 ) ( 0 0 0 ) 1
-		println ( "^~^~^ AV P3 hullTrace(466945)=" + local.t1["fraction"] + " worldOnly(1)=" + local.t2["fraction"] + " solid=" + ( waitthread av_s local.v.solid ) + " mins=" + local.v.mins + " maxs=" + local.v.maxs )
-	}
-
-	if( local.c == "rm" ){
-		if( $avprobe1 != NULL ){ $avprobe1 remove }
+		waitframe
 	}
 }end
 
-av_p2_watch local.v:{
-	local.t0 = level.time
-	local.last = local.v.origin
-	for( local.k = 0; local.k < 14; local.k++ ){
+// one line per second about the live vehicle (only while level.avt_trace == 1)
+av_trace:{
+	while( 1 ){
 		wait 1
-		if( local.v == NULL ){ println "^~^~^ AV P2 vehicle gone" end }
-		println ( "^~^~^ AV P2 t=" + local.k + " org=" + local.v.origin + " moved=" + ( vector_length ( local.v.origin - local.last ) ) )
-		local.last = local.v.origin
+		if( level.avt_trace == 1 ){
+			local.v = level.av_ent
+			if( local.v == NULL || local.v == NIL ){
+				println ( "^~^~^ AVT t=" + level.time + " live=" + ( waitthread av_s level.av_live ) + " ent=none" )
+			} else {
+				println ( "^~^~^ AVT t=" + level.time + " live=" + ( waitthread av_s level.av_live ) + " org=" + local.v.origin + " hp=" + local.v.health + " arr=" + ( waitthread av_s local.v.av_arrT ) + " leaving=" + ( waitthread av_s local.v.av_leaving ) )
+			}
+		}
 	}
+}end
+
+av_do local.c:{
+	local.p = $player[1]
+	if( local.p == NULL ){ end }
+	local.x = getcvar( "ai_x" )
+	if( local.c == "here" ){ println ( "^~^~^ AI here " + local.p.origin ) }
+
+	// camera: ai_x ai_y ai_z = position, ai_yaw / ai_pit = view; "look" variant aims at the vehicle stop (ai_lx ai_ly ai_lz)
+	if( local.c == "pin" ){
+		local.pos = ( float( getcvar( "ai_x" ) ) float( getcvar( "ai_y" ) ) float( getcvar( "ai_z" ) ) )
+		local.tgt = ( float( getcvar( "ai_lx" ) ) float( getcvar( "ai_ly" ) ) float( getcvar( "ai_lz" ) ) )
+		local.va = vector_toangles ( local.tgt - local.pos )
+		waitthread av_pin local.pos local.va
+		println ( "^~^~^ AVT pinned at " + local.pos + " looking " + local.va )
+	}
+	if( local.c == "trace" ){ level.avt_trace = 1 }
+	if( local.c == "notrace" ){ level.avt_trace = 0 }
+
+	// fake a live alarm, then run the vehicle hook exactly as alarm.scr::alm_start does
+	if( local.c == "arm" ){
+		if( level.coop_alarmPulls == NIL ){ level.coop_alarmPulls = 0 }
+		level.coop_alarmLive = 1
+		level.coop_alarmPulls++
+		level.coop_alarmStartT = level.time
+		println ( "^~^~^ AVT armed pull=" + level.coop_alarmPulls + " map=" + level.coop_mapname )
+		thread coop_mod/alarmveh.scr::av_pull
+	}
+	if( local.c == "alarmoff" ){
+		level.coop_alarmLive = 0
+		println "^~^~^ AVT alarm off"
+	}
+	// a rocket hit on the live vehicle (means of death 16 = MOD_ROCKET)
+	if( local.c == "rocket" ){
+		local.v = level.av_ent
+		if( local.v == NULL || local.v == NIL ){ println "^~^~^ AVT rocket: no vehicle" end }
+		println ( "^~^~^ AVT rocket on hp=" + local.v.health )
+		local.v damage local.p 400 local.p local.v.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 16 0
+		wait 0.5
+		println ( "^~^~^ AVT rocket after hp=" + ( waitthread av_s local.v.health ) )
+	}
+	if( local.c == "grenade" ){
+		local.v = level.av_ent
+		if( local.v == NULL || local.v == NIL ){ println "^~^~^ AVT grenade: no vehicle" end }
+		println ( "^~^~^ AVT grenade on hp=" + local.v.health )
+		local.v damage local.p 200 local.p local.v.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 14 0
+		wait 0.3
+		println ( "^~^~^ AVT grenade after hp=" + ( waitthread av_s local.v.health ) )
+	}
+	if( local.c == "bullet" ){
+		local.v = level.av_ent
+		if( local.v == NULL || local.v == NIL ){ println "^~^~^ AVT bullet: no vehicle" end }
+		println ( "^~^~^ AVT bullet on hp=" + local.v.health )
+		local.v damage local.p 100 local.p local.v.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 18 0
+		wait 0.3
+		println ( "^~^~^ AVT bullet after hp=" + ( waitthread av_s local.v.health ) )
+	}
+	if( local.c == "pcount" ){ println ( "^~^~^ AVT players=" + ( waitthread coop_mod/coop_counter.scr::counter_players ) ) }
+	// alarm-man counters (crew are tagged coop_waveSrc alarm)
+	if( local.c == "men" ){ println ( "^~^~^ AVT alarm men alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive "alarm" ) ) }
+	// the crate (atsupply) state
+	if( local.c == "crate" ){ println ( "^~^~^ AVT atSupplyN=" + ( waitthread av_s level.coop_atSupplyN ) + " crateOk1=" + ( waitthread av_s level.av_crateOk[1] ) ) }
 }end

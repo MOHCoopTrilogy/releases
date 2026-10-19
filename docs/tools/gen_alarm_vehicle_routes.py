@@ -3,6 +3,10 @@
 
     python docs/tools/gen_alarm_vehicle_routes.py check     # regenerate in memory + byte-compare (exit 1 = drift)
     python docs/tools/gen_alarm_vehicle_routes.py build     # write coop_mod/alarmveh_routes.scr
+    python docs/tools/gen_alarm_vehicle_routes.py import-dat MAP NAME truck|halftrack [FILE] [--model tik]
+        # read the route markers a player placed with coop_build (ROUTES_HOWTO.md) from coop_mod/save/build_<MAP>.dat and add/replace
+        # route NAME of MAP in the json (then run build). Markers, in build order: entry = vehicles/sdkfz.tik (its yaw is the heading),
+        # road points = static/lightpost_globe.tik, stop = vehicles/sdkfz_no_cannon.tik, crate = weapons/panzerschreck.tik or bazooka.tik.
 
 DATA: docs/tools/alarm_vehicle_routes.json  { "<map>": [ {name, kind: truck|halftrack, model, nodes:[[x,y,z],..], crate:[x,y,z],
       crateyaw, src} ] }.  A map with no entry (or no JSON row) is vehicle-OFF: alarmveh.scr does nothing there. Vanilla chains were
@@ -12,8 +16,11 @@ DATA: docs/tools/alarm_vehicle_routes.json  { "<map>": [ {name, kind: truck|half
 ALARM_MOD=<mod checkout> overrides the checkout written to (default: hzm-mohaa-coop-mod).
 OUTPUT RULES: ASCII, LF, no BOM, no bare negative scalar (vectors may carry negatives).
 """
+import io
 import json
+import math
 import os
+import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -55,16 +62,76 @@ def render():
             o.append("\tlevel.av_name[%d] = \"%s\"" % (i, r["name"]))
             o.append("\tlevel.av_model[%d] = \"%s\"" % (i, r["model"]))
             o.append("\tlevel.av_n[%d] = %d" % (i, len(r["nodes"])))
-            o.append("\tlevel.av_crate[%d] = %s" % (i, v(r["crate"])))
-            o.append("\tlevel.av_cyaw[%d] = %g" % (i, float(r.get("crateyaw", 0)) % 360))
+            if r.get("crate"):
+                o.append("\tlevel.av_crate[%d] = %s" % (i, v(r["crate"])))
+                o.append("\tlevel.av_cyaw[%d] = %g" % (i, float(r.get("crateyaw", 0)) % 360))
             for k, p in enumerate(r["nodes"], 1):
                 o.append("\tlevel.av_p[%d] = %s" % (i * 100 + k, v(p)))
         o.append("}end")
     return "\n".join(o) + "\n"
 
 
+def cmd_import_dat(m, name, kind, path=None, model=None):
+    path = path or os.path.join(MOD, "coop_mod", "save", "build_%s.dat" % m)
+    txt = io.open(path, "r", encoding="utf-8", errors="replace").read()
+    items = []                                  # (build number, role, pos, yaw)
+    for blk in re.split(r"(?=//\s*coop_build\s*#)", txt):
+        g = re.match(r"//\s*coop_build\s*#(\d+)\s+(\S+)", blk)
+        if not g:
+            continue
+        mod = g.group(2).lower().replace("\\", "/")
+        role = None
+        if mod.endswith("vehicles/sdkfz.tik"):
+            role = "entry"
+        elif mod.endswith("static/lightpost_globe.tik"):
+            role = "road"
+        elif mod.endswith("vehicles/sdkfz_no_cannon.tik"):
+            role = "stop"
+        elif mod.endswith("weapons/panzerschreck.tik") or mod.endswith("weapons/bazooka.tik"):
+            role = "crate"
+        if role is None:
+            continue
+        po = re.search(r"\.origin\s*=\s*\(\s*(\S+)\s+(\S+)\s+(\S+)\s*\)", blk)
+        an = re.search(r"\.angles\s*=\s*\(\s*(\S+)\s+(\S+)\s+(\S+)\s*\)", blk)
+        if not po:
+            continue
+        items.append((int(g.group(1)), role, [round(float(po.group(i)), 1) for i in (1, 2, 3)], float(an.group(2)) % 360 if an else 0.0))
+    items.sort()
+    ent = [i for i in items if i[1] == "entry"]
+    stp = [i for i in items if i[1] == "stop"]
+    cr = [i for i in items if i[1] == "crate"]
+    if len(ent) != 1 or len(stp) != 1:
+        sys.exit("need exactly one entry (vehicles/sdkfz.tik) and one stop (vehicles/sdkfz_no_cannon.tik); found %d / %d" % (len(ent), len(stp)))
+    if kind == "halftrack" and not cr:
+        sys.exit("a halftrack route needs a crate marker (weapons/panzerschreck.tik or bazooka.tik)")
+    nodes = [ent[0][2]] + [i[2] for i in items if i[1] == "road" and ent[0][0] < i[0] < stp[0][0]] + [stp[0][2]]
+    for a, b in zip(nodes, nodes[1:]):
+        d = math.dist(a, b)
+        if d > 700:
+            print("WARNING: %.0f u between two markers - add a road point (the vehicle cuts corners between nodes)" % d)
+    r = dict(name=name, kind=kind, model=model or ("models/vehicles/sdkfz.tik" if kind == "halftrack" else "models/vehicles/opeltruck.tik"),
+             nodes=nodes, src="coop_build markers, %s" % os.path.basename(path))
+    if cr:
+        r["crate"] = cr[0][2]
+        r["crateyaw"] = round(cr[0][3], 1)
+    data = json.load(open(SRC))
+    rs = [x for x in data.get(m, []) if x["name"] != name] + [r]
+    data[m] = rs
+    json.dump(data, open(SRC, "w"), indent=1)
+    print("%s/%s: %d nodes, kind %s, crate %s -> %s" % (m, name, len(nodes), kind, r.get("crate"), SRC))
+
+
 def main():
     cmd = sys.argv[1] if len(sys.argv) > 1 else "check"
+    if cmd == "import-dat":
+        a = [x for x in sys.argv[2:] if not x.startswith("--")]
+        model = sys.argv[sys.argv.index("--model") + 1] if "--model" in sys.argv else None
+        if model in a:
+            a.remove(model)
+        if len(a) < 3:
+            sys.exit("usage: import-dat MAP NAME truck|halftrack [FILE] [--model tik]")
+        cmd_import_dat(a[0], a[1], a[2], a[3] if len(a) > 3 else None, model)
+        return
     txt = render()
     if cmd == "build":
         open(OUT, "w", newline="\n", encoding="ascii").write(txt)
