@@ -54,7 +54,7 @@ def render():
         rs = data[m]
         o.append("\tlevel.av_rn = %d" % len(rs))
         for i, r in enumerate(rs, 1):
-            if r["kind"] == "halftrack" and not r.get("crate"):
+            if r["kind"] == "halftrack" and not r.get("crate") and not r.get("event"):
                 raise SystemExit("%s/%s: a halftrack route needs a crate" % (m, r["name"]))
             if len(r["nodes"]) < 3 or len(r["nodes"]) > 99:
                 raise SystemExit("%s/%s: 3..99 nodes" % (m, r["name"]))
@@ -65,6 +65,8 @@ def render():
             if r.get("crate"):
                 o.append("\tlevel.av_crate[%d] = %s" % (i, v(r["crate"])))
                 o.append("\tlevel.av_cyaw[%d] = %g" % (i, float(r.get("crateyaw", 0)) % 360))
+            if r.get("event"):
+                o.append("	level.av_event[%d] = \"%s\"" % (i, r["event"]))
             if r.get("squad"):
                 o.append("	level.av_squad[%d] = %s" % (i, v(r["squad"])))
             for k, p in enumerate(r["nodes"], 1):
