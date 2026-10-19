@@ -1,0 +1,35 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   3288.0,
+   -3580.0,
+   980.13
+  ],
+  "line": "z0=980.130 z1=980.130 dz=0.000 air=-0.125 clipdz=-11.120 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 0"
+ },
+ {
+  "i": 2,
+  "pos": [
+   2416.0,
+   -3644.0,
+   824.13
+  ],
+  "line": "z0=824.130 z1=824.130 dz=0.000 air=-0.125 clipdz=-11.120 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 6"
+ },
+ {
+  "i": 3,
+  "pos": [
+   -5584.0,
+   -2452.0,
+   762.13
+  ],
+  "line": "z0=762.130 z1=762.130 dz=0.000 air=-0.125 clipdz=-11.120 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 0"
+ }
+]

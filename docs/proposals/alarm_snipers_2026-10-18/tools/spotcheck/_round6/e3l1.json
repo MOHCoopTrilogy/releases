@@ -1,0 +1,24 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   -200.0,
+   4200.0,
+   224.12
+  ],
+  "line": "z0=224.120 z1=224.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 0"
+ },
+ {
+  "i": 2,
+  "pos": [
+   -824.0,
+   3592.0,
+   224.12
+  ],
+  "line": "z0=224.120 z1=224.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 0"
+ }
+]

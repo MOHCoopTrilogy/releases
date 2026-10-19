@@ -1,0 +1,24 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   -552.0,
+   -3928.0,
+   -6207.86
+  ],
+  "line": "z0=-6207.860 z1=-6207.860 dz=0.000 air=-0.125 clipdz=-8.125 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "FAIL no visible angle (floor contact not photographable)",
+  "photo": "none"
+ },
+ {
+  "i": 2,
+  "pos": [
+   -1240.0,
+   -4244.0,
+   -6333.16
+  ],
+  "line": "z0=-6333.160 z1=-6333.160 dz=0.000 air=-0.125 clipdz=-16.901 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "FAIL no visible angle (floor contact not photographable)",
+  "photo": "none"
+ }
+]

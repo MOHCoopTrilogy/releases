@@ -434,40 +434,9 @@
   }
  },
  "e2l1": {
-  "audited": false,
+  "audited": true,
   "dropped": [],
-  "spots": [
-   {
-    "body": 55,
-    "cluster": 2,
-    "elev": 376.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 256.0,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/central_europe/church_interior_wall2flt"
-    },
-    "keepaudit": true,
-    "los": 59,
-    "pos": [
-     -4216.0,
-     -4056.0,
-     424.12
-    ],
-    "routeDz": 440.0,
-    "side": 5,
-    "sky": true,
-    "src": "brush-face",
-    "type": "outdoor-high"
-   }
-  ],
+  "spots": [],
   "stats": {
    "drop": 4,
    "faces": 549,
@@ -635,7 +604,7 @@
   }
  },
  "e3l1": {
-  "audited": false,
+  "audited": true,
   "dropped": [
    {
     "pos": [
@@ -660,6 +629,22 @@
      208.12
     ],
     "why": "FAIL no visible angle (floor contact not photographable)"
+   },
+   {
+    "pos": [
+     -824.0,
+     3592.0,
+     224.12
+    ],
+    "why": "FAIL manual QA: not a roof / duplicate or hill"
+   },
+   {
+    "pos": [
+     4242.53,
+     1784.0,
+     193.4
+    ],
+    "why": "FAIL manual QA: not a roof / duplicate or hill"
    }
   ],
   "spots": [
@@ -692,36 +677,6 @@
     "sky": true,
     "src": "brush-face",
     "type": "outdoor-high"
-   },
-   {
-    "body": 20,
-    "cluster": 3,
-    "elev": 160.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 256.0,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/general_structure/concretewall2"
-    },
-    "keepaudit": true,
-    "los": 24,
-    "pos": [
-     -824.0,
-     3592.0,
-     224.12
-    ],
-    "routeDz": 160.0,
-    "side": 3,
-    "sky": true,
-    "src": "brush-face",
-    "type": "roof"
    },
    {
     "base": 581.96,
@@ -814,38 +769,6 @@
     ],
     "routeDz": 436.1,
     "side": 7,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 180
-   },
-   {
-    "base": 169.4,
-    "body": 33,
-    "cluster": 5,
-    "elev": 129.4,
-    "ground": {
-     "cornerDz": [
-      32.0,
-      0.0,
-      32.0,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.894,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 48,
-    "plat": true,
-    "pos": [
-     4242.53,
-     1784.0,
-     193.4
-    ],
-    "routeDz": 129.4,
-    "side": 1,
     "sky": true,
     "src": "roof-deck",
     "type": "roof (crate deck)",
@@ -946,7 +869,7 @@
   }
  },
  "e3l2": {
-  "audited": false,
+  "audited": true,
   "dropped": [
    {
     "pos": [
@@ -1003,6 +926,38 @@
      -140.88
     ],
     "why": "FAIL manual QA: room interior with walls and beams, reads as indoor"
+   },
+   {
+    "pos": [
+     -480.0,
+     -4544.0,
+     -348.88
+    ],
+    "why": "FAIL manual QA: street level or indoor-looking room"
+   },
+   {
+    "pos": [
+     4849.0,
+     -656.0,
+     -116.88
+    ],
+    "why": "FAIL manual QA: street level or indoor-looking room"
+   },
+   {
+    "pos": [
+     962.0,
+     -4080.0,
+     -215.88
+    ],
+    "why": "FAIL manual QA: street level or indoor-looking room"
+   },
+   {
+    "pos": [
+     1876.0,
+     -4016.0,
+     -215.88
+    ],
+    "why": "FAIL manual QA: street level or indoor-looking room"
    }
   ],
   "spots": [
@@ -1039,38 +994,6 @@
     "yaw": 90
    },
    {
-    "base": -372.88,
-    "body": 31,
-    "cluster": 2,
-    "elev": 459.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 31,
-    "plat": true,
-    "pos": [
-     -480.0,
-     -4544.0,
-     -348.88
-    ],
-    "routeDz": 459.1,
-    "side": 6,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 0
-   },
-   {
     "base": -67.86,
     "body": 8,
     "cluster": 3,
@@ -1101,102 +1024,6 @@
     "src": "roof-deck",
     "type": "roof (crate deck)",
     "yaw": 180
-   },
-   {
-    "base": -140.88,
-    "body": 4,
-    "cluster": 4,
-    "elev": 293.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 4,
-    "plat": true,
-    "pos": [
-     4849.0,
-     -656.0,
-     -116.88
-    ],
-    "routeDz": 293.1,
-    "side": 0,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 180
-   },
-   {
-    "base": -239.88,
-    "body": 11,
-    "cluster": 3,
-    "elev": 221.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 11,
-    "plat": true,
-    "pos": [
-     962.0,
-     -4080.0,
-     -215.88
-    ],
-    "routeDz": 221.1,
-    "side": 6,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 0
-   },
-   {
-    "base": -239.88,
-    "body": 11,
-    "cluster": 5,
-    "elev": 128.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 11,
-    "plat": true,
-    "pos": [
-     1876.0,
-     -4016.0,
-     -215.88
-    ],
-    "routeDz": 128.1,
-    "side": 7,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 270
    }
   ],
   "stats": {
@@ -1257,7 +1084,7 @@
   }
  },
  "m1l1": {
-  "audited": false,
+  "audited": true,
   "dropped": [
    {
     "pos": [
@@ -1282,158 +1109,49 @@
      320.12
     ],
     "why": "FAIL gone"
-   }
-  ],
-  "spots": [
+   },
    {
-    "body": 51,
-    "cluster": 1,
-    "elev": 200.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 58,
     "pos": [
      -2492.0,
      -2504.0,
      320.12
     ],
-    "routeDz": 200.1,
-    "side": 7,
-    "sky": true,
-    "src": "vanilla-pathnode",
-    "type": "tower/high (vanilla pathnode)"
+    "why": "FAIL manual QA: plaza, not a roof"
    },
    {
-    "body": 4,
-    "cluster": 2,
-    "elev": 192.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 4,
     "pos": [
      -7092.0,
      1528.0,
      640.12
     ],
-    "routeDz": 192.1,
-    "side": 3,
-    "sky": true,
-    "src": "vanilla-pathnode",
-    "type": "tower/high (vanilla pathnode)"
+    "why": "FAIL manual QA: plaza, not a roof"
    },
    {
-    "base": 430.03,
-    "body": 42,
-    "cluster": 1,
-    "elev": 326.0,
-    "ground": {
-     "cornerDz": [
-      28.21,
-      0.0,
-      31.58,
-      3.37
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.914,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 73,
-    "plat": true,
     "pos": [
      -4680.0,
      -2776.0,
      454.03
     ],
-    "routeDz": 326.0,
-    "side": 5,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 0
+    "why": "FAIL nodeck air"
    },
    {
-    "base": 667.16,
-    "body": 7,
-    "cluster": 2,
-    "elev": 291.2,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      16.48,
-      16.48
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.968,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 7,
-    "plat": true,
     "pos": [
      -4900.0,
      -160.0,
      691.16
     ],
-    "routeDz": 291.2,
-    "side": 4,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 90
+    "why": "FAIL nodeck air"
    },
    {
-    "base": 564.12,
-    "body": 22,
-    "cluster": 3,
-    "elev": 188.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 24,
-    "plat": true,
     "pos": [
      -3872.0,
      224.0,
      588.12
     ],
-    "routeDz": 188.1,
-    "side": 4,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 180
+    "why": "FAIL nodeck dropped air"
    }
   ],
+  "spots": [],
   "stats": {
    "drop": 38,
    "faces": 529,
@@ -1685,7 +1403,7 @@
   }
  },
  "m2l1": {
-  "audited": false,
+  "audited": true,
   "dropped": [
    {
     "pos": [
@@ -1750,420 +1468,113 @@
      1019.81
     ],
     "why": "FAIL dropped"
-   }
-  ],
-  "spots": [
+   },
    {
-    "body": 27,
-    "cluster": 1,
-    "elev": 384.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 27,
     "pos": [
      4448.0,
      2592.0,
      448.12
     ],
-    "routeDz": 384.1,
-    "side": 1,
-    "sky": true,
-    "src": "vanilla-pathnode",
-    "type": "tower/high (vanilla pathnode)"
+    "why": "FAIL manual QA: snow ground, not a roof"
    },
    {
-    "base": 864.72,
-    "body": 36,
-    "cluster": 1,
-    "elev": 392.7,
-    "ground": {
-     "cornerDz": [
-      18.73,
-      0.0,
-      18.73,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.96,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 47,
-    "plat": true,
     "pos": [
      2672.0,
      -720.0,
      888.72
     ],
-    "routeDz": 392.7,
-    "side": 0,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 0
+    "why": "FAIL nodeck air"
    },
    {
-    "base": 864.72,
-    "body": 32,
-    "cluster": 1,
-    "elev": 392.7,
-    "ground": {
-     "cornerDz": [
-      18.73,
-      0.0,
-      18.73,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.96,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 43,
-    "plat": true,
     "pos": [
      2672.0,
      -80.0,
      888.72
     ],
-    "routeDz": 392.7,
-    "side": 0,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 0
+    "why": "FAIL nodeck air"
    },
    {
-    "base": 776.14,
-    "body": 37,
-    "cluster": 2,
-    "elev": 304.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      31.99,
-      0.0,
-      31.99
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.894,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 42,
-    "plat": true,
     "pos": [
      -1248.0,
      -2856.0,
      800.14
     ],
-    "routeDz": 304.1,
-    "side": 5,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 90
+    "why": "FAIL nodeck air"
    },
    {
-    "base": 776.14,
-    "body": 36,
-    "cluster": 3,
-    "elev": 304.1,
-    "ground": {
-     "cornerDz": [
-      31.99,
-      0.0,
-      31.99,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.894,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 39,
-    "plat": true,
     "pos": [
      -288.0,
      -1128.0,
      800.14
     ],
-    "routeDz": 304.1,
-    "side": 6,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 180
+    "why": "FAIL nodeck air"
    },
    {
-    "base": 712.14,
-    "body": 59,
-    "cluster": 4,
-    "elev": 208.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      32.0,
-      32.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.894,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 60,
-    "plat": true,
     "pos": [
      -200.0,
      -3312.0,
      736.14
     ],
-    "routeDz": 208.1,
-    "side": 6,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 90
+    "why": "FAIL nodeck air"
    },
    {
-    "base": 744.14,
-    "body": 27,
-    "cluster": 5,
-    "elev": 272.1,
-    "ground": {
-     "cornerDz": [
-      32.0,
-      0.0,
-      32.0,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.894,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 42,
-    "plat": true,
     "pos": [
      3488.0,
      2136.0,
      768.14
     ],
-    "routeDz": 272.1,
-    "side": 1,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 270
+    "why": "FAIL nodeck air"
    },
    {
-    "base": 744.14,
-    "body": 26,
-    "cluster": 6,
-    "elev": 272.1,
-    "ground": {
-     "cornerDz": [
-      32.0,
-      32.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.894,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 36,
-    "plat": true,
     "pos": [
      -1384.0,
      -1632.0,
      768.14
     ],
-    "routeDz": 272.1,
-    "side": 5,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 0
+    "why": "FAIL nodeck air"
    },
    {
-    "base": 712.14,
-    "body": 33,
-    "cluster": 7,
-    "elev": 240.1,
-    "ground": {
-     "cornerDz": [
-      32.0,
-      0.0,
-      32.0,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.894,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 40,
-    "plat": true,
     "pos": [
      3424.0,
      -168.0,
      736.14
     ],
-    "routeDz": 240.1,
-    "side": 0,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 180
+    "why": "FAIL nodeck air"
    },
    {
-    "base": 744.14,
-    "body": 19,
-    "cluster": 8,
-    "elev": 272.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      32.0,
-      32.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.894,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 32,
-    "plat": true,
     "pos": [
      -1384.0,
      -672.0,
      768.14
     ],
-    "routeDz": 272.1,
-    "side": 5,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 0
+    "why": "FAIL nodeck air"
    },
    {
-    "base": 744.14,
-    "body": 19,
-    "cluster": 9,
-    "elev": 272.1,
-    "ground": {
-     "cornerDz": [
-      32.0,
-      0.0,
-      32.0,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.894,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 28,
-    "plat": true,
     "pos": [
      -608.0,
      88.0,
      768.14
     ],
-    "routeDz": 272.1,
-    "side": 4,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 270
+    "why": "FAIL nodeck air"
    },
    {
-    "base": 712.14,
-    "body": 27,
-    "cluster": 3,
-    "elev": 240.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      32.0,
-      0.0,
-      32.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.894,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 32,
-    "plat": true,
     "pos": [
      -96.0,
      -1704.0,
      736.14
     ],
-    "routeDz": 240.1,
-    "side": 6,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 90
+    "why": "FAIL nodeck air"
    },
    {
-    "base": 744.14,
-    "body": 18,
-    "cluster": 9,
-    "elev": 272.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      32.0,
-      0.0,
-      32.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.894,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 22,
-    "plat": true,
     "pos": [
      -416.0,
      664.0,
      768.14
     ],
-    "routeDz": 272.1,
-    "side": 3,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 0
+    "why": "FAIL nodeck air"
    }
   ],
+  "spots": [],
   "stats": {
    "drop": 90,
    "faces": 1644,
@@ -2221,7 +1632,7 @@
   }
  },
  "m3l2": {
-  "audited": false,
+  "audited": true,
   "dropped": [
    {
     "pos": [
@@ -2230,42 +1641,17 @@
      168.12
     ],
     "why": "FAIL no visible angle (floor contact not photographable)"
-   }
-  ],
-  "spots": [
+   },
    {
-    "base": -127.88,
-    "body": 89,
-    "cluster": 1,
-    "elev": 144.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 89,
-    "plat": true,
     "pos": [
      4064.0,
      -3552.0,
      -103.88
     ],
-    "routeDz": 144.1,
-    "side": 7,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 180
+    "why": "FAIL nodeck air"
    }
   ],
+  "spots": [],
   "stats": {
    "drop": 78,
    "faces": 776,
@@ -2308,7 +1694,7 @@
   }
  },
  "m4l1": {
-  "audited": false,
+  "audited": true,
   "dropped": [
    {
     "pos": [
@@ -2317,6 +1703,30 @@
      63.86
     ],
     "why": "FAIL dropped air onclip edge"
+   },
+   {
+    "pos": [
+     -3187.56,
+     -4668.93,
+     -220.65
+    ],
+    "why": "FAIL manual QA: grass / ground, not a roof"
+   },
+   {
+    "pos": [
+     5064.64,
+     -400.76,
+     66.95
+    ],
+    "why": "FAIL dropped air"
+   },
+   {
+    "pos": [
+     416.0,
+     -3280.0,
+     17.95
+    ],
+    "why": "FAIL manual QA: grass / ground, not a roof"
    }
   ],
   "spots": [
@@ -2383,102 +1793,6 @@
     "src": "roof-deck",
     "type": "roof (crate deck)",
     "yaw": 90
-   },
-   {
-    "base": -244.65,
-    "body": 48,
-    "cluster": 2,
-    "elev": 187.3,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      1.76,
-      0.57,
-      2.33
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 49,
-    "plat": true,
-    "pos": [
-     -3187.56,
-     -4668.93,
-     -220.65
-    ],
-    "routeDz": 187.3,
-    "side": 5,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 0
-   },
-   {
-    "base": 42.95,
-    "body": 53,
-    "cluster": 3,
-    "elev": 146.9,
-    "ground": {
-     "cornerDz": [
-      19.99,
-      14.53,
-      5.47,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.972,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 53,
-    "plat": true,
-    "pos": [
-     5064.64,
-     -400.76,
-     66.95
-    ],
-    "routeDz": 146.9,
-    "side": 0,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 270
-   },
-   {
-    "base": -6.05,
-    "body": 0,
-    "cluster": 4,
-    "elev": 130.0,
-    "ground": {
-     "cornerDz": [
-      12.43,
-      7.4,
-      5.03,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.99,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 7,
-    "plat": true,
-    "pos": [
-     416.0,
-     -3280.0,
-     17.95
-    ],
-    "routeDz": 130.0,
-    "side": 6,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 270
    }
   ],
   "stats": {
@@ -2511,7 +1825,7 @@
   }
  },
  "m4l2": {
-  "audited": false,
+  "audited": true,
   "dropped": [
    {
     "pos": [
@@ -2560,143 +1874,121 @@
      432.63
     ],
     "why": "FAIL no visible angle (floor contact not photographable)"
-   }
-  ],
-  "spots": [
+   },
    {
-    "body": 83,
-    "cluster": 1,
-    "elev": 288.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.12,
-     "headroom": 256.0,
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "textures/blasted/dday_bunker_wall1bsml"
-    },
-    "keepaudit": true,
-    "los": 102,
     "pos": [
      -3112.0,
      4472.0,
      304.12
     ],
-    "routeDz": 400.0,
-    "side": 3,
-    "sky": true,
-    "src": "brush-face",
-    "type": "outdoor-high"
+    "why": "FAIL manual QA: ground, track, rock or grass - not a roof"
    },
    {
-    "body": 28,
-    "cluster": 3,
-    "elev": 280.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 29,
     "pos": [
      -5504.0,
      2360.0,
      328.12
     ],
-    "routeDz": 280.1,
-    "side": 4,
-    "sky": true,
-    "src": "vanilla-pathnode",
-    "type": "tower/high (vanilla pathnode)"
+    "why": "FAIL manual QA: ground, track, rock or grass - not a roof"
    },
    {
-    "body": 20,
-    "cluster": 6,
-    "elev": 288.1,
-    "ground": {
-     "cornerDz": [
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 22,
     "pos": [
      -6944.0,
      3168.0,
      288.12
     ],
-    "routeDz": 288.1,
-    "side": 4,
-    "sky": true,
-    "src": "vanilla-pathnode",
-    "type": "tower/high (vanilla pathnode)"
+    "why": "FAIL manual QA: ground, track, rock or grass - not a roof"
    },
    {
-    "body": 53,
-    "cluster": 7,
-    "elev": 128.1,
-    "ground": {
-     "cornerDz": [
-      0.749
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 0.7 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 53,
     "pos": [
      2720.0,
      880.0,
      248.12
     ],
-    "routeDz": 128.1,
-    "side": 0,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "outdoor-high"
+    "why": "FAIL no visible angle (floor contact not photographable)"
    },
    {
-    "body": 33,
-    "cluster": 8,
-    "elev": 146.6,
-    "ground": {
-     "cornerDz": [
-      2.25
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72 (hull)",
-     "normalZ": ">0.7 (corners within 2.2 u)",
-     "ok": true,
-     "shader": "engine floor"
-    },
-    "los": 47,
     "pos": [
      1504.0,
      624.0,
      242.63
     ],
-    "routeDz": 146.6,
-    "side": 7,
-    "sky": true,
-    "src": "engine-scan",
-    "type": "outdoor-high"
+    "why": "FAIL manual QA: ground, track, rock or grass - not a roof"
    },
+   {
+    "pos": [
+     -4310.29,
+     3369.02,
+     223.63
+    ],
+    "why": "FAIL manual QA: ground, track, rock or grass - not a roof"
+   },
+   {
+    "pos": [
+     7064.0,
+     2288.0,
+     296.12
+    ],
+    "why": "FAIL manual QA: ground, track, rock or grass - not a roof"
+   },
+   {
+    "pos": [
+     -4832.0,
+     1536.0,
+     264.12
+    ],
+    "why": "FAIL no visible angle (floor contact not photographable)"
+   },
+   {
+    "pos": [
+     927.97,
+     810.49,
+     238.66
+    ],
+    "why": "FAIL nodeck dropped air"
+   },
+   {
+    "pos": [
+     -1712.0,
+     1312.0,
+     272.12
+    ],
+    "why": "FAIL manual QA: ground, track, rock or grass - not a roof"
+   },
+   {
+    "pos": [
+     2630.98,
+     2286.23,
+     359.32
+    ],
+    "why": "FAIL no visible angle (floor contact not photographable)"
+   },
+   {
+    "pos": [
+     -1840.02,
+     3735.05,
+     189.76
+    ],
+    "why": "FAIL nodeck air"
+   },
+   {
+    "pos": [
+     6491.09,
+     -471.03,
+     489.14
+    ],
+    "why": "FAIL nodeck dropped air"
+   },
+   {
+    "pos": [
+     4172.26,
+     2955.33,
+     406.64
+    ],
+    "why": "FAIL manual QA: ground, track, rock or grass - not a roof"
+   }
+  ],
+  "spots": [
    {
     "base": 648.14,
     "body": 26,
@@ -2724,134 +2016,6 @@
     ],
     "routeDz": 624.1,
     "side": 4,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 90
-   },
-   {
-    "base": 199.63,
-    "body": 33,
-    "cluster": 2,
-    "elev": 463.6,
-    "ground": {
-     "cornerDz": [
-      14.4,
-      0.0,
-      28.27,
-      13.87
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.955,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 33,
-    "plat": true,
-    "pos": [
-     -4310.29,
-     3369.02,
-     223.63
-    ],
-    "routeDz": 463.6,
-    "side": 3,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 90
-   },
-   {
-    "base": 272.12,
-    "body": 64,
-    "cluster": 3,
-    "elev": 308.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 69,
-    "plat": true,
-    "pos": [
-     7064.0,
-     2288.0,
-     296.12
-    ],
-    "routeDz": 308.1,
-    "side": 0,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 180
-   },
-   {
-    "base": 240.12,
-    "body": 5,
-    "cluster": 4,
-    "elev": 504.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 6,
-    "plat": true,
-    "pos": [
-     -4832.0,
-     1536.0,
-     264.12
-    ],
-    "routeDz": 504.1,
-    "side": 4,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 0
-   },
-   {
-    "base": 214.66,
-    "body": 64,
-    "cluster": 5,
-    "elev": 190.7,
-    "ground": {
-     "cornerDz": [
-      2.7,
-      0.0,
-      22.6,
-      15.33
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.967,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 64,
-    "plat": true,
-    "pos": [
-     927.97,
-     810.49,
-     238.66
-    ],
-    "routeDz": 190.7,
-    "side": 1,
     "sky": true,
     "src": "roof-deck",
     "type": "roof (crate deck)",
@@ -2888,166 +2052,6 @@
     "src": "roof-deck",
     "type": "roof (crate deck)",
     "yaw": 90
-   },
-   {
-    "base": 248.12,
-    "body": 25,
-    "cluster": 7,
-    "elev": 272.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 1.0,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 25,
-    "plat": true,
-    "pos": [
-     -1712.0,
-     1312.0,
-     272.12
-    ],
-    "routeDz": 272.1,
-    "side": 3,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 90
-   },
-   {
-    "base": 335.32,
-    "body": 19,
-    "cluster": 9,
-    "elev": 215.3,
-    "ground": {
-     "cornerDz": [
-      17.99,
-      0.0,
-      19.47,
-      1.48
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.962,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 40,
-    "plat": true,
-    "pos": [
-     2630.98,
-     2286.23,
-     359.32
-    ],
-    "routeDz": 215.3,
-    "side": 1,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 0
-   },
-   {
-    "base": 165.76,
-    "body": 40,
-    "cluster": 10,
-    "elev": 173.8,
-    "ground": {
-     "cornerDz": [
-      27.87,
-      17.68,
-      10.2,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.953,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 40,
-    "plat": true,
-    "pos": [
-     -1840.02,
-     3735.05,
-     189.76
-    ],
-    "routeDz": 173.8,
-    "side": 3,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 180
-   },
-   {
-    "base": 465.14,
-    "body": 31,
-    "cluster": 11,
-    "elev": 193.1,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      13.99,
-      11.65,
-      25.64
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.962,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 33,
-    "plat": true,
-    "pos": [
-     6491.09,
-     -471.03,
-     489.14
-    ],
-    "routeDz": 193.1,
-    "side": 0,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 90
-   },
-   {
-    "base": 382.64,
-    "body": 42,
-    "cluster": 12,
-    "elev": 134.6,
-    "ground": {
-     "cornerDz": [
-      12.8,
-      0.0,
-      27.02,
-      14.22
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.958,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 44,
-    "plat": true,
-    "pos": [
-     4172.26,
-     2955.33,
-     406.64
-    ],
-    "routeDz": 134.6,
-    "side": 1,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 0
    }
   ],
   "stats": {
@@ -3081,7 +2085,7 @@
   }
  },
  "m4l3": {
-  "audited": false,
+  "audited": true,
   "dropped": [
    {
     "pos": [
@@ -3106,41 +2110,25 @@
      2.12
     ],
     "why": "FAIL manual QA: ground-level garden (z 2), not a high place"
-   }
-  ],
-  "spots": [
+   },
    {
-    "base": -104.25,
-    "body": 72,
-    "cluster": 1,
-    "elev": 179.8,
-    "ground": {
-     "cornerDz": [
-      7.31,
-      7.31,
-      0.0,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.994,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 72,
-    "plat": true,
     "pos": [
      -3680.0,
      -5480.0,
      -80.25
     ],
-    "routeDz": 179.8,
-    "side": 5,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 180
+    "why": "FAIL nodeck air"
    },
+   {
+    "pos": [
+     -5384.0,
+     2464.0,
+     250.18
+    ],
+    "why": "FAIL nodeck"
+   }
+  ],
+  "spots": [
    {
     "base": 233.5,
     "body": 49,
@@ -3167,38 +2155,6 @@
      257.5
     ],
     "routeDz": 209.5,
-    "side": 3,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 270
-   },
-   {
-    "base": 226.18,
-    "body": 39,
-    "cluster": 3,
-    "elev": 202.2,
-    "ground": {
-     "cornerDz": [
-      0.0,
-      7.31,
-      0.0,
-      7.31
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.994,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 45,
-    "plat": true,
-    "pos": [
-     -5384.0,
-     2464.0,
-     250.18
-    ],
-    "routeDz": 202.2,
     "side": 3,
     "sky": true,
     "src": "roof-deck",
@@ -3494,7 +2450,7 @@
   }
  },
  "t1l1": {
-  "audited": false,
+  "audited": true,
   "dropped": [
    {
     "pos": [
@@ -3511,42 +2467,17 @@
      -6719.88
     ],
     "why": "FAIL manual QA: inside a train / ship interior, indoor"
-   }
-  ],
-  "spots": [
+   },
    {
-    "base": -6231.86,
-    "body": 71,
-    "cluster": 1,
-    "elev": 308.1,
-    "ground": {
-     "cornerDz": [
-      32.0,
-      0.0,
-      32.0,
-      0.0
-     ],
-     "floorDz": 0.0,
-     "headroom": ">=72",
-     "normalZ": 0.894,
-     "ok": true,
-     "shader": "roof brush"
-    },
-    "los": 74,
-    "plat": true,
     "pos": [
      -552.0,
      -4056.0,
      -6207.86
     ],
-    "routeDz": 308.1,
-    "side": 6,
-    "sky": true,
-    "src": "roof-deck",
-    "type": "roof (crate deck)",
-    "yaw": 180
+    "why": "FAIL no visible angle (floor contact not photographable)"
    }
   ],
+  "spots": [],
   "stats": {
    "faces": 1181,
    "ground": 0,
@@ -3849,7 +2780,8 @@
   }
  },
  "t3l1": {
-  "audited": false,
+  "audited": true,
+  "dropped": [],
   "spots": [
    {
     "base": 956.13,

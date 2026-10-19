@@ -192,6 +192,10 @@ asd_scan:{
 
 // ---- spot proof (every kept spot): spawn a sniper on EVERY spot at once, wait 3 s, judge each one
 asd_spawnraw local.pos local.i:{
+	if( level.coop_asnPlat[local.i] == 1 ){
+		waitthread coop_mod/alarmsnipers.scr::asn_platform local.i
+		wait 0.1
+	}
 	local.mdl = exec coop_mod/officer.scr::coop_model_for "sniper"
 	local.s = spawn local.mdl
 	if( local.s == NULL || local.s == NIL ){ end NIL }
@@ -223,7 +227,19 @@ asd_judge local.i:{
 	local.dz = local.z1 - local.pos[2]
 	local.adz = local.dz
 	if( local.adz < 0 ){ local.adz = 0 - local.adz }
-	local.tr = traced ( local.o + ( 0 0 8 ) ) ( local.o - ( 0 0 40 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+	if( level.coop_asnWorldNum == NIL ){
+		local.wd = $world
+		level.coop_asnWorldNum = local.wd.entnum
+	}
+	// the deck is an ENTITY: a plain solid-contents trace passes through it (the sniper stood on it for 3 s, so actors collide), measure the air under his feet with an all-contents mask
+	// that ignores the sniper himself
+	local.mk = 1
+	local.pe = 1023
+	if( level.coop_asnPlat[local.i] == 1 ){
+		local.mk = 1073741823
+		local.pe = local.s.entnum
+	}
+	local.tr = traced ( local.o + ( 0 0 8 ) ) ( local.o - ( 0 0 40 ) ) local.pe ( 0 0 0 ) ( 0 0 0 ) local.mk
 	local.air = 999
 	local.fz = local.z1 - 999
 	local.sky = 0
@@ -245,26 +261,62 @@ asd_judge local.i:{
 		local.clipdz = local.ch[2] - local.fz
 	}
 	local.eb = 0
-	for( local.k = 0; local.k < 8; local.k++ ){
-		local.ang = ( 0 0 0 )
-		local.ang[1] = local.k * 45
-		local.dir = angles_toforward local.ang
-		local.pp = local.o + ( vector_scale local.dir 39 )
-		local.te = traced ( local.pp + ( 0 0 16 ) ) ( local.pp - ( 0 0 40 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
-		if( local.te["fraction"] >= 1.0 || local.te["startSolid"] == 1 ){ local.eb++; continue }
-		local.eh = local.te["endpos"]
-		local.ed = local.eh[2] - local.fz
-		if( local.ed < 0 ){ local.ed = 0 - local.ed }
-		if( local.ed > 8 ){ local.eb++ }
+	local.plat = level.coop_asnPlat[local.i]
+	local.deck = 0
+	if( local.plat == 1 ){
+		// ROOF DECK: the deck must stand flush on the roof and the roof must continue 24 u past it. 4 points just outside the deck corners (+-36) within 20 u of the deck
+		// base, 8 ring points at 56 u (deck half 32 + 24) within 40 u (a sloped roof), none of them the deck itself.
+		local.base = local.pos[2] - 24
+		if( local.tr["entityNum"] == level.coop_asnWorldNum ){ local.v = local.v + " nodeck" }
+		local.deck = 1
+		for( local.k = 0; local.k < 12; local.k++ ){
+			local.pp = local.pos
+			local.tol = 70
+			if( local.k < 4 ){
+				local.pp[0] = local.pos[0] + 36
+				local.pp[1] = local.pos[1] + 36
+				if( local.k == 1 || local.k == 3 ){ local.pp[0] = local.pos[0] - 36 }
+				if( local.k == 2 || local.k == 3 ){ local.pp[1] = local.pos[1] - 36 }
+				local.tol = 40
+			} else {
+				local.ang = ( 0 0 0 )
+				local.ang[1] = ( local.k - 4 ) * 45
+				local.dir = angles_toforward local.ang
+				local.pp = local.pos + ( vector_scale local.dir 56 )
+			}
+			local.pp[2] = local.base + 48
+			local.pp2 = local.pp
+			local.pp2[2] = local.base - 48
+			local.te = traced local.pp local.pp2 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+			if( local.te["fraction"] >= 1.0 || local.te["startSolid"] == 1 ){ local.eb++; continue }
+			if( local.te["entityNum"] != level.coop_asnWorldNum ){ local.eb++; continue }
+			local.eh = local.te["endpos"]
+			local.ed = local.eh[2] - local.base
+			if( local.ed < 0 ){ local.ed = 0 - local.ed }
+			if( local.ed > local.tol ){ local.eb++ }
+		}
+	} else {
+		for( local.k = 0; local.k < 8; local.k++ ){
+			local.ang = ( 0 0 0 )
+			local.ang[1] = local.k * 45
+			local.dir = angles_toforward local.ang
+			local.pp = local.o + ( vector_scale local.dir 39 )
+			local.te = traced ( local.pp + ( 0 0 16 ) ) ( local.pp - ( 0 0 40 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+			if( local.te["fraction"] >= 1.0 || local.te["startSolid"] == 1 ){ local.eb++; continue }
+			local.eh = local.te["endpos"]
+			local.ed = local.eh[2] - local.fz
+			if( local.ed < 0 ){ local.ed = 0 - local.ed }
+			if( local.ed > 8 ){ local.eb++ }
+		}
 	}
 	if( local.adz > 4 ){ local.v = local.v + " dropped" }
 	if( local.air > 4 ){ local.v = local.v + " air" }
-	if( local.clipdz > 4 ){ local.v = local.v + " onclip" }
+	if( local.clipdz > 4 && level.coop_asnPlat[local.i] != 1 ){ local.v = local.v + " onclip" }
 	if( local.sky == 1 ){ local.v = local.v + " sky" }
 	if( local.eb > 0 ){ local.v = local.v + " edge" }
 	local.res = "PASS"
 	if( local.v != "" ){ local.res = "FAIL" + local.v }
-	println ( "^~^~^ SPOTCHK " + local.i + " " + local.pos + " z0=" + local.pos[2] + " z1=" + local.z1 + " dz=" + local.dz + " air=" + local.air + " clipdz=" + local.clipdz + " sky=" + local.sky + " nodrawflag=" + local.nd + " edgebad=" + local.eb + " " + local.res )
+	println ( "^~^~^ SPOTCHK " + local.i + " " + local.pos + " z0=" + local.pos[2] + " z1=" + local.z1 + " dz=" + local.dz + " air=" + local.air + " clipdz=" + local.clipdz + " sky=" + local.sky + " nodrawflag=" + local.nd + " edgebad=" + local.eb + " deck=" + local.deck + " " + local.res )
 }end
 
 asd_allspots:{
@@ -368,6 +420,61 @@ asd_snap:{
 	println ( "^~^~^ SNAP DONE kept=" + local.k )
 }end
 
+// ---- in-engine pre-check of roof-deck candidates (asn_cands_test.scr cands = x y base, cs = yaw): the roof must really be there for the engine
+asd_dpre:{
+	local.n = waitthread coop_mod/asn_cands_test.scr::cands level.coop_mapname
+	local.w = $world
+	local.wn = local.w.entnum
+	local.k = 0
+	local.lo = 0 - 2
+	println ( "^~^~^ DPRE START n=" + local.n )
+	for( local.i = 1; local.i <= local.n; local.i++ ){
+		if( local.i - ( int( local.i / 40 ) * 40 ) == 0 ){ waitframe }
+		local.p = level.asd_cp[local.i]
+		local.bad = 0
+		for( local.c = 0; local.c < 13; local.c++ ){
+			local.pp = local.p
+			local.tol = 17
+			if( local.c >= 1 && local.c <= 4 ){
+				local.pp[0] = local.p[0] + 36
+				local.pp[1] = local.p[1] + 36
+				if( local.c == 2 || local.c == 4 ){ local.pp[0] = local.p[0] - 36 }
+				if( local.c == 3 || local.c == 4 ){ local.pp[1] = local.p[1] - 36 }
+				local.tol = 40
+			}
+			if( local.c >= 5 ){
+				local.ang = ( 0 0 0 )
+				local.ang[1] = ( local.c - 5 ) * 45
+				local.dir = angles_toforward local.ang
+				local.pp = local.p + ( vector_scale local.dir 56 )
+				local.tol = 70
+			}
+			local.s1 = local.pp
+			local.s1[2] = local.p[2] + 48
+			local.s2 = local.pp
+			local.s2[2] = local.p[2] - 48
+			local.tr = traced local.s1 local.s2 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+			if( local.tr["fraction"] >= 1.0 || local.tr["startSolid"] == 1 || local.tr["entityNum"] != local.wn ){ local.bad = 1; break }
+			local.q = int( local.tr["surfaceFlags"] / 4 )
+			if( local.q - int( local.q / 2 ) * 2 == 1 ){ local.bad = 1; break }
+			local.h = local.tr["endpos"]
+			local.d = local.h[2] - local.p[2]
+			if( local.c == 0 ){
+				if( local.d < local.lo || local.d > 17 ){ local.bad = 1; break }
+			} else {
+				local.ad = local.d
+				if( local.ad < 0 ){ local.ad = 0 - local.ad }
+				if( local.ad > local.tol ){ local.bad = 1; break }
+			}
+		}
+		if( local.bad == 0 ){
+			local.k++
+			println ( "^~^~^ DPRE " + local.i + " OK" )
+		}
+	}
+	println ( "^~^~^ DPRE DONE kept=" + local.k )
+}end
+
 asd_do local.c:{
 	local.p = $player[1]
 	if( local.p == NULL ){ end }
@@ -431,6 +538,7 @@ asd_do local.c:{
 			if( local.c == "showsn" ){ local.hs show }
 		}
 	}
+	if( local.c == "dpre" ){ thread asd_dpre }
 	if( local.c == "snap" ){ thread asd_snap }
 	if( local.c == "scan" ){ thread asd_scan }
 	if( local.c == "status" ){

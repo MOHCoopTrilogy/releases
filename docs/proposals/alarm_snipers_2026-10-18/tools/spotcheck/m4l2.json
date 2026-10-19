@@ -6,8 +6,8 @@
    4472.0,
    304.12
   ],
-  "line": "z0=304.120 z1=304.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
-  "verdict": "PASS",
+  "line": "z0=304.120 z1=304.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 deck=0 PASS",
+  "verdict": "FAIL manual QA: ground, track, rock or grass - not a roof",
   "photo": "ok dir 6"
  },
  {
@@ -17,9 +17,9 @@
    2360.0,
    328.12
   ],
-  "line": "z0=328.120 z1=328.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
-  "verdict": "PASS",
-  "photo": "ok dir 10"
+  "line": "z0=328.120 z1=328.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 deck=0 PASS",
+  "verdict": "FAIL manual QA: ground, track, rock or grass - not a roof",
+  "photo": "ok dir 8"
  },
  {
   "i": 3,
@@ -28,9 +28,9 @@
    3168.0,
    288.12
   ],
-  "line": "z0=288.120 z1=288.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
-  "verdict": "PASS",
-  "photo": "ok dir 12"
+  "line": "z0=288.120 z1=288.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 deck=0 PASS",
+  "verdict": "FAIL manual QA: ground, track, rock or grass - not a roof",
+  "photo": "ok dir 2"
  },
  {
   "i": 4,
@@ -39,9 +39,9 @@
    880.0,
    248.12
   ],
-  "line": "z0=248.120 z1=248.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
-  "verdict": "PASS",
-  "photo": "ok dir 8"
+  "line": "z0=248.120 z1=248.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 deck=0 PASS",
+  "verdict": "FAIL no visible angle (floor contact not photographable)",
+  "photo": "none"
  },
  {
   "i": 5,
@@ -50,8 +50,126 @@
    624.0,
    242.63
   ],
-  "line": "z0=242.630 z1=242.333 dz=-0.297 air=0.131 clipdz=-0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "line": "z0=242.630 z1=242.757 dz=0.127 air=0.131 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 deck=0 PASS",
+  "verdict": "FAIL manual QA: ground, track, rock or grass - not a roof",
+  "photo": "ok dir 5"
+ },
+ {
+  "i": 6,
+  "pos": [
+   -5664.0,
+   1472.0,
+   672.14
+  ],
+  "line": "z0=672.140 z1=672.140 dz=0.000 air=-0.125 clipdz=-8.125 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
   "verdict": "PASS",
-  "photo": "ok dir 2"
+  "photo": "ok dir 1"
+ },
+ {
+  "i": 7,
+  "pos": [
+   -4310.29,
+   3369.02,
+   223.63
+  ],
+  "line": "z0=223.630 z1=223.630 dz=0.000 air=-0.125 clipdz=-9.994 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "FAIL manual QA: ground, track, rock or grass - not a roof",
+  "photo": "ok dir 0"
+ },
+ {
+  "i": 8,
+  "pos": [
+   7064.0,
+   2288.0,
+   296.12
+  ],
+  "line": "z0=296.120 z1=296.120 dz=0.000 air=-0.125 clipdz=-23.120 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "FAIL manual QA: ground, track, rock or grass - not a roof",
+  "photo": "ok dir 0"
+ },
+ {
+  "i": 9,
+  "pos": [
+   -4832.0,
+   1536.0,
+   264.12
+  ],
+  "line": "z0=264.120 z1=264.120 dz=0.000 air=-0.125 clipdz=-24.120 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "FAIL no visible angle (floor contact not photographable)",
+  "photo": "none"
+ },
+ {
+  "i": 10,
+  "pos": [
+   927.97,
+   810.49,
+   238.66
+  ],
+  "line": "z0=238.660 z1=432.125 dz=193.465 air=999 clipdz=999.000 sky=0 nodrawflag=0 edgebad=0 deck=1 FAIL nodeck dropped air",
+  "verdict": "FAIL nodeck dropped air"
+ },
+ {
+  "i": 11,
+  "pos": [
+   -6688.0,
+   1472.0,
+   736.14
+  ],
+  "line": "z0=736.140 z1=736.140 dz=0.000 air=-0.125 clipdz=-8.125 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 0"
+ },
+ {
+  "i": 12,
+  "pos": [
+   -1712.0,
+   1312.0,
+   272.12
+  ],
+  "line": "z0=272.120 z1=272.120 dz=0.000 air=-0.125 clipdz=-22.094 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "FAIL manual QA: ground, track, rock or grass - not a roof",
+  "photo": "ok dir 0"
+ },
+ {
+  "i": 13,
+  "pos": [
+   2630.98,
+   2286.23,
+   359.32
+  ],
+  "line": "z0=359.320 z1=359.320 dz=0.000 air=-0.125 clipdz=-14.384 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "FAIL no visible angle (floor contact not photographable)",
+  "photo": "none"
+ },
+ {
+  "i": 14,
+  "pos": [
+   -1840.02,
+   3735.05,
+   189.76
+  ],
+  "line": "z0=189.760 z1=189.760 dz=0.000 air=999 clipdz=988.937 sky=0 nodrawflag=0 edgebad=0 deck=1 FAIL nodeck air",
+  "verdict": "FAIL nodeck air"
+ },
+ {
+  "i": 15,
+  "pos": [
+   6491.09,
+   -471.03,
+   489.14
+  ],
+  "line": "z0=489.140 z1=672.125 dz=182.985 air=999 clipdz=999.000 sky=0 nodrawflag=0 edgebad=0 deck=1 FAIL nodeck dropped air",
+  "verdict": "FAIL nodeck dropped air"
+ },
+ {
+  "i": 16,
+  "pos": [
+   4172.26,
+   2955.33,
+   406.64
+  ],
+  "line": "z0=406.640 z1=406.640 dz=0.000 air=-0.125 clipdz=-10.611 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "FAIL manual QA: ground, track, rock or grass - not a roof",
+  "photo": "ok dir 5"
  }
 ]

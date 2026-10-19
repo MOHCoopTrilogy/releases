@@ -1,0 +1,35 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   -2960.0,
+   912.0,
+   2.12
+  ],
+  "line": "z0=2.120 z1=2.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "FAIL manual QA: ground-level garden (z 2), not a high place",
+  "photo": "ok dir 5"
+ },
+ {
+  "i": 2,
+  "pos": [
+   -3408.0,
+   464.0,
+   2.12
+  ],
+  "line": "z0=2.120 z1=2.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "FAIL manual QA: ground-level garden (z 2), not a high place",
+  "photo": "ok dir 5"
+ },
+ {
+  "i": 3,
+  "pos": [
+   -3408.0,
+   -208.0,
+   2.12
+  ],
+  "line": "z0=2.120 z1=2.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "verdict": "FAIL manual QA: ground-level garden (z 2), not a high place",
+  "photo": "ok dir 3"
+ }
+]

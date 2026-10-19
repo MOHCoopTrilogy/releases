@@ -1,0 +1,56 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   2832.0,
+   -3520.0,
+   544.14
+  ],
+  "line": "z0=544.140 z1=544.140 dz=0.000 air=-0.125 clipdz=-8.125 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 0"
+ },
+ {
+  "i": 2,
+  "pos": [
+   2192.0,
+   -3696.0,
+   464.14
+  ],
+  "line": "z0=464.140 z1=464.140 dz=0.000 air=-0.125 clipdz=-8.125 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 8"
+ },
+ {
+  "i": 3,
+  "pos": [
+   -3187.56,
+   -4668.93,
+   -220.65
+  ],
+  "line": "z0=-220.650 z1=-220.650 dz=0.000 air=-0.125 clipdz=-22.963 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "FAIL manual QA: grass / ground, not a roof",
+  "photo": "ok dir 2"
+ },
+ {
+  "i": 4,
+  "pos": [
+   5064.64,
+   -400.76,
+   66.95
+  ],
+  "line": "z0=66.950 z1=1184.125 dz=1117.175 air=999 clipdz=0 sky=0 nodrawflag=0 edgebad=0 deck=1 FAIL dropped air",
+  "verdict": "FAIL dropped air"
+ },
+ {
+  "i": 5,
+  "pos": [
+   416.0,
+   -3280.0,
+   17.95
+  ],
+  "line": "z0=17.950 z1=17.950 dz=0.000 air=-0.125 clipdz=-17.905 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "FAIL manual QA: grass / ground, not a roof",
+  "photo": "ok dir 5"
+ }
+]

@@ -1,0 +1,66 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   2832.0,
+   -3520.0,
+   544.14
+  ],
+  "line": "z0=544.140 z1=544.140 dz=0.000 air=-0.125 clipdz=-8.125 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 0"
+ },
+ {
+  "i": 2,
+  "pos": [
+   2320.0,
+   -3952.0,
+   496.14
+  ],
+  "line": "z0=496.140 z1=496.140 dz=0.000 air=-0.125 clipdz=-8.125 sky=0 nodrawflag=0 edgebad=1 deck=1 FAIL edge",
+  "verdict": "FAIL edge"
+ },
+ {
+  "i": 3,
+  "pos": [
+   380.0,
+   -1188.0,
+   324.63
+  ],
+  "line": "z0=324.630 z1=331.499 dz=6.869 air=2.449 clipdz=0.000 sky=0 nodrawflag=0 edgebad=2 deck=1 FAIL nodeck dropped edge",
+  "verdict": "FAIL nodeck dropped edge"
+ },
+ {
+  "i": 4,
+  "pos": [
+   -3187.56,
+   -4668.93,
+   -220.65
+  ],
+  "line": "z0=-220.650 z1=-220.650 dz=0.000 air=-0.125 clipdz=-22.963 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 2"
+ },
+ {
+  "i": 5,
+  "pos": [
+   5064.64,
+   -400.76,
+   66.95
+  ],
+  "line": "z0=66.950 z1=66.950 dz=0.000 air=-0.125 clipdz=-14.132 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 0"
+ },
+ {
+  "i": 6,
+  "pos": [
+   416.0,
+   -3280.0,
+   17.95
+  ],
+  "line": "z0=17.950 z1=17.950 dz=0.000 air=-0.125 clipdz=-17.905 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 4"
+ }
+]

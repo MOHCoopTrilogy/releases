@@ -1,0 +1,94 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   -2492.0,
+   -2504.0,
+   320.12
+  ],
+  "line": "z0=320.120 z1=320.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 deck=0 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 1"
+ },
+ {
+  "i": 2,
+  "pos": [
+   -7092.0,
+   1528.0,
+   640.12
+  ],
+  "line": "z0=640.120 z1=640.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 deck=0 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 4"
+ },
+ {
+  "i": 3,
+  "pos": [
+   -3208.0,
+   -3680.0,
+   558.91
+  ],
+  "line": "z0=558.910 z1=608.125 dz=49.215 air=999 clipdz=999.000 sky=0 nodrawflag=0 edgebad=0 deck=1 FAIL nodeck dropped air",
+  "verdict": "FAIL nodeck dropped air"
+ },
+ {
+  "i": 4,
+  "pos": [
+   -4616.0,
+   -3032.0,
+   480.13
+  ],
+  "line": "z0=480.130 z1=480.130 dz=0.000 air=999 clipdz=1030.995 sky=0 nodrawflag=0 edgebad=5 deck=1 FAIL nodeck air edge",
+  "verdict": "FAIL nodeck air edge"
+ },
+ {
+  "i": 5,
+  "pos": [
+   -4640.0,
+   -3720.0,
+   432.12
+  ],
+  "line": "z0=432.120 z1=432.120 dz=0.000 air=999 clipdz=0 sky=0 nodrawflag=0 edgebad=12 deck=1 FAIL nodeck air edge",
+  "verdict": "FAIL nodeck air edge"
+ },
+ {
+  "i": 6,
+  "pos": [
+   -1824.0,
+   -2208.0,
+   344.12
+  ],
+  "line": "z0=344.120 z1=344.120 dz=0.000 air=999 clipdz=975.005 sky=0 nodrawflag=0 edgebad=0 deck=1 FAIL nodeck air",
+  "verdict": "FAIL nodeck air"
+ },
+ {
+  "i": 7,
+  "pos": [
+   -6000.0,
+   1952.0,
+   808.14
+  ],
+  "line": "z0=808.140 z1=808.140 dz=0.000 air=999 clipdz=0 sky=0 nodrawflag=0 edgebad=1 deck=1 FAIL nodeck air edge",
+  "verdict": "FAIL nodeck air edge"
+ },
+ {
+  "i": 8,
+  "pos": [
+   -4964.0,
+   -224.0,
+   707.64
+  ],
+  "line": "z0=707.640 z1=707.640 dz=0.000 air=999 clipdz=983.247 sky=0 nodrawflag=0 edgebad=8 deck=1 FAIL nodeck air edge",
+  "verdict": "FAIL nodeck air edge"
+ },
+ {
+  "i": 9,
+  "pos": [
+   -3872.0,
+   288.0,
+   588.12
+  ],
+  "line": "z0=588.120 z1=588.120 dz=0.000 air=999 clipdz=0 sky=0 nodrawflag=0 edgebad=0 deck=1 FAIL nodeck air",
+  "verdict": "FAIL nodeck air"
+ }
+]

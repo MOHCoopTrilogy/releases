@@ -6,7 +6,7 @@
    4200.0,
    224.12
   ],
-  "line": "z0=224.120 z1=224.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "line": "z0=224.120 z1=224.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 deck=0 PASS",
   "verdict": "PASS",
   "photo": "ok dir 0"
  },
@@ -17,7 +17,73 @@
    3592.0,
    224.12
   ],
-  "line": "z0=224.120 z1=224.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
+  "line": "z0=224.120 z1=224.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 deck=0 PASS",
+  "verdict": "FAIL manual QA: not a roof / duplicate or hill",
+  "photo": "ok dir 0"
+ },
+ {
+  "i": 3,
+  "pos": [
+   -1584.0,
+   4784.0,
+   605.96
+  ],
+  "line": "z0=605.960 z1=605.960 dz=0.000 air=-0.125 clipdz=-9.584 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 1"
+ },
+ {
+  "i": 4,
+  "pos": [
+   1824.0,
+   3104.0,
+   608.14
+  ],
+  "line": "z0=608.140 z1=608.140 dz=0.000 air=-0.125 clipdz=-10.128 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 0"
+ },
+ {
+  "i": 5,
+  "pos": [
+   1152.0,
+   -1200.0,
+   480.14
+  ],
+  "line": "z0=480.140 z1=480.140 dz=0.000 air=-0.125 clipdz=-10.129 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 4"
+ },
+ {
+  "i": 6,
+  "pos": [
+   4242.53,
+   1784.0,
+   193.4
+  ],
+  "line": "z0=193.400 z1=193.400 dz=0.000 air=-0.125 clipdz=-8.120 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "FAIL manual QA: not a roof / duplicate or hill",
+  "photo": "ok dir 4"
+ },
+ {
+  "i": 7,
+  "pos": [
+   736.0,
+   2976.0,
+   232.12
+  ],
+  "line": "z0=232.120 z1=232.120 dz=0.000 air=-0.125 clipdz=-24.120 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 5"
+ },
+ {
+  "i": 8,
+  "pos": [
+   3904.0,
+   2512.0,
+   200.12
+  ],
+  "line": "z0=200.120 z1=200.120 dz=0.000 air=-0.125 clipdz=-24.120 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
   "verdict": "PASS",
   "photo": "ok dir 0"
  }

@@ -1,0 +1,68 @@
+[
+ {
+  "i": 1,
+  "pos": [
+   3632.0,
+   -6272.0,
+   279.41
+  ],
+  "line": "z0=279.410 z1=279.410 dz=0.000 air=-0.125 clipdz=-9.579 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 8"
+ },
+ {
+  "i": 2,
+  "pos": [
+   -480.0,
+   -4544.0,
+   -348.88
+  ],
+  "line": "z0=-348.880 z1=-348.880 dz=0.000 air=-0.125 clipdz=-24.120 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "FAIL manual QA: street level or indoor-looking room",
+  "photo": "ok dir 0"
+ },
+ {
+  "i": 3,
+  "pos": [
+   914.0,
+   -3472.0,
+   -43.86
+  ],
+  "line": "z0=-43.860 z1=-43.860 dz=0.000 air=-0.125 clipdz=-10.129 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 7"
+ },
+ {
+  "i": 4,
+  "pos": [
+   4849.0,
+   -656.0,
+   -116.88
+  ],
+  "line": "z0=-116.880 z1=-116.880 dz=0.000 air=-0.125 clipdz=-24.120 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "FAIL manual QA: street level or indoor-looking room",
+  "photo": "ok dir 3"
+ },
+ {
+  "i": 5,
+  "pos": [
+   962.0,
+   -4080.0,
+   -215.88
+  ],
+  "line": "z0=-215.880 z1=-215.880 dz=0.000 air=-0.125 clipdz=-24.120 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "FAIL manual QA: street level or indoor-looking room",
+  "photo": "ok dir 0"
+ },
+ {
+  "i": 6,
+  "pos": [
+   1876.0,
+   -4016.0,
+   -215.88
+  ],
+  "line": "z0=-215.880 z1=-215.880 dz=0.000 air=-0.125 clipdz=-24.120 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "FAIL manual QA: street level or indoor-looking room",
+  "photo": "ok dir 0"
+ }
+]

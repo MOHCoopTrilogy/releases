@@ -6,9 +6,9 @@
    -2504.0,
    320.12
   ],
-  "line": "z0=320.120 z1=320.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
-  "verdict": "PASS",
-  "photo": "ok dir 2"
+  "line": "z0=320.120 z1=320.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 deck=0 PASS",
+  "verdict": "FAIL manual QA: plaza, not a roof",
+  "photo": "ok dir 0"
  },
  {
   "i": 2,
@@ -17,8 +17,38 @@
    1528.0,
    640.12
   ],
-  "line": "z0=640.120 z1=640.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
-  "verdict": "PASS",
+  "line": "z0=640.120 z1=640.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 deck=0 PASS",
+  "verdict": "FAIL manual QA: plaza, not a roof",
   "photo": "ok dir 4"
+ },
+ {
+  "i": 3,
+  "pos": [
+   -4680.0,
+   -2776.0,
+   454.03
+  ],
+  "line": "z0=454.030 z1=454.030 dz=0.000 air=999 clipdz=0 sky=0 nodrawflag=0 edgebad=0 deck=1 FAIL nodeck air",
+  "verdict": "FAIL nodeck air"
+ },
+ {
+  "i": 4,
+  "pos": [
+   -4900.0,
+   -160.0,
+   691.16
+  ],
+  "line": "z0=691.160 z1=691.160 dz=0.000 air=999 clipdz=983.242 sky=0 nodrawflag=0 edgebad=0 deck=1 FAIL nodeck air",
+  "verdict": "FAIL nodeck air"
+ },
+ {
+  "i": 5,
+  "pos": [
+   -3872.0,
+   224.0,
+   588.12
+  ],
+  "line": "z0=588.120 z1=1056.120 dz=468.000 air=999 clipdz=999.005 sky=0 nodrawflag=0 edgebad=0 deck=1 FAIL nodeck dropped air",
+  "verdict": "FAIL nodeck dropped air"
  }
 ]

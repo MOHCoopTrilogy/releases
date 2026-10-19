@@ -2,34 +2,32 @@
  {
   "i": 1,
   "pos": [
-   -2960.0,
-   912.0,
-   2.12
+   -3680.0,
+   -5480.0,
+   -80.25
   ],
-  "line": "z0=2.120 z1=2.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
-  "verdict": "FAIL manual QA: ground-level garden (z 2), not a high place",
-  "photo": "ok dir 5"
+  "line": "z0=-80.250 z1=-80.250 dz=0.000 air=999 clipdz=978.661 sky=0 nodrawflag=0 edgebad=0 deck=1 FAIL nodeck air",
+  "verdict": "FAIL nodeck air"
  },
  {
   "i": 2,
   "pos": [
-   -3408.0,
-   464.0,
-   2.12
+   -4472.0,
+   2528.0,
+   257.5
   ],
-  "line": "z0=2.120 z1=2.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
-  "verdict": "FAIL manual QA: ground-level garden (z 2), not a high place",
-  "photo": "ok dir 5"
+  "line": "z0=257.500 z1=257.500 dz=0.000 air=-0.125 clipdz=-20.471 sky=0 nodrawflag=0 edgebad=0 deck=1 PASS",
+  "verdict": "PASS",
+  "photo": "ok dir 0"
  },
  {
   "i": 3,
   "pos": [
-   -3408.0,
-   -208.0,
-   2.12
+   -5384.0,
+   2464.0,
+   250.18
   ],
-  "line": "z0=2.120 z1=2.125 dz=0.005 air=0.000 clipdz=0.000 sky=0 nodrawflag=0 edgebad=0 PASS",
-  "verdict": "FAIL manual QA: ground-level garden (z 2), not a high place",
-  "photo": "ok dir 3"
+  "line": "z0=250.180 z1=250.180 dz=0.000 air=-5.945 clipdz=-26.285 sky=0 nodrawflag=1 edgebad=0 deck=1 FAIL nodeck",
+  "verdict": "FAIL nodeck"
  }
 ]
