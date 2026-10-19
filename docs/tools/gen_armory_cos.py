@@ -40,6 +40,15 @@ def defaults():
             nxt, prv = order[(j + 1) % n], order[(j - 1) % n]
             out.append('seta %s%s "exec ui/loadout/%s/%s%s.cfg"' % (nx, pad(pg), d, ltr, pad(nxt)))
             out.append('seta %s%s "exec ui/loadout/%s/%s%s.cfg"' % (pv, pad(pg), d, ltr, pad(prv)))
+        # pages that exist on disk but sit outside the natural ring (helmets h30-h32): never reached by stepping, but their cfgs still
+        # `vstr` Nx/Pv, so give them a defined target (re-enter the ring at its ends) or ui_wiring_audit reports DEAD VSTR
+        base = os.path.join(HERE, "..", "..", "hzm-mohaa-coop-mod", "ui", "loadout", d)
+        if os.path.isdir(base):
+            ex = sorted(int(f[len(ltr):-4]) for f in os.listdir(base) if f.startswith(ltr) and f.endswith(".cfg") and f[len(ltr):-4].isdigit())
+            for pg in ex:
+                if pg not in order:
+                    out.append('seta %s%s "exec ui/loadout/%s/%s%s.cfg"' % (nx, pad(pg), d, ltr, pad(order[0])))
+                    out.append('seta %s%s "exec ui/loadout/%s/%s%s.cfg"' % (pv, pad(pg), d, ltr, pad(order[-1])))
     return out
 
 
