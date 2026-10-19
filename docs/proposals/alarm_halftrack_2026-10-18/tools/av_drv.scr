@@ -211,6 +211,10 @@ av_do local.c:{
 	if( local.c == "m3status" ){
 		println ( "^~^~^ AVT m3 chDone=" + ( waitthread av_s level.coop_chDone ) + " chOver=" + ( waitthread av_s level.coop_chOver ) + " dropped=" + ( waitthread av_s level.coop_paradrop_dropped ) + " scene7=" + ( waitthread av_s level.coop_scene7Started ) + " bombcount=" + ( waitthread av_s level.scene7_bombcount ) + " t=" + level.time )
 	}
+	if( local.c == "m3plant" ){
+		thread maps/m3l3.scr::scene7_bombplant int( getcvar( "ai_x" ) )
+		println ( "^~^~^ AVT m3plant " + getcvar( "ai_x" ) )
+	}
 	if( local.c == "m3nebel" ){
 		thread coop_mod/m3l3_nebel.scr::nb_hold_done
 		thread maps/m3l3.scr::scene7
@@ -230,6 +234,22 @@ av_do local.c:{
 			thread coop_mod/officer.scr::coop_officer_death_drops ( 1551 -2370 -255 )
 			wait 1
 		}
+	}
+	// overlook score of a candidate stop (ai_x ai_y ai_z): how many of 9 points on the church -> Nebelwerfer 1 line it sees from gunner height
+	if( local.c == "ovlc" ){
+		local.sv = ( 0 0 0 )
+		local.sv[0] = float( getcvar( "ai_x" ) )
+		local.sv[1] = float( getcvar( "ai_y" ) )
+		local.sv[2] = float( getcvar( "ai_z" ) )
+		local.a = ( 1551 -2370 -255 )
+		local.b = ( -1834 -5160 -173 )
+		local.n = 0
+		for( local.i = 2; local.i <= 10; local.i++ ){
+			local.pt = local.a + ( ( local.b - local.a ) * ( local.i / 10 ) )
+			local.t = traced ( local.sv + ( 0 0 90 ) ) ( local.pt + ( 0 0 56 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+			if( local.t["fraction"] >= 1.0 ){ local.n++ }
+		}
+		println ( "^~^~^ OVL " + local.sv[0] + " " + local.sv[1] + " " + local.sv[2] + " " + local.n )
 	}
 	if( local.c == "pcount" ){ println ( "^~^~^ AVT players=" + ( waitthread coop_mod/coop_counter.scr::counter_players ) ) }
 	// alarm-man counters (crew are tagged coop_waveSrc alarm)
