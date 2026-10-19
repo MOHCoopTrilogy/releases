@@ -400,13 +400,28 @@
      -153.9
     ],
     [
-     -2709.4,
-     -4028.6,
-     -136.5
+     -2837.4,
+     -3900.6,
+     -156.9
+    ],
+    [
+     -2837.4,
+     -3516.6,
+     -165.5
+    ],
+    [
+     -2837.4,
+     -3132.6,
+     -168.9
+    ],
+    [
+     -2837.4,
+     -3004.6,
+     -159.2
     ]
    ],
    "event": "guard",
-   "src": "in-engine flood fill (av_scout.py m3l3g) + av_route_g.py, 2026-10-19: Nebelwerfer guard"
+   "src": "flood fill + overlook scan (av_scout/av_ovl/av_route_g), stop overlooks 9/9 of the church->Nebelwerfer 1 approach"
   },
   {
    "name": "guard2",
@@ -449,13 +464,18 @@
      -153.9
     ],
     [
-     -3221.4,
+     -3093.4,
      -4028.6,
      -153.9
+    ],
+    [
+     -2837.4,
+     -3900.6,
+     -156.9
     ]
    ],
    "event": "guard",
-   "src": "in-engine flood fill (av_scout.py m3l3g) + av_route_g.py, 2026-10-19: Nebelwerfer guard"
+   "src": "same road, parks 3 nodes before guard1 (second hull for 3+ players)"
   }
  ]
 }

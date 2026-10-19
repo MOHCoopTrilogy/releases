@@ -1765,3 +1765,5 @@ harness_guard.SlotBusy: client slot hudfeed4 is in use by pid 21804 until Mon Oc
 13:33:18 m3a     ^~^~^ NEB t=589.325 nest 5 gunner_alive=1 dist_to_gun=71 enemy=none deaths=0
 13:33:18 m3a     ^~^~^ AVT m3 chDone=1 chOver=0 dropped=1 scene7=1 bombcount=4 t=590.725
 13:33:18 m3a script errors: 0 []
+13:39:36 booted av_ovl m3l3 ref=work dog False
+13:39:59 ovl scored 104 of 104

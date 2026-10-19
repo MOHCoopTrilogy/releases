@@ -22,17 +22,17 @@ def lat(c):
     t = max(0, min(1, ((cells[c][0] - ax) * dx + (cells[c][1] - ay) * dy) / (dx * dx + dy * dy)))
     return math.hypot(cells[c][0] - (ax + dx * t), cells[c][1] - (ay + dy * t))
 out = []
-for comp in sorted(comps, key=len, reverse=True)[:4]:
+for comp in sorted(comps, key=len, reverse=True)[:14]:
     if len(comp) < 80:
         continue
-    cand = [c for c in comp if ovl(c) >= MINOV and lat(c) >= 150 and R.fat(cells, c) and R.room(cells, adj, c) >= 6 and R.bypass(cells, c) >= 22]
+    cand = [c for c in comp if ovl(c) >= MINOV and lat(c) >= 150 and R.fat(cells, c) and R.room(cells, adj, c) >= 2 and R.bypass(cells, c) >= 22]
     cand.sort(key=lambda c: (-ovl(c), abs(D(c, NEB[0]) - 1300)))
     print("component", len(comp), "stop candidates", len(cand))
     chosen = []
     for s in cand:
         if all(math.hypot(cells[s][0] - cells[t][0], cells[s][1] - cells[t][1]) >= 450 for t in chosen):
             dist, par = R.bfs(adj, s, lambda v: R.fat(cells, v))
-            ents = [(dist[c], c) for c in comp if c in dist and 1800 <= dist[c] * 128 <= 7000 and D(c, CH) >= 2500 and min(D(c, n) for n in NEB) >= 1500]
+            ents = [(dist[c], c) for c in comp if c in dist and 1800 <= dist[c] * 128 <= 7000 and D(c, CH) >= int(os.environ.get("ENTCH", "2500")) and min(D(c, n) for n in NEB) >= 1500]
             if not ents:
                 continue
             ents.sort(reverse=True)
@@ -47,9 +47,7 @@ for comp in sorted(comps, key=len, reverse=True)[:4]:
             chosen.append(s)
             out.append(dict(name="guard%d" % len(out + [0]), nodes=nodes))
             print("route", len(out), "overlook", ovl(s), "nodes", len(nodes), "len", len(path) * 128, "entry", nodes[0], "stop", nodes[-1], "stop->neb1", round(D(s, NEB[0])), "lat", round(lat(s)))
-        if len(chosen) >= 2:
+        if len(chosen) >= 1:
             break
-    if out:
-        break
 json.dump(out, open("scout/m3l3_guard_routes.json", "w"), indent=1)
 print("routes", len(out))
