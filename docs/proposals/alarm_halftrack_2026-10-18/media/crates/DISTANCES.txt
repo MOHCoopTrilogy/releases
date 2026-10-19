@@ -1,0 +1,7 @@
+ALMVEH CRATE log lines (crate rules 2026-10-19: <=1200 u of the stop, <=700 u of the squad's way (wide pass 800/1000), hidden from cab/gunner/MG heights, foot-reachable)
+m4l2: at (4024,3556,260) dist_to_stop=984  lateral_to_squad_way=41  hidden 3/3+crouch  path ok      (pass 2)
+t2l3: at (2892,408,20)   dist_to_stop=1077 lateral_to_squad_way=746 hidden 3/3+crouch  path ok      (pass 2; halftrack route, mission gate)
+m4l1: at (3688,3684,532) dist_to_stop=1118 lateral_to_squad_way=902 hidden 3/3+crouch  path ok      (pass 3 wide; no crate existed before)
+t3l1: 21 hidden spots, none foot-reachable from the switch-side way -> no crate (truck only; bullets kill a truck)
+m3l3: 0 hidden spots within 1300 u of the stop -> halftrack route dropped
+Compass marker: set_objective_pos at alarm start + feed line "Rocket crate marked on the compass - a vehicle is coming" (visible in every screenshot).
