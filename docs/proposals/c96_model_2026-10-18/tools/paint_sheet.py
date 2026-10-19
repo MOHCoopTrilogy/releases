@@ -22,7 +22,7 @@ from scipy_free_filters import box_blur
 HERE = os.path.dirname(os.path.abspath(__file__))
 B = os.path.join(HERE, '..', 'build')
 E = lambda k, d: float(os.environ.get(k, d))
-EMB = E('C96_EMB', '0.80')            # machining / relief strength (multiplier swing)
+EMB = E('C96_EMB', '1.00')            # machining / relief strength (multiplier swing)
 EDGE_DARK = E('C96_EDGE_DARK', '0.50')
 POLISH = E('C96_POLISH', '0.20')
 WOOD_GAIN = E('C96_WOOD_GAIN', '1.15')
@@ -58,10 +58,10 @@ def build():
     wood = wood * (1.0 + 0.7 * EMB * emb[..., None]) * (1.0 - 0.35 * EDGE_DARK * edge[..., None])
     mm = m[..., None]
     outs = {
-        'c96_diffuse_final': metal_tone((0.60, 0.68, 0.82), 0.16, 0.50),          # blued steel
+        'c96_diffuse_final': metal_tone((0.62, 0.70, 0.84), 0.22, 0.68),          # blued steel
         'fin_gold': metal_tone((1.00, 0.78, 0.30), 0.30, 0.65),
         'fin_chrome': metal_tone((0.88, 0.92, 0.98), 0.40, 0.55),
-        'fin_blued': metal_tone((0.42, 0.50, 0.85), 0.10, 0.34),
+        'fin_blued': metal_tone((0.42, 0.50, 0.85), 0.12, 0.40),
     }
     for k, steel in outs.items():
         out = np.clip(steel * mm + wood * (1 - mm), 0, 1)
