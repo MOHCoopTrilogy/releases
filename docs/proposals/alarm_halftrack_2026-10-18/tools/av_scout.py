@@ -19,7 +19,7 @@ try:
     G.cmd("fill", lx=MAXC)
     m = R.wait_log(r"\^~\^~\^ SCF done (\d+)", 600, p0)
     txt = R.read_log()[p0:]
-    cells = re.findall(r"\^~\^~\^ SCF (-?\d+) (-?\d+) (-?[\d.]+) (-?\d+)", txt)
+    cells = re.findall(r"\^~\^~\^ SCF (-?[\d.]+) (-?[\d.]+) (-?[\d.]+) (-?\d+) (-?[\d.]+) (-?[\d.]+)", txt)
     with open(os.path.join(A.HERE, "scout", LABEL + "_scf.txt"), "w") as f:
         for c in cells:
             f.write(" ".join(c) + "\n")

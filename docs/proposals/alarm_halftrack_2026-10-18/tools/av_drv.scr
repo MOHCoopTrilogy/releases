@@ -181,31 +181,77 @@ av_fillseed:{
 	println ( "^~^~^ SCF seed " + level.avf_ns )
 }end
 
-av_cellkey local.ix local.iy:{
+av_cellkey local.x local.y:{
+	local.ix = int( ( local.x + 64 ) / 128 )
+	if( local.x < 0 ){ local.ix = int( ( local.x - 64 ) / 128 ) }
+	local.iy = int( ( local.y + 64 ) / 128 )
+	if( local.y < 0 ){ local.iy = int( ( local.y - 64 ) / 128 ) }
 	local.k = ( ( local.ix + 500 ) * 1000 ) + ( local.iy + 500 )
 }end local.k
 
+// cells keep their EXACT positions (a seed's own x/y, then +-128 steps from it); the lattice index is only the visited key
 av_fill:{
 	local.step = 128
 	local.maxc = int( getcvar( "ai_lx" ) )
 	if( local.maxc < 100 ){ local.maxc = 7000 }
 	level.avf_h = 1
+	level.avf_r1 = 0
+	level.avf_r2 = 0
+	level.avf_r3 = 0
 	level.avf_t = 0
 	level.avf_cnt = 0
 	for( local.s = 1; local.s <= level.avf_ns; local.s++ ){
-		local.ix = int( ( level.avf_sx[local.s] + 64 ) / local.step )
-		if( level.avf_sx[local.s] < 0 ){ local.ix = int( ( level.avf_sx[local.s] - 64 ) / local.step ) }
-		local.iy = int( ( level.avf_sy[local.s] + 64 ) / local.step )
-		if( level.avf_sy[local.s] < 0 ){ local.iy = int( ( level.avf_sy[local.s] - 64 ) / local.step ) }
-		local.k = waitthread av_cellkey local.ix local.iy
+		local.sx = level.avf_sx[local.s]
+		local.sy = level.avf_sy[local.s]
+		local.sz = level.avf_sz[local.s]
+		local.gt = traced ( local.sx local.sy ( local.sz + 60 ) ) ( local.sx local.sy ( local.sz - 100 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+		if( local.gt["startSolid"] == 1 || local.gt["fraction"] >= 1.0 ){
+			println ( "^~^~^ SCF seed blocked noground " + local.s )
+			continue
+		}
+		local.sz = local.gt["endpos"][2]
+		local.found = 0
+		for( local.n = 0; local.n < 9 && local.found == 0; local.n++ ){
+			local.ox = 0
+			local.oy = 0
+			if( local.n == 1 ){ local.ox = 48 }
+			if( local.n == 2 ){ local.ox = -48 }
+			if( local.n == 3 ){ local.oy = 48 }
+			if( local.n == 4 ){ local.oy = -48 }
+			if( local.n == 5 ){
+				local.ox = 96
+				local.oy = 96
+			}
+			if( local.n == 6 ){
+				local.ox = -96
+				local.oy = 96
+			}
+			if( local.n == 7 ){
+				local.ox = 96
+				local.oy = -96
+			}
+			if( local.n == 8 ){
+				local.ox = -96
+				local.oy = -96
+			}
+			local.tx = local.sx + local.ox
+			local.ty = local.sy + local.oy
+			local.hb = traced ( local.tx local.ty ( local.sz + 26 ) ) ( local.tx local.ty ( local.sz + 27 ) ) 1023 ( -64 -52 0 ) ( 64 52 64 ) 466945
+			if( local.hb["startSolid"] != 1 && local.hb["allSolid"] != 1 ){ local.found = 1 }
+		}
+		if( local.found == 0 ){
+			println ( "^~^~^ SCF seed blocked hull " + local.s + " at " + local.sx + " " + local.sy + " " + local.sz )
+			continue
+		}
+		local.k = waitthread av_cellkey local.tx local.ty
 		if( level.avf_vis[local.k] == 1 ){ continue }
 		level.avf_vis[local.k] = 1
 		level.avf_t++
-		level.avf_qx[level.avf_t] = local.ix
-		level.avf_qy[level.avf_t] = local.iy
-		level.avf_qz[level.avf_t] = level.avf_sz[local.s]
+		level.avf_qx[level.avf_t] = local.tx
+		level.avf_qy[level.avf_t] = local.ty
+		level.avf_qz[level.avf_t] = local.sz
 		level.avf_cnt++
-		println ( "^~^~^ SCF " + local.ix + " " + local.iy + " " + level.avf_sz[local.s] + " 0" )
+		println ( "^~^~^ SCF " + local.tx + " " + local.ty + " " + local.sz + " 0 " + local.tx + " " + local.ty )
 	}
 	local.per = 0
 	while( level.avf_h <= level.avf_t && level.avf_cnt < local.maxc ){
@@ -214,33 +260,29 @@ av_fill:{
 		local.cz = level.avf_qz[level.avf_h]
 		level.avf_h++
 		for( local.d = 0; local.d < 4; local.d++ ){
-			local.nx = local.cx
-			local.ny = local.cy
-			if( local.d == 0 ){ local.nx = local.cx + 1 }
-			if( local.d == 1 ){ local.nx = local.cx - 1 }
-			if( local.d == 2 ){ local.ny = local.cy + 1 }
-			if( local.d == 3 ){ local.ny = local.cy - 1 }
-			local.k = waitthread av_cellkey local.nx local.ny
+			local.wx = local.cx
+			local.wy = local.cy
+			if( local.d == 0 ){ local.wx = local.cx + local.step }
+			if( local.d == 1 ){ local.wx = local.cx - local.step }
+			if( local.d == 2 ){ local.wy = local.cy + local.step }
+			if( local.d == 3 ){ local.wy = local.cy - local.step }
+			local.k = waitthread av_cellkey local.wx local.wy
 			if( level.avf_vis[local.k] == 1 ){ continue }
 			level.avf_vis[local.k] = 1
-			local.wx = local.nx * local.step
-			local.wy = local.ny * local.step
 			local.g = traced ( local.wx local.wy ( local.cz + 100 ) ) ( local.wx local.wy ( local.cz - 100 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
-			if( local.g["startSolid"] == 1 || local.g["fraction"] >= 1.0 ){ continue }
+			if( local.g["startSolid"] == 1 || local.g["fraction"] >= 1.0 ){ level.avf_r1++; continue }
 			local.gz = local.g["endpos"][2]
 			local.dz = local.gz - local.cz
 			if( local.dz < 0 ){ local.dz = 0 - local.dz }
-			if( local.dz > 48 ){ continue }
-			local.ax = local.cx * local.step
-			local.ay = local.cy * local.step
-			local.h = traced ( local.ax local.ay ( local.cz + 26 ) ) ( local.wx local.wy ( local.gz + 26 ) ) 1023 ( -64 -52 0 ) ( 64 52 64 ) 466945
-			if( local.h["startSolid"] == 1 || local.h["allSolid"] == 1 || local.h["fraction"] < 1.0 ){ continue }
+			if( local.dz > 48 ){ level.avf_r2++; continue }
+			local.h = traced ( local.cx local.cy ( local.cz + 26 ) ) ( local.wx local.wy ( local.gz + 26 ) ) 1023 ( -64 -52 0 ) ( 64 52 64 ) 466945
+			if( local.h["startSolid"] == 1 || local.h["allSolid"] == 1 || local.h["fraction"] < 1.0 ){ level.avf_r3++; continue }
 			level.avf_t++
-			level.avf_qx[level.avf_t] = local.nx
-			level.avf_qy[level.avf_t] = local.ny
+			level.avf_qx[level.avf_t] = local.wx
+			level.avf_qy[level.avf_t] = local.wy
 			level.avf_qz[level.avf_t] = local.gz
 			level.avf_cnt++
-			println ( "^~^~^ SCF " + local.nx + " " + local.ny + " " + local.gz + " " + local.g["surfaceFlags"] )
+			println ( "^~^~^ SCF " + local.wx + " " + local.wy + " " + local.gz + " " + local.g["surfaceFlags"] + " " + local.cx + " " + local.cy )
 		}
 		local.per++
 		if( local.per >= 12 ){
@@ -248,5 +290,6 @@ av_fill:{
 			waitframe
 		}
 	}
+	println ( "^~^~^ SCF rejects noground=" + level.avf_r1 + " dz=" + level.avf_r2 + " hull=" + level.avf_r3 )
 	println ( "^~^~^ SCF done " + level.avf_cnt )
 }end
