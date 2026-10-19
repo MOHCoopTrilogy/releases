@@ -1,0 +1,50 @@
+{
+ "m1l3c": {
+  "note": "The Sea Wall (lighthouse). Coordinates from the BSP entity lump (lever switchpulse 263.8 -1832.3 1116.2; truck stop obj4 -348 -1656; ground z ~306). Intel spot tuned in game.",
+  "objectives": [
+   {
+    "id": "log",
+    "type": "intel",
+    "line": 3,
+    "text": "Recover the keepers signal log from the lamp room",
+    "done": "Signal log recovered",
+    "when": "trigger",
+    "arg": "obj2trig",
+    "items": [
+     {"kind": "pickup", "model": "models/items/naxosplans1.tik", "pos": [330.0, -1850.0, 1119.0], "yaw": 40, "label": "the signal log"},
+     {"kind": "prop", "model": "models/static/desk.tik", "pos": [330.0, -1850.0, 1116.1], "yaw": 40}
+    ]
+   },
+   {
+    "id": "hold",
+    "type": "hold",
+    "line": 4,
+    "text": "Hold the landing until the fleet answers the beacon",
+    "done": "The fleet has answered the beacon",
+    "when": "trigger",
+    "arg": "lightbright",
+    "secs": 180,
+    "zone": {"pos": [-250.0, -1650.0, 306.0], "r": 450, "name": "the lighthouse landing"}
+   }
+  ]
+ },
+ "m2l1": {
+  "note": "Secret Documents of the Kriegsmarine. Radio sets replace the three vanilla radioN_sound models (static script_models, cannot take damage).",
+  "objectives": [
+   {
+    "id": "radios",
+    "type": "radio",
+    "line": 3,
+    "text": "Silence the radio sets",
+    "done": "All radio sets silenced",
+    "when": "auto",
+    "call_gap": 75,
+    "items": [
+     {"kind": "radio", "model": "models/miscobj/radio_military.tik", "pos": [-1762.0, -3447.8, 636.0], "yaw": 270, "ref": "radio1_sound", "loop": "m2l1_radio1", "label": "the radio set"},
+     {"kind": "radio", "model": "models/miscobj/radio_military.tik", "pos": [819.9, 3291.9, 536.0], "yaw": 225, "ref": "radio2_sound", "loop": "m2l1_radio2", "label": "the radio set"},
+     {"kind": "radio", "model": "models/miscobj/radio_military.tik", "pos": [3780.5, 7016.0, 26.0], "yaw": 285, "ref": "radio3_sound", "loop": "m2l1_radio3", "label": "the radio set"}
+    ]
+   }
+  ]
+ }
+}
