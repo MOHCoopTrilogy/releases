@@ -75,6 +75,12 @@ def room(cells, adj, c):
     return n
 
 
+def bypass(cells, c):
+    """free fill cells within 640 u of c (the parked truck covers ~9 of them): fewer than ~22 means the stop is a corridor the hull would plug"""
+    x, y = cells[c][0], cells[c][1]
+    return sum(1 for d in cells.values() if abs(d[0] - x) <= 640 and abs(d[1] - y) <= 640 and math.hypot(d[0] - x, d[1] - y) <= 640)
+
+
 def main():
     m = sys.argv[1]
     arg = lambda k, d: float(sys.argv[sys.argv.index(k) + 1]) if k in sys.argv else d
@@ -82,6 +88,7 @@ def main():
     cells, adj = load(m)
     sw = [p for p in json.load(open(os.path.join(ROOT, "docs", "tools", "alarm_points.json")))[m]["points"] if p["kind"] == "switch"]
     sws = [(p["pos"][0], p["pos"][1]) for p in sw]
+    swz = {(p["pos"][0], p["pos"][1]): p["pos"][2] for p in sw}
     print("cells", len(cells), "components", [len(c) for c in comps(cells, adj)][:8], "switches", sws)
     best = None
     D = lambda c, a, b: math.hypot(cells[c][0] - a, cells[c][1] - b)
@@ -89,11 +96,11 @@ def main():
         if len(comp) < 60:
             continue
         for (sx, sy) in sws:
-            cand = [(abs(D(c, sx, sy) - 650), c) for c in comp if smin <= D(c, sx, sy) <= smax and room(cells, adj, c) >= 5]
+            cand = [(abs(D(c, sx, sy) - 650), c) for c in comp if smin <= D(c, sx, sy) <= smax and room(cells, adj, c) >= 5 and bypass(cells, c) >= 22 and abs(cells[c][2] - swz[(sx, sy)]) <= 160]
             cand.sort()
             for _, stop in cand[:10]:
                 dist, par = bfs(adj, stop)
-                ents = [(dist[c], c) for c in comp if c in dist and min(D(c, a, b) for a, b in sws) >= efar and dist[c] * 128 >= 1800]
+                ents = [(dist[c], c) for c in comp if c in dist and min(D(c, a, b) for a, b in sws) >= efar and 1800 <= dist[c] * 128 <= 7000]
                 if not ents:
                     continue
                 ents.sort(reverse=True)

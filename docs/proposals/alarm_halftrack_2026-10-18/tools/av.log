@@ -725,3 +725,39 @@
 11:15:24 m2l1 cells 159 done errors 0 []
 11:16:34 booted av_m1l1 m1l1 ref=work dog False
 11:16:36 m1l1 cells 352 done errors 0 []
+11:18:27 booted av_m3l2 m3l2 ref=work dog False
+11:18:31 m3l2 cells 1088 done errors 0 []
+11:19:41 booted av_m2l1 m2l1 ref=work dog False
+11:19:51 m2l1 cells 4199 done errors 0 []
+11:21:02 booted av_m1l1 m1l1 ref=work dog False
+11:21:19 m1l1 cells 7746 done errors 0 []
+11:24:07 e3l1 FAILED SlotBusy('client slot hudfeed4 is in use by pid 21804 until Mon Oct 19 12:51:41 2026') py", line 101, in boot_session
+    R.launch(W, H, extra)
+    ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev\docs\proposals\ironsights_2026-09-28\tools\run_ironsights.py", line 159, in launch
+    hg.acquire_slot(OWNER, EXE, HOME, [PORT], 40)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev\docs\tools\harness_guard.py", line 325, in acquire_slot
+    raise SlotBusy("client slot %s is in use by pid %s until %s" % (owner, cur.get("pid"), time.ctime(cur.get("expires", 0))))
+harness_guard.SlotBusy: client slot hudfeed4 is in use by pid 21804 until Mon Oct 19 12:51:41 2026
+
+11:24:07 e3l2 FAILED SlotBusy('client slot hudfeed4 is in use by pid 21804 until Mon Oct 19 12:51:41 2026') py", line 101, in boot_session
+    R.launch(W, H, extra)
+    ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev\docs\proposals\ironsights_2026-09-28\tools\run_ironsights.py", line 159, in launch
+    hg.acquire_slot(OWNER, EXE, HOME, [PORT], 40)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev\docs\tools\harness_guard.py", line 325, in acquire_slot
+    raise SlotBusy("client slot %s is in use by pid %s until %s" % (owner, cur.get("pid"), time.ctime(cur.get("expires", 0))))
+harness_guard.SlotBusy: client slot hudfeed4 is in use by pid 21804 until Mon Oct 19 12:51:41 2026
+
+11:24:08 t1l1 FAILED SlotBusy('client slot hudfeed4 is in use by pid 21804 until Mon Oct 19 12:51:41 2026') py", line 101, in boot_session
+    R.launch(W, H, extra)
+    ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev\docs\proposals\ironsights_2026-09-28\tools\run_ironsights.py", line 159, in launch
+    hg.acquire_slot(OWNER, EXE, HOME, [PORT], 40)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev\docs\tools\harness_guard.py", line 325, in acquire_slot
+    raise SlotBusy("client slot %s is in use by pid %s until %s" % (owner, cur.get("pid"), time.ctime(cur.get("expires", 0))))
+harness_guard.SlotBusy: client slot hudfeed4 is in use by pid 21804 until Mon Oct 19 12:51:41 2026
+

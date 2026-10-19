@@ -63,7 +63,7 @@ av_trace:{
 			if( local.v == NULL || local.v == NIL ){
 				println ( "^~^~^ AVT t=" + level.time + " live=" + ( waitthread av_s level.av_live ) + " ent=none" )
 			} else {
-				println ( "^~^~^ AVT t=" + level.time + " live=" + ( waitthread av_s level.av_live ) + " org=" + local.v.origin + " hp=" + local.v.health + " arr=" + ( waitthread av_s local.v.av_arrT ) + " leaving=" + ( waitthread av_s local.v.av_leaving ) )
+				println ( "^~^~^ AVT t=" + level.time + " live=" + ( waitthread av_s level.av_live ) + " org=" + local.v.origin + " ang=" + local.v.angles + " hp=" + local.v.health + " arr=" + ( waitthread av_s local.v.av_arrT ) + " leaving=" + ( waitthread av_s local.v.av_leaving ) )
 			}
 		}
 	}

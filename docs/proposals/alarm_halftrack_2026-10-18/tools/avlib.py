@@ -11,16 +11,20 @@ G.HERE = HERE
 G.MOD = "C:/mohaa-coop-dev/hzm-mod-alarmveh"
 G.LOGF = os.path.join(HERE, "av.log")
 R = G.R
-R.OWNER = "hudfeed4"
-R.CLIENT = "G:/mohaa-hudfeed4"
-R.EXE = os.path.join(R.CLIENT, "openmohaa_c96.exe")
+sys.path.insert(0, "C:/mohaa-coop-dev/docs/tools")
+import harness_guard as _hg
+# first FREE private client copy (identical release DLLs; exe openmohaa_c96/_air have the same md5): hudfeed4, else hudfeed2
+_slot = os.environ.get("AVSLOT") or ("hudfeed4" if _hg.slot_holder("hudfeed4") is None else "hudfeed2")
+R.OWNER = _slot
+R.CLIENT = "G:/mohaa-" + _slot
+R.EXE = os.path.join(R.CLIENT, "openmohaa_c96.exe" if _slot == "hudfeed4" else "openmohaa_air.exe")
 R.HOME = os.path.join(R.CLIENT, "home")
 R.MAINTT = os.path.join(R.HOME, "maintt")
 R.LOG = os.path.join(R.MAINTT, "qconsole.log")
 R.SHOTS = os.path.join(R.MAINTT, "screenshots")
 R.PRISTINE = os.path.join(R.CLIENT, "pristine")
 R.RUNS = os.path.join(HERE, "runs").replace("\\", "/")
-R.PORT = 12741
+R.PORT = 12741 if _slot == "hudfeed4" else 12721
 G.FILES = os.environ.get("AVFILES", "coop_mod/alarmveh.scr,coop_mod/alarmveh_routes.scr,coop_mod/alarm.scr").split(",")
 _ov = G.overlay
 
