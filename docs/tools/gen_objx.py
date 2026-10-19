@@ -14,7 +14,8 @@ WHY THIS EXISTS
 JSON SHAPE (per map)
     objectives[]: id, type (intel | hold | radio | escort), line (3..5, the HUD side line), text, done, when (auto | trigger | after),
                   arg (the trigger entity targetname / the objective id waited for), items[], and per type:
-                  hold  : secs (4 players; objx.scr scales 1-2 players down), zone {pos, r, name}
+                  hold  : secs (4 players; objx.scr scales 1-2 players down), zone {pos, r, name, spawns[]} (spawns = authored wave entry
+                          points, cycled; none = the counter-attack planned entry)
                   radio : call_gap (seconds between the "survivor calls for help" waves once one set is down)
                   escort: zone (the destination), items[kind=actor]
     items[]     : kind (pickup | prop | radio | actor), model, pos, yaw, label; radio: ref (vanilla targetname to replace), loop (sound alias)
@@ -67,6 +68,7 @@ def gen():
     w("ox_load local.map:{")
     w("\tlevel.objx_n = 0")
     w("\tlevel.objx_itn = 0")
+    w("\tlevel.objx_spn = 0")
     for m in sorted(d):
         w('\tif( local.map == "%s" ){ waitthread ox_%s }' % (m, m))
     w("}end level.objx_n")
@@ -81,6 +83,7 @@ def gen():
         w("ox_%s:{" % m)
         w("\tlevel.objx_n = %d" % len(objs))
         k = 0
+        sp = 0
         lines = set()
         for i, o in enumerate(objs, 1):
             assert o["type"] in TYPES, o
@@ -105,6 +108,10 @@ def gen():
                 w("\tlevel.objx_zname[%d] = %s" % (i, s(z["name"])))
             if o["type"] == "hold":
                 assert z and o.get("secs", 0) >= 20, o
+            for q in (z or {}).get("spawns", []):
+                sp += 1
+                w("\tlevel.objx_sp_o[%d] = %d" % (sp, i))
+                w("\tlevel.objx_sp_pos[%d] = %s" % (sp, v(q)))
             for it in o.get("items", []):
                 assert it["kind"] in KINDS, it
                 k += 1
@@ -117,6 +124,7 @@ def gen():
                 w("\tlevel.objx_it_ref[%d] = %s" % (k, s(it.get("ref", ""))))
                 w("\tlevel.objx_it_loop[%d] = %s" % (k, s(it.get("loop", ""))))
         w("\tlevel.objx_itn = %d" % k)
+        w("\tlevel.objx_spn = %d" % sp)
         w("}end")
         w("")
     return "\n".join(out) + "\n"

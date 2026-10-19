@@ -11,7 +11,7 @@
     "when": "trigger",
     "arg": "obj2trig",
     "items": [
-     {"kind": "pickup", "model": "models/items/naxosplans1.tik", "pos": [330.0, -1850.0, 1119.0], "yaw": 40, "label": "the signal log"},
+     {"kind": "pickup", "model": "models/items/naxosplans1.tik", "pos": [330.0, -1850.0, 1146.0], "yaw": 40, "label": "the signal log"},
      {"kind": "prop", "model": "models/static/desk.tik", "pos": [330.0, -1850.0, 1116.1], "yaw": 40}
     ]
    },
@@ -24,7 +24,7 @@
     "when": "trigger",
     "arg": "lightbright",
     "secs": 180,
-    "zone": {"pos": [-250.0, -1650.0, 306.0], "r": 450, "name": "the lighthouse landing"}
+    "zone": {"pos": [-380.0, -1720.0, 306.0], "r": 380, "name": "the lighthouse landing", "spawns": [[-900.0, -2300.0, 282.0], [100.0, -1800.0, 326.0]]}
    }
   ]
  },
