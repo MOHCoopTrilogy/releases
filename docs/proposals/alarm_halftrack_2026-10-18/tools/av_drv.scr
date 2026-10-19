@@ -177,6 +177,17 @@ av_do local.c:{
 			println ( "^~^~^ AVT hp set to " + level.av_ent.health )
 		}
 	}
+	// cover round the stop: 8 rays at chest height, radius 320; blocked ones are walls/crates the squad can use
+	if( local.c == "covercheck" ){
+		local.sp = level.av_p[( 1 * 100 ) + level.av_n[1]]
+		local.blocked = 0
+		for( local.a = 0; local.a < 360; local.a = local.a + 45 ){
+			local.dv = angles_toforward ( 0 local.a 0 )
+			local.tr = traced ( local.sp + ( 0 0 50 ) ) ( local.sp + ( 0 0 50 ) + ( local.dv * 320 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+			if( local.tr["fraction"] < 1.0 ){ local.blocked++ }
+		}
+		println ( "^~^~^ AVT cover rays blocked=" + local.blocked + " of 8 at stop " + local.sp )
+	}
 	if( local.c == "pcount" ){ println ( "^~^~^ AVT players=" + ( waitthread coop_mod/coop_counter.scr::counter_players ) ) }
 	// alarm-man counters (crew are tagged coop_waveSrc alarm)
 	if( local.c == "men" ){ println ( "^~^~^ AVT alarm men alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive "alarm" ) ) }
