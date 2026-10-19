@@ -1,0 +1,26 @@
+    ^~^~^ AV P1 spawn=avprobe1 at=( -6931.633 3222.405 -495.875 )
+    ^~^~^ AV P1 slot0-after-spawn=avprobe1_turret0 hp=500.000
+    ^~^~^ AV P1 locked, origin=( -6931.633 3222.405 -513.365 ) angles=( 0.000 231.004 0.000 )
+    ^~^~^ AV P3 hullTrace(466945)=" + local.t1["fraction"] + " worldOnly(1)=" + local.t2["fraction"] + " solid=" + ( waitthread av_s local.v.solid ) + " mins=" + local.v.mins + " maxs=" + local.v.maxs )
+    ^~^~^ AV P3 hullTrace(466945)=" + local.t1["fraction"] + " worldOnly(1)=" + local.t2["fraction"] + " solid=" + ( waitthread av_s local.v.solid ) + " mins=" ^
+    ^~^~^ AV P3 hullTrace(466945)=" + local.t1["fraction"] + " worldOnly(1)=" + local.t2["fraction"] + " solid=" + ( waitthread av_s local.v.solid ) + " mins=" + local.v.mins + " maxs=" + local.v.maxs )
+    ^~^~^ AV P3 hullTrace(466945)=" + local.t1["fraction"] + " worldOnly(1)=" + local.t2["fraction"] + " solid=" + ( waitthread av_s local.v.solid ) + " mins=" + local.v.mins ^
+    ^~^~^ AV P3 hullTrace(466945)=" + local.t1["fraction"] + " worldOnly(1)=" + local.t2["fraction"] + " solid=" + ( waitthread av_s local.v.solid ) + " mins=" + local.v.mins + " maxs=" + local.v.maxs )
+    ^~^~^ AV P3 hullTrace(466945)=" + local.t1["fraction"] + " worldOnly(1)=" + local.t2["fraction"] + " solid=" + ( waitthread av_s local.v.solid ) + " mins=" + local.v.mins + " maxs=" ^
+    ^~^~^ AV P2 chain head=avp2_1 next=avp2_2 tail=avp2_7
+    ^~^~^ AV P2 driving from ( -6931.633 3222.405 -513.375 )
+    ^~^~^ AV P2 t=0 org=( -6962.310 3184.516 -513.370 ) moved=48.751
+    ^~^~^ AV P2 t=1 org=( -6992.199 3147.600 -513.375 ) moved=47.499
+    ^~^~^ AV P2 t=2 org=( -6992.199 3147.600 -513.375 ) moved=0.000
+    ^~^~^ AV P2 t=3 org=( -6992.199 3147.600 -513.375 ) moved=0.000
+    ^~^~^ AV P2 t=4 org=( -6992.199 3147.600 -513.375 ) moved=0.000
+    ^~^~^ AV P2 t=5 org=( -6992.199 3147.600 -513.375 ) moved=0.000
+    ^~^~^ AV P2 t=6 org=( -6992.199 3147.600 -513.375 ) moved=0.000
+    ^~^~^ AV P2 t=7 org=( -6992.199 3147.600 -513.375 ) moved=0.000
+    ^~^~^ AV P2 t=8 org=( -6992.199 3147.600 -513.375 ) moved=0.000
+    ^~^~^ AV P2 t=9 org=( -6992.199 3147.600 -513.375 ) moved=0.000
+    ^~^~^ AV P2 t=10 org=( -6992.199 3147.600 -513.375 ) moved=0.000
+    ^~^~^ AV P2 t=11 org=( -6992.199 3147.600 -513.375 ) moved=0.000
+    ^~^~^ AV P2 t=12 org=( -6992.199 3147.600 -513.375 ) moved=0.000
+    ^~^~^ AV P2 t=13 org=( -6992.199 3147.600 -513.375 ) moved=0.000
+script errors: 3 ["[2026-10-18 21:31:13 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-18 21:31:13 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-18 21:31:13 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'"]

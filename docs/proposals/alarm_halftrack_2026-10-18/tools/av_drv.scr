@@ -1,0 +1,102 @@
+//=========================================================================
+// TEST-ONLY overlay driver (alarm vehicle 2026-10-18) - NEVER shipped. Installed as coop_mod/coop_selftest_xp.scr.
+// Commands arrive in cvar ai_cmd (ai_realism harness protocol: prints "^~^~^ AI did <cmd>").
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ AI armed"
+	setcvar "ai_cmd" "0"
+	while( 1 ){
+		local.c = getcvar( "ai_cmd" )
+		if( local.c != "0" && local.c != "" ){
+			setcvar "ai_cmd" "0"
+			waitthread av_do local.c
+			println ( "^~^~^ AI did " + local.c )
+		}
+		waitframe
+	}
+}end
+
+av_s local.v:{
+	local.r = "-"
+	if( local.v != NIL ){ local.r = "" + local.v }
+}end local.r
+
+// ground point under/over a position
+av_gnd local.p:{
+	local.t = trace ( local.p + ( 0 0 200 ) ) ( local.p + ( 0 0 -600 ) )
+}end local.t
+
+av_do local.c:{
+	local.p = $player[1]
+	if( local.p == NULL ){ end }
+	if( local.c == "here" ){ println ( "^~^~^ AI here " + local.p.origin ) }
+
+	// PROBE-1: spawn a halftrack at runtime and give it the MG turret slot
+	if( local.c == "probe1" ){
+		local.fwd = angles_toforward ( 0 local.p.angles[1] 0 )
+		local.pos = ( waitthread av_gnd ( local.p.origin + ( local.fwd * 500 ) ) ) + ( 0 0 16 )
+		local.v = spawn DrivableVehicle model "models/vehicles/sdkfz.tik" targetname "avprobe1" origin local.pos angles ( 0 local.p.angles[1] 0 )
+		println ( "^~^~^ AV P1 spawn=" + ( waitthread av_s local.v ) + " at=" + local.pos )
+		if( local.v != NULL ){
+			wait 1
+			local.g = local.v queryturretslotentity 0
+			println ( "^~^~^ AV P1 slot0-after-spawn=" + ( waitthread av_s local.g ) + " hp=" + local.v.health )
+			if( local.g == NULL || local.g == NIL ){
+				local.v spawnturret 0 "models/vehicles/sdkfz_mg42.tik"
+				wait 1
+				local.g = local.v queryturretslotentity 0
+				println ( "^~^~^ AV P1 slot0-after-spawnturret=" + ( waitthread av_s local.g ) )
+			}
+			local.v lock
+			println ( "^~^~^ AV P1 locked, origin=" + local.v.origin + " angles=" + local.v.angles )
+		}
+	}
+
+	// PROBE-2: runtime waypoint chain + drive + waittill drive
+	if( local.c == "probe2" ){
+		local.v = $avprobe1
+		if( local.v == NULL ){ println "^~^~^ AV P2 no vehicle (run probe1)" end }
+		local.fwd = angles_toforward ( 0 local.v.angles[1] 0 )
+		local.n = 7
+		for( local.i = local.n; local.i >= 1; local.i-- ){
+			local.q = ( waitthread av_gnd ( local.v.origin + ( local.fwd * ( 220 * local.i ) ) ) ) + ( 0 0 8 )
+			if( local.i == local.n ){
+				spawn info_waypoint targetname ( "avp2_" + local.i ) origin local.q
+			} else {
+				spawn info_waypoint targetname ( "avp2_" + local.i ) origin local.q target ( "avp2_" + ( local.i + 1 ) )
+			}
+		}
+		println ( "^~^~^ AV P2 chain head=" + ( waitthread av_s $avp2_1 ) + " next=" + ( waitthread av_s $avp2_1.target ) + " tail=" + ( waitthread av_s $avp2_7 ) )
+		local.v drive $avp2_1 300 100 40 128
+		local.t0 = level.time
+		println ( "^~^~^ AV P2 driving from " + local.v.origin )
+		thread av_p2_watch local.v
+	}
+
+	// PROBE-3: does the stopped hull block a trace (AI / player mask)?
+	if( local.c == "probe3" ){
+		local.v = $avprobe1
+		if( local.v == NULL ){ println "^~^~^ AV P3 no vehicle" end }
+		local.fwd = angles_toforward ( 0 local.v.angles[1] 0 )
+		local.a = local.v.origin - ( local.fwd * 400 ) + ( 0 0 40 )
+		local.b = local.v.origin + ( local.fwd * 400 ) + ( 0 0 40 )
+		local.t1 = traced local.a local.b 1023 ( -16 -16 0 ) ( 16 16 72 ) 466945
+		local.t2 = traced local.a local.b 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+		println ( "^~^~^ AV P3 hullTrace(466945)=" + local.t1["fraction"] + " worldOnly(1)=" + local.t2["fraction"] + " solid=" + ( waitthread av_s local.v.solid ) + " mins=" + local.v.mins + " maxs=" + local.v.maxs )
+	}
+
+	if( local.c == "rm" ){
+		if( $avprobe1 != NULL ){ $avprobe1 remove }
+	}
+}end
+
+av_p2_watch local.v:{
+	local.t0 = level.time
+	local.last = local.v.origin
+	for( local.k = 0; local.k < 14; local.k++ ){
+		wait 1
+		if( local.v == NULL ){ println "^~^~^ AV P2 vehicle gone" end }
+		println ( "^~^~^ AV P2 t=" + local.k + " org=" + local.v.origin + " moved=" + ( vector_length ( local.v.origin - local.last ) ) )
+		local.last = local.v.origin
+	}
+}end
