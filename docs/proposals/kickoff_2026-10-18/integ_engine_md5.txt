@@ -1,0 +1,6 @@
+0880b1a82be48af92537aa29625ec255 *Release/openmohaa.exe
+43d6691555d99d71ff5929ccd33a3c2d *Release/omohaaded.exe
+7b07f858e21018092ee2b5ffe5d90661 *code/client/cgame/Release/cgame.dll
+ff8de19e50c0c191cfed192dd993dc77 *code/server/fgame/Release/game.dll
+4aec4bcb6f290ce3ce87dbf15f2880a1 *code/renderercommon/renderergl1/Release/renderer_opengl1.dll
+b10cc5c30ea42691f1e42fde283bc335 *code/renderercommon/renderergl2/Release/renderer_opengl2.dll
