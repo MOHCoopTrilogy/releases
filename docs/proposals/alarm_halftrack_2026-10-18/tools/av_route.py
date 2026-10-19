@@ -81,6 +81,19 @@ def bypass(cells, c):
     return sum(1 for d in cells.values() if abs(d[0] - x) <= 640 and abs(d[1] - y) <= 640 and math.hypot(d[0] - x, d[1] - y) <= 640)
 
 
+def coverscore(cells, c):
+    """8 directions at 320 u from the stop: a direction counts when no drivable fill cell lies within 64 u of that point, i.e. something solid
+    (wall, building, crates, a drop) stands there - a proxy for cover; the in-engine ray check (covercheck) is the real one"""
+    x, y = cells[c][0], cells[c][1]
+    pts = [cells[k] for k in cells if abs(cells[k][0] - x) <= 420 and abs(cells[k][1] - y) <= 420]
+    n = 0
+    for a in range(0, 360, 45):
+        px, py = x + 320 * math.cos(math.radians(a)), y + 320 * math.sin(math.radians(a))
+        if not any(abs(q[0] - px) <= 64 and abs(q[1] - py) <= 64 for q in pts):
+            n += 1
+    return n
+
+
 def main():
     m = sys.argv[1]
     arg = lambda k, d: float(sys.argv[sys.argv.index(k) + 1]) if k in sys.argv else d
@@ -97,7 +110,9 @@ def main():
             continue
         for (sx, sy) in sws:
             cand = [(abs(D(c, sx, sy) - 650), c) for c in comp if smin <= D(c, sx, sy) <= smax and room(cells, adj, c) >= 5 and bypass(cells, c) >= 22 and abs(cells[c][2] - swz[(sx, sy)]) <= 160]
+            cand = [(-coverscore(cells, c[1]), c[0], c[1]) for c in cand]
             cand.sort()
+            cand = [(x[1], x[2]) for x in cand if x[0] <= -3]
             for _, stop in cand[:10]:
                 dist, par = bfs(adj, stop)
                 ents = [(dist[c], c) for c in comp if c in dist and min(D(c, a, b) for a, b in sws) >= efar and 1800 <= dist[c] * 128 <= 7000]

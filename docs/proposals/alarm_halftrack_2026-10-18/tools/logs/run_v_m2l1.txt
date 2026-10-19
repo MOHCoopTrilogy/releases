@@ -1,0 +1,17 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> ok
+   wait \^~\^~\^ ALMVEH ARRIVED -> ok
+   wait \^~\^~\^ ALMVEH WITHDRAW -> ok
+   wait \^~\^~\^ ALMVEH withdrawn -> TIMEOUT
+    ^~^~^ AVT pinned at ( 584.000 2909.000 500.000 ) looking ( -357.420 123.422 0.000 )
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=m2l1
+    ^~^~^ ALMVEH pull 1: vehicle due in 22 s
+    ^~^~^ ALMVEH ARRIVING truck route=1 scout hp=600 pax=3 players=1 entry=( -3104.500 3522.500 492.300 )
+    ^~^~^ AVT follow cam on
+    ^~^~^ ALMVEH ARRIVED truck at ( 129.635 3650.500 446.625 )
+    ^~^~^ ALMVEH unloading
+    ^~^~^ AVT cover rays blocked=1 of 8 at stop ( 95.500 3650.500 454.100 )
+    ^~^~^ AVT alarm men alive=3
+    ^~^~^ ALMVEH WITHDRAW, reason 40 s: truck at ( 131.989 3650.500 446.625 )
+    ^~^~^ ALMVEH DESTROYED truck at ( -3139.189 3505.675 475.499 )
+script errors: 8 ["[2026-10-19 11:31:58 UTC-6.000] ^~^~^ Script Error : anim 'opel_driver' not found, so can't tell if it is looping", "[2026-10-19 11:31:58 UTC-6.000] ^~^~^ Script Error : unknown animation 'opel_driver' in 'models/human/german_waffenss_shutze.tik'", "[2026-10-19 11:32:13 UTC-6.000] ^~^~^ Script Error : anim 'opel_passenger1' not found, so can't tell if it is looping", "[2026-10-19 11:32:13 UTC-6.000] ^~^~^ Script Error : anim 'opel_passenger2' not found, so can't tell if it is looping", "[2026-10-19 11:32:13 UTC-6.000] ^~^~^ Script Error : anim 'opel_passenger3' not found, so can't tell if it is looping", "[2026-10-19 11:32:13 UTC-6.000] ^~^~^ Script Error : unknown animation 'opel_passenger1' in 'models/human/german_waffenss_shutze.tik'"]

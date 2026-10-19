@@ -761,3 +761,29 @@ harness_guard.SlotBusy: client slot hudfeed4 is in use by pid 21804 until Mon Oc
     raise SlotBusy("client slot %s is in use by pid %s until %s" % (owner, cur.get("pid"), time.ctime(cur.get("expires", 0))))
 harness_guard.SlotBusy: client slot hudfeed4 is in use by pid 21804 until Mon Oct 19 12:51:41 2026
 
+11:25:39 booted av_e3l1 e3l1 ref=work dog False
+11:25:48 e3l1 cells 3728 done errors 0 []
+11:27:02 booted av_e3l2 e3l2 ref=work dog False
+11:27:08 e3l2 cells 1922 done errors 5 ["[2026-10-19 11:26:55 UTC-6.000] ^~^~^ Script Error : command 'QueryTurretSlotEntity' applied to NULL listener", "[2026-10-19 11:26:55 UTC-6.000] ^~^~^ Script Error : command 'hide' applied to NIL", "[2026-10-19 11:26:55 UTC-6.000] ^~^~^ Script Error : command 'thread' applied to NULL listener"]
+11:28:16 booted av_t1l1 t1l1 ref=work dog False
+11:28:23 t1l1 cells 2502 done errors 0 []
+11:31:33 booted av_v_m2l1 m2l1 ref=work dog False
+11:31:58 v_m2l1    wait \^~\^~\^ ALMVEH ARRIVING -> ok
+11:32:13 v_m2l1    wait \^~\^~\^ ALMVEH ARRIVED -> ok
+11:32:53 v_m2l1    wait \^~\^~\^ ALMVEH WITHDRAW -> ok
+11:34:59 v_m2l1    wait \^~\^~\^ ALMVEH withdrawn -> TIMEOUT
+11:34:59 v_m2l1     ^~^~^ AVT pinned at ( 584.000 2909.000 500.000 ) looking ( -357.420 123.422 0.000 )
+11:34:59 v_m2l1     ^~^~^ AVT players=1
+11:34:59 v_m2l1     ^~^~^ AVT armed pull=1 map=m2l1
+11:34:59 v_m2l1     ^~^~^ ALMVEH pull 1: vehicle due in 22 s
+11:34:59 v_m2l1     ^~^~^ ALMVEH ARRIVING truck route=1 scout hp=600 pax=3 players=1 entry=( -3104.500 3522.500 492.300 )
+11:34:59 v_m2l1     ^~^~^ AVT follow cam on
+11:34:59 v_m2l1     ^~^~^ ALMVEH ARRIVED truck at ( 129.635 3650.500 446.625 )
+11:34:59 v_m2l1     ^~^~^ ALMVEH unloading
+11:34:59 v_m2l1     ^~^~^ AVT cover rays blocked=1 of 8 at stop ( 95.500 3650.500 454.100 )
+11:34:59 v_m2l1     ^~^~^ AVT alarm men alive=3
+11:34:59 v_m2l1     ^~^~^ ALMVEH WITHDRAW, reason 40 s: truck at ( 131.989 3650.500 446.625 )
+11:34:59 v_m2l1     ^~^~^ ALMVEH DESTROYED truck at ( -3139.189 3505.675 475.499 )
+11:34:59 v_m2l1 script errors: 8 ["[2026-10-19 11:31:58 UTC-6.000] ^~^~^ Script Error : anim 'opel_driver' not found, so can't tell if it is looping", "[2026-10-19 11:31:58 UTC-6.000] ^~^~^ Script Error : unknown animation 'opel_driver' in 'models/human/german_waffenss_shutze.tik'", "[2026-10-19 11:32:13 UTC-6.000] ^~^~^ Script Error : anim 'opel_passenger1' not found, so can't tell if it is looping", "[2026-10-19 11:32:13 UTC-6.000] ^~^~^ Script Error : anim 'opel_passenger2' not found, so can't tell if it is looping", "[2026-10-19 11:32:13 UTC-6.000] ^~^~^ Script Error : anim 'opel_passenger3' not found, so can't tell if it is looping", "[2026-10-19 11:32:13 UTC-6.000] ^~^~^ Script Error : unknown animation 'opel_passenger1' in 'models/human/german_waffenss_shutze.tik'"]
+11:36:12 booted av_v_e3l2 e3l2 ref=work dog False
+11:37:45 v_e3l2    wait \^~\^~\^ ALMVEH ARRIVING -> TIMEOUT
