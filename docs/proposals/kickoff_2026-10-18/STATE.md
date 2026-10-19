@@ -1,71 +1,27 @@
 # STATE - overwrite at every handoff, never append, under 60 lines
 
-**Written:** 2026-10-14 (late), by the coordinator that stopped at the weekly cap.
-**Usage then:** weekly 98 %, extra usage off. Reset 2026-10-18 06:00 local.
+**Written:** 2026-10-19 ~00:30 by the coordinator of the 2026-10-18 "v1.10.32 queue" session. Live = v1.10.31. NOTHING deployed/published/pushed.
+**Next session: do the v1.10.32 INTEGRATION + RELEASE (below), then the queued lanes.** Running when written: loadscreen agent rolling out trailers per mission.
 
-## Live
-- **v1.10.29 RELEASED 2026-10-15**: AI realism (officer men in squad layers, wave entry, event voices + faces, radio call-ins, idle watchdog, MG42 team covering officer/radio - lethal ~85 hp/s, may need softening), reinforcement smoke screens, HUD polish (one fade curve, icon alignment, feed routing, no icons in lobby/briefing), Armory locks + DONE guard + lp_* fast picks + gun fit, seamless lobby anims, load art everywhere, alarm + counter-attack SHIPPED OFF (coop_alarm 0 / coop_counter 0 until the user playtests). Mod coop-wip = combo-1.10.29; cgame aefb2f05 (progsync cgame-1.10.29 776e4de5, pushed as release-1.10.29-cgame). Desktop shortcut "Start MOH Coop Servers.bat" starts the 3 servers. Open: bug-3984 t2l1 allysquad.scr compile error (pre-existing or harness).
-- **v1.10.28 HOTFIX published 2026-10-14 night**: lobby + debrief text size (bug-3918, mod c54372fb; ihuddraw virtualsize 0 = UI hi-res scale; debrief y positions are absolute pixels tuned for 1080p - check low resolutions). Three public servers run it.
-- **v1.10.27 HOTFIX published 2026-10-14 evening**: briefing slide flicker for remote players fixed (bug-3917, mod 6e53cbd6). v1.10.26 before it: SAS escort failsafe on m1l2a + lobby mannequin cleanup + lobby bar (bug-3913/3914/3916). Only the code pak changed in both. Still open: bug-3915 (uniform for player 2; evidence in the buglog). Three public servers run v1.10.27.
-- **v1.10.24 HOTFIX published 2026-10-14 15:40**: remote join flood fixed (bug-3910 / 3909 / 3905): client exe sends every fragment, server caps reliable bytes in flight per remote client (sv_cmdParkBytes 2400), lobby.scr flood fix. Engine rel-1.10.24 f551686f (= 277bdb9d + 15732bb2; exe d33febc3, ded aa883b7c, built in openmohaa-hzm-rel/.cmake like the release) pushed as release-1.10.24 (origin + org); mod coop-wip 098f93eb pushed. game/cgame = v1.10.23, renderers = v1.10.22. Public servers run it; their loose lobby.scr was moved to public_servers/_superseded_lobby_patch/. Handover: docs/proposals/joinflood_2026-10-14/README.md.
-- **v1.10.23 HOTFIX published 2026-10-14**: progression follows the player to any server (bug-3903). Only game.dll 126a66e3 + cgame.dll d84e0679 + the code pak changed; exe / ded / renderers = v1.10.22. Engine source pushed as release-1.10.23 (origin + org) = progsync-next e8838a89; mod coop-wip 7a5211a0 pushed to org. The .cmake folder now holds these two dlls (the v1.10.22 ones are in SCRATCH/pre_1.10.23_cmake).
-- Public release v1.10.22 "Eyes on Target" (GitHub MOHCoopTrilogy/releases, verified). The user's
-  install matches it. Mod `coop-wip` = `org/coop-wip` = 4f8a1019.
-- Engine source for v1.10.22 is on GitHub: joncurry94-tech/openmohaa `release-1.10.22` = 0206e3c9
-  (pushed 2026-10-14). The lane branches are still PC-only; a backup push needs the user's yes.
-- Release binaries: `SCRATCH\built_integ10` (exe 5cd827eb, cgame b4b5c4e2, game 6b515fbf,
-  gl2 8296bf86). Engine branches `integ-1.10.22` 277bdb9d and `integ-ads` 0206e3c9. Engine not pushed.
+## Harness
+`docs/tools/harness_turn.py wait|release|status <name>` (SLOTS=2, 15 min, free copy of hudfeed2/4/5 via harness_guard). "joinflood"-named exes on hudfeed* are OUR agents. H: missing -> G:\claude_scratch_archive. Agents must never `git checkout/reset` shared files nor kill processes by name (both happened: bug-4037 FEATURES.md recovered + uncommitted; check_mp_isolation lock line restored).
 
-## Next
-- Stage 0 (the "first ten minutes" in KICKOFF.md), then Stage 1 (Stage 0b, progression sync, SHIPPED in v1.10.23).
-- Because this file is dated 2026-10-14, the resume memory file IS still needed this once: read its
-  2026-10-13 and 2026-10-14 entries only.
+## DONE + proven, ready to merge (mod branches off coop-wip, worktrees hzm-mod-*)
+- coop-wip itself: bug-3984 allysquad, bug-4003 rewards, 0e332991 reinf_mg float duty (bug-4036; MG pacing now real - replay before softening MG).
+- debrief-next f25f00bb | menu-debrief-next 9b127297 | gunner-rearm-next 25dd8d81 (bug-4005 id clash - renumber) | smoke-consume-next ..534558b9 (coin flip, indoor cache m2l2c/m6l3b/c/d)
+- surrender-next ..07203f2d | hints-next 32400cb3 (What's New must be rewritten) | iconprompts-next (+engine 8cf29bf3; needs COOP_HDRING define)
+- hdring-next efde21f9 (+engine hdring-engine 37a734bb) | textfeed-next 50c0c33e (+engine ba72a485, cgame c94af889)
+- alarmplace-next ..54b55098 (panels, MG team/alarm, counter timer/zones/edge ring/stay-in, lost-zone penalty + alarm-on-start whitelist m3l2 m4l1 m4l2 e3l2 t3l1; same chapter only)
+- alarmsnipers-next ..eae14c18 (16 audited roof-deck spots on 6 maps) | searchlight-next 7547b329 | mortar-next c47c00fa (+church barrage fix bug-4032)
+- lobbyall-next (lobby at every mission start + between levels, timeouts; campaign already did) | c96-next b8fb26fa (+ship files in c96_model_2026-10-18/ship, fixes pak not applied; public README credit TODO)
+- gunfit2-next 553e3337 -> armory-next 2f456973 (Showroom Armory) + engine armory-engine 845aaf16 (exe: 3D aspect fix bug-4053, MAX_CVARS 16384 bug-4052)
+- alarmveh-next (off by default coop_alarmVeh 0; truck m4l1/t3l1/m4l2, halftrack m3l3/t2l3 after mission halftrack); ROUTES_HOWTO.md for 6 maps
+- objectives-next (phase 1: objx.scr mechanics, m1l3c log+hold, m2l1 radios; only ~4-5 min added vs 10-15 target)
+- gamepad-next engine 6cb3fc2a (menus with pad incl. pull-downs/sliders; netfix merged) + mod cc13550a; Ally test zip G:\mohaa-gamepad\ally_package.zip (steps in README_ALLY.txt; user not yet told to install)
+- loadcine-next engine (play-once + hold, .hzlc v2); m1l1 trailer2 7.8 MB approved; rollout to all missions running; mod widget hook pending.
 
-## Possibly changed since (check, do not assume)
-- A local session "Continue coop mod work from saved notes" was started 2026-10-14 on the same
-  queue (give-all key, sandstorm, reinforcements). It had about 1 % of the weekly allowance.
-- A cloud session may have run from `docs/proposals/officer_reinforcements_2026-10-14/CLOUD_BRIEF.md`
-  and left a side branch on the mod's org remote (script drafts, untested).
-
-## Lanes (one line each)
-- Give-all key bug: not started, not in the buglog.
-- SAS mission sandstorm + hint: not started.
-- Aim audit (Stage 2b, all 162 weapons): ON HOLD by the user (2026-10-14) - do not run.
-- Officer and reinforcements: design approved, nothing built. README in
-  `docs/proposals/officer_reinforcements_2026-10-14/`.
-- Rifles: `ads-rifle-next` c7ce5e86; reloads built for Kar98, Mosin, Enfield, Springfield, Garand,
-  not released; path fix and M1 Carbine next.
-- SMGs: `ads-smg-next` 9ae4d1b0; MP18 + Sten built (await the user's eyes); Thompson family partly
-  built, M1928 failing.
-- Heavy: `ads-heavy-next` 1af86b8f; FG 42 pair + FG 42 Irons built (integrate up to aa84c42d only);
-  M1919 sights done, reloads not.
-- Pistols: `ads-next` f8d0f895 (M10 fix unverified); old C96 ship2 superseded.
-- C96 replacement: model downloaded and inspected, not built.
-- Repaints: silencer shipped; grease gun partly checked; shotgun receiver top and the wood set not
-  started.
-- Small-maps ideas, main menu, performance moves 2-5: not started.
-
-## Next big build (user 2026-10-15)
-- v1.10.29 released (see Live). Release on the user's "go" (publish_release 1.10.29; mod branch combo-1.10.29 in the main checkout; cgame aefb2f05 from progsync cgame-1.10.29 776e4de5), then start_servers.ps1.
-- Build the ALARM system + COUNTER-ATTACK from docs/proposals/alarm_counterattack_2026-10-15/DESIGN.md (8 steps, both off by default; stealth maps excluded via coop_stealthMap / coop_enableDisguises). User liked quick wins #1 (counter-attack) and #6 (alarms on more maps, AI runs to switches, reinforcements continue while live); #5 side objectives = investigate later.
-- AI realism steps 5+ from docs/proposals/ai_realism_2026-10-15/PLAN.md after that.
-
-## Waiting on the user
-- FEATURE (user 2026-10-14): replace the big text prompts for picking up sandbags, using ammo boxes and healing friendlies with ICONS (small icon + the bound key near the crosshair). Reuse the item-readout icons from v1.10.21 (medkit / sandbag / ammo box, drawn with the key underneath) and the UI hi-res text scale from bug-3918. Design-first: show the user a mock-up before building.
-- bug-3917: briefing "flickering black" for a remote player (~200 ms). Lead in the buglog (menumirror slide add/remove order). bug-3915 uniform: new evidence in the buglog. Both for Sunday.
-- bug-3916: SAS escort sometimes gets stuck before the gate on the SAS rescue map (soft-lock: explosives cannot be triggered). Do it with the forced-sandstorm + hint feature (same map). Ask before changing.
-- bug-3915: only player 1 can change uniform in the co-op lobby. Batch with bug-3913/3914; ask before changing.
-- bug-3914: co-op lobby bottom bar shows the PvP Allied/Axis armories; should be Loadout + Service Record only. Batch with bug-3913; ask before changing.
-- bug-3913: a departed player's lobby mannequin stays in co_lobby1 (cause in the buglog entry). User: do NOT change it yet - ask before fixing.
-- The decision sheet in KICKOFF.md section 5 (defaults apply if they say "all defaults").
-- Their eyes on v1.10.22: scope view, downpour density, What's New card layout.
-
-## Public servers (started 2026-10-14 at the user's request)
-- THREE coop dedicated servers (names "MOH Coop Trilogy #1/#2/#3 - discord.gg/cVjMYPBFZ", game ports 12203 / 12204 / 12210, query 12205 / 12206 / 12211, 4 players each) play the FULL TRILOGY: coop_campaign 1 from co_lobby1; server-only loose copies of the three finales in `public_serverssrvNmainttmaps` (made by `public_serverssetup_trilogy.py` from the released paks) hand AA -> SH -> BT -> AA. The finale hand-offs are untested (need a full campaign end). Listed on the public browser (333networks master, game "mohaab"); browser query ports 12205 / 12206 sit inside the firewall rule the user made for UDP 12203-12214 (12300+ is blocked). Start with `public_serversstart_servers.ps1`; the runner restarts on exit; stop with `public_serversstop_servers.ps1`. Re-run setup_trilogy.py after any release that changes m6l3e, t3l2 or e3l4/Outro.
-- They BLOCK deploys (deploy_window.ps1 aborts while omohaaded runs from G:\GOG): stop them first, restart after a release.
-- bug-3909/3910 shipped in v1.10.24. The public servers keep sv_lagProbe 1 for a few days: watch SVCMDQ / SVFRAME lines in public_servers/srvN/maintt/qconsole.log.
-
-## v1.10.25 HOTFIX SHIPPED 2026-10-14 ~17:30: join lag fixed (bug-3911 client reads network every frame, bug-3912 4 MB sockets); engine rel-1.10.25-netfix dfc7079f pushed as release-1.10.25 (exe aa8304ff, ded 0de5f7ca). Notes below are the history of the hunt.
-- v1.10.24 still lags for real clients. Repro: user cfg at com_maxfps 200 never enters (H:\hzm_archive\joinflood\r1_rel_user200, r2); at 60 fps it joins but backlog ~926, as low as 7 snapshots/s (r3); pristine cfg at 200 is fine (r4).
-- The agent (handover docs/proposals/joinflood_2026-10-14/README.md, engine worktree openmohaa-hzm-joinflood) was cut off while starting: "Add a socket-buffer helper and call it for both sockets" (raise the UDP send/receive buffers - Windows defaults are small and drop bursts of 1300-byte fragments at high frame rates). Unverified lead.
-- User requirement: anyone must be able to join at ANY settings (no settings workaround). Proof after the fix = 6 runs: user cfg@200, worst case (fps 0/333, maxpackets 125, packetdup max, rate 90000, snaps 40), lightest (60, 30, 0, 25000, 20), pristine@200, two clients, listen host. Ship as a hotfix (user approved), rebuild exes in openmohaa-hzm-rel (DLOPEN on), then restart the public servers.
+## INTEGRATION (next)
+Engine: one integ branch on the netfix release lineage merging hdring-engine, iconprompts, textfeed, loadcine, armory-engine, gamepad -> new exe + cgame + ded. Mod: merge all branches into coop-wip (alarmplace-next before alarmsnipers/alarmveh/objectives/mortar). Then gen_fixes_pak (C96 ship, HD ramp, icons, load clips), What's New card, FEATURES/HISTORY (docs at ceilings - prune), full regression harness run, user playtest, RELEASE CHECKLIST in NEXT_SESSION.md with user's game closed + "go".
+## Design waiting: objectives phase 2 (more maps, actor actions, reach +10-15 min); alarm vehicle routes for 6 maps (user places markers).
+## Queued: weapon anim lanes (ads_twohand README end: bolts every shot, ADS shimmer, same ADS mounted/cover/3p, correct hands, Colt slide); new main menu.
+## Parked: code signing (Smart App Control) - free route SignPath Foundation (OSS licence + public GitHub Actions), cheap Certum OSS, paid Azure Trusted Signing.
