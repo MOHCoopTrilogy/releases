@@ -96,6 +96,14 @@ av_do local.c:{
 		level.avt_follow = 1
 		println "^~^~^ AVT follow cam on"
 	}
+	if( local.c == "fillseed" ){ waitthread av_fillseed }
+	if( local.c == "fill" ){ thread av_fill }
+	if( local.c == "playerseed" ){
+		setcvar "ai_x" ( "" + local.p.origin[0] )
+		setcvar "ai_y" ( "" + local.p.origin[1] )
+		setcvar "ai_z" ( "" + local.p.origin[2] )
+		waitthread av_fillseed
+	}
 	if( local.c == "trace" ){ level.avt_trace = 1 }
 	if( local.c == "notrace" ){ level.avt_trace = 0 }
 
@@ -157,4 +165,88 @@ av_do local.c:{
 	if( local.c == "men" ){ println ( "^~^~^ AVT alarm men alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive "alarm" ) ) }
 	// the crate (atsupply) state
 	if( local.c == "crate" ){ println ( "^~^~^ AVT atSupplyN=" + ( waitthread av_s level.coop_atSupplyN ) + " crateOk1=" + ( waitthread av_s level.av_crateOk[1] ) ) }
+}end
+
+//=========================================================================
+// ROUTE SCOUT (alarm vehicle routes, 2026-10-19): flood-fill the area a truck hull can drive. Seeds are added with `fillseed`
+// (ai_x ai_y ai_z), `fill` runs it: 128 u grid, 4-neighbours, each step needs a ground (|dz| <= 48) and a clear sweep of the Opel
+// hull box. Prints ^~^~^ SCF <ix> <iy> <z> <surfaceFlags> per free cell and ^~^~^ SCF done <n>.
+//=========================================================================
+av_fillseed:{
+	if( level.avf_ns == NIL ){ level.avf_ns = 0 }
+	level.avf_ns++
+	level.avf_sx[level.avf_ns] = float( getcvar( "ai_x" ) )
+	level.avf_sy[level.avf_ns] = float( getcvar( "ai_y" ) )
+	level.avf_sz[level.avf_ns] = float( getcvar( "ai_z" ) )
+	println ( "^~^~^ SCF seed " + level.avf_ns )
+}end
+
+av_cellkey local.ix local.iy:{
+	local.k = ( ( local.ix + 500 ) * 1000 ) + ( local.iy + 500 )
+}end local.k
+
+av_fill:{
+	local.step = 128
+	local.maxc = int( getcvar( "ai_lx" ) )
+	if( local.maxc < 100 ){ local.maxc = 7000 }
+	level.avf_h = 1
+	level.avf_t = 0
+	level.avf_cnt = 0
+	for( local.s = 1; local.s <= level.avf_ns; local.s++ ){
+		local.ix = int( ( level.avf_sx[local.s] + 64 ) / local.step )
+		if( level.avf_sx[local.s] < 0 ){ local.ix = int( ( level.avf_sx[local.s] - 64 ) / local.step ) }
+		local.iy = int( ( level.avf_sy[local.s] + 64 ) / local.step )
+		if( level.avf_sy[local.s] < 0 ){ local.iy = int( ( level.avf_sy[local.s] - 64 ) / local.step ) }
+		local.k = waitthread av_cellkey local.ix local.iy
+		if( level.avf_vis[local.k] == 1 ){ continue }
+		level.avf_vis[local.k] = 1
+		level.avf_t++
+		level.avf_qx[level.avf_t] = local.ix
+		level.avf_qy[level.avf_t] = local.iy
+		level.avf_qz[level.avf_t] = level.avf_sz[local.s]
+		level.avf_cnt++
+		println ( "^~^~^ SCF " + local.ix + " " + local.iy + " " + level.avf_sz[local.s] + " 0" )
+	}
+	local.per = 0
+	while( level.avf_h <= level.avf_t && level.avf_cnt < local.maxc ){
+		local.cx = level.avf_qx[level.avf_h]
+		local.cy = level.avf_qy[level.avf_h]
+		local.cz = level.avf_qz[level.avf_h]
+		level.avf_h++
+		for( local.d = 0; local.d < 4; local.d++ ){
+			local.nx = local.cx
+			local.ny = local.cy
+			if( local.d == 0 ){ local.nx = local.cx + 1 }
+			if( local.d == 1 ){ local.nx = local.cx - 1 }
+			if( local.d == 2 ){ local.ny = local.cy + 1 }
+			if( local.d == 3 ){ local.ny = local.cy - 1 }
+			local.k = waitthread av_cellkey local.nx local.ny
+			if( level.avf_vis[local.k] == 1 ){ continue }
+			level.avf_vis[local.k] = 1
+			local.wx = local.nx * local.step
+			local.wy = local.ny * local.step
+			local.g = traced ( local.wx local.wy ( local.cz + 100 ) ) ( local.wx local.wy ( local.cz - 100 ) ) 1023 ( 0 0 0 ) ( 0 0 0 ) 1
+			if( local.g["startSolid"] == 1 || local.g["fraction"] >= 1.0 ){ continue }
+			local.gz = local.g["endpos"][2]
+			local.dz = local.gz - local.cz
+			if( local.dz < 0 ){ local.dz = 0 - local.dz }
+			if( local.dz > 48 ){ continue }
+			local.ax = local.cx * local.step
+			local.ay = local.cy * local.step
+			local.h = traced ( local.ax local.ay ( local.cz + 26 ) ) ( local.wx local.wy ( local.gz + 26 ) ) 1023 ( -64 -52 0 ) ( 64 52 64 ) 466945
+			if( local.h["startSolid"] == 1 || local.h["allSolid"] == 1 || local.h["fraction"] < 1.0 ){ continue }
+			level.avf_t++
+			level.avf_qx[level.avf_t] = local.nx
+			level.avf_qy[level.avf_t] = local.ny
+			level.avf_qz[level.avf_t] = local.gz
+			level.avf_cnt++
+			println ( "^~^~^ SCF " + local.nx + " " + local.ny + " " + local.gz + " " + local.g["surfaceFlags"] )
+		}
+		local.per++
+		if( local.per >= 12 ){
+			local.per = 0
+			waitframe
+		}
+	}
+	println ( "^~^~^ SCF done " + level.avf_cnt )
 }end
