@@ -1,0 +1,29 @@
+    ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
+    ^~^~^ NEB t=259.625 church hold complete: players=4 - the Nebelwerfer fight starts
+    ^~^~^ NEB t=259.625 nest 1 gunner placed at ( -2433.000 -5129.955 -38.144 ) gun at ( -2433.000 -5096.000 -17.000 )
+    ^~^~^ NEB t=259.625 nest 2 gunner placed at ( -3873.000 -6482.511 -15.422 ) gun at ( -3873.000 -6472.000 39.000 )
+    ^~^~^ NEB t=259.625 nest 3 gunner placed at ( -4905.000 -6289.592 -56.944 ) gun at ( -4905.000 -6280.000 -2.000 )
+    ^~^~^ NEB t=259.625 nest 4 gunner placed at ( -5703.946 -5391.000 -79.875 ) gun at ( -5697.000 -5391.000 -9.000 )
+    ^~^~^ NEB t=259.625 nest 5 gunner placed at ( -5825.000 -5254.946 -79.875 ) gun at ( -5825.000 -5248.000 -9.000 )
+    ^~^~^ NEB t=261.625 sniper 1 sent to Nebelwerfer 2
+    ^~^~^ NEB t=261.775 defenders at Nebelwerfer 1: 6 of 6 (waited 0 s for them to be out of sight)
+    ^~^~^ NEB t=261.775 defenders at Nebelwerfer 2: 6 of 6 (waited 0 s for them to be out of sight)
+    ^~^~^ NEB t=261.775 defenders at Nebelwerfer 3: 6 of 6 (waited 0 s for them to be out of sight)
+    ^~^~^ NEB t=261.775 defenders at Nebelwerfer 4: 6 of 6 (waited 0 s for them to be out of sight)
+    ^~^~^ NEB t=263.675 ROCKET CRATE at ( 1601.000 -2420.000 -279.875 ) dist_to_church=70 hidden from 1 halftrack stop(s), launcher bazooka + 3 shells (infinite respawn)
+    ^~^~^ NEB t=263.675 halftrack 1 stop ( -2837.400 -3004.600 -159.200 ) overlooks 7 of 7 approach points
+    ^~^~^ ALMVEH ARRIVING halftrack route=1 guard1 hp=300 pax=3 players=1 entry=( -3733.400 -1980.600 -190.500 )
+    ^~^~^ ALMVEH ARRIVED halftrack at ( -2837.715 -2984.034 -162.919 )
+    ^~^~^ NEB t=337.625 charge planted on Nebelwerfer 1 - 4 s fuse: DEFEND
+    ^~^~^ NEB t=339.625 defend wave 1: 1 squad(s) sent from ( -3454.000 -6531.000 -26.000 )
+    ^~^~^ NEB t=342.625 Nebelwerfer 1 destroyed, remaining 3
+    ^~^~^ NEB t=346.925 COUNTER-PUSH: 2 squad(s) sent from ( -3562.779 -4919.938 -164.286 )
+    ^~^~^ NEB t=427.925 no German mortar crew this time (chance / sites)
+    ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
+    ^~^~^ OFFICER_DROP map=m3l3 indoor=0 pick=binoc
