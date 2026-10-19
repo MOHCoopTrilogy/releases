@@ -1,0 +1,25 @@
+19:59:50 t=0.028 launched pid 12652 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+19:59:50 t=0.056 in-process guard installed on thread 7140
+19:59:51 t=0.455 place 0x63a909f8 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:59:51 t=0.577 place 0x63aa09f8 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+19:59:51 t=0.581 place 0x6b55049e SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+20:00:03 chain3 OK   menu start on m1l2a was redirected to the lobby
+20:00:03 chain3 OK   driver armed on first map
+20:00:13 chain3 OK   lobby (co_lobby1) loaded
+20:00:51 chain3 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=1260 rank=2 cvarXp=1260 cvarUnlocks= carryReinf= marker= next=m1l2a campaign=0 players=1
+20:00:59 chain3 OK   ready-up -> lobby launches m1l2a
+20:01:02 chain3 OK   m1l2a loaded
+20:01:41 chain3 OK   coop active on m1l2a
+20:01:48 chain3 REPORT m1l1 before the level end ^~^~^ LA report map=m1l2a xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=1660 rank=2 cvarXp=1660 cvarUnlocks= carryReinf=1 marker=m1l1_marker next= campaign=0 players=1
+20:01:48 chain3 save files before: ['chal_5A6D61309811F269E5FFF9A632E13713.dat 725B mtime=20:01:47', 'chal_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 29B mtime=16:07:45', 'pend_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:00:58', 'pins_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:01:47', 'pins_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 0B mtime=16:05:15', 'unlocks_5A6D61309811F269E5FFF9A632E13713.dat 411B mtime=15:43:27', 'xp_5A6D61309811F269E5FFF9A632E13713.dat 4B mtime=19:44:18', 'xp_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 1B mtime=16:05:45']
+20:02:35 chain3 OK   level end hopped through the lobby
+20:03:12 chain3 REPORT in the lobby between levels ^~^~^ LA report map=co_lobby1 xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=1660 rank=2 cvarXp=1660 cvarUnlocks= carryReinf=1 marker=m1l1_marker next=m1l2b campaign=0 players=1
+20:03:20 chain3 OK   second lobby launches m1l2b
+20:03:24 chain3 OK   m1l2a loaded
+20:04:12 chain3 OK   coop active on m1l2b
+20:04:13 chain3 REPORT m1l2b ^~^~^ LA report map=m1l2b xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=1660 rank=2 cvarXp=1660 cvarUnlocks= carryReinf=1 marker=m1l1_marker next= campaign=0 players=1
+20:04:13 chain3 save files after: ['chal_5A6D61309811F269E5FFF9A632E13713.dat 725B mtime=20:03:13', 'chal_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 29B mtime=16:07:45', 'pend_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:03:19', 'pins_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:03:13', 'pins_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 0B mtime=16:05:15', 'unlocks_5A6D61309811F269E5FFF9A632E13713.dat 411B mtime=15:43:27', 'xp_5A6D61309811F269E5FFF9A632E13713.dat 4B mtime=20:02:16', 'xp_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 1B mtime=16:05:45']
+20:04:15 chain3 ENTER marker seen: True
+20:04:15 chain3 script errors: 0 []
+20:04:15 t=264.952 process exited
+20:04:15 [la_chain3] done: 12 shots, window {'clean': True, 'violations': []}

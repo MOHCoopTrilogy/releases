@@ -1,0 +1,14 @@
+19:28:06 t=0.043 launched pid 15176 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+19:28:06 t=0.124 in-process guard installed on thread 25544
+19:28:07 t=0.609 place 0x59fb09e6 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:28:07 t=0.739 place 0x59fc09e6 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+19:28:07 t=0.743 place 0x6ab0049e SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:28:18 campaign OK   driver armed on first map
+19:28:28 campaign OK   lobby (co_lobby1) loaded
+19:29:06 campaign ^~^~^ LA state map=co_lobby1 lobbyMap=1 lobbyActive=1 mainLoaded=1 players=1 campaign=1 next=
+19:29:14 campaign OK   ready-up -> lobby launches briefing/briefing1
+19:29:17 campaign OK   briefing1 loaded
+19:29:27 campaign ENTER marker seen: False
+19:29:27 campaign script errors: 1 ["[2026-10-18 19:29:17 UTC-6.000] ^~^~^ Script Error : ScriptMaster::CreateScriptThread: label 'briefing_briefing1' does not exist in 'coop_mod/spawnlocations.scr'."]
+19:29:27 t=81.017 process exited
+19:29:27 [la_campaign] done: 5 shots, window {'clean': True, 'violations': []}

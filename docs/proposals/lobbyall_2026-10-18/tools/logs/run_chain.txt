@@ -1,0 +1,14 @@
+OK   driver armed on first map
+OK   lobby (co_lobby1) loaded
+^~^~^ LA state map=co_lobby1 lobbyMap=1 lobbyActive=1 mainLoaded=1 players=1 campaign=0 next=m1l1
+OK   ready-up -> lobby launches m1l1
+OK   m1l1 loaded
+OK   coop active on m1l1
+^~^~^ LA state map=" + getcvar( "mapname" ) + " lobbyMap=" + level.coop_lobbyMap + " lobbyActive=" + level.coop_lobbyActive + " mainLoaded=" + level.coop_mainScriptLoaded + " players=" + $player.size + " campaign=" + getcvar( "coop_campaign" ) + " next=" ^
+OK   level end hopped through the lobby
+^~^~^ LA state map=co_lobby1 lobbyMap=1 lobbyActive=1 mainLoaded=1 players=1 campaign=0 next=m1l2a
+OK   second lobby launches m1l2a
+OK   m1l2a loaded
+OK   coop active on m1l2a
+ENTER marker seen: True
+script errors: 5 ["[2026-10-18 19:25:42 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-18 19:25:42 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'int'", "[2026-10-18 19:25:42 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-18 19:25:42 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'string'", "[2026-10-18 19:25:42 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'"]

@@ -1,0 +1,21 @@
+19:23:50 t=0.030 launched pid 13020 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+19:23:50 t=0.056 in-process guard installed on thread 22176
+19:23:51 t=0.589 place 0x6d810642 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:23:51 t=0.912 place 0x6d820642 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+19:23:51 t=0.917 place 0x2b1807d2 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:24:03 chain OK   driver armed on first map
+19:24:13 chain OK   lobby (co_lobby1) loaded
+19:24:51 chain ^~^~^ LA state map=co_lobby1 lobbyMap=1 lobbyActive=1 mainLoaded=1 players=1 campaign=0 next=m1l1
+19:24:58 chain OK   ready-up -> lobby launches m1l1
+19:25:02 chain OK   m1l1 loaded
+19:25:42 chain OK   coop active on m1l1
+19:25:42 chain ^~^~^ LA state map=" + getcvar( "mapname" ) + " lobbyMap=" + level.coop_lobbyMap + " lobbyActive=" + level.coop_lobbyActive + " mainLoaded=" + level.coop_mainScriptLoaded + " players=" + $player.size + " campaign=" + getcvar( "coop_campaign" ) + " next=" ^
+19:26:31 chain OK   level end hopped through the lobby
+19:27:08 chain ^~^~^ LA state map=co_lobby1 lobbyMap=1 lobbyActive=1 mainLoaded=1 players=1 campaign=0 next=m1l2a
+19:27:16 chain OK   second lobby launches m1l2a
+19:27:20 chain OK   m1l2a loaded
+19:27:59 chain OK   coop active on m1l2a
+19:28:02 chain ENTER marker seen: True
+19:28:02 chain script errors: 5 ["[2026-10-18 19:25:42 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-18 19:25:42 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'int'", "[2026-10-18 19:25:42 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-18 19:25:42 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'string'", "[2026-10-18 19:25:42 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'"]
+19:28:02 t=251.425 process exited
+19:28:02 [la_chain] done: 12 shots, window {'clean': True, 'violations': []}

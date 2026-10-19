@@ -1,0 +1,59 @@
+19:24:03 chain OK   driver armed on first map
+19:24:13 chain OK   lobby (co_lobby1) loaded
+19:24:51 chain ^~^~^ LA state map=co_lobby1 lobbyMap=1 lobbyActive=1 mainLoaded=1 players=1 campaign=0 next=m1l1
+19:24:58 chain OK   ready-up -> lobby launches m1l1
+19:25:02 chain OK   m1l1 loaded
+19:25:42 chain OK   coop active on m1l1
+19:25:42 chain ^~^~^ LA state map=" + getcvar( "mapname" ) + " lobbyMap=" + level.coop_lobbyMap + " lobbyActive=" + level.coop_lobbyActive + " mainLoaded=" + level.coop_mainScriptLoaded + " players=" + $player.size + " campaign=" + getcvar( "coop_campaign" ) + " next=" ^
+19:26:31 chain OK   level end hopped through the lobby
+19:27:08 chain ^~^~^ LA state map=co_lobby1 lobbyMap=1 lobbyActive=1 mainLoaded=1 players=1 campaign=0 next=m1l2a
+19:27:16 chain OK   second lobby launches m1l2a
+19:27:20 chain OK   m1l2a loaded
+19:27:59 chain OK   coop active on m1l2a
+19:28:02 chain ENTER marker seen: True
+19:28:02 chain script errors: 5 ["[2026-10-18 19:25:42 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-18 19:25:42 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'int'", "[2026-10-18 19:25:42 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-18 19:25:42 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'string'", "[2026-10-18 19:25:42 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'"]
+19:28:18 campaign OK   driver armed on first map
+19:28:28 campaign OK   lobby (co_lobby1) loaded
+19:29:06 campaign ^~^~^ LA state map=co_lobby1 lobbyMap=1 lobbyActive=1 mainLoaded=1 players=1 campaign=1 next=
+19:29:14 campaign OK   ready-up -> lobby launches briefing/briefing1
+19:29:17 campaign OK   briefing1 loaded
+19:29:27 campaign ENTER marker seen: False
+19:29:27 campaign script errors: 1 ["[2026-10-18 19:29:17 UTC-6.000] ^~^~^ Script Error : ScriptMaster::CreateScriptThread: label 'briefing_briefing1' does not exist in 'coop_mod/spawnlocations.scr'."]
+19:29:43 off OK   driver armed on first map
+19:30:21 off OK   coop active on m2l1
+19:30:21 off ^~^~^ LA state map=" + getcvar( "mapname" ) + " lobbyMap=" + level.coop_lobbyMap + " lobbyActive=" + level.coop_lobbyActive + " mainLoaded=" + level.coop_mainScriptLoaded + " players=" + $player.size + " campaign=" + getcvar( "coop_campaign" ) + " next=" ^
+19:30:21 off lobby entered: False
+19:30:21 off script errors: 5 ["[2026-10-18 19:30:21 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-18 19:30:21 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'int'", "[2026-10-18 19:30:21 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-18 19:30:21 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'string'", "[2026-10-18 19:30:21 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'"]
+19:41:53 chain2 FAILED SlotBusy('client slot hudfeed5 is in use by pid 9400 until Sun Oct 18 21:11:48 2026') Traceback (most recent call last):
+  File "C:\mohaa-coop-dev\docs\proposals\lobbyall_2026-10-18\tools\la_run.py", line 67, in <module>
+    R.launch(1280, 720, extra)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "<string>", line 30, in launch
+  File "C:\mohaa-coop-dev\docs\tools\harness_guard.py", line 323, in acquire_slot
+    raise SlotBusy("client slot %s is in use by pid %s until %s" % (owner, cur.get("pid"), time.ctime(cur.get("expires", 0))))
+harness_guard.SlotBusy: client slot hudfeed5 is in use by pid 9400 until Sun Oct 18 21:11:48 2026
+
+19:42:12 chain2 OK   menu start on m1l1 was redirected to the lobby
+19:42:12 chain2 OK   driver armed on first map
+19:42:22 chain2 OK   lobby (co_lobby1) loaded
+19:43:00 chain2 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=1260 rank=2 cvarXp=1260 cvarUnlocks= carryReinf= marker= next=m1l1 campaign=0 players=1
+19:43:08 chain2 OK   ready-up -> lobby launches briefing/briefing1
+19:43:11 chain2 OK   chapter briefing loaded after the lobby
+20:00:03 chain3 OK   menu start on m1l2a was redirected to the lobby
+20:00:03 chain3 OK   driver armed on first map
+20:00:13 chain3 OK   lobby (co_lobby1) loaded
+20:00:51 chain3 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=1260 rank=2 cvarXp=1260 cvarUnlocks= carryReinf= marker= next=m1l2a campaign=0 players=1
+20:00:59 chain3 OK   ready-up -> lobby launches m1l2a
+20:01:02 chain3 OK   m1l2a loaded
+20:01:41 chain3 OK   coop active on m1l2a
+20:01:48 chain3 REPORT m1l1 before the level end ^~^~^ LA report map=m1l2a xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=1660 rank=2 cvarXp=1660 cvarUnlocks= carryReinf=1 marker=m1l1_marker next= campaign=0 players=1
+20:01:48 chain3 save files before: ['chal_5A6D61309811F269E5FFF9A632E13713.dat 725B mtime=20:01:47', 'chal_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 29B mtime=16:07:45', 'pend_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:00:58', 'pins_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:01:47', 'pins_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 0B mtime=16:05:15', 'unlocks_5A6D61309811F269E5FFF9A632E13713.dat 411B mtime=15:43:27', 'xp_5A6D61309811F269E5FFF9A632E13713.dat 4B mtime=19:44:18', 'xp_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 1B mtime=16:05:45']
+20:02:35 chain3 OK   level end hopped through the lobby
+20:03:12 chain3 REPORT in the lobby between levels ^~^~^ LA report map=co_lobby1 xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=1660 rank=2 cvarXp=1660 cvarUnlocks= carryReinf=1 marker=m1l1_marker next=m1l2b campaign=0 players=1
+20:03:20 chain3 OK   second lobby launches m1l2b
+20:03:24 chain3 OK   m1l2a loaded
+20:04:12 chain3 OK   coop active on m1l2b
+20:04:13 chain3 REPORT m1l2b ^~^~^ LA report map=m1l2b xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=1660 rank=2 cvarXp=1660 cvarUnlocks= carryReinf=1 marker=m1l1_marker next= campaign=0 players=1
+20:04:13 chain3 save files after: ['chal_5A6D61309811F269E5FFF9A632E13713.dat 725B mtime=20:03:13', 'chal_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 29B mtime=16:07:45', 'pend_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:03:19', 'pins_5A6D61309811F269E5FFF9A632E13713.dat 0B mtime=20:03:13', 'pins_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 0B mtime=16:05:15', 'unlocks_5A6D61309811F269E5FFF9A632E13713.dat 411B mtime=15:43:27', 'xp_5A6D61309811F269E5FFF9A632E13713.dat 4B mtime=20:02:16', 'xp_5FC4066ABCCFFA3DE9A08A6B13BFC193.dat 1B mtime=16:05:45']
+20:04:15 chain3 ENTER marker seen: True
+20:04:15 chain3 script errors: 0 []

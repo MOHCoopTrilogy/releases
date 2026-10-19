@@ -1,0 +1,12 @@
+19:42:00 t=0.029 launched pid 8920 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+19:42:00 t=0.068 in-process guard installed on thread 20604
+19:42:00 t=0.461 place 0x7650094a SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:42:00 t=0.579 place 0x7651094a SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+19:42:00 t=0.583 place 0x2ebf09ec SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:42:12 chain2 OK   menu start on m1l1 was redirected to the lobby
+19:42:12 chain2 OK   driver armed on first map
+19:42:22 chain2 OK   lobby (co_lobby1) loaded
+19:43:00 chain2 REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=1260 rank=2 cvarXp=1260 cvarUnlocks= carryReinf= marker= next=m1l1 campaign=0 players=1
+19:43:08 chain2 OK   ready-up -> lobby launches briefing/briefing1
+19:43:11 chain2 OK   chapter briefing loaded after the lobby
+19:53:40 t=700.206 process exited

@@ -1,0 +1,7 @@
+OK   driver armed on first map
+OK   lobby (co_lobby1) loaded
+^~^~^ LA state map=co_lobby1 lobbyMap=1 lobbyActive=1 mainLoaded=1 players=1 campaign=1 next=
+OK   ready-up -> lobby launches briefing/briefing1
+OK   briefing1 loaded
+ENTER marker seen: False
+script errors: 1 ["[2026-10-18 19:29:17 UTC-6.000] ^~^~^ Script Error : ScriptMaster::CreateScriptThread: label 'briefing_briefing1' does not exist in 'coop_mod/spawnlocations.scr'."]

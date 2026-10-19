@@ -1,0 +1,55 @@
+//=========================================================================
+// TEST-ONLY overlay driver (lobbyall-next 2026-10-18) - NEVER shipped. Installed as coop_mod/coop_selftest_xp.scr,
+// started by main.scr when coop_st_xp 1. Commands arrive in cvar la_cmd.
+//=========================================================================
+st_xp_run:{
+	println ( "^~^~^ LA armed map=" + getcvar( "mapname" ) )
+	setcvar "la_cmd" "0"
+	while( 1 ){
+		local.c = getcvar( "la_cmd" )
+		if( local.c != "0" && local.c != "" ){
+			setcvar "la_cmd" "0"
+			waitthread la_do local.c
+			println ( "^~^~^ LA did " + local.c )
+		}
+		waitframe
+	}
+}end
+
+la_n local.v:{
+	local.r = "-"
+	if( local.v != NIL ){ local.r = "" + local.v }
+}end local.r
+
+la_do local.c:{
+	local.p = $player[1]
+	if( local.c == "ready" ){
+		for( local.i = 1; local.i <= $player.size; local.i++ ){
+			if( $player[local.i] != NULL ){
+				$player[local.i].flags["coop_lobbyReady"] = 1
+				$player[local.i].flags["coop_gateReady"] = 1
+			}
+		}
+	}
+	if( local.c == "god" && local.p != NULL ){
+		local.p nodamage
+		local.p.health = 100000
+	}
+	if( local.c == "xp" && local.p != NULL ){
+		waitthread coop_mod/xp.scr::xp_award local.p 400 "kills" "LobbyAll test"
+	}
+	if( local.c == "carry" ){
+		setcvar "coop_carryReinf" "1"
+		setcvar "coop_lobbyall_marker" "m1l1_marker"
+	}
+	if( local.c == "complete" ){
+		exec global/missioncomplete.scr (getcvar "la_next")
+	}
+	if( ( local.c == "report" || local.c == "state" ) && local.p != NULL ){
+		local.id = local.p.flags["coop_xp_id"]
+		local.idn = waitthread la_n local.id
+		local.tot = waitthread la_n local.p.flags["coop_xp_total"]
+		local.rk = waitthread la_n local.p.flags["coop_xp_rank"]
+		println ( "^~^~^ LA report map=" + getcvar( "mapname" ) + " xpId=" + local.idn + " flagXpTotal=" + local.tot + " rank=" + local.rk + " cvarXp=" + getcvar( "coop_xp_" + local.idn ) + " cvarUnlocks=" + getcvar( "coop_unlocks_" + local.idn ) + " carryReinf=" + getcvar( "coop_carryReinf" ) + " marker=" + getcvar( "coop_lobbyall_marker" ) + " next=" + getcvar( "coop_campaignNext" ) + " campaign=" + getcvar( "coop_campaign" ) + " players=" + $player.size )
+	}
+}end

@@ -1,0 +1,6 @@
+OK   menu start on m1l1 was redirected to the lobby
+OK   driver armed on first map
+OK   lobby (co_lobby1) loaded
+REPORT lobby 1 ^~^~^ LA report map=co_lobby1 xpId=5A6D61309811F269E5FFF9A632E13713 flagXpTotal=1260 rank=2 cvarXp=1260 cvarUnlocks= carryReinf= marker= next=m1l1 campaign=0 players=1
+OK   ready-up -> lobby launches briefing/briefing1
+OK   chapter briefing loaded after the lobby

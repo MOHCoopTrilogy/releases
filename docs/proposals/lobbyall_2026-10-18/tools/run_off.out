@@ -1,0 +1,12 @@
+19:29:31 t=0.030 launched pid 20924 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+19:29:31 t=0.077 in-process guard installed on thread 8260
+19:29:31 t=0.479 place 0x56db09f8 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:29:31 t=0.601 place 0x56dc09f8 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+19:29:31 t=0.605 place 0x370a092c SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:29:43 off OK   driver armed on first map
+19:30:21 off OK   coop active on m2l1
+19:30:21 off ^~^~^ LA state map=" + getcvar( "mapname" ) + " lobbyMap=" + level.coop_lobbyMap + " lobbyActive=" + level.coop_lobbyActive + " mainLoaded=" + level.coop_mainScriptLoaded + " players=" + $player.size + " campaign=" + getcvar( "coop_campaign" ) + " next=" ^
+19:30:21 off lobby entered: False
+19:30:21 off script errors: 5 ["[2026-10-18 19:30:21 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-18 19:30:21 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'int'", "[2026-10-18 19:30:21 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-18 19:30:21 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'string'", "[2026-10-18 19:30:21 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'"]
+19:30:21 t=50.435 process exited
+19:30:21 [la_off] done: 0 shots, window {'clean': True, 'violations': []}
