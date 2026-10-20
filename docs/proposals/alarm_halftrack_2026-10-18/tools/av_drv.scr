@@ -55,8 +55,11 @@ av_pinloop:{
 					level.avt_pos = local.gu.origin - ( local.fw * level.avt_back ) + ( local.lf * level.avt_side ) + ( 0 0 level.avt_up )
 					local.gg = level.av_ent.av_gun
 					local.aim = local.gu.origin + ( 0 0 38 )
-					if( local.gg != NULL && local.gg != NIL ){ local.aim = ( ( local.gu.origin + local.gg.origin ) * 0.5 ) + ( 0 0 28 ) }
+					if( local.gg != NULL && local.gg != NIL ){ local.aim = local.gu.origin + ( 0 0 56 ) + ( angles_toforward ( 0 level.av_ent.angles[1] 0 ) * 28 ) }
+					if( level.avt_level == 1 ){ local.aim[2] = level.avt_pos[2] }
 					level.avt_va = vector_toangles ( local.aim - level.avt_pos )
+					level.avt_dbg++
+					if( level.avt_dbg - ( int( level.avt_dbg / 40 ) * 40 ) == 1 ){ println ( "^~^~^ AVT GCAM pos=" + level.avt_pos + " va=" + level.avt_va + " gunner=" + local.gu.origin + " veh=" + level.av_ent.origin + " vyaw=" + level.av_ent.angles[1] + " pl=" + $player[1].origin ) }
 				}
 			}
 			local.p origin level.avt_pos
@@ -104,8 +107,16 @@ av_do local.c:{
 			println ( "^~^~^ AVT AIAUD ent" + local.e + " model=" + local.o.model + " org=" + local.o.origin + " src=" + local.o.flags["coop_waveSrc"] + " floor=[" + ( waitthread coop_mod/m3l3_nebel.scr::nb_floor local.o.origin ) + "] dist=" + int( vector_length ( local.o.origin - local.p.origin ) ) )
 		}
 	}
+	if( local.c == "rmht" ){
+		local.o = $halftrack1
+		if( local.o != NULL && local.o != NIL ){
+			local.o damage local.p 3000 local.p local.o.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 16 0
+			println "^~^~^ AVT mission halftrack1 killed (the map's own death handler runs)"
+		}
+	}
 	if( local.c == "god" ){ local.p.health = 9999
 		local.p.max_health = 9999
+		local.p notarget
 		println ( "^~^~^ AVT god hp=" + local.p.health ) }
 	if( local.c == "here" ){ println ( "^~^~^ AI here " + local.p.origin ) }
 
@@ -128,6 +139,8 @@ av_do local.c:{
 		level.avt_side = float( getcvar( "ai_y" ) )
 		level.avt_up = float( getcvar( "ai_z" ) )
 		level.avt_gcam = 1
+		level.avt_level = int( getcvar( "ai_yaw" ) )
+		level.avt_dbg = 0
 		level.avt_follow = 0
 		println "^~^~^ AVT gun camera on"
 	}
@@ -140,7 +153,7 @@ av_do local.c:{
 				local.d = local.gu.origin - local.gn.origin
 				local.fw = angles_toforward local.v.angles
 				local.lf = angles_toleft local.v.angles
-				println ( "^~^~^ AVT GUNREL speed=" + local.v.velocity + " gunner-gun fwd=" + int( vector_dot local.d local.fw ) + " left=" + int( vector_dot local.d local.lf ) + " up=" + int( local.d[2] ) + " gunnerZoffVeh=" + int( local.gu.origin[2] - local.v.origin[2] ) + " gunZoffVeh=" + int( local.gn.origin[2] - local.v.origin[2] ) + " gunner.anim=" + local.gu.animname )
+				println ( "^~^~^ AVT GUNREL speed=" + local.v.velocity + " gunner-gun fwd=" + int( vector_dot local.d local.fw ) + " left=" + int( vector_dot local.d local.lf ) + " up=" + int( local.d[2] ) + " gunnerZoffVeh=" + int( local.gu.origin[2] - local.v.origin[2] ) + " gunZoffVeh=" + int( local.gn.origin[2] - local.v.origin[2] ) + " gunYaw=" + int( local.gn.angles[1] ) + " gunnerYaw=" + int( local.gu.angles[1] ) + " vehYaw=" + int( local.v.angles[1] ) )
 			} else { println "^~^~^ AVT GUNREL no gunner or gun" }
 		}
 	}

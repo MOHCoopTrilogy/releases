@@ -1,0 +1,12 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> TIMEOUT
+   wait \^~\^~\^ ALMVEH ARRIVED -> TIMEOUT
+   wait \^~\^~\^ ALMVEH FIRING -> TIMEOUT
+   wait \^~\^~\^ ALMVEH DESTROYED -> TIMEOUT
+    ^~^~^ AVT mission halftrack1 killed (the map's own death handler runs)
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=t2l3
+    ^~^~^ ALMVEH skip: the mission halftrack1 is still alive on t2l3
+    ^~^~^ AVT bullet: no vehicle
+    ^~^~^ AVT grenade: no vehicle
+    ^~^~^ AVT rocket: no vehicle
+script errors: 0 []

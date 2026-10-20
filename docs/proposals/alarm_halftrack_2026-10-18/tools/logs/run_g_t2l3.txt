@@ -1,0 +1,56 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> ok
+   wait \^~\^~\^ ALMVEH ARRIVED -> TIMEOUT
+   wait \^~\^~\^ ALMVEH FIRING -> TIMEOUT
+   wait \^~\^~\^ ALMVEH DESTROYED -> ok
+    ^~^~^ AVT mission halftrack1 killed (the map's own death handler runs)
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=t2l3
+    ^~^~^ ALMVEH crate scan route 1: 2 hidden candidates (pass 2), 271 rejected on sight, anchor ( 2271.700 822.600 80.000 ) stop ( 1892.000 808.000 80.000 )
+    ^~^~^ ATSUPPLY skip tag=alarmveh_t2l31 pos=( 2542.000 308.000 34.188 ) reason=no_floor_or_solid
+    ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 2542.000 308.000 34.188 ) dist_to_stop=820 lateral_to_squad_way=581 hidden_from_cab_gunner_mg=3/3+crouch foot_reachable_to_squad_way=ok
+    ^~^~^ ALMVEH pull 1: vehicle due in 22 s
+    ^~^~^ ALMVEH halftrack gun= gunner=
+    ^~^~^ ALMVEH ARRIVING halftrack route=1 halftrack hp=300 pax=3 players=1 entry=( 2543.700 3288.400 60.000 )
+    ^~^~^ AVT pinned at ( 0.000 0.000 0.000 ) looking ( -35.264 45.000 0.000 )
+    ^~^~^ AVT gun camera on
+    ^~^~^ AVT GCAM pos=( 2547.561 3356.147 51.797 ) va=( -29.745 270.074 0.000 ) gunner=( 2547.651 3286.147 51.797 ) veh=( 2543.719 3273.962 -1.306 ) vyaw=270.074 pl=( 0.000 0.000 0.000 )
+    ^~^~^ AVT god hp=9999.000
+    ^~^~^ AVT GCAM pos=( 2547.647 3252.237 51.828 ) va=( -29.745 270.026 0.000 ) gunner=( 2547.679 3182.237 51.828 ) veh=( 2543.853 3170.212 -1.404 ) vyaw=270.026 pl=( 2547.615 3256.051 51.819 )
+    ^~^~^ AVT GCAM pos=( 2547.726 3092.320 51.857 ) va=( -29.745 268.582 0.000 ) gunner=( 2545.994 3022.342 51.857 ) veh=( 2541.866 3010.417 -1.375 ) vyaw=268.582 pl=( 2547.794 3096.321 51.856 )
+    ^~^~^ ALMVEH gunner offset fwd=-12 left=-3 up=53
+    ^~^~^ ALMVEH gun offset in hull frame fwd=39 left=0 up=123
+    ^~^~^ ALMVEH gunner mans the MG42 (turret + machinegunner)
+    ^~^~^ AVT GCAM pos=( 2532.766 3052.517 50.008 ) va=( -29.745 268.372 0.000 ) gunner=( 2530.777 2982.545 50.008 ) veh=( 2540.475 2957.643 -1.375 ) vyaw=268.372 pl=( 2532.803 3053.930 50.008 )
+    ^~^~^ AVT GCAM pos=( 2552.130 2960.501 50.008 ) va=( -29.745 268.229 0.000 ) gunner=( 2549.967 2890.535 50.008 ) veh=( 2537.711 2865.097 -1.375 ) vyaw=268.229 pl=( 2550.561 2963.664 50.008 )
+    ^~^~^ AVT GCAM pos=( 2554.589 2845.696 50.008 ) va=( -29.745 269.631 0.000 ) gunner=( 2554.139 2775.698 50.008 ) veh=( 2534.689 2752.000 -1.375 ) vyaw=269.631 pl=( 2559.318 2846.792 50.008 )
+    ^~^~^ AVT GCAM pos=( 2545.316 2734.907 50.008 ) va=( -29.745 271.832 0.000 ) gunner=( 2547.555 2664.943 50.008 ) veh=( 2536.320 2638.883 -1.375 ) vyaw=271.832 pl=( 2540.318 2738.333 50.008 )
+    ^~^~^ AVT GCAM pos=( 2529.539 2621.900 50.008 ) va=( -29.745 272.579 0.000 ) gunner=( 2532.689 2551.971 50.008 ) veh=( 2540.755 2525.833 -1.375 ) vyaw=272.579 pl=( 2534.352 2625.295 50.008 )
+    ^~^~^ AVT GCAM pos=( 2525.072 2506.576 50.008 ) va=( -29.745 269.781 0.000 ) gunner=( 2524.804 2436.577 50.008 ) veh=( 2544.243 2412.764 -1.375 ) vyaw=269.781 pl=( 2529.803 2510.739 50.008 )
+    ^~^~^ AVT gun camera on
+    ^~^~^ AVT GCAM pos=( 2601.020 2350.938 46.008 ) va=( -0.000 182.992 0.000 ) gunner=( 2501.610 2373.691 50.008 ) veh=( 2543.500 2361.859 -1.375 ) vyaw=268.418 pl=( 2507.489 2449.556 49.508 )
+    ^~^~^ ALMVEH DESTROYED halftrack at ( 2539.680 2265.771 -1.375 )
+    ^~^~^ ALMVEH DMG 273.000 -> -249.000 at ( 2539.680 2265.771 -1.375 ) vel=( -7.983 -159.801 0.000 ) fwdtrace frac=1.000 ent=4095 surf=0
+    ^~^~^ ALMVEH DMG near ent65 class=DrivableVehicle org=( 2539.647 2265.723 -50.875 ) model=models/vehicles/halftrack_winter.tik name=halftrack1
+    ^~^~^ ALMVEH DMG near ent142 class=VehicleSoundEntity org=( 2603.155 2412.764 110.625 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent143 class=VehicleSoundEntity org=( 2588.063 2113.144 110.625 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent200 class=ProjectileTarget org=( 2708.000 2120.000 60.000 ) model=- name=
+    ^~^~^ ALMVEH DMG near ent438 class=VehicleSoundEntity org=( 2491.296 2418.398 110.625 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent454 class=VehicleSoundEntity org=( 2476.205 2118.778 110.625 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent458 class=Animate org=( 2539.680 2265.771 10.625 ) model=models/emitters/fireandsmoke.tik name=
+    ^~^~^ ALMVEH DMG near ent468 class=Animate org=( 2539.680 2265.771 50.625 ) model=models/emitters/linger_smoke02.tik name=
+    ^~^~^ ALMVEH DMG near ent472 class=ScriptModel org=( 2539.680 2265.771 38.625 ) model=models/fx/fx_tank_explosion.tik name=
+    ^~^~^ ALMVEH DMG near ent478 class=ScriptModel org=( 2539.871 2489.631 50.008 ) model=models/fx/dummy.tik name=
+    ^~^~^ ALMVEH DMG near ent481 class=ScriptModel org=( 2539.680 2265.771 -1.375 ) model=models/vehicles/halftrack_winter_d.tik name=
+    ^~^~^ ALMVEH DMG near ent500 class=Health org=( 2619.885 2359.944 2.125 ) model=models/items/dm_50_healthbox.tik name=health
+    ^~^~^ ALMVEH DMG near ent506 class=Actor org=( 2546.171 2292.120 50.008 ) model=models/human/german_waffenss_shutze.tik name=
+    ^~^~^ ALMVEH DMG near ent518 class=Weapon org=( 2552.057 2290.958 127.292 ) model=models/weapons/kar98.tik name=
+    ^~^~^ AVT GCAM pos=( 2645.271 2247.891 48.965 ) va=( -0.000 165.807 0.000 ) gunner=( 2546.404 2272.896 52.965 ) veh=( 2539.680 2265.771 -1.375 ) vyaw=267.117 pl=( 2645.105 2245.900 48.733 )
+    ^~^~^ AVT gun camera on
+    ^~^~^ AVT GCAM pos=( 2643.750 2167.396 -3.875 ) va=( -0.000 146.153 0.000 ) gunner=( 2546.895 2232.351 0.125 ) veh=( 2539.680 2265.771 -1.375 ) vyaw=267.117 pl=( 2645.762 2207.346 -3.875 )
+    ^~^~^ AVT GCAM pos=( 2647.626 2084.104 -3.875 ) va=( -0.000 146.153 0.000 ) gunner=( 2550.771 2149.058 0.125 ) veh=( 2539.680 2265.771 -1.375 ) vyaw=267.117 pl=( 2647.626 2084.104 -3.875 )
+    ^~^~^ AVT gun camera on
+    ^~^~^ AVT GCAM pos=( 2649.638 2124.053 -3.875 ) va=( -0.000 165.807 0.000 ) gunner=( 2550.771 2149.058 0.125 ) veh=( 2539.680 2265.771 -1.375 ) vyaw=267.117 pl=( 2647.626 2084.104 -3.875 )
+    ^~^~^ AVT bullet: no vehicle
+    ^~^~^ AVT grenade: no vehicle
+    ^~^~^ AVT rocket: no vehicle
+script errors: 1 ['[2026-10-19 21:54:13 UTC-6.000] ^~^~^ Script Error : health must be greater than 0']

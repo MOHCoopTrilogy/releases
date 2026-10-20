@@ -57,9 +57,24 @@ try:
                 G.cmd("gunrel"); G.frames(LABEL + "_gdrive", 3, 300)
         else:
             G.cmd("follow", x="450", y="250", z="160")
+        if os.environ.get("AVSWEEPD"):
+            G.cmd("god")
+            time.sleep(8)
+            for k, cfg in enumerate(os.environ["AVSWEEPD"].split(";")):
+                a = cfg.split(",")
+                G.cmd("gunfollow", x=a[0], y=a[1], z=a[2], yaw=os.environ.get("AVLEVEL","0"))
+                time.sleep(1.2)
+                G.still("%s_dr%d_%s" % (LABEL, k, "_".join(a)))
         G.frames(LABEL + "_ht_in", 26 if not os.environ.get("AVGUN") else 6, 250)
     R.wait_log(r"\^~\^~\^ ALMVEH ARRIVED halftrack", 120, p0)
     if os.environ.get("AVGUN"):
+        if os.environ.get("AVSWEEP"):
+            G.cmd("god")
+            for k, cfg in enumerate(os.environ["AVSWEEP"].split(";")):
+                a = cfg.split(",")
+                G.cmd("gunfollow", x=a[0], y=a[1], z=a[2], yaw=os.environ.get("AVLEVEL","0"))
+                time.sleep(1.5)
+                G.still("%s_sw%d_%s" % (LABEL, k, "_".join(a)))
         G.cmd("gunrel"); G.frames(LABEL + "_gpark", 6, 400); G.cmd("gunrel")
         raise SystemExit
     G.frames(LABEL + "_ht_park", 10, 300)

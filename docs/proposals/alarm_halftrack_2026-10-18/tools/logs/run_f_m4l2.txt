@@ -1,0 +1,117 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> ok
+   wait \^~\^~\^ ALMVEH ARRIVED -> ok
+   wait \^~\^~\^ ALMVEH FIRING -> ok
+   wait \^~\^~\^ ALMVEH DESTROYED -> ok
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=m4l2
+    ^~^~^ ALMVEH crate scan route 1: 125 hidden candidates (pass 2), 295 rejected on sight, anchor ( 3202.000 1995.000 150.000 ) stop ( 4424.000 4456.000 264.000 )
+    ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4024.000 3606.000 268.125 ) floor=( 4024.000 3606.000 262.125 ) shells=3
+    ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 4024.000 3606.000 262.125 ) dist_to_stop=939 lateral_to_squad_way=19 hidden_from_cab_gunner_mg=3/3+crouch foot_reachable_to_squad_way=ok
+    ^~^~^ ALMVEH pull 1: vehicle due in 20 s
+    ^~^~^ ALMVEH halftrack gun=avveh1_turret0 gunner=
+    ^~^~^ ALMVEH ARRIVING halftrack route=1 camptruck hp=300 pax=3 players=1 entry=( 5240.000 -800.000 264.000 )
+    ^~^~^ AVT pinned at ( 0.000 0.000 0.000 ) looking ( -35.264 45.000 0.000 )
+    ^~^~^ AVT gun camera on
+    ^~^~^ AVT GCAM pos=( 5218.747 -875.971 312.648 ) va=( -29.745 77.775 0.000 ) gunner=( 5233.570 -807.559 312.648 ) veh=( 5242.273 -789.630 257.593 ) vyaw=77.775 pl=( 0.000 0.000 0.000 )
+    ^~^~^ AVT god hp=9999.000
+    ^~^~^ AVT GCAM pos=( 5239.275 -780.498 309.768 ) va=( -29.745 77.775 0.000 ) gunner=( 5254.098 -712.086 309.768 ) veh=( 5262.619 -695.725 254.015 ) vyaw=77.775 pl=( 5238.506 -784.054 309.947 )
+    ^~^~^ AVT GCAM pos=( 5273.042 -623.986 302.947 ) va=( -29.745 77.775 0.000 ) gunner=( 5287.864 -555.574 302.947 ) veh=( 5296.230 -540.554 246.599 ) vyaw=77.775 pl=( 5272.196 -627.889 303.131 )
+    ^~^~^ ALMVEH gunner offset fwd=-16 left=-5 up=56
+    ^~^~^ ALMVEH gun offset in hull frame fwd=34 left=-8 up=127
+    ^~^~^ ALMVEH gunner mans the MG42 (turret + machinegunner)
+    ^~^~^ AVT GCAM pos=( 5300.657 -518.956 296.949 ) va=( -29.745 76.133 0.000 ) gunner=( 5317.434 -450.996 296.949 ) veh=( 5321.716 -423.517 241.464 ) vyaw=76.133 pl=( 5300.709 -518.980 296.948 )
+    ^~^~^ AVT GCAM pos=( 5311.365 -466.167 294.623 ) va=( -29.745 66.441 0.000 ) gunner=( 5339.343 -402.001 294.623 ) veh=( 5338.621 -372.067 239.019 ) vyaw=66.441 pl=( 5310.751 -468.223 294.739 )
+    ^~^~^ AVT GCAM pos=( 5357.840 -370.112 290.096 ) va=( -29.745 55.296 0.000 ) gunner=( 5397.694 -312.565 290.096 ) veh=( 5390.928 -280.440 234.462 ) vyaw=55.296 pl=( 5356.348 -372.481 290.245 )
+    ^~^~^ AVT GCAM pos=( 5421.350 -281.018 286.040 ) va=( -29.745 51.569 0.000 ) gunner=( 5464.860 -226.183 286.040 ) veh=( 5455.959 -193.277 230.431 ) vyaw=51.569 pl=( 5419.702 -283.157 285.079 )
+    ^~^~^ AVT GCAM pos=( 5488.990 -196.443 279.867 ) va=( -29.745 50.353 0.000 ) gunner=( 5533.654 -142.544 279.867 ) veh=( 5524.160 -109.350 224.260 ) vyaw=50.353 pl=( 5487.261 -198.550 279.990 )
+    ^~^~^ AVT GCAM pos=( 5557.792 -111.397 273.791 ) va=( -29.745 47.398 0.000 ) gunner=( 5605.174 -59.872 273.791 ) veh=( 5594.301 -25.996 218.147 ) vyaw=47.398 pl=( 5556.102 -113.603 273.951 )
+    ^~^~^ AVT gun camera on
+    ^~^~^ AVT GCAM pos=( 5591.342 61.048 266.908 ) va=( -0.000 316.146 0.000 ) gunner=( 5642.735 -27.035 270.908 ) veh=( 5628.959 8.551 215.289 ) vyaw=41.572 pl=( 5588.446 -75.481 271.061 )
+    ^~^~^ ALMVEH FIRING
+    ^~^~^ AVT GCAM pos=( 5597.382 63.731 266.774 ) va=( -0.000 314.260 0.000 ) gunner=( 5645.849 -25.997 270.774 ) veh=( 5628.958 8.553 215.257 ) vyaw=39.686 pl=( 5597.380 63.730 266.774 )
+    ^~^~^ AVT gun camera on
+    ^~^~^ AVT GCAM pos=( 5628.173 89.273 266.742 ) va=( -0.000 291.938 0.000 ) gunner=( 5645.851 -25.998 270.742 ) veh=( 5628.958 8.553 215.257 ) vyaw=39.683 pl=( 5597.389 63.732 266.742 )
+    ^~^~^ AVT GCAM pos=( 5730.544 152.644 261.491 ) va=( -0.000 286.667 0.000 ) gunner=( 5737.558 36.236 265.491 ) veh=( 5715.473 74.520 209.866 ) vyaw=34.411 pl=( 5727.917 151.122 261.631 )
+    ^~^~^ AVT gun camera on
+    ^~^~^ AVT GCAM pos=( 5783.662 184.111 256.676 ) va=( -0.000 306.548 0.000 ) gunner=( 5819.650 88.691 260.676 ) veh=( 5797.389 127.933 205.020 ) vyaw=31.974 pl=( 5815.229 203.866 256.816 )
+    ^~^~^ AVT GCAM pos=( 5793.592 185.939 256.505 ) va=( -0.000 306.287 0.000 ) gunner=( 5829.145 90.356 260.505 ) veh=( 5797.389 127.933 205.020 ) vyaw=31.713 pl=( 5793.592 185.939 256.505 )
+    ^~^~^ AVT GUNREL speed=( 135.552 83.761 0.000 ) gunner-gun fwd=-23 left=57 up=-71 gunnerZoffVeh=55 gunZoffVeh=127 gunYaw=86 gunnerYaw=86 vehYaw=31
+    ^~^~^ AVT GCAM pos=( 5793.592 185.939 256.505 ) va=( -0.000 306.287 0.000 ) gunner=( 5829.145 90.356 260.505 ) veh=( 5797.389 127.933 205.020 ) vyaw=31.713 pl=( 5793.592 185.939 256.505 )
+    ^~^~^ AVT GUNREL speed=( 135.552 83.761 0.000 ) gunner-gun fwd=-23 left=57 up=-71 gunnerZoffVeh=55 gunZoffVeh=127 gunYaw=86 gunnerYaw=86 vehYaw=31
+    ^~^~^ AVT GCAM pos=( 5793.592 185.939 256.505 ) va=( -0.000 306.287 0.000 ) gunner=( 5829.145 90.356 260.505 ) veh=( 5797.389 127.933 205.020 ) vyaw=31.713 pl=( 5793.592 185.939 256.505 )
+    ^~^~^ AVT GCAM pos=( 5793.592 185.939 256.505 ) va=( -0.000 306.287 0.000 ) gunner=( 5829.145 90.356 260.505 ) veh=( 5797.389 127.933 205.020 ) vyaw=31.713 pl=( 5793.592 185.939 256.505 )
+    ^~^~^ AVT GUNREL speed=( 135.552 83.761 0.000 ) gunner-gun fwd=-23 left=57 up=-71 gunnerZoffVeh=55 gunZoffVeh=127 gunYaw=86 gunnerYaw=86 vehYaw=31
+    ^~^~^ AVT GCAM pos=( 5793.592 185.939 256.505 ) va=( -0.000 306.287 0.000 ) gunner=( 5829.145 90.356 260.505 ) veh=( 5797.389 127.933 205.020 ) vyaw=31.713 pl=( 5793.592 185.939 256.505 )
+    ^~^~^ AVT GUNREL speed=( 135.552 83.761 0.000 ) gunner-gun fwd=-23 left=57 up=-71 gunnerZoffVeh=55 gunZoffVeh=127 gunYaw=86 gunnerYaw=86 vehYaw=31
+    ^~^~^ AVT GCAM pos=( 5793.592 185.939 256.505 ) va=( -0.000 306.287 0.000 ) gunner=( 5829.145 90.356 260.505 ) veh=( 5797.389 127.933 205.020 ) vyaw=31.713 pl=( 5793.592 185.939 256.505 )
+    ^~^~^ AVT GCAM pos=( 5792.568 185.838 256.505 ) va=( -0.000 306.287 0.000 ) gunner=( 5828.121 90.256 260.505 ) veh=( 5797.389 127.933 205.020 ) vyaw=31.713 pl=( 5792.568 185.838 256.505 )
+    ^~^~^ AVT GCAM pos=( 5793.592 185.939 256.505 ) va=( -0.000 306.287 0.000 ) gunner=( 5829.145 90.356 260.505 ) veh=( 5797.389 127.933 205.020 ) vyaw=31.713 pl=( 5793.592 185.939 256.505 )
+    ^~^~^ AVT GCAM pos=( 5793.592 185.939 256.505 ) va=( -0.000 306.287 0.000 ) gunner=( 5829.145 90.356 260.505 ) veh=( 5797.389 127.933 205.020 ) vyaw=31.713 pl=( 5793.592 185.939 256.505 )
+    ^~^~^ AVT GCAM pos=( 5793.592 185.939 256.505 ) va=( -0.000 306.287 0.000 ) gunner=( 5829.145 90.356 260.505 ) veh=( 5797.389 127.933 205.020 ) vyaw=31.713 pl=( 5793.592 185.939 256.505 )
+    ^~^~^ AVT GCAM pos=( 5793.592 185.939 256.505 ) va=( -0.000 306.287 0.000 ) gunner=( 5829.145 90.356 260.505 ) veh=( 5797.389 127.933 205.020 ) vyaw=31.713 pl=( 5793.592 185.939 256.505 )
+    ^~^~^ AVT GCAM pos=( 5793.592 185.939 256.505 ) va=( -0.000 306.287 0.000 ) gunner=( 5829.145 90.356 260.505 ) veh=( 5797.389 127.933 205.020 ) vyaw=31.713 pl=( 5793.592 185.939 256.505 )
+    ^~^~^ AVT GCAM pos=( 5793.592 185.939 256.505 ) va=( -0.000 306.287 0.000 ) gunner=( 5829.145 90.356 260.505 ) veh=( 5797.389 127.933 205.020 ) vyaw=31.713 pl=( 5793.592 185.939 256.505 )
+    ^~^~^ ALMVEH stuck at ( 5797.389 127.933 205.020 ): treated as arrived
+    ^~^~^ ALMVEH ARRIVED halftrack at ( 5797.389 127.933 205.020 )
+    ^~^~^ AVT cover rays blocked=7 of 8 at stop ( 4424.000 4456.000 264.000 )
+    ^~^~^ AVT god hp=9999.000
+    ^~^~^ AVT GCAM pos=( 5793.592 185.939 256.505 ) va=( -0.000 306.287 0.000 ) gunner=( 5829.145 90.356 260.505 ) veh=( 5797.389 127.933 205.020 ) vyaw=31.713 pl=( 5793.592 185.939 256.505 )
+    ^~^~^ AVT gun camera on
+    ^~^~^ AVT GCAM pos=( 5827.620 206.965 256.505 ) va=( -0.000 283.968 0.000 ) gunner=( 5829.145 90.356 260.505 ) veh=( 5797.389 127.933 205.020 ) vyaw=31.713 pl=( 5793.592 185.939 256.505 )
+    ^~^~^ AVT GCAM pos=( 5907.055 261.840 250.875 ) va=( -0.000 283.268 0.000 ) gunner=( 5907.153 145.221 254.875 ) veh=( 5890.161 184.568 199.246 ) vyaw=31.012 pl=( 5906.533 260.297 251.020 )
+    ^~^~^ AVT GCAM pos=( 5992.113 318.779 245.167 ) va=( -0.000 283.829 0.000 ) gunner=( 5993.355 202.167 249.167 ) veh=( 5983.304 240.310 193.539 ) vyaw=31.574 pl=( 5994.938 316.517 245.310 )
+    ^~^~^ AVT gun camera on
+    ^~^~^ AVT GCAM pos=( 5970.349 310.173 244.026 ) va=( -0.000 306.962 0.000 ) gunner=( 6007.025 215.016 248.026 ) veh=( 6001.745 251.755 192.398 ) vyaw=32.388 pl=( 6005.084 329.348 244.169 )
+    ^~^~^ AVT GCAM pos=( 5996.607 309.657 243.884 ) va=( -0.000 307.613 0.000 ) gunner=( 6034.362 214.923 247.884 ) veh=( 6001.745 251.755 192.397 ) vyaw=33.039 pl=( 5996.607 309.657 243.884 )
+    ^~^~^ AVT GCAM pos=( 5996.607 309.657 243.882 ) va=( -0.000 307.613 0.000 ) gunner=( 6034.362 214.923 247.882 ) veh=( 6001.745 251.755 192.397 ) vyaw=33.039 pl=( 5996.607 309.657 243.882 )
+    ^~^~^ AVT gun camera on
+    ^~^~^ AVT GCAM pos=( 5963.075 287.848 243.882 ) va=( -0.000 328.680 0.000 ) gunner=( 6034.362 214.923 247.882 ) veh=( 6001.745 251.755 192.397 ) vyaw=33.039 pl=( 5996.607 309.657 243.882 )
+    ^~^~^ AVT GCAM pos=( 5963.075 287.848 243.882 ) va=( -0.000 328.680 0.000 ) gunner=( 6034.362 214.923 247.882 ) veh=( 6001.745 251.755 192.397 ) vyaw=33.039 pl=( 5963.075 287.848 243.882 )
+    ^~^~^ AVT GCAM pos=( 5963.075 287.848 243.882 ) va=( -0.000 328.680 0.000 ) gunner=( 6034.362 214.923 247.882 ) veh=( 6001.745 251.755 192.397 ) vyaw=33.039 pl=( 5963.075 287.848 243.882 )
+    ^~^~^ AVT gun camera on
+    ^~^~^ AVT GCAM pos=( 6030.139 331.465 243.882 ) va=( -0.000 285.295 0.000 ) gunner=( 6034.362 214.923 247.882 ) veh=( 6001.745 251.755 192.397 ) vyaw=33.039 pl=( 5963.075 287.848 243.882 )
+    ^~^~^ AVT GCAM pos=( 6115.201 391.538 238.295 ) va=( -0.000 287.326 0.000 ) gunner=( 6123.552 275.219 242.295 ) veh=( 6091.954 312.465 186.667 ) vyaw=35.070 pl=( 6113.026 389.959 238.438 )
+    ^~^~^ AVT GCAM pos=( 6202.280 455.396 232.340 ) va=( -0.000 288.365 0.000 ) gunner=( 6212.741 339.247 236.340 ) veh=( 6180.417 375.890 180.686 ) vyaw=36.110 pl=( 6200.105 453.790 232.508 )
+    ^~^~^ AVT gun camera on
+    ^~^~^ AVT GCAM pos=( 6187.412 444.620 230.992 ) va=( -0.000 310.789 0.000 ) gunner=( 6230.358 352.124 234.992 ) veh=( 6197.963 388.705 179.338 ) vyaw=36.216 pl=( 6217.508 466.645 231.160 )
+    ^~^~^ AVT GCAM pos=( 6189.549 446.223 230.823 ) va=( -0.000 310.864 0.000 ) gunner=( 6232.617 353.782 234.823 ) veh=( 6197.963 388.705 179.338 ) vyaw=36.290 pl=( 6189.549 446.223 230.823 )
+    ^~^~^ AVT GCAM pos=( 6189.549 446.223 230.823 ) va=( -0.000 310.864 0.000 ) gunner=( 6232.617 353.782 234.823 ) veh=( 6197.963 388.705 179.338 ) vyaw=36.290 pl=( 6189.549 446.223 230.823 )
+    ^~^~^ AVT GUNREL speed=( 128.435 94.312 0.000 ) gunner-gun fwd=-23 left=57 up=-71 gunnerZoffVeh=55 gunZoffVeh=127 gunYaw=91 gunnerYaw=91 vehYaw=36
+    ^~^~^ AVT GCAM pos=( 6189.549 446.223 230.823 ) va=( -0.000 310.864 0.000 ) gunner=( 6232.617 353.782 234.823 ) veh=( 6197.963 388.705 179.338 ) vyaw=36.290 pl=( 6189.549 446.223 230.823 )
+    ^~^~^ AVT GCAM pos=( 6189.549 446.223 230.823 ) va=( -0.000 310.864 0.000 ) gunner=( 6232.617 353.782 234.823 ) veh=( 6197.963 388.705 179.338 ) vyaw=36.290 pl=( 6189.549 446.223 230.823 )
+    ^~^~^ AVT GUNREL speed=( 128.435 94.312 0.000 ) gunner-gun fwd=-23 left=57 up=-71 gunnerZoffVeh=55 gunZoffVeh=127 gunYaw=91 gunnerYaw=91 vehYaw=36
+    ^~^~^ AVT GCAM pos=( 6189.549 446.223 230.823 ) va=( -0.000 310.864 0.000 ) gunner=( 6232.617 353.782 234.823 ) veh=( 6197.963 388.705 179.338 ) vyaw=36.290 pl=( 6189.549 446.223 230.823 )
+    ^~^~^ AVT GCAM pos=( 6189.549 446.223 230.823 ) va=( -0.000 310.864 0.000 ) gunner=( 6232.617 353.782 234.823 ) veh=( 6197.963 388.705 179.338 ) vyaw=36.290 pl=( 6189.549 446.223 230.823 )
+    ^~^~^ AVT GCAM pos=( 6189.549 446.223 230.823 ) va=( -0.000 310.864 0.000 ) gunner=( 6232.617 353.782 234.823 ) veh=( 6197.963 388.705 179.338 ) vyaw=36.290 pl=( 6189.549 446.223 230.823 )
+    ^~^~^ AVT GCAM pos=( 6189.549 446.223 230.823 ) va=( -0.000 310.864 0.000 ) gunner=( 6232.617 353.782 234.823 ) veh=( 6197.963 388.705 179.338 ) vyaw=36.290 pl=( 6189.549 446.223 230.823 )
+    ^~^~^ AVT GCAM pos=( 6189.549 446.223 230.823 ) va=( -0.000 310.864 0.000 ) gunner=( 6232.617 353.782 234.823 ) veh=( 6197.963 388.705 179.338 ) vyaw=36.290 pl=( 6189.549 446.223 230.823 )
+    ^~^~^ AVT GCAM pos=( 6189.549 446.223 230.823 ) va=( -0.000 310.864 0.000 ) gunner=( 6232.617 353.782 234.823 ) veh=( 6197.963 388.705 179.338 ) vyaw=36.290 pl=( 6189.549 446.223 230.823 )
+    ^~^~^ AVT GCAM pos=( 6189.549 446.223 230.823 ) va=( -0.000 310.864 0.000 ) gunner=( 6232.617 353.782 234.823 ) veh=( 6197.963 388.705 179.338 ) vyaw=36.290 pl=( 6189.549 446.223 230.823 )
+    ^~^~^ AVT hp set to 300.000
+    ^~^~^ AVT bullet on hp=300.000
+    ^~^~^ AVT bullet after hp=300.000
+    ^~^~^ AVT GCAM pos=( 6189.549 446.223 230.823 ) va=( -0.000 310.864 0.000 ) gunner=( 6232.617 353.782 234.823 ) veh=( 6197.963 388.705 179.338 ) vyaw=36.290 pl=( 6189.549 446.223 230.823 )
+    ^~^~^ AVT grenade on hp=300.000
+    ^~^~^ AVT grenade after hp=300.000
+    ^~^~^ AVT rocket on hp=300.000
+    ^~^~^ ALMVEH DESTROYED halftrack at ( 6197.963 388.705 179.338 )
+    ^~^~^ ALMVEH DMG 300.000 -> -249.000 at ( 6197.963 388.705 179.338 ) vel=( 128.435 94.312 0.000 ) fwdtrace frac=1.000 ent=4095 surf=0
+    ^~^~^ ALMVEH DMG near ent41 class=VehicleSoundEntity org=( 6048.804 348.652 299.035 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent42 class=VehicleSoundEntity org=( 6290.281 525.972 283.334 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent59 class=VehicleSoundEntity org=( 6115.094 258.377 299.035 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent384 class=VehicleSoundEntity org=( 6356.571 435.697 283.334 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent657 class=ScriptModel org=( 6189.549 446.223 230.823 ) model=models/fx/dummy.tik name=
+    ^~^~^ ALMVEH DMG near ent679 class=Animate org=( 6197.963 388.705 191.338 ) model=models/emitters/fireandsmoke.tik name=
+    ^~^~^ ALMVEH DMG near ent707 class=Animate org=( 6197.963 388.705 231.338 ) model=models/emitters/linger_smoke02.tik name=
+    ^~^~^ ALMVEH DMG near ent711 class=ScriptModel org=( 6197.963 388.705 219.338 ) model=models/fx/fx_tank_explosion.tik name=
+    ^~^~^ ALMVEH DMG near ent730 class=Actor org=( 6232.617 353.782 234.823 ) model=models/human/german_waffenss_shutze.tik name=
+    ^~^~^ ALMVEH DMG near ent737 class=Weapon org=( 6225.744 355.803 312.727 ) model=models/weapons/kar98.tik name=
+    ^~^~^ ALMVEH DMG near ent739 class=Weapon org=( 6180.785 447.626 262.262 ) model=models/weapons/colt45.tik name=
+    ^~^~^ ALMVEH DMG near ent740 class=Weapon org=( 6196.358 422.443 276.947 ) model=models/weapons/mp44.tik name=player0Inventory
+    ^~^~^ ALMVEH DMG near ent741 class=Weapon org=( 6199.163 446.465 285.702 ) model=models/weapons/thompsonsmg.tik name=
+    ^~^~^ ALMVEH DMG near ent742 class=InventoryItem org=( 6241.322 386.745 317.585 ) model=models/items/binoculars.tik name=
+    ^~^~^ AVT GCAM pos=( 6189.549 446.223 230.823 ) va=( -0.000 294.981 0.000 ) gunner=( 6232.617 353.782 234.823 ) veh=( 6197.963 388.705 179.338 ) vyaw=36.290 pl=( 6189.549 446.223 230.707 )
+    ^~^~^ AVT rocket after hp=-249.000
+    ^~^~^ AVT GCAM pos=( 6189.549 446.223 230.823 ) va=( -0.000 294.981 0.000 ) gunner=( 6232.617 353.782 234.823 ) veh=( 6197.963 388.705 179.338 ) vyaw=36.290 pl=( 6189.549 446.223 230.707 )
+    ^~^~^ AVT GCAM pos=( 6189.549 446.223 230.823 ) va=( -0.000 294.981 0.000 ) gunner=( 6232.617 353.782 234.823 ) veh=( 6197.963 388.705 179.338 ) vyaw=36.290 pl=( 6189.549 446.223 230.693 )
+script errors: 0 []

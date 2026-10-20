@@ -53,3 +53,15 @@
 000] ^~^~^ AVT GUNREL speed=( 0.000 -159.927 0.000 ) gunner-gun fwd=-49 left=0 up=-62 gunnerZoffVeh=55 gunZoffVeh=118 gunner.anim=
 000] ^~^~^ AVT GUNREL speed=( -0.002 6.054 0.000 ) gunner-gun fwd=-48 left=0 up=-61 gunnerZoffVeh=54 gunZoffVeh=116 gunner.anim=
 000] ^~^~^ AVT GUNREL speed=( -0.000 0.000 0.000 ) gunner-gun fwd=-49 left=0 up=-62 gunnerZoffVeh=54 gunZoffVeh=117 gunner.anim=
+
+== gunner mount v2 (standing, hands on the MG42; log) ==
+000] ^~^~^ AVT GUNREL speed=( 0.000 -52.527 0.000 ) gunner-gun fwd=-48 left=8 up=-57 gunnerZoffVeh=47 gunZoffVeh=104 gunYaw=270 gunnerYaw=349 vehYaw=270
+000] ^~^~^ AVT GUNREL speed=( 0.000 -155.374 0.000 ) gunner-gun fwd=-49 left=1 up=-67 gunnerZoffVeh=52 gunZoffVeh=120 gunYaw=270 gunnerYaw=359 vehYaw=270
+000] ^~^~^ AVT GUNREL speed=( 0.000 -159.927 0.000 ) gunner-gun fwd=-49 left=0 up=-62 gunnerZoffVeh=55 gunZoffVeh=118 gunYaw=270 gunnerYaw=359 vehYaw=270
+000] ^~^~^ ALMVEH gun offset in hull frame fwd=30 left=-1 up=128
+000] ^~^~^ AVT GUNREL speed=( -0.000 0.000 0.000 ) gunner-gun fwd=-47 left=-28 up=-71 gunnerZoffVeh=56 gunZoffVeh=128 gunYaw=35 gunnerYaw=35 vehYaw=90
+-- t2l3
+000] ^~^~^ ALMVEH gun offset in hull frame fwd=39 left=0 up=123
+000] ^~^~^ ALMVEH gunner mans the MG42 (turret + machinegunner)
+000] ^~^~^ ALMVEH FIRING
+000] ^~^~^ ALMVEH ARRIVED halftrack at ( 2541.525 3061.163 -1.375 )
