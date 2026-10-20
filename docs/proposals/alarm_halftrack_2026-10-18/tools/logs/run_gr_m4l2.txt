@@ -1,0 +1,51 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> ok
+   wait \^~\^~\^ ALMVEH ARRIVED -> ok
+   wait \^~\^~\^ ALMVEH FIRING -> ok
+   wait \^~\^~\^ ALMVEH DESTROYED -> ok
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=m4l2
+    ^~^~^ ALMVEH crate scan route 1: 125 hidden candidates (pass 2), 295 rejected on sight, anchor ( 3202.000 1995.000 150.000 ) stop ( 4424.000 4456.000 264.000 )
+    ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4024.000 3606.000 268.125 ) floor=( 4024.000 3606.000 262.125 ) shells=3
+    ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 4024.000 3606.000 262.125 ) dist_to_stop=939 lateral_to_squad_way=19 hidden_from_cab_gunner_mg=3/3+crouch foot_reachable_to_squad_way=ok
+    ^~^~^ ALMVEH pull 1: vehicle due in 12 s
+    ^~^~^ ALMVEH halftrack gun=avveh1_turret0 gunner=
+    ^~^~^ ALMVEH ARRIVING halftrack route=1 camptruck hp=300 pax=3 players=1 entry=( 5240.000 -800.000 264.000 )
+    ^~^~^ AVT pinned at ( 0.000 0.000 0.000 ) looking ( -35.264 45.000 0.000 )
+    ^~^~^ AVT gun camera on
+    ^~^~^ AVT GUNREL speed=( 11.097 51.216 0.000 ) gunner-gun fwd=-47 left=12 up=-41 gunnerZoffVeh=55 gunZoffVeh=96 gunner.anim=
+    ^~^~^ AVT GUNREL speed=( 33.818 156.086 0.000 ) gunner-gun fwd=-48 left=5 up=-51 gunnerZoffVeh=55 gunZoffVeh=107 gunner.anim=
+    ^~^~^ AVT GUNREL speed=( 33.820 156.086 0.000 ) gunner-gun fwd=-49 left=0 up=-60 gunnerZoffVeh=56 gunZoffVeh=116 gunner.anim=
+    ^~^~^ ALMVEH gunner offset fwd=-16 left=-5 up=56
+    ^~^~^ ALMVEH gun offset in hull frame fwd=34 left=-8 up=116
+    ^~^~^ ALMVEH gunner mans the MG42 (turret + machinegunner)
+    ^~^~^ ALMVEH FIRING
+    ^~^~^ AVT GUNREL speed=( 17.778 62.398 0.000 ) gunner-gun fwd=-58 left=11 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+    ^~^~^ ALMVEH stuck at ( 5222.620 5003.933 193.782 ): treated as arrived
+    ^~^~^ ALMVEH ARRIVED halftrack at ( 5222.620 5003.933 193.782 )
+    ^~^~^ AVT cover rays blocked=7 of 8 at stop ( 4424.000 4456.000 264.000 )
+    ^~^~^ AVT GUNREL speed=( -152.691 -46.820 0.000 ) gunner-gun fwd=-63 left=9 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+    ^~^~^ AVT GUNREL speed=( -152.691 -46.820 0.000 ) gunner-gun fwd=-63 left=9 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+    ^~^~^ AVT hp set to 300.000
+    ^~^~^ AVT bullet on hp=300.000
+    ^~^~^ AVT bullet after hp=300.000
+    ^~^~^ AVT grenade on hp=300.000
+    ^~^~^ AVT grenade after hp=300.000
+    ^~^~^ AVT rocket on hp=300.000
+    ^~^~^ ALMVEH DESTROYED halftrack at ( 5222.620 5003.933 193.782 )
+    ^~^~^ ALMVEH DMG 300.000 -> -249.000 at ( 5222.620 5003.933 193.782 ) vel=( -152.691 -46.820 0.000 ) fwdtrace frac=1.000 ent=4095 surf=0
+    ^~^~^ ALMVEH DMG near ent366 class=SplinePath org=( 5336.000 5027.000 183.000 ) model=- name=t349
+    ^~^~^ ALMVEH DMG near ent367 class=SplinePath org=( 5072.000 4891.000 210.000 ) model=- name=t350
+    ^~^~^ ALMVEH DMG near ent640 class=ScriptModel org=( 5194.971 5117.242 343.578 ) model=models/fx/dummy.tik name=
+    ^~^~^ ALMVEH DMG near ent695 class=VehicleSoundEntity org=( 5386.096 4995.487 300.479 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent700 class=VehicleSoundEntity org=( 5099.451 4907.591 310.949 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent702 class=VehicleSoundEntity org=( 5353.262 5102.566 300.479 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent715 class=VehicleSoundEntity org=( 5066.617 5014.670 310.949 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent727 class=Weapon org=( 5187.817 5126.613 393.378 ) model=models/weapons/colt45.tik name=
+    ^~^~^ ALMVEH DMG near ent728 class=Weapon org=( 5187.559 5093.852 408.355 ) model=models/weapons/mp44.tik name=player0Inventory
+    ^~^~^ ALMVEH DMG near ent729 class=Weapon org=( 5202.929 5113.173 417.088 ) model=models/weapons/thompsonsmg.tik name=
+    ^~^~^ ALMVEH DMG near ent731 class=Animate org=( 5191.873 5106.489 416.862 ) model=models/coop_helmets/coop_std_us_helmet_29th_net.tik name=coop_helmetProp
+    ^~^~^ ALMVEH DMG near ent733 class=Actor org=( 5247.806 5013.158 249.068 ) model=models/human/german_waffenss_shutze.tik name=
+    ^~^~^ ALMVEH DMG near ent750 class=Weapon org=( 5246.252 5005.289 299.243 ) model=models/weapons/kar98.tik name=
+    ^~^~^ ALMVEH DMG near ent751 class=InventoryItem org=( 5222.944 5016.126 293.680 ) model=models/items/binoculars.tik name=
+    ^~^~^ AVT rocket after hp=-249.000
+script errors: 0 []

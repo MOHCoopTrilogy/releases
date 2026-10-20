@@ -1,0 +1,13 @@
+FAILED Aborted('client exited') Traceback (most recent call last):
+  File "C:\mohaa-coop-dev\docs\proposals\alarm_halftrack_2026-10-18\tools\av_run.py", line 31, in <module>
+    if wl(r"\^~\^~\^ ALMVEH ARRIVING", 90, p0):
+       ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev\docs\proposals\alarm_halftrack_2026-10-18\tools\av_run.py", line 15, in wl
+    m = R.wait_log(pat, to, p0)
+  File "C:\mohaa-coop-dev\docs\proposals\ironsights_2026-09-28\tools\run_ironsights.py", line 102, in wait_log
+    guard()
+    ~~~~~^^
+  File "C:\mohaa-coop-dev\docs\proposals\ironsights_2026-09-28\tools\run_ironsights.py", line 95, in guard
+    raise Aborted("client exited")
+run_ironsights.Aborted: client exited
+

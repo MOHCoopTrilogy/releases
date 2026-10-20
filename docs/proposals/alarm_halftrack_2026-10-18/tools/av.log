@@ -23654,3 +23654,525 @@ harness_guard.SlotBusy: client slot hudfeed4 is in use by pid 21804 until Mon Oc
 19:18:13 gk4_m4l2 script errors: 0 []
 19:19:21 booted av_gk4_m3 m3l3 ref=work dog False
 19:20:57 gk4_m3 church hold finished after 81 s
+19:27:56 booted av_gm_m4l2 m4l2 ref=work dog False
+19:28:17 gm_m4l2 FAILED Aborted('client exited') Traceback (most recent call last):
+  File "C:\mohaa-coop-dev\docs\proposals\alarm_halftrack_2026-10-18\tools\av_run.py", line 31, in <module>
+    if wl(r"\^~\^~\^ ALMVEH ARRIVING", 90, p0):
+       ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev\docs\proposals\alarm_halftrack_2026-10-18\tools\av_run.py", line 15, in wl
+    m = R.wait_log(pat, to, p0)
+  File "C:\mohaa-coop-dev\docs\proposals\ironsights_2026-09-28\tools\run_ironsights.py", line 102, in wait_log
+    guard()
+    ~~~~~^^
+  File "C:\mohaa-coop-dev\docs\proposals\ironsights_2026-09-28\tools\run_ironsights.py", line 95, in guard
+    raise Aborted("client exited")
+run_ironsights.Aborted: client exited
+
+19:35:04 booted av_gn_m4l2 m4l2 ref=work dog False
+19:35:35 gn_m4l2 FAILED Aborted('client exited') Traceback (most recent call last):
+  File "C:\mohaa-coop-dev\docs\proposals\alarm_halftrack_2026-10-18\tools\av_run.py", line 31, in <module>
+    if wl(r"\^~\^~\^ ALMVEH ARRIVING", 90, p0):
+       ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev\docs\proposals\alarm_halftrack_2026-10-18\tools\av_run.py", line 15, in wl
+    m = R.wait_log(pat, to, p0)
+  File "C:\mohaa-coop-dev\docs\proposals\ironsights_2026-09-28\tools\run_ironsights.py", line 102, in wait_log
+    guard()
+    ~~~~~^^
+  File "C:\mohaa-coop-dev\docs\proposals\ironsights_2026-09-28\tools\run_ironsights.py", line 95, in guard
+    raise Aborted("client exited")
+run_ironsights.Aborted: client exited
+
+19:36:56 booted av_gb1 m4l2 ref=work dog False
+19:37:11 gb1    wait \^~\^~\^ ALMVEH ARRIVING -> ok
+19:38:15 gb1    wait \^~\^~\^ ALMVEH ARRIVED -> ok
+19:38:20 gb1    wait \^~\^~\^ ALMVEH FIRING -> ok
+19:38:32 gb1    wait \^~\^~\^ ALMVEH DESTROYED -> ok
+19:38:32 gb1     ^~^~^ AVT players=1
+19:38:32 gb1     ^~^~^ AVT armed pull=1 map=m4l2
+19:38:32 gb1     ^~^~^ ALMVEH crate scan route 1: 125 hidden candidates (pass 2), 295 rejected on sight, anchor ( 3202.000 1995.000 150.000 ) stop ( 4424.000 4456.000 264.000 )
+19:38:32 gb1     ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4024.000 3606.000 268.125 ) floor=( 4024.000 3606.000 262.125 ) shells=3
+19:38:32 gb1     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 4024.000 3606.000 262.125 ) dist_to_stop=939 lateral_to_squad_way=19 hidden_from_cab_gunner_mg=3/3+crouch foot_reachable_to_squad_way=ok
+19:38:32 gb1     ^~^~^ ALMVEH pull 1: vehicle due in 7 s
+19:38:32 gb1     ^~^~^ ALMVEH halftrack gun= gunner=
+19:38:32 gb1     ^~^~^ ALMVEH ARRIVING halftrack route=1 camptruck hp=300 pax=3 players=1 entry=( 5240.000 -800.000 264.000 )
+19:38:32 gb1     ^~^~^ AVT pinned at ( 0.000 0.000 0.000 ) looking ( -35.264 45.000 0.000 )
+19:38:32 gb1     ^~^~^ AVT gun camera on
+19:38:32 gb1     ^~^~^ AVT GUNREL speed=( 13.739 63.410 0.000 ) gunner-gun fwd=-64 left=0 up=-21 gunnerZoffVeh=-327 gunZoffVeh=-306 gunner.anim=
+19:38:32 gb1     ^~^~^ ALMVEH FIRING
+19:38:32 gb1     ^~^~^ AVT GUNREL speed=( 33.818 156.086 0.000 ) gunner-gun fwd=-194 left=0 up=-15 gunnerZoffVeh=-321 gunZoffVeh=-306 gunner.anim=
+19:38:32 gb1     ^~^~^ AVT GUNREL speed=( 33.820 156.086 0.000 ) gunner-gun fwd=-369 left=0 up=-7 gunnerZoffVeh=-313 gunZoffVeh=-306 gunner.anim=
+19:38:32 gb1     ^~^~^ AVT GUNREL speed=( 81.804 137.167 0.000 ) gunner-gun fwd=-2224 left=547 up=0 gunnerZoffVeh=-306 gunZoffVeh=-306 gunner.anim=
+19:38:32 gb1     ^~^~^ ALMVEH stuck at ( 4701.284 4595.759 239.060 ): treated as arrived
+19:38:32 gb1     ^~^~^ ALMVEH ARRIVED halftrack at ( 4701.284 4595.759 239.060 )
+19:38:32 gb1     ^~^~^ AVT cover rays blocked=7 of 8 at stop ( 4424.000 4456.000 264.000 )
+19:38:32 gb1     ^~^~^ AVT GUNREL speed=( -140.286 -76.789 0.000 ) gunner-gun fwd=6686 left=3471 up=-2 gunnerZoffVeh=-309 gunZoffVeh=-306 gunner.anim=
+19:38:32 gb1     ^~^~^ AVT GUNREL speed=( -140.286 -76.789 0.000 ) gunner-gun fwd=6686 left=3471 up=-2 gunnerZoffVeh=-309 gunZoffVeh=-306 gunner.anim=
+19:38:32 gb1     ^~^~^ AVT hp set to 300.000
+19:38:32 gb1     ^~^~^ AVT bullet on hp=300.000
+19:38:32 gb1     ^~^~^ AVT bullet after hp=300.000
+19:38:32 gb1     ^~^~^ AVT grenade on hp=300.000
+19:38:32 gb1     ^~^~^ AVT grenade after hp=300.000
+19:38:32 gb1     ^~^~^ AVT rocket on hp=300.000
+19:38:32 gb1     ^~^~^ ALMVEH DESTROYED halftrack at ( 4701.284 4595.759 239.060 )
+19:38:32 gb1     ^~^~^ ALMVEH DMG 300.000 -> -249.000 at ( 4701.284 4595.759 239.060 ) vel=( -140.286 -76.789 0.000 ) fwdtrace frac=0.511 ent=397 surf=16544
+19:38:32 gb1     ^~^~^ ALMVEH DMG near ent41 class=Animate org=( 4701.284 4595.759 251.060 ) model=models/emitters/fireandsmoke.tik name=
+19:38:32 gb1     ^~^~^ ALMVEH DMG near ent42 class=Animate org=( 4701.284 4595.759 291.060 ) model=models/emitters/linger_smoke02.tik name=
+19:38:32 gb1     ^~^~^ ALMVEH DMG near ent60 class=ScriptModel org=( 4701.284 4595.759 279.060 ) model=models/fx/fx_tank_explosion.tik name=
+19:38:32 gb1     ^~^~^ ALMVEH DMG near ent368 class=SplinePath org=( 4840.000 4699.000 237.000 ) model=- name=t351
+19:38:32 gb1     ^~^~^ ALMVEH DMG near ent369 class=SplinePath org=( 4624.000 4515.000 235.000 ) model=- name=t352
+19:38:32 gb1     ^~^~^ ALMVEH DMG near ent572 class=VehicleSoundEntity org=( 4521.582 4442.021 310.700 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:38:32 gb1     ^~^~^ ALMVEH DMG near ent574 class=VehicleSoundEntity org=( 4454.057 4564.563 305.815 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:38:32 gb1     ^~^~^ ALMVEH DMG near ent676 class=ScriptModel org=( 4701.284 4595.759 239.060 ) model=models/vehicles/sdkfz_green_d.tik name=
+19:38:32 gb1     ^~^~^ ALMVEH DMG near ent703 class=VehicleSoundEntity org=( 4855.122 4622.896 356.437 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:38:32 gb1     ^~^~^ ALMVEH DMG near ent704 class=VehicleSoundEntity org=( 4592.006 4478.873 351.202 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:38:32 gb1     ^~^~^ ALMVEH DMG near ent705 class=VehicleSoundEntity org=( 4801.509 4721.055 350.577 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:38:32 gb1     ^~^~^ ALMVEH DMG near ent706 class=VehicleSoundEntity org=( 4538.393 4577.032 345.341 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:38:32 gb1     ^~^~^ AVT rocket after hp=-249.000
+19:38:32 gb1 script errors: 0 []
+19:40:59 booted av_gn2 m4l2 ref=work dog False
+19:41:16 gn2    wait \^~\^~\^ ALMVEH ARRIVING -> ok
+19:42:21 gn2    wait \^~\^~\^ ALMVEH ARRIVED -> ok
+19:42:27 gn2    wait \^~\^~\^ ALMVEH FIRING -> ok
+19:42:39 gn2    wait \^~\^~\^ ALMVEH DESTROYED -> ok
+19:42:39 gn2     ^~^~^ AVT players=1
+19:42:39 gn2     ^~^~^ AVT armed pull=1 map=m4l2
+19:42:39 gn2     ^~^~^ ALMVEH crate scan route 1: 125 hidden candidates (pass 2), 295 rejected on sight, anchor ( 3202.000 1995.000 150.000 ) stop ( 4424.000 4456.000 264.000 )
+19:42:39 gn2     ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4024.000 3606.000 268.125 ) floor=( 4024.000 3606.000 262.125 ) shells=3
+19:42:39 gn2     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 4024.000 3606.000 262.125 ) dist_to_stop=939 lateral_to_squad_way=19 hidden_from_cab_gunner_mg=3/3+crouch foot_reachable_to_squad_way=ok
+19:42:39 gn2     ^~^~^ ALMVEH pull 1: vehicle due in 9 s
+19:42:39 gn2     ^~^~^ ALMVEH halftrack gun= gunner=
+19:42:39 gn2     ^~^~^ ALMVEH ARRIVING halftrack route=1 camptruck hp=300 pax=3 players=1 entry=( 5240.000 -800.000 264.000 )
+19:42:39 gn2     ^~^~^ AVT pinned at ( 0.000 0.000 0.000 ) looking ( -35.264 45.000 0.000 )
+19:42:39 gn2     ^~^~^ AVT gun camera on
+19:42:39 gn2     ^~^~^ AVT GUNREL speed=( 14.796 68.288 0.000 ) gunner-gun fwd=-67 left=0 up=-21 gunnerZoffVeh=-327 gunZoffVeh=-306 gunner.anim=
+19:42:39 gn2     ^~^~^ ALMVEH FIRING
+19:42:39 gn2     ^~^~^ AVT GUNREL speed=( 33.818 156.086 0.000 ) gunner-gun fwd=-206 left=0 up=-14 gunnerZoffVeh=-321 gunZoffVeh=-306 gunner.anim=
+19:42:39 gn2     ^~^~^ AVT GUNREL speed=( 33.820 156.086 0.000 ) gunner-gun fwd=-381 left=0 up=-7 gunnerZoffVeh=-313 gunZoffVeh=-306 gunner.anim=
+19:42:39 gn2     ^~^~^ AVT GUNREL speed=( 91.377 130.539 0.000 ) gunner-gun fwd=-1672 left=338 up=19 gunnerZoffVeh=-286 gunZoffVeh=-306 gunner.anim=
+19:42:39 gn2     ^~^~^ ALMVEH stuck at ( 4701.287 4595.761 239.060 ): treated as arrived
+19:42:39 gn2     ^~^~^ ALMVEH ARRIVED halftrack at ( 4701.287 4595.761 239.060 )
+19:42:39 gn2     ^~^~^ AVT cover rays blocked=7 of 8 at stop ( 4424.000 4456.000 264.000 )
+19:42:39 gn2     ^~^~^ AVT GUNREL speed=( -140.286 -76.789 0.000 ) gunner-gun fwd=-55 left=-6 up=-36 gunnerZoffVeh=-342 gunZoffVeh=-306 gunner.anim=
+19:42:39 gn2     ^~^~^ AVT GUNREL speed=( -140.286 -76.789 0.000 ) gunner-gun fwd=-55 left=-6 up=-36 gunnerZoffVeh=-342 gunZoffVeh=-306 gunner.anim=
+19:42:39 gn2     ^~^~^ AVT hp set to 300.000
+19:42:39 gn2     ^~^~^ AVT bullet on hp=300.000
+19:42:39 gn2     ^~^~^ AVT bullet after hp=300.000
+19:42:39 gn2     ^~^~^ AVT grenade on hp=300.000
+19:42:39 gn2     ^~^~^ AVT grenade after hp=300.000
+19:42:39 gn2     ^~^~^ AVT rocket on hp=300.000
+19:42:39 gn2     ^~^~^ ALMVEH DESTROYED halftrack at ( 4701.287 4595.761 239.060 )
+19:42:39 gn2     ^~^~^ ALMVEH DMG 300.000 -> -249.000 at ( 4701.287 4595.761 239.060 ) vel=( -140.286 -76.789 0.000 ) fwdtrace frac=0.511 ent=626 surf=16544
+19:42:39 gn2     ^~^~^ ALMVEH DMG near ent60 class=Animate org=( 4701.287 4595.761 251.060 ) model=models/emitters/fireandsmoke.tik name=
+19:42:39 gn2     ^~^~^ ALMVEH DMG near ent368 class=SplinePath org=( 4840.000 4699.000 237.000 ) model=- name=t351
+19:42:39 gn2     ^~^~^ ALMVEH DMG near ent369 class=SplinePath org=( 4624.000 4515.000 235.000 ) model=- name=t352
+19:42:39 gn2     ^~^~^ ALMVEH DMG near ent572 class=VehicleSoundEntity org=( 4521.582 4442.014 310.700 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:42:39 gn2     ^~^~^ ALMVEH DMG near ent574 class=VehicleSoundEntity org=( 4454.066 4564.561 305.815 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:42:39 gn2     ^~^~^ ALMVEH DMG near ent628 class=Animate org=( 4701.287 4595.761 291.060 ) model=models/emitters/linger_smoke02.tik name=
+19:42:39 gn2     ^~^~^ ALMVEH DMG near ent678 class=ScriptModel org=( 4701.287 4595.761 279.060 ) model=models/fx/fx_tank_explosion.tik name=
+19:42:39 gn2     ^~^~^ ALMVEH DMG near ent724 class=VehicleSoundEntity org=( 4855.125 4622.897 356.437 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:42:39 gn2     ^~^~^ ALMVEH DMG near ent728 class=VehicleSoundEntity org=( 4592.008 4478.875 351.202 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:42:39 gn2     ^~^~^ ALMVEH DMG near ent729 class=VehicleSoundEntity org=( 4801.511 4721.057 350.577 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:42:39 gn2     ^~^~^ ALMVEH DMG near ent730 class=VehicleSoundEntity org=( 4538.395 4577.034 345.341 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:42:39 gn2     ^~^~^ ALMVEH DMG near ent747 class=ScriptModel org=( 4701.287 4595.761 239.060 ) model=models/vehicles/sdkfz_green_d.tik name=
+19:42:39 gn2     ^~^~^ ALMVEH DMG near ent779 class=Actor org=( 4559.050 4473.501 235.531 ) model=models/human/german_waffenss_shutze.tik name=
+19:42:39 gn2     ^~^~^ AVT rocket after hp=-249.000
+19:42:39 gn2 script errors: 0 []
+19:46:52 booted av_gn3 m4l2 ref=work dog False
+19:47:18 gn3    wait \^~\^~\^ ALMVEH ARRIVING -> ok
+19:48:22 gn3    wait \^~\^~\^ ALMVEH ARRIVED -> ok
+19:48:28 gn3    wait \^~\^~\^ ALMVEH FIRING -> ok
+19:48:40 gn3    wait \^~\^~\^ ALMVEH DESTROYED -> ok
+19:48:40 gn3     ^~^~^ AVT players=1
+19:48:40 gn3     ^~^~^ AVT armed pull=1 map=m4l2
+19:48:40 gn3     ^~^~^ ALMVEH crate scan route 1: 125 hidden candidates (pass 2), 295 rejected on sight, anchor ( 3202.000 1995.000 150.000 ) stop ( 4424.000 4456.000 264.000 )
+19:48:40 gn3     ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4024.000 3606.000 268.125 ) floor=( 4024.000 3606.000 262.125 ) shells=3
+19:48:40 gn3     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 4024.000 3606.000 262.125 ) dist_to_stop=939 lateral_to_squad_way=19 hidden_from_cab_gunner_mg=3/3+crouch foot_reachable_to_squad_way=ok
+19:48:40 gn3     ^~^~^ ALMVEH pull 1: vehicle due in 19 s
+19:48:40 gn3     ^~^~^ ALMVEH gun offset in hull frame fwd=-327 left=-5290 up=-306 (hull ( 5240.000 -800.000 306.156 ) gun ( 0.000 0.000 0.000 ))
+19:48:40 gn3     ^~^~^ ALMVEH halftrack gun= gunner=
+19:48:40 gn3     ^~^~^ ALMVEH ARRIVING halftrack route=1 camptruck hp=300 pax=3 players=1 entry=( 5240.000 -800.000 264.000 )
+19:48:40 gn3     ^~^~^ AVT pinned at ( 0.000 0.000 0.000 ) looking ( -35.264 45.000 0.000 )
+19:48:40 gn3     ^~^~^ AVT gun camera on
+19:48:40 gn3     ^~^~^ AVT GUNREL speed=( 17.966 82.921 0.000 ) gunner-gun fwd=-79 left=0 up=-20 gunnerZoffVeh=-326 gunZoffVeh=-306 gunner.anim=
+19:48:40 gn3     ^~^~^ ALMVEH FIRING
+19:48:40 gn3     ^~^~^ AVT GUNREL speed=( 33.818 156.086 0.000 ) gunner-gun fwd=-225 left=0 up=-14 gunnerZoffVeh=-320 gunZoffVeh=-306 gunner.anim=
+19:48:40 gn3     ^~^~^ AVT GUNREL speed=( 53.249 150.569 0.000 ) gunner-gun fwd=-195 left=9 up=14 gunnerZoffVeh=-291 gunZoffVeh=-306 gunner.anim=
+19:48:40 gn3     ^~^~^ AVT GUNREL speed=( 97.020 126.401 0.000 ) gunner-gun fwd=-1929 left=428 up=22 gunnerZoffVeh=-283 gunZoffVeh=-306 gunner.anim=
+19:48:40 gn3     ^~^~^ ALMVEH stuck at ( 4701.284 4595.759 239.060 ): treated as arrived
+19:48:40 gn3     ^~^~^ ALMVEH ARRIVED halftrack at ( 4701.284 4595.759 239.060 )
+19:48:40 gn3     ^~^~^ AVT cover rays blocked=7 of 8 at stop ( 4424.000 4456.000 264.000 )
+19:48:40 gn3     ^~^~^ AVT GUNREL speed=( -140.286 -76.789 0.000 ) gunner-gun fwd=-55 left=-6 up=-36 gunnerZoffVeh=-342 gunZoffVeh=-306 gunner.anim=
+19:48:40 gn3     ^~^~^ AVT GUNREL speed=( -140.286 -76.789 0.000 ) gunner-gun fwd=-55 left=-6 up=-36 gunnerZoffVeh=-342 gunZoffVeh=-306 gunner.anim=
+19:48:40 gn3     ^~^~^ AVT hp set to 300.000
+19:48:40 gn3     ^~^~^ AVT bullet on hp=300.000
+19:48:40 gn3     ^~^~^ AVT bullet after hp=300.000
+19:48:40 gn3     ^~^~^ AVT grenade on hp=300.000
+19:48:40 gn3     ^~^~^ AVT grenade after hp=300.000
+19:48:40 gn3     ^~^~^ AVT rocket on hp=300.000
+19:48:40 gn3     ^~^~^ ALMVEH DESTROYED halftrack at ( 4701.284 4595.759 239.060 )
+19:48:40 gn3     ^~^~^ ALMVEH DMG 300.000 -> -249.000 at ( 4701.284 4595.759 239.060 ) vel=( -140.286 -76.789 0.000 ) fwdtrace frac=0.511 ent=114 surf=16544
+19:48:40 gn3     ^~^~^ ALMVEH DMG near ent60 class=Animate org=( 4701.284 4595.759 251.060 ) model=models/emitters/fireandsmoke.tik name=
+19:48:40 gn3     ^~^~^ ALMVEH DMG near ent368 class=SplinePath org=( 4840.000 4699.000 237.000 ) model=- name=t351
+19:48:40 gn3     ^~^~^ ALMVEH DMG near ent369 class=SplinePath org=( 4624.000 4515.000 235.000 ) model=- name=t352
+19:48:40 gn3     ^~^~^ ALMVEH DMG near ent572 class=VehicleSoundEntity org=( 4521.582 4442.021 310.700 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:48:40 gn3     ^~^~^ ALMVEH DMG near ent574 class=VehicleSoundEntity org=( 4454.057 4564.563 305.815 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:48:40 gn3     ^~^~^ ALMVEH DMG near ent623 class=Animate org=( 4701.284 4595.759 291.060 ) model=models/emitters/linger_smoke02.tik name=
+19:48:40 gn3     ^~^~^ ALMVEH DMG near ent682 class=ScriptModel org=( 4701.284 4595.759 279.060 ) model=models/fx/fx_tank_explosion.tik name=
+19:48:40 gn3     ^~^~^ ALMVEH DMG near ent716 class=VehicleSoundEntity org=( 4855.122 4622.896 356.437 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:48:40 gn3     ^~^~^ ALMVEH DMG near ent717 class=VehicleSoundEntity org=( 4592.006 4478.873 351.202 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:48:40 gn3     ^~^~^ ALMVEH DMG near ent730 class=VehicleSoundEntity org=( 4801.509 4721.055 350.577 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:48:40 gn3     ^~^~^ ALMVEH DMG near ent731 class=VehicleSoundEntity org=( 4538.393 4577.032 345.341 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:48:40 gn3     ^~^~^ ALMVEH DMG near ent747 class=ScriptModel org=( 4701.284 4595.759 239.060 ) model=models/vehicles/sdkfz_green_d.tik name=
+19:48:40 gn3     ^~^~^ AVT rocket after hp=-249.000
+19:48:40 gn3 script errors: 0 []
+19:50:24 booted av_gn4 m4l2 ref=work dog False
+19:50:37 gn4    wait \^~\^~\^ ALMVEH ARRIVING -> ok
+19:50:51 gn4    wait \^~\^~\^ ALMVEH ARRIVED -> ok
+19:51:37 gn4    wait \^~\^~\^ ALMVEH FIRING -> TIMEOUT
+19:51:45 gn4    wait \^~\^~\^ ALMVEH DESTROYED -> ok
+19:51:45 gn4     ^~^~^ AVT players=1
+19:51:45 gn4     ^~^~^ AVT armed pull=1 map=m4l2
+19:51:45 gn4     ^~^~^ ALMVEH crate scan route 1: 125 hidden candidates (pass 2), 295 rejected on sight, anchor ( 3202.000 1995.000 150.000 ) stop ( 4424.000 4456.000 264.000 )
+19:51:45 gn4     ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4024.000 3606.000 268.125 ) floor=( 4024.000 3606.000 262.125 ) shells=3
+19:51:45 gn4     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 4024.000 3606.000 262.125 ) dist_to_stop=939 lateral_to_squad_way=19 hidden_from_cab_gunner_mg=3/3+crouch foot_reachable_to_squad_way=ok
+19:51:45 gn4     ^~^~^ ALMVEH pull 1: vehicle due in 5 s
+19:51:45 gn4     ^~^~^ ALMVEH halftrack gun=avveh1_turret0 gunner=
+19:51:45 gn4     ^~^~^ ALMVEH ARRIVING halftrack route=1 camptruck hp=300 pax=3 players=1 entry=( 5240.000 -800.000 264.000 )
+19:51:45 gn4     ^~^~^ ALMVEH gun offset in hull frame fwd=20 left=-45 up=51
+19:51:45 gn4     ^~^~^ AVT pinned at ( 0.000 0.000 0.000 ) looking ( -35.264 45.000 0.000 )
+19:51:45 gn4     ^~^~^ ALMVEH gunner mans the MG42 (turret + machinegunner)
+19:51:45 gn4     ^~^~^ AVT gun camera on
+19:51:45 gn4     ^~^~^ AVT GUNREL speed=( 9.511 43.899 0.000 ) gunner-gun fwd=-42 left=-1 up=-69 gunnerZoffVeh=-18 gunZoffVeh=51 gunner.anim=
+19:51:45 gn4     ^~^~^ AVT GUNREL speed=( 32.761 151.208 0.000 ) gunner-gun fwd=-44 left=-1 up=-69 gunnerZoffVeh=-18 gunZoffVeh=51 gunner.anim=
+19:51:45 gn4     ^~^~^ AVT GUNREL speed=( 33.818 156.086 0.000 ) gunner-gun fwd=-44 left=-1 up=-69 gunnerZoffVeh=-18 gunZoffVeh=51 gunner.anim=
+19:51:45 gn4     ^~^~^ AVT GUNREL speed=( 33.818 156.086 0.000 ) gunner-gun fwd=-44 left=-1 up=-69 gunnerZoffVeh=-18 gunZoffVeh=51 gunner.anim=
+19:51:45 gn4     ^~^~^ ALMVEH stuck at ( 5240.489 -797.862 258.212 ): treated as arrived
+19:51:45 gn4     ^~^~^ ALMVEH ARRIVED halftrack at ( 5240.489 -797.862 258.212 )
+19:51:45 gn4     ^~^~^ AVT cover rays blocked=1 of 8 at stop ( 4424.000 4456.000 264.000 )
+19:51:45 gn4     ^~^~^ AVT GUNREL speed=( 33.818 156.086 0.000 ) gunner-gun fwd=-44 left=-1 up=-69 gunnerZoffVeh=-18 gunZoffVeh=51 gunner.anim=
+19:51:45 gn4     ^~^~^ AVT GUNREL speed=( 33.818 156.086 0.000 ) gunner-gun fwd=-44 left=-1 up=-69 gunnerZoffVeh=-18 gunZoffVeh=51 gunner.anim=
+19:51:45 gn4     ^~^~^ ALMVEH WITHDRAW, reason 40 s: halftrack at ( 5240.489 -797.862 258.212 )
+19:51:45 gn4     ^~^~^ AVT hp set to 300.000
+19:51:45 gn4     ^~^~^ AVT bullet on hp=300.000
+19:51:45 gn4     ^~^~^ AVT bullet after hp=300.000
+19:51:45 gn4     ^~^~^ AVT grenade on hp=300.000
+19:51:45 gn4     ^~^~^ AVT grenade after hp=300.000
+19:51:45 gn4     ^~^~^ AVT rocket on hp=300.000
+19:51:45 gn4     ^~^~^ ALMVEH DESTROYED halftrack at ( 5240.508 -797.853 258.132 )
+19:51:45 gn4     ^~^~^ AVT rocket after hp=-249.000
+19:51:45 gn4 script errors: 0 []
+19:54:04 booted av_gn5 m4l2 ref=work dog False
+19:54:24 gn5    wait \^~\^~\^ ALMVEH ARRIVING -> ok
+19:54:54 gn5    wait \^~\^~\^ ALMVEH ARRIVED -> ok
+19:55:00 gn5    wait \^~\^~\^ ALMVEH FIRING -> ok
+19:55:11 gn5    wait \^~\^~\^ ALMVEH DESTROYED -> ok
+19:55:11 gn5     ^~^~^ AVT players=1
+19:55:11 gn5     ^~^~^ AVT armed pull=1 map=m4l2
+19:55:11 gn5     ^~^~^ ALMVEH crate scan route 1: 125 hidden candidates (pass 2), 295 rejected on sight, anchor ( 3202.000 1995.000 150.000 ) stop ( 4424.000 4456.000 264.000 )
+19:55:11 gn5     ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4024.000 3606.000 268.125 ) floor=( 4024.000 3606.000 262.125 ) shells=3
+19:55:11 gn5     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 4024.000 3606.000 262.125 ) dist_to_stop=939 lateral_to_squad_way=19 hidden_from_cab_gunner_mg=3/3+crouch foot_reachable_to_squad_way=ok
+19:55:11 gn5     ^~^~^ ALMVEH pull 1: vehicle due in 12 s
+19:55:11 gn5     ^~^~^ ALMVEH halftrack gun=avveh1_turret0 gunner=
+19:55:11 gn5     ^~^~^ ALMVEH ARRIVING halftrack route=1 camptruck hp=300 pax=3 players=1 entry=( 5240.000 -800.000 264.000 )
+19:55:11 gn5     ^~^~^ AVT pinned at ( 0.000 0.000 0.000 ) looking ( -35.264 45.000 0.000 )
+19:55:11 gn5     ^~^~^ AVT gun camera on
+19:55:11 gn5     ^~^~^ AVT GUNREL speed=( 11.097 51.216 0.000 ) gunner-gun fwd=-47 left=12 up=-41 gunnerZoffVeh=55 gunZoffVeh=96 gunner.anim=
+19:55:11 gn5     ^~^~^ AVT GUNREL speed=( 33.818 156.086 0.000 ) gunner-gun fwd=-48 left=7 up=-49 gunnerZoffVeh=55 gunZoffVeh=104 gunner.anim=
+19:55:11 gn5     ^~^~^ AVT GUNREL speed=( 34.343 155.972 0.000 ) gunner-gun fwd=-48 left=0 up=-60 gunnerZoffVeh=56 gunZoffVeh=116 gunner.anim=
+19:55:11 gn5     ^~^~^ ALMVEH gunner offset fwd=-16 left=-5 up=56
+19:55:11 gn5     ^~^~^ ALMVEH gun offset in hull frame fwd=34 left=-8 up=116
+19:55:11 gn5     ^~^~^ ALMVEH gunner mans the MG42 (turret + machinegunner)
+19:55:11 gn5     ^~^~^ ALMVEH FIRING
+19:55:11 gn5     ^~^~^ AVT GUNREL speed=( 36.118 98.388 0.000 ) gunner-gun fwd=-78 left=2 up=-68 gunnerZoffVeh=47 gunZoffVeh=116 gunner.anim=
+19:55:11 gn5     ^~^~^ ALMVEH stuck at ( 6511.865 780.157 147.931 ): treated as arrived
+19:55:11 gn5     ^~^~^ ALMVEH ARRIVED halftrack at ( 6511.865 780.157 147.931 )
+19:55:11 gn5     ^~^~^ AVT cover rays blocked=7 of 8 at stop ( 4424.000 4456.000 264.000 )
+19:55:11 gn5     ^~^~^ AVT GUNREL speed=( 64.956 144.944 0.000 ) gunner-gun fwd=-24 left=-50 up=-5 gunnerZoffVeh=110 gunZoffVeh=116 gunner.anim=
+19:55:11 gn5     ^~^~^ AVT GUNREL speed=( 64.956 144.944 0.000 ) gunner-gun fwd=-24 left=-50 up=-5 gunnerZoffVeh=110 gunZoffVeh=116 gunner.anim=
+19:55:11 gn5     ^~^~^ AVT hp set to 300.000
+19:55:11 gn5     ^~^~^ AVT bullet on hp=300.000
+19:55:11 gn5     ^~^~^ AVT bullet after hp=300.000
+19:55:11 gn5     ^~^~^ AVT grenade on hp=300.000
+19:55:11 gn5     ^~^~^ AVT grenade after hp=300.000
+19:55:11 gn5     ^~^~^ AVT rocket on hp=300.000
+19:55:11 gn5     ^~^~^ ALMVEH DESTROYED halftrack at ( 6511.865 780.157 147.931 )
+19:55:11 gn5     ^~^~^ ALMVEH DMG 300.000 -> -249.000 at ( 6511.865 780.157 147.931 ) vel=( 64.956 144.944 0.000 ) fwdtrace frac=1.000 ent=4095 surf=0
+19:55:11 gn5     ^~^~^ ALMVEH DMG near ent41 class=Animate org=( 6511.865 780.157 159.931 ) model=models/emitters/fireandsmoke.tik name=
+19:55:11 gn5     ^~^~^ ALMVEH DMG near ent628 class=Animate org=( 6511.865 780.157 199.931 ) model=models/emitters/linger_smoke02.tik name=
+19:55:11 gn5     ^~^~^ ALMVEH DMG near ent639 class=ScriptModel org=( 6581.180 784.826 358.201 ) model=models/fx/dummy.tik name=
+19:55:11 gn5     ^~^~^ ALMVEH DMG near ent656 class=ScriptModel org=( 6511.865 780.157 187.931 ) model=models/fx/fx_tank_explosion.tik name=
+19:55:11 gn5     ^~^~^ ALMVEH DMG near ent721 class=VehicleSoundEntity org=( 6400.959 674.370 269.129 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:55:11 gn5     ^~^~^ ALMVEH DMG near ent740 class=VehicleSoundEntity org=( 6523.347 947.470 248.202 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:55:11 gn5     ^~^~^ ALMVEH DMG near ent741 class=VehicleSoundEntity org=( 6503.205 628.699 271.079 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:55:11 gn5     ^~^~^ ALMVEH DMG near ent744 class=VehicleSoundEntity org=( 6625.593 901.798 250.152 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:55:11 gn5     ^~^~^ ALMVEH DMG near ent759 class=ScriptModel org=( 6511.865 780.157 147.931 ) model=models/vehicles/sdkfz_green_d.tik name=
+19:55:11 gn5     ^~^~^ ALMVEH DMG near ent771 class=Actor org=( 6462.002 813.206 258.753 ) model=models/human/german_waffenss_shutze_gear.tik name=
+19:55:11 gn5     ^~^~^ ALMVEH DMG near ent772 class=Weapon org=( 6464.052 820.862 303.453 ) model=models/weapons/kar98.tik name=
+19:55:11 gn5     ^~^~^ ALMVEH DMG near ent773 class=InventoryItem org=( 6485.377 807.941 297.818 ) model=models/items/binoculars.tik name=
+19:55:11 gn5     ^~^~^ ALMVEH DMG near ent777 class=ScriptOrigin org=( 6543.456 749.850 403.234 ) model=- name=
+19:55:11 gn5     ^~^~^ AVT rocket after hp=-249.000
+19:55:11 gn5 script errors: 0 []
+19:57:59 booted av_gn6 m4l2 ref=work dog False
+19:58:14 gn6    wait \^~\^~\^ ALMVEH ARRIVING -> ok
+19:59:34 gn6    wait \^~\^~\^ ALMVEH ARRIVED -> ok
+19:59:40 gn6    wait \^~\^~\^ ALMVEH FIRING -> ok
+19:59:52 gn6    wait \^~\^~\^ ALMVEH DESTROYED -> ok
+19:59:52 gn6     ^~^~^ AVT players=1
+19:59:52 gn6     ^~^~^ AVT armed pull=1 map=m4l2
+19:59:52 gn6     ^~^~^ ALMVEH crate scan route 1: 125 hidden candidates (pass 2), 295 rejected on sight, anchor ( 3202.000 1995.000 150.000 ) stop ( 4424.000 4456.000 264.000 )
+19:59:52 gn6     ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4024.000 3606.000 268.125 ) floor=( 4024.000 3606.000 262.125 ) shells=3
+19:59:52 gn6     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 4024.000 3606.000 262.125 ) dist_to_stop=939 lateral_to_squad_way=19 hidden_from_cab_gunner_mg=3/3+crouch foot_reachable_to_squad_way=ok
+19:59:52 gn6     ^~^~^ ALMVEH pull 1: vehicle due in 8 s
+19:59:52 gn6     ^~^~^ ALMVEH halftrack gun=avveh1_turret0 gunner=
+19:59:52 gn6     ^~^~^ ALMVEH ARRIVING halftrack route=1 camptruck hp=300 pax=3 players=1 entry=( 5240.000 -800.000 264.000 )
+19:59:52 gn6     ^~^~^ AVT pinned at ( 0.000 0.000 0.000 ) looking ( -35.264 45.000 0.000 )
+19:59:52 gn6     ^~^~^ AVT gun camera on
+19:59:52 gn6     ^~^~^ AVT GUNREL speed=( 10.040 46.338 0.000 ) gunner-gun fwd=-47 left=15 up=-36 gunnerZoffVeh=55 gunZoffVeh=91 gunner.anim=
+19:59:52 gn6     ^~^~^ AVT GUNREL speed=( 33.290 153.647 0.000 ) gunner-gun fwd=-48 left=7 up=-49 gunnerZoffVeh=55 gunZoffVeh=104 gunner.anim=
+19:59:52 gn6     ^~^~^ AVT GUNREL speed=( 33.820 156.086 0.000 ) gunner-gun fwd=-48 left=0 up=-60 gunnerZoffVeh=56 gunZoffVeh=116 gunner.anim=
+19:59:52 gn6     ^~^~^ ALMVEH gunner offset fwd=-16 left=-5 up=56
+19:59:52 gn6     ^~^~^ ALMVEH gun offset in hull frame fwd=34 left=-8 up=116
+19:59:52 gn6     ^~^~^ ALMVEH gunner mans the MG42 (turret + machinegunner)
+19:59:52 gn6     ^~^~^ ALMVEH FIRING
+19:59:52 gn6     ^~^~^ AVT GUNREL speed=( 60.887 128.549 0.000 ) gunner-gun fwd=-39 left=8 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+19:59:52 gn6     ^~^~^ ALMVEH stuck at ( 5222.620 5003.933 193.782 ): treated as arrived
+19:59:52 gn6     ^~^~^ ALMVEH ARRIVED halftrack at ( 5222.620 5003.933 193.782 )
+19:59:52 gn6     ^~^~^ AVT cover rays blocked=7 of 8 at stop ( 4424.000 4456.000 264.000 )
+19:59:52 gn6     ^~^~^ AVT GUNREL speed=( -152.691 -46.820 0.000 ) gunner-gun fwd=-45 left=0 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+19:59:52 gn6     ^~^~^ AVT GUNREL speed=( -152.691 -46.820 0.000 ) gunner-gun fwd=-45 left=0 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+19:59:52 gn6     ^~^~^ AVT hp set to 300.000
+19:59:52 gn6     ^~^~^ AVT bullet on hp=300.000
+19:59:52 gn6     ^~^~^ AVT bullet after hp=300.000
+19:59:52 gn6     ^~^~^ AVT grenade on hp=300.000
+19:59:52 gn6     ^~^~^ AVT grenade after hp=300.000
+19:59:52 gn6     ^~^~^ AVT rocket on hp=300.000
+19:59:52 gn6     ^~^~^ ALMVEH DESTROYED halftrack at ( 5222.620 5003.933 193.782 )
+19:59:52 gn6     ^~^~^ ALMVEH DMG 300.000 -> -249.000 at ( 5222.620 5003.933 193.782 ) vel=( -152.691 -46.820 0.000 ) fwdtrace frac=1.000 ent=4095 surf=0
+19:59:52 gn6     ^~^~^ ALMVEH DMG near ent366 class=SplinePath org=( 5336.000 5027.000 183.000 ) model=- name=t349
+19:59:52 gn6     ^~^~^ ALMVEH DMG near ent367 class=SplinePath org=( 5072.000 4891.000 210.000 ) model=- name=t350
+19:59:52 gn6     ^~^~^ ALMVEH DMG near ent657 class=ScriptModel org=( 5180.252 5102.479 343.952 ) model=models/fx/dummy.tik name=
+19:59:52 gn6     ^~^~^ ALMVEH DMG near ent719 class=VehicleSoundEntity org=( 5386.096 4995.487 300.479 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:59:52 gn6     ^~^~^ ALMVEH DMG near ent723 class=VehicleSoundEntity org=( 5099.451 4907.591 310.949 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:59:52 gn6     ^~^~^ ALMVEH DMG near ent730 class=VehicleSoundEntity org=( 5353.262 5102.566 300.479 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:59:52 gn6     ^~^~^ ALMVEH DMG near ent732 class=Weapon org=( 5172.409 5111.276 393.399 ) model=models/weapons/colt45.tik name=
+19:59:52 gn6     ^~^~^ ALMVEH DMG near ent733 class=Weapon org=( 5174.737 5078.442 407.943 ) model=models/weapons/mp44.tik name=player0Inventory
+19:59:52 gn6     ^~^~^ ALMVEH DMG near ent734 class=Weapon org=( 5188.593 5098.754 416.959 ) model=models/weapons/thompsonsmg.tik name=
+19:59:52 gn6     ^~^~^ ALMVEH DMG near ent735 class=VehicleSoundEntity org=( 5066.617 5014.670 310.949 ) model=models/vehicles/vehiclesoundentity.tik name=
+19:59:52 gn6     ^~^~^ ALMVEH DMG near ent736 class=Animate org=( 5178.092 5091.230 416.655 ) model=models/coop_helmets/coop_std_us_helmet_29th_net.tik name=coop_helmetProp
+19:59:52 gn6     ^~^~^ ALMVEH DMG near ent738 class=Actor org=( 5233.087 4998.395 249.068 ) model=models/human/german_waffenss_shutze.tik name=
+19:59:52 gn6     ^~^~^ ALMVEH DMG near ent759 class=Weapon org=( 5231.603 4990.488 299.206 ) model=models/weapons/kar98.tik name=
+19:59:52 gn6     ^~^~^ ALMVEH DMG near ent760 class=InventoryItem org=( 5208.234 5001.340 293.715 ) model=models/items/binoculars.tik name=
+19:59:52 gn6     ^~^~^ AVT rocket after hp=-249.000
+19:59:52 gn6 script errors: 0 []
+20:01:36 booted av_gn7 m4l2 ref=work dog False
+20:02:04 gn7    wait \^~\^~\^ ALMVEH ARRIVING -> ok
+20:03:09 gn7    wait \^~\^~\^ ALMVEH ARRIVED -> ok
+20:03:14 gn7    wait \^~\^~\^ ALMVEH FIRING -> ok
+20:03:26 gn7    wait \^~\^~\^ ALMVEH DESTROYED -> ok
+20:03:26 gn7     ^~^~^ AVT players=1
+20:03:26 gn7     ^~^~^ AVT armed pull=1 map=m4l2
+20:03:26 gn7     ^~^~^ ALMVEH crate scan route 1: 125 hidden candidates (pass 2), 295 rejected on sight, anchor ( 3202.000 1995.000 150.000 ) stop ( 4424.000 4456.000 264.000 )
+20:03:26 gn7     ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4024.000 3606.000 268.125 ) floor=( 4024.000 3606.000 262.125 ) shells=3
+20:03:26 gn7     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 4024.000 3606.000 262.125 ) dist_to_stop=939 lateral_to_squad_way=19 hidden_from_cab_gunner_mg=3/3+crouch foot_reachable_to_squad_way=ok
+20:03:26 gn7     ^~^~^ ALMVEH pull 1: vehicle due in 20 s
+20:03:26 gn7     ^~^~^ ALMVEH halftrack gun=avveh1_turret0 gunner=
+20:03:26 gn7     ^~^~^ ALMVEH ARRIVING halftrack route=1 camptruck hp=300 pax=3 players=1 entry=( 5240.000 -800.000 264.000 )
+20:03:26 gn7     ^~^~^ AVT pinned at ( 0.000 0.000 0.000 ) looking ( -35.264 45.000 0.000 )
+20:03:26 gn7     ^~^~^ AVT gun camera on
+20:03:26 gn7     ^~^~^ AVT GUNREL speed=( 14.267 65.849 0.000 ) gunner-gun fwd=-48 left=6 up=-49 gunnerZoffVeh=55 gunZoffVeh=105 gunner.anim=
+20:03:26 gn7     ^~^~^ AVT GUNREL speed=( 33.818 156.086 0.000 ) gunner-gun fwd=-49 left=0 up=-60 gunnerZoffVeh=56 gunZoffVeh=116 gunner.anim=
+20:03:26 gn7     ^~^~^ AVT GUNREL speed=( 33.820 156.086 0.000 ) gunner-gun fwd=-49 left=0 up=-60 gunnerZoffVeh=56 gunZoffVeh=116 gunner.anim=
+20:03:26 gn7     ^~^~^ ALMVEH gunner offset fwd=-16 left=-5 up=56
+20:03:26 gn7     ^~^~^ ALMVEH gun offset in hull frame fwd=34 left=-8 up=116
+20:03:26 gn7     ^~^~^ ALMVEH gunner mans the MG42 (turret + machinegunner)
+20:03:26 gn7     ^~^~^ ALMVEH FIRING
+20:03:26 gn7     ^~^~^ AVT GUNREL speed=( 43.582 108.887 0.000 ) gunner-gun fwd=-87 left=4 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+20:03:26 gn7     ^~^~^ ALMVEH stuck at ( 4701.384 4595.811 239.061 ): treated as arrived
+20:03:26 gn7     ^~^~^ ALMVEH ARRIVED halftrack at ( 4701.384 4595.811 239.061 )
+20:03:26 gn7     ^~^~^ AVT cover rays blocked=7 of 8 at stop ( 4424.000 4456.000 264.000 )
+20:03:26 gn7     ^~^~^ AVT GUNREL speed=( -140.284 -76.792 0.000 ) gunner-gun fwd=1845 left=-4686 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+20:03:26 gn7     ^~^~^ AVT GUNREL speed=( -140.284 -76.792 0.000 ) gunner-gun fwd=1845 left=-4686 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+20:03:26 gn7     ^~^~^ AVT hp set to 300.000
+20:03:26 gn7     ^~^~^ AVT bullet on hp=300.000
+20:03:26 gn7     ^~^~^ AVT bullet after hp=300.000
+20:03:26 gn7     ^~^~^ AVT grenade on hp=300.000
+20:03:26 gn7     ^~^~^ AVT grenade after hp=300.000
+20:03:26 gn7     ^~^~^ AVT rocket on hp=300.000
+20:03:26 gn7     ^~^~^ ALMVEH DESTROYED halftrack at ( 4701.384 4595.811 239.061 )
+20:03:26 gn7     ^~^~^ ALMVEH DMG 300.000 -> -249.000 at ( 4701.384 4595.811 239.061 ) vel=( -140.284 -76.792 0.000 ) fwdtrace frac=0.512 ent=763 surf=16544
+20:03:26 gn7     ^~^~^ ALMVEH DMG near ent41 class=VehicleSoundEntity org=( 4855.221 4622.951 356.439 ) model=models/vehicles/vehiclesoundentity.tik name=
+20:03:26 gn7     ^~^~^ ALMVEH DMG near ent42 class=VehicleSoundEntity org=( 4592.109 4478.922 351.203 ) model=models/vehicles/vehiclesoundentity.tik name=
+20:03:26 gn7     ^~^~^ ALMVEH DMG near ent59 class=VehicleSoundEntity org=( 4801.606 4721.109 350.578 ) model=models/vehicles/vehiclesoundentity.tik name=
+20:03:26 gn7     ^~^~^ ALMVEH DMG near ent368 class=SplinePath org=( 4840.000 4699.000 237.000 ) model=- name=t351
+20:03:26 gn7     ^~^~^ ALMVEH DMG near ent369 class=SplinePath org=( 4624.000 4515.000 235.000 ) model=- name=t352
+20:03:26 gn7     ^~^~^ ALMVEH DMG near ent384 class=VehicleSoundEntity org=( 4538.494 4577.080 345.342 ) model=models/vehicles/vehiclesoundentity.tik name=
+20:03:26 gn7     ^~^~^ ALMVEH DMG near ent572 class=VehicleSoundEntity org=( 4521.582 4442.021 310.700 ) model=models/vehicles/vehiclesoundentity.tik name=
+20:03:26 gn7     ^~^~^ ALMVEH DMG near ent574 class=VehicleSoundEntity org=( 4454.057 4564.563 305.815 ) model=models/vehicles/vehiclesoundentity.tik name=
+20:03:26 gn7     ^~^~^ ALMVEH DMG near ent623 class=Animate org=( 4701.384 4595.811 251.061 ) model=models/emitters/fireandsmoke.tik name=
+20:03:26 gn7     ^~^~^ ALMVEH DMG near ent651 class=Animate org=( 4701.384 4595.811 291.061 ) model=models/emitters/linger_smoke02.tik name=
+20:03:26 gn7     ^~^~^ ALMVEH DMG near ent654 class=ScriptModel org=( 4701.384 4595.811 279.061 ) model=models/fx/fx_tank_explosion.tik name=
+20:03:26 gn7     ^~^~^ ALMVEH DMG near ent745 class=ScriptModel org=( 4701.384 4595.811 239.061 ) model=models/vehicles/sdkfz_green_d.tik name=
+20:03:26 gn7     ^~^~^ ALMVEH DMG near ent772 class=Actor org=( 4560.484 4453.435 236.575 ) model=models/human/german_waffenss_shutze.tik name=
+20:03:26 gn7     ^~^~^ AVT rocket after hp=-249.000
+20:03:26 gn7 script errors: 0 []
+20:05:07 booted av_gn8 m4l2 ref=work dog False
+20:05:18 gn8    wait \^~\^~\^ ALMVEH ARRIVING -> ok
+20:06:38 gn8    wait \^~\^~\^ ALMVEH ARRIVED -> ok
+20:06:44 gn8    wait \^~\^~\^ ALMVEH FIRING -> ok
+20:06:55 gn8    wait \^~\^~\^ ALMVEH DESTROYED -> ok
+20:06:55 gn8     ^~^~^ AVT players=1
+20:06:55 gn8     ^~^~^ AVT armed pull=1 map=m4l2
+20:06:55 gn8     ^~^~^ ALMVEH crate scan route 1: 125 hidden candidates (pass 2), 295 rejected on sight, anchor ( 3202.000 1995.000 150.000 ) stop ( 4424.000 4456.000 264.000 )
+20:06:55 gn8     ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4024.000 3606.000 268.125 ) floor=( 4024.000 3606.000 262.125 ) shells=3
+20:06:55 gn8     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 4024.000 3606.000 262.125 ) dist_to_stop=939 lateral_to_squad_way=19 hidden_from_cab_gunner_mg=3/3+crouch foot_reachable_to_squad_way=ok
+20:06:55 gn8     ^~^~^ ALMVEH pull 1: vehicle due in 3 s
+20:06:55 gn8     ^~^~^ ALMVEH halftrack gun=avveh1_turret0 gunner=
+20:06:55 gn8     ^~^~^ ALMVEH ARRIVING halftrack route=1 camptruck hp=300 pax=3 players=1 entry=( 5240.000 -800.000 264.000 )
+20:06:55 gn8     ^~^~^ AVT pinned at ( 0.000 0.000 0.000 ) looking ( -35.264 45.000 0.000 )
+20:06:55 gn8     ^~^~^ AVT gun camera on
+20:06:55 gn8     ^~^~^ AVT GUNREL speed=( 13.210 60.971 0.000 ) gunner-gun fwd=-48 left=3 up=-54 gunnerZoffVeh=56 gunZoffVeh=110 gunner.anim=
+20:06:55 gn8     ^~^~^ AVT GUNREL speed=( 33.818 156.086 0.000 ) gunner-gun fwd=-48 left=1 up=-58 gunnerZoffVeh=56 gunZoffVeh=114 gunner.anim=
+20:06:55 gn8     ^~^~^ AVT GUNREL speed=( 33.820 156.086 0.000 ) gunner-gun fwd=-49 left=0 up=-60 gunnerZoffVeh=56 gunZoffVeh=116 gunner.anim=
+20:06:55 gn8     ^~^~^ ALMVEH gunner offset fwd=-16 left=-5 up=56
+20:06:55 gn8     ^~^~^ ALMVEH gun offset in hull frame fwd=34 left=-8 up=116
+20:06:55 gn8     ^~^~^ ALMVEH gunner mans the MG42 (turret + machinegunner)
+20:06:55 gn8     ^~^~^ ALMVEH FIRING
+20:06:55 gn8     ^~^~^ AVT GUNREL speed=( 40.495 104.739 0.000 ) gunner-gun fwd=-57 left=17 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+20:06:55 gn8     ^~^~^ ALMVEH stuck at ( 5222.620 5003.933 193.782 ): treated as arrived
+20:06:55 gn8     ^~^~^ ALMVEH ARRIVED halftrack at ( 5222.620 5003.933 193.782 )
+20:06:55 gn8     ^~^~^ AVT cover rays blocked=7 of 8 at stop ( 4424.000 4456.000 264.000 )
+20:06:55 gn8     ^~^~^ AVT GUNREL speed=( -152.691 -46.820 0.000 ) gunner-gun fwd=-63 left=9 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+20:06:55 gn8     ^~^~^ AVT GUNREL speed=( -152.691 -46.820 0.000 ) gunner-gun fwd=-63 left=9 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+20:06:55 gn8     ^~^~^ AVT hp set to 300.000
+20:06:55 gn8     ^~^~^ AVT bullet on hp=300.000
+20:06:55 gn8     ^~^~^ AVT bullet after hp=300.000
+20:06:55 gn8     ^~^~^ AVT grenade on hp=300.000
+20:06:55 gn8     ^~^~^ AVT grenade after hp=300.000
+20:06:55 gn8     ^~^~^ AVT rocket on hp=300.000
+20:06:55 gn8     ^~^~^ ALMVEH DESTROYED halftrack at ( 5222.620 5003.933 193.782 )
+20:06:55 gn8     ^~^~^ ALMVEH DMG 300.000 -> -249.000 at ( 5222.620 5003.933 193.782 ) vel=( -152.691 -46.820 0.000 ) fwdtrace frac=1.000 ent=4095 surf=0
+20:06:55 gn8     ^~^~^ ALMVEH DMG near ent366 class=SplinePath org=( 5336.000 5027.000 183.000 ) model=- name=t349
+20:06:55 gn8     ^~^~^ ALMVEH DMG near ent367 class=SplinePath org=( 5072.000 4891.000 210.000 ) model=- name=t350
+20:06:55 gn8     ^~^~^ ALMVEH DMG near ent657 class=ScriptModel org=( 5194.971 5117.242 343.938 ) model=models/fx/dummy.tik name=
+20:06:55 gn8     ^~^~^ ALMVEH DMG near ent700 class=VehicleSoundEntity org=( 5386.096 4995.487 300.479 ) model=models/vehicles/vehiclesoundentity.tik name=
+20:06:55 gn8     ^~^~^ ALMVEH DMG near ent721 class=VehicleSoundEntity org=( 5099.451 4907.591 310.949 ) model=models/vehicles/vehiclesoundentity.tik name=
+20:06:55 gn8     ^~^~^ ALMVEH DMG near ent722 class=VehicleSoundEntity org=( 5353.262 5102.566 300.479 ) model=models/vehicles/vehiclesoundentity.tik name=
+20:06:55 gn8     ^~^~^ ALMVEH DMG near ent723 class=VehicleSoundEntity org=( 5066.617 5014.670 310.949 ) model=models/vehicles/vehiclesoundentity.tik name=
+20:06:55 gn8     ^~^~^ ALMVEH DMG near ent732 class=Weapon org=( 5187.680 5125.362 387.876 ) model=models/weapons/colt45.tik name=
+20:06:55 gn8     ^~^~^ ALMVEH DMG near ent733 class=Weapon org=( 5187.548 5097.550 396.070 ) model=models/weapons/mp44.tik name=player0Inventory
+20:06:55 gn8     ^~^~^ ALMVEH DMG near ent734 class=Weapon org=( 5201.429 5112.049 412.305 ) model=models/weapons/thompsonsmg.tik name=
+20:06:55 gn8     ^~^~^ ALMVEH DMG near ent735 class=Actor org=( 5247.806 5013.158 249.068 ) model=models/human/german_waffenss_shutze_gear.tik name=
+20:06:55 gn8     ^~^~^ ALMVEH DMG near ent736 class=Animate org=( 5189.768 5106.298 410.403 ) model=models/coop_helmets/coop_std_us_helmet_29th_net.tik name=coop_helmetProp
+20:06:55 gn8     ^~^~^ ALMVEH DMG near ent737 class=Weapon org=( 5246.337 5005.257 299.209 ) model=models/weapons/kar98.tik name=
+20:06:55 gn8     ^~^~^ ALMVEH DMG near ent755 class=InventoryItem org=( 5222.665 5016.346 294.136 ) model=models/items/binoculars.tik name=
+20:06:55 gn8     ^~^~^ AVT rocket after hp=-249.000
+20:06:55 gn8 script errors: 0 []
+20:08:45 booted av_gq_m4l2 m4l2 ref=work dog False
+20:09:04 gq_m4l2    wait \^~\^~\^ ALMVEH ARRIVING -> ok
+20:10:27 gq_m4l2    wait \^~\^~\^ ALMVEH ARRIVED -> ok
+20:10:32 gq_m4l2    wait \^~\^~\^ ALMVEH FIRING -> ok
+20:10:44 gq_m4l2    wait \^~\^~\^ ALMVEH DESTROYED -> ok
+20:10:44 gq_m4l2     ^~^~^ AVT players=1
+20:10:44 gq_m4l2     ^~^~^ AVT armed pull=1 map=m4l2
+20:10:44 gq_m4l2     ^~^~^ ALMVEH crate scan route 1: 125 hidden candidates (pass 2), 295 rejected on sight, anchor ( 3202.000 1995.000 150.000 ) stop ( 4424.000 4456.000 264.000 )
+20:10:44 gq_m4l2     ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4024.000 3606.000 268.125 ) floor=( 4024.000 3606.000 262.125 ) shells=3
+20:10:44 gq_m4l2     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 4024.000 3606.000 262.125 ) dist_to_stop=939 lateral_to_squad_way=19 hidden_from_cab_gunner_mg=3/3+crouch foot_reachable_to_squad_way=ok
+20:10:44 gq_m4l2     ^~^~^ ALMVEH pull 1: vehicle due in 12 s
+20:10:44 gq_m4l2     ^~^~^ ALMVEH halftrack gun=avveh1_turret0 gunner=
+20:10:44 gq_m4l2     ^~^~^ ALMVEH ARRIVING halftrack route=1 camptruck hp=300 pax=3 players=1 entry=( 5240.000 -800.000 264.000 )
+20:10:44 gq_m4l2     ^~^~^ AVT pinned at ( 0.000 0.000 0.000 ) looking ( -35.264 45.000 0.000 )
+20:10:44 gq_m4l2     ^~^~^ AVT gun camera on
+20:10:44 gq_m4l2     ^~^~^ AVT GUNREL speed=( 12.153 56.093 0.000 ) gunner-gun fwd=-48 left=6 up=-49 gunnerZoffVeh=55 gunZoffVeh=105 gunner.anim=
+20:10:44 gq_m4l2     ^~^~^ AVT GUNREL speed=( 33.818 156.086 0.000 ) gunner-gun fwd=-48 left=4 up=-53 gunnerZoffVeh=56 gunZoffVeh=109 gunner.anim=
+20:10:44 gq_m4l2     ^~^~^ ALMVEH gunner offset fwd=-16 left=-5 up=56
+20:10:44 gq_m4l2     ^~^~^ AVT GUNREL speed=( 35.856 155.631 0.000 ) gunner-gun fwd=-48 left=0 up=-60 gunnerZoffVeh=56 gunZoffVeh=116 gunner.anim=
+20:10:44 gq_m4l2     ^~^~^ ALMVEH gun offset in hull frame fwd=34 left=-8 up=116
+20:10:44 gq_m4l2     ^~^~^ ALMVEH gunner mans the MG42 (turret + machinegunner)
+20:10:44 gq_m4l2     ^~^~^ ALMVEH FIRING
+20:10:44 gq_m4l2     ^~^~^ AVT GUNREL speed=( 39.002 102.638 0.000 ) gunner-gun fwd=-57 left=16 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+20:10:44 gq_m4l2     ^~^~^ ALMVEH stuck at ( 5223.932 5004.333 193.683 ): treated as arrived
+20:10:44 gq_m4l2     ^~^~^ ALMVEH ARRIVED halftrack at ( 5223.932 5004.333 193.683 )
+20:10:44 gq_m4l2     ^~^~^ AVT cover rays blocked=7 of 8 at stop ( 4424.000 4456.000 264.000 )
+20:10:44 gq_m4l2     ^~^~^ AVT GUNREL speed=( -152.696 -46.804 0.000 ) gunner-gun fwd=-45 left=-44 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+20:10:44 gq_m4l2     ^~^~^ AVT GUNREL speed=( -152.696 -46.804 0.000 ) gunner-gun fwd=-45 left=-44 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+20:10:44 gq_m4l2     ^~^~^ AVT hp set to 300.000
+20:10:44 gq_m4l2     ^~^~^ AVT bullet on hp=300.000
+20:10:44 gq_m4l2     ^~^~^ AVT bullet after hp=300.000
+20:10:44 gq_m4l2     ^~^~^ AVT grenade on hp=300.000
+20:10:44 gq_m4l2     ^~^~^ AVT grenade after hp=300.000
+20:10:44 gq_m4l2     ^~^~^ AVT rocket on hp=300.000
+20:10:44 gq_m4l2     ^~^~^ ALMVEH DESTROYED halftrack at ( 5223.932 5004.333 193.683 )
+20:10:44 gq_m4l2     ^~^~^ ALMVEH DMG 300.000 -> -249.000 at ( 5223.932 5004.333 193.683 ) vel=( -152.696 -46.804 0.000 ) fwdtrace frac=1.000 ent=4095 surf=0
+20:10:44 gq_m4l2     ^~^~^ ALMVEH DMG near ent60 class=Animate org=( 5223.932 5004.333 205.683 ) model=models/emitters/fireandsmoke.tik name=
+20:10:44 gq_m4l2     ^~^~^ ALMVEH DMG near ent366 class=SplinePath org=( 5336.000 5027.000 183.000 ) model=- name=t349
+20:10:44 gq_m4l2     ^~^~^ ALMVEH DMG near ent367 class=SplinePath org=( 5072.000 4891.000 210.000 ) model=- name=t350
+20:10:44 gq_m4l2     ^~^~^ ALMVEH DMG near ent633 class=ScriptModel org=( 5201.508 5065.379 306.009 ) model=models/fx/dummy.tik name=
+20:10:44 gq_m4l2     ^~^~^ ALMVEH DMG near ent678 class=Animate org=( 5223.932 5004.333 245.683 ) model=models/emitters/linger_smoke02.tik name=
+20:10:44 gq_m4l2     ^~^~^ ALMVEH DMG near ent706 class=ScriptModel org=( 5223.932 5004.333 233.683 ) model=models/fx/fx_tank_explosion.tik name=
+20:10:44 gq_m4l2     ^~^~^ ALMVEH DMG near ent734 class=ScriptOrigin org=( 5200.783 5033.529 367.282 ) model=- name=
+20:10:44 gq_m4l2     ^~^~^ ALMVEH DMG near ent736 class=Weapon org=( 5181.243 5099.583 372.002 ) model=models/weapons/colt45.tik name=
+20:10:44 gq_m4l2     ^~^~^ ALMVEH DMG near ent737 class=Weapon org=( 5168.491 5093.854 377.865 ) model=models/weapons/mp44.tik name=player0Inventory
+20:10:44 gq_m4l2     ^~^~^ ALMVEH DMG near ent738 class=Weapon org=( 5201.711 5099.419 391.608 ) model=models/weapons/thompsonsmg.tik name=
+20:10:44 gq_m4l2     ^~^~^ ALMVEH DMG near ent740 class=Animate org=( 5192.001 5098.505 400.229 ) model=models/coop_helmets/coop_std_us_helmet_29th_net.tik name=coop_helmetProp
+20:10:44 gq_m4l2     ^~^~^ ALMVEH DMG near ent742 class=VehicleSoundEntity org=( 5387.407 4995.870 300.380 ) model=models/vehicles/vehiclesoundentity.tik name=
+20:10:44 gq_m4l2     ^~^~^ ALMVEH DMG near ent745 class=ScriptModel org=( 5223.932 5004.333 193.683 ) model=models/vehicles/sdkfz_green_d.tik name=
+20:10:44 gq_m4l2     ^~^~^ ALMVEH DMG near ent762 class=VehicleSoundEntity org=( 5100.754 4908.005 310.850 ) model=models/vehicles/vehiclesoundentity.tik name=
+20:10:44 gq_m4l2     ^~^~^ AVT rocket after hp=-249.000
+20:10:44 gq_m4l2 script errors: 0 []
+20:11:54 booted av_gq_m3 m3l3 ref=work dog False
+20:13:30 gq_m3 church hold finished after 81 s
+20:18:55 booted av_gr_m4l2 m4l2 ref=work dog False
+20:19:15 gr_m4l2    wait \^~\^~\^ ALMVEH ARRIVING -> ok
+20:20:35 gr_m4l2    wait \^~\^~\^ ALMVEH ARRIVED -> ok
+20:20:41 gr_m4l2    wait \^~\^~\^ ALMVEH FIRING -> ok
+20:20:52 gr_m4l2    wait \^~\^~\^ ALMVEH DESTROYED -> ok
+20:20:52 gr_m4l2     ^~^~^ AVT players=1
+20:20:52 gr_m4l2     ^~^~^ AVT armed pull=1 map=m4l2
+20:20:52 gr_m4l2     ^~^~^ ALMVEH crate scan route 1: 125 hidden candidates (pass 2), 295 rejected on sight, anchor ( 3202.000 1995.000 150.000 ) stop ( 4424.000 4456.000 264.000 )
+20:20:52 gr_m4l2     ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4024.000 3606.000 268.125 ) floor=( 4024.000 3606.000 262.125 ) shells=3
+20:20:52 gr_m4l2     ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 4024.000 3606.000 262.125 ) dist_to_stop=939 lateral_to_squad_way=19 hidden_from_cab_gunner_mg=3/3+crouch foot_reachable_to_squad_way=ok
+20:20:52 gr_m4l2     ^~^~^ ALMVEH pull 1: vehicle due in 12 s
+20:20:52 gr_m4l2     ^~^~^ ALMVEH halftrack gun=avveh1_turret0 gunner=
+20:20:52 gr_m4l2     ^~^~^ ALMVEH ARRIVING halftrack route=1 camptruck hp=300 pax=3 players=1 entry=( 5240.000 -800.000 264.000 )
+20:20:52 gr_m4l2     ^~^~^ AVT pinned at ( 0.000 0.000 0.000 ) looking ( -35.264 45.000 0.000 )
+20:20:52 gr_m4l2     ^~^~^ AVT gun camera on
+20:20:52 gr_m4l2     ^~^~^ AVT GUNREL speed=( 11.097 51.216 0.000 ) gunner-gun fwd=-47 left=12 up=-41 gunnerZoffVeh=55 gunZoffVeh=96 gunner.anim=
+20:20:52 gr_m4l2     ^~^~^ AVT GUNREL speed=( 33.818 156.086 0.000 ) gunner-gun fwd=-48 left=5 up=-51 gunnerZoffVeh=55 gunZoffVeh=107 gunner.anim=
+20:20:52 gr_m4l2     ^~^~^ AVT GUNREL speed=( 33.820 156.086 0.000 ) gunner-gun fwd=-49 left=0 up=-60 gunnerZoffVeh=56 gunZoffVeh=116 gunner.anim=
+20:20:52 gr_m4l2     ^~^~^ ALMVEH gunner offset fwd=-16 left=-5 up=56
+20:20:52 gr_m4l2     ^~^~^ ALMVEH gun offset in hull frame fwd=34 left=-8 up=116
+20:20:52 gr_m4l2     ^~^~^ ALMVEH gunner mans the MG42 (turret + machinegunner)
+20:20:52 gr_m4l2     ^~^~^ ALMVEH FIRING
+20:20:52 gr_m4l2     ^~^~^ AVT GUNREL speed=( 17.778 62.398 0.000 ) gunner-gun fwd=-58 left=11 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+20:20:52 gr_m4l2     ^~^~^ ALMVEH stuck at ( 5222.620 5003.933 193.782 ): treated as arrived
+20:20:52 gr_m4l2     ^~^~^ ALMVEH ARRIVED halftrack at ( 5222.620 5003.933 193.782 )
+20:20:52 gr_m4l2     ^~^~^ AVT cover rays blocked=7 of 8 at stop ( 4424.000 4456.000 264.000 )
+20:20:52 gr_m4l2     ^~^~^ AVT GUNREL speed=( -152.691 -46.820 0.000 ) gunner-gun fwd=-63 left=9 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+20:20:52 gr_m4l2     ^~^~^ AVT GUNREL speed=( -152.691 -46.820 0.000 ) gunner-gun fwd=-63 left=9 up=-61 gunnerZoffVeh=55 gunZoffVeh=116 gunner.anim=
+20:20:52 gr_m4l2     ^~^~^ AVT hp set to 300.000
+20:20:52 gr_m4l2     ^~^~^ AVT bullet on hp=300.000
+20:20:52 gr_m4l2     ^~^~^ AVT bullet after hp=300.000
+20:20:52 gr_m4l2     ^~^~^ AVT grenade on hp=300.000
+20:20:52 gr_m4l2     ^~^~^ AVT grenade after hp=300.000
+20:20:52 gr_m4l2     ^~^~^ AVT rocket on hp=300.000
+20:20:52 gr_m4l2     ^~^~^ ALMVEH DESTROYED halftrack at ( 5222.620 5003.933 193.782 )
+20:20:52 gr_m4l2     ^~^~^ ALMVEH DMG 300.000 -> -249.000 at ( 5222.620 5003.933 193.782 ) vel=( -152.691 -46.820 0.000 ) fwdtrace frac=1.000 ent=4095 surf=0
+20:20:52 gr_m4l2     ^~^~^ ALMVEH DMG near ent366 class=SplinePath org=( 5336.000 5027.000 183.000 ) model=- name=t349
+20:20:52 gr_m4l2     ^~^~^ ALMVEH DMG near ent367 class=SplinePath org=( 5072.000 4891.000 210.000 ) model=- name=t350
+20:20:52 gr_m4l2     ^~^~^ ALMVEH DMG near ent640 class=ScriptModel org=( 5194.971 5117.242 343.578 ) model=models/fx/dummy.tik name=
+20:20:52 gr_m4l2     ^~^~^ ALMVEH DMG near ent695 class=VehicleSoundEntity org=( 5386.096 4995.487 300.479 ) model=models/vehicles/vehiclesoundentity.tik name=
+20:20:52 gr_m4l2     ^~^~^ ALMVEH DMG near ent700 class=VehicleSoundEntity org=( 5099.451 4907.591 310.949 ) model=models/vehicles/vehiclesoundentity.tik name=
+20:20:52 gr_m4l2     ^~^~^ ALMVEH DMG near ent702 class=VehicleSoundEntity org=( 5353.262 5102.566 300.479 ) model=models/vehicles/vehiclesoundentity.tik name=
+20:20:52 gr_m4l2     ^~^~^ ALMVEH DMG near ent715 class=VehicleSoundEntity org=( 5066.617 5014.670 310.949 ) model=models/vehicles/vehiclesoundentity.tik name=
+20:20:52 gr_m4l2     ^~^~^ ALMVEH DMG near ent727 class=Weapon org=( 5187.817 5126.613 393.378 ) model=models/weapons/colt45.tik name=
+20:20:52 gr_m4l2     ^~^~^ ALMVEH DMG near ent728 class=Weapon org=( 5187.559 5093.852 408.355 ) model=models/weapons/mp44.tik name=player0Inventory
+20:20:52 gr_m4l2     ^~^~^ ALMVEH DMG near ent729 class=Weapon org=( 5202.929 5113.173 417.088 ) model=models/weapons/thompsonsmg.tik name=
+20:20:52 gr_m4l2     ^~^~^ ALMVEH DMG near ent731 class=Animate org=( 5191.873 5106.489 416.862 ) model=models/coop_helmets/coop_std_us_helmet_29th_net.tik name=coop_helmetProp
+20:20:52 gr_m4l2     ^~^~^ ALMVEH DMG near ent733 class=Actor org=( 5247.806 5013.158 249.068 ) model=models/human/german_waffenss_shutze.tik name=
+20:20:52 gr_m4l2     ^~^~^ ALMVEH DMG near ent750 class=Weapon org=( 5246.252 5005.289 299.243 ) model=models/weapons/kar98.tik name=
+20:20:52 gr_m4l2     ^~^~^ ALMVEH DMG near ent751 class=InventoryItem org=( 5222.944 5016.126 293.680 ) model=models/items/binoculars.tik name=
+20:20:52 gr_m4l2     ^~^~^ AVT rocket after hp=-249.000
+20:20:52 gr_m4l2 script errors: 0 []
+20:22:02 booted av_gr_m3 m3l3 ref=work dog False
+20:23:38 gr_m3 church hold finished after 81 s
+20:24:36 gr_m3 30cal team camera at 1899.3613548783178 -1858.0030483322146 gun 1640.431 -1881.563 -269.105 yaw 185.199
