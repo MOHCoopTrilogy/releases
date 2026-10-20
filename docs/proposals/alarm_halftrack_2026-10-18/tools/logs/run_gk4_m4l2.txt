@@ -1,0 +1,33 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> ok
+   wait \^~\^~\^ ALMVEH ARRIVED -> ok
+   wait \^~\^~\^ ALMVEH FIRING -> TIMEOUT
+   wait \^~\^~\^ ALMVEH DESTROYED -> ok
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=m4l2
+    ^~^~^ ALMVEH crate scan route 1: 125 hidden candidates (pass 2), 295 rejected on sight, anchor ( 3202.000 1995.000 150.000 ) stop ( 4424.000 4456.000 264.000 )
+    ^~^~^ ATSUPPLY ok tag=alarmveh_m4l21 weapon=models/weapons/bazooka.tik at=( 4024.000 3606.000 268.125 ) floor=( 4024.000 3606.000 262.125 ) shells=3
+    ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 4024.000 3606.000 262.125 ) dist_to_stop=939 lateral_to_squad_way=19 hidden_from_cab_gunner_mg=3/3+crouch foot_reachable_to_squad_way=ok
+    ^~^~^ ALMVEH pull 1: vehicle due in 19 s
+    ^~^~^ ALMVEH halftrack gun=avveh1_turret0 gunner=
+    ^~^~^ ALMVEH ARRIVING halftrack route=1 camptruck hp=300 pax=3 players=1 entry=( 5240.000 -800.000 264.000 )
+    ^~^~^ AVT pinned at ( 0.000 0.000 0.000 ) looking ( -35.264 45.000 0.000 )
+    ^~^~^ AVT gun camera on
+    ^~^~^ AVT GUNREL speed=( 17.966 82.921 0.000 ) gunner-gun fwd=-47 left=10 up=-43 gunnerZoffVeh=55 gunZoffVeh=99 gunner.anim=
+    ^~^~^ AVT GUNREL speed=( 33.818 156.086 0.000 ) gunner-gun fwd=-48 left=2 up=-56 gunnerZoffVeh=56 gunZoffVeh=112 gunner.anim=
+    ^~^~^ AVT GUNREL speed=( 33.820 156.086 0.000 ) gunner-gun fwd=-49 left=0 up=-60 gunnerZoffVeh=56 gunZoffVeh=116 gunner.anim=
+    ^~^~^ AVT GUNREL speed=( 89.145 132.073 0.000 ) gunner-gun fwd=-48 left=1 up=-57 gunnerZoffVeh=56 gunZoffVeh=113 gunner.anim=
+    ^~^~^ ALMVEH stuck at ( 5386.951 -278.434 234.429 ): treated as arrived
+    ^~^~^ ALMVEH ARRIVED halftrack at ( 5386.951 -278.434 234.429 )
+    ^~^~^ AVT cover rays blocked=1 of 8 at stop ( 4424.000 4456.000 264.000 )
+    ^~^~^ AVT GUNREL speed=( 97.433 126.083 0.000 ) gunner-gun fwd=-49 left=0 up=-59 gunnerZoffVeh=56 gunZoffVeh=115 gunner.anim=
+    ^~^~^ AVT GUNREL speed=( 97.433 126.083 0.000 ) gunner-gun fwd=-49 left=0 up=-59 gunnerZoffVeh=56 gunZoffVeh=115 gunner.anim=
+    ^~^~^ ALMVEH WITHDRAW, reason 40 s: halftrack at ( 5386.951 -278.434 234.429 )
+    ^~^~^ AVT hp set to 300.000
+    ^~^~^ AVT bullet on hp=300.000
+    ^~^~^ AVT bullet after hp=300.000
+    ^~^~^ AVT grenade on hp=300.000
+    ^~^~^ AVT grenade after hp=300.000
+    ^~^~^ AVT rocket on hp=300.000
+    ^~^~^ ALMVEH DESTROYED halftrack at ( 5360.472 -35.345 272.306 )
+    ^~^~^ AVT rocket after hp=-97.000
+script errors: 0 []

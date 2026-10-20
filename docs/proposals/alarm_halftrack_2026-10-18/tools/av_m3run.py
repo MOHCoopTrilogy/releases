@@ -50,9 +50,18 @@ try:
     t1 = time.time()
     # 1. the guard halftracks arrive: chase camera
     if R.wait_log(r"\^~\^~\^ ALMVEH ARRIVING halftrack", 150, p0):
-        G.cmd("follow", x="450", y="250", z="160")
-        G.frames(LABEL + "_ht_in", 26, 250)
+        if os.environ.get("AVGUN"):
+            a = os.environ["AVGUN"].split(",")
+            G.cmd("gunfollow", x=a[0], y=a[1], z=a[2])
+            for i in range(4):
+                G.cmd("gunrel"); G.frames(LABEL + "_gdrive", 3, 300)
+        else:
+            G.cmd("follow", x="450", y="250", z="160")
+        G.frames(LABEL + "_ht_in", 26 if not os.environ.get("AVGUN") else 6, 250)
     R.wait_log(r"\^~\^~\^ ALMVEH ARRIVED halftrack", 120, p0)
+    if os.environ.get("AVGUN"):
+        G.cmd("gunrel"); G.frames(LABEL + "_gpark", 6, 400); G.cmd("gunrel")
+        raise SystemExit
     G.frames(LABEL + "_ht_park", 10, 300)
     # 2. the squad moves up to Nebelwerfer 1: the nests see a player, the halftrack covers him
     G.cmd("nofollow")

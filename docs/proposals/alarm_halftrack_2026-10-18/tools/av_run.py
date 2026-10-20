@@ -32,12 +32,21 @@ try:
         if os.environ.get("AVFOLLOW"):
             a = os.environ["AVFOLLOW"].split(",")
             G.cmd("follow", x=a[0], y=a[1], z=a[2])
+        if os.environ.get("AVGUN"):
+            G.cmd("pin", x="0", y="0", z="0", lx="1", ly="1", lz="1")
+            a = os.environ["AVGUN"].split(",")
+            G.cmd("gunfollow", x=a[0], y=a[1], z=a[2])
         if os.environ.get("AVCAM2"):
             a = os.environ["AVCAM2"].split(",")      # the squad walks to a vantage point AFTER the hidden spawn
             G.cmd("pin", x=a[0], y=a[1], z=a[2], lx=a[3], ly=a[4], lz=a[5])
+        if os.environ.get("AVGUN"):
+            for i in range(4):
+                G.cmd("gunrel"); G.frames(LABEL + "_gdrive", 3, 300)
         G.frames(LABEL + "_in", 26, 220)
     if wl(r"\^~\^~\^ ALMVEH ARRIVED", 120, p0):
         G.cmd("covercheck")
+        if os.environ.get("AVGUN"):
+            G.cmd("gunrel"); G.frames(LABEL + "_gpark", 4, 400); G.cmd("gunrel")
         G.frames(LABEL + "_arr", 14, 220)
     if KIND == "truck":
         time.sleep(4)

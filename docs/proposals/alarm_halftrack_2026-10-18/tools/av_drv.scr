@@ -46,6 +46,19 @@ av_pinloop:{
 				level.avt_pos = level.av_ent.origin - ( local.fw * level.avt_back ) + ( local.lf * level.avt_side ) + ( 0 0 level.avt_up )
 				level.avt_va = vector_toangles ( ( level.av_ent.origin + ( 0 0 50 ) ) - level.avt_pos )
 			}
+			if( level.avt_gcam == 1 && level.av_ent != NULL && level.av_ent != NIL ){
+				local.gu = level.av_ent.av_gunner
+				if( local.gu != NULL && local.gu != NIL ){
+					// close camera on the gunner: behind-left of him in the vehicle's frame, looking at his chest
+					local.fw = angles_toforward ( 0 level.av_ent.angles[1] 0 )
+					local.lf = angles_toleft ( 0 level.av_ent.angles[1] 0 )
+					level.avt_pos = local.gu.origin - ( local.fw * level.avt_back ) + ( local.lf * level.avt_side ) + ( 0 0 level.avt_up )
+					local.gg = level.av_ent.av_gun
+					local.aim = local.gu.origin + ( 0 0 38 )
+					if( local.gg != NULL && local.gg != NIL ){ local.aim = ( ( local.gu.origin + local.gg.origin ) * 0.5 ) + ( 0 0 28 ) }
+					level.avt_va = vector_toangles ( local.aim - level.avt_pos )
+				}
+			}
 			local.p origin level.avt_pos
 			local.p.viewangles = level.avt_va
 			if( local.p.health > 0 ){
@@ -110,7 +123,29 @@ av_do local.c:{
 		waitthread av_pin local.pos local.va
 		println ( "^~^~^ AVT pinned at " + local.pos + " looking " + local.va )
 	}
-	if( local.c == "nofollow" ){ level.avt_follow = 0 }
+	if( local.c == "gunfollow" ){
+		level.avt_back = float( getcvar( "ai_x" ) )
+		level.avt_side = float( getcvar( "ai_y" ) )
+		level.avt_up = float( getcvar( "ai_z" ) )
+		level.avt_gcam = 1
+		level.avt_follow = 0
+		println "^~^~^ AVT gun camera on"
+	}
+	if( local.c == "gunrel" ){
+		local.v = level.av_ent
+		if( local.v != NULL && local.v != NIL ){
+			local.gu = local.v.av_gunner
+			local.gn = local.v.av_gun
+			if( local.gu != NULL && local.gu != NIL && local.gn != NULL && local.gn != NIL ){
+				local.d = local.gu.origin - local.gn.origin
+				local.fw = angles_toforward local.v.angles
+				local.lf = angles_toleft local.v.angles
+				println ( "^~^~^ AVT GUNREL speed=" + local.v.velocity + " gunner-gun fwd=" + int( vector_dot local.d local.fw ) + " left=" + int( vector_dot local.d local.lf ) + " up=" + int( local.d[2] ) + " gunnerZoffVeh=" + int( local.gu.origin[2] - local.v.origin[2] ) + " gunZoffVeh=" + int( local.gn.origin[2] - local.v.origin[2] ) + " gunner.anim=" + local.gu.animname )
+			} else { println "^~^~^ AVT GUNREL no gunner or gun" }
+		}
+	}
+	if( local.c == "nofollow" ){ level.avt_follow = 0
+		level.avt_gcam = 0 }
 	if( local.c == "follow" ){
 		level.avt_back = float( getcvar( "ai_x" ) )
 		level.avt_side = float( getcvar( "ai_y" ) )

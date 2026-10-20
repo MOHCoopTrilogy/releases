@@ -1,0 +1,52 @@
+   wait \^~\^~\^ ALMVEH ARRIVING -> ok
+   wait \^~\^~\^ ALMVEH ARRIVED -> TIMEOUT
+   wait \^~\^~\^ ALMVEH FIRING -> TIMEOUT
+   wait \^~\^~\^ ALMVEH DESTROYED -> ok
+    ^~^~^ AVT players=1
+    ^~^~^ AVT armed pull=1 map=t2l3
+    ^~^~^ ALMVEH crate scan route 1: 2 hidden candidates (pass 2), 271 rejected on sight, anchor ( 2271.700 822.600 80.000 ) stop ( 1892.000 808.000 80.000 )
+    ^~^~^ ATSUPPLY skip tag=alarmveh_t2l31 pos=( 2542.000 308.000 34.188 ) reason=no_floor_or_solid
+    ^~^~^ ALMVEH CRATE route 1 kind=bazooka at=( 2542.000 308.000 34.188 ) dist_to_stop=820 lateral_to_squad_way=581 hidden_from_cab_gunner_mg=3/3+crouch foot_reachable_to_squad_way=ok
+    ^~^~^ ALMVEH pull 1: vehicle due in 17 s
+    ^~^~^ ALMVEH halftrack gun= gunner=
+    ^~^~^ ALMVEH ARRIVING halftrack route=1 halftrack hp=300 pax=3 players=1 entry=( 2543.700 3288.400 60.000 )
+    ^~^~^ AVT pinned at ( 0.000 0.000 0.000 ) looking ( -35.264 45.000 0.000 )
+    ^~^~^ AVT gun camera on
+    ^~^~^ ALMVEH DMG 94.000 -> 52.000 at ( 2593.837 3285.057 -1.726 ) vel=( -1.880 -44.961 0.000 ) fwdtrace frac=1.000 ent=4095 surf=0
+    ^~^~^ ALMVEH DMG near ent65 class=DrivableVehicle org=( 2593.805 3285.008 -51.226 ) model=models/vehicles/halftrack_winter.tik name=halftrack1
+    ^~^~^ ALMVEH DMG near ent109 class=Actor org=( 2835.878 3246.164 0.125 ) model=models/human/german_winter_type2.tik name=enemy
+    ^~^~^ ALMVEH DMG near ent143 class=VehicleSoundEntity org=( 2657.928 3431.782 110.274 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent318 class=VehicleSoundEntity org=( 2641.581 3132.228 110.274 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent421 class=VehicleSoundEntity org=( 2599.670 3438.350 110.625 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent422 class=VehicleSoundEntity org=( 2599.670 3138.350 110.625 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent423 class=VehicleSoundEntity org=( 2487.670 3438.350 110.625 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent424 class=VehicleSoundEntity org=( 2487.670 3138.350 110.625 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent442 class=Actor org=( 2598.346 3296.928 51.449 ) model=models/human/german_waffenss_shutze_gear.tik name=
+    ^~^~^ ALMVEH DMG near ent443 class=VehicleSoundEntity org=( 2546.094 3437.885 110.274 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent456 class=VehicleSoundEntity org=( 2529.747 3138.331 110.274 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent465 class=VehicleTurretGun org=( 2592.936 3245.957 110.513 ) model=models/vehicles/sdkfz_mg42.tik name=
+    ^~^~^ ALMVEH DMG near ent505 class=ScriptOrigin org=( 2543.700 3288.400 48.125 ) model=- name=
+    ^~^~^ ALMVEH DMG near ent590 class=Weapon org=( 2605.666 3308.689 128.777 ) model=models/weapons/kar98.tik name=
+    ^~^~^ AVT GUNREL speed=( -5.168 -54.757 0.000 ) gunner-gun fwd=-50 left=-2 up=-59 gunnerZoffVeh=53 gunZoffVeh=112 gunner.anim=
+    ^~^~^ ALMVEH DESTROYED halftrack at ( 2592.096 3270.484 -0.465 )
+    ^~^~^ ALMVEH DMG 52.000 -> -88.000 at ( 2592.096 3270.484 -0.465 ) vel=( -13.435 -71.244 0.000 ) fwdtrace frac=1.000 ent=4095 surf=0
+    ^~^~^ ALMVEH DMG near ent65 class=DrivableVehicle org=( 2592.058 3270.440 -49.965 ) model=models/vehicles/halftrack_winter.tik name=halftrack1
+    ^~^~^ ALMVEH DMG near ent104 class=Animate org=( 2592.058 3270.440 -37.965 ) model=models/emitters/fireandsmoke.tik name=
+    ^~^~^ ALMVEH DMG near ent109 class=Actor org=( 2835.878 3246.164 0.125 ) model=models/human/german_winter_type2.tik name=enemy
+    ^~^~^ ALMVEH DMG near ent143 class=VehicleSoundEntity org=( 2676.600 3406.480 111.535 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent318 class=VehicleSoundEntity org=( 2617.390 3112.382 111.535 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent421 class=VehicleSoundEntity org=( 2599.670 3438.350 110.625 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent422 class=VehicleSoundEntity org=( 2599.670 3138.350 110.625 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent423 class=VehicleSoundEntity org=( 2487.670 3438.350 110.625 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent424 class=VehicleSoundEntity org=( 2487.670 3138.350 110.625 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent442 class=Actor org=( 2598.092 3281.579 52.771 ) model=models/human/german_waffenss_shutze_gear.tik name=
+    ^~^~^ ALMVEH DMG near ent443 class=VehicleSoundEntity org=( 2566.803 3428.586 111.535 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent456 class=VehicleSoundEntity org=( 2507.593 3134.487 111.535 ) model=models/vehicles/vehiclesoundentity.tik name=
+    ^~^~^ ALMVEH DMG near ent505 class=ScriptOrigin org=( 2543.700 3288.400 48.125 ) model=- name=
+    ^~^~^ ALMVEH DMG near ent516 class=Animate org=( 2592.058 3270.440 2.035 ) model=models/emitters/linger_smoke02.tik name=
+    ^~^~^ AVT GUNREL no gunner or gun
+    ^~^~^ AVT GUNREL no gunner or gun
+    ^~^~^ AVT bullet: no vehicle
+    ^~^~^ AVT grenade: no vehicle
+    ^~^~^ AVT rocket: no vehicle
+script errors: 0 []

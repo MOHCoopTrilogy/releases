@@ -38,3 +38,18 @@
 000] ^~^~^ NEB t=263.325 defenders at Nebelwerfer 3: 5 of 6 (waited 0 s, floor audit moved 5 dropped 1)
 000] ^~^~^ NEB t=263.325 defenders at Nebelwerfer 4: 5 of 6 (waited 0 s, floor audit moved 5 dropped 1)
 000] ^~^~^ NEB t=263.350 defenders at Nebelwerfer 2: 6 of 6 (waited 0 s, floor audit moved 6 dropped 0)
+
+== halftrack gunner mount (GUNREL: gunner relative to the MG mount, vehicle frame; AttachPassengerSlot 1 + turret slot 0, the vanilla recipe) ==
+-- gk_m4l2
+000] ^~^~^ AVT GUNREL speed=( 10.040 46.338 0.000 ) gunner-gun fwd=-47 left=15 up=-36 gunnerZoffVeh=55 gunZoffVeh=91 gunner.anim=
+000] ^~^~^ AVT GUNREL speed=( 33.820 156.086 0.000 ) gunner-gun fwd=-49 left=0 up=-60 gunnerZoffVeh=56 gunZoffVeh=116 gunner.anim=
+000] ^~^~^ AVT GUNREL speed=( -140.285 -76.790 0.000 ) gunner-gun fwd=-49 left=0 up=-60 gunnerZoffVeh=56 gunZoffVeh=117 gunner.anim=
+000] ^~^~^ AVT GUNREL speed=( -140.285 -76.790 0.000 ) gunner-gun fwd=-49 left=0 up=-60 gunnerZoffVeh=56 gunZoffVeh=117 gunner.anim=
+-- gk_t2l3
+000] ^~^~^ AVT GUNREL speed=( -5.168 -54.757 0.000 ) gunner-gun fwd=-50 left=-2 up=-59 gunnerZoffVeh=53 gunZoffVeh=112 gunner.anim=
+000] ^~^~^ AVT GUNREL speed=( -5.168 -54.757 0.000 ) gunner-gun fwd=-50 left=-2 up=-59 gunnerZoffVeh=53 gunZoffVeh=112 gunner.anim=
+-- gk_m3
+000] ^~^~^ AVT GUNREL speed=( 0.000 -52.527 0.000 ) gunner-gun fwd=-48 left=8 up=-57 gunnerZoffVeh=47 gunZoffVeh=104 gunner.anim=
+000] ^~^~^ AVT GUNREL speed=( 0.000 -159.927 0.000 ) gunner-gun fwd=-49 left=0 up=-62 gunnerZoffVeh=55 gunZoffVeh=118 gunner.anim=
+000] ^~^~^ AVT GUNREL speed=( -0.002 6.054 0.000 ) gunner-gun fwd=-48 left=0 up=-61 gunnerZoffVeh=54 gunZoffVeh=116 gunner.anim=
+000] ^~^~^ AVT GUNREL speed=( -0.000 0.000 0.000 ) gunner-gun fwd=-49 left=0 up=-62 gunnerZoffVeh=54 gunZoffVeh=117 gunner.anim=
