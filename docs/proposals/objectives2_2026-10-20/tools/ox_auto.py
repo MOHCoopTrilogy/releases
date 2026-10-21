@@ -101,8 +101,12 @@ def do_radio(i, o):
         base += len(oo.get("items", []))
     for n, it in enumerate(o["items"], 1):
         if it["kind"] == "radio":
+            x, y, z = it["pos"]
+            tp(x + 200, y, z + 28, 180, 4)
+            aim(x, y, z + 20)
+            frames("%s_set%d_before" % (o["id"], n), 4, 250)
             G.cmd("dmgradio", k=base + n)
-            time.sleep(0.8)
+            frames("%s_set%d_blast" % (o["id"], n), 8, 250)
     log("DONE %s seen:" % o["id"], bool(seen(r"\^~\^~\^ OBJX DONE %s " % o["id"], 25)))
 
 
@@ -130,10 +134,34 @@ def do_charge(i, o):
     # watch the blast from a distance
     if o.get("chain"):
         p = tgs[0]["pos"]
-        tp(p[0] + 420, p[1], p[2] + 28, 180, 5)
+        c = o.get("chain_cam")
+        if c:
+            tp(c[0], c[1], c[2] + 4, c[3], c[4])
+        else:
+            tp(p[0] + 420, p[1], p[2] + 28, 180, 5)
         frames("%s_chain" % o["id"], 36, 400)
     log("DONE %s seen:" % o["id"], bool(seen(r"\^~\^~\^ OBJX DONE %s " % o["id"], 60)))
     frames("%s_after" % o["id"], 6, 350)
+
+
+def do_escort(i, o):
+    act = [it for it in o["items"] if it["kind"] == "actor"][0]
+    x, y, z = act["pos"]
+    tp(x + 70, y, z + 28, 180, 0)
+    aim(x, y, z + 50)
+    frames("%s_captive" % o["id"], 6, 250)
+    hold_use(500)
+    seen(r"\^~\^~\^ OBJX ESCORT freed", 8)
+    frames("%s_freed" % o["id"], 8, 250)
+    dest = o["zone"]["pos"]
+    tp(dest[0], dest[1], dest[2] + 28, 0, 0)       # he runs to the nearest player along the real navigation
+    t0 = time.time()
+    while time.time() - t0 < 240:
+        if R.wait_log(r"\^~\^~\^ OBJX DONE %s " % o["id"], 0.1, 0):
+            break
+        frames("%s_walk" % o["id"], 1, 300)
+        time.sleep(5)
+    log("DONE %s seen:" % o["id"], bool(seen(r"\^~\^~\^ OBJX DONE %s " % o["id"], 10)), "after %.0f s" % (time.time() - t0))
 
 
 def do_zone(i, o):
@@ -186,6 +214,8 @@ try:
             do_radio(i, o)
         elif t == "charge":
             do_charge(i, o)
+        elif t == "escort":
+            do_escort(i, o)
         elif t in ("perform", "hold"):
             do_zone(i, o)
         else:

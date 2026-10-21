@@ -1,0 +1,48 @@
+   69s booted; players joined True
+   69s player active after intro: True
+   69s == objective radios radio
+   69s ACTIVE radios True
+   81s DONE radios seen: True
+   81s == objective plaza hold
+   81s ACTIVE plaza True
+  141s DONE plaza seen: True
+  141s == objective dump charge
+  141s ACTIVE dump True
+  149s KIT taken: True
+  154s PLANT 1 True
+  159s PLANT 2 True
+  164s PLANT 3 True
+  178s DONE dump seen: True
+  180s == objective pow escort
+  181s ACTIVE pow True
+  441s DONE pow seen: False after 252 s
+  441s -- exit gate check
+  531s exit chain: False
+  531s ---- OBJX log ----
+  531s OBJX armed m1l1 objectives=4 items=7 players=1
+  531s OBJX ACTIVE radios type=radio t=32.250
+  531s OBJX RADIO set 1 armed at ( -4880.000 228.000 352.000 )
+  531s OBJX RADIO set 2 armed at ( -4656.000 864.000 432.000 )
+  531s OBJX RADIO down 1 (shot) 1/2 t=47.050
+  531s OBJX RADIO down 2 (shot) 2/2 t=51.050
+  531s OBJX DONE radios took=18.800s done=1/4 t=51.050
+  531s OBJX ACTIVE plaza type=hold t=51.250
+  531s OBJX HOLD plaza zone=the village plaza at=( -4824.000 228.000 352.000 ) r=330 total=54s players=1
+  531s OBJX HOLD clock 0:00 elapsed=54.150 waves=2 lost=0
+  531s OBJX DONE plaza took=60.150s done=2/4 t=111.400
+  531s OBJX ACTIVE dump type=charge t=113.250
+  531s OBJX KIT taken by UnnamedSoldier#8240 t=119.850
+  531s OBJX ACTIVE pow type=escort t=121.250
+  531s OBJX PLANT 1/3 target 4 by UnnamedSoldier#8240 t=124.650
+  531s OBJX PLANT 2/3 target 5 by UnnamedSoldier#8240 t=124.650
+  531s OBJX PLANT 3/3 target 6 by UnnamedSoldier#8240 t=135.050
+  531s OBJX CHAIN armed fuse=10 t=135.050
+  531s OBJX CHAIN go t=145.050
+  531s OBJX BLOW target 4 t=145.050
+  531s OBJX BLOW target 5 t=145.943
+  531s OBJX BLOW target 6 t=146.826
+  531s OBJX DONE dump took=36.107s done=3/4 t=149.357
+  531s OBJX ESCORT freed by UnnamedSoldier#8240
+  531s OBJX ESCORT actor died - respawning at the start in 10 s
+  531s OBJX GATE closed: 3/4 done at t=413.575
+  531s script errors: 5 ["[2026-10-21 01:09:20 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector", "[2026-10-21 01:09:20 UTC-6.000] ^~^~^ Script Error : command 'anim' applied to NULL listener", "[2026-10-21 01:09:20 UTC-6.000] ^~^~^ Script Error : command 'gettagposition' applied to NULL listener", "[2026-10-21 01:09:20 UTC-6.000] ^~^~^ Script Error : command 'loopsound' applied to NULL listener", "[2026-10-21 01:09:20 UTC-6.000] ^~^~^ Script Error : command 'playsound' applied to NULL listener"]

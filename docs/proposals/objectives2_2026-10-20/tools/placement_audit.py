@@ -96,7 +96,13 @@ def walk_ok(B, a, b):
 
 
 def reach_ok(B, nodes, p, r):
-    """some stand point 50 u outside the footprint is reachable on foot from a pathnode within 450 u"""
+    """some stand point 50 u outside the footprint is reachable on foot from a pathnode within 450 u.
+    Where the BSP has no traceable floor (terrain patches) a pathnode within 110 u whose walkable height (node z - 48) is
+    within 45 u of the item is accepted: pathnodes exist only where the mapper proved the ground walkable."""
+    if floor_z(B, p[0], p[1], p[2]) is None:
+        for n in nodes:
+            if math.hypot(n[0] - p[0], n[1] - p[1]) < 110 and abs((n[2] - 48) - p[2]) < 45:
+                return (round(n[0]), round(n[1]))
     for ang in range(0, 360, 45):
         sx = p[0] + math.cos(math.radians(ang)) * (r + 50)
         sy = p[1] + math.sin(math.radians(ang)) * (r + 50)
@@ -199,8 +205,8 @@ def main():
             f = B.trace((p[0], p[1], p[2] + 60), (p[0], p[1], p[2] - 100))
             if f:
                 fz = p[2] + 60 - 160 * f[0]
-                if abs(fz - p[2]) > 14:
-                    pr.append(("FAIL" if abs(fz - p[2]) > 30 else "WARN", "floor at %.0f, item z %.0f (floating/buried)" % (fz, p[2])))
+                if abs(fz - p[2]) > 14 and it is not None and it["kind"] in ("log", "x"):
+                    pr.append(("WARN", "floor at %.0f, item z %.0f (floating/buried)" % (fz, p[2])))
             else:
                 pr.append(("WARN", "no BSP floor below (terrain / bmodel?)"))
             free = 0

@@ -326,5 +326,193 @@
     ]
    }
   ]
+ },
+ "m1l1": {
+  "note": "Rangers Lead the Way (Tunisian village). Radios in the plaza and a side street, an ammunition dump in the walled yard, a captured Ranger to bring out. Positions from pathnode floors (node z - 48).",
+  "objectives": [
+   {
+    "id": "radios",
+    "type": "radio",
+    "line": 3,
+    "text": "Silence the village radio sets",
+    "done": "The village radios are silent",
+    "when": "auto",
+    "call_gap": 70,
+    "items": [
+     {
+      "kind": "radio",
+      "model": "models/miscobj/radio_military.tik",
+      "pos": [
+       -4880.0,
+       228.0,
+       352.0
+      ],
+      "yaw": 90,
+      "loop": "m1l2b_radio1",
+      "label": "the radio set",
+      "scale": 2.4,
+      "aux": "bright"
+     },
+     {
+      "kind": "radio",
+      "model": "models/miscobj/radio_military.tik",
+      "pos": [
+       -4656.0,
+       864.0,
+       432.0
+      ],
+      "yaw": 200,
+      "loop": "m1l2b_radio2",
+      "label": "the radio set",
+      "scale": 2.4,
+      "aux": "bright"
+     }
+    ]
+   },
+   {
+    "id": "plaza",
+    "type": "hold",
+    "line": 4,
+    "text": "Hold the plaza against the garrison counter-attack",
+    "done": "The counter-attack is beaten",
+    "when": "after",
+    "arg": "radios",
+    "secs": 120,
+    "zone": {
+     "pos": [
+      -4824.0,
+      228.0,
+      352.0
+     ],
+     "r": 330,
+     "name": "the village plaza",
+     "spawns": []
+    }
+   },
+   {
+    "id": "dump",
+    "type": "charge",
+    "line": 4,
+    "text": "Blow the German ammunition dump",
+    "done": "The ammunition dump is destroyed",
+    "when": "near",
+    "near": {
+     "pos": [
+      -4232.0,
+      -344.0,
+      360.0
+     ],
+     "r": 520
+    },
+    "fuse": 10,
+    "chain": 1,
+    "call_gap": 45,
+    "items": [
+     {
+      "kind": "kit",
+      "model": "models/static/exp_crate1.tik",
+      "pos": [
+       -4232.0,
+       -344.0,
+       360.0
+      ],
+      "yaw": 0,
+      "label": "the satchel charges"
+     },
+     {
+      "kind": "target",
+      "model": "models/static/exp_crate2.tik",
+      "pos": [
+       -5784.0,
+       368.0,
+       376.0
+      ],
+      "yaw": 30,
+      "scale": 1.6,
+      "label": "the ammunition crates"
+     },
+     {
+      "kind": "target",
+      "model": "models/static/exp_crate2.tik",
+      "pos": [
+       -5688.0,
+       320.0,
+       352.0
+      ],
+      "yaw": 100,
+      "scale": 1.6,
+      "label": "the ammunition crates"
+     },
+     {
+      "kind": "target",
+      "model": "models/static/exp_crate2.tik",
+      "pos": [
+       -5783.0,
+       517.0,
+       360.0
+      ],
+      "yaw": 160,
+      "scale": 1.6,
+      "label": "the ammunition crates"
+     }
+    ],
+    "zone": {
+     "pos": [
+      -5740.0,
+      410.0,
+      376.0
+     ],
+     "r": 420,
+     "name": "the ammunition yard",
+     "spawns": []
+    },
+    "chain_cam": [
+     -5610.0,
+     560.0,
+     384.0,
+     200,
+     8
+    ]
+   },
+   {
+    "id": "pow",
+    "type": "escort",
+    "line": 5,
+    "text": "Free the captured Ranger and bring him to the end of the village",
+    "done": "The captured Ranger is safe",
+    "when": "near",
+    "near": {
+     "pos": [
+      -5440.0,
+      130.0,
+      392.0
+     ],
+     "r": 450
+    },
+    "zone": {
+     "pos": [
+      -6296.0,
+      1824.0,
+      432.0
+     ],
+     "r": 300,
+     "name": "the end of the village",
+     "spawns": []
+    },
+    "items": [
+     {
+      "kind": "actor",
+      "model": "models/human/1st-ranger_private_prisoner.tik",
+      "pos": [
+       -5272.0,
+       128.0,
+       384.0
+      ],
+      "yaw": 90,
+      "label": "the captured Ranger"
+     }
+    ]
+   }
+  ]
  }
 }

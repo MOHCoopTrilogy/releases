@@ -1,0 +1,14 @@
+   69s booted; players joined True
+   69s player active after intro: True
+   69s == objective pow escort
+   70s ACTIVE pow True
+   91s DONE pow seen: True after 12 s
+   91s ---- OBJX log ----
+   91s OBJX armed m1l1 objectives=3 items=7 players=1
+   91s OBJX ACTIVE radios type=radio t=32.250
+   91s OBJX RADIO set 1 armed at ( -4880.000 228.000 352.000 )
+   91s OBJX RADIO set 2 armed at ( -4656.000 864.000 432.000 )
+   91s OBJX ACTIVE pow type=escort t=42.250
+   91s OBJX ESCORT freed by UnnamedSoldier#8240
+   91s OBJX DONE pow took=18.125s done=1/3 t=60.375
+   91s script errors: 5 ["[2026-10-21 00:55:45 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector", "[2026-10-21 00:55:45 UTC-6.000] ^~^~^ Script Error : command 'anim' applied to NULL listener", "[2026-10-21 00:55:45 UTC-6.000] ^~^~^ Script Error : command 'gettagposition' applied to NULL listener", "[2026-10-21 00:55:45 UTC-6.000] ^~^~^ Script Error : command 'loopsound' applied to NULL listener", "[2026-10-21 00:55:45 UTC-6.000] ^~^~^ Script Error : command 'playsound' applied to NULL listener"]

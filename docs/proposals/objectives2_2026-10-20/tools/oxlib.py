@@ -86,6 +86,8 @@ EXTRA = ["set coop_st_xp 1", "set developer 1", "set com_maxfpsUnfocused 60", "s
 
 def boot(sess, mapname, W=1280, H=720, extra=(), ov=None, ref=None, files=()):
     cg = install()
+    if mapname == "m1l1":
+        extra = list(extra) + ["set intro 0"]     # maps/m1l1.scr: level.intro = getcvar(intro) - 0 skips the truck-ride intro
     R.MAP = mapname
     rundir, notes = S.boot_session(sess, cg, W, H, EXTRA + list(extra), ov or overlay(ref=ref, extra=files))
     log("booted", sess, mapname, "ref=" + (ref or MODREF or "work"), "dog", notes.get("dog"))

@@ -1,0 +1,36 @@
+   66s booted; players joined True
+   67s player active after intro: True
+   67s == objective radios radio
+   67s ACTIVE radios True
+   72s DONE radios seen: True
+   72s == objective dump charge
+   72s ACTIVE dump True
+   80s KIT taken: True
+   86s PLANT 1 True
+   91s PLANT 2 True
+   97s PLANT 3 True
+  111s DONE dump seen: True
+  113s == objective pow escort
+  114s ACTIVE pow True
+  117s   (no auto handler for escort )
+  117s ---- OBJX log ----
+  117s OBJX armed m1l1 objectives=3 items=7 players=1
+  117s OBJX ACTIVE radios type=radio t=32.250
+  117s OBJX RADIO set 1 armed at ( -4880.000 228.000 352.000 )
+  117s OBJX RADIO set 2 armed at ( -4656.000 864.000 432.000 )
+  117s OBJX RADIO down 1 (shot) 1/2 t=45.450
+  117s OBJX RADIO down 2 (shot) 2/2 t=46.250
+  117s OBJX DONE radios took=14.000s done=1/3 t=46.250
+  117s OBJX ACTIVE dump type=charge t=47.250
+  117s OBJX KIT taken by UnnamedSoldier#8240 t=53.850
+  117s OBJX ACTIVE pow type=escort t=55.250
+  117s OBJX PLANT 1/3 target 4 by UnnamedSoldier#8240 t=58.650
+  117s OBJX PLANT 2/3 target 5 by UnnamedSoldier#8240 t=58.650
+  117s OBJX PLANT 3/3 target 6 by UnnamedSoldier#8240 t=69.850
+  117s OBJX CHAIN armed fuse=10 t=69.850
+  117s OBJX CHAIN go t=79.850
+  117s OBJX BLOW target 4 t=79.850
+  117s OBJX BLOW target 5 t=80.767
+  117s OBJX BLOW target 6 t=81.400
+  117s OBJX DONE dump took=36.227s done=2/3 t=83.477
+  117s script errors: 5 ["[2026-10-21 00:53:27 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector", "[2026-10-21 00:53:27 UTC-6.000] ^~^~^ Script Error : command 'anim' applied to NULL listener", "[2026-10-21 00:53:27 UTC-6.000] ^~^~^ Script Error : command 'gettagposition' applied to NULL listener", "[2026-10-21 00:53:27 UTC-6.000] ^~^~^ Script Error : command 'loopsound' applied to NULL listener", "[2026-10-21 00:53:27 UTC-6.000] ^~^~^ Script Error : command 'playsound' applied to NULL listener"]
