@@ -1,0 +1,46 @@
+   75s booted; players joined True
+   75s player active after intro: True
+   75s == objective radios radio
+   75s ACTIVE radios True
+   87s DONE radios seen: True
+   87s == objective fuel charge
+   88s ACTIVE fuel True
+   96s KIT taken: True
+   96s    stand for [1150, -1100, -304] at node [1232, -1200, -256]
+  101s PLANT 1 True
+  101s    stand for [900, -1350, -304] at node [1000, -1456, -256]
+  105s PLANT 2 True
+  105s    stand for [850, -1650, -304] at node [992, -1696, -256]
+  110s PLANT 3 True
+  111s    chain vantage [1232, -1456, -256]
+  125s DONE fuel seen: True
+  127s == objective exfil hold
+  127s ACTIVE exfil True
+  200s DONE exfil seen: True
+  200s -- exit gate check
+  256s exit chain: True
+  256s ---- OBJX log ----
+  256s OBJX armed m1l2b objectives=3 items=6 players=1
+  256s OBJX ACTIVE radios type=radio t=32.250
+  256s OBJX RADIO set 1 armed at ( 1602.200 -2905.800 -131.800 )
+  256s OBJX RADIO set 2 armed at ( 1956.200 -3741.800 -137.800 )
+  256s OBJX RADIO down 1 (shot) 1/2 t=47.050
+  256s OBJX RADIO down 2 (shot) 2/2 t=51.050
+  256s OBJX DONE radios took=18.800s done=1/3 t=51.050
+  256s OBJX ACTIVE exfil type=hold t=51.250
+  256s OBJX HOLD exfil zone=the radio yard at=( 1956.000 -3400.000 -240.000 ) r=420 total=67s players=1
+  256s OBJX ACTIVE fuel type=charge t=54.250
+  256s OBJX KIT taken by UnnamedSoldier#8240 t=60.850
+  256s OBJX PLANT 1/3 target 4 by UnnamedSoldier#8240 t=65.650
+  256s OBJX PLANT 2/3 target 5 by UnnamedSoldier#8240 t=70.650
+  256s OBJX PLANT 3/3 target 6 by UnnamedSoldier#8240 t=75.250
+  256s OBJX CHAIN armed fuse=12 t=75.250
+  256s OBJX CHAIN go t=87.250
+  256s OBJX BLOW target 4 t=87.275
+  256s OBJX BLOW target 5 t=88.167
+  256s OBJX BLOW target 6 t=89.159
+  256s OBJX DONE fuel took=37.386s done=2/3 t=91.636
+  256s OBJX HOLD clock 0:00 elapsed=113.050 waves=3 lost=0
+  256s OBJX DONE exfil took=113.050s done=3/3 t=164.300
+  256s OBJX ALL DONE 3 objectives t=164.300
+  256s script errors: 1 ["[2026-10-21 01:59:49 UTC-6.000] ^~^~^ Script Error : ScriptMaster::CreateScriptThread: label 'briefing_briefing2' does not exist in 'coop_mod/spawnlocations.scr'."]

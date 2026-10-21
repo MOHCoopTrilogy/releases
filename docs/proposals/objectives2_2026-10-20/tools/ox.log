@@ -1490,3 +1490,51 @@ RuntimeError: driver never did endinfo
 01:51:02 m1l2a_g OBJX DONE lights took=36.945s done=1/3 t=79.195
 01:51:02 m1l2a_g OBJX ACTIVE radios type=radio t=79.250
 01:51:02 m1l2a_g script errors: 0 []
+01:54:54 booted ox_spots_m1l2b m1l2b ref=work dog False
+01:56:58 booted ox_m1l2b_a m1l2b ref=work dog False
+01:56:58 m1l2b_a booted; players joined True
+01:56:58 m1l2b_a player active after intro: True
+01:56:58 m1l2b_a == objective radios radio
+01:56:58 m1l2b_a ACTIVE radios True
+01:57:10 m1l2b_a DONE radios seen: True
+01:57:10 m1l2b_a == objective fuel charge
+01:57:11 m1l2b_a ACTIVE fuel True
+01:57:19 m1l2b_a KIT taken: True
+01:57:19 m1l2b_a    stand for [1150, -1100, -304] at node [1232, -1200, -256]
+01:57:24 m1l2b_a PLANT 1 True
+01:57:24 m1l2b_a    stand for [900, -1350, -304] at node [1000, -1456, -256]
+01:57:28 m1l2b_a PLANT 2 True
+01:57:28 m1l2b_a    stand for [850, -1650, -304] at node [992, -1696, -256]
+01:57:33 m1l2b_a PLANT 3 True
+01:57:33 m1l2b_a    chain vantage [1232, -1456, -256]
+01:57:48 m1l2b_a DONE fuel seen: True
+01:57:50 m1l2b_a == objective exfil hold
+01:57:50 m1l2b_a ACTIVE exfil True
+01:59:02 m1l2b_a DONE exfil seen: True
+01:59:02 m1l2b_a -- exit gate check
+01:59:58 m1l2b_a exit chain: True
+01:59:58 m1l2b_a ---- OBJX log ----
+01:59:58 m1l2b_a OBJX armed m1l2b objectives=3 items=6 players=1
+01:59:58 m1l2b_a OBJX ACTIVE radios type=radio t=32.250
+01:59:58 m1l2b_a OBJX RADIO set 1 armed at ( 1602.200 -2905.800 -131.800 )
+01:59:58 m1l2b_a OBJX RADIO set 2 armed at ( 1956.200 -3741.800 -137.800 )
+01:59:58 m1l2b_a OBJX RADIO down 1 (shot) 1/2 t=47.050
+01:59:58 m1l2b_a OBJX RADIO down 2 (shot) 2/2 t=51.050
+01:59:58 m1l2b_a OBJX DONE radios took=18.800s done=1/3 t=51.050
+01:59:58 m1l2b_a OBJX ACTIVE exfil type=hold t=51.250
+01:59:58 m1l2b_a OBJX HOLD exfil zone=the radio yard at=( 1956.000 -3400.000 -240.000 ) r=420 total=67s players=1
+01:59:58 m1l2b_a OBJX ACTIVE fuel type=charge t=54.250
+01:59:58 m1l2b_a OBJX KIT taken by UnnamedSoldier#8240 t=60.850
+01:59:58 m1l2b_a OBJX PLANT 1/3 target 4 by UnnamedSoldier#8240 t=65.650
+01:59:58 m1l2b_a OBJX PLANT 2/3 target 5 by UnnamedSoldier#8240 t=70.650
+01:59:58 m1l2b_a OBJX PLANT 3/3 target 6 by UnnamedSoldier#8240 t=75.250
+01:59:58 m1l2b_a OBJX CHAIN armed fuse=12 t=75.250
+01:59:58 m1l2b_a OBJX CHAIN go t=87.250
+01:59:58 m1l2b_a OBJX BLOW target 4 t=87.275
+01:59:58 m1l2b_a OBJX BLOW target 5 t=88.167
+01:59:58 m1l2b_a OBJX BLOW target 6 t=89.159
+01:59:58 m1l2b_a OBJX DONE fuel took=37.386s done=2/3 t=91.636
+01:59:58 m1l2b_a OBJX HOLD clock 0:00 elapsed=113.050 waves=3 lost=0
+01:59:58 m1l2b_a OBJX DONE exfil took=113.050s done=3/3 t=164.300
+01:59:58 m1l2b_a OBJX ALL DONE 3 objectives t=164.300
+01:59:58 m1l2b_a script errors: 1 ["[2026-10-21 01:59:49 UTC-6.000] ^~^~^ Script Error : ScriptMaster::CreateScriptThread: label 'briefing_briefing2' does not exist in 'coop_mod/spawnlocations.scr'."]
