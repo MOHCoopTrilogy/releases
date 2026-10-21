@@ -1,0 +1,71 @@
+   72s booted; players joined True
+   72s -- the lift base: the depot objective starts when the squad comes within 520 of it
+   73s ACTIVE depot seen: True
+   78s -- the charges: stand beside the crate, hold USE
+   82s KIT taken seen: True
+   83s -- plant on target 1
+   88s PLANT 1 seen: True
+   89s -- plant on target 2
+   94s PLANT 2 seen: True
+   95s -- plant on target 3
+  100s PLANT 3 seen: True
+  101s -- clear of the blast: the chain (12 s fuse), watched from the south end of the aisle
+  119s DONE depot seen: True
+  122s -- the generator yard: the engineer repair starts when the squad comes within 700
+  123s ACTIVE repair seen: True
+  156s DONE repair seen: True
+  162s -- vanilla objective 1: the four comms sets
+  168s -- lighthouse base: obj2trig starts the signal-log objective (after the engineer)
+  169s ACTIVE log seen: True
+  173s DONE log seen: True
+  173s -- the lever: lights the beacon, starts the hold
+  174s ACTIVE hold seen: True
+  174s -- the truck trigger first (so the truck arrives during the hold), then the landing
+  182s hold clock finished: True
+  215s ALL DONE seen: True
+  215s -- the way out: the truck, then the end trigger
+  716s mission-complete chain reached the counter gate: False
+  719s ---- OBJX log ----
+  719s OBJX armed m1l3c objectives=4 items=7 players=1
+  719s OBJX ACTIVE depot type=charge t=42.000
+  719s OBJX KIT taken by UnnamedSoldier#8240 t=50.800
+  719s OBJX PLANT 1/3 target 2 by UnnamedSoldier#8240 t=57.000
+  719s OBJX PLANT 2/3 target 3 by UnnamedSoldier#8240 t=62.600
+  719s OBJX HOLD wave 1 players=1 want=4 made=4 alive=4 entry=1 at=( -5728.000 -4032.000 -20.000 )
+  719s OBJX PLANT 3/3 target 4 by UnnamedSoldier#8240 t=68.600
+  719s OBJX CHAIN armed fuse=12 t=68.600
+  719s OBJX CHAIN go t=80.600
+  719s OBJX BLOW target 2 t=80.625
+  719s OBJX BLOW target 3 t=81.311
+  719s OBJX BLOW target 4 t=81.895
+  719s OBJX DONE depot took=42.343s done=1/4 t=84.343
+  719s OBJX ACTIVE repair type=perform t=92.000
+  719s OBJX HOLD repair zone=the generator yard at=( -470.000 -1930.000 312.000 ) r=350 total=25s players=1
+  719s OBJX PERF repair performer #1 spawned at ( -575.000 -1930.000 308.619 ) seq=wrench
+  719s OBJX HOLD wave 1 players=1 want=4 made=4 alive=8 entry=1 at=( -900.000 -2300.000 282.000 )
+  719s OBJX HOLD clock 0:00 elapsed=25.100 waves=1 lost=0
+  719s OBJX DONE repair took=29.600s done=2/4 t=121.600
+  719s OBJX ACTIVE log type=intel t=137.700
+  719s OBJX PICKUP log 1/1 by UnnamedSoldier#8240
+  719s OBJX DONE log took=3.900s done=3/4 t=141.600
+  719s OBJX ACTIVE hold type=hold t=142.925
+  719s OBJX HOLD hold zone=the lighthouse landing at=( -380.000 -1720.000 306.000 ) r=380 total=25s players=1
+  719s OBJX HOLD state hold -> paused remaining=23.000 inside=0 t=149.675
+  719s OBJX HOLD state paused -> hold remaining=22.750 inside=1 t=151.175
+  719s OBJX HOLD state hold -> paused remaining=22.250 inside=0 t=151.925
+  719s OBJX HOLD state paused -> hold remaining=22.000 inside=1 t=153.675
+  719s OBJX HOLD state hold -> paused remaining=18.750 inside=0 t=157.175
+  719s OBJX HOLD wave 1 players=1 want=4 made=4 alive=12 entry=1 at=( -900.000 -2300.000 282.000 )
+  719s OBJX HOLD state paused -> hold remaining=18.500 inside=1 t=159.025
+  719s OBJX HOLD state hold -> paused remaining=15.250 inside=0 t=162.525
+  719s OBJX HOLD state paused -> hold remaining=15.000 inside=1 t=164.275
+  719s OBJX HOLD state hold -> paused remaining=11.500 inside=0 t=168.025
+  719s OBJX HOLD state paused -> hold remaining=11.250 inside=1 t=169.775
+  719s OBJX HOLD state hold -> paused remaining=8.000 inside=0 t=173.275
+  719s OBJX HOLD state paused -> hold remaining=7.750 inside=1 t=175.025
+  719s OBJX HOLD state hold -> paused remaining=4.250 inside=0 t=178.775
+  719s OBJX HOLD state paused -> hold remaining=4.000 inside=1 t=180.525
+  719s OBJX HOLD clock 0:00 elapsed=37.100 waves=1 lost=0
+  719s OBJX DONE hold took=41.600s done=4/4 t=184.525
+  719s OBJX ALL DONE 4 objectives t=184.525
+  719s script errors: 0 []

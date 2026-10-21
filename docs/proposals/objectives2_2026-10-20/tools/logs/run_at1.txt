@@ -1,0 +1,4 @@
+   70s booted; players joined True
+   70s ---- OBJX log ----
+   70s OBJX armed m1l3c objectives=4 items=7 players=1
+   70s script errors: 0 []

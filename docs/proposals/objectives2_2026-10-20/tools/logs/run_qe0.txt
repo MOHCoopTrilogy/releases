@@ -1,0 +1,10 @@
+   74s booted; players joined True
+   80s -- all objectives forced done; waiting for the truck
+  163s FAILED RuntimeError('driver never did endinfo') Traceback (most recent call last):
+  File "C:\mohaa-coop-dev\docs\proposals\objectives2_2026-10-20\tools\ox_m1l3c2.py", line 167, in <module>
+    G.cmd("endinfo")
+    ~~~~~^^^^^^^^^^^
+  File "C:\mohaa-coop-dev\docs\proposals\objectives2_2026-10-20\tools\oxlib.py", line 109, in cmd
+    raise RuntimeError("driver never did %s" % what)
+RuntimeError: driver never did endinfo
+

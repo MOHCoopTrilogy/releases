@@ -1,30 +1,223 @@
 {
  "m1l3c": {
-  "note": "The Sea Wall (lighthouse). Coordinates from the BSP entity lump (lever switchpulse 263.8 -1832.3 1116.2; truck stop obj4 -348 -1656; ground z ~306). Intel spot tuned in game.",
+  "note": "The Sea Wall (lighthouse). Phase 1: log + hold. Phase 2 (objectives2): fuel depot charges in the lower hall, engineer repairs the beacon generator.",
   "objectives": [
+   {
+    "id": "depot",
+    "type": "charge",
+    "line": 3,
+    "text": "Blow the fuel store in the lower compound",
+    "done": "The fuel store is destroyed",
+    "when": "near",
+    "near": {
+     "pos": [
+      -5900.0,
+      -5488.0,
+      -24.0
+     ],
+     "r": 520
+    },
+    "fuse": 12,
+    "chain": 1,
+    "call_gap": 45,
+    "items": [
+     {
+      "kind": "kit",
+      "model": "models/static/exp_crate1.tik",
+      "pos": [
+       -5672.0,
+       -5320.0,
+       -24.0
+      ],
+      "yaw": 0,
+      "label": "the demolition charges"
+     },
+     {
+      "kind": "target",
+      "model": "models/static/fuel_tanks.tik",
+      "aux": "models/static/fuel_tanks_d.tik",
+      "pos": [
+       -5564.0,
+       -4804.0,
+       -24.0
+      ],
+      "yaw": 90,
+      "label": "the fuel tanks",
+      "scale": 0.32
+     },
+     {
+      "kind": "target",
+      "model": "models/static/fuel_tanks.tik",
+      "aux": "models/static/fuel_tanks_d.tik",
+      "pos": [
+       -5444.0,
+       -4532.0,
+       -24.0
+      ],
+      "yaw": 90,
+      "label": "the fuel tanks",
+      "scale": 0.32
+     },
+     {
+      "kind": "target",
+      "model": "models/static/fuel_tanks.tik",
+      "aux": "models/static/fuel_tanks_d.tik",
+      "pos": [
+       -5572.0,
+       -4244.0,
+       -24.0
+      ],
+      "yaw": 90,
+      "label": "the fuel tanks",
+      "scale": 0.32
+     }
+    ],
+    "zone": {
+     "pos": [
+      -5500.0,
+      -4540.0,
+      -24.0
+     ],
+     "r": 520,
+     "name": "the fuel store",
+     "spawns": [
+      [
+       -5728.0,
+       -4032.0,
+       -20.0
+      ],
+      [
+       -5300.0,
+       -5600.0,
+       -20.0
+      ]
+     ]
+    }
+   },
+   {
+    "id": "repair",
+    "type": "perform",
+    "line": 4,
+    "text": "Cover the engineer while he restores the beacon generator",
+    "done": "The beacon generator is running",
+    "when": "near",
+    "near": {
+     "pos": [
+      -470.0,
+      -1930.0,
+      312.0
+     ],
+     "r": 700
+    },
+    "secs": 150,
+    "zone": {
+     "pos": [
+      -470.0,
+      -1930.0,
+      312.0
+     ],
+     "r": 350,
+     "name": "the generator yard",
+     "spawns": [
+      [
+       -900.0,
+       -2300.0,
+       282.0
+      ],
+      [
+       -1000.0,
+       -2350.0,
+       266.0
+      ]
+     ]
+    },
+    "items": [
+     {
+      "kind": "actor",
+      "model": "models/human/1st-ranger_engineer.tik",
+      "pos": [
+       -575.0,
+       -1930.0,
+       312.0
+      ],
+      "yaw": 0,
+      "label": "the engineer",
+      "seq": "wrench",
+      "aux": "models/static/generator.tik",
+      "prop_pos": [
+       -470.0,
+       -1930.0,
+       311.0
+      ],
+      "prop_yaw": 0,
+      "scale": 0.6
+     }
+    ]
+   },
    {
     "id": "log",
     "type": "intel",
-    "line": 3,
+    "line": 5,
     "text": "Recover the keepers signal log from the lamp room",
     "done": "Signal log recovered",
     "when": "trigger",
     "arg": "obj2trig",
     "items": [
-     {"kind": "pickup", "model": "models/items/naxosplans1.tik", "pos": [330.0, -1850.0, 1146.0], "yaw": 40, "label": "the signal log"},
-     {"kind": "prop", "model": "models/static/desk.tik", "pos": [330.0, -1850.0, 1116.1], "yaw": 40}
-    ]
+     {
+      "kind": "pickup",
+      "model": "models/items/naxosplans1.tik",
+      "pos": [
+       330.0,
+       -1850.0,
+       1146.0
+      ],
+      "yaw": 40,
+      "label": "the signal log"
+     },
+     {
+      "kind": "prop",
+      "model": "models/static/desk.tik",
+      "pos": [
+       330.0,
+       -1850.0,
+       1116.1
+      ],
+      "yaw": 40
+     }
+    ],
+    "after_id": "repair"
    },
    {
     "id": "hold",
     "type": "hold",
-    "line": 4,
+    "line": 3,
     "text": "Hold the landing until the fleet answers the beacon",
     "done": "The fleet has answered the beacon",
     "when": "trigger",
     "arg": "lightbright",
     "secs": 180,
-    "zone": {"pos": [-380.0, -1720.0, 306.0], "r": 380, "name": "the lighthouse landing", "spawns": [[-900.0, -2300.0, 282.0], [-1000.0, -2350.0, 266.0]]}
+    "zone": {
+     "pos": [
+      -380.0,
+      -1720.0,
+      306.0
+     ],
+     "r": 380,
+     "name": "the lighthouse landing",
+     "spawns": [
+      [
+       -900.0,
+       -2300.0,
+       282.0
+      ],
+      [
+       -1000.0,
+       -2350.0,
+       266.0
+      ]
+     ]
+    },
+    "after_id": "log"
    }
   ]
  },
@@ -40,9 +233,45 @@
     "when": "auto",
     "call_gap": 75,
     "items": [
-     {"kind": "radio", "model": "models/miscobj/radio_military.tik", "pos": [-1762.0, -3447.8, 636.0], "yaw": 270, "ref": "radio1_sound", "loop": "m2l1_radio1", "label": "the radio set"},
-     {"kind": "radio", "model": "models/miscobj/radio_military.tik", "pos": [819.9, 3291.9, 536.0], "yaw": 225, "ref": "radio2_sound", "loop": "m2l1_radio2", "label": "the radio set"},
-     {"kind": "radio", "model": "models/miscobj/radio_military.tik", "pos": [3780.5, 7016.0, 26.0], "yaw": 285, "ref": "radio3_sound", "loop": "m2l1_radio3", "label": "the radio set"}
+     {
+      "kind": "radio",
+      "model": "models/miscobj/radio_military.tik",
+      "pos": [
+       -1762.0,
+       -3447.8,
+       636.0
+      ],
+      "yaw": 270,
+      "ref": "radio1_sound",
+      "loop": "m2l1_radio1",
+      "label": "the radio set"
+     },
+     {
+      "kind": "radio",
+      "model": "models/miscobj/radio_military.tik",
+      "pos": [
+       819.9,
+       3291.9,
+       536.0
+      ],
+      "yaw": 225,
+      "ref": "radio2_sound",
+      "loop": "m2l1_radio2",
+      "label": "the radio set"
+     },
+     {
+      "kind": "radio",
+      "model": "models/miscobj/radio_military.tik",
+      "pos": [
+       3780.5,
+       7016.0,
+       26.0
+      ],
+      "yaw": 285,
+      "ref": "radio3_sound",
+      "loop": "m2l1_radio3",
+      "label": "the radio set"
+     }
     ]
    }
   ]

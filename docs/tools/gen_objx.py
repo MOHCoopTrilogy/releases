@@ -10,15 +10,20 @@ WHY THIS EXISTS
     python docs/tools/gen_objx.py build     # write coop_mod/objx_points.scr
 
     OBJX_MOD=<mod checkout> overrides the checkout the file is written to (default: hzm-mohaa-coop-mod).
+    [objectives2 2026-10-20] the base mod checkout moved to H:\hzm_archive: set OBJX_MOD=C:\mohaa-coop-dev\hzm-mod-objectives2.
 
 JSON SHAPE (per map)
-    objectives[]: id, type (intel | hold | radio | escort), line (3..5, the HUD side line), text, done, when (auto | trigger | after),
-                  arg (the trigger entity targetname / the objective id waited for), items[], and per type:
+    objectives[]: id, type (intel | hold | radio | escort | charge | perform), line (3..5 hint: objx.scr picks a free HUD side line),
+                  text, done, when (auto | trigger | after | near), arg (the trigger entity targetname / the objective id waited for),
+                  near {pos, r} (when=near: any player within r), after_id (also wait for that objective), delay (s), items[], and per type:
                   hold  : secs (4 players; objx.scr scales 1-2 players down), zone {pos, r, name, spawns[]} (spawns = authored wave entry
                           points, cycled; none = the counter-attack planned entry)
                   radio : call_gap (seconds between the "survivor calls for help" waves once one set is down)
                   escort: zone (the destination), items[kind=actor]
-    items[]     : kind (pickup | prop | radio | actor), model, pos, yaw, label; radio: ref (vanilla targetname to replace), loop (sound alias)
+                  charge : fuse (s), chain (1 = every target blows together after the last plant), items[kind=kit (optional) | target (aux = wreck model)]
+                  perform: secs + zone like hold; items[kind=actor: model, pos (his work spot), yaw, seq (sequence), aux (work prop model), prop_pos, prop_yaw]
+    items[]     : kind (pickup | prop | radio | actor | kit | target), model, pos, yaw, label; radio: ref (vanilla targetname to replace),
+                  loop (sound alias); aux (wreck / work-prop model), seq (actor sequence), prop_pos, prop_yaw
 
 OUTPUT RULES
     ASCII, LF, no BOM, no apostrophes or double quotes inside strings. Yaw is normalised to [0,360) so no bare negative scalar
@@ -36,9 +41,9 @@ MOD = os.environ.get("OBJX_MOD") or os.path.join(ROOT, "hzm-mohaa-coop-mod")
 DATA = os.path.join(HERE, "objx_points.json")
 OUT = os.path.join(MOD, "coop_mod", "objx_points.scr")
 
-TYPES = ("intel", "hold", "radio", "escort")
-WHEN = ("auto", "trigger", "after")
-KINDS = ("pickup", "prop", "radio", "actor")
+TYPES = ("intel", "hold", "radio", "escort", "charge", "perform")
+WHEN = ("auto", "trigger", "after", "near")
+KINDS = ("pickup", "prop", "radio", "actor", "kit", "target")
 BANNED_MAPS = ("m3l1a", "m3l1b", "m2l2a", "e1l4", "m6l1c", "m6l2a")   # Omaha + stealth / disguise maps: never
 
 
@@ -76,7 +81,7 @@ def gen():
     for m in sorted(d):
         assert m not in BANNED_MAPS, m + " is Omaha / stealth: no extra objectives"
         objs = d[m]["objectives"]
-        assert 1 <= len(objs) <= 3, m
+        assert 1 <= len(objs) <= 6, m
         ids = [o["id"] for o in objs]
         assert len(set(ids)) == len(ids)
         w("// %s: %d objective(s)" % (m, len(objs)))
@@ -88,8 +93,8 @@ def gen():
         for i, o in enumerate(objs, 1):
             assert o["type"] in TYPES, o
             assert o["when"] in WHEN, o
-            assert 3 <= o["line"] <= 5 and o["line"] not in lines, o
-            lines.add(o["line"])
+            o.setdefault("line", 3 + (i - 1) % 3)
+            assert 3 <= o["line"] <= 5, o
             w("\tlevel.objx_id[%d] = %s" % (i, s(o["id"])))
             w("\tlevel.objx_type[%d] = %s" % (i, s(o["type"])))
             w("\tlevel.objx_line[%d] = %d" % (i, o["line"]))
@@ -99,6 +104,18 @@ def gen():
             w("\tlevel.objx_arg[%d] = %s" % (i, s(o.get("arg", ""))))
             if o["when"] == "after":
                 assert o["arg"] in ids, o
+            w("\tlevel.objx_after[%d] = %s" % (i, s(o.get("after_id", ""))))
+            if o.get("after_id"):
+                assert o["after_id"] in ids and o["after_id"] != o["id"], o
+            w("\tlevel.objx_delay[%d] = %d" % (i, int(o.get("delay", 0))))
+            nr = o.get("near")
+            if o["when"] == "near":
+                assert nr, o
+            if nr:
+                w("\tlevel.objx_npos[%d] = %s" % (i, v(nr["pos"])))
+                w("\tlevel.objx_nr[%d] = %d" % (i, int(nr["r"])))
+            w("\tlevel.objx_fuse[%d] = %d" % (i, int(o.get("fuse", 0))))
+            w("\tlevel.objx_chain[%d] = %d" % (i, int(o.get("chain", 0))))
             w("\tlevel.objx_secs[%d] = %d" % (i, int(o.get("secs", 0))))
             w("\tlevel.objx_gap[%d] = %d" % (i, int(o.get("call_gap", 0))))
             z = o.get("zone")
@@ -106,7 +123,7 @@ def gen():
                 w("\tlevel.objx_zpos[%d] = %s" % (i, v(z["pos"])))
                 w("\tlevel.objx_zr[%d] = %d" % (i, int(z["r"])))
                 w("\tlevel.objx_zname[%d] = %s" % (i, s(z["name"])))
-            if o["type"] == "hold":
+            if o["type"] in ("hold", "perform"):
                 assert z and o.get("secs", 0) >= 20, o
             for q in (z or {}).get("spawns", []):
                 sp += 1
@@ -123,6 +140,11 @@ def gen():
                 w("\tlevel.objx_it_label[%d] = %s" % (k, s(it.get("label", "the objective"))))
                 w("\tlevel.objx_it_ref[%d] = %s" % (k, s(it.get("ref", ""))))
                 w("\tlevel.objx_it_loop[%d] = %s" % (k, s(it.get("loop", ""))))
+                w("\tlevel.objx_it_aux[%d] = %s" % (k, s(it.get("aux", ""))))
+                w("\tlevel.objx_it_seq[%d] = %s" % (k, s(it.get("seq", ""))))
+                w("\tlevel.objx_it_scl[%d] = %.2f" % (k, float(it.get("scale", 0))))
+                w("\tlevel.objx_it_pos2[%d] = %s" % (k, v(it.get("prop_pos", it["pos"]))))
+                w("\tlevel.objx_it_yaw2[%d] = %d" % (k, yaw(it.get("prop_yaw", it.get("yaw", 0)))))
         w("\tlevel.objx_itn = %d" % k)
         w("\tlevel.objx_spn = %d" % sp)
         w("}end")

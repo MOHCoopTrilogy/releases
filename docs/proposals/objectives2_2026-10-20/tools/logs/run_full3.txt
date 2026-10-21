@@ -1,0 +1,34 @@
+   72s booted; players joined True
+   73s -- the lift base: the depot objective starts when the squad comes within 520 of it
+   74s ACTIVE depot seen: True
+   79s -- the charges: stand beside the crate, hold USE
+   83s KIT taken seen: True
+   84s -- plant on target 1
+   89s PLANT 1 seen: True
+   90s -- plant on target 2
+   95s PLANT 2 seen: True
+   96s -- plant on target 3
+  101s PLANT 3 seen: True
+  101s -- clear of the blast: the chain (12 s fuse), watched from the south end of the aisle
+  119s DONE depot seen: True
+  123s -- the generator yard: the engineer repair starts when the squad comes within 700
+  124s ACTIVE repair seen: True
+  209s DONE repair seen: True
+  214s -- vanilla objective 1: the four comms sets
+  220s -- lighthouse base: obj2trig starts the signal-log objective (after the engineer)
+  221s ACTIVE log seen: True
+  225s DONE log seen: True
+  225s -- the lever: lights the beacon, starts the hold
+  226s ACTIVE hold seen: True
+  226s -- the truck trigger first (so the truck arrives during the hold), then the landing
+  234s hold clock finished: True
+  307s ALL DONE seen: False
+  307s -- the way out: the truck, then the end trigger
+  404s FAILED RuntimeError('driver never did endinfo') Traceback (most recent call last):
+  File "C:\mohaa-coop-dev\docs\proposals\objectives2_2026-10-20\tools\ox_m1l3c2.py", line 204, in <module>
+    G.cmd("endinfo")
+    ~~~~~^^^^^^^^^^^
+  File "C:\mohaa-coop-dev\docs\proposals\objectives2_2026-10-20\tools\oxlib.py", line 109, in cmd
+    raise RuntimeError("driver never did %s" % what)
+RuntimeError: driver never did endinfo
+

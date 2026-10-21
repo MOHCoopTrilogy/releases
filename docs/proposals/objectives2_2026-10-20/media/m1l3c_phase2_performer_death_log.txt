@@ -1,0 +1,15 @@
+   72s booted; players joined True
+   72s -- the engineer is killed mid-job: a replacement after 12 s, the clock waits
+   89s performer death seen: True
+  101s replacement performer seen: True
+  103s ---- OBJX log ----
+  103s OBJX armed m1l3c objectives=4 items=7 players=1
+  103s OBJX ACTIVE repair type=perform t=42.000
+  103s OBJX HOLD repair zone=the generator yard at=( -68.000 -1640.000 312.000 ) r=380 total=67s players=1
+  103s OBJX PERF repair performer #1 spawned at ( -178.000 -1640.000 312.000 ) seq=wrench
+  103s OBJX HOLD wave 1 players=1 want=4 made=4 alive=4 entry=1 at=( -900.000 -2300.000 282.000 )
+  103s OBJX PERF performer died #1 t=57.650
+  103s OBJX HOLD state hold -> paused remaining=51.400 inside=1 t=57.850
+  103s OBJX PERF repair performer #2 spawned at ( -178.000 -1640.000 312.000 ) seq=wrench
+  103s OBJX HOLD state paused -> hold remaining=51.150 inside=1 t=69.850
+  103s script errors: 0 []

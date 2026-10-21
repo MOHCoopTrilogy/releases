@@ -1,0 +1,27 @@
+   71s booted; players joined True
+   71s -- the exit gate: the end is touched with objectives open -> refused; then all done -> the mission ends
+   72s GATE closed with objectives open: True
+   82s mission still running behind the closed gate: True
+   83s GATE open once all are done: True
+  139s mission-complete chain reached the next briefing: True
+  139s ---- OBJX log ----
+  139s OBJX armed m1l3c objectives=4 items=7 players=1
+  139s OBJX GATE closed: 0/4 done at t=41.700
+  139s OBJX GATE force-start depot
+  139s OBJX ACTIVE depot type=charge t=41.700
+  139s OBJX GATE force-start repair
+  139s OBJX ACTIVE repair type=perform t=41.700
+  139s OBJX GATE force-start log
+  139s OBJX HOLD repair zone=the generator yard at=( -470.000 -1930.000 312.000 ) r=350 total=67s players=1
+  139s OBJX ACTIVE log type=intel t=41.700
+  139s OBJX PERF repair performer #1 spawned at ( -575.000 -1930.000 308.619 ) seq=wrench
+  139s OBJX GATE force-start hold
+  139s OBJX ACTIVE hold type=hold t=41.700
+  139s OBJX HOLD hold zone=the lighthouse landing at=( -380.000 -1720.000 306.000 ) r=380 total=81s players=1
+  139s OBJX DONE depot took=10.625s done=1/4 t=52.325
+  139s OBJX DONE repair took=10.625s done=2/4 t=52.325
+  139s OBJX DONE log took=10.625s done=3/4 t=52.325
+  139s OBJX DONE hold took=10.625s done=4/4 t=52.325
+  139s OBJX ALL DONE 4 objectives t=52.325
+  139s OBJX GATE open t=52.700
+  139s script errors: 1 ["[2026-10-20 23:27:36 UTC-6.000] ^~^~^ Script Error : ScriptMaster::CreateScriptThread: label 'briefing_briefing2' does not exist in 'coop_mod/spawnlocations.scr'."]

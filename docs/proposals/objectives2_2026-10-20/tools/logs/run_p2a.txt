@@ -1,0 +1,26 @@
+   72s booted; players joined True
+   72s -- the lift base: the depot objective starts when the squad comes within 520 of it
+   74s ACTIVE depot seen: True
+   79s -- the charges: stand beside the crate, hold USE
+   93s KIT taken seen: False
+   94s -- plant on target 1
+  105s PLANT 1 seen: False
+  106s -- plant on target 2
+  116s PLANT 2 seen: False
+  117s -- plant on target 3
+  128s PLANT 3 seen: False
+  129s -- clear of the blast: the chain (12 s fuse), watched from the south end of the aisle
+  167s DONE depot seen: False
+  171s -- the generator yard: the engineer repair starts within 700
+  171s ACTIVE repair seen: True
+  241s DONE repair seen: True
+  245s ---- OBJX log ----
+  245s OBJX armed m1l3c objectives=4 items=7 players=1
+  245s OBJX ACTIVE depot type=charge t=42.500
+  245s OBJX ACTIVE repair type=perform t=139.500
+  245s OBJX HOLD repair zone=the generator yard at=( 252.000 -2290.000 324.000 ) r=380 total=67s players=1
+  245s OBJX HOLD wave 1 players=1 want=4 made=4 alive=4 entry=1 at=( -900.000 -2300.000 282.000 )
+  245s OBJX HOLD wave 2 players=1 want=4 made=4 alive=8 entry=2 at=( -1000.000 -2350.000 266.000 )
+  245s OBJX HOLD clock 0:00 elapsed=67.200 waves=2 lost=0
+  245s OBJX DONE repair took=69.200s done=1/4 t=208.700
+  245s script errors: 6 ["[2026-10-20 20:54:45 UTC-6.000] ^~^~^ Script Error : ScriptMaster::CreateScriptThread: label 'ox_set' does not exist in 'coop_mod/objx2.scr'.", "[2026-10-20 20:54:45 UTC-6.000] ^~^~^ Script Error : ScriptMaster::CreateScriptThread: label 'ox_spawn_model' does not exist in 'coop_mod/objx2.scr'.", "[2026-10-20 20:54:54 UTC-6.000] ^~^~^ Script Error : ScriptMaster::CreateScriptThread: label 'ox_log' does not exist in 'coop_mod/objx2.scr'.", "[2026-10-20 20:54:54 UTC-6.000] ^~^~^ Script Error : ScriptMaster::CreateScriptThread: label 'ox_set' does not exist in 'coop_mod/objx2.scr'.", "[2026-10-20 20:54:54 UTC-6.000] ^~^~^ Script Error : command 'remove' applied to NIL", "[2026-10-20 20:56:23 UTC-6.000] ^~^~^ Script Error : ScriptMaster::CreateScriptThread: label 'ox_log' does not exist in 'coop_mod/objx2.scr'."]

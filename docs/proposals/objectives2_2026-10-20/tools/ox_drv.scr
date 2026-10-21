@@ -1,0 +1,280 @@
+//=========================================================================
+// TEST-ONLY overlay driver (objectives-next 2026-10-18) - NEVER shipped. Installed as coop_mod/coop_selftest_xp.scr,
+// started by main.scr when coop_st_xp 1. Commands arrive in cvar ox_cmd, arguments in ox_x ox_y ox_z ox_yaw ox_pitch ox_k ox_s.
+//=========================================================================
+st_xp_run:{
+	println "^~^~^ OX armed"
+	setcvar "ox_cmd" "0"
+	while( 1 ){
+		local.c = getcvar( "ox_cmd" )
+		if( local.c != "0" && local.c != "" ){
+			setcvar "ox_cmd" "0"
+			waitthread ox_do local.c
+			println ( "^~^~^ OX did " + local.c )
+		}
+		waitframe
+	}
+}end
+
+ox_f local.name:{
+	local.v = float( getcvar( local.name ) )
+}end local.v
+
+ox_s local.v:{
+	local.r = "-"
+	if( local.v != NIL ){ local.r = "" + local.v }
+}end local.r
+
+ox_do local.c:{
+	local.p = $player[1]
+	if( local.p == NULL ){ end }
+	if( local.c == "here" ){
+		println ( "^~^~^ OX here " + local.p.origin + " ang=" + local.p.viewangles + " hp=" + local.p.health )
+	}
+	if( local.c == "god" ){
+		local.p nodamage
+		local.p.health = 100000
+		local.p.max_health = 100000
+	}
+	if( local.c == "tp" ){
+		local.x = waitthread ox_f "ox_x"
+		local.y = waitthread ox_f "ox_y"
+		local.z = waitthread ox_f "ox_z"
+		local.yw = waitthread ox_f "ox_yaw"
+		local.pt = waitthread ox_f "ox_pitch"
+		local.p origin ( local.x local.y local.z )
+		local.p.viewangles = ( local.pt local.yw 0 )
+		println ( "^~^~^ OX tp " + local.p.origin )
+	}
+	if( local.c == "aim" ){
+		local.x = waitthread ox_f "ox_x"
+		local.y = waitthread ox_f "ox_y"
+		local.z = waitthread ox_f "ox_z"
+		local.d = ( local.x local.y local.z ) - ( local.p.origin + ( 0 0 60 ) )
+		local.a = vector_toangles local.d
+		local.pt = local.a[0]
+		local.lim = 0 - 180
+		if( local.pt < local.lim ){ local.pt = local.pt + 360 }
+		local.p.viewangles = ( local.pt local.a[1] 0 )
+		println ( "^~^~^ OX aim pitch=" + local.pt + " yaw=" + local.a[1] )
+	}
+	if( local.c == "radios4" ){
+		// the four vanilla comms sets of m1l3c (flag + radio_objective, exactly what the shot exploder triggers run)
+		thread maps/m1l3c.scr::radio1
+		thread maps/m1l3c.scr::radio2
+		thread maps/m1l3c.scr::radio3
+		thread maps/m1l3c.scr::radio4
+	}
+	if( local.c == "state" ){
+		println ( "^~^~^ OX STATE t=" + level.time + " active=" + level.objx_active + " n=" + level.objx_n + " done=" + level.objx_doneN + " gate=" + level.objx_gateActive + " players=" + $player.size )
+		for( local.i = 1; local.i <= level.objx_n; local.i++ ){
+			println ( "^~^~^ OX STATE obj " + local.i + " " + level.objx_id[local.i] + " stat=" + level.objx_stat[local.i] + " prog=" + level.objx_prog[local.i] + "/" + level.objx_need[local.i] )
+		}
+	}
+	if( local.c == "dmgradio" ){
+		local.k = int( waitthread ox_f "ox_k" )
+		local.e = level.objx_rd_ent[local.k]
+		if( local.e == NULL || local.e == NIL ){
+			println ( "^~^~^ OX dmgradio none " + local.k )
+			end
+		}
+		local.e damage local.e 400 local.e local.e.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 0
+		println ( "^~^~^ OX dmgradio " + local.k + " hp=" + local.e.health )
+	}
+	if( local.c == "pfcam" ){
+		// camera at the performer: offset ox_x ox_y ox_z from him, aimed at his chest. Prints where he is.
+		local.pa = level.objx_pf_ent[int( waitthread ox_f "ox_k" )]
+		if( local.pa == NULL || local.pa == NIL ){ println "^~^~^ OX pfcam none"; end }
+		local.x = waitthread ox_f "ox_x"
+		local.y = waitthread ox_f "ox_y"
+		local.z = waitthread ox_f "ox_z"
+		local.p origin ( local.pa.origin + ( local.x local.y local.z ) )
+		local.d = ( local.pa.origin + ( 0 0 40 ) ) - ( local.p.origin + ( 0 0 60 ) )
+		local.a = vector_toangles local.d
+		local.pt = local.a[0]
+		local.lim = 0 - 180
+		if( local.pt < local.lim ){ local.pt = local.pt + 360 }
+		local.p.viewangles = ( local.pt local.a[1] 0 )
+		println ( "^~^~^ OX pfcam actor=" + local.pa.origin + " ang=" + local.pa.angles + " hp=" + local.pa.health + " me=" + local.p.origin )
+	}
+	if( local.c == "pfkill" ){
+		local.pa = level.objx_pf_ent[int( waitthread ox_f "ox_k" )]
+		if( local.pa == NULL || local.pa == NIL ){ println "^~^~^ OX pfkill none"; end }
+		local.pa damage local.pa 9000 local.pa local.pa.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 3
+		println ( "^~^~^ OX pfkill hp=" + local.pa.health + " alive=" + ( isAlive local.pa ) )
+	}
+	if( local.c == "killgerman" ){
+		local.n = 0
+		local.arr = level.coop_actorArray["german"]
+		if( local.arr != NIL ){
+			for( local.i = 1; local.i <= local.arr.size; local.i++ ){
+				local.a = local.arr[local.i]
+				if( local.a != NULL && local.a != NIL && isAlive local.a ){
+					local.a damage local.p 9999 local.p local.a.origin ( 0 0 0 ) ( 0 0 0 ) 0 0 0 3
+					local.n++
+				}
+			}
+		}
+		println ( "^~^~^ OX killgerman " + local.n )
+	}
+	if( local.c == "nearents" ){
+		local.os = $ossmobile
+		local.n = 0
+		for( local.i = 1; local.i < 1200; local.i++ ){
+			local.e = getentbyentnum local.i
+			if( local.e == NULL || local.e == NIL ){ continue }
+			local.d = vector_length ( local.e.origin - local.os.origin )
+			if( local.d < 260 && local.e != local.os ){
+				println ( "^~^~^ OX near " + local.i + " cls=" + local.e.classname + " tn=" + local.e.targetname + " mdl=" + local.e.model + " d=" + local.d + " solid=" + local.e.solidtype )
+				local.n++
+			}
+		}
+		println ( "^~^~^ OX nearents " + local.n + " truck=" + local.os.origin )
+	}
+	if( local.c == "objxall" ){
+		for( local.i = 1; local.i <= level.objx_n; local.i++ ){
+			if( level.objx_stat[local.i] != 3 ){
+				level.objx_stat[local.i] = 2
+				waitthread coop_mod/objx.scr::ox_done local.i
+			}
+		}
+	}
+	if( local.c == "pfanim" ){
+		local.pa = level.objx_pf_ent[int( waitthread ox_f "ox_k" )]
+		local.al = getcvar "ox_s"
+		if( local.pa == NULL || local.pa == NIL ){ println "^~^~^ OX pfanim none"; end }
+		if( local.al == "NOIDLE0" ){
+			local.pa.no_idle = 0
+		} else if( local.al == "ENABLE" ){
+			local.pa.no_idle = 0
+			local.pa exec global/enable_ai.scr
+		} else {
+			local.pa anim local.al
+		}
+		println ( "^~^~^ OX pfanim " + local.al )
+	}
+	if( local.c == "endnow" ){
+		// what maps/m1l3c.scr::the_end does when the squad touches the end trigger (skips the truck drive, which is vanilla and frame-rate sensitive)
+		setcvar "g_m2l1" "1"
+		exec global/missioncomplete.scr briefing/briefing2
+		println "^~^~^ OX endnow threaded"
+	}
+	if( local.c == "radiopos" ){
+		for( local.k = 1; local.k <= level.objx_itn; local.k++ ){
+			println ( "^~^~^ OX item " + local.k + " kind=" + level.objx_it_kind[local.k] + " pos=" + level.objx_it_pos[local.k] + " dead=" + level.objx_rd_dead[local.k] )
+		}
+	}
+	if( local.c == "enemies" ){
+		local.n = 0
+		local.arr = level.coop_actorArray["german"]
+		if( local.arr != NIL ){
+			for( local.i = 1; local.i <= local.arr.size; local.i++ ){
+				local.a = local.arr[local.i]
+				if( local.a != NULL && local.a != NIL && isAlive local.a ){ local.n++ }
+			}
+		}
+		println ( "^~^~^ OX enemies german=" + local.n + " waveAlive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive ) )
+	}
+	if( local.c == "mkescort" ){
+		// a synthetic ESCORT objective: a prisoner 150u ahead of the player, destination 650u ahead (test only; map data has none)
+		local.yw = waitthread ox_f "ox_yaw"
+		local.f = angles_toforward ( 0 local.yw 0 )
+		local.i = level.objx_n + 1
+		level.objx_n = local.i
+		level.objx_id[local.i] = "esc"
+		level.objx_type[local.i] = "escort"
+		level.objx_line[local.i] = 5
+		level.objx_text[local.i] = "Escort the prisoner to the marker"
+		level.objx_donetext[local.i] = "The prisoner is safe"
+		level.objx_when[local.i] = "auto"
+		level.objx_arg[local.i] = ""
+		level.objx_secs[local.i] = 0
+		level.objx_gap[local.i] = 0
+		level.objx_zpos[local.i] = local.p.origin + ( vector_scale local.f 650 )
+		level.objx_zr[local.i] = 160
+		level.objx_zname[local.i] = "the marker"
+		local.k = level.objx_itn + 1
+		level.objx_itn = local.k
+		level.objx_it_o[local.k] = local.i
+		level.objx_it_kind[local.k] = "actor"
+		level.objx_it_model[local.k] = "models/human/1st-ranger_private_prisoner.tik"
+		level.objx_it_pos[local.k] = local.p.origin + ( vector_scale local.f 150 )
+		level.objx_it_yaw[local.k] = local.yw + 180
+		level.objx_it_label[local.k] = "the prisoner"
+		level.objx_rd_dead[local.k] = 0
+		level.objx_stat[local.i] = 1
+		level.objx_prog[local.i] = 0
+		level.objx_need[local.i] = 0
+		thread coop_mod/objx.scr::ox_activate local.i
+		println ( "^~^~^ OX mkescort obj=" + local.i + " dest=" + level.objx_zpos[local.i] + " actor at " + level.objx_it_pos[local.k] )
+	}
+	if( local.c == "escort" ){
+		for( local.i = 1; local.i <= level.objx_n; local.i++ ){
+			if( level.objx_id[local.i] == "esc" ){
+				println ( "^~^~^ OX ESC stat=" + level.objx_stat[local.i] + " dest=" + level.objx_zpos[local.i] )
+			}
+		}
+	}
+	if( local.c == "endinfo" ){
+		local.te = $the_end
+		local.os = $ossmobile
+		local.so = "none"
+		local.d = 0 - 1
+		if( local.os != NULL && local.os != NIL ){
+			local.so = "" + local.os.origin
+			local.d = vector_length ( local.os.origin - local.p.origin )
+		}
+		local.gd = waitthread ox_s level.coop_m1l3c_grillDone
+		println ( "^~^~^ OX ENDINFO truck=" + local.so + " truckDist=" + local.d + " grillDone=" + local.gd + " me=" + local.p.origin )
+	}
+	if( local.c == "radiohp" ){
+		for( local.k = 1; local.k <= level.objx_itn; local.k++ ){
+			local.e = level.objx_rd_ent[local.k]
+			local.hp = "gone"
+			if( local.e != NULL && local.e != NIL ){ local.hp = "" + local.e.health }
+			println ( "^~^~^ OX radiohp " + local.k + " hp=" + local.hp + " dead=" + level.objx_rd_dead[local.k] + " me=" + local.p.origin )
+		}
+	}
+	if( local.c == "mktarget" ){
+		// a shootable test prop 160u ahead of the player at chest height: class from ox_s (animate | script_model_realdamage)
+		local.cl = getcvar "ox_s"
+		local.va = local.p.viewangles
+		local.f = angles_toforward ( 0 local.va[1] 0 )
+		local.t = spawn local.cl
+		local.t model "models/miscobj/radio_military.tik"
+		local.t.origin = local.p.origin + ( vector_scale local.f 160 ) + ( 0 0 30 )
+		local.t.health = 1000
+		local.t setsize ( -14 -14 0 ) ( 14 14 22 )
+		local.t solid
+		local.t takedamage
+		level.ox_target = local.t
+		println ( "^~^~^ OX mktarget class=" + local.cl + " at=" + local.t.origin + " me=" + local.p.origin + " yaw=" + local.va[1] )
+	}
+	if( local.c == "targethp" ){
+		local.t = level.ox_target
+		local.hp = "gone"
+		if( local.t != NULL && local.t != NIL ){ local.hp = "" + local.t.health }
+		local.wp = waitthread ox_s local.p.activeweapon
+		println ( "^~^~^ OX targethp " + local.hp + " weapon=" + local.wp )
+	}
+	if( local.c == "aimtarget" ){
+		local.t = level.ox_target
+		local.d = ( local.t.origin + ( 0 0 10 ) ) - ( local.p.origin + ( 0 0 60 ) )
+		local.a = vector_toangles local.d
+		local.pt = local.a[0]
+		local.lim = 0 - 180
+		if( local.pt < local.lim ){ local.pt = local.pt + 360 }
+		local.p.viewangles = ( local.pt local.a[1] 0 )
+	}
+	if( local.c == "kit" ){
+		// a known gun with ammo, equipped (the harness home blanks the armory picks)
+		local.p takeall
+		local.p item "models/weapons/thompson.tik"
+		local.p ammo smg 300
+		println "^~^~^ OX kit thompson + 300 smg"
+	}
+	if( local.c == "listen" ){
+		// the player's weapon + ammo, so a shot test knows what it has
+		println ( "^~^~^ OX weapon " + local.p.activeweapon )
+	}
+}end

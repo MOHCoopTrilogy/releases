@@ -1,0 +1,5 @@
+   73s booted; players joined True
+   90s ---- OBJX log ----
+   90s OBJX armed m1l3c objectives=4 items=7 players=1
+   90s OBJX ACTIVE depot type=charge t=42.500
+   90s script errors: 0 []

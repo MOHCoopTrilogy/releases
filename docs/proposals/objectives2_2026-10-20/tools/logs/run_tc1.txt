@@ -1,0 +1,13 @@
+   71s booted; players joined True
+   72s -- the generator yard: the engineer repair starts when the squad comes within 700
+   73s ACTIVE repair seen: True
+  100s DONE repair seen: True
+  152s ---- OBJX log ----
+  152s OBJX armed m1l3c objectives=4 items=7 players=1
+  152s OBJX ACTIVE repair type=perform t=42.250
+  152s OBJX HOLD repair zone=the generator yard at=( -470.000 -1930.000 312.000 ) r=350 total=20s players=1
+  152s OBJX PERF repair performer #1 spawned at ( -575.000 -1930.000 312.000 ) seq=wrench
+  152s OBJX HOLD wave 1 players=1 want=4 made=4 alive=4 entry=1 at=( -900.000 -2300.000 282.000 )
+  152s OBJX HOLD clock 0:00 elapsed=20.100 waves=1 lost=0
+  152s OBJX DONE repair took=24.600s done=1/4 t=66.850
+  152s script errors: 4 ["[2026-10-20 22:09:26 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-20 22:09:26 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'float'", "[2026-10-20 22:09:26 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-20 22:09:26 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'"]

@@ -1,0 +1,28 @@
+   71s booted; players joined True
+   71s -- the lift base: the depot objective starts when the squad comes within 520 of it
+   72s ACTIVE depot seen: True
+   78s -- the charges: stand beside the crate, hold USE
+   82s KIT taken seen: True
+   82s -- plant on target 1
+   93s PLANT 1 seen: False
+   94s -- plant on target 2
+  105s PLANT 2 seen: False
+  106s -- plant on target 3
+  117s PLANT 3 seen: False
+  117s -- clear of the blast: the chain (12 s fuse), watched from the south end of the aisle
+  155s DONE depot seen: False
+  158s -- the generator yard: the engineer repair starts within 700
+  159s ACTIVE repair seen: True
+  229s DONE repair seen: True
+  233s ---- OBJX log ----
+  233s OBJX armed m1l3c objectives=4 items=7 players=1
+  233s OBJX ACTIVE depot type=charge t=42.000
+  233s OBJX KIT taken by UnnamedSoldier#8240 t=50.800
+  233s OBJX ACTIVE repair type=perform t=129.000
+  233s OBJX HOLD repair zone=the generator yard at=( 252.000 -2290.000 324.000 ) r=380 total=67s players=1
+  233s OBJX PERF repair performer #1 spawned at ( 120.000 -2290.000 324.000 ) seq=wrench
+  233s OBJX HOLD wave 1 players=1 want=4 made=4 alive=4 entry=1 at=( -900.000 -2300.000 282.000 )
+  233s OBJX HOLD wave 2 players=1 want=4 made=4 alive=8 entry=2 at=( -1000.000 -2350.000 266.000 )
+  233s OBJX HOLD clock 0:00 elapsed=67.200 waves=2 lost=0
+  233s OBJX DONE repair took=69.200s done=1/4 t=198.200
+  233s script errors: 0 []

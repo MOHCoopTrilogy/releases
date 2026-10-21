@@ -1,0 +1,26 @@
+//=========================================================================
+// TEST-ONLY compile probe for the headless dedicated check (ox_dedcheck.py). Installed as coop_mod/coop_selftest_xp.scr.
+// Forces objx.scr and objx_points.scr to compile with no player on the server, then prints what they loaded.
+//=========================================================================
+st_xp_run:{
+	wait 4
+	local.a = waitthread coop_mod/objx_points.scr::ox_load "m1l3c"
+	println ( "^~^~^ OXPROBE m1l3c n=" + local.a + " items=" + level.objx_itn + " zr=" + level.objx_zr[2] + " line=" + level.objx_line[2] )
+	local.b = waitthread coop_mod/objx_points.scr::ox_load "m2l1"
+	println ( "^~^~^ OXPROBE m2l1 n=" + local.b + " items=" + level.objx_itn + " radio3=" + level.objx_it_pos[3] )
+	local.c = waitthread coop_mod/objx_points.scr::ox_load "m1l1"
+	println ( "^~^~^ OXPROBE m1l1 n=" + local.c )
+	level.objx_n = 0
+	level.objx_active = 0
+	waitthread coop_mod/objx.scr::ox_log "probe log line"
+	local.al = waitthread coop_mod/objx.scr::objx_alldone
+	local.bl = waitthread coop_mod/objx.scr::ox_blocked
+	println ( "^~^~^ OXPROBE alldone=" + local.al + " blocked=[" + local.bl + "] map=" + level.coop_mapname )
+	waitthread coop_mod/objx2.scr::ox2_log "probe objx2 compiled"
+	local.nn = waitthread coop_mod/objx2.scr::ox2_near ( 0 0 0 ) 100
+	println ( "^~^~^ OXPROBE objx2 near=" + local.nn )
+	waitthread coop_mod/carry.scr::carry_log "probe carry compiled"
+	local.cg = waitthread coop_mod/carry.scr::carry_gap
+	println ( "^~^~^ OXPROBE carry gap=" + local.cg )
+	println "^~^~^ OXPROBE end"
+}end

@@ -1,0 +1,18 @@
+   68s booted; players joined True
+   69s -- the exit gate: the end is touched with objectives open -> refused; then all done -> the mission ends
+   84s GATE closed with objectives open: False
+   95s mission still running behind the closed gate: True
+  125s GATE open once all are done: False
+  215s mission-complete chain reached the next briefing: False
+  215s ---- OBJX log ----
+  215s OBJX armed m1l3c objectives=4 items=7 players=1
+  215s OBJX " + local.txt ) }
+  215s OBJX " ^
+  215s OBJX " + local.txt ) }
+  215s OBJX " ^
+  215s OBJX " + local.txt ) }
+  215s OBJX " ^
+  215s OBJX " + local.txt ) }
+  215s OBJX " ^
+  215s OBJX ALL DONE 4 objectives t=67.175
+  215s script errors: 7 ["026-10-20 23:21:40 UTC-6.000] ^~^~^ Script Error : ScriptMaster::CreateScriptThread: label 'global/missioncomplete.scr' does not exist in 'coop_mod/coop_selftest_xp.scr'.", "[2026-10-20 23:22:06 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-20 23:22:06 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-20 23:22:06 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'float'", "[2026-10-20 23:22:06 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'int'", "[2026-10-20 23:22:06 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'"]

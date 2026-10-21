@@ -1,0 +1,8 @@
+   70s booted; players joined True
+  104s ---- OBJX log ----
+  104s OBJX armed m1l3c objectives=4 items=7 players=1
+  104s OBJX ACTIVE repair type=perform t=42.500
+  104s OBJX HOLD repair zone=the generator yard at=( -470.000 -1930.000 312.000 ) r=350 total=300s players=1
+  104s OBJX PERF repair performer #1 spawned at ( -575.000 -1930.000 308.619 ) seq=wrench
+  104s OBJX HOLD wave 1 players=1 want=4 made=4 alive=4 entry=1 at=( -900.000 -2300.000 282.000 )
+  104s script errors: 6 ["[2026-10-20 23:36:23 UTC-6.000] ^~^~^ Script Error : anim 'unarmed_stand_bored_a01' not found, so can't tell if it is looping", "[2026-10-20 23:36:23 UTC-6.000] ^~^~^ Script Error : unknown animation 'unarmed_stand_bored_a01' in 'models/human/1st-ranger_engineer.tik'", "[2026-10-20 23:36:27 UTC-6.000] ^~^~^ Script Error : anim 'relax01' not found, so can't tell if it is looping", "[2026-10-20 23:36:27 UTC-6.000] ^~^~^ Script Error : unknown animation 'relax01' in 'models/human/1st-ranger_engineer.tik'", "[2026-10-20 23:36:31 UTC-6.000] ^~^~^ Script Error : anim 'watching01' not found, so can't tell if it is looping", "[2026-10-20 23:36:31 UTC-6.000] ^~^~^ Script Error : unknown animation 'watching01' in 'models/human/1st-ranger_engineer.tik'"]

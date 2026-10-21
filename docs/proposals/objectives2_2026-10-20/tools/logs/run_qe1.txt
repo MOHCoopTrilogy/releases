@@ -1,0 +1,17 @@
+   68s booted; players joined True
+   74s -- all objectives forced done; waiting for the truck
+  500s mission-complete chain reached the next briefing: False
+  500s ---- OBJX log ----
+  500s OBJX armed m1l3c objectives=4 items=7 players=1
+  500s OBJX ACTIVE repair type=perform t=42.500
+  500s OBJX HOLD repair zone=the generator yard at=( -470.000 -1930.000 312.000 ) r=350 total=67s players=1
+  500s OBJX PERF repair performer #1 spawned at ( -575.000 -1930.000 308.619 ) seq=wrench
+  500s OBJX " + local.txt ) }
+  500s OBJX " ^
+  500s OBJX DONE repair took=3.950s done=2/4 t=46.450
+  500s OBJX " + local.txt ) }
+  500s OBJX " ^
+  500s OBJX " + local.txt ) }
+  500s OBJX " ^
+  500s OBJX ALL DONE 4 objectives t=46.450
+  500s script errors: 6 ["[2026-10-20 22:48:14 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-20 22:48:14 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-20 22:48:14 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'float'", "[2026-10-20 22:48:14 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'int'", "[2026-10-20 22:48:14 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-20 22:48:14 UTC-6.000] ^~^~^ Script Error : binary '-' applied to incompatible types 'float' and 'none'"]

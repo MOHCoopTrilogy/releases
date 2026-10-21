@@ -1,0 +1,73 @@
+   70s booted; players joined True
+   70s -- the lift base: the depot objective starts when the squad comes within 520 of it
+   71s ACTIVE depot seen: True
+   76s -- the charges: stand beside the crate, hold USE
+   80s KIT taken seen: True
+   81s -- plant on target 1
+   86s PLANT 1 seen: True
+   87s -- plant on target 2
+   92s PLANT 2 seen: True
+   93s -- plant on target 3
+   98s PLANT 3 seen: True
+   99s -- clear of the blast: the chain (12 s fuse), watched from the south end of the aisle
+  117s DONE depot seen: True
+  120s -- the generator yard: the engineer repair starts when the squad comes within 700
+  121s ACTIVE repair seen: True
+  154s DONE repair seen: True
+  160s -- vanilla objective 1: the four comms sets
+  166s -- lighthouse base: obj2trig starts the signal-log objective (after the engineer)
+  166s ACTIVE log seen: True
+  171s DONE log seen: True
+  171s -- the lever: lights the beacon, starts the hold
+  172s ACTIVE hold seen: True
+  172s -- the truck trigger first (so the truck arrives during the hold), then the landing
+  180s hold clock finished: True
+  213s ALL DONE seen: True
+  213s -- the way out: the truck, then the end trigger
+  427s mission-complete chain reached the counter gate: False
+  430s ---- OBJX log ----
+  430s OBJX armed m1l3c objectives=4 items=7 players=1
+  430s OBJX ACTIVE depot type=charge t=41.750
+  430s OBJX KIT taken by UnnamedSoldier#8240 t=50.550
+  430s OBJX PLANT 1/3 target 2 by UnnamedSoldier#8240 t=56.750
+  430s OBJX PLANT 2/3 target 3 by UnnamedSoldier#8240 t=62.750
+  430s OBJX HOLD wave 1 players=1 want=4 made=4 alive=4 entry=1 at=( -5728.000 -4032.000 -20.000 )
+  430s OBJX PLANT 3/3 target 4 by UnnamedSoldier#8240 t=68.750
+  430s OBJX CHAIN armed fuse=12 t=68.750
+  430s OBJX CHAIN go t=80.750
+  430s OBJX BLOW target 2 t=80.775
+  430s OBJX BLOW target 3 t=81.577
+  430s OBJX BLOW target 4 t=82.583
+  430s OBJX DONE depot took=43.146s done=1/4 t=84.896
+  430s OBJX ACTIVE repair type=perform t=91.750
+  430s OBJX HOLD repair zone=the generator yard at=( -470.000 -1930.000 312.000 ) r=350 total=25s players=1
+  430s OBJX PERF repair performer #1 spawned at ( -575.000 -1930.000 312.000 ) seq=wrench
+  430s OBJX HOLD state hold -> paused remaining=24.750 inside=0 t=92.250
+  430s OBJX HOLD state paused -> hold remaining=24.500 inside=1 t=96.000
+  430s OBJX HOLD wave 1 players=1 want=4 made=4 alive=8 entry=1 at=( -900.000 -2300.000 282.000 )
+  430s OBJX HOLD clock 0:00 elapsed=28.850 waves=1 lost=0
+  430s OBJX DONE repair took=28.850s done=2/4 t=120.600
+  430s OBJX ACTIVE log type=intel t=136.850
+  430s OBJX PICKUP log 1/1 by UnnamedSoldier#8240
+  430s OBJX DONE log took=3.900s done=3/4 t=140.750
+  430s OBJX ACTIVE hold type=hold t=142.100
+  430s OBJX HOLD hold zone=the lighthouse landing at=( -380.000 -1720.000 306.000 ) r=380 total=25s players=1
+  430s OBJX HOLD state hold -> paused remaining=23.000 inside=0 t=148.850
+  430s OBJX HOLD state paused -> hold remaining=22.750 inside=1 t=150.350
+  430s OBJX HOLD state hold -> paused remaining=22.250 inside=0 t=151.100
+  430s OBJX HOLD state paused -> hold remaining=22.000 inside=1 t=152.850
+  430s OBJX HOLD state hold -> paused remaining=18.750 inside=0 t=156.350
+  430s OBJX HOLD wave 1 players=1 want=4 made=4 alive=12 entry=1 at=( -900.000 -2300.000 282.000 )
+  430s OBJX HOLD state paused -> hold remaining=18.500 inside=1 t=158.200
+  430s OBJX HOLD state hold -> paused remaining=15.000 inside=0 t=161.950
+  430s OBJX HOLD state paused -> hold remaining=14.750 inside=1 t=163.450
+  430s OBJX HOLD state hold -> paused remaining=11.250 inside=0 t=167.200
+  430s OBJX HOLD state paused -> hold remaining=11.000 inside=1 t=168.950
+  430s OBJX HOLD state hold -> paused remaining=7.500 inside=0 t=172.700
+  430s OBJX HOLD state paused -> hold remaining=7.250 inside=1 t=174.200
+  430s OBJX HOLD state hold -> paused remaining=3.750 inside=0 t=177.950
+  430s OBJX HOLD state paused -> hold remaining=3.500 inside=1 t=179.700
+  430s OBJX HOLD clock 0:00 elapsed=36.600 waves=1 lost=0
+  430s OBJX DONE hold took=41.100s done=4/4 t=183.200
+  430s OBJX ALL DONE 4 objectives t=183.200
+  430s script errors: 0 []
