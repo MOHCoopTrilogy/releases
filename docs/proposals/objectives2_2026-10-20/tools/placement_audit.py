@@ -99,7 +99,10 @@ def reach_ok(B, nodes, p, r):
     """some stand point 50 u outside the footprint is reachable on foot from a pathnode within 450 u.
     Where the BSP has no traceable floor (terrain patches) a pathnode within 110 u whose walkable height (node z - 48) is
     within 45 u of the item is accepted: pathnodes exist only where the mapper proved the ground walkable."""
-    if floor_z(B, p[0], p[1], p[2]) is None:
+    fz0 = floor_z(B, p[0], p[1], p[2])
+    nn = min(nodes, key=lambda q: math.hypot(q[0] - p[0], q[1] - p[1]))
+    terrain = fz0 is None or fz0 < (nn[2] - 48) - 40     # the BSP floor is far below the walkable (terrain patch) surface the nodes sit on
+    if terrain:
         for n in nodes:
             if math.hypot(n[0] - p[0], n[1] - p[1]) < 110 and abs((n[2] - 48) - p[2]) < 45:
                 return (round(n[0]), round(n[1]))
@@ -141,6 +144,7 @@ def main():
         if b == a + 1 and math.dist(wps[a][:2], wps[b][:2]) < 2500:
             segs.append((wps[a], wps[b], "t%d-t%d" % (a, b)))
     vehs = [(e.get("targetname", e["classname"]), vec(e["origin"])) for e in ents if e["classname"].startswith("vehicle_") and "airplane" not in e["classname"]]
+    planes = [(e.get("targetname", "plane"), vec(e["origin"])) for e in ents if "airplane" in e["classname"]]
     doors = [(e["classname"], vec(e["origin"])) for e in ents if e["classname"] in ("func_rotatingdoor", "func_door", "func_ladder") or (e["classname"] == "trigger_use")]
     aisp = [vec(e["origin"]) for e in ents if e["classname"].startswith("ai_")]
     crates = [vec(e["origin"]) for e in ents if e["classname"] in ("func_crate", "func_barrel")]
@@ -153,6 +157,8 @@ def main():
             if it.get("prop_pos") and it["kind"] == "actor":
                 rp = FOOT.get(it.get("aux", ""), 60) * (it.get("scale", 0) or 1)
                 items.append((o["id"] + ":workprop", it["prop_pos"], rp, it))
+        if o.get("dz"):
+            items.append((o["id"] + ":dz", o["dz"], 60, {}))
         z = o.get("zone")
         if z:
             items.append((o["id"] + ":zone", z["pos"], 0, None))
@@ -178,6 +184,10 @@ def main():
                     d = math.hypot(p[0] - ep[0], p[1] - ep[1])
                     if d < r + 230:
                         pr.append(("FAIL", "vehicle STOP point %s %.0f u (needs %.0f)" % (en, d, r + 230)))
+            for nm, v in planes:       # a parked Stuka: wing span 330 u, and it can taxi / take off
+                d = math.hypot(p[0] - v[0], p[1] - v[1])
+                if d < r + 330:
+                    pr.append(("FAIL", "parked aircraft %s %.0f u (needs %.0f)" % (nm, d, r + 330)))
             for nm, v in vehs:
                 d = math.hypot(p[0] - v[0], p[1] - v[1])
                 if d < r + 260:
@@ -273,4 +283,5 @@ def main():
     return 1 if fails else 0
 
 
-sys.exit(main())
+if __name__ == "__main__":
+    sys.exit(main())

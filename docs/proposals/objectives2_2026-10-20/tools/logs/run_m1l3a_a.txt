@@ -1,0 +1,34 @@
+   66s booted; players joined True
+   66s player active after intro: True
+   73s == objective radios radio
+  113s   !! radios did not activate by itself - forcing
+  113s ACTIVE radios True
+  125s DONE radios seen: True
+  125s == objective fuel charge
+  246s   !! fuel did not activate by itself - forcing
+  246s ACTIVE fuel True
+  264s KIT taken: False
+  277s PLANT 1 False
+  290s PLANT 2 False
+  303s PLANT 3 False
+  304s    chain vantage [4992, -64, 450]
+  379s DONE fuel seen: False
+  381s == objective junction hold
+  381s ACTIVE junction True
+  739s DONE junction seen: False
+  739s -- exit gate check
+  829s exit chain: False
+  829s ---- OBJX log ----
+  829s OBJX armed m1l3a objectives=3 items=6 players=1
+  829s OBJX ACTIVE radios type=radio t=88.075
+  829s OBJX RADIO set 1 armed at ( 4480.000 448.000 402.000 )
+  829s OBJX RADIO set 2 armed at ( 5248.000 448.000 402.000 )
+  829s OBJX RADIO down 1 (shot) 1/2 t=94.075
+  829s OBJX RADIO down 2 (shot) 2/2 t=98.075
+  829s OBJX DONE radios took=10.000s done=1/3 t=98.075
+  829s OBJX ACTIVE fuel type=charge t=220.650
+  829s OBJX GATE closed: 1/3 done at t=299.600
+  829s OBJX GATE force-start junction
+  829s OBJX ACTIVE junction type=hold t=299.600
+  829s OBJX HOLD junction zone=the road junction at=( 4950.000 150.000 404.000 ) r=420 total=67s players=1
+  829s script errors: 0 []

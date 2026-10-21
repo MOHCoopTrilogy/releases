@@ -1,0 +1,24 @@
+   68s booted; players joined True
+   69s player active after intro: True
+   69s == objective hold hold
+  189s   !! hold did not activate by itself - forcing
+  189s ACTIVE hold True
+  249s DONE hold seen: True
+  249s == objective airdrop airdrop
+  369s   !! airdrop did not activate by itself - forcing
+  370s ACTIVE airdrop True
+  402s DONE airdrop seen: True frames 8
+  405s ---- OBJX log ----
+  405s OBJX armed m1l3c objectives=4 items=6 players=1
+  405s OBJX ACTIVE hold type=hold t=161.900
+  405s OBJX HOLD hold zone=the lighthouse landing at=( -380.000 -1720.000 306.000 ) r=380 total=54s players=1
+  405s OBJX HOLD wave 1 players=1 want=4 made=4 alive=4 entry=1 at=( -900.000 -2300.000 282.000 )
+  405s OBJX HOLD clock 0:00 elapsed=54.100 waves=1 lost=0
+  405s OBJX DONE hold took=58.100s done=1/4 t=220.000
+  405s OBJX ACTIVE airdrop type=airdrop t=342.125
+  405s OBJX HOLD airdrop zone=the lighthouse landing at=( -480.000 -1960.000 312.000 ) r=450 total=40s players=1
+  405s OBJX HOLD wave 1 players=1 want=4 made=4 alive=8 entry=1 at=( -900.000 -2300.000 282.000 )
+  405s OBJX AIRDROP regrouped t=371.725 men=1
+  405s OBJX HOLD clock 0:00 elapsed=29.600 waves=1 lost=0
+  405s OBJX DONE airdrop took=29.600s done=2/4 t=371.725
+  405s script errors: 0 []

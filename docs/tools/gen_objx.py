@@ -41,7 +41,7 @@ MOD = os.environ.get("OBJX_MOD") or os.path.join(ROOT, "hzm-mohaa-coop-mod")
 DATA = os.environ.get("OBJX_DATA") or os.path.join(HERE, "objx_points.json")
 OUT = os.path.join(MOD, "coop_mod", "objx_points.scr")
 
-TYPES = ("intel", "hold", "radio", "escort", "charge", "perform")
+TYPES = ("intel", "hold", "radio", "escort", "charge", "perform", "airdrop")
 WHEN = ("auto", "trigger", "after", "near")
 KINDS = ("pickup", "prop", "radio", "actor", "kit", "target")
 BANNED_MAPS = ("m3l1a", "m3l1b", "m2l2a", "e1l4", "m6l1c", "m6l2a")   # Omaha + stealth / disguise maps: never
@@ -118,12 +118,15 @@ def gen():
             w("\tlevel.objx_chain[%d] = %d" % (i, int(o.get("chain", 0))))
             w("\tlevel.objx_secs[%d] = %d" % (i, int(o.get("secs", 0))))
             w("\tlevel.objx_gap[%d] = %d" % (i, int(o.get("call_gap", 0))))
+            w("\tlevel.objx_hent[%d] = %s" % (i, s(o.get("hold_ent", ""))))
+            if o.get("dz"):
+                w("\tlevel.objx_dz[%d] = %s" % (i, v(o["dz"])))
             z = o.get("zone")
             if z:
                 w("\tlevel.objx_zpos[%d] = %s" % (i, v(z["pos"])))
                 w("\tlevel.objx_zr[%d] = %d" % (i, int(z["r"])))
                 w("\tlevel.objx_zname[%d] = %s" % (i, s(z["name"])))
-            if o["type"] in ("hold", "perform"):
+            if o["type"] in ("hold", "perform", "airdrop"):
                 assert z and o.get("secs", 0) >= 20, o
             for q in (z or {}).get("spawns", []):
                 sp += 1
@@ -145,6 +148,8 @@ def gen():
                 w("\tlevel.objx_it_scl[%d] = %.2f" % (k, float(it.get("scale", 0))))
                 w("\tlevel.objx_it_br[%d] = %d" % (k, int(it.get("bright", 0))))
                 w("\tlevel.objx_it_nd[%d] = %d" % (k, int(it.get("nodrop", 0))))
+                w("\tlevel.objx_it_box[%d] = %d" % (k, int(it.get("box", 0))))
+                w("\tlevel.objx_it_fx[%d] = %s" % (k, s(it.get("fx", ""))))
                 w("\tlevel.objx_it_pos2[%d] = %s" % (k, v(it.get("prop_pos", it["pos"]))))
                 w("\tlevel.objx_it_yaw2[%d] = %d" % (k, yaw(it.get("prop_yaw", it.get("yaw", 0)))))
         w("\tlevel.objx_itn = %d" % k)

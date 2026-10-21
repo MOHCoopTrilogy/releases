@@ -1,0 +1,35 @@
+   63s booted; players joined True
+   63s player active after intro: True
+  101s    jeep: barricade stop at 38 s - clearing the crates
+  182s    jeep: ride over at 119 s - squad released
+  185s == objective radios radio
+  185s ACTIVE radios True
+  197s DONE radios seen: True
+  197s == objective fuel charge
+  197s ACTIVE fuel True
+  215s KIT taken: False
+  229s PLANT 1 False
+  242s PLANT 2 False
+  256s PLANT 3 False
+  256s    chain vantage [4992, -64, 450]
+  331s DONE fuel seen: False
+  333s == objective junction hold
+  333s ACTIVE junction True
+  690s DONE junction seen: False
+  690s -- exit gate check
+  780s exit chain: False
+  780s ---- OBJX log ----
+  780s OBJX armed m1l3a objectives=3 items=6 players=1
+  780s OBJX ACTIVE radios type=radio t=151.000
+  780s OBJX GATE closed: 0/3 done at t=153.300
+  780s OBJX GATE force-start fuel
+  780s OBJX ACTIVE fuel type=charge t=153.300
+  780s OBJX GATE force-start junction
+  780s OBJX ACTIVE junction type=hold t=153.300
+  780s OBJX HOLD junction zone=the road junction at=( 4950.000 150.000 404.000 ) r=420 total=67s players=1
+  780s OBJX RADIO set 1 armed at ( 4480.000 448.000 402.000 )
+  780s OBJX RADIO set 2 armed at ( 5248.000 448.000 402.000 )
+  780s OBJX RADIO down 1 (shot) 1/2 t=168.600
+  780s OBJX RADIO down 2 (shot) 2/2 t=173.000
+  780s OBJX DONE radios took=22.000s done=1/3 t=173.000
+  780s script errors: 0 []

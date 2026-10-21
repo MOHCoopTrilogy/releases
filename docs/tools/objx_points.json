@@ -1,6 +1,6 @@
 {
  "m1l3c": {
-  "note": "The Sea Wall (lighthouse). Phase 1: log + hold. Phase 2 (objectives2): fuel depot charges in the lower hall, engineer repairs the beacon generator.",
+  "note": "The Sea Wall (lighthouse). Phase 1: log + hold. Phase 2 (objectives2): fuel depot charges in the lower hall; the beacon signals Grillo's C-47, which drops the OSS engineer and paratroopers on the landing - cover the airdrop until they land and regroup.",
   "objectives": [
    {
     "id": "depot",
@@ -95,83 +95,6 @@
     }
    },
    {
-    "id": "repair",
-    "type": "perform",
-    "line": 4,
-    "text": "Cover the engineer while he restores the beacon generator",
-    "done": "The beacon generator is running",
-    "when": "near",
-    "near": {
-     "pos": [
-      200.0,
-      -2290.0,
-      324.0
-     ],
-     "r": 700
-    },
-    "secs": 150,
-    "zone": {
-     "pos": [
-      200.0,
-      -2290.0,
-      324.0
-     ],
-     "r": 380,
-     "name": "the generator shed",
-     "spawns": [
-      [
-       -900.0,
-       -2300.0,
-       282.0
-      ],
-      [
-       -1000.0,
-       -2350.0,
-       266.0
-      ]
-     ]
-    },
-    "items": [
-     {
-      "kind": "actor",
-      "model": "models/human/1st-ranger_engineer.tik",
-      "pos": [
-       125.0,
-       -2290.0,
-       324.0
-      ],
-      "yaw": 0,
-      "label": "the engineer",
-      "seq": "wrench",
-      "aux": "models/static/generator.tik",
-      "prop_pos": [
-       235.0,
-       -2290.0,
-       324.0
-      ],
-      "prop_yaw": 0,
-      "scale": 0.6,
-      "spot_cams": [
-       [
-        145,
-        -2390,
-        326
-       ],
-       [
-        145,
-        -2190,
-        326
-       ],
-       [
-        35,
-        -2340,
-        346
-       ]
-      ]
-     }
-    ]
-   },
-   {
     "id": "log",
     "type": "intel",
     "line": 5,
@@ -235,18 +158,17 @@
        ]
       ]
      }
-    ],
-    "after_id": "repair"
+    ]
    },
    {
     "id": "hold",
     "type": "hold",
     "line": 3,
-    "text": "Hold the landing until the fleet answers the beacon",
-    "done": "The fleet has answered the beacon",
+    "text": "Hold the landing and signal the fleet with the beacon",
+    "done": "The beacon has signalled the fleet - a C-47 is inbound",
     "when": "trigger",
     "arg": "lightbright",
-    "secs": 180,
+    "secs": 120,
     "zone": {
      "pos": [
       -380.0,
@@ -269,6 +191,125 @@
      ]
     },
     "after_id": "log"
+   },
+   {
+    "id": "airdrop",
+    "type": "airdrop",
+    "line": 4,
+    "text": "Cover the airdrop at the lighthouse landing",
+    "done": "The OSS engineer and the paratroopers have landed and linked up",
+    "when": "trigger",
+    "arg": "lightbright",
+    "after_id": "hold",
+    "secs": 90,
+    "dz": [
+     -540.0,
+     -2140.0,
+     312.0
+    ],
+    "zone": {
+     "pos": [
+      -480.0,
+      -1960.0,
+      312.0
+     ],
+     "r": 450,
+     "name": "the lighthouse landing",
+     "spawns": [
+      [
+       -900.0,
+       -2300.0,
+       282.0
+      ],
+      [
+       -1000.0,
+       -2350.0,
+       266.0
+      ]
+     ]
+    }
+   },
+   {
+    "id": "gate",
+    "type": "perform",
+    "line": 5,
+    "text": "Defend the engineer while he opens the fence gate",
+    "done": "The fence gate is open - the truck can come through",
+    "when": "trigger",
+    "arg": "lightbright",
+    "after_id": "airdrop",
+    "secs": 150,
+    "hold_ent": "ossmobiletrig",
+    "zone": {
+     "pos": [
+      -280.0,
+      -1480.0,
+      300.0
+     ],
+     "r": 380,
+     "name": "the fence gate",
+     "spawns": [
+      [
+       -900.0,
+       -2300.0,
+       282.0
+      ],
+      [
+       -1000.0,
+       -2350.0,
+       266.0
+      ]
+     ]
+    },
+    "items": [
+     {
+      "kind": "actor",
+      "model": "models/human/1st-ranger_engineer.tik",
+      "pos": [
+       -300.0,
+       -1430.0,
+       300.0
+      ],
+      "yaw": 330,
+      "label": "the engineer",
+      "seq": "wrench",
+      "ref": "bustgate",
+      "spot_cams": [
+       [
+        -380,
+        -1520,
+        322
+       ],
+       [
+        -250,
+        -1400,
+        322
+       ],
+       [
+        -400,
+        -1400,
+        330
+       ]
+      ]
+     }
+    ],
+    "cam": [
+     [
+      50,
+      30,
+      0
+     ],
+     [
+      65,
+      -25,
+      5
+     ],
+     [
+      90,
+      15,
+      20
+     ]
+    ]
    }
   ]
  },
@@ -828,6 +869,297 @@
       -240.0
      ],
      "r": 450
+    }
+   }
+  ]
+ },
+ "m1l3a": {
+  "note": "The Desert. The host is locked on the jeep MG for the whole ride and the squad is released only at the end stop, so every objective is anchored within shooting range of the final stop (6080,1088): shootable radio posts and fuel tanks (the radio mechanic: gunfire, grenades or a planted charge), then a hold of the stop itself. Sites are east / north of the stop, off the route's final approach from the south-west.",
+  "objectives": [
+   {
+    "id": "radios",
+    "type": "radio",
+    "line": 3,
+    "text": "Shoot out the perimeter radio posts",
+    "done": "The perimeter radios are silent",
+    "when": "near",
+    "near": {
+     "pos": [
+      6080.0,
+      1088.0,
+      430.0
+     ],
+     "r": 700
+    },
+    "call_gap": 70,
+    "items": [
+     {
+      "kind": "radio",
+      "model": "models/miscobj/radio_military.tik",
+      "pos": [
+       6400.0,
+       1300.0,
+       404.0
+      ],
+      "yaw": 200,
+      "scale": 2.2,
+      "label": "the radio post"
+     },
+     {
+      "kind": "radio",
+      "model": "models/miscobj/radio_military.tik",
+      "pos": [
+       5700.0,
+       1350.0,
+       404.0
+      ],
+      "yaw": 330,
+      "scale": 2.2,
+      "label": "the radio post"
+     }
+    ]
+   },
+   {
+    "id": "fuel",
+    "type": "radio",
+    "line": 4,
+    "text": "Shoot the perimeter fuel tanks",
+    "done": "The perimeter fuel tanks are burning",
+    "when": "near",
+    "near": {
+     "pos": [
+      6080.0,
+      1088.0,
+      430.0
+     ],
+     "r": 700
+    },
+    "after_id": "radios",
+    "call_gap": 60,
+    "items": [
+     {
+      "kind": "radio",
+      "model": "models/static/fuel_tanks.tik",
+      "aux": "models/static/fuel_tanks_d.tik",
+      "pos": [
+       6500.0,
+       800.0,
+       404.0
+      ],
+      "yaw": 0,
+      "scale": 0.32,
+      "box": 80,
+      "fx": "tank",
+      "label": "the fuel tanks"
+     },
+     {
+      "kind": "radio",
+      "model": "models/static/fuel_tanks.tik",
+      "aux": "models/static/fuel_tanks_d.tik",
+      "pos": [
+       5900.0,
+       1500.0,
+       404.0
+      ],
+      "yaw": 90,
+      "scale": 0.32,
+      "box": 80,
+      "fx": "tank",
+      "label": "the fuel tanks"
+     },
+     {
+      "kind": "radio",
+      "model": "models/static/fuel_tanks.tik",
+      "aux": "models/static/fuel_tanks_d.tik",
+      "pos": [
+       6700.0,
+       1150.0,
+       404.0
+      ],
+      "yaw": 45,
+      "scale": 0.32,
+      "box": 80,
+      "fx": "tank",
+      "label": "the fuel tanks"
+     }
+    ]
+   },
+   {
+    "id": "stop",
+    "type": "hold",
+    "line": 5,
+    "text": "Hold the jeep at the airfield gate until the garrison breaks",
+    "done": "The airfield garrison has broken",
+    "when": "near",
+    "near": {
+     "pos": [
+      6080.0,
+      1088.0,
+      430.0
+     ],
+     "r": 700
+    },
+    "after_id": "fuel",
+    "secs": 150,
+    "zone": {
+     "pos": [
+      6080.0,
+      1088.0,
+      430.0
+     ],
+     "r": 520,
+     "name": "the airfield gate",
+     "spawns": []
+    }
+   }
+  ]
+ },
+ "m1l3b": {
+  "note": "Grounding the Airfield. Radios at the two far ends of the field, a fuel dump on the central apron, a hold at the tower yard. Sites are pathnodes at least 550 u from every parked aircraft with 7/8 directions clear.",
+  "objectives": [
+   {
+    "id": "fuel",
+    "type": "charge",
+    "line": 3,
+    "text": "Blow the airfield fuel dump on the apron",
+    "done": "The fuel dump is destroyed",
+    "when": "near",
+    "near": {
+     "pos": [
+      -700.0,
+      3900.0,
+      -24.0
+     ],
+     "r": 1100
+    },
+    "fuse": 12,
+    "chain": 1,
+    "call_gap": 45,
+    "items": [
+     {
+      "kind": "kit",
+      "model": "models/static/exp_crate1.tik",
+      "pos": [
+       -208.0,
+       3750.0,
+       -24.0
+      ],
+      "yaw": 0,
+      "label": "the demolition charges"
+     },
+     {
+      "kind": "target",
+      "model": "models/static/fuel_tanks.tik",
+      "aux": "models/static/fuel_tanks_d.tik",
+      "pos": [
+       -700.0,
+       4152.0,
+       -24.0
+      ],
+      "yaw": 0,
+      "scale": 0.32,
+      "label": "the fuel tanks"
+     },
+     {
+      "kind": "target",
+      "model": "models/static/fuel_tanks.tik",
+      "aux": "models/static/fuel_tanks_d.tik",
+      "pos": [
+       -1524.0,
+       4332.0,
+       -24.0
+      ],
+      "yaw": 90,
+      "scale": 0.32,
+      "label": "the fuel tanks"
+     },
+     {
+      "kind": "target",
+      "model": "models/static/fuel_tanks.tik",
+      "aux": "models/static/fuel_tanks_d.tik",
+      "pos": [
+       228.0,
+       4344.0,
+       -24.0
+      ],
+      "yaw": 45,
+      "scale": 0.32,
+      "label": "the fuel tanks"
+     }
+    ],
+    "zone": {
+     "pos": [
+      -700.0,
+      4200.0,
+      -24.0
+     ],
+     "r": 900,
+     "name": "the apron",
+     "spawns": []
+    }
+   },
+   {
+    "id": "radios",
+    "type": "radio",
+    "line": 4,
+    "text": "Silence the airfield radio posts",
+    "done": "The airfield radios are silent",
+    "when": "after",
+    "arg": "fuel",
+    "call_gap": 70,
+    "items": [
+     {
+      "kind": "radio",
+      "model": "models/miscobj/radio_military.tik",
+      "pos": [
+       -1316.0,
+       4744.0,
+       -24.0
+      ],
+      "yaw": 0,
+      "scale": 2.2,
+      "label": "the radio set"
+     },
+     {
+      "kind": "radio",
+      "model": "models/miscobj/radio_military.tik",
+      "pos": [
+       -228.0,
+       4572.0,
+       -24.0
+      ],
+      "yaw": 180,
+      "scale": 2.2,
+      "label": "the radio set"
+     }
+    ]
+   },
+   {
+    "id": "tower",
+    "type": "hold",
+    "line": 5,
+    "text": "Hold the apron while the garrison scrambles",
+    "done": "The scramble is broken",
+    "when": "near",
+    "near": {
+     "pos": [
+      -700.0,
+      4300.0,
+      -24.0
+     ],
+     "r": 700
+    },
+    "after_id": "radios",
+    "secs": 150,
+    "zone": {
+     "pos": [
+      -700.0,
+      4300.0,
+      -24.0
+     ],
+     "r": 500,
+     "name": "the apron",
+     "spawns": []
     }
    }
   ]

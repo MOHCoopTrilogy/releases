@@ -1,0 +1,7 @@
+   65s booted; players joined True
+   65s player active after intro: True
+  772s == objective radios radio
+  812s   !! radios did not activate by itself - forcing
+  812s ACTIVE radios True
+  824s DONE radios seen: True
+  824s == objective fuel charge

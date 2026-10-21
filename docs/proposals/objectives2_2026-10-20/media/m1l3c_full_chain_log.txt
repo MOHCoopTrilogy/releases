@@ -1,0 +1,67 @@
+   66s booted; players joined True
+   67s player active after intro: True
+   67s == objective depot charge
+   68s ACTIVE depot True
+   75s KIT taken: True
+   75s    stand for [-5564, -4804, -24] at node [-5708, -4820, -20]
+   81s PLANT 1 True
+   81s    stand for [-5444, -4532, -24] at node [-5308, -4476, -20]
+   87s PLANT 2 True
+   87s    stand for [-5470, -4250, -24] at node [-5572, -4244, -20]
+   93s PLANT 3 True
+   93s    chain vantage [-5388, -4524, -20]
+  108s DONE depot seen: True
+  110s == objective log intel
+  110s ACTIVE log True
+  116s DONE log seen: True
+  116s == objective hold hold
+  236s   !! hold did not activate by itself - forcing
+  236s ACTIVE hold True
+  284s DONE hold seen: True
+  284s == objective airdrop airdrop
+  404s   !! airdrop did not activate by itself - forcing
+  404s ACTIVE airdrop True
+  449s DONE airdrop seen: True frames 24
+  452s == objective gate perform
+  573s   !! gate did not activate by itself - forcing
+  573s ACTIVE gate True
+  619s DONE gate seen: True
+  625s -- exit gate check
+  681s exit chain: True
+  681s ---- OBJX log ----
+  681s OBJX armed m1l3c objectives=5 items=7 players=1
+  681s OBJX ACTIVE depot type=charge t=42.250
+  681s OBJX KIT taken by UnnamedSoldier#8240 t=48.850
+  681s OBJX PLANT 1/3 target 2 by UnnamedSoldier#8240 t=53.650
+  681s OBJX PLANT 2/3 target 3 by UnnamedSoldier#8240 t=59.450
+  681s OBJX HOLD wave 1 players=1 want=4 made=4 alive=4 entry=1 at=( -5728.000 -4032.000 -20.000 )
+  681s OBJX PLANT 3/3 target 4 by UnnamedSoldier#8240 t=65.250
+  681s OBJX CHAIN armed fuse=12 t=65.250
+  681s OBJX CHAIN go t=77.250
+  681s OBJX BLOW target 2 t=77.275
+  681s OBJX BLOW target 3 t=78.166
+  681s OBJX BLOW target 4 t=78.801
+  681s OBJX DONE depot took=38.881s done=1/5 t=81.131
+  681s OBJX ACTIVE log type=intel t=84.450
+  681s OBJX PICKUP log 1/1 by UnnamedSoldier#8240
+  681s OBJX DONE log took=5.150s done=2/5 t=89.600
+  681s OBJX ACTIVE hold type=hold t=210.850
+  681s OBJX HOLD hold zone=the lighthouse landing at=( -380.000 -1720.000 306.000 ) r=380 total=40s players=1
+  681s OBJX HOLD wave 1 players=1 want=4 made=4 alive=8 entry=1 at=( -900.000 -2300.000 282.000 )
+  681s OBJX HOLD clock 0:00 elapsed=40.100 waves=1 lost=0
+  681s OBJX DONE hold took=44.100s done=3/5 t=254.950
+  681s OBJX ACTIVE airdrop type=airdrop t=378.850
+  681s OBJX HOLD airdrop zone=the lighthouse landing at=( -480.000 -1960.000 312.000 ) r=450 total=40s players=1
+  681s OBJX HOLD wave 1 players=1 want=4 made=4 alive=12 entry=1 at=( -900.000 -2300.000 282.000 )
+  681s OBJX AIRDROP regrouped t=422.450 men=1
+  681s OBJX HOLD clock 0:00 elapsed=43.600 waves=1 lost=0
+  681s OBJX DONE airdrop took=43.600s done=4/5 t=422.450
+  681s OBJX ACTIVE gate type=perform t=547.550
+  681s OBJX HOLD gate zone=the fence gate at=( -280.000 -1480.000 300.000 ) r=380 total=40s players=1
+  681s OBJX PERF gate performer #1 spawned at ( -300.000 -1430.000 300.000 ) seq=wrench
+  681s OBJX HOLD wave 1 players=1 want=4 made=4 alive=11 entry=1 at=( -900.000 -2300.000 282.000 )
+  681s OBJX HOLD clock 0:00 elapsed=40.100 waves=1 lost=0
+  681s OBJX DONE gate took=44.100s done=5/5 t=591.650
+  681s OBJX ALL DONE 5 objectives t=591.650
+  681s OBJX HOLD-ENT released ossmobiletrig t=591.750
+  681s script errors: 1 ["[2026-10-21 06:55:32 UTC-6.000] ^~^~^ Script Error : ScriptMaster::CreateScriptThread: label 'briefing_briefing2' does not exist in 'coop_mod/spawnlocations.scr'."]

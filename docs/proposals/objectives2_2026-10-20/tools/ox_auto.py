@@ -249,6 +249,33 @@ def do_zone(i, o):
         R.step(["set cg_drawviewmodel 1", "wait 100"], timeout=20)
 
 
+def do_airdrop(i, o):
+    import math
+    z = o["zone"]
+    cx, cy, cz = z["pos"]
+    dx, dy, dz = o["dz"]
+    yaw = math.degrees(math.atan2(dy - cy, dx - cx)) % 360
+    L = math.hypot(cx - dx, cy - dy) or 1
+    sx, sy = dx + (cx - dx) / L * 260, dy + (cy - dy) / L * 260      # 260 u from the drop zone, towards the zone centre
+    cx, cy = sx, sy
+    tp(cx, cy, cz + 28, yaw, 0)
+    secs = int(o.get("secs", 60))
+    t0 = time.time()
+    n = 0
+    while time.time() - t0 < secs * 1.6 + 200:
+        if R.wait_log(r"\^~\^~\^ OBJX DONE %s " % o["id"], 0.1, 0):
+            break
+        # the first half minute looks up at the sky for the C-47 flyover, then down at the drop zone
+        pitch = -38 if (time.time() - t0) < 45 else 0
+        tp(cx, cy, cz + 28, yaw, pitch)
+        frames("%s_drop%03d" % (o["id"], n), 1, 200)
+        n += 1
+        time.sleep(0.6)
+    log("DONE %s seen:" % o["id"], bool(seen(r"\^~\^~\^ OBJX DONE %s " % o["id"], 20)), "frames", n)
+    tp(cx, cy, cz + 28, yaw, 0)
+    frames("%s_after" % o["id"], 10, 300)
+
+
 rundir = notes = None
 try:
     extra = ["set coop_counterDebug 1", "set coop_objxFailsafe 900"]
@@ -258,6 +285,27 @@ try:
     log("booted; players joined", notes.get("joined"))
     G.cmd("god")
     log("player active after intro:", G.wait_active())
+    if MAP == "m1l3a":
+        # the vanilla jeep ride: start -> barricade stop (clear the crates) -> fast run to the airfield, where the squad is released
+        state, t0r = 0, time.time()
+        while time.time() - t0r < 700:
+            p0 = G.cmd("jeepstate")
+            v = G.since(p0, r"drv=(\S+) removed=(\S+)")
+            drv = v[-1][0] if v else "?"
+            if drv == "1" and state == 0:
+                state = 1
+            elif drv == "0" and state == 1:
+                state = 2
+                log("   jeep: barricade stop at %.0f s - clearing the crates" % (time.time() - t0r))
+                G.cmd("barrier")
+            elif drv == "1" and state == 2:
+                state = 3
+            elif drv == "0" and state == 3:
+                log("   jeep: ride over at %.0f s - squad released" % (time.time() - t0r))
+                G.cmd("jeepdetach")
+                break
+            time.sleep(6)
+        time.sleep(3)
     for i, o in enumerate(OBJS, 1):
         if ONLY and o["id"] not in ONLY:
             continue
@@ -274,6 +322,8 @@ try:
             do_escort(i, o)
         elif t in ("perform", "hold"):
             do_zone(i, o)
+        elif t == "airdrop":
+            do_airdrop(i, o)
         else:
             log("  (no auto handler for", t, ")")
     if END:

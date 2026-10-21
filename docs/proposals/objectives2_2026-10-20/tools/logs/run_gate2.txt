@@ -1,0 +1,19 @@
+   68s booted; players joined True
+   68s player active after intro: True
+   68s == objective gate perform
+  189s   !! gate did not activate by itself - forcing
+  189s ACTIVE gate True
+  266s DONE gate seen: True
+  271s ---- OBJX log ----
+  271s OBJX armed m1l3c objectives=5 items=7 players=1
+  271s OBJX ACTIVE gate type=perform t=161.600
+  271s OBJX HOLD gate zone=the fence gate at=( -280.000 -1480.000 300.000 ) r=380 total=60s players=1
+  271s OBJX PERF gate performer #1 spawned at ( -300.000 -1430.000 300.000 ) seq=wrench
+  271s OBJX HOLD wave 1 players=1 want=4 made=4 alive=4 entry=1 at=( -900.000 -2300.000 282.000 )
+  271s OBJX PERF performer died #1 t=211.750
+  271s OBJX HOLD wave 2 players=1 want=4 made=4 alive=8 entry=2 at=( -1000.000 -2350.000 266.000 )
+  271s OBJX PERF gate performer #2 spawned at ( -300.000 -1430.000 300.000 ) seq=wrench
+  271s OBJX HOLD clock 0:00 elapsed=71.950 waves=2 lost=0
+  271s OBJX DONE gate took=75.950s done=1/5 t=237.550
+  271s OBJX HOLD-ENT released ossmobiletrig t=238.000
+  271s script errors: 0 []
