@@ -159,6 +159,50 @@ ox_do local.c:{
 		exec global/missioncomplete.scr briefing/briefing2
 		println "^~^~^ OX endnow threaded"
 	}
+	if( local.c == "fire" ){
+		local.nm = getcvar "ox_s"
+		local.t = $( local.nm )
+		if( local.t == NULL || local.t == NIL ){ println ( "^~^~^ OX fire missing " + local.nm ); end }
+		trigger local.t
+		println ( "^~^~^ OX fire " + local.nm )
+	}
+	if( local.c == "force" ){
+		thread coop_mod/objx.scr::ox_activate ( int( waitthread ox_f "ox_k" ) )
+		println "^~^~^ OX force"
+	}
+	if( local.c == "act" ){
+		println ( "^~^~^ OX act " + local.p.flags["coop_isActive"] + " org=" + local.p.origin )
+	}
+	if( local.c == "props" ){
+		for( local.k = 1; local.k <= level.objx_itn; local.k++ ){
+			local.e = level.objx_it_ent[local.k]
+			if( local.e != NULL && local.e != NIL ){
+				println ( "^~^~^ OX prop item=" + local.k + " kind=" + level.objx_it_kind[local.k] + " org=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+			}
+		}
+		for( local.i = 1; local.i <= level.objx_n; local.i++ ){
+			local.e = level.objx_pf_prop[local.i]
+			if( local.e != NULL && local.e != NIL ){
+				println ( "^~^~^ OX prop workprop obj=" + local.i + " org=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+			}
+			local.e = level.objx_pf_ent[local.i]
+			if( local.e != NULL && local.e != NIL ){
+				println ( "^~^~^ OX prop performer obj=" + local.i + " org=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+			}
+		}
+	}
+	if( local.c == "spawnprop" ){
+		local.mdl = getcvar "ox_s"
+		local.va = local.p.viewangles
+		local.f = angles_toforward ( 0 local.va[1] 0 )
+		if( level.ox_spm != NULL && level.ox_spm != NIL ){ level.ox_spm remove }
+		local.t = spawn script_model
+		local.t model local.mdl
+		level.ox_spm = local.t
+		local.t.origin = local.p.origin + ( vector_scale local.f 170 )
+		local.t.angles = ( 0 local.va[1] 0 )
+		println ( "^~^~^ OX spawnprop " + local.mdl + " at " + local.t.origin )
+	}
 	if( local.c == "radiopos" ){
 		for( local.k = 1; local.k <= level.objx_itn; local.k++ ){
 			println ( "^~^~^ OX item " + local.k + " kind=" + level.objx_it_kind[local.k] + " pos=" + level.objx_it_pos[local.k] + " dead=" + level.objx_rd_dead[local.k] )

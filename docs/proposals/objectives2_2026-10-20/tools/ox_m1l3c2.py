@@ -110,18 +110,18 @@ try:
         panel("ox_panel_depot_done")
     if "repair" in STAGES:
         log("-- the generator yard: the engineer repair starts when the squad comes within 700")
-        tp(-700, -1700, 314, 0, 0)
+        tp(-60, -2290, 326, 0, 0)
         ok = wait_objx(r"ACTIVE repair", 30)
         log("ACTIVE repair seen:", bool(ok))
         time.sleep(2)
         panel("ox_panel_repair")
         R.step(["set cg_drawviewmodel 0", "wait 100"], timeout=20)
-        for nm, (x, y, z) in {"c2": (-60, -140, 0), "c3": (-60, 140, 0), "c5": (-130, -90, 20)}.items():
+        for nm, (x, y, z) in {"c2": (20, -100, 0), "c3": (20, 100, 0), "c5": (-90, -50, 20)}.items():
             G.cmd("pfcam", x=x, y=y, z=z, k=2)
             time.sleep(0.6)
             G.frames("pc_" + nm, 10, 220)
         R.step(["set cg_drawviewmodel 1", "wait 100"], timeout=20)
-        tp(-400, -1860, 314, 200, 0)
+        tp(200, -2250, 326, 180, 0)
         for k in range(40):
             if R.wait_log(r"OBJX DONE repair", 0.1, 0):
                 break
@@ -131,7 +131,7 @@ try:
         ok = R.wait_log(r"\^~\^~\^ OBJX DONE repair", 30, 0)
         log("DONE repair seen:", bool(ok))
         R.step(["set cg_drawviewmodel 0", "wait 100"], timeout=20)
-        G.cmd("pfcam", x=-60, y=-140, z=0, k=2)
+        G.cmd("pfcam", x=20, y=-100, z=0, k=2)
         G.frames("repair_done", 20, 250)
         R.step(["set cg_drawviewmodel 1", "wait 100"], timeout=20)
     if "pfdie" in STAGES:
@@ -175,6 +175,46 @@ try:
             time.sleep(3)
             G.still("anim_" + nm)
         R.step(["set cg_drawviewmodel 1", "wait 100"], timeout=20)
+    if "truckwait" in STAGES:
+        G.cmd("radios4")
+        tp(300, -1800, 1118, 160, 0)
+        aim(264, -1819, 1125)
+        R.step(["+use", "wait 350", "-use", "wait 200"], timeout=30)
+        tp(-731, -2400, 330, 90, 0)
+        time.sleep(3)
+        tp(-900, -2300, 330, 90, 0)
+        for k in range(18):
+            G.cmd("endinfo")
+            time.sleep(9)
+        log("DBG arrived:", bool(R.wait_log(r"DBG truck arrived", 0.1, 0)))
+    if "arrival" in STAGES:
+        log("-- Grillo's truck arrival with every objective prop standing (depot wrecks not needed: they are far away)")
+        G.cmd("radios4")
+        G.cmd("force", k=1)
+        G.cmd("force", k=2)
+        time.sleep(6)
+        G.cmd("props")
+        tp(300, -1800, 1118, 160, 0)
+        aim(264, -1819, 1125)
+        R.step(["+use", "wait 350", "-use", "wait 200"], timeout=30)
+        tp(-731, -2400, 330, 90, 0)
+        time.sleep(3)
+        # vantage over the landing: the truck's last 100 u and its stop
+        tp(-60, -1980, 322, 135, 4)
+        caught = False
+        for k in range(60):
+            p0 = G.cmd("endinfo")
+            v = G.since(p0, r"truckDist=(\S+)")
+            if v and float(v[-1]) < 900 and not caught:
+                caught = True
+                G.frames("arrive", 40, 450)
+            if caught:
+                break
+            time.sleep(3)
+        time.sleep(4)
+        G.frames("arrive_after", 4, 400)
+        G.cmd("endinfo")
+        log("DBG arrived:", bool(R.wait_log(r"DBG truck arrived", 20, 0)))
     if "radios" in STAGES:
         log("-- vanilla objective 1: the four comms sets")
         G.cmd("radios4")

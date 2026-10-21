@@ -1,0 +1,8 @@
+   84s booted; players joined True
+  256s DBG arrived: False
+  256s ---- OBJX log ----
+  256s OBJX armed m1l3c objectives=1 items=1 players=1
+  256s OBJX ACTIVE repair type=perform t=43.000
+  256s OBJX HOLD repair zone=the generator yard at=( -470.000 -1930.000 312.000 ) r=350 total=67s players=1
+  256s OBJX PERF repair performer #1 spawned at ( -575.000 -1930.000 308.619 ) seq=wrench
+  256s script errors: 0 []

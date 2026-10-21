@@ -1,0 +1,13 @@
+   70s booted; players joined True
+   70s -- the generator yard: the engineer repair starts when the squad comes within 700
+   71s ACTIVE repair seen: True
+  117s DONE repair seen: True
+  123s ---- OBJX log ----
+  123s OBJX armed m1l3c objectives=4 items=7 players=1
+  123s OBJX ACTIVE repair type=perform t=42.000
+  123s OBJX HOLD repair zone=the generator shed at=( 200.000 -2290.000 324.000 ) r=380 total=40s players=1
+  123s OBJX PERF repair performer #1 spawned at ( 125.000 -2290.000 324.000 ) seq=wrench
+  123s OBJX HOLD wave 1 players=1 want=4 made=4 alive=4 entry=1 at=( -900.000 -2300.000 282.000 )
+  123s OBJX HOLD clock 0:00 elapsed=40.100 waves=1 lost=0
+  123s OBJX DONE repair took=40.100s done=1/4 t=82.100
+  123s script errors: 0 []

@@ -1,0 +1,5 @@
+   74s booted; players joined True
+  245s DBG arrived: True
+  245s ---- OBJX log ----
+  245s OBJX armed m1l3c objectives=1 items=2 players=1
+  245s script errors: 0 []

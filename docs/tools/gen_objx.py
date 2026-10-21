@@ -38,7 +38,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
 MOD = os.environ.get("OBJX_MOD") or os.path.join(ROOT, "hzm-mohaa-coop-mod")
-DATA = os.path.join(HERE, "objx_points.json")
+DATA = os.environ.get("OBJX_DATA") or os.path.join(HERE, "objx_points.json")
 OUT = os.path.join(MOD, "coop_mod", "objx_points.scr")
 
 TYPES = ("intel", "hold", "radio", "escort", "charge", "perform")

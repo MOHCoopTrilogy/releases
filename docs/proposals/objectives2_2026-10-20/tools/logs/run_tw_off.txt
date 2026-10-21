@@ -1,0 +1,4 @@
+   68s booted; players joined True
+  239s DBG arrived: True
+  239s ---- OBJX log ----
+  239s script errors: 0 []

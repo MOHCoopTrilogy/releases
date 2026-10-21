@@ -72,7 +72,9 @@ def overlay(name="ov_ox.pk3", driver="ox_drv.scr", ref=None, extra=()):
                 except subprocess.CalledProcessError:
                     if rel.endswith(".scr"):
                         continue
-            if os.path.exists(p):
+            if rel == "coop_mod/objx_points.scr" and os.environ.get("OXPOINTS"):
+                z.write(os.environ["OXPOINTS"], rel)
+            elif os.path.exists(p):
                 z.write(p, rel)
     return ov
 
@@ -138,3 +140,15 @@ def objx_lines(p0=0):
 
 def vec(s):
     return [float(v) for v in s.replace("(", " ").replace(")", " ").split()]
+
+
+def wait_active(timeout=420):
+    """map intros (m1l1 truck ride, jeep rides) keep the player inactive: wait until coop_isActive is 1"""
+    t0 = time.time()
+    while time.time() - t0 < timeout:
+        p0 = cmd("act")
+        v = since(p0, r"OX act (\S+)")
+        if v and v[-1] == "1":
+            return True
+        time.sleep(6)
+    return False

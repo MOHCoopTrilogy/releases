@@ -10,6 +10,7 @@ rundir = notes = None
 try:
     rundir, notes = G.boot("ox_" + LABEL, MAP, extra=["set coop_objx 0", "set g_ai 0"])
     G.cmd("god")
+    print("active:", G.wait_active())
     for sp in spots:
         name, v = sp.split(":")
         x, y, z, yw, pt = [float(a) for a in v.split(",")]

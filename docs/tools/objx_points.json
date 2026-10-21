@@ -63,8 +63,8 @@
       "model": "models/static/fuel_tanks.tik",
       "aux": "models/static/fuel_tanks_d.tik",
       "pos": [
-       -5572.0,
-       -4244.0,
+       -5470.0,
+       -4250.0,
        -24.0
       ],
       "yaw": 90,
@@ -103,21 +103,21 @@
     "when": "near",
     "near": {
      "pos": [
-      -470.0,
-      -1930.0,
-      312.0
+      200.0,
+      -2290.0,
+      324.0
      ],
      "r": 700
     },
     "secs": 150,
     "zone": {
      "pos": [
-      -470.0,
-      -1930.0,
-      312.0
+      200.0,
+      -2290.0,
+      324.0
      ],
-     "r": 350,
-     "name": "the generator yard",
+     "r": 380,
+     "name": "the generator shed",
      "spawns": [
       [
        -900.0,
@@ -136,21 +136,38 @@
       "kind": "actor",
       "model": "models/human/1st-ranger_engineer.tik",
       "pos": [
-       -575.0,
-       -1930.0,
-       312.0
+       125.0,
+       -2290.0,
+       324.0
       ],
       "yaw": 0,
       "label": "the engineer",
       "seq": "wrench",
       "aux": "models/static/generator.tik",
       "prop_pos": [
-       -470.0,
-       -1930.0,
-       311.0
+       235.0,
+       -2290.0,
+       324.0
       ],
       "prop_yaw": 0,
-      "scale": 0.6
+      "scale": 0.6,
+      "spot_cams": [
+       [
+        145,
+        -2390,
+        326
+       ],
+       [
+        145,
+        -2190,
+        326
+       ],
+       [
+        35,
+        -2340,
+        346
+       ]
+      ]
      }
     ]
    },
@@ -172,7 +189,24 @@
        1146.0
       ],
       "yaw": 40,
-      "label": "the signal log"
+      "label": "the signal log",
+      "spot_cams": [
+       [
+        300,
+        -1800,
+        1118
+       ],
+       [
+        308,
+        -1828,
+        1118
+       ],
+       [
+        330,
+        -1900,
+        1118
+       ]
+      ]
      },
      {
       "kind": "prop",
@@ -182,7 +216,24 @@
        -1850.0,
        1116.1
       ],
-      "yaw": 40
+      "yaw": 40,
+      "spot_cams": [
+       [
+        300,
+        -1800,
+        1118
+       ],
+       [
+        308,
+        -1828,
+        1118
+       ],
+       [
+        330,
+        -1900,
+        1118
+       ]
+      ]
      }
     ],
     "after_id": "repair"

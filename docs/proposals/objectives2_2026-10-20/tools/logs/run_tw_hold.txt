@@ -1,0 +1,7 @@
+   75s booted; players joined True
+  246s DBG arrived: True
+  246s ---- OBJX log ----
+  246s OBJX armed m1l3c objectives=1 items=0 players=1
+  246s OBJX ACTIVE hold type=hold t=42.225
+  246s OBJX HOLD hold zone=the lighthouse landing at=( -380.000 -1720.000 306.000 ) r=380 total=81s players=1
+  246s script errors: 0 []
