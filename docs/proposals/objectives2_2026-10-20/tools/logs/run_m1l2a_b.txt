@@ -1,0 +1,13 @@
+   79s booted; players joined True
+   79s player active after intro: True
+   79s == objective lights charge
+   80s ACTIVE lights True
+   98s KIT taken: False
+  112s PLANT 1 False
+  126s PLANT 2 False
+  139s PLANT 3 False
+  213s DONE lights seen: False
+  215s ---- OBJX log ----
+  215s OBJX armed m1l2a objectives=3 items=6 players=1
+  215s OBJX ACTIVE lights type=charge t=42.500
+  215s script errors: 0 []

@@ -1,0 +1,36 @@
+   68s booted; players joined True
+   69s player active after intro: True
+   69s == objective gate hold
+   70s ACTIVE gate True
+  142s DONE gate seen: True
+  142s == objective lights charge
+  142s ACTIVE lights True
+  150s KIT taken: True
+  164s PLANT 1 False
+  177s PLANT 2 False
+  191s PLANT 3 False
+  265s DONE lights seen: False
+  267s == objective radios radio
+  387s   !! radios did not activate by itself - forcing
+  387s ACTIVE radios True
+  399s DONE radios seen: True
+  399s -- exit gate check
+  490s exit chain: False
+  490s ---- OBJX log ----
+  490s OBJX armed m1l2a objectives=3 items=6 players=1
+  490s OBJX ACTIVE gate type=hold t=42.000
+  490s OBJX HOLD gate zone=the east gate yard at=( 5004.000 -851.000 -132.000 ) r=450 total=67s players=1
+  490s OBJX HOLD clock 0:00 elapsed=67.100 waves=2 lost=0
+  490s OBJX DONE gate took=67.100s done=1/3 t=109.100
+  490s OBJX ACTIVE lights type=charge t=115.000
+  490s OBJX KIT taken by UnnamedSoldier#8240 t=121.200
+  490s OBJX PLANT 1/3 target 3 by UnnamedSoldier#8240 t=140.000
+  490s OBJX PLANT 2/3 target 4 by UnnamedSoldier#8240 t=153.200
+  490s OBJX ACTIVE radios type=radio t=359.725
+  490s OBJX RADIO set 5 armed at ( 2095.000 2695.000 -206.000 )
+  490s OBJX RADIO set 6 armed at ( 890.000 3871.000 -33.000 )
+  490s OBJX RADIO down 5 (shot) 1/2 t=365.325
+  490s OBJX RADIO down 6 (shot) 2/2 t=369.725
+  490s OBJX DONE radios took=10.000s done=2/3 t=369.725
+  490s OBJX GATE closed: 2/3 done at t=371.700
+  490s script errors: 0 []

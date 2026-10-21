@@ -1,0 +1,43 @@
+   67s booted; players joined True
+   68s player active after intro: True
+   68s == objective gate hold
+   69s ACTIVE gate True
+  141s DONE gate seen: True
+  141s == objective lights charge
+  142s ACTIVE lights True
+  150s KIT taken: True
+  150s    stand for [24, 2408, -144] at node [-104, 2416, -72]
+  155s PLANT 1 True
+  161s PLANT 2 True
+  166s PLANT 3 True
+  181s DONE lights seen: True
+  183s == objective radios radio
+  183s ACTIVE radios True
+  195s DONE radios seen: True
+  195s -- exit gate check
+  250s exit chain: True
+  250s ---- OBJX log ----
+  250s OBJX armed m1l2a objectives=3 items=6 players=1
+  250s OBJX ACTIVE gate type=hold t=42.250
+  250s OBJX HOLD gate zone=the east gate yard at=( 5004.000 -851.000 -132.000 ) r=450 total=67s players=1
+  250s OBJX HOLD clock 0:00 elapsed=67.150 waves=2 lost=0
+  250s OBJX DONE gate took=67.150s done=1/3 t=109.400
+  250s OBJX ACTIVE lights type=charge t=115.250
+  250s OBJX KIT taken by UnnamedSoldier#8240 t=122.050
+  250s OBJX PLANT 1/3 target 2 by UnnamedSoldier#8240 t=126.850
+  250s OBJX PLANT 2/3 target 3 by UnnamedSoldier#8240 t=132.250
+  250s OBJX PLANT 3/3 target 4 by UnnamedSoldier#8240 t=138.050
+  250s OBJX CHAIN armed fuse=12 t=138.050
+  250s OBJX CHAIN go t=150.050
+  250s OBJX BLOW target 2 t=150.050
+  250s OBJX BLOW target 3 t=151.059
+  250s OBJX BLOW target 4 t=151.717
+  250s OBJX DONE lights took=38.726s done=2/3 t=153.976
+  250s OBJX ACTIVE radios type=radio t=154.250
+  250s OBJX RADIO set 5 armed at ( 2095.000 2695.000 -206.000 )
+  250s OBJX RADIO set 6 armed at ( 890.000 3871.000 -33.000 )
+  250s OBJX RADIO down 5 (shot) 1/2 t=161.850
+  250s OBJX RADIO down 6 (shot) 2/2 t=166.250
+  250s OBJX DONE radios took=12.000s done=3/3 t=166.250
+  250s OBJX ALL DONE 3 objectives t=166.250
+  250s script errors: 1 ["[2026-10-21 01:48:40 UTC-6.000] ^~^~^ Script Error : ScriptMaster::CreateScriptThread: label 'briefing_briefing2' does not exist in 'coop_mod/spawnlocations.scr'."]

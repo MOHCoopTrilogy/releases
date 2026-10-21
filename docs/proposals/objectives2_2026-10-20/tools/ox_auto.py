@@ -110,17 +110,68 @@ def do_radio(i, o):
     log("DONE %s seen:" % o["id"], bool(seen(r"\^~\^~\^ OBJX DONE %s " % o["id"], 25)))
 
 
-def stand_near(pos, yaw=180, off=170):
+_NODES = None
+
+
+def nodes():
+    global _NODES
+    if _NODES is None:
+        sys.path.insert(0, "C:/mohaa-coop-dev/docs/tools")
+        import bsptrace as T
+        _NODES = [[float(v) for v in e["origin"].split()] for e in T.BSP.load(MAP).entities() if e["classname"] == "info_pathnode"]
+    return _NODES
+
+
+_BSP = None
+
+
+def vantage(pos, want=330):
+    """a walkable pathnode 220-480 u from pos with a clear sight line to it (chest height) - the camera spot for set pieces"""
+    import math
+    global _BSP
+    if _BSP is None:
+        sys.path.insert(0, "C:/mohaa-coop-dev/docs/tools")
+        import bsptrace as T
+        _BSP = T.BSP.load(MAP)
     x, y, z = pos
-    tp(x + off, y, z + 28, yaw, 0)
-    aim(x, y, z + 40)
+    best = None
+    for n in nodes():
+        d = math.hypot(n[0] - x, n[1] - y)
+        if 220 <= d <= 480 and abs(n[2] - 48 - z) < 45:
+            t = _BSP.trace((n[0], n[1], n[2] - 48 + 56), (x, y, z + 56))
+            if t and t[0] < 0.97:
+                continue
+            sc = abs(d - want)
+            if best is None or sc < best[0]:
+                best = (sc, n)
+    return best[1] if best else None
+
+
+def stand_near(pos, yaw=180, off=170, nodewalk=True):
+    """stand on a real walkable spot: the pathnode 90-230 u from the item (nearest to 150 u), else item + off"""
+    import math
+    x, y, z = pos
+    best = None
+    for n in nodes():
+        d = math.hypot(n[0] - x, n[1] - y)
+        if 90 <= d <= 175 and abs(n[2] - 48 - z) < 45:
+            sc = abs(d - 130)
+            if best is None or sc < best[0]:
+                best = (sc, n)
+    if best and nodewalk:
+        n = best[1]
+        log("   stand for", [round(v) for v in pos], "at node", [round(v) for v in n])
+        tp(n[0], n[1], n[2] - 22, 0, 0)
+    else:
+        tp(x + off, y, z + 28, yaw, 0)
+    aim(x, y, z + 50)
 
 
 def do_charge(i, o):
     kit = [it for it in o["items"] if it["kind"] == "kit"]
     tgs = [it for it in o["items"] if it["kind"] == "target"]
     if kit:
-        stand_near(kit[0]["pos"], off=60)
+        stand_near(kit[0]["pos"], off=60, nodewalk=False)
         frames("%s_kit" % o["id"], 3, 300)
         hold_use(1900)
         log("KIT taken:", bool(seen(r"\^~\^~\^ OBJX KIT taken", 10)))
@@ -135,8 +186,13 @@ def do_charge(i, o):
     if o.get("chain"):
         p = tgs[0]["pos"]
         c = o.get("chain_cam")
+        vp = vantage(tgs[min(len(tgs) - 1, o.get("chain_target", 0))]["pos"])
         if c:
             tp(c[0], c[1], c[2] + 4, c[3], c[4])
+        elif vp:
+            tp(vp[0], vp[1], vp[2] - 22, 0, 0)
+            aim(*tgs[min(len(tgs) - 1, o.get("chain_target", 0))]["pos"][:2], tgs[min(len(tgs) - 1, o.get("chain_target", 0))]["pos"][2] + 60)
+            log("   chain vantage", [round(v) for v in vp])
         else:
             tp(p[0] + 420, p[1], p[2] + 28, 180, 5)
         frames("%s_chain" % o["id"], 36, 400)

@@ -1,0 +1,19 @@
+{
+ "session": "ox_mdl2",
+ "cgame": "cgame_ox",
+ "W": 1280,
+ "H": 720,
+ "md5": {
+  "cgame.dll": "4620f683",
+  "game.dll": "c5737cac",
+  "renderer_opengl2.dll": "8296bf86",
+  "openmohaa_ironsight.exe": "c8cb8d5c"
+ },
+ "joined": true,
+ "dog": false,
+ "window": {
+  "clean": true,
+  "violations": []
+ },
+ "shots": 8
+}

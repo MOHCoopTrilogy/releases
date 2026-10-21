@@ -143,6 +143,7 @@ def gen():
                 w("\tlevel.objx_it_aux[%d] = %s" % (k, s(it.get("aux", ""))))
                 w("\tlevel.objx_it_seq[%d] = %s" % (k, s(it.get("seq", ""))))
                 w("\tlevel.objx_it_scl[%d] = %.2f" % (k, float(it.get("scale", 0))))
+                w("\tlevel.objx_it_br[%d] = %d" % (k, int(it.get("bright", 0))))
                 w("\tlevel.objx_it_pos2[%d] = %s" % (k, v(it.get("prop_pos", it["pos"]))))
                 w("\tlevel.objx_it_yaw2[%d] = %d" % (k, yaw(it.get("prop_yaw", it.get("yaw", 0)))))
         w("\tlevel.objx_itn = %d" % k)

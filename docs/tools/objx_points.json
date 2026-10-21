@@ -351,7 +351,7 @@
       "loop": "m1l2b_radio1",
       "label": "the radio set",
       "scale": 2.4,
-      "aux": "bright"
+      "bright": 1
      },
      {
       "kind": "radio",
@@ -365,7 +365,7 @@
       "loop": "m1l2b_radio2",
       "label": "the radio set",
       "scale": 2.4,
-      "aux": "bright"
+      "bright": 1
      }
     ]
    },
@@ -510,6 +510,160 @@
       ],
       "yaw": 90,
       "label": "the captured Ranger"
+     }
+    ]
+   }
+  ]
+ },
+ "m1l2a": {
+  "note": "The Rescue Mission (SAS fortress). Owns its alarm. East-gate hold early, searchlight generators in the courtyard, two fortress radio sets. Floors via droptofloor; coordinates from pathnodes (node z - 48).",
+  "objectives": [
+   {
+    "id": "gate",
+    "type": "hold",
+    "line": 3,
+    "text": "Hold the east gate until the SAS agent has the lock open",
+    "done": "The gate is open and the garrison is beaten back",
+    "when": "near",
+    "near": {
+     "pos": [
+      5004.0,
+      -851.0,
+      -132.0
+     ],
+     "r": 650
+    },
+    "secs": 150,
+    "zone": {
+     "pos": [
+      5004.0,
+      -851.0,
+      -132.0
+     ],
+     "r": 450,
+     "name": "the east gate yard",
+     "spawns": []
+    }
+   },
+   {
+    "id": "lights",
+    "type": "charge",
+    "line": 4,
+    "text": "Blow the generators that feed the searchlights",
+    "done": "The searchlight generators are destroyed",
+    "when": "near",
+    "near": {
+     "pos": [
+      1250.0,
+      -700.0,
+      -47.0
+     ],
+     "r": 600
+    },
+    "fuse": 12,
+    "chain": 1,
+    "call_gap": 50,
+    "items": [
+     {
+      "kind": "kit",
+      "model": "models/static/exp_crate1.tik",
+      "pos": [
+       1250.0,
+       -700.0,
+       -47.0
+      ],
+      "yaw": 0,
+      "label": "the demolition charges"
+     },
+     {
+      "kind": "target",
+      "model": "models/static/generator.tik",
+      "pos": [
+       24.0,
+       2408.0,
+       -144.0
+      ],
+      "yaw": 0,
+      "scale": 0.5,
+      "label": "the searchlight generator",
+      "bright": 1
+     },
+     {
+      "kind": "target",
+      "model": "models/static/generator.tik",
+      "pos": [
+       872.0,
+       2008.0,
+       -144.0
+      ],
+      "yaw": 90,
+      "scale": 0.5,
+      "label": "the searchlight generator",
+      "bright": 1
+     },
+     {
+      "kind": "target",
+      "model": "models/static/generator.tik",
+      "pos": [
+       2128.0,
+       1936.0,
+       -176.0
+      ],
+      "yaw": 180,
+      "scale": 0.5,
+      "label": "the searchlight generator",
+      "bright": 1
+     }
+    ],
+    "zone": {
+     "pos": [
+      1000.0,
+      2000.0,
+      -144.0
+     ],
+     "r": 900,
+     "name": "the courtyard",
+     "spawns": []
+    },
+    "chain_target": 1
+   },
+   {
+    "id": "radios",
+    "type": "radio",
+    "line": 5,
+    "text": "Silence the fortress radio sets",
+    "done": "The fortress radios are silent",
+    "when": "after",
+    "arg": "lights",
+    "call_gap": 70,
+    "items": [
+     {
+      "kind": "radio",
+      "model": "models/miscobj/radio_military.tik",
+      "pos": [
+       2095.0,
+       2695.0,
+       -206.0
+      ],
+      "yaw": 90,
+      "scale": 2.0,
+      "loop": "m1l2b_radio1",
+      "label": "the radio set",
+      "bright": 1
+     },
+     {
+      "kind": "radio",
+      "model": "models/miscobj/radio_military.tik",
+      "pos": [
+       890.0,
+       3871.0,
+       -33.0
+      ],
+      "yaw": 270,
+      "scale": 2.0,
+      "loop": "m1l2b_radio2",
+      "label": "the radio set",
+      "bright": 1
      }
     ]
    }
