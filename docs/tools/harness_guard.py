@@ -187,6 +187,8 @@ HARNESSES = {
     r"G:\mohaa-adsanim2": {"owner": "adsanim2", "home": r"G:\mohaa-adsanim2\home"},
     r"G:\mohaa-adsanim3": {"owner": "adsanim3", "home": r"G:\mohaa-adsanim3\home"},
     r"G:\mohaa-adsanim4": {"owner": "adsanim4", "home": r"G:\mohaa-adsanim4\home"},	# MGs / heavy lane, net_port 12598
+    # 2026-10-19: second client of the two-client ADS check (player B watching player A), net_port 12618
+    r"G:\mohaa-adsanim5": {"owner": "adsanim5", "home": r"G:\mohaa-adsanim5\home"},
     # bugsweep 2026-10-04 (prone eye ease bug-3317, AI tik identity gear, deaths while physics_off): byte copies of
     # the LIVE v1.10.11 exe/renderers (read from G:\mohaa-gl2, never written) + game.dll/cgame built in the isolated
     # copy openmohaa-hzm-bugsweep, fresh home from G:\mohaa-adsanim\pristine (no qkey/saves), basepath = the GOG tree
@@ -244,8 +246,12 @@ HARNESSES = {
     r"G:\mohaa-hudfeed3": {"owner": "hudfeed3", "home": r"G:\mohaa-hudfeed3\home"},
     r"G:\mohaa-hudfeed4": {"owner": "hudfeed4", "home": r"G:\mohaa-hudfeed4\home"},
     r"G:\mohaa-hudfeed5": {"owner": "hudfeed5", "home": r"G:\mohaa-hudfeed5\home"},
+    # objectives2 lane (docs/proposals/objectives2_2026-10-20): byte copy of hudfeed3 + the live v1.10.33 dlls, net_port 12861
+    r"G:\mohaa-obj2": {"owner": "obj2", "home": r"G:\mohaa-obj2\home"},
     r"G:\mohaa-gamepad": {"owner": "gamepad", "home": r"G:\mohaa-gamepad\home"},
     r"G:\mohaa-gamepad2": {"owner": "gamepad2", "home": r"G:\mohaa-gamepad2\home"},
+    # padnav-fix (docs/proposals/padnav_fix_2026-10-21/tools/pn_client.py): copy of the LIVE v1.10.35 set (exe 2cee0ef6), main menu only
+    r"G:\mohaa-padnav": {"owner": "padnav", "home": r"G:\mohaa-padnav\home"},
 }
 # [2026-10-12] one slot PER OWNER (= per harness folder), no longer one for the whole PC: the user lifted the quiet rule
 # ("It's fine to hear the fans now"), so different harnesses run at the same time. Two clients of the SAME harness
