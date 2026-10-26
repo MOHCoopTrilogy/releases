@@ -231,6 +231,66 @@ try:
             if sp > 0 and dn >= sp: break
             time.sleep(10)
         for l in re.findall(r"(?:OFFMAN|officer wave|OFFICER wave)[^\r\n]*", G.R.read_log()): log("  ", l[:200])
+    if "subs" in STAGES:
+        log("-- radio subtitles")
+        ok = wait(r"OBJX ACTIVE radio", 40); log("radio active:", bool(ok))
+        tp(3656, -3615, -512, 90, 0); aim(3656, -3540, -470); time.sleep(0.5)
+        for al, ts in (("m2l2c_radio_call", (0.6, 3.8)), ("m2l2c_radio_mid", (0.8, 3.0, 4.3, 5.2, 6.8)), ("m2l2c_radio_late", (0.8, 3.8)), ("m2l2c_radio_confirm", (1.0, 4.5, 6.0))):
+            G.cmd("m2say", s=al); t0 = time.time()
+            for i, t in enumerate(ts):
+                time.sleep(max(0, t0 + t - time.time())); G.still("m2_sub_%s_%d" % (al[11:], i))
+            time.sleep(max(0, t0 + 9 - time.time()))
+        G.still("m2_sub_after")
+    if "cw" in STAGES:
+        log("-- crane A waves: player at the panel, then walking around the quay")
+        tp(748 - 0, -3790, -512, 0, 0); aim(792, -3740, -452); time.sleep(0.5)
+        hold(3200)
+        ok = wait(r"M2L2C PANEL A used", 10); log("panel used:", bool(ok))
+        spots = [(748, -3790, 0), (700, -3500, 90), (748, -4100, 270), (600, -3800, 0), (748, -3790, 0)]
+        for k in range(14):
+            x, y, yw = spots[k % len(spots)]
+            tp(x, y, -512, yw, 0); time.sleep(5)
+            if k == 3: G.still("m2_cw_still")
+            if wait(r"M2L2C crane A IMPACT", 0.1): break
+        for l in re.findall(r"M2L2C crane A (?:wave|man)[^\r\n]*|OFFMAN w=2\d\d[^\r\n]*", R.read_log()): log("  ", l[:210])
+    if "rnf" in STAGES:
+        log("-- rnf_entry from the crane A panel")
+        tp(748, -3790, -512, 0, 0); time.sleep(1.0)
+        for i in range(4):
+            G.cmd("rnftest"); time.sleep(4)
+        for l in re.findall(r"RNF entry[^\r\n]*|OX RNFTEST[^\r\n]*", R.read_log()): log("  ", l[:260])
+    if "cranev" in STAGES:
+        log("-- crane views: start / mid-carry / drop from the panel, the north quay and the west quay")
+        cc = 1 if "B" not in os.environ.get("M2CR", "A") else 2
+        if cc == 1:
+            views = [("panel", (748, -3790, 175, 8), (-100, -3800, 100)), ("north", (748, -4500, 150, 6), (-100, -3800, 100)), ("west", (-215, -3800, 0, 12), (520, -3800, 100))]
+            px, py = 792, -3740
+        else:
+            views = [("panel", (3190, -3590, 175, 8), (2600, -3400, 100)), ("north", (3190, -4300, 150, 6), (2600, -3400, 100)), ("west", (2215, -3400, 0, 12), (3000, -3400, 100))]
+            px, py = 3225, -3600
+        tp(views[0][1][0], views[0][1][1], -512, 0, 0); aim(px, py, -452); time.sleep(0.5)
+        hold(3200)
+        ok = wait(r"M2L2C PANEL %s used" % ("A" if cc == 1 else "B"), 10); log("panel used:", bool(ok))
+        t0 = time.time()
+        for tag, when in (("start", 1.5), ("mid", 14), ("late", 23)):
+            time.sleep(max(0, t0 + when - time.time()))
+            for nm, (x, y, yw, pt), tgt in views:
+                tp(x, y, -512, yw, pt); aim(tgt[0], tgt[1], tgt[2]); time.sleep(0.5)
+                G.still("m2_cv_%s_%s" % (tag, nm))
+        wait(r"M2L2C crane %s IMPACT" % ("A" if cc == 1 else "B"), 30)
+    if "radiov" in STAGES:
+        log("-- radio stills")
+        ok = wait(r"OBJX ACTIVE radio", 40); log("radio active:", bool(ok))
+        for nm, (x, y, yw, pt) in (("front", (3656, -3640, 90, 5)), ("close", (3656, -3590, 90, 15)), ("entrance", (3372, -3640, 20, 5)), ("side", (3560, -3610, 60, 8))):
+            tp(x, y, -512, yw, pt); aim(3656, -3540, -480); time.sleep(0.7)
+            G.still("m2_rv_" + nm)
+        G.cmd("m2ents") if False else None
+    if "bartest" in STAGES:
+        log("-- barrier test: the gate is open; a player set inside the gate opening must be put back west of it")
+        tp(3650, -3300, -512, 0, 0); time.sleep(1.2)
+        p0 = G.cmd("m2state")
+        for l in G.since(p0, r"\^~\^~\^ (OX M2[^\r\n]*)"): log("  after tp into the opening:", l[l.find("me="):l.find("me=") + 48])
+        G.still("m2_barrier_after")
     if "hudtest" in STAGES:
         log("-- crane HUD at 16:9 / 4:3 / 21:9 while jammed")
         ok = wait(r"M2L2C crane A ready", 30)

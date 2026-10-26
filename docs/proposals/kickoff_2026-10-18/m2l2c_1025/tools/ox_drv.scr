@@ -434,6 +434,70 @@ ox_do local.c:{
 			wait 0.5
 		}
 	}
+	if( local.c == "m2say" ){
+		level.m2_voiceUntil = 0
+		thread coop_mod/objx_m2l2c.scr::m2_say ( getcvar "ox_s" ) 7.4 0
+	}
+	if( local.c == "ceilgrid" ){
+		// ceiling underside above (x,y) for a grid: x from ox_x step ox_step, ox_k columns; y from ox_y step ox_step, ox_s rows; traced up from ox_z
+		local.x0 = waitthread ox_f "ox_x"
+		local.y0 = waitthread ox_f "ox_y"
+		local.z0 = waitthread ox_f "ox_z"
+		local.sp = waitthread ox_f "ox_step"
+		local.nx = int( waitthread ox_f "ox_k" )
+		local.ny = int( getcvar "ox_s" )
+		for( local.j = 0; local.j < local.ny; local.j++ ){
+			local.msg = "CG y=" + int( local.y0 + ( local.j * local.sp ) ) + ":"
+			for( local.i = 0; local.i < local.nx; local.i++ ){
+				local.a = ( ( local.x0 + ( local.i * local.sp ) ) ( local.y0 + ( local.j * local.sp ) ) local.z0 )
+				local.span = waitthread ox_f "ox_yaw"
+				if( local.span == 0 ){ local.span = 900 }
+				local.tr = traced local.a ( local.a + ( 0 0 local.span ) ) 1
+				local.hz = 999
+				if( local.tr["fraction"] < 1 ){ local.ep = local.tr["endpos"]; local.hz = int( local.ep[2] ) }
+				if( local.tr["startSolid"] == 1 ){ local.hz = 0 - 999 }
+				local.msg = local.msg + " " + local.hz
+			}
+			println ( "^~^~^ OX " + local.msg )
+			waitframe
+		}
+	}
+	if( local.c == "bounds" ){
+		local.m = getcvar "ox_s"
+		local.e = spawn script_model
+		local.e model local.m
+		local.e.origin = ( 0 0 5000 )
+		local.e notsolid
+		waitframe
+		local.mn = local.e.getmins
+		local.mx = local.e.getmaxs
+		println ( "^~^~^ OX BOUNDS " + local.m + " mins=" + local.mn + " maxs=" + local.mx )
+		local.e remove
+	}
+	if( local.c == "pathd" ){
+		// path length from (ox_x ox_y ox_z) to (ox_yaw ox_pitch ox_k): a hidden scout runs there (as reinf.scr::rnf_entry does)
+		local.px = waitthread ox_f "ox_x"
+		local.py = waitthread ox_f "ox_y"
+		local.pz = waitthread ox_f "ox_z"
+		local.gx = waitthread ox_f "ox_yaw"
+		local.gy = waitthread ox_f "ox_pitch"
+		local.gz = waitthread ox_f "ox_k"
+		local.sc = spawn "models/human/allied_airborne_soldier.tik"
+		local.sc hide
+		local.sc notsolid
+		local.sc nodamage
+		local.sc.enableEnemy = 0
+		local.sc.flags["coop_sceneActor"] = 1
+		local.sc.flags["coop_personality_set"] = 1
+		local.sc physics_off
+		local.sc forceactivate
+		local.sc.origin = ( local.px local.py local.pz )
+		local.sc runto ( local.gx local.gy local.gz )
+		wait 0.4
+		local.pd = local.sc.pathdist
+		println ( "^~^~^ OX PATHD from " + local.px + "," + local.py + " pathdist=" + local.pd + " flat=" + vector_length ( ( local.px local.py 0 ) - ( local.gx local.gy 0 ) ) )
+		local.sc remove
+	}
 	if( local.c == "foepos" ){
 		local.msg = "^~^~^ OX foepos"
 		if( level.coop_counterN != NIL ){
