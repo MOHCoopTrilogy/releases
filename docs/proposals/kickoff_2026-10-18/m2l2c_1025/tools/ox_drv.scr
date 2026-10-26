@@ -417,6 +417,23 @@ ox_do local.c:{
 			println ( "^~^~^ OX RNFTEST pick=" + local.e + " visible=" + ( 1 - local.un ) + " dist=" + vector_length ( local.e - local.z ) )
 		}
 	}
+	if( local.c == "probe" ){
+		local.px = waitthread ox_f "ox_x"
+		local.py = waitthread ox_f "ox_y"
+		local.pz = waitthread ox_f "ox_z"
+		local.pp = ( local.px local.py local.pz )
+		local.mdl = exec coop_mod/officer.scr::coop_model_for "infantry"
+		local.pa = spawn local.mdl
+		local.pa.origin = local.pp
+		local.pa droptofloor
+		local.pa.enableEnemy = 0
+		local.pa.health = 120
+		for( local.q = 0; local.q < 12; local.q++ ){
+			if( local.pa == NULL || local.pa == NIL ){ println "^~^~^ OX PROBE actor removed"; break }
+			println ( "^~^~^ OX PROBE t=" + local.q + " hp=" + local.pa.health + " alive=" + ( isAlive local.pa ) + " at " + local.pa.origin )
+			wait 0.5
+		}
+	}
 	if( local.c == "foepos" ){
 		local.msg = "^~^~^ OX foepos"
 		if( level.coop_counterN != NIL ){

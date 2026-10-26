@@ -5,7 +5,7 @@ import oxlib as G
 mp = sys.argv[1]
 rundir = notes = None
 try:
-    rundir, notes = G.boot("m2_f_" + mp, mp, extra=["set coop_objxFailsafe 900", "set coop_reinfMg 0"])
+    rundir, notes = G.boot("m2_f_" + mp, mp, extra=["set coop_objxFailsafe 900", "set coop_reinfMg 0", "set coop_reinfDmgLog 1"])
     G.cmd("god"); G.cmd("notgt") if os.environ.get("NOTGT") else None
     ok = G.R.wait_log(r"OFFICER SPAWNED", 150, 0)
     G.log(mp, "officer spawned:", bool(ok))
