@@ -1,0 +1,35 @@
+01:15:21 booted m2_k6 m2l2c ref=work dog False
+01:15:28 k6    OX M2 t=47.350 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=2
+01:15:28 k6    OX foepos
+01:15:28 k6 -- mesh gate: before the fake / with the fake, then the gate opening with Axis coming through
+01:15:28 k6 radio active: True
+01:15:37 k6 radio used: True
+01:15:39 k6    OX foepos
+01:15:42 k6    OX foepos
+01:15:45 k6    OX foepos
+01:15:47 k6    OX foepos
+01:15:50 k6    OX foepos
+01:15:53 k6    OX foepos
+01:15:55 k6    OX foepos
+01:15:58 k6    OX foepos
+01:16:01 k6    OX foepos
+01:16:04 k6    OX foepos
+01:16:06 k6    OX foepos
+01:16:09 k6    OX foepos
+01:16:12 k6    OX foepos
+01:16:12 k6 mesh frames done
+01:16:12 k6 ---- OBJX log ----
+01:16:12 k6 OBJX armed m2l2c objectives=3 items=0 players=1
+01:16:12 k6 OBJX ACTIVE craneA type=m2crane t=32.250
+01:16:12 k6 OBJX ACTIVE craneB type=m2crane t=32.250
+01:16:12 k6 OBJX ACTIVE radio type=m2radio t=32.250
+01:16:12 k6 OBJX HOLD radio zone=the storage room at=( 3615.000 -3850.000 -512.000 ) r=360 total=60s players=1
+01:16:12 k6 M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+01:16:12 k6 M2L2C mesh gate built: 2 panels
+01:16:12 k6 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+01:16:12 k6 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+01:16:12 k6 M2L2C RADIO used by UnnamedSoldier#8240 t=55.250
+01:16:12 k6 M2L2C gate OPENING t=55.250
+01:16:12 k6 M2L2C gate OPEN t=58.250
+01:16:12 k6 script errors: 0 []
+01:16:13 [m2_k6] done: 263 shots, window {'clean': True, 'violations': []}

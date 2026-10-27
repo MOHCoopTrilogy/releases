@@ -1,0 +1,8 @@
+OX mk2 idx=1 at=( 748.000 -3860.000 -330.000 ) models/coop_build/shape_post_iron.tik
+OX mk2 idx=2 at=( 748.000 -3860.000 -250.000 ) models/coop_build/shape_post_iron.tik
+OX mk2 idx=3 at=( 748.000 -3920.000 -300.000 ) models/static/static_cablespool_full.tik
+OX mk2 idx=4 at=( 748.000 -3980.000 -300.000 ) models/miscobj/subcrane.tik
+OX mk2 idx=5 at=( 748.000 -3700.000 -300.000 ) models/miscobj/crane_grey.tik
+shot hk_d
+shot hk_e
+errors []

@@ -1,0 +1,24 @@
+23:07:22 booted m2_g1 m2l2c ref=work dog False
+23:07:29 g1    OX M2 t=47.300 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=2
+23:07:29 g1    OX foepos
+23:07:29 g1 -- gate opening on camera
+23:07:29 g1 radio active: True
+23:07:34 g1 radio used: True
+23:07:47 g1 gate frames done
+23:07:47 g1 ---- OBJX log ----
+23:07:47 g1 OBJX armed m2l2c objectives=3 items=0 players=1
+23:07:47 g1 OBJX ACTIVE craneA type=m2crane t=32.250
+23:07:47 g1 OBJX ACTIVE craneB type=m2crane t=32.250
+23:07:47 g1 OBJX ACTIVE radio type=m2radio t=32.250
+23:07:47 g1 OBJX HOLD radio zone=the storage room at=( 3615.000 -3850.000 -512.000 ) r=360 total=67s players=1
+23:07:47 g1 M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+23:07:47 g1 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+23:07:47 g1 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+23:07:47 g1 M2L2C RADIO used by UnnamedSoldier#8240 t=51.650
+23:07:47 g1 M2L2C gate OPENING t=51.650
+23:07:47 g1 M2L2C gate OPEN t=54.650
+23:07:47 g1 M2L2C radio wave 1 entry=stairs men=2 at=( 3612.000 -4016.000 -260.000 )
+23:07:47 g1 M2L2C radio wave 1 entry=north men=1 at=( 3412.000 -2952.000 -496.000 )
+23:07:47 g1 M2L2C radio wave 1 entry=pier men=1 at=( 3190.000 -2150.000 -496.000 )
+23:07:47 g1 script errors: 0 []
+23:07:48 [m2_g1] done: 70 shots, window {'clean': True, 'violations': []}

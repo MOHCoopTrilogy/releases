@@ -1,0 +1,10 @@
+   84s    OX M2 t=47.350 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   84s crane A ready: True
+   87s ---- OBJX log ----
+   87s OBJX armed m2l2c objectives=3 items=0 players=1
+   87s OBJX ACTIVE craneA type=m2crane t=32.250
+   87s OBJX ACTIVE craneB type=m2crane t=32.250
+   87s M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+   87s M2L2C crane A ready: panel=( 860.000 -3740.000 -456.000 )
+   87s M2L2C crane B ready: panel=( 2080.000 -3340.000 -456.000 )
+   87s script errors: 0 []

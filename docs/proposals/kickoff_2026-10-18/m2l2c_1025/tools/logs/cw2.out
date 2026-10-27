@@ -1,0 +1,51 @@
+17:35:23 t=0.047 launched pid 24528 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+17:35:23 t=0.128 in-process guard installed on thread 13472
+17:35:23 t=0.757 place 0x2e8079a SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+17:35:24 t=0.956 place 0x2e9079a SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+17:35:24 t=0.964 place 0x3d0a96 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+17:36:41 booted m2_cw2 m2l2c ref=work dog False
+17:36:47 cw2    OX M2 t=47.525 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+17:36:47 cw2    OX foepos
+17:36:47 cw2 crane A ready: True
+17:36:50 cw2 -- crane A waves: player at the panel, then walking around the quay
+17:36:55 cw2 panel used: True
+17:37:57 cw2    M2L2C crane A wave 1 man 0 spawn=( 3612.000 -4016.000 -303.875 ) grounded=0 visible=0
+17:37:57 cw2    OFFMAN w=201 #0 spawned t=57.875 at ( 3612.000 -4016.000 -303.875 )
+17:37:57 cw2    M2L2C crane A wave 1 man 1 spawn=( 3656.000 -4016.000 -303.875 ) grounded=0 visible=0
+17:37:57 cw2    OFFMAN w=201 #1 spawned t=57.900 at ( 3656.000 -4016.000 -303.875 )
+17:37:57 cw2    M2L2C crane A wave 1 man 2 spawn=( 3700.000 -4016.000 -303.875 ) grounded=0 visible=0
+17:37:57 cw2    OFFMAN w=201 #2 spawned t=57.925 at ( 3700.000 -4016.000 -303.875 )
+17:37:57 cw2    M2L2C crane A wave 1 men=3 at=( 3612.000 -4016.000 -260.000 ) alive=3
+17:37:57 cw2    M2L2C crane A wave 2 man 0 spawn=( 3190.000 -2150.000 -511.875 ) grounded=0 visible=0
+17:37:57 cw2    OFFMAN w=202 #0 spawned t=89.950 at ( 3190.000 -2150.000 -511.875 )
+17:37:57 cw2    M2L2C crane A wave 2 men=1 at=( 3190.000 -2150.000 -496.000 ) alive=4
+17:37:57 cw2    OFFMAN w=202 #0 stalled at ( 3190.833 -2150.834 -511.875 ), slot ( 932.000 -3740.000 -452.000 ) unreachable - running to the officer
+17:37:57 cw2 ---- OBJX log ----
+17:37:57 cw2 OBJX armed m2l2c objectives=3 items=0 players=1
+17:37:57 cw2 OBJX ACTIVE craneA type=m2crane t=32.250
+17:37:57 cw2 OBJX ACTIVE craneB type=m2crane t=32.250
+17:37:57 cw2 OBJX DONE craneA took=82.500s done=1/3 t=114.750
+17:37:57 cw2 M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+17:37:57 cw2 M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+17:37:57 cw2 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+17:37:57 cw2 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+17:37:57 cw2 M2L2C marker -> main objective 1 (craneA) location ( 792.000 -3740.000 -452.000 )
+17:37:57 cw2 M2L2C PANEL A used by UnnamedSoldier#8240 t=53.850
+17:37:57 cw2 M2L2C crane A cycle start T=70s players=1
+17:37:57 cw2 M2L2C crane A wave 1 man 0 spawn=( 3612.000 -4016.000 -303.875 ) grounded=0 visible=0
+17:37:57 cw2 M2L2C OFFMAN w=201 #0 spawned t=57.875 at ( 3612.000 -4016.000 -303.875 )
+17:37:57 cw2 M2L2C crane A wave 1 man 1 spawn=( 3656.000 -4016.000 -303.875 ) grounded=0 visible=0
+17:37:57 cw2 M2L2C OFFMAN w=201 #1 spawned t=57.900 at ( 3656.000 -4016.000 -303.875 )
+17:37:57 cw2 M2L2C crane A wave 1 man 2 spawn=( 3700.000 -4016.000 -303.875 ) grounded=0 visible=0
+17:37:57 cw2 M2L2C OFFMAN w=201 #2 spawned t=57.925 at ( 3700.000 -4016.000 -303.875 )
+17:37:57 cw2 M2L2C crane A wave 1 men=3 at=( 3612.000 -4016.000 -260.000 ) alive=3
+17:37:57 cw2 M2L2C crane A wave 2 man 0 spawn=( 3190.000 -2150.000 -511.875 ) grounded=0 visible=0
+17:37:57 cw2 M2L2C OFFMAN w=202 #0 spawned t=89.950 at ( 3190.000 -2150.000 -511.875 )
+17:37:57 cw2 M2L2C crane A wave 2 men=1 at=( 3190.000 -2150.000 -496.000 ) alive=4
+17:37:57 cw2 M2L2C OFFMAN w=202 #0 stalled at ( 3190.833 -2150.834 -511.875 ), slot ( 932.000 -3740.000 -452.000 ) unreachable - running to the officer
+17:37:57 cw2 M2L2C crane A RELEASE t=112.650
+17:37:57 cw2 M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=114.750
+17:37:57 cw2 M2L2C marker -> main objective 2 (craneB) location ( 3225.000 -3600.000 -452.000 )
+17:37:57 cw2 script errors: 0 []
+17:37:57 t=154.492 process exited
+17:37:57 [m2_cw2] done: 4 shots, window {'clean': True, 'violations': []}

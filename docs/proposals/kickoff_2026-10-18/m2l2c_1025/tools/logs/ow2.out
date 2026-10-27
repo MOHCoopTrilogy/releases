@@ -1,0 +1,92 @@
+14:29:57 t=0.037 launched pid 26932 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+14:29:57 t=0.082 in-process guard installed on thread 20428
+14:29:58 t=0.617 place 0x1590b8c SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+14:29:58 t=0.801 place 0x15a0b8c SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+14:29:58 t=0.807 place 0x4d601d0 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+14:31:11 booted m2_ow2 m2l2c ref=work dog False
+14:31:18 ow2    OX M2 t=47.600 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+14:31:18 ow2    OX foepos
+14:31:18 ow2 crane A ready: True
+14:31:21 ow2 -- 3 officer reinforcement calls (hook: real mesh gate -> ring round the officer)
+14:31:21 ow2 call 1
+14:32:06 ow2 call 2
+14:32:52 ow2 call 3
+14:35:17 ow2    officer wave 101: 4 men via the real mesh gate -> officer at ( 2853.267 -6354.345 -511.875 )
+14:35:17 ow2    OFFMAN w=101 #0 spawned t=50.675 at ( 4020.000 -4136.000 -511.875 )
+14:35:17 ow2    OFFMAN w=101 #4 spawned t=50.700 at ( 4065.000 -4136.000 -511.875 )
+14:35:17 ow2    OFFMAN w=101 #3 spawned t=53.725 at ( 4244.000 -4376.000 -511.875 )
+14:35:17 ow2    OFFMAN w=101 #5 spawned t=56.750 at ( 4020.000 -4888.000 -511.875 )
+14:35:17 ow2    OFFMAN w=101 #0 ARRIVED t=79.675 after 29.000 s, d(officer)=249.156
+14:35:17 ow2    OFFMAN w=101 #4 ARRIVED t=82.700 after 32.000 s, d(officer)=1.990
+14:35:17 ow2    OFFMAN w=101 #3 ARRIVED t=84.225 after 30.500 s, d(officer)=55.169
+14:35:17 ow2    officer wave 102: 4 men via the real mesh gate -> officer at ( 2853.267 -6354.345 -511.875 )
+14:35:17 ow2    OFFMAN w=102 #0 spawned t=95.875 at ( 4020.000 -4136.000 -511.875 )
+14:35:17 ow2    OFFMAN w=102 #4 spawned t=95.900 at ( 4065.000 -4136.000 -511.875 )
+14:35:17 ow2    OFFMAN w=102 #3 spawned t=98.925 at ( 4244.000 -4376.000 -511.875 )
+14:35:17 ow2    OFFMAN w=102 #5 spawned t=101.950 at ( 4020.000 -4888.000 -511.875 )
+14:35:17 ow2    OFFMAN w=102 #0 ARRIVED t=116.875 after 21.000 s, d(officer)=281.388
+14:35:17 ow2    OFFMAN w=102 #4 ARRIVED t=122.900 after 27.000 s, d(officer)=28.779
+14:35:17 ow2    officer wave 103: 4 men via the real mesh gate -> officer at ( 2853.267 -6354.345 -511.875 )
+14:35:17 ow2    OFFMAN w=103 #0 spawned t=141.100 at ( 4020.000 -4136.000 -511.875 )
+14:35:17 ow2    OFFMAN w=103 #4 spawned t=141.125 at ( 4065.000 -4136.000 -511.875 )
+14:35:17 ow2    OFFMAN w=103 #3 spawned t=144.150 at ( 4244.000 -4376.000 -511.875 )
+14:35:17 ow2    OFFMAN w=103 #5 spawned t=147.175 at ( 4020.000 -4888.000 -511.875 )
+14:35:17 ow2    OFFMAN w=103 #0 ARRIVED t=165.100 after 24.000 s, d(officer)=36.430
+14:35:17 ow2    OFFMAN w=103 #4 ARRIVED t=166.625 after 25.500 s, d(officer)=2.994
+14:35:17 ow2    OFFMAN w=103 #3 ARRIVED t=168.150 after 24.000 s, d(officer)=66.334
+14:35:17 ow2    OFFMAN w=101 #5 FAILED: timeout at ( 3548.071 -3307.142 -511.875 ) d=3125.412 reorders=26
+14:35:17 ow2    OFFMAN w=102 #3 FAILED: timeout at ( 3548.518 -3377.361 -511.875 ) d=3057.092 reorders=27
+14:35:17 ow2    OFFMAN w=102 #5 FAILED: timeout at ( 3544.478 -3300.464 -511.875 ) d=3131.128 reorders=27
+14:35:17 ow2    OFFMAN w=103 #5 FAILED: timeout at ( 3547.052 -3299.457 -511.875 ) d=3132.680 reorders=27
+14:35:17 ow2 ---- OBJX log ----
+14:35:17 ow2 OBJX armed m2l2c objectives=3 items=0 players=1
+14:35:17 ow2 OBJX ACTIVE craneA type=m2crane t=32.500
+14:35:17 ow2 OBJX ACTIVE craneB type=m2crane t=32.500
+14:35:17 ow2 M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+14:35:17 ow2 M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+14:35:17 ow2 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+14:35:17 ow2 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+14:35:17 ow2 M2L2C officer wave 101: 4 men via the real mesh gate -> officer at ( 2853.267 -6354.345 -511.875 )
+14:35:17 ow2 M2L2C OFFMAN w=101 #0 spawned t=50.675 at ( 4020.000 -4136.000 -511.875 )
+14:35:17 ow2 M2L2C OFFMAN w=101 #4 spawned t=50.700 at ( 4065.000 -4136.000 -511.875 )
+14:35:17 ow2 M2L2C mesh wave 101 group 0 placed at ( 4020.000 -4136.000 -512.000 ) t=50.700
+14:35:17 ow2 M2L2C OFFMAN w=101 #3 spawned t=53.725 at ( 4244.000 -4376.000 -511.875 )
+14:35:17 ow2 M2L2C mesh wave 101 group 1 placed at ( 4244.000 -4376.000 -512.000 ) t=53.725
+14:35:17 ow2 M2L2C mesh gate OPENING t=56.725
+14:35:17 ow2 M2L2C OFFMAN w=101 #5 spawned t=56.750 at ( 4020.000 -4888.000 -511.875 )
+14:35:17 ow2 M2L2C mesh wave 101 group 2 placed at ( 4020.000 -4888.000 -512.000 ) t=56.750
+14:35:17 ow2 M2L2C mesh wave 101 men=4
+14:35:17 ow2 M2L2C mesh gate OPEN, paths connected t=58.225
+14:35:17 ow2 M2L2C OFFMAN w=101 #0 ARRIVED t=79.675 after 29.000 s, d(officer)=249.156
+14:35:17 ow2 M2L2C OFFMAN w=101 #4 ARRIVED t=82.700 after 32.000 s, d(officer)=1.990
+14:35:17 ow2 M2L2C OFFMAN w=101 #3 ARRIVED t=84.225 after 30.500 s, d(officer)=55.169
+14:35:17 ow2 M2L2C officer wave 102: 4 men via the real mesh gate -> officer at ( 2853.267 -6354.345 -511.875 )
+14:35:17 ow2 M2L2C OFFMAN w=102 #0 spawned t=95.875 at ( 4020.000 -4136.000 -511.875 )
+14:35:17 ow2 M2L2C OFFMAN w=102 #4 spawned t=95.900 at ( 4065.000 -4136.000 -511.875 )
+14:35:17 ow2 M2L2C mesh wave 102 group 0 placed at ( 4020.000 -4136.000 -512.000 ) t=95.900
+14:35:17 ow2 M2L2C OFFMAN w=102 #3 spawned t=98.925 at ( 4244.000 -4376.000 -511.875 )
+14:35:17 ow2 M2L2C mesh wave 102 group 1 placed at ( 4244.000 -4376.000 -512.000 ) t=98.925
+14:35:17 ow2 M2L2C OFFMAN w=102 #5 spawned t=101.950 at ( 4020.000 -4888.000 -511.875 )
+14:35:17 ow2 M2L2C mesh wave 102 group 2 placed at ( 4020.000 -4888.000 -512.000 ) t=101.950
+14:35:17 ow2 M2L2C mesh wave 102 men=4
+14:35:17 ow2 M2L2C OFFMAN w=102 #0 ARRIVED t=116.875 after 21.000 s, d(officer)=281.388
+14:35:17 ow2 M2L2C OFFMAN w=102 #4 ARRIVED t=122.900 after 27.000 s, d(officer)=28.779
+14:35:17 ow2 M2L2C officer wave 103: 4 men via the real mesh gate -> officer at ( 2853.267 -6354.345 -511.875 )
+14:35:17 ow2 M2L2C OFFMAN w=103 #0 spawned t=141.100 at ( 4020.000 -4136.000 -511.875 )
+14:35:17 ow2 M2L2C OFFMAN w=103 #4 spawned t=141.125 at ( 4065.000 -4136.000 -511.875 )
+14:35:17 ow2 M2L2C mesh wave 103 group 0 placed at ( 4020.000 -4136.000 -512.000 ) t=141.125
+14:35:17 ow2 M2L2C OFFMAN w=103 #3 spawned t=144.150 at ( 4244.000 -4376.000 -511.875 )
+14:35:17 ow2 M2L2C mesh wave 103 group 1 placed at ( 4244.000 -4376.000 -512.000 ) t=144.150
+14:35:17 ow2 M2L2C OFFMAN w=103 #5 spawned t=147.175 at ( 4020.000 -4888.000 -511.875 )
+14:35:17 ow2 M2L2C mesh wave 103 group 2 placed at ( 4020.000 -4888.000 -512.000 ) t=147.175
+14:35:17 ow2 M2L2C mesh wave 103 men=4
+14:35:17 ow2 M2L2C OFFMAN w=103 #0 ARRIVED t=165.100 after 24.000 s, d(officer)=36.430
+14:35:17 ow2 M2L2C OFFMAN w=103 #4 ARRIVED t=166.625 after 25.500 s, d(officer)=2.994
+14:35:17 ow2 M2L2C OFFMAN w=103 #3 ARRIVED t=168.150 after 24.000 s, d(officer)=66.334
+14:35:17 ow2 M2L2C OFFMAN w=101 #5 FAILED: timeout at ( 3548.071 -3307.142 -511.875 ) d=3125.412 reorders=26
+14:35:17 ow2 M2L2C OFFMAN w=102 #3 FAILED: timeout at ( 3548.518 -3377.361 -511.875 ) d=3057.092 reorders=27
+14:35:17 ow2 M2L2C OFFMAN w=102 #5 FAILED: timeout at ( 3544.478 -3300.464 -511.875 ) d=3131.128 reorders=27
+14:35:17 ow2 M2L2C OFFMAN w=103 #5 FAILED: timeout at ( 3547.052 -3299.457 -511.875 ) d=3132.680 reorders=27
+14:35:17 ow2 script errors: 0 []
+14:35:17 t=319.754 process exited
+14:35:17 [m2_ow2] done: 3 shots, window {'clean': True, 'violations': []}

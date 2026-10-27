@@ -26,7 +26,7 @@ FILES = os.environ.get("OXFILES", ",".join([
     "coop_mod/alarm.scr", "coop_mod/alarmpoints.scr", "coop_mod/carry.scr", "coop_mod/coop_counter.scr",
     "coop_mod/coop_counter_zones.scr", "coop_mod/main.scr", "coop_mod/officer.scr", "coop_mod/reinf_mg.scr", "coop_mod/reinf.scr",
     "coop_mod/missioncomplete.scr", "coop_mod/objx.scr", "coop_mod/objx2.scr", "coop_mod/objx_points.scr", "coop_mod/objx_m2l2c.scr", "maps/m2l2c.scr", "coop_mod/spawnlocations.scr", "global/localization_coop.txt", "maps/m2l2c.bsp", "maps/m2l2c.pth", "maps/m2l2c_precache.scr",
-    "ui/coop_objectives.urc", "ui/coop_objectives/obj_setup.cfg"])).split(",")
+    "ui/coop_objectives.urc", "ui/coop_objectives/obj_setup.cfg", "ubersound/coop_audio.scr"] + ["sound/hzm/m2l2c/" + w for w in ("radio_call_uboat.wav", "radio_mid_uboat.wav", "radio_late_uboat.wav", "radio_confirm_uboat.wav", "radio_static_loop.wav", "radio_burst_1.wav", "radio_burst_2.wav", "radio_burst_3.wav", "radio_burst_4.wav")] + ["ui/coop_objectives.urc"])).split(",")
 MODREF = os.environ.get("MODREF", "")
 if os.environ.get("OXNOBSP") == "1":
     FILES = [f for f in FILES if not f.startswith("maps/m2l2c.b") and not f.startswith("maps/m2l2c.p")]

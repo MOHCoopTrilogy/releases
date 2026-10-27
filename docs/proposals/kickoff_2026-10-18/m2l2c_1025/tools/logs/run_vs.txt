@@ -1,0 +1,12 @@
+RGSTATE ['rgstate NIL (stock map)']
+map is STOCK
+CLIP east-bound walk [(-3480, 3560), (-3470, 3617), (-3460, 3617), (-3400, 3619), (-3300, 3619), (-3200, 3619), (-3160, 3617), (-3150, 3617), (-3145, 3617)]
+CLIP east-bound jump [(-3480, 3560), (-3470, 3617), (-3460, 3617), (-3400, 3619), (-3300, 3619), (-3200, 3619), (-3160, 3617), (-3150, 3617), (-3145, 3617)]
+CLIP east-bound crouch [(-3480, 3560), (-3470, 3622), (-3460, 3617), (-3400, 3622), (-3300, 3619), (-3200, 3622), (-3160, 3617), (-3150, 3622), (-3145, 3617)]
+CLIP west-bound from behind [(-3470, 3655), (-3400, 3653), (-3300, 3653), (-3200, 3653), (-3150, 3671)]
+BULLET control (target in FRONT of the fence, 1.2 s of fire) ['targethp 1000.000 weapon=-']
+BULLET before ['targethp 1000.000 weapon=-']
+BULLET after 1.5 s of fire through the closed gate ['targethp 1000.000 weapon=-']
+EXPLOSION (radiusdamage 300 at 3600, target 3680 behind the fence) hp ['targethp 823.000 weapon=-']
+AI SIGHT (man behind the fence, player in front) ['aisee 1 ai=( 3700.000 -3300.000 -512.000 ) me=( 3560.000 -3300.000 -505.000 )']
+errors []

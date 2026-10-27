@@ -1,0 +1,22 @@
+   79s    OX M2 t=48.325 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   80s    OX foepos
+   80s crane A ready: True
+   82s -- crane A full cycle, real models, one jam/resume
+   87s panel used: True
+  156s    OX M2 t=124.975 active=1 doneN=1 alive=0 | c1 st=done p=1 | c2 st=idle p=0 | gateOpen=- me=( 748.000 -4000.000 -512.000 ) | o1=3 | o2=2 | o3=1
+  156s    OX foepos
+  156s ---- OBJX log ----
+  156s OBJX armed m2l2c objectives=3 items=0 players=1
+  156s OBJX ACTIVE craneA type=m2crane t=32.250
+  156s OBJX ACTIVE craneB type=m2crane t=32.250
+  156s OBJX DONE craneA took=88.350s done=1/3 t=120.600
+  156s M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+  156s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  156s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  156s M2L2C PANEL A used by UnnamedSoldier#8240 t=55.450
+  156s M2L2C crane A cycle start T=45s players=1
+  156s M2L2C crane A JAMMED at 0.820 t=92.450
+  156s M2L2C crane A RESUMED (auto) after 23.500s t=115.950
+  156s M2L2C crane A RELEASE t=116.750
+  156s M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=120.600
+  156s script errors: 0 []

@@ -1,0 +1,7 @@
+OX mk2 idx=1 at=( 748.000 -3860.000 -300.000 ) models/coop_build/box_crate_explosive.tik
+OX mk2 idx=2 at=( 748.000 -3930.000 -300.000 ) models/coop_build/box_crate_explosive.tik
+OX mk2 idx=3 at=( 748.000 -4000.000 -300.000 ) models/static/exp_crate1.tik
+OX mk2 idx=4 at=( 748.000 -4070.000 -300.000 ) models/items/torpedo.tik
+shot lc_a
+shot lc_b
+errors []

@@ -1,0 +1,250 @@
+   82s    OX M2 t=47.275 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   82s    OX foepos
+   82s crane A ready: True
+   85s -- crane A waves: player at the panel, then walking around the quay
+   90s panel used: True
+  236s    M2L2C crane A wave 1 man 0 spawn=( 1000.000 -5700.000 -511.875 ) grounded=1 visible=0
+  236s    OFFMAN w=201 #0 spawned t=61.250 at ( 1000.000 -5700.000 -511.875 )
+  236s    M2L2C crane A wave 1 man 1 spawn=( 1000.000 -5744.000 -511.875 ) grounded=1 visible=0
+  236s    OFFMAN w=201 #1 spawned t=61.275 at ( 1000.000 -5744.000 -511.875 )
+  236s    M2L2C crane A wave 1 man 2 spawn=( 1000.000 -5788.000 -511.875 ) grounded=1 visible=0
+  236s    OFFMAN w=201 #2 spawned t=61.300 at ( 1000.000 -5788.000 -511.875 )
+  236s    M2L2C crane A wave 1 men=3 at=( 1000.000 -5700.000 -512.000 ) alive=3
+  236s    M2L2C crane A wave 2 man 0 spawn=( 1000.000 -5700.000 -511.875 ) grounded=1 visible=0
+  236s    OFFMAN w=202 #0 spawned t=94.925 at ( 1000.000 -5700.000 -511.875 )
+  236s    M2L2C crane A wave 2 man 1 spawn=( 1000.000 -5744.000 -511.875 ) grounded=1 visible=0
+  236s    OFFMAN w=202 #1 spawned t=94.950 at ( 1000.000 -5744.000 -511.875 )
+  236s    M2L2C crane A wave 2 man 2 spawn=( 1000.000 -5788.000 -511.875 ) grounded=1 visible=0
+  236s    OFFMAN w=202 #2 spawned t=94.975 at ( 1000.000 -5788.000 -511.875 )
+  236s    M2L2C crane A wave 2 men=3 at=( 1000.000 -5700.000 -512.000 ) alive=6
+  236s    M2L2C crane A wave 3 man 0 spawn=( 1000.000 -5700.000 -511.875 ) grounded=1 visible=0
+  236s    OFFMAN w=203 #0 spawned t=122.700 at ( 1000.000 -5700.000 -511.875 )
+  236s    M2L2C crane A wave 3 man 1 spawn=( 1000.000 -5744.000 -511.875 ) grounded=1 visible=0
+  236s    OFFMAN w=203 #1 spawned t=122.725 at ( 1000.000 -5744.000 -511.875 )
+  236s    M2L2C crane A wave 3 man 2 spawn=( 1000.000 -5788.000 -511.875 ) grounded=1 visible=0
+  236s    OFFMAN w=203 #2 spawned t=122.750 at ( 1000.000 -5788.000 -511.875 )
+  236s    M2L2C crane A wave 3 men=3 at=( 1000.000 -5700.000 -512.000 ) alive=9
+  236s    M2L2C crane A wave 4 man 0 spawn=( 1000.000 -5700.000 -511.875 ) grounded=1 visible=0
+  236s    OFFMAN w=204 #0 spawned t=150.375 at ( 1000.000 -5700.000 -511.875 )
+  236s    M2L2C crane A wave 4 man 1 spawn=( 1000.000 -5744.000 -511.875 ) grounded=1 visible=0
+  236s    OFFMAN w=204 #1 spawned t=150.400 at ( 1000.000 -5744.000 -511.875 )
+  236s    M2L2C crane A wave 4 man 2 spawn=( 1000.000 -5788.000 -511.875 ) grounded=1 visible=0
+  236s    OFFMAN w=204 #2 spawned t=150.425 at ( 1000.000 -5788.000 -511.875 )
+  236s    M2L2C crane A wave 4 men=3 at=( 1000.000 -5700.000 -512.000 ) alive=12
+  236s    OFFMAN w=204 #0 stalled at ( 753.538 -4338.266 -511.875 ), slot ( 748.000 -3680.000 -512.000 ) unreachable - running to the officer
+  236s    OFFMAN w=204 #1 stalled at ( 759.722 -4227.615 -511.875 ), slot ( 748.000 -3740.000 -512.000 ) unreachable - running to the officer
+  236s    M2L2C crane A wave 5 man 0 spawn=( 1000.000 -5700.000 -511.875 ) grounded=1 visible=0
+  236s    OFFMAN w=205 #0 spawned t=186.050 at ( 1000.000 -5700.000 -511.875 )
+  236s    M2L2C crane A wave 5 man 1 spawn=( 1000.000 -5744.000 -511.875 ) grounded=1 visible=0
+  236s    OFFMAN w=205 #1 spawned t=186.075 at ( 1000.000 -5744.000 -511.875 )
+  236s    M2L2C crane A wave 5 men=2 at=( 1000.000 -5700.000 -512.000 ) alive=14
+  236s ---- OBJX log ----
+  236s OBJX armed m2l2c objectives=3 items=0 players=1
+  236s OBJX ACTIVE craneA type=m2crane t=32.000
+  236s OBJX ACTIVE craneB type=m2crane t=32.000
+  236s M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+  236s M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+  236s M2L2C solid prop models/animate/electrical_switch_pulse.tik bounds ( -8.000 -13.000 0.310 ) .. ( 8.000 13.000 26.119 ) at ( 792.000 -3740.000 -452.000 )
+  236s M2L2C solid prop models/animate/electrical_switch_pulse.tik bounds ( -8.000 -13.000 0.310 ) .. ( 8.000 13.000 26.119 ) at ( 3225.000 -3600.000 -452.000 )
+  236s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  236s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  236s M2L2C SWEEP control (box inside the hull): startSolid=0 fraction=1.000
+  236s M2L2C SWEEP control (box inside the hull): startSolid=1 fraction=0.000
+  236s M2L2C SWEEP crane A done: 0 intersections over 61 poses + the bridge span
+  236s M2L2C SWEEP crane B done: 0 intersections over 61 poses + the bridge span
+  236s M2L2C marker -> main objective 1 (craneA) location ( 792.000 -3740.000 -452.000 )
+  236s M2L2C PANEL A used by UnnamedSoldier#8240 t=53.625
+  236s M2L2C crane A cycle start T=140s players=1
+  236s M2L2C crane A wave 1 man 0 spawn=( 1000.000 -5700.000 -511.875 ) grounded=1 visible=0
+  236s M2L2C OFFMAN w=201 #0 spawned t=61.250 at ( 1000.000 -5700.000 -511.875 )
+  236s M2L2C crane A wave 1 man 1 spawn=( 1000.000 -5744.000 -511.875 ) grounded=1 visible=0
+  236s M2L2C OFFMAN w=201 #1 spawned t=61.275 at ( 1000.000 -5744.000 -511.875 )
+  236s M2L2C crane A wave 1 man 2 spawn=( 1000.000 -5788.000 -511.875 ) grounded=1 visible=0
+  236s M2L2C OFFMAN w=201 #2 spawned t=61.300 at ( 1000.000 -5788.000 -511.875 )
+  236s M2L2C crane A wave 1 men=3 at=( 1000.000 -5700.000 -512.000 ) alive=3
+  236s M2L2C DIST crane A wave 1 man 0 t=1 d=2043
+  236s M2L2C DIST crane A wave 1 man 1 t=1 d=2072
+  236s M2L2C DIST crane A wave 1 man 2 t=1 d=2257
+  236s M2L2C DIST crane A wave 1 man 0 t=7 d=2239
+  236s M2L2C DIST crane A wave 1 man 1 t=7 d=1945
+  236s M2L2C DIST crane A wave 1 man 2 t=7 d=1673
+  236s M2L2C DIST crane A wave 1 man 0 t=13 d=847
+  236s M2L2C DIST crane A wave 1 man 1 t=13 d=556
+  236s M2L2C " + local.txt ) }
+  236s M2L2C " ^
+  236s M2L2C DIST crane A wave 1 man 2 t=13 d=287
+  236s M2L2C DIST crane A wave 1 man 2 ARRIVED within 300 u after 13 s
+  236s M2L2C " + local.txt ) }
+  236s M2L2C " ^
+  236s M2L2C DIST crane A wave 1 man 1 ARRIVED within 300 u after 15 s
+  236s M2L2C " + local.txt ) }
+  236s M2L2C " ^
+  236s M2L2C DIST crane A wave 1 man 0 ARRIVED within 300 u after 16 s
+  236s M2L2C crane A JAMMED at 0.176 t=78.250
+  236s M2L2C DIST crane A wave 1 man 0 t=19 d=562
+  236s M2L2C DIST crane A wave 1 man 1 t=19 d=210
+  236s M2L2C DIST crane A wave 1 man 2 t=19 d=281
+  236s M2L2C DIST crane A wave 1 man 0 t=25 d=551
+  236s M2L2C DIST crane A wave 1 man 1 t=25 d=206
+  236s M2L2C DIST crane A wave 1 man 2 t=25 d=281
+  236s M2L2C DIST crane A wave 1 man 0 t=31 d=551
+  236s M2L2C DIST crane A wave 1 man 1 t=31 d=194
+  236s M2L2C DIST crane A wave 1 man 2 t=31 d=471
+  236s M2L2C crane A wave 2 man 0 spawn=( 1000.000 -5700.000 -511.875 ) grounded=1 visible=0
+  236s M2L2C OFFMAN w=202 #0 spawned t=94.925 at ( 1000.000 -5700.000 -511.875 )
+  236s M2L2C crane A wave 2 man 1 spawn=( 1000.000 -5744.000 -511.875 ) grounded=1 visible=0
+  236s M2L2C OFFMAN w=202 #1 spawned t=94.950 at ( 1000.000 -5744.000 -511.875 )
+  236s M2L2C crane A wave 2 man 2 spawn=( 1000.000 -5788.000 -511.875 ) grounded=1 visible=0
+  236s M2L2C OFFMAN w=202 #2 spawned t=94.975 at ( 1000.000 -5788.000 -511.875 )
+  236s M2L2C crane A wave 2 men=3 at=( 1000.000 -5700.000 -512.000 ) alive=6
+  236s M2L2C DIST crane A wave 2 man 0 t=1 d=1990
+  236s M2L2C DIST crane A wave 2 man 1 t=1 d=2040
+  236s M2L2C DIST crane A wave 2 man 2 t=1 d=2257
+  236s M2L2C DIST crane A wave 1 man 0 t=37 d=834
+  236s M2L2C DIST crane A wave 1 man 1 t=37 d=134
+  236s M2L2C DIST crane A wave 1 man 2 t=37 d=530
+  236s M2L2C DIST crane A wave 2 man 0 t=7 d=2257
+  236s M2L2C DIST crane A wave 2 man 1 t=7 d=1990
+  236s M2L2C DIST crane A wave 2 man 2 t=7 d=1671
+  236s M2L2C DIST crane A wave 1 man 0 t=43 d=795
+  236s M2L2C DIST crane A wave 1 man 1 t=43 d=145
+  236s M2L2C DIST crane A wave 1 man 2 t=43 d=543
+  236s M2L2C DIST crane A wave 2 man 0 t=13 d=865
+  236s M2L2C DIST crane A wave 2 man 1 t=13 d=601
+  236s M2L2C " + local.txt ) }
+  236s M2L2C " ^
+  236s M2L2C DIST crane A wave 2 man 2 t=13 d=286
+  236s M2L2C DIST crane A wave 2 man 2 ARRIVED within 300 u after 13 s
+  236s M2L2C DIST crane A wave 1 man 0 t=49 d=795
+  236s M2L2C DIST crane A wave 1 man 1 t=49 d=272
+  236s M2L2C DIST crane A wave 1 man 2 t=49 d=543
+  236s M2L2C " + local.txt ) }
+  236s M2L2C " ^
+  236s M2L2C DIST crane A wave 2 man 1 ARRIVED within 300 u after 16 s
+  236s M2L2C " + local.txt ) }
+  236s M2L2C " ^
+  236s M2L2C DIST crane A wave 2 man 0 ARRIVED within 300 u after 18 s
+  236s M2L2C DIST crane A wave 2 man 0 t=19 d=254
+  236s M2L2C DIST crane A wave 2 man 1 t=19 d=390
+  236s M2L2C DIST crane A wave 2 man 2 t=19 d=247
+  236s M2L2C DIST crane A wave 1 man 0 t=55 d=795
+  236s M2L2C DIST crane A wave 1 man 1 t=55 d=370
+  236s M2L2C DIST crane A wave 1 man 2 t=55 d=543
+  236s M2L2C DIST crane A wave 2 man 0 t=25 d=128
+  236s M2L2C DIST crane A wave 2 man 1 t=25 d=651
+  236s M2L2C DIST crane A wave 2 man 2 t=25 d=233
+  236s M2L2C crane A wave 3 man 0 spawn=( 1000.000 -5700.000 -511.875 ) grounded=1 visible=0
+  236s M2L2C OFFMAN w=203 #0 spawned t=122.700 at ( 1000.000 -5700.000 -511.875 )
+  236s M2L2C crane A wave 3 man 1 spawn=( 1000.000 -5744.000 -511.875 ) grounded=1 visible=0
+  236s M2L2C OFFMAN w=203 #1 spawned t=122.725 at ( 1000.000 -5744.000 -511.875 )
+  236s M2L2C crane A wave 3 man 2 spawn=( 1000.000 -5788.000 -511.875 ) grounded=1 visible=0
+  236s M2L2C OFFMAN w=203 #2 spawned t=122.750 at ( 1000.000 -5788.000 -511.875 )
+  236s M2L2C crane A wave 3 men=3 at=( 1000.000 -5700.000 -512.000 ) alive=9
+  236s M2L2C DIST crane A wave 3 man 0 t=1 d=2036
+  236s M2L2C DIST crane A wave 3 man 1 t=1 d=2064
+  236s M2L2C DIST crane A wave 3 man 2 t=1 d=2257
+  236s M2L2C DIST crane A wave 2 man 0 t=31 d=138
+  236s M2L2C DIST crane A wave 2 man 1 t=31 d=835
+  236s M2L2C DIST crane A wave 2 man 2 t=31 d=147
+  236s M2L2C DIST crane A wave 3 man 0 t=7 d=2193
+  236s M2L2C DIST crane A wave 3 man 1 t=7 d=1931
+  236s M2L2C DIST crane A wave 3 man 2 t=7 d=1678
+  236s M2L2C DIST crane A wave 2 man 0 t=37 d=138
+  236s M2L2C DIST crane A wave 2 man 1 t=37 d=835
+  236s M2L2C DIST crane A wave 2 man 2 t=37 d=147
+  236s M2L2C DIST crane A wave 3 man 0 t=13 d=801
+  236s M2L2C DIST crane A wave 3 man 1 t=13 d=541
+  236s M2L2C " + local.txt ) }
+  236s M2L2C " ^
+  236s M2L2C DIST crane A wave 3 man 2 t=13 d=293
+  236s M2L2C DIST crane A wave 3 man 2 ARRIVED within 300 u after 13 s
+  236s M2L2C " + local.txt ) }
+  236s M2L2C " ^
+  236s M2L2C DIST crane A wave 3 man 1 ARRIVED within 300 u after 15 s
+  236s M2L2C crane A RESUMED (auto) after 60.000s t=138.250
+  236s M2L2C DIST crane A wave 2 man 0 t=43 d=242
+  236s M2L2C DIST crane A wave 2 man 1 t=43 d=835
+  236s M2L2C DIST crane A wave 2 man 2 t=43 d=261
+  236s M2L2C DIST crane A wave 3 man 0 ARRIVED within 300 u after 16 s
+  236s M2L2C " + local.txt ) }
+  236s M2L2C " ^
+  236s M2L2C DIST crane A wave 3 man 0 t=19 d=98
+  236s M2L2C DIST crane A wave 3 man 1 t=19 d=648
+  236s M2L2C DIST crane A wave 3 man 2 t=19 d=470
+  236s M2L2C crane A JAMMED at 0.204 t=142.250
+  236s M2L2C DIST crane A wave 2 man 0 t=49 d=242
+  236s M2L2C DIST crane A wave 2 man 1 t=49 d=835
+  236s M2L2C DIST crane A wave 2 man 2 t=49 d=255
+  236s M2L2C DIST crane A wave 3 man 0 t=25 d=98
+  236s M2L2C DIST crane A wave 3 man 1 t=25 d=648
+  236s M2L2C DIST crane A wave 3 man 2 t=25 d=470
+  236s M2L2C crane A wave 4 man 0 spawn=( 1000.000 -5700.000 -511.875 ) grounded=1 visible=0
+  236s M2L2C OFFMAN w=204 #0 spawned t=150.375 at ( 1000.000 -5700.000 -511.875 )
+  236s M2L2C crane A wave 4 man 1 spawn=( 1000.000 -5744.000 -511.875 ) grounded=1 visible=0
+  236s M2L2C OFFMAN w=204 #1 spawned t=150.400 at ( 1000.000 -5744.000 -511.875 )
+  236s M2L2C DIST crane A wave 2 man 0 t=55 d=124
+  236s M2L2C crane A wave 4 man 2 spawn=( 1000.000 -5788.000 -511.875 ) grounded=1 visible=0
+  236s M2L2C OFFMAN w=204 #2 spawned t=150.425 at ( 1000.000 -5788.000 -511.875 )
+  236s M2L2C crane A wave 4 men=3 at=( 1000.000 -5700.000 -512.000 ) alive=12
+  236s M2L2C DIST crane A wave 2 man 1 t=55 d=835
+  236s M2L2C DIST crane A wave 2 man 2 t=55 d=255
+  236s M2L2C DIST crane A wave 4 man 0 t=1 d=2036
+  236s M2L2C DIST crane A wave 4 man 1 t=1 d=2066
+  236s M2L2C DIST crane A wave 4 man 2 t=1 d=2257
+  236s M2L2C DIST crane A wave 3 man 0 t=31 d=332
+  236s M2L2C DIST crane A wave 3 man 1 t=31 d=338
+  236s M2L2C DIST crane A wave 3 man 2 t=31 d=864
+  236s M2L2C DIST crane A wave 4 man 0 t=7 d=2261
+  236s M2L2C DIST crane A wave 4 man 1 t=7 d=1946
+  236s M2L2C DIST crane A wave 4 man 2 t=7 d=1673
+  236s M2L2C DIST crane A wave 3 man 0 t=37 d=332
+  236s M2L2C DIST crane A wave 3 man 1 t=37 d=659
+  236s M2L2C DIST crane A wave 3 man 2 t=37 d=843
+  236s M2L2C DIST crane A wave 4 man 0 t=13 d=869
+  236s M2L2C DIST crane A wave 4 man 1 t=13 d=556
+  236s M2L2C DIST crane A wave 4 man 2 t=13 d=407
+  236s M2L2C " + local.txt ) }
+  236s M2L2C " ^
+  236s M2L2C DIST crane A wave 4 man 2 ARRIVED within 300 u after 15 s
+  236s M2L2C DIST crane A wave 3 man 0 t=43 d=332
+  236s M2L2C DIST crane A wave 3 man 1 t=43 d=659
+  236s M2L2C DIST crane A wave 3 man 2 t=43 d=843
+  236s M2L2C DIST crane A wave 4 man 0 t=19 d=606
+  236s M2L2C DIST crane A wave 4 man 1 t=19 d=493
+  236s M2L2C DIST crane A wave 4 man 2 t=19 d=148
+  236s M2L2C DIST crane A wave 3 man 0 t=49 d=332
+  236s M2L2C DIST crane A wave 3 man 1 t=49 d=659
+  236s M2L2C DIST crane A wave 3 man 2 t=49 d=843
+  236s M2L2C DIST crane A wave 4 man 0 t=25 d=606
+  236s M2L2C DIST crane A wave 4 man 1 t=25 d=492
+  236s M2L2C DIST crane A wave 4 man 2 t=25 d=141
+  236s M2L2C DIST crane A wave 3 man 0 t=55 d=332
+  236s M2L2C DIST crane A wave 3 man 1 t=55 d=659
+  236s M2L2C DIST crane A wave 3 man 2 t=55 d=843
+  236s M2L2C OFFMAN w=204 #0 stalled at ( 753.538 -4338.266 -511.875 ), slot ( 748.000 -3680.000 -512.000 ) unreachable - running to the officer
+  236s M2L2C OFFMAN w=204 #1 stalled at ( 759.722 -4227.615 -511.875 ), slot ( 748.000 -3740.000 -512.000 ) unreachable - running to the officer
+  236s M2L2C DIST crane A wave 4 man 0 t=31 d=606
+  236s M2L2C DIST crane A wave 4 man 1 t=31 d=495
+  236s M2L2C DIST crane A wave 4 man 2 t=31 d=141
+  236s M2L2C crane A wave 5 man 0 spawn=( 1000.000 -5700.000 -511.875 ) grounded=1 visible=0
+  236s M2L2C OFFMAN w=205 #0 spawned t=186.050 at ( 1000.000 -5700.000 -511.875 )
+  236s M2L2C crane A wave 5 man 1 spawn=( 1000.000 -5744.000 -511.875 ) grounded=1 visible=0
+  236s M2L2C OFFMAN w=205 #1 spawned t=186.075 at ( 1000.000 -5744.000 -511.875 )
+  236s M2L2C crane A wave 5 men=2 at=( 1000.000 -5700.000 -512.000 ) alive=14
+  236s M2L2C DIST crane A wave 5 man 0 t=1 d=2043
+  236s M2L2C DIST crane A wave 5 man 1 t=1 d=2213
+  236s M2L2C DIST crane A wave 4 man 0 t=37 d=606
+  236s M2L2C DIST crane A wave 4 man 1 t=37 d=495
+  236s M2L2C DIST crane A wave 4 man 2 t=37 d=115
+  236s M2L2C DIST crane A wave 5 man 0 t=7 d=2021
+  236s M2L2C DIST crane A wave 5 man 1 t=7 d=1719
+  236s M2L2C DIST crane A wave 4 man 0 t=43 d=601
+  236s M2L2C DIST crane A wave 4 man 1 t=43 d=492
+  236s M2L2C DIST crane A wave 4 man 2 t=43 d=127
+  236s M2L2C DIST crane A wave 5 man 0 t=13 d=777
+  236s M2L2C DIST crane A wave 5 man 1 t=13 d=476
+  236s M2L2C DIST crane A wave 4 man 0 t=49 d=600
+  236s M2L2C DIST crane A wave 4 man 1 t=49 d=490
+  236s M2L2C DIST crane A wave 4 man 2 t=49 d=120
+  236s M2L2C DIST crane A wave 5 man 1 ARRIVED within 300 u after 15 s
+  236s script errors: 40 ["[2026-10-26 19:18:20 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector", "[2026-10-26 19:18:20 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-26 19:18:20 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-26 19:18:20 UTC-6.000] ^~^~^ Script Error : binary '-' applied to incompatible types 'vector' and 'none'", "[2026-10-26 19:18:22 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to vector", "[2026-10-26 19:18:22 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'const string' and 'none'", "[2026-10-26 19:18:22 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-26 19:18:22 UTC-6.000] ^~^~^ Script Error : binary '-' applied to incompatible types 'vector' and 'none'"]

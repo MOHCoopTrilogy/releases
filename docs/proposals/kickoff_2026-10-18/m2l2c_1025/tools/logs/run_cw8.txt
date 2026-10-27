@@ -1,0 +1,39 @@
+   97s    OX M2 t=47.550 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   97s    OX foepos
+   97s crane A ready: True
+  100s -- crane A waves: player at the panel, then walking around the quay
+  104s panel used: True
+  166s    M2L2C crane A wave 1 man 0 spawn=( 748.000 -5568.000 -511.875 ) grounded=1 visible=0
+  166s    M2L2C crane A wave 1 man 1 spawn=( 748.000 -5612.000 -511.875 ) grounded=1 visible=0
+  166s    M2L2C crane A wave 1 man 2 spawn=( 748.000 -5656.000 -511.875 ) grounded=1 visible=0
+  166s    M2L2C crane A wave 1 men=3 at=( 748.000 -5568.000 -512.000 ) alive=3
+  166s    M2L2C crane A wave 1 man 0 ARRIVED at the panel after 15.000 s
+  166s    M2L2C crane A wave 2 man 0 spawn=( 756.000 -2352.000 -511.875 ) grounded=1 visible=0
+  166s    M2L2C crane A wave 2 man 1 spawn=( 756.000 -2396.000 -511.875 ) grounded=1 visible=0
+  166s    M2L2C crane A wave 2 man 2 spawn=( 756.000 -2440.000 -511.875 ) grounded=1 visible=0
+  166s    M2L2C crane A wave 2 men=3 at=( 756.000 -2352.000 -512.000 ) alive=6
+  166s ---- OBJX log ----
+  166s OBJX armed m2l2c objectives=3 items=0 players=1
+  166s OBJX ACTIVE craneA type=m2crane t=32.250
+  166s OBJX ACTIVE craneB type=m2crane t=32.250
+  166s OBJX DONE craneA took=82.100s done=1/3 t=114.350
+  166s M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+  166s M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+  166s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  166s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  166s M2L2C marker -> main objective 1 (craneA) location ( 792.000 -3740.000 -452.000 )
+  166s M2L2C PANEL A used by UnnamedSoldier#8240 t=53.450
+  166s M2L2C crane A cycle start T=70s players=1
+  166s M2L2C crane A wave 1 man 0 spawn=( 748.000 -5568.000 -511.875 ) grounded=1 visible=0
+  166s M2L2C crane A wave 1 man 1 spawn=( 748.000 -5612.000 -511.875 ) grounded=1 visible=0
+  166s M2L2C crane A wave 1 man 2 spawn=( 748.000 -5656.000 -511.875 ) grounded=1 visible=0
+  166s M2L2C crane A wave 1 men=3 at=( 748.000 -5568.000 -512.000 ) alive=3
+  166s M2L2C crane A wave 1 man 0 ARRIVED at the panel after 15.000 s
+  166s M2L2C crane A wave 2 man 0 spawn=( 756.000 -2352.000 -511.875 ) grounded=1 visible=0
+  166s M2L2C crane A wave 2 man 1 spawn=( 756.000 -2396.000 -511.875 ) grounded=1 visible=0
+  166s M2L2C crane A wave 2 man 2 spawn=( 756.000 -2440.000 -511.875 ) grounded=1 visible=0
+  166s M2L2C crane A wave 2 men=3 at=( 756.000 -2352.000 -512.000 ) alive=6
+  166s M2L2C crane A RELEASE t=112.250
+  166s M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=114.350
+  166s M2L2C marker -> main objective 2 (craneB) location ( 3225.000 -3600.000 -452.000 )
+  166s script errors: 0 []

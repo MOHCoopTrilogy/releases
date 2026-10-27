@@ -1,0 +1,21 @@
+16:16:21 t=0.037 launched pid 6936 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:16:21 t=0.073 in-process guard installed on thread 16032
+16:16:21 t=0.632 place 0x1590d34 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:16:22 t=0.819 place 0x15a0d34 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:16:22 t=0.826 place 0x2100cd8 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:17:37 booted m2_pr_m1l1 m1l1 ref=work dog False
+16:18:30 m1l1 ^~^~^ OX PROBE t=0 hp=120.000 alive=1 at ( -3920.000 -2740.000 157.618 )
+16:18:30 m1l1 ^~^~^ OX PROBE t=1 hp=1000.000 alive=1 at ( -3920.040 -2738.642 156.290 )
+16:18:30 m1l1 ^~^~^ OX PROBE t=2 hp=1000.000 alive=1 at ( -3920.083 -2737.113 156.235 )
+16:18:30 m1l1 ^~^~^ OX PROBE t=3 hp=1000.000 alive=1 at ( -3920.122 -2735.802 156.189 )
+16:18:30 m1l1 ^~^~^ OX PROBE t=4 hp=1000.000 alive=1 at ( -3920.138 -2735.249 156.169 )
+16:18:30 m1l1 ^~^~^ OX PROBE t=5 hp=1000.000 alive=1 at ( -3920.138 -2735.249 156.169 )
+16:18:30 m1l1 ^~^~^ OX PROBE t=6 hp=1000.000 alive=1 at ( -3920.138 -2735.249 156.169 )
+16:18:30 m1l1 ^~^~^ OX PROBE t=7 hp=1000.000 alive=1 at ( -3920.138 -2735.249 156.169 )
+16:18:30 m1l1 ^~^~^ OX PROBE t=8 hp=1000.000 alive=1 at ( -3920.138 -2735.249 156.169 )
+16:18:30 m1l1 ^~^~^ OX PROBE t=9 hp=1000.000 alive=1 at ( -3920.138 -2735.249 156.169 )
+16:18:30 m1l1 ^~^~^ OX PROBE t=10 hp=1000.000 alive=1 at ( -3920.138 -2735.249 156.169 )
+16:18:30 m1l1 ^~^~^ OX PROBE t=11 hp=1000.000 alive=1 at ( -3920.138 -2735.249 156.169 )
+16:18:30 m1l1 script errors: 0
+16:18:30 t=129.720 process exited
+16:18:30 [m2_pr_m1l1] done: 0 shots, window {'clean': True, 'violations': []}

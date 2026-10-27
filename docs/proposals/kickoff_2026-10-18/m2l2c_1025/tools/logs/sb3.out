@@ -1,0 +1,27 @@
+16:57:42 t=0.036 launched pid 3420 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:57:42 t=0.071 in-process guard installed on thread 30788
+16:57:43 t=0.617 place 0x2a10d3e SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:57:43 t=0.844 place 0x2a20d3e SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:57:43 t=0.853 place 0x58207a4 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:58:56 booted m2_sb3 m2l2c ref=work dog False
+16:59:03 sb3    OX M2 t=46.975 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=2
+16:59:03 sb3    OX foepos
+16:59:03 sb3 crane A ready: True
+16:59:06 sb3 -- radio subtitles
+16:59:06 sb3 radio active: True
+16:59:44 sb3 ---- OBJX log ----
+16:59:44 sb3 OBJX armed m2l2c objectives=3 items=0 players=1
+16:59:44 sb3 OBJX ACTIVE craneA type=m2crane t=31.750
+16:59:44 sb3 OBJX ACTIVE craneB type=m2crane t=31.750
+16:59:44 sb3 OBJX ACTIVE radio type=m2radio t=31.750
+16:59:44 sb3 M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+16:59:44 sb3 M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+16:59:44 sb3 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+16:59:44 sb3 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+16:59:44 sb3 M2L2C radio audio m2l2c_radio_call from the radio t=51.150
+16:59:44 sb3 M2L2C radio audio m2l2c_radio_mid from the radio t=60.350
+16:59:44 sb3 M2L2C radio audio m2l2c_radio_late from the radio t=69.575
+16:59:44 sb3 M2L2C radio audio m2l2c_radio_confirm from the radio t=78.775
+16:59:44 sb3 script errors: 0 []
+16:59:44 t=122.253 process exited
+16:59:45 [m2_sb3] done: 16 shots, window {'clean': True, 'violations': []}

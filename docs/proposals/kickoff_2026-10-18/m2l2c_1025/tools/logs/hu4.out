@@ -1,0 +1,22 @@
+13:03:01 booted m2_hu4 m2l2c ref=work dog False
+13:03:07 hu4    OX M2 t=47.575 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+13:03:08 hu4    OX foepos
+13:03:08 hu4 crane A ready: True
+13:03:10 hu4 -- crane HUD at 16:9 / 4:3 / 21:9 while jammed
+13:03:46 hu4 hud still 169
+13:04:07 hu4 hud still 43
+13:04:28 hu4 hud still 219
+13:04:34 hu4 ---- OBJX log ----
+13:04:34 hu4 OBJX armed m2l2c objectives=3 items=0 players=1
+13:04:34 hu4 OBJX ACTIVE craneA type=m2crane t=32.500
+13:04:34 hu4 OBJX ACTIVE craneB type=m2crane t=32.500
+13:04:34 hu4 M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+13:04:34 hu4 M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+13:04:34 hu4 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+13:04:34 hu4 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+13:04:34 hu4 M2L2C PANEL A used by UnnamedSoldier#8240 t=53.500
+13:04:34 hu4 M2L2C crane A cycle start T=90s players=1
+13:04:34 hu4 M2L2C crane A JAMMED at 0.060 t=59.000
+13:04:34 hu4 M2L2C crane A RESUMED (auto) after 35.100s t=94.100
+13:04:34 hu4 script errors: 0 []
+13:04:35 [m2_hu4] done: 7 shots, window {'clean': True, 'violations': []}

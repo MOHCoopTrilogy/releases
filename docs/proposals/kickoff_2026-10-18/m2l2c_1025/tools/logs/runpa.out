@@ -1,0 +1,44 @@
+C:\Python314\Lib\zipfile\__init__.py:1730: UserWarning: Duplicate name: 'ui/coop_objectives.urc'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+19:41:21 t=0.036 launched pid 14564 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+19:41:21 t=0.082 in-process guard installed on thread 19240
+19:41:21 t=0.614 place 0x1f80da6 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:41:21 t=0.792 place 0x1f90da6 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+19:41:21 t=0.798 place 0x4b50b4e SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:42:38 booted m2_ps_m1l2a m1l2a ref=work dog False
+19:43:37 m1l2a 4 rows; errors 0
+19:43:37 t=136.794 process exited
+19:43:37 [m2_ps_m1l2a] done: 0 shots, window {'clean': True, 'violations': []}
+C:\Python314\Lib\zipfile\__init__.py:1730: UserWarning: Duplicate name: 'ui/coop_objectives.urc'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+19:43:40 t=0.036 launched pid 15488 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+19:43:40 t=0.083 in-process guard installed on thread 4592
+19:43:40 t=0.626 place 0x49407c6 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:43:40 t=0.811 place 0x49507c6 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+19:43:40 t=0.818 place 0x1200b92 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:44:56 booted m2_ps_m1l2b m1l2b ref=work dog False
+19:45:54 m1l2b 4 rows; errors 0
+19:45:55 t=135.184 process exited
+19:45:55 [m2_ps_m1l2b] done: 0 shots, window {'clean': True, 'violations': []}
+C:\Python314\Lib\zipfile\__init__.py:1730: UserWarning: Duplicate name: 'ui/coop_objectives.urc'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+19:45:56 t=0.033 launched pid 29028 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+19:45:56 t=0.069 in-process guard installed on thread 31360
+19:45:57 t=0.618 place 0x1550b88 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:45:57 t=0.831 place 0x1560b88 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+19:45:57 t=0.838 place 0x4bc0b4e SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:47:10 booted m2_ps_m1l3a m1l3a ref=work dog False
+19:48:09 m1l3a 1 rows; errors 0
+19:48:09 t=132.697 process exited
+19:48:09 [m2_ps_m1l3a] done: 0 shots, window {'clean': True, 'violations': []}
+C:\Python314\Lib\zipfile\__init__.py:1730: UserWarning: Duplicate name: 'ui/coop_objectives.urc'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+19:48:11 t=0.032 launched pid 6452 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+19:48:11 t=0.076 in-process guard installed on thread 22460
+19:48:11 t=0.612 place 0x1d10b14 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:48:12 t=0.855 place 0x1d20b14 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+19:48:12 t=0.862 place 0x2310e4a SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:49:38 booted m2_ps_m1l3b m1l3b ref=work dog False
+19:50:37 m1l3b 4 rows; errors 1
+19:50:38 t=147.029 process exited
+19:50:38 [m2_ps_m1l3b] done: 0 shots, window {'clean': True, 'violations': []}

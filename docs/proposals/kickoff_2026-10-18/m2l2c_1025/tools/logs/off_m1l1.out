@@ -1,0 +1,46 @@
+16:33:01 t=0.040 launched pid 3108 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:33:01 t=0.205 in-process guard installed on thread 11528
+16:33:02 t=0.809 place 0x2df0ce2 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:33:02 t=1.028 place 0x2e00ce2 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:33:02 t=1.036 place 0x25b0d3e SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:34:22 booted m2_f_m1l1 m1l1 ref=work dog False
+16:35:36 m1l1 officer spawned: True
+16:37:42 m1l1 ^~^~^ OFFICER wave 1 spawn=( -5765.012 320.089 376.125 ) visible=0 retries=0
+16:37:42 m1l1 ^~^~^ REINF man w=1 #0 spawned t=122.475 at ( -5691.012 310.089 376.125 )
+16:37:42 m1l1 ^~^~^ REINF man w=1 #0 POLL hp=78.000 at ( -5691.012 310.089 376.125 ) t=122.475
+16:37:42 m1l1 ^~^~^ REINF man w=1 #1 spawned t=122.475 at ( -5784.586 434.075 376.125 )
+16:37:42 m1l1 ^~^~^ REINF man w=1 #1 POLL hp=78.000 at ( -5784.586 434.075 376.125 ) t=122.475
+16:37:42 m1l1 ^~^~^ REINF man w=1 #0 POLL hp=78.000 at ( -5464.012 146.978 378.125 ) t=123.975
+16:37:42 m1l1 ^~^~^ REINF man w=1 #1 POLL hp=78.000 at ( -5648.319 279.740 376.125 ) t=123.975
+16:37:42 m1l1 ^~^~^ REINF man w=1 #0 POLL hp=78.000 at ( -5159.562 130.120 377.587 ) t=125.475
+16:37:42 m1l1 ^~^~^ REINF man w=1 #1 POLL hp=78.000 at ( -5449.773 146.620 378.188 ) t=125.475
+16:37:42 m1l1 ^~^~^ REINF route wave=1 men=2 spawn=( -5765.012 320.089 376.125 ) officer=( -4433.000 677.000 426.940 )
+16:37:42 m1l1 ^~^~^ REINF man w=1 #0 POLL hp=78.000 at ( -4935.342 277.810 372.150 ) t=126.975
+16:37:42 m1l1 ^~^~^ REINF man w=1 #1 POLL hp=78.000 at ( -5182.142 136.721 378.145 ) t=126.975
+16:37:42 m1l1 ^~^~^ REINF man w=1 #0 POLL hp=78.000 at ( -4672.860 488.350 384.174 ) t=128.475
+16:37:42 m1l1 ^~^~^ REINF man w=1 #1 POLL hp=78.000 at ( -4981.462 222.008 371.803 ) t=128.475
+16:37:42 m1l1 ^~^~^ REINF man w=1 #0 ARRIVED t=129.975 after 7.500 s
+16:37:42 m1l1 ^~^~^ REINF man w=1 #1 POLL hp=78.000 at ( -4780.149 411.625 372.845 ) t=129.975
+16:37:42 m1l1 ^~^~^ REINF man w=1 #1 ARRIVED t=131.475 after 9.000 s
+16:37:42 m1l1 ^~^~^ OFFICER wave 1 spawn=( -5610.000 556.000 376.125 ) visible=0 retries=0
+16:37:42 m1l1 ^~^~^ REINF man w=2 #0 spawned t=183.600 at ( -5568.828 607.346 376.125 )
+16:37:42 m1l1 ^~^~^ REINF man w=2 #0 POLL hp=78.000 at ( -5568.828 607.346 376.125 ) t=183.600
+16:37:42 m1l1 ^~^~^ REINF man w=2 #1 spawned t=183.600 at ( -5627.684 706.704 376.125 )
+16:37:42 m1l1 ^~^~^ REINF man w=2 #1 POLL hp=78.000 at ( -5627.684 706.704 376.125 ) t=183.600
+16:37:42 m1l1 ^~^~^ REINF man w=2 #0 POLL hp=78.000 at ( -5496.729 340.316 376.125 ) t=185.100
+16:37:42 m1l1 ^~^~^ REINF man w=2 #1 POLL hp=78.000 at ( -5605.901 466.980 376.125 ) t=185.100
+16:37:42 m1l1 ^~^~^ REINF man w=2 #0 POLL hp=78.000 at ( -5426.680 141.128 378.753 ) t=186.600
+16:37:42 m1l1 ^~^~^ REINF man w=2 #1 POLL hp=78.000 at ( -5540.468 224.186 377.011 ) t=186.600
+16:37:42 m1l1 ^~^~^ REINF route wave=2 men=2 spawn=( -5610.000 556.000 376.125 ) officer=( -4430.410 673.214 426.946 )
+16:37:42 m1l1 ^~^~^ REINF man w=2 #0 POLL hp=78.000 at ( -5115.465 133.081 376.288 ) t=188.100
+16:37:42 m1l1 ^~^~^ REINF man w=2 #1 POLL hp=78.000 at ( -5525.500 152.810 378.254 ) t=188.100
+16:37:42 m1l1 ^~^~^ REINF man w=2 #0 POLL hp=78.000 at ( -4905.634 309.119 370.993 ) t=189.600
+16:37:42 m1l1 ^~^~^ REINF man w=2 #1 POLL hp=78.000 at ( -5525.070 152.871 378.254 ) t=189.600
+16:37:42 m1l1 ^~^~^ REINF man w=2 #0 POLL hp=78.000 at ( -4636.413 509.049 389.869 ) t=191.100
+16:37:42 m1l1 ^~^~^ REINF man w=2 #1 POLL hp=78.000 at ( -5525.070 152.871 378.254 ) t=191.100
+16:37:42 m1l1 ^~^~^ REINF man w=2 #0 ARRIVED t=192.600 after 9.000 s
+16:37:42 m1l1 ^~^~^ REINF man w=2 #1 POLL hp=78.000 at ( -5525.070 152.871 378.254 ) t=192.600
+16:37:42 m1l1 ^~^~^ REINF man w=2 #1 POLL hp=78.000 at ( -5525.070 152.871 378.254 ) t=194.100
+16:37:42 m1l1 script errors: 0
+16:37:42 t=281.421 process exited
+16:37:42 [m2_f_m1l1] done: 0 shots, window {'clean': True, 'violations': []}

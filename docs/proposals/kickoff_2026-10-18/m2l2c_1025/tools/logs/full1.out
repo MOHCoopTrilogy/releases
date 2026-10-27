@@ -1,0 +1,139 @@
+18:33:47 t=0.038 launched pid 31684 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+18:33:47 t=0.085 in-process guard installed on thread 13368
+18:33:48 t=0.661 place 0xb90760 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+18:33:48 t=0.872 place 0xba0760 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+18:33:48 t=0.879 place 0xd70b58 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+18:35:22 booted m2_full1 m2l2c ref=work dog False
+18:35:29 full1    OX M2 t=47.350 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+18:35:29 full1    OX foepos
+18:35:29 full1 crane A ready: True
+18:35:32 full1 -- craneA: at the control panel
+18:35:37 full1 panel used: True
+18:35:40 full1    OX M2 t=58.575 active=1 doneN=0 alive=0 | c1 st=run p=0.150 | c2 st=idle p=0 | gateOpen=- me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+18:35:40 full1    OX foepos
+18:35:53 full1    OX M2 t=71.425 active=1 doneN=0 alive=0 | c1 st=run p=0.578 | c2 st=idle p=0 | gateOpen=- me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+18:35:53 full1    OX foepos
+18:36:06 full1    OX M2 t=84.300 active=1 doneN=1 alive=0 | c1 st=done p=1 | c2 st=idle p=0 | gateOpen=- me=( 748.000 -4000.000 -512.000 ) | o1=3 | o2=2 | o3=1
+18:36:06 full1    OX foepos
+18:36:08 full1 objective done: True
+18:36:10 full1 -- craneB: at the control panel
+18:36:15 full1 panel used: True
+18:36:18 full1    OX M2 t=96.850 active=1 doneN=1 alive=4 | c1 st=done p=1 | c2 st=run p=0.152 | gateOpen=- me=( 3190.000 -3850.000 -512.000 ) | o1=3 | o2=2 | o3=1
+18:36:18 full1    OX foepos [( 3999.862 -5595.241 -511.875 )] [( 4045.000 -5600.000 -511.875 )] [( 4500.000 -5200.000 -511.875 )] [( 4000.000 -5000.000 -511.875 )]
+18:36:31 full1    OX M2 t=109.700 active=1 doneN=1 alive=7 | c1 st=done p=1 | c2 st=run p=0.581 | gateOpen=- me=( 3190.000 -3850.000 -512.000 ) | o1=3 | o2=2 | o3=1
+18:36:31 full1    OX foepos [( 3844.928 -3470.403 -511.875 )] [( 3915.355 -3642.827 -511.875 )] [( 3653.298 -3363.475 -507.875 )] [( 3550.655 -3306.195 -511.875 )] [( 3166.312 -5231.715 -511.875 )] [( 3185.855 -4482.562 -511.875 )] [( 3193.429 -539
+18:36:44 full1    OX M2 t=122.550 active=1 doneN=2 alive=7 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=- me=( 3190.000 -3850.000 -512.000 ) | o1=3 | o2=3 | o3=1
+18:36:44 full1    OX foepos [( 3192.114 -4322.422 -511.875 )] [( 3208.757 -4044.508 -511.875 )] [( 3178.819 -5218.878 -511.875 )] [( 3194.696 -3108.710 -511.875 )] [( 3191.569 -4305.978 -511.875 )] [( 3164.533 -4042.847 -511.875 )] [( 3193.429 -539
+18:36:47 full1 objective done: True
+18:36:48 full1 -- radio
+18:36:48 full1 radio active: True
+18:36:56 full1 radio used: True
+18:36:59 full1    OX M2 t=138.100 active=1 doneN=2 alive=7 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+18:37:00 full1    OX foepos [( 2193.833 -6264.040 -511.875 )] [( 2378.814 -6384.953 -511.875 )] [( 3175.297 -4917.494 -511.875 )] [( 3212.423 -3107.344 -511.875 )] [( 3191.569 -4177.978 -511.875 )] [( 3170.669 -4020.456 -511.875 )] [( 3179.657 -488
+18:37:12 full1    OX M2 t=150.700 active=1 doneN=2 alive=11 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+18:37:12 full1    OX foepos [( 2174.317 -3452.784 -511.875 )] [( 2194.308 -4005.033 -511.875 )] [( 3189.517 -4468.499 -511.875 )] [( 3212.423 -3107.344 -511.875 )] [( 3191.569 -4177.978 -511.875 )] [( 3170.669 -4020.456 -511.875 )] [( 3179.657 -488
+18:37:24 full1    OX M2 t=162.850 active=1 doneN=2 alive=11 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+18:37:24 full1    OX foepos [( 2174.000 -3442.000 -511.875 )] [( 2174.000 -3012.000 -511.875 )] [( 3189.517 -4468.499 -511.875 )] [( 3212.423 -3107.344 -511.875 )] [( 3191.569 -4177.978 -511.875 )] [( 3170.669 -4020.456 -511.875 )] [( 3179.657 -488
+18:37:38 full1    OX M2 t=176.275 active=1 doneN=2 alive=11 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+18:37:38 full1    OX foepos [( 2174.000 -3442.000 -511.875 )] [( 2181.535 -3313.227 -511.875 )] [( 3189.517 -4468.499 -511.875 )] [( 3212.423 -3107.344 -511.875 )] [( 3191.569 -4177.978 -511.875 )] [( 3170.669 -4020.456 -511.875 )] [( 3179.657 -488
+18:37:50 full1    OX M2 t=188.425 active=1 doneN=2 alive=14 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+18:37:50 full1    OX foepos [( 2174.000 -3442.000 -511.875 )] [( 2181.535 -3313.227 -511.875 )] [( 3189.517 -4468.499 -511.875 )] [( 3212.423 -3107.344 -511.875 )] [( 3191.569 -4177.978 -511.875 )] [( 3170.669 -4020.456 -511.875 )] [( 3179.657 -488
+18:38:02 full1    OX M2 t=200.575 active=1 doneN=2 alive=14 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+18:38:02 full1    OX foepos [( 2174.000 -3442.000 -511.875 )] [( 2181.535 -3313.227 -511.875 )] [( 3189.517 -4468.499 -511.875 )] [( 3212.423 -3107.344 -511.875 )] [( 3191.569 -4177.978 -511.875 )] [( 3170.669 -4020.456 -511.875 )] [( 3179.657 -488
+18:38:14 full1    OX M2 t=212.725 active=1 doneN=2 alive=14 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+18:38:14 full1    OX foepos [( 2174.000 -3442.000 -511.875 )] [( 2181.535 -3313.227 -511.875 )] [( 3189.517 -4468.499 -511.875 )] [( 3212.423 -3107.344 -511.875 )] [( 3191.569 -4177.978 -511.875 )] [( 3170.669 -4020.456 -511.875 )] [( 3179.657 -488
+18:38:26 full1    OX M2 t=224.875 active=1 doneN=2 alive=14 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+18:38:26 full1    OX foepos [( 2174.000 -3442.000 -511.875 )] [( 2181.535 -3313.227 -511.875 )] [( 3189.517 -4468.499 -511.875 )] [( 3212.423 -3107.344 -511.875 )] [( 3191.569 -4177.978 -511.875 )] [( 3170.669 -4020.456 -511.875 )] [( 3179.657 -488
+18:38:38 full1    OX M2 t=237.000 active=1 doneN=2 alive=14 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+18:38:39 full1    OX foepos [( 2174.000 -3442.000 -511.875 )] [( 2181.535 -3313.227 -511.875 )] [( 3189.517 -4468.499 -511.875 )] [( 3212.423 -3107.344 -511.875 )] [( 3191.569 -4177.978 -511.875 )] [( 3170.669 -4020.456 -511.875 )] [( 3179.657 -488
+18:38:50 full1    OX M2 t=249.175 active=1 doneN=2 alive=14 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+18:38:51 full1    OX foepos [( 2174.000 -3442.000 -511.875 )] [( 2181.535 -3313.227 -511.875 )] [( 3189.517 -4468.499 -511.875 )] [( 3212.423 -3107.344 -511.875 )] [( 3191.569 -4177.978 -511.875 )] [( 3170.669 -4020.456 -511.875 )] [( 3179.657 -488
+18:38:59 full1 all done: True
+18:39:45 full1 exit chain: False
+18:39:49 full1 ---- OBJX log ----
+18:39:49 full1 OBJX armed m2l2c objectives=3 items=0 players=1
+18:39:49 full1 OBJX ACTIVE craneA type=m2crane t=32.250
+18:39:49 full1 OBJX ACTIVE craneB type=m2crane t=32.250
+18:39:49 full1 OBJX DONE craneA took=49.425s done=1/3 t=81.675
+18:39:49 full1 OBJX DONE craneB took=87.625s done=2/3 t=119.875
+18:39:49 full1 OBJX ACTIVE radio type=m2radio t=124.250
+18:39:49 full1 OBJX HOLD radio zone=the storage room at=( 3615.000 -3850.000 -512.000 ) r=360 total=120s players=1
+18:39:49 full1 OBJX HOLD clock 0:00 elapsed=120.150 waves=4 lost=0
+18:39:49 full1 OBJX DONE radio took=133.375s done=3/3 t=257.625
+18:39:49 full1 OBJX ALL DONE 3 objectives t=257.625
+18:39:49 full1 M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+18:39:49 full1 M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+18:39:49 full1 M2L2C solid prop models/animate/electrical_switch_pulse.tik bounds ( -8.000 -13.000 0.310 ) .. ( 8.000 13.000 26.119 ) at ( 792.000 -3740.000 -452.000 )
+18:39:49 full1 M2L2C solid prop models/animate/electrical_switch_pulse.tik bounds ( -8.000 -13.000 0.310 ) .. ( 8.000 13.000 26.119 ) at ( 3225.000 -3600.000 -452.000 )
+18:39:49 full1 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+18:39:49 full1 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+18:39:49 full1 M2L2C SWEEP control (box inside the hull): startSolid=0 fraction=1.000
+18:39:49 full1 M2L2C SWEEP control (box inside the hull): startSolid=1 fraction=0.000
+18:39:49 full1 M2L2C SWEEP crane A done: 0 intersections over 61 poses + the bridge span
+18:39:49 full1 M2L2C SWEEP crane B done: 0 intersections over 61 poses + the bridge span
+18:39:49 full1 M2L2C marker -> main objective 1 (craneA) location ( 792.000 -3740.000 -452.000 )
+18:39:49 full1 M2L2C PANEL A used by UnnamedSoldier#8240 t=54.075
+18:39:49 full1 M2L2C crane A cycle start T=30s players=1
+18:39:49 full1 M2L2C crane A RELEASE t=79.275
+18:39:49 full1 M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=81.675
+18:39:49 full1 M2L2C marker -> main objective 2 (craneB) location ( 3225.000 -3600.000 -452.000 )
+18:39:49 full1 M2L2C u-boat A SINKING starts t=86.675 over 32s
+18:39:49 full1 M2L2C officer wave 101: 4 men via the real mesh gate -> officer at ( 2859.000 -6355.000 -515.875 )
+18:39:49 full1 M2L2C OFFMAN w=101 #0 spawned t=89.125 at ( 4000.000 -5600.000 -511.875 )
+18:39:49 full1 M2L2C OFFMAN w=101 #4 spawned t=89.150 at ( 4045.000 -5600.000 -511.875 )
+18:39:49 full1 M2L2C mesh wave 101 group 0 placed at ( 4000.000 -5600.000 -512.000 ) t=89.150
+18:39:49 full1 M2L2C OFFMAN w=101 #3 spawned t=92.175 at ( 4500.000 -5200.000 -511.875 )
+18:39:49 full1 M2L2C mesh wave 101 group 1 placed at ( 4500.000 -5200.000 -512.000 ) t=92.175
+18:39:49 full1 M2L2C PANEL B used by UnnamedSoldier#8240 t=92.275
+18:39:49 full1 M2L2C crane B cycle start T=30s players=1
+18:39:49 full1 M2L2C OFFMAN w=101 #5 spawned t=95.200 at ( 4000.000 -5000.000 -511.875 )
+18:39:49 full1 M2L2C mesh wave 101 group 2 placed at ( 4000.000 -5000.000 -512.000 ) t=95.200
+18:39:49 full1 M2L2C mesh gate OPENING t=98.100
+18:39:49 full1 M2L2C mesh wave 101 men=4
+18:39:49 full1 M2L2C mesh gate OPEN, paths connected t=99.600
+18:39:49 full1 M2L2C crane B wave 1 man 0 spawn=( 3188.000 -5648.000 -511.875 ) grounded=1 visible=0
+18:39:49 full1 M2L2C crane B wave 1 man 1 spawn=( 3188.000 -5692.000 -511.875 ) grounded=1 visible=0
+18:39:49 full1 M2L2C crane B wave 1 man 2 spawn=( 3188.000 -5736.000 -511.875 ) grounded=1 visible=0
+18:39:49 full1 M2L2C crane B wave 1 men=3 at=( 3188.000 -5648.000 -512.000 ) alive=7
+18:39:49 full1 M2L2C crane B RELEASE t=117.475
+18:39:49 full1 M2L2C u-boat A SUNK, hidden t=118.675
+18:39:49 full1 M2L2C crane B IMPACT at=( 2760.000 -3400.000 -449.000 ) t=119.875
+18:39:49 full1 M2L2C solid prop models/miscobj/radio_military.tik bounds ( -16.000 -16.000 0.000 ) .. ( 16.000 16.000 21.789 ) at ( 3656.000 -3540.000 -482.000 )
+18:39:49 full1 M2L2C marker -> main objective 3 (radio) location ( 3656.000 -3540.000 -482.000 )
+18:39:49 full1 M2L2C u-boat B SINKING starts t=124.875 over 32s
+18:39:49 full1 M2L2C OFFMAN w=101 #3 ARRIVED t=128.675 after 36.500 s, d(officer)=63.978
+18:39:49 full1 M2L2C OFFMAN w=101 #5 stalled at ( 3212.423 -3107.344 -511.875 ), slot ( 2929.000 -6476.244 -515.875 ) unreachable - running to the officer
+18:39:49 full1 M2L2C OFFMAN w=101 #0 ARRIVED t=131.625 after 42.500 s, d(officer)=233.371
+18:39:49 full1 M2L2C OFFMAN w=101 #4 ARRIVED t=133.150 after 44.000 s, d(officer)=243.037
+18:39:49 full1 M2L2C RADIO used by UnnamedSoldier#8240 t=134.475
+18:39:49 full1 M2L2C radio audio m2l2c_radio_call from the radio t=134.475
+18:39:49 full1 M2L2C radio hold length 120 s for 1 players (hidden timer)
+18:39:49 full1 M2L2C radio mid clip due at 62.000 s of the hidden 120 s hold
+18:39:49 full1 M2L2C radio wave 1 entry=mesh men=0 at=( 3740.000 -3330.000 -512.000 )
+18:39:49 full1 M2L2C mesh wave 1 group 0 placed at ( 4000.000 -5600.000 -512.000 ) t=147.500
+18:39:49 full1 M2L2C radio wave 1 entry=door men=1 at=( 3367.000 -3340.000 -512.000 )
+18:39:49 full1 M2L2C radio wave 1 entry=stairs men=1 at=( 3612.000 -4016.000 -260.000 )
+18:39:49 full1 M2L2C radio wave 1 entry=north men=1 at=( 3412.000 -2952.000 -496.000 )
+18:39:49 full1 M2L2C mesh wave 1 group 1 placed at ( 4500.000 -5200.000 -512.000 ) t=150.500
+18:39:49 full1 M2L2C mesh wave 1 group 2 placed at ( 4000.000 -5000.000 -512.000 ) t=153.500
+18:39:49 full1 M2L2C mesh wave 1 men=1
+18:39:49 full1 M2L2C u-boat B SUNK, hidden t=156.875
+18:39:49 full1 M2L2C radio audio m2l2c_radio_burst from the radio t=170.800
+18:39:49 full1 M2L2C crane B wave 1 man 0 NOT at the panel after 75 s, at ( 3191.569 -4177.978 -511.875 )
+18:39:49 full1 M2L2C crane B wave 1 man 1 NOT at the panel after 75 s, at ( 3170.669 -4020.456 -511.875 )
+18:39:49 full1 M2L2C crane B wave 1 man 2 NOT at the panel after 75 s, at ( 3179.657 -4880.238 -511.875 )
+18:39:49 full1 M2L2C radio wave 2 entry=door men=1 at=( 3367.000 -3340.000 -512.000 )
+18:39:49 full1 M2L2C radio wave 2 entry=stairs men=1 at=( 3612.000 -4016.000 -260.000 )
+18:39:49 full1 M2L2C radio wave 2 entry=north men=1 at=( 3412.000 -2952.000 -496.000 )
+18:39:49 full1 M2L2C radio audio m2l2c_radio_mid from the radio t=199.625
+18:39:49 full1 M2L2C radio wave 3 skipped: cap 14 alive 14
+18:39:49 full1 M2L2C radio audio m2l2c_radio_burst from the radio t=207.875
+18:39:49 full1 M2L2C OFFMAN w=101 #5 FAILED: timeout at ( 3212.423 -3107.344 -511.875 ) d=3266.832 reorders=24
+18:39:49 full1 M2L2C radio audio m2l2c_radio_late from the radio t=230.625
+18:39:49 full1 M2L2C radio wave 4 skipped: cap 14 alive 14
+18:39:49 full1 M2L2C radio static loop on t=238.625
+18:39:49 full1 M2L2C radio audio m2l2c_radio_confirm from the radio t=257.625
+18:39:49 full1 M2L2C mesh gate CLOSED (hold won), paths disconnected t=265.125
+18:39:49 full1 script errors: 0 []
+18:40:59 t=431.695 process exited
+18:41:00 [m2_full1] done: 272 shots, window {'clean': True, 'violations': []}

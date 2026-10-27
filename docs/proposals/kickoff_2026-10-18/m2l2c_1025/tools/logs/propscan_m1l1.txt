@@ -1,0 +1,4 @@
+PROPSCAN m1l1 k=4 kind=target model=models/static/exp_crate2.tik at=( -5784.000 368.000 376.125 ) mn=( -5.996 -12.527 0.000 ) mx=( 15.189 18.790 18.252 ) floorgap=0.000 clips=0 nearest=108
+PROPSCAN m1l1 k=5 kind=target model=models/static/exp_crate2.tik at=( -5688.000 320.000 358.000 ) mn=( -5.996 -12.527 0.000 ) mx=( 15.189 18.790 18.252 ) floorgap=99 clips=1 nearest=108
+PROPSCAN m1l1 k=6 kind=target model=models/static/exp_crate2.tik at=( -5783.000 517.000 366.000 ) mn=( -5.996 -12.527 0.000 ) mx=( 15.189 18.790 18.252 ) floorgap=99 clips=1 nearest=149
+PROPSCAN done 3

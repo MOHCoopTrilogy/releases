@@ -1,0 +1,25 @@
+   86s    OX M2 t=47.425 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   86s    OX foepos
+   86s crane A ready: True
+   89s -- crane views: start / mid-carry / drop from the panel, the north quay and the west quay
+   93s panel used: True
+  120s ---- OBJX log ----
+  120s OBJX armed m2l2c objectives=3 items=0 players=1
+  120s OBJX ACTIVE craneA type=m2crane t=32.250
+  120s OBJX ACTIVE craneB type=m2crane t=32.250
+  120s OBJX DONE craneA took=49.000s done=1/3 t=81.250
+  120s M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+  120s M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+  120s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  120s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  120s M2L2C SWEEP control (box inside the hull): startSolid=0 fraction=1.000
+  120s M2L2C SWEEP control (box inside the hull): startSolid=1 fraction=0.000
+  120s M2L2C SWEEP crane A done: 0 intersections over 61 poses + the bridge span
+  120s M2L2C SWEEP crane B done: 0 intersections over 61 poses + the bridge span
+  120s M2L2C marker -> main objective 1 (craneA) location ( 792.000 -3740.000 -452.000 )
+  120s M2L2C PANEL A used by UnnamedSoldier#8240 t=53.650
+  120s M2L2C crane A cycle start T=30s players=1
+  120s M2L2C crane A RELEASE t=78.850
+  120s M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=81.250
+  120s M2L2C marker -> main objective 2 (craneB) location ( 3225.000 -3600.000 -452.000 )
+  120s script errors: 0 []

@@ -1,0 +1,27 @@
+17:07:01 t=0.045 launched pid 9712 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+17:07:01 t=0.103 in-process guard installed on thread 29604
+17:07:01 t=0.717 place 0x1e708c0 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+17:07:01 t=0.958 place 0x1e808c0 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+17:07:01 t=0.966 place 0x3e7098c SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+17:08:18 booted m2_cw1 m2l2c ref=work dog False
+17:08:25 cw1    OX M2 t=47.525 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+17:08:25 cw1    OX foepos
+17:08:25 cw1 crane A ready: True
+17:08:28 cw1 -- crane A waves: player at the panel, then walking around the quay
+17:08:33 cw1 panel used: True
+17:09:35 cw1 ---- OBJX log ----
+17:09:35 cw1 OBJX armed m2l2c objectives=3 items=0 players=1
+17:09:35 cw1 OBJX ACTIVE craneA type=m2crane t=32.250
+17:09:35 cw1 OBJX ACTIVE craneB type=m2crane t=32.250
+17:09:35 cw1 OBJX DONE craneA took=82.500s done=1/3 t=114.750
+17:09:35 cw1 M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+17:09:35 cw1 M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+17:09:35 cw1 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+17:09:35 cw1 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+17:09:35 cw1 M2L2C PANEL A used by UnnamedSoldier#8240 t=53.850
+17:09:35 cw1 M2L2C crane A cycle start T=70s players=1
+17:09:35 cw1 M2L2C crane A RELEASE t=112.650
+17:09:35 cw1 M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=114.750
+17:09:35 cw1 script errors: 0 []
+17:09:35 t=154.398 process exited
+17:09:35 [m2_cw1] done: 4 shots, window {'clean': True, 'violations': []}

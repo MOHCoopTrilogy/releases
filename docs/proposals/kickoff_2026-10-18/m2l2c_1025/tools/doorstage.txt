@@ -1,0 +1,13 @@
+    if "doorgif" in STAGES:
+        log("-- barrel-room door burst")
+        ok = wait(r"OBJX ACTIVE radio", 40); log("radio active:", bool(ok))
+        tp(3340, -3560, -512, 0, 0); time.sleep(0.4); G.still("m2_door_open_before")
+        tp(3656, -3615, -512, 90, 0); aim(3656, -3540, -470); time.sleep(0.4)
+        hold(3800)
+        ok = wait(r"M2L2C RADIO used", 10); log("radio used:", bool(ok))
+        tp(3640, -3700, -512, 170, 3)
+        for ch in range(14):
+            G.frames("m2_doorgif_%02d" % ch, 20, 130)
+            p0 = G.cmd("foepos")
+            for l in G.since(p0, r"\^~\^~\^ (OX foepos[^\r\n]*)"): log("  ", l[:260])
+        log("door frames done")

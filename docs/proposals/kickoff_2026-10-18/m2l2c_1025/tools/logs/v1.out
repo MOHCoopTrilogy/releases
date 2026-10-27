@@ -1,0 +1,13 @@
+08:59:37 booted m2_v1 m2l2c ref=work dog False
+08:59:41 v1 RGSTATE ['rgstate NIL (stock map)']
+08:59:41 v1 map is STOCK
+09:00:16 v1 CLIP east-bound walk [(-3480, 3560), (-3470, 3617), (-3460, 3617), (-3400, 3619), (-3300, 3619), (-3200, 3619), (-3160, 3617), (-3150, 3617), (-3145, 3617)]
+09:00:52 v1 CLIP east-bound jump [(-3480, 3560), (-3470, 3617), (-3460, 3617), (-3400, 3619), (-3300, 3619), (-3200, 3619), (-3160, 3617), (-3150, 3617), (-3145, 3617)]
+09:01:27 v1 CLIP east-bound crouch [(-3480, 3560), (-3470, 3622), (-3460, 3617), (-3400, 3622), (-3300, 3619), (-3200, 3622), (-3160, 3617), (-3150, 3622), (-3145, 3617)]
+09:01:47 v1 CLIP west-bound from behind [(-3470, 3655), (-3400, 3653), (-3300, 3653), (-3200, 3653), (-3150, 3671)]
+09:01:48 v1 BULLET before ['targethp 1000.000 weapon=-']
+09:01:50 v1 BULLET after 1.5 s of fire through the closed gate ['targethp 1000.000 weapon=-']
+09:01:51 v1 EXPLOSION (radiusdamage 300 at 3600, target 3680 behind the fence) hp ['targethp 823.000 weapon=-']
+09:01:52 v1 AI SIGHT (man behind the fence, player in front) ['aisee 1 ai=( 3700.000 -3300.000 -512.000 ) me=( 3560.000 -3300.000 -511.875 )']
+09:01:52 v1 errors []
+09:01:52 [m2_v1] done: 0 shots, window {'clean': True, 'violations': []}

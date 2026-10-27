@@ -1,0 +1,38 @@
+   80s    OX M2 t=47.500 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=2
+   80s    OX foepos
+   80s crane A ready: True
+   83s -- radio loudness / falloff: the clip is started with the listener at each position; VOXSTART prints the distance to the radio
+   83s radio active: True
+  100s ---- OBJX log ----
+  100s OBJX armed m2l2c objectives=3 items=0 players=1
+  100s OBJX ACTIVE craneA type=m2crane t=32.250
+  100s OBJX ACTIVE craneB type=m2crane t=32.250
+  100s OBJX ACTIVE radio type=m2radio t=32.250
+  100s M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+  100s M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+  100s M2L2C radio: bench top z=-489.125, radio origin was z=-482.000 (gap 7.125)
+  100s M2L2C solid prop models/animate/electrical_switch_pulse.tik bounds ( -8.000 -13.000 0.310 ) .. ( 8.000 13.000 26.119 ) at ( 792.000 -3740.000 -452.000 )
+  100s M2L2C solid prop models/animate/electrical_switch_pulse.tik bounds ( -8.000 -13.000 0.310 ) .. ( 8.000 13.000 26.119 ) at ( 3225.000 -3600.000 -452.000 )
+  100s M2L2C solid prop models/miscobj/radio_military.tik bounds ( -16.000 -16.000 0.000 ) .. ( 16.000 16.000 21.789 ) at ( 3656.000 -3540.000 -489.125 )
+  100s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  100s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  100s M2L2C SWEEP control (box inside the hull): startSolid=0 fraction=1.000
+  100s M2L2C SWEEP control (box inside the hull): startSolid=1 fraction=0.000
+  100s M2L2C SWEEP crane A done: 0 intersections over 61 poses + the bridge span
+  100s M2L2C SWEEP crane B done: 0 intersections over 61 poses + the bridge span
+  100s M2L2C marker -> main objective 1 (craneA) location ( 792.000 -3740.000 -452.000 )
+  100s M2L2C radio audio m2l2c_radio_call from the radio t=51.550
+  100s M2L2C radio audio m2l2c_radio_call from the radio t=53.775
+  100s M2L2C radio audio m2l2c_radio_call from the radio t=56.000
+  100s M2L2C radio audio m2l2c_radio_call from the radio t=58.225
+  100s M2L2C radio audio m2l2c_radio_call from the radio t=60.450
+  100s M2L2C radio audio m2l2c_radio_call from the radio t=62.675
+  100s M2L2C officer wave 101: 4 men via the real mesh gate -> officer at ( 2853.267 -6354.345 -511.875 )
+  100s M2L2C OFFMAN w=101 #0 spawned t=64.625 at ( 4000.000 -5600.000 -511.875 )
+  100s M2L2C OFFMAN w=101 #4 spawned t=64.650 at ( 4045.000 -5600.000 -511.875 )
+  100s M2L2C mesh wave 101 group 0 placed at ( 4000.000 -5600.000 -512.000 ) t=64.650
+  100s M2L2C radio audio m2l2c_radio_call from the radio t=64.925
+  100s M2L2C radio audio m2l2c_radio_call from the radio t=67.125
+  100s M2L2C OFFMAN w=101 #3 spawned t=67.675 at ( 4500.000 -5200.000 -511.875 )
+  100s M2L2C mesh wave 101 group 1 placed at ( 4500.000 -5200.000 -512.000 ) t=67.675
+  100s script errors: 0 []

@@ -1,0 +1,49 @@
+18:23:43 t=0.036 launched pid 24244 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+18:23:43 t=0.075 in-process guard installed on thread 5132
+18:23:43 t=0.669 place 0x79e0cbe SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+18:23:43 t=0.857 place 0x79f0cbe SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+18:23:43 t=0.864 place 0x126096e SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+18:25:00 booted m2_mg5 m2l2c ref=work dog False
+18:25:07 mg5    OX M2 t=47.350 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=2
+18:25:07 mg5    OX foepos
+18:25:07 mg5 crane A ready: True
+18:25:09 mg5 -- mesh gate: before the fake / with the fake, then the gate opening with Axis coming through
+18:25:09 mg5 radio active: True
+18:25:18 mg5 radio used: True
+18:25:25 mg5    OX foepos
+18:25:31 mg5    OX foepos
+18:25:38 mg5    OX foepos
+18:25:44 mg5    OX foepos
+18:25:51 mg5    OX foepos
+18:25:57 mg5    OX foepos
+18:26:04 mg5    OX foepos
+18:26:11 mg5    OX foepos
+18:26:17 mg5    OX foepos
+18:26:24 mg5    OX foepos
+18:26:30 mg5    OX foepos
+18:26:37 mg5    OX foepos
+18:26:43 mg5    OX foepos
+18:26:50 mg5    OX foepos
+18:26:50 mg5 mesh frames done
+18:26:50 mg5 ---- OBJX log ----
+18:26:50 mg5 OBJX armed m2l2c objectives=3 items=0 players=1
+18:26:50 mg5 OBJX ACTIVE craneA type=m2crane t=32.250
+18:26:50 mg5 OBJX ACTIVE craneB type=m2crane t=32.250
+18:26:50 mg5 OBJX ACTIVE radio type=m2radio t=32.250
+18:26:50 mg5 OBJX HOLD radio zone=the storage room at=( 3615.000 -3850.000 -512.000 ) r=360 total=120s players=1
+18:26:50 mg5 M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+18:26:50 mg5 M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+18:26:50 mg5 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+18:26:50 mg5 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+18:26:50 mg5 M2L2C SWEEP control (box inside the hull): startSolid=0 fraction=1.000
+18:26:50 mg5 M2L2C SWEEP control (box inside the hull): startSolid=1 fraction=0.000
+18:26:50 mg5 M2L2C SWEEP crane A done: 0 intersections over 61 poses + the bridge span
+18:26:50 mg5 M2L2C SWEEP crane B done: 0 intersections over 61 poses + the bridge span
+18:26:50 mg5 M2L2C solid prop models/miscobj/radio_military.tik bounds ( -15.034 -3.191 0.000 ) .. ( 15.071 15.405 21.789 ) at ( 3656.000 -3540.000 -482.000 )
+18:26:50 mg5 M2L2C marker -> main objective 1 (craneA) location ( 792.000 -3740.000 -452.000 )
+18:26:50 mg5 M2L2C RADIO used by UnnamedSoldier#8240 t=57.675
+18:26:50 mg5 M2L2C radio audio m2l2c_radio_call from the radio t=57.675
+18:26:50 mg5 M2L2C radio hold length 120 s for 1 players (hidden timer)
+18:26:50 mg5 script errors: 0 []
+18:26:50 t=187.635 process exited
+18:26:51 [m2_mg5] done: 426 shots, window {'clean': True, 'violations': []}

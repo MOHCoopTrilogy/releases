@@ -1,0 +1,16 @@
+23:21:26 booted m2_x1 m2l2c ref=work dog False
+23:21:33 x1    OX M2 t=47.600 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=2
+23:21:33 x1    OX foepos
+23:21:33 x1 -- exit trigger with the objectives unfinished
+23:21:37 x1 GATE closed seen: True
+23:21:40 x1 ---- OBJX log ----
+23:21:40 x1 OBJX armed m2l2c objectives=3 items=0 players=1
+23:21:40 x1 OBJX ACTIVE craneA type=m2crane t=32.500
+23:21:40 x1 OBJX ACTIVE craneB type=m2crane t=32.500
+23:21:40 x1 OBJX ACTIVE radio type=m2radio t=32.500
+23:21:40 x1 OBJX GATE closed: 0/3 done at t=52.050
+23:21:40 x1 M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+23:21:40 x1 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+23:21:40 x1 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+23:21:40 x1 script errors: 0 []
+23:21:40 [m2_x1] done: 1 shots, window {'clean': True, 'violations': []}

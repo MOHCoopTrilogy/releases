@@ -1,0 +1,12 @@
+15:21:27 t=0.038 launched pid 29992 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+15:21:27 t=0.067 in-process guard installed on thread 604
+15:21:28 t=0.662 place 0x11d0d34 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:21:28 t=0.858 place 0x11e0d34 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+15:21:28 t=0.867 place 0xbb0d5a SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:22:43 booted m2_o_m4l1 m4l1 ref=work dog False
+15:23:44 m4l1 ^~^~^ OX RNFTEST pick=none retry-case
+15:23:44 m4l1 ^~^~^ OX RNFTEST pick=none retry-case
+15:23:44 m4l1 ^~^~^ OX RNFTEST pick=none retry-case
+15:23:44 m4l1 script errors: 0
+15:23:44 t=137.120 process exited
+15:23:44 [m2_o_m4l1] done: 0 shots, window {'clean': True, 'violations': []}

@@ -1,0 +1,8 @@
+OX mk2 idx=1 at=( 1500.000 -4600.000 -560.000 ) models/miscobj/crane.tik
+OX mk2 idx=2 at=( 1500.000 -4250.000 -560.000 ) models/miscobj/crane_grey.tik
+OX mk2 idx=3 at=( 1500.000 -3900.000 -560.000 ) models/static/Af_P_Crane.tik
+OX mk2 idx=4 at=( 1500.000 -3550.000 -560.000 ) models/miscobj/subcrane.tik
+shot rm_a
+shot rm_b
+shot rm_c
+errors []

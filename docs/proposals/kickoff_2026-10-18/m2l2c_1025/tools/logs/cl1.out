@@ -1,0 +1,13 @@
+11:20:04 booted m2_cl1 m2l2c ref=work dog False
+11:20:10 cl1    OX M2 t=47.525 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+11:20:11 cl1    OX foepos
+11:20:11 cl1 crane A ready: True
+11:20:13 cl1 ---- OBJX log ----
+11:20:13 cl1 OBJX armed m2l2c objectives=3 items=0 players=1
+11:20:13 cl1 OBJX ACTIVE craneA type=m2crane t=32.250
+11:20:13 cl1 OBJX ACTIVE craneB type=m2crane t=32.250
+11:20:13 cl1 M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+11:20:13 cl1 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+11:20:13 cl1 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+11:20:13 cl1 script errors: 0 []
+11:20:14 [m2_cl1] done: 3 shots, window {'clean': True, 'violations': []}

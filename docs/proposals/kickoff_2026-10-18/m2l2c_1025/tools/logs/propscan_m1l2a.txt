@@ -1,0 +1,4 @@
+PROPSCAN m1l2a k=2 kind=target model=models/static/generator.tik at=( 24.000 2408.000 -138.000 ) mn=( -132.000 -132.000 -1.167 ) mx=( 132.000 152.547 170.500 ) floorgap=-6.000 clips=1 nearest=937
+PROPSCAN m1l2a k=3 kind=target model=models/static/generator.tik at=( 872.000 2008.000 -138.000 ) mn=( -132.000 -132.000 -1.167 ) mx=( 132.000 152.547 170.500 ) floorgap=1.546 clips=1 nearest=937
+PROPSCAN m1l2a k=4 kind=target model=models/static/generator.tik at=( 2128.000 1936.000 -170.000 ) mn=( -132.000 -132.000 -1.167 ) mx=( 132.000 152.547 170.500 ) floorgap=16.743 clips=1 nearest=1258
+PROPSCAN done 3

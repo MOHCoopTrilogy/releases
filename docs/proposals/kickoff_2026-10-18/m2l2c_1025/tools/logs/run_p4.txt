@@ -1,0 +1,13 @@
+OX mk2 idx=1 at=( 790.000 -3700.000 -452.000 ) models/animate/electrical_switch_pulse.tik
+OX mk2 idx=2 at=( 790.000 -3760.000 -452.000 ) models/animate/electrical_switch_pulse.tik
+OX mk2 idx=3 at=( 790.000 -3820.000 -452.000 ) models/animate/electrical_switch_pulse.tik
+OX mk2 idx=4 at=( 790.000 -3880.000 -452.000 ) models/animate/electrical_switch_pulse.tik
+OX mk2 idx=5 at=( 778.000 -3940.000 -452.000 ) models/animate/electrical_switch_pulse.tik
+shot sw_a
+shot sw_b
+shot sw_c
+## hray wallface
+ray@600.000,-3800.000 hits: 799,-3800 805,-3800 811,-3800 817,-3800 823,-3800
+ray@600.000,-3760.000 hits: 799,-3760 805,-3760 811,-3760 817,-3760 823,-3760
+ray@600.000,-3720.000 hits: 799,-3720 805,-3720 811,-3720 817,-3720 823,-3720
+errors []

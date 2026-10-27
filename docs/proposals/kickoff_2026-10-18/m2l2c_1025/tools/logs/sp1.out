@@ -1,0 +1,13 @@
+10:14:45 booted m2_sp1 m2l2c ref=work dog False
+10:14:53 sp1 SPOT (4020, -3160) after 3s pos (3583.874, -3292.53) REACHED gate side
+10:14:59 sp1 SPOT (4020, -3400) after 5s pos (3559.585, -3300.131) REACHED gate side
+10:15:07 sp1 SPOT (4020, -3656) after 5s pos (3457.125, -3237.22) REACHED gate side
+10:15:13 sp1 SPOT (4020, -2936) after 5s pos (3575.072, -3288.783) REACHED gate side
+10:15:18 sp1 SPOT (4244, -3400) after 5s pos (3559.974, -3300.049) REACHED gate side
+10:15:26 sp1 SPOT (4244, -2936) after 8s pos (3560.101, -3300.988) REACHED gate side
+10:15:32 sp1 SPOT (3796, -2936) after 5s pos (3560.094, -3300.152) REACHED gate side
+10:15:42 sp1 SPOT (4020, -4136) after 9s pos (3574.025, -3310.106) REACHED gate side
+10:15:53 sp1 SPOT (4244, -4376) after 10s pos (3333.26, -3166.349) REACHED gate side
+10:16:05 sp1 SPOT (4020, -4888) after 11s pos (3320.809, -3152.107) REACHED gate side
+10:16:05 sp1 errors []
+10:16:06 [m2_sp1] done: 0 shots, window {'clean': True, 'violations': []}

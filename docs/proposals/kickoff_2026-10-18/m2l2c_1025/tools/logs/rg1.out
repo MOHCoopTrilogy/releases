@@ -1,0 +1,37 @@
+15:35:01 t=0.043 launched pid 6864 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+15:35:01 t=0.076 in-process guard installed on thread 540
+15:35:01 t=0.645 place 0x3cf098c SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:35:01 t=0.841 place 0x3d0098c SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+15:35:01 t=0.847 place 0x1930d1e SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:36:14 booted m2_rg1 m2l2c ref=work dog False
+15:36:20 rg1    OX M2 t=47.275 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+15:36:21 rg1    OX foepos
+15:36:21 rg1 crane A ready: True
+15:36:23 rg1 -- craneA: at the control panel
+15:36:28 rg1 panel used: True
+15:36:32 rg1    OX M2 t=58.475 active=1 doneN=0 alive=0 | c1 st=run p=0.088 | c2 st=idle p=0 | gateOpen=- me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+15:36:32 rg1    OX foepos
+15:36:44 rg1    OX M2 t=71.300 active=1 doneN=0 alive=0 | c1 st=run p=0.346 | c2 st=idle p=0 | gateOpen=- me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+15:36:45 rg1    OX foepos
+15:36:57 rg1    OX M2 t=84.150 active=1 doneN=0 alive=0 | c1 st=run p=0.602 | c2 st=idle p=0 | gateOpen=- me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+15:36:57 rg1    OX foepos
+15:37:10 rg1    OX M2 t=97.000 active=1 doneN=0 alive=0 | c1 st=drop p=0.840 | c2 st=idle p=0 | gateOpen=- me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+15:37:10 rg1    OX foepos
+15:37:16 rg1 objective done: True
+15:37:18 rg1 ---- OBJX log ----
+15:37:18 rg1 OBJX armed m2l2c objectives=3 items=0 players=1
+15:37:18 rg1 OBJX ACTIVE craneA type=m2crane t=32.000
+15:37:18 rg1 OBJX ACTIVE craneB type=m2crane t=32.000
+15:37:18 rg1 OBJX DONE craneA took=66.100s done=1/3 t=98.100
+15:37:18 rg1 M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+15:37:18 rg1 M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+15:37:18 rg1 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+15:37:18 rg1 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+15:37:18 rg1 M2L2C PANEL A used by UnnamedSoldier#8240 t=54.000
+15:37:18 rg1 M2L2C crane A cycle start T=50s players=1
+15:37:18 rg1 M2L2C crane A RELEASE t=96.000
+15:37:18 rg1 M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=98.100
+15:37:18 rg1 M2L2C u-boat A SINKING starts t=103.100 over 32s
+15:37:18 rg1 script errors: 0 []
+15:37:18 t=137.610 process exited
+15:37:19 [m2_rg1] done: 71 shots, window {'clean': True, 'violations': []}

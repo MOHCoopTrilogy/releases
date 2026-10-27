@@ -1,0 +1,20 @@
+15:53:24 t=0.045 launched pid 13216 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+15:53:24 t=0.085 in-process guard installed on thread 7736
+15:53:25 t=0.693 place 0x2940b4e SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:53:25 t=0.949 place 0x2950b4e SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+15:53:25 t=0.960 place 0x1ef07a2 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+15:54:42 booted m2_f_m4l1 m4l1 ref=work dog False
+15:54:42 m4l1 officer spawned: True
+15:56:47 m4l1 ^~^~^ OFFICER wave 1 spawn=( 977.000 -5241.000 -95.875 ) visible=0 retries=0
+15:56:47 m4l1 ^~^~^ REINF man w=1 #0 spawned t=49.450 at ( 1032.813 -5193.500 -95.875 )
+15:56:47 m4l1 ^~^~^ REINF route wave=1 men=1 spawn=( 977.000 -5241.000 -95.875 ) officer=( 182.952 -5343.047 -128.877 )
+15:56:47 m4l1 ^~^~^ REINF man w=1 #0 ARRIVED t=56.950 after 7.500 s
+15:56:47 m4l1 ^~^~^ OFFICER wave 1 spawn=( -1281.477 -3534.628 -167.639 ) visible=0 retries=0
+15:56:47 m4l1 ^~^~^ REINF man w=2 #0 spawned t=109.975 at ( -1208.963 -3498.166 -167.174 )
+15:56:47 m4l1 ^~^~^ REINF man w=2 #1 spawned t=109.975 at ( -1281.051 -3408.642 -167.371 )
+15:56:47 m4l1 ^~^~^ REINF route wave=2 men=2 spawn=( -1281.477 -3534.628 -167.639 ) officer=( 182.952 -5343.047 -128.877 )
+15:56:47 m4l1 ^~^~^ REINF man w=2 #0 ARRIVED t=120.475 after 10.500 s
+15:56:47 m4l1 ^~^~^ REINF man w=2 #1 ARRIVED t=123.475 after 13.500 s
+15:56:47 m4l1 script errors: 0
+15:56:48 t=203.976 process exited
+15:56:48 [m2_f_m4l1] done: 0 shots, window {'clean': True, 'violations': []}

@@ -1,0 +1,19 @@
+   87s    OX M2 t=47.250 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=2
+   87s    OX foepos
+   87s crane A ready: True
+   90s -- radio subtitles
+   90s radio active: True
+  128s ---- OBJX log ----
+  128s OBJX armed m2l2c objectives=3 items=0 players=1
+  128s OBJX ACTIVE craneA type=m2crane t=32.000
+  128s OBJX ACTIVE craneB type=m2crane t=32.000
+  128s OBJX ACTIVE radio type=m2radio t=32.000
+  128s M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+  128s M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+  128s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  128s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  128s M2L2C radio audio m2l2c_radio_call from the radio t=51.400
+  128s M2L2C radio audio m2l2c_radio_mid from the radio t=60.625
+  128s M2L2C radio audio m2l2c_radio_late from the radio t=69.825
+  128s M2L2C radio audio m2l2c_radio_confirm from the radio t=79.050
+  128s script errors: 0 []

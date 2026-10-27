@@ -1,0 +1,31 @@
+   83s    OX M2 t=47.350 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   83s    OX foepos
+   83s crane A ready: True
+   86s -- craneA: at the control panel
+   91s panel used: True
+   94s    OX M2 t=58.150 active=1 doneN=0 alive=3 | c1 st=run p=0.150 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+   94s    OX foepos [( 748.014 -5662.781 -511.875 )] [( 774.232 -5399.162 -511.875 )] [( 728.474 -5870.343 -511.875 )]
+  107s    OX M2 t=71.000 active=1 doneN=0 alive=3 | c1 st=run p=0.577 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+  107s    OX foepos [( 986.671 -4260.999 -511.875 )] [( 735.797 -4998.155 -511.875 )] [( -222.353 -5158.565 -511.875 )]
+  113s JAMMED (auto-handled) craneA
+  124s    OX M2 t=88.650 active=1 doneN=0 alive=3 | c1 st=drop p=0.840 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+  125s    OX foepos [( 781.653 -4140.372 -511.875 )] [( 758.446 -4557.582 -511.875 )] [( 390.897 -4702.940 -627.875 )]
+  130s objective done: True
+  132s ---- OBJX log ----
+  132s OBJX armed m2l2c objectives=3 items=0 players=1
+  132s OBJX ACTIVE craneA type=m2crane t=32.250
+  132s OBJX ACTIVE craneB type=m2crane t=32.250
+  132s OBJX DONE craneA took=56.850s done=1/3 t=89.100
+  132s M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+  132s M2L2C mesh gate built: 2 panels
+  132s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  132s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  132s M2L2C PANEL A used by UnnamedSoldier#8240 t=53.650
+  132s M2L2C crane A cycle start T=30s players=1
+  132s M2L2C crane A wave 1 men=3 at=( 748.000 -5568.000 -512.000 ) alive=3
+  132s M2L2C crane A JAMMED at 0.713 t=75.150
+  132s M2L2C crane A re-activated t=81.450
+  132s M2L2C crane A wave 2 men=3 at=( 748.000 -4560.000 -512.000 ) alive=3
+  132s M2L2C crane A RELEASE t=85.250
+  132s M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=89.100
+  132s script errors: 0 []

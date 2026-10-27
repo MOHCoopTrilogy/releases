@@ -1,0 +1,39 @@
+   90s    OX M2 t=47.300 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=2
+   90s    OX foepos
+   90s -- mesh gate: before the fake / with the fake, then the gate opening with Axis coming through
+   90s radio active: True
+   99s radio used: True
+  102s    OX foepos
+  104s    OX foepos
+  107s    OX foepos
+  110s    OX foepos
+  112s    OX foepos
+  115s    OX foepos [( 3840.458 -3424.323 -511.875 )] [( 3740.000 -3345.000 -511.875 )] [( 3740.000 -3290.000 -511.875 )] [( 3771.045 -3222.318 -511.875 )]
+  118s    OX foepos [( 3845.448 -3410.735 -511.875 )] [( 4000.752 -3129.870 -511.875 )] [( 3535.345 -3273.722 -511.875 )] [( 3673.580 -3226.602 -511.875 )]
+  120s    OX foepos [( 3855.558 -3381.718 -511.875 )] [( 3816.775 -3114.827 -511.875 )] [( 3212.465 -3560.725 -511.875 )] [( 3689.731 -3260.793 -511.875 )]
+  123s    OX foepos [( 3843.848 -3438.871 -511.875 )] [( 3848.975 -3196.403 -511.875 )] [( 3201.209 -3890.908 -511.875 )] [( 3700.754 -3337.374 -511.875 )]
+  126s    OX foepos [( 3843.848 -3438.871 -511.875 )] [( 3850.428 -3206.320 -511.875 )] [( 3201.209 -3890.908 -511.875 )] [( 3692.158 -3275.067 -511.875 )]
+  128s    OX foepos [( 3858.474 -3348.602 -511.875 )] [( 3824.444 -3126.160 -511.875 )] [( 3201.209 -3890.908 -511.875 )] [( 3693.822 -3334.644 -511.875 )]
+  131s    OX foepos [( 3850.750 -3240.598 -511.875 )] [( 3782.319 -3046.936 -511.875 )] [( 3201.209 -3890.908 -511.875 )] [( 3659.522 -3200.167 -511.875 )]
+  134s    OX foepos [( 3855.746 -3341.521 -511.875 )] [( 3744.762 -2992.858 -511.875 )] [( 3201.209 -3890.908 -511.875 )] [( 3562.880 -3264.459 -511.875 )]
+  134s mesh frames done
+  134s ---- OBJX log ----
+  134s OBJX armed m2l2c objectives=3 items=0 players=1
+  134s OBJX ACTIVE craneA type=m2crane t=32.000
+  134s OBJX ACTIVE craneB type=m2crane t=32.000
+  134s OBJX ACTIVE radio type=m2radio t=32.000
+  134s OBJX HOLD radio zone=the storage room at=( 3615.000 -3850.000 -512.000 ) r=700 total=60s players=1
+  134s M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+  134s M2L2C barrel-room door built (open) at ( 3423.000 -3430.000 -380.000 )
+  134s M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+  134s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  134s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  134s M2L2C RADIO used by UnnamedSoldier#8240 t=55.200
+  134s M2L2C barrel-room door SHUTTING t=55.200
+  134s M2L2C gate OPENING t=55.200
+  134s M2L2C gate OPEN t=58.200
+  134s M2L2C barrel-room door FORCED OPEN t=68.200
+  134s M2L2C mesh gate OPENING t=69.900
+  134s M2L2C radio wave 1 entry=mesh men=4 at=( 3740.000 -3330.000 -512.000 )
+  134s M2L2C mesh gate OPEN, paths connected t=71.400
+  134s script errors: 0 []

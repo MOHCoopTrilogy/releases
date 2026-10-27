@@ -1,0 +1,13 @@
+control OX aitest start=( -1300.000 -6340.000 -490.000 ) goal=( -900.000 -6340.000 -496.000 )
+control OX aipos ( -899.971 -6339.908 -515.875 )
+control OX aipos ( -903.088 -6347.115 -511.875 )
+control OX aipos ( -904.123 -6349.907 -511.875 )
+--- pocket test: west of gate1, goal east of it
+pocket OX aitest start=( -2300.000 -6340.000 -515.875 ) goal=( -1100.000 -6340.000 -496.000 )
+pocket OX aipos ( -2300.000 -6340.000 -515.875 )
+pocket OX aipos ( -2300.075 -6346.324 -511.875 )
+pocket OX aipos ( -2304.264 -6350.326 -511.875 )
+pocket OX aipos ( -2304.266 -6348.572 -511.875 )
+pocket OX aipos ( -2304.299 -6343.587 -515.875 )
+pocket OX aipos ( -2300.125 -6341.730 -515.875 )
+errors []

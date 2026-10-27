@@ -498,6 +498,119 @@ ox_do local.c:{
 		println ( "^~^~^ OX PATHD from " + local.px + "," + local.py + " pathdist=" + local.pd + " flat=" + vector_length ( ( local.px local.py 0 ) - ( local.gx local.gy 0 ) ) )
 		local.sc remove
 	}
+	if( local.c == "hidgrid" ){
+		// hidden cells: viewer at (ox_x ox_y), grid x from ox_yaw step ox_step (ox_k cols), y from ox_pitch (ox_s rows); a cell is listed when it has a floor,
+		// no sight line (head + feet) from the viewer, and a path of < 2600 u to the rally goal (ox_z = goal x, goal y = -3740 fixed by the caller via ox_s2)
+		local.vx = waitthread ox_f "ox_x"
+		local.vy = waitthread ox_f "ox_y"
+		local.gx0 = waitthread ox_f "ox_yaw"
+		local.gy0 = waitthread ox_f "ox_pitch"
+		local.nx = int( waitthread ox_f "ox_k" )
+		local.ny = int( getcvar "ox_s" )
+		local.sp = waitthread ox_f "ox_step"
+		local.rx = waitthread ox_f "ox_z"
+		local.ry = waitthread ox_f "ox_s2"
+		local.eye = ( local.vx local.vy -452 )
+		local.nfl = 0
+		local.nhid = 0
+		local.sc = spawn "models/human/allied_airborne_soldier.tik"
+		local.sc hide
+		local.sc notsolid
+		local.sc nodamage
+		local.sc.enableEnemy = 0
+		local.sc.flags["coop_sceneActor"] = 1
+		local.sc.flags["coop_personality_set"] = 1
+		local.sc physics_off
+		local.sc forceactivate
+		for( local.j = 0; local.j < local.ny; local.j++ ){
+			for( local.i = 0; local.i < local.nx; local.i++ ){
+				local.cx = local.gx0 + ( local.i * local.sp )
+				local.cy = local.gy0 + ( local.j * local.sp )
+				local.fl = traced ( local.cx local.cy -400 ) ( local.cx local.cy -540 ) 1
+				if( local.fl["fraction"] >= 1 ){ continue }
+				local.nfl++
+				local.t1 = traced local.eye ( local.cx local.cy -450 ) 1
+				if( local.t1["fraction"] >= 0.97 ){ continue }
+				local.t2 = traced local.eye ( local.cx local.cy -500 ) 1
+				if( local.t2["fraction"] >= 0.97 ){ continue }
+				local.nhid++
+				local.sc.origin = ( local.cx local.cy -505 )
+				local.sc runto ( local.rx local.ry -512 )
+				wait 0.3
+				local.pd = local.sc.pathdist
+				println ( "^~^~^ OX HID " + local.cx + " " + local.cy + " pd=" + int( local.pd ) )
+			}
+			waitframe
+		}
+		local.sc remove
+		println ( "^~^~^ OX HIDGRID done floors=" + local.nfl + " hidden=" + local.nhid )
+	}
+	if( local.c == "whatis" ){
+		// what does a ray from (ox_x ox_y ox_z) hit going towards (ox_yaw ox_pitch ox_k): endpos, entity classname / targetname / model
+		local.p0 = ( ( waitthread ox_f "ox_x" ) ( waitthread ox_f "ox_y" ) ( waitthread ox_f "ox_z" ) )
+		local.p1 = ( ( waitthread ox_f "ox_yaw" ) ( waitthread ox_f "ox_pitch" ) ( waitthread ox_f "ox_k" ) )
+		local.tr = traced local.p0 local.p1
+		local.en = local.tr["entity"]
+		local.msg = "^~^~^ OX WHATIS frac=" + local.tr["fraction"] + " end=" + local.tr["endpos"]
+		if( local.en != NIL && local.en != NULL ){ local.msg = local.msg + " ent class=" + local.en.classname + " target=" + local.en.targetname + " model=" + local.en.model + " origin=" + local.en.origin + " mins=" + local.en.getmins + " maxs=" + local.en.getmaxs }
+		println local.msg
+	}
+	if( local.c == "benchz" ){
+		// bench top: vertical rays at the radio's x,y with several contents masks
+		local.bx = waitthread ox_f "ox_x"
+		local.by = waitthread ox_f "ox_y"
+		local.top = ( local.bx local.by -400 )
+		local.bot = ( local.bx local.by -540 )
+		local.msg = "^~^~^ OX BENCHZ at " + local.bx + "," + local.by + ":"
+		local.t0 = traced local.top local.bot
+		local.e0 = local.t0["endpos"]
+		local.msg = local.msg + " default=" + local.e0[2]
+		local.t1 = traced local.top local.bot 1
+		local.e1 = local.t1["endpos"]
+		local.msg = local.msg + " world1=" + local.e1[2]
+		local.t2 = traced local.top local.bot 1023 ( 0 0 0 ) ( 0 0 0 ) 16777215
+		local.e2 = local.t2["endpos"]
+		local.msg = local.msg + " all=" + local.e2[2]
+		local.t3 = traced local.top local.bot 1023 ( -2 -2 0 ) ( 2 2 2 ) 466945
+		local.e3 = local.t3["endpos"]
+		local.msg = local.msg + " box466945=" + local.e3[2]
+		println local.msg
+	}
+	if( local.c == "propscan" ){
+		// every script model the objectives made: model, origin, bounds, gap to the floor under it (0 = standing on it), box inside the world (clips), distance to the nearest other one
+		local.cnt = 0
+		for( local.k = 1; local.k <= level.objx_itn; local.k++ ){
+			local.e = level.objx_it_ent[local.k]
+			if( local.e == NULL || local.e == NIL ){ continue }
+			local.cnt++
+			local.og = local.e.origin
+			local.mn = local.e.getmins
+			local.mx = local.e.getmaxs
+			local.gt = traced ( local.og + ( 0 0 6 ) ) ( local.og - ( 0 0 60 ) ) 1
+			local.gap = 99
+			if( local.gt["fraction"] < 1 ){ local.ge = local.gt["endpos"]; local.gap = local.og[2] - local.ge[2] }
+			local.hb = traced ( local.og + ( 0 0 3 ) ) ( local.og + ( 0 0 4 ) ) 1023 local.mn local.mx 1
+			local.cl = 0
+			if( local.hb["startSolid"] == 1 ){ local.cl = 1 }
+			local.near = 99999
+			for( local.q = 1; local.q <= level.objx_itn; local.q++ ){
+				if( local.q == local.k ){ continue }
+				local.o2 = level.objx_it_ent[local.q]
+				if( local.o2 == NULL || local.o2 == NIL ){ continue }
+				local.dd = vector_length ( local.o2.origin - local.og )
+				if( local.dd < local.near ){ local.near = local.dd }
+			}
+			println ( "^~^~^ OX PROPSCAN " + level.coop_mapname + " k=" + local.k + " kind=" + level.objx_it_kind[local.k] + " model=" + local.e.model + " at=" + local.og + " mn=" + local.mn + " mx=" + local.mx + " floorgap=" + local.gap + " clips=" + local.cl + " nearest=" + int( local.near ) )
+		}
+		println ( "^~^~^ OX PROPSCAN done " + local.cnt )
+	}
+	if( local.c == "objact" ){
+		for( local.i = 1; local.i <= level.objx_n; local.i++ ){
+			if( level.objx_stat[local.i] == 1 ){ thread coop_mod/objx.scr::ox_activate local.i }
+			wait 1
+		}
+		println ( "^~^~^ OX OBJACT " + level.objx_n )
+	}
 	if( local.c == "foepos" ){
 		local.msg = "^~^~^ OX foepos"
 		if( level.coop_counterN != NIL ){

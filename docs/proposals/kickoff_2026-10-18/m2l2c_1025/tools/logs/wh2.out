@@ -1,0 +1,35 @@
+18:43:40 t=0.035 launched pid 31664 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+18:43:40 t=0.082 in-process guard installed on thread 5468
+18:43:41 t=0.639 place 0x19b0d3a SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+18:43:41 t=0.827 place 0x19c0d3a SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+18:43:41 t=0.836 place 0x1180388 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+18:44:54 booted m2_wh2 m2l2c ref=work dog False
+18:45:00 wh2    OX M2 t=47.450 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+18:45:01 wh2    OX foepos
+18:45:01 wh2 crane A ready: True
+18:45:05 wh2 ray@748.000,-4500.000 hits: -287,-3901 -394,-3840 -1503,-3199 -1631,-3125 -2719,-2497
+18:45:05 wh2 yaw 120 ray@748.000,-4500.000 hits: -287,-2705 -371,-2560
+18:45:05 wh2 yaw 135 ray@748.000,-4500.000 hits: -287,-3464 -343,-3408 -1503,-2248 -1631,-2120 -3871,119
+18:45:05 wh2 yaw 165 ray@748.000,-4500.000 hits: -287,-4222 -1503,-3896 -1714,-3840 -2719,-3570 -2847,-3536
+18:45:06 wh2 yaw 180 ray@748.000,-4500.000 hits: -287,-4500 -1503,-4500 -2719,-4500 -2847,-4500 -3871,-4500
+18:45:06 wh2 yaw 200 ray@748.000,-4500.000 hits: -287,-4877 -1503,-5319 -2719,-5762 -3743,-6134 -4319,-6344
+18:45:06 wh2 ---- OBJX log ----
+18:45:06 wh2 OBJX armed m2l2c objectives=3 items=0 players=1
+18:45:06 wh2 OBJX ACTIVE craneA type=m2crane t=32.250
+18:45:06 wh2 OBJX ACTIVE craneB type=m2crane t=32.250
+18:45:06 wh2 M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+18:45:06 wh2 M2L2C barrel-room door built (open) at ( 3423.000 -3430.000 -380.000 )
+18:45:06 wh2 M2L2C mesh gate: stock map ($mesh_gate missing) - fallback entries only
+18:45:06 wh2 M2L2C u-boats: stock map ($uboat_a missing) - burn only
+18:45:06 wh2 M2L2C solid prop models/animate/electrical_switch_pulse.tik bounds ( -8.000 -13.000 0.310 ) .. ( 8.000 13.000 26.119 ) at ( 792.000 -3740.000 -452.000 )
+18:45:06 wh2 M2L2C solid prop models/animate/electrical_switch_pulse.tik bounds ( -8.000 -13.000 0.310 ) .. ( 8.000 13.000 26.119 ) at ( 3225.000 -3600.000 -452.000 )
+18:45:06 wh2 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+18:45:06 wh2 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+18:45:06 wh2 M2L2C SWEEP control (box inside the hull): startSolid=0 fraction=1.000
+18:45:06 wh2 M2L2C SWEEP control (box inside the hull): startSolid=1 fraction=0.000
+18:45:06 wh2 M2L2C SWEEP crane A done: 0 intersections over 61 poses + the bridge span
+18:45:06 wh2 M2L2C SWEEP crane B done: 0 intersections over 61 poses + the bridge span
+18:45:06 wh2 M2L2C marker -> main objective 1 (craneA) location ( 792.000 -3740.000 -452.000 )
+18:45:06 wh2 script errors: 0 []
+18:45:06 t=85.908 process exited
+18:45:06 [m2_wh2] done: 4 shots, window {'clean': True, 'violations': []}

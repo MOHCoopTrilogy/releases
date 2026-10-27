@@ -1,0 +1,26 @@
+   87s    OX M2 t=47.325 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   87s    OX M2ENT crane1 desk=( 792.000 -3740.000 -452.000 ) panel=( 792.000 -3740.000 -452.000 ) hook=( 500.000 -3880.000 -120.000 ) load=( 738.000 -3880.000 -512.000 ) dmodel=models/animate/electrical_switch_pulse.tik hscale=1.000
+   87s crane A ready: True
+   90s -- craneA: at the control panel
+   95s panel used: True
+   98s    OX M2 t=58.525 active=1 doneN=0 alive=0 | c1 st=run p=0.147 | c2 st=idle p=0 | gateOpen=0 me=( 225.000 -3950.000 -449.000 ) | o1=2 | o2=2 | o3=1
+   98s    OX M2ENT crane1 desk=( 792.000 -3740.000 -452.000 ) panel=( 792.000 -3740.000 -452.000 ) hook=( 685.681 -3880.000 -120.000 ) load=( 738.000 -3880.000 -512.000 ) dmodel=models/animate/electrical_switch_pulse.tik hscale=1.000
+  111s    OX M2 t=71.375 active=1 doneN=0 alive=3 | c1 st=run p=0.577 | c2 st=idle p=0 | gateOpen=0 me=( 225.000 -3950.000 -449.000 ) | o1=2 | o2=2 | o3=1
+  111s    OX M2ENT crane1 desk=( 792.000 -3740.000 -452.000 ) panel=( 792.000 -3740.000 -452.000 ) hook=( 710.963 -3875.475 -120.000 ) load=( 710.963 -3875.475 -230.000 ) dmodel=models/animate/electrical_switch_pulse.tik hscale=1.000
+  124s    OX M2 t=84.225 active=1 doneN=1 alive=3 | c1 st=done p=1 | c2 st=idle p=0 | gateOpen=0 me=( 225.000 -3950.000 -449.000 ) | o1=3 | o2=2 | o3=1
+  124s    OX M2ENT crane1 desk=( 792.000 -3740.000 -452.000 ) panel=( 792.000 -3740.000 -452.000 ) hook=( 260.000 -3800.000 -120.000 ) load=- dmodel=models/animate/electrical_switch_pulse.tik hscale=1.000
+  127s objective done: True
+  128s ---- OBJX log ----
+  128s OBJX armed m2l2c objectives=3 items=0 players=1
+  128s OBJX ACTIVE craneA type=m2crane t=32.250
+  128s OBJX ACTIVE craneB type=m2crane t=32.250
+  128s OBJX DONE craneA took=50.850s done=1/3 t=83.100
+  128s M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+  128s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  128s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  128s M2L2C PANEL A used by UnnamedSoldier#8240 t=54.050
+  128s M2L2C crane A cycle start T=30s players=1
+  128s M2L2C crane A wave 1 men=3 at=( 748.000 -2936.000 -512.000 ) alive=3
+  128s M2L2C crane A RELEASE t=79.250
+  128s M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=83.100
+  128s script errors: 1 ["[2026-10-25 21:39:11 UTC-6.000] ^~^~^ Script Error : Field 'origin' applied to NULL listener"]

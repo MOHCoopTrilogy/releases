@@ -1,0 +1,80 @@
+   91s    OX M2 t=48.900 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   92s    OX foepos
+   92s crane A ready: True
+   96s -- craneA: at the control panel
+  103s panel used: True
+  107s    OX M2 t=64.200 active=1 doneN=0 alive=3 | c1 st=run p=0.220 | c2 st=idle p=0 | gateOpen=- me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+  108s    OX foepos [( 766.000 -4469.000 -511.875 )] [( 788.275 -4405.674 -493.875 )] [( 755.228 -4508.447 -511.875 )]
+  128s    OX M2 t=82.875 active=1 doneN=1 alive=3 | c1 st=done p=1 | c2 st=idle p=0 | gateOpen=- me=( 748.000 -4000.000 -512.000 ) | o1=3 | o2=2 | o3=1
+  128s    OX foepos [( 770.467 -4599.155 -511.875 )] [( 788.275 -4405.674 -493.875 )] [( 736.657 -4273.168 -511.875 )]
+  130s objective done: True
+  132s -- craneB: at the control panel
+  137s panel used: True
+  140s    OX M2 t=95.400 active=1 doneN=1 alive=6 | c1 st=done p=1 | c2 st=run p=0.180 | gateOpen=- me=( 3190.000 -3850.000 -512.000 ) | o1=3 | o2=2 | o3=1
+  140s    OX foepos [( 770.972 -5597.052 -511.875 )] [( 758.124 -5038.542 -511.875 )] [( 763.938 -5249.461 -511.875 )] [( 3188.859 -5606.313 -511.875 )] [( 3147.725 -5498.674 -511.875 )] [( 3064.216 -5402.187 -634.075 )]
+  153s    OX M2 t=108.275 active=1 doneN=1 alive=6 | c1 st=done p=1 | c2 st=run p=0.696 | gateOpen=- me=( 3190.000 -3850.000 -512.000 ) | o1=3 | o2=2 | o3=1
+  153s    OX foepos [( 1173.163 -6285.884 -511.875 )] [( 778.402 -6193.186 -511.875 )] [( 2104.248 -6414.006 -511.875 )] [( 3187.129 -4520.532 -511.875 )] [( 3190.058 -5307.039 -511.875 )] [( 3116.955 -5419.411 -1087.875 )]
+  163s objective done: True
+  164s -- radio
+  164s radio active: True
+  175s radio used: True
+  178s    OX M2 t=132.525 active=1 doneN=2 alive=6 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+  179s    OX foepos [( 3169.109 -4971.840 -511.875 )] [( 3184.229 -5652.343 -511.875 )] [( 3184.728 -4617.572 -511.875 )] [( 3187.129 -4520.532 -511.875 )] [( 3177.627 -5007.125 -511.875 )] [( 3116.955 -5419.411 -1087.875 )]
+  195s    OX M2 t=147.875 active=1 doneN=2 alive=10 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+  196s    OX foepos [( 3169.109 -4971.840 -511.875 )] [( 3183.269 -5152.659 -511.875 )] [( 3184.728 -4617.572 -511.875 )] [( 3187.129 -4520.532 -511.875 )] [( 3177.627 -5007.125 -511.875 )] [( 3116.955 -5419.411 -1087.875 )] [( 4090.142 -41
+  210s    OX M2 t=161.700 active=1 doneN=2 alive=10 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+  210s    OX foepos [( 3169.109 -4971.840 -511.875 )] [( 3183.269 -5152.659 -511.875 )] [( 3184.728 -4617.572 -511.875 )] [( 3187.129 -4520.532 -511.875 )] [( 3177.627 -5007.125 -511.875 )] [( 3116.955 -5419.411 -1087.875 )] [( 4090.786 -41
+  226s    OX M2 t=175.825 active=1 doneN=2 alive=10 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+  226s    OX foepos [( 3169.109 -4971.840 -511.875 )] [( 3183.269 -5152.659 -511.875 )] [( 3184.728 -4617.572 -511.875 )] [( 3187.129 -4520.532 -511.875 )] [( 3177.627 -5007.125 -511.875 )] [( 3116.955 -5419.411 -1087.875 )] [( 4090.786 -41
+  239s    OX M2 t=188.150 active=1 doneN=2 alive=14 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+  239s    OX foepos [( 3169.109 -4971.840 -511.875 )] [( 3183.269 -5152.659 -511.875 )] [( 3184.728 -4617.572 -511.875 )] [( 3187.129 -4520.532 -511.875 )] [( 3177.627 -5007.125 -511.875 )] [( 3116.955 -5419.411 -1087.875 )] [( 4090.786 -41
+  252s    OX M2 t=201.125 active=1 doneN=2 alive=14 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+  253s    OX foepos [( 3169.109 -4971.840 -511.875 )] [( 3183.269 -5152.659 -511.875 )] [( 3184.728 -4617.572 -511.875 )] [( 3187.129 -4520.532 -511.875 )] [( 3177.627 -5007.125 -511.875 )] [( 3116.955 -5419.411 -1087.875 )] [( 4090.786 -41
+  259s all done: True
+  304s exit chain: False
+  308s ---- OBJX log ----
+  308s OBJX armed m2l2c objectives=3 items=0 players=1
+  308s OBJX ACTIVE craneA type=m2crane t=32.250
+  308s OBJX ACTIVE craneB type=m2crane t=32.250
+  308s OBJX DONE craneA took=49.500s done=1/3 t=81.750
+  308s OBJX DONE craneB took=81.700s done=2/3 t=113.950
+  308s OBJX ACTIVE radio type=m2radio t=118.250
+  308s OBJX HOLD radio zone=the storage room at=( 3615.000 -3850.000 -512.000 ) r=360 total=75s players=1
+  308s OBJX HOLD clock 0:00 elapsed=75.175 waves=2 lost=0
+  308s OBJX DONE radio took=88.175s done=3/3 t=206.425
+  308s OBJX ALL DONE 3 objectives t=206.425
+  308s M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+  308s M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+  308s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  308s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  308s M2L2C PANEL A used by UnnamedSoldier#8240 t=58.650
+  308s M2L2C crane A cycle start T=25s players=1
+  308s M2L2C crane A wave 1 men=3 at=( 748.000 -4560.000 -512.000 ) alive=3
+  308s M2L2C crane A RELEASE t=79.650
+  308s M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=81.750
+  308s M2L2C u-boat A SINKING starts t=86.750 over 32s
+  308s M2L2C PANEL B used by UnnamedSoldier#8240 t=90.850
+  308s M2L2C crane B cycle start T=25s players=1
+  308s M2L2C crane B wave 1 men=3 at=( 3188.000 -5648.000 -512.000 ) alive=6
+  308s M2L2C crane B RELEASE t=111.850
+  308s M2L2C crane B IMPACT at=( 2760.000 -3400.000 -449.000 ) t=113.950
+  308s M2L2C u-boat A SUNK, hidden t=118.750
+  308s M2L2C u-boat B SINKING starts t=118.950 over 32s
+  308s M2L2C RADIO used by UnnamedSoldier#8240 t=128.250
+  308s M2L2C radio wave 1 entry=mesh men=0 at=( 3740.000 -3330.000 -512.000 )
+  308s M2L2C mesh wave 1 group 0 placed at ( 4020.000 -4136.000 -512.000 ) t=141.275
+  308s M2L2C radio wave 1 entry=door men=1 at=( 3367.000 -3340.000 -512.000 )
+  308s M2L2C radio wave 1 entry=stairs men=1 at=( 3612.000 -4016.000 -260.000 )
+  308s M2L2C radio wave 1 entry=north men=1 at=( 3412.000 -2952.000 -496.000 )
+  308s M2L2C mesh wave 1 group 1 placed at ( 4244.000 -4376.000 -512.000 ) t=144.275
+  308s M2L2C mesh gate OPENING t=147.275
+  308s M2L2C mesh wave 1 group 2 placed at ( 4020.000 -4888.000 -512.000 ) t=147.275
+  308s M2L2C mesh wave 1 men=1
+  308s M2L2C mesh gate OPEN, paths connected t=148.775
+  308s M2L2C u-boat B SUNK, hidden t=150.950
+  308s M2L2C radio wave 2 entry=door men=1 at=( 3367.000 -3340.000 -512.000 )
+  308s M2L2C radio wave 2 entry=stairs men=1 at=( 3612.000 -4016.000 -260.000 )
+  308s M2L2C radio wave 2 entry=north men=1 at=( 3412.000 -2952.000 -496.000 )
+  308s M2L2C radio wave 2 entry=pier men=1 at=( 3190.000 -2150.000 -496.000 )
+  308s M2L2C mesh gate CLOSED (hold won), paths disconnected t=213.925
+  308s script errors: 0 []

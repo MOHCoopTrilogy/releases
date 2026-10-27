@@ -1,0 +1,10 @@
+09:34:16 ded2 server armed: True after 6s
+09:35:27 booted m2_ded2 m1l1 ref=work dog False
+09:35:52 ded2 server saw client: True ['[2026-10-26 09:34:15 UTC-6.000] ^~^~^ M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected', '[2026-10-26 09:35:34 UTC-6.000] broadcast: print "UnnamedSoldier#8240 disconnected\\n"']
+09:36:01 ded2 server script errors: 0 []
+09:36:01 ded2 server mesh gate lines: ['M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected']
+09:36:01 ded2 server rgset lines: []
+09:36:01 ded2 server bad-submodel/CM lines: ['[2026-10-26 09:34:11 UTC-6.000] CM_LoadMap( maps/m2l2c.bsp, 0 )', '[2026-10-26 09:34:14 UTC-6.000] DUPLICATE ALIASES: pistol_drop1 and pistol_drop1', '[2026-10-26 09:34:14 UTC-6.000] DUPLICATE ALIASES: rifle_drop1 and rifle_drop1', '[2026-10-26 09:34:14 UTC-6.000] DUPLICATE ALIASES: smg_drop1 and smg_drop1', '[2026-10-26 09:34:14 UTC-6.000] DUPLICATE ALIASES: mg_drop1 and mg_drop1', '[2026-10-26 09:34:14 UTC-6.000] DUPLICATE ALIASES: grenade_drop1 and grenade_drop1']
+09:36:01 ded2 client log notable: ['[2026-10-26 09:34:16 UTC-6.000]  Loaded symbol alGetError (00007FF866DF89A0)', '[2026-10-26 09:34:16 UTC-6.000]  Loaded symbol alcGetError (00007FF866E27C80)', 'AL_SOFT_source_length AL_SOFTX_source_panning AL_SOFT_source_resampler AL_SOFT_source_spatialize AL_SOFT_source_start_delay AL_SOFT_UHJ AL_SOFT_UHJ_ex', "[2026-10-26 09:34:17 UTC-6.000] ...loading 'scripts/submodels.shader'", '_multiview2 GL_SGIS_generate_mipmap GL_SGIS_texture_lod GL_SGIX_depth_texture GL_SGIX_shadow GL_SUN_slice_accum GL_WIN_swap_hint WGL_EXT_swap_control ', "[2026-10-26 09:34:18 UTC-6.000] UIWindowManager::CreateMenus: dropping duplicate menu container 'SelectTeam'", "[2026-10-26 09:34:18 UTC-6.000] UIWindowManager::CreateMenus: dropping duplicate menu container 'ObjSelectTeam'", "[2026-10-26 09:34:18 UTC-6.000] UIWindowManager::CreateMenus: dropping duplicate menu container 'SelectPrimaryWeapon'"]
+09:36:01 ded2 client script errors: 0
+09:36:02 [m2_ded2] done: 3 shots, window {'clean': True, 'violations': []}

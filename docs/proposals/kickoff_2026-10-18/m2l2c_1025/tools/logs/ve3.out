@@ -1,0 +1,16 @@
+09:23:38 booted m2_ve3 m2l2c ref=work dog False
+09:23:41 ve3 RGSTATE ['rgstate EDITED origin=( 0.000 0.000 0.000 ) open=0']
+09:23:41 ve3 map is EDITED
+09:24:17 ve3 CLIP east-bound walk [(-3480, 3560), (-3470, 3617), (-3460, 3617), (-3400, 3619), (-3300, 3619), (-3200, 3619), (-3160, 3617), (-3150, 3617), (-3145, 3617)]
+09:24:52 ve3 CLIP east-bound jump [(-3480, 3560), (-3470, 3617), (-3460, 3617), (-3400, 3619), (-3300, 3619), (-3200, 3619), (-3160, 3617), (-3150, 3617), (-3145, 3617)]
+09:25:28 ve3 CLIP east-bound crouch [(-3480, 3560), (-3470, 3622), (-3460, 3617), (-3400, 3622), (-3300, 3619), (-3200, 3622), (-3160, 3617), (-3150, 3622), (-3145, 3617)]
+09:25:48 ve3 CLIP west-bound from behind [(-3470, 3655), (-3400, 3653), (-3300, 3653), (-3200, 3653), (-3150, 3671)]
+09:25:51 ve3 BULLET control: man in FRONT of the fence hp ['1000.000'] -> ['1000.000']
+09:25:55 ve3 BULLET man BEHIND the closed fence hp ['1000.000'] -> ['1000.000']
+09:25:57 ve3 EXPLOSION (radiusdamage 300 at 3600, target 3680 behind the fence) hp ['targethp 823.000 weapon=-']
+09:25:58 ve3 AI SIGHT (man behind the fence, player in front) ['aisee 1 ai=( 3700.000 -3300.000 -512.000 ) me=( 3560.000 -3300.000 -511.875 )']
+09:25:58 ve3 TRACE through the fence ['trc default frac=0.892 | world-only frac=0.892']
+09:26:11 ve3 AI PATH gate CLOSED goal x=3560 (in front); final ['aipos ( 3725.940 -3303.834 -511.875 )']
+09:26:23 ve3 AI PATH gate OPEN goal x=3560 (in front); final ['aipos ( 3591.119 -3314.428 -511.875 )']
+09:26:23 ve3 errors []
+09:26:24 [m2_ve3] done: 0 shots, window {'clean': True, 'violations': []}

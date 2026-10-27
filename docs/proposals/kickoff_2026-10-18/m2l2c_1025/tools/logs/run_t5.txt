@@ -1,0 +1,27 @@
+   89s    OX M2 t=47.425 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   89s    OX M2ENT crane1 desk=( 792.000 -3740.000 -452.000 ) panel=( 792.000 -3740.000 -452.000 ) hook=( 500.000 -3880.000 -120.000 ) load=( 738.000 -3880.000 -512.000 ) dmodel=models/animate/electrical_switch_pulse.tik hscale=1.000
+   89s crane A ready: True
+   92s -- craneA: at the control panel
+   97s panel used: True
+   99s    OX M2 t=57.175 active=1 doneN=0 alive=0 | c1 st=run p=0.097 | c2 st=idle p=0 | gateOpen=0 me=( -240.000 -3900.000 -512.000 ) | o1=2 | o2=2 | o3=1
+   99s    OX M2ENT crane1 desk=( 792.000 -3740.000 -452.000 ) panel=( 792.000 -3740.000 -452.000 ) hook=( 608.195 -3880.000 -120.000 ) load=( 738.000 -3880.000 -512.000 ) dmodel=models/animate/electrical_switch_pulse.tik hscale=1.000
+  106s    OX M2 t=64.275 active=1 doneN=0 alive=0 | c1 st=run p=0.333 | c2 st=idle p=0 | gateOpen=0 me=( -240.000 -3900.000 -512.000 ) | o1=2 | o2=2 | o3=1
+  106s    OX M2ENT crane1 desk=( 792.000 -3740.000 -452.000 ) panel=( 792.000 -3740.000 -452.000 ) hook=( 738.000 -3880.000 -376.933 ) load=( 738.000 -3880.000 -512.000 ) dmodel=models/animate/electrical_switch_pulse.tik hscale=1.000
+  113s    OX M2 t=71.375 active=1 doneN=0 alive=0 | c1 st=run p=0.570 | c2 st=idle p=0 | gateOpen=0 me=( -240.000 -3900.000 -512.000 ) | o1=2 | o2=2 | o3=1
+  113s    OX M2ENT crane1 desk=( 792.000 -3740.000 -452.000 ) panel=( 792.000 -3740.000 -452.000 ) hook=( 718.325 -3876.707 -120.000 ) load=( 718.325 -3876.707 -230.000 ) dmodel=models/animate/electrical_switch_pulse.tik hscale=1.000
+  120s    OX M2 t=78.450 active=1 doneN=0 alive=0 | c1 st=run p=0.807 | c2 st=idle p=0 | gateOpen=0 me=( -240.000 -3900.000 -512.000 ) | o1=2 | o2=2 | o3=1
+  120s    OX M2ENT crane1 desk=( 792.000 -3740.000 -452.000 ) panel=( 792.000 -3740.000 -452.000 ) hook=( 270.660 -3801.784 -120.000 ) load=( 270.660 -3801.784 -230.000 ) dmodel=models/animate/electrical_switch_pulse.tik hscale=1.000
+  128s objective done: True
+  129s ---- OBJX log ----
+  129s OBJX armed m2l2c objectives=3 items=0 players=1
+  129s OBJX ACTIVE craneA type=m2crane t=32.250
+  129s OBJX ACTIVE craneB type=m2crane t=32.250
+  129s OBJX DONE craneA took=51.050s done=1/3 t=83.300
+  129s M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+  129s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  129s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  129s M2L2C PANEL A used by UnnamedSoldier#8240 t=54.250
+  129s M2L2C crane A cycle start T=30s players=1
+  129s M2L2C crane A RELEASE t=79.450
+  129s M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=83.300
+  129s script errors: 0 []

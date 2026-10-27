@@ -1,0 +1,32 @@
+   88s    OX M2 t=47.550 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   88s    OX foepos
+   88s crane A ready: True
+   91s -- crane A impact -> burn -> list -> sink; a player standing on the hull must be put ashore
+   96s panel used: True
+  123s sinking started: True
+  124s player after 1.2 s on the hull: [('-240.000', '-3720.000', '-511.875')]
+  125s    OX M2 t=84.500 active=1 doneN=1 alive=0 | c1 st=done p=1 | c2 st=idle p=0 | gateOpen=- me=( -240.000 -3900.000 -512.000 ) | o1=3 | o2=2 | o3=1
+  125s    OX foepos
+  144s    OX M2 t=103.550 active=1 doneN=1 alive=0 | c1 st=done p=1 | c2 st=idle p=0 | gateOpen=- me=( -240.000 -3900.000 -512.000 ) | o1=3 | o2=2 | o3=1
+  144s    OX foepos
+  158s    OX M2 t=117.000 active=1 doneN=1 alive=0 | c1 st=done p=1 | c2 st=idle p=0 | gateOpen=- me=( -240.000 -3900.000 -512.000 ) | o1=3 | o2=2 | o3=1
+  158s    OX foepos
+  158s ---- OBJX log ----
+  158s OBJX armed m2l2c objectives=3 items=0 players=1
+  158s OBJX ACTIVE craneA type=m2crane t=32.250
+  158s OBJX ACTIVE craneB type=m2crane t=32.250
+  158s OBJX DONE craneA took=44.700s done=1/3 t=76.950
+  158s M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+  158s M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+  158s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  158s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  158s M2L2C marker -> main objective 1 (craneA) location ( 792.000 -3740.000 -452.000 )
+  158s M2L2C PANEL A used by UnnamedSoldier#8240 t=53.850
+  158s M2L2C crane A cycle start T=25s players=1
+  158s M2L2C crane A RELEASE t=74.850
+  158s M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=76.950
+  158s M2L2C marker -> main objective 2 (craneB) location ( 3225.000 -3600.000 -452.000 )
+  158s M2L2C u-boat A SINKING starts t=81.950 over 32s
+  158s M2L2C u-boat A: player moved off the hull to ( -240.000 -3720.000 -508.000 )
+  158s M2L2C u-boat A SUNK, hidden t=113.950
+  158s script errors: 0 []

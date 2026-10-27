@@ -1,0 +1,21 @@
+model 0 models/miscobj/subcrane.tik
+model 1 models/miscobj/crane.tik
+model 2 models/items/torpedo.tik
+model 3 models/static/static_cablespool_full.tik
+model 4 models/animate/electrical_switch_pulse.tik
+model 5 models/animate/alarmswitch.tik
+model 6 models/animate/trainswitch.tik
+model 7 models/miscobj/radio_military.tik
+model 8 models/miscobj/radio_military_pulse.tik
+model 9 models/static/metaldesk.tik
+model 10 models/coop_build/shape_beam_ibeam.tik
+model 11 models/coop_build/shape_post_iron.tik
+model 12 models/coop_build/shape_cube_crate.tik
+model 13 models/static/exp_crate1.tik
+model 14 models/static/nazi_crate.tik
+model 15 models/static/worklamp.tik
+model 16 models/static/static_torpedo.tik
+model 17 models/static/fuel_tanks.tik
+model 18 models/coop_build/shape_beam_d8_ibeam.tik
+model 19 models/coop_build/shape_slab_ibeam.tik
+errors []

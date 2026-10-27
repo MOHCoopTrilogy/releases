@@ -1,0 +1,66 @@
+23:24:04 booted m2_e2 m2l2c ref=work dog False
+23:24:10 e2    OX M2 t=47.600 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+23:24:11 e2    OX foepos
+23:24:11 e2 crane A ready: True
+23:24:13 e2 -- craneA: at the control panel
+23:24:18 e2 panel used: True
+23:24:22 e2    OX M2 t=58.800 active=1 doneN=0 alive=3 | c1 st=run p=0.225 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+23:24:22 e2    OX foepos [( 710.204 -3201.947 -511.875 )] [( 769.000 -2810.000 -511.875 )] [( 745.535 -2991.077 -511.875 )]
+23:24:25 e2 JAMMED (auto-handled) craneA
+23:24:39 e2    OX M2 t=76.450 active=1 doneN=0 alive=0 | c1 st=drop p=0.840 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+23:24:39 e2    OX foepos
+23:24:45 e2 objective done: True
+23:24:46 e2 -- craneB: at the control panel
+23:24:51 e2 panel used: True
+23:24:54 e2    OX M2 t=91.700 active=1 doneN=1 alive=3 | c1 st=done p=1 | c2 st=run p=0.220 | gateOpen=0 me=( 3190.000 -3850.000 -512.000 ) | o1=3 | o2=2 | o3=1
+23:24:55 e2    OX foepos [( 3155.413 -4564.131 -511.875 )] [( 3163.039 -4421.565 -483.250 )] [( 2996.263 -4549.048 -567.875 )]
+23:25:07 e2    OX M2 t=104.500 active=1 doneN=1 alive=3 | c1 st=done p=1 | c2 st=drop p=0.840 | gateOpen=0 me=( 3190.000 -3850.000 -512.000 ) | o1=3 | o2=2 | o3=1
+23:25:07 e2    OX foepos [( 3155.413 -4564.131 -511.875 )] [( 3205.465 -4289.010 -511.875 )] [( 2996.263 -4549.048 -567.875 )]
+23:25:13 e2 objective done: True
+23:25:15 e2 -- radio
+23:25:15 e2 radio active: True
+23:25:23 e2 radio used: True
+23:25:26 e2    OX M2 t=123.525 active=1 doneN=2 alive=3 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=1 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+23:25:27 e2    OX foepos [( 3176.112 -4382.174 -511.875 )] [( 3205.465 -4289.010 -511.875 )] [( 2996.263 -4549.048 -567.875 )]
+23:25:39 e2    OX M2 t=136.150 active=1 doneN=2 alive=7 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=1 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+23:25:39 e2    OX foepos [( 3176.112 -4382.174 -511.875 )] [( 3205.465 -4289.010 -511.875 )] [( 2996.263 -4549.048 -567.875 )] [( 3596.800 -4053.853 -303.875 )] [( 3629.455 -3869.725 -303.875 )] [( 3462.382 -3328.194 -511.875 )] [( 3157.073 -209
+23:25:51 e2    OX M2 t=148.300 active=1 doneN=2 alive=7 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=1 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+23:25:51 e2    OX foepos [( 3176.112 -4382.174 -511.875 )] [( 3205.465 -4289.010 -511.875 )] [( 2996.263 -4549.048 -567.875 )] [( 3287.597 -3343.021 -511.875 )] [( 3403.837 -4062.605 -303.875 )] [( 3277.368 -3342.017 -511.875 )] [( 3157.318 -209
+23:26:04 e2    OX M2 t=161.725 active=1 doneN=2 alive=7 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=1 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+23:26:05 e2    OX foepos [( 3176.112 -4382.174 -511.875 )] [( 3205.465 -4289.010 -511.875 )] [( 2996.263 -4549.048 -567.875 )] [( 3280.197 -3343.434 -511.875 )] [( 3398.071 -4016.815 -316.875 )] [( 3513.017 -3241.990 -511.875 )] [( 3157.318 -209
+23:26:08 e2 all done: True
+23:26:53 e2 exit chain: False
+23:26:57 e2 ---- OBJX log ----
+23:26:57 e2 OBJX armed m2l2c objectives=3 items=0 players=1
+23:26:57 e2 OBJX ACTIVE craneA type=m2crane t=32.500
+23:26:57 e2 OBJX ACTIVE craneB type=m2crane t=32.500
+23:26:57 e2 OBJX DONE craneA took=46.250s done=1/3 t=78.750
+23:26:57 e2 OBJX DONE craneB took=75.450s done=2/3 t=107.950
+23:26:57 e2 OBJX ACTIVE radio type=m2radio t=112.000
+23:26:57 e2 OBJX HOLD radio zone=the storage room at=( 3615.000 -3850.000 -512.000 ) r=360 total=40s players=1
+23:26:57 e2 OBJX HOLD clock 0:00 elapsed=40.100 waves=1 lost=0
+23:26:57 e2 OBJX DONE radio took=50.900s done=3/3 t=162.900
+23:26:57 e2 OBJX ALL DONE 3 objectives t=162.900
+23:26:57 e2 M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+23:26:57 e2 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+23:26:57 e2 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+23:26:57 e2 M2L2C PANEL A used by UnnamedSoldier#8240 t=54.300
+23:26:57 e2 M2L2C crane A cycle start T=20s players=1
+23:26:57 e2 M2L2C crane A wave 1 men=3 at=( 748.000 -2936.000 -512.000 ) alive=3
+23:26:57 e2 M2L2C crane A JAMMED at 0.395 t=62.300
+23:26:57 e2 M2L2C crane A re-activated t=66.000
+23:26:57 e2 M2L2C crane A RELEASE t=74.900
+23:26:57 e2 M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=78.750
+23:26:57 e2 M2L2C PANEL B used by UnnamedSoldier#8240 t=87.300
+23:26:57 e2 M2L2C crane B cycle start T=20s players=1
+23:26:57 e2 M2L2C crane B wave 1 men=3 at=( 3204.000 -4520.000 -512.000 ) alive=3
+23:26:57 e2 M2L2C crane B RELEASE t=104.100
+23:26:57 e2 M2L2C crane B IMPACT at=( 2760.000 -3400.000 -449.000 ) t=107.950
+23:26:57 e2 M2L2C RADIO used by UnnamedSoldier#8240 t=119.800
+23:26:57 e2 M2L2C gate OPENING t=119.800
+23:26:57 e2 M2L2C gate OPEN t=122.800
+23:26:57 e2 M2L2C radio wave 1 entry=stairs men=2 at=( 3612.000 -4016.000 -260.000 )
+23:26:57 e2 M2L2C radio wave 1 entry=north men=1 at=( 3412.000 -2952.000 -496.000 )
+23:26:57 e2 M2L2C radio wave 1 entry=pier men=1 at=( 3190.000 -2150.000 -496.000 )
+23:26:57 e2 script errors: 0 []
+23:27:01 [m2_e2] done: 144 shots, window {'clean': True, 'violations': []}

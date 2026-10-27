@@ -1,0 +1,30 @@
+17:38:20 t=0.044 launched pid 30804 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+17:38:20 t=0.188 in-process guard installed on thread 6060
+17:38:21 t=0.862 place 0x330bdc SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+17:38:21 t=1.090 place 0x340bdc SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+17:38:21 t=1.099 place 0x3e0b64 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+17:39:40 booted m2_rn1 m2l2c ref=work dog False
+17:39:47 rn1    OX M2 t=47.400 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+17:39:47 rn1    OX foepos
+17:39:47 rn1 crane A ready: True
+17:39:50 rn1 -- rnf_entry from the crane A panel
+17:40:12 rn1    RNF entry pick=( 10.385 -6984.959 -511.875 ) why=path cand=33 probes=10 paths=2 zone=( 748.000 -3790.000 -512.000 ) players=1 rej(ground,hull,near,los,path)=8,0,0,0,1 deferred=0
+17:40:12 rn1    OX RNFTEST pick=( 10.385 -6984.959 -511.875 ) visible=0 dist=3279.000
+17:40:12 rn1    RNF entry pick=( -469.268 -5664.429 -511.875 ) why=path-lastdir cand=33 probes=28 paths=3 zone=( 748.000 -3790.000 -512.000 ) players=1 rej(ground,hull,near,los,path)=21,0,1,3,2 deferred=1
+17:40:12 rn1    OX RNFTEST pick=( -469.268 -5664.429 -511.875 ) visible=0 dist=2235.000
+17:40:12 rn1    RNF entry pick=none why=none cand=33 probes=28 paths=5 zone=( 748.000 -3790.000 -512.000 ) players=1 rej(ground,hull,near,los,path)=15,4,1,3,5 deferred=0
+17:40:12 rn1    OX RNFTEST pick=none retry-case
+17:40:12 rn1    RNF entry pick=none why=none cand=33 probes=28 paths=1 zone=( 748.000 -3790.000 -512.000 ) players=1 rej(ground,hull,near,los,path)=22,2,1,2,1 deferred=0
+17:40:12 rn1    OX RNFTEST pick=none retry-case
+17:40:12 rn1 ---- OBJX log ----
+17:40:12 rn1 OBJX armed m2l2c objectives=3 items=0 players=1
+17:40:12 rn1 OBJX ACTIVE craneA type=m2crane t=32.250
+17:40:12 rn1 OBJX ACTIVE craneB type=m2crane t=32.250
+17:40:12 rn1 M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+17:40:12 rn1 M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+17:40:12 rn1 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+17:40:12 rn1 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+17:40:12 rn1 M2L2C marker -> main objective 1 (craneA) location ( 792.000 -3740.000 -452.000 )
+17:40:12 rn1 script errors: 0 []
+17:40:12 t=112.182 process exited
+17:40:12 [m2_rn1] done: 3 shots, window {'clean': True, 'violations': []}

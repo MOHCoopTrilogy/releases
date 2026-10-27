@@ -1,0 +1,5 @@
+OX mk2 idx=1 at=( 365.000 -3800.000 -512.000 ) models/miscobj/crane_grey.tik
+shot cg90_c
+shot cg90_d
+shot cg90_e
+errors []

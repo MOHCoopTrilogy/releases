@@ -1,0 +1,22 @@
+   87s    OX M2 t=47.400 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   87s    OX foepos
+   87s crane A ready: True
+   90s -- rnf_entry from the crane A panel
+  112s    RNF entry pick=( 10.385 -6984.959 -511.875 ) why=path cand=33 probes=10 paths=2 zone=( 748.000 -3790.000 -512.000 ) players=1 rej(ground,hull,near,los,path)=8,0,0,0,1 deferred=0
+  112s    OX RNFTEST pick=( 10.385 -6984.959 -511.875 ) visible=0 dist=3279.000
+  112s    RNF entry pick=( -469.268 -5664.429 -511.875 ) why=path-lastdir cand=33 probes=28 paths=3 zone=( 748.000 -3790.000 -512.000 ) players=1 rej(ground,hull,near,los,path)=21,0,1,3,2 deferred=1
+  112s    OX RNFTEST pick=( -469.268 -5664.429 -511.875 ) visible=0 dist=2235.000
+  112s    RNF entry pick=none why=none cand=33 probes=28 paths=5 zone=( 748.000 -3790.000 -512.000 ) players=1 rej(ground,hull,near,los,path)=15,4,1,3,5 deferred=0
+  112s    OX RNFTEST pick=none retry-case
+  112s    RNF entry pick=none why=none cand=33 probes=28 paths=1 zone=( 748.000 -3790.000 -512.000 ) players=1 rej(ground,hull,near,los,path)=22,2,1,2,1 deferred=0
+  112s    OX RNFTEST pick=none retry-case
+  112s ---- OBJX log ----
+  112s OBJX armed m2l2c objectives=3 items=0 players=1
+  112s OBJX ACTIVE craneA type=m2crane t=32.250
+  112s OBJX ACTIVE craneB type=m2crane t=32.250
+  112s M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+  112s M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+  112s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  112s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  112s M2L2C marker -> main objective 1 (craneA) location ( 792.000 -3740.000 -452.000 )
+  112s script errors: 0 []

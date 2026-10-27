@@ -1,0 +1,20 @@
+   79s    OX M2 t=47.325 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=2
+   79s    OX foepos
+   79s -- mesh gate: before the fake / with the fake, then the gate opening with Axis coming through
+   79s radio active: True
+   87s radio used: True
+  111s mesh frames done
+  111s ---- OBJX log ----
+  111s OBJX armed m2l2c objectives=3 items=0 players=1
+  111s OBJX ACTIVE craneA type=m2crane t=32.250
+  111s OBJX ACTIVE craneB type=m2crane t=32.250
+  111s OBJX ACTIVE radio type=m2radio t=32.250
+  111s OBJX HOLD radio zone=the storage room at=( 3615.000 -3850.000 -512.000 ) r=360 total=60s players=1
+  111s M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+  111s M2L2C mesh gate built: 2 panels
+  111s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  111s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  111s M2L2C RADIO used by UnnamedSoldier#8240 t=55.250
+  111s M2L2C gate OPENING t=55.250
+  111s M2L2C gate OPEN t=58.250
+  111s script errors: 0 []

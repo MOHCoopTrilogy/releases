@@ -1,0 +1,22 @@
+19:08:07 t=0.032 launched pid 31136 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+19:08:07 t=0.072 in-process guard installed on thread 5772
+19:08:08 t=0.613 place 0x3240ae8 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:08:08 t=0.807 place 0x3250ae8 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+19:08:08 t=0.815 place 0x31a0bc6 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:09:22 booted m2_bv1 m2l2c ref=work dog False
+19:09:29 bv1    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+19:09:29 bv1    OX M2 t=" + level.time + " active=" ^
+19:09:29 bv1    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+19:09:29 bv1    OX M2 t=" + level.time + " active=" + level.objx_active ^
+19:09:29 bv1    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+19:09:29 bv1    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" ^
+19:09:29 bv1    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+19:09:29 bv1    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN ^
+19:09:29 bv1    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+19:09:29 bv1    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" ^
+19:09:29 bv1    OX foepos
+19:09:59 bv1 crane A ready: False
+19:10:09 bv1 ---- OBJX log ----
+19:10:09 bv1 script errors: 6 ["[2026-10-26 19:09:28 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-26 19:09:28 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'int'", "[2026-10-26 19:09:28 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-26 19:09:28 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'vector'", "[2026-10-26 19:09:28 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-26 19:09:28 UTC-6.000] ^~^~^ Script Error : binary '<=' applied to incompatible types 'int' and 'none'"]
+19:10:10 t=122.514 process exited
+19:10:10 [m2_bv1] done: 6 shots, window {'clean': True, 'violations': []}

@@ -1,0 +1,29 @@
+17:49:17 t=0.035 launched pid 1712 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+17:49:17 t=0.082 in-process guard installed on thread 18124
+17:49:17 t=0.731 place 0x8410d3c SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+17:49:18 t=0.962 place 0x8420d3c SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+17:49:18 t=0.971 place 0x4e0b0c SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+17:50:42 booted m2_cw6 m2l2c ref=work dog False
+17:50:48 cw6    OX M2 t=47.550 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+17:50:48 cw6    OX foepos
+17:50:48 cw6 crane A ready: True
+17:50:51 cw6 -- crane A waves: player at the panel, then walking around the quay
+17:50:56 cw6 panel used: True
+17:51:58 cw6 ---- OBJX log ----
+17:51:58 cw6 OBJX armed m2l2c objectives=3 items=0 players=1
+17:51:58 cw6 OBJX ACTIVE craneA type=m2crane t=32.500
+17:51:58 cw6 OBJX ACTIVE craneB type=m2crane t=32.500
+17:51:58 cw6 OBJX DONE craneA took=82.300s done=1/3 t=114.800
+17:51:58 cw6 M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+17:51:58 cw6 M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+17:51:58 cw6 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+17:51:58 cw6 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+17:51:58 cw6 M2L2C marker -> main objective 1 (craneA) location ( 792.000 -3740.000 -452.000 )
+17:51:58 cw6 M2L2C PANEL A used by UnnamedSoldier#8240 t=53.900
+17:51:58 cw6 M2L2C crane A cycle start T=70s players=1
+17:51:58 cw6 M2L2C crane A RELEASE t=112.700
+17:51:58 cw6 M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=114.800
+17:51:58 cw6 M2L2C marker -> main objective 2 (craneB) location ( 3225.000 -3600.000 -452.000 )
+17:51:58 cw6 script errors: 0 []
+17:51:58 t=161.334 process exited
+17:51:58 [m2_cw6] done: 4 shots, window {'clean': True, 'violations': []}

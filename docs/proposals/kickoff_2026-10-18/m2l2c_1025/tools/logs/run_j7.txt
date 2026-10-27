@@ -1,0 +1,38 @@
+   84s    OX M2 t=47.375 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   84s    OX foepos
+   84s crane A ready: True
+   87s -- defend demo: crane A, player stays at the panel, waves converge, jam, clear, re-activate
+   91s panel used: True
+   92s    OX M2 t=56.275 active=1 doneN=0 alive=0 | c1 st=run p=0.047 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -3800.000 -512.000 ) | o1=2 | o2=2 | o3=1
+   93s    OX foepos
+   99s    OX M2 t=62.500 active=1 doneN=0 alive=3 | c1 st=run p=0.160 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -3800.000 -512.000 ) | o1=2 | o2=2 | o3=1
+   99s    OX foepos [( 738.206 -4492.976 -511.875 )] [( 761.853 -4426.518 -511.875 )] [( 776.046 -4735.664 -511.875 )]
+  105s    OX M2 t=69.125 active=1 doneN=0 alive=3 | c1 st=run p=0.280 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -3800.000 -512.000 ) | o1=2 | o2=2 | o3=1
+  106s    OX foepos [( 733.740 -4748.802 -511.875 )] [( 729.880 -4428.561 -511.875 )] [( 775.877 -4684.087 -511.875 )]
+  111s    OX M2 t=75.000 active=1 doneN=0 alive=3 | c1 st=run p=0.387 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -3800.000 -512.000 ) | o1=2 | o2=2 | o3=1
+  111s    OX foepos [( 770.339 -4487.451 -511.875 )] [( 729.313 -4444.133 -511.875 )] [( 768.057 -4469.405 -511.875 )]
+  117s    OX M2 t=80.450 active=1 doneN=0 alive=3 | c1 st=run p=0.487 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -3800.000 -512.000 ) | o1=2 | o2=2 | o3=1
+  117s    OX foepos [( 729.410 -4232.166 -511.875 )] [( 767.241 -4267.790 -511.875 )] [( 733.262 -4282.725 -511.875 )]
+  122s    OX M2 t=86.250 active=1 doneN=0 alive=3 | c1 st=run p=0.593 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -3800.000 -512.000 ) | o1=2 | o2=2 | o3=1
+  123s    OX foepos [( 760.483 -4233.794 -511.875 )] [( 779.807 -4523.214 -511.875 )] [( 733.262 -4282.725 -511.875 )]
+  129s    OX M2 t=92.875 active=1 doneN=0 alive=6 | c1 st=run p=0.713 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -3800.000 -512.000 ) | o1=2 | o2=2 | o3=1
+  129s    OX foepos [( 730.912 -4198.608 -511.875 )] [( 768.287 -4210.560 -511.875 )] [( 733.401 -4278.303 -511.875 )] [( 1537.338 -6274.418 -511.875 )] [( 977.814 -6168.481 -511.875 )] [( 777.103 -5638.988 -511.875 )]
+  135s    OX M2 t=98.700 active=1 doneN=0 alive=6 | c1 st=run p=0.818 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -3800.000 -512.000 ) | o1=2 | o2=2 | o3=1
+  135s    OX foepos [( 736.053 -4270.348 -511.875 )] [( 774.986 -4338.384 -511.875 )] [( 765.382 -4279.420 -511.875 )] [( 2214.932 -5673.792 -511.875 )] [( 989.096 -5086.634 -511.875 )] [( 784.401 -5783.711 -511.875 )]
+  141s    OX M2 t=104.525 active=1 doneN=1 alive=6 | c1 st=done p=1 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -3800.000 -512.000 ) | o1=3 | o2=2 | o3=1
+  141s    OX foepos [( 733.819 -4398.329 -511.875 )] [( 774.986 -4338.384 -511.875 )] [( 765.382 -4279.420 -511.875 )] [( 2199.678 -4318.326 -511.875 )] [( 979.252 -3954.055 -511.875 )] [( 783.753 -5565.418 -511.875 )]
+  143s ---- OBJX log ----
+  143s OBJX armed m2l2c objectives=3 items=0 players=1
+  143s OBJX ACTIVE craneA type=m2crane t=32.250
+  143s OBJX ACTIVE craneB type=m2crane t=32.250
+  143s OBJX DONE craneA took=71.450s done=1/3 t=103.700
+  143s M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+  143s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  143s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  143s M2L2C PANEL A used by UnnamedSoldier#8240 t=53.650
+  143s M2L2C crane A cycle start T=55s players=1
+  143s M2L2C crane A wave 1 men=3 at=( 748.000 -4560.000 -512.000 ) alive=3
+  143s M2L2C crane A wave 2 men=3 at=( 748.000 -5568.000 -512.000 ) alive=6
+  143s M2L2C crane A RELEASE t=99.850
+  143s M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=103.700
+  143s script errors: 0 []

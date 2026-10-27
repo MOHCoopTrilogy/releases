@@ -1,0 +1,91 @@
+22:52:55 booted m2_f2 m2l2c ref=work dog False
+22:53:02 f2    OX M2 t=47.450 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+22:53:02 f2    OX foepos
+22:53:02 f2 crane A ready: True
+22:53:04 f2 -- craneA: at the control panel
+22:53:09 f2 panel used: True
+22:53:12 f2    OX M2 t=58.250 active=1 doneN=0 alive=3 | c1 st=run p=0.147 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+22:53:13 f2    OX foepos [( 744.759 -2945.196 -511.875 )] [( 737.874 -2814.447 -511.875 )] [( 756.035 -3126.636 -511.875 )]
+22:53:19 f2 JAMMED (auto-handled) craneA
+22:53:30 f2    OX M2 t=75.875 active=1 doneN=0 alive=0 | c1 st=run p=0.593 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+22:53:30 f2    OX foepos
+22:53:43 f2    OX M2 t=88.700 active=1 doneN=1 alive=0 | c1 st=done p=1 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -4000.000 -512.000 ) | o1=3 | o2=2 | o3=1
+22:53:43 f2    OX foepos
+22:53:46 f2 objective done: True
+22:53:47 f2 -- craneB: at the control panel
+22:53:52 f2 panel used: True
+22:53:55 f2    OX M2 t=100.825 active=1 doneN=1 alive=3 | c1 st=done p=1 | c2 st=run p=0.150 | gateOpen=0 me=( 3190.000 -3850.000 -512.000 ) | o1=3 | o2=2 | o3=1
+22:53:55 f2    OX foepos [( 3511.901 -2932.949 -511.875 )] [( 3591.376 -3209.949 -511.875 )] [( 3411.427 -3167.178 -511.875 )]
+22:53:58 f2 JAMMED (auto-handled) craneB
+22:54:13 f2    OX M2 t=118.500 active=1 doneN=1 alive=0 | c1 st=done p=1 | c2 st=run p=0.607 | gateOpen=0 me=( 3190.000 -3850.000 -512.000 ) | o1=3 | o2=2 | o3=1
+22:54:13 f2    OX foepos
+22:54:25 f2    OX M2 t=131.350 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3190.000 -3850.000 -512.000 ) | o1=3 | o2=3 | o3=1
+22:54:26 f2    OX foepos
+22:54:28 f2 objective done: True
+22:54:30 f2 -- radio
+22:54:30 f2 radio active: True
+22:54:49 f2 radio used: False
+22:54:52 f2    OX M2 t=157.700 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:54:52 f2    OX foepos
+22:55:04 f2    OX M2 t=170.325 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:55:05 f2    OX foepos
+22:55:17 f2    OX M2 t=182.475 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:55:17 f2    OX foepos
+22:55:30 f2    OX M2 t=195.900 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:55:30 f2    OX foepos
+22:55:42 f2    OX M2 t=208.050 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:55:42 f2    OX foepos
+22:55:54 f2    OX M2 t=220.200 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:55:55 f2    OX foepos
+22:56:06 f2    OX M2 t=232.350 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:56:07 f2    OX foepos
+22:56:19 f2    OX M2 t=244.500 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:56:19 f2    OX foepos
+22:56:31 f2    OX M2 t=256.650 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:56:31 f2    OX foepos
+22:56:43 f2    OX M2 t=268.800 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:56:43 f2    OX foepos
+22:56:55 f2    OX M2 t=280.925 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:56:55 f2    OX foepos
+22:57:07 f2    OX M2 t=293.075 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:57:07 f2    OX foepos
+22:57:19 f2    OX M2 t=305.225 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:57:20 f2    OX foepos
+22:57:32 f2    OX M2 t=317.375 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:57:32 f2    OX foepos
+22:57:44 f2    OX M2 t=329.525 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:57:44 f2    OX foepos
+22:57:56 f2    OX M2 t=341.675 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:57:56 f2    OX foepos
+22:58:08 f2    OX M2 t=353.825 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:58:08 f2    OX foepos
+22:58:20 f2    OX M2 t=365.950 active=1 doneN=2 alive=0 | c1 st=done p=1 | c2 st=done p=1 | gateOpen=0 me=( 3560.000 -3880.000 -512.000 ) | o1=3 | o2=3 | o3=2
+22:58:20 f2    OX foepos
+22:58:44 f2 all done: False
+22:59:29 f2 exit chain: False
+22:59:33 f2 ---- OBJX log ----
+22:59:33 f2 OBJX armed m2l2c objectives=3 items=0 players=1
+22:59:33 f2 OBJX ACTIVE craneA type=m2crane t=32.250
+22:59:33 f2 OBJX ACTIVE craneB type=m2crane t=32.250
+22:59:33 f2 OBJX DONE craneA took=54.850s done=1/3 t=87.100
+22:59:33 f2 OBJX DONE craneB took=97.050s done=2/3 t=129.300
+22:59:33 f2 OBJX ACTIVE radio type=m2radio t=133.750
+22:59:33 f2 M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+22:59:33 f2 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+22:59:33 f2 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+22:59:33 f2 M2L2C PANEL A used by UnnamedSoldier#8240 t=53.850
+22:59:33 f2 M2L2C crane A cycle start T=30s players=1
+22:59:33 f2 M2L2C crane A wave 1 men=3 at=( 748.000 -2936.000 -512.000 ) alive=3
+22:59:33 f2 M2L2C crane A JAMMED at 0.350 t=64.450
+22:59:33 f2 M2L2C crane A re-activated t=68.550
+22:59:33 f2 M2L2C crane A RELEASE t=83.250
+22:59:33 f2 M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=87.100
+22:59:33 f2 M2L2C PANEL B used by UnnamedSoldier#8240 t=96.250
+22:59:33 f2 M2L2C crane B cycle start T=30s players=1
+22:59:33 f2 M2L2C crane B wave 1 men=3 at=( 3412.000 -2952.000 -496.000 ) alive=3
+22:59:33 f2 M2L2C crane B JAMMED at 0.263 t=104.250
+22:59:33 f2 M2L2C crane B re-activated t=108.150
+22:59:33 f2 M2L2C crane B RELEASE t=125.450
+22:59:33 f2 M2L2C crane B IMPACT at=( 2760.000 -3400.000 -449.000 ) t=129.300
+22:59:33 f2 script errors: 0 []
+22:59:35 [m2_f2] done: 392 shots, window {'clean': True, 'violations': []}

@@ -1,0 +1,80 @@
+18:27:12 t=0.048 launched pid 16012 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+18:27:12 t=0.095 in-process guard installed on thread 19256
+18:27:12 t=0.656 place 0x1a907ae SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+18:27:13 t=0.866 place 0x1aa07ae SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+18:27:13 t=0.876 place 0x2b30bd2 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+18:28:25 booted m2_mg6 m2l2c ref=work dog False
+18:28:32 mg6    OX M2 t=47.375 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=2
+18:28:32 mg6    OX foepos
+18:28:32 mg6 crane A ready: True
+18:28:34 mg6 -- mesh gate: before the fake / with the fake, then the gate opening with Axis coming through
+18:28:34 mg6 radio active: True
+18:28:43 mg6 radio used: True
+18:28:50 mg6    OX foepos
+18:28:56 mg6    OX foepos [( 4076.282 -5546.000 -511.875 )] [( 3999.901 -5596.546 -511.875 )]
+18:29:03 mg6    OX foepos [( 4076.282 -5546.000 -511.875 )] [( 4002.806 -5600.254 -511.875 )]
+18:29:05 mg6 targeting back on at chunk 16
+18:29:08 mg6    OX foepos [( 4053.981 -5058.298 -511.875 )] [( 3993.301 -5331.571 -511.875 )]
+18:29:13 mg6    OX foepos [( 3974.448 -4017.595 -511.875 )] [( 3983.639 -4284.461 -511.875 )]
+18:29:17 mg6    OX foepos [( 3934.491 -3832.389 -511.875 )] [( 3751.963 -3420.498 -511.875 )]
+18:29:22 mg6    OX foepos [( 3934.491 -3832.389 -511.875 )] [( 3538.592 -3166.875 -511.875 )] [( 3699.573 -3957.797 -303.875 )] [( 3178.279 -2072.916 -511.875 )]
+18:29:26 mg6    OX foepos [( 3934.491 -3832.389 -511.875 )] [( 3538.592 -3166.875 -511.875 )] [( 3699.573 -3957.797 -303.875 )] [( 3182.554 -2072.407 -511.875 )]
+18:29:31 mg6    OX foepos [( 3934.491 -3832.389 -511.875 )] [( 3538.592 -3166.875 -511.875 )] [( 3701.718 -3957.109 -303.875 )] [( 3182.554 -2072.407 -511.875 )]
+18:29:35 mg6    OX foepos [( 3934.491 -3832.389 -511.875 )] [( 3538.592 -3166.875 -511.875 )] [( 3701.718 -3957.109 -303.875 )] [( 3182.554 -2072.407 -511.875 )]
+18:29:40 mg6    OX foepos [( 3934.491 -3832.389 -511.875 )] [( 3538.592 -3166.875 -511.875 )] [( 3701.718 -3957.109 -303.875 )] [( 3182.554 -2072.407 -511.875 )]
+18:29:44 mg6    OX foepos [( 3934.491 -3832.389 -511.875 )] [( 3538.592 -3166.875 -511.875 )] [( 3701.718 -3957.109 -303.875 )] [( 3182.554 -2072.407 -511.875 )]
+18:29:49 mg6    OX foepos [( 3934.491 -3832.389 -511.875 )] [( 3538.592 -3166.875 -511.875 )] [( 3701.718 -3957.109 -303.875 )] [( 3182.554 -2072.407 -511.875 )] [( 3686.323 -3980.265 -303.875 )] [( 3190.000 -2150.000 -511.875 )] [( 4000.771 -5539.944 -511.875 )]
+18:29:53 mg6    OX foepos [( 3934.491 -3832.389 -511.875 )] [( 3538.592 -3166.875 -511.875 )] [( 3701.718 -3957.109 -303.875 )] [( 3182.554 -2072.407 -511.875 )] [( 3686.323 -3980.265 -303.875 )] [( 3190.000 -2150.000 -511.875 )] [( 3991.745 -4492.226 -511.875 )]
+18:29:53 mg6 mesh frames done
+18:29:53 mg6 -- barrier test: the gate is open; a player set inside the gate opening must be put back west of it
+18:29:55 mg6   after tp into the opening: me=( 3566.000 -3300.000 -511.875 ) | o1=2 | o2=2
+18:29:55 mg6 ---- OBJX log ----
+18:29:55 mg6 OBJX armed m2l2c objectives=3 items=0 players=1
+18:29:55 mg6 OBJX ACTIVE craneA type=m2crane t=32.250
+18:29:55 mg6 OBJX ACTIVE craneB type=m2crane t=32.250
+18:29:55 mg6 OBJX ACTIVE radio type=m2radio t=32.250
+18:29:55 mg6 OBJX HOLD radio zone=the storage room at=( 3615.000 -3850.000 -512.000 ) r=900 total=120s players=1
+18:29:55 mg6 M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+18:29:55 mg6 M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+18:29:55 mg6 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+18:29:55 mg6 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+18:29:55 mg6 M2L2C SWEEP control (box inside the hull): startSolid=0 fraction=1.000
+18:29:55 mg6 M2L2C SWEEP control (box inside the hull): startSolid=1 fraction=0.000
+18:29:55 mg6 M2L2C SWEEP crane A done: 0 intersections over 61 poses + the bridge span
+18:29:55 mg6 M2L2C SWEEP crane B done: 0 intersections over 61 poses + the bridge span
+18:29:55 mg6 M2L2C solid prop models/miscobj/radio_military.tik bounds ( -15.034 -3.191 0.000 ) .. ( 15.071 15.405 21.789 ) at ( 3656.000 -3540.000 -482.000 )
+18:29:55 mg6 M2L2C marker -> main objective 1 (craneA) location ( 792.000 -3740.000 -452.000 )
+18:29:55 mg6 M2L2C RADIO used by UnnamedSoldier#8240 t=57.675
+18:29:55 mg6 M2L2C radio audio m2l2c_radio_call from the radio t=57.675
+18:29:55 mg6 M2L2C radio hold length 120 s for 1 players (hidden timer)
+18:29:55 mg6 M2L2C radio mid clip due at 63.000 s of the hidden 120 s hold
+18:29:55 mg6 M2L2C radio wave 1 entry=mesh men=0 at=( 3740.000 -3330.000 -512.000 )
+18:29:55 mg6 M2L2C radio wave 1 entry door seen - skipped
+18:29:55 mg6 M2L2C mesh wave 1 group 0 placed at ( 4000.000 -5600.000 -512.000 ) t=70.700
+18:29:55 mg6 M2L2C radio wave 1 entry=stairs men=1 at=( 3612.000 -4016.000 -260.000 )
+18:29:55 mg6 M2L2C radio wave 1 entry north seen - skipped
+18:29:55 mg6 M2L2C rg guide n=2 open=0 at ( 3999.862 -5595.241 -511.875 ) hp=78.000
+18:29:55 mg6 M2L2C mesh wave 1 group 1 placed at ( 4500.000 -5200.000 -512.000 ) t=73.700
+18:29:55 mg6 M2L2C mesh wave 1 group 2 placed at ( 4000.000 -5000.000 -512.000 ) t=76.700
+18:29:55 mg6 M2L2C mesh gate OPENING t=79.675
+18:29:55 mg6 M2L2C mesh wave 1 men=1
+18:29:55 mg6 M2L2C mesh gate OPEN, paths connected t=81.175
+18:29:55 mg6 M2L2C radio audio m2l2c_radio_burst from the radio t=81.950
+18:29:55 mg6 M2L2C rg guide n=8 open=1 at ( 3990.469 -5527.396 -511.875 ) hp=78.000
+18:29:55 mg6 M2L2C rg guide n=14 open=1 at ( 3864.736 -3524.047 -511.875 ) hp=78.000
+18:29:55 mg6 M2L2C radio wave 2 entry door seen - skipped
+18:29:55 mg6 M2L2C radio wave 2 entry=stairs men=1 at=( 3612.000 -4016.000 -260.000 )
+18:29:55 mg6 M2L2C radio wave 2 entry north seen - skipped
+18:29:55 mg6 M2L2C radio wave 2 entry=pier men=1 at=( 3190.000 -2150.000 -496.000 )
+18:29:55 mg6 M2L2C radio wave 3 entry=stairs men=1 at=( 3612.000 -4016.000 -260.000 )
+18:29:55 mg6 M2L2C radio wave 3 entry north seen - skipped
+18:29:55 mg6 M2L2C radio wave 3 entry=pier men=1 at=( 3190.000 -2150.000 -496.000 )
+18:29:55 mg6 M2L2C radio wave 3 entry=mesh men=0 at=( 3740.000 -3330.000 -512.000 )
+18:29:55 mg6 M2L2C radio audio m2l2c_radio_mid from the radio t=123.800
+18:29:55 mg6 M2L2C mesh wave 3 group 0 placed at ( 4000.000 -5600.000 -512.000 ) t=123.825
+18:29:55 mg6 M2L2C rg guide n=2 open=1 at ( 3999.559 -4961.054 -511.875 ) hp=78.000
+18:29:55 mg6 M2L2C mesh wave 3 group 1 placed at ( 4500.000 -5200.000 -512.000 ) t=126.825
+18:29:55 mg6 M2L2C mesh wave 3 group 2 placed at ( 4000.000 -5000.000 -512.000 ) t=129.825
+18:29:55 mg6 script errors: 0 []
+18:29:56 t=164.084 process exited
+18:29:56 [m2_mg6] done: 427 shots, window {'clean': True, 'violations': []}

@@ -1,0 +1,32 @@
+   86s    OX M2 t=47.750 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   86s    OX foepos
+   86s crane A ready: True
+   89s -- jam/resume x3 on crane A, plus a man behind the wall and a dead body (must not jam)
+   93s panel used: True
+  105s behind-wall man: jammed = True
+  114s dead body: jammed = True
+  129s cycle 1 jammed: False
+  151s cycle 1 resumed after 20.0s: False
+  169s cycle 2 jammed: False
+  190s cycle 2 resumed after 20.0s: False
+  207s cycle 3 jammed: False
+  229s cycle 3 resumed after 20.0s: False
+  231s crane A completed after 3 jam/resume cycles: True
+  231s    OX M2 t=192.225 active=1 doneN=1 alive=0 | c1 st=done p=1 | c2 st=idle p=0 | gateOpen=- me=( 748.000 -3790.000 -512.000 ) | o1=3 | o2=2 | o3=1
+  231s    OX foepos
+  231s ---- OBJX log ----
+  231s OBJX armed m2l2c objectives=3 items=0 players=1
+  231s OBJX ACTIVE craneA type=m2crane t=32.500
+  231s OBJX ACTIVE craneB type=m2crane t=32.500
+  231s OBJX DONE craneA took=91.950s done=1/3 t=124.450
+  231s M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+  231s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  231s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  231s M2L2C PANEL A used by UnnamedSoldier#8240 t=54.100
+  231s M2L2C crane A cycle start T=70s players=1
+  231s M2L2C crane A wave 1 men=3 at=( 748.000 -2936.000 -512.000 ) alive=3
+  231s M2L2C crane A JAMMED at 0.140 t=64.000
+  231s M2L2C crane A RESUMED (auto) after 7.700s t=71.700
+  231s M2L2C crane A RELEASE t=120.600
+  231s M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=124.450
+  231s script errors: 0 []

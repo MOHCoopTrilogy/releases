@@ -1,0 +1,8 @@
+        toggled = False
+        for ch in range(40):
+            G.frames("m2_meshgif_%02d" % ch, 6, 120)
+            if os.environ.get("M2NOTGT") == "1" and not toggled and R.wait_log(r"M2L2C mesh gate OPEN", 0.05, 0):
+                G.cmd("notgt"); toggled = True; log("targeting back on at chunk", ch)
+            if ch % 5 == 4:
+                p0 = G.cmd("foepos")
+                for l in G.since(p0, r"\^~\^~\^ (OX foepos[^\r\n]*)"): log("  ", l[:260])

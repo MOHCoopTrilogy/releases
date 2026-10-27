@@ -1,0 +1,21 @@
+   81s    OX M2 t=47.225 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=2
+   82s    OX foepos
+   82s crane A ready: True
+   84s -- radio stills
+   84s radio active: True
+   91s ---- OBJX log ----
+   91s OBJX armed m2l2c objectives=3 items=0 players=1
+   91s OBJX ACTIVE craneA type=m2crane t=32.000
+   91s OBJX ACTIVE craneB type=m2crane t=32.000
+   91s OBJX ACTIVE radio type=m2radio t=32.000
+   91s M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+   91s M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+   91s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+   91s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+   91s M2L2C SWEEP control (box inside the hull): startSolid=0 fraction=1.000
+   91s M2L2C SWEEP control (box inside the hull): startSolid=1 fraction=0.000
+   91s M2L2C SWEEP crane A done: 0 intersections over 61 poses + the bridge span
+   91s M2L2C SWEEP crane B done: 0 intersections over 61 poses + the bridge span
+   91s M2L2C solid prop models/miscobj/radio_military.tik bounds ( -15.034 -3.191 0.000 ) .. ( 15.071 15.405 21.789 ) at ( 3656.000 -3540.000 -482.000 )
+   91s M2L2C marker -> main objective 1 (craneA) location ( 792.000 -3740.000 -452.000 )
+   91s script errors: 0 []

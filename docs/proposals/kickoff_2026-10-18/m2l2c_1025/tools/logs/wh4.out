@@ -1,0 +1,27 @@
+18:48:55 t=0.033 launched pid 18128 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+18:48:55 t=0.079 in-process guard installed on thread 15820
+18:48:56 t=0.647 place 0x4260e48 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+18:48:56 t=0.864 place 0x4270e48 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+18:48:56 t=0.871 place 0x8f40ce8 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+18:50:08 booted m2_wh4 m2l2c ref=work dog False
+18:50:15 wh4    OX M2 t=47.300 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+18:50:15 wh4    OX foepos
+18:50:15 wh4 crane A ready: True
+18:50:23 wh4 ---- OBJX log ----
+18:50:23 wh4 OBJX armed m2l2c objectives=3 items=0 players=1
+18:50:23 wh4 OBJX ACTIVE craneA type=m2crane t=32.000
+18:50:23 wh4 OBJX ACTIVE craneB type=m2crane t=32.000
+18:50:23 wh4 M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+18:50:23 wh4 M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+18:50:23 wh4 M2L2C solid prop models/animate/electrical_switch_pulse.tik bounds ( -8.000 -13.000 0.310 ) .. ( 8.000 13.000 26.119 ) at ( 792.000 -3740.000 -452.000 )
+18:50:23 wh4 M2L2C solid prop models/animate/electrical_switch_pulse.tik bounds ( -8.000 -13.000 0.310 ) .. ( 8.000 13.000 26.119 ) at ( 3225.000 -3600.000 -452.000 )
+18:50:23 wh4 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+18:50:23 wh4 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+18:50:23 wh4 M2L2C SWEEP control (box inside the hull): startSolid=0 fraction=1.000
+18:50:23 wh4 M2L2C SWEEP control (box inside the hull): startSolid=1 fraction=0.000
+18:50:23 wh4 M2L2C SWEEP crane A done: 0 intersections over 61 poses + the bridge span
+18:50:23 wh4 M2L2C SWEEP crane B done: 0 intersections over 61 poses + the bridge span
+18:50:23 wh4 M2L2C marker -> main objective 1 (craneA) location ( 792.000 -3740.000 -452.000 )
+18:50:23 wh4 script errors: 0 []
+18:50:23 t=88.071 process exited
+18:50:23 [m2_wh4] done: 6 shots, window {'clean': True, 'violations': []}

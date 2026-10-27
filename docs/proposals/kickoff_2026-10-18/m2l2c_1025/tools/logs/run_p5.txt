@@ -1,0 +1,6 @@
+OX mk2 idx=1 at=( 748.000 -3860.000 -300.000 ) models/miscobj/subcrane.tik
+OX mk2 idx=2 at=( 748.000 -3860.000 -512.000 ) models/static/exp_crate1.tik
+shot hk_a
+shot hk_b
+shot hk_c
+errors []

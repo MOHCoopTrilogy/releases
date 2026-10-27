@@ -1,0 +1,84 @@
+16:40:06 t=0.035 launched pid 21408 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+16:40:06 t=0.106 in-process guard installed on thread 31016
+16:40:06 t=0.692 place 0x1d90c4a SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:40:06 t=0.901 place 0x1da0c4a SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+16:40:07 t=0.908 place 0x1ee0d72 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+16:41:25 booted m2_rh5 m2l2c ref=work dog False
+16:41:32 rh5    OX M2 t=47.500 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=2
+16:41:32 rh5    OX foepos
+16:41:32 rh5 crane A ready: True
+16:41:34 rh5 -- radio
+16:41:34 rh5 radio active: True
+16:41:43 rh5 radio used: True
+16:41:46 rh5    OX M2 t=61.700 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=2 | o2=2 | o3=2
+16:41:46 rh5    OX foepos
+16:41:59 rh5    OX M2 t=74.325 active=1 doneN=0 alive=4 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=2 | o2=2 | o3=2
+16:41:59 rh5    OX foepos [( 4111.485 -4098.888 -511.875 )] [( 3377.318 -3518.863 -511.875 )] [( 3711.805 -4030.419 -303.875 )] [( 3207.076 -3507.355 -511.875 )]
+16:42:11 rh5    OX M2 t=86.450 active=1 doneN=0 alive=4 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=2 | o2=2 | o3=2
+16:42:11 rh5    OX foepos [( 4113.627 -4098.229 -511.875 )] [( 3397.923 -3559.569 -511.875 )] [( 3711.805 -4030.419 -303.875 )] [( 3362.745 -3429.491 -511.875 )]
+16:42:24 rh5    OX M2 t=99.900 active=1 doneN=0 alive=4 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=2 | o2=2 | o3=2
+16:42:24 rh5    OX foepos [( 4113.627 -4098.229 -511.875 )] [( 3398.000 -3560.000 -511.875 )] [( 3711.805 -4030.419 -303.875 )] [( 3194.019 -3659.911 -511.875 )]
+16:42:36 rh5    OX M2 t=112.050 active=1 doneN=0 alive=8 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=2 | o2=2 | o3=2
+16:42:37 rh5    OX foepos [( 4113.627 -4098.229 -511.875 )] [( 3302.251 -3359.313 -511.875 )] [( 3711.805 -4030.419 -303.875 )] [( 3276.472 -3342.674 -511.875 )] [( 3398.000 -3560.000 -511.875 )] [( 3714.792 -3996.347 -303.875 )] [( 3406.085 -344
+16:42:48 rh5    OX M2 t=124.200 active=1 doneN=0 alive=8 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=2 | o2=2 | o3=2
+16:42:49 rh5    OX foepos [( 4113.627 -4098.229 -511.875 )] [( 3392.153 -3535.748 -511.875 )] [( 3711.805 -4030.419 -303.875 )] [( 3276.472 -3342.674 -511.875 )] [( 3462.000 -3575.000 -511.875 )] [( 3714.792 -3996.347 -303.875 )] [( 3303.295 -335
+16:43:01 rh5    OX M2 t=136.325 active=1 doneN=0 alive=8 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=2 | o2=2 | o3=2
+16:43:01 rh5    OX foepos [( 4113.627 -4098.229 -511.875 )] [( 3305.021 -3364.038 -511.875 )] [( 3711.805 -4030.419 -303.875 )] [( 3276.472 -3342.674 -511.875 )] [( 3462.000 -3575.000 -511.875 )] [( 3714.792 -3996.347 -303.875 )] [( 3303.295 -335
+16:43:13 rh5    OX M2 t=148.500 active=1 doneN=0 alive=12 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=2 | o2=2 | o3=2
+16:43:13 rh5    OX foepos [( 4113.627 -4098.229 -511.875 )] [( 3305.021 -3364.038 -511.875 )] [( 3711.805 -4030.419 -303.875 )] [( 3276.472 -3342.674 -511.875 )] [( 3462.000 -3575.000 -511.875 )] [( 3714.792 -3996.347 -303.875 )] [( 3303.295 -335
+16:43:25 rh5    OX M2 t=160.650 active=1 doneN=0 alive=12 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=2 | o2=2 | o3=2
+16:43:25 rh5    OX foepos [( 4113.627 -4098.229 -511.875 )] [( 3305.021 -3364.038 -511.875 )] [( 3711.805 -4030.419 -303.875 )] [( 3276.472 -3342.674 -511.875 )] [( 3462.000 -3575.000 -511.875 )] [( 3714.792 -3996.347 -303.875 )] [( 3303.295 -335
+16:43:37 rh5    OX M2 t=172.800 active=1 doneN=0 alive=12 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( 3560.000 -3880.000 -512.000 ) | o1=2 | o2=2 | o3=2
+16:43:37 rh5    OX foepos [( 4113.627 -4098.229 -511.875 )] [( 3305.021 -3364.038 -511.875 )] [( 3711.805 -4030.419 -303.875 )] [( 3276.472 -3342.674 -511.875 )] [( 3462.000 -3575.000 -511.875 )] [( 3714.792 -3996.347 -303.875 )] [( 3303.295 -335
+16:44:06 rh5 all done: False
+16:44:51 rh5 exit chain: False
+16:44:55 rh5 ---- OBJX log ----
+16:44:55 rh5 OBJX armed m2l2c objectives=3 items=0 players=1
+16:44:55 rh5 OBJX ACTIVE craneA type=m2crane t=32.250
+16:44:55 rh5 OBJX ACTIVE craneB type=m2crane t=32.250
+16:44:55 rh5 OBJX ACTIVE radio type=m2radio t=32.250
+16:44:55 rh5 OBJX HOLD radio zone=the storage room at=( 3615.000 -3850.000 -512.000 ) r=360 total=120s players=1
+16:44:55 rh5 OBJX HOLD clock 0:00 elapsed=120.000 waves=3 lost=0
+16:44:55 rh5 OBJX DONE radio took=148.800s done=1/3 t=181.050
+16:44:55 rh5 OBJX GATE closed: 1/3 done at t=206.900
+16:44:55 rh5 M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+16:44:55 rh5 M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+16:44:55 rh5 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+16:44:55 rh5 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+16:44:55 rh5 M2L2C RADIO used by UnnamedSoldier#8240 t=58.050
+16:44:55 rh5 M2L2C radio audio m2l2c_radio_call from the radio t=58.050
+16:44:55 rh5 M2L2C radio hold length 120 s for 1 players (hidden timer)
+16:44:55 rh5 M2L2C radio mid clip due at 60.000 s of the hidden 120 s hold
+16:44:55 rh5 M2L2C radio wave 1 entry=mesh men=0 at=( 3740.000 -3330.000 -512.000 )
+16:44:55 rh5 M2L2C mesh wave 1 group 0 placed at ( 4020.000 -4136.000 -512.000 ) t=71.075
+16:44:55 rh5 M2L2C radio wave 1 entry=door men=1 at=( 3367.000 -3340.000 -512.000 )
+16:44:55 rh5 M2L2C radio wave 1 entry=stairs men=1 at=( 3612.000 -4016.000 -260.000 )
+16:44:55 rh5 M2L2C radio wave 1 entry=north men=1 at=( 3412.000 -2952.000 -496.000 )
+16:44:55 rh5 M2L2C mesh wave 1 group 1 placed at ( 4244.000 -4376.000 -512.000 ) t=74.075
+16:44:55 rh5 M2L2C mesh gate OPENING t=77.075
+16:44:55 rh5 M2L2C mesh wave 1 group 2 placed at ( 4020.000 -4888.000 -512.000 ) t=77.075
+16:44:55 rh5 M2L2C mesh wave 1 men=1
+16:44:55 rh5 M2L2C mesh gate OPEN, paths connected t=78.575
+16:44:55 rh5 M2L2C radio audio m2l2c_radio_burst from the radio t=86.375
+16:44:55 rh5 M2L2C radio wave 2 entry=door men=1 at=( 3367.000 -3340.000 -512.000 )
+16:44:55 rh5 M2L2C radio wave 2 entry=stairs men=1 at=( 3612.000 -4016.000 -260.000 )
+16:44:55 rh5 M2L2C radio wave 2 entry=north men=1 at=( 3412.000 -2952.000 -496.000 )
+16:44:55 rh5 M2L2C radio wave 2 entry=pier men=1 at=( 3190.000 -2150.000 -496.000 )
+16:44:55 rh5 M2L2C radio audio m2l2c_radio_burst from the radio t=107.475
+16:44:55 rh5 M2L2C radio audio m2l2c_radio_mid from the radio t=121.225
+16:44:55 rh5 M2L2C radio wave 3 entry=stairs men=1 at=( 3612.000 -4016.000 -260.000 )
+16:44:55 rh5 M2L2C radio wave 3 entry=north men=1 at=( 3412.000 -2952.000 -496.000 )
+16:44:55 rh5 M2L2C radio wave 3 entry=pier men=1 at=( 3190.000 -2150.000 -496.000 )
+16:44:55 rh5 M2L2C radio wave 3 entry=mesh men=0 at=( 3740.000 -3330.000 -512.000 )
+16:44:55 rh5 M2L2C mesh wave 3 group 0 placed at ( 4020.000 -4136.000 -512.000 ) t=139.325
+16:44:55 rh5 M2L2C rg guide n=2 open=1 at ( 3927.932 -3649.320 -511.875 ) hp=78.000
+16:44:55 rh5 M2L2C mesh wave 3 group 1 placed at ( 4244.000 -4376.000 -512.000 ) t=142.325
+16:44:55 rh5 M2L2C mesh wave 3 group 2 placed at ( 4020.000 -4888.000 -512.000 ) t=145.325
+16:44:55 rh5 M2L2C mesh wave 3 men=1
+16:44:55 rh5 M2L2C radio audio m2l2c_radio_late from the radio t=148.050
+16:44:55 rh5 M2L2C radio static loop on t=156.050
+16:44:55 rh5 M2L2C radio audio m2l2c_radio_confirm from the radio t=181.050
+16:44:55 rh5 M2L2C mesh gate CLOSED (hold won), paths disconnected t=188.550
+16:44:55 rh5 script errors: 0 []
+16:44:56 t=290.523 process exited
+16:44:57 [m2_rh5] done: 176 shots, window {'clean': True, 'violations': []}

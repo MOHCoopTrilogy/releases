@@ -1,0 +1,30 @@
+   86s    OX M2 t=47.525 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   86s    OX foepos
+   86s crane A ready: True
+   88s -- crane A impact -> burn -> list -> sink; a player standing on the hull must be put ashore
+   93s panel used: True
+  120s sinking started: True
+  121s player after 1.2 s on the hull: [('-240.000', '-3720.000', '-511.875')]
+  122s    OX M2 t=83.950 active=1 doneN=1 alive=0 | c1 st=done p=1 | c2 st=idle p=0 | gateOpen=- me=( -240.000 -3900.000 -512.000 ) | o1=3 | o2=2 | o3=1
+  122s    OX foepos
+  144s    OX M2 t=105.975 active=1 doneN=1 alive=0 | c1 st=done p=1 | c2 st=idle p=0 | gateOpen=- me=( -240.000 -3900.000 -512.000 ) | o1=3 | o2=2 | o3=1
+  144s    OX foepos
+  152s    OX M2 t=114.050 active=1 doneN=1 alive=0 | c1 st=done p=1 | c2 st=idle p=0 | gateOpen=- me=( -240.000 -3900.000 -512.000 ) | o1=3 | o2=2 | o3=1
+  153s    OX foepos
+  153s ---- OBJX log ----
+  153s OBJX armed m2l2c objectives=3 items=0 players=1
+  153s OBJX ACTIVE craneA type=m2crane t=32.250
+  153s OBJX ACTIVE craneB type=m2crane t=32.250
+  153s OBJX DONE craneA took=44.300s done=1/3 t=76.550
+  153s M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+  153s M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+  153s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  153s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  153s M2L2C PANEL A used by UnnamedSoldier#8240 t=53.450
+  153s M2L2C crane A cycle start T=25s players=1
+  153s M2L2C crane A RELEASE t=74.450
+  153s M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=76.550
+  153s M2L2C u-boat A SINKING starts t=81.550 over 30s
+  153s M2L2C u-boat A: player moved off the hull to ( -240.000 -3720.000 -508.000 )
+  153s M2L2C u-boat A SUNK, hidden t=111.550
+  153s script errors: 36 ["[2026-10-26 11:34:54 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to listener", '[2026-10-26 11:34:54 UTC-6.000] ^~^~^ Script Error : You must specify an explicit classname for misc object tik models', "[2026-10-26 11:34:54 UTC-6.000] ^~^~^ Script Error : command 'anim' applied to NIL", "[2026-10-26 11:34:54 UTC-6.000] ^~^~^ Script Error : command 'notsolid' applied to NIL", "[2026-10-26 11:34:58 UTC-6.000] ^~^~^ Script Error : Cannot cast 'none' to listener", '[2026-10-26 11:34:58 UTC-6.000] ^~^~^ Script Error : You must specify an explicit classname for misc object tik models', "[2026-10-26 11:34:58 UTC-6.000] ^~^~^ Script Error : command 'anim' applied to NIL", "[2026-10-26 11:34:58 UTC-6.000] ^~^~^ Script Error : command 'notsolid' applied to NIL"]

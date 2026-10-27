@@ -1,0 +1,29 @@
+18:17:00 t=0.035 launched pid 30828 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+18:17:00 t=0.077 in-process guard installed on thread 28868
+18:17:01 t=0.607 place 0x16107ae SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+18:17:01 t=0.814 place 0x16207ae SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+18:17:01 t=0.821 place 0xae0b58 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+18:18:15 booted m2_rv1 m2l2c ref=work dog False
+18:18:21 rv1    OX M2 t=47.225 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=2
+18:18:22 rv1    OX foepos
+18:18:22 rv1 crane A ready: True
+18:18:24 rv1 -- radio stills
+18:18:24 rv1 radio active: True
+18:18:31 rv1 ---- OBJX log ----
+18:18:31 rv1 OBJX armed m2l2c objectives=3 items=0 players=1
+18:18:31 rv1 OBJX ACTIVE craneA type=m2crane t=32.000
+18:18:31 rv1 OBJX ACTIVE craneB type=m2crane t=32.000
+18:18:31 rv1 OBJX ACTIVE radio type=m2radio t=32.000
+18:18:31 rv1 M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+18:18:31 rv1 M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+18:18:31 rv1 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+18:18:31 rv1 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+18:18:31 rv1 M2L2C SWEEP control (box inside the hull): startSolid=0 fraction=1.000
+18:18:31 rv1 M2L2C SWEEP control (box inside the hull): startSolid=1 fraction=0.000
+18:18:31 rv1 M2L2C SWEEP crane A done: 0 intersections over 61 poses + the bridge span
+18:18:31 rv1 M2L2C SWEEP crane B done: 0 intersections over 61 poses + the bridge span
+18:18:31 rv1 M2L2C solid prop models/miscobj/radio_military.tik bounds ( -15.034 -3.191 0.000 ) .. ( 15.071 15.405 21.789 ) at ( 3656.000 -3540.000 -482.000 )
+18:18:31 rv1 M2L2C marker -> main objective 1 (craneA) location ( 792.000 -3740.000 -452.000 )
+18:18:31 rv1 script errors: 0 []
+18:18:31 t=90.781 process exited
+18:18:31 [m2_rv1] done: 7 shots, window {'clean': True, 'violations': []}

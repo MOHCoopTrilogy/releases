@@ -1,0 +1,14 @@
+09:20:05 booted m2_vs3 m2l2c ref=work dog False
+09:20:08 vs3 RGSTATE ['rgstate NIL (stock map)']
+09:20:08 vs3 map is STOCK
+09:20:44 vs3 CLIP east-bound walk [(-3480, 3560), (-3470, 3617), (-3460, 3617), (-3400, 3619), (-3300, 3619), (-3200, 3619), (-3160, 3617), (-3150, 3617), (-3145, 3617)]
+09:21:19 vs3 CLIP east-bound jump [(-3480, 3560), (-3470, 3617), (-3460, 3617), (-3400, 3619), (-3300, 3619), (-3200, 3619), (-3160, 3617), (-3150, 3617), (-3145, 3617)]
+09:21:55 vs3 CLIP east-bound crouch [(-3480, 3560), (-3470, 3622), (-3460, 3617), (-3400, 3622), (-3300, 3619), (-3200, 3622), (-3160, 3617), (-3150, 3622), (-3145, 3617)]
+09:22:15 vs3 CLIP west-bound from behind [(-3470, 3655), (-3400, 3653), (-3300, 3653), (-3200, 3653), (-3150, 3671)]
+09:22:18 vs3 BULLET control: man in FRONT of the fence hp ['1000.000'] -> ['1000.000']
+09:22:22 vs3 BULLET man BEHIND the closed fence hp ['1000.000'] -> ['1000.000']
+09:22:23 vs3 EXPLOSION (radiusdamage 300 at 3600, target 3680 behind the fence) hp ['targethp 823.000 weapon=-']
+09:22:24 vs3 AI SIGHT (man behind the fence, player in front) ['aisee 1 ai=( 3700.000 -3300.000 -512.000 ) me=( 3560.000 -3300.000 -511.875 )']
+09:22:24 vs3 TRACE through the fence ['trc default frac=0.892 | world-only frac=0.892']
+09:22:24 vs3 errors []
+09:22:24 [m2_vs3] done: 0 shots, window {'clean': True, 'violations': []}

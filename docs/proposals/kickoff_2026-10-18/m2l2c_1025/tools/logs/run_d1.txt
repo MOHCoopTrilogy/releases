@@ -1,0 +1,39 @@
+   76s    OX M2 t=47.525 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=2
+   76s    OX foepos
+   76s -- barrel-room door burst
+   76s radio active: True
+   82s radio used: True
+   85s    OX foepos
+   87s    OX foepos
+   90s    OX foepos
+   93s    OX foepos
+   95s    OX foepos [( 3661.588 -4009.899 -303.875 )] [( 3478.532 -2911.114 -511.875 )] [( 3192.487 -2149.571 -511.875 )]
+   98s    OX foepos [( 3423.300 -4079.257 -303.875 )] [( 3478.532 -2911.114 -511.875 )] [( 3194.273 -2149.486 -511.875 )]
+  101s    OX foepos [( 3402.853 -3585.095 -511.875 )] [( 3478.532 -2911.114 -511.875 )] [( 3194.273 -2149.486 -511.875 )]
+  103s    OX foepos [( 3606.931 -3684.597 -511.875 )] [( 3478.532 -2911.114 -511.875 )] [( 3194.273 -2149.486 -511.875 )]
+  106s    OX foepos [( 3638.902 -3732.338 -511.875 )] [( 3478.532 -2911.114 -511.875 )] [( 3194.273 -2149.486 -511.875 )]
+  109s    OX foepos [( 3671.430 -3705.459 -511.875 )] [( 3478.532 -2911.114 -511.875 )] [( 3194.273 -2149.486 -511.875 )]
+  112s    OX foepos [( 3671.629 -3729.759 -511.875 )] [( 3478.532 -2911.114 -511.875 )] [( 3194.273 -2149.486 -511.875 )]
+  115s    OX foepos [( 3627.415 -3732.421 -511.875 )] [( 3478.532 -2911.114 -511.875 )] [( 3194.273 -2149.486 -511.875 )]
+  118s    OX foepos [( 3647.676 -3669.487 -511.875 )] [( 3478.532 -2911.114 -511.875 )] [( 3194.273 -2149.486 -511.875 )]
+  120s    OX foepos [( 3636.706 -3731.520 -511.875 )] [( 3478.532 -2911.114 -511.875 )] [( 3194.273 -2149.486 -511.875 )]
+  120s door frames done
+  120s ---- OBJX log ----
+  120s OBJX armed m2l2c objectives=3 items=0 players=1
+  120s OBJX ACTIVE craneA type=m2crane t=32.250
+  120s OBJX ACTIVE craneB type=m2crane t=32.250
+  120s OBJX ACTIVE radio type=m2radio t=32.250
+  120s OBJX HOLD radio zone=the storage room at=( 3615.000 -3850.000 -512.000 ) r=360 total=60s players=1
+  120s M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+  120s M2L2C barrel-room door built (open) at ( 3423.000 -3430.000 -380.000 )
+  120s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  120s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  120s M2L2C RADIO used by UnnamedSoldier#8240 t=52.850
+  120s M2L2C barrel-room door SHUTTING t=52.850
+  120s M2L2C gate OPENING t=52.850
+  120s M2L2C gate OPEN t=55.850
+  120s M2L2C radio wave 1 entry door seen - skipped
+  120s M2L2C radio wave 1 entry=stairs men=1 at=( 3612.000 -4016.000 -260.000 )
+  120s M2L2C radio wave 1 entry=north men=1 at=( 3412.000 -2952.000 -496.000 )
+  120s M2L2C radio wave 1 entry=pier men=1 at=( 3190.000 -2150.000 -496.000 )
+  120s script errors: 0 []

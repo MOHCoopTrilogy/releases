@@ -1,0 +1,91 @@
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+errors ["[2026-10-25 20:26:35 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-25 20:26:35 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-25 20:26:35 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-25 20:26:36 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-25 20:26:36 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-25 20:26:36 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-25 20:26:37 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-25 20:26:37 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-25 20:26:37 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-25 20:26:38 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-25 20:26:38 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-25 20:26:38 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'"]

@@ -1,0 +1,9 @@
+14:56:19 t=0.037 launched pid 6500 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+14:56:19 t=0.128 in-process guard installed on thread 15508
+14:56:20 t=0.695 place 0x10e0bf4 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+14:56:20 t=0.904 place 0x10f0bf4 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+14:56:20 t=0.911 place 0x28c0da4 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+14:57:36 booted m2_o_m5l1a m5l1a ref=work dog False
+14:59:37 m5l1a script errors: 0
+14:59:38 t=198.486 process exited
+14:59:38 [m2_o_m5l1a] done: 0 shots, window {'clean': True, 'violations': []}

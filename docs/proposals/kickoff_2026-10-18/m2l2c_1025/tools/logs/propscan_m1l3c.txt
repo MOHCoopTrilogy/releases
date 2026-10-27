@@ -1,0 +1,6 @@
+PROPSCAN m1l3c k=2 kind=target model=models/static/fuel_tanks.tik at=( -5564.000 -4804.000 -18.000 ) mn=( -370.313 -156.250 -0.000 ) mx=( 600.781 293.750 757.000 ) floorgap=5.875 clips=1 nearest=297
+PROPSCAN m1l3c k=3 kind=target model=models/static/fuel_tanks.tik at=( -5444.000 -4532.000 -18.000 ) mn=( -370.313 -156.250 -0.000 ) mx=( 600.781 293.750 757.000 ) floorgap=5.875 clips=1 nearest=283
+PROPSCAN m1l3c k=4 kind=target model=models/static/fuel_tanks.tik at=( -5470.000 -4250.000 -18.000 ) mn=( -370.313 -156.250 -0.000 ) mx=( 600.781 293.750 757.000 ) floorgap=5.875 clips=1 nearest=283
+PROPSCAN m1l3c k=5 kind=pickup model=models/items/naxosplans1.tik at=( 330.000 -1850.000 1152.000 ) mn=( -19.210 -32.742 0.000 ) mx=( 18.983 25.360 1.495 ) floorgap=-1.620 clips=1 nearest=29
+PROPSCAN m1l3c k=6 kind=prop model=models/static/desk.tik at=( 330.000 -1850.000 1122.100 ) mn=( -17.359 -31.090 -0.062 ) mx=( 16.434 31.621 51.780 ) floorgap=5.975 clips=1 nearest=29
+PROPSCAN done 5

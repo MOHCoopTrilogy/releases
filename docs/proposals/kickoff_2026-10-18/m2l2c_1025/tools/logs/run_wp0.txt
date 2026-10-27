@@ -1,0 +1,15 @@
+   83s    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+   83s    OX M2 t=" + level.time + " active=" ^
+   83s    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+   83s    OX M2 t=" + level.time + " active=" + level.objx_active ^
+   83s    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+   83s    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" ^
+   83s    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+   83s    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN ^
+   83s    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+   83s    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" ^
+   83s    OX foepos
+  102s WALK A walkway ctrl [(90, -4300, -3019), (270, -3300, -4580)]
+  119s WALK B walkway ctrl [(90, -4300, -3039), (270, -3300, -4560)]
+  119s ---- OBJX log ----
+  119s script errors: 6 ["[2026-10-26 11:15:49 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-26 11:15:49 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'int'", "[2026-10-26 11:15:49 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-26 11:15:49 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'vector'", "[2026-10-26 11:15:49 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-26 11:15:49 UTC-6.000] ^~^~^ Script Error : binary '<=' applied to incompatible types 'int' and 'none'"]

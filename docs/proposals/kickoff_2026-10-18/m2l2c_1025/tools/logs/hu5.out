@@ -1,0 +1,38 @@
+13:34:10 t=0.033 launched pid 536 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+13:34:10 t=0.066 in-process guard installed on thread 29808
+13:34:10 t=0.558 place 0x2e70e82 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+13:34:10 t=0.715 place 0x2e80e82 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+13:34:10 t=0.721 place 0xb108da SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+13:35:20 booted m2_hu5 m2l2c ref=work dog False
+13:35:27 hu5    OX M2 t=47.425 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+13:35:27 hu5    OX foepos
+13:35:27 hu5 crane A ready: True
+13:35:30 hu5 -- crane HUD at 16:9 / 4:3 / 21:9 while jammed
+13:35:51 t=101.265 place 0x1a90d24 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+13:35:51 t=101.309 place 0x1aa0d24 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+13:35:51 t=101.315 place 0xd708da SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+13:36:18 hu5 hud still 169
+13:36:18 t=128.344 place 0x1ab0d24 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+13:36:18 t=128.388 place 0x1ac0d24 SDL_app created (3888, 156, 4912, 924) -> (3888, 156) hidden
+13:36:18 t=128.394 place 0xff098c SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+13:36:45 hu5 hud still 43
+13:36:45 t=155.377 place 0x1ad0d24 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+13:36:45 t=155.422 place 0x1ae0d24 SDL_app created (3440, 0, 6000, 1080) -> (3440, 0) hidden
+13:36:45 t=155.429 place 0x10e098c SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+13:37:06 hu5 hud still 219
+13:37:13 hu5 ---- OBJX log ----
+13:37:13 hu5 OBJX armed m2l2c objectives=3 items=0 players=1
+13:37:13 hu5 OBJX ACTIVE craneA type=m2crane t=32.250
+13:37:13 hu5 OBJX ACTIVE craneB type=m2crane t=32.250
+13:37:13 hu5 M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+13:37:13 hu5 M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+13:37:13 hu5 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+13:37:13 hu5 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+13:37:13 hu5 M2L2C PANEL A used by UnnamedSoldier#8240 t=53.650
+13:37:13 hu5 M2L2C crane A cycle start T=25s players=1
+13:37:13 hu5 M2L2C crane A JAMMED at 0.712 t=71.550
+13:37:13 hu5 M2L2C crane A RESUMED (auto) after 41.800s t=113.350
+13:37:13 hu5 M2L2C crane A RELEASE t=116.450
+13:37:13 hu5 script errors: 0 []
+13:37:13 t=183.209 process exited
+13:37:13 [m2_hu5] done: 7 shots, window {'clean': True, 'violations': []}

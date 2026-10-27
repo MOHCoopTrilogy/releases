@@ -1,0 +1,30 @@
+   95s    OX M2 t=47.300 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   95s    OX foepos
+   95s crane A ready: True
+   98s -- craneA: at the control panel
+  103s panel used: True
+  106s    OX M2 t=58.100 active=1 doneN=0 alive=3 | c1 st=run p=0.147 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+  106s    OX foepos [( 755.602 -4480.939 -511.875 )] [( 749.025 -4683.409 -511.875 )] [( 743.111 -4592.040 -511.875 )]
+  119s    OX M2 t=70.950 active=1 doneN=0 alive=3 | c1 st=run p=0.577 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+  119s    OX foepos [( 750.559 -4505.605 -511.875 )] [( 756.288 -4233.665 -511.875 )] [( 746.982 -4147.195 -511.875 )]
+  122s JAMMED (auto-handled) craneA
+  136s    OX M2 t=88.575 active=1 doneN=1 alive=0 | c1 st=done p=1 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -4000.000 -512.000 ) | o1=3 | o2=2 | o3=1
+  136s    OX foepos
+  139s objective done: True
+  141s ---- OBJX log ----
+  141s OBJX armed m2l2c objectives=3 items=0 players=1
+  141s OBJX ACTIVE craneA type=m2crane t=32.250
+  141s OBJX ACTIVE craneB type=m2crane t=32.250
+  141s OBJX DONE craneA took=55.650s done=1/3 t=87.900
+  141s M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+  141s M2L2C mesh gate built: 2 panels
+  141s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  141s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  141s M2L2C PANEL A used by UnnamedSoldier#8240 t=53.650
+  141s M2L2C crane A cycle start T=30s players=1
+  141s M2L2C crane A wave 1 men=3 at=( 748.000 -4560.000 -512.000 ) alive=3
+  141s M2L2C crane A JAMMED at 0.647 t=73.150
+  141s M2L2C crane A re-activated t=78.250
+  141s M2L2C crane A RELEASE t=84.050
+  141s M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=87.900
+  141s script errors: 0 []

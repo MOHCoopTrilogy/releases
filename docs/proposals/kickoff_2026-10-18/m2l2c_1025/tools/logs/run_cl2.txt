@@ -1,0 +1,13 @@
+   77s    OX M2 t=47.225 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   78s    OX foepos
+   78s crane A ready: True
+   80s ---- OBJX log ----
+   80s OBJX armed m2l2c objectives=3 items=0 players=1
+   80s OBJX ACTIVE craneA type=m2crane t=32.000
+   80s OBJX ACTIVE craneB type=m2crane t=32.000
+   80s M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+   80s M2L2C barrel-room door built (open) at ( 3423.000 -3430.000 -380.000 )
+   80s M2L2C mesh gate: stock map ($mesh_gate missing) - fallback entries only
+   80s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+   80s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+   80s script errors: 0 []

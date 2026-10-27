@@ -247,7 +247,7 @@ try:
         hold(3200)
         ok = wait(r"M2L2C PANEL A used", 10); log("panel used:", bool(ok))
         spots = [(748, -3790, 0), (700, -3500, 90), (748, -4100, 270), (600, -3800, 0), (748, -3790, 0)]
-        for k in range(14):
+        for k in range(26):
             x, y, yw = spots[k % len(spots)]
             tp(x, y, -512, yw, 0); time.sleep(5)
             if k == 3: G.still("m2_cw_still")
@@ -291,6 +291,25 @@ try:
         p0 = G.cmd("m2state")
         for l in G.since(p0, r"\^~\^~\^ (OX M2[^\r\n]*)"): log("  after tp into the opening:", l[l.find("me="):l.find("me=") + 48])
         G.still("m2_barrier_after")
+    if "whiteview" in STAGES:
+        for nm, (x, y, yw, pt) in (("north", (748, -4500, 150, 6)), ("mouth", (260, -2400, 90, 4)), ("west", (-215, -3000, 60, 4))):
+            tp(x, y, -512, yw, pt); time.sleep(0.8); G.still("m2_wh_" + nm)
+    if "benchview" in STAGES:
+        time.sleep(3)
+        for nm, (x, y, z, yw, pt) in (("front", (3656, -3640, -512, 90, 5)), ("lowside", (3585, -3541, -512, 0, 2)), ("lowside2", (3730, -3541, -512, 180, 2)), ("lowfront", (3656, -3600, -512, 90, 4))):
+            tp(x, y, z, yw, pt); aim(3656, -3540, -484); time.sleep(0.8)
+            G.still("m2_bv_" + nm)
+    if "voxprobe" in STAGES:
+        log("-- radio loudness / falloff: the clip is started with the listener at each position; VOXSTART prints the distance to the radio")
+        ok = wait(r"OBJX ACTIVE radio", 40); log("radio active:", bool(ok))
+        spots = [("at the radio", (3656, -3600)), ("across the room", (3560, -3880)), ("room entrance", (3372, -3640)), ("corridor 1", (3367, -3340)),
+                 ("corridor 2", (3300, -3000)), ("outside the pens", (3190, -2500)), ("crane B panel", (3190, -3600)), ("far quay", (3190, -2000))]
+        for nm, (x, y) in spots:
+            tp(x, y, -512, 90, 0); time.sleep(0.6)
+            p0 = G.cmd("m2say", s="m2l2c_radio_call")
+            time.sleep(1.2)
+            for l in R.read_log()[p0:].split("\n") if isinstance(R.read_log(), str) else []:
+                if "VOXSTART" in l and "radio_call" in l: log("  %-18s %s" % (nm, l[l.find("dist="):l.find("dist=") + 70]))
     if "hudtest" in STAGES:
         log("-- crane HUD at 16:9 / 4:3 / 21:9 while jammed")
         ok = wait(r"M2L2C crane A ready", 30)

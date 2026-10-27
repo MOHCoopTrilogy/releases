@@ -1,0 +1,21 @@
+model 0 models/items/torpedo.tik
+model 1 models/static/static_torpedo.tik
+model 2 models/static/exp_crate1.tik
+model 3 models/static/exp_crate2.tik
+model 4 models/static/exp_crate3.tik
+model 5 models/static/fragcrate1.tik
+model 6 models/static/30cal_crate.tik
+model 7 models/static/50cal_crate.tik
+model 8 models/static/88shell.tik
+model 9 models/static/nazi_crate.tik
+model 10 models/static/supplydropcrate.tik
+model 11 models/miscobj/crate_carry.tik
+model 12 models/miscobj/ammocrate.tik
+model 13 models/coop_build/shape_cube_crate.tik
+model 14 models/coop_build/box_crate_explosive.tik
+model 15 models/coop_build/box_crate_nazi.tik
+model 16 models/coop_build/box_crate_reinforced.tik
+model 17 models/coop_build/box_foodcrate1.tik
+model 18 models/static/fuel_tanks.tik
+model 19 models/animate/fx_cratedebris_0.tik
+errors []

@@ -1,0 +1,29 @@
+   79s    OX M2 t=47.500 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   79s    OX foepos
+   79s crane A ready: True
+   82s -- defend demo: crane A, player stays at the panel, waves converge, jam, clear, re-activate
+   87s panel used: True
+   89s    OX M2 t=56.800 active=1 doneN=0 alive=0 | c1 st=run p=0.097 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -3800.000 -512.000 ) | o1=2 | o2=2 | o3=1
+   89s    OX foepos
+   94s    OX M2 t=62.625 active=1 doneN=0 alive=3 | c1 st=run p=0.290 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -3800.000 -512.000 ) | o1=2 | o2=2 | o3=1
+   95s    OX foepos [( 746.721 -4834.246 -511.875 )] [( 756.147 -4714.518 -511.875 )] [( 776.534 -4805.917 -511.875 )]
+  101s    OX M2 t=69.250 active=1 doneN=0 alive=3 | c1 st=run p=0.513 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -3800.000 -512.000 ) | o1=2 | o2=2 | o3=1
+  101s    OX foepos [( 749.054 -4576.126 -511.875 )] [( 732.163 -4484.974 -511.875 )] [( 774.199 -4550.001 -511.875 )]
+  107s    OX M2 t=75.475 active=1 doneN=0 alive=3 | c1 st=run p=0.720 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -3800.000 -512.000 ) | o1=2 | o2=2 | o3=1
+  107s    OX foepos [( 778.556 -4454.445 -511.875 )] [( 733.353 -4409.209 -511.875 )] [( 745.074 -4431.314 -511.875 )]
+  114s    OX M2 t=82.100 active=1 doneN=0 alive=3 | c1 st=drop p=0.840 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -3800.000 -512.000 ) | o1=2 | o2=2 | o3=1
+  114s    OX foepos [( 771.548 -4320.778 -511.875 )] [( 769.247 -4186.102 -511.875 )] [( 741.541 -4278.963 -511.875 )]
+  117s ---- OBJX log ----
+  117s OBJX armed m2l2c objectives=3 items=0 players=1
+  117s OBJX ACTIVE craneA type=m2crane t=32.250
+  117s OBJX ACTIVE craneB type=m2crane t=32.250
+  117s OBJX DONE craneA took=50.650s done=1/3 t=82.900
+  117s M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+  117s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  117s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  117s M2L2C PANEL A used by UnnamedSoldier#8240 t=53.850
+  117s M2L2C crane A cycle start T=30s players=1
+  117s M2L2C crane A wave 1 men=3 at=( 748.000 -4840.000 -512.000 ) alive=3
+  117s M2L2C crane A RELEASE t=79.050
+  117s M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=82.900
+  117s script errors: 0 []

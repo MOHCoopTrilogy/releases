@@ -1,0 +1,20 @@
+   81s    OX M2 t=47.525 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+   82s    OX foepos
+   82s crane A ready: True
+   84s -- crane HUD at 16:9 / 4:3 / 21:9 while jammed
+  119s hud still 169
+  150s hud still 43
+  181s hud still 219
+  188s ---- OBJX log ----
+  188s OBJX armed m2l2c objectives=3 items=0 players=1
+  188s OBJX ACTIVE craneA type=m2crane t=32.250
+  188s OBJX ACTIVE craneB type=m2crane t=32.250
+  188s M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+  188s M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+  188s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  188s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  188s M2L2C PANEL A used by UnnamedSoldier#8240 t=53.450
+  188s M2L2C crane A cycle start T=90s players=1
+  188s M2L2C crane A JAMMED at 0.060 t=58.950
+  188s M2L2C crane A RESUMED (auto) after 47.300s t=106.250
+  188s script errors: 0 []

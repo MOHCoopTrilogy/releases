@@ -1,0 +1,17 @@
+11:15:42 booted m2_wp0 m2l2c ref=work dog False
+11:15:49 wp0    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+11:15:49 wp0    OX M2 t=" + level.time + " active=" ^
+11:15:49 wp0    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+11:15:49 wp0    OX M2 t=" + level.time + " active=" + level.objx_active ^
+11:15:49 wp0    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+11:15:49 wp0    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" ^
+11:15:49 wp0    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+11:15:49 wp0    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN ^
+11:15:49 wp0    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+11:15:49 wp0    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" ^
+11:15:49 wp0    OX foepos
+11:16:08 wp0 WALK A walkway ctrl [(90, -4300, -3019), (270, -3300, -4580)]
+11:16:25 wp0 WALK B walkway ctrl [(90, -4300, -3039), (270, -3300, -4560)]
+11:16:25 wp0 ---- OBJX log ----
+11:16:25 wp0 script errors: 6 ["[2026-10-26 11:15:49 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-26 11:15:49 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'int'", "[2026-10-26 11:15:49 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-26 11:15:49 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'vector'", "[2026-10-26 11:15:49 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-26 11:15:49 UTC-6.000] ^~^~^ Script Error : binary '<=' applied to incompatible types 'int' and 'none'"]
+11:16:25 [m2_wp0] done: 0 shots, window {'clean': True, 'violations': []}

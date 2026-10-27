@@ -1,0 +1,185 @@
+{
+ "m2l2c": {
+  "note": "mirror of coop_mod/objx_m2l2c.scr m2_data for placement_audit_m2.py",
+  "objectives": [
+   {
+    "id": "craneA",
+    "type": "hold",
+    "line": 3,
+    "text": "Crane A",
+    "done": "d",
+    "when": "auto",
+    "items": [
+     {
+      "kind": "panel",
+      "model": "models/animate/electrical_switch_pulse.tik",
+      "pos": [
+       792,
+       -3740,
+       -452
+      ],
+      "yaw": 0,
+      "scale": 2.5,
+      "label": "crane A control switch"
+     },
+     {
+      "kind": "load",
+      "model": "models/coop_build/shape_slab_ibeam.tik",
+      "pos": [
+       738,
+       -3880,
+       -512
+      ],
+      "yaw": 0,
+      "scale": 3.2,
+      "label": "crane A load"
+     }
+    ],
+    "zone": {
+     "pos": [
+      770,
+      -3800,
+      -512
+     ],
+     "r": 300,
+     "name": "panel A",
+     "spawns": [
+      [
+       748,
+       -4560,
+       -512
+      ],
+      [
+       748,
+       -5568,
+       -512
+      ],
+      [
+       756,
+       -2352,
+       -512
+      ],
+      [
+       748,
+       -2936,
+       -512
+      ]
+     ]
+    }
+   },
+   {
+    "id": "craneB",
+    "type": "hold",
+    "line": 4,
+    "text": "Crane B",
+    "done": "d",
+    "when": "auto",
+    "items": [
+     {
+      "kind": "panel",
+      "model": "models/animate/electrical_switch_pulse.tik",
+      "pos": [
+       3225,
+       -3600,
+       -452
+      ],
+      "yaw": 0,
+      "scale": 2.5,
+      "label": "crane B control switch"
+     },
+     {
+      "kind": "load",
+      "model": "models/coop_build/shape_slab_ibeam.tik",
+      "pos": [
+       3185,
+       -3720,
+       -512
+      ],
+      "yaw": 0,
+      "scale": 3.2,
+      "label": "crane B load"
+     }
+    ],
+    "zone": {
+     "pos": [
+      3190,
+      -3660,
+      -512
+     ],
+     "r": 300,
+     "name": "panel B",
+     "spawns": [
+      [
+       3204,
+       -4520,
+       -512
+      ],
+      [
+       3188,
+       -5648,
+       -512
+      ],
+      [
+       3412,
+       -2952,
+       -496
+      ],
+      [
+       3196,
+       -3040,
+       -512
+      ]
+     ]
+    }
+   },
+   {
+    "id": "radio",
+    "type": "hold",
+    "line": 5,
+    "text": "Radio",
+    "done": "d",
+    "when": "auto",
+    "items": [
+     {
+      "kind": "radio",
+      "model": "models/miscobj/radio_military.tik",
+      "pos": [
+       3656,
+       -3540,
+       -482
+      ],
+      "yaw": 180,
+      "scale": 2.0,
+      "label": "the radio set"
+     }
+    ],
+    "zone": {
+     "pos": [
+      3615,
+      -3850,
+      -512
+     ],
+     "r": 360,
+     "name": "the storage room",
+     "spawns": [
+      [
+       3612,
+       -4016,
+       -260
+      ],
+      [
+       3412,
+       -2952,
+       -496
+      ],
+      [
+       3190,
+       -2150,
+       -496
+      ]
+     ]
+    }
+   }
+  ]
+ }
+}

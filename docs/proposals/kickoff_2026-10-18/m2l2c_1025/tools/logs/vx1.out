@@ -1,0 +1,46 @@
+19:20:59 t=0.033 launched pid 31560 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+19:20:59 t=0.081 in-process guard installed on thread 5140
+19:20:59 t=0.619 place 0x2e801d6 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:21:00 t=0.811 place 0x2e901d6 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+19:21:00 t=0.817 place 0x45707c6 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+19:22:11 booted m2_vx1 m2l2c ref=work dog False
+19:22:18 vx1    OX M2 t=47.300 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=- me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=2
+19:22:18 vx1    OX foepos
+19:22:18 vx1 crane A ready: True
+19:22:21 vx1 -- radio loudness / falloff: the clip is started with the listener at each position; VOXSTART prints the distance to the radio
+19:22:21 vx1 radio active: True
+19:22:39 vx1 ---- OBJX log ----
+19:22:39 vx1 OBJX armed m2l2c objectives=3 items=0 players=1
+19:22:39 vx1 OBJX ACTIVE craneA type=m2crane t=32.000
+19:22:39 vx1 OBJX ACTIVE craneB type=m2crane t=32.000
+19:22:39 vx1 OBJX ACTIVE radio type=m2radio t=32.000
+19:22:39 vx1 M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+19:22:39 vx1 M2L2C u-boats: movable boats found at ( 254.000 -3916.000 -712.000 ) and ( 2756.000 -3380.000 -712.000 ) (lit + bound)
+19:22:39 vx1 M2L2C radio: bench top z=-489.125, radio origin was z=-482.000 (gap 7.125)
+19:22:39 vx1 M2L2C solid prop models/animate/electrical_switch_pulse.tik bounds ( -8.000 -13.000 0.310 ) .. ( 8.000 13.000 26.119 ) at ( 792.000 -3740.000 -452.000 )
+19:22:39 vx1 M2L2C solid prop models/animate/electrical_switch_pulse.tik bounds ( -8.000 -13.000 0.310 ) .. ( 8.000 13.000 26.119 ) at ( 3225.000 -3600.000 -452.000 )
+19:22:39 vx1 M2L2C solid prop models/miscobj/radio_military.tik bounds ( -16.000 -16.000 0.000 ) .. ( 16.000 16.000 21.789 ) at ( 3656.000 -3540.000 -489.125 )
+19:22:39 vx1 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+19:22:39 vx1 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+19:22:39 vx1 M2L2C SWEEP control (box inside the hull): startSolid=0 fraction=1.000
+19:22:39 vx1 M2L2C SWEEP control (box inside the hull): startSolid=1 fraction=0.000
+19:22:39 vx1 M2L2C SWEEP crane A done: 0 intersections over 61 poses + the bridge span
+19:22:39 vx1 M2L2C SWEEP crane B done: 0 intersections over 61 poses + the bridge span
+19:22:39 vx1 M2L2C marker -> main objective 1 (craneA) location ( 792.000 -3740.000 -452.000 )
+19:22:39 vx1 M2L2C radio audio m2l2c_radio_call from the radio t=51.325
+19:22:39 vx1 M2L2C radio audio m2l2c_radio_call from the radio t=53.550
+19:22:39 vx1 M2L2C radio audio m2l2c_radio_call from the radio t=55.775
+19:22:39 vx1 M2L2C radio audio m2l2c_radio_call from the radio t=58.000
+19:22:39 vx1 M2L2C radio audio m2l2c_radio_call from the radio t=60.225
+19:22:39 vx1 M2L2C radio audio m2l2c_radio_call from the radio t=62.450
+19:22:39 vx1 M2L2C officer wave 101: 4 men via the real mesh gate -> officer at ( 2859.000 -6355.145 -511.875 )
+19:22:39 vx1 M2L2C OFFMAN w=101 #0 spawned t=64.125 at ( 4000.000 -5600.000 -511.875 )
+19:22:39 vx1 M2L2C OFFMAN w=101 #4 spawned t=64.150 at ( 4045.000 -5600.000 -511.875 )
+19:22:39 vx1 M2L2C mesh wave 101 group 0 placed at ( 4000.000 -5600.000 -512.000 ) t=64.150
+19:22:39 vx1 M2L2C radio audio m2l2c_radio_call from the radio t=64.675
+19:22:39 vx1 M2L2C radio audio m2l2c_radio_call from the radio t=66.900
+19:22:39 vx1 M2L2C OFFMAN w=101 #3 spawned t=67.175 at ( 4500.000 -5200.000 -511.875 )
+19:22:39 vx1 M2L2C mesh wave 101 group 1 placed at ( 4500.000 -5200.000 -512.000 ) t=67.175
+19:22:39 vx1 script errors: 0 []
+19:22:39 t=100.562 process exited
+19:22:39 [m2_vx1] done: 3 shots, window {'clean': True, 'violations': []}

@@ -1,0 +1,1 @@
+    p1 = G.cmd("trc"); log("TRACE through the fence", pump(r"\^~\^~\^ OX (trc[^\r\n]*)", p1))

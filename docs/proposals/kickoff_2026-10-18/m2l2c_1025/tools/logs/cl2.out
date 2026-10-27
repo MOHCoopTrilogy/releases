@@ -1,0 +1,15 @@
+11:21:26 booted m2_cl2 m2l2c ref=work dog False
+11:21:32 cl2    OX M2 t=47.225 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+11:21:32 cl2    OX foepos
+11:21:32 cl2 crane A ready: True
+11:21:35 cl2 ---- OBJX log ----
+11:21:35 cl2 OBJX armed m2l2c objectives=3 items=0 players=1
+11:21:35 cl2 OBJX ACTIVE craneA type=m2crane t=32.000
+11:21:35 cl2 OBJX ACTIVE craneB type=m2crane t=32.000
+11:21:35 cl2 M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+11:21:35 cl2 M2L2C barrel-room door built (open) at ( 3423.000 -3430.000 -380.000 )
+11:21:35 cl2 M2L2C mesh gate: stock map ($mesh_gate missing) - fallback entries only
+11:21:35 cl2 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+11:21:35 cl2 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+11:21:35 cl2 script errors: 0 []
+11:21:36 [m2_cl2] done: 3 shots, window {'clean': True, 'violations': []}

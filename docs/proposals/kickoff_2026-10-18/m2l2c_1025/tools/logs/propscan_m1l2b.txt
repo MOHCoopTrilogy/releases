@@ -1,0 +1,4 @@
+PROPSCAN m1l2b k=4 kind=target model=models/static/fuel_tanks.tik at=( 1150.000 -1100.000 -298.000 ) mn=( -370.313 -156.250 -0.000 ) mx=( 600.781 293.750 757.000 ) floorgap=37.875 clips=1 nearest=320
+PROPSCAN m1l2b k=5 kind=target model=models/static/fuel_tanks.tik at=( 900.000 -1300.000 -298.000 ) mn=( -370.313 -156.250 -0.000 ) mx=( 600.781 293.750 757.000 ) floorgap=37.875 clips=1 nearest=261
+PROPSCAN m1l2b k=6 kind=target model=models/static/fuel_tanks.tik at=( 930.000 -1560.000 -298.000 ) mn=( -370.313 -156.250 -0.000 ) mx=( 600.781 293.750 757.000 ) floorgap=37.875 clips=1 nearest=261
+PROPSCAN done 3

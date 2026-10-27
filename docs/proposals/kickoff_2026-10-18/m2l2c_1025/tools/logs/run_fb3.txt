@@ -1,0 +1,13 @@
+    1s FAILED SlotBusy('client slot hudfeed5 is in use by pid 14048 until Mon Oct 26 13:04:21 2026') ot
+    rundir, notes = S.boot_session(sess, cg, W, H, EXTRA + list(extra), ov or overlay(ref=ref, extra=files))
+                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev/docs/proposals/ironsights_2026-09-28/tools\run_sweep.py", line 101, in boot_session
+    R.launch(W, H, extra)
+    ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev\docs\proposals\ironsights_2026-09-28\tools\run_ironsights.py", line 159, in launch
+    hg.acquire_slot(OWNER, EXE, HOME, [PORT], 40)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\mohaa-coop-dev\docs\tools\harness_guard.py", line 346, in acquire_slot
+    raise SlotBusy("client slot %s is in use by pid %s until %s" % (owner, cur.get("pid"), time.ctime(cur.get("expires", 0))))
+harness_guard.SlotBusy: client slot hudfeed5 is in use by pid 14048 until Mon Oct 26 13:04:21 2026
+

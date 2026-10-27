@@ -1,0 +1,14 @@
+   82s    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+   82s    OX M2 t=" + level.time + " active=" ^
+   82s    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+   82s    OX M2 t=" + level.time + " active=" + level.objx_active ^
+   82s    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+   82s    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" ^
+   82s    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+   82s    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN ^
+   82s    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" + ( waitthread coop_mod/coop_counter.scr::counter_alive )
+   82s    OX M2 t=" + level.time + " active=" + level.objx_active + " doneN=" + level.objx_doneN + " alive=" ^
+   82s    OX foepos
+  112s crane A ready: False
+  122s ---- OBJX log ----
+  122s script errors: 6 ["[2026-10-26 19:09:28 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-26 19:09:28 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'int'", "[2026-10-26 19:09:28 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-26 19:09:28 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'vector'", "[2026-10-26 19:09:28 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-26 19:09:28 UTC-6.000] ^~^~^ Script Error : binary '<=' applied to incompatible types 'int' and 'none'"]

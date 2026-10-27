@@ -1,0 +1,67 @@
+   85s    OX M2 t=47.250 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=2
+   85s    OX foepos
+   85s -- mesh gate: before the fake / with the fake, then the gate opening with Axis coming through
+   85s radio active: True
+   93s radio used: True
+   99s    OX foepos
+  105s    OX foepos
+  112s    OX foepos [( 4020.000 -4136.000 -511.875 )] [( 4064.842 -4133.130 -511.875 )]
+  115s targeting back on at chunk 17
+  117s    OX foepos [( 4020.000 -4136.000 -511.875 )] [( 4064.842 -4133.130 -511.875 )] [( 4243.832 -4371.627 -511.875 )] [( 4020.000 -4888.000 -511.875 )]
+  122s    OX foepos [( 4020.000 -4136.000 -511.875 )] [( 4064.842 -4133.130 -511.875 )] [( 4243.832 -4371.627 -511.875 )] [( 4020.000 -4888.000 -511.875 )]
+  126s    OX foepos [( 4020.000 -4136.000 -511.875 )] [( 4064.842 -4133.130 -511.875 )] [( 4243.832 -4371.627 -511.875 )] [( 4020.000 -4888.000 -511.875 )]
+  131s    OX foepos [( 4020.000 -4136.000 -511.875 )] [( 4064.842 -4133.130 -511.875 )] [( 4243.832 -4371.627 -511.875 )] [( 4020.000 -4888.000 -511.875 )]
+  135s    OX foepos [( 4020.000 -4136.000 -511.875 )] [( 4064.842 -4133.130 -511.875 )] [( 4243.832 -4371.627 -511.875 )] [( 4020.000 -4888.000 -511.875 )]
+  140s    OX foepos [( 4020.000 -4136.000 -511.875 )] [( 4064.842 -4133.130 -511.875 )] [( 4243.832 -4371.627 -511.875 )] [( 4020.000 -4888.000 -511.875 )]
+  144s    OX foepos [( 4020.000 -4136.000 -511.875 )] [( 4064.842 -4133.130 -511.875 )] [( 4243.832 -4371.627 -511.875 )] [( 4020.000 -4888.000 -511.875 )]
+  149s    OX foepos [( 4020.000 -4136.000 -511.875 )] [( 4064.842 -4133.130 -511.875 )] [( 4243.832 -4371.627 -511.875 )] [( 4020.000 -4888.000 -511.875 )]
+  153s    OX foepos [( 4020.000 -4136.000 -511.875 )] [( 4064.842 -4133.130 -511.875 )] [( 4243.832 -4371.627 -511.875 )] [( 4020.000 -4888.000 -511.875 )]
+  157s    OX foepos [( 4020.000 -4136.000 -511.875 )] [( 4064.842 -4133.130 -511.875 )] [( 4243.832 -4371.627 -511.875 )] [( 4020.000 -4888.000 -511.875 )]
+  161s    OX foepos [( 4020.000 -4136.000 -511.875 )] [( 4064.842 -4133.130 -511.875 )] [( 4243.832 -4371.627 -511.875 )] [( 4020.000 -4888.000 -511.875 )]
+  161s mesh frames done
+  161s ---- OBJX log ----
+  161s OBJX armed m2l2c objectives=3 items=0 players=1
+  161s OBJX ACTIVE craneA type=m2crane t=32.000
+  161s OBJX ACTIVE craneB type=m2crane t=32.000
+  161s OBJX ACTIVE radio type=m2radio t=32.000
+  161s OBJX HOLD radio zone=the storage room at=( 3615.000 -3850.000 -512.000 ) r=700 total=75s players=1
+  161s M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+  161s M2L2C barrel-room door built (open) at ( 3423.000 -3430.000 -380.000 )
+  161s M2L2C mesh gate: REAL gate found at ( 0.000 0.000 0.000 ) - closed, paths disconnected
+  161s M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+  161s M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+  161s M2L2C RADIO used by UnnamedSoldier#8240 t=55.200
+  161s M2L2C barrel-room door SHUTTING t=55.200
+  161s M2L2C gate OPENING t=55.200
+  161s M2L2C gate OPEN t=58.200
+  161s M2L2C barrel-room door FORCED OPEN t=68.200
+  161s M2L2C radio wave 1 entry=mesh men=0 at=( 3740.000 -3330.000 -512.000 )
+  161s M2L2C mesh wave 1 group 0 placed at ( 4020.000 -4136.000 -512.000 ) t=69.850
+  161s M2L2C rg guide n=2 open=0 at ( 4020.000 -4136.000 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=2 open=0 at ( 4064.842 -4133.130 -511.875 ) hp=78.000
+  161s M2L2C mesh wave 1 group 1 placed at ( 4244.000 -4376.000 -512.000 ) t=72.875
+  161s M2L2C rg guide n=2 open=0 at ( 4243.832 -4371.627 -511.875 ) hp=78.000
+  161s M2L2C mesh gate OPENING t=75.875
+  161s M2L2C mesh wave 1 group 2 placed at ( 4020.000 -4888.000 -512.000 ) t=75.900
+  161s M2L2C mesh wave 1 men=4
+  161s M2L2C mesh gate OPEN, paths connected t=77.375
+  161s M2L2C rg guide n=2 open=1 at ( 4020.000 -4888.000 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=8 open=1 at ( 4020.000 -4136.000 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=8 open=1 at ( 4064.842 -4133.130 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=8 open=1 at ( 4243.832 -4371.627 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=8 open=1 at ( 4020.000 -4888.000 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=14 open=1 at ( 4020.000 -4136.000 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=14 open=1 at ( 4064.842 -4133.130 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=14 open=1 at ( 4243.832 -4371.627 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=14 open=1 at ( 4020.000 -4888.000 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=20 open=1 at ( 4020.000 -4136.000 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=20 open=1 at ( 4064.842 -4133.130 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=20 open=1 at ( 4243.832 -4371.627 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=20 open=1 at ( 4020.000 -4888.000 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=26 open=1 at ( 4020.000 -4136.000 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=26 open=1 at ( 4064.842 -4133.130 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=26 open=1 at ( 4243.832 -4371.627 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=26 open=1 at ( 4020.000 -4888.000 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=32 open=1 at ( 4020.000 -4136.000 -511.875 ) hp=78.000
+  161s M2L2C rg guide n=32 open=1 at ( 4064.842 -4133.130 -511.875 ) hp=78.000
+  161s script errors: 0 []

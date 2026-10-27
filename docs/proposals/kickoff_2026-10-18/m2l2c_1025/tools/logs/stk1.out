@@ -1,0 +1,34 @@
+13:37:20 t=0.034 launched pid 27056 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+13:37:20 t=0.061 in-process guard installed on thread 17828
+13:37:20 t=0.554 place 0xae07a8 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+13:37:20 t=0.717 place 0xaf07a8 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+13:37:20 t=0.723 place 0x45207a4 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+13:38:30 booted m2_stk1 m2l2c ref=work dog False
+13:38:37 stk1    OX M2 t=47.475 active=1 doneN=0 alive=0 | c1 st=idle p=0 | c2 st=idle p=0 | gateOpen=0 me=( -1365.000 -6240.000 -511.875 ) | o1=2 | o2=2 | o3=1
+13:38:37 stk1    OX foepos
+13:38:37 stk1 crane A ready: True
+13:38:40 stk1 -- craneA: at the control panel
+13:38:45 stk1 panel used: True
+13:38:48 stk1    OX M2 t=58.700 active=1 doneN=0 alive=0 | c1 st=run p=0.176 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+13:38:48 stk1    OX foepos
+13:39:01 stk1    OX M2 t=71.575 active=1 doneN=0 alive=0 | c1 st=run p=0.692 | c2 st=idle p=0 | gateOpen=0 me=( 748.000 -4000.000 -512.000 ) | o1=2 | o2=2 | o3=1
+13:39:01 stk1    OX foepos
+13:39:13 stk1 objective done: True
+13:39:14 stk1 ---- OBJX log ----
+13:39:14 stk1 OBJX armed m2l2c objectives=3 items=0 players=1
+13:39:14 stk1 OBJX ACTIVE craneA type=m2crane t=32.250
+13:39:14 stk1 OBJX ACTIVE craneB type=m2crane t=32.250
+13:39:14 stk1 OBJX DONE craneA took=46.850s done=1/3 t=79.100
+13:39:14 stk1 M2L2C gate built at ( 3372.000 -3856.000 -380.000 )
+13:39:14 stk1 M2L2C barrel-room door built (open) at ( 3423.000 -3430.000 -380.000 )
+13:39:14 stk1 M2L2C mesh gate: stock map ($mesh_gate missing) - fallback entries only
+13:39:14 stk1 M2L2C u-boats: stock map ($uboat_a missing) - burn only
+13:39:14 stk1 M2L2C crane A ready: panel=( 792.000 -3740.000 -452.000 )
+13:39:14 stk1 M2L2C crane B ready: panel=( 3225.000 -3600.000 -452.000 )
+13:39:14 stk1 M2L2C PANEL A used by UnnamedSoldier#8240 t=54.250
+13:39:14 stk1 M2L2C crane A cycle start T=25s players=1
+13:39:14 stk1 M2L2C crane A RELEASE t=75.250
+13:39:14 stk1 M2L2C crane A IMPACT at=( 260.000 -3800.000 -449.000 ) t=79.100
+13:39:14 stk1 script errors: 0 []
+13:39:15 t=114.938 process exited
+13:39:15 [m2_stk1] done: 47 shots, window {'clean': True, 'violations': []}

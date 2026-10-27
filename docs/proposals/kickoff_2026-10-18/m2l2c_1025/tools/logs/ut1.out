@@ -1,0 +1,5 @@
+11:48:58 booted m2_ut1 m2l2c ref=work dog False
+11:49:05 ut1 ubmove parent=( 254.000 -3916.000 -862.000 ) child_up=( 254.000 -3798.000 -630.000 ) bound=-
+11:49:07 ut1 ubmove parent=( 254.000 -3916.000 -1012.000 ) child_up=( 254.000 -3798.000 -630.000 ) bound=-
+11:49:08 ut1 errors []
+11:49:08 [m2_ut1] done: 1 shots, window {'clean': True, 'violations': []}

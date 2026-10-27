@@ -1,0 +1,100 @@
+20:25:21 t=0.041 launched pid 3544 on \\.\DISPLAY2 (3440, 0, 5360, 1080) (25 '+') guard=True job=True sdl=True
+20:25:21 t=0.076 in-process guard installed on thread 29216
+20:25:21 t=0.642 place 0xab0a12 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+20:25:22 t=0.866 place 0xac0a12 SDL_app created (3760, 180, 5040, 900) -> (3760, 180) hidden
+20:25:22 t=0.874 place 0x1950ae8 SDL_app created (4395, 535, 4405, 545) -> (4395, 535) hidden
+20:26:33 booted m2_m1 m2l2c ref=work dog False
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:35 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:36 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:37 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" ^
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins ^
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" + local.e.maxs )
+20:26:38 m1 OX mkmodel " + local.m + " at=" + local.e.origin + " mins=" + local.e.mins + " maxs=" ^
+20:26:40 m1 errors ["[2026-10-25 20:26:35 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-25 20:26:35 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-25 20:26:35 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-25 20:26:36 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-25 20:26:36 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-25 20:26:36 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-25 20:26:37 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-25 20:26:37 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-25 20:26:37 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'", "[2026-10-25 20:26:38 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'", "[2026-10-25 20:26:38 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'", "[2026-10-25 20:26:38 UTC-6.000] ^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'"]
+20:26:41 t=80.001 process exited
+20:26:41 [m2_m1] done: 2 shots, window {'clean': True, 'violations': []}
+RELEASED m2l2c
